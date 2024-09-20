@@ -12,32 +12,32 @@ import (
 var _ resourceids.ResourceId = &UserIdJoinedTeamIdChannelIdSharedWithTeamIdAllowedMemberId{}
 
 func TestNewUserIdJoinedTeamIdChannelIdSharedWithTeamIdAllowedMemberID(t *testing.T) {
-	id := NewUserIdJoinedTeamIdChannelIdSharedWithTeamIdAllowedMemberID("userIdValue", "teamIdValue", "channelIdValue", "sharedWithChannelTeamInfoIdValue", "conversationMemberIdValue")
+	id := NewUserIdJoinedTeamIdChannelIdSharedWithTeamIdAllowedMemberID("userId", "teamId", "channelId", "sharedWithChannelTeamInfoId", "conversationMemberId")
 
-	if id.UserId != "userIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'UserId'", id.UserId, "userIdValue")
+	if id.UserId != "userId" {
+		t.Fatalf("Expected %q but got %q for Segment 'UserId'", id.UserId, "userId")
 	}
 
-	if id.TeamId != "teamIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'TeamId'", id.TeamId, "teamIdValue")
+	if id.TeamId != "teamId" {
+		t.Fatalf("Expected %q but got %q for Segment 'TeamId'", id.TeamId, "teamId")
 	}
 
-	if id.ChannelId != "channelIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ChannelId'", id.ChannelId, "channelIdValue")
+	if id.ChannelId != "channelId" {
+		t.Fatalf("Expected %q but got %q for Segment 'ChannelId'", id.ChannelId, "channelId")
 	}
 
-	if id.SharedWithChannelTeamInfoId != "sharedWithChannelTeamInfoIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'SharedWithChannelTeamInfoId'", id.SharedWithChannelTeamInfoId, "sharedWithChannelTeamInfoIdValue")
+	if id.SharedWithChannelTeamInfoId != "sharedWithChannelTeamInfoId" {
+		t.Fatalf("Expected %q but got %q for Segment 'SharedWithChannelTeamInfoId'", id.SharedWithChannelTeamInfoId, "sharedWithChannelTeamInfoId")
 	}
 
-	if id.ConversationMemberId != "conversationMemberIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ConversationMemberId'", id.ConversationMemberId, "conversationMemberIdValue")
+	if id.ConversationMemberId != "conversationMemberId" {
+		t.Fatalf("Expected %q but got %q for Segment 'ConversationMemberId'", id.ConversationMemberId, "conversationMemberId")
 	}
 }
 
 func TestFormatUserIdJoinedTeamIdChannelIdSharedWithTeamIdAllowedMemberID(t *testing.T) {
-	actual := NewUserIdJoinedTeamIdChannelIdSharedWithTeamIdAllowedMemberID("userIdValue", "teamIdValue", "channelIdValue", "sharedWithChannelTeamInfoIdValue", "conversationMemberIdValue").ID()
-	expected := "/users/userIdValue/joinedTeams/teamIdValue/channels/channelIdValue/sharedWithTeams/sharedWithChannelTeamInfoIdValue/allowedMembers/conversationMemberIdValue"
+	actual := NewUserIdJoinedTeamIdChannelIdSharedWithTeamIdAllowedMemberID("userId", "teamId", "channelId", "sharedWithChannelTeamInfoId", "conversationMemberId").ID()
+	expected := "/users/userId/joinedTeams/teamId/channels/channelId/sharedWithTeams/sharedWithChannelTeamInfoId/allowedMembers/conversationMemberId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -61,58 +61,58 @@ func TestParseUserIdJoinedTeamIdChannelIdSharedWithTeamIdAllowedMemberID(t *test
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue",
+			Input: "/users/userId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/joinedTeams",
+			Input: "/users/userId/joinedTeams",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/joinedTeams/teamIdValue",
+			Input: "/users/userId/joinedTeams/teamId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/joinedTeams/teamIdValue/channels",
+			Input: "/users/userId/joinedTeams/teamId/channels",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/joinedTeams/teamIdValue/channels/channelIdValue",
+			Input: "/users/userId/joinedTeams/teamId/channels/channelId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/joinedTeams/teamIdValue/channels/channelIdValue/sharedWithTeams",
+			Input: "/users/userId/joinedTeams/teamId/channels/channelId/sharedWithTeams",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/joinedTeams/teamIdValue/channels/channelIdValue/sharedWithTeams/sharedWithChannelTeamInfoIdValue",
+			Input: "/users/userId/joinedTeams/teamId/channels/channelId/sharedWithTeams/sharedWithChannelTeamInfoId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/joinedTeams/teamIdValue/channels/channelIdValue/sharedWithTeams/sharedWithChannelTeamInfoIdValue/allowedMembers",
+			Input: "/users/userId/joinedTeams/teamId/channels/channelId/sharedWithTeams/sharedWithChannelTeamInfoId/allowedMembers",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/users/userIdValue/joinedTeams/teamIdValue/channels/channelIdValue/sharedWithTeams/sharedWithChannelTeamInfoIdValue/allowedMembers/conversationMemberIdValue",
+			Input: "/users/userId/joinedTeams/teamId/channels/channelId/sharedWithTeams/sharedWithChannelTeamInfoId/allowedMembers/conversationMemberId",
 			Expected: &UserIdJoinedTeamIdChannelIdSharedWithTeamIdAllowedMemberId{
-				UserId:                      "userIdValue",
-				TeamId:                      "teamIdValue",
-				ChannelId:                   "channelIdValue",
-				SharedWithChannelTeamInfoId: "sharedWithChannelTeamInfoIdValue",
-				ConversationMemberId:        "conversationMemberIdValue",
+				UserId:                      "userId",
+				TeamId:                      "teamId",
+				ChannelId:                   "channelId",
+				SharedWithChannelTeamInfoId: "sharedWithChannelTeamInfoId",
+				ConversationMemberId:        "conversationMemberId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/users/userIdValue/joinedTeams/teamIdValue/channels/channelIdValue/sharedWithTeams/sharedWithChannelTeamInfoIdValue/allowedMembers/conversationMemberIdValue/extra",
+			Input: "/users/userId/joinedTeams/teamId/channels/channelId/sharedWithTeams/sharedWithChannelTeamInfoId/allowedMembers/conversationMemberId/extra",
 			Error: true,
 		},
 	}
@@ -177,114 +177,114 @@ func TestParseUserIdJoinedTeamIdChannelIdSharedWithTeamIdAllowedMemberIDInsensit
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue",
+			Input: "/users/userId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe",
+			Input: "/uSeRs/uSeRiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/joinedTeams",
+			Input: "/users/userId/joinedTeams",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/jOiNeDtEaMs",
+			Input: "/uSeRs/uSeRiD/jOiNeDtEaMs",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/joinedTeams/teamIdValue",
+			Input: "/users/userId/joinedTeams/teamId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/jOiNeDtEaMs/tEaMiDvAlUe",
+			Input: "/uSeRs/uSeRiD/jOiNeDtEaMs/tEaMiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/joinedTeams/teamIdValue/channels",
+			Input: "/users/userId/joinedTeams/teamId/channels",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/jOiNeDtEaMs/tEaMiDvAlUe/cHaNnElS",
+			Input: "/uSeRs/uSeRiD/jOiNeDtEaMs/tEaMiD/cHaNnElS",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/joinedTeams/teamIdValue/channels/channelIdValue",
+			Input: "/users/userId/joinedTeams/teamId/channels/channelId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/jOiNeDtEaMs/tEaMiDvAlUe/cHaNnElS/cHaNnElIdVaLuE",
+			Input: "/uSeRs/uSeRiD/jOiNeDtEaMs/tEaMiD/cHaNnElS/cHaNnElId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/joinedTeams/teamIdValue/channels/channelIdValue/sharedWithTeams",
+			Input: "/users/userId/joinedTeams/teamId/channels/channelId/sharedWithTeams",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/jOiNeDtEaMs/tEaMiDvAlUe/cHaNnElS/cHaNnElIdVaLuE/sHaReDwItHtEaMs",
+			Input: "/uSeRs/uSeRiD/jOiNeDtEaMs/tEaMiD/cHaNnElS/cHaNnElId/sHaReDwItHtEaMs",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/joinedTeams/teamIdValue/channels/channelIdValue/sharedWithTeams/sharedWithChannelTeamInfoIdValue",
+			Input: "/users/userId/joinedTeams/teamId/channels/channelId/sharedWithTeams/sharedWithChannelTeamInfoId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/jOiNeDtEaMs/tEaMiDvAlUe/cHaNnElS/cHaNnElIdVaLuE/sHaReDwItHtEaMs/sHaReDwItHcHaNnElTeAmInFoIdVaLuE",
+			Input: "/uSeRs/uSeRiD/jOiNeDtEaMs/tEaMiD/cHaNnElS/cHaNnElId/sHaReDwItHtEaMs/sHaReDwItHcHaNnElTeAmInFoId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/joinedTeams/teamIdValue/channels/channelIdValue/sharedWithTeams/sharedWithChannelTeamInfoIdValue/allowedMembers",
+			Input: "/users/userId/joinedTeams/teamId/channels/channelId/sharedWithTeams/sharedWithChannelTeamInfoId/allowedMembers",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/jOiNeDtEaMs/tEaMiDvAlUe/cHaNnElS/cHaNnElIdVaLuE/sHaReDwItHtEaMs/sHaReDwItHcHaNnElTeAmInFoIdVaLuE/aLlOwEdMeMbErS",
+			Input: "/uSeRs/uSeRiD/jOiNeDtEaMs/tEaMiD/cHaNnElS/cHaNnElId/sHaReDwItHtEaMs/sHaReDwItHcHaNnElTeAmInFoId/aLlOwEdMeMbErS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/users/userIdValue/joinedTeams/teamIdValue/channels/channelIdValue/sharedWithTeams/sharedWithChannelTeamInfoIdValue/allowedMembers/conversationMemberIdValue",
+			Input: "/users/userId/joinedTeams/teamId/channels/channelId/sharedWithTeams/sharedWithChannelTeamInfoId/allowedMembers/conversationMemberId",
 			Expected: &UserIdJoinedTeamIdChannelIdSharedWithTeamIdAllowedMemberId{
-				UserId:                      "userIdValue",
-				TeamId:                      "teamIdValue",
-				ChannelId:                   "channelIdValue",
-				SharedWithChannelTeamInfoId: "sharedWithChannelTeamInfoIdValue",
-				ConversationMemberId:        "conversationMemberIdValue",
+				UserId:                      "userId",
+				TeamId:                      "teamId",
+				ChannelId:                   "channelId",
+				SharedWithChannelTeamInfoId: "sharedWithChannelTeamInfoId",
+				ConversationMemberId:        "conversationMemberId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/users/userIdValue/joinedTeams/teamIdValue/channels/channelIdValue/sharedWithTeams/sharedWithChannelTeamInfoIdValue/allowedMembers/conversationMemberIdValue/extra",
+			Input: "/users/userId/joinedTeams/teamId/channels/channelId/sharedWithTeams/sharedWithChannelTeamInfoId/allowedMembers/conversationMemberId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/jOiNeDtEaMs/tEaMiDvAlUe/cHaNnElS/cHaNnElIdVaLuE/sHaReDwItHtEaMs/sHaReDwItHcHaNnElTeAmInFoIdVaLuE/aLlOwEdMeMbErS/cOnVeRsAtIoNmEmBeRiDvAlUe",
+			Input: "/uSeRs/uSeRiD/jOiNeDtEaMs/tEaMiD/cHaNnElS/cHaNnElId/sHaReDwItHtEaMs/sHaReDwItHcHaNnElTeAmInFoId/aLlOwEdMeMbErS/cOnVeRsAtIoNmEmBeRiD",
 			Expected: &UserIdJoinedTeamIdChannelIdSharedWithTeamIdAllowedMemberId{
-				UserId:                      "uSeRiDvAlUe",
-				TeamId:                      "tEaMiDvAlUe",
-				ChannelId:                   "cHaNnElIdVaLuE",
-				SharedWithChannelTeamInfoId: "sHaReDwItHcHaNnElTeAmInFoIdVaLuE",
-				ConversationMemberId:        "cOnVeRsAtIoNmEmBeRiDvAlUe",
+				UserId:                      "uSeRiD",
+				TeamId:                      "tEaMiD",
+				ChannelId:                   "cHaNnElId",
+				SharedWithChannelTeamInfoId: "sHaReDwItHcHaNnElTeAmInFoId",
+				ConversationMemberId:        "cOnVeRsAtIoNmEmBeRiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/jOiNeDtEaMs/tEaMiDvAlUe/cHaNnElS/cHaNnElIdVaLuE/sHaReDwItHtEaMs/sHaReDwItHcHaNnElTeAmInFoIdVaLuE/aLlOwEdMeMbErS/cOnVeRsAtIoNmEmBeRiDvAlUe/extra",
+			Input: "/uSeRs/uSeRiD/jOiNeDtEaMs/tEaMiD/cHaNnElS/cHaNnElId/sHaReDwItHtEaMs/sHaReDwItHcHaNnElTeAmInFoId/aLlOwEdMeMbErS/cOnVeRsAtIoNmEmBeRiD/extra",
 			Error: true,
 		},
 	}

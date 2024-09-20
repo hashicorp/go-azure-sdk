@@ -19,7 +19,8 @@ type DeleteSynchronizationOperationResponse struct {
 }
 
 type DeleteSynchronizationOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteSynchronizationOperationOptions() DeleteSynchronizationOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteSynchronizationOperationOptions) ToHeaders() *client.Headers {
 
 func (o DeleteSynchronizationOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

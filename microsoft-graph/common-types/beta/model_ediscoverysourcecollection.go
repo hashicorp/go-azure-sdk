@@ -103,10 +103,25 @@ func (s EdiscoverySourceCollection) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &EdiscoverySourceCollection{}
 
 func (s *EdiscoverySourceCollection) UnmarshalJSON(bytes []byte) error {
-	type alias EdiscoverySourceCollection
-	var decoded alias
+
+	var decoded struct {
+		AddToReviewSetOperation         *EdiscoveryAddToReviewSetOperation     `json:"addToReviewSetOperation,omitempty"`
+		AdditionalSources               *[]EdiscoveryDataSource                `json:"additionalSources,omitempty"`
+		ContentQuery                    nullable.Type[string]                  `json:"contentQuery,omitempty"`
+		CreatedDateTime                 nullable.Type[string]                  `json:"createdDateTime,omitempty"`
+		CustodianSources                *[]EdiscoveryDataSource                `json:"custodianSources,omitempty"`
+		DataSourceScopes                *EdiscoveryDataSourceScopes            `json:"dataSourceScopes,omitempty"`
+		Description                     nullable.Type[string]                  `json:"description,omitempty"`
+		DisplayName                     nullable.Type[string]                  `json:"displayName,omitempty"`
+		LastEstimateStatisticsOperation *EdiscoveryEstimateStatisticsOperation `json:"lastEstimateStatisticsOperation,omitempty"`
+		LastModifiedDateTime            nullable.Type[string]                  `json:"lastModifiedDateTime,omitempty"`
+		NoncustodialSources             *[]EdiscoveryNoncustodialDataSource    `json:"noncustodialSources,omitempty"`
+		Id                              *string                                `json:"id,omitempty"`
+		ODataId                         *string                                `json:"@odata.id,omitempty"`
+		ODataType                       *string                                `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into EdiscoverySourceCollection: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.AddToReviewSetOperation = decoded.AddToReviewSetOperation
@@ -115,10 +130,10 @@ func (s *EdiscoverySourceCollection) UnmarshalJSON(bytes []byte) error {
 	s.DataSourceScopes = decoded.DataSourceScopes
 	s.Description = decoded.Description
 	s.DisplayName = decoded.DisplayName
-	s.Id = decoded.Id
 	s.LastEstimateStatisticsOperation = decoded.LastEstimateStatisticsOperation
 	s.LastModifiedDateTime = decoded.LastModifiedDateTime
 	s.NoncustodialSources = decoded.NoncustodialSources
+	s.Id = decoded.Id
 	s.ODataId = decoded.ODataId
 	s.ODataType = decoded.ODataType
 
@@ -176,5 +191,6 @@ func (s *EdiscoverySourceCollection) UnmarshalJSON(bytes []byte) error {
 		}
 		s.LastModifiedBy = impl
 	}
+
 	return nil
 }

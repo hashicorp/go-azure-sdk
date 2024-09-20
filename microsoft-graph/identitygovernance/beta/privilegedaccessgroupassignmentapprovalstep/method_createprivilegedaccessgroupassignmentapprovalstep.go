@@ -19,15 +19,44 @@ type CreatePrivilegedAccessGroupAssignmentApprovalStepOperationResponse struct {
 	Model        *beta.ApprovalStep
 }
 
+type CreatePrivilegedAccessGroupAssignmentApprovalStepOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreatePrivilegedAccessGroupAssignmentApprovalStepOperationOptions() CreatePrivilegedAccessGroupAssignmentApprovalStepOperationOptions {
+	return CreatePrivilegedAccessGroupAssignmentApprovalStepOperationOptions{}
+}
+
+func (o CreatePrivilegedAccessGroupAssignmentApprovalStepOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreatePrivilegedAccessGroupAssignmentApprovalStepOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreatePrivilegedAccessGroupAssignmentApprovalStepOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreatePrivilegedAccessGroupAssignmentApprovalStep - Create new navigation property to steps for identityGovernance
-func (c PrivilegedAccessGroupAssignmentApprovalStepClient) CreatePrivilegedAccessGroupAssignmentApprovalStep(ctx context.Context, id beta.IdentityGovernancePrivilegedAccessGroupAssignmentApprovalId, input beta.ApprovalStep) (result CreatePrivilegedAccessGroupAssignmentApprovalStepOperationResponse, err error) {
+func (c PrivilegedAccessGroupAssignmentApprovalStepClient) CreatePrivilegedAccessGroupAssignmentApprovalStep(ctx context.Context, id beta.IdentityGovernancePrivilegedAccessGroupAssignmentApprovalId, input beta.ApprovalStep, options CreatePrivilegedAccessGroupAssignmentApprovalStepOperationOptions) (result CreatePrivilegedAccessGroupAssignmentApprovalStepOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/steps", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/steps", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

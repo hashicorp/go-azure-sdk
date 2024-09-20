@@ -17,15 +17,44 @@ type UpdateCalendarPermissionOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateCalendarPermissionOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateCalendarPermissionOperationOptions() UpdateCalendarPermissionOperationOptions {
+	return UpdateCalendarPermissionOperationOptions{}
+}
+
+func (o UpdateCalendarPermissionOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateCalendarPermissionOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateCalendarPermissionOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateCalendarPermission - Update the navigation property calendarPermissions in groups
-func (c CalendarCalendarPermissionClient) UpdateCalendarPermission(ctx context.Context, id stable.GroupIdCalendarCalendarPermissionId, input stable.CalendarPermission) (result UpdateCalendarPermissionOperationResponse, err error) {
+func (c CalendarCalendarPermissionClient) UpdateCalendarPermission(ctx context.Context, id stable.GroupIdCalendarCalendarPermissionId, input stable.CalendarPermission, options UpdateCalendarPermissionOperationOptions) (result UpdateCalendarPermissionOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -17,16 +17,45 @@ type UpdateUserExperienceAnalyticsBatteryHealthCapacityDetailOperationResponse s
 	OData        *odata.OData
 }
 
+type UpdateUserExperienceAnalyticsBatteryHealthCapacityDetailOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateUserExperienceAnalyticsBatteryHealthCapacityDetailOperationOptions() UpdateUserExperienceAnalyticsBatteryHealthCapacityDetailOperationOptions {
+	return UpdateUserExperienceAnalyticsBatteryHealthCapacityDetailOperationOptions{}
+}
+
+func (o UpdateUserExperienceAnalyticsBatteryHealthCapacityDetailOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateUserExperienceAnalyticsBatteryHealthCapacityDetailOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateUserExperienceAnalyticsBatteryHealthCapacityDetailOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateUserExperienceAnalyticsBatteryHealthCapacityDetail - Update the navigation property
 // userExperienceAnalyticsBatteryHealthCapacityDetails in deviceManagement
-func (c UserExperienceAnalyticsBatteryHealthCapacityDetailClient) UpdateUserExperienceAnalyticsBatteryHealthCapacityDetail(ctx context.Context, input beta.UserExperienceAnalyticsBatteryHealthCapacityDetails) (result UpdateUserExperienceAnalyticsBatteryHealthCapacityDetailOperationResponse, err error) {
+func (c UserExperienceAnalyticsBatteryHealthCapacityDetailClient) UpdateUserExperienceAnalyticsBatteryHealthCapacityDetail(ctx context.Context, input beta.UserExperienceAnalyticsBatteryHealthCapacityDetails, options UpdateUserExperienceAnalyticsBatteryHealthCapacityDetailOperationOptions) (result UpdateUserExperienceAnalyticsBatteryHealthCapacityDetailOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       "/deviceManagement/userExperienceAnalyticsBatteryHealthCapacityDetails",
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          "/deviceManagement/userExperienceAnalyticsBatteryHealthCapacityDetails",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

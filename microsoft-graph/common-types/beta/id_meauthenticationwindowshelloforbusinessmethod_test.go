@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &MeAuthenticationWindowsHelloForBusinessMethodId{}
 
 func TestNewMeAuthenticationWindowsHelloForBusinessMethodID(t *testing.T) {
-	id := NewMeAuthenticationWindowsHelloForBusinessMethodID("windowsHelloForBusinessAuthenticationMethodIdValue")
+	id := NewMeAuthenticationWindowsHelloForBusinessMethodID("windowsHelloForBusinessAuthenticationMethodId")
 
-	if id.WindowsHelloForBusinessAuthenticationMethodId != "windowsHelloForBusinessAuthenticationMethodIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'WindowsHelloForBusinessAuthenticationMethodId'", id.WindowsHelloForBusinessAuthenticationMethodId, "windowsHelloForBusinessAuthenticationMethodIdValue")
+	if id.WindowsHelloForBusinessAuthenticationMethodId != "windowsHelloForBusinessAuthenticationMethodId" {
+		t.Fatalf("Expected %q but got %q for Segment 'WindowsHelloForBusinessAuthenticationMethodId'", id.WindowsHelloForBusinessAuthenticationMethodId, "windowsHelloForBusinessAuthenticationMethodId")
 	}
 }
 
 func TestFormatMeAuthenticationWindowsHelloForBusinessMethodID(t *testing.T) {
-	actual := NewMeAuthenticationWindowsHelloForBusinessMethodID("windowsHelloForBusinessAuthenticationMethodIdValue").ID()
-	expected := "/me/authentication/windowsHelloForBusinessMethods/windowsHelloForBusinessAuthenticationMethodIdValue"
+	actual := NewMeAuthenticationWindowsHelloForBusinessMethodID("windowsHelloForBusinessAuthenticationMethodId").ID()
+	expected := "/me/authentication/windowsHelloForBusinessMethods/windowsHelloForBusinessAuthenticationMethodId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -55,14 +55,14 @@ func TestParseMeAuthenticationWindowsHelloForBusinessMethodID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/me/authentication/windowsHelloForBusinessMethods/windowsHelloForBusinessAuthenticationMethodIdValue",
+			Input: "/me/authentication/windowsHelloForBusinessMethods/windowsHelloForBusinessAuthenticationMethodId",
 			Expected: &MeAuthenticationWindowsHelloForBusinessMethodId{
-				WindowsHelloForBusinessAuthenticationMethodId: "windowsHelloForBusinessAuthenticationMethodIdValue",
+				WindowsHelloForBusinessAuthenticationMethodId: "windowsHelloForBusinessAuthenticationMethodId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/authentication/windowsHelloForBusinessMethods/windowsHelloForBusinessAuthenticationMethodIdValue/extra",
+			Input: "/me/authentication/windowsHelloForBusinessMethods/windowsHelloForBusinessAuthenticationMethodId/extra",
 			Error: true,
 		},
 	}
@@ -131,26 +131,26 @@ func TestParseMeAuthenticationWindowsHelloForBusinessMethodIDInsensitively(t *te
 		},
 		{
 			// Valid URI
-			Input: "/me/authentication/windowsHelloForBusinessMethods/windowsHelloForBusinessAuthenticationMethodIdValue",
+			Input: "/me/authentication/windowsHelloForBusinessMethods/windowsHelloForBusinessAuthenticationMethodId",
 			Expected: &MeAuthenticationWindowsHelloForBusinessMethodId{
-				WindowsHelloForBusinessAuthenticationMethodId: "windowsHelloForBusinessAuthenticationMethodIdValue",
+				WindowsHelloForBusinessAuthenticationMethodId: "windowsHelloForBusinessAuthenticationMethodId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/authentication/windowsHelloForBusinessMethods/windowsHelloForBusinessAuthenticationMethodIdValue/extra",
+			Input: "/me/authentication/windowsHelloForBusinessMethods/windowsHelloForBusinessAuthenticationMethodId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/aUtHeNtIcAtIoN/wInDoWsHeLlOfOrBuSiNeSsMeThOdS/wInDoWsHeLlOfOrBuSiNeSsAuThEnTiCaTiOnMeThOdIdVaLuE",
+			Input: "/mE/aUtHeNtIcAtIoN/wInDoWsHeLlOfOrBuSiNeSsMeThOdS/wInDoWsHeLlOfOrBuSiNeSsAuThEnTiCaTiOnMeThOdId",
 			Expected: &MeAuthenticationWindowsHelloForBusinessMethodId{
-				WindowsHelloForBusinessAuthenticationMethodId: "wInDoWsHeLlOfOrBuSiNeSsAuThEnTiCaTiOnMeThOdIdVaLuE",
+				WindowsHelloForBusinessAuthenticationMethodId: "wInDoWsHeLlOfOrBuSiNeSsAuThEnTiCaTiOnMeThOdId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/mE/aUtHeNtIcAtIoN/wInDoWsHeLlOfOrBuSiNeSsMeThOdS/wInDoWsHeLlOfOrBuSiNeSsAuThEnTiCaTiOnMeThOdIdVaLuE/extra",
+			Input: "/mE/aUtHeNtIcAtIoN/wInDoWsHeLlOfOrBuSiNeSsMeThOdS/wInDoWsHeLlOfOrBuSiNeSsAuThEnTiCaTiOnMeThOdId/extra",
 			Error: true,
 		},
 	}

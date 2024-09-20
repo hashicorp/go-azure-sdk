@@ -18,15 +18,44 @@ type SetChatMessageReplyReactionOperationResponse struct {
 	OData        *odata.OData
 }
 
+type SetChatMessageReplyReactionOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultSetChatMessageReplyReactionOperationOptions() SetChatMessageReplyReactionOperationOptions {
+	return SetChatMessageReplyReactionOperationOptions{}
+}
+
+func (o SetChatMessageReplyReactionOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o SetChatMessageReplyReactionOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o SetChatMessageReplyReactionOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // SetChatMessageReplyReaction - Invoke action setReaction
-func (c ChatMessageReplyClient) SetChatMessageReplyReaction(ctx context.Context, id stable.MeChatIdMessageIdReplyId, input SetChatMessageReplyReactionRequest) (result SetChatMessageReplyReactionOperationResponse, err error) {
+func (c ChatMessageReplyClient) SetChatMessageReplyReaction(ctx context.Context, id stable.MeChatIdMessageIdReplyId, input SetChatMessageReplyReactionRequest, options SetChatMessageReplyReactionOperationOptions) (result SetChatMessageReplyReactionOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/setReaction", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/setReaction", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

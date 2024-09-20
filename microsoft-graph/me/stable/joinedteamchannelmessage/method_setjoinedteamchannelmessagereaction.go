@@ -18,15 +18,44 @@ type SetJoinedTeamChannelMessageReactionOperationResponse struct {
 	OData        *odata.OData
 }
 
+type SetJoinedTeamChannelMessageReactionOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultSetJoinedTeamChannelMessageReactionOperationOptions() SetJoinedTeamChannelMessageReactionOperationOptions {
+	return SetJoinedTeamChannelMessageReactionOperationOptions{}
+}
+
+func (o SetJoinedTeamChannelMessageReactionOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o SetJoinedTeamChannelMessageReactionOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o SetJoinedTeamChannelMessageReactionOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // SetJoinedTeamChannelMessageReaction - Invoke action setReaction
-func (c JoinedTeamChannelMessageClient) SetJoinedTeamChannelMessageReaction(ctx context.Context, id stable.MeJoinedTeamIdChannelIdMessageId, input SetJoinedTeamChannelMessageReactionRequest) (result SetJoinedTeamChannelMessageReactionOperationResponse, err error) {
+func (c JoinedTeamChannelMessageClient) SetJoinedTeamChannelMessageReaction(ctx context.Context, id stable.MeJoinedTeamIdChannelIdMessageId, input SetJoinedTeamChannelMessageReactionRequest, options SetJoinedTeamChannelMessageReactionOperationOptions) (result SetJoinedTeamChannelMessageReactionOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/setReaction", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/setReaction", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

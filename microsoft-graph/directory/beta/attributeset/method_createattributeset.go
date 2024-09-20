@@ -18,15 +18,44 @@ type CreateAttributeSetOperationResponse struct {
 	Model        *beta.AttributeSet
 }
 
+type CreateAttributeSetOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateAttributeSetOperationOptions() CreateAttributeSetOperationOptions {
+	return CreateAttributeSetOperationOptions{}
+}
+
+func (o CreateAttributeSetOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateAttributeSetOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateAttributeSetOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateAttributeSet - Create attributeSet. Create a new attributeSet object.
-func (c AttributeSetClient) CreateAttributeSet(ctx context.Context, input beta.AttributeSet) (result CreateAttributeSetOperationResponse, err error) {
+func (c AttributeSetClient) CreateAttributeSet(ctx context.Context, input beta.AttributeSet, options CreateAttributeSetOperationOptions) (result CreateAttributeSetOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/directory/attributeSets",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/directory/attributeSets",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

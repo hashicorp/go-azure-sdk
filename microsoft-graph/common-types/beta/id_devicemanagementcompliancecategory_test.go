@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &DeviceManagementComplianceCategoryId{}
 
 func TestNewDeviceManagementComplianceCategoryID(t *testing.T) {
-	id := NewDeviceManagementComplianceCategoryID("deviceManagementConfigurationCategoryIdValue")
+	id := NewDeviceManagementComplianceCategoryID("deviceManagementConfigurationCategoryId")
 
-	if id.DeviceManagementConfigurationCategoryId != "deviceManagementConfigurationCategoryIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DeviceManagementConfigurationCategoryId'", id.DeviceManagementConfigurationCategoryId, "deviceManagementConfigurationCategoryIdValue")
+	if id.DeviceManagementConfigurationCategoryId != "deviceManagementConfigurationCategoryId" {
+		t.Fatalf("Expected %q but got %q for Segment 'DeviceManagementConfigurationCategoryId'", id.DeviceManagementConfigurationCategoryId, "deviceManagementConfigurationCategoryId")
 	}
 }
 
 func TestFormatDeviceManagementComplianceCategoryID(t *testing.T) {
-	actual := NewDeviceManagementComplianceCategoryID("deviceManagementConfigurationCategoryIdValue").ID()
-	expected := "/deviceManagement/complianceCategories/deviceManagementConfigurationCategoryIdValue"
+	actual := NewDeviceManagementComplianceCategoryID("deviceManagementConfigurationCategoryId").ID()
+	expected := "/deviceManagement/complianceCategories/deviceManagementConfigurationCategoryId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -50,14 +50,14 @@ func TestParseDeviceManagementComplianceCategoryID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/complianceCategories/deviceManagementConfigurationCategoryIdValue",
+			Input: "/deviceManagement/complianceCategories/deviceManagementConfigurationCategoryId",
 			Expected: &DeviceManagementComplianceCategoryId{
-				DeviceManagementConfigurationCategoryId: "deviceManagementConfigurationCategoryIdValue",
+				DeviceManagementConfigurationCategoryId: "deviceManagementConfigurationCategoryId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/complianceCategories/deviceManagementConfigurationCategoryIdValue/extra",
+			Input: "/deviceManagement/complianceCategories/deviceManagementConfigurationCategoryId/extra",
 			Error: true,
 		},
 	}
@@ -116,26 +116,26 @@ func TestParseDeviceManagementComplianceCategoryIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/complianceCategories/deviceManagementConfigurationCategoryIdValue",
+			Input: "/deviceManagement/complianceCategories/deviceManagementConfigurationCategoryId",
 			Expected: &DeviceManagementComplianceCategoryId{
-				DeviceManagementConfigurationCategoryId: "deviceManagementConfigurationCategoryIdValue",
+				DeviceManagementConfigurationCategoryId: "deviceManagementConfigurationCategoryId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/complianceCategories/deviceManagementConfigurationCategoryIdValue/extra",
+			Input: "/deviceManagement/complianceCategories/deviceManagementConfigurationCategoryId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/cOmPlIaNcEcAtEgOrIeS/dEvIcEmAnAgEmEnTcOnFiGuRaTiOnCaTeGoRyIdVaLuE",
+			Input: "/dEvIcEmAnAgEmEnT/cOmPlIaNcEcAtEgOrIeS/dEvIcEmAnAgEmEnTcOnFiGuRaTiOnCaTeGoRyId",
 			Expected: &DeviceManagementComplianceCategoryId{
-				DeviceManagementConfigurationCategoryId: "dEvIcEmAnAgEmEnTcOnFiGuRaTiOnCaTeGoRyIdVaLuE",
+				DeviceManagementConfigurationCategoryId: "dEvIcEmAnAgEmEnTcOnFiGuRaTiOnCaTeGoRyId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/cOmPlIaNcEcAtEgOrIeS/dEvIcEmAnAgEmEnTcOnFiGuRaTiOnCaTeGoRyIdVaLuE/extra",
+			Input: "/dEvIcEmAnAgEmEnT/cOmPlIaNcEcAtEgOrIeS/dEvIcEmAnAgEmEnTcOnFiGuRaTiOnCaTeGoRyId/extra",
 			Error: true,
 		},
 	}

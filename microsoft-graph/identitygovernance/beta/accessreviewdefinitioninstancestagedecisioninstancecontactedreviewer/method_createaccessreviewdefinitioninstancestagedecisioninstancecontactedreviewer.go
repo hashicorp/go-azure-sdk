@@ -19,16 +19,45 @@ type CreateAccessReviewDefinitionInstanceStageDecisionInstanceContactedReviewerO
 	Model        *beta.AccessReviewReviewer
 }
 
+type CreateAccessReviewDefinitionInstanceStageDecisionInstanceContactedReviewerOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateAccessReviewDefinitionInstanceStageDecisionInstanceContactedReviewerOperationOptions() CreateAccessReviewDefinitionInstanceStageDecisionInstanceContactedReviewerOperationOptions {
+	return CreateAccessReviewDefinitionInstanceStageDecisionInstanceContactedReviewerOperationOptions{}
+}
+
+func (o CreateAccessReviewDefinitionInstanceStageDecisionInstanceContactedReviewerOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateAccessReviewDefinitionInstanceStageDecisionInstanceContactedReviewerOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateAccessReviewDefinitionInstanceStageDecisionInstanceContactedReviewerOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateAccessReviewDefinitionInstanceStageDecisionInstanceContactedReviewer - Create new navigation property to
 // contactedReviewers for identityGovernance
-func (c AccessReviewDefinitionInstanceStageDecisionInstanceContactedReviewerClient) CreateAccessReviewDefinitionInstanceStageDecisionInstanceContactedReviewer(ctx context.Context, id beta.IdentityGovernanceAccessReviewDefinitionIdInstanceIdStageIdDecisionId, input beta.AccessReviewReviewer) (result CreateAccessReviewDefinitionInstanceStageDecisionInstanceContactedReviewerOperationResponse, err error) {
+func (c AccessReviewDefinitionInstanceStageDecisionInstanceContactedReviewerClient) CreateAccessReviewDefinitionInstanceStageDecisionInstanceContactedReviewer(ctx context.Context, id beta.IdentityGovernanceAccessReviewDefinitionIdInstanceIdStageIdDecisionId, input beta.AccessReviewReviewer, options CreateAccessReviewDefinitionInstanceStageDecisionInstanceContactedReviewerOperationOptions) (result CreateAccessReviewDefinitionInstanceStageDecisionInstanceContactedReviewerOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/instance/contactedReviewers", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/instance/contactedReviewers", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

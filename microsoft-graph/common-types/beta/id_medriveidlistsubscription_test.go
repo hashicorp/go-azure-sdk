@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &MeDriveIdListSubscriptionId{}
 
 func TestNewMeDriveIdListSubscriptionID(t *testing.T) {
-	id := NewMeDriveIdListSubscriptionID("driveIdValue", "subscriptionIdValue")
+	id := NewMeDriveIdListSubscriptionID("driveId", "subscriptionId")
 
-	if id.DriveId != "driveIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DriveId'", id.DriveId, "driveIdValue")
+	if id.DriveId != "driveId" {
+		t.Fatalf("Expected %q but got %q for Segment 'DriveId'", id.DriveId, "driveId")
 	}
 
-	if id.SubscriptionId != "subscriptionIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "subscriptionIdValue")
+	if id.SubscriptionId != "subscriptionId" {
+		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "subscriptionId")
 	}
 }
 
 func TestFormatMeDriveIdListSubscriptionID(t *testing.T) {
-	actual := NewMeDriveIdListSubscriptionID("driveIdValue", "subscriptionIdValue").ID()
-	expected := "/me/drives/driveIdValue/list/subscriptions/subscriptionIdValue"
+	actual := NewMeDriveIdListSubscriptionID("driveId", "subscriptionId").ID()
+	expected := "/me/drives/driveId/list/subscriptions/subscriptionId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -54,30 +54,30 @@ func TestParseMeDriveIdListSubscriptionID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/me/drives/driveIdValue",
+			Input: "/me/drives/driveId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/me/drives/driveIdValue/list",
+			Input: "/me/drives/driveId/list",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/me/drives/driveIdValue/list/subscriptions",
+			Input: "/me/drives/driveId/list/subscriptions",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/me/drives/driveIdValue/list/subscriptions/subscriptionIdValue",
+			Input: "/me/drives/driveId/list/subscriptions/subscriptionId",
 			Expected: &MeDriveIdListSubscriptionId{
-				DriveId:        "driveIdValue",
-				SubscriptionId: "subscriptionIdValue",
+				DriveId:        "driveId",
+				SubscriptionId: "subscriptionId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/drives/driveIdValue/list/subscriptions/subscriptionIdValue/extra",
+			Input: "/me/drives/driveId/list/subscriptions/subscriptionId/extra",
 			Error: true,
 		},
 	}
@@ -140,58 +140,58 @@ func TestParseMeDriveIdListSubscriptionIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/me/drives/driveIdValue",
+			Input: "/me/drives/driveId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/dRiVeS/dRiVeIdVaLuE",
+			Input: "/mE/dRiVeS/dRiVeId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/me/drives/driveIdValue/list",
+			Input: "/me/drives/driveId/list",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/dRiVeS/dRiVeIdVaLuE/lIsT",
+			Input: "/mE/dRiVeS/dRiVeId/lIsT",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/me/drives/driveIdValue/list/subscriptions",
+			Input: "/me/drives/driveId/list/subscriptions",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/dRiVeS/dRiVeIdVaLuE/lIsT/sUbScRiPtIoNs",
+			Input: "/mE/dRiVeS/dRiVeId/lIsT/sUbScRiPtIoNs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/me/drives/driveIdValue/list/subscriptions/subscriptionIdValue",
+			Input: "/me/drives/driveId/list/subscriptions/subscriptionId",
 			Expected: &MeDriveIdListSubscriptionId{
-				DriveId:        "driveIdValue",
-				SubscriptionId: "subscriptionIdValue",
+				DriveId:        "driveId",
+				SubscriptionId: "subscriptionId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/drives/driveIdValue/list/subscriptions/subscriptionIdValue/extra",
+			Input: "/me/drives/driveId/list/subscriptions/subscriptionId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/dRiVeS/dRiVeIdVaLuE/lIsT/sUbScRiPtIoNs/sUbScRiPtIoNiDvAlUe",
+			Input: "/mE/dRiVeS/dRiVeId/lIsT/sUbScRiPtIoNs/sUbScRiPtIoNiD",
 			Expected: &MeDriveIdListSubscriptionId{
-				DriveId:        "dRiVeIdVaLuE",
-				SubscriptionId: "sUbScRiPtIoNiDvAlUe",
+				DriveId:        "dRiVeId",
+				SubscriptionId: "sUbScRiPtIoNiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/mE/dRiVeS/dRiVeIdVaLuE/lIsT/sUbScRiPtIoNs/sUbScRiPtIoNiDvAlUe/extra",
+			Input: "/mE/dRiVeS/dRiVeId/lIsT/sUbScRiPtIoNs/sUbScRiPtIoNiD/extra",
 			Error: true,
 		},
 	}

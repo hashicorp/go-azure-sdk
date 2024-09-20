@@ -67,17 +67,23 @@ func (s ScopedRoleMembership) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &ScopedRoleMembership{}
 
 func (s *ScopedRoleMembership) UnmarshalJSON(bytes []byte) error {
-	type alias ScopedRoleMembership
-	var decoded alias
+
+	var decoded struct {
+		AdministrativeUnitId *string `json:"administrativeUnitId,omitempty"`
+		RoleId               *string `json:"roleId,omitempty"`
+		Id                   *string `json:"id,omitempty"`
+		ODataId              *string `json:"@odata.id,omitempty"`
+		ODataType            *string `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into ScopedRoleMembership: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.AdministrativeUnitId = decoded.AdministrativeUnitId
+	s.RoleId = decoded.RoleId
 	s.Id = decoded.Id
 	s.ODataId = decoded.ODataId
 	s.ODataType = decoded.ODataType
-	s.RoleId = decoded.RoleId
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -91,5 +97,6 @@ func (s *ScopedRoleMembership) UnmarshalJSON(bytes []byte) error {
 		}
 		s.RoleMemberInfo = impl
 	}
+
 	return nil
 }

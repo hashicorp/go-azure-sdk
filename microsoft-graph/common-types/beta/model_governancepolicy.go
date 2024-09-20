@@ -22,10 +22,15 @@ type GovernancePolicy struct {
 var _ json.Unmarshaler = &GovernancePolicy{}
 
 func (s *GovernancePolicy) UnmarshalJSON(bytes []byte) error {
-	type alias GovernancePolicy
-	var decoded alias
+
+	var decoded struct {
+		DecisionMakerCriteria *[]GovernanceCriteria         `json:"decisionMakerCriteria,omitempty"`
+		NotificationPolicy    *GovernanceNotificationPolicy `json:"notificationPolicy,omitempty"`
+		ODataId               *string                       `json:"@odata.id,omitempty"`
+		ODataType             *string                       `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into GovernancePolicy: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.NotificationPolicy = decoded.NotificationPolicy
@@ -53,5 +58,6 @@ func (s *GovernancePolicy) UnmarshalJSON(bytes []byte) error {
 		}
 		s.DecisionMakerCriteria = &output
 	}
+
 	return nil
 }

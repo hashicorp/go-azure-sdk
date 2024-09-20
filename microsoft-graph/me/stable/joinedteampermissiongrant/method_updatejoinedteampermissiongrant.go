@@ -17,15 +17,44 @@ type UpdateJoinedTeamPermissionGrantOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateJoinedTeamPermissionGrantOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateJoinedTeamPermissionGrantOperationOptions() UpdateJoinedTeamPermissionGrantOperationOptions {
+	return UpdateJoinedTeamPermissionGrantOperationOptions{}
+}
+
+func (o UpdateJoinedTeamPermissionGrantOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateJoinedTeamPermissionGrantOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateJoinedTeamPermissionGrantOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateJoinedTeamPermissionGrant - Update the navigation property permissionGrants in me
-func (c JoinedTeamPermissionGrantClient) UpdateJoinedTeamPermissionGrant(ctx context.Context, id stable.MeJoinedTeamIdPermissionGrantId, input stable.ResourceSpecificPermissionGrant) (result UpdateJoinedTeamPermissionGrantOperationResponse, err error) {
+func (c JoinedTeamPermissionGrantClient) UpdateJoinedTeamPermissionGrant(ctx context.Context, id stable.MeJoinedTeamIdPermissionGrantId, input stable.ResourceSpecificPermissionGrant, options UpdateJoinedTeamPermissionGrantOperationOptions) (result UpdateJoinedTeamPermissionGrantOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

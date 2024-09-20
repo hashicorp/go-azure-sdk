@@ -17,15 +17,44 @@ type UpdateExchangeTransitiveRoleAssignmentOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateExchangeTransitiveRoleAssignmentOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateExchangeTransitiveRoleAssignmentOperationOptions() UpdateExchangeTransitiveRoleAssignmentOperationOptions {
+	return UpdateExchangeTransitiveRoleAssignmentOperationOptions{}
+}
+
+func (o UpdateExchangeTransitiveRoleAssignmentOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateExchangeTransitiveRoleAssignmentOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateExchangeTransitiveRoleAssignmentOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateExchangeTransitiveRoleAssignment - Update the navigation property transitiveRoleAssignments in roleManagement
-func (c ExchangeTransitiveRoleAssignmentClient) UpdateExchangeTransitiveRoleAssignment(ctx context.Context, id beta.RoleManagementExchangeTransitiveRoleAssignmentId, input beta.UnifiedRoleAssignment) (result UpdateExchangeTransitiveRoleAssignmentOperationResponse, err error) {
+func (c ExchangeTransitiveRoleAssignmentClient) UpdateExchangeTransitiveRoleAssignment(ctx context.Context, id beta.RoleManagementExchangeTransitiveRoleAssignmentId, input beta.UnifiedRoleAssignment, options UpdateExchangeTransitiveRoleAssignmentOperationOptions) (result UpdateExchangeTransitiveRoleAssignmentOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

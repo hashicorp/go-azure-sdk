@@ -18,16 +18,45 @@ type UpdateComanagedDeviceWindowsProtectionStateOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateComanagedDeviceWindowsProtectionStateOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateComanagedDeviceWindowsProtectionStateOperationOptions() UpdateComanagedDeviceWindowsProtectionStateOperationOptions {
+	return UpdateComanagedDeviceWindowsProtectionStateOperationOptions{}
+}
+
+func (o UpdateComanagedDeviceWindowsProtectionStateOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateComanagedDeviceWindowsProtectionStateOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateComanagedDeviceWindowsProtectionStateOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateComanagedDeviceWindowsProtectionState - Update the navigation property windowsProtectionState in
 // deviceManagement
-func (c ComanagedDeviceWindowsProtectionStateClient) UpdateComanagedDeviceWindowsProtectionState(ctx context.Context, id beta.DeviceManagementComanagedDeviceId, input beta.WindowsProtectionState) (result UpdateComanagedDeviceWindowsProtectionStateOperationResponse, err error) {
+func (c ComanagedDeviceWindowsProtectionStateClient) UpdateComanagedDeviceWindowsProtectionState(ctx context.Context, id beta.DeviceManagementComanagedDeviceId, input beta.WindowsProtectionState, options UpdateComanagedDeviceWindowsProtectionStateOperationOptions) (result UpdateComanagedDeviceWindowsProtectionStateOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       fmt.Sprintf("%s/windowsProtectionState", id.ID()),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/windowsProtectionState", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

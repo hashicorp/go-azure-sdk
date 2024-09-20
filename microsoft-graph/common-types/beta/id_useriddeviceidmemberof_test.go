@@ -12,24 +12,24 @@ import (
 var _ resourceids.ResourceId = &UserIdDeviceIdMemberOfId{}
 
 func TestNewUserIdDeviceIdMemberOfID(t *testing.T) {
-	id := NewUserIdDeviceIdMemberOfID("userIdValue", "deviceIdValue", "directoryObjectIdValue")
+	id := NewUserIdDeviceIdMemberOfID("userId", "deviceId", "directoryObjectId")
 
-	if id.UserId != "userIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'UserId'", id.UserId, "userIdValue")
+	if id.UserId != "userId" {
+		t.Fatalf("Expected %q but got %q for Segment 'UserId'", id.UserId, "userId")
 	}
 
-	if id.DeviceId != "deviceIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DeviceId'", id.DeviceId, "deviceIdValue")
+	if id.DeviceId != "deviceId" {
+		t.Fatalf("Expected %q but got %q for Segment 'DeviceId'", id.DeviceId, "deviceId")
 	}
 
-	if id.DirectoryObjectId != "directoryObjectIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DirectoryObjectId'", id.DirectoryObjectId, "directoryObjectIdValue")
+	if id.DirectoryObjectId != "directoryObjectId" {
+		t.Fatalf("Expected %q but got %q for Segment 'DirectoryObjectId'", id.DirectoryObjectId, "directoryObjectId")
 	}
 }
 
 func TestFormatUserIdDeviceIdMemberOfID(t *testing.T) {
-	actual := NewUserIdDeviceIdMemberOfID("userIdValue", "deviceIdValue", "directoryObjectIdValue").ID()
-	expected := "/users/userIdValue/devices/deviceIdValue/memberOf/directoryObjectIdValue"
+	actual := NewUserIdDeviceIdMemberOfID("userId", "deviceId", "directoryObjectId").ID()
+	expected := "/users/userId/devices/deviceId/memberOf/directoryObjectId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -53,36 +53,36 @@ func TestParseUserIdDeviceIdMemberOfID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue",
+			Input: "/users/userId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/devices",
+			Input: "/users/userId/devices",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/devices/deviceIdValue",
+			Input: "/users/userId/devices/deviceId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/devices/deviceIdValue/memberOf",
+			Input: "/users/userId/devices/deviceId/memberOf",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/users/userIdValue/devices/deviceIdValue/memberOf/directoryObjectIdValue",
+			Input: "/users/userId/devices/deviceId/memberOf/directoryObjectId",
 			Expected: &UserIdDeviceIdMemberOfId{
-				UserId:            "userIdValue",
-				DeviceId:          "deviceIdValue",
-				DirectoryObjectId: "directoryObjectIdValue",
+				UserId:            "userId",
+				DeviceId:          "deviceId",
+				DirectoryObjectId: "directoryObjectId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/users/userIdValue/devices/deviceIdValue/memberOf/directoryObjectIdValue/extra",
+			Input: "/users/userId/devices/deviceId/memberOf/directoryObjectId/extra",
 			Error: true,
 		},
 	}
@@ -139,70 +139,70 @@ func TestParseUserIdDeviceIdMemberOfIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue",
+			Input: "/users/userId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe",
+			Input: "/uSeRs/uSeRiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/devices",
+			Input: "/users/userId/devices",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/dEvIcEs",
+			Input: "/uSeRs/uSeRiD/dEvIcEs",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/devices/deviceIdValue",
+			Input: "/users/userId/devices/deviceId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/dEvIcEs/dEvIcEiDvAlUe",
+			Input: "/uSeRs/uSeRiD/dEvIcEs/dEvIcEiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/devices/deviceIdValue/memberOf",
+			Input: "/users/userId/devices/deviceId/memberOf",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/dEvIcEs/dEvIcEiDvAlUe/mEmBeRoF",
+			Input: "/uSeRs/uSeRiD/dEvIcEs/dEvIcEiD/mEmBeRoF",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/users/userIdValue/devices/deviceIdValue/memberOf/directoryObjectIdValue",
+			Input: "/users/userId/devices/deviceId/memberOf/directoryObjectId",
 			Expected: &UserIdDeviceIdMemberOfId{
-				UserId:            "userIdValue",
-				DeviceId:          "deviceIdValue",
-				DirectoryObjectId: "directoryObjectIdValue",
+				UserId:            "userId",
+				DeviceId:          "deviceId",
+				DirectoryObjectId: "directoryObjectId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/users/userIdValue/devices/deviceIdValue/memberOf/directoryObjectIdValue/extra",
+			Input: "/users/userId/devices/deviceId/memberOf/directoryObjectId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/dEvIcEs/dEvIcEiDvAlUe/mEmBeRoF/dIrEcToRyObJeCtIdVaLuE",
+			Input: "/uSeRs/uSeRiD/dEvIcEs/dEvIcEiD/mEmBeRoF/dIrEcToRyObJeCtId",
 			Expected: &UserIdDeviceIdMemberOfId{
-				UserId:            "uSeRiDvAlUe",
-				DeviceId:          "dEvIcEiDvAlUe",
-				DirectoryObjectId: "dIrEcToRyObJeCtIdVaLuE",
+				UserId:            "uSeRiD",
+				DeviceId:          "dEvIcEiD",
+				DirectoryObjectId: "dIrEcToRyObJeCtId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/dEvIcEs/dEvIcEiDvAlUe/mEmBeRoF/dIrEcToRyObJeCtIdVaLuE/extra",
+			Input: "/uSeRs/uSeRiD/dEvIcEs/dEvIcEiD/mEmBeRoF/dIrEcToRyObJeCtId/extra",
 			Error: true,
 		},
 	}

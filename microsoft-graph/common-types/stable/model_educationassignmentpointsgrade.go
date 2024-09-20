@@ -68,10 +68,15 @@ func (s EducationAssignmentPointsGrade) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &EducationAssignmentPointsGrade{}
 
 func (s *EducationAssignmentPointsGrade) UnmarshalJSON(bytes []byte) error {
-	type alias EducationAssignmentPointsGrade
-	var decoded alias
+
+	var decoded struct {
+		GradedBy       IdentitySet           `json:"gradedBy"`
+		GradedDateTime nullable.Type[string] `json:"gradedDateTime,omitempty"`
+		ODataId        *string               `json:"@odata.id,omitempty"`
+		ODataType      *string               `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into EducationAssignmentPointsGrade: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.GradedDateTime = decoded.GradedDateTime
@@ -90,5 +95,6 @@ func (s *EducationAssignmentPointsGrade) UnmarshalJSON(bytes []byte) error {
 		}
 		s.GradedBy = impl
 	}
+
 	return nil
 }

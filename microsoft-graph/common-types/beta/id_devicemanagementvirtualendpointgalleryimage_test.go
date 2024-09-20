@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &DeviceManagementVirtualEndpointGalleryImageId{}
 
 func TestNewDeviceManagementVirtualEndpointGalleryImageID(t *testing.T) {
-	id := NewDeviceManagementVirtualEndpointGalleryImageID("cloudPCGalleryImageIdValue")
+	id := NewDeviceManagementVirtualEndpointGalleryImageID("cloudPCGalleryImageId")
 
-	if id.CloudPCGalleryImageId != "cloudPCGalleryImageIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'CloudPCGalleryImageId'", id.CloudPCGalleryImageId, "cloudPCGalleryImageIdValue")
+	if id.CloudPCGalleryImageId != "cloudPCGalleryImageId" {
+		t.Fatalf("Expected %q but got %q for Segment 'CloudPCGalleryImageId'", id.CloudPCGalleryImageId, "cloudPCGalleryImageId")
 	}
 }
 
 func TestFormatDeviceManagementVirtualEndpointGalleryImageID(t *testing.T) {
-	actual := NewDeviceManagementVirtualEndpointGalleryImageID("cloudPCGalleryImageIdValue").ID()
-	expected := "/deviceManagement/virtualEndpoint/galleryImages/cloudPCGalleryImageIdValue"
+	actual := NewDeviceManagementVirtualEndpointGalleryImageID("cloudPCGalleryImageId").ID()
+	expected := "/deviceManagement/virtualEndpoint/galleryImages/cloudPCGalleryImageId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -55,14 +55,14 @@ func TestParseDeviceManagementVirtualEndpointGalleryImageID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/virtualEndpoint/galleryImages/cloudPCGalleryImageIdValue",
+			Input: "/deviceManagement/virtualEndpoint/galleryImages/cloudPCGalleryImageId",
 			Expected: &DeviceManagementVirtualEndpointGalleryImageId{
-				CloudPCGalleryImageId: "cloudPCGalleryImageIdValue",
+				CloudPCGalleryImageId: "cloudPCGalleryImageId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/virtualEndpoint/galleryImages/cloudPCGalleryImageIdValue/extra",
+			Input: "/deviceManagement/virtualEndpoint/galleryImages/cloudPCGalleryImageId/extra",
 			Error: true,
 		},
 	}
@@ -131,26 +131,26 @@ func TestParseDeviceManagementVirtualEndpointGalleryImageIDInsensitively(t *test
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/virtualEndpoint/galleryImages/cloudPCGalleryImageIdValue",
+			Input: "/deviceManagement/virtualEndpoint/galleryImages/cloudPCGalleryImageId",
 			Expected: &DeviceManagementVirtualEndpointGalleryImageId{
-				CloudPCGalleryImageId: "cloudPCGalleryImageIdValue",
+				CloudPCGalleryImageId: "cloudPCGalleryImageId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/virtualEndpoint/galleryImages/cloudPCGalleryImageIdValue/extra",
+			Input: "/deviceManagement/virtualEndpoint/galleryImages/cloudPCGalleryImageId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/vIrTuAlEnDpOiNt/gAlLeRyImAgEs/cLoUdPcGaLlErYiMaGeIdVaLuE",
+			Input: "/dEvIcEmAnAgEmEnT/vIrTuAlEnDpOiNt/gAlLeRyImAgEs/cLoUdPcGaLlErYiMaGeId",
 			Expected: &DeviceManagementVirtualEndpointGalleryImageId{
-				CloudPCGalleryImageId: "cLoUdPcGaLlErYiMaGeIdVaLuE",
+				CloudPCGalleryImageId: "cLoUdPcGaLlErYiMaGeId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/vIrTuAlEnDpOiNt/gAlLeRyImAgEs/cLoUdPcGaLlErYiMaGeIdVaLuE/extra",
+			Input: "/dEvIcEmAnAgEmEnT/vIrTuAlEnDpOiNt/gAlLeRyImAgEs/cLoUdPcGaLlErYiMaGeId/extra",
 			Error: true,
 		},
 	}

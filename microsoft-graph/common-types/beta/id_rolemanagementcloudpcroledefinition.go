@@ -94,7 +94,7 @@ func (id RoleManagementCloudPCRoleDefinitionId) Segments() []resourceids.Segment
 		resourceids.StaticSegment("roleManagement", "roleManagement", "roleManagement"),
 		resourceids.StaticSegment("cloudPC", "cloudPC", "cloudPC"),
 		resourceids.StaticSegment("roleDefinitions", "roleDefinitions", "roleDefinitions"),
-		resourceids.UserSpecifiedSegment("unifiedRoleDefinitionId", "unifiedRoleDefinitionIdValue"),
+		resourceids.UserSpecifiedSegment("unifiedRoleDefinitionId", "unifiedRoleDefinitionId"),
 	}
 }
 

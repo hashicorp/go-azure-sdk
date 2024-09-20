@@ -17,15 +17,44 @@ type UpdateProfilePublicationOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateProfilePublicationOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateProfilePublicationOperationOptions() UpdateProfilePublicationOperationOptions {
+	return UpdateProfilePublicationOperationOptions{}
+}
+
+func (o UpdateProfilePublicationOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateProfilePublicationOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateProfilePublicationOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateProfilePublication - Update the navigation property publications in me
-func (c ProfilePublicationClient) UpdateProfilePublication(ctx context.Context, id beta.MeProfilePublicationId, input beta.ItemPublication) (result UpdateProfilePublicationOperationResponse, err error) {
+func (c ProfilePublicationClient) UpdateProfilePublication(ctx context.Context, id beta.MeProfilePublicationId, input beta.ItemPublication, options UpdateProfilePublicationOperationOptions) (result UpdateProfilePublicationOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

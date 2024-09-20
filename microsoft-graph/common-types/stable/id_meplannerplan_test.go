@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &MePlannerPlanId{}
 
 func TestNewMePlannerPlanID(t *testing.T) {
-	id := NewMePlannerPlanID("plannerPlanIdValue")
+	id := NewMePlannerPlanID("plannerPlanId")
 
-	if id.PlannerPlanId != "plannerPlanIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'PlannerPlanId'", id.PlannerPlanId, "plannerPlanIdValue")
+	if id.PlannerPlanId != "plannerPlanId" {
+		t.Fatalf("Expected %q but got %q for Segment 'PlannerPlanId'", id.PlannerPlanId, "plannerPlanId")
 	}
 }
 
 func TestFormatMePlannerPlanID(t *testing.T) {
-	actual := NewMePlannerPlanID("plannerPlanIdValue").ID()
-	expected := "/me/planner/plans/plannerPlanIdValue"
+	actual := NewMePlannerPlanID("plannerPlanId").ID()
+	expected := "/me/planner/plans/plannerPlanId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -55,14 +55,14 @@ func TestParseMePlannerPlanID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/me/planner/plans/plannerPlanIdValue",
+			Input: "/me/planner/plans/plannerPlanId",
 			Expected: &MePlannerPlanId{
-				PlannerPlanId: "plannerPlanIdValue",
+				PlannerPlanId: "plannerPlanId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/planner/plans/plannerPlanIdValue/extra",
+			Input: "/me/planner/plans/plannerPlanId/extra",
 			Error: true,
 		},
 	}
@@ -131,26 +131,26 @@ func TestParseMePlannerPlanIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/me/planner/plans/plannerPlanIdValue",
+			Input: "/me/planner/plans/plannerPlanId",
 			Expected: &MePlannerPlanId{
-				PlannerPlanId: "plannerPlanIdValue",
+				PlannerPlanId: "plannerPlanId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/planner/plans/plannerPlanIdValue/extra",
+			Input: "/me/planner/plans/plannerPlanId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/pLaNnEr/pLaNs/pLaNnErPlAnIdVaLuE",
+			Input: "/mE/pLaNnEr/pLaNs/pLaNnErPlAnId",
 			Expected: &MePlannerPlanId{
-				PlannerPlanId: "pLaNnErPlAnIdVaLuE",
+				PlannerPlanId: "pLaNnErPlAnId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/mE/pLaNnEr/pLaNs/pLaNnErPlAnIdVaLuE/extra",
+			Input: "/mE/pLaNnEr/pLaNs/pLaNnErPlAnId/extra",
 			Error: true,
 		},
 	}

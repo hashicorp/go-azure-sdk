@@ -16,15 +16,44 @@ type SetDeviceCompliancePoliciesScheduledRetireStateOperationResponse struct {
 	OData        *odata.OData
 }
 
+type SetDeviceCompliancePoliciesScheduledRetireStateOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultSetDeviceCompliancePoliciesScheduledRetireStateOperationOptions() SetDeviceCompliancePoliciesScheduledRetireStateOperationOptions {
+	return SetDeviceCompliancePoliciesScheduledRetireStateOperationOptions{}
+}
+
+func (o SetDeviceCompliancePoliciesScheduledRetireStateOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o SetDeviceCompliancePoliciesScheduledRetireStateOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o SetDeviceCompliancePoliciesScheduledRetireStateOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // SetDeviceCompliancePoliciesScheduledRetireState - Invoke action setScheduledRetireState
-func (c DeviceCompliancePolicyClient) SetDeviceCompliancePoliciesScheduledRetireState(ctx context.Context, input SetDeviceCompliancePoliciesScheduledRetireStateRequest) (result SetDeviceCompliancePoliciesScheduledRetireStateOperationResponse, err error) {
+func (c DeviceCompliancePolicyClient) SetDeviceCompliancePoliciesScheduledRetireState(ctx context.Context, input SetDeviceCompliancePoliciesScheduledRetireStateRequest, options SetDeviceCompliancePoliciesScheduledRetireStateOperationOptions) (result SetDeviceCompliancePoliciesScheduledRetireStateOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/deviceManagement/deviceCompliancePolicies/setScheduledRetireState",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/deviceManagement/deviceCompliancePolicies/setScheduledRetireState",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -17,15 +17,44 @@ type UpdateDeviceShellScriptDeviceRunStateOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateDeviceShellScriptDeviceRunStateOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateDeviceShellScriptDeviceRunStateOperationOptions() UpdateDeviceShellScriptDeviceRunStateOperationOptions {
+	return UpdateDeviceShellScriptDeviceRunStateOperationOptions{}
+}
+
+func (o UpdateDeviceShellScriptDeviceRunStateOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateDeviceShellScriptDeviceRunStateOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateDeviceShellScriptDeviceRunStateOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateDeviceShellScriptDeviceRunState - Update the navigation property deviceRunStates in deviceManagement
-func (c DeviceShellScriptDeviceRunStateClient) UpdateDeviceShellScriptDeviceRunState(ctx context.Context, id beta.DeviceManagementDeviceShellScriptIdDeviceRunStateId, input beta.DeviceManagementScriptDeviceState) (result UpdateDeviceShellScriptDeviceRunStateOperationResponse, err error) {
+func (c DeviceShellScriptDeviceRunStateClient) UpdateDeviceShellScriptDeviceRunState(ctx context.Context, id beta.DeviceManagementDeviceShellScriptIdDeviceRunStateId, input beta.DeviceManagementScriptDeviceState, options UpdateDeviceShellScriptDeviceRunStateOperationOptions) (result UpdateDeviceShellScriptDeviceRunStateOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

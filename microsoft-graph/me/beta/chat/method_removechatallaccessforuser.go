@@ -18,15 +18,44 @@ type RemoveChatAllAccessForUserOperationResponse struct {
 	OData        *odata.OData
 }
 
+type RemoveChatAllAccessForUserOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultRemoveChatAllAccessForUserOperationOptions() RemoveChatAllAccessForUserOperationOptions {
+	return RemoveChatAllAccessForUserOperationOptions{}
+}
+
+func (o RemoveChatAllAccessForUserOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o RemoveChatAllAccessForUserOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o RemoveChatAllAccessForUserOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // RemoveChatAllAccessForUser - Invoke action removeAllAccessForUser. Remove access to a chat for a user.
-func (c ChatClient) RemoveChatAllAccessForUser(ctx context.Context, id beta.MeChatId, input RemoveChatAllAccessForUserRequest) (result RemoveChatAllAccessForUserOperationResponse, err error) {
+func (c ChatClient) RemoveChatAllAccessForUser(ctx context.Context, id beta.MeChatId, input RemoveChatAllAccessForUserRequest, options RemoveChatAllAccessForUserOperationOptions) (result RemoveChatAllAccessForUserOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/removeAllAccessForUser", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/removeAllAccessForUser", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

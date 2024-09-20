@@ -17,16 +17,45 @@ type UpdateProfileCertificationOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateProfileCertificationOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateProfileCertificationOperationOptions() UpdateProfileCertificationOperationOptions {
+	return UpdateProfileCertificationOperationOptions{}
+}
+
+func (o UpdateProfileCertificationOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateProfileCertificationOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateProfileCertificationOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateProfileCertification - Update personCertification. Update the properties of a personCertification object from a
 // user's profile.
-func (c ProfileCertificationClient) UpdateProfileCertification(ctx context.Context, id beta.UserIdProfileCertificationId, input beta.PersonCertification) (result UpdateProfileCertificationOperationResponse, err error) {
+func (c ProfileCertificationClient) UpdateProfileCertification(ctx context.Context, id beta.UserIdProfileCertificationId, input beta.PersonCertification, options UpdateProfileCertificationOperationOptions) (result UpdateProfileCertificationOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -239,14 +239,59 @@ func (s WindowsUniversalAppX) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &WindowsUniversalAppX{}
 
 func (s *WindowsUniversalAppX) UnmarshalJSON(bytes []byte) error {
-	type alias WindowsUniversalAppX
-	var decoded alias
+
+	var decoded struct {
+		ApplicableArchitectures         *WindowsArchitecture           `json:"applicableArchitectures,omitempty"`
+		ApplicableDeviceTypes           *WindowsDeviceType             `json:"applicableDeviceTypes,omitempty"`
+		CommittedContainedApps          *[]MobileContainedApp          `json:"committedContainedApps,omitempty"`
+		IdentityName                    nullable.Type[string]          `json:"identityName,omitempty"`
+		IdentityPublisherHash           *string                        `json:"identityPublisherHash,omitempty"`
+		IdentityResourceIdentifier      nullable.Type[string]          `json:"identityResourceIdentifier,omitempty"`
+		IdentityVersion                 nullable.Type[string]          `json:"identityVersion,omitempty"`
+		IsBundle                        *bool                          `json:"isBundle,omitempty"`
+		MinimumSupportedOperatingSystem *WindowsMinimumOperatingSystem `json:"minimumSupportedOperatingSystem,omitempty"`
+		CommittedContentVersion         nullable.Type[string]          `json:"committedContentVersion,omitempty"`
+		ContentVersions                 *[]MobileAppContent            `json:"contentVersions,omitempty"`
+		FileName                        nullable.Type[string]          `json:"fileName,omitempty"`
+		Size                            *int64                         `json:"size,omitempty"`
+		Assignments                     *[]MobileAppAssignment         `json:"assignments,omitempty"`
+		Categories                      *[]MobileAppCategory           `json:"categories,omitempty"`
+		CreatedDateTime                 *string                        `json:"createdDateTime,omitempty"`
+		DependentAppCount               *int64                         `json:"dependentAppCount,omitempty"`
+		Description                     nullable.Type[string]          `json:"description,omitempty"`
+		Developer                       nullable.Type[string]          `json:"developer,omitempty"`
+		DisplayName                     nullable.Type[string]          `json:"displayName,omitempty"`
+		InformationUrl                  nullable.Type[string]          `json:"informationUrl,omitempty"`
+		IsAssigned                      *bool                          `json:"isAssigned,omitempty"`
+		IsFeatured                      *bool                          `json:"isFeatured,omitempty"`
+		LargeIcon                       *MimeContent                   `json:"largeIcon,omitempty"`
+		LastModifiedDateTime            *string                        `json:"lastModifiedDateTime,omitempty"`
+		Notes                           nullable.Type[string]          `json:"notes,omitempty"`
+		Owner                           nullable.Type[string]          `json:"owner,omitempty"`
+		PrivacyInformationUrl           nullable.Type[string]          `json:"privacyInformationUrl,omitempty"`
+		Publisher                       nullable.Type[string]          `json:"publisher,omitempty"`
+		PublishingState                 *MobileAppPublishingState      `json:"publishingState,omitempty"`
+		Relationships                   *[]MobileAppRelationship       `json:"relationships,omitempty"`
+		RoleScopeTagIds                 *[]string                      `json:"roleScopeTagIds,omitempty"`
+		SupersededAppCount              *int64                         `json:"supersededAppCount,omitempty"`
+		SupersedingAppCount             *int64                         `json:"supersedingAppCount,omitempty"`
+		UploadState                     *int64                         `json:"uploadState,omitempty"`
+		Id                              *string                        `json:"id,omitempty"`
+		ODataId                         *string                        `json:"@odata.id,omitempty"`
+		ODataType                       *string                        `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into WindowsUniversalAppX: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.ApplicableArchitectures = decoded.ApplicableArchitectures
 	s.ApplicableDeviceTypes = decoded.ApplicableDeviceTypes
+	s.IdentityName = decoded.IdentityName
+	s.IdentityPublisherHash = decoded.IdentityPublisherHash
+	s.IdentityResourceIdentifier = decoded.IdentityResourceIdentifier
+	s.IdentityVersion = decoded.IdentityVersion
+	s.IsBundle = decoded.IsBundle
+	s.MinimumSupportedOperatingSystem = decoded.MinimumSupportedOperatingSystem
 	s.Assignments = decoded.Assignments
 	s.Categories = decoded.Categories
 	s.CommittedContentVersion = decoded.CommittedContentVersion
@@ -258,17 +303,11 @@ func (s *WindowsUniversalAppX) UnmarshalJSON(bytes []byte) error {
 	s.DisplayName = decoded.DisplayName
 	s.FileName = decoded.FileName
 	s.Id = decoded.Id
-	s.IdentityName = decoded.IdentityName
-	s.IdentityPublisherHash = decoded.IdentityPublisherHash
-	s.IdentityResourceIdentifier = decoded.IdentityResourceIdentifier
-	s.IdentityVersion = decoded.IdentityVersion
 	s.InformationUrl = decoded.InformationUrl
 	s.IsAssigned = decoded.IsAssigned
-	s.IsBundle = decoded.IsBundle
 	s.IsFeatured = decoded.IsFeatured
 	s.LargeIcon = decoded.LargeIcon
 	s.LastModifiedDateTime = decoded.LastModifiedDateTime
-	s.MinimumSupportedOperatingSystem = decoded.MinimumSupportedOperatingSystem
 	s.Notes = decoded.Notes
 	s.ODataId = decoded.ODataId
 	s.ODataType = decoded.ODataType
@@ -320,5 +359,6 @@ func (s *WindowsUniversalAppX) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Relationships = &output
 	}
+
 	return nil
 }

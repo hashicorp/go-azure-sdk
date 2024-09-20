@@ -17,15 +17,44 @@ type UpdateJoinedTeamScheduleSchedulingGroupOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateJoinedTeamScheduleSchedulingGroupOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateJoinedTeamScheduleSchedulingGroupOperationOptions() UpdateJoinedTeamScheduleSchedulingGroupOperationOptions {
+	return UpdateJoinedTeamScheduleSchedulingGroupOperationOptions{}
+}
+
+func (o UpdateJoinedTeamScheduleSchedulingGroupOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateJoinedTeamScheduleSchedulingGroupOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateJoinedTeamScheduleSchedulingGroupOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateJoinedTeamScheduleSchedulingGroup - Update the navigation property schedulingGroups in me
-func (c JoinedTeamScheduleSchedulingGroupClient) UpdateJoinedTeamScheduleSchedulingGroup(ctx context.Context, id stable.MeJoinedTeamIdScheduleSchedulingGroupId, input stable.SchedulingGroup) (result UpdateJoinedTeamScheduleSchedulingGroupOperationResponse, err error) {
+func (c JoinedTeamScheduleSchedulingGroupClient) UpdateJoinedTeamScheduleSchedulingGroup(ctx context.Context, id stable.MeJoinedTeamIdScheduleSchedulingGroupId, input stable.SchedulingGroup, options UpdateJoinedTeamScheduleSchedulingGroupOperationOptions) (result UpdateJoinedTeamScheduleSchedulingGroupOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

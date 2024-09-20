@@ -18,15 +18,44 @@ type CreateCertificateConnectorDetailOperationResponse struct {
 	Model        *beta.CertificateConnectorDetails
 }
 
+type CreateCertificateConnectorDetailOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateCertificateConnectorDetailOperationOptions() CreateCertificateConnectorDetailOperationOptions {
+	return CreateCertificateConnectorDetailOperationOptions{}
+}
+
+func (o CreateCertificateConnectorDetailOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateCertificateConnectorDetailOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateCertificateConnectorDetailOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateCertificateConnectorDetail - Create new navigation property to certificateConnectorDetails for deviceManagement
-func (c CertificateConnectorDetailClient) CreateCertificateConnectorDetail(ctx context.Context, input beta.CertificateConnectorDetails) (result CreateCertificateConnectorDetailOperationResponse, err error) {
+func (c CertificateConnectorDetailClient) CreateCertificateConnectorDetail(ctx context.Context, input beta.CertificateConnectorDetails, options CreateCertificateConnectorDetailOperationOptions) (result CreateCertificateConnectorDetailOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/deviceManagement/certificateConnectorDetails",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/deviceManagement/certificateConnectorDetails",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

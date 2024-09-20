@@ -18,16 +18,45 @@ type UpdateEntitlementManagementTransitiveRoleAssignmentAppScopeOperationRespons
 	OData        *odata.OData
 }
 
+type UpdateEntitlementManagementTransitiveRoleAssignmentAppScopeOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateEntitlementManagementTransitiveRoleAssignmentAppScopeOperationOptions() UpdateEntitlementManagementTransitiveRoleAssignmentAppScopeOperationOptions {
+	return UpdateEntitlementManagementTransitiveRoleAssignmentAppScopeOperationOptions{}
+}
+
+func (o UpdateEntitlementManagementTransitiveRoleAssignmentAppScopeOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateEntitlementManagementTransitiveRoleAssignmentAppScopeOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateEntitlementManagementTransitiveRoleAssignmentAppScopeOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateEntitlementManagementTransitiveRoleAssignmentAppScope - Update the navigation property appScope in
 // roleManagement
-func (c EntitlementManagementTransitiveRoleAssignmentAppScopeClient) UpdateEntitlementManagementTransitiveRoleAssignmentAppScope(ctx context.Context, id beta.RoleManagementEntitlementManagementTransitiveRoleAssignmentId, input beta.AppScope) (result UpdateEntitlementManagementTransitiveRoleAssignmentAppScopeOperationResponse, err error) {
+func (c EntitlementManagementTransitiveRoleAssignmentAppScopeClient) UpdateEntitlementManagementTransitiveRoleAssignmentAppScope(ctx context.Context, id beta.RoleManagementEntitlementManagementTransitiveRoleAssignmentId, input beta.AppScope, options UpdateEntitlementManagementTransitiveRoleAssignmentAppScopeOperationOptions) (result UpdateEntitlementManagementTransitiveRoleAssignmentAppScopeOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       fmt.Sprintf("%s/appScope", id.ID()),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/appScope", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

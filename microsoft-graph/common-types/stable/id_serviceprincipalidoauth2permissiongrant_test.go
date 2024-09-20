@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &ServicePrincipalIdOAuth2PermissionGrantId{}
 
 func TestNewServicePrincipalIdOAuth2PermissionGrantID(t *testing.T) {
-	id := NewServicePrincipalIdOAuth2PermissionGrantID("servicePrincipalIdValue", "oAuth2PermissionGrantIdValue")
+	id := NewServicePrincipalIdOAuth2PermissionGrantID("servicePrincipalId", "oAuth2PermissionGrantId")
 
-	if id.ServicePrincipalId != "servicePrincipalIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ServicePrincipalId'", id.ServicePrincipalId, "servicePrincipalIdValue")
+	if id.ServicePrincipalId != "servicePrincipalId" {
+		t.Fatalf("Expected %q but got %q for Segment 'ServicePrincipalId'", id.ServicePrincipalId, "servicePrincipalId")
 	}
 
-	if id.OAuth2PermissionGrantId != "oAuth2PermissionGrantIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'OAuth2PermissionGrantId'", id.OAuth2PermissionGrantId, "oAuth2PermissionGrantIdValue")
+	if id.OAuth2PermissionGrantId != "oAuth2PermissionGrantId" {
+		t.Fatalf("Expected %q but got %q for Segment 'OAuth2PermissionGrantId'", id.OAuth2PermissionGrantId, "oAuth2PermissionGrantId")
 	}
 }
 
 func TestFormatServicePrincipalIdOAuth2PermissionGrantID(t *testing.T) {
-	actual := NewServicePrincipalIdOAuth2PermissionGrantID("servicePrincipalIdValue", "oAuth2PermissionGrantIdValue").ID()
-	expected := "/servicePrincipals/servicePrincipalIdValue/oauth2PermissionGrants/oAuth2PermissionGrantIdValue"
+	actual := NewServicePrincipalIdOAuth2PermissionGrantID("servicePrincipalId", "oAuth2PermissionGrantId").ID()
+	expected := "/servicePrincipals/servicePrincipalId/oauth2PermissionGrants/oAuth2PermissionGrantId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -49,25 +49,25 @@ func TestParseServicePrincipalIdOAuth2PermissionGrantID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/servicePrincipals/servicePrincipalIdValue",
+			Input: "/servicePrincipals/servicePrincipalId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/servicePrincipals/servicePrincipalIdValue/oauth2PermissionGrants",
+			Input: "/servicePrincipals/servicePrincipalId/oauth2PermissionGrants",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/servicePrincipals/servicePrincipalIdValue/oauth2PermissionGrants/oAuth2PermissionGrantIdValue",
+			Input: "/servicePrincipals/servicePrincipalId/oauth2PermissionGrants/oAuth2PermissionGrantId",
 			Expected: &ServicePrincipalIdOAuth2PermissionGrantId{
-				ServicePrincipalId:      "servicePrincipalIdValue",
-				OAuth2PermissionGrantId: "oAuth2PermissionGrantIdValue",
+				ServicePrincipalId:      "servicePrincipalId",
+				OAuth2PermissionGrantId: "oAuth2PermissionGrantId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/servicePrincipals/servicePrincipalIdValue/oauth2PermissionGrants/oAuth2PermissionGrantIdValue/extra",
+			Input: "/servicePrincipals/servicePrincipalId/oauth2PermissionGrants/oAuth2PermissionGrantId/extra",
 			Error: true,
 		},
 	}
@@ -120,48 +120,48 @@ func TestParseServicePrincipalIdOAuth2PermissionGrantIDInsensitively(t *testing.
 		},
 		{
 			// Incomplete URI
-			Input: "/servicePrincipals/servicePrincipalIdValue",
+			Input: "/servicePrincipals/servicePrincipalId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sErViCePrInCiPaLs/sErViCePrInCiPaLiDvAlUe",
+			Input: "/sErViCePrInCiPaLs/sErViCePrInCiPaLiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/servicePrincipals/servicePrincipalIdValue/oauth2PermissionGrants",
+			Input: "/servicePrincipals/servicePrincipalId/oauth2PermissionGrants",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sErViCePrInCiPaLs/sErViCePrInCiPaLiDvAlUe/oAuTh2pErMiSsIoNgRaNtS",
+			Input: "/sErViCePrInCiPaLs/sErViCePrInCiPaLiD/oAuTh2pErMiSsIoNgRaNtS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/servicePrincipals/servicePrincipalIdValue/oauth2PermissionGrants/oAuth2PermissionGrantIdValue",
+			Input: "/servicePrincipals/servicePrincipalId/oauth2PermissionGrants/oAuth2PermissionGrantId",
 			Expected: &ServicePrincipalIdOAuth2PermissionGrantId{
-				ServicePrincipalId:      "servicePrincipalIdValue",
-				OAuth2PermissionGrantId: "oAuth2PermissionGrantIdValue",
+				ServicePrincipalId:      "servicePrincipalId",
+				OAuth2PermissionGrantId: "oAuth2PermissionGrantId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/servicePrincipals/servicePrincipalIdValue/oauth2PermissionGrants/oAuth2PermissionGrantIdValue/extra",
+			Input: "/servicePrincipals/servicePrincipalId/oauth2PermissionGrants/oAuth2PermissionGrantId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sErViCePrInCiPaLs/sErViCePrInCiPaLiDvAlUe/oAuTh2pErMiSsIoNgRaNtS/oAuTh2pErMiSsIoNgRaNtIdVaLuE",
+			Input: "/sErViCePrInCiPaLs/sErViCePrInCiPaLiD/oAuTh2pErMiSsIoNgRaNtS/oAuTh2pErMiSsIoNgRaNtId",
 			Expected: &ServicePrincipalIdOAuth2PermissionGrantId{
-				ServicePrincipalId:      "sErViCePrInCiPaLiDvAlUe",
-				OAuth2PermissionGrantId: "oAuTh2pErMiSsIoNgRaNtIdVaLuE",
+				ServicePrincipalId:      "sErViCePrInCiPaLiD",
+				OAuth2PermissionGrantId: "oAuTh2pErMiSsIoNgRaNtId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sErViCePrInCiPaLs/sErViCePrInCiPaLiDvAlUe/oAuTh2pErMiSsIoNgRaNtS/oAuTh2pErMiSsIoNgRaNtIdVaLuE/extra",
+			Input: "/sErViCePrInCiPaLs/sErViCePrInCiPaLiD/oAuTh2pErMiSsIoNgRaNtS/oAuTh2pErMiSsIoNgRaNtId/extra",
 			Error: true,
 		},
 	}

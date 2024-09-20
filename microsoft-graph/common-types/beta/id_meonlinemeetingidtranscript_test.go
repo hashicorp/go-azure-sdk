@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &MeOnlineMeetingIdTranscriptId{}
 
 func TestNewMeOnlineMeetingIdTranscriptID(t *testing.T) {
-	id := NewMeOnlineMeetingIdTranscriptID("onlineMeetingIdValue", "callTranscriptIdValue")
+	id := NewMeOnlineMeetingIdTranscriptID("onlineMeetingId", "callTranscriptId")
 
-	if id.OnlineMeetingId != "onlineMeetingIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'OnlineMeetingId'", id.OnlineMeetingId, "onlineMeetingIdValue")
+	if id.OnlineMeetingId != "onlineMeetingId" {
+		t.Fatalf("Expected %q but got %q for Segment 'OnlineMeetingId'", id.OnlineMeetingId, "onlineMeetingId")
 	}
 
-	if id.CallTranscriptId != "callTranscriptIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'CallTranscriptId'", id.CallTranscriptId, "callTranscriptIdValue")
+	if id.CallTranscriptId != "callTranscriptId" {
+		t.Fatalf("Expected %q but got %q for Segment 'CallTranscriptId'", id.CallTranscriptId, "callTranscriptId")
 	}
 }
 
 func TestFormatMeOnlineMeetingIdTranscriptID(t *testing.T) {
-	actual := NewMeOnlineMeetingIdTranscriptID("onlineMeetingIdValue", "callTranscriptIdValue").ID()
-	expected := "/me/onlineMeetings/onlineMeetingIdValue/transcripts/callTranscriptIdValue"
+	actual := NewMeOnlineMeetingIdTranscriptID("onlineMeetingId", "callTranscriptId").ID()
+	expected := "/me/onlineMeetings/onlineMeetingId/transcripts/callTranscriptId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -54,25 +54,25 @@ func TestParseMeOnlineMeetingIdTranscriptID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/me/onlineMeetings/onlineMeetingIdValue",
+			Input: "/me/onlineMeetings/onlineMeetingId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/me/onlineMeetings/onlineMeetingIdValue/transcripts",
+			Input: "/me/onlineMeetings/onlineMeetingId/transcripts",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/me/onlineMeetings/onlineMeetingIdValue/transcripts/callTranscriptIdValue",
+			Input: "/me/onlineMeetings/onlineMeetingId/transcripts/callTranscriptId",
 			Expected: &MeOnlineMeetingIdTranscriptId{
-				OnlineMeetingId:  "onlineMeetingIdValue",
-				CallTranscriptId: "callTranscriptIdValue",
+				OnlineMeetingId:  "onlineMeetingId",
+				CallTranscriptId: "callTranscriptId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/onlineMeetings/onlineMeetingIdValue/transcripts/callTranscriptIdValue/extra",
+			Input: "/me/onlineMeetings/onlineMeetingId/transcripts/callTranscriptId/extra",
 			Error: true,
 		},
 	}
@@ -135,48 +135,48 @@ func TestParseMeOnlineMeetingIdTranscriptIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/me/onlineMeetings/onlineMeetingIdValue",
+			Input: "/me/onlineMeetings/onlineMeetingId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/oNlInEmEeTiNgS/oNlInEmEeTiNgIdVaLuE",
+			Input: "/mE/oNlInEmEeTiNgS/oNlInEmEeTiNgId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/me/onlineMeetings/onlineMeetingIdValue/transcripts",
+			Input: "/me/onlineMeetings/onlineMeetingId/transcripts",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/oNlInEmEeTiNgS/oNlInEmEeTiNgIdVaLuE/tRaNsCrIpTs",
+			Input: "/mE/oNlInEmEeTiNgS/oNlInEmEeTiNgId/tRaNsCrIpTs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/me/onlineMeetings/onlineMeetingIdValue/transcripts/callTranscriptIdValue",
+			Input: "/me/onlineMeetings/onlineMeetingId/transcripts/callTranscriptId",
 			Expected: &MeOnlineMeetingIdTranscriptId{
-				OnlineMeetingId:  "onlineMeetingIdValue",
-				CallTranscriptId: "callTranscriptIdValue",
+				OnlineMeetingId:  "onlineMeetingId",
+				CallTranscriptId: "callTranscriptId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/onlineMeetings/onlineMeetingIdValue/transcripts/callTranscriptIdValue/extra",
+			Input: "/me/onlineMeetings/onlineMeetingId/transcripts/callTranscriptId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/oNlInEmEeTiNgS/oNlInEmEeTiNgIdVaLuE/tRaNsCrIpTs/cAlLtRaNsCrIpTiDvAlUe",
+			Input: "/mE/oNlInEmEeTiNgS/oNlInEmEeTiNgId/tRaNsCrIpTs/cAlLtRaNsCrIpTiD",
 			Expected: &MeOnlineMeetingIdTranscriptId{
-				OnlineMeetingId:  "oNlInEmEeTiNgIdVaLuE",
-				CallTranscriptId: "cAlLtRaNsCrIpTiDvAlUe",
+				OnlineMeetingId:  "oNlInEmEeTiNgId",
+				CallTranscriptId: "cAlLtRaNsCrIpTiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/mE/oNlInEmEeTiNgS/oNlInEmEeTiNgIdVaLuE/tRaNsCrIpTs/cAlLtRaNsCrIpTiDvAlUe/extra",
+			Input: "/mE/oNlInEmEeTiNgS/oNlInEmEeTiNgId/tRaNsCrIpTs/cAlLtRaNsCrIpTiD/extra",
 			Error: true,
 		},
 	}

@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &MeAppRoleAssignmentId{}
 
 func TestNewMeAppRoleAssignmentID(t *testing.T) {
-	id := NewMeAppRoleAssignmentID("appRoleAssignmentIdValue")
+	id := NewMeAppRoleAssignmentID("appRoleAssignmentId")
 
-	if id.AppRoleAssignmentId != "appRoleAssignmentIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'AppRoleAssignmentId'", id.AppRoleAssignmentId, "appRoleAssignmentIdValue")
+	if id.AppRoleAssignmentId != "appRoleAssignmentId" {
+		t.Fatalf("Expected %q but got %q for Segment 'AppRoleAssignmentId'", id.AppRoleAssignmentId, "appRoleAssignmentId")
 	}
 }
 
 func TestFormatMeAppRoleAssignmentID(t *testing.T) {
-	actual := NewMeAppRoleAssignmentID("appRoleAssignmentIdValue").ID()
-	expected := "/me/appRoleAssignments/appRoleAssignmentIdValue"
+	actual := NewMeAppRoleAssignmentID("appRoleAssignmentId").ID()
+	expected := "/me/appRoleAssignments/appRoleAssignmentId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -50,14 +50,14 @@ func TestParseMeAppRoleAssignmentID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/me/appRoleAssignments/appRoleAssignmentIdValue",
+			Input: "/me/appRoleAssignments/appRoleAssignmentId",
 			Expected: &MeAppRoleAssignmentId{
-				AppRoleAssignmentId: "appRoleAssignmentIdValue",
+				AppRoleAssignmentId: "appRoleAssignmentId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/appRoleAssignments/appRoleAssignmentIdValue/extra",
+			Input: "/me/appRoleAssignments/appRoleAssignmentId/extra",
 			Error: true,
 		},
 	}
@@ -116,26 +116,26 @@ func TestParseMeAppRoleAssignmentIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/me/appRoleAssignments/appRoleAssignmentIdValue",
+			Input: "/me/appRoleAssignments/appRoleAssignmentId",
 			Expected: &MeAppRoleAssignmentId{
-				AppRoleAssignmentId: "appRoleAssignmentIdValue",
+				AppRoleAssignmentId: "appRoleAssignmentId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/appRoleAssignments/appRoleAssignmentIdValue/extra",
+			Input: "/me/appRoleAssignments/appRoleAssignmentId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/aPpRoLeAsSiGnMeNtS/aPpRoLeAsSiGnMeNtIdVaLuE",
+			Input: "/mE/aPpRoLeAsSiGnMeNtS/aPpRoLeAsSiGnMeNtId",
 			Expected: &MeAppRoleAssignmentId{
-				AppRoleAssignmentId: "aPpRoLeAsSiGnMeNtIdVaLuE",
+				AppRoleAssignmentId: "aPpRoLeAsSiGnMeNtId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/mE/aPpRoLeAsSiGnMeNtS/aPpRoLeAsSiGnMeNtIdVaLuE/extra",
+			Input: "/mE/aPpRoLeAsSiGnMeNtS/aPpRoLeAsSiGnMeNtId/extra",
 			Error: true,
 		},
 	}

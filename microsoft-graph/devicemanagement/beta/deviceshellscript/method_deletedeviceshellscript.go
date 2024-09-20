@@ -19,7 +19,8 @@ type DeleteDeviceShellScriptOperationResponse struct {
 }
 
 type DeleteDeviceShellScriptOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteDeviceShellScriptOperationOptions() DeleteDeviceShellScriptOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteDeviceShellScriptOperationOptions) ToHeaders() *client.Headers {
 
 func (o DeleteDeviceShellScriptOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

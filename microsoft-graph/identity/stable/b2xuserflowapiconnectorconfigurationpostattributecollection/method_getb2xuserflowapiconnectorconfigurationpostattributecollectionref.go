@@ -18,15 +18,44 @@ type GetB2xUserFlowApiConnectorConfigurationPostAttributeCollectionRefOperationR
 	OData        *odata.OData
 }
 
+type GetB2xUserFlowApiConnectorConfigurationPostAttributeCollectionRefOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultGetB2xUserFlowApiConnectorConfigurationPostAttributeCollectionRefOperationOptions() GetB2xUserFlowApiConnectorConfigurationPostAttributeCollectionRefOperationOptions {
+	return GetB2xUserFlowApiConnectorConfigurationPostAttributeCollectionRefOperationOptions{}
+}
+
+func (o GetB2xUserFlowApiConnectorConfigurationPostAttributeCollectionRefOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o GetB2xUserFlowApiConnectorConfigurationPostAttributeCollectionRefOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o GetB2xUserFlowApiConnectorConfigurationPostAttributeCollectionRefOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // GetB2xUserFlowApiConnectorConfigurationPostAttributeCollectionRef - Get ref of postAttributeCollection from identity
-func (c B2xUserFlowApiConnectorConfigurationPostAttributeCollectionClient) GetB2xUserFlowApiConnectorConfigurationPostAttributeCollectionRef(ctx context.Context, id stable.IdentityB2xUserFlowId) (result GetB2xUserFlowApiConnectorConfigurationPostAttributeCollectionRefOperationResponse, err error) {
+func (c B2xUserFlowApiConnectorConfigurationPostAttributeCollectionClient) GetB2xUserFlowApiConnectorConfigurationPostAttributeCollectionRef(ctx context.Context, id stable.IdentityB2xUserFlowId, options GetB2xUserFlowApiConnectorConfigurationPostAttributeCollectionRefOperationOptions) (result GetB2xUserFlowApiConnectorConfigurationPostAttributeCollectionRefOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/apiConnectorConfiguration/postAttributeCollection/$ref", id.ID()),
+		HttpMethod:    http.MethodGet,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/apiConnectorConfiguration/postAttributeCollection/$ref", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

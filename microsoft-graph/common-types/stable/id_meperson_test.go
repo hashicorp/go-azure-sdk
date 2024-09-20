@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &MePersonId{}
 
 func TestNewMePersonID(t *testing.T) {
-	id := NewMePersonID("personIdValue")
+	id := NewMePersonID("personId")
 
-	if id.PersonId != "personIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'PersonId'", id.PersonId, "personIdValue")
+	if id.PersonId != "personId" {
+		t.Fatalf("Expected %q but got %q for Segment 'PersonId'", id.PersonId, "personId")
 	}
 }
 
 func TestFormatMePersonID(t *testing.T) {
-	actual := NewMePersonID("personIdValue").ID()
-	expected := "/me/people/personIdValue"
+	actual := NewMePersonID("personId").ID()
+	expected := "/me/people/personId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -50,14 +50,14 @@ func TestParseMePersonID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/me/people/personIdValue",
+			Input: "/me/people/personId",
 			Expected: &MePersonId{
-				PersonId: "personIdValue",
+				PersonId: "personId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/people/personIdValue/extra",
+			Input: "/me/people/personId/extra",
 			Error: true,
 		},
 	}
@@ -116,26 +116,26 @@ func TestParseMePersonIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/me/people/personIdValue",
+			Input: "/me/people/personId",
 			Expected: &MePersonId{
-				PersonId: "personIdValue",
+				PersonId: "personId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/people/personIdValue/extra",
+			Input: "/me/people/personId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/pEoPlE/pErSoNiDvAlUe",
+			Input: "/mE/pEoPlE/pErSoNiD",
 			Expected: &MePersonId{
-				PersonId: "pErSoNiDvAlUe",
+				PersonId: "pErSoNiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/mE/pEoPlE/pErSoNiDvAlUe/extra",
+			Input: "/mE/pEoPlE/pErSoNiD/extra",
 			Error: true,
 		},
 	}

@@ -63,10 +63,17 @@ func (s PlannerChecklistItem) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &PlannerChecklistItem{}
 
 func (s *PlannerChecklistItem) UnmarshalJSON(bytes []byte) error {
-	type alias PlannerChecklistItem
-	var decoded alias
+
+	var decoded struct {
+		IsChecked            nullable.Type[bool]   `json:"isChecked,omitempty"`
+		LastModifiedDateTime nullable.Type[string] `json:"lastModifiedDateTime,omitempty"`
+		ODataId              *string               `json:"@odata.id,omitempty"`
+		ODataType            *string               `json:"@odata.type,omitempty"`
+		OrderHint            nullable.Type[string] `json:"orderHint,omitempty"`
+		Title                nullable.Type[string] `json:"title,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into PlannerChecklistItem: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.IsChecked = decoded.IsChecked
@@ -88,5 +95,6 @@ func (s *PlannerChecklistItem) UnmarshalJSON(bytes []byte) error {
 		}
 		s.LastModifiedBy = &impl
 	}
+
 	return nil
 }

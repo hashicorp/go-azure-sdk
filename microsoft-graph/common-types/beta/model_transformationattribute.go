@@ -26,10 +26,14 @@ type TransformationAttribute struct {
 var _ json.Unmarshaler = &TransformationAttribute{}
 
 func (s *TransformationAttribute) UnmarshalJSON(bytes []byte) error {
-	type alias TransformationAttribute
-	var decoded alias
+
+	var decoded struct {
+		ODataId           *string `json:"@odata.id,omitempty"`
+		ODataType         *string `json:"@odata.type,omitempty"`
+		TreatAsMultiValue *bool   `json:"treatAsMultiValue,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into TransformationAttribute: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.ODataId = decoded.ODataId
@@ -48,5 +52,6 @@ func (s *TransformationAttribute) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Attribute = impl
 	}
+
 	return nil
 }

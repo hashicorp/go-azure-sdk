@@ -50,10 +50,22 @@ type AssignmentReviewSettings struct {
 var _ json.Unmarshaler = &AssignmentReviewSettings{}
 
 func (s *AssignmentReviewSettings) UnmarshalJSON(bytes []byte) error {
-	type alias AssignmentReviewSettings
-	var decoded alias
+
+	var decoded struct {
+		AccessReviewTimeoutBehavior     *AccessReviewTimeoutBehavior `json:"accessReviewTimeoutBehavior,omitempty"`
+		DurationInDays                  nullable.Type[int64]         `json:"durationInDays,omitempty"`
+		IsAccessRecommendationEnabled   nullable.Type[bool]          `json:"isAccessRecommendationEnabled,omitempty"`
+		IsApprovalJustificationRequired nullable.Type[bool]          `json:"isApprovalJustificationRequired,omitempty"`
+		IsEnabled                       nullable.Type[bool]          `json:"isEnabled,omitempty"`
+		ODataId                         *string                      `json:"@odata.id,omitempty"`
+		ODataType                       *string                      `json:"@odata.type,omitempty"`
+		RecurrenceType                  nullable.Type[string]        `json:"recurrenceType,omitempty"`
+		ReviewerType                    nullable.Type[string]        `json:"reviewerType,omitempty"`
+		Reviewers                       *[]UserSet                   `json:"reviewers,omitempty"`
+		StartDateTime                   nullable.Type[string]        `json:"startDateTime,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into AssignmentReviewSettings: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.AccessReviewTimeoutBehavior = decoded.AccessReviewTimeoutBehavior
@@ -88,5 +100,6 @@ func (s *AssignmentReviewSettings) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Reviewers = &output
 	}
+
 	return nil
 }

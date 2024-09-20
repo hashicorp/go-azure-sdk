@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &IdentityConditionalAccessTemplateId{}
 
 func TestNewIdentityConditionalAccessTemplateID(t *testing.T) {
-	id := NewIdentityConditionalAccessTemplateID("conditionalAccessTemplateIdValue")
+	id := NewIdentityConditionalAccessTemplateID("conditionalAccessTemplateId")
 
-	if id.ConditionalAccessTemplateId != "conditionalAccessTemplateIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ConditionalAccessTemplateId'", id.ConditionalAccessTemplateId, "conditionalAccessTemplateIdValue")
+	if id.ConditionalAccessTemplateId != "conditionalAccessTemplateId" {
+		t.Fatalf("Expected %q but got %q for Segment 'ConditionalAccessTemplateId'", id.ConditionalAccessTemplateId, "conditionalAccessTemplateId")
 	}
 }
 
 func TestFormatIdentityConditionalAccessTemplateID(t *testing.T) {
-	actual := NewIdentityConditionalAccessTemplateID("conditionalAccessTemplateIdValue").ID()
-	expected := "/identity/conditionalAccess/templates/conditionalAccessTemplateIdValue"
+	actual := NewIdentityConditionalAccessTemplateID("conditionalAccessTemplateId").ID()
+	expected := "/identity/conditionalAccess/templates/conditionalAccessTemplateId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -55,14 +55,14 @@ func TestParseIdentityConditionalAccessTemplateID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/identity/conditionalAccess/templates/conditionalAccessTemplateIdValue",
+			Input: "/identity/conditionalAccess/templates/conditionalAccessTemplateId",
 			Expected: &IdentityConditionalAccessTemplateId{
-				ConditionalAccessTemplateId: "conditionalAccessTemplateIdValue",
+				ConditionalAccessTemplateId: "conditionalAccessTemplateId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/identity/conditionalAccess/templates/conditionalAccessTemplateIdValue/extra",
+			Input: "/identity/conditionalAccess/templates/conditionalAccessTemplateId/extra",
 			Error: true,
 		},
 	}
@@ -131,26 +131,26 @@ func TestParseIdentityConditionalAccessTemplateIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/identity/conditionalAccess/templates/conditionalAccessTemplateIdValue",
+			Input: "/identity/conditionalAccess/templates/conditionalAccessTemplateId",
 			Expected: &IdentityConditionalAccessTemplateId{
-				ConditionalAccessTemplateId: "conditionalAccessTemplateIdValue",
+				ConditionalAccessTemplateId: "conditionalAccessTemplateId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/identity/conditionalAccess/templates/conditionalAccessTemplateIdValue/extra",
+			Input: "/identity/conditionalAccess/templates/conditionalAccessTemplateId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/iDeNtItY/cOnDiTiOnAlAcCeSs/tEmPlAtEs/cOnDiTiOnAlAcCeSsTeMpLaTeIdVaLuE",
+			Input: "/iDeNtItY/cOnDiTiOnAlAcCeSs/tEmPlAtEs/cOnDiTiOnAlAcCeSsTeMpLaTeId",
 			Expected: &IdentityConditionalAccessTemplateId{
-				ConditionalAccessTemplateId: "cOnDiTiOnAlAcCeSsTeMpLaTeIdVaLuE",
+				ConditionalAccessTemplateId: "cOnDiTiOnAlAcCeSsTeMpLaTeId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/iDeNtItY/cOnDiTiOnAlAcCeSs/tEmPlAtEs/cOnDiTiOnAlAcCeSsTeMpLaTeIdVaLuE/extra",
+			Input: "/iDeNtItY/cOnDiTiOnAlAcCeSs/tEmPlAtEs/cOnDiTiOnAlAcCeSsTeMpLaTeId/extra",
 			Error: true,
 		},
 	}

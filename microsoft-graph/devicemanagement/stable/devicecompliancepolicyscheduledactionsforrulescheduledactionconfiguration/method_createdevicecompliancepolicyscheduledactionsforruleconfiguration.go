@@ -19,16 +19,45 @@ type CreateDeviceCompliancePolicyScheduledActionsForRuleConfigurationOperationRe
 	Model        *stable.DeviceComplianceActionItem
 }
 
+type CreateDeviceCompliancePolicyScheduledActionsForRuleConfigurationOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateDeviceCompliancePolicyScheduledActionsForRuleConfigurationOperationOptions() CreateDeviceCompliancePolicyScheduledActionsForRuleConfigurationOperationOptions {
+	return CreateDeviceCompliancePolicyScheduledActionsForRuleConfigurationOperationOptions{}
+}
+
+func (o CreateDeviceCompliancePolicyScheduledActionsForRuleConfigurationOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateDeviceCompliancePolicyScheduledActionsForRuleConfigurationOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateDeviceCompliancePolicyScheduledActionsForRuleConfigurationOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateDeviceCompliancePolicyScheduledActionsForRuleConfiguration - Create deviceComplianceActionItem. Create a new
 // deviceComplianceActionItem object.
-func (c DeviceCompliancePolicyScheduledActionsForRuleScheduledActionConfigurationClient) CreateDeviceCompliancePolicyScheduledActionsForRuleConfiguration(ctx context.Context, id stable.DeviceManagementDeviceCompliancePolicyIdScheduledActionsForRuleId, input stable.DeviceComplianceActionItem) (result CreateDeviceCompliancePolicyScheduledActionsForRuleConfigurationOperationResponse, err error) {
+func (c DeviceCompliancePolicyScheduledActionsForRuleScheduledActionConfigurationClient) CreateDeviceCompliancePolicyScheduledActionsForRuleConfiguration(ctx context.Context, id stable.DeviceManagementDeviceCompliancePolicyIdScheduledActionsForRuleId, input stable.DeviceComplianceActionItem, options CreateDeviceCompliancePolicyScheduledActionsForRuleConfigurationOperationOptions) (result CreateDeviceCompliancePolicyScheduledActionsForRuleConfigurationOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/scheduledActionConfigurations", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/scheduledActionConfigurations", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

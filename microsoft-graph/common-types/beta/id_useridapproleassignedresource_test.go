@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &UserIdAppRoleAssignedResourceId{}
 
 func TestNewUserIdAppRoleAssignedResourceID(t *testing.T) {
-	id := NewUserIdAppRoleAssignedResourceID("userIdValue", "servicePrincipalIdValue")
+	id := NewUserIdAppRoleAssignedResourceID("userId", "servicePrincipalId")
 
-	if id.UserId != "userIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'UserId'", id.UserId, "userIdValue")
+	if id.UserId != "userId" {
+		t.Fatalf("Expected %q but got %q for Segment 'UserId'", id.UserId, "userId")
 	}
 
-	if id.ServicePrincipalId != "servicePrincipalIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ServicePrincipalId'", id.ServicePrincipalId, "servicePrincipalIdValue")
+	if id.ServicePrincipalId != "servicePrincipalId" {
+		t.Fatalf("Expected %q but got %q for Segment 'ServicePrincipalId'", id.ServicePrincipalId, "servicePrincipalId")
 	}
 }
 
 func TestFormatUserIdAppRoleAssignedResourceID(t *testing.T) {
-	actual := NewUserIdAppRoleAssignedResourceID("userIdValue", "servicePrincipalIdValue").ID()
-	expected := "/users/userIdValue/appRoleAssignedResources/servicePrincipalIdValue"
+	actual := NewUserIdAppRoleAssignedResourceID("userId", "servicePrincipalId").ID()
+	expected := "/users/userId/appRoleAssignedResources/servicePrincipalId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -49,25 +49,25 @@ func TestParseUserIdAppRoleAssignedResourceID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue",
+			Input: "/users/userId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/appRoleAssignedResources",
+			Input: "/users/userId/appRoleAssignedResources",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/users/userIdValue/appRoleAssignedResources/servicePrincipalIdValue",
+			Input: "/users/userId/appRoleAssignedResources/servicePrincipalId",
 			Expected: &UserIdAppRoleAssignedResourceId{
-				UserId:             "userIdValue",
-				ServicePrincipalId: "servicePrincipalIdValue",
+				UserId:             "userId",
+				ServicePrincipalId: "servicePrincipalId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/users/userIdValue/appRoleAssignedResources/servicePrincipalIdValue/extra",
+			Input: "/users/userId/appRoleAssignedResources/servicePrincipalId/extra",
 			Error: true,
 		},
 	}
@@ -120,48 +120,48 @@ func TestParseUserIdAppRoleAssignedResourceIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue",
+			Input: "/users/userId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe",
+			Input: "/uSeRs/uSeRiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/appRoleAssignedResources",
+			Input: "/users/userId/appRoleAssignedResources",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/aPpRoLeAsSiGnEdReSoUrCeS",
+			Input: "/uSeRs/uSeRiD/aPpRoLeAsSiGnEdReSoUrCeS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/users/userIdValue/appRoleAssignedResources/servicePrincipalIdValue",
+			Input: "/users/userId/appRoleAssignedResources/servicePrincipalId",
 			Expected: &UserIdAppRoleAssignedResourceId{
-				UserId:             "userIdValue",
-				ServicePrincipalId: "servicePrincipalIdValue",
+				UserId:             "userId",
+				ServicePrincipalId: "servicePrincipalId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/users/userIdValue/appRoleAssignedResources/servicePrincipalIdValue/extra",
+			Input: "/users/userId/appRoleAssignedResources/servicePrincipalId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/aPpRoLeAsSiGnEdReSoUrCeS/sErViCePrInCiPaLiDvAlUe",
+			Input: "/uSeRs/uSeRiD/aPpRoLeAsSiGnEdReSoUrCeS/sErViCePrInCiPaLiD",
 			Expected: &UserIdAppRoleAssignedResourceId{
-				UserId:             "uSeRiDvAlUe",
-				ServicePrincipalId: "sErViCePrInCiPaLiDvAlUe",
+				UserId:             "uSeRiD",
+				ServicePrincipalId: "sErViCePrInCiPaLiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/aPpRoLeAsSiGnEdReSoUrCeS/sErViCePrInCiPaLiDvAlUe/extra",
+			Input: "/uSeRs/uSeRiD/aPpRoLeAsSiGnEdReSoUrCeS/sErViCePrInCiPaLiD/extra",
 			Error: true,
 		},
 	}

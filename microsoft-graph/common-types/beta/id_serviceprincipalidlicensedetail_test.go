@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &ServicePrincipalIdLicenseDetailId{}
 
 func TestNewServicePrincipalIdLicenseDetailID(t *testing.T) {
-	id := NewServicePrincipalIdLicenseDetailID("servicePrincipalIdValue", "licenseDetailsIdValue")
+	id := NewServicePrincipalIdLicenseDetailID("servicePrincipalId", "licenseDetailsId")
 
-	if id.ServicePrincipalId != "servicePrincipalIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ServicePrincipalId'", id.ServicePrincipalId, "servicePrincipalIdValue")
+	if id.ServicePrincipalId != "servicePrincipalId" {
+		t.Fatalf("Expected %q but got %q for Segment 'ServicePrincipalId'", id.ServicePrincipalId, "servicePrincipalId")
 	}
 
-	if id.LicenseDetailsId != "licenseDetailsIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'LicenseDetailsId'", id.LicenseDetailsId, "licenseDetailsIdValue")
+	if id.LicenseDetailsId != "licenseDetailsId" {
+		t.Fatalf("Expected %q but got %q for Segment 'LicenseDetailsId'", id.LicenseDetailsId, "licenseDetailsId")
 	}
 }
 
 func TestFormatServicePrincipalIdLicenseDetailID(t *testing.T) {
-	actual := NewServicePrincipalIdLicenseDetailID("servicePrincipalIdValue", "licenseDetailsIdValue").ID()
-	expected := "/servicePrincipals/servicePrincipalIdValue/licenseDetails/licenseDetailsIdValue"
+	actual := NewServicePrincipalIdLicenseDetailID("servicePrincipalId", "licenseDetailsId").ID()
+	expected := "/servicePrincipals/servicePrincipalId/licenseDetails/licenseDetailsId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -49,25 +49,25 @@ func TestParseServicePrincipalIdLicenseDetailID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/servicePrincipals/servicePrincipalIdValue",
+			Input: "/servicePrincipals/servicePrincipalId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/servicePrincipals/servicePrincipalIdValue/licenseDetails",
+			Input: "/servicePrincipals/servicePrincipalId/licenseDetails",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/servicePrincipals/servicePrincipalIdValue/licenseDetails/licenseDetailsIdValue",
+			Input: "/servicePrincipals/servicePrincipalId/licenseDetails/licenseDetailsId",
 			Expected: &ServicePrincipalIdLicenseDetailId{
-				ServicePrincipalId: "servicePrincipalIdValue",
-				LicenseDetailsId:   "licenseDetailsIdValue",
+				ServicePrincipalId: "servicePrincipalId",
+				LicenseDetailsId:   "licenseDetailsId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/servicePrincipals/servicePrincipalIdValue/licenseDetails/licenseDetailsIdValue/extra",
+			Input: "/servicePrincipals/servicePrincipalId/licenseDetails/licenseDetailsId/extra",
 			Error: true,
 		},
 	}
@@ -120,48 +120,48 @@ func TestParseServicePrincipalIdLicenseDetailIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/servicePrincipals/servicePrincipalIdValue",
+			Input: "/servicePrincipals/servicePrincipalId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sErViCePrInCiPaLs/sErViCePrInCiPaLiDvAlUe",
+			Input: "/sErViCePrInCiPaLs/sErViCePrInCiPaLiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/servicePrincipals/servicePrincipalIdValue/licenseDetails",
+			Input: "/servicePrincipals/servicePrincipalId/licenseDetails",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sErViCePrInCiPaLs/sErViCePrInCiPaLiDvAlUe/lIcEnSeDeTaIlS",
+			Input: "/sErViCePrInCiPaLs/sErViCePrInCiPaLiD/lIcEnSeDeTaIlS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/servicePrincipals/servicePrincipalIdValue/licenseDetails/licenseDetailsIdValue",
+			Input: "/servicePrincipals/servicePrincipalId/licenseDetails/licenseDetailsId",
 			Expected: &ServicePrincipalIdLicenseDetailId{
-				ServicePrincipalId: "servicePrincipalIdValue",
-				LicenseDetailsId:   "licenseDetailsIdValue",
+				ServicePrincipalId: "servicePrincipalId",
+				LicenseDetailsId:   "licenseDetailsId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/servicePrincipals/servicePrincipalIdValue/licenseDetails/licenseDetailsIdValue/extra",
+			Input: "/servicePrincipals/servicePrincipalId/licenseDetails/licenseDetailsId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sErViCePrInCiPaLs/sErViCePrInCiPaLiDvAlUe/lIcEnSeDeTaIlS/lIcEnSeDeTaIlSiDvAlUe",
+			Input: "/sErViCePrInCiPaLs/sErViCePrInCiPaLiD/lIcEnSeDeTaIlS/lIcEnSeDeTaIlSiD",
 			Expected: &ServicePrincipalIdLicenseDetailId{
-				ServicePrincipalId: "sErViCePrInCiPaLiDvAlUe",
-				LicenseDetailsId:   "lIcEnSeDeTaIlSiDvAlUe",
+				ServicePrincipalId: "sErViCePrInCiPaLiD",
+				LicenseDetailsId:   "lIcEnSeDeTaIlSiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sErViCePrInCiPaLs/sErViCePrInCiPaLiDvAlUe/lIcEnSeDeTaIlS/lIcEnSeDeTaIlSiDvAlUe/extra",
+			Input: "/sErViCePrInCiPaLs/sErViCePrInCiPaLiD/lIcEnSeDeTaIlS/lIcEnSeDeTaIlSiD/extra",
 			Error: true,
 		},
 	}

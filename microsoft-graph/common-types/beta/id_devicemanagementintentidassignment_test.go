@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &DeviceManagementIntentIdAssignmentId{}
 
 func TestNewDeviceManagementIntentIdAssignmentID(t *testing.T) {
-	id := NewDeviceManagementIntentIdAssignmentID("deviceManagementIntentIdValue", "deviceManagementIntentAssignmentIdValue")
+	id := NewDeviceManagementIntentIdAssignmentID("deviceManagementIntentId", "deviceManagementIntentAssignmentId")
 
-	if id.DeviceManagementIntentId != "deviceManagementIntentIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DeviceManagementIntentId'", id.DeviceManagementIntentId, "deviceManagementIntentIdValue")
+	if id.DeviceManagementIntentId != "deviceManagementIntentId" {
+		t.Fatalf("Expected %q but got %q for Segment 'DeviceManagementIntentId'", id.DeviceManagementIntentId, "deviceManagementIntentId")
 	}
 
-	if id.DeviceManagementIntentAssignmentId != "deviceManagementIntentAssignmentIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DeviceManagementIntentAssignmentId'", id.DeviceManagementIntentAssignmentId, "deviceManagementIntentAssignmentIdValue")
+	if id.DeviceManagementIntentAssignmentId != "deviceManagementIntentAssignmentId" {
+		t.Fatalf("Expected %q but got %q for Segment 'DeviceManagementIntentAssignmentId'", id.DeviceManagementIntentAssignmentId, "deviceManagementIntentAssignmentId")
 	}
 }
 
 func TestFormatDeviceManagementIntentIdAssignmentID(t *testing.T) {
-	actual := NewDeviceManagementIntentIdAssignmentID("deviceManagementIntentIdValue", "deviceManagementIntentAssignmentIdValue").ID()
-	expected := "/deviceManagement/intents/deviceManagementIntentIdValue/assignments/deviceManagementIntentAssignmentIdValue"
+	actual := NewDeviceManagementIntentIdAssignmentID("deviceManagementIntentId", "deviceManagementIntentAssignmentId").ID()
+	expected := "/deviceManagement/intents/deviceManagementIntentId/assignments/deviceManagementIntentAssignmentId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -54,25 +54,25 @@ func TestParseDeviceManagementIntentIdAssignmentID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/deviceManagement/intents/deviceManagementIntentIdValue",
+			Input: "/deviceManagement/intents/deviceManagementIntentId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/deviceManagement/intents/deviceManagementIntentIdValue/assignments",
+			Input: "/deviceManagement/intents/deviceManagementIntentId/assignments",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/intents/deviceManagementIntentIdValue/assignments/deviceManagementIntentAssignmentIdValue",
+			Input: "/deviceManagement/intents/deviceManagementIntentId/assignments/deviceManagementIntentAssignmentId",
 			Expected: &DeviceManagementIntentIdAssignmentId{
-				DeviceManagementIntentId:           "deviceManagementIntentIdValue",
-				DeviceManagementIntentAssignmentId: "deviceManagementIntentAssignmentIdValue",
+				DeviceManagementIntentId:           "deviceManagementIntentId",
+				DeviceManagementIntentAssignmentId: "deviceManagementIntentAssignmentId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/intents/deviceManagementIntentIdValue/assignments/deviceManagementIntentAssignmentIdValue/extra",
+			Input: "/deviceManagement/intents/deviceManagementIntentId/assignments/deviceManagementIntentAssignmentId/extra",
 			Error: true,
 		},
 	}
@@ -135,48 +135,48 @@ func TestParseDeviceManagementIntentIdAssignmentIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/deviceManagement/intents/deviceManagementIntentIdValue",
+			Input: "/deviceManagement/intents/deviceManagementIntentId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/iNtEnTs/dEvIcEmAnAgEmEnTiNtEnTiDvAlUe",
+			Input: "/dEvIcEmAnAgEmEnT/iNtEnTs/dEvIcEmAnAgEmEnTiNtEnTiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/deviceManagement/intents/deviceManagementIntentIdValue/assignments",
+			Input: "/deviceManagement/intents/deviceManagementIntentId/assignments",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/iNtEnTs/dEvIcEmAnAgEmEnTiNtEnTiDvAlUe/aSsIgNmEnTs",
+			Input: "/dEvIcEmAnAgEmEnT/iNtEnTs/dEvIcEmAnAgEmEnTiNtEnTiD/aSsIgNmEnTs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/intents/deviceManagementIntentIdValue/assignments/deviceManagementIntentAssignmentIdValue",
+			Input: "/deviceManagement/intents/deviceManagementIntentId/assignments/deviceManagementIntentAssignmentId",
 			Expected: &DeviceManagementIntentIdAssignmentId{
-				DeviceManagementIntentId:           "deviceManagementIntentIdValue",
-				DeviceManagementIntentAssignmentId: "deviceManagementIntentAssignmentIdValue",
+				DeviceManagementIntentId:           "deviceManagementIntentId",
+				DeviceManagementIntentAssignmentId: "deviceManagementIntentAssignmentId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/intents/deviceManagementIntentIdValue/assignments/deviceManagementIntentAssignmentIdValue/extra",
+			Input: "/deviceManagement/intents/deviceManagementIntentId/assignments/deviceManagementIntentAssignmentId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/iNtEnTs/dEvIcEmAnAgEmEnTiNtEnTiDvAlUe/aSsIgNmEnTs/dEvIcEmAnAgEmEnTiNtEnTaSsIgNmEnTiDvAlUe",
+			Input: "/dEvIcEmAnAgEmEnT/iNtEnTs/dEvIcEmAnAgEmEnTiNtEnTiD/aSsIgNmEnTs/dEvIcEmAnAgEmEnTiNtEnTaSsIgNmEnTiD",
 			Expected: &DeviceManagementIntentIdAssignmentId{
-				DeviceManagementIntentId:           "dEvIcEmAnAgEmEnTiNtEnTiDvAlUe",
-				DeviceManagementIntentAssignmentId: "dEvIcEmAnAgEmEnTiNtEnTaSsIgNmEnTiDvAlUe",
+				DeviceManagementIntentId:           "dEvIcEmAnAgEmEnTiNtEnTiD",
+				DeviceManagementIntentAssignmentId: "dEvIcEmAnAgEmEnTiNtEnTaSsIgNmEnTiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/iNtEnTs/dEvIcEmAnAgEmEnTiNtEnTiDvAlUe/aSsIgNmEnTs/dEvIcEmAnAgEmEnTiNtEnTaSsIgNmEnTiDvAlUe/extra",
+			Input: "/dEvIcEmAnAgEmEnT/iNtEnTs/dEvIcEmAnAgEmEnTiNtEnTiD/aSsIgNmEnTs/dEvIcEmAnAgEmEnTiNtEnTaSsIgNmEnTiD/extra",
 			Error: true,
 		},
 	}

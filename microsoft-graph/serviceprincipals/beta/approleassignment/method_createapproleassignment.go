@@ -19,18 +19,47 @@ type CreateAppRoleAssignmentOperationResponse struct {
 	Model        *beta.AppRoleAssignment
 }
 
+type CreateAppRoleAssignmentOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateAppRoleAssignmentOperationOptions() CreateAppRoleAssignmentOperationOptions {
+	return CreateAppRoleAssignmentOperationOptions{}
+}
+
+func (o CreateAppRoleAssignmentOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateAppRoleAssignmentOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateAppRoleAssignmentOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateAppRoleAssignment - Grant an appRoleAssignment to a service principal. Assign an app role to a client service
 // principal. App roles that are assigned to service principals are also known as application permissions. Application
 // permissions can be granted directly with app role assignments, or through a consent experience. To grant an app role
-// assignment to a client service principal, you need three identifiers:
-func (c AppRoleAssignmentClient) CreateAppRoleAssignment(ctx context.Context, id beta.ServicePrincipalId, input beta.AppRoleAssignment) (result CreateAppRoleAssignmentOperationResponse, err error) {
+// assignment to a client service principal, you need three identifiers
+func (c AppRoleAssignmentClient) CreateAppRoleAssignment(ctx context.Context, id beta.ServicePrincipalId, input beta.AppRoleAssignment, options CreateAppRoleAssignmentOperationOptions) (result CreateAppRoleAssignmentOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/appRoleAssignments", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/appRoleAssignments", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

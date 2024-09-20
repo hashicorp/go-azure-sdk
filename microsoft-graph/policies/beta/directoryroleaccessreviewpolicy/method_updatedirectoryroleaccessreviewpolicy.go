@@ -17,15 +17,44 @@ type UpdateDirectoryRoleAccessReviewPolicyOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateDirectoryRoleAccessReviewPolicyOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateDirectoryRoleAccessReviewPolicyOperationOptions() UpdateDirectoryRoleAccessReviewPolicyOperationOptions {
+	return UpdateDirectoryRoleAccessReviewPolicyOperationOptions{}
+}
+
+func (o UpdateDirectoryRoleAccessReviewPolicyOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateDirectoryRoleAccessReviewPolicyOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateDirectoryRoleAccessReviewPolicyOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateDirectoryRoleAccessReviewPolicy - Update the navigation property directoryRoleAccessReviewPolicy in policies
-func (c DirectoryRoleAccessReviewPolicyClient) UpdateDirectoryRoleAccessReviewPolicy(ctx context.Context, input beta.DirectoryRoleAccessReviewPolicy) (result UpdateDirectoryRoleAccessReviewPolicyOperationResponse, err error) {
+func (c DirectoryRoleAccessReviewPolicyClient) UpdateDirectoryRoleAccessReviewPolicy(ctx context.Context, input beta.DirectoryRoleAccessReviewPolicy, options UpdateDirectoryRoleAccessReviewPolicyOperationOptions) (result UpdateDirectoryRoleAccessReviewPolicyOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       "/policies/directoryRoleAccessReviewPolicy",
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          "/policies/directoryRoleAccessReviewPolicy",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

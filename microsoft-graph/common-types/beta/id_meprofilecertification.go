@@ -94,7 +94,7 @@ func (id MeProfileCertificationId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("me", "me", "me"),
 		resourceids.StaticSegment("profile", "profile", "profile"),
 		resourceids.StaticSegment("certifications", "certifications", "certifications"),
-		resourceids.UserSpecifiedSegment("personCertificationId", "personCertificationIdValue"),
+		resourceids.UserSpecifiedSegment("personCertificationId", "personCertificationId"),
 	}
 }
 

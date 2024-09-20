@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &DeviceManagementAndroidDeviceOwnerEnrollmentProfileId{}
 
 func TestNewDeviceManagementAndroidDeviceOwnerEnrollmentProfileID(t *testing.T) {
-	id := NewDeviceManagementAndroidDeviceOwnerEnrollmentProfileID("androidDeviceOwnerEnrollmentProfileIdValue")
+	id := NewDeviceManagementAndroidDeviceOwnerEnrollmentProfileID("androidDeviceOwnerEnrollmentProfileId")
 
-	if id.AndroidDeviceOwnerEnrollmentProfileId != "androidDeviceOwnerEnrollmentProfileIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'AndroidDeviceOwnerEnrollmentProfileId'", id.AndroidDeviceOwnerEnrollmentProfileId, "androidDeviceOwnerEnrollmentProfileIdValue")
+	if id.AndroidDeviceOwnerEnrollmentProfileId != "androidDeviceOwnerEnrollmentProfileId" {
+		t.Fatalf("Expected %q but got %q for Segment 'AndroidDeviceOwnerEnrollmentProfileId'", id.AndroidDeviceOwnerEnrollmentProfileId, "androidDeviceOwnerEnrollmentProfileId")
 	}
 }
 
 func TestFormatDeviceManagementAndroidDeviceOwnerEnrollmentProfileID(t *testing.T) {
-	actual := NewDeviceManagementAndroidDeviceOwnerEnrollmentProfileID("androidDeviceOwnerEnrollmentProfileIdValue").ID()
-	expected := "/deviceManagement/androidDeviceOwnerEnrollmentProfiles/androidDeviceOwnerEnrollmentProfileIdValue"
+	actual := NewDeviceManagementAndroidDeviceOwnerEnrollmentProfileID("androidDeviceOwnerEnrollmentProfileId").ID()
+	expected := "/deviceManagement/androidDeviceOwnerEnrollmentProfiles/androidDeviceOwnerEnrollmentProfileId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -50,14 +50,14 @@ func TestParseDeviceManagementAndroidDeviceOwnerEnrollmentProfileID(t *testing.T
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/androidDeviceOwnerEnrollmentProfiles/androidDeviceOwnerEnrollmentProfileIdValue",
+			Input: "/deviceManagement/androidDeviceOwnerEnrollmentProfiles/androidDeviceOwnerEnrollmentProfileId",
 			Expected: &DeviceManagementAndroidDeviceOwnerEnrollmentProfileId{
-				AndroidDeviceOwnerEnrollmentProfileId: "androidDeviceOwnerEnrollmentProfileIdValue",
+				AndroidDeviceOwnerEnrollmentProfileId: "androidDeviceOwnerEnrollmentProfileId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/androidDeviceOwnerEnrollmentProfiles/androidDeviceOwnerEnrollmentProfileIdValue/extra",
+			Input: "/deviceManagement/androidDeviceOwnerEnrollmentProfiles/androidDeviceOwnerEnrollmentProfileId/extra",
 			Error: true,
 		},
 	}
@@ -116,26 +116,26 @@ func TestParseDeviceManagementAndroidDeviceOwnerEnrollmentProfileIDInsensitively
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/androidDeviceOwnerEnrollmentProfiles/androidDeviceOwnerEnrollmentProfileIdValue",
+			Input: "/deviceManagement/androidDeviceOwnerEnrollmentProfiles/androidDeviceOwnerEnrollmentProfileId",
 			Expected: &DeviceManagementAndroidDeviceOwnerEnrollmentProfileId{
-				AndroidDeviceOwnerEnrollmentProfileId: "androidDeviceOwnerEnrollmentProfileIdValue",
+				AndroidDeviceOwnerEnrollmentProfileId: "androidDeviceOwnerEnrollmentProfileId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/androidDeviceOwnerEnrollmentProfiles/androidDeviceOwnerEnrollmentProfileIdValue/extra",
+			Input: "/deviceManagement/androidDeviceOwnerEnrollmentProfiles/androidDeviceOwnerEnrollmentProfileId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/aNdRoIdDeViCeOwNeReNrOlLmEnTpRoFiLeS/aNdRoIdDeViCeOwNeReNrOlLmEnTpRoFiLeIdVaLuE",
+			Input: "/dEvIcEmAnAgEmEnT/aNdRoIdDeViCeOwNeReNrOlLmEnTpRoFiLeS/aNdRoIdDeViCeOwNeReNrOlLmEnTpRoFiLeId",
 			Expected: &DeviceManagementAndroidDeviceOwnerEnrollmentProfileId{
-				AndroidDeviceOwnerEnrollmentProfileId: "aNdRoIdDeViCeOwNeReNrOlLmEnTpRoFiLeIdVaLuE",
+				AndroidDeviceOwnerEnrollmentProfileId: "aNdRoIdDeViCeOwNeReNrOlLmEnTpRoFiLeId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/aNdRoIdDeViCeOwNeReNrOlLmEnTpRoFiLeS/aNdRoIdDeViCeOwNeReNrOlLmEnTpRoFiLeIdVaLuE/extra",
+			Input: "/dEvIcEmAnAgEmEnT/aNdRoIdDeViCeOwNeReNrOlLmEnTpRoFiLeS/aNdRoIdDeViCeOwNeReNrOlLmEnTpRoFiLeId/extra",
 			Error: true,
 		},
 	}

@@ -19,7 +19,8 @@ type DeleteAuthenticationWindowsHelloForBusinessMethodOperationResponse struct {
 }
 
 type DeleteAuthenticationWindowsHelloForBusinessMethodOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteAuthenticationWindowsHelloForBusinessMethodOperationOptions() DeleteAuthenticationWindowsHelloForBusinessMethodOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteAuthenticationWindowsHelloForBusinessMethodOperationOptions) ToHea
 
 func (o DeleteAuthenticationWindowsHelloForBusinessMethodOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

@@ -19,7 +19,8 @@ type DeleteEntitlementManagementAccessPackageCatalogCustomWorkflowExtensionOpera
 }
 
 type DeleteEntitlementManagementAccessPackageCatalogCustomWorkflowExtensionOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteEntitlementManagementAccessPackageCatalogCustomWorkflowExtensionOperationOptions() DeleteEntitlementManagementAccessPackageCatalogCustomWorkflowExtensionOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteEntitlementManagementAccessPackageCatalogCustomWorkflowExtensionOp
 
 func (o DeleteEntitlementManagementAccessPackageCatalogCustomWorkflowExtensionOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

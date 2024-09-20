@@ -18,15 +18,44 @@ type UpdateHardwareConfigurationRunSummaryOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateHardwareConfigurationRunSummaryOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateHardwareConfigurationRunSummaryOperationOptions() UpdateHardwareConfigurationRunSummaryOperationOptions {
+	return UpdateHardwareConfigurationRunSummaryOperationOptions{}
+}
+
+func (o UpdateHardwareConfigurationRunSummaryOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateHardwareConfigurationRunSummaryOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateHardwareConfigurationRunSummaryOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateHardwareConfigurationRunSummary - Update the navigation property runSummary in deviceManagement
-func (c HardwareConfigurationRunSummaryClient) UpdateHardwareConfigurationRunSummary(ctx context.Context, id beta.DeviceManagementHardwareConfigurationId, input beta.HardwareConfigurationRunSummary) (result UpdateHardwareConfigurationRunSummaryOperationResponse, err error) {
+func (c HardwareConfigurationRunSummaryClient) UpdateHardwareConfigurationRunSummary(ctx context.Context, id beta.DeviceManagementHardwareConfigurationId, input beta.HardwareConfigurationRunSummary, options UpdateHardwareConfigurationRunSummaryOperationOptions) (result UpdateHardwareConfigurationRunSummaryOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       fmt.Sprintf("%s/runSummary", id.ID()),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/runSummary", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

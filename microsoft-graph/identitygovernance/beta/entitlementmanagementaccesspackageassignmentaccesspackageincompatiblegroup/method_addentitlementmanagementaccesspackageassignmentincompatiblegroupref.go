@@ -18,16 +18,45 @@ type AddEntitlementManagementAccessPackageAssignmentIncompatibleGroupRefOperatio
 	OData        *odata.OData
 }
 
+type AddEntitlementManagementAccessPackageAssignmentIncompatibleGroupRefOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultAddEntitlementManagementAccessPackageAssignmentIncompatibleGroupRefOperationOptions() AddEntitlementManagementAccessPackageAssignmentIncompatibleGroupRefOperationOptions {
+	return AddEntitlementManagementAccessPackageAssignmentIncompatibleGroupRefOperationOptions{}
+}
+
+func (o AddEntitlementManagementAccessPackageAssignmentIncompatibleGroupRefOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o AddEntitlementManagementAccessPackageAssignmentIncompatibleGroupRefOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o AddEntitlementManagementAccessPackageAssignmentIncompatibleGroupRefOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // AddEntitlementManagementAccessPackageAssignmentIncompatibleGroupRef - Create new navigation property ref to
 // incompatibleGroups for identityGovernance
-func (c EntitlementManagementAccessPackageAssignmentAccessPackageIncompatibleGroupClient) AddEntitlementManagementAccessPackageAssignmentIncompatibleGroupRef(ctx context.Context, id beta.IdentityGovernanceEntitlementManagementAccessPackageAssignmentId, input beta.ReferenceCreate) (result AddEntitlementManagementAccessPackageAssignmentIncompatibleGroupRefOperationResponse, err error) {
+func (c EntitlementManagementAccessPackageAssignmentAccessPackageIncompatibleGroupClient) AddEntitlementManagementAccessPackageAssignmentIncompatibleGroupRef(ctx context.Context, id beta.IdentityGovernanceEntitlementManagementAccessPackageAssignmentId, input beta.ReferenceCreate, options AddEntitlementManagementAccessPackageAssignmentIncompatibleGroupRefOperationOptions) (result AddEntitlementManagementAccessPackageAssignmentIncompatibleGroupRefOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/accessPackage/incompatibleGroups/$ref", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/accessPackage/incompatibleGroups/$ref", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

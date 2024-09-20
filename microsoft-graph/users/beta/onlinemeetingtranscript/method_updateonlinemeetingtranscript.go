@@ -17,15 +17,44 @@ type UpdateOnlineMeetingTranscriptOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateOnlineMeetingTranscriptOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateOnlineMeetingTranscriptOperationOptions() UpdateOnlineMeetingTranscriptOperationOptions {
+	return UpdateOnlineMeetingTranscriptOperationOptions{}
+}
+
+func (o UpdateOnlineMeetingTranscriptOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateOnlineMeetingTranscriptOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateOnlineMeetingTranscriptOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateOnlineMeetingTranscript - Update the navigation property transcripts in users
-func (c OnlineMeetingTranscriptClient) UpdateOnlineMeetingTranscript(ctx context.Context, id beta.UserIdOnlineMeetingIdTranscriptId, input beta.CallTranscript) (result UpdateOnlineMeetingTranscriptOperationResponse, err error) {
+func (c OnlineMeetingTranscriptClient) UpdateOnlineMeetingTranscript(ctx context.Context, id beta.UserIdOnlineMeetingIdTranscriptId, input beta.CallTranscript, options UpdateOnlineMeetingTranscriptOperationOptions) (result UpdateOnlineMeetingTranscriptOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -18,15 +18,44 @@ type CreateChatOperationResponse struct {
 	Model        *beta.Chat
 }
 
+type CreateChatOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateChatOperationOptions() CreateChatOperationOptions {
+	return CreateChatOperationOptions{}
+}
+
+func (o CreateChatOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateChatOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateChatOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateChat - Create new navigation property to chats for me
-func (c ChatClient) CreateChat(ctx context.Context, input beta.Chat) (result CreateChatOperationResponse, err error) {
+func (c ChatClient) CreateChat(ctx context.Context, input beta.Chat, options CreateChatOperationOptions) (result CreateChatOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/me/chats",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/me/chats",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

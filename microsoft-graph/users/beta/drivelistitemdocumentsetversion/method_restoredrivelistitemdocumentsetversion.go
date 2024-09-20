@@ -18,15 +18,44 @@ type RestoreDriveListItemDocumentSetVersionOperationResponse struct {
 	OData        *odata.OData
 }
 
+type RestoreDriveListItemDocumentSetVersionOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultRestoreDriveListItemDocumentSetVersionOperationOptions() RestoreDriveListItemDocumentSetVersionOperationOptions {
+	return RestoreDriveListItemDocumentSetVersionOperationOptions{}
+}
+
+func (o RestoreDriveListItemDocumentSetVersionOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o RestoreDriveListItemDocumentSetVersionOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o RestoreDriveListItemDocumentSetVersionOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // RestoreDriveListItemDocumentSetVersion - Invoke action restore. Restore a document set version.
-func (c DriveListItemDocumentSetVersionClient) RestoreDriveListItemDocumentSetVersion(ctx context.Context, id beta.UserIdDriveIdListItemIdDocumentSetVersionId) (result RestoreDriveListItemDocumentSetVersionOperationResponse, err error) {
+func (c DriveListItemDocumentSetVersionClient) RestoreDriveListItemDocumentSetVersion(ctx context.Context, id beta.UserIdDriveIdListItemIdDocumentSetVersionId, options RestoreDriveListItemDocumentSetVersionOperationOptions) (result RestoreDriveListItemDocumentSetVersionOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/restore", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/restore", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

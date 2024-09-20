@@ -19,15 +19,44 @@ type CreateIntentCategoryOperationResponse struct {
 	Model        *beta.DeviceManagementIntentSettingCategory
 }
 
+type CreateIntentCategoryOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateIntentCategoryOperationOptions() CreateIntentCategoryOperationOptions {
+	return CreateIntentCategoryOperationOptions{}
+}
+
+func (o CreateIntentCategoryOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateIntentCategoryOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateIntentCategoryOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateIntentCategory - Create new navigation property to categories for deviceManagement
-func (c IntentCategoryClient) CreateIntentCategory(ctx context.Context, id beta.DeviceManagementIntentId, input beta.DeviceManagementIntentSettingCategory) (result CreateIntentCategoryOperationResponse, err error) {
+func (c IntentCategoryClient) CreateIntentCategory(ctx context.Context, id beta.DeviceManagementIntentId, input beta.DeviceManagementIntentSettingCategory, options CreateIntentCategoryOperationOptions) (result CreateIntentCategoryOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/categories", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/categories", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

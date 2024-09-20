@@ -18,15 +18,44 @@ type UpdateTeamOwnerMailboxSettingOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateTeamOwnerMailboxSettingOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateTeamOwnerMailboxSettingOperationOptions() UpdateTeamOwnerMailboxSettingOperationOptions {
+	return UpdateTeamOwnerMailboxSettingOperationOptions{}
+}
+
+func (o UpdateTeamOwnerMailboxSettingOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateTeamOwnerMailboxSettingOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateTeamOwnerMailboxSettingOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateTeamOwnerMailboxSetting - Update property mailboxSettings value.
-func (c TeamOwnerMailboxSettingClient) UpdateTeamOwnerMailboxSetting(ctx context.Context, id beta.GroupIdTeamOwnerId, input beta.MailboxSettings) (result UpdateTeamOwnerMailboxSettingOperationResponse, err error) {
+func (c TeamOwnerMailboxSettingClient) UpdateTeamOwnerMailboxSetting(ctx context.Context, id beta.GroupIdTeamOwnerId, input beta.MailboxSettings, options UpdateTeamOwnerMailboxSettingOperationOptions) (result UpdateTeamOwnerMailboxSettingOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       fmt.Sprintf("%s/mailboxSettings", id.ID()),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/mailboxSettings", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

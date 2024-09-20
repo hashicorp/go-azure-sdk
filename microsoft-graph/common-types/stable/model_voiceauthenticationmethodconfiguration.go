@@ -85,15 +85,23 @@ func (s VoiceAuthenticationMethodConfiguration) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &VoiceAuthenticationMethodConfiguration{}
 
 func (s *VoiceAuthenticationMethodConfiguration) UnmarshalJSON(bytes []byte) error {
-	type alias VoiceAuthenticationMethodConfiguration
-	var decoded alias
+
+	var decoded struct {
+		IncludeTargets       *[]AuthenticationMethodTarget `json:"includeTargets,omitempty"`
+		IsOfficePhoneAllowed nullable.Type[bool]           `json:"isOfficePhoneAllowed,omitempty"`
+		ExcludeTargets       *[]ExcludeTarget              `json:"excludeTargets,omitempty"`
+		State                *AuthenticationMethodState    `json:"state,omitempty"`
+		Id                   *string                       `json:"id,omitempty"`
+		ODataId              *string                       `json:"@odata.id,omitempty"`
+		ODataType            *string                       `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into VoiceAuthenticationMethodConfiguration: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
+	s.IsOfficePhoneAllowed = decoded.IsOfficePhoneAllowed
 	s.ExcludeTargets = decoded.ExcludeTargets
 	s.Id = decoded.Id
-	s.IsOfficePhoneAllowed = decoded.IsOfficePhoneAllowed
 	s.ODataId = decoded.ODataId
 	s.ODataType = decoded.ODataType
 	s.State = decoded.State
@@ -119,5 +127,6 @@ func (s *VoiceAuthenticationMethodConfiguration) UnmarshalJSON(bytes []byte) err
 		}
 		s.IncludeTargets = &output
 	}
+
 	return nil
 }

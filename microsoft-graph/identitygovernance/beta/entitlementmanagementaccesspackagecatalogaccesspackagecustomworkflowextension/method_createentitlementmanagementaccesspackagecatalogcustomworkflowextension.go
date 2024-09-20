@@ -20,16 +20,45 @@ type CreateEntitlementManagementAccessPackageCatalogCustomWorkflowExtensionOpera
 	Model        beta.CustomCalloutExtension
 }
 
+type CreateEntitlementManagementAccessPackageCatalogCustomWorkflowExtensionOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateEntitlementManagementAccessPackageCatalogCustomWorkflowExtensionOperationOptions() CreateEntitlementManagementAccessPackageCatalogCustomWorkflowExtensionOperationOptions {
+	return CreateEntitlementManagementAccessPackageCatalogCustomWorkflowExtensionOperationOptions{}
+}
+
+func (o CreateEntitlementManagementAccessPackageCatalogCustomWorkflowExtensionOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateEntitlementManagementAccessPackageCatalogCustomWorkflowExtensionOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateEntitlementManagementAccessPackageCatalogCustomWorkflowExtensionOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateEntitlementManagementAccessPackageCatalogCustomWorkflowExtension - Create new navigation property to
 // accessPackageCustomWorkflowExtensions for identityGovernance
-func (c EntitlementManagementAccessPackageCatalogAccessPackageCustomWorkflowExtensionClient) CreateEntitlementManagementAccessPackageCatalogCustomWorkflowExtension(ctx context.Context, id beta.IdentityGovernanceEntitlementManagementAccessPackageCatalogId, input beta.CustomCalloutExtension) (result CreateEntitlementManagementAccessPackageCatalogCustomWorkflowExtensionOperationResponse, err error) {
+func (c EntitlementManagementAccessPackageCatalogAccessPackageCustomWorkflowExtensionClient) CreateEntitlementManagementAccessPackageCatalogCustomWorkflowExtension(ctx context.Context, id beta.IdentityGovernanceEntitlementManagementAccessPackageCatalogId, input beta.CustomCalloutExtension, options CreateEntitlementManagementAccessPackageCatalogCustomWorkflowExtensionOperationOptions) (result CreateEntitlementManagementAccessPackageCatalogCustomWorkflowExtensionOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/accessPackageCustomWorkflowExtensions", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/accessPackageCustomWorkflowExtensions", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

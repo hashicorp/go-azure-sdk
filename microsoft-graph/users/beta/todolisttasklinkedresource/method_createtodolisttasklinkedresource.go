@@ -19,15 +19,44 @@ type CreateTodoListTaskLinkedResourceOperationResponse struct {
 	Model        *beta.LinkedResource
 }
 
+type CreateTodoListTaskLinkedResourceOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateTodoListTaskLinkedResourceOperationOptions() CreateTodoListTaskLinkedResourceOperationOptions {
+	return CreateTodoListTaskLinkedResourceOperationOptions{}
+}
+
+func (o CreateTodoListTaskLinkedResourceOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateTodoListTaskLinkedResourceOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateTodoListTaskLinkedResourceOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateTodoListTaskLinkedResource - Create new navigation property to linkedResources for users
-func (c TodoListTaskLinkedResourceClient) CreateTodoListTaskLinkedResource(ctx context.Context, id beta.UserIdTodoListIdTaskId, input beta.LinkedResource) (result CreateTodoListTaskLinkedResourceOperationResponse, err error) {
+func (c TodoListTaskLinkedResourceClient) CreateTodoListTaskLinkedResource(ctx context.Context, id beta.UserIdTodoListIdTaskId, input beta.LinkedResource, options CreateTodoListTaskLinkedResourceOperationOptions) (result CreateTodoListTaskLinkedResourceOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/linkedResources", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/linkedResources", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -130,26 +130,45 @@ func (s MailSearchFolder) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &MailSearchFolder{}
 
 func (s *MailSearchFolder) UnmarshalJSON(bytes []byte) error {
-	type alias MailSearchFolder
-	var decoded alias
+
+	var decoded struct {
+		FilterQuery                   nullable.Type[string]                `json:"filterQuery,omitempty"`
+		IncludeNestedFolders          nullable.Type[bool]                  `json:"includeNestedFolders,omitempty"`
+		IsSupported                   nullable.Type[bool]                  `json:"isSupported,omitempty"`
+		SourceFolderIds               *[]string                            `json:"sourceFolderIds,omitempty"`
+		ChildFolderCount              nullable.Type[int64]                 `json:"childFolderCount,omitempty"`
+		ChildFolders                  *[]MailFolder                        `json:"childFolders,omitempty"`
+		DisplayName                   nullable.Type[string]                `json:"displayName,omitempty"`
+		IsHidden                      nullable.Type[bool]                  `json:"isHidden,omitempty"`
+		MessageRules                  *[]MessageRule                       `json:"messageRules,omitempty"`
+		Messages                      *[]Message                           `json:"messages,omitempty"`
+		MultiValueExtendedProperties  *[]MultiValueLegacyExtendedProperty  `json:"multiValueExtendedProperties,omitempty"`
+		ParentFolderId                nullable.Type[string]                `json:"parentFolderId,omitempty"`
+		SingleValueExtendedProperties *[]SingleValueLegacyExtendedProperty `json:"singleValueExtendedProperties,omitempty"`
+		TotalItemCount                nullable.Type[int64]                 `json:"totalItemCount,omitempty"`
+		UnreadItemCount               nullable.Type[int64]                 `json:"unreadItemCount,omitempty"`
+		Id                            *string                              `json:"id,omitempty"`
+		ODataId                       *string                              `json:"@odata.id,omitempty"`
+		ODataType                     *string                              `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into MailSearchFolder: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
+	s.FilterQuery = decoded.FilterQuery
+	s.IncludeNestedFolders = decoded.IncludeNestedFolders
+	s.IsSupported = decoded.IsSupported
+	s.SourceFolderIds = decoded.SourceFolderIds
 	s.ChildFolderCount = decoded.ChildFolderCount
 	s.DisplayName = decoded.DisplayName
-	s.FilterQuery = decoded.FilterQuery
 	s.Id = decoded.Id
-	s.IncludeNestedFolders = decoded.IncludeNestedFolders
 	s.IsHidden = decoded.IsHidden
-	s.IsSupported = decoded.IsSupported
 	s.MessageRules = decoded.MessageRules
 	s.MultiValueExtendedProperties = decoded.MultiValueExtendedProperties
 	s.ODataId = decoded.ODataId
 	s.ODataType = decoded.ODataType
 	s.ParentFolderId = decoded.ParentFolderId
 	s.SingleValueExtendedProperties = decoded.SingleValueExtendedProperties
-	s.SourceFolderIds = decoded.SourceFolderIds
 	s.TotalItemCount = decoded.TotalItemCount
 	s.UnreadItemCount = decoded.UnreadItemCount
 
@@ -191,5 +210,6 @@ func (s *MailSearchFolder) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Messages = &output
 	}
+
 	return nil
 }

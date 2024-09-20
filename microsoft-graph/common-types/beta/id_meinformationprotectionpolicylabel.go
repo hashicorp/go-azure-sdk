@@ -95,7 +95,7 @@ func (id MeInformationProtectionPolicyLabelId) Segments() []resourceids.Segment 
 		resourceids.StaticSegment("informationProtection", "informationProtection", "informationProtection"),
 		resourceids.StaticSegment("policy", "policy", "policy"),
 		resourceids.StaticSegment("labels", "labels", "labels"),
-		resourceids.UserSpecifiedSegment("informationProtectionLabelId", "informationProtectionLabelIdValue"),
+		resourceids.UserSpecifiedSegment("informationProtectionLabelId", "informationProtectionLabelId"),
 	}
 }
 

@@ -99,25 +99,39 @@ func (s SecurityHostPort) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &SecurityHostPort{}
 
 func (s *SecurityHostPort) UnmarshalJSON(bytes []byte) error {
-	type alias SecurityHostPort
-	var decoded alias
+
+	var decoded struct {
+		Banners                  *[]SecurityHostPortBanner    `json:"banners,omitempty"`
+		FirstSeenDateTime        nullable.Type[string]        `json:"firstSeenDateTime,omitempty"`
+		LastScanDateTime         nullable.Type[string]        `json:"lastScanDateTime,omitempty"`
+		LastSeenDateTime         nullable.Type[string]        `json:"lastSeenDateTime,omitempty"`
+		MostRecentSslCertificate *SecuritySslCertificate      `json:"mostRecentSslCertificate,omitempty"`
+		Port                     *int64                       `json:"port,omitempty"`
+		Protocol                 *SecurityHostPortProtocol    `json:"protocol,omitempty"`
+		Services                 *[]SecurityHostPortComponent `json:"services,omitempty"`
+		Status                   *SecurityHostPortStatus      `json:"status,omitempty"`
+		TimesObserved            nullable.Type[int64]         `json:"timesObserved,omitempty"`
+		Id                       *string                      `json:"id,omitempty"`
+		ODataId                  *string                      `json:"@odata.id,omitempty"`
+		ODataType                *string                      `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into SecurityHostPort: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.Banners = decoded.Banners
 	s.FirstSeenDateTime = decoded.FirstSeenDateTime
-	s.Id = decoded.Id
 	s.LastScanDateTime = decoded.LastScanDateTime
 	s.LastSeenDateTime = decoded.LastSeenDateTime
 	s.MostRecentSslCertificate = decoded.MostRecentSslCertificate
-	s.ODataId = decoded.ODataId
-	s.ODataType = decoded.ODataType
 	s.Port = decoded.Port
 	s.Protocol = decoded.Protocol
 	s.Services = decoded.Services
 	s.Status = decoded.Status
 	s.TimesObserved = decoded.TimesObserved
+	s.Id = decoded.Id
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -131,5 +145,6 @@ func (s *SecurityHostPort) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Host = &impl
 	}
+
 	return nil
 }

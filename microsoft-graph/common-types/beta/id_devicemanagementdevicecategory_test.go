@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &DeviceManagementDeviceCategoryId{}
 
 func TestNewDeviceManagementDeviceCategoryID(t *testing.T) {
-	id := NewDeviceManagementDeviceCategoryID("deviceCategoryIdValue")
+	id := NewDeviceManagementDeviceCategoryID("deviceCategoryId")
 
-	if id.DeviceCategoryId != "deviceCategoryIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DeviceCategoryId'", id.DeviceCategoryId, "deviceCategoryIdValue")
+	if id.DeviceCategoryId != "deviceCategoryId" {
+		t.Fatalf("Expected %q but got %q for Segment 'DeviceCategoryId'", id.DeviceCategoryId, "deviceCategoryId")
 	}
 }
 
 func TestFormatDeviceManagementDeviceCategoryID(t *testing.T) {
-	actual := NewDeviceManagementDeviceCategoryID("deviceCategoryIdValue").ID()
-	expected := "/deviceManagement/deviceCategories/deviceCategoryIdValue"
+	actual := NewDeviceManagementDeviceCategoryID("deviceCategoryId").ID()
+	expected := "/deviceManagement/deviceCategories/deviceCategoryId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -50,14 +50,14 @@ func TestParseDeviceManagementDeviceCategoryID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/deviceCategories/deviceCategoryIdValue",
+			Input: "/deviceManagement/deviceCategories/deviceCategoryId",
 			Expected: &DeviceManagementDeviceCategoryId{
-				DeviceCategoryId: "deviceCategoryIdValue",
+				DeviceCategoryId: "deviceCategoryId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/deviceCategories/deviceCategoryIdValue/extra",
+			Input: "/deviceManagement/deviceCategories/deviceCategoryId/extra",
 			Error: true,
 		},
 	}
@@ -116,26 +116,26 @@ func TestParseDeviceManagementDeviceCategoryIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/deviceCategories/deviceCategoryIdValue",
+			Input: "/deviceManagement/deviceCategories/deviceCategoryId",
 			Expected: &DeviceManagementDeviceCategoryId{
-				DeviceCategoryId: "deviceCategoryIdValue",
+				DeviceCategoryId: "deviceCategoryId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/deviceCategories/deviceCategoryIdValue/extra",
+			Input: "/deviceManagement/deviceCategories/deviceCategoryId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/dEvIcEcAtEgOrIeS/dEvIcEcAtEgOrYiDvAlUe",
+			Input: "/dEvIcEmAnAgEmEnT/dEvIcEcAtEgOrIeS/dEvIcEcAtEgOrYiD",
 			Expected: &DeviceManagementDeviceCategoryId{
-				DeviceCategoryId: "dEvIcEcAtEgOrYiDvAlUe",
+				DeviceCategoryId: "dEvIcEcAtEgOrYiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/dEvIcEcAtEgOrIeS/dEvIcEcAtEgOrYiDvAlUe/extra",
+			Input: "/dEvIcEmAnAgEmEnT/dEvIcEcAtEgOrIeS/dEvIcEcAtEgOrYiD/extra",
 			Error: true,
 		},
 	}

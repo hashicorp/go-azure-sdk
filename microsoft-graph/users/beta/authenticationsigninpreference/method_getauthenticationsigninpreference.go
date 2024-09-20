@@ -20,8 +20,9 @@ type GetAuthenticationSignInPreferenceOperationResponse struct {
 }
 
 type GetAuthenticationSignInPreferenceOperationOptions struct {
-	Expand *odata.Expand
-	Select *[]string
+	Expand   *odata.Expand
+	Metadata *odata.Metadata
+	Select   *[]string
 }
 
 func DefaultGetAuthenticationSignInPreferenceOperationOptions() GetAuthenticationSignInPreferenceOperationOptions {
@@ -39,6 +40,9 @@ func (o GetAuthenticationSignInPreferenceOperationOptions) ToOData() *odata.Quer
 	if o.Expand != nil {
 		out.Expand = *o.Expand
 	}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	if o.Select != nil {
 		out.Select = *o.Select
 	}
@@ -52,7 +56,7 @@ func (o GetAuthenticationSignInPreferenceOperationOptions) ToQuery() *client.Que
 }
 
 // GetAuthenticationSignInPreference - Get authentication method states. Read the properties of a user's authentication
-// states. Use this API to retrieve the following information:
+// states. Use this API to retrieve the following information
 func (c AuthenticationSignInPreferenceClient) GetAuthenticationSignInPreference(ctx context.Context, id beta.UserId, options GetAuthenticationSignInPreferenceOperationOptions) (result GetAuthenticationSignInPreferenceOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",

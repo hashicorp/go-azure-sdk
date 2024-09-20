@@ -19,16 +19,45 @@ type GetDriveRootListItemDriveItemContentStreamOperationResponse struct {
 	Model        *[]byte
 }
 
+type GetDriveRootListItemDriveItemContentStreamOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultGetDriveRootListItemDriveItemContentStreamOperationOptions() GetDriveRootListItemDriveItemContentStreamOperationOptions {
+	return GetDriveRootListItemDriveItemContentStreamOperationOptions{}
+}
+
+func (o GetDriveRootListItemDriveItemContentStreamOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o GetDriveRootListItemDriveItemContentStreamOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o GetDriveRootListItemDriveItemContentStreamOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // GetDriveRootListItemDriveItemContentStream - Get contentStream for the navigation property driveItem from users. The
 // content stream, if the item represents a file.
-func (c DriveRootListItemDriveItemContentStreamClient) GetDriveRootListItemDriveItemContentStream(ctx context.Context, id beta.UserIdDriveId) (result GetDriveRootListItemDriveItemContentStreamOperationResponse, err error) {
+func (c DriveRootListItemDriveItemContentStreamClient) GetDriveRootListItemDriveItemContentStream(ctx context.Context, id beta.UserIdDriveId, options GetDriveRootListItemDriveItemContentStreamOperationOptions) (result GetDriveRootListItemDriveItemContentStreamOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/octet-stream",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/root/listItem/driveItem/contentStream", id.ID()),
+		HttpMethod:    http.MethodGet,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/root/listItem/driveItem/contentStream", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

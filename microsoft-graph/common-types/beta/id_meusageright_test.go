@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &MeUsageRightId{}
 
 func TestNewMeUsageRightID(t *testing.T) {
-	id := NewMeUsageRightID("usageRightIdValue")
+	id := NewMeUsageRightID("usageRightId")
 
-	if id.UsageRightId != "usageRightIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'UsageRightId'", id.UsageRightId, "usageRightIdValue")
+	if id.UsageRightId != "usageRightId" {
+		t.Fatalf("Expected %q but got %q for Segment 'UsageRightId'", id.UsageRightId, "usageRightId")
 	}
 }
 
 func TestFormatMeUsageRightID(t *testing.T) {
-	actual := NewMeUsageRightID("usageRightIdValue").ID()
-	expected := "/me/usageRights/usageRightIdValue"
+	actual := NewMeUsageRightID("usageRightId").ID()
+	expected := "/me/usageRights/usageRightId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -50,14 +50,14 @@ func TestParseMeUsageRightID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/me/usageRights/usageRightIdValue",
+			Input: "/me/usageRights/usageRightId",
 			Expected: &MeUsageRightId{
-				UsageRightId: "usageRightIdValue",
+				UsageRightId: "usageRightId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/usageRights/usageRightIdValue/extra",
+			Input: "/me/usageRights/usageRightId/extra",
 			Error: true,
 		},
 	}
@@ -116,26 +116,26 @@ func TestParseMeUsageRightIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/me/usageRights/usageRightIdValue",
+			Input: "/me/usageRights/usageRightId",
 			Expected: &MeUsageRightId{
-				UsageRightId: "usageRightIdValue",
+				UsageRightId: "usageRightId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/usageRights/usageRightIdValue/extra",
+			Input: "/me/usageRights/usageRightId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/uSaGeRiGhTs/uSaGeRiGhTiDvAlUe",
+			Input: "/mE/uSaGeRiGhTs/uSaGeRiGhTiD",
 			Expected: &MeUsageRightId{
-				UsageRightId: "uSaGeRiGhTiDvAlUe",
+				UsageRightId: "uSaGeRiGhTiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/mE/uSaGeRiGhTs/uSaGeRiGhTiDvAlUe/extra",
+			Input: "/mE/uSaGeRiGhTs/uSaGeRiGhTiD/extra",
 			Error: true,
 		},
 	}

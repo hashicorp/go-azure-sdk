@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/intent` Documentation
 
-The `intent` SDK allows for interaction with the Azure Resource Manager Service `devicemanagement` (API Version `beta`).
+The `intent` SDK allows for interaction with Microsoft Graph `devicemanagement` (API Version `beta`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -15,7 +15,7 @@ import "github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/
 ### Client Initialization
 
 ```go
-client := intent.NewIntentClientWithBaseURI("https://management.azure.com")
+client := intent.NewIntentClientWithBaseURI("https://graph.microsoft.com")
 client.Client.Authorizer = authorizer
 ```
 
@@ -24,14 +24,14 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := intent.NewDeviceManagementIntentID("deviceManagementIntentIdValue")
+id := intent.NewDeviceManagementIntentID("deviceManagementIntentId")
 
 payload := intent.AssignIntentRequest{
 	// ...
 }
 
 
-read, err := client.AssignIntent(ctx, id, payload)
+read, err := client.AssignIntent(ctx, id, payload, intent.DefaultAssignIntentOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -51,7 +51,7 @@ payload := intent.DeviceManagementIntent{
 }
 
 
-read, err := client.CreateIntent(ctx, payload)
+read, err := client.CreateIntent(ctx, payload, intent.DefaultCreateIntentOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -65,14 +65,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := intent.NewDeviceManagementIntentID("deviceManagementIntentIdValue")
+id := intent.NewDeviceManagementIntentID("deviceManagementIntentId")
 
 payload := intent.CreateIntentCopyRequest{
 	// ...
 }
 
 
-read, err := client.CreateIntentCopy(ctx, id, payload)
+read, err := client.CreateIntentCopy(ctx, id, payload, intent.DefaultCreateIntentCopyOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -86,14 +86,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := intent.NewDeviceManagementIntentID("deviceManagementIntentIdValue")
+id := intent.NewDeviceManagementIntentID("deviceManagementIntentId")
 
 payload := intent.CreateIntentMigrateToTemplateRequest{
 	// ...
 }
 
 
-read, err := client.CreateIntentMigrateToTemplate(ctx, id, payload)
+read, err := client.CreateIntentMigrateToTemplate(ctx, id, payload, intent.DefaultCreateIntentMigrateToTemplateOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -107,7 +107,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := intent.NewDeviceManagementIntentID("deviceManagementIntentIdValue")
+id := intent.NewDeviceManagementIntentID("deviceManagementIntentId")
 
 read, err := client.DeleteIntent(ctx, id, intent.DefaultDeleteIntentOperationOptions())
 if err != nil {
@@ -123,7 +123,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := intent.NewDeviceManagementIntentID("deviceManagementIntentIdValue")
+id := intent.NewDeviceManagementIntentID("deviceManagementIntentId")
 
 read, err := client.GetIntent(ctx, id, intent.DefaultGetIntentOperationOptions())
 if err != nil {
@@ -172,14 +172,14 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := intent.NewDeviceManagementIntentID("deviceManagementIntentIdValue")
+id := intent.NewDeviceManagementIntentID("deviceManagementIntentId")
 
 payload := intent.DeviceManagementIntent{
 	// ...
 }
 
 
-read, err := client.UpdateIntent(ctx, id, payload)
+read, err := client.UpdateIntent(ctx, id, payload, intent.DefaultUpdateIntentOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -189,18 +189,18 @@ if model := read.Model; model != nil {
 ```
 
 
-### Example Usage: `IntentClient.UpdateIntentSetting`
+### Example Usage: `IntentClient.UpdateIntentSettings`
 
 ```go
 ctx := context.TODO()
-id := intent.NewDeviceManagementIntentID("deviceManagementIntentIdValue")
+id := intent.NewDeviceManagementIntentID("deviceManagementIntentId")
 
-payload := intent.UpdateIntentSettingRequest{
+payload := intent.UpdateIntentSettingsRequest{
 	// ...
 }
 
 
-read, err := client.UpdateIntentSetting(ctx, id, payload)
+read, err := client.UpdateIntentSettings(ctx, id, payload, intent.DefaultUpdateIntentSettingsOperationOptions())
 if err != nil {
 	// handle the error
 }

@@ -87,22 +87,35 @@ func (s ConversationThread) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &ConversationThread{}
 
 func (s *ConversationThread) UnmarshalJSON(bytes []byte) error {
-	type alias ConversationThread
-	var decoded alias
+
+	var decoded struct {
+		CcRecipients          *[]Recipient `json:"ccRecipients,omitempty"`
+		HasAttachments        *bool        `json:"hasAttachments,omitempty"`
+		IsLocked              *bool        `json:"isLocked,omitempty"`
+		LastDeliveredDateTime *string      `json:"lastDeliveredDateTime,omitempty"`
+		Posts                 *[]Post      `json:"posts,omitempty"`
+		Preview               *string      `json:"preview,omitempty"`
+		ToRecipients          *[]Recipient `json:"toRecipients,omitempty"`
+		Topic                 *string      `json:"topic,omitempty"`
+		UniqueSenders         *[]string    `json:"uniqueSenders,omitempty"`
+		Id                    *string      `json:"id,omitempty"`
+		ODataId               *string      `json:"@odata.id,omitempty"`
+		ODataType             *string      `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into ConversationThread: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.HasAttachments = decoded.HasAttachments
-	s.Id = decoded.Id
 	s.IsLocked = decoded.IsLocked
 	s.LastDeliveredDateTime = decoded.LastDeliveredDateTime
-	s.ODataId = decoded.ODataId
-	s.ODataType = decoded.ODataType
 	s.Posts = decoded.Posts
 	s.Preview = decoded.Preview
 	s.Topic = decoded.Topic
 	s.UniqueSenders = decoded.UniqueSenders
+	s.Id = decoded.Id
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -142,5 +155,6 @@ func (s *ConversationThread) UnmarshalJSON(bytes []byte) error {
 		}
 		s.ToRecipients = &output
 	}
+
 	return nil
 }

@@ -18,15 +18,44 @@ type AssignDeviceCustomAttributeShellScriptOperationResponse struct {
 	OData        *odata.OData
 }
 
+type AssignDeviceCustomAttributeShellScriptOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultAssignDeviceCustomAttributeShellScriptOperationOptions() AssignDeviceCustomAttributeShellScriptOperationOptions {
+	return AssignDeviceCustomAttributeShellScriptOperationOptions{}
+}
+
+func (o AssignDeviceCustomAttributeShellScriptOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o AssignDeviceCustomAttributeShellScriptOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o AssignDeviceCustomAttributeShellScriptOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // AssignDeviceCustomAttributeShellScript - Invoke action assign
-func (c DeviceCustomAttributeShellScriptClient) AssignDeviceCustomAttributeShellScript(ctx context.Context, id beta.DeviceManagementDeviceCustomAttributeShellScriptId, input AssignDeviceCustomAttributeShellScriptRequest) (result AssignDeviceCustomAttributeShellScriptOperationResponse, err error) {
+func (c DeviceCustomAttributeShellScriptClient) AssignDeviceCustomAttributeShellScript(ctx context.Context, id beta.DeviceManagementDeviceCustomAttributeShellScriptId, input AssignDeviceCustomAttributeShellScriptRequest, options AssignDeviceCustomAttributeShellScriptOperationOptions) (result AssignDeviceCustomAttributeShellScriptOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/assign", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/assign", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

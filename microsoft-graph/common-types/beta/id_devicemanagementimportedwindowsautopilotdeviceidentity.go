@@ -93,7 +93,7 @@ func (id DeviceManagementImportedWindowsAutopilotDeviceIdentityId) Segments() []
 	return []resourceids.Segment{
 		resourceids.StaticSegment("deviceManagement", "deviceManagement", "deviceManagement"),
 		resourceids.StaticSegment("importedWindowsAutopilotDeviceIdentities", "importedWindowsAutopilotDeviceIdentities", "importedWindowsAutopilotDeviceIdentities"),
-		resourceids.UserSpecifiedSegment("importedWindowsAutopilotDeviceIdentityId", "importedWindowsAutopilotDeviceIdentityIdValue"),
+		resourceids.UserSpecifiedSegment("importedWindowsAutopilotDeviceIdentityId", "importedWindowsAutopilotDeviceIdentityId"),
 	}
 }
 

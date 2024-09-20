@@ -18,15 +18,44 @@ type CreateRoleManagementAlertRefreshOperationResponse struct {
 	OData        *odata.OData
 }
 
+type CreateRoleManagementAlertRefreshOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateRoleManagementAlertRefreshOperationOptions() CreateRoleManagementAlertRefreshOperationOptions {
+	return CreateRoleManagementAlertRefreshOperationOptions{}
+}
+
+func (o CreateRoleManagementAlertRefreshOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateRoleManagementAlertRefreshOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateRoleManagementAlertRefreshOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateRoleManagementAlertRefresh - Invoke action refresh
-func (c RoleManagementAlertAlertClient) CreateRoleManagementAlertRefresh(ctx context.Context, id beta.IdentityGovernanceRoleManagementAlertAlertId) (result CreateRoleManagementAlertRefreshOperationResponse, err error) {
+func (c RoleManagementAlertAlertClient) CreateRoleManagementAlertRefresh(ctx context.Context, id beta.IdentityGovernanceRoleManagementAlertAlertId, options CreateRoleManagementAlertRefreshOperationOptions) (result CreateRoleManagementAlertRefreshOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/refresh", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/refresh", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

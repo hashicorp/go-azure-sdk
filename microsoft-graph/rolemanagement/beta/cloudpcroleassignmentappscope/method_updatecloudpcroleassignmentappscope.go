@@ -17,15 +17,44 @@ type UpdateCloudPCRoleAssignmentAppScopeOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateCloudPCRoleAssignmentAppScopeOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateCloudPCRoleAssignmentAppScopeOperationOptions() UpdateCloudPCRoleAssignmentAppScopeOperationOptions {
+	return UpdateCloudPCRoleAssignmentAppScopeOperationOptions{}
+}
+
+func (o UpdateCloudPCRoleAssignmentAppScopeOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateCloudPCRoleAssignmentAppScopeOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateCloudPCRoleAssignmentAppScopeOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateCloudPCRoleAssignmentAppScope - Update the navigation property appScopes in roleManagement
-func (c CloudPCRoleAssignmentAppScopeClient) UpdateCloudPCRoleAssignmentAppScope(ctx context.Context, id beta.RoleManagementCloudPCRoleAssignmentIdAppScopeId, input beta.AppScope) (result UpdateCloudPCRoleAssignmentAppScopeOperationResponse, err error) {
+func (c CloudPCRoleAssignmentAppScopeClient) UpdateCloudPCRoleAssignmentAppScope(ctx context.Context, id beta.RoleManagementCloudPCRoleAssignmentIdAppScopeId, input beta.AppScope, options UpdateCloudPCRoleAssignmentAppScopeOperationOptions) (result UpdateCloudPCRoleAssignmentAppScopeOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -2,6 +2,7 @@ package templatesetting
 
 import (
 	"context"
+	"encoding/json"
 	"net/http"
 
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta"
@@ -15,12 +16,13 @@ import (
 type GetTemplateSettingOperationResponse struct {
 	HttpResponse *http.Response
 	OData        *odata.OData
-	Model        *beta.DeviceManagementConfigurationSettingTemplate
+	Model        beta.DeviceManagementSettingInstance
 }
 
 type GetTemplateSettingOperationOptions struct {
-	Expand *odata.Expand
-	Select *[]string
+	Expand   *odata.Expand
+	Metadata *odata.Metadata
+	Select   *[]string
 }
 
 func DefaultGetTemplateSettingOperationOptions() GetTemplateSettingOperationOptions {
@@ -38,6 +40,9 @@ func (o GetTemplateSettingOperationOptions) ToOData() *odata.Query {
 	if o.Expand != nil {
 		out.Expand = *o.Expand
 	}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	if o.Select != nil {
 		out.Select = *o.Select
 	}
@@ -50,8 +55,8 @@ func (o GetTemplateSettingOperationOptions) ToQuery() *client.QueryParams {
 	return &out
 }
 
-// GetTemplateSetting - Get templateSettings from deviceManagement. List of all TemplateSettings
-func (c TemplateSettingClient) GetTemplateSetting(ctx context.Context, id beta.DeviceManagementTemplateSettingId, options GetTemplateSettingOperationOptions) (result GetTemplateSettingOperationResponse, err error) {
+// GetTemplateSetting - Get settings from deviceManagement. Collection of all settings this template has
+func (c TemplateSettingClient) GetTemplateSetting(ctx context.Context, id beta.DeviceManagementTemplateIdSettingId, options GetTemplateSettingOperationOptions) (result GetTemplateSettingOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
@@ -77,11 +82,15 @@ func (c TemplateSettingClient) GetTemplateSetting(ctx context.Context, id beta.D
 		return
 	}
 
-	var model beta.DeviceManagementConfigurationSettingTemplate
-	result.Model = &model
-	if err = resp.Unmarshal(result.Model); err != nil {
+	var respObj json.RawMessage
+	if err = resp.Unmarshal(&respObj); err != nil {
 		return
 	}
+	model, err := beta.UnmarshalDeviceManagementSettingInstanceImplementation(respObj)
+	if err != nil {
+		return
+	}
+	result.Model = model
 
 	return
 }

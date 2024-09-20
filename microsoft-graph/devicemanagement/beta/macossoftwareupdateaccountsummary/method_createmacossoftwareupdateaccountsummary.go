@@ -18,16 +18,45 @@ type CreateMacOSSoftwareUpdateAccountSummaryOperationResponse struct {
 	Model        *beta.MacOSSoftwareUpdateAccountSummary
 }
 
+type CreateMacOSSoftwareUpdateAccountSummaryOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateMacOSSoftwareUpdateAccountSummaryOperationOptions() CreateMacOSSoftwareUpdateAccountSummaryOperationOptions {
+	return CreateMacOSSoftwareUpdateAccountSummaryOperationOptions{}
+}
+
+func (o CreateMacOSSoftwareUpdateAccountSummaryOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateMacOSSoftwareUpdateAccountSummaryOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateMacOSSoftwareUpdateAccountSummaryOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateMacOSSoftwareUpdateAccountSummary - Create new navigation property to macOSSoftwareUpdateAccountSummaries for
 // deviceManagement
-func (c MacOSSoftwareUpdateAccountSummaryClient) CreateMacOSSoftwareUpdateAccountSummary(ctx context.Context, input beta.MacOSSoftwareUpdateAccountSummary) (result CreateMacOSSoftwareUpdateAccountSummaryOperationResponse, err error) {
+func (c MacOSSoftwareUpdateAccountSummaryClient) CreateMacOSSoftwareUpdateAccountSummary(ctx context.Context, input beta.MacOSSoftwareUpdateAccountSummary, options CreateMacOSSoftwareUpdateAccountSummaryOperationOptions) (result CreateMacOSSoftwareUpdateAccountSummaryOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/deviceManagement/macOSSoftwareUpdateAccountSummaries",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/deviceManagement/macOSSoftwareUpdateAccountSummaries",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

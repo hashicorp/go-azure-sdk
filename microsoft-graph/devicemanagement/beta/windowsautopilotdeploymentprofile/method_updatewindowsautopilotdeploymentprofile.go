@@ -17,16 +17,45 @@ type UpdateWindowsAutopilotDeploymentProfileOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateWindowsAutopilotDeploymentProfileOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateWindowsAutopilotDeploymentProfileOperationOptions() UpdateWindowsAutopilotDeploymentProfileOperationOptions {
+	return UpdateWindowsAutopilotDeploymentProfileOperationOptions{}
+}
+
+func (o UpdateWindowsAutopilotDeploymentProfileOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateWindowsAutopilotDeploymentProfileOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateWindowsAutopilotDeploymentProfileOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateWindowsAutopilotDeploymentProfile - Update the navigation property windowsAutopilotDeploymentProfiles in
 // deviceManagement
-func (c WindowsAutopilotDeploymentProfileClient) UpdateWindowsAutopilotDeploymentProfile(ctx context.Context, id beta.DeviceManagementWindowsAutopilotDeploymentProfileId, input beta.WindowsAutopilotDeploymentProfile) (result UpdateWindowsAutopilotDeploymentProfileOperationResponse, err error) {
+func (c WindowsAutopilotDeploymentProfileClient) UpdateWindowsAutopilotDeploymentProfile(ctx context.Context, id beta.DeviceManagementWindowsAutopilotDeploymentProfileId, input beta.WindowsAutopilotDeploymentProfile, options UpdateWindowsAutopilotDeploymentProfileOperationOptions) (result UpdateWindowsAutopilotDeploymentProfileOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

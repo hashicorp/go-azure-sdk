@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &DeviceManagementMicrosoftTunnelHealthThresholdId{}
 
 func TestNewDeviceManagementMicrosoftTunnelHealthThresholdID(t *testing.T) {
-	id := NewDeviceManagementMicrosoftTunnelHealthThresholdID("microsoftTunnelHealthThresholdIdValue")
+	id := NewDeviceManagementMicrosoftTunnelHealthThresholdID("microsoftTunnelHealthThresholdId")
 
-	if id.MicrosoftTunnelHealthThresholdId != "microsoftTunnelHealthThresholdIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'MicrosoftTunnelHealthThresholdId'", id.MicrosoftTunnelHealthThresholdId, "microsoftTunnelHealthThresholdIdValue")
+	if id.MicrosoftTunnelHealthThresholdId != "microsoftTunnelHealthThresholdId" {
+		t.Fatalf("Expected %q but got %q for Segment 'MicrosoftTunnelHealthThresholdId'", id.MicrosoftTunnelHealthThresholdId, "microsoftTunnelHealthThresholdId")
 	}
 }
 
 func TestFormatDeviceManagementMicrosoftTunnelHealthThresholdID(t *testing.T) {
-	actual := NewDeviceManagementMicrosoftTunnelHealthThresholdID("microsoftTunnelHealthThresholdIdValue").ID()
-	expected := "/deviceManagement/microsoftTunnelHealthThresholds/microsoftTunnelHealthThresholdIdValue"
+	actual := NewDeviceManagementMicrosoftTunnelHealthThresholdID("microsoftTunnelHealthThresholdId").ID()
+	expected := "/deviceManagement/microsoftTunnelHealthThresholds/microsoftTunnelHealthThresholdId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -50,14 +50,14 @@ func TestParseDeviceManagementMicrosoftTunnelHealthThresholdID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/microsoftTunnelHealthThresholds/microsoftTunnelHealthThresholdIdValue",
+			Input: "/deviceManagement/microsoftTunnelHealthThresholds/microsoftTunnelHealthThresholdId",
 			Expected: &DeviceManagementMicrosoftTunnelHealthThresholdId{
-				MicrosoftTunnelHealthThresholdId: "microsoftTunnelHealthThresholdIdValue",
+				MicrosoftTunnelHealthThresholdId: "microsoftTunnelHealthThresholdId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/microsoftTunnelHealthThresholds/microsoftTunnelHealthThresholdIdValue/extra",
+			Input: "/deviceManagement/microsoftTunnelHealthThresholds/microsoftTunnelHealthThresholdId/extra",
 			Error: true,
 		},
 	}
@@ -116,26 +116,26 @@ func TestParseDeviceManagementMicrosoftTunnelHealthThresholdIDInsensitively(t *t
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/microsoftTunnelHealthThresholds/microsoftTunnelHealthThresholdIdValue",
+			Input: "/deviceManagement/microsoftTunnelHealthThresholds/microsoftTunnelHealthThresholdId",
 			Expected: &DeviceManagementMicrosoftTunnelHealthThresholdId{
-				MicrosoftTunnelHealthThresholdId: "microsoftTunnelHealthThresholdIdValue",
+				MicrosoftTunnelHealthThresholdId: "microsoftTunnelHealthThresholdId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/microsoftTunnelHealthThresholds/microsoftTunnelHealthThresholdIdValue/extra",
+			Input: "/deviceManagement/microsoftTunnelHealthThresholds/microsoftTunnelHealthThresholdId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/mIcRoSoFtTuNnElHeAlThThReShOlDs/mIcRoSoFtTuNnElHeAlThThReShOlDiDvAlUe",
+			Input: "/dEvIcEmAnAgEmEnT/mIcRoSoFtTuNnElHeAlThThReShOlDs/mIcRoSoFtTuNnElHeAlThThReShOlDiD",
 			Expected: &DeviceManagementMicrosoftTunnelHealthThresholdId{
-				MicrosoftTunnelHealthThresholdId: "mIcRoSoFtTuNnElHeAlThThReShOlDiDvAlUe",
+				MicrosoftTunnelHealthThresholdId: "mIcRoSoFtTuNnElHeAlThThReShOlDiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/mIcRoSoFtTuNnElHeAlThThReShOlDs/mIcRoSoFtTuNnElHeAlThThReShOlDiDvAlUe/extra",
+			Input: "/dEvIcEmAnAgEmEnT/mIcRoSoFtTuNnElHeAlThThReShOlDs/mIcRoSoFtTuNnElHeAlThThReShOlDiD/extra",
 			Error: true,
 		},
 	}

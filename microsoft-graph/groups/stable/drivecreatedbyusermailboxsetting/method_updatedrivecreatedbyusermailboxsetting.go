@@ -18,15 +18,44 @@ type UpdateDriveCreatedByUserMailboxSettingOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateDriveCreatedByUserMailboxSettingOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateDriveCreatedByUserMailboxSettingOperationOptions() UpdateDriveCreatedByUserMailboxSettingOperationOptions {
+	return UpdateDriveCreatedByUserMailboxSettingOperationOptions{}
+}
+
+func (o UpdateDriveCreatedByUserMailboxSettingOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateDriveCreatedByUserMailboxSettingOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateDriveCreatedByUserMailboxSettingOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateDriveCreatedByUserMailboxSetting - Update property mailboxSettings value.
-func (c DriveCreatedByUserMailboxSettingClient) UpdateDriveCreatedByUserMailboxSetting(ctx context.Context, id stable.GroupIdDriveId, input stable.MailboxSettings) (result UpdateDriveCreatedByUserMailboxSettingOperationResponse, err error) {
+func (c DriveCreatedByUserMailboxSettingClient) UpdateDriveCreatedByUserMailboxSetting(ctx context.Context, id stable.GroupIdDriveId, input stable.MailboxSettings, options UpdateDriveCreatedByUserMailboxSettingOperationOptions) (result UpdateDriveCreatedByUserMailboxSettingOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       fmt.Sprintf("%s/createdByUser/mailboxSettings", id.ID()),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/createdByUser/mailboxSettings", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

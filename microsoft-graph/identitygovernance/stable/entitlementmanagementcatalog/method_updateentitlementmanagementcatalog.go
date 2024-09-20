@@ -17,16 +17,45 @@ type UpdateEntitlementManagementCatalogOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateEntitlementManagementCatalogOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateEntitlementManagementCatalogOperationOptions() UpdateEntitlementManagementCatalogOperationOptions {
+	return UpdateEntitlementManagementCatalogOperationOptions{}
+}
+
+func (o UpdateEntitlementManagementCatalogOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateEntitlementManagementCatalogOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateEntitlementManagementCatalogOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateEntitlementManagementCatalog - Update accessPackageCatalog. Update an existing accessPackageCatalog object to
 // change one or more of its properties, such as the display name or description.
-func (c EntitlementManagementCatalogClient) UpdateEntitlementManagementCatalog(ctx context.Context, id stable.IdentityGovernanceEntitlementManagementCatalogId, input stable.AccessPackageCatalog) (result UpdateEntitlementManagementCatalogOperationResponse, err error) {
+func (c EntitlementManagementCatalogClient) UpdateEntitlementManagementCatalog(ctx context.Context, id stable.IdentityGovernanceEntitlementManagementCatalogId, input stable.AccessPackageCatalog, options UpdateEntitlementManagementCatalogOperationOptions) (result UpdateEntitlementManagementCatalogOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

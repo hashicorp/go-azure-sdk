@@ -19,15 +19,44 @@ type CreateSiteInformationProtectionThreatAssessmentRequestResultOperationRespon
 	Model        *beta.ThreatAssessmentResult
 }
 
+type CreateSiteInformationProtectionThreatAssessmentRequestResultOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateSiteInformationProtectionThreatAssessmentRequestResultOperationOptions() CreateSiteInformationProtectionThreatAssessmentRequestResultOperationOptions {
+	return CreateSiteInformationProtectionThreatAssessmentRequestResultOperationOptions{}
+}
+
+func (o CreateSiteInformationProtectionThreatAssessmentRequestResultOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateSiteInformationProtectionThreatAssessmentRequestResultOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateSiteInformationProtectionThreatAssessmentRequestResultOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateSiteInformationProtectionThreatAssessmentRequestResult - Create new navigation property to results for groups
-func (c SiteInformationProtectionThreatAssessmentRequestResultClient) CreateSiteInformationProtectionThreatAssessmentRequestResult(ctx context.Context, id beta.GroupIdSiteIdInformationProtectionThreatAssessmentRequestId, input beta.ThreatAssessmentResult) (result CreateSiteInformationProtectionThreatAssessmentRequestResultOperationResponse, err error) {
+func (c SiteInformationProtectionThreatAssessmentRequestResultClient) CreateSiteInformationProtectionThreatAssessmentRequestResult(ctx context.Context, id beta.GroupIdSiteIdInformationProtectionThreatAssessmentRequestId, input beta.ThreatAssessmentResult, options CreateSiteInformationProtectionThreatAssessmentRequestResultOperationOptions) (result CreateSiteInformationProtectionThreatAssessmentRequestResultOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/results", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/results", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -18,15 +18,44 @@ type CreateManagedDeviceActivateDeviceEsimOperationResponse struct {
 	OData        *odata.OData
 }
 
+type CreateManagedDeviceActivateDeviceEsimOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateManagedDeviceActivateDeviceEsimOperationOptions() CreateManagedDeviceActivateDeviceEsimOperationOptions {
+	return CreateManagedDeviceActivateDeviceEsimOperationOptions{}
+}
+
+func (o CreateManagedDeviceActivateDeviceEsimOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateManagedDeviceActivateDeviceEsimOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateManagedDeviceActivateDeviceEsimOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateManagedDeviceActivateDeviceEsim - Invoke action activateDeviceEsim. Activate eSIM on the device.
-func (c ManagedDeviceClient) CreateManagedDeviceActivateDeviceEsim(ctx context.Context, id beta.UserIdManagedDeviceId, input CreateManagedDeviceActivateDeviceEsimRequest) (result CreateManagedDeviceActivateDeviceEsimOperationResponse, err error) {
+func (c ManagedDeviceClient) CreateManagedDeviceActivateDeviceEsim(ctx context.Context, id beta.UserIdManagedDeviceId, input CreateManagedDeviceActivateDeviceEsimRequest, options CreateManagedDeviceActivateDeviceEsimOperationOptions) (result CreateManagedDeviceActivateDeviceEsimOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/activateDeviceEsim", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/activateDeviceEsim", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

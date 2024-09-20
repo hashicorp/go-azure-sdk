@@ -81,20 +81,29 @@ func (s IdentityUserFlowAttributeAssignment) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &IdentityUserFlowAttributeAssignment{}
 
 func (s *IdentityUserFlowAttributeAssignment) UnmarshalJSON(bytes []byte) error {
-	type alias IdentityUserFlowAttributeAssignment
-	var decoded alias
+
+	var decoded struct {
+		DisplayName          nullable.Type[string]               `json:"displayName,omitempty"`
+		IsOptional           *bool                               `json:"isOptional,omitempty"`
+		RequiresVerification *bool                               `json:"requiresVerification,omitempty"`
+		UserAttributeValues  *[]UserAttributeValuesItem          `json:"userAttributeValues,omitempty"`
+		UserInputType        *IdentityUserFlowAttributeInputType `json:"userInputType,omitempty"`
+		Id                   *string                             `json:"id,omitempty"`
+		ODataId              *string                             `json:"@odata.id,omitempty"`
+		ODataType            *string                             `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into IdentityUserFlowAttributeAssignment: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.DisplayName = decoded.DisplayName
-	s.Id = decoded.Id
 	s.IsOptional = decoded.IsOptional
-	s.ODataId = decoded.ODataId
-	s.ODataType = decoded.ODataType
 	s.RequiresVerification = decoded.RequiresVerification
 	s.UserAttributeValues = decoded.UserAttributeValues
 	s.UserInputType = decoded.UserInputType
+	s.Id = decoded.Id
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -108,5 +117,6 @@ func (s *IdentityUserFlowAttributeAssignment) UnmarshalJSON(bytes []byte) error 
 		}
 		s.UserAttribute = &impl
 	}
+
 	return nil
 }

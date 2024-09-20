@@ -17,15 +17,44 @@ type UpdatePermissionsManagementOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdatePermissionsManagementOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdatePermissionsManagementOperationOptions() UpdatePermissionsManagementOperationOptions {
+	return UpdatePermissionsManagementOperationOptions{}
+}
+
+func (o UpdatePermissionsManagementOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdatePermissionsManagementOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdatePermissionsManagementOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdatePermissionsManagement - Update the navigation property permissionsManagement in identityGovernance
-func (c PermissionsManagementClient) UpdatePermissionsManagement(ctx context.Context, input beta.PermissionsManagement) (result UpdatePermissionsManagementOperationResponse, err error) {
+func (c PermissionsManagementClient) UpdatePermissionsManagement(ctx context.Context, input beta.PermissionsManagement, options UpdatePermissionsManagementOperationOptions) (result UpdatePermissionsManagementOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       "/identityGovernance/permissionsManagement",
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          "/identityGovernance/permissionsManagement",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

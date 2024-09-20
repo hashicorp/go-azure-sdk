@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &MeProfileEducationalActivityId{}
 
 func TestNewMeProfileEducationalActivityID(t *testing.T) {
-	id := NewMeProfileEducationalActivityID("educationalActivityIdValue")
+	id := NewMeProfileEducationalActivityID("educationalActivityId")
 
-	if id.EducationalActivityId != "educationalActivityIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'EducationalActivityId'", id.EducationalActivityId, "educationalActivityIdValue")
+	if id.EducationalActivityId != "educationalActivityId" {
+		t.Fatalf("Expected %q but got %q for Segment 'EducationalActivityId'", id.EducationalActivityId, "educationalActivityId")
 	}
 }
 
 func TestFormatMeProfileEducationalActivityID(t *testing.T) {
-	actual := NewMeProfileEducationalActivityID("educationalActivityIdValue").ID()
-	expected := "/me/profile/educationalActivities/educationalActivityIdValue"
+	actual := NewMeProfileEducationalActivityID("educationalActivityId").ID()
+	expected := "/me/profile/educationalActivities/educationalActivityId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -55,14 +55,14 @@ func TestParseMeProfileEducationalActivityID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/me/profile/educationalActivities/educationalActivityIdValue",
+			Input: "/me/profile/educationalActivities/educationalActivityId",
 			Expected: &MeProfileEducationalActivityId{
-				EducationalActivityId: "educationalActivityIdValue",
+				EducationalActivityId: "educationalActivityId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/profile/educationalActivities/educationalActivityIdValue/extra",
+			Input: "/me/profile/educationalActivities/educationalActivityId/extra",
 			Error: true,
 		},
 	}
@@ -131,26 +131,26 @@ func TestParseMeProfileEducationalActivityIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/me/profile/educationalActivities/educationalActivityIdValue",
+			Input: "/me/profile/educationalActivities/educationalActivityId",
 			Expected: &MeProfileEducationalActivityId{
-				EducationalActivityId: "educationalActivityIdValue",
+				EducationalActivityId: "educationalActivityId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/profile/educationalActivities/educationalActivityIdValue/extra",
+			Input: "/me/profile/educationalActivities/educationalActivityId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/pRoFiLe/eDuCaTiOnAlAcTiViTiEs/eDuCaTiOnAlAcTiViTyIdVaLuE",
+			Input: "/mE/pRoFiLe/eDuCaTiOnAlAcTiViTiEs/eDuCaTiOnAlAcTiViTyId",
 			Expected: &MeProfileEducationalActivityId{
-				EducationalActivityId: "eDuCaTiOnAlAcTiViTyIdVaLuE",
+				EducationalActivityId: "eDuCaTiOnAlAcTiViTyId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/mE/pRoFiLe/eDuCaTiOnAlAcTiViTiEs/eDuCaTiOnAlAcTiViTyIdVaLuE/extra",
+			Input: "/mE/pRoFiLe/eDuCaTiOnAlAcTiViTiEs/eDuCaTiOnAlAcTiViTyId/extra",
 			Error: true,
 		},
 	}

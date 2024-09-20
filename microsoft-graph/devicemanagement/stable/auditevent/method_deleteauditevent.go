@@ -19,7 +19,8 @@ type DeleteAuditEventOperationResponse struct {
 }
 
 type DeleteAuditEventOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteAuditEventOperationOptions() DeleteAuditEventOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteAuditEventOperationOptions) ToHeaders() *client.Headers {
 
 func (o DeleteAuditEventOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

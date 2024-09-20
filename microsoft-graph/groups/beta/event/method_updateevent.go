@@ -17,15 +17,44 @@ type UpdateEventOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateEventOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateEventOperationOptions() UpdateEventOperationOptions {
+	return UpdateEventOperationOptions{}
+}
+
+func (o UpdateEventOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateEventOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateEventOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateEvent - Update event. Update an event object.
-func (c EventClient) UpdateEvent(ctx context.Context, id beta.GroupIdEventId, input beta.Event) (result UpdateEventOperationResponse, err error) {
+func (c EventClient) UpdateEvent(ctx context.Context, id beta.GroupIdEventId, input beta.Event, options UpdateEventOperationOptions) (result UpdateEventOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

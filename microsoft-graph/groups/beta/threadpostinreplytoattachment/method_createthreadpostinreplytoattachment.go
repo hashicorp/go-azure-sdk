@@ -20,15 +20,44 @@ type CreateThreadPostInReplyToAttachmentOperationResponse struct {
 	Model        beta.Attachment
 }
 
+type CreateThreadPostInReplyToAttachmentOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateThreadPostInReplyToAttachmentOperationOptions() CreateThreadPostInReplyToAttachmentOperationOptions {
+	return CreateThreadPostInReplyToAttachmentOperationOptions{}
+}
+
+func (o CreateThreadPostInReplyToAttachmentOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateThreadPostInReplyToAttachmentOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateThreadPostInReplyToAttachmentOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateThreadPostInReplyToAttachment - Create new navigation property to attachments for groups
-func (c ThreadPostInReplyToAttachmentClient) CreateThreadPostInReplyToAttachment(ctx context.Context, id beta.GroupIdThreadIdPostId, input beta.Attachment) (result CreateThreadPostInReplyToAttachmentOperationResponse, err error) {
+func (c ThreadPostInReplyToAttachmentClient) CreateThreadPostInReplyToAttachment(ctx context.Context, id beta.GroupIdThreadIdPostId, input beta.Attachment, options CreateThreadPostInReplyToAttachmentOperationOptions) (result CreateThreadPostInReplyToAttachmentOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/inReplyTo/attachments", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/inReplyTo/attachments", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

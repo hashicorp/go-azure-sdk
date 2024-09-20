@@ -17,15 +17,44 @@ type GetReportsRemoteAssistanceSessionsReportOperationResponse struct {
 	Model        *[]byte
 }
 
+type GetReportsRemoteAssistanceSessionsReportOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultGetReportsRemoteAssistanceSessionsReportOperationOptions() GetReportsRemoteAssistanceSessionsReportOperationOptions {
+	return GetReportsRemoteAssistanceSessionsReportOperationOptions{}
+}
+
+func (o GetReportsRemoteAssistanceSessionsReportOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o GetReportsRemoteAssistanceSessionsReportOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o GetReportsRemoteAssistanceSessionsReportOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // GetReportsRemoteAssistanceSessionsReport - Invoke action getRemoteAssistanceSessionsReport
-func (c ReportClient) GetReportsRemoteAssistanceSessionsReport(ctx context.Context, input GetReportsRemoteAssistanceSessionsReportRequest) (result GetReportsRemoteAssistanceSessionsReportOperationResponse, err error) {
+func (c ReportClient) GetReportsRemoteAssistanceSessionsReport(ctx context.Context, input GetReportsRemoteAssistanceSessionsReportRequest, options GetReportsRemoteAssistanceSessionsReportOperationOptions) (result GetReportsRemoteAssistanceSessionsReportOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/octet-stream",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/deviceManagement/reports/getRemoteAssistanceSessionsReport",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/deviceManagement/reports/getRemoteAssistanceSessionsReport",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

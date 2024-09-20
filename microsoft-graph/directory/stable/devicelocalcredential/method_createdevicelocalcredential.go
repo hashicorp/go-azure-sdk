@@ -18,15 +18,44 @@ type CreateDeviceLocalCredentialOperationResponse struct {
 	Model        *stable.DeviceLocalCredentialInfo
 }
 
+type CreateDeviceLocalCredentialOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateDeviceLocalCredentialOperationOptions() CreateDeviceLocalCredentialOperationOptions {
+	return CreateDeviceLocalCredentialOperationOptions{}
+}
+
+func (o CreateDeviceLocalCredentialOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateDeviceLocalCredentialOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateDeviceLocalCredentialOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateDeviceLocalCredential - Create new navigation property to deviceLocalCredentials for directory
-func (c DeviceLocalCredentialClient) CreateDeviceLocalCredential(ctx context.Context, input stable.DeviceLocalCredentialInfo) (result CreateDeviceLocalCredentialOperationResponse, err error) {
+func (c DeviceLocalCredentialClient) CreateDeviceLocalCredential(ctx context.Context, input stable.DeviceLocalCredentialInfo, options CreateDeviceLocalCredentialOperationOptions) (result CreateDeviceLocalCredentialOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/directory/deviceLocalCredentials",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/directory/deviceLocalCredentials",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

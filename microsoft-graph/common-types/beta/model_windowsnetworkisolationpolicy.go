@@ -56,10 +56,21 @@ type WindowsNetworkIsolationPolicy struct {
 var _ json.Unmarshaler = &WindowsNetworkIsolationPolicy{}
 
 func (s *WindowsNetworkIsolationPolicy) UnmarshalJSON(bytes []byte) error {
-	type alias WindowsNetworkIsolationPolicy
-	var decoded alias
+
+	var decoded struct {
+		EnterpriseCloudResources               *[]ProxiedDomain `json:"enterpriseCloudResources,omitempty"`
+		EnterpriseIPRanges                     *[]IPRange       `json:"enterpriseIPRanges,omitempty"`
+		EnterpriseIPRangesAreAuthoritative     *bool            `json:"enterpriseIPRangesAreAuthoritative,omitempty"`
+		EnterpriseInternalProxyServers         *[]string        `json:"enterpriseInternalProxyServers,omitempty"`
+		EnterpriseNetworkDomainNames           *[]string        `json:"enterpriseNetworkDomainNames,omitempty"`
+		EnterpriseProxyServers                 *[]string        `json:"enterpriseProxyServers,omitempty"`
+		EnterpriseProxyServersAreAuthoritative *bool            `json:"enterpriseProxyServersAreAuthoritative,omitempty"`
+		NeutralDomainResources                 *[]string        `json:"neutralDomainResources,omitempty"`
+		ODataId                                *string          `json:"@odata.id,omitempty"`
+		ODataType                              *string          `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into WindowsNetworkIsolationPolicy: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.EnterpriseCloudResources = decoded.EnterpriseCloudResources
@@ -93,5 +104,6 @@ func (s *WindowsNetworkIsolationPolicy) UnmarshalJSON(bytes []byte) error {
 		}
 		s.EnterpriseIPRanges = &output
 	}
+
 	return nil
 }

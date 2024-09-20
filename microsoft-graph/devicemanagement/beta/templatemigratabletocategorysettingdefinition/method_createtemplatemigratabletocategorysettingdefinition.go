@@ -20,16 +20,45 @@ type CreateTemplateMigratableToCategorySettingDefinitionOperationResponse struct
 	Model        beta.DeviceManagementSettingDefinition
 }
 
+type CreateTemplateMigratableToCategorySettingDefinitionOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateTemplateMigratableToCategorySettingDefinitionOperationOptions() CreateTemplateMigratableToCategorySettingDefinitionOperationOptions {
+	return CreateTemplateMigratableToCategorySettingDefinitionOperationOptions{}
+}
+
+func (o CreateTemplateMigratableToCategorySettingDefinitionOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateTemplateMigratableToCategorySettingDefinitionOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateTemplateMigratableToCategorySettingDefinitionOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateTemplateMigratableToCategorySettingDefinition - Create new navigation property to settingDefinitions for
 // deviceManagement
-func (c TemplateMigratableToCategorySettingDefinitionClient) CreateTemplateMigratableToCategorySettingDefinition(ctx context.Context, id beta.DeviceManagementTemplateIdMigratableToIdCategoryId, input beta.DeviceManagementSettingDefinition) (result CreateTemplateMigratableToCategorySettingDefinitionOperationResponse, err error) {
+func (c TemplateMigratableToCategorySettingDefinitionClient) CreateTemplateMigratableToCategorySettingDefinition(ctx context.Context, id beta.DeviceManagementTemplateIdMigratableToIdCategoryId, input beta.DeviceManagementSettingDefinition, options CreateTemplateMigratableToCategorySettingDefinitionOperationOptions) (result CreateTemplateMigratableToCategorySettingDefinitionOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/settingDefinitions", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/settingDefinitions", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/microsoft-graph/applications/beta/synchronization` Documentation
 
-The `synchronization` SDK allows for interaction with the Azure Resource Manager Service `applications` (API Version `beta`).
+The `synchronization` SDK allows for interaction with Microsoft Graph `applications` (API Version `beta`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -15,7 +15,7 @@ import "github.com/hashicorp/go-azure-sdk/microsoft-graph/applications/beta/sync
 ### Client Initialization
 
 ```go
-client := synchronization.NewSynchronizationClientWithBaseURI("https://management.azure.com")
+client := synchronization.NewSynchronizationClientWithBaseURI("https://graph.microsoft.com")
 client.Client.Authorizer = authorizer
 ```
 
@@ -24,14 +24,14 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := synchronization.NewApplicationID("applicationIdValue")
+id := synchronization.NewApplicationID("applicationId")
 
 payload := synchronization.AcquireSynchronizationAccessTokenRequest{
 	// ...
 }
 
 
-read, err := client.AcquireSynchronizationAccessToken(ctx, id, payload)
+read, err := client.AcquireSynchronizationAccessToken(ctx, id, payload, synchronization.DefaultAcquireSynchronizationAccessTokenOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -45,7 +45,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := synchronization.NewApplicationID("applicationIdValue")
+id := synchronization.NewApplicationID("applicationId")
 
 read, err := client.DeleteSynchronization(ctx, id, synchronization.DefaultDeleteSynchronizationOperationOptions())
 if err != nil {
@@ -61,7 +61,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := synchronization.NewApplicationID("applicationIdValue")
+id := synchronization.NewApplicationID("applicationId")
 
 read, err := client.GetSynchronization(ctx, id, synchronization.DefaultGetSynchronizationOperationOptions())
 if err != nil {
@@ -77,14 +77,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := synchronization.NewApplicationID("applicationIdValue")
+id := synchronization.NewApplicationID("applicationId")
 
 payload := synchronization.Synchronization{
 	// ...
 }
 
 
-read, err := client.SetSynchronization(ctx, id, payload)
+read, err := client.SetSynchronization(ctx, id, payload, synchronization.DefaultSetSynchronizationOperationOptions())
 if err != nil {
 	// handle the error
 }

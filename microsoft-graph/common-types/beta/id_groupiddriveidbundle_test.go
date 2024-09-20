@@ -12,24 +12,24 @@ import (
 var _ resourceids.ResourceId = &GroupIdDriveIdBundleId{}
 
 func TestNewGroupIdDriveIdBundleID(t *testing.T) {
-	id := NewGroupIdDriveIdBundleID("groupIdValue", "driveIdValue", "driveItemIdValue")
+	id := NewGroupIdDriveIdBundleID("groupId", "driveId", "driveItemId")
 
-	if id.GroupId != "groupIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'GroupId'", id.GroupId, "groupIdValue")
+	if id.GroupId != "groupId" {
+		t.Fatalf("Expected %q but got %q for Segment 'GroupId'", id.GroupId, "groupId")
 	}
 
-	if id.DriveId != "driveIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DriveId'", id.DriveId, "driveIdValue")
+	if id.DriveId != "driveId" {
+		t.Fatalf("Expected %q but got %q for Segment 'DriveId'", id.DriveId, "driveId")
 	}
 
-	if id.DriveItemId != "driveItemIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DriveItemId'", id.DriveItemId, "driveItemIdValue")
+	if id.DriveItemId != "driveItemId" {
+		t.Fatalf("Expected %q but got %q for Segment 'DriveItemId'", id.DriveItemId, "driveItemId")
 	}
 }
 
 func TestFormatGroupIdDriveIdBundleID(t *testing.T) {
-	actual := NewGroupIdDriveIdBundleID("groupIdValue", "driveIdValue", "driveItemIdValue").ID()
-	expected := "/groups/groupIdValue/drives/driveIdValue/bundles/driveItemIdValue"
+	actual := NewGroupIdDriveIdBundleID("groupId", "driveId", "driveItemId").ID()
+	expected := "/groups/groupId/drives/driveId/bundles/driveItemId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -53,36 +53,36 @@ func TestParseGroupIdDriveIdBundleID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue",
+			Input: "/groups/groupId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/drives",
+			Input: "/groups/groupId/drives",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/drives/driveIdValue",
+			Input: "/groups/groupId/drives/driveId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/drives/driveIdValue/bundles",
+			Input: "/groups/groupId/drives/driveId/bundles",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/groups/groupIdValue/drives/driveIdValue/bundles/driveItemIdValue",
+			Input: "/groups/groupId/drives/driveId/bundles/driveItemId",
 			Expected: &GroupIdDriveIdBundleId{
-				GroupId:     "groupIdValue",
-				DriveId:     "driveIdValue",
-				DriveItemId: "driveItemIdValue",
+				GroupId:     "groupId",
+				DriveId:     "driveId",
+				DriveItemId: "driveItemId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/groups/groupIdValue/drives/driveIdValue/bundles/driveItemIdValue/extra",
+			Input: "/groups/groupId/drives/driveId/bundles/driveItemId/extra",
 			Error: true,
 		},
 	}
@@ -139,70 +139,70 @@ func TestParseGroupIdDriveIdBundleIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue",
+			Input: "/groups/groupId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE",
+			Input: "/gRoUpS/gRoUpId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/drives",
+			Input: "/groups/groupId/drives",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/dRiVeS",
+			Input: "/gRoUpS/gRoUpId/dRiVeS",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/drives/driveIdValue",
+			Input: "/groups/groupId/drives/driveId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/dRiVeS/dRiVeIdVaLuE",
+			Input: "/gRoUpS/gRoUpId/dRiVeS/dRiVeId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/drives/driveIdValue/bundles",
+			Input: "/groups/groupId/drives/driveId/bundles",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/dRiVeS/dRiVeIdVaLuE/bUnDlEs",
+			Input: "/gRoUpS/gRoUpId/dRiVeS/dRiVeId/bUnDlEs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/groups/groupIdValue/drives/driveIdValue/bundles/driveItemIdValue",
+			Input: "/groups/groupId/drives/driveId/bundles/driveItemId",
 			Expected: &GroupIdDriveIdBundleId{
-				GroupId:     "groupIdValue",
-				DriveId:     "driveIdValue",
-				DriveItemId: "driveItemIdValue",
+				GroupId:     "groupId",
+				DriveId:     "driveId",
+				DriveItemId: "driveItemId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/groups/groupIdValue/drives/driveIdValue/bundles/driveItemIdValue/extra",
+			Input: "/groups/groupId/drives/driveId/bundles/driveItemId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/dRiVeS/dRiVeIdVaLuE/bUnDlEs/dRiVeItEmIdVaLuE",
+			Input: "/gRoUpS/gRoUpId/dRiVeS/dRiVeId/bUnDlEs/dRiVeItEmId",
 			Expected: &GroupIdDriveIdBundleId{
-				GroupId:     "gRoUpIdVaLuE",
-				DriveId:     "dRiVeIdVaLuE",
-				DriveItemId: "dRiVeItEmIdVaLuE",
+				GroupId:     "gRoUpId",
+				DriveId:     "dRiVeId",
+				DriveItemId: "dRiVeItEmId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/dRiVeS/dRiVeIdVaLuE/bUnDlEs/dRiVeItEmIdVaLuE/extra",
+			Input: "/gRoUpS/gRoUpId/dRiVeS/dRiVeId/bUnDlEs/dRiVeItEmId/extra",
 			Error: true,
 		},
 	}

@@ -17,15 +17,44 @@ type UpdateCloudPCOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateCloudPCOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateCloudPCOperationOptions() UpdateCloudPCOperationOptions {
+	return UpdateCloudPCOperationOptions{}
+}
+
+func (o UpdateCloudPCOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateCloudPCOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateCloudPCOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateCloudPC - Update the navigation property cloudPCs in me
-func (c CloudPCClient) UpdateCloudPC(ctx context.Context, id beta.MeCloudPCId, input beta.CloudPC) (result UpdateCloudPCOperationResponse, err error) {
+func (c CloudPCClient) UpdateCloudPC(ctx context.Context, id beta.MeCloudPCId, input beta.CloudPC, options UpdateCloudPCOperationOptions) (result UpdateCloudPCOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &ServicePrincipalIdDelegatedPermissionClassificationId{}
 
 func TestNewServicePrincipalIdDelegatedPermissionClassificationID(t *testing.T) {
-	id := NewServicePrincipalIdDelegatedPermissionClassificationID("servicePrincipalIdValue", "delegatedPermissionClassificationIdValue")
+	id := NewServicePrincipalIdDelegatedPermissionClassificationID("servicePrincipalId", "delegatedPermissionClassificationId")
 
-	if id.ServicePrincipalId != "servicePrincipalIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ServicePrincipalId'", id.ServicePrincipalId, "servicePrincipalIdValue")
+	if id.ServicePrincipalId != "servicePrincipalId" {
+		t.Fatalf("Expected %q but got %q for Segment 'ServicePrincipalId'", id.ServicePrincipalId, "servicePrincipalId")
 	}
 
-	if id.DelegatedPermissionClassificationId != "delegatedPermissionClassificationIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DelegatedPermissionClassificationId'", id.DelegatedPermissionClassificationId, "delegatedPermissionClassificationIdValue")
+	if id.DelegatedPermissionClassificationId != "delegatedPermissionClassificationId" {
+		t.Fatalf("Expected %q but got %q for Segment 'DelegatedPermissionClassificationId'", id.DelegatedPermissionClassificationId, "delegatedPermissionClassificationId")
 	}
 }
 
 func TestFormatServicePrincipalIdDelegatedPermissionClassificationID(t *testing.T) {
-	actual := NewServicePrincipalIdDelegatedPermissionClassificationID("servicePrincipalIdValue", "delegatedPermissionClassificationIdValue").ID()
-	expected := "/servicePrincipals/servicePrincipalIdValue/delegatedPermissionClassifications/delegatedPermissionClassificationIdValue"
+	actual := NewServicePrincipalIdDelegatedPermissionClassificationID("servicePrincipalId", "delegatedPermissionClassificationId").ID()
+	expected := "/servicePrincipals/servicePrincipalId/delegatedPermissionClassifications/delegatedPermissionClassificationId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -49,25 +49,25 @@ func TestParseServicePrincipalIdDelegatedPermissionClassificationID(t *testing.T
 		},
 		{
 			// Incomplete URI
-			Input: "/servicePrincipals/servicePrincipalIdValue",
+			Input: "/servicePrincipals/servicePrincipalId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/servicePrincipals/servicePrincipalIdValue/delegatedPermissionClassifications",
+			Input: "/servicePrincipals/servicePrincipalId/delegatedPermissionClassifications",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/servicePrincipals/servicePrincipalIdValue/delegatedPermissionClassifications/delegatedPermissionClassificationIdValue",
+			Input: "/servicePrincipals/servicePrincipalId/delegatedPermissionClassifications/delegatedPermissionClassificationId",
 			Expected: &ServicePrincipalIdDelegatedPermissionClassificationId{
-				ServicePrincipalId:                  "servicePrincipalIdValue",
-				DelegatedPermissionClassificationId: "delegatedPermissionClassificationIdValue",
+				ServicePrincipalId:                  "servicePrincipalId",
+				DelegatedPermissionClassificationId: "delegatedPermissionClassificationId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/servicePrincipals/servicePrincipalIdValue/delegatedPermissionClassifications/delegatedPermissionClassificationIdValue/extra",
+			Input: "/servicePrincipals/servicePrincipalId/delegatedPermissionClassifications/delegatedPermissionClassificationId/extra",
 			Error: true,
 		},
 	}
@@ -120,48 +120,48 @@ func TestParseServicePrincipalIdDelegatedPermissionClassificationIDInsensitively
 		},
 		{
 			// Incomplete URI
-			Input: "/servicePrincipals/servicePrincipalIdValue",
+			Input: "/servicePrincipals/servicePrincipalId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sErViCePrInCiPaLs/sErViCePrInCiPaLiDvAlUe",
+			Input: "/sErViCePrInCiPaLs/sErViCePrInCiPaLiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/servicePrincipals/servicePrincipalIdValue/delegatedPermissionClassifications",
+			Input: "/servicePrincipals/servicePrincipalId/delegatedPermissionClassifications",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sErViCePrInCiPaLs/sErViCePrInCiPaLiDvAlUe/dElEgAtEdPeRmIsSiOnClAsSiFiCaTiOnS",
+			Input: "/sErViCePrInCiPaLs/sErViCePrInCiPaLiD/dElEgAtEdPeRmIsSiOnClAsSiFiCaTiOnS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/servicePrincipals/servicePrincipalIdValue/delegatedPermissionClassifications/delegatedPermissionClassificationIdValue",
+			Input: "/servicePrincipals/servicePrincipalId/delegatedPermissionClassifications/delegatedPermissionClassificationId",
 			Expected: &ServicePrincipalIdDelegatedPermissionClassificationId{
-				ServicePrincipalId:                  "servicePrincipalIdValue",
-				DelegatedPermissionClassificationId: "delegatedPermissionClassificationIdValue",
+				ServicePrincipalId:                  "servicePrincipalId",
+				DelegatedPermissionClassificationId: "delegatedPermissionClassificationId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/servicePrincipals/servicePrincipalIdValue/delegatedPermissionClassifications/delegatedPermissionClassificationIdValue/extra",
+			Input: "/servicePrincipals/servicePrincipalId/delegatedPermissionClassifications/delegatedPermissionClassificationId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sErViCePrInCiPaLs/sErViCePrInCiPaLiDvAlUe/dElEgAtEdPeRmIsSiOnClAsSiFiCaTiOnS/dElEgAtEdPeRmIsSiOnClAsSiFiCaTiOnIdVaLuE",
+			Input: "/sErViCePrInCiPaLs/sErViCePrInCiPaLiD/dElEgAtEdPeRmIsSiOnClAsSiFiCaTiOnS/dElEgAtEdPeRmIsSiOnClAsSiFiCaTiOnId",
 			Expected: &ServicePrincipalIdDelegatedPermissionClassificationId{
-				ServicePrincipalId:                  "sErViCePrInCiPaLiDvAlUe",
-				DelegatedPermissionClassificationId: "dElEgAtEdPeRmIsSiOnClAsSiFiCaTiOnIdVaLuE",
+				ServicePrincipalId:                  "sErViCePrInCiPaLiD",
+				DelegatedPermissionClassificationId: "dElEgAtEdPeRmIsSiOnClAsSiFiCaTiOnId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sErViCePrInCiPaLs/sErViCePrInCiPaLiDvAlUe/dElEgAtEdPeRmIsSiOnClAsSiFiCaTiOnS/dElEgAtEdPeRmIsSiOnClAsSiFiCaTiOnIdVaLuE/extra",
+			Input: "/sErViCePrInCiPaLs/sErViCePrInCiPaLiD/dElEgAtEdPeRmIsSiOnClAsSiFiCaTiOnS/dElEgAtEdPeRmIsSiOnClAsSiFiCaTiOnId/extra",
 			Error: true,
 		},
 	}

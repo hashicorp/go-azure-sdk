@@ -20,8 +20,9 @@ type GetJoinedTeamChannelSharedWithTeamsCountOperationResponse struct {
 }
 
 type GetJoinedTeamChannelSharedWithTeamsCountOperationOptions struct {
-	Filter *string
-	Search *string
+	Filter   *string
+	Metadata *odata.Metadata
+	Search   *string
 }
 
 func DefaultGetJoinedTeamChannelSharedWithTeamsCountOperationOptions() GetJoinedTeamChannelSharedWithTeamsCountOperationOptions {
@@ -38,6 +39,9 @@ func (o GetJoinedTeamChannelSharedWithTeamsCountOperationOptions) ToOData() *oda
 	out := odata.Query{}
 	if o.Filter != nil {
 		out.Filter = *o.Filter
+	}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
 	}
 	if o.Search != nil {
 		out.Search = *o.Search

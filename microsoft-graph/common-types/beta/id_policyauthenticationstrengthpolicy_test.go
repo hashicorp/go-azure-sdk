@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &PolicyAuthenticationStrengthPolicyId{}
 
 func TestNewPolicyAuthenticationStrengthPolicyID(t *testing.T) {
-	id := NewPolicyAuthenticationStrengthPolicyID("authenticationStrengthPolicyIdValue")
+	id := NewPolicyAuthenticationStrengthPolicyID("authenticationStrengthPolicyId")
 
-	if id.AuthenticationStrengthPolicyId != "authenticationStrengthPolicyIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'AuthenticationStrengthPolicyId'", id.AuthenticationStrengthPolicyId, "authenticationStrengthPolicyIdValue")
+	if id.AuthenticationStrengthPolicyId != "authenticationStrengthPolicyId" {
+		t.Fatalf("Expected %q but got %q for Segment 'AuthenticationStrengthPolicyId'", id.AuthenticationStrengthPolicyId, "authenticationStrengthPolicyId")
 	}
 }
 
 func TestFormatPolicyAuthenticationStrengthPolicyID(t *testing.T) {
-	actual := NewPolicyAuthenticationStrengthPolicyID("authenticationStrengthPolicyIdValue").ID()
-	expected := "/policies/authenticationStrengthPolicies/authenticationStrengthPolicyIdValue"
+	actual := NewPolicyAuthenticationStrengthPolicyID("authenticationStrengthPolicyId").ID()
+	expected := "/policies/authenticationStrengthPolicies/authenticationStrengthPolicyId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -50,14 +50,14 @@ func TestParsePolicyAuthenticationStrengthPolicyID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/policies/authenticationStrengthPolicies/authenticationStrengthPolicyIdValue",
+			Input: "/policies/authenticationStrengthPolicies/authenticationStrengthPolicyId",
 			Expected: &PolicyAuthenticationStrengthPolicyId{
-				AuthenticationStrengthPolicyId: "authenticationStrengthPolicyIdValue",
+				AuthenticationStrengthPolicyId: "authenticationStrengthPolicyId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/policies/authenticationStrengthPolicies/authenticationStrengthPolicyIdValue/extra",
+			Input: "/policies/authenticationStrengthPolicies/authenticationStrengthPolicyId/extra",
 			Error: true,
 		},
 	}
@@ -116,26 +116,26 @@ func TestParsePolicyAuthenticationStrengthPolicyIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/policies/authenticationStrengthPolicies/authenticationStrengthPolicyIdValue",
+			Input: "/policies/authenticationStrengthPolicies/authenticationStrengthPolicyId",
 			Expected: &PolicyAuthenticationStrengthPolicyId{
-				AuthenticationStrengthPolicyId: "authenticationStrengthPolicyIdValue",
+				AuthenticationStrengthPolicyId: "authenticationStrengthPolicyId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/policies/authenticationStrengthPolicies/authenticationStrengthPolicyIdValue/extra",
+			Input: "/policies/authenticationStrengthPolicies/authenticationStrengthPolicyId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/pOlIcIeS/aUtHeNtIcAtIoNsTrEnGtHpOlIcIeS/aUtHeNtIcAtIoNsTrEnGtHpOlIcYiDvAlUe",
+			Input: "/pOlIcIeS/aUtHeNtIcAtIoNsTrEnGtHpOlIcIeS/aUtHeNtIcAtIoNsTrEnGtHpOlIcYiD",
 			Expected: &PolicyAuthenticationStrengthPolicyId{
-				AuthenticationStrengthPolicyId: "aUtHeNtIcAtIoNsTrEnGtHpOlIcYiDvAlUe",
+				AuthenticationStrengthPolicyId: "aUtHeNtIcAtIoNsTrEnGtHpOlIcYiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/pOlIcIeS/aUtHeNtIcAtIoNsTrEnGtHpOlIcIeS/aUtHeNtIcAtIoNsTrEnGtHpOlIcYiDvAlUe/extra",
+			Input: "/pOlIcIeS/aUtHeNtIcAtIoNsTrEnGtHpOlIcIeS/aUtHeNtIcAtIoNsTrEnGtHpOlIcYiD/extra",
 			Error: true,
 		},
 	}

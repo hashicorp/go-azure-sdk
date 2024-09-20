@@ -19,7 +19,8 @@ type DeleteVirtualEndpointOnPremisesConnectionOperationResponse struct {
 }
 
 type DeleteVirtualEndpointOnPremisesConnectionOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteVirtualEndpointOnPremisesConnectionOperationOptions() DeleteVirtualEndpointOnPremisesConnectionOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteVirtualEndpointOnPremisesConnectionOperationOptions) ToHeaders() *
 
 func (o DeleteVirtualEndpointOnPremisesConnectionOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

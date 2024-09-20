@@ -18,16 +18,45 @@ type CreateMicrosoftTunnelConfigurationOperationResponse struct {
 	Model        *beta.MicrosoftTunnelConfiguration
 }
 
+type CreateMicrosoftTunnelConfigurationOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateMicrosoftTunnelConfigurationOperationOptions() CreateMicrosoftTunnelConfigurationOperationOptions {
+	return CreateMicrosoftTunnelConfigurationOperationOptions{}
+}
+
+func (o CreateMicrosoftTunnelConfigurationOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateMicrosoftTunnelConfigurationOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateMicrosoftTunnelConfigurationOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateMicrosoftTunnelConfiguration - Create new navigation property to microsoftTunnelConfigurations for
 // deviceManagement
-func (c MicrosoftTunnelConfigurationClient) CreateMicrosoftTunnelConfiguration(ctx context.Context, input beta.MicrosoftTunnelConfiguration) (result CreateMicrosoftTunnelConfigurationOperationResponse, err error) {
+func (c MicrosoftTunnelConfigurationClient) CreateMicrosoftTunnelConfiguration(ctx context.Context, input beta.MicrosoftTunnelConfiguration, options CreateMicrosoftTunnelConfigurationOperationOptions) (result CreateMicrosoftTunnelConfigurationOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/deviceManagement/microsoftTunnelConfigurations",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/deviceManagement/microsoftTunnelConfigurations",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

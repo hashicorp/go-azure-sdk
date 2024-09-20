@@ -18,16 +18,45 @@ type CreateServicePrincipalCreationPolicyOperationResponse struct {
 	Model        *beta.ServicePrincipalCreationPolicy
 }
 
+type CreateServicePrincipalCreationPolicyOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateServicePrincipalCreationPolicyOperationOptions() CreateServicePrincipalCreationPolicyOperationOptions {
+	return CreateServicePrincipalCreationPolicyOperationOptions{}
+}
+
+func (o CreateServicePrincipalCreationPolicyOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateServicePrincipalCreationPolicyOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateServicePrincipalCreationPolicyOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateServicePrincipalCreationPolicy - Create new navigation property to servicePrincipalCreationPolicies for
 // policies
-func (c ServicePrincipalCreationPolicyClient) CreateServicePrincipalCreationPolicy(ctx context.Context, input beta.ServicePrincipalCreationPolicy) (result CreateServicePrincipalCreationPolicyOperationResponse, err error) {
+func (c ServicePrincipalCreationPolicyClient) CreateServicePrincipalCreationPolicy(ctx context.Context, input beta.ServicePrincipalCreationPolicy, options CreateServicePrincipalCreationPolicyOperationOptions) (result CreateServicePrincipalCreationPolicyOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/policies/servicePrincipalCreationPolicies",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/policies/servicePrincipalCreationPolicies",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

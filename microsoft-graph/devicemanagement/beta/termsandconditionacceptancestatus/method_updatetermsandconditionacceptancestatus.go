@@ -17,15 +17,44 @@ type UpdateTermsAndConditionAcceptanceStatusOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateTermsAndConditionAcceptanceStatusOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateTermsAndConditionAcceptanceStatusOperationOptions() UpdateTermsAndConditionAcceptanceStatusOperationOptions {
+	return UpdateTermsAndConditionAcceptanceStatusOperationOptions{}
+}
+
+func (o UpdateTermsAndConditionAcceptanceStatusOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateTermsAndConditionAcceptanceStatusOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateTermsAndConditionAcceptanceStatusOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateTermsAndConditionAcceptanceStatus - Update the navigation property acceptanceStatuses in deviceManagement
-func (c TermsAndConditionAcceptanceStatusClient) UpdateTermsAndConditionAcceptanceStatus(ctx context.Context, id beta.DeviceManagementTermsAndConditionIdAcceptanceStatusId, input beta.TermsAndConditionsAcceptanceStatus) (result UpdateTermsAndConditionAcceptanceStatusOperationResponse, err error) {
+func (c TermsAndConditionAcceptanceStatusClient) UpdateTermsAndConditionAcceptanceStatus(ctx context.Context, id beta.DeviceManagementTermsAndConditionIdAcceptanceStatusId, input beta.TermsAndConditionsAcceptanceStatus, options UpdateTermsAndConditionAcceptanceStatusOperationOptions) (result UpdateTermsAndConditionAcceptanceStatusOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

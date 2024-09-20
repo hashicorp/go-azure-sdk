@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &MeOutlookTaskFolderId{}
 
 func TestNewMeOutlookTaskFolderID(t *testing.T) {
-	id := NewMeOutlookTaskFolderID("outlookTaskFolderIdValue")
+	id := NewMeOutlookTaskFolderID("outlookTaskFolderId")
 
-	if id.OutlookTaskFolderId != "outlookTaskFolderIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'OutlookTaskFolderId'", id.OutlookTaskFolderId, "outlookTaskFolderIdValue")
+	if id.OutlookTaskFolderId != "outlookTaskFolderId" {
+		t.Fatalf("Expected %q but got %q for Segment 'OutlookTaskFolderId'", id.OutlookTaskFolderId, "outlookTaskFolderId")
 	}
 }
 
 func TestFormatMeOutlookTaskFolderID(t *testing.T) {
-	actual := NewMeOutlookTaskFolderID("outlookTaskFolderIdValue").ID()
-	expected := "/me/outlook/taskFolders/outlookTaskFolderIdValue"
+	actual := NewMeOutlookTaskFolderID("outlookTaskFolderId").ID()
+	expected := "/me/outlook/taskFolders/outlookTaskFolderId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -55,14 +55,14 @@ func TestParseMeOutlookTaskFolderID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/me/outlook/taskFolders/outlookTaskFolderIdValue",
+			Input: "/me/outlook/taskFolders/outlookTaskFolderId",
 			Expected: &MeOutlookTaskFolderId{
-				OutlookTaskFolderId: "outlookTaskFolderIdValue",
+				OutlookTaskFolderId: "outlookTaskFolderId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/outlook/taskFolders/outlookTaskFolderIdValue/extra",
+			Input: "/me/outlook/taskFolders/outlookTaskFolderId/extra",
 			Error: true,
 		},
 	}
@@ -131,26 +131,26 @@ func TestParseMeOutlookTaskFolderIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/me/outlook/taskFolders/outlookTaskFolderIdValue",
+			Input: "/me/outlook/taskFolders/outlookTaskFolderId",
 			Expected: &MeOutlookTaskFolderId{
-				OutlookTaskFolderId: "outlookTaskFolderIdValue",
+				OutlookTaskFolderId: "outlookTaskFolderId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/outlook/taskFolders/outlookTaskFolderIdValue/extra",
+			Input: "/me/outlook/taskFolders/outlookTaskFolderId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/oUtLoOk/tAsKfOlDeRs/oUtLoOkTaSkFoLdErIdVaLuE",
+			Input: "/mE/oUtLoOk/tAsKfOlDeRs/oUtLoOkTaSkFoLdErId",
 			Expected: &MeOutlookTaskFolderId{
-				OutlookTaskFolderId: "oUtLoOkTaSkFoLdErIdVaLuE",
+				OutlookTaskFolderId: "oUtLoOkTaSkFoLdErId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/mE/oUtLoOk/tAsKfOlDeRs/oUtLoOkTaSkFoLdErIdVaLuE/extra",
+			Input: "/mE/oUtLoOk/tAsKfOlDeRs/oUtLoOkTaSkFoLdErId/extra",
 			Error: true,
 		},
 	}

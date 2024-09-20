@@ -98,10 +98,10 @@ func (id UserIdCloudClipboardItemId) ID() string {
 func (id UserIdCloudClipboardItemId) Segments() []resourceids.Segment {
 	return []resourceids.Segment{
 		resourceids.StaticSegment("users", "users", "users"),
-		resourceids.UserSpecifiedSegment("userId", "userIdValue"),
+		resourceids.UserSpecifiedSegment("userId", "userId"),
 		resourceids.StaticSegment("cloudClipboard", "cloudClipboard", "cloudClipboard"),
 		resourceids.StaticSegment("items", "items", "items"),
-		resourceids.UserSpecifiedSegment("cloudClipboardItemId", "cloudClipboardItemIdValue"),
+		resourceids.UserSpecifiedSegment("cloudClipboardItemId", "cloudClipboardItemId"),
 	}
 }
 

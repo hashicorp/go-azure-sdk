@@ -17,15 +17,44 @@ type UpdatePermissionsAnalyticAzureFindingOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdatePermissionsAnalyticAzureFindingOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdatePermissionsAnalyticAzureFindingOperationOptions() UpdatePermissionsAnalyticAzureFindingOperationOptions {
+	return UpdatePermissionsAnalyticAzureFindingOperationOptions{}
+}
+
+func (o UpdatePermissionsAnalyticAzureFindingOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdatePermissionsAnalyticAzureFindingOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdatePermissionsAnalyticAzureFindingOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdatePermissionsAnalyticAzureFinding - Update the navigation property findings in identityGovernance
-func (c PermissionsAnalyticAzureFindingClient) UpdatePermissionsAnalyticAzureFinding(ctx context.Context, id beta.IdentityGovernancePermissionsAnalyticAzureFindingId, input beta.Finding) (result UpdatePermissionsAnalyticAzureFindingOperationResponse, err error) {
+func (c PermissionsAnalyticAzureFindingClient) UpdatePermissionsAnalyticAzureFinding(ctx context.Context, id beta.IdentityGovernancePermissionsAnalyticAzureFindingId, input beta.Finding, options UpdatePermissionsAnalyticAzureFindingOperationOptions) (result UpdatePermissionsAnalyticAzureFindingOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

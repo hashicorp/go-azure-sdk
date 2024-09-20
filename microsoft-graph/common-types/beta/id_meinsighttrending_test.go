@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &MeInsightTrendingId{}
 
 func TestNewMeInsightTrendingID(t *testing.T) {
-	id := NewMeInsightTrendingID("trendingIdValue")
+	id := NewMeInsightTrendingID("trendingId")
 
-	if id.TrendingId != "trendingIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'TrendingId'", id.TrendingId, "trendingIdValue")
+	if id.TrendingId != "trendingId" {
+		t.Fatalf("Expected %q but got %q for Segment 'TrendingId'", id.TrendingId, "trendingId")
 	}
 }
 
 func TestFormatMeInsightTrendingID(t *testing.T) {
-	actual := NewMeInsightTrendingID("trendingIdValue").ID()
-	expected := "/me/insights/trending/trendingIdValue"
+	actual := NewMeInsightTrendingID("trendingId").ID()
+	expected := "/me/insights/trending/trendingId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -55,14 +55,14 @@ func TestParseMeInsightTrendingID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/me/insights/trending/trendingIdValue",
+			Input: "/me/insights/trending/trendingId",
 			Expected: &MeInsightTrendingId{
-				TrendingId: "trendingIdValue",
+				TrendingId: "trendingId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/insights/trending/trendingIdValue/extra",
+			Input: "/me/insights/trending/trendingId/extra",
 			Error: true,
 		},
 	}
@@ -131,26 +131,26 @@ func TestParseMeInsightTrendingIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/me/insights/trending/trendingIdValue",
+			Input: "/me/insights/trending/trendingId",
 			Expected: &MeInsightTrendingId{
-				TrendingId: "trendingIdValue",
+				TrendingId: "trendingId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/insights/trending/trendingIdValue/extra",
+			Input: "/me/insights/trending/trendingId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/iNsIgHtS/tReNdInG/tReNdInGiDvAlUe",
+			Input: "/mE/iNsIgHtS/tReNdInG/tReNdInGiD",
 			Expected: &MeInsightTrendingId{
-				TrendingId: "tReNdInGiDvAlUe",
+				TrendingId: "tReNdInGiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/mE/iNsIgHtS/tReNdInG/tReNdInGiDvAlUe/extra",
+			Input: "/mE/iNsIgHtS/tReNdInG/tReNdInGiD/extra",
 			Error: true,
 		},
 	}

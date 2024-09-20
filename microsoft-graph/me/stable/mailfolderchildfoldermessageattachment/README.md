@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/mailfolderchildfoldermessageattachment` Documentation
 
-The `mailfolderchildfoldermessageattachment` SDK allows for interaction with the Azure Resource Manager Service `me` (API Version `stable`).
+The `mailfolderchildfoldermessageattachment` SDK allows for interaction with Microsoft Graph `me` (API Version `stable`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -15,7 +15,7 @@ import "github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/mailfolderch
 ### Client Initialization
 
 ```go
-client := mailfolderchildfoldermessageattachment.NewMailFolderChildFolderMessageAttachmentClientWithBaseURI("https://management.azure.com")
+client := mailfolderchildfoldermessageattachment.NewMailFolderChildFolderMessageAttachmentClientWithBaseURI("https://graph.microsoft.com")
 client.Client.Authorizer = authorizer
 ```
 
@@ -24,14 +24,14 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := mailfolderchildfoldermessageattachment.NewMeMailFolderIdChildFolderIdMessageID("mailFolderIdValue", "mailFolderId1Value", "messageIdValue")
+id := mailfolderchildfoldermessageattachment.NewMeMailFolderIdChildFolderIdMessageID("mailFolderId", "mailFolderId1", "messageId")
 
 payload := mailfolderchildfoldermessageattachment.Attachment{
 	// ...
 }
 
 
-read, err := client.CreateMailFolderChildFolderMessageAttachment(ctx, id, payload)
+read, err := client.CreateMailFolderChildFolderMessageAttachment(ctx, id, payload, mailfolderchildfoldermessageattachment.DefaultCreateMailFolderChildFolderMessageAttachmentOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -45,14 +45,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := mailfolderchildfoldermessageattachment.NewMeMailFolderIdChildFolderIdMessageID("mailFolderIdValue", "mailFolderId1Value", "messageIdValue")
+id := mailfolderchildfoldermessageattachment.NewMeMailFolderIdChildFolderIdMessageID("mailFolderId", "mailFolderId1", "messageId")
 
 payload := mailfolderchildfoldermessageattachment.CreateMailFolderChildFolderMessageAttachmentsUploadSessionRequest{
 	// ...
 }
 
 
-read, err := client.CreateMailFolderChildFolderMessageAttachmentsUploadSession(ctx, id, payload)
+read, err := client.CreateMailFolderChildFolderMessageAttachmentsUploadSession(ctx, id, payload, mailfolderchildfoldermessageattachment.DefaultCreateMailFolderChildFolderMessageAttachmentsUploadSessionOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -66,7 +66,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := mailfolderchildfoldermessageattachment.NewMeMailFolderIdChildFolderIdMessageIdAttachmentID("mailFolderIdValue", "mailFolderId1Value", "messageIdValue", "attachmentIdValue")
+id := mailfolderchildfoldermessageattachment.NewMeMailFolderIdChildFolderIdMessageIdAttachmentID("mailFolderId", "mailFolderId1", "messageId", "attachmentId")
 
 read, err := client.DeleteMailFolderChildFolderMessageAttachment(ctx, id, mailfolderchildfoldermessageattachment.DefaultDeleteMailFolderChildFolderMessageAttachmentOperationOptions())
 if err != nil {
@@ -82,7 +82,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := mailfolderchildfoldermessageattachment.NewMeMailFolderIdChildFolderIdMessageIdAttachmentID("mailFolderIdValue", "mailFolderId1Value", "messageIdValue", "attachmentIdValue")
+id := mailfolderchildfoldermessageattachment.NewMeMailFolderIdChildFolderIdMessageIdAttachmentID("mailFolderId", "mailFolderId1", "messageId", "attachmentId")
 
 read, err := client.GetMailFolderChildFolderMessageAttachment(ctx, id, mailfolderchildfoldermessageattachment.DefaultGetMailFolderChildFolderMessageAttachmentOperationOptions())
 if err != nil {
@@ -98,7 +98,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := mailfolderchildfoldermessageattachment.NewMeMailFolderIdChildFolderIdMessageID("mailFolderIdValue", "mailFolderId1Value", "messageIdValue")
+id := mailfolderchildfoldermessageattachment.NewMeMailFolderIdChildFolderIdMessageID("mailFolderId", "mailFolderId1", "messageId")
 
 read, err := client.GetMailFolderChildFolderMessageAttachmentsCount(ctx, id, mailfolderchildfoldermessageattachment.DefaultGetMailFolderChildFolderMessageAttachmentsCountOperationOptions())
 if err != nil {
@@ -114,7 +114,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := mailfolderchildfoldermessageattachment.NewMeMailFolderIdChildFolderIdMessageID("mailFolderIdValue", "mailFolderId1Value", "messageIdValue")
+id := mailfolderchildfoldermessageattachment.NewMeMailFolderIdChildFolderIdMessageID("mailFolderId", "mailFolderId1", "messageId")
 
 // alternatively `client.ListMailFolderChildFolderMessageAttachments(ctx, id, mailfolderchildfoldermessageattachment.DefaultListMailFolderChildFolderMessageAttachmentsOperationOptions())` can be used to do batched pagination
 items, err := client.ListMailFolderChildFolderMessageAttachmentsComplete(ctx, id, mailfolderchildfoldermessageattachment.DefaultListMailFolderChildFolderMessageAttachmentsOperationOptions())

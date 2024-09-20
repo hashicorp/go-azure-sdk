@@ -25,10 +25,14 @@ type AndroidDeviceOwnerKioskModeAppPositionItem struct {
 var _ json.Unmarshaler = &AndroidDeviceOwnerKioskModeAppPositionItem{}
 
 func (s *AndroidDeviceOwnerKioskModeAppPositionItem) UnmarshalJSON(bytes []byte) error {
-	type alias AndroidDeviceOwnerKioskModeAppPositionItem
-	var decoded alias
+
+	var decoded struct {
+		ODataId   *string `json:"@odata.id,omitempty"`
+		ODataType *string `json:"@odata.type,omitempty"`
+		Position  *int64  `json:"position,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into AndroidDeviceOwnerKioskModeAppPositionItem: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.ODataId = decoded.ODataId
@@ -47,5 +51,6 @@ func (s *AndroidDeviceOwnerKioskModeAppPositionItem) UnmarshalJSON(bytes []byte)
 		}
 		s.Item = impl
 	}
+
 	return nil
 }

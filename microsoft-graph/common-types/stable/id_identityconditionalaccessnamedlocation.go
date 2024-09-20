@@ -94,7 +94,7 @@ func (id IdentityConditionalAccessNamedLocationId) Segments() []resourceids.Segm
 		resourceids.StaticSegment("identity", "identity", "identity"),
 		resourceids.StaticSegment("conditionalAccess", "conditionalAccess", "conditionalAccess"),
 		resourceids.StaticSegment("namedLocations", "namedLocations", "namedLocations"),
-		resourceids.UserSpecifiedSegment("namedLocationId", "namedLocationIdValue"),
+		resourceids.UserSpecifiedSegment("namedLocationId", "namedLocationId"),
 	}
 }
 

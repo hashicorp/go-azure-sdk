@@ -99,9 +99,9 @@ func (id DeviceManagementMacOSSoftwareUpdateAccountSummaryIdCategorySummaryId) S
 	return []resourceids.Segment{
 		resourceids.StaticSegment("deviceManagement", "deviceManagement", "deviceManagement"),
 		resourceids.StaticSegment("macOSSoftwareUpdateAccountSummaries", "macOSSoftwareUpdateAccountSummaries", "macOSSoftwareUpdateAccountSummaries"),
-		resourceids.UserSpecifiedSegment("macOSSoftwareUpdateAccountSummaryId", "macOSSoftwareUpdateAccountSummaryIdValue"),
+		resourceids.UserSpecifiedSegment("macOSSoftwareUpdateAccountSummaryId", "macOSSoftwareUpdateAccountSummaryId"),
 		resourceids.StaticSegment("categorySummaries", "categorySummaries", "categorySummaries"),
-		resourceids.UserSpecifiedSegment("macOSSoftwareUpdateCategorySummaryId", "macOSSoftwareUpdateCategorySummaryIdValue"),
+		resourceids.UserSpecifiedSegment("macOSSoftwareUpdateCategorySummaryId", "macOSSoftwareUpdateCategorySummaryId"),
 	}
 }
 

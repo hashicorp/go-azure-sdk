@@ -18,15 +18,44 @@ type CreateConditionalAccessPolicyOperationResponse struct {
 	Model        *stable.ConditionalAccessPolicy
 }
 
+type CreateConditionalAccessPolicyOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateConditionalAccessPolicyOperationOptions() CreateConditionalAccessPolicyOperationOptions {
+	return CreateConditionalAccessPolicyOperationOptions{}
+}
+
+func (o CreateConditionalAccessPolicyOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateConditionalAccessPolicyOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateConditionalAccessPolicyOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateConditionalAccessPolicy - Create conditionalAccessPolicy. Create a new conditionalAccessPolicy.
-func (c ConditionalAccessPolicyClient) CreateConditionalAccessPolicy(ctx context.Context, input stable.ConditionalAccessPolicy) (result CreateConditionalAccessPolicyOperationResponse, err error) {
+func (c ConditionalAccessPolicyClient) CreateConditionalAccessPolicy(ctx context.Context, input stable.ConditionalAccessPolicy, options CreateConditionalAccessPolicyOperationOptions) (result CreateConditionalAccessPolicyOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/identity/conditionalAccess/policies",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/identity/conditionalAccess/policies",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

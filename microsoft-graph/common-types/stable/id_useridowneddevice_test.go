@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &UserIdOwnedDeviceId{}
 
 func TestNewUserIdOwnedDeviceID(t *testing.T) {
-	id := NewUserIdOwnedDeviceID("userIdValue", "directoryObjectIdValue")
+	id := NewUserIdOwnedDeviceID("userId", "directoryObjectId")
 
-	if id.UserId != "userIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'UserId'", id.UserId, "userIdValue")
+	if id.UserId != "userId" {
+		t.Fatalf("Expected %q but got %q for Segment 'UserId'", id.UserId, "userId")
 	}
 
-	if id.DirectoryObjectId != "directoryObjectIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DirectoryObjectId'", id.DirectoryObjectId, "directoryObjectIdValue")
+	if id.DirectoryObjectId != "directoryObjectId" {
+		t.Fatalf("Expected %q but got %q for Segment 'DirectoryObjectId'", id.DirectoryObjectId, "directoryObjectId")
 	}
 }
 
 func TestFormatUserIdOwnedDeviceID(t *testing.T) {
-	actual := NewUserIdOwnedDeviceID("userIdValue", "directoryObjectIdValue").ID()
-	expected := "/users/userIdValue/ownedDevices/directoryObjectIdValue"
+	actual := NewUserIdOwnedDeviceID("userId", "directoryObjectId").ID()
+	expected := "/users/userId/ownedDevices/directoryObjectId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -49,25 +49,25 @@ func TestParseUserIdOwnedDeviceID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue",
+			Input: "/users/userId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/ownedDevices",
+			Input: "/users/userId/ownedDevices",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/users/userIdValue/ownedDevices/directoryObjectIdValue",
+			Input: "/users/userId/ownedDevices/directoryObjectId",
 			Expected: &UserIdOwnedDeviceId{
-				UserId:            "userIdValue",
-				DirectoryObjectId: "directoryObjectIdValue",
+				UserId:            "userId",
+				DirectoryObjectId: "directoryObjectId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/users/userIdValue/ownedDevices/directoryObjectIdValue/extra",
+			Input: "/users/userId/ownedDevices/directoryObjectId/extra",
 			Error: true,
 		},
 	}
@@ -120,48 +120,48 @@ func TestParseUserIdOwnedDeviceIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue",
+			Input: "/users/userId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe",
+			Input: "/uSeRs/uSeRiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/ownedDevices",
+			Input: "/users/userId/ownedDevices",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/oWnEdDeViCeS",
+			Input: "/uSeRs/uSeRiD/oWnEdDeViCeS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/users/userIdValue/ownedDevices/directoryObjectIdValue",
+			Input: "/users/userId/ownedDevices/directoryObjectId",
 			Expected: &UserIdOwnedDeviceId{
-				UserId:            "userIdValue",
-				DirectoryObjectId: "directoryObjectIdValue",
+				UserId:            "userId",
+				DirectoryObjectId: "directoryObjectId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/users/userIdValue/ownedDevices/directoryObjectIdValue/extra",
+			Input: "/users/userId/ownedDevices/directoryObjectId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/oWnEdDeViCeS/dIrEcToRyObJeCtIdVaLuE",
+			Input: "/uSeRs/uSeRiD/oWnEdDeViCeS/dIrEcToRyObJeCtId",
 			Expected: &UserIdOwnedDeviceId{
-				UserId:            "uSeRiDvAlUe",
-				DirectoryObjectId: "dIrEcToRyObJeCtIdVaLuE",
+				UserId:            "uSeRiD",
+				DirectoryObjectId: "dIrEcToRyObJeCtId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/oWnEdDeViCeS/dIrEcToRyObJeCtIdVaLuE/extra",
+			Input: "/uSeRs/uSeRiD/oWnEdDeViCeS/dIrEcToRyObJeCtId/extra",
 			Error: true,
 		},
 	}

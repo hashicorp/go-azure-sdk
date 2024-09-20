@@ -17,15 +17,44 @@ type UpdateProfilePositionOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateProfilePositionOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateProfilePositionOperationOptions() UpdateProfilePositionOperationOptions {
+	return UpdateProfilePositionOperationOptions{}
+}
+
+func (o UpdateProfilePositionOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateProfilePositionOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateProfilePositionOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateProfilePosition - Update workPosition. Update the properties of a workPosition object in a user's profile.
-func (c ProfilePositionClient) UpdateProfilePosition(ctx context.Context, id beta.MeProfilePositionId, input beta.WorkPosition) (result UpdateProfilePositionOperationResponse, err error) {
+func (c ProfilePositionClient) UpdateProfilePosition(ctx context.Context, id beta.MeProfilePositionId, input beta.WorkPosition, options UpdateProfilePositionOperationOptions) (result UpdateProfilePositionOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

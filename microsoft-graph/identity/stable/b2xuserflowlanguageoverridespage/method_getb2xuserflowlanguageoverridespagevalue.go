@@ -19,17 +19,46 @@ type GetB2xUserFlowLanguageOverridesPageValueOperationResponse struct {
 	Model        *[]byte
 }
 
+type GetB2xUserFlowLanguageOverridesPageValueOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultGetB2xUserFlowLanguageOverridesPageValueOperationOptions() GetB2xUserFlowLanguageOverridesPageValueOperationOptions {
+	return GetB2xUserFlowLanguageOverridesPageValueOperationOptions{}
+}
+
+func (o GetB2xUserFlowLanguageOverridesPageValueOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o GetB2xUserFlowLanguageOverridesPageValueOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o GetB2xUserFlowLanguageOverridesPageValueOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // GetB2xUserFlowLanguageOverridesPageValue - List overridesPages. Get the userFlowLanguagePage resources from the
 // overridesPages navigation property. These pages are used to customize the values shown to the user during a user
 // journey in a user flow.
-func (c B2xUserFlowLanguageOverridesPageClient) GetB2xUserFlowLanguageOverridesPageValue(ctx context.Context, id stable.IdentityB2xUserFlowIdLanguageIdOverridesPageId) (result GetB2xUserFlowLanguageOverridesPageValueOperationResponse, err error) {
+func (c B2xUserFlowLanguageOverridesPageClient) GetB2xUserFlowLanguageOverridesPageValue(ctx context.Context, id stable.IdentityB2xUserFlowIdLanguageIdOverridesPageId, options GetB2xUserFlowLanguageOverridesPageValueOperationOptions) (result GetB2xUserFlowLanguageOverridesPageValueOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/octet-stream",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/$value", id.ID()),
+		HttpMethod:    http.MethodGet,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/$value", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

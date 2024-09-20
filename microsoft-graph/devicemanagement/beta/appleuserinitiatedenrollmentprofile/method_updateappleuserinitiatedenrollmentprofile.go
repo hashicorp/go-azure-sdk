@@ -17,16 +17,45 @@ type UpdateAppleUserInitiatedEnrollmentProfileOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateAppleUserInitiatedEnrollmentProfileOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateAppleUserInitiatedEnrollmentProfileOperationOptions() UpdateAppleUserInitiatedEnrollmentProfileOperationOptions {
+	return UpdateAppleUserInitiatedEnrollmentProfileOperationOptions{}
+}
+
+func (o UpdateAppleUserInitiatedEnrollmentProfileOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateAppleUserInitiatedEnrollmentProfileOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateAppleUserInitiatedEnrollmentProfileOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateAppleUserInitiatedEnrollmentProfile - Update the navigation property appleUserInitiatedEnrollmentProfiles in
 // deviceManagement
-func (c AppleUserInitiatedEnrollmentProfileClient) UpdateAppleUserInitiatedEnrollmentProfile(ctx context.Context, id beta.DeviceManagementAppleUserInitiatedEnrollmentProfileId, input beta.AppleUserInitiatedEnrollmentProfile) (result UpdateAppleUserInitiatedEnrollmentProfileOperationResponse, err error) {
+func (c AppleUserInitiatedEnrollmentProfileClient) UpdateAppleUserInitiatedEnrollmentProfile(ctx context.Context, id beta.DeviceManagementAppleUserInitiatedEnrollmentProfileId, input beta.AppleUserInitiatedEnrollmentProfile, options UpdateAppleUserInitiatedEnrollmentProfileOperationOptions) (result UpdateAppleUserInitiatedEnrollmentProfileOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

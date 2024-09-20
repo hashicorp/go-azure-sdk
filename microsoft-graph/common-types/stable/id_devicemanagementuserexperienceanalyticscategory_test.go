@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &DeviceManagementUserExperienceAnalyticsCategoryId{}
 
 func TestNewDeviceManagementUserExperienceAnalyticsCategoryID(t *testing.T) {
-	id := NewDeviceManagementUserExperienceAnalyticsCategoryID("userExperienceAnalyticsCategoryIdValue")
+	id := NewDeviceManagementUserExperienceAnalyticsCategoryID("userExperienceAnalyticsCategoryId")
 
-	if id.UserExperienceAnalyticsCategoryId != "userExperienceAnalyticsCategoryIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'UserExperienceAnalyticsCategoryId'", id.UserExperienceAnalyticsCategoryId, "userExperienceAnalyticsCategoryIdValue")
+	if id.UserExperienceAnalyticsCategoryId != "userExperienceAnalyticsCategoryId" {
+		t.Fatalf("Expected %q but got %q for Segment 'UserExperienceAnalyticsCategoryId'", id.UserExperienceAnalyticsCategoryId, "userExperienceAnalyticsCategoryId")
 	}
 }
 
 func TestFormatDeviceManagementUserExperienceAnalyticsCategoryID(t *testing.T) {
-	actual := NewDeviceManagementUserExperienceAnalyticsCategoryID("userExperienceAnalyticsCategoryIdValue").ID()
-	expected := "/deviceManagement/userExperienceAnalyticsCategories/userExperienceAnalyticsCategoryIdValue"
+	actual := NewDeviceManagementUserExperienceAnalyticsCategoryID("userExperienceAnalyticsCategoryId").ID()
+	expected := "/deviceManagement/userExperienceAnalyticsCategories/userExperienceAnalyticsCategoryId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -50,14 +50,14 @@ func TestParseDeviceManagementUserExperienceAnalyticsCategoryID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/userExperienceAnalyticsCategories/userExperienceAnalyticsCategoryIdValue",
+			Input: "/deviceManagement/userExperienceAnalyticsCategories/userExperienceAnalyticsCategoryId",
 			Expected: &DeviceManagementUserExperienceAnalyticsCategoryId{
-				UserExperienceAnalyticsCategoryId: "userExperienceAnalyticsCategoryIdValue",
+				UserExperienceAnalyticsCategoryId: "userExperienceAnalyticsCategoryId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/userExperienceAnalyticsCategories/userExperienceAnalyticsCategoryIdValue/extra",
+			Input: "/deviceManagement/userExperienceAnalyticsCategories/userExperienceAnalyticsCategoryId/extra",
 			Error: true,
 		},
 	}
@@ -116,26 +116,26 @@ func TestParseDeviceManagementUserExperienceAnalyticsCategoryIDInsensitively(t *
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/userExperienceAnalyticsCategories/userExperienceAnalyticsCategoryIdValue",
+			Input: "/deviceManagement/userExperienceAnalyticsCategories/userExperienceAnalyticsCategoryId",
 			Expected: &DeviceManagementUserExperienceAnalyticsCategoryId{
-				UserExperienceAnalyticsCategoryId: "userExperienceAnalyticsCategoryIdValue",
+				UserExperienceAnalyticsCategoryId: "userExperienceAnalyticsCategoryId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/userExperienceAnalyticsCategories/userExperienceAnalyticsCategoryIdValue/extra",
+			Input: "/deviceManagement/userExperienceAnalyticsCategories/userExperienceAnalyticsCategoryId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/uSeReXpErIeNcEaNaLyTiCsCaTeGoRiEs/uSeReXpErIeNcEaNaLyTiCsCaTeGoRyIdVaLuE",
+			Input: "/dEvIcEmAnAgEmEnT/uSeReXpErIeNcEaNaLyTiCsCaTeGoRiEs/uSeReXpErIeNcEaNaLyTiCsCaTeGoRyId",
 			Expected: &DeviceManagementUserExperienceAnalyticsCategoryId{
-				UserExperienceAnalyticsCategoryId: "uSeReXpErIeNcEaNaLyTiCsCaTeGoRyIdVaLuE",
+				UserExperienceAnalyticsCategoryId: "uSeReXpErIeNcEaNaLyTiCsCaTeGoRyId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/uSeReXpErIeNcEaNaLyTiCsCaTeGoRiEs/uSeReXpErIeNcEaNaLyTiCsCaTeGoRyIdVaLuE/extra",
+			Input: "/dEvIcEmAnAgEmEnT/uSeReXpErIeNcEaNaLyTiCsCaTeGoRiEs/uSeReXpErIeNcEaNaLyTiCsCaTeGoRyId/extra",
 			Error: true,
 		},
 	}

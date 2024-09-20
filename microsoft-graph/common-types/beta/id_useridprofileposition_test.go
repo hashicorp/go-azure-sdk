@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &UserIdProfilePositionId{}
 
 func TestNewUserIdProfilePositionID(t *testing.T) {
-	id := NewUserIdProfilePositionID("userIdValue", "workPositionIdValue")
+	id := NewUserIdProfilePositionID("userId", "workPositionId")
 
-	if id.UserId != "userIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'UserId'", id.UserId, "userIdValue")
+	if id.UserId != "userId" {
+		t.Fatalf("Expected %q but got %q for Segment 'UserId'", id.UserId, "userId")
 	}
 
-	if id.WorkPositionId != "workPositionIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'WorkPositionId'", id.WorkPositionId, "workPositionIdValue")
+	if id.WorkPositionId != "workPositionId" {
+		t.Fatalf("Expected %q but got %q for Segment 'WorkPositionId'", id.WorkPositionId, "workPositionId")
 	}
 }
 
 func TestFormatUserIdProfilePositionID(t *testing.T) {
-	actual := NewUserIdProfilePositionID("userIdValue", "workPositionIdValue").ID()
-	expected := "/users/userIdValue/profile/positions/workPositionIdValue"
+	actual := NewUserIdProfilePositionID("userId", "workPositionId").ID()
+	expected := "/users/userId/profile/positions/workPositionId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -49,30 +49,30 @@ func TestParseUserIdProfilePositionID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue",
+			Input: "/users/userId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/profile",
+			Input: "/users/userId/profile",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/profile/positions",
+			Input: "/users/userId/profile/positions",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/users/userIdValue/profile/positions/workPositionIdValue",
+			Input: "/users/userId/profile/positions/workPositionId",
 			Expected: &UserIdProfilePositionId{
-				UserId:         "userIdValue",
-				WorkPositionId: "workPositionIdValue",
+				UserId:         "userId",
+				WorkPositionId: "workPositionId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/users/userIdValue/profile/positions/workPositionIdValue/extra",
+			Input: "/users/userId/profile/positions/workPositionId/extra",
 			Error: true,
 		},
 	}
@@ -125,58 +125,58 @@ func TestParseUserIdProfilePositionIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue",
+			Input: "/users/userId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe",
+			Input: "/uSeRs/uSeRiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/profile",
+			Input: "/users/userId/profile",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/pRoFiLe",
+			Input: "/uSeRs/uSeRiD/pRoFiLe",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/profile/positions",
+			Input: "/users/userId/profile/positions",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/pRoFiLe/pOsItIoNs",
+			Input: "/uSeRs/uSeRiD/pRoFiLe/pOsItIoNs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/users/userIdValue/profile/positions/workPositionIdValue",
+			Input: "/users/userId/profile/positions/workPositionId",
 			Expected: &UserIdProfilePositionId{
-				UserId:         "userIdValue",
-				WorkPositionId: "workPositionIdValue",
+				UserId:         "userId",
+				WorkPositionId: "workPositionId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/users/userIdValue/profile/positions/workPositionIdValue/extra",
+			Input: "/users/userId/profile/positions/workPositionId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/pRoFiLe/pOsItIoNs/wOrKpOsItIoNiDvAlUe",
+			Input: "/uSeRs/uSeRiD/pRoFiLe/pOsItIoNs/wOrKpOsItIoNiD",
 			Expected: &UserIdProfilePositionId{
-				UserId:         "uSeRiDvAlUe",
-				WorkPositionId: "wOrKpOsItIoNiDvAlUe",
+				UserId:         "uSeRiD",
+				WorkPositionId: "wOrKpOsItIoNiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/pRoFiLe/pOsItIoNs/wOrKpOsItIoNiDvAlUe/extra",
+			Input: "/uSeRs/uSeRiD/pRoFiLe/pOsItIoNs/wOrKpOsItIoNiD/extra",
 			Error: true,
 		},
 	}

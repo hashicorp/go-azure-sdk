@@ -19,7 +19,8 @@ type DeleteExtensionPropertyOperationResponse struct {
 }
 
 type DeleteExtensionPropertyOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteExtensionPropertyOperationOptions() DeleteExtensionPropertyOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteExtensionPropertyOperationOptions) ToHeaders() *client.Headers {
 
 func (o DeleteExtensionPropertyOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

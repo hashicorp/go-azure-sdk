@@ -110,14 +110,14 @@ func (id UserIdPendingAccessReviewInstanceIdDecisionIdInstanceStageId) ID() stri
 func (id UserIdPendingAccessReviewInstanceIdDecisionIdInstanceStageId) Segments() []resourceids.Segment {
 	return []resourceids.Segment{
 		resourceids.StaticSegment("users", "users", "users"),
-		resourceids.UserSpecifiedSegment("userId", "userIdValue"),
+		resourceids.UserSpecifiedSegment("userId", "userId"),
 		resourceids.StaticSegment("pendingAccessReviewInstances", "pendingAccessReviewInstances", "pendingAccessReviewInstances"),
-		resourceids.UserSpecifiedSegment("accessReviewInstanceId", "accessReviewInstanceIdValue"),
+		resourceids.UserSpecifiedSegment("accessReviewInstanceId", "accessReviewInstanceId"),
 		resourceids.StaticSegment("decisions", "decisions", "decisions"),
-		resourceids.UserSpecifiedSegment("accessReviewInstanceDecisionItemId", "accessReviewInstanceDecisionItemIdValue"),
+		resourceids.UserSpecifiedSegment("accessReviewInstanceDecisionItemId", "accessReviewInstanceDecisionItemId"),
 		resourceids.StaticSegment("instance", "instance", "instance"),
 		resourceids.StaticSegment("stages", "stages", "stages"),
-		resourceids.UserSpecifiedSegment("accessReviewStageId", "accessReviewStageIdValue"),
+		resourceids.UserSpecifiedSegment("accessReviewStageId", "accessReviewStageId"),
 	}
 }
 

@@ -12,24 +12,24 @@ import (
 var _ resourceids.ResourceId = &GroupIdSiteIdOperationId{}
 
 func TestNewGroupIdSiteIdOperationID(t *testing.T) {
-	id := NewGroupIdSiteIdOperationID("groupIdValue", "siteIdValue", "richLongRunningOperationIdValue")
+	id := NewGroupIdSiteIdOperationID("groupId", "siteId", "richLongRunningOperationId")
 
-	if id.GroupId != "groupIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'GroupId'", id.GroupId, "groupIdValue")
+	if id.GroupId != "groupId" {
+		t.Fatalf("Expected %q but got %q for Segment 'GroupId'", id.GroupId, "groupId")
 	}
 
-	if id.SiteId != "siteIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'SiteId'", id.SiteId, "siteIdValue")
+	if id.SiteId != "siteId" {
+		t.Fatalf("Expected %q but got %q for Segment 'SiteId'", id.SiteId, "siteId")
 	}
 
-	if id.RichLongRunningOperationId != "richLongRunningOperationIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'RichLongRunningOperationId'", id.RichLongRunningOperationId, "richLongRunningOperationIdValue")
+	if id.RichLongRunningOperationId != "richLongRunningOperationId" {
+		t.Fatalf("Expected %q but got %q for Segment 'RichLongRunningOperationId'", id.RichLongRunningOperationId, "richLongRunningOperationId")
 	}
 }
 
 func TestFormatGroupIdSiteIdOperationID(t *testing.T) {
-	actual := NewGroupIdSiteIdOperationID("groupIdValue", "siteIdValue", "richLongRunningOperationIdValue").ID()
-	expected := "/groups/groupIdValue/sites/siteIdValue/operations/richLongRunningOperationIdValue"
+	actual := NewGroupIdSiteIdOperationID("groupId", "siteId", "richLongRunningOperationId").ID()
+	expected := "/groups/groupId/sites/siteId/operations/richLongRunningOperationId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -53,36 +53,36 @@ func TestParseGroupIdSiteIdOperationID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue",
+			Input: "/groups/groupId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/sites",
+			Input: "/groups/groupId/sites",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/sites/siteIdValue",
+			Input: "/groups/groupId/sites/siteId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/sites/siteIdValue/operations",
+			Input: "/groups/groupId/sites/siteId/operations",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/groups/groupIdValue/sites/siteIdValue/operations/richLongRunningOperationIdValue",
+			Input: "/groups/groupId/sites/siteId/operations/richLongRunningOperationId",
 			Expected: &GroupIdSiteIdOperationId{
-				GroupId:                    "groupIdValue",
-				SiteId:                     "siteIdValue",
-				RichLongRunningOperationId: "richLongRunningOperationIdValue",
+				GroupId:                    "groupId",
+				SiteId:                     "siteId",
+				RichLongRunningOperationId: "richLongRunningOperationId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/groups/groupIdValue/sites/siteIdValue/operations/richLongRunningOperationIdValue/extra",
+			Input: "/groups/groupId/sites/siteId/operations/richLongRunningOperationId/extra",
 			Error: true,
 		},
 	}
@@ -139,70 +139,70 @@ func TestParseGroupIdSiteIdOperationIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue",
+			Input: "/groups/groupId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE",
+			Input: "/gRoUpS/gRoUpId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/sites",
+			Input: "/groups/groupId/sites",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/sItEs",
+			Input: "/gRoUpS/gRoUpId/sItEs",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/sites/siteIdValue",
+			Input: "/groups/groupId/sites/siteId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/sItEs/sItEiDvAlUe",
+			Input: "/gRoUpS/gRoUpId/sItEs/sItEiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/sites/siteIdValue/operations",
+			Input: "/groups/groupId/sites/siteId/operations",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/sItEs/sItEiDvAlUe/oPeRaTiOnS",
+			Input: "/gRoUpS/gRoUpId/sItEs/sItEiD/oPeRaTiOnS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/groups/groupIdValue/sites/siteIdValue/operations/richLongRunningOperationIdValue",
+			Input: "/groups/groupId/sites/siteId/operations/richLongRunningOperationId",
 			Expected: &GroupIdSiteIdOperationId{
-				GroupId:                    "groupIdValue",
-				SiteId:                     "siteIdValue",
-				RichLongRunningOperationId: "richLongRunningOperationIdValue",
+				GroupId:                    "groupId",
+				SiteId:                     "siteId",
+				RichLongRunningOperationId: "richLongRunningOperationId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/groups/groupIdValue/sites/siteIdValue/operations/richLongRunningOperationIdValue/extra",
+			Input: "/groups/groupId/sites/siteId/operations/richLongRunningOperationId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/sItEs/sItEiDvAlUe/oPeRaTiOnS/rIcHlOnGrUnNiNgOpErAtIoNiDvAlUe",
+			Input: "/gRoUpS/gRoUpId/sItEs/sItEiD/oPeRaTiOnS/rIcHlOnGrUnNiNgOpErAtIoNiD",
 			Expected: &GroupIdSiteIdOperationId{
-				GroupId:                    "gRoUpIdVaLuE",
-				SiteId:                     "sItEiDvAlUe",
-				RichLongRunningOperationId: "rIcHlOnGrUnNiNgOpErAtIoNiDvAlUe",
+				GroupId:                    "gRoUpId",
+				SiteId:                     "sItEiD",
+				RichLongRunningOperationId: "rIcHlOnGrUnNiNgOpErAtIoNiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/sItEs/sItEiDvAlUe/oPeRaTiOnS/rIcHlOnGrUnNiNgOpErAtIoNiDvAlUe/extra",
+			Input: "/gRoUpS/gRoUpId/sItEs/sItEiD/oPeRaTiOnS/rIcHlOnGrUnNiNgOpErAtIoNiD/extra",
 			Error: true,
 		},
 	}

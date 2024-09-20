@@ -17,15 +17,44 @@ type UpdateInformationProtectionSensitivityPolicySettingOperationResponse struct
 	OData        *odata.OData
 }
 
+type UpdateInformationProtectionSensitivityPolicySettingOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateInformationProtectionSensitivityPolicySettingOperationOptions() UpdateInformationProtectionSensitivityPolicySettingOperationOptions {
+	return UpdateInformationProtectionSensitivityPolicySettingOperationOptions{}
+}
+
+func (o UpdateInformationProtectionSensitivityPolicySettingOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateInformationProtectionSensitivityPolicySettingOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateInformationProtectionSensitivityPolicySettingOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateInformationProtectionSensitivityPolicySetting - Update the navigation property sensitivityPolicySettings in me
-func (c InformationProtectionSensitivityPolicySettingClient) UpdateInformationProtectionSensitivityPolicySetting(ctx context.Context, input beta.SensitivityPolicySettings) (result UpdateInformationProtectionSensitivityPolicySettingOperationResponse, err error) {
+func (c InformationProtectionSensitivityPolicySettingClient) UpdateInformationProtectionSensitivityPolicySetting(ctx context.Context, input beta.SensitivityPolicySettings, options UpdateInformationProtectionSensitivityPolicySettingOperationOptions) (result UpdateInformationProtectionSensitivityPolicySettingOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       "/me/informationProtection/sensitivityPolicySettings",
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          "/me/informationProtection/sensitivityPolicySettings",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

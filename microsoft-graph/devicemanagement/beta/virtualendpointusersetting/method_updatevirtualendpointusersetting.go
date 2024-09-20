@@ -17,15 +17,44 @@ type UpdateVirtualEndpointUserSettingOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateVirtualEndpointUserSettingOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateVirtualEndpointUserSettingOperationOptions() UpdateVirtualEndpointUserSettingOperationOptions {
+	return UpdateVirtualEndpointUserSettingOperationOptions{}
+}
+
+func (o UpdateVirtualEndpointUserSettingOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateVirtualEndpointUserSettingOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateVirtualEndpointUserSettingOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateVirtualEndpointUserSetting - Update cloudPcUserSetting. Update the properties of a cloudPcUserSetting object.
-func (c VirtualEndpointUserSettingClient) UpdateVirtualEndpointUserSetting(ctx context.Context, id beta.DeviceManagementVirtualEndpointUserSettingId, input beta.CloudPCUserSetting) (result UpdateVirtualEndpointUserSettingOperationResponse, err error) {
+func (c VirtualEndpointUserSettingClient) UpdateVirtualEndpointUserSetting(ctx context.Context, id beta.DeviceManagementVirtualEndpointUserSettingId, input beta.CloudPCUserSetting, options UpdateVirtualEndpointUserSettingOperationOptions) (result UpdateVirtualEndpointUserSettingOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

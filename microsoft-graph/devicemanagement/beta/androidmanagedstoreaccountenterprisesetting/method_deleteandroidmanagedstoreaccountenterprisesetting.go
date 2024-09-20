@@ -18,7 +18,8 @@ type DeleteAndroidManagedStoreAccountEnterpriseSettingOperationResponse struct {
 }
 
 type DeleteAndroidManagedStoreAccountEnterpriseSettingOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteAndroidManagedStoreAccountEnterpriseSettingOperationOptions() DeleteAndroidManagedStoreAccountEnterpriseSettingOperationOptions {
@@ -35,7 +36,9 @@ func (o DeleteAndroidManagedStoreAccountEnterpriseSettingOperationOptions) ToHea
 
 func (o DeleteAndroidManagedStoreAccountEnterpriseSettingOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

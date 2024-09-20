@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &RoleManagementEntitlementManagementRoleAssignmentApprovalId{}
 
 func TestNewRoleManagementEntitlementManagementRoleAssignmentApprovalID(t *testing.T) {
-	id := NewRoleManagementEntitlementManagementRoleAssignmentApprovalID("approvalIdValue")
+	id := NewRoleManagementEntitlementManagementRoleAssignmentApprovalID("approvalId")
 
-	if id.ApprovalId != "approvalIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ApprovalId'", id.ApprovalId, "approvalIdValue")
+	if id.ApprovalId != "approvalId" {
+		t.Fatalf("Expected %q but got %q for Segment 'ApprovalId'", id.ApprovalId, "approvalId")
 	}
 }
 
 func TestFormatRoleManagementEntitlementManagementRoleAssignmentApprovalID(t *testing.T) {
-	actual := NewRoleManagementEntitlementManagementRoleAssignmentApprovalID("approvalIdValue").ID()
-	expected := "/roleManagement/entitlementManagement/roleAssignmentApprovals/approvalIdValue"
+	actual := NewRoleManagementEntitlementManagementRoleAssignmentApprovalID("approvalId").ID()
+	expected := "/roleManagement/entitlementManagement/roleAssignmentApprovals/approvalId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -55,14 +55,14 @@ func TestParseRoleManagementEntitlementManagementRoleAssignmentApprovalID(t *tes
 		},
 		{
 			// Valid URI
-			Input: "/roleManagement/entitlementManagement/roleAssignmentApprovals/approvalIdValue",
+			Input: "/roleManagement/entitlementManagement/roleAssignmentApprovals/approvalId",
 			Expected: &RoleManagementEntitlementManagementRoleAssignmentApprovalId{
-				ApprovalId: "approvalIdValue",
+				ApprovalId: "approvalId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/roleManagement/entitlementManagement/roleAssignmentApprovals/approvalIdValue/extra",
+			Input: "/roleManagement/entitlementManagement/roleAssignmentApprovals/approvalId/extra",
 			Error: true,
 		},
 	}
@@ -131,26 +131,26 @@ func TestParseRoleManagementEntitlementManagementRoleAssignmentApprovalIDInsensi
 		},
 		{
 			// Valid URI
-			Input: "/roleManagement/entitlementManagement/roleAssignmentApprovals/approvalIdValue",
+			Input: "/roleManagement/entitlementManagement/roleAssignmentApprovals/approvalId",
 			Expected: &RoleManagementEntitlementManagementRoleAssignmentApprovalId{
-				ApprovalId: "approvalIdValue",
+				ApprovalId: "approvalId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/roleManagement/entitlementManagement/roleAssignmentApprovals/approvalIdValue/extra",
+			Input: "/roleManagement/entitlementManagement/roleAssignmentApprovals/approvalId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/rOlEmAnAgEmEnT/eNtItLeMeNtMaNaGeMeNt/rOlEaSsIgNmEnTaPpRoVaLs/aPpRoVaLiDvAlUe",
+			Input: "/rOlEmAnAgEmEnT/eNtItLeMeNtMaNaGeMeNt/rOlEaSsIgNmEnTaPpRoVaLs/aPpRoVaLiD",
 			Expected: &RoleManagementEntitlementManagementRoleAssignmentApprovalId{
-				ApprovalId: "aPpRoVaLiDvAlUe",
+				ApprovalId: "aPpRoVaLiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/rOlEmAnAgEmEnT/eNtItLeMeNtMaNaGeMeNt/rOlEaSsIgNmEnTaPpRoVaLs/aPpRoVaLiDvAlUe/extra",
+			Input: "/rOlEmAnAgEmEnT/eNtItLeMeNtMaNaGeMeNt/rOlEaSsIgNmEnTaPpRoVaLs/aPpRoVaLiD/extra",
 			Error: true,
 		},
 	}

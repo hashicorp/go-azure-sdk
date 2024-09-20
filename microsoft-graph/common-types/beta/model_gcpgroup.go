@@ -100,10 +100,18 @@ func (s GcpGroup) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &GcpGroup{}
 
 func (s *GcpGroup) UnmarshalJSON(bytes []byte) error {
-	type alias GcpGroup
-	var decoded alias
+
+	var decoded struct {
+		AuthorizationSystem *AuthorizationSystem              `json:"authorizationSystem,omitempty"`
+		DisplayName         nullable.Type[string]             `json:"displayName,omitempty"`
+		ExternalId          *string                           `json:"externalId,omitempty"`
+		Source              AuthorizationSystemIdentitySource `json:"source"`
+		Id                  *string                           `json:"id,omitempty"`
+		ODataId             *string                           `json:"@odata.id,omitempty"`
+		ODataType           *string                           `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into GcpGroup: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.DisplayName = decoded.DisplayName
@@ -132,5 +140,6 @@ func (s *GcpGroup) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Source = impl
 	}
+
 	return nil
 }

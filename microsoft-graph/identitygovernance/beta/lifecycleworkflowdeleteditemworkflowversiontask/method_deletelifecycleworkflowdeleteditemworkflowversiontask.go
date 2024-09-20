@@ -19,7 +19,8 @@ type DeleteLifecycleWorkflowDeletedItemWorkflowVersionTaskOperationResponse stru
 }
 
 type DeleteLifecycleWorkflowDeletedItemWorkflowVersionTaskOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteLifecycleWorkflowDeletedItemWorkflowVersionTaskOperationOptions() DeleteLifecycleWorkflowDeletedItemWorkflowVersionTaskOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteLifecycleWorkflowDeletedItemWorkflowVersionTaskOperationOptions) T
 
 func (o DeleteLifecycleWorkflowDeletedItemWorkflowVersionTaskOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

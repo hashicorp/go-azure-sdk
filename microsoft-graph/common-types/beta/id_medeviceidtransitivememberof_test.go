@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &MeDeviceIdTransitiveMemberOfId{}
 
 func TestNewMeDeviceIdTransitiveMemberOfID(t *testing.T) {
-	id := NewMeDeviceIdTransitiveMemberOfID("deviceIdValue", "directoryObjectIdValue")
+	id := NewMeDeviceIdTransitiveMemberOfID("deviceId", "directoryObjectId")
 
-	if id.DeviceId != "deviceIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DeviceId'", id.DeviceId, "deviceIdValue")
+	if id.DeviceId != "deviceId" {
+		t.Fatalf("Expected %q but got %q for Segment 'DeviceId'", id.DeviceId, "deviceId")
 	}
 
-	if id.DirectoryObjectId != "directoryObjectIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DirectoryObjectId'", id.DirectoryObjectId, "directoryObjectIdValue")
+	if id.DirectoryObjectId != "directoryObjectId" {
+		t.Fatalf("Expected %q but got %q for Segment 'DirectoryObjectId'", id.DirectoryObjectId, "directoryObjectId")
 	}
 }
 
 func TestFormatMeDeviceIdTransitiveMemberOfID(t *testing.T) {
-	actual := NewMeDeviceIdTransitiveMemberOfID("deviceIdValue", "directoryObjectIdValue").ID()
-	expected := "/me/devices/deviceIdValue/transitiveMemberOf/directoryObjectIdValue"
+	actual := NewMeDeviceIdTransitiveMemberOfID("deviceId", "directoryObjectId").ID()
+	expected := "/me/devices/deviceId/transitiveMemberOf/directoryObjectId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -54,25 +54,25 @@ func TestParseMeDeviceIdTransitiveMemberOfID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/me/devices/deviceIdValue",
+			Input: "/me/devices/deviceId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/me/devices/deviceIdValue/transitiveMemberOf",
+			Input: "/me/devices/deviceId/transitiveMemberOf",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/me/devices/deviceIdValue/transitiveMemberOf/directoryObjectIdValue",
+			Input: "/me/devices/deviceId/transitiveMemberOf/directoryObjectId",
 			Expected: &MeDeviceIdTransitiveMemberOfId{
-				DeviceId:          "deviceIdValue",
-				DirectoryObjectId: "directoryObjectIdValue",
+				DeviceId:          "deviceId",
+				DirectoryObjectId: "directoryObjectId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/devices/deviceIdValue/transitiveMemberOf/directoryObjectIdValue/extra",
+			Input: "/me/devices/deviceId/transitiveMemberOf/directoryObjectId/extra",
 			Error: true,
 		},
 	}
@@ -135,48 +135,48 @@ func TestParseMeDeviceIdTransitiveMemberOfIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/me/devices/deviceIdValue",
+			Input: "/me/devices/deviceId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/dEvIcEs/dEvIcEiDvAlUe",
+			Input: "/mE/dEvIcEs/dEvIcEiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/me/devices/deviceIdValue/transitiveMemberOf",
+			Input: "/me/devices/deviceId/transitiveMemberOf",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/dEvIcEs/dEvIcEiDvAlUe/tRaNsItIvEmEmBeRoF",
+			Input: "/mE/dEvIcEs/dEvIcEiD/tRaNsItIvEmEmBeRoF",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/me/devices/deviceIdValue/transitiveMemberOf/directoryObjectIdValue",
+			Input: "/me/devices/deviceId/transitiveMemberOf/directoryObjectId",
 			Expected: &MeDeviceIdTransitiveMemberOfId{
-				DeviceId:          "deviceIdValue",
-				DirectoryObjectId: "directoryObjectIdValue",
+				DeviceId:          "deviceId",
+				DirectoryObjectId: "directoryObjectId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/devices/deviceIdValue/transitiveMemberOf/directoryObjectIdValue/extra",
+			Input: "/me/devices/deviceId/transitiveMemberOf/directoryObjectId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/dEvIcEs/dEvIcEiDvAlUe/tRaNsItIvEmEmBeRoF/dIrEcToRyObJeCtIdVaLuE",
+			Input: "/mE/dEvIcEs/dEvIcEiD/tRaNsItIvEmEmBeRoF/dIrEcToRyObJeCtId",
 			Expected: &MeDeviceIdTransitiveMemberOfId{
-				DeviceId:          "dEvIcEiDvAlUe",
-				DirectoryObjectId: "dIrEcToRyObJeCtIdVaLuE",
+				DeviceId:          "dEvIcEiD",
+				DirectoryObjectId: "dIrEcToRyObJeCtId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/mE/dEvIcEs/dEvIcEiDvAlUe/tRaNsItIvEmEmBeRoF/dIrEcToRyObJeCtIdVaLuE/extra",
+			Input: "/mE/dEvIcEs/dEvIcEiD/tRaNsItIvEmEmBeRoF/dIrEcToRyObJeCtId/extra",
 			Error: true,
 		},
 	}

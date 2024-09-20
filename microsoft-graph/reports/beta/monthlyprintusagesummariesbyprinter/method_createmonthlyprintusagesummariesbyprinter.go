@@ -18,16 +18,45 @@ type CreateMonthlyPrintUsageSummariesByPrinterOperationResponse struct {
 	Model        *beta.PrintUsageByPrinter
 }
 
+type CreateMonthlyPrintUsageSummariesByPrinterOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateMonthlyPrintUsageSummariesByPrinterOperationOptions() CreateMonthlyPrintUsageSummariesByPrinterOperationOptions {
+	return CreateMonthlyPrintUsageSummariesByPrinterOperationOptions{}
+}
+
+func (o CreateMonthlyPrintUsageSummariesByPrinterOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateMonthlyPrintUsageSummariesByPrinterOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateMonthlyPrintUsageSummariesByPrinterOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateMonthlyPrintUsageSummariesByPrinter - Create new navigation property to monthlyPrintUsageSummariesByPrinter for
 // reports
-func (c MonthlyPrintUsageSummariesByPrinterClient) CreateMonthlyPrintUsageSummariesByPrinter(ctx context.Context, input beta.PrintUsageByPrinter) (result CreateMonthlyPrintUsageSummariesByPrinterOperationResponse, err error) {
+func (c MonthlyPrintUsageSummariesByPrinterClient) CreateMonthlyPrintUsageSummariesByPrinter(ctx context.Context, input beta.PrintUsageByPrinter, options CreateMonthlyPrintUsageSummariesByPrinterOperationOptions) (result CreateMonthlyPrintUsageSummariesByPrinterOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/reports/monthlyPrintUsageSummariesByPrinter",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/reports/monthlyPrintUsageSummariesByPrinter",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

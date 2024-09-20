@@ -603,10 +603,169 @@ func (s AndroidDeviceOwnerGeneralDeviceConfiguration) MarshalJSON() ([]byte, err
 var _ json.Unmarshaler = &AndroidDeviceOwnerGeneralDeviceConfiguration{}
 
 func (s *AndroidDeviceOwnerGeneralDeviceConfiguration) UnmarshalJSON(bytes []byte) error {
-	type alias AndroidDeviceOwnerGeneralDeviceConfiguration
-	var decoded alias
+
+	var decoded struct {
+		AccountsBlockModification                                nullable.Type[bool]                                   `json:"accountsBlockModification,omitempty"`
+		AndroidDeviceOwnerDelegatedScopeAppSettings              *[]AndroidDeviceOwnerDelegatedScopeAppSetting         `json:"androidDeviceOwnerDelegatedScopeAppSettings,omitempty"`
+		AppsAllowInstallFromUnknownSources                       nullable.Type[bool]                                   `json:"appsAllowInstallFromUnknownSources,omitempty"`
+		AppsAutoUpdatePolicy                                     *AndroidDeviceOwnerAppAutoUpdatePolicyType            `json:"appsAutoUpdatePolicy,omitempty"`
+		AppsDefaultPermissionPolicy                              *AndroidDeviceOwnerDefaultAppPermissionPolicyType     `json:"appsDefaultPermissionPolicy,omitempty"`
+		AppsRecommendSkippingFirstUseHints                       nullable.Type[bool]                                   `json:"appsRecommendSkippingFirstUseHints,omitempty"`
+		AzureAdSharedDeviceDataClearApps                         *[]AppListItem                                        `json:"azureAdSharedDeviceDataClearApps,omitempty"`
+		BluetoothBlockConfiguration                              nullable.Type[bool]                                   `json:"bluetoothBlockConfiguration,omitempty"`
+		BluetoothBlockContactSharing                             nullable.Type[bool]                                   `json:"bluetoothBlockContactSharing,omitempty"`
+		CameraBlocked                                            nullable.Type[bool]                                   `json:"cameraBlocked,omitempty"`
+		CellularBlockWiFiTethering                               nullable.Type[bool]                                   `json:"cellularBlockWiFiTethering,omitempty"`
+		CertificateCredentialConfigurationDisabled               nullable.Type[bool]                                   `json:"certificateCredentialConfigurationDisabled,omitempty"`
+		CrossProfilePoliciesAllowCopyPaste                       nullable.Type[bool]                                   `json:"crossProfilePoliciesAllowCopyPaste,omitempty"`
+		CrossProfilePoliciesAllowDataSharing                     *AndroidDeviceOwnerCrossProfileDataSharing            `json:"crossProfilePoliciesAllowDataSharing,omitempty"`
+		CrossProfilePoliciesShowWorkContactsInPersonalProfile    nullable.Type[bool]                                   `json:"crossProfilePoliciesShowWorkContactsInPersonalProfile,omitempty"`
+		DataRoamingBlocked                                       nullable.Type[bool]                                   `json:"dataRoamingBlocked,omitempty"`
+		DateTimeConfigurationBlocked                             nullable.Type[bool]                                   `json:"dateTimeConfigurationBlocked,omitempty"`
+		DetailedHelpText                                         *AndroidDeviceOwnerUserFacingMessage                  `json:"detailedHelpText,omitempty"`
+		DeviceLocationMode                                       *AndroidDeviceOwnerLocationMode                       `json:"deviceLocationMode,omitempty"`
+		DeviceOwnerLockScreenMessage                             *AndroidDeviceOwnerUserFacingMessage                  `json:"deviceOwnerLockScreenMessage,omitempty"`
+		EnrollmentProfile                                        *AndroidDeviceOwnerEnrollmentProfileType              `json:"enrollmentProfile,omitempty"`
+		FactoryResetBlocked                                      nullable.Type[bool]                                   `json:"factoryResetBlocked,omitempty"`
+		FactoryResetDeviceAdministratorEmails                    *[]string                                             `json:"factoryResetDeviceAdministratorEmails,omitempty"`
+		GoogleAccountsBlocked                                    nullable.Type[bool]                                   `json:"googleAccountsBlocked,omitempty"`
+		KioskCustomizationDeviceSettingsBlocked                  nullable.Type[bool]                                   `json:"kioskCustomizationDeviceSettingsBlocked,omitempty"`
+		KioskCustomizationPowerButtonActionsBlocked              nullable.Type[bool]                                   `json:"kioskCustomizationPowerButtonActionsBlocked,omitempty"`
+		KioskCustomizationStatusBar                              *AndroidDeviceOwnerKioskCustomizationStatusBar        `json:"kioskCustomizationStatusBar,omitempty"`
+		KioskCustomizationSystemErrorWarnings                    nullable.Type[bool]                                   `json:"kioskCustomizationSystemErrorWarnings,omitempty"`
+		KioskCustomizationSystemNavigation                       *AndroidDeviceOwnerKioskCustomizationSystemNavigation `json:"kioskCustomizationSystemNavigation,omitempty"`
+		KioskModeAppOrderEnabled                                 nullable.Type[bool]                                   `json:"kioskModeAppOrderEnabled,omitempty"`
+		KioskModeAppPositions                                    *[]AndroidDeviceOwnerKioskModeAppPositionItem         `json:"kioskModeAppPositions,omitempty"`
+		KioskModeApps                                            *[]AppListItem                                        `json:"kioskModeApps,omitempty"`
+		KioskModeAppsInFolderOrderedByName                       nullable.Type[bool]                                   `json:"kioskModeAppsInFolderOrderedByName,omitempty"`
+		KioskModeBluetoothConfigurationEnabled                   nullable.Type[bool]                                   `json:"kioskModeBluetoothConfigurationEnabled,omitempty"`
+		KioskModeDebugMenuEasyAccessEnabled                      nullable.Type[bool]                                   `json:"kioskModeDebugMenuEasyAccessEnabled,omitempty"`
+		KioskModeExitCode                                        nullable.Type[string]                                 `json:"kioskModeExitCode,omitempty"`
+		KioskModeFlashlightConfigurationEnabled                  nullable.Type[bool]                                   `json:"kioskModeFlashlightConfigurationEnabled,omitempty"`
+		KioskModeFolderIcon                                      *AndroidDeviceOwnerKioskModeFolderIcon                `json:"kioskModeFolderIcon,omitempty"`
+		KioskModeGridHeight                                      nullable.Type[int64]                                  `json:"kioskModeGridHeight,omitempty"`
+		KioskModeGridWidth                                       nullable.Type[int64]                                  `json:"kioskModeGridWidth,omitempty"`
+		KioskModeIconSize                                        *AndroidDeviceOwnerKioskModeIconSize                  `json:"kioskModeIconSize,omitempty"`
+		KioskModeLockHomeScreen                                  nullable.Type[bool]                                   `json:"kioskModeLockHomeScreen,omitempty"`
+		KioskModeManagedFolders                                  *[]AndroidDeviceOwnerKioskModeManagedFolder           `json:"kioskModeManagedFolders,omitempty"`
+		KioskModeManagedHomeScreenAutoSignout                    nullable.Type[bool]                                   `json:"kioskModeManagedHomeScreenAutoSignout,omitempty"`
+		KioskModeManagedHomeScreenInactiveSignOutDelayInSeconds  nullable.Type[int64]                                  `json:"kioskModeManagedHomeScreenInactiveSignOutDelayInSeconds,omitempty"`
+		KioskModeManagedHomeScreenInactiveSignOutNoticeInSeconds nullable.Type[int64]                                  `json:"kioskModeManagedHomeScreenInactiveSignOutNoticeInSeconds,omitempty"`
+		KioskModeManagedHomeScreenPinComplexity                  *KioskModeManagedHomeScreenPinComplexity              `json:"kioskModeManagedHomeScreenPinComplexity,omitempty"`
+		KioskModeManagedHomeScreenPinRequired                    nullable.Type[bool]                                   `json:"kioskModeManagedHomeScreenPinRequired,omitempty"`
+		KioskModeManagedHomeScreenPinRequiredToResume            nullable.Type[bool]                                   `json:"kioskModeManagedHomeScreenPinRequiredToResume,omitempty"`
+		KioskModeManagedHomeScreenSignInBackground               nullable.Type[string]                                 `json:"kioskModeManagedHomeScreenSignInBackground,omitempty"`
+		KioskModeManagedHomeScreenSignInBrandingLogo             nullable.Type[string]                                 `json:"kioskModeManagedHomeScreenSignInBrandingLogo,omitempty"`
+		KioskModeManagedHomeScreenSignInEnabled                  nullable.Type[bool]                                   `json:"kioskModeManagedHomeScreenSignInEnabled,omitempty"`
+		KioskModeManagedSettingsEntryDisabled                    nullable.Type[bool]                                   `json:"kioskModeManagedSettingsEntryDisabled,omitempty"`
+		KioskModeMediaVolumeConfigurationEnabled                 nullable.Type[bool]                                   `json:"kioskModeMediaVolumeConfigurationEnabled,omitempty"`
+		KioskModeScreenOrientation                               *AndroidDeviceOwnerKioskModeScreenOrientation         `json:"kioskModeScreenOrientation,omitempty"`
+		KioskModeScreenSaverConfigurationEnabled                 nullable.Type[bool]                                   `json:"kioskModeScreenSaverConfigurationEnabled,omitempty"`
+		KioskModeScreenSaverDetectMediaDisabled                  nullable.Type[bool]                                   `json:"kioskModeScreenSaverDetectMediaDisabled,omitempty"`
+		KioskModeScreenSaverDisplayTimeInSeconds                 nullable.Type[int64]                                  `json:"kioskModeScreenSaverDisplayTimeInSeconds,omitempty"`
+		KioskModeScreenSaverImageUrl                             nullable.Type[string]                                 `json:"kioskModeScreenSaverImageUrl,omitempty"`
+		KioskModeScreenSaverStartDelayInSeconds                  nullable.Type[int64]                                  `json:"kioskModeScreenSaverStartDelayInSeconds,omitempty"`
+		KioskModeShowAppNotificationBadge                        nullable.Type[bool]                                   `json:"kioskModeShowAppNotificationBadge,omitempty"`
+		KioskModeShowDeviceInfo                                  nullable.Type[bool]                                   `json:"kioskModeShowDeviceInfo,omitempty"`
+		KioskModeUseManagedHomeScreenApp                         *KioskModeType                                        `json:"kioskModeUseManagedHomeScreenApp,omitempty"`
+		KioskModeVirtualHomeButtonEnabled                        nullable.Type[bool]                                   `json:"kioskModeVirtualHomeButtonEnabled,omitempty"`
+		KioskModeVirtualHomeButtonType                           *AndroidDeviceOwnerVirtualHomeButtonType              `json:"kioskModeVirtualHomeButtonType,omitempty"`
+		KioskModeWallpaperUrl                                    nullable.Type[string]                                 `json:"kioskModeWallpaperUrl,omitempty"`
+		KioskModeWiFiConfigurationEnabled                        nullable.Type[bool]                                   `json:"kioskModeWiFiConfigurationEnabled,omitempty"`
+		KioskModeWifiAllowedSsids                                *[]string                                             `json:"kioskModeWifiAllowedSsids,omitempty"`
+		LocateDeviceLostModeEnabled                              nullable.Type[bool]                                   `json:"locateDeviceLostModeEnabled,omitempty"`
+		LocateDeviceUserlessDisabled                             nullable.Type[bool]                                   `json:"locateDeviceUserlessDisabled,omitempty"`
+		MicrophoneForceMute                                      nullable.Type[bool]                                   `json:"microphoneForceMute,omitempty"`
+		MicrosoftLauncherConfigurationEnabled                    nullable.Type[bool]                                   `json:"microsoftLauncherConfigurationEnabled,omitempty"`
+		MicrosoftLauncherCustomWallpaperAllowUserModification    nullable.Type[bool]                                   `json:"microsoftLauncherCustomWallpaperAllowUserModification,omitempty"`
+		MicrosoftLauncherCustomWallpaperEnabled                  nullable.Type[bool]                                   `json:"microsoftLauncherCustomWallpaperEnabled,omitempty"`
+		MicrosoftLauncherCustomWallpaperImageUrl                 nullable.Type[string]                                 `json:"microsoftLauncherCustomWallpaperImageUrl,omitempty"`
+		MicrosoftLauncherDockPresenceAllowUserModification       nullable.Type[bool]                                   `json:"microsoftLauncherDockPresenceAllowUserModification,omitempty"`
+		MicrosoftLauncherDockPresenceConfiguration               *MicrosoftLauncherDockPresence                        `json:"microsoftLauncherDockPresenceConfiguration,omitempty"`
+		MicrosoftLauncherFeedAllowUserModification               nullable.Type[bool]                                   `json:"microsoftLauncherFeedAllowUserModification,omitempty"`
+		MicrosoftLauncherFeedEnabled                             nullable.Type[bool]                                   `json:"microsoftLauncherFeedEnabled,omitempty"`
+		MicrosoftLauncherSearchBarPlacementConfiguration         *MicrosoftLauncherSearchBarPlacement                  `json:"microsoftLauncherSearchBarPlacementConfiguration,omitempty"`
+		NetworkEscapeHatchAllowed                                nullable.Type[bool]                                   `json:"networkEscapeHatchAllowed,omitempty"`
+		NfcBlockOutgoingBeam                                     nullable.Type[bool]                                   `json:"nfcBlockOutgoingBeam,omitempty"`
+		PasswordBlockKeyguard                                    nullable.Type[bool]                                   `json:"passwordBlockKeyguard,omitempty"`
+		PasswordBlockKeyguardFeatures                            *[]AndroidKeyguardFeature                             `json:"passwordBlockKeyguardFeatures,omitempty"`
+		PasswordExpirationDays                                   nullable.Type[int64]                                  `json:"passwordExpirationDays,omitempty"`
+		PasswordMinimumLength                                    nullable.Type[int64]                                  `json:"passwordMinimumLength,omitempty"`
+		PasswordMinimumLetterCharacters                          nullable.Type[int64]                                  `json:"passwordMinimumLetterCharacters,omitempty"`
+		PasswordMinimumLowerCaseCharacters                       nullable.Type[int64]                                  `json:"passwordMinimumLowerCaseCharacters,omitempty"`
+		PasswordMinimumNonLetterCharacters                       nullable.Type[int64]                                  `json:"passwordMinimumNonLetterCharacters,omitempty"`
+		PasswordMinimumNumericCharacters                         nullable.Type[int64]                                  `json:"passwordMinimumNumericCharacters,omitempty"`
+		PasswordMinimumSymbolCharacters                          nullable.Type[int64]                                  `json:"passwordMinimumSymbolCharacters,omitempty"`
+		PasswordMinimumUpperCaseCharacters                       nullable.Type[int64]                                  `json:"passwordMinimumUpperCaseCharacters,omitempty"`
+		PasswordMinutesOfInactivityBeforeScreenTimeout           nullable.Type[int64]                                  `json:"passwordMinutesOfInactivityBeforeScreenTimeout,omitempty"`
+		PasswordPreviousPasswordCountToBlock                     nullable.Type[int64]                                  `json:"passwordPreviousPasswordCountToBlock,omitempty"`
+		PasswordRequireUnlock                                    *AndroidDeviceOwnerRequiredPasswordUnlock             `json:"passwordRequireUnlock,omitempty"`
+		PasswordRequiredType                                     *AndroidDeviceOwnerRequiredPasswordType               `json:"passwordRequiredType,omitempty"`
+		PasswordSignInFailureCountBeforeFactoryReset             nullable.Type[int64]                                  `json:"passwordSignInFailureCountBeforeFactoryReset,omitempty"`
+		PersonalProfileAppsAllowInstallFromUnknownSources        nullable.Type[bool]                                   `json:"personalProfileAppsAllowInstallFromUnknownSources,omitempty"`
+		PersonalProfileCameraBlocked                             nullable.Type[bool]                                   `json:"personalProfileCameraBlocked,omitempty"`
+		PersonalProfilePersonalApplications                      *[]AppListItem                                        `json:"personalProfilePersonalApplications,omitempty"`
+		PersonalProfilePlayStoreMode                             *PersonalProfilePersonalPlayStoreMode                 `json:"personalProfilePlayStoreMode,omitempty"`
+		PersonalProfileScreenCaptureBlocked                      nullable.Type[bool]                                   `json:"personalProfileScreenCaptureBlocked,omitempty"`
+		PlayStoreMode                                            *AndroidDeviceOwnerPlayStoreMode                      `json:"playStoreMode,omitempty"`
+		ScreenCaptureBlocked                                     nullable.Type[bool]                                   `json:"screenCaptureBlocked,omitempty"`
+		SecurityCommonCriteriaModeEnabled                        nullable.Type[bool]                                   `json:"securityCommonCriteriaModeEnabled,omitempty"`
+		SecurityDeveloperSettingsEnabled                         nullable.Type[bool]                                   `json:"securityDeveloperSettingsEnabled,omitempty"`
+		SecurityRequireVerifyApps                                nullable.Type[bool]                                   `json:"securityRequireVerifyApps,omitempty"`
+		ShareDeviceLocationDisabled                              nullable.Type[bool]                                   `json:"shareDeviceLocationDisabled,omitempty"`
+		ShortHelpText                                            *AndroidDeviceOwnerUserFacingMessage                  `json:"shortHelpText,omitempty"`
+		StatusBarBlocked                                         nullable.Type[bool]                                   `json:"statusBarBlocked,omitempty"`
+		StayOnModes                                              *[]AndroidDeviceOwnerBatteryPluggedMode               `json:"stayOnModes,omitempty"`
+		StorageAllowUsb                                          nullable.Type[bool]                                   `json:"storageAllowUsb,omitempty"`
+		StorageBlockExternalMedia                                nullable.Type[bool]                                   `json:"storageBlockExternalMedia,omitempty"`
+		StorageBlockUsbFileTransfer                              nullable.Type[bool]                                   `json:"storageBlockUsbFileTransfer,omitempty"`
+		SystemUpdateFreezePeriods                                *[]AndroidDeviceOwnerSystemUpdateFreezePeriod         `json:"systemUpdateFreezePeriods,omitempty"`
+		SystemUpdateInstallType                                  *AndroidDeviceOwnerSystemUpdateInstallType            `json:"systemUpdateInstallType,omitempty"`
+		SystemUpdateWindowEndMinutesAfterMidnight                nullable.Type[int64]                                  `json:"systemUpdateWindowEndMinutesAfterMidnight,omitempty"`
+		SystemUpdateWindowStartMinutesAfterMidnight              nullable.Type[int64]                                  `json:"systemUpdateWindowStartMinutesAfterMidnight,omitempty"`
+		SystemWindowsBlocked                                     nullable.Type[bool]                                   `json:"systemWindowsBlocked,omitempty"`
+		UsersBlockAdd                                            nullable.Type[bool]                                   `json:"usersBlockAdd,omitempty"`
+		UsersBlockRemove                                         nullable.Type[bool]                                   `json:"usersBlockRemove,omitempty"`
+		VolumeBlockAdjustment                                    nullable.Type[bool]                                   `json:"volumeBlockAdjustment,omitempty"`
+		VpnAlwaysOnLockdownMode                                  nullable.Type[bool]                                   `json:"vpnAlwaysOnLockdownMode,omitempty"`
+		VpnAlwaysOnPackageIdentifier                             nullable.Type[string]                                 `json:"vpnAlwaysOnPackageIdentifier,omitempty"`
+		WifiBlockEditConfigurations                              nullable.Type[bool]                                   `json:"wifiBlockEditConfigurations,omitempty"`
+		WifiBlockEditPolicyDefinedConfigurations                 nullable.Type[bool]                                   `json:"wifiBlockEditPolicyDefinedConfigurations,omitempty"`
+		WorkProfilePasswordExpirationDays                        nullable.Type[int64]                                  `json:"workProfilePasswordExpirationDays,omitempty"`
+		WorkProfilePasswordMinimumLength                         nullable.Type[int64]                                  `json:"workProfilePasswordMinimumLength,omitempty"`
+		WorkProfilePasswordMinimumLetterCharacters               nullable.Type[int64]                                  `json:"workProfilePasswordMinimumLetterCharacters,omitempty"`
+		WorkProfilePasswordMinimumLowerCaseCharacters            nullable.Type[int64]                                  `json:"workProfilePasswordMinimumLowerCaseCharacters,omitempty"`
+		WorkProfilePasswordMinimumNonLetterCharacters            nullable.Type[int64]                                  `json:"workProfilePasswordMinimumNonLetterCharacters,omitempty"`
+		WorkProfilePasswordMinimumNumericCharacters              nullable.Type[int64]                                  `json:"workProfilePasswordMinimumNumericCharacters,omitempty"`
+		WorkProfilePasswordMinimumSymbolCharacters               nullable.Type[int64]                                  `json:"workProfilePasswordMinimumSymbolCharacters,omitempty"`
+		WorkProfilePasswordMinimumUpperCaseCharacters            nullable.Type[int64]                                  `json:"workProfilePasswordMinimumUpperCaseCharacters,omitempty"`
+		WorkProfilePasswordPreviousPasswordCountToBlock          nullable.Type[int64]                                  `json:"workProfilePasswordPreviousPasswordCountToBlock,omitempty"`
+		WorkProfilePasswordRequireUnlock                         *AndroidDeviceOwnerRequiredPasswordUnlock             `json:"workProfilePasswordRequireUnlock,omitempty"`
+		WorkProfilePasswordRequiredType                          *AndroidDeviceOwnerRequiredPasswordType               `json:"workProfilePasswordRequiredType,omitempty"`
+		WorkProfilePasswordSignInFailureCountBeforeFactoryReset  nullable.Type[int64]                                  `json:"workProfilePasswordSignInFailureCountBeforeFactoryReset,omitempty"`
+		Assignments                                              *[]DeviceConfigurationAssignment                      `json:"assignments,omitempty"`
+		CreatedDateTime                                          *string                                               `json:"createdDateTime,omitempty"`
+		Description                                              nullable.Type[string]                                 `json:"description,omitempty"`
+		DeviceManagementApplicabilityRuleDeviceMode              *DeviceManagementApplicabilityRuleDeviceMode          `json:"deviceManagementApplicabilityRuleDeviceMode,omitempty"`
+		DeviceManagementApplicabilityRuleOsEdition               *DeviceManagementApplicabilityRuleOsEdition           `json:"deviceManagementApplicabilityRuleOsEdition,omitempty"`
+		DeviceManagementApplicabilityRuleOsVersion               *DeviceManagementApplicabilityRuleOsVersion           `json:"deviceManagementApplicabilityRuleOsVersion,omitempty"`
+		DeviceSettingStateSummaries                              *[]SettingStateDeviceSummary                          `json:"deviceSettingStateSummaries,omitempty"`
+		DeviceStatusOverview                                     *DeviceConfigurationDeviceOverview                    `json:"deviceStatusOverview,omitempty"`
+		DeviceStatuses                                           *[]DeviceConfigurationDeviceStatus                    `json:"deviceStatuses,omitempty"`
+		DisplayName                                              *string                                               `json:"displayName,omitempty"`
+		GroupAssignments                                         *[]DeviceConfigurationGroupAssignment                 `json:"groupAssignments,omitempty"`
+		LastModifiedDateTime                                     *string                                               `json:"lastModifiedDateTime,omitempty"`
+		RoleScopeTagIds                                          *[]string                                             `json:"roleScopeTagIds,omitempty"`
+		SupportsScopeTags                                        *bool                                                 `json:"supportsScopeTags,omitempty"`
+		UserStatusOverview                                       *DeviceConfigurationUserOverview                      `json:"userStatusOverview,omitempty"`
+		UserStatuses                                             *[]DeviceConfigurationUserStatus                      `json:"userStatuses,omitempty"`
+		Version                                                  *int64                                                `json:"version,omitempty"`
+		Id                                                       *string                                               `json:"id,omitempty"`
+		ODataId                                                  *string                                               `json:"@odata.id,omitempty"`
+		ODataType                                                *string                                               `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into AndroidDeviceOwnerGeneralDeviceConfiguration: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.AccountsBlockModification = decoded.AccountsBlockModification
@@ -615,35 +774,23 @@ func (s *AndroidDeviceOwnerGeneralDeviceConfiguration) UnmarshalJSON(bytes []byt
 	s.AppsAutoUpdatePolicy = decoded.AppsAutoUpdatePolicy
 	s.AppsDefaultPermissionPolicy = decoded.AppsDefaultPermissionPolicy
 	s.AppsRecommendSkippingFirstUseHints = decoded.AppsRecommendSkippingFirstUseHints
-	s.Assignments = decoded.Assignments
 	s.BluetoothBlockConfiguration = decoded.BluetoothBlockConfiguration
 	s.BluetoothBlockContactSharing = decoded.BluetoothBlockContactSharing
 	s.CameraBlocked = decoded.CameraBlocked
 	s.CellularBlockWiFiTethering = decoded.CellularBlockWiFiTethering
 	s.CertificateCredentialConfigurationDisabled = decoded.CertificateCredentialConfigurationDisabled
-	s.CreatedDateTime = decoded.CreatedDateTime
 	s.CrossProfilePoliciesAllowCopyPaste = decoded.CrossProfilePoliciesAllowCopyPaste
 	s.CrossProfilePoliciesAllowDataSharing = decoded.CrossProfilePoliciesAllowDataSharing
 	s.CrossProfilePoliciesShowWorkContactsInPersonalProfile = decoded.CrossProfilePoliciesShowWorkContactsInPersonalProfile
 	s.DataRoamingBlocked = decoded.DataRoamingBlocked
 	s.DateTimeConfigurationBlocked = decoded.DateTimeConfigurationBlocked
-	s.Description = decoded.Description
 	s.DetailedHelpText = decoded.DetailedHelpText
 	s.DeviceLocationMode = decoded.DeviceLocationMode
-	s.DeviceManagementApplicabilityRuleDeviceMode = decoded.DeviceManagementApplicabilityRuleDeviceMode
-	s.DeviceManagementApplicabilityRuleOsEdition = decoded.DeviceManagementApplicabilityRuleOsEdition
-	s.DeviceManagementApplicabilityRuleOsVersion = decoded.DeviceManagementApplicabilityRuleOsVersion
 	s.DeviceOwnerLockScreenMessage = decoded.DeviceOwnerLockScreenMessage
-	s.DeviceSettingStateSummaries = decoded.DeviceSettingStateSummaries
-	s.DeviceStatusOverview = decoded.DeviceStatusOverview
-	s.DeviceStatuses = decoded.DeviceStatuses
-	s.DisplayName = decoded.DisplayName
 	s.EnrollmentProfile = decoded.EnrollmentProfile
 	s.FactoryResetBlocked = decoded.FactoryResetBlocked
 	s.FactoryResetDeviceAdministratorEmails = decoded.FactoryResetDeviceAdministratorEmails
 	s.GoogleAccountsBlocked = decoded.GoogleAccountsBlocked
-	s.GroupAssignments = decoded.GroupAssignments
-	s.Id = decoded.Id
 	s.KioskCustomizationDeviceSettingsBlocked = decoded.KioskCustomizationDeviceSettingsBlocked
 	s.KioskCustomizationPowerButtonActionsBlocked = decoded.KioskCustomizationPowerButtonActionsBlocked
 	s.KioskCustomizationStatusBar = decoded.KioskCustomizationStatusBar
@@ -687,7 +834,6 @@ func (s *AndroidDeviceOwnerGeneralDeviceConfiguration) UnmarshalJSON(bytes []byt
 	s.KioskModeWallpaperUrl = decoded.KioskModeWallpaperUrl
 	s.KioskModeWiFiConfigurationEnabled = decoded.KioskModeWiFiConfigurationEnabled
 	s.KioskModeWifiAllowedSsids = decoded.KioskModeWifiAllowedSsids
-	s.LastModifiedDateTime = decoded.LastModifiedDateTime
 	s.LocateDeviceLostModeEnabled = decoded.LocateDeviceLostModeEnabled
 	s.LocateDeviceUserlessDisabled = decoded.LocateDeviceUserlessDisabled
 	s.MicrophoneForceMute = decoded.MicrophoneForceMute
@@ -702,8 +848,6 @@ func (s *AndroidDeviceOwnerGeneralDeviceConfiguration) UnmarshalJSON(bytes []byt
 	s.MicrosoftLauncherSearchBarPlacementConfiguration = decoded.MicrosoftLauncherSearchBarPlacementConfiguration
 	s.NetworkEscapeHatchAllowed = decoded.NetworkEscapeHatchAllowed
 	s.NfcBlockOutgoingBeam = decoded.NfcBlockOutgoingBeam
-	s.ODataId = decoded.ODataId
-	s.ODataType = decoded.ODataType
 	s.PasswordBlockKeyguard = decoded.PasswordBlockKeyguard
 	s.PasswordBlockKeyguardFeatures = decoded.PasswordBlockKeyguardFeatures
 	s.PasswordExpirationDays = decoded.PasswordExpirationDays
@@ -724,7 +868,6 @@ func (s *AndroidDeviceOwnerGeneralDeviceConfiguration) UnmarshalJSON(bytes []byt
 	s.PersonalProfilePlayStoreMode = decoded.PersonalProfilePlayStoreMode
 	s.PersonalProfileScreenCaptureBlocked = decoded.PersonalProfileScreenCaptureBlocked
 	s.PlayStoreMode = decoded.PlayStoreMode
-	s.RoleScopeTagIds = decoded.RoleScopeTagIds
 	s.ScreenCaptureBlocked = decoded.ScreenCaptureBlocked
 	s.SecurityCommonCriteriaModeEnabled = decoded.SecurityCommonCriteriaModeEnabled
 	s.SecurityDeveloperSettingsEnabled = decoded.SecurityDeveloperSettingsEnabled
@@ -736,17 +879,13 @@ func (s *AndroidDeviceOwnerGeneralDeviceConfiguration) UnmarshalJSON(bytes []byt
 	s.StorageAllowUsb = decoded.StorageAllowUsb
 	s.StorageBlockExternalMedia = decoded.StorageBlockExternalMedia
 	s.StorageBlockUsbFileTransfer = decoded.StorageBlockUsbFileTransfer
-	s.SupportsScopeTags = decoded.SupportsScopeTags
 	s.SystemUpdateFreezePeriods = decoded.SystemUpdateFreezePeriods
 	s.SystemUpdateInstallType = decoded.SystemUpdateInstallType
 	s.SystemUpdateWindowEndMinutesAfterMidnight = decoded.SystemUpdateWindowEndMinutesAfterMidnight
 	s.SystemUpdateWindowStartMinutesAfterMidnight = decoded.SystemUpdateWindowStartMinutesAfterMidnight
 	s.SystemWindowsBlocked = decoded.SystemWindowsBlocked
-	s.UserStatusOverview = decoded.UserStatusOverview
-	s.UserStatuses = decoded.UserStatuses
 	s.UsersBlockAdd = decoded.UsersBlockAdd
 	s.UsersBlockRemove = decoded.UsersBlockRemove
-	s.Version = decoded.Version
 	s.VolumeBlockAdjustment = decoded.VolumeBlockAdjustment
 	s.VpnAlwaysOnLockdownMode = decoded.VpnAlwaysOnLockdownMode
 	s.VpnAlwaysOnPackageIdentifier = decoded.VpnAlwaysOnPackageIdentifier
@@ -764,6 +903,26 @@ func (s *AndroidDeviceOwnerGeneralDeviceConfiguration) UnmarshalJSON(bytes []byt
 	s.WorkProfilePasswordRequireUnlock = decoded.WorkProfilePasswordRequireUnlock
 	s.WorkProfilePasswordRequiredType = decoded.WorkProfilePasswordRequiredType
 	s.WorkProfilePasswordSignInFailureCountBeforeFactoryReset = decoded.WorkProfilePasswordSignInFailureCountBeforeFactoryReset
+	s.Assignments = decoded.Assignments
+	s.CreatedDateTime = decoded.CreatedDateTime
+	s.Description = decoded.Description
+	s.DeviceManagementApplicabilityRuleDeviceMode = decoded.DeviceManagementApplicabilityRuleDeviceMode
+	s.DeviceManagementApplicabilityRuleOsEdition = decoded.DeviceManagementApplicabilityRuleOsEdition
+	s.DeviceManagementApplicabilityRuleOsVersion = decoded.DeviceManagementApplicabilityRuleOsVersion
+	s.DeviceSettingStateSummaries = decoded.DeviceSettingStateSummaries
+	s.DeviceStatusOverview = decoded.DeviceStatusOverview
+	s.DeviceStatuses = decoded.DeviceStatuses
+	s.DisplayName = decoded.DisplayName
+	s.GroupAssignments = decoded.GroupAssignments
+	s.Id = decoded.Id
+	s.LastModifiedDateTime = decoded.LastModifiedDateTime
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
+	s.RoleScopeTagIds = decoded.RoleScopeTagIds
+	s.SupportsScopeTags = decoded.SupportsScopeTags
+	s.UserStatusOverview = decoded.UserStatusOverview
+	s.UserStatuses = decoded.UserStatuses
+	s.Version = decoded.Version
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -828,5 +987,6 @@ func (s *AndroidDeviceOwnerGeneralDeviceConfiguration) UnmarshalJSON(bytes []byt
 		}
 		s.PersonalProfilePersonalApplications = &output
 	}
+
 	return nil
 }

@@ -18,15 +18,44 @@ type RemoteLockComanagedDeviceOperationResponse struct {
 	OData        *odata.OData
 }
 
+type RemoteLockComanagedDeviceOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultRemoteLockComanagedDeviceOperationOptions() RemoteLockComanagedDeviceOperationOptions {
+	return RemoteLockComanagedDeviceOperationOptions{}
+}
+
+func (o RemoteLockComanagedDeviceOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o RemoteLockComanagedDeviceOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o RemoteLockComanagedDeviceOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // RemoteLockComanagedDevice - Invoke action remoteLock. Remote lock
-func (c ComanagedDeviceClient) RemoteLockComanagedDevice(ctx context.Context, id beta.DeviceManagementComanagedDeviceId) (result RemoteLockComanagedDeviceOperationResponse, err error) {
+func (c ComanagedDeviceClient) RemoteLockComanagedDevice(ctx context.Context, id beta.DeviceManagementComanagedDeviceId, options RemoteLockComanagedDeviceOperationOptions) (result RemoteLockComanagedDeviceOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/remoteLock", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/remoteLock", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

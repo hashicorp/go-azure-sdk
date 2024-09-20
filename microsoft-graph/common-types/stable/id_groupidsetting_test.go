@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &GroupIdSettingId{}
 
 func TestNewGroupIdSettingID(t *testing.T) {
-	id := NewGroupIdSettingID("groupIdValue", "groupSettingIdValue")
+	id := NewGroupIdSettingID("groupId", "groupSettingId")
 
-	if id.GroupId != "groupIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'GroupId'", id.GroupId, "groupIdValue")
+	if id.GroupId != "groupId" {
+		t.Fatalf("Expected %q but got %q for Segment 'GroupId'", id.GroupId, "groupId")
 	}
 
-	if id.GroupSettingId != "groupSettingIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'GroupSettingId'", id.GroupSettingId, "groupSettingIdValue")
+	if id.GroupSettingId != "groupSettingId" {
+		t.Fatalf("Expected %q but got %q for Segment 'GroupSettingId'", id.GroupSettingId, "groupSettingId")
 	}
 }
 
 func TestFormatGroupIdSettingID(t *testing.T) {
-	actual := NewGroupIdSettingID("groupIdValue", "groupSettingIdValue").ID()
-	expected := "/groups/groupIdValue/settings/groupSettingIdValue"
+	actual := NewGroupIdSettingID("groupId", "groupSettingId").ID()
+	expected := "/groups/groupId/settings/groupSettingId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -49,25 +49,25 @@ func TestParseGroupIdSettingID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue",
+			Input: "/groups/groupId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/settings",
+			Input: "/groups/groupId/settings",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/groups/groupIdValue/settings/groupSettingIdValue",
+			Input: "/groups/groupId/settings/groupSettingId",
 			Expected: &GroupIdSettingId{
-				GroupId:        "groupIdValue",
-				GroupSettingId: "groupSettingIdValue",
+				GroupId:        "groupId",
+				GroupSettingId: "groupSettingId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/groups/groupIdValue/settings/groupSettingIdValue/extra",
+			Input: "/groups/groupId/settings/groupSettingId/extra",
 			Error: true,
 		},
 	}
@@ -120,48 +120,48 @@ func TestParseGroupIdSettingIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue",
+			Input: "/groups/groupId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE",
+			Input: "/gRoUpS/gRoUpId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/settings",
+			Input: "/groups/groupId/settings",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/sEtTiNgS",
+			Input: "/gRoUpS/gRoUpId/sEtTiNgS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/groups/groupIdValue/settings/groupSettingIdValue",
+			Input: "/groups/groupId/settings/groupSettingId",
 			Expected: &GroupIdSettingId{
-				GroupId:        "groupIdValue",
-				GroupSettingId: "groupSettingIdValue",
+				GroupId:        "groupId",
+				GroupSettingId: "groupSettingId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/groups/groupIdValue/settings/groupSettingIdValue/extra",
+			Input: "/groups/groupId/settings/groupSettingId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/sEtTiNgS/gRoUpSeTtInGiDvAlUe",
+			Input: "/gRoUpS/gRoUpId/sEtTiNgS/gRoUpSeTtInGiD",
 			Expected: &GroupIdSettingId{
-				GroupId:        "gRoUpIdVaLuE",
-				GroupSettingId: "gRoUpSeTtInGiDvAlUe",
+				GroupId:        "gRoUpId",
+				GroupSettingId: "gRoUpSeTtInGiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/sEtTiNgS/gRoUpSeTtInGiDvAlUe/extra",
+			Input: "/gRoUpS/gRoUpId/sEtTiNgS/gRoUpSeTtInGiD/extra",
 			Error: true,
 		},
 	}

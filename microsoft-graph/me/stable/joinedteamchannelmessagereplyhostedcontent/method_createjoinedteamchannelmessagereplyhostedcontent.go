@@ -19,15 +19,44 @@ type CreateJoinedTeamChannelMessageReplyHostedContentOperationResponse struct {
 	Model        *stable.ChatMessageHostedContent
 }
 
+type CreateJoinedTeamChannelMessageReplyHostedContentOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateJoinedTeamChannelMessageReplyHostedContentOperationOptions() CreateJoinedTeamChannelMessageReplyHostedContentOperationOptions {
+	return CreateJoinedTeamChannelMessageReplyHostedContentOperationOptions{}
+}
+
+func (o CreateJoinedTeamChannelMessageReplyHostedContentOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateJoinedTeamChannelMessageReplyHostedContentOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateJoinedTeamChannelMessageReplyHostedContentOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateJoinedTeamChannelMessageReplyHostedContent - Create new navigation property to hostedContents for me
-func (c JoinedTeamChannelMessageReplyHostedContentClient) CreateJoinedTeamChannelMessageReplyHostedContent(ctx context.Context, id stable.MeJoinedTeamIdChannelIdMessageIdReplyId, input stable.ChatMessageHostedContent) (result CreateJoinedTeamChannelMessageReplyHostedContentOperationResponse, err error) {
+func (c JoinedTeamChannelMessageReplyHostedContentClient) CreateJoinedTeamChannelMessageReplyHostedContent(ctx context.Context, id stable.MeJoinedTeamIdChannelIdMessageIdReplyId, input stable.ChatMessageHostedContent, options CreateJoinedTeamChannelMessageReplyHostedContentOperationOptions) (result CreateJoinedTeamChannelMessageReplyHostedContentOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/hostedContents", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/hostedContents", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

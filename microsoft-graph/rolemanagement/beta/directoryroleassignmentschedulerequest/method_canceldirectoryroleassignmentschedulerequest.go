@@ -18,18 +18,47 @@ type CancelDirectoryRoleAssignmentScheduleRequestOperationResponse struct {
 	OData        *odata.OData
 }
 
+type CancelDirectoryRoleAssignmentScheduleRequestOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCancelDirectoryRoleAssignmentScheduleRequestOperationOptions() CancelDirectoryRoleAssignmentScheduleRequestOperationOptions {
+	return CancelDirectoryRoleAssignmentScheduleRequestOperationOptions{}
+}
+
+func (o CancelDirectoryRoleAssignmentScheduleRequestOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CancelDirectoryRoleAssignmentScheduleRequestOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CancelDirectoryRoleAssignmentScheduleRequestOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CancelDirectoryRoleAssignmentScheduleRequest - Invoke action cancel. Immediately cancel a
 // unifiedRoleAssignmentScheduleRequest object that is in a Granted status, and have the system automatically delete the
 // canceled request after 30 days. After calling this action, the status of the canceled
 // unifiedRoleAssignmentScheduleRequest changes to Canceled.
-func (c DirectoryRoleAssignmentScheduleRequestClient) CancelDirectoryRoleAssignmentScheduleRequest(ctx context.Context, id beta.RoleManagementDirectoryRoleAssignmentScheduleRequestId) (result CancelDirectoryRoleAssignmentScheduleRequestOperationResponse, err error) {
+func (c DirectoryRoleAssignmentScheduleRequestClient) CancelDirectoryRoleAssignmentScheduleRequest(ctx context.Context, id beta.RoleManagementDirectoryRoleAssignmentScheduleRequestId, options CancelDirectoryRoleAssignmentScheduleRequestOperationOptions) (result CancelDirectoryRoleAssignmentScheduleRequestOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/cancel", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/cancel", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

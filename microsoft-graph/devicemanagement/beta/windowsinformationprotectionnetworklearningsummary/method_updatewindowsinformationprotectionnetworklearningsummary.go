@@ -17,16 +17,45 @@ type UpdateWindowsInformationProtectionNetworkLearningSummaryOperationResponse s
 	OData        *odata.OData
 }
 
+type UpdateWindowsInformationProtectionNetworkLearningSummaryOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateWindowsInformationProtectionNetworkLearningSummaryOperationOptions() UpdateWindowsInformationProtectionNetworkLearningSummaryOperationOptions {
+	return UpdateWindowsInformationProtectionNetworkLearningSummaryOperationOptions{}
+}
+
+func (o UpdateWindowsInformationProtectionNetworkLearningSummaryOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateWindowsInformationProtectionNetworkLearningSummaryOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateWindowsInformationProtectionNetworkLearningSummaryOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateWindowsInformationProtectionNetworkLearningSummary - Update the navigation property
 // windowsInformationProtectionNetworkLearningSummaries in deviceManagement
-func (c WindowsInformationProtectionNetworkLearningSummaryClient) UpdateWindowsInformationProtectionNetworkLearningSummary(ctx context.Context, id beta.DeviceManagementWindowsInformationProtectionNetworkLearningSummaryId, input beta.WindowsInformationProtectionNetworkLearningSummary) (result UpdateWindowsInformationProtectionNetworkLearningSummaryOperationResponse, err error) {
+func (c WindowsInformationProtectionNetworkLearningSummaryClient) UpdateWindowsInformationProtectionNetworkLearningSummary(ctx context.Context, id beta.DeviceManagementWindowsInformationProtectionNetworkLearningSummaryId, input beta.WindowsInformationProtectionNetworkLearningSummary, options UpdateWindowsInformationProtectionNetworkLearningSummaryOperationOptions) (result UpdateWindowsInformationProtectionNetworkLearningSummaryOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

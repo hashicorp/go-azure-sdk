@@ -18,6 +18,34 @@ type CreateTeamCloneOperationResponse struct {
 	OData        *odata.OData
 }
 
+type CreateTeamCloneOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateTeamCloneOperationOptions() CreateTeamCloneOperationOptions {
+	return CreateTeamCloneOperationOptions{}
+}
+
+func (o CreateTeamCloneOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateTeamCloneOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateTeamCloneOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateTeamClone - Invoke action clone. Create a copy of a team. This operation also creates a copy of the
 // corresponding group. You can specify which parts of the team to clone: When tabs are cloned, they aren't configured.
 // The tabs are displayed on the tab bar in Microsoft Teams, and the first time a user opens them, they must go through
@@ -25,14 +53,15 @@ type CreateTeamCloneOperationResponse struct {
 // that says that the tab isn't configured. Cloning is a long-running operation. After the POST clone returns, you need
 // to GET the operation returned by the Location: header to see if it's running, succeeded, or failed. You should
 // continue to GET until the status isn't running. The recommended delay between GETs is 5 seconds.
-func (c TeamClient) CreateTeamClone(ctx context.Context, id beta.GroupId, input CreateTeamCloneRequest) (result CreateTeamCloneOperationResponse, err error) {
+func (c TeamClient) CreateTeamClone(ctx context.Context, id beta.GroupId, input CreateTeamCloneRequest, options CreateTeamCloneOperationOptions) (result CreateTeamCloneOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/team/clone", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/team/clone", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

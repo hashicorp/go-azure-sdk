@@ -31,10 +31,16 @@ type DeviceManagementConfigurationChoiceSettingValueTemplate struct {
 var _ json.Unmarshaler = &DeviceManagementConfigurationChoiceSettingValueTemplate{}
 
 func (s *DeviceManagementConfigurationChoiceSettingValueTemplate) UnmarshalJSON(bytes []byte) error {
-	type alias DeviceManagementConfigurationChoiceSettingValueTemplate
-	var decoded alias
+
+	var decoded struct {
+		ODataId                    *string                                                            `json:"@odata.id,omitempty"`
+		ODataType                  *string                                                            `json:"@odata.type,omitempty"`
+		RecommendedValueDefinition *DeviceManagementConfigurationChoiceSettingValueDefinitionTemplate `json:"recommendedValueDefinition,omitempty"`
+		RequiredValueDefinition    *DeviceManagementConfigurationChoiceSettingValueDefinitionTemplate `json:"requiredValueDefinition,omitempty"`
+		SettingValueTemplateId     *string                                                            `json:"settingValueTemplateId,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into DeviceManagementConfigurationChoiceSettingValueTemplate: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.ODataId = decoded.ODataId
@@ -55,5 +61,6 @@ func (s *DeviceManagementConfigurationChoiceSettingValueTemplate) UnmarshalJSON(
 		}
 		s.DefaultValue = impl
 	}
+
 	return nil
 }

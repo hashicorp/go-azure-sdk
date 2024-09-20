@@ -19,15 +19,44 @@ type CreateRoleManagementAlertOperationOperationResponse struct {
 	Model        beta.LongRunningOperation
 }
 
+type CreateRoleManagementAlertOperationOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateRoleManagementAlertOperationOperationOptions() CreateRoleManagementAlertOperationOperationOptions {
+	return CreateRoleManagementAlertOperationOperationOptions{}
+}
+
+func (o CreateRoleManagementAlertOperationOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateRoleManagementAlertOperationOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateRoleManagementAlertOperationOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateRoleManagementAlertOperation - Create new navigation property to operations for identityGovernance
-func (c RoleManagementAlertOperationClient) CreateRoleManagementAlertOperation(ctx context.Context, input beta.LongRunningOperation) (result CreateRoleManagementAlertOperationOperationResponse, err error) {
+func (c RoleManagementAlertOperationClient) CreateRoleManagementAlertOperation(ctx context.Context, input beta.LongRunningOperation, options CreateRoleManagementAlertOperationOperationOptions) (result CreateRoleManagementAlertOperationOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/identityGovernance/roleManagementAlerts/operations",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/identityGovernance/roleManagementAlerts/operations",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

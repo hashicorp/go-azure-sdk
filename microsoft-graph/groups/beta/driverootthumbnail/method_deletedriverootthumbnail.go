@@ -19,7 +19,8 @@ type DeleteDriveRootThumbnailOperationResponse struct {
 }
 
 type DeleteDriveRootThumbnailOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteDriveRootThumbnailOperationOptions() DeleteDriveRootThumbnailOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteDriveRootThumbnailOperationOptions) ToHeaders() *client.Headers {
 
 func (o DeleteDriveRootThumbnailOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

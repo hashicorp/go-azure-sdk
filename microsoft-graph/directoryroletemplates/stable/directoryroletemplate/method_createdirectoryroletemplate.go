@@ -18,15 +18,44 @@ type CreateDirectoryRoleTemplateOperationResponse struct {
 	Model        *stable.DirectoryRoleTemplate
 }
 
+type CreateDirectoryRoleTemplateOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateDirectoryRoleTemplateOperationOptions() CreateDirectoryRoleTemplateOperationOptions {
+	return CreateDirectoryRoleTemplateOperationOptions{}
+}
+
+func (o CreateDirectoryRoleTemplateOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateDirectoryRoleTemplateOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateDirectoryRoleTemplateOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateDirectoryRoleTemplate - Add new entity to directoryRoleTemplates
-func (c DirectoryRoleTemplateClient) CreateDirectoryRoleTemplate(ctx context.Context, input stable.DirectoryRoleTemplate) (result CreateDirectoryRoleTemplateOperationResponse, err error) {
+func (c DirectoryRoleTemplateClient) CreateDirectoryRoleTemplate(ctx context.Context, input stable.DirectoryRoleTemplate, options CreateDirectoryRoleTemplateOperationOptions) (result CreateDirectoryRoleTemplateOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/directoryRoleTemplates",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/directoryRoleTemplates",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -17,15 +17,44 @@ type UpdateWindowsFeatureUpdateProfileOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateWindowsFeatureUpdateProfileOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateWindowsFeatureUpdateProfileOperationOptions() UpdateWindowsFeatureUpdateProfileOperationOptions {
+	return UpdateWindowsFeatureUpdateProfileOperationOptions{}
+}
+
+func (o UpdateWindowsFeatureUpdateProfileOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateWindowsFeatureUpdateProfileOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateWindowsFeatureUpdateProfileOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateWindowsFeatureUpdateProfile - Update the navigation property windowsFeatureUpdateProfiles in deviceManagement
-func (c WindowsFeatureUpdateProfileClient) UpdateWindowsFeatureUpdateProfile(ctx context.Context, id beta.DeviceManagementWindowsFeatureUpdateProfileId, input beta.WindowsFeatureUpdateProfile) (result UpdateWindowsFeatureUpdateProfileOperationResponse, err error) {
+func (c WindowsFeatureUpdateProfileClient) UpdateWindowsFeatureUpdateProfile(ctx context.Context, id beta.DeviceManagementWindowsFeatureUpdateProfileId, input beta.WindowsFeatureUpdateProfile, options UpdateWindowsFeatureUpdateProfileOperationOptions) (result UpdateWindowsFeatureUpdateProfileOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

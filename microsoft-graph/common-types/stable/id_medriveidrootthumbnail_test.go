@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &MeDriveIdRootThumbnailId{}
 
 func TestNewMeDriveIdRootThumbnailID(t *testing.T) {
-	id := NewMeDriveIdRootThumbnailID("driveIdValue", "thumbnailSetIdValue")
+	id := NewMeDriveIdRootThumbnailID("driveId", "thumbnailSetId")
 
-	if id.DriveId != "driveIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DriveId'", id.DriveId, "driveIdValue")
+	if id.DriveId != "driveId" {
+		t.Fatalf("Expected %q but got %q for Segment 'DriveId'", id.DriveId, "driveId")
 	}
 
-	if id.ThumbnailSetId != "thumbnailSetIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ThumbnailSetId'", id.ThumbnailSetId, "thumbnailSetIdValue")
+	if id.ThumbnailSetId != "thumbnailSetId" {
+		t.Fatalf("Expected %q but got %q for Segment 'ThumbnailSetId'", id.ThumbnailSetId, "thumbnailSetId")
 	}
 }
 
 func TestFormatMeDriveIdRootThumbnailID(t *testing.T) {
-	actual := NewMeDriveIdRootThumbnailID("driveIdValue", "thumbnailSetIdValue").ID()
-	expected := "/me/drives/driveIdValue/root/thumbnails/thumbnailSetIdValue"
+	actual := NewMeDriveIdRootThumbnailID("driveId", "thumbnailSetId").ID()
+	expected := "/me/drives/driveId/root/thumbnails/thumbnailSetId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -54,30 +54,30 @@ func TestParseMeDriveIdRootThumbnailID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/me/drives/driveIdValue",
+			Input: "/me/drives/driveId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/me/drives/driveIdValue/root",
+			Input: "/me/drives/driveId/root",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/me/drives/driveIdValue/root/thumbnails",
+			Input: "/me/drives/driveId/root/thumbnails",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/me/drives/driveIdValue/root/thumbnails/thumbnailSetIdValue",
+			Input: "/me/drives/driveId/root/thumbnails/thumbnailSetId",
 			Expected: &MeDriveIdRootThumbnailId{
-				DriveId:        "driveIdValue",
-				ThumbnailSetId: "thumbnailSetIdValue",
+				DriveId:        "driveId",
+				ThumbnailSetId: "thumbnailSetId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/drives/driveIdValue/root/thumbnails/thumbnailSetIdValue/extra",
+			Input: "/me/drives/driveId/root/thumbnails/thumbnailSetId/extra",
 			Error: true,
 		},
 	}
@@ -140,58 +140,58 @@ func TestParseMeDriveIdRootThumbnailIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/me/drives/driveIdValue",
+			Input: "/me/drives/driveId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/dRiVeS/dRiVeIdVaLuE",
+			Input: "/mE/dRiVeS/dRiVeId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/me/drives/driveIdValue/root",
+			Input: "/me/drives/driveId/root",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/dRiVeS/dRiVeIdVaLuE/rOoT",
+			Input: "/mE/dRiVeS/dRiVeId/rOoT",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/me/drives/driveIdValue/root/thumbnails",
+			Input: "/me/drives/driveId/root/thumbnails",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/dRiVeS/dRiVeIdVaLuE/rOoT/tHuMbNaIlS",
+			Input: "/mE/dRiVeS/dRiVeId/rOoT/tHuMbNaIlS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/me/drives/driveIdValue/root/thumbnails/thumbnailSetIdValue",
+			Input: "/me/drives/driveId/root/thumbnails/thumbnailSetId",
 			Expected: &MeDriveIdRootThumbnailId{
-				DriveId:        "driveIdValue",
-				ThumbnailSetId: "thumbnailSetIdValue",
+				DriveId:        "driveId",
+				ThumbnailSetId: "thumbnailSetId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/drives/driveIdValue/root/thumbnails/thumbnailSetIdValue/extra",
+			Input: "/me/drives/driveId/root/thumbnails/thumbnailSetId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/dRiVeS/dRiVeIdVaLuE/rOoT/tHuMbNaIlS/tHuMbNaIlSeTiDvAlUe",
+			Input: "/mE/dRiVeS/dRiVeId/rOoT/tHuMbNaIlS/tHuMbNaIlSeTiD",
 			Expected: &MeDriveIdRootThumbnailId{
-				DriveId:        "dRiVeIdVaLuE",
-				ThumbnailSetId: "tHuMbNaIlSeTiDvAlUe",
+				DriveId:        "dRiVeId",
+				ThumbnailSetId: "tHuMbNaIlSeTiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/mE/dRiVeS/dRiVeIdVaLuE/rOoT/tHuMbNaIlS/tHuMbNaIlSeTiDvAlUe/extra",
+			Input: "/mE/dRiVeS/dRiVeId/rOoT/tHuMbNaIlS/tHuMbNaIlSeTiD/extra",
 			Error: true,
 		},
 	}

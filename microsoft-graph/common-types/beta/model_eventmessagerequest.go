@@ -374,13 +374,74 @@ func (s EventMessageRequest) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &EventMessageRequest{}
 
 func (s *EventMessageRequest) UnmarshalJSON(bytes []byte) error {
-	type alias EventMessageRequest
-	var decoded alias
+
+	var decoded struct {
+		AllowNewTimeProposals         nullable.Type[bool]                  `json:"allowNewTimeProposals,omitempty"`
+		MeetingRequestType            *MeetingRequestType                  `json:"meetingRequestType,omitempty"`
+		PreviousEndDateTime           *DateTimeTimeZone                    `json:"previousEndDateTime,omitempty"`
+		PreviousStartDateTime         *DateTimeTimeZone                    `json:"previousStartDateTime,omitempty"`
+		ResponseRequested             nullable.Type[bool]                  `json:"responseRequested,omitempty"`
+		EndDateTime                   *DateTimeTimeZone                    `json:"endDateTime,omitempty"`
+		Event                         *Event                               `json:"event,omitempty"`
+		IsAllDay                      nullable.Type[bool]                  `json:"isAllDay,omitempty"`
+		IsDelegated                   nullable.Type[bool]                  `json:"isDelegated,omitempty"`
+		IsOutOfDate                   nullable.Type[bool]                  `json:"isOutOfDate,omitempty"`
+		Location                      Location                             `json:"location"`
+		MeetingMessageType            *MeetingMessageType                  `json:"meetingMessageType,omitempty"`
+		Recurrence                    *PatternedRecurrence                 `json:"recurrence,omitempty"`
+		StartDateTime                 *DateTimeTimeZone                    `json:"startDateTime,omitempty"`
+		Type                          *EventType                           `json:"type,omitempty"`
+		Attachments                   *[]Attachment                        `json:"attachments,omitempty"`
+		BccRecipients                 *[]Recipient                         `json:"bccRecipients,omitempty"`
+		Body                          *ItemBody                            `json:"body,omitempty"`
+		BodyPreview                   nullable.Type[string]                `json:"bodyPreview,omitempty"`
+		CcRecipients                  *[]Recipient                         `json:"ccRecipients,omitempty"`
+		ConversationId                nullable.Type[string]                `json:"conversationId,omitempty"`
+		ConversationIndex             nullable.Type[string]                `json:"conversationIndex,omitempty"`
+		Extensions                    *[]Extension                         `json:"extensions,omitempty"`
+		Flag                          *FollowupFlag                        `json:"flag,omitempty"`
+		From                          Recipient                            `json:"from"`
+		HasAttachments                nullable.Type[bool]                  `json:"hasAttachments,omitempty"`
+		Importance                    *Importance                          `json:"importance,omitempty"`
+		InferenceClassification       *InferenceClassificationType         `json:"inferenceClassification,omitempty"`
+		InternetMessageHeaders        *[]InternetMessageHeader             `json:"internetMessageHeaders,omitempty"`
+		InternetMessageId             nullable.Type[string]                `json:"internetMessageId,omitempty"`
+		IsDeliveryReceiptRequested    nullable.Type[bool]                  `json:"isDeliveryReceiptRequested,omitempty"`
+		IsDraft                       nullable.Type[bool]                  `json:"isDraft,omitempty"`
+		IsRead                        nullable.Type[bool]                  `json:"isRead,omitempty"`
+		IsReadReceiptRequested        nullable.Type[bool]                  `json:"isReadReceiptRequested,omitempty"`
+		Mentions                      *[]Mention                           `json:"mentions,omitempty"`
+		MentionsPreview               *MentionsPreview                     `json:"mentionsPreview,omitempty"`
+		MultiValueExtendedProperties  *[]MultiValueLegacyExtendedProperty  `json:"multiValueExtendedProperties,omitempty"`
+		ParentFolderId                nullable.Type[string]                `json:"parentFolderId,omitempty"`
+		ReceivedDateTime              nullable.Type[string]                `json:"receivedDateTime,omitempty"`
+		ReplyTo                       *[]Recipient                         `json:"replyTo,omitempty"`
+		Sender                        Recipient                            `json:"sender"`
+		SentDateTime                  nullable.Type[string]                `json:"sentDateTime,omitempty"`
+		SingleValueExtendedProperties *[]SingleValueLegacyExtendedProperty `json:"singleValueExtendedProperties,omitempty"`
+		Subject                       nullable.Type[string]                `json:"subject,omitempty"`
+		ToRecipients                  *[]Recipient                         `json:"toRecipients,omitempty"`
+		UniqueBody                    *ItemBody                            `json:"uniqueBody,omitempty"`
+		UnsubscribeData               *[]string                            `json:"unsubscribeData,omitempty"`
+		UnsubscribeEnabled            nullable.Type[bool]                  `json:"unsubscribeEnabled,omitempty"`
+		WebLink                       nullable.Type[string]                `json:"webLink,omitempty"`
+		Categories                    *[]string                            `json:"categories,omitempty"`
+		ChangeKey                     nullable.Type[string]                `json:"changeKey,omitempty"`
+		CreatedDateTime               nullable.Type[string]                `json:"createdDateTime,omitempty"`
+		LastModifiedDateTime          nullable.Type[string]                `json:"lastModifiedDateTime,omitempty"`
+		Id                            *string                              `json:"id,omitempty"`
+		ODataId                       *string                              `json:"@odata.id,omitempty"`
+		ODataType                     *string                              `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into EventMessageRequest: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.AllowNewTimeProposals = decoded.AllowNewTimeProposals
+	s.MeetingRequestType = decoded.MeetingRequestType
+	s.PreviousEndDateTime = decoded.PreviousEndDateTime
+	s.PreviousStartDateTime = decoded.PreviousStartDateTime
+	s.ResponseRequested = decoded.ResponseRequested
 	s.Body = decoded.Body
 	s.BodyPreview = decoded.BodyPreview
 	s.Categories = decoded.Categories
@@ -406,18 +467,14 @@ func (s *EventMessageRequest) UnmarshalJSON(bytes []byte) error {
 	s.IsReadReceiptRequested = decoded.IsReadReceiptRequested
 	s.LastModifiedDateTime = decoded.LastModifiedDateTime
 	s.MeetingMessageType = decoded.MeetingMessageType
-	s.MeetingRequestType = decoded.MeetingRequestType
 	s.Mentions = decoded.Mentions
 	s.MentionsPreview = decoded.MentionsPreview
 	s.MultiValueExtendedProperties = decoded.MultiValueExtendedProperties
 	s.ODataId = decoded.ODataId
 	s.ODataType = decoded.ODataType
 	s.ParentFolderId = decoded.ParentFolderId
-	s.PreviousEndDateTime = decoded.PreviousEndDateTime
-	s.PreviousStartDateTime = decoded.PreviousStartDateTime
 	s.ReceivedDateTime = decoded.ReceivedDateTime
 	s.Recurrence = decoded.Recurrence
-	s.ResponseRequested = decoded.ResponseRequested
 	s.SentDateTime = decoded.SentDateTime
 	s.SingleValueExtendedProperties = decoded.SingleValueExtendedProperties
 	s.StartDateTime = decoded.StartDateTime
@@ -566,5 +623,6 @@ func (s *EventMessageRequest) UnmarshalJSON(bytes []byte) error {
 		}
 		s.ToRecipients = &output
 	}
+
 	return nil
 }

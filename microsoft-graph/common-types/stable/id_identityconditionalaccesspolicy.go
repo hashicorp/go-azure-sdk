@@ -94,7 +94,7 @@ func (id IdentityConditionalAccessPolicyId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("identity", "identity", "identity"),
 		resourceids.StaticSegment("conditionalAccess", "conditionalAccess", "conditionalAccess"),
 		resourceids.StaticSegment("policies", "policies", "policies"),
-		resourceids.UserSpecifiedSegment("conditionalAccessPolicyId", "conditionalAccessPolicyIdValue"),
+		resourceids.UserSpecifiedSegment("conditionalAccessPolicyId", "conditionalAccessPolicyId"),
 	}
 }
 

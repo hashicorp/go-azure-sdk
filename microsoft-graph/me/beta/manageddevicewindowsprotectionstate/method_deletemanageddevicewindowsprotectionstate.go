@@ -19,7 +19,8 @@ type DeleteManagedDeviceWindowsProtectionStateOperationResponse struct {
 }
 
 type DeleteManagedDeviceWindowsProtectionStateOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteManagedDeviceWindowsProtectionStateOperationOptions() DeleteManagedDeviceWindowsProtectionStateOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteManagedDeviceWindowsProtectionStateOperationOptions) ToHeaders() *
 
 func (o DeleteManagedDeviceWindowsProtectionStateOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

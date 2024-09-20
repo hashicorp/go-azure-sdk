@@ -18,15 +18,44 @@ type UpdateContactPhotoOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateContactPhotoOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateContactPhotoOperationOptions() UpdateContactPhotoOperationOptions {
+	return UpdateContactPhotoOperationOptions{}
+}
+
+func (o UpdateContactPhotoOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateContactPhotoOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateContactPhotoOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateContactPhoto - Update the navigation property photo in users
-func (c ContactPhotoClient) UpdateContactPhoto(ctx context.Context, id beta.UserIdContactId, input beta.ProfilePhoto) (result UpdateContactPhotoOperationResponse, err error) {
+func (c ContactPhotoClient) UpdateContactPhoto(ctx context.Context, id beta.UserIdContactId, input beta.ProfilePhoto, options UpdateContactPhotoOperationOptions) (result UpdateContactPhotoOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       fmt.Sprintf("%s/photo", id.ID()),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/photo", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

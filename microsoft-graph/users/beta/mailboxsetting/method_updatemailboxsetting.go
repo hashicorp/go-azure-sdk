@@ -18,15 +18,44 @@ type UpdateMailboxSettingOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateMailboxSettingOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateMailboxSettingOperationOptions() UpdateMailboxSettingOperationOptions {
+	return UpdateMailboxSettingOperationOptions{}
+}
+
+func (o UpdateMailboxSettingOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateMailboxSettingOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateMailboxSettingOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateMailboxSetting - Update property mailboxSettings value.
-func (c MailboxSettingClient) UpdateMailboxSetting(ctx context.Context, id beta.UserId, input beta.MailboxSettings) (result UpdateMailboxSettingOperationResponse, err error) {
+func (c MailboxSettingClient) UpdateMailboxSetting(ctx context.Context, id beta.UserId, input beta.MailboxSettings, options UpdateMailboxSettingOperationOptions) (result UpdateMailboxSettingOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       fmt.Sprintf("%s/mailboxSettings", id.ID()),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/mailboxSettings", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

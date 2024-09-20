@@ -17,16 +17,45 @@ type UpdateCustomSecurityAttributeDefinitionOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateCustomSecurityAttributeDefinitionOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateCustomSecurityAttributeDefinitionOperationOptions() UpdateCustomSecurityAttributeDefinitionOperationOptions {
+	return UpdateCustomSecurityAttributeDefinitionOperationOptions{}
+}
+
+func (o UpdateCustomSecurityAttributeDefinitionOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateCustomSecurityAttributeDefinitionOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateCustomSecurityAttributeDefinitionOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateCustomSecurityAttributeDefinition - Update customSecurityAttributeDefinition. Update the properties of a
 // customSecurityAttributeDefinition object.
-func (c CustomSecurityAttributeDefinitionClient) UpdateCustomSecurityAttributeDefinition(ctx context.Context, id beta.DirectoryCustomSecurityAttributeDefinitionId, input beta.CustomSecurityAttributeDefinition) (result UpdateCustomSecurityAttributeDefinitionOperationResponse, err error) {
+func (c CustomSecurityAttributeDefinitionClient) UpdateCustomSecurityAttributeDefinition(ctx context.Context, id beta.DirectoryCustomSecurityAttributeDefinitionId, input beta.CustomSecurityAttributeDefinition, options UpdateCustomSecurityAttributeDefinitionOperationOptions) (result UpdateCustomSecurityAttributeDefinitionOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

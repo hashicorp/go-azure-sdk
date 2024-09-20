@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/microsoft-graph/applications/stable/application` Documentation
 
-The `application` SDK allows for interaction with the Azure Resource Manager Service `applications` (API Version `stable`).
+The `application` SDK allows for interaction with Microsoft Graph `applications` (API Version `stable`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -15,7 +15,7 @@ import "github.com/hashicorp/go-azure-sdk/microsoft-graph/applications/stable/ap
 ### Client Initialization
 
 ```go
-client := application.NewApplicationClientWithBaseURI("https://management.azure.com")
+client := application.NewApplicationClientWithBaseURI("https://graph.microsoft.com")
 client.Client.Authorizer = authorizer
 ```
 
@@ -24,14 +24,14 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := application.NewApplicationID("applicationIdValue")
+id := application.NewApplicationID("applicationId")
 
 payload := application.AddKeyRequest{
 	// ...
 }
 
 
-read, err := client.AddKey(ctx, id, payload)
+read, err := client.AddKey(ctx, id, payload, application.DefaultAddKeyOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -45,14 +45,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := application.NewApplicationID("applicationIdValue")
+id := application.NewApplicationID("applicationId")
 
 payload := application.AddPasswordRequest{
 	// ...
 }
 
 
-read, err := client.AddPassword(ctx, id, payload)
+read, err := client.AddPassword(ctx, id, payload, application.DefaultAddPasswordOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -66,7 +66,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := application.NewApplicationID("applicationIdValue")
+id := application.NewApplicationID("applicationId")
 
 payload := application.CheckMemberGroupsRequest{
 	// ...
@@ -88,7 +88,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := application.NewApplicationID("applicationIdValue")
+id := application.NewApplicationID("applicationId")
 
 payload := application.CheckMemberObjectsRequest{
 	// ...
@@ -116,7 +116,27 @@ payload := application.Application{
 }
 
 
-read, err := client.CreateApplication(ctx, payload)
+read, err := client.CreateApplication(ctx, payload, application.DefaultCreateApplicationOperationOptions())
+if err != nil {
+	// handle the error
+}
+if model := read.Model; model != nil {
+	// do something with the model/response object
+}
+```
+
+
+### Example Usage: `ApplicationClient.CreateValidatesProperty`
+
+```go
+ctx := context.TODO()
+
+payload := application.CreateValidatesPropertyRequest{
+	// ...
+}
+
+
+read, err := client.CreateValidatesProperty(ctx, payload, application.DefaultCreateValidatesPropertyOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -130,7 +150,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := application.NewApplicationID("applicationIdValue")
+id := application.NewApplicationID("applicationId")
 
 read, err := client.DeleteApplication(ctx, id, application.DefaultDeleteApplicationOperationOptions())
 if err != nil {
@@ -146,67 +166,9 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := application.NewApplicationID("applicationIdValue")
+id := application.NewApplicationID("applicationId")
 
 read, err := client.GetApplication(ctx, id, application.DefaultGetApplicationOperationOptions())
-if err != nil {
-	// handle the error
-}
-if model := read.Model; model != nil {
-	// do something with the model/response object
-}
-```
-
-
-### Example Usage: `ApplicationClient.GetAvailableExtensionProperties`
-
-```go
-ctx := context.TODO()
-
-payload := application.GetAvailableExtensionPropertiesRequest{
-	// ...
-}
-
-
-// alternatively `client.GetAvailableExtensionProperties(ctx, payload, application.DefaultGetAvailableExtensionPropertiesOperationOptions())` can be used to do batched pagination
-items, err := client.GetAvailableExtensionPropertiesComplete(ctx, payload, application.DefaultGetAvailableExtensionPropertiesOperationOptions())
-if err != nil {
-	// handle the error
-}
-for _, item := range items {
-	// do something
-}
-```
-
-
-### Example Usage: `ApplicationClient.GetByIds`
-
-```go
-ctx := context.TODO()
-
-payload := application.GetByIdsRequest{
-	// ...
-}
-
-
-// alternatively `client.GetByIds(ctx, payload, application.DefaultGetByIdsOperationOptions())` can be used to do batched pagination
-items, err := client.GetByIdsComplete(ctx, payload, application.DefaultGetByIdsOperationOptions())
-if err != nil {
-	// handle the error
-}
-for _, item := range items {
-	// do something
-}
-```
-
-
-### Example Usage: `ApplicationClient.GetCount`
-
-```go
-ctx := context.TODO()
-
-
-read, err := client.GetCount(ctx, application.DefaultGetCountOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -220,7 +182,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := application.NewApplicationID("applicationIdValue")
+id := application.NewApplicationID("applicationId")
 
 payload := application.GetMemberGroupsRequest{
 	// ...
@@ -242,7 +204,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := application.NewApplicationID("applicationIdValue")
+id := application.NewApplicationID("applicationId")
 
 payload := application.GetMemberObjectsRequest{
 	// ...
@@ -256,6 +218,22 @@ if err != nil {
 }
 for _, item := range items {
 	// do something
+}
+```
+
+
+### Example Usage: `ApplicationClient.GetsCount`
+
+```go
+ctx := context.TODO()
+
+
+read, err := client.GetsCount(ctx, application.DefaultGetsCountOperationOptions())
+if err != nil {
+	// handle the error
+}
+if model := read.Model; model != nil {
+	// do something with the model/response object
 }
 ```
 
@@ -277,18 +255,60 @@ for _, item := range items {
 ```
 
 
+### Example Usage: `ApplicationClient.ListGetsAvailableExtensionProperties`
+
+```go
+ctx := context.TODO()
+
+payload := application.ListGetsAvailableExtensionPropertiesRequest{
+	// ...
+}
+
+
+// alternatively `client.ListGetsAvailableExtensionProperties(ctx, payload, application.DefaultListGetsAvailableExtensionPropertiesOperationOptions())` can be used to do batched pagination
+items, err := client.ListGetsAvailableExtensionPropertiesComplete(ctx, payload, application.DefaultListGetsAvailableExtensionPropertiesOperationOptions())
+if err != nil {
+	// handle the error
+}
+for _, item := range items {
+	// do something
+}
+```
+
+
+### Example Usage: `ApplicationClient.ListGetsByIds`
+
+```go
+ctx := context.TODO()
+
+payload := application.ListGetsByIdsRequest{
+	// ...
+}
+
+
+// alternatively `client.ListGetsByIds(ctx, payload, application.DefaultListGetsByIdsOperationOptions())` can be used to do batched pagination
+items, err := client.ListGetsByIdsComplete(ctx, payload, application.DefaultListGetsByIdsOperationOptions())
+if err != nil {
+	// handle the error
+}
+for _, item := range items {
+	// do something
+}
+```
+
+
 ### Example Usage: `ApplicationClient.RemoveKey`
 
 ```go
 ctx := context.TODO()
-id := application.NewApplicationID("applicationIdValue")
+id := application.NewApplicationID("applicationId")
 
 payload := application.RemoveKeyRequest{
 	// ...
 }
 
 
-read, err := client.RemoveKey(ctx, id, payload)
+read, err := client.RemoveKey(ctx, id, payload, application.DefaultRemoveKeyOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -302,14 +322,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := application.NewApplicationID("applicationIdValue")
+id := application.NewApplicationID("applicationId")
 
 payload := application.RemovePasswordRequest{
 	// ...
 }
 
 
-read, err := client.RemovePassword(ctx, id, payload)
+read, err := client.RemovePassword(ctx, id, payload, application.DefaultRemovePasswordOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -323,9 +343,9 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := application.NewApplicationID("applicationIdValue")
+id := application.NewApplicationID("applicationId")
 
-read, err := client.Restore(ctx, id)
+read, err := client.Restore(ctx, id, application.DefaultRestoreOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -339,14 +359,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := application.NewApplicationID("applicationIdValue")
+id := application.NewApplicationID("applicationId")
 
 payload := application.SetVerifiedPublisherRequest{
 	// ...
 }
 
 
-read, err := client.SetVerifiedPublisher(ctx, id, payload)
+read, err := client.SetVerifiedPublisher(ctx, id, payload, application.DefaultSetVerifiedPublisherOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -360,9 +380,9 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := application.NewApplicationID("applicationIdValue")
+id := application.NewApplicationID("applicationId")
 
-read, err := client.UnsetVerifiedPublisher(ctx, id)
+read, err := client.UnsetVerifiedPublisher(ctx, id, application.DefaultUnsetVerifiedPublisherOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -376,34 +396,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := application.NewApplicationID("applicationIdValue")
+id := application.NewApplicationID("applicationId")
 
 payload := application.Application{
 	// ...
 }
 
 
-read, err := client.UpdateApplication(ctx, id, payload)
-if err != nil {
-	// handle the error
-}
-if model := read.Model; model != nil {
-	// do something with the model/response object
-}
-```
-
-
-### Example Usage: `ApplicationClient.ValidateProperty`
-
-```go
-ctx := context.TODO()
-
-payload := application.ValidatePropertyRequest{
-	// ...
-}
-
-
-read, err := client.ValidateProperty(ctx, payload)
+read, err := client.UpdateApplication(ctx, id, payload, application.DefaultUpdateApplicationOperationOptions())
 if err != nil {
 	// handle the error
 }

@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &DeviceManagementIntentIdDeviceSettingStateSummaryId{}
 
 func TestNewDeviceManagementIntentIdDeviceSettingStateSummaryID(t *testing.T) {
-	id := NewDeviceManagementIntentIdDeviceSettingStateSummaryID("deviceManagementIntentIdValue", "deviceManagementIntentDeviceSettingStateSummaryIdValue")
+	id := NewDeviceManagementIntentIdDeviceSettingStateSummaryID("deviceManagementIntentId", "deviceManagementIntentDeviceSettingStateSummaryId")
 
-	if id.DeviceManagementIntentId != "deviceManagementIntentIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DeviceManagementIntentId'", id.DeviceManagementIntentId, "deviceManagementIntentIdValue")
+	if id.DeviceManagementIntentId != "deviceManagementIntentId" {
+		t.Fatalf("Expected %q but got %q for Segment 'DeviceManagementIntentId'", id.DeviceManagementIntentId, "deviceManagementIntentId")
 	}
 
-	if id.DeviceManagementIntentDeviceSettingStateSummaryId != "deviceManagementIntentDeviceSettingStateSummaryIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DeviceManagementIntentDeviceSettingStateSummaryId'", id.DeviceManagementIntentDeviceSettingStateSummaryId, "deviceManagementIntentDeviceSettingStateSummaryIdValue")
+	if id.DeviceManagementIntentDeviceSettingStateSummaryId != "deviceManagementIntentDeviceSettingStateSummaryId" {
+		t.Fatalf("Expected %q but got %q for Segment 'DeviceManagementIntentDeviceSettingStateSummaryId'", id.DeviceManagementIntentDeviceSettingStateSummaryId, "deviceManagementIntentDeviceSettingStateSummaryId")
 	}
 }
 
 func TestFormatDeviceManagementIntentIdDeviceSettingStateSummaryID(t *testing.T) {
-	actual := NewDeviceManagementIntentIdDeviceSettingStateSummaryID("deviceManagementIntentIdValue", "deviceManagementIntentDeviceSettingStateSummaryIdValue").ID()
-	expected := "/deviceManagement/intents/deviceManagementIntentIdValue/deviceSettingStateSummaries/deviceManagementIntentDeviceSettingStateSummaryIdValue"
+	actual := NewDeviceManagementIntentIdDeviceSettingStateSummaryID("deviceManagementIntentId", "deviceManagementIntentDeviceSettingStateSummaryId").ID()
+	expected := "/deviceManagement/intents/deviceManagementIntentId/deviceSettingStateSummaries/deviceManagementIntentDeviceSettingStateSummaryId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -54,25 +54,25 @@ func TestParseDeviceManagementIntentIdDeviceSettingStateSummaryID(t *testing.T) 
 		},
 		{
 			// Incomplete URI
-			Input: "/deviceManagement/intents/deviceManagementIntentIdValue",
+			Input: "/deviceManagement/intents/deviceManagementIntentId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/deviceManagement/intents/deviceManagementIntentIdValue/deviceSettingStateSummaries",
+			Input: "/deviceManagement/intents/deviceManagementIntentId/deviceSettingStateSummaries",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/intents/deviceManagementIntentIdValue/deviceSettingStateSummaries/deviceManagementIntentDeviceSettingStateSummaryIdValue",
+			Input: "/deviceManagement/intents/deviceManagementIntentId/deviceSettingStateSummaries/deviceManagementIntentDeviceSettingStateSummaryId",
 			Expected: &DeviceManagementIntentIdDeviceSettingStateSummaryId{
-				DeviceManagementIntentId:                          "deviceManagementIntentIdValue",
-				DeviceManagementIntentDeviceSettingStateSummaryId: "deviceManagementIntentDeviceSettingStateSummaryIdValue",
+				DeviceManagementIntentId:                          "deviceManagementIntentId",
+				DeviceManagementIntentDeviceSettingStateSummaryId: "deviceManagementIntentDeviceSettingStateSummaryId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/intents/deviceManagementIntentIdValue/deviceSettingStateSummaries/deviceManagementIntentDeviceSettingStateSummaryIdValue/extra",
+			Input: "/deviceManagement/intents/deviceManagementIntentId/deviceSettingStateSummaries/deviceManagementIntentDeviceSettingStateSummaryId/extra",
 			Error: true,
 		},
 	}
@@ -135,48 +135,48 @@ func TestParseDeviceManagementIntentIdDeviceSettingStateSummaryIDInsensitively(t
 		},
 		{
 			// Incomplete URI
-			Input: "/deviceManagement/intents/deviceManagementIntentIdValue",
+			Input: "/deviceManagement/intents/deviceManagementIntentId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/iNtEnTs/dEvIcEmAnAgEmEnTiNtEnTiDvAlUe",
+			Input: "/dEvIcEmAnAgEmEnT/iNtEnTs/dEvIcEmAnAgEmEnTiNtEnTiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/deviceManagement/intents/deviceManagementIntentIdValue/deviceSettingStateSummaries",
+			Input: "/deviceManagement/intents/deviceManagementIntentId/deviceSettingStateSummaries",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/iNtEnTs/dEvIcEmAnAgEmEnTiNtEnTiDvAlUe/dEvIcEsEtTiNgStAtEsUmMaRiEs",
+			Input: "/dEvIcEmAnAgEmEnT/iNtEnTs/dEvIcEmAnAgEmEnTiNtEnTiD/dEvIcEsEtTiNgStAtEsUmMaRiEs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/intents/deviceManagementIntentIdValue/deviceSettingStateSummaries/deviceManagementIntentDeviceSettingStateSummaryIdValue",
+			Input: "/deviceManagement/intents/deviceManagementIntentId/deviceSettingStateSummaries/deviceManagementIntentDeviceSettingStateSummaryId",
 			Expected: &DeviceManagementIntentIdDeviceSettingStateSummaryId{
-				DeviceManagementIntentId:                          "deviceManagementIntentIdValue",
-				DeviceManagementIntentDeviceSettingStateSummaryId: "deviceManagementIntentDeviceSettingStateSummaryIdValue",
+				DeviceManagementIntentId:                          "deviceManagementIntentId",
+				DeviceManagementIntentDeviceSettingStateSummaryId: "deviceManagementIntentDeviceSettingStateSummaryId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/intents/deviceManagementIntentIdValue/deviceSettingStateSummaries/deviceManagementIntentDeviceSettingStateSummaryIdValue/extra",
+			Input: "/deviceManagement/intents/deviceManagementIntentId/deviceSettingStateSummaries/deviceManagementIntentDeviceSettingStateSummaryId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/iNtEnTs/dEvIcEmAnAgEmEnTiNtEnTiDvAlUe/dEvIcEsEtTiNgStAtEsUmMaRiEs/dEvIcEmAnAgEmEnTiNtEnTdEvIcEsEtTiNgStAtEsUmMaRyIdVaLuE",
+			Input: "/dEvIcEmAnAgEmEnT/iNtEnTs/dEvIcEmAnAgEmEnTiNtEnTiD/dEvIcEsEtTiNgStAtEsUmMaRiEs/dEvIcEmAnAgEmEnTiNtEnTdEvIcEsEtTiNgStAtEsUmMaRyId",
 			Expected: &DeviceManagementIntentIdDeviceSettingStateSummaryId{
-				DeviceManagementIntentId:                          "dEvIcEmAnAgEmEnTiNtEnTiDvAlUe",
-				DeviceManagementIntentDeviceSettingStateSummaryId: "dEvIcEmAnAgEmEnTiNtEnTdEvIcEsEtTiNgStAtEsUmMaRyIdVaLuE",
+				DeviceManagementIntentId:                          "dEvIcEmAnAgEmEnTiNtEnTiD",
+				DeviceManagementIntentDeviceSettingStateSummaryId: "dEvIcEmAnAgEmEnTiNtEnTdEvIcEsEtTiNgStAtEsUmMaRyId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/iNtEnTs/dEvIcEmAnAgEmEnTiNtEnTiDvAlUe/dEvIcEsEtTiNgStAtEsUmMaRiEs/dEvIcEmAnAgEmEnTiNtEnTdEvIcEsEtTiNgStAtEsUmMaRyIdVaLuE/extra",
+			Input: "/dEvIcEmAnAgEmEnT/iNtEnTs/dEvIcEmAnAgEmEnTiNtEnTiD/dEvIcEsEtTiNgStAtEsUmMaRiEs/dEvIcEmAnAgEmEnTiNtEnTdEvIcEsEtTiNgStAtEsUmMaRyId/extra",
 			Error: true,
 		},
 	}

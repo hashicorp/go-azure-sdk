@@ -18,15 +18,44 @@ type UpdateAnalyticsOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateAnalyticsOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateAnalyticsOperationOptions() UpdateAnalyticsOperationOptions {
+	return UpdateAnalyticsOperationOptions{}
+}
+
+func (o UpdateAnalyticsOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateAnalyticsOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateAnalyticsOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateAnalytics - Update the navigation property analytics in users
-func (c AnalyticsClient) UpdateAnalytics(ctx context.Context, id beta.UserId, input beta.UserAnalytics) (result UpdateAnalyticsOperationResponse, err error) {
+func (c AnalyticsClient) UpdateAnalytics(ctx context.Context, id beta.UserId, input beta.UserAnalytics, options UpdateAnalyticsOperationOptions) (result UpdateAnalyticsOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       fmt.Sprintf("%s/analytics", id.ID()),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/analytics", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

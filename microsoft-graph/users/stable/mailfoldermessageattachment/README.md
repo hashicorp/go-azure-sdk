@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/microsoft-graph/users/stable/mailfoldermessageattachment` Documentation
 
-The `mailfoldermessageattachment` SDK allows for interaction with the Azure Resource Manager Service `users` (API Version `stable`).
+The `mailfoldermessageattachment` SDK allows for interaction with Microsoft Graph `users` (API Version `stable`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -15,7 +15,7 @@ import "github.com/hashicorp/go-azure-sdk/microsoft-graph/users/stable/mailfolde
 ### Client Initialization
 
 ```go
-client := mailfoldermessageattachment.NewMailFolderMessageAttachmentClientWithBaseURI("https://management.azure.com")
+client := mailfoldermessageattachment.NewMailFolderMessageAttachmentClientWithBaseURI("https://graph.microsoft.com")
 client.Client.Authorizer = authorizer
 ```
 
@@ -24,14 +24,14 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := mailfoldermessageattachment.NewUserIdMailFolderIdMessageID("userIdValue", "mailFolderIdValue", "messageIdValue")
+id := mailfoldermessageattachment.NewUserIdMailFolderIdMessageID("userId", "mailFolderId", "messageId")
 
 payload := mailfoldermessageattachment.Attachment{
 	// ...
 }
 
 
-read, err := client.CreateMailFolderMessageAttachment(ctx, id, payload)
+read, err := client.CreateMailFolderMessageAttachment(ctx, id, payload, mailfoldermessageattachment.DefaultCreateMailFolderMessageAttachmentOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -45,14 +45,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := mailfoldermessageattachment.NewUserIdMailFolderIdMessageID("userIdValue", "mailFolderIdValue", "messageIdValue")
+id := mailfoldermessageattachment.NewUserIdMailFolderIdMessageID("userId", "mailFolderId", "messageId")
 
 payload := mailfoldermessageattachment.CreateMailFolderMessageAttachmentsUploadSessionRequest{
 	// ...
 }
 
 
-read, err := client.CreateMailFolderMessageAttachmentsUploadSession(ctx, id, payload)
+read, err := client.CreateMailFolderMessageAttachmentsUploadSession(ctx, id, payload, mailfoldermessageattachment.DefaultCreateMailFolderMessageAttachmentsUploadSessionOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -66,7 +66,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := mailfoldermessageattachment.NewUserIdMailFolderIdMessageIdAttachmentID("userIdValue", "mailFolderIdValue", "messageIdValue", "attachmentIdValue")
+id := mailfoldermessageattachment.NewUserIdMailFolderIdMessageIdAttachmentID("userId", "mailFolderId", "messageId", "attachmentId")
 
 read, err := client.DeleteMailFolderMessageAttachment(ctx, id, mailfoldermessageattachment.DefaultDeleteMailFolderMessageAttachmentOperationOptions())
 if err != nil {
@@ -82,7 +82,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := mailfoldermessageattachment.NewUserIdMailFolderIdMessageIdAttachmentID("userIdValue", "mailFolderIdValue", "messageIdValue", "attachmentIdValue")
+id := mailfoldermessageattachment.NewUserIdMailFolderIdMessageIdAttachmentID("userId", "mailFolderId", "messageId", "attachmentId")
 
 read, err := client.GetMailFolderMessageAttachment(ctx, id, mailfoldermessageattachment.DefaultGetMailFolderMessageAttachmentOperationOptions())
 if err != nil {
@@ -98,7 +98,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := mailfoldermessageattachment.NewUserIdMailFolderIdMessageID("userIdValue", "mailFolderIdValue", "messageIdValue")
+id := mailfoldermessageattachment.NewUserIdMailFolderIdMessageID("userId", "mailFolderId", "messageId")
 
 read, err := client.GetMailFolderMessageAttachmentsCount(ctx, id, mailfoldermessageattachment.DefaultGetMailFolderMessageAttachmentsCountOperationOptions())
 if err != nil {
@@ -114,7 +114,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := mailfoldermessageattachment.NewUserIdMailFolderIdMessageID("userIdValue", "mailFolderIdValue", "messageIdValue")
+id := mailfoldermessageattachment.NewUserIdMailFolderIdMessageID("userId", "mailFolderId", "messageId")
 
 // alternatively `client.ListMailFolderMessageAttachments(ctx, id, mailfoldermessageattachment.DefaultListMailFolderMessageAttachmentsOperationOptions())` can be used to do batched pagination
 items, err := client.ListMailFolderMessageAttachmentsComplete(ctx, id, mailfoldermessageattachment.DefaultListMailFolderMessageAttachmentsOperationOptions())

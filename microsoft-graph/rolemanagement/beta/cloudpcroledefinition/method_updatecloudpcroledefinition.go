@@ -17,18 +17,47 @@ type UpdateCloudPCRoleDefinitionOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateCloudPCRoleDefinitionOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateCloudPCRoleDefinitionOperationOptions() UpdateCloudPCRoleDefinitionOperationOptions {
+	return UpdateCloudPCRoleDefinitionOperationOptions{}
+}
+
+func (o UpdateCloudPCRoleDefinitionOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateCloudPCRoleDefinitionOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateCloudPCRoleDefinitionOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateCloudPCRoleDefinition - Update unifiedRoleDefinition. Update the properties of a unifiedRoleDefinition object
 // for an RBAC provider. You cannot update built-in roles. This feature requires a Microsoft Entra ID P1 or P2 license.
 // The following RBAC providers are currently supported: - Cloud PC - device management (Intune) - directory (Microsoft
 // Entra ID)
-func (c CloudPCRoleDefinitionClient) UpdateCloudPCRoleDefinition(ctx context.Context, id beta.RoleManagementCloudPCRoleDefinitionId, input beta.UnifiedRoleDefinition) (result UpdateCloudPCRoleDefinitionOperationResponse, err error) {
+func (c CloudPCRoleDefinitionClient) UpdateCloudPCRoleDefinition(ctx context.Context, id beta.RoleManagementCloudPCRoleDefinitionId, input beta.UnifiedRoleDefinition, options UpdateCloudPCRoleDefinitionOperationOptions) (result UpdateCloudPCRoleDefinitionOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

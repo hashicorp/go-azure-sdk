@@ -17,15 +17,44 @@ type UpdateExchangeOnPremisesPolicyOperationResponse struct {
 	OData        *odata.OData
 }
 
-// UpdateExchangeOnPremisesPolicy - Update the navigation property exchangeOnPremisesPolicy in deviceManagement
-func (c ExchangeOnPremisesPolicyClient) UpdateExchangeOnPremisesPolicy(ctx context.Context, input beta.DeviceManagementExchangeOnPremisesPolicy) (result UpdateExchangeOnPremisesPolicyOperationResponse, err error) {
+type UpdateExchangeOnPremisesPolicyOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateExchangeOnPremisesPolicyOperationOptions() UpdateExchangeOnPremisesPolicyOperationOptions {
+	return UpdateExchangeOnPremisesPolicyOperationOptions{}
+}
+
+func (o UpdateExchangeOnPremisesPolicyOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateExchangeOnPremisesPolicyOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateExchangeOnPremisesPolicyOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
+// UpdateExchangeOnPremisesPolicy - Update the navigation property exchangeOnPremisesPolicies in deviceManagement
+func (c ExchangeOnPremisesPolicyClient) UpdateExchangeOnPremisesPolicy(ctx context.Context, id beta.DeviceManagementExchangeOnPremisesPolicyId, input beta.DeviceManagementExchangeOnPremisesPolicy, options UpdateExchangeOnPremisesPolicyOperationOptions) (result UpdateExchangeOnPremisesPolicyOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       "/deviceManagement/exchangeOnPremisesPolicy",
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

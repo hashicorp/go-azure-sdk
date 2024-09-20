@@ -19,16 +19,45 @@ type CreateReusablePolicySettingReferencingConfigurationPolicySettingOperationRe
 	Model        *beta.DeviceManagementConfigurationSetting
 }
 
+type CreateReusablePolicySettingReferencingConfigurationPolicySettingOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateReusablePolicySettingReferencingConfigurationPolicySettingOperationOptions() CreateReusablePolicySettingReferencingConfigurationPolicySettingOperationOptions {
+	return CreateReusablePolicySettingReferencingConfigurationPolicySettingOperationOptions{}
+}
+
+func (o CreateReusablePolicySettingReferencingConfigurationPolicySettingOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateReusablePolicySettingReferencingConfigurationPolicySettingOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateReusablePolicySettingReferencingConfigurationPolicySettingOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateReusablePolicySettingReferencingConfigurationPolicySetting - Create new navigation property to settings for
 // deviceManagement
-func (c ReusablePolicySettingReferencingConfigurationPolicySettingClient) CreateReusablePolicySettingReferencingConfigurationPolicySetting(ctx context.Context, id beta.DeviceManagementReusablePolicySettingIdReferencingConfigurationPolicyId, input beta.DeviceManagementConfigurationSetting) (result CreateReusablePolicySettingReferencingConfigurationPolicySettingOperationResponse, err error) {
+func (c ReusablePolicySettingReferencingConfigurationPolicySettingClient) CreateReusablePolicySettingReferencingConfigurationPolicySetting(ctx context.Context, id beta.DeviceManagementReusablePolicySettingIdReferencingConfigurationPolicyId, input beta.DeviceManagementConfigurationSetting, options CreateReusablePolicySettingReferencingConfigurationPolicySettingOperationOptions) (result CreateReusablePolicySettingReferencingConfigurationPolicySettingOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/settings", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/settings", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/stable/report` Documentation
 
-The `report` SDK allows for interaction with the Azure Resource Manager Service `devicemanagement` (API Version `stable`).
+The `report` SDK allows for interaction with Microsoft Graph `devicemanagement` (API Version `stable`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -15,7 +15,7 @@ import "github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/stabl
 ### Client Initialization
 
 ```go
-client := report.NewReportClientWithBaseURI("https://management.azure.com")
+client := report.NewReportClientWithBaseURI("https://graph.microsoft.com")
 client.Client.Authorizer = authorizer
 ```
 
@@ -62,7 +62,7 @@ payload := report.GetReportsCachedReportRequest{
 }
 
 
-read, err := client.GetReportsCachedReport(ctx, payload)
+read, err := client.GetReportsCachedReport(ctx, payload, report.DefaultGetReportsCachedReportOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -82,7 +82,7 @@ payload := report.GetReportsCompliancePolicyNonComplianceReportRequest{
 }
 
 
-read, err := client.GetReportsCompliancePolicyNonComplianceReport(ctx, payload)
+read, err := client.GetReportsCompliancePolicyNonComplianceReport(ctx, payload, report.DefaultGetReportsCompliancePolicyNonComplianceReportOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -102,7 +102,7 @@ payload := report.GetReportsCompliancePolicyNonComplianceSummaryReportRequest{
 }
 
 
-read, err := client.GetReportsCompliancePolicyNonComplianceSummaryReport(ctx, payload)
+read, err := client.GetReportsCompliancePolicyNonComplianceSummaryReport(ctx, payload, report.DefaultGetReportsCompliancePolicyNonComplianceSummaryReportOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -122,7 +122,7 @@ payload := report.GetReportsComplianceSettingNonComplianceReportRequest{
 }
 
 
-read, err := client.GetReportsComplianceSettingNonComplianceReport(ctx, payload)
+read, err := client.GetReportsComplianceSettingNonComplianceReport(ctx, payload, report.DefaultGetReportsComplianceSettingNonComplianceReportOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -142,7 +142,7 @@ payload := report.GetReportsConfigurationPolicyNonComplianceReportRequest{
 }
 
 
-read, err := client.GetReportsConfigurationPolicyNonComplianceReport(ctx, payload)
+read, err := client.GetReportsConfigurationPolicyNonComplianceReport(ctx, payload, report.DefaultGetReportsConfigurationPolicyNonComplianceReportOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -162,7 +162,7 @@ payload := report.GetReportsConfigurationPolicyNonComplianceSummaryReportRequest
 }
 
 
-read, err := client.GetReportsConfigurationPolicyNonComplianceSummaryReport(ctx, payload)
+read, err := client.GetReportsConfigurationPolicyNonComplianceSummaryReport(ctx, payload, report.DefaultGetReportsConfigurationPolicyNonComplianceSummaryReportOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -182,7 +182,7 @@ payload := report.GetReportsConfigurationSettingNonComplianceReportRequest{
 }
 
 
-read, err := client.GetReportsConfigurationSettingNonComplianceReport(ctx, payload)
+read, err := client.GetReportsConfigurationSettingNonComplianceReport(ctx, payload, report.DefaultGetReportsConfigurationSettingNonComplianceReportOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -192,17 +192,17 @@ if model := read.Model; model != nil {
 ```
 
 
-### Example Usage: `ReportClient.GetReportsDeviceManagementIntentPerSettingContributingProfile`
+### Example Usage: `ReportClient.GetReportsDeviceManagementIntentPerSettingContributingProfiles`
 
 ```go
 ctx := context.TODO()
 
-payload := report.GetReportsDeviceManagementIntentPerSettingContributingProfileRequest{
+payload := report.GetReportsDeviceManagementIntentPerSettingContributingProfilesRequest{
 	// ...
 }
 
 
-read, err := client.GetReportsDeviceManagementIntentPerSettingContributingProfile(ctx, payload)
+read, err := client.GetReportsDeviceManagementIntentPerSettingContributingProfiles(ctx, payload, report.DefaultGetReportsDeviceManagementIntentPerSettingContributingProfilesOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -222,7 +222,7 @@ payload := report.GetReportsDeviceManagementIntentSettingsReportRequest{
 }
 
 
-read, err := client.GetReportsDeviceManagementIntentSettingsReport(ctx, payload)
+read, err := client.GetReportsDeviceManagementIntentSettingsReport(ctx, payload, report.DefaultGetReportsDeviceManagementIntentSettingsReportOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -242,7 +242,7 @@ payload := report.GetReportsDeviceNonComplianceReportRequest{
 }
 
 
-read, err := client.GetReportsDeviceNonComplianceReport(ctx, payload)
+read, err := client.GetReportsDeviceNonComplianceReport(ctx, payload, report.DefaultGetReportsDeviceNonComplianceReportOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -262,7 +262,7 @@ payload := report.GetReportsDevicesWithoutCompliancePolicyReportRequest{
 }
 
 
-read, err := client.GetReportsDevicesWithoutCompliancePolicyReport(ctx, payload)
+read, err := client.GetReportsDevicesWithoutCompliancePolicyReport(ctx, payload, report.DefaultGetReportsDevicesWithoutCompliancePolicyReportOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -272,17 +272,17 @@ if model := read.Model; model != nil {
 ```
 
 
-### Example Usage: `ReportClient.GetReportsFilter`
+### Example Usage: `ReportClient.GetReportsFilters`
 
 ```go
 ctx := context.TODO()
 
-payload := report.GetReportsFilterRequest{
+payload := report.GetReportsFiltersRequest{
 	// ...
 }
 
 
-read, err := client.GetReportsFilter(ctx, payload)
+read, err := client.GetReportsFilters(ctx, payload, report.DefaultGetReportsFiltersOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -302,7 +302,7 @@ payload := report.GetReportsHistoricalReportRequest{
 }
 
 
-read, err := client.GetReportsHistoricalReport(ctx, payload)
+read, err := client.GetReportsHistoricalReport(ctx, payload, report.DefaultGetReportsHistoricalReportOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -322,7 +322,7 @@ payload := report.GetReportsNoncompliantDevicesAndSettingsReportRequest{
 }
 
 
-read, err := client.GetReportsNoncompliantDevicesAndSettingsReport(ctx, payload)
+read, err := client.GetReportsNoncompliantDevicesAndSettingsReport(ctx, payload, report.DefaultGetReportsNoncompliantDevicesAndSettingsReportOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -342,7 +342,7 @@ payload := report.GetReportsPolicyNonComplianceMetadataRequest{
 }
 
 
-read, err := client.GetReportsPolicyNonComplianceMetadata(ctx, payload)
+read, err := client.GetReportsPolicyNonComplianceMetadata(ctx, payload, report.DefaultGetReportsPolicyNonComplianceMetadataOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -362,7 +362,7 @@ payload := report.GetReportsPolicyNonComplianceReportRequest{
 }
 
 
-read, err := client.GetReportsPolicyNonComplianceReport(ctx, payload)
+read, err := client.GetReportsPolicyNonComplianceReport(ctx, payload, report.DefaultGetReportsPolicyNonComplianceReportOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -382,7 +382,7 @@ payload := report.GetReportsPolicyNonComplianceSummaryReportRequest{
 }
 
 
-read, err := client.GetReportsPolicyNonComplianceSummaryReport(ctx, payload)
+read, err := client.GetReportsPolicyNonComplianceSummaryReport(ctx, payload, report.DefaultGetReportsPolicyNonComplianceSummaryReportOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -402,7 +402,7 @@ payload := report.GetReportsSettingNonComplianceReportRequest{
 }
 
 
-read, err := client.GetReportsSettingNonComplianceReport(ctx, payload)
+read, err := client.GetReportsSettingNonComplianceReport(ctx, payload, report.DefaultGetReportsSettingNonComplianceReportOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -422,7 +422,7 @@ payload := report.DeviceManagementReports{
 }
 
 
-read, err := client.UpdateReport(ctx, payload)
+read, err := client.UpdateReport(ctx, payload, report.DefaultUpdateReportOperationOptions())
 if err != nil {
 	// handle the error
 }

@@ -17,15 +17,44 @@ type UpdateSitePageOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateSitePageOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateSitePageOperationOptions() UpdateSitePageOperationOptions {
+	return UpdateSitePageOperationOptions{}
+}
+
+func (o UpdateSitePageOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateSitePageOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateSitePageOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateSitePage - Update the navigation property pages in groups
-func (c SitePageClient) UpdateSitePage(ctx context.Context, id beta.GroupIdSiteIdPageId, input beta.BaseSitePage) (result UpdateSitePageOperationResponse, err error) {
+func (c SitePageClient) UpdateSitePage(ctx context.Context, id beta.GroupIdSiteIdPageId, input beta.BaseSitePage, options UpdateSitePageOperationOptions) (result UpdateSitePageOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

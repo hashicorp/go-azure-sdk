@@ -17,15 +17,44 @@ type GetReportsWindowsDriverUpdateAlertSummaryReportOperationResponse struct {
 	Model        *[]byte
 }
 
+type GetReportsWindowsDriverUpdateAlertSummaryReportOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultGetReportsWindowsDriverUpdateAlertSummaryReportOperationOptions() GetReportsWindowsDriverUpdateAlertSummaryReportOperationOptions {
+	return GetReportsWindowsDriverUpdateAlertSummaryReportOperationOptions{}
+}
+
+func (o GetReportsWindowsDriverUpdateAlertSummaryReportOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o GetReportsWindowsDriverUpdateAlertSummaryReportOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o GetReportsWindowsDriverUpdateAlertSummaryReportOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // GetReportsWindowsDriverUpdateAlertSummaryReport - Invoke action getWindowsDriverUpdateAlertSummaryReport
-func (c ReportClient) GetReportsWindowsDriverUpdateAlertSummaryReport(ctx context.Context, input GetReportsWindowsDriverUpdateAlertSummaryReportRequest) (result GetReportsWindowsDriverUpdateAlertSummaryReportOperationResponse, err error) {
+func (c ReportClient) GetReportsWindowsDriverUpdateAlertSummaryReport(ctx context.Context, input GetReportsWindowsDriverUpdateAlertSummaryReportRequest, options GetReportsWindowsDriverUpdateAlertSummaryReportOperationOptions) (result GetReportsWindowsDriverUpdateAlertSummaryReportOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/octet-stream",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/deviceManagement/reports/getWindowsDriverUpdateAlertSummaryReport",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/deviceManagement/reports/getWindowsDriverUpdateAlertSummaryReport",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

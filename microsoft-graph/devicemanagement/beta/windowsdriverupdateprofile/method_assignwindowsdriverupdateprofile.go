@@ -18,15 +18,44 @@ type AssignWindowsDriverUpdateProfileOperationResponse struct {
 	OData        *odata.OData
 }
 
+type AssignWindowsDriverUpdateProfileOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultAssignWindowsDriverUpdateProfileOperationOptions() AssignWindowsDriverUpdateProfileOperationOptions {
+	return AssignWindowsDriverUpdateProfileOperationOptions{}
+}
+
+func (o AssignWindowsDriverUpdateProfileOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o AssignWindowsDriverUpdateProfileOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o AssignWindowsDriverUpdateProfileOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // AssignWindowsDriverUpdateProfile - Invoke action assign
-func (c WindowsDriverUpdateProfileClient) AssignWindowsDriverUpdateProfile(ctx context.Context, id beta.DeviceManagementWindowsDriverUpdateProfileId, input AssignWindowsDriverUpdateProfileRequest) (result AssignWindowsDriverUpdateProfileOperationResponse, err error) {
+func (c WindowsDriverUpdateProfileClient) AssignWindowsDriverUpdateProfile(ctx context.Context, id beta.DeviceManagementWindowsDriverUpdateProfileId, input AssignWindowsDriverUpdateProfileRequest, options AssignWindowsDriverUpdateProfileOperationOptions) (result AssignWindowsDriverUpdateProfileOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/assign", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/assign", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

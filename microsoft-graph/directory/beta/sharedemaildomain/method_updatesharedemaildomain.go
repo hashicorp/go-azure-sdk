@@ -17,15 +17,44 @@ type UpdateSharedEmailDomainOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateSharedEmailDomainOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateSharedEmailDomainOperationOptions() UpdateSharedEmailDomainOperationOptions {
+	return UpdateSharedEmailDomainOperationOptions{}
+}
+
+func (o UpdateSharedEmailDomainOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateSharedEmailDomainOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateSharedEmailDomainOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateSharedEmailDomain - Update the navigation property sharedEmailDomains in directory
-func (c SharedEmailDomainClient) UpdateSharedEmailDomain(ctx context.Context, id beta.DirectorySharedEmailDomainId, input beta.SharedEmailDomain) (result UpdateSharedEmailDomainOperationResponse, err error) {
+func (c SharedEmailDomainClient) UpdateSharedEmailDomain(ctx context.Context, id beta.DirectorySharedEmailDomainId, input beta.SharedEmailDomain, options UpdateSharedEmailDomainOperationOptions) (result UpdateSharedEmailDomainOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

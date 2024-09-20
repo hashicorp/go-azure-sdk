@@ -93,22 +93,33 @@ func (s PlannerPlan) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &PlannerPlan{}
 
 func (s *PlannerPlan) UnmarshalJSON(bytes []byte) error {
-	type alias PlannerPlan
-	var decoded alias
+
+	var decoded struct {
+		Buckets         *[]PlannerBucket      `json:"buckets,omitempty"`
+		Container       PlannerPlanContainer  `json:"container"`
+		CreatedDateTime nullable.Type[string] `json:"createdDateTime,omitempty"`
+		Details         *PlannerPlanDetails   `json:"details,omitempty"`
+		Owner           nullable.Type[string] `json:"owner,omitempty"`
+		Tasks           *[]PlannerTask        `json:"tasks,omitempty"`
+		Title           string                `json:"title"`
+		Id              *string               `json:"id,omitempty"`
+		ODataId         *string               `json:"@odata.id,omitempty"`
+		ODataType       *string               `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into PlannerPlan: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.Buckets = decoded.Buckets
 	s.Container = decoded.Container
 	s.CreatedDateTime = decoded.CreatedDateTime
 	s.Details = decoded.Details
-	s.Id = decoded.Id
-	s.ODataId = decoded.ODataId
-	s.ODataType = decoded.ODataType
 	s.Owner = decoded.Owner
 	s.Tasks = decoded.Tasks
 	s.Title = decoded.Title
+	s.Id = decoded.Id
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -122,5 +133,6 @@ func (s *PlannerPlan) UnmarshalJSON(bytes []byte) error {
 		}
 		s.CreatedBy = &impl
 	}
+
 	return nil
 }

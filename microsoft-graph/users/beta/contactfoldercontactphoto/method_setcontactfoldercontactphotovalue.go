@@ -18,16 +18,45 @@ type SetContactFolderContactPhotoValueOperationResponse struct {
 	OData        *odata.OData
 }
 
+type SetContactFolderContactPhotoValueOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultSetContactFolderContactPhotoValueOperationOptions() SetContactFolderContactPhotoValueOperationOptions {
+	return SetContactFolderContactPhotoValueOperationOptions{}
+}
+
+func (o SetContactFolderContactPhotoValueOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o SetContactFolderContactPhotoValueOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o SetContactFolderContactPhotoValueOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // SetContactFolderContactPhotoValue - Update media content for the navigation property photo in users. Optional contact
 // picture. You can get or set a photo for a contact.
-func (c ContactFolderContactPhotoClient) SetContactFolderContactPhotoValue(ctx context.Context, id beta.UserIdContactFolderIdContactId, input []byte) (result SetContactFolderContactPhotoValueOperationResponse, err error) {
+func (c ContactFolderContactPhotoClient) SetContactFolderContactPhotoValue(ctx context.Context, id beta.UserIdContactFolderIdContactId, input []byte, options SetContactFolderContactPhotoValueOperationOptions) (result SetContactFolderContactPhotoValueOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPut,
-		Path:       fmt.Sprintf("%s/photo/$value", id.ID()),
+		HttpMethod:    http.MethodPut,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/photo/$value", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

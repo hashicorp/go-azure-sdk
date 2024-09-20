@@ -19,7 +19,8 @@ type DeleteDataSharingConsentOperationResponse struct {
 }
 
 type DeleteDataSharingConsentOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteDataSharingConsentOperationOptions() DeleteDataSharingConsentOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteDataSharingConsentOperationOptions) ToHeaders() *client.Headers {
 
 func (o DeleteDataSharingConsentOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

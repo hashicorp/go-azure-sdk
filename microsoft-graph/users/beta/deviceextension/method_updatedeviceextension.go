@@ -17,15 +17,44 @@ type UpdateDeviceExtensionOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateDeviceExtensionOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateDeviceExtensionOperationOptions() UpdateDeviceExtensionOperationOptions {
+	return UpdateDeviceExtensionOperationOptions{}
+}
+
+func (o UpdateDeviceExtensionOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateDeviceExtensionOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateDeviceExtensionOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateDeviceExtension - Update the navigation property extensions in users
-func (c DeviceExtensionClient) UpdateDeviceExtension(ctx context.Context, id beta.UserIdDeviceIdExtensionId, input beta.Extension) (result UpdateDeviceExtensionOperationResponse, err error) {
+func (c DeviceExtensionClient) UpdateDeviceExtension(ctx context.Context, id beta.UserIdDeviceIdExtensionId, input beta.Extension, options UpdateDeviceExtensionOperationOptions) (result UpdateDeviceExtensionOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

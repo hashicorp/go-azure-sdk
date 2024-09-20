@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &DeviceManagementVirtualEndpointDeviceImageId{}
 
 func TestNewDeviceManagementVirtualEndpointDeviceImageID(t *testing.T) {
-	id := NewDeviceManagementVirtualEndpointDeviceImageID("cloudPCDeviceImageIdValue")
+	id := NewDeviceManagementVirtualEndpointDeviceImageID("cloudPCDeviceImageId")
 
-	if id.CloudPCDeviceImageId != "cloudPCDeviceImageIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'CloudPCDeviceImageId'", id.CloudPCDeviceImageId, "cloudPCDeviceImageIdValue")
+	if id.CloudPCDeviceImageId != "cloudPCDeviceImageId" {
+		t.Fatalf("Expected %q but got %q for Segment 'CloudPCDeviceImageId'", id.CloudPCDeviceImageId, "cloudPCDeviceImageId")
 	}
 }
 
 func TestFormatDeviceManagementVirtualEndpointDeviceImageID(t *testing.T) {
-	actual := NewDeviceManagementVirtualEndpointDeviceImageID("cloudPCDeviceImageIdValue").ID()
-	expected := "/deviceManagement/virtualEndpoint/deviceImages/cloudPCDeviceImageIdValue"
+	actual := NewDeviceManagementVirtualEndpointDeviceImageID("cloudPCDeviceImageId").ID()
+	expected := "/deviceManagement/virtualEndpoint/deviceImages/cloudPCDeviceImageId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -55,14 +55,14 @@ func TestParseDeviceManagementVirtualEndpointDeviceImageID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/virtualEndpoint/deviceImages/cloudPCDeviceImageIdValue",
+			Input: "/deviceManagement/virtualEndpoint/deviceImages/cloudPCDeviceImageId",
 			Expected: &DeviceManagementVirtualEndpointDeviceImageId{
-				CloudPCDeviceImageId: "cloudPCDeviceImageIdValue",
+				CloudPCDeviceImageId: "cloudPCDeviceImageId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/virtualEndpoint/deviceImages/cloudPCDeviceImageIdValue/extra",
+			Input: "/deviceManagement/virtualEndpoint/deviceImages/cloudPCDeviceImageId/extra",
 			Error: true,
 		},
 	}
@@ -131,26 +131,26 @@ func TestParseDeviceManagementVirtualEndpointDeviceImageIDInsensitively(t *testi
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/virtualEndpoint/deviceImages/cloudPCDeviceImageIdValue",
+			Input: "/deviceManagement/virtualEndpoint/deviceImages/cloudPCDeviceImageId",
 			Expected: &DeviceManagementVirtualEndpointDeviceImageId{
-				CloudPCDeviceImageId: "cloudPCDeviceImageIdValue",
+				CloudPCDeviceImageId: "cloudPCDeviceImageId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/virtualEndpoint/deviceImages/cloudPCDeviceImageIdValue/extra",
+			Input: "/deviceManagement/virtualEndpoint/deviceImages/cloudPCDeviceImageId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/vIrTuAlEnDpOiNt/dEvIcEiMaGeS/cLoUdPcDeViCeImAgEiDvAlUe",
+			Input: "/dEvIcEmAnAgEmEnT/vIrTuAlEnDpOiNt/dEvIcEiMaGeS/cLoUdPcDeViCeImAgEiD",
 			Expected: &DeviceManagementVirtualEndpointDeviceImageId{
-				CloudPCDeviceImageId: "cLoUdPcDeViCeImAgEiDvAlUe",
+				CloudPCDeviceImageId: "cLoUdPcDeViCeImAgEiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/vIrTuAlEnDpOiNt/dEvIcEiMaGeS/cLoUdPcDeViCeImAgEiDvAlUe/extra",
+			Input: "/dEvIcEmAnAgEmEnT/vIrTuAlEnDpOiNt/dEvIcEiMaGeS/cLoUdPcDeViCeImAgEiD/extra",
 			Error: true,
 		},
 	}

@@ -98,10 +98,10 @@ func (id UserIdProfileAddressId) ID() string {
 func (id UserIdProfileAddressId) Segments() []resourceids.Segment {
 	return []resourceids.Segment{
 		resourceids.StaticSegment("users", "users", "users"),
-		resourceids.UserSpecifiedSegment("userId", "userIdValue"),
+		resourceids.UserSpecifiedSegment("userId", "userId"),
 		resourceids.StaticSegment("profile", "profile", "profile"),
 		resourceids.StaticSegment("addresses", "addresses", "addresses"),
-		resourceids.UserSpecifiedSegment("itemAddressId", "itemAddressIdValue"),
+		resourceids.UserSpecifiedSegment("itemAddressId", "itemAddressId"),
 	}
 }
 

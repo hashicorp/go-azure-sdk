@@ -19,16 +19,45 @@ type GetOnlineMeetingAttendeeReportOperationResponse struct {
 	Model        *[]byte
 }
 
+type GetOnlineMeetingAttendeeReportOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultGetOnlineMeetingAttendeeReportOperationOptions() GetOnlineMeetingAttendeeReportOperationOptions {
+	return GetOnlineMeetingAttendeeReportOperationOptions{}
+}
+
+func (o GetOnlineMeetingAttendeeReportOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o GetOnlineMeetingAttendeeReportOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o GetOnlineMeetingAttendeeReportOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // GetOnlineMeetingAttendeeReport - Get attendeeReport for the navigation property onlineMeetings from users. The
 // content stream of the attendee report of a Microsoft Teams live event. Read-only.
-func (c OnlineMeetingAttendeeReportClient) GetOnlineMeetingAttendeeReport(ctx context.Context, id stable.UserIdOnlineMeetingId) (result GetOnlineMeetingAttendeeReportOperationResponse, err error) {
+func (c OnlineMeetingAttendeeReportClient) GetOnlineMeetingAttendeeReport(ctx context.Context, id stable.UserIdOnlineMeetingId, options GetOnlineMeetingAttendeeReportOperationOptions) (result GetOnlineMeetingAttendeeReportOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/octet-stream",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/attendeeReport", id.ID()),
+		HttpMethod:    http.MethodGet,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/attendeeReport", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

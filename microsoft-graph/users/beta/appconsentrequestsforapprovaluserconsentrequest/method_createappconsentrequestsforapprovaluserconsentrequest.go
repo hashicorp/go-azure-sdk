@@ -19,16 +19,45 @@ type CreateAppConsentRequestsForApprovalUserConsentRequestOperationResponse stru
 	Model        *beta.UserConsentRequest
 }
 
+type CreateAppConsentRequestsForApprovalUserConsentRequestOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateAppConsentRequestsForApprovalUserConsentRequestOperationOptions() CreateAppConsentRequestsForApprovalUserConsentRequestOperationOptions {
+	return CreateAppConsentRequestsForApprovalUserConsentRequestOperationOptions{}
+}
+
+func (o CreateAppConsentRequestsForApprovalUserConsentRequestOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateAppConsentRequestsForApprovalUserConsentRequestOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateAppConsentRequestsForApprovalUserConsentRequestOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateAppConsentRequestsForApprovalUserConsentRequest - Create new navigation property to userConsentRequests for
 // users
-func (c AppConsentRequestsForApprovalUserConsentRequestClient) CreateAppConsentRequestsForApprovalUserConsentRequest(ctx context.Context, id beta.UserIdAppConsentRequestsForApprovalId, input beta.UserConsentRequest) (result CreateAppConsentRequestsForApprovalUserConsentRequestOperationResponse, err error) {
+func (c AppConsentRequestsForApprovalUserConsentRequestClient) CreateAppConsentRequestsForApprovalUserConsentRequest(ctx context.Context, id beta.UserIdAppConsentRequestsForApprovalId, input beta.UserConsentRequest, options CreateAppConsentRequestsForApprovalUserConsentRequestOperationOptions) (result CreateAppConsentRequestsForApprovalUserConsentRequestOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/userConsentRequests", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/userConsentRequests", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

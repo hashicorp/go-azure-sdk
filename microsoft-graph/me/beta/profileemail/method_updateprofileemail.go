@@ -17,15 +17,44 @@ type UpdateProfileEmailOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateProfileEmailOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateProfileEmailOperationOptions() UpdateProfileEmailOperationOptions {
+	return UpdateProfileEmailOperationOptions{}
+}
+
+func (o UpdateProfileEmailOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateProfileEmailOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateProfileEmailOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateProfileEmail - Update the navigation property emails in me
-func (c ProfileEmailClient) UpdateProfileEmail(ctx context.Context, id beta.MeProfileEmailId, input beta.ItemEmail) (result UpdateProfileEmailOperationResponse, err error) {
+func (c ProfileEmailClient) UpdateProfileEmail(ctx context.Context, id beta.MeProfileEmailId, input beta.ItemEmail, options UpdateProfileEmailOperationOptions) (result UpdateProfileEmailOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

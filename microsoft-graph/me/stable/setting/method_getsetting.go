@@ -19,8 +19,9 @@ type GetSettingOperationResponse struct {
 }
 
 type GetSettingOperationOptions struct {
-	Expand *odata.Expand
-	Select *[]string
+	Expand   *odata.Expand
+	Metadata *odata.Metadata
+	Select   *[]string
 }
 
 func DefaultGetSettingOperationOptions() GetSettingOperationOptions {
@@ -37,6 +38,9 @@ func (o GetSettingOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
 	if o.Expand != nil {
 		out.Expand = *o.Expand
+	}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
 	}
 	if o.Select != nil {
 		out.Select = *o.Select

@@ -17,15 +17,44 @@ type GetReportsAppStatusOverviewReportOperationResponse struct {
 	Model        *[]byte
 }
 
+type GetReportsAppStatusOverviewReportOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultGetReportsAppStatusOverviewReportOperationOptions() GetReportsAppStatusOverviewReportOperationOptions {
+	return GetReportsAppStatusOverviewReportOperationOptions{}
+}
+
+func (o GetReportsAppStatusOverviewReportOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o GetReportsAppStatusOverviewReportOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o GetReportsAppStatusOverviewReportOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // GetReportsAppStatusOverviewReport - Invoke action getAppStatusOverviewReport
-func (c ReportClient) GetReportsAppStatusOverviewReport(ctx context.Context, input GetReportsAppStatusOverviewReportRequest) (result GetReportsAppStatusOverviewReportOperationResponse, err error) {
+func (c ReportClient) GetReportsAppStatusOverviewReport(ctx context.Context, input GetReportsAppStatusOverviewReportRequest, options GetReportsAppStatusOverviewReportOperationOptions) (result GetReportsAppStatusOverviewReportOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/octet-stream",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/deviceManagement/reports/getAppStatusOverviewReport",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/deviceManagement/reports/getAppStatusOverviewReport",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

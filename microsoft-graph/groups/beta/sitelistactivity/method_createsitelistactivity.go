@@ -19,15 +19,44 @@ type CreateSiteListActivityOperationResponse struct {
 	Model        *beta.ItemActivityOLD
 }
 
+type CreateSiteListActivityOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateSiteListActivityOperationOptions() CreateSiteListActivityOperationOptions {
+	return CreateSiteListActivityOperationOptions{}
+}
+
+func (o CreateSiteListActivityOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateSiteListActivityOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateSiteListActivityOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateSiteListActivity - Create new navigation property to activities for groups
-func (c SiteListActivityClient) CreateSiteListActivity(ctx context.Context, id beta.GroupIdSiteIdListId, input beta.ItemActivityOLD) (result CreateSiteListActivityOperationResponse, err error) {
+func (c SiteListActivityClient) CreateSiteListActivity(ctx context.Context, id beta.GroupIdSiteIdListId, input beta.ItemActivityOLD, options CreateSiteListActivityOperationOptions) (result CreateSiteListActivityOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/activities", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/activities", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

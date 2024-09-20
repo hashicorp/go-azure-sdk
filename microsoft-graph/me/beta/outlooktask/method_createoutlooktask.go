@@ -18,20 +18,49 @@ type CreateOutlookTaskOperationResponse struct {
 	Model        *beta.OutlookTask
 }
 
+type CreateOutlookTaskOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateOutlookTaskOperationOptions() CreateOutlookTaskOperationOptions {
+	return CreateOutlookTaskOperationOptions{}
+}
+
+func (o CreateOutlookTaskOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateOutlookTaskOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateOutlookTaskOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateOutlookTask - Create outlookTask (deprecated). Create an Outlook task in the default task group (My Tasks) and
 // default task folder (Tasks) in the user's mailbox. The POST method always ignores the time portion of startDateTime
 // and dueDateTime in the request body, and assumes the time to be always midnight in the specified time zone. By
 // default, this operation (and the GET, PATCH, and complete task operations) returns date-related properties in UTC.
 // You can use the Prefer: outlook.timezone header to have all the date-related properties in the response represented
 // in a time zone different than UTC.
-func (c OutlookTaskClient) CreateOutlookTask(ctx context.Context, input beta.OutlookTask) (result CreateOutlookTaskOperationResponse, err error) {
+func (c OutlookTaskClient) CreateOutlookTask(ctx context.Context, input beta.OutlookTask, options CreateOutlookTaskOperationOptions) (result CreateOutlookTaskOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/me/outlook/tasks",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/me/outlook/tasks",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

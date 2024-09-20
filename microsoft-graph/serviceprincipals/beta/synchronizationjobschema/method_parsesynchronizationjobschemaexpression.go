@@ -19,17 +19,46 @@ type ParseSynchronizationJobSchemaExpressionOperationResponse struct {
 	Model        *beta.ParseExpressionResponse
 }
 
+type ParseSynchronizationJobSchemaExpressionOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultParseSynchronizationJobSchemaExpressionOperationOptions() ParseSynchronizationJobSchemaExpressionOperationOptions {
+	return ParseSynchronizationJobSchemaExpressionOperationOptions{}
+}
+
+func (o ParseSynchronizationJobSchemaExpressionOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o ParseSynchronizationJobSchemaExpressionOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o ParseSynchronizationJobSchemaExpressionOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // ParseSynchronizationJobSchemaExpression - Invoke action parseExpression. Parse a given string expression into an
 // attributeMappingSource object. For more information about expressions, see Writing Expressions for Attribute Mappings
 // in Microsoft Entra ID.
-func (c SynchronizationJobSchemaClient) ParseSynchronizationJobSchemaExpression(ctx context.Context, id beta.ServicePrincipalIdSynchronizationJobId, input ParseSynchronizationJobSchemaExpressionRequest) (result ParseSynchronizationJobSchemaExpressionOperationResponse, err error) {
+func (c SynchronizationJobSchemaClient) ParseSynchronizationJobSchemaExpression(ctx context.Context, id beta.ServicePrincipalIdSynchronizationJobId, input ParseSynchronizationJobSchemaExpressionRequest, options ParseSynchronizationJobSchemaExpressionOperationOptions) (result ParseSynchronizationJobSchemaExpressionOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/schema/parseExpression", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/schema/parseExpression", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

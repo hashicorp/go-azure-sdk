@@ -82,19 +82,27 @@ func (s OpenAwsSecurityGroupFinding) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &OpenAwsSecurityGroupFinding{}
 
 func (s *OpenAwsSecurityGroupFinding) UnmarshalJSON(bytes []byte) error {
-	type alias OpenAwsSecurityGroupFinding
-	var decoded alias
+
+	var decoded struct {
+		AssignedComputeInstancesDetails *[]AssignedComputeInstanceDetails `json:"assignedComputeInstancesDetails,omitempty"`
+		SecurityGroup                   *AwsAuthorizationSystemResource   `json:"securityGroup,omitempty"`
+		TotalStorageBucketCount         *int64                            `json:"totalStorageBucketCount,omitempty"`
+		CreatedDateTime                 *string                           `json:"createdDateTime,omitempty"`
+		Id                              *string                           `json:"id,omitempty"`
+		ODataId                         *string                           `json:"@odata.id,omitempty"`
+		ODataType                       *string                           `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into OpenAwsSecurityGroupFinding: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.AssignedComputeInstancesDetails = decoded.AssignedComputeInstancesDetails
+	s.SecurityGroup = decoded.SecurityGroup
+	s.TotalStorageBucketCount = decoded.TotalStorageBucketCount
 	s.CreatedDateTime = decoded.CreatedDateTime
 	s.Id = decoded.Id
 	s.ODataId = decoded.ODataId
 	s.ODataType = decoded.ODataType
-	s.SecurityGroup = decoded.SecurityGroup
-	s.TotalStorageBucketCount = decoded.TotalStorageBucketCount
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -108,5 +116,6 @@ func (s *OpenAwsSecurityGroupFinding) UnmarshalJSON(bytes []byte) error {
 		}
 		s.InboundPorts = impl
 	}
+
 	return nil
 }

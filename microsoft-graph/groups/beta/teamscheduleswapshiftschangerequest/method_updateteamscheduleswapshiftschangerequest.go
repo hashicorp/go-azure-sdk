@@ -17,15 +17,44 @@ type UpdateTeamScheduleSwapShiftsChangeRequestOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateTeamScheduleSwapShiftsChangeRequestOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateTeamScheduleSwapShiftsChangeRequestOperationOptions() UpdateTeamScheduleSwapShiftsChangeRequestOperationOptions {
+	return UpdateTeamScheduleSwapShiftsChangeRequestOperationOptions{}
+}
+
+func (o UpdateTeamScheduleSwapShiftsChangeRequestOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateTeamScheduleSwapShiftsChangeRequestOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateTeamScheduleSwapShiftsChangeRequestOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateTeamScheduleSwapShiftsChangeRequest - Update the navigation property swapShiftsChangeRequests in groups
-func (c TeamScheduleSwapShiftsChangeRequestClient) UpdateTeamScheduleSwapShiftsChangeRequest(ctx context.Context, id beta.GroupIdTeamScheduleSwapShiftsChangeRequestId, input beta.SwapShiftsChangeRequest) (result UpdateTeamScheduleSwapShiftsChangeRequestOperationResponse, err error) {
+func (c TeamScheduleSwapShiftsChangeRequestClient) UpdateTeamScheduleSwapShiftsChangeRequest(ctx context.Context, id beta.GroupIdTeamScheduleSwapShiftsChangeRequestId, input beta.SwapShiftsChangeRequest, options UpdateTeamScheduleSwapShiftsChangeRequestOperationOptions) (result UpdateTeamScheduleSwapShiftsChangeRequestOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

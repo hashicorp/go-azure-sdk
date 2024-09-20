@@ -18,17 +18,46 @@ type RetryVirtualEndpointCloudPCPartnerAgentInstallationOperationResponse struct
 	OData        *odata.OData
 }
 
+type RetryVirtualEndpointCloudPCPartnerAgentInstallationOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultRetryVirtualEndpointCloudPCPartnerAgentInstallationOperationOptions() RetryVirtualEndpointCloudPCPartnerAgentInstallationOperationOptions {
+	return RetryVirtualEndpointCloudPCPartnerAgentInstallationOperationOptions{}
+}
+
+func (o RetryVirtualEndpointCloudPCPartnerAgentInstallationOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o RetryVirtualEndpointCloudPCPartnerAgentInstallationOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o RetryVirtualEndpointCloudPCPartnerAgentInstallationOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // RetryVirtualEndpointCloudPCPartnerAgentInstallation - Invoke action retryPartnerAgentInstallation. Retry installation
 // for the partner agents that failed to install on the Cloud PC. Service side checks which agent installation failed
 // firstly and retry.
-func (c VirtualEndpointCloudPCClient) RetryVirtualEndpointCloudPCPartnerAgentInstallation(ctx context.Context, id beta.DeviceManagementVirtualEndpointCloudPCId) (result RetryVirtualEndpointCloudPCPartnerAgentInstallationOperationResponse, err error) {
+func (c VirtualEndpointCloudPCClient) RetryVirtualEndpointCloudPCPartnerAgentInstallation(ctx context.Context, id beta.DeviceManagementVirtualEndpointCloudPCId, options RetryVirtualEndpointCloudPCPartnerAgentInstallationOperationOptions) (result RetryVirtualEndpointCloudPCPartnerAgentInstallationOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/retryPartnerAgentInstallation", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/retryPartnerAgentInstallation", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

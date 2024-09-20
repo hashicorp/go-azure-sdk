@@ -18,18 +18,47 @@ type EndVirtualEndpointCloudPCGracePeriodOperationResponse struct {
 	OData        *odata.OData
 }
 
+type EndVirtualEndpointCloudPCGracePeriodOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultEndVirtualEndpointCloudPCGracePeriodOperationOptions() EndVirtualEndpointCloudPCGracePeriodOperationOptions {
+	return EndVirtualEndpointCloudPCGracePeriodOperationOptions{}
+}
+
+func (o EndVirtualEndpointCloudPCGracePeriodOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o EndVirtualEndpointCloudPCGracePeriodOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o EndVirtualEndpointCloudPCGracePeriodOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // EndVirtualEndpointCloudPCGracePeriod - Invoke action endGracePeriod. End the grace period for a specific Cloud PC.
 // The grace period is triggered when the Cloud PC license is removed or the provisioning policy is unassigned. It
 // allows users to access Cloud PCs for up to seven days before deprovisioning occurs. Ending the grace period
 // immediately deprovisions the Cloud PC without waiting the seven days.
-func (c VirtualEndpointCloudPCClient) EndVirtualEndpointCloudPCGracePeriod(ctx context.Context, id beta.DeviceManagementVirtualEndpointCloudPCId) (result EndVirtualEndpointCloudPCGracePeriodOperationResponse, err error) {
+func (c VirtualEndpointCloudPCClient) EndVirtualEndpointCloudPCGracePeriod(ctx context.Context, id beta.DeviceManagementVirtualEndpointCloudPCId, options EndVirtualEndpointCloudPCGracePeriodOperationOptions) (result EndVirtualEndpointCloudPCGracePeriodOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/endGracePeriod", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/endGracePeriod", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

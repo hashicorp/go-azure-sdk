@@ -19,7 +19,8 @@ type DeleteAuthenticationFido2MethodOperationResponse struct {
 }
 
 type DeleteAuthenticationFido2MethodOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteAuthenticationFido2MethodOperationOptions() DeleteAuthenticationFido2MethodOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteAuthenticationFido2MethodOperationOptions) ToHeaders() *client.Hea
 
 func (o DeleteAuthenticationFido2MethodOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

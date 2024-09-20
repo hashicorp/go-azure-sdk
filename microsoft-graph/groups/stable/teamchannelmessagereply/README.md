@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/stable/teamchannelmessagereply` Documentation
 
-The `teamchannelmessagereply` SDK allows for interaction with the Azure Resource Manager Service `groups` (API Version `stable`).
+The `teamchannelmessagereply` SDK allows for interaction with Microsoft Graph `groups` (API Version `stable`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -15,7 +15,7 @@ import "github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/stable/teamchan
 ### Client Initialization
 
 ```go
-client := teamchannelmessagereply.NewTeamChannelMessageReplyClientWithBaseURI("https://management.azure.com")
+client := teamchannelmessagereply.NewTeamChannelMessageReplyClientWithBaseURI("https://graph.microsoft.com")
 client.Client.Authorizer = authorizer
 ```
 
@@ -24,14 +24,14 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := teamchannelmessagereply.NewGroupIdTeamChannelIdMessageID("groupIdValue", "channelIdValue", "chatMessageIdValue")
+id := teamchannelmessagereply.NewGroupIdTeamChannelIdMessageID("groupId", "channelId", "chatMessageId")
 
 payload := teamchannelmessagereply.ChatMessage{
 	// ...
 }
 
 
-read, err := client.CreateTeamChannelMessageReply(ctx, id, payload)
+read, err := client.CreateTeamChannelMessageReply(ctx, id, payload, teamchannelmessagereply.DefaultCreateTeamChannelMessageReplyOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -45,9 +45,9 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := teamchannelmessagereply.NewGroupIdTeamChannelIdMessageIdReplyID("groupIdValue", "channelIdValue", "chatMessageIdValue", "chatMessageId1Value")
+id := teamchannelmessagereply.NewGroupIdTeamChannelIdMessageIdReplyID("groupId", "channelId", "chatMessageId", "chatMessageId1")
 
-read, err := client.CreateTeamChannelMessageReplySoftDelete(ctx, id)
+read, err := client.CreateTeamChannelMessageReplySoftDelete(ctx, id, teamchannelmessagereply.DefaultCreateTeamChannelMessageReplySoftDeleteOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -61,9 +61,9 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := teamchannelmessagereply.NewGroupIdTeamChannelIdMessageIdReplyID("groupIdValue", "channelIdValue", "chatMessageIdValue", "chatMessageId1Value")
+id := teamchannelmessagereply.NewGroupIdTeamChannelIdMessageIdReplyID("groupId", "channelId", "chatMessageId", "chatMessageId1")
 
-read, err := client.CreateTeamChannelMessageReplyUndoSoftDelete(ctx, id)
+read, err := client.CreateTeamChannelMessageReplyUndoSoftDelete(ctx, id, teamchannelmessagereply.DefaultCreateTeamChannelMessageReplyUndoSoftDeleteOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -77,7 +77,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := teamchannelmessagereply.NewGroupIdTeamChannelIdMessageIdReplyID("groupIdValue", "channelIdValue", "chatMessageIdValue", "chatMessageId1Value")
+id := teamchannelmessagereply.NewGroupIdTeamChannelIdMessageIdReplyID("groupId", "channelId", "chatMessageId", "chatMessageId1")
 
 read, err := client.DeleteTeamChannelMessageReply(ctx, id, teamchannelmessagereply.DefaultDeleteTeamChannelMessageReplyOperationOptions())
 if err != nil {
@@ -93,7 +93,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := teamchannelmessagereply.NewGroupIdTeamChannelIdMessageID("groupIdValue", "channelIdValue", "chatMessageIdValue")
+id := teamchannelmessagereply.NewGroupIdTeamChannelIdMessageID("groupId", "channelId", "chatMessageId")
 
 read, err := client.GetTeamChannelMessageRepliesCount(ctx, id, teamchannelmessagereply.DefaultGetTeamChannelMessageRepliesCountOperationOptions())
 if err != nil {
@@ -109,7 +109,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := teamchannelmessagereply.NewGroupIdTeamChannelIdMessageIdReplyID("groupIdValue", "channelIdValue", "chatMessageIdValue", "chatMessageId1Value")
+id := teamchannelmessagereply.NewGroupIdTeamChannelIdMessageIdReplyID("groupId", "channelId", "chatMessageId", "chatMessageId1")
 
 read, err := client.GetTeamChannelMessageReply(ctx, id, teamchannelmessagereply.DefaultGetTeamChannelMessageReplyOperationOptions())
 if err != nil {
@@ -125,7 +125,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := teamchannelmessagereply.NewGroupIdTeamChannelIdMessageID("groupIdValue", "channelIdValue", "chatMessageIdValue")
+id := teamchannelmessagereply.NewGroupIdTeamChannelIdMessageID("groupId", "channelId", "chatMessageId")
 
 // alternatively `client.ListTeamChannelMessageReplies(ctx, id, teamchannelmessagereply.DefaultListTeamChannelMessageRepliesOperationOptions())` can be used to do batched pagination
 items, err := client.ListTeamChannelMessageRepliesComplete(ctx, id, teamchannelmessagereply.DefaultListTeamChannelMessageRepliesOperationOptions())
@@ -142,14 +142,14 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := teamchannelmessagereply.NewGroupIdTeamChannelIdMessageIdReplyID("groupIdValue", "channelIdValue", "chatMessageIdValue", "chatMessageId1Value")
+id := teamchannelmessagereply.NewGroupIdTeamChannelIdMessageIdReplyID("groupId", "channelId", "chatMessageId", "chatMessageId1")
 
 payload := teamchannelmessagereply.SetTeamChannelMessageReplyReactionRequest{
 	// ...
 }
 
 
-read, err := client.SetTeamChannelMessageReplyReaction(ctx, id, payload)
+read, err := client.SetTeamChannelMessageReplyReaction(ctx, id, payload, teamchannelmessagereply.DefaultSetTeamChannelMessageReplyReactionOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -163,14 +163,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := teamchannelmessagereply.NewGroupIdTeamChannelIdMessageIdReplyID("groupIdValue", "channelIdValue", "chatMessageIdValue", "chatMessageId1Value")
+id := teamchannelmessagereply.NewGroupIdTeamChannelIdMessageIdReplyID("groupId", "channelId", "chatMessageId", "chatMessageId1")
 
 payload := teamchannelmessagereply.UnsetTeamChannelMessageReplyReactionRequest{
 	// ...
 }
 
 
-read, err := client.UnsetTeamChannelMessageReplyReaction(ctx, id, payload)
+read, err := client.UnsetTeamChannelMessageReplyReaction(ctx, id, payload, teamchannelmessagereply.DefaultUnsetTeamChannelMessageReplyReactionOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -184,14 +184,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := teamchannelmessagereply.NewGroupIdTeamChannelIdMessageIdReplyID("groupIdValue", "channelIdValue", "chatMessageIdValue", "chatMessageId1Value")
+id := teamchannelmessagereply.NewGroupIdTeamChannelIdMessageIdReplyID("groupId", "channelId", "chatMessageId", "chatMessageId1")
 
 payload := teamchannelmessagereply.ChatMessage{
 	// ...
 }
 
 
-read, err := client.UpdateTeamChannelMessageReply(ctx, id, payload)
+read, err := client.UpdateTeamChannelMessageReply(ctx, id, payload, teamchannelmessagereply.DefaultUpdateTeamChannelMessageReplyOperationOptions())
 if err != nil {
 	// handle the error
 }

@@ -18,15 +18,44 @@ type SetJoinedTeamPrimaryChannelMessageReactionOperationResponse struct {
 	OData        *odata.OData
 }
 
+type SetJoinedTeamPrimaryChannelMessageReactionOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultSetJoinedTeamPrimaryChannelMessageReactionOperationOptions() SetJoinedTeamPrimaryChannelMessageReactionOperationOptions {
+	return SetJoinedTeamPrimaryChannelMessageReactionOperationOptions{}
+}
+
+func (o SetJoinedTeamPrimaryChannelMessageReactionOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o SetJoinedTeamPrimaryChannelMessageReactionOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o SetJoinedTeamPrimaryChannelMessageReactionOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // SetJoinedTeamPrimaryChannelMessageReaction - Invoke action setReaction
-func (c JoinedTeamPrimaryChannelMessageClient) SetJoinedTeamPrimaryChannelMessageReaction(ctx context.Context, id stable.MeJoinedTeamIdPrimaryChannelMessageId, input SetJoinedTeamPrimaryChannelMessageReactionRequest) (result SetJoinedTeamPrimaryChannelMessageReactionOperationResponse, err error) {
+func (c JoinedTeamPrimaryChannelMessageClient) SetJoinedTeamPrimaryChannelMessageReaction(ctx context.Context, id stable.MeJoinedTeamIdPrimaryChannelMessageId, input SetJoinedTeamPrimaryChannelMessageReactionRequest, options SetJoinedTeamPrimaryChannelMessageReactionOperationOptions) (result SetJoinedTeamPrimaryChannelMessageReactionOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/setReaction", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/setReaction", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

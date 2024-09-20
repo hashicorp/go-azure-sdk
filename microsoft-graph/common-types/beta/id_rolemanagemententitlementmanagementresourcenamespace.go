@@ -94,7 +94,7 @@ func (id RoleManagementEntitlementManagementResourceNamespaceId) Segments() []re
 		resourceids.StaticSegment("roleManagement", "roleManagement", "roleManagement"),
 		resourceids.StaticSegment("entitlementManagement", "entitlementManagement", "entitlementManagement"),
 		resourceids.StaticSegment("resourceNamespaces", "resourceNamespaces", "resourceNamespaces"),
-		resourceids.UserSpecifiedSegment("unifiedRbacResourceNamespaceId", "unifiedRbacResourceNamespaceIdValue"),
+		resourceids.UserSpecifiedSegment("unifiedRbacResourceNamespaceId", "unifiedRbacResourceNamespaceId"),
 	}
 }
 

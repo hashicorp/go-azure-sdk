@@ -19,15 +19,44 @@ type CreateContactOperationResponse struct {
 	Model        *beta.Contact
 }
 
+type CreateContactOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateContactOperationOptions() CreateContactOperationOptions {
+	return CreateContactOperationOptions{}
+}
+
+func (o CreateContactOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateContactOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateContactOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateContact - Create new navigation property to contacts for users
-func (c ContactClient) CreateContact(ctx context.Context, id beta.UserId, input beta.Contact) (result CreateContactOperationResponse, err error) {
+func (c ContactClient) CreateContact(ctx context.Context, id beta.UserId, input beta.Contact, options CreateContactOperationOptions) (result CreateContactOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/contacts", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/contacts", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

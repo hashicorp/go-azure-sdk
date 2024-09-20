@@ -93,7 +93,7 @@ func (id DeviceManagementIntentId) Segments() []resourceids.Segment {
 	return []resourceids.Segment{
 		resourceids.StaticSegment("deviceManagement", "deviceManagement", "deviceManagement"),
 		resourceids.StaticSegment("intents", "intents", "intents"),
-		resourceids.UserSpecifiedSegment("deviceManagementIntentId", "deviceManagementIntentIdValue"),
+		resourceids.UserSpecifiedSegment("deviceManagementIntentId", "deviceManagementIntentId"),
 	}
 }
 

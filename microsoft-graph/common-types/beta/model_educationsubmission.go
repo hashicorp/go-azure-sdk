@@ -126,16 +126,28 @@ func (s EducationSubmission) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &EducationSubmission{}
 
 func (s *EducationSubmission) UnmarshalJSON(bytes []byte) error {
-	type alias EducationSubmission
-	var decoded alias
+
+	var decoded struct {
+		ExcusedDateTime     nullable.Type[string]          `json:"excusedDateTime,omitempty"`
+		Outcomes            *[]EducationOutcome            `json:"outcomes,omitempty"`
+		ReassignedDateTime  nullable.Type[string]          `json:"reassignedDateTime,omitempty"`
+		Resources           *[]EducationSubmissionResource `json:"resources,omitempty"`
+		ResourcesFolderUrl  nullable.Type[string]          `json:"resourcesFolderUrl,omitempty"`
+		ReturnedDateTime    nullable.Type[string]          `json:"returnedDateTime,omitempty"`
+		Status              *EducationSubmissionStatus     `json:"status,omitempty"`
+		SubmittedDateTime   nullable.Type[string]          `json:"submittedDateTime,omitempty"`
+		SubmittedResources  *[]EducationSubmissionResource `json:"submittedResources,omitempty"`
+		UnsubmittedDateTime nullable.Type[string]          `json:"unsubmittedDateTime,omitempty"`
+		WebUrl              nullable.Type[string]          `json:"webUrl,omitempty"`
+		Id                  *string                        `json:"id,omitempty"`
+		ODataId             *string                        `json:"@odata.id,omitempty"`
+		ODataType           *string                        `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into EducationSubmission: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.ExcusedDateTime = decoded.ExcusedDateTime
-	s.Id = decoded.Id
-	s.ODataId = decoded.ODataId
-	s.ODataType = decoded.ODataType
 	s.ReassignedDateTime = decoded.ReassignedDateTime
 	s.Resources = decoded.Resources
 	s.ResourcesFolderUrl = decoded.ResourcesFolderUrl
@@ -145,6 +157,9 @@ func (s *EducationSubmission) UnmarshalJSON(bytes []byte) error {
 	s.SubmittedResources = decoded.SubmittedResources
 	s.UnsubmittedDateTime = decoded.UnsubmittedDateTime
 	s.WebUrl = decoded.WebUrl
+	s.Id = decoded.Id
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -215,5 +230,6 @@ func (s *EducationSubmission) UnmarshalJSON(bytes []byte) error {
 		}
 		s.UnsubmittedBy = &impl
 	}
+
 	return nil
 }

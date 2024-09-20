@@ -19,15 +19,44 @@ type CreateDeviceOperationResponse struct {
 	Model        *beta.Device
 }
 
+type CreateDeviceOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateDeviceOperationOptions() CreateDeviceOperationOptions {
+	return CreateDeviceOperationOptions{}
+}
+
+func (o CreateDeviceOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateDeviceOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateDeviceOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateDevice - Create new navigation property to devices for users
-func (c DeviceClient) CreateDevice(ctx context.Context, id beta.UserId, input beta.Device) (result CreateDeviceOperationResponse, err error) {
+func (c DeviceClient) CreateDevice(ctx context.Context, id beta.UserId, input beta.Device, options CreateDeviceOperationOptions) (result CreateDeviceOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/devices", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/devices", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

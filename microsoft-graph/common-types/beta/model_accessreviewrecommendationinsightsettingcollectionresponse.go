@@ -62,10 +62,15 @@ func (s AccessReviewRecommendationInsightSettingCollectionResponse) MarshalJSON(
 var _ json.Unmarshaler = &AccessReviewRecommendationInsightSettingCollectionResponse{}
 
 func (s *AccessReviewRecommendationInsightSettingCollectionResponse) UnmarshalJSON(bytes []byte) error {
-	type alias AccessReviewRecommendationInsightSettingCollectionResponse
-	var decoded alias
+
+	var decoded struct {
+		Value         *[]AccessReviewRecommendationInsightSetting `json:"value,omitempty"`
+		ODataId       *string                                     `json:"@odata.id,omitempty"`
+		ODataNextLink nullable.Type[string]                       `json:"@odata.nextLink,omitempty"`
+		ODataType     *string                                     `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into AccessReviewRecommendationInsightSettingCollectionResponse: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.ODataId = decoded.ODataId
@@ -93,5 +98,6 @@ func (s *AccessReviewRecommendationInsightSettingCollectionResponse) UnmarshalJS
 		}
 		s.Value = &output
 	}
+
 	return nil
 }

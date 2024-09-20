@@ -17,15 +17,44 @@ type UpdateRemoteAssistancePartnerOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateRemoteAssistancePartnerOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateRemoteAssistancePartnerOperationOptions() UpdateRemoteAssistancePartnerOperationOptions {
+	return UpdateRemoteAssistancePartnerOperationOptions{}
+}
+
+func (o UpdateRemoteAssistancePartnerOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateRemoteAssistancePartnerOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateRemoteAssistancePartnerOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateRemoteAssistancePartner - Update the navigation property remoteAssistancePartners in deviceManagement
-func (c RemoteAssistancePartnerClient) UpdateRemoteAssistancePartner(ctx context.Context, id beta.DeviceManagementRemoteAssistancePartnerId, input beta.RemoteAssistancePartner) (result UpdateRemoteAssistancePartnerOperationResponse, err error) {
+func (c RemoteAssistancePartnerClient) UpdateRemoteAssistancePartner(ctx context.Context, id beta.DeviceManagementRemoteAssistancePartnerId, input beta.RemoteAssistancePartner, options UpdateRemoteAssistancePartnerOperationOptions) (result UpdateRemoteAssistancePartnerOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

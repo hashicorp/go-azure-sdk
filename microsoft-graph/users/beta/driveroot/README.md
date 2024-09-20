@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/driveroot` Documentation
 
-The `driveroot` SDK allows for interaction with the Azure Resource Manager Service `users` (API Version `beta`).
+The `driveroot` SDK allows for interaction with Microsoft Graph `users` (API Version `beta`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -15,7 +15,7 @@ import "github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/driveroot"
 ### Client Initialization
 
 ```go
-client := driveroot.NewDriveRootClientWithBaseURI("https://management.azure.com")
+client := driveroot.NewDriveRootClientWithBaseURI("https://graph.microsoft.com")
 client.Client.Authorizer = authorizer
 ```
 
@@ -24,14 +24,14 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := driveroot.NewUserIdDriveID("userIdValue", "driveIdValue")
+id := driveroot.NewUserIdDriveID("userId", "driveId")
 
 payload := driveroot.AssignDriveRootSensitivityLabelRequest{
 	// ...
 }
 
 
-read, err := client.AssignDriveRootSensitivityLabel(ctx, id, payload)
+read, err := client.AssignDriveRootSensitivityLabel(ctx, id, payload, driveroot.DefaultAssignDriveRootSensitivityLabelOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -45,14 +45,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := driveroot.NewUserIdDriveID("userIdValue", "driveIdValue")
+id := driveroot.NewUserIdDriveID("userId", "driveId")
 
 payload := driveroot.CheckinDriveRootRequest{
 	// ...
 }
 
 
-read, err := client.CheckinDriveRoot(ctx, id, payload)
+read, err := client.CheckinDriveRoot(ctx, id, payload, driveroot.DefaultCheckinDriveRootOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -66,9 +66,9 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := driveroot.NewUserIdDriveID("userIdValue", "driveIdValue")
+id := driveroot.NewUserIdDriveID("userId", "driveId")
 
-read, err := client.CheckoutDriveRoot(ctx, id)
+read, err := client.CheckoutDriveRoot(ctx, id, driveroot.DefaultCheckoutDriveRootOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -82,14 +82,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := driveroot.NewUserIdDriveID("userIdValue", "driveIdValue")
+id := driveroot.NewUserIdDriveID("userId", "driveId")
 
 payload := driveroot.CopyDriveRootRequest{
 	// ...
 }
 
 
-read, err := client.CopyDriveRoot(ctx, id, payload)
+read, err := client.CopyDriveRoot(ctx, id, payload, driveroot.DefaultCopyDriveRootOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -103,14 +103,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := driveroot.NewUserIdDriveID("userIdValue", "driveIdValue")
+id := driveroot.NewUserIdDriveID("userId", "driveId")
 
 payload := driveroot.CreateDriveRootLinkRequest{
 	// ...
 }
 
 
-read, err := client.CreateDriveRootLink(ctx, id, payload)
+read, err := client.CreateDriveRootLink(ctx, id, payload, driveroot.DefaultCreateDriveRootLinkOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -124,9 +124,9 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := driveroot.NewUserIdDriveID("userIdValue", "driveIdValue")
+id := driveroot.NewUserIdDriveID("userId", "driveId")
 
-read, err := client.CreateDriveRootPermanentDelete(ctx, id)
+read, err := client.CreateDriveRootPermanentDelete(ctx, id, driveroot.DefaultCreateDriveRootPermanentDeleteOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -140,14 +140,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := driveroot.NewUserIdDriveID("userIdValue", "driveIdValue")
+id := driveroot.NewUserIdDriveID("userId", "driveId")
 
 payload := driveroot.CreateDriveRootUploadSessionRequest{
 	// ...
 }
 
 
-read, err := client.CreateDriveRootUploadSession(ctx, id, payload)
+read, err := client.CreateDriveRootUploadSession(ctx, id, payload, driveroot.DefaultCreateDriveRootUploadSessionOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -161,7 +161,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := driveroot.NewUserIdDriveID("userIdValue", "driveIdValue")
+id := driveroot.NewUserIdDriveID("userId", "driveId")
 
 read, err := client.DeleteDriveRoot(ctx, id, driveroot.DefaultDeleteDriveRootOperationOptions())
 if err != nil {
@@ -177,9 +177,9 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := driveroot.NewUserIdDriveID("userIdValue", "driveIdValue")
+id := driveroot.NewUserIdDriveID("userId", "driveId")
 
-read, err := client.DiscardDriveRootCheckout(ctx, id)
+read, err := client.DiscardDriveRootCheckout(ctx, id, driveroot.DefaultDiscardDriveRootCheckoutOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -189,13 +189,13 @@ if model := read.Model; model != nil {
 ```
 
 
-### Example Usage: `DriveRootClient.ExtractDriveRootSensitivityLabel`
+### Example Usage: `DriveRootClient.ExtractDriveRootSensitivityLabels`
 
 ```go
 ctx := context.TODO()
-id := driveroot.NewUserIdDriveID("userIdValue", "driveIdValue")
+id := driveroot.NewUserIdDriveID("userId", "driveId")
 
-read, err := client.ExtractDriveRootSensitivityLabel(ctx, id)
+read, err := client.ExtractDriveRootSensitivityLabels(ctx, id, driveroot.DefaultExtractDriveRootSensitivityLabelsOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -209,9 +209,9 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := driveroot.NewUserIdDriveID("userIdValue", "driveIdValue")
+id := driveroot.NewUserIdDriveID("userId", "driveId")
 
-read, err := client.FollowDriveRoot(ctx, id)
+read, err := client.FollowDriveRoot(ctx, id, driveroot.DefaultFollowDriveRootOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -225,7 +225,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := driveroot.NewUserIdDriveID("userIdValue", "driveIdValue")
+id := driveroot.NewUserIdDriveID("userId", "driveId")
 
 read, err := client.GetDriveRoot(ctx, id, driveroot.DefaultGetDriveRootOperationOptions())
 if err != nil {
@@ -241,7 +241,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := driveroot.NewUserIdDriveID("userIdValue", "driveIdValue")
+id := driveroot.NewUserIdDriveID("userId", "driveId")
 
 payload := driveroot.ListDriveRootInvitesRequest{
 	// ...
@@ -263,14 +263,14 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := driveroot.NewUserIdDriveID("userIdValue", "driveIdValue")
+id := driveroot.NewUserIdDriveID("userId", "driveId")
 
 payload := driveroot.PreviewDriveRootRequest{
 	// ...
 }
 
 
-read, err := client.PreviewDriveRoot(ctx, id, payload)
+read, err := client.PreviewDriveRoot(ctx, id, payload, driveroot.DefaultPreviewDriveRootOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -284,14 +284,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := driveroot.NewUserIdDriveID("userIdValue", "driveIdValue")
+id := driveroot.NewUserIdDriveID("userId", "driveId")
 
 payload := driveroot.RestoreDriveRootRequest{
 	// ...
 }
 
 
-read, err := client.RestoreDriveRoot(ctx, id, payload)
+read, err := client.RestoreDriveRoot(ctx, id, payload, driveroot.DefaultRestoreDriveRootOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -305,9 +305,9 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := driveroot.NewUserIdDriveID("userIdValue", "driveIdValue")
+id := driveroot.NewUserIdDriveID("userId", "driveId")
 
-read, err := client.UnfollowDriveRoot(ctx, id)
+read, err := client.UnfollowDriveRoot(ctx, id, driveroot.DefaultUnfollowDriveRootOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -321,14 +321,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := driveroot.NewUserIdDriveID("userIdValue", "driveIdValue")
+id := driveroot.NewUserIdDriveID("userId", "driveId")
 
 payload := driveroot.DriveItem{
 	// ...
 }
 
 
-read, err := client.UpdateDriveRoot(ctx, id, payload)
+read, err := client.UpdateDriveRoot(ctx, id, payload, driveroot.DefaultUpdateDriveRootOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -342,14 +342,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := driveroot.NewUserIdDriveID("userIdValue", "driveIdValue")
+id := driveroot.NewUserIdDriveID("userId", "driveId")
 
 payload := driveroot.ValidateDriveRootPermissionRequest{
 	// ...
 }
 
 
-read, err := client.ValidateDriveRootPermission(ctx, id, payload)
+read, err := client.ValidateDriveRootPermission(ctx, id, payload, driveroot.DefaultValidateDriveRootPermissionOperationOptions())
 if err != nil {
 	// handle the error
 }

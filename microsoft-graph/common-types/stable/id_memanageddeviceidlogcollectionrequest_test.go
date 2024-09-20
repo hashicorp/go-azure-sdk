@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &MeManagedDeviceIdLogCollectionRequestId{}
 
 func TestNewMeManagedDeviceIdLogCollectionRequestID(t *testing.T) {
-	id := NewMeManagedDeviceIdLogCollectionRequestID("managedDeviceIdValue", "deviceLogCollectionResponseIdValue")
+	id := NewMeManagedDeviceIdLogCollectionRequestID("managedDeviceId", "deviceLogCollectionResponseId")
 
-	if id.ManagedDeviceId != "managedDeviceIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ManagedDeviceId'", id.ManagedDeviceId, "managedDeviceIdValue")
+	if id.ManagedDeviceId != "managedDeviceId" {
+		t.Fatalf("Expected %q but got %q for Segment 'ManagedDeviceId'", id.ManagedDeviceId, "managedDeviceId")
 	}
 
-	if id.DeviceLogCollectionResponseId != "deviceLogCollectionResponseIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DeviceLogCollectionResponseId'", id.DeviceLogCollectionResponseId, "deviceLogCollectionResponseIdValue")
+	if id.DeviceLogCollectionResponseId != "deviceLogCollectionResponseId" {
+		t.Fatalf("Expected %q but got %q for Segment 'DeviceLogCollectionResponseId'", id.DeviceLogCollectionResponseId, "deviceLogCollectionResponseId")
 	}
 }
 
 func TestFormatMeManagedDeviceIdLogCollectionRequestID(t *testing.T) {
-	actual := NewMeManagedDeviceIdLogCollectionRequestID("managedDeviceIdValue", "deviceLogCollectionResponseIdValue").ID()
-	expected := "/me/managedDevices/managedDeviceIdValue/logCollectionRequests/deviceLogCollectionResponseIdValue"
+	actual := NewMeManagedDeviceIdLogCollectionRequestID("managedDeviceId", "deviceLogCollectionResponseId").ID()
+	expected := "/me/managedDevices/managedDeviceId/logCollectionRequests/deviceLogCollectionResponseId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -54,25 +54,25 @@ func TestParseMeManagedDeviceIdLogCollectionRequestID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/me/managedDevices/managedDeviceIdValue",
+			Input: "/me/managedDevices/managedDeviceId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/me/managedDevices/managedDeviceIdValue/logCollectionRequests",
+			Input: "/me/managedDevices/managedDeviceId/logCollectionRequests",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/me/managedDevices/managedDeviceIdValue/logCollectionRequests/deviceLogCollectionResponseIdValue",
+			Input: "/me/managedDevices/managedDeviceId/logCollectionRequests/deviceLogCollectionResponseId",
 			Expected: &MeManagedDeviceIdLogCollectionRequestId{
-				ManagedDeviceId:               "managedDeviceIdValue",
-				DeviceLogCollectionResponseId: "deviceLogCollectionResponseIdValue",
+				ManagedDeviceId:               "managedDeviceId",
+				DeviceLogCollectionResponseId: "deviceLogCollectionResponseId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/managedDevices/managedDeviceIdValue/logCollectionRequests/deviceLogCollectionResponseIdValue/extra",
+			Input: "/me/managedDevices/managedDeviceId/logCollectionRequests/deviceLogCollectionResponseId/extra",
 			Error: true,
 		},
 	}
@@ -135,48 +135,48 @@ func TestParseMeManagedDeviceIdLogCollectionRequestIDInsensitively(t *testing.T)
 		},
 		{
 			// Incomplete URI
-			Input: "/me/managedDevices/managedDeviceIdValue",
+			Input: "/me/managedDevices/managedDeviceId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/mAnAgEdDeViCeS/mAnAgEdDeViCeIdVaLuE",
+			Input: "/mE/mAnAgEdDeViCeS/mAnAgEdDeViCeId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/me/managedDevices/managedDeviceIdValue/logCollectionRequests",
+			Input: "/me/managedDevices/managedDeviceId/logCollectionRequests",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/mAnAgEdDeViCeS/mAnAgEdDeViCeIdVaLuE/lOgCoLlEcTiOnReQuEsTs",
+			Input: "/mE/mAnAgEdDeViCeS/mAnAgEdDeViCeId/lOgCoLlEcTiOnReQuEsTs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/me/managedDevices/managedDeviceIdValue/logCollectionRequests/deviceLogCollectionResponseIdValue",
+			Input: "/me/managedDevices/managedDeviceId/logCollectionRequests/deviceLogCollectionResponseId",
 			Expected: &MeManagedDeviceIdLogCollectionRequestId{
-				ManagedDeviceId:               "managedDeviceIdValue",
-				DeviceLogCollectionResponseId: "deviceLogCollectionResponseIdValue",
+				ManagedDeviceId:               "managedDeviceId",
+				DeviceLogCollectionResponseId: "deviceLogCollectionResponseId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/managedDevices/managedDeviceIdValue/logCollectionRequests/deviceLogCollectionResponseIdValue/extra",
+			Input: "/me/managedDevices/managedDeviceId/logCollectionRequests/deviceLogCollectionResponseId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/mAnAgEdDeViCeS/mAnAgEdDeViCeIdVaLuE/lOgCoLlEcTiOnReQuEsTs/dEvIcElOgCoLlEcTiOnReSpOnSeIdVaLuE",
+			Input: "/mE/mAnAgEdDeViCeS/mAnAgEdDeViCeId/lOgCoLlEcTiOnReQuEsTs/dEvIcElOgCoLlEcTiOnReSpOnSeId",
 			Expected: &MeManagedDeviceIdLogCollectionRequestId{
-				ManagedDeviceId:               "mAnAgEdDeViCeIdVaLuE",
-				DeviceLogCollectionResponseId: "dEvIcElOgCoLlEcTiOnReSpOnSeIdVaLuE",
+				ManagedDeviceId:               "mAnAgEdDeViCeId",
+				DeviceLogCollectionResponseId: "dEvIcElOgCoLlEcTiOnReSpOnSeId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/mE/mAnAgEdDeViCeS/mAnAgEdDeViCeIdVaLuE/lOgCoLlEcTiOnReQuEsTs/dEvIcElOgCoLlEcTiOnReSpOnSeIdVaLuE/extra",
+			Input: "/mE/mAnAgEdDeViCeS/mAnAgEdDeViCeId/lOgCoLlEcTiOnReQuEsTs/dEvIcElOgCoLlEcTiOnReSpOnSeId/extra",
 			Error: true,
 		},
 	}

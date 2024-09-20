@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &MeOAuth2PermissionGrantId{}
 
 func TestNewMeOAuth2PermissionGrantID(t *testing.T) {
-	id := NewMeOAuth2PermissionGrantID("oAuth2PermissionGrantIdValue")
+	id := NewMeOAuth2PermissionGrantID("oAuth2PermissionGrantId")
 
-	if id.OAuth2PermissionGrantId != "oAuth2PermissionGrantIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'OAuth2PermissionGrantId'", id.OAuth2PermissionGrantId, "oAuth2PermissionGrantIdValue")
+	if id.OAuth2PermissionGrantId != "oAuth2PermissionGrantId" {
+		t.Fatalf("Expected %q but got %q for Segment 'OAuth2PermissionGrantId'", id.OAuth2PermissionGrantId, "oAuth2PermissionGrantId")
 	}
 }
 
 func TestFormatMeOAuth2PermissionGrantID(t *testing.T) {
-	actual := NewMeOAuth2PermissionGrantID("oAuth2PermissionGrantIdValue").ID()
-	expected := "/me/oauth2PermissionGrants/oAuth2PermissionGrantIdValue"
+	actual := NewMeOAuth2PermissionGrantID("oAuth2PermissionGrantId").ID()
+	expected := "/me/oauth2PermissionGrants/oAuth2PermissionGrantId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -50,14 +50,14 @@ func TestParseMeOAuth2PermissionGrantID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/me/oauth2PermissionGrants/oAuth2PermissionGrantIdValue",
+			Input: "/me/oauth2PermissionGrants/oAuth2PermissionGrantId",
 			Expected: &MeOAuth2PermissionGrantId{
-				OAuth2PermissionGrantId: "oAuth2PermissionGrantIdValue",
+				OAuth2PermissionGrantId: "oAuth2PermissionGrantId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/oauth2PermissionGrants/oAuth2PermissionGrantIdValue/extra",
+			Input: "/me/oauth2PermissionGrants/oAuth2PermissionGrantId/extra",
 			Error: true,
 		},
 	}
@@ -116,26 +116,26 @@ func TestParseMeOAuth2PermissionGrantIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/me/oauth2PermissionGrants/oAuth2PermissionGrantIdValue",
+			Input: "/me/oauth2PermissionGrants/oAuth2PermissionGrantId",
 			Expected: &MeOAuth2PermissionGrantId{
-				OAuth2PermissionGrantId: "oAuth2PermissionGrantIdValue",
+				OAuth2PermissionGrantId: "oAuth2PermissionGrantId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/oauth2PermissionGrants/oAuth2PermissionGrantIdValue/extra",
+			Input: "/me/oauth2PermissionGrants/oAuth2PermissionGrantId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/oAuTh2pErMiSsIoNgRaNtS/oAuTh2pErMiSsIoNgRaNtIdVaLuE",
+			Input: "/mE/oAuTh2pErMiSsIoNgRaNtS/oAuTh2pErMiSsIoNgRaNtId",
 			Expected: &MeOAuth2PermissionGrantId{
-				OAuth2PermissionGrantId: "oAuTh2pErMiSsIoNgRaNtIdVaLuE",
+				OAuth2PermissionGrantId: "oAuTh2pErMiSsIoNgRaNtId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/mE/oAuTh2pErMiSsIoNgRaNtS/oAuTh2pErMiSsIoNgRaNtIdVaLuE/extra",
+			Input: "/mE/oAuTh2pErMiSsIoNgRaNtS/oAuTh2pErMiSsIoNgRaNtId/extra",
 			Error: true,
 		},
 	}

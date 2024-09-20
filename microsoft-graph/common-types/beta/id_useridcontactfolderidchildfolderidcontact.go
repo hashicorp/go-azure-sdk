@@ -110,13 +110,13 @@ func (id UserIdContactFolderIdChildFolderIdContactId) ID() string {
 func (id UserIdContactFolderIdChildFolderIdContactId) Segments() []resourceids.Segment {
 	return []resourceids.Segment{
 		resourceids.StaticSegment("users", "users", "users"),
-		resourceids.UserSpecifiedSegment("userId", "userIdValue"),
+		resourceids.UserSpecifiedSegment("userId", "userId"),
 		resourceids.StaticSegment("contactFolders", "contactFolders", "contactFolders"),
-		resourceids.UserSpecifiedSegment("contactFolderId", "contactFolderIdValue"),
+		resourceids.UserSpecifiedSegment("contactFolderId", "contactFolderId"),
 		resourceids.StaticSegment("childFolders", "childFolders", "childFolders"),
-		resourceids.UserSpecifiedSegment("contactFolderId1", "contactFolderId1Value"),
+		resourceids.UserSpecifiedSegment("contactFolderId1", "contactFolderId1"),
 		resourceids.StaticSegment("contacts", "contacts", "contacts"),
-		resourceids.UserSpecifiedSegment("contactId", "contactIdValue"),
+		resourceids.UserSpecifiedSegment("contactId", "contactId"),
 	}
 }
 

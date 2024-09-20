@@ -94,7 +94,7 @@ func (id DeviceManagementVirtualEndpointOnPremisesConnectionId) Segments() []res
 		resourceids.StaticSegment("deviceManagement", "deviceManagement", "deviceManagement"),
 		resourceids.StaticSegment("virtualEndpoint", "virtualEndpoint", "virtualEndpoint"),
 		resourceids.StaticSegment("onPremisesConnections", "onPremisesConnections", "onPremisesConnections"),
-		resourceids.UserSpecifiedSegment("cloudPCOnPremisesConnectionId", "cloudPCOnPremisesConnectionIdValue"),
+		resourceids.UserSpecifiedSegment("cloudPCOnPremisesConnectionId", "cloudPCOnPremisesConnectionId"),
 	}
 }
 

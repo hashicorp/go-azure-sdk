@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &DeviceManagementChromeOSOnboardingSettingId{}
 
 func TestNewDeviceManagementChromeOSOnboardingSettingID(t *testing.T) {
-	id := NewDeviceManagementChromeOSOnboardingSettingID("chromeOSOnboardingSettingsIdValue")
+	id := NewDeviceManagementChromeOSOnboardingSettingID("chromeOSOnboardingSettingsId")
 
-	if id.ChromeOSOnboardingSettingsId != "chromeOSOnboardingSettingsIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ChromeOSOnboardingSettingsId'", id.ChromeOSOnboardingSettingsId, "chromeOSOnboardingSettingsIdValue")
+	if id.ChromeOSOnboardingSettingsId != "chromeOSOnboardingSettingsId" {
+		t.Fatalf("Expected %q but got %q for Segment 'ChromeOSOnboardingSettingsId'", id.ChromeOSOnboardingSettingsId, "chromeOSOnboardingSettingsId")
 	}
 }
 
 func TestFormatDeviceManagementChromeOSOnboardingSettingID(t *testing.T) {
-	actual := NewDeviceManagementChromeOSOnboardingSettingID("chromeOSOnboardingSettingsIdValue").ID()
-	expected := "/deviceManagement/chromeOSOnboardingSettings/chromeOSOnboardingSettingsIdValue"
+	actual := NewDeviceManagementChromeOSOnboardingSettingID("chromeOSOnboardingSettingsId").ID()
+	expected := "/deviceManagement/chromeOSOnboardingSettings/chromeOSOnboardingSettingsId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -50,14 +50,14 @@ func TestParseDeviceManagementChromeOSOnboardingSettingID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/chromeOSOnboardingSettings/chromeOSOnboardingSettingsIdValue",
+			Input: "/deviceManagement/chromeOSOnboardingSettings/chromeOSOnboardingSettingsId",
 			Expected: &DeviceManagementChromeOSOnboardingSettingId{
-				ChromeOSOnboardingSettingsId: "chromeOSOnboardingSettingsIdValue",
+				ChromeOSOnboardingSettingsId: "chromeOSOnboardingSettingsId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/chromeOSOnboardingSettings/chromeOSOnboardingSettingsIdValue/extra",
+			Input: "/deviceManagement/chromeOSOnboardingSettings/chromeOSOnboardingSettingsId/extra",
 			Error: true,
 		},
 	}
@@ -116,26 +116,26 @@ func TestParseDeviceManagementChromeOSOnboardingSettingIDInsensitively(t *testin
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/chromeOSOnboardingSettings/chromeOSOnboardingSettingsIdValue",
+			Input: "/deviceManagement/chromeOSOnboardingSettings/chromeOSOnboardingSettingsId",
 			Expected: &DeviceManagementChromeOSOnboardingSettingId{
-				ChromeOSOnboardingSettingsId: "chromeOSOnboardingSettingsIdValue",
+				ChromeOSOnboardingSettingsId: "chromeOSOnboardingSettingsId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/chromeOSOnboardingSettings/chromeOSOnboardingSettingsIdValue/extra",
+			Input: "/deviceManagement/chromeOSOnboardingSettings/chromeOSOnboardingSettingsId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/cHrOmEoSoNbOaRdInGsEtTiNgS/cHrOmEoSoNbOaRdInGsEtTiNgSiDvAlUe",
+			Input: "/dEvIcEmAnAgEmEnT/cHrOmEoSoNbOaRdInGsEtTiNgS/cHrOmEoSoNbOaRdInGsEtTiNgSiD",
 			Expected: &DeviceManagementChromeOSOnboardingSettingId{
-				ChromeOSOnboardingSettingsId: "cHrOmEoSoNbOaRdInGsEtTiNgSiDvAlUe",
+				ChromeOSOnboardingSettingsId: "cHrOmEoSoNbOaRdInGsEtTiNgSiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/cHrOmEoSoNbOaRdInGsEtTiNgS/cHrOmEoSoNbOaRdInGsEtTiNgSiDvAlUe/extra",
+			Input: "/dEvIcEmAnAgEmEnT/cHrOmEoSoNbOaRdInGsEtTiNgS/cHrOmEoSoNbOaRdInGsEtTiNgSiD/extra",
 			Error: true,
 		},
 	}

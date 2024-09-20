@@ -19,7 +19,8 @@ type DeleteEntitlementManagementResourceNamespaceOperationResponse struct {
 }
 
 type DeleteEntitlementManagementResourceNamespaceOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteEntitlementManagementResourceNamespaceOperationOptions() DeleteEntitlementManagementResourceNamespaceOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteEntitlementManagementResourceNamespaceOperationOptions) ToHeaders(
 
 func (o DeleteEntitlementManagementResourceNamespaceOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

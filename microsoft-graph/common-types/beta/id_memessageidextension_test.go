@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &MeMessageIdExtensionId{}
 
 func TestNewMeMessageIdExtensionID(t *testing.T) {
-	id := NewMeMessageIdExtensionID("messageIdValue", "extensionIdValue")
+	id := NewMeMessageIdExtensionID("messageId", "extensionId")
 
-	if id.MessageId != "messageIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'MessageId'", id.MessageId, "messageIdValue")
+	if id.MessageId != "messageId" {
+		t.Fatalf("Expected %q but got %q for Segment 'MessageId'", id.MessageId, "messageId")
 	}
 
-	if id.ExtensionId != "extensionIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ExtensionId'", id.ExtensionId, "extensionIdValue")
+	if id.ExtensionId != "extensionId" {
+		t.Fatalf("Expected %q but got %q for Segment 'ExtensionId'", id.ExtensionId, "extensionId")
 	}
 }
 
 func TestFormatMeMessageIdExtensionID(t *testing.T) {
-	actual := NewMeMessageIdExtensionID("messageIdValue", "extensionIdValue").ID()
-	expected := "/me/messages/messageIdValue/extensions/extensionIdValue"
+	actual := NewMeMessageIdExtensionID("messageId", "extensionId").ID()
+	expected := "/me/messages/messageId/extensions/extensionId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -54,25 +54,25 @@ func TestParseMeMessageIdExtensionID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/me/messages/messageIdValue",
+			Input: "/me/messages/messageId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/me/messages/messageIdValue/extensions",
+			Input: "/me/messages/messageId/extensions",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/me/messages/messageIdValue/extensions/extensionIdValue",
+			Input: "/me/messages/messageId/extensions/extensionId",
 			Expected: &MeMessageIdExtensionId{
-				MessageId:   "messageIdValue",
-				ExtensionId: "extensionIdValue",
+				MessageId:   "messageId",
+				ExtensionId: "extensionId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/messages/messageIdValue/extensions/extensionIdValue/extra",
+			Input: "/me/messages/messageId/extensions/extensionId/extra",
 			Error: true,
 		},
 	}
@@ -135,48 +135,48 @@ func TestParseMeMessageIdExtensionIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/me/messages/messageIdValue",
+			Input: "/me/messages/messageId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/mEsSaGeS/mEsSaGeIdVaLuE",
+			Input: "/mE/mEsSaGeS/mEsSaGeId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/me/messages/messageIdValue/extensions",
+			Input: "/me/messages/messageId/extensions",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/mEsSaGeS/mEsSaGeIdVaLuE/eXtEnSiOnS",
+			Input: "/mE/mEsSaGeS/mEsSaGeId/eXtEnSiOnS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/me/messages/messageIdValue/extensions/extensionIdValue",
+			Input: "/me/messages/messageId/extensions/extensionId",
 			Expected: &MeMessageIdExtensionId{
-				MessageId:   "messageIdValue",
-				ExtensionId: "extensionIdValue",
+				MessageId:   "messageId",
+				ExtensionId: "extensionId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/messages/messageIdValue/extensions/extensionIdValue/extra",
+			Input: "/me/messages/messageId/extensions/extensionId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/mEsSaGeS/mEsSaGeIdVaLuE/eXtEnSiOnS/eXtEnSiOnIdVaLuE",
+			Input: "/mE/mEsSaGeS/mEsSaGeId/eXtEnSiOnS/eXtEnSiOnId",
 			Expected: &MeMessageIdExtensionId{
-				MessageId:   "mEsSaGeIdVaLuE",
-				ExtensionId: "eXtEnSiOnIdVaLuE",
+				MessageId:   "mEsSaGeId",
+				ExtensionId: "eXtEnSiOnId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/mE/mEsSaGeS/mEsSaGeIdVaLuE/eXtEnSiOnS/eXtEnSiOnIdVaLuE/extra",
+			Input: "/mE/mEsSaGeS/mEsSaGeId/eXtEnSiOnS/eXtEnSiOnId/extra",
 			Error: true,
 		},
 	}

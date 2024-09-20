@@ -19,16 +19,45 @@ type GetOnlineMeetingAlternativeRecordingOperationResponse struct {
 	Model        *[]byte
 }
 
+type GetOnlineMeetingAlternativeRecordingOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultGetOnlineMeetingAlternativeRecordingOperationOptions() GetOnlineMeetingAlternativeRecordingOperationOptions {
+	return GetOnlineMeetingAlternativeRecordingOperationOptions{}
+}
+
+func (o GetOnlineMeetingAlternativeRecordingOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o GetOnlineMeetingAlternativeRecordingOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o GetOnlineMeetingAlternativeRecordingOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // GetOnlineMeetingAlternativeRecording - Get alternativeRecording for the navigation property onlineMeetings from
 // users. The content stream of the alternative recording of a Microsoft Teams live event. Read-only.
-func (c OnlineMeetingAlternativeRecordingClient) GetOnlineMeetingAlternativeRecording(ctx context.Context, id beta.UserIdOnlineMeetingId) (result GetOnlineMeetingAlternativeRecordingOperationResponse, err error) {
+func (c OnlineMeetingAlternativeRecordingClient) GetOnlineMeetingAlternativeRecording(ctx context.Context, id beta.UserIdOnlineMeetingId, options GetOnlineMeetingAlternativeRecordingOperationOptions) (result GetOnlineMeetingAlternativeRecordingOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/octet-stream",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/alternativeRecording", id.ID()),
+		HttpMethod:    http.MethodGet,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/alternativeRecording", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

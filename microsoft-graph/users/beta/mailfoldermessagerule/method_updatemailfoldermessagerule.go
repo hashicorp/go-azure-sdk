@@ -17,15 +17,44 @@ type UpdateMailFolderMessageRuleOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateMailFolderMessageRuleOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateMailFolderMessageRuleOperationOptions() UpdateMailFolderMessageRuleOperationOptions {
+	return UpdateMailFolderMessageRuleOperationOptions{}
+}
+
+func (o UpdateMailFolderMessageRuleOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateMailFolderMessageRuleOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateMailFolderMessageRuleOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateMailFolderMessageRule - Update the navigation property messageRules in users
-func (c MailFolderMessageRuleClient) UpdateMailFolderMessageRule(ctx context.Context, id beta.UserIdMailFolderIdMessageRuleId, input beta.MessageRule) (result UpdateMailFolderMessageRuleOperationResponse, err error) {
+func (c MailFolderMessageRuleClient) UpdateMailFolderMessageRule(ctx context.Context, id beta.UserIdMailFolderIdMessageRuleId, input beta.MessageRule, options UpdateMailFolderMessageRuleOperationOptions) (result UpdateMailFolderMessageRuleOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -17,15 +17,44 @@ type UpdatePendingAccessReviewInstanceDecisionOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdatePendingAccessReviewInstanceDecisionOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdatePendingAccessReviewInstanceDecisionOperationOptions() UpdatePendingAccessReviewInstanceDecisionOperationOptions {
+	return UpdatePendingAccessReviewInstanceDecisionOperationOptions{}
+}
+
+func (o UpdatePendingAccessReviewInstanceDecisionOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdatePendingAccessReviewInstanceDecisionOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdatePendingAccessReviewInstanceDecisionOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdatePendingAccessReviewInstanceDecision - Update the navigation property decisions in users
-func (c PendingAccessReviewInstanceDecisionClient) UpdatePendingAccessReviewInstanceDecision(ctx context.Context, id beta.UserIdPendingAccessReviewInstanceIdDecisionId, input beta.AccessReviewInstanceDecisionItem) (result UpdatePendingAccessReviewInstanceDecisionOperationResponse, err error) {
+func (c PendingAccessReviewInstanceDecisionClient) UpdatePendingAccessReviewInstanceDecision(ctx context.Context, id beta.UserIdPendingAccessReviewInstanceIdDecisionId, input beta.AccessReviewInstanceDecisionItem, options UpdatePendingAccessReviewInstanceDecisionOperationOptions) (result UpdatePendingAccessReviewInstanceDecisionOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

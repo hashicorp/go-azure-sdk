@@ -19,7 +19,8 @@ type DeletePartnerBillingOperationOperationResponse struct {
 }
 
 type DeletePartnerBillingOperationOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeletePartnerBillingOperationOperationOptions() DeletePartnerBillingOperationOperationOptions {
@@ -36,7 +37,9 @@ func (o DeletePartnerBillingOperationOperationOptions) ToHeaders() *client.Heade
 
 func (o DeletePartnerBillingOperationOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

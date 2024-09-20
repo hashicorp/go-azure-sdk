@@ -18,15 +18,44 @@ type RebootManagedDeviceNowOperationResponse struct {
 	OData        *odata.OData
 }
 
+type RebootManagedDeviceNowOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultRebootManagedDeviceNowOperationOptions() RebootManagedDeviceNowOperationOptions {
+	return RebootManagedDeviceNowOperationOptions{}
+}
+
+func (o RebootManagedDeviceNowOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o RebootManagedDeviceNowOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o RebootManagedDeviceNowOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // RebootManagedDeviceNow - Invoke action rebootNow. Reboot device
-func (c ManagedDeviceClient) RebootManagedDeviceNow(ctx context.Context, id stable.MeManagedDeviceId) (result RebootManagedDeviceNowOperationResponse, err error) {
+func (c ManagedDeviceClient) RebootManagedDeviceNow(ctx context.Context, id stable.MeManagedDeviceId, options RebootManagedDeviceNowOperationOptions) (result RebootManagedDeviceNowOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/rebootNow", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/rebootNow", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

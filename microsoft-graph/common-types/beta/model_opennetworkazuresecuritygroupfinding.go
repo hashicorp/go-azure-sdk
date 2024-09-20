@@ -79,17 +79,23 @@ func (s OpenNetworkAzureSecurityGroupFinding) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &OpenNetworkAzureSecurityGroupFinding{}
 
 func (s *OpenNetworkAzureSecurityGroupFinding) UnmarshalJSON(bytes []byte) error {
-	type alias OpenNetworkAzureSecurityGroupFinding
-	var decoded alias
+
+	var decoded struct {
+		VirtualMachines *[]VirtualMachineDetails `json:"virtualMachines,omitempty"`
+		CreatedDateTime *string                  `json:"createdDateTime,omitempty"`
+		Id              *string                  `json:"id,omitempty"`
+		ODataId         *string                  `json:"@odata.id,omitempty"`
+		ODataType       *string                  `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into OpenNetworkAzureSecurityGroupFinding: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
+	s.VirtualMachines = decoded.VirtualMachines
 	s.CreatedDateTime = decoded.CreatedDateTime
 	s.Id = decoded.Id
 	s.ODataId = decoded.ODataId
 	s.ODataType = decoded.ODataType
-	s.VirtualMachines = decoded.VirtualMachines
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -111,5 +117,6 @@ func (s *OpenNetworkAzureSecurityGroupFinding) UnmarshalJSON(bytes []byte) error
 		}
 		s.SecurityGroup = &impl
 	}
+
 	return nil
 }

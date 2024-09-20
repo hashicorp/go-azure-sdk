@@ -82,21 +82,31 @@ func (s DeviceComplianceScriptDeviceState) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &DeviceComplianceScriptDeviceState{}
 
 func (s *DeviceComplianceScriptDeviceState) UnmarshalJSON(bytes []byte) error {
-	type alias DeviceComplianceScriptDeviceState
-	var decoded alias
+
+	var decoded struct {
+		DetectionState              *RunState             `json:"detectionState,omitempty"`
+		ExpectedStateUpdateDateTime nullable.Type[string] `json:"expectedStateUpdateDateTime,omitempty"`
+		LastStateUpdateDateTime     *string               `json:"lastStateUpdateDateTime,omitempty"`
+		LastSyncDateTime            *string               `json:"lastSyncDateTime,omitempty"`
+		ScriptError                 nullable.Type[string] `json:"scriptError,omitempty"`
+		ScriptOutput                nullable.Type[string] `json:"scriptOutput,omitempty"`
+		Id                          *string               `json:"id,omitempty"`
+		ODataId                     *string               `json:"@odata.id,omitempty"`
+		ODataType                   *string               `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into DeviceComplianceScriptDeviceState: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.DetectionState = decoded.DetectionState
 	s.ExpectedStateUpdateDateTime = decoded.ExpectedStateUpdateDateTime
-	s.Id = decoded.Id
 	s.LastStateUpdateDateTime = decoded.LastStateUpdateDateTime
 	s.LastSyncDateTime = decoded.LastSyncDateTime
-	s.ODataId = decoded.ODataId
-	s.ODataType = decoded.ODataType
 	s.ScriptError = decoded.ScriptError
 	s.ScriptOutput = decoded.ScriptOutput
+	s.Id = decoded.Id
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -110,5 +120,6 @@ func (s *DeviceComplianceScriptDeviceState) UnmarshalJSON(bytes []byte) error {
 		}
 		s.ManagedDevice = &impl
 	}
+
 	return nil
 }

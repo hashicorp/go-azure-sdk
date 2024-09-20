@@ -18,15 +18,44 @@ type CreateNdesConnectorOperationResponse struct {
 	Model        *beta.NdesConnector
 }
 
+type CreateNdesConnectorOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateNdesConnectorOperationOptions() CreateNdesConnectorOperationOptions {
+	return CreateNdesConnectorOperationOptions{}
+}
+
+func (o CreateNdesConnectorOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateNdesConnectorOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateNdesConnectorOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateNdesConnector - Create new navigation property to ndesConnectors for deviceManagement
-func (c NdesConnectorClient) CreateNdesConnector(ctx context.Context, input beta.NdesConnector) (result CreateNdesConnectorOperationResponse, err error) {
+func (c NdesConnectorClient) CreateNdesConnector(ctx context.Context, input beta.NdesConnector, options CreateNdesConnectorOperationOptions) (result CreateNdesConnectorOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/deviceManagement/ndesConnectors",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/deviceManagement/ndesConnectors",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

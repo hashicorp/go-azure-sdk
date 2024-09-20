@@ -38,7 +38,6 @@ import (
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/stable/devicemanagement"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/stable/devicemanagementpartner"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/stable/exchangeconnector"
-	"github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/stable/exportdevicemanagementreportsjobs"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/stable/importedwindowsautopilotdeviceidentity"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/stable/iosupdatestatus"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/stable/manageddevice"
@@ -58,6 +57,7 @@ import (
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/stable/rebootdevicemanagementuserexperienceanalyticsbaselineanalyticsmetrics"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/stable/remoteassistancepartner"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/stable/report"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/stable/reportexportjob"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/stable/resourceoperation"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/stable/roleassignment"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/stable/roleassignmentroledefinition"
@@ -158,7 +158,6 @@ type Client struct {
 	DeviceManagement                                                                *devicemanagement.DeviceManagementClient
 	DeviceManagementPartner                                                         *devicemanagementpartner.DeviceManagementPartnerClient
 	ExchangeConnector                                                               *exchangeconnector.ExchangeConnectorClient
-	ExportDeviceManagementReportsJobs                                               *exportdevicemanagementreportsjobs.ExportDeviceManagementReportsJobsClient
 	ImportedWindowsAutopilotDeviceIdentity                                          *importedwindowsautopilotdeviceidentity.ImportedWindowsAutopilotDeviceIdentityClient
 	IosUpdateStatus                                                                 *iosupdatestatus.IosUpdateStatusClient
 	ManagedDevice                                                                   *manageddevice.ManagedDeviceClient
@@ -178,6 +177,7 @@ type Client struct {
 	RebootDeviceManagementUserExperienceAnalyticsBaselineAnalyticsMetrics           *rebootdevicemanagementuserexperienceanalyticsbaselineanalyticsmetrics.RebootDeviceManagementUserExperienceAnalyticsBaselineAnalyticsMetricsClient
 	RemoteAssistancePartner                                                         *remoteassistancepartner.RemoteAssistancePartnerClient
 	Report                                                                          *report.ReportClient
+	ReportExportJob                                                                 *reportexportjob.ReportExportJobClient
 	ResourceOperation                                                               *resourceoperation.ResourceOperationClient
 	RoleAssignment                                                                  *roleassignment.RoleAssignmentClient
 	RoleAssignmentRoleDefinition                                                    *roleassignmentroledefinition.RoleAssignmentRoleDefinitionClient
@@ -436,12 +436,6 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *msgraph.Clien
 	}
 	configureFunc(exchangeConnectorClient.Client)
 
-	exportDeviceManagementReportsJobsClient, err := exportdevicemanagementreportsjobs.NewExportDeviceManagementReportsJobsClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building ExportDeviceManagementReportsJobs client: %+v", err)
-	}
-	configureFunc(exportDeviceManagementReportsJobsClient.Client)
-
 	importedWindowsAutopilotDeviceIdentityClient, err := importedwindowsautopilotdeviceidentity.NewImportedWindowsAutopilotDeviceIdentityClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building ImportedWindowsAutopilotDeviceIdentity client: %+v", err)
@@ -555,6 +549,12 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *msgraph.Clien
 		return nil, fmt.Errorf("building Report client: %+v", err)
 	}
 	configureFunc(reportClient.Client)
+
+	reportExportJobClient, err := reportexportjob.NewReportExportJobClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building ReportExportJob client: %+v", err)
+	}
+	configureFunc(reportExportJobClient.Client)
 
 	resourceOperationClient, err := resourceoperation.NewResourceOperationClientWithBaseURI(sdkApi)
 	if err != nil {
@@ -949,89 +949,89 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *msgraph.Clien
 		DeviceCompliancePolicyDeviceStatus:              deviceCompliancePolicyDeviceStatusClient,
 		DeviceCompliancePolicyDeviceStatusOverview:      deviceCompliancePolicyDeviceStatusOverviewClient,
 		DeviceCompliancePolicyScheduledActionsForRule:   deviceCompliancePolicyScheduledActionsForRuleClient,
-		DeviceCompliancePolicyScheduledActionsForRuleScheduledActionConfiguration:       deviceCompliancePolicyScheduledActionsForRuleScheduledActionConfigurationClient,
-		DeviceCompliancePolicySettingStateSummary:                                       deviceCompliancePolicySettingStateSummaryClient,
-		DeviceCompliancePolicySettingStateSummaryDeviceComplianceSettingState:           deviceCompliancePolicySettingStateSummaryDeviceComplianceSettingStateClient,
-		DeviceCompliancePolicyUserStatus:                                                deviceCompliancePolicyUserStatusClient,
-		DeviceCompliancePolicyUserStatusOverview:                                        deviceCompliancePolicyUserStatusOverviewClient,
-		DeviceConfiguration:                                                             deviceConfigurationClient,
-		DeviceConfigurationAssignment:                                                   deviceConfigurationAssignmentClient,
-		DeviceConfigurationDeviceSettingStateSummary:                                    deviceConfigurationDeviceSettingStateSummaryClient,
-		DeviceConfigurationDeviceStateSummary:                                           deviceConfigurationDeviceStateSummaryClient,
-		DeviceConfigurationDeviceStatus:                                                 deviceConfigurationDeviceStatusClient,
-		DeviceConfigurationDeviceStatusOverview:                                         deviceConfigurationDeviceStatusOverviewClient,
-		DeviceConfigurationUserStatus:                                                   deviceConfigurationUserStatusClient,
-		DeviceConfigurationUserStatusOverview:                                           deviceConfigurationUserStatusOverviewClient,
-		DeviceEnrollmentConfiguration:                                                   deviceEnrollmentConfigurationClient,
-		DeviceEnrollmentConfigurationAssignment:                                         deviceEnrollmentConfigurationAssignmentClient,
-		DeviceManagement:                                                                deviceManagementClient,
-		DeviceManagementPartner:                                                         deviceManagementPartnerClient,
-		ExchangeConnector:                                                               exchangeConnectorClient,
-		ExportDeviceManagementReportsJobs:                                               exportDeviceManagementReportsJobsClient,
-		ImportedWindowsAutopilotDeviceIdentity:                                          importedWindowsAutopilotDeviceIdentityClient,
-		IosUpdateStatus:                                                                 iosUpdateStatusClient,
-		ManagedDevice:                                                                   managedDeviceClient,
-		ManagedDeviceDeviceCategory:                                                     managedDeviceDeviceCategoryClient,
-		ManagedDeviceDeviceCompliancePolicyState:                                        managedDeviceDeviceCompliancePolicyStateClient,
-		ManagedDeviceDeviceConfigurationState:                                           managedDeviceDeviceConfigurationStateClient,
-		ManagedDeviceLogCollectionRequest:                                               managedDeviceLogCollectionRequestClient,
-		ManagedDeviceOverview:                                                           managedDeviceOverviewClient,
-		ManagedDeviceUser:                                                               managedDeviceUserClient,
-		ManagedDeviceWindowsProtectionState:                                             managedDeviceWindowsProtectionStateClient,
-		ManagedDeviceWindowsProtectionStateDetectedMalwareState:                         managedDeviceWindowsProtectionStateDetectedMalwareStateClient,
-		MobileAppTroubleshootingEvent:                                                   mobileAppTroubleshootingEventClient,
-		MobileAppTroubleshootingEventAppLogCollectionRequest:                            mobileAppTroubleshootingEventAppLogCollectionRequestClient,
-		MobileThreatDefenseConnector:                                                    mobileThreatDefenseConnectorClient,
-		NotificationMessageTemplate:                                                     notificationMessageTemplateClient,
-		NotificationMessageTemplateLocalizedNotificationMessage:                         notificationMessageTemplateLocalizedNotificationMessageClient,
-		RebootDeviceManagementUserExperienceAnalyticsBaselineAnalyticsMetrics:           rebootDeviceManagementUserExperienceAnalyticsBaselineAnalyticsMetricsClient,
-		RemoteAssistancePartner:                                                         remoteAssistancePartnerClient,
-		Report:                                                                          reportClient,
-		ResourceOperation:                                                               resourceOperationClient,
-		RoleAssignment:                                                                  roleAssignmentClient,
-		RoleAssignmentRoleDefinition:                                                    roleAssignmentRoleDefinitionClient,
-		RoleDefinition:                                                                  roleDefinitionClient,
-		RoleDefinitionRoleAssignment:                                                    roleDefinitionRoleAssignmentClient,
-		RoleDefinitionRoleAssignmentRoleDefinition:                                      roleDefinitionRoleAssignmentRoleDefinitionClient,
-		SoftwareUpdateStatusSummary:                                                     softwareUpdateStatusSummaryClient,
-		TelecomExpenseManagementPartner:                                                 telecomExpenseManagementPartnerClient,
-		TermsAndCondition:                                                               termsAndConditionClient,
-		TermsAndConditionAcceptanceStatus:                                               termsAndConditionAcceptanceStatusClient,
-		TermsAndConditionAcceptanceStatusTermsAndCondition:                              termsAndConditionAcceptanceStatusTermsAndConditionClient,
-		TermsAndConditionAssignment:                                                     termsAndConditionAssignmentClient,
-		TroubleshootingEvent:                                                            troubleshootingEventClient,
-		UserExperienceAnalyticsAppHealthApplicationPerformance:                          userExperienceAnalyticsAppHealthApplicationPerformanceClient,
-		UserExperienceAnalyticsAppHealthApplicationPerformanceByAppVersionDetail:        userExperienceAnalyticsAppHealthApplicationPerformanceByAppVersionDetailClient,
-		UserExperienceAnalyticsAppHealthApplicationPerformanceByAppVersionDeviceId:      userExperienceAnalyticsAppHealthApplicationPerformanceByAppVersionDeviceIdClient,
-		UserExperienceAnalyticsAppHealthApplicationPerformanceByOSVersion:               userExperienceAnalyticsAppHealthApplicationPerformanceByOSVersionClient,
-		UserExperienceAnalyticsAppHealthDeviceModelPerformance:                          userExperienceAnalyticsAppHealthDeviceModelPerformanceClient,
-		UserExperienceAnalyticsAppHealthDevicePerformance:                               userExperienceAnalyticsAppHealthDevicePerformanceClient,
-		UserExperienceAnalyticsAppHealthDevicePerformanceDetail:                         userExperienceAnalyticsAppHealthDevicePerformanceDetailClient,
-		UserExperienceAnalyticsAppHealthOSVersionPerformance:                            userExperienceAnalyticsAppHealthOSVersionPerformanceClient,
-		UserExperienceAnalyticsAppHealthOverview:                                        userExperienceAnalyticsAppHealthOverviewClient,
-		UserExperienceAnalyticsAppHealthOverviewMetricValue:                             userExperienceAnalyticsAppHealthOverviewMetricValueClient,
-		UserExperienceAnalyticsBaseline:                                                 userExperienceAnalyticsBaselineClient,
-		UserExperienceAnalyticsBaselineAppHealthMetric:                                  userExperienceAnalyticsBaselineAppHealthMetricClient,
-		UserExperienceAnalyticsBaselineBatteryHealthMetric:                              userExperienceAnalyticsBaselineBatteryHealthMetricClient,
-		UserExperienceAnalyticsBaselineBestPracticesMetric:                              userExperienceAnalyticsBaselineBestPracticesMetricClient,
-		UserExperienceAnalyticsBaselineDeviceBootPerformanceMetric:                      userExperienceAnalyticsBaselineDeviceBootPerformanceMetricClient,
-		UserExperienceAnalyticsBaselineResourcePerformanceMetric:                        userExperienceAnalyticsBaselineResourcePerformanceMetricClient,
-		UserExperienceAnalyticsBaselineWorkFromAnywhereMetric:                           userExperienceAnalyticsBaselineWorkFromAnywhereMetricClient,
-		UserExperienceAnalyticsCategory:                                                 userExperienceAnalyticsCategoryClient,
-		UserExperienceAnalyticsCategoryMetricValue:                                      userExperienceAnalyticsCategoryMetricValueClient,
-		UserExperienceAnalyticsDevicePerformance:                                        userExperienceAnalyticsDevicePerformanceClient,
-		UserExperienceAnalyticsDeviceScore:                                              userExperienceAnalyticsDeviceScoreClient,
-		UserExperienceAnalyticsDeviceStartupHistory:                                     userExperienceAnalyticsDeviceStartupHistoryClient,
-		UserExperienceAnalyticsDeviceStartupProcess:                                     userExperienceAnalyticsDeviceStartupProcessClient,
-		UserExperienceAnalyticsDeviceStartupProcessPerformance:                          userExperienceAnalyticsDeviceStartupProcessPerformanceClient,
-		UserExperienceAnalyticsMetricHistory:                                            userExperienceAnalyticsMetricHistoryClient,
-		UserExperienceAnalyticsModelScore:                                               userExperienceAnalyticsModelScoreClient,
-		UserExperienceAnalyticsOverview:                                                 userExperienceAnalyticsOverviewClient,
-		UserExperienceAnalyticsScoreHistory:                                             userExperienceAnalyticsScoreHistoryClient,
-		UserExperienceAnalyticsWorkFromAnywhereHardwareReadinessMetric:                  userExperienceAnalyticsWorkFromAnywhereHardwareReadinessMetricClient,
-		UserExperienceAnalyticsWorkFromAnywhereMetric:                                   userExperienceAnalyticsWorkFromAnywhereMetricClient,
-		UserExperienceAnalyticsWorkFromAnywhereMetricMetricDevice:                       userExperienceAnalyticsWorkFromAnywhereMetricMetricDeviceClient,
-		UserExperienceAnalyticsWorkFromAnywhereModelPerformance:                         userExperienceAnalyticsWorkFromAnywhereModelPerformanceClient,
+		DeviceCompliancePolicyScheduledActionsForRuleScheduledActionConfiguration: deviceCompliancePolicyScheduledActionsForRuleScheduledActionConfigurationClient,
+		DeviceCompliancePolicySettingStateSummary:                                 deviceCompliancePolicySettingStateSummaryClient,
+		DeviceCompliancePolicySettingStateSummaryDeviceComplianceSettingState:     deviceCompliancePolicySettingStateSummaryDeviceComplianceSettingStateClient,
+		DeviceCompliancePolicyUserStatus:                                          deviceCompliancePolicyUserStatusClient,
+		DeviceCompliancePolicyUserStatusOverview:                                  deviceCompliancePolicyUserStatusOverviewClient,
+		DeviceConfiguration:                                                       deviceConfigurationClient,
+		DeviceConfigurationAssignment:                                             deviceConfigurationAssignmentClient,
+		DeviceConfigurationDeviceSettingStateSummary:                              deviceConfigurationDeviceSettingStateSummaryClient,
+		DeviceConfigurationDeviceStateSummary:                                     deviceConfigurationDeviceStateSummaryClient,
+		DeviceConfigurationDeviceStatus:                                           deviceConfigurationDeviceStatusClient,
+		DeviceConfigurationDeviceStatusOverview:                                   deviceConfigurationDeviceStatusOverviewClient,
+		DeviceConfigurationUserStatus:                                             deviceConfigurationUserStatusClient,
+		DeviceConfigurationUserStatusOverview:                                     deviceConfigurationUserStatusOverviewClient,
+		DeviceEnrollmentConfiguration:                                             deviceEnrollmentConfigurationClient,
+		DeviceEnrollmentConfigurationAssignment:                                   deviceEnrollmentConfigurationAssignmentClient,
+		DeviceManagement:                                                          deviceManagementClient,
+		DeviceManagementPartner:                                                   deviceManagementPartnerClient,
+		ExchangeConnector:                                                         exchangeConnectorClient,
+		ImportedWindowsAutopilotDeviceIdentity:                                    importedWindowsAutopilotDeviceIdentityClient,
+		IosUpdateStatus:                                                           iosUpdateStatusClient,
+		ManagedDevice:                                                             managedDeviceClient,
+		ManagedDeviceDeviceCategory:                                               managedDeviceDeviceCategoryClient,
+		ManagedDeviceDeviceCompliancePolicyState:                                  managedDeviceDeviceCompliancePolicyStateClient,
+		ManagedDeviceDeviceConfigurationState:                                     managedDeviceDeviceConfigurationStateClient,
+		ManagedDeviceLogCollectionRequest:                                         managedDeviceLogCollectionRequestClient,
+		ManagedDeviceOverview:                                                     managedDeviceOverviewClient,
+		ManagedDeviceUser:                                                         managedDeviceUserClient,
+		ManagedDeviceWindowsProtectionState:                                       managedDeviceWindowsProtectionStateClient,
+		ManagedDeviceWindowsProtectionStateDetectedMalwareState:                   managedDeviceWindowsProtectionStateDetectedMalwareStateClient,
+		MobileAppTroubleshootingEvent:                                             mobileAppTroubleshootingEventClient,
+		MobileAppTroubleshootingEventAppLogCollectionRequest:                      mobileAppTroubleshootingEventAppLogCollectionRequestClient,
+		MobileThreatDefenseConnector:                                              mobileThreatDefenseConnectorClient,
+		NotificationMessageTemplate:                                               notificationMessageTemplateClient,
+		NotificationMessageTemplateLocalizedNotificationMessage:                   notificationMessageTemplateLocalizedNotificationMessageClient,
+		RebootDeviceManagementUserExperienceAnalyticsBaselineAnalyticsMetrics:     rebootDeviceManagementUserExperienceAnalyticsBaselineAnalyticsMetricsClient,
+		RemoteAssistancePartner:                                                   remoteAssistancePartnerClient,
+		Report:                                                                    reportClient,
+		ReportExportJob:                                                           reportExportJobClient,
+		ResourceOperation:                                                         resourceOperationClient,
+		RoleAssignment:                                                            roleAssignmentClient,
+		RoleAssignmentRoleDefinition:                                              roleAssignmentRoleDefinitionClient,
+		RoleDefinition:                                                            roleDefinitionClient,
+		RoleDefinitionRoleAssignment:                                              roleDefinitionRoleAssignmentClient,
+		RoleDefinitionRoleAssignmentRoleDefinition:                                roleDefinitionRoleAssignmentRoleDefinitionClient,
+		SoftwareUpdateStatusSummary:                                               softwareUpdateStatusSummaryClient,
+		TelecomExpenseManagementPartner:                                           telecomExpenseManagementPartnerClient,
+		TermsAndCondition:                                                         termsAndConditionClient,
+		TermsAndConditionAcceptanceStatus:                                         termsAndConditionAcceptanceStatusClient,
+		TermsAndConditionAcceptanceStatusTermsAndCondition:                        termsAndConditionAcceptanceStatusTermsAndConditionClient,
+		TermsAndConditionAssignment:                                               termsAndConditionAssignmentClient,
+		TroubleshootingEvent:                                                      troubleshootingEventClient,
+		UserExperienceAnalyticsAppHealthApplicationPerformance:                    userExperienceAnalyticsAppHealthApplicationPerformanceClient,
+		UserExperienceAnalyticsAppHealthApplicationPerformanceByAppVersionDetail:  userExperienceAnalyticsAppHealthApplicationPerformanceByAppVersionDetailClient,
+		UserExperienceAnalyticsAppHealthApplicationPerformanceByAppVersionDeviceId: userExperienceAnalyticsAppHealthApplicationPerformanceByAppVersionDeviceIdClient,
+		UserExperienceAnalyticsAppHealthApplicationPerformanceByOSVersion:          userExperienceAnalyticsAppHealthApplicationPerformanceByOSVersionClient,
+		UserExperienceAnalyticsAppHealthDeviceModelPerformance:                     userExperienceAnalyticsAppHealthDeviceModelPerformanceClient,
+		UserExperienceAnalyticsAppHealthDevicePerformance:                          userExperienceAnalyticsAppHealthDevicePerformanceClient,
+		UserExperienceAnalyticsAppHealthDevicePerformanceDetail:                    userExperienceAnalyticsAppHealthDevicePerformanceDetailClient,
+		UserExperienceAnalyticsAppHealthOSVersionPerformance:                       userExperienceAnalyticsAppHealthOSVersionPerformanceClient,
+		UserExperienceAnalyticsAppHealthOverview:                                   userExperienceAnalyticsAppHealthOverviewClient,
+		UserExperienceAnalyticsAppHealthOverviewMetricValue:                        userExperienceAnalyticsAppHealthOverviewMetricValueClient,
+		UserExperienceAnalyticsBaseline:                                            userExperienceAnalyticsBaselineClient,
+		UserExperienceAnalyticsBaselineAppHealthMetric:                             userExperienceAnalyticsBaselineAppHealthMetricClient,
+		UserExperienceAnalyticsBaselineBatteryHealthMetric:                         userExperienceAnalyticsBaselineBatteryHealthMetricClient,
+		UserExperienceAnalyticsBaselineBestPracticesMetric:                         userExperienceAnalyticsBaselineBestPracticesMetricClient,
+		UserExperienceAnalyticsBaselineDeviceBootPerformanceMetric:                 userExperienceAnalyticsBaselineDeviceBootPerformanceMetricClient,
+		UserExperienceAnalyticsBaselineResourcePerformanceMetric:                   userExperienceAnalyticsBaselineResourcePerformanceMetricClient,
+		UserExperienceAnalyticsBaselineWorkFromAnywhereMetric:                      userExperienceAnalyticsBaselineWorkFromAnywhereMetricClient,
+		UserExperienceAnalyticsCategory:                                            userExperienceAnalyticsCategoryClient,
+		UserExperienceAnalyticsCategoryMetricValue:                                 userExperienceAnalyticsCategoryMetricValueClient,
+		UserExperienceAnalyticsDevicePerformance:                                   userExperienceAnalyticsDevicePerformanceClient,
+		UserExperienceAnalyticsDeviceScore:                                         userExperienceAnalyticsDeviceScoreClient,
+		UserExperienceAnalyticsDeviceStartupHistory:                                userExperienceAnalyticsDeviceStartupHistoryClient,
+		UserExperienceAnalyticsDeviceStartupProcess:                                userExperienceAnalyticsDeviceStartupProcessClient,
+		UserExperienceAnalyticsDeviceStartupProcessPerformance:                     userExperienceAnalyticsDeviceStartupProcessPerformanceClient,
+		UserExperienceAnalyticsMetricHistory:                                       userExperienceAnalyticsMetricHistoryClient,
+		UserExperienceAnalyticsModelScore:                                          userExperienceAnalyticsModelScoreClient,
+		UserExperienceAnalyticsOverview:                                            userExperienceAnalyticsOverviewClient,
+		UserExperienceAnalyticsScoreHistory:                                        userExperienceAnalyticsScoreHistoryClient,
+		UserExperienceAnalyticsWorkFromAnywhereHardwareReadinessMetric:             userExperienceAnalyticsWorkFromAnywhereHardwareReadinessMetricClient,
+		UserExperienceAnalyticsWorkFromAnywhereMetric:                              userExperienceAnalyticsWorkFromAnywhereMetricClient,
+		UserExperienceAnalyticsWorkFromAnywhereMetricMetricDevice:                  userExperienceAnalyticsWorkFromAnywhereMetricMetricDeviceClient,
+		UserExperienceAnalyticsWorkFromAnywhereModelPerformance:                    userExperienceAnalyticsWorkFromAnywhereModelPerformanceClient,
 		VirtualEndpoint:                                                                 virtualEndpointClient,
 		VirtualEndpointAuditEvent:                                                       virtualEndpointAuditEventClient,
 		VirtualEndpointCloudPC:                                                          virtualEndpointCloudPCClient,

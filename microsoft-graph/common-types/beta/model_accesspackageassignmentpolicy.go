@@ -122,10 +122,33 @@ func (s AccessPackageAssignmentPolicy) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &AccessPackageAssignmentPolicy{}
 
 func (s *AccessPackageAssignmentPolicy) UnmarshalJSON(bytes []byte) error {
-	type alias AccessPackageAssignmentPolicy
-	var decoded alias
+
+	var decoded struct {
+		AccessPackage                *AccessPackage                 `json:"accessPackage,omitempty"`
+		AccessPackageCatalog         *AccessPackageCatalog          `json:"accessPackageCatalog,omitempty"`
+		AccessPackageId              nullable.Type[string]          `json:"accessPackageId,omitempty"`
+		AccessReviewSettings         *AssignmentReviewSettings      `json:"accessReviewSettings,omitempty"`
+		CanExtend                    nullable.Type[bool]            `json:"canExtend,omitempty"`
+		CreatedBy                    nullable.Type[string]          `json:"createdBy,omitempty"`
+		CreatedDateTime              nullable.Type[string]          `json:"createdDateTime,omitempty"`
+		CustomExtensionHandlers      *[]CustomExtensionHandler      `json:"customExtensionHandlers,omitempty"`
+		CustomExtensionStageSettings *[]CustomExtensionStageSetting `json:"customExtensionStageSettings,omitempty"`
+		Description                  nullable.Type[string]          `json:"description,omitempty"`
+		DisplayName                  nullable.Type[string]          `json:"displayName,omitempty"`
+		DurationInDays               nullable.Type[int64]           `json:"durationInDays,omitempty"`
+		ExpirationDateTime           nullable.Type[string]          `json:"expirationDateTime,omitempty"`
+		ModifiedBy                   nullable.Type[string]          `json:"modifiedBy,omitempty"`
+		ModifiedDateTime             nullable.Type[string]          `json:"modifiedDateTime,omitempty"`
+		Questions                    *[]AccessPackageQuestion       `json:"questions,omitempty"`
+		RequestApprovalSettings      *ApprovalSettings              `json:"requestApprovalSettings,omitempty"`
+		RequestorSettings            *RequestorSettings             `json:"requestorSettings,omitempty"`
+		VerifiableCredentialSettings *VerifiableCredentialSettings  `json:"verifiableCredentialSettings,omitempty"`
+		Id                           *string                        `json:"id,omitempty"`
+		ODataId                      *string                        `json:"@odata.id,omitempty"`
+		ODataType                    *string                        `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into AccessPackageAssignmentPolicy: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.AccessPackage = decoded.AccessPackage
@@ -141,14 +164,14 @@ func (s *AccessPackageAssignmentPolicy) UnmarshalJSON(bytes []byte) error {
 	s.DisplayName = decoded.DisplayName
 	s.DurationInDays = decoded.DurationInDays
 	s.ExpirationDateTime = decoded.ExpirationDateTime
-	s.Id = decoded.Id
 	s.ModifiedBy = decoded.ModifiedBy
 	s.ModifiedDateTime = decoded.ModifiedDateTime
-	s.ODataId = decoded.ODataId
-	s.ODataType = decoded.ODataType
 	s.RequestApprovalSettings = decoded.RequestApprovalSettings
 	s.RequestorSettings = decoded.RequestorSettings
 	s.VerifiableCredentialSettings = decoded.VerifiableCredentialSettings
+	s.Id = decoded.Id
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -171,5 +194,6 @@ func (s *AccessPackageAssignmentPolicy) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Questions = &output
 	}
+
 	return nil
 }

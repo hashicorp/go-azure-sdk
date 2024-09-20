@@ -18,15 +18,44 @@ type CreatePromoteToInitialOperationResponse struct {
 	OData        *odata.OData
 }
 
+type CreatePromoteToInitialOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreatePromoteToInitialOperationOptions() CreatePromoteToInitialOperationOptions {
+	return CreatePromoteToInitialOperationOptions{}
+}
+
+func (o CreatePromoteToInitialOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreatePromoteToInitialOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreatePromoteToInitialOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreatePromoteToInitial - Invoke action promoteToInitial
-func (c DomainClient) CreatePromoteToInitial(ctx context.Context, id beta.DomainId) (result CreatePromoteToInitialOperationResponse, err error) {
+func (c DomainClient) CreatePromoteToInitial(ctx context.Context, id beta.DomainId, options CreatePromoteToInitialOperationOptions) (result CreatePromoteToInitialOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/promoteToInitial", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/promoteToInitial", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

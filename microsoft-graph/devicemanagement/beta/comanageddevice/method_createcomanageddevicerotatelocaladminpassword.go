@@ -18,16 +18,45 @@ type CreateComanagedDeviceRotateLocalAdminPasswordOperationResponse struct {
 	OData        *odata.OData
 }
 
+type CreateComanagedDeviceRotateLocalAdminPasswordOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateComanagedDeviceRotateLocalAdminPasswordOperationOptions() CreateComanagedDeviceRotateLocalAdminPasswordOperationOptions {
+	return CreateComanagedDeviceRotateLocalAdminPasswordOperationOptions{}
+}
+
+func (o CreateComanagedDeviceRotateLocalAdminPasswordOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateComanagedDeviceRotateLocalAdminPasswordOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateComanagedDeviceRotateLocalAdminPasswordOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateComanagedDeviceRotateLocalAdminPassword - Invoke action rotateLocalAdminPassword. Initiates a manual rotation
 // for the local admin password on the device
-func (c ComanagedDeviceClient) CreateComanagedDeviceRotateLocalAdminPassword(ctx context.Context, id beta.DeviceManagementComanagedDeviceId) (result CreateComanagedDeviceRotateLocalAdminPasswordOperationResponse, err error) {
+func (c ComanagedDeviceClient) CreateComanagedDeviceRotateLocalAdminPassword(ctx context.Context, id beta.DeviceManagementComanagedDeviceId, options CreateComanagedDeviceRotateLocalAdminPasswordOperationOptions) (result CreateComanagedDeviceRotateLocalAdminPasswordOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/rotateLocalAdminPassword", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/rotateLocalAdminPassword", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

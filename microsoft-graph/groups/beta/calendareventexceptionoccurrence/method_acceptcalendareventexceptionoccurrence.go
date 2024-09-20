@@ -18,15 +18,44 @@ type AcceptCalendarEventExceptionOccurrenceOperationResponse struct {
 	OData        *odata.OData
 }
 
+type AcceptCalendarEventExceptionOccurrenceOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultAcceptCalendarEventExceptionOccurrenceOperationOptions() AcceptCalendarEventExceptionOccurrenceOperationOptions {
+	return AcceptCalendarEventExceptionOccurrenceOperationOptions{}
+}
+
+func (o AcceptCalendarEventExceptionOccurrenceOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o AcceptCalendarEventExceptionOccurrenceOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o AcceptCalendarEventExceptionOccurrenceOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // AcceptCalendarEventExceptionOccurrence - Invoke action accept. Accept the specified event in a user calendar.
-func (c CalendarEventExceptionOccurrenceClient) AcceptCalendarEventExceptionOccurrence(ctx context.Context, id beta.GroupIdCalendarEventIdExceptionOccurrenceId, input AcceptCalendarEventExceptionOccurrenceRequest) (result AcceptCalendarEventExceptionOccurrenceOperationResponse, err error) {
+func (c CalendarEventExceptionOccurrenceClient) AcceptCalendarEventExceptionOccurrence(ctx context.Context, id beta.GroupIdCalendarEventIdExceptionOccurrenceId, input AcceptCalendarEventExceptionOccurrenceRequest, options AcceptCalendarEventExceptionOccurrenceOperationOptions) (result AcceptCalendarEventExceptionOccurrenceOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/accept", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/accept", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

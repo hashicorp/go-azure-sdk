@@ -19,16 +19,45 @@ type CreateManagedDeviceMobileAppConfigurationStateOperationResponse struct {
 	Model        *beta.ManagedDeviceMobileAppConfigurationState
 }
 
+type CreateManagedDeviceMobileAppConfigurationStateOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateManagedDeviceMobileAppConfigurationStateOperationOptions() CreateManagedDeviceMobileAppConfigurationStateOperationOptions {
+	return CreateManagedDeviceMobileAppConfigurationStateOperationOptions{}
+}
+
+func (o CreateManagedDeviceMobileAppConfigurationStateOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateManagedDeviceMobileAppConfigurationStateOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateManagedDeviceMobileAppConfigurationStateOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateManagedDeviceMobileAppConfigurationState - Create new navigation property to
 // managedDeviceMobileAppConfigurationStates for deviceManagement
-func (c ManagedDeviceManagedDeviceMobileAppConfigurationStateClient) CreateManagedDeviceMobileAppConfigurationState(ctx context.Context, id beta.DeviceManagementManagedDeviceId, input beta.ManagedDeviceMobileAppConfigurationState) (result CreateManagedDeviceMobileAppConfigurationStateOperationResponse, err error) {
+func (c ManagedDeviceManagedDeviceMobileAppConfigurationStateClient) CreateManagedDeviceMobileAppConfigurationState(ctx context.Context, id beta.DeviceManagementManagedDeviceId, input beta.ManagedDeviceMobileAppConfigurationState, options CreateManagedDeviceMobileAppConfigurationStateOperationOptions) (result CreateManagedDeviceMobileAppConfigurationStateOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/managedDeviceMobileAppConfigurationStates", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/managedDeviceMobileAppConfigurationStates", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

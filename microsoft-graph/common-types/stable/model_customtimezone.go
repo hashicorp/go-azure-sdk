@@ -72,10 +72,16 @@ func (s CustomTimeZone) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &CustomTimeZone{}
 
 func (s *CustomTimeZone) UnmarshalJSON(bytes []byte) error {
-	type alias CustomTimeZone
-	var decoded alias
+
+	var decoded struct {
+		Bias           nullable.Type[int64]    `json:"bias,omitempty"`
+		DaylightOffset *DaylightTimeZoneOffset `json:"daylightOffset,omitempty"`
+		Name           nullable.Type[string]   `json:"name,omitempty"`
+		ODataId        *string                 `json:"@odata.id,omitempty"`
+		ODataType      *string                 `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into CustomTimeZone: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.Bias = decoded.Bias
@@ -96,5 +102,6 @@ func (s *CustomTimeZone) UnmarshalJSON(bytes []byte) error {
 		}
 		s.StandardOffset = impl
 	}
+
 	return nil
 }

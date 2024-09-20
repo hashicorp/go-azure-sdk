@@ -19,7 +19,8 @@ type DeleteLogoOperationResponse struct {
 }
 
 type DeleteLogoOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteLogoOperationOptions() DeleteLogoOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteLogoOperationOptions) ToHeaders() *client.Headers {
 
 func (o DeleteLogoOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

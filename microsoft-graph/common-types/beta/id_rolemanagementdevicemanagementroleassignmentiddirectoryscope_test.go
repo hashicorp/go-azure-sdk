@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &RoleManagementDeviceManagementRoleAssignmentIdDirectoryScopeId{}
 
 func TestNewRoleManagementDeviceManagementRoleAssignmentIdDirectoryScopeID(t *testing.T) {
-	id := NewRoleManagementDeviceManagementRoleAssignmentIdDirectoryScopeID("unifiedRoleAssignmentMultipleIdValue", "directoryObjectIdValue")
+	id := NewRoleManagementDeviceManagementRoleAssignmentIdDirectoryScopeID("unifiedRoleAssignmentMultipleId", "directoryObjectId")
 
-	if id.UnifiedRoleAssignmentMultipleId != "unifiedRoleAssignmentMultipleIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'UnifiedRoleAssignmentMultipleId'", id.UnifiedRoleAssignmentMultipleId, "unifiedRoleAssignmentMultipleIdValue")
+	if id.UnifiedRoleAssignmentMultipleId != "unifiedRoleAssignmentMultipleId" {
+		t.Fatalf("Expected %q but got %q for Segment 'UnifiedRoleAssignmentMultipleId'", id.UnifiedRoleAssignmentMultipleId, "unifiedRoleAssignmentMultipleId")
 	}
 
-	if id.DirectoryObjectId != "directoryObjectIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DirectoryObjectId'", id.DirectoryObjectId, "directoryObjectIdValue")
+	if id.DirectoryObjectId != "directoryObjectId" {
+		t.Fatalf("Expected %q but got %q for Segment 'DirectoryObjectId'", id.DirectoryObjectId, "directoryObjectId")
 	}
 }
 
 func TestFormatRoleManagementDeviceManagementRoleAssignmentIdDirectoryScopeID(t *testing.T) {
-	actual := NewRoleManagementDeviceManagementRoleAssignmentIdDirectoryScopeID("unifiedRoleAssignmentMultipleIdValue", "directoryObjectIdValue").ID()
-	expected := "/roleManagement/deviceManagement/roleAssignments/unifiedRoleAssignmentMultipleIdValue/directoryScopes/directoryObjectIdValue"
+	actual := NewRoleManagementDeviceManagementRoleAssignmentIdDirectoryScopeID("unifiedRoleAssignmentMultipleId", "directoryObjectId").ID()
+	expected := "/roleManagement/deviceManagement/roleAssignments/unifiedRoleAssignmentMultipleId/directoryScopes/directoryObjectId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -59,25 +59,25 @@ func TestParseRoleManagementDeviceManagementRoleAssignmentIdDirectoryScopeID(t *
 		},
 		{
 			// Incomplete URI
-			Input: "/roleManagement/deviceManagement/roleAssignments/unifiedRoleAssignmentMultipleIdValue",
+			Input: "/roleManagement/deviceManagement/roleAssignments/unifiedRoleAssignmentMultipleId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/roleManagement/deviceManagement/roleAssignments/unifiedRoleAssignmentMultipleIdValue/directoryScopes",
+			Input: "/roleManagement/deviceManagement/roleAssignments/unifiedRoleAssignmentMultipleId/directoryScopes",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/roleManagement/deviceManagement/roleAssignments/unifiedRoleAssignmentMultipleIdValue/directoryScopes/directoryObjectIdValue",
+			Input: "/roleManagement/deviceManagement/roleAssignments/unifiedRoleAssignmentMultipleId/directoryScopes/directoryObjectId",
 			Expected: &RoleManagementDeviceManagementRoleAssignmentIdDirectoryScopeId{
-				UnifiedRoleAssignmentMultipleId: "unifiedRoleAssignmentMultipleIdValue",
-				DirectoryObjectId:               "directoryObjectIdValue",
+				UnifiedRoleAssignmentMultipleId: "unifiedRoleAssignmentMultipleId",
+				DirectoryObjectId:               "directoryObjectId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/roleManagement/deviceManagement/roleAssignments/unifiedRoleAssignmentMultipleIdValue/directoryScopes/directoryObjectIdValue/extra",
+			Input: "/roleManagement/deviceManagement/roleAssignments/unifiedRoleAssignmentMultipleId/directoryScopes/directoryObjectId/extra",
 			Error: true,
 		},
 	}
@@ -150,48 +150,48 @@ func TestParseRoleManagementDeviceManagementRoleAssignmentIdDirectoryScopeIDInse
 		},
 		{
 			// Incomplete URI
-			Input: "/roleManagement/deviceManagement/roleAssignments/unifiedRoleAssignmentMultipleIdValue",
+			Input: "/roleManagement/deviceManagement/roleAssignments/unifiedRoleAssignmentMultipleId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/rOlEmAnAgEmEnT/dEvIcEmAnAgEmEnT/rOlEaSsIgNmEnTs/uNiFiEdRoLeAsSiGnMeNtMuLtIpLeIdVaLuE",
+			Input: "/rOlEmAnAgEmEnT/dEvIcEmAnAgEmEnT/rOlEaSsIgNmEnTs/uNiFiEdRoLeAsSiGnMeNtMuLtIpLeId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/roleManagement/deviceManagement/roleAssignments/unifiedRoleAssignmentMultipleIdValue/directoryScopes",
+			Input: "/roleManagement/deviceManagement/roleAssignments/unifiedRoleAssignmentMultipleId/directoryScopes",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/rOlEmAnAgEmEnT/dEvIcEmAnAgEmEnT/rOlEaSsIgNmEnTs/uNiFiEdRoLeAsSiGnMeNtMuLtIpLeIdVaLuE/dIrEcToRyScOpEs",
+			Input: "/rOlEmAnAgEmEnT/dEvIcEmAnAgEmEnT/rOlEaSsIgNmEnTs/uNiFiEdRoLeAsSiGnMeNtMuLtIpLeId/dIrEcToRyScOpEs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/roleManagement/deviceManagement/roleAssignments/unifiedRoleAssignmentMultipleIdValue/directoryScopes/directoryObjectIdValue",
+			Input: "/roleManagement/deviceManagement/roleAssignments/unifiedRoleAssignmentMultipleId/directoryScopes/directoryObjectId",
 			Expected: &RoleManagementDeviceManagementRoleAssignmentIdDirectoryScopeId{
-				UnifiedRoleAssignmentMultipleId: "unifiedRoleAssignmentMultipleIdValue",
-				DirectoryObjectId:               "directoryObjectIdValue",
+				UnifiedRoleAssignmentMultipleId: "unifiedRoleAssignmentMultipleId",
+				DirectoryObjectId:               "directoryObjectId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/roleManagement/deviceManagement/roleAssignments/unifiedRoleAssignmentMultipleIdValue/directoryScopes/directoryObjectIdValue/extra",
+			Input: "/roleManagement/deviceManagement/roleAssignments/unifiedRoleAssignmentMultipleId/directoryScopes/directoryObjectId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/rOlEmAnAgEmEnT/dEvIcEmAnAgEmEnT/rOlEaSsIgNmEnTs/uNiFiEdRoLeAsSiGnMeNtMuLtIpLeIdVaLuE/dIrEcToRyScOpEs/dIrEcToRyObJeCtIdVaLuE",
+			Input: "/rOlEmAnAgEmEnT/dEvIcEmAnAgEmEnT/rOlEaSsIgNmEnTs/uNiFiEdRoLeAsSiGnMeNtMuLtIpLeId/dIrEcToRyScOpEs/dIrEcToRyObJeCtId",
 			Expected: &RoleManagementDeviceManagementRoleAssignmentIdDirectoryScopeId{
-				UnifiedRoleAssignmentMultipleId: "uNiFiEdRoLeAsSiGnMeNtMuLtIpLeIdVaLuE",
-				DirectoryObjectId:               "dIrEcToRyObJeCtIdVaLuE",
+				UnifiedRoleAssignmentMultipleId: "uNiFiEdRoLeAsSiGnMeNtMuLtIpLeId",
+				DirectoryObjectId:               "dIrEcToRyObJeCtId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/rOlEmAnAgEmEnT/dEvIcEmAnAgEmEnT/rOlEaSsIgNmEnTs/uNiFiEdRoLeAsSiGnMeNtMuLtIpLeIdVaLuE/dIrEcToRyScOpEs/dIrEcToRyObJeCtIdVaLuE/extra",
+			Input: "/rOlEmAnAgEmEnT/dEvIcEmAnAgEmEnT/rOlEaSsIgNmEnTs/uNiFiEdRoLeAsSiGnMeNtMuLtIpLeId/dIrEcToRyScOpEs/dIrEcToRyObJeCtId/extra",
 			Error: true,
 		},
 	}

@@ -18,16 +18,45 @@ type CheckinDriveRootOperationResponse struct {
 	OData        *odata.OData
 }
 
+type CheckinDriveRootOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCheckinDriveRootOperationOptions() CheckinDriveRootOperationOptions {
+	return CheckinDriveRootOperationOptions{}
+}
+
+func (o CheckinDriveRootOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CheckinDriveRootOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CheckinDriveRootOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CheckinDriveRoot - Invoke action checkin. Check in a checked out driveItem resource, which makes the version of the
 // document available to others.
-func (c DriveRootClient) CheckinDriveRoot(ctx context.Context, id stable.UserIdDriveId, input CheckinDriveRootRequest) (result CheckinDriveRootOperationResponse, err error) {
+func (c DriveRootClient) CheckinDriveRoot(ctx context.Context, id stable.UserIdDriveId, input CheckinDriveRootRequest, options CheckinDriveRootOperationOptions) (result CheckinDriveRootOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/root/checkin", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/root/checkin", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -20,7 +20,8 @@ type GetDriveItemAnalyticsItemActivityStatActivityDriveItemContentOperationRespo
 }
 
 type GetDriveItemAnalyticsItemActivityStatActivityDriveItemContentOperationOptions struct {
-	Format *odata.Format
+	Format   *odata.Format
+	Metadata *odata.Metadata
 }
 
 func DefaultGetDriveItemAnalyticsItemActivityStatActivityDriveItemContentOperationOptions() GetDriveItemAnalyticsItemActivityStatActivityDriveItemContentOperationOptions {
@@ -37,6 +38,9 @@ func (o GetDriveItemAnalyticsItemActivityStatActivityDriveItemContentOperationOp
 	out := odata.Query{}
 	if o.Format != nil {
 		out.Format = *o.Format
+	}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
 	}
 	return &out
 }

@@ -101,10 +101,17 @@ func (s BaseEdiscoveryDataSourceImpl) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &BaseEdiscoveryDataSourceImpl{}
 
 func (s *BaseEdiscoveryDataSourceImpl) UnmarshalJSON(bytes []byte) error {
-	type alias BaseEdiscoveryDataSourceImpl
-	var decoded alias
+
+	var decoded struct {
+		CreatedDateTime nullable.Type[string]           `json:"createdDateTime,omitempty"`
+		DisplayName     nullable.Type[string]           `json:"displayName,omitempty"`
+		HoldStatus      *EdiscoveryDataSourceHoldStatus `json:"holdStatus,omitempty"`
+		Id              *string                         `json:"id,omitempty"`
+		ODataId         *string                         `json:"@odata.id,omitempty"`
+		ODataType       *string                         `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into BaseEdiscoveryDataSourceImpl: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.CreatedDateTime = decoded.CreatedDateTime
@@ -126,6 +133,7 @@ func (s *BaseEdiscoveryDataSourceImpl) UnmarshalJSON(bytes []byte) error {
 		}
 		s.CreatedBy = impl
 	}
+
 	return nil
 }
 
@@ -139,9 +147,9 @@ func UnmarshalEdiscoveryDataSourceImplementation(input []byte) (EdiscoveryDataSo
 		return nil, fmt.Errorf("unmarshaling EdiscoveryDataSource into map[string]interface: %+v", err)
 	}
 
-	value, ok := temp["@odata.type"].(string)
-	if !ok {
-		return nil, nil
+	var value string
+	if v, ok := temp["@odata.type"]; ok {
+		value = fmt.Sprintf("%v", v)
 	}
 
 	if strings.EqualFold(value, "#microsoft.graph.ediscovery.siteSource") {

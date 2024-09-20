@@ -106,18 +106,31 @@ func (s ExchangeProtectionPolicy) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &ExchangeProtectionPolicy{}
 
 func (s *ExchangeProtectionPolicy) UnmarshalJSON(bytes []byte) error {
-	type alias ExchangeProtectionPolicy
-	var decoded alias
+
+	var decoded struct {
+		MailboxInclusionRules  *[]MailboxProtectionRule `json:"mailboxInclusionRules,omitempty"`
+		MailboxProtectionUnits *[]MailboxProtectionUnit `json:"mailboxProtectionUnits,omitempty"`
+		CreatedBy              IdentitySet              `json:"createdBy"`
+		CreatedDateTime        nullable.Type[string]    `json:"createdDateTime,omitempty"`
+		DisplayName            nullable.Type[string]    `json:"displayName,omitempty"`
+		LastModifiedBy         IdentitySet              `json:"lastModifiedBy"`
+		LastModifiedDateTime   nullable.Type[string]    `json:"lastModifiedDateTime,omitempty"`
+		RetentionSettings      *[]RetentionSetting      `json:"retentionSettings,omitempty"`
+		Status                 *ProtectionPolicyStatus  `json:"status,omitempty"`
+		Id                     *string                  `json:"id,omitempty"`
+		ODataId                *string                  `json:"@odata.id,omitempty"`
+		ODataType              *string                  `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into ExchangeProtectionPolicy: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
+	s.MailboxInclusionRules = decoded.MailboxInclusionRules
+	s.MailboxProtectionUnits = decoded.MailboxProtectionUnits
 	s.CreatedDateTime = decoded.CreatedDateTime
 	s.DisplayName = decoded.DisplayName
 	s.Id = decoded.Id
 	s.LastModifiedDateTime = decoded.LastModifiedDateTime
-	s.MailboxInclusionRules = decoded.MailboxInclusionRules
-	s.MailboxProtectionUnits = decoded.MailboxProtectionUnits
 	s.ODataId = decoded.ODataId
 	s.ODataType = decoded.ODataType
 	s.RetentionSettings = decoded.RetentionSettings
@@ -143,5 +156,6 @@ func (s *ExchangeProtectionPolicy) UnmarshalJSON(bytes []byte) error {
 		}
 		s.LastModifiedBy = impl
 	}
+
 	return nil
 }

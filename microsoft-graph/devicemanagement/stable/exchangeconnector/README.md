@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/stable/exchangeconnector` Documentation
 
-The `exchangeconnector` SDK allows for interaction with the Azure Resource Manager Service `devicemanagement` (API Version `stable`).
+The `exchangeconnector` SDK allows for interaction with Microsoft Graph `devicemanagement` (API Version `stable`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -15,7 +15,7 @@ import "github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/stabl
 ### Client Initialization
 
 ```go
-client := exchangeconnector.NewExchangeConnectorClientWithBaseURI("https://management.azure.com")
+client := exchangeconnector.NewExchangeConnectorClientWithBaseURI("https://graph.microsoft.com")
 client.Client.Authorizer = authorizer
 ```
 
@@ -30,7 +30,7 @@ payload := exchangeconnector.DeviceManagementExchangeConnector{
 }
 
 
-read, err := client.CreateExchangeConnector(ctx, payload)
+read, err := client.CreateExchangeConnector(ctx, payload, exchangeconnector.DefaultCreateExchangeConnectorOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -44,7 +44,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := exchangeconnector.NewDeviceManagementExchangeConnectorID("deviceManagementExchangeConnectorIdValue")
+id := exchangeconnector.NewDeviceManagementExchangeConnectorID("deviceManagementExchangeConnectorId")
 
 read, err := client.DeleteExchangeConnector(ctx, id, exchangeconnector.DefaultDeleteExchangeConnectorOperationOptions())
 if err != nil {
@@ -60,7 +60,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := exchangeconnector.NewDeviceManagementExchangeConnectorID("deviceManagementExchangeConnectorIdValue")
+id := exchangeconnector.NewDeviceManagementExchangeConnectorID("deviceManagementExchangeConnectorId")
 
 read, err := client.GetExchangeConnector(ctx, id, exchangeconnector.DefaultGetExchangeConnectorOperationOptions())
 if err != nil {
@@ -109,14 +109,14 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := exchangeconnector.NewDeviceManagementExchangeConnectorID("deviceManagementExchangeConnectorIdValue")
+id := exchangeconnector.NewDeviceManagementExchangeConnectorID("deviceManagementExchangeConnectorId")
 
 payload := exchangeconnector.SyncExchangeConnectorRequest{
 	// ...
 }
 
 
-read, err := client.SyncExchangeConnector(ctx, id, payload)
+read, err := client.SyncExchangeConnector(ctx, id, payload, exchangeconnector.DefaultSyncExchangeConnectorOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -130,14 +130,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := exchangeconnector.NewDeviceManagementExchangeConnectorID("deviceManagementExchangeConnectorIdValue")
+id := exchangeconnector.NewDeviceManagementExchangeConnectorID("deviceManagementExchangeConnectorId")
 
 payload := exchangeconnector.DeviceManagementExchangeConnector{
 	// ...
 }
 
 
-read, err := client.UpdateExchangeConnector(ctx, id, payload)
+read, err := client.UpdateExchangeConnector(ctx, id, payload, exchangeconnector.DefaultUpdateExchangeConnectorOperationOptions())
 if err != nil {
 	// handle the error
 }

@@ -18,15 +18,44 @@ type AddB2xUserFlowIdentityProviderRefOperationResponse struct {
 	OData        *odata.OData
 }
 
+type AddB2xUserFlowIdentityProviderRefOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultAddB2xUserFlowIdentityProviderRefOperationOptions() AddB2xUserFlowIdentityProviderRefOperationOptions {
+	return AddB2xUserFlowIdentityProviderRefOperationOptions{}
+}
+
+func (o AddB2xUserFlowIdentityProviderRefOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o AddB2xUserFlowIdentityProviderRefOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o AddB2xUserFlowIdentityProviderRefOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // AddB2xUserFlowIdentityProviderRef - Create new navigation property ref to userFlowIdentityProviders for identity
-func (c B2xUserFlowUserFlowIdentityProviderClient) AddB2xUserFlowIdentityProviderRef(ctx context.Context, id stable.IdentityB2xUserFlowId, input stable.ReferenceCreate) (result AddB2xUserFlowIdentityProviderRefOperationResponse, err error) {
+func (c B2xUserFlowUserFlowIdentityProviderClient) AddB2xUserFlowIdentityProviderRef(ctx context.Context, id stable.IdentityB2xUserFlowId, input stable.ReferenceCreate, options AddB2xUserFlowIdentityProviderRefOperationOptions) (result AddB2xUserFlowIdentityProviderRefOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/userFlowIdentityProviders/$ref", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/userFlowIdentityProviders/$ref", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

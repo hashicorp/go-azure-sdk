@@ -98,10 +98,10 @@ func (id UserIdInferenceClassificationOverrideId) ID() string {
 func (id UserIdInferenceClassificationOverrideId) Segments() []resourceids.Segment {
 	return []resourceids.Segment{
 		resourceids.StaticSegment("users", "users", "users"),
-		resourceids.UserSpecifiedSegment("userId", "userIdValue"),
+		resourceids.UserSpecifiedSegment("userId", "userId"),
 		resourceids.StaticSegment("inferenceClassification", "inferenceClassification", "inferenceClassification"),
 		resourceids.StaticSegment("overrides", "overrides", "overrides"),
-		resourceids.UserSpecifiedSegment("inferenceClassificationOverrideId", "inferenceClassificationOverrideIdValue"),
+		resourceids.UserSpecifiedSegment("inferenceClassificationOverrideId", "inferenceClassificationOverrideId"),
 	}
 }
 

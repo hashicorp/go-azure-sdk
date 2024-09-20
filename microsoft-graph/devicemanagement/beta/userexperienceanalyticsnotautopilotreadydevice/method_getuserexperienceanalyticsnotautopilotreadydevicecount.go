@@ -18,8 +18,9 @@ type GetUserExperienceAnalyticsNotAutopilotReadyDeviceCountOperationResponse str
 }
 
 type GetUserExperienceAnalyticsNotAutopilotReadyDeviceCountOperationOptions struct {
-	Filter *string
-	Search *string
+	Filter   *string
+	Metadata *odata.Metadata
+	Search   *string
 }
 
 func DefaultGetUserExperienceAnalyticsNotAutopilotReadyDeviceCountOperationOptions() GetUserExperienceAnalyticsNotAutopilotReadyDeviceCountOperationOptions {
@@ -36,6 +37,9 @@ func (o GetUserExperienceAnalyticsNotAutopilotReadyDeviceCountOperationOptions) 
 	out := odata.Query{}
 	if o.Filter != nil {
 		out.Filter = *o.Filter
+	}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
 	}
 	if o.Search != nil {
 		out.Search = *o.Search

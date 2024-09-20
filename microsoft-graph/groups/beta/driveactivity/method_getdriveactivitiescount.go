@@ -20,8 +20,9 @@ type GetDriveActivitiesCountOperationResponse struct {
 }
 
 type GetDriveActivitiesCountOperationOptions struct {
-	Filter *string
-	Search *string
+	Filter   *string
+	Metadata *odata.Metadata
+	Search   *string
 }
 
 func DefaultGetDriveActivitiesCountOperationOptions() GetDriveActivitiesCountOperationOptions {
@@ -38,6 +39,9 @@ func (o GetDriveActivitiesCountOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
 	if o.Filter != nil {
 		out.Filter = *o.Filter
+	}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
 	}
 	if o.Search != nil {
 		out.Search = *o.Search

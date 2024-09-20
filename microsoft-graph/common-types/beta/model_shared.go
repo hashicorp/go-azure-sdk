@@ -61,10 +61,15 @@ func (s Shared) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &Shared{}
 
 func (s *Shared) UnmarshalJSON(bytes []byte) error {
-	type alias Shared
-	var decoded alias
+
+	var decoded struct {
+		ODataId        *string               `json:"@odata.id,omitempty"`
+		ODataType      *string               `json:"@odata.type,omitempty"`
+		Scope          nullable.Type[string] `json:"scope,omitempty"`
+		SharedDateTime nullable.Type[string] `json:"sharedDateTime,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into Shared: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.ODataId = decoded.ODataId
@@ -92,5 +97,6 @@ func (s *Shared) UnmarshalJSON(bytes []byte) error {
 		}
 		s.SharedBy = &impl
 	}
+
 	return nil
 }

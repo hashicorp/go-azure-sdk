@@ -19,7 +19,8 @@ type DeleteB2xUserFlowUserAttributeAssignmentOperationResponse struct {
 }
 
 type DeleteB2xUserFlowUserAttributeAssignmentOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteB2xUserFlowUserAttributeAssignmentOperationOptions() DeleteB2xUserFlowUserAttributeAssignmentOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteB2xUserFlowUserAttributeAssignmentOperationOptions) ToHeaders() *c
 
 func (o DeleteB2xUserFlowUserAttributeAssignmentOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &DirectoryOutboundSharedUserProfileId{}
 
 func TestNewDirectoryOutboundSharedUserProfileID(t *testing.T) {
-	id := NewDirectoryOutboundSharedUserProfileID("outboundSharedUserProfileUserIdValue")
+	id := NewDirectoryOutboundSharedUserProfileID("outboundSharedUserProfileUserId")
 
-	if id.OutboundSharedUserProfileUserId != "outboundSharedUserProfileUserIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'OutboundSharedUserProfileUserId'", id.OutboundSharedUserProfileUserId, "outboundSharedUserProfileUserIdValue")
+	if id.OutboundSharedUserProfileUserId != "outboundSharedUserProfileUserId" {
+		t.Fatalf("Expected %q but got %q for Segment 'OutboundSharedUserProfileUserId'", id.OutboundSharedUserProfileUserId, "outboundSharedUserProfileUserId")
 	}
 }
 
 func TestFormatDirectoryOutboundSharedUserProfileID(t *testing.T) {
-	actual := NewDirectoryOutboundSharedUserProfileID("outboundSharedUserProfileUserIdValue").ID()
-	expected := "/directory/outboundSharedUserProfiles/outboundSharedUserProfileUserIdValue"
+	actual := NewDirectoryOutboundSharedUserProfileID("outboundSharedUserProfileUserId").ID()
+	expected := "/directory/outboundSharedUserProfiles/outboundSharedUserProfileUserId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -50,14 +50,14 @@ func TestParseDirectoryOutboundSharedUserProfileID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/directory/outboundSharedUserProfiles/outboundSharedUserProfileUserIdValue",
+			Input: "/directory/outboundSharedUserProfiles/outboundSharedUserProfileUserId",
 			Expected: &DirectoryOutboundSharedUserProfileId{
-				OutboundSharedUserProfileUserId: "outboundSharedUserProfileUserIdValue",
+				OutboundSharedUserProfileUserId: "outboundSharedUserProfileUserId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/directory/outboundSharedUserProfiles/outboundSharedUserProfileUserIdValue/extra",
+			Input: "/directory/outboundSharedUserProfiles/outboundSharedUserProfileUserId/extra",
 			Error: true,
 		},
 	}
@@ -116,26 +116,26 @@ func TestParseDirectoryOutboundSharedUserProfileIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/directory/outboundSharedUserProfiles/outboundSharedUserProfileUserIdValue",
+			Input: "/directory/outboundSharedUserProfiles/outboundSharedUserProfileUserId",
 			Expected: &DirectoryOutboundSharedUserProfileId{
-				OutboundSharedUserProfileUserId: "outboundSharedUserProfileUserIdValue",
+				OutboundSharedUserProfileUserId: "outboundSharedUserProfileUserId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/directory/outboundSharedUserProfiles/outboundSharedUserProfileUserIdValue/extra",
+			Input: "/directory/outboundSharedUserProfiles/outboundSharedUserProfileUserId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/dIrEcToRy/oUtBoUnDsHaReDuSeRpRoFiLeS/oUtBoUnDsHaReDuSeRpRoFiLeUsErIdVaLuE",
+			Input: "/dIrEcToRy/oUtBoUnDsHaReDuSeRpRoFiLeS/oUtBoUnDsHaReDuSeRpRoFiLeUsErId",
 			Expected: &DirectoryOutboundSharedUserProfileId{
-				OutboundSharedUserProfileUserId: "oUtBoUnDsHaReDuSeRpRoFiLeUsErIdVaLuE",
+				OutboundSharedUserProfileUserId: "oUtBoUnDsHaReDuSeRpRoFiLeUsErId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/dIrEcToRy/oUtBoUnDsHaReDuSeRpRoFiLeS/oUtBoUnDsHaReDuSeRpRoFiLeUsErIdVaLuE/extra",
+			Input: "/dIrEcToRy/oUtBoUnDsHaReDuSeRpRoFiLeS/oUtBoUnDsHaReDuSeRpRoFiLeUsErId/extra",
 			Error: true,
 		},
 	}

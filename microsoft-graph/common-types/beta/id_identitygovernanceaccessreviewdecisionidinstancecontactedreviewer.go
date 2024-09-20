@@ -100,10 +100,10 @@ func (id IdentityGovernanceAccessReviewDecisionIdInstanceContactedReviewerId) Se
 		resourceids.StaticSegment("identityGovernance", "identityGovernance", "identityGovernance"),
 		resourceids.StaticSegment("accessReviews", "accessReviews", "accessReviews"),
 		resourceids.StaticSegment("decisions", "decisions", "decisions"),
-		resourceids.UserSpecifiedSegment("accessReviewInstanceDecisionItemId", "accessReviewInstanceDecisionItemIdValue"),
+		resourceids.UserSpecifiedSegment("accessReviewInstanceDecisionItemId", "accessReviewInstanceDecisionItemId"),
 		resourceids.StaticSegment("instance", "instance", "instance"),
 		resourceids.StaticSegment("contactedReviewers", "contactedReviewers", "contactedReviewers"),
-		resourceids.UserSpecifiedSegment("accessReviewReviewerId", "accessReviewReviewerIdValue"),
+		resourceids.UserSpecifiedSegment("accessReviewReviewerId", "accessReviewReviewerId"),
 	}
 }
 

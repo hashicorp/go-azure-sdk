@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &ServicePrincipalIdTokenIssuancePolicyId{}
 
 func TestNewServicePrincipalIdTokenIssuancePolicyID(t *testing.T) {
-	id := NewServicePrincipalIdTokenIssuancePolicyID("servicePrincipalIdValue", "tokenIssuancePolicyIdValue")
+	id := NewServicePrincipalIdTokenIssuancePolicyID("servicePrincipalId", "tokenIssuancePolicyId")
 
-	if id.ServicePrincipalId != "servicePrincipalIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ServicePrincipalId'", id.ServicePrincipalId, "servicePrincipalIdValue")
+	if id.ServicePrincipalId != "servicePrincipalId" {
+		t.Fatalf("Expected %q but got %q for Segment 'ServicePrincipalId'", id.ServicePrincipalId, "servicePrincipalId")
 	}
 
-	if id.TokenIssuancePolicyId != "tokenIssuancePolicyIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'TokenIssuancePolicyId'", id.TokenIssuancePolicyId, "tokenIssuancePolicyIdValue")
+	if id.TokenIssuancePolicyId != "tokenIssuancePolicyId" {
+		t.Fatalf("Expected %q but got %q for Segment 'TokenIssuancePolicyId'", id.TokenIssuancePolicyId, "tokenIssuancePolicyId")
 	}
 }
 
 func TestFormatServicePrincipalIdTokenIssuancePolicyID(t *testing.T) {
-	actual := NewServicePrincipalIdTokenIssuancePolicyID("servicePrincipalIdValue", "tokenIssuancePolicyIdValue").ID()
-	expected := "/servicePrincipals/servicePrincipalIdValue/tokenIssuancePolicies/tokenIssuancePolicyIdValue"
+	actual := NewServicePrincipalIdTokenIssuancePolicyID("servicePrincipalId", "tokenIssuancePolicyId").ID()
+	expected := "/servicePrincipals/servicePrincipalId/tokenIssuancePolicies/tokenIssuancePolicyId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -49,25 +49,25 @@ func TestParseServicePrincipalIdTokenIssuancePolicyID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/servicePrincipals/servicePrincipalIdValue",
+			Input: "/servicePrincipals/servicePrincipalId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/servicePrincipals/servicePrincipalIdValue/tokenIssuancePolicies",
+			Input: "/servicePrincipals/servicePrincipalId/tokenIssuancePolicies",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/servicePrincipals/servicePrincipalIdValue/tokenIssuancePolicies/tokenIssuancePolicyIdValue",
+			Input: "/servicePrincipals/servicePrincipalId/tokenIssuancePolicies/tokenIssuancePolicyId",
 			Expected: &ServicePrincipalIdTokenIssuancePolicyId{
-				ServicePrincipalId:    "servicePrincipalIdValue",
-				TokenIssuancePolicyId: "tokenIssuancePolicyIdValue",
+				ServicePrincipalId:    "servicePrincipalId",
+				TokenIssuancePolicyId: "tokenIssuancePolicyId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/servicePrincipals/servicePrincipalIdValue/tokenIssuancePolicies/tokenIssuancePolicyIdValue/extra",
+			Input: "/servicePrincipals/servicePrincipalId/tokenIssuancePolicies/tokenIssuancePolicyId/extra",
 			Error: true,
 		},
 	}
@@ -120,48 +120,48 @@ func TestParseServicePrincipalIdTokenIssuancePolicyIDInsensitively(t *testing.T)
 		},
 		{
 			// Incomplete URI
-			Input: "/servicePrincipals/servicePrincipalIdValue",
+			Input: "/servicePrincipals/servicePrincipalId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sErViCePrInCiPaLs/sErViCePrInCiPaLiDvAlUe",
+			Input: "/sErViCePrInCiPaLs/sErViCePrInCiPaLiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/servicePrincipals/servicePrincipalIdValue/tokenIssuancePolicies",
+			Input: "/servicePrincipals/servicePrincipalId/tokenIssuancePolicies",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sErViCePrInCiPaLs/sErViCePrInCiPaLiDvAlUe/tOkEnIsSuAnCePoLiCiEs",
+			Input: "/sErViCePrInCiPaLs/sErViCePrInCiPaLiD/tOkEnIsSuAnCePoLiCiEs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/servicePrincipals/servicePrincipalIdValue/tokenIssuancePolicies/tokenIssuancePolicyIdValue",
+			Input: "/servicePrincipals/servicePrincipalId/tokenIssuancePolicies/tokenIssuancePolicyId",
 			Expected: &ServicePrincipalIdTokenIssuancePolicyId{
-				ServicePrincipalId:    "servicePrincipalIdValue",
-				TokenIssuancePolicyId: "tokenIssuancePolicyIdValue",
+				ServicePrincipalId:    "servicePrincipalId",
+				TokenIssuancePolicyId: "tokenIssuancePolicyId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/servicePrincipals/servicePrincipalIdValue/tokenIssuancePolicies/tokenIssuancePolicyIdValue/extra",
+			Input: "/servicePrincipals/servicePrincipalId/tokenIssuancePolicies/tokenIssuancePolicyId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sErViCePrInCiPaLs/sErViCePrInCiPaLiDvAlUe/tOkEnIsSuAnCePoLiCiEs/tOkEnIsSuAnCePoLiCyIdVaLuE",
+			Input: "/sErViCePrInCiPaLs/sErViCePrInCiPaLiD/tOkEnIsSuAnCePoLiCiEs/tOkEnIsSuAnCePoLiCyId",
 			Expected: &ServicePrincipalIdTokenIssuancePolicyId{
-				ServicePrincipalId:    "sErViCePrInCiPaLiDvAlUe",
-				TokenIssuancePolicyId: "tOkEnIsSuAnCePoLiCyIdVaLuE",
+				ServicePrincipalId:    "sErViCePrInCiPaLiD",
+				TokenIssuancePolicyId: "tOkEnIsSuAnCePoLiCyId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sErViCePrInCiPaLs/sErViCePrInCiPaLiDvAlUe/tOkEnIsSuAnCePoLiCiEs/tOkEnIsSuAnCePoLiCyIdVaLuE/extra",
+			Input: "/sErViCePrInCiPaLs/sErViCePrInCiPaLiD/tOkEnIsSuAnCePoLiCiEs/tOkEnIsSuAnCePoLiCyId/extra",
 			Error: true,
 		},
 	}

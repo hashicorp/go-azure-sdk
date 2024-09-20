@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &UserIdOutlookMasterCategoryId{}
 
 func TestNewUserIdOutlookMasterCategoryID(t *testing.T) {
-	id := NewUserIdOutlookMasterCategoryID("userIdValue", "outlookCategoryIdValue")
+	id := NewUserIdOutlookMasterCategoryID("userId", "outlookCategoryId")
 
-	if id.UserId != "userIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'UserId'", id.UserId, "userIdValue")
+	if id.UserId != "userId" {
+		t.Fatalf("Expected %q but got %q for Segment 'UserId'", id.UserId, "userId")
 	}
 
-	if id.OutlookCategoryId != "outlookCategoryIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'OutlookCategoryId'", id.OutlookCategoryId, "outlookCategoryIdValue")
+	if id.OutlookCategoryId != "outlookCategoryId" {
+		t.Fatalf("Expected %q but got %q for Segment 'OutlookCategoryId'", id.OutlookCategoryId, "outlookCategoryId")
 	}
 }
 
 func TestFormatUserIdOutlookMasterCategoryID(t *testing.T) {
-	actual := NewUserIdOutlookMasterCategoryID("userIdValue", "outlookCategoryIdValue").ID()
-	expected := "/users/userIdValue/outlook/masterCategories/outlookCategoryIdValue"
+	actual := NewUserIdOutlookMasterCategoryID("userId", "outlookCategoryId").ID()
+	expected := "/users/userId/outlook/masterCategories/outlookCategoryId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -49,30 +49,30 @@ func TestParseUserIdOutlookMasterCategoryID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue",
+			Input: "/users/userId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/outlook",
+			Input: "/users/userId/outlook",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/outlook/masterCategories",
+			Input: "/users/userId/outlook/masterCategories",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/users/userIdValue/outlook/masterCategories/outlookCategoryIdValue",
+			Input: "/users/userId/outlook/masterCategories/outlookCategoryId",
 			Expected: &UserIdOutlookMasterCategoryId{
-				UserId:            "userIdValue",
-				OutlookCategoryId: "outlookCategoryIdValue",
+				UserId:            "userId",
+				OutlookCategoryId: "outlookCategoryId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/users/userIdValue/outlook/masterCategories/outlookCategoryIdValue/extra",
+			Input: "/users/userId/outlook/masterCategories/outlookCategoryId/extra",
 			Error: true,
 		},
 	}
@@ -125,58 +125,58 @@ func TestParseUserIdOutlookMasterCategoryIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue",
+			Input: "/users/userId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe",
+			Input: "/uSeRs/uSeRiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/outlook",
+			Input: "/users/userId/outlook",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/oUtLoOk",
+			Input: "/uSeRs/uSeRiD/oUtLoOk",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/outlook/masterCategories",
+			Input: "/users/userId/outlook/masterCategories",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/oUtLoOk/mAsTeRcAtEgOrIeS",
+			Input: "/uSeRs/uSeRiD/oUtLoOk/mAsTeRcAtEgOrIeS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/users/userIdValue/outlook/masterCategories/outlookCategoryIdValue",
+			Input: "/users/userId/outlook/masterCategories/outlookCategoryId",
 			Expected: &UserIdOutlookMasterCategoryId{
-				UserId:            "userIdValue",
-				OutlookCategoryId: "outlookCategoryIdValue",
+				UserId:            "userId",
+				OutlookCategoryId: "outlookCategoryId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/users/userIdValue/outlook/masterCategories/outlookCategoryIdValue/extra",
+			Input: "/users/userId/outlook/masterCategories/outlookCategoryId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/oUtLoOk/mAsTeRcAtEgOrIeS/oUtLoOkCaTeGoRyIdVaLuE",
+			Input: "/uSeRs/uSeRiD/oUtLoOk/mAsTeRcAtEgOrIeS/oUtLoOkCaTeGoRyId",
 			Expected: &UserIdOutlookMasterCategoryId{
-				UserId:            "uSeRiDvAlUe",
-				OutlookCategoryId: "oUtLoOkCaTeGoRyIdVaLuE",
+				UserId:            "uSeRiD",
+				OutlookCategoryId: "oUtLoOkCaTeGoRyId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/oUtLoOk/mAsTeRcAtEgOrIeS/oUtLoOkCaTeGoRyIdVaLuE/extra",
+			Input: "/uSeRs/uSeRiD/oUtLoOk/mAsTeRcAtEgOrIeS/oUtLoOkCaTeGoRyId/extra",
 			Error: true,
 		},
 	}

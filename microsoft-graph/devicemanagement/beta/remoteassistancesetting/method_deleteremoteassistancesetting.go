@@ -18,7 +18,8 @@ type DeleteRemoteAssistanceSettingOperationResponse struct {
 }
 
 type DeleteRemoteAssistanceSettingOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteRemoteAssistanceSettingOperationOptions() DeleteRemoteAssistanceSettingOperationOptions {
@@ -35,7 +36,9 @@ func (o DeleteRemoteAssistanceSettingOperationOptions) ToHeaders() *client.Heade
 
 func (o DeleteRemoteAssistanceSettingOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

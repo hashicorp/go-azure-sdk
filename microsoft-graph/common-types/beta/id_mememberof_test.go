@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &MeMemberOfId{}
 
 func TestNewMeMemberOfID(t *testing.T) {
-	id := NewMeMemberOfID("directoryObjectIdValue")
+	id := NewMeMemberOfID("directoryObjectId")
 
-	if id.DirectoryObjectId != "directoryObjectIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DirectoryObjectId'", id.DirectoryObjectId, "directoryObjectIdValue")
+	if id.DirectoryObjectId != "directoryObjectId" {
+		t.Fatalf("Expected %q but got %q for Segment 'DirectoryObjectId'", id.DirectoryObjectId, "directoryObjectId")
 	}
 }
 
 func TestFormatMeMemberOfID(t *testing.T) {
-	actual := NewMeMemberOfID("directoryObjectIdValue").ID()
-	expected := "/me/memberOf/directoryObjectIdValue"
+	actual := NewMeMemberOfID("directoryObjectId").ID()
+	expected := "/me/memberOf/directoryObjectId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -50,14 +50,14 @@ func TestParseMeMemberOfID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/me/memberOf/directoryObjectIdValue",
+			Input: "/me/memberOf/directoryObjectId",
 			Expected: &MeMemberOfId{
-				DirectoryObjectId: "directoryObjectIdValue",
+				DirectoryObjectId: "directoryObjectId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/memberOf/directoryObjectIdValue/extra",
+			Input: "/me/memberOf/directoryObjectId/extra",
 			Error: true,
 		},
 	}
@@ -116,26 +116,26 @@ func TestParseMeMemberOfIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/me/memberOf/directoryObjectIdValue",
+			Input: "/me/memberOf/directoryObjectId",
 			Expected: &MeMemberOfId{
-				DirectoryObjectId: "directoryObjectIdValue",
+				DirectoryObjectId: "directoryObjectId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/memberOf/directoryObjectIdValue/extra",
+			Input: "/me/memberOf/directoryObjectId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/mEmBeRoF/dIrEcToRyObJeCtIdVaLuE",
+			Input: "/mE/mEmBeRoF/dIrEcToRyObJeCtId",
 			Expected: &MeMemberOfId{
-				DirectoryObjectId: "dIrEcToRyObJeCtIdVaLuE",
+				DirectoryObjectId: "dIrEcToRyObJeCtId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/mE/mEmBeRoF/dIrEcToRyObJeCtIdVaLuE/extra",
+			Input: "/mE/mEmBeRoF/dIrEcToRyObJeCtId/extra",
 			Error: true,
 		},
 	}

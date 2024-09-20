@@ -20,8 +20,9 @@ type GetRoleManagementPolicyRuleOperationResponse struct {
 }
 
 type GetRoleManagementPolicyRuleOperationOptions struct {
-	Expand *odata.Expand
-	Select *[]string
+	Expand   *odata.Expand
+	Metadata *odata.Metadata
+	Select   *[]string
 }
 
 func DefaultGetRoleManagementPolicyRuleOperationOptions() GetRoleManagementPolicyRuleOperationOptions {
@@ -39,6 +40,9 @@ func (o GetRoleManagementPolicyRuleOperationOptions) ToOData() *odata.Query {
 	if o.Expand != nil {
 		out.Expand = *o.Expand
 	}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	if o.Select != nil {
 		out.Select = *o.Select
 	}
@@ -52,7 +56,7 @@ func (o GetRoleManagementPolicyRuleOperationOptions) ToQuery() *client.QueryPara
 }
 
 // GetRoleManagementPolicyRule - Get unifiedRoleManagementPolicyRule. Retrieve a rule defined for a role management
-// policy. The rule can be one of the following types that are derived from the unifiedRoleManagementPolicyRule object:
+// policy. The rule can be one of the following types that are derived from the unifiedRoleManagementPolicyRule object
 func (c RoleManagementPolicyRuleClient) GetRoleManagementPolicyRule(ctx context.Context, id beta.PolicyRoleManagementPolicyIdRuleId, options GetRoleManagementPolicyRuleOperationOptions) (result GetRoleManagementPolicyRuleOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",

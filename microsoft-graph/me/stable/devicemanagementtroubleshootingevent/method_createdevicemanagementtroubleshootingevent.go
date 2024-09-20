@@ -19,16 +19,45 @@ type CreateDeviceManagementTroubleshootingEventOperationResponse struct {
 	Model        stable.DeviceManagementTroubleshootingEvent
 }
 
+type CreateDeviceManagementTroubleshootingEventOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateDeviceManagementTroubleshootingEventOperationOptions() CreateDeviceManagementTroubleshootingEventOperationOptions {
+	return CreateDeviceManagementTroubleshootingEventOperationOptions{}
+}
+
+func (o CreateDeviceManagementTroubleshootingEventOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateDeviceManagementTroubleshootingEventOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateDeviceManagementTroubleshootingEventOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateDeviceManagementTroubleshootingEvent - Create new navigation property to deviceManagementTroubleshootingEvents
 // for me
-func (c DeviceManagementTroubleshootingEventClient) CreateDeviceManagementTroubleshootingEvent(ctx context.Context, input stable.DeviceManagementTroubleshootingEvent) (result CreateDeviceManagementTroubleshootingEventOperationResponse, err error) {
+func (c DeviceManagementTroubleshootingEventClient) CreateDeviceManagementTroubleshootingEvent(ctx context.Context, input stable.DeviceManagementTroubleshootingEvent, options CreateDeviceManagementTroubleshootingEventOperationOptions) (result CreateDeviceManagementTroubleshootingEventOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/me/deviceManagementTroubleshootingEvents",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/me/deviceManagementTroubleshootingEvents",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

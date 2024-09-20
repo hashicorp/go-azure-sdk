@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &DeviceManagementZebraFotaDeploymentId{}
 
 func TestNewDeviceManagementZebraFotaDeploymentID(t *testing.T) {
-	id := NewDeviceManagementZebraFotaDeploymentID("zebraFotaDeploymentIdValue")
+	id := NewDeviceManagementZebraFotaDeploymentID("zebraFotaDeploymentId")
 
-	if id.ZebraFotaDeploymentId != "zebraFotaDeploymentIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ZebraFotaDeploymentId'", id.ZebraFotaDeploymentId, "zebraFotaDeploymentIdValue")
+	if id.ZebraFotaDeploymentId != "zebraFotaDeploymentId" {
+		t.Fatalf("Expected %q but got %q for Segment 'ZebraFotaDeploymentId'", id.ZebraFotaDeploymentId, "zebraFotaDeploymentId")
 	}
 }
 
 func TestFormatDeviceManagementZebraFotaDeploymentID(t *testing.T) {
-	actual := NewDeviceManagementZebraFotaDeploymentID("zebraFotaDeploymentIdValue").ID()
-	expected := "/deviceManagement/zebraFotaDeployments/zebraFotaDeploymentIdValue"
+	actual := NewDeviceManagementZebraFotaDeploymentID("zebraFotaDeploymentId").ID()
+	expected := "/deviceManagement/zebraFotaDeployments/zebraFotaDeploymentId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -50,14 +50,14 @@ func TestParseDeviceManagementZebraFotaDeploymentID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/zebraFotaDeployments/zebraFotaDeploymentIdValue",
+			Input: "/deviceManagement/zebraFotaDeployments/zebraFotaDeploymentId",
 			Expected: &DeviceManagementZebraFotaDeploymentId{
-				ZebraFotaDeploymentId: "zebraFotaDeploymentIdValue",
+				ZebraFotaDeploymentId: "zebraFotaDeploymentId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/zebraFotaDeployments/zebraFotaDeploymentIdValue/extra",
+			Input: "/deviceManagement/zebraFotaDeployments/zebraFotaDeploymentId/extra",
 			Error: true,
 		},
 	}
@@ -116,26 +116,26 @@ func TestParseDeviceManagementZebraFotaDeploymentIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/zebraFotaDeployments/zebraFotaDeploymentIdValue",
+			Input: "/deviceManagement/zebraFotaDeployments/zebraFotaDeploymentId",
 			Expected: &DeviceManagementZebraFotaDeploymentId{
-				ZebraFotaDeploymentId: "zebraFotaDeploymentIdValue",
+				ZebraFotaDeploymentId: "zebraFotaDeploymentId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/zebraFotaDeployments/zebraFotaDeploymentIdValue/extra",
+			Input: "/deviceManagement/zebraFotaDeployments/zebraFotaDeploymentId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/zEbRaFoTaDePlOyMeNtS/zEbRaFoTaDePlOyMeNtIdVaLuE",
+			Input: "/dEvIcEmAnAgEmEnT/zEbRaFoTaDePlOyMeNtS/zEbRaFoTaDePlOyMeNtId",
 			Expected: &DeviceManagementZebraFotaDeploymentId{
-				ZebraFotaDeploymentId: "zEbRaFoTaDePlOyMeNtIdVaLuE",
+				ZebraFotaDeploymentId: "zEbRaFoTaDePlOyMeNtId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/zEbRaFoTaDePlOyMeNtS/zEbRaFoTaDePlOyMeNtIdVaLuE/extra",
+			Input: "/dEvIcEmAnAgEmEnT/zEbRaFoTaDePlOyMeNtS/zEbRaFoTaDePlOyMeNtId/extra",
 			Error: true,
 		},
 	}

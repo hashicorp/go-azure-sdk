@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &IdentityConditionalAccessAuthenticationContextClassReferenceId{}
 
 func TestNewIdentityConditionalAccessAuthenticationContextClassReferenceID(t *testing.T) {
-	id := NewIdentityConditionalAccessAuthenticationContextClassReferenceID("authenticationContextClassReferenceIdValue")
+	id := NewIdentityConditionalAccessAuthenticationContextClassReferenceID("authenticationContextClassReferenceId")
 
-	if id.AuthenticationContextClassReferenceId != "authenticationContextClassReferenceIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'AuthenticationContextClassReferenceId'", id.AuthenticationContextClassReferenceId, "authenticationContextClassReferenceIdValue")
+	if id.AuthenticationContextClassReferenceId != "authenticationContextClassReferenceId" {
+		t.Fatalf("Expected %q but got %q for Segment 'AuthenticationContextClassReferenceId'", id.AuthenticationContextClassReferenceId, "authenticationContextClassReferenceId")
 	}
 }
 
 func TestFormatIdentityConditionalAccessAuthenticationContextClassReferenceID(t *testing.T) {
-	actual := NewIdentityConditionalAccessAuthenticationContextClassReferenceID("authenticationContextClassReferenceIdValue").ID()
-	expected := "/identity/conditionalAccess/authenticationContextClassReferences/authenticationContextClassReferenceIdValue"
+	actual := NewIdentityConditionalAccessAuthenticationContextClassReferenceID("authenticationContextClassReferenceId").ID()
+	expected := "/identity/conditionalAccess/authenticationContextClassReferences/authenticationContextClassReferenceId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -55,14 +55,14 @@ func TestParseIdentityConditionalAccessAuthenticationContextClassReferenceID(t *
 		},
 		{
 			// Valid URI
-			Input: "/identity/conditionalAccess/authenticationContextClassReferences/authenticationContextClassReferenceIdValue",
+			Input: "/identity/conditionalAccess/authenticationContextClassReferences/authenticationContextClassReferenceId",
 			Expected: &IdentityConditionalAccessAuthenticationContextClassReferenceId{
-				AuthenticationContextClassReferenceId: "authenticationContextClassReferenceIdValue",
+				AuthenticationContextClassReferenceId: "authenticationContextClassReferenceId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/identity/conditionalAccess/authenticationContextClassReferences/authenticationContextClassReferenceIdValue/extra",
+			Input: "/identity/conditionalAccess/authenticationContextClassReferences/authenticationContextClassReferenceId/extra",
 			Error: true,
 		},
 	}
@@ -131,26 +131,26 @@ func TestParseIdentityConditionalAccessAuthenticationContextClassReferenceIDInse
 		},
 		{
 			// Valid URI
-			Input: "/identity/conditionalAccess/authenticationContextClassReferences/authenticationContextClassReferenceIdValue",
+			Input: "/identity/conditionalAccess/authenticationContextClassReferences/authenticationContextClassReferenceId",
 			Expected: &IdentityConditionalAccessAuthenticationContextClassReferenceId{
-				AuthenticationContextClassReferenceId: "authenticationContextClassReferenceIdValue",
+				AuthenticationContextClassReferenceId: "authenticationContextClassReferenceId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/identity/conditionalAccess/authenticationContextClassReferences/authenticationContextClassReferenceIdValue/extra",
+			Input: "/identity/conditionalAccess/authenticationContextClassReferences/authenticationContextClassReferenceId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/iDeNtItY/cOnDiTiOnAlAcCeSs/aUtHeNtIcAtIoNcOnTeXtClAsSrEfErEnCeS/aUtHeNtIcAtIoNcOnTeXtClAsSrEfErEnCeIdVaLuE",
+			Input: "/iDeNtItY/cOnDiTiOnAlAcCeSs/aUtHeNtIcAtIoNcOnTeXtClAsSrEfErEnCeS/aUtHeNtIcAtIoNcOnTeXtClAsSrEfErEnCeId",
 			Expected: &IdentityConditionalAccessAuthenticationContextClassReferenceId{
-				AuthenticationContextClassReferenceId: "aUtHeNtIcAtIoNcOnTeXtClAsSrEfErEnCeIdVaLuE",
+				AuthenticationContextClassReferenceId: "aUtHeNtIcAtIoNcOnTeXtClAsSrEfErEnCeId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/iDeNtItY/cOnDiTiOnAlAcCeSs/aUtHeNtIcAtIoNcOnTeXtClAsSrEfErEnCeS/aUtHeNtIcAtIoNcOnTeXtClAsSrEfErEnCeIdVaLuE/extra",
+			Input: "/iDeNtItY/cOnDiTiOnAlAcCeSs/aUtHeNtIcAtIoNcOnTeXtClAsSrEfErEnCeS/aUtHeNtIcAtIoNcOnTeXtClAsSrEfErEnCeId/extra",
 			Error: true,
 		},
 	}

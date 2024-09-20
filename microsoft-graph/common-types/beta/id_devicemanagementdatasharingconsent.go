@@ -93,7 +93,7 @@ func (id DeviceManagementDataSharingConsentId) Segments() []resourceids.Segment 
 	return []resourceids.Segment{
 		resourceids.StaticSegment("deviceManagement", "deviceManagement", "deviceManagement"),
 		resourceids.StaticSegment("dataSharingConsents", "dataSharingConsents", "dataSharingConsents"),
-		resourceids.UserSpecifiedSegment("dataSharingConsentId", "dataSharingConsentIdValue"),
+		resourceids.UserSpecifiedSegment("dataSharingConsentId", "dataSharingConsentId"),
 	}
 }
 

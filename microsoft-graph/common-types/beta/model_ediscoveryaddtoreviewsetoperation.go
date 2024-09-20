@@ -107,12 +107,27 @@ func (s EdiscoveryAddToReviewSetOperation) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &EdiscoveryAddToReviewSetOperation{}
 
 func (s *EdiscoveryAddToReviewSetOperation) UnmarshalJSON(bytes []byte) error {
-	type alias EdiscoveryAddToReviewSetOperation
-	var decoded alias
+
+	var decoded struct {
+		ReviewSet         *EdiscoveryReviewSet           `json:"reviewSet,omitempty"`
+		SourceCollection  *EdiscoverySourceCollection    `json:"sourceCollection,omitempty"`
+		Action            *EdiscoveryCaseAction          `json:"action,omitempty"`
+		CompletedDateTime nullable.Type[string]          `json:"completedDateTime,omitempty"`
+		CreatedBy         IdentitySet                    `json:"createdBy"`
+		CreatedDateTime   nullable.Type[string]          `json:"createdDateTime,omitempty"`
+		PercentProgress   nullable.Type[int64]           `json:"percentProgress,omitempty"`
+		ResultInfo        *ResultInfo                    `json:"resultInfo,omitempty"`
+		Status            *EdiscoveryCaseOperationStatus `json:"status,omitempty"`
+		Id                *string                        `json:"id,omitempty"`
+		ODataId           *string                        `json:"@odata.id,omitempty"`
+		ODataType         *string                        `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into EdiscoveryAddToReviewSetOperation: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
+	s.ReviewSet = decoded.ReviewSet
+	s.SourceCollection = decoded.SourceCollection
 	s.Action = decoded.Action
 	s.CompletedDateTime = decoded.CompletedDateTime
 	s.CreatedDateTime = decoded.CreatedDateTime
@@ -121,8 +136,6 @@ func (s *EdiscoveryAddToReviewSetOperation) UnmarshalJSON(bytes []byte) error {
 	s.ODataType = decoded.ODataType
 	s.PercentProgress = decoded.PercentProgress
 	s.ResultInfo = decoded.ResultInfo
-	s.ReviewSet = decoded.ReviewSet
-	s.SourceCollection = decoded.SourceCollection
 	s.Status = decoded.Status
 
 	var temp map[string]json.RawMessage
@@ -137,5 +150,6 @@ func (s *EdiscoveryAddToReviewSetOperation) UnmarshalJSON(bytes []byte) error {
 		}
 		s.CreatedBy = impl
 	}
+
 	return nil
 }

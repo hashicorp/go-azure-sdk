@@ -17,15 +17,44 @@ type UpdateDetectedAppOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateDetectedAppOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateDetectedAppOperationOptions() UpdateDetectedAppOperationOptions {
+	return UpdateDetectedAppOperationOptions{}
+}
+
+func (o UpdateDetectedAppOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateDetectedAppOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateDetectedAppOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateDetectedApp - Update detectedApp. Update the properties of a detectedApp object.
-func (c DetectedAppClient) UpdateDetectedApp(ctx context.Context, id stable.DeviceManagementDetectedAppId, input stable.DetectedApp) (result UpdateDetectedAppOperationResponse, err error) {
+func (c DetectedAppClient) UpdateDetectedApp(ctx context.Context, id stable.DeviceManagementDetectedAppId, input stable.DetectedApp, options UpdateDetectedAppOperationOptions) (result UpdateDetectedAppOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

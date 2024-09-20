@@ -17,15 +17,44 @@ type UpdateTeamChannelSharedWithTeamOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateTeamChannelSharedWithTeamOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateTeamChannelSharedWithTeamOperationOptions() UpdateTeamChannelSharedWithTeamOperationOptions {
+	return UpdateTeamChannelSharedWithTeamOperationOptions{}
+}
+
+func (o UpdateTeamChannelSharedWithTeamOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateTeamChannelSharedWithTeamOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateTeamChannelSharedWithTeamOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateTeamChannelSharedWithTeam - Update the navigation property sharedWithTeams in groups
-func (c TeamChannelSharedWithTeamClient) UpdateTeamChannelSharedWithTeam(ctx context.Context, id stable.GroupIdTeamChannelIdSharedWithTeamId, input stable.SharedWithChannelTeamInfo) (result UpdateTeamChannelSharedWithTeamOperationResponse, err error) {
+func (c TeamChannelSharedWithTeamClient) UpdateTeamChannelSharedWithTeam(ctx context.Context, id stable.GroupIdTeamChannelIdSharedWithTeamId, input stable.SharedWithChannelTeamInfo, options UpdateTeamChannelSharedWithTeamOperationOptions) (result UpdateTeamChannelSharedWithTeamOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

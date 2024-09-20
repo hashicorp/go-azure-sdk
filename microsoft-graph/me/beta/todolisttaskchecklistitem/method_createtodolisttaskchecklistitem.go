@@ -19,16 +19,45 @@ type CreateTodoListTaskChecklistItemOperationResponse struct {
 	Model        *beta.ChecklistItem
 }
 
+type CreateTodoListTaskChecklistItemOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateTodoListTaskChecklistItemOperationOptions() CreateTodoListTaskChecklistItemOperationOptions {
+	return CreateTodoListTaskChecklistItemOperationOptions{}
+}
+
+func (o CreateTodoListTaskChecklistItemOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateTodoListTaskChecklistItemOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateTodoListTaskChecklistItemOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateTodoListTaskChecklistItem - Create checklistItem. Create a new checklistItem object as a subtask in a bigger
 // todoTask.
-func (c TodoListTaskChecklistItemClient) CreateTodoListTaskChecklistItem(ctx context.Context, id beta.MeTodoListIdTaskId, input beta.ChecklistItem) (result CreateTodoListTaskChecklistItemOperationResponse, err error) {
+func (c TodoListTaskChecklistItemClient) CreateTodoListTaskChecklistItem(ctx context.Context, id beta.MeTodoListIdTaskId, input beta.ChecklistItem, options CreateTodoListTaskChecklistItemOperationOptions) (result CreateTodoListTaskChecklistItemOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/checklistItems", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/checklistItems", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

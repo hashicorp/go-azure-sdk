@@ -18,16 +18,45 @@ type UpdateOnlineMeetingRegistrationOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateOnlineMeetingRegistrationOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateOnlineMeetingRegistrationOperationOptions() UpdateOnlineMeetingRegistrationOperationOptions {
+	return UpdateOnlineMeetingRegistrationOperationOptions{}
+}
+
+func (o UpdateOnlineMeetingRegistrationOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateOnlineMeetingRegistrationOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateOnlineMeetingRegistrationOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateOnlineMeetingRegistration - Update meetingRegistration (deprecated). Update the details of a
 // meetingRegistration object assciated with an onlineMeeting on behalf of the organizer.
-func (c OnlineMeetingRegistrationClient) UpdateOnlineMeetingRegistration(ctx context.Context, id beta.MeOnlineMeetingId, input beta.MeetingRegistration) (result UpdateOnlineMeetingRegistrationOperationResponse, err error) {
+func (c OnlineMeetingRegistrationClient) UpdateOnlineMeetingRegistration(ctx context.Context, id beta.MeOnlineMeetingId, input beta.MeetingRegistration, options UpdateOnlineMeetingRegistrationOperationOptions) (result UpdateOnlineMeetingRegistrationOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       fmt.Sprintf("%s/registration", id.ID()),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/registration", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

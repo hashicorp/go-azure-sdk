@@ -19,7 +19,8 @@ type DeletePlannerPlanBucketTaskProgressTaskBoardFormatOperationResponse struct 
 }
 
 type DeletePlannerPlanBucketTaskProgressTaskBoardFormatOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeletePlannerPlanBucketTaskProgressTaskBoardFormatOperationOptions() DeletePlannerPlanBucketTaskProgressTaskBoardFormatOperationOptions {
@@ -36,7 +37,9 @@ func (o DeletePlannerPlanBucketTaskProgressTaskBoardFormatOperationOptions) ToHe
 
 func (o DeletePlannerPlanBucketTaskProgressTaskBoardFormatOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

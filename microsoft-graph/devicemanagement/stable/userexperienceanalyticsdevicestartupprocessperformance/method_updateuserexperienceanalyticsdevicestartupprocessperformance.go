@@ -17,16 +17,45 @@ type UpdateUserExperienceAnalyticsDeviceStartupProcessPerformanceOperationRespon
 	OData        *odata.OData
 }
 
+type UpdateUserExperienceAnalyticsDeviceStartupProcessPerformanceOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateUserExperienceAnalyticsDeviceStartupProcessPerformanceOperationOptions() UpdateUserExperienceAnalyticsDeviceStartupProcessPerformanceOperationOptions {
+	return UpdateUserExperienceAnalyticsDeviceStartupProcessPerformanceOperationOptions{}
+}
+
+func (o UpdateUserExperienceAnalyticsDeviceStartupProcessPerformanceOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateUserExperienceAnalyticsDeviceStartupProcessPerformanceOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateUserExperienceAnalyticsDeviceStartupProcessPerformanceOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateUserExperienceAnalyticsDeviceStartupProcessPerformance - Update the navigation property
 // userExperienceAnalyticsDeviceStartupProcessPerformance in deviceManagement
-func (c UserExperienceAnalyticsDeviceStartupProcessPerformanceClient) UpdateUserExperienceAnalyticsDeviceStartupProcessPerformance(ctx context.Context, id stable.DeviceManagementUserExperienceAnalyticsDeviceStartupProcessPerformanceId, input stable.UserExperienceAnalyticsDeviceStartupProcessPerformance) (result UpdateUserExperienceAnalyticsDeviceStartupProcessPerformanceOperationResponse, err error) {
+func (c UserExperienceAnalyticsDeviceStartupProcessPerformanceClient) UpdateUserExperienceAnalyticsDeviceStartupProcessPerformance(ctx context.Context, id stable.DeviceManagementUserExperienceAnalyticsDeviceStartupProcessPerformanceId, input stable.UserExperienceAnalyticsDeviceStartupProcessPerformance, options UpdateUserExperienceAnalyticsDeviceStartupProcessPerformanceOperationOptions) (result UpdateUserExperienceAnalyticsDeviceStartupProcessPerformanceOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

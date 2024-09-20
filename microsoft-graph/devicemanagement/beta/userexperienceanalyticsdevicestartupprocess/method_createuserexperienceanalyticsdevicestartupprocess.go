@@ -18,16 +18,45 @@ type CreateUserExperienceAnalyticsDeviceStartupProcessOperationResponse struct {
 	Model        *beta.UserExperienceAnalyticsDeviceStartupProcess
 }
 
+type CreateUserExperienceAnalyticsDeviceStartupProcessOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateUserExperienceAnalyticsDeviceStartupProcessOperationOptions() CreateUserExperienceAnalyticsDeviceStartupProcessOperationOptions {
+	return CreateUserExperienceAnalyticsDeviceStartupProcessOperationOptions{}
+}
+
+func (o CreateUserExperienceAnalyticsDeviceStartupProcessOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateUserExperienceAnalyticsDeviceStartupProcessOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateUserExperienceAnalyticsDeviceStartupProcessOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateUserExperienceAnalyticsDeviceStartupProcess - Create new navigation property to
 // userExperienceAnalyticsDeviceStartupProcesses for deviceManagement
-func (c UserExperienceAnalyticsDeviceStartupProcessClient) CreateUserExperienceAnalyticsDeviceStartupProcess(ctx context.Context, input beta.UserExperienceAnalyticsDeviceStartupProcess) (result CreateUserExperienceAnalyticsDeviceStartupProcessOperationResponse, err error) {
+func (c UserExperienceAnalyticsDeviceStartupProcessClient) CreateUserExperienceAnalyticsDeviceStartupProcess(ctx context.Context, input beta.UserExperienceAnalyticsDeviceStartupProcess, options CreateUserExperienceAnalyticsDeviceStartupProcessOperationOptions) (result CreateUserExperienceAnalyticsDeviceStartupProcessOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/deviceManagement/userExperienceAnalyticsDeviceStartupProcesses",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/deviceManagement/userExperienceAnalyticsDeviceStartupProcesses",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -98,11 +98,11 @@ func (id GroupIdTeamScheduleOpenShiftChangeRequestId) ID() string {
 func (id GroupIdTeamScheduleOpenShiftChangeRequestId) Segments() []resourceids.Segment {
 	return []resourceids.Segment{
 		resourceids.StaticSegment("groups", "groups", "groups"),
-		resourceids.UserSpecifiedSegment("groupId", "groupIdValue"),
+		resourceids.UserSpecifiedSegment("groupId", "groupId"),
 		resourceids.StaticSegment("team", "team", "team"),
 		resourceids.StaticSegment("schedule", "schedule", "schedule"),
 		resourceids.StaticSegment("openShiftChangeRequests", "openShiftChangeRequests", "openShiftChangeRequests"),
-		resourceids.UserSpecifiedSegment("openShiftChangeRequestId", "openShiftChangeRequestIdValue"),
+		resourceids.UserSpecifiedSegment("openShiftChangeRequestId", "openShiftChangeRequestId"),
 	}
 }
 

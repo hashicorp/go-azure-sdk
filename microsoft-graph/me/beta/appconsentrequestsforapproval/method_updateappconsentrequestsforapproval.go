@@ -17,15 +17,44 @@ type UpdateAppConsentRequestsForApprovalOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateAppConsentRequestsForApprovalOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateAppConsentRequestsForApprovalOperationOptions() UpdateAppConsentRequestsForApprovalOperationOptions {
+	return UpdateAppConsentRequestsForApprovalOperationOptions{}
+}
+
+func (o UpdateAppConsentRequestsForApprovalOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateAppConsentRequestsForApprovalOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateAppConsentRequestsForApprovalOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateAppConsentRequestsForApproval - Update the navigation property appConsentRequestsForApproval in me
-func (c AppConsentRequestsForApprovalClient) UpdateAppConsentRequestsForApproval(ctx context.Context, id beta.MeAppConsentRequestsForApprovalId, input beta.AppConsentRequest) (result UpdateAppConsentRequestsForApprovalOperationResponse, err error) {
+func (c AppConsentRequestsForApprovalClient) UpdateAppConsentRequestsForApproval(ctx context.Context, id beta.MeAppConsentRequestsForApprovalId, input beta.AppConsentRequest, options UpdateAppConsentRequestsForApprovalOperationOptions) (result UpdateAppConsentRequestsForApprovalOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

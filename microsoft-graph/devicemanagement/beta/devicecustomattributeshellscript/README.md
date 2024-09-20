@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/devicecustomattributeshellscript` Documentation
 
-The `devicecustomattributeshellscript` SDK allows for interaction with the Azure Resource Manager Service `devicemanagement` (API Version `beta`).
+The `devicecustomattributeshellscript` SDK allows for interaction with Microsoft Graph `devicemanagement` (API Version `beta`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -15,7 +15,7 @@ import "github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/
 ### Client Initialization
 
 ```go
-client := devicecustomattributeshellscript.NewDeviceCustomAttributeShellScriptClientWithBaseURI("https://management.azure.com")
+client := devicecustomattributeshellscript.NewDeviceCustomAttributeShellScriptClientWithBaseURI("https://graph.microsoft.com")
 client.Client.Authorizer = authorizer
 ```
 
@@ -24,14 +24,14 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := devicecustomattributeshellscript.NewDeviceManagementDeviceCustomAttributeShellScriptID("deviceCustomAttributeShellScriptIdValue")
+id := devicecustomattributeshellscript.NewDeviceManagementDeviceCustomAttributeShellScriptID("deviceCustomAttributeShellScriptId")
 
 payload := devicecustomattributeshellscript.AssignDeviceCustomAttributeShellScriptRequest{
 	// ...
 }
 
 
-read, err := client.AssignDeviceCustomAttributeShellScript(ctx, id, payload)
+read, err := client.AssignDeviceCustomAttributeShellScript(ctx, id, payload, devicecustomattributeshellscript.DefaultAssignDeviceCustomAttributeShellScriptOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -51,7 +51,7 @@ payload := devicecustomattributeshellscript.DeviceCustomAttributeShellScript{
 }
 
 
-read, err := client.CreateDeviceCustomAttributeShellScript(ctx, payload)
+read, err := client.CreateDeviceCustomAttributeShellScript(ctx, payload, devicecustomattributeshellscript.DefaultCreateDeviceCustomAttributeShellScriptOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -65,7 +65,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := devicecustomattributeshellscript.NewDeviceManagementDeviceCustomAttributeShellScriptID("deviceCustomAttributeShellScriptIdValue")
+id := devicecustomattributeshellscript.NewDeviceManagementDeviceCustomAttributeShellScriptID("deviceCustomAttributeShellScriptId")
 
 read, err := client.DeleteDeviceCustomAttributeShellScript(ctx, id, devicecustomattributeshellscript.DefaultDeleteDeviceCustomAttributeShellScriptOperationOptions())
 if err != nil {
@@ -81,7 +81,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := devicecustomattributeshellscript.NewDeviceManagementDeviceCustomAttributeShellScriptID("deviceCustomAttributeShellScriptIdValue")
+id := devicecustomattributeshellscript.NewDeviceManagementDeviceCustomAttributeShellScriptID("deviceCustomAttributeShellScriptId")
 
 read, err := client.GetDeviceCustomAttributeShellScript(ctx, id, devicecustomattributeshellscript.DefaultGetDeviceCustomAttributeShellScriptOperationOptions())
 if err != nil {
@@ -130,14 +130,14 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := devicecustomattributeshellscript.NewDeviceManagementDeviceCustomAttributeShellScriptID("deviceCustomAttributeShellScriptIdValue")
+id := devicecustomattributeshellscript.NewDeviceManagementDeviceCustomAttributeShellScriptID("deviceCustomAttributeShellScriptId")
 
 payload := devicecustomattributeshellscript.DeviceCustomAttributeShellScript{
 	// ...
 }
 
 
-read, err := client.UpdateDeviceCustomAttributeShellScript(ctx, id, payload)
+read, err := client.UpdateDeviceCustomAttributeShellScript(ctx, id, payload, devicecustomattributeshellscript.DefaultUpdateDeviceCustomAttributeShellScriptOperationOptions())
 if err != nil {
 	// handle the error
 }

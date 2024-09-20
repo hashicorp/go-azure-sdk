@@ -119,22 +119,33 @@ func (s OperationApprovalRequest) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &OperationApprovalRequest{}
 
 func (s *OperationApprovalRequest) UnmarshalJSON(bytes []byte) error {
-	type alias OperationApprovalRequest
-	var decoded alias
+
+	var decoded struct {
+		ApprovalJustification                nullable.Type[string]           `json:"approvalJustification,omitempty"`
+		ExpirationDateTime                   *string                         `json:"expirationDateTime,omitempty"`
+		LastModifiedDateTime                 *string                         `json:"lastModifiedDateTime,omitempty"`
+		RequestDateTime                      *string                         `json:"requestDateTime,omitempty"`
+		RequestJustification                 nullable.Type[string]           `json:"requestJustification,omitempty"`
+		RequiredOperationApprovalPolicyTypes *[]OperationApprovalPolicyType  `json:"requiredOperationApprovalPolicyTypes,omitempty"`
+		Status                               *OperationApprovalRequestStatus `json:"status,omitempty"`
+		Id                                   *string                         `json:"id,omitempty"`
+		ODataId                              *string                         `json:"@odata.id,omitempty"`
+		ODataType                            *string                         `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into OperationApprovalRequest: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.ApprovalJustification = decoded.ApprovalJustification
 	s.ExpirationDateTime = decoded.ExpirationDateTime
-	s.Id = decoded.Id
 	s.LastModifiedDateTime = decoded.LastModifiedDateTime
-	s.ODataId = decoded.ODataId
-	s.ODataType = decoded.ODataType
 	s.RequestDateTime = decoded.RequestDateTime
 	s.RequestJustification = decoded.RequestJustification
 	s.RequiredOperationApprovalPolicyTypes = decoded.RequiredOperationApprovalPolicyTypes
 	s.Status = decoded.Status
+	s.Id = decoded.Id
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -156,5 +167,6 @@ func (s *OperationApprovalRequest) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Requestor = &impl
 	}
+
 	return nil
 }

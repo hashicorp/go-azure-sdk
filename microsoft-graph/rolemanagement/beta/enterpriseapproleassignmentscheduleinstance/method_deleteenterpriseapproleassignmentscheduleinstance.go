@@ -19,7 +19,8 @@ type DeleteEnterpriseAppRoleAssignmentScheduleInstanceOperationResponse struct {
 }
 
 type DeleteEnterpriseAppRoleAssignmentScheduleInstanceOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteEnterpriseAppRoleAssignmentScheduleInstanceOperationOptions() DeleteEnterpriseAppRoleAssignmentScheduleInstanceOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteEnterpriseAppRoleAssignmentScheduleInstanceOperationOptions) ToHea
 
 func (o DeleteEnterpriseAppRoleAssignmentScheduleInstanceOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

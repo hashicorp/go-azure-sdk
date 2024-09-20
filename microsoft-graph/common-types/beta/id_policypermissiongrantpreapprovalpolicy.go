@@ -93,7 +93,7 @@ func (id PolicyPermissionGrantPreApprovalPolicyId) Segments() []resourceids.Segm
 	return []resourceids.Segment{
 		resourceids.StaticSegment("policies", "policies", "policies"),
 		resourceids.StaticSegment("permissionGrantPreApprovalPolicies", "permissionGrantPreApprovalPolicies", "permissionGrantPreApprovalPolicies"),
-		resourceids.UserSpecifiedSegment("permissionGrantPreApprovalPolicyId", "permissionGrantPreApprovalPolicyIdValue"),
+		resourceids.UserSpecifiedSegment("permissionGrantPreApprovalPolicyId", "permissionGrantPreApprovalPolicyId"),
 	}
 }
 

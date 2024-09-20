@@ -26,10 +26,14 @@ type DlpEvaluatePoliciesRequest struct {
 var _ json.Unmarshaler = &DlpEvaluatePoliciesRequest{}
 
 func (s *DlpEvaluatePoliciesRequest) UnmarshalJSON(bytes []byte) error {
-	type alias DlpEvaluatePoliciesRequest
-	var decoded alias
+
+	var decoded struct {
+		ODataId   *string               `json:"@odata.id,omitempty"`
+		ODataType *string               `json:"@odata.type,omitempty"`
+		Target    nullable.Type[string] `json:"target,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into DlpEvaluatePoliciesRequest: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.ODataId = decoded.ODataId
@@ -56,5 +60,6 @@ func (s *DlpEvaluatePoliciesRequest) UnmarshalJSON(bytes []byte) error {
 		}
 		s.NotificationInfo = impl
 	}
+
 	return nil
 }

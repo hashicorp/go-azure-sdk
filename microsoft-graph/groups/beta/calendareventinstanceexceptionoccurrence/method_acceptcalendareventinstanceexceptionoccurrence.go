@@ -18,15 +18,44 @@ type AcceptCalendarEventInstanceExceptionOccurrenceOperationResponse struct {
 	OData        *odata.OData
 }
 
+type AcceptCalendarEventInstanceExceptionOccurrenceOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultAcceptCalendarEventInstanceExceptionOccurrenceOperationOptions() AcceptCalendarEventInstanceExceptionOccurrenceOperationOptions {
+	return AcceptCalendarEventInstanceExceptionOccurrenceOperationOptions{}
+}
+
+func (o AcceptCalendarEventInstanceExceptionOccurrenceOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o AcceptCalendarEventInstanceExceptionOccurrenceOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o AcceptCalendarEventInstanceExceptionOccurrenceOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // AcceptCalendarEventInstanceExceptionOccurrence - Invoke action accept. Accept the specified event in a user calendar.
-func (c CalendarEventInstanceExceptionOccurrenceClient) AcceptCalendarEventInstanceExceptionOccurrence(ctx context.Context, id beta.GroupIdCalendarEventIdInstanceIdExceptionOccurrenceId, input AcceptCalendarEventInstanceExceptionOccurrenceRequest) (result AcceptCalendarEventInstanceExceptionOccurrenceOperationResponse, err error) {
+func (c CalendarEventInstanceExceptionOccurrenceClient) AcceptCalendarEventInstanceExceptionOccurrence(ctx context.Context, id beta.GroupIdCalendarEventIdInstanceIdExceptionOccurrenceId, input AcceptCalendarEventInstanceExceptionOccurrenceRequest, options AcceptCalendarEventInstanceExceptionOccurrenceOperationOptions) (result AcceptCalendarEventInstanceExceptionOccurrenceOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/accept", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/accept", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

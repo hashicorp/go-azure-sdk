@@ -18,15 +18,44 @@ type SetVirtualEndpointCloudPCReviewStatusOperationResponse struct {
 	OData        *odata.OData
 }
 
+type SetVirtualEndpointCloudPCReviewStatusOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultSetVirtualEndpointCloudPCReviewStatusOperationOptions() SetVirtualEndpointCloudPCReviewStatusOperationOptions {
+	return SetVirtualEndpointCloudPCReviewStatusOperationOptions{}
+}
+
+func (o SetVirtualEndpointCloudPCReviewStatusOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o SetVirtualEndpointCloudPCReviewStatusOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o SetVirtualEndpointCloudPCReviewStatusOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // SetVirtualEndpointCloudPCReviewStatus - Invoke action setReviewStatus
-func (c VirtualEndpointCloudPCClient) SetVirtualEndpointCloudPCReviewStatus(ctx context.Context, id beta.DeviceManagementVirtualEndpointCloudPCId, input SetVirtualEndpointCloudPCReviewStatusRequest) (result SetVirtualEndpointCloudPCReviewStatusOperationResponse, err error) {
+func (c VirtualEndpointCloudPCClient) SetVirtualEndpointCloudPCReviewStatus(ctx context.Context, id beta.DeviceManagementVirtualEndpointCloudPCId, input SetVirtualEndpointCloudPCReviewStatusRequest, options SetVirtualEndpointCloudPCReviewStatusOperationOptions) (result SetVirtualEndpointCloudPCReviewStatusOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/setReviewStatus", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/setReviewStatus", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

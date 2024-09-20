@@ -72,10 +72,16 @@ func (s AccessReviewInstanceDecisionItemAzureRoleResource) MarshalJSON() ([]byte
 var _ json.Unmarshaler = &AccessReviewInstanceDecisionItemAzureRoleResource{}
 
 func (s *AccessReviewInstanceDecisionItemAzureRoleResource) UnmarshalJSON(bytes []byte) error {
-	type alias AccessReviewInstanceDecisionItemAzureRoleResource
-	var decoded alias
+
+	var decoded struct {
+		DisplayName nullable.Type[string] `json:"displayName,omitempty"`
+		Id          nullable.Type[string] `json:"id,omitempty"`
+		ODataId     *string               `json:"@odata.id,omitempty"`
+		ODataType   *string               `json:"@odata.type,omitempty"`
+		Type        nullable.Type[string] `json:"type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into AccessReviewInstanceDecisionItemAzureRoleResource: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.DisplayName = decoded.DisplayName
@@ -96,5 +102,6 @@ func (s *AccessReviewInstanceDecisionItemAzureRoleResource) UnmarshalJSON(bytes 
 		}
 		s.Scope = impl
 	}
+
 	return nil
 }

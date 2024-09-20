@@ -17,15 +17,44 @@ type UpdateVirtualEndpointAuditEventOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateVirtualEndpointAuditEventOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateVirtualEndpointAuditEventOperationOptions() UpdateVirtualEndpointAuditEventOperationOptions {
+	return UpdateVirtualEndpointAuditEventOperationOptions{}
+}
+
+func (o UpdateVirtualEndpointAuditEventOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateVirtualEndpointAuditEventOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateVirtualEndpointAuditEventOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateVirtualEndpointAuditEvent - Update the navigation property auditEvents in deviceManagement
-func (c VirtualEndpointAuditEventClient) UpdateVirtualEndpointAuditEvent(ctx context.Context, id beta.DeviceManagementVirtualEndpointAuditEventId, input beta.CloudPCAuditEvent) (result UpdateVirtualEndpointAuditEventOperationResponse, err error) {
+func (c VirtualEndpointAuditEventClient) UpdateVirtualEndpointAuditEvent(ctx context.Context, id beta.DeviceManagementVirtualEndpointAuditEventId, input beta.CloudPCAuditEvent, options UpdateVirtualEndpointAuditEventOperationOptions) (result UpdateVirtualEndpointAuditEventOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

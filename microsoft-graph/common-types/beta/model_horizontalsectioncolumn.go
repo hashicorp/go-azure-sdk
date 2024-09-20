@@ -68,16 +68,22 @@ func (s HorizontalSectionColumn) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &HorizontalSectionColumn{}
 
 func (s *HorizontalSectionColumn) UnmarshalJSON(bytes []byte) error {
-	type alias HorizontalSectionColumn
-	var decoded alias
+
+	var decoded struct {
+		Webparts  *[]WebPart           `json:"webparts,omitempty"`
+		Width     nullable.Type[int64] `json:"width,omitempty"`
+		Id        *string              `json:"id,omitempty"`
+		ODataId   *string              `json:"@odata.id,omitempty"`
+		ODataType *string              `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into HorizontalSectionColumn: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
+	s.Width = decoded.Width
 	s.Id = decoded.Id
 	s.ODataId = decoded.ODataId
 	s.ODataType = decoded.ODataType
-	s.Width = decoded.Width
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -100,5 +106,6 @@ func (s *HorizontalSectionColumn) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Webparts = &output
 	}
+
 	return nil
 }

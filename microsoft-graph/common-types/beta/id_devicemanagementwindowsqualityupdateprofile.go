@@ -93,7 +93,7 @@ func (id DeviceManagementWindowsQualityUpdateProfileId) Segments() []resourceids
 	return []resourceids.Segment{
 		resourceids.StaticSegment("deviceManagement", "deviceManagement", "deviceManagement"),
 		resourceids.StaticSegment("windowsQualityUpdateProfiles", "windowsQualityUpdateProfiles", "windowsQualityUpdateProfiles"),
-		resourceids.UserSpecifiedSegment("windowsQualityUpdateProfileId", "windowsQualityUpdateProfileIdValue"),
+		resourceids.UserSpecifiedSegment("windowsQualityUpdateProfileId", "windowsQualityUpdateProfileId"),
 	}
 }
 

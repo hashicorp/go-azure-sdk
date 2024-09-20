@@ -77,10 +77,15 @@ func (s FederatedTokenValidationPolicy) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &FederatedTokenValidationPolicy{}
 
 func (s *FederatedTokenValidationPolicy) UnmarshalJSON(bytes []byte) error {
-	type alias FederatedTokenValidationPolicy
-	var decoded alias
+
+	var decoded struct {
+		DeletedDateTime nullable.Type[string] `json:"deletedDateTime,omitempty"`
+		Id              *string               `json:"id,omitempty"`
+		ODataId         *string               `json:"@odata.id,omitempty"`
+		ODataType       *string               `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into FederatedTokenValidationPolicy: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.DeletedDateTime = decoded.DeletedDateTime
@@ -100,5 +105,6 @@ func (s *FederatedTokenValidationPolicy) UnmarshalJSON(bytes []byte) error {
 		}
 		s.ValidatingDomains = impl
 	}
+
 	return nil
 }

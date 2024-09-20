@@ -12,24 +12,24 @@ import (
 var _ resourceids.ResourceId = &RoleManagementEnterpriseAppIdRoleDefinitionIdInheritsPermissionsFromId{}
 
 func TestNewRoleManagementEnterpriseAppIdRoleDefinitionIdInheritsPermissionsFromID(t *testing.T) {
-	id := NewRoleManagementEnterpriseAppIdRoleDefinitionIdInheritsPermissionsFromID("rbacApplicationIdValue", "unifiedRoleDefinitionIdValue", "unifiedRoleDefinitionId1Value")
+	id := NewRoleManagementEnterpriseAppIdRoleDefinitionIdInheritsPermissionsFromID("rbacApplicationId", "unifiedRoleDefinitionId", "unifiedRoleDefinitionId1")
 
-	if id.RbacApplicationId != "rbacApplicationIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'RbacApplicationId'", id.RbacApplicationId, "rbacApplicationIdValue")
+	if id.RbacApplicationId != "rbacApplicationId" {
+		t.Fatalf("Expected %q but got %q for Segment 'RbacApplicationId'", id.RbacApplicationId, "rbacApplicationId")
 	}
 
-	if id.UnifiedRoleDefinitionId != "unifiedRoleDefinitionIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'UnifiedRoleDefinitionId'", id.UnifiedRoleDefinitionId, "unifiedRoleDefinitionIdValue")
+	if id.UnifiedRoleDefinitionId != "unifiedRoleDefinitionId" {
+		t.Fatalf("Expected %q but got %q for Segment 'UnifiedRoleDefinitionId'", id.UnifiedRoleDefinitionId, "unifiedRoleDefinitionId")
 	}
 
-	if id.UnifiedRoleDefinitionId1 != "unifiedRoleDefinitionId1Value" {
-		t.Fatalf("Expected %q but got %q for Segment 'UnifiedRoleDefinitionId1'", id.UnifiedRoleDefinitionId1, "unifiedRoleDefinitionId1Value")
+	if id.UnifiedRoleDefinitionId1 != "unifiedRoleDefinitionId1" {
+		t.Fatalf("Expected %q but got %q for Segment 'UnifiedRoleDefinitionId1'", id.UnifiedRoleDefinitionId1, "unifiedRoleDefinitionId1")
 	}
 }
 
 func TestFormatRoleManagementEnterpriseAppIdRoleDefinitionIdInheritsPermissionsFromID(t *testing.T) {
-	actual := NewRoleManagementEnterpriseAppIdRoleDefinitionIdInheritsPermissionsFromID("rbacApplicationIdValue", "unifiedRoleDefinitionIdValue", "unifiedRoleDefinitionId1Value").ID()
-	expected := "/roleManagement/enterpriseApps/rbacApplicationIdValue/roleDefinitions/unifiedRoleDefinitionIdValue/inheritsPermissionsFrom/unifiedRoleDefinitionId1Value"
+	actual := NewRoleManagementEnterpriseAppIdRoleDefinitionIdInheritsPermissionsFromID("rbacApplicationId", "unifiedRoleDefinitionId", "unifiedRoleDefinitionId1").ID()
+	expected := "/roleManagement/enterpriseApps/rbacApplicationId/roleDefinitions/unifiedRoleDefinitionId/inheritsPermissionsFrom/unifiedRoleDefinitionId1"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -58,36 +58,36 @@ func TestParseRoleManagementEnterpriseAppIdRoleDefinitionIdInheritsPermissionsFr
 		},
 		{
 			// Incomplete URI
-			Input: "/roleManagement/enterpriseApps/rbacApplicationIdValue",
+			Input: "/roleManagement/enterpriseApps/rbacApplicationId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/roleManagement/enterpriseApps/rbacApplicationIdValue/roleDefinitions",
+			Input: "/roleManagement/enterpriseApps/rbacApplicationId/roleDefinitions",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/roleManagement/enterpriseApps/rbacApplicationIdValue/roleDefinitions/unifiedRoleDefinitionIdValue",
+			Input: "/roleManagement/enterpriseApps/rbacApplicationId/roleDefinitions/unifiedRoleDefinitionId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/roleManagement/enterpriseApps/rbacApplicationIdValue/roleDefinitions/unifiedRoleDefinitionIdValue/inheritsPermissionsFrom",
+			Input: "/roleManagement/enterpriseApps/rbacApplicationId/roleDefinitions/unifiedRoleDefinitionId/inheritsPermissionsFrom",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/roleManagement/enterpriseApps/rbacApplicationIdValue/roleDefinitions/unifiedRoleDefinitionIdValue/inheritsPermissionsFrom/unifiedRoleDefinitionId1Value",
+			Input: "/roleManagement/enterpriseApps/rbacApplicationId/roleDefinitions/unifiedRoleDefinitionId/inheritsPermissionsFrom/unifiedRoleDefinitionId1",
 			Expected: &RoleManagementEnterpriseAppIdRoleDefinitionIdInheritsPermissionsFromId{
-				RbacApplicationId:        "rbacApplicationIdValue",
-				UnifiedRoleDefinitionId:  "unifiedRoleDefinitionIdValue",
-				UnifiedRoleDefinitionId1: "unifiedRoleDefinitionId1Value",
+				RbacApplicationId:        "rbacApplicationId",
+				UnifiedRoleDefinitionId:  "unifiedRoleDefinitionId",
+				UnifiedRoleDefinitionId1: "unifiedRoleDefinitionId1",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/roleManagement/enterpriseApps/rbacApplicationIdValue/roleDefinitions/unifiedRoleDefinitionIdValue/inheritsPermissionsFrom/unifiedRoleDefinitionId1Value/extra",
+			Input: "/roleManagement/enterpriseApps/rbacApplicationId/roleDefinitions/unifiedRoleDefinitionId/inheritsPermissionsFrom/unifiedRoleDefinitionId1/extra",
 			Error: true,
 		},
 	}
@@ -154,70 +154,70 @@ func TestParseRoleManagementEnterpriseAppIdRoleDefinitionIdInheritsPermissionsFr
 		},
 		{
 			// Incomplete URI
-			Input: "/roleManagement/enterpriseApps/rbacApplicationIdValue",
+			Input: "/roleManagement/enterpriseApps/rbacApplicationId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/rOlEmAnAgEmEnT/eNtErPrIsEaPpS/rBaCaPpLiCaTiOnIdVaLuE",
+			Input: "/rOlEmAnAgEmEnT/eNtErPrIsEaPpS/rBaCaPpLiCaTiOnId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/roleManagement/enterpriseApps/rbacApplicationIdValue/roleDefinitions",
+			Input: "/roleManagement/enterpriseApps/rbacApplicationId/roleDefinitions",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/rOlEmAnAgEmEnT/eNtErPrIsEaPpS/rBaCaPpLiCaTiOnIdVaLuE/rOlEdEfInItIoNs",
+			Input: "/rOlEmAnAgEmEnT/eNtErPrIsEaPpS/rBaCaPpLiCaTiOnId/rOlEdEfInItIoNs",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/roleManagement/enterpriseApps/rbacApplicationIdValue/roleDefinitions/unifiedRoleDefinitionIdValue",
+			Input: "/roleManagement/enterpriseApps/rbacApplicationId/roleDefinitions/unifiedRoleDefinitionId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/rOlEmAnAgEmEnT/eNtErPrIsEaPpS/rBaCaPpLiCaTiOnIdVaLuE/rOlEdEfInItIoNs/uNiFiEdRoLeDeFiNiTiOnIdVaLuE",
+			Input: "/rOlEmAnAgEmEnT/eNtErPrIsEaPpS/rBaCaPpLiCaTiOnId/rOlEdEfInItIoNs/uNiFiEdRoLeDeFiNiTiOnId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/roleManagement/enterpriseApps/rbacApplicationIdValue/roleDefinitions/unifiedRoleDefinitionIdValue/inheritsPermissionsFrom",
+			Input: "/roleManagement/enterpriseApps/rbacApplicationId/roleDefinitions/unifiedRoleDefinitionId/inheritsPermissionsFrom",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/rOlEmAnAgEmEnT/eNtErPrIsEaPpS/rBaCaPpLiCaTiOnIdVaLuE/rOlEdEfInItIoNs/uNiFiEdRoLeDeFiNiTiOnIdVaLuE/iNhErItSpErMiSsIoNsFrOm",
+			Input: "/rOlEmAnAgEmEnT/eNtErPrIsEaPpS/rBaCaPpLiCaTiOnId/rOlEdEfInItIoNs/uNiFiEdRoLeDeFiNiTiOnId/iNhErItSpErMiSsIoNsFrOm",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/roleManagement/enterpriseApps/rbacApplicationIdValue/roleDefinitions/unifiedRoleDefinitionIdValue/inheritsPermissionsFrom/unifiedRoleDefinitionId1Value",
+			Input: "/roleManagement/enterpriseApps/rbacApplicationId/roleDefinitions/unifiedRoleDefinitionId/inheritsPermissionsFrom/unifiedRoleDefinitionId1",
 			Expected: &RoleManagementEnterpriseAppIdRoleDefinitionIdInheritsPermissionsFromId{
-				RbacApplicationId:        "rbacApplicationIdValue",
-				UnifiedRoleDefinitionId:  "unifiedRoleDefinitionIdValue",
-				UnifiedRoleDefinitionId1: "unifiedRoleDefinitionId1Value",
+				RbacApplicationId:        "rbacApplicationId",
+				UnifiedRoleDefinitionId:  "unifiedRoleDefinitionId",
+				UnifiedRoleDefinitionId1: "unifiedRoleDefinitionId1",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/roleManagement/enterpriseApps/rbacApplicationIdValue/roleDefinitions/unifiedRoleDefinitionIdValue/inheritsPermissionsFrom/unifiedRoleDefinitionId1Value/extra",
+			Input: "/roleManagement/enterpriseApps/rbacApplicationId/roleDefinitions/unifiedRoleDefinitionId/inheritsPermissionsFrom/unifiedRoleDefinitionId1/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/rOlEmAnAgEmEnT/eNtErPrIsEaPpS/rBaCaPpLiCaTiOnIdVaLuE/rOlEdEfInItIoNs/uNiFiEdRoLeDeFiNiTiOnIdVaLuE/iNhErItSpErMiSsIoNsFrOm/uNiFiEdRoLeDeFiNiTiOnId1vAlUe",
+			Input: "/rOlEmAnAgEmEnT/eNtErPrIsEaPpS/rBaCaPpLiCaTiOnId/rOlEdEfInItIoNs/uNiFiEdRoLeDeFiNiTiOnId/iNhErItSpErMiSsIoNsFrOm/uNiFiEdRoLeDeFiNiTiOnId1",
 			Expected: &RoleManagementEnterpriseAppIdRoleDefinitionIdInheritsPermissionsFromId{
-				RbacApplicationId:        "rBaCaPpLiCaTiOnIdVaLuE",
-				UnifiedRoleDefinitionId:  "uNiFiEdRoLeDeFiNiTiOnIdVaLuE",
-				UnifiedRoleDefinitionId1: "uNiFiEdRoLeDeFiNiTiOnId1vAlUe",
+				RbacApplicationId:        "rBaCaPpLiCaTiOnId",
+				UnifiedRoleDefinitionId:  "uNiFiEdRoLeDeFiNiTiOnId",
+				UnifiedRoleDefinitionId1: "uNiFiEdRoLeDeFiNiTiOnId1",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/rOlEmAnAgEmEnT/eNtErPrIsEaPpS/rBaCaPpLiCaTiOnIdVaLuE/rOlEdEfInItIoNs/uNiFiEdRoLeDeFiNiTiOnIdVaLuE/iNhErItSpErMiSsIoNsFrOm/uNiFiEdRoLeDeFiNiTiOnId1vAlUe/extra",
+			Input: "/rOlEmAnAgEmEnT/eNtErPrIsEaPpS/rBaCaPpLiCaTiOnId/rOlEdEfInItIoNs/uNiFiEdRoLeDeFiNiTiOnId/iNhErItSpErMiSsIoNsFrOm/uNiFiEdRoLeDeFiNiTiOnId1/extra",
 			Error: true,
 		},
 	}

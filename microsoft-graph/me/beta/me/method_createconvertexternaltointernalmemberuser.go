@@ -18,18 +18,47 @@ type CreateConvertExternalToInternalMemberUserOperationResponse struct {
 	Model        *beta.ConversionUserDetails
 }
 
+type CreateConvertExternalToInternalMemberUserOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateConvertExternalToInternalMemberUserOperationOptions() CreateConvertExternalToInternalMemberUserOperationOptions {
+	return CreateConvertExternalToInternalMemberUserOperationOptions{}
+}
+
+func (o CreateConvertExternalToInternalMemberUserOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateConvertExternalToInternalMemberUserOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateConvertExternalToInternalMemberUserOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateConvertExternalToInternalMemberUser - Invoke action convertExternalToInternalMemberUser. Convert an externally
 // authenticated user into an internal user. The user is able to sign into the host tenant as an internal user and
 // access resources as a member. For more information about this conversion, see Convert external users to internal
 // users.
-func (c MeClient) CreateConvertExternalToInternalMemberUser(ctx context.Context, input CreateConvertExternalToInternalMemberUserRequest) (result CreateConvertExternalToInternalMemberUserOperationResponse, err error) {
+func (c MeClient) CreateConvertExternalToInternalMemberUser(ctx context.Context, input CreateConvertExternalToInternalMemberUserRequest, options CreateConvertExternalToInternalMemberUserOperationOptions) (result CreateConvertExternalToInternalMemberUserOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/me/convertExternalToInternalMemberUser",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/me/convertExternalToInternalMemberUser",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

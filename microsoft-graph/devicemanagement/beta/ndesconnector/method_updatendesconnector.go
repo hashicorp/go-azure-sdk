@@ -17,15 +17,44 @@ type UpdateNdesConnectorOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateNdesConnectorOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateNdesConnectorOperationOptions() UpdateNdesConnectorOperationOptions {
+	return UpdateNdesConnectorOperationOptions{}
+}
+
+func (o UpdateNdesConnectorOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateNdesConnectorOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateNdesConnectorOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateNdesConnector - Update the navigation property ndesConnectors in deviceManagement
-func (c NdesConnectorClient) UpdateNdesConnector(ctx context.Context, id beta.DeviceManagementNdesConnectorId, input beta.NdesConnector) (result UpdateNdesConnectorOperationResponse, err error) {
+func (c NdesConnectorClient) UpdateNdesConnector(ctx context.Context, id beta.DeviceManagementNdesConnectorId, input beta.NdesConnector, options UpdateNdesConnectorOperationOptions) (result UpdateNdesConnectorOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

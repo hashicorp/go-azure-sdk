@@ -269,44 +269,76 @@ func (s IosEasEmailProfileConfiguration) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &IosEasEmailProfileConfiguration{}
 
 func (s *IosEasEmailProfileConfiguration) UnmarshalJSON(bytes []byte) error {
-	type alias IosEasEmailProfileConfiguration
-	var decoded alias
+
+	var decoded struct {
+		AccountName                                   *string                                      `json:"accountName,omitempty"`
+		AuthenticationMethod                          *EasAuthenticationMethod                     `json:"authenticationMethod,omitempty"`
+		BlockMovingMessagesToOtherEmailAccounts       nullable.Type[bool]                          `json:"blockMovingMessagesToOtherEmailAccounts,omitempty"`
+		BlockSendingEmailFromThirdPartyApps           nullable.Type[bool]                          `json:"blockSendingEmailFromThirdPartyApps,omitempty"`
+		BlockSyncingRecentlyUsedEmailAddresses        nullable.Type[bool]                          `json:"blockSyncingRecentlyUsedEmailAddresses,omitempty"`
+		DerivedCredentialSettings                     *DeviceManagementDerivedCredentialSettings   `json:"derivedCredentialSettings,omitempty"`
+		DurationOfEmailToSync                         *EmailSyncDuration                           `json:"durationOfEmailToSync,omitempty"`
+		EasServices                                   *EasServices                                 `json:"easServices,omitempty"`
+		EasServicesUserOverrideEnabled                nullable.Type[bool]                          `json:"easServicesUserOverrideEnabled,omitempty"`
+		EmailAddressSource                            *UserEmailSource                             `json:"emailAddressSource,omitempty"`
+		EncryptionCertificateType                     *EmailCertificateType                        `json:"encryptionCertificateType,omitempty"`
+		HostName                                      *string                                      `json:"hostName,omitempty"`
+		PerAppVPNProfileId                            nullable.Type[string]                        `json:"perAppVPNProfileId,omitempty"`
+		RequireSmime                                  nullable.Type[bool]                          `json:"requireSmime,omitempty"`
+		RequireSsl                                    *bool                                        `json:"requireSsl,omitempty"`
+		SigningCertificateType                        *EmailCertificateType                        `json:"signingCertificateType,omitempty"`
+		SmimeEnablePerMessageSwitch                   nullable.Type[bool]                          `json:"smimeEnablePerMessageSwitch,omitempty"`
+		SmimeEncryptByDefaultEnabled                  nullable.Type[bool]                          `json:"smimeEncryptByDefaultEnabled,omitempty"`
+		SmimeEncryptByDefaultUserOverrideEnabled      nullable.Type[bool]                          `json:"smimeEncryptByDefaultUserOverrideEnabled,omitempty"`
+		SmimeEncryptionCertificateUserOverrideEnabled nullable.Type[bool]                          `json:"smimeEncryptionCertificateUserOverrideEnabled,omitempty"`
+		SmimeSigningCertificateUserOverrideEnabled    nullable.Type[bool]                          `json:"smimeSigningCertificateUserOverrideEnabled,omitempty"`
+		SmimeSigningEnabled                           nullable.Type[bool]                          `json:"smimeSigningEnabled,omitempty"`
+		SmimeSigningUserOverrideEnabled               nullable.Type[bool]                          `json:"smimeSigningUserOverrideEnabled,omitempty"`
+		UseOAuth                                      nullable.Type[bool]                          `json:"useOAuth,omitempty"`
+		CustomDomainName                              nullable.Type[string]                        `json:"customDomainName,omitempty"`
+		UserDomainNameSource                          *DomainNameSource                            `json:"userDomainNameSource,omitempty"`
+		UsernameAADSource                             *UsernameSource                              `json:"usernameAADSource,omitempty"`
+		UsernameSource                                *UserEmailSource                             `json:"usernameSource,omitempty"`
+		Assignments                                   *[]DeviceConfigurationAssignment             `json:"assignments,omitempty"`
+		CreatedDateTime                               *string                                      `json:"createdDateTime,omitempty"`
+		Description                                   nullable.Type[string]                        `json:"description,omitempty"`
+		DeviceManagementApplicabilityRuleDeviceMode   *DeviceManagementApplicabilityRuleDeviceMode `json:"deviceManagementApplicabilityRuleDeviceMode,omitempty"`
+		DeviceManagementApplicabilityRuleOsEdition    *DeviceManagementApplicabilityRuleOsEdition  `json:"deviceManagementApplicabilityRuleOsEdition,omitempty"`
+		DeviceManagementApplicabilityRuleOsVersion    *DeviceManagementApplicabilityRuleOsVersion  `json:"deviceManagementApplicabilityRuleOsVersion,omitempty"`
+		DeviceSettingStateSummaries                   *[]SettingStateDeviceSummary                 `json:"deviceSettingStateSummaries,omitempty"`
+		DeviceStatusOverview                          *DeviceConfigurationDeviceOverview           `json:"deviceStatusOverview,omitempty"`
+		DeviceStatuses                                *[]DeviceConfigurationDeviceStatus           `json:"deviceStatuses,omitempty"`
+		DisplayName                                   *string                                      `json:"displayName,omitempty"`
+		GroupAssignments                              *[]DeviceConfigurationGroupAssignment        `json:"groupAssignments,omitempty"`
+		LastModifiedDateTime                          *string                                      `json:"lastModifiedDateTime,omitempty"`
+		RoleScopeTagIds                               *[]string                                    `json:"roleScopeTagIds,omitempty"`
+		SupportsScopeTags                             *bool                                        `json:"supportsScopeTags,omitempty"`
+		UserStatusOverview                            *DeviceConfigurationUserOverview             `json:"userStatusOverview,omitempty"`
+		UserStatuses                                  *[]DeviceConfigurationUserStatus             `json:"userStatuses,omitempty"`
+		Version                                       *int64                                       `json:"version,omitempty"`
+		Id                                            *string                                      `json:"id,omitempty"`
+		ODataId                                       *string                                      `json:"@odata.id,omitempty"`
+		ODataType                                     *string                                      `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into IosEasEmailProfileConfiguration: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.AccountName = decoded.AccountName
-	s.Assignments = decoded.Assignments
 	s.AuthenticationMethod = decoded.AuthenticationMethod
 	s.BlockMovingMessagesToOtherEmailAccounts = decoded.BlockMovingMessagesToOtherEmailAccounts
 	s.BlockSendingEmailFromThirdPartyApps = decoded.BlockSendingEmailFromThirdPartyApps
 	s.BlockSyncingRecentlyUsedEmailAddresses = decoded.BlockSyncingRecentlyUsedEmailAddresses
-	s.CreatedDateTime = decoded.CreatedDateTime
-	s.CustomDomainName = decoded.CustomDomainName
 	s.DerivedCredentialSettings = decoded.DerivedCredentialSettings
-	s.Description = decoded.Description
-	s.DeviceManagementApplicabilityRuleDeviceMode = decoded.DeviceManagementApplicabilityRuleDeviceMode
-	s.DeviceManagementApplicabilityRuleOsEdition = decoded.DeviceManagementApplicabilityRuleOsEdition
-	s.DeviceManagementApplicabilityRuleOsVersion = decoded.DeviceManagementApplicabilityRuleOsVersion
-	s.DeviceSettingStateSummaries = decoded.DeviceSettingStateSummaries
-	s.DeviceStatusOverview = decoded.DeviceStatusOverview
-	s.DeviceStatuses = decoded.DeviceStatuses
-	s.DisplayName = decoded.DisplayName
 	s.DurationOfEmailToSync = decoded.DurationOfEmailToSync
 	s.EasServices = decoded.EasServices
 	s.EasServicesUserOverrideEnabled = decoded.EasServicesUserOverrideEnabled
 	s.EmailAddressSource = decoded.EmailAddressSource
 	s.EncryptionCertificateType = decoded.EncryptionCertificateType
-	s.GroupAssignments = decoded.GroupAssignments
 	s.HostName = decoded.HostName
-	s.Id = decoded.Id
-	s.LastModifiedDateTime = decoded.LastModifiedDateTime
-	s.ODataId = decoded.ODataId
-	s.ODataType = decoded.ODataType
 	s.PerAppVPNProfileId = decoded.PerAppVPNProfileId
 	s.RequireSmime = decoded.RequireSmime
 	s.RequireSsl = decoded.RequireSsl
-	s.RoleScopeTagIds = decoded.RoleScopeTagIds
 	s.SigningCertificateType = decoded.SigningCertificateType
 	s.SmimeEnablePerMessageSwitch = decoded.SmimeEnablePerMessageSwitch
 	s.SmimeEncryptByDefaultEnabled = decoded.SmimeEncryptByDefaultEnabled
@@ -315,8 +347,25 @@ func (s *IosEasEmailProfileConfiguration) UnmarshalJSON(bytes []byte) error {
 	s.SmimeSigningCertificateUserOverrideEnabled = decoded.SmimeSigningCertificateUserOverrideEnabled
 	s.SmimeSigningEnabled = decoded.SmimeSigningEnabled
 	s.SmimeSigningUserOverrideEnabled = decoded.SmimeSigningUserOverrideEnabled
-	s.SupportsScopeTags = decoded.SupportsScopeTags
 	s.UseOAuth = decoded.UseOAuth
+	s.Assignments = decoded.Assignments
+	s.CreatedDateTime = decoded.CreatedDateTime
+	s.CustomDomainName = decoded.CustomDomainName
+	s.Description = decoded.Description
+	s.DeviceManagementApplicabilityRuleDeviceMode = decoded.DeviceManagementApplicabilityRuleDeviceMode
+	s.DeviceManagementApplicabilityRuleOsEdition = decoded.DeviceManagementApplicabilityRuleOsEdition
+	s.DeviceManagementApplicabilityRuleOsVersion = decoded.DeviceManagementApplicabilityRuleOsVersion
+	s.DeviceSettingStateSummaries = decoded.DeviceSettingStateSummaries
+	s.DeviceStatusOverview = decoded.DeviceStatusOverview
+	s.DeviceStatuses = decoded.DeviceStatuses
+	s.DisplayName = decoded.DisplayName
+	s.GroupAssignments = decoded.GroupAssignments
+	s.Id = decoded.Id
+	s.LastModifiedDateTime = decoded.LastModifiedDateTime
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
+	s.RoleScopeTagIds = decoded.RoleScopeTagIds
+	s.SupportsScopeTags = decoded.SupportsScopeTags
 	s.UserDomainNameSource = decoded.UserDomainNameSource
 	s.UserStatusOverview = decoded.UserStatusOverview
 	s.UserStatuses = decoded.UserStatuses
@@ -352,5 +401,6 @@ func (s *IosEasEmailProfileConfiguration) UnmarshalJSON(bytes []byte) error {
 		}
 		s.SmimeSigningCertificate = &impl
 	}
+
 	return nil
 }

@@ -87,10 +87,21 @@ func (s SecurityEdiscoveryReviewSetQuery) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &SecurityEdiscoveryReviewSetQuery{}
 
 func (s *SecurityEdiscoveryReviewSetQuery) UnmarshalJSON(bytes []byte) error {
-	type alias SecurityEdiscoveryReviewSetQuery
-	var decoded alias
+
+	var decoded struct {
+		ContentQuery         nullable.Type[string] `json:"contentQuery,omitempty"`
+		CreatedBy            IdentitySet           `json:"createdBy"`
+		CreatedDateTime      nullable.Type[string] `json:"createdDateTime,omitempty"`
+		Description          nullable.Type[string] `json:"description,omitempty"`
+		DisplayName          nullable.Type[string] `json:"displayName,omitempty"`
+		LastModifiedBy       IdentitySet           `json:"lastModifiedBy"`
+		LastModifiedDateTime nullable.Type[string] `json:"lastModifiedDateTime,omitempty"`
+		Id                   *string               `json:"id,omitempty"`
+		ODataId              *string               `json:"@odata.id,omitempty"`
+		ODataType            *string               `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into SecurityEdiscoveryReviewSetQuery: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.ContentQuery = decoded.ContentQuery
@@ -122,5 +133,6 @@ func (s *SecurityEdiscoveryReviewSetQuery) UnmarshalJSON(bytes []byte) error {
 		}
 		s.LastModifiedBy = impl
 	}
+
 	return nil
 }

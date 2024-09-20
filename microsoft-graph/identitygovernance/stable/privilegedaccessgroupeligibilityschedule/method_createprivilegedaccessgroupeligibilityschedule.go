@@ -18,16 +18,45 @@ type CreatePrivilegedAccessGroupEligibilityScheduleOperationResponse struct {
 	Model        *stable.PrivilegedAccessGroupEligibilitySchedule
 }
 
+type CreatePrivilegedAccessGroupEligibilityScheduleOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreatePrivilegedAccessGroupEligibilityScheduleOperationOptions() CreatePrivilegedAccessGroupEligibilityScheduleOperationOptions {
+	return CreatePrivilegedAccessGroupEligibilityScheduleOperationOptions{}
+}
+
+func (o CreatePrivilegedAccessGroupEligibilityScheduleOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreatePrivilegedAccessGroupEligibilityScheduleOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreatePrivilegedAccessGroupEligibilityScheduleOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreatePrivilegedAccessGroupEligibilitySchedule - Create new navigation property to eligibilitySchedules for
 // identityGovernance
-func (c PrivilegedAccessGroupEligibilityScheduleClient) CreatePrivilegedAccessGroupEligibilitySchedule(ctx context.Context, input stable.PrivilegedAccessGroupEligibilitySchedule) (result CreatePrivilegedAccessGroupEligibilityScheduleOperationResponse, err error) {
+func (c PrivilegedAccessGroupEligibilityScheduleClient) CreatePrivilegedAccessGroupEligibilitySchedule(ctx context.Context, input stable.PrivilegedAccessGroupEligibilitySchedule, options CreatePrivilegedAccessGroupEligibilityScheduleOperationOptions) (result CreatePrivilegedAccessGroupEligibilityScheduleOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/identityGovernance/privilegedAccess/group/eligibilitySchedules",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/identityGovernance/privilegedAccess/group/eligibilitySchedules",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

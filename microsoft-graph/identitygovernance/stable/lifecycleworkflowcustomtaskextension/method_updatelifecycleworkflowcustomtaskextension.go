@@ -17,16 +17,45 @@ type UpdateLifecycleWorkflowCustomTaskExtensionOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateLifecycleWorkflowCustomTaskExtensionOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateLifecycleWorkflowCustomTaskExtensionOperationOptions() UpdateLifecycleWorkflowCustomTaskExtensionOperationOptions {
+	return UpdateLifecycleWorkflowCustomTaskExtensionOperationOptions{}
+}
+
+func (o UpdateLifecycleWorkflowCustomTaskExtensionOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateLifecycleWorkflowCustomTaskExtensionOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateLifecycleWorkflowCustomTaskExtensionOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateLifecycleWorkflowCustomTaskExtension - Update customTaskExtension. Update the properties of a
 // customTaskExtension object.
-func (c LifecycleWorkflowCustomTaskExtensionClient) UpdateLifecycleWorkflowCustomTaskExtension(ctx context.Context, id stable.IdentityGovernanceLifecycleWorkflowCustomTaskExtensionId, input stable.IdentityGovernanceCustomTaskExtension) (result UpdateLifecycleWorkflowCustomTaskExtensionOperationResponse, err error) {
+func (c LifecycleWorkflowCustomTaskExtensionClient) UpdateLifecycleWorkflowCustomTaskExtension(ctx context.Context, id stable.IdentityGovernanceLifecycleWorkflowCustomTaskExtensionId, input stable.IdentityGovernanceCustomTaskExtension, options UpdateLifecycleWorkflowCustomTaskExtensionOperationOptions) (result UpdateLifecycleWorkflowCustomTaskExtensionOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -19,7 +19,8 @@ type DeleteNdesConnectorOperationResponse struct {
 }
 
 type DeleteNdesConnectorOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteNdesConnectorOperationOptions() DeleteNdesConnectorOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteNdesConnectorOperationOptions) ToHeaders() *client.Headers {
 
 func (o DeleteNdesConnectorOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

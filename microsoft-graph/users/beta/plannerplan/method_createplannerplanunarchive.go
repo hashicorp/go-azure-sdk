@@ -18,16 +18,45 @@ type CreatePlannerPlanUnarchiveOperationResponse struct {
 	OData        *odata.OData
 }
 
+type CreatePlannerPlanUnarchiveOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreatePlannerPlanUnarchiveOperationOptions() CreatePlannerPlanUnarchiveOperationOptions {
+	return CreatePlannerPlanUnarchiveOperationOptions{}
+}
+
+func (o CreatePlannerPlanUnarchiveOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreatePlannerPlanUnarchiveOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreatePlannerPlanUnarchiveOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreatePlannerPlanUnarchive - Invoke action unarchive. Unarchive a plannerPlan object. Unarchiving a plan, also
 // unarchives the plannerTasks and plannerBuckets in the plan. Only a plan that is archived can be unarchived.
-func (c PlannerPlanClient) CreatePlannerPlanUnarchive(ctx context.Context, id beta.UserIdPlannerPlanId, input CreatePlannerPlanUnarchiveRequest) (result CreatePlannerPlanUnarchiveOperationResponse, err error) {
+func (c PlannerPlanClient) CreatePlannerPlanUnarchive(ctx context.Context, id beta.UserIdPlannerPlanId, input CreatePlannerPlanUnarchiveRequest, options CreatePlannerPlanUnarchiveOperationOptions) (result CreatePlannerPlanUnarchiveOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/unarchive", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/unarchive", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

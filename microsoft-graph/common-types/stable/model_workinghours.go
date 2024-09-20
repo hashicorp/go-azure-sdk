@@ -33,10 +33,16 @@ type WorkingHours struct {
 var _ json.Unmarshaler = &WorkingHours{}
 
 func (s *WorkingHours) UnmarshalJSON(bytes []byte) error {
-	type alias WorkingHours
-	var decoded alias
+
+	var decoded struct {
+		DaysOfWeek *[]DayOfWeek          `json:"daysOfWeek,omitempty"`
+		EndTime    nullable.Type[string] `json:"endTime,omitempty"`
+		ODataId    *string               `json:"@odata.id,omitempty"`
+		ODataType  *string               `json:"@odata.type,omitempty"`
+		StartTime  nullable.Type[string] `json:"startTime,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into WorkingHours: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.DaysOfWeek = decoded.DaysOfWeek
@@ -57,5 +63,6 @@ func (s *WorkingHours) UnmarshalJSON(bytes []byte) error {
 		}
 		s.TimeZone = impl
 	}
+
 	return nil
 }

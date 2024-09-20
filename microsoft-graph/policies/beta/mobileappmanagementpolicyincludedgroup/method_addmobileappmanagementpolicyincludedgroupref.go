@@ -18,16 +18,45 @@ type AddMobileAppManagementPolicyIncludedGroupRefOperationResponse struct {
 	OData        *odata.OData
 }
 
+type AddMobileAppManagementPolicyIncludedGroupRefOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultAddMobileAppManagementPolicyIncludedGroupRefOperationOptions() AddMobileAppManagementPolicyIncludedGroupRefOperationOptions {
+	return AddMobileAppManagementPolicyIncludedGroupRefOperationOptions{}
+}
+
+func (o AddMobileAppManagementPolicyIncludedGroupRefOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o AddMobileAppManagementPolicyIncludedGroupRefOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o AddMobileAppManagementPolicyIncludedGroupRefOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // AddMobileAppManagementPolicyIncludedGroupRef - Add includedGroups. Add groups to be included in a mobile app
 // management policy.
-func (c MobileAppManagementPolicyIncludedGroupClient) AddMobileAppManagementPolicyIncludedGroupRef(ctx context.Context, id beta.PolicyMobileAppManagementPolicyId, input beta.ReferenceCreate) (result AddMobileAppManagementPolicyIncludedGroupRefOperationResponse, err error) {
+func (c MobileAppManagementPolicyIncludedGroupClient) AddMobileAppManagementPolicyIncludedGroupRef(ctx context.Context, id beta.PolicyMobileAppManagementPolicyId, input beta.ReferenceCreate, options AddMobileAppManagementPolicyIncludedGroupRefOperationOptions) (result AddMobileAppManagementPolicyIncludedGroupRefOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/includedGroups/$ref", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/includedGroups/$ref", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

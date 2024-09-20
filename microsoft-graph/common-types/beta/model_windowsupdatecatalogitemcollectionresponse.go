@@ -62,10 +62,15 @@ func (s WindowsUpdateCatalogItemCollectionResponse) MarshalJSON() ([]byte, error
 var _ json.Unmarshaler = &WindowsUpdateCatalogItemCollectionResponse{}
 
 func (s *WindowsUpdateCatalogItemCollectionResponse) UnmarshalJSON(bytes []byte) error {
-	type alias WindowsUpdateCatalogItemCollectionResponse
-	var decoded alias
+
+	var decoded struct {
+		Value         *[]WindowsUpdateCatalogItem `json:"value,omitempty"`
+		ODataId       *string                     `json:"@odata.id,omitempty"`
+		ODataNextLink nullable.Type[string]       `json:"@odata.nextLink,omitempty"`
+		ODataType     *string                     `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into WindowsUpdateCatalogItemCollectionResponse: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.ODataId = decoded.ODataId
@@ -93,5 +98,6 @@ func (s *WindowsUpdateCatalogItemCollectionResponse) UnmarshalJSON(bytes []byte)
 		}
 		s.Value = &output
 	}
+
 	return nil
 }

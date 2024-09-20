@@ -17,15 +17,44 @@ type UpdateApprovalOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateApprovalOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateApprovalOperationOptions() UpdateApprovalOperationOptions {
+	return UpdateApprovalOperationOptions{}
+}
+
+func (o UpdateApprovalOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateApprovalOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateApprovalOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateApproval - Update the navigation property approvals in users
-func (c ApprovalClient) UpdateApproval(ctx context.Context, id beta.UserIdApprovalId, input beta.Approval) (result UpdateApprovalOperationResponse, err error) {
+func (c ApprovalClient) UpdateApproval(ctx context.Context, id beta.UserIdApprovalId, input beta.Approval, options UpdateApprovalOperationOptions) (result UpdateApprovalOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

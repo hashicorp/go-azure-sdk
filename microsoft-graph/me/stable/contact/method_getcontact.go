@@ -19,8 +19,9 @@ type GetContactOperationResponse struct {
 }
 
 type GetContactOperationOptions struct {
-	Expand *odata.Expand
-	Select *[]string
+	Expand   *odata.Expand
+	Metadata *odata.Metadata
+	Select   *[]string
 }
 
 func DefaultGetContactOperationOptions() GetContactOperationOptions {
@@ -38,6 +39,9 @@ func (o GetContactOperationOptions) ToOData() *odata.Query {
 	if o.Expand != nil {
 		out.Expand = *o.Expand
 	}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	if o.Select != nil {
 		out.Select = *o.Select
 	}
@@ -51,7 +55,7 @@ func (o GetContactOperationOptions) ToQuery() *client.QueryParams {
 }
 
 // GetContact - Get contact. Retrieve the properties and relationships of a contact object. There are two scenarios
-// where an app can get a contact in another user's contact folder:
+// where an app can get a contact in another user's contact folder
 func (c ContactClient) GetContact(ctx context.Context, id stable.MeContactId, options GetContactOperationOptions) (result GetContactOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",

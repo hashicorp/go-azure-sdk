@@ -17,15 +17,44 @@ type UpdateDeviceHealthScriptAssignmentOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateDeviceHealthScriptAssignmentOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateDeviceHealthScriptAssignmentOperationOptions() UpdateDeviceHealthScriptAssignmentOperationOptions {
+	return UpdateDeviceHealthScriptAssignmentOperationOptions{}
+}
+
+func (o UpdateDeviceHealthScriptAssignmentOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateDeviceHealthScriptAssignmentOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateDeviceHealthScriptAssignmentOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateDeviceHealthScriptAssignment - Update the navigation property assignments in deviceManagement
-func (c DeviceHealthScriptAssignmentClient) UpdateDeviceHealthScriptAssignment(ctx context.Context, id beta.DeviceManagementDeviceHealthScriptIdAssignmentId, input beta.DeviceHealthScriptAssignment) (result UpdateDeviceHealthScriptAssignmentOperationResponse, err error) {
+func (c DeviceHealthScriptAssignmentClient) UpdateDeviceHealthScriptAssignment(ctx context.Context, id beta.DeviceManagementDeviceHealthScriptIdAssignmentId, input beta.DeviceHealthScriptAssignment, options UpdateDeviceHealthScriptAssignmentOperationOptions) (result UpdateDeviceHealthScriptAssignmentOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

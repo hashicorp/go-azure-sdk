@@ -19,7 +19,8 @@ type DeleteEnterpriseAppRoleAssignmentApprovalStepOperationResponse struct {
 }
 
 type DeleteEnterpriseAppRoleAssignmentApprovalStepOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteEnterpriseAppRoleAssignmentApprovalStepOperationOptions() DeleteEnterpriseAppRoleAssignmentApprovalStepOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteEnterpriseAppRoleAssignmentApprovalStepOperationOptions) ToHeaders
 
 func (o DeleteEnterpriseAppRoleAssignmentApprovalStepOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

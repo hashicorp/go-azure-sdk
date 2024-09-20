@@ -17,15 +17,44 @@ type UpdateUserInsightOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateUserInsightOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateUserInsightOperationOptions() UpdateUserInsightOperationOptions {
+	return UpdateUserInsightOperationOptions{}
+}
+
+func (o UpdateUserInsightOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateUserInsightOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateUserInsightOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateUserInsight - Update the navigation property userInsights in reports
-func (c UserInsightClient) UpdateUserInsight(ctx context.Context, input beta.UserInsightsRoot) (result UpdateUserInsightOperationResponse, err error) {
+func (c UserInsightClient) UpdateUserInsight(ctx context.Context, input beta.UserInsightsRoot, options UpdateUserInsightOperationOptions) (result UpdateUserInsightOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       "/reports/userInsights",
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          "/reports/userInsights",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &DeviceManagementVirtualEndpointExternalPartnerSettingId{}
 
 func TestNewDeviceManagementVirtualEndpointExternalPartnerSettingID(t *testing.T) {
-	id := NewDeviceManagementVirtualEndpointExternalPartnerSettingID("cloudPCExternalPartnerSettingIdValue")
+	id := NewDeviceManagementVirtualEndpointExternalPartnerSettingID("cloudPCExternalPartnerSettingId")
 
-	if id.CloudPCExternalPartnerSettingId != "cloudPCExternalPartnerSettingIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'CloudPCExternalPartnerSettingId'", id.CloudPCExternalPartnerSettingId, "cloudPCExternalPartnerSettingIdValue")
+	if id.CloudPCExternalPartnerSettingId != "cloudPCExternalPartnerSettingId" {
+		t.Fatalf("Expected %q but got %q for Segment 'CloudPCExternalPartnerSettingId'", id.CloudPCExternalPartnerSettingId, "cloudPCExternalPartnerSettingId")
 	}
 }
 
 func TestFormatDeviceManagementVirtualEndpointExternalPartnerSettingID(t *testing.T) {
-	actual := NewDeviceManagementVirtualEndpointExternalPartnerSettingID("cloudPCExternalPartnerSettingIdValue").ID()
-	expected := "/deviceManagement/virtualEndpoint/externalPartnerSettings/cloudPCExternalPartnerSettingIdValue"
+	actual := NewDeviceManagementVirtualEndpointExternalPartnerSettingID("cloudPCExternalPartnerSettingId").ID()
+	expected := "/deviceManagement/virtualEndpoint/externalPartnerSettings/cloudPCExternalPartnerSettingId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -55,14 +55,14 @@ func TestParseDeviceManagementVirtualEndpointExternalPartnerSettingID(t *testing
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/virtualEndpoint/externalPartnerSettings/cloudPCExternalPartnerSettingIdValue",
+			Input: "/deviceManagement/virtualEndpoint/externalPartnerSettings/cloudPCExternalPartnerSettingId",
 			Expected: &DeviceManagementVirtualEndpointExternalPartnerSettingId{
-				CloudPCExternalPartnerSettingId: "cloudPCExternalPartnerSettingIdValue",
+				CloudPCExternalPartnerSettingId: "cloudPCExternalPartnerSettingId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/virtualEndpoint/externalPartnerSettings/cloudPCExternalPartnerSettingIdValue/extra",
+			Input: "/deviceManagement/virtualEndpoint/externalPartnerSettings/cloudPCExternalPartnerSettingId/extra",
 			Error: true,
 		},
 	}
@@ -131,26 +131,26 @@ func TestParseDeviceManagementVirtualEndpointExternalPartnerSettingIDInsensitive
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/virtualEndpoint/externalPartnerSettings/cloudPCExternalPartnerSettingIdValue",
+			Input: "/deviceManagement/virtualEndpoint/externalPartnerSettings/cloudPCExternalPartnerSettingId",
 			Expected: &DeviceManagementVirtualEndpointExternalPartnerSettingId{
-				CloudPCExternalPartnerSettingId: "cloudPCExternalPartnerSettingIdValue",
+				CloudPCExternalPartnerSettingId: "cloudPCExternalPartnerSettingId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/virtualEndpoint/externalPartnerSettings/cloudPCExternalPartnerSettingIdValue/extra",
+			Input: "/deviceManagement/virtualEndpoint/externalPartnerSettings/cloudPCExternalPartnerSettingId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/vIrTuAlEnDpOiNt/eXtErNaLpArTnErSeTtInGs/cLoUdPcExTeRnAlPaRtNeRsEtTiNgIdVaLuE",
+			Input: "/dEvIcEmAnAgEmEnT/vIrTuAlEnDpOiNt/eXtErNaLpArTnErSeTtInGs/cLoUdPcExTeRnAlPaRtNeRsEtTiNgId",
 			Expected: &DeviceManagementVirtualEndpointExternalPartnerSettingId{
-				CloudPCExternalPartnerSettingId: "cLoUdPcExTeRnAlPaRtNeRsEtTiNgIdVaLuE",
+				CloudPCExternalPartnerSettingId: "cLoUdPcExTeRnAlPaRtNeRsEtTiNgId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/vIrTuAlEnDpOiNt/eXtErNaLpArTnErSeTtInGs/cLoUdPcExTeRnAlPaRtNeRsEtTiNgIdVaLuE/extra",
+			Input: "/dEvIcEmAnAgEmEnT/vIrTuAlEnDpOiNt/eXtErNaLpArTnErSeTtInGs/cLoUdPcExTeRnAlPaRtNeRsEtTiNgId/extra",
 			Error: true,
 		},
 	}

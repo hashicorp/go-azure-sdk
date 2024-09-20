@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &IdentityGovernanceEntitlementManagementAccessPackageAssignmentIdAccessPackageAssignmentPolicyCustomExtensionStageSettingId{}
 
 func TestNewIdentityGovernanceEntitlementManagementAccessPackageAssignmentIdAccessPackageAssignmentPolicyCustomExtensionStageSettingID(t *testing.T) {
-	id := NewIdentityGovernanceEntitlementManagementAccessPackageAssignmentIdAccessPackageAssignmentPolicyCustomExtensionStageSettingID("accessPackageAssignmentIdValue", "customExtensionStageSettingIdValue")
+	id := NewIdentityGovernanceEntitlementManagementAccessPackageAssignmentIdAccessPackageAssignmentPolicyCustomExtensionStageSettingID("accessPackageAssignmentId", "customExtensionStageSettingId")
 
-	if id.AccessPackageAssignmentId != "accessPackageAssignmentIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'AccessPackageAssignmentId'", id.AccessPackageAssignmentId, "accessPackageAssignmentIdValue")
+	if id.AccessPackageAssignmentId != "accessPackageAssignmentId" {
+		t.Fatalf("Expected %q but got %q for Segment 'AccessPackageAssignmentId'", id.AccessPackageAssignmentId, "accessPackageAssignmentId")
 	}
 
-	if id.CustomExtensionStageSettingId != "customExtensionStageSettingIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'CustomExtensionStageSettingId'", id.CustomExtensionStageSettingId, "customExtensionStageSettingIdValue")
+	if id.CustomExtensionStageSettingId != "customExtensionStageSettingId" {
+		t.Fatalf("Expected %q but got %q for Segment 'CustomExtensionStageSettingId'", id.CustomExtensionStageSettingId, "customExtensionStageSettingId")
 	}
 }
 
 func TestFormatIdentityGovernanceEntitlementManagementAccessPackageAssignmentIdAccessPackageAssignmentPolicyCustomExtensionStageSettingID(t *testing.T) {
-	actual := NewIdentityGovernanceEntitlementManagementAccessPackageAssignmentIdAccessPackageAssignmentPolicyCustomExtensionStageSettingID("accessPackageAssignmentIdValue", "customExtensionStageSettingIdValue").ID()
-	expected := "/identityGovernance/entitlementManagement/accessPackageAssignments/accessPackageAssignmentIdValue/accessPackageAssignmentPolicy/customExtensionStageSettings/customExtensionStageSettingIdValue"
+	actual := NewIdentityGovernanceEntitlementManagementAccessPackageAssignmentIdAccessPackageAssignmentPolicyCustomExtensionStageSettingID("accessPackageAssignmentId", "customExtensionStageSettingId").ID()
+	expected := "/identityGovernance/entitlementManagement/accessPackageAssignments/accessPackageAssignmentId/accessPackageAssignmentPolicy/customExtensionStageSettings/customExtensionStageSettingId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -59,30 +59,30 @@ func TestParseIdentityGovernanceEntitlementManagementAccessPackageAssignmentIdAc
 		},
 		{
 			// Incomplete URI
-			Input: "/identityGovernance/entitlementManagement/accessPackageAssignments/accessPackageAssignmentIdValue",
+			Input: "/identityGovernance/entitlementManagement/accessPackageAssignments/accessPackageAssignmentId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/identityGovernance/entitlementManagement/accessPackageAssignments/accessPackageAssignmentIdValue/accessPackageAssignmentPolicy",
+			Input: "/identityGovernance/entitlementManagement/accessPackageAssignments/accessPackageAssignmentId/accessPackageAssignmentPolicy",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/identityGovernance/entitlementManagement/accessPackageAssignments/accessPackageAssignmentIdValue/accessPackageAssignmentPolicy/customExtensionStageSettings",
+			Input: "/identityGovernance/entitlementManagement/accessPackageAssignments/accessPackageAssignmentId/accessPackageAssignmentPolicy/customExtensionStageSettings",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/identityGovernance/entitlementManagement/accessPackageAssignments/accessPackageAssignmentIdValue/accessPackageAssignmentPolicy/customExtensionStageSettings/customExtensionStageSettingIdValue",
+			Input: "/identityGovernance/entitlementManagement/accessPackageAssignments/accessPackageAssignmentId/accessPackageAssignmentPolicy/customExtensionStageSettings/customExtensionStageSettingId",
 			Expected: &IdentityGovernanceEntitlementManagementAccessPackageAssignmentIdAccessPackageAssignmentPolicyCustomExtensionStageSettingId{
-				AccessPackageAssignmentId:     "accessPackageAssignmentIdValue",
-				CustomExtensionStageSettingId: "customExtensionStageSettingIdValue",
+				AccessPackageAssignmentId:     "accessPackageAssignmentId",
+				CustomExtensionStageSettingId: "customExtensionStageSettingId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/identityGovernance/entitlementManagement/accessPackageAssignments/accessPackageAssignmentIdValue/accessPackageAssignmentPolicy/customExtensionStageSettings/customExtensionStageSettingIdValue/extra",
+			Input: "/identityGovernance/entitlementManagement/accessPackageAssignments/accessPackageAssignmentId/accessPackageAssignmentPolicy/customExtensionStageSettings/customExtensionStageSettingId/extra",
 			Error: true,
 		},
 	}
@@ -155,58 +155,58 @@ func TestParseIdentityGovernanceEntitlementManagementAccessPackageAssignmentIdAc
 		},
 		{
 			// Incomplete URI
-			Input: "/identityGovernance/entitlementManagement/accessPackageAssignments/accessPackageAssignmentIdValue",
+			Input: "/identityGovernance/entitlementManagement/accessPackageAssignments/accessPackageAssignmentId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/iDeNtItYgOvErNaNcE/eNtItLeMeNtMaNaGeMeNt/aCcEsSpAcKaGeAsSiGnMeNtS/aCcEsSpAcKaGeAsSiGnMeNtIdVaLuE",
+			Input: "/iDeNtItYgOvErNaNcE/eNtItLeMeNtMaNaGeMeNt/aCcEsSpAcKaGeAsSiGnMeNtS/aCcEsSpAcKaGeAsSiGnMeNtId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/identityGovernance/entitlementManagement/accessPackageAssignments/accessPackageAssignmentIdValue/accessPackageAssignmentPolicy",
+			Input: "/identityGovernance/entitlementManagement/accessPackageAssignments/accessPackageAssignmentId/accessPackageAssignmentPolicy",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/iDeNtItYgOvErNaNcE/eNtItLeMeNtMaNaGeMeNt/aCcEsSpAcKaGeAsSiGnMeNtS/aCcEsSpAcKaGeAsSiGnMeNtIdVaLuE/aCcEsSpAcKaGeAsSiGnMeNtPoLiCy",
+			Input: "/iDeNtItYgOvErNaNcE/eNtItLeMeNtMaNaGeMeNt/aCcEsSpAcKaGeAsSiGnMeNtS/aCcEsSpAcKaGeAsSiGnMeNtId/aCcEsSpAcKaGeAsSiGnMeNtPoLiCy",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/identityGovernance/entitlementManagement/accessPackageAssignments/accessPackageAssignmentIdValue/accessPackageAssignmentPolicy/customExtensionStageSettings",
+			Input: "/identityGovernance/entitlementManagement/accessPackageAssignments/accessPackageAssignmentId/accessPackageAssignmentPolicy/customExtensionStageSettings",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/iDeNtItYgOvErNaNcE/eNtItLeMeNtMaNaGeMeNt/aCcEsSpAcKaGeAsSiGnMeNtS/aCcEsSpAcKaGeAsSiGnMeNtIdVaLuE/aCcEsSpAcKaGeAsSiGnMeNtPoLiCy/cUsToMeXtEnSiOnStAgEsEtTiNgS",
+			Input: "/iDeNtItYgOvErNaNcE/eNtItLeMeNtMaNaGeMeNt/aCcEsSpAcKaGeAsSiGnMeNtS/aCcEsSpAcKaGeAsSiGnMeNtId/aCcEsSpAcKaGeAsSiGnMeNtPoLiCy/cUsToMeXtEnSiOnStAgEsEtTiNgS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/identityGovernance/entitlementManagement/accessPackageAssignments/accessPackageAssignmentIdValue/accessPackageAssignmentPolicy/customExtensionStageSettings/customExtensionStageSettingIdValue",
+			Input: "/identityGovernance/entitlementManagement/accessPackageAssignments/accessPackageAssignmentId/accessPackageAssignmentPolicy/customExtensionStageSettings/customExtensionStageSettingId",
 			Expected: &IdentityGovernanceEntitlementManagementAccessPackageAssignmentIdAccessPackageAssignmentPolicyCustomExtensionStageSettingId{
-				AccessPackageAssignmentId:     "accessPackageAssignmentIdValue",
-				CustomExtensionStageSettingId: "customExtensionStageSettingIdValue",
+				AccessPackageAssignmentId:     "accessPackageAssignmentId",
+				CustomExtensionStageSettingId: "customExtensionStageSettingId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/identityGovernance/entitlementManagement/accessPackageAssignments/accessPackageAssignmentIdValue/accessPackageAssignmentPolicy/customExtensionStageSettings/customExtensionStageSettingIdValue/extra",
+			Input: "/identityGovernance/entitlementManagement/accessPackageAssignments/accessPackageAssignmentId/accessPackageAssignmentPolicy/customExtensionStageSettings/customExtensionStageSettingId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/iDeNtItYgOvErNaNcE/eNtItLeMeNtMaNaGeMeNt/aCcEsSpAcKaGeAsSiGnMeNtS/aCcEsSpAcKaGeAsSiGnMeNtIdVaLuE/aCcEsSpAcKaGeAsSiGnMeNtPoLiCy/cUsToMeXtEnSiOnStAgEsEtTiNgS/cUsToMeXtEnSiOnStAgEsEtTiNgIdVaLuE",
+			Input: "/iDeNtItYgOvErNaNcE/eNtItLeMeNtMaNaGeMeNt/aCcEsSpAcKaGeAsSiGnMeNtS/aCcEsSpAcKaGeAsSiGnMeNtId/aCcEsSpAcKaGeAsSiGnMeNtPoLiCy/cUsToMeXtEnSiOnStAgEsEtTiNgS/cUsToMeXtEnSiOnStAgEsEtTiNgId",
 			Expected: &IdentityGovernanceEntitlementManagementAccessPackageAssignmentIdAccessPackageAssignmentPolicyCustomExtensionStageSettingId{
-				AccessPackageAssignmentId:     "aCcEsSpAcKaGeAsSiGnMeNtIdVaLuE",
-				CustomExtensionStageSettingId: "cUsToMeXtEnSiOnStAgEsEtTiNgIdVaLuE",
+				AccessPackageAssignmentId:     "aCcEsSpAcKaGeAsSiGnMeNtId",
+				CustomExtensionStageSettingId: "cUsToMeXtEnSiOnStAgEsEtTiNgId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/iDeNtItYgOvErNaNcE/eNtItLeMeNtMaNaGeMeNt/aCcEsSpAcKaGeAsSiGnMeNtS/aCcEsSpAcKaGeAsSiGnMeNtIdVaLuE/aCcEsSpAcKaGeAsSiGnMeNtPoLiCy/cUsToMeXtEnSiOnStAgEsEtTiNgS/cUsToMeXtEnSiOnStAgEsEtTiNgIdVaLuE/extra",
+			Input: "/iDeNtItYgOvErNaNcE/eNtItLeMeNtMaNaGeMeNt/aCcEsSpAcKaGeAsSiGnMeNtS/aCcEsSpAcKaGeAsSiGnMeNtId/aCcEsSpAcKaGeAsSiGnMeNtPoLiCy/cUsToMeXtEnSiOnStAgEsEtTiNgS/cUsToMeXtEnSiOnStAgEsEtTiNgId/extra",
 			Error: true,
 		},
 	}

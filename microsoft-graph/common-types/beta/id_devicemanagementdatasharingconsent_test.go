@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &DeviceManagementDataSharingConsentId{}
 
 func TestNewDeviceManagementDataSharingConsentID(t *testing.T) {
-	id := NewDeviceManagementDataSharingConsentID("dataSharingConsentIdValue")
+	id := NewDeviceManagementDataSharingConsentID("dataSharingConsentId")
 
-	if id.DataSharingConsentId != "dataSharingConsentIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DataSharingConsentId'", id.DataSharingConsentId, "dataSharingConsentIdValue")
+	if id.DataSharingConsentId != "dataSharingConsentId" {
+		t.Fatalf("Expected %q but got %q for Segment 'DataSharingConsentId'", id.DataSharingConsentId, "dataSharingConsentId")
 	}
 }
 
 func TestFormatDeviceManagementDataSharingConsentID(t *testing.T) {
-	actual := NewDeviceManagementDataSharingConsentID("dataSharingConsentIdValue").ID()
-	expected := "/deviceManagement/dataSharingConsents/dataSharingConsentIdValue"
+	actual := NewDeviceManagementDataSharingConsentID("dataSharingConsentId").ID()
+	expected := "/deviceManagement/dataSharingConsents/dataSharingConsentId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -50,14 +50,14 @@ func TestParseDeviceManagementDataSharingConsentID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/dataSharingConsents/dataSharingConsentIdValue",
+			Input: "/deviceManagement/dataSharingConsents/dataSharingConsentId",
 			Expected: &DeviceManagementDataSharingConsentId{
-				DataSharingConsentId: "dataSharingConsentIdValue",
+				DataSharingConsentId: "dataSharingConsentId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/dataSharingConsents/dataSharingConsentIdValue/extra",
+			Input: "/deviceManagement/dataSharingConsents/dataSharingConsentId/extra",
 			Error: true,
 		},
 	}
@@ -116,26 +116,26 @@ func TestParseDeviceManagementDataSharingConsentIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/dataSharingConsents/dataSharingConsentIdValue",
+			Input: "/deviceManagement/dataSharingConsents/dataSharingConsentId",
 			Expected: &DeviceManagementDataSharingConsentId{
-				DataSharingConsentId: "dataSharingConsentIdValue",
+				DataSharingConsentId: "dataSharingConsentId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/dataSharingConsents/dataSharingConsentIdValue/extra",
+			Input: "/deviceManagement/dataSharingConsents/dataSharingConsentId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/dAtAsHaRiNgCoNsEnTs/dAtAsHaRiNgCoNsEnTiDvAlUe",
+			Input: "/dEvIcEmAnAgEmEnT/dAtAsHaRiNgCoNsEnTs/dAtAsHaRiNgCoNsEnTiD",
 			Expected: &DeviceManagementDataSharingConsentId{
-				DataSharingConsentId: "dAtAsHaRiNgCoNsEnTiDvAlUe",
+				DataSharingConsentId: "dAtAsHaRiNgCoNsEnTiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/dAtAsHaRiNgCoNsEnTs/dAtAsHaRiNgCoNsEnTiDvAlUe/extra",
+			Input: "/dEvIcEmAnAgEmEnT/dAtAsHaRiNgCoNsEnTs/dAtAsHaRiNgCoNsEnTiD/extra",
 			Error: true,
 		},
 	}

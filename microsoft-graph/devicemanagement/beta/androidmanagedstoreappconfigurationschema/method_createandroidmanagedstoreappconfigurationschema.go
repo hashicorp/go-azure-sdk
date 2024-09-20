@@ -18,16 +18,45 @@ type CreateAndroidManagedStoreAppConfigurationSchemaOperationResponse struct {
 	Model        *beta.AndroidManagedStoreAppConfigurationSchema
 }
 
+type CreateAndroidManagedStoreAppConfigurationSchemaOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateAndroidManagedStoreAppConfigurationSchemaOperationOptions() CreateAndroidManagedStoreAppConfigurationSchemaOperationOptions {
+	return CreateAndroidManagedStoreAppConfigurationSchemaOperationOptions{}
+}
+
+func (o CreateAndroidManagedStoreAppConfigurationSchemaOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateAndroidManagedStoreAppConfigurationSchemaOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateAndroidManagedStoreAppConfigurationSchemaOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateAndroidManagedStoreAppConfigurationSchema - Create new navigation property to
 // androidManagedStoreAppConfigurationSchemas for deviceManagement
-func (c AndroidManagedStoreAppConfigurationSchemaClient) CreateAndroidManagedStoreAppConfigurationSchema(ctx context.Context, input beta.AndroidManagedStoreAppConfigurationSchema) (result CreateAndroidManagedStoreAppConfigurationSchemaOperationResponse, err error) {
+func (c AndroidManagedStoreAppConfigurationSchemaClient) CreateAndroidManagedStoreAppConfigurationSchema(ctx context.Context, input beta.AndroidManagedStoreAppConfigurationSchema, options CreateAndroidManagedStoreAppConfigurationSchemaOperationOptions) (result CreateAndroidManagedStoreAppConfigurationSchemaOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/deviceManagement/androidManagedStoreAppConfigurationSchemas",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/deviceManagement/androidManagedStoreAppConfigurationSchemas",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

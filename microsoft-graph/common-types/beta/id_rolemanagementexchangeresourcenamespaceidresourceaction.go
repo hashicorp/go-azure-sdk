@@ -100,9 +100,9 @@ func (id RoleManagementExchangeResourceNamespaceIdResourceActionId) Segments() [
 		resourceids.StaticSegment("roleManagement", "roleManagement", "roleManagement"),
 		resourceids.StaticSegment("exchange", "exchange", "exchange"),
 		resourceids.StaticSegment("resourceNamespaces", "resourceNamespaces", "resourceNamespaces"),
-		resourceids.UserSpecifiedSegment("unifiedRbacResourceNamespaceId", "unifiedRbacResourceNamespaceIdValue"),
+		resourceids.UserSpecifiedSegment("unifiedRbacResourceNamespaceId", "unifiedRbacResourceNamespaceId"),
 		resourceids.StaticSegment("resourceActions", "resourceActions", "resourceActions"),
-		resourceids.UserSpecifiedSegment("unifiedRbacResourceActionId", "unifiedRbacResourceActionIdValue"),
+		resourceids.UserSpecifiedSegment("unifiedRbacResourceActionId", "unifiedRbacResourceActionId"),
 	}
 }
 

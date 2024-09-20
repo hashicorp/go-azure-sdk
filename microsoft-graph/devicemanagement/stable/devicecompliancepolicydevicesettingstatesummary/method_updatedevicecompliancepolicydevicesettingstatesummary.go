@@ -17,16 +17,45 @@ type UpdateDeviceCompliancePolicyDeviceSettingStateSummaryOperationResponse stru
 	OData        *odata.OData
 }
 
+type UpdateDeviceCompliancePolicyDeviceSettingStateSummaryOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateDeviceCompliancePolicyDeviceSettingStateSummaryOperationOptions() UpdateDeviceCompliancePolicyDeviceSettingStateSummaryOperationOptions {
+	return UpdateDeviceCompliancePolicyDeviceSettingStateSummaryOperationOptions{}
+}
+
+func (o UpdateDeviceCompliancePolicyDeviceSettingStateSummaryOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateDeviceCompliancePolicyDeviceSettingStateSummaryOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateDeviceCompliancePolicyDeviceSettingStateSummaryOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateDeviceCompliancePolicyDeviceSettingStateSummary - Update the navigation property deviceSettingStateSummaries in
 // deviceManagement
-func (c DeviceCompliancePolicyDeviceSettingStateSummaryClient) UpdateDeviceCompliancePolicyDeviceSettingStateSummary(ctx context.Context, id stable.DeviceManagementDeviceCompliancePolicyIdDeviceSettingStateSummaryId, input stable.SettingStateDeviceSummary) (result UpdateDeviceCompliancePolicyDeviceSettingStateSummaryOperationResponse, err error) {
+func (c DeviceCompliancePolicyDeviceSettingStateSummaryClient) UpdateDeviceCompliancePolicyDeviceSettingStateSummary(ctx context.Context, id stable.DeviceManagementDeviceCompliancePolicyIdDeviceSettingStateSummaryId, input stable.SettingStateDeviceSummary, options UpdateDeviceCompliancePolicyDeviceSettingStateSummaryOperationOptions) (result UpdateDeviceCompliancePolicyDeviceSettingStateSummaryOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

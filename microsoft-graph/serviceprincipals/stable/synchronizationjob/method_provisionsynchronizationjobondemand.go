@@ -19,16 +19,45 @@ type ProvisionSynchronizationJobOnDemandOperationResponse struct {
 	Model        *stable.StringKeyStringValuePair
 }
 
+type ProvisionSynchronizationJobOnDemandOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultProvisionSynchronizationJobOnDemandOperationOptions() ProvisionSynchronizationJobOnDemandOperationOptions {
+	return ProvisionSynchronizationJobOnDemandOperationOptions{}
+}
+
+func (o ProvisionSynchronizationJobOnDemandOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o ProvisionSynchronizationJobOnDemandOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o ProvisionSynchronizationJobOnDemandOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // ProvisionSynchronizationJobOnDemand - Invoke action provisionOnDemand. Select a user and provision the account
 // on-demand. The rate limit for this API is 5 requests per 10 seconds.
-func (c SynchronizationJobClient) ProvisionSynchronizationJobOnDemand(ctx context.Context, id stable.ServicePrincipalIdSynchronizationJobId, input ProvisionSynchronizationJobOnDemandRequest) (result ProvisionSynchronizationJobOnDemandOperationResponse, err error) {
+func (c SynchronizationJobClient) ProvisionSynchronizationJobOnDemand(ctx context.Context, id stable.ServicePrincipalIdSynchronizationJobId, input ProvisionSynchronizationJobOnDemandRequest, options ProvisionSynchronizationJobOnDemandOperationOptions) (result ProvisionSynchronizationJobOnDemandOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/provisionOnDemand", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/provisionOnDemand", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -18,16 +18,45 @@ type CreateEntitlementManagementAccessPackageResourceOperationResponse struct {
 	Model        *beta.AccessPackageResource
 }
 
+type CreateEntitlementManagementAccessPackageResourceOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateEntitlementManagementAccessPackageResourceOperationOptions() CreateEntitlementManagementAccessPackageResourceOperationOptions {
+	return CreateEntitlementManagementAccessPackageResourceOperationOptions{}
+}
+
+func (o CreateEntitlementManagementAccessPackageResourceOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateEntitlementManagementAccessPackageResourceOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateEntitlementManagementAccessPackageResourceOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateEntitlementManagementAccessPackageResource - Create new navigation property to accessPackageResources for
 // identityGovernance
-func (c EntitlementManagementAccessPackageResourceClient) CreateEntitlementManagementAccessPackageResource(ctx context.Context, input beta.AccessPackageResource) (result CreateEntitlementManagementAccessPackageResourceOperationResponse, err error) {
+func (c EntitlementManagementAccessPackageResourceClient) CreateEntitlementManagementAccessPackageResource(ctx context.Context, input beta.AccessPackageResource, options CreateEntitlementManagementAccessPackageResourceOperationOptions) (result CreateEntitlementManagementAccessPackageResourceOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/identityGovernance/entitlementManagement/accessPackageResources",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/identityGovernance/entitlementManagement/accessPackageResources",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

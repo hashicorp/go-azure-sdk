@@ -18,15 +18,44 @@ type CreateTemplateInsightOperationResponse struct {
 	Model        *beta.DeviceManagementTemplateInsightsDefinition
 }
 
+type CreateTemplateInsightOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateTemplateInsightOperationOptions() CreateTemplateInsightOperationOptions {
+	return CreateTemplateInsightOperationOptions{}
+}
+
+func (o CreateTemplateInsightOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateTemplateInsightOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateTemplateInsightOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateTemplateInsight - Create new navigation property to templateInsights for deviceManagement
-func (c TemplateInsightClient) CreateTemplateInsight(ctx context.Context, input beta.DeviceManagementTemplateInsightsDefinition) (result CreateTemplateInsightOperationResponse, err error) {
+func (c TemplateInsightClient) CreateTemplateInsight(ctx context.Context, input beta.DeviceManagementTemplateInsightsDefinition, options CreateTemplateInsightOperationOptions) (result CreateTemplateInsightOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/deviceManagement/templateInsights",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/deviceManagement/templateInsights",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

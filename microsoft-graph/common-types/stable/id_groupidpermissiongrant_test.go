@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &GroupIdPermissionGrantId{}
 
 func TestNewGroupIdPermissionGrantID(t *testing.T) {
-	id := NewGroupIdPermissionGrantID("groupIdValue", "resourceSpecificPermissionGrantIdValue")
+	id := NewGroupIdPermissionGrantID("groupId", "resourceSpecificPermissionGrantId")
 
-	if id.GroupId != "groupIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'GroupId'", id.GroupId, "groupIdValue")
+	if id.GroupId != "groupId" {
+		t.Fatalf("Expected %q but got %q for Segment 'GroupId'", id.GroupId, "groupId")
 	}
 
-	if id.ResourceSpecificPermissionGrantId != "resourceSpecificPermissionGrantIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ResourceSpecificPermissionGrantId'", id.ResourceSpecificPermissionGrantId, "resourceSpecificPermissionGrantIdValue")
+	if id.ResourceSpecificPermissionGrantId != "resourceSpecificPermissionGrantId" {
+		t.Fatalf("Expected %q but got %q for Segment 'ResourceSpecificPermissionGrantId'", id.ResourceSpecificPermissionGrantId, "resourceSpecificPermissionGrantId")
 	}
 }
 
 func TestFormatGroupIdPermissionGrantID(t *testing.T) {
-	actual := NewGroupIdPermissionGrantID("groupIdValue", "resourceSpecificPermissionGrantIdValue").ID()
-	expected := "/groups/groupIdValue/permissionGrants/resourceSpecificPermissionGrantIdValue"
+	actual := NewGroupIdPermissionGrantID("groupId", "resourceSpecificPermissionGrantId").ID()
+	expected := "/groups/groupId/permissionGrants/resourceSpecificPermissionGrantId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -49,25 +49,25 @@ func TestParseGroupIdPermissionGrantID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue",
+			Input: "/groups/groupId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/permissionGrants",
+			Input: "/groups/groupId/permissionGrants",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/groups/groupIdValue/permissionGrants/resourceSpecificPermissionGrantIdValue",
+			Input: "/groups/groupId/permissionGrants/resourceSpecificPermissionGrantId",
 			Expected: &GroupIdPermissionGrantId{
-				GroupId:                           "groupIdValue",
-				ResourceSpecificPermissionGrantId: "resourceSpecificPermissionGrantIdValue",
+				GroupId:                           "groupId",
+				ResourceSpecificPermissionGrantId: "resourceSpecificPermissionGrantId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/groups/groupIdValue/permissionGrants/resourceSpecificPermissionGrantIdValue/extra",
+			Input: "/groups/groupId/permissionGrants/resourceSpecificPermissionGrantId/extra",
 			Error: true,
 		},
 	}
@@ -120,48 +120,48 @@ func TestParseGroupIdPermissionGrantIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue",
+			Input: "/groups/groupId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE",
+			Input: "/gRoUpS/gRoUpId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/permissionGrants",
+			Input: "/groups/groupId/permissionGrants",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/pErMiSsIoNgRaNtS",
+			Input: "/gRoUpS/gRoUpId/pErMiSsIoNgRaNtS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/groups/groupIdValue/permissionGrants/resourceSpecificPermissionGrantIdValue",
+			Input: "/groups/groupId/permissionGrants/resourceSpecificPermissionGrantId",
 			Expected: &GroupIdPermissionGrantId{
-				GroupId:                           "groupIdValue",
-				ResourceSpecificPermissionGrantId: "resourceSpecificPermissionGrantIdValue",
+				GroupId:                           "groupId",
+				ResourceSpecificPermissionGrantId: "resourceSpecificPermissionGrantId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/groups/groupIdValue/permissionGrants/resourceSpecificPermissionGrantIdValue/extra",
+			Input: "/groups/groupId/permissionGrants/resourceSpecificPermissionGrantId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/pErMiSsIoNgRaNtS/rEsOuRcEsPeCiFiCpErMiSsIoNgRaNtIdVaLuE",
+			Input: "/gRoUpS/gRoUpId/pErMiSsIoNgRaNtS/rEsOuRcEsPeCiFiCpErMiSsIoNgRaNtId",
 			Expected: &GroupIdPermissionGrantId{
-				GroupId:                           "gRoUpIdVaLuE",
-				ResourceSpecificPermissionGrantId: "rEsOuRcEsPeCiFiCpErMiSsIoNgRaNtIdVaLuE",
+				GroupId:                           "gRoUpId",
+				ResourceSpecificPermissionGrantId: "rEsOuRcEsPeCiFiCpErMiSsIoNgRaNtId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/pErMiSsIoNgRaNtS/rEsOuRcEsPeCiFiCpErMiSsIoNgRaNtIdVaLuE/extra",
+			Input: "/gRoUpS/gRoUpId/pErMiSsIoNgRaNtS/rEsOuRcEsPeCiFiCpErMiSsIoNgRaNtId/extra",
 			Error: true,
 		},
 	}

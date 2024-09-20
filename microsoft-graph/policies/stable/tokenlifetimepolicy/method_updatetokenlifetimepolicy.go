@@ -17,15 +17,44 @@ type UpdateTokenLifetimePolicyOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateTokenLifetimePolicyOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateTokenLifetimePolicyOperationOptions() UpdateTokenLifetimePolicyOperationOptions {
+	return UpdateTokenLifetimePolicyOperationOptions{}
+}
+
+func (o UpdateTokenLifetimePolicyOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateTokenLifetimePolicyOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateTokenLifetimePolicyOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateTokenLifetimePolicy - Update tokenlifetimepolicy. Update the properties of a tokenLifetimePolicy object.
-func (c TokenLifetimePolicyClient) UpdateTokenLifetimePolicy(ctx context.Context, id stable.PolicyTokenLifetimePolicyId, input stable.TokenLifetimePolicy) (result UpdateTokenLifetimePolicyOperationResponse, err error) {
+func (c TokenLifetimePolicyClient) UpdateTokenLifetimePolicy(ctx context.Context, id stable.PolicyTokenLifetimePolicyId, input stable.TokenLifetimePolicy, options UpdateTokenLifetimePolicyOperationOptions) (result UpdateTokenLifetimePolicyOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

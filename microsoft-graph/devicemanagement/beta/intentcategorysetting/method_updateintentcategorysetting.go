@@ -17,15 +17,44 @@ type UpdateIntentCategorySettingOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateIntentCategorySettingOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateIntentCategorySettingOperationOptions() UpdateIntentCategorySettingOperationOptions {
+	return UpdateIntentCategorySettingOperationOptions{}
+}
+
+func (o UpdateIntentCategorySettingOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateIntentCategorySettingOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateIntentCategorySettingOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateIntentCategorySetting - Update the navigation property settings in deviceManagement
-func (c IntentCategorySettingClient) UpdateIntentCategorySetting(ctx context.Context, id beta.DeviceManagementIntentIdCategoryIdSettingId, input beta.DeviceManagementSettingInstance) (result UpdateIntentCategorySettingOperationResponse, err error) {
+func (c IntentCategorySettingClient) UpdateIntentCategorySetting(ctx context.Context, id beta.DeviceManagementIntentIdCategoryIdSettingId, input beta.DeviceManagementSettingInstance, options UpdateIntentCategorySettingOperationOptions) (result UpdateIntentCategorySettingOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

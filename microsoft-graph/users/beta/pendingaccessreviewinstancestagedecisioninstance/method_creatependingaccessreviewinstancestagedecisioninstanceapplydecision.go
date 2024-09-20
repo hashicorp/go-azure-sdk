@@ -18,18 +18,47 @@ type CreatePendingAccessReviewInstanceStageDecisionInstanceApplyDecisionOperatio
 	OData        *odata.OData
 }
 
+type CreatePendingAccessReviewInstanceStageDecisionInstanceApplyDecisionOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreatePendingAccessReviewInstanceStageDecisionInstanceApplyDecisionOperationOptions() CreatePendingAccessReviewInstanceStageDecisionInstanceApplyDecisionOperationOptions {
+	return CreatePendingAccessReviewInstanceStageDecisionInstanceApplyDecisionOperationOptions{}
+}
+
+func (o CreatePendingAccessReviewInstanceStageDecisionInstanceApplyDecisionOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreatePendingAccessReviewInstanceStageDecisionInstanceApplyDecisionOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreatePendingAccessReviewInstanceStageDecisionInstanceApplyDecisionOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreatePendingAccessReviewInstanceStageDecisionInstanceApplyDecision - Invoke action applyDecisions. Apply review
 // decisions on an accessReviewInstance if the decisions were not applied automatically because the
 // autoApplyDecisionsEnabled property is false in the review's accessReviewScheduleSettings. The status of the
 // accessReviewInstance must be Completed to call this method.
-func (c PendingAccessReviewInstanceStageDecisionInstanceClient) CreatePendingAccessReviewInstanceStageDecisionInstanceApplyDecision(ctx context.Context, id beta.UserIdPendingAccessReviewInstanceIdStageIdDecisionId) (result CreatePendingAccessReviewInstanceStageDecisionInstanceApplyDecisionOperationResponse, err error) {
+func (c PendingAccessReviewInstanceStageDecisionInstanceClient) CreatePendingAccessReviewInstanceStageDecisionInstanceApplyDecision(ctx context.Context, id beta.UserIdPendingAccessReviewInstanceIdStageIdDecisionId, options CreatePendingAccessReviewInstanceStageDecisionInstanceApplyDecisionOperationOptions) (result CreatePendingAccessReviewInstanceStageDecisionInstanceApplyDecisionOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/instance/applyDecisions", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/instance/applyDecisions", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

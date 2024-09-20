@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &UserIdAuthenticationWindowsHelloForBusinessMethodId{}
 
 func TestNewUserIdAuthenticationWindowsHelloForBusinessMethodID(t *testing.T) {
-	id := NewUserIdAuthenticationWindowsHelloForBusinessMethodID("userIdValue", "windowsHelloForBusinessAuthenticationMethodIdValue")
+	id := NewUserIdAuthenticationWindowsHelloForBusinessMethodID("userId", "windowsHelloForBusinessAuthenticationMethodId")
 
-	if id.UserId != "userIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'UserId'", id.UserId, "userIdValue")
+	if id.UserId != "userId" {
+		t.Fatalf("Expected %q but got %q for Segment 'UserId'", id.UserId, "userId")
 	}
 
-	if id.WindowsHelloForBusinessAuthenticationMethodId != "windowsHelloForBusinessAuthenticationMethodIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'WindowsHelloForBusinessAuthenticationMethodId'", id.WindowsHelloForBusinessAuthenticationMethodId, "windowsHelloForBusinessAuthenticationMethodIdValue")
+	if id.WindowsHelloForBusinessAuthenticationMethodId != "windowsHelloForBusinessAuthenticationMethodId" {
+		t.Fatalf("Expected %q but got %q for Segment 'WindowsHelloForBusinessAuthenticationMethodId'", id.WindowsHelloForBusinessAuthenticationMethodId, "windowsHelloForBusinessAuthenticationMethodId")
 	}
 }
 
 func TestFormatUserIdAuthenticationWindowsHelloForBusinessMethodID(t *testing.T) {
-	actual := NewUserIdAuthenticationWindowsHelloForBusinessMethodID("userIdValue", "windowsHelloForBusinessAuthenticationMethodIdValue").ID()
-	expected := "/users/userIdValue/authentication/windowsHelloForBusinessMethods/windowsHelloForBusinessAuthenticationMethodIdValue"
+	actual := NewUserIdAuthenticationWindowsHelloForBusinessMethodID("userId", "windowsHelloForBusinessAuthenticationMethodId").ID()
+	expected := "/users/userId/authentication/windowsHelloForBusinessMethods/windowsHelloForBusinessAuthenticationMethodId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -49,30 +49,30 @@ func TestParseUserIdAuthenticationWindowsHelloForBusinessMethodID(t *testing.T) 
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue",
+			Input: "/users/userId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/authentication",
+			Input: "/users/userId/authentication",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/authentication/windowsHelloForBusinessMethods",
+			Input: "/users/userId/authentication/windowsHelloForBusinessMethods",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/users/userIdValue/authentication/windowsHelloForBusinessMethods/windowsHelloForBusinessAuthenticationMethodIdValue",
+			Input: "/users/userId/authentication/windowsHelloForBusinessMethods/windowsHelloForBusinessAuthenticationMethodId",
 			Expected: &UserIdAuthenticationWindowsHelloForBusinessMethodId{
-				UserId: "userIdValue",
-				WindowsHelloForBusinessAuthenticationMethodId: "windowsHelloForBusinessAuthenticationMethodIdValue",
+				UserId: "userId",
+				WindowsHelloForBusinessAuthenticationMethodId: "windowsHelloForBusinessAuthenticationMethodId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/users/userIdValue/authentication/windowsHelloForBusinessMethods/windowsHelloForBusinessAuthenticationMethodIdValue/extra",
+			Input: "/users/userId/authentication/windowsHelloForBusinessMethods/windowsHelloForBusinessAuthenticationMethodId/extra",
 			Error: true,
 		},
 	}
@@ -125,58 +125,58 @@ func TestParseUserIdAuthenticationWindowsHelloForBusinessMethodIDInsensitively(t
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue",
+			Input: "/users/userId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe",
+			Input: "/uSeRs/uSeRiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/authentication",
+			Input: "/users/userId/authentication",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/aUtHeNtIcAtIoN",
+			Input: "/uSeRs/uSeRiD/aUtHeNtIcAtIoN",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/authentication/windowsHelloForBusinessMethods",
+			Input: "/users/userId/authentication/windowsHelloForBusinessMethods",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/aUtHeNtIcAtIoN/wInDoWsHeLlOfOrBuSiNeSsMeThOdS",
+			Input: "/uSeRs/uSeRiD/aUtHeNtIcAtIoN/wInDoWsHeLlOfOrBuSiNeSsMeThOdS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/users/userIdValue/authentication/windowsHelloForBusinessMethods/windowsHelloForBusinessAuthenticationMethodIdValue",
+			Input: "/users/userId/authentication/windowsHelloForBusinessMethods/windowsHelloForBusinessAuthenticationMethodId",
 			Expected: &UserIdAuthenticationWindowsHelloForBusinessMethodId{
-				UserId: "userIdValue",
-				WindowsHelloForBusinessAuthenticationMethodId: "windowsHelloForBusinessAuthenticationMethodIdValue",
+				UserId: "userId",
+				WindowsHelloForBusinessAuthenticationMethodId: "windowsHelloForBusinessAuthenticationMethodId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/users/userIdValue/authentication/windowsHelloForBusinessMethods/windowsHelloForBusinessAuthenticationMethodIdValue/extra",
+			Input: "/users/userId/authentication/windowsHelloForBusinessMethods/windowsHelloForBusinessAuthenticationMethodId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/aUtHeNtIcAtIoN/wInDoWsHeLlOfOrBuSiNeSsMeThOdS/wInDoWsHeLlOfOrBuSiNeSsAuThEnTiCaTiOnMeThOdIdVaLuE",
+			Input: "/uSeRs/uSeRiD/aUtHeNtIcAtIoN/wInDoWsHeLlOfOrBuSiNeSsMeThOdS/wInDoWsHeLlOfOrBuSiNeSsAuThEnTiCaTiOnMeThOdId",
 			Expected: &UserIdAuthenticationWindowsHelloForBusinessMethodId{
-				UserId: "uSeRiDvAlUe",
-				WindowsHelloForBusinessAuthenticationMethodId: "wInDoWsHeLlOfOrBuSiNeSsAuThEnTiCaTiOnMeThOdIdVaLuE",
+				UserId: "uSeRiD",
+				WindowsHelloForBusinessAuthenticationMethodId: "wInDoWsHeLlOfOrBuSiNeSsAuThEnTiCaTiOnMeThOdId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/aUtHeNtIcAtIoN/wInDoWsHeLlOfOrBuSiNeSsMeThOdS/wInDoWsHeLlOfOrBuSiNeSsAuThEnTiCaTiOnMeThOdIdVaLuE/extra",
+			Input: "/uSeRs/uSeRiD/aUtHeNtIcAtIoN/wInDoWsHeLlOfOrBuSiNeSsMeThOdS/wInDoWsHeLlOfOrBuSiNeSsAuThEnTiCaTiOnMeThOdId/extra",
 			Error: true,
 		},
 	}

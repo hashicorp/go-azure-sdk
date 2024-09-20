@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &MeOutlookMasterCategoryId{}
 
 func TestNewMeOutlookMasterCategoryID(t *testing.T) {
-	id := NewMeOutlookMasterCategoryID("outlookCategoryIdValue")
+	id := NewMeOutlookMasterCategoryID("outlookCategoryId")
 
-	if id.OutlookCategoryId != "outlookCategoryIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'OutlookCategoryId'", id.OutlookCategoryId, "outlookCategoryIdValue")
+	if id.OutlookCategoryId != "outlookCategoryId" {
+		t.Fatalf("Expected %q but got %q for Segment 'OutlookCategoryId'", id.OutlookCategoryId, "outlookCategoryId")
 	}
 }
 
 func TestFormatMeOutlookMasterCategoryID(t *testing.T) {
-	actual := NewMeOutlookMasterCategoryID("outlookCategoryIdValue").ID()
-	expected := "/me/outlook/masterCategories/outlookCategoryIdValue"
+	actual := NewMeOutlookMasterCategoryID("outlookCategoryId").ID()
+	expected := "/me/outlook/masterCategories/outlookCategoryId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -55,14 +55,14 @@ func TestParseMeOutlookMasterCategoryID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/me/outlook/masterCategories/outlookCategoryIdValue",
+			Input: "/me/outlook/masterCategories/outlookCategoryId",
 			Expected: &MeOutlookMasterCategoryId{
-				OutlookCategoryId: "outlookCategoryIdValue",
+				OutlookCategoryId: "outlookCategoryId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/outlook/masterCategories/outlookCategoryIdValue/extra",
+			Input: "/me/outlook/masterCategories/outlookCategoryId/extra",
 			Error: true,
 		},
 	}
@@ -131,26 +131,26 @@ func TestParseMeOutlookMasterCategoryIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/me/outlook/masterCategories/outlookCategoryIdValue",
+			Input: "/me/outlook/masterCategories/outlookCategoryId",
 			Expected: &MeOutlookMasterCategoryId{
-				OutlookCategoryId: "outlookCategoryIdValue",
+				OutlookCategoryId: "outlookCategoryId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/outlook/masterCategories/outlookCategoryIdValue/extra",
+			Input: "/me/outlook/masterCategories/outlookCategoryId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/oUtLoOk/mAsTeRcAtEgOrIeS/oUtLoOkCaTeGoRyIdVaLuE",
+			Input: "/mE/oUtLoOk/mAsTeRcAtEgOrIeS/oUtLoOkCaTeGoRyId",
 			Expected: &MeOutlookMasterCategoryId{
-				OutlookCategoryId: "oUtLoOkCaTeGoRyIdVaLuE",
+				OutlookCategoryId: "oUtLoOkCaTeGoRyId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/mE/oUtLoOk/mAsTeRcAtEgOrIeS/oUtLoOkCaTeGoRyIdVaLuE/extra",
+			Input: "/mE/oUtLoOk/mAsTeRcAtEgOrIeS/oUtLoOkCaTeGoRyId/extra",
 			Error: true,
 		},
 	}

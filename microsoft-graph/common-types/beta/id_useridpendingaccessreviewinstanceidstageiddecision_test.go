@@ -12,28 +12,28 @@ import (
 var _ resourceids.ResourceId = &UserIdPendingAccessReviewInstanceIdStageIdDecisionId{}
 
 func TestNewUserIdPendingAccessReviewInstanceIdStageIdDecisionID(t *testing.T) {
-	id := NewUserIdPendingAccessReviewInstanceIdStageIdDecisionID("userIdValue", "accessReviewInstanceIdValue", "accessReviewStageIdValue", "accessReviewInstanceDecisionItemIdValue")
+	id := NewUserIdPendingAccessReviewInstanceIdStageIdDecisionID("userId", "accessReviewInstanceId", "accessReviewStageId", "accessReviewInstanceDecisionItemId")
 
-	if id.UserId != "userIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'UserId'", id.UserId, "userIdValue")
+	if id.UserId != "userId" {
+		t.Fatalf("Expected %q but got %q for Segment 'UserId'", id.UserId, "userId")
 	}
 
-	if id.AccessReviewInstanceId != "accessReviewInstanceIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'AccessReviewInstanceId'", id.AccessReviewInstanceId, "accessReviewInstanceIdValue")
+	if id.AccessReviewInstanceId != "accessReviewInstanceId" {
+		t.Fatalf("Expected %q but got %q for Segment 'AccessReviewInstanceId'", id.AccessReviewInstanceId, "accessReviewInstanceId")
 	}
 
-	if id.AccessReviewStageId != "accessReviewStageIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'AccessReviewStageId'", id.AccessReviewStageId, "accessReviewStageIdValue")
+	if id.AccessReviewStageId != "accessReviewStageId" {
+		t.Fatalf("Expected %q but got %q for Segment 'AccessReviewStageId'", id.AccessReviewStageId, "accessReviewStageId")
 	}
 
-	if id.AccessReviewInstanceDecisionItemId != "accessReviewInstanceDecisionItemIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'AccessReviewInstanceDecisionItemId'", id.AccessReviewInstanceDecisionItemId, "accessReviewInstanceDecisionItemIdValue")
+	if id.AccessReviewInstanceDecisionItemId != "accessReviewInstanceDecisionItemId" {
+		t.Fatalf("Expected %q but got %q for Segment 'AccessReviewInstanceDecisionItemId'", id.AccessReviewInstanceDecisionItemId, "accessReviewInstanceDecisionItemId")
 	}
 }
 
 func TestFormatUserIdPendingAccessReviewInstanceIdStageIdDecisionID(t *testing.T) {
-	actual := NewUserIdPendingAccessReviewInstanceIdStageIdDecisionID("userIdValue", "accessReviewInstanceIdValue", "accessReviewStageIdValue", "accessReviewInstanceDecisionItemIdValue").ID()
-	expected := "/users/userIdValue/pendingAccessReviewInstances/accessReviewInstanceIdValue/stages/accessReviewStageIdValue/decisions/accessReviewInstanceDecisionItemIdValue"
+	actual := NewUserIdPendingAccessReviewInstanceIdStageIdDecisionID("userId", "accessReviewInstanceId", "accessReviewStageId", "accessReviewInstanceDecisionItemId").ID()
+	expected := "/users/userId/pendingAccessReviewInstances/accessReviewInstanceId/stages/accessReviewStageId/decisions/accessReviewInstanceDecisionItemId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -57,47 +57,47 @@ func TestParseUserIdPendingAccessReviewInstanceIdStageIdDecisionID(t *testing.T)
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue",
+			Input: "/users/userId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/pendingAccessReviewInstances",
+			Input: "/users/userId/pendingAccessReviewInstances",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/pendingAccessReviewInstances/accessReviewInstanceIdValue",
+			Input: "/users/userId/pendingAccessReviewInstances/accessReviewInstanceId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/pendingAccessReviewInstances/accessReviewInstanceIdValue/stages",
+			Input: "/users/userId/pendingAccessReviewInstances/accessReviewInstanceId/stages",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/pendingAccessReviewInstances/accessReviewInstanceIdValue/stages/accessReviewStageIdValue",
+			Input: "/users/userId/pendingAccessReviewInstances/accessReviewInstanceId/stages/accessReviewStageId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/pendingAccessReviewInstances/accessReviewInstanceIdValue/stages/accessReviewStageIdValue/decisions",
+			Input: "/users/userId/pendingAccessReviewInstances/accessReviewInstanceId/stages/accessReviewStageId/decisions",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/users/userIdValue/pendingAccessReviewInstances/accessReviewInstanceIdValue/stages/accessReviewStageIdValue/decisions/accessReviewInstanceDecisionItemIdValue",
+			Input: "/users/userId/pendingAccessReviewInstances/accessReviewInstanceId/stages/accessReviewStageId/decisions/accessReviewInstanceDecisionItemId",
 			Expected: &UserIdPendingAccessReviewInstanceIdStageIdDecisionId{
-				UserId:                             "userIdValue",
-				AccessReviewInstanceId:             "accessReviewInstanceIdValue",
-				AccessReviewStageId:                "accessReviewStageIdValue",
-				AccessReviewInstanceDecisionItemId: "accessReviewInstanceDecisionItemIdValue",
+				UserId:                             "userId",
+				AccessReviewInstanceId:             "accessReviewInstanceId",
+				AccessReviewStageId:                "accessReviewStageId",
+				AccessReviewInstanceDecisionItemId: "accessReviewInstanceDecisionItemId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/users/userIdValue/pendingAccessReviewInstances/accessReviewInstanceIdValue/stages/accessReviewStageIdValue/decisions/accessReviewInstanceDecisionItemIdValue/extra",
+			Input: "/users/userId/pendingAccessReviewInstances/accessReviewInstanceId/stages/accessReviewStageId/decisions/accessReviewInstanceDecisionItemId/extra",
 			Error: true,
 		},
 	}
@@ -158,92 +158,92 @@ func TestParseUserIdPendingAccessReviewInstanceIdStageIdDecisionIDInsensitively(
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue",
+			Input: "/users/userId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe",
+			Input: "/uSeRs/uSeRiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/pendingAccessReviewInstances",
+			Input: "/users/userId/pendingAccessReviewInstances",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/pEnDiNgAcCeSsReViEwInStAnCeS",
+			Input: "/uSeRs/uSeRiD/pEnDiNgAcCeSsReViEwInStAnCeS",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/pendingAccessReviewInstances/accessReviewInstanceIdValue",
+			Input: "/users/userId/pendingAccessReviewInstances/accessReviewInstanceId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/pEnDiNgAcCeSsReViEwInStAnCeS/aCcEsSrEvIeWiNsTaNcEiDvAlUe",
+			Input: "/uSeRs/uSeRiD/pEnDiNgAcCeSsReViEwInStAnCeS/aCcEsSrEvIeWiNsTaNcEiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/pendingAccessReviewInstances/accessReviewInstanceIdValue/stages",
+			Input: "/users/userId/pendingAccessReviewInstances/accessReviewInstanceId/stages",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/pEnDiNgAcCeSsReViEwInStAnCeS/aCcEsSrEvIeWiNsTaNcEiDvAlUe/sTaGeS",
+			Input: "/uSeRs/uSeRiD/pEnDiNgAcCeSsReViEwInStAnCeS/aCcEsSrEvIeWiNsTaNcEiD/sTaGeS",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/pendingAccessReviewInstances/accessReviewInstanceIdValue/stages/accessReviewStageIdValue",
+			Input: "/users/userId/pendingAccessReviewInstances/accessReviewInstanceId/stages/accessReviewStageId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/pEnDiNgAcCeSsReViEwInStAnCeS/aCcEsSrEvIeWiNsTaNcEiDvAlUe/sTaGeS/aCcEsSrEvIeWsTaGeIdVaLuE",
+			Input: "/uSeRs/uSeRiD/pEnDiNgAcCeSsReViEwInStAnCeS/aCcEsSrEvIeWiNsTaNcEiD/sTaGeS/aCcEsSrEvIeWsTaGeId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/pendingAccessReviewInstances/accessReviewInstanceIdValue/stages/accessReviewStageIdValue/decisions",
+			Input: "/users/userId/pendingAccessReviewInstances/accessReviewInstanceId/stages/accessReviewStageId/decisions",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/pEnDiNgAcCeSsReViEwInStAnCeS/aCcEsSrEvIeWiNsTaNcEiDvAlUe/sTaGeS/aCcEsSrEvIeWsTaGeIdVaLuE/dEcIsIoNs",
+			Input: "/uSeRs/uSeRiD/pEnDiNgAcCeSsReViEwInStAnCeS/aCcEsSrEvIeWiNsTaNcEiD/sTaGeS/aCcEsSrEvIeWsTaGeId/dEcIsIoNs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/users/userIdValue/pendingAccessReviewInstances/accessReviewInstanceIdValue/stages/accessReviewStageIdValue/decisions/accessReviewInstanceDecisionItemIdValue",
+			Input: "/users/userId/pendingAccessReviewInstances/accessReviewInstanceId/stages/accessReviewStageId/decisions/accessReviewInstanceDecisionItemId",
 			Expected: &UserIdPendingAccessReviewInstanceIdStageIdDecisionId{
-				UserId:                             "userIdValue",
-				AccessReviewInstanceId:             "accessReviewInstanceIdValue",
-				AccessReviewStageId:                "accessReviewStageIdValue",
-				AccessReviewInstanceDecisionItemId: "accessReviewInstanceDecisionItemIdValue",
+				UserId:                             "userId",
+				AccessReviewInstanceId:             "accessReviewInstanceId",
+				AccessReviewStageId:                "accessReviewStageId",
+				AccessReviewInstanceDecisionItemId: "accessReviewInstanceDecisionItemId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/users/userIdValue/pendingAccessReviewInstances/accessReviewInstanceIdValue/stages/accessReviewStageIdValue/decisions/accessReviewInstanceDecisionItemIdValue/extra",
+			Input: "/users/userId/pendingAccessReviewInstances/accessReviewInstanceId/stages/accessReviewStageId/decisions/accessReviewInstanceDecisionItemId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/pEnDiNgAcCeSsReViEwInStAnCeS/aCcEsSrEvIeWiNsTaNcEiDvAlUe/sTaGeS/aCcEsSrEvIeWsTaGeIdVaLuE/dEcIsIoNs/aCcEsSrEvIeWiNsTaNcEdEcIsIoNiTeMiDvAlUe",
+			Input: "/uSeRs/uSeRiD/pEnDiNgAcCeSsReViEwInStAnCeS/aCcEsSrEvIeWiNsTaNcEiD/sTaGeS/aCcEsSrEvIeWsTaGeId/dEcIsIoNs/aCcEsSrEvIeWiNsTaNcEdEcIsIoNiTeMiD",
 			Expected: &UserIdPendingAccessReviewInstanceIdStageIdDecisionId{
-				UserId:                             "uSeRiDvAlUe",
-				AccessReviewInstanceId:             "aCcEsSrEvIeWiNsTaNcEiDvAlUe",
-				AccessReviewStageId:                "aCcEsSrEvIeWsTaGeIdVaLuE",
-				AccessReviewInstanceDecisionItemId: "aCcEsSrEvIeWiNsTaNcEdEcIsIoNiTeMiDvAlUe",
+				UserId:                             "uSeRiD",
+				AccessReviewInstanceId:             "aCcEsSrEvIeWiNsTaNcEiD",
+				AccessReviewStageId:                "aCcEsSrEvIeWsTaGeId",
+				AccessReviewInstanceDecisionItemId: "aCcEsSrEvIeWiNsTaNcEdEcIsIoNiTeMiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/pEnDiNgAcCeSsReViEwInStAnCeS/aCcEsSrEvIeWiNsTaNcEiDvAlUe/sTaGeS/aCcEsSrEvIeWsTaGeIdVaLuE/dEcIsIoNs/aCcEsSrEvIeWiNsTaNcEdEcIsIoNiTeMiDvAlUe/extra",
+			Input: "/uSeRs/uSeRiD/pEnDiNgAcCeSsReViEwInStAnCeS/aCcEsSrEvIeWiNsTaNcEiD/sTaGeS/aCcEsSrEvIeWsTaGeId/dEcIsIoNs/aCcEsSrEvIeWiNsTaNcEdEcIsIoNiTeMiD/extra",
 			Error: true,
 		},
 	}

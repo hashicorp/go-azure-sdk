@@ -19,7 +19,8 @@ type DeleteConversationThreadPostInReplyToExtensionOperationResponse struct {
 }
 
 type DeleteConversationThreadPostInReplyToExtensionOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteConversationThreadPostInReplyToExtensionOperationOptions() DeleteConversationThreadPostInReplyToExtensionOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteConversationThreadPostInReplyToExtensionOperationOptions) ToHeader
 
 func (o DeleteConversationThreadPostInReplyToExtensionOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

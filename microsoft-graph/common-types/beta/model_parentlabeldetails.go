@@ -70,10 +70,20 @@ func (s RawParentLabelDetailsImpl) ParentLabelDetails() BaseParentLabelDetailsIm
 var _ json.Unmarshaler = &BaseParentLabelDetailsImpl{}
 
 func (s *BaseParentLabelDetailsImpl) UnmarshalJSON(bytes []byte) error {
-	type alias BaseParentLabelDetailsImpl
-	var decoded alias
+
+	var decoded struct {
+		Color       nullable.Type[string] `json:"color,omitempty"`
+		Description nullable.Type[string] `json:"description,omitempty"`
+		Id          nullable.Type[string] `json:"id,omitempty"`
+		IsActive    *bool                 `json:"isActive,omitempty"`
+		Name        nullable.Type[string] `json:"name,omitempty"`
+		ODataId     *string               `json:"@odata.id,omitempty"`
+		ODataType   *string               `json:"@odata.type,omitempty"`
+		Sensitivity *int64                `json:"sensitivity,omitempty"`
+		Tooltip     nullable.Type[string] `json:"tooltip,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into BaseParentLabelDetailsImpl: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.Color = decoded.Color
@@ -98,6 +108,7 @@ func (s *BaseParentLabelDetailsImpl) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Parent = impl
 	}
+
 	return nil
 }
 
@@ -111,9 +122,9 @@ func UnmarshalParentLabelDetailsImplementation(input []byte) (ParentLabelDetails
 		return nil, fmt.Errorf("unmarshaling ParentLabelDetails into map[string]interface: %+v", err)
 	}
 
-	value, ok := temp["@odata.type"].(string)
-	if !ok {
-		return nil, nil
+	var value string
+	if v, ok := temp["@odata.type"]; ok {
+		value = fmt.Sprintf("%v", v)
 	}
 
 	if strings.EqualFold(value, "#microsoft.graph.labelDetails") {

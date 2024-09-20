@@ -98,9 +98,9 @@ func (id ServicePrincipalIdOAuth2PermissionGrantId) ID() string {
 func (id ServicePrincipalIdOAuth2PermissionGrantId) Segments() []resourceids.Segment {
 	return []resourceids.Segment{
 		resourceids.StaticSegment("servicePrincipals", "servicePrincipals", "servicePrincipals"),
-		resourceids.UserSpecifiedSegment("servicePrincipalId", "servicePrincipalIdValue"),
+		resourceids.UserSpecifiedSegment("servicePrincipalId", "servicePrincipalId"),
 		resourceids.StaticSegment("oauth2PermissionGrants", "oauth2PermissionGrants", "oauth2PermissionGrants"),
-		resourceids.UserSpecifiedSegment("oAuth2PermissionGrantId", "oAuth2PermissionGrantIdValue"),
+		resourceids.UserSpecifiedSegment("oAuth2PermissionGrantId", "oAuth2PermissionGrantId"),
 	}
 }
 

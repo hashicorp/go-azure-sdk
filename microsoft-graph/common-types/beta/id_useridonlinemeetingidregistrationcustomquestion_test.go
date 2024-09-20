@@ -12,24 +12,24 @@ import (
 var _ resourceids.ResourceId = &UserIdOnlineMeetingIdRegistrationCustomQuestionId{}
 
 func TestNewUserIdOnlineMeetingIdRegistrationCustomQuestionID(t *testing.T) {
-	id := NewUserIdOnlineMeetingIdRegistrationCustomQuestionID("userIdValue", "onlineMeetingIdValue", "meetingRegistrationQuestionIdValue")
+	id := NewUserIdOnlineMeetingIdRegistrationCustomQuestionID("userId", "onlineMeetingId", "meetingRegistrationQuestionId")
 
-	if id.UserId != "userIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'UserId'", id.UserId, "userIdValue")
+	if id.UserId != "userId" {
+		t.Fatalf("Expected %q but got %q for Segment 'UserId'", id.UserId, "userId")
 	}
 
-	if id.OnlineMeetingId != "onlineMeetingIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'OnlineMeetingId'", id.OnlineMeetingId, "onlineMeetingIdValue")
+	if id.OnlineMeetingId != "onlineMeetingId" {
+		t.Fatalf("Expected %q but got %q for Segment 'OnlineMeetingId'", id.OnlineMeetingId, "onlineMeetingId")
 	}
 
-	if id.MeetingRegistrationQuestionId != "meetingRegistrationQuestionIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'MeetingRegistrationQuestionId'", id.MeetingRegistrationQuestionId, "meetingRegistrationQuestionIdValue")
+	if id.MeetingRegistrationQuestionId != "meetingRegistrationQuestionId" {
+		t.Fatalf("Expected %q but got %q for Segment 'MeetingRegistrationQuestionId'", id.MeetingRegistrationQuestionId, "meetingRegistrationQuestionId")
 	}
 }
 
 func TestFormatUserIdOnlineMeetingIdRegistrationCustomQuestionID(t *testing.T) {
-	actual := NewUserIdOnlineMeetingIdRegistrationCustomQuestionID("userIdValue", "onlineMeetingIdValue", "meetingRegistrationQuestionIdValue").ID()
-	expected := "/users/userIdValue/onlineMeetings/onlineMeetingIdValue/registration/customQuestions/meetingRegistrationQuestionIdValue"
+	actual := NewUserIdOnlineMeetingIdRegistrationCustomQuestionID("userId", "onlineMeetingId", "meetingRegistrationQuestionId").ID()
+	expected := "/users/userId/onlineMeetings/onlineMeetingId/registration/customQuestions/meetingRegistrationQuestionId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -53,41 +53,41 @@ func TestParseUserIdOnlineMeetingIdRegistrationCustomQuestionID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue",
+			Input: "/users/userId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/onlineMeetings",
+			Input: "/users/userId/onlineMeetings",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/onlineMeetings/onlineMeetingIdValue",
+			Input: "/users/userId/onlineMeetings/onlineMeetingId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/onlineMeetings/onlineMeetingIdValue/registration",
+			Input: "/users/userId/onlineMeetings/onlineMeetingId/registration",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/onlineMeetings/onlineMeetingIdValue/registration/customQuestions",
+			Input: "/users/userId/onlineMeetings/onlineMeetingId/registration/customQuestions",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/users/userIdValue/onlineMeetings/onlineMeetingIdValue/registration/customQuestions/meetingRegistrationQuestionIdValue",
+			Input: "/users/userId/onlineMeetings/onlineMeetingId/registration/customQuestions/meetingRegistrationQuestionId",
 			Expected: &UserIdOnlineMeetingIdRegistrationCustomQuestionId{
-				UserId:                        "userIdValue",
-				OnlineMeetingId:               "onlineMeetingIdValue",
-				MeetingRegistrationQuestionId: "meetingRegistrationQuestionIdValue",
+				UserId:                        "userId",
+				OnlineMeetingId:               "onlineMeetingId",
+				MeetingRegistrationQuestionId: "meetingRegistrationQuestionId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/users/userIdValue/onlineMeetings/onlineMeetingIdValue/registration/customQuestions/meetingRegistrationQuestionIdValue/extra",
+			Input: "/users/userId/onlineMeetings/onlineMeetingId/registration/customQuestions/meetingRegistrationQuestionId/extra",
 			Error: true,
 		},
 	}
@@ -144,80 +144,80 @@ func TestParseUserIdOnlineMeetingIdRegistrationCustomQuestionIDInsensitively(t *
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue",
+			Input: "/users/userId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe",
+			Input: "/uSeRs/uSeRiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/onlineMeetings",
+			Input: "/users/userId/onlineMeetings",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/oNlInEmEeTiNgS",
+			Input: "/uSeRs/uSeRiD/oNlInEmEeTiNgS",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/onlineMeetings/onlineMeetingIdValue",
+			Input: "/users/userId/onlineMeetings/onlineMeetingId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/oNlInEmEeTiNgS/oNlInEmEeTiNgIdVaLuE",
+			Input: "/uSeRs/uSeRiD/oNlInEmEeTiNgS/oNlInEmEeTiNgId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/onlineMeetings/onlineMeetingIdValue/registration",
+			Input: "/users/userId/onlineMeetings/onlineMeetingId/registration",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/oNlInEmEeTiNgS/oNlInEmEeTiNgIdVaLuE/rEgIsTrAtIoN",
+			Input: "/uSeRs/uSeRiD/oNlInEmEeTiNgS/oNlInEmEeTiNgId/rEgIsTrAtIoN",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/onlineMeetings/onlineMeetingIdValue/registration/customQuestions",
+			Input: "/users/userId/onlineMeetings/onlineMeetingId/registration/customQuestions",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/oNlInEmEeTiNgS/oNlInEmEeTiNgIdVaLuE/rEgIsTrAtIoN/cUsToMqUeStIoNs",
+			Input: "/uSeRs/uSeRiD/oNlInEmEeTiNgS/oNlInEmEeTiNgId/rEgIsTrAtIoN/cUsToMqUeStIoNs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/users/userIdValue/onlineMeetings/onlineMeetingIdValue/registration/customQuestions/meetingRegistrationQuestionIdValue",
+			Input: "/users/userId/onlineMeetings/onlineMeetingId/registration/customQuestions/meetingRegistrationQuestionId",
 			Expected: &UserIdOnlineMeetingIdRegistrationCustomQuestionId{
-				UserId:                        "userIdValue",
-				OnlineMeetingId:               "onlineMeetingIdValue",
-				MeetingRegistrationQuestionId: "meetingRegistrationQuestionIdValue",
+				UserId:                        "userId",
+				OnlineMeetingId:               "onlineMeetingId",
+				MeetingRegistrationQuestionId: "meetingRegistrationQuestionId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/users/userIdValue/onlineMeetings/onlineMeetingIdValue/registration/customQuestions/meetingRegistrationQuestionIdValue/extra",
+			Input: "/users/userId/onlineMeetings/onlineMeetingId/registration/customQuestions/meetingRegistrationQuestionId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/oNlInEmEeTiNgS/oNlInEmEeTiNgIdVaLuE/rEgIsTrAtIoN/cUsToMqUeStIoNs/mEeTiNgReGiStRaTiOnQuEsTiOnIdVaLuE",
+			Input: "/uSeRs/uSeRiD/oNlInEmEeTiNgS/oNlInEmEeTiNgId/rEgIsTrAtIoN/cUsToMqUeStIoNs/mEeTiNgReGiStRaTiOnQuEsTiOnId",
 			Expected: &UserIdOnlineMeetingIdRegistrationCustomQuestionId{
-				UserId:                        "uSeRiDvAlUe",
-				OnlineMeetingId:               "oNlInEmEeTiNgIdVaLuE",
-				MeetingRegistrationQuestionId: "mEeTiNgReGiStRaTiOnQuEsTiOnIdVaLuE",
+				UserId:                        "uSeRiD",
+				OnlineMeetingId:               "oNlInEmEeTiNgId",
+				MeetingRegistrationQuestionId: "mEeTiNgReGiStRaTiOnQuEsTiOnId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/oNlInEmEeTiNgS/oNlInEmEeTiNgIdVaLuE/rEgIsTrAtIoN/cUsToMqUeStIoNs/mEeTiNgReGiStRaTiOnQuEsTiOnIdVaLuE/extra",
+			Input: "/uSeRs/uSeRiD/oNlInEmEeTiNgS/oNlInEmEeTiNgId/rEgIsTrAtIoN/cUsToMqUeStIoNs/mEeTiNgReGiStRaTiOnQuEsTiOnId/extra",
 			Error: true,
 		},
 	}

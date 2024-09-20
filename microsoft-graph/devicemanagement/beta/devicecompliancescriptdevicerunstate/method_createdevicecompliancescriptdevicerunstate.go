@@ -19,15 +19,44 @@ type CreateDeviceComplianceScriptDeviceRunStateOperationResponse struct {
 	Model        *beta.DeviceComplianceScriptDeviceState
 }
 
+type CreateDeviceComplianceScriptDeviceRunStateOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateDeviceComplianceScriptDeviceRunStateOperationOptions() CreateDeviceComplianceScriptDeviceRunStateOperationOptions {
+	return CreateDeviceComplianceScriptDeviceRunStateOperationOptions{}
+}
+
+func (o CreateDeviceComplianceScriptDeviceRunStateOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateDeviceComplianceScriptDeviceRunStateOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateDeviceComplianceScriptDeviceRunStateOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateDeviceComplianceScriptDeviceRunState - Create new navigation property to deviceRunStates for deviceManagement
-func (c DeviceComplianceScriptDeviceRunStateClient) CreateDeviceComplianceScriptDeviceRunState(ctx context.Context, id beta.DeviceManagementDeviceComplianceScriptId, input beta.DeviceComplianceScriptDeviceState) (result CreateDeviceComplianceScriptDeviceRunStateOperationResponse, err error) {
+func (c DeviceComplianceScriptDeviceRunStateClient) CreateDeviceComplianceScriptDeviceRunState(ctx context.Context, id beta.DeviceManagementDeviceComplianceScriptId, input beta.DeviceComplianceScriptDeviceState, options CreateDeviceComplianceScriptDeviceRunStateOperationOptions) (result CreateDeviceComplianceScriptDeviceRunStateOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/deviceRunStates", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/deviceRunStates", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

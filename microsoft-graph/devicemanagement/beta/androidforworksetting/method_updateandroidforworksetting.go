@@ -17,15 +17,44 @@ type UpdateAndroidForWorkSettingOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateAndroidForWorkSettingOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateAndroidForWorkSettingOperationOptions() UpdateAndroidForWorkSettingOperationOptions {
+	return UpdateAndroidForWorkSettingOperationOptions{}
+}
+
+func (o UpdateAndroidForWorkSettingOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateAndroidForWorkSettingOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateAndroidForWorkSettingOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateAndroidForWorkSetting - Update the navigation property androidForWorkSettings in deviceManagement
-func (c AndroidForWorkSettingClient) UpdateAndroidForWorkSetting(ctx context.Context, input beta.AndroidForWorkSettings) (result UpdateAndroidForWorkSettingOperationResponse, err error) {
+func (c AndroidForWorkSettingClient) UpdateAndroidForWorkSetting(ctx context.Context, input beta.AndroidForWorkSettings, options UpdateAndroidForWorkSettingOperationOptions) (result UpdateAndroidForWorkSettingOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       "/deviceManagement/androidForWorkSettings",
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          "/deviceManagement/androidForWorkSettings",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

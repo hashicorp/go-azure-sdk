@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &DeviceManagementTemplateSettingId{}
 
 func TestNewDeviceManagementTemplateSettingID(t *testing.T) {
-	id := NewDeviceManagementTemplateSettingID("deviceManagementConfigurationSettingTemplateIdValue")
+	id := NewDeviceManagementTemplateSettingID("deviceManagementConfigurationSettingTemplateId")
 
-	if id.DeviceManagementConfigurationSettingTemplateId != "deviceManagementConfigurationSettingTemplateIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DeviceManagementConfigurationSettingTemplateId'", id.DeviceManagementConfigurationSettingTemplateId, "deviceManagementConfigurationSettingTemplateIdValue")
+	if id.DeviceManagementConfigurationSettingTemplateId != "deviceManagementConfigurationSettingTemplateId" {
+		t.Fatalf("Expected %q but got %q for Segment 'DeviceManagementConfigurationSettingTemplateId'", id.DeviceManagementConfigurationSettingTemplateId, "deviceManagementConfigurationSettingTemplateId")
 	}
 }
 
 func TestFormatDeviceManagementTemplateSettingID(t *testing.T) {
-	actual := NewDeviceManagementTemplateSettingID("deviceManagementConfigurationSettingTemplateIdValue").ID()
-	expected := "/deviceManagement/templateSettings/deviceManagementConfigurationSettingTemplateIdValue"
+	actual := NewDeviceManagementTemplateSettingID("deviceManagementConfigurationSettingTemplateId").ID()
+	expected := "/deviceManagement/templateSettings/deviceManagementConfigurationSettingTemplateId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -50,14 +50,14 @@ func TestParseDeviceManagementTemplateSettingID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/templateSettings/deviceManagementConfigurationSettingTemplateIdValue",
+			Input: "/deviceManagement/templateSettings/deviceManagementConfigurationSettingTemplateId",
 			Expected: &DeviceManagementTemplateSettingId{
-				DeviceManagementConfigurationSettingTemplateId: "deviceManagementConfigurationSettingTemplateIdValue",
+				DeviceManagementConfigurationSettingTemplateId: "deviceManagementConfigurationSettingTemplateId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/templateSettings/deviceManagementConfigurationSettingTemplateIdValue/extra",
+			Input: "/deviceManagement/templateSettings/deviceManagementConfigurationSettingTemplateId/extra",
 			Error: true,
 		},
 	}
@@ -116,26 +116,26 @@ func TestParseDeviceManagementTemplateSettingIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/templateSettings/deviceManagementConfigurationSettingTemplateIdValue",
+			Input: "/deviceManagement/templateSettings/deviceManagementConfigurationSettingTemplateId",
 			Expected: &DeviceManagementTemplateSettingId{
-				DeviceManagementConfigurationSettingTemplateId: "deviceManagementConfigurationSettingTemplateIdValue",
+				DeviceManagementConfigurationSettingTemplateId: "deviceManagementConfigurationSettingTemplateId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/templateSettings/deviceManagementConfigurationSettingTemplateIdValue/extra",
+			Input: "/deviceManagement/templateSettings/deviceManagementConfigurationSettingTemplateId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/tEmPlAtEsEtTiNgS/dEvIcEmAnAgEmEnTcOnFiGuRaTiOnSeTtInGtEmPlAtEiDvAlUe",
+			Input: "/dEvIcEmAnAgEmEnT/tEmPlAtEsEtTiNgS/dEvIcEmAnAgEmEnTcOnFiGuRaTiOnSeTtInGtEmPlAtEiD",
 			Expected: &DeviceManagementTemplateSettingId{
-				DeviceManagementConfigurationSettingTemplateId: "dEvIcEmAnAgEmEnTcOnFiGuRaTiOnSeTtInGtEmPlAtEiDvAlUe",
+				DeviceManagementConfigurationSettingTemplateId: "dEvIcEmAnAgEmEnTcOnFiGuRaTiOnSeTtInGtEmPlAtEiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/tEmPlAtEsEtTiNgS/dEvIcEmAnAgEmEnTcOnFiGuRaTiOnSeTtInGtEmPlAtEiDvAlUe/extra",
+			Input: "/dEvIcEmAnAgEmEnT/tEmPlAtEsEtTiNgS/dEvIcEmAnAgEmEnTcOnFiGuRaTiOnSeTtInGtEmPlAtEiD/extra",
 			Error: true,
 		},
 	}

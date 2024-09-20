@@ -19,17 +19,46 @@ type CreateAuthenticationEventsFlowOperationResponse struct {
 	Model        stable.AuthenticationEventsFlow
 }
 
+type CreateAuthenticationEventsFlowOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateAuthenticationEventsFlowOperationOptions() CreateAuthenticationEventsFlowOperationOptions {
+	return CreateAuthenticationEventsFlowOperationOptions{}
+}
+
+func (o CreateAuthenticationEventsFlowOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateAuthenticationEventsFlowOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateAuthenticationEventsFlowOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateAuthenticationEventsFlow - Create authenticationEventsFlow. Create a new authenticationEventsFlow object that
 // is of the type specified in the request body. The following derived subtypes are supported: -
 // externalUsersSelfServiceSignupEventsFlow object type.
-func (c AuthenticationEventsFlowClient) CreateAuthenticationEventsFlow(ctx context.Context, input stable.AuthenticationEventsFlow) (result CreateAuthenticationEventsFlowOperationResponse, err error) {
+func (c AuthenticationEventsFlowClient) CreateAuthenticationEventsFlow(ctx context.Context, input stable.AuthenticationEventsFlow, options CreateAuthenticationEventsFlowOperationOptions) (result CreateAuthenticationEventsFlowOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/identity/authenticationEventsFlows",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/identity/authenticationEventsFlows",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

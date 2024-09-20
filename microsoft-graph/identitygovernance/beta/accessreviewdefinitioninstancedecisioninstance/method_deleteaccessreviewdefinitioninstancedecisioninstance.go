@@ -19,7 +19,8 @@ type DeleteAccessReviewDefinitionInstanceDecisionInstanceOperationResponse struc
 }
 
 type DeleteAccessReviewDefinitionInstanceDecisionInstanceOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteAccessReviewDefinitionInstanceDecisionInstanceOperationOptions() DeleteAccessReviewDefinitionInstanceDecisionInstanceOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteAccessReviewDefinitionInstanceDecisionInstanceOperationOptions) To
 
 func (o DeleteAccessReviewDefinitionInstanceDecisionInstanceOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

@@ -56,10 +56,23 @@ type AccessPackageAssignmentRequestRequirements struct {
 var _ json.Unmarshaler = &AccessPackageAssignmentRequestRequirements{}
 
 func (s *AccessPackageAssignmentRequestRequirements) UnmarshalJSON(bytes []byte) error {
-	type alias AccessPackageAssignmentRequestRequirements
-	var decoded alias
+
+	var decoded struct {
+		ExistingAnswers                   *[]AccessPackageAnswer   `json:"existingAnswers,omitempty"`
+		IsApprovalRequired                nullable.Type[bool]      `json:"isApprovalRequired,omitempty"`
+		IsApprovalRequiredForExtension    nullable.Type[bool]      `json:"isApprovalRequiredForExtension,omitempty"`
+		IsCustomAssignmentScheduleAllowed nullable.Type[bool]      `json:"isCustomAssignmentScheduleAllowed,omitempty"`
+		IsRequestorJustificationRequired  nullable.Type[bool]      `json:"isRequestorJustificationRequired,omitempty"`
+		ODataId                           *string                  `json:"@odata.id,omitempty"`
+		ODataType                         *string                  `json:"@odata.type,omitempty"`
+		PolicyDescription                 nullable.Type[string]    `json:"policyDescription,omitempty"`
+		PolicyDisplayName                 nullable.Type[string]    `json:"policyDisplayName,omitempty"`
+		PolicyId                          nullable.Type[string]    `json:"policyId,omitempty"`
+		Questions                         *[]AccessPackageQuestion `json:"questions,omitempty"`
+		Schedule                          *RequestSchedule         `json:"schedule,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into AccessPackageAssignmentRequestRequirements: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.IsApprovalRequired = decoded.IsApprovalRequired
@@ -119,5 +132,6 @@ func (s *AccessPackageAssignmentRequestRequirements) UnmarshalJSON(bytes []byte)
 		}
 		s.VerifiableCredentialRequirementStatus = impl
 	}
+
 	return nil
 }

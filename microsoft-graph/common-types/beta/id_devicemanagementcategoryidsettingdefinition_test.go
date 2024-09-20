@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &DeviceManagementCategoryIdSettingDefinitionId{}
 
 func TestNewDeviceManagementCategoryIdSettingDefinitionID(t *testing.T) {
-	id := NewDeviceManagementCategoryIdSettingDefinitionID("deviceManagementSettingCategoryIdValue", "deviceManagementSettingDefinitionIdValue")
+	id := NewDeviceManagementCategoryIdSettingDefinitionID("deviceManagementSettingCategoryId", "deviceManagementSettingDefinitionId")
 
-	if id.DeviceManagementSettingCategoryId != "deviceManagementSettingCategoryIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DeviceManagementSettingCategoryId'", id.DeviceManagementSettingCategoryId, "deviceManagementSettingCategoryIdValue")
+	if id.DeviceManagementSettingCategoryId != "deviceManagementSettingCategoryId" {
+		t.Fatalf("Expected %q but got %q for Segment 'DeviceManagementSettingCategoryId'", id.DeviceManagementSettingCategoryId, "deviceManagementSettingCategoryId")
 	}
 
-	if id.DeviceManagementSettingDefinitionId != "deviceManagementSettingDefinitionIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DeviceManagementSettingDefinitionId'", id.DeviceManagementSettingDefinitionId, "deviceManagementSettingDefinitionIdValue")
+	if id.DeviceManagementSettingDefinitionId != "deviceManagementSettingDefinitionId" {
+		t.Fatalf("Expected %q but got %q for Segment 'DeviceManagementSettingDefinitionId'", id.DeviceManagementSettingDefinitionId, "deviceManagementSettingDefinitionId")
 	}
 }
 
 func TestFormatDeviceManagementCategoryIdSettingDefinitionID(t *testing.T) {
-	actual := NewDeviceManagementCategoryIdSettingDefinitionID("deviceManagementSettingCategoryIdValue", "deviceManagementSettingDefinitionIdValue").ID()
-	expected := "/deviceManagement/categories/deviceManagementSettingCategoryIdValue/settingDefinitions/deviceManagementSettingDefinitionIdValue"
+	actual := NewDeviceManagementCategoryIdSettingDefinitionID("deviceManagementSettingCategoryId", "deviceManagementSettingDefinitionId").ID()
+	expected := "/deviceManagement/categories/deviceManagementSettingCategoryId/settingDefinitions/deviceManagementSettingDefinitionId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -54,25 +54,25 @@ func TestParseDeviceManagementCategoryIdSettingDefinitionID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/deviceManagement/categories/deviceManagementSettingCategoryIdValue",
+			Input: "/deviceManagement/categories/deviceManagementSettingCategoryId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/deviceManagement/categories/deviceManagementSettingCategoryIdValue/settingDefinitions",
+			Input: "/deviceManagement/categories/deviceManagementSettingCategoryId/settingDefinitions",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/categories/deviceManagementSettingCategoryIdValue/settingDefinitions/deviceManagementSettingDefinitionIdValue",
+			Input: "/deviceManagement/categories/deviceManagementSettingCategoryId/settingDefinitions/deviceManagementSettingDefinitionId",
 			Expected: &DeviceManagementCategoryIdSettingDefinitionId{
-				DeviceManagementSettingCategoryId:   "deviceManagementSettingCategoryIdValue",
-				DeviceManagementSettingDefinitionId: "deviceManagementSettingDefinitionIdValue",
+				DeviceManagementSettingCategoryId:   "deviceManagementSettingCategoryId",
+				DeviceManagementSettingDefinitionId: "deviceManagementSettingDefinitionId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/categories/deviceManagementSettingCategoryIdValue/settingDefinitions/deviceManagementSettingDefinitionIdValue/extra",
+			Input: "/deviceManagement/categories/deviceManagementSettingCategoryId/settingDefinitions/deviceManagementSettingDefinitionId/extra",
 			Error: true,
 		},
 	}
@@ -135,48 +135,48 @@ func TestParseDeviceManagementCategoryIdSettingDefinitionIDInsensitively(t *test
 		},
 		{
 			// Incomplete URI
-			Input: "/deviceManagement/categories/deviceManagementSettingCategoryIdValue",
+			Input: "/deviceManagement/categories/deviceManagementSettingCategoryId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/cAtEgOrIeS/dEvIcEmAnAgEmEnTsEtTiNgCaTeGoRyIdVaLuE",
+			Input: "/dEvIcEmAnAgEmEnT/cAtEgOrIeS/dEvIcEmAnAgEmEnTsEtTiNgCaTeGoRyId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/deviceManagement/categories/deviceManagementSettingCategoryIdValue/settingDefinitions",
+			Input: "/deviceManagement/categories/deviceManagementSettingCategoryId/settingDefinitions",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/cAtEgOrIeS/dEvIcEmAnAgEmEnTsEtTiNgCaTeGoRyIdVaLuE/sEtTiNgDeFiNiTiOnS",
+			Input: "/dEvIcEmAnAgEmEnT/cAtEgOrIeS/dEvIcEmAnAgEmEnTsEtTiNgCaTeGoRyId/sEtTiNgDeFiNiTiOnS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/categories/deviceManagementSettingCategoryIdValue/settingDefinitions/deviceManagementSettingDefinitionIdValue",
+			Input: "/deviceManagement/categories/deviceManagementSettingCategoryId/settingDefinitions/deviceManagementSettingDefinitionId",
 			Expected: &DeviceManagementCategoryIdSettingDefinitionId{
-				DeviceManagementSettingCategoryId:   "deviceManagementSettingCategoryIdValue",
-				DeviceManagementSettingDefinitionId: "deviceManagementSettingDefinitionIdValue",
+				DeviceManagementSettingCategoryId:   "deviceManagementSettingCategoryId",
+				DeviceManagementSettingDefinitionId: "deviceManagementSettingDefinitionId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/categories/deviceManagementSettingCategoryIdValue/settingDefinitions/deviceManagementSettingDefinitionIdValue/extra",
+			Input: "/deviceManagement/categories/deviceManagementSettingCategoryId/settingDefinitions/deviceManagementSettingDefinitionId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/cAtEgOrIeS/dEvIcEmAnAgEmEnTsEtTiNgCaTeGoRyIdVaLuE/sEtTiNgDeFiNiTiOnS/dEvIcEmAnAgEmEnTsEtTiNgDeFiNiTiOnIdVaLuE",
+			Input: "/dEvIcEmAnAgEmEnT/cAtEgOrIeS/dEvIcEmAnAgEmEnTsEtTiNgCaTeGoRyId/sEtTiNgDeFiNiTiOnS/dEvIcEmAnAgEmEnTsEtTiNgDeFiNiTiOnId",
 			Expected: &DeviceManagementCategoryIdSettingDefinitionId{
-				DeviceManagementSettingCategoryId:   "dEvIcEmAnAgEmEnTsEtTiNgCaTeGoRyIdVaLuE",
-				DeviceManagementSettingDefinitionId: "dEvIcEmAnAgEmEnTsEtTiNgDeFiNiTiOnIdVaLuE",
+				DeviceManagementSettingCategoryId:   "dEvIcEmAnAgEmEnTsEtTiNgCaTeGoRyId",
+				DeviceManagementSettingDefinitionId: "dEvIcEmAnAgEmEnTsEtTiNgDeFiNiTiOnId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/cAtEgOrIeS/dEvIcEmAnAgEmEnTsEtTiNgCaTeGoRyIdVaLuE/sEtTiNgDeFiNiTiOnS/dEvIcEmAnAgEmEnTsEtTiNgDeFiNiTiOnIdVaLuE/extra",
+			Input: "/dEvIcEmAnAgEmEnT/cAtEgOrIeS/dEvIcEmAnAgEmEnTsEtTiNgCaTeGoRyId/sEtTiNgDeFiNiTiOnS/dEvIcEmAnAgEmEnTsEtTiNgDeFiNiTiOnId/extra",
 			Error: true,
 		},
 	}

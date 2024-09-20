@@ -18,15 +18,44 @@ type UpdateSecurityInformationProtectionLabelPolicySettingOperationResponse stru
 	OData        *odata.OData
 }
 
+type UpdateSecurityInformationProtectionLabelPolicySettingOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateSecurityInformationProtectionLabelPolicySettingOperationOptions() UpdateSecurityInformationProtectionLabelPolicySettingOperationOptions {
+	return UpdateSecurityInformationProtectionLabelPolicySettingOperationOptions{}
+}
+
+func (o UpdateSecurityInformationProtectionLabelPolicySettingOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateSecurityInformationProtectionLabelPolicySettingOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateSecurityInformationProtectionLabelPolicySettingOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateSecurityInformationProtectionLabelPolicySetting - Update the navigation property labelPolicySettings in users
-func (c SecurityInformationProtectionLabelPolicySettingClient) UpdateSecurityInformationProtectionLabelPolicySetting(ctx context.Context, id beta.UserId, input beta.SecurityInformationProtectionPolicySetting) (result UpdateSecurityInformationProtectionLabelPolicySettingOperationResponse, err error) {
+func (c SecurityInformationProtectionLabelPolicySettingClient) UpdateSecurityInformationProtectionLabelPolicySetting(ctx context.Context, id beta.UserId, input beta.SecurityInformationProtectionPolicySetting, options UpdateSecurityInformationProtectionLabelPolicySettingOperationOptions) (result UpdateSecurityInformationProtectionLabelPolicySettingOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       fmt.Sprintf("%s/security/informationProtection/labelPolicySettings", id.ID()),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/security/informationProtection/labelPolicySettings", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

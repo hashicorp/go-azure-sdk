@@ -20,16 +20,45 @@ type CreateGroupPolicyConfigurationDefinitionValuePresentationValueOperationResp
 	Model        beta.GroupPolicyPresentationValue
 }
 
+type CreateGroupPolicyConfigurationDefinitionValuePresentationValueOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateGroupPolicyConfigurationDefinitionValuePresentationValueOperationOptions() CreateGroupPolicyConfigurationDefinitionValuePresentationValueOperationOptions {
+	return CreateGroupPolicyConfigurationDefinitionValuePresentationValueOperationOptions{}
+}
+
+func (o CreateGroupPolicyConfigurationDefinitionValuePresentationValueOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateGroupPolicyConfigurationDefinitionValuePresentationValueOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateGroupPolicyConfigurationDefinitionValuePresentationValueOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateGroupPolicyConfigurationDefinitionValuePresentationValue - Create new navigation property to presentationValues
 // for deviceManagement
-func (c GroupPolicyConfigurationDefinitionValuePresentationValueClient) CreateGroupPolicyConfigurationDefinitionValuePresentationValue(ctx context.Context, id beta.DeviceManagementGroupPolicyConfigurationIdDefinitionValueId, input beta.GroupPolicyPresentationValue) (result CreateGroupPolicyConfigurationDefinitionValuePresentationValueOperationResponse, err error) {
+func (c GroupPolicyConfigurationDefinitionValuePresentationValueClient) CreateGroupPolicyConfigurationDefinitionValuePresentationValue(ctx context.Context, id beta.DeviceManagementGroupPolicyConfigurationIdDefinitionValueId, input beta.GroupPolicyPresentationValue, options CreateGroupPolicyConfigurationDefinitionValuePresentationValueOperationOptions) (result CreateGroupPolicyConfigurationDefinitionValuePresentationValueOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/presentationValues", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/presentationValues", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

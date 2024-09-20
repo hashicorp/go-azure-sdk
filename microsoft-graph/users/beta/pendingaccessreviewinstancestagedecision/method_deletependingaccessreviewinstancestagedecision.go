@@ -19,7 +19,8 @@ type DeletePendingAccessReviewInstanceStageDecisionOperationResponse struct {
 }
 
 type DeletePendingAccessReviewInstanceStageDecisionOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeletePendingAccessReviewInstanceStageDecisionOperationOptions() DeletePendingAccessReviewInstanceStageDecisionOperationOptions {
@@ -36,7 +37,9 @@ func (o DeletePendingAccessReviewInstanceStageDecisionOperationOptions) ToHeader
 
 func (o DeletePendingAccessReviewInstanceStageDecisionOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

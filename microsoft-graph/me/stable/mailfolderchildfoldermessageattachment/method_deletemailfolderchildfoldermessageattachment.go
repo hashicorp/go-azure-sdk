@@ -19,7 +19,8 @@ type DeleteMailFolderChildFolderMessageAttachmentOperationResponse struct {
 }
 
 type DeleteMailFolderChildFolderMessageAttachmentOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteMailFolderChildFolderMessageAttachmentOperationOptions() DeleteMailFolderChildFolderMessageAttachmentOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteMailFolderChildFolderMessageAttachmentOperationOptions) ToHeaders(
 
 func (o DeleteMailFolderChildFolderMessageAttachmentOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

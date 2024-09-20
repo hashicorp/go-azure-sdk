@@ -112,13 +112,13 @@ func (id MeOutlookTaskGroupIdTaskFolderIdTaskIdAttachmentId) Segments() []resour
 		resourceids.StaticSegment("me", "me", "me"),
 		resourceids.StaticSegment("outlook", "outlook", "outlook"),
 		resourceids.StaticSegment("taskGroups", "taskGroups", "taskGroups"),
-		resourceids.UserSpecifiedSegment("outlookTaskGroupId", "outlookTaskGroupIdValue"),
+		resourceids.UserSpecifiedSegment("outlookTaskGroupId", "outlookTaskGroupId"),
 		resourceids.StaticSegment("taskFolders", "taskFolders", "taskFolders"),
-		resourceids.UserSpecifiedSegment("outlookTaskFolderId", "outlookTaskFolderIdValue"),
+		resourceids.UserSpecifiedSegment("outlookTaskFolderId", "outlookTaskFolderId"),
 		resourceids.StaticSegment("tasks", "tasks", "tasks"),
-		resourceids.UserSpecifiedSegment("outlookTaskId", "outlookTaskIdValue"),
+		resourceids.UserSpecifiedSegment("outlookTaskId", "outlookTaskId"),
 		resourceids.StaticSegment("attachments", "attachments", "attachments"),
-		resourceids.UserSpecifiedSegment("attachmentId", "attachmentIdValue"),
+		resourceids.UserSpecifiedSegment("attachmentId", "attachmentId"),
 	}
 }
 

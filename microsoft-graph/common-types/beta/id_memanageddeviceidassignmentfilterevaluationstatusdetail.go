@@ -99,9 +99,9 @@ func (id MeManagedDeviceIdAssignmentFilterEvaluationStatusDetailId) Segments() [
 	return []resourceids.Segment{
 		resourceids.StaticSegment("me", "me", "me"),
 		resourceids.StaticSegment("managedDevices", "managedDevices", "managedDevices"),
-		resourceids.UserSpecifiedSegment("managedDeviceId", "managedDeviceIdValue"),
+		resourceids.UserSpecifiedSegment("managedDeviceId", "managedDeviceId"),
 		resourceids.StaticSegment("assignmentFilterEvaluationStatusDetails", "assignmentFilterEvaluationStatusDetails", "assignmentFilterEvaluationStatusDetails"),
-		resourceids.UserSpecifiedSegment("assignmentFilterEvaluationStatusDetailsId", "assignmentFilterEvaluationStatusDetailsIdValue"),
+		resourceids.UserSpecifiedSegment("assignmentFilterEvaluationStatusDetailsId", "assignmentFilterEvaluationStatusDetailsId"),
 	}
 }
 

@@ -99,9 +99,9 @@ func (id DeviceManagementDepOnboardingSettingIdImportedAppleDeviceIdentityId) Se
 	return []resourceids.Segment{
 		resourceids.StaticSegment("deviceManagement", "deviceManagement", "deviceManagement"),
 		resourceids.StaticSegment("depOnboardingSettings", "depOnboardingSettings", "depOnboardingSettings"),
-		resourceids.UserSpecifiedSegment("depOnboardingSettingId", "depOnboardingSettingIdValue"),
+		resourceids.UserSpecifiedSegment("depOnboardingSettingId", "depOnboardingSettingId"),
 		resourceids.StaticSegment("importedAppleDeviceIdentities", "importedAppleDeviceIdentities", "importedAppleDeviceIdentities"),
-		resourceids.UserSpecifiedSegment("importedAppleDeviceIdentityId", "importedAppleDeviceIdentityIdValue"),
+		resourceids.UserSpecifiedSegment("importedAppleDeviceIdentityId", "importedAppleDeviceIdentityId"),
 	}
 }
 

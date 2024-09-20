@@ -18,15 +18,44 @@ type UpdateDriveRootRetentionLabelOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateDriveRootRetentionLabelOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateDriveRootRetentionLabelOperationOptions() UpdateDriveRootRetentionLabelOperationOptions {
+	return UpdateDriveRootRetentionLabelOperationOptions{}
+}
+
+func (o UpdateDriveRootRetentionLabelOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateDriveRootRetentionLabelOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateDriveRootRetentionLabelOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateDriveRootRetentionLabel - Update the navigation property retentionLabel in me
-func (c DriveRootRetentionLabelClient) UpdateDriveRootRetentionLabel(ctx context.Context, id beta.MeDriveId, input beta.ItemRetentionLabel) (result UpdateDriveRootRetentionLabelOperationResponse, err error) {
+func (c DriveRootRetentionLabelClient) UpdateDriveRootRetentionLabel(ctx context.Context, id beta.MeDriveId, input beta.ItemRetentionLabel, options UpdateDriveRootRetentionLabelOperationOptions) (result UpdateDriveRootRetentionLabelOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       fmt.Sprintf("%s/root/retentionLabel", id.ID()),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/root/retentionLabel", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

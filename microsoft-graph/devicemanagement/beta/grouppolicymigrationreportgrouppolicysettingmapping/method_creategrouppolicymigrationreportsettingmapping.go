@@ -19,16 +19,45 @@ type CreateGroupPolicyMigrationReportSettingMappingOperationResponse struct {
 	Model        *beta.GroupPolicySettingMapping
 }
 
+type CreateGroupPolicyMigrationReportSettingMappingOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateGroupPolicyMigrationReportSettingMappingOperationOptions() CreateGroupPolicyMigrationReportSettingMappingOperationOptions {
+	return CreateGroupPolicyMigrationReportSettingMappingOperationOptions{}
+}
+
+func (o CreateGroupPolicyMigrationReportSettingMappingOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateGroupPolicyMigrationReportSettingMappingOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateGroupPolicyMigrationReportSettingMappingOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateGroupPolicyMigrationReportSettingMapping - Create new navigation property to groupPolicySettingMappings for
 // deviceManagement
-func (c GroupPolicyMigrationReportGroupPolicySettingMappingClient) CreateGroupPolicyMigrationReportSettingMapping(ctx context.Context, id beta.DeviceManagementGroupPolicyMigrationReportId, input beta.GroupPolicySettingMapping) (result CreateGroupPolicyMigrationReportSettingMappingOperationResponse, err error) {
+func (c GroupPolicyMigrationReportGroupPolicySettingMappingClient) CreateGroupPolicyMigrationReportSettingMapping(ctx context.Context, id beta.DeviceManagementGroupPolicyMigrationReportId, input beta.GroupPolicySettingMapping, options CreateGroupPolicyMigrationReportSettingMappingOperationOptions) (result CreateGroupPolicyMigrationReportSettingMappingOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/groupPolicySettingMappings", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/groupPolicySettingMappings", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -19,7 +19,8 @@ type DeleteCartToClassAssociationOperationResponse struct {
 }
 
 type DeleteCartToClassAssociationOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteCartToClassAssociationOperationOptions() DeleteCartToClassAssociationOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteCartToClassAssociationOperationOptions) ToHeaders() *client.Header
 
 func (o DeleteCartToClassAssociationOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

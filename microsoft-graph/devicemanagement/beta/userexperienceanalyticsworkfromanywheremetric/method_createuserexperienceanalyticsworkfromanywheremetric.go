@@ -18,16 +18,45 @@ type CreateUserExperienceAnalyticsWorkFromAnywhereMetricOperationResponse struct
 	Model        *beta.UserExperienceAnalyticsWorkFromAnywhereMetric
 }
 
+type CreateUserExperienceAnalyticsWorkFromAnywhereMetricOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateUserExperienceAnalyticsWorkFromAnywhereMetricOperationOptions() CreateUserExperienceAnalyticsWorkFromAnywhereMetricOperationOptions {
+	return CreateUserExperienceAnalyticsWorkFromAnywhereMetricOperationOptions{}
+}
+
+func (o CreateUserExperienceAnalyticsWorkFromAnywhereMetricOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateUserExperienceAnalyticsWorkFromAnywhereMetricOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateUserExperienceAnalyticsWorkFromAnywhereMetricOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateUserExperienceAnalyticsWorkFromAnywhereMetric - Create new navigation property to
 // userExperienceAnalyticsWorkFromAnywhereMetrics for deviceManagement
-func (c UserExperienceAnalyticsWorkFromAnywhereMetricClient) CreateUserExperienceAnalyticsWorkFromAnywhereMetric(ctx context.Context, input beta.UserExperienceAnalyticsWorkFromAnywhereMetric) (result CreateUserExperienceAnalyticsWorkFromAnywhereMetricOperationResponse, err error) {
+func (c UserExperienceAnalyticsWorkFromAnywhereMetricClient) CreateUserExperienceAnalyticsWorkFromAnywhereMetric(ctx context.Context, input beta.UserExperienceAnalyticsWorkFromAnywhereMetric, options CreateUserExperienceAnalyticsWorkFromAnywhereMetricOperationOptions) (result CreateUserExperienceAnalyticsWorkFromAnywhereMetricOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/deviceManagement/userExperienceAnalyticsWorkFromAnywhereMetrics",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/deviceManagement/userExperienceAnalyticsWorkFromAnywhereMetrics",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

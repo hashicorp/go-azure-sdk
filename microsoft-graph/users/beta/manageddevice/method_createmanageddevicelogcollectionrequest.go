@@ -19,15 +19,44 @@ type CreateManagedDeviceLogCollectionRequestOperationResponse struct {
 	Model        *beta.DeviceLogCollectionResponse
 }
 
+type CreateManagedDeviceLogCollectionRequestOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateManagedDeviceLogCollectionRequestOperationOptions() CreateManagedDeviceLogCollectionRequestOperationOptions {
+	return CreateManagedDeviceLogCollectionRequestOperationOptions{}
+}
+
+func (o CreateManagedDeviceLogCollectionRequestOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateManagedDeviceLogCollectionRequestOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateManagedDeviceLogCollectionRequestOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateManagedDeviceLogCollectionRequest - Invoke action createDeviceLogCollectionRequest
-func (c ManagedDeviceClient) CreateManagedDeviceLogCollectionRequest(ctx context.Context, id beta.UserIdManagedDeviceId, input CreateManagedDeviceLogCollectionRequestRequest) (result CreateManagedDeviceLogCollectionRequestOperationResponse, err error) {
+func (c ManagedDeviceClient) CreateManagedDeviceLogCollectionRequest(ctx context.Context, id beta.UserIdManagedDeviceId, input CreateManagedDeviceLogCollectionRequestRequest, options CreateManagedDeviceLogCollectionRequestOperationOptions) (result CreateManagedDeviceLogCollectionRequestOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/createDeviceLogCollectionRequest", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/createDeviceLogCollectionRequest", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

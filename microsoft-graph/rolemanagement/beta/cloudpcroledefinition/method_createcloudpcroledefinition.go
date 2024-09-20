@@ -18,17 +18,46 @@ type CreateCloudPCRoleDefinitionOperationResponse struct {
 	Model        *beta.UnifiedRoleDefinition
 }
 
+type CreateCloudPCRoleDefinitionOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateCloudPCRoleDefinitionOperationOptions() CreateCloudPCRoleDefinitionOperationOptions {
+	return CreateCloudPCRoleDefinitionOperationOptions{}
+}
+
+func (o CreateCloudPCRoleDefinitionOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateCloudPCRoleDefinitionOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateCloudPCRoleDefinitionOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateCloudPCRoleDefinition - Create roleDefinitions. Create a new unifiedRoleDefinition object for an RBAC provider.
 // This feature requires a Microsoft Entra ID P1 or P2 license. The following RBAC providers are currently supported: -
 // Cloud PC - device management (Intune) - directory (Microsoft Entra ID)
-func (c CloudPCRoleDefinitionClient) CreateCloudPCRoleDefinition(ctx context.Context, input beta.UnifiedRoleDefinition) (result CreateCloudPCRoleDefinitionOperationResponse, err error) {
+func (c CloudPCRoleDefinitionClient) CreateCloudPCRoleDefinition(ctx context.Context, input beta.UnifiedRoleDefinition, options CreateCloudPCRoleDefinitionOperationOptions) (result CreateCloudPCRoleDefinitionOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/roleManagement/cloudPC/roleDefinitions",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/roleManagement/cloudPC/roleDefinitions",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

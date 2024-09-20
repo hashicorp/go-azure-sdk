@@ -67,16 +67,21 @@ func (s TeamsAppIcon) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &TeamsAppIcon{}
 
 func (s *TeamsAppIcon) UnmarshalJSON(bytes []byte) error {
-	type alias TeamsAppIcon
-	var decoded alias
+
+	var decoded struct {
+		WebUrl    nullable.Type[string] `json:"webUrl,omitempty"`
+		Id        *string               `json:"id,omitempty"`
+		ODataId   *string               `json:"@odata.id,omitempty"`
+		ODataType *string               `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into TeamsAppIcon: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
+	s.WebUrl = decoded.WebUrl
 	s.Id = decoded.Id
 	s.ODataId = decoded.ODataId
 	s.ODataType = decoded.ODataType
-	s.WebUrl = decoded.WebUrl
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -90,5 +95,6 @@ func (s *TeamsAppIcon) UnmarshalJSON(bytes []byte) error {
 		}
 		s.HostedContent = &impl
 	}
+
 	return nil
 }

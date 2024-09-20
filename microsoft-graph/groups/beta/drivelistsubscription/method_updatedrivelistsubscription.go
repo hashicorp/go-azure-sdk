@@ -17,15 +17,44 @@ type UpdateDriveListSubscriptionOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateDriveListSubscriptionOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateDriveListSubscriptionOperationOptions() UpdateDriveListSubscriptionOperationOptions {
+	return UpdateDriveListSubscriptionOperationOptions{}
+}
+
+func (o UpdateDriveListSubscriptionOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateDriveListSubscriptionOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateDriveListSubscriptionOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateDriveListSubscription - Update the navigation property subscriptions in groups
-func (c DriveListSubscriptionClient) UpdateDriveListSubscription(ctx context.Context, id beta.GroupIdDriveIdListSubscriptionId, input beta.Subscription) (result UpdateDriveListSubscriptionOperationResponse, err error) {
+func (c DriveListSubscriptionClient) UpdateDriveListSubscription(ctx context.Context, id beta.GroupIdDriveIdListSubscriptionId, input beta.Subscription, options UpdateDriveListSubscriptionOperationOptions) (result UpdateDriveListSubscriptionOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -18,15 +18,44 @@ type UpdateDriveItemListItemOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateDriveItemListItemOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateDriveItemListItemOperationOptions() UpdateDriveItemListItemOperationOptions {
+	return UpdateDriveItemListItemOperationOptions{}
+}
+
+func (o UpdateDriveItemListItemOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateDriveItemListItemOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateDriveItemListItemOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateDriveItemListItem - Update the navigation property listItem in users
-func (c DriveItemListItemClient) UpdateDriveItemListItem(ctx context.Context, id beta.UserIdDriveIdItemId, input beta.ListItem) (result UpdateDriveItemListItemOperationResponse, err error) {
+func (c DriveItemListItemClient) UpdateDriveItemListItem(ctx context.Context, id beta.UserIdDriveIdItemId, input beta.ListItem, options UpdateDriveItemListItemOperationOptions) (result UpdateDriveItemListItemOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       fmt.Sprintf("%s/listItem", id.ID()),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/listItem", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

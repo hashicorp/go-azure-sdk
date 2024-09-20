@@ -2,6 +2,7 @@ package termsofuseagreementacceptance
 
 import (
 	"context"
+	"fmt"
 	"net/http"
 
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable"
@@ -18,15 +19,44 @@ type CreateTermsOfUseAgreementAcceptanceOperationResponse struct {
 	Model        *stable.AgreementAcceptance
 }
 
-// CreateTermsOfUseAgreementAcceptance - Create new navigation property to agreementAcceptances for identityGovernance
-func (c TermsOfUseAgreementAcceptanceClient) CreateTermsOfUseAgreementAcceptance(ctx context.Context, input stable.AgreementAcceptance) (result CreateTermsOfUseAgreementAcceptanceOperationResponse, err error) {
+type CreateTermsOfUseAgreementAcceptanceOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateTermsOfUseAgreementAcceptanceOperationOptions() CreateTermsOfUseAgreementAcceptanceOperationOptions {
+	return CreateTermsOfUseAgreementAcceptanceOperationOptions{}
+}
+
+func (o CreateTermsOfUseAgreementAcceptanceOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateTermsOfUseAgreementAcceptanceOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateTermsOfUseAgreementAcceptanceOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
+// CreateTermsOfUseAgreementAcceptance - Create new navigation property to acceptances for identityGovernance
+func (c TermsOfUseAgreementAcceptanceClient) CreateTermsOfUseAgreementAcceptance(ctx context.Context, id stable.IdentityGovernanceTermsOfUseAgreementId, input stable.AgreementAcceptance, options CreateTermsOfUseAgreementAcceptanceOperationOptions) (result CreateTermsOfUseAgreementAcceptanceOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/identityGovernance/termsOfUse/agreementAcceptances",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/acceptances", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

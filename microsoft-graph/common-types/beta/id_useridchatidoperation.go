@@ -104,11 +104,11 @@ func (id UserIdChatIdOperationId) ID() string {
 func (id UserIdChatIdOperationId) Segments() []resourceids.Segment {
 	return []resourceids.Segment{
 		resourceids.StaticSegment("users", "users", "users"),
-		resourceids.UserSpecifiedSegment("userId", "userIdValue"),
+		resourceids.UserSpecifiedSegment("userId", "userId"),
 		resourceids.StaticSegment("chats", "chats", "chats"),
-		resourceids.UserSpecifiedSegment("chatId", "chatIdValue"),
+		resourceids.UserSpecifiedSegment("chatId", "chatId"),
 		resourceids.StaticSegment("operations", "operations", "operations"),
-		resourceids.UserSpecifiedSegment("teamsAsyncOperationId", "teamsAsyncOperationIdValue"),
+		resourceids.UserSpecifiedSegment("teamsAsyncOperationId", "teamsAsyncOperationId"),
 	}
 }
 

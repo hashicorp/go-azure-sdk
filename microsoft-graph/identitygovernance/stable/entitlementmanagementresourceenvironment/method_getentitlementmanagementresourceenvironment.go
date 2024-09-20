@@ -2,7 +2,6 @@ package entitlementmanagementresourceenvironment
 
 import (
 	"context"
-	"fmt"
 	"net/http"
 
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable"
@@ -20,8 +19,9 @@ type GetEntitlementManagementResourceEnvironmentOperationResponse struct {
 }
 
 type GetEntitlementManagementResourceEnvironmentOperationOptions struct {
-	Expand *odata.Expand
-	Select *[]string
+	Expand   *odata.Expand
+	Metadata *odata.Metadata
+	Select   *[]string
 }
 
 func DefaultGetEntitlementManagementResourceEnvironmentOperationOptions() GetEntitlementManagementResourceEnvironmentOperationOptions {
@@ -39,6 +39,9 @@ func (o GetEntitlementManagementResourceEnvironmentOperationOptions) ToOData() *
 	if o.Expand != nil {
 		out.Expand = *o.Expand
 	}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	if o.Select != nil {
 		out.Select = *o.Select
 	}
@@ -51,10 +54,9 @@ func (o GetEntitlementManagementResourceEnvironmentOperationOptions) ToQuery() *
 	return &out
 }
 
-// GetEntitlementManagementResourceEnvironment - Get environment from identityGovernance. Contains the environment
-// information for the resource. This can be set using either the @odata.bind annotation or the environment's
-// originId.Supports $expand.
-func (c EntitlementManagementResourceEnvironmentClient) GetEntitlementManagementResourceEnvironment(ctx context.Context, id stable.IdentityGovernanceEntitlementManagementResourceId, options GetEntitlementManagementResourceEnvironmentOperationOptions) (result GetEntitlementManagementResourceEnvironmentOperationResponse, err error) {
+// GetEntitlementManagementResourceEnvironment - Get resourceEnvironments from identityGovernance. A reference to the
+// geolocation environments in which a resource is located.
+func (c EntitlementManagementResourceEnvironmentClient) GetEntitlementManagementResourceEnvironment(ctx context.Context, id stable.IdentityGovernanceEntitlementManagementResourceEnvironmentId, options GetEntitlementManagementResourceEnvironmentOperationOptions) (result GetEntitlementManagementResourceEnvironmentOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
@@ -62,7 +64,7 @@ func (c EntitlementManagementResourceEnvironmentClient) GetEntitlementManagement
 		},
 		HttpMethod:    http.MethodGet,
 		OptionsObject: options,
-		Path:          fmt.Sprintf("%s/environment", id.ID()),
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -17,16 +17,45 @@ type UpdateAdminConsentRequestPolicyOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateAdminConsentRequestPolicyOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateAdminConsentRequestPolicyOperationOptions() UpdateAdminConsentRequestPolicyOperationOptions {
+	return UpdateAdminConsentRequestPolicyOperationOptions{}
+}
+
+func (o UpdateAdminConsentRequestPolicyOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateAdminConsentRequestPolicyOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateAdminConsentRequestPolicyOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateAdminConsentRequestPolicy - Update adminConsentRequestPolicy. Update the properties of an
 // adminConsentRequestPolicy object.
-func (c AdminConsentRequestPolicyClient) UpdateAdminConsentRequestPolicy(ctx context.Context, input beta.AdminConsentRequestPolicy) (result UpdateAdminConsentRequestPolicyOperationResponse, err error) {
+func (c AdminConsentRequestPolicyClient) UpdateAdminConsentRequestPolicy(ctx context.Context, input beta.AdminConsentRequestPolicy, options UpdateAdminConsentRequestPolicyOperationOptions) (result UpdateAdminConsentRequestPolicyOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       "/policies/adminConsentRequestPolicy",
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          "/policies/adminConsentRequestPolicy",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -17,15 +17,44 @@ type UpdateReusablePolicySettingOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateReusablePolicySettingOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateReusablePolicySettingOperationOptions() UpdateReusablePolicySettingOperationOptions {
+	return UpdateReusablePolicySettingOperationOptions{}
+}
+
+func (o UpdateReusablePolicySettingOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateReusablePolicySettingOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateReusablePolicySettingOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateReusablePolicySetting - Update the navigation property reusablePolicySettings in deviceManagement
-func (c ReusablePolicySettingClient) UpdateReusablePolicySetting(ctx context.Context, id beta.DeviceManagementReusablePolicySettingId, input beta.DeviceManagementReusablePolicySetting) (result UpdateReusablePolicySettingOperationResponse, err error) {
+func (c ReusablePolicySettingClient) UpdateReusablePolicySetting(ctx context.Context, id beta.DeviceManagementReusablePolicySettingId, input beta.DeviceManagementReusablePolicySetting, options UpdateReusablePolicySettingOperationOptions) (result UpdateReusablePolicySettingOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

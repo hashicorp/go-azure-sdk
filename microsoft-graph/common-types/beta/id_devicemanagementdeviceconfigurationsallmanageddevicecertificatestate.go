@@ -93,7 +93,7 @@ func (id DeviceManagementDeviceConfigurationsAllManagedDeviceCertificateStateId)
 	return []resourceids.Segment{
 		resourceids.StaticSegment("deviceManagement", "deviceManagement", "deviceManagement"),
 		resourceids.StaticSegment("deviceConfigurationsAllManagedDeviceCertificateStates", "deviceConfigurationsAllManagedDeviceCertificateStates", "deviceConfigurationsAllManagedDeviceCertificateStates"),
-		resourceids.UserSpecifiedSegment("managedAllDeviceCertificateStateId", "managedAllDeviceCertificateStateIdValue"),
+		resourceids.UserSpecifiedSegment("managedAllDeviceCertificateStateId", "managedAllDeviceCertificateStateId"),
 	}
 }
 

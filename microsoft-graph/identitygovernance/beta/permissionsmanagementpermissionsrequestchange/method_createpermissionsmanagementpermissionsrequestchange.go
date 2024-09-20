@@ -18,16 +18,45 @@ type CreatePermissionsManagementPermissionsRequestChangeOperationResponse struct
 	Model        *beta.PermissionsRequestChange
 }
 
+type CreatePermissionsManagementPermissionsRequestChangeOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreatePermissionsManagementPermissionsRequestChangeOperationOptions() CreatePermissionsManagementPermissionsRequestChangeOperationOptions {
+	return CreatePermissionsManagementPermissionsRequestChangeOperationOptions{}
+}
+
+func (o CreatePermissionsManagementPermissionsRequestChangeOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreatePermissionsManagementPermissionsRequestChangeOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreatePermissionsManagementPermissionsRequestChangeOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreatePermissionsManagementPermissionsRequestChange - Create new navigation property to permissionsRequestChanges for
 // identityGovernance
-func (c PermissionsManagementPermissionsRequestChangeClient) CreatePermissionsManagementPermissionsRequestChange(ctx context.Context, input beta.PermissionsRequestChange) (result CreatePermissionsManagementPermissionsRequestChangeOperationResponse, err error) {
+func (c PermissionsManagementPermissionsRequestChangeClient) CreatePermissionsManagementPermissionsRequestChange(ctx context.Context, input beta.PermissionsRequestChange, options CreatePermissionsManagementPermissionsRequestChangeOperationOptions) (result CreatePermissionsManagementPermissionsRequestChangeOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/identityGovernance/permissionsManagement/permissionsRequestChanges",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/identityGovernance/permissionsManagement/permissionsRequestChanges",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

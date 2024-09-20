@@ -20,8 +20,9 @@ type GetLifecycleWorkflowRunUserProcessingResultTaskCountOperationResponse struc
 }
 
 type GetLifecycleWorkflowRunUserProcessingResultTaskCountOperationOptions struct {
-	Filter *string
-	Search *string
+	Filter   *string
+	Metadata *odata.Metadata
+	Search   *string
 }
 
 func DefaultGetLifecycleWorkflowRunUserProcessingResultTaskCountOperationOptions() GetLifecycleWorkflowRunUserProcessingResultTaskCountOperationOptions {
@@ -38,6 +39,9 @@ func (o GetLifecycleWorkflowRunUserProcessingResultTaskCountOperationOptions) To
 	out := odata.Query{}
 	if o.Filter != nil {
 		out.Filter = *o.Filter
+	}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
 	}
 	if o.Search != nil {
 		out.Search = *o.Search

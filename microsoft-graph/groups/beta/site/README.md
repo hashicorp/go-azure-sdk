@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/site` Documentation
 
-The `site` SDK allows for interaction with the Azure Resource Manager Service `groups` (API Version `beta`).
+The `site` SDK allows for interaction with Microsoft Graph `groups` (API Version `beta`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -15,7 +15,7 @@ import "github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/site"
 ### Client Initialization
 
 ```go
-client := site.NewSiteClientWithBaseURI("https://management.azure.com")
+client := site.NewSiteClientWithBaseURI("https://graph.microsoft.com")
 client.Client.Authorizer = authorizer
 ```
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := site.NewGroupID("groupIdValue")
+id := site.NewGroupID("groupId")
 
 payload := site.AddSitesRequest{
 	// ...
@@ -46,7 +46,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := site.NewGroupIdSiteID("groupIdValue", "siteIdValue")
+id := site.NewGroupIdSiteID("groupId", "siteId")
 
 read, err := client.GetSite(ctx, id, site.DefaultGetSiteOperationOptions())
 if err != nil {
@@ -62,7 +62,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := site.NewGroupID("groupIdValue")
+id := site.NewGroupID("groupId")
 
 read, err := client.GetSitesCount(ctx, id, site.DefaultGetSitesCountOperationOptions())
 if err != nil {
@@ -78,7 +78,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := site.NewGroupID("groupIdValue")
+id := site.NewGroupID("groupId")
 
 // alternatively `client.ListSites(ctx, id, site.DefaultListSitesOperationOptions())` can be used to do batched pagination
 items, err := client.ListSitesComplete(ctx, id, site.DefaultListSitesOperationOptions())
@@ -95,7 +95,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := site.NewGroupID("groupIdValue")
+id := site.NewGroupID("groupId")
 
 payload := site.RemoveSitesRequest{
 	// ...
@@ -117,14 +117,14 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := site.NewGroupIdSiteID("groupIdValue", "siteIdValue")
+id := site.NewGroupIdSiteID("groupId", "siteId")
 
 payload := site.Site{
 	// ...
 }
 
 
-read, err := client.UpdateSite(ctx, id, payload)
+read, err := client.UpdateSite(ctx, id, payload, site.DefaultUpdateSiteOperationOptions())
 if err != nil {
 	// handle the error
 }

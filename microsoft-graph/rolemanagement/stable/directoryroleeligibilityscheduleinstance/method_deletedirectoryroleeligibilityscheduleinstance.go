@@ -19,7 +19,8 @@ type DeleteDirectoryRoleEligibilityScheduleInstanceOperationResponse struct {
 }
 
 type DeleteDirectoryRoleEligibilityScheduleInstanceOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteDirectoryRoleEligibilityScheduleInstanceOperationOptions() DeleteDirectoryRoleEligibilityScheduleInstanceOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteDirectoryRoleEligibilityScheduleInstanceOperationOptions) ToHeader
 
 func (o DeleteDirectoryRoleEligibilityScheduleInstanceOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

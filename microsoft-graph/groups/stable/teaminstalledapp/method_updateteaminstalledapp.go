@@ -17,15 +17,44 @@ type UpdateTeamInstalledAppOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateTeamInstalledAppOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateTeamInstalledAppOperationOptions() UpdateTeamInstalledAppOperationOptions {
+	return UpdateTeamInstalledAppOperationOptions{}
+}
+
+func (o UpdateTeamInstalledAppOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateTeamInstalledAppOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateTeamInstalledAppOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateTeamInstalledApp - Update the navigation property installedApps in groups
-func (c TeamInstalledAppClient) UpdateTeamInstalledApp(ctx context.Context, id stable.GroupIdTeamInstalledAppId, input stable.TeamsAppInstallation) (result UpdateTeamInstalledAppOperationResponse, err error) {
+func (c TeamInstalledAppClient) UpdateTeamInstalledApp(ctx context.Context, id stable.GroupIdTeamInstalledAppId, input stable.TeamsAppInstallation, options UpdateTeamInstalledAppOperationOptions) (result UpdateTeamInstalledAppOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

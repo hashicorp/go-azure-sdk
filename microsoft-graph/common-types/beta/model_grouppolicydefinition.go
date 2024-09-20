@@ -112,10 +112,30 @@ func (s GroupPolicyDefinition) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &GroupPolicyDefinition{}
 
 func (s *GroupPolicyDefinition) UnmarshalJSON(bytes []byte) error {
-	type alias GroupPolicyDefinition
-	var decoded alias
+
+	var decoded struct {
+		Category                  *GroupPolicyCategory            `json:"category,omitempty"`
+		CategoryPath              nullable.Type[string]           `json:"categoryPath,omitempty"`
+		ClassType                 *GroupPolicyDefinitionClassType `json:"classType,omitempty"`
+		DisplayName               nullable.Type[string]           `json:"displayName,omitempty"`
+		ExplainText               nullable.Type[string]           `json:"explainText,omitempty"`
+		GroupPolicyCategoryId     *string                         `json:"groupPolicyCategoryId,omitempty"`
+		HasRelatedDefinitions     *bool                           `json:"hasRelatedDefinitions,omitempty"`
+		LastModifiedDateTime      *string                         `json:"lastModifiedDateTime,omitempty"`
+		MinDeviceCspVersion       nullable.Type[string]           `json:"minDeviceCspVersion,omitempty"`
+		MinUserCspVersion         nullable.Type[string]           `json:"minUserCspVersion,omitempty"`
+		NextVersionDefinition     *GroupPolicyDefinition          `json:"nextVersionDefinition,omitempty"`
+		PolicyType                *GroupPolicyType                `json:"policyType,omitempty"`
+		Presentations             *[]GroupPolicyPresentation      `json:"presentations,omitempty"`
+		PreviousVersionDefinition *GroupPolicyDefinition          `json:"previousVersionDefinition,omitempty"`
+		SupportedOn               nullable.Type[string]           `json:"supportedOn,omitempty"`
+		Version                   nullable.Type[string]           `json:"version,omitempty"`
+		Id                        *string                         `json:"id,omitempty"`
+		ODataId                   *string                         `json:"@odata.id,omitempty"`
+		ODataType                 *string                         `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into GroupPolicyDefinition: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.Category = decoded.Category
@@ -125,17 +145,17 @@ func (s *GroupPolicyDefinition) UnmarshalJSON(bytes []byte) error {
 	s.ExplainText = decoded.ExplainText
 	s.GroupPolicyCategoryId = decoded.GroupPolicyCategoryId
 	s.HasRelatedDefinitions = decoded.HasRelatedDefinitions
-	s.Id = decoded.Id
 	s.LastModifiedDateTime = decoded.LastModifiedDateTime
 	s.MinDeviceCspVersion = decoded.MinDeviceCspVersion
 	s.MinUserCspVersion = decoded.MinUserCspVersion
 	s.NextVersionDefinition = decoded.NextVersionDefinition
-	s.ODataId = decoded.ODataId
-	s.ODataType = decoded.ODataType
 	s.PolicyType = decoded.PolicyType
 	s.PreviousVersionDefinition = decoded.PreviousVersionDefinition
 	s.SupportedOn = decoded.SupportedOn
 	s.Version = decoded.Version
+	s.Id = decoded.Id
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -166,5 +186,6 @@ func (s *GroupPolicyDefinition) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Presentations = &output
 	}
+
 	return nil
 }

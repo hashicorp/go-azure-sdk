@@ -19,15 +19,44 @@ type CreateSiteInformationProtectionSignDigestOperationResponse struct {
 	Model        *beta.SigningResult
 }
 
+type CreateSiteInformationProtectionSignDigestOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateSiteInformationProtectionSignDigestOperationOptions() CreateSiteInformationProtectionSignDigestOperationOptions {
+	return CreateSiteInformationProtectionSignDigestOperationOptions{}
+}
+
+func (o CreateSiteInformationProtectionSignDigestOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateSiteInformationProtectionSignDigestOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateSiteInformationProtectionSignDigestOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateSiteInformationProtectionSignDigest - Invoke action signDigest
-func (c SiteInformationProtectionClient) CreateSiteInformationProtectionSignDigest(ctx context.Context, id beta.GroupIdSiteId, input CreateSiteInformationProtectionSignDigestRequest) (result CreateSiteInformationProtectionSignDigestOperationResponse, err error) {
+func (c SiteInformationProtectionClient) CreateSiteInformationProtectionSignDigest(ctx context.Context, id beta.GroupIdSiteId, input CreateSiteInformationProtectionSignDigestRequest, options CreateSiteInformationProtectionSignDigestOperationOptions) (result CreateSiteInformationProtectionSignDigestOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/informationProtection/signDigest", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/informationProtection/signDigest", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

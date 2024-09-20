@@ -17,15 +17,44 @@ type UpdateServiceConfigurationRecordOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateServiceConfigurationRecordOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateServiceConfigurationRecordOperationOptions() UpdateServiceConfigurationRecordOperationOptions {
+	return UpdateServiceConfigurationRecordOperationOptions{}
+}
+
+func (o UpdateServiceConfigurationRecordOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateServiceConfigurationRecordOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateServiceConfigurationRecordOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateServiceConfigurationRecord - Update the navigation property serviceConfigurationRecords in domains
-func (c ServiceConfigurationRecordClient) UpdateServiceConfigurationRecord(ctx context.Context, id beta.DomainIdServiceConfigurationRecordId, input beta.DomainDnsRecord) (result UpdateServiceConfigurationRecordOperationResponse, err error) {
+func (c ServiceConfigurationRecordClient) UpdateServiceConfigurationRecord(ctx context.Context, id beta.DomainIdServiceConfigurationRecordId, input beta.DomainDnsRecord, options UpdateServiceConfigurationRecordOperationOptions) (result UpdateServiceConfigurationRecordOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

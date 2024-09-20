@@ -17,15 +17,44 @@ type GetVirtualEndpointReportsCloudPCPerformanceReportOperationResponse struct {
 	Model        *[]byte
 }
 
+type GetVirtualEndpointReportsCloudPCPerformanceReportOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultGetVirtualEndpointReportsCloudPCPerformanceReportOperationOptions() GetVirtualEndpointReportsCloudPCPerformanceReportOperationOptions {
+	return GetVirtualEndpointReportsCloudPCPerformanceReportOperationOptions{}
+}
+
+func (o GetVirtualEndpointReportsCloudPCPerformanceReportOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o GetVirtualEndpointReportsCloudPCPerformanceReportOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o GetVirtualEndpointReportsCloudPCPerformanceReportOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // GetVirtualEndpointReportsCloudPCPerformanceReport - Invoke action getCloudPcPerformanceReport
-func (c VirtualEndpointReportClient) GetVirtualEndpointReportsCloudPCPerformanceReport(ctx context.Context, input GetVirtualEndpointReportsCloudPCPerformanceReportRequest) (result GetVirtualEndpointReportsCloudPCPerformanceReportOperationResponse, err error) {
+func (c VirtualEndpointReportClient) GetVirtualEndpointReportsCloudPCPerformanceReport(ctx context.Context, input GetVirtualEndpointReportsCloudPCPerformanceReportRequest, options GetVirtualEndpointReportsCloudPCPerformanceReportOperationOptions) (result GetVirtualEndpointReportsCloudPCPerformanceReportOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/octet-stream",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/deviceManagement/virtualEndpoint/reports/getCloudPcPerformanceReport",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/deviceManagement/virtualEndpoint/reports/getCloudPcPerformanceReport",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

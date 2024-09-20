@@ -67,10 +67,15 @@ func (s EducationAssignmentResource) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &EducationAssignmentResource{}
 
 func (s *EducationAssignmentResource) UnmarshalJSON(bytes []byte) error {
-	type alias EducationAssignmentResource
-	var decoded alias
+
+	var decoded struct {
+		DistributeForStudentWork nullable.Type[bool] `json:"distributeForStudentWork,omitempty"`
+		Id                       *string             `json:"id,omitempty"`
+		ODataId                  *string             `json:"@odata.id,omitempty"`
+		ODataType                *string             `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into EducationAssignmentResource: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.DistributeForStudentWork = decoded.DistributeForStudentWork
@@ -90,5 +95,6 @@ func (s *EducationAssignmentResource) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Resource = impl
 	}
+
 	return nil
 }

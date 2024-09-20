@@ -18,15 +18,44 @@ type CreateAndroidDeviceOwnerEnrollmentProfileTokenOperationResponse struct {
 	OData        *odata.OData
 }
 
+type CreateAndroidDeviceOwnerEnrollmentProfileTokenOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateAndroidDeviceOwnerEnrollmentProfileTokenOperationOptions() CreateAndroidDeviceOwnerEnrollmentProfileTokenOperationOptions {
+	return CreateAndroidDeviceOwnerEnrollmentProfileTokenOperationOptions{}
+}
+
+func (o CreateAndroidDeviceOwnerEnrollmentProfileTokenOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateAndroidDeviceOwnerEnrollmentProfileTokenOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateAndroidDeviceOwnerEnrollmentProfileTokenOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateAndroidDeviceOwnerEnrollmentProfileToken - Invoke action createToken
-func (c AndroidDeviceOwnerEnrollmentProfileClient) CreateAndroidDeviceOwnerEnrollmentProfileToken(ctx context.Context, id beta.DeviceManagementAndroidDeviceOwnerEnrollmentProfileId, input CreateAndroidDeviceOwnerEnrollmentProfileTokenRequest) (result CreateAndroidDeviceOwnerEnrollmentProfileTokenOperationResponse, err error) {
+func (c AndroidDeviceOwnerEnrollmentProfileClient) CreateAndroidDeviceOwnerEnrollmentProfileToken(ctx context.Context, id beta.DeviceManagementAndroidDeviceOwnerEnrollmentProfileId, input CreateAndroidDeviceOwnerEnrollmentProfileTokenRequest, options CreateAndroidDeviceOwnerEnrollmentProfileTokenOperationOptions) (result CreateAndroidDeviceOwnerEnrollmentProfileTokenOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/createToken", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/createToken", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

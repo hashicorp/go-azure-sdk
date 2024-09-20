@@ -19,19 +19,48 @@ type CreateAuthenticationTemporaryAccessPassMethodOperationResponse struct {
 	Model        *beta.TemporaryAccessPassAuthenticationMethod
 }
 
+type CreateAuthenticationTemporaryAccessPassMethodOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateAuthenticationTemporaryAccessPassMethodOperationOptions() CreateAuthenticationTemporaryAccessPassMethodOperationOptions {
+	return CreateAuthenticationTemporaryAccessPassMethodOperationOptions{}
+}
+
+func (o CreateAuthenticationTemporaryAccessPassMethodOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateAuthenticationTemporaryAccessPassMethodOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateAuthenticationTemporaryAccessPassMethodOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateAuthenticationTemporaryAccessPassMethod - Create temporaryAccessPassMethod. Create a new
 // temporaryAccessPassAuthenticationMethod object on a user. A user can only have one Temporary Access Pass that's
 // usable within its specified lifetime. If the user requires a new Temporary Access Pass while the current Temporary
 // Access Pass is valid, the admin can create a new Temporary Access Pass for the user, the previous Temporary Access
 // Pass will be deleted, and a new Temporary Access Pass will be created.
-func (c AuthenticationTemporaryAccessPassMethodClient) CreateAuthenticationTemporaryAccessPassMethod(ctx context.Context, id beta.UserId, input beta.TemporaryAccessPassAuthenticationMethod) (result CreateAuthenticationTemporaryAccessPassMethodOperationResponse, err error) {
+func (c AuthenticationTemporaryAccessPassMethodClient) CreateAuthenticationTemporaryAccessPassMethod(ctx context.Context, id beta.UserId, input beta.TemporaryAccessPassAuthenticationMethod, options CreateAuthenticationTemporaryAccessPassMethodOperationOptions) (result CreateAuthenticationTemporaryAccessPassMethodOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/authentication/temporaryAccessPassMethods", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/authentication/temporaryAccessPassMethods", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

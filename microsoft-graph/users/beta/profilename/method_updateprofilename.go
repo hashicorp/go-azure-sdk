@@ -17,15 +17,44 @@ type UpdateProfileNameOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateProfileNameOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateProfileNameOperationOptions() UpdateProfileNameOperationOptions {
+	return UpdateProfileNameOperationOptions{}
+}
+
+func (o UpdateProfileNameOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateProfileNameOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateProfileNameOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateProfileName - Update the navigation property names in users
-func (c ProfileNameClient) UpdateProfileName(ctx context.Context, id beta.UserIdProfileNameId, input beta.PersonName) (result UpdateProfileNameOperationResponse, err error) {
+func (c ProfileNameClient) UpdateProfileName(ctx context.Context, id beta.UserIdProfileNameId, input beta.PersonName, options UpdateProfileNameOperationOptions) (result UpdateProfileNameOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &DeviceManagementIntentId{}
 
 func TestNewDeviceManagementIntentID(t *testing.T) {
-	id := NewDeviceManagementIntentID("deviceManagementIntentIdValue")
+	id := NewDeviceManagementIntentID("deviceManagementIntentId")
 
-	if id.DeviceManagementIntentId != "deviceManagementIntentIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DeviceManagementIntentId'", id.DeviceManagementIntentId, "deviceManagementIntentIdValue")
+	if id.DeviceManagementIntentId != "deviceManagementIntentId" {
+		t.Fatalf("Expected %q but got %q for Segment 'DeviceManagementIntentId'", id.DeviceManagementIntentId, "deviceManagementIntentId")
 	}
 }
 
 func TestFormatDeviceManagementIntentID(t *testing.T) {
-	actual := NewDeviceManagementIntentID("deviceManagementIntentIdValue").ID()
-	expected := "/deviceManagement/intents/deviceManagementIntentIdValue"
+	actual := NewDeviceManagementIntentID("deviceManagementIntentId").ID()
+	expected := "/deviceManagement/intents/deviceManagementIntentId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -50,14 +50,14 @@ func TestParseDeviceManagementIntentID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/intents/deviceManagementIntentIdValue",
+			Input: "/deviceManagement/intents/deviceManagementIntentId",
 			Expected: &DeviceManagementIntentId{
-				DeviceManagementIntentId: "deviceManagementIntentIdValue",
+				DeviceManagementIntentId: "deviceManagementIntentId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/intents/deviceManagementIntentIdValue/extra",
+			Input: "/deviceManagement/intents/deviceManagementIntentId/extra",
 			Error: true,
 		},
 	}
@@ -116,26 +116,26 @@ func TestParseDeviceManagementIntentIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/intents/deviceManagementIntentIdValue",
+			Input: "/deviceManagement/intents/deviceManagementIntentId",
 			Expected: &DeviceManagementIntentId{
-				DeviceManagementIntentId: "deviceManagementIntentIdValue",
+				DeviceManagementIntentId: "deviceManagementIntentId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/intents/deviceManagementIntentIdValue/extra",
+			Input: "/deviceManagement/intents/deviceManagementIntentId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/iNtEnTs/dEvIcEmAnAgEmEnTiNtEnTiDvAlUe",
+			Input: "/dEvIcEmAnAgEmEnT/iNtEnTs/dEvIcEmAnAgEmEnTiNtEnTiD",
 			Expected: &DeviceManagementIntentId{
-				DeviceManagementIntentId: "dEvIcEmAnAgEmEnTiNtEnTiDvAlUe",
+				DeviceManagementIntentId: "dEvIcEmAnAgEmEnTiNtEnTiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/iNtEnTs/dEvIcEmAnAgEmEnTiNtEnTiDvAlUe/extra",
+			Input: "/dEvIcEmAnAgEmEnT/iNtEnTs/dEvIcEmAnAgEmEnTiNtEnTiD/extra",
 			Error: true,
 		},
 	}

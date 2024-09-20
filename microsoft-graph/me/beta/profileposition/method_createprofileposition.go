@@ -18,15 +18,44 @@ type CreateProfilePositionOperationResponse struct {
 	Model        *beta.WorkPosition
 }
 
+type CreateProfilePositionOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateProfilePositionOperationOptions() CreateProfilePositionOperationOptions {
+	return CreateProfilePositionOperationOptions{}
+}
+
+func (o CreateProfilePositionOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateProfilePositionOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateProfilePositionOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateProfilePosition - Create workPosition. Use this API to create a new workPosition in a user's profile.
-func (c ProfilePositionClient) CreateProfilePosition(ctx context.Context, input beta.WorkPosition) (result CreateProfilePositionOperationResponse, err error) {
+func (c ProfilePositionClient) CreateProfilePosition(ctx context.Context, input beta.WorkPosition, options CreateProfilePositionOperationOptions) (result CreateProfilePositionOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/me/profile/positions",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/me/profile/positions",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

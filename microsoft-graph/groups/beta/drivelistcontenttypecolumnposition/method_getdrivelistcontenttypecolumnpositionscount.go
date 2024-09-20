@@ -20,8 +20,9 @@ type GetDriveListContentTypeColumnPositionsCountOperationResponse struct {
 }
 
 type GetDriveListContentTypeColumnPositionsCountOperationOptions struct {
-	Filter *string
-	Search *string
+	Filter   *string
+	Metadata *odata.Metadata
+	Search   *string
 }
 
 func DefaultGetDriveListContentTypeColumnPositionsCountOperationOptions() GetDriveListContentTypeColumnPositionsCountOperationOptions {
@@ -38,6 +39,9 @@ func (o GetDriveListContentTypeColumnPositionsCountOperationOptions) ToOData() *
 	out := odata.Query{}
 	if o.Filter != nil {
 		out.Filter = *o.Filter
+	}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
 	}
 	if o.Search != nil {
 		out.Search = *o.Search

@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/teamwork` Documentation
 
-The `teamwork` SDK allows for interaction with the Azure Resource Manager Service `me` (API Version `stable`).
+The `teamwork` SDK allows for interaction with Microsoft Graph `me` (API Version `stable`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -15,7 +15,7 @@ import "github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/teamwork"
 ### Client Initialization
 
 ```go
-client := teamwork.NewTeamworkClientWithBaseURI("https://management.azure.com")
+client := teamwork.NewTeamworkClientWithBaseURI("https://graph.microsoft.com")
 client.Client.Authorizer = authorizer
 ```
 
@@ -62,7 +62,7 @@ payload := teamwork.SendTeamworkActivityNotificationRequest{
 }
 
 
-read, err := client.SendTeamworkActivityNotification(ctx, payload)
+read, err := client.SendTeamworkActivityNotification(ctx, payload, teamwork.DefaultSendTeamworkActivityNotificationOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -82,7 +82,7 @@ payload := teamwork.UserTeamwork{
 }
 
 
-read, err := client.UpdateTeamwork(ctx, payload)
+read, err := client.UpdateTeamwork(ctx, payload, teamwork.DefaultUpdateTeamworkOperationOptions())
 if err != nil {
 	// handle the error
 }

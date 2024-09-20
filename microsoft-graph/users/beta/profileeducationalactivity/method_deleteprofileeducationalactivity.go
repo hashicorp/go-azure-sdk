@@ -19,7 +19,8 @@ type DeleteProfileEducationalActivityOperationResponse struct {
 }
 
 type DeleteProfileEducationalActivityOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteProfileEducationalActivityOperationOptions() DeleteProfileEducationalActivityOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteProfileEducationalActivityOperationOptions) ToHeaders() *client.He
 
 func (o DeleteProfileEducationalActivityOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

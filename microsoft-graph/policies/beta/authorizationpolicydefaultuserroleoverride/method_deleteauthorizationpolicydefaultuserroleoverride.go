@@ -19,7 +19,8 @@ type DeleteAuthorizationPolicyDefaultUserRoleOverrideOperationResponse struct {
 }
 
 type DeleteAuthorizationPolicyDefaultUserRoleOverrideOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteAuthorizationPolicyDefaultUserRoleOverrideOperationOptions() DeleteAuthorizationPolicyDefaultUserRoleOverrideOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteAuthorizationPolicyDefaultUserRoleOverrideOperationOptions) ToHead
 
 func (o DeleteAuthorizationPolicyDefaultUserRoleOverrideOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

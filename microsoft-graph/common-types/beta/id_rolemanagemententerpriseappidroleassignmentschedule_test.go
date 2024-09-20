@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &RoleManagementEnterpriseAppIdRoleAssignmentScheduleId{}
 
 func TestNewRoleManagementEnterpriseAppIdRoleAssignmentScheduleID(t *testing.T) {
-	id := NewRoleManagementEnterpriseAppIdRoleAssignmentScheduleID("rbacApplicationIdValue", "unifiedRoleAssignmentScheduleIdValue")
+	id := NewRoleManagementEnterpriseAppIdRoleAssignmentScheduleID("rbacApplicationId", "unifiedRoleAssignmentScheduleId")
 
-	if id.RbacApplicationId != "rbacApplicationIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'RbacApplicationId'", id.RbacApplicationId, "rbacApplicationIdValue")
+	if id.RbacApplicationId != "rbacApplicationId" {
+		t.Fatalf("Expected %q but got %q for Segment 'RbacApplicationId'", id.RbacApplicationId, "rbacApplicationId")
 	}
 
-	if id.UnifiedRoleAssignmentScheduleId != "unifiedRoleAssignmentScheduleIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'UnifiedRoleAssignmentScheduleId'", id.UnifiedRoleAssignmentScheduleId, "unifiedRoleAssignmentScheduleIdValue")
+	if id.UnifiedRoleAssignmentScheduleId != "unifiedRoleAssignmentScheduleId" {
+		t.Fatalf("Expected %q but got %q for Segment 'UnifiedRoleAssignmentScheduleId'", id.UnifiedRoleAssignmentScheduleId, "unifiedRoleAssignmentScheduleId")
 	}
 }
 
 func TestFormatRoleManagementEnterpriseAppIdRoleAssignmentScheduleID(t *testing.T) {
-	actual := NewRoleManagementEnterpriseAppIdRoleAssignmentScheduleID("rbacApplicationIdValue", "unifiedRoleAssignmentScheduleIdValue").ID()
-	expected := "/roleManagement/enterpriseApps/rbacApplicationIdValue/roleAssignmentSchedules/unifiedRoleAssignmentScheduleIdValue"
+	actual := NewRoleManagementEnterpriseAppIdRoleAssignmentScheduleID("rbacApplicationId", "unifiedRoleAssignmentScheduleId").ID()
+	expected := "/roleManagement/enterpriseApps/rbacApplicationId/roleAssignmentSchedules/unifiedRoleAssignmentScheduleId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -54,25 +54,25 @@ func TestParseRoleManagementEnterpriseAppIdRoleAssignmentScheduleID(t *testing.T
 		},
 		{
 			// Incomplete URI
-			Input: "/roleManagement/enterpriseApps/rbacApplicationIdValue",
+			Input: "/roleManagement/enterpriseApps/rbacApplicationId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/roleManagement/enterpriseApps/rbacApplicationIdValue/roleAssignmentSchedules",
+			Input: "/roleManagement/enterpriseApps/rbacApplicationId/roleAssignmentSchedules",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/roleManagement/enterpriseApps/rbacApplicationIdValue/roleAssignmentSchedules/unifiedRoleAssignmentScheduleIdValue",
+			Input: "/roleManagement/enterpriseApps/rbacApplicationId/roleAssignmentSchedules/unifiedRoleAssignmentScheduleId",
 			Expected: &RoleManagementEnterpriseAppIdRoleAssignmentScheduleId{
-				RbacApplicationId:               "rbacApplicationIdValue",
-				UnifiedRoleAssignmentScheduleId: "unifiedRoleAssignmentScheduleIdValue",
+				RbacApplicationId:               "rbacApplicationId",
+				UnifiedRoleAssignmentScheduleId: "unifiedRoleAssignmentScheduleId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/roleManagement/enterpriseApps/rbacApplicationIdValue/roleAssignmentSchedules/unifiedRoleAssignmentScheduleIdValue/extra",
+			Input: "/roleManagement/enterpriseApps/rbacApplicationId/roleAssignmentSchedules/unifiedRoleAssignmentScheduleId/extra",
 			Error: true,
 		},
 	}
@@ -135,48 +135,48 @@ func TestParseRoleManagementEnterpriseAppIdRoleAssignmentScheduleIDInsensitively
 		},
 		{
 			// Incomplete URI
-			Input: "/roleManagement/enterpriseApps/rbacApplicationIdValue",
+			Input: "/roleManagement/enterpriseApps/rbacApplicationId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/rOlEmAnAgEmEnT/eNtErPrIsEaPpS/rBaCaPpLiCaTiOnIdVaLuE",
+			Input: "/rOlEmAnAgEmEnT/eNtErPrIsEaPpS/rBaCaPpLiCaTiOnId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/roleManagement/enterpriseApps/rbacApplicationIdValue/roleAssignmentSchedules",
+			Input: "/roleManagement/enterpriseApps/rbacApplicationId/roleAssignmentSchedules",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/rOlEmAnAgEmEnT/eNtErPrIsEaPpS/rBaCaPpLiCaTiOnIdVaLuE/rOlEaSsIgNmEnTsChEdUlEs",
+			Input: "/rOlEmAnAgEmEnT/eNtErPrIsEaPpS/rBaCaPpLiCaTiOnId/rOlEaSsIgNmEnTsChEdUlEs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/roleManagement/enterpriseApps/rbacApplicationIdValue/roleAssignmentSchedules/unifiedRoleAssignmentScheduleIdValue",
+			Input: "/roleManagement/enterpriseApps/rbacApplicationId/roleAssignmentSchedules/unifiedRoleAssignmentScheduleId",
 			Expected: &RoleManagementEnterpriseAppIdRoleAssignmentScheduleId{
-				RbacApplicationId:               "rbacApplicationIdValue",
-				UnifiedRoleAssignmentScheduleId: "unifiedRoleAssignmentScheduleIdValue",
+				RbacApplicationId:               "rbacApplicationId",
+				UnifiedRoleAssignmentScheduleId: "unifiedRoleAssignmentScheduleId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/roleManagement/enterpriseApps/rbacApplicationIdValue/roleAssignmentSchedules/unifiedRoleAssignmentScheduleIdValue/extra",
+			Input: "/roleManagement/enterpriseApps/rbacApplicationId/roleAssignmentSchedules/unifiedRoleAssignmentScheduleId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/rOlEmAnAgEmEnT/eNtErPrIsEaPpS/rBaCaPpLiCaTiOnIdVaLuE/rOlEaSsIgNmEnTsChEdUlEs/uNiFiEdRoLeAsSiGnMeNtScHeDuLeIdVaLuE",
+			Input: "/rOlEmAnAgEmEnT/eNtErPrIsEaPpS/rBaCaPpLiCaTiOnId/rOlEaSsIgNmEnTsChEdUlEs/uNiFiEdRoLeAsSiGnMeNtScHeDuLeId",
 			Expected: &RoleManagementEnterpriseAppIdRoleAssignmentScheduleId{
-				RbacApplicationId:               "rBaCaPpLiCaTiOnIdVaLuE",
-				UnifiedRoleAssignmentScheduleId: "uNiFiEdRoLeAsSiGnMeNtScHeDuLeIdVaLuE",
+				RbacApplicationId:               "rBaCaPpLiCaTiOnId",
+				UnifiedRoleAssignmentScheduleId: "uNiFiEdRoLeAsSiGnMeNtScHeDuLeId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/rOlEmAnAgEmEnT/eNtErPrIsEaPpS/rBaCaPpLiCaTiOnIdVaLuE/rOlEaSsIgNmEnTsChEdUlEs/uNiFiEdRoLeAsSiGnMeNtScHeDuLeIdVaLuE/extra",
+			Input: "/rOlEmAnAgEmEnT/eNtErPrIsEaPpS/rBaCaPpLiCaTiOnId/rOlEaSsIgNmEnTsChEdUlEs/uNiFiEdRoLeAsSiGnMeNtScHeDuLeId/extra",
 			Error: true,
 		},
 	}

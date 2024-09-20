@@ -19,15 +19,44 @@ type CreateInformationProtectionSensitivityLabelSublabelOperationResponse struct
 	Model        *beta.SensitivityLabel
 }
 
+type CreateInformationProtectionSensitivityLabelSublabelOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateInformationProtectionSensitivityLabelSublabelOperationOptions() CreateInformationProtectionSensitivityLabelSublabelOperationOptions {
+	return CreateInformationProtectionSensitivityLabelSublabelOperationOptions{}
+}
+
+func (o CreateInformationProtectionSensitivityLabelSublabelOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateInformationProtectionSensitivityLabelSublabelOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateInformationProtectionSensitivityLabelSublabelOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateInformationProtectionSensitivityLabelSublabel - Create new navigation property to sublabels for me
-func (c InformationProtectionSensitivityLabelSublabelClient) CreateInformationProtectionSensitivityLabelSublabel(ctx context.Context, id beta.MeInformationProtectionSensitivityLabelId, input beta.SensitivityLabel) (result CreateInformationProtectionSensitivityLabelSublabelOperationResponse, err error) {
+func (c InformationProtectionSensitivityLabelSublabelClient) CreateInformationProtectionSensitivityLabelSublabel(ctx context.Context, id beta.MeInformationProtectionSensitivityLabelId, input beta.SensitivityLabel, options CreateInformationProtectionSensitivityLabelSublabelOperationOptions) (result CreateInformationProtectionSensitivityLabelSublabelOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/sublabels", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/sublabels", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

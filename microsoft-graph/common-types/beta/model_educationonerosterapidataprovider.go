@@ -74,19 +74,27 @@ func (s EducationOneRosterApiDataProvider) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &EducationOneRosterApiDataProvider{}
 
 func (s *EducationOneRosterApiDataProvider) UnmarshalJSON(bytes []byte) error {
-	type alias EducationOneRosterApiDataProvider
-	var decoded alias
+
+	var decoded struct {
+		ConnectionUrl  *string                                 `json:"connectionUrl,omitempty"`
+		Customizations *EducationSynchronizationCustomizations `json:"customizations,omitempty"`
+		ProviderName   nullable.Type[string]                   `json:"providerName,omitempty"`
+		SchoolsIds     *[]string                               `json:"schoolsIds,omitempty"`
+		TermIds        *[]string                               `json:"termIds,omitempty"`
+		ODataId        *string                                 `json:"@odata.id,omitempty"`
+		ODataType      *string                                 `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into EducationOneRosterApiDataProvider: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.ConnectionUrl = decoded.ConnectionUrl
 	s.Customizations = decoded.Customizations
-	s.ODataId = decoded.ODataId
-	s.ODataType = decoded.ODataType
 	s.ProviderName = decoded.ProviderName
 	s.SchoolsIds = decoded.SchoolsIds
 	s.TermIds = decoded.TermIds
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -100,5 +108,6 @@ func (s *EducationOneRosterApiDataProvider) UnmarshalJSON(bytes []byte) error {
 		}
 		s.ConnectionSettings = impl
 	}
+
 	return nil
 }

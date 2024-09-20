@@ -19,17 +19,46 @@ type CreateImpactedResourcePostponeOperationResponse struct {
 	Model        *beta.ImpactedResource
 }
 
+type CreateImpactedResourcePostponeOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateImpactedResourcePostponeOperationOptions() CreateImpactedResourcePostponeOperationOptions {
+	return CreateImpactedResourcePostponeOperationOptions{}
+}
+
+func (o CreateImpactedResourcePostponeOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateImpactedResourcePostponeOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateImpactedResourcePostponeOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateImpactedResourcePostpone - Invoke action postpone. Postpone action on an impactedResource object to a specified
 // future date and time by marking its status as postponed. On the specified date and time, Microsoft Entra ID will
 // automatically mark the status of the impactedResource object to active.
-func (c ImpactedResourceClient) CreateImpactedResourcePostpone(ctx context.Context, id beta.DirectoryImpactedResourceId, input CreateImpactedResourcePostponeRequest) (result CreateImpactedResourcePostponeOperationResponse, err error) {
+func (c ImpactedResourceClient) CreateImpactedResourcePostpone(ctx context.Context, id beta.DirectoryImpactedResourceId, input CreateImpactedResourcePostponeRequest, options CreateImpactedResourcePostponeOperationOptions) (result CreateImpactedResourcePostponeOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/postpone", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/postpone", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

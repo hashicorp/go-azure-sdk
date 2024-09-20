@@ -19,19 +19,48 @@ type AssignLicenseOperationResponse struct {
 	Model        *beta.User
 }
 
+type AssignLicenseOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultAssignLicenseOperationOptions() AssignLicenseOperationOptions {
+	return AssignLicenseOperationOptions{}
+}
+
+func (o AssignLicenseOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o AssignLicenseOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o AssignLicenseOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // AssignLicense - Invoke action assignLicense. Add or remove licenses for the user to enable or disable their use of
 // Microsoft cloud offerings that the company has licenses to. For example, an organization can have a Microsoft 365
 // Enterprise E3 subscription with 100 licenses, and this request assigns one of those licenses to a specific user. You
 // can also enable and disable specific plans associated with a subscription. To get the subscriptions available in the
 // directory, perform a GET subscribedSkus request.
-func (c UserClient) AssignLicense(ctx context.Context, id beta.UserId, input AssignLicenseRequest) (result AssignLicenseOperationResponse, err error) {
+func (c UserClient) AssignLicense(ctx context.Context, id beta.UserId, input AssignLicenseRequest, options AssignLicenseOperationOptions) (result AssignLicenseOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/assignLicense", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/assignLicense", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

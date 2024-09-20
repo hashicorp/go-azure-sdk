@@ -62,10 +62,15 @@ func (s DeviceManagementConstraintCollectionResponse) MarshalJSON() ([]byte, err
 var _ json.Unmarshaler = &DeviceManagementConstraintCollectionResponse{}
 
 func (s *DeviceManagementConstraintCollectionResponse) UnmarshalJSON(bytes []byte) error {
-	type alias DeviceManagementConstraintCollectionResponse
-	var decoded alias
+
+	var decoded struct {
+		Value         *[]DeviceManagementConstraint `json:"value,omitempty"`
+		ODataId       *string                       `json:"@odata.id,omitempty"`
+		ODataNextLink nullable.Type[string]         `json:"@odata.nextLink,omitempty"`
+		ODataType     *string                       `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into DeviceManagementConstraintCollectionResponse: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.ODataId = decoded.ODataId
@@ -93,5 +98,6 @@ func (s *DeviceManagementConstraintCollectionResponse) UnmarshalJSON(bytes []byt
 		}
 		s.Value = &output
 	}
+
 	return nil
 }

@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &DeviceManagementTemplateIdMigratableToId{}
 
 func TestNewDeviceManagementTemplateIdMigratableToID(t *testing.T) {
-	id := NewDeviceManagementTemplateIdMigratableToID("deviceManagementTemplateIdValue", "deviceManagementTemplateId1Value")
+	id := NewDeviceManagementTemplateIdMigratableToID("deviceManagementTemplateId", "deviceManagementTemplateId1")
 
-	if id.DeviceManagementTemplateId != "deviceManagementTemplateIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DeviceManagementTemplateId'", id.DeviceManagementTemplateId, "deviceManagementTemplateIdValue")
+	if id.DeviceManagementTemplateId != "deviceManagementTemplateId" {
+		t.Fatalf("Expected %q but got %q for Segment 'DeviceManagementTemplateId'", id.DeviceManagementTemplateId, "deviceManagementTemplateId")
 	}
 
-	if id.DeviceManagementTemplateId1 != "deviceManagementTemplateId1Value" {
-		t.Fatalf("Expected %q but got %q for Segment 'DeviceManagementTemplateId1'", id.DeviceManagementTemplateId1, "deviceManagementTemplateId1Value")
+	if id.DeviceManagementTemplateId1 != "deviceManagementTemplateId1" {
+		t.Fatalf("Expected %q but got %q for Segment 'DeviceManagementTemplateId1'", id.DeviceManagementTemplateId1, "deviceManagementTemplateId1")
 	}
 }
 
 func TestFormatDeviceManagementTemplateIdMigratableToID(t *testing.T) {
-	actual := NewDeviceManagementTemplateIdMigratableToID("deviceManagementTemplateIdValue", "deviceManagementTemplateId1Value").ID()
-	expected := "/deviceManagement/templates/deviceManagementTemplateIdValue/migratableTo/deviceManagementTemplateId1Value"
+	actual := NewDeviceManagementTemplateIdMigratableToID("deviceManagementTemplateId", "deviceManagementTemplateId1").ID()
+	expected := "/deviceManagement/templates/deviceManagementTemplateId/migratableTo/deviceManagementTemplateId1"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -54,25 +54,25 @@ func TestParseDeviceManagementTemplateIdMigratableToID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/deviceManagement/templates/deviceManagementTemplateIdValue",
+			Input: "/deviceManagement/templates/deviceManagementTemplateId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/deviceManagement/templates/deviceManagementTemplateIdValue/migratableTo",
+			Input: "/deviceManagement/templates/deviceManagementTemplateId/migratableTo",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/templates/deviceManagementTemplateIdValue/migratableTo/deviceManagementTemplateId1Value",
+			Input: "/deviceManagement/templates/deviceManagementTemplateId/migratableTo/deviceManagementTemplateId1",
 			Expected: &DeviceManagementTemplateIdMigratableToId{
-				DeviceManagementTemplateId:  "deviceManagementTemplateIdValue",
-				DeviceManagementTemplateId1: "deviceManagementTemplateId1Value",
+				DeviceManagementTemplateId:  "deviceManagementTemplateId",
+				DeviceManagementTemplateId1: "deviceManagementTemplateId1",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/templates/deviceManagementTemplateIdValue/migratableTo/deviceManagementTemplateId1Value/extra",
+			Input: "/deviceManagement/templates/deviceManagementTemplateId/migratableTo/deviceManagementTemplateId1/extra",
 			Error: true,
 		},
 	}
@@ -135,48 +135,48 @@ func TestParseDeviceManagementTemplateIdMigratableToIDInsensitively(t *testing.T
 		},
 		{
 			// Incomplete URI
-			Input: "/deviceManagement/templates/deviceManagementTemplateIdValue",
+			Input: "/deviceManagement/templates/deviceManagementTemplateId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/tEmPlAtEs/dEvIcEmAnAgEmEnTtEmPlAtEiDvAlUe",
+			Input: "/dEvIcEmAnAgEmEnT/tEmPlAtEs/dEvIcEmAnAgEmEnTtEmPlAtEiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/deviceManagement/templates/deviceManagementTemplateIdValue/migratableTo",
+			Input: "/deviceManagement/templates/deviceManagementTemplateId/migratableTo",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/tEmPlAtEs/dEvIcEmAnAgEmEnTtEmPlAtEiDvAlUe/mIgRaTaBlEtO",
+			Input: "/dEvIcEmAnAgEmEnT/tEmPlAtEs/dEvIcEmAnAgEmEnTtEmPlAtEiD/mIgRaTaBlEtO",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/templates/deviceManagementTemplateIdValue/migratableTo/deviceManagementTemplateId1Value",
+			Input: "/deviceManagement/templates/deviceManagementTemplateId/migratableTo/deviceManagementTemplateId1",
 			Expected: &DeviceManagementTemplateIdMigratableToId{
-				DeviceManagementTemplateId:  "deviceManagementTemplateIdValue",
-				DeviceManagementTemplateId1: "deviceManagementTemplateId1Value",
+				DeviceManagementTemplateId:  "deviceManagementTemplateId",
+				DeviceManagementTemplateId1: "deviceManagementTemplateId1",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/templates/deviceManagementTemplateIdValue/migratableTo/deviceManagementTemplateId1Value/extra",
+			Input: "/deviceManagement/templates/deviceManagementTemplateId/migratableTo/deviceManagementTemplateId1/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/tEmPlAtEs/dEvIcEmAnAgEmEnTtEmPlAtEiDvAlUe/mIgRaTaBlEtO/dEvIcEmAnAgEmEnTtEmPlAtEiD1VaLuE",
+			Input: "/dEvIcEmAnAgEmEnT/tEmPlAtEs/dEvIcEmAnAgEmEnTtEmPlAtEiD/mIgRaTaBlEtO/dEvIcEmAnAgEmEnTtEmPlAtEiD1",
 			Expected: &DeviceManagementTemplateIdMigratableToId{
-				DeviceManagementTemplateId:  "dEvIcEmAnAgEmEnTtEmPlAtEiDvAlUe",
-				DeviceManagementTemplateId1: "dEvIcEmAnAgEmEnTtEmPlAtEiD1VaLuE",
+				DeviceManagementTemplateId:  "dEvIcEmAnAgEmEnTtEmPlAtEiD",
+				DeviceManagementTemplateId1: "dEvIcEmAnAgEmEnTtEmPlAtEiD1",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/tEmPlAtEs/dEvIcEmAnAgEmEnTtEmPlAtEiDvAlUe/mIgRaTaBlEtO/dEvIcEmAnAgEmEnTtEmPlAtEiD1VaLuE/extra",
+			Input: "/dEvIcEmAnAgEmEnT/tEmPlAtEs/dEvIcEmAnAgEmEnTtEmPlAtEiD/mIgRaTaBlEtO/dEvIcEmAnAgEmEnTtEmPlAtEiD1/extra",
 			Error: true,
 		},
 	}

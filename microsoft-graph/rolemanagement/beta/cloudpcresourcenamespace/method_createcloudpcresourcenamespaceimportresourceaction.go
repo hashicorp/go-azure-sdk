@@ -19,15 +19,44 @@ type CreateCloudPCResourceNamespaceImportResourceActionOperationResponse struct 
 	Model        *beta.UnifiedRbacResourceNamespace
 }
 
+type CreateCloudPCResourceNamespaceImportResourceActionOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateCloudPCResourceNamespaceImportResourceActionOperationOptions() CreateCloudPCResourceNamespaceImportResourceActionOperationOptions {
+	return CreateCloudPCResourceNamespaceImportResourceActionOperationOptions{}
+}
+
+func (o CreateCloudPCResourceNamespaceImportResourceActionOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateCloudPCResourceNamespaceImportResourceActionOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateCloudPCResourceNamespaceImportResourceActionOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateCloudPCResourceNamespaceImportResourceAction - Invoke action importResourceActions
-func (c CloudPCResourceNamespaceClient) CreateCloudPCResourceNamespaceImportResourceAction(ctx context.Context, id beta.RoleManagementCloudPCResourceNamespaceId, input CreateCloudPCResourceNamespaceImportResourceActionRequest) (result CreateCloudPCResourceNamespaceImportResourceActionOperationResponse, err error) {
+func (c CloudPCResourceNamespaceClient) CreateCloudPCResourceNamespaceImportResourceAction(ctx context.Context, id beta.RoleManagementCloudPCResourceNamespaceId, input CreateCloudPCResourceNamespaceImportResourceActionRequest, options CreateCloudPCResourceNamespaceImportResourceActionOperationOptions) (result CreateCloudPCResourceNamespaceImportResourceActionOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/importResourceActions", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/importResourceActions", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

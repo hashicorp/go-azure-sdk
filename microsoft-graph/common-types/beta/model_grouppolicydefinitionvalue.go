@@ -77,18 +77,28 @@ func (s GroupPolicyDefinitionValue) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &GroupPolicyDefinitionValue{}
 
 func (s *GroupPolicyDefinitionValue) UnmarshalJSON(bytes []byte) error {
-	type alias GroupPolicyDefinitionValue
-	var decoded alias
+
+	var decoded struct {
+		ConfigurationType    *GroupPolicyConfigurationType   `json:"configurationType,omitempty"`
+		CreatedDateTime      *string                         `json:"createdDateTime,omitempty"`
+		Definition           *GroupPolicyDefinition          `json:"definition,omitempty"`
+		Enabled              *bool                           `json:"enabled,omitempty"`
+		LastModifiedDateTime *string                         `json:"lastModifiedDateTime,omitempty"`
+		PresentationValues   *[]GroupPolicyPresentationValue `json:"presentationValues,omitempty"`
+		Id                   *string                         `json:"id,omitempty"`
+		ODataId              *string                         `json:"@odata.id,omitempty"`
+		ODataType            *string                         `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into GroupPolicyDefinitionValue: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.ConfigurationType = decoded.ConfigurationType
 	s.CreatedDateTime = decoded.CreatedDateTime
 	s.Definition = decoded.Definition
 	s.Enabled = decoded.Enabled
-	s.Id = decoded.Id
 	s.LastModifiedDateTime = decoded.LastModifiedDateTime
+	s.Id = decoded.Id
 	s.ODataId = decoded.ODataId
 	s.ODataType = decoded.ODataType
 
@@ -113,5 +123,6 @@ func (s *GroupPolicyDefinitionValue) UnmarshalJSON(bytes []byte) error {
 		}
 		s.PresentationValues = &output
 	}
+
 	return nil
 }

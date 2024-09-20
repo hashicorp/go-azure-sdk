@@ -17,16 +17,45 @@ type UpdateDelegatedPermissionClassificationOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateDelegatedPermissionClassificationOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateDelegatedPermissionClassificationOperationOptions() UpdateDelegatedPermissionClassificationOperationOptions {
+	return UpdateDelegatedPermissionClassificationOperationOptions{}
+}
+
+func (o UpdateDelegatedPermissionClassificationOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateDelegatedPermissionClassificationOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateDelegatedPermissionClassificationOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateDelegatedPermissionClassification - Update the navigation property delegatedPermissionClassifications in
 // servicePrincipals
-func (c DelegatedPermissionClassificationClient) UpdateDelegatedPermissionClassification(ctx context.Context, id beta.ServicePrincipalIdDelegatedPermissionClassificationId, input beta.DelegatedPermissionClassification) (result UpdateDelegatedPermissionClassificationOperationResponse, err error) {
+func (c DelegatedPermissionClassificationClient) UpdateDelegatedPermissionClassification(ctx context.Context, id beta.ServicePrincipalIdDelegatedPermissionClassificationId, input beta.DelegatedPermissionClassification, options UpdateDelegatedPermissionClassificationOperationOptions) (result UpdateDelegatedPermissionClassificationOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -12,28 +12,28 @@ import (
 var _ resourceids.ResourceId = &GroupIdDriveIdItemIdVersionId{}
 
 func TestNewGroupIdDriveIdItemIdVersionID(t *testing.T) {
-	id := NewGroupIdDriveIdItemIdVersionID("groupIdValue", "driveIdValue", "driveItemIdValue", "driveItemVersionIdValue")
+	id := NewGroupIdDriveIdItemIdVersionID("groupId", "driveId", "driveItemId", "driveItemVersionId")
 
-	if id.GroupId != "groupIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'GroupId'", id.GroupId, "groupIdValue")
+	if id.GroupId != "groupId" {
+		t.Fatalf("Expected %q but got %q for Segment 'GroupId'", id.GroupId, "groupId")
 	}
 
-	if id.DriveId != "driveIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DriveId'", id.DriveId, "driveIdValue")
+	if id.DriveId != "driveId" {
+		t.Fatalf("Expected %q but got %q for Segment 'DriveId'", id.DriveId, "driveId")
 	}
 
-	if id.DriveItemId != "driveItemIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DriveItemId'", id.DriveItemId, "driveItemIdValue")
+	if id.DriveItemId != "driveItemId" {
+		t.Fatalf("Expected %q but got %q for Segment 'DriveItemId'", id.DriveItemId, "driveItemId")
 	}
 
-	if id.DriveItemVersionId != "driveItemVersionIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DriveItemVersionId'", id.DriveItemVersionId, "driveItemVersionIdValue")
+	if id.DriveItemVersionId != "driveItemVersionId" {
+		t.Fatalf("Expected %q but got %q for Segment 'DriveItemVersionId'", id.DriveItemVersionId, "driveItemVersionId")
 	}
 }
 
 func TestFormatGroupIdDriveIdItemIdVersionID(t *testing.T) {
-	actual := NewGroupIdDriveIdItemIdVersionID("groupIdValue", "driveIdValue", "driveItemIdValue", "driveItemVersionIdValue").ID()
-	expected := "/groups/groupIdValue/drives/driveIdValue/items/driveItemIdValue/versions/driveItemVersionIdValue"
+	actual := NewGroupIdDriveIdItemIdVersionID("groupId", "driveId", "driveItemId", "driveItemVersionId").ID()
+	expected := "/groups/groupId/drives/driveId/items/driveItemId/versions/driveItemVersionId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -57,47 +57,47 @@ func TestParseGroupIdDriveIdItemIdVersionID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue",
+			Input: "/groups/groupId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/drives",
+			Input: "/groups/groupId/drives",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/drives/driveIdValue",
+			Input: "/groups/groupId/drives/driveId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/drives/driveIdValue/items",
+			Input: "/groups/groupId/drives/driveId/items",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/drives/driveIdValue/items/driveItemIdValue",
+			Input: "/groups/groupId/drives/driveId/items/driveItemId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/drives/driveIdValue/items/driveItemIdValue/versions",
+			Input: "/groups/groupId/drives/driveId/items/driveItemId/versions",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/groups/groupIdValue/drives/driveIdValue/items/driveItemIdValue/versions/driveItemVersionIdValue",
+			Input: "/groups/groupId/drives/driveId/items/driveItemId/versions/driveItemVersionId",
 			Expected: &GroupIdDriveIdItemIdVersionId{
-				GroupId:            "groupIdValue",
-				DriveId:            "driveIdValue",
-				DriveItemId:        "driveItemIdValue",
-				DriveItemVersionId: "driveItemVersionIdValue",
+				GroupId:            "groupId",
+				DriveId:            "driveId",
+				DriveItemId:        "driveItemId",
+				DriveItemVersionId: "driveItemVersionId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/groups/groupIdValue/drives/driveIdValue/items/driveItemIdValue/versions/driveItemVersionIdValue/extra",
+			Input: "/groups/groupId/drives/driveId/items/driveItemId/versions/driveItemVersionId/extra",
 			Error: true,
 		},
 	}
@@ -158,92 +158,92 @@ func TestParseGroupIdDriveIdItemIdVersionIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue",
+			Input: "/groups/groupId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE",
+			Input: "/gRoUpS/gRoUpId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/drives",
+			Input: "/groups/groupId/drives",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/dRiVeS",
+			Input: "/gRoUpS/gRoUpId/dRiVeS",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/drives/driveIdValue",
+			Input: "/groups/groupId/drives/driveId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/dRiVeS/dRiVeIdVaLuE",
+			Input: "/gRoUpS/gRoUpId/dRiVeS/dRiVeId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/drives/driveIdValue/items",
+			Input: "/groups/groupId/drives/driveId/items",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/dRiVeS/dRiVeIdVaLuE/iTeMs",
+			Input: "/gRoUpS/gRoUpId/dRiVeS/dRiVeId/iTeMs",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/drives/driveIdValue/items/driveItemIdValue",
+			Input: "/groups/groupId/drives/driveId/items/driveItemId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/dRiVeS/dRiVeIdVaLuE/iTeMs/dRiVeItEmIdVaLuE",
+			Input: "/gRoUpS/gRoUpId/dRiVeS/dRiVeId/iTeMs/dRiVeItEmId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/drives/driveIdValue/items/driveItemIdValue/versions",
+			Input: "/groups/groupId/drives/driveId/items/driveItemId/versions",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/dRiVeS/dRiVeIdVaLuE/iTeMs/dRiVeItEmIdVaLuE/vErSiOnS",
+			Input: "/gRoUpS/gRoUpId/dRiVeS/dRiVeId/iTeMs/dRiVeItEmId/vErSiOnS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/groups/groupIdValue/drives/driveIdValue/items/driveItemIdValue/versions/driveItemVersionIdValue",
+			Input: "/groups/groupId/drives/driveId/items/driveItemId/versions/driveItemVersionId",
 			Expected: &GroupIdDriveIdItemIdVersionId{
-				GroupId:            "groupIdValue",
-				DriveId:            "driveIdValue",
-				DriveItemId:        "driveItemIdValue",
-				DriveItemVersionId: "driveItemVersionIdValue",
+				GroupId:            "groupId",
+				DriveId:            "driveId",
+				DriveItemId:        "driveItemId",
+				DriveItemVersionId: "driveItemVersionId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/groups/groupIdValue/drives/driveIdValue/items/driveItemIdValue/versions/driveItemVersionIdValue/extra",
+			Input: "/groups/groupId/drives/driveId/items/driveItemId/versions/driveItemVersionId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/dRiVeS/dRiVeIdVaLuE/iTeMs/dRiVeItEmIdVaLuE/vErSiOnS/dRiVeItEmVeRsIoNiDvAlUe",
+			Input: "/gRoUpS/gRoUpId/dRiVeS/dRiVeId/iTeMs/dRiVeItEmId/vErSiOnS/dRiVeItEmVeRsIoNiD",
 			Expected: &GroupIdDriveIdItemIdVersionId{
-				GroupId:            "gRoUpIdVaLuE",
-				DriveId:            "dRiVeIdVaLuE",
-				DriveItemId:        "dRiVeItEmIdVaLuE",
-				DriveItemVersionId: "dRiVeItEmVeRsIoNiDvAlUe",
+				GroupId:            "gRoUpId",
+				DriveId:            "dRiVeId",
+				DriveItemId:        "dRiVeItEmId",
+				DriveItemVersionId: "dRiVeItEmVeRsIoNiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/dRiVeS/dRiVeIdVaLuE/iTeMs/dRiVeItEmIdVaLuE/vErSiOnS/dRiVeItEmVeRsIoNiDvAlUe/extra",
+			Input: "/gRoUpS/gRoUpId/dRiVeS/dRiVeId/iTeMs/dRiVeItEmId/vErSiOnS/dRiVeItEmVeRsIoNiD/extra",
 			Error: true,
 		},
 	}

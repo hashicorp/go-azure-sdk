@@ -17,15 +17,44 @@ type UpdateAppConsentRequestOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateAppConsentRequestOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateAppConsentRequestOperationOptions() UpdateAppConsentRequestOperationOptions {
+	return UpdateAppConsentRequestOperationOptions{}
+}
+
+func (o UpdateAppConsentRequestOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateAppConsentRequestOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateAppConsentRequestOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateAppConsentRequest - Update the navigation property appConsentRequests in identityGovernance
-func (c AppConsentAppConsentRequestClient) UpdateAppConsentRequest(ctx context.Context, id beta.IdentityGovernanceAppConsentAppConsentRequestId, input beta.AppConsentRequest) (result UpdateAppConsentRequestOperationResponse, err error) {
+func (c AppConsentAppConsentRequestClient) UpdateAppConsentRequest(ctx context.Context, id beta.IdentityGovernanceAppConsentAppConsentRequestId, input beta.AppConsentRequest, options UpdateAppConsentRequestOperationOptions) (result UpdateAppConsentRequestOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

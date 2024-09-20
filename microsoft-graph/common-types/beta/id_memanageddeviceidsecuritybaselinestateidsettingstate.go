@@ -105,11 +105,11 @@ func (id MeManagedDeviceIdSecurityBaselineStateIdSettingStateId) Segments() []re
 	return []resourceids.Segment{
 		resourceids.StaticSegment("me", "me", "me"),
 		resourceids.StaticSegment("managedDevices", "managedDevices", "managedDevices"),
-		resourceids.UserSpecifiedSegment("managedDeviceId", "managedDeviceIdValue"),
+		resourceids.UserSpecifiedSegment("managedDeviceId", "managedDeviceId"),
 		resourceids.StaticSegment("securityBaselineStates", "securityBaselineStates", "securityBaselineStates"),
-		resourceids.UserSpecifiedSegment("securityBaselineStateId", "securityBaselineStateIdValue"),
+		resourceids.UserSpecifiedSegment("securityBaselineStateId", "securityBaselineStateId"),
 		resourceids.StaticSegment("settingStates", "settingStates", "settingStates"),
-		resourceids.UserSpecifiedSegment("securityBaselineSettingStateId", "securityBaselineSettingStateIdValue"),
+		resourceids.UserSpecifiedSegment("securityBaselineSettingStateId", "securityBaselineSettingStateId"),
 	}
 }
 

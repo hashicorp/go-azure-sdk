@@ -17,16 +17,45 @@ type UpdateDeviceCustomAttributeShellScriptGroupAssignmentOperationResponse stru
 	OData        *odata.OData
 }
 
+type UpdateDeviceCustomAttributeShellScriptGroupAssignmentOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateDeviceCustomAttributeShellScriptGroupAssignmentOperationOptions() UpdateDeviceCustomAttributeShellScriptGroupAssignmentOperationOptions {
+	return UpdateDeviceCustomAttributeShellScriptGroupAssignmentOperationOptions{}
+}
+
+func (o UpdateDeviceCustomAttributeShellScriptGroupAssignmentOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateDeviceCustomAttributeShellScriptGroupAssignmentOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateDeviceCustomAttributeShellScriptGroupAssignmentOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateDeviceCustomAttributeShellScriptGroupAssignment - Update the navigation property groupAssignments in
 // deviceManagement
-func (c DeviceCustomAttributeShellScriptGroupAssignmentClient) UpdateDeviceCustomAttributeShellScriptGroupAssignment(ctx context.Context, id beta.DeviceManagementDeviceCustomAttributeShellScriptIdGroupAssignmentId, input beta.DeviceManagementScriptGroupAssignment) (result UpdateDeviceCustomAttributeShellScriptGroupAssignmentOperationResponse, err error) {
+func (c DeviceCustomAttributeShellScriptGroupAssignmentClient) UpdateDeviceCustomAttributeShellScriptGroupAssignment(ctx context.Context, id beta.DeviceManagementDeviceCustomAttributeShellScriptIdGroupAssignmentId, input beta.DeviceManagementScriptGroupAssignment, options UpdateDeviceCustomAttributeShellScriptGroupAssignmentOperationOptions) (result UpdateDeviceCustomAttributeShellScriptGroupAssignmentOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

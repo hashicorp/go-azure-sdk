@@ -77,18 +77,25 @@ func (s MobileAppAssignment) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &MobileAppAssignment{}
 
 func (s *MobileAppAssignment) UnmarshalJSON(bytes []byte) error {
-	type alias MobileAppAssignment
-	var decoded alias
+
+	var decoded struct {
+		Intent    *InstallIntent                          `json:"intent,omitempty"`
+		Source    *DeviceAndAppManagementAssignmentSource `json:"source,omitempty"`
+		SourceId  nullable.Type[string]                   `json:"sourceId,omitempty"`
+		Id        *string                                 `json:"id,omitempty"`
+		ODataId   *string                                 `json:"@odata.id,omitempty"`
+		ODataType *string                                 `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into MobileAppAssignment: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
-	s.Id = decoded.Id
 	s.Intent = decoded.Intent
-	s.ODataId = decoded.ODataId
-	s.ODataType = decoded.ODataType
 	s.Source = decoded.Source
 	s.SourceId = decoded.SourceId
+	s.Id = decoded.Id
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -110,5 +117,6 @@ func (s *MobileAppAssignment) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Target = impl
 	}
+
 	return nil
 }

@@ -12,24 +12,24 @@ import (
 var _ resourceids.ResourceId = &GroupIdThreadIdPostId{}
 
 func TestNewGroupIdThreadIdPostID(t *testing.T) {
-	id := NewGroupIdThreadIdPostID("groupIdValue", "conversationThreadIdValue", "postIdValue")
+	id := NewGroupIdThreadIdPostID("groupId", "conversationThreadId", "postId")
 
-	if id.GroupId != "groupIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'GroupId'", id.GroupId, "groupIdValue")
+	if id.GroupId != "groupId" {
+		t.Fatalf("Expected %q but got %q for Segment 'GroupId'", id.GroupId, "groupId")
 	}
 
-	if id.ConversationThreadId != "conversationThreadIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ConversationThreadId'", id.ConversationThreadId, "conversationThreadIdValue")
+	if id.ConversationThreadId != "conversationThreadId" {
+		t.Fatalf("Expected %q but got %q for Segment 'ConversationThreadId'", id.ConversationThreadId, "conversationThreadId")
 	}
 
-	if id.PostId != "postIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'PostId'", id.PostId, "postIdValue")
+	if id.PostId != "postId" {
+		t.Fatalf("Expected %q but got %q for Segment 'PostId'", id.PostId, "postId")
 	}
 }
 
 func TestFormatGroupIdThreadIdPostID(t *testing.T) {
-	actual := NewGroupIdThreadIdPostID("groupIdValue", "conversationThreadIdValue", "postIdValue").ID()
-	expected := "/groups/groupIdValue/threads/conversationThreadIdValue/posts/postIdValue"
+	actual := NewGroupIdThreadIdPostID("groupId", "conversationThreadId", "postId").ID()
+	expected := "/groups/groupId/threads/conversationThreadId/posts/postId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -53,36 +53,36 @@ func TestParseGroupIdThreadIdPostID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue",
+			Input: "/groups/groupId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/threads",
+			Input: "/groups/groupId/threads",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/threads/conversationThreadIdValue",
+			Input: "/groups/groupId/threads/conversationThreadId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/threads/conversationThreadIdValue/posts",
+			Input: "/groups/groupId/threads/conversationThreadId/posts",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/groups/groupIdValue/threads/conversationThreadIdValue/posts/postIdValue",
+			Input: "/groups/groupId/threads/conversationThreadId/posts/postId",
 			Expected: &GroupIdThreadIdPostId{
-				GroupId:              "groupIdValue",
-				ConversationThreadId: "conversationThreadIdValue",
-				PostId:               "postIdValue",
+				GroupId:              "groupId",
+				ConversationThreadId: "conversationThreadId",
+				PostId:               "postId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/groups/groupIdValue/threads/conversationThreadIdValue/posts/postIdValue/extra",
+			Input: "/groups/groupId/threads/conversationThreadId/posts/postId/extra",
 			Error: true,
 		},
 	}
@@ -139,70 +139,70 @@ func TestParseGroupIdThreadIdPostIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue",
+			Input: "/groups/groupId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE",
+			Input: "/gRoUpS/gRoUpId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/threads",
+			Input: "/groups/groupId/threads",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/tHrEaDs",
+			Input: "/gRoUpS/gRoUpId/tHrEaDs",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/threads/conversationThreadIdValue",
+			Input: "/groups/groupId/threads/conversationThreadId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/tHrEaDs/cOnVeRsAtIoNtHrEaDiDvAlUe",
+			Input: "/gRoUpS/gRoUpId/tHrEaDs/cOnVeRsAtIoNtHrEaDiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/threads/conversationThreadIdValue/posts",
+			Input: "/groups/groupId/threads/conversationThreadId/posts",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/tHrEaDs/cOnVeRsAtIoNtHrEaDiDvAlUe/pOsTs",
+			Input: "/gRoUpS/gRoUpId/tHrEaDs/cOnVeRsAtIoNtHrEaDiD/pOsTs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/groups/groupIdValue/threads/conversationThreadIdValue/posts/postIdValue",
+			Input: "/groups/groupId/threads/conversationThreadId/posts/postId",
 			Expected: &GroupIdThreadIdPostId{
-				GroupId:              "groupIdValue",
-				ConversationThreadId: "conversationThreadIdValue",
-				PostId:               "postIdValue",
+				GroupId:              "groupId",
+				ConversationThreadId: "conversationThreadId",
+				PostId:               "postId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/groups/groupIdValue/threads/conversationThreadIdValue/posts/postIdValue/extra",
+			Input: "/groups/groupId/threads/conversationThreadId/posts/postId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/tHrEaDs/cOnVeRsAtIoNtHrEaDiDvAlUe/pOsTs/pOsTiDvAlUe",
+			Input: "/gRoUpS/gRoUpId/tHrEaDs/cOnVeRsAtIoNtHrEaDiD/pOsTs/pOsTiD",
 			Expected: &GroupIdThreadIdPostId{
-				GroupId:              "gRoUpIdVaLuE",
-				ConversationThreadId: "cOnVeRsAtIoNtHrEaDiDvAlUe",
-				PostId:               "pOsTiDvAlUe",
+				GroupId:              "gRoUpId",
+				ConversationThreadId: "cOnVeRsAtIoNtHrEaDiD",
+				PostId:               "pOsTiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/tHrEaDs/cOnVeRsAtIoNtHrEaDiDvAlUe/pOsTs/pOsTiDvAlUe/extra",
+			Input: "/gRoUpS/gRoUpId/tHrEaDs/cOnVeRsAtIoNtHrEaDiD/pOsTs/pOsTiD/extra",
 			Error: true,
 		},
 	}

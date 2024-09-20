@@ -19,7 +19,8 @@ type DeleteSiteListItemVersionFieldOperationResponse struct {
 }
 
 type DeleteSiteListItemVersionFieldOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteSiteListItemVersionFieldOperationOptions() DeleteSiteListItemVersionFieldOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteSiteListItemVersionFieldOperationOptions) ToHeaders() *client.Head
 
 func (o DeleteSiteListItemVersionFieldOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

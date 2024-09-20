@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/microsoft-graph/reports/beta/partnerbillingusagebilled` Documentation
 
-The `partnerbillingusagebilled` SDK allows for interaction with the Azure Resource Manager Service `reports` (API Version `beta`).
+The `partnerbillingusagebilled` SDK allows for interaction with Microsoft Graph `reports` (API Version `beta`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -15,7 +15,7 @@ import "github.com/hashicorp/go-azure-sdk/microsoft-graph/reports/beta/partnerbi
 ### Client Initialization
 
 ```go
-client := partnerbillingusagebilled.NewPartnerBillingUsageBilledClientWithBaseURI("https://management.azure.com")
+client := partnerbillingusagebilled.NewPartnerBillingUsageBilledClientWithBaseURI("https://graph.microsoft.com")
 client.Client.Authorizer = authorizer
 ```
 
@@ -30,7 +30,7 @@ payload := partnerbillingusagebilled.CreatePartnerBillingUsageBilledExportReques
 }
 
 
-read, err := client.CreatePartnerBillingUsageBilledExport(ctx, payload)
+read, err := client.CreatePartnerBillingUsageBilledExport(ctx, payload, partnerbillingusagebilled.DefaultCreatePartnerBillingUsageBilledExportOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -82,7 +82,7 @@ payload := partnerbillingusagebilled.PartnersBillingBilledUsage{
 }
 
 
-read, err := client.UpdatePartnerBillingUsageBilled(ctx, payload)
+read, err := client.UpdatePartnerBillingUsageBilled(ctx, payload, partnerbillingusagebilled.DefaultUpdatePartnerBillingUsageBilledOperationOptions())
 if err != nil {
 	// handle the error
 }

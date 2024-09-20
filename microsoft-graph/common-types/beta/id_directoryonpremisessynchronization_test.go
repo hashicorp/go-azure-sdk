@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &DirectoryOnPremisesSynchronizationId{}
 
 func TestNewDirectoryOnPremisesSynchronizationID(t *testing.T) {
-	id := NewDirectoryOnPremisesSynchronizationID("onPremisesDirectorySynchronizationIdValue")
+	id := NewDirectoryOnPremisesSynchronizationID("onPremisesDirectorySynchronizationId")
 
-	if id.OnPremisesDirectorySynchronizationId != "onPremisesDirectorySynchronizationIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'OnPremisesDirectorySynchronizationId'", id.OnPremisesDirectorySynchronizationId, "onPremisesDirectorySynchronizationIdValue")
+	if id.OnPremisesDirectorySynchronizationId != "onPremisesDirectorySynchronizationId" {
+		t.Fatalf("Expected %q but got %q for Segment 'OnPremisesDirectorySynchronizationId'", id.OnPremisesDirectorySynchronizationId, "onPremisesDirectorySynchronizationId")
 	}
 }
 
 func TestFormatDirectoryOnPremisesSynchronizationID(t *testing.T) {
-	actual := NewDirectoryOnPremisesSynchronizationID("onPremisesDirectorySynchronizationIdValue").ID()
-	expected := "/directory/onPremisesSynchronization/onPremisesDirectorySynchronizationIdValue"
+	actual := NewDirectoryOnPremisesSynchronizationID("onPremisesDirectorySynchronizationId").ID()
+	expected := "/directory/onPremisesSynchronization/onPremisesDirectorySynchronizationId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -50,14 +50,14 @@ func TestParseDirectoryOnPremisesSynchronizationID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/directory/onPremisesSynchronization/onPremisesDirectorySynchronizationIdValue",
+			Input: "/directory/onPremisesSynchronization/onPremisesDirectorySynchronizationId",
 			Expected: &DirectoryOnPremisesSynchronizationId{
-				OnPremisesDirectorySynchronizationId: "onPremisesDirectorySynchronizationIdValue",
+				OnPremisesDirectorySynchronizationId: "onPremisesDirectorySynchronizationId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/directory/onPremisesSynchronization/onPremisesDirectorySynchronizationIdValue/extra",
+			Input: "/directory/onPremisesSynchronization/onPremisesDirectorySynchronizationId/extra",
 			Error: true,
 		},
 	}
@@ -116,26 +116,26 @@ func TestParseDirectoryOnPremisesSynchronizationIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/directory/onPremisesSynchronization/onPremisesDirectorySynchronizationIdValue",
+			Input: "/directory/onPremisesSynchronization/onPremisesDirectorySynchronizationId",
 			Expected: &DirectoryOnPremisesSynchronizationId{
-				OnPremisesDirectorySynchronizationId: "onPremisesDirectorySynchronizationIdValue",
+				OnPremisesDirectorySynchronizationId: "onPremisesDirectorySynchronizationId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/directory/onPremisesSynchronization/onPremisesDirectorySynchronizationIdValue/extra",
+			Input: "/directory/onPremisesSynchronization/onPremisesDirectorySynchronizationId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/dIrEcToRy/oNpReMiSeSsYnChRoNiZaTiOn/oNpReMiSeSdIrEcToRySyNcHrOnIzAtIoNiDvAlUe",
+			Input: "/dIrEcToRy/oNpReMiSeSsYnChRoNiZaTiOn/oNpReMiSeSdIrEcToRySyNcHrOnIzAtIoNiD",
 			Expected: &DirectoryOnPremisesSynchronizationId{
-				OnPremisesDirectorySynchronizationId: "oNpReMiSeSdIrEcToRySyNcHrOnIzAtIoNiDvAlUe",
+				OnPremisesDirectorySynchronizationId: "oNpReMiSeSdIrEcToRySyNcHrOnIzAtIoNiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/dIrEcToRy/oNpReMiSeSsYnChRoNiZaTiOn/oNpReMiSeSdIrEcToRySyNcHrOnIzAtIoNiDvAlUe/extra",
+			Input: "/dIrEcToRy/oNpReMiSeSsYnChRoNiZaTiOn/oNpReMiSeSdIrEcToRySyNcHrOnIzAtIoNiD/extra",
 			Error: true,
 		},
 	}

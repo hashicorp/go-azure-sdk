@@ -25,14 +25,15 @@ type ListEventsCompleteResult struct {
 }
 
 type ListEventsOperationOptions struct {
-	Count   *bool
-	Expand  *odata.Expand
-	Filter  *string
-	OrderBy *odata.OrderBy
-	Search  *string
-	Select  *[]string
-	Skip    *int64
-	Top     *int64
+	Count    *bool
+	Expand   *odata.Expand
+	Filter   *string
+	Metadata *odata.Metadata
+	OrderBy  *odata.OrderBy
+	Search   *string
+	Select   *[]string
+	Skip     *int64
+	Top      *int64
 }
 
 func DefaultListEventsOperationOptions() ListEventsOperationOptions {
@@ -55,6 +56,9 @@ func (o ListEventsOperationOptions) ToOData() *odata.Query {
 	}
 	if o.Filter != nil {
 		out.Filter = *o.Filter
+	}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
 	}
 	if o.OrderBy != nil {
 		out.OrderBy = *o.OrderBy
@@ -95,7 +99,7 @@ func (p *ListEventsCustomPager) NextPageLink() *odata.Link {
 // ListEvents - List events. Get a list of event objects from the user's default calendar or from a specified calendar.
 // The list contains single instance meetings and series masters. To get expanded event instances, you can get the
 // calendar view, or get the instances of an event. There are two scenarios where an app can get events in another
-// user's calendar:
+// user's calendar
 func (c EventClient) ListEvents(ctx context.Context, options ListEventsOperationOptions) (result ListEventsOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",

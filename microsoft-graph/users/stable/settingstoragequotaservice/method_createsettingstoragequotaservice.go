@@ -19,15 +19,44 @@ type CreateSettingStorageQuotaServiceOperationResponse struct {
 	Model        *stable.ServiceStorageQuotaBreakdown
 }
 
+type CreateSettingStorageQuotaServiceOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateSettingStorageQuotaServiceOperationOptions() CreateSettingStorageQuotaServiceOperationOptions {
+	return CreateSettingStorageQuotaServiceOperationOptions{}
+}
+
+func (o CreateSettingStorageQuotaServiceOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateSettingStorageQuotaServiceOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateSettingStorageQuotaServiceOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateSettingStorageQuotaService - Create new navigation property to services for users
-func (c SettingStorageQuotaServiceClient) CreateSettingStorageQuotaService(ctx context.Context, id stable.UserId, input stable.ServiceStorageQuotaBreakdown) (result CreateSettingStorageQuotaServiceOperationResponse, err error) {
+func (c SettingStorageQuotaServiceClient) CreateSettingStorageQuotaService(ctx context.Context, id stable.UserId, input stable.ServiceStorageQuotaBreakdown, options CreateSettingStorageQuotaServiceOperationOptions) (result CreateSettingStorageQuotaServiceOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/settings/storage/quota/services", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/settings/storage/quota/services", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

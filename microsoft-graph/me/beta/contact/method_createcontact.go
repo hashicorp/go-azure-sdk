@@ -18,16 +18,45 @@ type CreateContactOperationResponse struct {
 	Model        *beta.Contact
 }
 
+type CreateContactOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateContactOperationOptions() CreateContactOperationOptions {
+	return CreateContactOperationOptions{}
+}
+
+func (o CreateContactOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateContactOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateContactOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateContact - Create contact. Add a contact to the root Contacts folder or to the contacts endpoint of another
 // contact folder.
-func (c ContactClient) CreateContact(ctx context.Context, input beta.Contact) (result CreateContactOperationResponse, err error) {
+func (c ContactClient) CreateContact(ctx context.Context, input beta.Contact, options CreateContactOperationOptions) (result CreateContactOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/me/contacts",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/me/contacts",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

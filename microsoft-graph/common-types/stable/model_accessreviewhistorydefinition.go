@@ -96,24 +96,38 @@ func (s AccessReviewHistoryDefinition) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &AccessReviewHistoryDefinition{}
 
 func (s *AccessReviewHistoryDefinition) UnmarshalJSON(bytes []byte) error {
-	type alias AccessReviewHistoryDefinition
-	var decoded alias
+
+	var decoded struct {
+		CreatedBy                        *UserIdentity                        `json:"createdBy,omitempty"`
+		CreatedDateTime                  *string                              `json:"createdDateTime,omitempty"`
+		Decisions                        *[]AccessReviewHistoryDecisionFilter `json:"decisions,omitempty"`
+		DisplayName                      string                               `json:"displayName"`
+		Instances                        *[]AccessReviewHistoryInstance       `json:"instances,omitempty"`
+		ReviewHistoryPeriodEndDateTime   *string                              `json:"reviewHistoryPeriodEndDateTime,omitempty"`
+		ReviewHistoryPeriodStartDateTime *string                              `json:"reviewHistoryPeriodStartDateTime,omitempty"`
+		ScheduleSettings                 *AccessReviewHistoryScheduleSettings `json:"scheduleSettings,omitempty"`
+		Scopes                           []AccessReviewScope                  `json:"scopes"`
+		Status                           *AccessReviewHistoryStatus           `json:"status,omitempty"`
+		Id                               *string                              `json:"id,omitempty"`
+		ODataId                          *string                              `json:"@odata.id,omitempty"`
+		ODataType                        *string                              `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into AccessReviewHistoryDefinition: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.CreatedBy = decoded.CreatedBy
 	s.CreatedDateTime = decoded.CreatedDateTime
 	s.Decisions = decoded.Decisions
 	s.DisplayName = decoded.DisplayName
-	s.Id = decoded.Id
 	s.Instances = decoded.Instances
-	s.ODataId = decoded.ODataId
-	s.ODataType = decoded.ODataType
 	s.ReviewHistoryPeriodEndDateTime = decoded.ReviewHistoryPeriodEndDateTime
 	s.ReviewHistoryPeriodStartDateTime = decoded.ReviewHistoryPeriodStartDateTime
 	s.ScheduleSettings = decoded.ScheduleSettings
 	s.Status = decoded.Status
+	s.Id = decoded.Id
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -136,5 +150,6 @@ func (s *AccessReviewHistoryDefinition) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Scopes = output
 	}
+
 	return nil
 }

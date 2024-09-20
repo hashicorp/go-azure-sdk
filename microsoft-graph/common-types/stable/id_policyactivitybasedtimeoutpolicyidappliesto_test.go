@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &PolicyActivityBasedTimeoutPolicyIdAppliesToId{}
 
 func TestNewPolicyActivityBasedTimeoutPolicyIdAppliesToID(t *testing.T) {
-	id := NewPolicyActivityBasedTimeoutPolicyIdAppliesToID("activityBasedTimeoutPolicyIdValue", "directoryObjectIdValue")
+	id := NewPolicyActivityBasedTimeoutPolicyIdAppliesToID("activityBasedTimeoutPolicyId", "directoryObjectId")
 
-	if id.ActivityBasedTimeoutPolicyId != "activityBasedTimeoutPolicyIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ActivityBasedTimeoutPolicyId'", id.ActivityBasedTimeoutPolicyId, "activityBasedTimeoutPolicyIdValue")
+	if id.ActivityBasedTimeoutPolicyId != "activityBasedTimeoutPolicyId" {
+		t.Fatalf("Expected %q but got %q for Segment 'ActivityBasedTimeoutPolicyId'", id.ActivityBasedTimeoutPolicyId, "activityBasedTimeoutPolicyId")
 	}
 
-	if id.DirectoryObjectId != "directoryObjectIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DirectoryObjectId'", id.DirectoryObjectId, "directoryObjectIdValue")
+	if id.DirectoryObjectId != "directoryObjectId" {
+		t.Fatalf("Expected %q but got %q for Segment 'DirectoryObjectId'", id.DirectoryObjectId, "directoryObjectId")
 	}
 }
 
 func TestFormatPolicyActivityBasedTimeoutPolicyIdAppliesToID(t *testing.T) {
-	actual := NewPolicyActivityBasedTimeoutPolicyIdAppliesToID("activityBasedTimeoutPolicyIdValue", "directoryObjectIdValue").ID()
-	expected := "/policies/activityBasedTimeoutPolicies/activityBasedTimeoutPolicyIdValue/appliesTo/directoryObjectIdValue"
+	actual := NewPolicyActivityBasedTimeoutPolicyIdAppliesToID("activityBasedTimeoutPolicyId", "directoryObjectId").ID()
+	expected := "/policies/activityBasedTimeoutPolicies/activityBasedTimeoutPolicyId/appliesTo/directoryObjectId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -54,25 +54,25 @@ func TestParsePolicyActivityBasedTimeoutPolicyIdAppliesToID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/policies/activityBasedTimeoutPolicies/activityBasedTimeoutPolicyIdValue",
+			Input: "/policies/activityBasedTimeoutPolicies/activityBasedTimeoutPolicyId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/policies/activityBasedTimeoutPolicies/activityBasedTimeoutPolicyIdValue/appliesTo",
+			Input: "/policies/activityBasedTimeoutPolicies/activityBasedTimeoutPolicyId/appliesTo",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/policies/activityBasedTimeoutPolicies/activityBasedTimeoutPolicyIdValue/appliesTo/directoryObjectIdValue",
+			Input: "/policies/activityBasedTimeoutPolicies/activityBasedTimeoutPolicyId/appliesTo/directoryObjectId",
 			Expected: &PolicyActivityBasedTimeoutPolicyIdAppliesToId{
-				ActivityBasedTimeoutPolicyId: "activityBasedTimeoutPolicyIdValue",
-				DirectoryObjectId:            "directoryObjectIdValue",
+				ActivityBasedTimeoutPolicyId: "activityBasedTimeoutPolicyId",
+				DirectoryObjectId:            "directoryObjectId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/policies/activityBasedTimeoutPolicies/activityBasedTimeoutPolicyIdValue/appliesTo/directoryObjectIdValue/extra",
+			Input: "/policies/activityBasedTimeoutPolicies/activityBasedTimeoutPolicyId/appliesTo/directoryObjectId/extra",
 			Error: true,
 		},
 	}
@@ -135,48 +135,48 @@ func TestParsePolicyActivityBasedTimeoutPolicyIdAppliesToIDInsensitively(t *test
 		},
 		{
 			// Incomplete URI
-			Input: "/policies/activityBasedTimeoutPolicies/activityBasedTimeoutPolicyIdValue",
+			Input: "/policies/activityBasedTimeoutPolicies/activityBasedTimeoutPolicyId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/pOlIcIeS/aCtIvItYbAsEdTiMeOuTpOlIcIeS/aCtIvItYbAsEdTiMeOuTpOlIcYiDvAlUe",
+			Input: "/pOlIcIeS/aCtIvItYbAsEdTiMeOuTpOlIcIeS/aCtIvItYbAsEdTiMeOuTpOlIcYiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/policies/activityBasedTimeoutPolicies/activityBasedTimeoutPolicyIdValue/appliesTo",
+			Input: "/policies/activityBasedTimeoutPolicies/activityBasedTimeoutPolicyId/appliesTo",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/pOlIcIeS/aCtIvItYbAsEdTiMeOuTpOlIcIeS/aCtIvItYbAsEdTiMeOuTpOlIcYiDvAlUe/aPpLiEsTo",
+			Input: "/pOlIcIeS/aCtIvItYbAsEdTiMeOuTpOlIcIeS/aCtIvItYbAsEdTiMeOuTpOlIcYiD/aPpLiEsTo",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/policies/activityBasedTimeoutPolicies/activityBasedTimeoutPolicyIdValue/appliesTo/directoryObjectIdValue",
+			Input: "/policies/activityBasedTimeoutPolicies/activityBasedTimeoutPolicyId/appliesTo/directoryObjectId",
 			Expected: &PolicyActivityBasedTimeoutPolicyIdAppliesToId{
-				ActivityBasedTimeoutPolicyId: "activityBasedTimeoutPolicyIdValue",
-				DirectoryObjectId:            "directoryObjectIdValue",
+				ActivityBasedTimeoutPolicyId: "activityBasedTimeoutPolicyId",
+				DirectoryObjectId:            "directoryObjectId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/policies/activityBasedTimeoutPolicies/activityBasedTimeoutPolicyIdValue/appliesTo/directoryObjectIdValue/extra",
+			Input: "/policies/activityBasedTimeoutPolicies/activityBasedTimeoutPolicyId/appliesTo/directoryObjectId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/pOlIcIeS/aCtIvItYbAsEdTiMeOuTpOlIcIeS/aCtIvItYbAsEdTiMeOuTpOlIcYiDvAlUe/aPpLiEsTo/dIrEcToRyObJeCtIdVaLuE",
+			Input: "/pOlIcIeS/aCtIvItYbAsEdTiMeOuTpOlIcIeS/aCtIvItYbAsEdTiMeOuTpOlIcYiD/aPpLiEsTo/dIrEcToRyObJeCtId",
 			Expected: &PolicyActivityBasedTimeoutPolicyIdAppliesToId{
-				ActivityBasedTimeoutPolicyId: "aCtIvItYbAsEdTiMeOuTpOlIcYiDvAlUe",
-				DirectoryObjectId:            "dIrEcToRyObJeCtIdVaLuE",
+				ActivityBasedTimeoutPolicyId: "aCtIvItYbAsEdTiMeOuTpOlIcYiD",
+				DirectoryObjectId:            "dIrEcToRyObJeCtId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/pOlIcIeS/aCtIvItYbAsEdTiMeOuTpOlIcIeS/aCtIvItYbAsEdTiMeOuTpOlIcYiDvAlUe/aPpLiEsTo/dIrEcToRyObJeCtIdVaLuE/extra",
+			Input: "/pOlIcIeS/aCtIvItYbAsEdTiMeOuTpOlIcIeS/aCtIvItYbAsEdTiMeOuTpOlIcYiD/aPpLiEsTo/dIrEcToRyObJeCtId/extra",
 			Error: true,
 		},
 	}

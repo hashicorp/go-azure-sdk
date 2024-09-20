@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &DeviceManagementDeviceConfigurationIdDeviceSettingStateSummaryId{}
 
 func TestNewDeviceManagementDeviceConfigurationIdDeviceSettingStateSummaryID(t *testing.T) {
-	id := NewDeviceManagementDeviceConfigurationIdDeviceSettingStateSummaryID("deviceConfigurationIdValue", "settingStateDeviceSummaryIdValue")
+	id := NewDeviceManagementDeviceConfigurationIdDeviceSettingStateSummaryID("deviceConfigurationId", "settingStateDeviceSummaryId")
 
-	if id.DeviceConfigurationId != "deviceConfigurationIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DeviceConfigurationId'", id.DeviceConfigurationId, "deviceConfigurationIdValue")
+	if id.DeviceConfigurationId != "deviceConfigurationId" {
+		t.Fatalf("Expected %q but got %q for Segment 'DeviceConfigurationId'", id.DeviceConfigurationId, "deviceConfigurationId")
 	}
 
-	if id.SettingStateDeviceSummaryId != "settingStateDeviceSummaryIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'SettingStateDeviceSummaryId'", id.SettingStateDeviceSummaryId, "settingStateDeviceSummaryIdValue")
+	if id.SettingStateDeviceSummaryId != "settingStateDeviceSummaryId" {
+		t.Fatalf("Expected %q but got %q for Segment 'SettingStateDeviceSummaryId'", id.SettingStateDeviceSummaryId, "settingStateDeviceSummaryId")
 	}
 }
 
 func TestFormatDeviceManagementDeviceConfigurationIdDeviceSettingStateSummaryID(t *testing.T) {
-	actual := NewDeviceManagementDeviceConfigurationIdDeviceSettingStateSummaryID("deviceConfigurationIdValue", "settingStateDeviceSummaryIdValue").ID()
-	expected := "/deviceManagement/deviceConfigurations/deviceConfigurationIdValue/deviceSettingStateSummaries/settingStateDeviceSummaryIdValue"
+	actual := NewDeviceManagementDeviceConfigurationIdDeviceSettingStateSummaryID("deviceConfigurationId", "settingStateDeviceSummaryId").ID()
+	expected := "/deviceManagement/deviceConfigurations/deviceConfigurationId/deviceSettingStateSummaries/settingStateDeviceSummaryId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -54,25 +54,25 @@ func TestParseDeviceManagementDeviceConfigurationIdDeviceSettingStateSummaryID(t
 		},
 		{
 			// Incomplete URI
-			Input: "/deviceManagement/deviceConfigurations/deviceConfigurationIdValue",
+			Input: "/deviceManagement/deviceConfigurations/deviceConfigurationId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/deviceManagement/deviceConfigurations/deviceConfigurationIdValue/deviceSettingStateSummaries",
+			Input: "/deviceManagement/deviceConfigurations/deviceConfigurationId/deviceSettingStateSummaries",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/deviceConfigurations/deviceConfigurationIdValue/deviceSettingStateSummaries/settingStateDeviceSummaryIdValue",
+			Input: "/deviceManagement/deviceConfigurations/deviceConfigurationId/deviceSettingStateSummaries/settingStateDeviceSummaryId",
 			Expected: &DeviceManagementDeviceConfigurationIdDeviceSettingStateSummaryId{
-				DeviceConfigurationId:       "deviceConfigurationIdValue",
-				SettingStateDeviceSummaryId: "settingStateDeviceSummaryIdValue",
+				DeviceConfigurationId:       "deviceConfigurationId",
+				SettingStateDeviceSummaryId: "settingStateDeviceSummaryId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/deviceConfigurations/deviceConfigurationIdValue/deviceSettingStateSummaries/settingStateDeviceSummaryIdValue/extra",
+			Input: "/deviceManagement/deviceConfigurations/deviceConfigurationId/deviceSettingStateSummaries/settingStateDeviceSummaryId/extra",
 			Error: true,
 		},
 	}
@@ -135,48 +135,48 @@ func TestParseDeviceManagementDeviceConfigurationIdDeviceSettingStateSummaryIDIn
 		},
 		{
 			// Incomplete URI
-			Input: "/deviceManagement/deviceConfigurations/deviceConfigurationIdValue",
+			Input: "/deviceManagement/deviceConfigurations/deviceConfigurationId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/dEvIcEcOnFiGuRaTiOnS/dEvIcEcOnFiGuRaTiOnIdVaLuE",
+			Input: "/dEvIcEmAnAgEmEnT/dEvIcEcOnFiGuRaTiOnS/dEvIcEcOnFiGuRaTiOnId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/deviceManagement/deviceConfigurations/deviceConfigurationIdValue/deviceSettingStateSummaries",
+			Input: "/deviceManagement/deviceConfigurations/deviceConfigurationId/deviceSettingStateSummaries",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/dEvIcEcOnFiGuRaTiOnS/dEvIcEcOnFiGuRaTiOnIdVaLuE/dEvIcEsEtTiNgStAtEsUmMaRiEs",
+			Input: "/dEvIcEmAnAgEmEnT/dEvIcEcOnFiGuRaTiOnS/dEvIcEcOnFiGuRaTiOnId/dEvIcEsEtTiNgStAtEsUmMaRiEs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/deviceConfigurations/deviceConfigurationIdValue/deviceSettingStateSummaries/settingStateDeviceSummaryIdValue",
+			Input: "/deviceManagement/deviceConfigurations/deviceConfigurationId/deviceSettingStateSummaries/settingStateDeviceSummaryId",
 			Expected: &DeviceManagementDeviceConfigurationIdDeviceSettingStateSummaryId{
-				DeviceConfigurationId:       "deviceConfigurationIdValue",
-				SettingStateDeviceSummaryId: "settingStateDeviceSummaryIdValue",
+				DeviceConfigurationId:       "deviceConfigurationId",
+				SettingStateDeviceSummaryId: "settingStateDeviceSummaryId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/deviceConfigurations/deviceConfigurationIdValue/deviceSettingStateSummaries/settingStateDeviceSummaryIdValue/extra",
+			Input: "/deviceManagement/deviceConfigurations/deviceConfigurationId/deviceSettingStateSummaries/settingStateDeviceSummaryId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/dEvIcEcOnFiGuRaTiOnS/dEvIcEcOnFiGuRaTiOnIdVaLuE/dEvIcEsEtTiNgStAtEsUmMaRiEs/sEtTiNgStAtEdEvIcEsUmMaRyIdVaLuE",
+			Input: "/dEvIcEmAnAgEmEnT/dEvIcEcOnFiGuRaTiOnS/dEvIcEcOnFiGuRaTiOnId/dEvIcEsEtTiNgStAtEsUmMaRiEs/sEtTiNgStAtEdEvIcEsUmMaRyId",
 			Expected: &DeviceManagementDeviceConfigurationIdDeviceSettingStateSummaryId{
-				DeviceConfigurationId:       "dEvIcEcOnFiGuRaTiOnIdVaLuE",
-				SettingStateDeviceSummaryId: "sEtTiNgStAtEdEvIcEsUmMaRyIdVaLuE",
+				DeviceConfigurationId:       "dEvIcEcOnFiGuRaTiOnId",
+				SettingStateDeviceSummaryId: "sEtTiNgStAtEdEvIcEsUmMaRyId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/dEvIcEcOnFiGuRaTiOnS/dEvIcEcOnFiGuRaTiOnIdVaLuE/dEvIcEsEtTiNgStAtEsUmMaRiEs/sEtTiNgStAtEdEvIcEsUmMaRyIdVaLuE/extra",
+			Input: "/dEvIcEmAnAgEmEnT/dEvIcEcOnFiGuRaTiOnS/dEvIcEcOnFiGuRaTiOnId/dEvIcEsEtTiNgStAtEsUmMaRiEs/sEtTiNgStAtEdEvIcEsUmMaRyId/extra",
 			Error: true,
 		},
 	}

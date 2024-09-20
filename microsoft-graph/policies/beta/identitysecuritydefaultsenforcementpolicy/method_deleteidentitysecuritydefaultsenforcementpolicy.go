@@ -18,7 +18,8 @@ type DeleteIdentitySecurityDefaultsEnforcementPolicyOperationResponse struct {
 }
 
 type DeleteIdentitySecurityDefaultsEnforcementPolicyOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteIdentitySecurityDefaultsEnforcementPolicyOperationOptions() DeleteIdentitySecurityDefaultsEnforcementPolicyOperationOptions {
@@ -35,7 +36,9 @@ func (o DeleteIdentitySecurityDefaultsEnforcementPolicyOperationOptions) ToHeade
 
 func (o DeleteIdentitySecurityDefaultsEnforcementPolicyOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &DeviceManagementDepOnboardingSettingId{}
 
 func TestNewDeviceManagementDepOnboardingSettingID(t *testing.T) {
-	id := NewDeviceManagementDepOnboardingSettingID("depOnboardingSettingIdValue")
+	id := NewDeviceManagementDepOnboardingSettingID("depOnboardingSettingId")
 
-	if id.DepOnboardingSettingId != "depOnboardingSettingIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DepOnboardingSettingId'", id.DepOnboardingSettingId, "depOnboardingSettingIdValue")
+	if id.DepOnboardingSettingId != "depOnboardingSettingId" {
+		t.Fatalf("Expected %q but got %q for Segment 'DepOnboardingSettingId'", id.DepOnboardingSettingId, "depOnboardingSettingId")
 	}
 }
 
 func TestFormatDeviceManagementDepOnboardingSettingID(t *testing.T) {
-	actual := NewDeviceManagementDepOnboardingSettingID("depOnboardingSettingIdValue").ID()
-	expected := "/deviceManagement/depOnboardingSettings/depOnboardingSettingIdValue"
+	actual := NewDeviceManagementDepOnboardingSettingID("depOnboardingSettingId").ID()
+	expected := "/deviceManagement/depOnboardingSettings/depOnboardingSettingId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -50,14 +50,14 @@ func TestParseDeviceManagementDepOnboardingSettingID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/depOnboardingSettings/depOnboardingSettingIdValue",
+			Input: "/deviceManagement/depOnboardingSettings/depOnboardingSettingId",
 			Expected: &DeviceManagementDepOnboardingSettingId{
-				DepOnboardingSettingId: "depOnboardingSettingIdValue",
+				DepOnboardingSettingId: "depOnboardingSettingId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/depOnboardingSettings/depOnboardingSettingIdValue/extra",
+			Input: "/deviceManagement/depOnboardingSettings/depOnboardingSettingId/extra",
 			Error: true,
 		},
 	}
@@ -116,26 +116,26 @@ func TestParseDeviceManagementDepOnboardingSettingIDInsensitively(t *testing.T) 
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/depOnboardingSettings/depOnboardingSettingIdValue",
+			Input: "/deviceManagement/depOnboardingSettings/depOnboardingSettingId",
 			Expected: &DeviceManagementDepOnboardingSettingId{
-				DepOnboardingSettingId: "depOnboardingSettingIdValue",
+				DepOnboardingSettingId: "depOnboardingSettingId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/depOnboardingSettings/depOnboardingSettingIdValue/extra",
+			Input: "/deviceManagement/depOnboardingSettings/depOnboardingSettingId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/dEpOnBoArDiNgSeTtInGs/dEpOnBoArDiNgSeTtInGiDvAlUe",
+			Input: "/dEvIcEmAnAgEmEnT/dEpOnBoArDiNgSeTtInGs/dEpOnBoArDiNgSeTtInGiD",
 			Expected: &DeviceManagementDepOnboardingSettingId{
-				DepOnboardingSettingId: "dEpOnBoArDiNgSeTtInGiDvAlUe",
+				DepOnboardingSettingId: "dEpOnBoArDiNgSeTtInGiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/dEpOnBoArDiNgSeTtInGs/dEpOnBoArDiNgSeTtInGiDvAlUe/extra",
+			Input: "/dEvIcEmAnAgEmEnT/dEpOnBoArDiNgSeTtInGs/dEpOnBoArDiNgSeTtInGiD/extra",
 			Error: true,
 		},
 	}

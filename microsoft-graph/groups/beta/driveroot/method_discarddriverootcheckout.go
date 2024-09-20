@@ -18,18 +18,47 @@ type DiscardDriveRootCheckoutOperationResponse struct {
 	OData        *odata.OData
 }
 
+type DiscardDriveRootCheckoutOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultDiscardDriveRootCheckoutOperationOptions() DiscardDriveRootCheckoutOperationOptions {
+	return DiscardDriveRootCheckoutOperationOptions{}
+}
+
+func (o DiscardDriveRootCheckoutOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o DiscardDriveRootCheckoutOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o DiscardDriveRootCheckoutOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // DiscardDriveRootCheckout - Invoke action discardCheckout. Discard the check out of a driveItem. This action releases
 // a driveItem resource that was previously checked out. Any changes made to the item while it was checked out are
 // discarded. The same user that performed the checkout must discard it. Another alternative is to use application
 // permissions.
-func (c DriveRootClient) DiscardDriveRootCheckout(ctx context.Context, id beta.GroupIdDriveId) (result DiscardDriveRootCheckoutOperationResponse, err error) {
+func (c DriveRootClient) DiscardDriveRootCheckout(ctx context.Context, id beta.GroupIdDriveId, options DiscardDriveRootCheckoutOperationOptions) (result DiscardDriveRootCheckoutOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/root/discardCheckout", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/root/discardCheckout", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -19,15 +19,44 @@ type CreateAppConsentRequestsForApprovalUserApprovalStepOperationResponse struct
 	Model        *beta.ApprovalStep
 }
 
+type CreateAppConsentRequestsForApprovalUserApprovalStepOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateAppConsentRequestsForApprovalUserApprovalStepOperationOptions() CreateAppConsentRequestsForApprovalUserApprovalStepOperationOptions {
+	return CreateAppConsentRequestsForApprovalUserApprovalStepOperationOptions{}
+}
+
+func (o CreateAppConsentRequestsForApprovalUserApprovalStepOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateAppConsentRequestsForApprovalUserApprovalStepOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateAppConsentRequestsForApprovalUserApprovalStepOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateAppConsentRequestsForApprovalUserApprovalStep - Create new navigation property to steps for users
-func (c AppConsentRequestsForApprovalUserConsentRequestApprovalStepClient) CreateAppConsentRequestsForApprovalUserApprovalStep(ctx context.Context, id beta.UserIdAppConsentRequestsForApprovalIdUserConsentRequestId, input beta.ApprovalStep) (result CreateAppConsentRequestsForApprovalUserApprovalStepOperationResponse, err error) {
+func (c AppConsentRequestsForApprovalUserConsentRequestApprovalStepClient) CreateAppConsentRequestsForApprovalUserApprovalStep(ctx context.Context, id beta.UserIdAppConsentRequestsForApprovalIdUserConsentRequestId, input beta.ApprovalStep, options CreateAppConsentRequestsForApprovalUserApprovalStepOperationOptions) (result CreateAppConsentRequestsForApprovalUserApprovalStepOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/approval/steps", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/approval/steps", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

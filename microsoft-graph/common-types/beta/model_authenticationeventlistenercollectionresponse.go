@@ -62,10 +62,15 @@ func (s AuthenticationEventListenerCollectionResponse) MarshalJSON() ([]byte, er
 var _ json.Unmarshaler = &AuthenticationEventListenerCollectionResponse{}
 
 func (s *AuthenticationEventListenerCollectionResponse) UnmarshalJSON(bytes []byte) error {
-	type alias AuthenticationEventListenerCollectionResponse
-	var decoded alias
+
+	var decoded struct {
+		Value         *[]AuthenticationEventListener `json:"value,omitempty"`
+		ODataId       *string                        `json:"@odata.id,omitempty"`
+		ODataNextLink nullable.Type[string]          `json:"@odata.nextLink,omitempty"`
+		ODataType     *string                        `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into AuthenticationEventListenerCollectionResponse: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.ODataId = decoded.ODataId
@@ -93,5 +98,6 @@ func (s *AuthenticationEventListenerCollectionResponse) UnmarshalJSON(bytes []by
 		}
 		s.Value = &output
 	}
+
 	return nil
 }

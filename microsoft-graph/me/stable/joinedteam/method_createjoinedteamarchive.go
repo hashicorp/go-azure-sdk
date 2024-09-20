@@ -18,20 +18,49 @@ type CreateJoinedTeamArchiveOperationResponse struct {
 	OData        *odata.OData
 }
 
+type CreateJoinedTeamArchiveOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateJoinedTeamArchiveOperationOptions() CreateJoinedTeamArchiveOperationOptions {
+	return CreateJoinedTeamArchiveOperationOptions{}
+}
+
+func (o CreateJoinedTeamArchiveOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateJoinedTeamArchiveOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateJoinedTeamArchiveOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateJoinedTeamArchive - Invoke action archive. Archive the specified team. When a team is archived, users can no
 // longer make most changes to the team. For example, users can no longer: send or like messages on any channel in the
 // team; edit the team's name or description; nor edit other settings. However, membership changes to the team are still
 // allowed. Archiving is an async operation. A team is archived once the async operation completes successfully, which
 // might occur subsequent to a response from this API. To archive a team, the team and group must have an owner. To
 // restore a team from its archived state, use the API to unarchive.
-func (c JoinedTeamClient) CreateJoinedTeamArchive(ctx context.Context, id stable.MeJoinedTeamId, input CreateJoinedTeamArchiveRequest) (result CreateJoinedTeamArchiveOperationResponse, err error) {
+func (c JoinedTeamClient) CreateJoinedTeamArchive(ctx context.Context, id stable.MeJoinedTeamId, input CreateJoinedTeamArchiveRequest, options CreateJoinedTeamArchiveOperationOptions) (result CreateJoinedTeamArchiveOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/archive", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/archive", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

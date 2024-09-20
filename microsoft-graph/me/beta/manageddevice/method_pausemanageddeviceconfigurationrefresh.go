@@ -18,16 +18,45 @@ type PauseManagedDeviceConfigurationRefreshOperationResponse struct {
 	OData        *odata.OData
 }
 
+type PauseManagedDeviceConfigurationRefreshOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultPauseManagedDeviceConfigurationRefreshOperationOptions() PauseManagedDeviceConfigurationRefreshOperationOptions {
+	return PauseManagedDeviceConfigurationRefreshOperationOptions{}
+}
+
+func (o PauseManagedDeviceConfigurationRefreshOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o PauseManagedDeviceConfigurationRefreshOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o PauseManagedDeviceConfigurationRefreshOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // PauseManagedDeviceConfigurationRefresh - Invoke action pauseConfigurationRefresh. Initiates a command to pause config
 // refresh for the device.
-func (c ManagedDeviceClient) PauseManagedDeviceConfigurationRefresh(ctx context.Context, id beta.MeManagedDeviceId, input PauseManagedDeviceConfigurationRefreshRequest) (result PauseManagedDeviceConfigurationRefreshOperationResponse, err error) {
+func (c ManagedDeviceClient) PauseManagedDeviceConfigurationRefresh(ctx context.Context, id beta.MeManagedDeviceId, input PauseManagedDeviceConfigurationRefreshRequest, options PauseManagedDeviceConfigurationRefreshOperationOptions) (result PauseManagedDeviceConfigurationRefreshOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/pauseConfigurationRefresh", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/pauseConfigurationRefresh", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -18,15 +18,44 @@ type CreateAuthenticationEmailMethodOperationResponse struct {
 	Model        *stable.EmailAuthenticationMethod
 }
 
+type CreateAuthenticationEmailMethodOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateAuthenticationEmailMethodOperationOptions() CreateAuthenticationEmailMethodOperationOptions {
+	return CreateAuthenticationEmailMethodOperationOptions{}
+}
+
+func (o CreateAuthenticationEmailMethodOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateAuthenticationEmailMethodOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateAuthenticationEmailMethodOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateAuthenticationEmailMethod - Create new navigation property to emailMethods for me
-func (c AuthenticationEmailMethodClient) CreateAuthenticationEmailMethod(ctx context.Context, input stable.EmailAuthenticationMethod) (result CreateAuthenticationEmailMethodOperationResponse, err error) {
+func (c AuthenticationEmailMethodClient) CreateAuthenticationEmailMethod(ctx context.Context, input stable.EmailAuthenticationMethod, options CreateAuthenticationEmailMethodOperationOptions) (result CreateAuthenticationEmailMethodOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/me/authentication/emailMethods",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/me/authentication/emailMethods",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

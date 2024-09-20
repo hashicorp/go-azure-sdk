@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &UserIdPlannerMyDayTaskId{}
 
 func TestNewUserIdPlannerMyDayTaskID(t *testing.T) {
-	id := NewUserIdPlannerMyDayTaskID("userIdValue", "plannerTaskIdValue")
+	id := NewUserIdPlannerMyDayTaskID("userId", "plannerTaskId")
 
-	if id.UserId != "userIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'UserId'", id.UserId, "userIdValue")
+	if id.UserId != "userId" {
+		t.Fatalf("Expected %q but got %q for Segment 'UserId'", id.UserId, "userId")
 	}
 
-	if id.PlannerTaskId != "plannerTaskIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'PlannerTaskId'", id.PlannerTaskId, "plannerTaskIdValue")
+	if id.PlannerTaskId != "plannerTaskId" {
+		t.Fatalf("Expected %q but got %q for Segment 'PlannerTaskId'", id.PlannerTaskId, "plannerTaskId")
 	}
 }
 
 func TestFormatUserIdPlannerMyDayTaskID(t *testing.T) {
-	actual := NewUserIdPlannerMyDayTaskID("userIdValue", "plannerTaskIdValue").ID()
-	expected := "/users/userIdValue/planner/myDayTasks/plannerTaskIdValue"
+	actual := NewUserIdPlannerMyDayTaskID("userId", "plannerTaskId").ID()
+	expected := "/users/userId/planner/myDayTasks/plannerTaskId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -49,30 +49,30 @@ func TestParseUserIdPlannerMyDayTaskID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue",
+			Input: "/users/userId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/planner",
+			Input: "/users/userId/planner",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/planner/myDayTasks",
+			Input: "/users/userId/planner/myDayTasks",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/users/userIdValue/planner/myDayTasks/plannerTaskIdValue",
+			Input: "/users/userId/planner/myDayTasks/plannerTaskId",
 			Expected: &UserIdPlannerMyDayTaskId{
-				UserId:        "userIdValue",
-				PlannerTaskId: "plannerTaskIdValue",
+				UserId:        "userId",
+				PlannerTaskId: "plannerTaskId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/users/userIdValue/planner/myDayTasks/plannerTaskIdValue/extra",
+			Input: "/users/userId/planner/myDayTasks/plannerTaskId/extra",
 			Error: true,
 		},
 	}
@@ -125,58 +125,58 @@ func TestParseUserIdPlannerMyDayTaskIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue",
+			Input: "/users/userId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe",
+			Input: "/uSeRs/uSeRiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/planner",
+			Input: "/users/userId/planner",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/pLaNnEr",
+			Input: "/uSeRs/uSeRiD/pLaNnEr",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/planner/myDayTasks",
+			Input: "/users/userId/planner/myDayTasks",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/pLaNnEr/mYdAyTaSkS",
+			Input: "/uSeRs/uSeRiD/pLaNnEr/mYdAyTaSkS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/users/userIdValue/planner/myDayTasks/plannerTaskIdValue",
+			Input: "/users/userId/planner/myDayTasks/plannerTaskId",
 			Expected: &UserIdPlannerMyDayTaskId{
-				UserId:        "userIdValue",
-				PlannerTaskId: "plannerTaskIdValue",
+				UserId:        "userId",
+				PlannerTaskId: "plannerTaskId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/users/userIdValue/planner/myDayTasks/plannerTaskIdValue/extra",
+			Input: "/users/userId/planner/myDayTasks/plannerTaskId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/pLaNnEr/mYdAyTaSkS/pLaNnErTaSkIdVaLuE",
+			Input: "/uSeRs/uSeRiD/pLaNnEr/mYdAyTaSkS/pLaNnErTaSkId",
 			Expected: &UserIdPlannerMyDayTaskId{
-				UserId:        "uSeRiDvAlUe",
-				PlannerTaskId: "pLaNnErTaSkIdVaLuE",
+				UserId:        "uSeRiD",
+				PlannerTaskId: "pLaNnErTaSkId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/pLaNnEr/mYdAyTaSkS/pLaNnErTaSkIdVaLuE/extra",
+			Input: "/uSeRs/uSeRiD/pLaNnEr/mYdAyTaSkS/pLaNnErTaSkId/extra",
 			Error: true,
 		},
 	}

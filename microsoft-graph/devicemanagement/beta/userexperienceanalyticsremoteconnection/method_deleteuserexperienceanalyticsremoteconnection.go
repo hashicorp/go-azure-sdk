@@ -19,7 +19,8 @@ type DeleteUserExperienceAnalyticsRemoteConnectionOperationResponse struct {
 }
 
 type DeleteUserExperienceAnalyticsRemoteConnectionOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteUserExperienceAnalyticsRemoteConnectionOperationOptions() DeleteUserExperienceAnalyticsRemoteConnectionOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteUserExperienceAnalyticsRemoteConnectionOperationOptions) ToHeaders
 
 func (o DeleteUserExperienceAnalyticsRemoteConnectionOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

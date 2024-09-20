@@ -12,24 +12,24 @@ import (
 var _ resourceids.ResourceId = &MeEventIdExceptionOccurrenceIdExtensionId{}
 
 func TestNewMeEventIdExceptionOccurrenceIdExtensionID(t *testing.T) {
-	id := NewMeEventIdExceptionOccurrenceIdExtensionID("eventIdValue", "eventId1Value", "extensionIdValue")
+	id := NewMeEventIdExceptionOccurrenceIdExtensionID("eventId", "eventId1", "extensionId")
 
-	if id.EventId != "eventIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'EventId'", id.EventId, "eventIdValue")
+	if id.EventId != "eventId" {
+		t.Fatalf("Expected %q but got %q for Segment 'EventId'", id.EventId, "eventId")
 	}
 
-	if id.EventId1 != "eventId1Value" {
-		t.Fatalf("Expected %q but got %q for Segment 'EventId1'", id.EventId1, "eventId1Value")
+	if id.EventId1 != "eventId1" {
+		t.Fatalf("Expected %q but got %q for Segment 'EventId1'", id.EventId1, "eventId1")
 	}
 
-	if id.ExtensionId != "extensionIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ExtensionId'", id.ExtensionId, "extensionIdValue")
+	if id.ExtensionId != "extensionId" {
+		t.Fatalf("Expected %q but got %q for Segment 'ExtensionId'", id.ExtensionId, "extensionId")
 	}
 }
 
 func TestFormatMeEventIdExceptionOccurrenceIdExtensionID(t *testing.T) {
-	actual := NewMeEventIdExceptionOccurrenceIdExtensionID("eventIdValue", "eventId1Value", "extensionIdValue").ID()
-	expected := "/me/events/eventIdValue/exceptionOccurrences/eventId1Value/extensions/extensionIdValue"
+	actual := NewMeEventIdExceptionOccurrenceIdExtensionID("eventId", "eventId1", "extensionId").ID()
+	expected := "/me/events/eventId/exceptionOccurrences/eventId1/extensions/extensionId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -58,36 +58,36 @@ func TestParseMeEventIdExceptionOccurrenceIdExtensionID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/me/events/eventIdValue",
+			Input: "/me/events/eventId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/me/events/eventIdValue/exceptionOccurrences",
+			Input: "/me/events/eventId/exceptionOccurrences",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/me/events/eventIdValue/exceptionOccurrences/eventId1Value",
+			Input: "/me/events/eventId/exceptionOccurrences/eventId1",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/me/events/eventIdValue/exceptionOccurrences/eventId1Value/extensions",
+			Input: "/me/events/eventId/exceptionOccurrences/eventId1/extensions",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/me/events/eventIdValue/exceptionOccurrences/eventId1Value/extensions/extensionIdValue",
+			Input: "/me/events/eventId/exceptionOccurrences/eventId1/extensions/extensionId",
 			Expected: &MeEventIdExceptionOccurrenceIdExtensionId{
-				EventId:     "eventIdValue",
-				EventId1:    "eventId1Value",
-				ExtensionId: "extensionIdValue",
+				EventId:     "eventId",
+				EventId1:    "eventId1",
+				ExtensionId: "extensionId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/events/eventIdValue/exceptionOccurrences/eventId1Value/extensions/extensionIdValue/extra",
+			Input: "/me/events/eventId/exceptionOccurrences/eventId1/extensions/extensionId/extra",
 			Error: true,
 		},
 	}
@@ -154,70 +154,70 @@ func TestParseMeEventIdExceptionOccurrenceIdExtensionIDInsensitively(t *testing.
 		},
 		{
 			// Incomplete URI
-			Input: "/me/events/eventIdValue",
+			Input: "/me/events/eventId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/eVeNtS/eVeNtIdVaLuE",
+			Input: "/mE/eVeNtS/eVeNtId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/me/events/eventIdValue/exceptionOccurrences",
+			Input: "/me/events/eventId/exceptionOccurrences",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/eVeNtS/eVeNtIdVaLuE/eXcEpTiOnOcCuRrEnCeS",
+			Input: "/mE/eVeNtS/eVeNtId/eXcEpTiOnOcCuRrEnCeS",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/me/events/eventIdValue/exceptionOccurrences/eventId1Value",
+			Input: "/me/events/eventId/exceptionOccurrences/eventId1",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/eVeNtS/eVeNtIdVaLuE/eXcEpTiOnOcCuRrEnCeS/eVeNtId1vAlUe",
+			Input: "/mE/eVeNtS/eVeNtId/eXcEpTiOnOcCuRrEnCeS/eVeNtId1",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/me/events/eventIdValue/exceptionOccurrences/eventId1Value/extensions",
+			Input: "/me/events/eventId/exceptionOccurrences/eventId1/extensions",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/eVeNtS/eVeNtIdVaLuE/eXcEpTiOnOcCuRrEnCeS/eVeNtId1vAlUe/eXtEnSiOnS",
+			Input: "/mE/eVeNtS/eVeNtId/eXcEpTiOnOcCuRrEnCeS/eVeNtId1/eXtEnSiOnS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/me/events/eventIdValue/exceptionOccurrences/eventId1Value/extensions/extensionIdValue",
+			Input: "/me/events/eventId/exceptionOccurrences/eventId1/extensions/extensionId",
 			Expected: &MeEventIdExceptionOccurrenceIdExtensionId{
-				EventId:     "eventIdValue",
-				EventId1:    "eventId1Value",
-				ExtensionId: "extensionIdValue",
+				EventId:     "eventId",
+				EventId1:    "eventId1",
+				ExtensionId: "extensionId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/events/eventIdValue/exceptionOccurrences/eventId1Value/extensions/extensionIdValue/extra",
+			Input: "/me/events/eventId/exceptionOccurrences/eventId1/extensions/extensionId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/eVeNtS/eVeNtIdVaLuE/eXcEpTiOnOcCuRrEnCeS/eVeNtId1vAlUe/eXtEnSiOnS/eXtEnSiOnIdVaLuE",
+			Input: "/mE/eVeNtS/eVeNtId/eXcEpTiOnOcCuRrEnCeS/eVeNtId1/eXtEnSiOnS/eXtEnSiOnId",
 			Expected: &MeEventIdExceptionOccurrenceIdExtensionId{
-				EventId:     "eVeNtIdVaLuE",
-				EventId1:    "eVeNtId1vAlUe",
-				ExtensionId: "eXtEnSiOnIdVaLuE",
+				EventId:     "eVeNtId",
+				EventId1:    "eVeNtId1",
+				ExtensionId: "eXtEnSiOnId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/mE/eVeNtS/eVeNtIdVaLuE/eXcEpTiOnOcCuRrEnCeS/eVeNtId1vAlUe/eXtEnSiOnS/eXtEnSiOnIdVaLuE/extra",
+			Input: "/mE/eVeNtS/eVeNtId/eXcEpTiOnOcCuRrEnCeS/eVeNtId1/eXtEnSiOnS/eXtEnSiOnId/extra",
 			Error: true,
 		},
 	}

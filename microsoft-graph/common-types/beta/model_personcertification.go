@@ -134,32 +134,55 @@ func (s PersonCertification) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &PersonCertification{}
 
 func (s *PersonCertification) UnmarshalJSON(bytes []byte) error {
-	type alias PersonCertification
-	var decoded alias
+
+	var decoded struct {
+		CertificationId      nullable.Type[string]      `json:"certificationId,omitempty"`
+		Description          nullable.Type[string]      `json:"description,omitempty"`
+		DisplayName          *string                    `json:"displayName,omitempty"`
+		EndDate              nullable.Type[string]      `json:"endDate,omitempty"`
+		IssuedDate           nullable.Type[string]      `json:"issuedDate,omitempty"`
+		IssuingAuthority     nullable.Type[string]      `json:"issuingAuthority,omitempty"`
+		IssuingCompany       nullable.Type[string]      `json:"issuingCompany,omitempty"`
+		StartDate            nullable.Type[string]      `json:"startDate,omitempty"`
+		ThumbnailUrl         nullable.Type[string]      `json:"thumbnailUrl,omitempty"`
+		WebUrl               nullable.Type[string]      `json:"webUrl,omitempty"`
+		AllowedAudiences     *AllowedAudiences          `json:"allowedAudiences,omitempty"`
+		CreatedBy            IdentitySet                `json:"createdBy"`
+		CreatedDateTime      *string                    `json:"createdDateTime,omitempty"`
+		Inference            *InferenceData             `json:"inference,omitempty"`
+		IsSearchable         nullable.Type[bool]        `json:"isSearchable,omitempty"`
+		LastModifiedBy       IdentitySet                `json:"lastModifiedBy"`
+		LastModifiedDateTime *string                    `json:"lastModifiedDateTime,omitempty"`
+		Source               *PersonDataSources         `json:"source,omitempty"`
+		Sources              *[]ProfileSourceAnnotation `json:"sources,omitempty"`
+		Id                   *string                    `json:"id,omitempty"`
+		ODataId              *string                    `json:"@odata.id,omitempty"`
+		ODataType            *string                    `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into PersonCertification: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
-	s.AllowedAudiences = decoded.AllowedAudiences
 	s.CertificationId = decoded.CertificationId
-	s.CreatedDateTime = decoded.CreatedDateTime
 	s.Description = decoded.Description
 	s.DisplayName = decoded.DisplayName
 	s.EndDate = decoded.EndDate
-	s.Id = decoded.Id
-	s.Inference = decoded.Inference
-	s.IsSearchable = decoded.IsSearchable
 	s.IssuedDate = decoded.IssuedDate
 	s.IssuingAuthority = decoded.IssuingAuthority
 	s.IssuingCompany = decoded.IssuingCompany
+	s.StartDate = decoded.StartDate
+	s.ThumbnailUrl = decoded.ThumbnailUrl
+	s.WebUrl = decoded.WebUrl
+	s.AllowedAudiences = decoded.AllowedAudiences
+	s.CreatedDateTime = decoded.CreatedDateTime
+	s.Id = decoded.Id
+	s.Inference = decoded.Inference
+	s.IsSearchable = decoded.IsSearchable
 	s.LastModifiedDateTime = decoded.LastModifiedDateTime
 	s.ODataId = decoded.ODataId
 	s.ODataType = decoded.ODataType
 	s.Source = decoded.Source
 	s.Sources = decoded.Sources
-	s.StartDate = decoded.StartDate
-	s.ThumbnailUrl = decoded.ThumbnailUrl
-	s.WebUrl = decoded.WebUrl
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -181,5 +204,6 @@ func (s *PersonCertification) UnmarshalJSON(bytes []byte) error {
 		}
 		s.LastModifiedBy = impl
 	}
+
 	return nil
 }

@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &IdentityAuthenticationEventsFlowIdConditionApplicationIncludeApplicationId{}
 
 func TestNewIdentityAuthenticationEventsFlowIdConditionApplicationIncludeApplicationID(t *testing.T) {
-	id := NewIdentityAuthenticationEventsFlowIdConditionApplicationIncludeApplicationID("authenticationEventsFlowIdValue", "authenticationConditionApplicationAppIdValue")
+	id := NewIdentityAuthenticationEventsFlowIdConditionApplicationIncludeApplicationID("authenticationEventsFlowId", "authenticationConditionApplicationAppId")
 
-	if id.AuthenticationEventsFlowId != "authenticationEventsFlowIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'AuthenticationEventsFlowId'", id.AuthenticationEventsFlowId, "authenticationEventsFlowIdValue")
+	if id.AuthenticationEventsFlowId != "authenticationEventsFlowId" {
+		t.Fatalf("Expected %q but got %q for Segment 'AuthenticationEventsFlowId'", id.AuthenticationEventsFlowId, "authenticationEventsFlowId")
 	}
 
-	if id.AuthenticationConditionApplicationAppId != "authenticationConditionApplicationAppIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'AuthenticationConditionApplicationAppId'", id.AuthenticationConditionApplicationAppId, "authenticationConditionApplicationAppIdValue")
+	if id.AuthenticationConditionApplicationAppId != "authenticationConditionApplicationAppId" {
+		t.Fatalf("Expected %q but got %q for Segment 'AuthenticationConditionApplicationAppId'", id.AuthenticationConditionApplicationAppId, "authenticationConditionApplicationAppId")
 	}
 }
 
 func TestFormatIdentityAuthenticationEventsFlowIdConditionApplicationIncludeApplicationID(t *testing.T) {
-	actual := NewIdentityAuthenticationEventsFlowIdConditionApplicationIncludeApplicationID("authenticationEventsFlowIdValue", "authenticationConditionApplicationAppIdValue").ID()
-	expected := "/identity/authenticationEventsFlows/authenticationEventsFlowIdValue/conditions/applications/includeApplications/authenticationConditionApplicationAppIdValue"
+	actual := NewIdentityAuthenticationEventsFlowIdConditionApplicationIncludeApplicationID("authenticationEventsFlowId", "authenticationConditionApplicationAppId").ID()
+	expected := "/identity/authenticationEventsFlows/authenticationEventsFlowId/conditions/applications/includeApplications/authenticationConditionApplicationAppId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -54,35 +54,35 @@ func TestParseIdentityAuthenticationEventsFlowIdConditionApplicationIncludeAppli
 		},
 		{
 			// Incomplete URI
-			Input: "/identity/authenticationEventsFlows/authenticationEventsFlowIdValue",
+			Input: "/identity/authenticationEventsFlows/authenticationEventsFlowId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/identity/authenticationEventsFlows/authenticationEventsFlowIdValue/conditions",
+			Input: "/identity/authenticationEventsFlows/authenticationEventsFlowId/conditions",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/identity/authenticationEventsFlows/authenticationEventsFlowIdValue/conditions/applications",
+			Input: "/identity/authenticationEventsFlows/authenticationEventsFlowId/conditions/applications",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/identity/authenticationEventsFlows/authenticationEventsFlowIdValue/conditions/applications/includeApplications",
+			Input: "/identity/authenticationEventsFlows/authenticationEventsFlowId/conditions/applications/includeApplications",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/identity/authenticationEventsFlows/authenticationEventsFlowIdValue/conditions/applications/includeApplications/authenticationConditionApplicationAppIdValue",
+			Input: "/identity/authenticationEventsFlows/authenticationEventsFlowId/conditions/applications/includeApplications/authenticationConditionApplicationAppId",
 			Expected: &IdentityAuthenticationEventsFlowIdConditionApplicationIncludeApplicationId{
-				AuthenticationEventsFlowId:              "authenticationEventsFlowIdValue",
-				AuthenticationConditionApplicationAppId: "authenticationConditionApplicationAppIdValue",
+				AuthenticationEventsFlowId:              "authenticationEventsFlowId",
+				AuthenticationConditionApplicationAppId: "authenticationConditionApplicationAppId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/identity/authenticationEventsFlows/authenticationEventsFlowIdValue/conditions/applications/includeApplications/authenticationConditionApplicationAppIdValue/extra",
+			Input: "/identity/authenticationEventsFlows/authenticationEventsFlowId/conditions/applications/includeApplications/authenticationConditionApplicationAppId/extra",
 			Error: true,
 		},
 	}
@@ -145,68 +145,68 @@ func TestParseIdentityAuthenticationEventsFlowIdConditionApplicationIncludeAppli
 		},
 		{
 			// Incomplete URI
-			Input: "/identity/authenticationEventsFlows/authenticationEventsFlowIdValue",
+			Input: "/identity/authenticationEventsFlows/authenticationEventsFlowId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/iDeNtItY/aUtHeNtIcAtIoNeVeNtSfLoWs/aUtHeNtIcAtIoNeVeNtSfLoWiDvAlUe",
+			Input: "/iDeNtItY/aUtHeNtIcAtIoNeVeNtSfLoWs/aUtHeNtIcAtIoNeVeNtSfLoWiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/identity/authenticationEventsFlows/authenticationEventsFlowIdValue/conditions",
+			Input: "/identity/authenticationEventsFlows/authenticationEventsFlowId/conditions",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/iDeNtItY/aUtHeNtIcAtIoNeVeNtSfLoWs/aUtHeNtIcAtIoNeVeNtSfLoWiDvAlUe/cOnDiTiOnS",
+			Input: "/iDeNtItY/aUtHeNtIcAtIoNeVeNtSfLoWs/aUtHeNtIcAtIoNeVeNtSfLoWiD/cOnDiTiOnS",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/identity/authenticationEventsFlows/authenticationEventsFlowIdValue/conditions/applications",
+			Input: "/identity/authenticationEventsFlows/authenticationEventsFlowId/conditions/applications",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/iDeNtItY/aUtHeNtIcAtIoNeVeNtSfLoWs/aUtHeNtIcAtIoNeVeNtSfLoWiDvAlUe/cOnDiTiOnS/aPpLiCaTiOnS",
+			Input: "/iDeNtItY/aUtHeNtIcAtIoNeVeNtSfLoWs/aUtHeNtIcAtIoNeVeNtSfLoWiD/cOnDiTiOnS/aPpLiCaTiOnS",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/identity/authenticationEventsFlows/authenticationEventsFlowIdValue/conditions/applications/includeApplications",
+			Input: "/identity/authenticationEventsFlows/authenticationEventsFlowId/conditions/applications/includeApplications",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/iDeNtItY/aUtHeNtIcAtIoNeVeNtSfLoWs/aUtHeNtIcAtIoNeVeNtSfLoWiDvAlUe/cOnDiTiOnS/aPpLiCaTiOnS/iNcLuDeApPlIcAtIoNs",
+			Input: "/iDeNtItY/aUtHeNtIcAtIoNeVeNtSfLoWs/aUtHeNtIcAtIoNeVeNtSfLoWiD/cOnDiTiOnS/aPpLiCaTiOnS/iNcLuDeApPlIcAtIoNs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/identity/authenticationEventsFlows/authenticationEventsFlowIdValue/conditions/applications/includeApplications/authenticationConditionApplicationAppIdValue",
+			Input: "/identity/authenticationEventsFlows/authenticationEventsFlowId/conditions/applications/includeApplications/authenticationConditionApplicationAppId",
 			Expected: &IdentityAuthenticationEventsFlowIdConditionApplicationIncludeApplicationId{
-				AuthenticationEventsFlowId:              "authenticationEventsFlowIdValue",
-				AuthenticationConditionApplicationAppId: "authenticationConditionApplicationAppIdValue",
+				AuthenticationEventsFlowId:              "authenticationEventsFlowId",
+				AuthenticationConditionApplicationAppId: "authenticationConditionApplicationAppId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/identity/authenticationEventsFlows/authenticationEventsFlowIdValue/conditions/applications/includeApplications/authenticationConditionApplicationAppIdValue/extra",
+			Input: "/identity/authenticationEventsFlows/authenticationEventsFlowId/conditions/applications/includeApplications/authenticationConditionApplicationAppId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/iDeNtItY/aUtHeNtIcAtIoNeVeNtSfLoWs/aUtHeNtIcAtIoNeVeNtSfLoWiDvAlUe/cOnDiTiOnS/aPpLiCaTiOnS/iNcLuDeApPlIcAtIoNs/aUtHeNtIcAtIoNcOnDiTiOnApPlIcAtIoNaPpIdVaLuE",
+			Input: "/iDeNtItY/aUtHeNtIcAtIoNeVeNtSfLoWs/aUtHeNtIcAtIoNeVeNtSfLoWiD/cOnDiTiOnS/aPpLiCaTiOnS/iNcLuDeApPlIcAtIoNs/aUtHeNtIcAtIoNcOnDiTiOnApPlIcAtIoNaPpId",
 			Expected: &IdentityAuthenticationEventsFlowIdConditionApplicationIncludeApplicationId{
-				AuthenticationEventsFlowId:              "aUtHeNtIcAtIoNeVeNtSfLoWiDvAlUe",
-				AuthenticationConditionApplicationAppId: "aUtHeNtIcAtIoNcOnDiTiOnApPlIcAtIoNaPpIdVaLuE",
+				AuthenticationEventsFlowId:              "aUtHeNtIcAtIoNeVeNtSfLoWiD",
+				AuthenticationConditionApplicationAppId: "aUtHeNtIcAtIoNcOnDiTiOnApPlIcAtIoNaPpId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/iDeNtItY/aUtHeNtIcAtIoNeVeNtSfLoWs/aUtHeNtIcAtIoNeVeNtSfLoWiDvAlUe/cOnDiTiOnS/aPpLiCaTiOnS/iNcLuDeApPlIcAtIoNs/aUtHeNtIcAtIoNcOnDiTiOnApPlIcAtIoNaPpIdVaLuE/extra",
+			Input: "/iDeNtItY/aUtHeNtIcAtIoNeVeNtSfLoWs/aUtHeNtIcAtIoNeVeNtSfLoWiD/cOnDiTiOnS/aPpLiCaTiOnS/iNcLuDeApPlIcAtIoNs/aUtHeNtIcAtIoNcOnDiTiOnApPlIcAtIoNaPpId/extra",
 			Error: true,
 		},
 	}

@@ -94,7 +94,7 @@ func (id MeAuthenticationSoftwareOathMethodId) Segments() []resourceids.Segment 
 		resourceids.StaticSegment("me", "me", "me"),
 		resourceids.StaticSegment("authentication", "authentication", "authentication"),
 		resourceids.StaticSegment("softwareOathMethods", "softwareOathMethods", "softwareOathMethods"),
-		resourceids.UserSpecifiedSegment("softwareOathAuthenticationMethodId", "softwareOathAuthenticationMethodIdValue"),
+		resourceids.UserSpecifiedSegment("softwareOathAuthenticationMethodId", "softwareOathAuthenticationMethodId"),
 	}
 }
 

@@ -19,16 +19,45 @@ type CreateEntitlementManagementAccessPackageAssignmentApprovalStageOperationRes
 	Model        *stable.ApprovalStage
 }
 
+type CreateEntitlementManagementAccessPackageAssignmentApprovalStageOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateEntitlementManagementAccessPackageAssignmentApprovalStageOperationOptions() CreateEntitlementManagementAccessPackageAssignmentApprovalStageOperationOptions {
+	return CreateEntitlementManagementAccessPackageAssignmentApprovalStageOperationOptions{}
+}
+
+func (o CreateEntitlementManagementAccessPackageAssignmentApprovalStageOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateEntitlementManagementAccessPackageAssignmentApprovalStageOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateEntitlementManagementAccessPackageAssignmentApprovalStageOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateEntitlementManagementAccessPackageAssignmentApprovalStage - Create new navigation property to stages for
 // identityGovernance
-func (c EntitlementManagementAccessPackageAssignmentApprovalStageClient) CreateEntitlementManagementAccessPackageAssignmentApprovalStage(ctx context.Context, id stable.IdentityGovernanceEntitlementManagementAccessPackageAssignmentApprovalId, input stable.ApprovalStage) (result CreateEntitlementManagementAccessPackageAssignmentApprovalStageOperationResponse, err error) {
+func (c EntitlementManagementAccessPackageAssignmentApprovalStageClient) CreateEntitlementManagementAccessPackageAssignmentApprovalStage(ctx context.Context, id stable.IdentityGovernanceEntitlementManagementAccessPackageAssignmentApprovalId, input stable.ApprovalStage, options CreateEntitlementManagementAccessPackageAssignmentApprovalStageOperationOptions) (result CreateEntitlementManagementAccessPackageAssignmentApprovalStageOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/stages", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/stages", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

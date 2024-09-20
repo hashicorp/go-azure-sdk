@@ -99,9 +99,9 @@ func (id IdentityB2xUserFlowIdUserAttributeAssignmentId) Segments() []resourceid
 	return []resourceids.Segment{
 		resourceids.StaticSegment("identity", "identity", "identity"),
 		resourceids.StaticSegment("b2xUserFlows", "b2xUserFlows", "b2xUserFlows"),
-		resourceids.UserSpecifiedSegment("b2xIdentityUserFlowId", "b2xIdentityUserFlowIdValue"),
+		resourceids.UserSpecifiedSegment("b2xIdentityUserFlowId", "b2xIdentityUserFlowId"),
 		resourceids.StaticSegment("userAttributeAssignments", "userAttributeAssignments", "userAttributeAssignments"),
-		resourceids.UserSpecifiedSegment("identityUserFlowAttributeAssignmentId", "identityUserFlowAttributeAssignmentIdValue"),
+		resourceids.UserSpecifiedSegment("identityUserFlowAttributeAssignmentId", "identityUserFlowAttributeAssignmentId"),
 	}
 }
 

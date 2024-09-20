@@ -19,15 +19,44 @@ type CreateTeamScheduleShiftOperationResponse struct {
 	Model        *stable.Shift
 }
 
+type CreateTeamScheduleShiftOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateTeamScheduleShiftOperationOptions() CreateTeamScheduleShiftOperationOptions {
+	return CreateTeamScheduleShiftOperationOptions{}
+}
+
+func (o CreateTeamScheduleShiftOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateTeamScheduleShiftOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateTeamScheduleShiftOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateTeamScheduleShift - Create new navigation property to shifts for groups
-func (c TeamScheduleShiftClient) CreateTeamScheduleShift(ctx context.Context, id stable.GroupId, input stable.Shift) (result CreateTeamScheduleShiftOperationResponse, err error) {
+func (c TeamScheduleShiftClient) CreateTeamScheduleShift(ctx context.Context, id stable.GroupId, input stable.Shift, options CreateTeamScheduleShiftOperationOptions) (result CreateTeamScheduleShiftOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/team/schedule/shifts", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/team/schedule/shifts", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

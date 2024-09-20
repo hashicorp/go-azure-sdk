@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &UserIdPlannerAllId{}
 
 func TestNewUserIdPlannerAllID(t *testing.T) {
-	id := NewUserIdPlannerAllID("userIdValue", "plannerDeltaIdValue")
+	id := NewUserIdPlannerAllID("userId", "plannerDeltaId")
 
-	if id.UserId != "userIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'UserId'", id.UserId, "userIdValue")
+	if id.UserId != "userId" {
+		t.Fatalf("Expected %q but got %q for Segment 'UserId'", id.UserId, "userId")
 	}
 
-	if id.PlannerDeltaId != "plannerDeltaIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'PlannerDeltaId'", id.PlannerDeltaId, "plannerDeltaIdValue")
+	if id.PlannerDeltaId != "plannerDeltaId" {
+		t.Fatalf("Expected %q but got %q for Segment 'PlannerDeltaId'", id.PlannerDeltaId, "plannerDeltaId")
 	}
 }
 
 func TestFormatUserIdPlannerAllID(t *testing.T) {
-	actual := NewUserIdPlannerAllID("userIdValue", "plannerDeltaIdValue").ID()
-	expected := "/users/userIdValue/planner/all/plannerDeltaIdValue"
+	actual := NewUserIdPlannerAllID("userId", "plannerDeltaId").ID()
+	expected := "/users/userId/planner/all/plannerDeltaId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -49,30 +49,30 @@ func TestParseUserIdPlannerAllID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue",
+			Input: "/users/userId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/planner",
+			Input: "/users/userId/planner",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/planner/all",
+			Input: "/users/userId/planner/all",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/users/userIdValue/planner/all/plannerDeltaIdValue",
+			Input: "/users/userId/planner/all/plannerDeltaId",
 			Expected: &UserIdPlannerAllId{
-				UserId:         "userIdValue",
-				PlannerDeltaId: "plannerDeltaIdValue",
+				UserId:         "userId",
+				PlannerDeltaId: "plannerDeltaId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/users/userIdValue/planner/all/plannerDeltaIdValue/extra",
+			Input: "/users/userId/planner/all/plannerDeltaId/extra",
 			Error: true,
 		},
 	}
@@ -125,58 +125,58 @@ func TestParseUserIdPlannerAllIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue",
+			Input: "/users/userId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe",
+			Input: "/uSeRs/uSeRiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/planner",
+			Input: "/users/userId/planner",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/pLaNnEr",
+			Input: "/uSeRs/uSeRiD/pLaNnEr",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/planner/all",
+			Input: "/users/userId/planner/all",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/pLaNnEr/aLl",
+			Input: "/uSeRs/uSeRiD/pLaNnEr/aLl",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/users/userIdValue/planner/all/plannerDeltaIdValue",
+			Input: "/users/userId/planner/all/plannerDeltaId",
 			Expected: &UserIdPlannerAllId{
-				UserId:         "userIdValue",
-				PlannerDeltaId: "plannerDeltaIdValue",
+				UserId:         "userId",
+				PlannerDeltaId: "plannerDeltaId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/users/userIdValue/planner/all/plannerDeltaIdValue/extra",
+			Input: "/users/userId/planner/all/plannerDeltaId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/pLaNnEr/aLl/pLaNnErDeLtAiDvAlUe",
+			Input: "/uSeRs/uSeRiD/pLaNnEr/aLl/pLaNnErDeLtAiD",
 			Expected: &UserIdPlannerAllId{
-				UserId:         "uSeRiDvAlUe",
-				PlannerDeltaId: "pLaNnErDeLtAiDvAlUe",
+				UserId:         "uSeRiD",
+				PlannerDeltaId: "pLaNnErDeLtAiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/pLaNnEr/aLl/pLaNnErDeLtAiDvAlUe/extra",
+			Input: "/uSeRs/uSeRiD/pLaNnEr/aLl/pLaNnErDeLtAiD/extra",
 			Error: true,
 		},
 	}

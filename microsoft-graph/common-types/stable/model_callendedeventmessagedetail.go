@@ -72,10 +72,17 @@ func (s CallEndedEventMessageDetail) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &CallEndedEventMessageDetail{}
 
 func (s *CallEndedEventMessageDetail) UnmarshalJSON(bytes []byte) error {
-	type alias CallEndedEventMessageDetail
-	var decoded alias
+
+	var decoded struct {
+		CallDuration     nullable.Type[string]  `json:"callDuration,omitempty"`
+		CallEventType    *TeamworkCallEventType `json:"callEventType,omitempty"`
+		CallId           nullable.Type[string]  `json:"callId,omitempty"`
+		CallParticipants *[]CallParticipantInfo `json:"callParticipants,omitempty"`
+		ODataId          *string                `json:"@odata.id,omitempty"`
+		ODataType        *string                `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into CallEndedEventMessageDetail: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.CallDuration = decoded.CallDuration
@@ -97,5 +104,6 @@ func (s *CallEndedEventMessageDetail) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Initiator = impl
 	}
+
 	return nil
 }

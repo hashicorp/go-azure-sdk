@@ -20,15 +20,44 @@ type CreateVerificationDnsRecordOperationResponse struct {
 	Model        stable.DomainDnsRecord
 }
 
+type CreateVerificationDnsRecordOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateVerificationDnsRecordOperationOptions() CreateVerificationDnsRecordOperationOptions {
+	return CreateVerificationDnsRecordOperationOptions{}
+}
+
+func (o CreateVerificationDnsRecordOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateVerificationDnsRecordOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateVerificationDnsRecordOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateVerificationDnsRecord - Create new navigation property to verificationDnsRecords for domains
-func (c VerificationDnsRecordClient) CreateVerificationDnsRecord(ctx context.Context, id stable.DomainId, input stable.DomainDnsRecord) (result CreateVerificationDnsRecordOperationResponse, err error) {
+func (c VerificationDnsRecordClient) CreateVerificationDnsRecord(ctx context.Context, id stable.DomainId, input stable.DomainDnsRecord, options CreateVerificationDnsRecordOperationOptions) (result CreateVerificationDnsRecordOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/verificationDnsRecords", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/verificationDnsRecords", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

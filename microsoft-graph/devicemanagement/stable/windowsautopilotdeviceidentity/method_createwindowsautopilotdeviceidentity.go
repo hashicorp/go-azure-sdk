@@ -18,16 +18,45 @@ type CreateWindowsAutopilotDeviceIdentityOperationResponse struct {
 	Model        *stable.WindowsAutopilotDeviceIdentity
 }
 
+type CreateWindowsAutopilotDeviceIdentityOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateWindowsAutopilotDeviceIdentityOperationOptions() CreateWindowsAutopilotDeviceIdentityOperationOptions {
+	return CreateWindowsAutopilotDeviceIdentityOperationOptions{}
+}
+
+func (o CreateWindowsAutopilotDeviceIdentityOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateWindowsAutopilotDeviceIdentityOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateWindowsAutopilotDeviceIdentityOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateWindowsAutopilotDeviceIdentity - Create windowsAutopilotDeviceIdentity. Create a new
 // windowsAutopilotDeviceIdentity object.
-func (c WindowsAutopilotDeviceIdentityClient) CreateWindowsAutopilotDeviceIdentity(ctx context.Context, input stable.WindowsAutopilotDeviceIdentity) (result CreateWindowsAutopilotDeviceIdentityOperationResponse, err error) {
+func (c WindowsAutopilotDeviceIdentityClient) CreateWindowsAutopilotDeviceIdentity(ctx context.Context, input stable.WindowsAutopilotDeviceIdentity, options CreateWindowsAutopilotDeviceIdentityOperationOptions) (result CreateWindowsAutopilotDeviceIdentityOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/deviceManagement/windowsAutopilotDeviceIdentities",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/deviceManagement/windowsAutopilotDeviceIdentities",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

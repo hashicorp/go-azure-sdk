@@ -18,16 +18,45 @@ type SnoozeCalendarViewExceptionOccurrenceReminderOperationResponse struct {
 	OData        *odata.OData
 }
 
+type SnoozeCalendarViewExceptionOccurrenceReminderOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultSnoozeCalendarViewExceptionOccurrenceReminderOperationOptions() SnoozeCalendarViewExceptionOccurrenceReminderOperationOptions {
+	return SnoozeCalendarViewExceptionOccurrenceReminderOperationOptions{}
+}
+
+func (o SnoozeCalendarViewExceptionOccurrenceReminderOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o SnoozeCalendarViewExceptionOccurrenceReminderOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o SnoozeCalendarViewExceptionOccurrenceReminderOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // SnoozeCalendarViewExceptionOccurrenceReminder - Invoke action snoozeReminder. Postpone a reminder for an event in a
 // user calendar until a new time.
-func (c CalendarViewExceptionOccurrenceClient) SnoozeCalendarViewExceptionOccurrenceReminder(ctx context.Context, id beta.GroupIdCalendarViewIdExceptionOccurrenceId, input SnoozeCalendarViewExceptionOccurrenceReminderRequest) (result SnoozeCalendarViewExceptionOccurrenceReminderOperationResponse, err error) {
+func (c CalendarViewExceptionOccurrenceClient) SnoozeCalendarViewExceptionOccurrenceReminder(ctx context.Context, id beta.GroupIdCalendarViewIdExceptionOccurrenceId, input SnoozeCalendarViewExceptionOccurrenceReminderRequest, options SnoozeCalendarViewExceptionOccurrenceReminderOperationOptions) (result SnoozeCalendarViewExceptionOccurrenceReminderOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/snoozeReminder", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/snoozeReminder", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

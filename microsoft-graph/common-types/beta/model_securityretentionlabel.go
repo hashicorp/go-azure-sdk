@@ -118,10 +118,28 @@ func (s SecurityRetentionLabel) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &SecurityRetentionLabel{}
 
 func (s *SecurityRetentionLabel) UnmarshalJSON(bytes []byte) error {
-	type alias SecurityRetentionLabel
-	var decoded alias
+
+	var decoded struct {
+		ActionAfterRetentionPeriod    *SecurityActionAfterRetentionPeriod    `json:"actionAfterRetentionPeriod,omitempty"`
+		BehaviorDuringRetentionPeriod *SecurityBehaviorDuringRetentionPeriod `json:"behaviorDuringRetentionPeriod,omitempty"`
+		CreatedDateTime               nullable.Type[string]                  `json:"createdDateTime,omitempty"`
+		DefaultRecordBehavior         *SecurityDefaultRecordBehavior         `json:"defaultRecordBehavior,omitempty"`
+		DescriptionForAdmins          nullable.Type[string]                  `json:"descriptionForAdmins,omitempty"`
+		DescriptionForUsers           nullable.Type[string]                  `json:"descriptionForUsers,omitempty"`
+		Descriptors                   *SecurityFilePlanDescriptor            `json:"descriptors,omitempty"`
+		DisplayName                   nullable.Type[string]                  `json:"displayName,omitempty"`
+		DispositionReviewStages       *[]SecurityDispositionReviewStage      `json:"dispositionReviewStages,omitempty"`
+		IsInUse                       nullable.Type[bool]                    `json:"isInUse,omitempty"`
+		LabelToBeApplied              nullable.Type[string]                  `json:"labelToBeApplied,omitempty"`
+		LastModifiedDateTime          nullable.Type[string]                  `json:"lastModifiedDateTime,omitempty"`
+		RetentionEventType            *SecurityRetentionEventType            `json:"retentionEventType,omitempty"`
+		RetentionTrigger              *SecurityRetentionTrigger              `json:"retentionTrigger,omitempty"`
+		Id                            *string                                `json:"id,omitempty"`
+		ODataId                       *string                                `json:"@odata.id,omitempty"`
+		ODataType                     *string                                `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into SecurityRetentionLabel: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.ActionAfterRetentionPeriod = decoded.ActionAfterRetentionPeriod
@@ -133,14 +151,14 @@ func (s *SecurityRetentionLabel) UnmarshalJSON(bytes []byte) error {
 	s.Descriptors = decoded.Descriptors
 	s.DisplayName = decoded.DisplayName
 	s.DispositionReviewStages = decoded.DispositionReviewStages
-	s.Id = decoded.Id
 	s.IsInUse = decoded.IsInUse
 	s.LabelToBeApplied = decoded.LabelToBeApplied
 	s.LastModifiedDateTime = decoded.LastModifiedDateTime
-	s.ODataId = decoded.ODataId
-	s.ODataType = decoded.ODataType
 	s.RetentionEventType = decoded.RetentionEventType
 	s.RetentionTrigger = decoded.RetentionTrigger
+	s.Id = decoded.Id
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -170,5 +188,6 @@ func (s *SecurityRetentionLabel) UnmarshalJSON(bytes []byte) error {
 		}
 		s.RetentionDuration = impl
 	}
+
 	return nil
 }

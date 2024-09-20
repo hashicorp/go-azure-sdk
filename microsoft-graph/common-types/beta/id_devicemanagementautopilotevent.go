@@ -93,7 +93,7 @@ func (id DeviceManagementAutopilotEventId) Segments() []resourceids.Segment {
 	return []resourceids.Segment{
 		resourceids.StaticSegment("deviceManagement", "deviceManagement", "deviceManagement"),
 		resourceids.StaticSegment("autopilotEvents", "autopilotEvents", "autopilotEvents"),
-		resourceids.UserSpecifiedSegment("deviceManagementAutopilotEventId", "deviceManagementAutopilotEventIdValue"),
+		resourceids.UserSpecifiedSegment("deviceManagementAutopilotEventId", "deviceManagementAutopilotEventId"),
 	}
 }
 

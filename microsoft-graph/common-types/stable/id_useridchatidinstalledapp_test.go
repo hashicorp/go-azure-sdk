@@ -12,24 +12,24 @@ import (
 var _ resourceids.ResourceId = &UserIdChatIdInstalledAppId{}
 
 func TestNewUserIdChatIdInstalledAppID(t *testing.T) {
-	id := NewUserIdChatIdInstalledAppID("userIdValue", "chatIdValue", "teamsAppInstallationIdValue")
+	id := NewUserIdChatIdInstalledAppID("userId", "chatId", "teamsAppInstallationId")
 
-	if id.UserId != "userIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'UserId'", id.UserId, "userIdValue")
+	if id.UserId != "userId" {
+		t.Fatalf("Expected %q but got %q for Segment 'UserId'", id.UserId, "userId")
 	}
 
-	if id.ChatId != "chatIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ChatId'", id.ChatId, "chatIdValue")
+	if id.ChatId != "chatId" {
+		t.Fatalf("Expected %q but got %q for Segment 'ChatId'", id.ChatId, "chatId")
 	}
 
-	if id.TeamsAppInstallationId != "teamsAppInstallationIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'TeamsAppInstallationId'", id.TeamsAppInstallationId, "teamsAppInstallationIdValue")
+	if id.TeamsAppInstallationId != "teamsAppInstallationId" {
+		t.Fatalf("Expected %q but got %q for Segment 'TeamsAppInstallationId'", id.TeamsAppInstallationId, "teamsAppInstallationId")
 	}
 }
 
 func TestFormatUserIdChatIdInstalledAppID(t *testing.T) {
-	actual := NewUserIdChatIdInstalledAppID("userIdValue", "chatIdValue", "teamsAppInstallationIdValue").ID()
-	expected := "/users/userIdValue/chats/chatIdValue/installedApps/teamsAppInstallationIdValue"
+	actual := NewUserIdChatIdInstalledAppID("userId", "chatId", "teamsAppInstallationId").ID()
+	expected := "/users/userId/chats/chatId/installedApps/teamsAppInstallationId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -53,36 +53,36 @@ func TestParseUserIdChatIdInstalledAppID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue",
+			Input: "/users/userId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/chats",
+			Input: "/users/userId/chats",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/chats/chatIdValue",
+			Input: "/users/userId/chats/chatId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/chats/chatIdValue/installedApps",
+			Input: "/users/userId/chats/chatId/installedApps",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/users/userIdValue/chats/chatIdValue/installedApps/teamsAppInstallationIdValue",
+			Input: "/users/userId/chats/chatId/installedApps/teamsAppInstallationId",
 			Expected: &UserIdChatIdInstalledAppId{
-				UserId:                 "userIdValue",
-				ChatId:                 "chatIdValue",
-				TeamsAppInstallationId: "teamsAppInstallationIdValue",
+				UserId:                 "userId",
+				ChatId:                 "chatId",
+				TeamsAppInstallationId: "teamsAppInstallationId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/users/userIdValue/chats/chatIdValue/installedApps/teamsAppInstallationIdValue/extra",
+			Input: "/users/userId/chats/chatId/installedApps/teamsAppInstallationId/extra",
 			Error: true,
 		},
 	}
@@ -139,70 +139,70 @@ func TestParseUserIdChatIdInstalledAppIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue",
+			Input: "/users/userId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe",
+			Input: "/uSeRs/uSeRiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/chats",
+			Input: "/users/userId/chats",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/cHaTs",
+			Input: "/uSeRs/uSeRiD/cHaTs",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/chats/chatIdValue",
+			Input: "/users/userId/chats/chatId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/cHaTs/cHaTiDvAlUe",
+			Input: "/uSeRs/uSeRiD/cHaTs/cHaTiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/chats/chatIdValue/installedApps",
+			Input: "/users/userId/chats/chatId/installedApps",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/cHaTs/cHaTiDvAlUe/iNsTaLlEdApPs",
+			Input: "/uSeRs/uSeRiD/cHaTs/cHaTiD/iNsTaLlEdApPs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/users/userIdValue/chats/chatIdValue/installedApps/teamsAppInstallationIdValue",
+			Input: "/users/userId/chats/chatId/installedApps/teamsAppInstallationId",
 			Expected: &UserIdChatIdInstalledAppId{
-				UserId:                 "userIdValue",
-				ChatId:                 "chatIdValue",
-				TeamsAppInstallationId: "teamsAppInstallationIdValue",
+				UserId:                 "userId",
+				ChatId:                 "chatId",
+				TeamsAppInstallationId: "teamsAppInstallationId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/users/userIdValue/chats/chatIdValue/installedApps/teamsAppInstallationIdValue/extra",
+			Input: "/users/userId/chats/chatId/installedApps/teamsAppInstallationId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/cHaTs/cHaTiDvAlUe/iNsTaLlEdApPs/tEaMsApPiNsTaLlAtIoNiDvAlUe",
+			Input: "/uSeRs/uSeRiD/cHaTs/cHaTiD/iNsTaLlEdApPs/tEaMsApPiNsTaLlAtIoNiD",
 			Expected: &UserIdChatIdInstalledAppId{
-				UserId:                 "uSeRiDvAlUe",
-				ChatId:                 "cHaTiDvAlUe",
-				TeamsAppInstallationId: "tEaMsApPiNsTaLlAtIoNiDvAlUe",
+				UserId:                 "uSeRiD",
+				ChatId:                 "cHaTiD",
+				TeamsAppInstallationId: "tEaMsApPiNsTaLlAtIoNiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/cHaTs/cHaTiDvAlUe/iNsTaLlEdApPs/tEaMsApPiNsTaLlAtIoNiDvAlUe/extra",
+			Input: "/uSeRs/uSeRiD/cHaTs/cHaTiD/iNsTaLlEdApPs/tEaMsApPiNsTaLlAtIoNiD/extra",
 			Error: true,
 		},
 	}

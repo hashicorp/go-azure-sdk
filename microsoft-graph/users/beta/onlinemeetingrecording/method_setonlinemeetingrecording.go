@@ -18,16 +18,45 @@ type SetOnlineMeetingRecordingOperationResponse struct {
 	OData        *odata.OData
 }
 
+type SetOnlineMeetingRecordingOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultSetOnlineMeetingRecordingOperationOptions() SetOnlineMeetingRecordingOperationOptions {
+	return SetOnlineMeetingRecordingOperationOptions{}
+}
+
+func (o SetOnlineMeetingRecordingOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o SetOnlineMeetingRecordingOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o SetOnlineMeetingRecordingOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // SetOnlineMeetingRecording - Update recording for the navigation property onlineMeetings in users. The content stream
 // of the recording of a Teams live event. Read-only.
-func (c OnlineMeetingRecordingClient) SetOnlineMeetingRecording(ctx context.Context, id beta.UserIdOnlineMeetingId, input []byte) (result SetOnlineMeetingRecordingOperationResponse, err error) {
+func (c OnlineMeetingRecordingClient) SetOnlineMeetingRecording(ctx context.Context, id beta.UserIdOnlineMeetingId, input []byte, options SetOnlineMeetingRecordingOperationOptions) (result SetOnlineMeetingRecordingOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPut,
-		Path:       fmt.Sprintf("%s/recording", id.ID()),
+		HttpMethod:    http.MethodPut,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/recording", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

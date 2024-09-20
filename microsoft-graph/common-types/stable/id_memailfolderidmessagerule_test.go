@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &MeMailFolderIdMessageRuleId{}
 
 func TestNewMeMailFolderIdMessageRuleID(t *testing.T) {
-	id := NewMeMailFolderIdMessageRuleID("mailFolderIdValue", "messageRuleIdValue")
+	id := NewMeMailFolderIdMessageRuleID("mailFolderId", "messageRuleId")
 
-	if id.MailFolderId != "mailFolderIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'MailFolderId'", id.MailFolderId, "mailFolderIdValue")
+	if id.MailFolderId != "mailFolderId" {
+		t.Fatalf("Expected %q but got %q for Segment 'MailFolderId'", id.MailFolderId, "mailFolderId")
 	}
 
-	if id.MessageRuleId != "messageRuleIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'MessageRuleId'", id.MessageRuleId, "messageRuleIdValue")
+	if id.MessageRuleId != "messageRuleId" {
+		t.Fatalf("Expected %q but got %q for Segment 'MessageRuleId'", id.MessageRuleId, "messageRuleId")
 	}
 }
 
 func TestFormatMeMailFolderIdMessageRuleID(t *testing.T) {
-	actual := NewMeMailFolderIdMessageRuleID("mailFolderIdValue", "messageRuleIdValue").ID()
-	expected := "/me/mailFolders/mailFolderIdValue/messageRules/messageRuleIdValue"
+	actual := NewMeMailFolderIdMessageRuleID("mailFolderId", "messageRuleId").ID()
+	expected := "/me/mailFolders/mailFolderId/messageRules/messageRuleId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -54,25 +54,25 @@ func TestParseMeMailFolderIdMessageRuleID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/me/mailFolders/mailFolderIdValue",
+			Input: "/me/mailFolders/mailFolderId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/me/mailFolders/mailFolderIdValue/messageRules",
+			Input: "/me/mailFolders/mailFolderId/messageRules",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/me/mailFolders/mailFolderIdValue/messageRules/messageRuleIdValue",
+			Input: "/me/mailFolders/mailFolderId/messageRules/messageRuleId",
 			Expected: &MeMailFolderIdMessageRuleId{
-				MailFolderId:  "mailFolderIdValue",
-				MessageRuleId: "messageRuleIdValue",
+				MailFolderId:  "mailFolderId",
+				MessageRuleId: "messageRuleId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/mailFolders/mailFolderIdValue/messageRules/messageRuleIdValue/extra",
+			Input: "/me/mailFolders/mailFolderId/messageRules/messageRuleId/extra",
 			Error: true,
 		},
 	}
@@ -135,48 +135,48 @@ func TestParseMeMailFolderIdMessageRuleIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/me/mailFolders/mailFolderIdValue",
+			Input: "/me/mailFolders/mailFolderId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/mAiLfOlDeRs/mAiLfOlDeRiDvAlUe",
+			Input: "/mE/mAiLfOlDeRs/mAiLfOlDeRiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/me/mailFolders/mailFolderIdValue/messageRules",
+			Input: "/me/mailFolders/mailFolderId/messageRules",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/mAiLfOlDeRs/mAiLfOlDeRiDvAlUe/mEsSaGeRuLeS",
+			Input: "/mE/mAiLfOlDeRs/mAiLfOlDeRiD/mEsSaGeRuLeS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/me/mailFolders/mailFolderIdValue/messageRules/messageRuleIdValue",
+			Input: "/me/mailFolders/mailFolderId/messageRules/messageRuleId",
 			Expected: &MeMailFolderIdMessageRuleId{
-				MailFolderId:  "mailFolderIdValue",
-				MessageRuleId: "messageRuleIdValue",
+				MailFolderId:  "mailFolderId",
+				MessageRuleId: "messageRuleId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/mailFolders/mailFolderIdValue/messageRules/messageRuleIdValue/extra",
+			Input: "/me/mailFolders/mailFolderId/messageRules/messageRuleId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/mAiLfOlDeRs/mAiLfOlDeRiDvAlUe/mEsSaGeRuLeS/mEsSaGeRuLeIdVaLuE",
+			Input: "/mE/mAiLfOlDeRs/mAiLfOlDeRiD/mEsSaGeRuLeS/mEsSaGeRuLeId",
 			Expected: &MeMailFolderIdMessageRuleId{
-				MailFolderId:  "mAiLfOlDeRiDvAlUe",
-				MessageRuleId: "mEsSaGeRuLeIdVaLuE",
+				MailFolderId:  "mAiLfOlDeRiD",
+				MessageRuleId: "mEsSaGeRuLeId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/mE/mAiLfOlDeRs/mAiLfOlDeRiDvAlUe/mEsSaGeRuLeS/mEsSaGeRuLeIdVaLuE/extra",
+			Input: "/mE/mAiLfOlDeRs/mAiLfOlDeRiD/mEsSaGeRuLeS/mEsSaGeRuLeId/extra",
 			Error: true,
 		},
 	}

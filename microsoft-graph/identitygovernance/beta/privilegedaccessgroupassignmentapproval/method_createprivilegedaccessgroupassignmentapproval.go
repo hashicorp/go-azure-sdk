@@ -18,16 +18,45 @@ type CreatePrivilegedAccessGroupAssignmentApprovalOperationResponse struct {
 	Model        *beta.Approval
 }
 
+type CreatePrivilegedAccessGroupAssignmentApprovalOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreatePrivilegedAccessGroupAssignmentApprovalOperationOptions() CreatePrivilegedAccessGroupAssignmentApprovalOperationOptions {
+	return CreatePrivilegedAccessGroupAssignmentApprovalOperationOptions{}
+}
+
+func (o CreatePrivilegedAccessGroupAssignmentApprovalOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreatePrivilegedAccessGroupAssignmentApprovalOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreatePrivilegedAccessGroupAssignmentApprovalOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreatePrivilegedAccessGroupAssignmentApproval - Create new navigation property to assignmentApprovals for
 // identityGovernance
-func (c PrivilegedAccessGroupAssignmentApprovalClient) CreatePrivilegedAccessGroupAssignmentApproval(ctx context.Context, input beta.Approval) (result CreatePrivilegedAccessGroupAssignmentApprovalOperationResponse, err error) {
+func (c PrivilegedAccessGroupAssignmentApprovalClient) CreatePrivilegedAccessGroupAssignmentApproval(ctx context.Context, input beta.Approval, options CreatePrivilegedAccessGroupAssignmentApprovalOperationOptions) (result CreatePrivilegedAccessGroupAssignmentApprovalOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/identityGovernance/privilegedAccess/group/assignmentApprovals",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/identityGovernance/privilegedAccess/group/assignmentApprovals",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

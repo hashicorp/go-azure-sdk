@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &DeviceManagementExchangeOnPremisesPolicyId{}
 
 func TestNewDeviceManagementExchangeOnPremisesPolicyID(t *testing.T) {
-	id := NewDeviceManagementExchangeOnPremisesPolicyID("deviceManagementExchangeOnPremisesPolicyIdValue")
+	id := NewDeviceManagementExchangeOnPremisesPolicyID("deviceManagementExchangeOnPremisesPolicyId")
 
-	if id.DeviceManagementExchangeOnPremisesPolicyId != "deviceManagementExchangeOnPremisesPolicyIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DeviceManagementExchangeOnPremisesPolicyId'", id.DeviceManagementExchangeOnPremisesPolicyId, "deviceManagementExchangeOnPremisesPolicyIdValue")
+	if id.DeviceManagementExchangeOnPremisesPolicyId != "deviceManagementExchangeOnPremisesPolicyId" {
+		t.Fatalf("Expected %q but got %q for Segment 'DeviceManagementExchangeOnPremisesPolicyId'", id.DeviceManagementExchangeOnPremisesPolicyId, "deviceManagementExchangeOnPremisesPolicyId")
 	}
 }
 
 func TestFormatDeviceManagementExchangeOnPremisesPolicyID(t *testing.T) {
-	actual := NewDeviceManagementExchangeOnPremisesPolicyID("deviceManagementExchangeOnPremisesPolicyIdValue").ID()
-	expected := "/deviceManagement/exchangeOnPremisesPolicies/deviceManagementExchangeOnPremisesPolicyIdValue"
+	actual := NewDeviceManagementExchangeOnPremisesPolicyID("deviceManagementExchangeOnPremisesPolicyId").ID()
+	expected := "/deviceManagement/exchangeOnPremisesPolicies/deviceManagementExchangeOnPremisesPolicyId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -50,14 +50,14 @@ func TestParseDeviceManagementExchangeOnPremisesPolicyID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/exchangeOnPremisesPolicies/deviceManagementExchangeOnPremisesPolicyIdValue",
+			Input: "/deviceManagement/exchangeOnPremisesPolicies/deviceManagementExchangeOnPremisesPolicyId",
 			Expected: &DeviceManagementExchangeOnPremisesPolicyId{
-				DeviceManagementExchangeOnPremisesPolicyId: "deviceManagementExchangeOnPremisesPolicyIdValue",
+				DeviceManagementExchangeOnPremisesPolicyId: "deviceManagementExchangeOnPremisesPolicyId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/exchangeOnPremisesPolicies/deviceManagementExchangeOnPremisesPolicyIdValue/extra",
+			Input: "/deviceManagement/exchangeOnPremisesPolicies/deviceManagementExchangeOnPremisesPolicyId/extra",
 			Error: true,
 		},
 	}
@@ -116,26 +116,26 @@ func TestParseDeviceManagementExchangeOnPremisesPolicyIDInsensitively(t *testing
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/exchangeOnPremisesPolicies/deviceManagementExchangeOnPremisesPolicyIdValue",
+			Input: "/deviceManagement/exchangeOnPremisesPolicies/deviceManagementExchangeOnPremisesPolicyId",
 			Expected: &DeviceManagementExchangeOnPremisesPolicyId{
-				DeviceManagementExchangeOnPremisesPolicyId: "deviceManagementExchangeOnPremisesPolicyIdValue",
+				DeviceManagementExchangeOnPremisesPolicyId: "deviceManagementExchangeOnPremisesPolicyId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/exchangeOnPremisesPolicies/deviceManagementExchangeOnPremisesPolicyIdValue/extra",
+			Input: "/deviceManagement/exchangeOnPremisesPolicies/deviceManagementExchangeOnPremisesPolicyId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/eXcHaNgEoNpReMiSeSpOlIcIeS/dEvIcEmAnAgEmEnTeXcHaNgEoNpReMiSeSpOlIcYiDvAlUe",
+			Input: "/dEvIcEmAnAgEmEnT/eXcHaNgEoNpReMiSeSpOlIcIeS/dEvIcEmAnAgEmEnTeXcHaNgEoNpReMiSeSpOlIcYiD",
 			Expected: &DeviceManagementExchangeOnPremisesPolicyId{
-				DeviceManagementExchangeOnPremisesPolicyId: "dEvIcEmAnAgEmEnTeXcHaNgEoNpReMiSeSpOlIcYiDvAlUe",
+				DeviceManagementExchangeOnPremisesPolicyId: "dEvIcEmAnAgEmEnTeXcHaNgEoNpReMiSeSpOlIcYiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/eXcHaNgEoNpReMiSeSpOlIcIeS/dEvIcEmAnAgEmEnTeXcHaNgEoNpReMiSeSpOlIcYiDvAlUe/extra",
+			Input: "/dEvIcEmAnAgEmEnT/eXcHaNgEoNpReMiSeSpOlIcIeS/dEvIcEmAnAgEmEnTeXcHaNgEoNpReMiSeSpOlIcYiD/extra",
 			Error: true,
 		},
 	}

@@ -246,15 +246,60 @@ func (s CalendarSharingMessage) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &CalendarSharingMessage{}
 
 func (s *CalendarSharingMessage) UnmarshalJSON(bytes []byte) error {
-	type alias CalendarSharingMessage
-	var decoded alias
+
+	var decoded struct {
+		CanAccept                     nullable.Type[bool]                  `json:"canAccept,omitempty"`
+		SharingMessageAction          *CalendarSharingMessageAction        `json:"sharingMessageAction,omitempty"`
+		SharingMessageActions         *[]CalendarSharingMessageAction      `json:"sharingMessageActions,omitempty"`
+		SuggestedCalendarName         nullable.Type[string]                `json:"suggestedCalendarName,omitempty"`
+		Attachments                   *[]Attachment                        `json:"attachments,omitempty"`
+		BccRecipients                 *[]Recipient                         `json:"bccRecipients,omitempty"`
+		Body                          *ItemBody                            `json:"body,omitempty"`
+		BodyPreview                   nullable.Type[string]                `json:"bodyPreview,omitempty"`
+		CcRecipients                  *[]Recipient                         `json:"ccRecipients,omitempty"`
+		ConversationId                nullable.Type[string]                `json:"conversationId,omitempty"`
+		ConversationIndex             nullable.Type[string]                `json:"conversationIndex,omitempty"`
+		Extensions                    *[]Extension                         `json:"extensions,omitempty"`
+		Flag                          *FollowupFlag                        `json:"flag,omitempty"`
+		From                          Recipient                            `json:"from"`
+		HasAttachments                nullable.Type[bool]                  `json:"hasAttachments,omitempty"`
+		Importance                    *Importance                          `json:"importance,omitempty"`
+		InferenceClassification       *InferenceClassificationType         `json:"inferenceClassification,omitempty"`
+		InternetMessageHeaders        *[]InternetMessageHeader             `json:"internetMessageHeaders,omitempty"`
+		InternetMessageId             nullable.Type[string]                `json:"internetMessageId,omitempty"`
+		IsDeliveryReceiptRequested    nullable.Type[bool]                  `json:"isDeliveryReceiptRequested,omitempty"`
+		IsDraft                       nullable.Type[bool]                  `json:"isDraft,omitempty"`
+		IsRead                        nullable.Type[bool]                  `json:"isRead,omitempty"`
+		IsReadReceiptRequested        nullable.Type[bool]                  `json:"isReadReceiptRequested,omitempty"`
+		MultiValueExtendedProperties  *[]MultiValueLegacyExtendedProperty  `json:"multiValueExtendedProperties,omitempty"`
+		ParentFolderId                nullable.Type[string]                `json:"parentFolderId,omitempty"`
+		ReceivedDateTime              nullable.Type[string]                `json:"receivedDateTime,omitempty"`
+		ReplyTo                       *[]Recipient                         `json:"replyTo,omitempty"`
+		Sender                        Recipient                            `json:"sender"`
+		SentDateTime                  nullable.Type[string]                `json:"sentDateTime,omitempty"`
+		SingleValueExtendedProperties *[]SingleValueLegacyExtendedProperty `json:"singleValueExtendedProperties,omitempty"`
+		Subject                       nullable.Type[string]                `json:"subject,omitempty"`
+		ToRecipients                  *[]Recipient                         `json:"toRecipients,omitempty"`
+		UniqueBody                    *ItemBody                            `json:"uniqueBody,omitempty"`
+		WebLink                       nullable.Type[string]                `json:"webLink,omitempty"`
+		Categories                    *[]string                            `json:"categories,omitempty"`
+		ChangeKey                     nullable.Type[string]                `json:"changeKey,omitempty"`
+		CreatedDateTime               nullable.Type[string]                `json:"createdDateTime,omitempty"`
+		LastModifiedDateTime          nullable.Type[string]                `json:"lastModifiedDateTime,omitempty"`
+		Id                            *string                              `json:"id,omitempty"`
+		ODataId                       *string                              `json:"@odata.id,omitempty"`
+		ODataType                     *string                              `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into CalendarSharingMessage: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
+	s.CanAccept = decoded.CanAccept
+	s.SharingMessageAction = decoded.SharingMessageAction
+	s.SharingMessageActions = decoded.SharingMessageActions
+	s.SuggestedCalendarName = decoded.SuggestedCalendarName
 	s.Body = decoded.Body
 	s.BodyPreview = decoded.BodyPreview
-	s.CanAccept = decoded.CanAccept
 	s.Categories = decoded.Categories
 	s.ChangeKey = decoded.ChangeKey
 	s.ConversationId = decoded.ConversationId
@@ -278,11 +323,8 @@ func (s *CalendarSharingMessage) UnmarshalJSON(bytes []byte) error {
 	s.ParentFolderId = decoded.ParentFolderId
 	s.ReceivedDateTime = decoded.ReceivedDateTime
 	s.SentDateTime = decoded.SentDateTime
-	s.SharingMessageAction = decoded.SharingMessageAction
-	s.SharingMessageActions = decoded.SharingMessageActions
 	s.SingleValueExtendedProperties = decoded.SingleValueExtendedProperties
 	s.Subject = decoded.Subject
-	s.SuggestedCalendarName = decoded.SuggestedCalendarName
 	s.UniqueBody = decoded.UniqueBody
 	s.WebLink = decoded.WebLink
 
@@ -408,5 +450,6 @@ func (s *CalendarSharingMessage) UnmarshalJSON(bytes []byte) error {
 		}
 		s.ToRecipients = &output
 	}
+
 	return nil
 }

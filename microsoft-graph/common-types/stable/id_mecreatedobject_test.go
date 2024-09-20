@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &MeCreatedObjectId{}
 
 func TestNewMeCreatedObjectID(t *testing.T) {
-	id := NewMeCreatedObjectID("directoryObjectIdValue")
+	id := NewMeCreatedObjectID("directoryObjectId")
 
-	if id.DirectoryObjectId != "directoryObjectIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DirectoryObjectId'", id.DirectoryObjectId, "directoryObjectIdValue")
+	if id.DirectoryObjectId != "directoryObjectId" {
+		t.Fatalf("Expected %q but got %q for Segment 'DirectoryObjectId'", id.DirectoryObjectId, "directoryObjectId")
 	}
 }
 
 func TestFormatMeCreatedObjectID(t *testing.T) {
-	actual := NewMeCreatedObjectID("directoryObjectIdValue").ID()
-	expected := "/me/createdObjects/directoryObjectIdValue"
+	actual := NewMeCreatedObjectID("directoryObjectId").ID()
+	expected := "/me/createdObjects/directoryObjectId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -50,14 +50,14 @@ func TestParseMeCreatedObjectID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/me/createdObjects/directoryObjectIdValue",
+			Input: "/me/createdObjects/directoryObjectId",
 			Expected: &MeCreatedObjectId{
-				DirectoryObjectId: "directoryObjectIdValue",
+				DirectoryObjectId: "directoryObjectId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/createdObjects/directoryObjectIdValue/extra",
+			Input: "/me/createdObjects/directoryObjectId/extra",
 			Error: true,
 		},
 	}
@@ -116,26 +116,26 @@ func TestParseMeCreatedObjectIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/me/createdObjects/directoryObjectIdValue",
+			Input: "/me/createdObjects/directoryObjectId",
 			Expected: &MeCreatedObjectId{
-				DirectoryObjectId: "directoryObjectIdValue",
+				DirectoryObjectId: "directoryObjectId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/createdObjects/directoryObjectIdValue/extra",
+			Input: "/me/createdObjects/directoryObjectId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/cReAtEdObJeCtS/dIrEcToRyObJeCtIdVaLuE",
+			Input: "/mE/cReAtEdObJeCtS/dIrEcToRyObJeCtId",
 			Expected: &MeCreatedObjectId{
-				DirectoryObjectId: "dIrEcToRyObJeCtIdVaLuE",
+				DirectoryObjectId: "dIrEcToRyObJeCtId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/mE/cReAtEdObJeCtS/dIrEcToRyObJeCtIdVaLuE/extra",
+			Input: "/mE/cReAtEdObJeCtS/dIrEcToRyObJeCtId/extra",
 			Error: true,
 		},
 	}

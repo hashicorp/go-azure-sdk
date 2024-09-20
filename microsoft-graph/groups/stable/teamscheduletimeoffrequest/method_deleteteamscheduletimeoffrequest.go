@@ -19,7 +19,8 @@ type DeleteTeamScheduleTimeOffRequestOperationResponse struct {
 }
 
 type DeleteTeamScheduleTimeOffRequestOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteTeamScheduleTimeOffRequestOperationOptions() DeleteTeamScheduleTimeOffRequestOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteTeamScheduleTimeOffRequestOperationOptions) ToHeaders() *client.He
 
 func (o DeleteTeamScheduleTimeOffRequestOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

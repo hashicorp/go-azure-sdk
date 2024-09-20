@@ -12,28 +12,28 @@ import (
 var _ resourceids.ResourceId = &GroupIdSiteIdContentTypeIdBaseTypeId{}
 
 func TestNewGroupIdSiteIdContentTypeIdBaseTypeID(t *testing.T) {
-	id := NewGroupIdSiteIdContentTypeIdBaseTypeID("groupIdValue", "siteIdValue", "contentTypeIdValue", "contentTypeId1Value")
+	id := NewGroupIdSiteIdContentTypeIdBaseTypeID("groupId", "siteId", "contentTypeId", "contentTypeId1")
 
-	if id.GroupId != "groupIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'GroupId'", id.GroupId, "groupIdValue")
+	if id.GroupId != "groupId" {
+		t.Fatalf("Expected %q but got %q for Segment 'GroupId'", id.GroupId, "groupId")
 	}
 
-	if id.SiteId != "siteIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'SiteId'", id.SiteId, "siteIdValue")
+	if id.SiteId != "siteId" {
+		t.Fatalf("Expected %q but got %q for Segment 'SiteId'", id.SiteId, "siteId")
 	}
 
-	if id.ContentTypeId != "contentTypeIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ContentTypeId'", id.ContentTypeId, "contentTypeIdValue")
+	if id.ContentTypeId != "contentTypeId" {
+		t.Fatalf("Expected %q but got %q for Segment 'ContentTypeId'", id.ContentTypeId, "contentTypeId")
 	}
 
-	if id.ContentTypeId1 != "contentTypeId1Value" {
-		t.Fatalf("Expected %q but got %q for Segment 'ContentTypeId1'", id.ContentTypeId1, "contentTypeId1Value")
+	if id.ContentTypeId1 != "contentTypeId1" {
+		t.Fatalf("Expected %q but got %q for Segment 'ContentTypeId1'", id.ContentTypeId1, "contentTypeId1")
 	}
 }
 
 func TestFormatGroupIdSiteIdContentTypeIdBaseTypeID(t *testing.T) {
-	actual := NewGroupIdSiteIdContentTypeIdBaseTypeID("groupIdValue", "siteIdValue", "contentTypeIdValue", "contentTypeId1Value").ID()
-	expected := "/groups/groupIdValue/sites/siteIdValue/contentTypes/contentTypeIdValue/baseTypes/contentTypeId1Value"
+	actual := NewGroupIdSiteIdContentTypeIdBaseTypeID("groupId", "siteId", "contentTypeId", "contentTypeId1").ID()
+	expected := "/groups/groupId/sites/siteId/contentTypes/contentTypeId/baseTypes/contentTypeId1"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -57,47 +57,47 @@ func TestParseGroupIdSiteIdContentTypeIdBaseTypeID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue",
+			Input: "/groups/groupId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/sites",
+			Input: "/groups/groupId/sites",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/sites/siteIdValue",
+			Input: "/groups/groupId/sites/siteId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/sites/siteIdValue/contentTypes",
+			Input: "/groups/groupId/sites/siteId/contentTypes",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/sites/siteIdValue/contentTypes/contentTypeIdValue",
+			Input: "/groups/groupId/sites/siteId/contentTypes/contentTypeId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/sites/siteIdValue/contentTypes/contentTypeIdValue/baseTypes",
+			Input: "/groups/groupId/sites/siteId/contentTypes/contentTypeId/baseTypes",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/groups/groupIdValue/sites/siteIdValue/contentTypes/contentTypeIdValue/baseTypes/contentTypeId1Value",
+			Input: "/groups/groupId/sites/siteId/contentTypes/contentTypeId/baseTypes/contentTypeId1",
 			Expected: &GroupIdSiteIdContentTypeIdBaseTypeId{
-				GroupId:        "groupIdValue",
-				SiteId:         "siteIdValue",
-				ContentTypeId:  "contentTypeIdValue",
-				ContentTypeId1: "contentTypeId1Value",
+				GroupId:        "groupId",
+				SiteId:         "siteId",
+				ContentTypeId:  "contentTypeId",
+				ContentTypeId1: "contentTypeId1",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/groups/groupIdValue/sites/siteIdValue/contentTypes/contentTypeIdValue/baseTypes/contentTypeId1Value/extra",
+			Input: "/groups/groupId/sites/siteId/contentTypes/contentTypeId/baseTypes/contentTypeId1/extra",
 			Error: true,
 		},
 	}
@@ -158,92 +158,92 @@ func TestParseGroupIdSiteIdContentTypeIdBaseTypeIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue",
+			Input: "/groups/groupId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE",
+			Input: "/gRoUpS/gRoUpId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/sites",
+			Input: "/groups/groupId/sites",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/sItEs",
+			Input: "/gRoUpS/gRoUpId/sItEs",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/sites/siteIdValue",
+			Input: "/groups/groupId/sites/siteId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/sItEs/sItEiDvAlUe",
+			Input: "/gRoUpS/gRoUpId/sItEs/sItEiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/sites/siteIdValue/contentTypes",
+			Input: "/groups/groupId/sites/siteId/contentTypes",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/sItEs/sItEiDvAlUe/cOnTeNtTyPeS",
+			Input: "/gRoUpS/gRoUpId/sItEs/sItEiD/cOnTeNtTyPeS",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/sites/siteIdValue/contentTypes/contentTypeIdValue",
+			Input: "/groups/groupId/sites/siteId/contentTypes/contentTypeId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/sItEs/sItEiDvAlUe/cOnTeNtTyPeS/cOnTeNtTyPeIdVaLuE",
+			Input: "/gRoUpS/gRoUpId/sItEs/sItEiD/cOnTeNtTyPeS/cOnTeNtTyPeId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/sites/siteIdValue/contentTypes/contentTypeIdValue/baseTypes",
+			Input: "/groups/groupId/sites/siteId/contentTypes/contentTypeId/baseTypes",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/sItEs/sItEiDvAlUe/cOnTeNtTyPeS/cOnTeNtTyPeIdVaLuE/bAsEtYpEs",
+			Input: "/gRoUpS/gRoUpId/sItEs/sItEiD/cOnTeNtTyPeS/cOnTeNtTyPeId/bAsEtYpEs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/groups/groupIdValue/sites/siteIdValue/contentTypes/contentTypeIdValue/baseTypes/contentTypeId1Value",
+			Input: "/groups/groupId/sites/siteId/contentTypes/contentTypeId/baseTypes/contentTypeId1",
 			Expected: &GroupIdSiteIdContentTypeIdBaseTypeId{
-				GroupId:        "groupIdValue",
-				SiteId:         "siteIdValue",
-				ContentTypeId:  "contentTypeIdValue",
-				ContentTypeId1: "contentTypeId1Value",
+				GroupId:        "groupId",
+				SiteId:         "siteId",
+				ContentTypeId:  "contentTypeId",
+				ContentTypeId1: "contentTypeId1",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/groups/groupIdValue/sites/siteIdValue/contentTypes/contentTypeIdValue/baseTypes/contentTypeId1Value/extra",
+			Input: "/groups/groupId/sites/siteId/contentTypes/contentTypeId/baseTypes/contentTypeId1/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/sItEs/sItEiDvAlUe/cOnTeNtTyPeS/cOnTeNtTyPeIdVaLuE/bAsEtYpEs/cOnTeNtTyPeId1vAlUe",
+			Input: "/gRoUpS/gRoUpId/sItEs/sItEiD/cOnTeNtTyPeS/cOnTeNtTyPeId/bAsEtYpEs/cOnTeNtTyPeId1",
 			Expected: &GroupIdSiteIdContentTypeIdBaseTypeId{
-				GroupId:        "gRoUpIdVaLuE",
-				SiteId:         "sItEiDvAlUe",
-				ContentTypeId:  "cOnTeNtTyPeIdVaLuE",
-				ContentTypeId1: "cOnTeNtTyPeId1vAlUe",
+				GroupId:        "gRoUpId",
+				SiteId:         "sItEiD",
+				ContentTypeId:  "cOnTeNtTyPeId",
+				ContentTypeId1: "cOnTeNtTyPeId1",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/sItEs/sItEiDvAlUe/cOnTeNtTyPeS/cOnTeNtTyPeIdVaLuE/bAsEtYpEs/cOnTeNtTyPeId1vAlUe/extra",
+			Input: "/gRoUpS/gRoUpId/sItEs/sItEiD/cOnTeNtTyPeS/cOnTeNtTyPeId/bAsEtYpEs/cOnTeNtTyPeId1/extra",
 			Error: true,
 		},
 	}

@@ -16,15 +16,44 @@ type CreateAndroidManagedStoreAccountEnterpriseSettingApproveAppOperationRespons
 	OData        *odata.OData
 }
 
+type CreateAndroidManagedStoreAccountEnterpriseSettingApproveAppOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateAndroidManagedStoreAccountEnterpriseSettingApproveAppOperationOptions() CreateAndroidManagedStoreAccountEnterpriseSettingApproveAppOperationOptions {
+	return CreateAndroidManagedStoreAccountEnterpriseSettingApproveAppOperationOptions{}
+}
+
+func (o CreateAndroidManagedStoreAccountEnterpriseSettingApproveAppOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateAndroidManagedStoreAccountEnterpriseSettingApproveAppOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateAndroidManagedStoreAccountEnterpriseSettingApproveAppOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateAndroidManagedStoreAccountEnterpriseSettingApproveApp - Invoke action approveApps
-func (c AndroidManagedStoreAccountEnterpriseSettingClient) CreateAndroidManagedStoreAccountEnterpriseSettingApproveApp(ctx context.Context, input CreateAndroidManagedStoreAccountEnterpriseSettingApproveAppRequest) (result CreateAndroidManagedStoreAccountEnterpriseSettingApproveAppOperationResponse, err error) {
+func (c AndroidManagedStoreAccountEnterpriseSettingClient) CreateAndroidManagedStoreAccountEnterpriseSettingApproveApp(ctx context.Context, input CreateAndroidManagedStoreAccountEnterpriseSettingApproveAppRequest, options CreateAndroidManagedStoreAccountEnterpriseSettingApproveAppOperationOptions) (result CreateAndroidManagedStoreAccountEnterpriseSettingApproveAppOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/deviceManagement/androidManagedStoreAccountEnterpriseSettings/approveApps",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/deviceManagement/androidManagedStoreAccountEnterpriseSettings/approveApps",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

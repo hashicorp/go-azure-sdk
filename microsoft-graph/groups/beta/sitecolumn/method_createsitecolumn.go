@@ -19,15 +19,44 @@ type CreateSiteColumnOperationResponse struct {
 	Model        *beta.ColumnDefinition
 }
 
+type CreateSiteColumnOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateSiteColumnOperationOptions() CreateSiteColumnOperationOptions {
+	return CreateSiteColumnOperationOptions{}
+}
+
+func (o CreateSiteColumnOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateSiteColumnOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateSiteColumnOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateSiteColumn - Create new navigation property to columns for groups
-func (c SiteColumnClient) CreateSiteColumn(ctx context.Context, id beta.GroupIdSiteId, input beta.ColumnDefinition) (result CreateSiteColumnOperationResponse, err error) {
+func (c SiteColumnClient) CreateSiteColumn(ctx context.Context, id beta.GroupIdSiteId, input beta.ColumnDefinition, options CreateSiteColumnOperationOptions) (result CreateSiteColumnOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/columns", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/columns", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

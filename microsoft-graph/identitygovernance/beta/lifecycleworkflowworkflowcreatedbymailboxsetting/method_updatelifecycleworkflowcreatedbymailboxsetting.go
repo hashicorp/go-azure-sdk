@@ -18,15 +18,44 @@ type UpdateLifecycleWorkflowCreatedByMailboxSettingOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateLifecycleWorkflowCreatedByMailboxSettingOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateLifecycleWorkflowCreatedByMailboxSettingOperationOptions() UpdateLifecycleWorkflowCreatedByMailboxSettingOperationOptions {
+	return UpdateLifecycleWorkflowCreatedByMailboxSettingOperationOptions{}
+}
+
+func (o UpdateLifecycleWorkflowCreatedByMailboxSettingOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateLifecycleWorkflowCreatedByMailboxSettingOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateLifecycleWorkflowCreatedByMailboxSettingOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateLifecycleWorkflowCreatedByMailboxSetting - Update property mailboxSettings value.
-func (c LifecycleWorkflowWorkflowCreatedByMailboxSettingClient) UpdateLifecycleWorkflowCreatedByMailboxSetting(ctx context.Context, id beta.IdentityGovernanceLifecycleWorkflowWorkflowId, input beta.MailboxSettings) (result UpdateLifecycleWorkflowCreatedByMailboxSettingOperationResponse, err error) {
+func (c LifecycleWorkflowWorkflowCreatedByMailboxSettingClient) UpdateLifecycleWorkflowCreatedByMailboxSetting(ctx context.Context, id beta.IdentityGovernanceLifecycleWorkflowWorkflowId, input beta.MailboxSettings, options UpdateLifecycleWorkflowCreatedByMailboxSettingOperationOptions) (result UpdateLifecycleWorkflowCreatedByMailboxSettingOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       fmt.Sprintf("%s/createdBy/mailboxSettings", id.ID()),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/createdBy/mailboxSettings", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

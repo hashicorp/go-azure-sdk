@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &DeviceManagementDomainJoinConnectorId{}
 
 func TestNewDeviceManagementDomainJoinConnectorID(t *testing.T) {
-	id := NewDeviceManagementDomainJoinConnectorID("deviceManagementDomainJoinConnectorIdValue")
+	id := NewDeviceManagementDomainJoinConnectorID("deviceManagementDomainJoinConnectorId")
 
-	if id.DeviceManagementDomainJoinConnectorId != "deviceManagementDomainJoinConnectorIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DeviceManagementDomainJoinConnectorId'", id.DeviceManagementDomainJoinConnectorId, "deviceManagementDomainJoinConnectorIdValue")
+	if id.DeviceManagementDomainJoinConnectorId != "deviceManagementDomainJoinConnectorId" {
+		t.Fatalf("Expected %q but got %q for Segment 'DeviceManagementDomainJoinConnectorId'", id.DeviceManagementDomainJoinConnectorId, "deviceManagementDomainJoinConnectorId")
 	}
 }
 
 func TestFormatDeviceManagementDomainJoinConnectorID(t *testing.T) {
-	actual := NewDeviceManagementDomainJoinConnectorID("deviceManagementDomainJoinConnectorIdValue").ID()
-	expected := "/deviceManagement/domainJoinConnectors/deviceManagementDomainJoinConnectorIdValue"
+	actual := NewDeviceManagementDomainJoinConnectorID("deviceManagementDomainJoinConnectorId").ID()
+	expected := "/deviceManagement/domainJoinConnectors/deviceManagementDomainJoinConnectorId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -50,14 +50,14 @@ func TestParseDeviceManagementDomainJoinConnectorID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/domainJoinConnectors/deviceManagementDomainJoinConnectorIdValue",
+			Input: "/deviceManagement/domainJoinConnectors/deviceManagementDomainJoinConnectorId",
 			Expected: &DeviceManagementDomainJoinConnectorId{
-				DeviceManagementDomainJoinConnectorId: "deviceManagementDomainJoinConnectorIdValue",
+				DeviceManagementDomainJoinConnectorId: "deviceManagementDomainJoinConnectorId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/domainJoinConnectors/deviceManagementDomainJoinConnectorIdValue/extra",
+			Input: "/deviceManagement/domainJoinConnectors/deviceManagementDomainJoinConnectorId/extra",
 			Error: true,
 		},
 	}
@@ -116,26 +116,26 @@ func TestParseDeviceManagementDomainJoinConnectorIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/domainJoinConnectors/deviceManagementDomainJoinConnectorIdValue",
+			Input: "/deviceManagement/domainJoinConnectors/deviceManagementDomainJoinConnectorId",
 			Expected: &DeviceManagementDomainJoinConnectorId{
-				DeviceManagementDomainJoinConnectorId: "deviceManagementDomainJoinConnectorIdValue",
+				DeviceManagementDomainJoinConnectorId: "deviceManagementDomainJoinConnectorId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/domainJoinConnectors/deviceManagementDomainJoinConnectorIdValue/extra",
+			Input: "/deviceManagement/domainJoinConnectors/deviceManagementDomainJoinConnectorId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/dOmAiNjOiNcOnNeCtOrS/dEvIcEmAnAgEmEnTdOmAiNjOiNcOnNeCtOrIdVaLuE",
+			Input: "/dEvIcEmAnAgEmEnT/dOmAiNjOiNcOnNeCtOrS/dEvIcEmAnAgEmEnTdOmAiNjOiNcOnNeCtOrId",
 			Expected: &DeviceManagementDomainJoinConnectorId{
-				DeviceManagementDomainJoinConnectorId: "dEvIcEmAnAgEmEnTdOmAiNjOiNcOnNeCtOrIdVaLuE",
+				DeviceManagementDomainJoinConnectorId: "dEvIcEmAnAgEmEnTdOmAiNjOiNcOnNeCtOrId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/dOmAiNjOiNcOnNeCtOrS/dEvIcEmAnAgEmEnTdOmAiNjOiNcOnNeCtOrIdVaLuE/extra",
+			Input: "/dEvIcEmAnAgEmEnT/dOmAiNjOiNcOnNeCtOrS/dEvIcEmAnAgEmEnTdOmAiNjOiNcOnNeCtOrId/extra",
 			Error: true,
 		},
 	}

@@ -187,10 +187,50 @@ func (s BookingAppointment) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &BookingAppointment{}
 
 func (s *BookingAppointment) UnmarshalJSON(bytes []byte) error {
-	type alias BookingAppointment
-	var decoded alias
+
+	var decoded struct {
+		AdditionalInformation            nullable.Type[string]             `json:"additionalInformation,omitempty"`
+		AnonymousJoinWebUrl              nullable.Type[string]             `json:"anonymousJoinWebUrl,omitempty"`
+		AppointmentLabel                 nullable.Type[string]             `json:"appointmentLabel,omitempty"`
+		CreatedDateTime                  nullable.Type[string]             `json:"createdDateTime,omitempty"`
+		CustomerEmailAddress             nullable.Type[string]             `json:"customerEmailAddress,omitempty"`
+		CustomerId                       nullable.Type[string]             `json:"customerId,omitempty"`
+		CustomerName                     nullable.Type[string]             `json:"customerName,omitempty"`
+		CustomerNotes                    nullable.Type[string]             `json:"customerNotes,omitempty"`
+		CustomerPhone                    nullable.Type[string]             `json:"customerPhone,omitempty"`
+		CustomerTimeZone                 nullable.Type[string]             `json:"customerTimeZone,omitempty"`
+		Customers                        *[]BookingCustomerInformationBase `json:"customers,omitempty"`
+		Duration                         *string                           `json:"duration,omitempty"`
+		End                              *DateTimeTimeZone                 `json:"end,omitempty"`
+		FilledAttendeesCount             *int64                            `json:"filledAttendeesCount,omitempty"`
+		InvoiceDate                      *DateTimeTimeZone                 `json:"invoiceDate,omitempty"`
+		InvoiceId                        nullable.Type[string]             `json:"invoiceId,omitempty"`
+		InvoiceStatus                    *BookingInvoiceStatus             `json:"invoiceStatus,omitempty"`
+		InvoiceUrl                       nullable.Type[string]             `json:"invoiceUrl,omitempty"`
+		IsCustomerAllowedToManageBooking nullable.Type[bool]               `json:"isCustomerAllowedToManageBooking,omitempty"`
+		IsLocationOnline                 *bool                             `json:"isLocationOnline,omitempty"`
+		JoinWebUrl                       nullable.Type[string]             `json:"joinWebUrl,omitempty"`
+		LastUpdatedDateTime              nullable.Type[string]             `json:"lastUpdatedDateTime,omitempty"`
+		MaximumAttendeesCount            *int64                            `json:"maximumAttendeesCount,omitempty"`
+		OnlineMeetingUrl                 nullable.Type[string]             `json:"onlineMeetingUrl,omitempty"`
+		OptOutOfCustomerEmail            *bool                             `json:"optOutOfCustomerEmail,omitempty"`
+		PostBuffer                       *string                           `json:"postBuffer,omitempty"`
+		PreBuffer                        *string                           `json:"preBuffer,omitempty"`
+		PriceType                        *BookingPriceType                 `json:"priceType,omitempty"`
+		Reminders                        *[]BookingReminder                `json:"reminders,omitempty"`
+		SelfServiceAppointmentId         nullable.Type[string]             `json:"selfServiceAppointmentId,omitempty"`
+		ServiceId                        nullable.Type[string]             `json:"serviceId,omitempty"`
+		ServiceName                      *string                           `json:"serviceName,omitempty"`
+		ServiceNotes                     nullable.Type[string]             `json:"serviceNotes,omitempty"`
+		SmsNotificationsEnabled          *bool                             `json:"smsNotificationsEnabled,omitempty"`
+		StaffMemberIds                   *[]string                         `json:"staffMemberIds,omitempty"`
+		Start                            *DateTimeTimeZone                 `json:"start,omitempty"`
+		Id                               *string                           `json:"id,omitempty"`
+		ODataId                          *string                           `json:"@odata.id,omitempty"`
+		ODataType                        *string                           `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into BookingAppointment: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.AdditionalInformation = decoded.AdditionalInformation
@@ -206,7 +246,6 @@ func (s *BookingAppointment) UnmarshalJSON(bytes []byte) error {
 	s.Duration = decoded.Duration
 	s.End = decoded.End
 	s.FilledAttendeesCount = decoded.FilledAttendeesCount
-	s.Id = decoded.Id
 	s.InvoiceDate = decoded.InvoiceDate
 	s.InvoiceId = decoded.InvoiceId
 	s.InvoiceStatus = decoded.InvoiceStatus
@@ -216,8 +255,6 @@ func (s *BookingAppointment) UnmarshalJSON(bytes []byte) error {
 	s.JoinWebUrl = decoded.JoinWebUrl
 	s.LastUpdatedDateTime = decoded.LastUpdatedDateTime
 	s.MaximumAttendeesCount = decoded.MaximumAttendeesCount
-	s.ODataId = decoded.ODataId
-	s.ODataType = decoded.ODataType
 	s.OnlineMeetingUrl = decoded.OnlineMeetingUrl
 	s.OptOutOfCustomerEmail = decoded.OptOutOfCustomerEmail
 	s.PostBuffer = decoded.PostBuffer
@@ -231,6 +268,9 @@ func (s *BookingAppointment) UnmarshalJSON(bytes []byte) error {
 	s.SmsNotificationsEnabled = decoded.SmsNotificationsEnabled
 	s.StaffMemberIds = decoded.StaffMemberIds
 	s.Start = decoded.Start
+	s.Id = decoded.Id
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -269,5 +309,6 @@ func (s *BookingAppointment) UnmarshalJSON(bytes []byte) error {
 		}
 		s.ServiceLocation = impl
 	}
+
 	return nil
 }

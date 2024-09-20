@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/microsoft-graph/me/beta/eventexceptionoccurrenceinstance` Documentation
 
-The `eventexceptionoccurrenceinstance` SDK allows for interaction with the Azure Resource Manager Service `me` (API Version `beta`).
+The `eventexceptionoccurrenceinstance` SDK allows for interaction with Microsoft Graph `me` (API Version `beta`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -15,7 +15,7 @@ import "github.com/hashicorp/go-azure-sdk/microsoft-graph/me/beta/eventexception
 ### Client Initialization
 
 ```go
-client := eventexceptionoccurrenceinstance.NewEventExceptionOccurrenceInstanceClientWithBaseURI("https://management.azure.com")
+client := eventexceptionoccurrenceinstance.NewEventExceptionOccurrenceInstanceClientWithBaseURI("https://graph.microsoft.com")
 client.Client.Authorizer = authorizer
 ```
 
@@ -24,14 +24,14 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := eventexceptionoccurrenceinstance.NewMeEventIdExceptionOccurrenceIdInstanceID("eventIdValue", "eventId1Value", "eventId2Value")
+id := eventexceptionoccurrenceinstance.NewMeEventIdExceptionOccurrenceIdInstanceID("eventId", "eventId1", "eventId2")
 
 payload := eventexceptionoccurrenceinstance.AcceptEventExceptionOccurrenceInstanceRequest{
 	// ...
 }
 
 
-read, err := client.AcceptEventExceptionOccurrenceInstance(ctx, id, payload)
+read, err := client.AcceptEventExceptionOccurrenceInstance(ctx, id, payload, eventexceptionoccurrenceinstance.DefaultAcceptEventExceptionOccurrenceInstanceOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -45,14 +45,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := eventexceptionoccurrenceinstance.NewMeEventIdExceptionOccurrenceIdInstanceID("eventIdValue", "eventId1Value", "eventId2Value")
+id := eventexceptionoccurrenceinstance.NewMeEventIdExceptionOccurrenceIdInstanceID("eventId", "eventId1", "eventId2")
 
 payload := eventexceptionoccurrenceinstance.CancelEventExceptionOccurrenceInstanceRequest{
 	// ...
 }
 
 
-read, err := client.CancelEventExceptionOccurrenceInstance(ctx, id, payload)
+read, err := client.CancelEventExceptionOccurrenceInstance(ctx, id, payload, eventexceptionoccurrenceinstance.DefaultCancelEventExceptionOccurrenceInstanceOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -66,14 +66,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := eventexceptionoccurrenceinstance.NewMeEventIdExceptionOccurrenceIdInstanceID("eventIdValue", "eventId1Value", "eventId2Value")
+id := eventexceptionoccurrenceinstance.NewMeEventIdExceptionOccurrenceIdInstanceID("eventId", "eventId1", "eventId2")
 
 payload := eventexceptionoccurrenceinstance.DeclineEventExceptionOccurrenceInstanceRequest{
 	// ...
 }
 
 
-read, err := client.DeclineEventExceptionOccurrenceInstance(ctx, id, payload)
+read, err := client.DeclineEventExceptionOccurrenceInstance(ctx, id, payload, eventexceptionoccurrenceinstance.DefaultDeclineEventExceptionOccurrenceInstanceOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -87,9 +87,9 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := eventexceptionoccurrenceinstance.NewMeEventIdExceptionOccurrenceIdInstanceID("eventIdValue", "eventId1Value", "eventId2Value")
+id := eventexceptionoccurrenceinstance.NewMeEventIdExceptionOccurrenceIdInstanceID("eventId", "eventId1", "eventId2")
 
-read, err := client.DismissEventExceptionOccurrenceInstanceReminder(ctx, id)
+read, err := client.DismissEventExceptionOccurrenceInstanceReminder(ctx, id, eventexceptionoccurrenceinstance.DefaultDismissEventExceptionOccurrenceInstanceReminderOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -103,14 +103,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := eventexceptionoccurrenceinstance.NewMeEventIdExceptionOccurrenceIdInstanceID("eventIdValue", "eventId1Value", "eventId2Value")
+id := eventexceptionoccurrenceinstance.NewMeEventIdExceptionOccurrenceIdInstanceID("eventId", "eventId1", "eventId2")
 
 payload := eventexceptionoccurrenceinstance.ForwardEventExceptionOccurrenceInstanceRequest{
 	// ...
 }
 
 
-read, err := client.ForwardEventExceptionOccurrenceInstance(ctx, id, payload)
+read, err := client.ForwardEventExceptionOccurrenceInstance(ctx, id, payload, eventexceptionoccurrenceinstance.DefaultForwardEventExceptionOccurrenceInstanceOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -124,7 +124,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := eventexceptionoccurrenceinstance.NewMeEventIdExceptionOccurrenceIdInstanceID("eventIdValue", "eventId1Value", "eventId2Value")
+id := eventexceptionoccurrenceinstance.NewMeEventIdExceptionOccurrenceIdInstanceID("eventId", "eventId1", "eventId2")
 
 read, err := client.GetEventExceptionOccurrenceInstance(ctx, id, eventexceptionoccurrenceinstance.DefaultGetEventExceptionOccurrenceInstanceOperationOptions())
 if err != nil {
@@ -140,7 +140,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := eventexceptionoccurrenceinstance.NewMeEventIdExceptionOccurrenceID("eventIdValue", "eventId1Value")
+id := eventexceptionoccurrenceinstance.NewMeEventIdExceptionOccurrenceID("eventId", "eventId1")
 
 read, err := client.GetEventExceptionOccurrenceInstancesCount(ctx, id, eventexceptionoccurrenceinstance.DefaultGetEventExceptionOccurrenceInstancesCountOperationOptions())
 if err != nil {
@@ -156,7 +156,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := eventexceptionoccurrenceinstance.NewMeEventIdExceptionOccurrenceID("eventIdValue", "eventId1Value")
+id := eventexceptionoccurrenceinstance.NewMeEventIdExceptionOccurrenceID("eventId", "eventId1")
 
 // alternatively `client.ListEventExceptionOccurrenceInstances(ctx, id, eventexceptionoccurrenceinstance.DefaultListEventExceptionOccurrenceInstancesOperationOptions())` can be used to do batched pagination
 items, err := client.ListEventExceptionOccurrenceInstancesComplete(ctx, id, eventexceptionoccurrenceinstance.DefaultListEventExceptionOccurrenceInstancesOperationOptions())
@@ -173,14 +173,14 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := eventexceptionoccurrenceinstance.NewMeEventIdExceptionOccurrenceIdInstanceID("eventIdValue", "eventId1Value", "eventId2Value")
+id := eventexceptionoccurrenceinstance.NewMeEventIdExceptionOccurrenceIdInstanceID("eventId", "eventId1", "eventId2")
 
 payload := eventexceptionoccurrenceinstance.SnoozeEventExceptionOccurrenceInstanceReminderRequest{
 	// ...
 }
 
 
-read, err := client.SnoozeEventExceptionOccurrenceInstanceReminder(ctx, id, payload)
+read, err := client.SnoozeEventExceptionOccurrenceInstanceReminder(ctx, id, payload, eventexceptionoccurrenceinstance.DefaultSnoozeEventExceptionOccurrenceInstanceReminderOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -194,14 +194,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := eventexceptionoccurrenceinstance.NewMeEventIdExceptionOccurrenceIdInstanceID("eventIdValue", "eventId1Value", "eventId2Value")
+id := eventexceptionoccurrenceinstance.NewMeEventIdExceptionOccurrenceIdInstanceID("eventId", "eventId1", "eventId2")
 
 payload := eventexceptionoccurrenceinstance.TentativelyAcceptEventExceptionOccurrenceInstanceRequest{
 	// ...
 }
 
 
-read, err := client.TentativelyAcceptEventExceptionOccurrenceInstance(ctx, id, payload)
+read, err := client.TentativelyAcceptEventExceptionOccurrenceInstance(ctx, id, payload, eventexceptionoccurrenceinstance.DefaultTentativelyAcceptEventExceptionOccurrenceInstanceOperationOptions())
 if err != nil {
 	// handle the error
 }

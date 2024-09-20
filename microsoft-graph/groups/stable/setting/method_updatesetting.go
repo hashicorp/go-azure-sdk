@@ -17,16 +17,45 @@ type UpdateSettingOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateSettingOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateSettingOperationOptions() UpdateSettingOperationOptions {
+	return UpdateSettingOperationOptions{}
+}
+
+func (o UpdateSettingOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateSettingOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateSettingOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateSetting - Update groupSetting. Update the properties of a groupSetting object for tenant-wide group settings or
 // a specific group setting.
-func (c SettingClient) UpdateSetting(ctx context.Context, id stable.GroupIdSettingId, input stable.GroupSetting) (result UpdateSettingOperationResponse, err error) {
+func (c SettingClient) UpdateSetting(ctx context.Context, id stable.GroupIdSettingId, input stable.GroupSetting, options UpdateSettingOperationOptions) (result UpdateSettingOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

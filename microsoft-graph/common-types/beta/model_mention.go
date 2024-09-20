@@ -87,21 +87,31 @@ func (s Mention) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &Mention{}
 
 func (s *Mention) UnmarshalJSON(bytes []byte) error {
-	type alias Mention
-	var decoded alias
+
+	var decoded struct {
+		Application           nullable.Type[string] `json:"application,omitempty"`
+		ClientReference       nullable.Type[string] `json:"clientReference,omitempty"`
+		CreatedDateTime       nullable.Type[string] `json:"createdDateTime,omitempty"`
+		DeepLink              nullable.Type[string] `json:"deepLink,omitempty"`
+		MentionText           nullable.Type[string] `json:"mentionText,omitempty"`
+		ServerCreatedDateTime nullable.Type[string] `json:"serverCreatedDateTime,omitempty"`
+		Id                    *string               `json:"id,omitempty"`
+		ODataId               *string               `json:"@odata.id,omitempty"`
+		ODataType             *string               `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into Mention: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.Application = decoded.Application
 	s.ClientReference = decoded.ClientReference
 	s.CreatedDateTime = decoded.CreatedDateTime
 	s.DeepLink = decoded.DeepLink
-	s.Id = decoded.Id
 	s.MentionText = decoded.MentionText
+	s.ServerCreatedDateTime = decoded.ServerCreatedDateTime
+	s.Id = decoded.Id
 	s.ODataId = decoded.ODataId
 	s.ODataType = decoded.ODataType
-	s.ServerCreatedDateTime = decoded.ServerCreatedDateTime
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -123,5 +133,6 @@ func (s *Mention) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Mentioned = impl
 	}
+
 	return nil
 }

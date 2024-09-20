@@ -16,15 +16,44 @@ type CreateDeviceCompliancePolicyRefreshReportSummarizationOperationResponse str
 	OData        *odata.OData
 }
 
+type CreateDeviceCompliancePolicyRefreshReportSummarizationOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateDeviceCompliancePolicyRefreshReportSummarizationOperationOptions() CreateDeviceCompliancePolicyRefreshReportSummarizationOperationOptions {
+	return CreateDeviceCompliancePolicyRefreshReportSummarizationOperationOptions{}
+}
+
+func (o CreateDeviceCompliancePolicyRefreshReportSummarizationOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateDeviceCompliancePolicyRefreshReportSummarizationOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateDeviceCompliancePolicyRefreshReportSummarizationOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateDeviceCompliancePolicyRefreshReportSummarization - Invoke action refreshDeviceComplianceReportSummarization
-func (c DeviceCompliancePolicyClient) CreateDeviceCompliancePolicyRefreshReportSummarization(ctx context.Context) (result CreateDeviceCompliancePolicyRefreshReportSummarizationOperationResponse, err error) {
+func (c DeviceCompliancePolicyClient) CreateDeviceCompliancePolicyRefreshReportSummarization(ctx context.Context, options CreateDeviceCompliancePolicyRefreshReportSummarizationOperationOptions) (result CreateDeviceCompliancePolicyRefreshReportSummarizationOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/deviceManagement/deviceCompliancePolicies/refreshDeviceComplianceReportSummarization",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/deviceManagement/deviceCompliancePolicies/refreshDeviceComplianceReportSummarization",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

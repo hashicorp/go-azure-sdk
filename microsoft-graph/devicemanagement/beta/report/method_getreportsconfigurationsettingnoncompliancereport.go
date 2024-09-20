@@ -17,15 +17,44 @@ type GetReportsConfigurationSettingNonComplianceReportOperationResponse struct {
 	Model        *[]byte
 }
 
+type GetReportsConfigurationSettingNonComplianceReportOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultGetReportsConfigurationSettingNonComplianceReportOperationOptions() GetReportsConfigurationSettingNonComplianceReportOperationOptions {
+	return GetReportsConfigurationSettingNonComplianceReportOperationOptions{}
+}
+
+func (o GetReportsConfigurationSettingNonComplianceReportOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o GetReportsConfigurationSettingNonComplianceReportOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o GetReportsConfigurationSettingNonComplianceReportOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // GetReportsConfigurationSettingNonComplianceReport - Invoke action getConfigurationSettingNonComplianceReport
-func (c ReportClient) GetReportsConfigurationSettingNonComplianceReport(ctx context.Context, input GetReportsConfigurationSettingNonComplianceReportRequest) (result GetReportsConfigurationSettingNonComplianceReportOperationResponse, err error) {
+func (c ReportClient) GetReportsConfigurationSettingNonComplianceReport(ctx context.Context, input GetReportsConfigurationSettingNonComplianceReportRequest, options GetReportsConfigurationSettingNonComplianceReportOperationOptions) (result GetReportsConfigurationSettingNonComplianceReportOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/octet-stream",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/deviceManagement/reports/getConfigurationSettingNonComplianceReport",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/deviceManagement/reports/getConfigurationSettingNonComplianceReport",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

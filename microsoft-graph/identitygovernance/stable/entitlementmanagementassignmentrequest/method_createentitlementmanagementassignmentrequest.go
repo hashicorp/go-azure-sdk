@@ -18,17 +18,46 @@ type CreateEntitlementManagementAssignmentRequestOperationResponse struct {
 	Model        *stable.AccessPackageAssignmentRequest
 }
 
+type CreateEntitlementManagementAssignmentRequestOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateEntitlementManagementAssignmentRequestOperationOptions() CreateEntitlementManagementAssignmentRequestOperationOptions {
+	return CreateEntitlementManagementAssignmentRequestOperationOptions{}
+}
+
+func (o CreateEntitlementManagementAssignmentRequestOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateEntitlementManagementAssignmentRequestOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateEntitlementManagementAssignmentRequestOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateEntitlementManagementAssignmentRequest - Create accessPackageAssignmentRequest. In Microsoft Entra Entitlement
 // Management, create a new accessPackageAssignmentRequest object. This operation is used to assign a user to an access
 // package, update the assignment, or to remove an access package assignment.
-func (c EntitlementManagementAssignmentRequestClient) CreateEntitlementManagementAssignmentRequest(ctx context.Context, input stable.AccessPackageAssignmentRequest) (result CreateEntitlementManagementAssignmentRequestOperationResponse, err error) {
+func (c EntitlementManagementAssignmentRequestClient) CreateEntitlementManagementAssignmentRequest(ctx context.Context, input stable.AccessPackageAssignmentRequest, options CreateEntitlementManagementAssignmentRequestOperationOptions) (result CreateEntitlementManagementAssignmentRequestOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/identityGovernance/entitlementManagement/assignmentRequests",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/identityGovernance/entitlementManagement/assignmentRequests",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

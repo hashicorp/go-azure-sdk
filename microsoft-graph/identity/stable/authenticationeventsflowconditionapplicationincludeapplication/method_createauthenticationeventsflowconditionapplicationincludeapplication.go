@@ -19,17 +19,46 @@ type CreateAuthenticationEventsFlowConditionApplicationIncludeApplicationOperati
 	Model        *stable.AuthenticationConditionApplication
 }
 
+type CreateAuthenticationEventsFlowConditionApplicationIncludeApplicationOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateAuthenticationEventsFlowConditionApplicationIncludeApplicationOperationOptions() CreateAuthenticationEventsFlowConditionApplicationIncludeApplicationOperationOptions {
+	return CreateAuthenticationEventsFlowConditionApplicationIncludeApplicationOperationOptions{}
+}
+
+func (o CreateAuthenticationEventsFlowConditionApplicationIncludeApplicationOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateAuthenticationEventsFlowConditionApplicationIncludeApplicationOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateAuthenticationEventsFlowConditionApplicationIncludeApplicationOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateAuthenticationEventsFlowConditionApplicationIncludeApplication - Add includeApplication (to a user flow). Add
 // or link an application to a user flow, or authenticationEventsFlow. This enables the authentication experience
 // defined by the user flow to be enabled for the application. An application can only be linked to one user flow.
-func (c AuthenticationEventsFlowConditionApplicationIncludeApplicationClient) CreateAuthenticationEventsFlowConditionApplicationIncludeApplication(ctx context.Context, id stable.IdentityAuthenticationEventsFlowId, input stable.AuthenticationConditionApplication) (result CreateAuthenticationEventsFlowConditionApplicationIncludeApplicationOperationResponse, err error) {
+func (c AuthenticationEventsFlowConditionApplicationIncludeApplicationClient) CreateAuthenticationEventsFlowConditionApplicationIncludeApplication(ctx context.Context, id stable.IdentityAuthenticationEventsFlowId, input stable.AuthenticationConditionApplication, options CreateAuthenticationEventsFlowConditionApplicationIncludeApplicationOperationOptions) (result CreateAuthenticationEventsFlowConditionApplicationIncludeApplicationOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/conditions/applications/includeApplications", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/conditions/applications/includeApplications", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -17,15 +17,44 @@ type UpdateDriveListContentTypeOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateDriveListContentTypeOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateDriveListContentTypeOperationOptions() UpdateDriveListContentTypeOperationOptions {
+	return UpdateDriveListContentTypeOperationOptions{}
+}
+
+func (o UpdateDriveListContentTypeOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateDriveListContentTypeOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateDriveListContentTypeOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateDriveListContentType - Update the navigation property contentTypes in users
-func (c DriveListContentTypeClient) UpdateDriveListContentType(ctx context.Context, id beta.UserIdDriveIdListContentTypeId, input beta.ContentType) (result UpdateDriveListContentTypeOperationResponse, err error) {
+func (c DriveListContentTypeClient) UpdateDriveListContentType(ctx context.Context, id beta.UserIdDriveIdListContentTypeId, input beta.ContentType, options UpdateDriveListContentTypeOperationOptions) (result UpdateDriveListContentTypeOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

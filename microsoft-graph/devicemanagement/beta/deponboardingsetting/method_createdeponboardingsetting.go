@@ -18,15 +18,44 @@ type CreateDepOnboardingSettingOperationResponse struct {
 	Model        *beta.DepOnboardingSetting
 }
 
+type CreateDepOnboardingSettingOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateDepOnboardingSettingOperationOptions() CreateDepOnboardingSettingOperationOptions {
+	return CreateDepOnboardingSettingOperationOptions{}
+}
+
+func (o CreateDepOnboardingSettingOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateDepOnboardingSettingOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateDepOnboardingSettingOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateDepOnboardingSetting - Create new navigation property to depOnboardingSettings for deviceManagement
-func (c DepOnboardingSettingClient) CreateDepOnboardingSetting(ctx context.Context, input beta.DepOnboardingSetting) (result CreateDepOnboardingSettingOperationResponse, err error) {
+func (c DepOnboardingSettingClient) CreateDepOnboardingSetting(ctx context.Context, input beta.DepOnboardingSetting, options CreateDepOnboardingSettingOperationOptions) (result CreateDepOnboardingSettingOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/deviceManagement/depOnboardingSettings",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/deviceManagement/depOnboardingSettings",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

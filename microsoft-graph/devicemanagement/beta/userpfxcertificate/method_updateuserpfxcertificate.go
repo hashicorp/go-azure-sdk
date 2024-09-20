@@ -17,15 +17,44 @@ type UpdateUserPfxCertificateOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateUserPfxCertificateOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateUserPfxCertificateOperationOptions() UpdateUserPfxCertificateOperationOptions {
+	return UpdateUserPfxCertificateOperationOptions{}
+}
+
+func (o UpdateUserPfxCertificateOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateUserPfxCertificateOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateUserPfxCertificateOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateUserPfxCertificate - Update the navigation property userPfxCertificates in deviceManagement
-func (c UserPfxCertificateClient) UpdateUserPfxCertificate(ctx context.Context, id beta.DeviceManagementUserPfxCertificateId, input beta.UserPFXCertificate) (result UpdateUserPfxCertificateOperationResponse, err error) {
+func (c UserPfxCertificateClient) UpdateUserPfxCertificate(ctx context.Context, id beta.DeviceManagementUserPfxCertificateId, input beta.UserPFXCertificate, options UpdateUserPfxCertificateOperationOptions) (result UpdateUserPfxCertificateOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

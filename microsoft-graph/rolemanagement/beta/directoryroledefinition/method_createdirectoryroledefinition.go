@@ -18,17 +18,46 @@ type CreateDirectoryRoleDefinitionOperationResponse struct {
 	Model        *beta.UnifiedRoleDefinition
 }
 
+type CreateDirectoryRoleDefinitionOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateDirectoryRoleDefinitionOperationOptions() CreateDirectoryRoleDefinitionOperationOptions {
+	return CreateDirectoryRoleDefinitionOperationOptions{}
+}
+
+func (o CreateDirectoryRoleDefinitionOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateDirectoryRoleDefinitionOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateDirectoryRoleDefinitionOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateDirectoryRoleDefinition - Create roleDefinitions. Create a new unifiedRoleDefinition object for an RBAC
 // provider. This feature requires a Microsoft Entra ID P1 or P2 license. The following RBAC providers are currently
 // supported: - Cloud PC - device management (Intune) - directory (Microsoft Entra ID)
-func (c DirectoryRoleDefinitionClient) CreateDirectoryRoleDefinition(ctx context.Context, input beta.UnifiedRoleDefinition) (result CreateDirectoryRoleDefinitionOperationResponse, err error) {
+func (c DirectoryRoleDefinitionClient) CreateDirectoryRoleDefinition(ctx context.Context, input beta.UnifiedRoleDefinition, options CreateDirectoryRoleDefinitionOperationOptions) (result CreateDirectoryRoleDefinitionOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/roleManagement/directory/roleDefinitions",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/roleManagement/directory/roleDefinitions",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -18,16 +18,45 @@ type CreateUserExperienceAnalyticsBaselineOperationResponse struct {
 	Model        *beta.UserExperienceAnalyticsBaseline
 }
 
+type CreateUserExperienceAnalyticsBaselineOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateUserExperienceAnalyticsBaselineOperationOptions() CreateUserExperienceAnalyticsBaselineOperationOptions {
+	return CreateUserExperienceAnalyticsBaselineOperationOptions{}
+}
+
+func (o CreateUserExperienceAnalyticsBaselineOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateUserExperienceAnalyticsBaselineOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateUserExperienceAnalyticsBaselineOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateUserExperienceAnalyticsBaseline - Create new navigation property to userExperienceAnalyticsBaselines for
 // deviceManagement
-func (c UserExperienceAnalyticsBaselineClient) CreateUserExperienceAnalyticsBaseline(ctx context.Context, input beta.UserExperienceAnalyticsBaseline) (result CreateUserExperienceAnalyticsBaselineOperationResponse, err error) {
+func (c UserExperienceAnalyticsBaselineClient) CreateUserExperienceAnalyticsBaseline(ctx context.Context, input beta.UserExperienceAnalyticsBaseline, options CreateUserExperienceAnalyticsBaselineOperationOptions) (result CreateUserExperienceAnalyticsBaselineOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/deviceManagement/userExperienceAnalyticsBaselines",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/deviceManagement/userExperienceAnalyticsBaselines",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

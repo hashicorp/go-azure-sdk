@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/stable/drivelistitem` Documentation
 
-The `drivelistitem` SDK allows for interaction with the Azure Resource Manager Service `groups` (API Version `stable`).
+The `drivelistitem` SDK allows for interaction with Microsoft Graph `groups` (API Version `stable`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -15,7 +15,7 @@ import "github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/stable/drivelis
 ### Client Initialization
 
 ```go
-client := drivelistitem.NewDriveListItemClientWithBaseURI("https://management.azure.com")
+client := drivelistitem.NewDriveListItemClientWithBaseURI("https://graph.microsoft.com")
 client.Client.Authorizer = authorizer
 ```
 
@@ -24,14 +24,14 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := drivelistitem.NewGroupIdDriveID("groupIdValue", "driveIdValue")
+id := drivelistitem.NewGroupIdDriveID("groupId", "driveId")
 
 payload := drivelistitem.ListItem{
 	// ...
 }
 
 
-read, err := client.CreateDriveListItem(ctx, id, payload)
+read, err := client.CreateDriveListItem(ctx, id, payload, drivelistitem.DefaultCreateDriveListItemOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -45,14 +45,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := drivelistitem.NewGroupIdDriveIdListItemID("groupIdValue", "driveIdValue", "listItemIdValue")
+id := drivelistitem.NewGroupIdDriveIdListItemID("groupId", "driveId", "listItemId")
 
 payload := drivelistitem.CreateDriveListItemLinkRequest{
 	// ...
 }
 
 
-read, err := client.CreateDriveListItemLink(ctx, id, payload)
+read, err := client.CreateDriveListItemLink(ctx, id, payload, drivelistitem.DefaultCreateDriveListItemLinkOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -66,7 +66,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := drivelistitem.NewGroupIdDriveIdListItemID("groupIdValue", "driveIdValue", "listItemIdValue")
+id := drivelistitem.NewGroupIdDriveIdListItemID("groupId", "driveId", "listItemId")
 
 read, err := client.DeleteDriveListItem(ctx, id, drivelistitem.DefaultDeleteDriveListItemOperationOptions())
 if err != nil {
@@ -82,7 +82,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := drivelistitem.NewGroupIdDriveIdListItemID("groupIdValue", "driveIdValue", "listItemIdValue")
+id := drivelistitem.NewGroupIdDriveIdListItemID("groupId", "driveId", "listItemId")
 
 read, err := client.GetDriveListItem(ctx, id, drivelistitem.DefaultGetDriveListItemOperationOptions())
 if err != nil {
@@ -98,7 +98,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := drivelistitem.NewGroupIdDriveID("groupIdValue", "driveIdValue")
+id := drivelistitem.NewGroupIdDriveID("groupId", "driveId")
 
 // alternatively `client.ListDriveListItems(ctx, id, drivelistitem.DefaultListDriveListItemsOperationOptions())` can be used to do batched pagination
 items, err := client.ListDriveListItemsComplete(ctx, id, drivelistitem.DefaultListDriveListItemsOperationOptions())
@@ -115,14 +115,14 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := drivelistitem.NewGroupIdDriveIdListItemID("groupIdValue", "driveIdValue", "listItemIdValue")
+id := drivelistitem.NewGroupIdDriveIdListItemID("groupId", "driveId", "listItemId")
 
 payload := drivelistitem.ListItem{
 	// ...
 }
 
 
-read, err := client.UpdateDriveListItem(ctx, id, payload)
+read, err := client.UpdateDriveListItem(ctx, id, payload, drivelistitem.DefaultUpdateDriveListItemOperationOptions())
 if err != nil {
 	// handle the error
 }

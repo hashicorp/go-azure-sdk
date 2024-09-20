@@ -17,16 +17,45 @@ type UpdateEntitlementManagementResourceRequestCatalogResourceScopeResourceRoleO
 	OData        *odata.OData
 }
 
+type UpdateEntitlementManagementResourceRequestCatalogResourceScopeResourceRoleOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateEntitlementManagementResourceRequestCatalogResourceScopeResourceRoleOperationOptions() UpdateEntitlementManagementResourceRequestCatalogResourceScopeResourceRoleOperationOptions {
+	return UpdateEntitlementManagementResourceRequestCatalogResourceScopeResourceRoleOperationOptions{}
+}
+
+func (o UpdateEntitlementManagementResourceRequestCatalogResourceScopeResourceRoleOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateEntitlementManagementResourceRequestCatalogResourceScopeResourceRoleOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateEntitlementManagementResourceRequestCatalogResourceScopeResourceRoleOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateEntitlementManagementResourceRequestCatalogResourceScopeResourceRole - Update the navigation property roles in
 // identityGovernance
-func (c EntitlementManagementResourceRequestCatalogResourceScopeResourceRoleClient) UpdateEntitlementManagementResourceRequestCatalogResourceScopeResourceRole(ctx context.Context, id stable.IdentityGovernanceEntitlementManagementResourceRequestIdCatalogResourceIdScopeIdResourceRoleId, input stable.AccessPackageResourceRole) (result UpdateEntitlementManagementResourceRequestCatalogResourceScopeResourceRoleOperationResponse, err error) {
+func (c EntitlementManagementResourceRequestCatalogResourceScopeResourceRoleClient) UpdateEntitlementManagementResourceRequestCatalogResourceScopeResourceRole(ctx context.Context, id stable.IdentityGovernanceEntitlementManagementResourceRequestIdCatalogResourceIdScopeIdResourceRoleId, input stable.AccessPackageResourceRole, options UpdateEntitlementManagementResourceRequestCatalogResourceScopeResourceRoleOperationOptions) (result UpdateEntitlementManagementResourceRequestCatalogResourceScopeResourceRoleOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

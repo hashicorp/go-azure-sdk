@@ -87,17 +87,24 @@ func (s EducationFeedbackResourceOutcome) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &EducationFeedbackResourceOutcome{}
 
 func (s *EducationFeedbackResourceOutcome) UnmarshalJSON(bytes []byte) error {
-	type alias EducationFeedbackResourceOutcome
-	var decoded alias
+
+	var decoded struct {
+		ResourceStatus       *EducationFeedbackResourceOutcomeStatus `json:"resourceStatus,omitempty"`
+		LastModifiedBy       IdentitySet                             `json:"lastModifiedBy"`
+		LastModifiedDateTime nullable.Type[string]                   `json:"lastModifiedDateTime,omitempty"`
+		Id                   *string                                 `json:"id,omitempty"`
+		ODataId              *string                                 `json:"@odata.id,omitempty"`
+		ODataType            *string                                 `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into EducationFeedbackResourceOutcome: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
+	s.ResourceStatus = decoded.ResourceStatus
 	s.Id = decoded.Id
 	s.LastModifiedDateTime = decoded.LastModifiedDateTime
 	s.ODataId = decoded.ODataId
 	s.ODataType = decoded.ODataType
-	s.ResourceStatus = decoded.ResourceStatus
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -119,5 +126,6 @@ func (s *EducationFeedbackResourceOutcome) UnmarshalJSON(bytes []byte) error {
 		}
 		s.LastModifiedBy = impl
 	}
+
 	return nil
 }

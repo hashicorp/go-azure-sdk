@@ -17,15 +17,44 @@ type UpdateJoinedTeamScheduleTimeOffRequestOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateJoinedTeamScheduleTimeOffRequestOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateJoinedTeamScheduleTimeOffRequestOperationOptions() UpdateJoinedTeamScheduleTimeOffRequestOperationOptions {
+	return UpdateJoinedTeamScheduleTimeOffRequestOperationOptions{}
+}
+
+func (o UpdateJoinedTeamScheduleTimeOffRequestOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateJoinedTeamScheduleTimeOffRequestOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateJoinedTeamScheduleTimeOffRequestOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateJoinedTeamScheduleTimeOffRequest - Update the navigation property timeOffRequests in users
-func (c JoinedTeamScheduleTimeOffRequestClient) UpdateJoinedTeamScheduleTimeOffRequest(ctx context.Context, id stable.UserIdJoinedTeamIdScheduleTimeOffRequestId, input stable.TimeOffRequest) (result UpdateJoinedTeamScheduleTimeOffRequestOperationResponse, err error) {
+func (c JoinedTeamScheduleTimeOffRequestClient) UpdateJoinedTeamScheduleTimeOffRequest(ctx context.Context, id stable.UserIdJoinedTeamIdScheduleTimeOffRequestId, input stable.TimeOffRequest, options UpdateJoinedTeamScheduleTimeOffRequestOperationOptions) (result UpdateJoinedTeamScheduleTimeOffRequestOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

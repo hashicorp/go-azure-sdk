@@ -19,7 +19,8 @@ type DeletePrivilegedAccessGroupAssignmentApprovalStageOperationResponse struct 
 }
 
 type DeletePrivilegedAccessGroupAssignmentApprovalStageOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeletePrivilegedAccessGroupAssignmentApprovalStageOperationOptions() DeletePrivilegedAccessGroupAssignmentApprovalStageOperationOptions {
@@ -36,7 +37,9 @@ func (o DeletePrivilegedAccessGroupAssignmentApprovalStageOperationOptions) ToHe
 
 func (o DeletePrivilegedAccessGroupAssignmentApprovalStageOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

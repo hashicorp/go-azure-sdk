@@ -136,10 +136,28 @@ func (s BaseManagedAppRegistrationImpl) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &BaseManagedAppRegistrationImpl{}
 
 func (s *BaseManagedAppRegistrationImpl) UnmarshalJSON(bytes []byte) error {
-	type alias BaseManagedAppRegistrationImpl
-	var decoded alias
+
+	var decoded struct {
+		ApplicationVersion   nullable.Type[string]      `json:"applicationVersion,omitempty"`
+		AppliedPolicies      *[]ManagedAppPolicy        `json:"appliedPolicies,omitempty"`
+		CreatedDateTime      *string                    `json:"createdDateTime,omitempty"`
+		DeviceName           nullable.Type[string]      `json:"deviceName,omitempty"`
+		DeviceTag            nullable.Type[string]      `json:"deviceTag,omitempty"`
+		DeviceType           nullable.Type[string]      `json:"deviceType,omitempty"`
+		FlaggedReasons       *[]ManagedAppFlaggedReason `json:"flaggedReasons,omitempty"`
+		IntendedPolicies     *[]ManagedAppPolicy        `json:"intendedPolicies,omitempty"`
+		LastSyncDateTime     *string                    `json:"lastSyncDateTime,omitempty"`
+		ManagementSdkVersion nullable.Type[string]      `json:"managementSdkVersion,omitempty"`
+		Operations           *[]ManagedAppOperation     `json:"operations,omitempty"`
+		PlatformVersion      nullable.Type[string]      `json:"platformVersion,omitempty"`
+		UserId               nullable.Type[string]      `json:"userId,omitempty"`
+		Version              nullable.Type[string]      `json:"version,omitempty"`
+		Id                   *string                    `json:"id,omitempty"`
+		ODataId              *string                    `json:"@odata.id,omitempty"`
+		ODataType            *string                    `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into BaseManagedAppRegistrationImpl: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.ApplicationVersion = decoded.ApplicationVersion
@@ -148,15 +166,15 @@ func (s *BaseManagedAppRegistrationImpl) UnmarshalJSON(bytes []byte) error {
 	s.DeviceTag = decoded.DeviceTag
 	s.DeviceType = decoded.DeviceType
 	s.FlaggedReasons = decoded.FlaggedReasons
-	s.Id = decoded.Id
 	s.LastSyncDateTime = decoded.LastSyncDateTime
 	s.ManagementSdkVersion = decoded.ManagementSdkVersion
-	s.ODataId = decoded.ODataId
-	s.ODataType = decoded.ODataType
 	s.Operations = decoded.Operations
 	s.PlatformVersion = decoded.PlatformVersion
 	s.UserId = decoded.UserId
 	s.Version = decoded.Version
+	s.Id = decoded.Id
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -204,6 +222,7 @@ func (s *BaseManagedAppRegistrationImpl) UnmarshalJSON(bytes []byte) error {
 		}
 		s.IntendedPolicies = &output
 	}
+
 	return nil
 }
 
@@ -217,9 +236,9 @@ func UnmarshalManagedAppRegistrationImplementation(input []byte) (ManagedAppRegi
 		return nil, fmt.Errorf("unmarshaling ManagedAppRegistration into map[string]interface: %+v", err)
 	}
 
-	value, ok := temp["@odata.type"].(string)
-	if !ok {
-		return nil, nil
+	var value string
+	if v, ok := temp["@odata.type"]; ok {
+		value = fmt.Sprintf("%v", v)
 	}
 
 	if strings.EqualFold(value, "#microsoft.graph.androidManagedAppRegistration") {

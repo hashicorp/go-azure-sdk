@@ -99,11 +99,11 @@ func (id IdentityAuthenticationEventsFlowIdConditionApplicationIncludeApplicatio
 	return []resourceids.Segment{
 		resourceids.StaticSegment("identity", "identity", "identity"),
 		resourceids.StaticSegment("authenticationEventsFlows", "authenticationEventsFlows", "authenticationEventsFlows"),
-		resourceids.UserSpecifiedSegment("authenticationEventsFlowId", "authenticationEventsFlowIdValue"),
+		resourceids.UserSpecifiedSegment("authenticationEventsFlowId", "authenticationEventsFlowId"),
 		resourceids.StaticSegment("conditions", "conditions", "conditions"),
 		resourceids.StaticSegment("applications", "applications", "applications"),
 		resourceids.StaticSegment("includeApplications", "includeApplications", "includeApplications"),
-		resourceids.UserSpecifiedSegment("authenticationConditionApplicationAppId", "authenticationConditionApplicationAppIdValue"),
+		resourceids.UserSpecifiedSegment("authenticationConditionApplicationAppId", "authenticationConditionApplicationAppId"),
 	}
 }
 

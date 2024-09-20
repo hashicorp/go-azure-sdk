@@ -19,15 +19,44 @@ type CreateServicePrincipalCreationPolicyExcludeOperationResponse struct {
 	Model        *beta.ServicePrincipalCreationConditionSet
 }
 
+type CreateServicePrincipalCreationPolicyExcludeOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateServicePrincipalCreationPolicyExcludeOperationOptions() CreateServicePrincipalCreationPolicyExcludeOperationOptions {
+	return CreateServicePrincipalCreationPolicyExcludeOperationOptions{}
+}
+
+func (o CreateServicePrincipalCreationPolicyExcludeOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateServicePrincipalCreationPolicyExcludeOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateServicePrincipalCreationPolicyExcludeOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateServicePrincipalCreationPolicyExclude - Create new navigation property to excludes for policies
-func (c ServicePrincipalCreationPolicyExcludeClient) CreateServicePrincipalCreationPolicyExclude(ctx context.Context, id beta.PolicyServicePrincipalCreationPolicyId, input beta.ServicePrincipalCreationConditionSet) (result CreateServicePrincipalCreationPolicyExcludeOperationResponse, err error) {
+func (c ServicePrincipalCreationPolicyExcludeClient) CreateServicePrincipalCreationPolicyExclude(ctx context.Context, id beta.PolicyServicePrincipalCreationPolicyId, input beta.ServicePrincipalCreationConditionSet, options CreateServicePrincipalCreationPolicyExcludeOperationOptions) (result CreateServicePrincipalCreationPolicyExcludeOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/excludes", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/excludes", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

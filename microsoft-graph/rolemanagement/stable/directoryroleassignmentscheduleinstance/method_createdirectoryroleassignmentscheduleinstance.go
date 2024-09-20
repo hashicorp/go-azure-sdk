@@ -18,16 +18,45 @@ type CreateDirectoryRoleAssignmentScheduleInstanceOperationResponse struct {
 	Model        *stable.UnifiedRoleAssignmentScheduleInstance
 }
 
+type CreateDirectoryRoleAssignmentScheduleInstanceOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateDirectoryRoleAssignmentScheduleInstanceOperationOptions() CreateDirectoryRoleAssignmentScheduleInstanceOperationOptions {
+	return CreateDirectoryRoleAssignmentScheduleInstanceOperationOptions{}
+}
+
+func (o CreateDirectoryRoleAssignmentScheduleInstanceOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateDirectoryRoleAssignmentScheduleInstanceOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateDirectoryRoleAssignmentScheduleInstanceOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateDirectoryRoleAssignmentScheduleInstance - Create new navigation property to roleAssignmentScheduleInstances for
 // roleManagement
-func (c DirectoryRoleAssignmentScheduleInstanceClient) CreateDirectoryRoleAssignmentScheduleInstance(ctx context.Context, input stable.UnifiedRoleAssignmentScheduleInstance) (result CreateDirectoryRoleAssignmentScheduleInstanceOperationResponse, err error) {
+func (c DirectoryRoleAssignmentScheduleInstanceClient) CreateDirectoryRoleAssignmentScheduleInstance(ctx context.Context, input stable.UnifiedRoleAssignmentScheduleInstance, options CreateDirectoryRoleAssignmentScheduleInstanceOperationOptions) (result CreateDirectoryRoleAssignmentScheduleInstanceOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/roleManagement/directory/roleAssignmentScheduleInstances",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/roleManagement/directory/roleAssignmentScheduleInstances",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

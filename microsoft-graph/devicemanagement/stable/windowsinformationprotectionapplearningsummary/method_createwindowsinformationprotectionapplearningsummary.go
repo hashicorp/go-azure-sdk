@@ -18,16 +18,45 @@ type CreateWindowsInformationProtectionAppLearningSummaryOperationResponse struc
 	Model        *stable.WindowsInformationProtectionAppLearningSummary
 }
 
+type CreateWindowsInformationProtectionAppLearningSummaryOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateWindowsInformationProtectionAppLearningSummaryOperationOptions() CreateWindowsInformationProtectionAppLearningSummaryOperationOptions {
+	return CreateWindowsInformationProtectionAppLearningSummaryOperationOptions{}
+}
+
+func (o CreateWindowsInformationProtectionAppLearningSummaryOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateWindowsInformationProtectionAppLearningSummaryOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateWindowsInformationProtectionAppLearningSummaryOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateWindowsInformationProtectionAppLearningSummary - Create windowsInformationProtectionAppLearningSummary. Create
 // a new windowsInformationProtectionAppLearningSummary object.
-func (c WindowsInformationProtectionAppLearningSummaryClient) CreateWindowsInformationProtectionAppLearningSummary(ctx context.Context, input stable.WindowsInformationProtectionAppLearningSummary) (result CreateWindowsInformationProtectionAppLearningSummaryOperationResponse, err error) {
+func (c WindowsInformationProtectionAppLearningSummaryClient) CreateWindowsInformationProtectionAppLearningSummary(ctx context.Context, input stable.WindowsInformationProtectionAppLearningSummary, options CreateWindowsInformationProtectionAppLearningSummaryOperationOptions) (result CreateWindowsInformationProtectionAppLearningSummaryOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/deviceManagement/windowsInformationProtectionAppLearningSummaries",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/deviceManagement/windowsInformationProtectionAppLearningSummaries",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

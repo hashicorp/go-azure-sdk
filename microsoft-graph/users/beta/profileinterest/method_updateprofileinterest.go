@@ -17,15 +17,44 @@ type UpdateProfileInterestOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateProfileInterestOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateProfileInterestOperationOptions() UpdateProfileInterestOperationOptions {
+	return UpdateProfileInterestOperationOptions{}
+}
+
+func (o UpdateProfileInterestOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateProfileInterestOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateProfileInterestOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateProfileInterest - Update the navigation property interests in users
-func (c ProfileInterestClient) UpdateProfileInterest(ctx context.Context, id beta.UserIdProfileInterestId, input beta.PersonInterest) (result UpdateProfileInterestOperationResponse, err error) {
+func (c ProfileInterestClient) UpdateProfileInterest(ctx context.Context, id beta.UserIdProfileInterestId, input beta.PersonInterest, options UpdateProfileInterestOperationOptions) (result UpdateProfileInterestOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

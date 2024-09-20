@@ -20,15 +20,44 @@ type CreateJoinedTeamChannelMemberOperationResponse struct {
 	Model        stable.ConversationMember
 }
 
+type CreateJoinedTeamChannelMemberOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateJoinedTeamChannelMemberOperationOptions() CreateJoinedTeamChannelMemberOperationOptions {
+	return CreateJoinedTeamChannelMemberOperationOptions{}
+}
+
+func (o CreateJoinedTeamChannelMemberOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateJoinedTeamChannelMemberOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateJoinedTeamChannelMemberOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateJoinedTeamChannelMember - Create new navigation property to members for me
-func (c JoinedTeamChannelMemberClient) CreateJoinedTeamChannelMember(ctx context.Context, id stable.MeJoinedTeamIdChannelId, input stable.ConversationMember) (result CreateJoinedTeamChannelMemberOperationResponse, err error) {
+func (c JoinedTeamChannelMemberClient) CreateJoinedTeamChannelMember(ctx context.Context, id stable.MeJoinedTeamIdChannelId, input stable.ConversationMember, options CreateJoinedTeamChannelMemberOperationOptions) (result CreateJoinedTeamChannelMemberOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/members", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/members", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

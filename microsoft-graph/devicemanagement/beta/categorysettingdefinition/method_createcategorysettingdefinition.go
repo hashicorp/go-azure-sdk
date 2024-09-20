@@ -20,15 +20,44 @@ type CreateCategorySettingDefinitionOperationResponse struct {
 	Model        beta.DeviceManagementSettingDefinition
 }
 
+type CreateCategorySettingDefinitionOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateCategorySettingDefinitionOperationOptions() CreateCategorySettingDefinitionOperationOptions {
+	return CreateCategorySettingDefinitionOperationOptions{}
+}
+
+func (o CreateCategorySettingDefinitionOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateCategorySettingDefinitionOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateCategorySettingDefinitionOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateCategorySettingDefinition - Create new navigation property to settingDefinitions for deviceManagement
-func (c CategorySettingDefinitionClient) CreateCategorySettingDefinition(ctx context.Context, id beta.DeviceManagementCategoryId, input beta.DeviceManagementSettingDefinition) (result CreateCategorySettingDefinitionOperationResponse, err error) {
+func (c CategorySettingDefinitionClient) CreateCategorySettingDefinition(ctx context.Context, id beta.DeviceManagementCategoryId, input beta.DeviceManagementSettingDefinition, options CreateCategorySettingDefinitionOperationOptions) (result CreateCategorySettingDefinitionOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/settingDefinitions", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/settingDefinitions", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

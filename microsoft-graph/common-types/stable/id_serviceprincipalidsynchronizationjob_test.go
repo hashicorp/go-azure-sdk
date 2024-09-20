@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &ServicePrincipalIdSynchronizationJobId{}
 
 func TestNewServicePrincipalIdSynchronizationJobID(t *testing.T) {
-	id := NewServicePrincipalIdSynchronizationJobID("servicePrincipalIdValue", "synchronizationJobIdValue")
+	id := NewServicePrincipalIdSynchronizationJobID("servicePrincipalId", "synchronizationJobId")
 
-	if id.ServicePrincipalId != "servicePrincipalIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ServicePrincipalId'", id.ServicePrincipalId, "servicePrincipalIdValue")
+	if id.ServicePrincipalId != "servicePrincipalId" {
+		t.Fatalf("Expected %q but got %q for Segment 'ServicePrincipalId'", id.ServicePrincipalId, "servicePrincipalId")
 	}
 
-	if id.SynchronizationJobId != "synchronizationJobIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'SynchronizationJobId'", id.SynchronizationJobId, "synchronizationJobIdValue")
+	if id.SynchronizationJobId != "synchronizationJobId" {
+		t.Fatalf("Expected %q but got %q for Segment 'SynchronizationJobId'", id.SynchronizationJobId, "synchronizationJobId")
 	}
 }
 
 func TestFormatServicePrincipalIdSynchronizationJobID(t *testing.T) {
-	actual := NewServicePrincipalIdSynchronizationJobID("servicePrincipalIdValue", "synchronizationJobIdValue").ID()
-	expected := "/servicePrincipals/servicePrincipalIdValue/synchronization/jobs/synchronizationJobIdValue"
+	actual := NewServicePrincipalIdSynchronizationJobID("servicePrincipalId", "synchronizationJobId").ID()
+	expected := "/servicePrincipals/servicePrincipalId/synchronization/jobs/synchronizationJobId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -49,30 +49,30 @@ func TestParseServicePrincipalIdSynchronizationJobID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/servicePrincipals/servicePrincipalIdValue",
+			Input: "/servicePrincipals/servicePrincipalId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/servicePrincipals/servicePrincipalIdValue/synchronization",
+			Input: "/servicePrincipals/servicePrincipalId/synchronization",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/servicePrincipals/servicePrincipalIdValue/synchronization/jobs",
+			Input: "/servicePrincipals/servicePrincipalId/synchronization/jobs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/servicePrincipals/servicePrincipalIdValue/synchronization/jobs/synchronizationJobIdValue",
+			Input: "/servicePrincipals/servicePrincipalId/synchronization/jobs/synchronizationJobId",
 			Expected: &ServicePrincipalIdSynchronizationJobId{
-				ServicePrincipalId:   "servicePrincipalIdValue",
-				SynchronizationJobId: "synchronizationJobIdValue",
+				ServicePrincipalId:   "servicePrincipalId",
+				SynchronizationJobId: "synchronizationJobId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/servicePrincipals/servicePrincipalIdValue/synchronization/jobs/synchronizationJobIdValue/extra",
+			Input: "/servicePrincipals/servicePrincipalId/synchronization/jobs/synchronizationJobId/extra",
 			Error: true,
 		},
 	}
@@ -125,58 +125,58 @@ func TestParseServicePrincipalIdSynchronizationJobIDInsensitively(t *testing.T) 
 		},
 		{
 			// Incomplete URI
-			Input: "/servicePrincipals/servicePrincipalIdValue",
+			Input: "/servicePrincipals/servicePrincipalId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sErViCePrInCiPaLs/sErViCePrInCiPaLiDvAlUe",
+			Input: "/sErViCePrInCiPaLs/sErViCePrInCiPaLiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/servicePrincipals/servicePrincipalIdValue/synchronization",
+			Input: "/servicePrincipals/servicePrincipalId/synchronization",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sErViCePrInCiPaLs/sErViCePrInCiPaLiDvAlUe/sYnChRoNiZaTiOn",
+			Input: "/sErViCePrInCiPaLs/sErViCePrInCiPaLiD/sYnChRoNiZaTiOn",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/servicePrincipals/servicePrincipalIdValue/synchronization/jobs",
+			Input: "/servicePrincipals/servicePrincipalId/synchronization/jobs",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sErViCePrInCiPaLs/sErViCePrInCiPaLiDvAlUe/sYnChRoNiZaTiOn/jObS",
+			Input: "/sErViCePrInCiPaLs/sErViCePrInCiPaLiD/sYnChRoNiZaTiOn/jObS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/servicePrincipals/servicePrincipalIdValue/synchronization/jobs/synchronizationJobIdValue",
+			Input: "/servicePrincipals/servicePrincipalId/synchronization/jobs/synchronizationJobId",
 			Expected: &ServicePrincipalIdSynchronizationJobId{
-				ServicePrincipalId:   "servicePrincipalIdValue",
-				SynchronizationJobId: "synchronizationJobIdValue",
+				ServicePrincipalId:   "servicePrincipalId",
+				SynchronizationJobId: "synchronizationJobId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/servicePrincipals/servicePrincipalIdValue/synchronization/jobs/synchronizationJobIdValue/extra",
+			Input: "/servicePrincipals/servicePrincipalId/synchronization/jobs/synchronizationJobId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sErViCePrInCiPaLs/sErViCePrInCiPaLiDvAlUe/sYnChRoNiZaTiOn/jObS/sYnChRoNiZaTiOnJoBiDvAlUe",
+			Input: "/sErViCePrInCiPaLs/sErViCePrInCiPaLiD/sYnChRoNiZaTiOn/jObS/sYnChRoNiZaTiOnJoBiD",
 			Expected: &ServicePrincipalIdSynchronizationJobId{
-				ServicePrincipalId:   "sErViCePrInCiPaLiDvAlUe",
-				SynchronizationJobId: "sYnChRoNiZaTiOnJoBiDvAlUe",
+				ServicePrincipalId:   "sErViCePrInCiPaLiD",
+				SynchronizationJobId: "sYnChRoNiZaTiOnJoBiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sErViCePrInCiPaLs/sErViCePrInCiPaLiDvAlUe/sYnChRoNiZaTiOn/jObS/sYnChRoNiZaTiOnJoBiDvAlUe/extra",
+			Input: "/sErViCePrInCiPaLs/sErViCePrInCiPaLiD/sYnChRoNiZaTiOn/jObS/sYnChRoNiZaTiOnJoBiD/extra",
 			Error: true,
 		},
 	}

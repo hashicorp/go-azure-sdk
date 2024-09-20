@@ -18,16 +18,45 @@ type CreateDriveListContentTypeAssociateWithHubSiteOperationResponse struct {
 	OData        *odata.OData
 }
 
+type CreateDriveListContentTypeAssociateWithHubSiteOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateDriveListContentTypeAssociateWithHubSiteOperationOptions() CreateDriveListContentTypeAssociateWithHubSiteOperationOptions {
+	return CreateDriveListContentTypeAssociateWithHubSiteOperationOptions{}
+}
+
+func (o CreateDriveListContentTypeAssociateWithHubSiteOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateDriveListContentTypeAssociateWithHubSiteOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateDriveListContentTypeAssociateWithHubSiteOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateDriveListContentTypeAssociateWithHubSite - Invoke action associateWithHubSites. Associate a published content
 // type present in a content type hub with a list of hub sites.
-func (c DriveListContentTypeClient) CreateDriveListContentTypeAssociateWithHubSite(ctx context.Context, id stable.MeDriveIdListContentTypeId, input CreateDriveListContentTypeAssociateWithHubSiteRequest) (result CreateDriveListContentTypeAssociateWithHubSiteOperationResponse, err error) {
+func (c DriveListContentTypeClient) CreateDriveListContentTypeAssociateWithHubSite(ctx context.Context, id stable.MeDriveIdListContentTypeId, input CreateDriveListContentTypeAssociateWithHubSiteRequest, options CreateDriveListContentTypeAssociateWithHubSiteOperationOptions) (result CreateDriveListContentTypeAssociateWithHubSiteOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/associateWithHubSites", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/associateWithHubSites", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &GroupIdSettingId{}
 
 func TestNewGroupIdSettingID(t *testing.T) {
-	id := NewGroupIdSettingID("groupIdValue", "directorySettingIdValue")
+	id := NewGroupIdSettingID("groupId", "directorySettingId")
 
-	if id.GroupId != "groupIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'GroupId'", id.GroupId, "groupIdValue")
+	if id.GroupId != "groupId" {
+		t.Fatalf("Expected %q but got %q for Segment 'GroupId'", id.GroupId, "groupId")
 	}
 
-	if id.DirectorySettingId != "directorySettingIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DirectorySettingId'", id.DirectorySettingId, "directorySettingIdValue")
+	if id.DirectorySettingId != "directorySettingId" {
+		t.Fatalf("Expected %q but got %q for Segment 'DirectorySettingId'", id.DirectorySettingId, "directorySettingId")
 	}
 }
 
 func TestFormatGroupIdSettingID(t *testing.T) {
-	actual := NewGroupIdSettingID("groupIdValue", "directorySettingIdValue").ID()
-	expected := "/groups/groupIdValue/settings/directorySettingIdValue"
+	actual := NewGroupIdSettingID("groupId", "directorySettingId").ID()
+	expected := "/groups/groupId/settings/directorySettingId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -49,25 +49,25 @@ func TestParseGroupIdSettingID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue",
+			Input: "/groups/groupId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/settings",
+			Input: "/groups/groupId/settings",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/groups/groupIdValue/settings/directorySettingIdValue",
+			Input: "/groups/groupId/settings/directorySettingId",
 			Expected: &GroupIdSettingId{
-				GroupId:            "groupIdValue",
-				DirectorySettingId: "directorySettingIdValue",
+				GroupId:            "groupId",
+				DirectorySettingId: "directorySettingId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/groups/groupIdValue/settings/directorySettingIdValue/extra",
+			Input: "/groups/groupId/settings/directorySettingId/extra",
 			Error: true,
 		},
 	}
@@ -120,48 +120,48 @@ func TestParseGroupIdSettingIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue",
+			Input: "/groups/groupId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE",
+			Input: "/gRoUpS/gRoUpId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/settings",
+			Input: "/groups/groupId/settings",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/sEtTiNgS",
+			Input: "/gRoUpS/gRoUpId/sEtTiNgS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/groups/groupIdValue/settings/directorySettingIdValue",
+			Input: "/groups/groupId/settings/directorySettingId",
 			Expected: &GroupIdSettingId{
-				GroupId:            "groupIdValue",
-				DirectorySettingId: "directorySettingIdValue",
+				GroupId:            "groupId",
+				DirectorySettingId: "directorySettingId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/groups/groupIdValue/settings/directorySettingIdValue/extra",
+			Input: "/groups/groupId/settings/directorySettingId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/sEtTiNgS/dIrEcToRySeTtInGiDvAlUe",
+			Input: "/gRoUpS/gRoUpId/sEtTiNgS/dIrEcToRySeTtInGiD",
 			Expected: &GroupIdSettingId{
-				GroupId:            "gRoUpIdVaLuE",
-				DirectorySettingId: "dIrEcToRySeTtInGiDvAlUe",
+				GroupId:            "gRoUpId",
+				DirectorySettingId: "dIrEcToRySeTtInGiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/sEtTiNgS/dIrEcToRySeTtInGiDvAlUe/extra",
+			Input: "/gRoUpS/gRoUpId/sEtTiNgS/dIrEcToRySeTtInGiD/extra",
 			Error: true,
 		},
 	}

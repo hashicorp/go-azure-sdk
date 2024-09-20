@@ -133,10 +133,27 @@ func (s AccessReviewScheduleDefinition) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &AccessReviewScheduleDefinition{}
 
 func (s *AccessReviewScheduleDefinition) UnmarshalJSON(bytes []byte) error {
-	type alias AccessReviewScheduleDefinition
-	var decoded alias
+
+	var decoded struct {
+		AdditionalNotificationRecipients *[]AccessReviewNotificationRecipientItem `json:"additionalNotificationRecipients,omitempty"`
+		CreatedBy                        *UserIdentity                            `json:"createdBy,omitempty"`
+		CreatedDateTime                  nullable.Type[string]                    `json:"createdDateTime,omitempty"`
+		DescriptionForAdmins             nullable.Type[string]                    `json:"descriptionForAdmins,omitempty"`
+		DescriptionForReviewers          nullable.Type[string]                    `json:"descriptionForReviewers,omitempty"`
+		DisplayName                      nullable.Type[string]                    `json:"displayName,omitempty"`
+		FallbackReviewers                *[]AccessReviewReviewerScope             `json:"fallbackReviewers,omitempty"`
+		Instances                        *[]AccessReviewInstance                  `json:"instances,omitempty"`
+		LastModifiedDateTime             nullable.Type[string]                    `json:"lastModifiedDateTime,omitempty"`
+		Reviewers                        *[]AccessReviewReviewerScope             `json:"reviewers,omitempty"`
+		Settings                         *AccessReviewScheduleSettings            `json:"settings,omitempty"`
+		StageSettings                    *[]AccessReviewStageSettings             `json:"stageSettings,omitempty"`
+		Status                           nullable.Type[string]                    `json:"status,omitempty"`
+		Id                               *string                                  `json:"id,omitempty"`
+		ODataId                          *string                                  `json:"@odata.id,omitempty"`
+		ODataType                        *string                                  `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into AccessReviewScheduleDefinition: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.AdditionalNotificationRecipients = decoded.AdditionalNotificationRecipients
@@ -146,15 +163,15 @@ func (s *AccessReviewScheduleDefinition) UnmarshalJSON(bytes []byte) error {
 	s.DescriptionForReviewers = decoded.DescriptionForReviewers
 	s.DisplayName = decoded.DisplayName
 	s.FallbackReviewers = decoded.FallbackReviewers
-	s.Id = decoded.Id
 	s.Instances = decoded.Instances
 	s.LastModifiedDateTime = decoded.LastModifiedDateTime
-	s.ODataId = decoded.ODataId
-	s.ODataType = decoded.ODataType
 	s.Reviewers = decoded.Reviewers
 	s.Settings = decoded.Settings
 	s.StageSettings = decoded.StageSettings
 	s.Status = decoded.Status
+	s.Id = decoded.Id
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -176,5 +193,6 @@ func (s *AccessReviewScheduleDefinition) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Scope = impl
 	}
+
 	return nil
 }

@@ -18,15 +18,44 @@ type CreateExternalUserProfileOperationResponse struct {
 	Model        *beta.ExternalUserProfile
 }
 
+type CreateExternalUserProfileOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateExternalUserProfileOperationOptions() CreateExternalUserProfileOperationOptions {
+	return CreateExternalUserProfileOperationOptions{}
+}
+
+func (o CreateExternalUserProfileOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateExternalUserProfileOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateExternalUserProfileOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateExternalUserProfile - Create new navigation property to externalUserProfiles for directory
-func (c ExternalUserProfileClient) CreateExternalUserProfile(ctx context.Context, input beta.ExternalUserProfile) (result CreateExternalUserProfileOperationResponse, err error) {
+func (c ExternalUserProfileClient) CreateExternalUserProfile(ctx context.Context, input beta.ExternalUserProfile, options CreateExternalUserProfileOperationOptions) (result CreateExternalUserProfileOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/directory/externalUserProfiles",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/directory/externalUserProfiles",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

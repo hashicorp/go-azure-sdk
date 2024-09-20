@@ -18,16 +18,45 @@ type CreateUserExperienceAnalyticsDeviceTimelineEventOperationResponse struct {
 	Model        *beta.UserExperienceAnalyticsDeviceTimelineEvent
 }
 
+type CreateUserExperienceAnalyticsDeviceTimelineEventOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateUserExperienceAnalyticsDeviceTimelineEventOperationOptions() CreateUserExperienceAnalyticsDeviceTimelineEventOperationOptions {
+	return CreateUserExperienceAnalyticsDeviceTimelineEventOperationOptions{}
+}
+
+func (o CreateUserExperienceAnalyticsDeviceTimelineEventOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateUserExperienceAnalyticsDeviceTimelineEventOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateUserExperienceAnalyticsDeviceTimelineEventOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateUserExperienceAnalyticsDeviceTimelineEvent - Create new navigation property to
 // userExperienceAnalyticsDeviceTimelineEvent for deviceManagement
-func (c UserExperienceAnalyticsDeviceTimelineEventClient) CreateUserExperienceAnalyticsDeviceTimelineEvent(ctx context.Context, input beta.UserExperienceAnalyticsDeviceTimelineEvent) (result CreateUserExperienceAnalyticsDeviceTimelineEventOperationResponse, err error) {
+func (c UserExperienceAnalyticsDeviceTimelineEventClient) CreateUserExperienceAnalyticsDeviceTimelineEvent(ctx context.Context, input beta.UserExperienceAnalyticsDeviceTimelineEvent, options CreateUserExperienceAnalyticsDeviceTimelineEventOperationOptions) (result CreateUserExperienceAnalyticsDeviceTimelineEventOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/deviceManagement/userExperienceAnalyticsDeviceTimelineEvent",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/deviceManagement/userExperienceAnalyticsDeviceTimelineEvent",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

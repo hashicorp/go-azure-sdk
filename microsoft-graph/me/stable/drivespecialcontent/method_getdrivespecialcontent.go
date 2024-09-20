@@ -20,7 +20,8 @@ type GetDriveSpecialContentOperationResponse struct {
 }
 
 type GetDriveSpecialContentOperationOptions struct {
-	Format *odata.Format
+	Format   *odata.Format
+	Metadata *odata.Metadata
 }
 
 func DefaultGetDriveSpecialContentOperationOptions() GetDriveSpecialContentOperationOptions {
@@ -37,6 +38,9 @@ func (o GetDriveSpecialContentOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
 	if o.Format != nil {
 		out.Format = *o.Format
+	}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
 	}
 	return &out
 }

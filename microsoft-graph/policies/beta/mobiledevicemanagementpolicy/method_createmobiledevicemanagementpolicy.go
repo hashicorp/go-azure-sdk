@@ -18,15 +18,44 @@ type CreateMobileDeviceManagementPolicyOperationResponse struct {
 	Model        *beta.MobilityManagementPolicy
 }
 
+type CreateMobileDeviceManagementPolicyOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateMobileDeviceManagementPolicyOperationOptions() CreateMobileDeviceManagementPolicyOperationOptions {
+	return CreateMobileDeviceManagementPolicyOperationOptions{}
+}
+
+func (o CreateMobileDeviceManagementPolicyOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateMobileDeviceManagementPolicyOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateMobileDeviceManagementPolicyOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateMobileDeviceManagementPolicy - Create new navigation property to mobileDeviceManagementPolicies for policies
-func (c MobileDeviceManagementPolicyClient) CreateMobileDeviceManagementPolicy(ctx context.Context, input beta.MobilityManagementPolicy) (result CreateMobileDeviceManagementPolicyOperationResponse, err error) {
+func (c MobileDeviceManagementPolicyClient) CreateMobileDeviceManagementPolicy(ctx context.Context, input beta.MobilityManagementPolicy, options CreateMobileDeviceManagementPolicyOperationOptions) (result CreateMobileDeviceManagementPolicyOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/policies/mobileDeviceManagementPolicies",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/policies/mobileDeviceManagementPolicies",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -104,12 +104,12 @@ func (id UserIdJoinedTeamIdScheduleSchedulingGroupId) ID() string {
 func (id UserIdJoinedTeamIdScheduleSchedulingGroupId) Segments() []resourceids.Segment {
 	return []resourceids.Segment{
 		resourceids.StaticSegment("users", "users", "users"),
-		resourceids.UserSpecifiedSegment("userId", "userIdValue"),
+		resourceids.UserSpecifiedSegment("userId", "userId"),
 		resourceids.StaticSegment("joinedTeams", "joinedTeams", "joinedTeams"),
-		resourceids.UserSpecifiedSegment("teamId", "teamIdValue"),
+		resourceids.UserSpecifiedSegment("teamId", "teamId"),
 		resourceids.StaticSegment("schedule", "schedule", "schedule"),
 		resourceids.StaticSegment("schedulingGroups", "schedulingGroups", "schedulingGroups"),
-		resourceids.UserSpecifiedSegment("schedulingGroupId", "schedulingGroupIdValue"),
+		resourceids.UserSpecifiedSegment("schedulingGroupId", "schedulingGroupId"),
 	}
 }
 

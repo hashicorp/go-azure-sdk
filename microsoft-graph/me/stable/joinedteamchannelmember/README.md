@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/joinedteamchannelmember` Documentation
 
-The `joinedteamchannelmember` SDK allows for interaction with the Azure Resource Manager Service `me` (API Version `stable`).
+The `joinedteamchannelmember` SDK allows for interaction with Microsoft Graph `me` (API Version `stable`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -15,7 +15,7 @@ import "github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/joinedteamch
 ### Client Initialization
 
 ```go
-client := joinedteamchannelmember.NewJoinedTeamChannelMemberClientWithBaseURI("https://management.azure.com")
+client := joinedteamchannelmember.NewJoinedTeamChannelMemberClientWithBaseURI("https://graph.microsoft.com")
 client.Client.Authorizer = authorizer
 ```
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := joinedteamchannelmember.NewMeJoinedTeamIdChannelID("teamIdValue", "channelIdValue")
+id := joinedteamchannelmember.NewMeJoinedTeamIdChannelID("teamId", "channelId")
 
 payload := joinedteamchannelmember.AddJoinedTeamChannelMembersRequest{
 	// ...
@@ -46,14 +46,14 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := joinedteamchannelmember.NewMeJoinedTeamIdChannelID("teamIdValue", "channelIdValue")
+id := joinedteamchannelmember.NewMeJoinedTeamIdChannelID("teamId", "channelId")
 
 payload := joinedteamchannelmember.ConversationMember{
 	// ...
 }
 
 
-read, err := client.CreateJoinedTeamChannelMember(ctx, id, payload)
+read, err := client.CreateJoinedTeamChannelMember(ctx, id, payload, joinedteamchannelmember.DefaultCreateJoinedTeamChannelMemberOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -67,7 +67,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := joinedteamchannelmember.NewMeJoinedTeamIdChannelIdMemberID("teamIdValue", "channelIdValue", "conversationMemberIdValue")
+id := joinedteamchannelmember.NewMeJoinedTeamIdChannelIdMemberID("teamId", "channelId", "conversationMemberId")
 
 read, err := client.DeleteJoinedTeamChannelMember(ctx, id, joinedteamchannelmember.DefaultDeleteJoinedTeamChannelMemberOperationOptions())
 if err != nil {
@@ -83,7 +83,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := joinedteamchannelmember.NewMeJoinedTeamIdChannelIdMemberID("teamIdValue", "channelIdValue", "conversationMemberIdValue")
+id := joinedteamchannelmember.NewMeJoinedTeamIdChannelIdMemberID("teamId", "channelId", "conversationMemberId")
 
 read, err := client.GetJoinedTeamChannelMember(ctx, id, joinedteamchannelmember.DefaultGetJoinedTeamChannelMemberOperationOptions())
 if err != nil {
@@ -99,7 +99,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := joinedteamchannelmember.NewMeJoinedTeamIdChannelID("teamIdValue", "channelIdValue")
+id := joinedteamchannelmember.NewMeJoinedTeamIdChannelID("teamId", "channelId")
 
 read, err := client.GetJoinedTeamChannelMembersCount(ctx, id, joinedteamchannelmember.DefaultGetJoinedTeamChannelMembersCountOperationOptions())
 if err != nil {
@@ -115,7 +115,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := joinedteamchannelmember.NewMeJoinedTeamIdChannelID("teamIdValue", "channelIdValue")
+id := joinedteamchannelmember.NewMeJoinedTeamIdChannelID("teamId", "channelId")
 
 // alternatively `client.ListJoinedTeamChannelMembers(ctx, id, joinedteamchannelmember.DefaultListJoinedTeamChannelMembersOperationOptions())` can be used to do batched pagination
 items, err := client.ListJoinedTeamChannelMembersComplete(ctx, id, joinedteamchannelmember.DefaultListJoinedTeamChannelMembersOperationOptions())
@@ -132,14 +132,14 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := joinedteamchannelmember.NewMeJoinedTeamIdChannelIdMemberID("teamIdValue", "channelIdValue", "conversationMemberIdValue")
+id := joinedteamchannelmember.NewMeJoinedTeamIdChannelIdMemberID("teamId", "channelId", "conversationMemberId")
 
 payload := joinedteamchannelmember.ConversationMember{
 	// ...
 }
 
 
-read, err := client.UpdateJoinedTeamChannelMember(ctx, id, payload)
+read, err := client.UpdateJoinedTeamChannelMember(ctx, id, payload, joinedteamchannelmember.DefaultUpdateJoinedTeamChannelMemberOperationOptions())
 if err != nil {
 	// handle the error
 }

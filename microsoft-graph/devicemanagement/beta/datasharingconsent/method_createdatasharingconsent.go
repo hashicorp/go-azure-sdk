@@ -18,15 +18,44 @@ type CreateDataSharingConsentOperationResponse struct {
 	Model        *beta.DataSharingConsent
 }
 
+type CreateDataSharingConsentOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateDataSharingConsentOperationOptions() CreateDataSharingConsentOperationOptions {
+	return CreateDataSharingConsentOperationOptions{}
+}
+
+func (o CreateDataSharingConsentOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateDataSharingConsentOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateDataSharingConsentOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateDataSharingConsent - Create new navigation property to dataSharingConsents for deviceManagement
-func (c DataSharingConsentClient) CreateDataSharingConsent(ctx context.Context, input beta.DataSharingConsent) (result CreateDataSharingConsentOperationResponse, err error) {
+func (c DataSharingConsentClient) CreateDataSharingConsent(ctx context.Context, input beta.DataSharingConsent, options CreateDataSharingConsentOperationOptions) (result CreateDataSharingConsentOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/deviceManagement/dataSharingConsents",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/deviceManagement/dataSharingConsents",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

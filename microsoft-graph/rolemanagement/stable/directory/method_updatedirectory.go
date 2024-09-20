@@ -17,15 +17,44 @@ type UpdateDirectoryOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateDirectoryOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateDirectoryOperationOptions() UpdateDirectoryOperationOptions {
+	return UpdateDirectoryOperationOptions{}
+}
+
+func (o UpdateDirectoryOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateDirectoryOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateDirectoryOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateDirectory - Update the navigation property directory in roleManagement
-func (c DirectoryClient) UpdateDirectory(ctx context.Context, input stable.RbacApplication) (result UpdateDirectoryOperationResponse, err error) {
+func (c DirectoryClient) UpdateDirectory(ctx context.Context, input stable.RbacApplication, options UpdateDirectoryOperationOptions) (result UpdateDirectoryOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       "/roleManagement/directory",
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          "/roleManagement/directory",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

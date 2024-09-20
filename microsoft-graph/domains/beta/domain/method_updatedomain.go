@@ -17,15 +17,44 @@ type UpdateDomainOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateDomainOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateDomainOperationOptions() UpdateDomainOperationOptions {
+	return UpdateDomainOperationOptions{}
+}
+
+func (o UpdateDomainOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateDomainOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateDomainOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateDomain - Update domain. Update the properties of domain object. Only verified domains can be updated.
-func (c DomainClient) UpdateDomain(ctx context.Context, id beta.DomainId, input beta.Domain) (result UpdateDomainOperationResponse, err error) {
+func (c DomainClient) UpdateDomain(ctx context.Context, id beta.DomainId, input beta.Domain, options UpdateDomainOperationOptions) (result UpdateDomainOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

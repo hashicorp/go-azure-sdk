@@ -18,15 +18,44 @@ type UpdateSitePageCreatedByUserMailboxSettingOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateSitePageCreatedByUserMailboxSettingOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateSitePageCreatedByUserMailboxSettingOperationOptions() UpdateSitePageCreatedByUserMailboxSettingOperationOptions {
+	return UpdateSitePageCreatedByUserMailboxSettingOperationOptions{}
+}
+
+func (o UpdateSitePageCreatedByUserMailboxSettingOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateSitePageCreatedByUserMailboxSettingOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateSitePageCreatedByUserMailboxSettingOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateSitePageCreatedByUserMailboxSetting - Update property mailboxSettings value.
-func (c SitePageCreatedByUserMailboxSettingClient) UpdateSitePageCreatedByUserMailboxSetting(ctx context.Context, id stable.GroupIdSiteIdPageId, input stable.MailboxSettings) (result UpdateSitePageCreatedByUserMailboxSettingOperationResponse, err error) {
+func (c SitePageCreatedByUserMailboxSettingClient) UpdateSitePageCreatedByUserMailboxSetting(ctx context.Context, id stable.GroupIdSiteIdPageId, input stable.MailboxSettings, options UpdateSitePageCreatedByUserMailboxSettingOperationOptions) (result UpdateSitePageCreatedByUserMailboxSettingOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       fmt.Sprintf("%s/createdByUser/mailboxSettings", id.ID()),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/createdByUser/mailboxSettings", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

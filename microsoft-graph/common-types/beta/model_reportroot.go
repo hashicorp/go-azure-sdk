@@ -113,10 +113,34 @@ func (s ReportRoot) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &ReportRoot{}
 
 func (s *ReportRoot) UnmarshalJSON(bytes []byte) error {
-	type alias ReportRoot
-	var decoded alias
+
+	var decoded struct {
+		AppCredentialSignInActivities       *[]AppCredentialSignInActivity       `json:"appCredentialSignInActivities,omitempty"`
+		ApplicationSignInDetailedSummary    *[]ApplicationSignInDetailedSummary  `json:"applicationSignInDetailedSummary,omitempty"`
+		AuthenticationMethods               *AuthenticationMethodsRoot           `json:"authenticationMethods,omitempty"`
+		CredentialUserRegistrationDetails   *[]CredentialUserRegistrationDetails `json:"credentialUserRegistrationDetails,omitempty"`
+		DailyPrintUsage                     *[]PrintUsage                        `json:"dailyPrintUsage,omitempty"`
+		DailyPrintUsageByPrinter            *[]PrintUsageByPrinter               `json:"dailyPrintUsageByPrinter,omitempty"`
+		DailyPrintUsageByUser               *[]PrintUsageByUser                  `json:"dailyPrintUsageByUser,omitempty"`
+		DailyPrintUsageSummariesByPrinter   *[]PrintUsageByPrinter               `json:"dailyPrintUsageSummariesByPrinter,omitempty"`
+		DailyPrintUsageSummariesByUser      *[]PrintUsageByUser                  `json:"dailyPrintUsageSummariesByUser,omitempty"`
+		MonthlyPrintUsageByPrinter          *[]PrintUsageByPrinter               `json:"monthlyPrintUsageByPrinter,omitempty"`
+		MonthlyPrintUsageByUser             *[]PrintUsageByUser                  `json:"monthlyPrintUsageByUser,omitempty"`
+		MonthlyPrintUsageSummariesByPrinter *[]PrintUsageByPrinter               `json:"monthlyPrintUsageSummariesByPrinter,omitempty"`
+		MonthlyPrintUsageSummariesByUser    *[]PrintUsageByUser                  `json:"monthlyPrintUsageSummariesByUser,omitempty"`
+		Partners                            *Partners                            `json:"partners,omitempty"`
+		Security                            *SecurityReportsRoot                 `json:"security,omitempty"`
+		ServiceActivity                     *ServiceActivity                     `json:"serviceActivity,omitempty"`
+		ServicePrincipalSignInActivities    *[]ServicePrincipalSignInActivity    `json:"servicePrincipalSignInActivities,omitempty"`
+		Sla                                 *ServiceLevelAgreementRoot           `json:"sla,omitempty"`
+		UserCredentialUsageDetails          *[]UserCredentialUsageDetails        `json:"userCredentialUsageDetails,omitempty"`
+		UserInsights                        *UserInsightsRoot                    `json:"userInsights,omitempty"`
+		Id                                  *string                              `json:"id,omitempty"`
+		ODataId                             *string                              `json:"@odata.id,omitempty"`
+		ODataType                           *string                              `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into ReportRoot: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.AppCredentialSignInActivities = decoded.AppCredentialSignInActivities
@@ -127,13 +151,10 @@ func (s *ReportRoot) UnmarshalJSON(bytes []byte) error {
 	s.DailyPrintUsageByUser = decoded.DailyPrintUsageByUser
 	s.DailyPrintUsageSummariesByPrinter = decoded.DailyPrintUsageSummariesByPrinter
 	s.DailyPrintUsageSummariesByUser = decoded.DailyPrintUsageSummariesByUser
-	s.Id = decoded.Id
 	s.MonthlyPrintUsageByPrinter = decoded.MonthlyPrintUsageByPrinter
 	s.MonthlyPrintUsageByUser = decoded.MonthlyPrintUsageByUser
 	s.MonthlyPrintUsageSummariesByPrinter = decoded.MonthlyPrintUsageSummariesByPrinter
 	s.MonthlyPrintUsageSummariesByUser = decoded.MonthlyPrintUsageSummariesByUser
-	s.ODataId = decoded.ODataId
-	s.ODataType = decoded.ODataType
 	s.Partners = decoded.Partners
 	s.Security = decoded.Security
 	s.ServiceActivity = decoded.ServiceActivity
@@ -141,6 +162,9 @@ func (s *ReportRoot) UnmarshalJSON(bytes []byte) error {
 	s.Sla = decoded.Sla
 	s.UserCredentialUsageDetails = decoded.UserCredentialUsageDetails
 	s.UserInsights = decoded.UserInsights
+	s.Id = decoded.Id
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -163,5 +187,6 @@ func (s *ReportRoot) UnmarshalJSON(bytes []byte) error {
 		}
 		s.DailyPrintUsage = &output
 	}
+
 	return nil
 }

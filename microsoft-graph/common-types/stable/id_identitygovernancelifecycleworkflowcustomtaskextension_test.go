@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &IdentityGovernanceLifecycleWorkflowCustomTaskExtensionId{}
 
 func TestNewIdentityGovernanceLifecycleWorkflowCustomTaskExtensionID(t *testing.T) {
-	id := NewIdentityGovernanceLifecycleWorkflowCustomTaskExtensionID("customTaskExtensionIdValue")
+	id := NewIdentityGovernanceLifecycleWorkflowCustomTaskExtensionID("customTaskExtensionId")
 
-	if id.CustomTaskExtensionId != "customTaskExtensionIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'CustomTaskExtensionId'", id.CustomTaskExtensionId, "customTaskExtensionIdValue")
+	if id.CustomTaskExtensionId != "customTaskExtensionId" {
+		t.Fatalf("Expected %q but got %q for Segment 'CustomTaskExtensionId'", id.CustomTaskExtensionId, "customTaskExtensionId")
 	}
 }
 
 func TestFormatIdentityGovernanceLifecycleWorkflowCustomTaskExtensionID(t *testing.T) {
-	actual := NewIdentityGovernanceLifecycleWorkflowCustomTaskExtensionID("customTaskExtensionIdValue").ID()
-	expected := "/identityGovernance/lifecycleWorkflows/customTaskExtensions/customTaskExtensionIdValue"
+	actual := NewIdentityGovernanceLifecycleWorkflowCustomTaskExtensionID("customTaskExtensionId").ID()
+	expected := "/identityGovernance/lifecycleWorkflows/customTaskExtensions/customTaskExtensionId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -55,14 +55,14 @@ func TestParseIdentityGovernanceLifecycleWorkflowCustomTaskExtensionID(t *testin
 		},
 		{
 			// Valid URI
-			Input: "/identityGovernance/lifecycleWorkflows/customTaskExtensions/customTaskExtensionIdValue",
+			Input: "/identityGovernance/lifecycleWorkflows/customTaskExtensions/customTaskExtensionId",
 			Expected: &IdentityGovernanceLifecycleWorkflowCustomTaskExtensionId{
-				CustomTaskExtensionId: "customTaskExtensionIdValue",
+				CustomTaskExtensionId: "customTaskExtensionId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/identityGovernance/lifecycleWorkflows/customTaskExtensions/customTaskExtensionIdValue/extra",
+			Input: "/identityGovernance/lifecycleWorkflows/customTaskExtensions/customTaskExtensionId/extra",
 			Error: true,
 		},
 	}
@@ -131,26 +131,26 @@ func TestParseIdentityGovernanceLifecycleWorkflowCustomTaskExtensionIDInsensitiv
 		},
 		{
 			// Valid URI
-			Input: "/identityGovernance/lifecycleWorkflows/customTaskExtensions/customTaskExtensionIdValue",
+			Input: "/identityGovernance/lifecycleWorkflows/customTaskExtensions/customTaskExtensionId",
 			Expected: &IdentityGovernanceLifecycleWorkflowCustomTaskExtensionId{
-				CustomTaskExtensionId: "customTaskExtensionIdValue",
+				CustomTaskExtensionId: "customTaskExtensionId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/identityGovernance/lifecycleWorkflows/customTaskExtensions/customTaskExtensionIdValue/extra",
+			Input: "/identityGovernance/lifecycleWorkflows/customTaskExtensions/customTaskExtensionId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/iDeNtItYgOvErNaNcE/lIfEcYcLeWoRkFlOwS/cUsToMtAsKeXtEnSiOnS/cUsToMtAsKeXtEnSiOnIdVaLuE",
+			Input: "/iDeNtItYgOvErNaNcE/lIfEcYcLeWoRkFlOwS/cUsToMtAsKeXtEnSiOnS/cUsToMtAsKeXtEnSiOnId",
 			Expected: &IdentityGovernanceLifecycleWorkflowCustomTaskExtensionId{
-				CustomTaskExtensionId: "cUsToMtAsKeXtEnSiOnIdVaLuE",
+				CustomTaskExtensionId: "cUsToMtAsKeXtEnSiOnId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/iDeNtItYgOvErNaNcE/lIfEcYcLeWoRkFlOwS/cUsToMtAsKeXtEnSiOnS/cUsToMtAsKeXtEnSiOnIdVaLuE/extra",
+			Input: "/iDeNtItYgOvErNaNcE/lIfEcYcLeWoRkFlOwS/cUsToMtAsKeXtEnSiOnS/cUsToMtAsKeXtEnSiOnId/extra",
 			Error: true,
 		},
 	}

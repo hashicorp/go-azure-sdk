@@ -18,15 +18,44 @@ type UpdateDeviceHealthScriptRunSummaryOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateDeviceHealthScriptRunSummaryOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateDeviceHealthScriptRunSummaryOperationOptions() UpdateDeviceHealthScriptRunSummaryOperationOptions {
+	return UpdateDeviceHealthScriptRunSummaryOperationOptions{}
+}
+
+func (o UpdateDeviceHealthScriptRunSummaryOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateDeviceHealthScriptRunSummaryOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateDeviceHealthScriptRunSummaryOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateDeviceHealthScriptRunSummary - Update the navigation property runSummary in deviceManagement
-func (c DeviceHealthScriptRunSummaryClient) UpdateDeviceHealthScriptRunSummary(ctx context.Context, id beta.DeviceManagementDeviceHealthScriptId, input beta.DeviceHealthScriptRunSummary) (result UpdateDeviceHealthScriptRunSummaryOperationResponse, err error) {
+func (c DeviceHealthScriptRunSummaryClient) UpdateDeviceHealthScriptRunSummary(ctx context.Context, id beta.DeviceManagementDeviceHealthScriptId, input beta.DeviceHealthScriptRunSummary, options UpdateDeviceHealthScriptRunSummaryOperationOptions) (result UpdateDeviceHealthScriptRunSummaryOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       fmt.Sprintf("%s/runSummary", id.ID()),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/runSummary", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

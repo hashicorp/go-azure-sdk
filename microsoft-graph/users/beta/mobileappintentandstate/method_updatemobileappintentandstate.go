@@ -17,15 +17,44 @@ type UpdateMobileAppIntentAndStateOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateMobileAppIntentAndStateOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateMobileAppIntentAndStateOperationOptions() UpdateMobileAppIntentAndStateOperationOptions {
+	return UpdateMobileAppIntentAndStateOperationOptions{}
+}
+
+func (o UpdateMobileAppIntentAndStateOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateMobileAppIntentAndStateOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateMobileAppIntentAndStateOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateMobileAppIntentAndState - Update the navigation property mobileAppIntentAndStates in users
-func (c MobileAppIntentAndStateClient) UpdateMobileAppIntentAndState(ctx context.Context, id beta.UserIdMobileAppIntentAndStateId, input beta.MobileAppIntentAndState) (result UpdateMobileAppIntentAndStateOperationResponse, err error) {
+func (c MobileAppIntentAndStateClient) UpdateMobileAppIntentAndState(ctx context.Context, id beta.UserIdMobileAppIntentAndStateId, input beta.MobileAppIntentAndState, options UpdateMobileAppIntentAndStateOperationOptions) (result UpdateMobileAppIntentAndStateOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

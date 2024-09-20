@@ -18,16 +18,45 @@ type CreateEntitlementManagementAccessPackageOperationResponse struct {
 	Model        *stable.AccessPackage
 }
 
+type CreateEntitlementManagementAccessPackageOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateEntitlementManagementAccessPackageOperationOptions() CreateEntitlementManagementAccessPackageOperationOptions {
+	return CreateEntitlementManagementAccessPackageOperationOptions{}
+}
+
+func (o CreateEntitlementManagementAccessPackageOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateEntitlementManagementAccessPackageOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateEntitlementManagementAccessPackageOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateEntitlementManagementAccessPackage - Create accessPackage. Create a new accessPackage object. The access
 // package will be added to an existing accessPackageCatalog.
-func (c EntitlementManagementAccessPackageClient) CreateEntitlementManagementAccessPackage(ctx context.Context, input stable.AccessPackage) (result CreateEntitlementManagementAccessPackageOperationResponse, err error) {
+func (c EntitlementManagementAccessPackageClient) CreateEntitlementManagementAccessPackage(ctx context.Context, input stable.AccessPackage, options CreateEntitlementManagementAccessPackageOperationOptions) (result CreateEntitlementManagementAccessPackageOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/identityGovernance/entitlementManagement/accessPackages",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/identityGovernance/entitlementManagement/accessPackages",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

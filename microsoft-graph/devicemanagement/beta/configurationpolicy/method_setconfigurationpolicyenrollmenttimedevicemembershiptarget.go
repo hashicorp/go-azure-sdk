@@ -19,15 +19,44 @@ type SetConfigurationPolicyEnrollmentTimeDeviceMembershipTargetOperationResponse
 	Model        *beta.EnrollmentTimeDeviceMembershipTargetResult
 }
 
+type SetConfigurationPolicyEnrollmentTimeDeviceMembershipTargetOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultSetConfigurationPolicyEnrollmentTimeDeviceMembershipTargetOperationOptions() SetConfigurationPolicyEnrollmentTimeDeviceMembershipTargetOperationOptions {
+	return SetConfigurationPolicyEnrollmentTimeDeviceMembershipTargetOperationOptions{}
+}
+
+func (o SetConfigurationPolicyEnrollmentTimeDeviceMembershipTargetOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o SetConfigurationPolicyEnrollmentTimeDeviceMembershipTargetOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o SetConfigurationPolicyEnrollmentTimeDeviceMembershipTargetOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // SetConfigurationPolicyEnrollmentTimeDeviceMembershipTarget - Invoke action setEnrollmentTimeDeviceMembershipTarget
-func (c ConfigurationPolicyClient) SetConfigurationPolicyEnrollmentTimeDeviceMembershipTarget(ctx context.Context, id beta.DeviceManagementConfigurationPolicyId, input SetConfigurationPolicyEnrollmentTimeDeviceMembershipTargetRequest) (result SetConfigurationPolicyEnrollmentTimeDeviceMembershipTargetOperationResponse, err error) {
+func (c ConfigurationPolicyClient) SetConfigurationPolicyEnrollmentTimeDeviceMembershipTarget(ctx context.Context, id beta.DeviceManagementConfigurationPolicyId, input SetConfigurationPolicyEnrollmentTimeDeviceMembershipTargetRequest, options SetConfigurationPolicyEnrollmentTimeDeviceMembershipTargetOperationOptions) (result SetConfigurationPolicyEnrollmentTimeDeviceMembershipTargetOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/setEnrollmentTimeDeviceMembershipTarget", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/setEnrollmentTimeDeviceMembershipTarget", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

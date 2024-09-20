@@ -93,7 +93,7 @@ func (id DeviceManagementDeviceHealthScriptId) Segments() []resourceids.Segment 
 	return []resourceids.Segment{
 		resourceids.StaticSegment("deviceManagement", "deviceManagement", "deviceManagement"),
 		resourceids.StaticSegment("deviceHealthScripts", "deviceHealthScripts", "deviceHealthScripts"),
-		resourceids.UserSpecifiedSegment("deviceHealthScriptId", "deviceHealthScriptIdValue"),
+		resourceids.UserSpecifiedSegment("deviceHealthScriptId", "deviceHealthScriptId"),
 	}
 }
 

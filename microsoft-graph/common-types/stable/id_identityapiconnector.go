@@ -93,7 +93,7 @@ func (id IdentityApiConnectorId) Segments() []resourceids.Segment {
 	return []resourceids.Segment{
 		resourceids.StaticSegment("identity", "identity", "identity"),
 		resourceids.StaticSegment("apiConnectors", "apiConnectors", "apiConnectors"),
-		resourceids.UserSpecifiedSegment("identityApiConnectorId", "identityApiConnectorIdValue"),
+		resourceids.UserSpecifiedSegment("identityApiConnectorId", "identityApiConnectorId"),
 	}
 }
 

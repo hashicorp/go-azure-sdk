@@ -19,7 +19,8 @@ type DeleteTeamChannelOperationResponse struct {
 }
 
 type DeleteTeamChannelOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteTeamChannelOperationOptions() DeleteTeamChannelOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteTeamChannelOperationOptions) ToHeaders() *client.Headers {
 
 func (o DeleteTeamChannelOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

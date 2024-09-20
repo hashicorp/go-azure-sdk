@@ -18,16 +18,45 @@ type SetDriveItemAnalyticsItemActivityStatActivityDriveItemContentStreamOperatio
 	OData        *odata.OData
 }
 
+type SetDriveItemAnalyticsItemActivityStatActivityDriveItemContentStreamOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultSetDriveItemAnalyticsItemActivityStatActivityDriveItemContentStreamOperationOptions() SetDriveItemAnalyticsItemActivityStatActivityDriveItemContentStreamOperationOptions {
+	return SetDriveItemAnalyticsItemActivityStatActivityDriveItemContentStreamOperationOptions{}
+}
+
+func (o SetDriveItemAnalyticsItemActivityStatActivityDriveItemContentStreamOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o SetDriveItemAnalyticsItemActivityStatActivityDriveItemContentStreamOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o SetDriveItemAnalyticsItemActivityStatActivityDriveItemContentStreamOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // SetDriveItemAnalyticsItemActivityStatActivityDriveItemContentStream - Update contentStream for the navigation
 // property driveItem in me. The content stream, if the item represents a file.
-func (c DriveItemAnalyticsItemActivityStatActivityDriveItemContentStreamClient) SetDriveItemAnalyticsItemActivityStatActivityDriveItemContentStream(ctx context.Context, id beta.MeDriveIdItemIdAnalyticsItemActivityStatIdActivityId, input []byte) (result SetDriveItemAnalyticsItemActivityStatActivityDriveItemContentStreamOperationResponse, err error) {
+func (c DriveItemAnalyticsItemActivityStatActivityDriveItemContentStreamClient) SetDriveItemAnalyticsItemActivityStatActivityDriveItemContentStream(ctx context.Context, id beta.MeDriveIdItemIdAnalyticsItemActivityStatIdActivityId, input []byte, options SetDriveItemAnalyticsItemActivityStatActivityDriveItemContentStreamOperationOptions) (result SetDriveItemAnalyticsItemActivityStatActivityDriveItemContentStreamOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPut,
-		Path:       fmt.Sprintf("%s/driveItem/contentStream", id.ID()),
+		HttpMethod:    http.MethodPut,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/driveItem/contentStream", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

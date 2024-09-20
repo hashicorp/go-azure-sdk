@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &DeviceManagementComanagementEligibleDeviceId{}
 
 func TestNewDeviceManagementComanagementEligibleDeviceID(t *testing.T) {
-	id := NewDeviceManagementComanagementEligibleDeviceID("comanagementEligibleDeviceIdValue")
+	id := NewDeviceManagementComanagementEligibleDeviceID("comanagementEligibleDeviceId")
 
-	if id.ComanagementEligibleDeviceId != "comanagementEligibleDeviceIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ComanagementEligibleDeviceId'", id.ComanagementEligibleDeviceId, "comanagementEligibleDeviceIdValue")
+	if id.ComanagementEligibleDeviceId != "comanagementEligibleDeviceId" {
+		t.Fatalf("Expected %q but got %q for Segment 'ComanagementEligibleDeviceId'", id.ComanagementEligibleDeviceId, "comanagementEligibleDeviceId")
 	}
 }
 
 func TestFormatDeviceManagementComanagementEligibleDeviceID(t *testing.T) {
-	actual := NewDeviceManagementComanagementEligibleDeviceID("comanagementEligibleDeviceIdValue").ID()
-	expected := "/deviceManagement/comanagementEligibleDevices/comanagementEligibleDeviceIdValue"
+	actual := NewDeviceManagementComanagementEligibleDeviceID("comanagementEligibleDeviceId").ID()
+	expected := "/deviceManagement/comanagementEligibleDevices/comanagementEligibleDeviceId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -50,14 +50,14 @@ func TestParseDeviceManagementComanagementEligibleDeviceID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/comanagementEligibleDevices/comanagementEligibleDeviceIdValue",
+			Input: "/deviceManagement/comanagementEligibleDevices/comanagementEligibleDeviceId",
 			Expected: &DeviceManagementComanagementEligibleDeviceId{
-				ComanagementEligibleDeviceId: "comanagementEligibleDeviceIdValue",
+				ComanagementEligibleDeviceId: "comanagementEligibleDeviceId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/comanagementEligibleDevices/comanagementEligibleDeviceIdValue/extra",
+			Input: "/deviceManagement/comanagementEligibleDevices/comanagementEligibleDeviceId/extra",
 			Error: true,
 		},
 	}
@@ -116,26 +116,26 @@ func TestParseDeviceManagementComanagementEligibleDeviceIDInsensitively(t *testi
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/comanagementEligibleDevices/comanagementEligibleDeviceIdValue",
+			Input: "/deviceManagement/comanagementEligibleDevices/comanagementEligibleDeviceId",
 			Expected: &DeviceManagementComanagementEligibleDeviceId{
-				ComanagementEligibleDeviceId: "comanagementEligibleDeviceIdValue",
+				ComanagementEligibleDeviceId: "comanagementEligibleDeviceId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/comanagementEligibleDevices/comanagementEligibleDeviceIdValue/extra",
+			Input: "/deviceManagement/comanagementEligibleDevices/comanagementEligibleDeviceId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/cOmAnAgEmEnTeLiGiBlEdEvIcEs/cOmAnAgEmEnTeLiGiBlEdEvIcEiDvAlUe",
+			Input: "/dEvIcEmAnAgEmEnT/cOmAnAgEmEnTeLiGiBlEdEvIcEs/cOmAnAgEmEnTeLiGiBlEdEvIcEiD",
 			Expected: &DeviceManagementComanagementEligibleDeviceId{
-				ComanagementEligibleDeviceId: "cOmAnAgEmEnTeLiGiBlEdEvIcEiDvAlUe",
+				ComanagementEligibleDeviceId: "cOmAnAgEmEnTeLiGiBlEdEvIcEiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/cOmAnAgEmEnTeLiGiBlEdEvIcEs/cOmAnAgEmEnTeLiGiBlEdEvIcEiDvAlUe/extra",
+			Input: "/dEvIcEmAnAgEmEnT/cOmAnAgEmEnTeLiGiBlEdEvIcEs/cOmAnAgEmEnTeLiGiBlEdEvIcEiD/extra",
 			Error: true,
 		},
 	}

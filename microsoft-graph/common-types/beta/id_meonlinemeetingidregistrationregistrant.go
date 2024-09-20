@@ -99,10 +99,10 @@ func (id MeOnlineMeetingIdRegistrationRegistrantId) Segments() []resourceids.Seg
 	return []resourceids.Segment{
 		resourceids.StaticSegment("me", "me", "me"),
 		resourceids.StaticSegment("onlineMeetings", "onlineMeetings", "onlineMeetings"),
-		resourceids.UserSpecifiedSegment("onlineMeetingId", "onlineMeetingIdValue"),
+		resourceids.UserSpecifiedSegment("onlineMeetingId", "onlineMeetingId"),
 		resourceids.StaticSegment("registration", "registration", "registration"),
 		resourceids.StaticSegment("registrants", "registrants", "registrants"),
-		resourceids.UserSpecifiedSegment("meetingRegistrantBaseId", "meetingRegistrantBaseIdValue"),
+		resourceids.UserSpecifiedSegment("meetingRegistrantBaseId", "meetingRegistrantBaseId"),
 	}
 }
 

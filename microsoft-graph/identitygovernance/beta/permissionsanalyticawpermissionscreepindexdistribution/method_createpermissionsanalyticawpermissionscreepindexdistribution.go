@@ -18,16 +18,45 @@ type CreatePermissionsAnalyticAwPermissionsCreepIndexDistributionOperationRespon
 	Model        *beta.PermissionsCreepIndexDistribution
 }
 
+type CreatePermissionsAnalyticAwPermissionsCreepIndexDistributionOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreatePermissionsAnalyticAwPermissionsCreepIndexDistributionOperationOptions() CreatePermissionsAnalyticAwPermissionsCreepIndexDistributionOperationOptions {
+	return CreatePermissionsAnalyticAwPermissionsCreepIndexDistributionOperationOptions{}
+}
+
+func (o CreatePermissionsAnalyticAwPermissionsCreepIndexDistributionOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreatePermissionsAnalyticAwPermissionsCreepIndexDistributionOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreatePermissionsAnalyticAwPermissionsCreepIndexDistributionOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreatePermissionsAnalyticAwPermissionsCreepIndexDistribution - Create new navigation property to
 // permissionsCreepIndexDistributions for identityGovernance
-func (c PermissionsAnalyticAwPermissionsCreepIndexDistributionClient) CreatePermissionsAnalyticAwPermissionsCreepIndexDistribution(ctx context.Context, input beta.PermissionsCreepIndexDistribution) (result CreatePermissionsAnalyticAwPermissionsCreepIndexDistributionOperationResponse, err error) {
+func (c PermissionsAnalyticAwPermissionsCreepIndexDistributionClient) CreatePermissionsAnalyticAwPermissionsCreepIndexDistribution(ctx context.Context, input beta.PermissionsCreepIndexDistribution, options CreatePermissionsAnalyticAwPermissionsCreepIndexDistributionOperationOptions) (result CreatePermissionsAnalyticAwPermissionsCreepIndexDistributionOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/identityGovernance/permissionsAnalytics/aws/permissionsCreepIndexDistributions",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/identityGovernance/permissionsAnalytics/aws/permissionsCreepIndexDistributions",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

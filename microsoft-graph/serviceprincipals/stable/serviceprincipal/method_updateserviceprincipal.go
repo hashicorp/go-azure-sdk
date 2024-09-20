@@ -17,16 +17,45 @@ type UpdateServicePrincipalOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateServicePrincipalOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateServicePrincipalOperationOptions() UpdateServicePrincipalOperationOptions {
+	return UpdateServicePrincipalOperationOptions{}
+}
+
+func (o UpdateServicePrincipalOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateServicePrincipalOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateServicePrincipalOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateServicePrincipal - Upsert servicePrincipal. Create a new servicePrincipal object if it doesn't exist, or update
 // the properties of an existing servicePrincipal object.
-func (c ServicePrincipalClient) UpdateServicePrincipal(ctx context.Context, id stable.ServicePrincipalId, input stable.ServicePrincipal) (result UpdateServicePrincipalOperationResponse, err error) {
+func (c ServicePrincipalClient) UpdateServicePrincipal(ctx context.Context, id stable.ServicePrincipalId, input stable.ServicePrincipal, options UpdateServicePrincipalOperationOptions) (result UpdateServicePrincipalOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

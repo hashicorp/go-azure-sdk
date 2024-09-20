@@ -102,10 +102,22 @@ func (s EdiscoveryNoncustodialDataSource) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &EdiscoveryNoncustodialDataSource{}
 
 func (s *EdiscoveryNoncustodialDataSource) UnmarshalJSON(bytes []byte) error {
-	type alias EdiscoveryNoncustodialDataSource
-	var decoded alias
+
+	var decoded struct {
+		ApplyHoldToSource    nullable.Type[bool]                  `json:"applyHoldToSource,omitempty"`
+		CreatedDateTime      nullable.Type[string]                `json:"createdDateTime,omitempty"`
+		DisplayName          nullable.Type[string]                `json:"displayName,omitempty"`
+		HoldStatus           *EdiscoveryDataSourceHoldStatus      `json:"holdStatus,omitempty"`
+		LastIndexOperation   *EdiscoveryCaseIndexOperation        `json:"lastIndexOperation,omitempty"`
+		LastModifiedDateTime nullable.Type[string]                `json:"lastModifiedDateTime,omitempty"`
+		ReleasedDateTime     nullable.Type[string]                `json:"releasedDateTime,omitempty"`
+		Status               *EdiscoveryDataSourceContainerStatus `json:"status,omitempty"`
+		Id                   *string                              `json:"id,omitempty"`
+		ODataId              *string                              `json:"@odata.id,omitempty"`
+		ODataType            *string                              `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into EdiscoveryNoncustodialDataSource: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.ApplyHoldToSource = decoded.ApplyHoldToSource
@@ -132,5 +144,6 @@ func (s *EdiscoveryNoncustodialDataSource) UnmarshalJSON(bytes []byte) error {
 		}
 		s.DataSource = &impl
 	}
+
 	return nil
 }

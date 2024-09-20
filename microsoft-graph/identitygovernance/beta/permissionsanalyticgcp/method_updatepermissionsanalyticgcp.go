@@ -17,15 +17,44 @@ type UpdatePermissionsAnalyticGcpOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdatePermissionsAnalyticGcpOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdatePermissionsAnalyticGcpOperationOptions() UpdatePermissionsAnalyticGcpOperationOptions {
+	return UpdatePermissionsAnalyticGcpOperationOptions{}
+}
+
+func (o UpdatePermissionsAnalyticGcpOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdatePermissionsAnalyticGcpOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdatePermissionsAnalyticGcpOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdatePermissionsAnalyticGcp - Update the navigation property gcp in identityGovernance
-func (c PermissionsAnalyticGcpClient) UpdatePermissionsAnalyticGcp(ctx context.Context, input beta.PermissionsAnalytics) (result UpdatePermissionsAnalyticGcpOperationResponse, err error) {
+func (c PermissionsAnalyticGcpClient) UpdatePermissionsAnalyticGcp(ctx context.Context, input beta.PermissionsAnalytics, options UpdatePermissionsAnalyticGcpOperationOptions) (result UpdatePermissionsAnalyticGcpOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       "/identityGovernance/permissionsAnalytics/gcp",
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          "/identityGovernance/permissionsAnalytics/gcp",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -17,15 +17,44 @@ type UpdateMailFolderMessageOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateMailFolderMessageOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateMailFolderMessageOperationOptions() UpdateMailFolderMessageOperationOptions {
+	return UpdateMailFolderMessageOperationOptions{}
+}
+
+func (o UpdateMailFolderMessageOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateMailFolderMessageOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateMailFolderMessageOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateMailFolderMessage - Update the navigation property messages in users
-func (c MailFolderMessageClient) UpdateMailFolderMessage(ctx context.Context, id beta.UserIdMailFolderIdMessageId, input beta.Message) (result UpdateMailFolderMessageOperationResponse, err error) {
+func (c MailFolderMessageClient) UpdateMailFolderMessage(ctx context.Context, id beta.UserIdMailFolderIdMessageId, input beta.Message, options UpdateMailFolderMessageOperationOptions) (result UpdateMailFolderMessageOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

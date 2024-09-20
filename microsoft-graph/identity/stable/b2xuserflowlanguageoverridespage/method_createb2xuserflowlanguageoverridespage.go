@@ -19,15 +19,44 @@ type CreateB2xUserFlowLanguageOverridesPageOperationResponse struct {
 	Model        *stable.UserFlowLanguagePage
 }
 
+type CreateB2xUserFlowLanguageOverridesPageOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateB2xUserFlowLanguageOverridesPageOperationOptions() CreateB2xUserFlowLanguageOverridesPageOperationOptions {
+	return CreateB2xUserFlowLanguageOverridesPageOperationOptions{}
+}
+
+func (o CreateB2xUserFlowLanguageOverridesPageOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateB2xUserFlowLanguageOverridesPageOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateB2xUserFlowLanguageOverridesPageOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateB2xUserFlowLanguageOverridesPage - Create new navigation property to overridesPages for identity
-func (c B2xUserFlowLanguageOverridesPageClient) CreateB2xUserFlowLanguageOverridesPage(ctx context.Context, id stable.IdentityB2xUserFlowIdLanguageId, input stable.UserFlowLanguagePage) (result CreateB2xUserFlowLanguageOverridesPageOperationResponse, err error) {
+func (c B2xUserFlowLanguageOverridesPageClient) CreateB2xUserFlowLanguageOverridesPage(ctx context.Context, id stable.IdentityB2xUserFlowIdLanguageId, input stable.UserFlowLanguagePage, options CreateB2xUserFlowLanguageOverridesPageOperationOptions) (result CreateB2xUserFlowLanguageOverridesPageOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/overridesPages", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/overridesPages", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

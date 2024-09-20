@@ -17,15 +17,44 @@ type UpdateCrossTenantAccessPolicyTemplateOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateCrossTenantAccessPolicyTemplateOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateCrossTenantAccessPolicyTemplateOperationOptions() UpdateCrossTenantAccessPolicyTemplateOperationOptions {
+	return UpdateCrossTenantAccessPolicyTemplateOperationOptions{}
+}
+
+func (o UpdateCrossTenantAccessPolicyTemplateOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateCrossTenantAccessPolicyTemplateOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateCrossTenantAccessPolicyTemplateOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateCrossTenantAccessPolicyTemplate - Update the navigation property templates in policies
-func (c CrossTenantAccessPolicyTemplateClient) UpdateCrossTenantAccessPolicyTemplate(ctx context.Context, input beta.PolicyTemplate) (result UpdateCrossTenantAccessPolicyTemplateOperationResponse, err error) {
+func (c CrossTenantAccessPolicyTemplateClient) UpdateCrossTenantAccessPolicyTemplate(ctx context.Context, input beta.PolicyTemplate, options UpdateCrossTenantAccessPolicyTemplateOperationOptions) (result UpdateCrossTenantAccessPolicyTemplateOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       "/policies/crossTenantAccessPolicy/templates",
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          "/policies/crossTenantAccessPolicy/templates",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

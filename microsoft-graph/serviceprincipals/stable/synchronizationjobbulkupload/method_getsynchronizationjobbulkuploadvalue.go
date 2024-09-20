@@ -19,16 +19,45 @@ type GetSynchronizationJobBulkUploadValueOperationResponse struct {
 	Model        *[]byte
 }
 
+type GetSynchronizationJobBulkUploadValueOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultGetSynchronizationJobBulkUploadValueOperationOptions() GetSynchronizationJobBulkUploadValueOperationOptions {
+	return GetSynchronizationJobBulkUploadValueOperationOptions{}
+}
+
+func (o GetSynchronizationJobBulkUploadValueOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o GetSynchronizationJobBulkUploadValueOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o GetSynchronizationJobBulkUploadValueOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // GetSynchronizationJobBulkUploadValue - Get media content for the navigation property bulkUpload from
 // servicePrincipals. The bulk upload operation for the job.
-func (c SynchronizationJobBulkUploadClient) GetSynchronizationJobBulkUploadValue(ctx context.Context, id stable.ServicePrincipalIdSynchronizationJobId) (result GetSynchronizationJobBulkUploadValueOperationResponse, err error) {
+func (c SynchronizationJobBulkUploadClient) GetSynchronizationJobBulkUploadValue(ctx context.Context, id stable.ServicePrincipalIdSynchronizationJobId, options GetSynchronizationJobBulkUploadValueOperationOptions) (result GetSynchronizationJobBulkUploadValueOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/octet-stream",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/bulkUpload/$value", id.ID()),
+		HttpMethod:    http.MethodGet,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/bulkUpload/$value", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

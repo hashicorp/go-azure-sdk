@@ -18,16 +18,45 @@ type CreateManagedDeviceInitiateOnDemandProactiveRemediationOperationResponse st
 	OData        *odata.OData
 }
 
+type CreateManagedDeviceInitiateOnDemandProactiveRemediationOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateManagedDeviceInitiateOnDemandProactiveRemediationOperationOptions() CreateManagedDeviceInitiateOnDemandProactiveRemediationOperationOptions {
+	return CreateManagedDeviceInitiateOnDemandProactiveRemediationOperationOptions{}
+}
+
+func (o CreateManagedDeviceInitiateOnDemandProactiveRemediationOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateManagedDeviceInitiateOnDemandProactiveRemediationOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateManagedDeviceInitiateOnDemandProactiveRemediationOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateManagedDeviceInitiateOnDemandProactiveRemediation - Invoke action initiateOnDemandProactiveRemediation. Perform
 // On Demand Proactive Remediation
-func (c ManagedDeviceClient) CreateManagedDeviceInitiateOnDemandProactiveRemediation(ctx context.Context, id beta.DeviceManagementManagedDeviceId, input CreateManagedDeviceInitiateOnDemandProactiveRemediationRequest) (result CreateManagedDeviceInitiateOnDemandProactiveRemediationOperationResponse, err error) {
+func (c ManagedDeviceClient) CreateManagedDeviceInitiateOnDemandProactiveRemediation(ctx context.Context, id beta.DeviceManagementManagedDeviceId, input CreateManagedDeviceInitiateOnDemandProactiveRemediationRequest, options CreateManagedDeviceInitiateOnDemandProactiveRemediationOperationOptions) (result CreateManagedDeviceInitiateOnDemandProactiveRemediationOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/initiateOnDemandProactiveRemediation", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/initiateOnDemandProactiveRemediation", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

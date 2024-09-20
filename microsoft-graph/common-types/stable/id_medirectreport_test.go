@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &MeDirectReportId{}
 
 func TestNewMeDirectReportID(t *testing.T) {
-	id := NewMeDirectReportID("directoryObjectIdValue")
+	id := NewMeDirectReportID("directoryObjectId")
 
-	if id.DirectoryObjectId != "directoryObjectIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DirectoryObjectId'", id.DirectoryObjectId, "directoryObjectIdValue")
+	if id.DirectoryObjectId != "directoryObjectId" {
+		t.Fatalf("Expected %q but got %q for Segment 'DirectoryObjectId'", id.DirectoryObjectId, "directoryObjectId")
 	}
 }
 
 func TestFormatMeDirectReportID(t *testing.T) {
-	actual := NewMeDirectReportID("directoryObjectIdValue").ID()
-	expected := "/me/directReports/directoryObjectIdValue"
+	actual := NewMeDirectReportID("directoryObjectId").ID()
+	expected := "/me/directReports/directoryObjectId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -50,14 +50,14 @@ func TestParseMeDirectReportID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/me/directReports/directoryObjectIdValue",
+			Input: "/me/directReports/directoryObjectId",
 			Expected: &MeDirectReportId{
-				DirectoryObjectId: "directoryObjectIdValue",
+				DirectoryObjectId: "directoryObjectId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/directReports/directoryObjectIdValue/extra",
+			Input: "/me/directReports/directoryObjectId/extra",
 			Error: true,
 		},
 	}
@@ -116,26 +116,26 @@ func TestParseMeDirectReportIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/me/directReports/directoryObjectIdValue",
+			Input: "/me/directReports/directoryObjectId",
 			Expected: &MeDirectReportId{
-				DirectoryObjectId: "directoryObjectIdValue",
+				DirectoryObjectId: "directoryObjectId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/directReports/directoryObjectIdValue/extra",
+			Input: "/me/directReports/directoryObjectId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/dIrEcTrEpOrTs/dIrEcToRyObJeCtIdVaLuE",
+			Input: "/mE/dIrEcTrEpOrTs/dIrEcToRyObJeCtId",
 			Expected: &MeDirectReportId{
-				DirectoryObjectId: "dIrEcToRyObJeCtIdVaLuE",
+				DirectoryObjectId: "dIrEcToRyObJeCtId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/mE/dIrEcTrEpOrTs/dIrEcToRyObJeCtIdVaLuE/extra",
+			Input: "/mE/dIrEcTrEpOrTs/dIrEcToRyObJeCtId/extra",
 			Error: true,
 		},
 	}

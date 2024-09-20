@@ -19,15 +19,44 @@ type CreateTeamPrimaryChannelMessageHostedContentOperationResponse struct {
 	Model        *stable.ChatMessageHostedContent
 }
 
+type CreateTeamPrimaryChannelMessageHostedContentOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateTeamPrimaryChannelMessageHostedContentOperationOptions() CreateTeamPrimaryChannelMessageHostedContentOperationOptions {
+	return CreateTeamPrimaryChannelMessageHostedContentOperationOptions{}
+}
+
+func (o CreateTeamPrimaryChannelMessageHostedContentOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateTeamPrimaryChannelMessageHostedContentOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateTeamPrimaryChannelMessageHostedContentOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateTeamPrimaryChannelMessageHostedContent - Create new navigation property to hostedContents for groups
-func (c TeamPrimaryChannelMessageHostedContentClient) CreateTeamPrimaryChannelMessageHostedContent(ctx context.Context, id stable.GroupIdTeamPrimaryChannelMessageId, input stable.ChatMessageHostedContent) (result CreateTeamPrimaryChannelMessageHostedContentOperationResponse, err error) {
+func (c TeamPrimaryChannelMessageHostedContentClient) CreateTeamPrimaryChannelMessageHostedContent(ctx context.Context, id stable.GroupIdTeamPrimaryChannelMessageId, input stable.ChatMessageHostedContent, options CreateTeamPrimaryChannelMessageHostedContentOperationOptions) (result CreateTeamPrimaryChannelMessageHostedContentOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/hostedContents", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/hostedContents", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

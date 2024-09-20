@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &PolicyTokenIssuancePolicyIdAppliesToId{}
 
 func TestNewPolicyTokenIssuancePolicyIdAppliesToID(t *testing.T) {
-	id := NewPolicyTokenIssuancePolicyIdAppliesToID("tokenIssuancePolicyIdValue", "directoryObjectIdValue")
+	id := NewPolicyTokenIssuancePolicyIdAppliesToID("tokenIssuancePolicyId", "directoryObjectId")
 
-	if id.TokenIssuancePolicyId != "tokenIssuancePolicyIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'TokenIssuancePolicyId'", id.TokenIssuancePolicyId, "tokenIssuancePolicyIdValue")
+	if id.TokenIssuancePolicyId != "tokenIssuancePolicyId" {
+		t.Fatalf("Expected %q but got %q for Segment 'TokenIssuancePolicyId'", id.TokenIssuancePolicyId, "tokenIssuancePolicyId")
 	}
 
-	if id.DirectoryObjectId != "directoryObjectIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DirectoryObjectId'", id.DirectoryObjectId, "directoryObjectIdValue")
+	if id.DirectoryObjectId != "directoryObjectId" {
+		t.Fatalf("Expected %q but got %q for Segment 'DirectoryObjectId'", id.DirectoryObjectId, "directoryObjectId")
 	}
 }
 
 func TestFormatPolicyTokenIssuancePolicyIdAppliesToID(t *testing.T) {
-	actual := NewPolicyTokenIssuancePolicyIdAppliesToID("tokenIssuancePolicyIdValue", "directoryObjectIdValue").ID()
-	expected := "/policies/tokenIssuancePolicies/tokenIssuancePolicyIdValue/appliesTo/directoryObjectIdValue"
+	actual := NewPolicyTokenIssuancePolicyIdAppliesToID("tokenIssuancePolicyId", "directoryObjectId").ID()
+	expected := "/policies/tokenIssuancePolicies/tokenIssuancePolicyId/appliesTo/directoryObjectId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -54,25 +54,25 @@ func TestParsePolicyTokenIssuancePolicyIdAppliesToID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/policies/tokenIssuancePolicies/tokenIssuancePolicyIdValue",
+			Input: "/policies/tokenIssuancePolicies/tokenIssuancePolicyId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/policies/tokenIssuancePolicies/tokenIssuancePolicyIdValue/appliesTo",
+			Input: "/policies/tokenIssuancePolicies/tokenIssuancePolicyId/appliesTo",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/policies/tokenIssuancePolicies/tokenIssuancePolicyIdValue/appliesTo/directoryObjectIdValue",
+			Input: "/policies/tokenIssuancePolicies/tokenIssuancePolicyId/appliesTo/directoryObjectId",
 			Expected: &PolicyTokenIssuancePolicyIdAppliesToId{
-				TokenIssuancePolicyId: "tokenIssuancePolicyIdValue",
-				DirectoryObjectId:     "directoryObjectIdValue",
+				TokenIssuancePolicyId: "tokenIssuancePolicyId",
+				DirectoryObjectId:     "directoryObjectId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/policies/tokenIssuancePolicies/tokenIssuancePolicyIdValue/appliesTo/directoryObjectIdValue/extra",
+			Input: "/policies/tokenIssuancePolicies/tokenIssuancePolicyId/appliesTo/directoryObjectId/extra",
 			Error: true,
 		},
 	}
@@ -135,48 +135,48 @@ func TestParsePolicyTokenIssuancePolicyIdAppliesToIDInsensitively(t *testing.T) 
 		},
 		{
 			// Incomplete URI
-			Input: "/policies/tokenIssuancePolicies/tokenIssuancePolicyIdValue",
+			Input: "/policies/tokenIssuancePolicies/tokenIssuancePolicyId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/pOlIcIeS/tOkEnIsSuAnCePoLiCiEs/tOkEnIsSuAnCePoLiCyIdVaLuE",
+			Input: "/pOlIcIeS/tOkEnIsSuAnCePoLiCiEs/tOkEnIsSuAnCePoLiCyId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/policies/tokenIssuancePolicies/tokenIssuancePolicyIdValue/appliesTo",
+			Input: "/policies/tokenIssuancePolicies/tokenIssuancePolicyId/appliesTo",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/pOlIcIeS/tOkEnIsSuAnCePoLiCiEs/tOkEnIsSuAnCePoLiCyIdVaLuE/aPpLiEsTo",
+			Input: "/pOlIcIeS/tOkEnIsSuAnCePoLiCiEs/tOkEnIsSuAnCePoLiCyId/aPpLiEsTo",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/policies/tokenIssuancePolicies/tokenIssuancePolicyIdValue/appliesTo/directoryObjectIdValue",
+			Input: "/policies/tokenIssuancePolicies/tokenIssuancePolicyId/appliesTo/directoryObjectId",
 			Expected: &PolicyTokenIssuancePolicyIdAppliesToId{
-				TokenIssuancePolicyId: "tokenIssuancePolicyIdValue",
-				DirectoryObjectId:     "directoryObjectIdValue",
+				TokenIssuancePolicyId: "tokenIssuancePolicyId",
+				DirectoryObjectId:     "directoryObjectId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/policies/tokenIssuancePolicies/tokenIssuancePolicyIdValue/appliesTo/directoryObjectIdValue/extra",
+			Input: "/policies/tokenIssuancePolicies/tokenIssuancePolicyId/appliesTo/directoryObjectId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/pOlIcIeS/tOkEnIsSuAnCePoLiCiEs/tOkEnIsSuAnCePoLiCyIdVaLuE/aPpLiEsTo/dIrEcToRyObJeCtIdVaLuE",
+			Input: "/pOlIcIeS/tOkEnIsSuAnCePoLiCiEs/tOkEnIsSuAnCePoLiCyId/aPpLiEsTo/dIrEcToRyObJeCtId",
 			Expected: &PolicyTokenIssuancePolicyIdAppliesToId{
-				TokenIssuancePolicyId: "tOkEnIsSuAnCePoLiCyIdVaLuE",
-				DirectoryObjectId:     "dIrEcToRyObJeCtIdVaLuE",
+				TokenIssuancePolicyId: "tOkEnIsSuAnCePoLiCyId",
+				DirectoryObjectId:     "dIrEcToRyObJeCtId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/pOlIcIeS/tOkEnIsSuAnCePoLiCiEs/tOkEnIsSuAnCePoLiCyIdVaLuE/aPpLiEsTo/dIrEcToRyObJeCtIdVaLuE/extra",
+			Input: "/pOlIcIeS/tOkEnIsSuAnCePoLiCiEs/tOkEnIsSuAnCePoLiCyId/aPpLiEsTo/dIrEcToRyObJeCtId/extra",
 			Error: true,
 		},
 	}

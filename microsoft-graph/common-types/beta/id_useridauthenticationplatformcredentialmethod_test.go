@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &UserIdAuthenticationPlatformCredentialMethodId{}
 
 func TestNewUserIdAuthenticationPlatformCredentialMethodID(t *testing.T) {
-	id := NewUserIdAuthenticationPlatformCredentialMethodID("userIdValue", "platformCredentialAuthenticationMethodIdValue")
+	id := NewUserIdAuthenticationPlatformCredentialMethodID("userId", "platformCredentialAuthenticationMethodId")
 
-	if id.UserId != "userIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'UserId'", id.UserId, "userIdValue")
+	if id.UserId != "userId" {
+		t.Fatalf("Expected %q but got %q for Segment 'UserId'", id.UserId, "userId")
 	}
 
-	if id.PlatformCredentialAuthenticationMethodId != "platformCredentialAuthenticationMethodIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'PlatformCredentialAuthenticationMethodId'", id.PlatformCredentialAuthenticationMethodId, "platformCredentialAuthenticationMethodIdValue")
+	if id.PlatformCredentialAuthenticationMethodId != "platformCredentialAuthenticationMethodId" {
+		t.Fatalf("Expected %q but got %q for Segment 'PlatformCredentialAuthenticationMethodId'", id.PlatformCredentialAuthenticationMethodId, "platformCredentialAuthenticationMethodId")
 	}
 }
 
 func TestFormatUserIdAuthenticationPlatformCredentialMethodID(t *testing.T) {
-	actual := NewUserIdAuthenticationPlatformCredentialMethodID("userIdValue", "platformCredentialAuthenticationMethodIdValue").ID()
-	expected := "/users/userIdValue/authentication/platformCredentialMethods/platformCredentialAuthenticationMethodIdValue"
+	actual := NewUserIdAuthenticationPlatformCredentialMethodID("userId", "platformCredentialAuthenticationMethodId").ID()
+	expected := "/users/userId/authentication/platformCredentialMethods/platformCredentialAuthenticationMethodId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -49,30 +49,30 @@ func TestParseUserIdAuthenticationPlatformCredentialMethodID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue",
+			Input: "/users/userId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/authentication",
+			Input: "/users/userId/authentication",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/authentication/platformCredentialMethods",
+			Input: "/users/userId/authentication/platformCredentialMethods",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/users/userIdValue/authentication/platformCredentialMethods/platformCredentialAuthenticationMethodIdValue",
+			Input: "/users/userId/authentication/platformCredentialMethods/platformCredentialAuthenticationMethodId",
 			Expected: &UserIdAuthenticationPlatformCredentialMethodId{
-				UserId:                                   "userIdValue",
-				PlatformCredentialAuthenticationMethodId: "platformCredentialAuthenticationMethodIdValue",
+				UserId:                                   "userId",
+				PlatformCredentialAuthenticationMethodId: "platformCredentialAuthenticationMethodId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/users/userIdValue/authentication/platformCredentialMethods/platformCredentialAuthenticationMethodIdValue/extra",
+			Input: "/users/userId/authentication/platformCredentialMethods/platformCredentialAuthenticationMethodId/extra",
 			Error: true,
 		},
 	}
@@ -125,58 +125,58 @@ func TestParseUserIdAuthenticationPlatformCredentialMethodIDInsensitively(t *tes
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue",
+			Input: "/users/userId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe",
+			Input: "/uSeRs/uSeRiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/authentication",
+			Input: "/users/userId/authentication",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/aUtHeNtIcAtIoN",
+			Input: "/uSeRs/uSeRiD/aUtHeNtIcAtIoN",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/authentication/platformCredentialMethods",
+			Input: "/users/userId/authentication/platformCredentialMethods",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/aUtHeNtIcAtIoN/pLaTfOrMcReDeNtIaLmEtHoDs",
+			Input: "/uSeRs/uSeRiD/aUtHeNtIcAtIoN/pLaTfOrMcReDeNtIaLmEtHoDs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/users/userIdValue/authentication/platformCredentialMethods/platformCredentialAuthenticationMethodIdValue",
+			Input: "/users/userId/authentication/platformCredentialMethods/platformCredentialAuthenticationMethodId",
 			Expected: &UserIdAuthenticationPlatformCredentialMethodId{
-				UserId:                                   "userIdValue",
-				PlatformCredentialAuthenticationMethodId: "platformCredentialAuthenticationMethodIdValue",
+				UserId:                                   "userId",
+				PlatformCredentialAuthenticationMethodId: "platformCredentialAuthenticationMethodId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/users/userIdValue/authentication/platformCredentialMethods/platformCredentialAuthenticationMethodIdValue/extra",
+			Input: "/users/userId/authentication/platformCredentialMethods/platformCredentialAuthenticationMethodId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/aUtHeNtIcAtIoN/pLaTfOrMcReDeNtIaLmEtHoDs/pLaTfOrMcReDeNtIaLaUtHeNtIcAtIoNmEtHoDiDvAlUe",
+			Input: "/uSeRs/uSeRiD/aUtHeNtIcAtIoN/pLaTfOrMcReDeNtIaLmEtHoDs/pLaTfOrMcReDeNtIaLaUtHeNtIcAtIoNmEtHoDiD",
 			Expected: &UserIdAuthenticationPlatformCredentialMethodId{
-				UserId:                                   "uSeRiDvAlUe",
-				PlatformCredentialAuthenticationMethodId: "pLaTfOrMcReDeNtIaLaUtHeNtIcAtIoNmEtHoDiDvAlUe",
+				UserId:                                   "uSeRiD",
+				PlatformCredentialAuthenticationMethodId: "pLaTfOrMcReDeNtIaLaUtHeNtIcAtIoNmEtHoDiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/aUtHeNtIcAtIoN/pLaTfOrMcReDeNtIaLmEtHoDs/pLaTfOrMcReDeNtIaLaUtHeNtIcAtIoNmEtHoDiDvAlUe/extra",
+			Input: "/uSeRs/uSeRiD/aUtHeNtIcAtIoN/pLaTfOrMcReDeNtIaLmEtHoDs/pLaTfOrMcReDeNtIaLaUtHeNtIcAtIoNmEtHoDiD/extra",
 			Error: true,
 		},
 	}

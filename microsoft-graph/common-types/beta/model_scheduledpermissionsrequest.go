@@ -82,22 +82,33 @@ func (s ScheduledPermissionsRequest) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &ScheduledPermissionsRequest{}
 
 func (s *ScheduledPermissionsRequest) UnmarshalJSON(bytes []byte) error {
-	type alias ScheduledPermissionsRequest
-	var decoded alias
+
+	var decoded struct {
+		Action          *UnifiedRoleScheduleRequestActions `json:"action,omitempty"`
+		CreatedDateTime *string                            `json:"createdDateTime,omitempty"`
+		Justification   nullable.Type[string]              `json:"justification,omitempty"`
+		Notes           nullable.Type[string]              `json:"notes,omitempty"`
+		ScheduleInfo    *RequestSchedule                   `json:"scheduleInfo,omitempty"`
+		StatusDetail    *StatusDetail                      `json:"statusDetail,omitempty"`
+		TicketInfo      *TicketInfo                        `json:"ticketInfo,omitempty"`
+		Id              *string                            `json:"id,omitempty"`
+		ODataId         *string                            `json:"@odata.id,omitempty"`
+		ODataType       *string                            `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into ScheduledPermissionsRequest: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.Action = decoded.Action
 	s.CreatedDateTime = decoded.CreatedDateTime
-	s.Id = decoded.Id
 	s.Justification = decoded.Justification
 	s.Notes = decoded.Notes
-	s.ODataId = decoded.ODataId
-	s.ODataType = decoded.ODataType
 	s.ScheduleInfo = decoded.ScheduleInfo
 	s.StatusDetail = decoded.StatusDetail
 	s.TicketInfo = decoded.TicketInfo
+	s.Id = decoded.Id
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -111,5 +122,6 @@ func (s *ScheduledPermissionsRequest) UnmarshalJSON(bytes []byte) error {
 		}
 		s.RequestedPermissions = impl
 	}
+
 	return nil
 }

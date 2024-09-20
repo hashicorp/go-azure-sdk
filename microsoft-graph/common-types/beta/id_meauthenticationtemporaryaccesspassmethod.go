@@ -94,7 +94,7 @@ func (id MeAuthenticationTemporaryAccessPassMethodId) Segments() []resourceids.S
 		resourceids.StaticSegment("me", "me", "me"),
 		resourceids.StaticSegment("authentication", "authentication", "authentication"),
 		resourceids.StaticSegment("temporaryAccessPassMethods", "temporaryAccessPassMethods", "temporaryAccessPassMethods"),
-		resourceids.UserSpecifiedSegment("temporaryAccessPassAuthenticationMethodId", "temporaryAccessPassAuthenticationMethodIdValue"),
+		resourceids.UserSpecifiedSegment("temporaryAccessPassAuthenticationMethodId", "temporaryAccessPassAuthenticationMethodId"),
 	}
 }
 

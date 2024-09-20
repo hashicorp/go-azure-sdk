@@ -17,15 +17,44 @@ type UpdateApprovalStepOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateApprovalStepOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateApprovalStepOperationOptions() UpdateApprovalStepOperationOptions {
+	return UpdateApprovalStepOperationOptions{}
+}
+
+func (o UpdateApprovalStepOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateApprovalStepOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateApprovalStepOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateApprovalStep - Update the navigation property steps in me
-func (c ApprovalStepClient) UpdateApprovalStep(ctx context.Context, id beta.MeApprovalIdStepId, input beta.ApprovalStep) (result UpdateApprovalStepOperationResponse, err error) {
+func (c ApprovalStepClient) UpdateApprovalStep(ctx context.Context, id beta.MeApprovalIdStepId, input beta.ApprovalStep, options UpdateApprovalStepOperationOptions) (result UpdateApprovalStepOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

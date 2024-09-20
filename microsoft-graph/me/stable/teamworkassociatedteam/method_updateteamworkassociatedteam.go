@@ -17,15 +17,44 @@ type UpdateTeamworkAssociatedTeamOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateTeamworkAssociatedTeamOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateTeamworkAssociatedTeamOperationOptions() UpdateTeamworkAssociatedTeamOperationOptions {
+	return UpdateTeamworkAssociatedTeamOperationOptions{}
+}
+
+func (o UpdateTeamworkAssociatedTeamOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateTeamworkAssociatedTeamOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateTeamworkAssociatedTeamOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateTeamworkAssociatedTeam - Update the navigation property associatedTeams in me
-func (c TeamworkAssociatedTeamClient) UpdateTeamworkAssociatedTeam(ctx context.Context, id stable.MeTeamworkAssociatedTeamId, input stable.AssociatedTeamInfo) (result UpdateTeamworkAssociatedTeamOperationResponse, err error) {
+func (c TeamworkAssociatedTeamClient) UpdateTeamworkAssociatedTeam(ctx context.Context, id stable.MeTeamworkAssociatedTeamId, input stable.AssociatedTeamInfo, options UpdateTeamworkAssociatedTeamOperationOptions) (result UpdateTeamworkAssociatedTeamOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

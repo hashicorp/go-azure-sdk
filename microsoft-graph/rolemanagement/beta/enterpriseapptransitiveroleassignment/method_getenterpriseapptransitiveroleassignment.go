@@ -21,6 +21,7 @@ type GetEnterpriseAppTransitiveRoleAssignmentOperationResponse struct {
 type GetEnterpriseAppTransitiveRoleAssignmentOperationOptions struct {
 	ConsistencyLevel *odata.ConsistencyLevel
 	Expand           *odata.Expand
+	Metadata         *odata.Metadata
 	Select           *[]string
 }
 
@@ -41,6 +42,9 @@ func (o GetEnterpriseAppTransitiveRoleAssignmentOperationOptions) ToOData() *oda
 	}
 	if o.Expand != nil {
 		out.Expand = *o.Expand
+	}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
 	}
 	if o.Select != nil {
 		out.Select = *o.Select

@@ -62,10 +62,15 @@ func (s DeviceAndAppManagementAssignmentFilterCollectionResponse) MarshalJSON() 
 var _ json.Unmarshaler = &DeviceAndAppManagementAssignmentFilterCollectionResponse{}
 
 func (s *DeviceAndAppManagementAssignmentFilterCollectionResponse) UnmarshalJSON(bytes []byte) error {
-	type alias DeviceAndAppManagementAssignmentFilterCollectionResponse
-	var decoded alias
+
+	var decoded struct {
+		Value         *[]DeviceAndAppManagementAssignmentFilter `json:"value,omitempty"`
+		ODataId       *string                                   `json:"@odata.id,omitempty"`
+		ODataNextLink nullable.Type[string]                     `json:"@odata.nextLink,omitempty"`
+		ODataType     *string                                   `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into DeviceAndAppManagementAssignmentFilterCollectionResponse: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.ODataId = decoded.ODataId
@@ -93,5 +98,6 @@ func (s *DeviceAndAppManagementAssignmentFilterCollectionResponse) UnmarshalJSON
 		}
 		s.Value = &output
 	}
+
 	return nil
 }

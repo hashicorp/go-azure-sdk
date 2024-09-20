@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/stable/devicecompliancepolicy` Documentation
 
-The `devicecompliancepolicy` SDK allows for interaction with the Azure Resource Manager Service `devicemanagement` (API Version `stable`).
+The `devicecompliancepolicy` SDK allows for interaction with Microsoft Graph `devicemanagement` (API Version `stable`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -15,7 +15,7 @@ import "github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/stabl
 ### Client Initialization
 
 ```go
-client := devicecompliancepolicy.NewDeviceCompliancePolicyClientWithBaseURI("https://management.azure.com")
+client := devicecompliancepolicy.NewDeviceCompliancePolicyClientWithBaseURI("https://graph.microsoft.com")
 client.Client.Authorizer = authorizer
 ```
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := devicecompliancepolicy.NewDeviceManagementDeviceCompliancePolicyID("deviceCompliancePolicyIdValue")
+id := devicecompliancepolicy.NewDeviceManagementDeviceCompliancePolicyID("deviceCompliancePolicyId")
 
 payload := devicecompliancepolicy.AssignDeviceCompliancePoliciesRequest{
 	// ...
@@ -52,7 +52,7 @@ payload := devicecompliancepolicy.DeviceCompliancePolicy{
 }
 
 
-read, err := client.CreateDeviceCompliancePolicy(ctx, payload)
+read, err := client.CreateDeviceCompliancePolicy(ctx, payload, devicecompliancepolicy.DefaultCreateDeviceCompliancePolicyOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -66,14 +66,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := devicecompliancepolicy.NewDeviceManagementDeviceCompliancePolicyID("deviceCompliancePolicyIdValue")
+id := devicecompliancepolicy.NewDeviceManagementDeviceCompliancePolicyID("deviceCompliancePolicyId")
 
 payload := devicecompliancepolicy.CreateDeviceCompliancePolicyScheduleActionsForRuleRequest{
 	// ...
 }
 
 
-read, err := client.CreateDeviceCompliancePolicyScheduleActionsForRule(ctx, id, payload)
+read, err := client.CreateDeviceCompliancePolicyScheduleActionsForRule(ctx, id, payload, devicecompliancepolicy.DefaultCreateDeviceCompliancePolicyScheduleActionsForRuleOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -87,7 +87,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := devicecompliancepolicy.NewDeviceManagementDeviceCompliancePolicyID("deviceCompliancePolicyIdValue")
+id := devicecompliancepolicy.NewDeviceManagementDeviceCompliancePolicyID("deviceCompliancePolicyId")
 
 read, err := client.DeleteDeviceCompliancePolicy(ctx, id, devicecompliancepolicy.DefaultDeleteDeviceCompliancePolicyOperationOptions())
 if err != nil {
@@ -119,7 +119,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := devicecompliancepolicy.NewDeviceManagementDeviceCompliancePolicyID("deviceCompliancePolicyIdValue")
+id := devicecompliancepolicy.NewDeviceManagementDeviceCompliancePolicyID("deviceCompliancePolicyId")
 
 read, err := client.GetDeviceCompliancePolicy(ctx, id, devicecompliancepolicy.DefaultGetDeviceCompliancePolicyOperationOptions())
 if err != nil {
@@ -152,14 +152,14 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := devicecompliancepolicy.NewDeviceManagementDeviceCompliancePolicyID("deviceCompliancePolicyIdValue")
+id := devicecompliancepolicy.NewDeviceManagementDeviceCompliancePolicyID("deviceCompliancePolicyId")
 
 payload := devicecompliancepolicy.DeviceCompliancePolicy{
 	// ...
 }
 
 
-read, err := client.UpdateDeviceCompliancePolicy(ctx, id, payload)
+read, err := client.UpdateDeviceCompliancePolicy(ctx, id, payload, devicecompliancepolicy.DefaultUpdateDeviceCompliancePolicyOperationOptions())
 if err != nil {
 	// handle the error
 }

@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &MeMobileAppIntentAndStateId{}
 
 func TestNewMeMobileAppIntentAndStateID(t *testing.T) {
-	id := NewMeMobileAppIntentAndStateID("mobileAppIntentAndStateIdValue")
+	id := NewMeMobileAppIntentAndStateID("mobileAppIntentAndStateId")
 
-	if id.MobileAppIntentAndStateId != "mobileAppIntentAndStateIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'MobileAppIntentAndStateId'", id.MobileAppIntentAndStateId, "mobileAppIntentAndStateIdValue")
+	if id.MobileAppIntentAndStateId != "mobileAppIntentAndStateId" {
+		t.Fatalf("Expected %q but got %q for Segment 'MobileAppIntentAndStateId'", id.MobileAppIntentAndStateId, "mobileAppIntentAndStateId")
 	}
 }
 
 func TestFormatMeMobileAppIntentAndStateID(t *testing.T) {
-	actual := NewMeMobileAppIntentAndStateID("mobileAppIntentAndStateIdValue").ID()
-	expected := "/me/mobileAppIntentAndStates/mobileAppIntentAndStateIdValue"
+	actual := NewMeMobileAppIntentAndStateID("mobileAppIntentAndStateId").ID()
+	expected := "/me/mobileAppIntentAndStates/mobileAppIntentAndStateId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -50,14 +50,14 @@ func TestParseMeMobileAppIntentAndStateID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/me/mobileAppIntentAndStates/mobileAppIntentAndStateIdValue",
+			Input: "/me/mobileAppIntentAndStates/mobileAppIntentAndStateId",
 			Expected: &MeMobileAppIntentAndStateId{
-				MobileAppIntentAndStateId: "mobileAppIntentAndStateIdValue",
+				MobileAppIntentAndStateId: "mobileAppIntentAndStateId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/mobileAppIntentAndStates/mobileAppIntentAndStateIdValue/extra",
+			Input: "/me/mobileAppIntentAndStates/mobileAppIntentAndStateId/extra",
 			Error: true,
 		},
 	}
@@ -116,26 +116,26 @@ func TestParseMeMobileAppIntentAndStateIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/me/mobileAppIntentAndStates/mobileAppIntentAndStateIdValue",
+			Input: "/me/mobileAppIntentAndStates/mobileAppIntentAndStateId",
 			Expected: &MeMobileAppIntentAndStateId{
-				MobileAppIntentAndStateId: "mobileAppIntentAndStateIdValue",
+				MobileAppIntentAndStateId: "mobileAppIntentAndStateId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/mobileAppIntentAndStates/mobileAppIntentAndStateIdValue/extra",
+			Input: "/me/mobileAppIntentAndStates/mobileAppIntentAndStateId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/mObIlEaPpInTeNtAnDsTaTeS/mObIlEaPpInTeNtAnDsTaTeIdVaLuE",
+			Input: "/mE/mObIlEaPpInTeNtAnDsTaTeS/mObIlEaPpInTeNtAnDsTaTeId",
 			Expected: &MeMobileAppIntentAndStateId{
-				MobileAppIntentAndStateId: "mObIlEaPpInTeNtAnDsTaTeIdVaLuE",
+				MobileAppIntentAndStateId: "mObIlEaPpInTeNtAnDsTaTeId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/mE/mObIlEaPpInTeNtAnDsTaTeS/mObIlEaPpInTeNtAnDsTaTeIdVaLuE/extra",
+			Input: "/mE/mObIlEaPpInTeNtAnDsTaTeS/mObIlEaPpInTeNtAnDsTaTeId/extra",
 			Error: true,
 		},
 	}

@@ -19,7 +19,8 @@ type DeleteManagedDeviceCleanupRuleOperationResponse struct {
 }
 
 type DeleteManagedDeviceCleanupRuleOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteManagedDeviceCleanupRuleOperationOptions() DeleteManagedDeviceCleanupRuleOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteManagedDeviceCleanupRuleOperationOptions) ToHeaders() *client.Head
 
 func (o DeleteManagedDeviceCleanupRuleOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &UserIdProfileAddressId{}
 
 func TestNewUserIdProfileAddressID(t *testing.T) {
-	id := NewUserIdProfileAddressID("userIdValue", "itemAddressIdValue")
+	id := NewUserIdProfileAddressID("userId", "itemAddressId")
 
-	if id.UserId != "userIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'UserId'", id.UserId, "userIdValue")
+	if id.UserId != "userId" {
+		t.Fatalf("Expected %q but got %q for Segment 'UserId'", id.UserId, "userId")
 	}
 
-	if id.ItemAddressId != "itemAddressIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ItemAddressId'", id.ItemAddressId, "itemAddressIdValue")
+	if id.ItemAddressId != "itemAddressId" {
+		t.Fatalf("Expected %q but got %q for Segment 'ItemAddressId'", id.ItemAddressId, "itemAddressId")
 	}
 }
 
 func TestFormatUserIdProfileAddressID(t *testing.T) {
-	actual := NewUserIdProfileAddressID("userIdValue", "itemAddressIdValue").ID()
-	expected := "/users/userIdValue/profile/addresses/itemAddressIdValue"
+	actual := NewUserIdProfileAddressID("userId", "itemAddressId").ID()
+	expected := "/users/userId/profile/addresses/itemAddressId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -49,30 +49,30 @@ func TestParseUserIdProfileAddressID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue",
+			Input: "/users/userId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/profile",
+			Input: "/users/userId/profile",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/profile/addresses",
+			Input: "/users/userId/profile/addresses",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/users/userIdValue/profile/addresses/itemAddressIdValue",
+			Input: "/users/userId/profile/addresses/itemAddressId",
 			Expected: &UserIdProfileAddressId{
-				UserId:        "userIdValue",
-				ItemAddressId: "itemAddressIdValue",
+				UserId:        "userId",
+				ItemAddressId: "itemAddressId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/users/userIdValue/profile/addresses/itemAddressIdValue/extra",
+			Input: "/users/userId/profile/addresses/itemAddressId/extra",
 			Error: true,
 		},
 	}
@@ -125,58 +125,58 @@ func TestParseUserIdProfileAddressIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue",
+			Input: "/users/userId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe",
+			Input: "/uSeRs/uSeRiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/profile",
+			Input: "/users/userId/profile",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/pRoFiLe",
+			Input: "/uSeRs/uSeRiD/pRoFiLe",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/profile/addresses",
+			Input: "/users/userId/profile/addresses",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/pRoFiLe/aDdReSsEs",
+			Input: "/uSeRs/uSeRiD/pRoFiLe/aDdReSsEs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/users/userIdValue/profile/addresses/itemAddressIdValue",
+			Input: "/users/userId/profile/addresses/itemAddressId",
 			Expected: &UserIdProfileAddressId{
-				UserId:        "userIdValue",
-				ItemAddressId: "itemAddressIdValue",
+				UserId:        "userId",
+				ItemAddressId: "itemAddressId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/users/userIdValue/profile/addresses/itemAddressIdValue/extra",
+			Input: "/users/userId/profile/addresses/itemAddressId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/pRoFiLe/aDdReSsEs/iTeMaDdReSsIdVaLuE",
+			Input: "/uSeRs/uSeRiD/pRoFiLe/aDdReSsEs/iTeMaDdReSsId",
 			Expected: &UserIdProfileAddressId{
-				UserId:        "uSeRiDvAlUe",
-				ItemAddressId: "iTeMaDdReSsIdVaLuE",
+				UserId:        "uSeRiD",
+				ItemAddressId: "iTeMaDdReSsId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/pRoFiLe/aDdReSsEs/iTeMaDdReSsIdVaLuE/extra",
+			Input: "/uSeRs/uSeRiD/pRoFiLe/aDdReSsEs/iTeMaDdReSsId/extra",
 			Error: true,
 		},
 	}

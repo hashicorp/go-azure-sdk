@@ -19,15 +19,44 @@ type CreateEnterpriseAppRoleAssignmentOperationResponse struct {
 	Model        *beta.UnifiedRoleAssignment
 }
 
+type CreateEnterpriseAppRoleAssignmentOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateEnterpriseAppRoleAssignmentOperationOptions() CreateEnterpriseAppRoleAssignmentOperationOptions {
+	return CreateEnterpriseAppRoleAssignmentOperationOptions{}
+}
+
+func (o CreateEnterpriseAppRoleAssignmentOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateEnterpriseAppRoleAssignmentOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateEnterpriseAppRoleAssignmentOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateEnterpriseAppRoleAssignment - Create new navigation property to roleAssignments for roleManagement
-func (c EnterpriseAppRoleAssignmentClient) CreateEnterpriseAppRoleAssignment(ctx context.Context, id beta.RoleManagementEnterpriseAppId, input beta.UnifiedRoleAssignment) (result CreateEnterpriseAppRoleAssignmentOperationResponse, err error) {
+func (c EnterpriseAppRoleAssignmentClient) CreateEnterpriseAppRoleAssignment(ctx context.Context, id beta.RoleManagementEnterpriseAppId, input beta.UnifiedRoleAssignment, options CreateEnterpriseAppRoleAssignmentOperationOptions) (result CreateEnterpriseAppRoleAssignmentOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/roleAssignments", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/roleAssignments", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

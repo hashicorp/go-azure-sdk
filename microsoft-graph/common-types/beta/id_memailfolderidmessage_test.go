@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &MeMailFolderIdMessageId{}
 
 func TestNewMeMailFolderIdMessageID(t *testing.T) {
-	id := NewMeMailFolderIdMessageID("mailFolderIdValue", "messageIdValue")
+	id := NewMeMailFolderIdMessageID("mailFolderId", "messageId")
 
-	if id.MailFolderId != "mailFolderIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'MailFolderId'", id.MailFolderId, "mailFolderIdValue")
+	if id.MailFolderId != "mailFolderId" {
+		t.Fatalf("Expected %q but got %q for Segment 'MailFolderId'", id.MailFolderId, "mailFolderId")
 	}
 
-	if id.MessageId != "messageIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'MessageId'", id.MessageId, "messageIdValue")
+	if id.MessageId != "messageId" {
+		t.Fatalf("Expected %q but got %q for Segment 'MessageId'", id.MessageId, "messageId")
 	}
 }
 
 func TestFormatMeMailFolderIdMessageID(t *testing.T) {
-	actual := NewMeMailFolderIdMessageID("mailFolderIdValue", "messageIdValue").ID()
-	expected := "/me/mailFolders/mailFolderIdValue/messages/messageIdValue"
+	actual := NewMeMailFolderIdMessageID("mailFolderId", "messageId").ID()
+	expected := "/me/mailFolders/mailFolderId/messages/messageId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -54,25 +54,25 @@ func TestParseMeMailFolderIdMessageID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/me/mailFolders/mailFolderIdValue",
+			Input: "/me/mailFolders/mailFolderId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/me/mailFolders/mailFolderIdValue/messages",
+			Input: "/me/mailFolders/mailFolderId/messages",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/me/mailFolders/mailFolderIdValue/messages/messageIdValue",
+			Input: "/me/mailFolders/mailFolderId/messages/messageId",
 			Expected: &MeMailFolderIdMessageId{
-				MailFolderId: "mailFolderIdValue",
-				MessageId:    "messageIdValue",
+				MailFolderId: "mailFolderId",
+				MessageId:    "messageId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/mailFolders/mailFolderIdValue/messages/messageIdValue/extra",
+			Input: "/me/mailFolders/mailFolderId/messages/messageId/extra",
 			Error: true,
 		},
 	}
@@ -135,48 +135,48 @@ func TestParseMeMailFolderIdMessageIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/me/mailFolders/mailFolderIdValue",
+			Input: "/me/mailFolders/mailFolderId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/mAiLfOlDeRs/mAiLfOlDeRiDvAlUe",
+			Input: "/mE/mAiLfOlDeRs/mAiLfOlDeRiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/me/mailFolders/mailFolderIdValue/messages",
+			Input: "/me/mailFolders/mailFolderId/messages",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/mAiLfOlDeRs/mAiLfOlDeRiDvAlUe/mEsSaGeS",
+			Input: "/mE/mAiLfOlDeRs/mAiLfOlDeRiD/mEsSaGeS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/me/mailFolders/mailFolderIdValue/messages/messageIdValue",
+			Input: "/me/mailFolders/mailFolderId/messages/messageId",
 			Expected: &MeMailFolderIdMessageId{
-				MailFolderId: "mailFolderIdValue",
-				MessageId:    "messageIdValue",
+				MailFolderId: "mailFolderId",
+				MessageId:    "messageId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/mailFolders/mailFolderIdValue/messages/messageIdValue/extra",
+			Input: "/me/mailFolders/mailFolderId/messages/messageId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/mAiLfOlDeRs/mAiLfOlDeRiDvAlUe/mEsSaGeS/mEsSaGeIdVaLuE",
+			Input: "/mE/mAiLfOlDeRs/mAiLfOlDeRiD/mEsSaGeS/mEsSaGeId",
 			Expected: &MeMailFolderIdMessageId{
-				MailFolderId: "mAiLfOlDeRiDvAlUe",
-				MessageId:    "mEsSaGeIdVaLuE",
+				MailFolderId: "mAiLfOlDeRiD",
+				MessageId:    "mEsSaGeId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/mE/mAiLfOlDeRs/mAiLfOlDeRiDvAlUe/mEsSaGeS/mEsSaGeIdVaLuE/extra",
+			Input: "/mE/mAiLfOlDeRs/mAiLfOlDeRiD/mEsSaGeS/mEsSaGeId/extra",
 			Error: true,
 		},
 	}

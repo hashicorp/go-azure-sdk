@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/devicehealthscript` Documentation
 
-The `devicehealthscript` SDK allows for interaction with the Azure Resource Manager Service `devicemanagement` (API Version `beta`).
+The `devicehealthscript` SDK allows for interaction with Microsoft Graph `devicemanagement` (API Version `beta`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -15,7 +15,7 @@ import "github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/
 ### Client Initialization
 
 ```go
-client := devicehealthscript.NewDeviceHealthScriptClientWithBaseURI("https://management.azure.com")
+client := devicehealthscript.NewDeviceHealthScriptClientWithBaseURI("https://graph.microsoft.com")
 client.Client.Authorizer = authorizer
 ```
 
@@ -24,14 +24,14 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := devicehealthscript.NewDeviceManagementDeviceHealthScriptID("deviceHealthScriptIdValue")
+id := devicehealthscript.NewDeviceManagementDeviceHealthScriptID("deviceHealthScriptId")
 
 payload := devicehealthscript.AssignDeviceHealthScriptRequest{
 	// ...
 }
 
 
-read, err := client.AssignDeviceHealthScript(ctx, id, payload)
+read, err := client.AssignDeviceHealthScript(ctx, id, payload, devicehealthscript.DefaultAssignDeviceHealthScriptOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -51,7 +51,7 @@ payload := devicehealthscript.DeviceHealthScript{
 }
 
 
-read, err := client.CreateDeviceHealthScript(ctx, payload)
+read, err := client.CreateDeviceHealthScript(ctx, payload, devicehealthscript.DefaultCreateDeviceHealthScriptOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -65,7 +65,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := devicehealthscript.NewDeviceManagementDeviceHealthScriptID("deviceHealthScriptIdValue")
+id := devicehealthscript.NewDeviceManagementDeviceHealthScriptID("deviceHealthScriptId")
 
 read, err := client.DeleteDeviceHealthScript(ctx, id, devicehealthscript.DefaultDeleteDeviceHealthScriptOperationOptions())
 if err != nil {
@@ -77,13 +77,13 @@ if model := read.Model; model != nil {
 ```
 
 
-### Example Usage: `DeviceHealthScriptClient.EnableDeviceHealthScriptsGlobalScript`
+### Example Usage: `DeviceHealthScriptClient.EnableDeviceHealthScriptsGlobalScripts`
 
 ```go
 ctx := context.TODO()
 
 
-read, err := client.EnableDeviceHealthScriptsGlobalScript(ctx)
+read, err := client.EnableDeviceHealthScriptsGlobalScripts(ctx, devicehealthscript.DefaultEnableDeviceHealthScriptsGlobalScriptsOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -97,7 +97,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := devicehealthscript.NewDeviceManagementDeviceHealthScriptID("deviceHealthScriptIdValue")
+id := devicehealthscript.NewDeviceManagementDeviceHealthScriptID("deviceHealthScriptId")
 
 read, err := client.GetDeviceHealthScript(ctx, id, devicehealthscript.DefaultGetDeviceHealthScriptOperationOptions())
 if err != nil {
@@ -113,9 +113,9 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := devicehealthscript.NewDeviceManagementDeviceHealthScriptID("deviceHealthScriptIdValue")
+id := devicehealthscript.NewDeviceManagementDeviceHealthScriptID("deviceHealthScriptId")
 
-read, err := client.GetDeviceHealthScriptGlobalScriptHighestAvailableVersion(ctx, id)
+read, err := client.GetDeviceHealthScriptGlobalScriptHighestAvailableVersion(ctx, id, devicehealthscript.DefaultGetDeviceHealthScriptGlobalScriptHighestAvailableVersionOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -162,14 +162,14 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := devicehealthscript.NewDeviceManagementDeviceHealthScriptID("deviceHealthScriptIdValue")
+id := devicehealthscript.NewDeviceManagementDeviceHealthScriptID("deviceHealthScriptId")
 
 payload := devicehealthscript.DeviceHealthScript{
 	// ...
 }
 
 
-read, err := client.UpdateDeviceHealthScript(ctx, id, payload)
+read, err := client.UpdateDeviceHealthScript(ctx, id, payload, devicehealthscript.DefaultUpdateDeviceHealthScriptOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -183,14 +183,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := devicehealthscript.NewDeviceManagementDeviceHealthScriptID("deviceHealthScriptIdValue")
+id := devicehealthscript.NewDeviceManagementDeviceHealthScriptID("deviceHealthScriptId")
 
 payload := devicehealthscript.UpdateDeviceHealthScriptGlobalScriptRequest{
 	// ...
 }
 
 
-read, err := client.UpdateDeviceHealthScriptGlobalScript(ctx, id, payload)
+read, err := client.UpdateDeviceHealthScriptGlobalScript(ctx, id, payload, devicehealthscript.DefaultUpdateDeviceHealthScriptGlobalScriptOperationOptions())
 if err != nil {
 	// handle the error
 }

@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &DeviceManagementUserExperienceAnalyticsBatteryHealthDeviceRuntimeHistoryId{}
 
 func TestNewDeviceManagementUserExperienceAnalyticsBatteryHealthDeviceRuntimeHistoryID(t *testing.T) {
-	id := NewDeviceManagementUserExperienceAnalyticsBatteryHealthDeviceRuntimeHistoryID("userExperienceAnalyticsBatteryHealthDeviceRuntimeHistoryIdValue")
+	id := NewDeviceManagementUserExperienceAnalyticsBatteryHealthDeviceRuntimeHistoryID("userExperienceAnalyticsBatteryHealthDeviceRuntimeHistoryId")
 
-	if id.UserExperienceAnalyticsBatteryHealthDeviceRuntimeHistoryId != "userExperienceAnalyticsBatteryHealthDeviceRuntimeHistoryIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'UserExperienceAnalyticsBatteryHealthDeviceRuntimeHistoryId'", id.UserExperienceAnalyticsBatteryHealthDeviceRuntimeHistoryId, "userExperienceAnalyticsBatteryHealthDeviceRuntimeHistoryIdValue")
+	if id.UserExperienceAnalyticsBatteryHealthDeviceRuntimeHistoryId != "userExperienceAnalyticsBatteryHealthDeviceRuntimeHistoryId" {
+		t.Fatalf("Expected %q but got %q for Segment 'UserExperienceAnalyticsBatteryHealthDeviceRuntimeHistoryId'", id.UserExperienceAnalyticsBatteryHealthDeviceRuntimeHistoryId, "userExperienceAnalyticsBatteryHealthDeviceRuntimeHistoryId")
 	}
 }
 
 func TestFormatDeviceManagementUserExperienceAnalyticsBatteryHealthDeviceRuntimeHistoryID(t *testing.T) {
-	actual := NewDeviceManagementUserExperienceAnalyticsBatteryHealthDeviceRuntimeHistoryID("userExperienceAnalyticsBatteryHealthDeviceRuntimeHistoryIdValue").ID()
-	expected := "/deviceManagement/userExperienceAnalyticsBatteryHealthDeviceRuntimeHistory/userExperienceAnalyticsBatteryHealthDeviceRuntimeHistoryIdValue"
+	actual := NewDeviceManagementUserExperienceAnalyticsBatteryHealthDeviceRuntimeHistoryID("userExperienceAnalyticsBatteryHealthDeviceRuntimeHistoryId").ID()
+	expected := "/deviceManagement/userExperienceAnalyticsBatteryHealthDeviceRuntimeHistory/userExperienceAnalyticsBatteryHealthDeviceRuntimeHistoryId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -50,14 +50,14 @@ func TestParseDeviceManagementUserExperienceAnalyticsBatteryHealthDeviceRuntimeH
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/userExperienceAnalyticsBatteryHealthDeviceRuntimeHistory/userExperienceAnalyticsBatteryHealthDeviceRuntimeHistoryIdValue",
+			Input: "/deviceManagement/userExperienceAnalyticsBatteryHealthDeviceRuntimeHistory/userExperienceAnalyticsBatteryHealthDeviceRuntimeHistoryId",
 			Expected: &DeviceManagementUserExperienceAnalyticsBatteryHealthDeviceRuntimeHistoryId{
-				UserExperienceAnalyticsBatteryHealthDeviceRuntimeHistoryId: "userExperienceAnalyticsBatteryHealthDeviceRuntimeHistoryIdValue",
+				UserExperienceAnalyticsBatteryHealthDeviceRuntimeHistoryId: "userExperienceAnalyticsBatteryHealthDeviceRuntimeHistoryId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/userExperienceAnalyticsBatteryHealthDeviceRuntimeHistory/userExperienceAnalyticsBatteryHealthDeviceRuntimeHistoryIdValue/extra",
+			Input: "/deviceManagement/userExperienceAnalyticsBatteryHealthDeviceRuntimeHistory/userExperienceAnalyticsBatteryHealthDeviceRuntimeHistoryId/extra",
 			Error: true,
 		},
 	}
@@ -116,26 +116,26 @@ func TestParseDeviceManagementUserExperienceAnalyticsBatteryHealthDeviceRuntimeH
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/userExperienceAnalyticsBatteryHealthDeviceRuntimeHistory/userExperienceAnalyticsBatteryHealthDeviceRuntimeHistoryIdValue",
+			Input: "/deviceManagement/userExperienceAnalyticsBatteryHealthDeviceRuntimeHistory/userExperienceAnalyticsBatteryHealthDeviceRuntimeHistoryId",
 			Expected: &DeviceManagementUserExperienceAnalyticsBatteryHealthDeviceRuntimeHistoryId{
-				UserExperienceAnalyticsBatteryHealthDeviceRuntimeHistoryId: "userExperienceAnalyticsBatteryHealthDeviceRuntimeHistoryIdValue",
+				UserExperienceAnalyticsBatteryHealthDeviceRuntimeHistoryId: "userExperienceAnalyticsBatteryHealthDeviceRuntimeHistoryId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/userExperienceAnalyticsBatteryHealthDeviceRuntimeHistory/userExperienceAnalyticsBatteryHealthDeviceRuntimeHistoryIdValue/extra",
+			Input: "/deviceManagement/userExperienceAnalyticsBatteryHealthDeviceRuntimeHistory/userExperienceAnalyticsBatteryHealthDeviceRuntimeHistoryId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/uSeReXpErIeNcEaNaLyTiCsBaTtErYhEaLtHdEvIcErUnTiMeHiStOrY/uSeReXpErIeNcEaNaLyTiCsBaTtErYhEaLtHdEvIcErUnTiMeHiStOrYiDvAlUe",
+			Input: "/dEvIcEmAnAgEmEnT/uSeReXpErIeNcEaNaLyTiCsBaTtErYhEaLtHdEvIcErUnTiMeHiStOrY/uSeReXpErIeNcEaNaLyTiCsBaTtErYhEaLtHdEvIcErUnTiMeHiStOrYiD",
 			Expected: &DeviceManagementUserExperienceAnalyticsBatteryHealthDeviceRuntimeHistoryId{
-				UserExperienceAnalyticsBatteryHealthDeviceRuntimeHistoryId: "uSeReXpErIeNcEaNaLyTiCsBaTtErYhEaLtHdEvIcErUnTiMeHiStOrYiDvAlUe",
+				UserExperienceAnalyticsBatteryHealthDeviceRuntimeHistoryId: "uSeReXpErIeNcEaNaLyTiCsBaTtErYhEaLtHdEvIcErUnTiMeHiStOrYiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/uSeReXpErIeNcEaNaLyTiCsBaTtErYhEaLtHdEvIcErUnTiMeHiStOrY/uSeReXpErIeNcEaNaLyTiCsBaTtErYhEaLtHdEvIcErUnTiMeHiStOrYiDvAlUe/extra",
+			Input: "/dEvIcEmAnAgEmEnT/uSeReXpErIeNcEaNaLyTiCsBaTtErYhEaLtHdEvIcErUnTiMeHiStOrY/uSeReXpErIeNcEaNaLyTiCsBaTtErYhEaLtHdEvIcErUnTiMeHiStOrYiD/extra",
 			Error: true,
 		},
 	}

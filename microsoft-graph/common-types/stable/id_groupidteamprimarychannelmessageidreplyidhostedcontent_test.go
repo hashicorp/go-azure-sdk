@@ -12,28 +12,28 @@ import (
 var _ resourceids.ResourceId = &GroupIdTeamPrimaryChannelMessageIdReplyIdHostedContentId{}
 
 func TestNewGroupIdTeamPrimaryChannelMessageIdReplyIdHostedContentID(t *testing.T) {
-	id := NewGroupIdTeamPrimaryChannelMessageIdReplyIdHostedContentID("groupIdValue", "chatMessageIdValue", "chatMessageId1Value", "chatMessageHostedContentIdValue")
+	id := NewGroupIdTeamPrimaryChannelMessageIdReplyIdHostedContentID("groupId", "chatMessageId", "chatMessageId1", "chatMessageHostedContentId")
 
-	if id.GroupId != "groupIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'GroupId'", id.GroupId, "groupIdValue")
+	if id.GroupId != "groupId" {
+		t.Fatalf("Expected %q but got %q for Segment 'GroupId'", id.GroupId, "groupId")
 	}
 
-	if id.ChatMessageId != "chatMessageIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ChatMessageId'", id.ChatMessageId, "chatMessageIdValue")
+	if id.ChatMessageId != "chatMessageId" {
+		t.Fatalf("Expected %q but got %q for Segment 'ChatMessageId'", id.ChatMessageId, "chatMessageId")
 	}
 
-	if id.ChatMessageId1 != "chatMessageId1Value" {
-		t.Fatalf("Expected %q but got %q for Segment 'ChatMessageId1'", id.ChatMessageId1, "chatMessageId1Value")
+	if id.ChatMessageId1 != "chatMessageId1" {
+		t.Fatalf("Expected %q but got %q for Segment 'ChatMessageId1'", id.ChatMessageId1, "chatMessageId1")
 	}
 
-	if id.ChatMessageHostedContentId != "chatMessageHostedContentIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ChatMessageHostedContentId'", id.ChatMessageHostedContentId, "chatMessageHostedContentIdValue")
+	if id.ChatMessageHostedContentId != "chatMessageHostedContentId" {
+		t.Fatalf("Expected %q but got %q for Segment 'ChatMessageHostedContentId'", id.ChatMessageHostedContentId, "chatMessageHostedContentId")
 	}
 }
 
 func TestFormatGroupIdTeamPrimaryChannelMessageIdReplyIdHostedContentID(t *testing.T) {
-	actual := NewGroupIdTeamPrimaryChannelMessageIdReplyIdHostedContentID("groupIdValue", "chatMessageIdValue", "chatMessageId1Value", "chatMessageHostedContentIdValue").ID()
-	expected := "/groups/groupIdValue/team/primaryChannel/messages/chatMessageIdValue/replies/chatMessageId1Value/hostedContents/chatMessageHostedContentIdValue"
+	actual := NewGroupIdTeamPrimaryChannelMessageIdReplyIdHostedContentID("groupId", "chatMessageId", "chatMessageId1", "chatMessageHostedContentId").ID()
+	expected := "/groups/groupId/team/primaryChannel/messages/chatMessageId/replies/chatMessageId1/hostedContents/chatMessageHostedContentId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -57,57 +57,57 @@ func TestParseGroupIdTeamPrimaryChannelMessageIdReplyIdHostedContentID(t *testin
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue",
+			Input: "/groups/groupId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/team",
+			Input: "/groups/groupId/team",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/team/primaryChannel",
+			Input: "/groups/groupId/team/primaryChannel",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/team/primaryChannel/messages",
+			Input: "/groups/groupId/team/primaryChannel/messages",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/team/primaryChannel/messages/chatMessageIdValue",
+			Input: "/groups/groupId/team/primaryChannel/messages/chatMessageId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/team/primaryChannel/messages/chatMessageIdValue/replies",
+			Input: "/groups/groupId/team/primaryChannel/messages/chatMessageId/replies",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/team/primaryChannel/messages/chatMessageIdValue/replies/chatMessageId1Value",
+			Input: "/groups/groupId/team/primaryChannel/messages/chatMessageId/replies/chatMessageId1",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/team/primaryChannel/messages/chatMessageIdValue/replies/chatMessageId1Value/hostedContents",
+			Input: "/groups/groupId/team/primaryChannel/messages/chatMessageId/replies/chatMessageId1/hostedContents",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/groups/groupIdValue/team/primaryChannel/messages/chatMessageIdValue/replies/chatMessageId1Value/hostedContents/chatMessageHostedContentIdValue",
+			Input: "/groups/groupId/team/primaryChannel/messages/chatMessageId/replies/chatMessageId1/hostedContents/chatMessageHostedContentId",
 			Expected: &GroupIdTeamPrimaryChannelMessageIdReplyIdHostedContentId{
-				GroupId:                    "groupIdValue",
-				ChatMessageId:              "chatMessageIdValue",
-				ChatMessageId1:             "chatMessageId1Value",
-				ChatMessageHostedContentId: "chatMessageHostedContentIdValue",
+				GroupId:                    "groupId",
+				ChatMessageId:              "chatMessageId",
+				ChatMessageId1:             "chatMessageId1",
+				ChatMessageHostedContentId: "chatMessageHostedContentId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/groups/groupIdValue/team/primaryChannel/messages/chatMessageIdValue/replies/chatMessageId1Value/hostedContents/chatMessageHostedContentIdValue/extra",
+			Input: "/groups/groupId/team/primaryChannel/messages/chatMessageId/replies/chatMessageId1/hostedContents/chatMessageHostedContentId/extra",
 			Error: true,
 		},
 	}
@@ -168,112 +168,112 @@ func TestParseGroupIdTeamPrimaryChannelMessageIdReplyIdHostedContentIDInsensitiv
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue",
+			Input: "/groups/groupId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE",
+			Input: "/gRoUpS/gRoUpId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/team",
+			Input: "/groups/groupId/team",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/tEaM",
+			Input: "/gRoUpS/gRoUpId/tEaM",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/team/primaryChannel",
+			Input: "/groups/groupId/team/primaryChannel",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/tEaM/pRiMaRyChAnNeL",
+			Input: "/gRoUpS/gRoUpId/tEaM/pRiMaRyChAnNeL",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/team/primaryChannel/messages",
+			Input: "/groups/groupId/team/primaryChannel/messages",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/tEaM/pRiMaRyChAnNeL/mEsSaGeS",
+			Input: "/gRoUpS/gRoUpId/tEaM/pRiMaRyChAnNeL/mEsSaGeS",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/team/primaryChannel/messages/chatMessageIdValue",
+			Input: "/groups/groupId/team/primaryChannel/messages/chatMessageId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/tEaM/pRiMaRyChAnNeL/mEsSaGeS/cHaTmEsSaGeIdVaLuE",
+			Input: "/gRoUpS/gRoUpId/tEaM/pRiMaRyChAnNeL/mEsSaGeS/cHaTmEsSaGeId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/team/primaryChannel/messages/chatMessageIdValue/replies",
+			Input: "/groups/groupId/team/primaryChannel/messages/chatMessageId/replies",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/tEaM/pRiMaRyChAnNeL/mEsSaGeS/cHaTmEsSaGeIdVaLuE/rEpLiEs",
+			Input: "/gRoUpS/gRoUpId/tEaM/pRiMaRyChAnNeL/mEsSaGeS/cHaTmEsSaGeId/rEpLiEs",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/team/primaryChannel/messages/chatMessageIdValue/replies/chatMessageId1Value",
+			Input: "/groups/groupId/team/primaryChannel/messages/chatMessageId/replies/chatMessageId1",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/tEaM/pRiMaRyChAnNeL/mEsSaGeS/cHaTmEsSaGeIdVaLuE/rEpLiEs/cHaTmEsSaGeId1vAlUe",
+			Input: "/gRoUpS/gRoUpId/tEaM/pRiMaRyChAnNeL/mEsSaGeS/cHaTmEsSaGeId/rEpLiEs/cHaTmEsSaGeId1",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/team/primaryChannel/messages/chatMessageIdValue/replies/chatMessageId1Value/hostedContents",
+			Input: "/groups/groupId/team/primaryChannel/messages/chatMessageId/replies/chatMessageId1/hostedContents",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/tEaM/pRiMaRyChAnNeL/mEsSaGeS/cHaTmEsSaGeIdVaLuE/rEpLiEs/cHaTmEsSaGeId1vAlUe/hOsTeDcOnTeNtS",
+			Input: "/gRoUpS/gRoUpId/tEaM/pRiMaRyChAnNeL/mEsSaGeS/cHaTmEsSaGeId/rEpLiEs/cHaTmEsSaGeId1/hOsTeDcOnTeNtS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/groups/groupIdValue/team/primaryChannel/messages/chatMessageIdValue/replies/chatMessageId1Value/hostedContents/chatMessageHostedContentIdValue",
+			Input: "/groups/groupId/team/primaryChannel/messages/chatMessageId/replies/chatMessageId1/hostedContents/chatMessageHostedContentId",
 			Expected: &GroupIdTeamPrimaryChannelMessageIdReplyIdHostedContentId{
-				GroupId:                    "groupIdValue",
-				ChatMessageId:              "chatMessageIdValue",
-				ChatMessageId1:             "chatMessageId1Value",
-				ChatMessageHostedContentId: "chatMessageHostedContentIdValue",
+				GroupId:                    "groupId",
+				ChatMessageId:              "chatMessageId",
+				ChatMessageId1:             "chatMessageId1",
+				ChatMessageHostedContentId: "chatMessageHostedContentId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/groups/groupIdValue/team/primaryChannel/messages/chatMessageIdValue/replies/chatMessageId1Value/hostedContents/chatMessageHostedContentIdValue/extra",
+			Input: "/groups/groupId/team/primaryChannel/messages/chatMessageId/replies/chatMessageId1/hostedContents/chatMessageHostedContentId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/tEaM/pRiMaRyChAnNeL/mEsSaGeS/cHaTmEsSaGeIdVaLuE/rEpLiEs/cHaTmEsSaGeId1vAlUe/hOsTeDcOnTeNtS/cHaTmEsSaGeHoStEdCoNtEnTiDvAlUe",
+			Input: "/gRoUpS/gRoUpId/tEaM/pRiMaRyChAnNeL/mEsSaGeS/cHaTmEsSaGeId/rEpLiEs/cHaTmEsSaGeId1/hOsTeDcOnTeNtS/cHaTmEsSaGeHoStEdCoNtEnTiD",
 			Expected: &GroupIdTeamPrimaryChannelMessageIdReplyIdHostedContentId{
-				GroupId:                    "gRoUpIdVaLuE",
-				ChatMessageId:              "cHaTmEsSaGeIdVaLuE",
-				ChatMessageId1:             "cHaTmEsSaGeId1vAlUe",
-				ChatMessageHostedContentId: "cHaTmEsSaGeHoStEdCoNtEnTiDvAlUe",
+				GroupId:                    "gRoUpId",
+				ChatMessageId:              "cHaTmEsSaGeId",
+				ChatMessageId1:             "cHaTmEsSaGeId1",
+				ChatMessageHostedContentId: "cHaTmEsSaGeHoStEdCoNtEnTiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/tEaM/pRiMaRyChAnNeL/mEsSaGeS/cHaTmEsSaGeIdVaLuE/rEpLiEs/cHaTmEsSaGeId1vAlUe/hOsTeDcOnTeNtS/cHaTmEsSaGeHoStEdCoNtEnTiDvAlUe/extra",
+			Input: "/gRoUpS/gRoUpId/tEaM/pRiMaRyChAnNeL/mEsSaGeS/cHaTmEsSaGeId/rEpLiEs/cHaTmEsSaGeId1/hOsTeDcOnTeNtS/cHaTmEsSaGeHoStEdCoNtEnTiD/extra",
 			Error: true,
 		},
 	}

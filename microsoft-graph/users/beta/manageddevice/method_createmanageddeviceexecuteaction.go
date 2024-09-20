@@ -19,15 +19,44 @@ type CreateManagedDeviceExecuteActionOperationResponse struct {
 	Model        *beta.BulkManagedDeviceActionResult
 }
 
+type CreateManagedDeviceExecuteActionOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateManagedDeviceExecuteActionOperationOptions() CreateManagedDeviceExecuteActionOperationOptions {
+	return CreateManagedDeviceExecuteActionOperationOptions{}
+}
+
+func (o CreateManagedDeviceExecuteActionOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateManagedDeviceExecuteActionOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateManagedDeviceExecuteActionOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateManagedDeviceExecuteAction - Invoke action executeAction
-func (c ManagedDeviceClient) CreateManagedDeviceExecuteAction(ctx context.Context, id beta.UserId, input CreateManagedDeviceExecuteActionRequest) (result CreateManagedDeviceExecuteActionOperationResponse, err error) {
+func (c ManagedDeviceClient) CreateManagedDeviceExecuteAction(ctx context.Context, id beta.UserId, input CreateManagedDeviceExecuteActionRequest, options CreateManagedDeviceExecuteActionOperationOptions) (result CreateManagedDeviceExecuteActionOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/managedDevices/executeAction", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/managedDevices/executeAction", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

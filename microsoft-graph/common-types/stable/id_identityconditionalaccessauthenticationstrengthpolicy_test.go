@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &IdentityConditionalAccessAuthenticationStrengthPolicyId{}
 
 func TestNewIdentityConditionalAccessAuthenticationStrengthPolicyID(t *testing.T) {
-	id := NewIdentityConditionalAccessAuthenticationStrengthPolicyID("authenticationStrengthPolicyIdValue")
+	id := NewIdentityConditionalAccessAuthenticationStrengthPolicyID("authenticationStrengthPolicyId")
 
-	if id.AuthenticationStrengthPolicyId != "authenticationStrengthPolicyIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'AuthenticationStrengthPolicyId'", id.AuthenticationStrengthPolicyId, "authenticationStrengthPolicyIdValue")
+	if id.AuthenticationStrengthPolicyId != "authenticationStrengthPolicyId" {
+		t.Fatalf("Expected %q but got %q for Segment 'AuthenticationStrengthPolicyId'", id.AuthenticationStrengthPolicyId, "authenticationStrengthPolicyId")
 	}
 }
 
 func TestFormatIdentityConditionalAccessAuthenticationStrengthPolicyID(t *testing.T) {
-	actual := NewIdentityConditionalAccessAuthenticationStrengthPolicyID("authenticationStrengthPolicyIdValue").ID()
-	expected := "/identity/conditionalAccess/authenticationStrength/policies/authenticationStrengthPolicyIdValue"
+	actual := NewIdentityConditionalAccessAuthenticationStrengthPolicyID("authenticationStrengthPolicyId").ID()
+	expected := "/identity/conditionalAccess/authenticationStrength/policies/authenticationStrengthPolicyId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -60,14 +60,14 @@ func TestParseIdentityConditionalAccessAuthenticationStrengthPolicyID(t *testing
 		},
 		{
 			// Valid URI
-			Input: "/identity/conditionalAccess/authenticationStrength/policies/authenticationStrengthPolicyIdValue",
+			Input: "/identity/conditionalAccess/authenticationStrength/policies/authenticationStrengthPolicyId",
 			Expected: &IdentityConditionalAccessAuthenticationStrengthPolicyId{
-				AuthenticationStrengthPolicyId: "authenticationStrengthPolicyIdValue",
+				AuthenticationStrengthPolicyId: "authenticationStrengthPolicyId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/identity/conditionalAccess/authenticationStrength/policies/authenticationStrengthPolicyIdValue/extra",
+			Input: "/identity/conditionalAccess/authenticationStrength/policies/authenticationStrengthPolicyId/extra",
 			Error: true,
 		},
 	}
@@ -146,26 +146,26 @@ func TestParseIdentityConditionalAccessAuthenticationStrengthPolicyIDInsensitive
 		},
 		{
 			// Valid URI
-			Input: "/identity/conditionalAccess/authenticationStrength/policies/authenticationStrengthPolicyIdValue",
+			Input: "/identity/conditionalAccess/authenticationStrength/policies/authenticationStrengthPolicyId",
 			Expected: &IdentityConditionalAccessAuthenticationStrengthPolicyId{
-				AuthenticationStrengthPolicyId: "authenticationStrengthPolicyIdValue",
+				AuthenticationStrengthPolicyId: "authenticationStrengthPolicyId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/identity/conditionalAccess/authenticationStrength/policies/authenticationStrengthPolicyIdValue/extra",
+			Input: "/identity/conditionalAccess/authenticationStrength/policies/authenticationStrengthPolicyId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/iDeNtItY/cOnDiTiOnAlAcCeSs/aUtHeNtIcAtIoNsTrEnGtH/pOlIcIeS/aUtHeNtIcAtIoNsTrEnGtHpOlIcYiDvAlUe",
+			Input: "/iDeNtItY/cOnDiTiOnAlAcCeSs/aUtHeNtIcAtIoNsTrEnGtH/pOlIcIeS/aUtHeNtIcAtIoNsTrEnGtHpOlIcYiD",
 			Expected: &IdentityConditionalAccessAuthenticationStrengthPolicyId{
-				AuthenticationStrengthPolicyId: "aUtHeNtIcAtIoNsTrEnGtHpOlIcYiDvAlUe",
+				AuthenticationStrengthPolicyId: "aUtHeNtIcAtIoNsTrEnGtHpOlIcYiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/iDeNtItY/cOnDiTiOnAlAcCeSs/aUtHeNtIcAtIoNsTrEnGtH/pOlIcIeS/aUtHeNtIcAtIoNsTrEnGtHpOlIcYiDvAlUe/extra",
+			Input: "/iDeNtItY/cOnDiTiOnAlAcCeSs/aUtHeNtIcAtIoNsTrEnGtH/pOlIcIeS/aUtHeNtIcAtIoNsTrEnGtHpOlIcYiD/extra",
 			Error: true,
 		},
 	}

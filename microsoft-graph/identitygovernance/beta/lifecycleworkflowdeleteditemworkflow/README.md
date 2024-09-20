@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/microsoft-graph/identitygovernance/beta/lifecycleworkflowdeleteditemworkflow` Documentation
 
-The `lifecycleworkflowdeleteditemworkflow` SDK allows for interaction with the Azure Resource Manager Service `identitygovernance` (API Version `beta`).
+The `lifecycleworkflowdeleteditemworkflow` SDK allows for interaction with Microsoft Graph `identitygovernance` (API Version `beta`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -15,7 +15,7 @@ import "github.com/hashicorp/go-azure-sdk/microsoft-graph/identitygovernance/bet
 ### Client Initialization
 
 ```go
-client := lifecycleworkflowdeleteditemworkflow.NewLifecycleWorkflowDeletedItemWorkflowClientWithBaseURI("https://management.azure.com")
+client := lifecycleworkflowdeleteditemworkflow.NewLifecycleWorkflowDeletedItemWorkflowClientWithBaseURI("https://graph.microsoft.com")
 client.Client.Authorizer = authorizer
 ```
 
@@ -24,14 +24,14 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := lifecycleworkflowdeleteditemworkflow.NewIdentityGovernanceLifecycleWorkflowDeletedItemWorkflowID("workflowIdValue")
+id := lifecycleworkflowdeleteditemworkflow.NewIdentityGovernanceLifecycleWorkflowDeletedItemWorkflowID("workflowId")
 
 payload := lifecycleworkflowdeleteditemworkflow.CreateLifecycleWorkflowDeletedItemWorkflowIdentityGovernanceActivateRequest{
 	// ...
 }
 
 
-read, err := client.CreateLifecycleWorkflowDeletedItemWorkflowIdentityGovernanceActivate(ctx, id, payload)
+read, err := client.CreateLifecycleWorkflowDeletedItemWorkflowIdentityGovernanceActivate(ctx, id, payload, lifecycleworkflowdeleteditemworkflow.DefaultCreateLifecycleWorkflowDeletedItemWorkflowIdentityGovernanceActivateOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -45,14 +45,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := lifecycleworkflowdeleteditemworkflow.NewIdentityGovernanceLifecycleWorkflowDeletedItemWorkflowID("workflowIdValue")
+id := lifecycleworkflowdeleteditemworkflow.NewIdentityGovernanceLifecycleWorkflowDeletedItemWorkflowID("workflowId")
 
 payload := lifecycleworkflowdeleteditemworkflow.CreateLifecycleWorkflowDeletedItemWorkflowIdentityGovernanceCreateNewVersionRequest{
 	// ...
 }
 
 
-read, err := client.CreateLifecycleWorkflowDeletedItemWorkflowIdentityGovernanceCreateNewVersion(ctx, id, payload)
+read, err := client.CreateLifecycleWorkflowDeletedItemWorkflowIdentityGovernanceCreateNewVersion(ctx, id, payload, lifecycleworkflowdeleteditemworkflow.DefaultCreateLifecycleWorkflowDeletedItemWorkflowIdentityGovernanceCreateNewVersionOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -66,9 +66,9 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := lifecycleworkflowdeleteditemworkflow.NewIdentityGovernanceLifecycleWorkflowDeletedItemWorkflowID("workflowIdValue")
+id := lifecycleworkflowdeleteditemworkflow.NewIdentityGovernanceLifecycleWorkflowDeletedItemWorkflowID("workflowId")
 
-read, err := client.CreateLifecycleWorkflowDeletedItemWorkflowIdentityGovernanceRestore(ctx, id)
+read, err := client.CreateLifecycleWorkflowDeletedItemWorkflowIdentityGovernanceRestore(ctx, id, lifecycleworkflowdeleteditemworkflow.DefaultCreateLifecycleWorkflowDeletedItemWorkflowIdentityGovernanceRestoreOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -82,7 +82,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := lifecycleworkflowdeleteditemworkflow.NewIdentityGovernanceLifecycleWorkflowDeletedItemWorkflowID("workflowIdValue")
+id := lifecycleworkflowdeleteditemworkflow.NewIdentityGovernanceLifecycleWorkflowDeletedItemWorkflowID("workflowId")
 
 read, err := client.DeleteLifecycleWorkflowDeletedItemWorkflow(ctx, id, lifecycleworkflowdeleteditemworkflow.DefaultDeleteLifecycleWorkflowDeletedItemWorkflowOperationOptions())
 if err != nil {
@@ -98,7 +98,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := lifecycleworkflowdeleteditemworkflow.NewIdentityGovernanceLifecycleWorkflowDeletedItemWorkflowID("workflowIdValue")
+id := lifecycleworkflowdeleteditemworkflow.NewIdentityGovernanceLifecycleWorkflowDeletedItemWorkflowID("workflowId")
 
 read, err := client.GetLifecycleWorkflowDeletedItemWorkflow(ctx, id, lifecycleworkflowdeleteditemworkflow.DefaultGetLifecycleWorkflowDeletedItemWorkflowOperationOptions())
 if err != nil {

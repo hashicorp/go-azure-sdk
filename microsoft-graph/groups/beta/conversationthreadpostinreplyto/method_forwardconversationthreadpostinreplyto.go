@@ -18,17 +18,46 @@ type ForwardConversationThreadPostInReplyToOperationResponse struct {
 	OData        *odata.OData
 }
 
+type ForwardConversationThreadPostInReplyToOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultForwardConversationThreadPostInReplyToOperationOptions() ForwardConversationThreadPostInReplyToOperationOptions {
+	return ForwardConversationThreadPostInReplyToOperationOptions{}
+}
+
+func (o ForwardConversationThreadPostInReplyToOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o ForwardConversationThreadPostInReplyToOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o ForwardConversationThreadPostInReplyToOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // ForwardConversationThreadPostInReplyTo - Invoke action forward. Forward a post to a recipient. You can specify both
 // the parent conversation and thread in the request, or, you can specify just the parent thread without the parent
 // conversation.
-func (c ConversationThreadPostInReplyToClient) ForwardConversationThreadPostInReplyTo(ctx context.Context, id beta.GroupIdConversationIdThreadIdPostId, input ForwardConversationThreadPostInReplyToRequest) (result ForwardConversationThreadPostInReplyToOperationResponse, err error) {
+func (c ConversationThreadPostInReplyToClient) ForwardConversationThreadPostInReplyTo(ctx context.Context, id beta.GroupIdConversationIdThreadIdPostId, input ForwardConversationThreadPostInReplyToRequest, options ForwardConversationThreadPostInReplyToOperationOptions) (result ForwardConversationThreadPostInReplyToOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/inReplyTo/forward", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/inReplyTo/forward", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

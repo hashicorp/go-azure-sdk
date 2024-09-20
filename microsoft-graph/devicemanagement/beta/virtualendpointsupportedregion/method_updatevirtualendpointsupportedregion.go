@@ -17,15 +17,44 @@ type UpdateVirtualEndpointSupportedRegionOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateVirtualEndpointSupportedRegionOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateVirtualEndpointSupportedRegionOperationOptions() UpdateVirtualEndpointSupportedRegionOperationOptions {
+	return UpdateVirtualEndpointSupportedRegionOperationOptions{}
+}
+
+func (o UpdateVirtualEndpointSupportedRegionOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateVirtualEndpointSupportedRegionOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateVirtualEndpointSupportedRegionOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateVirtualEndpointSupportedRegion - Update the navigation property supportedRegions in deviceManagement
-func (c VirtualEndpointSupportedRegionClient) UpdateVirtualEndpointSupportedRegion(ctx context.Context, id beta.DeviceManagementVirtualEndpointSupportedRegionId, input beta.CloudPCSupportedRegion) (result UpdateVirtualEndpointSupportedRegionOperationResponse, err error) {
+func (c VirtualEndpointSupportedRegionClient) UpdateVirtualEndpointSupportedRegion(ctx context.Context, id beta.DeviceManagementVirtualEndpointSupportedRegionId, input beta.CloudPCSupportedRegion, options UpdateVirtualEndpointSupportedRegionOperationOptions) (result UpdateVirtualEndpointSupportedRegionOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

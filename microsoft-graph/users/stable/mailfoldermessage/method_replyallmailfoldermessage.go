@@ -18,6 +18,34 @@ type ReplyAllMailFolderMessageOperationResponse struct {
 	OData        *odata.OData
 }
 
+type ReplyAllMailFolderMessageOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultReplyAllMailFolderMessageOperationOptions() ReplyAllMailFolderMessageOperationOptions {
+	return ReplyAllMailFolderMessageOperationOptions{}
+}
+
+func (o ReplyAllMailFolderMessageOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o ReplyAllMailFolderMessageOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o ReplyAllMailFolderMessageOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // ReplyAllMailFolderMessage - Invoke action replyAll. Reply to all recipients of a message using either JSON or MIME
 // format. When using JSON format: - Specify either a comment or the body property of the message parameter. Specifying
 // both will return an HTTP 400 Bad Request error. - If the original message specifies a recipient in the replyTo
@@ -26,14 +54,15 @@ type ReplyAllMailFolderMessageOperationResponse struct {
 // all encoded in base64 format in the request body. - Add any attachments and S/MIME properties to the MIME content.
 // This method saves the message in the Sent Items folder. Alternatively, create a draft to reply-all to a message and
 // send it later.
-func (c MailFolderMessageClient) ReplyAllMailFolderMessage(ctx context.Context, id stable.UserIdMailFolderIdMessageId, input ReplyAllMailFolderMessageRequest) (result ReplyAllMailFolderMessageOperationResponse, err error) {
+func (c MailFolderMessageClient) ReplyAllMailFolderMessage(ctx context.Context, id stable.UserIdMailFolderIdMessageId, input ReplyAllMailFolderMessageRequest, options ReplyAllMailFolderMessageOperationOptions) (result ReplyAllMailFolderMessageOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/replyAll", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/replyAll", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &MeTeamworkInstalledAppId{}
 
 func TestNewMeTeamworkInstalledAppID(t *testing.T) {
-	id := NewMeTeamworkInstalledAppID("userScopeTeamsAppInstallationIdValue")
+	id := NewMeTeamworkInstalledAppID("userScopeTeamsAppInstallationId")
 
-	if id.UserScopeTeamsAppInstallationId != "userScopeTeamsAppInstallationIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'UserScopeTeamsAppInstallationId'", id.UserScopeTeamsAppInstallationId, "userScopeTeamsAppInstallationIdValue")
+	if id.UserScopeTeamsAppInstallationId != "userScopeTeamsAppInstallationId" {
+		t.Fatalf("Expected %q but got %q for Segment 'UserScopeTeamsAppInstallationId'", id.UserScopeTeamsAppInstallationId, "userScopeTeamsAppInstallationId")
 	}
 }
 
 func TestFormatMeTeamworkInstalledAppID(t *testing.T) {
-	actual := NewMeTeamworkInstalledAppID("userScopeTeamsAppInstallationIdValue").ID()
-	expected := "/me/teamwork/installedApps/userScopeTeamsAppInstallationIdValue"
+	actual := NewMeTeamworkInstalledAppID("userScopeTeamsAppInstallationId").ID()
+	expected := "/me/teamwork/installedApps/userScopeTeamsAppInstallationId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -55,14 +55,14 @@ func TestParseMeTeamworkInstalledAppID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/me/teamwork/installedApps/userScopeTeamsAppInstallationIdValue",
+			Input: "/me/teamwork/installedApps/userScopeTeamsAppInstallationId",
 			Expected: &MeTeamworkInstalledAppId{
-				UserScopeTeamsAppInstallationId: "userScopeTeamsAppInstallationIdValue",
+				UserScopeTeamsAppInstallationId: "userScopeTeamsAppInstallationId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/teamwork/installedApps/userScopeTeamsAppInstallationIdValue/extra",
+			Input: "/me/teamwork/installedApps/userScopeTeamsAppInstallationId/extra",
 			Error: true,
 		},
 	}
@@ -131,26 +131,26 @@ func TestParseMeTeamworkInstalledAppIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/me/teamwork/installedApps/userScopeTeamsAppInstallationIdValue",
+			Input: "/me/teamwork/installedApps/userScopeTeamsAppInstallationId",
 			Expected: &MeTeamworkInstalledAppId{
-				UserScopeTeamsAppInstallationId: "userScopeTeamsAppInstallationIdValue",
+				UserScopeTeamsAppInstallationId: "userScopeTeamsAppInstallationId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/teamwork/installedApps/userScopeTeamsAppInstallationIdValue/extra",
+			Input: "/me/teamwork/installedApps/userScopeTeamsAppInstallationId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/tEaMwOrK/iNsTaLlEdApPs/uSeRsCoPeTeAmSaPpInStAlLaTiOnIdVaLuE",
+			Input: "/mE/tEaMwOrK/iNsTaLlEdApPs/uSeRsCoPeTeAmSaPpInStAlLaTiOnId",
 			Expected: &MeTeamworkInstalledAppId{
-				UserScopeTeamsAppInstallationId: "uSeRsCoPeTeAmSaPpInStAlLaTiOnIdVaLuE",
+				UserScopeTeamsAppInstallationId: "uSeRsCoPeTeAmSaPpInStAlLaTiOnId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/mE/tEaMwOrK/iNsTaLlEdApPs/uSeRsCoPeTeAmSaPpInStAlLaTiOnIdVaLuE/extra",
+			Input: "/mE/tEaMwOrK/iNsTaLlEdApPs/uSeRsCoPeTeAmSaPpInStAlLaTiOnId/extra",
 			Error: true,
 		},
 	}

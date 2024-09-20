@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &IdentityGovernanceEntitlementManagementAssignmentPolicyIdQuestionId{}
 
 func TestNewIdentityGovernanceEntitlementManagementAssignmentPolicyIdQuestionID(t *testing.T) {
-	id := NewIdentityGovernanceEntitlementManagementAssignmentPolicyIdQuestionID("accessPackageAssignmentPolicyIdValue", "accessPackageQuestionIdValue")
+	id := NewIdentityGovernanceEntitlementManagementAssignmentPolicyIdQuestionID("accessPackageAssignmentPolicyId", "accessPackageQuestionId")
 
-	if id.AccessPackageAssignmentPolicyId != "accessPackageAssignmentPolicyIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'AccessPackageAssignmentPolicyId'", id.AccessPackageAssignmentPolicyId, "accessPackageAssignmentPolicyIdValue")
+	if id.AccessPackageAssignmentPolicyId != "accessPackageAssignmentPolicyId" {
+		t.Fatalf("Expected %q but got %q for Segment 'AccessPackageAssignmentPolicyId'", id.AccessPackageAssignmentPolicyId, "accessPackageAssignmentPolicyId")
 	}
 
-	if id.AccessPackageQuestionId != "accessPackageQuestionIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'AccessPackageQuestionId'", id.AccessPackageQuestionId, "accessPackageQuestionIdValue")
+	if id.AccessPackageQuestionId != "accessPackageQuestionId" {
+		t.Fatalf("Expected %q but got %q for Segment 'AccessPackageQuestionId'", id.AccessPackageQuestionId, "accessPackageQuestionId")
 	}
 }
 
 func TestFormatIdentityGovernanceEntitlementManagementAssignmentPolicyIdQuestionID(t *testing.T) {
-	actual := NewIdentityGovernanceEntitlementManagementAssignmentPolicyIdQuestionID("accessPackageAssignmentPolicyIdValue", "accessPackageQuestionIdValue").ID()
-	expected := "/identityGovernance/entitlementManagement/assignmentPolicies/accessPackageAssignmentPolicyIdValue/questions/accessPackageQuestionIdValue"
+	actual := NewIdentityGovernanceEntitlementManagementAssignmentPolicyIdQuestionID("accessPackageAssignmentPolicyId", "accessPackageQuestionId").ID()
+	expected := "/identityGovernance/entitlementManagement/assignmentPolicies/accessPackageAssignmentPolicyId/questions/accessPackageQuestionId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -59,25 +59,25 @@ func TestParseIdentityGovernanceEntitlementManagementAssignmentPolicyIdQuestionI
 		},
 		{
 			// Incomplete URI
-			Input: "/identityGovernance/entitlementManagement/assignmentPolicies/accessPackageAssignmentPolicyIdValue",
+			Input: "/identityGovernance/entitlementManagement/assignmentPolicies/accessPackageAssignmentPolicyId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/identityGovernance/entitlementManagement/assignmentPolicies/accessPackageAssignmentPolicyIdValue/questions",
+			Input: "/identityGovernance/entitlementManagement/assignmentPolicies/accessPackageAssignmentPolicyId/questions",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/identityGovernance/entitlementManagement/assignmentPolicies/accessPackageAssignmentPolicyIdValue/questions/accessPackageQuestionIdValue",
+			Input: "/identityGovernance/entitlementManagement/assignmentPolicies/accessPackageAssignmentPolicyId/questions/accessPackageQuestionId",
 			Expected: &IdentityGovernanceEntitlementManagementAssignmentPolicyIdQuestionId{
-				AccessPackageAssignmentPolicyId: "accessPackageAssignmentPolicyIdValue",
-				AccessPackageQuestionId:         "accessPackageQuestionIdValue",
+				AccessPackageAssignmentPolicyId: "accessPackageAssignmentPolicyId",
+				AccessPackageQuestionId:         "accessPackageQuestionId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/identityGovernance/entitlementManagement/assignmentPolicies/accessPackageAssignmentPolicyIdValue/questions/accessPackageQuestionIdValue/extra",
+			Input: "/identityGovernance/entitlementManagement/assignmentPolicies/accessPackageAssignmentPolicyId/questions/accessPackageQuestionId/extra",
 			Error: true,
 		},
 	}
@@ -150,48 +150,48 @@ func TestParseIdentityGovernanceEntitlementManagementAssignmentPolicyIdQuestionI
 		},
 		{
 			// Incomplete URI
-			Input: "/identityGovernance/entitlementManagement/assignmentPolicies/accessPackageAssignmentPolicyIdValue",
+			Input: "/identityGovernance/entitlementManagement/assignmentPolicies/accessPackageAssignmentPolicyId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/iDeNtItYgOvErNaNcE/eNtItLeMeNtMaNaGeMeNt/aSsIgNmEnTpOlIcIeS/aCcEsSpAcKaGeAsSiGnMeNtPoLiCyIdVaLuE",
+			Input: "/iDeNtItYgOvErNaNcE/eNtItLeMeNtMaNaGeMeNt/aSsIgNmEnTpOlIcIeS/aCcEsSpAcKaGeAsSiGnMeNtPoLiCyId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/identityGovernance/entitlementManagement/assignmentPolicies/accessPackageAssignmentPolicyIdValue/questions",
+			Input: "/identityGovernance/entitlementManagement/assignmentPolicies/accessPackageAssignmentPolicyId/questions",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/iDeNtItYgOvErNaNcE/eNtItLeMeNtMaNaGeMeNt/aSsIgNmEnTpOlIcIeS/aCcEsSpAcKaGeAsSiGnMeNtPoLiCyIdVaLuE/qUeStIoNs",
+			Input: "/iDeNtItYgOvErNaNcE/eNtItLeMeNtMaNaGeMeNt/aSsIgNmEnTpOlIcIeS/aCcEsSpAcKaGeAsSiGnMeNtPoLiCyId/qUeStIoNs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/identityGovernance/entitlementManagement/assignmentPolicies/accessPackageAssignmentPolicyIdValue/questions/accessPackageQuestionIdValue",
+			Input: "/identityGovernance/entitlementManagement/assignmentPolicies/accessPackageAssignmentPolicyId/questions/accessPackageQuestionId",
 			Expected: &IdentityGovernanceEntitlementManagementAssignmentPolicyIdQuestionId{
-				AccessPackageAssignmentPolicyId: "accessPackageAssignmentPolicyIdValue",
-				AccessPackageQuestionId:         "accessPackageQuestionIdValue",
+				AccessPackageAssignmentPolicyId: "accessPackageAssignmentPolicyId",
+				AccessPackageQuestionId:         "accessPackageQuestionId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/identityGovernance/entitlementManagement/assignmentPolicies/accessPackageAssignmentPolicyIdValue/questions/accessPackageQuestionIdValue/extra",
+			Input: "/identityGovernance/entitlementManagement/assignmentPolicies/accessPackageAssignmentPolicyId/questions/accessPackageQuestionId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/iDeNtItYgOvErNaNcE/eNtItLeMeNtMaNaGeMeNt/aSsIgNmEnTpOlIcIeS/aCcEsSpAcKaGeAsSiGnMeNtPoLiCyIdVaLuE/qUeStIoNs/aCcEsSpAcKaGeQuEsTiOnIdVaLuE",
+			Input: "/iDeNtItYgOvErNaNcE/eNtItLeMeNtMaNaGeMeNt/aSsIgNmEnTpOlIcIeS/aCcEsSpAcKaGeAsSiGnMeNtPoLiCyId/qUeStIoNs/aCcEsSpAcKaGeQuEsTiOnId",
 			Expected: &IdentityGovernanceEntitlementManagementAssignmentPolicyIdQuestionId{
-				AccessPackageAssignmentPolicyId: "aCcEsSpAcKaGeAsSiGnMeNtPoLiCyIdVaLuE",
-				AccessPackageQuestionId:         "aCcEsSpAcKaGeQuEsTiOnIdVaLuE",
+				AccessPackageAssignmentPolicyId: "aCcEsSpAcKaGeAsSiGnMeNtPoLiCyId",
+				AccessPackageQuestionId:         "aCcEsSpAcKaGeQuEsTiOnId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/iDeNtItYgOvErNaNcE/eNtItLeMeNtMaNaGeMeNt/aSsIgNmEnTpOlIcIeS/aCcEsSpAcKaGeAsSiGnMeNtPoLiCyIdVaLuE/qUeStIoNs/aCcEsSpAcKaGeQuEsTiOnIdVaLuE/extra",
+			Input: "/iDeNtItYgOvErNaNcE/eNtItLeMeNtMaNaGeMeNt/aSsIgNmEnTpOlIcIeS/aCcEsSpAcKaGeAsSiGnMeNtPoLiCyId/qUeStIoNs/aCcEsSpAcKaGeQuEsTiOnId/extra",
 			Error: true,
 		},
 	}

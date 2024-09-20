@@ -19,7 +19,8 @@ type DeleteEntitlementManagementResourceRequestCatalogResourceRoleResourceOperat
 }
 
 type DeleteEntitlementManagementResourceRequestCatalogResourceRoleResourceOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteEntitlementManagementResourceRequestCatalogResourceRoleResourceOperationOptions() DeleteEntitlementManagementResourceRequestCatalogResourceRoleResourceOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteEntitlementManagementResourceRequestCatalogResourceRoleResourceOpe
 
 func (o DeleteEntitlementManagementResourceRequestCatalogResourceRoleResourceOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 
@@ -48,7 +51,7 @@ func (o DeleteEntitlementManagementResourceRequestCatalogResourceRoleResourceOpe
 
 // DeleteEntitlementManagementResourceRequestCatalogResourceRoleResource - Delete navigation property resource for
 // identityGovernance
-func (c EntitlementManagementResourceRequestCatalogResourceRoleResourceClient) DeleteEntitlementManagementResourceRequestCatalogResourceRoleResource(ctx context.Context, id stable.IdentityGovernanceEntitlementManagementResourceRequestIdCatalogResourceRoleId, options DeleteEntitlementManagementResourceRequestCatalogResourceRoleResourceOperationOptions) (result DeleteEntitlementManagementResourceRequestCatalogResourceRoleResourceOperationResponse, err error) {
+func (c EntitlementManagementResourceRequestCatalogResourceRoleResourceClient) DeleteEntitlementManagementResourceRequestCatalogResourceRoleResource(ctx context.Context, id stable.IdentityGovernanceEntitlementManagementResourceRequestIdCatalogResourceIdRoleId, options DeleteEntitlementManagementResourceRequestCatalogResourceRoleResourceOperationOptions) (result DeleteEntitlementManagementResourceRequestCatalogResourceRoleResourceOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{

@@ -18,18 +18,47 @@ type CreateOAuth2PermissionGrantOperationResponse struct {
 	Model        *beta.OAuth2PermissionGrant
 }
 
+type CreateOAuth2PermissionGrantOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateOAuth2PermissionGrantOperationOptions() CreateOAuth2PermissionGrantOperationOptions {
+	return CreateOAuth2PermissionGrantOperationOptions{}
+}
+
+func (o CreateOAuth2PermissionGrantOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateOAuth2PermissionGrantOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateOAuth2PermissionGrantOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateOAuth2PermissionGrant - Create oAuth2PermissionGrant (a delegated permission grant). Create a delegated
 // permission grant, represented by an oAuth2PermissionGrant object. A delegated permission grant authorizes a client
 // service principal (representing a client application) to access a resource service principal (representing an API),
 // on behalf of a signed-in user, for the level of access limited by the delegated permissions which were granted.
-func (c OAuth2PermissionGrantClient) CreateOAuth2PermissionGrant(ctx context.Context, input beta.OAuth2PermissionGrant) (result CreateOAuth2PermissionGrantOperationResponse, err error) {
+func (c OAuth2PermissionGrantClient) CreateOAuth2PermissionGrant(ctx context.Context, input beta.OAuth2PermissionGrant, options CreateOAuth2PermissionGrantOperationOptions) (result CreateOAuth2PermissionGrantOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/oauth2PermissionGrants",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/oauth2PermissionGrants",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

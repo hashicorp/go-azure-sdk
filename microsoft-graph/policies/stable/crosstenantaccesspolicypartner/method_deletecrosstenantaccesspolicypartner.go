@@ -19,7 +19,8 @@ type DeleteCrossTenantAccessPolicyPartnerOperationResponse struct {
 }
 
 type DeleteCrossTenantAccessPolicyPartnerOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteCrossTenantAccessPolicyPartnerOperationOptions() DeleteCrossTenantAccessPolicyPartnerOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteCrossTenantAccessPolicyPartnerOperationOptions) ToHeaders() *clien
 
 func (o DeleteCrossTenantAccessPolicyPartnerOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

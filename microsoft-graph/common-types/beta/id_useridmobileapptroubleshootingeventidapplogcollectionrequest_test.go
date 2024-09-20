@@ -12,24 +12,24 @@ import (
 var _ resourceids.ResourceId = &UserIdMobileAppTroubleshootingEventIdAppLogCollectionRequestId{}
 
 func TestNewUserIdMobileAppTroubleshootingEventIdAppLogCollectionRequestID(t *testing.T) {
-	id := NewUserIdMobileAppTroubleshootingEventIdAppLogCollectionRequestID("userIdValue", "mobileAppTroubleshootingEventIdValue", "appLogCollectionRequestIdValue")
+	id := NewUserIdMobileAppTroubleshootingEventIdAppLogCollectionRequestID("userId", "mobileAppTroubleshootingEventId", "appLogCollectionRequestId")
 
-	if id.UserId != "userIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'UserId'", id.UserId, "userIdValue")
+	if id.UserId != "userId" {
+		t.Fatalf("Expected %q but got %q for Segment 'UserId'", id.UserId, "userId")
 	}
 
-	if id.MobileAppTroubleshootingEventId != "mobileAppTroubleshootingEventIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'MobileAppTroubleshootingEventId'", id.MobileAppTroubleshootingEventId, "mobileAppTroubleshootingEventIdValue")
+	if id.MobileAppTroubleshootingEventId != "mobileAppTroubleshootingEventId" {
+		t.Fatalf("Expected %q but got %q for Segment 'MobileAppTroubleshootingEventId'", id.MobileAppTroubleshootingEventId, "mobileAppTroubleshootingEventId")
 	}
 
-	if id.AppLogCollectionRequestId != "appLogCollectionRequestIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'AppLogCollectionRequestId'", id.AppLogCollectionRequestId, "appLogCollectionRequestIdValue")
+	if id.AppLogCollectionRequestId != "appLogCollectionRequestId" {
+		t.Fatalf("Expected %q but got %q for Segment 'AppLogCollectionRequestId'", id.AppLogCollectionRequestId, "appLogCollectionRequestId")
 	}
 }
 
 func TestFormatUserIdMobileAppTroubleshootingEventIdAppLogCollectionRequestID(t *testing.T) {
-	actual := NewUserIdMobileAppTroubleshootingEventIdAppLogCollectionRequestID("userIdValue", "mobileAppTroubleshootingEventIdValue", "appLogCollectionRequestIdValue").ID()
-	expected := "/users/userIdValue/mobileAppTroubleshootingEvents/mobileAppTroubleshootingEventIdValue/appLogCollectionRequests/appLogCollectionRequestIdValue"
+	actual := NewUserIdMobileAppTroubleshootingEventIdAppLogCollectionRequestID("userId", "mobileAppTroubleshootingEventId", "appLogCollectionRequestId").ID()
+	expected := "/users/userId/mobileAppTroubleshootingEvents/mobileAppTroubleshootingEventId/appLogCollectionRequests/appLogCollectionRequestId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -53,36 +53,36 @@ func TestParseUserIdMobileAppTroubleshootingEventIdAppLogCollectionRequestID(t *
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue",
+			Input: "/users/userId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/mobileAppTroubleshootingEvents",
+			Input: "/users/userId/mobileAppTroubleshootingEvents",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/mobileAppTroubleshootingEvents/mobileAppTroubleshootingEventIdValue",
+			Input: "/users/userId/mobileAppTroubleshootingEvents/mobileAppTroubleshootingEventId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/mobileAppTroubleshootingEvents/mobileAppTroubleshootingEventIdValue/appLogCollectionRequests",
+			Input: "/users/userId/mobileAppTroubleshootingEvents/mobileAppTroubleshootingEventId/appLogCollectionRequests",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/users/userIdValue/mobileAppTroubleshootingEvents/mobileAppTroubleshootingEventIdValue/appLogCollectionRequests/appLogCollectionRequestIdValue",
+			Input: "/users/userId/mobileAppTroubleshootingEvents/mobileAppTroubleshootingEventId/appLogCollectionRequests/appLogCollectionRequestId",
 			Expected: &UserIdMobileAppTroubleshootingEventIdAppLogCollectionRequestId{
-				UserId:                          "userIdValue",
-				MobileAppTroubleshootingEventId: "mobileAppTroubleshootingEventIdValue",
-				AppLogCollectionRequestId:       "appLogCollectionRequestIdValue",
+				UserId:                          "userId",
+				MobileAppTroubleshootingEventId: "mobileAppTroubleshootingEventId",
+				AppLogCollectionRequestId:       "appLogCollectionRequestId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/users/userIdValue/mobileAppTroubleshootingEvents/mobileAppTroubleshootingEventIdValue/appLogCollectionRequests/appLogCollectionRequestIdValue/extra",
+			Input: "/users/userId/mobileAppTroubleshootingEvents/mobileAppTroubleshootingEventId/appLogCollectionRequests/appLogCollectionRequestId/extra",
 			Error: true,
 		},
 	}
@@ -139,70 +139,70 @@ func TestParseUserIdMobileAppTroubleshootingEventIdAppLogCollectionRequestIDInse
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue",
+			Input: "/users/userId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe",
+			Input: "/uSeRs/uSeRiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/mobileAppTroubleshootingEvents",
+			Input: "/users/userId/mobileAppTroubleshootingEvents",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/mObIlEaPpTrOuBlEsHoOtInGeVeNtS",
+			Input: "/uSeRs/uSeRiD/mObIlEaPpTrOuBlEsHoOtInGeVeNtS",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/mobileAppTroubleshootingEvents/mobileAppTroubleshootingEventIdValue",
+			Input: "/users/userId/mobileAppTroubleshootingEvents/mobileAppTroubleshootingEventId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/mObIlEaPpTrOuBlEsHoOtInGeVeNtS/mObIlEaPpTrOuBlEsHoOtInGeVeNtIdVaLuE",
+			Input: "/uSeRs/uSeRiD/mObIlEaPpTrOuBlEsHoOtInGeVeNtS/mObIlEaPpTrOuBlEsHoOtInGeVeNtId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/mobileAppTroubleshootingEvents/mobileAppTroubleshootingEventIdValue/appLogCollectionRequests",
+			Input: "/users/userId/mobileAppTroubleshootingEvents/mobileAppTroubleshootingEventId/appLogCollectionRequests",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/mObIlEaPpTrOuBlEsHoOtInGeVeNtS/mObIlEaPpTrOuBlEsHoOtInGeVeNtIdVaLuE/aPpLoGcOlLeCtIoNrEqUeStS",
+			Input: "/uSeRs/uSeRiD/mObIlEaPpTrOuBlEsHoOtInGeVeNtS/mObIlEaPpTrOuBlEsHoOtInGeVeNtId/aPpLoGcOlLeCtIoNrEqUeStS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/users/userIdValue/mobileAppTroubleshootingEvents/mobileAppTroubleshootingEventIdValue/appLogCollectionRequests/appLogCollectionRequestIdValue",
+			Input: "/users/userId/mobileAppTroubleshootingEvents/mobileAppTroubleshootingEventId/appLogCollectionRequests/appLogCollectionRequestId",
 			Expected: &UserIdMobileAppTroubleshootingEventIdAppLogCollectionRequestId{
-				UserId:                          "userIdValue",
-				MobileAppTroubleshootingEventId: "mobileAppTroubleshootingEventIdValue",
-				AppLogCollectionRequestId:       "appLogCollectionRequestIdValue",
+				UserId:                          "userId",
+				MobileAppTroubleshootingEventId: "mobileAppTroubleshootingEventId",
+				AppLogCollectionRequestId:       "appLogCollectionRequestId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/users/userIdValue/mobileAppTroubleshootingEvents/mobileAppTroubleshootingEventIdValue/appLogCollectionRequests/appLogCollectionRequestIdValue/extra",
+			Input: "/users/userId/mobileAppTroubleshootingEvents/mobileAppTroubleshootingEventId/appLogCollectionRequests/appLogCollectionRequestId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/mObIlEaPpTrOuBlEsHoOtInGeVeNtS/mObIlEaPpTrOuBlEsHoOtInGeVeNtIdVaLuE/aPpLoGcOlLeCtIoNrEqUeStS/aPpLoGcOlLeCtIoNrEqUeStIdVaLuE",
+			Input: "/uSeRs/uSeRiD/mObIlEaPpTrOuBlEsHoOtInGeVeNtS/mObIlEaPpTrOuBlEsHoOtInGeVeNtId/aPpLoGcOlLeCtIoNrEqUeStS/aPpLoGcOlLeCtIoNrEqUeStId",
 			Expected: &UserIdMobileAppTroubleshootingEventIdAppLogCollectionRequestId{
-				UserId:                          "uSeRiDvAlUe",
-				MobileAppTroubleshootingEventId: "mObIlEaPpTrOuBlEsHoOtInGeVeNtIdVaLuE",
-				AppLogCollectionRequestId:       "aPpLoGcOlLeCtIoNrEqUeStIdVaLuE",
+				UserId:                          "uSeRiD",
+				MobileAppTroubleshootingEventId: "mObIlEaPpTrOuBlEsHoOtInGeVeNtId",
+				AppLogCollectionRequestId:       "aPpLoGcOlLeCtIoNrEqUeStId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/mObIlEaPpTrOuBlEsHoOtInGeVeNtS/mObIlEaPpTrOuBlEsHoOtInGeVeNtIdVaLuE/aPpLoGcOlLeCtIoNrEqUeStS/aPpLoGcOlLeCtIoNrEqUeStIdVaLuE/extra",
+			Input: "/uSeRs/uSeRiD/mObIlEaPpTrOuBlEsHoOtInGeVeNtS/mObIlEaPpTrOuBlEsHoOtInGeVeNtId/aPpLoGcOlLeCtIoNrEqUeStS/aPpLoGcOlLeCtIoNrEqUeStId/extra",
 			Error: true,
 		},
 	}

@@ -99,9 +99,9 @@ func (id PolicyTokenIssuancePolicyIdAppliesToId) Segments() []resourceids.Segmen
 	return []resourceids.Segment{
 		resourceids.StaticSegment("policies", "policies", "policies"),
 		resourceids.StaticSegment("tokenIssuancePolicies", "tokenIssuancePolicies", "tokenIssuancePolicies"),
-		resourceids.UserSpecifiedSegment("tokenIssuancePolicyId", "tokenIssuancePolicyIdValue"),
+		resourceids.UserSpecifiedSegment("tokenIssuancePolicyId", "tokenIssuancePolicyId"),
 		resourceids.StaticSegment("appliesTo", "appliesTo", "appliesTo"),
-		resourceids.UserSpecifiedSegment("directoryObjectId", "directoryObjectIdValue"),
+		resourceids.UserSpecifiedSegment("directoryObjectId", "directoryObjectId"),
 	}
 }
 

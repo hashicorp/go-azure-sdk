@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &DeviceManagementVirtualEndpointBulkActionId{}
 
 func TestNewDeviceManagementVirtualEndpointBulkActionID(t *testing.T) {
-	id := NewDeviceManagementVirtualEndpointBulkActionID("cloudPCBulkActionIdValue")
+	id := NewDeviceManagementVirtualEndpointBulkActionID("cloudPCBulkActionId")
 
-	if id.CloudPCBulkActionId != "cloudPCBulkActionIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'CloudPCBulkActionId'", id.CloudPCBulkActionId, "cloudPCBulkActionIdValue")
+	if id.CloudPCBulkActionId != "cloudPCBulkActionId" {
+		t.Fatalf("Expected %q but got %q for Segment 'CloudPCBulkActionId'", id.CloudPCBulkActionId, "cloudPCBulkActionId")
 	}
 }
 
 func TestFormatDeviceManagementVirtualEndpointBulkActionID(t *testing.T) {
-	actual := NewDeviceManagementVirtualEndpointBulkActionID("cloudPCBulkActionIdValue").ID()
-	expected := "/deviceManagement/virtualEndpoint/bulkActions/cloudPCBulkActionIdValue"
+	actual := NewDeviceManagementVirtualEndpointBulkActionID("cloudPCBulkActionId").ID()
+	expected := "/deviceManagement/virtualEndpoint/bulkActions/cloudPCBulkActionId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -55,14 +55,14 @@ func TestParseDeviceManagementVirtualEndpointBulkActionID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/virtualEndpoint/bulkActions/cloudPCBulkActionIdValue",
+			Input: "/deviceManagement/virtualEndpoint/bulkActions/cloudPCBulkActionId",
 			Expected: &DeviceManagementVirtualEndpointBulkActionId{
-				CloudPCBulkActionId: "cloudPCBulkActionIdValue",
+				CloudPCBulkActionId: "cloudPCBulkActionId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/virtualEndpoint/bulkActions/cloudPCBulkActionIdValue/extra",
+			Input: "/deviceManagement/virtualEndpoint/bulkActions/cloudPCBulkActionId/extra",
 			Error: true,
 		},
 	}
@@ -131,26 +131,26 @@ func TestParseDeviceManagementVirtualEndpointBulkActionIDInsensitively(t *testin
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/virtualEndpoint/bulkActions/cloudPCBulkActionIdValue",
+			Input: "/deviceManagement/virtualEndpoint/bulkActions/cloudPCBulkActionId",
 			Expected: &DeviceManagementVirtualEndpointBulkActionId{
-				CloudPCBulkActionId: "cloudPCBulkActionIdValue",
+				CloudPCBulkActionId: "cloudPCBulkActionId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/virtualEndpoint/bulkActions/cloudPCBulkActionIdValue/extra",
+			Input: "/deviceManagement/virtualEndpoint/bulkActions/cloudPCBulkActionId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/vIrTuAlEnDpOiNt/bUlKaCtIoNs/cLoUdPcBuLkAcTiOnIdVaLuE",
+			Input: "/dEvIcEmAnAgEmEnT/vIrTuAlEnDpOiNt/bUlKaCtIoNs/cLoUdPcBuLkAcTiOnId",
 			Expected: &DeviceManagementVirtualEndpointBulkActionId{
-				CloudPCBulkActionId: "cLoUdPcBuLkAcTiOnIdVaLuE",
+				CloudPCBulkActionId: "cLoUdPcBuLkAcTiOnId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/vIrTuAlEnDpOiNt/bUlKaCtIoNs/cLoUdPcBuLkAcTiOnIdVaLuE/extra",
+			Input: "/dEvIcEmAnAgEmEnT/vIrTuAlEnDpOiNt/bUlKaCtIoNs/cLoUdPcBuLkAcTiOnId/extra",
 			Error: true,
 		},
 	}

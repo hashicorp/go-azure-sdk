@@ -99,9 +99,9 @@ func (id MeOnlineMeetingIdRecordingId) Segments() []resourceids.Segment {
 	return []resourceids.Segment{
 		resourceids.StaticSegment("me", "me", "me"),
 		resourceids.StaticSegment("onlineMeetings", "onlineMeetings", "onlineMeetings"),
-		resourceids.UserSpecifiedSegment("onlineMeetingId", "onlineMeetingIdValue"),
+		resourceids.UserSpecifiedSegment("onlineMeetingId", "onlineMeetingId"),
 		resourceids.StaticSegment("recordings", "recordings", "recordings"),
-		resourceids.UserSpecifiedSegment("callRecordingId", "callRecordingIdValue"),
+		resourceids.UserSpecifiedSegment("callRecordingId", "callRecordingId"),
 	}
 }
 

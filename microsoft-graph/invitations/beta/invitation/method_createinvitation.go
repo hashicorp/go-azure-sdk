@@ -18,17 +18,46 @@ type CreateInvitationOperationResponse struct {
 	Model        *beta.Invitation
 }
 
+type CreateInvitationOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateInvitationOperationOptions() CreateInvitationOperationOptions {
+	return CreateInvitationOperationOptions{}
+}
+
+func (o CreateInvitationOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateInvitationOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateInvitationOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateInvitation - Create invitation. Create a new invitation or reset the redemption status for a guest user who
 // already redeemed their invitation. The invitation adds an external user to the organization. The following options
-// are available for creating an invitation:
-func (c InvitationClient) CreateInvitation(ctx context.Context, input beta.Invitation) (result CreateInvitationOperationResponse, err error) {
+// are available for creating an invitation
+func (c InvitationClient) CreateInvitation(ctx context.Context, input beta.Invitation, options CreateInvitationOperationOptions) (result CreateInvitationOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/invitations",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/invitations",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

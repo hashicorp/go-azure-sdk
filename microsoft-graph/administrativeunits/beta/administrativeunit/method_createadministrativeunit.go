@@ -18,15 +18,44 @@ type CreateAdministrativeUnitOperationResponse struct {
 	Model        *beta.AdministrativeUnit
 }
 
+type CreateAdministrativeUnitOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateAdministrativeUnitOperationOptions() CreateAdministrativeUnitOperationOptions {
+	return CreateAdministrativeUnitOperationOptions{}
+}
+
+func (o CreateAdministrativeUnitOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateAdministrativeUnitOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateAdministrativeUnitOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateAdministrativeUnit - Create administrativeUnit. Use this API to create a new administrativeUnit.
-func (c AdministrativeUnitClient) CreateAdministrativeUnit(ctx context.Context, input beta.AdministrativeUnit) (result CreateAdministrativeUnitOperationResponse, err error) {
+func (c AdministrativeUnitClient) CreateAdministrativeUnit(ctx context.Context, input beta.AdministrativeUnit, options CreateAdministrativeUnitOperationOptions) (result CreateAdministrativeUnitOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/administrativeUnits",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/administrativeUnits",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

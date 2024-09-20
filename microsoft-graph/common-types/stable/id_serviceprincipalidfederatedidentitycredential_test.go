@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &ServicePrincipalIdFederatedIdentityCredentialId{}
 
 func TestNewServicePrincipalIdFederatedIdentityCredentialID(t *testing.T) {
-	id := NewServicePrincipalIdFederatedIdentityCredentialID("servicePrincipalIdValue", "federatedIdentityCredentialIdValue")
+	id := NewServicePrincipalIdFederatedIdentityCredentialID("servicePrincipalId", "federatedIdentityCredentialId")
 
-	if id.ServicePrincipalId != "servicePrincipalIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ServicePrincipalId'", id.ServicePrincipalId, "servicePrincipalIdValue")
+	if id.ServicePrincipalId != "servicePrincipalId" {
+		t.Fatalf("Expected %q but got %q for Segment 'ServicePrincipalId'", id.ServicePrincipalId, "servicePrincipalId")
 	}
 
-	if id.FederatedIdentityCredentialId != "federatedIdentityCredentialIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'FederatedIdentityCredentialId'", id.FederatedIdentityCredentialId, "federatedIdentityCredentialIdValue")
+	if id.FederatedIdentityCredentialId != "federatedIdentityCredentialId" {
+		t.Fatalf("Expected %q but got %q for Segment 'FederatedIdentityCredentialId'", id.FederatedIdentityCredentialId, "federatedIdentityCredentialId")
 	}
 }
 
 func TestFormatServicePrincipalIdFederatedIdentityCredentialID(t *testing.T) {
-	actual := NewServicePrincipalIdFederatedIdentityCredentialID("servicePrincipalIdValue", "federatedIdentityCredentialIdValue").ID()
-	expected := "/servicePrincipals/servicePrincipalIdValue/federatedIdentityCredentials/federatedIdentityCredentialIdValue"
+	actual := NewServicePrincipalIdFederatedIdentityCredentialID("servicePrincipalId", "federatedIdentityCredentialId").ID()
+	expected := "/servicePrincipals/servicePrincipalId/federatedIdentityCredentials/federatedIdentityCredentialId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -49,25 +49,25 @@ func TestParseServicePrincipalIdFederatedIdentityCredentialID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/servicePrincipals/servicePrincipalIdValue",
+			Input: "/servicePrincipals/servicePrincipalId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/servicePrincipals/servicePrincipalIdValue/federatedIdentityCredentials",
+			Input: "/servicePrincipals/servicePrincipalId/federatedIdentityCredentials",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/servicePrincipals/servicePrincipalIdValue/federatedIdentityCredentials/federatedIdentityCredentialIdValue",
+			Input: "/servicePrincipals/servicePrincipalId/federatedIdentityCredentials/federatedIdentityCredentialId",
 			Expected: &ServicePrincipalIdFederatedIdentityCredentialId{
-				ServicePrincipalId:            "servicePrincipalIdValue",
-				FederatedIdentityCredentialId: "federatedIdentityCredentialIdValue",
+				ServicePrincipalId:            "servicePrincipalId",
+				FederatedIdentityCredentialId: "federatedIdentityCredentialId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/servicePrincipals/servicePrincipalIdValue/federatedIdentityCredentials/federatedIdentityCredentialIdValue/extra",
+			Input: "/servicePrincipals/servicePrincipalId/federatedIdentityCredentials/federatedIdentityCredentialId/extra",
 			Error: true,
 		},
 	}
@@ -120,48 +120,48 @@ func TestParseServicePrincipalIdFederatedIdentityCredentialIDInsensitively(t *te
 		},
 		{
 			// Incomplete URI
-			Input: "/servicePrincipals/servicePrincipalIdValue",
+			Input: "/servicePrincipals/servicePrincipalId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sErViCePrInCiPaLs/sErViCePrInCiPaLiDvAlUe",
+			Input: "/sErViCePrInCiPaLs/sErViCePrInCiPaLiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/servicePrincipals/servicePrincipalIdValue/federatedIdentityCredentials",
+			Input: "/servicePrincipals/servicePrincipalId/federatedIdentityCredentials",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sErViCePrInCiPaLs/sErViCePrInCiPaLiDvAlUe/fEdErAtEdIdEnTiTyCrEdEnTiAlS",
+			Input: "/sErViCePrInCiPaLs/sErViCePrInCiPaLiD/fEdErAtEdIdEnTiTyCrEdEnTiAlS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/servicePrincipals/servicePrincipalIdValue/federatedIdentityCredentials/federatedIdentityCredentialIdValue",
+			Input: "/servicePrincipals/servicePrincipalId/federatedIdentityCredentials/federatedIdentityCredentialId",
 			Expected: &ServicePrincipalIdFederatedIdentityCredentialId{
-				ServicePrincipalId:            "servicePrincipalIdValue",
-				FederatedIdentityCredentialId: "federatedIdentityCredentialIdValue",
+				ServicePrincipalId:            "servicePrincipalId",
+				FederatedIdentityCredentialId: "federatedIdentityCredentialId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/servicePrincipals/servicePrincipalIdValue/federatedIdentityCredentials/federatedIdentityCredentialIdValue/extra",
+			Input: "/servicePrincipals/servicePrincipalId/federatedIdentityCredentials/federatedIdentityCredentialId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sErViCePrInCiPaLs/sErViCePrInCiPaLiDvAlUe/fEdErAtEdIdEnTiTyCrEdEnTiAlS/fEdErAtEdIdEnTiTyCrEdEnTiAlIdVaLuE",
+			Input: "/sErViCePrInCiPaLs/sErViCePrInCiPaLiD/fEdErAtEdIdEnTiTyCrEdEnTiAlS/fEdErAtEdIdEnTiTyCrEdEnTiAlId",
 			Expected: &ServicePrincipalIdFederatedIdentityCredentialId{
-				ServicePrincipalId:            "sErViCePrInCiPaLiDvAlUe",
-				FederatedIdentityCredentialId: "fEdErAtEdIdEnTiTyCrEdEnTiAlIdVaLuE",
+				ServicePrincipalId:            "sErViCePrInCiPaLiD",
+				FederatedIdentityCredentialId: "fEdErAtEdIdEnTiTyCrEdEnTiAlId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sErViCePrInCiPaLs/sErViCePrInCiPaLiDvAlUe/fEdErAtEdIdEnTiTyCrEdEnTiAlS/fEdErAtEdIdEnTiTyCrEdEnTiAlIdVaLuE/extra",
+			Input: "/sErViCePrInCiPaLs/sErViCePrInCiPaLiD/fEdErAtEdIdEnTiTyCrEdEnTiAlS/fEdErAtEdIdEnTiTyCrEdEnTiAlId/extra",
 			Error: true,
 		},
 	}

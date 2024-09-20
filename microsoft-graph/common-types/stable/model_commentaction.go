@@ -30,10 +30,15 @@ type CommentAction struct {
 var _ json.Unmarshaler = &CommentAction{}
 
 func (s *CommentAction) UnmarshalJSON(bytes []byte) error {
-	type alias CommentAction
-	var decoded alias
+
+	var decoded struct {
+		IsReply      nullable.Type[bool] `json:"isReply,omitempty"`
+		ODataId      *string             `json:"@odata.id,omitempty"`
+		ODataType    *string             `json:"@odata.type,omitempty"`
+		Participants *[]IdentitySet      `json:"participants,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into CommentAction: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.IsReply = decoded.IsReply
@@ -69,5 +74,6 @@ func (s *CommentAction) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Participants = &output
 	}
+
 	return nil
 }

@@ -116,15 +116,15 @@ func (id UserIdEventIdInstanceIdExceptionOccurrenceIdExtensionId) ID() string {
 func (id UserIdEventIdInstanceIdExceptionOccurrenceIdExtensionId) Segments() []resourceids.Segment {
 	return []resourceids.Segment{
 		resourceids.StaticSegment("users", "users", "users"),
-		resourceids.UserSpecifiedSegment("userId", "userIdValue"),
+		resourceids.UserSpecifiedSegment("userId", "userId"),
 		resourceids.StaticSegment("events", "events", "events"),
-		resourceids.UserSpecifiedSegment("eventId", "eventIdValue"),
+		resourceids.UserSpecifiedSegment("eventId", "eventId"),
 		resourceids.StaticSegment("instances", "instances", "instances"),
-		resourceids.UserSpecifiedSegment("eventId1", "eventId1Value"),
+		resourceids.UserSpecifiedSegment("eventId1", "eventId1"),
 		resourceids.StaticSegment("exceptionOccurrences", "exceptionOccurrences", "exceptionOccurrences"),
-		resourceids.UserSpecifiedSegment("eventId2", "eventId2Value"),
+		resourceids.UserSpecifiedSegment("eventId2", "eventId2"),
 		resourceids.StaticSegment("extensions", "extensions", "extensions"),
-		resourceids.UserSpecifiedSegment("extensionId", "extensionIdValue"),
+		resourceids.UserSpecifiedSegment("extensionId", "extensionId"),
 	}
 }
 

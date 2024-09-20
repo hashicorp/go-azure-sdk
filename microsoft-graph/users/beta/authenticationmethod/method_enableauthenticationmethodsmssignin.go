@@ -18,15 +18,44 @@ type EnableAuthenticationMethodSmsSignInOperationResponse struct {
 	OData        *odata.OData
 }
 
+type EnableAuthenticationMethodSmsSignInOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultEnableAuthenticationMethodSmsSignInOperationOptions() EnableAuthenticationMethodSmsSignInOperationOptions {
+	return EnableAuthenticationMethodSmsSignInOperationOptions{}
+}
+
+func (o EnableAuthenticationMethodSmsSignInOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o EnableAuthenticationMethodSmsSignInOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o EnableAuthenticationMethodSmsSignInOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // EnableAuthenticationMethodSmsSignIn - Invoke action enableSmsSignIn
-func (c AuthenticationMethodClient) EnableAuthenticationMethodSmsSignIn(ctx context.Context, id beta.UserIdAuthenticationMethodId) (result EnableAuthenticationMethodSmsSignInOperationResponse, err error) {
+func (c AuthenticationMethodClient) EnableAuthenticationMethodSmsSignIn(ctx context.Context, id beta.UserIdAuthenticationMethodId, options EnableAuthenticationMethodSmsSignInOperationOptions) (result EnableAuthenticationMethodSmsSignInOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/enableSmsSignIn", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/enableSmsSignIn", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

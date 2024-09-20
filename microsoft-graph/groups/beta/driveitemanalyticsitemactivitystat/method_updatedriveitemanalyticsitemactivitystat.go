@@ -17,15 +17,44 @@ type UpdateDriveItemAnalyticsItemActivityStatOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateDriveItemAnalyticsItemActivityStatOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateDriveItemAnalyticsItemActivityStatOperationOptions() UpdateDriveItemAnalyticsItemActivityStatOperationOptions {
+	return UpdateDriveItemAnalyticsItemActivityStatOperationOptions{}
+}
+
+func (o UpdateDriveItemAnalyticsItemActivityStatOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateDriveItemAnalyticsItemActivityStatOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateDriveItemAnalyticsItemActivityStatOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateDriveItemAnalyticsItemActivityStat - Update the navigation property itemActivityStats in groups
-func (c DriveItemAnalyticsItemActivityStatClient) UpdateDriveItemAnalyticsItemActivityStat(ctx context.Context, id beta.GroupIdDriveIdItemIdAnalyticsItemActivityStatId, input beta.ItemActivityStat) (result UpdateDriveItemAnalyticsItemActivityStatOperationResponse, err error) {
+func (c DriveItemAnalyticsItemActivityStatClient) UpdateDriveItemAnalyticsItemActivityStat(ctx context.Context, id beta.GroupIdDriveIdItemIdAnalyticsItemActivityStatId, input beta.ItemActivityStat, options UpdateDriveItemAnalyticsItemActivityStatOperationOptions) (result UpdateDriveItemAnalyticsItemActivityStatOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

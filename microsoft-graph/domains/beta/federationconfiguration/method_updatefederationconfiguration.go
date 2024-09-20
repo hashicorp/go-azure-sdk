@@ -17,16 +17,45 @@ type UpdateFederationConfigurationOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateFederationConfigurationOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateFederationConfigurationOperationOptions() UpdateFederationConfigurationOperationOptions {
+	return UpdateFederationConfigurationOperationOptions{}
+}
+
+func (o UpdateFederationConfigurationOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateFederationConfigurationOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateFederationConfigurationOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateFederationConfiguration - Update internalDomainFederation. Update the properties of an internalDomainFederation
 // object.
-func (c FederationConfigurationClient) UpdateFederationConfiguration(ctx context.Context, id beta.DomainIdFederationConfigurationId, input beta.InternalDomainFederation) (result UpdateFederationConfigurationOperationResponse, err error) {
+func (c FederationConfigurationClient) UpdateFederationConfiguration(ctx context.Context, id beta.DomainIdFederationConfigurationId, input beta.InternalDomainFederation, options UpdateFederationConfigurationOperationOptions) (result UpdateFederationConfigurationOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

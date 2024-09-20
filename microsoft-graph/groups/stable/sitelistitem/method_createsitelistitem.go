@@ -19,15 +19,44 @@ type CreateSiteListItemOperationResponse struct {
 	Model        *stable.ListItem
 }
 
+type CreateSiteListItemOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateSiteListItemOperationOptions() CreateSiteListItemOperationOptions {
+	return CreateSiteListItemOperationOptions{}
+}
+
+func (o CreateSiteListItemOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateSiteListItemOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateSiteListItemOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateSiteListItem - Create new navigation property to items for groups
-func (c SiteListItemClient) CreateSiteListItem(ctx context.Context, id stable.GroupIdSiteIdListId, input stable.ListItem) (result CreateSiteListItemOperationResponse, err error) {
+func (c SiteListItemClient) CreateSiteListItem(ctx context.Context, id stable.GroupIdSiteIdListId, input stable.ListItem, options CreateSiteListItemOperationOptions) (result CreateSiteListItemOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/items", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/items", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

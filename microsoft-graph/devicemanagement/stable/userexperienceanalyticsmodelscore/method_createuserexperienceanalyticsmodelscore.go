@@ -18,16 +18,45 @@ type CreateUserExperienceAnalyticsModelScoreOperationResponse struct {
 	Model        *stable.UserExperienceAnalyticsModelScores
 }
 
+type CreateUserExperienceAnalyticsModelScoreOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateUserExperienceAnalyticsModelScoreOperationOptions() CreateUserExperienceAnalyticsModelScoreOperationOptions {
+	return CreateUserExperienceAnalyticsModelScoreOperationOptions{}
+}
+
+func (o CreateUserExperienceAnalyticsModelScoreOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateUserExperienceAnalyticsModelScoreOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateUserExperienceAnalyticsModelScoreOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateUserExperienceAnalyticsModelScore - Create new navigation property to userExperienceAnalyticsModelScores for
 // deviceManagement
-func (c UserExperienceAnalyticsModelScoreClient) CreateUserExperienceAnalyticsModelScore(ctx context.Context, input stable.UserExperienceAnalyticsModelScores) (result CreateUserExperienceAnalyticsModelScoreOperationResponse, err error) {
+func (c UserExperienceAnalyticsModelScoreClient) CreateUserExperienceAnalyticsModelScore(ctx context.Context, input stable.UserExperienceAnalyticsModelScores, options CreateUserExperienceAnalyticsModelScoreOperationOptions) (result CreateUserExperienceAnalyticsModelScoreOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/deviceManagement/userExperienceAnalyticsModelScores",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/deviceManagement/userExperienceAnalyticsModelScores",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

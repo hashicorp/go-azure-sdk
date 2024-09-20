@@ -19,15 +19,44 @@ type CreateJoinedTeamOperationOperationResponse struct {
 	Model        *stable.TeamsAsyncOperation
 }
 
+type CreateJoinedTeamOperationOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateJoinedTeamOperationOperationOptions() CreateJoinedTeamOperationOperationOptions {
+	return CreateJoinedTeamOperationOperationOptions{}
+}
+
+func (o CreateJoinedTeamOperationOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateJoinedTeamOperationOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateJoinedTeamOperationOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateJoinedTeamOperation - Create new navigation property to operations for users
-func (c JoinedTeamOperationClient) CreateJoinedTeamOperation(ctx context.Context, id stable.UserIdJoinedTeamId, input stable.TeamsAsyncOperation) (result CreateJoinedTeamOperationOperationResponse, err error) {
+func (c JoinedTeamOperationClient) CreateJoinedTeamOperation(ctx context.Context, id stable.UserIdJoinedTeamId, input stable.TeamsAsyncOperation, options CreateJoinedTeamOperationOperationOptions) (result CreateJoinedTeamOperationOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/operations", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/operations", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

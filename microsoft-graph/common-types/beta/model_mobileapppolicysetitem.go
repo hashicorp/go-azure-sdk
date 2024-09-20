@@ -108,18 +108,31 @@ func (s MobileAppPolicySetItem) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &MobileAppPolicySetItem{}
 
 func (s *MobileAppPolicySetItem) UnmarshalJSON(bytes []byte) error {
-	type alias MobileAppPolicySetItem
-	var decoded alias
+
+	var decoded struct {
+		Intent               *InstallIntent        `json:"intent,omitempty"`
+		CreatedDateTime      *string               `json:"createdDateTime,omitempty"`
+		DisplayName          nullable.Type[string] `json:"displayName,omitempty"`
+		ErrorCode            *ErrorCode            `json:"errorCode,omitempty"`
+		GuidedDeploymentTags *[]string             `json:"guidedDeploymentTags,omitempty"`
+		ItemType             nullable.Type[string] `json:"itemType,omitempty"`
+		LastModifiedDateTime *string               `json:"lastModifiedDateTime,omitempty"`
+		PayloadId            *string               `json:"payloadId,omitempty"`
+		Status               *PolicySetStatus      `json:"status,omitempty"`
+		Id                   *string               `json:"id,omitempty"`
+		ODataId              *string               `json:"@odata.id,omitempty"`
+		ODataType            *string               `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into MobileAppPolicySetItem: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
+	s.Intent = decoded.Intent
 	s.CreatedDateTime = decoded.CreatedDateTime
 	s.DisplayName = decoded.DisplayName
 	s.ErrorCode = decoded.ErrorCode
 	s.GuidedDeploymentTags = decoded.GuidedDeploymentTags
 	s.Id = decoded.Id
-	s.Intent = decoded.Intent
 	s.ItemType = decoded.ItemType
 	s.LastModifiedDateTime = decoded.LastModifiedDateTime
 	s.ODataId = decoded.ODataId
@@ -139,5 +152,6 @@ func (s *MobileAppPolicySetItem) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Settings = impl
 	}
+
 	return nil
 }

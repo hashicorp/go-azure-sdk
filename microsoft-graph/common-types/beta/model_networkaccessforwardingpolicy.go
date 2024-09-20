@@ -89,18 +89,27 @@ func (s NetworkaccessForwardingPolicy) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &NetworkaccessForwardingPolicy{}
 
 func (s *NetworkaccessForwardingPolicy) UnmarshalJSON(bytes []byte) error {
-	type alias NetworkaccessForwardingPolicy
-	var decoded alias
+
+	var decoded struct {
+		TrafficForwardingType *NetworkaccessTrafficForwardingType `json:"trafficForwardingType,omitempty"`
+		Description           nullable.Type[string]               `json:"description,omitempty"`
+		Name                  *string                             `json:"name,omitempty"`
+		PolicyRules           *[]NetworkaccessPolicyRule          `json:"policyRules,omitempty"`
+		Version               *string                             `json:"version,omitempty"`
+		Id                    *string                             `json:"id,omitempty"`
+		ODataId               *string                             `json:"@odata.id,omitempty"`
+		ODataType             *string                             `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into NetworkaccessForwardingPolicy: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
+	s.TrafficForwardingType = decoded.TrafficForwardingType
 	s.Description = decoded.Description
 	s.Id = decoded.Id
 	s.Name = decoded.Name
 	s.ODataId = decoded.ODataId
 	s.ODataType = decoded.ODataType
-	s.TrafficForwardingType = decoded.TrafficForwardingType
 	s.Version = decoded.Version
 
 	var temp map[string]json.RawMessage
@@ -124,5 +133,6 @@ func (s *NetworkaccessForwardingPolicy) UnmarshalJSON(bytes []byte) error {
 		}
 		s.PolicyRules = &output
 	}
+
 	return nil
 }

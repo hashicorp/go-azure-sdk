@@ -18,15 +18,44 @@ type CreateSharedEmailDomainOperationResponse struct {
 	Model        *beta.SharedEmailDomain
 }
 
+type CreateSharedEmailDomainOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateSharedEmailDomainOperationOptions() CreateSharedEmailDomainOperationOptions {
+	return CreateSharedEmailDomainOperationOptions{}
+}
+
+func (o CreateSharedEmailDomainOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateSharedEmailDomainOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateSharedEmailDomainOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateSharedEmailDomain - Create new navigation property to sharedEmailDomains for directory
-func (c SharedEmailDomainClient) CreateSharedEmailDomain(ctx context.Context, input beta.SharedEmailDomain) (result CreateSharedEmailDomainOperationResponse, err error) {
+func (c SharedEmailDomainClient) CreateSharedEmailDomain(ctx context.Context, input beta.SharedEmailDomain, options CreateSharedEmailDomainOperationOptions) (result CreateSharedEmailDomainOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/directory/sharedEmailDomains",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/directory/sharedEmailDomains",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -18,16 +18,45 @@ type DeleteManagedDeviceUserFromSharedAppleDeviceOperationResponse struct {
 	OData        *odata.OData
 }
 
+type DeleteManagedDeviceUserFromSharedAppleDeviceOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultDeleteManagedDeviceUserFromSharedAppleDeviceOperationOptions() DeleteManagedDeviceUserFromSharedAppleDeviceOperationOptions {
+	return DeleteManagedDeviceUserFromSharedAppleDeviceOperationOptions{}
+}
+
+func (o DeleteManagedDeviceUserFromSharedAppleDeviceOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o DeleteManagedDeviceUserFromSharedAppleDeviceOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o DeleteManagedDeviceUserFromSharedAppleDeviceOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // DeleteManagedDeviceUserFromSharedAppleDevice - Invoke action deleteUserFromSharedAppleDevice. Delete user from shared
 // Apple device
-func (c ManagedDeviceClient) DeleteManagedDeviceUserFromSharedAppleDevice(ctx context.Context, id beta.UserIdManagedDeviceId, input DeleteManagedDeviceUserFromSharedAppleDeviceRequest) (result DeleteManagedDeviceUserFromSharedAppleDeviceOperationResponse, err error) {
+func (c ManagedDeviceClient) DeleteManagedDeviceUserFromSharedAppleDevice(ctx context.Context, id beta.UserIdManagedDeviceId, input DeleteManagedDeviceUserFromSharedAppleDeviceRequest, options DeleteManagedDeviceUserFromSharedAppleDeviceOperationOptions) (result DeleteManagedDeviceUserFromSharedAppleDeviceOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/deleteUserFromSharedAppleDevice", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/deleteUserFromSharedAppleDevice", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

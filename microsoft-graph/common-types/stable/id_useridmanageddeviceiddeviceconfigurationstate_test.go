@@ -12,24 +12,24 @@ import (
 var _ resourceids.ResourceId = &UserIdManagedDeviceIdDeviceConfigurationStateId{}
 
 func TestNewUserIdManagedDeviceIdDeviceConfigurationStateID(t *testing.T) {
-	id := NewUserIdManagedDeviceIdDeviceConfigurationStateID("userIdValue", "managedDeviceIdValue", "deviceConfigurationStateIdValue")
+	id := NewUserIdManagedDeviceIdDeviceConfigurationStateID("userId", "managedDeviceId", "deviceConfigurationStateId")
 
-	if id.UserId != "userIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'UserId'", id.UserId, "userIdValue")
+	if id.UserId != "userId" {
+		t.Fatalf("Expected %q but got %q for Segment 'UserId'", id.UserId, "userId")
 	}
 
-	if id.ManagedDeviceId != "managedDeviceIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ManagedDeviceId'", id.ManagedDeviceId, "managedDeviceIdValue")
+	if id.ManagedDeviceId != "managedDeviceId" {
+		t.Fatalf("Expected %q but got %q for Segment 'ManagedDeviceId'", id.ManagedDeviceId, "managedDeviceId")
 	}
 
-	if id.DeviceConfigurationStateId != "deviceConfigurationStateIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DeviceConfigurationStateId'", id.DeviceConfigurationStateId, "deviceConfigurationStateIdValue")
+	if id.DeviceConfigurationStateId != "deviceConfigurationStateId" {
+		t.Fatalf("Expected %q but got %q for Segment 'DeviceConfigurationStateId'", id.DeviceConfigurationStateId, "deviceConfigurationStateId")
 	}
 }
 
 func TestFormatUserIdManagedDeviceIdDeviceConfigurationStateID(t *testing.T) {
-	actual := NewUserIdManagedDeviceIdDeviceConfigurationStateID("userIdValue", "managedDeviceIdValue", "deviceConfigurationStateIdValue").ID()
-	expected := "/users/userIdValue/managedDevices/managedDeviceIdValue/deviceConfigurationStates/deviceConfigurationStateIdValue"
+	actual := NewUserIdManagedDeviceIdDeviceConfigurationStateID("userId", "managedDeviceId", "deviceConfigurationStateId").ID()
+	expected := "/users/userId/managedDevices/managedDeviceId/deviceConfigurationStates/deviceConfigurationStateId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -53,36 +53,36 @@ func TestParseUserIdManagedDeviceIdDeviceConfigurationStateID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue",
+			Input: "/users/userId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/managedDevices",
+			Input: "/users/userId/managedDevices",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/managedDevices/managedDeviceIdValue",
+			Input: "/users/userId/managedDevices/managedDeviceId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/managedDevices/managedDeviceIdValue/deviceConfigurationStates",
+			Input: "/users/userId/managedDevices/managedDeviceId/deviceConfigurationStates",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/users/userIdValue/managedDevices/managedDeviceIdValue/deviceConfigurationStates/deviceConfigurationStateIdValue",
+			Input: "/users/userId/managedDevices/managedDeviceId/deviceConfigurationStates/deviceConfigurationStateId",
 			Expected: &UserIdManagedDeviceIdDeviceConfigurationStateId{
-				UserId:                     "userIdValue",
-				ManagedDeviceId:            "managedDeviceIdValue",
-				DeviceConfigurationStateId: "deviceConfigurationStateIdValue",
+				UserId:                     "userId",
+				ManagedDeviceId:            "managedDeviceId",
+				DeviceConfigurationStateId: "deviceConfigurationStateId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/users/userIdValue/managedDevices/managedDeviceIdValue/deviceConfigurationStates/deviceConfigurationStateIdValue/extra",
+			Input: "/users/userId/managedDevices/managedDeviceId/deviceConfigurationStates/deviceConfigurationStateId/extra",
 			Error: true,
 		},
 	}
@@ -139,70 +139,70 @@ func TestParseUserIdManagedDeviceIdDeviceConfigurationStateIDInsensitively(t *te
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue",
+			Input: "/users/userId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe",
+			Input: "/uSeRs/uSeRiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/managedDevices",
+			Input: "/users/userId/managedDevices",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/mAnAgEdDeViCeS",
+			Input: "/uSeRs/uSeRiD/mAnAgEdDeViCeS",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/managedDevices/managedDeviceIdValue",
+			Input: "/users/userId/managedDevices/managedDeviceId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/mAnAgEdDeViCeS/mAnAgEdDeViCeIdVaLuE",
+			Input: "/uSeRs/uSeRiD/mAnAgEdDeViCeS/mAnAgEdDeViCeId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/managedDevices/managedDeviceIdValue/deviceConfigurationStates",
+			Input: "/users/userId/managedDevices/managedDeviceId/deviceConfigurationStates",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/mAnAgEdDeViCeS/mAnAgEdDeViCeIdVaLuE/dEvIcEcOnFiGuRaTiOnStAtEs",
+			Input: "/uSeRs/uSeRiD/mAnAgEdDeViCeS/mAnAgEdDeViCeId/dEvIcEcOnFiGuRaTiOnStAtEs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/users/userIdValue/managedDevices/managedDeviceIdValue/deviceConfigurationStates/deviceConfigurationStateIdValue",
+			Input: "/users/userId/managedDevices/managedDeviceId/deviceConfigurationStates/deviceConfigurationStateId",
 			Expected: &UserIdManagedDeviceIdDeviceConfigurationStateId{
-				UserId:                     "userIdValue",
-				ManagedDeviceId:            "managedDeviceIdValue",
-				DeviceConfigurationStateId: "deviceConfigurationStateIdValue",
+				UserId:                     "userId",
+				ManagedDeviceId:            "managedDeviceId",
+				DeviceConfigurationStateId: "deviceConfigurationStateId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/users/userIdValue/managedDevices/managedDeviceIdValue/deviceConfigurationStates/deviceConfigurationStateIdValue/extra",
+			Input: "/users/userId/managedDevices/managedDeviceId/deviceConfigurationStates/deviceConfigurationStateId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/mAnAgEdDeViCeS/mAnAgEdDeViCeIdVaLuE/dEvIcEcOnFiGuRaTiOnStAtEs/dEvIcEcOnFiGuRaTiOnStAtEiDvAlUe",
+			Input: "/uSeRs/uSeRiD/mAnAgEdDeViCeS/mAnAgEdDeViCeId/dEvIcEcOnFiGuRaTiOnStAtEs/dEvIcEcOnFiGuRaTiOnStAtEiD",
 			Expected: &UserIdManagedDeviceIdDeviceConfigurationStateId{
-				UserId:                     "uSeRiDvAlUe",
-				ManagedDeviceId:            "mAnAgEdDeViCeIdVaLuE",
-				DeviceConfigurationStateId: "dEvIcEcOnFiGuRaTiOnStAtEiDvAlUe",
+				UserId:                     "uSeRiD",
+				ManagedDeviceId:            "mAnAgEdDeViCeId",
+				DeviceConfigurationStateId: "dEvIcEcOnFiGuRaTiOnStAtEiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/mAnAgEdDeViCeS/mAnAgEdDeViCeIdVaLuE/dEvIcEcOnFiGuRaTiOnStAtEs/dEvIcEcOnFiGuRaTiOnStAtEiDvAlUe/extra",
+			Input: "/uSeRs/uSeRiD/mAnAgEdDeViCeS/mAnAgEdDeViCeId/dEvIcEcOnFiGuRaTiOnStAtEs/dEvIcEcOnFiGuRaTiOnStAtEiD/extra",
 			Error: true,
 		},
 	}

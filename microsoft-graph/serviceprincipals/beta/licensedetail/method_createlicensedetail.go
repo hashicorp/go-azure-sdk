@@ -19,15 +19,44 @@ type CreateLicenseDetailOperationResponse struct {
 	Model        *beta.LicenseDetails
 }
 
+type CreateLicenseDetailOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateLicenseDetailOperationOptions() CreateLicenseDetailOperationOptions {
+	return CreateLicenseDetailOperationOptions{}
+}
+
+func (o CreateLicenseDetailOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateLicenseDetailOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateLicenseDetailOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateLicenseDetail - Create new navigation property to licenseDetails for servicePrincipals
-func (c LicenseDetailClient) CreateLicenseDetail(ctx context.Context, id beta.ServicePrincipalId, input beta.LicenseDetails) (result CreateLicenseDetailOperationResponse, err error) {
+func (c LicenseDetailClient) CreateLicenseDetail(ctx context.Context, id beta.ServicePrincipalId, input beta.LicenseDetails, options CreateLicenseDetailOperationOptions) (result CreateLicenseDetailOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/licenseDetails", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/licenseDetails", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -18,15 +18,44 @@ type CreateDriveListContentTypePublishOperationResponse struct {
 	OData        *odata.OData
 }
 
+type CreateDriveListContentTypePublishOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateDriveListContentTypePublishOperationOptions() CreateDriveListContentTypePublishOperationOptions {
+	return CreateDriveListContentTypePublishOperationOptions{}
+}
+
+func (o CreateDriveListContentTypePublishOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateDriveListContentTypePublishOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateDriveListContentTypePublishOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateDriveListContentTypePublish - Invoke action publish
-func (c DriveListContentTypeClient) CreateDriveListContentTypePublish(ctx context.Context, id beta.UserIdDriveIdListContentTypeId) (result CreateDriveListContentTypePublishOperationResponse, err error) {
+func (c DriveListContentTypeClient) CreateDriveListContentTypePublish(ctx context.Context, id beta.UserIdDriveIdListContentTypeId, options CreateDriveListContentTypePublishOperationOptions) (result CreateDriveListContentTypePublishOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/publish", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/publish", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -19,18 +19,47 @@ type CreateSettingOperationResponse struct {
 	Model        *beta.DirectorySetting
 }
 
+type CreateSettingOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateSettingOperationOptions() CreateSettingOperationOptions {
+	return CreateSettingOperationOptions{}
+}
+
+func (o CreateSettingOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateSettingOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateSettingOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateSetting - Create settings. Create a new setting based on the templates available in directorySettingTemplates.
 // These settings can be at the tenant-level or at the group level. Group settings apply to only Microsoft 365 groups.
 // The template named Group.Unified can be used to configure tenant-wide Microsoft 365 group settings, while the
 // template named Group.Unified.Guest can be used to configure group-specific settings.
-func (c SettingClient) CreateSetting(ctx context.Context, id beta.GroupId, input beta.DirectorySetting) (result CreateSettingOperationResponse, err error) {
+func (c SettingClient) CreateSetting(ctx context.Context, id beta.GroupId, input beta.DirectorySetting, options CreateSettingOperationOptions) (result CreateSettingOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/settings", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/settings", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

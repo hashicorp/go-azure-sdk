@@ -231,19 +231,78 @@ func (s WindowsWiredNetworkConfiguration) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &WindowsWiredNetworkConfiguration{}
 
 func (s *WindowsWiredNetworkConfiguration) UnmarshalJSON(bytes []byte) error {
-	type alias WindowsWiredNetworkConfiguration
-	var decoded alias
+
+	var decoded struct {
+		AuthenticationBlockPeriodInMinutes          nullable.Type[int64]                         `json:"authenticationBlockPeriodInMinutes,omitempty"`
+		AuthenticationMethod                        *WiredNetworkAuthenticationMethod            `json:"authenticationMethod,omitempty"`
+		AuthenticationPeriodInSeconds               nullable.Type[int64]                         `json:"authenticationPeriodInSeconds,omitempty"`
+		AuthenticationRetryDelayPeriodInSeconds     nullable.Type[int64]                         `json:"authenticationRetryDelayPeriodInSeconds,omitempty"`
+		AuthenticationType                          *WiredNetworkAuthenticationType              `json:"authenticationType,omitempty"`
+		CacheCredentials                            nullable.Type[bool]                          `json:"cacheCredentials,omitempty"`
+		DisableUserPromptForServerValidation        nullable.Type[bool]                          `json:"disableUserPromptForServerValidation,omitempty"`
+		EapType                                     *EapType                                     `json:"eapType,omitempty"`
+		EapolStartPeriodInSeconds                   nullable.Type[int64]                         `json:"eapolStartPeriodInSeconds,omitempty"`
+		Enforce8021X                                nullable.Type[bool]                          `json:"enforce8021X,omitempty"`
+		ForceFIPSCompliance                         nullable.Type[bool]                          `json:"forceFIPSCompliance,omitempty"`
+		InnerAuthenticationProtocolForEAPTTLS       *NonEapAuthenticationMethodForEapTtlsType    `json:"innerAuthenticationProtocolForEAPTTLS,omitempty"`
+		MaximumAuthenticationFailures               nullable.Type[int64]                         `json:"maximumAuthenticationFailures,omitempty"`
+		MaximumEAPOLStartMessages                   nullable.Type[int64]                         `json:"maximumEAPOLStartMessages,omitempty"`
+		OuterIdentityPrivacyTemporaryValue          nullable.Type[string]                        `json:"outerIdentityPrivacyTemporaryValue,omitempty"`
+		PerformServerValidation                     nullable.Type[bool]                          `json:"performServerValidation,omitempty"`
+		RequireCryptographicBinding                 nullable.Type[bool]                          `json:"requireCryptographicBinding,omitempty"`
+		RootCertificateForClientValidation          *Windows81TrustedRootCertificate             `json:"rootCertificateForClientValidation,omitempty"`
+		RootCertificatesForServerValidation         *[]Windows81TrustedRootCertificate           `json:"rootCertificatesForServerValidation,omitempty"`
+		SecondaryAuthenticationMethod               *WiredNetworkAuthenticationMethod            `json:"secondaryAuthenticationMethod,omitempty"`
+		SecondaryRootCertificateForClientValidation *Windows81TrustedRootCertificate             `json:"secondaryRootCertificateForClientValidation,omitempty"`
+		TrustedServerCertificateNames               *[]string                                    `json:"trustedServerCertificateNames,omitempty"`
+		Assignments                                 *[]DeviceConfigurationAssignment             `json:"assignments,omitempty"`
+		CreatedDateTime                             *string                                      `json:"createdDateTime,omitempty"`
+		Description                                 nullable.Type[string]                        `json:"description,omitempty"`
+		DeviceManagementApplicabilityRuleDeviceMode *DeviceManagementApplicabilityRuleDeviceMode `json:"deviceManagementApplicabilityRuleDeviceMode,omitempty"`
+		DeviceManagementApplicabilityRuleOsEdition  *DeviceManagementApplicabilityRuleOsEdition  `json:"deviceManagementApplicabilityRuleOsEdition,omitempty"`
+		DeviceManagementApplicabilityRuleOsVersion  *DeviceManagementApplicabilityRuleOsVersion  `json:"deviceManagementApplicabilityRuleOsVersion,omitempty"`
+		DeviceSettingStateSummaries                 *[]SettingStateDeviceSummary                 `json:"deviceSettingStateSummaries,omitempty"`
+		DeviceStatusOverview                        *DeviceConfigurationDeviceOverview           `json:"deviceStatusOverview,omitempty"`
+		DeviceStatuses                              *[]DeviceConfigurationDeviceStatus           `json:"deviceStatuses,omitempty"`
+		DisplayName                                 *string                                      `json:"displayName,omitempty"`
+		GroupAssignments                            *[]DeviceConfigurationGroupAssignment        `json:"groupAssignments,omitempty"`
+		LastModifiedDateTime                        *string                                      `json:"lastModifiedDateTime,omitempty"`
+		RoleScopeTagIds                             *[]string                                    `json:"roleScopeTagIds,omitempty"`
+		SupportsScopeTags                           *bool                                        `json:"supportsScopeTags,omitempty"`
+		UserStatusOverview                          *DeviceConfigurationUserOverview             `json:"userStatusOverview,omitempty"`
+		UserStatuses                                *[]DeviceConfigurationUserStatus             `json:"userStatuses,omitempty"`
+		Version                                     *int64                                       `json:"version,omitempty"`
+		Id                                          *string                                      `json:"id,omitempty"`
+		ODataId                                     *string                                      `json:"@odata.id,omitempty"`
+		ODataType                                   *string                                      `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into WindowsWiredNetworkConfiguration: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
-	s.Assignments = decoded.Assignments
 	s.AuthenticationBlockPeriodInMinutes = decoded.AuthenticationBlockPeriodInMinutes
 	s.AuthenticationMethod = decoded.AuthenticationMethod
 	s.AuthenticationPeriodInSeconds = decoded.AuthenticationPeriodInSeconds
 	s.AuthenticationRetryDelayPeriodInSeconds = decoded.AuthenticationRetryDelayPeriodInSeconds
 	s.AuthenticationType = decoded.AuthenticationType
 	s.CacheCredentials = decoded.CacheCredentials
+	s.DisableUserPromptForServerValidation = decoded.DisableUserPromptForServerValidation
+	s.EapType = decoded.EapType
+	s.EapolStartPeriodInSeconds = decoded.EapolStartPeriodInSeconds
+	s.Enforce8021X = decoded.Enforce8021X
+	s.ForceFIPSCompliance = decoded.ForceFIPSCompliance
+	s.InnerAuthenticationProtocolForEAPTTLS = decoded.InnerAuthenticationProtocolForEAPTTLS
+	s.MaximumAuthenticationFailures = decoded.MaximumAuthenticationFailures
+	s.MaximumEAPOLStartMessages = decoded.MaximumEAPOLStartMessages
+	s.OuterIdentityPrivacyTemporaryValue = decoded.OuterIdentityPrivacyTemporaryValue
+	s.PerformServerValidation = decoded.PerformServerValidation
+	s.RequireCryptographicBinding = decoded.RequireCryptographicBinding
+	s.RootCertificateForClientValidation = decoded.RootCertificateForClientValidation
+	s.RootCertificatesForServerValidation = decoded.RootCertificatesForServerValidation
+	s.SecondaryAuthenticationMethod = decoded.SecondaryAuthenticationMethod
+	s.SecondaryRootCertificateForClientValidation = decoded.SecondaryRootCertificateForClientValidation
+	s.TrustedServerCertificateNames = decoded.TrustedServerCertificateNames
+	s.Assignments = decoded.Assignments
 	s.CreatedDateTime = decoded.CreatedDateTime
 	s.Description = decoded.Description
 	s.DeviceManagementApplicabilityRuleDeviceMode = decoded.DeviceManagementApplicabilityRuleDeviceMode
@@ -252,30 +311,14 @@ func (s *WindowsWiredNetworkConfiguration) UnmarshalJSON(bytes []byte) error {
 	s.DeviceSettingStateSummaries = decoded.DeviceSettingStateSummaries
 	s.DeviceStatusOverview = decoded.DeviceStatusOverview
 	s.DeviceStatuses = decoded.DeviceStatuses
-	s.DisableUserPromptForServerValidation = decoded.DisableUserPromptForServerValidation
 	s.DisplayName = decoded.DisplayName
-	s.EapType = decoded.EapType
-	s.EapolStartPeriodInSeconds = decoded.EapolStartPeriodInSeconds
-	s.Enforce8021X = decoded.Enforce8021X
-	s.ForceFIPSCompliance = decoded.ForceFIPSCompliance
 	s.GroupAssignments = decoded.GroupAssignments
 	s.Id = decoded.Id
-	s.InnerAuthenticationProtocolForEAPTTLS = decoded.InnerAuthenticationProtocolForEAPTTLS
 	s.LastModifiedDateTime = decoded.LastModifiedDateTime
-	s.MaximumAuthenticationFailures = decoded.MaximumAuthenticationFailures
-	s.MaximumEAPOLStartMessages = decoded.MaximumEAPOLStartMessages
 	s.ODataId = decoded.ODataId
 	s.ODataType = decoded.ODataType
-	s.OuterIdentityPrivacyTemporaryValue = decoded.OuterIdentityPrivacyTemporaryValue
-	s.PerformServerValidation = decoded.PerformServerValidation
-	s.RequireCryptographicBinding = decoded.RequireCryptographicBinding
 	s.RoleScopeTagIds = decoded.RoleScopeTagIds
-	s.RootCertificateForClientValidation = decoded.RootCertificateForClientValidation
-	s.RootCertificatesForServerValidation = decoded.RootCertificatesForServerValidation
-	s.SecondaryAuthenticationMethod = decoded.SecondaryAuthenticationMethod
-	s.SecondaryRootCertificateForClientValidation = decoded.SecondaryRootCertificateForClientValidation
 	s.SupportsScopeTags = decoded.SupportsScopeTags
-	s.TrustedServerCertificateNames = decoded.TrustedServerCertificateNames
 	s.UserStatusOverview = decoded.UserStatusOverview
 	s.UserStatuses = decoded.UserStatuses
 	s.Version = decoded.Version
@@ -300,5 +343,6 @@ func (s *WindowsWiredNetworkConfiguration) UnmarshalJSON(bytes []byte) error {
 		}
 		s.SecondaryIdentityCertificateForClientAuthentication = &impl
 	}
+
 	return nil
 }

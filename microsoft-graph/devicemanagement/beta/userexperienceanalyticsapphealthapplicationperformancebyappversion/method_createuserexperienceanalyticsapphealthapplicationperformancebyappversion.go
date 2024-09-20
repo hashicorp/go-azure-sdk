@@ -18,16 +18,45 @@ type CreateUserExperienceAnalyticsAppHealthApplicationPerformanceByAppVersionOpe
 	Model        *beta.UserExperienceAnalyticsAppHealthAppPerformanceByAppVersion
 }
 
+type CreateUserExperienceAnalyticsAppHealthApplicationPerformanceByAppVersionOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateUserExperienceAnalyticsAppHealthApplicationPerformanceByAppVersionOperationOptions() CreateUserExperienceAnalyticsAppHealthApplicationPerformanceByAppVersionOperationOptions {
+	return CreateUserExperienceAnalyticsAppHealthApplicationPerformanceByAppVersionOperationOptions{}
+}
+
+func (o CreateUserExperienceAnalyticsAppHealthApplicationPerformanceByAppVersionOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateUserExperienceAnalyticsAppHealthApplicationPerformanceByAppVersionOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateUserExperienceAnalyticsAppHealthApplicationPerformanceByAppVersionOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateUserExperienceAnalyticsAppHealthApplicationPerformanceByAppVersion - Create new navigation property to
 // userExperienceAnalyticsAppHealthApplicationPerformanceByAppVersion for deviceManagement
-func (c UserExperienceAnalyticsAppHealthApplicationPerformanceByAppVersionClient) CreateUserExperienceAnalyticsAppHealthApplicationPerformanceByAppVersion(ctx context.Context, input beta.UserExperienceAnalyticsAppHealthAppPerformanceByAppVersion) (result CreateUserExperienceAnalyticsAppHealthApplicationPerformanceByAppVersionOperationResponse, err error) {
+func (c UserExperienceAnalyticsAppHealthApplicationPerformanceByAppVersionClient) CreateUserExperienceAnalyticsAppHealthApplicationPerformanceByAppVersion(ctx context.Context, input beta.UserExperienceAnalyticsAppHealthAppPerformanceByAppVersion, options CreateUserExperienceAnalyticsAppHealthApplicationPerformanceByAppVersionOperationOptions) (result CreateUserExperienceAnalyticsAppHealthApplicationPerformanceByAppVersionOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/deviceManagement/userExperienceAnalyticsAppHealthApplicationPerformanceByAppVersion",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/deviceManagement/userExperienceAnalyticsAppHealthApplicationPerformanceByAppVersion",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

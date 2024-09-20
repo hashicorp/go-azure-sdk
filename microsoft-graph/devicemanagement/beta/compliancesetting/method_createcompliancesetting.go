@@ -19,15 +19,44 @@ type CreateComplianceSettingOperationResponse struct {
 	Model        beta.DeviceManagementConfigurationSettingDefinition
 }
 
+type CreateComplianceSettingOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateComplianceSettingOperationOptions() CreateComplianceSettingOperationOptions {
+	return CreateComplianceSettingOperationOptions{}
+}
+
+func (o CreateComplianceSettingOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateComplianceSettingOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateComplianceSettingOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateComplianceSetting - Create new navigation property to complianceSettings for deviceManagement
-func (c ComplianceSettingClient) CreateComplianceSetting(ctx context.Context, input beta.DeviceManagementConfigurationSettingDefinition) (result CreateComplianceSettingOperationResponse, err error) {
+func (c ComplianceSettingClient) CreateComplianceSetting(ctx context.Context, input beta.DeviceManagementConfigurationSettingDefinition, options CreateComplianceSettingOperationOptions) (result CreateComplianceSettingOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/deviceManagement/complianceSettings",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/deviceManagement/complianceSettings",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -127,10 +127,19 @@ func (s BaseCustomAuthenticationExtensionImpl) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &BaseCustomAuthenticationExtensionImpl{}
 
 func (s *BaseCustomAuthenticationExtensionImpl) UnmarshalJSON(bytes []byte) error {
-	type alias BaseCustomAuthenticationExtensionImpl
-	var decoded alias
+
+	var decoded struct {
+		AuthenticationConfiguration CustomExtensionAuthenticationConfiguration `json:"authenticationConfiguration"`
+		ClientConfiguration         *CustomExtensionClientConfiguration        `json:"clientConfiguration,omitempty"`
+		Description                 nullable.Type[string]                      `json:"description,omitempty"`
+		DisplayName                 nullable.Type[string]                      `json:"displayName,omitempty"`
+		EndpointConfiguration       CustomExtensionEndpointConfiguration       `json:"endpointConfiguration"`
+		Id                          *string                                    `json:"id,omitempty"`
+		ODataId                     *string                                    `json:"@odata.id,omitempty"`
+		ODataType                   *string                                    `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into BaseCustomAuthenticationExtensionImpl: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.ClientConfiguration = decoded.ClientConfiguration
@@ -160,6 +169,7 @@ func (s *BaseCustomAuthenticationExtensionImpl) UnmarshalJSON(bytes []byte) erro
 		}
 		s.EndpointConfiguration = impl
 	}
+
 	return nil
 }
 
@@ -173,9 +183,9 @@ func UnmarshalCustomAuthenticationExtensionImplementation(input []byte) (CustomA
 		return nil, fmt.Errorf("unmarshaling CustomAuthenticationExtension into map[string]interface: %+v", err)
 	}
 
-	value, ok := temp["@odata.type"].(string)
-	if !ok {
-		return nil, nil
+	var value string
+	if v, ok := temp["@odata.type"]; ok {
+		value = fmt.Sprintf("%v", v)
 	}
 
 	if strings.EqualFold(value, "#microsoft.graph.onAttributeCollectionStartCustomExtension") {

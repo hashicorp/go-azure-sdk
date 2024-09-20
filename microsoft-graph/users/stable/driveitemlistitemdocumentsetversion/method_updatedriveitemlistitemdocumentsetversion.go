@@ -17,15 +17,44 @@ type UpdateDriveItemListItemDocumentSetVersionOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateDriveItemListItemDocumentSetVersionOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateDriveItemListItemDocumentSetVersionOperationOptions() UpdateDriveItemListItemDocumentSetVersionOperationOptions {
+	return UpdateDriveItemListItemDocumentSetVersionOperationOptions{}
+}
+
+func (o UpdateDriveItemListItemDocumentSetVersionOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateDriveItemListItemDocumentSetVersionOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateDriveItemListItemDocumentSetVersionOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateDriveItemListItemDocumentSetVersion - Update the navigation property documentSetVersions in users
-func (c DriveItemListItemDocumentSetVersionClient) UpdateDriveItemListItemDocumentSetVersion(ctx context.Context, id stable.UserIdDriveIdItemIdListItemDocumentSetVersionId, input stable.DocumentSetVersion) (result UpdateDriveItemListItemDocumentSetVersionOperationResponse, err error) {
+func (c DriveItemListItemDocumentSetVersionClient) UpdateDriveItemListItemDocumentSetVersion(ctx context.Context, id stable.UserIdDriveIdItemIdListItemDocumentSetVersionId, input stable.DocumentSetVersion, options UpdateDriveItemListItemDocumentSetVersionOperationOptions) (result UpdateDriveItemListItemDocumentSetVersionOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

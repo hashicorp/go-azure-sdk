@@ -93,7 +93,7 @@ func (id DeviceManagementZebraFotaDeploymentId) Segments() []resourceids.Segment
 	return []resourceids.Segment{
 		resourceids.StaticSegment("deviceManagement", "deviceManagement", "deviceManagement"),
 		resourceids.StaticSegment("zebraFotaDeployments", "zebraFotaDeployments", "zebraFotaDeployments"),
-		resourceids.UserSpecifiedSegment("zebraFotaDeploymentId", "zebraFotaDeploymentIdValue"),
+		resourceids.UserSpecifiedSegment("zebraFotaDeploymentId", "zebraFotaDeploymentId"),
 	}
 }
 

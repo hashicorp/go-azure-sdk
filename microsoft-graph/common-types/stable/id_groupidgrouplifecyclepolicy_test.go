@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &GroupIdGroupLifecyclePolicyId{}
 
 func TestNewGroupIdGroupLifecyclePolicyID(t *testing.T) {
-	id := NewGroupIdGroupLifecyclePolicyID("groupIdValue", "groupLifecyclePolicyIdValue")
+	id := NewGroupIdGroupLifecyclePolicyID("groupId", "groupLifecyclePolicyId")
 
-	if id.GroupId != "groupIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'GroupId'", id.GroupId, "groupIdValue")
+	if id.GroupId != "groupId" {
+		t.Fatalf("Expected %q but got %q for Segment 'GroupId'", id.GroupId, "groupId")
 	}
 
-	if id.GroupLifecyclePolicyId != "groupLifecyclePolicyIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'GroupLifecyclePolicyId'", id.GroupLifecyclePolicyId, "groupLifecyclePolicyIdValue")
+	if id.GroupLifecyclePolicyId != "groupLifecyclePolicyId" {
+		t.Fatalf("Expected %q but got %q for Segment 'GroupLifecyclePolicyId'", id.GroupLifecyclePolicyId, "groupLifecyclePolicyId")
 	}
 }
 
 func TestFormatGroupIdGroupLifecyclePolicyID(t *testing.T) {
-	actual := NewGroupIdGroupLifecyclePolicyID("groupIdValue", "groupLifecyclePolicyIdValue").ID()
-	expected := "/groups/groupIdValue/groupLifecyclePolicies/groupLifecyclePolicyIdValue"
+	actual := NewGroupIdGroupLifecyclePolicyID("groupId", "groupLifecyclePolicyId").ID()
+	expected := "/groups/groupId/groupLifecyclePolicies/groupLifecyclePolicyId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -49,25 +49,25 @@ func TestParseGroupIdGroupLifecyclePolicyID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue",
+			Input: "/groups/groupId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/groupLifecyclePolicies",
+			Input: "/groups/groupId/groupLifecyclePolicies",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/groups/groupIdValue/groupLifecyclePolicies/groupLifecyclePolicyIdValue",
+			Input: "/groups/groupId/groupLifecyclePolicies/groupLifecyclePolicyId",
 			Expected: &GroupIdGroupLifecyclePolicyId{
-				GroupId:                "groupIdValue",
-				GroupLifecyclePolicyId: "groupLifecyclePolicyIdValue",
+				GroupId:                "groupId",
+				GroupLifecyclePolicyId: "groupLifecyclePolicyId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/groups/groupIdValue/groupLifecyclePolicies/groupLifecyclePolicyIdValue/extra",
+			Input: "/groups/groupId/groupLifecyclePolicies/groupLifecyclePolicyId/extra",
 			Error: true,
 		},
 	}
@@ -120,48 +120,48 @@ func TestParseGroupIdGroupLifecyclePolicyIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue",
+			Input: "/groups/groupId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE",
+			Input: "/gRoUpS/gRoUpId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/groupLifecyclePolicies",
+			Input: "/groups/groupId/groupLifecyclePolicies",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/gRoUpLiFeCyClEpOlIcIeS",
+			Input: "/gRoUpS/gRoUpId/gRoUpLiFeCyClEpOlIcIeS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/groups/groupIdValue/groupLifecyclePolicies/groupLifecyclePolicyIdValue",
+			Input: "/groups/groupId/groupLifecyclePolicies/groupLifecyclePolicyId",
 			Expected: &GroupIdGroupLifecyclePolicyId{
-				GroupId:                "groupIdValue",
-				GroupLifecyclePolicyId: "groupLifecyclePolicyIdValue",
+				GroupId:                "groupId",
+				GroupLifecyclePolicyId: "groupLifecyclePolicyId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/groups/groupIdValue/groupLifecyclePolicies/groupLifecyclePolicyIdValue/extra",
+			Input: "/groups/groupId/groupLifecyclePolicies/groupLifecyclePolicyId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/gRoUpLiFeCyClEpOlIcIeS/gRoUpLiFeCyClEpOlIcYiDvAlUe",
+			Input: "/gRoUpS/gRoUpId/gRoUpLiFeCyClEpOlIcIeS/gRoUpLiFeCyClEpOlIcYiD",
 			Expected: &GroupIdGroupLifecyclePolicyId{
-				GroupId:                "gRoUpIdVaLuE",
-				GroupLifecyclePolicyId: "gRoUpLiFeCyClEpOlIcYiDvAlUe",
+				GroupId:                "gRoUpId",
+				GroupLifecyclePolicyId: "gRoUpLiFeCyClEpOlIcYiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/gRoUpLiFeCyClEpOlIcIeS/gRoUpLiFeCyClEpOlIcYiDvAlUe/extra",
+			Input: "/gRoUpS/gRoUpId/gRoUpLiFeCyClEpOlIcIeS/gRoUpLiFeCyClEpOlIcYiD/extra",
 			Error: true,
 		},
 	}

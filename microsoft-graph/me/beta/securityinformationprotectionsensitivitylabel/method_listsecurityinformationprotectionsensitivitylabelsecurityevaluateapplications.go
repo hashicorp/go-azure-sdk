@@ -26,8 +26,9 @@ type ListSecurityInformationProtectionSensitivityLabelSecurityEvaluateApplicatio
 }
 
 type ListSecurityInformationProtectionSensitivityLabelSecurityEvaluateApplicationsOperationOptions struct {
-	Skip *int64
-	Top  *int64
+	Metadata *odata.Metadata
+	Skip     *int64
+	Top      *int64
 }
 
 func DefaultListSecurityInformationProtectionSensitivityLabelSecurityEvaluateApplicationsOperationOptions() ListSecurityInformationProtectionSensitivityLabelSecurityEvaluateApplicationsOperationOptions {
@@ -42,6 +43,9 @@ func (o ListSecurityInformationProtectionSensitivityLabelSecurityEvaluateApplica
 
 func (o ListSecurityInformationProtectionSensitivityLabelSecurityEvaluateApplicationsOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	if o.Skip != nil {
 		out.Skip = int(*o.Skip)
 	}
@@ -74,7 +78,7 @@ func (p *ListSecurityInformationProtectionSensitivityLabelSecurityEvaluateApplic
 // label the information. This API is useful when a label should be set manually or explicitly by a user or service,
 // rather than automatically based on file contents. Given contentInfo, which includes existing content metadata
 // key-value pairs, and labelingOptions as an input, the API returns an informationProtectionAction object that contains
-// one of more of the following:
+// one of more of the following
 func (c SecurityInformationProtectionSensitivityLabelClient) ListSecurityInformationProtectionSensitivityLabelSecurityEvaluateApplications(ctx context.Context, input ListSecurityInformationProtectionSensitivityLabelSecurityEvaluateApplicationsRequest, options ListSecurityInformationProtectionSensitivityLabelSecurityEvaluateApplicationsOperationOptions) (result ListSecurityInformationProtectionSensitivityLabelSecurityEvaluateApplicationsOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",

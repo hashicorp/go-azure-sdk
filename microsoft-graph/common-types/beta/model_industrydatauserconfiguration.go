@@ -27,10 +27,15 @@ type IndustryDataUserConfiguration struct {
 var _ json.Unmarshaler = &IndustryDataUserConfiguration{}
 
 func (s *IndustryDataUserConfiguration) UnmarshalJSON(bytes []byte) error {
-	type alias IndustryDataUserConfiguration
-	var decoded alias
+
+	var decoded struct {
+		LicenseSkus *[]string              `json:"licenseSkus,omitempty"`
+		ODataId     *string                `json:"@odata.id,omitempty"`
+		ODataType   *string                `json:"@odata.type,omitempty"`
+		RoleGroup   *IndustryDataRoleGroup `json:"roleGroup,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into IndustryDataUserConfiguration: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.LicenseSkus = decoded.LicenseSkus
@@ -50,5 +55,6 @@ func (s *IndustryDataUserConfiguration) UnmarshalJSON(bytes []byte) error {
 		}
 		s.DefaultPasswordSettings = impl
 	}
+
 	return nil
 }

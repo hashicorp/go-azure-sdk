@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &DeviceManagementRemoteActionAuditId{}
 
 func TestNewDeviceManagementRemoteActionAuditID(t *testing.T) {
-	id := NewDeviceManagementRemoteActionAuditID("remoteActionAuditIdValue")
+	id := NewDeviceManagementRemoteActionAuditID("remoteActionAuditId")
 
-	if id.RemoteActionAuditId != "remoteActionAuditIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'RemoteActionAuditId'", id.RemoteActionAuditId, "remoteActionAuditIdValue")
+	if id.RemoteActionAuditId != "remoteActionAuditId" {
+		t.Fatalf("Expected %q but got %q for Segment 'RemoteActionAuditId'", id.RemoteActionAuditId, "remoteActionAuditId")
 	}
 }
 
 func TestFormatDeviceManagementRemoteActionAuditID(t *testing.T) {
-	actual := NewDeviceManagementRemoteActionAuditID("remoteActionAuditIdValue").ID()
-	expected := "/deviceManagement/remoteActionAudits/remoteActionAuditIdValue"
+	actual := NewDeviceManagementRemoteActionAuditID("remoteActionAuditId").ID()
+	expected := "/deviceManagement/remoteActionAudits/remoteActionAuditId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -50,14 +50,14 @@ func TestParseDeviceManagementRemoteActionAuditID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/remoteActionAudits/remoteActionAuditIdValue",
+			Input: "/deviceManagement/remoteActionAudits/remoteActionAuditId",
 			Expected: &DeviceManagementRemoteActionAuditId{
-				RemoteActionAuditId: "remoteActionAuditIdValue",
+				RemoteActionAuditId: "remoteActionAuditId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/remoteActionAudits/remoteActionAuditIdValue/extra",
+			Input: "/deviceManagement/remoteActionAudits/remoteActionAuditId/extra",
 			Error: true,
 		},
 	}
@@ -116,26 +116,26 @@ func TestParseDeviceManagementRemoteActionAuditIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/remoteActionAudits/remoteActionAuditIdValue",
+			Input: "/deviceManagement/remoteActionAudits/remoteActionAuditId",
 			Expected: &DeviceManagementRemoteActionAuditId{
-				RemoteActionAuditId: "remoteActionAuditIdValue",
+				RemoteActionAuditId: "remoteActionAuditId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/remoteActionAudits/remoteActionAuditIdValue/extra",
+			Input: "/deviceManagement/remoteActionAudits/remoteActionAuditId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/rEmOtEaCtIoNaUdItS/rEmOtEaCtIoNaUdItIdVaLuE",
+			Input: "/dEvIcEmAnAgEmEnT/rEmOtEaCtIoNaUdItS/rEmOtEaCtIoNaUdItId",
 			Expected: &DeviceManagementRemoteActionAuditId{
-				RemoteActionAuditId: "rEmOtEaCtIoNaUdItIdVaLuE",
+				RemoteActionAuditId: "rEmOtEaCtIoNaUdItId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/rEmOtEaCtIoNaUdItS/rEmOtEaCtIoNaUdItIdVaLuE/extra",
+			Input: "/dEvIcEmAnAgEmEnT/rEmOtEaCtIoNaUdItS/rEmOtEaCtIoNaUdItId/extra",
 			Error: true,
 		},
 	}

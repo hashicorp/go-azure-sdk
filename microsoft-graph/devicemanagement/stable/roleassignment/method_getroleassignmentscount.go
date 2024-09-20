@@ -18,8 +18,9 @@ type GetRoleAssignmentsCountOperationResponse struct {
 }
 
 type GetRoleAssignmentsCountOperationOptions struct {
-	Filter *string
-	Search *string
+	Filter   *string
+	Metadata *odata.Metadata
+	Search   *string
 }
 
 func DefaultGetRoleAssignmentsCountOperationOptions() GetRoleAssignmentsCountOperationOptions {
@@ -36,6 +37,9 @@ func (o GetRoleAssignmentsCountOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
 	if o.Filter != nil {
 		out.Filter = *o.Filter
+	}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
 	}
 	if o.Search != nil {
 		out.Search = *o.Search

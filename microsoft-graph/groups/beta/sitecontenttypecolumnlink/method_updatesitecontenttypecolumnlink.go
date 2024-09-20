@@ -17,15 +17,44 @@ type UpdateSiteContentTypeColumnLinkOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateSiteContentTypeColumnLinkOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateSiteContentTypeColumnLinkOperationOptions() UpdateSiteContentTypeColumnLinkOperationOptions {
+	return UpdateSiteContentTypeColumnLinkOperationOptions{}
+}
+
+func (o UpdateSiteContentTypeColumnLinkOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateSiteContentTypeColumnLinkOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateSiteContentTypeColumnLinkOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateSiteContentTypeColumnLink - Update the navigation property columnLinks in groups
-func (c SiteContentTypeColumnLinkClient) UpdateSiteContentTypeColumnLink(ctx context.Context, id beta.GroupIdSiteIdContentTypeIdColumnLinkId, input beta.ColumnLink) (result UpdateSiteContentTypeColumnLinkOperationResponse, err error) {
+func (c SiteContentTypeColumnLinkClient) UpdateSiteContentTypeColumnLink(ctx context.Context, id beta.GroupIdSiteIdContentTypeIdColumnLinkId, input beta.ColumnLink, options UpdateSiteContentTypeColumnLinkOperationOptions) (result UpdateSiteContentTypeColumnLinkOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

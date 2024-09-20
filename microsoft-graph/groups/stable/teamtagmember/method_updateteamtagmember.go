@@ -17,15 +17,44 @@ type UpdateTeamTagMemberOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateTeamTagMemberOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateTeamTagMemberOperationOptions() UpdateTeamTagMemberOperationOptions {
+	return UpdateTeamTagMemberOperationOptions{}
+}
+
+func (o UpdateTeamTagMemberOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateTeamTagMemberOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateTeamTagMemberOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateTeamTagMember - Update the navigation property members in groups
-func (c TeamTagMemberClient) UpdateTeamTagMember(ctx context.Context, id stable.GroupIdTeamTagIdMemberId, input stable.TeamworkTagMember) (result UpdateTeamTagMemberOperationResponse, err error) {
+func (c TeamTagMemberClient) UpdateTeamTagMember(ctx context.Context, id stable.GroupIdTeamTagIdMemberId, input stable.TeamworkTagMember, options UpdateTeamTagMemberOperationOptions) (result UpdateTeamTagMemberOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

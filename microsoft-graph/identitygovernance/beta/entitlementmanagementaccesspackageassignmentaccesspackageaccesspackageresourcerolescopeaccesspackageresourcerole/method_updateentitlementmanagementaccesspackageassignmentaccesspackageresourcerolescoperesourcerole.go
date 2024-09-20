@@ -18,16 +18,45 @@ type UpdateEntitlementManagementAccessPackageAssignmentAccessPackageResourceRole
 	OData        *odata.OData
 }
 
+type UpdateEntitlementManagementAccessPackageAssignmentAccessPackageResourceRoleScopeResourceRoleOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateEntitlementManagementAccessPackageAssignmentAccessPackageResourceRoleScopeResourceRoleOperationOptions() UpdateEntitlementManagementAccessPackageAssignmentAccessPackageResourceRoleScopeResourceRoleOperationOptions {
+	return UpdateEntitlementManagementAccessPackageAssignmentAccessPackageResourceRoleScopeResourceRoleOperationOptions{}
+}
+
+func (o UpdateEntitlementManagementAccessPackageAssignmentAccessPackageResourceRoleScopeResourceRoleOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateEntitlementManagementAccessPackageAssignmentAccessPackageResourceRoleScopeResourceRoleOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateEntitlementManagementAccessPackageAssignmentAccessPackageResourceRoleScopeResourceRoleOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateEntitlementManagementAccessPackageAssignmentAccessPackageResourceRoleScopeResourceRole - Update the navigation
 // property accessPackageResourceRole in identityGovernance
-func (c EntitlementManagementAccessPackageAssignmentAccessPackageAccessPackageResourceRoleScopeAccessPackageResourceRoleClient) UpdateEntitlementManagementAccessPackageAssignmentAccessPackageResourceRoleScopeResourceRole(ctx context.Context, id beta.IdentityGovernanceEntitlementManagementAccessPackageAssignmentIdAccessPackageAccessPackageResourceRoleScopeId, input beta.AccessPackageResourceRole) (result UpdateEntitlementManagementAccessPackageAssignmentAccessPackageResourceRoleScopeResourceRoleOperationResponse, err error) {
+func (c EntitlementManagementAccessPackageAssignmentAccessPackageAccessPackageResourceRoleScopeAccessPackageResourceRoleClient) UpdateEntitlementManagementAccessPackageAssignmentAccessPackageResourceRoleScopeResourceRole(ctx context.Context, id beta.IdentityGovernanceEntitlementManagementAccessPackageAssignmentIdAccessPackageAccessPackageResourceRoleScopeId, input beta.AccessPackageResourceRole, options UpdateEntitlementManagementAccessPackageAssignmentAccessPackageResourceRoleScopeResourceRoleOperationOptions) (result UpdateEntitlementManagementAccessPackageAssignmentAccessPackageResourceRoleScopeResourceRoleOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       fmt.Sprintf("%s/accessPackageResourceRole", id.ID()),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/accessPackageResourceRole", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

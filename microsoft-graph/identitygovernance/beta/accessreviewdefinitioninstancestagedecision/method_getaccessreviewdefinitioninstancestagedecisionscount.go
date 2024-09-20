@@ -20,8 +20,9 @@ type GetAccessReviewDefinitionInstanceStageDecisionsCountOperationResponse struc
 }
 
 type GetAccessReviewDefinitionInstanceStageDecisionsCountOperationOptions struct {
-	Filter *string
-	Search *string
+	Filter   *string
+	Metadata *odata.Metadata
+	Search   *string
 }
 
 func DefaultGetAccessReviewDefinitionInstanceStageDecisionsCountOperationOptions() GetAccessReviewDefinitionInstanceStageDecisionsCountOperationOptions {
@@ -38,6 +39,9 @@ func (o GetAccessReviewDefinitionInstanceStageDecisionsCountOperationOptions) To
 	out := odata.Query{}
 	if o.Filter != nil {
 		out.Filter = *o.Filter
+	}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
 	}
 	if o.Search != nil {
 		out.Search = *o.Search

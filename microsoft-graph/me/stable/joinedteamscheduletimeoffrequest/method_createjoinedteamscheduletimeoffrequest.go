@@ -19,15 +19,44 @@ type CreateJoinedTeamScheduleTimeOffRequestOperationResponse struct {
 	Model        *stable.TimeOffRequest
 }
 
+type CreateJoinedTeamScheduleTimeOffRequestOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateJoinedTeamScheduleTimeOffRequestOperationOptions() CreateJoinedTeamScheduleTimeOffRequestOperationOptions {
+	return CreateJoinedTeamScheduleTimeOffRequestOperationOptions{}
+}
+
+func (o CreateJoinedTeamScheduleTimeOffRequestOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateJoinedTeamScheduleTimeOffRequestOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateJoinedTeamScheduleTimeOffRequestOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateJoinedTeamScheduleTimeOffRequest - Create new navigation property to timeOffRequests for me
-func (c JoinedTeamScheduleTimeOffRequestClient) CreateJoinedTeamScheduleTimeOffRequest(ctx context.Context, id stable.MeJoinedTeamId, input stable.TimeOffRequest) (result CreateJoinedTeamScheduleTimeOffRequestOperationResponse, err error) {
+func (c JoinedTeamScheduleTimeOffRequestClient) CreateJoinedTeamScheduleTimeOffRequest(ctx context.Context, id stable.MeJoinedTeamId, input stable.TimeOffRequest, options CreateJoinedTeamScheduleTimeOffRequestOperationOptions) (result CreateJoinedTeamScheduleTimeOffRequestOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/schedule/timeOffRequests", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/schedule/timeOffRequests", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

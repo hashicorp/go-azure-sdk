@@ -17,15 +17,44 @@ type UpdateProvisioningOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateProvisioningOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateProvisioningOperationOptions() UpdateProvisioningOperationOptions {
+	return UpdateProvisioningOperationOptions{}
+}
+
+func (o UpdateProvisioningOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateProvisioningOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateProvisioningOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateProvisioning - Update the navigation property provisioning in auditLogs
-func (c ProvisioningClient) UpdateProvisioning(ctx context.Context, id stable.AuditLogProvisioningId, input stable.ProvisioningObjectSummary) (result UpdateProvisioningOperationResponse, err error) {
+func (c ProvisioningClient) UpdateProvisioning(ctx context.Context, id stable.AuditLogProvisioningId, input stable.ProvisioningObjectSummary, options UpdateProvisioningOperationOptions) (result UpdateProvisioningOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

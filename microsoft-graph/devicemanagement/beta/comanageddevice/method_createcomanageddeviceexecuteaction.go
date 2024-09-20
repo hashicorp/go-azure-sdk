@@ -18,15 +18,44 @@ type CreateComanagedDeviceExecuteActionOperationResponse struct {
 	Model        *beta.BulkManagedDeviceActionResult
 }
 
+type CreateComanagedDeviceExecuteActionOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateComanagedDeviceExecuteActionOperationOptions() CreateComanagedDeviceExecuteActionOperationOptions {
+	return CreateComanagedDeviceExecuteActionOperationOptions{}
+}
+
+func (o CreateComanagedDeviceExecuteActionOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateComanagedDeviceExecuteActionOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateComanagedDeviceExecuteActionOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateComanagedDeviceExecuteAction - Invoke action executeAction
-func (c ComanagedDeviceClient) CreateComanagedDeviceExecuteAction(ctx context.Context, input CreateComanagedDeviceExecuteActionRequest) (result CreateComanagedDeviceExecuteActionOperationResponse, err error) {
+func (c ComanagedDeviceClient) CreateComanagedDeviceExecuteAction(ctx context.Context, input CreateComanagedDeviceExecuteActionRequest, options CreateComanagedDeviceExecuteActionOperationOptions) (result CreateComanagedDeviceExecuteActionOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/deviceManagement/comanagedDevices/executeAction",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/deviceManagement/comanagedDevices/executeAction",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &UserIdOnenoteOperationId{}
 
 func TestNewUserIdOnenoteOperationID(t *testing.T) {
-	id := NewUserIdOnenoteOperationID("userIdValue", "onenoteOperationIdValue")
+	id := NewUserIdOnenoteOperationID("userId", "onenoteOperationId")
 
-	if id.UserId != "userIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'UserId'", id.UserId, "userIdValue")
+	if id.UserId != "userId" {
+		t.Fatalf("Expected %q but got %q for Segment 'UserId'", id.UserId, "userId")
 	}
 
-	if id.OnenoteOperationId != "onenoteOperationIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'OnenoteOperationId'", id.OnenoteOperationId, "onenoteOperationIdValue")
+	if id.OnenoteOperationId != "onenoteOperationId" {
+		t.Fatalf("Expected %q but got %q for Segment 'OnenoteOperationId'", id.OnenoteOperationId, "onenoteOperationId")
 	}
 }
 
 func TestFormatUserIdOnenoteOperationID(t *testing.T) {
-	actual := NewUserIdOnenoteOperationID("userIdValue", "onenoteOperationIdValue").ID()
-	expected := "/users/userIdValue/onenote/operations/onenoteOperationIdValue"
+	actual := NewUserIdOnenoteOperationID("userId", "onenoteOperationId").ID()
+	expected := "/users/userId/onenote/operations/onenoteOperationId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -49,30 +49,30 @@ func TestParseUserIdOnenoteOperationID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue",
+			Input: "/users/userId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/onenote",
+			Input: "/users/userId/onenote",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/onenote/operations",
+			Input: "/users/userId/onenote/operations",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/users/userIdValue/onenote/operations/onenoteOperationIdValue",
+			Input: "/users/userId/onenote/operations/onenoteOperationId",
 			Expected: &UserIdOnenoteOperationId{
-				UserId:             "userIdValue",
-				OnenoteOperationId: "onenoteOperationIdValue",
+				UserId:             "userId",
+				OnenoteOperationId: "onenoteOperationId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/users/userIdValue/onenote/operations/onenoteOperationIdValue/extra",
+			Input: "/users/userId/onenote/operations/onenoteOperationId/extra",
 			Error: true,
 		},
 	}
@@ -125,58 +125,58 @@ func TestParseUserIdOnenoteOperationIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue",
+			Input: "/users/userId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe",
+			Input: "/uSeRs/uSeRiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/onenote",
+			Input: "/users/userId/onenote",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/oNeNoTe",
+			Input: "/uSeRs/uSeRiD/oNeNoTe",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/onenote/operations",
+			Input: "/users/userId/onenote/operations",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/oNeNoTe/oPeRaTiOnS",
+			Input: "/uSeRs/uSeRiD/oNeNoTe/oPeRaTiOnS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/users/userIdValue/onenote/operations/onenoteOperationIdValue",
+			Input: "/users/userId/onenote/operations/onenoteOperationId",
 			Expected: &UserIdOnenoteOperationId{
-				UserId:             "userIdValue",
-				OnenoteOperationId: "onenoteOperationIdValue",
+				UserId:             "userId",
+				OnenoteOperationId: "onenoteOperationId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/users/userIdValue/onenote/operations/onenoteOperationIdValue/extra",
+			Input: "/users/userId/onenote/operations/onenoteOperationId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/oNeNoTe/oPeRaTiOnS/oNeNoTeOpErAtIoNiDvAlUe",
+			Input: "/uSeRs/uSeRiD/oNeNoTe/oPeRaTiOnS/oNeNoTeOpErAtIoNiD",
 			Expected: &UserIdOnenoteOperationId{
-				UserId:             "uSeRiDvAlUe",
-				OnenoteOperationId: "oNeNoTeOpErAtIoNiDvAlUe",
+				UserId:             "uSeRiD",
+				OnenoteOperationId: "oNeNoTeOpErAtIoNiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/oNeNoTe/oPeRaTiOnS/oNeNoTeOpErAtIoNiDvAlUe/extra",
+			Input: "/uSeRs/uSeRiD/oNeNoTe/oPeRaTiOnS/oNeNoTeOpErAtIoNiD/extra",
 			Error: true,
 		},
 	}

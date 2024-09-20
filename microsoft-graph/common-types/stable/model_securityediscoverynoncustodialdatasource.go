@@ -101,17 +101,28 @@ func (s SecurityEdiscoveryNoncustodialDataSource) MarshalJSON() ([]byte, error) 
 var _ json.Unmarshaler = &SecurityEdiscoveryNoncustodialDataSource{}
 
 func (s *SecurityEdiscoveryNoncustodialDataSource) UnmarshalJSON(bytes []byte) error {
-	type alias SecurityEdiscoveryNoncustodialDataSource
-	var decoded alias
+
+	var decoded struct {
+		LastIndexOperation   *SecurityEdiscoveryIndexOperation  `json:"lastIndexOperation,omitempty"`
+		CreatedDateTime      nullable.Type[string]              `json:"createdDateTime,omitempty"`
+		DisplayName          nullable.Type[string]              `json:"displayName,omitempty"`
+		HoldStatus           *SecurityDataSourceHoldStatus      `json:"holdStatus,omitempty"`
+		LastModifiedDateTime nullable.Type[string]              `json:"lastModifiedDateTime,omitempty"`
+		ReleasedDateTime     nullable.Type[string]              `json:"releasedDateTime,omitempty"`
+		Status               *SecurityDataSourceContainerStatus `json:"status,omitempty"`
+		Id                   *string                            `json:"id,omitempty"`
+		ODataId              *string                            `json:"@odata.id,omitempty"`
+		ODataType            *string                            `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into SecurityEdiscoveryNoncustodialDataSource: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
+	s.LastIndexOperation = decoded.LastIndexOperation
 	s.CreatedDateTime = decoded.CreatedDateTime
 	s.DisplayName = decoded.DisplayName
 	s.HoldStatus = decoded.HoldStatus
 	s.Id = decoded.Id
-	s.LastIndexOperation = decoded.LastIndexOperation
 	s.LastModifiedDateTime = decoded.LastModifiedDateTime
 	s.ODataId = decoded.ODataId
 	s.ODataType = decoded.ODataType
@@ -130,5 +141,6 @@ func (s *SecurityEdiscoveryNoncustodialDataSource) UnmarshalJSON(bytes []byte) e
 		}
 		s.DataSource = &impl
 	}
+
 	return nil
 }

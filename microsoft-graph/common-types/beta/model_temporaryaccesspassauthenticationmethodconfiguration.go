@@ -101,19 +101,31 @@ func (s TemporaryAccessPassAuthenticationMethodConfiguration) MarshalJSON() ([]b
 var _ json.Unmarshaler = &TemporaryAccessPassAuthenticationMethodConfiguration{}
 
 func (s *TemporaryAccessPassAuthenticationMethodConfiguration) UnmarshalJSON(bytes []byte) error {
-	type alias TemporaryAccessPassAuthenticationMethodConfiguration
-	var decoded alias
+
+	var decoded struct {
+		DefaultLength            nullable.Type[int64]          `json:"defaultLength,omitempty"`
+		DefaultLifetimeInMinutes nullable.Type[int64]          `json:"defaultLifetimeInMinutes,omitempty"`
+		IncludeTargets           *[]AuthenticationMethodTarget `json:"includeTargets,omitempty"`
+		IsUsableOnce             nullable.Type[bool]           `json:"isUsableOnce,omitempty"`
+		MaximumLifetimeInMinutes nullable.Type[int64]          `json:"maximumLifetimeInMinutes,omitempty"`
+		MinimumLifetimeInMinutes nullable.Type[int64]          `json:"minimumLifetimeInMinutes,omitempty"`
+		ExcludeTargets           *[]ExcludeTarget              `json:"excludeTargets,omitempty"`
+		State                    *AuthenticationMethodState    `json:"state,omitempty"`
+		Id                       *string                       `json:"id,omitempty"`
+		ODataId                  *string                       `json:"@odata.id,omitempty"`
+		ODataType                *string                       `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into TemporaryAccessPassAuthenticationMethodConfiguration: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.DefaultLength = decoded.DefaultLength
 	s.DefaultLifetimeInMinutes = decoded.DefaultLifetimeInMinutes
-	s.ExcludeTargets = decoded.ExcludeTargets
-	s.Id = decoded.Id
 	s.IsUsableOnce = decoded.IsUsableOnce
 	s.MaximumLifetimeInMinutes = decoded.MaximumLifetimeInMinutes
 	s.MinimumLifetimeInMinutes = decoded.MinimumLifetimeInMinutes
+	s.ExcludeTargets = decoded.ExcludeTargets
+	s.Id = decoded.Id
 	s.ODataId = decoded.ODataId
 	s.ODataType = decoded.ODataType
 	s.State = decoded.State
@@ -139,5 +151,6 @@ func (s *TemporaryAccessPassAuthenticationMethodConfiguration) UnmarshalJSON(byt
 		}
 		s.IncludeTargets = &output
 	}
+
 	return nil
 }

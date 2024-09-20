@@ -19,8 +19,9 @@ type RemoveEntitlementManagementAccessPackageIncompatibleRefsOperationResponse s
 }
 
 type RemoveEntitlementManagementAccessPackageIncompatibleRefsOperationOptions struct {
-	Id      *string
-	IfMatch *string
+	Id       *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultRemoveEntitlementManagementAccessPackageIncompatibleRefsOperationOptions() RemoveEntitlementManagementAccessPackageIncompatibleRefsOperationOptions {
@@ -37,7 +38,9 @@ func (o RemoveEntitlementManagementAccessPackageIncompatibleRefsOperationOptions
 
 func (o RemoveEntitlementManagementAccessPackageIncompatibleRefsOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

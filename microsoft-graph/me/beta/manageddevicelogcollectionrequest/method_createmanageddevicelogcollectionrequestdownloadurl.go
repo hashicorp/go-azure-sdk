@@ -19,15 +19,44 @@ type CreateManagedDeviceLogCollectionRequestDownloadUrlOperationResponse struct 
 	Model        *CreateManagedDeviceLogCollectionRequestDownloadUrlResult
 }
 
+type CreateManagedDeviceLogCollectionRequestDownloadUrlOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateManagedDeviceLogCollectionRequestDownloadUrlOperationOptions() CreateManagedDeviceLogCollectionRequestDownloadUrlOperationOptions {
+	return CreateManagedDeviceLogCollectionRequestDownloadUrlOperationOptions{}
+}
+
+func (o CreateManagedDeviceLogCollectionRequestDownloadUrlOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateManagedDeviceLogCollectionRequestDownloadUrlOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateManagedDeviceLogCollectionRequestDownloadUrlOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateManagedDeviceLogCollectionRequestDownloadUrl - Invoke action createDownloadUrl
-func (c ManagedDeviceLogCollectionRequestClient) CreateManagedDeviceLogCollectionRequestDownloadUrl(ctx context.Context, id beta.MeManagedDeviceIdLogCollectionRequestId) (result CreateManagedDeviceLogCollectionRequestDownloadUrlOperationResponse, err error) {
+func (c ManagedDeviceLogCollectionRequestClient) CreateManagedDeviceLogCollectionRequestDownloadUrl(ctx context.Context, id beta.MeManagedDeviceIdLogCollectionRequestId, options CreateManagedDeviceLogCollectionRequestDownloadUrlOperationOptions) (result CreateManagedDeviceLogCollectionRequestDownloadUrlOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/createDownloadUrl", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/createDownloadUrl", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

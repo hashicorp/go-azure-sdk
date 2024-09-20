@@ -19,15 +19,44 @@ type CreateConfigurationPolicySettingOperationResponse struct {
 	Model        *beta.DeviceManagementConfigurationSetting
 }
 
+type CreateConfigurationPolicySettingOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateConfigurationPolicySettingOperationOptions() CreateConfigurationPolicySettingOperationOptions {
+	return CreateConfigurationPolicySettingOperationOptions{}
+}
+
+func (o CreateConfigurationPolicySettingOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateConfigurationPolicySettingOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateConfigurationPolicySettingOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateConfigurationPolicySetting - Create new navigation property to settings for deviceManagement
-func (c ConfigurationPolicySettingClient) CreateConfigurationPolicySetting(ctx context.Context, id beta.DeviceManagementConfigurationPolicyId, input beta.DeviceManagementConfigurationSetting) (result CreateConfigurationPolicySettingOperationResponse, err error) {
+func (c ConfigurationPolicySettingClient) CreateConfigurationPolicySetting(ctx context.Context, id beta.DeviceManagementConfigurationPolicyId, input beta.DeviceManagementConfigurationSetting, options CreateConfigurationPolicySettingOperationOptions) (result CreateConfigurationPolicySettingOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/settings", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/settings", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

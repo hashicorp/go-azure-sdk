@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/microsoft-graph/identity/stable/apiconnector` Documentation
 
-The `apiconnector` SDK allows for interaction with the Azure Resource Manager Service `identity` (API Version `stable`).
+The `apiconnector` SDK allows for interaction with Microsoft Graph `identity` (API Version `stable`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -15,7 +15,7 @@ import "github.com/hashicorp/go-azure-sdk/microsoft-graph/identity/stable/apicon
 ### Client Initialization
 
 ```go
-client := apiconnector.NewApiConnectorClientWithBaseURI("https://management.azure.com")
+client := apiconnector.NewApiConnectorClientWithBaseURI("https://graph.microsoft.com")
 client.Client.Authorizer = authorizer
 ```
 
@@ -30,7 +30,7 @@ payload := apiconnector.IdentityApiConnector{
 }
 
 
-read, err := client.CreateApiConnector(ctx, payload)
+read, err := client.CreateApiConnector(ctx, payload, apiconnector.DefaultCreateApiConnectorOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -44,14 +44,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := apiconnector.NewIdentityApiConnectorID("identityApiConnectorIdValue")
+id := apiconnector.NewIdentityApiConnectorID("identityApiConnectorId")
 
 payload := apiconnector.CreateApiConnectorUploadClientCertificateRequest{
 	// ...
 }
 
 
-read, err := client.CreateApiConnectorUploadClientCertificate(ctx, id, payload)
+read, err := client.CreateApiConnectorUploadClientCertificate(ctx, id, payload, apiconnector.DefaultCreateApiConnectorUploadClientCertificateOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -65,7 +65,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := apiconnector.NewIdentityApiConnectorID("identityApiConnectorIdValue")
+id := apiconnector.NewIdentityApiConnectorID("identityApiConnectorId")
 
 read, err := client.DeleteApiConnector(ctx, id, apiconnector.DefaultDeleteApiConnectorOperationOptions())
 if err != nil {
@@ -81,7 +81,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := apiconnector.NewIdentityApiConnectorID("identityApiConnectorIdValue")
+id := apiconnector.NewIdentityApiConnectorID("identityApiConnectorId")
 
 read, err := client.GetApiConnector(ctx, id, apiconnector.DefaultGetApiConnectorOperationOptions())
 if err != nil {
@@ -130,14 +130,14 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := apiconnector.NewIdentityApiConnectorID("identityApiConnectorIdValue")
+id := apiconnector.NewIdentityApiConnectorID("identityApiConnectorId")
 
 payload := apiconnector.IdentityApiConnector{
 	// ...
 }
 
 
-read, err := client.UpdateApiConnector(ctx, id, payload)
+read, err := client.UpdateApiConnector(ctx, id, payload, apiconnector.DefaultUpdateApiConnectorOperationOptions())
 if err != nil {
 	// handle the error
 }

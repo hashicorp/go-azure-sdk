@@ -18,16 +18,45 @@ type SetDriveFollowingContentStreamOperationResponse struct {
 	OData        *odata.OData
 }
 
+type SetDriveFollowingContentStreamOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultSetDriveFollowingContentStreamOperationOptions() SetDriveFollowingContentStreamOperationOptions {
+	return SetDriveFollowingContentStreamOperationOptions{}
+}
+
+func (o SetDriveFollowingContentStreamOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o SetDriveFollowingContentStreamOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o SetDriveFollowingContentStreamOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // SetDriveFollowingContentStream - Update contentStream for the navigation property following in users. The content
 // stream, if the item represents a file.
-func (c DriveFollowingContentStreamClient) SetDriveFollowingContentStream(ctx context.Context, id beta.UserIdDriveIdFollowingId, input []byte) (result SetDriveFollowingContentStreamOperationResponse, err error) {
+func (c DriveFollowingContentStreamClient) SetDriveFollowingContentStream(ctx context.Context, id beta.UserIdDriveIdFollowingId, input []byte, options SetDriveFollowingContentStreamOperationOptions) (result SetDriveFollowingContentStreamOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPut,
-		Path:       fmt.Sprintf("%s/contentStream", id.ID()),
+		HttpMethod:    http.MethodPut,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/contentStream", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

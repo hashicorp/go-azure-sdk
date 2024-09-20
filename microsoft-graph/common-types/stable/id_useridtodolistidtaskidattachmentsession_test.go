@@ -12,28 +12,28 @@ import (
 var _ resourceids.ResourceId = &UserIdTodoListIdTaskIdAttachmentSessionId{}
 
 func TestNewUserIdTodoListIdTaskIdAttachmentSessionID(t *testing.T) {
-	id := NewUserIdTodoListIdTaskIdAttachmentSessionID("userIdValue", "todoTaskListIdValue", "todoTaskIdValue", "attachmentSessionIdValue")
+	id := NewUserIdTodoListIdTaskIdAttachmentSessionID("userId", "todoTaskListId", "todoTaskId", "attachmentSessionId")
 
-	if id.UserId != "userIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'UserId'", id.UserId, "userIdValue")
+	if id.UserId != "userId" {
+		t.Fatalf("Expected %q but got %q for Segment 'UserId'", id.UserId, "userId")
 	}
 
-	if id.TodoTaskListId != "todoTaskListIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'TodoTaskListId'", id.TodoTaskListId, "todoTaskListIdValue")
+	if id.TodoTaskListId != "todoTaskListId" {
+		t.Fatalf("Expected %q but got %q for Segment 'TodoTaskListId'", id.TodoTaskListId, "todoTaskListId")
 	}
 
-	if id.TodoTaskId != "todoTaskIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'TodoTaskId'", id.TodoTaskId, "todoTaskIdValue")
+	if id.TodoTaskId != "todoTaskId" {
+		t.Fatalf("Expected %q but got %q for Segment 'TodoTaskId'", id.TodoTaskId, "todoTaskId")
 	}
 
-	if id.AttachmentSessionId != "attachmentSessionIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'AttachmentSessionId'", id.AttachmentSessionId, "attachmentSessionIdValue")
+	if id.AttachmentSessionId != "attachmentSessionId" {
+		t.Fatalf("Expected %q but got %q for Segment 'AttachmentSessionId'", id.AttachmentSessionId, "attachmentSessionId")
 	}
 }
 
 func TestFormatUserIdTodoListIdTaskIdAttachmentSessionID(t *testing.T) {
-	actual := NewUserIdTodoListIdTaskIdAttachmentSessionID("userIdValue", "todoTaskListIdValue", "todoTaskIdValue", "attachmentSessionIdValue").ID()
-	expected := "/users/userIdValue/todo/lists/todoTaskListIdValue/tasks/todoTaskIdValue/attachmentSessions/attachmentSessionIdValue"
+	actual := NewUserIdTodoListIdTaskIdAttachmentSessionID("userId", "todoTaskListId", "todoTaskId", "attachmentSessionId").ID()
+	expected := "/users/userId/todo/lists/todoTaskListId/tasks/todoTaskId/attachmentSessions/attachmentSessionId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -57,52 +57,52 @@ func TestParseUserIdTodoListIdTaskIdAttachmentSessionID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue",
+			Input: "/users/userId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/todo",
+			Input: "/users/userId/todo",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/todo/lists",
+			Input: "/users/userId/todo/lists",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/todo/lists/todoTaskListIdValue",
+			Input: "/users/userId/todo/lists/todoTaskListId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/todo/lists/todoTaskListIdValue/tasks",
+			Input: "/users/userId/todo/lists/todoTaskListId/tasks",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/todo/lists/todoTaskListIdValue/tasks/todoTaskIdValue",
+			Input: "/users/userId/todo/lists/todoTaskListId/tasks/todoTaskId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/todo/lists/todoTaskListIdValue/tasks/todoTaskIdValue/attachmentSessions",
+			Input: "/users/userId/todo/lists/todoTaskListId/tasks/todoTaskId/attachmentSessions",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/users/userIdValue/todo/lists/todoTaskListIdValue/tasks/todoTaskIdValue/attachmentSessions/attachmentSessionIdValue",
+			Input: "/users/userId/todo/lists/todoTaskListId/tasks/todoTaskId/attachmentSessions/attachmentSessionId",
 			Expected: &UserIdTodoListIdTaskIdAttachmentSessionId{
-				UserId:              "userIdValue",
-				TodoTaskListId:      "todoTaskListIdValue",
-				TodoTaskId:          "todoTaskIdValue",
-				AttachmentSessionId: "attachmentSessionIdValue",
+				UserId:              "userId",
+				TodoTaskListId:      "todoTaskListId",
+				TodoTaskId:          "todoTaskId",
+				AttachmentSessionId: "attachmentSessionId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/users/userIdValue/todo/lists/todoTaskListIdValue/tasks/todoTaskIdValue/attachmentSessions/attachmentSessionIdValue/extra",
+			Input: "/users/userId/todo/lists/todoTaskListId/tasks/todoTaskId/attachmentSessions/attachmentSessionId/extra",
 			Error: true,
 		},
 	}
@@ -163,102 +163,102 @@ func TestParseUserIdTodoListIdTaskIdAttachmentSessionIDInsensitively(t *testing.
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue",
+			Input: "/users/userId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe",
+			Input: "/uSeRs/uSeRiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/todo",
+			Input: "/users/userId/todo",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/tOdO",
+			Input: "/uSeRs/uSeRiD/tOdO",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/todo/lists",
+			Input: "/users/userId/todo/lists",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/tOdO/lIsTs",
+			Input: "/uSeRs/uSeRiD/tOdO/lIsTs",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/todo/lists/todoTaskListIdValue",
+			Input: "/users/userId/todo/lists/todoTaskListId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/tOdO/lIsTs/tOdOtAsKlIsTiDvAlUe",
+			Input: "/uSeRs/uSeRiD/tOdO/lIsTs/tOdOtAsKlIsTiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/todo/lists/todoTaskListIdValue/tasks",
+			Input: "/users/userId/todo/lists/todoTaskListId/tasks",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/tOdO/lIsTs/tOdOtAsKlIsTiDvAlUe/tAsKs",
+			Input: "/uSeRs/uSeRiD/tOdO/lIsTs/tOdOtAsKlIsTiD/tAsKs",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/todo/lists/todoTaskListIdValue/tasks/todoTaskIdValue",
+			Input: "/users/userId/todo/lists/todoTaskListId/tasks/todoTaskId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/tOdO/lIsTs/tOdOtAsKlIsTiDvAlUe/tAsKs/tOdOtAsKiDvAlUe",
+			Input: "/uSeRs/uSeRiD/tOdO/lIsTs/tOdOtAsKlIsTiD/tAsKs/tOdOtAsKiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/todo/lists/todoTaskListIdValue/tasks/todoTaskIdValue/attachmentSessions",
+			Input: "/users/userId/todo/lists/todoTaskListId/tasks/todoTaskId/attachmentSessions",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/tOdO/lIsTs/tOdOtAsKlIsTiDvAlUe/tAsKs/tOdOtAsKiDvAlUe/aTtAcHmEnTsEsSiOnS",
+			Input: "/uSeRs/uSeRiD/tOdO/lIsTs/tOdOtAsKlIsTiD/tAsKs/tOdOtAsKiD/aTtAcHmEnTsEsSiOnS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/users/userIdValue/todo/lists/todoTaskListIdValue/tasks/todoTaskIdValue/attachmentSessions/attachmentSessionIdValue",
+			Input: "/users/userId/todo/lists/todoTaskListId/tasks/todoTaskId/attachmentSessions/attachmentSessionId",
 			Expected: &UserIdTodoListIdTaskIdAttachmentSessionId{
-				UserId:              "userIdValue",
-				TodoTaskListId:      "todoTaskListIdValue",
-				TodoTaskId:          "todoTaskIdValue",
-				AttachmentSessionId: "attachmentSessionIdValue",
+				UserId:              "userId",
+				TodoTaskListId:      "todoTaskListId",
+				TodoTaskId:          "todoTaskId",
+				AttachmentSessionId: "attachmentSessionId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/users/userIdValue/todo/lists/todoTaskListIdValue/tasks/todoTaskIdValue/attachmentSessions/attachmentSessionIdValue/extra",
+			Input: "/users/userId/todo/lists/todoTaskListId/tasks/todoTaskId/attachmentSessions/attachmentSessionId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/tOdO/lIsTs/tOdOtAsKlIsTiDvAlUe/tAsKs/tOdOtAsKiDvAlUe/aTtAcHmEnTsEsSiOnS/aTtAcHmEnTsEsSiOnIdVaLuE",
+			Input: "/uSeRs/uSeRiD/tOdO/lIsTs/tOdOtAsKlIsTiD/tAsKs/tOdOtAsKiD/aTtAcHmEnTsEsSiOnS/aTtAcHmEnTsEsSiOnId",
 			Expected: &UserIdTodoListIdTaskIdAttachmentSessionId{
-				UserId:              "uSeRiDvAlUe",
-				TodoTaskListId:      "tOdOtAsKlIsTiDvAlUe",
-				TodoTaskId:          "tOdOtAsKiDvAlUe",
-				AttachmentSessionId: "aTtAcHmEnTsEsSiOnIdVaLuE",
+				UserId:              "uSeRiD",
+				TodoTaskListId:      "tOdOtAsKlIsTiD",
+				TodoTaskId:          "tOdOtAsKiD",
+				AttachmentSessionId: "aTtAcHmEnTsEsSiOnId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/tOdO/lIsTs/tOdOtAsKlIsTiDvAlUe/tAsKs/tOdOtAsKiDvAlUe/aTtAcHmEnTsEsSiOnS/aTtAcHmEnTsEsSiOnIdVaLuE/extra",
+			Input: "/uSeRs/uSeRiD/tOdO/lIsTs/tOdOtAsKlIsTiD/tAsKs/tOdOtAsKiD/aTtAcHmEnTsEsSiOnS/aTtAcHmEnTsEsSiOnId/extra",
 			Error: true,
 		},
 	}

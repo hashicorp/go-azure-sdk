@@ -143,29 +143,50 @@ func (s Post) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &Post{}
 
 func (s *Post) UnmarshalJSON(bytes []byte) error {
-	type alias Post
-	var decoded alias
+
+	var decoded struct {
+		Attachments                   *[]Attachment                        `json:"attachments,omitempty"`
+		Body                          *ItemBody                            `json:"body,omitempty"`
+		ConversationId                nullable.Type[string]                `json:"conversationId,omitempty"`
+		ConversationThreadId          nullable.Type[string]                `json:"conversationThreadId,omitempty"`
+		Extensions                    *[]Extension                         `json:"extensions,omitempty"`
+		HasAttachments                *bool                                `json:"hasAttachments,omitempty"`
+		Importance                    *Importance                          `json:"importance,omitempty"`
+		InReplyTo                     *Post                                `json:"inReplyTo,omitempty"`
+		Mentions                      *[]Mention                           `json:"mentions,omitempty"`
+		MultiValueExtendedProperties  *[]MultiValueLegacyExtendedProperty  `json:"multiValueExtendedProperties,omitempty"`
+		NewParticipants               *[]Recipient                         `json:"newParticipants,omitempty"`
+		ReceivedDateTime              *string                              `json:"receivedDateTime,omitempty"`
+		SingleValueExtendedProperties *[]SingleValueLegacyExtendedProperty `json:"singleValueExtendedProperties,omitempty"`
+		Categories                    *[]string                            `json:"categories,omitempty"`
+		ChangeKey                     nullable.Type[string]                `json:"changeKey,omitempty"`
+		CreatedDateTime               nullable.Type[string]                `json:"createdDateTime,omitempty"`
+		LastModifiedDateTime          nullable.Type[string]                `json:"lastModifiedDateTime,omitempty"`
+		Id                            *string                              `json:"id,omitempty"`
+		ODataId                       *string                              `json:"@odata.id,omitempty"`
+		ODataType                     *string                              `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into Post: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.Body = decoded.Body
-	s.Categories = decoded.Categories
-	s.ChangeKey = decoded.ChangeKey
 	s.ConversationId = decoded.ConversationId
 	s.ConversationThreadId = decoded.ConversationThreadId
-	s.CreatedDateTime = decoded.CreatedDateTime
 	s.HasAttachments = decoded.HasAttachments
-	s.Id = decoded.Id
 	s.Importance = decoded.Importance
 	s.InReplyTo = decoded.InReplyTo
-	s.LastModifiedDateTime = decoded.LastModifiedDateTime
 	s.Mentions = decoded.Mentions
 	s.MultiValueExtendedProperties = decoded.MultiValueExtendedProperties
-	s.ODataId = decoded.ODataId
-	s.ODataType = decoded.ODataType
 	s.ReceivedDateTime = decoded.ReceivedDateTime
 	s.SingleValueExtendedProperties = decoded.SingleValueExtendedProperties
+	s.Categories = decoded.Categories
+	s.ChangeKey = decoded.ChangeKey
+	s.CreatedDateTime = decoded.CreatedDateTime
+	s.Id = decoded.Id
+	s.LastModifiedDateTime = decoded.LastModifiedDateTime
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -238,5 +259,6 @@ func (s *Post) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Sender = impl
 	}
+
 	return nil
 }

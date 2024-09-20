@@ -17,16 +17,45 @@ type UpdateTelecomExpenseManagementPartnerOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateTelecomExpenseManagementPartnerOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateTelecomExpenseManagementPartnerOperationOptions() UpdateTelecomExpenseManagementPartnerOperationOptions {
+	return UpdateTelecomExpenseManagementPartnerOperationOptions{}
+}
+
+func (o UpdateTelecomExpenseManagementPartnerOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateTelecomExpenseManagementPartnerOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateTelecomExpenseManagementPartnerOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateTelecomExpenseManagementPartner - Update the navigation property telecomExpenseManagementPartners in
 // deviceManagement
-func (c TelecomExpenseManagementPartnerClient) UpdateTelecomExpenseManagementPartner(ctx context.Context, id beta.DeviceManagementTelecomExpenseManagementPartnerId, input beta.TelecomExpenseManagementPartner) (result UpdateTelecomExpenseManagementPartnerOperationResponse, err error) {
+func (c TelecomExpenseManagementPartnerClient) UpdateTelecomExpenseManagementPartner(ctx context.Context, id beta.DeviceManagementTelecomExpenseManagementPartnerId, input beta.TelecomExpenseManagementPartner, options UpdateTelecomExpenseManagementPartnerOperationOptions) (result UpdateTelecomExpenseManagementPartnerOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

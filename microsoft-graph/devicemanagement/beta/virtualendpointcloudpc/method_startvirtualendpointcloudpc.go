@@ -18,16 +18,45 @@ type StartVirtualEndpointCloudPCOperationResponse struct {
 	OData        *odata.OData
 }
 
+type StartVirtualEndpointCloudPCOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultStartVirtualEndpointCloudPCOperationOptions() StartVirtualEndpointCloudPCOperationOptions {
+	return StartVirtualEndpointCloudPCOperationOptions{}
+}
+
+func (o StartVirtualEndpointCloudPCOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o StartVirtualEndpointCloudPCOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o StartVirtualEndpointCloudPCOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // StartVirtualEndpointCloudPC - Invoke action start. Start a specific Cloud PC for a user. Currently, only Windows 365
 // Frontline Cloud PCs are supported.
-func (c VirtualEndpointCloudPCClient) StartVirtualEndpointCloudPC(ctx context.Context, id beta.DeviceManagementVirtualEndpointCloudPCId) (result StartVirtualEndpointCloudPCOperationResponse, err error) {
+func (c VirtualEndpointCloudPCClient) StartVirtualEndpointCloudPC(ctx context.Context, id beta.DeviceManagementVirtualEndpointCloudPCId, options StartVirtualEndpointCloudPCOperationOptions) (result StartVirtualEndpointCloudPCOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/start", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/start", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

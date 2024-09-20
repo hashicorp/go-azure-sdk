@@ -17,15 +17,44 @@ type UpdateTemplateSettingOperationResponse struct {
 	OData        *odata.OData
 }
 
-// UpdateTemplateSetting - Update the navigation property templateSettings in deviceManagement
-func (c TemplateSettingClient) UpdateTemplateSetting(ctx context.Context, id beta.DeviceManagementTemplateSettingId, input beta.DeviceManagementConfigurationSettingTemplate) (result UpdateTemplateSettingOperationResponse, err error) {
+type UpdateTemplateSettingOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateTemplateSettingOperationOptions() UpdateTemplateSettingOperationOptions {
+	return UpdateTemplateSettingOperationOptions{}
+}
+
+func (o UpdateTemplateSettingOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateTemplateSettingOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateTemplateSettingOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
+// UpdateTemplateSetting - Update the navigation property settings in deviceManagement
+func (c TemplateSettingClient) UpdateTemplateSetting(ctx context.Context, id beta.DeviceManagementTemplateIdSettingId, input beta.DeviceManagementSettingInstance, options UpdateTemplateSettingOperationOptions) (result UpdateTemplateSettingOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

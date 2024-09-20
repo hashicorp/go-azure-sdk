@@ -18,15 +18,44 @@ type CreateTeamInstalledAppUpgradeOperationResponse struct {
 	OData        *odata.OData
 }
 
+type CreateTeamInstalledAppUpgradeOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateTeamInstalledAppUpgradeOperationOptions() CreateTeamInstalledAppUpgradeOperationOptions {
+	return CreateTeamInstalledAppUpgradeOperationOptions{}
+}
+
+func (o CreateTeamInstalledAppUpgradeOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateTeamInstalledAppUpgradeOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateTeamInstalledAppUpgradeOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateTeamInstalledAppUpgrade - Invoke action upgrade. Upgrade an app installation within a chat.
-func (c TeamInstalledAppClient) CreateTeamInstalledAppUpgrade(ctx context.Context, id beta.GroupIdTeamInstalledAppId, input CreateTeamInstalledAppUpgradeRequest) (result CreateTeamInstalledAppUpgradeOperationResponse, err error) {
+func (c TeamInstalledAppClient) CreateTeamInstalledAppUpgrade(ctx context.Context, id beta.GroupIdTeamInstalledAppId, input CreateTeamInstalledAppUpgradeRequest, options CreateTeamInstalledAppUpgradeOperationOptions) (result CreateTeamInstalledAppUpgradeOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/upgrade", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/upgrade", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

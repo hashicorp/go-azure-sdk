@@ -19,7 +19,8 @@ type DeleteUserFlowAttributeOperationResponse struct {
 }
 
 type DeleteUserFlowAttributeOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteUserFlowAttributeOperationOptions() DeleteUserFlowAttributeOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteUserFlowAttributeOperationOptions) ToHeaders() *client.Headers {
 
 func (o DeleteUserFlowAttributeOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

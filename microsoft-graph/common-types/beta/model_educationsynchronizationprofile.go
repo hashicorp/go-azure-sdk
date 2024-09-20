@@ -88,22 +88,33 @@ func (s EducationSynchronizationProfile) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &EducationSynchronizationProfile{}
 
 func (s *EducationSynchronizationProfile) UnmarshalJSON(bytes []byte) error {
-	type alias EducationSynchronizationProfile
-	var decoded alias
+
+	var decoded struct {
+		DisplayName                      *string                                      `json:"displayName,omitempty"`
+		Errors                           *[]EducationSynchronizationError             `json:"errors,omitempty"`
+		ExpirationDate                   nullable.Type[string]                        `json:"expirationDate,omitempty"`
+		HandleSpecialCharacterConstraint nullable.Type[bool]                          `json:"handleSpecialCharacterConstraint,omitempty"`
+		LicensesToAssign                 *[]EducationSynchronizationLicenseAssignment `json:"licensesToAssign,omitempty"`
+		ProfileStatus                    *EducationSynchronizationProfileStatus       `json:"profileStatus,omitempty"`
+		State                            *EducationSynchronizationProfileState        `json:"state,omitempty"`
+		Id                               *string                                      `json:"id,omitempty"`
+		ODataId                          *string                                      `json:"@odata.id,omitempty"`
+		ODataType                        *string                                      `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into EducationSynchronizationProfile: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.DisplayName = decoded.DisplayName
 	s.Errors = decoded.Errors
 	s.ExpirationDate = decoded.ExpirationDate
 	s.HandleSpecialCharacterConstraint = decoded.HandleSpecialCharacterConstraint
-	s.Id = decoded.Id
 	s.LicensesToAssign = decoded.LicensesToAssign
-	s.ODataId = decoded.ODataId
-	s.ODataType = decoded.ODataType
 	s.ProfileStatus = decoded.ProfileStatus
 	s.State = decoded.State
+	s.Id = decoded.Id
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -125,5 +136,6 @@ func (s *EducationSynchronizationProfile) UnmarshalJSON(bytes []byte) error {
 		}
 		s.IdentitySynchronizationConfiguration = impl
 	}
+
 	return nil
 }

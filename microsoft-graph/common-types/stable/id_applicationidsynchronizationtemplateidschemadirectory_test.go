@@ -12,24 +12,24 @@ import (
 var _ resourceids.ResourceId = &ApplicationIdSynchronizationTemplateIdSchemaDirectoryId{}
 
 func TestNewApplicationIdSynchronizationTemplateIdSchemaDirectoryID(t *testing.T) {
-	id := NewApplicationIdSynchronizationTemplateIdSchemaDirectoryID("applicationIdValue", "synchronizationTemplateIdValue", "directoryDefinitionIdValue")
+	id := NewApplicationIdSynchronizationTemplateIdSchemaDirectoryID("applicationId", "synchronizationTemplateId", "directoryDefinitionId")
 
-	if id.ApplicationId != "applicationIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ApplicationId'", id.ApplicationId, "applicationIdValue")
+	if id.ApplicationId != "applicationId" {
+		t.Fatalf("Expected %q but got %q for Segment 'ApplicationId'", id.ApplicationId, "applicationId")
 	}
 
-	if id.SynchronizationTemplateId != "synchronizationTemplateIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'SynchronizationTemplateId'", id.SynchronizationTemplateId, "synchronizationTemplateIdValue")
+	if id.SynchronizationTemplateId != "synchronizationTemplateId" {
+		t.Fatalf("Expected %q but got %q for Segment 'SynchronizationTemplateId'", id.SynchronizationTemplateId, "synchronizationTemplateId")
 	}
 
-	if id.DirectoryDefinitionId != "directoryDefinitionIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DirectoryDefinitionId'", id.DirectoryDefinitionId, "directoryDefinitionIdValue")
+	if id.DirectoryDefinitionId != "directoryDefinitionId" {
+		t.Fatalf("Expected %q but got %q for Segment 'DirectoryDefinitionId'", id.DirectoryDefinitionId, "directoryDefinitionId")
 	}
 }
 
 func TestFormatApplicationIdSynchronizationTemplateIdSchemaDirectoryID(t *testing.T) {
-	actual := NewApplicationIdSynchronizationTemplateIdSchemaDirectoryID("applicationIdValue", "synchronizationTemplateIdValue", "directoryDefinitionIdValue").ID()
-	expected := "/applications/applicationIdValue/synchronization/templates/synchronizationTemplateIdValue/schema/directories/directoryDefinitionIdValue"
+	actual := NewApplicationIdSynchronizationTemplateIdSchemaDirectoryID("applicationId", "synchronizationTemplateId", "directoryDefinitionId").ID()
+	expected := "/applications/applicationId/synchronization/templates/synchronizationTemplateId/schema/directories/directoryDefinitionId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -53,46 +53,46 @@ func TestParseApplicationIdSynchronizationTemplateIdSchemaDirectoryID(t *testing
 		},
 		{
 			// Incomplete URI
-			Input: "/applications/applicationIdValue",
+			Input: "/applications/applicationId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/applications/applicationIdValue/synchronization",
+			Input: "/applications/applicationId/synchronization",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/applications/applicationIdValue/synchronization/templates",
+			Input: "/applications/applicationId/synchronization/templates",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/applications/applicationIdValue/synchronization/templates/synchronizationTemplateIdValue",
+			Input: "/applications/applicationId/synchronization/templates/synchronizationTemplateId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/applications/applicationIdValue/synchronization/templates/synchronizationTemplateIdValue/schema",
+			Input: "/applications/applicationId/synchronization/templates/synchronizationTemplateId/schema",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/applications/applicationIdValue/synchronization/templates/synchronizationTemplateIdValue/schema/directories",
+			Input: "/applications/applicationId/synchronization/templates/synchronizationTemplateId/schema/directories",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/applications/applicationIdValue/synchronization/templates/synchronizationTemplateIdValue/schema/directories/directoryDefinitionIdValue",
+			Input: "/applications/applicationId/synchronization/templates/synchronizationTemplateId/schema/directories/directoryDefinitionId",
 			Expected: &ApplicationIdSynchronizationTemplateIdSchemaDirectoryId{
-				ApplicationId:             "applicationIdValue",
-				SynchronizationTemplateId: "synchronizationTemplateIdValue",
-				DirectoryDefinitionId:     "directoryDefinitionIdValue",
+				ApplicationId:             "applicationId",
+				SynchronizationTemplateId: "synchronizationTemplateId",
+				DirectoryDefinitionId:     "directoryDefinitionId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/applications/applicationIdValue/synchronization/templates/synchronizationTemplateIdValue/schema/directories/directoryDefinitionIdValue/extra",
+			Input: "/applications/applicationId/synchronization/templates/synchronizationTemplateId/schema/directories/directoryDefinitionId/extra",
 			Error: true,
 		},
 	}
@@ -149,90 +149,90 @@ func TestParseApplicationIdSynchronizationTemplateIdSchemaDirectoryIDInsensitive
 		},
 		{
 			// Incomplete URI
-			Input: "/applications/applicationIdValue",
+			Input: "/applications/applicationId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/aPpLiCaTiOnS/aPpLiCaTiOnIdVaLuE",
+			Input: "/aPpLiCaTiOnS/aPpLiCaTiOnId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/applications/applicationIdValue/synchronization",
+			Input: "/applications/applicationId/synchronization",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/aPpLiCaTiOnS/aPpLiCaTiOnIdVaLuE/sYnChRoNiZaTiOn",
+			Input: "/aPpLiCaTiOnS/aPpLiCaTiOnId/sYnChRoNiZaTiOn",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/applications/applicationIdValue/synchronization/templates",
+			Input: "/applications/applicationId/synchronization/templates",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/aPpLiCaTiOnS/aPpLiCaTiOnIdVaLuE/sYnChRoNiZaTiOn/tEmPlAtEs",
+			Input: "/aPpLiCaTiOnS/aPpLiCaTiOnId/sYnChRoNiZaTiOn/tEmPlAtEs",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/applications/applicationIdValue/synchronization/templates/synchronizationTemplateIdValue",
+			Input: "/applications/applicationId/synchronization/templates/synchronizationTemplateId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/aPpLiCaTiOnS/aPpLiCaTiOnIdVaLuE/sYnChRoNiZaTiOn/tEmPlAtEs/sYnChRoNiZaTiOnTeMpLaTeIdVaLuE",
+			Input: "/aPpLiCaTiOnS/aPpLiCaTiOnId/sYnChRoNiZaTiOn/tEmPlAtEs/sYnChRoNiZaTiOnTeMpLaTeId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/applications/applicationIdValue/synchronization/templates/synchronizationTemplateIdValue/schema",
+			Input: "/applications/applicationId/synchronization/templates/synchronizationTemplateId/schema",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/aPpLiCaTiOnS/aPpLiCaTiOnIdVaLuE/sYnChRoNiZaTiOn/tEmPlAtEs/sYnChRoNiZaTiOnTeMpLaTeIdVaLuE/sChEmA",
+			Input: "/aPpLiCaTiOnS/aPpLiCaTiOnId/sYnChRoNiZaTiOn/tEmPlAtEs/sYnChRoNiZaTiOnTeMpLaTeId/sChEmA",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/applications/applicationIdValue/synchronization/templates/synchronizationTemplateIdValue/schema/directories",
+			Input: "/applications/applicationId/synchronization/templates/synchronizationTemplateId/schema/directories",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/aPpLiCaTiOnS/aPpLiCaTiOnIdVaLuE/sYnChRoNiZaTiOn/tEmPlAtEs/sYnChRoNiZaTiOnTeMpLaTeIdVaLuE/sChEmA/dIrEcToRiEs",
+			Input: "/aPpLiCaTiOnS/aPpLiCaTiOnId/sYnChRoNiZaTiOn/tEmPlAtEs/sYnChRoNiZaTiOnTeMpLaTeId/sChEmA/dIrEcToRiEs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/applications/applicationIdValue/synchronization/templates/synchronizationTemplateIdValue/schema/directories/directoryDefinitionIdValue",
+			Input: "/applications/applicationId/synchronization/templates/synchronizationTemplateId/schema/directories/directoryDefinitionId",
 			Expected: &ApplicationIdSynchronizationTemplateIdSchemaDirectoryId{
-				ApplicationId:             "applicationIdValue",
-				SynchronizationTemplateId: "synchronizationTemplateIdValue",
-				DirectoryDefinitionId:     "directoryDefinitionIdValue",
+				ApplicationId:             "applicationId",
+				SynchronizationTemplateId: "synchronizationTemplateId",
+				DirectoryDefinitionId:     "directoryDefinitionId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/applications/applicationIdValue/synchronization/templates/synchronizationTemplateIdValue/schema/directories/directoryDefinitionIdValue/extra",
+			Input: "/applications/applicationId/synchronization/templates/synchronizationTemplateId/schema/directories/directoryDefinitionId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/aPpLiCaTiOnS/aPpLiCaTiOnIdVaLuE/sYnChRoNiZaTiOn/tEmPlAtEs/sYnChRoNiZaTiOnTeMpLaTeIdVaLuE/sChEmA/dIrEcToRiEs/dIrEcToRyDeFiNiTiOnIdVaLuE",
+			Input: "/aPpLiCaTiOnS/aPpLiCaTiOnId/sYnChRoNiZaTiOn/tEmPlAtEs/sYnChRoNiZaTiOnTeMpLaTeId/sChEmA/dIrEcToRiEs/dIrEcToRyDeFiNiTiOnId",
 			Expected: &ApplicationIdSynchronizationTemplateIdSchemaDirectoryId{
-				ApplicationId:             "aPpLiCaTiOnIdVaLuE",
-				SynchronizationTemplateId: "sYnChRoNiZaTiOnTeMpLaTeIdVaLuE",
-				DirectoryDefinitionId:     "dIrEcToRyDeFiNiTiOnIdVaLuE",
+				ApplicationId:             "aPpLiCaTiOnId",
+				SynchronizationTemplateId: "sYnChRoNiZaTiOnTeMpLaTeId",
+				DirectoryDefinitionId:     "dIrEcToRyDeFiNiTiOnId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/aPpLiCaTiOnS/aPpLiCaTiOnIdVaLuE/sYnChRoNiZaTiOn/tEmPlAtEs/sYnChRoNiZaTiOnTeMpLaTeIdVaLuE/sChEmA/dIrEcToRiEs/dIrEcToRyDeFiNiTiOnIdVaLuE/extra",
+			Input: "/aPpLiCaTiOnS/aPpLiCaTiOnId/sYnChRoNiZaTiOn/tEmPlAtEs/sYnChRoNiZaTiOnTeMpLaTeId/sChEmA/dIrEcToRiEs/dIrEcToRyDeFiNiTiOnId/extra",
 			Error: true,
 		},
 	}

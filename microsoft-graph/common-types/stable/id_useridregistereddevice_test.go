@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &UserIdRegisteredDeviceId{}
 
 func TestNewUserIdRegisteredDeviceID(t *testing.T) {
-	id := NewUserIdRegisteredDeviceID("userIdValue", "directoryObjectIdValue")
+	id := NewUserIdRegisteredDeviceID("userId", "directoryObjectId")
 
-	if id.UserId != "userIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'UserId'", id.UserId, "userIdValue")
+	if id.UserId != "userId" {
+		t.Fatalf("Expected %q but got %q for Segment 'UserId'", id.UserId, "userId")
 	}
 
-	if id.DirectoryObjectId != "directoryObjectIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DirectoryObjectId'", id.DirectoryObjectId, "directoryObjectIdValue")
+	if id.DirectoryObjectId != "directoryObjectId" {
+		t.Fatalf("Expected %q but got %q for Segment 'DirectoryObjectId'", id.DirectoryObjectId, "directoryObjectId")
 	}
 }
 
 func TestFormatUserIdRegisteredDeviceID(t *testing.T) {
-	actual := NewUserIdRegisteredDeviceID("userIdValue", "directoryObjectIdValue").ID()
-	expected := "/users/userIdValue/registeredDevices/directoryObjectIdValue"
+	actual := NewUserIdRegisteredDeviceID("userId", "directoryObjectId").ID()
+	expected := "/users/userId/registeredDevices/directoryObjectId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -49,25 +49,25 @@ func TestParseUserIdRegisteredDeviceID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue",
+			Input: "/users/userId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/registeredDevices",
+			Input: "/users/userId/registeredDevices",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/users/userIdValue/registeredDevices/directoryObjectIdValue",
+			Input: "/users/userId/registeredDevices/directoryObjectId",
 			Expected: &UserIdRegisteredDeviceId{
-				UserId:            "userIdValue",
-				DirectoryObjectId: "directoryObjectIdValue",
+				UserId:            "userId",
+				DirectoryObjectId: "directoryObjectId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/users/userIdValue/registeredDevices/directoryObjectIdValue/extra",
+			Input: "/users/userId/registeredDevices/directoryObjectId/extra",
 			Error: true,
 		},
 	}
@@ -120,48 +120,48 @@ func TestParseUserIdRegisteredDeviceIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue",
+			Input: "/users/userId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe",
+			Input: "/uSeRs/uSeRiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/registeredDevices",
+			Input: "/users/userId/registeredDevices",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/rEgIsTeReDdEvIcEs",
+			Input: "/uSeRs/uSeRiD/rEgIsTeReDdEvIcEs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/users/userIdValue/registeredDevices/directoryObjectIdValue",
+			Input: "/users/userId/registeredDevices/directoryObjectId",
 			Expected: &UserIdRegisteredDeviceId{
-				UserId:            "userIdValue",
-				DirectoryObjectId: "directoryObjectIdValue",
+				UserId:            "userId",
+				DirectoryObjectId: "directoryObjectId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/users/userIdValue/registeredDevices/directoryObjectIdValue/extra",
+			Input: "/users/userId/registeredDevices/directoryObjectId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/rEgIsTeReDdEvIcEs/dIrEcToRyObJeCtIdVaLuE",
+			Input: "/uSeRs/uSeRiD/rEgIsTeReDdEvIcEs/dIrEcToRyObJeCtId",
 			Expected: &UserIdRegisteredDeviceId{
-				UserId:            "uSeRiDvAlUe",
-				DirectoryObjectId: "dIrEcToRyObJeCtIdVaLuE",
+				UserId:            "uSeRiD",
+				DirectoryObjectId: "dIrEcToRyObJeCtId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/rEgIsTeReDdEvIcEs/dIrEcToRyObJeCtIdVaLuE/extra",
+			Input: "/uSeRs/uSeRiD/rEgIsTeReDdEvIcEs/dIrEcToRyObJeCtId/extra",
 			Error: true,
 		},
 	}

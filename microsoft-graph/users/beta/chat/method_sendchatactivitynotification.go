@@ -18,16 +18,45 @@ type SendChatActivityNotificationOperationResponse struct {
 	OData        *odata.OData
 }
 
+type SendChatActivityNotificationOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultSendChatActivityNotificationOperationOptions() SendChatActivityNotificationOperationOptions {
+	return SendChatActivityNotificationOperationOptions{}
+}
+
+func (o SendChatActivityNotificationOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o SendChatActivityNotificationOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o SendChatActivityNotificationOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // SendChatActivityNotification - Invoke action sendActivityNotification. Send an activity feed notification in the
 // scope of a chat. For more information, see sending Teams activity notifications.
-func (c ChatClient) SendChatActivityNotification(ctx context.Context, id beta.UserIdChatId, input SendChatActivityNotificationRequest) (result SendChatActivityNotificationOperationResponse, err error) {
+func (c ChatClient) SendChatActivityNotification(ctx context.Context, id beta.UserIdChatId, input SendChatActivityNotificationRequest, options SendChatActivityNotificationOperationOptions) (result SendChatActivityNotificationOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/sendActivityNotification", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/sendActivityNotification", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

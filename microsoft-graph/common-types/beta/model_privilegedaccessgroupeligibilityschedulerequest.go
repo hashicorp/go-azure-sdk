@@ -171,31 +171,53 @@ func (s PrivilegedAccessGroupEligibilityScheduleRequest) MarshalJSON() ([]byte, 
 var _ json.Unmarshaler = &PrivilegedAccessGroupEligibilityScheduleRequest{}
 
 func (s *PrivilegedAccessGroupEligibilityScheduleRequest) UnmarshalJSON(bytes []byte) error {
-	type alias PrivilegedAccessGroupEligibilityScheduleRequest
-	var decoded alias
+
+	var decoded struct {
+		AccessId            PrivilegedAccessGroupRelationships        `json:"accessId"`
+		Group               *Group                                    `json:"group,omitempty"`
+		GroupId             nullable.Type[string]                     `json:"groupId,omitempty"`
+		PrincipalId         nullable.Type[string]                     `json:"principalId,omitempty"`
+		Principal_ODataBind *string                                   `json:"principal@odata.bind,omitempty"`
+		TargetSchedule      *PrivilegedAccessGroupEligibilitySchedule `json:"targetSchedule,omitempty"`
+		TargetScheduleId    nullable.Type[string]                     `json:"targetScheduleId,omitempty"`
+		Action              *ScheduleRequestActions                   `json:"action,omitempty"`
+		IsValidationOnly    nullable.Type[bool]                       `json:"isValidationOnly,omitempty"`
+		Justification       nullable.Type[string]                     `json:"justification,omitempty"`
+		ScheduleInfo        *RequestSchedule                          `json:"scheduleInfo,omitempty"`
+		TicketInfo          *TicketInfo                               `json:"ticketInfo,omitempty"`
+		ApprovalId          nullable.Type[string]                     `json:"approvalId,omitempty"`
+		CompletedDateTime   nullable.Type[string]                     `json:"completedDateTime,omitempty"`
+		CreatedBy           IdentitySet                               `json:"createdBy"`
+		CreatedDateTime     nullable.Type[string]                     `json:"createdDateTime,omitempty"`
+		CustomData          nullable.Type[string]                     `json:"customData,omitempty"`
+		Status              *string                                   `json:"status,omitempty"`
+		Id                  *string                                   `json:"id,omitempty"`
+		ODataId             *string                                   `json:"@odata.id,omitempty"`
+		ODataType           *string                                   `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into PrivilegedAccessGroupEligibilityScheduleRequest: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.AccessId = decoded.AccessId
+	s.Group = decoded.Group
+	s.GroupId = decoded.GroupId
+	s.PrincipalId = decoded.PrincipalId
+	s.Principal_ODataBind = decoded.Principal_ODataBind
+	s.TargetSchedule = decoded.TargetSchedule
+	s.TargetScheduleId = decoded.TargetScheduleId
 	s.Action = decoded.Action
 	s.ApprovalId = decoded.ApprovalId
 	s.CompletedDateTime = decoded.CompletedDateTime
 	s.CreatedDateTime = decoded.CreatedDateTime
 	s.CustomData = decoded.CustomData
-	s.Group = decoded.Group
-	s.GroupId = decoded.GroupId
 	s.Id = decoded.Id
 	s.IsValidationOnly = decoded.IsValidationOnly
 	s.Justification = decoded.Justification
 	s.ODataId = decoded.ODataId
 	s.ODataType = decoded.ODataType
-	s.PrincipalId = decoded.PrincipalId
-	s.Principal_ODataBind = decoded.Principal_ODataBind
 	s.ScheduleInfo = decoded.ScheduleInfo
 	s.Status = decoded.Status
-	s.TargetSchedule = decoded.TargetSchedule
-	s.TargetScheduleId = decoded.TargetScheduleId
 	s.TicketInfo = decoded.TicketInfo
 
 	var temp map[string]json.RawMessage
@@ -218,5 +240,6 @@ func (s *PrivilegedAccessGroupEligibilityScheduleRequest) UnmarshalJSON(bytes []
 		}
 		s.Principal = &impl
 	}
+
 	return nil
 }

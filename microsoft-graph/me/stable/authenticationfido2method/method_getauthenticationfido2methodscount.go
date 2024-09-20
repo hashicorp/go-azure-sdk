@@ -18,8 +18,9 @@ type GetAuthenticationFido2MethodsCountOperationResponse struct {
 }
 
 type GetAuthenticationFido2MethodsCountOperationOptions struct {
-	Filter *string
-	Search *string
+	Filter   *string
+	Metadata *odata.Metadata
+	Search   *string
 }
 
 func DefaultGetAuthenticationFido2MethodsCountOperationOptions() GetAuthenticationFido2MethodsCountOperationOptions {
@@ -36,6 +37,9 @@ func (o GetAuthenticationFido2MethodsCountOperationOptions) ToOData() *odata.Que
 	out := odata.Query{}
 	if o.Filter != nil {
 		out.Filter = *o.Filter
+	}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
 	}
 	if o.Search != nil {
 		out.Search = *o.Search

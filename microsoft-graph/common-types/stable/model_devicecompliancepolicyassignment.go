@@ -62,10 +62,14 @@ func (s DeviceCompliancePolicyAssignment) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &DeviceCompliancePolicyAssignment{}
 
 func (s *DeviceCompliancePolicyAssignment) UnmarshalJSON(bytes []byte) error {
-	type alias DeviceCompliancePolicyAssignment
-	var decoded alias
+
+	var decoded struct {
+		Id        *string `json:"id,omitempty"`
+		ODataId   *string `json:"@odata.id,omitempty"`
+		ODataType *string `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into DeviceCompliancePolicyAssignment: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.Id = decoded.Id
@@ -84,5 +88,6 @@ func (s *DeviceCompliancePolicyAssignment) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Target = impl
 	}
+
 	return nil
 }

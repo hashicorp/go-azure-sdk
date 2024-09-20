@@ -94,7 +94,7 @@ func (id IdentityConditionalAccessAuthenticationContextClassReferenceId) Segment
 		resourceids.StaticSegment("identity", "identity", "identity"),
 		resourceids.StaticSegment("conditionalAccess", "conditionalAccess", "conditionalAccess"),
 		resourceids.StaticSegment("authenticationContextClassReferences", "authenticationContextClassReferences", "authenticationContextClassReferences"),
-		resourceids.UserSpecifiedSegment("authenticationContextClassReferenceId", "authenticationContextClassReferenceIdValue"),
+		resourceids.UserSpecifiedSegment("authenticationContextClassReferenceId", "authenticationContextClassReferenceId"),
 	}
 }
 

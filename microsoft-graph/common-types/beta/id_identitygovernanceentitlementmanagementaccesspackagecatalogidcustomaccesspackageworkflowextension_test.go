@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &IdentityGovernanceEntitlementManagementAccessPackageCatalogIdCustomAccessPackageWorkflowExtensionId{}
 
 func TestNewIdentityGovernanceEntitlementManagementAccessPackageCatalogIdCustomAccessPackageWorkflowExtensionID(t *testing.T) {
-	id := NewIdentityGovernanceEntitlementManagementAccessPackageCatalogIdCustomAccessPackageWorkflowExtensionID("accessPackageCatalogIdValue", "customAccessPackageWorkflowExtensionIdValue")
+	id := NewIdentityGovernanceEntitlementManagementAccessPackageCatalogIdCustomAccessPackageWorkflowExtensionID("accessPackageCatalogId", "customAccessPackageWorkflowExtensionId")
 
-	if id.AccessPackageCatalogId != "accessPackageCatalogIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'AccessPackageCatalogId'", id.AccessPackageCatalogId, "accessPackageCatalogIdValue")
+	if id.AccessPackageCatalogId != "accessPackageCatalogId" {
+		t.Fatalf("Expected %q but got %q for Segment 'AccessPackageCatalogId'", id.AccessPackageCatalogId, "accessPackageCatalogId")
 	}
 
-	if id.CustomAccessPackageWorkflowExtensionId != "customAccessPackageWorkflowExtensionIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'CustomAccessPackageWorkflowExtensionId'", id.CustomAccessPackageWorkflowExtensionId, "customAccessPackageWorkflowExtensionIdValue")
+	if id.CustomAccessPackageWorkflowExtensionId != "customAccessPackageWorkflowExtensionId" {
+		t.Fatalf("Expected %q but got %q for Segment 'CustomAccessPackageWorkflowExtensionId'", id.CustomAccessPackageWorkflowExtensionId, "customAccessPackageWorkflowExtensionId")
 	}
 }
 
 func TestFormatIdentityGovernanceEntitlementManagementAccessPackageCatalogIdCustomAccessPackageWorkflowExtensionID(t *testing.T) {
-	actual := NewIdentityGovernanceEntitlementManagementAccessPackageCatalogIdCustomAccessPackageWorkflowExtensionID("accessPackageCatalogIdValue", "customAccessPackageWorkflowExtensionIdValue").ID()
-	expected := "/identityGovernance/entitlementManagement/accessPackageCatalogs/accessPackageCatalogIdValue/customAccessPackageWorkflowExtensions/customAccessPackageWorkflowExtensionIdValue"
+	actual := NewIdentityGovernanceEntitlementManagementAccessPackageCatalogIdCustomAccessPackageWorkflowExtensionID("accessPackageCatalogId", "customAccessPackageWorkflowExtensionId").ID()
+	expected := "/identityGovernance/entitlementManagement/accessPackageCatalogs/accessPackageCatalogId/customAccessPackageWorkflowExtensions/customAccessPackageWorkflowExtensionId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -59,25 +59,25 @@ func TestParseIdentityGovernanceEntitlementManagementAccessPackageCatalogIdCusto
 		},
 		{
 			// Incomplete URI
-			Input: "/identityGovernance/entitlementManagement/accessPackageCatalogs/accessPackageCatalogIdValue",
+			Input: "/identityGovernance/entitlementManagement/accessPackageCatalogs/accessPackageCatalogId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/identityGovernance/entitlementManagement/accessPackageCatalogs/accessPackageCatalogIdValue/customAccessPackageWorkflowExtensions",
+			Input: "/identityGovernance/entitlementManagement/accessPackageCatalogs/accessPackageCatalogId/customAccessPackageWorkflowExtensions",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/identityGovernance/entitlementManagement/accessPackageCatalogs/accessPackageCatalogIdValue/customAccessPackageWorkflowExtensions/customAccessPackageWorkflowExtensionIdValue",
+			Input: "/identityGovernance/entitlementManagement/accessPackageCatalogs/accessPackageCatalogId/customAccessPackageWorkflowExtensions/customAccessPackageWorkflowExtensionId",
 			Expected: &IdentityGovernanceEntitlementManagementAccessPackageCatalogIdCustomAccessPackageWorkflowExtensionId{
-				AccessPackageCatalogId:                 "accessPackageCatalogIdValue",
-				CustomAccessPackageWorkflowExtensionId: "customAccessPackageWorkflowExtensionIdValue",
+				AccessPackageCatalogId:                 "accessPackageCatalogId",
+				CustomAccessPackageWorkflowExtensionId: "customAccessPackageWorkflowExtensionId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/identityGovernance/entitlementManagement/accessPackageCatalogs/accessPackageCatalogIdValue/customAccessPackageWorkflowExtensions/customAccessPackageWorkflowExtensionIdValue/extra",
+			Input: "/identityGovernance/entitlementManagement/accessPackageCatalogs/accessPackageCatalogId/customAccessPackageWorkflowExtensions/customAccessPackageWorkflowExtensionId/extra",
 			Error: true,
 		},
 	}
@@ -150,48 +150,48 @@ func TestParseIdentityGovernanceEntitlementManagementAccessPackageCatalogIdCusto
 		},
 		{
 			// Incomplete URI
-			Input: "/identityGovernance/entitlementManagement/accessPackageCatalogs/accessPackageCatalogIdValue",
+			Input: "/identityGovernance/entitlementManagement/accessPackageCatalogs/accessPackageCatalogId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/iDeNtItYgOvErNaNcE/eNtItLeMeNtMaNaGeMeNt/aCcEsSpAcKaGeCaTaLoGs/aCcEsSpAcKaGeCaTaLoGiDvAlUe",
+			Input: "/iDeNtItYgOvErNaNcE/eNtItLeMeNtMaNaGeMeNt/aCcEsSpAcKaGeCaTaLoGs/aCcEsSpAcKaGeCaTaLoGiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/identityGovernance/entitlementManagement/accessPackageCatalogs/accessPackageCatalogIdValue/customAccessPackageWorkflowExtensions",
+			Input: "/identityGovernance/entitlementManagement/accessPackageCatalogs/accessPackageCatalogId/customAccessPackageWorkflowExtensions",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/iDeNtItYgOvErNaNcE/eNtItLeMeNtMaNaGeMeNt/aCcEsSpAcKaGeCaTaLoGs/aCcEsSpAcKaGeCaTaLoGiDvAlUe/cUsToMaCcEsSpAcKaGeWoRkFlOwExTeNsIoNs",
+			Input: "/iDeNtItYgOvErNaNcE/eNtItLeMeNtMaNaGeMeNt/aCcEsSpAcKaGeCaTaLoGs/aCcEsSpAcKaGeCaTaLoGiD/cUsToMaCcEsSpAcKaGeWoRkFlOwExTeNsIoNs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/identityGovernance/entitlementManagement/accessPackageCatalogs/accessPackageCatalogIdValue/customAccessPackageWorkflowExtensions/customAccessPackageWorkflowExtensionIdValue",
+			Input: "/identityGovernance/entitlementManagement/accessPackageCatalogs/accessPackageCatalogId/customAccessPackageWorkflowExtensions/customAccessPackageWorkflowExtensionId",
 			Expected: &IdentityGovernanceEntitlementManagementAccessPackageCatalogIdCustomAccessPackageWorkflowExtensionId{
-				AccessPackageCatalogId:                 "accessPackageCatalogIdValue",
-				CustomAccessPackageWorkflowExtensionId: "customAccessPackageWorkflowExtensionIdValue",
+				AccessPackageCatalogId:                 "accessPackageCatalogId",
+				CustomAccessPackageWorkflowExtensionId: "customAccessPackageWorkflowExtensionId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/identityGovernance/entitlementManagement/accessPackageCatalogs/accessPackageCatalogIdValue/customAccessPackageWorkflowExtensions/customAccessPackageWorkflowExtensionIdValue/extra",
+			Input: "/identityGovernance/entitlementManagement/accessPackageCatalogs/accessPackageCatalogId/customAccessPackageWorkflowExtensions/customAccessPackageWorkflowExtensionId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/iDeNtItYgOvErNaNcE/eNtItLeMeNtMaNaGeMeNt/aCcEsSpAcKaGeCaTaLoGs/aCcEsSpAcKaGeCaTaLoGiDvAlUe/cUsToMaCcEsSpAcKaGeWoRkFlOwExTeNsIoNs/cUsToMaCcEsSpAcKaGeWoRkFlOwExTeNsIoNiDvAlUe",
+			Input: "/iDeNtItYgOvErNaNcE/eNtItLeMeNtMaNaGeMeNt/aCcEsSpAcKaGeCaTaLoGs/aCcEsSpAcKaGeCaTaLoGiD/cUsToMaCcEsSpAcKaGeWoRkFlOwExTeNsIoNs/cUsToMaCcEsSpAcKaGeWoRkFlOwExTeNsIoNiD",
 			Expected: &IdentityGovernanceEntitlementManagementAccessPackageCatalogIdCustomAccessPackageWorkflowExtensionId{
-				AccessPackageCatalogId:                 "aCcEsSpAcKaGeCaTaLoGiDvAlUe",
-				CustomAccessPackageWorkflowExtensionId: "cUsToMaCcEsSpAcKaGeWoRkFlOwExTeNsIoNiDvAlUe",
+				AccessPackageCatalogId:                 "aCcEsSpAcKaGeCaTaLoGiD",
+				CustomAccessPackageWorkflowExtensionId: "cUsToMaCcEsSpAcKaGeWoRkFlOwExTeNsIoNiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/iDeNtItYgOvErNaNcE/eNtItLeMeNtMaNaGeMeNt/aCcEsSpAcKaGeCaTaLoGs/aCcEsSpAcKaGeCaTaLoGiDvAlUe/cUsToMaCcEsSpAcKaGeWoRkFlOwExTeNsIoNs/cUsToMaCcEsSpAcKaGeWoRkFlOwExTeNsIoNiDvAlUe/extra",
+			Input: "/iDeNtItYgOvErNaNcE/eNtItLeMeNtMaNaGeMeNt/aCcEsSpAcKaGeCaTaLoGs/aCcEsSpAcKaGeCaTaLoGiD/cUsToMaCcEsSpAcKaGeWoRkFlOwExTeNsIoNs/cUsToMaCcEsSpAcKaGeWoRkFlOwExTeNsIoNiD/extra",
 			Error: true,
 		},
 	}

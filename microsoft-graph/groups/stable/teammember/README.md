@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/stable/teammember` Documentation
 
-The `teammember` SDK allows for interaction with the Azure Resource Manager Service `groups` (API Version `stable`).
+The `teammember` SDK allows for interaction with Microsoft Graph `groups` (API Version `stable`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -15,7 +15,7 @@ import "github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/stable/teammemb
 ### Client Initialization
 
 ```go
-client := teammember.NewTeamMemberClientWithBaseURI("https://management.azure.com")
+client := teammember.NewTeamMemberClientWithBaseURI("https://graph.microsoft.com")
 client.Client.Authorizer = authorizer
 ```
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := teammember.NewGroupID("groupIdValue")
+id := teammember.NewGroupID("groupId")
 
 payload := teammember.AddTeamMembersRequest{
 	// ...
@@ -46,14 +46,14 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := teammember.NewGroupID("groupIdValue")
+id := teammember.NewGroupID("groupId")
 
 payload := teammember.ConversationMember{
 	// ...
 }
 
 
-read, err := client.CreateTeamMember(ctx, id, payload)
+read, err := client.CreateTeamMember(ctx, id, payload, teammember.DefaultCreateTeamMemberOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -67,7 +67,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := teammember.NewGroupIdTeamMemberID("groupIdValue", "conversationMemberIdValue")
+id := teammember.NewGroupIdTeamMemberID("groupId", "conversationMemberId")
 
 read, err := client.DeleteTeamMember(ctx, id, teammember.DefaultDeleteTeamMemberOperationOptions())
 if err != nil {
@@ -83,7 +83,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := teammember.NewGroupIdTeamMemberID("groupIdValue", "conversationMemberIdValue")
+id := teammember.NewGroupIdTeamMemberID("groupId", "conversationMemberId")
 
 read, err := client.GetTeamMember(ctx, id, teammember.DefaultGetTeamMemberOperationOptions())
 if err != nil {
@@ -99,7 +99,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := teammember.NewGroupID("groupIdValue")
+id := teammember.NewGroupID("groupId")
 
 read, err := client.GetTeamMembersCount(ctx, id, teammember.DefaultGetTeamMembersCountOperationOptions())
 if err != nil {
@@ -115,7 +115,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := teammember.NewGroupID("groupIdValue")
+id := teammember.NewGroupID("groupId")
 
 // alternatively `client.ListTeamMembers(ctx, id, teammember.DefaultListTeamMembersOperationOptions())` can be used to do batched pagination
 items, err := client.ListTeamMembersComplete(ctx, id, teammember.DefaultListTeamMembersOperationOptions())
@@ -132,14 +132,14 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := teammember.NewGroupIdTeamMemberID("groupIdValue", "conversationMemberIdValue")
+id := teammember.NewGroupIdTeamMemberID("groupId", "conversationMemberId")
 
 payload := teammember.ConversationMember{
 	// ...
 }
 
 
-read, err := client.UpdateTeamMember(ctx, id, payload)
+read, err := client.UpdateTeamMember(ctx, id, payload, teammember.DefaultUpdateTeamMemberOperationOptions())
 if err != nil {
 	// handle the error
 }

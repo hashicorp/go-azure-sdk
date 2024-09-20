@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &DeviceManagementManagedDeviceWindowsOSImageId{}
 
 func TestNewDeviceManagementManagedDeviceWindowsOSImageID(t *testing.T) {
-	id := NewDeviceManagementManagedDeviceWindowsOSImageID("managedDeviceWindowsOperatingSystemImageIdValue")
+	id := NewDeviceManagementManagedDeviceWindowsOSImageID("managedDeviceWindowsOperatingSystemImageId")
 
-	if id.ManagedDeviceWindowsOperatingSystemImageId != "managedDeviceWindowsOperatingSystemImageIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ManagedDeviceWindowsOperatingSystemImageId'", id.ManagedDeviceWindowsOperatingSystemImageId, "managedDeviceWindowsOperatingSystemImageIdValue")
+	if id.ManagedDeviceWindowsOperatingSystemImageId != "managedDeviceWindowsOperatingSystemImageId" {
+		t.Fatalf("Expected %q but got %q for Segment 'ManagedDeviceWindowsOperatingSystemImageId'", id.ManagedDeviceWindowsOperatingSystemImageId, "managedDeviceWindowsOperatingSystemImageId")
 	}
 }
 
 func TestFormatDeviceManagementManagedDeviceWindowsOSImageID(t *testing.T) {
-	actual := NewDeviceManagementManagedDeviceWindowsOSImageID("managedDeviceWindowsOperatingSystemImageIdValue").ID()
-	expected := "/deviceManagement/managedDeviceWindowsOSImages/managedDeviceWindowsOperatingSystemImageIdValue"
+	actual := NewDeviceManagementManagedDeviceWindowsOSImageID("managedDeviceWindowsOperatingSystemImageId").ID()
+	expected := "/deviceManagement/managedDeviceWindowsOSImages/managedDeviceWindowsOperatingSystemImageId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -50,14 +50,14 @@ func TestParseDeviceManagementManagedDeviceWindowsOSImageID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/managedDeviceWindowsOSImages/managedDeviceWindowsOperatingSystemImageIdValue",
+			Input: "/deviceManagement/managedDeviceWindowsOSImages/managedDeviceWindowsOperatingSystemImageId",
 			Expected: &DeviceManagementManagedDeviceWindowsOSImageId{
-				ManagedDeviceWindowsOperatingSystemImageId: "managedDeviceWindowsOperatingSystemImageIdValue",
+				ManagedDeviceWindowsOperatingSystemImageId: "managedDeviceWindowsOperatingSystemImageId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/managedDeviceWindowsOSImages/managedDeviceWindowsOperatingSystemImageIdValue/extra",
+			Input: "/deviceManagement/managedDeviceWindowsOSImages/managedDeviceWindowsOperatingSystemImageId/extra",
 			Error: true,
 		},
 	}
@@ -116,26 +116,26 @@ func TestParseDeviceManagementManagedDeviceWindowsOSImageIDInsensitively(t *test
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/managedDeviceWindowsOSImages/managedDeviceWindowsOperatingSystemImageIdValue",
+			Input: "/deviceManagement/managedDeviceWindowsOSImages/managedDeviceWindowsOperatingSystemImageId",
 			Expected: &DeviceManagementManagedDeviceWindowsOSImageId{
-				ManagedDeviceWindowsOperatingSystemImageId: "managedDeviceWindowsOperatingSystemImageIdValue",
+				ManagedDeviceWindowsOperatingSystemImageId: "managedDeviceWindowsOperatingSystemImageId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/managedDeviceWindowsOSImages/managedDeviceWindowsOperatingSystemImageIdValue/extra",
+			Input: "/deviceManagement/managedDeviceWindowsOSImages/managedDeviceWindowsOperatingSystemImageId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/mAnAgEdDeViCeWiNdOwSoSiMaGeS/mAnAgEdDeViCeWiNdOwSoPeRaTiNgSyStEmImAgEiDvAlUe",
+			Input: "/dEvIcEmAnAgEmEnT/mAnAgEdDeViCeWiNdOwSoSiMaGeS/mAnAgEdDeViCeWiNdOwSoPeRaTiNgSyStEmImAgEiD",
 			Expected: &DeviceManagementManagedDeviceWindowsOSImageId{
-				ManagedDeviceWindowsOperatingSystemImageId: "mAnAgEdDeViCeWiNdOwSoPeRaTiNgSyStEmImAgEiDvAlUe",
+				ManagedDeviceWindowsOperatingSystemImageId: "mAnAgEdDeViCeWiNdOwSoPeRaTiNgSyStEmImAgEiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/mAnAgEdDeViCeWiNdOwSoSiMaGeS/mAnAgEdDeViCeWiNdOwSoPeRaTiNgSyStEmImAgEiDvAlUe/extra",
+			Input: "/dEvIcEmAnAgEmEnT/mAnAgEdDeViCeWiNdOwSoSiMaGeS/mAnAgEdDeViCeWiNdOwSoPeRaTiNgSyStEmImAgEiD/extra",
 			Error: true,
 		},
 	}

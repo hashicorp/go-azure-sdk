@@ -94,7 +94,7 @@ func (id MeOnenoteOperationId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("me", "me", "me"),
 		resourceids.StaticSegment("onenote", "onenote", "onenote"),
 		resourceids.StaticSegment("operations", "operations", "operations"),
-		resourceids.UserSpecifiedSegment("onenoteOperationId", "onenoteOperationIdValue"),
+		resourceids.UserSpecifiedSegment("onenoteOperationId", "onenoteOperationId"),
 	}
 }
 

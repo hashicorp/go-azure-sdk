@@ -18,16 +18,45 @@ type CreateTeamChannelMessageUndoSoftDeleteOperationResponse struct {
 	OData        *odata.OData
 }
 
+type CreateTeamChannelMessageUndoSoftDeleteOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateTeamChannelMessageUndoSoftDeleteOperationOptions() CreateTeamChannelMessageUndoSoftDeleteOperationOptions {
+	return CreateTeamChannelMessageUndoSoftDeleteOperationOptions{}
+}
+
+func (o CreateTeamChannelMessageUndoSoftDeleteOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateTeamChannelMessageUndoSoftDeleteOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateTeamChannelMessageUndoSoftDeleteOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateTeamChannelMessageUndoSoftDelete - Invoke action undoSoftDelete. Undo soft deletion of a single chatMessage or
 // a chat message reply in a channel or a chat.
-func (c TeamChannelMessageClient) CreateTeamChannelMessageUndoSoftDelete(ctx context.Context, id beta.GroupIdTeamChannelIdMessageId) (result CreateTeamChannelMessageUndoSoftDeleteOperationResponse, err error) {
+func (c TeamChannelMessageClient) CreateTeamChannelMessageUndoSoftDelete(ctx context.Context, id beta.GroupIdTeamChannelIdMessageId, options CreateTeamChannelMessageUndoSoftDeleteOperationOptions) (result CreateTeamChannelMessageUndoSoftDeleteOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/undoSoftDelete", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/undoSoftDelete", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

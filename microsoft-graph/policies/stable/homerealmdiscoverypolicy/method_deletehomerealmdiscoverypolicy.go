@@ -19,7 +19,8 @@ type DeleteHomeRealmDiscoveryPolicyOperationResponse struct {
 }
 
 type DeleteHomeRealmDiscoveryPolicyOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteHomeRealmDiscoveryPolicyOperationOptions() DeleteHomeRealmDiscoveryPolicyOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteHomeRealmDiscoveryPolicyOperationOptions) ToHeaders() *client.Head
 
 func (o DeleteHomeRealmDiscoveryPolicyOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

@@ -19,15 +19,44 @@ type CreateProfileNameOperationResponse struct {
 	Model        *beta.PersonName
 }
 
+type CreateProfileNameOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateProfileNameOperationOptions() CreateProfileNameOperationOptions {
+	return CreateProfileNameOperationOptions{}
+}
+
+func (o CreateProfileNameOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateProfileNameOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateProfileNameOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateProfileName - Create new navigation property to names for users
-func (c ProfileNameClient) CreateProfileName(ctx context.Context, id beta.UserId, input beta.PersonName) (result CreateProfileNameOperationResponse, err error) {
+func (c ProfileNameClient) CreateProfileName(ctx context.Context, id beta.UserId, input beta.PersonName, options CreateProfileNameOperationOptions) (result CreateProfileNameOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/profile/names", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/profile/names", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

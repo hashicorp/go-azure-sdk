@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &AuditLogCustomSecurityAttributeAuditId{}
 
 func TestNewAuditLogCustomSecurityAttributeAuditID(t *testing.T) {
-	id := NewAuditLogCustomSecurityAttributeAuditID("customSecurityAttributeAuditIdValue")
+	id := NewAuditLogCustomSecurityAttributeAuditID("customSecurityAttributeAuditId")
 
-	if id.CustomSecurityAttributeAuditId != "customSecurityAttributeAuditIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'CustomSecurityAttributeAuditId'", id.CustomSecurityAttributeAuditId, "customSecurityAttributeAuditIdValue")
+	if id.CustomSecurityAttributeAuditId != "customSecurityAttributeAuditId" {
+		t.Fatalf("Expected %q but got %q for Segment 'CustomSecurityAttributeAuditId'", id.CustomSecurityAttributeAuditId, "customSecurityAttributeAuditId")
 	}
 }
 
 func TestFormatAuditLogCustomSecurityAttributeAuditID(t *testing.T) {
-	actual := NewAuditLogCustomSecurityAttributeAuditID("customSecurityAttributeAuditIdValue").ID()
-	expected := "/auditLogs/customSecurityAttributeAudits/customSecurityAttributeAuditIdValue"
+	actual := NewAuditLogCustomSecurityAttributeAuditID("customSecurityAttributeAuditId").ID()
+	expected := "/auditLogs/customSecurityAttributeAudits/customSecurityAttributeAuditId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -50,14 +50,14 @@ func TestParseAuditLogCustomSecurityAttributeAuditID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/auditLogs/customSecurityAttributeAudits/customSecurityAttributeAuditIdValue",
+			Input: "/auditLogs/customSecurityAttributeAudits/customSecurityAttributeAuditId",
 			Expected: &AuditLogCustomSecurityAttributeAuditId{
-				CustomSecurityAttributeAuditId: "customSecurityAttributeAuditIdValue",
+				CustomSecurityAttributeAuditId: "customSecurityAttributeAuditId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/auditLogs/customSecurityAttributeAudits/customSecurityAttributeAuditIdValue/extra",
+			Input: "/auditLogs/customSecurityAttributeAudits/customSecurityAttributeAuditId/extra",
 			Error: true,
 		},
 	}
@@ -116,26 +116,26 @@ func TestParseAuditLogCustomSecurityAttributeAuditIDInsensitively(t *testing.T) 
 		},
 		{
 			// Valid URI
-			Input: "/auditLogs/customSecurityAttributeAudits/customSecurityAttributeAuditIdValue",
+			Input: "/auditLogs/customSecurityAttributeAudits/customSecurityAttributeAuditId",
 			Expected: &AuditLogCustomSecurityAttributeAuditId{
-				CustomSecurityAttributeAuditId: "customSecurityAttributeAuditIdValue",
+				CustomSecurityAttributeAuditId: "customSecurityAttributeAuditId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/auditLogs/customSecurityAttributeAudits/customSecurityAttributeAuditIdValue/extra",
+			Input: "/auditLogs/customSecurityAttributeAudits/customSecurityAttributeAuditId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/aUdItLoGs/cUsToMsEcUrItYaTtRiBuTeAuDiTs/cUsToMsEcUrItYaTtRiBuTeAuDiTiDvAlUe",
+			Input: "/aUdItLoGs/cUsToMsEcUrItYaTtRiBuTeAuDiTs/cUsToMsEcUrItYaTtRiBuTeAuDiTiD",
 			Expected: &AuditLogCustomSecurityAttributeAuditId{
-				CustomSecurityAttributeAuditId: "cUsToMsEcUrItYaTtRiBuTeAuDiTiDvAlUe",
+				CustomSecurityAttributeAuditId: "cUsToMsEcUrItYaTtRiBuTeAuDiTiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/aUdItLoGs/cUsToMsEcUrItYaTtRiBuTeAuDiTs/cUsToMsEcUrItYaTtRiBuTeAuDiTiDvAlUe/extra",
+			Input: "/aUdItLoGs/cUsToMsEcUrItYaTtRiBuTeAuDiTs/cUsToMsEcUrItYaTtRiBuTeAuDiTiD/extra",
 			Error: true,
 		},
 	}

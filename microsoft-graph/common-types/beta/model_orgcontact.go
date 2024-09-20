@@ -170,27 +170,52 @@ func (s OrgContact) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &OrgContact{}
 
 func (s *OrgContact) UnmarshalJSON(bytes []byte) error {
-	type alias OrgContact
-	var decoded alias
+
+	var decoded struct {
+		Addresses                    *[]PhysicalOfficeAddress       `json:"addresses,omitempty"`
+		CompanyName                  nullable.Type[string]          `json:"companyName,omitempty"`
+		Department                   nullable.Type[string]          `json:"department,omitempty"`
+		DirectReports                *[]DirectoryObject             `json:"directReports,omitempty"`
+		DirectReports_ODataBind      *[]string                      `json:"directReports@odata.bind,omitempty"`
+		DisplayName                  nullable.Type[string]          `json:"displayName,omitempty"`
+		GivenName                    nullable.Type[string]          `json:"givenName,omitempty"`
+		JobTitle                     nullable.Type[string]          `json:"jobTitle,omitempty"`
+		Mail                         nullable.Type[string]          `json:"mail,omitempty"`
+		MailNickname                 nullable.Type[string]          `json:"mailNickname,omitempty"`
+		Manager_ODataBind            *string                        `json:"manager@odata.bind,omitempty"`
+		MemberOf                     *[]DirectoryObject             `json:"memberOf,omitempty"`
+		MemberOf_ODataBind           *[]string                      `json:"memberOf@odata.bind,omitempty"`
+		OnPremisesLastSyncDateTime   nullable.Type[string]          `json:"onPremisesLastSyncDateTime,omitempty"`
+		OnPremisesProvisioningErrors *[]OnPremisesProvisioningError `json:"onPremisesProvisioningErrors,omitempty"`
+		OnPremisesSyncEnabled        nullable.Type[bool]            `json:"onPremisesSyncEnabled,omitempty"`
+		Phones                       *[]Phone                       `json:"phones,omitempty"`
+		ProxyAddresses               *[]string                      `json:"proxyAddresses,omitempty"`
+		ServiceProvisioningErrors    *[]ServiceProvisioningError    `json:"serviceProvisioningErrors,omitempty"`
+		Surname                      nullable.Type[string]          `json:"surname,omitempty"`
+		TransitiveMemberOf           *[]DirectoryObject             `json:"transitiveMemberOf,omitempty"`
+		TransitiveMemberOf_ODataBind *[]string                      `json:"transitiveMemberOf@odata.bind,omitempty"`
+		TransitiveReports            *[]DirectoryObject             `json:"transitiveReports,omitempty"`
+		TransitiveReports_ODataBind  *[]string                      `json:"transitiveReports@odata.bind,omitempty"`
+		DeletedDateTime              nullable.Type[string]          `json:"deletedDateTime,omitempty"`
+		Id                           *string                        `json:"id,omitempty"`
+		ODataId                      *string                        `json:"@odata.id,omitempty"`
+		ODataType                    *string                        `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into OrgContact: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.Addresses = decoded.Addresses
 	s.CompanyName = decoded.CompanyName
-	s.DeletedDateTime = decoded.DeletedDateTime
 	s.Department = decoded.Department
 	s.DirectReports_ODataBind = decoded.DirectReports_ODataBind
 	s.DisplayName = decoded.DisplayName
 	s.GivenName = decoded.GivenName
-	s.Id = decoded.Id
 	s.JobTitle = decoded.JobTitle
 	s.Mail = decoded.Mail
 	s.MailNickname = decoded.MailNickname
 	s.Manager_ODataBind = decoded.Manager_ODataBind
 	s.MemberOf_ODataBind = decoded.MemberOf_ODataBind
-	s.ODataId = decoded.ODataId
-	s.ODataType = decoded.ODataType
 	s.OnPremisesLastSyncDateTime = decoded.OnPremisesLastSyncDateTime
 	s.OnPremisesProvisioningErrors = decoded.OnPremisesProvisioningErrors
 	s.OnPremisesSyncEnabled = decoded.OnPremisesSyncEnabled
@@ -199,6 +224,10 @@ func (s *OrgContact) UnmarshalJSON(bytes []byte) error {
 	s.Surname = decoded.Surname
 	s.TransitiveMemberOf_ODataBind = decoded.TransitiveMemberOf_ODataBind
 	s.TransitiveReports_ODataBind = decoded.TransitiveReports_ODataBind
+	s.DeletedDateTime = decoded.DeletedDateTime
+	s.Id = decoded.Id
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -297,5 +326,6 @@ func (s *OrgContact) UnmarshalJSON(bytes []byte) error {
 		}
 		s.TransitiveReports = &output
 	}
+
 	return nil
 }

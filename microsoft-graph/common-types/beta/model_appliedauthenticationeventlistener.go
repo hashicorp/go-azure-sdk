@@ -31,10 +31,15 @@ type AppliedAuthenticationEventListener struct {
 var _ json.Unmarshaler = &AppliedAuthenticationEventListener{}
 
 func (s *AppliedAuthenticationEventListener) UnmarshalJSON(bytes []byte) error {
-	type alias AppliedAuthenticationEventListener
-	var decoded alias
+
+	var decoded struct {
+		EventType          *AuthenticationEventType `json:"eventType,omitempty"`
+		ExecutedListenerId nullable.Type[string]    `json:"executedListenerId,omitempty"`
+		ODataId            *string                  `json:"@odata.id,omitempty"`
+		ODataType          *string                  `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into AppliedAuthenticationEventListener: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.EventType = decoded.EventType
@@ -54,5 +59,6 @@ func (s *AppliedAuthenticationEventListener) UnmarshalJSON(bytes []byte) error {
 		}
 		s.HandlerResult = impl
 	}
+
 	return nil
 }

@@ -19,15 +19,44 @@ type CreateDriveRootAnalyticsItemActivityStatOperationResponse struct {
 	Model        *stable.ItemActivityStat
 }
 
+type CreateDriveRootAnalyticsItemActivityStatOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateDriveRootAnalyticsItemActivityStatOperationOptions() CreateDriveRootAnalyticsItemActivityStatOperationOptions {
+	return CreateDriveRootAnalyticsItemActivityStatOperationOptions{}
+}
+
+func (o CreateDriveRootAnalyticsItemActivityStatOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateDriveRootAnalyticsItemActivityStatOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateDriveRootAnalyticsItemActivityStatOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateDriveRootAnalyticsItemActivityStat - Create new navigation property to itemActivityStats for users
-func (c DriveRootAnalyticsItemActivityStatClient) CreateDriveRootAnalyticsItemActivityStat(ctx context.Context, id stable.UserIdDriveId, input stable.ItemActivityStat) (result CreateDriveRootAnalyticsItemActivityStatOperationResponse, err error) {
+func (c DriveRootAnalyticsItemActivityStatClient) CreateDriveRootAnalyticsItemActivityStat(ctx context.Context, id stable.UserIdDriveId, input stable.ItemActivityStat, options CreateDriveRootAnalyticsItemActivityStatOperationOptions) (result CreateDriveRootAnalyticsItemActivityStatOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/root/analytics/itemActivityStats", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/root/analytics/itemActivityStats", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

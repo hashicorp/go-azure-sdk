@@ -17,16 +17,45 @@ type UpdateAndroidManagedStoreAccountEnterpriseSettingOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateAndroidManagedStoreAccountEnterpriseSettingOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateAndroidManagedStoreAccountEnterpriseSettingOperationOptions() UpdateAndroidManagedStoreAccountEnterpriseSettingOperationOptions {
+	return UpdateAndroidManagedStoreAccountEnterpriseSettingOperationOptions{}
+}
+
+func (o UpdateAndroidManagedStoreAccountEnterpriseSettingOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateAndroidManagedStoreAccountEnterpriseSettingOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateAndroidManagedStoreAccountEnterpriseSettingOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateAndroidManagedStoreAccountEnterpriseSetting - Update the navigation property
 // androidManagedStoreAccountEnterpriseSettings in deviceManagement
-func (c AndroidManagedStoreAccountEnterpriseSettingClient) UpdateAndroidManagedStoreAccountEnterpriseSetting(ctx context.Context, input beta.AndroidManagedStoreAccountEnterpriseSettings) (result UpdateAndroidManagedStoreAccountEnterpriseSettingOperationResponse, err error) {
+func (c AndroidManagedStoreAccountEnterpriseSettingClient) UpdateAndroidManagedStoreAccountEnterpriseSetting(ctx context.Context, input beta.AndroidManagedStoreAccountEnterpriseSettings, options UpdateAndroidManagedStoreAccountEnterpriseSettingOperationOptions) (result UpdateAndroidManagedStoreAccountEnterpriseSettingOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       "/deviceManagement/androidManagedStoreAccountEnterpriseSettings",
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          "/deviceManagement/androidManagedStoreAccountEnterpriseSettings",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

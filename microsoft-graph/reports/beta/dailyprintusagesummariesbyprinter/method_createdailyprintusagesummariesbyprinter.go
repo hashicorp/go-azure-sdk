@@ -18,16 +18,45 @@ type CreateDailyPrintUsageSummariesByPrinterOperationResponse struct {
 	Model        *beta.PrintUsageByPrinter
 }
 
+type CreateDailyPrintUsageSummariesByPrinterOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateDailyPrintUsageSummariesByPrinterOperationOptions() CreateDailyPrintUsageSummariesByPrinterOperationOptions {
+	return CreateDailyPrintUsageSummariesByPrinterOperationOptions{}
+}
+
+func (o CreateDailyPrintUsageSummariesByPrinterOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateDailyPrintUsageSummariesByPrinterOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateDailyPrintUsageSummariesByPrinterOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateDailyPrintUsageSummariesByPrinter - Create new navigation property to dailyPrintUsageSummariesByPrinter for
 // reports
-func (c DailyPrintUsageSummariesByPrinterClient) CreateDailyPrintUsageSummariesByPrinter(ctx context.Context, input beta.PrintUsageByPrinter) (result CreateDailyPrintUsageSummariesByPrinterOperationResponse, err error) {
+func (c DailyPrintUsageSummariesByPrinterClient) CreateDailyPrintUsageSummariesByPrinter(ctx context.Context, input beta.PrintUsageByPrinter, options CreateDailyPrintUsageSummariesByPrinterOperationOptions) (result CreateDailyPrintUsageSummariesByPrinterOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/reports/dailyPrintUsageSummariesByPrinter",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/reports/dailyPrintUsageSummariesByPrinter",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -19,7 +19,8 @@ type DeleteAdministrativeUnitOperationResponse struct {
 }
 
 type DeleteAdministrativeUnitOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteAdministrativeUnitOperationOptions() DeleteAdministrativeUnitOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteAdministrativeUnitOperationOptions) ToHeaders() *client.Headers {
 
 func (o DeleteAdministrativeUnitOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

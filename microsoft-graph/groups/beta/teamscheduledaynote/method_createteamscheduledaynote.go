@@ -19,15 +19,44 @@ type CreateTeamScheduleDayNoteOperationResponse struct {
 	Model        *beta.DayNote
 }
 
+type CreateTeamScheduleDayNoteOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateTeamScheduleDayNoteOperationOptions() CreateTeamScheduleDayNoteOperationOptions {
+	return CreateTeamScheduleDayNoteOperationOptions{}
+}
+
+func (o CreateTeamScheduleDayNoteOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateTeamScheduleDayNoteOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateTeamScheduleDayNoteOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateTeamScheduleDayNote - Create new navigation property to dayNotes for groups
-func (c TeamScheduleDayNoteClient) CreateTeamScheduleDayNote(ctx context.Context, id beta.GroupId, input beta.DayNote) (result CreateTeamScheduleDayNoteOperationResponse, err error) {
+func (c TeamScheduleDayNoteClient) CreateTeamScheduleDayNote(ctx context.Context, id beta.GroupId, input beta.DayNote, options CreateTeamScheduleDayNoteOperationOptions) (result CreateTeamScheduleDayNoteOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/team/schedule/dayNotes", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/team/schedule/dayNotes", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

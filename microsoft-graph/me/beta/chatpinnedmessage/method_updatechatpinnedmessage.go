@@ -17,15 +17,44 @@ type UpdateChatPinnedMessageOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateChatPinnedMessageOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateChatPinnedMessageOperationOptions() UpdateChatPinnedMessageOperationOptions {
+	return UpdateChatPinnedMessageOperationOptions{}
+}
+
+func (o UpdateChatPinnedMessageOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateChatPinnedMessageOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateChatPinnedMessageOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateChatPinnedMessage - Update the navigation property pinnedMessages in me
-func (c ChatPinnedMessageClient) UpdateChatPinnedMessage(ctx context.Context, id beta.MeChatIdPinnedMessageId, input beta.PinnedChatMessageInfo) (result UpdateChatPinnedMessageOperationResponse, err error) {
+func (c ChatPinnedMessageClient) UpdateChatPinnedMessage(ctx context.Context, id beta.MeChatIdPinnedMessageId, input beta.PinnedChatMessageInfo, options UpdateChatPinnedMessageOperationOptions) (result UpdateChatPinnedMessageOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -19,7 +19,8 @@ type DeleteCloudPCRoleAssignmentAppScopeOperationResponse struct {
 }
 
 type DeleteCloudPCRoleAssignmentAppScopeOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteCloudPCRoleAssignmentAppScopeOperationOptions() DeleteCloudPCRoleAssignmentAppScopeOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteCloudPCRoleAssignmentAppScopeOperationOptions) ToHeaders() *client
 
 func (o DeleteCloudPCRoleAssignmentAppScopeOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

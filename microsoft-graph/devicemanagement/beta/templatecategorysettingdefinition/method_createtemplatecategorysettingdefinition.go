@@ -20,15 +20,44 @@ type CreateTemplateCategorySettingDefinitionOperationResponse struct {
 	Model        beta.DeviceManagementSettingDefinition
 }
 
+type CreateTemplateCategorySettingDefinitionOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateTemplateCategorySettingDefinitionOperationOptions() CreateTemplateCategorySettingDefinitionOperationOptions {
+	return CreateTemplateCategorySettingDefinitionOperationOptions{}
+}
+
+func (o CreateTemplateCategorySettingDefinitionOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateTemplateCategorySettingDefinitionOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateTemplateCategorySettingDefinitionOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateTemplateCategorySettingDefinition - Create new navigation property to settingDefinitions for deviceManagement
-func (c TemplateCategorySettingDefinitionClient) CreateTemplateCategorySettingDefinition(ctx context.Context, id beta.DeviceManagementTemplateIdCategoryId, input beta.DeviceManagementSettingDefinition) (result CreateTemplateCategorySettingDefinitionOperationResponse, err error) {
+func (c TemplateCategorySettingDefinitionClient) CreateTemplateCategorySettingDefinition(ctx context.Context, id beta.DeviceManagementTemplateIdCategoryId, input beta.DeviceManagementSettingDefinition, options CreateTemplateCategorySettingDefinitionOperationOptions) (result CreateTemplateCategorySettingDefinitionOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/settingDefinitions", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/settingDefinitions", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

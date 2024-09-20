@@ -19,15 +19,44 @@ type CreateProfileInterestOperationResponse struct {
 	Model        *beta.PersonInterest
 }
 
+type CreateProfileInterestOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateProfileInterestOperationOptions() CreateProfileInterestOperationOptions {
+	return CreateProfileInterestOperationOptions{}
+}
+
+func (o CreateProfileInterestOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateProfileInterestOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateProfileInterestOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateProfileInterest - Create new navigation property to interests for users
-func (c ProfileInterestClient) CreateProfileInterest(ctx context.Context, id beta.UserId, input beta.PersonInterest) (result CreateProfileInterestOperationResponse, err error) {
+func (c ProfileInterestClient) CreateProfileInterest(ctx context.Context, id beta.UserId, input beta.PersonInterest, options CreateProfileInterestOperationOptions) (result CreateProfileInterestOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/profile/interests", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/profile/interests", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

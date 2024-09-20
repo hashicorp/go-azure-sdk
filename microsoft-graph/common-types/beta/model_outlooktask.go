@@ -150,27 +150,46 @@ func (s OutlookTask) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &OutlookTask{}
 
 func (s *OutlookTask) UnmarshalJSON(bytes []byte) error {
-	type alias OutlookTask
-	var decoded alias
+
+	var decoded struct {
+		AssignedTo                    nullable.Type[string]                `json:"assignedTo,omitempty"`
+		Attachments                   *[]Attachment                        `json:"attachments,omitempty"`
+		Body                          *ItemBody                            `json:"body,omitempty"`
+		CompletedDateTime             *DateTimeTimeZone                    `json:"completedDateTime,omitempty"`
+		DueDateTime                   *DateTimeTimeZone                    `json:"dueDateTime,omitempty"`
+		HasAttachments                nullable.Type[bool]                  `json:"hasAttachments,omitempty"`
+		Importance                    *Importance                          `json:"importance,omitempty"`
+		IsReminderOn                  nullable.Type[bool]                  `json:"isReminderOn,omitempty"`
+		MultiValueExtendedProperties  *[]MultiValueLegacyExtendedProperty  `json:"multiValueExtendedProperties,omitempty"`
+		Owner                         nullable.Type[string]                `json:"owner,omitempty"`
+		ParentFolderId                nullable.Type[string]                `json:"parentFolderId,omitempty"`
+		Recurrence                    *PatternedRecurrence                 `json:"recurrence,omitempty"`
+		ReminderDateTime              *DateTimeTimeZone                    `json:"reminderDateTime,omitempty"`
+		Sensitivity                   *Sensitivity                         `json:"sensitivity,omitempty"`
+		SingleValueExtendedProperties *[]SingleValueLegacyExtendedProperty `json:"singleValueExtendedProperties,omitempty"`
+		StartDateTime                 *DateTimeTimeZone                    `json:"startDateTime,omitempty"`
+		Status                        *TaskStatus                          `json:"status,omitempty"`
+		Subject                       nullable.Type[string]                `json:"subject,omitempty"`
+		Categories                    *[]string                            `json:"categories,omitempty"`
+		ChangeKey                     nullable.Type[string]                `json:"changeKey,omitempty"`
+		CreatedDateTime               nullable.Type[string]                `json:"createdDateTime,omitempty"`
+		LastModifiedDateTime          nullable.Type[string]                `json:"lastModifiedDateTime,omitempty"`
+		Id                            *string                              `json:"id,omitempty"`
+		ODataId                       *string                              `json:"@odata.id,omitempty"`
+		ODataType                     *string                              `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into OutlookTask: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.AssignedTo = decoded.AssignedTo
 	s.Body = decoded.Body
-	s.Categories = decoded.Categories
-	s.ChangeKey = decoded.ChangeKey
 	s.CompletedDateTime = decoded.CompletedDateTime
-	s.CreatedDateTime = decoded.CreatedDateTime
 	s.DueDateTime = decoded.DueDateTime
 	s.HasAttachments = decoded.HasAttachments
-	s.Id = decoded.Id
 	s.Importance = decoded.Importance
 	s.IsReminderOn = decoded.IsReminderOn
-	s.LastModifiedDateTime = decoded.LastModifiedDateTime
 	s.MultiValueExtendedProperties = decoded.MultiValueExtendedProperties
-	s.ODataId = decoded.ODataId
-	s.ODataType = decoded.ODataType
 	s.Owner = decoded.Owner
 	s.ParentFolderId = decoded.ParentFolderId
 	s.Recurrence = decoded.Recurrence
@@ -180,6 +199,13 @@ func (s *OutlookTask) UnmarshalJSON(bytes []byte) error {
 	s.StartDateTime = decoded.StartDateTime
 	s.Status = decoded.Status
 	s.Subject = decoded.Subject
+	s.Categories = decoded.Categories
+	s.ChangeKey = decoded.ChangeKey
+	s.CreatedDateTime = decoded.CreatedDateTime
+	s.Id = decoded.Id
+	s.LastModifiedDateTime = decoded.LastModifiedDateTime
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -202,5 +228,6 @@ func (s *OutlookTask) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Attachments = &output
 	}
+
 	return nil
 }

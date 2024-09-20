@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &DeviceManagementDeviceShellScriptIdDeviceRunStateId{}
 
 func TestNewDeviceManagementDeviceShellScriptIdDeviceRunStateID(t *testing.T) {
-	id := NewDeviceManagementDeviceShellScriptIdDeviceRunStateID("deviceShellScriptIdValue", "deviceManagementScriptDeviceStateIdValue")
+	id := NewDeviceManagementDeviceShellScriptIdDeviceRunStateID("deviceShellScriptId", "deviceManagementScriptDeviceStateId")
 
-	if id.DeviceShellScriptId != "deviceShellScriptIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DeviceShellScriptId'", id.DeviceShellScriptId, "deviceShellScriptIdValue")
+	if id.DeviceShellScriptId != "deviceShellScriptId" {
+		t.Fatalf("Expected %q but got %q for Segment 'DeviceShellScriptId'", id.DeviceShellScriptId, "deviceShellScriptId")
 	}
 
-	if id.DeviceManagementScriptDeviceStateId != "deviceManagementScriptDeviceStateIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DeviceManagementScriptDeviceStateId'", id.DeviceManagementScriptDeviceStateId, "deviceManagementScriptDeviceStateIdValue")
+	if id.DeviceManagementScriptDeviceStateId != "deviceManagementScriptDeviceStateId" {
+		t.Fatalf("Expected %q but got %q for Segment 'DeviceManagementScriptDeviceStateId'", id.DeviceManagementScriptDeviceStateId, "deviceManagementScriptDeviceStateId")
 	}
 }
 
 func TestFormatDeviceManagementDeviceShellScriptIdDeviceRunStateID(t *testing.T) {
-	actual := NewDeviceManagementDeviceShellScriptIdDeviceRunStateID("deviceShellScriptIdValue", "deviceManagementScriptDeviceStateIdValue").ID()
-	expected := "/deviceManagement/deviceShellScripts/deviceShellScriptIdValue/deviceRunStates/deviceManagementScriptDeviceStateIdValue"
+	actual := NewDeviceManagementDeviceShellScriptIdDeviceRunStateID("deviceShellScriptId", "deviceManagementScriptDeviceStateId").ID()
+	expected := "/deviceManagement/deviceShellScripts/deviceShellScriptId/deviceRunStates/deviceManagementScriptDeviceStateId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -54,25 +54,25 @@ func TestParseDeviceManagementDeviceShellScriptIdDeviceRunStateID(t *testing.T) 
 		},
 		{
 			// Incomplete URI
-			Input: "/deviceManagement/deviceShellScripts/deviceShellScriptIdValue",
+			Input: "/deviceManagement/deviceShellScripts/deviceShellScriptId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/deviceManagement/deviceShellScripts/deviceShellScriptIdValue/deviceRunStates",
+			Input: "/deviceManagement/deviceShellScripts/deviceShellScriptId/deviceRunStates",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/deviceShellScripts/deviceShellScriptIdValue/deviceRunStates/deviceManagementScriptDeviceStateIdValue",
+			Input: "/deviceManagement/deviceShellScripts/deviceShellScriptId/deviceRunStates/deviceManagementScriptDeviceStateId",
 			Expected: &DeviceManagementDeviceShellScriptIdDeviceRunStateId{
-				DeviceShellScriptId:                 "deviceShellScriptIdValue",
-				DeviceManagementScriptDeviceStateId: "deviceManagementScriptDeviceStateIdValue",
+				DeviceShellScriptId:                 "deviceShellScriptId",
+				DeviceManagementScriptDeviceStateId: "deviceManagementScriptDeviceStateId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/deviceShellScripts/deviceShellScriptIdValue/deviceRunStates/deviceManagementScriptDeviceStateIdValue/extra",
+			Input: "/deviceManagement/deviceShellScripts/deviceShellScriptId/deviceRunStates/deviceManagementScriptDeviceStateId/extra",
 			Error: true,
 		},
 	}
@@ -135,48 +135,48 @@ func TestParseDeviceManagementDeviceShellScriptIdDeviceRunStateIDInsensitively(t
 		},
 		{
 			// Incomplete URI
-			Input: "/deviceManagement/deviceShellScripts/deviceShellScriptIdValue",
+			Input: "/deviceManagement/deviceShellScripts/deviceShellScriptId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/dEvIcEsHeLlScRiPtS/dEvIcEsHeLlScRiPtIdVaLuE",
+			Input: "/dEvIcEmAnAgEmEnT/dEvIcEsHeLlScRiPtS/dEvIcEsHeLlScRiPtId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/deviceManagement/deviceShellScripts/deviceShellScriptIdValue/deviceRunStates",
+			Input: "/deviceManagement/deviceShellScripts/deviceShellScriptId/deviceRunStates",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/dEvIcEsHeLlScRiPtS/dEvIcEsHeLlScRiPtIdVaLuE/dEvIcErUnStAtEs",
+			Input: "/dEvIcEmAnAgEmEnT/dEvIcEsHeLlScRiPtS/dEvIcEsHeLlScRiPtId/dEvIcErUnStAtEs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/deviceShellScripts/deviceShellScriptIdValue/deviceRunStates/deviceManagementScriptDeviceStateIdValue",
+			Input: "/deviceManagement/deviceShellScripts/deviceShellScriptId/deviceRunStates/deviceManagementScriptDeviceStateId",
 			Expected: &DeviceManagementDeviceShellScriptIdDeviceRunStateId{
-				DeviceShellScriptId:                 "deviceShellScriptIdValue",
-				DeviceManagementScriptDeviceStateId: "deviceManagementScriptDeviceStateIdValue",
+				DeviceShellScriptId:                 "deviceShellScriptId",
+				DeviceManagementScriptDeviceStateId: "deviceManagementScriptDeviceStateId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/deviceShellScripts/deviceShellScriptIdValue/deviceRunStates/deviceManagementScriptDeviceStateIdValue/extra",
+			Input: "/deviceManagement/deviceShellScripts/deviceShellScriptId/deviceRunStates/deviceManagementScriptDeviceStateId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/dEvIcEsHeLlScRiPtS/dEvIcEsHeLlScRiPtIdVaLuE/dEvIcErUnStAtEs/dEvIcEmAnAgEmEnTsCrIpTdEvIcEsTaTeIdVaLuE",
+			Input: "/dEvIcEmAnAgEmEnT/dEvIcEsHeLlScRiPtS/dEvIcEsHeLlScRiPtId/dEvIcErUnStAtEs/dEvIcEmAnAgEmEnTsCrIpTdEvIcEsTaTeId",
 			Expected: &DeviceManagementDeviceShellScriptIdDeviceRunStateId{
-				DeviceShellScriptId:                 "dEvIcEsHeLlScRiPtIdVaLuE",
-				DeviceManagementScriptDeviceStateId: "dEvIcEmAnAgEmEnTsCrIpTdEvIcEsTaTeIdVaLuE",
+				DeviceShellScriptId:                 "dEvIcEsHeLlScRiPtId",
+				DeviceManagementScriptDeviceStateId: "dEvIcEmAnAgEmEnTsCrIpTdEvIcEsTaTeId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/dEvIcEsHeLlScRiPtS/dEvIcEsHeLlScRiPtIdVaLuE/dEvIcErUnStAtEs/dEvIcEmAnAgEmEnTsCrIpTdEvIcEsTaTeIdVaLuE/extra",
+			Input: "/dEvIcEmAnAgEmEnT/dEvIcEsHeLlScRiPtS/dEvIcEsHeLlScRiPtId/dEvIcErUnStAtEs/dEvIcEmAnAgEmEnTsCrIpTdEvIcEsTaTeId/extra",
 			Error: true,
 		},
 	}

@@ -18,15 +18,44 @@ type RequestMicrosoftTunnelSiteUpgradeOperationResponse struct {
 	OData        *odata.OData
 }
 
+type RequestMicrosoftTunnelSiteUpgradeOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultRequestMicrosoftTunnelSiteUpgradeOperationOptions() RequestMicrosoftTunnelSiteUpgradeOperationOptions {
+	return RequestMicrosoftTunnelSiteUpgradeOperationOptions{}
+}
+
+func (o RequestMicrosoftTunnelSiteUpgradeOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o RequestMicrosoftTunnelSiteUpgradeOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o RequestMicrosoftTunnelSiteUpgradeOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // RequestMicrosoftTunnelSiteUpgrade - Invoke action requestUpgrade
-func (c MicrosoftTunnelSiteClient) RequestMicrosoftTunnelSiteUpgrade(ctx context.Context, id beta.DeviceManagementMicrosoftTunnelSiteId) (result RequestMicrosoftTunnelSiteUpgradeOperationResponse, err error) {
+func (c MicrosoftTunnelSiteClient) RequestMicrosoftTunnelSiteUpgrade(ctx context.Context, id beta.DeviceManagementMicrosoftTunnelSiteId, options RequestMicrosoftTunnelSiteUpgradeOperationOptions) (result RequestMicrosoftTunnelSiteUpgradeOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/requestUpgrade", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/requestUpgrade", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

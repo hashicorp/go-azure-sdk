@@ -18,16 +18,45 @@ type SetOnlineMeetingTranscriptMetadataContentOperationResponse struct {
 	OData        *odata.OData
 }
 
+type SetOnlineMeetingTranscriptMetadataContentOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultSetOnlineMeetingTranscriptMetadataContentOperationOptions() SetOnlineMeetingTranscriptMetadataContentOperationOptions {
+	return SetOnlineMeetingTranscriptMetadataContentOperationOptions{}
+}
+
+func (o SetOnlineMeetingTranscriptMetadataContentOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o SetOnlineMeetingTranscriptMetadataContentOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o SetOnlineMeetingTranscriptMetadataContentOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // SetOnlineMeetingTranscriptMetadataContent - Update metadataContent for the navigation property transcripts in me. The
 // time-aligned metadata of the utterances in the transcript. Read-only.
-func (c OnlineMeetingTranscriptMetadataContentClient) SetOnlineMeetingTranscriptMetadataContent(ctx context.Context, id beta.MeOnlineMeetingIdTranscriptId, input []byte) (result SetOnlineMeetingTranscriptMetadataContentOperationResponse, err error) {
+func (c OnlineMeetingTranscriptMetadataContentClient) SetOnlineMeetingTranscriptMetadataContent(ctx context.Context, id beta.MeOnlineMeetingIdTranscriptId, input []byte, options SetOnlineMeetingTranscriptMetadataContentOperationOptions) (result SetOnlineMeetingTranscriptMetadataContentOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPut,
-		Path:       fmt.Sprintf("%s/metadataContent", id.ID()),
+		HttpMethod:    http.MethodPut,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/metadataContent", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

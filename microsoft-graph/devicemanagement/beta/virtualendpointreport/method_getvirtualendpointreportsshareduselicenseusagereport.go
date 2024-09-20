@@ -17,17 +17,46 @@ type GetVirtualEndpointReportsSharedUseLicenseUsageReportOperationResponse struc
 	Model        *[]byte
 }
 
+type GetVirtualEndpointReportsSharedUseLicenseUsageReportOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultGetVirtualEndpointReportsSharedUseLicenseUsageReportOperationOptions() GetVirtualEndpointReportsSharedUseLicenseUsageReportOperationOptions {
+	return GetVirtualEndpointReportsSharedUseLicenseUsageReportOperationOptions{}
+}
+
+func (o GetVirtualEndpointReportsSharedUseLicenseUsageReportOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o GetVirtualEndpointReportsSharedUseLicenseUsageReportOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o GetVirtualEndpointReportsSharedUseLicenseUsageReportOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // GetVirtualEndpointReportsSharedUseLicenseUsageReport - Invoke action getSharedUseLicenseUsageReport. Get a usage
 // report on shared-use licenses, such as servicePlanId, licenseCount, and claimedLicenseCount, for real-time, 7 days,
 // or 28 days trend.
-func (c VirtualEndpointReportClient) GetVirtualEndpointReportsSharedUseLicenseUsageReport(ctx context.Context, input GetVirtualEndpointReportsSharedUseLicenseUsageReportRequest) (result GetVirtualEndpointReportsSharedUseLicenseUsageReportOperationResponse, err error) {
+func (c VirtualEndpointReportClient) GetVirtualEndpointReportsSharedUseLicenseUsageReport(ctx context.Context, input GetVirtualEndpointReportsSharedUseLicenseUsageReportRequest, options GetVirtualEndpointReportsSharedUseLicenseUsageReportOperationOptions) (result GetVirtualEndpointReportsSharedUseLicenseUsageReportOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/octet-stream",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/deviceManagement/virtualEndpoint/reports/getSharedUseLicenseUsageReport",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/deviceManagement/virtualEndpoint/reports/getSharedUseLicenseUsageReport",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

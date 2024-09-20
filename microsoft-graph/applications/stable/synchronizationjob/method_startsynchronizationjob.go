@@ -18,18 +18,47 @@ type StartSynchronizationJobOperationResponse struct {
 	OData        *odata.OData
 }
 
+type StartSynchronizationJobOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultStartSynchronizationJobOperationOptions() StartSynchronizationJobOperationOptions {
+	return StartSynchronizationJobOperationOptions{}
+}
+
+func (o StartSynchronizationJobOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o StartSynchronizationJobOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o StartSynchronizationJobOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // StartSynchronizationJob - Invoke action start. Start an existing synchronization job. If the job is in a paused
 // state, it continues processing changes from the point where it was paused. If the job is in quarantine, the
 // quarantine status is cleared. Don't create scripts to call the start job continuously while it's running because that
 // can cause the service to stop running. Use the start job only when the job is currently paused or in quarantine.
-func (c SynchronizationJobClient) StartSynchronizationJob(ctx context.Context, id stable.ApplicationIdSynchronizationJobId) (result StartSynchronizationJobOperationResponse, err error) {
+func (c SynchronizationJobClient) StartSynchronizationJob(ctx context.Context, id stable.ApplicationIdSynchronizationJobId, options StartSynchronizationJobOperationOptions) (result StartSynchronizationJobOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/start", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/start", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

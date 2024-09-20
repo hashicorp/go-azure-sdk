@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &MeOutlookTaskIdAttachmentId{}
 
 func TestNewMeOutlookTaskIdAttachmentID(t *testing.T) {
-	id := NewMeOutlookTaskIdAttachmentID("outlookTaskIdValue", "attachmentIdValue")
+	id := NewMeOutlookTaskIdAttachmentID("outlookTaskId", "attachmentId")
 
-	if id.OutlookTaskId != "outlookTaskIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'OutlookTaskId'", id.OutlookTaskId, "outlookTaskIdValue")
+	if id.OutlookTaskId != "outlookTaskId" {
+		t.Fatalf("Expected %q but got %q for Segment 'OutlookTaskId'", id.OutlookTaskId, "outlookTaskId")
 	}
 
-	if id.AttachmentId != "attachmentIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'AttachmentId'", id.AttachmentId, "attachmentIdValue")
+	if id.AttachmentId != "attachmentId" {
+		t.Fatalf("Expected %q but got %q for Segment 'AttachmentId'", id.AttachmentId, "attachmentId")
 	}
 }
 
 func TestFormatMeOutlookTaskIdAttachmentID(t *testing.T) {
-	actual := NewMeOutlookTaskIdAttachmentID("outlookTaskIdValue", "attachmentIdValue").ID()
-	expected := "/me/outlook/tasks/outlookTaskIdValue/attachments/attachmentIdValue"
+	actual := NewMeOutlookTaskIdAttachmentID("outlookTaskId", "attachmentId").ID()
+	expected := "/me/outlook/tasks/outlookTaskId/attachments/attachmentId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -59,25 +59,25 @@ func TestParseMeOutlookTaskIdAttachmentID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/me/outlook/tasks/outlookTaskIdValue",
+			Input: "/me/outlook/tasks/outlookTaskId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/me/outlook/tasks/outlookTaskIdValue/attachments",
+			Input: "/me/outlook/tasks/outlookTaskId/attachments",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/me/outlook/tasks/outlookTaskIdValue/attachments/attachmentIdValue",
+			Input: "/me/outlook/tasks/outlookTaskId/attachments/attachmentId",
 			Expected: &MeOutlookTaskIdAttachmentId{
-				OutlookTaskId: "outlookTaskIdValue",
-				AttachmentId:  "attachmentIdValue",
+				OutlookTaskId: "outlookTaskId",
+				AttachmentId:  "attachmentId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/outlook/tasks/outlookTaskIdValue/attachments/attachmentIdValue/extra",
+			Input: "/me/outlook/tasks/outlookTaskId/attachments/attachmentId/extra",
 			Error: true,
 		},
 	}
@@ -150,48 +150,48 @@ func TestParseMeOutlookTaskIdAttachmentIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/me/outlook/tasks/outlookTaskIdValue",
+			Input: "/me/outlook/tasks/outlookTaskId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/oUtLoOk/tAsKs/oUtLoOkTaSkIdVaLuE",
+			Input: "/mE/oUtLoOk/tAsKs/oUtLoOkTaSkId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/me/outlook/tasks/outlookTaskIdValue/attachments",
+			Input: "/me/outlook/tasks/outlookTaskId/attachments",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/oUtLoOk/tAsKs/oUtLoOkTaSkIdVaLuE/aTtAcHmEnTs",
+			Input: "/mE/oUtLoOk/tAsKs/oUtLoOkTaSkId/aTtAcHmEnTs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/me/outlook/tasks/outlookTaskIdValue/attachments/attachmentIdValue",
+			Input: "/me/outlook/tasks/outlookTaskId/attachments/attachmentId",
 			Expected: &MeOutlookTaskIdAttachmentId{
-				OutlookTaskId: "outlookTaskIdValue",
-				AttachmentId:  "attachmentIdValue",
+				OutlookTaskId: "outlookTaskId",
+				AttachmentId:  "attachmentId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/outlook/tasks/outlookTaskIdValue/attachments/attachmentIdValue/extra",
+			Input: "/me/outlook/tasks/outlookTaskId/attachments/attachmentId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/oUtLoOk/tAsKs/oUtLoOkTaSkIdVaLuE/aTtAcHmEnTs/aTtAcHmEnTiDvAlUe",
+			Input: "/mE/oUtLoOk/tAsKs/oUtLoOkTaSkId/aTtAcHmEnTs/aTtAcHmEnTiD",
 			Expected: &MeOutlookTaskIdAttachmentId{
-				OutlookTaskId: "oUtLoOkTaSkIdVaLuE",
-				AttachmentId:  "aTtAcHmEnTiDvAlUe",
+				OutlookTaskId: "oUtLoOkTaSkId",
+				AttachmentId:  "aTtAcHmEnTiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/mE/oUtLoOk/tAsKs/oUtLoOkTaSkIdVaLuE/aTtAcHmEnTs/aTtAcHmEnTiDvAlUe/extra",
+			Input: "/mE/oUtLoOk/tAsKs/oUtLoOkTaSkId/aTtAcHmEnTs/aTtAcHmEnTiD/extra",
 			Error: true,
 		},
 	}

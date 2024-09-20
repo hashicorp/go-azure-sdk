@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/virtualendpointprovisioningpolicy` Documentation
 
-The `virtualendpointprovisioningpolicy` SDK allows for interaction with the Azure Resource Manager Service `devicemanagement` (API Version `beta`).
+The `virtualendpointprovisioningpolicy` SDK allows for interaction with Microsoft Graph `devicemanagement` (API Version `beta`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -15,7 +15,7 @@ import "github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/
 ### Client Initialization
 
 ```go
-client := virtualendpointprovisioningpolicy.NewVirtualEndpointProvisioningPolicyClientWithBaseURI("https://management.azure.com")
+client := virtualendpointprovisioningpolicy.NewVirtualEndpointProvisioningPolicyClientWithBaseURI("https://graph.microsoft.com")
 client.Client.Authorizer = authorizer
 ```
 
@@ -24,14 +24,14 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := virtualendpointprovisioningpolicy.NewDeviceManagementVirtualEndpointProvisioningPolicyID("cloudPCProvisioningPolicyIdValue")
+id := virtualendpointprovisioningpolicy.NewDeviceManagementVirtualEndpointProvisioningPolicyID("cloudPCProvisioningPolicyId")
 
 payload := virtualendpointprovisioningpolicy.AssignVirtualEndpointProvisioningPolicyRequest{
 	// ...
 }
 
 
-read, err := client.AssignVirtualEndpointProvisioningPolicy(ctx, id, payload)
+read, err := client.AssignVirtualEndpointProvisioningPolicy(ctx, id, payload, virtualendpointprovisioningpolicy.DefaultAssignVirtualEndpointProvisioningPolicyOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -51,7 +51,7 @@ payload := virtualendpointprovisioningpolicy.CloudPCProvisioningPolicy{
 }
 
 
-read, err := client.CreateVirtualEndpointProvisioningPolicy(ctx, payload)
+read, err := client.CreateVirtualEndpointProvisioningPolicy(ctx, payload, virtualendpointprovisioningpolicy.DefaultCreateVirtualEndpointProvisioningPolicyOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -65,14 +65,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := virtualendpointprovisioningpolicy.NewDeviceManagementVirtualEndpointProvisioningPolicyID("cloudPCProvisioningPolicyIdValue")
+id := virtualendpointprovisioningpolicy.NewDeviceManagementVirtualEndpointProvisioningPolicyID("cloudPCProvisioningPolicyId")
 
 payload := virtualendpointprovisioningpolicy.CreateVirtualEndpointProvisioningPolicyApplyRequest{
 	// ...
 }
 
 
-read, err := client.CreateVirtualEndpointProvisioningPolicyApply(ctx, id, payload)
+read, err := client.CreateVirtualEndpointProvisioningPolicyApply(ctx, id, payload, virtualendpointprovisioningpolicy.DefaultCreateVirtualEndpointProvisioningPolicyApplyOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -92,7 +92,7 @@ payload := virtualendpointprovisioningpolicy.CreateVirtualEndpointProvisioningPo
 }
 
 
-read, err := client.CreateVirtualEndpointProvisioningPolicyApplyConfig(ctx, payload)
+read, err := client.CreateVirtualEndpointProvisioningPolicyApplyConfig(ctx, payload, virtualendpointprovisioningpolicy.DefaultCreateVirtualEndpointProvisioningPolicyApplyConfigOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -106,7 +106,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := virtualendpointprovisioningpolicy.NewDeviceManagementVirtualEndpointProvisioningPolicyID("cloudPCProvisioningPolicyIdValue")
+id := virtualendpointprovisioningpolicy.NewDeviceManagementVirtualEndpointProvisioningPolicyID("cloudPCProvisioningPolicyId")
 
 read, err := client.DeleteVirtualEndpointProvisioningPolicy(ctx, id, virtualendpointprovisioningpolicy.DefaultDeleteVirtualEndpointProvisioningPolicyOperationOptions())
 if err != nil {
@@ -138,7 +138,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := virtualendpointprovisioningpolicy.NewDeviceManagementVirtualEndpointProvisioningPolicyID("cloudPCProvisioningPolicyIdValue")
+id := virtualendpointprovisioningpolicy.NewDeviceManagementVirtualEndpointProvisioningPolicyID("cloudPCProvisioningPolicyId")
 
 read, err := client.GetVirtualEndpointProvisioningPolicy(ctx, id, virtualendpointprovisioningpolicy.DefaultGetVirtualEndpointProvisioningPolicyOperationOptions())
 if err != nil {
@@ -171,14 +171,14 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := virtualendpointprovisioningpolicy.NewDeviceManagementVirtualEndpointProvisioningPolicyID("cloudPCProvisioningPolicyIdValue")
+id := virtualendpointprovisioningpolicy.NewDeviceManagementVirtualEndpointProvisioningPolicyID("cloudPCProvisioningPolicyId")
 
 payload := virtualendpointprovisioningpolicy.CloudPCProvisioningPolicy{
 	// ...
 }
 
 
-read, err := client.UpdateVirtualEndpointProvisioningPolicy(ctx, id, payload)
+read, err := client.UpdateVirtualEndpointProvisioningPolicy(ctx, id, payload, virtualendpointprovisioningpolicy.DefaultUpdateVirtualEndpointProvisioningPolicyOperationOptions())
 if err != nil {
 	// handle the error
 }

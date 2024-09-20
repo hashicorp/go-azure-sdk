@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &PolicyActivityBasedTimeoutPolicyId{}
 
 func TestNewPolicyActivityBasedTimeoutPolicyID(t *testing.T) {
-	id := NewPolicyActivityBasedTimeoutPolicyID("activityBasedTimeoutPolicyIdValue")
+	id := NewPolicyActivityBasedTimeoutPolicyID("activityBasedTimeoutPolicyId")
 
-	if id.ActivityBasedTimeoutPolicyId != "activityBasedTimeoutPolicyIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ActivityBasedTimeoutPolicyId'", id.ActivityBasedTimeoutPolicyId, "activityBasedTimeoutPolicyIdValue")
+	if id.ActivityBasedTimeoutPolicyId != "activityBasedTimeoutPolicyId" {
+		t.Fatalf("Expected %q but got %q for Segment 'ActivityBasedTimeoutPolicyId'", id.ActivityBasedTimeoutPolicyId, "activityBasedTimeoutPolicyId")
 	}
 }
 
 func TestFormatPolicyActivityBasedTimeoutPolicyID(t *testing.T) {
-	actual := NewPolicyActivityBasedTimeoutPolicyID("activityBasedTimeoutPolicyIdValue").ID()
-	expected := "/policies/activityBasedTimeoutPolicies/activityBasedTimeoutPolicyIdValue"
+	actual := NewPolicyActivityBasedTimeoutPolicyID("activityBasedTimeoutPolicyId").ID()
+	expected := "/policies/activityBasedTimeoutPolicies/activityBasedTimeoutPolicyId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -50,14 +50,14 @@ func TestParsePolicyActivityBasedTimeoutPolicyID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/policies/activityBasedTimeoutPolicies/activityBasedTimeoutPolicyIdValue",
+			Input: "/policies/activityBasedTimeoutPolicies/activityBasedTimeoutPolicyId",
 			Expected: &PolicyActivityBasedTimeoutPolicyId{
-				ActivityBasedTimeoutPolicyId: "activityBasedTimeoutPolicyIdValue",
+				ActivityBasedTimeoutPolicyId: "activityBasedTimeoutPolicyId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/policies/activityBasedTimeoutPolicies/activityBasedTimeoutPolicyIdValue/extra",
+			Input: "/policies/activityBasedTimeoutPolicies/activityBasedTimeoutPolicyId/extra",
 			Error: true,
 		},
 	}
@@ -116,26 +116,26 @@ func TestParsePolicyActivityBasedTimeoutPolicyIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/policies/activityBasedTimeoutPolicies/activityBasedTimeoutPolicyIdValue",
+			Input: "/policies/activityBasedTimeoutPolicies/activityBasedTimeoutPolicyId",
 			Expected: &PolicyActivityBasedTimeoutPolicyId{
-				ActivityBasedTimeoutPolicyId: "activityBasedTimeoutPolicyIdValue",
+				ActivityBasedTimeoutPolicyId: "activityBasedTimeoutPolicyId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/policies/activityBasedTimeoutPolicies/activityBasedTimeoutPolicyIdValue/extra",
+			Input: "/policies/activityBasedTimeoutPolicies/activityBasedTimeoutPolicyId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/pOlIcIeS/aCtIvItYbAsEdTiMeOuTpOlIcIeS/aCtIvItYbAsEdTiMeOuTpOlIcYiDvAlUe",
+			Input: "/pOlIcIeS/aCtIvItYbAsEdTiMeOuTpOlIcIeS/aCtIvItYbAsEdTiMeOuTpOlIcYiD",
 			Expected: &PolicyActivityBasedTimeoutPolicyId{
-				ActivityBasedTimeoutPolicyId: "aCtIvItYbAsEdTiMeOuTpOlIcYiDvAlUe",
+				ActivityBasedTimeoutPolicyId: "aCtIvItYbAsEdTiMeOuTpOlIcYiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/pOlIcIeS/aCtIvItYbAsEdTiMeOuTpOlIcIeS/aCtIvItYbAsEdTiMeOuTpOlIcYiDvAlUe/extra",
+			Input: "/pOlIcIeS/aCtIvItYbAsEdTiMeOuTpOlIcIeS/aCtIvItYbAsEdTiMeOuTpOlIcYiD/extra",
 			Error: true,
 		},
 	}

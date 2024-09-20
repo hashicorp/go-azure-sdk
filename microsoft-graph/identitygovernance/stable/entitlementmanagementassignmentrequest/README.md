@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/microsoft-graph/identitygovernance/stable/entitlementmanagementassignmentrequest` Documentation
 
-The `entitlementmanagementassignmentrequest` SDK allows for interaction with the Azure Resource Manager Service `identitygovernance` (API Version `stable`).
+The `entitlementmanagementassignmentrequest` SDK allows for interaction with Microsoft Graph `identitygovernance` (API Version `stable`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -15,7 +15,7 @@ import "github.com/hashicorp/go-azure-sdk/microsoft-graph/identitygovernance/sta
 ### Client Initialization
 
 ```go
-client := entitlementmanagementassignmentrequest.NewEntitlementManagementAssignmentRequestClientWithBaseURI("https://management.azure.com")
+client := entitlementmanagementassignmentrequest.NewEntitlementManagementAssignmentRequestClientWithBaseURI("https://graph.microsoft.com")
 client.Client.Authorizer = authorizer
 ```
 
@@ -24,9 +24,9 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := entitlementmanagementassignmentrequest.NewIdentityGovernanceEntitlementManagementAssignmentRequestID("accessPackageAssignmentRequestIdValue")
+id := entitlementmanagementassignmentrequest.NewIdentityGovernanceEntitlementManagementAssignmentRequestID("accessPackageAssignmentRequestId")
 
-read, err := client.CancelEntitlementManagementAssignmentRequest(ctx, id)
+read, err := client.CancelEntitlementManagementAssignmentRequest(ctx, id, entitlementmanagementassignmentrequest.DefaultCancelEntitlementManagementAssignmentRequestOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -46,7 +46,7 @@ payload := entitlementmanagementassignmentrequest.AccessPackageAssignmentRequest
 }
 
 
-read, err := client.CreateEntitlementManagementAssignmentRequest(ctx, payload)
+read, err := client.CreateEntitlementManagementAssignmentRequest(ctx, payload, entitlementmanagementassignmentrequest.DefaultCreateEntitlementManagementAssignmentRequestOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -60,14 +60,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := entitlementmanagementassignmentrequest.NewIdentityGovernanceEntitlementManagementAssignmentRequestID("accessPackageAssignmentRequestIdValue")
+id := entitlementmanagementassignmentrequest.NewIdentityGovernanceEntitlementManagementAssignmentRequestID("accessPackageAssignmentRequestId")
 
 payload := entitlementmanagementassignmentrequest.CreateEntitlementManagementAssignmentRequestResumeRequest{
 	// ...
 }
 
 
-read, err := client.CreateEntitlementManagementAssignmentRequestResume(ctx, id, payload)
+read, err := client.CreateEntitlementManagementAssignmentRequestResume(ctx, id, payload, entitlementmanagementassignmentrequest.DefaultCreateEntitlementManagementAssignmentRequestResumeOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -81,7 +81,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := entitlementmanagementassignmentrequest.NewIdentityGovernanceEntitlementManagementAssignmentRequestID("accessPackageAssignmentRequestIdValue")
+id := entitlementmanagementassignmentrequest.NewIdentityGovernanceEntitlementManagementAssignmentRequestID("accessPackageAssignmentRequestId")
 
 read, err := client.DeleteEntitlementManagementAssignmentRequest(ctx, id, entitlementmanagementassignmentrequest.DefaultDeleteEntitlementManagementAssignmentRequestOperationOptions())
 if err != nil {
@@ -97,7 +97,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := entitlementmanagementassignmentrequest.NewIdentityGovernanceEntitlementManagementAssignmentRequestID("accessPackageAssignmentRequestIdValue")
+id := entitlementmanagementassignmentrequest.NewIdentityGovernanceEntitlementManagementAssignmentRequestID("accessPackageAssignmentRequestId")
 
 read, err := client.GetEntitlementManagementAssignmentRequest(ctx, id, entitlementmanagementassignmentrequest.DefaultGetEntitlementManagementAssignmentRequestOperationOptions())
 if err != nil {
@@ -146,9 +146,9 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := entitlementmanagementassignmentrequest.NewIdentityGovernanceEntitlementManagementAssignmentRequestID("accessPackageAssignmentRequestIdValue")
+id := entitlementmanagementassignmentrequest.NewIdentityGovernanceEntitlementManagementAssignmentRequestID("accessPackageAssignmentRequestId")
 
-read, err := client.ReprocessEntitlementManagementAssignmentRequest(ctx, id)
+read, err := client.ReprocessEntitlementManagementAssignmentRequest(ctx, id, entitlementmanagementassignmentrequest.DefaultReprocessEntitlementManagementAssignmentRequestOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -162,14 +162,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := entitlementmanagementassignmentrequest.NewIdentityGovernanceEntitlementManagementAssignmentRequestID("accessPackageAssignmentRequestIdValue")
+id := entitlementmanagementassignmentrequest.NewIdentityGovernanceEntitlementManagementAssignmentRequestID("accessPackageAssignmentRequestId")
 
 payload := entitlementmanagementassignmentrequest.AccessPackageAssignmentRequest{
 	// ...
 }
 
 
-read, err := client.UpdateEntitlementManagementAssignmentRequest(ctx, id, payload)
+read, err := client.UpdateEntitlementManagementAssignmentRequest(ctx, id, payload, entitlementmanagementassignmentrequest.DefaultUpdateEntitlementManagementAssignmentRequestOperationOptions())
 if err != nil {
 	// handle the error
 }

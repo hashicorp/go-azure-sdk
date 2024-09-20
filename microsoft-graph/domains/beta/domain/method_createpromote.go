@@ -19,16 +19,45 @@ type CreatePromoteOperationResponse struct {
 	Model        *CreatePromoteResult
 }
 
+type CreatePromoteOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreatePromoteOperationOptions() CreatePromoteOperationOptions {
+	return CreatePromoteOperationOptions{}
+}
+
+func (o CreatePromoteOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreatePromoteOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreatePromoteOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreatePromote - Invoke action promote. Promote a verified subdomain to the root domain. A verified domain has its
 // isVerified property set to true.
-func (c DomainClient) CreatePromote(ctx context.Context, id beta.DomainId) (result CreatePromoteOperationResponse, err error) {
+func (c DomainClient) CreatePromote(ctx context.Context, id beta.DomainId, options CreatePromoteOperationOptions) (result CreatePromoteOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/promote", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/promote", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

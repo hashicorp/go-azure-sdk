@@ -20,15 +20,44 @@ type CreateCalendarEventInstanceExtensionOperationResponse struct {
 	Model        stable.Extension
 }
 
+type CreateCalendarEventInstanceExtensionOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateCalendarEventInstanceExtensionOperationOptions() CreateCalendarEventInstanceExtensionOperationOptions {
+	return CreateCalendarEventInstanceExtensionOperationOptions{}
+}
+
+func (o CreateCalendarEventInstanceExtensionOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateCalendarEventInstanceExtensionOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateCalendarEventInstanceExtensionOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateCalendarEventInstanceExtension - Create new navigation property to extensions for groups
-func (c CalendarEventInstanceExtensionClient) CreateCalendarEventInstanceExtension(ctx context.Context, id stable.GroupIdCalendarEventIdInstanceId, input stable.Extension) (result CreateCalendarEventInstanceExtensionOperationResponse, err error) {
+func (c CalendarEventInstanceExtensionClient) CreateCalendarEventInstanceExtension(ctx context.Context, id stable.GroupIdCalendarEventIdInstanceId, input stable.Extension, options CreateCalendarEventInstanceExtensionOperationOptions) (result CreateCalendarEventInstanceExtensionOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/extensions", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/extensions", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/onlinemeeting` Documentation
 
-The `onlinemeeting` SDK allows for interaction with the Azure Resource Manager Service `me` (API Version `stable`).
+The `onlinemeeting` SDK allows for interaction with Microsoft Graph `me` (API Version `stable`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -15,7 +15,7 @@ import "github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/onlinemeetin
 ### Client Initialization
 
 ```go
-client := onlinemeeting.NewOnlineMeetingClientWithBaseURI("https://management.azure.com")
+client := onlinemeeting.NewOnlineMeetingClientWithBaseURI("https://graph.microsoft.com")
 client.Client.Authorizer = authorizer
 ```
 
@@ -30,7 +30,7 @@ payload := onlinemeeting.OnlineMeeting{
 }
 
 
-read, err := client.CreateOnlineMeeting(ctx, payload)
+read, err := client.CreateOnlineMeeting(ctx, payload, onlinemeeting.DefaultCreateOnlineMeetingOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -40,17 +40,17 @@ if model := read.Model; model != nil {
 ```
 
 
-### Example Usage: `OnlineMeetingClient.CreateOrGetOnlineMeeting`
+### Example Usage: `OnlineMeetingClient.CreateOrGetOnlineMeetings`
 
 ```go
 ctx := context.TODO()
 
-payload := onlinemeeting.CreateOrGetOnlineMeetingRequest{
+payload := onlinemeeting.CreateOrGetOnlineMeetingsRequest{
 	// ...
 }
 
 
-read, err := client.CreateOrGetOnlineMeeting(ctx, payload)
+read, err := client.CreateOrGetOnlineMeetings(ctx, payload, onlinemeeting.DefaultCreateOrGetOnlineMeetingsOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -64,7 +64,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := onlinemeeting.NewMeOnlineMeetingID("onlineMeetingIdValue")
+id := onlinemeeting.NewMeOnlineMeetingID("onlineMeetingId")
 
 read, err := client.DeleteOnlineMeeting(ctx, id, onlinemeeting.DefaultDeleteOnlineMeetingOperationOptions())
 if err != nil {
@@ -80,7 +80,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := onlinemeeting.NewMeOnlineMeetingID("onlineMeetingIdValue")
+id := onlinemeeting.NewMeOnlineMeetingID("onlineMeetingId")
 
 read, err := client.GetOnlineMeeting(ctx, id, onlinemeeting.DefaultGetOnlineMeetingOperationOptions())
 if err != nil {
@@ -129,14 +129,14 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := onlinemeeting.NewMeOnlineMeetingID("onlineMeetingIdValue")
+id := onlinemeeting.NewMeOnlineMeetingID("onlineMeetingId")
 
 payload := onlinemeeting.SendOnlineMeetingVirtualAppointmentReminderSmsRequest{
 	// ...
 }
 
 
-read, err := client.SendOnlineMeetingVirtualAppointmentReminderSms(ctx, id, payload)
+read, err := client.SendOnlineMeetingVirtualAppointmentReminderSms(ctx, id, payload, onlinemeeting.DefaultSendOnlineMeetingVirtualAppointmentReminderSmsOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -150,14 +150,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := onlinemeeting.NewMeOnlineMeetingID("onlineMeetingIdValue")
+id := onlinemeeting.NewMeOnlineMeetingID("onlineMeetingId")
 
 payload := onlinemeeting.SendOnlineMeetingVirtualAppointmentSmsRequest{
 	// ...
 }
 
 
-read, err := client.SendOnlineMeetingVirtualAppointmentSms(ctx, id, payload)
+read, err := client.SendOnlineMeetingVirtualAppointmentSms(ctx, id, payload, onlinemeeting.DefaultSendOnlineMeetingVirtualAppointmentSmsOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -171,14 +171,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := onlinemeeting.NewMeOnlineMeetingID("onlineMeetingIdValue")
+id := onlinemeeting.NewMeOnlineMeetingID("onlineMeetingId")
 
 payload := onlinemeeting.OnlineMeeting{
 	// ...
 }
 
 
-read, err := client.UpdateOnlineMeeting(ctx, id, payload)
+read, err := client.UpdateOnlineMeeting(ctx, id, payload, onlinemeeting.DefaultUpdateOnlineMeetingOperationOptions())
 if err != nil {
 	// handle the error
 }

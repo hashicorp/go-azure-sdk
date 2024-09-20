@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &MeDeviceManagementTroubleshootingEventId{}
 
 func TestNewMeDeviceManagementTroubleshootingEventID(t *testing.T) {
-	id := NewMeDeviceManagementTroubleshootingEventID("deviceManagementTroubleshootingEventIdValue")
+	id := NewMeDeviceManagementTroubleshootingEventID("deviceManagementTroubleshootingEventId")
 
-	if id.DeviceManagementTroubleshootingEventId != "deviceManagementTroubleshootingEventIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DeviceManagementTroubleshootingEventId'", id.DeviceManagementTroubleshootingEventId, "deviceManagementTroubleshootingEventIdValue")
+	if id.DeviceManagementTroubleshootingEventId != "deviceManagementTroubleshootingEventId" {
+		t.Fatalf("Expected %q but got %q for Segment 'DeviceManagementTroubleshootingEventId'", id.DeviceManagementTroubleshootingEventId, "deviceManagementTroubleshootingEventId")
 	}
 }
 
 func TestFormatMeDeviceManagementTroubleshootingEventID(t *testing.T) {
-	actual := NewMeDeviceManagementTroubleshootingEventID("deviceManagementTroubleshootingEventIdValue").ID()
-	expected := "/me/deviceManagementTroubleshootingEvents/deviceManagementTroubleshootingEventIdValue"
+	actual := NewMeDeviceManagementTroubleshootingEventID("deviceManagementTroubleshootingEventId").ID()
+	expected := "/me/deviceManagementTroubleshootingEvents/deviceManagementTroubleshootingEventId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -50,14 +50,14 @@ func TestParseMeDeviceManagementTroubleshootingEventID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/me/deviceManagementTroubleshootingEvents/deviceManagementTroubleshootingEventIdValue",
+			Input: "/me/deviceManagementTroubleshootingEvents/deviceManagementTroubleshootingEventId",
 			Expected: &MeDeviceManagementTroubleshootingEventId{
-				DeviceManagementTroubleshootingEventId: "deviceManagementTroubleshootingEventIdValue",
+				DeviceManagementTroubleshootingEventId: "deviceManagementTroubleshootingEventId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/deviceManagementTroubleshootingEvents/deviceManagementTroubleshootingEventIdValue/extra",
+			Input: "/me/deviceManagementTroubleshootingEvents/deviceManagementTroubleshootingEventId/extra",
 			Error: true,
 		},
 	}
@@ -116,26 +116,26 @@ func TestParseMeDeviceManagementTroubleshootingEventIDInsensitively(t *testing.T
 		},
 		{
 			// Valid URI
-			Input: "/me/deviceManagementTroubleshootingEvents/deviceManagementTroubleshootingEventIdValue",
+			Input: "/me/deviceManagementTroubleshootingEvents/deviceManagementTroubleshootingEventId",
 			Expected: &MeDeviceManagementTroubleshootingEventId{
-				DeviceManagementTroubleshootingEventId: "deviceManagementTroubleshootingEventIdValue",
+				DeviceManagementTroubleshootingEventId: "deviceManagementTroubleshootingEventId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/deviceManagementTroubleshootingEvents/deviceManagementTroubleshootingEventIdValue/extra",
+			Input: "/me/deviceManagementTroubleshootingEvents/deviceManagementTroubleshootingEventId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/dEvIcEmAnAgEmEnTtRoUbLeShOoTiNgEvEnTs/dEvIcEmAnAgEmEnTtRoUbLeShOoTiNgEvEnTiDvAlUe",
+			Input: "/mE/dEvIcEmAnAgEmEnTtRoUbLeShOoTiNgEvEnTs/dEvIcEmAnAgEmEnTtRoUbLeShOoTiNgEvEnTiD",
 			Expected: &MeDeviceManagementTroubleshootingEventId{
-				DeviceManagementTroubleshootingEventId: "dEvIcEmAnAgEmEnTtRoUbLeShOoTiNgEvEnTiDvAlUe",
+				DeviceManagementTroubleshootingEventId: "dEvIcEmAnAgEmEnTtRoUbLeShOoTiNgEvEnTiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/mE/dEvIcEmAnAgEmEnTtRoUbLeShOoTiNgEvEnTs/dEvIcEmAnAgEmEnTtRoUbLeShOoTiNgEvEnTiDvAlUe/extra",
+			Input: "/mE/dEvIcEmAnAgEmEnTtRoUbLeShOoTiNgEvEnTs/dEvIcEmAnAgEmEnTtRoUbLeShOoTiNgEvEnTiD/extra",
 			Error: true,
 		},
 	}

@@ -17,15 +17,44 @@ type UpdateEntitlementManagementCatalogResourceOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateEntitlementManagementCatalogResourceOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateEntitlementManagementCatalogResourceOperationOptions() UpdateEntitlementManagementCatalogResourceOperationOptions {
+	return UpdateEntitlementManagementCatalogResourceOperationOptions{}
+}
+
+func (o UpdateEntitlementManagementCatalogResourceOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateEntitlementManagementCatalogResourceOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateEntitlementManagementCatalogResourceOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateEntitlementManagementCatalogResource - Update the navigation property resources in identityGovernance
-func (c EntitlementManagementCatalogResourceClient) UpdateEntitlementManagementCatalogResource(ctx context.Context, id stable.IdentityGovernanceEntitlementManagementCatalogIdResourceId, input stable.AccessPackageResource) (result UpdateEntitlementManagementCatalogResourceOperationResponse, err error) {
+func (c EntitlementManagementCatalogResourceClient) UpdateEntitlementManagementCatalogResource(ctx context.Context, id stable.IdentityGovernanceEntitlementManagementCatalogIdResourceId, input stable.AccessPackageResource, options UpdateEntitlementManagementCatalogResourceOperationOptions) (result UpdateEntitlementManagementCatalogResourceOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

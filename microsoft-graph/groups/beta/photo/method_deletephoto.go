@@ -19,7 +19,8 @@ type DeletePhotoOperationResponse struct {
 }
 
 type DeletePhotoOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeletePhotoOperationOptions() DeletePhotoOperationOptions {
@@ -36,7 +37,9 @@ func (o DeletePhotoOperationOptions) ToHeaders() *client.Headers {
 
 func (o DeletePhotoOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

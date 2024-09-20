@@ -63,10 +63,14 @@ func (s ChannelSetAsFavoriteByDefaultEventMessageDetail) MarshalJSON() ([]byte, 
 var _ json.Unmarshaler = &ChannelSetAsFavoriteByDefaultEventMessageDetail{}
 
 func (s *ChannelSetAsFavoriteByDefaultEventMessageDetail) UnmarshalJSON(bytes []byte) error {
-	type alias ChannelSetAsFavoriteByDefaultEventMessageDetail
-	var decoded alias
+
+	var decoded struct {
+		ChannelId nullable.Type[string] `json:"channelId,omitempty"`
+		ODataId   *string               `json:"@odata.id,omitempty"`
+		ODataType *string               `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into ChannelSetAsFavoriteByDefaultEventMessageDetail: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.ChannelId = decoded.ChannelId
@@ -85,5 +89,6 @@ func (s *ChannelSetAsFavoriteByDefaultEventMessageDetail) UnmarshalJSON(bytes []
 		}
 		s.Initiator = impl
 	}
+
 	return nil
 }

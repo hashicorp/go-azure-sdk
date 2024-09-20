@@ -88,15 +88,24 @@ func (s SharedWithChannelTeamInfo) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &SharedWithChannelTeamInfo{}
 
 func (s *SharedWithChannelTeamInfo) UnmarshalJSON(bytes []byte) error {
-	type alias SharedWithChannelTeamInfo
-	var decoded alias
+
+	var decoded struct {
+		AllowedMembers *[]ConversationMember `json:"allowedMembers,omitempty"`
+		IsHostTeam     nullable.Type[bool]   `json:"isHostTeam,omitempty"`
+		DisplayName    nullable.Type[string] `json:"displayName,omitempty"`
+		Team           *Team                 `json:"team,omitempty"`
+		TenantId       nullable.Type[string] `json:"tenantId,omitempty"`
+		Id             *string               `json:"id,omitempty"`
+		ODataId        *string               `json:"@odata.id,omitempty"`
+		ODataType      *string               `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into SharedWithChannelTeamInfo: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
+	s.IsHostTeam = decoded.IsHostTeam
 	s.DisplayName = decoded.DisplayName
 	s.Id = decoded.Id
-	s.IsHostTeam = decoded.IsHostTeam
 	s.ODataId = decoded.ODataId
 	s.ODataType = decoded.ODataType
 	s.Team = decoded.Team
@@ -123,5 +132,6 @@ func (s *SharedWithChannelTeamInfo) UnmarshalJSON(bytes []byte) error {
 		}
 		s.AllowedMembers = &output
 	}
+
 	return nil
 }

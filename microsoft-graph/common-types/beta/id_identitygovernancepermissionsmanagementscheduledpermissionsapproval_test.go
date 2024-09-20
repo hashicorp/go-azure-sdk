@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &IdentityGovernancePermissionsManagementScheduledPermissionsApprovalId{}
 
 func TestNewIdentityGovernancePermissionsManagementScheduledPermissionsApprovalID(t *testing.T) {
-	id := NewIdentityGovernancePermissionsManagementScheduledPermissionsApprovalID("approvalIdValue")
+	id := NewIdentityGovernancePermissionsManagementScheduledPermissionsApprovalID("approvalId")
 
-	if id.ApprovalId != "approvalIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ApprovalId'", id.ApprovalId, "approvalIdValue")
+	if id.ApprovalId != "approvalId" {
+		t.Fatalf("Expected %q but got %q for Segment 'ApprovalId'", id.ApprovalId, "approvalId")
 	}
 }
 
 func TestFormatIdentityGovernancePermissionsManagementScheduledPermissionsApprovalID(t *testing.T) {
-	actual := NewIdentityGovernancePermissionsManagementScheduledPermissionsApprovalID("approvalIdValue").ID()
-	expected := "/identityGovernance/permissionsManagement/scheduledPermissionsApprovals/approvalIdValue"
+	actual := NewIdentityGovernancePermissionsManagementScheduledPermissionsApprovalID("approvalId").ID()
+	expected := "/identityGovernance/permissionsManagement/scheduledPermissionsApprovals/approvalId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -55,14 +55,14 @@ func TestParseIdentityGovernancePermissionsManagementScheduledPermissionsApprova
 		},
 		{
 			// Valid URI
-			Input: "/identityGovernance/permissionsManagement/scheduledPermissionsApprovals/approvalIdValue",
+			Input: "/identityGovernance/permissionsManagement/scheduledPermissionsApprovals/approvalId",
 			Expected: &IdentityGovernancePermissionsManagementScheduledPermissionsApprovalId{
-				ApprovalId: "approvalIdValue",
+				ApprovalId: "approvalId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/identityGovernance/permissionsManagement/scheduledPermissionsApprovals/approvalIdValue/extra",
+			Input: "/identityGovernance/permissionsManagement/scheduledPermissionsApprovals/approvalId/extra",
 			Error: true,
 		},
 	}
@@ -131,26 +131,26 @@ func TestParseIdentityGovernancePermissionsManagementScheduledPermissionsApprova
 		},
 		{
 			// Valid URI
-			Input: "/identityGovernance/permissionsManagement/scheduledPermissionsApprovals/approvalIdValue",
+			Input: "/identityGovernance/permissionsManagement/scheduledPermissionsApprovals/approvalId",
 			Expected: &IdentityGovernancePermissionsManagementScheduledPermissionsApprovalId{
-				ApprovalId: "approvalIdValue",
+				ApprovalId: "approvalId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/identityGovernance/permissionsManagement/scheduledPermissionsApprovals/approvalIdValue/extra",
+			Input: "/identityGovernance/permissionsManagement/scheduledPermissionsApprovals/approvalId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/iDeNtItYgOvErNaNcE/pErMiSsIoNsMaNaGeMeNt/sChEdUlEdPeRmIsSiOnSaPpRoVaLs/aPpRoVaLiDvAlUe",
+			Input: "/iDeNtItYgOvErNaNcE/pErMiSsIoNsMaNaGeMeNt/sChEdUlEdPeRmIsSiOnSaPpRoVaLs/aPpRoVaLiD",
 			Expected: &IdentityGovernancePermissionsManagementScheduledPermissionsApprovalId{
-				ApprovalId: "aPpRoVaLiDvAlUe",
+				ApprovalId: "aPpRoVaLiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/iDeNtItYgOvErNaNcE/pErMiSsIoNsMaNaGeMeNt/sChEdUlEdPeRmIsSiOnSaPpRoVaLs/aPpRoVaLiDvAlUe/extra",
+			Input: "/iDeNtItYgOvErNaNcE/pErMiSsIoNsMaNaGeMeNt/sChEdUlEdPeRmIsSiOnSaPpRoVaLs/aPpRoVaLiD/extra",
 			Error: true,
 		},
 	}

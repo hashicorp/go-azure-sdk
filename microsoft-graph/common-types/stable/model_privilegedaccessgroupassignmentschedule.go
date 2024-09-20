@@ -129,26 +129,43 @@ func (s PrivilegedAccessGroupAssignmentSchedule) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &PrivilegedAccessGroupAssignmentSchedule{}
 
 func (s *PrivilegedAccessGroupAssignmentSchedule) UnmarshalJSON(bytes []byte) error {
-	type alias PrivilegedAccessGroupAssignmentSchedule
-	var decoded alias
+
+	var decoded struct {
+		AccessId            PrivilegedAccessGroupRelationships        `json:"accessId"`
+		ActivatedUsing      *PrivilegedAccessGroupEligibilitySchedule `json:"activatedUsing,omitempty"`
+		AssignmentType      PrivilegedAccessGroupAssignmentType       `json:"assignmentType"`
+		Group               *Group                                    `json:"group,omitempty"`
+		GroupId             nullable.Type[string]                     `json:"groupId,omitempty"`
+		MemberType          *PrivilegedAccessGroupMemberType          `json:"memberType,omitempty"`
+		PrincipalId         nullable.Type[string]                     `json:"principalId,omitempty"`
+		Principal_ODataBind *string                                   `json:"principal@odata.bind,omitempty"`
+		CreatedDateTime     nullable.Type[string]                     `json:"createdDateTime,omitempty"`
+		CreatedUsing        nullable.Type[string]                     `json:"createdUsing,omitempty"`
+		ModifiedDateTime    nullable.Type[string]                     `json:"modifiedDateTime,omitempty"`
+		ScheduleInfo        RequestSchedule                           `json:"scheduleInfo"`
+		Status              nullable.Type[string]                     `json:"status,omitempty"`
+		Id                  *string                                   `json:"id,omitempty"`
+		ODataId             *string                                   `json:"@odata.id,omitempty"`
+		ODataType           *string                                   `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into PrivilegedAccessGroupAssignmentSchedule: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.AccessId = decoded.AccessId
 	s.ActivatedUsing = decoded.ActivatedUsing
 	s.AssignmentType = decoded.AssignmentType
-	s.CreatedDateTime = decoded.CreatedDateTime
-	s.CreatedUsing = decoded.CreatedUsing
 	s.Group = decoded.Group
 	s.GroupId = decoded.GroupId
-	s.Id = decoded.Id
 	s.MemberType = decoded.MemberType
+	s.PrincipalId = decoded.PrincipalId
+	s.Principal_ODataBind = decoded.Principal_ODataBind
+	s.CreatedDateTime = decoded.CreatedDateTime
+	s.CreatedUsing = decoded.CreatedUsing
+	s.Id = decoded.Id
 	s.ModifiedDateTime = decoded.ModifiedDateTime
 	s.ODataId = decoded.ODataId
 	s.ODataType = decoded.ODataType
-	s.PrincipalId = decoded.PrincipalId
-	s.Principal_ODataBind = decoded.Principal_ODataBind
 	s.ScheduleInfo = decoded.ScheduleInfo
 	s.Status = decoded.Status
 
@@ -164,5 +181,6 @@ func (s *PrivilegedAccessGroupAssignmentSchedule) UnmarshalJSON(bytes []byte) er
 		}
 		s.Principal = &impl
 	}
+
 	return nil
 }

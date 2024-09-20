@@ -316,18 +316,99 @@ func (s WindowsWifiEnterpriseEAPConfiguration) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &WindowsWifiEnterpriseEAPConfiguration{}
 
 func (s *WindowsWifiEnterpriseEAPConfiguration) UnmarshalJSON(bytes []byte) error {
-	type alias WindowsWifiEnterpriseEAPConfiguration
-	var decoded alias
+
+	var decoded struct {
+		AuthenticationMethod                         *WiFiAuthenticationMethod                    `json:"authenticationMethod,omitempty"`
+		AuthenticationPeriodInSeconds                nullable.Type[int64]                         `json:"authenticationPeriodInSeconds,omitempty"`
+		AuthenticationRetryDelayPeriodInSeconds      nullable.Type[int64]                         `json:"authenticationRetryDelayPeriodInSeconds,omitempty"`
+		AuthenticationType                           *WifiAuthenticationType                      `json:"authenticationType,omitempty"`
+		CacheCredentials                             nullable.Type[bool]                          `json:"cacheCredentials,omitempty"`
+		DisableUserPromptForServerValidation         nullable.Type[bool]                          `json:"disableUserPromptForServerValidation,omitempty"`
+		EapType                                      *EapType                                     `json:"eapType,omitempty"`
+		EapolStartPeriodInSeconds                    nullable.Type[int64]                         `json:"eapolStartPeriodInSeconds,omitempty"`
+		EnablePairwiseMasterKeyCaching               nullable.Type[bool]                          `json:"enablePairwiseMasterKeyCaching,omitempty"`
+		EnablePreAuthentication                      nullable.Type[bool]                          `json:"enablePreAuthentication,omitempty"`
+		InnerAuthenticationProtocolForEAPTTLS        *NonEapAuthenticationMethodForEapTtlsType    `json:"innerAuthenticationProtocolForEAPTTLS,omitempty"`
+		MaximumAuthenticationFailures                nullable.Type[int64]                         `json:"maximumAuthenticationFailures,omitempty"`
+		MaximumAuthenticationTimeoutInSeconds        nullable.Type[int64]                         `json:"maximumAuthenticationTimeoutInSeconds,omitempty"`
+		MaximumEAPOLStartMessages                    nullable.Type[int64]                         `json:"maximumEAPOLStartMessages,omitempty"`
+		MaximumNumberOfPairwiseMasterKeysInCache     nullable.Type[int64]                         `json:"maximumNumberOfPairwiseMasterKeysInCache,omitempty"`
+		MaximumPairwiseMasterKeyCacheTimeInMinutes   nullable.Type[int64]                         `json:"maximumPairwiseMasterKeyCacheTimeInMinutes,omitempty"`
+		MaximumPreAuthenticationAttempts             nullable.Type[int64]                         `json:"maximumPreAuthenticationAttempts,omitempty"`
+		NetworkSingleSignOn                          *NetworkSingleSignOnType                     `json:"networkSingleSignOn,omitempty"`
+		OuterIdentityPrivacyTemporaryValue           nullable.Type[string]                        `json:"outerIdentityPrivacyTemporaryValue,omitempty"`
+		PerformServerValidation                      nullable.Type[bool]                          `json:"performServerValidation,omitempty"`
+		PromptForAdditionalAuthenticationCredentials nullable.Type[bool]                          `json:"promptForAdditionalAuthenticationCredentials,omitempty"`
+		RequireCryptographicBinding                  nullable.Type[bool]                          `json:"requireCryptographicBinding,omitempty"`
+		RootCertificateForClientValidation           *Windows81TrustedRootCertificate             `json:"rootCertificateForClientValidation,omitempty"`
+		RootCertificatesForServerValidation          *[]Windows81TrustedRootCertificate           `json:"rootCertificatesForServerValidation,omitempty"`
+		TrustedServerCertificateNames                *[]string                                    `json:"trustedServerCertificateNames,omitempty"`
+		UserBasedVirtualLan                          nullable.Type[bool]                          `json:"userBasedVirtualLan,omitempty"`
+		ConnectAutomatically                         nullable.Type[bool]                          `json:"connectAutomatically,omitempty"`
+		ConnectToPreferredNetwork                    nullable.Type[bool]                          `json:"connectToPreferredNetwork,omitempty"`
+		ConnectWhenNetworkNameIsHidden               nullable.Type[bool]                          `json:"connectWhenNetworkNameIsHidden,omitempty"`
+		ForceFIPSCompliance                          nullable.Type[bool]                          `json:"forceFIPSCompliance,omitempty"`
+		MeteredConnectionLimit                       *MeteredConnectionLimitType                  `json:"meteredConnectionLimit,omitempty"`
+		NetworkName                                  nullable.Type[string]                        `json:"networkName,omitempty"`
+		PreSharedKey                                 nullable.Type[string]                        `json:"preSharedKey,omitempty"`
+		ProxyAutomaticConfigurationUrl               nullable.Type[string]                        `json:"proxyAutomaticConfigurationUrl,omitempty"`
+		ProxyManualAddress                           nullable.Type[string]                        `json:"proxyManualAddress,omitempty"`
+		ProxyManualPort                              nullable.Type[int64]                         `json:"proxyManualPort,omitempty"`
+		ProxySetting                                 *WiFiProxySetting                            `json:"proxySetting,omitempty"`
+		Ssid                                         nullable.Type[string]                        `json:"ssid,omitempty"`
+		WifiSecurityType                             *WiFiSecurityType                            `json:"wifiSecurityType,omitempty"`
+		Assignments                                  *[]DeviceConfigurationAssignment             `json:"assignments,omitempty"`
+		CreatedDateTime                              *string                                      `json:"createdDateTime,omitempty"`
+		Description                                  nullable.Type[string]                        `json:"description,omitempty"`
+		DeviceManagementApplicabilityRuleDeviceMode  *DeviceManagementApplicabilityRuleDeviceMode `json:"deviceManagementApplicabilityRuleDeviceMode,omitempty"`
+		DeviceManagementApplicabilityRuleOsEdition   *DeviceManagementApplicabilityRuleOsEdition  `json:"deviceManagementApplicabilityRuleOsEdition,omitempty"`
+		DeviceManagementApplicabilityRuleOsVersion   *DeviceManagementApplicabilityRuleOsVersion  `json:"deviceManagementApplicabilityRuleOsVersion,omitempty"`
+		DeviceSettingStateSummaries                  *[]SettingStateDeviceSummary                 `json:"deviceSettingStateSummaries,omitempty"`
+		DeviceStatusOverview                         *DeviceConfigurationDeviceOverview           `json:"deviceStatusOverview,omitempty"`
+		DeviceStatuses                               *[]DeviceConfigurationDeviceStatus           `json:"deviceStatuses,omitempty"`
+		DisplayName                                  *string                                      `json:"displayName,omitempty"`
+		GroupAssignments                             *[]DeviceConfigurationGroupAssignment        `json:"groupAssignments,omitempty"`
+		LastModifiedDateTime                         *string                                      `json:"lastModifiedDateTime,omitempty"`
+		RoleScopeTagIds                              *[]string                                    `json:"roleScopeTagIds,omitempty"`
+		SupportsScopeTags                            *bool                                        `json:"supportsScopeTags,omitempty"`
+		UserStatusOverview                           *DeviceConfigurationUserOverview             `json:"userStatusOverview,omitempty"`
+		UserStatuses                                 *[]DeviceConfigurationUserStatus             `json:"userStatuses,omitempty"`
+		Version                                      *int64                                       `json:"version,omitempty"`
+		Id                                           *string                                      `json:"id,omitempty"`
+		ODataId                                      *string                                      `json:"@odata.id,omitempty"`
+		ODataType                                    *string                                      `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into WindowsWifiEnterpriseEAPConfiguration: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
-	s.Assignments = decoded.Assignments
 	s.AuthenticationMethod = decoded.AuthenticationMethod
 	s.AuthenticationPeriodInSeconds = decoded.AuthenticationPeriodInSeconds
 	s.AuthenticationRetryDelayPeriodInSeconds = decoded.AuthenticationRetryDelayPeriodInSeconds
 	s.AuthenticationType = decoded.AuthenticationType
 	s.CacheCredentials = decoded.CacheCredentials
+	s.DisableUserPromptForServerValidation = decoded.DisableUserPromptForServerValidation
+	s.EapType = decoded.EapType
+	s.EapolStartPeriodInSeconds = decoded.EapolStartPeriodInSeconds
+	s.EnablePairwiseMasterKeyCaching = decoded.EnablePairwiseMasterKeyCaching
+	s.EnablePreAuthentication = decoded.EnablePreAuthentication
+	s.InnerAuthenticationProtocolForEAPTTLS = decoded.InnerAuthenticationProtocolForEAPTTLS
+	s.MaximumAuthenticationFailures = decoded.MaximumAuthenticationFailures
+	s.MaximumAuthenticationTimeoutInSeconds = decoded.MaximumAuthenticationTimeoutInSeconds
+	s.MaximumEAPOLStartMessages = decoded.MaximumEAPOLStartMessages
+	s.MaximumNumberOfPairwiseMasterKeysInCache = decoded.MaximumNumberOfPairwiseMasterKeysInCache
+	s.MaximumPairwiseMasterKeyCacheTimeInMinutes = decoded.MaximumPairwiseMasterKeyCacheTimeInMinutes
+	s.MaximumPreAuthenticationAttempts = decoded.MaximumPreAuthenticationAttempts
+	s.NetworkSingleSignOn = decoded.NetworkSingleSignOn
+	s.OuterIdentityPrivacyTemporaryValue = decoded.OuterIdentityPrivacyTemporaryValue
+	s.PerformServerValidation = decoded.PerformServerValidation
+	s.PromptForAdditionalAuthenticationCredentials = decoded.PromptForAdditionalAuthenticationCredentials
+	s.RequireCryptographicBinding = decoded.RequireCryptographicBinding
+	s.RootCertificateForClientValidation = decoded.RootCertificateForClientValidation
+	s.RootCertificatesForServerValidation = decoded.RootCertificatesForServerValidation
+	s.TrustedServerCertificateNames = decoded.TrustedServerCertificateNames
+	s.UserBasedVirtualLan = decoded.UserBasedVirtualLan
+	s.Assignments = decoded.Assignments
 	s.ConnectAutomatically = decoded.ConnectAutomatically
 	s.ConnectToPreferredNetwork = decoded.ConnectToPreferredNetwork
 	s.ConnectWhenNetworkNameIsHidden = decoded.ConnectWhenNetworkNameIsHidden
@@ -339,44 +420,23 @@ func (s *WindowsWifiEnterpriseEAPConfiguration) UnmarshalJSON(bytes []byte) erro
 	s.DeviceSettingStateSummaries = decoded.DeviceSettingStateSummaries
 	s.DeviceStatusOverview = decoded.DeviceStatusOverview
 	s.DeviceStatuses = decoded.DeviceStatuses
-	s.DisableUserPromptForServerValidation = decoded.DisableUserPromptForServerValidation
 	s.DisplayName = decoded.DisplayName
-	s.EapType = decoded.EapType
-	s.EapolStartPeriodInSeconds = decoded.EapolStartPeriodInSeconds
-	s.EnablePairwiseMasterKeyCaching = decoded.EnablePairwiseMasterKeyCaching
-	s.EnablePreAuthentication = decoded.EnablePreAuthentication
 	s.ForceFIPSCompliance = decoded.ForceFIPSCompliance
 	s.GroupAssignments = decoded.GroupAssignments
 	s.Id = decoded.Id
-	s.InnerAuthenticationProtocolForEAPTTLS = decoded.InnerAuthenticationProtocolForEAPTTLS
 	s.LastModifiedDateTime = decoded.LastModifiedDateTime
-	s.MaximumAuthenticationFailures = decoded.MaximumAuthenticationFailures
-	s.MaximumAuthenticationTimeoutInSeconds = decoded.MaximumAuthenticationTimeoutInSeconds
-	s.MaximumEAPOLStartMessages = decoded.MaximumEAPOLStartMessages
-	s.MaximumNumberOfPairwiseMasterKeysInCache = decoded.MaximumNumberOfPairwiseMasterKeysInCache
-	s.MaximumPairwiseMasterKeyCacheTimeInMinutes = decoded.MaximumPairwiseMasterKeyCacheTimeInMinutes
-	s.MaximumPreAuthenticationAttempts = decoded.MaximumPreAuthenticationAttempts
 	s.MeteredConnectionLimit = decoded.MeteredConnectionLimit
 	s.NetworkName = decoded.NetworkName
-	s.NetworkSingleSignOn = decoded.NetworkSingleSignOn
 	s.ODataId = decoded.ODataId
 	s.ODataType = decoded.ODataType
-	s.OuterIdentityPrivacyTemporaryValue = decoded.OuterIdentityPrivacyTemporaryValue
-	s.PerformServerValidation = decoded.PerformServerValidation
 	s.PreSharedKey = decoded.PreSharedKey
-	s.PromptForAdditionalAuthenticationCredentials = decoded.PromptForAdditionalAuthenticationCredentials
 	s.ProxyAutomaticConfigurationUrl = decoded.ProxyAutomaticConfigurationUrl
 	s.ProxyManualAddress = decoded.ProxyManualAddress
 	s.ProxyManualPort = decoded.ProxyManualPort
 	s.ProxySetting = decoded.ProxySetting
-	s.RequireCryptographicBinding = decoded.RequireCryptographicBinding
 	s.RoleScopeTagIds = decoded.RoleScopeTagIds
-	s.RootCertificateForClientValidation = decoded.RootCertificateForClientValidation
-	s.RootCertificatesForServerValidation = decoded.RootCertificatesForServerValidation
 	s.Ssid = decoded.Ssid
 	s.SupportsScopeTags = decoded.SupportsScopeTags
-	s.TrustedServerCertificateNames = decoded.TrustedServerCertificateNames
-	s.UserBasedVirtualLan = decoded.UserBasedVirtualLan
 	s.UserStatusOverview = decoded.UserStatusOverview
 	s.UserStatuses = decoded.UserStatuses
 	s.Version = decoded.Version
@@ -394,5 +454,6 @@ func (s *WindowsWifiEnterpriseEAPConfiguration) UnmarshalJSON(bytes []byte) erro
 		}
 		s.IdentityCertificateForClientAuthentication = &impl
 	}
+
 	return nil
 }

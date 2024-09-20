@@ -19,15 +19,44 @@ type CreateEntitlementManagementResourceRoleOperationResponse struct {
 	Model        *stable.AccessPackageResourceRole
 }
 
+type CreateEntitlementManagementResourceRoleOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateEntitlementManagementResourceRoleOperationOptions() CreateEntitlementManagementResourceRoleOperationOptions {
+	return CreateEntitlementManagementResourceRoleOperationOptions{}
+}
+
+func (o CreateEntitlementManagementResourceRoleOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateEntitlementManagementResourceRoleOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateEntitlementManagementResourceRoleOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateEntitlementManagementResourceRole - Create new navigation property to roles for identityGovernance
-func (c EntitlementManagementResourceRoleClient) CreateEntitlementManagementResourceRole(ctx context.Context, id stable.IdentityGovernanceEntitlementManagementResourceId, input stable.AccessPackageResourceRole) (result CreateEntitlementManagementResourceRoleOperationResponse, err error) {
+func (c EntitlementManagementResourceRoleClient) CreateEntitlementManagementResourceRole(ctx context.Context, id stable.IdentityGovernanceEntitlementManagementResourceId, input stable.AccessPackageResourceRole, options CreateEntitlementManagementResourceRoleOperationOptions) (result CreateEntitlementManagementResourceRoleOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/roles", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/roles", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

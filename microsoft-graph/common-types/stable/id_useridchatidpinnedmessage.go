@@ -104,11 +104,11 @@ func (id UserIdChatIdPinnedMessageId) ID() string {
 func (id UserIdChatIdPinnedMessageId) Segments() []resourceids.Segment {
 	return []resourceids.Segment{
 		resourceids.StaticSegment("users", "users", "users"),
-		resourceids.UserSpecifiedSegment("userId", "userIdValue"),
+		resourceids.UserSpecifiedSegment("userId", "userId"),
 		resourceids.StaticSegment("chats", "chats", "chats"),
-		resourceids.UserSpecifiedSegment("chatId", "chatIdValue"),
+		resourceids.UserSpecifiedSegment("chatId", "chatId"),
 		resourceids.StaticSegment("pinnedMessages", "pinnedMessages", "pinnedMessages"),
-		resourceids.UserSpecifiedSegment("pinnedChatMessageInfoId", "pinnedChatMessageInfoIdValue"),
+		resourceids.UserSpecifiedSegment("pinnedChatMessageInfoId", "pinnedChatMessageInfoId"),
 	}
 }
 

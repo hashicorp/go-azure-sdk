@@ -19,8 +19,9 @@ type GetDriveOperationResponse struct {
 }
 
 type GetDriveOperationOptions struct {
-	Expand *odata.Expand
-	Select *[]string
+	Expand   *odata.Expand
+	Metadata *odata.Metadata
+	Select   *[]string
 }
 
 func DefaultGetDriveOperationOptions() GetDriveOperationOptions {
@@ -38,6 +39,9 @@ func (o GetDriveOperationOptions) ToOData() *odata.Query {
 	if o.Expand != nil {
 		out.Expand = *o.Expand
 	}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	if o.Select != nil {
 		out.Select = *o.Select
 	}
@@ -50,9 +54,8 @@ func (o GetDriveOperationOptions) ToQuery() *client.QueryParams {
 	return &out
 }
 
-// GetDrive - Get Drive. Retrieve the properties and relationships of a Drive resource. A Drive is the top-level
-// container for a file system, such as OneDrive or SharePoint document libraries.
-func (c DriveClient) GetDrive(ctx context.Context, options GetDriveOperationOptions) (result GetDriveOperationResponse, err error) {
+// GetDrive - Get drives from me. A collection of drives available for this user. Read-only.
+func (c DriveClient) GetDrive(ctx context.Context, id stable.MeDriveId, options GetDriveOperationOptions) (result GetDriveOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
@@ -60,7 +63,7 @@ func (c DriveClient) GetDrive(ctx context.Context, options GetDriveOperationOpti
 		},
 		HttpMethod:    http.MethodGet,
 		OptionsObject: options,
-		Path:          "/me/drive",
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

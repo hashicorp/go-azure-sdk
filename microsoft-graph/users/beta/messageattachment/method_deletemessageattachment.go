@@ -19,7 +19,8 @@ type DeleteMessageAttachmentOperationResponse struct {
 }
 
 type DeleteMessageAttachmentOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteMessageAttachmentOperationOptions() DeleteMessageAttachmentOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteMessageAttachmentOperationOptions) ToHeaders() *client.Headers {
 
 func (o DeleteMessageAttachmentOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

@@ -66,10 +66,15 @@ func (s MeetingPolicyUpdatedEventMessageDetail) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &MeetingPolicyUpdatedEventMessageDetail{}
 
 func (s *MeetingPolicyUpdatedEventMessageDetail) UnmarshalJSON(bytes []byte) error {
-	type alias MeetingPolicyUpdatedEventMessageDetail
-	var decoded alias
+
+	var decoded struct {
+		MeetingChatEnabled nullable.Type[bool]   `json:"meetingChatEnabled,omitempty"`
+		MeetingChatId      nullable.Type[string] `json:"meetingChatId,omitempty"`
+		ODataId            *string               `json:"@odata.id,omitempty"`
+		ODataType          *string               `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into MeetingPolicyUpdatedEventMessageDetail: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.MeetingChatEnabled = decoded.MeetingChatEnabled
@@ -89,5 +94,6 @@ func (s *MeetingPolicyUpdatedEventMessageDetail) UnmarshalJSON(bytes []byte) err
 		}
 		s.Initiator = impl
 	}
+
 	return nil
 }

@@ -19,15 +19,44 @@ type CreateAccessReviewDecisionInstanceStageOperationResponse struct {
 	Model        *beta.AccessReviewStage
 }
 
+type CreateAccessReviewDecisionInstanceStageOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateAccessReviewDecisionInstanceStageOperationOptions() CreateAccessReviewDecisionInstanceStageOperationOptions {
+	return CreateAccessReviewDecisionInstanceStageOperationOptions{}
+}
+
+func (o CreateAccessReviewDecisionInstanceStageOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateAccessReviewDecisionInstanceStageOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateAccessReviewDecisionInstanceStageOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateAccessReviewDecisionInstanceStage - Create new navigation property to stages for identityGovernance
-func (c AccessReviewDecisionInstanceStageClient) CreateAccessReviewDecisionInstanceStage(ctx context.Context, id beta.IdentityGovernanceAccessReviewDecisionId, input beta.AccessReviewStage) (result CreateAccessReviewDecisionInstanceStageOperationResponse, err error) {
+func (c AccessReviewDecisionInstanceStageClient) CreateAccessReviewDecisionInstanceStage(ctx context.Context, id beta.IdentityGovernanceAccessReviewDecisionId, input beta.AccessReviewStage, options CreateAccessReviewDecisionInstanceStageOperationOptions) (result CreateAccessReviewDecisionInstanceStageOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/instance/stages", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/instance/stages", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

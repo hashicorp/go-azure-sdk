@@ -17,15 +17,44 @@ type UpdateDeviceHealthScriptOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateDeviceHealthScriptOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateDeviceHealthScriptOperationOptions() UpdateDeviceHealthScriptOperationOptions {
+	return UpdateDeviceHealthScriptOperationOptions{}
+}
+
+func (o UpdateDeviceHealthScriptOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateDeviceHealthScriptOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateDeviceHealthScriptOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateDeviceHealthScript - Update the navigation property deviceHealthScripts in deviceManagement
-func (c DeviceHealthScriptClient) UpdateDeviceHealthScript(ctx context.Context, id beta.DeviceManagementDeviceHealthScriptId, input beta.DeviceHealthScript) (result UpdateDeviceHealthScriptOperationResponse, err error) {
+func (c DeviceHealthScriptClient) UpdateDeviceHealthScript(ctx context.Context, id beta.DeviceManagementDeviceHealthScriptId, input beta.DeviceHealthScript, options UpdateDeviceHealthScriptOperationOptions) (result UpdateDeviceHealthScriptOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

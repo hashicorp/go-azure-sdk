@@ -18,16 +18,45 @@ type SendTeamworkActivityNotificationOperationResponse struct {
 	OData        *odata.OData
 }
 
+type SendTeamworkActivityNotificationOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultSendTeamworkActivityNotificationOperationOptions() SendTeamworkActivityNotificationOperationOptions {
+	return SendTeamworkActivityNotificationOperationOptions{}
+}
+
+func (o SendTeamworkActivityNotificationOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o SendTeamworkActivityNotificationOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o SendTeamworkActivityNotificationOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // SendTeamworkActivityNotification - Invoke action sendActivityNotification. Send an activity feed notification to a
 // user. For more information, see sending Teams activity notifications.
-func (c TeamworkClient) SendTeamworkActivityNotification(ctx context.Context, id stable.UserId, input SendTeamworkActivityNotificationRequest) (result SendTeamworkActivityNotificationOperationResponse, err error) {
+func (c TeamworkClient) SendTeamworkActivityNotification(ctx context.Context, id stable.UserId, input SendTeamworkActivityNotificationRequest, options SendTeamworkActivityNotificationOperationOptions) (result SendTeamworkActivityNotificationOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/teamwork/sendActivityNotification", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/teamwork/sendActivityNotification", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

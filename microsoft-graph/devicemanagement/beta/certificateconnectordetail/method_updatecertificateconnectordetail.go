@@ -17,15 +17,44 @@ type UpdateCertificateConnectorDetailOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateCertificateConnectorDetailOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateCertificateConnectorDetailOperationOptions() UpdateCertificateConnectorDetailOperationOptions {
+	return UpdateCertificateConnectorDetailOperationOptions{}
+}
+
+func (o UpdateCertificateConnectorDetailOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateCertificateConnectorDetailOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateCertificateConnectorDetailOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateCertificateConnectorDetail - Update the navigation property certificateConnectorDetails in deviceManagement
-func (c CertificateConnectorDetailClient) UpdateCertificateConnectorDetail(ctx context.Context, id beta.DeviceManagementCertificateConnectorDetailId, input beta.CertificateConnectorDetails) (result UpdateCertificateConnectorDetailOperationResponse, err error) {
+func (c CertificateConnectorDetailClient) UpdateCertificateConnectorDetail(ctx context.Context, id beta.DeviceManagementCertificateConnectorDetailId, input beta.CertificateConnectorDetails, options UpdateCertificateConnectorDetailOperationOptions) (result UpdateCertificateConnectorDetailOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

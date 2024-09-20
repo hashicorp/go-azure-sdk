@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &IdentityGovernanceEntitlementManagementAccessPackageAssignmentIdAccessPackageIncompatibleGroupId{}
 
 func TestNewIdentityGovernanceEntitlementManagementAccessPackageAssignmentIdAccessPackageIncompatibleGroupID(t *testing.T) {
-	id := NewIdentityGovernanceEntitlementManagementAccessPackageAssignmentIdAccessPackageIncompatibleGroupID("accessPackageAssignmentIdValue", "groupIdValue")
+	id := NewIdentityGovernanceEntitlementManagementAccessPackageAssignmentIdAccessPackageIncompatibleGroupID("accessPackageAssignmentId", "groupId")
 
-	if id.AccessPackageAssignmentId != "accessPackageAssignmentIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'AccessPackageAssignmentId'", id.AccessPackageAssignmentId, "accessPackageAssignmentIdValue")
+	if id.AccessPackageAssignmentId != "accessPackageAssignmentId" {
+		t.Fatalf("Expected %q but got %q for Segment 'AccessPackageAssignmentId'", id.AccessPackageAssignmentId, "accessPackageAssignmentId")
 	}
 
-	if id.GroupId != "groupIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'GroupId'", id.GroupId, "groupIdValue")
+	if id.GroupId != "groupId" {
+		t.Fatalf("Expected %q but got %q for Segment 'GroupId'", id.GroupId, "groupId")
 	}
 }
 
 func TestFormatIdentityGovernanceEntitlementManagementAccessPackageAssignmentIdAccessPackageIncompatibleGroupID(t *testing.T) {
-	actual := NewIdentityGovernanceEntitlementManagementAccessPackageAssignmentIdAccessPackageIncompatibleGroupID("accessPackageAssignmentIdValue", "groupIdValue").ID()
-	expected := "/identityGovernance/entitlementManagement/accessPackageAssignments/accessPackageAssignmentIdValue/accessPackage/incompatibleGroups/groupIdValue"
+	actual := NewIdentityGovernanceEntitlementManagementAccessPackageAssignmentIdAccessPackageIncompatibleGroupID("accessPackageAssignmentId", "groupId").ID()
+	expected := "/identityGovernance/entitlementManagement/accessPackageAssignments/accessPackageAssignmentId/accessPackage/incompatibleGroups/groupId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -59,30 +59,30 @@ func TestParseIdentityGovernanceEntitlementManagementAccessPackageAssignmentIdAc
 		},
 		{
 			// Incomplete URI
-			Input: "/identityGovernance/entitlementManagement/accessPackageAssignments/accessPackageAssignmentIdValue",
+			Input: "/identityGovernance/entitlementManagement/accessPackageAssignments/accessPackageAssignmentId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/identityGovernance/entitlementManagement/accessPackageAssignments/accessPackageAssignmentIdValue/accessPackage",
+			Input: "/identityGovernance/entitlementManagement/accessPackageAssignments/accessPackageAssignmentId/accessPackage",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/identityGovernance/entitlementManagement/accessPackageAssignments/accessPackageAssignmentIdValue/accessPackage/incompatibleGroups",
+			Input: "/identityGovernance/entitlementManagement/accessPackageAssignments/accessPackageAssignmentId/accessPackage/incompatibleGroups",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/identityGovernance/entitlementManagement/accessPackageAssignments/accessPackageAssignmentIdValue/accessPackage/incompatibleGroups/groupIdValue",
+			Input: "/identityGovernance/entitlementManagement/accessPackageAssignments/accessPackageAssignmentId/accessPackage/incompatibleGroups/groupId",
 			Expected: &IdentityGovernanceEntitlementManagementAccessPackageAssignmentIdAccessPackageIncompatibleGroupId{
-				AccessPackageAssignmentId: "accessPackageAssignmentIdValue",
-				GroupId:                   "groupIdValue",
+				AccessPackageAssignmentId: "accessPackageAssignmentId",
+				GroupId:                   "groupId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/identityGovernance/entitlementManagement/accessPackageAssignments/accessPackageAssignmentIdValue/accessPackage/incompatibleGroups/groupIdValue/extra",
+			Input: "/identityGovernance/entitlementManagement/accessPackageAssignments/accessPackageAssignmentId/accessPackage/incompatibleGroups/groupId/extra",
 			Error: true,
 		},
 	}
@@ -155,58 +155,58 @@ func TestParseIdentityGovernanceEntitlementManagementAccessPackageAssignmentIdAc
 		},
 		{
 			// Incomplete URI
-			Input: "/identityGovernance/entitlementManagement/accessPackageAssignments/accessPackageAssignmentIdValue",
+			Input: "/identityGovernance/entitlementManagement/accessPackageAssignments/accessPackageAssignmentId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/iDeNtItYgOvErNaNcE/eNtItLeMeNtMaNaGeMeNt/aCcEsSpAcKaGeAsSiGnMeNtS/aCcEsSpAcKaGeAsSiGnMeNtIdVaLuE",
+			Input: "/iDeNtItYgOvErNaNcE/eNtItLeMeNtMaNaGeMeNt/aCcEsSpAcKaGeAsSiGnMeNtS/aCcEsSpAcKaGeAsSiGnMeNtId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/identityGovernance/entitlementManagement/accessPackageAssignments/accessPackageAssignmentIdValue/accessPackage",
+			Input: "/identityGovernance/entitlementManagement/accessPackageAssignments/accessPackageAssignmentId/accessPackage",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/iDeNtItYgOvErNaNcE/eNtItLeMeNtMaNaGeMeNt/aCcEsSpAcKaGeAsSiGnMeNtS/aCcEsSpAcKaGeAsSiGnMeNtIdVaLuE/aCcEsSpAcKaGe",
+			Input: "/iDeNtItYgOvErNaNcE/eNtItLeMeNtMaNaGeMeNt/aCcEsSpAcKaGeAsSiGnMeNtS/aCcEsSpAcKaGeAsSiGnMeNtId/aCcEsSpAcKaGe",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/identityGovernance/entitlementManagement/accessPackageAssignments/accessPackageAssignmentIdValue/accessPackage/incompatibleGroups",
+			Input: "/identityGovernance/entitlementManagement/accessPackageAssignments/accessPackageAssignmentId/accessPackage/incompatibleGroups",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/iDeNtItYgOvErNaNcE/eNtItLeMeNtMaNaGeMeNt/aCcEsSpAcKaGeAsSiGnMeNtS/aCcEsSpAcKaGeAsSiGnMeNtIdVaLuE/aCcEsSpAcKaGe/iNcOmPaTiBlEgRoUpS",
+			Input: "/iDeNtItYgOvErNaNcE/eNtItLeMeNtMaNaGeMeNt/aCcEsSpAcKaGeAsSiGnMeNtS/aCcEsSpAcKaGeAsSiGnMeNtId/aCcEsSpAcKaGe/iNcOmPaTiBlEgRoUpS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/identityGovernance/entitlementManagement/accessPackageAssignments/accessPackageAssignmentIdValue/accessPackage/incompatibleGroups/groupIdValue",
+			Input: "/identityGovernance/entitlementManagement/accessPackageAssignments/accessPackageAssignmentId/accessPackage/incompatibleGroups/groupId",
 			Expected: &IdentityGovernanceEntitlementManagementAccessPackageAssignmentIdAccessPackageIncompatibleGroupId{
-				AccessPackageAssignmentId: "accessPackageAssignmentIdValue",
-				GroupId:                   "groupIdValue",
+				AccessPackageAssignmentId: "accessPackageAssignmentId",
+				GroupId:                   "groupId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/identityGovernance/entitlementManagement/accessPackageAssignments/accessPackageAssignmentIdValue/accessPackage/incompatibleGroups/groupIdValue/extra",
+			Input: "/identityGovernance/entitlementManagement/accessPackageAssignments/accessPackageAssignmentId/accessPackage/incompatibleGroups/groupId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/iDeNtItYgOvErNaNcE/eNtItLeMeNtMaNaGeMeNt/aCcEsSpAcKaGeAsSiGnMeNtS/aCcEsSpAcKaGeAsSiGnMeNtIdVaLuE/aCcEsSpAcKaGe/iNcOmPaTiBlEgRoUpS/gRoUpIdVaLuE",
+			Input: "/iDeNtItYgOvErNaNcE/eNtItLeMeNtMaNaGeMeNt/aCcEsSpAcKaGeAsSiGnMeNtS/aCcEsSpAcKaGeAsSiGnMeNtId/aCcEsSpAcKaGe/iNcOmPaTiBlEgRoUpS/gRoUpId",
 			Expected: &IdentityGovernanceEntitlementManagementAccessPackageAssignmentIdAccessPackageIncompatibleGroupId{
-				AccessPackageAssignmentId: "aCcEsSpAcKaGeAsSiGnMeNtIdVaLuE",
-				GroupId:                   "gRoUpIdVaLuE",
+				AccessPackageAssignmentId: "aCcEsSpAcKaGeAsSiGnMeNtId",
+				GroupId:                   "gRoUpId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/iDeNtItYgOvErNaNcE/eNtItLeMeNtMaNaGeMeNt/aCcEsSpAcKaGeAsSiGnMeNtS/aCcEsSpAcKaGeAsSiGnMeNtIdVaLuE/aCcEsSpAcKaGe/iNcOmPaTiBlEgRoUpS/gRoUpIdVaLuE/extra",
+			Input: "/iDeNtItYgOvErNaNcE/eNtItLeMeNtMaNaGeMeNt/aCcEsSpAcKaGeAsSiGnMeNtS/aCcEsSpAcKaGeAsSiGnMeNtId/aCcEsSpAcKaGe/iNcOmPaTiBlEgRoUpS/gRoUpId/extra",
 			Error: true,
 		},
 	}

@@ -18,15 +18,44 @@ type CreateEntitlementManagementRoleAssignmentOperationResponse struct {
 	Model        *beta.UnifiedRoleAssignment
 }
 
+type CreateEntitlementManagementRoleAssignmentOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateEntitlementManagementRoleAssignmentOperationOptions() CreateEntitlementManagementRoleAssignmentOperationOptions {
+	return CreateEntitlementManagementRoleAssignmentOperationOptions{}
+}
+
+func (o CreateEntitlementManagementRoleAssignmentOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateEntitlementManagementRoleAssignmentOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateEntitlementManagementRoleAssignmentOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateEntitlementManagementRoleAssignment - Create unifiedRoleAssignment. Create a new unifiedRoleAssignment object.
-func (c EntitlementManagementRoleAssignmentClient) CreateEntitlementManagementRoleAssignment(ctx context.Context, input beta.UnifiedRoleAssignment) (result CreateEntitlementManagementRoleAssignmentOperationResponse, err error) {
+func (c EntitlementManagementRoleAssignmentClient) CreateEntitlementManagementRoleAssignment(ctx context.Context, input beta.UnifiedRoleAssignment, options CreateEntitlementManagementRoleAssignmentOperationOptions) (result CreateEntitlementManagementRoleAssignmentOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/roleManagement/entitlementManagement/roleAssignments",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/roleManagement/entitlementManagement/roleAssignments",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

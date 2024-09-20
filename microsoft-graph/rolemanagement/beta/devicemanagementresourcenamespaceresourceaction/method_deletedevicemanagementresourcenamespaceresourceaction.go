@@ -19,7 +19,8 @@ type DeleteDeviceManagementResourceNamespaceResourceActionOperationResponse stru
 }
 
 type DeleteDeviceManagementResourceNamespaceResourceActionOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteDeviceManagementResourceNamespaceResourceActionOperationOptions() DeleteDeviceManagementResourceNamespaceResourceActionOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteDeviceManagementResourceNamespaceResourceActionOperationOptions) T
 
 func (o DeleteDeviceManagementResourceNamespaceResourceActionOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

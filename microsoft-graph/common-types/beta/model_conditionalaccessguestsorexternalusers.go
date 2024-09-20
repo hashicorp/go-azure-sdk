@@ -25,10 +25,14 @@ type ConditionalAccessGuestsOrExternalUsers struct {
 var _ json.Unmarshaler = &ConditionalAccessGuestsOrExternalUsers{}
 
 func (s *ConditionalAccessGuestsOrExternalUsers) UnmarshalJSON(bytes []byte) error {
-	type alias ConditionalAccessGuestsOrExternalUsers
-	var decoded alias
+
+	var decoded struct {
+		GuestOrExternalUserTypes *ConditionalAccessGuestOrExternalUserTypes `json:"guestOrExternalUserTypes,omitempty"`
+		ODataId                  *string                                    `json:"@odata.id,omitempty"`
+		ODataType                *string                                    `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into ConditionalAccessGuestsOrExternalUsers: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.GuestOrExternalUserTypes = decoded.GuestOrExternalUserTypes
@@ -47,5 +51,6 @@ func (s *ConditionalAccessGuestsOrExternalUsers) UnmarshalJSON(bytes []byte) err
 		}
 		s.ExternalTenants = impl
 	}
+
 	return nil
 }

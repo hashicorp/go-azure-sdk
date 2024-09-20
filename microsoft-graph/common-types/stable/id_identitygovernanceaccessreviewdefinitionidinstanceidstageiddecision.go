@@ -112,13 +112,13 @@ func (id IdentityGovernanceAccessReviewDefinitionIdInstanceIdStageIdDecisionId) 
 		resourceids.StaticSegment("identityGovernance", "identityGovernance", "identityGovernance"),
 		resourceids.StaticSegment("accessReviews", "accessReviews", "accessReviews"),
 		resourceids.StaticSegment("definitions", "definitions", "definitions"),
-		resourceids.UserSpecifiedSegment("accessReviewScheduleDefinitionId", "accessReviewScheduleDefinitionIdValue"),
+		resourceids.UserSpecifiedSegment("accessReviewScheduleDefinitionId", "accessReviewScheduleDefinitionId"),
 		resourceids.StaticSegment("instances", "instances", "instances"),
-		resourceids.UserSpecifiedSegment("accessReviewInstanceId", "accessReviewInstanceIdValue"),
+		resourceids.UserSpecifiedSegment("accessReviewInstanceId", "accessReviewInstanceId"),
 		resourceids.StaticSegment("stages", "stages", "stages"),
-		resourceids.UserSpecifiedSegment("accessReviewStageId", "accessReviewStageIdValue"),
+		resourceids.UserSpecifiedSegment("accessReviewStageId", "accessReviewStageId"),
 		resourceids.StaticSegment("decisions", "decisions", "decisions"),
-		resourceids.UserSpecifiedSegment("accessReviewInstanceDecisionItemId", "accessReviewInstanceDecisionItemIdValue"),
+		resourceids.UserSpecifiedSegment("accessReviewInstanceDecisionItemId", "accessReviewInstanceDecisionItemId"),
 	}
 }
 

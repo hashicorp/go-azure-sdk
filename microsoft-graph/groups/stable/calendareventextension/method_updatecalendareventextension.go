@@ -17,15 +17,44 @@ type UpdateCalendarEventExtensionOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateCalendarEventExtensionOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateCalendarEventExtensionOperationOptions() UpdateCalendarEventExtensionOperationOptions {
+	return UpdateCalendarEventExtensionOperationOptions{}
+}
+
+func (o UpdateCalendarEventExtensionOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateCalendarEventExtensionOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateCalendarEventExtensionOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateCalendarEventExtension - Update the navigation property extensions in groups
-func (c CalendarEventExtensionClient) UpdateCalendarEventExtension(ctx context.Context, id stable.GroupIdCalendarEventIdExtensionId, input stable.Extension) (result UpdateCalendarEventExtensionOperationResponse, err error) {
+func (c CalendarEventExtensionClient) UpdateCalendarEventExtension(ctx context.Context, id stable.GroupIdCalendarEventIdExtensionId, input stable.Extension, options UpdateCalendarEventExtensionOperationOptions) (result UpdateCalendarEventExtensionOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

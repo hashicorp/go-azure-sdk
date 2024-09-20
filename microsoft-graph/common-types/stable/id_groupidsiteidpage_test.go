@@ -12,24 +12,24 @@ import (
 var _ resourceids.ResourceId = &GroupIdSiteIdPageId{}
 
 func TestNewGroupIdSiteIdPageID(t *testing.T) {
-	id := NewGroupIdSiteIdPageID("groupIdValue", "siteIdValue", "baseSitePageIdValue")
+	id := NewGroupIdSiteIdPageID("groupId", "siteId", "baseSitePageId")
 
-	if id.GroupId != "groupIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'GroupId'", id.GroupId, "groupIdValue")
+	if id.GroupId != "groupId" {
+		t.Fatalf("Expected %q but got %q for Segment 'GroupId'", id.GroupId, "groupId")
 	}
 
-	if id.SiteId != "siteIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'SiteId'", id.SiteId, "siteIdValue")
+	if id.SiteId != "siteId" {
+		t.Fatalf("Expected %q but got %q for Segment 'SiteId'", id.SiteId, "siteId")
 	}
 
-	if id.BaseSitePageId != "baseSitePageIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'BaseSitePageId'", id.BaseSitePageId, "baseSitePageIdValue")
+	if id.BaseSitePageId != "baseSitePageId" {
+		t.Fatalf("Expected %q but got %q for Segment 'BaseSitePageId'", id.BaseSitePageId, "baseSitePageId")
 	}
 }
 
 func TestFormatGroupIdSiteIdPageID(t *testing.T) {
-	actual := NewGroupIdSiteIdPageID("groupIdValue", "siteIdValue", "baseSitePageIdValue").ID()
-	expected := "/groups/groupIdValue/sites/siteIdValue/pages/baseSitePageIdValue"
+	actual := NewGroupIdSiteIdPageID("groupId", "siteId", "baseSitePageId").ID()
+	expected := "/groups/groupId/sites/siteId/pages/baseSitePageId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -53,36 +53,36 @@ func TestParseGroupIdSiteIdPageID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue",
+			Input: "/groups/groupId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/sites",
+			Input: "/groups/groupId/sites",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/sites/siteIdValue",
+			Input: "/groups/groupId/sites/siteId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/sites/siteIdValue/pages",
+			Input: "/groups/groupId/sites/siteId/pages",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/groups/groupIdValue/sites/siteIdValue/pages/baseSitePageIdValue",
+			Input: "/groups/groupId/sites/siteId/pages/baseSitePageId",
 			Expected: &GroupIdSiteIdPageId{
-				GroupId:        "groupIdValue",
-				SiteId:         "siteIdValue",
-				BaseSitePageId: "baseSitePageIdValue",
+				GroupId:        "groupId",
+				SiteId:         "siteId",
+				BaseSitePageId: "baseSitePageId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/groups/groupIdValue/sites/siteIdValue/pages/baseSitePageIdValue/extra",
+			Input: "/groups/groupId/sites/siteId/pages/baseSitePageId/extra",
 			Error: true,
 		},
 	}
@@ -139,70 +139,70 @@ func TestParseGroupIdSiteIdPageIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue",
+			Input: "/groups/groupId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE",
+			Input: "/gRoUpS/gRoUpId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/sites",
+			Input: "/groups/groupId/sites",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/sItEs",
+			Input: "/gRoUpS/gRoUpId/sItEs",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/sites/siteIdValue",
+			Input: "/groups/groupId/sites/siteId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/sItEs/sItEiDvAlUe",
+			Input: "/gRoUpS/gRoUpId/sItEs/sItEiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/sites/siteIdValue/pages",
+			Input: "/groups/groupId/sites/siteId/pages",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/sItEs/sItEiDvAlUe/pAgEs",
+			Input: "/gRoUpS/gRoUpId/sItEs/sItEiD/pAgEs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/groups/groupIdValue/sites/siteIdValue/pages/baseSitePageIdValue",
+			Input: "/groups/groupId/sites/siteId/pages/baseSitePageId",
 			Expected: &GroupIdSiteIdPageId{
-				GroupId:        "groupIdValue",
-				SiteId:         "siteIdValue",
-				BaseSitePageId: "baseSitePageIdValue",
+				GroupId:        "groupId",
+				SiteId:         "siteId",
+				BaseSitePageId: "baseSitePageId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/groups/groupIdValue/sites/siteIdValue/pages/baseSitePageIdValue/extra",
+			Input: "/groups/groupId/sites/siteId/pages/baseSitePageId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/sItEs/sItEiDvAlUe/pAgEs/bAsEsItEpAgEiDvAlUe",
+			Input: "/gRoUpS/gRoUpId/sItEs/sItEiD/pAgEs/bAsEsItEpAgEiD",
 			Expected: &GroupIdSiteIdPageId{
-				GroupId:        "gRoUpIdVaLuE",
-				SiteId:         "sItEiDvAlUe",
-				BaseSitePageId: "bAsEsItEpAgEiDvAlUe",
+				GroupId:        "gRoUpId",
+				SiteId:         "sItEiD",
+				BaseSitePageId: "bAsEsItEpAgEiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/sItEs/sItEiDvAlUe/pAgEs/bAsEsItEpAgEiDvAlUe/extra",
+			Input: "/gRoUpS/gRoUpId/sItEs/sItEiD/pAgEs/bAsEsItEpAgEiD/extra",
 			Error: true,
 		},
 	}

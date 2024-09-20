@@ -2,8 +2,10 @@ package termsofuseagreementacceptance
 
 import (
 	"context"
+	"fmt"
 	"net/http"
 
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/stable"
 	"github.com/hashicorp/go-azure-sdk/sdk/client"
 	"github.com/hashicorp/go-azure-sdk/sdk/odata"
 )
@@ -18,8 +20,9 @@ type GetTermsOfUseAgreementAcceptancesCountOperationResponse struct {
 }
 
 type GetTermsOfUseAgreementAcceptancesCountOperationOptions struct {
-	Filter *string
-	Search *string
+	Filter   *string
+	Metadata *odata.Metadata
+	Search   *string
 }
 
 func DefaultGetTermsOfUseAgreementAcceptancesCountOperationOptions() GetTermsOfUseAgreementAcceptancesCountOperationOptions {
@@ -37,6 +40,9 @@ func (o GetTermsOfUseAgreementAcceptancesCountOperationOptions) ToOData() *odata
 	if o.Filter != nil {
 		out.Filter = *o.Filter
 	}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	if o.Search != nil {
 		out.Search = *o.Search
 	}
@@ -50,7 +56,7 @@ func (o GetTermsOfUseAgreementAcceptancesCountOperationOptions) ToQuery() *clien
 }
 
 // GetTermsOfUseAgreementAcceptancesCount - Get the number of the resource
-func (c TermsOfUseAgreementAcceptanceClient) GetTermsOfUseAgreementAcceptancesCount(ctx context.Context, options GetTermsOfUseAgreementAcceptancesCountOperationOptions) (result GetTermsOfUseAgreementAcceptancesCountOperationResponse, err error) {
+func (c TermsOfUseAgreementAcceptanceClient) GetTermsOfUseAgreementAcceptancesCount(ctx context.Context, id stable.IdentityGovernanceTermsOfUseAgreementId, options GetTermsOfUseAgreementAcceptancesCountOperationOptions) (result GetTermsOfUseAgreementAcceptancesCountOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "text/plain",
 		ExpectedStatusCodes: []int{
@@ -58,7 +64,7 @@ func (c TermsOfUseAgreementAcceptanceClient) GetTermsOfUseAgreementAcceptancesCo
 		},
 		HttpMethod:    http.MethodGet,
 		OptionsObject: options,
-		Path:          "/identityGovernance/termsOfUse/agreementAcceptances/$count",
+		Path:          fmt.Sprintf("%s/acceptances/$count", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

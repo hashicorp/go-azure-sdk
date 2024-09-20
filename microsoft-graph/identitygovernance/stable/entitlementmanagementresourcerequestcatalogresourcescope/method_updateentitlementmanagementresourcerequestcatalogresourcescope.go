@@ -17,16 +17,45 @@ type UpdateEntitlementManagementResourceRequestCatalogResourceScopeOperationResp
 	OData        *odata.OData
 }
 
+type UpdateEntitlementManagementResourceRequestCatalogResourceScopeOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateEntitlementManagementResourceRequestCatalogResourceScopeOperationOptions() UpdateEntitlementManagementResourceRequestCatalogResourceScopeOperationOptions {
+	return UpdateEntitlementManagementResourceRequestCatalogResourceScopeOperationOptions{}
+}
+
+func (o UpdateEntitlementManagementResourceRequestCatalogResourceScopeOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateEntitlementManagementResourceRequestCatalogResourceScopeOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateEntitlementManagementResourceRequestCatalogResourceScopeOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateEntitlementManagementResourceRequestCatalogResourceScope - Update the navigation property scopes in
 // identityGovernance
-func (c EntitlementManagementResourceRequestCatalogResourceScopeClient) UpdateEntitlementManagementResourceRequestCatalogResourceScope(ctx context.Context, id stable.IdentityGovernanceEntitlementManagementResourceRequestIdCatalogResourceIdScopeId, input stable.AccessPackageResourceScope) (result UpdateEntitlementManagementResourceRequestCatalogResourceScopeOperationResponse, err error) {
+func (c EntitlementManagementResourceRequestCatalogResourceScopeClient) UpdateEntitlementManagementResourceRequestCatalogResourceScope(ctx context.Context, id stable.IdentityGovernanceEntitlementManagementResourceRequestIdCatalogResourceIdScopeId, input stable.AccessPackageResourceScope, options UpdateEntitlementManagementResourceRequestCatalogResourceScopeOperationOptions) (result UpdateEntitlementManagementResourceRequestCatalogResourceScopeOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

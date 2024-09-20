@@ -18,15 +18,44 @@ type UpdateSiteListItemDocumentSetVersionFieldOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateSiteListItemDocumentSetVersionFieldOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateSiteListItemDocumentSetVersionFieldOperationOptions() UpdateSiteListItemDocumentSetVersionFieldOperationOptions {
+	return UpdateSiteListItemDocumentSetVersionFieldOperationOptions{}
+}
+
+func (o UpdateSiteListItemDocumentSetVersionFieldOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateSiteListItemDocumentSetVersionFieldOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateSiteListItemDocumentSetVersionFieldOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateSiteListItemDocumentSetVersionField - Update the navigation property fields in groups
-func (c SiteListItemDocumentSetVersionFieldClient) UpdateSiteListItemDocumentSetVersionField(ctx context.Context, id beta.GroupIdSiteIdListIdItemIdDocumentSetVersionId, input beta.FieldValueSet) (result UpdateSiteListItemDocumentSetVersionFieldOperationResponse, err error) {
+func (c SiteListItemDocumentSetVersionFieldClient) UpdateSiteListItemDocumentSetVersionField(ctx context.Context, id beta.GroupIdSiteIdListIdItemIdDocumentSetVersionId, input beta.FieldValueSet, options UpdateSiteListItemDocumentSetVersionFieldOperationOptions) (result UpdateSiteListItemDocumentSetVersionFieldOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       fmt.Sprintf("%s/fields", id.ID()),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/fields", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -18,18 +18,47 @@ type DeclineEventInstanceExceptionOccurrenceOperationResponse struct {
 	OData        *odata.OData
 }
 
+type DeclineEventInstanceExceptionOccurrenceOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultDeclineEventInstanceExceptionOccurrenceOperationOptions() DeclineEventInstanceExceptionOccurrenceOperationOptions {
+	return DeclineEventInstanceExceptionOccurrenceOperationOptions{}
+}
+
+func (o DeclineEventInstanceExceptionOccurrenceOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o DeclineEventInstanceExceptionOccurrenceOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o DeclineEventInstanceExceptionOccurrenceOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // DeclineEventInstanceExceptionOccurrence - Invoke action decline. Decline invitation to the specified event in a user
 // calendar. If the event allows proposals for new times, on declining the event, an invitee can choose to suggest an
 // alternative time by including the proposedNewTime parameter. For more information on how to propose a time, and how
 // to receive and accept a new time proposal, see Propose new meeting times.
-func (c EventInstanceExceptionOccurrenceClient) DeclineEventInstanceExceptionOccurrence(ctx context.Context, id beta.GroupIdEventIdInstanceIdExceptionOccurrenceId, input DeclineEventInstanceExceptionOccurrenceRequest) (result DeclineEventInstanceExceptionOccurrenceOperationResponse, err error) {
+func (c EventInstanceExceptionOccurrenceClient) DeclineEventInstanceExceptionOccurrence(ctx context.Context, id beta.GroupIdEventIdInstanceIdExceptionOccurrenceId, input DeclineEventInstanceExceptionOccurrenceRequest, options DeclineEventInstanceExceptionOccurrenceOperationOptions) (result DeclineEventInstanceExceptionOccurrenceOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/decline", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/decline", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

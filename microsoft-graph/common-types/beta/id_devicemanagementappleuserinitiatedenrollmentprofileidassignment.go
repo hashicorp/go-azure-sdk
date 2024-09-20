@@ -99,9 +99,9 @@ func (id DeviceManagementAppleUserInitiatedEnrollmentProfileIdAssignmentId) Segm
 	return []resourceids.Segment{
 		resourceids.StaticSegment("deviceManagement", "deviceManagement", "deviceManagement"),
 		resourceids.StaticSegment("appleUserInitiatedEnrollmentProfiles", "appleUserInitiatedEnrollmentProfiles", "appleUserInitiatedEnrollmentProfiles"),
-		resourceids.UserSpecifiedSegment("appleUserInitiatedEnrollmentProfileId", "appleUserInitiatedEnrollmentProfileIdValue"),
+		resourceids.UserSpecifiedSegment("appleUserInitiatedEnrollmentProfileId", "appleUserInitiatedEnrollmentProfileId"),
 		resourceids.StaticSegment("assignments", "assignments", "assignments"),
-		resourceids.UserSpecifiedSegment("appleEnrollmentProfileAssignmentId", "appleEnrollmentProfileAssignmentIdValue"),
+		resourceids.UserSpecifiedSegment("appleEnrollmentProfileAssignmentId", "appleEnrollmentProfileAssignmentId"),
 	}
 }
 

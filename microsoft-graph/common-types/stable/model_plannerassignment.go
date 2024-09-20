@@ -31,10 +31,15 @@ type PlannerAssignment struct {
 var _ json.Unmarshaler = &PlannerAssignment{}
 
 func (s *PlannerAssignment) UnmarshalJSON(bytes []byte) error {
-	type alias PlannerAssignment
-	var decoded alias
+
+	var decoded struct {
+		AssignedDateTime nullable.Type[string] `json:"assignedDateTime,omitempty"`
+		ODataId          *string               `json:"@odata.id,omitempty"`
+		ODataType        *string               `json:"@odata.type,omitempty"`
+		OrderHint        nullable.Type[string] `json:"orderHint,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into PlannerAssignment: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.AssignedDateTime = decoded.AssignedDateTime
@@ -54,5 +59,6 @@ func (s *PlannerAssignment) UnmarshalJSON(bytes []byte) error {
 		}
 		s.AssignedBy = impl
 	}
+
 	return nil
 }

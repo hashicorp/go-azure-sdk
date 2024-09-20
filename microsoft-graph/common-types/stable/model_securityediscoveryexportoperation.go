@@ -124,27 +124,45 @@ func (s SecurityEdiscoveryExportOperation) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &SecurityEdiscoveryExportOperation{}
 
 func (s *SecurityEdiscoveryExportOperation) UnmarshalJSON(bytes []byte) error {
-	type alias SecurityEdiscoveryExportOperation
-	var decoded alias
+
+	var decoded struct {
+		Description        nullable.Type[string]             `json:"description,omitempty"`
+		ExportFileMetadata *[]SecurityExportFileMetadata     `json:"exportFileMetadata,omitempty"`
+		ExportOptions      *SecurityExportOptions            `json:"exportOptions,omitempty"`
+		ExportStructure    *SecurityExportFileStructure      `json:"exportStructure,omitempty"`
+		OutputName         nullable.Type[string]             `json:"outputName,omitempty"`
+		ReviewSet          *SecurityEdiscoveryReviewSet      `json:"reviewSet,omitempty"`
+		ReviewSetQuery     *SecurityEdiscoveryReviewSetQuery `json:"reviewSetQuery,omitempty"`
+		Action             *SecurityCaseAction               `json:"action,omitempty"`
+		CompletedDateTime  nullable.Type[string]             `json:"completedDateTime,omitempty"`
+		CreatedBy          IdentitySet                       `json:"createdBy"`
+		CreatedDateTime    nullable.Type[string]             `json:"createdDateTime,omitempty"`
+		PercentProgress    nullable.Type[int64]              `json:"percentProgress,omitempty"`
+		ResultInfo         *ResultInfo                       `json:"resultInfo,omitempty"`
+		Status             *SecurityCaseOperationStatus      `json:"status,omitempty"`
+		Id                 *string                           `json:"id,omitempty"`
+		ODataId            *string                           `json:"@odata.id,omitempty"`
+		ODataType          *string                           `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into SecurityEdiscoveryExportOperation: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
-	s.Action = decoded.Action
-	s.CompletedDateTime = decoded.CompletedDateTime
-	s.CreatedDateTime = decoded.CreatedDateTime
 	s.Description = decoded.Description
 	s.ExportFileMetadata = decoded.ExportFileMetadata
 	s.ExportOptions = decoded.ExportOptions
 	s.ExportStructure = decoded.ExportStructure
+	s.OutputName = decoded.OutputName
+	s.ReviewSet = decoded.ReviewSet
+	s.ReviewSetQuery = decoded.ReviewSetQuery
+	s.Action = decoded.Action
+	s.CompletedDateTime = decoded.CompletedDateTime
+	s.CreatedDateTime = decoded.CreatedDateTime
 	s.Id = decoded.Id
 	s.ODataId = decoded.ODataId
 	s.ODataType = decoded.ODataType
-	s.OutputName = decoded.OutputName
 	s.PercentProgress = decoded.PercentProgress
 	s.ResultInfo = decoded.ResultInfo
-	s.ReviewSet = decoded.ReviewSet
-	s.ReviewSetQuery = decoded.ReviewSetQuery
 	s.Status = decoded.Status
 
 	var temp map[string]json.RawMessage
@@ -159,5 +177,6 @@ func (s *SecurityEdiscoveryExportOperation) UnmarshalJSON(bytes []byte) error {
 		}
 		s.CreatedBy = impl
 	}
+
 	return nil
 }

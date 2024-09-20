@@ -106,23 +106,36 @@ func (s WorkforceIntegration) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &WorkforceIntegration{}
 
 func (s *WorkforceIntegration) UnmarshalJSON(bytes []byte) error {
-	type alias WorkforceIntegration
-	var decoded alias
+
+	var decoded struct {
+		ApiVersion           nullable.Type[int64]                   `json:"apiVersion,omitempty"`
+		DisplayName          nullable.Type[string]                  `json:"displayName,omitempty"`
+		Encryption           *WorkforceIntegrationEncryption        `json:"encryption,omitempty"`
+		IsActive             nullable.Type[bool]                    `json:"isActive,omitempty"`
+		SupportedEntities    *WorkforceIntegrationSupportedEntities `json:"supportedEntities,omitempty"`
+		Url                  nullable.Type[string]                  `json:"url,omitempty"`
+		CreatedDateTime      nullable.Type[string]                  `json:"createdDateTime,omitempty"`
+		LastModifiedBy       *IdentitySet                           `json:"lastModifiedBy,omitempty"`
+		LastModifiedDateTime nullable.Type[string]                  `json:"lastModifiedDateTime,omitempty"`
+		Id                   *string                                `json:"id,omitempty"`
+		ODataId              *string                                `json:"@odata.id,omitempty"`
+		ODataType            *string                                `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into WorkforceIntegration: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.ApiVersion = decoded.ApiVersion
-	s.CreatedDateTime = decoded.CreatedDateTime
 	s.DisplayName = decoded.DisplayName
 	s.Encryption = decoded.Encryption
-	s.Id = decoded.Id
 	s.IsActive = decoded.IsActive
+	s.SupportedEntities = decoded.SupportedEntities
+	s.Url = decoded.Url
+	s.CreatedDateTime = decoded.CreatedDateTime
+	s.Id = decoded.Id
 	s.LastModifiedDateTime = decoded.LastModifiedDateTime
 	s.ODataId = decoded.ODataId
 	s.ODataType = decoded.ODataType
-	s.SupportedEntities = decoded.SupportedEntities
-	s.Url = decoded.Url
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -136,5 +149,6 @@ func (s *WorkforceIntegration) UnmarshalJSON(bytes []byte) error {
 		}
 		s.LastModifiedBy = &impl
 	}
+
 	return nil
 }

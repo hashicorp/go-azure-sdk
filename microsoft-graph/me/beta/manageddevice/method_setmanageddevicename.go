@@ -18,15 +18,44 @@ type SetManagedDeviceNameOperationResponse struct {
 	OData        *odata.OData
 }
 
+type SetManagedDeviceNameOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultSetManagedDeviceNameOperationOptions() SetManagedDeviceNameOperationOptions {
+	return SetManagedDeviceNameOperationOptions{}
+}
+
+func (o SetManagedDeviceNameOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o SetManagedDeviceNameOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o SetManagedDeviceNameOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // SetManagedDeviceName - Invoke action setDeviceName. Set device name of the device.
-func (c ManagedDeviceClient) SetManagedDeviceName(ctx context.Context, id beta.MeManagedDeviceId, input SetManagedDeviceNameRequest) (result SetManagedDeviceNameOperationResponse, err error) {
+func (c ManagedDeviceClient) SetManagedDeviceName(ctx context.Context, id beta.MeManagedDeviceId, input SetManagedDeviceNameRequest, options SetManagedDeviceNameOperationOptions) (result SetManagedDeviceNameOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/setDeviceName", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/setDeviceName", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

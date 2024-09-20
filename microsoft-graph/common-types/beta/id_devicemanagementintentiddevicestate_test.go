@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &DeviceManagementIntentIdDeviceStateId{}
 
 func TestNewDeviceManagementIntentIdDeviceStateID(t *testing.T) {
-	id := NewDeviceManagementIntentIdDeviceStateID("deviceManagementIntentIdValue", "deviceManagementIntentDeviceStateIdValue")
+	id := NewDeviceManagementIntentIdDeviceStateID("deviceManagementIntentId", "deviceManagementIntentDeviceStateId")
 
-	if id.DeviceManagementIntentId != "deviceManagementIntentIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DeviceManagementIntentId'", id.DeviceManagementIntentId, "deviceManagementIntentIdValue")
+	if id.DeviceManagementIntentId != "deviceManagementIntentId" {
+		t.Fatalf("Expected %q but got %q for Segment 'DeviceManagementIntentId'", id.DeviceManagementIntentId, "deviceManagementIntentId")
 	}
 
-	if id.DeviceManagementIntentDeviceStateId != "deviceManagementIntentDeviceStateIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DeviceManagementIntentDeviceStateId'", id.DeviceManagementIntentDeviceStateId, "deviceManagementIntentDeviceStateIdValue")
+	if id.DeviceManagementIntentDeviceStateId != "deviceManagementIntentDeviceStateId" {
+		t.Fatalf("Expected %q but got %q for Segment 'DeviceManagementIntentDeviceStateId'", id.DeviceManagementIntentDeviceStateId, "deviceManagementIntentDeviceStateId")
 	}
 }
 
 func TestFormatDeviceManagementIntentIdDeviceStateID(t *testing.T) {
-	actual := NewDeviceManagementIntentIdDeviceStateID("deviceManagementIntentIdValue", "deviceManagementIntentDeviceStateIdValue").ID()
-	expected := "/deviceManagement/intents/deviceManagementIntentIdValue/deviceStates/deviceManagementIntentDeviceStateIdValue"
+	actual := NewDeviceManagementIntentIdDeviceStateID("deviceManagementIntentId", "deviceManagementIntentDeviceStateId").ID()
+	expected := "/deviceManagement/intents/deviceManagementIntentId/deviceStates/deviceManagementIntentDeviceStateId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -54,25 +54,25 @@ func TestParseDeviceManagementIntentIdDeviceStateID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/deviceManagement/intents/deviceManagementIntentIdValue",
+			Input: "/deviceManagement/intents/deviceManagementIntentId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/deviceManagement/intents/deviceManagementIntentIdValue/deviceStates",
+			Input: "/deviceManagement/intents/deviceManagementIntentId/deviceStates",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/intents/deviceManagementIntentIdValue/deviceStates/deviceManagementIntentDeviceStateIdValue",
+			Input: "/deviceManagement/intents/deviceManagementIntentId/deviceStates/deviceManagementIntentDeviceStateId",
 			Expected: &DeviceManagementIntentIdDeviceStateId{
-				DeviceManagementIntentId:            "deviceManagementIntentIdValue",
-				DeviceManagementIntentDeviceStateId: "deviceManagementIntentDeviceStateIdValue",
+				DeviceManagementIntentId:            "deviceManagementIntentId",
+				DeviceManagementIntentDeviceStateId: "deviceManagementIntentDeviceStateId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/intents/deviceManagementIntentIdValue/deviceStates/deviceManagementIntentDeviceStateIdValue/extra",
+			Input: "/deviceManagement/intents/deviceManagementIntentId/deviceStates/deviceManagementIntentDeviceStateId/extra",
 			Error: true,
 		},
 	}
@@ -135,48 +135,48 @@ func TestParseDeviceManagementIntentIdDeviceStateIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/deviceManagement/intents/deviceManagementIntentIdValue",
+			Input: "/deviceManagement/intents/deviceManagementIntentId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/iNtEnTs/dEvIcEmAnAgEmEnTiNtEnTiDvAlUe",
+			Input: "/dEvIcEmAnAgEmEnT/iNtEnTs/dEvIcEmAnAgEmEnTiNtEnTiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/deviceManagement/intents/deviceManagementIntentIdValue/deviceStates",
+			Input: "/deviceManagement/intents/deviceManagementIntentId/deviceStates",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/iNtEnTs/dEvIcEmAnAgEmEnTiNtEnTiDvAlUe/dEvIcEsTaTeS",
+			Input: "/dEvIcEmAnAgEmEnT/iNtEnTs/dEvIcEmAnAgEmEnTiNtEnTiD/dEvIcEsTaTeS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/intents/deviceManagementIntentIdValue/deviceStates/deviceManagementIntentDeviceStateIdValue",
+			Input: "/deviceManagement/intents/deviceManagementIntentId/deviceStates/deviceManagementIntentDeviceStateId",
 			Expected: &DeviceManagementIntentIdDeviceStateId{
-				DeviceManagementIntentId:            "deviceManagementIntentIdValue",
-				DeviceManagementIntentDeviceStateId: "deviceManagementIntentDeviceStateIdValue",
+				DeviceManagementIntentId:            "deviceManagementIntentId",
+				DeviceManagementIntentDeviceStateId: "deviceManagementIntentDeviceStateId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/intents/deviceManagementIntentIdValue/deviceStates/deviceManagementIntentDeviceStateIdValue/extra",
+			Input: "/deviceManagement/intents/deviceManagementIntentId/deviceStates/deviceManagementIntentDeviceStateId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/iNtEnTs/dEvIcEmAnAgEmEnTiNtEnTiDvAlUe/dEvIcEsTaTeS/dEvIcEmAnAgEmEnTiNtEnTdEvIcEsTaTeIdVaLuE",
+			Input: "/dEvIcEmAnAgEmEnT/iNtEnTs/dEvIcEmAnAgEmEnTiNtEnTiD/dEvIcEsTaTeS/dEvIcEmAnAgEmEnTiNtEnTdEvIcEsTaTeId",
 			Expected: &DeviceManagementIntentIdDeviceStateId{
-				DeviceManagementIntentId:            "dEvIcEmAnAgEmEnTiNtEnTiDvAlUe",
-				DeviceManagementIntentDeviceStateId: "dEvIcEmAnAgEmEnTiNtEnTdEvIcEsTaTeIdVaLuE",
+				DeviceManagementIntentId:            "dEvIcEmAnAgEmEnTiNtEnTiD",
+				DeviceManagementIntentDeviceStateId: "dEvIcEmAnAgEmEnTiNtEnTdEvIcEsTaTeId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/iNtEnTs/dEvIcEmAnAgEmEnTiNtEnTiDvAlUe/dEvIcEsTaTeS/dEvIcEmAnAgEmEnTiNtEnTdEvIcEsTaTeIdVaLuE/extra",
+			Input: "/dEvIcEmAnAgEmEnT/iNtEnTs/dEvIcEmAnAgEmEnTiNtEnTiD/dEvIcEsTaTeS/dEvIcEmAnAgEmEnTiNtEnTdEvIcEsTaTeId/extra",
 			Error: true,
 		},
 	}

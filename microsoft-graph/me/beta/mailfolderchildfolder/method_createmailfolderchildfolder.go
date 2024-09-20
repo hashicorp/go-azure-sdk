@@ -20,15 +20,44 @@ type CreateMailFolderChildFolderOperationResponse struct {
 	Model        beta.MailFolder
 }
 
+type CreateMailFolderChildFolderOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateMailFolderChildFolderOperationOptions() CreateMailFolderChildFolderOperationOptions {
+	return CreateMailFolderChildFolderOperationOptions{}
+}
+
+func (o CreateMailFolderChildFolderOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateMailFolderChildFolderOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateMailFolderChildFolderOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateMailFolderChildFolder - Create mailSearchFolder. Create a new mailSearchFolder in the specified user's mailbox.
-func (c MailFolderChildFolderClient) CreateMailFolderChildFolder(ctx context.Context, id beta.MeMailFolderId, input beta.MailFolder) (result CreateMailFolderChildFolderOperationResponse, err error) {
+func (c MailFolderChildFolderClient) CreateMailFolderChildFolder(ctx context.Context, id beta.MeMailFolderId, input beta.MailFolder, options CreateMailFolderChildFolderOperationOptions) (result CreateMailFolderChildFolderOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/childFolders", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/childFolders", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

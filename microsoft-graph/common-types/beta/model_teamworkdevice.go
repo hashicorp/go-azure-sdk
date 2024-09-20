@@ -104,10 +104,27 @@ func (s TeamworkDevice) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &TeamworkDevice{}
 
 func (s *TeamworkDevice) UnmarshalJSON(bytes []byte) error {
-	type alias TeamworkDevice
-	var decoded alias
+
+	var decoded struct {
+		Activity             *TeamworkDeviceActivity      `json:"activity,omitempty"`
+		ActivityState        *TeamworkDeviceActivityState `json:"activityState,omitempty"`
+		CompanyAssetTag      nullable.Type[string]        `json:"companyAssetTag,omitempty"`
+		Configuration        *TeamworkDeviceConfiguration `json:"configuration,omitempty"`
+		CreatedDateTime      nullable.Type[string]        `json:"createdDateTime,omitempty"`
+		CurrentUser          *TeamworkUserIdentity        `json:"currentUser,omitempty"`
+		DeviceType           *TeamworkDeviceType          `json:"deviceType,omitempty"`
+		HardwareDetail       *TeamworkHardwareDetail      `json:"hardwareDetail,omitempty"`
+		Health               *TeamworkDeviceHealth        `json:"health,omitempty"`
+		HealthStatus         *TeamworkDeviceHealthStatus  `json:"healthStatus,omitempty"`
+		LastModifiedDateTime nullable.Type[string]        `json:"lastModifiedDateTime,omitempty"`
+		Notes                nullable.Type[string]        `json:"notes,omitempty"`
+		Operations           *[]TeamworkDeviceOperation   `json:"operations,omitempty"`
+		Id                   *string                      `json:"id,omitempty"`
+		ODataId              *string                      `json:"@odata.id,omitempty"`
+		ODataType            *string                      `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into TeamworkDevice: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.Activity = decoded.Activity
@@ -120,12 +137,12 @@ func (s *TeamworkDevice) UnmarshalJSON(bytes []byte) error {
 	s.HardwareDetail = decoded.HardwareDetail
 	s.Health = decoded.Health
 	s.HealthStatus = decoded.HealthStatus
-	s.Id = decoded.Id
 	s.LastModifiedDateTime = decoded.LastModifiedDateTime
 	s.Notes = decoded.Notes
+	s.Operations = decoded.Operations
+	s.Id = decoded.Id
 	s.ODataId = decoded.ODataId
 	s.ODataType = decoded.ODataType
-	s.Operations = decoded.Operations
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -147,5 +164,6 @@ func (s *TeamworkDevice) UnmarshalJSON(bytes []byte) error {
 		}
 		s.LastModifiedBy = impl
 	}
+
 	return nil
 }

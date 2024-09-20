@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/microsoft-graph/directory/beta/impactedresource` Documentation
 
-The `impactedresource` SDK allows for interaction with the Azure Resource Manager Service `directory` (API Version `beta`).
+The `impactedresource` SDK allows for interaction with Microsoft Graph `directory` (API Version `beta`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -15,7 +15,7 @@ import "github.com/hashicorp/go-azure-sdk/microsoft-graph/directory/beta/impacte
 ### Client Initialization
 
 ```go
-client := impactedresource.NewImpactedResourceClientWithBaseURI("https://management.azure.com")
+client := impactedresource.NewImpactedResourceClientWithBaseURI("https://graph.microsoft.com")
 client.Client.Authorizer = authorizer
 ```
 
@@ -30,7 +30,7 @@ payload := impactedresource.ImpactedResource{
 }
 
 
-read, err := client.CreateImpactedResource(ctx, payload)
+read, err := client.CreateImpactedResource(ctx, payload, impactedresource.DefaultCreateImpactedResourceOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -44,9 +44,9 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := impactedresource.NewDirectoryImpactedResourceID("impactedResourceIdValue")
+id := impactedresource.NewDirectoryImpactedResourceID("impactedResourceId")
 
-read, err := client.CreateImpactedResourceComplete(ctx, id)
+read, err := client.CreateImpactedResourceComplete(ctx, id, impactedresource.DefaultCreateImpactedResourceCompleteOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -60,14 +60,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := impactedresource.NewDirectoryImpactedResourceID("impactedResourceIdValue")
+id := impactedresource.NewDirectoryImpactedResourceID("impactedResourceId")
 
 payload := impactedresource.CreateImpactedResourcePostponeRequest{
 	// ...
 }
 
 
-read, err := client.CreateImpactedResourcePostpone(ctx, id, payload)
+read, err := client.CreateImpactedResourcePostpone(ctx, id, payload, impactedresource.DefaultCreateImpactedResourcePostponeOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -81,9 +81,9 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := impactedresource.NewDirectoryImpactedResourceID("impactedResourceIdValue")
+id := impactedresource.NewDirectoryImpactedResourceID("impactedResourceId")
 
-read, err := client.CreateImpactedResourceReactivate(ctx, id)
+read, err := client.CreateImpactedResourceReactivate(ctx, id, impactedresource.DefaultCreateImpactedResourceReactivateOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -97,7 +97,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := impactedresource.NewDirectoryImpactedResourceID("impactedResourceIdValue")
+id := impactedresource.NewDirectoryImpactedResourceID("impactedResourceId")
 
 read, err := client.DeleteImpactedResource(ctx, id, impactedresource.DefaultDeleteImpactedResourceOperationOptions())
 if err != nil {
@@ -113,14 +113,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := impactedresource.NewDirectoryImpactedResourceID("impactedResourceIdValue")
+id := impactedresource.NewDirectoryImpactedResourceID("impactedResourceId")
 
 payload := impactedresource.DismissImpactedResourceRequest{
 	// ...
 }
 
 
-read, err := client.DismissImpactedResource(ctx, id, payload)
+read, err := client.DismissImpactedResource(ctx, id, payload, impactedresource.DefaultDismissImpactedResourceOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -134,7 +134,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := impactedresource.NewDirectoryImpactedResourceID("impactedResourceIdValue")
+id := impactedresource.NewDirectoryImpactedResourceID("impactedResourceId")
 
 read, err := client.GetImpactedResource(ctx, id, impactedresource.DefaultGetImpactedResourceOperationOptions())
 if err != nil {
@@ -183,14 +183,14 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := impactedresource.NewDirectoryImpactedResourceID("impactedResourceIdValue")
+id := impactedresource.NewDirectoryImpactedResourceID("impactedResourceId")
 
 payload := impactedresource.ImpactedResource{
 	// ...
 }
 
 
-read, err := client.UpdateImpactedResource(ctx, id, payload)
+read, err := client.UpdateImpactedResource(ctx, id, payload, impactedresource.DefaultUpdateImpactedResourceOperationOptions())
 if err != nil {
 	// handle the error
 }

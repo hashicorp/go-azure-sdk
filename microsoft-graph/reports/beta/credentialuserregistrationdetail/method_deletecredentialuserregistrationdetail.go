@@ -19,7 +19,8 @@ type DeleteCredentialUserRegistrationDetailOperationResponse struct {
 }
 
 type DeleteCredentialUserRegistrationDetailOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteCredentialUserRegistrationDetailOperationOptions() DeleteCredentialUserRegistrationDetailOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteCredentialUserRegistrationDetailOperationOptions) ToHeaders() *cli
 
 func (o DeleteCredentialUserRegistrationDetailOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/microsoft-graph/me/beta/informationprotectionpolicylabel` Documentation
 
-The `informationprotectionpolicylabel` SDK allows for interaction with the Azure Resource Manager Service `me` (API Version `beta`).
+The `informationprotectionpolicylabel` SDK allows for interaction with Microsoft Graph `me` (API Version `beta`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -15,7 +15,7 @@ import "github.com/hashicorp/go-azure-sdk/microsoft-graph/me/beta/informationpro
 ### Client Initialization
 
 ```go
-client := informationprotectionpolicylabel.NewInformationProtectionPolicyLabelClientWithBaseURI("https://management.azure.com")
+client := informationprotectionpolicylabel.NewInformationProtectionPolicyLabelClientWithBaseURI("https://graph.microsoft.com")
 client.Client.Authorizer = authorizer
 ```
 
@@ -30,7 +30,7 @@ payload := informationprotectionpolicylabel.InformationProtectionLabel{
 }
 
 
-read, err := client.CreateInformationProtectionPolicyLabel(ctx, payload)
+read, err := client.CreateInformationProtectionPolicyLabel(ctx, payload, informationprotectionpolicylabel.DefaultCreateInformationProtectionPolicyLabelOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -44,7 +44,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := informationprotectionpolicylabel.NewMeInformationProtectionPolicyLabelID("informationProtectionLabelIdValue")
+id := informationprotectionpolicylabel.NewMeInformationProtectionPolicyLabelID("informationProtectionLabelId")
 
 read, err := client.DeleteInformationProtectionPolicyLabel(ctx, id, informationprotectionpolicylabel.DefaultDeleteInformationProtectionPolicyLabelOperationOptions())
 if err != nil {
@@ -56,17 +56,80 @@ if model := read.Model; model != nil {
 ```
 
 
-### Example Usage: `InformationProtectionPolicyLabelClient.ExtractInformationProtectionPolicyLabel`
+### Example Usage: `InformationProtectionPolicyLabelClient.EvaluateInformationProtectionPolicyLabelsApplications`
 
 ```go
 ctx := context.TODO()
 
-payload := informationprotectionpolicylabel.ExtractInformationProtectionPolicyLabelRequest{
+payload := informationprotectionpolicylabel.EvaluateInformationProtectionPolicyLabelsApplicationsRequest{
 	// ...
 }
 
 
-read, err := client.ExtractInformationProtectionPolicyLabel(ctx, payload)
+// alternatively `client.EvaluateInformationProtectionPolicyLabelsApplications(ctx, payload, informationprotectionpolicylabel.DefaultEvaluateInformationProtectionPolicyLabelsApplicationsOperationOptions())` can be used to do batched pagination
+items, err := client.EvaluateInformationProtectionPolicyLabelsApplicationsComplete(ctx, payload, informationprotectionpolicylabel.DefaultEvaluateInformationProtectionPolicyLabelsApplicationsOperationOptions())
+if err != nil {
+	// handle the error
+}
+for _, item := range items {
+	// do something
+}
+```
+
+
+### Example Usage: `InformationProtectionPolicyLabelClient.EvaluateInformationProtectionPolicyLabelsClassificationResults`
+
+```go
+ctx := context.TODO()
+
+payload := informationprotectionpolicylabel.EvaluateInformationProtectionPolicyLabelsClassificationResultsRequest{
+	// ...
+}
+
+
+// alternatively `client.EvaluateInformationProtectionPolicyLabelsClassificationResults(ctx, payload, informationprotectionpolicylabel.DefaultEvaluateInformationProtectionPolicyLabelsClassificationResultsOperationOptions())` can be used to do batched pagination
+items, err := client.EvaluateInformationProtectionPolicyLabelsClassificationResultsComplete(ctx, payload, informationprotectionpolicylabel.DefaultEvaluateInformationProtectionPolicyLabelsClassificationResultsOperationOptions())
+if err != nil {
+	// handle the error
+}
+for _, item := range items {
+	// do something
+}
+```
+
+
+### Example Usage: `InformationProtectionPolicyLabelClient.EvaluateInformationProtectionPolicyLabelsRemovals`
+
+```go
+ctx := context.TODO()
+
+payload := informationprotectionpolicylabel.EvaluateInformationProtectionPolicyLabelsRemovalsRequest{
+	// ...
+}
+
+
+// alternatively `client.EvaluateInformationProtectionPolicyLabelsRemovals(ctx, payload, informationprotectionpolicylabel.DefaultEvaluateInformationProtectionPolicyLabelsRemovalsOperationOptions())` can be used to do batched pagination
+items, err := client.EvaluateInformationProtectionPolicyLabelsRemovalsComplete(ctx, payload, informationprotectionpolicylabel.DefaultEvaluateInformationProtectionPolicyLabelsRemovalsOperationOptions())
+if err != nil {
+	// handle the error
+}
+for _, item := range items {
+	// do something
+}
+```
+
+
+### Example Usage: `InformationProtectionPolicyLabelClient.ExtractInformationProtectionPolicyLabelsLabel`
+
+```go
+ctx := context.TODO()
+
+payload := informationprotectionpolicylabel.ExtractInformationProtectionPolicyLabelsLabelRequest{
+	// ...
+}
+
+
+read, err := client.ExtractInformationProtectionPolicyLabelsLabel(ctx, payload, informationprotectionpolicylabel.DefaultExtractInformationProtectionPolicyLabelsLabelOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -80,7 +143,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := informationprotectionpolicylabel.NewMeInformationProtectionPolicyLabelID("informationProtectionLabelIdValue")
+id := informationprotectionpolicylabel.NewMeInformationProtectionPolicyLabelID("informationProtectionLabelId")
 
 read, err := client.GetInformationProtectionPolicyLabel(ctx, id, informationprotectionpolicylabel.DefaultGetInformationProtectionPolicyLabelOperationOptions())
 if err != nil {
@@ -108,69 +171,6 @@ if model := read.Model; model != nil {
 ```
 
 
-### Example Usage: `InformationProtectionPolicyLabelClient.ListInformationProtectionPolicyLabelEvaluateApplications`
-
-```go
-ctx := context.TODO()
-
-payload := informationprotectionpolicylabel.ListInformationProtectionPolicyLabelEvaluateApplicationsRequest{
-	// ...
-}
-
-
-// alternatively `client.ListInformationProtectionPolicyLabelEvaluateApplications(ctx, payload, informationprotectionpolicylabel.DefaultListInformationProtectionPolicyLabelEvaluateApplicationsOperationOptions())` can be used to do batched pagination
-items, err := client.ListInformationProtectionPolicyLabelEvaluateApplicationsComplete(ctx, payload, informationprotectionpolicylabel.DefaultListInformationProtectionPolicyLabelEvaluateApplicationsOperationOptions())
-if err != nil {
-	// handle the error
-}
-for _, item := range items {
-	// do something
-}
-```
-
-
-### Example Usage: `InformationProtectionPolicyLabelClient.ListInformationProtectionPolicyLabelEvaluateClassificationResults`
-
-```go
-ctx := context.TODO()
-
-payload := informationprotectionpolicylabel.ListInformationProtectionPolicyLabelEvaluateClassificationResultsRequest{
-	// ...
-}
-
-
-// alternatively `client.ListInformationProtectionPolicyLabelEvaluateClassificationResults(ctx, payload, informationprotectionpolicylabel.DefaultListInformationProtectionPolicyLabelEvaluateClassificationResultsOperationOptions())` can be used to do batched pagination
-items, err := client.ListInformationProtectionPolicyLabelEvaluateClassificationResultsComplete(ctx, payload, informationprotectionpolicylabel.DefaultListInformationProtectionPolicyLabelEvaluateClassificationResultsOperationOptions())
-if err != nil {
-	// handle the error
-}
-for _, item := range items {
-	// do something
-}
-```
-
-
-### Example Usage: `InformationProtectionPolicyLabelClient.ListInformationProtectionPolicyLabelEvaluateRemovals`
-
-```go
-ctx := context.TODO()
-
-payload := informationprotectionpolicylabel.ListInformationProtectionPolicyLabelEvaluateRemovalsRequest{
-	// ...
-}
-
-
-// alternatively `client.ListInformationProtectionPolicyLabelEvaluateRemovals(ctx, payload, informationprotectionpolicylabel.DefaultListInformationProtectionPolicyLabelEvaluateRemovalsOperationOptions())` can be used to do batched pagination
-items, err := client.ListInformationProtectionPolicyLabelEvaluateRemovalsComplete(ctx, payload, informationprotectionpolicylabel.DefaultListInformationProtectionPolicyLabelEvaluateRemovalsOperationOptions())
-if err != nil {
-	// handle the error
-}
-for _, item := range items {
-	// do something
-}
-```
-
-
 ### Example Usage: `InformationProtectionPolicyLabelClient.ListInformationProtectionPolicyLabels`
 
 ```go
@@ -192,14 +192,14 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := informationprotectionpolicylabel.NewMeInformationProtectionPolicyLabelID("informationProtectionLabelIdValue")
+id := informationprotectionpolicylabel.NewMeInformationProtectionPolicyLabelID("informationProtectionLabelId")
 
 payload := informationprotectionpolicylabel.InformationProtectionLabel{
 	// ...
 }
 
 
-read, err := client.UpdateInformationProtectionPolicyLabel(ctx, id, payload)
+read, err := client.UpdateInformationProtectionPolicyLabel(ctx, id, payload, informationprotectionpolicylabel.DefaultUpdateInformationProtectionPolicyLabelOperationOptions())
 if err != nil {
 	// handle the error
 }

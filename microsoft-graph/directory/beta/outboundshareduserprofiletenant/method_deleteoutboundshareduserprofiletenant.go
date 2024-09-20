@@ -19,7 +19,8 @@ type DeleteOutboundSharedUserProfileTenantOperationResponse struct {
 }
 
 type DeleteOutboundSharedUserProfileTenantOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteOutboundSharedUserProfileTenantOperationOptions() DeleteOutboundSharedUserProfileTenantOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteOutboundSharedUserProfileTenantOperationOptions) ToHeaders() *clie
 
 func (o DeleteOutboundSharedUserProfileTenantOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

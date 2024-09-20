@@ -18,16 +18,45 @@ type CreateComanagedDeviceTriggerConfigurationManagerActionOperationResponse str
 	OData        *odata.OData
 }
 
+type CreateComanagedDeviceTriggerConfigurationManagerActionOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateComanagedDeviceTriggerConfigurationManagerActionOperationOptions() CreateComanagedDeviceTriggerConfigurationManagerActionOperationOptions {
+	return CreateComanagedDeviceTriggerConfigurationManagerActionOperationOptions{}
+}
+
+func (o CreateComanagedDeviceTriggerConfigurationManagerActionOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateComanagedDeviceTriggerConfigurationManagerActionOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateComanagedDeviceTriggerConfigurationManagerActionOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateComanagedDeviceTriggerConfigurationManagerAction - Invoke action triggerConfigurationManagerAction. Trigger
 // action on ConfigurationManager client
-func (c ComanagedDeviceClient) CreateComanagedDeviceTriggerConfigurationManagerAction(ctx context.Context, id beta.DeviceManagementComanagedDeviceId, input CreateComanagedDeviceTriggerConfigurationManagerActionRequest) (result CreateComanagedDeviceTriggerConfigurationManagerActionOperationResponse, err error) {
+func (c ComanagedDeviceClient) CreateComanagedDeviceTriggerConfigurationManagerAction(ctx context.Context, id beta.DeviceManagementComanagedDeviceId, input CreateComanagedDeviceTriggerConfigurationManagerActionRequest, options CreateComanagedDeviceTriggerConfigurationManagerActionOperationOptions) (result CreateComanagedDeviceTriggerConfigurationManagerActionOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/triggerConfigurationManagerAction", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/triggerConfigurationManagerAction", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

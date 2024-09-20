@@ -206,28 +206,61 @@ func (s AndroidCompliancePolicy) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &AndroidCompliancePolicy{}
 
 func (s *AndroidCompliancePolicy) UnmarshalJSON(bytes []byte) error {
-	type alias AndroidCompliancePolicy
-	var decoded alias
+
+	var decoded struct {
+		AdvancedThreatProtectionRequiredSecurityLevel      *DeviceThreatProtectionLevel              `json:"advancedThreatProtectionRequiredSecurityLevel,omitempty"`
+		ConditionStatementId                               nullable.Type[string]                     `json:"conditionStatementId,omitempty"`
+		DeviceThreatProtectionEnabled                      *bool                                     `json:"deviceThreatProtectionEnabled,omitempty"`
+		DeviceThreatProtectionRequiredSecurityLevel        *DeviceThreatProtectionLevel              `json:"deviceThreatProtectionRequiredSecurityLevel,omitempty"`
+		MinAndroidSecurityPatchLevel                       nullable.Type[string]                     `json:"minAndroidSecurityPatchLevel,omitempty"`
+		OsMaximumVersion                                   nullable.Type[string]                     `json:"osMaximumVersion,omitempty"`
+		OsMinimumVersion                                   nullable.Type[string]                     `json:"osMinimumVersion,omitempty"`
+		PasswordExpirationDays                             nullable.Type[int64]                      `json:"passwordExpirationDays,omitempty"`
+		PasswordMinimumLength                              nullable.Type[int64]                      `json:"passwordMinimumLength,omitempty"`
+		PasswordMinutesOfInactivityBeforeLock              nullable.Type[int64]                      `json:"passwordMinutesOfInactivityBeforeLock,omitempty"`
+		PasswordPreviousPasswordBlockCount                 nullable.Type[int64]                      `json:"passwordPreviousPasswordBlockCount,omitempty"`
+		PasswordRequired                                   *bool                                     `json:"passwordRequired,omitempty"`
+		PasswordRequiredType                               *AndroidRequiredPasswordType              `json:"passwordRequiredType,omitempty"`
+		PasswordSignInFailureCountBeforeFactoryReset       nullable.Type[int64]                      `json:"passwordSignInFailureCountBeforeFactoryReset,omitempty"`
+		RequiredPasswordComplexity                         *AndroidRequiredPasswordComplexity        `json:"requiredPasswordComplexity,omitempty"`
+		RestrictedApps                                     *[]AppListItem                            `json:"restrictedApps,omitempty"`
+		SecurityBlockDeviceAdministratorManagedDevices     *bool                                     `json:"securityBlockDeviceAdministratorManagedDevices,omitempty"`
+		SecurityBlockJailbrokenDevices                     *bool                                     `json:"securityBlockJailbrokenDevices,omitempty"`
+		SecurityDisableUsbDebugging                        *bool                                     `json:"securityDisableUsbDebugging,omitempty"`
+		SecurityPreventInstallAppsFromUnknownSources       *bool                                     `json:"securityPreventInstallAppsFromUnknownSources,omitempty"`
+		SecurityRequireCompanyPortalAppIntegrity           *bool                                     `json:"securityRequireCompanyPortalAppIntegrity,omitempty"`
+		SecurityRequireGooglePlayServices                  *bool                                     `json:"securityRequireGooglePlayServices,omitempty"`
+		SecurityRequireSafetyNetAttestationBasicIntegrity  *bool                                     `json:"securityRequireSafetyNetAttestationBasicIntegrity,omitempty"`
+		SecurityRequireSafetyNetAttestationCertifiedDevice *bool                                     `json:"securityRequireSafetyNetAttestationCertifiedDevice,omitempty"`
+		SecurityRequireUpToDateSecurityProviders           *bool                                     `json:"securityRequireUpToDateSecurityProviders,omitempty"`
+		SecurityRequireVerifyApps                          *bool                                     `json:"securityRequireVerifyApps,omitempty"`
+		StorageRequireEncryption                           *bool                                     `json:"storageRequireEncryption,omitempty"`
+		Assignments                                        *[]DeviceCompliancePolicyAssignment       `json:"assignments,omitempty"`
+		CreatedDateTime                                    *string                                   `json:"createdDateTime,omitempty"`
+		Description                                        nullable.Type[string]                     `json:"description,omitempty"`
+		DeviceSettingStateSummaries                        *[]SettingStateDeviceSummary              `json:"deviceSettingStateSummaries,omitempty"`
+		DeviceStatusOverview                               *DeviceComplianceDeviceOverview           `json:"deviceStatusOverview,omitempty"`
+		DeviceStatuses                                     *[]DeviceComplianceDeviceStatus           `json:"deviceStatuses,omitempty"`
+		DisplayName                                        *string                                   `json:"displayName,omitempty"`
+		LastModifiedDateTime                               *string                                   `json:"lastModifiedDateTime,omitempty"`
+		RoleScopeTagIds                                    *[]string                                 `json:"roleScopeTagIds,omitempty"`
+		ScheduledActionsForRule                            *[]DeviceComplianceScheduledActionForRule `json:"scheduledActionsForRule,omitempty"`
+		UserStatusOverview                                 *DeviceComplianceUserOverview             `json:"userStatusOverview,omitempty"`
+		UserStatuses                                       *[]DeviceComplianceUserStatus             `json:"userStatuses,omitempty"`
+		Version                                            *int64                                    `json:"version,omitempty"`
+		Id                                                 *string                                   `json:"id,omitempty"`
+		ODataId                                            *string                                   `json:"@odata.id,omitempty"`
+		ODataType                                          *string                                   `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into AndroidCompliancePolicy: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.AdvancedThreatProtectionRequiredSecurityLevel = decoded.AdvancedThreatProtectionRequiredSecurityLevel
-	s.Assignments = decoded.Assignments
 	s.ConditionStatementId = decoded.ConditionStatementId
-	s.CreatedDateTime = decoded.CreatedDateTime
-	s.Description = decoded.Description
-	s.DeviceSettingStateSummaries = decoded.DeviceSettingStateSummaries
-	s.DeviceStatusOverview = decoded.DeviceStatusOverview
-	s.DeviceStatuses = decoded.DeviceStatuses
 	s.DeviceThreatProtectionEnabled = decoded.DeviceThreatProtectionEnabled
 	s.DeviceThreatProtectionRequiredSecurityLevel = decoded.DeviceThreatProtectionRequiredSecurityLevel
-	s.DisplayName = decoded.DisplayName
-	s.Id = decoded.Id
-	s.LastModifiedDateTime = decoded.LastModifiedDateTime
 	s.MinAndroidSecurityPatchLevel = decoded.MinAndroidSecurityPatchLevel
-	s.ODataId = decoded.ODataId
-	s.ODataType = decoded.ODataType
 	s.OsMaximumVersion = decoded.OsMaximumVersion
 	s.OsMinimumVersion = decoded.OsMinimumVersion
 	s.PasswordExpirationDays = decoded.PasswordExpirationDays
@@ -238,8 +271,6 @@ func (s *AndroidCompliancePolicy) UnmarshalJSON(bytes []byte) error {
 	s.PasswordRequiredType = decoded.PasswordRequiredType
 	s.PasswordSignInFailureCountBeforeFactoryReset = decoded.PasswordSignInFailureCountBeforeFactoryReset
 	s.RequiredPasswordComplexity = decoded.RequiredPasswordComplexity
-	s.RoleScopeTagIds = decoded.RoleScopeTagIds
-	s.ScheduledActionsForRule = decoded.ScheduledActionsForRule
 	s.SecurityBlockDeviceAdministratorManagedDevices = decoded.SecurityBlockDeviceAdministratorManagedDevices
 	s.SecurityBlockJailbrokenDevices = decoded.SecurityBlockJailbrokenDevices
 	s.SecurityDisableUsbDebugging = decoded.SecurityDisableUsbDebugging
@@ -251,6 +282,19 @@ func (s *AndroidCompliancePolicy) UnmarshalJSON(bytes []byte) error {
 	s.SecurityRequireUpToDateSecurityProviders = decoded.SecurityRequireUpToDateSecurityProviders
 	s.SecurityRequireVerifyApps = decoded.SecurityRequireVerifyApps
 	s.StorageRequireEncryption = decoded.StorageRequireEncryption
+	s.Assignments = decoded.Assignments
+	s.CreatedDateTime = decoded.CreatedDateTime
+	s.Description = decoded.Description
+	s.DeviceSettingStateSummaries = decoded.DeviceSettingStateSummaries
+	s.DeviceStatusOverview = decoded.DeviceStatusOverview
+	s.DeviceStatuses = decoded.DeviceStatuses
+	s.DisplayName = decoded.DisplayName
+	s.Id = decoded.Id
+	s.LastModifiedDateTime = decoded.LastModifiedDateTime
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
+	s.RoleScopeTagIds = decoded.RoleScopeTagIds
+	s.ScheduledActionsForRule = decoded.ScheduledActionsForRule
 	s.UserStatusOverview = decoded.UserStatusOverview
 	s.UserStatuses = decoded.UserStatuses
 	s.Version = decoded.Version
@@ -276,5 +320,6 @@ func (s *AndroidCompliancePolicy) UnmarshalJSON(bytes []byte) error {
 		}
 		s.RestrictedApps = &output
 	}
+
 	return nil
 }

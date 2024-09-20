@@ -19,7 +19,8 @@ type DeleteTroubleshootingEventOperationResponse struct {
 }
 
 type DeleteTroubleshootingEventOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteTroubleshootingEventOperationOptions() DeleteTroubleshootingEventOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteTroubleshootingEventOperationOptions) ToHeaders() *client.Headers 
 
 func (o DeleteTroubleshootingEventOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

@@ -33,10 +33,16 @@ type RequestorSettings struct {
 var _ json.Unmarshaler = &RequestorSettings{}
 
 func (s *RequestorSettings) UnmarshalJSON(bytes []byte) error {
-	type alias RequestorSettings
-	var decoded alias
+
+	var decoded struct {
+		AcceptRequests    nullable.Type[bool]   `json:"acceptRequests,omitempty"`
+		AllowedRequestors *[]UserSet            `json:"allowedRequestors,omitempty"`
+		ODataId           *string               `json:"@odata.id,omitempty"`
+		ODataType         *string               `json:"@odata.type,omitempty"`
+		ScopeType         nullable.Type[string] `json:"scopeType,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into RequestorSettings: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.AcceptRequests = decoded.AcceptRequests
@@ -65,5 +71,6 @@ func (s *RequestorSettings) UnmarshalJSON(bytes []byte) error {
 		}
 		s.AllowedRequestors = &output
 	}
+
 	return nil
 }

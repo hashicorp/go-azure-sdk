@@ -153,10 +153,37 @@ func (s PlannerTask) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &PlannerTask{}
 
 func (s *PlannerTask) UnmarshalJSON(bytes []byte) error {
-	type alias PlannerTask
-	var decoded alias
+
+	var decoded struct {
+		ActiveChecklistItemCount  nullable.Type[int64]                  `json:"activeChecklistItemCount,omitempty"`
+		AppliedCategories         *PlannerAppliedCategories             `json:"appliedCategories,omitempty"`
+		AssignedToTaskBoardFormat *PlannerAssignedToTaskBoardTaskFormat `json:"assignedToTaskBoardFormat,omitempty"`
+		AssigneePriority          nullable.Type[string]                 `json:"assigneePriority,omitempty"`
+		Assignments               *PlannerAssignments                   `json:"assignments,omitempty"`
+		BucketId                  nullable.Type[string]                 `json:"bucketId,omitempty"`
+		BucketTaskBoardFormat     *PlannerBucketTaskBoardTaskFormat     `json:"bucketTaskBoardFormat,omitempty"`
+		ChecklistItemCount        nullable.Type[int64]                  `json:"checklistItemCount,omitempty"`
+		CompletedDateTime         nullable.Type[string]                 `json:"completedDateTime,omitempty"`
+		ConversationThreadId      nullable.Type[string]                 `json:"conversationThreadId,omitempty"`
+		CreatedDateTime           nullable.Type[string]                 `json:"createdDateTime,omitempty"`
+		Details                   *PlannerTaskDetails                   `json:"details,omitempty"`
+		DueDateTime               nullable.Type[string]                 `json:"dueDateTime,omitempty"`
+		HasDescription            nullable.Type[bool]                   `json:"hasDescription,omitempty"`
+		OrderHint                 nullable.Type[string]                 `json:"orderHint,omitempty"`
+		PercentComplete           nullable.Type[int64]                  `json:"percentComplete,omitempty"`
+		PlanId                    nullable.Type[string]                 `json:"planId,omitempty"`
+		PreviewType               *PlannerPreviewType                   `json:"previewType,omitempty"`
+		Priority                  nullable.Type[int64]                  `json:"priority,omitempty"`
+		ProgressTaskBoardFormat   *PlannerProgressTaskBoardTaskFormat   `json:"progressTaskBoardFormat,omitempty"`
+		ReferenceCount            nullable.Type[int64]                  `json:"referenceCount,omitempty"`
+		StartDateTime             nullable.Type[string]                 `json:"startDateTime,omitempty"`
+		Title                     *string                               `json:"title,omitempty"`
+		Id                        *string                               `json:"id,omitempty"`
+		ODataId                   *string                               `json:"@odata.id,omitempty"`
+		ODataType                 *string                               `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into PlannerTask: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.ActiveChecklistItemCount = decoded.ActiveChecklistItemCount
@@ -173,9 +200,6 @@ func (s *PlannerTask) UnmarshalJSON(bytes []byte) error {
 	s.Details = decoded.Details
 	s.DueDateTime = decoded.DueDateTime
 	s.HasDescription = decoded.HasDescription
-	s.Id = decoded.Id
-	s.ODataId = decoded.ODataId
-	s.ODataType = decoded.ODataType
 	s.OrderHint = decoded.OrderHint
 	s.PercentComplete = decoded.PercentComplete
 	s.PlanId = decoded.PlanId
@@ -185,6 +209,9 @@ func (s *PlannerTask) UnmarshalJSON(bytes []byte) error {
 	s.ReferenceCount = decoded.ReferenceCount
 	s.StartDateTime = decoded.StartDateTime
 	s.Title = decoded.Title
+	s.Id = decoded.Id
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -206,5 +233,6 @@ func (s *PlannerTask) UnmarshalJSON(bytes []byte) error {
 		}
 		s.CreatedBy = impl
 	}
+
 	return nil
 }

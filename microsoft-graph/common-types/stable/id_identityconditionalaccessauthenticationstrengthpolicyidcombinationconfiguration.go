@@ -101,9 +101,9 @@ func (id IdentityConditionalAccessAuthenticationStrengthPolicyIdCombinationConfi
 		resourceids.StaticSegment("conditionalAccess", "conditionalAccess", "conditionalAccess"),
 		resourceids.StaticSegment("authenticationStrength", "authenticationStrength", "authenticationStrength"),
 		resourceids.StaticSegment("policies", "policies", "policies"),
-		resourceids.UserSpecifiedSegment("authenticationStrengthPolicyId", "authenticationStrengthPolicyIdValue"),
+		resourceids.UserSpecifiedSegment("authenticationStrengthPolicyId", "authenticationStrengthPolicyId"),
 		resourceids.StaticSegment("combinationConfigurations", "combinationConfigurations", "combinationConfigurations"),
-		resourceids.UserSpecifiedSegment("authenticationCombinationConfigurationId", "authenticationCombinationConfigurationIdValue"),
+		resourceids.UserSpecifiedSegment("authenticationCombinationConfigurationId", "authenticationCombinationConfigurationId"),
 	}
 }
 

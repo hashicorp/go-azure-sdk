@@ -12,28 +12,28 @@ import (
 var _ resourceids.ResourceId = &UserIdMailFolderIdMessageIdMentionId{}
 
 func TestNewUserIdMailFolderIdMessageIdMentionID(t *testing.T) {
-	id := NewUserIdMailFolderIdMessageIdMentionID("userIdValue", "mailFolderIdValue", "messageIdValue", "mentionIdValue")
+	id := NewUserIdMailFolderIdMessageIdMentionID("userId", "mailFolderId", "messageId", "mentionId")
 
-	if id.UserId != "userIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'UserId'", id.UserId, "userIdValue")
+	if id.UserId != "userId" {
+		t.Fatalf("Expected %q but got %q for Segment 'UserId'", id.UserId, "userId")
 	}
 
-	if id.MailFolderId != "mailFolderIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'MailFolderId'", id.MailFolderId, "mailFolderIdValue")
+	if id.MailFolderId != "mailFolderId" {
+		t.Fatalf("Expected %q but got %q for Segment 'MailFolderId'", id.MailFolderId, "mailFolderId")
 	}
 
-	if id.MessageId != "messageIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'MessageId'", id.MessageId, "messageIdValue")
+	if id.MessageId != "messageId" {
+		t.Fatalf("Expected %q but got %q for Segment 'MessageId'", id.MessageId, "messageId")
 	}
 
-	if id.MentionId != "mentionIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'MentionId'", id.MentionId, "mentionIdValue")
+	if id.MentionId != "mentionId" {
+		t.Fatalf("Expected %q but got %q for Segment 'MentionId'", id.MentionId, "mentionId")
 	}
 }
 
 func TestFormatUserIdMailFolderIdMessageIdMentionID(t *testing.T) {
-	actual := NewUserIdMailFolderIdMessageIdMentionID("userIdValue", "mailFolderIdValue", "messageIdValue", "mentionIdValue").ID()
-	expected := "/users/userIdValue/mailFolders/mailFolderIdValue/messages/messageIdValue/mentions/mentionIdValue"
+	actual := NewUserIdMailFolderIdMessageIdMentionID("userId", "mailFolderId", "messageId", "mentionId").ID()
+	expected := "/users/userId/mailFolders/mailFolderId/messages/messageId/mentions/mentionId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -57,47 +57,47 @@ func TestParseUserIdMailFolderIdMessageIdMentionID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue",
+			Input: "/users/userId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/mailFolders",
+			Input: "/users/userId/mailFolders",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/mailFolders/mailFolderIdValue",
+			Input: "/users/userId/mailFolders/mailFolderId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/mailFolders/mailFolderIdValue/messages",
+			Input: "/users/userId/mailFolders/mailFolderId/messages",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/mailFolders/mailFolderIdValue/messages/messageIdValue",
+			Input: "/users/userId/mailFolders/mailFolderId/messages/messageId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/mailFolders/mailFolderIdValue/messages/messageIdValue/mentions",
+			Input: "/users/userId/mailFolders/mailFolderId/messages/messageId/mentions",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/users/userIdValue/mailFolders/mailFolderIdValue/messages/messageIdValue/mentions/mentionIdValue",
+			Input: "/users/userId/mailFolders/mailFolderId/messages/messageId/mentions/mentionId",
 			Expected: &UserIdMailFolderIdMessageIdMentionId{
-				UserId:       "userIdValue",
-				MailFolderId: "mailFolderIdValue",
-				MessageId:    "messageIdValue",
-				MentionId:    "mentionIdValue",
+				UserId:       "userId",
+				MailFolderId: "mailFolderId",
+				MessageId:    "messageId",
+				MentionId:    "mentionId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/users/userIdValue/mailFolders/mailFolderIdValue/messages/messageIdValue/mentions/mentionIdValue/extra",
+			Input: "/users/userId/mailFolders/mailFolderId/messages/messageId/mentions/mentionId/extra",
 			Error: true,
 		},
 	}
@@ -158,92 +158,92 @@ func TestParseUserIdMailFolderIdMessageIdMentionIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue",
+			Input: "/users/userId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe",
+			Input: "/uSeRs/uSeRiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/mailFolders",
+			Input: "/users/userId/mailFolders",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/mAiLfOlDeRs",
+			Input: "/uSeRs/uSeRiD/mAiLfOlDeRs",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/mailFolders/mailFolderIdValue",
+			Input: "/users/userId/mailFolders/mailFolderId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/mAiLfOlDeRs/mAiLfOlDeRiDvAlUe",
+			Input: "/uSeRs/uSeRiD/mAiLfOlDeRs/mAiLfOlDeRiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/mailFolders/mailFolderIdValue/messages",
+			Input: "/users/userId/mailFolders/mailFolderId/messages",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/mAiLfOlDeRs/mAiLfOlDeRiDvAlUe/mEsSaGeS",
+			Input: "/uSeRs/uSeRiD/mAiLfOlDeRs/mAiLfOlDeRiD/mEsSaGeS",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/mailFolders/mailFolderIdValue/messages/messageIdValue",
+			Input: "/users/userId/mailFolders/mailFolderId/messages/messageId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/mAiLfOlDeRs/mAiLfOlDeRiDvAlUe/mEsSaGeS/mEsSaGeIdVaLuE",
+			Input: "/uSeRs/uSeRiD/mAiLfOlDeRs/mAiLfOlDeRiD/mEsSaGeS/mEsSaGeId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/mailFolders/mailFolderIdValue/messages/messageIdValue/mentions",
+			Input: "/users/userId/mailFolders/mailFolderId/messages/messageId/mentions",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/mAiLfOlDeRs/mAiLfOlDeRiDvAlUe/mEsSaGeS/mEsSaGeIdVaLuE/mEnTiOnS",
+			Input: "/uSeRs/uSeRiD/mAiLfOlDeRs/mAiLfOlDeRiD/mEsSaGeS/mEsSaGeId/mEnTiOnS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/users/userIdValue/mailFolders/mailFolderIdValue/messages/messageIdValue/mentions/mentionIdValue",
+			Input: "/users/userId/mailFolders/mailFolderId/messages/messageId/mentions/mentionId",
 			Expected: &UserIdMailFolderIdMessageIdMentionId{
-				UserId:       "userIdValue",
-				MailFolderId: "mailFolderIdValue",
-				MessageId:    "messageIdValue",
-				MentionId:    "mentionIdValue",
+				UserId:       "userId",
+				MailFolderId: "mailFolderId",
+				MessageId:    "messageId",
+				MentionId:    "mentionId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/users/userIdValue/mailFolders/mailFolderIdValue/messages/messageIdValue/mentions/mentionIdValue/extra",
+			Input: "/users/userId/mailFolders/mailFolderId/messages/messageId/mentions/mentionId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/mAiLfOlDeRs/mAiLfOlDeRiDvAlUe/mEsSaGeS/mEsSaGeIdVaLuE/mEnTiOnS/mEnTiOnIdVaLuE",
+			Input: "/uSeRs/uSeRiD/mAiLfOlDeRs/mAiLfOlDeRiD/mEsSaGeS/mEsSaGeId/mEnTiOnS/mEnTiOnId",
 			Expected: &UserIdMailFolderIdMessageIdMentionId{
-				UserId:       "uSeRiDvAlUe",
-				MailFolderId: "mAiLfOlDeRiDvAlUe",
-				MessageId:    "mEsSaGeIdVaLuE",
-				MentionId:    "mEnTiOnIdVaLuE",
+				UserId:       "uSeRiD",
+				MailFolderId: "mAiLfOlDeRiD",
+				MessageId:    "mEsSaGeId",
+				MentionId:    "mEnTiOnId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/mAiLfOlDeRs/mAiLfOlDeRiDvAlUe/mEsSaGeS/mEsSaGeIdVaLuE/mEnTiOnS/mEnTiOnIdVaLuE/extra",
+			Input: "/uSeRs/uSeRiD/mAiLfOlDeRs/mAiLfOlDeRiD/mEsSaGeS/mEsSaGeId/mEnTiOnS/mEnTiOnId/extra",
 			Error: true,
 		},
 	}

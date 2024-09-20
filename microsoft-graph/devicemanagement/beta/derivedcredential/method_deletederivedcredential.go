@@ -19,7 +19,8 @@ type DeleteDerivedCredentialOperationResponse struct {
 }
 
 type DeleteDerivedCredentialOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteDerivedCredentialOperationOptions() DeleteDerivedCredentialOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteDerivedCredentialOperationOptions) ToHeaders() *client.Headers {
 
 func (o DeleteDerivedCredentialOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

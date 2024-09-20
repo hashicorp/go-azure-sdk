@@ -19,7 +19,8 @@ type DeleteUsageRightOperationResponse struct {
 }
 
 type DeleteUsageRightOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteUsageRightOperationOptions() DeleteUsageRightOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteUsageRightOperationOptions) ToHeaders() *client.Headers {
 
 func (o DeleteUsageRightOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

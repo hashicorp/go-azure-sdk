@@ -18,15 +18,44 @@ type UpdateSolutionOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateSolutionOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateSolutionOperationOptions() UpdateSolutionOperationOptions {
+	return UpdateSolutionOperationOptions{}
+}
+
+func (o UpdateSolutionOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateSolutionOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateSolutionOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateSolution - Update the navigation property solutions in users
-func (c SolutionClient) UpdateSolution(ctx context.Context, id beta.UserId, input beta.UserSolutionRoot) (result UpdateSolutionOperationResponse, err error) {
+func (c SolutionClient) UpdateSolution(ctx context.Context, id beta.UserId, input beta.UserSolutionRoot, options UpdateSolutionOperationOptions) (result UpdateSolutionOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       fmt.Sprintf("%s/solutions", id.ID()),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/solutions", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

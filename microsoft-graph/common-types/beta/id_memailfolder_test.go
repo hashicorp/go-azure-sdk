@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &MeMailFolderId{}
 
 func TestNewMeMailFolderID(t *testing.T) {
-	id := NewMeMailFolderID("mailFolderIdValue")
+	id := NewMeMailFolderID("mailFolderId")
 
-	if id.MailFolderId != "mailFolderIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'MailFolderId'", id.MailFolderId, "mailFolderIdValue")
+	if id.MailFolderId != "mailFolderId" {
+		t.Fatalf("Expected %q but got %q for Segment 'MailFolderId'", id.MailFolderId, "mailFolderId")
 	}
 }
 
 func TestFormatMeMailFolderID(t *testing.T) {
-	actual := NewMeMailFolderID("mailFolderIdValue").ID()
-	expected := "/me/mailFolders/mailFolderIdValue"
+	actual := NewMeMailFolderID("mailFolderId").ID()
+	expected := "/me/mailFolders/mailFolderId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -50,14 +50,14 @@ func TestParseMeMailFolderID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/me/mailFolders/mailFolderIdValue",
+			Input: "/me/mailFolders/mailFolderId",
 			Expected: &MeMailFolderId{
-				MailFolderId: "mailFolderIdValue",
+				MailFolderId: "mailFolderId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/mailFolders/mailFolderIdValue/extra",
+			Input: "/me/mailFolders/mailFolderId/extra",
 			Error: true,
 		},
 	}
@@ -116,26 +116,26 @@ func TestParseMeMailFolderIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/me/mailFolders/mailFolderIdValue",
+			Input: "/me/mailFolders/mailFolderId",
 			Expected: &MeMailFolderId{
-				MailFolderId: "mailFolderIdValue",
+				MailFolderId: "mailFolderId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/mailFolders/mailFolderIdValue/extra",
+			Input: "/me/mailFolders/mailFolderId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/mAiLfOlDeRs/mAiLfOlDeRiDvAlUe",
+			Input: "/mE/mAiLfOlDeRs/mAiLfOlDeRiD",
 			Expected: &MeMailFolderId{
-				MailFolderId: "mAiLfOlDeRiDvAlUe",
+				MailFolderId: "mAiLfOlDeRiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/mE/mAiLfOlDeRs/mAiLfOlDeRiDvAlUe/extra",
+			Input: "/mE/mAiLfOlDeRs/mAiLfOlDeRiD/extra",
 			Error: true,
 		},
 	}

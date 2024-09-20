@@ -19,15 +19,44 @@ type AddDriveListContentTypesCopyOperationResponse struct {
 	Model        *beta.ContentType
 }
 
+type AddDriveListContentTypesCopyOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultAddDriveListContentTypesCopyOperationOptions() AddDriveListContentTypesCopyOperationOptions {
+	return AddDriveListContentTypesCopyOperationOptions{}
+}
+
+func (o AddDriveListContentTypesCopyOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o AddDriveListContentTypesCopyOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o AddDriveListContentTypesCopyOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // AddDriveListContentTypesCopy - Invoke action addCopy
-func (c DriveListContentTypeClient) AddDriveListContentTypesCopy(ctx context.Context, id beta.UserIdDriveId, input AddDriveListContentTypesCopyRequest) (result AddDriveListContentTypesCopyOperationResponse, err error) {
+func (c DriveListContentTypeClient) AddDriveListContentTypesCopy(ctx context.Context, id beta.UserIdDriveId, input AddDriveListContentTypesCopyRequest, options AddDriveListContentTypesCopyOperationOptions) (result AddDriveListContentTypesCopyOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/list/contentTypes/addCopy", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/list/contentTypes/addCopy", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

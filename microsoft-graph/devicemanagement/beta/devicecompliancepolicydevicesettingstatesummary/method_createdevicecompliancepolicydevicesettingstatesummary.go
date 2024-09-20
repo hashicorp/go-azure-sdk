@@ -19,16 +19,45 @@ type CreateDeviceCompliancePolicyDeviceSettingStateSummaryOperationResponse stru
 	Model        *beta.SettingStateDeviceSummary
 }
 
+type CreateDeviceCompliancePolicyDeviceSettingStateSummaryOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateDeviceCompliancePolicyDeviceSettingStateSummaryOperationOptions() CreateDeviceCompliancePolicyDeviceSettingStateSummaryOperationOptions {
+	return CreateDeviceCompliancePolicyDeviceSettingStateSummaryOperationOptions{}
+}
+
+func (o CreateDeviceCompliancePolicyDeviceSettingStateSummaryOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateDeviceCompliancePolicyDeviceSettingStateSummaryOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateDeviceCompliancePolicyDeviceSettingStateSummaryOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateDeviceCompliancePolicyDeviceSettingStateSummary - Create new navigation property to deviceSettingStateSummaries
 // for deviceManagement
-func (c DeviceCompliancePolicyDeviceSettingStateSummaryClient) CreateDeviceCompliancePolicyDeviceSettingStateSummary(ctx context.Context, id beta.DeviceManagementDeviceCompliancePolicyId, input beta.SettingStateDeviceSummary) (result CreateDeviceCompliancePolicyDeviceSettingStateSummaryOperationResponse, err error) {
+func (c DeviceCompliancePolicyDeviceSettingStateSummaryClient) CreateDeviceCompliancePolicyDeviceSettingStateSummary(ctx context.Context, id beta.DeviceManagementDeviceCompliancePolicyId, input beta.SettingStateDeviceSummary, options CreateDeviceCompliancePolicyDeviceSettingStateSummaryOperationOptions) (result CreateDeviceCompliancePolicyDeviceSettingStateSummaryOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/deviceSettingStateSummaries", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/deviceSettingStateSummaries", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

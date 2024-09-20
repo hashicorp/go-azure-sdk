@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &ReportUserInsightMonthlyMfaCompletionId{}
 
 func TestNewReportUserInsightMonthlyMfaCompletionID(t *testing.T) {
-	id := NewReportUserInsightMonthlyMfaCompletionID("mfaCompletionMetricIdValue")
+	id := NewReportUserInsightMonthlyMfaCompletionID("mfaCompletionMetricId")
 
-	if id.MfaCompletionMetricId != "mfaCompletionMetricIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'MfaCompletionMetricId'", id.MfaCompletionMetricId, "mfaCompletionMetricIdValue")
+	if id.MfaCompletionMetricId != "mfaCompletionMetricId" {
+		t.Fatalf("Expected %q but got %q for Segment 'MfaCompletionMetricId'", id.MfaCompletionMetricId, "mfaCompletionMetricId")
 	}
 }
 
 func TestFormatReportUserInsightMonthlyMfaCompletionID(t *testing.T) {
-	actual := NewReportUserInsightMonthlyMfaCompletionID("mfaCompletionMetricIdValue").ID()
-	expected := "/reports/userInsights/monthly/mfaCompletions/mfaCompletionMetricIdValue"
+	actual := NewReportUserInsightMonthlyMfaCompletionID("mfaCompletionMetricId").ID()
+	expected := "/reports/userInsights/monthly/mfaCompletions/mfaCompletionMetricId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -60,14 +60,14 @@ func TestParseReportUserInsightMonthlyMfaCompletionID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/reports/userInsights/monthly/mfaCompletions/mfaCompletionMetricIdValue",
+			Input: "/reports/userInsights/monthly/mfaCompletions/mfaCompletionMetricId",
 			Expected: &ReportUserInsightMonthlyMfaCompletionId{
-				MfaCompletionMetricId: "mfaCompletionMetricIdValue",
+				MfaCompletionMetricId: "mfaCompletionMetricId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/reports/userInsights/monthly/mfaCompletions/mfaCompletionMetricIdValue/extra",
+			Input: "/reports/userInsights/monthly/mfaCompletions/mfaCompletionMetricId/extra",
 			Error: true,
 		},
 	}
@@ -146,26 +146,26 @@ func TestParseReportUserInsightMonthlyMfaCompletionIDInsensitively(t *testing.T)
 		},
 		{
 			// Valid URI
-			Input: "/reports/userInsights/monthly/mfaCompletions/mfaCompletionMetricIdValue",
+			Input: "/reports/userInsights/monthly/mfaCompletions/mfaCompletionMetricId",
 			Expected: &ReportUserInsightMonthlyMfaCompletionId{
-				MfaCompletionMetricId: "mfaCompletionMetricIdValue",
+				MfaCompletionMetricId: "mfaCompletionMetricId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/reports/userInsights/monthly/mfaCompletions/mfaCompletionMetricIdValue/extra",
+			Input: "/reports/userInsights/monthly/mfaCompletions/mfaCompletionMetricId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/rEpOrTs/uSeRiNsIgHtS/mOnThLy/mFaCoMpLeTiOnS/mFaCoMpLeTiOnMeTrIcIdVaLuE",
+			Input: "/rEpOrTs/uSeRiNsIgHtS/mOnThLy/mFaCoMpLeTiOnS/mFaCoMpLeTiOnMeTrIcId",
 			Expected: &ReportUserInsightMonthlyMfaCompletionId{
-				MfaCompletionMetricId: "mFaCoMpLeTiOnMeTrIcIdVaLuE",
+				MfaCompletionMetricId: "mFaCoMpLeTiOnMeTrIcId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/rEpOrTs/uSeRiNsIgHtS/mOnThLy/mFaCoMpLeTiOnS/mFaCoMpLeTiOnMeTrIcIdVaLuE/extra",
+			Input: "/rEpOrTs/uSeRiNsIgHtS/mOnThLy/mFaCoMpLeTiOnS/mFaCoMpLeTiOnMeTrIcId/extra",
 			Error: true,
 		},
 	}

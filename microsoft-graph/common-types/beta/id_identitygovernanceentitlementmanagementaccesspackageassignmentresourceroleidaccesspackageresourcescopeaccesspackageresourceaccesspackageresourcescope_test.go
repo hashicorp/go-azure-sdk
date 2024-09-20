@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &IdentityGovernanceEntitlementManagementAccessPackageAssignmentResourceRoleIdAccessPackageResourceScopeAccessPackageResourceAccessPackageResourceScopeId{}
 
 func TestNewIdentityGovernanceEntitlementManagementAccessPackageAssignmentResourceRoleIdAccessPackageResourceScopeAccessPackageResourceAccessPackageResourceScopeID(t *testing.T) {
-	id := NewIdentityGovernanceEntitlementManagementAccessPackageAssignmentResourceRoleIdAccessPackageResourceScopeAccessPackageResourceAccessPackageResourceScopeID("accessPackageAssignmentResourceRoleIdValue", "accessPackageResourceScopeIdValue")
+	id := NewIdentityGovernanceEntitlementManagementAccessPackageAssignmentResourceRoleIdAccessPackageResourceScopeAccessPackageResourceAccessPackageResourceScopeID("accessPackageAssignmentResourceRoleId", "accessPackageResourceScopeId")
 
-	if id.AccessPackageAssignmentResourceRoleId != "accessPackageAssignmentResourceRoleIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'AccessPackageAssignmentResourceRoleId'", id.AccessPackageAssignmentResourceRoleId, "accessPackageAssignmentResourceRoleIdValue")
+	if id.AccessPackageAssignmentResourceRoleId != "accessPackageAssignmentResourceRoleId" {
+		t.Fatalf("Expected %q but got %q for Segment 'AccessPackageAssignmentResourceRoleId'", id.AccessPackageAssignmentResourceRoleId, "accessPackageAssignmentResourceRoleId")
 	}
 
-	if id.AccessPackageResourceScopeId != "accessPackageResourceScopeIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'AccessPackageResourceScopeId'", id.AccessPackageResourceScopeId, "accessPackageResourceScopeIdValue")
+	if id.AccessPackageResourceScopeId != "accessPackageResourceScopeId" {
+		t.Fatalf("Expected %q but got %q for Segment 'AccessPackageResourceScopeId'", id.AccessPackageResourceScopeId, "accessPackageResourceScopeId")
 	}
 }
 
 func TestFormatIdentityGovernanceEntitlementManagementAccessPackageAssignmentResourceRoleIdAccessPackageResourceScopeAccessPackageResourceAccessPackageResourceScopeID(t *testing.T) {
-	actual := NewIdentityGovernanceEntitlementManagementAccessPackageAssignmentResourceRoleIdAccessPackageResourceScopeAccessPackageResourceAccessPackageResourceScopeID("accessPackageAssignmentResourceRoleIdValue", "accessPackageResourceScopeIdValue").ID()
-	expected := "/identityGovernance/entitlementManagement/accessPackageAssignmentResourceRoles/accessPackageAssignmentResourceRoleIdValue/accessPackageResourceScope/accessPackageResource/accessPackageResourceScopes/accessPackageResourceScopeIdValue"
+	actual := NewIdentityGovernanceEntitlementManagementAccessPackageAssignmentResourceRoleIdAccessPackageResourceScopeAccessPackageResourceAccessPackageResourceScopeID("accessPackageAssignmentResourceRoleId", "accessPackageResourceScopeId").ID()
+	expected := "/identityGovernance/entitlementManagement/accessPackageAssignmentResourceRoles/accessPackageAssignmentResourceRoleId/accessPackageResourceScope/accessPackageResource/accessPackageResourceScopes/accessPackageResourceScopeId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -59,35 +59,35 @@ func TestParseIdentityGovernanceEntitlementManagementAccessPackageAssignmentReso
 		},
 		{
 			// Incomplete URI
-			Input: "/identityGovernance/entitlementManagement/accessPackageAssignmentResourceRoles/accessPackageAssignmentResourceRoleIdValue",
+			Input: "/identityGovernance/entitlementManagement/accessPackageAssignmentResourceRoles/accessPackageAssignmentResourceRoleId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/identityGovernance/entitlementManagement/accessPackageAssignmentResourceRoles/accessPackageAssignmentResourceRoleIdValue/accessPackageResourceScope",
+			Input: "/identityGovernance/entitlementManagement/accessPackageAssignmentResourceRoles/accessPackageAssignmentResourceRoleId/accessPackageResourceScope",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/identityGovernance/entitlementManagement/accessPackageAssignmentResourceRoles/accessPackageAssignmentResourceRoleIdValue/accessPackageResourceScope/accessPackageResource",
+			Input: "/identityGovernance/entitlementManagement/accessPackageAssignmentResourceRoles/accessPackageAssignmentResourceRoleId/accessPackageResourceScope/accessPackageResource",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/identityGovernance/entitlementManagement/accessPackageAssignmentResourceRoles/accessPackageAssignmentResourceRoleIdValue/accessPackageResourceScope/accessPackageResource/accessPackageResourceScopes",
+			Input: "/identityGovernance/entitlementManagement/accessPackageAssignmentResourceRoles/accessPackageAssignmentResourceRoleId/accessPackageResourceScope/accessPackageResource/accessPackageResourceScopes",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/identityGovernance/entitlementManagement/accessPackageAssignmentResourceRoles/accessPackageAssignmentResourceRoleIdValue/accessPackageResourceScope/accessPackageResource/accessPackageResourceScopes/accessPackageResourceScopeIdValue",
+			Input: "/identityGovernance/entitlementManagement/accessPackageAssignmentResourceRoles/accessPackageAssignmentResourceRoleId/accessPackageResourceScope/accessPackageResource/accessPackageResourceScopes/accessPackageResourceScopeId",
 			Expected: &IdentityGovernanceEntitlementManagementAccessPackageAssignmentResourceRoleIdAccessPackageResourceScopeAccessPackageResourceAccessPackageResourceScopeId{
-				AccessPackageAssignmentResourceRoleId: "accessPackageAssignmentResourceRoleIdValue",
-				AccessPackageResourceScopeId:          "accessPackageResourceScopeIdValue",
+				AccessPackageAssignmentResourceRoleId: "accessPackageAssignmentResourceRoleId",
+				AccessPackageResourceScopeId:          "accessPackageResourceScopeId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/identityGovernance/entitlementManagement/accessPackageAssignmentResourceRoles/accessPackageAssignmentResourceRoleIdValue/accessPackageResourceScope/accessPackageResource/accessPackageResourceScopes/accessPackageResourceScopeIdValue/extra",
+			Input: "/identityGovernance/entitlementManagement/accessPackageAssignmentResourceRoles/accessPackageAssignmentResourceRoleId/accessPackageResourceScope/accessPackageResource/accessPackageResourceScopes/accessPackageResourceScopeId/extra",
 			Error: true,
 		},
 	}
@@ -160,68 +160,68 @@ func TestParseIdentityGovernanceEntitlementManagementAccessPackageAssignmentReso
 		},
 		{
 			// Incomplete URI
-			Input: "/identityGovernance/entitlementManagement/accessPackageAssignmentResourceRoles/accessPackageAssignmentResourceRoleIdValue",
+			Input: "/identityGovernance/entitlementManagement/accessPackageAssignmentResourceRoles/accessPackageAssignmentResourceRoleId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/iDeNtItYgOvErNaNcE/eNtItLeMeNtMaNaGeMeNt/aCcEsSpAcKaGeAsSiGnMeNtReSoUrCeRoLeS/aCcEsSpAcKaGeAsSiGnMeNtReSoUrCeRoLeIdVaLuE",
+			Input: "/iDeNtItYgOvErNaNcE/eNtItLeMeNtMaNaGeMeNt/aCcEsSpAcKaGeAsSiGnMeNtReSoUrCeRoLeS/aCcEsSpAcKaGeAsSiGnMeNtReSoUrCeRoLeId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/identityGovernance/entitlementManagement/accessPackageAssignmentResourceRoles/accessPackageAssignmentResourceRoleIdValue/accessPackageResourceScope",
+			Input: "/identityGovernance/entitlementManagement/accessPackageAssignmentResourceRoles/accessPackageAssignmentResourceRoleId/accessPackageResourceScope",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/iDeNtItYgOvErNaNcE/eNtItLeMeNtMaNaGeMeNt/aCcEsSpAcKaGeAsSiGnMeNtReSoUrCeRoLeS/aCcEsSpAcKaGeAsSiGnMeNtReSoUrCeRoLeIdVaLuE/aCcEsSpAcKaGeReSoUrCeScOpE",
+			Input: "/iDeNtItYgOvErNaNcE/eNtItLeMeNtMaNaGeMeNt/aCcEsSpAcKaGeAsSiGnMeNtReSoUrCeRoLeS/aCcEsSpAcKaGeAsSiGnMeNtReSoUrCeRoLeId/aCcEsSpAcKaGeReSoUrCeScOpE",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/identityGovernance/entitlementManagement/accessPackageAssignmentResourceRoles/accessPackageAssignmentResourceRoleIdValue/accessPackageResourceScope/accessPackageResource",
+			Input: "/identityGovernance/entitlementManagement/accessPackageAssignmentResourceRoles/accessPackageAssignmentResourceRoleId/accessPackageResourceScope/accessPackageResource",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/iDeNtItYgOvErNaNcE/eNtItLeMeNtMaNaGeMeNt/aCcEsSpAcKaGeAsSiGnMeNtReSoUrCeRoLeS/aCcEsSpAcKaGeAsSiGnMeNtReSoUrCeRoLeIdVaLuE/aCcEsSpAcKaGeReSoUrCeScOpE/aCcEsSpAcKaGeReSoUrCe",
+			Input: "/iDeNtItYgOvErNaNcE/eNtItLeMeNtMaNaGeMeNt/aCcEsSpAcKaGeAsSiGnMeNtReSoUrCeRoLeS/aCcEsSpAcKaGeAsSiGnMeNtReSoUrCeRoLeId/aCcEsSpAcKaGeReSoUrCeScOpE/aCcEsSpAcKaGeReSoUrCe",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/identityGovernance/entitlementManagement/accessPackageAssignmentResourceRoles/accessPackageAssignmentResourceRoleIdValue/accessPackageResourceScope/accessPackageResource/accessPackageResourceScopes",
+			Input: "/identityGovernance/entitlementManagement/accessPackageAssignmentResourceRoles/accessPackageAssignmentResourceRoleId/accessPackageResourceScope/accessPackageResource/accessPackageResourceScopes",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/iDeNtItYgOvErNaNcE/eNtItLeMeNtMaNaGeMeNt/aCcEsSpAcKaGeAsSiGnMeNtReSoUrCeRoLeS/aCcEsSpAcKaGeAsSiGnMeNtReSoUrCeRoLeIdVaLuE/aCcEsSpAcKaGeReSoUrCeScOpE/aCcEsSpAcKaGeReSoUrCe/aCcEsSpAcKaGeReSoUrCeScOpEs",
+			Input: "/iDeNtItYgOvErNaNcE/eNtItLeMeNtMaNaGeMeNt/aCcEsSpAcKaGeAsSiGnMeNtReSoUrCeRoLeS/aCcEsSpAcKaGeAsSiGnMeNtReSoUrCeRoLeId/aCcEsSpAcKaGeReSoUrCeScOpE/aCcEsSpAcKaGeReSoUrCe/aCcEsSpAcKaGeReSoUrCeScOpEs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/identityGovernance/entitlementManagement/accessPackageAssignmentResourceRoles/accessPackageAssignmentResourceRoleIdValue/accessPackageResourceScope/accessPackageResource/accessPackageResourceScopes/accessPackageResourceScopeIdValue",
+			Input: "/identityGovernance/entitlementManagement/accessPackageAssignmentResourceRoles/accessPackageAssignmentResourceRoleId/accessPackageResourceScope/accessPackageResource/accessPackageResourceScopes/accessPackageResourceScopeId",
 			Expected: &IdentityGovernanceEntitlementManagementAccessPackageAssignmentResourceRoleIdAccessPackageResourceScopeAccessPackageResourceAccessPackageResourceScopeId{
-				AccessPackageAssignmentResourceRoleId: "accessPackageAssignmentResourceRoleIdValue",
-				AccessPackageResourceScopeId:          "accessPackageResourceScopeIdValue",
+				AccessPackageAssignmentResourceRoleId: "accessPackageAssignmentResourceRoleId",
+				AccessPackageResourceScopeId:          "accessPackageResourceScopeId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/identityGovernance/entitlementManagement/accessPackageAssignmentResourceRoles/accessPackageAssignmentResourceRoleIdValue/accessPackageResourceScope/accessPackageResource/accessPackageResourceScopes/accessPackageResourceScopeIdValue/extra",
+			Input: "/identityGovernance/entitlementManagement/accessPackageAssignmentResourceRoles/accessPackageAssignmentResourceRoleId/accessPackageResourceScope/accessPackageResource/accessPackageResourceScopes/accessPackageResourceScopeId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/iDeNtItYgOvErNaNcE/eNtItLeMeNtMaNaGeMeNt/aCcEsSpAcKaGeAsSiGnMeNtReSoUrCeRoLeS/aCcEsSpAcKaGeAsSiGnMeNtReSoUrCeRoLeIdVaLuE/aCcEsSpAcKaGeReSoUrCeScOpE/aCcEsSpAcKaGeReSoUrCe/aCcEsSpAcKaGeReSoUrCeScOpEs/aCcEsSpAcKaGeReSoUrCeScOpEiDvAlUe",
+			Input: "/iDeNtItYgOvErNaNcE/eNtItLeMeNtMaNaGeMeNt/aCcEsSpAcKaGeAsSiGnMeNtReSoUrCeRoLeS/aCcEsSpAcKaGeAsSiGnMeNtReSoUrCeRoLeId/aCcEsSpAcKaGeReSoUrCeScOpE/aCcEsSpAcKaGeReSoUrCe/aCcEsSpAcKaGeReSoUrCeScOpEs/aCcEsSpAcKaGeReSoUrCeScOpEiD",
 			Expected: &IdentityGovernanceEntitlementManagementAccessPackageAssignmentResourceRoleIdAccessPackageResourceScopeAccessPackageResourceAccessPackageResourceScopeId{
-				AccessPackageAssignmentResourceRoleId: "aCcEsSpAcKaGeAsSiGnMeNtReSoUrCeRoLeIdVaLuE",
-				AccessPackageResourceScopeId:          "aCcEsSpAcKaGeReSoUrCeScOpEiDvAlUe",
+				AccessPackageAssignmentResourceRoleId: "aCcEsSpAcKaGeAsSiGnMeNtReSoUrCeRoLeId",
+				AccessPackageResourceScopeId:          "aCcEsSpAcKaGeReSoUrCeScOpEiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/iDeNtItYgOvErNaNcE/eNtItLeMeNtMaNaGeMeNt/aCcEsSpAcKaGeAsSiGnMeNtReSoUrCeRoLeS/aCcEsSpAcKaGeAsSiGnMeNtReSoUrCeRoLeIdVaLuE/aCcEsSpAcKaGeReSoUrCeScOpE/aCcEsSpAcKaGeReSoUrCe/aCcEsSpAcKaGeReSoUrCeScOpEs/aCcEsSpAcKaGeReSoUrCeScOpEiDvAlUe/extra",
+			Input: "/iDeNtItYgOvErNaNcE/eNtItLeMeNtMaNaGeMeNt/aCcEsSpAcKaGeAsSiGnMeNtReSoUrCeRoLeS/aCcEsSpAcKaGeAsSiGnMeNtReSoUrCeRoLeId/aCcEsSpAcKaGeReSoUrCeScOpE/aCcEsSpAcKaGeReSoUrCe/aCcEsSpAcKaGeReSoUrCeScOpEs/aCcEsSpAcKaGeReSoUrCeScOpEiD/extra",
 			Error: true,
 		},
 	}

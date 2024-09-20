@@ -57,10 +57,15 @@ func (s PlannerArchivalInfo) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &PlannerArchivalInfo{}
 
 func (s *PlannerArchivalInfo) UnmarshalJSON(bytes []byte) error {
-	type alias PlannerArchivalInfo
-	var decoded alias
+
+	var decoded struct {
+		Justification         nullable.Type[string] `json:"justification,omitempty"`
+		ODataId               *string               `json:"@odata.id,omitempty"`
+		ODataType             *string               `json:"@odata.type,omitempty"`
+		StatusChangedDateTime nullable.Type[string] `json:"statusChangedDateTime,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into PlannerArchivalInfo: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.Justification = decoded.Justification
@@ -80,5 +85,6 @@ func (s *PlannerArchivalInfo) UnmarshalJSON(bytes []byte) error {
 		}
 		s.StatusChangedBy = &impl
 	}
+
 	return nil
 }

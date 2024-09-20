@@ -18,15 +18,44 @@ type CreateDetectedAppOperationResponse struct {
 	Model        *beta.DetectedApp
 }
 
+type CreateDetectedAppOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateDetectedAppOperationOptions() CreateDetectedAppOperationOptions {
+	return CreateDetectedAppOperationOptions{}
+}
+
+func (o CreateDetectedAppOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateDetectedAppOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateDetectedAppOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateDetectedApp - Create new navigation property to detectedApps for deviceManagement
-func (c DetectedAppClient) CreateDetectedApp(ctx context.Context, input beta.DetectedApp) (result CreateDetectedAppOperationResponse, err error) {
+func (c DetectedAppClient) CreateDetectedApp(ctx context.Context, input beta.DetectedApp, options CreateDetectedAppOperationOptions) (result CreateDetectedAppOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/deviceManagement/detectedApps",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/deviceManagement/detectedApps",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

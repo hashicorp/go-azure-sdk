@@ -17,15 +17,44 @@ type GetReportsWindowsUpdateAlertsPerPolicyPerDeviceReportOperationResponse stru
 	Model        *[]byte
 }
 
+type GetReportsWindowsUpdateAlertsPerPolicyPerDeviceReportOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultGetReportsWindowsUpdateAlertsPerPolicyPerDeviceReportOperationOptions() GetReportsWindowsUpdateAlertsPerPolicyPerDeviceReportOperationOptions {
+	return GetReportsWindowsUpdateAlertsPerPolicyPerDeviceReportOperationOptions{}
+}
+
+func (o GetReportsWindowsUpdateAlertsPerPolicyPerDeviceReportOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o GetReportsWindowsUpdateAlertsPerPolicyPerDeviceReportOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o GetReportsWindowsUpdateAlertsPerPolicyPerDeviceReportOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // GetReportsWindowsUpdateAlertsPerPolicyPerDeviceReport - Invoke action getWindowsUpdateAlertsPerPolicyPerDeviceReport
-func (c ReportClient) GetReportsWindowsUpdateAlertsPerPolicyPerDeviceReport(ctx context.Context, input GetReportsWindowsUpdateAlertsPerPolicyPerDeviceReportRequest) (result GetReportsWindowsUpdateAlertsPerPolicyPerDeviceReportOperationResponse, err error) {
+func (c ReportClient) GetReportsWindowsUpdateAlertsPerPolicyPerDeviceReport(ctx context.Context, input GetReportsWindowsUpdateAlertsPerPolicyPerDeviceReportRequest, options GetReportsWindowsUpdateAlertsPerPolicyPerDeviceReportOperationOptions) (result GetReportsWindowsUpdateAlertsPerPolicyPerDeviceReportOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/octet-stream",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/deviceManagement/reports/getWindowsUpdateAlertsPerPolicyPerDeviceReport",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/deviceManagement/reports/getWindowsUpdateAlertsPerPolicyPerDeviceReport",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

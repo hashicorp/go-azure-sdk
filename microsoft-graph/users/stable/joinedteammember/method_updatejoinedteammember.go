@@ -17,15 +17,44 @@ type UpdateJoinedTeamMemberOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateJoinedTeamMemberOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateJoinedTeamMemberOperationOptions() UpdateJoinedTeamMemberOperationOptions {
+	return UpdateJoinedTeamMemberOperationOptions{}
+}
+
+func (o UpdateJoinedTeamMemberOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateJoinedTeamMemberOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateJoinedTeamMemberOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateJoinedTeamMember - Update the navigation property members in users
-func (c JoinedTeamMemberClient) UpdateJoinedTeamMember(ctx context.Context, id stable.UserIdJoinedTeamIdMemberId, input stable.ConversationMember) (result UpdateJoinedTeamMemberOperationResponse, err error) {
+func (c JoinedTeamMemberClient) UpdateJoinedTeamMember(ctx context.Context, id stable.UserIdJoinedTeamIdMemberId, input stable.ConversationMember, options UpdateJoinedTeamMemberOperationOptions) (result UpdateJoinedTeamMemberOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &DeviceManagementVirtualEndpointAuditEventId{}
 
 func TestNewDeviceManagementVirtualEndpointAuditEventID(t *testing.T) {
-	id := NewDeviceManagementVirtualEndpointAuditEventID("cloudPCAuditEventIdValue")
+	id := NewDeviceManagementVirtualEndpointAuditEventID("cloudPCAuditEventId")
 
-	if id.CloudPCAuditEventId != "cloudPCAuditEventIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'CloudPCAuditEventId'", id.CloudPCAuditEventId, "cloudPCAuditEventIdValue")
+	if id.CloudPCAuditEventId != "cloudPCAuditEventId" {
+		t.Fatalf("Expected %q but got %q for Segment 'CloudPCAuditEventId'", id.CloudPCAuditEventId, "cloudPCAuditEventId")
 	}
 }
 
 func TestFormatDeviceManagementVirtualEndpointAuditEventID(t *testing.T) {
-	actual := NewDeviceManagementVirtualEndpointAuditEventID("cloudPCAuditEventIdValue").ID()
-	expected := "/deviceManagement/virtualEndpoint/auditEvents/cloudPCAuditEventIdValue"
+	actual := NewDeviceManagementVirtualEndpointAuditEventID("cloudPCAuditEventId").ID()
+	expected := "/deviceManagement/virtualEndpoint/auditEvents/cloudPCAuditEventId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -55,14 +55,14 @@ func TestParseDeviceManagementVirtualEndpointAuditEventID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/virtualEndpoint/auditEvents/cloudPCAuditEventIdValue",
+			Input: "/deviceManagement/virtualEndpoint/auditEvents/cloudPCAuditEventId",
 			Expected: &DeviceManagementVirtualEndpointAuditEventId{
-				CloudPCAuditEventId: "cloudPCAuditEventIdValue",
+				CloudPCAuditEventId: "cloudPCAuditEventId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/virtualEndpoint/auditEvents/cloudPCAuditEventIdValue/extra",
+			Input: "/deviceManagement/virtualEndpoint/auditEvents/cloudPCAuditEventId/extra",
 			Error: true,
 		},
 	}
@@ -131,26 +131,26 @@ func TestParseDeviceManagementVirtualEndpointAuditEventIDInsensitively(t *testin
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/virtualEndpoint/auditEvents/cloudPCAuditEventIdValue",
+			Input: "/deviceManagement/virtualEndpoint/auditEvents/cloudPCAuditEventId",
 			Expected: &DeviceManagementVirtualEndpointAuditEventId{
-				CloudPCAuditEventId: "cloudPCAuditEventIdValue",
+				CloudPCAuditEventId: "cloudPCAuditEventId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/virtualEndpoint/auditEvents/cloudPCAuditEventIdValue/extra",
+			Input: "/deviceManagement/virtualEndpoint/auditEvents/cloudPCAuditEventId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/vIrTuAlEnDpOiNt/aUdItEvEnTs/cLoUdPcAuDiTeVeNtIdVaLuE",
+			Input: "/dEvIcEmAnAgEmEnT/vIrTuAlEnDpOiNt/aUdItEvEnTs/cLoUdPcAuDiTeVeNtId",
 			Expected: &DeviceManagementVirtualEndpointAuditEventId{
-				CloudPCAuditEventId: "cLoUdPcAuDiTeVeNtIdVaLuE",
+				CloudPCAuditEventId: "cLoUdPcAuDiTeVeNtId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/vIrTuAlEnDpOiNt/aUdItEvEnTs/cLoUdPcAuDiTeVeNtIdVaLuE/extra",
+			Input: "/dEvIcEmAnAgEmEnT/vIrTuAlEnDpOiNt/aUdItEvEnTs/cLoUdPcAuDiTeVeNtId/extra",
 			Error: true,
 		},
 	}

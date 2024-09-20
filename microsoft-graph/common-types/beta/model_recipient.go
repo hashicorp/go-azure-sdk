@@ -48,10 +48,13 @@ func (s RawRecipientImpl) Recipient() BaseRecipientImpl {
 var _ json.Unmarshaler = &BaseRecipientImpl{}
 
 func (s *BaseRecipientImpl) UnmarshalJSON(bytes []byte) error {
-	type alias BaseRecipientImpl
-	var decoded alias
+
+	var decoded struct {
+		ODataId   *string `json:"@odata.id,omitempty"`
+		ODataType *string `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into BaseRecipientImpl: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.ODataId = decoded.ODataId
@@ -69,6 +72,7 @@ func (s *BaseRecipientImpl) UnmarshalJSON(bytes []byte) error {
 		}
 		s.EmailAddress = impl
 	}
+
 	return nil
 }
 
@@ -82,9 +86,9 @@ func UnmarshalRecipientImplementation(input []byte) (Recipient, error) {
 		return nil, fmt.Errorf("unmarshaling Recipient into map[string]interface: %+v", err)
 	}
 
-	value, ok := temp["@odata.type"].(string)
-	if !ok {
-		return nil, nil
+	var value string
+	if v, ok := temp["@odata.type"]; ok {
+		value = fmt.Sprintf("%v", v)
 	}
 
 	if strings.EqualFold(value, "#microsoft.graph.attendeeBase") {

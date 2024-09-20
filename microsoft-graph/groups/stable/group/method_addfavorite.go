@@ -18,16 +18,45 @@ type AddFavoriteOperationResponse struct {
 	OData        *odata.OData
 }
 
+type AddFavoriteOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultAddFavoriteOperationOptions() AddFavoriteOperationOptions {
+	return AddFavoriteOperationOptions{}
+}
+
+func (o AddFavoriteOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o AddFavoriteOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o AddFavoriteOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // AddFavorite - Invoke action addFavorite. Add the group to the list of the current user's favorite groups. The group
 // shows up in Outlook and Teams favorites. Supported for Microsoft 365 groups only.
-func (c GroupClient) AddFavorite(ctx context.Context, id stable.GroupId) (result AddFavoriteOperationResponse, err error) {
+func (c GroupClient) AddFavorite(ctx context.Context, id stable.GroupId, options AddFavoriteOperationOptions) (result AddFavoriteOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/addFavorite", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/addFavorite", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

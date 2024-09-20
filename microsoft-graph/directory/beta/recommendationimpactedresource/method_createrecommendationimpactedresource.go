@@ -19,15 +19,44 @@ type CreateRecommendationImpactedResourceOperationResponse struct {
 	Model        *beta.ImpactedResource
 }
 
+type CreateRecommendationImpactedResourceOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateRecommendationImpactedResourceOperationOptions() CreateRecommendationImpactedResourceOperationOptions {
+	return CreateRecommendationImpactedResourceOperationOptions{}
+}
+
+func (o CreateRecommendationImpactedResourceOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateRecommendationImpactedResourceOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateRecommendationImpactedResourceOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateRecommendationImpactedResource - Create new navigation property to impactedResources for directory
-func (c RecommendationImpactedResourceClient) CreateRecommendationImpactedResource(ctx context.Context, id beta.DirectoryRecommendationId, input beta.ImpactedResource) (result CreateRecommendationImpactedResourceOperationResponse, err error) {
+func (c RecommendationImpactedResourceClient) CreateRecommendationImpactedResource(ctx context.Context, id beta.DirectoryRecommendationId, input beta.ImpactedResource, options CreateRecommendationImpactedResourceOperationOptions) (result CreateRecommendationImpactedResourceOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/impactedResources", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/impactedResources", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

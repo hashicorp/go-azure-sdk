@@ -17,15 +17,44 @@ type UpdateChatMessageOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateChatMessageOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateChatMessageOperationOptions() UpdateChatMessageOperationOptions {
+	return UpdateChatMessageOperationOptions{}
+}
+
+func (o UpdateChatMessageOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateChatMessageOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateChatMessageOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateChatMessage - Update the navigation property messages in me
-func (c ChatMessageClient) UpdateChatMessage(ctx context.Context, id stable.MeChatIdMessageId, input stable.ChatMessage) (result UpdateChatMessageOperationResponse, err error) {
+func (c ChatMessageClient) UpdateChatMessage(ctx context.Context, id stable.MeChatIdMessageId, input stable.ChatMessage, options UpdateChatMessageOperationOptions) (result UpdateChatMessageOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

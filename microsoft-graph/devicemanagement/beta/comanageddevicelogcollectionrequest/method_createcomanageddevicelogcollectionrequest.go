@@ -19,16 +19,45 @@ type CreateComanagedDeviceLogCollectionRequestOperationResponse struct {
 	Model        *beta.DeviceLogCollectionResponse
 }
 
+type CreateComanagedDeviceLogCollectionRequestOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateComanagedDeviceLogCollectionRequestOperationOptions() CreateComanagedDeviceLogCollectionRequestOperationOptions {
+	return CreateComanagedDeviceLogCollectionRequestOperationOptions{}
+}
+
+func (o CreateComanagedDeviceLogCollectionRequestOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateComanagedDeviceLogCollectionRequestOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateComanagedDeviceLogCollectionRequestOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateComanagedDeviceLogCollectionRequest - Create new navigation property to logCollectionRequests for
 // deviceManagement
-func (c ComanagedDeviceLogCollectionRequestClient) CreateComanagedDeviceLogCollectionRequest(ctx context.Context, id beta.DeviceManagementComanagedDeviceId, input beta.DeviceLogCollectionResponse) (result CreateComanagedDeviceLogCollectionRequestOperationResponse, err error) {
+func (c ComanagedDeviceLogCollectionRequestClient) CreateComanagedDeviceLogCollectionRequest(ctx context.Context, id beta.DeviceManagementComanagedDeviceId, input beta.DeviceLogCollectionResponse, options CreateComanagedDeviceLogCollectionRequestOperationOptions) (result CreateComanagedDeviceLogCollectionRequestOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/logCollectionRequests", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/logCollectionRequests", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

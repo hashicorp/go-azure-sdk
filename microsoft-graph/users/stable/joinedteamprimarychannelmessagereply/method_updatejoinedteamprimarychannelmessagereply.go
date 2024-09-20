@@ -17,15 +17,44 @@ type UpdateJoinedTeamPrimaryChannelMessageReplyOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateJoinedTeamPrimaryChannelMessageReplyOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateJoinedTeamPrimaryChannelMessageReplyOperationOptions() UpdateJoinedTeamPrimaryChannelMessageReplyOperationOptions {
+	return UpdateJoinedTeamPrimaryChannelMessageReplyOperationOptions{}
+}
+
+func (o UpdateJoinedTeamPrimaryChannelMessageReplyOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateJoinedTeamPrimaryChannelMessageReplyOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateJoinedTeamPrimaryChannelMessageReplyOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateJoinedTeamPrimaryChannelMessageReply - Update the navigation property replies in users
-func (c JoinedTeamPrimaryChannelMessageReplyClient) UpdateJoinedTeamPrimaryChannelMessageReply(ctx context.Context, id stable.UserIdJoinedTeamIdPrimaryChannelMessageIdReplyId, input stable.ChatMessage) (result UpdateJoinedTeamPrimaryChannelMessageReplyOperationResponse, err error) {
+func (c JoinedTeamPrimaryChannelMessageReplyClient) UpdateJoinedTeamPrimaryChannelMessageReply(ctx context.Context, id stable.UserIdJoinedTeamIdPrimaryChannelMessageIdReplyId, input stable.ChatMessage, options UpdateJoinedTeamPrimaryChannelMessageReplyOperationOptions) (result UpdateJoinedTeamPrimaryChannelMessageReplyOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

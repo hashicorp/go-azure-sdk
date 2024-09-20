@@ -17,16 +17,45 @@ type UpdateComanagedDeviceManagedDeviceMobileAppConfigurationStateOperationRespo
 	OData        *odata.OData
 }
 
+type UpdateComanagedDeviceManagedDeviceMobileAppConfigurationStateOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateComanagedDeviceManagedDeviceMobileAppConfigurationStateOperationOptions() UpdateComanagedDeviceManagedDeviceMobileAppConfigurationStateOperationOptions {
+	return UpdateComanagedDeviceManagedDeviceMobileAppConfigurationStateOperationOptions{}
+}
+
+func (o UpdateComanagedDeviceManagedDeviceMobileAppConfigurationStateOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateComanagedDeviceManagedDeviceMobileAppConfigurationStateOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateComanagedDeviceManagedDeviceMobileAppConfigurationStateOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateComanagedDeviceManagedDeviceMobileAppConfigurationState - Update the navigation property
 // managedDeviceMobileAppConfigurationStates in deviceManagement
-func (c ComanagedDeviceManagedDeviceMobileAppConfigurationStateClient) UpdateComanagedDeviceManagedDeviceMobileAppConfigurationState(ctx context.Context, id beta.DeviceManagementComanagedDeviceIdManagedDeviceMobileAppConfigurationStateId, input beta.ManagedDeviceMobileAppConfigurationState) (result UpdateComanagedDeviceManagedDeviceMobileAppConfigurationStateOperationResponse, err error) {
+func (c ComanagedDeviceManagedDeviceMobileAppConfigurationStateClient) UpdateComanagedDeviceManagedDeviceMobileAppConfigurationState(ctx context.Context, id beta.DeviceManagementComanagedDeviceIdManagedDeviceMobileAppConfigurationStateId, input beta.ManagedDeviceMobileAppConfigurationState, options UpdateComanagedDeviceManagedDeviceMobileAppConfigurationStateOperationOptions) (result UpdateComanagedDeviceManagedDeviceMobileAppConfigurationStateOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

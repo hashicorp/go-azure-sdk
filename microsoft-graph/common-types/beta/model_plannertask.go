@@ -225,10 +225,43 @@ func (s BasePlannerTaskImpl) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &BasePlannerTaskImpl{}
 
 func (s *BasePlannerTaskImpl) UnmarshalJSON(bytes []byte) error {
-	type alias BasePlannerTaskImpl
-	var decoded alias
+
+	var decoded struct {
+		ActiveChecklistItemCount        nullable.Type[int64]                  `json:"activeChecklistItemCount,omitempty"`
+		AppliedCategories               *PlannerAppliedCategories             `json:"appliedCategories,omitempty"`
+		ArchivalInfo                    *PlannerArchivalInfo                  `json:"archivalInfo,omitempty"`
+		AssignedToTaskBoardFormat       *PlannerAssignedToTaskBoardTaskFormat `json:"assignedToTaskBoardFormat,omitempty"`
+		AssigneePriority                nullable.Type[string]                 `json:"assigneePriority,omitempty"`
+		Assignments                     *PlannerAssignments                   `json:"assignments,omitempty"`
+		BucketId                        nullable.Type[string]                 `json:"bucketId,omitempty"`
+		BucketTaskBoardFormat           *PlannerBucketTaskBoardTaskFormat     `json:"bucketTaskBoardFormat,omitempty"`
+		ChecklistItemCount              nullable.Type[int64]                  `json:"checklistItemCount,omitempty"`
+		CompletedDateTime               nullable.Type[string]                 `json:"completedDateTime,omitempty"`
+		ConversationThreadId            nullable.Type[string]                 `json:"conversationThreadId,omitempty"`
+		CreatedDateTime                 nullable.Type[string]                 `json:"createdDateTime,omitempty"`
+		Details                         *PlannerTaskDetails                   `json:"details,omitempty"`
+		DueDateTime                     nullable.Type[string]                 `json:"dueDateTime,omitempty"`
+		HasDescription                  nullable.Type[bool]                   `json:"hasDescription,omitempty"`
+		IsArchived                      nullable.Type[bool]                   `json:"isArchived,omitempty"`
+		IsOnMyDay                       nullable.Type[bool]                   `json:"isOnMyDay,omitempty"`
+		IsOnMyDayLastModifiedDate       nullable.Type[string]                 `json:"isOnMyDayLastModifiedDate,omitempty"`
+		OrderHint                       nullable.Type[string]                 `json:"orderHint,omitempty"`
+		PercentComplete                 nullable.Type[int64]                  `json:"percentComplete,omitempty"`
+		PlanId                          nullable.Type[string]                 `json:"planId,omitempty"`
+		PreviewType                     *PlannerPreviewType                   `json:"previewType,omitempty"`
+		Priority                        nullable.Type[int64]                  `json:"priority,omitempty"`
+		ProgressTaskBoardFormat         *PlannerProgressTaskBoardTaskFormat   `json:"progressTaskBoardFormat,omitempty"`
+		Recurrence                      *PlannerTaskRecurrence                `json:"recurrence,omitempty"`
+		ReferenceCount                  nullable.Type[int64]                  `json:"referenceCount,omitempty"`
+		SpecifiedCompletionRequirements *PlannerTaskCompletionRequirements    `json:"specifiedCompletionRequirements,omitempty"`
+		StartDateTime                   nullable.Type[string]                 `json:"startDateTime,omitempty"`
+		Title                           *string                               `json:"title,omitempty"`
+		Id                              *string                               `json:"id,omitempty"`
+		ODataId                         *string                               `json:"@odata.id,omitempty"`
+		ODataType                       *string                               `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into BasePlannerTaskImpl: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.ActiveChecklistItemCount = decoded.ActiveChecklistItemCount
@@ -246,12 +279,9 @@ func (s *BasePlannerTaskImpl) UnmarshalJSON(bytes []byte) error {
 	s.Details = decoded.Details
 	s.DueDateTime = decoded.DueDateTime
 	s.HasDescription = decoded.HasDescription
-	s.Id = decoded.Id
 	s.IsArchived = decoded.IsArchived
 	s.IsOnMyDay = decoded.IsOnMyDay
 	s.IsOnMyDayLastModifiedDate = decoded.IsOnMyDayLastModifiedDate
-	s.ODataId = decoded.ODataId
-	s.ODataType = decoded.ODataType
 	s.OrderHint = decoded.OrderHint
 	s.PercentComplete = decoded.PercentComplete
 	s.PlanId = decoded.PlanId
@@ -263,6 +293,9 @@ func (s *BasePlannerTaskImpl) UnmarshalJSON(bytes []byte) error {
 	s.SpecifiedCompletionRequirements = decoded.SpecifiedCompletionRequirements
 	s.StartDateTime = decoded.StartDateTime
 	s.Title = decoded.Title
+	s.Id = decoded.Id
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -292,6 +325,7 @@ func (s *BasePlannerTaskImpl) UnmarshalJSON(bytes []byte) error {
 		}
 		s.CreationSource = impl
 	}
+
 	return nil
 }
 
@@ -305,9 +339,9 @@ func UnmarshalPlannerTaskImplementation(input []byte) (PlannerTask, error) {
 		return nil, fmt.Errorf("unmarshaling PlannerTask into map[string]interface: %+v", err)
 	}
 
-	value, ok := temp["@odata.type"].(string)
-	if !ok {
-		return nil, nil
+	var value string
+	if v, ok := temp["@odata.type"]; ok {
+		value = fmt.Sprintf("%v", v)
 	}
 
 	if strings.EqualFold(value, "#microsoft.graph.businessScenarioTask") {

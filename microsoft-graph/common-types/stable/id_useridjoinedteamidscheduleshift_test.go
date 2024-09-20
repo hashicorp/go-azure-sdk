@@ -12,24 +12,24 @@ import (
 var _ resourceids.ResourceId = &UserIdJoinedTeamIdScheduleShiftId{}
 
 func TestNewUserIdJoinedTeamIdScheduleShiftID(t *testing.T) {
-	id := NewUserIdJoinedTeamIdScheduleShiftID("userIdValue", "teamIdValue", "shiftIdValue")
+	id := NewUserIdJoinedTeamIdScheduleShiftID("userId", "teamId", "shiftId")
 
-	if id.UserId != "userIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'UserId'", id.UserId, "userIdValue")
+	if id.UserId != "userId" {
+		t.Fatalf("Expected %q but got %q for Segment 'UserId'", id.UserId, "userId")
 	}
 
-	if id.TeamId != "teamIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'TeamId'", id.TeamId, "teamIdValue")
+	if id.TeamId != "teamId" {
+		t.Fatalf("Expected %q but got %q for Segment 'TeamId'", id.TeamId, "teamId")
 	}
 
-	if id.ShiftId != "shiftIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ShiftId'", id.ShiftId, "shiftIdValue")
+	if id.ShiftId != "shiftId" {
+		t.Fatalf("Expected %q but got %q for Segment 'ShiftId'", id.ShiftId, "shiftId")
 	}
 }
 
 func TestFormatUserIdJoinedTeamIdScheduleShiftID(t *testing.T) {
-	actual := NewUserIdJoinedTeamIdScheduleShiftID("userIdValue", "teamIdValue", "shiftIdValue").ID()
-	expected := "/users/userIdValue/joinedTeams/teamIdValue/schedule/shifts/shiftIdValue"
+	actual := NewUserIdJoinedTeamIdScheduleShiftID("userId", "teamId", "shiftId").ID()
+	expected := "/users/userId/joinedTeams/teamId/schedule/shifts/shiftId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -53,41 +53,41 @@ func TestParseUserIdJoinedTeamIdScheduleShiftID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue",
+			Input: "/users/userId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/joinedTeams",
+			Input: "/users/userId/joinedTeams",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/joinedTeams/teamIdValue",
+			Input: "/users/userId/joinedTeams/teamId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/joinedTeams/teamIdValue/schedule",
+			Input: "/users/userId/joinedTeams/teamId/schedule",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/joinedTeams/teamIdValue/schedule/shifts",
+			Input: "/users/userId/joinedTeams/teamId/schedule/shifts",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/users/userIdValue/joinedTeams/teamIdValue/schedule/shifts/shiftIdValue",
+			Input: "/users/userId/joinedTeams/teamId/schedule/shifts/shiftId",
 			Expected: &UserIdJoinedTeamIdScheduleShiftId{
-				UserId:  "userIdValue",
-				TeamId:  "teamIdValue",
-				ShiftId: "shiftIdValue",
+				UserId:  "userId",
+				TeamId:  "teamId",
+				ShiftId: "shiftId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/users/userIdValue/joinedTeams/teamIdValue/schedule/shifts/shiftIdValue/extra",
+			Input: "/users/userId/joinedTeams/teamId/schedule/shifts/shiftId/extra",
 			Error: true,
 		},
 	}
@@ -144,80 +144,80 @@ func TestParseUserIdJoinedTeamIdScheduleShiftIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue",
+			Input: "/users/userId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe",
+			Input: "/uSeRs/uSeRiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/joinedTeams",
+			Input: "/users/userId/joinedTeams",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/jOiNeDtEaMs",
+			Input: "/uSeRs/uSeRiD/jOiNeDtEaMs",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/joinedTeams/teamIdValue",
+			Input: "/users/userId/joinedTeams/teamId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/jOiNeDtEaMs/tEaMiDvAlUe",
+			Input: "/uSeRs/uSeRiD/jOiNeDtEaMs/tEaMiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/joinedTeams/teamIdValue/schedule",
+			Input: "/users/userId/joinedTeams/teamId/schedule",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/jOiNeDtEaMs/tEaMiDvAlUe/sChEdUlE",
+			Input: "/uSeRs/uSeRiD/jOiNeDtEaMs/tEaMiD/sChEdUlE",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/joinedTeams/teamIdValue/schedule/shifts",
+			Input: "/users/userId/joinedTeams/teamId/schedule/shifts",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/jOiNeDtEaMs/tEaMiDvAlUe/sChEdUlE/sHiFtS",
+			Input: "/uSeRs/uSeRiD/jOiNeDtEaMs/tEaMiD/sChEdUlE/sHiFtS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/users/userIdValue/joinedTeams/teamIdValue/schedule/shifts/shiftIdValue",
+			Input: "/users/userId/joinedTeams/teamId/schedule/shifts/shiftId",
 			Expected: &UserIdJoinedTeamIdScheduleShiftId{
-				UserId:  "userIdValue",
-				TeamId:  "teamIdValue",
-				ShiftId: "shiftIdValue",
+				UserId:  "userId",
+				TeamId:  "teamId",
+				ShiftId: "shiftId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/users/userIdValue/joinedTeams/teamIdValue/schedule/shifts/shiftIdValue/extra",
+			Input: "/users/userId/joinedTeams/teamId/schedule/shifts/shiftId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/jOiNeDtEaMs/tEaMiDvAlUe/sChEdUlE/sHiFtS/sHiFtIdVaLuE",
+			Input: "/uSeRs/uSeRiD/jOiNeDtEaMs/tEaMiD/sChEdUlE/sHiFtS/sHiFtId",
 			Expected: &UserIdJoinedTeamIdScheduleShiftId{
-				UserId:  "uSeRiDvAlUe",
-				TeamId:  "tEaMiDvAlUe",
-				ShiftId: "sHiFtIdVaLuE",
+				UserId:  "uSeRiD",
+				TeamId:  "tEaMiD",
+				ShiftId: "sHiFtId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/jOiNeDtEaMs/tEaMiDvAlUe/sChEdUlE/sHiFtS/sHiFtIdVaLuE/extra",
+			Input: "/uSeRs/uSeRiD/jOiNeDtEaMs/tEaMiD/sChEdUlE/sHiFtS/sHiFtId/extra",
 			Error: true,
 		},
 	}

@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &DirectoryFederationConfigurationId{}
 
 func TestNewDirectoryFederationConfigurationID(t *testing.T) {
-	id := NewDirectoryFederationConfigurationID("identityProviderBaseIdValue")
+	id := NewDirectoryFederationConfigurationID("identityProviderBaseId")
 
-	if id.IdentityProviderBaseId != "identityProviderBaseIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'IdentityProviderBaseId'", id.IdentityProviderBaseId, "identityProviderBaseIdValue")
+	if id.IdentityProviderBaseId != "identityProviderBaseId" {
+		t.Fatalf("Expected %q but got %q for Segment 'IdentityProviderBaseId'", id.IdentityProviderBaseId, "identityProviderBaseId")
 	}
 }
 
 func TestFormatDirectoryFederationConfigurationID(t *testing.T) {
-	actual := NewDirectoryFederationConfigurationID("identityProviderBaseIdValue").ID()
-	expected := "/directory/federationConfigurations/identityProviderBaseIdValue"
+	actual := NewDirectoryFederationConfigurationID("identityProviderBaseId").ID()
+	expected := "/directory/federationConfigurations/identityProviderBaseId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -50,14 +50,14 @@ func TestParseDirectoryFederationConfigurationID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/directory/federationConfigurations/identityProviderBaseIdValue",
+			Input: "/directory/federationConfigurations/identityProviderBaseId",
 			Expected: &DirectoryFederationConfigurationId{
-				IdentityProviderBaseId: "identityProviderBaseIdValue",
+				IdentityProviderBaseId: "identityProviderBaseId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/directory/federationConfigurations/identityProviderBaseIdValue/extra",
+			Input: "/directory/federationConfigurations/identityProviderBaseId/extra",
 			Error: true,
 		},
 	}
@@ -116,26 +116,26 @@ func TestParseDirectoryFederationConfigurationIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/directory/federationConfigurations/identityProviderBaseIdValue",
+			Input: "/directory/federationConfigurations/identityProviderBaseId",
 			Expected: &DirectoryFederationConfigurationId{
-				IdentityProviderBaseId: "identityProviderBaseIdValue",
+				IdentityProviderBaseId: "identityProviderBaseId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/directory/federationConfigurations/identityProviderBaseIdValue/extra",
+			Input: "/directory/federationConfigurations/identityProviderBaseId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/dIrEcToRy/fEdErAtIoNcOnFiGuRaTiOnS/iDeNtItYpRoViDeRbAsEiDvAlUe",
+			Input: "/dIrEcToRy/fEdErAtIoNcOnFiGuRaTiOnS/iDeNtItYpRoViDeRbAsEiD",
 			Expected: &DirectoryFederationConfigurationId{
-				IdentityProviderBaseId: "iDeNtItYpRoViDeRbAsEiDvAlUe",
+				IdentityProviderBaseId: "iDeNtItYpRoViDeRbAsEiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/dIrEcToRy/fEdErAtIoNcOnFiGuRaTiOnS/iDeNtItYpRoViDeRbAsEiDvAlUe/extra",
+			Input: "/dIrEcToRy/fEdErAtIoNcOnFiGuRaTiOnS/iDeNtItYpRoViDeRbAsEiD/extra",
 			Error: true,
 		},
 	}

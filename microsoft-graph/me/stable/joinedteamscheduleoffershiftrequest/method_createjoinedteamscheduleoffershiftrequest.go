@@ -20,15 +20,44 @@ type CreateJoinedTeamScheduleOfferShiftRequestOperationResponse struct {
 	Model        stable.OfferShiftRequest
 }
 
+type CreateJoinedTeamScheduleOfferShiftRequestOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateJoinedTeamScheduleOfferShiftRequestOperationOptions() CreateJoinedTeamScheduleOfferShiftRequestOperationOptions {
+	return CreateJoinedTeamScheduleOfferShiftRequestOperationOptions{}
+}
+
+func (o CreateJoinedTeamScheduleOfferShiftRequestOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateJoinedTeamScheduleOfferShiftRequestOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateJoinedTeamScheduleOfferShiftRequestOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateJoinedTeamScheduleOfferShiftRequest - Create new navigation property to offerShiftRequests for me
-func (c JoinedTeamScheduleOfferShiftRequestClient) CreateJoinedTeamScheduleOfferShiftRequest(ctx context.Context, id stable.MeJoinedTeamId, input stable.OfferShiftRequest) (result CreateJoinedTeamScheduleOfferShiftRequestOperationResponse, err error) {
+func (c JoinedTeamScheduleOfferShiftRequestClient) CreateJoinedTeamScheduleOfferShiftRequest(ctx context.Context, id stable.MeJoinedTeamId, input stable.OfferShiftRequest, options CreateJoinedTeamScheduleOfferShiftRequestOperationOptions) (result CreateJoinedTeamScheduleOfferShiftRequestOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/schedule/offerShiftRequests", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/schedule/offerShiftRequests", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

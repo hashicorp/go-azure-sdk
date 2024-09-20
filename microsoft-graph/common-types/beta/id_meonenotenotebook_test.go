@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &MeOnenoteNotebookId{}
 
 func TestNewMeOnenoteNotebookID(t *testing.T) {
-	id := NewMeOnenoteNotebookID("notebookIdValue")
+	id := NewMeOnenoteNotebookID("notebookId")
 
-	if id.NotebookId != "notebookIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'NotebookId'", id.NotebookId, "notebookIdValue")
+	if id.NotebookId != "notebookId" {
+		t.Fatalf("Expected %q but got %q for Segment 'NotebookId'", id.NotebookId, "notebookId")
 	}
 }
 
 func TestFormatMeOnenoteNotebookID(t *testing.T) {
-	actual := NewMeOnenoteNotebookID("notebookIdValue").ID()
-	expected := "/me/onenote/notebooks/notebookIdValue"
+	actual := NewMeOnenoteNotebookID("notebookId").ID()
+	expected := "/me/onenote/notebooks/notebookId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -55,14 +55,14 @@ func TestParseMeOnenoteNotebookID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/me/onenote/notebooks/notebookIdValue",
+			Input: "/me/onenote/notebooks/notebookId",
 			Expected: &MeOnenoteNotebookId{
-				NotebookId: "notebookIdValue",
+				NotebookId: "notebookId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/onenote/notebooks/notebookIdValue/extra",
+			Input: "/me/onenote/notebooks/notebookId/extra",
 			Error: true,
 		},
 	}
@@ -131,26 +131,26 @@ func TestParseMeOnenoteNotebookIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/me/onenote/notebooks/notebookIdValue",
+			Input: "/me/onenote/notebooks/notebookId",
 			Expected: &MeOnenoteNotebookId{
-				NotebookId: "notebookIdValue",
+				NotebookId: "notebookId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/onenote/notebooks/notebookIdValue/extra",
+			Input: "/me/onenote/notebooks/notebookId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/oNeNoTe/nOtEbOoKs/nOtEbOoKiDvAlUe",
+			Input: "/mE/oNeNoTe/nOtEbOoKs/nOtEbOoKiD",
 			Expected: &MeOnenoteNotebookId{
-				NotebookId: "nOtEbOoKiDvAlUe",
+				NotebookId: "nOtEbOoKiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/mE/oNeNoTe/nOtEbOoKs/nOtEbOoKiDvAlUe/extra",
+			Input: "/mE/oNeNoTe/nOtEbOoKs/nOtEbOoKiD/extra",
 			Error: true,
 		},
 	}

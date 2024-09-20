@@ -110,13 +110,13 @@ func (id UserIdDriveIdItemIdThumbnailId) ID() string {
 func (id UserIdDriveIdItemIdThumbnailId) Segments() []resourceids.Segment {
 	return []resourceids.Segment{
 		resourceids.StaticSegment("users", "users", "users"),
-		resourceids.UserSpecifiedSegment("userId", "userIdValue"),
+		resourceids.UserSpecifiedSegment("userId", "userId"),
 		resourceids.StaticSegment("drives", "drives", "drives"),
-		resourceids.UserSpecifiedSegment("driveId", "driveIdValue"),
+		resourceids.UserSpecifiedSegment("driveId", "driveId"),
 		resourceids.StaticSegment("items", "items", "items"),
-		resourceids.UserSpecifiedSegment("driveItemId", "driveItemIdValue"),
+		resourceids.UserSpecifiedSegment("driveItemId", "driveItemId"),
 		resourceids.StaticSegment("thumbnails", "thumbnails", "thumbnails"),
-		resourceids.UserSpecifiedSegment("thumbnailSetId", "thumbnailSetIdValue"),
+		resourceids.UserSpecifiedSegment("thumbnailSetId", "thumbnailSetId"),
 	}
 }
 

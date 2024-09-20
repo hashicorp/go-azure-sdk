@@ -90,23 +90,35 @@ func (s BrowserSiteList) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &BrowserSiteList{}
 
 func (s *BrowserSiteList) UnmarshalJSON(bytes []byte) error {
-	type alias BrowserSiteList
-	var decoded alias
+
+	var decoded struct {
+		Description          *string                `json:"description,omitempty"`
+		DisplayName          *string                `json:"displayName,omitempty"`
+		LastModifiedDateTime *string                `json:"lastModifiedDateTime,omitempty"`
+		PublishedDateTime    nullable.Type[string]  `json:"publishedDateTime,omitempty"`
+		Revision             *string                `json:"revision,omitempty"`
+		SharedCookies        *[]BrowserSharedCookie `json:"sharedCookies,omitempty"`
+		Sites                *[]BrowserSite         `json:"sites,omitempty"`
+		Status               *BrowserSiteListStatus `json:"status,omitempty"`
+		Id                   *string                `json:"id,omitempty"`
+		ODataId              *string                `json:"@odata.id,omitempty"`
+		ODataType            *string                `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into BrowserSiteList: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.Description = decoded.Description
 	s.DisplayName = decoded.DisplayName
-	s.Id = decoded.Id
 	s.LastModifiedDateTime = decoded.LastModifiedDateTime
-	s.ODataId = decoded.ODataId
-	s.ODataType = decoded.ODataType
 	s.PublishedDateTime = decoded.PublishedDateTime
 	s.Revision = decoded.Revision
 	s.SharedCookies = decoded.SharedCookies
 	s.Sites = decoded.Sites
 	s.Status = decoded.Status
+	s.Id = decoded.Id
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -128,5 +140,6 @@ func (s *BrowserSiteList) UnmarshalJSON(bytes []byte) error {
 		}
 		s.PublishedBy = impl
 	}
+
 	return nil
 }

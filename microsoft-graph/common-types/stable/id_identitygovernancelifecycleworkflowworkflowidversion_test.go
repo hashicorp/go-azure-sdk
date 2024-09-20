@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &IdentityGovernanceLifecycleWorkflowWorkflowIdVersionId{}
 
 func TestNewIdentityGovernanceLifecycleWorkflowWorkflowIdVersionID(t *testing.T) {
-	id := NewIdentityGovernanceLifecycleWorkflowWorkflowIdVersionID("workflowIdValue", "workflowVersionVersionNumberValue")
+	id := NewIdentityGovernanceLifecycleWorkflowWorkflowIdVersionID("workflowId", "workflowVersionVersionNumber")
 
-	if id.WorkflowId != "workflowIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'WorkflowId'", id.WorkflowId, "workflowIdValue")
+	if id.WorkflowId != "workflowId" {
+		t.Fatalf("Expected %q but got %q for Segment 'WorkflowId'", id.WorkflowId, "workflowId")
 	}
 
-	if id.WorkflowVersionVersionNumber != "workflowVersionVersionNumberValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'WorkflowVersionVersionNumber'", id.WorkflowVersionVersionNumber, "workflowVersionVersionNumberValue")
+	if id.WorkflowVersionVersionNumber != "workflowVersionVersionNumber" {
+		t.Fatalf("Expected %q but got %q for Segment 'WorkflowVersionVersionNumber'", id.WorkflowVersionVersionNumber, "workflowVersionVersionNumber")
 	}
 }
 
 func TestFormatIdentityGovernanceLifecycleWorkflowWorkflowIdVersionID(t *testing.T) {
-	actual := NewIdentityGovernanceLifecycleWorkflowWorkflowIdVersionID("workflowIdValue", "workflowVersionVersionNumberValue").ID()
-	expected := "/identityGovernance/lifecycleWorkflows/workflows/workflowIdValue/versions/workflowVersionVersionNumberValue"
+	actual := NewIdentityGovernanceLifecycleWorkflowWorkflowIdVersionID("workflowId", "workflowVersionVersionNumber").ID()
+	expected := "/identityGovernance/lifecycleWorkflows/workflows/workflowId/versions/workflowVersionVersionNumber"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -59,25 +59,25 @@ func TestParseIdentityGovernanceLifecycleWorkflowWorkflowIdVersionID(t *testing.
 		},
 		{
 			// Incomplete URI
-			Input: "/identityGovernance/lifecycleWorkflows/workflows/workflowIdValue",
+			Input: "/identityGovernance/lifecycleWorkflows/workflows/workflowId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/identityGovernance/lifecycleWorkflows/workflows/workflowIdValue/versions",
+			Input: "/identityGovernance/lifecycleWorkflows/workflows/workflowId/versions",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/identityGovernance/lifecycleWorkflows/workflows/workflowIdValue/versions/workflowVersionVersionNumberValue",
+			Input: "/identityGovernance/lifecycleWorkflows/workflows/workflowId/versions/workflowVersionVersionNumber",
 			Expected: &IdentityGovernanceLifecycleWorkflowWorkflowIdVersionId{
-				WorkflowId:                   "workflowIdValue",
-				WorkflowVersionVersionNumber: "workflowVersionVersionNumberValue",
+				WorkflowId:                   "workflowId",
+				WorkflowVersionVersionNumber: "workflowVersionVersionNumber",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/identityGovernance/lifecycleWorkflows/workflows/workflowIdValue/versions/workflowVersionVersionNumberValue/extra",
+			Input: "/identityGovernance/lifecycleWorkflows/workflows/workflowId/versions/workflowVersionVersionNumber/extra",
 			Error: true,
 		},
 	}
@@ -150,48 +150,48 @@ func TestParseIdentityGovernanceLifecycleWorkflowWorkflowIdVersionIDInsensitivel
 		},
 		{
 			// Incomplete URI
-			Input: "/identityGovernance/lifecycleWorkflows/workflows/workflowIdValue",
+			Input: "/identityGovernance/lifecycleWorkflows/workflows/workflowId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/iDeNtItYgOvErNaNcE/lIfEcYcLeWoRkFlOwS/wOrKfLoWs/wOrKfLoWiDvAlUe",
+			Input: "/iDeNtItYgOvErNaNcE/lIfEcYcLeWoRkFlOwS/wOrKfLoWs/wOrKfLoWiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/identityGovernance/lifecycleWorkflows/workflows/workflowIdValue/versions",
+			Input: "/identityGovernance/lifecycleWorkflows/workflows/workflowId/versions",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/iDeNtItYgOvErNaNcE/lIfEcYcLeWoRkFlOwS/wOrKfLoWs/wOrKfLoWiDvAlUe/vErSiOnS",
+			Input: "/iDeNtItYgOvErNaNcE/lIfEcYcLeWoRkFlOwS/wOrKfLoWs/wOrKfLoWiD/vErSiOnS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/identityGovernance/lifecycleWorkflows/workflows/workflowIdValue/versions/workflowVersionVersionNumberValue",
+			Input: "/identityGovernance/lifecycleWorkflows/workflows/workflowId/versions/workflowVersionVersionNumber",
 			Expected: &IdentityGovernanceLifecycleWorkflowWorkflowIdVersionId{
-				WorkflowId:                   "workflowIdValue",
-				WorkflowVersionVersionNumber: "workflowVersionVersionNumberValue",
+				WorkflowId:                   "workflowId",
+				WorkflowVersionVersionNumber: "workflowVersionVersionNumber",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/identityGovernance/lifecycleWorkflows/workflows/workflowIdValue/versions/workflowVersionVersionNumberValue/extra",
+			Input: "/identityGovernance/lifecycleWorkflows/workflows/workflowId/versions/workflowVersionVersionNumber/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/iDeNtItYgOvErNaNcE/lIfEcYcLeWoRkFlOwS/wOrKfLoWs/wOrKfLoWiDvAlUe/vErSiOnS/wOrKfLoWvErSiOnVeRsIoNnUmBeRvAlUe",
+			Input: "/iDeNtItYgOvErNaNcE/lIfEcYcLeWoRkFlOwS/wOrKfLoWs/wOrKfLoWiD/vErSiOnS/wOrKfLoWvErSiOnVeRsIoNnUmBeR",
 			Expected: &IdentityGovernanceLifecycleWorkflowWorkflowIdVersionId{
-				WorkflowId:                   "wOrKfLoWiDvAlUe",
-				WorkflowVersionVersionNumber: "wOrKfLoWvErSiOnVeRsIoNnUmBeRvAlUe",
+				WorkflowId:                   "wOrKfLoWiD",
+				WorkflowVersionVersionNumber: "wOrKfLoWvErSiOnVeRsIoNnUmBeR",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/iDeNtItYgOvErNaNcE/lIfEcYcLeWoRkFlOwS/wOrKfLoWs/wOrKfLoWiDvAlUe/vErSiOnS/wOrKfLoWvErSiOnVeRsIoNnUmBeRvAlUe/extra",
+			Input: "/iDeNtItYgOvErNaNcE/lIfEcYcLeWoRkFlOwS/wOrKfLoWs/wOrKfLoWiD/vErSiOnS/wOrKfLoWvErSiOnVeRsIoNnUmBeR/extra",
 			Error: true,
 		},
 	}

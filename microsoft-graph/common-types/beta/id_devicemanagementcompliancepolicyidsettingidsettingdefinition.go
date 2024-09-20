@@ -105,11 +105,11 @@ func (id DeviceManagementCompliancePolicyIdSettingIdSettingDefinitionId) Segment
 	return []resourceids.Segment{
 		resourceids.StaticSegment("deviceManagement", "deviceManagement", "deviceManagement"),
 		resourceids.StaticSegment("compliancePolicies", "compliancePolicies", "compliancePolicies"),
-		resourceids.UserSpecifiedSegment("deviceManagementCompliancePolicyId", "deviceManagementCompliancePolicyIdValue"),
+		resourceids.UserSpecifiedSegment("deviceManagementCompliancePolicyId", "deviceManagementCompliancePolicyId"),
 		resourceids.StaticSegment("settings", "settings", "settings"),
-		resourceids.UserSpecifiedSegment("deviceManagementConfigurationSettingId", "deviceManagementConfigurationSettingIdValue"),
+		resourceids.UserSpecifiedSegment("deviceManagementConfigurationSettingId", "deviceManagementConfigurationSettingId"),
 		resourceids.StaticSegment("settingDefinitions", "settingDefinitions", "settingDefinitions"),
-		resourceids.UserSpecifiedSegment("deviceManagementConfigurationSettingDefinitionId", "deviceManagementConfigurationSettingDefinitionIdValue"),
+		resourceids.UserSpecifiedSegment("deviceManagementConfigurationSettingDefinitionId", "deviceManagementConfigurationSettingDefinitionId"),
 	}
 }
 

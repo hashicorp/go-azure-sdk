@@ -18,18 +18,47 @@ type TentativelyAcceptEventInstanceOperationResponse struct {
 	OData        *odata.OData
 }
 
+type TentativelyAcceptEventInstanceOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultTentativelyAcceptEventInstanceOperationOptions() TentativelyAcceptEventInstanceOperationOptions {
+	return TentativelyAcceptEventInstanceOperationOptions{}
+}
+
+func (o TentativelyAcceptEventInstanceOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o TentativelyAcceptEventInstanceOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o TentativelyAcceptEventInstanceOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // TentativelyAcceptEventInstance - Invoke action tentativelyAccept. Tentatively accept the specified event in a user
 // calendar. If the event allows proposals for new times, on responding tentative to the event, an invitee can choose to
 // suggest an alternative time by including the proposedNewTime parameter. For more information on how to propose a
 // time, and how to receive and accept a new time proposal, see Propose new meeting times.
-func (c EventInstanceClient) TentativelyAcceptEventInstance(ctx context.Context, id beta.GroupIdEventIdInstanceId, input TentativelyAcceptEventInstanceRequest) (result TentativelyAcceptEventInstanceOperationResponse, err error) {
+func (c EventInstanceClient) TentativelyAcceptEventInstance(ctx context.Context, id beta.GroupIdEventIdInstanceId, input TentativelyAcceptEventInstanceRequest, options TentativelyAcceptEventInstanceOperationOptions) (result TentativelyAcceptEventInstanceOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/tentativelyAccept", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/tentativelyAccept", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

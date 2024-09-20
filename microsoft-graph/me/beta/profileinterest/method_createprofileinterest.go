@@ -18,15 +18,44 @@ type CreateProfileInterestOperationResponse struct {
 	Model        *beta.PersonInterest
 }
 
+type CreateProfileInterestOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateProfileInterestOperationOptions() CreateProfileInterestOperationOptions {
+	return CreateProfileInterestOperationOptions{}
+}
+
+func (o CreateProfileInterestOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateProfileInterestOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateProfileInterestOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateProfileInterest - Create personInterest. Create a new personInterest.
-func (c ProfileInterestClient) CreateProfileInterest(ctx context.Context, input beta.PersonInterest) (result CreateProfileInterestOperationResponse, err error) {
+func (c ProfileInterestClient) CreateProfileInterest(ctx context.Context, input beta.PersonInterest, options CreateProfileInterestOperationOptions) (result CreateProfileInterestOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/me/profile/interests",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/me/profile/interests",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

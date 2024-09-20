@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &DeviceManagementDeviceHealthScriptId{}
 
 func TestNewDeviceManagementDeviceHealthScriptID(t *testing.T) {
-	id := NewDeviceManagementDeviceHealthScriptID("deviceHealthScriptIdValue")
+	id := NewDeviceManagementDeviceHealthScriptID("deviceHealthScriptId")
 
-	if id.DeviceHealthScriptId != "deviceHealthScriptIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DeviceHealthScriptId'", id.DeviceHealthScriptId, "deviceHealthScriptIdValue")
+	if id.DeviceHealthScriptId != "deviceHealthScriptId" {
+		t.Fatalf("Expected %q but got %q for Segment 'DeviceHealthScriptId'", id.DeviceHealthScriptId, "deviceHealthScriptId")
 	}
 }
 
 func TestFormatDeviceManagementDeviceHealthScriptID(t *testing.T) {
-	actual := NewDeviceManagementDeviceHealthScriptID("deviceHealthScriptIdValue").ID()
-	expected := "/deviceManagement/deviceHealthScripts/deviceHealthScriptIdValue"
+	actual := NewDeviceManagementDeviceHealthScriptID("deviceHealthScriptId").ID()
+	expected := "/deviceManagement/deviceHealthScripts/deviceHealthScriptId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -50,14 +50,14 @@ func TestParseDeviceManagementDeviceHealthScriptID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/deviceHealthScripts/deviceHealthScriptIdValue",
+			Input: "/deviceManagement/deviceHealthScripts/deviceHealthScriptId",
 			Expected: &DeviceManagementDeviceHealthScriptId{
-				DeviceHealthScriptId: "deviceHealthScriptIdValue",
+				DeviceHealthScriptId: "deviceHealthScriptId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/deviceHealthScripts/deviceHealthScriptIdValue/extra",
+			Input: "/deviceManagement/deviceHealthScripts/deviceHealthScriptId/extra",
 			Error: true,
 		},
 	}
@@ -116,26 +116,26 @@ func TestParseDeviceManagementDeviceHealthScriptIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/deviceHealthScripts/deviceHealthScriptIdValue",
+			Input: "/deviceManagement/deviceHealthScripts/deviceHealthScriptId",
 			Expected: &DeviceManagementDeviceHealthScriptId{
-				DeviceHealthScriptId: "deviceHealthScriptIdValue",
+				DeviceHealthScriptId: "deviceHealthScriptId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/deviceHealthScripts/deviceHealthScriptIdValue/extra",
+			Input: "/deviceManagement/deviceHealthScripts/deviceHealthScriptId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/dEvIcEhEaLtHsCrIpTs/dEvIcEhEaLtHsCrIpTiDvAlUe",
+			Input: "/dEvIcEmAnAgEmEnT/dEvIcEhEaLtHsCrIpTs/dEvIcEhEaLtHsCrIpTiD",
 			Expected: &DeviceManagementDeviceHealthScriptId{
-				DeviceHealthScriptId: "dEvIcEhEaLtHsCrIpTiDvAlUe",
+				DeviceHealthScriptId: "dEvIcEhEaLtHsCrIpTiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/dEvIcEhEaLtHsCrIpTs/dEvIcEhEaLtHsCrIpTiDvAlUe/extra",
+			Input: "/dEvIcEmAnAgEmEnT/dEvIcEhEaLtHsCrIpTs/dEvIcEhEaLtHsCrIpTiD/extra",
 			Error: true,
 		},
 	}

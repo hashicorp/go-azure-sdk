@@ -19,7 +19,8 @@ type DeleteWindowsQualityUpdateProfileAssignmentOperationResponse struct {
 }
 
 type DeleteWindowsQualityUpdateProfileAssignmentOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteWindowsQualityUpdateProfileAssignmentOperationOptions() DeleteWindowsQualityUpdateProfileAssignmentOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteWindowsQualityUpdateProfileAssignmentOperationOptions) ToHeaders()
 
 func (o DeleteWindowsQualityUpdateProfileAssignmentOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

@@ -17,15 +17,44 @@ type UpdateAppRoleAssignmentOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateAppRoleAssignmentOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateAppRoleAssignmentOperationOptions() UpdateAppRoleAssignmentOperationOptions {
+	return UpdateAppRoleAssignmentOperationOptions{}
+}
+
+func (o UpdateAppRoleAssignmentOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateAppRoleAssignmentOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateAppRoleAssignmentOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateAppRoleAssignment - Update the navigation property appRoleAssignments in groups
-func (c AppRoleAssignmentClient) UpdateAppRoleAssignment(ctx context.Context, id stable.GroupIdAppRoleAssignmentId, input stable.AppRoleAssignment) (result UpdateAppRoleAssignmentOperationResponse, err error) {
+func (c AppRoleAssignmentClient) UpdateAppRoleAssignment(ctx context.Context, id stable.GroupIdAppRoleAssignmentId, input stable.AppRoleAssignment, options UpdateAppRoleAssignmentOperationOptions) (result UpdateAppRoleAssignmentOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

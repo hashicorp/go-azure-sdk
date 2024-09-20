@@ -19,7 +19,8 @@ type DeleteOperationApprovalPolicyOperationResponse struct {
 }
 
 type DeleteOperationApprovalPolicyOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteOperationApprovalPolicyOperationOptions() DeleteOperationApprovalPolicyOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteOperationApprovalPolicyOperationOptions) ToHeaders() *client.Heade
 
 func (o DeleteOperationApprovalPolicyOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

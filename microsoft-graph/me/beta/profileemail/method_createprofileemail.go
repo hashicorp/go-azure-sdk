@@ -18,15 +18,44 @@ type CreateProfileEmailOperationResponse struct {
 	Model        *beta.ItemEmail
 }
 
+type CreateProfileEmailOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateProfileEmailOperationOptions() CreateProfileEmailOperationOptions {
+	return CreateProfileEmailOperationOptions{}
+}
+
+func (o CreateProfileEmailOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateProfileEmailOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateProfileEmailOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateProfileEmail - Create itemEmail. Create a new itemEmail object in a user's profile.
-func (c ProfileEmailClient) CreateProfileEmail(ctx context.Context, input beta.ItemEmail) (result CreateProfileEmailOperationResponse, err error) {
+func (c ProfileEmailClient) CreateProfileEmail(ctx context.Context, input beta.ItemEmail, options CreateProfileEmailOperationOptions) (result CreateProfileEmailOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/me/profile/emails",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/me/profile/emails",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

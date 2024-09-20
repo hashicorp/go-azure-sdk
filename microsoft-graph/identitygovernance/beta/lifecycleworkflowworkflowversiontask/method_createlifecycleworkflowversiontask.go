@@ -19,15 +19,44 @@ type CreateLifecycleWorkflowVersionTaskOperationResponse struct {
 	Model        *beta.IdentityGovernanceTask
 }
 
+type CreateLifecycleWorkflowVersionTaskOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateLifecycleWorkflowVersionTaskOperationOptions() CreateLifecycleWorkflowVersionTaskOperationOptions {
+	return CreateLifecycleWorkflowVersionTaskOperationOptions{}
+}
+
+func (o CreateLifecycleWorkflowVersionTaskOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateLifecycleWorkflowVersionTaskOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateLifecycleWorkflowVersionTaskOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateLifecycleWorkflowVersionTask - Create new navigation property to tasks for identityGovernance
-func (c LifecycleWorkflowWorkflowVersionTaskClient) CreateLifecycleWorkflowVersionTask(ctx context.Context, id beta.IdentityGovernanceLifecycleWorkflowWorkflowIdVersionId, input beta.IdentityGovernanceTask) (result CreateLifecycleWorkflowVersionTaskOperationResponse, err error) {
+func (c LifecycleWorkflowWorkflowVersionTaskClient) CreateLifecycleWorkflowVersionTask(ctx context.Context, id beta.IdentityGovernanceLifecycleWorkflowWorkflowIdVersionId, input beta.IdentityGovernanceTask, options CreateLifecycleWorkflowVersionTaskOperationOptions) (result CreateLifecycleWorkflowVersionTaskOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/tasks", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/tasks", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

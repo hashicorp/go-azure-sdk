@@ -85,20 +85,30 @@ func (s IndustryDataIndustryDataRun) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &IndustryDataIndustryDataRun{}
 
 func (s *IndustryDataIndustryDataRun) UnmarshalJSON(bytes []byte) error {
-	type alias IndustryDataIndustryDataRun
-	var decoded alias
+
+	var decoded struct {
+		Activities    *[]IndustryDataIndustryDataRunActivity `json:"activities,omitempty"`
+		BlockingError *PublicError                           `json:"blockingError,omitempty"`
+		DisplayName   *string                                `json:"displayName,omitempty"`
+		EndDateTime   nullable.Type[string]                  `json:"endDateTime,omitempty"`
+		StartDateTime *string                                `json:"startDateTime,omitempty"`
+		Status        *IndustryDataIndustryDataRunStatus     `json:"status,omitempty"`
+		Id            *string                                `json:"id,omitempty"`
+		ODataId       *string                                `json:"@odata.id,omitempty"`
+		ODataType     *string                                `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into IndustryDataIndustryDataRun: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.BlockingError = decoded.BlockingError
 	s.DisplayName = decoded.DisplayName
 	s.EndDateTime = decoded.EndDateTime
+	s.StartDateTime = decoded.StartDateTime
+	s.Status = decoded.Status
 	s.Id = decoded.Id
 	s.ODataId = decoded.ODataId
 	s.ODataType = decoded.ODataType
-	s.StartDateTime = decoded.StartDateTime
-	s.Status = decoded.Status
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -121,5 +131,6 @@ func (s *IndustryDataIndustryDataRun) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Activities = &output
 	}
+
 	return nil
 }

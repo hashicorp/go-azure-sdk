@@ -18,16 +18,45 @@ type CreateNotificationMessageTemplateOperationResponse struct {
 	Model        *stable.NotificationMessageTemplate
 }
 
+type CreateNotificationMessageTemplateOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateNotificationMessageTemplateOperationOptions() CreateNotificationMessageTemplateOperationOptions {
+	return CreateNotificationMessageTemplateOperationOptions{}
+}
+
+func (o CreateNotificationMessageTemplateOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateNotificationMessageTemplateOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateNotificationMessageTemplateOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateNotificationMessageTemplate - Create notificationMessageTemplate. Create a new notificationMessageTemplate
 // object.
-func (c NotificationMessageTemplateClient) CreateNotificationMessageTemplate(ctx context.Context, input stable.NotificationMessageTemplate) (result CreateNotificationMessageTemplateOperationResponse, err error) {
+func (c NotificationMessageTemplateClient) CreateNotificationMessageTemplate(ctx context.Context, input stable.NotificationMessageTemplate, options CreateNotificationMessageTemplateOperationOptions) (result CreateNotificationMessageTemplateOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/deviceManagement/notificationMessageTemplates",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/deviceManagement/notificationMessageTemplates",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

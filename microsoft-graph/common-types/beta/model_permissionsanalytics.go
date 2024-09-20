@@ -67,16 +67,22 @@ func (s PermissionsAnalytics) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &PermissionsAnalytics{}
 
 func (s *PermissionsAnalytics) UnmarshalJSON(bytes []byte) error {
-	type alias PermissionsAnalytics
-	var decoded alias
+
+	var decoded struct {
+		Findings                           *[]Finding                           `json:"findings,omitempty"`
+		PermissionsCreepIndexDistributions *[]PermissionsCreepIndexDistribution `json:"permissionsCreepIndexDistributions,omitempty"`
+		Id                                 *string                              `json:"id,omitempty"`
+		ODataId                            *string                              `json:"@odata.id,omitempty"`
+		ODataType                          *string                              `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into PermissionsAnalytics: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
+	s.PermissionsCreepIndexDistributions = decoded.PermissionsCreepIndexDistributions
 	s.Id = decoded.Id
 	s.ODataId = decoded.ODataId
 	s.ODataType = decoded.ODataType
-	s.PermissionsCreepIndexDistributions = decoded.PermissionsCreepIndexDistributions
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -99,5 +105,6 @@ func (s *PermissionsAnalytics) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Findings = &output
 	}
+
 	return nil
 }

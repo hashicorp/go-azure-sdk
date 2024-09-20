@@ -19,16 +19,45 @@ type CreateUserExperienceAnalyticsWorkFromAnywhereMetricDeviceOperationResponse 
 	Model        *beta.UserExperienceAnalyticsWorkFromAnywhereDevice
 }
 
+type CreateUserExperienceAnalyticsWorkFromAnywhereMetricDeviceOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateUserExperienceAnalyticsWorkFromAnywhereMetricDeviceOperationOptions() CreateUserExperienceAnalyticsWorkFromAnywhereMetricDeviceOperationOptions {
+	return CreateUserExperienceAnalyticsWorkFromAnywhereMetricDeviceOperationOptions{}
+}
+
+func (o CreateUserExperienceAnalyticsWorkFromAnywhereMetricDeviceOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateUserExperienceAnalyticsWorkFromAnywhereMetricDeviceOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateUserExperienceAnalyticsWorkFromAnywhereMetricDeviceOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateUserExperienceAnalyticsWorkFromAnywhereMetricDevice - Create new navigation property to metricDevices for
 // deviceManagement
-func (c UserExperienceAnalyticsWorkFromAnywhereMetricMetricDeviceClient) CreateUserExperienceAnalyticsWorkFromAnywhereMetricDevice(ctx context.Context, id beta.DeviceManagementUserExperienceAnalyticsWorkFromAnywhereMetricId, input beta.UserExperienceAnalyticsWorkFromAnywhereDevice) (result CreateUserExperienceAnalyticsWorkFromAnywhereMetricDeviceOperationResponse, err error) {
+func (c UserExperienceAnalyticsWorkFromAnywhereMetricMetricDeviceClient) CreateUserExperienceAnalyticsWorkFromAnywhereMetricDevice(ctx context.Context, id beta.DeviceManagementUserExperienceAnalyticsWorkFromAnywhereMetricId, input beta.UserExperienceAnalyticsWorkFromAnywhereDevice, options CreateUserExperienceAnalyticsWorkFromAnywhereMetricDeviceOperationOptions) (result CreateUserExperienceAnalyticsWorkFromAnywhereMetricDeviceOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/metricDevices", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/metricDevices", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

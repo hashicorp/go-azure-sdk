@@ -19,7 +19,8 @@ type DeleteManagedDeviceAssignmentFilterEvaluationStatusDetailOperationResponse 
 }
 
 type DeleteManagedDeviceAssignmentFilterEvaluationStatusDetailOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteManagedDeviceAssignmentFilterEvaluationStatusDetailOperationOptions() DeleteManagedDeviceAssignmentFilterEvaluationStatusDetailOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteManagedDeviceAssignmentFilterEvaluationStatusDetailOperationOption
 
 func (o DeleteManagedDeviceAssignmentFilterEvaluationStatusDetailOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

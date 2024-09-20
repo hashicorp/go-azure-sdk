@@ -18,17 +18,46 @@ type AddEntitlementManagementConnectedOrganizationInternalSponsorRefOperationRes
 	OData        *odata.OData
 }
 
+type AddEntitlementManagementConnectedOrganizationInternalSponsorRefOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultAddEntitlementManagementConnectedOrganizationInternalSponsorRefOperationOptions() AddEntitlementManagementConnectedOrganizationInternalSponsorRefOperationOptions {
+	return AddEntitlementManagementConnectedOrganizationInternalSponsorRefOperationOptions{}
+}
+
+func (o AddEntitlementManagementConnectedOrganizationInternalSponsorRefOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o AddEntitlementManagementConnectedOrganizationInternalSponsorRefOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o AddEntitlementManagementConnectedOrganizationInternalSponsorRefOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // AddEntitlementManagementConnectedOrganizationInternalSponsorRef - Add internalSponsors. Add a user or a group to the
 // connected organization's internal sponsors. The internal sponsors are a set of users who can approve requests on
 // behalf of other users from that connected organization.
-func (c EntitlementManagementConnectedOrganizationInternalSponsorClient) AddEntitlementManagementConnectedOrganizationInternalSponsorRef(ctx context.Context, id stable.IdentityGovernanceEntitlementManagementConnectedOrganizationId, input stable.ReferenceCreate) (result AddEntitlementManagementConnectedOrganizationInternalSponsorRefOperationResponse, err error) {
+func (c EntitlementManagementConnectedOrganizationInternalSponsorClient) AddEntitlementManagementConnectedOrganizationInternalSponsorRef(ctx context.Context, id stable.IdentityGovernanceEntitlementManagementConnectedOrganizationId, input stable.ReferenceCreate, options AddEntitlementManagementConnectedOrganizationInternalSponsorRefOperationOptions) (result AddEntitlementManagementConnectedOrganizationInternalSponsorRefOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/internalSponsors/$ref", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/internalSponsors/$ref", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

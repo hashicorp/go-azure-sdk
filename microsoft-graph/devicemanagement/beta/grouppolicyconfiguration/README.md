@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/grouppolicyconfiguration` Documentation
 
-The `grouppolicyconfiguration` SDK allows for interaction with the Azure Resource Manager Service `devicemanagement` (API Version `beta`).
+The `grouppolicyconfiguration` SDK allows for interaction with Microsoft Graph `devicemanagement` (API Version `beta`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -15,7 +15,7 @@ import "github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/
 ### Client Initialization
 
 ```go
-client := grouppolicyconfiguration.NewGroupPolicyConfigurationClientWithBaseURI("https://management.azure.com")
+client := grouppolicyconfiguration.NewGroupPolicyConfigurationClientWithBaseURI("https://graph.microsoft.com")
 client.Client.Authorizer = authorizer
 ```
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := grouppolicyconfiguration.NewDeviceManagementGroupPolicyConfigurationID("groupPolicyConfigurationIdValue")
+id := grouppolicyconfiguration.NewDeviceManagementGroupPolicyConfigurationID("groupPolicyConfigurationId")
 
 payload := grouppolicyconfiguration.AssignGroupPolicyConfigurationsRequest{
 	// ...
@@ -52,7 +52,7 @@ payload := grouppolicyconfiguration.GroupPolicyConfiguration{
 }
 
 
-read, err := client.CreateGroupPolicyConfiguration(ctx, payload)
+read, err := client.CreateGroupPolicyConfiguration(ctx, payload, grouppolicyconfiguration.DefaultCreateGroupPolicyConfigurationOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -66,7 +66,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := grouppolicyconfiguration.NewDeviceManagementGroupPolicyConfigurationID("groupPolicyConfigurationIdValue")
+id := grouppolicyconfiguration.NewDeviceManagementGroupPolicyConfigurationID("groupPolicyConfigurationId")
 
 read, err := client.DeleteGroupPolicyConfiguration(ctx, id, grouppolicyconfiguration.DefaultDeleteGroupPolicyConfigurationOperationOptions())
 if err != nil {
@@ -82,7 +82,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := grouppolicyconfiguration.NewDeviceManagementGroupPolicyConfigurationID("groupPolicyConfigurationIdValue")
+id := grouppolicyconfiguration.NewDeviceManagementGroupPolicyConfigurationID("groupPolicyConfigurationId")
 
 read, err := client.GetGroupPolicyConfiguration(ctx, id, grouppolicyconfiguration.DefaultGetGroupPolicyConfigurationOperationOptions())
 if err != nil {
@@ -131,14 +131,14 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := grouppolicyconfiguration.NewDeviceManagementGroupPolicyConfigurationID("groupPolicyConfigurationIdValue")
+id := grouppolicyconfiguration.NewDeviceManagementGroupPolicyConfigurationID("groupPolicyConfigurationId")
 
 payload := grouppolicyconfiguration.GroupPolicyConfiguration{
 	// ...
 }
 
 
-read, err := client.UpdateGroupPolicyConfiguration(ctx, id, payload)
+read, err := client.UpdateGroupPolicyConfiguration(ctx, id, payload, grouppolicyconfiguration.DefaultUpdateGroupPolicyConfigurationOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -148,18 +148,18 @@ if model := read.Model; model != nil {
 ```
 
 
-### Example Usage: `GroupPolicyConfigurationClient.UpdateGroupPolicyConfigurationDefinitionValue`
+### Example Usage: `GroupPolicyConfigurationClient.UpdateGroupPolicyConfigurationDefinitionValues`
 
 ```go
 ctx := context.TODO()
-id := grouppolicyconfiguration.NewDeviceManagementGroupPolicyConfigurationID("groupPolicyConfigurationIdValue")
+id := grouppolicyconfiguration.NewDeviceManagementGroupPolicyConfigurationID("groupPolicyConfigurationId")
 
-payload := grouppolicyconfiguration.UpdateGroupPolicyConfigurationDefinitionValueRequest{
+payload := grouppolicyconfiguration.UpdateGroupPolicyConfigurationDefinitionValuesRequest{
 	// ...
 }
 
 
-read, err := client.UpdateGroupPolicyConfigurationDefinitionValue(ctx, id, payload)
+read, err := client.UpdateGroupPolicyConfigurationDefinitionValues(ctx, id, payload, grouppolicyconfiguration.DefaultUpdateGroupPolicyConfigurationDefinitionValuesOperationOptions())
 if err != nil {
 	// handle the error
 }

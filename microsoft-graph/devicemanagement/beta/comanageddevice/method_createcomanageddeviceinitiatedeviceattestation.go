@@ -18,15 +18,44 @@ type CreateComanagedDeviceInitiateDeviceAttestationOperationResponse struct {
 	OData        *odata.OData
 }
 
+type CreateComanagedDeviceInitiateDeviceAttestationOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateComanagedDeviceInitiateDeviceAttestationOperationOptions() CreateComanagedDeviceInitiateDeviceAttestationOperationOptions {
+	return CreateComanagedDeviceInitiateDeviceAttestationOperationOptions{}
+}
+
+func (o CreateComanagedDeviceInitiateDeviceAttestationOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateComanagedDeviceInitiateDeviceAttestationOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateComanagedDeviceInitiateDeviceAttestationOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateComanagedDeviceInitiateDeviceAttestation - Invoke action initiateDeviceAttestation. Perform Device Attestation
-func (c ComanagedDeviceClient) CreateComanagedDeviceInitiateDeviceAttestation(ctx context.Context, id beta.DeviceManagementComanagedDeviceId) (result CreateComanagedDeviceInitiateDeviceAttestationOperationResponse, err error) {
+func (c ComanagedDeviceClient) CreateComanagedDeviceInitiateDeviceAttestation(ctx context.Context, id beta.DeviceManagementComanagedDeviceId, options CreateComanagedDeviceInitiateDeviceAttestationOperationOptions) (result CreateComanagedDeviceInitiateDeviceAttestationOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/initiateDeviceAttestation", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/initiateDeviceAttestation", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

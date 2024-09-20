@@ -96,10 +96,18 @@ func (s NetworkaccessPrivateAccessForwardingRule) MarshalJSON() ([]byte, error) 
 var _ json.Unmarshaler = &NetworkaccessPrivateAccessForwardingRule{}
 
 func (s *NetworkaccessPrivateAccessForwardingRule) UnmarshalJSON(bytes []byte) error {
-	type alias NetworkaccessPrivateAccessForwardingRule
-	var decoded alias
+
+	var decoded struct {
+		Action       *NetworkaccessForwardingRuleAction   `json:"action,omitempty"`
+		Destinations *[]NetworkaccessRuleDestination      `json:"destinations,omitempty"`
+		RuleType     *NetworkaccessNetworkDestinationType `json:"ruleType,omitempty"`
+		Name         *string                              `json:"name,omitempty"`
+		Id           *string                              `json:"id,omitempty"`
+		ODataId      *string                              `json:"@odata.id,omitempty"`
+		ODataType    *string                              `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into NetworkaccessPrivateAccessForwardingRule: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.Action = decoded.Action
@@ -130,5 +138,6 @@ func (s *NetworkaccessPrivateAccessForwardingRule) UnmarshalJSON(bytes []byte) e
 		}
 		s.Destinations = &output
 	}
+
 	return nil
 }

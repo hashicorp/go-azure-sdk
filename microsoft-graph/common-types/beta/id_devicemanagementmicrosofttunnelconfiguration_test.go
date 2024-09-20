@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &DeviceManagementMicrosoftTunnelConfigurationId{}
 
 func TestNewDeviceManagementMicrosoftTunnelConfigurationID(t *testing.T) {
-	id := NewDeviceManagementMicrosoftTunnelConfigurationID("microsoftTunnelConfigurationIdValue")
+	id := NewDeviceManagementMicrosoftTunnelConfigurationID("microsoftTunnelConfigurationId")
 
-	if id.MicrosoftTunnelConfigurationId != "microsoftTunnelConfigurationIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'MicrosoftTunnelConfigurationId'", id.MicrosoftTunnelConfigurationId, "microsoftTunnelConfigurationIdValue")
+	if id.MicrosoftTunnelConfigurationId != "microsoftTunnelConfigurationId" {
+		t.Fatalf("Expected %q but got %q for Segment 'MicrosoftTunnelConfigurationId'", id.MicrosoftTunnelConfigurationId, "microsoftTunnelConfigurationId")
 	}
 }
 
 func TestFormatDeviceManagementMicrosoftTunnelConfigurationID(t *testing.T) {
-	actual := NewDeviceManagementMicrosoftTunnelConfigurationID("microsoftTunnelConfigurationIdValue").ID()
-	expected := "/deviceManagement/microsoftTunnelConfigurations/microsoftTunnelConfigurationIdValue"
+	actual := NewDeviceManagementMicrosoftTunnelConfigurationID("microsoftTunnelConfigurationId").ID()
+	expected := "/deviceManagement/microsoftTunnelConfigurations/microsoftTunnelConfigurationId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -50,14 +50,14 @@ func TestParseDeviceManagementMicrosoftTunnelConfigurationID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/microsoftTunnelConfigurations/microsoftTunnelConfigurationIdValue",
+			Input: "/deviceManagement/microsoftTunnelConfigurations/microsoftTunnelConfigurationId",
 			Expected: &DeviceManagementMicrosoftTunnelConfigurationId{
-				MicrosoftTunnelConfigurationId: "microsoftTunnelConfigurationIdValue",
+				MicrosoftTunnelConfigurationId: "microsoftTunnelConfigurationId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/microsoftTunnelConfigurations/microsoftTunnelConfigurationIdValue/extra",
+			Input: "/deviceManagement/microsoftTunnelConfigurations/microsoftTunnelConfigurationId/extra",
 			Error: true,
 		},
 	}
@@ -116,26 +116,26 @@ func TestParseDeviceManagementMicrosoftTunnelConfigurationIDInsensitively(t *tes
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/microsoftTunnelConfigurations/microsoftTunnelConfigurationIdValue",
+			Input: "/deviceManagement/microsoftTunnelConfigurations/microsoftTunnelConfigurationId",
 			Expected: &DeviceManagementMicrosoftTunnelConfigurationId{
-				MicrosoftTunnelConfigurationId: "microsoftTunnelConfigurationIdValue",
+				MicrosoftTunnelConfigurationId: "microsoftTunnelConfigurationId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/microsoftTunnelConfigurations/microsoftTunnelConfigurationIdValue/extra",
+			Input: "/deviceManagement/microsoftTunnelConfigurations/microsoftTunnelConfigurationId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/mIcRoSoFtTuNnElCoNfIgUrAtIoNs/mIcRoSoFtTuNnElCoNfIgUrAtIoNiDvAlUe",
+			Input: "/dEvIcEmAnAgEmEnT/mIcRoSoFtTuNnElCoNfIgUrAtIoNs/mIcRoSoFtTuNnElCoNfIgUrAtIoNiD",
 			Expected: &DeviceManagementMicrosoftTunnelConfigurationId{
-				MicrosoftTunnelConfigurationId: "mIcRoSoFtTuNnElCoNfIgUrAtIoNiDvAlUe",
+				MicrosoftTunnelConfigurationId: "mIcRoSoFtTuNnElCoNfIgUrAtIoNiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/mIcRoSoFtTuNnElCoNfIgUrAtIoNs/mIcRoSoFtTuNnElCoNfIgUrAtIoNiDvAlUe/extra",
+			Input: "/dEvIcEmAnAgEmEnT/mIcRoSoFtTuNnElCoNfIgUrAtIoNs/mIcRoSoFtTuNnElCoNfIgUrAtIoNiD/extra",
 			Error: true,
 		},
 	}

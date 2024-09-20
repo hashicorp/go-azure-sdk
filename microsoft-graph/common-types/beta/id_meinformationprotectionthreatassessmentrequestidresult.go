@@ -100,9 +100,9 @@ func (id MeInformationProtectionThreatAssessmentRequestIdResultId) Segments() []
 		resourceids.StaticSegment("me", "me", "me"),
 		resourceids.StaticSegment("informationProtection", "informationProtection", "informationProtection"),
 		resourceids.StaticSegment("threatAssessmentRequests", "threatAssessmentRequests", "threatAssessmentRequests"),
-		resourceids.UserSpecifiedSegment("threatAssessmentRequestId", "threatAssessmentRequestIdValue"),
+		resourceids.UserSpecifiedSegment("threatAssessmentRequestId", "threatAssessmentRequestId"),
 		resourceids.StaticSegment("results", "results", "results"),
-		resourceids.UserSpecifiedSegment("threatAssessmentResultId", "threatAssessmentResultIdValue"),
+		resourceids.UserSpecifiedSegment("threatAssessmentResultId", "threatAssessmentResultId"),
 	}
 }
 

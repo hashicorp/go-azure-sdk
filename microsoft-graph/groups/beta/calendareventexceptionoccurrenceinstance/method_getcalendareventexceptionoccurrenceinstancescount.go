@@ -20,8 +20,9 @@ type GetCalendarEventExceptionOccurrenceInstancesCountOperationResponse struct {
 }
 
 type GetCalendarEventExceptionOccurrenceInstancesCountOperationOptions struct {
-	Filter *string
-	Search *string
+	Filter   *string
+	Metadata *odata.Metadata
+	Search   *string
 }
 
 func DefaultGetCalendarEventExceptionOccurrenceInstancesCountOperationOptions() GetCalendarEventExceptionOccurrenceInstancesCountOperationOptions {
@@ -38,6 +39,9 @@ func (o GetCalendarEventExceptionOccurrenceInstancesCountOperationOptions) ToODa
 	out := odata.Query{}
 	if o.Filter != nil {
 		out.Filter = *o.Filter
+	}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
 	}
 	if o.Search != nil {
 		out.Search = *o.Search

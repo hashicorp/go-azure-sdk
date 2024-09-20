@@ -18,16 +18,45 @@ type SetSiteListItemActivityDriveItemContentStreamOperationResponse struct {
 	OData        *odata.OData
 }
 
+type SetSiteListItemActivityDriveItemContentStreamOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultSetSiteListItemActivityDriveItemContentStreamOperationOptions() SetSiteListItemActivityDriveItemContentStreamOperationOptions {
+	return SetSiteListItemActivityDriveItemContentStreamOperationOptions{}
+}
+
+func (o SetSiteListItemActivityDriveItemContentStreamOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o SetSiteListItemActivityDriveItemContentStreamOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o SetSiteListItemActivityDriveItemContentStreamOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // SetSiteListItemActivityDriveItemContentStream - Update contentStream for the navigation property driveItem in groups.
 // The content stream, if the item represents a file.
-func (c SiteListItemActivityDriveItemContentStreamClient) SetSiteListItemActivityDriveItemContentStream(ctx context.Context, id beta.GroupIdSiteIdListIdItemIdActivityId, input []byte) (result SetSiteListItemActivityDriveItemContentStreamOperationResponse, err error) {
+func (c SiteListItemActivityDriveItemContentStreamClient) SetSiteListItemActivityDriveItemContentStream(ctx context.Context, id beta.GroupIdSiteIdListIdItemIdActivityId, input []byte, options SetSiteListItemActivityDriveItemContentStreamOperationOptions) (result SetSiteListItemActivityDriveItemContentStreamOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPut,
-		Path:       fmt.Sprintf("%s/driveItem/contentStream", id.ID()),
+		HttpMethod:    http.MethodPut,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/driveItem/contentStream", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -63,15 +63,19 @@ func (s TeamArchivedEventMessageDetail) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &TeamArchivedEventMessageDetail{}
 
 func (s *TeamArchivedEventMessageDetail) UnmarshalJSON(bytes []byte) error {
-	type alias TeamArchivedEventMessageDetail
-	var decoded alias
+
+	var decoded struct {
+		TeamId    nullable.Type[string] `json:"teamId,omitempty"`
+		ODataId   *string               `json:"@odata.id,omitempty"`
+		ODataType *string               `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into TeamArchivedEventMessageDetail: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
+	s.TeamId = decoded.TeamId
 	s.ODataId = decoded.ODataId
 	s.ODataType = decoded.ODataType
-	s.TeamId = decoded.TeamId
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -85,5 +89,6 @@ func (s *TeamArchivedEventMessageDetail) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Initiator = impl
 	}
+
 	return nil
 }

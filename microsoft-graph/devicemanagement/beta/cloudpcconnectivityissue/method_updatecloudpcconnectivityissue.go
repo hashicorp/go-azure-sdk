@@ -17,15 +17,44 @@ type UpdateCloudPCConnectivityIssueOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateCloudPCConnectivityIssueOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateCloudPCConnectivityIssueOperationOptions() UpdateCloudPCConnectivityIssueOperationOptions {
+	return UpdateCloudPCConnectivityIssueOperationOptions{}
+}
+
+func (o UpdateCloudPCConnectivityIssueOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateCloudPCConnectivityIssueOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateCloudPCConnectivityIssueOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateCloudPCConnectivityIssue - Update the navigation property cloudPCConnectivityIssues in deviceManagement
-func (c CloudPCConnectivityIssueClient) UpdateCloudPCConnectivityIssue(ctx context.Context, id beta.DeviceManagementCloudPCConnectivityIssueId, input beta.CloudPCConnectivityIssue) (result UpdateCloudPCConnectivityIssueOperationResponse, err error) {
+func (c CloudPCConnectivityIssueClient) UpdateCloudPCConnectivityIssue(ctx context.Context, id beta.DeviceManagementCloudPCConnectivityIssueId, input beta.CloudPCConnectivityIssue, options UpdateCloudPCConnectivityIssueOperationOptions) (result UpdateCloudPCConnectivityIssueOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

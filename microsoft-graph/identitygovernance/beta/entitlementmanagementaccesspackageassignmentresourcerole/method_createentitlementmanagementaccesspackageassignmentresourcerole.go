@@ -18,16 +18,45 @@ type CreateEntitlementManagementAccessPackageAssignmentResourceRoleOperationResp
 	Model        *beta.AccessPackageAssignmentResourceRole
 }
 
+type CreateEntitlementManagementAccessPackageAssignmentResourceRoleOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateEntitlementManagementAccessPackageAssignmentResourceRoleOperationOptions() CreateEntitlementManagementAccessPackageAssignmentResourceRoleOperationOptions {
+	return CreateEntitlementManagementAccessPackageAssignmentResourceRoleOperationOptions{}
+}
+
+func (o CreateEntitlementManagementAccessPackageAssignmentResourceRoleOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateEntitlementManagementAccessPackageAssignmentResourceRoleOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateEntitlementManagementAccessPackageAssignmentResourceRoleOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateEntitlementManagementAccessPackageAssignmentResourceRole - Create new navigation property to
 // accessPackageAssignmentResourceRoles for identityGovernance
-func (c EntitlementManagementAccessPackageAssignmentResourceRoleClient) CreateEntitlementManagementAccessPackageAssignmentResourceRole(ctx context.Context, input beta.AccessPackageAssignmentResourceRole) (result CreateEntitlementManagementAccessPackageAssignmentResourceRoleOperationResponse, err error) {
+func (c EntitlementManagementAccessPackageAssignmentResourceRoleClient) CreateEntitlementManagementAccessPackageAssignmentResourceRole(ctx context.Context, input beta.AccessPackageAssignmentResourceRole, options CreateEntitlementManagementAccessPackageAssignmentResourceRoleOperationOptions) (result CreateEntitlementManagementAccessPackageAssignmentResourceRoleOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/identityGovernance/entitlementManagement/accessPackageAssignmentResourceRoles",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/identityGovernance/entitlementManagement/accessPackageAssignmentResourceRoles",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

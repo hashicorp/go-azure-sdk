@@ -19,7 +19,8 @@ type DeletePresenceOperationResponse struct {
 }
 
 type DeletePresenceOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeletePresenceOperationOptions() DeletePresenceOperationOptions {
@@ -36,7 +37,9 @@ func (o DeletePresenceOperationOptions) ToHeaders() *client.Headers {
 
 func (o DeletePresenceOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

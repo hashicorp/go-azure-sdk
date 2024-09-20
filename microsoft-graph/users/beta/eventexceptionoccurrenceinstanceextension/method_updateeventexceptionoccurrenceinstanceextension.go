@@ -17,15 +17,44 @@ type UpdateEventExceptionOccurrenceInstanceExtensionOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateEventExceptionOccurrenceInstanceExtensionOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateEventExceptionOccurrenceInstanceExtensionOperationOptions() UpdateEventExceptionOccurrenceInstanceExtensionOperationOptions {
+	return UpdateEventExceptionOccurrenceInstanceExtensionOperationOptions{}
+}
+
+func (o UpdateEventExceptionOccurrenceInstanceExtensionOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateEventExceptionOccurrenceInstanceExtensionOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateEventExceptionOccurrenceInstanceExtensionOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateEventExceptionOccurrenceInstanceExtension - Update the navigation property extensions in users
-func (c EventExceptionOccurrenceInstanceExtensionClient) UpdateEventExceptionOccurrenceInstanceExtension(ctx context.Context, id beta.UserIdEventIdExceptionOccurrenceIdInstanceIdExtensionId, input beta.Extension) (result UpdateEventExceptionOccurrenceInstanceExtensionOperationResponse, err error) {
+func (c EventExceptionOccurrenceInstanceExtensionClient) UpdateEventExceptionOccurrenceInstanceExtension(ctx context.Context, id beta.UserIdEventIdExceptionOccurrenceIdInstanceIdExtensionId, input beta.Extension, options UpdateEventExceptionOccurrenceInstanceExtensionOperationOptions) (result UpdateEventExceptionOccurrenceInstanceExtensionOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

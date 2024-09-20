@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &DeviceManagementVirtualEndpointCloudPCId{}
 
 func TestNewDeviceManagementVirtualEndpointCloudPCID(t *testing.T) {
-	id := NewDeviceManagementVirtualEndpointCloudPCID("cloudPCIdValue")
+	id := NewDeviceManagementVirtualEndpointCloudPCID("cloudPCId")
 
-	if id.CloudPCId != "cloudPCIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'CloudPCId'", id.CloudPCId, "cloudPCIdValue")
+	if id.CloudPCId != "cloudPCId" {
+		t.Fatalf("Expected %q but got %q for Segment 'CloudPCId'", id.CloudPCId, "cloudPCId")
 	}
 }
 
 func TestFormatDeviceManagementVirtualEndpointCloudPCID(t *testing.T) {
-	actual := NewDeviceManagementVirtualEndpointCloudPCID("cloudPCIdValue").ID()
-	expected := "/deviceManagement/virtualEndpoint/cloudPCs/cloudPCIdValue"
+	actual := NewDeviceManagementVirtualEndpointCloudPCID("cloudPCId").ID()
+	expected := "/deviceManagement/virtualEndpoint/cloudPCs/cloudPCId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -55,14 +55,14 @@ func TestParseDeviceManagementVirtualEndpointCloudPCID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/virtualEndpoint/cloudPCs/cloudPCIdValue",
+			Input: "/deviceManagement/virtualEndpoint/cloudPCs/cloudPCId",
 			Expected: &DeviceManagementVirtualEndpointCloudPCId{
-				CloudPCId: "cloudPCIdValue",
+				CloudPCId: "cloudPCId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/virtualEndpoint/cloudPCs/cloudPCIdValue/extra",
+			Input: "/deviceManagement/virtualEndpoint/cloudPCs/cloudPCId/extra",
 			Error: true,
 		},
 	}
@@ -131,26 +131,26 @@ func TestParseDeviceManagementVirtualEndpointCloudPCIDInsensitively(t *testing.T
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/virtualEndpoint/cloudPCs/cloudPCIdValue",
+			Input: "/deviceManagement/virtualEndpoint/cloudPCs/cloudPCId",
 			Expected: &DeviceManagementVirtualEndpointCloudPCId{
-				CloudPCId: "cloudPCIdValue",
+				CloudPCId: "cloudPCId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/virtualEndpoint/cloudPCs/cloudPCIdValue/extra",
+			Input: "/deviceManagement/virtualEndpoint/cloudPCs/cloudPCId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/vIrTuAlEnDpOiNt/cLoUdPcS/cLoUdPcIdVaLuE",
+			Input: "/dEvIcEmAnAgEmEnT/vIrTuAlEnDpOiNt/cLoUdPcS/cLoUdPcId",
 			Expected: &DeviceManagementVirtualEndpointCloudPCId{
-				CloudPCId: "cLoUdPcIdVaLuE",
+				CloudPCId: "cLoUdPcId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/vIrTuAlEnDpOiNt/cLoUdPcS/cLoUdPcIdVaLuE/extra",
+			Input: "/dEvIcEmAnAgEmEnT/vIrTuAlEnDpOiNt/cLoUdPcS/cLoUdPcId/extra",
 			Error: true,
 		},
 	}

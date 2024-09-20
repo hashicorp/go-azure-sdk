@@ -18,16 +18,45 @@ type UpdateDirectoryResourceNamespaceResourceActionResourceScopeOperationRespons
 	OData        *odata.OData
 }
 
+type UpdateDirectoryResourceNamespaceResourceActionResourceScopeOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateDirectoryResourceNamespaceResourceActionResourceScopeOperationOptions() UpdateDirectoryResourceNamespaceResourceActionResourceScopeOperationOptions {
+	return UpdateDirectoryResourceNamespaceResourceActionResourceScopeOperationOptions{}
+}
+
+func (o UpdateDirectoryResourceNamespaceResourceActionResourceScopeOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateDirectoryResourceNamespaceResourceActionResourceScopeOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateDirectoryResourceNamespaceResourceActionResourceScopeOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateDirectoryResourceNamespaceResourceActionResourceScope - Update the navigation property resourceScope in
 // roleManagement
-func (c DirectoryResourceNamespaceResourceActionResourceScopeClient) UpdateDirectoryResourceNamespaceResourceActionResourceScope(ctx context.Context, id beta.RoleManagementDirectoryResourceNamespaceIdResourceActionId, input beta.UnifiedRbacResourceScope) (result UpdateDirectoryResourceNamespaceResourceActionResourceScopeOperationResponse, err error) {
+func (c DirectoryResourceNamespaceResourceActionResourceScopeClient) UpdateDirectoryResourceNamespaceResourceActionResourceScope(ctx context.Context, id beta.RoleManagementDirectoryResourceNamespaceIdResourceActionId, input beta.UnifiedRbacResourceScope, options UpdateDirectoryResourceNamespaceResourceActionResourceScopeOperationOptions) (result UpdateDirectoryResourceNamespaceResourceActionResourceScopeOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       fmt.Sprintf("%s/resourceScope", id.ID()),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/resourceScope", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

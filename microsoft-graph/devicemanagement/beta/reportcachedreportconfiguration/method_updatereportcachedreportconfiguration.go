@@ -17,15 +17,44 @@ type UpdateReportCachedReportConfigurationOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateReportCachedReportConfigurationOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateReportCachedReportConfigurationOperationOptions() UpdateReportCachedReportConfigurationOperationOptions {
+	return UpdateReportCachedReportConfigurationOperationOptions{}
+}
+
+func (o UpdateReportCachedReportConfigurationOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateReportCachedReportConfigurationOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateReportCachedReportConfigurationOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateReportCachedReportConfiguration - Update the navigation property cachedReportConfigurations in deviceManagement
-func (c ReportCachedReportConfigurationClient) UpdateReportCachedReportConfiguration(ctx context.Context, id beta.DeviceManagementReportCachedReportConfigurationId, input beta.DeviceManagementCachedReportConfiguration) (result UpdateReportCachedReportConfigurationOperationResponse, err error) {
+func (c ReportCachedReportConfigurationClient) UpdateReportCachedReportConfiguration(ctx context.Context, id beta.DeviceManagementReportCachedReportConfigurationId, input beta.DeviceManagementCachedReportConfiguration, options UpdateReportCachedReportConfigurationOperationOptions) (result UpdateReportCachedReportConfigurationOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

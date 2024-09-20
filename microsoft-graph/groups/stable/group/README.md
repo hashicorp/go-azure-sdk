@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/stable/group` Documentation
 
-The `group` SDK allows for interaction with the Azure Resource Manager Service `groups` (API Version `stable`).
+The `group` SDK allows for interaction with Microsoft Graph `groups` (API Version `stable`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -15,7 +15,7 @@ import "github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/stable/group"
 ### Client Initialization
 
 ```go
-client := group.NewGroupClientWithBaseURI("https://management.azure.com")
+client := group.NewGroupClientWithBaseURI("https://graph.microsoft.com")
 client.Client.Authorizer = authorizer
 ```
 
@@ -24,9 +24,9 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := group.NewGroupID("groupIdValue")
+id := group.NewGroupID("groupId")
 
-read, err := client.AddFavorite(ctx, id)
+read, err := client.AddFavorite(ctx, id, group.DefaultAddFavoriteOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -40,14 +40,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := group.NewGroupID("groupIdValue")
+id := group.NewGroupID("groupId")
 
 payload := group.AssignLicenseRequest{
 	// ...
 }
 
 
-read, err := client.AssignLicense(ctx, id, payload)
+read, err := client.AssignLicense(ctx, id, payload, group.DefaultAssignLicenseOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -61,7 +61,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := group.NewGroupID("groupIdValue")
+id := group.NewGroupID("groupId")
 
 // alternatively `client.CheckGrantedPermissionsForApps(ctx, id, group.DefaultCheckGrantedPermissionsForAppsOperationOptions())` can be used to do batched pagination
 items, err := client.CheckGrantedPermissionsForAppsComplete(ctx, id, group.DefaultCheckGrantedPermissionsForAppsOperationOptions())
@@ -78,7 +78,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := group.NewGroupID("groupIdValue")
+id := group.NewGroupID("groupId")
 
 payload := group.CheckMemberGroupsRequest{
 	// ...
@@ -100,7 +100,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := group.NewGroupID("groupIdValue")
+id := group.NewGroupID("groupId")
 
 payload := group.CheckMemberObjectsRequest{
 	// ...
@@ -128,7 +128,7 @@ payload := group.Group{
 }
 
 
-read, err := client.CreateGroup(ctx, payload)
+read, err := client.CreateGroup(ctx, payload, group.DefaultCreateGroupOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -142,9 +142,9 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := group.NewGroupID("groupIdValue")
+id := group.NewGroupID("groupId")
 
-read, err := client.CreateSubscribeByMail(ctx, id)
+read, err := client.CreateSubscribeByMail(ctx, id, group.DefaultCreateSubscribeByMailOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -158,9 +158,29 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := group.NewGroupID("groupIdValue")
+id := group.NewGroupID("groupId")
 
-read, err := client.CreateUnsubscribeByMail(ctx, id)
+read, err := client.CreateUnsubscribeByMail(ctx, id, group.DefaultCreateUnsubscribeByMailOperationOptions())
+if err != nil {
+	// handle the error
+}
+if model := read.Model; model != nil {
+	// do something with the model/response object
+}
+```
+
+
+### Example Usage: `GroupClient.CreateValidatesProperty`
+
+```go
+ctx := context.TODO()
+
+payload := group.CreateValidatesPropertyRequest{
+	// ...
+}
+
+
+read, err := client.CreateValidatesProperty(ctx, payload, group.DefaultCreateValidatesPropertyOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -174,67 +194,9 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := group.NewGroupID("groupIdValue")
+id := group.NewGroupID("groupId")
 
 read, err := client.DeleteGroup(ctx, id, group.DefaultDeleteGroupOperationOptions())
-if err != nil {
-	// handle the error
-}
-if model := read.Model; model != nil {
-	// do something with the model/response object
-}
-```
-
-
-### Example Usage: `GroupClient.GetAvailableExtensionProperties`
-
-```go
-ctx := context.TODO()
-
-payload := group.GetAvailableExtensionPropertiesRequest{
-	// ...
-}
-
-
-// alternatively `client.GetAvailableExtensionProperties(ctx, payload, group.DefaultGetAvailableExtensionPropertiesOperationOptions())` can be used to do batched pagination
-items, err := client.GetAvailableExtensionPropertiesComplete(ctx, payload, group.DefaultGetAvailableExtensionPropertiesOperationOptions())
-if err != nil {
-	// handle the error
-}
-for _, item := range items {
-	// do something
-}
-```
-
-
-### Example Usage: `GroupClient.GetByIds`
-
-```go
-ctx := context.TODO()
-
-payload := group.GetByIdsRequest{
-	// ...
-}
-
-
-// alternatively `client.GetByIds(ctx, payload, group.DefaultGetByIdsOperationOptions())` can be used to do batched pagination
-items, err := client.GetByIdsComplete(ctx, payload, group.DefaultGetByIdsOperationOptions())
-if err != nil {
-	// handle the error
-}
-for _, item := range items {
-	// do something
-}
-```
-
-
-### Example Usage: `GroupClient.GetCount`
-
-```go
-ctx := context.TODO()
-
-
-read, err := client.GetCount(ctx, group.DefaultGetCountOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -248,7 +210,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := group.NewGroupID("groupIdValue")
+id := group.NewGroupID("groupId")
 
 read, err := client.GetGroup(ctx, id, group.DefaultGetGroupOperationOptions())
 if err != nil {
@@ -264,7 +226,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := group.NewGroupID("groupIdValue")
+id := group.NewGroupID("groupId")
 
 payload := group.GetMemberGroupsRequest{
 	// ...
@@ -286,7 +248,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := group.NewGroupID("groupIdValue")
+id := group.NewGroupID("groupId")
 
 payload := group.GetMemberObjectsRequest{
 	// ...
@@ -295,6 +257,64 @@ payload := group.GetMemberObjectsRequest{
 
 // alternatively `client.GetMemberObjects(ctx, id, payload, group.DefaultGetMemberObjectsOperationOptions())` can be used to do batched pagination
 items, err := client.GetMemberObjectsComplete(ctx, id, payload, group.DefaultGetMemberObjectsOperationOptions())
+if err != nil {
+	// handle the error
+}
+for _, item := range items {
+	// do something
+}
+```
+
+
+### Example Usage: `GroupClient.GetsCount`
+
+```go
+ctx := context.TODO()
+
+
+read, err := client.GetsCount(ctx, group.DefaultGetsCountOperationOptions())
+if err != nil {
+	// handle the error
+}
+if model := read.Model; model != nil {
+	// do something with the model/response object
+}
+```
+
+
+### Example Usage: `GroupClient.ListGetsAvailableExtensionProperties`
+
+```go
+ctx := context.TODO()
+
+payload := group.ListGetsAvailableExtensionPropertiesRequest{
+	// ...
+}
+
+
+// alternatively `client.ListGetsAvailableExtensionProperties(ctx, payload, group.DefaultListGetsAvailableExtensionPropertiesOperationOptions())` can be used to do batched pagination
+items, err := client.ListGetsAvailableExtensionPropertiesComplete(ctx, payload, group.DefaultListGetsAvailableExtensionPropertiesOperationOptions())
+if err != nil {
+	// handle the error
+}
+for _, item := range items {
+	// do something
+}
+```
+
+
+### Example Usage: `GroupClient.ListGetsByIds`
+
+```go
+ctx := context.TODO()
+
+payload := group.ListGetsByIdsRequest{
+	// ...
+}
+
+
+// alternatively `client.ListGetsByIds(ctx, payload, group.DefaultListGetsByIdsOperationOptions())` can be used to do batched pagination
+items, err := client.ListGetsByIdsComplete(ctx, payload, group.DefaultListGetsByIdsOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -325,9 +345,9 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := group.NewGroupID("groupIdValue")
+id := group.NewGroupID("groupId")
 
-read, err := client.RemoveFavorite(ctx, id)
+read, err := client.RemoveFavorite(ctx, id, group.DefaultRemoveFavoriteOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -341,9 +361,9 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := group.NewGroupID("groupIdValue")
+id := group.NewGroupID("groupId")
 
-read, err := client.Renew(ctx, id)
+read, err := client.Renew(ctx, id, group.DefaultRenewOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -357,9 +377,9 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := group.NewGroupID("groupIdValue")
+id := group.NewGroupID("groupId")
 
-read, err := client.ResetUnseenCount(ctx, id)
+read, err := client.ResetUnseenCount(ctx, id, group.DefaultResetUnseenCountOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -373,9 +393,9 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := group.NewGroupID("groupIdValue")
+id := group.NewGroupID("groupId")
 
-read, err := client.Restore(ctx, id)
+read, err := client.Restore(ctx, id, group.DefaultRestoreOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -389,9 +409,9 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := group.NewGroupID("groupIdValue")
+id := group.NewGroupID("groupId")
 
-read, err := client.RetryServiceProvisioning(ctx, id)
+read, err := client.RetryServiceProvisioning(ctx, id, group.DefaultRetryServiceProvisioningOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -405,14 +425,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := group.NewGroupID("groupIdValue")
+id := group.NewGroupID("groupId")
 
 payload := group.Group{
 	// ...
 }
 
 
-read, err := client.UpdateGroup(ctx, id, payload)
+read, err := client.UpdateGroup(ctx, id, payload, group.DefaultUpdateGroupOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -422,17 +442,18 @@ if model := read.Model; model != nil {
 ```
 
 
-### Example Usage: `GroupClient.ValidateProperty`
+### Example Usage: `GroupClient.ValidateProperties`
 
 ```go
 ctx := context.TODO()
+id := group.NewGroupID("groupId")
 
-payload := group.ValidatePropertyRequest{
+payload := group.ValidatePropertiesRequest{
 	// ...
 }
 
 
-read, err := client.ValidateProperty(ctx, payload)
+read, err := client.ValidateProperties(ctx, id, payload, group.DefaultValidatePropertiesOperationOptions())
 if err != nil {
 	// handle the error
 }

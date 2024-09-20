@@ -19,7 +19,8 @@ type DeleteDeviceCompliancePolicyScheduledActionsForRuleConfigurationOperationRe
 }
 
 type DeleteDeviceCompliancePolicyScheduledActionsForRuleConfigurationOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteDeviceCompliancePolicyScheduledActionsForRuleConfigurationOperationOptions() DeleteDeviceCompliancePolicyScheduledActionsForRuleConfigurationOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteDeviceCompliancePolicyScheduledActionsForRuleConfigurationOperatio
 
 func (o DeleteDeviceCompliancePolicyScheduledActionsForRuleConfigurationOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

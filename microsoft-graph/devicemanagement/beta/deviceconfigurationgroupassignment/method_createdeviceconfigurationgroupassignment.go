@@ -19,15 +19,44 @@ type CreateDeviceConfigurationGroupAssignmentOperationResponse struct {
 	Model        *beta.DeviceConfigurationGroupAssignment
 }
 
+type CreateDeviceConfigurationGroupAssignmentOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateDeviceConfigurationGroupAssignmentOperationOptions() CreateDeviceConfigurationGroupAssignmentOperationOptions {
+	return CreateDeviceConfigurationGroupAssignmentOperationOptions{}
+}
+
+func (o CreateDeviceConfigurationGroupAssignmentOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateDeviceConfigurationGroupAssignmentOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateDeviceConfigurationGroupAssignmentOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateDeviceConfigurationGroupAssignment - Create new navigation property to groupAssignments for deviceManagement
-func (c DeviceConfigurationGroupAssignmentClient) CreateDeviceConfigurationGroupAssignment(ctx context.Context, id beta.DeviceManagementDeviceConfigurationId, input beta.DeviceConfigurationGroupAssignment) (result CreateDeviceConfigurationGroupAssignmentOperationResponse, err error) {
+func (c DeviceConfigurationGroupAssignmentClient) CreateDeviceConfigurationGroupAssignment(ctx context.Context, id beta.DeviceManagementDeviceConfigurationId, input beta.DeviceConfigurationGroupAssignment, options CreateDeviceConfigurationGroupAssignmentOperationOptions) (result CreateDeviceConfigurationGroupAssignmentOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/groupAssignments", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/groupAssignments", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

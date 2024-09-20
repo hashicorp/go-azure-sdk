@@ -12,24 +12,24 @@ import (
 var _ resourceids.ResourceId = &GroupIdCalendarEventIdExtensionId{}
 
 func TestNewGroupIdCalendarEventIdExtensionID(t *testing.T) {
-	id := NewGroupIdCalendarEventIdExtensionID("groupIdValue", "eventIdValue", "extensionIdValue")
+	id := NewGroupIdCalendarEventIdExtensionID("groupId", "eventId", "extensionId")
 
-	if id.GroupId != "groupIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'GroupId'", id.GroupId, "groupIdValue")
+	if id.GroupId != "groupId" {
+		t.Fatalf("Expected %q but got %q for Segment 'GroupId'", id.GroupId, "groupId")
 	}
 
-	if id.EventId != "eventIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'EventId'", id.EventId, "eventIdValue")
+	if id.EventId != "eventId" {
+		t.Fatalf("Expected %q but got %q for Segment 'EventId'", id.EventId, "eventId")
 	}
 
-	if id.ExtensionId != "extensionIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ExtensionId'", id.ExtensionId, "extensionIdValue")
+	if id.ExtensionId != "extensionId" {
+		t.Fatalf("Expected %q but got %q for Segment 'ExtensionId'", id.ExtensionId, "extensionId")
 	}
 }
 
 func TestFormatGroupIdCalendarEventIdExtensionID(t *testing.T) {
-	actual := NewGroupIdCalendarEventIdExtensionID("groupIdValue", "eventIdValue", "extensionIdValue").ID()
-	expected := "/groups/groupIdValue/calendar/events/eventIdValue/extensions/extensionIdValue"
+	actual := NewGroupIdCalendarEventIdExtensionID("groupId", "eventId", "extensionId").ID()
+	expected := "/groups/groupId/calendar/events/eventId/extensions/extensionId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -53,41 +53,41 @@ func TestParseGroupIdCalendarEventIdExtensionID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue",
+			Input: "/groups/groupId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/calendar",
+			Input: "/groups/groupId/calendar",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/calendar/events",
+			Input: "/groups/groupId/calendar/events",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/calendar/events/eventIdValue",
+			Input: "/groups/groupId/calendar/events/eventId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/calendar/events/eventIdValue/extensions",
+			Input: "/groups/groupId/calendar/events/eventId/extensions",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/groups/groupIdValue/calendar/events/eventIdValue/extensions/extensionIdValue",
+			Input: "/groups/groupId/calendar/events/eventId/extensions/extensionId",
 			Expected: &GroupIdCalendarEventIdExtensionId{
-				GroupId:     "groupIdValue",
-				EventId:     "eventIdValue",
-				ExtensionId: "extensionIdValue",
+				GroupId:     "groupId",
+				EventId:     "eventId",
+				ExtensionId: "extensionId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/groups/groupIdValue/calendar/events/eventIdValue/extensions/extensionIdValue/extra",
+			Input: "/groups/groupId/calendar/events/eventId/extensions/extensionId/extra",
 			Error: true,
 		},
 	}
@@ -144,80 +144,80 @@ func TestParseGroupIdCalendarEventIdExtensionIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue",
+			Input: "/groups/groupId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE",
+			Input: "/gRoUpS/gRoUpId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/calendar",
+			Input: "/groups/groupId/calendar",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/cAlEnDaR",
+			Input: "/gRoUpS/gRoUpId/cAlEnDaR",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/calendar/events",
+			Input: "/groups/groupId/calendar/events",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/cAlEnDaR/eVeNtS",
+			Input: "/gRoUpS/gRoUpId/cAlEnDaR/eVeNtS",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/calendar/events/eventIdValue",
+			Input: "/groups/groupId/calendar/events/eventId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/cAlEnDaR/eVeNtS/eVeNtIdVaLuE",
+			Input: "/gRoUpS/gRoUpId/cAlEnDaR/eVeNtS/eVeNtId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/calendar/events/eventIdValue/extensions",
+			Input: "/groups/groupId/calendar/events/eventId/extensions",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/cAlEnDaR/eVeNtS/eVeNtIdVaLuE/eXtEnSiOnS",
+			Input: "/gRoUpS/gRoUpId/cAlEnDaR/eVeNtS/eVeNtId/eXtEnSiOnS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/groups/groupIdValue/calendar/events/eventIdValue/extensions/extensionIdValue",
+			Input: "/groups/groupId/calendar/events/eventId/extensions/extensionId",
 			Expected: &GroupIdCalendarEventIdExtensionId{
-				GroupId:     "groupIdValue",
-				EventId:     "eventIdValue",
-				ExtensionId: "extensionIdValue",
+				GroupId:     "groupId",
+				EventId:     "eventId",
+				ExtensionId: "extensionId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/groups/groupIdValue/calendar/events/eventIdValue/extensions/extensionIdValue/extra",
+			Input: "/groups/groupId/calendar/events/eventId/extensions/extensionId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/cAlEnDaR/eVeNtS/eVeNtIdVaLuE/eXtEnSiOnS/eXtEnSiOnIdVaLuE",
+			Input: "/gRoUpS/gRoUpId/cAlEnDaR/eVeNtS/eVeNtId/eXtEnSiOnS/eXtEnSiOnId",
 			Expected: &GroupIdCalendarEventIdExtensionId{
-				GroupId:     "gRoUpIdVaLuE",
-				EventId:     "eVeNtIdVaLuE",
-				ExtensionId: "eXtEnSiOnIdVaLuE",
+				GroupId:     "gRoUpId",
+				EventId:     "eVeNtId",
+				ExtensionId: "eXtEnSiOnId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/cAlEnDaR/eVeNtS/eVeNtIdVaLuE/eXtEnSiOnS/eXtEnSiOnIdVaLuE/extra",
+			Input: "/gRoUpS/gRoUpId/cAlEnDaR/eVeNtS/eVeNtId/eXtEnSiOnS/eXtEnSiOnId/extra",
 			Error: true,
 		},
 	}

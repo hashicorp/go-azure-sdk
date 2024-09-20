@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &MeDeviceEnrollmentConfigurationIdAssignmentId{}
 
 func TestNewMeDeviceEnrollmentConfigurationIdAssignmentID(t *testing.T) {
-	id := NewMeDeviceEnrollmentConfigurationIdAssignmentID("deviceEnrollmentConfigurationIdValue", "enrollmentConfigurationAssignmentIdValue")
+	id := NewMeDeviceEnrollmentConfigurationIdAssignmentID("deviceEnrollmentConfigurationId", "enrollmentConfigurationAssignmentId")
 
-	if id.DeviceEnrollmentConfigurationId != "deviceEnrollmentConfigurationIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DeviceEnrollmentConfigurationId'", id.DeviceEnrollmentConfigurationId, "deviceEnrollmentConfigurationIdValue")
+	if id.DeviceEnrollmentConfigurationId != "deviceEnrollmentConfigurationId" {
+		t.Fatalf("Expected %q but got %q for Segment 'DeviceEnrollmentConfigurationId'", id.DeviceEnrollmentConfigurationId, "deviceEnrollmentConfigurationId")
 	}
 
-	if id.EnrollmentConfigurationAssignmentId != "enrollmentConfigurationAssignmentIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'EnrollmentConfigurationAssignmentId'", id.EnrollmentConfigurationAssignmentId, "enrollmentConfigurationAssignmentIdValue")
+	if id.EnrollmentConfigurationAssignmentId != "enrollmentConfigurationAssignmentId" {
+		t.Fatalf("Expected %q but got %q for Segment 'EnrollmentConfigurationAssignmentId'", id.EnrollmentConfigurationAssignmentId, "enrollmentConfigurationAssignmentId")
 	}
 }
 
 func TestFormatMeDeviceEnrollmentConfigurationIdAssignmentID(t *testing.T) {
-	actual := NewMeDeviceEnrollmentConfigurationIdAssignmentID("deviceEnrollmentConfigurationIdValue", "enrollmentConfigurationAssignmentIdValue").ID()
-	expected := "/me/deviceEnrollmentConfigurations/deviceEnrollmentConfigurationIdValue/assignments/enrollmentConfigurationAssignmentIdValue"
+	actual := NewMeDeviceEnrollmentConfigurationIdAssignmentID("deviceEnrollmentConfigurationId", "enrollmentConfigurationAssignmentId").ID()
+	expected := "/me/deviceEnrollmentConfigurations/deviceEnrollmentConfigurationId/assignments/enrollmentConfigurationAssignmentId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -54,25 +54,25 @@ func TestParseMeDeviceEnrollmentConfigurationIdAssignmentID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/me/deviceEnrollmentConfigurations/deviceEnrollmentConfigurationIdValue",
+			Input: "/me/deviceEnrollmentConfigurations/deviceEnrollmentConfigurationId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/me/deviceEnrollmentConfigurations/deviceEnrollmentConfigurationIdValue/assignments",
+			Input: "/me/deviceEnrollmentConfigurations/deviceEnrollmentConfigurationId/assignments",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/me/deviceEnrollmentConfigurations/deviceEnrollmentConfigurationIdValue/assignments/enrollmentConfigurationAssignmentIdValue",
+			Input: "/me/deviceEnrollmentConfigurations/deviceEnrollmentConfigurationId/assignments/enrollmentConfigurationAssignmentId",
 			Expected: &MeDeviceEnrollmentConfigurationIdAssignmentId{
-				DeviceEnrollmentConfigurationId:     "deviceEnrollmentConfigurationIdValue",
-				EnrollmentConfigurationAssignmentId: "enrollmentConfigurationAssignmentIdValue",
+				DeviceEnrollmentConfigurationId:     "deviceEnrollmentConfigurationId",
+				EnrollmentConfigurationAssignmentId: "enrollmentConfigurationAssignmentId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/deviceEnrollmentConfigurations/deviceEnrollmentConfigurationIdValue/assignments/enrollmentConfigurationAssignmentIdValue/extra",
+			Input: "/me/deviceEnrollmentConfigurations/deviceEnrollmentConfigurationId/assignments/enrollmentConfigurationAssignmentId/extra",
 			Error: true,
 		},
 	}
@@ -135,48 +135,48 @@ func TestParseMeDeviceEnrollmentConfigurationIdAssignmentIDInsensitively(t *test
 		},
 		{
 			// Incomplete URI
-			Input: "/me/deviceEnrollmentConfigurations/deviceEnrollmentConfigurationIdValue",
+			Input: "/me/deviceEnrollmentConfigurations/deviceEnrollmentConfigurationId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/dEvIcEeNrOlLmEnTcOnFiGuRaTiOnS/dEvIcEeNrOlLmEnTcOnFiGuRaTiOnIdVaLuE",
+			Input: "/mE/dEvIcEeNrOlLmEnTcOnFiGuRaTiOnS/dEvIcEeNrOlLmEnTcOnFiGuRaTiOnId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/me/deviceEnrollmentConfigurations/deviceEnrollmentConfigurationIdValue/assignments",
+			Input: "/me/deviceEnrollmentConfigurations/deviceEnrollmentConfigurationId/assignments",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/dEvIcEeNrOlLmEnTcOnFiGuRaTiOnS/dEvIcEeNrOlLmEnTcOnFiGuRaTiOnIdVaLuE/aSsIgNmEnTs",
+			Input: "/mE/dEvIcEeNrOlLmEnTcOnFiGuRaTiOnS/dEvIcEeNrOlLmEnTcOnFiGuRaTiOnId/aSsIgNmEnTs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/me/deviceEnrollmentConfigurations/deviceEnrollmentConfigurationIdValue/assignments/enrollmentConfigurationAssignmentIdValue",
+			Input: "/me/deviceEnrollmentConfigurations/deviceEnrollmentConfigurationId/assignments/enrollmentConfigurationAssignmentId",
 			Expected: &MeDeviceEnrollmentConfigurationIdAssignmentId{
-				DeviceEnrollmentConfigurationId:     "deviceEnrollmentConfigurationIdValue",
-				EnrollmentConfigurationAssignmentId: "enrollmentConfigurationAssignmentIdValue",
+				DeviceEnrollmentConfigurationId:     "deviceEnrollmentConfigurationId",
+				EnrollmentConfigurationAssignmentId: "enrollmentConfigurationAssignmentId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/deviceEnrollmentConfigurations/deviceEnrollmentConfigurationIdValue/assignments/enrollmentConfigurationAssignmentIdValue/extra",
+			Input: "/me/deviceEnrollmentConfigurations/deviceEnrollmentConfigurationId/assignments/enrollmentConfigurationAssignmentId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/dEvIcEeNrOlLmEnTcOnFiGuRaTiOnS/dEvIcEeNrOlLmEnTcOnFiGuRaTiOnIdVaLuE/aSsIgNmEnTs/eNrOlLmEnTcOnFiGuRaTiOnAsSiGnMeNtIdVaLuE",
+			Input: "/mE/dEvIcEeNrOlLmEnTcOnFiGuRaTiOnS/dEvIcEeNrOlLmEnTcOnFiGuRaTiOnId/aSsIgNmEnTs/eNrOlLmEnTcOnFiGuRaTiOnAsSiGnMeNtId",
 			Expected: &MeDeviceEnrollmentConfigurationIdAssignmentId{
-				DeviceEnrollmentConfigurationId:     "dEvIcEeNrOlLmEnTcOnFiGuRaTiOnIdVaLuE",
-				EnrollmentConfigurationAssignmentId: "eNrOlLmEnTcOnFiGuRaTiOnAsSiGnMeNtIdVaLuE",
+				DeviceEnrollmentConfigurationId:     "dEvIcEeNrOlLmEnTcOnFiGuRaTiOnId",
+				EnrollmentConfigurationAssignmentId: "eNrOlLmEnTcOnFiGuRaTiOnAsSiGnMeNtId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/mE/dEvIcEeNrOlLmEnTcOnFiGuRaTiOnS/dEvIcEeNrOlLmEnTcOnFiGuRaTiOnIdVaLuE/aSsIgNmEnTs/eNrOlLmEnTcOnFiGuRaTiOnAsSiGnMeNtIdVaLuE/extra",
+			Input: "/mE/dEvIcEeNrOlLmEnTcOnFiGuRaTiOnS/dEvIcEeNrOlLmEnTcOnFiGuRaTiOnId/aSsIgNmEnTs/eNrOlLmEnTcOnFiGuRaTiOnAsSiGnMeNtId/extra",
 			Error: true,
 		},
 	}

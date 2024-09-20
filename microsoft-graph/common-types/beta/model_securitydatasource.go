@@ -102,10 +102,17 @@ func (s BaseSecurityDataSourceImpl) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &BaseSecurityDataSourceImpl{}
 
 func (s *BaseSecurityDataSourceImpl) UnmarshalJSON(bytes []byte) error {
-	type alias BaseSecurityDataSourceImpl
-	var decoded alias
+
+	var decoded struct {
+		CreatedDateTime nullable.Type[string]         `json:"createdDateTime,omitempty"`
+		DisplayName     nullable.Type[string]         `json:"displayName,omitempty"`
+		HoldStatus      *SecurityDataSourceHoldStatus `json:"holdStatus,omitempty"`
+		Id              *string                       `json:"id,omitempty"`
+		ODataId         *string                       `json:"@odata.id,omitempty"`
+		ODataType       *string                       `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into BaseSecurityDataSourceImpl: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.CreatedDateTime = decoded.CreatedDateTime
@@ -127,6 +134,7 @@ func (s *BaseSecurityDataSourceImpl) UnmarshalJSON(bytes []byte) error {
 		}
 		s.CreatedBy = impl
 	}
+
 	return nil
 }
 
@@ -140,9 +148,9 @@ func UnmarshalSecurityDataSourceImplementation(input []byte) (SecurityDataSource
 		return nil, fmt.Errorf("unmarshaling SecurityDataSource into map[string]interface: %+v", err)
 	}
 
-	value, ok := temp["@odata.type"].(string)
-	if !ok {
-		return nil, nil
+	var value string
+	if v, ok := temp["@odata.type"]; ok {
+		value = fmt.Sprintf("%v", v)
 	}
 
 	if strings.EqualFold(value, "#microsoft.graph.security.siteSource") {

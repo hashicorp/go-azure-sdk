@@ -18,18 +18,47 @@ type CreatePendingAccessReviewInstanceApplyDecisionOperationResponse struct {
 	OData        *odata.OData
 }
 
+type CreatePendingAccessReviewInstanceApplyDecisionOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreatePendingAccessReviewInstanceApplyDecisionOperationOptions() CreatePendingAccessReviewInstanceApplyDecisionOperationOptions {
+	return CreatePendingAccessReviewInstanceApplyDecisionOperationOptions{}
+}
+
+func (o CreatePendingAccessReviewInstanceApplyDecisionOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreatePendingAccessReviewInstanceApplyDecisionOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreatePendingAccessReviewInstanceApplyDecisionOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreatePendingAccessReviewInstanceApplyDecision - Invoke action applyDecisions. Apply review decisions on an
 // accessReviewInstance if the decisions were not applied automatically because the autoApplyDecisionsEnabled property
 // is false in the review's accessReviewScheduleSettings. The status of the accessReviewInstance must be Completed to
 // call this method.
-func (c PendingAccessReviewInstanceClient) CreatePendingAccessReviewInstanceApplyDecision(ctx context.Context, id beta.MePendingAccessReviewInstanceId) (result CreatePendingAccessReviewInstanceApplyDecisionOperationResponse, err error) {
+func (c PendingAccessReviewInstanceClient) CreatePendingAccessReviewInstanceApplyDecision(ctx context.Context, id beta.MePendingAccessReviewInstanceId, options CreatePendingAccessReviewInstanceApplyDecisionOperationOptions) (result CreatePendingAccessReviewInstanceApplyDecisionOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/applyDecisions", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/applyDecisions", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

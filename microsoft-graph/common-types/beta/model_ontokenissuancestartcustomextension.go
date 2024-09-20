@@ -108,10 +108,20 @@ func (s OnTokenIssuanceStartCustomExtension) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &OnTokenIssuanceStartCustomExtension{}
 
 func (s *OnTokenIssuanceStartCustomExtension) UnmarshalJSON(bytes []byte) error {
-	type alias OnTokenIssuanceStartCustomExtension
-	var decoded alias
+
+	var decoded struct {
+		ClaimsForTokenConfiguration *[]OnTokenIssuanceStartReturnClaim         `json:"claimsForTokenConfiguration,omitempty"`
+		AuthenticationConfiguration CustomExtensionAuthenticationConfiguration `json:"authenticationConfiguration"`
+		ClientConfiguration         *CustomExtensionClientConfiguration        `json:"clientConfiguration,omitempty"`
+		Description                 nullable.Type[string]                      `json:"description,omitempty"`
+		DisplayName                 nullable.Type[string]                      `json:"displayName,omitempty"`
+		EndpointConfiguration       CustomExtensionEndpointConfiguration       `json:"endpointConfiguration"`
+		Id                          *string                                    `json:"id,omitempty"`
+		ODataId                     *string                                    `json:"@odata.id,omitempty"`
+		ODataType                   *string                                    `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into OnTokenIssuanceStartCustomExtension: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.ClaimsForTokenConfiguration = decoded.ClaimsForTokenConfiguration
@@ -142,5 +152,6 @@ func (s *OnTokenIssuanceStartCustomExtension) UnmarshalJSON(bytes []byte) error 
 		}
 		s.EndpointConfiguration = impl
 	}
+
 	return nil
 }

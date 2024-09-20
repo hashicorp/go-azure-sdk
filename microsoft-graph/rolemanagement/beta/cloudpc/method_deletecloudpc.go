@@ -18,7 +18,8 @@ type DeleteCloudPCOperationResponse struct {
 }
 
 type DeleteCloudPCOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteCloudPCOperationOptions() DeleteCloudPCOperationOptions {
@@ -35,7 +36,9 @@ func (o DeleteCloudPCOperationOptions) ToHeaders() *client.Headers {
 
 func (o DeleteCloudPCOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

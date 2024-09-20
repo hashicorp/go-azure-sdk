@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &MeOnlineMeetingIdRegistrationRegistrantId{}
 
 func TestNewMeOnlineMeetingIdRegistrationRegistrantID(t *testing.T) {
-	id := NewMeOnlineMeetingIdRegistrationRegistrantID("onlineMeetingIdValue", "meetingRegistrantBaseIdValue")
+	id := NewMeOnlineMeetingIdRegistrationRegistrantID("onlineMeetingId", "meetingRegistrantBaseId")
 
-	if id.OnlineMeetingId != "onlineMeetingIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'OnlineMeetingId'", id.OnlineMeetingId, "onlineMeetingIdValue")
+	if id.OnlineMeetingId != "onlineMeetingId" {
+		t.Fatalf("Expected %q but got %q for Segment 'OnlineMeetingId'", id.OnlineMeetingId, "onlineMeetingId")
 	}
 
-	if id.MeetingRegistrantBaseId != "meetingRegistrantBaseIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'MeetingRegistrantBaseId'", id.MeetingRegistrantBaseId, "meetingRegistrantBaseIdValue")
+	if id.MeetingRegistrantBaseId != "meetingRegistrantBaseId" {
+		t.Fatalf("Expected %q but got %q for Segment 'MeetingRegistrantBaseId'", id.MeetingRegistrantBaseId, "meetingRegistrantBaseId")
 	}
 }
 
 func TestFormatMeOnlineMeetingIdRegistrationRegistrantID(t *testing.T) {
-	actual := NewMeOnlineMeetingIdRegistrationRegistrantID("onlineMeetingIdValue", "meetingRegistrantBaseIdValue").ID()
-	expected := "/me/onlineMeetings/onlineMeetingIdValue/registration/registrants/meetingRegistrantBaseIdValue"
+	actual := NewMeOnlineMeetingIdRegistrationRegistrantID("onlineMeetingId", "meetingRegistrantBaseId").ID()
+	expected := "/me/onlineMeetings/onlineMeetingId/registration/registrants/meetingRegistrantBaseId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -54,30 +54,30 @@ func TestParseMeOnlineMeetingIdRegistrationRegistrantID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/me/onlineMeetings/onlineMeetingIdValue",
+			Input: "/me/onlineMeetings/onlineMeetingId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/me/onlineMeetings/onlineMeetingIdValue/registration",
+			Input: "/me/onlineMeetings/onlineMeetingId/registration",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/me/onlineMeetings/onlineMeetingIdValue/registration/registrants",
+			Input: "/me/onlineMeetings/onlineMeetingId/registration/registrants",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/me/onlineMeetings/onlineMeetingIdValue/registration/registrants/meetingRegistrantBaseIdValue",
+			Input: "/me/onlineMeetings/onlineMeetingId/registration/registrants/meetingRegistrantBaseId",
 			Expected: &MeOnlineMeetingIdRegistrationRegistrantId{
-				OnlineMeetingId:         "onlineMeetingIdValue",
-				MeetingRegistrantBaseId: "meetingRegistrantBaseIdValue",
+				OnlineMeetingId:         "onlineMeetingId",
+				MeetingRegistrantBaseId: "meetingRegistrantBaseId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/onlineMeetings/onlineMeetingIdValue/registration/registrants/meetingRegistrantBaseIdValue/extra",
+			Input: "/me/onlineMeetings/onlineMeetingId/registration/registrants/meetingRegistrantBaseId/extra",
 			Error: true,
 		},
 	}
@@ -140,58 +140,58 @@ func TestParseMeOnlineMeetingIdRegistrationRegistrantIDInsensitively(t *testing.
 		},
 		{
 			// Incomplete URI
-			Input: "/me/onlineMeetings/onlineMeetingIdValue",
+			Input: "/me/onlineMeetings/onlineMeetingId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/oNlInEmEeTiNgS/oNlInEmEeTiNgIdVaLuE",
+			Input: "/mE/oNlInEmEeTiNgS/oNlInEmEeTiNgId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/me/onlineMeetings/onlineMeetingIdValue/registration",
+			Input: "/me/onlineMeetings/onlineMeetingId/registration",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/oNlInEmEeTiNgS/oNlInEmEeTiNgIdVaLuE/rEgIsTrAtIoN",
+			Input: "/mE/oNlInEmEeTiNgS/oNlInEmEeTiNgId/rEgIsTrAtIoN",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/me/onlineMeetings/onlineMeetingIdValue/registration/registrants",
+			Input: "/me/onlineMeetings/onlineMeetingId/registration/registrants",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/oNlInEmEeTiNgS/oNlInEmEeTiNgIdVaLuE/rEgIsTrAtIoN/rEgIsTrAnTs",
+			Input: "/mE/oNlInEmEeTiNgS/oNlInEmEeTiNgId/rEgIsTrAtIoN/rEgIsTrAnTs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/me/onlineMeetings/onlineMeetingIdValue/registration/registrants/meetingRegistrantBaseIdValue",
+			Input: "/me/onlineMeetings/onlineMeetingId/registration/registrants/meetingRegistrantBaseId",
 			Expected: &MeOnlineMeetingIdRegistrationRegistrantId{
-				OnlineMeetingId:         "onlineMeetingIdValue",
-				MeetingRegistrantBaseId: "meetingRegistrantBaseIdValue",
+				OnlineMeetingId:         "onlineMeetingId",
+				MeetingRegistrantBaseId: "meetingRegistrantBaseId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/onlineMeetings/onlineMeetingIdValue/registration/registrants/meetingRegistrantBaseIdValue/extra",
+			Input: "/me/onlineMeetings/onlineMeetingId/registration/registrants/meetingRegistrantBaseId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/oNlInEmEeTiNgS/oNlInEmEeTiNgIdVaLuE/rEgIsTrAtIoN/rEgIsTrAnTs/mEeTiNgReGiStRaNtBaSeIdVaLuE",
+			Input: "/mE/oNlInEmEeTiNgS/oNlInEmEeTiNgId/rEgIsTrAtIoN/rEgIsTrAnTs/mEeTiNgReGiStRaNtBaSeId",
 			Expected: &MeOnlineMeetingIdRegistrationRegistrantId{
-				OnlineMeetingId:         "oNlInEmEeTiNgIdVaLuE",
-				MeetingRegistrantBaseId: "mEeTiNgReGiStRaNtBaSeIdVaLuE",
+				OnlineMeetingId:         "oNlInEmEeTiNgId",
+				MeetingRegistrantBaseId: "mEeTiNgReGiStRaNtBaSeId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/mE/oNlInEmEeTiNgS/oNlInEmEeTiNgIdVaLuE/rEgIsTrAtIoN/rEgIsTrAnTs/mEeTiNgReGiStRaNtBaSeIdVaLuE/extra",
+			Input: "/mE/oNlInEmEeTiNgS/oNlInEmEeTiNgId/rEgIsTrAtIoN/rEgIsTrAnTs/mEeTiNgReGiStRaNtBaSeId/extra",
 			Error: true,
 		},
 	}

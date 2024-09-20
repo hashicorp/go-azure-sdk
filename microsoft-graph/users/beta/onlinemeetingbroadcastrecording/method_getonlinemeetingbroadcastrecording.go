@@ -19,15 +19,44 @@ type GetOnlineMeetingBroadcastRecordingOperationResponse struct {
 	Model        *[]byte
 }
 
+type GetOnlineMeetingBroadcastRecordingOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultGetOnlineMeetingBroadcastRecordingOperationOptions() GetOnlineMeetingBroadcastRecordingOperationOptions {
+	return GetOnlineMeetingBroadcastRecordingOperationOptions{}
+}
+
+func (o GetOnlineMeetingBroadcastRecordingOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o GetOnlineMeetingBroadcastRecordingOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o GetOnlineMeetingBroadcastRecordingOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // GetOnlineMeetingBroadcastRecording - Get broadcastRecording for the navigation property onlineMeetings from users
-func (c OnlineMeetingBroadcastRecordingClient) GetOnlineMeetingBroadcastRecording(ctx context.Context, id beta.UserIdOnlineMeetingId) (result GetOnlineMeetingBroadcastRecordingOperationResponse, err error) {
+func (c OnlineMeetingBroadcastRecordingClient) GetOnlineMeetingBroadcastRecording(ctx context.Context, id beta.UserIdOnlineMeetingId, options GetOnlineMeetingBroadcastRecordingOperationOptions) (result GetOnlineMeetingBroadcastRecordingOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/octet-stream",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/broadcastRecording", id.ID()),
+		HttpMethod:    http.MethodGet,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/broadcastRecording", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

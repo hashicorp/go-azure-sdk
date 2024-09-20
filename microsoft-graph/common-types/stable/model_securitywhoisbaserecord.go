@@ -150,10 +150,31 @@ func (s BaseSecurityWhoisBaseRecordImpl) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &BaseSecurityWhoisBaseRecordImpl{}
 
 func (s *BaseSecurityWhoisBaseRecordImpl) UnmarshalJSON(bytes []byte) error {
-	type alias BaseSecurityWhoisBaseRecordImpl
-	var decoded alias
+
+	var decoded struct {
+		Abuse                *SecurityWhoisContact      `json:"abuse,omitempty"`
+		Admin                *SecurityWhoisContact      `json:"admin,omitempty"`
+		Billing              *SecurityWhoisContact      `json:"billing,omitempty"`
+		DomainStatus         nullable.Type[string]      `json:"domainStatus,omitempty"`
+		ExpirationDateTime   nullable.Type[string]      `json:"expirationDateTime,omitempty"`
+		FirstSeenDateTime    nullable.Type[string]      `json:"firstSeenDateTime,omitempty"`
+		LastSeenDateTime     nullable.Type[string]      `json:"lastSeenDateTime,omitempty"`
+		LastUpdateDateTime   nullable.Type[string]      `json:"lastUpdateDateTime,omitempty"`
+		Nameservers          *[]SecurityWhoisNameserver `json:"nameservers,omitempty"`
+		Noc                  *SecurityWhoisContact      `json:"noc,omitempty"`
+		RawWhoisText         nullable.Type[string]      `json:"rawWhoisText,omitempty"`
+		Registrant           *SecurityWhoisContact      `json:"registrant,omitempty"`
+		Registrar            *SecurityWhoisContact      `json:"registrar,omitempty"`
+		RegistrationDateTime nullable.Type[string]      `json:"registrationDateTime,omitempty"`
+		Technical            *SecurityWhoisContact      `json:"technical,omitempty"`
+		WhoisServer          nullable.Type[string]      `json:"whoisServer,omitempty"`
+		Zone                 *SecurityWhoisContact      `json:"zone,omitempty"`
+		Id                   *string                    `json:"id,omitempty"`
+		ODataId              *string                    `json:"@odata.id,omitempty"`
+		ODataType            *string                    `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into BaseSecurityWhoisBaseRecordImpl: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.Abuse = decoded.Abuse
@@ -162,13 +183,10 @@ func (s *BaseSecurityWhoisBaseRecordImpl) UnmarshalJSON(bytes []byte) error {
 	s.DomainStatus = decoded.DomainStatus
 	s.ExpirationDateTime = decoded.ExpirationDateTime
 	s.FirstSeenDateTime = decoded.FirstSeenDateTime
-	s.Id = decoded.Id
 	s.LastSeenDateTime = decoded.LastSeenDateTime
 	s.LastUpdateDateTime = decoded.LastUpdateDateTime
 	s.Nameservers = decoded.Nameservers
 	s.Noc = decoded.Noc
-	s.ODataId = decoded.ODataId
-	s.ODataType = decoded.ODataType
 	s.RawWhoisText = decoded.RawWhoisText
 	s.Registrant = decoded.Registrant
 	s.Registrar = decoded.Registrar
@@ -176,6 +194,9 @@ func (s *BaseSecurityWhoisBaseRecordImpl) UnmarshalJSON(bytes []byte) error {
 	s.Technical = decoded.Technical
 	s.WhoisServer = decoded.WhoisServer
 	s.Zone = decoded.Zone
+	s.Id = decoded.Id
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -189,6 +210,7 @@ func (s *BaseSecurityWhoisBaseRecordImpl) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Host = &impl
 	}
+
 	return nil
 }
 
@@ -202,9 +224,9 @@ func UnmarshalSecurityWhoisBaseRecordImplementation(input []byte) (SecurityWhois
 		return nil, fmt.Errorf("unmarshaling SecurityWhoisBaseRecord into map[string]interface: %+v", err)
 	}
 
-	value, ok := temp["@odata.type"].(string)
-	if !ok {
-		return nil, nil
+	var value string
+	if v, ok := temp["@odata.type"]; ok {
+		value = fmt.Sprintf("%v", v)
 	}
 
 	if strings.EqualFold(value, "#microsoft.graph.security.whoisHistoryRecord") {

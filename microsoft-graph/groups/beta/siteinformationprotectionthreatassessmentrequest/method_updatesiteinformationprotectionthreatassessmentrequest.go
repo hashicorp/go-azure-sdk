@@ -17,16 +17,45 @@ type UpdateSiteInformationProtectionThreatAssessmentRequestOperationResponse str
 	OData        *odata.OData
 }
 
+type UpdateSiteInformationProtectionThreatAssessmentRequestOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateSiteInformationProtectionThreatAssessmentRequestOperationOptions() UpdateSiteInformationProtectionThreatAssessmentRequestOperationOptions {
+	return UpdateSiteInformationProtectionThreatAssessmentRequestOperationOptions{}
+}
+
+func (o UpdateSiteInformationProtectionThreatAssessmentRequestOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateSiteInformationProtectionThreatAssessmentRequestOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateSiteInformationProtectionThreatAssessmentRequestOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateSiteInformationProtectionThreatAssessmentRequest - Update the navigation property threatAssessmentRequests in
 // groups
-func (c SiteInformationProtectionThreatAssessmentRequestClient) UpdateSiteInformationProtectionThreatAssessmentRequest(ctx context.Context, id beta.GroupIdSiteIdInformationProtectionThreatAssessmentRequestId, input beta.ThreatAssessmentRequest) (result UpdateSiteInformationProtectionThreatAssessmentRequestOperationResponse, err error) {
+func (c SiteInformationProtectionThreatAssessmentRequestClient) UpdateSiteInformationProtectionThreatAssessmentRequest(ctx context.Context, id beta.GroupIdSiteIdInformationProtectionThreatAssessmentRequestId, input beta.ThreatAssessmentRequest, options UpdateSiteInformationProtectionThreatAssessmentRequestOperationOptions) (result UpdateSiteInformationProtectionThreatAssessmentRequestOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

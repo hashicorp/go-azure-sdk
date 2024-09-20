@@ -18,15 +18,44 @@ type MarkChatReadForUserOperationResponse struct {
 	OData        *odata.OData
 }
 
+type MarkChatReadForUserOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultMarkChatReadForUserOperationOptions() MarkChatReadForUserOperationOptions {
+	return MarkChatReadForUserOperationOptions{}
+}
+
+func (o MarkChatReadForUserOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o MarkChatReadForUserOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o MarkChatReadForUserOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // MarkChatReadForUser - Invoke action markChatReadForUser. Mark a chat as read for a user.
-func (c ChatClient) MarkChatReadForUser(ctx context.Context, id stable.UserIdChatId, input MarkChatReadForUserRequest) (result MarkChatReadForUserOperationResponse, err error) {
+func (c ChatClient) MarkChatReadForUser(ctx context.Context, id stable.UserIdChatId, input MarkChatReadForUserRequest, options MarkChatReadForUserOperationOptions) (result MarkChatReadForUserOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/markChatReadForUser", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/markChatReadForUser", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

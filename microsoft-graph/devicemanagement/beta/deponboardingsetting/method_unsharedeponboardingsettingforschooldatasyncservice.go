@@ -18,15 +18,44 @@ type UnshareDepOnboardingSettingForSchoolDataSyncServiceOperationResponse struct
 	OData        *odata.OData
 }
 
+type UnshareDepOnboardingSettingForSchoolDataSyncServiceOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUnshareDepOnboardingSettingForSchoolDataSyncServiceOperationOptions() UnshareDepOnboardingSettingForSchoolDataSyncServiceOperationOptions {
+	return UnshareDepOnboardingSettingForSchoolDataSyncServiceOperationOptions{}
+}
+
+func (o UnshareDepOnboardingSettingForSchoolDataSyncServiceOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UnshareDepOnboardingSettingForSchoolDataSyncServiceOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UnshareDepOnboardingSettingForSchoolDataSyncServiceOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UnshareDepOnboardingSettingForSchoolDataSyncService - Invoke action unshareForSchoolDataSyncService
-func (c DepOnboardingSettingClient) UnshareDepOnboardingSettingForSchoolDataSyncService(ctx context.Context, id beta.DeviceManagementDepOnboardingSettingId) (result UnshareDepOnboardingSettingForSchoolDataSyncServiceOperationResponse, err error) {
+func (c DepOnboardingSettingClient) UnshareDepOnboardingSettingForSchoolDataSyncService(ctx context.Context, id beta.DeviceManagementDepOnboardingSettingId, options UnshareDepOnboardingSettingForSchoolDataSyncServiceOperationOptions) (result UnshareDepOnboardingSettingForSchoolDataSyncServiceOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/unshareForSchoolDataSyncService", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/unshareForSchoolDataSyncService", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

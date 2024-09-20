@@ -18,15 +18,44 @@ type BypassComanagedDeviceActivationLockOperationResponse struct {
 	OData        *odata.OData
 }
 
+type BypassComanagedDeviceActivationLockOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultBypassComanagedDeviceActivationLockOperationOptions() BypassComanagedDeviceActivationLockOperationOptions {
+	return BypassComanagedDeviceActivationLockOperationOptions{}
+}
+
+func (o BypassComanagedDeviceActivationLockOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o BypassComanagedDeviceActivationLockOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o BypassComanagedDeviceActivationLockOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // BypassComanagedDeviceActivationLock - Invoke action bypassActivationLock. Bypass activation lock
-func (c ComanagedDeviceClient) BypassComanagedDeviceActivationLock(ctx context.Context, id beta.DeviceManagementComanagedDeviceId) (result BypassComanagedDeviceActivationLockOperationResponse, err error) {
+func (c ComanagedDeviceClient) BypassComanagedDeviceActivationLock(ctx context.Context, id beta.DeviceManagementComanagedDeviceId, options BypassComanagedDeviceActivationLockOperationOptions) (result BypassComanagedDeviceActivationLockOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/bypassActivationLock", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/bypassActivationLock", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

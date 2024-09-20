@@ -19,15 +19,44 @@ type CreateActivityOperationResponse struct {
 	Model        *beta.UserActivity
 }
 
+type CreateActivityOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateActivityOperationOptions() CreateActivityOperationOptions {
+	return CreateActivityOperationOptions{}
+}
+
+func (o CreateActivityOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateActivityOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateActivityOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateActivity - Create new navigation property to activities for users
-func (c ActivityClient) CreateActivity(ctx context.Context, id beta.UserId, input beta.UserActivity) (result CreateActivityOperationResponse, err error) {
+func (c ActivityClient) CreateActivity(ctx context.Context, id beta.UserId, input beta.UserActivity, options CreateActivityOperationOptions) (result CreateActivityOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/activities", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/activities", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

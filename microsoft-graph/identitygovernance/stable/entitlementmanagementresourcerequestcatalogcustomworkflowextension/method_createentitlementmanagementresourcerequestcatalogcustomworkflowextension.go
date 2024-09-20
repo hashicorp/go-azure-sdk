@@ -20,16 +20,45 @@ type CreateEntitlementManagementResourceRequestCatalogCustomWorkflowExtensionOpe
 	Model        stable.CustomCalloutExtension
 }
 
+type CreateEntitlementManagementResourceRequestCatalogCustomWorkflowExtensionOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateEntitlementManagementResourceRequestCatalogCustomWorkflowExtensionOperationOptions() CreateEntitlementManagementResourceRequestCatalogCustomWorkflowExtensionOperationOptions {
+	return CreateEntitlementManagementResourceRequestCatalogCustomWorkflowExtensionOperationOptions{}
+}
+
+func (o CreateEntitlementManagementResourceRequestCatalogCustomWorkflowExtensionOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateEntitlementManagementResourceRequestCatalogCustomWorkflowExtensionOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateEntitlementManagementResourceRequestCatalogCustomWorkflowExtensionOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateEntitlementManagementResourceRequestCatalogCustomWorkflowExtension - Create new navigation property to
 // customWorkflowExtensions for identityGovernance
-func (c EntitlementManagementResourceRequestCatalogCustomWorkflowExtensionClient) CreateEntitlementManagementResourceRequestCatalogCustomWorkflowExtension(ctx context.Context, id stable.IdentityGovernanceEntitlementManagementResourceRequestId, input stable.CustomCalloutExtension) (result CreateEntitlementManagementResourceRequestCatalogCustomWorkflowExtensionOperationResponse, err error) {
+func (c EntitlementManagementResourceRequestCatalogCustomWorkflowExtensionClient) CreateEntitlementManagementResourceRequestCatalogCustomWorkflowExtension(ctx context.Context, id stable.IdentityGovernanceEntitlementManagementResourceRequestId, input stable.CustomCalloutExtension, options CreateEntitlementManagementResourceRequestCatalogCustomWorkflowExtensionOperationOptions) (result CreateEntitlementManagementResourceRequestCatalogCustomWorkflowExtensionOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/catalog/customWorkflowExtensions", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/catalog/customWorkflowExtensions", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

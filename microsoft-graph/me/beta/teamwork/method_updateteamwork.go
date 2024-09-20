@@ -17,15 +17,44 @@ type UpdateTeamworkOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateTeamworkOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateTeamworkOperationOptions() UpdateTeamworkOperationOptions {
+	return UpdateTeamworkOperationOptions{}
+}
+
+func (o UpdateTeamworkOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateTeamworkOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateTeamworkOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateTeamwork - Update the navigation property teamwork in me
-func (c TeamworkClient) UpdateTeamwork(ctx context.Context, input beta.UserTeamwork) (result UpdateTeamworkOperationResponse, err error) {
+func (c TeamworkClient) UpdateTeamwork(ctx context.Context, input beta.UserTeamwork, options UpdateTeamworkOperationOptions) (result UpdateTeamworkOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       "/me/teamwork",
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          "/me/teamwork",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -17,15 +17,44 @@ type UpdateDeviceManagementRoleAssignmentAppScopeOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateDeviceManagementRoleAssignmentAppScopeOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateDeviceManagementRoleAssignmentAppScopeOperationOptions() UpdateDeviceManagementRoleAssignmentAppScopeOperationOptions {
+	return UpdateDeviceManagementRoleAssignmentAppScopeOperationOptions{}
+}
+
+func (o UpdateDeviceManagementRoleAssignmentAppScopeOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateDeviceManagementRoleAssignmentAppScopeOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateDeviceManagementRoleAssignmentAppScopeOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateDeviceManagementRoleAssignmentAppScope - Update the navigation property appScopes in roleManagement
-func (c DeviceManagementRoleAssignmentAppScopeClient) UpdateDeviceManagementRoleAssignmentAppScope(ctx context.Context, id beta.RoleManagementDeviceManagementRoleAssignmentIdAppScopeId, input beta.AppScope) (result UpdateDeviceManagementRoleAssignmentAppScopeOperationResponse, err error) {
+func (c DeviceManagementRoleAssignmentAppScopeClient) UpdateDeviceManagementRoleAssignmentAppScope(ctx context.Context, id beta.RoleManagementDeviceManagementRoleAssignmentIdAppScopeId, input beta.AppScope, options UpdateDeviceManagementRoleAssignmentAppScopeOperationOptions) (result UpdateDeviceManagementRoleAssignmentAppScopeOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

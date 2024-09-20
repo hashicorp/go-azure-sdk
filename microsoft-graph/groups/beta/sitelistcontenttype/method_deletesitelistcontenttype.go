@@ -19,7 +19,8 @@ type DeleteSiteListContentTypeOperationResponse struct {
 }
 
 type DeleteSiteListContentTypeOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteSiteListContentTypeOperationOptions() DeleteSiteListContentTypeOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteSiteListContentTypeOperationOptions) ToHeaders() *client.Headers {
 
 func (o DeleteSiteListContentTypeOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

@@ -19,7 +19,8 @@ type DeleteComanagedDeviceHealthScriptStateIdPolicyIdPolicyIdDeviceIdDeviceIdOpe
 }
 
 type DeleteComanagedDeviceHealthScriptStateIdPolicyIdPolicyIdDeviceIdDeviceIdOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteComanagedDeviceHealthScriptStateIdPolicyIdPolicyIdDeviceIdDeviceIdOperationOptions() DeleteComanagedDeviceHealthScriptStateIdPolicyIdPolicyIdDeviceIdDeviceIdOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteComanagedDeviceHealthScriptStateIdPolicyIdPolicyIdDeviceIdDeviceId
 
 func (o DeleteComanagedDeviceHealthScriptStateIdPolicyIdPolicyIdDeviceIdDeviceIdOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

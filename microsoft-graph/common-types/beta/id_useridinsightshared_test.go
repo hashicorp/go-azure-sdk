@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &UserIdInsightSharedId{}
 
 func TestNewUserIdInsightSharedID(t *testing.T) {
-	id := NewUserIdInsightSharedID("userIdValue", "sharedInsightIdValue")
+	id := NewUserIdInsightSharedID("userId", "sharedInsightId")
 
-	if id.UserId != "userIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'UserId'", id.UserId, "userIdValue")
+	if id.UserId != "userId" {
+		t.Fatalf("Expected %q but got %q for Segment 'UserId'", id.UserId, "userId")
 	}
 
-	if id.SharedInsightId != "sharedInsightIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'SharedInsightId'", id.SharedInsightId, "sharedInsightIdValue")
+	if id.SharedInsightId != "sharedInsightId" {
+		t.Fatalf("Expected %q but got %q for Segment 'SharedInsightId'", id.SharedInsightId, "sharedInsightId")
 	}
 }
 
 func TestFormatUserIdInsightSharedID(t *testing.T) {
-	actual := NewUserIdInsightSharedID("userIdValue", "sharedInsightIdValue").ID()
-	expected := "/users/userIdValue/insights/shared/sharedInsightIdValue"
+	actual := NewUserIdInsightSharedID("userId", "sharedInsightId").ID()
+	expected := "/users/userId/insights/shared/sharedInsightId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -49,30 +49,30 @@ func TestParseUserIdInsightSharedID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue",
+			Input: "/users/userId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/insights",
+			Input: "/users/userId/insights",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/insights/shared",
+			Input: "/users/userId/insights/shared",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/users/userIdValue/insights/shared/sharedInsightIdValue",
+			Input: "/users/userId/insights/shared/sharedInsightId",
 			Expected: &UserIdInsightSharedId{
-				UserId:          "userIdValue",
-				SharedInsightId: "sharedInsightIdValue",
+				UserId:          "userId",
+				SharedInsightId: "sharedInsightId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/users/userIdValue/insights/shared/sharedInsightIdValue/extra",
+			Input: "/users/userId/insights/shared/sharedInsightId/extra",
 			Error: true,
 		},
 	}
@@ -125,58 +125,58 @@ func TestParseUserIdInsightSharedIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue",
+			Input: "/users/userId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe",
+			Input: "/uSeRs/uSeRiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/insights",
+			Input: "/users/userId/insights",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/iNsIgHtS",
+			Input: "/uSeRs/uSeRiD/iNsIgHtS",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/insights/shared",
+			Input: "/users/userId/insights/shared",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/iNsIgHtS/sHaReD",
+			Input: "/uSeRs/uSeRiD/iNsIgHtS/sHaReD",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/users/userIdValue/insights/shared/sharedInsightIdValue",
+			Input: "/users/userId/insights/shared/sharedInsightId",
 			Expected: &UserIdInsightSharedId{
-				UserId:          "userIdValue",
-				SharedInsightId: "sharedInsightIdValue",
+				UserId:          "userId",
+				SharedInsightId: "sharedInsightId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/users/userIdValue/insights/shared/sharedInsightIdValue/extra",
+			Input: "/users/userId/insights/shared/sharedInsightId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/iNsIgHtS/sHaReD/sHaReDiNsIgHtIdVaLuE",
+			Input: "/uSeRs/uSeRiD/iNsIgHtS/sHaReD/sHaReDiNsIgHtId",
 			Expected: &UserIdInsightSharedId{
-				UserId:          "uSeRiDvAlUe",
-				SharedInsightId: "sHaReDiNsIgHtIdVaLuE",
+				UserId:          "uSeRiD",
+				SharedInsightId: "sHaReDiNsIgHtId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/iNsIgHtS/sHaReD/sHaReDiNsIgHtIdVaLuE/extra",
+			Input: "/uSeRs/uSeRiD/iNsIgHtS/sHaReD/sHaReDiNsIgHtId/extra",
 			Error: true,
 		},
 	}

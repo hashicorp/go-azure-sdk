@@ -19,7 +19,8 @@ type DeleteWindowsQualityUpdatePolicyOperationResponse struct {
 }
 
 type DeleteWindowsQualityUpdatePolicyOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteWindowsQualityUpdatePolicyOperationOptions() DeleteWindowsQualityUpdatePolicyOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteWindowsQualityUpdatePolicyOperationOptions) ToHeaders() *client.He
 
 func (o DeleteWindowsQualityUpdatePolicyOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

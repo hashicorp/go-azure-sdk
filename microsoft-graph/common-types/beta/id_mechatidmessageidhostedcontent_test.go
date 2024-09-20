@@ -12,24 +12,24 @@ import (
 var _ resourceids.ResourceId = &MeChatIdMessageIdHostedContentId{}
 
 func TestNewMeChatIdMessageIdHostedContentID(t *testing.T) {
-	id := NewMeChatIdMessageIdHostedContentID("chatIdValue", "chatMessageIdValue", "chatMessageHostedContentIdValue")
+	id := NewMeChatIdMessageIdHostedContentID("chatId", "chatMessageId", "chatMessageHostedContentId")
 
-	if id.ChatId != "chatIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ChatId'", id.ChatId, "chatIdValue")
+	if id.ChatId != "chatId" {
+		t.Fatalf("Expected %q but got %q for Segment 'ChatId'", id.ChatId, "chatId")
 	}
 
-	if id.ChatMessageId != "chatMessageIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ChatMessageId'", id.ChatMessageId, "chatMessageIdValue")
+	if id.ChatMessageId != "chatMessageId" {
+		t.Fatalf("Expected %q but got %q for Segment 'ChatMessageId'", id.ChatMessageId, "chatMessageId")
 	}
 
-	if id.ChatMessageHostedContentId != "chatMessageHostedContentIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ChatMessageHostedContentId'", id.ChatMessageHostedContentId, "chatMessageHostedContentIdValue")
+	if id.ChatMessageHostedContentId != "chatMessageHostedContentId" {
+		t.Fatalf("Expected %q but got %q for Segment 'ChatMessageHostedContentId'", id.ChatMessageHostedContentId, "chatMessageHostedContentId")
 	}
 }
 
 func TestFormatMeChatIdMessageIdHostedContentID(t *testing.T) {
-	actual := NewMeChatIdMessageIdHostedContentID("chatIdValue", "chatMessageIdValue", "chatMessageHostedContentIdValue").ID()
-	expected := "/me/chats/chatIdValue/messages/chatMessageIdValue/hostedContents/chatMessageHostedContentIdValue"
+	actual := NewMeChatIdMessageIdHostedContentID("chatId", "chatMessageId", "chatMessageHostedContentId").ID()
+	expected := "/me/chats/chatId/messages/chatMessageId/hostedContents/chatMessageHostedContentId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -58,36 +58,36 @@ func TestParseMeChatIdMessageIdHostedContentID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/me/chats/chatIdValue",
+			Input: "/me/chats/chatId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/me/chats/chatIdValue/messages",
+			Input: "/me/chats/chatId/messages",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/me/chats/chatIdValue/messages/chatMessageIdValue",
+			Input: "/me/chats/chatId/messages/chatMessageId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/me/chats/chatIdValue/messages/chatMessageIdValue/hostedContents",
+			Input: "/me/chats/chatId/messages/chatMessageId/hostedContents",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/me/chats/chatIdValue/messages/chatMessageIdValue/hostedContents/chatMessageHostedContentIdValue",
+			Input: "/me/chats/chatId/messages/chatMessageId/hostedContents/chatMessageHostedContentId",
 			Expected: &MeChatIdMessageIdHostedContentId{
-				ChatId:                     "chatIdValue",
-				ChatMessageId:              "chatMessageIdValue",
-				ChatMessageHostedContentId: "chatMessageHostedContentIdValue",
+				ChatId:                     "chatId",
+				ChatMessageId:              "chatMessageId",
+				ChatMessageHostedContentId: "chatMessageHostedContentId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/chats/chatIdValue/messages/chatMessageIdValue/hostedContents/chatMessageHostedContentIdValue/extra",
+			Input: "/me/chats/chatId/messages/chatMessageId/hostedContents/chatMessageHostedContentId/extra",
 			Error: true,
 		},
 	}
@@ -154,70 +154,70 @@ func TestParseMeChatIdMessageIdHostedContentIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/me/chats/chatIdValue",
+			Input: "/me/chats/chatId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/cHaTs/cHaTiDvAlUe",
+			Input: "/mE/cHaTs/cHaTiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/me/chats/chatIdValue/messages",
+			Input: "/me/chats/chatId/messages",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/cHaTs/cHaTiDvAlUe/mEsSaGeS",
+			Input: "/mE/cHaTs/cHaTiD/mEsSaGeS",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/me/chats/chatIdValue/messages/chatMessageIdValue",
+			Input: "/me/chats/chatId/messages/chatMessageId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/cHaTs/cHaTiDvAlUe/mEsSaGeS/cHaTmEsSaGeIdVaLuE",
+			Input: "/mE/cHaTs/cHaTiD/mEsSaGeS/cHaTmEsSaGeId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/me/chats/chatIdValue/messages/chatMessageIdValue/hostedContents",
+			Input: "/me/chats/chatId/messages/chatMessageId/hostedContents",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/cHaTs/cHaTiDvAlUe/mEsSaGeS/cHaTmEsSaGeIdVaLuE/hOsTeDcOnTeNtS",
+			Input: "/mE/cHaTs/cHaTiD/mEsSaGeS/cHaTmEsSaGeId/hOsTeDcOnTeNtS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/me/chats/chatIdValue/messages/chatMessageIdValue/hostedContents/chatMessageHostedContentIdValue",
+			Input: "/me/chats/chatId/messages/chatMessageId/hostedContents/chatMessageHostedContentId",
 			Expected: &MeChatIdMessageIdHostedContentId{
-				ChatId:                     "chatIdValue",
-				ChatMessageId:              "chatMessageIdValue",
-				ChatMessageHostedContentId: "chatMessageHostedContentIdValue",
+				ChatId:                     "chatId",
+				ChatMessageId:              "chatMessageId",
+				ChatMessageHostedContentId: "chatMessageHostedContentId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/chats/chatIdValue/messages/chatMessageIdValue/hostedContents/chatMessageHostedContentIdValue/extra",
+			Input: "/me/chats/chatId/messages/chatMessageId/hostedContents/chatMessageHostedContentId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/cHaTs/cHaTiDvAlUe/mEsSaGeS/cHaTmEsSaGeIdVaLuE/hOsTeDcOnTeNtS/cHaTmEsSaGeHoStEdCoNtEnTiDvAlUe",
+			Input: "/mE/cHaTs/cHaTiD/mEsSaGeS/cHaTmEsSaGeId/hOsTeDcOnTeNtS/cHaTmEsSaGeHoStEdCoNtEnTiD",
 			Expected: &MeChatIdMessageIdHostedContentId{
-				ChatId:                     "cHaTiDvAlUe",
-				ChatMessageId:              "cHaTmEsSaGeIdVaLuE",
-				ChatMessageHostedContentId: "cHaTmEsSaGeHoStEdCoNtEnTiDvAlUe",
+				ChatId:                     "cHaTiD",
+				ChatMessageId:              "cHaTmEsSaGeId",
+				ChatMessageHostedContentId: "cHaTmEsSaGeHoStEdCoNtEnTiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/mE/cHaTs/cHaTiDvAlUe/mEsSaGeS/cHaTmEsSaGeIdVaLuE/hOsTeDcOnTeNtS/cHaTmEsSaGeHoStEdCoNtEnTiDvAlUe/extra",
+			Input: "/mE/cHaTs/cHaTiD/mEsSaGeS/cHaTmEsSaGeId/hOsTeDcOnTeNtS/cHaTmEsSaGeHoStEdCoNtEnTiD/extra",
 			Error: true,
 		},
 	}

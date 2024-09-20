@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &ReportUserInsightMonthlyAuthenticationId{}
 
 func TestNewReportUserInsightMonthlyAuthenticationID(t *testing.T) {
-	id := NewReportUserInsightMonthlyAuthenticationID("authenticationsMetricIdValue")
+	id := NewReportUserInsightMonthlyAuthenticationID("authenticationsMetricId")
 
-	if id.AuthenticationsMetricId != "authenticationsMetricIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'AuthenticationsMetricId'", id.AuthenticationsMetricId, "authenticationsMetricIdValue")
+	if id.AuthenticationsMetricId != "authenticationsMetricId" {
+		t.Fatalf("Expected %q but got %q for Segment 'AuthenticationsMetricId'", id.AuthenticationsMetricId, "authenticationsMetricId")
 	}
 }
 
 func TestFormatReportUserInsightMonthlyAuthenticationID(t *testing.T) {
-	actual := NewReportUserInsightMonthlyAuthenticationID("authenticationsMetricIdValue").ID()
-	expected := "/reports/userInsights/monthly/authentications/authenticationsMetricIdValue"
+	actual := NewReportUserInsightMonthlyAuthenticationID("authenticationsMetricId").ID()
+	expected := "/reports/userInsights/monthly/authentications/authenticationsMetricId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -60,14 +60,14 @@ func TestParseReportUserInsightMonthlyAuthenticationID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/reports/userInsights/monthly/authentications/authenticationsMetricIdValue",
+			Input: "/reports/userInsights/monthly/authentications/authenticationsMetricId",
 			Expected: &ReportUserInsightMonthlyAuthenticationId{
-				AuthenticationsMetricId: "authenticationsMetricIdValue",
+				AuthenticationsMetricId: "authenticationsMetricId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/reports/userInsights/monthly/authentications/authenticationsMetricIdValue/extra",
+			Input: "/reports/userInsights/monthly/authentications/authenticationsMetricId/extra",
 			Error: true,
 		},
 	}
@@ -146,26 +146,26 @@ func TestParseReportUserInsightMonthlyAuthenticationIDInsensitively(t *testing.T
 		},
 		{
 			// Valid URI
-			Input: "/reports/userInsights/monthly/authentications/authenticationsMetricIdValue",
+			Input: "/reports/userInsights/monthly/authentications/authenticationsMetricId",
 			Expected: &ReportUserInsightMonthlyAuthenticationId{
-				AuthenticationsMetricId: "authenticationsMetricIdValue",
+				AuthenticationsMetricId: "authenticationsMetricId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/reports/userInsights/monthly/authentications/authenticationsMetricIdValue/extra",
+			Input: "/reports/userInsights/monthly/authentications/authenticationsMetricId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/rEpOrTs/uSeRiNsIgHtS/mOnThLy/aUtHeNtIcAtIoNs/aUtHeNtIcAtIoNsMeTrIcIdVaLuE",
+			Input: "/rEpOrTs/uSeRiNsIgHtS/mOnThLy/aUtHeNtIcAtIoNs/aUtHeNtIcAtIoNsMeTrIcId",
 			Expected: &ReportUserInsightMonthlyAuthenticationId{
-				AuthenticationsMetricId: "aUtHeNtIcAtIoNsMeTrIcIdVaLuE",
+				AuthenticationsMetricId: "aUtHeNtIcAtIoNsMeTrIcId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/rEpOrTs/uSeRiNsIgHtS/mOnThLy/aUtHeNtIcAtIoNs/aUtHeNtIcAtIoNsMeTrIcIdVaLuE/extra",
+			Input: "/rEpOrTs/uSeRiNsIgHtS/mOnThLy/aUtHeNtIcAtIoNs/aUtHeNtIcAtIoNsMeTrIcId/extra",
 			Error: true,
 		},
 	}

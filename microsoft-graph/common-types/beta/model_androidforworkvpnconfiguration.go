@@ -174,19 +174,53 @@ func (s AndroidForWorkVpnConfiguration) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &AndroidForWorkVpnConfiguration{}
 
 func (s *AndroidForWorkVpnConfiguration) UnmarshalJSON(bytes []byte) error {
-	type alias AndroidForWorkVpnConfiguration
-	var decoded alias
+
+	var decoded struct {
+		AuthenticationMethod                        *VpnAuthenticationMethod                     `json:"authenticationMethod,omitempty"`
+		ConnectionName                              *string                                      `json:"connectionName,omitempty"`
+		ConnectionType                              *AndroidForWorkVpnConnectionType             `json:"connectionType,omitempty"`
+		CustomData                                  *[]KeyValue                                  `json:"customData,omitempty"`
+		CustomKeyValueData                          *[]KeyValuePair                              `json:"customKeyValueData,omitempty"`
+		Fingerprint                                 nullable.Type[string]                        `json:"fingerprint,omitempty"`
+		Realm                                       nullable.Type[string]                        `json:"realm,omitempty"`
+		Role                                        nullable.Type[string]                        `json:"role,omitempty"`
+		Servers                                     *[]VpnServer                                 `json:"servers,omitempty"`
+		Assignments                                 *[]DeviceConfigurationAssignment             `json:"assignments,omitempty"`
+		CreatedDateTime                             *string                                      `json:"createdDateTime,omitempty"`
+		Description                                 nullable.Type[string]                        `json:"description,omitempty"`
+		DeviceManagementApplicabilityRuleDeviceMode *DeviceManagementApplicabilityRuleDeviceMode `json:"deviceManagementApplicabilityRuleDeviceMode,omitempty"`
+		DeviceManagementApplicabilityRuleOsEdition  *DeviceManagementApplicabilityRuleOsEdition  `json:"deviceManagementApplicabilityRuleOsEdition,omitempty"`
+		DeviceManagementApplicabilityRuleOsVersion  *DeviceManagementApplicabilityRuleOsVersion  `json:"deviceManagementApplicabilityRuleOsVersion,omitempty"`
+		DeviceSettingStateSummaries                 *[]SettingStateDeviceSummary                 `json:"deviceSettingStateSummaries,omitempty"`
+		DeviceStatusOverview                        *DeviceConfigurationDeviceOverview           `json:"deviceStatusOverview,omitempty"`
+		DeviceStatuses                              *[]DeviceConfigurationDeviceStatus           `json:"deviceStatuses,omitempty"`
+		DisplayName                                 *string                                      `json:"displayName,omitempty"`
+		GroupAssignments                            *[]DeviceConfigurationGroupAssignment        `json:"groupAssignments,omitempty"`
+		LastModifiedDateTime                        *string                                      `json:"lastModifiedDateTime,omitempty"`
+		RoleScopeTagIds                             *[]string                                    `json:"roleScopeTagIds,omitempty"`
+		SupportsScopeTags                           *bool                                        `json:"supportsScopeTags,omitempty"`
+		UserStatusOverview                          *DeviceConfigurationUserOverview             `json:"userStatusOverview,omitempty"`
+		UserStatuses                                *[]DeviceConfigurationUserStatus             `json:"userStatuses,omitempty"`
+		Version                                     *int64                                       `json:"version,omitempty"`
+		Id                                          *string                                      `json:"id,omitempty"`
+		ODataId                                     *string                                      `json:"@odata.id,omitempty"`
+		ODataType                                   *string                                      `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into AndroidForWorkVpnConfiguration: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
-	s.Assignments = decoded.Assignments
 	s.AuthenticationMethod = decoded.AuthenticationMethod
 	s.ConnectionName = decoded.ConnectionName
 	s.ConnectionType = decoded.ConnectionType
-	s.CreatedDateTime = decoded.CreatedDateTime
 	s.CustomData = decoded.CustomData
 	s.CustomKeyValueData = decoded.CustomKeyValueData
+	s.Fingerprint = decoded.Fingerprint
+	s.Realm = decoded.Realm
+	s.Role = decoded.Role
+	s.Servers = decoded.Servers
+	s.Assignments = decoded.Assignments
+	s.CreatedDateTime = decoded.CreatedDateTime
 	s.Description = decoded.Description
 	s.DeviceManagementApplicabilityRuleDeviceMode = decoded.DeviceManagementApplicabilityRuleDeviceMode
 	s.DeviceManagementApplicabilityRuleOsEdition = decoded.DeviceManagementApplicabilityRuleOsEdition
@@ -195,16 +229,12 @@ func (s *AndroidForWorkVpnConfiguration) UnmarshalJSON(bytes []byte) error {
 	s.DeviceStatusOverview = decoded.DeviceStatusOverview
 	s.DeviceStatuses = decoded.DeviceStatuses
 	s.DisplayName = decoded.DisplayName
-	s.Fingerprint = decoded.Fingerprint
 	s.GroupAssignments = decoded.GroupAssignments
 	s.Id = decoded.Id
 	s.LastModifiedDateTime = decoded.LastModifiedDateTime
 	s.ODataId = decoded.ODataId
 	s.ODataType = decoded.ODataType
-	s.Realm = decoded.Realm
-	s.Role = decoded.Role
 	s.RoleScopeTagIds = decoded.RoleScopeTagIds
-	s.Servers = decoded.Servers
 	s.SupportsScopeTags = decoded.SupportsScopeTags
 	s.UserStatusOverview = decoded.UserStatusOverview
 	s.UserStatuses = decoded.UserStatuses
@@ -222,5 +252,6 @@ func (s *AndroidForWorkVpnConfiguration) UnmarshalJSON(bytes []byte) error {
 		}
 		s.IdentityCertificate = &impl
 	}
+
 	return nil
 }

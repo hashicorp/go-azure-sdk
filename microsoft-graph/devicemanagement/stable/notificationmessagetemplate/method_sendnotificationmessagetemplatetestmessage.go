@@ -18,16 +18,45 @@ type SendNotificationMessageTemplateTestMessageOperationResponse struct {
 	OData        *odata.OData
 }
 
+type SendNotificationMessageTemplateTestMessageOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultSendNotificationMessageTemplateTestMessageOperationOptions() SendNotificationMessageTemplateTestMessageOperationOptions {
+	return SendNotificationMessageTemplateTestMessageOperationOptions{}
+}
+
+func (o SendNotificationMessageTemplateTestMessageOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o SendNotificationMessageTemplateTestMessageOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o SendNotificationMessageTemplateTestMessageOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // SendNotificationMessageTemplateTestMessage - Invoke action sendTestMessage. Sends test message using the specified
 // notificationMessageTemplate in the default locale
-func (c NotificationMessageTemplateClient) SendNotificationMessageTemplateTestMessage(ctx context.Context, id stable.DeviceManagementNotificationMessageTemplateId) (result SendNotificationMessageTemplateTestMessageOperationResponse, err error) {
+func (c NotificationMessageTemplateClient) SendNotificationMessageTemplateTestMessage(ctx context.Context, id stable.DeviceManagementNotificationMessageTemplateId, options SendNotificationMessageTemplateTestMessageOperationOptions) (result SendNotificationMessageTemplateTestMessageOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/sendTestMessage", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/sendTestMessage", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

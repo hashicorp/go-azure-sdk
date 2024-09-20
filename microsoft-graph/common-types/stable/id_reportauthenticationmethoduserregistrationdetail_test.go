@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &ReportAuthenticationMethodUserRegistrationDetailId{}
 
 func TestNewReportAuthenticationMethodUserRegistrationDetailID(t *testing.T) {
-	id := NewReportAuthenticationMethodUserRegistrationDetailID("userRegistrationDetailsIdValue")
+	id := NewReportAuthenticationMethodUserRegistrationDetailID("userRegistrationDetailsId")
 
-	if id.UserRegistrationDetailsId != "userRegistrationDetailsIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'UserRegistrationDetailsId'", id.UserRegistrationDetailsId, "userRegistrationDetailsIdValue")
+	if id.UserRegistrationDetailsId != "userRegistrationDetailsId" {
+		t.Fatalf("Expected %q but got %q for Segment 'UserRegistrationDetailsId'", id.UserRegistrationDetailsId, "userRegistrationDetailsId")
 	}
 }
 
 func TestFormatReportAuthenticationMethodUserRegistrationDetailID(t *testing.T) {
-	actual := NewReportAuthenticationMethodUserRegistrationDetailID("userRegistrationDetailsIdValue").ID()
-	expected := "/reports/authenticationMethods/userRegistrationDetails/userRegistrationDetailsIdValue"
+	actual := NewReportAuthenticationMethodUserRegistrationDetailID("userRegistrationDetailsId").ID()
+	expected := "/reports/authenticationMethods/userRegistrationDetails/userRegistrationDetailsId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -55,14 +55,14 @@ func TestParseReportAuthenticationMethodUserRegistrationDetailID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/reports/authenticationMethods/userRegistrationDetails/userRegistrationDetailsIdValue",
+			Input: "/reports/authenticationMethods/userRegistrationDetails/userRegistrationDetailsId",
 			Expected: &ReportAuthenticationMethodUserRegistrationDetailId{
-				UserRegistrationDetailsId: "userRegistrationDetailsIdValue",
+				UserRegistrationDetailsId: "userRegistrationDetailsId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/reports/authenticationMethods/userRegistrationDetails/userRegistrationDetailsIdValue/extra",
+			Input: "/reports/authenticationMethods/userRegistrationDetails/userRegistrationDetailsId/extra",
 			Error: true,
 		},
 	}
@@ -131,26 +131,26 @@ func TestParseReportAuthenticationMethodUserRegistrationDetailIDInsensitively(t 
 		},
 		{
 			// Valid URI
-			Input: "/reports/authenticationMethods/userRegistrationDetails/userRegistrationDetailsIdValue",
+			Input: "/reports/authenticationMethods/userRegistrationDetails/userRegistrationDetailsId",
 			Expected: &ReportAuthenticationMethodUserRegistrationDetailId{
-				UserRegistrationDetailsId: "userRegistrationDetailsIdValue",
+				UserRegistrationDetailsId: "userRegistrationDetailsId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/reports/authenticationMethods/userRegistrationDetails/userRegistrationDetailsIdValue/extra",
+			Input: "/reports/authenticationMethods/userRegistrationDetails/userRegistrationDetailsId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/rEpOrTs/aUtHeNtIcAtIoNmEtHoDs/uSeRrEgIsTrAtIoNdEtAiLs/uSeRrEgIsTrAtIoNdEtAiLsIdVaLuE",
+			Input: "/rEpOrTs/aUtHeNtIcAtIoNmEtHoDs/uSeRrEgIsTrAtIoNdEtAiLs/uSeRrEgIsTrAtIoNdEtAiLsId",
 			Expected: &ReportAuthenticationMethodUserRegistrationDetailId{
-				UserRegistrationDetailsId: "uSeRrEgIsTrAtIoNdEtAiLsIdVaLuE",
+				UserRegistrationDetailsId: "uSeRrEgIsTrAtIoNdEtAiLsId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/rEpOrTs/aUtHeNtIcAtIoNmEtHoDs/uSeRrEgIsTrAtIoNdEtAiLs/uSeRrEgIsTrAtIoNdEtAiLsIdVaLuE/extra",
+			Input: "/rEpOrTs/aUtHeNtIcAtIoNmEtHoDs/uSeRrEgIsTrAtIoNdEtAiLs/uSeRrEgIsTrAtIoNdEtAiLsId/extra",
 			Error: true,
 		},
 	}

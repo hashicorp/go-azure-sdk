@@ -19,16 +19,45 @@ type CreateCustomAuthenticationExtensionOperationResponse struct {
 	Model        stable.CustomAuthenticationExtension
 }
 
+type CreateCustomAuthenticationExtensionOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateCustomAuthenticationExtensionOperationOptions() CreateCustomAuthenticationExtensionOperationOptions {
+	return CreateCustomAuthenticationExtensionOperationOptions{}
+}
+
+func (o CreateCustomAuthenticationExtensionOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateCustomAuthenticationExtensionOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateCustomAuthenticationExtensionOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateCustomAuthenticationExtension - Create customAuthenticationExtension. Create a new
 // customAuthenticationExtension object. The following derived types are currently supported.
-func (c CustomAuthenticationExtensionClient) CreateCustomAuthenticationExtension(ctx context.Context, input stable.CustomAuthenticationExtension) (result CreateCustomAuthenticationExtensionOperationResponse, err error) {
+func (c CustomAuthenticationExtensionClient) CreateCustomAuthenticationExtension(ctx context.Context, input stable.CustomAuthenticationExtension, options CreateCustomAuthenticationExtensionOperationOptions) (result CreateCustomAuthenticationExtensionOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/identity/customAuthenticationExtensions",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/identity/customAuthenticationExtensions",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

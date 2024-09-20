@@ -25,14 +25,15 @@ type ListEntitlementManagementAccessPackageAssignmentApprovalStepsCompleteResult
 }
 
 type ListEntitlementManagementAccessPackageAssignmentApprovalStepsOperationOptions struct {
-	Count   *bool
-	Expand  *odata.Expand
-	Filter  *string
-	OrderBy *odata.OrderBy
-	Search  *string
-	Select  *[]string
-	Skip    *int64
-	Top     *int64
+	Count    *bool
+	Expand   *odata.Expand
+	Filter   *string
+	Metadata *odata.Metadata
+	OrderBy  *odata.OrderBy
+	Search   *string
+	Select   *[]string
+	Skip     *int64
+	Top      *int64
 }
 
 func DefaultListEntitlementManagementAccessPackageAssignmentApprovalStepsOperationOptions() ListEntitlementManagementAccessPackageAssignmentApprovalStepsOperationOptions {
@@ -55,6 +56,9 @@ func (o ListEntitlementManagementAccessPackageAssignmentApprovalStepsOperationOp
 	}
 	if o.Filter != nil {
 		out.Filter = *o.Filter
+	}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
 	}
 	if o.OrderBy != nil {
 		out.OrderBy = *o.OrderBy
@@ -93,7 +97,7 @@ func (p *ListEntitlementManagementAccessPackageAssignmentApprovalStepsCustomPage
 }
 
 // ListEntitlementManagementAccessPackageAssignmentApprovalSteps - List approvalSteps. List the approvalStep objects
-// associated with an approval. This API request is made by an approver in the following scenarios:
+// associated with an approval. This API request is made by an approver in the following scenarios
 func (c EntitlementManagementAccessPackageAssignmentApprovalStepClient) ListEntitlementManagementAccessPackageAssignmentApprovalSteps(ctx context.Context, id beta.IdentityGovernanceEntitlementManagementAccessPackageAssignmentApprovalId, options ListEntitlementManagementAccessPackageAssignmentApprovalStepsOperationOptions) (result ListEntitlementManagementAccessPackageAssignmentApprovalStepsOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",

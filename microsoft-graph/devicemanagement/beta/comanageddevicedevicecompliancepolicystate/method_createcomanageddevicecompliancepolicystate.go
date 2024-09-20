@@ -19,16 +19,45 @@ type CreateComanagedDeviceCompliancePolicyStateOperationResponse struct {
 	Model        *beta.DeviceCompliancePolicyState
 }
 
+type CreateComanagedDeviceCompliancePolicyStateOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateComanagedDeviceCompliancePolicyStateOperationOptions() CreateComanagedDeviceCompliancePolicyStateOperationOptions {
+	return CreateComanagedDeviceCompliancePolicyStateOperationOptions{}
+}
+
+func (o CreateComanagedDeviceCompliancePolicyStateOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateComanagedDeviceCompliancePolicyStateOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateComanagedDeviceCompliancePolicyStateOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateComanagedDeviceCompliancePolicyState - Create new navigation property to deviceCompliancePolicyStates for
 // deviceManagement
-func (c ComanagedDeviceDeviceCompliancePolicyStateClient) CreateComanagedDeviceCompliancePolicyState(ctx context.Context, id beta.DeviceManagementComanagedDeviceId, input beta.DeviceCompliancePolicyState) (result CreateComanagedDeviceCompliancePolicyStateOperationResponse, err error) {
+func (c ComanagedDeviceDeviceCompliancePolicyStateClient) CreateComanagedDeviceCompliancePolicyState(ctx context.Context, id beta.DeviceManagementComanagedDeviceId, input beta.DeviceCompliancePolicyState, options CreateComanagedDeviceCompliancePolicyStateOperationOptions) (result CreateComanagedDeviceCompliancePolicyStateOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/deviceCompliancePolicyStates", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/deviceCompliancePolicyStates", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

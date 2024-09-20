@@ -122,10 +122,18 @@ func (s BaseAwsIdentityImpl) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &BaseAwsIdentityImpl{}
 
 func (s *BaseAwsIdentityImpl) UnmarshalJSON(bytes []byte) error {
-	type alias BaseAwsIdentityImpl
-	var decoded alias
+
+	var decoded struct {
+		AuthorizationSystem *AuthorizationSystem              `json:"authorizationSystem,omitempty"`
+		DisplayName         nullable.Type[string]             `json:"displayName,omitempty"`
+		ExternalId          *string                           `json:"externalId,omitempty"`
+		Source              AuthorizationSystemIdentitySource `json:"source"`
+		Id                  *string                           `json:"id,omitempty"`
+		ODataId             *string                           `json:"@odata.id,omitempty"`
+		ODataType           *string                           `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into BaseAwsIdentityImpl: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.DisplayName = decoded.DisplayName
@@ -154,6 +162,7 @@ func (s *BaseAwsIdentityImpl) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Source = impl
 	}
+
 	return nil
 }
 
@@ -167,9 +176,9 @@ func UnmarshalAwsIdentityImplementation(input []byte) (AwsIdentity, error) {
 		return nil, fmt.Errorf("unmarshaling AwsIdentity into map[string]interface: %+v", err)
 	}
 
-	value, ok := temp["@odata.type"].(string)
-	if !ok {
-		return nil, nil
+	var value string
+	if v, ok := temp["@odata.type"]; ok {
+		value = fmt.Sprintf("%v", v)
 	}
 
 	if strings.EqualFold(value, "#microsoft.graph.awsAccessKey") {

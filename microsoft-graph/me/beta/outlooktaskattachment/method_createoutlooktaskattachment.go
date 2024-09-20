@@ -20,16 +20,45 @@ type CreateOutlookTaskAttachmentOperationResponse struct {
 	Model        beta.Attachment
 }
 
+type CreateOutlookTaskAttachmentOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateOutlookTaskAttachmentOperationOptions() CreateOutlookTaskAttachmentOperationOptions {
+	return CreateOutlookTaskAttachmentOperationOptions{}
+}
+
+func (o CreateOutlookTaskAttachmentOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateOutlookTaskAttachmentOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateOutlookTaskAttachmentOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateOutlookTaskAttachment - Create attachment (deprecated). Use this API to add an attachment to an outlookTask.
 // The attachment can be a file (of fileAttachment type) or Outlook item (itemAttachment type).
-func (c OutlookTaskAttachmentClient) CreateOutlookTaskAttachment(ctx context.Context, id beta.MeOutlookTaskId, input beta.Attachment) (result CreateOutlookTaskAttachmentOperationResponse, err error) {
+func (c OutlookTaskAttachmentClient) CreateOutlookTaskAttachment(ctx context.Context, id beta.MeOutlookTaskId, input beta.Attachment, options CreateOutlookTaskAttachmentOperationOptions) (result CreateOutlookTaskAttachmentOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/attachments", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/attachments", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

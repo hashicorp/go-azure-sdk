@@ -17,15 +17,44 @@ type UpdateVerificationDnsRecordOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateVerificationDnsRecordOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateVerificationDnsRecordOperationOptions() UpdateVerificationDnsRecordOperationOptions {
+	return UpdateVerificationDnsRecordOperationOptions{}
+}
+
+func (o UpdateVerificationDnsRecordOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateVerificationDnsRecordOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateVerificationDnsRecordOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateVerificationDnsRecord - Update the navigation property verificationDnsRecords in domains
-func (c VerificationDnsRecordClient) UpdateVerificationDnsRecord(ctx context.Context, id stable.DomainIdVerificationDnsRecordId, input stable.DomainDnsRecord) (result UpdateVerificationDnsRecordOperationResponse, err error) {
+func (c VerificationDnsRecordClient) UpdateVerificationDnsRecord(ctx context.Context, id stable.DomainIdVerificationDnsRecordId, input stable.DomainDnsRecord, options UpdateVerificationDnsRecordOperationOptions) (result UpdateVerificationDnsRecordOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -17,15 +17,44 @@ type UpdateRoleDefinitionRoleAssignmentOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateRoleDefinitionRoleAssignmentOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateRoleDefinitionRoleAssignmentOperationOptions() UpdateRoleDefinitionRoleAssignmentOperationOptions {
+	return UpdateRoleDefinitionRoleAssignmentOperationOptions{}
+}
+
+func (o UpdateRoleDefinitionRoleAssignmentOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateRoleDefinitionRoleAssignmentOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateRoleDefinitionRoleAssignmentOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateRoleDefinitionRoleAssignment - Update the navigation property roleAssignments in deviceManagement
-func (c RoleDefinitionRoleAssignmentClient) UpdateRoleDefinitionRoleAssignment(ctx context.Context, id beta.DeviceManagementRoleDefinitionIdRoleAssignmentId, input beta.RoleAssignment) (result UpdateRoleDefinitionRoleAssignmentOperationResponse, err error) {
+func (c RoleDefinitionRoleAssignmentClient) UpdateRoleDefinitionRoleAssignment(ctx context.Context, id beta.DeviceManagementRoleDefinitionIdRoleAssignmentId, input beta.RoleAssignment, options UpdateRoleDefinitionRoleAssignmentOperationOptions) (result UpdateRoleDefinitionRoleAssignmentOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

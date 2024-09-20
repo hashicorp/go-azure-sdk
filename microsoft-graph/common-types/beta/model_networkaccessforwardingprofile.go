@@ -104,22 +104,36 @@ func (s NetworkaccessForwardingProfile) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &NetworkaccessForwardingProfile{}
 
 func (s *NetworkaccessForwardingProfile) UnmarshalJSON(bytes []byte) error {
-	type alias NetworkaccessForwardingProfile
-	var decoded alias
+
+	var decoded struct {
+		Associations          *[]NetworkaccessAssociation         `json:"associations,omitempty"`
+		Priority              *int64                              `json:"priority,omitempty"`
+		ServicePrincipal      *ServicePrincipal                   `json:"servicePrincipal,omitempty"`
+		TrafficForwardingType *NetworkaccessTrafficForwardingType `json:"trafficForwardingType,omitempty"`
+		Description           nullable.Type[string]               `json:"description,omitempty"`
+		LastModifiedDateTime  *string                             `json:"lastModifiedDateTime,omitempty"`
+		Name                  *string                             `json:"name,omitempty"`
+		Policies              *[]NetworkaccessPolicyLink          `json:"policies,omitempty"`
+		State                 *NetworkaccessStatus                `json:"state,omitempty"`
+		Version               *string                             `json:"version,omitempty"`
+		Id                    *string                             `json:"id,omitempty"`
+		ODataId               *string                             `json:"@odata.id,omitempty"`
+		ODataType             *string                             `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into NetworkaccessForwardingProfile: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
+	s.Priority = decoded.Priority
+	s.ServicePrincipal = decoded.ServicePrincipal
+	s.TrafficForwardingType = decoded.TrafficForwardingType
 	s.Description = decoded.Description
 	s.Id = decoded.Id
 	s.LastModifiedDateTime = decoded.LastModifiedDateTime
 	s.Name = decoded.Name
 	s.ODataId = decoded.ODataId
 	s.ODataType = decoded.ODataType
-	s.Priority = decoded.Priority
-	s.ServicePrincipal = decoded.ServicePrincipal
 	s.State = decoded.State
-	s.TrafficForwardingType = decoded.TrafficForwardingType
 	s.Version = decoded.Version
 
 	var temp map[string]json.RawMessage
@@ -160,5 +174,6 @@ func (s *NetworkaccessForwardingProfile) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Policies = &output
 	}
+
 	return nil
 }

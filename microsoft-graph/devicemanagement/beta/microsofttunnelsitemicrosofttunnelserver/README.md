@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/microsofttunnelsitemicrosofttunnelserver` Documentation
 
-The `microsofttunnelsitemicrosofttunnelserver` SDK allows for interaction with the Azure Resource Manager Service `devicemanagement` (API Version `beta`).
+The `microsofttunnelsitemicrosofttunnelserver` SDK allows for interaction with Microsoft Graph `devicemanagement` (API Version `beta`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -15,7 +15,7 @@ import "github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/
 ### Client Initialization
 
 ```go
-client := microsofttunnelsitemicrosofttunnelserver.NewMicrosoftTunnelSiteMicrosoftTunnelServerClientWithBaseURI("https://management.azure.com")
+client := microsofttunnelsitemicrosofttunnelserver.NewMicrosoftTunnelSiteMicrosoftTunnelServerClientWithBaseURI("https://graph.microsoft.com")
 client.Client.Authorizer = authorizer
 ```
 
@@ -24,14 +24,14 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := microsofttunnelsitemicrosofttunnelserver.NewDeviceManagementMicrosoftTunnelSiteID("microsoftTunnelSiteIdValue")
+id := microsofttunnelsitemicrosofttunnelserver.NewDeviceManagementMicrosoftTunnelSiteID("microsoftTunnelSiteId")
 
 payload := microsofttunnelsitemicrosofttunnelserver.MicrosoftTunnelServer{
 	// ...
 }
 
 
-read, err := client.CreateMicrosoftTunnelSiteServer(ctx, id, payload)
+read, err := client.CreateMicrosoftTunnelSiteServer(ctx, id, payload, microsofttunnelsitemicrosofttunnelserver.DefaultCreateMicrosoftTunnelSiteServerOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -45,14 +45,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := microsofttunnelsitemicrosofttunnelserver.NewDeviceManagementMicrosoftTunnelSiteIdMicrosoftTunnelServerID("microsoftTunnelSiteIdValue", "microsoftTunnelServerIdValue")
+id := microsofttunnelsitemicrosofttunnelserver.NewDeviceManagementMicrosoftTunnelSiteIdMicrosoftTunnelServerID("microsoftTunnelSiteId", "microsoftTunnelServerId")
 
 payload := microsofttunnelsitemicrosofttunnelserver.CreateMicrosoftTunnelSiteServerGenerateServerLogCollectionRequestRequest{
 	// ...
 }
 
 
-read, err := client.CreateMicrosoftTunnelSiteServerGenerateServerLogCollectionRequest(ctx, id, payload)
+read, err := client.CreateMicrosoftTunnelSiteServerGenerateServerLogCollectionRequest(ctx, id, payload, microsofttunnelsitemicrosofttunnelserver.DefaultCreateMicrosoftTunnelSiteServerGenerateServerLogCollectionRequestOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -66,14 +66,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := microsofttunnelsitemicrosofttunnelserver.NewDeviceManagementMicrosoftTunnelSiteIdMicrosoftTunnelServerID("microsoftTunnelSiteIdValue", "microsoftTunnelServerIdValue")
+id := microsofttunnelsitemicrosofttunnelserver.NewDeviceManagementMicrosoftTunnelSiteIdMicrosoftTunnelServerID("microsoftTunnelSiteId", "microsoftTunnelServerId")
 
 payload := microsofttunnelsitemicrosofttunnelserver.CreateMicrosoftTunnelSiteServerLogCollectionRequestRequest{
 	// ...
 }
 
 
-read, err := client.CreateMicrosoftTunnelSiteServerLogCollectionRequest(ctx, id, payload)
+read, err := client.CreateMicrosoftTunnelSiteServerLogCollectionRequest(ctx, id, payload, microsofttunnelsitemicrosofttunnelserver.DefaultCreateMicrosoftTunnelSiteServerLogCollectionRequestOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -87,7 +87,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := microsofttunnelsitemicrosofttunnelserver.NewDeviceManagementMicrosoftTunnelSiteIdMicrosoftTunnelServerID("microsoftTunnelSiteIdValue", "microsoftTunnelServerIdValue")
+id := microsofttunnelsitemicrosofttunnelserver.NewDeviceManagementMicrosoftTunnelSiteIdMicrosoftTunnelServerID("microsoftTunnelSiteId", "microsoftTunnelServerId")
 
 read, err := client.DeleteMicrosoftTunnelSiteServer(ctx, id, microsofttunnelsitemicrosofttunnelserver.DefaultDeleteMicrosoftTunnelSiteServerOperationOptions())
 if err != nil {
@@ -103,7 +103,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := microsofttunnelsitemicrosofttunnelserver.NewDeviceManagementMicrosoftTunnelSiteIdMicrosoftTunnelServerID("microsoftTunnelSiteIdValue", "microsoftTunnelServerIdValue")
+id := microsofttunnelsitemicrosofttunnelserver.NewDeviceManagementMicrosoftTunnelSiteIdMicrosoftTunnelServerID("microsoftTunnelSiteId", "microsoftTunnelServerId")
 
 read, err := client.GetMicrosoftTunnelSiteServer(ctx, id, microsofttunnelsitemicrosofttunnelserver.DefaultGetMicrosoftTunnelSiteServerOperationOptions())
 if err != nil {
@@ -119,7 +119,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := microsofttunnelsitemicrosofttunnelserver.NewDeviceManagementMicrosoftTunnelSiteIdMicrosoftTunnelServerID("microsoftTunnelSiteIdValue", "microsoftTunnelServerIdValue")
+id := microsofttunnelsitemicrosofttunnelserver.NewDeviceManagementMicrosoftTunnelSiteIdMicrosoftTunnelServerID("microsoftTunnelSiteId", "microsoftTunnelServerId")
 
 payload := microsofttunnelsitemicrosofttunnelserver.GetMicrosoftTunnelSiteServerHealthMetricTimeSeriesRequest{
 	// ...
@@ -141,7 +141,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := microsofttunnelsitemicrosofttunnelserver.NewDeviceManagementMicrosoftTunnelSiteIdMicrosoftTunnelServerID("microsoftTunnelSiteIdValue", "microsoftTunnelServerIdValue")
+id := microsofttunnelsitemicrosofttunnelserver.NewDeviceManagementMicrosoftTunnelSiteIdMicrosoftTunnelServerID("microsoftTunnelSiteId", "microsoftTunnelServerId")
 
 payload := microsofttunnelsitemicrosofttunnelserver.GetMicrosoftTunnelSiteServerHealthMetricsRequest{
 	// ...
@@ -163,7 +163,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := microsofttunnelsitemicrosofttunnelserver.NewDeviceManagementMicrosoftTunnelSiteID("microsoftTunnelSiteIdValue")
+id := microsofttunnelsitemicrosofttunnelserver.NewDeviceManagementMicrosoftTunnelSiteID("microsoftTunnelSiteId")
 
 read, err := client.GetMicrosoftTunnelSiteServersCount(ctx, id, microsofttunnelsitemicrosofttunnelserver.DefaultGetMicrosoftTunnelSiteServersCountOperationOptions())
 if err != nil {
@@ -179,7 +179,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := microsofttunnelsitemicrosofttunnelserver.NewDeviceManagementMicrosoftTunnelSiteID("microsoftTunnelSiteIdValue")
+id := microsofttunnelsitemicrosofttunnelserver.NewDeviceManagementMicrosoftTunnelSiteID("microsoftTunnelSiteId")
 
 // alternatively `client.ListMicrosoftTunnelSiteServers(ctx, id, microsofttunnelsitemicrosofttunnelserver.DefaultListMicrosoftTunnelSiteServersOperationOptions())` can be used to do batched pagination
 items, err := client.ListMicrosoftTunnelSiteServersComplete(ctx, id, microsofttunnelsitemicrosofttunnelserver.DefaultListMicrosoftTunnelSiteServersOperationOptions())
@@ -196,14 +196,14 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := microsofttunnelsitemicrosofttunnelserver.NewDeviceManagementMicrosoftTunnelSiteIdMicrosoftTunnelServerID("microsoftTunnelSiteIdValue", "microsoftTunnelServerIdValue")
+id := microsofttunnelsitemicrosofttunnelserver.NewDeviceManagementMicrosoftTunnelSiteIdMicrosoftTunnelServerID("microsoftTunnelSiteId", "microsoftTunnelServerId")
 
 payload := microsofttunnelsitemicrosofttunnelserver.MicrosoftTunnelServer{
 	// ...
 }
 
 
-read, err := client.UpdateMicrosoftTunnelSiteServer(ctx, id, payload)
+read, err := client.UpdateMicrosoftTunnelSiteServer(ctx, id, payload, microsofttunnelsitemicrosofttunnelserver.DefaultUpdateMicrosoftTunnelSiteServerOperationOptions())
 if err != nil {
 	// handle the error
 }

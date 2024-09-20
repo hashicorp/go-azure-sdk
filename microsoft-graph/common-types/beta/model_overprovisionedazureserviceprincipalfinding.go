@@ -97,10 +97,19 @@ func (s OverprovisionedAzureServicePrincipalFinding) MarshalJSON() ([]byte, erro
 var _ json.Unmarshaler = &OverprovisionedAzureServicePrincipalFinding{}
 
 func (s *OverprovisionedAzureServicePrincipalFinding) UnmarshalJSON(bytes []byte) error {
-	type alias OverprovisionedAzureServicePrincipalFinding
-	var decoded alias
+
+	var decoded struct {
+		ActionSummary         *ActionSummary               `json:"actionSummary,omitempty"`
+		Identity              *AuthorizationSystemIdentity `json:"identity,omitempty"`
+		IdentityDetails       *IdentityDetails             `json:"identityDetails,omitempty"`
+		PermissionsCreepIndex *PermissionsCreepIndex       `json:"permissionsCreepIndex,omitempty"`
+		CreatedDateTime       *string                      `json:"createdDateTime,omitempty"`
+		Id                    *string                      `json:"id,omitempty"`
+		ODataId               *string                      `json:"@odata.id,omitempty"`
+		ODataType             *string                      `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into OverprovisionedAzureServicePrincipalFinding: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.ActionSummary = decoded.ActionSummary
@@ -123,5 +132,6 @@ func (s *OverprovisionedAzureServicePrincipalFinding) UnmarshalJSON(bytes []byte
 		}
 		s.Identity = &impl
 	}
+
 	return nil
 }

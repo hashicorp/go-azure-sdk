@@ -19,15 +19,44 @@ type CreateTeamChannelMessageHostedContentOperationResponse struct {
 	Model        *beta.ChatMessageHostedContent
 }
 
+type CreateTeamChannelMessageHostedContentOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateTeamChannelMessageHostedContentOperationOptions() CreateTeamChannelMessageHostedContentOperationOptions {
+	return CreateTeamChannelMessageHostedContentOperationOptions{}
+}
+
+func (o CreateTeamChannelMessageHostedContentOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateTeamChannelMessageHostedContentOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateTeamChannelMessageHostedContentOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateTeamChannelMessageHostedContent - Create new navigation property to hostedContents for groups
-func (c TeamChannelMessageHostedContentClient) CreateTeamChannelMessageHostedContent(ctx context.Context, id beta.GroupIdTeamChannelIdMessageId, input beta.ChatMessageHostedContent) (result CreateTeamChannelMessageHostedContentOperationResponse, err error) {
+func (c TeamChannelMessageHostedContentClient) CreateTeamChannelMessageHostedContent(ctx context.Context, id beta.GroupIdTeamChannelIdMessageId, input beta.ChatMessageHostedContent, options CreateTeamChannelMessageHostedContentOperationOptions) (result CreateTeamChannelMessageHostedContentOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/hostedContents", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/hostedContents", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -19,15 +19,44 @@ type CreateProfilePatentOperationResponse struct {
 	Model        *beta.ItemPatent
 }
 
+type CreateProfilePatentOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateProfilePatentOperationOptions() CreateProfilePatentOperationOptions {
+	return CreateProfilePatentOperationOptions{}
+}
+
+func (o CreateProfilePatentOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateProfilePatentOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateProfilePatentOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateProfilePatent - Create new navigation property to patents for users
-func (c ProfilePatentClient) CreateProfilePatent(ctx context.Context, id beta.UserId, input beta.ItemPatent) (result CreateProfilePatentOperationResponse, err error) {
+func (c ProfilePatentClient) CreateProfilePatent(ctx context.Context, id beta.UserId, input beta.ItemPatent, options CreateProfilePatentOperationOptions) (result CreateProfilePatentOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/profile/patents", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/profile/patents", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

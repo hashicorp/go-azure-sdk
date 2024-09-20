@@ -17,15 +17,44 @@ type UpdateVirtualEndpointGalleryImageOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateVirtualEndpointGalleryImageOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateVirtualEndpointGalleryImageOperationOptions() UpdateVirtualEndpointGalleryImageOperationOptions {
+	return UpdateVirtualEndpointGalleryImageOperationOptions{}
+}
+
+func (o UpdateVirtualEndpointGalleryImageOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateVirtualEndpointGalleryImageOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateVirtualEndpointGalleryImageOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateVirtualEndpointGalleryImage - Update the navigation property galleryImages in deviceManagement
-func (c VirtualEndpointGalleryImageClient) UpdateVirtualEndpointGalleryImage(ctx context.Context, id stable.DeviceManagementVirtualEndpointGalleryImageId, input stable.CloudPCGalleryImage) (result UpdateVirtualEndpointGalleryImageOperationResponse, err error) {
+func (c VirtualEndpointGalleryImageClient) UpdateVirtualEndpointGalleryImage(ctx context.Context, id stable.DeviceManagementVirtualEndpointGalleryImageId, input stable.CloudPCGalleryImage, options UpdateVirtualEndpointGalleryImageOperationOptions) (result UpdateVirtualEndpointGalleryImageOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &UserIdSecurityInformationProtectionSensitivityLabelId{}
 
 func TestNewUserIdSecurityInformationProtectionSensitivityLabelID(t *testing.T) {
-	id := NewUserIdSecurityInformationProtectionSensitivityLabelID("userIdValue", "sensitivityLabelIdValue")
+	id := NewUserIdSecurityInformationProtectionSensitivityLabelID("userId", "sensitivityLabelId")
 
-	if id.UserId != "userIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'UserId'", id.UserId, "userIdValue")
+	if id.UserId != "userId" {
+		t.Fatalf("Expected %q but got %q for Segment 'UserId'", id.UserId, "userId")
 	}
 
-	if id.SensitivityLabelId != "sensitivityLabelIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'SensitivityLabelId'", id.SensitivityLabelId, "sensitivityLabelIdValue")
+	if id.SensitivityLabelId != "sensitivityLabelId" {
+		t.Fatalf("Expected %q but got %q for Segment 'SensitivityLabelId'", id.SensitivityLabelId, "sensitivityLabelId")
 	}
 }
 
 func TestFormatUserIdSecurityInformationProtectionSensitivityLabelID(t *testing.T) {
-	actual := NewUserIdSecurityInformationProtectionSensitivityLabelID("userIdValue", "sensitivityLabelIdValue").ID()
-	expected := "/users/userIdValue/security/informationProtection/sensitivityLabels/sensitivityLabelIdValue"
+	actual := NewUserIdSecurityInformationProtectionSensitivityLabelID("userId", "sensitivityLabelId").ID()
+	expected := "/users/userId/security/informationProtection/sensitivityLabels/sensitivityLabelId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -49,35 +49,35 @@ func TestParseUserIdSecurityInformationProtectionSensitivityLabelID(t *testing.T
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue",
+			Input: "/users/userId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/security",
+			Input: "/users/userId/security",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/security/informationProtection",
+			Input: "/users/userId/security/informationProtection",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/security/informationProtection/sensitivityLabels",
+			Input: "/users/userId/security/informationProtection/sensitivityLabels",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/users/userIdValue/security/informationProtection/sensitivityLabels/sensitivityLabelIdValue",
+			Input: "/users/userId/security/informationProtection/sensitivityLabels/sensitivityLabelId",
 			Expected: &UserIdSecurityInformationProtectionSensitivityLabelId{
-				UserId:             "userIdValue",
-				SensitivityLabelId: "sensitivityLabelIdValue",
+				UserId:             "userId",
+				SensitivityLabelId: "sensitivityLabelId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/users/userIdValue/security/informationProtection/sensitivityLabels/sensitivityLabelIdValue/extra",
+			Input: "/users/userId/security/informationProtection/sensitivityLabels/sensitivityLabelId/extra",
 			Error: true,
 		},
 	}
@@ -130,68 +130,68 @@ func TestParseUserIdSecurityInformationProtectionSensitivityLabelIDInsensitively
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue",
+			Input: "/users/userId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe",
+			Input: "/uSeRs/uSeRiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/security",
+			Input: "/users/userId/security",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/sEcUrItY",
+			Input: "/uSeRs/uSeRiD/sEcUrItY",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/security/informationProtection",
+			Input: "/users/userId/security/informationProtection",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/sEcUrItY/iNfOrMaTiOnPrOtEcTiOn",
+			Input: "/uSeRs/uSeRiD/sEcUrItY/iNfOrMaTiOnPrOtEcTiOn",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/security/informationProtection/sensitivityLabels",
+			Input: "/users/userId/security/informationProtection/sensitivityLabels",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/sEcUrItY/iNfOrMaTiOnPrOtEcTiOn/sEnSiTiViTyLaBeLs",
+			Input: "/uSeRs/uSeRiD/sEcUrItY/iNfOrMaTiOnPrOtEcTiOn/sEnSiTiViTyLaBeLs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/users/userIdValue/security/informationProtection/sensitivityLabels/sensitivityLabelIdValue",
+			Input: "/users/userId/security/informationProtection/sensitivityLabels/sensitivityLabelId",
 			Expected: &UserIdSecurityInformationProtectionSensitivityLabelId{
-				UserId:             "userIdValue",
-				SensitivityLabelId: "sensitivityLabelIdValue",
+				UserId:             "userId",
+				SensitivityLabelId: "sensitivityLabelId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/users/userIdValue/security/informationProtection/sensitivityLabels/sensitivityLabelIdValue/extra",
+			Input: "/users/userId/security/informationProtection/sensitivityLabels/sensitivityLabelId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/sEcUrItY/iNfOrMaTiOnPrOtEcTiOn/sEnSiTiViTyLaBeLs/sEnSiTiViTyLaBeLiDvAlUe",
+			Input: "/uSeRs/uSeRiD/sEcUrItY/iNfOrMaTiOnPrOtEcTiOn/sEnSiTiViTyLaBeLs/sEnSiTiViTyLaBeLiD",
 			Expected: &UserIdSecurityInformationProtectionSensitivityLabelId{
-				UserId:             "uSeRiDvAlUe",
-				SensitivityLabelId: "sEnSiTiViTyLaBeLiDvAlUe",
+				UserId:             "uSeRiD",
+				SensitivityLabelId: "sEnSiTiViTyLaBeLiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/sEcUrItY/iNfOrMaTiOnPrOtEcTiOn/sEnSiTiViTyLaBeLs/sEnSiTiViTyLaBeLiDvAlUe/extra",
+			Input: "/uSeRs/uSeRiD/sEcUrItY/iNfOrMaTiOnPrOtEcTiOn/sEnSiTiViTyLaBeLs/sEnSiTiViTyLaBeLiD/extra",
 			Error: true,
 		},
 	}

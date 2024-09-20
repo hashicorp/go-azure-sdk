@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &DeviceManagementConfigManagerCollectionId{}
 
 func TestNewDeviceManagementConfigManagerCollectionID(t *testing.T) {
-	id := NewDeviceManagementConfigManagerCollectionID("configManagerCollectionIdValue")
+	id := NewDeviceManagementConfigManagerCollectionID("configManagerCollectionId")
 
-	if id.ConfigManagerCollectionId != "configManagerCollectionIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ConfigManagerCollectionId'", id.ConfigManagerCollectionId, "configManagerCollectionIdValue")
+	if id.ConfigManagerCollectionId != "configManagerCollectionId" {
+		t.Fatalf("Expected %q but got %q for Segment 'ConfigManagerCollectionId'", id.ConfigManagerCollectionId, "configManagerCollectionId")
 	}
 }
 
 func TestFormatDeviceManagementConfigManagerCollectionID(t *testing.T) {
-	actual := NewDeviceManagementConfigManagerCollectionID("configManagerCollectionIdValue").ID()
-	expected := "/deviceManagement/configManagerCollections/configManagerCollectionIdValue"
+	actual := NewDeviceManagementConfigManagerCollectionID("configManagerCollectionId").ID()
+	expected := "/deviceManagement/configManagerCollections/configManagerCollectionId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -50,14 +50,14 @@ func TestParseDeviceManagementConfigManagerCollectionID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/configManagerCollections/configManagerCollectionIdValue",
+			Input: "/deviceManagement/configManagerCollections/configManagerCollectionId",
 			Expected: &DeviceManagementConfigManagerCollectionId{
-				ConfigManagerCollectionId: "configManagerCollectionIdValue",
+				ConfigManagerCollectionId: "configManagerCollectionId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/configManagerCollections/configManagerCollectionIdValue/extra",
+			Input: "/deviceManagement/configManagerCollections/configManagerCollectionId/extra",
 			Error: true,
 		},
 	}
@@ -116,26 +116,26 @@ func TestParseDeviceManagementConfigManagerCollectionIDInsensitively(t *testing.
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/configManagerCollections/configManagerCollectionIdValue",
+			Input: "/deviceManagement/configManagerCollections/configManagerCollectionId",
 			Expected: &DeviceManagementConfigManagerCollectionId{
-				ConfigManagerCollectionId: "configManagerCollectionIdValue",
+				ConfigManagerCollectionId: "configManagerCollectionId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/configManagerCollections/configManagerCollectionIdValue/extra",
+			Input: "/deviceManagement/configManagerCollections/configManagerCollectionId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/cOnFiGmAnAgErCoLlEcTiOnS/cOnFiGmAnAgErCoLlEcTiOnIdVaLuE",
+			Input: "/dEvIcEmAnAgEmEnT/cOnFiGmAnAgErCoLlEcTiOnS/cOnFiGmAnAgErCoLlEcTiOnId",
 			Expected: &DeviceManagementConfigManagerCollectionId{
-				ConfigManagerCollectionId: "cOnFiGmAnAgErCoLlEcTiOnIdVaLuE",
+				ConfigManagerCollectionId: "cOnFiGmAnAgErCoLlEcTiOnId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/cOnFiGmAnAgErCoLlEcTiOnS/cOnFiGmAnAgErCoLlEcTiOnIdVaLuE/extra",
+			Input: "/dEvIcEmAnAgEmEnT/cOnFiGmAnAgErCoLlEcTiOnS/cOnFiGmAnAgErCoLlEcTiOnId/extra",
 			Error: true,
 		},
 	}

@@ -19,15 +19,44 @@ type CreateDriveListItemOperationResponse struct {
 	Model        *beta.ListItem
 }
 
+type CreateDriveListItemOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateDriveListItemOperationOptions() CreateDriveListItemOperationOptions {
+	return CreateDriveListItemOperationOptions{}
+}
+
+func (o CreateDriveListItemOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateDriveListItemOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateDriveListItemOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateDriveListItem - Create new navigation property to items for users
-func (c DriveListItemClient) CreateDriveListItem(ctx context.Context, id beta.UserIdDriveId, input beta.ListItem) (result CreateDriveListItemOperationResponse, err error) {
+func (c DriveListItemClient) CreateDriveListItem(ctx context.Context, id beta.UserIdDriveId, input beta.ListItem, options CreateDriveListItemOperationOptions) (result CreateDriveListItemOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/list/items", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/list/items", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

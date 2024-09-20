@@ -19,7 +19,8 @@ type DeleteSynchronizationTemplateSchemaDirectoryOperationResponse struct {
 }
 
 type DeleteSynchronizationTemplateSchemaDirectoryOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteSynchronizationTemplateSchemaDirectoryOperationOptions() DeleteSynchronizationTemplateSchemaDirectoryOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteSynchronizationTemplateSchemaDirectoryOperationOptions) ToHeaders(
 
 func (o DeleteSynchronizationTemplateSchemaDirectoryOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

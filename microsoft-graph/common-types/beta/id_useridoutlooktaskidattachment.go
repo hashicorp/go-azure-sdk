@@ -104,12 +104,12 @@ func (id UserIdOutlookTaskIdAttachmentId) ID() string {
 func (id UserIdOutlookTaskIdAttachmentId) Segments() []resourceids.Segment {
 	return []resourceids.Segment{
 		resourceids.StaticSegment("users", "users", "users"),
-		resourceids.UserSpecifiedSegment("userId", "userIdValue"),
+		resourceids.UserSpecifiedSegment("userId", "userId"),
 		resourceids.StaticSegment("outlook", "outlook", "outlook"),
 		resourceids.StaticSegment("tasks", "tasks", "tasks"),
-		resourceids.UserSpecifiedSegment("outlookTaskId", "outlookTaskIdValue"),
+		resourceids.UserSpecifiedSegment("outlookTaskId", "outlookTaskId"),
 		resourceids.StaticSegment("attachments", "attachments", "attachments"),
-		resourceids.UserSpecifiedSegment("attachmentId", "attachmentIdValue"),
+		resourceids.UserSpecifiedSegment("attachmentId", "attachmentId"),
 	}
 }
 

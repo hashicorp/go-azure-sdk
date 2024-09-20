@@ -229,12 +229,50 @@ func (s BusinessScenarioTask) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &BusinessScenarioTask{}
 
 func (s *BusinessScenarioTask) UnmarshalJSON(bytes []byte) error {
-	type alias BusinessScenarioTask
-	var decoded alias
+
+	var decoded struct {
+		BusinessScenarioProperties      *BusinessScenarioProperties           `json:"businessScenarioProperties,omitempty"`
+		ActiveChecklistItemCount        nullable.Type[int64]                  `json:"activeChecklistItemCount,omitempty"`
+		AppliedCategories               *PlannerAppliedCategories             `json:"appliedCategories,omitempty"`
+		ArchivalInfo                    *PlannerArchivalInfo                  `json:"archivalInfo,omitempty"`
+		AssignedToTaskBoardFormat       *PlannerAssignedToTaskBoardTaskFormat `json:"assignedToTaskBoardFormat,omitempty"`
+		AssigneePriority                nullable.Type[string]                 `json:"assigneePriority,omitempty"`
+		Assignments                     *PlannerAssignments                   `json:"assignments,omitempty"`
+		BucketId                        nullable.Type[string]                 `json:"bucketId,omitempty"`
+		BucketTaskBoardFormat           *PlannerBucketTaskBoardTaskFormat     `json:"bucketTaskBoardFormat,omitempty"`
+		ChecklistItemCount              nullable.Type[int64]                  `json:"checklistItemCount,omitempty"`
+		CompletedBy                     IdentitySet                           `json:"completedBy"`
+		CompletedDateTime               nullable.Type[string]                 `json:"completedDateTime,omitempty"`
+		ConversationThreadId            nullable.Type[string]                 `json:"conversationThreadId,omitempty"`
+		CreatedBy                       IdentitySet                           `json:"createdBy"`
+		CreatedDateTime                 nullable.Type[string]                 `json:"createdDateTime,omitempty"`
+		CreationSource                  PlannerTaskCreation                   `json:"creationSource"`
+		Details                         *PlannerTaskDetails                   `json:"details,omitempty"`
+		DueDateTime                     nullable.Type[string]                 `json:"dueDateTime,omitempty"`
+		HasDescription                  nullable.Type[bool]                   `json:"hasDescription,omitempty"`
+		IsArchived                      nullable.Type[bool]                   `json:"isArchived,omitempty"`
+		IsOnMyDay                       nullable.Type[bool]                   `json:"isOnMyDay,omitempty"`
+		IsOnMyDayLastModifiedDate       nullable.Type[string]                 `json:"isOnMyDayLastModifiedDate,omitempty"`
+		OrderHint                       nullable.Type[string]                 `json:"orderHint,omitempty"`
+		PercentComplete                 nullable.Type[int64]                  `json:"percentComplete,omitempty"`
+		PlanId                          nullable.Type[string]                 `json:"planId,omitempty"`
+		PreviewType                     *PlannerPreviewType                   `json:"previewType,omitempty"`
+		Priority                        nullable.Type[int64]                  `json:"priority,omitempty"`
+		ProgressTaskBoardFormat         *PlannerProgressTaskBoardTaskFormat   `json:"progressTaskBoardFormat,omitempty"`
+		Recurrence                      *PlannerTaskRecurrence                `json:"recurrence,omitempty"`
+		ReferenceCount                  nullable.Type[int64]                  `json:"referenceCount,omitempty"`
+		SpecifiedCompletionRequirements *PlannerTaskCompletionRequirements    `json:"specifiedCompletionRequirements,omitempty"`
+		StartDateTime                   nullable.Type[string]                 `json:"startDateTime,omitempty"`
+		Title                           *string                               `json:"title,omitempty"`
+		Id                              *string                               `json:"id,omitempty"`
+		ODataId                         *string                               `json:"@odata.id,omitempty"`
+		ODataType                       *string                               `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into BusinessScenarioTask: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
+	s.BusinessScenarioProperties = decoded.BusinessScenarioProperties
 	s.ActiveChecklistItemCount = decoded.ActiveChecklistItemCount
 	s.AppliedCategories = decoded.AppliedCategories
 	s.ArchivalInfo = decoded.ArchivalInfo
@@ -243,7 +281,6 @@ func (s *BusinessScenarioTask) UnmarshalJSON(bytes []byte) error {
 	s.Assignments = decoded.Assignments
 	s.BucketId = decoded.BucketId
 	s.BucketTaskBoardFormat = decoded.BucketTaskBoardFormat
-	s.BusinessScenarioProperties = decoded.BusinessScenarioProperties
 	s.ChecklistItemCount = decoded.ChecklistItemCount
 	s.CompletedDateTime = decoded.CompletedDateTime
 	s.ConversationThreadId = decoded.ConversationThreadId
@@ -305,5 +342,6 @@ func (s *BusinessScenarioTask) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Target = impl
 	}
+
 	return nil
 }

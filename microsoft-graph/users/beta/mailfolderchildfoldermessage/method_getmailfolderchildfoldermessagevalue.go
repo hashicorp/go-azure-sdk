@@ -19,16 +19,45 @@ type GetMailFolderChildFolderMessageValueOperationResponse struct {
 	Model        *[]byte
 }
 
+type GetMailFolderChildFolderMessageValueOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultGetMailFolderChildFolderMessageValueOperationOptions() GetMailFolderChildFolderMessageValueOperationOptions {
+	return GetMailFolderChildFolderMessageValueOperationOptions{}
+}
+
+func (o GetMailFolderChildFolderMessageValueOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o GetMailFolderChildFolderMessageValueOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o GetMailFolderChildFolderMessageValueOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // GetMailFolderChildFolderMessageValue - Get media content for the navigation property messages from users. The unique
 // identifier for an entity. Read-only.
-func (c MailFolderChildFolderMessageClient) GetMailFolderChildFolderMessageValue(ctx context.Context, id beta.UserIdMailFolderIdChildFolderIdMessageId) (result GetMailFolderChildFolderMessageValueOperationResponse, err error) {
+func (c MailFolderChildFolderMessageClient) GetMailFolderChildFolderMessageValue(ctx context.Context, id beta.UserIdMailFolderIdChildFolderIdMessageId, options GetMailFolderChildFolderMessageValueOperationOptions) (result GetMailFolderChildFolderMessageValueOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/octet-stream",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/$value", id.ID()),
+		HttpMethod:    http.MethodGet,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/$value", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

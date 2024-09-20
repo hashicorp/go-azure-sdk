@@ -18,15 +18,44 @@ type CreateEntitlementManagementCatalogOperationResponse struct {
 	Model        *stable.AccessPackageCatalog
 }
 
+type CreateEntitlementManagementCatalogOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateEntitlementManagementCatalogOperationOptions() CreateEntitlementManagementCatalogOperationOptions {
+	return CreateEntitlementManagementCatalogOperationOptions{}
+}
+
+func (o CreateEntitlementManagementCatalogOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateEntitlementManagementCatalogOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateEntitlementManagementCatalogOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateEntitlementManagementCatalog - Create accessPackageCatalog. Create a new accessPackageCatalog object.
-func (c EntitlementManagementCatalogClient) CreateEntitlementManagementCatalog(ctx context.Context, input stable.AccessPackageCatalog) (result CreateEntitlementManagementCatalogOperationResponse, err error) {
+func (c EntitlementManagementCatalogClient) CreateEntitlementManagementCatalog(ctx context.Context, input stable.AccessPackageCatalog, options CreateEntitlementManagementCatalogOperationOptions) (result CreateEntitlementManagementCatalogOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/identityGovernance/entitlementManagement/catalogs",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/identityGovernance/entitlementManagement/catalogs",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -120,28 +120,47 @@ func (s WebAccount) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &WebAccount{}
 
 func (s *WebAccount) UnmarshalJSON(bytes []byte) error {
-	type alias WebAccount
-	var decoded alias
+
+	var decoded struct {
+		Description          nullable.Type[string]      `json:"description,omitempty"`
+		Service              *ServiceInformation        `json:"service,omitempty"`
+		StatusMessage        nullable.Type[string]      `json:"statusMessage,omitempty"`
+		ThumbnailUrl         nullable.Type[string]      `json:"thumbnailUrl,omitempty"`
+		UserId               *string                    `json:"userId,omitempty"`
+		WebUrl               nullable.Type[string]      `json:"webUrl,omitempty"`
+		AllowedAudiences     *AllowedAudiences          `json:"allowedAudiences,omitempty"`
+		CreatedBy            IdentitySet                `json:"createdBy"`
+		CreatedDateTime      *string                    `json:"createdDateTime,omitempty"`
+		Inference            *InferenceData             `json:"inference,omitempty"`
+		IsSearchable         nullable.Type[bool]        `json:"isSearchable,omitempty"`
+		LastModifiedBy       IdentitySet                `json:"lastModifiedBy"`
+		LastModifiedDateTime *string                    `json:"lastModifiedDateTime,omitempty"`
+		Source               *PersonDataSources         `json:"source,omitempty"`
+		Sources              *[]ProfileSourceAnnotation `json:"sources,omitempty"`
+		Id                   *string                    `json:"id,omitempty"`
+		ODataId              *string                    `json:"@odata.id,omitempty"`
+		ODataType            *string                    `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into WebAccount: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
+	s.Description = decoded.Description
+	s.Service = decoded.Service
+	s.StatusMessage = decoded.StatusMessage
+	s.ThumbnailUrl = decoded.ThumbnailUrl
+	s.UserId = decoded.UserId
+	s.WebUrl = decoded.WebUrl
 	s.AllowedAudiences = decoded.AllowedAudiences
 	s.CreatedDateTime = decoded.CreatedDateTime
-	s.Description = decoded.Description
 	s.Id = decoded.Id
 	s.Inference = decoded.Inference
 	s.IsSearchable = decoded.IsSearchable
 	s.LastModifiedDateTime = decoded.LastModifiedDateTime
 	s.ODataId = decoded.ODataId
 	s.ODataType = decoded.ODataType
-	s.Service = decoded.Service
 	s.Source = decoded.Source
 	s.Sources = decoded.Sources
-	s.StatusMessage = decoded.StatusMessage
-	s.ThumbnailUrl = decoded.ThumbnailUrl
-	s.UserId = decoded.UserId
-	s.WebUrl = decoded.WebUrl
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -163,5 +182,6 @@ func (s *WebAccount) UnmarshalJSON(bytes []byte) error {
 		}
 		s.LastModifiedBy = impl
 	}
+
 	return nil
 }

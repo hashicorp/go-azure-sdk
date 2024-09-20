@@ -19,16 +19,45 @@ type GetTeamChannelMessageHostedContentValueOperationResponse struct {
 	Model        *[]byte
 }
 
+type GetTeamChannelMessageHostedContentValueOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultGetTeamChannelMessageHostedContentValueOperationOptions() GetTeamChannelMessageHostedContentValueOperationOptions {
+	return GetTeamChannelMessageHostedContentValueOperationOptions{}
+}
+
+func (o GetTeamChannelMessageHostedContentValueOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o GetTeamChannelMessageHostedContentValueOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o GetTeamChannelMessageHostedContentValueOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // GetTeamChannelMessageHostedContentValue - Get media content for the navigation property hostedContents from groups.
 // The unique identifier for an entity. Read-only.
-func (c TeamChannelMessageHostedContentClient) GetTeamChannelMessageHostedContentValue(ctx context.Context, id stable.GroupIdTeamChannelIdMessageIdHostedContentId) (result GetTeamChannelMessageHostedContentValueOperationResponse, err error) {
+func (c TeamChannelMessageHostedContentClient) GetTeamChannelMessageHostedContentValue(ctx context.Context, id stable.GroupIdTeamChannelIdMessageIdHostedContentId, options GetTeamChannelMessageHostedContentValueOperationOptions) (result GetTeamChannelMessageHostedContentValueOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/octet-stream",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/$value", id.ID()),
+		HttpMethod:    http.MethodGet,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/$value", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

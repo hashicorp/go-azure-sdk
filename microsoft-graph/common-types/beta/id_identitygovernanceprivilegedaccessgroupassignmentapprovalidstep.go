@@ -101,9 +101,9 @@ func (id IdentityGovernancePrivilegedAccessGroupAssignmentApprovalIdStepId) Segm
 		resourceids.StaticSegment("privilegedAccess", "privilegedAccess", "privilegedAccess"),
 		resourceids.StaticSegment("group", "group", "group"),
 		resourceids.StaticSegment("assignmentApprovals", "assignmentApprovals", "assignmentApprovals"),
-		resourceids.UserSpecifiedSegment("approvalId", "approvalIdValue"),
+		resourceids.UserSpecifiedSegment("approvalId", "approvalId"),
 		resourceids.StaticSegment("steps", "steps", "steps"),
-		resourceids.UserSpecifiedSegment("approvalStepId", "approvalStepIdValue"),
+		resourceids.UserSpecifiedSegment("approvalStepId", "approvalStepId"),
 	}
 }
 

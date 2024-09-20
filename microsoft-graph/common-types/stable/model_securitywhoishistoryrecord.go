@@ -150,10 +150,32 @@ func (s SecurityWhoisHistoryRecord) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &SecurityWhoisHistoryRecord{}
 
 func (s *SecurityWhoisHistoryRecord) UnmarshalJSON(bytes []byte) error {
-	type alias SecurityWhoisHistoryRecord
-	var decoded alias
+
+	var decoded struct {
+		Abuse                *SecurityWhoisContact      `json:"abuse,omitempty"`
+		Admin                *SecurityWhoisContact      `json:"admin,omitempty"`
+		Billing              *SecurityWhoisContact      `json:"billing,omitempty"`
+		DomainStatus         nullable.Type[string]      `json:"domainStatus,omitempty"`
+		ExpirationDateTime   nullable.Type[string]      `json:"expirationDateTime,omitempty"`
+		FirstSeenDateTime    nullable.Type[string]      `json:"firstSeenDateTime,omitempty"`
+		Host                 *SecurityHost              `json:"host,omitempty"`
+		LastSeenDateTime     nullable.Type[string]      `json:"lastSeenDateTime,omitempty"`
+		LastUpdateDateTime   nullable.Type[string]      `json:"lastUpdateDateTime,omitempty"`
+		Nameservers          *[]SecurityWhoisNameserver `json:"nameservers,omitempty"`
+		Noc                  *SecurityWhoisContact      `json:"noc,omitempty"`
+		RawWhoisText         nullable.Type[string]      `json:"rawWhoisText,omitempty"`
+		Registrant           *SecurityWhoisContact      `json:"registrant,omitempty"`
+		Registrar            *SecurityWhoisContact      `json:"registrar,omitempty"`
+		RegistrationDateTime nullable.Type[string]      `json:"registrationDateTime,omitempty"`
+		Technical            *SecurityWhoisContact      `json:"technical,omitempty"`
+		WhoisServer          nullable.Type[string]      `json:"whoisServer,omitempty"`
+		Zone                 *SecurityWhoisContact      `json:"zone,omitempty"`
+		Id                   *string                    `json:"id,omitempty"`
+		ODataId              *string                    `json:"@odata.id,omitempty"`
+		ODataType            *string                    `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into SecurityWhoisHistoryRecord: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.Abuse = decoded.Abuse
@@ -189,5 +211,6 @@ func (s *SecurityWhoisHistoryRecord) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Host = &impl
 	}
+
 	return nil
 }

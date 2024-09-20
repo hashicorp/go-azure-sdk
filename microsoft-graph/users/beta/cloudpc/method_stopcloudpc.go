@@ -18,16 +18,45 @@ type StopCloudPCOperationResponse struct {
 	OData        *odata.OData
 }
 
+type StopCloudPCOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultStopCloudPCOperationOptions() StopCloudPCOperationOptions {
+	return StopCloudPCOperationOptions{}
+}
+
+func (o StopCloudPCOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o StopCloudPCOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o StopCloudPCOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // StopCloudPC - Invoke action stop. Stop a specific Cloud PC for a user. Currently, only Windows 365 Frontline Cloud
 // PCs are supported.
-func (c CloudPCClient) StopCloudPC(ctx context.Context, id beta.UserIdCloudPCId) (result StopCloudPCOperationResponse, err error) {
+func (c CloudPCClient) StopCloudPC(ctx context.Context, id beta.UserIdCloudPCId, options StopCloudPCOperationOptions) (result StopCloudPCOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/stop", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/stop", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

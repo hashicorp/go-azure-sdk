@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &GroupIdTransitiveMemberId{}
 
 func TestNewGroupIdTransitiveMemberID(t *testing.T) {
-	id := NewGroupIdTransitiveMemberID("groupIdValue", "directoryObjectIdValue")
+	id := NewGroupIdTransitiveMemberID("groupId", "directoryObjectId")
 
-	if id.GroupId != "groupIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'GroupId'", id.GroupId, "groupIdValue")
+	if id.GroupId != "groupId" {
+		t.Fatalf("Expected %q but got %q for Segment 'GroupId'", id.GroupId, "groupId")
 	}
 
-	if id.DirectoryObjectId != "directoryObjectIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DirectoryObjectId'", id.DirectoryObjectId, "directoryObjectIdValue")
+	if id.DirectoryObjectId != "directoryObjectId" {
+		t.Fatalf("Expected %q but got %q for Segment 'DirectoryObjectId'", id.DirectoryObjectId, "directoryObjectId")
 	}
 }
 
 func TestFormatGroupIdTransitiveMemberID(t *testing.T) {
-	actual := NewGroupIdTransitiveMemberID("groupIdValue", "directoryObjectIdValue").ID()
-	expected := "/groups/groupIdValue/transitiveMembers/directoryObjectIdValue"
+	actual := NewGroupIdTransitiveMemberID("groupId", "directoryObjectId").ID()
+	expected := "/groups/groupId/transitiveMembers/directoryObjectId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -49,25 +49,25 @@ func TestParseGroupIdTransitiveMemberID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue",
+			Input: "/groups/groupId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/transitiveMembers",
+			Input: "/groups/groupId/transitiveMembers",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/groups/groupIdValue/transitiveMembers/directoryObjectIdValue",
+			Input: "/groups/groupId/transitiveMembers/directoryObjectId",
 			Expected: &GroupIdTransitiveMemberId{
-				GroupId:           "groupIdValue",
-				DirectoryObjectId: "directoryObjectIdValue",
+				GroupId:           "groupId",
+				DirectoryObjectId: "directoryObjectId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/groups/groupIdValue/transitiveMembers/directoryObjectIdValue/extra",
+			Input: "/groups/groupId/transitiveMembers/directoryObjectId/extra",
 			Error: true,
 		},
 	}
@@ -120,48 +120,48 @@ func TestParseGroupIdTransitiveMemberIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue",
+			Input: "/groups/groupId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE",
+			Input: "/gRoUpS/gRoUpId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/transitiveMembers",
+			Input: "/groups/groupId/transitiveMembers",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/tRaNsItIvEmEmBeRs",
+			Input: "/gRoUpS/gRoUpId/tRaNsItIvEmEmBeRs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/groups/groupIdValue/transitiveMembers/directoryObjectIdValue",
+			Input: "/groups/groupId/transitiveMembers/directoryObjectId",
 			Expected: &GroupIdTransitiveMemberId{
-				GroupId:           "groupIdValue",
-				DirectoryObjectId: "directoryObjectIdValue",
+				GroupId:           "groupId",
+				DirectoryObjectId: "directoryObjectId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/groups/groupIdValue/transitiveMembers/directoryObjectIdValue/extra",
+			Input: "/groups/groupId/transitiveMembers/directoryObjectId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/tRaNsItIvEmEmBeRs/dIrEcToRyObJeCtIdVaLuE",
+			Input: "/gRoUpS/gRoUpId/tRaNsItIvEmEmBeRs/dIrEcToRyObJeCtId",
 			Expected: &GroupIdTransitiveMemberId{
-				GroupId:           "gRoUpIdVaLuE",
-				DirectoryObjectId: "dIrEcToRyObJeCtIdVaLuE",
+				GroupId:           "gRoUpId",
+				DirectoryObjectId: "dIrEcToRyObJeCtId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/tRaNsItIvEmEmBeRs/dIrEcToRyObJeCtIdVaLuE/extra",
+			Input: "/gRoUpS/gRoUpId/tRaNsItIvEmEmBeRs/dIrEcToRyObJeCtId/extra",
 			Error: true,
 		},
 	}

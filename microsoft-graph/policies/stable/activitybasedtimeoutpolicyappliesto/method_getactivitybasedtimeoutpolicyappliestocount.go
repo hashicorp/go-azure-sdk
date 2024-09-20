@@ -20,8 +20,9 @@ type GetActivityBasedTimeoutPolicyAppliesToCountOperationResponse struct {
 }
 
 type GetActivityBasedTimeoutPolicyAppliesToCountOperationOptions struct {
-	Filter *string
-	Search *string
+	Filter   *string
+	Metadata *odata.Metadata
+	Search   *string
 }
 
 func DefaultGetActivityBasedTimeoutPolicyAppliesToCountOperationOptions() GetActivityBasedTimeoutPolicyAppliesToCountOperationOptions {
@@ -38,6 +39,9 @@ func (o GetActivityBasedTimeoutPolicyAppliesToCountOperationOptions) ToOData() *
 	out := odata.Query{}
 	if o.Filter != nil {
 		out.Filter = *o.Filter
+	}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
 	}
 	if o.Search != nil {
 		out.Search = *o.Search

@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/chat` Documentation
 
-The `chat` SDK allows for interaction with the Azure Resource Manager Service `me` (API Version `stable`).
+The `chat` SDK allows for interaction with Microsoft Graph `me` (API Version `stable`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -15,7 +15,7 @@ import "github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/chat"
 ### Client Initialization
 
 ```go
-client := chat.NewChatClientWithBaseURI("https://management.azure.com")
+client := chat.NewChatClientWithBaseURI("https://graph.microsoft.com")
 client.Client.Authorizer = authorizer
 ```
 
@@ -30,7 +30,7 @@ payload := chat.Chat{
 }
 
 
-read, err := client.CreateChat(ctx, payload)
+read, err := client.CreateChat(ctx, payload, chat.DefaultCreateChatOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -44,7 +44,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := chat.NewMeChatID("chatIdValue")
+id := chat.NewMeChatID("chatId")
 
 read, err := client.DeleteChat(ctx, id, chat.DefaultDeleteChatOperationOptions())
 if err != nil {
@@ -60,7 +60,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := chat.NewMeChatID("chatIdValue")
+id := chat.NewMeChatID("chatId")
 
 read, err := client.GetChat(ctx, id, chat.DefaultGetChatOperationOptions())
 if err != nil {
@@ -92,14 +92,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := chat.NewMeChatID("chatIdValue")
+id := chat.NewMeChatID("chatId")
 
 payload := chat.HideChatForUserRequest{
 	// ...
 }
 
 
-read, err := client.HideChatForUser(ctx, id, payload)
+read, err := client.HideChatForUser(ctx, id, payload, chat.DefaultHideChatForUserOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -130,14 +130,14 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := chat.NewMeChatID("chatIdValue")
+id := chat.NewMeChatID("chatId")
 
 payload := chat.MarkChatReadForUserRequest{
 	// ...
 }
 
 
-read, err := client.MarkChatReadForUser(ctx, id, payload)
+read, err := client.MarkChatReadForUser(ctx, id, payload, chat.DefaultMarkChatReadForUserOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -151,14 +151,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := chat.NewMeChatID("chatIdValue")
+id := chat.NewMeChatID("chatId")
 
 payload := chat.MarkChatUnreadForUserRequest{
 	// ...
 }
 
 
-read, err := client.MarkChatUnreadForUser(ctx, id, payload)
+read, err := client.MarkChatUnreadForUser(ctx, id, payload, chat.DefaultMarkChatUnreadForUserOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -172,14 +172,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := chat.NewMeChatID("chatIdValue")
+id := chat.NewMeChatID("chatId")
 
 payload := chat.SendChatActivityNotificationRequest{
 	// ...
 }
 
 
-read, err := client.SendChatActivityNotification(ctx, id, payload)
+read, err := client.SendChatActivityNotification(ctx, id, payload, chat.DefaultSendChatActivityNotificationOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -193,14 +193,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := chat.NewMeChatID("chatIdValue")
+id := chat.NewMeChatID("chatId")
 
 payload := chat.UnhideChatForUserRequest{
 	// ...
 }
 
 
-read, err := client.UnhideChatForUser(ctx, id, payload)
+read, err := client.UnhideChatForUser(ctx, id, payload, chat.DefaultUnhideChatForUserOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -214,14 +214,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := chat.NewMeChatID("chatIdValue")
+id := chat.NewMeChatID("chatId")
 
 payload := chat.Chat{
 	// ...
 }
 
 
-read, err := client.UpdateChat(ctx, id, payload)
+read, err := client.UpdateChat(ctx, id, payload, chat.DefaultUpdateChatOperationOptions())
 if err != nil {
 	// handle the error
 }

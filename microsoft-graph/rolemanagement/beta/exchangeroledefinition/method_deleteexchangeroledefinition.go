@@ -19,7 +19,8 @@ type DeleteExchangeRoleDefinitionOperationResponse struct {
 }
 
 type DeleteExchangeRoleDefinitionOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteExchangeRoleDefinitionOperationOptions() DeleteExchangeRoleDefinitionOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteExchangeRoleDefinitionOperationOptions) ToHeaders() *client.Header
 
 func (o DeleteExchangeRoleDefinitionOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

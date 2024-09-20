@@ -67,16 +67,21 @@ func (s ManagedMobileApp) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &ManagedMobileApp{}
 
 func (s *ManagedMobileApp) UnmarshalJSON(bytes []byte) error {
-	type alias ManagedMobileApp
-	var decoded alias
+
+	var decoded struct {
+		Version   nullable.Type[string] `json:"version,omitempty"`
+		Id        *string               `json:"id,omitempty"`
+		ODataId   *string               `json:"@odata.id,omitempty"`
+		ODataType *string               `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into ManagedMobileApp: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
+	s.Version = decoded.Version
 	s.Id = decoded.Id
 	s.ODataId = decoded.ODataId
 	s.ODataType = decoded.ODataType
-	s.Version = decoded.Version
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -90,5 +95,6 @@ func (s *ManagedMobileApp) UnmarshalJSON(bytes []byte) error {
 		}
 		s.MobileAppIdentifier = impl
 	}
+
 	return nil
 }

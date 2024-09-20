@@ -17,15 +17,44 @@ type UpdateDirectoryResourceNamespaceOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateDirectoryResourceNamespaceOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateDirectoryResourceNamespaceOperationOptions() UpdateDirectoryResourceNamespaceOperationOptions {
+	return UpdateDirectoryResourceNamespaceOperationOptions{}
+}
+
+func (o UpdateDirectoryResourceNamespaceOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateDirectoryResourceNamespaceOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateDirectoryResourceNamespaceOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateDirectoryResourceNamespace - Update the navigation property resourceNamespaces in roleManagement
-func (c DirectoryResourceNamespaceClient) UpdateDirectoryResourceNamespace(ctx context.Context, id stable.RoleManagementDirectoryResourceNamespaceId, input stable.UnifiedRbacResourceNamespace) (result UpdateDirectoryResourceNamespaceOperationResponse, err error) {
+func (c DirectoryResourceNamespaceClient) UpdateDirectoryResourceNamespace(ctx context.Context, id stable.RoleManagementDirectoryResourceNamespaceId, input stable.UnifiedRbacResourceNamespace, options UpdateDirectoryResourceNamespaceOperationOptions) (result UpdateDirectoryResourceNamespaceOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

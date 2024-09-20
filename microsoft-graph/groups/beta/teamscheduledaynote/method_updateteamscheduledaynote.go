@@ -17,15 +17,44 @@ type UpdateTeamScheduleDayNoteOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateTeamScheduleDayNoteOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateTeamScheduleDayNoteOperationOptions() UpdateTeamScheduleDayNoteOperationOptions {
+	return UpdateTeamScheduleDayNoteOperationOptions{}
+}
+
+func (o UpdateTeamScheduleDayNoteOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateTeamScheduleDayNoteOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateTeamScheduleDayNoteOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateTeamScheduleDayNote - Update the navigation property dayNotes in groups
-func (c TeamScheduleDayNoteClient) UpdateTeamScheduleDayNote(ctx context.Context, id beta.GroupIdTeamScheduleDayNoteId, input beta.DayNote) (result UpdateTeamScheduleDayNoteOperationResponse, err error) {
+func (c TeamScheduleDayNoteClient) UpdateTeamScheduleDayNote(ctx context.Context, id beta.GroupIdTeamScheduleDayNoteId, input beta.DayNote, options UpdateTeamScheduleDayNoteOperationOptions) (result UpdateTeamScheduleDayNoteOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -19,16 +19,45 @@ type DiscoverSynchronizationJobSchemaDirectoryOperationResponse struct {
 	Model        *beta.DirectoryDefinition
 }
 
+type DiscoverSynchronizationJobSchemaDirectoryOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultDiscoverSynchronizationJobSchemaDirectoryOperationOptions() DiscoverSynchronizationJobSchemaDirectoryOperationOptions {
+	return DiscoverSynchronizationJobSchemaDirectoryOperationOptions{}
+}
+
+func (o DiscoverSynchronizationJobSchemaDirectoryOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o DiscoverSynchronizationJobSchemaDirectoryOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o DiscoverSynchronizationJobSchemaDirectoryOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // DiscoverSynchronizationJobSchemaDirectory - Invoke action discover. Discover the latest schema definition for
 // provisioning to an application.
-func (c SynchronizationJobSchemaDirectoryClient) DiscoverSynchronizationJobSchemaDirectory(ctx context.Context, id beta.ApplicationIdSynchronizationJobIdSchemaDirectoryId) (result DiscoverSynchronizationJobSchemaDirectoryOperationResponse, err error) {
+func (c SynchronizationJobSchemaDirectoryClient) DiscoverSynchronizationJobSchemaDirectory(ctx context.Context, id beta.ApplicationIdSynchronizationJobIdSchemaDirectoryId, options DiscoverSynchronizationJobSchemaDirectoryOperationOptions) (result DiscoverSynchronizationJobSchemaDirectoryOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/discover", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/discover", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

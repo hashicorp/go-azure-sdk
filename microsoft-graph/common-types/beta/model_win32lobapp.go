@@ -302,14 +302,75 @@ func (s BaseWin32LobAppImpl) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &BaseWin32LobAppImpl{}
 
 func (s *BaseWin32LobAppImpl) UnmarshalJSON(bytes []byte) error {
-	type alias BaseWin32LobAppImpl
-	var decoded alias
+
+	var decoded struct {
+		AllowAvailableUninstall         *bool                          `json:"allowAvailableUninstall,omitempty"`
+		ApplicableArchitectures         *WindowsArchitecture           `json:"applicableArchitectures,omitempty"`
+		DetectionRules                  *[]Win32LobAppDetection        `json:"detectionRules,omitempty"`
+		DisplayVersion                  nullable.Type[string]          `json:"displayVersion,omitempty"`
+		InstallCommandLine              nullable.Type[string]          `json:"installCommandLine,omitempty"`
+		InstallExperience               *Win32LobAppInstallExperience  `json:"installExperience,omitempty"`
+		MinimumCpuSpeedInMHz            nullable.Type[int64]           `json:"minimumCpuSpeedInMHz,omitempty"`
+		MinimumFreeDiskSpaceInMB        nullable.Type[int64]           `json:"minimumFreeDiskSpaceInMB,omitempty"`
+		MinimumMemoryInMB               nullable.Type[int64]           `json:"minimumMemoryInMB,omitempty"`
+		MinimumNumberOfProcessors       nullable.Type[int64]           `json:"minimumNumberOfProcessors,omitempty"`
+		MinimumSupportedOperatingSystem *WindowsMinimumOperatingSystem `json:"minimumSupportedOperatingSystem,omitempty"`
+		MinimumSupportedWindowsRelease  nullable.Type[string]          `json:"minimumSupportedWindowsRelease,omitempty"`
+		MsiInformation                  *Win32LobAppMsiInformation     `json:"msiInformation,omitempty"`
+		RequirementRules                *[]Win32LobAppRequirement      `json:"requirementRules,omitempty"`
+		ReturnCodes                     *[]Win32LobAppReturnCode       `json:"returnCodes,omitempty"`
+		Rules                           *[]Win32LobAppRule             `json:"rules,omitempty"`
+		SetupFilePath                   nullable.Type[string]          `json:"setupFilePath,omitempty"`
+		UninstallCommandLine            nullable.Type[string]          `json:"uninstallCommandLine,omitempty"`
+		CommittedContentVersion         nullable.Type[string]          `json:"committedContentVersion,omitempty"`
+		ContentVersions                 *[]MobileAppContent            `json:"contentVersions,omitempty"`
+		FileName                        nullable.Type[string]          `json:"fileName,omitempty"`
+		Size                            *int64                         `json:"size,omitempty"`
+		Assignments                     *[]MobileAppAssignment         `json:"assignments,omitempty"`
+		Categories                      *[]MobileAppCategory           `json:"categories,omitempty"`
+		CreatedDateTime                 *string                        `json:"createdDateTime,omitempty"`
+		DependentAppCount               *int64                         `json:"dependentAppCount,omitempty"`
+		Description                     nullable.Type[string]          `json:"description,omitempty"`
+		Developer                       nullable.Type[string]          `json:"developer,omitempty"`
+		DisplayName                     nullable.Type[string]          `json:"displayName,omitempty"`
+		InformationUrl                  nullable.Type[string]          `json:"informationUrl,omitempty"`
+		IsAssigned                      *bool                          `json:"isAssigned,omitempty"`
+		IsFeatured                      *bool                          `json:"isFeatured,omitempty"`
+		LargeIcon                       *MimeContent                   `json:"largeIcon,omitempty"`
+		LastModifiedDateTime            *string                        `json:"lastModifiedDateTime,omitempty"`
+		Notes                           nullable.Type[string]          `json:"notes,omitempty"`
+		Owner                           nullable.Type[string]          `json:"owner,omitempty"`
+		PrivacyInformationUrl           nullable.Type[string]          `json:"privacyInformationUrl,omitempty"`
+		Publisher                       nullable.Type[string]          `json:"publisher,omitempty"`
+		PublishingState                 *MobileAppPublishingState      `json:"publishingState,omitempty"`
+		Relationships                   *[]MobileAppRelationship       `json:"relationships,omitempty"`
+		RoleScopeTagIds                 *[]string                      `json:"roleScopeTagIds,omitempty"`
+		SupersededAppCount              *int64                         `json:"supersededAppCount,omitempty"`
+		SupersedingAppCount             *int64                         `json:"supersedingAppCount,omitempty"`
+		UploadState                     *int64                         `json:"uploadState,omitempty"`
+		Id                              *string                        `json:"id,omitempty"`
+		ODataId                         *string                        `json:"@odata.id,omitempty"`
+		ODataType                       *string                        `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into BaseWin32LobAppImpl: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.AllowAvailableUninstall = decoded.AllowAvailableUninstall
 	s.ApplicableArchitectures = decoded.ApplicableArchitectures
+	s.DisplayVersion = decoded.DisplayVersion
+	s.InstallCommandLine = decoded.InstallCommandLine
+	s.InstallExperience = decoded.InstallExperience
+	s.MinimumCpuSpeedInMHz = decoded.MinimumCpuSpeedInMHz
+	s.MinimumFreeDiskSpaceInMB = decoded.MinimumFreeDiskSpaceInMB
+	s.MinimumMemoryInMB = decoded.MinimumMemoryInMB
+	s.MinimumNumberOfProcessors = decoded.MinimumNumberOfProcessors
+	s.MinimumSupportedOperatingSystem = decoded.MinimumSupportedOperatingSystem
+	s.MinimumSupportedWindowsRelease = decoded.MinimumSupportedWindowsRelease
+	s.MsiInformation = decoded.MsiInformation
+	s.ReturnCodes = decoded.ReturnCodes
+	s.SetupFilePath = decoded.SetupFilePath
+	s.UninstallCommandLine = decoded.UninstallCommandLine
 	s.Assignments = decoded.Assignments
 	s.Categories = decoded.Categories
 	s.CommittedContentVersion = decoded.CommittedContentVersion
@@ -319,23 +380,13 @@ func (s *BaseWin32LobAppImpl) UnmarshalJSON(bytes []byte) error {
 	s.Description = decoded.Description
 	s.Developer = decoded.Developer
 	s.DisplayName = decoded.DisplayName
-	s.DisplayVersion = decoded.DisplayVersion
 	s.FileName = decoded.FileName
 	s.Id = decoded.Id
 	s.InformationUrl = decoded.InformationUrl
-	s.InstallCommandLine = decoded.InstallCommandLine
-	s.InstallExperience = decoded.InstallExperience
 	s.IsAssigned = decoded.IsAssigned
 	s.IsFeatured = decoded.IsFeatured
 	s.LargeIcon = decoded.LargeIcon
 	s.LastModifiedDateTime = decoded.LastModifiedDateTime
-	s.MinimumCpuSpeedInMHz = decoded.MinimumCpuSpeedInMHz
-	s.MinimumFreeDiskSpaceInMB = decoded.MinimumFreeDiskSpaceInMB
-	s.MinimumMemoryInMB = decoded.MinimumMemoryInMB
-	s.MinimumNumberOfProcessors = decoded.MinimumNumberOfProcessors
-	s.MinimumSupportedOperatingSystem = decoded.MinimumSupportedOperatingSystem
-	s.MinimumSupportedWindowsRelease = decoded.MinimumSupportedWindowsRelease
-	s.MsiInformation = decoded.MsiInformation
 	s.Notes = decoded.Notes
 	s.ODataId = decoded.ODataId
 	s.ODataType = decoded.ODataType
@@ -343,13 +394,10 @@ func (s *BaseWin32LobAppImpl) UnmarshalJSON(bytes []byte) error {
 	s.PrivacyInformationUrl = decoded.PrivacyInformationUrl
 	s.Publisher = decoded.Publisher
 	s.PublishingState = decoded.PublishingState
-	s.ReturnCodes = decoded.ReturnCodes
 	s.RoleScopeTagIds = decoded.RoleScopeTagIds
-	s.SetupFilePath = decoded.SetupFilePath
 	s.Size = decoded.Size
 	s.SupersededAppCount = decoded.SupersededAppCount
 	s.SupersedingAppCount = decoded.SupersedingAppCount
-	s.UninstallCommandLine = decoded.UninstallCommandLine
 	s.UploadState = decoded.UploadState
 
 	var temp map[string]json.RawMessage
@@ -424,6 +472,7 @@ func (s *BaseWin32LobAppImpl) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Rules = &output
 	}
+
 	return nil
 }
 
@@ -437,9 +486,9 @@ func UnmarshalWin32LobAppImplementation(input []byte) (Win32LobApp, error) {
 		return nil, fmt.Errorf("unmarshaling Win32LobApp into map[string]interface: %+v", err)
 	}
 
-	value, ok := temp["@odata.type"].(string)
-	if !ok {
-		return nil, nil
+	var value string
+	if v, ok := temp["@odata.type"]; ok {
+		value = fmt.Sprintf("%v", v)
 	}
 
 	if strings.EqualFold(value, "#microsoft.graph.win32CatalogApp") {

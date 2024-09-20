@@ -17,15 +17,44 @@ type UpdateCalendarViewInstanceExtensionOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateCalendarViewInstanceExtensionOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateCalendarViewInstanceExtensionOperationOptions() UpdateCalendarViewInstanceExtensionOperationOptions {
+	return UpdateCalendarViewInstanceExtensionOperationOptions{}
+}
+
+func (o UpdateCalendarViewInstanceExtensionOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateCalendarViewInstanceExtensionOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateCalendarViewInstanceExtensionOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateCalendarViewInstanceExtension - Update the navigation property extensions in groups
-func (c CalendarCalendarViewInstanceExtensionClient) UpdateCalendarViewInstanceExtension(ctx context.Context, id beta.GroupIdCalendarCalendarViewIdInstanceIdExtensionId, input beta.Extension) (result UpdateCalendarViewInstanceExtensionOperationResponse, err error) {
+func (c CalendarCalendarViewInstanceExtensionClient) UpdateCalendarViewInstanceExtension(ctx context.Context, id beta.GroupIdCalendarCalendarViewIdInstanceIdExtensionId, input beta.Extension, options UpdateCalendarViewInstanceExtensionOperationOptions) (result UpdateCalendarViewInstanceExtensionOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

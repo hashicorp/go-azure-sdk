@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &PolicyHomeRealmDiscoveryPolicyIdAppliesToId{}
 
 func TestNewPolicyHomeRealmDiscoveryPolicyIdAppliesToID(t *testing.T) {
-	id := NewPolicyHomeRealmDiscoveryPolicyIdAppliesToID("homeRealmDiscoveryPolicyIdValue", "directoryObjectIdValue")
+	id := NewPolicyHomeRealmDiscoveryPolicyIdAppliesToID("homeRealmDiscoveryPolicyId", "directoryObjectId")
 
-	if id.HomeRealmDiscoveryPolicyId != "homeRealmDiscoveryPolicyIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'HomeRealmDiscoveryPolicyId'", id.HomeRealmDiscoveryPolicyId, "homeRealmDiscoveryPolicyIdValue")
+	if id.HomeRealmDiscoveryPolicyId != "homeRealmDiscoveryPolicyId" {
+		t.Fatalf("Expected %q but got %q for Segment 'HomeRealmDiscoveryPolicyId'", id.HomeRealmDiscoveryPolicyId, "homeRealmDiscoveryPolicyId")
 	}
 
-	if id.DirectoryObjectId != "directoryObjectIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DirectoryObjectId'", id.DirectoryObjectId, "directoryObjectIdValue")
+	if id.DirectoryObjectId != "directoryObjectId" {
+		t.Fatalf("Expected %q but got %q for Segment 'DirectoryObjectId'", id.DirectoryObjectId, "directoryObjectId")
 	}
 }
 
 func TestFormatPolicyHomeRealmDiscoveryPolicyIdAppliesToID(t *testing.T) {
-	actual := NewPolicyHomeRealmDiscoveryPolicyIdAppliesToID("homeRealmDiscoveryPolicyIdValue", "directoryObjectIdValue").ID()
-	expected := "/policies/homeRealmDiscoveryPolicies/homeRealmDiscoveryPolicyIdValue/appliesTo/directoryObjectIdValue"
+	actual := NewPolicyHomeRealmDiscoveryPolicyIdAppliesToID("homeRealmDiscoveryPolicyId", "directoryObjectId").ID()
+	expected := "/policies/homeRealmDiscoveryPolicies/homeRealmDiscoveryPolicyId/appliesTo/directoryObjectId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -54,25 +54,25 @@ func TestParsePolicyHomeRealmDiscoveryPolicyIdAppliesToID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/policies/homeRealmDiscoveryPolicies/homeRealmDiscoveryPolicyIdValue",
+			Input: "/policies/homeRealmDiscoveryPolicies/homeRealmDiscoveryPolicyId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/policies/homeRealmDiscoveryPolicies/homeRealmDiscoveryPolicyIdValue/appliesTo",
+			Input: "/policies/homeRealmDiscoveryPolicies/homeRealmDiscoveryPolicyId/appliesTo",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/policies/homeRealmDiscoveryPolicies/homeRealmDiscoveryPolicyIdValue/appliesTo/directoryObjectIdValue",
+			Input: "/policies/homeRealmDiscoveryPolicies/homeRealmDiscoveryPolicyId/appliesTo/directoryObjectId",
 			Expected: &PolicyHomeRealmDiscoveryPolicyIdAppliesToId{
-				HomeRealmDiscoveryPolicyId: "homeRealmDiscoveryPolicyIdValue",
-				DirectoryObjectId:          "directoryObjectIdValue",
+				HomeRealmDiscoveryPolicyId: "homeRealmDiscoveryPolicyId",
+				DirectoryObjectId:          "directoryObjectId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/policies/homeRealmDiscoveryPolicies/homeRealmDiscoveryPolicyIdValue/appliesTo/directoryObjectIdValue/extra",
+			Input: "/policies/homeRealmDiscoveryPolicies/homeRealmDiscoveryPolicyId/appliesTo/directoryObjectId/extra",
 			Error: true,
 		},
 	}
@@ -135,48 +135,48 @@ func TestParsePolicyHomeRealmDiscoveryPolicyIdAppliesToIDInsensitively(t *testin
 		},
 		{
 			// Incomplete URI
-			Input: "/policies/homeRealmDiscoveryPolicies/homeRealmDiscoveryPolicyIdValue",
+			Input: "/policies/homeRealmDiscoveryPolicies/homeRealmDiscoveryPolicyId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/pOlIcIeS/hOmErEaLmDiScOvErYpOlIcIeS/hOmErEaLmDiScOvErYpOlIcYiDvAlUe",
+			Input: "/pOlIcIeS/hOmErEaLmDiScOvErYpOlIcIeS/hOmErEaLmDiScOvErYpOlIcYiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/policies/homeRealmDiscoveryPolicies/homeRealmDiscoveryPolicyIdValue/appliesTo",
+			Input: "/policies/homeRealmDiscoveryPolicies/homeRealmDiscoveryPolicyId/appliesTo",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/pOlIcIeS/hOmErEaLmDiScOvErYpOlIcIeS/hOmErEaLmDiScOvErYpOlIcYiDvAlUe/aPpLiEsTo",
+			Input: "/pOlIcIeS/hOmErEaLmDiScOvErYpOlIcIeS/hOmErEaLmDiScOvErYpOlIcYiD/aPpLiEsTo",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/policies/homeRealmDiscoveryPolicies/homeRealmDiscoveryPolicyIdValue/appliesTo/directoryObjectIdValue",
+			Input: "/policies/homeRealmDiscoveryPolicies/homeRealmDiscoveryPolicyId/appliesTo/directoryObjectId",
 			Expected: &PolicyHomeRealmDiscoveryPolicyIdAppliesToId{
-				HomeRealmDiscoveryPolicyId: "homeRealmDiscoveryPolicyIdValue",
-				DirectoryObjectId:          "directoryObjectIdValue",
+				HomeRealmDiscoveryPolicyId: "homeRealmDiscoveryPolicyId",
+				DirectoryObjectId:          "directoryObjectId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/policies/homeRealmDiscoveryPolicies/homeRealmDiscoveryPolicyIdValue/appliesTo/directoryObjectIdValue/extra",
+			Input: "/policies/homeRealmDiscoveryPolicies/homeRealmDiscoveryPolicyId/appliesTo/directoryObjectId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/pOlIcIeS/hOmErEaLmDiScOvErYpOlIcIeS/hOmErEaLmDiScOvErYpOlIcYiDvAlUe/aPpLiEsTo/dIrEcToRyObJeCtIdVaLuE",
+			Input: "/pOlIcIeS/hOmErEaLmDiScOvErYpOlIcIeS/hOmErEaLmDiScOvErYpOlIcYiD/aPpLiEsTo/dIrEcToRyObJeCtId",
 			Expected: &PolicyHomeRealmDiscoveryPolicyIdAppliesToId{
-				HomeRealmDiscoveryPolicyId: "hOmErEaLmDiScOvErYpOlIcYiDvAlUe",
-				DirectoryObjectId:          "dIrEcToRyObJeCtIdVaLuE",
+				HomeRealmDiscoveryPolicyId: "hOmErEaLmDiScOvErYpOlIcYiD",
+				DirectoryObjectId:          "dIrEcToRyObJeCtId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/pOlIcIeS/hOmErEaLmDiScOvErYpOlIcIeS/hOmErEaLmDiScOvErYpOlIcYiDvAlUe/aPpLiEsTo/dIrEcToRyObJeCtIdVaLuE/extra",
+			Input: "/pOlIcIeS/hOmErEaLmDiScOvErYpOlIcIeS/hOmErEaLmDiScOvErYpOlIcYiD/aPpLiEsTo/dIrEcToRyObJeCtId/extra",
 			Error: true,
 		},
 	}

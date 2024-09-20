@@ -18,15 +18,44 @@ type CreateGroupPolicyUploadedDefinitionFileUploadNewVersionOperationResponse st
 	OData        *odata.OData
 }
 
+type CreateGroupPolicyUploadedDefinitionFileUploadNewVersionOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateGroupPolicyUploadedDefinitionFileUploadNewVersionOperationOptions() CreateGroupPolicyUploadedDefinitionFileUploadNewVersionOperationOptions {
+	return CreateGroupPolicyUploadedDefinitionFileUploadNewVersionOperationOptions{}
+}
+
+func (o CreateGroupPolicyUploadedDefinitionFileUploadNewVersionOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateGroupPolicyUploadedDefinitionFileUploadNewVersionOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateGroupPolicyUploadedDefinitionFileUploadNewVersionOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateGroupPolicyUploadedDefinitionFileUploadNewVersion - Invoke action uploadNewVersion
-func (c GroupPolicyUploadedDefinitionFileClient) CreateGroupPolicyUploadedDefinitionFileUploadNewVersion(ctx context.Context, id beta.DeviceManagementGroupPolicyUploadedDefinitionFileId, input CreateGroupPolicyUploadedDefinitionFileUploadNewVersionRequest) (result CreateGroupPolicyUploadedDefinitionFileUploadNewVersionOperationResponse, err error) {
+func (c GroupPolicyUploadedDefinitionFileClient) CreateGroupPolicyUploadedDefinitionFileUploadNewVersion(ctx context.Context, id beta.DeviceManagementGroupPolicyUploadedDefinitionFileId, input CreateGroupPolicyUploadedDefinitionFileUploadNewVersionRequest, options CreateGroupPolicyUploadedDefinitionFileUploadNewVersionOperationOptions) (result CreateGroupPolicyUploadedDefinitionFileUploadNewVersionOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/uploadNewVersion", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/uploadNewVersion", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

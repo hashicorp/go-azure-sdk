@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &ReportUserInsightDailyAuthenticationId{}
 
 func TestNewReportUserInsightDailyAuthenticationID(t *testing.T) {
-	id := NewReportUserInsightDailyAuthenticationID("authenticationsMetricIdValue")
+	id := NewReportUserInsightDailyAuthenticationID("authenticationsMetricId")
 
-	if id.AuthenticationsMetricId != "authenticationsMetricIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'AuthenticationsMetricId'", id.AuthenticationsMetricId, "authenticationsMetricIdValue")
+	if id.AuthenticationsMetricId != "authenticationsMetricId" {
+		t.Fatalf("Expected %q but got %q for Segment 'AuthenticationsMetricId'", id.AuthenticationsMetricId, "authenticationsMetricId")
 	}
 }
 
 func TestFormatReportUserInsightDailyAuthenticationID(t *testing.T) {
-	actual := NewReportUserInsightDailyAuthenticationID("authenticationsMetricIdValue").ID()
-	expected := "/reports/userInsights/daily/authentications/authenticationsMetricIdValue"
+	actual := NewReportUserInsightDailyAuthenticationID("authenticationsMetricId").ID()
+	expected := "/reports/userInsights/daily/authentications/authenticationsMetricId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -60,14 +60,14 @@ func TestParseReportUserInsightDailyAuthenticationID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/reports/userInsights/daily/authentications/authenticationsMetricIdValue",
+			Input: "/reports/userInsights/daily/authentications/authenticationsMetricId",
 			Expected: &ReportUserInsightDailyAuthenticationId{
-				AuthenticationsMetricId: "authenticationsMetricIdValue",
+				AuthenticationsMetricId: "authenticationsMetricId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/reports/userInsights/daily/authentications/authenticationsMetricIdValue/extra",
+			Input: "/reports/userInsights/daily/authentications/authenticationsMetricId/extra",
 			Error: true,
 		},
 	}
@@ -146,26 +146,26 @@ func TestParseReportUserInsightDailyAuthenticationIDInsensitively(t *testing.T) 
 		},
 		{
 			// Valid URI
-			Input: "/reports/userInsights/daily/authentications/authenticationsMetricIdValue",
+			Input: "/reports/userInsights/daily/authentications/authenticationsMetricId",
 			Expected: &ReportUserInsightDailyAuthenticationId{
-				AuthenticationsMetricId: "authenticationsMetricIdValue",
+				AuthenticationsMetricId: "authenticationsMetricId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/reports/userInsights/daily/authentications/authenticationsMetricIdValue/extra",
+			Input: "/reports/userInsights/daily/authentications/authenticationsMetricId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/rEpOrTs/uSeRiNsIgHtS/dAiLy/aUtHeNtIcAtIoNs/aUtHeNtIcAtIoNsMeTrIcIdVaLuE",
+			Input: "/rEpOrTs/uSeRiNsIgHtS/dAiLy/aUtHeNtIcAtIoNs/aUtHeNtIcAtIoNsMeTrIcId",
 			Expected: &ReportUserInsightDailyAuthenticationId{
-				AuthenticationsMetricId: "aUtHeNtIcAtIoNsMeTrIcIdVaLuE",
+				AuthenticationsMetricId: "aUtHeNtIcAtIoNsMeTrIcId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/rEpOrTs/uSeRiNsIgHtS/dAiLy/aUtHeNtIcAtIoNs/aUtHeNtIcAtIoNsMeTrIcIdVaLuE/extra",
+			Input: "/rEpOrTs/uSeRiNsIgHtS/dAiLy/aUtHeNtIcAtIoNs/aUtHeNtIcAtIoNsMeTrIcId/extra",
 			Error: true,
 		},
 	}

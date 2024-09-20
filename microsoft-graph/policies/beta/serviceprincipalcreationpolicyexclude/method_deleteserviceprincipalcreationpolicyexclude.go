@@ -19,7 +19,8 @@ type DeleteServicePrincipalCreationPolicyExcludeOperationResponse struct {
 }
 
 type DeleteServicePrincipalCreationPolicyExcludeOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteServicePrincipalCreationPolicyExcludeOperationOptions() DeleteServicePrincipalCreationPolicyExcludeOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteServicePrincipalCreationPolicyExcludeOperationOptions) ToHeaders()
 
 func (o DeleteServicePrincipalCreationPolicyExcludeOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

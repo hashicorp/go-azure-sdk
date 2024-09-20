@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &MeProfilePatentId{}
 
 func TestNewMeProfilePatentID(t *testing.T) {
-	id := NewMeProfilePatentID("itemPatentIdValue")
+	id := NewMeProfilePatentID("itemPatentId")
 
-	if id.ItemPatentId != "itemPatentIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ItemPatentId'", id.ItemPatentId, "itemPatentIdValue")
+	if id.ItemPatentId != "itemPatentId" {
+		t.Fatalf("Expected %q but got %q for Segment 'ItemPatentId'", id.ItemPatentId, "itemPatentId")
 	}
 }
 
 func TestFormatMeProfilePatentID(t *testing.T) {
-	actual := NewMeProfilePatentID("itemPatentIdValue").ID()
-	expected := "/me/profile/patents/itemPatentIdValue"
+	actual := NewMeProfilePatentID("itemPatentId").ID()
+	expected := "/me/profile/patents/itemPatentId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -55,14 +55,14 @@ func TestParseMeProfilePatentID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/me/profile/patents/itemPatentIdValue",
+			Input: "/me/profile/patents/itemPatentId",
 			Expected: &MeProfilePatentId{
-				ItemPatentId: "itemPatentIdValue",
+				ItemPatentId: "itemPatentId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/profile/patents/itemPatentIdValue/extra",
+			Input: "/me/profile/patents/itemPatentId/extra",
 			Error: true,
 		},
 	}
@@ -131,26 +131,26 @@ func TestParseMeProfilePatentIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/me/profile/patents/itemPatentIdValue",
+			Input: "/me/profile/patents/itemPatentId",
 			Expected: &MeProfilePatentId{
-				ItemPatentId: "itemPatentIdValue",
+				ItemPatentId: "itemPatentId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/profile/patents/itemPatentIdValue/extra",
+			Input: "/me/profile/patents/itemPatentId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/pRoFiLe/pAtEnTs/iTeMpAtEnTiDvAlUe",
+			Input: "/mE/pRoFiLe/pAtEnTs/iTeMpAtEnTiD",
 			Expected: &MeProfilePatentId{
-				ItemPatentId: "iTeMpAtEnTiDvAlUe",
+				ItemPatentId: "iTeMpAtEnTiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/mE/pRoFiLe/pAtEnTs/iTeMpAtEnTiDvAlUe/extra",
+			Input: "/mE/pRoFiLe/pAtEnTs/iTeMpAtEnTiD/extra",
 			Error: true,
 		},
 	}

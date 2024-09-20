@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &GroupIdThreadId{}
 
 func TestNewGroupIdThreadID(t *testing.T) {
-	id := NewGroupIdThreadID("groupIdValue", "conversationThreadIdValue")
+	id := NewGroupIdThreadID("groupId", "conversationThreadId")
 
-	if id.GroupId != "groupIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'GroupId'", id.GroupId, "groupIdValue")
+	if id.GroupId != "groupId" {
+		t.Fatalf("Expected %q but got %q for Segment 'GroupId'", id.GroupId, "groupId")
 	}
 
-	if id.ConversationThreadId != "conversationThreadIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ConversationThreadId'", id.ConversationThreadId, "conversationThreadIdValue")
+	if id.ConversationThreadId != "conversationThreadId" {
+		t.Fatalf("Expected %q but got %q for Segment 'ConversationThreadId'", id.ConversationThreadId, "conversationThreadId")
 	}
 }
 
 func TestFormatGroupIdThreadID(t *testing.T) {
-	actual := NewGroupIdThreadID("groupIdValue", "conversationThreadIdValue").ID()
-	expected := "/groups/groupIdValue/threads/conversationThreadIdValue"
+	actual := NewGroupIdThreadID("groupId", "conversationThreadId").ID()
+	expected := "/groups/groupId/threads/conversationThreadId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -49,25 +49,25 @@ func TestParseGroupIdThreadID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue",
+			Input: "/groups/groupId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/threads",
+			Input: "/groups/groupId/threads",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/groups/groupIdValue/threads/conversationThreadIdValue",
+			Input: "/groups/groupId/threads/conversationThreadId",
 			Expected: &GroupIdThreadId{
-				GroupId:              "groupIdValue",
-				ConversationThreadId: "conversationThreadIdValue",
+				GroupId:              "groupId",
+				ConversationThreadId: "conversationThreadId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/groups/groupIdValue/threads/conversationThreadIdValue/extra",
+			Input: "/groups/groupId/threads/conversationThreadId/extra",
 			Error: true,
 		},
 	}
@@ -120,48 +120,48 @@ func TestParseGroupIdThreadIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue",
+			Input: "/groups/groupId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE",
+			Input: "/gRoUpS/gRoUpId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/threads",
+			Input: "/groups/groupId/threads",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/tHrEaDs",
+			Input: "/gRoUpS/gRoUpId/tHrEaDs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/groups/groupIdValue/threads/conversationThreadIdValue",
+			Input: "/groups/groupId/threads/conversationThreadId",
 			Expected: &GroupIdThreadId{
-				GroupId:              "groupIdValue",
-				ConversationThreadId: "conversationThreadIdValue",
+				GroupId:              "groupId",
+				ConversationThreadId: "conversationThreadId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/groups/groupIdValue/threads/conversationThreadIdValue/extra",
+			Input: "/groups/groupId/threads/conversationThreadId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/tHrEaDs/cOnVeRsAtIoNtHrEaDiDvAlUe",
+			Input: "/gRoUpS/gRoUpId/tHrEaDs/cOnVeRsAtIoNtHrEaDiD",
 			Expected: &GroupIdThreadId{
-				GroupId:              "gRoUpIdVaLuE",
-				ConversationThreadId: "cOnVeRsAtIoNtHrEaDiDvAlUe",
+				GroupId:              "gRoUpId",
+				ConversationThreadId: "cOnVeRsAtIoNtHrEaDiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/tHrEaDs/cOnVeRsAtIoNtHrEaDiDvAlUe/extra",
+			Input: "/gRoUpS/gRoUpId/tHrEaDs/cOnVeRsAtIoNtHrEaDiD/extra",
 			Error: true,
 		},
 	}

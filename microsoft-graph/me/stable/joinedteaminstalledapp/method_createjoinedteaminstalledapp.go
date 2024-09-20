@@ -20,15 +20,44 @@ type CreateJoinedTeamInstalledAppOperationResponse struct {
 	Model        stable.TeamsAppInstallation
 }
 
+type CreateJoinedTeamInstalledAppOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateJoinedTeamInstalledAppOperationOptions() CreateJoinedTeamInstalledAppOperationOptions {
+	return CreateJoinedTeamInstalledAppOperationOptions{}
+}
+
+func (o CreateJoinedTeamInstalledAppOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateJoinedTeamInstalledAppOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateJoinedTeamInstalledAppOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateJoinedTeamInstalledApp - Create new navigation property to installedApps for me
-func (c JoinedTeamInstalledAppClient) CreateJoinedTeamInstalledApp(ctx context.Context, id stable.MeJoinedTeamId, input stable.TeamsAppInstallation) (result CreateJoinedTeamInstalledAppOperationResponse, err error) {
+func (c JoinedTeamInstalledAppClient) CreateJoinedTeamInstalledApp(ctx context.Context, id stable.MeJoinedTeamId, input stable.TeamsAppInstallation, options CreateJoinedTeamInstalledAppOperationOptions) (result CreateJoinedTeamInstalledAppOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/installedApps", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/installedApps", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

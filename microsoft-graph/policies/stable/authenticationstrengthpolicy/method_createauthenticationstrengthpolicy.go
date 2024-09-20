@@ -18,16 +18,45 @@ type CreateAuthenticationStrengthPolicyOperationResponse struct {
 	Model        *stable.AuthenticationStrengthPolicy
 }
 
+type CreateAuthenticationStrengthPolicyOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateAuthenticationStrengthPolicyOperationOptions() CreateAuthenticationStrengthPolicyOperationOptions {
+	return CreateAuthenticationStrengthPolicyOperationOptions{}
+}
+
+func (o CreateAuthenticationStrengthPolicyOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateAuthenticationStrengthPolicyOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateAuthenticationStrengthPolicyOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateAuthenticationStrengthPolicy - Create authenticationStrengthPolicy. Create a new custom
 // authenticationStrengthPolicy object.
-func (c AuthenticationStrengthPolicyClient) CreateAuthenticationStrengthPolicy(ctx context.Context, input stable.AuthenticationStrengthPolicy) (result CreateAuthenticationStrengthPolicyOperationResponse, err error) {
+func (c AuthenticationStrengthPolicyClient) CreateAuthenticationStrengthPolicy(ctx context.Context, input stable.AuthenticationStrengthPolicy, options CreateAuthenticationStrengthPolicyOperationOptions) (result CreateAuthenticationStrengthPolicyOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/policies/authenticationStrengthPolicies",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/policies/authenticationStrengthPolicies",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

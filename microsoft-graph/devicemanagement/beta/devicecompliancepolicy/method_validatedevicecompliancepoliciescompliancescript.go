@@ -18,15 +18,44 @@ type ValidateDeviceCompliancePoliciesComplianceScriptOperationResponse struct {
 	Model        *beta.DeviceComplianceScriptValidationResult
 }
 
+type ValidateDeviceCompliancePoliciesComplianceScriptOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultValidateDeviceCompliancePoliciesComplianceScriptOperationOptions() ValidateDeviceCompliancePoliciesComplianceScriptOperationOptions {
+	return ValidateDeviceCompliancePoliciesComplianceScriptOperationOptions{}
+}
+
+func (o ValidateDeviceCompliancePoliciesComplianceScriptOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o ValidateDeviceCompliancePoliciesComplianceScriptOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o ValidateDeviceCompliancePoliciesComplianceScriptOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // ValidateDeviceCompliancePoliciesComplianceScript - Invoke action validateComplianceScript
-func (c DeviceCompliancePolicyClient) ValidateDeviceCompliancePoliciesComplianceScript(ctx context.Context, input ValidateDeviceCompliancePoliciesComplianceScriptRequest) (result ValidateDeviceCompliancePoliciesComplianceScriptOperationResponse, err error) {
+func (c DeviceCompliancePolicyClient) ValidateDeviceCompliancePoliciesComplianceScript(ctx context.Context, input ValidateDeviceCompliancePoliciesComplianceScriptRequest, options ValidateDeviceCompliancePoliciesComplianceScriptOperationOptions) (result ValidateDeviceCompliancePoliciesComplianceScriptOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/deviceManagement/deviceCompliancePolicies/validateComplianceScript",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/deviceManagement/deviceCompliancePolicies/validateComplianceScript",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

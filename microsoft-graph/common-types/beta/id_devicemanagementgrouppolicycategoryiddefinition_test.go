@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &DeviceManagementGroupPolicyCategoryIdDefinitionId{}
 
 func TestNewDeviceManagementGroupPolicyCategoryIdDefinitionID(t *testing.T) {
-	id := NewDeviceManagementGroupPolicyCategoryIdDefinitionID("groupPolicyCategoryIdValue", "groupPolicyDefinitionIdValue")
+	id := NewDeviceManagementGroupPolicyCategoryIdDefinitionID("groupPolicyCategoryId", "groupPolicyDefinitionId")
 
-	if id.GroupPolicyCategoryId != "groupPolicyCategoryIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'GroupPolicyCategoryId'", id.GroupPolicyCategoryId, "groupPolicyCategoryIdValue")
+	if id.GroupPolicyCategoryId != "groupPolicyCategoryId" {
+		t.Fatalf("Expected %q but got %q for Segment 'GroupPolicyCategoryId'", id.GroupPolicyCategoryId, "groupPolicyCategoryId")
 	}
 
-	if id.GroupPolicyDefinitionId != "groupPolicyDefinitionIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'GroupPolicyDefinitionId'", id.GroupPolicyDefinitionId, "groupPolicyDefinitionIdValue")
+	if id.GroupPolicyDefinitionId != "groupPolicyDefinitionId" {
+		t.Fatalf("Expected %q but got %q for Segment 'GroupPolicyDefinitionId'", id.GroupPolicyDefinitionId, "groupPolicyDefinitionId")
 	}
 }
 
 func TestFormatDeviceManagementGroupPolicyCategoryIdDefinitionID(t *testing.T) {
-	actual := NewDeviceManagementGroupPolicyCategoryIdDefinitionID("groupPolicyCategoryIdValue", "groupPolicyDefinitionIdValue").ID()
-	expected := "/deviceManagement/groupPolicyCategories/groupPolicyCategoryIdValue/definitions/groupPolicyDefinitionIdValue"
+	actual := NewDeviceManagementGroupPolicyCategoryIdDefinitionID("groupPolicyCategoryId", "groupPolicyDefinitionId").ID()
+	expected := "/deviceManagement/groupPolicyCategories/groupPolicyCategoryId/definitions/groupPolicyDefinitionId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -54,25 +54,25 @@ func TestParseDeviceManagementGroupPolicyCategoryIdDefinitionID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/deviceManagement/groupPolicyCategories/groupPolicyCategoryIdValue",
+			Input: "/deviceManagement/groupPolicyCategories/groupPolicyCategoryId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/deviceManagement/groupPolicyCategories/groupPolicyCategoryIdValue/definitions",
+			Input: "/deviceManagement/groupPolicyCategories/groupPolicyCategoryId/definitions",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/groupPolicyCategories/groupPolicyCategoryIdValue/definitions/groupPolicyDefinitionIdValue",
+			Input: "/deviceManagement/groupPolicyCategories/groupPolicyCategoryId/definitions/groupPolicyDefinitionId",
 			Expected: &DeviceManagementGroupPolicyCategoryIdDefinitionId{
-				GroupPolicyCategoryId:   "groupPolicyCategoryIdValue",
-				GroupPolicyDefinitionId: "groupPolicyDefinitionIdValue",
+				GroupPolicyCategoryId:   "groupPolicyCategoryId",
+				GroupPolicyDefinitionId: "groupPolicyDefinitionId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/groupPolicyCategories/groupPolicyCategoryIdValue/definitions/groupPolicyDefinitionIdValue/extra",
+			Input: "/deviceManagement/groupPolicyCategories/groupPolicyCategoryId/definitions/groupPolicyDefinitionId/extra",
 			Error: true,
 		},
 	}
@@ -135,48 +135,48 @@ func TestParseDeviceManagementGroupPolicyCategoryIdDefinitionIDInsensitively(t *
 		},
 		{
 			// Incomplete URI
-			Input: "/deviceManagement/groupPolicyCategories/groupPolicyCategoryIdValue",
+			Input: "/deviceManagement/groupPolicyCategories/groupPolicyCategoryId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/gRoUpPoLiCyCaTeGoRiEs/gRoUpPoLiCyCaTeGoRyIdVaLuE",
+			Input: "/dEvIcEmAnAgEmEnT/gRoUpPoLiCyCaTeGoRiEs/gRoUpPoLiCyCaTeGoRyId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/deviceManagement/groupPolicyCategories/groupPolicyCategoryIdValue/definitions",
+			Input: "/deviceManagement/groupPolicyCategories/groupPolicyCategoryId/definitions",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/gRoUpPoLiCyCaTeGoRiEs/gRoUpPoLiCyCaTeGoRyIdVaLuE/dEfInItIoNs",
+			Input: "/dEvIcEmAnAgEmEnT/gRoUpPoLiCyCaTeGoRiEs/gRoUpPoLiCyCaTeGoRyId/dEfInItIoNs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/groupPolicyCategories/groupPolicyCategoryIdValue/definitions/groupPolicyDefinitionIdValue",
+			Input: "/deviceManagement/groupPolicyCategories/groupPolicyCategoryId/definitions/groupPolicyDefinitionId",
 			Expected: &DeviceManagementGroupPolicyCategoryIdDefinitionId{
-				GroupPolicyCategoryId:   "groupPolicyCategoryIdValue",
-				GroupPolicyDefinitionId: "groupPolicyDefinitionIdValue",
+				GroupPolicyCategoryId:   "groupPolicyCategoryId",
+				GroupPolicyDefinitionId: "groupPolicyDefinitionId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/groupPolicyCategories/groupPolicyCategoryIdValue/definitions/groupPolicyDefinitionIdValue/extra",
+			Input: "/deviceManagement/groupPolicyCategories/groupPolicyCategoryId/definitions/groupPolicyDefinitionId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/gRoUpPoLiCyCaTeGoRiEs/gRoUpPoLiCyCaTeGoRyIdVaLuE/dEfInItIoNs/gRoUpPoLiCyDeFiNiTiOnIdVaLuE",
+			Input: "/dEvIcEmAnAgEmEnT/gRoUpPoLiCyCaTeGoRiEs/gRoUpPoLiCyCaTeGoRyId/dEfInItIoNs/gRoUpPoLiCyDeFiNiTiOnId",
 			Expected: &DeviceManagementGroupPolicyCategoryIdDefinitionId{
-				GroupPolicyCategoryId:   "gRoUpPoLiCyCaTeGoRyIdVaLuE",
-				GroupPolicyDefinitionId: "gRoUpPoLiCyDeFiNiTiOnIdVaLuE",
+				GroupPolicyCategoryId:   "gRoUpPoLiCyCaTeGoRyId",
+				GroupPolicyDefinitionId: "gRoUpPoLiCyDeFiNiTiOnId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/gRoUpPoLiCyCaTeGoRiEs/gRoUpPoLiCyCaTeGoRyIdVaLuE/dEfInItIoNs/gRoUpPoLiCyDeFiNiTiOnIdVaLuE/extra",
+			Input: "/dEvIcEmAnAgEmEnT/gRoUpPoLiCyCaTeGoRiEs/gRoUpPoLiCyCaTeGoRyId/dEfInItIoNs/gRoUpPoLiCyDeFiNiTiOnId/extra",
 			Error: true,
 		},
 	}

@@ -19,7 +19,8 @@ type RemoveB2xUserFlowIdentityProviderRefOperationResponse struct {
 }
 
 type RemoveB2xUserFlowIdentityProviderRefOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultRemoveB2xUserFlowIdentityProviderRefOperationOptions() RemoveB2xUserFlowIdentityProviderRefOperationOptions {
@@ -36,7 +37,9 @@ func (o RemoveB2xUserFlowIdentityProviderRefOperationOptions) ToHeaders() *clien
 
 func (o RemoveB2xUserFlowIdentityProviderRefOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

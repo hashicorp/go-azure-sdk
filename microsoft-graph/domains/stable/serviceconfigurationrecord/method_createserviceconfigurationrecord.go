@@ -20,15 +20,44 @@ type CreateServiceConfigurationRecordOperationResponse struct {
 	Model        stable.DomainDnsRecord
 }
 
+type CreateServiceConfigurationRecordOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateServiceConfigurationRecordOperationOptions() CreateServiceConfigurationRecordOperationOptions {
+	return CreateServiceConfigurationRecordOperationOptions{}
+}
+
+func (o CreateServiceConfigurationRecordOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateServiceConfigurationRecordOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateServiceConfigurationRecordOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateServiceConfigurationRecord - Create new navigation property to serviceConfigurationRecords for domains
-func (c ServiceConfigurationRecordClient) CreateServiceConfigurationRecord(ctx context.Context, id stable.DomainId, input stable.DomainDnsRecord) (result CreateServiceConfigurationRecordOperationResponse, err error) {
+func (c ServiceConfigurationRecordClient) CreateServiceConfigurationRecord(ctx context.Context, id stable.DomainId, input stable.DomainDnsRecord, options CreateServiceConfigurationRecordOperationOptions) (result CreateServiceConfigurationRecordOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/serviceConfigurationRecords", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/serviceConfigurationRecords", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

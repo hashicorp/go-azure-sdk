@@ -103,18 +103,30 @@ func (s MailboxProtectionRule) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &MailboxProtectionRule{}
 
 func (s *MailboxProtectionRule) UnmarshalJSON(bytes []byte) error {
-	type alias MailboxProtectionRule
-	var decoded alias
+
+	var decoded struct {
+		MailboxExpression    nullable.Type[string] `json:"mailboxExpression,omitempty"`
+		CreatedBy            IdentitySet           `json:"createdBy"`
+		CreatedDateTime      nullable.Type[string] `json:"createdDateTime,omitempty"`
+		Error                *PublicError          `json:"error,omitempty"`
+		IsAutoApplyEnabled   nullable.Type[bool]   `json:"isAutoApplyEnabled,omitempty"`
+		LastModifiedBy       IdentitySet           `json:"lastModifiedBy"`
+		LastModifiedDateTime nullable.Type[string] `json:"lastModifiedDateTime,omitempty"`
+		Status               *ProtectionRuleStatus `json:"status,omitempty"`
+		Id                   *string               `json:"id,omitempty"`
+		ODataId              *string               `json:"@odata.id,omitempty"`
+		ODataType            *string               `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into MailboxProtectionRule: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
+	s.MailboxExpression = decoded.MailboxExpression
 	s.CreatedDateTime = decoded.CreatedDateTime
 	s.Error = decoded.Error
 	s.Id = decoded.Id
 	s.IsAutoApplyEnabled = decoded.IsAutoApplyEnabled
 	s.LastModifiedDateTime = decoded.LastModifiedDateTime
-	s.MailboxExpression = decoded.MailboxExpression
 	s.ODataId = decoded.ODataId
 	s.ODataType = decoded.ODataType
 	s.Status = decoded.Status
@@ -139,5 +151,6 @@ func (s *MailboxProtectionRule) UnmarshalJSON(bytes []byte) error {
 		}
 		s.LastModifiedBy = impl
 	}
+
 	return nil
 }

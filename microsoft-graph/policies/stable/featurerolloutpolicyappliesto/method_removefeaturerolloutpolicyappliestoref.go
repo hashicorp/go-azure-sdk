@@ -19,8 +19,8 @@ type RemoveFeatureRolloutPolicyAppliesToRefOperationResponse struct {
 }
 
 type RemoveFeatureRolloutPolicyAppliesToRefOperationOptions struct {
-	Id      *string
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultRemoveFeatureRolloutPolicyAppliesToRefOperationOptions() RemoveFeatureRolloutPolicyAppliesToRefOperationOptions {
@@ -37,21 +37,21 @@ func (o RemoveFeatureRolloutPolicyAppliesToRefOperationOptions) ToHeaders() *cli
 
 func (o RemoveFeatureRolloutPolicyAppliesToRefOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 
 func (o RemoveFeatureRolloutPolicyAppliesToRefOperationOptions) ToQuery() *client.QueryParams {
 	out := client.QueryParams{}
-	if o.Id != nil {
-		out.Append("@id", fmt.Sprintf("%v", *o.Id))
-	}
+
 	return &out
 }
 
 // RemoveFeatureRolloutPolicyAppliesToRef - Remove appliesTo on a featureRolloutPolicy. Remove an appliesTo on a
 // featureRolloutPolicy object to remove the directoryObject from feature rollout.
-func (c FeatureRolloutPolicyAppliesToClient) RemoveFeatureRolloutPolicyAppliesToRef(ctx context.Context, id stable.PolicyFeatureRolloutPolicyId, options RemoveFeatureRolloutPolicyAppliesToRefOperationOptions) (result RemoveFeatureRolloutPolicyAppliesToRefOperationResponse, err error) {
+func (c FeatureRolloutPolicyAppliesToClient) RemoveFeatureRolloutPolicyAppliesToRef(ctx context.Context, id stable.PolicyFeatureRolloutPolicyIdAppliesToId, options RemoveFeatureRolloutPolicyAppliesToRefOperationOptions) (result RemoveFeatureRolloutPolicyAppliesToRefOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
@@ -59,7 +59,7 @@ func (c FeatureRolloutPolicyAppliesToClient) RemoveFeatureRolloutPolicyAppliesTo
 		},
 		HttpMethod:    http.MethodDelete,
 		OptionsObject: options,
-		Path:          fmt.Sprintf("%s/appliesTo/$ref", id.ID()),
+		Path:          fmt.Sprintf("%s/$ref", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

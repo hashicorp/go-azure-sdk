@@ -12,24 +12,24 @@ import (
 var _ resourceids.ResourceId = &GroupIdEventIdInstanceId{}
 
 func TestNewGroupIdEventIdInstanceID(t *testing.T) {
-	id := NewGroupIdEventIdInstanceID("groupIdValue", "eventIdValue", "eventId1Value")
+	id := NewGroupIdEventIdInstanceID("groupId", "eventId", "eventId1")
 
-	if id.GroupId != "groupIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'GroupId'", id.GroupId, "groupIdValue")
+	if id.GroupId != "groupId" {
+		t.Fatalf("Expected %q but got %q for Segment 'GroupId'", id.GroupId, "groupId")
 	}
 
-	if id.EventId != "eventIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'EventId'", id.EventId, "eventIdValue")
+	if id.EventId != "eventId" {
+		t.Fatalf("Expected %q but got %q for Segment 'EventId'", id.EventId, "eventId")
 	}
 
-	if id.EventId1 != "eventId1Value" {
-		t.Fatalf("Expected %q but got %q for Segment 'EventId1'", id.EventId1, "eventId1Value")
+	if id.EventId1 != "eventId1" {
+		t.Fatalf("Expected %q but got %q for Segment 'EventId1'", id.EventId1, "eventId1")
 	}
 }
 
 func TestFormatGroupIdEventIdInstanceID(t *testing.T) {
-	actual := NewGroupIdEventIdInstanceID("groupIdValue", "eventIdValue", "eventId1Value").ID()
-	expected := "/groups/groupIdValue/events/eventIdValue/instances/eventId1Value"
+	actual := NewGroupIdEventIdInstanceID("groupId", "eventId", "eventId1").ID()
+	expected := "/groups/groupId/events/eventId/instances/eventId1"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -53,36 +53,36 @@ func TestParseGroupIdEventIdInstanceID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue",
+			Input: "/groups/groupId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/events",
+			Input: "/groups/groupId/events",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/events/eventIdValue",
+			Input: "/groups/groupId/events/eventId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/events/eventIdValue/instances",
+			Input: "/groups/groupId/events/eventId/instances",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/groups/groupIdValue/events/eventIdValue/instances/eventId1Value",
+			Input: "/groups/groupId/events/eventId/instances/eventId1",
 			Expected: &GroupIdEventIdInstanceId{
-				GroupId:  "groupIdValue",
-				EventId:  "eventIdValue",
-				EventId1: "eventId1Value",
+				GroupId:  "groupId",
+				EventId:  "eventId",
+				EventId1: "eventId1",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/groups/groupIdValue/events/eventIdValue/instances/eventId1Value/extra",
+			Input: "/groups/groupId/events/eventId/instances/eventId1/extra",
 			Error: true,
 		},
 	}
@@ -139,70 +139,70 @@ func TestParseGroupIdEventIdInstanceIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue",
+			Input: "/groups/groupId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE",
+			Input: "/gRoUpS/gRoUpId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/events",
+			Input: "/groups/groupId/events",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/eVeNtS",
+			Input: "/gRoUpS/gRoUpId/eVeNtS",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/events/eventIdValue",
+			Input: "/groups/groupId/events/eventId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/eVeNtS/eVeNtIdVaLuE",
+			Input: "/gRoUpS/gRoUpId/eVeNtS/eVeNtId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/events/eventIdValue/instances",
+			Input: "/groups/groupId/events/eventId/instances",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/eVeNtS/eVeNtIdVaLuE/iNsTaNcEs",
+			Input: "/gRoUpS/gRoUpId/eVeNtS/eVeNtId/iNsTaNcEs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/groups/groupIdValue/events/eventIdValue/instances/eventId1Value",
+			Input: "/groups/groupId/events/eventId/instances/eventId1",
 			Expected: &GroupIdEventIdInstanceId{
-				GroupId:  "groupIdValue",
-				EventId:  "eventIdValue",
-				EventId1: "eventId1Value",
+				GroupId:  "groupId",
+				EventId:  "eventId",
+				EventId1: "eventId1",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/groups/groupIdValue/events/eventIdValue/instances/eventId1Value/extra",
+			Input: "/groups/groupId/events/eventId/instances/eventId1/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/eVeNtS/eVeNtIdVaLuE/iNsTaNcEs/eVeNtId1vAlUe",
+			Input: "/gRoUpS/gRoUpId/eVeNtS/eVeNtId/iNsTaNcEs/eVeNtId1",
 			Expected: &GroupIdEventIdInstanceId{
-				GroupId:  "gRoUpIdVaLuE",
-				EventId:  "eVeNtIdVaLuE",
-				EventId1: "eVeNtId1vAlUe",
+				GroupId:  "gRoUpId",
+				EventId:  "eVeNtId",
+				EventId1: "eVeNtId1",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/eVeNtS/eVeNtIdVaLuE/iNsTaNcEs/eVeNtId1vAlUe/extra",
+			Input: "/gRoUpS/gRoUpId/eVeNtS/eVeNtId/iNsTaNcEs/eVeNtId1/extra",
 			Error: true,
 		},
 	}

@@ -18,16 +18,45 @@ type SetOnlineMeetingTranscriptContentOperationResponse struct {
 	OData        *odata.OData
 }
 
+type SetOnlineMeetingTranscriptContentOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultSetOnlineMeetingTranscriptContentOperationOptions() SetOnlineMeetingTranscriptContentOperationOptions {
+	return SetOnlineMeetingTranscriptContentOperationOptions{}
+}
+
+func (o SetOnlineMeetingTranscriptContentOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o SetOnlineMeetingTranscriptContentOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o SetOnlineMeetingTranscriptContentOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // SetOnlineMeetingTranscriptContent - Update content for the navigation property transcripts in me. The content of the
 // transcript. Read-only.
-func (c OnlineMeetingTranscriptContentClient) SetOnlineMeetingTranscriptContent(ctx context.Context, id stable.MeOnlineMeetingIdTranscriptId, input []byte) (result SetOnlineMeetingTranscriptContentOperationResponse, err error) {
+func (c OnlineMeetingTranscriptContentClient) SetOnlineMeetingTranscriptContent(ctx context.Context, id stable.MeOnlineMeetingIdTranscriptId, input []byte, options SetOnlineMeetingTranscriptContentOperationOptions) (result SetOnlineMeetingTranscriptContentOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPut,
-		Path:       fmt.Sprintf("%s/content", id.ID()),
+		HttpMethod:    http.MethodPut,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/content", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

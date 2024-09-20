@@ -64,16 +64,21 @@ func (s CustomExtensionStageSetting) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &CustomExtensionStageSetting{}
 
 func (s *CustomExtensionStageSetting) UnmarshalJSON(bytes []byte) error {
-	type alias CustomExtensionStageSetting
-	var decoded alias
+
+	var decoded struct {
+		Stage     *AccessPackageCustomExtensionStage `json:"stage,omitempty"`
+		Id        *string                            `json:"id,omitempty"`
+		ODataId   *string                            `json:"@odata.id,omitempty"`
+		ODataType *string                            `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into CustomExtensionStageSetting: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
+	s.Stage = decoded.Stage
 	s.Id = decoded.Id
 	s.ODataId = decoded.ODataId
 	s.ODataType = decoded.ODataType
-	s.Stage = decoded.Stage
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -87,5 +92,6 @@ func (s *CustomExtensionStageSetting) UnmarshalJSON(bytes []byte) error {
 		}
 		s.CustomExtension = &impl
 	}
+
 	return nil
 }

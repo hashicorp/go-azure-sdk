@@ -17,16 +17,45 @@ type UpdateGroupPolicyDefinitionNextVersionDefinitionPresentationOperationRespon
 	OData        *odata.OData
 }
 
+type UpdateGroupPolicyDefinitionNextVersionDefinitionPresentationOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateGroupPolicyDefinitionNextVersionDefinitionPresentationOperationOptions() UpdateGroupPolicyDefinitionNextVersionDefinitionPresentationOperationOptions {
+	return UpdateGroupPolicyDefinitionNextVersionDefinitionPresentationOperationOptions{}
+}
+
+func (o UpdateGroupPolicyDefinitionNextVersionDefinitionPresentationOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateGroupPolicyDefinitionNextVersionDefinitionPresentationOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateGroupPolicyDefinitionNextVersionDefinitionPresentationOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateGroupPolicyDefinitionNextVersionDefinitionPresentation - Update the navigation property presentations in
 // deviceManagement
-func (c GroupPolicyDefinitionNextVersionDefinitionPresentationClient) UpdateGroupPolicyDefinitionNextVersionDefinitionPresentation(ctx context.Context, id beta.DeviceManagementGroupPolicyDefinitionIdNextVersionDefinitionPresentationId, input beta.GroupPolicyPresentation) (result UpdateGroupPolicyDefinitionNextVersionDefinitionPresentationOperationResponse, err error) {
+func (c GroupPolicyDefinitionNextVersionDefinitionPresentationClient) UpdateGroupPolicyDefinitionNextVersionDefinitionPresentation(ctx context.Context, id beta.DeviceManagementGroupPolicyDefinitionIdNextVersionDefinitionPresentationId, input beta.GroupPolicyPresentation, options UpdateGroupPolicyDefinitionNextVersionDefinitionPresentationOperationOptions) (result UpdateGroupPolicyDefinitionNextVersionDefinitionPresentationOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

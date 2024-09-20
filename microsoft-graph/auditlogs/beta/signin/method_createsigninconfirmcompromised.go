@@ -16,19 +16,48 @@ type CreateSignInConfirmCompromisedOperationResponse struct {
 	OData        *odata.OData
 }
 
+type CreateSignInConfirmCompromisedOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateSignInConfirmCompromisedOperationOptions() CreateSignInConfirmCompromisedOperationOptions {
+	return CreateSignInConfirmCompromisedOperationOptions{}
+}
+
+func (o CreateSignInConfirmCompromisedOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateSignInConfirmCompromisedOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateSignInConfirmCompromisedOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateSignInConfirmCompromised - Invoke action confirmCompromised. Allow admins to mark an event in the Microsoft
 // Entra sign-in logs as risky. Events marked as risky by an admin are immediately flagged as high risk in Microsoft
 // Entra ID Protection, overriding previous risk states. Admins can confirm that events flagged as risky by Microsoft
 // Entra ID Protection are in fact risky. For details about investigating Identity Protection risks, see How to
 // investigate risk.
-func (c SignInClient) CreateSignInConfirmCompromised(ctx context.Context, input CreateSignInConfirmCompromisedRequest) (result CreateSignInConfirmCompromisedOperationResponse, err error) {
+func (c SignInClient) CreateSignInConfirmCompromised(ctx context.Context, input CreateSignInConfirmCompromisedRequest, options CreateSignInConfirmCompromisedOperationOptions) (result CreateSignInConfirmCompromisedOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/auditLogs/signIns/confirmCompromised",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/auditLogs/signIns/confirmCompromised",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

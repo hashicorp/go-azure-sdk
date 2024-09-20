@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/applepushnotificationcertificate` Documentation
 
-The `applepushnotificationcertificate` SDK allows for interaction with the Azure Resource Manager Service `devicemanagement` (API Version `beta`).
+The `applepushnotificationcertificate` SDK allows for interaction with Microsoft Graph `devicemanagement` (API Version `beta`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -15,7 +15,7 @@ import "github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/
 ### Client Initialization
 
 ```go
-client := applepushnotificationcertificate.NewApplePushNotificationCertificateClientWithBaseURI("https://management.azure.com")
+client := applepushnotificationcertificate.NewApplePushNotificationCertificateClientWithBaseURI("https://graph.microsoft.com")
 client.Client.Authorizer = authorizer
 ```
 
@@ -26,7 +26,7 @@ client.Client.Authorizer = authorizer
 ctx := context.TODO()
 
 
-read, err := client.CreateApplePushNotificationCertificateGenerateSigningRequest(ctx)
+read, err := client.CreateApplePushNotificationCertificateGenerateSigningRequest(ctx, applepushnotificationcertificate.DefaultCreateApplePushNotificationCertificateGenerateSigningRequestOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -78,7 +78,7 @@ payload := applepushnotificationcertificate.ApplePushNotificationCertificate{
 }
 
 
-read, err := client.UpdateApplePushNotificationCertificate(ctx, payload)
+read, err := client.UpdateApplePushNotificationCertificate(ctx, payload, applepushnotificationcertificate.DefaultUpdateApplePushNotificationCertificateOperationOptions())
 if err != nil {
 	// handle the error
 }

@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/windowsqualityupdateprofile` Documentation
 
-The `windowsqualityupdateprofile` SDK allows for interaction with the Azure Resource Manager Service `devicemanagement` (API Version `beta`).
+The `windowsqualityupdateprofile` SDK allows for interaction with Microsoft Graph `devicemanagement` (API Version `beta`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -15,7 +15,7 @@ import "github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/
 ### Client Initialization
 
 ```go
-client := windowsqualityupdateprofile.NewWindowsQualityUpdateProfileClientWithBaseURI("https://management.azure.com")
+client := windowsqualityupdateprofile.NewWindowsQualityUpdateProfileClientWithBaseURI("https://graph.microsoft.com")
 client.Client.Authorizer = authorizer
 ```
 
@@ -24,14 +24,14 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := windowsqualityupdateprofile.NewDeviceManagementWindowsQualityUpdateProfileID("windowsQualityUpdateProfileIdValue")
+id := windowsqualityupdateprofile.NewDeviceManagementWindowsQualityUpdateProfileID("windowsQualityUpdateProfileId")
 
 payload := windowsqualityupdateprofile.AssignWindowsQualityUpdateProfileRequest{
 	// ...
 }
 
 
-read, err := client.AssignWindowsQualityUpdateProfile(ctx, id, payload)
+read, err := client.AssignWindowsQualityUpdateProfile(ctx, id, payload, windowsqualityupdateprofile.DefaultAssignWindowsQualityUpdateProfileOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -51,7 +51,7 @@ payload := windowsqualityupdateprofile.WindowsQualityUpdateProfile{
 }
 
 
-read, err := client.CreateWindowsQualityUpdateProfile(ctx, payload)
+read, err := client.CreateWindowsQualityUpdateProfile(ctx, payload, windowsqualityupdateprofile.DefaultCreateWindowsQualityUpdateProfileOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -65,7 +65,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := windowsqualityupdateprofile.NewDeviceManagementWindowsQualityUpdateProfileID("windowsQualityUpdateProfileIdValue")
+id := windowsqualityupdateprofile.NewDeviceManagementWindowsQualityUpdateProfileID("windowsQualityUpdateProfileId")
 
 read, err := client.DeleteWindowsQualityUpdateProfile(ctx, id, windowsqualityupdateprofile.DefaultDeleteWindowsQualityUpdateProfileOperationOptions())
 if err != nil {
@@ -81,7 +81,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := windowsqualityupdateprofile.NewDeviceManagementWindowsQualityUpdateProfileID("windowsQualityUpdateProfileIdValue")
+id := windowsqualityupdateprofile.NewDeviceManagementWindowsQualityUpdateProfileID("windowsQualityUpdateProfileId")
 
 read, err := client.GetWindowsQualityUpdateProfile(ctx, id, windowsqualityupdateprofile.DefaultGetWindowsQualityUpdateProfileOperationOptions())
 if err != nil {
@@ -130,14 +130,14 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := windowsqualityupdateprofile.NewDeviceManagementWindowsQualityUpdateProfileID("windowsQualityUpdateProfileIdValue")
+id := windowsqualityupdateprofile.NewDeviceManagementWindowsQualityUpdateProfileID("windowsQualityUpdateProfileId")
 
 payload := windowsqualityupdateprofile.WindowsQualityUpdateProfile{
 	// ...
 }
 
 
-read, err := client.UpdateWindowsQualityUpdateProfile(ctx, id, payload)
+read, err := client.UpdateWindowsQualityUpdateProfile(ctx, id, payload, windowsqualityupdateprofile.DefaultUpdateWindowsQualityUpdateProfileOperationOptions())
 if err != nil {
 	// handle the error
 }

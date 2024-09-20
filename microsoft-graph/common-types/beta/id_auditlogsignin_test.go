@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &AuditLogSignInId{}
 
 func TestNewAuditLogSignInID(t *testing.T) {
-	id := NewAuditLogSignInID("signInIdValue")
+	id := NewAuditLogSignInID("signInId")
 
-	if id.SignInId != "signInIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'SignInId'", id.SignInId, "signInIdValue")
+	if id.SignInId != "signInId" {
+		t.Fatalf("Expected %q but got %q for Segment 'SignInId'", id.SignInId, "signInId")
 	}
 }
 
 func TestFormatAuditLogSignInID(t *testing.T) {
-	actual := NewAuditLogSignInID("signInIdValue").ID()
-	expected := "/auditLogs/signIns/signInIdValue"
+	actual := NewAuditLogSignInID("signInId").ID()
+	expected := "/auditLogs/signIns/signInId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -50,14 +50,14 @@ func TestParseAuditLogSignInID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/auditLogs/signIns/signInIdValue",
+			Input: "/auditLogs/signIns/signInId",
 			Expected: &AuditLogSignInId{
-				SignInId: "signInIdValue",
+				SignInId: "signInId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/auditLogs/signIns/signInIdValue/extra",
+			Input: "/auditLogs/signIns/signInId/extra",
 			Error: true,
 		},
 	}
@@ -116,26 +116,26 @@ func TestParseAuditLogSignInIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/auditLogs/signIns/signInIdValue",
+			Input: "/auditLogs/signIns/signInId",
 			Expected: &AuditLogSignInId{
-				SignInId: "signInIdValue",
+				SignInId: "signInId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/auditLogs/signIns/signInIdValue/extra",
+			Input: "/auditLogs/signIns/signInId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/aUdItLoGs/sIgNiNs/sIgNiNiDvAlUe",
+			Input: "/aUdItLoGs/sIgNiNs/sIgNiNiD",
 			Expected: &AuditLogSignInId{
-				SignInId: "sIgNiNiDvAlUe",
+				SignInId: "sIgNiNiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/aUdItLoGs/sIgNiNs/sIgNiNiDvAlUe/extra",
+			Input: "/aUdItLoGs/sIgNiNs/sIgNiNiD/extra",
 			Error: true,
 		},
 	}

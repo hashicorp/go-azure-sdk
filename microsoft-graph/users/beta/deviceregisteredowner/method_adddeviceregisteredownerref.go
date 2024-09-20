@@ -18,15 +18,44 @@ type AddDeviceRegisteredOwnerRefOperationResponse struct {
 	OData        *odata.OData
 }
 
+type AddDeviceRegisteredOwnerRefOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultAddDeviceRegisteredOwnerRefOperationOptions() AddDeviceRegisteredOwnerRefOperationOptions {
+	return AddDeviceRegisteredOwnerRefOperationOptions{}
+}
+
+func (o AddDeviceRegisteredOwnerRefOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o AddDeviceRegisteredOwnerRefOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o AddDeviceRegisteredOwnerRefOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // AddDeviceRegisteredOwnerRef - Create new navigation property ref to registeredOwners for users
-func (c DeviceRegisteredOwnerClient) AddDeviceRegisteredOwnerRef(ctx context.Context, id beta.UserIdDeviceId, input beta.ReferenceCreate) (result AddDeviceRegisteredOwnerRefOperationResponse, err error) {
+func (c DeviceRegisteredOwnerClient) AddDeviceRegisteredOwnerRef(ctx context.Context, id beta.UserIdDeviceId, input beta.ReferenceCreate, options AddDeviceRegisteredOwnerRefOperationOptions) (result AddDeviceRegisteredOwnerRefOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/registeredOwners/$ref", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/registeredOwners/$ref", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

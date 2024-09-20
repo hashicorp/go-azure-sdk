@@ -76,18 +76,25 @@ func (s Trending) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &Trending{}
 
 func (s *Trending) UnmarshalJSON(bytes []byte) error {
-	type alias Trending
-	var decoded alias
+
+	var decoded struct {
+		LastModifiedDateTime  nullable.Type[string]  `json:"lastModifiedDateTime,omitempty"`
+		ResourceReference     *ResourceReference     `json:"resourceReference,omitempty"`
+		ResourceVisualization *ResourceVisualization `json:"resourceVisualization,omitempty"`
+		Id                    *string                `json:"id,omitempty"`
+		ODataId               *string                `json:"@odata.id,omitempty"`
+		ODataType             *string                `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into Trending: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
-	s.Id = decoded.Id
 	s.LastModifiedDateTime = decoded.LastModifiedDateTime
-	s.ODataId = decoded.ODataId
-	s.ODataType = decoded.ODataType
 	s.ResourceReference = decoded.ResourceReference
 	s.ResourceVisualization = decoded.ResourceVisualization
+	s.Id = decoded.Id
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -101,5 +108,6 @@ func (s *Trending) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Resource = impl
 	}
+
 	return nil
 }

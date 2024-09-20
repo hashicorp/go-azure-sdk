@@ -19,7 +19,8 @@ type DeleteAppConsentRequestsForApprovalUserApprovalOperationResponse struct {
 }
 
 type DeleteAppConsentRequestsForApprovalUserApprovalOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteAppConsentRequestsForApprovalUserApprovalOperationOptions() DeleteAppConsentRequestsForApprovalUserApprovalOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteAppConsentRequestsForApprovalUserApprovalOperationOptions) ToHeade
 
 func (o DeleteAppConsentRequestsForApprovalUserApprovalOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

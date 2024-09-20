@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &UserIdProfileProjectId{}
 
 func TestNewUserIdProfileProjectID(t *testing.T) {
-	id := NewUserIdProfileProjectID("userIdValue", "projectParticipationIdValue")
+	id := NewUserIdProfileProjectID("userId", "projectParticipationId")
 
-	if id.UserId != "userIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'UserId'", id.UserId, "userIdValue")
+	if id.UserId != "userId" {
+		t.Fatalf("Expected %q but got %q for Segment 'UserId'", id.UserId, "userId")
 	}
 
-	if id.ProjectParticipationId != "projectParticipationIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ProjectParticipationId'", id.ProjectParticipationId, "projectParticipationIdValue")
+	if id.ProjectParticipationId != "projectParticipationId" {
+		t.Fatalf("Expected %q but got %q for Segment 'ProjectParticipationId'", id.ProjectParticipationId, "projectParticipationId")
 	}
 }
 
 func TestFormatUserIdProfileProjectID(t *testing.T) {
-	actual := NewUserIdProfileProjectID("userIdValue", "projectParticipationIdValue").ID()
-	expected := "/users/userIdValue/profile/projects/projectParticipationIdValue"
+	actual := NewUserIdProfileProjectID("userId", "projectParticipationId").ID()
+	expected := "/users/userId/profile/projects/projectParticipationId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -49,30 +49,30 @@ func TestParseUserIdProfileProjectID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue",
+			Input: "/users/userId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/profile",
+			Input: "/users/userId/profile",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/profile/projects",
+			Input: "/users/userId/profile/projects",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/users/userIdValue/profile/projects/projectParticipationIdValue",
+			Input: "/users/userId/profile/projects/projectParticipationId",
 			Expected: &UserIdProfileProjectId{
-				UserId:                 "userIdValue",
-				ProjectParticipationId: "projectParticipationIdValue",
+				UserId:                 "userId",
+				ProjectParticipationId: "projectParticipationId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/users/userIdValue/profile/projects/projectParticipationIdValue/extra",
+			Input: "/users/userId/profile/projects/projectParticipationId/extra",
 			Error: true,
 		},
 	}
@@ -125,58 +125,58 @@ func TestParseUserIdProfileProjectIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue",
+			Input: "/users/userId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe",
+			Input: "/uSeRs/uSeRiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/profile",
+			Input: "/users/userId/profile",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/pRoFiLe",
+			Input: "/uSeRs/uSeRiD/pRoFiLe",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/profile/projects",
+			Input: "/users/userId/profile/projects",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/pRoFiLe/pRoJeCtS",
+			Input: "/uSeRs/uSeRiD/pRoFiLe/pRoJeCtS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/users/userIdValue/profile/projects/projectParticipationIdValue",
+			Input: "/users/userId/profile/projects/projectParticipationId",
 			Expected: &UserIdProfileProjectId{
-				UserId:                 "userIdValue",
-				ProjectParticipationId: "projectParticipationIdValue",
+				UserId:                 "userId",
+				ProjectParticipationId: "projectParticipationId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/users/userIdValue/profile/projects/projectParticipationIdValue/extra",
+			Input: "/users/userId/profile/projects/projectParticipationId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/pRoFiLe/pRoJeCtS/pRoJeCtPaRtIcIpAtIoNiDvAlUe",
+			Input: "/uSeRs/uSeRiD/pRoFiLe/pRoJeCtS/pRoJeCtPaRtIcIpAtIoNiD",
 			Expected: &UserIdProfileProjectId{
-				UserId:                 "uSeRiDvAlUe",
-				ProjectParticipationId: "pRoJeCtPaRtIcIpAtIoNiDvAlUe",
+				UserId:                 "uSeRiD",
+				ProjectParticipationId: "pRoJeCtPaRtIcIpAtIoNiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/pRoFiLe/pRoJeCtS/pRoJeCtPaRtIcIpAtIoNiDvAlUe/extra",
+			Input: "/uSeRs/uSeRiD/pRoFiLe/pRoJeCtS/pRoJeCtPaRtIcIpAtIoNiD/extra",
 			Error: true,
 		},
 	}

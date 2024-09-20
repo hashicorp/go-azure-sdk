@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/microsoft-graph/policies/stable/authenticationstrengthpolicy` Documentation
 
-The `authenticationstrengthpolicy` SDK allows for interaction with the Azure Resource Manager Service `policies` (API Version `stable`).
+The `authenticationstrengthpolicy` SDK allows for interaction with Microsoft Graph `policies` (API Version `stable`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -15,7 +15,7 @@ import "github.com/hashicorp/go-azure-sdk/microsoft-graph/policies/stable/authen
 ### Client Initialization
 
 ```go
-client := authenticationstrengthpolicy.NewAuthenticationStrengthPolicyClientWithBaseURI("https://management.azure.com")
+client := authenticationstrengthpolicy.NewAuthenticationStrengthPolicyClientWithBaseURI("https://graph.microsoft.com")
 client.Client.Authorizer = authorizer
 ```
 
@@ -30,7 +30,7 @@ payload := authenticationstrengthpolicy.AuthenticationStrengthPolicy{
 }
 
 
-read, err := client.CreateAuthenticationStrengthPolicy(ctx, payload)
+read, err := client.CreateAuthenticationStrengthPolicy(ctx, payload, authenticationstrengthpolicy.DefaultCreateAuthenticationStrengthPolicyOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -44,7 +44,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := authenticationstrengthpolicy.NewPolicyAuthenticationStrengthPolicyID("authenticationStrengthPolicyIdValue")
+id := authenticationstrengthpolicy.NewPolicyAuthenticationStrengthPolicyID("authenticationStrengthPolicyId")
 
 read, err := client.DeleteAuthenticationStrengthPolicy(ctx, id, authenticationstrengthpolicy.DefaultDeleteAuthenticationStrengthPolicyOperationOptions())
 if err != nil {
@@ -76,7 +76,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := authenticationstrengthpolicy.NewPolicyAuthenticationStrengthPolicyID("authenticationStrengthPolicyIdValue")
+id := authenticationstrengthpolicy.NewPolicyAuthenticationStrengthPolicyID("authenticationStrengthPolicyId")
 
 read, err := client.GetAuthenticationStrengthPolicy(ctx, id, authenticationstrengthpolicy.DefaultGetAuthenticationStrengthPolicyOperationOptions())
 if err != nil {
@@ -109,14 +109,14 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := authenticationstrengthpolicy.NewPolicyAuthenticationStrengthPolicyID("authenticationStrengthPolicyIdValue")
+id := authenticationstrengthpolicy.NewPolicyAuthenticationStrengthPolicyID("authenticationStrengthPolicyId")
 
 payload := authenticationstrengthpolicy.AuthenticationStrengthPolicy{
 	// ...
 }
 
 
-read, err := client.UpdateAuthenticationStrengthPolicy(ctx, id, payload)
+read, err := client.UpdateAuthenticationStrengthPolicy(ctx, id, payload, authenticationstrengthpolicy.DefaultUpdateAuthenticationStrengthPolicyOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -126,18 +126,18 @@ if model := read.Model; model != nil {
 ```
 
 
-### Example Usage: `AuthenticationStrengthPolicyClient.UpdateAuthenticationStrengthPolicyAllowedCombination`
+### Example Usage: `AuthenticationStrengthPolicyClient.UpdateAuthenticationStrengthPolicyAllowedCombinations`
 
 ```go
 ctx := context.TODO()
-id := authenticationstrengthpolicy.NewPolicyAuthenticationStrengthPolicyID("authenticationStrengthPolicyIdValue")
+id := authenticationstrengthpolicy.NewPolicyAuthenticationStrengthPolicyID("authenticationStrengthPolicyId")
 
-payload := authenticationstrengthpolicy.UpdateAuthenticationStrengthPolicyAllowedCombinationRequest{
+payload := authenticationstrengthpolicy.UpdateAuthenticationStrengthPolicyAllowedCombinationsRequest{
 	// ...
 }
 
 
-read, err := client.UpdateAuthenticationStrengthPolicyAllowedCombination(ctx, id, payload)
+read, err := client.UpdateAuthenticationStrengthPolicyAllowedCombinations(ctx, id, payload, authenticationstrengthpolicy.DefaultUpdateAuthenticationStrengthPolicyAllowedCombinationsOperationOptions())
 if err != nil {
 	// handle the error
 }

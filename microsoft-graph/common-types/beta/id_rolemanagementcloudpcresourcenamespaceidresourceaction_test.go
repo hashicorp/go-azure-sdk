@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &RoleManagementCloudPCResourceNamespaceIdResourceActionId{}
 
 func TestNewRoleManagementCloudPCResourceNamespaceIdResourceActionID(t *testing.T) {
-	id := NewRoleManagementCloudPCResourceNamespaceIdResourceActionID("unifiedRbacResourceNamespaceIdValue", "unifiedRbacResourceActionIdValue")
+	id := NewRoleManagementCloudPCResourceNamespaceIdResourceActionID("unifiedRbacResourceNamespaceId", "unifiedRbacResourceActionId")
 
-	if id.UnifiedRbacResourceNamespaceId != "unifiedRbacResourceNamespaceIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'UnifiedRbacResourceNamespaceId'", id.UnifiedRbacResourceNamespaceId, "unifiedRbacResourceNamespaceIdValue")
+	if id.UnifiedRbacResourceNamespaceId != "unifiedRbacResourceNamespaceId" {
+		t.Fatalf("Expected %q but got %q for Segment 'UnifiedRbacResourceNamespaceId'", id.UnifiedRbacResourceNamespaceId, "unifiedRbacResourceNamespaceId")
 	}
 
-	if id.UnifiedRbacResourceActionId != "unifiedRbacResourceActionIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'UnifiedRbacResourceActionId'", id.UnifiedRbacResourceActionId, "unifiedRbacResourceActionIdValue")
+	if id.UnifiedRbacResourceActionId != "unifiedRbacResourceActionId" {
+		t.Fatalf("Expected %q but got %q for Segment 'UnifiedRbacResourceActionId'", id.UnifiedRbacResourceActionId, "unifiedRbacResourceActionId")
 	}
 }
 
 func TestFormatRoleManagementCloudPCResourceNamespaceIdResourceActionID(t *testing.T) {
-	actual := NewRoleManagementCloudPCResourceNamespaceIdResourceActionID("unifiedRbacResourceNamespaceIdValue", "unifiedRbacResourceActionIdValue").ID()
-	expected := "/roleManagement/cloudPC/resourceNamespaces/unifiedRbacResourceNamespaceIdValue/resourceActions/unifiedRbacResourceActionIdValue"
+	actual := NewRoleManagementCloudPCResourceNamespaceIdResourceActionID("unifiedRbacResourceNamespaceId", "unifiedRbacResourceActionId").ID()
+	expected := "/roleManagement/cloudPC/resourceNamespaces/unifiedRbacResourceNamespaceId/resourceActions/unifiedRbacResourceActionId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -59,25 +59,25 @@ func TestParseRoleManagementCloudPCResourceNamespaceIdResourceActionID(t *testin
 		},
 		{
 			// Incomplete URI
-			Input: "/roleManagement/cloudPC/resourceNamespaces/unifiedRbacResourceNamespaceIdValue",
+			Input: "/roleManagement/cloudPC/resourceNamespaces/unifiedRbacResourceNamespaceId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/roleManagement/cloudPC/resourceNamespaces/unifiedRbacResourceNamespaceIdValue/resourceActions",
+			Input: "/roleManagement/cloudPC/resourceNamespaces/unifiedRbacResourceNamespaceId/resourceActions",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/roleManagement/cloudPC/resourceNamespaces/unifiedRbacResourceNamespaceIdValue/resourceActions/unifiedRbacResourceActionIdValue",
+			Input: "/roleManagement/cloudPC/resourceNamespaces/unifiedRbacResourceNamespaceId/resourceActions/unifiedRbacResourceActionId",
 			Expected: &RoleManagementCloudPCResourceNamespaceIdResourceActionId{
-				UnifiedRbacResourceNamespaceId: "unifiedRbacResourceNamespaceIdValue",
-				UnifiedRbacResourceActionId:    "unifiedRbacResourceActionIdValue",
+				UnifiedRbacResourceNamespaceId: "unifiedRbacResourceNamespaceId",
+				UnifiedRbacResourceActionId:    "unifiedRbacResourceActionId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/roleManagement/cloudPC/resourceNamespaces/unifiedRbacResourceNamespaceIdValue/resourceActions/unifiedRbacResourceActionIdValue/extra",
+			Input: "/roleManagement/cloudPC/resourceNamespaces/unifiedRbacResourceNamespaceId/resourceActions/unifiedRbacResourceActionId/extra",
 			Error: true,
 		},
 	}
@@ -150,48 +150,48 @@ func TestParseRoleManagementCloudPCResourceNamespaceIdResourceActionIDInsensitiv
 		},
 		{
 			// Incomplete URI
-			Input: "/roleManagement/cloudPC/resourceNamespaces/unifiedRbacResourceNamespaceIdValue",
+			Input: "/roleManagement/cloudPC/resourceNamespaces/unifiedRbacResourceNamespaceId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/rOlEmAnAgEmEnT/cLoUdPc/rEsOuRcEnAmEsPaCeS/uNiFiEdRbAcReSoUrCeNaMeSpAcEiDvAlUe",
+			Input: "/rOlEmAnAgEmEnT/cLoUdPc/rEsOuRcEnAmEsPaCeS/uNiFiEdRbAcReSoUrCeNaMeSpAcEiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/roleManagement/cloudPC/resourceNamespaces/unifiedRbacResourceNamespaceIdValue/resourceActions",
+			Input: "/roleManagement/cloudPC/resourceNamespaces/unifiedRbacResourceNamespaceId/resourceActions",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/rOlEmAnAgEmEnT/cLoUdPc/rEsOuRcEnAmEsPaCeS/uNiFiEdRbAcReSoUrCeNaMeSpAcEiDvAlUe/rEsOuRcEaCtIoNs",
+			Input: "/rOlEmAnAgEmEnT/cLoUdPc/rEsOuRcEnAmEsPaCeS/uNiFiEdRbAcReSoUrCeNaMeSpAcEiD/rEsOuRcEaCtIoNs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/roleManagement/cloudPC/resourceNamespaces/unifiedRbacResourceNamespaceIdValue/resourceActions/unifiedRbacResourceActionIdValue",
+			Input: "/roleManagement/cloudPC/resourceNamespaces/unifiedRbacResourceNamespaceId/resourceActions/unifiedRbacResourceActionId",
 			Expected: &RoleManagementCloudPCResourceNamespaceIdResourceActionId{
-				UnifiedRbacResourceNamespaceId: "unifiedRbacResourceNamespaceIdValue",
-				UnifiedRbacResourceActionId:    "unifiedRbacResourceActionIdValue",
+				UnifiedRbacResourceNamespaceId: "unifiedRbacResourceNamespaceId",
+				UnifiedRbacResourceActionId:    "unifiedRbacResourceActionId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/roleManagement/cloudPC/resourceNamespaces/unifiedRbacResourceNamespaceIdValue/resourceActions/unifiedRbacResourceActionIdValue/extra",
+			Input: "/roleManagement/cloudPC/resourceNamespaces/unifiedRbacResourceNamespaceId/resourceActions/unifiedRbacResourceActionId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/rOlEmAnAgEmEnT/cLoUdPc/rEsOuRcEnAmEsPaCeS/uNiFiEdRbAcReSoUrCeNaMeSpAcEiDvAlUe/rEsOuRcEaCtIoNs/uNiFiEdRbAcReSoUrCeAcTiOnIdVaLuE",
+			Input: "/rOlEmAnAgEmEnT/cLoUdPc/rEsOuRcEnAmEsPaCeS/uNiFiEdRbAcReSoUrCeNaMeSpAcEiD/rEsOuRcEaCtIoNs/uNiFiEdRbAcReSoUrCeAcTiOnId",
 			Expected: &RoleManagementCloudPCResourceNamespaceIdResourceActionId{
-				UnifiedRbacResourceNamespaceId: "uNiFiEdRbAcReSoUrCeNaMeSpAcEiDvAlUe",
-				UnifiedRbacResourceActionId:    "uNiFiEdRbAcReSoUrCeAcTiOnIdVaLuE",
+				UnifiedRbacResourceNamespaceId: "uNiFiEdRbAcReSoUrCeNaMeSpAcEiD",
+				UnifiedRbacResourceActionId:    "uNiFiEdRbAcReSoUrCeAcTiOnId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/rOlEmAnAgEmEnT/cLoUdPc/rEsOuRcEnAmEsPaCeS/uNiFiEdRbAcReSoUrCeNaMeSpAcEiDvAlUe/rEsOuRcEaCtIoNs/uNiFiEdRbAcReSoUrCeAcTiOnIdVaLuE/extra",
+			Input: "/rOlEmAnAgEmEnT/cLoUdPc/rEsOuRcEnAmEsPaCeS/uNiFiEdRbAcReSoUrCeNaMeSpAcEiD/rEsOuRcEaCtIoNs/uNiFiEdRbAcReSoUrCeAcTiOnId/extra",
 			Error: true,
 		},
 	}

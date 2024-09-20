@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &DeviceManagementCertificateConnectorDetailId{}
 
 func TestNewDeviceManagementCertificateConnectorDetailID(t *testing.T) {
-	id := NewDeviceManagementCertificateConnectorDetailID("certificateConnectorDetailsIdValue")
+	id := NewDeviceManagementCertificateConnectorDetailID("certificateConnectorDetailsId")
 
-	if id.CertificateConnectorDetailsId != "certificateConnectorDetailsIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'CertificateConnectorDetailsId'", id.CertificateConnectorDetailsId, "certificateConnectorDetailsIdValue")
+	if id.CertificateConnectorDetailsId != "certificateConnectorDetailsId" {
+		t.Fatalf("Expected %q but got %q for Segment 'CertificateConnectorDetailsId'", id.CertificateConnectorDetailsId, "certificateConnectorDetailsId")
 	}
 }
 
 func TestFormatDeviceManagementCertificateConnectorDetailID(t *testing.T) {
-	actual := NewDeviceManagementCertificateConnectorDetailID("certificateConnectorDetailsIdValue").ID()
-	expected := "/deviceManagement/certificateConnectorDetails/certificateConnectorDetailsIdValue"
+	actual := NewDeviceManagementCertificateConnectorDetailID("certificateConnectorDetailsId").ID()
+	expected := "/deviceManagement/certificateConnectorDetails/certificateConnectorDetailsId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -50,14 +50,14 @@ func TestParseDeviceManagementCertificateConnectorDetailID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/certificateConnectorDetails/certificateConnectorDetailsIdValue",
+			Input: "/deviceManagement/certificateConnectorDetails/certificateConnectorDetailsId",
 			Expected: &DeviceManagementCertificateConnectorDetailId{
-				CertificateConnectorDetailsId: "certificateConnectorDetailsIdValue",
+				CertificateConnectorDetailsId: "certificateConnectorDetailsId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/certificateConnectorDetails/certificateConnectorDetailsIdValue/extra",
+			Input: "/deviceManagement/certificateConnectorDetails/certificateConnectorDetailsId/extra",
 			Error: true,
 		},
 	}
@@ -116,26 +116,26 @@ func TestParseDeviceManagementCertificateConnectorDetailIDInsensitively(t *testi
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/certificateConnectorDetails/certificateConnectorDetailsIdValue",
+			Input: "/deviceManagement/certificateConnectorDetails/certificateConnectorDetailsId",
 			Expected: &DeviceManagementCertificateConnectorDetailId{
-				CertificateConnectorDetailsId: "certificateConnectorDetailsIdValue",
+				CertificateConnectorDetailsId: "certificateConnectorDetailsId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/certificateConnectorDetails/certificateConnectorDetailsIdValue/extra",
+			Input: "/deviceManagement/certificateConnectorDetails/certificateConnectorDetailsId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/cErTiFiCaTeCoNnEcToRdEtAiLs/cErTiFiCaTeCoNnEcToRdEtAiLsIdVaLuE",
+			Input: "/dEvIcEmAnAgEmEnT/cErTiFiCaTeCoNnEcToRdEtAiLs/cErTiFiCaTeCoNnEcToRdEtAiLsId",
 			Expected: &DeviceManagementCertificateConnectorDetailId{
-				CertificateConnectorDetailsId: "cErTiFiCaTeCoNnEcToRdEtAiLsIdVaLuE",
+				CertificateConnectorDetailsId: "cErTiFiCaTeCoNnEcToRdEtAiLsId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/cErTiFiCaTeCoNnEcToRdEtAiLs/cErTiFiCaTeCoNnEcToRdEtAiLsIdVaLuE/extra",
+			Input: "/dEvIcEmAnAgEmEnT/cErTiFiCaTeCoNnEcToRdEtAiLs/cErTiFiCaTeCoNnEcToRdEtAiLsId/extra",
 			Error: true,
 		},
 	}

@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/userexperienceanalyticsdevicescope` Documentation
 
-The `userexperienceanalyticsdevicescope` SDK allows for interaction with the Azure Resource Manager Service `devicemanagement` (API Version `beta`).
+The `userexperienceanalyticsdevicescope` SDK allows for interaction with Microsoft Graph `devicemanagement` (API Version `beta`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -15,7 +15,7 @@ import "github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/
 ### Client Initialization
 
 ```go
-client := userexperienceanalyticsdevicescope.NewUserExperienceAnalyticsDeviceScopeClientWithBaseURI("https://management.azure.com")
+client := userexperienceanalyticsdevicescope.NewUserExperienceAnalyticsDeviceScopeClientWithBaseURI("https://graph.microsoft.com")
 client.Client.Authorizer = authorizer
 ```
 
@@ -30,7 +30,7 @@ payload := userexperienceanalyticsdevicescope.UserExperienceAnalyticsDeviceScope
 }
 
 
-read, err := client.CreateUserExperienceAnalyticsDeviceScope(ctx, payload)
+read, err := client.CreateUserExperienceAnalyticsDeviceScope(ctx, payload, userexperienceanalyticsdevicescope.DefaultCreateUserExperienceAnalyticsDeviceScopeOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -44,14 +44,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := userexperienceanalyticsdevicescope.NewDeviceManagementUserExperienceAnalyticsDeviceScopeID("userExperienceAnalyticsDeviceScopeIdValue")
+id := userexperienceanalyticsdevicescope.NewDeviceManagementUserExperienceAnalyticsDeviceScopeID("userExperienceAnalyticsDeviceScopeId")
 
 payload := userexperienceanalyticsdevicescope.CreateUserExperienceAnalyticsDeviceScopeTriggerActionRequest{
 	// ...
 }
 
 
-read, err := client.CreateUserExperienceAnalyticsDeviceScopeTriggerAction(ctx, id, payload)
+read, err := client.CreateUserExperienceAnalyticsDeviceScopeTriggerAction(ctx, id, payload, userexperienceanalyticsdevicescope.DefaultCreateUserExperienceAnalyticsDeviceScopeTriggerActionOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -65,7 +65,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := userexperienceanalyticsdevicescope.NewDeviceManagementUserExperienceAnalyticsDeviceScopeID("userExperienceAnalyticsDeviceScopeIdValue")
+id := userexperienceanalyticsdevicescope.NewDeviceManagementUserExperienceAnalyticsDeviceScopeID("userExperienceAnalyticsDeviceScopeId")
 
 read, err := client.DeleteUserExperienceAnalyticsDeviceScope(ctx, id, userexperienceanalyticsdevicescope.DefaultDeleteUserExperienceAnalyticsDeviceScopeOperationOptions())
 if err != nil {
@@ -81,7 +81,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := userexperienceanalyticsdevicescope.NewDeviceManagementUserExperienceAnalyticsDeviceScopeID("userExperienceAnalyticsDeviceScopeIdValue")
+id := userexperienceanalyticsdevicescope.NewDeviceManagementUserExperienceAnalyticsDeviceScopeID("userExperienceAnalyticsDeviceScopeId")
 
 read, err := client.GetUserExperienceAnalyticsDeviceScope(ctx, id, userexperienceanalyticsdevicescope.DefaultGetUserExperienceAnalyticsDeviceScopeOperationOptions())
 if err != nil {
@@ -130,14 +130,14 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := userexperienceanalyticsdevicescope.NewDeviceManagementUserExperienceAnalyticsDeviceScopeID("userExperienceAnalyticsDeviceScopeIdValue")
+id := userexperienceanalyticsdevicescope.NewDeviceManagementUserExperienceAnalyticsDeviceScopeID("userExperienceAnalyticsDeviceScopeId")
 
 payload := userexperienceanalyticsdevicescope.UserExperienceAnalyticsDeviceScope{
 	// ...
 }
 
 
-read, err := client.UpdateUserExperienceAnalyticsDeviceScope(ctx, id, payload)
+read, err := client.UpdateUserExperienceAnalyticsDeviceScope(ctx, id, payload, userexperienceanalyticsdevicescope.DefaultUpdateUserExperienceAnalyticsDeviceScopeOperationOptions())
 if err != nil {
 	// handle the error
 }

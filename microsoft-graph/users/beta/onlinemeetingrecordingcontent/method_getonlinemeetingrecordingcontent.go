@@ -19,18 +19,47 @@ type GetOnlineMeetingRecordingContentOperationResponse struct {
 	Model        *[]byte
 }
 
+type GetOnlineMeetingRecordingContentOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultGetOnlineMeetingRecordingContentOperationOptions() GetOnlineMeetingRecordingContentOperationOptions {
+	return GetOnlineMeetingRecordingContentOperationOptions{}
+}
+
+func (o GetOnlineMeetingRecordingContentOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o GetOnlineMeetingRecordingContentOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o GetOnlineMeetingRecordingContentOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // GetOnlineMeetingRecordingContent - Get callRecording. Get a callRecording object associated with a scheduled
 // onlineMeeting. This API doesn't support getting call recordings from channel meetings. For a recording, this API
 // returns the metadata of the single recording associated with the online meeting. For the content of a recording, this
 // API returns the stream of bytes associated with the recording.
-func (c OnlineMeetingRecordingContentClient) GetOnlineMeetingRecordingContent(ctx context.Context, id beta.UserIdOnlineMeetingIdRecordingId) (result GetOnlineMeetingRecordingContentOperationResponse, err error) {
+func (c OnlineMeetingRecordingContentClient) GetOnlineMeetingRecordingContent(ctx context.Context, id beta.UserIdOnlineMeetingIdRecordingId, options GetOnlineMeetingRecordingContentOperationOptions) (result GetOnlineMeetingRecordingContentOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/octet-stream",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/content", id.ID()),
+		HttpMethod:    http.MethodGet,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/content", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

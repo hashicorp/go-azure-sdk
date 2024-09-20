@@ -19,16 +19,45 @@ type CreateIntentDeviceSettingStateSummaryOperationResponse struct {
 	Model        *beta.DeviceManagementIntentDeviceSettingStateSummary
 }
 
+type CreateIntentDeviceSettingStateSummaryOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateIntentDeviceSettingStateSummaryOperationOptions() CreateIntentDeviceSettingStateSummaryOperationOptions {
+	return CreateIntentDeviceSettingStateSummaryOperationOptions{}
+}
+
+func (o CreateIntentDeviceSettingStateSummaryOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateIntentDeviceSettingStateSummaryOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateIntentDeviceSettingStateSummaryOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateIntentDeviceSettingStateSummary - Create new navigation property to deviceSettingStateSummaries for
 // deviceManagement
-func (c IntentDeviceSettingStateSummaryClient) CreateIntentDeviceSettingStateSummary(ctx context.Context, id beta.DeviceManagementIntentId, input beta.DeviceManagementIntentDeviceSettingStateSummary) (result CreateIntentDeviceSettingStateSummaryOperationResponse, err error) {
+func (c IntentDeviceSettingStateSummaryClient) CreateIntentDeviceSettingStateSummary(ctx context.Context, id beta.DeviceManagementIntentId, input beta.DeviceManagementIntentDeviceSettingStateSummary, options CreateIntentDeviceSettingStateSummaryOperationOptions) (result CreateIntentDeviceSettingStateSummaryOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/deviceSettingStateSummaries", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/deviceSettingStateSummaries", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

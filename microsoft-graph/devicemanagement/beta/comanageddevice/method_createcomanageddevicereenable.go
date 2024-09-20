@@ -18,15 +18,44 @@ type CreateComanagedDeviceReenableOperationResponse struct {
 	OData        *odata.OData
 }
 
+type CreateComanagedDeviceReenableOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateComanagedDeviceReenableOperationOptions() CreateComanagedDeviceReenableOperationOptions {
+	return CreateComanagedDeviceReenableOperationOptions{}
+}
+
+func (o CreateComanagedDeviceReenableOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateComanagedDeviceReenableOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateComanagedDeviceReenableOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateComanagedDeviceReenable - Invoke action reenable
-func (c ComanagedDeviceClient) CreateComanagedDeviceReenable(ctx context.Context, id beta.DeviceManagementComanagedDeviceId) (result CreateComanagedDeviceReenableOperationResponse, err error) {
+func (c ComanagedDeviceClient) CreateComanagedDeviceReenable(ctx context.Context, id beta.DeviceManagementComanagedDeviceId, options CreateComanagedDeviceReenableOperationOptions) (result CreateComanagedDeviceReenableOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/reenable", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/reenable", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -19,7 +19,8 @@ type DeleteProfileLanguageOperationResponse struct {
 }
 
 type DeleteProfileLanguageOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteProfileLanguageOperationOptions() DeleteProfileLanguageOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteProfileLanguageOperationOptions) ToHeaders() *client.Headers {
 
 func (o DeleteProfileLanguageOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

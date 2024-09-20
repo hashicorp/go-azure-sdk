@@ -25,8 +25,9 @@ type CheckGrantedPermissionsForAppsCompleteResult struct {
 }
 
 type CheckGrantedPermissionsForAppsOperationOptions struct {
-	Skip *int64
-	Top  *int64
+	Metadata *odata.Metadata
+	Skip     *int64
+	Top      *int64
 }
 
 func DefaultCheckGrantedPermissionsForAppsOperationOptions() CheckGrantedPermissionsForAppsOperationOptions {
@@ -41,6 +42,9 @@ func (o CheckGrantedPermissionsForAppsOperationOptions) ToHeaders() *client.Head
 
 func (o CheckGrantedPermissionsForAppsOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	if o.Skip != nil {
 		out.Skip = int(*o.Skip)
 	}

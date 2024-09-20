@@ -108,10 +108,30 @@ func (s VirtualEndpoint) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &VirtualEndpoint{}
 
 func (s *VirtualEndpoint) UnmarshalJSON(bytes []byte) error {
-	type alias VirtualEndpoint
-	var decoded alias
+
+	var decoded struct {
+		AuditEvents                             *[]CloudPCAuditEvent                            `json:"auditEvents,omitempty"`
+		BulkActions                             *[]CloudPCBulkAction                            `json:"bulkActions,omitempty"`
+		CloudPCs                                *[]CloudPC                                      `json:"cloudPCs,omitempty"`
+		CrossCloudGovernmentOrganizationMapping *CloudPCCrossCloudGovernmentOrganizationMapping `json:"crossCloudGovernmentOrganizationMapping,omitempty"`
+		DeviceImages                            *[]CloudPCDeviceImage                           `json:"deviceImages,omitempty"`
+		ExternalPartnerSettings                 *[]CloudPCExternalPartnerSetting                `json:"externalPartnerSettings,omitempty"`
+		FrontLineServicePlans                   *[]CloudPCFrontLineServicePlan                  `json:"frontLineServicePlans,omitempty"`
+		GalleryImages                           *[]CloudPCGalleryImage                          `json:"galleryImages,omitempty"`
+		OnPremisesConnections                   *[]CloudPCOnPremisesConnection                  `json:"onPremisesConnections,omitempty"`
+		OrganizationSettings                    *CloudPCOrganizationSettings                    `json:"organizationSettings,omitempty"`
+		ProvisioningPolicies                    *[]CloudPCProvisioningPolicy                    `json:"provisioningPolicies,omitempty"`
+		Reports                                 *CloudPCReports                                 `json:"reports,omitempty"`
+		ServicePlans                            *[]CloudPCServicePlan                           `json:"servicePlans,omitempty"`
+		Snapshots                               *[]CloudPCSnapshot                              `json:"snapshots,omitempty"`
+		SupportedRegions                        *[]CloudPCSupportedRegion                       `json:"supportedRegions,omitempty"`
+		UserSettings                            *[]CloudPCUserSetting                           `json:"userSettings,omitempty"`
+		Id                                      *string                                         `json:"id,omitempty"`
+		ODataId                                 *string                                         `json:"@odata.id,omitempty"`
+		ODataType                               *string                                         `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into VirtualEndpoint: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.AuditEvents = decoded.AuditEvents
@@ -121,9 +141,6 @@ func (s *VirtualEndpoint) UnmarshalJSON(bytes []byte) error {
 	s.ExternalPartnerSettings = decoded.ExternalPartnerSettings
 	s.FrontLineServicePlans = decoded.FrontLineServicePlans
 	s.GalleryImages = decoded.GalleryImages
-	s.Id = decoded.Id
-	s.ODataId = decoded.ODataId
-	s.ODataType = decoded.ODataType
 	s.OnPremisesConnections = decoded.OnPremisesConnections
 	s.OrganizationSettings = decoded.OrganizationSettings
 	s.ProvisioningPolicies = decoded.ProvisioningPolicies
@@ -132,6 +149,9 @@ func (s *VirtualEndpoint) UnmarshalJSON(bytes []byte) error {
 	s.Snapshots = decoded.Snapshots
 	s.SupportedRegions = decoded.SupportedRegions
 	s.UserSettings = decoded.UserSettings
+	s.Id = decoded.Id
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -154,5 +174,6 @@ func (s *VirtualEndpoint) UnmarshalJSON(bytes []byte) error {
 		}
 		s.BulkActions = &output
 	}
+
 	return nil
 }

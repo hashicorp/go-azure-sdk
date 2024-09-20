@@ -17,15 +17,44 @@ type UpdateDeviceManagementOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateDeviceManagementOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateDeviceManagementOperationOptions() UpdateDeviceManagementOperationOptions {
+	return UpdateDeviceManagementOperationOptions{}
+}
+
+func (o UpdateDeviceManagementOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateDeviceManagementOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateDeviceManagementOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateDeviceManagement - Update the navigation property deviceManagement in roleManagement
-func (c DeviceManagementClient) UpdateDeviceManagement(ctx context.Context, input beta.RbacApplicationMultiple) (result UpdateDeviceManagementOperationResponse, err error) {
+func (c DeviceManagementClient) UpdateDeviceManagement(ctx context.Context, input beta.RbacApplicationMultiple, options UpdateDeviceManagementOperationOptions) (result UpdateDeviceManagementOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       "/roleManagement/deviceManagement",
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          "/roleManagement/deviceManagement",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

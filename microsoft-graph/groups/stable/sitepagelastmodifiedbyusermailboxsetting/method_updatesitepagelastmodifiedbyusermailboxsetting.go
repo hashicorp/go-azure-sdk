@@ -18,15 +18,44 @@ type UpdateSitePageLastModifiedByUserMailboxSettingOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateSitePageLastModifiedByUserMailboxSettingOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateSitePageLastModifiedByUserMailboxSettingOperationOptions() UpdateSitePageLastModifiedByUserMailboxSettingOperationOptions {
+	return UpdateSitePageLastModifiedByUserMailboxSettingOperationOptions{}
+}
+
+func (o UpdateSitePageLastModifiedByUserMailboxSettingOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateSitePageLastModifiedByUserMailboxSettingOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateSitePageLastModifiedByUserMailboxSettingOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateSitePageLastModifiedByUserMailboxSetting - Update property mailboxSettings value.
-func (c SitePageLastModifiedByUserMailboxSettingClient) UpdateSitePageLastModifiedByUserMailboxSetting(ctx context.Context, id stable.GroupIdSiteIdPageId, input stable.MailboxSettings) (result UpdateSitePageLastModifiedByUserMailboxSettingOperationResponse, err error) {
+func (c SitePageLastModifiedByUserMailboxSettingClient) UpdateSitePageLastModifiedByUserMailboxSetting(ctx context.Context, id stable.GroupIdSiteIdPageId, input stable.MailboxSettings, options UpdateSitePageLastModifiedByUserMailboxSettingOperationOptions) (result UpdateSitePageLastModifiedByUserMailboxSettingOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       fmt.Sprintf("%s/lastModifiedByUser/mailboxSettings", id.ID()),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/lastModifiedByUser/mailboxSettings", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

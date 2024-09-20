@@ -110,14 +110,14 @@ func (id GroupIdTeamChannelIdMessageIdHostedContentId) ID() string {
 func (id GroupIdTeamChannelIdMessageIdHostedContentId) Segments() []resourceids.Segment {
 	return []resourceids.Segment{
 		resourceids.StaticSegment("groups", "groups", "groups"),
-		resourceids.UserSpecifiedSegment("groupId", "groupIdValue"),
+		resourceids.UserSpecifiedSegment("groupId", "groupId"),
 		resourceids.StaticSegment("team", "team", "team"),
 		resourceids.StaticSegment("channels", "channels", "channels"),
-		resourceids.UserSpecifiedSegment("channelId", "channelIdValue"),
+		resourceids.UserSpecifiedSegment("channelId", "channelId"),
 		resourceids.StaticSegment("messages", "messages", "messages"),
-		resourceids.UserSpecifiedSegment("chatMessageId", "chatMessageIdValue"),
+		resourceids.UserSpecifiedSegment("chatMessageId", "chatMessageId"),
 		resourceids.StaticSegment("hostedContents", "hostedContents", "hostedContents"),
-		resourceids.UserSpecifiedSegment("chatMessageHostedContentId", "chatMessageHostedContentIdValue"),
+		resourceids.UserSpecifiedSegment("chatMessageHostedContentId", "chatMessageHostedContentId"),
 	}
 }
 

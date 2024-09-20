@@ -85,15 +85,23 @@ func (s DeviceManagementAbstractComplexSettingInstance) MarshalJSON() ([]byte, e
 var _ json.Unmarshaler = &DeviceManagementAbstractComplexSettingInstance{}
 
 func (s *DeviceManagementAbstractComplexSettingInstance) UnmarshalJSON(bytes []byte) error {
-	type alias DeviceManagementAbstractComplexSettingInstance
-	var decoded alias
+
+	var decoded struct {
+		ImplementationId nullable.Type[string]              `json:"implementationId,omitempty"`
+		Value            *[]DeviceManagementSettingInstance `json:"value,omitempty"`
+		DefinitionId     *string                            `json:"definitionId,omitempty"`
+		ValueJson        nullable.Type[string]              `json:"valueJson,omitempty"`
+		Id               *string                            `json:"id,omitempty"`
+		ODataId          *string                            `json:"@odata.id,omitempty"`
+		ODataType        *string                            `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into DeviceManagementAbstractComplexSettingInstance: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
+	s.ImplementationId = decoded.ImplementationId
 	s.DefinitionId = decoded.DefinitionId
 	s.Id = decoded.Id
-	s.ImplementationId = decoded.ImplementationId
 	s.ODataId = decoded.ODataId
 	s.ODataType = decoded.ODataType
 	s.ValueJson = decoded.ValueJson
@@ -119,5 +127,6 @@ func (s *DeviceManagementAbstractComplexSettingInstance) UnmarshalJSON(bytes []b
 		}
 		s.Value = &output
 	}
+
 	return nil
 }

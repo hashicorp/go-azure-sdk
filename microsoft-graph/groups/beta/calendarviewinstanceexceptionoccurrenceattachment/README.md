@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/calendarviewinstanceexceptionoccurrenceattachment` Documentation
 
-The `calendarviewinstanceexceptionoccurrenceattachment` SDK allows for interaction with the Azure Resource Manager Service `groups` (API Version `beta`).
+The `calendarviewinstanceexceptionoccurrenceattachment` SDK allows for interaction with Microsoft Graph `groups` (API Version `beta`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -15,7 +15,7 @@ import "github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/calendarvi
 ### Client Initialization
 
 ```go
-client := calendarviewinstanceexceptionoccurrenceattachment.NewCalendarViewInstanceExceptionOccurrenceAttachmentClientWithBaseURI("https://management.azure.com")
+client := calendarviewinstanceexceptionoccurrenceattachment.NewCalendarViewInstanceExceptionOccurrenceAttachmentClientWithBaseURI("https://graph.microsoft.com")
 client.Client.Authorizer = authorizer
 ```
 
@@ -24,14 +24,14 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := calendarviewinstanceexceptionoccurrenceattachment.NewGroupIdCalendarViewIdInstanceIdExceptionOccurrenceID("groupIdValue", "eventIdValue", "eventId1Value", "eventId2Value")
+id := calendarviewinstanceexceptionoccurrenceattachment.NewGroupIdCalendarViewIdInstanceIdExceptionOccurrenceID("groupId", "eventId", "eventId1", "eventId2")
 
 payload := calendarviewinstanceexceptionoccurrenceattachment.Attachment{
 	// ...
 }
 
 
-read, err := client.CreateCalendarViewInstanceExceptionOccurrenceAttachment(ctx, id, payload)
+read, err := client.CreateCalendarViewInstanceExceptionOccurrenceAttachment(ctx, id, payload, calendarviewinstanceexceptionoccurrenceattachment.DefaultCreateCalendarViewInstanceExceptionOccurrenceAttachmentOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -45,14 +45,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := calendarviewinstanceexceptionoccurrenceattachment.NewGroupIdCalendarViewIdInstanceIdExceptionOccurrenceID("groupIdValue", "eventIdValue", "eventId1Value", "eventId2Value")
+id := calendarviewinstanceexceptionoccurrenceattachment.NewGroupIdCalendarViewIdInstanceIdExceptionOccurrenceID("groupId", "eventId", "eventId1", "eventId2")
 
 payload := calendarviewinstanceexceptionoccurrenceattachment.CreateCalendarViewInstanceExceptionOccurrenceAttachmentsUploadSessionRequest{
 	// ...
 }
 
 
-read, err := client.CreateCalendarViewInstanceExceptionOccurrenceAttachmentsUploadSession(ctx, id, payload)
+read, err := client.CreateCalendarViewInstanceExceptionOccurrenceAttachmentsUploadSession(ctx, id, payload, calendarviewinstanceexceptionoccurrenceattachment.DefaultCreateCalendarViewInstanceExceptionOccurrenceAttachmentsUploadSessionOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -66,7 +66,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := calendarviewinstanceexceptionoccurrenceattachment.NewGroupIdCalendarViewIdInstanceIdExceptionOccurrenceIdAttachmentID("groupIdValue", "eventIdValue", "eventId1Value", "eventId2Value", "attachmentIdValue")
+id := calendarviewinstanceexceptionoccurrenceattachment.NewGroupIdCalendarViewIdInstanceIdExceptionOccurrenceIdAttachmentID("groupId", "eventId", "eventId1", "eventId2", "attachmentId")
 
 read, err := client.DeleteCalendarViewInstanceExceptionOccurrenceAttachment(ctx, id, calendarviewinstanceexceptionoccurrenceattachment.DefaultDeleteCalendarViewInstanceExceptionOccurrenceAttachmentOperationOptions())
 if err != nil {
@@ -82,7 +82,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := calendarviewinstanceexceptionoccurrenceattachment.NewGroupIdCalendarViewIdInstanceIdExceptionOccurrenceIdAttachmentID("groupIdValue", "eventIdValue", "eventId1Value", "eventId2Value", "attachmentIdValue")
+id := calendarviewinstanceexceptionoccurrenceattachment.NewGroupIdCalendarViewIdInstanceIdExceptionOccurrenceIdAttachmentID("groupId", "eventId", "eventId1", "eventId2", "attachmentId")
 
 read, err := client.GetCalendarViewInstanceExceptionOccurrenceAttachment(ctx, id, calendarviewinstanceexceptionoccurrenceattachment.DefaultGetCalendarViewInstanceExceptionOccurrenceAttachmentOperationOptions())
 if err != nil {
@@ -98,7 +98,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := calendarviewinstanceexceptionoccurrenceattachment.NewGroupIdCalendarViewIdInstanceIdExceptionOccurrenceID("groupIdValue", "eventIdValue", "eventId1Value", "eventId2Value")
+id := calendarviewinstanceexceptionoccurrenceattachment.NewGroupIdCalendarViewIdInstanceIdExceptionOccurrenceID("groupId", "eventId", "eventId1", "eventId2")
 
 read, err := client.GetCalendarViewInstanceExceptionOccurrenceAttachmentsCount(ctx, id, calendarviewinstanceexceptionoccurrenceattachment.DefaultGetCalendarViewInstanceExceptionOccurrenceAttachmentsCountOperationOptions())
 if err != nil {
@@ -114,7 +114,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := calendarviewinstanceexceptionoccurrenceattachment.NewGroupIdCalendarViewIdInstanceIdExceptionOccurrenceID("groupIdValue", "eventIdValue", "eventId1Value", "eventId2Value")
+id := calendarviewinstanceexceptionoccurrenceattachment.NewGroupIdCalendarViewIdInstanceIdExceptionOccurrenceID("groupId", "eventId", "eventId1", "eventId2")
 
 // alternatively `client.ListCalendarViewInstanceExceptionOccurrenceAttachments(ctx, id, calendarviewinstanceexceptionoccurrenceattachment.DefaultListCalendarViewInstanceExceptionOccurrenceAttachmentsOperationOptions())` can be used to do batched pagination
 items, err := client.ListCalendarViewInstanceExceptionOccurrenceAttachmentsComplete(ctx, id, calendarviewinstanceexceptionoccurrenceattachment.DefaultListCalendarViewInstanceExceptionOccurrenceAttachmentsOperationOptions())

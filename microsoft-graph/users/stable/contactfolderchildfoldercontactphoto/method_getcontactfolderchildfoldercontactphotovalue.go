@@ -19,16 +19,45 @@ type GetContactFolderChildFolderContactPhotoValueOperationResponse struct {
 	Model        *[]byte
 }
 
+type GetContactFolderChildFolderContactPhotoValueOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultGetContactFolderChildFolderContactPhotoValueOperationOptions() GetContactFolderChildFolderContactPhotoValueOperationOptions {
+	return GetContactFolderChildFolderContactPhotoValueOperationOptions{}
+}
+
+func (o GetContactFolderChildFolderContactPhotoValueOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o GetContactFolderChildFolderContactPhotoValueOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o GetContactFolderChildFolderContactPhotoValueOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // GetContactFolderChildFolderContactPhotoValue - Get media content for the navigation property photo from users.
 // Optional contact picture. You can get or set a photo for a contact.
-func (c ContactFolderChildFolderContactPhotoClient) GetContactFolderChildFolderContactPhotoValue(ctx context.Context, id stable.UserIdContactFolderIdChildFolderIdContactId) (result GetContactFolderChildFolderContactPhotoValueOperationResponse, err error) {
+func (c ContactFolderChildFolderContactPhotoClient) GetContactFolderChildFolderContactPhotoValue(ctx context.Context, id stable.UserIdContactFolderIdChildFolderIdContactId, options GetContactFolderChildFolderContactPhotoValueOperationOptions) (result GetContactFolderChildFolderContactPhotoValueOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/octet-stream",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/photo/$value", id.ID()),
+		HttpMethod:    http.MethodGet,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/photo/$value", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

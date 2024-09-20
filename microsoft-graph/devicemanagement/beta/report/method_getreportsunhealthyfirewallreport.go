@@ -17,15 +17,44 @@ type GetReportsUnhealthyFirewallReportOperationResponse struct {
 	Model        *[]byte
 }
 
+type GetReportsUnhealthyFirewallReportOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultGetReportsUnhealthyFirewallReportOperationOptions() GetReportsUnhealthyFirewallReportOperationOptions {
+	return GetReportsUnhealthyFirewallReportOperationOptions{}
+}
+
+func (o GetReportsUnhealthyFirewallReportOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o GetReportsUnhealthyFirewallReportOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o GetReportsUnhealthyFirewallReportOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // GetReportsUnhealthyFirewallReport - Invoke action getUnhealthyFirewallReport
-func (c ReportClient) GetReportsUnhealthyFirewallReport(ctx context.Context, input GetReportsUnhealthyFirewallReportRequest) (result GetReportsUnhealthyFirewallReportOperationResponse, err error) {
+func (c ReportClient) GetReportsUnhealthyFirewallReport(ctx context.Context, input GetReportsUnhealthyFirewallReportRequest, options GetReportsUnhealthyFirewallReportOperationOptions) (result GetReportsUnhealthyFirewallReportOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/octet-stream",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/deviceManagement/reports/getUnhealthyFirewallReport",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/deviceManagement/reports/getUnhealthyFirewallReport",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

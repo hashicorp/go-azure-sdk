@@ -17,15 +17,44 @@ type UpdateHardwarePasswordInfoOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateHardwarePasswordInfoOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateHardwarePasswordInfoOperationOptions() UpdateHardwarePasswordInfoOperationOptions {
+	return UpdateHardwarePasswordInfoOperationOptions{}
+}
+
+func (o UpdateHardwarePasswordInfoOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateHardwarePasswordInfoOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateHardwarePasswordInfoOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateHardwarePasswordInfo - Update the navigation property hardwarePasswordInfo in deviceManagement
-func (c HardwarePasswordInfoClient) UpdateHardwarePasswordInfo(ctx context.Context, id beta.DeviceManagementHardwarePasswordInfoId, input beta.HardwarePasswordInfo) (result UpdateHardwarePasswordInfoOperationResponse, err error) {
+func (c HardwarePasswordInfoClient) UpdateHardwarePasswordInfo(ctx context.Context, id beta.DeviceManagementHardwarePasswordInfoId, input beta.HardwarePasswordInfo, options UpdateHardwarePasswordInfoOperationOptions) (result UpdateHardwarePasswordInfoOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

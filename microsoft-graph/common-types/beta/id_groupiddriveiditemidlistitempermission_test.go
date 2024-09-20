@@ -12,28 +12,28 @@ import (
 var _ resourceids.ResourceId = &GroupIdDriveIdItemIdListItemPermissionId{}
 
 func TestNewGroupIdDriveIdItemIdListItemPermissionID(t *testing.T) {
-	id := NewGroupIdDriveIdItemIdListItemPermissionID("groupIdValue", "driveIdValue", "driveItemIdValue", "permissionIdValue")
+	id := NewGroupIdDriveIdItemIdListItemPermissionID("groupId", "driveId", "driveItemId", "permissionId")
 
-	if id.GroupId != "groupIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'GroupId'", id.GroupId, "groupIdValue")
+	if id.GroupId != "groupId" {
+		t.Fatalf("Expected %q but got %q for Segment 'GroupId'", id.GroupId, "groupId")
 	}
 
-	if id.DriveId != "driveIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DriveId'", id.DriveId, "driveIdValue")
+	if id.DriveId != "driveId" {
+		t.Fatalf("Expected %q but got %q for Segment 'DriveId'", id.DriveId, "driveId")
 	}
 
-	if id.DriveItemId != "driveItemIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DriveItemId'", id.DriveItemId, "driveItemIdValue")
+	if id.DriveItemId != "driveItemId" {
+		t.Fatalf("Expected %q but got %q for Segment 'DriveItemId'", id.DriveItemId, "driveItemId")
 	}
 
-	if id.PermissionId != "permissionIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'PermissionId'", id.PermissionId, "permissionIdValue")
+	if id.PermissionId != "permissionId" {
+		t.Fatalf("Expected %q but got %q for Segment 'PermissionId'", id.PermissionId, "permissionId")
 	}
 }
 
 func TestFormatGroupIdDriveIdItemIdListItemPermissionID(t *testing.T) {
-	actual := NewGroupIdDriveIdItemIdListItemPermissionID("groupIdValue", "driveIdValue", "driveItemIdValue", "permissionIdValue").ID()
-	expected := "/groups/groupIdValue/drives/driveIdValue/items/driveItemIdValue/listItem/permissions/permissionIdValue"
+	actual := NewGroupIdDriveIdItemIdListItemPermissionID("groupId", "driveId", "driveItemId", "permissionId").ID()
+	expected := "/groups/groupId/drives/driveId/items/driveItemId/listItem/permissions/permissionId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -57,52 +57,52 @@ func TestParseGroupIdDriveIdItemIdListItemPermissionID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue",
+			Input: "/groups/groupId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/drives",
+			Input: "/groups/groupId/drives",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/drives/driveIdValue",
+			Input: "/groups/groupId/drives/driveId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/drives/driveIdValue/items",
+			Input: "/groups/groupId/drives/driveId/items",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/drives/driveIdValue/items/driveItemIdValue",
+			Input: "/groups/groupId/drives/driveId/items/driveItemId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/drives/driveIdValue/items/driveItemIdValue/listItem",
+			Input: "/groups/groupId/drives/driveId/items/driveItemId/listItem",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/drives/driveIdValue/items/driveItemIdValue/listItem/permissions",
+			Input: "/groups/groupId/drives/driveId/items/driveItemId/listItem/permissions",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/groups/groupIdValue/drives/driveIdValue/items/driveItemIdValue/listItem/permissions/permissionIdValue",
+			Input: "/groups/groupId/drives/driveId/items/driveItemId/listItem/permissions/permissionId",
 			Expected: &GroupIdDriveIdItemIdListItemPermissionId{
-				GroupId:      "groupIdValue",
-				DriveId:      "driveIdValue",
-				DriveItemId:  "driveItemIdValue",
-				PermissionId: "permissionIdValue",
+				GroupId:      "groupId",
+				DriveId:      "driveId",
+				DriveItemId:  "driveItemId",
+				PermissionId: "permissionId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/groups/groupIdValue/drives/driveIdValue/items/driveItemIdValue/listItem/permissions/permissionIdValue/extra",
+			Input: "/groups/groupId/drives/driveId/items/driveItemId/listItem/permissions/permissionId/extra",
 			Error: true,
 		},
 	}
@@ -163,102 +163,102 @@ func TestParseGroupIdDriveIdItemIdListItemPermissionIDInsensitively(t *testing.T
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue",
+			Input: "/groups/groupId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE",
+			Input: "/gRoUpS/gRoUpId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/drives",
+			Input: "/groups/groupId/drives",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/dRiVeS",
+			Input: "/gRoUpS/gRoUpId/dRiVeS",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/drives/driveIdValue",
+			Input: "/groups/groupId/drives/driveId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/dRiVeS/dRiVeIdVaLuE",
+			Input: "/gRoUpS/gRoUpId/dRiVeS/dRiVeId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/drives/driveIdValue/items",
+			Input: "/groups/groupId/drives/driveId/items",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/dRiVeS/dRiVeIdVaLuE/iTeMs",
+			Input: "/gRoUpS/gRoUpId/dRiVeS/dRiVeId/iTeMs",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/drives/driveIdValue/items/driveItemIdValue",
+			Input: "/groups/groupId/drives/driveId/items/driveItemId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/dRiVeS/dRiVeIdVaLuE/iTeMs/dRiVeItEmIdVaLuE",
+			Input: "/gRoUpS/gRoUpId/dRiVeS/dRiVeId/iTeMs/dRiVeItEmId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/drives/driveIdValue/items/driveItemIdValue/listItem",
+			Input: "/groups/groupId/drives/driveId/items/driveItemId/listItem",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/dRiVeS/dRiVeIdVaLuE/iTeMs/dRiVeItEmIdVaLuE/lIsTiTeM",
+			Input: "/gRoUpS/gRoUpId/dRiVeS/dRiVeId/iTeMs/dRiVeItEmId/lIsTiTeM",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/drives/driveIdValue/items/driveItemIdValue/listItem/permissions",
+			Input: "/groups/groupId/drives/driveId/items/driveItemId/listItem/permissions",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/dRiVeS/dRiVeIdVaLuE/iTeMs/dRiVeItEmIdVaLuE/lIsTiTeM/pErMiSsIoNs",
+			Input: "/gRoUpS/gRoUpId/dRiVeS/dRiVeId/iTeMs/dRiVeItEmId/lIsTiTeM/pErMiSsIoNs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/groups/groupIdValue/drives/driveIdValue/items/driveItemIdValue/listItem/permissions/permissionIdValue",
+			Input: "/groups/groupId/drives/driveId/items/driveItemId/listItem/permissions/permissionId",
 			Expected: &GroupIdDriveIdItemIdListItemPermissionId{
-				GroupId:      "groupIdValue",
-				DriveId:      "driveIdValue",
-				DriveItemId:  "driveItemIdValue",
-				PermissionId: "permissionIdValue",
+				GroupId:      "groupId",
+				DriveId:      "driveId",
+				DriveItemId:  "driveItemId",
+				PermissionId: "permissionId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/groups/groupIdValue/drives/driveIdValue/items/driveItemIdValue/listItem/permissions/permissionIdValue/extra",
+			Input: "/groups/groupId/drives/driveId/items/driveItemId/listItem/permissions/permissionId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/dRiVeS/dRiVeIdVaLuE/iTeMs/dRiVeItEmIdVaLuE/lIsTiTeM/pErMiSsIoNs/pErMiSsIoNiDvAlUe",
+			Input: "/gRoUpS/gRoUpId/dRiVeS/dRiVeId/iTeMs/dRiVeItEmId/lIsTiTeM/pErMiSsIoNs/pErMiSsIoNiD",
 			Expected: &GroupIdDriveIdItemIdListItemPermissionId{
-				GroupId:      "gRoUpIdVaLuE",
-				DriveId:      "dRiVeIdVaLuE",
-				DriveItemId:  "dRiVeItEmIdVaLuE",
-				PermissionId: "pErMiSsIoNiDvAlUe",
+				GroupId:      "gRoUpId",
+				DriveId:      "dRiVeId",
+				DriveItemId:  "dRiVeItEmId",
+				PermissionId: "pErMiSsIoNiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/dRiVeS/dRiVeIdVaLuE/iTeMs/dRiVeItEmIdVaLuE/lIsTiTeM/pErMiSsIoNs/pErMiSsIoNiDvAlUe/extra",
+			Input: "/gRoUpS/gRoUpId/dRiVeS/dRiVeId/iTeMs/dRiVeItEmId/lIsTiTeM/pErMiSsIoNs/pErMiSsIoNiD/extra",
 			Error: true,
 		},
 	}

@@ -17,16 +17,45 @@ type UpdateDeviceConfigurationRestrictedAppsViolationOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateDeviceConfigurationRestrictedAppsViolationOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateDeviceConfigurationRestrictedAppsViolationOperationOptions() UpdateDeviceConfigurationRestrictedAppsViolationOperationOptions {
+	return UpdateDeviceConfigurationRestrictedAppsViolationOperationOptions{}
+}
+
+func (o UpdateDeviceConfigurationRestrictedAppsViolationOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateDeviceConfigurationRestrictedAppsViolationOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateDeviceConfigurationRestrictedAppsViolationOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateDeviceConfigurationRestrictedAppsViolation - Update the navigation property
 // deviceConfigurationRestrictedAppsViolations in deviceManagement
-func (c DeviceConfigurationRestrictedAppsViolationClient) UpdateDeviceConfigurationRestrictedAppsViolation(ctx context.Context, id beta.DeviceManagementDeviceConfigurationRestrictedAppsViolationId, input beta.RestrictedAppsViolation) (result UpdateDeviceConfigurationRestrictedAppsViolationOperationResponse, err error) {
+func (c DeviceConfigurationRestrictedAppsViolationClient) UpdateDeviceConfigurationRestrictedAppsViolation(ctx context.Context, id beta.DeviceManagementDeviceConfigurationRestrictedAppsViolationId, input beta.RestrictedAppsViolation, options UpdateDeviceConfigurationRestrictedAppsViolationOperationOptions) (result UpdateDeviceConfigurationRestrictedAppsViolationOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

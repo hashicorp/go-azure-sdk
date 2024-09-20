@@ -19,15 +19,44 @@ type CreateComanagedDeviceOperationResponse struct {
 	Model        beta.ManagedDevice
 }
 
+type CreateComanagedDeviceOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateComanagedDeviceOperationOptions() CreateComanagedDeviceOperationOptions {
+	return CreateComanagedDeviceOperationOptions{}
+}
+
+func (o CreateComanagedDeviceOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateComanagedDeviceOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateComanagedDeviceOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateComanagedDevice - Create new navigation property to comanagedDevices for deviceManagement
-func (c ComanagedDeviceClient) CreateComanagedDevice(ctx context.Context, input beta.ManagedDevice) (result CreateComanagedDeviceOperationResponse, err error) {
+func (c ComanagedDeviceClient) CreateComanagedDevice(ctx context.Context, input beta.ManagedDevice, options CreateComanagedDeviceOperationOptions) (result CreateComanagedDeviceOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/deviceManagement/comanagedDevices",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/deviceManagement/comanagedDevices",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

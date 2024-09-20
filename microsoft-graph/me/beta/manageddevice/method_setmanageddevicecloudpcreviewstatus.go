@@ -18,17 +18,46 @@ type SetManagedDeviceCloudPCReviewStatusOperationResponse struct {
 	OData        *odata.OData
 }
 
+type SetManagedDeviceCloudPCReviewStatusOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultSetManagedDeviceCloudPCReviewStatusOperationOptions() SetManagedDeviceCloudPCReviewStatusOperationOptions {
+	return SetManagedDeviceCloudPCReviewStatusOperationOptions{}
+}
+
+func (o SetManagedDeviceCloudPCReviewStatusOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o SetManagedDeviceCloudPCReviewStatusOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o SetManagedDeviceCloudPCReviewStatusOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // SetManagedDeviceCloudPCReviewStatus - Invoke action setCloudPcReviewStatus. Set the review status of a specific Cloud
 // PC device. Use this API to set the review status of a Cloud PC to in review if you consider a Cloud PC as suspicious.
 // After the review is completed, use this API again to set the Cloud PC back to a normal state.
-func (c ManagedDeviceClient) SetManagedDeviceCloudPCReviewStatus(ctx context.Context, id beta.MeManagedDeviceId, input SetManagedDeviceCloudPCReviewStatusRequest) (result SetManagedDeviceCloudPCReviewStatusOperationResponse, err error) {
+func (c ManagedDeviceClient) SetManagedDeviceCloudPCReviewStatus(ctx context.Context, id beta.MeManagedDeviceId, input SetManagedDeviceCloudPCReviewStatusRequest, options SetManagedDeviceCloudPCReviewStatusOperationOptions) (result SetManagedDeviceCloudPCReviewStatusOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/setCloudPcReviewStatus", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/setCloudPcReviewStatus", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

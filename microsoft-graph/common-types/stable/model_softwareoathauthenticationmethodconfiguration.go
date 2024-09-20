@@ -80,10 +80,17 @@ func (s SoftwareOathAuthenticationMethodConfiguration) MarshalJSON() ([]byte, er
 var _ json.Unmarshaler = &SoftwareOathAuthenticationMethodConfiguration{}
 
 func (s *SoftwareOathAuthenticationMethodConfiguration) UnmarshalJSON(bytes []byte) error {
-	type alias SoftwareOathAuthenticationMethodConfiguration
-	var decoded alias
+
+	var decoded struct {
+		IncludeTargets *[]AuthenticationMethodTarget `json:"includeTargets,omitempty"`
+		ExcludeTargets *[]ExcludeTarget              `json:"excludeTargets,omitempty"`
+		State          *AuthenticationMethodState    `json:"state,omitempty"`
+		Id             *string                       `json:"id,omitempty"`
+		ODataId        *string                       `json:"@odata.id,omitempty"`
+		ODataType      *string                       `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into SoftwareOathAuthenticationMethodConfiguration: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.ExcludeTargets = decoded.ExcludeTargets
@@ -113,5 +120,6 @@ func (s *SoftwareOathAuthenticationMethodConfiguration) UnmarshalJSON(bytes []by
 		}
 		s.IncludeTargets = &output
 	}
+
 	return nil
 }

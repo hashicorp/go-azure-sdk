@@ -19,18 +19,47 @@ type CreateConversationOperationResponse struct {
 	Model        *stable.Conversation
 }
 
+type CreateConversationOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateConversationOperationOptions() CreateConversationOperationOptions {
+	return CreateConversationOperationOptions{}
+}
+
+func (o CreateConversationOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateConversationOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateConversationOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateConversation - Create open extension. Create an open extension (openTypeExtension object) and add custom
 // properties in a new or existing instance of a resource. You can create an open extension in a resource instance and
 // store custom data to it all in the same operation, except for specific resources. The table in the Permissions
 // section lists the resources that support open extensions.
-func (c ConversationClient) CreateConversation(ctx context.Context, id stable.GroupId, input stable.Conversation) (result CreateConversationOperationResponse, err error) {
+func (c ConversationClient) CreateConversation(ctx context.Context, id stable.GroupId, input stable.Conversation, options CreateConversationOperationOptions) (result CreateConversationOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/conversations", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/conversations", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

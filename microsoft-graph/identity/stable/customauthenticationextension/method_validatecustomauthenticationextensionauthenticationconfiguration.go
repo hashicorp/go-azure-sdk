@@ -19,16 +19,45 @@ type ValidateCustomAuthenticationExtensionAuthenticationConfigurationOperationRe
 	Model        *stable.AuthenticationConfigurationValidation
 }
 
+type ValidateCustomAuthenticationExtensionAuthenticationConfigurationOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultValidateCustomAuthenticationExtensionAuthenticationConfigurationOperationOptions() ValidateCustomAuthenticationExtensionAuthenticationConfigurationOperationOptions {
+	return ValidateCustomAuthenticationExtensionAuthenticationConfigurationOperationOptions{}
+}
+
+func (o ValidateCustomAuthenticationExtensionAuthenticationConfigurationOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o ValidateCustomAuthenticationExtensionAuthenticationConfigurationOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o ValidateCustomAuthenticationExtensionAuthenticationConfigurationOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // ValidateCustomAuthenticationExtensionAuthenticationConfiguration - Invoke action validateAuthenticationConfiguration.
 // An API to check validity of the endpoint and and authentication configuration for a customAuthenticationExtension.
-func (c CustomAuthenticationExtensionClient) ValidateCustomAuthenticationExtensionAuthenticationConfiguration(ctx context.Context, id stable.IdentityCustomAuthenticationExtensionId) (result ValidateCustomAuthenticationExtensionAuthenticationConfigurationOperationResponse, err error) {
+func (c CustomAuthenticationExtensionClient) ValidateCustomAuthenticationExtensionAuthenticationConfiguration(ctx context.Context, id stable.IdentityCustomAuthenticationExtensionId, options ValidateCustomAuthenticationExtensionAuthenticationConfigurationOperationOptions) (result ValidateCustomAuthenticationExtensionAuthenticationConfigurationOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/validateAuthenticationConfiguration", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/validateAuthenticationConfiguration", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

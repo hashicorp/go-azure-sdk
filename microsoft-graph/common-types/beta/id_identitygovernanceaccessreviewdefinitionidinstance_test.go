@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &IdentityGovernanceAccessReviewDefinitionIdInstanceId{}
 
 func TestNewIdentityGovernanceAccessReviewDefinitionIdInstanceID(t *testing.T) {
-	id := NewIdentityGovernanceAccessReviewDefinitionIdInstanceID("accessReviewScheduleDefinitionIdValue", "accessReviewInstanceIdValue")
+	id := NewIdentityGovernanceAccessReviewDefinitionIdInstanceID("accessReviewScheduleDefinitionId", "accessReviewInstanceId")
 
-	if id.AccessReviewScheduleDefinitionId != "accessReviewScheduleDefinitionIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'AccessReviewScheduleDefinitionId'", id.AccessReviewScheduleDefinitionId, "accessReviewScheduleDefinitionIdValue")
+	if id.AccessReviewScheduleDefinitionId != "accessReviewScheduleDefinitionId" {
+		t.Fatalf("Expected %q but got %q for Segment 'AccessReviewScheduleDefinitionId'", id.AccessReviewScheduleDefinitionId, "accessReviewScheduleDefinitionId")
 	}
 
-	if id.AccessReviewInstanceId != "accessReviewInstanceIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'AccessReviewInstanceId'", id.AccessReviewInstanceId, "accessReviewInstanceIdValue")
+	if id.AccessReviewInstanceId != "accessReviewInstanceId" {
+		t.Fatalf("Expected %q but got %q for Segment 'AccessReviewInstanceId'", id.AccessReviewInstanceId, "accessReviewInstanceId")
 	}
 }
 
 func TestFormatIdentityGovernanceAccessReviewDefinitionIdInstanceID(t *testing.T) {
-	actual := NewIdentityGovernanceAccessReviewDefinitionIdInstanceID("accessReviewScheduleDefinitionIdValue", "accessReviewInstanceIdValue").ID()
-	expected := "/identityGovernance/accessReviews/definitions/accessReviewScheduleDefinitionIdValue/instances/accessReviewInstanceIdValue"
+	actual := NewIdentityGovernanceAccessReviewDefinitionIdInstanceID("accessReviewScheduleDefinitionId", "accessReviewInstanceId").ID()
+	expected := "/identityGovernance/accessReviews/definitions/accessReviewScheduleDefinitionId/instances/accessReviewInstanceId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -59,25 +59,25 @@ func TestParseIdentityGovernanceAccessReviewDefinitionIdInstanceID(t *testing.T)
 		},
 		{
 			// Incomplete URI
-			Input: "/identityGovernance/accessReviews/definitions/accessReviewScheduleDefinitionIdValue",
+			Input: "/identityGovernance/accessReviews/definitions/accessReviewScheduleDefinitionId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/identityGovernance/accessReviews/definitions/accessReviewScheduleDefinitionIdValue/instances",
+			Input: "/identityGovernance/accessReviews/definitions/accessReviewScheduleDefinitionId/instances",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/identityGovernance/accessReviews/definitions/accessReviewScheduleDefinitionIdValue/instances/accessReviewInstanceIdValue",
+			Input: "/identityGovernance/accessReviews/definitions/accessReviewScheduleDefinitionId/instances/accessReviewInstanceId",
 			Expected: &IdentityGovernanceAccessReviewDefinitionIdInstanceId{
-				AccessReviewScheduleDefinitionId: "accessReviewScheduleDefinitionIdValue",
-				AccessReviewInstanceId:           "accessReviewInstanceIdValue",
+				AccessReviewScheduleDefinitionId: "accessReviewScheduleDefinitionId",
+				AccessReviewInstanceId:           "accessReviewInstanceId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/identityGovernance/accessReviews/definitions/accessReviewScheduleDefinitionIdValue/instances/accessReviewInstanceIdValue/extra",
+			Input: "/identityGovernance/accessReviews/definitions/accessReviewScheduleDefinitionId/instances/accessReviewInstanceId/extra",
 			Error: true,
 		},
 	}
@@ -150,48 +150,48 @@ func TestParseIdentityGovernanceAccessReviewDefinitionIdInstanceIDInsensitively(
 		},
 		{
 			// Incomplete URI
-			Input: "/identityGovernance/accessReviews/definitions/accessReviewScheduleDefinitionIdValue",
+			Input: "/identityGovernance/accessReviews/definitions/accessReviewScheduleDefinitionId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/iDeNtItYgOvErNaNcE/aCcEsSrEvIeWs/dEfInItIoNs/aCcEsSrEvIeWsChEdUlEdEfInItIoNiDvAlUe",
+			Input: "/iDeNtItYgOvErNaNcE/aCcEsSrEvIeWs/dEfInItIoNs/aCcEsSrEvIeWsChEdUlEdEfInItIoNiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/identityGovernance/accessReviews/definitions/accessReviewScheduleDefinitionIdValue/instances",
+			Input: "/identityGovernance/accessReviews/definitions/accessReviewScheduleDefinitionId/instances",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/iDeNtItYgOvErNaNcE/aCcEsSrEvIeWs/dEfInItIoNs/aCcEsSrEvIeWsChEdUlEdEfInItIoNiDvAlUe/iNsTaNcEs",
+			Input: "/iDeNtItYgOvErNaNcE/aCcEsSrEvIeWs/dEfInItIoNs/aCcEsSrEvIeWsChEdUlEdEfInItIoNiD/iNsTaNcEs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/identityGovernance/accessReviews/definitions/accessReviewScheduleDefinitionIdValue/instances/accessReviewInstanceIdValue",
+			Input: "/identityGovernance/accessReviews/definitions/accessReviewScheduleDefinitionId/instances/accessReviewInstanceId",
 			Expected: &IdentityGovernanceAccessReviewDefinitionIdInstanceId{
-				AccessReviewScheduleDefinitionId: "accessReviewScheduleDefinitionIdValue",
-				AccessReviewInstanceId:           "accessReviewInstanceIdValue",
+				AccessReviewScheduleDefinitionId: "accessReviewScheduleDefinitionId",
+				AccessReviewInstanceId:           "accessReviewInstanceId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/identityGovernance/accessReviews/definitions/accessReviewScheduleDefinitionIdValue/instances/accessReviewInstanceIdValue/extra",
+			Input: "/identityGovernance/accessReviews/definitions/accessReviewScheduleDefinitionId/instances/accessReviewInstanceId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/iDeNtItYgOvErNaNcE/aCcEsSrEvIeWs/dEfInItIoNs/aCcEsSrEvIeWsChEdUlEdEfInItIoNiDvAlUe/iNsTaNcEs/aCcEsSrEvIeWiNsTaNcEiDvAlUe",
+			Input: "/iDeNtItYgOvErNaNcE/aCcEsSrEvIeWs/dEfInItIoNs/aCcEsSrEvIeWsChEdUlEdEfInItIoNiD/iNsTaNcEs/aCcEsSrEvIeWiNsTaNcEiD",
 			Expected: &IdentityGovernanceAccessReviewDefinitionIdInstanceId{
-				AccessReviewScheduleDefinitionId: "aCcEsSrEvIeWsChEdUlEdEfInItIoNiDvAlUe",
-				AccessReviewInstanceId:           "aCcEsSrEvIeWiNsTaNcEiDvAlUe",
+				AccessReviewScheduleDefinitionId: "aCcEsSrEvIeWsChEdUlEdEfInItIoNiD",
+				AccessReviewInstanceId:           "aCcEsSrEvIeWiNsTaNcEiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/iDeNtItYgOvErNaNcE/aCcEsSrEvIeWs/dEfInItIoNs/aCcEsSrEvIeWsChEdUlEdEfInItIoNiDvAlUe/iNsTaNcEs/aCcEsSrEvIeWiNsTaNcEiDvAlUe/extra",
+			Input: "/iDeNtItYgOvErNaNcE/aCcEsSrEvIeWs/dEfInItIoNs/aCcEsSrEvIeWsChEdUlEdEfInItIoNiD/iNsTaNcEs/aCcEsSrEvIeWiNsTaNcEiD/extra",
 			Error: true,
 		},
 	}

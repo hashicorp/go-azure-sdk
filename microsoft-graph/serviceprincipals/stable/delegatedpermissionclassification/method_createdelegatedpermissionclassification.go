@@ -19,16 +19,45 @@ type CreateDelegatedPermissionClassificationOperationResponse struct {
 	Model        *stable.DelegatedPermissionClassification
 }
 
+type CreateDelegatedPermissionClassificationOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateDelegatedPermissionClassificationOperationOptions() CreateDelegatedPermissionClassificationOperationOptions {
+	return CreateDelegatedPermissionClassificationOperationOptions{}
+}
+
+func (o CreateDelegatedPermissionClassificationOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateDelegatedPermissionClassificationOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateDelegatedPermissionClassificationOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateDelegatedPermissionClassification - Create delegatedPermissionClassification. Classify a delegated permission
 // by adding a delegatedPermissionClassification to the servicePrincipal representing the API.
-func (c DelegatedPermissionClassificationClient) CreateDelegatedPermissionClassification(ctx context.Context, id stable.ServicePrincipalId, input stable.DelegatedPermissionClassification) (result CreateDelegatedPermissionClassificationOperationResponse, err error) {
+func (c DelegatedPermissionClassificationClient) CreateDelegatedPermissionClassification(ctx context.Context, id stable.ServicePrincipalId, input stable.DelegatedPermissionClassification, options CreateDelegatedPermissionClassificationOperationOptions) (result CreateDelegatedPermissionClassificationOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/delegatedPermissionClassifications", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/delegatedPermissionClassifications", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

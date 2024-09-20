@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/calendarviewinstanceexceptionoccurrence` Documentation
 
-The `calendarviewinstanceexceptionoccurrence` SDK allows for interaction with the Azure Resource Manager Service `groups` (API Version `beta`).
+The `calendarviewinstanceexceptionoccurrence` SDK allows for interaction with Microsoft Graph `groups` (API Version `beta`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -15,7 +15,7 @@ import "github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/calendarvi
 ### Client Initialization
 
 ```go
-client := calendarviewinstanceexceptionoccurrence.NewCalendarViewInstanceExceptionOccurrenceClientWithBaseURI("https://management.azure.com")
+client := calendarviewinstanceexceptionoccurrence.NewCalendarViewInstanceExceptionOccurrenceClientWithBaseURI("https://graph.microsoft.com")
 client.Client.Authorizer = authorizer
 ```
 
@@ -24,14 +24,14 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := calendarviewinstanceexceptionoccurrence.NewGroupIdCalendarViewIdInstanceIdExceptionOccurrenceID("groupIdValue", "eventIdValue", "eventId1Value", "eventId2Value")
+id := calendarviewinstanceexceptionoccurrence.NewGroupIdCalendarViewIdInstanceIdExceptionOccurrenceID("groupId", "eventId", "eventId1", "eventId2")
 
 payload := calendarviewinstanceexceptionoccurrence.AcceptCalendarViewInstanceExceptionOccurrenceRequest{
 	// ...
 }
 
 
-read, err := client.AcceptCalendarViewInstanceExceptionOccurrence(ctx, id, payload)
+read, err := client.AcceptCalendarViewInstanceExceptionOccurrence(ctx, id, payload, calendarviewinstanceexceptionoccurrence.DefaultAcceptCalendarViewInstanceExceptionOccurrenceOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -45,14 +45,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := calendarviewinstanceexceptionoccurrence.NewGroupIdCalendarViewIdInstanceIdExceptionOccurrenceID("groupIdValue", "eventIdValue", "eventId1Value", "eventId2Value")
+id := calendarviewinstanceexceptionoccurrence.NewGroupIdCalendarViewIdInstanceIdExceptionOccurrenceID("groupId", "eventId", "eventId1", "eventId2")
 
 payload := calendarviewinstanceexceptionoccurrence.CancelCalendarViewInstanceExceptionOccurrenceRequest{
 	// ...
 }
 
 
-read, err := client.CancelCalendarViewInstanceExceptionOccurrence(ctx, id, payload)
+read, err := client.CancelCalendarViewInstanceExceptionOccurrence(ctx, id, payload, calendarviewinstanceexceptionoccurrence.DefaultCancelCalendarViewInstanceExceptionOccurrenceOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -66,14 +66,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := calendarviewinstanceexceptionoccurrence.NewGroupIdCalendarViewIdInstanceIdExceptionOccurrenceID("groupIdValue", "eventIdValue", "eventId1Value", "eventId2Value")
+id := calendarviewinstanceexceptionoccurrence.NewGroupIdCalendarViewIdInstanceIdExceptionOccurrenceID("groupId", "eventId", "eventId1", "eventId2")
 
 payload := calendarviewinstanceexceptionoccurrence.DeclineCalendarViewInstanceExceptionOccurrenceRequest{
 	// ...
 }
 
 
-read, err := client.DeclineCalendarViewInstanceExceptionOccurrence(ctx, id, payload)
+read, err := client.DeclineCalendarViewInstanceExceptionOccurrence(ctx, id, payload, calendarviewinstanceexceptionoccurrence.DefaultDeclineCalendarViewInstanceExceptionOccurrenceOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -87,9 +87,9 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := calendarviewinstanceexceptionoccurrence.NewGroupIdCalendarViewIdInstanceIdExceptionOccurrenceID("groupIdValue", "eventIdValue", "eventId1Value", "eventId2Value")
+id := calendarviewinstanceexceptionoccurrence.NewGroupIdCalendarViewIdInstanceIdExceptionOccurrenceID("groupId", "eventId", "eventId1", "eventId2")
 
-read, err := client.DismissCalendarViewInstanceExceptionOccurrenceReminder(ctx, id)
+read, err := client.DismissCalendarViewInstanceExceptionOccurrenceReminder(ctx, id, calendarviewinstanceexceptionoccurrence.DefaultDismissCalendarViewInstanceExceptionOccurrenceReminderOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -103,14 +103,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := calendarviewinstanceexceptionoccurrence.NewGroupIdCalendarViewIdInstanceIdExceptionOccurrenceID("groupIdValue", "eventIdValue", "eventId1Value", "eventId2Value")
+id := calendarviewinstanceexceptionoccurrence.NewGroupIdCalendarViewIdInstanceIdExceptionOccurrenceID("groupId", "eventId", "eventId1", "eventId2")
 
 payload := calendarviewinstanceexceptionoccurrence.ForwardCalendarViewInstanceExceptionOccurrenceRequest{
 	// ...
 }
 
 
-read, err := client.ForwardCalendarViewInstanceExceptionOccurrence(ctx, id, payload)
+read, err := client.ForwardCalendarViewInstanceExceptionOccurrence(ctx, id, payload, calendarviewinstanceexceptionoccurrence.DefaultForwardCalendarViewInstanceExceptionOccurrenceOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -124,7 +124,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := calendarviewinstanceexceptionoccurrence.NewGroupIdCalendarViewIdInstanceIdExceptionOccurrenceID("groupIdValue", "eventIdValue", "eventId1Value", "eventId2Value")
+id := calendarviewinstanceexceptionoccurrence.NewGroupIdCalendarViewIdInstanceIdExceptionOccurrenceID("groupId", "eventId", "eventId1", "eventId2")
 
 read, err := client.GetCalendarViewInstanceExceptionOccurrence(ctx, id, calendarviewinstanceexceptionoccurrence.DefaultGetCalendarViewInstanceExceptionOccurrenceOperationOptions())
 if err != nil {
@@ -140,7 +140,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := calendarviewinstanceexceptionoccurrence.NewGroupIdCalendarViewIdInstanceID("groupIdValue", "eventIdValue", "eventId1Value")
+id := calendarviewinstanceexceptionoccurrence.NewGroupIdCalendarViewIdInstanceID("groupId", "eventId", "eventId1")
 
 read, err := client.GetCalendarViewInstanceExceptionOccurrencesCount(ctx, id, calendarviewinstanceexceptionoccurrence.DefaultGetCalendarViewInstanceExceptionOccurrencesCountOperationOptions())
 if err != nil {
@@ -156,7 +156,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := calendarviewinstanceexceptionoccurrence.NewGroupIdCalendarViewIdInstanceID("groupIdValue", "eventIdValue", "eventId1Value")
+id := calendarviewinstanceexceptionoccurrence.NewGroupIdCalendarViewIdInstanceID("groupId", "eventId", "eventId1")
 
 // alternatively `client.ListCalendarViewInstanceExceptionOccurrences(ctx, id, calendarviewinstanceexceptionoccurrence.DefaultListCalendarViewInstanceExceptionOccurrencesOperationOptions())` can be used to do batched pagination
 items, err := client.ListCalendarViewInstanceExceptionOccurrencesComplete(ctx, id, calendarviewinstanceexceptionoccurrence.DefaultListCalendarViewInstanceExceptionOccurrencesOperationOptions())
@@ -173,14 +173,14 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := calendarviewinstanceexceptionoccurrence.NewGroupIdCalendarViewIdInstanceIdExceptionOccurrenceID("groupIdValue", "eventIdValue", "eventId1Value", "eventId2Value")
+id := calendarviewinstanceexceptionoccurrence.NewGroupIdCalendarViewIdInstanceIdExceptionOccurrenceID("groupId", "eventId", "eventId1", "eventId2")
 
 payload := calendarviewinstanceexceptionoccurrence.SnoozeCalendarViewInstanceExceptionOccurrenceReminderRequest{
 	// ...
 }
 
 
-read, err := client.SnoozeCalendarViewInstanceExceptionOccurrenceReminder(ctx, id, payload)
+read, err := client.SnoozeCalendarViewInstanceExceptionOccurrenceReminder(ctx, id, payload, calendarviewinstanceexceptionoccurrence.DefaultSnoozeCalendarViewInstanceExceptionOccurrenceReminderOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -194,14 +194,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := calendarviewinstanceexceptionoccurrence.NewGroupIdCalendarViewIdInstanceIdExceptionOccurrenceID("groupIdValue", "eventIdValue", "eventId1Value", "eventId2Value")
+id := calendarviewinstanceexceptionoccurrence.NewGroupIdCalendarViewIdInstanceIdExceptionOccurrenceID("groupId", "eventId", "eventId1", "eventId2")
 
 payload := calendarviewinstanceexceptionoccurrence.TentativelyAcceptCalendarViewInstanceExceptionOccurrenceRequest{
 	// ...
 }
 
 
-read, err := client.TentativelyAcceptCalendarViewInstanceExceptionOccurrence(ctx, id, payload)
+read, err := client.TentativelyAcceptCalendarViewInstanceExceptionOccurrence(ctx, id, payload, calendarviewinstanceexceptionoccurrence.DefaultTentativelyAcceptCalendarViewInstanceExceptionOccurrenceOperationOptions())
 if err != nil {
 	// handle the error
 }

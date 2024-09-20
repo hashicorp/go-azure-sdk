@@ -45,10 +45,21 @@ type AccessPackageAssignmentRequestorSettings struct {
 var _ json.Unmarshaler = &AccessPackageAssignmentRequestorSettings{}
 
 func (s *AccessPackageAssignmentRequestorSettings) UnmarshalJSON(bytes []byte) error {
-	type alias AccessPackageAssignmentRequestorSettings
-	var decoded alias
+
+	var decoded struct {
+		AllowCustomAssignmentSchedule          nullable.Type[bool] `json:"allowCustomAssignmentSchedule,omitempty"`
+		EnableOnBehalfRequestorsToAddAccess    nullable.Type[bool] `json:"enableOnBehalfRequestorsToAddAccess,omitempty"`
+		EnableOnBehalfRequestorsToRemoveAccess nullable.Type[bool] `json:"enableOnBehalfRequestorsToRemoveAccess,omitempty"`
+		EnableOnBehalfRequestorsToUpdateAccess nullable.Type[bool] `json:"enableOnBehalfRequestorsToUpdateAccess,omitempty"`
+		EnableTargetsToSelfAddAccess           nullable.Type[bool] `json:"enableTargetsToSelfAddAccess,omitempty"`
+		EnableTargetsToSelfRemoveAccess        nullable.Type[bool] `json:"enableTargetsToSelfRemoveAccess,omitempty"`
+		EnableTargetsToSelfUpdateAccess        nullable.Type[bool] `json:"enableTargetsToSelfUpdateAccess,omitempty"`
+		ODataId                                *string             `json:"@odata.id,omitempty"`
+		ODataType                              *string             `json:"@odata.type,omitempty"`
+		OnBehalfRequestors                     *[]SubjectSet       `json:"onBehalfRequestors,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into AccessPackageAssignmentRequestorSettings: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.AllowCustomAssignmentSchedule = decoded.AllowCustomAssignmentSchedule
@@ -82,5 +93,6 @@ func (s *AccessPackageAssignmentRequestorSettings) UnmarshalJSON(bytes []byte) e
 		}
 		s.OnBehalfRequestors = &output
 	}
+
 	return nil
 }

@@ -17,16 +17,45 @@ type UpdateOutlookTaskGroupOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateOutlookTaskGroupOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateOutlookTaskGroupOperationOptions() UpdateOutlookTaskGroupOperationOptions {
+	return UpdateOutlookTaskGroupOperationOptions{}
+}
+
+func (o UpdateOutlookTaskGroupOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateOutlookTaskGroupOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateOutlookTaskGroupOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateOutlookTaskGroup - Update outlooktaskgroup (deprecated). Update the writable properties of an Outlook task
 // group. You can't modify the name of the default task group, 'My Tasks'.
-func (c OutlookTaskGroupClient) UpdateOutlookTaskGroup(ctx context.Context, id beta.MeOutlookTaskGroupId, input beta.OutlookTaskGroup) (result UpdateOutlookTaskGroupOperationResponse, err error) {
+func (c OutlookTaskGroupClient) UpdateOutlookTaskGroup(ctx context.Context, id beta.MeOutlookTaskGroupId, input beta.OutlookTaskGroup, options UpdateOutlookTaskGroupOperationOptions) (result UpdateOutlookTaskGroupOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

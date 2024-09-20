@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &ReportUserInsightMonthlyInactiveUsersByApplicationId{}
 
 func TestNewReportUserInsightMonthlyInactiveUsersByApplicationID(t *testing.T) {
-	id := NewReportUserInsightMonthlyInactiveUsersByApplicationID("monthlyInactiveUsersByApplicationMetricIdValue")
+	id := NewReportUserInsightMonthlyInactiveUsersByApplicationID("monthlyInactiveUsersByApplicationMetricId")
 
-	if id.MonthlyInactiveUsersByApplicationMetricId != "monthlyInactiveUsersByApplicationMetricIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'MonthlyInactiveUsersByApplicationMetricId'", id.MonthlyInactiveUsersByApplicationMetricId, "monthlyInactiveUsersByApplicationMetricIdValue")
+	if id.MonthlyInactiveUsersByApplicationMetricId != "monthlyInactiveUsersByApplicationMetricId" {
+		t.Fatalf("Expected %q but got %q for Segment 'MonthlyInactiveUsersByApplicationMetricId'", id.MonthlyInactiveUsersByApplicationMetricId, "monthlyInactiveUsersByApplicationMetricId")
 	}
 }
 
 func TestFormatReportUserInsightMonthlyInactiveUsersByApplicationID(t *testing.T) {
-	actual := NewReportUserInsightMonthlyInactiveUsersByApplicationID("monthlyInactiveUsersByApplicationMetricIdValue").ID()
-	expected := "/reports/userInsights/monthly/inactiveUsersByApplication/monthlyInactiveUsersByApplicationMetricIdValue"
+	actual := NewReportUserInsightMonthlyInactiveUsersByApplicationID("monthlyInactiveUsersByApplicationMetricId").ID()
+	expected := "/reports/userInsights/monthly/inactiveUsersByApplication/monthlyInactiveUsersByApplicationMetricId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -60,14 +60,14 @@ func TestParseReportUserInsightMonthlyInactiveUsersByApplicationID(t *testing.T)
 		},
 		{
 			// Valid URI
-			Input: "/reports/userInsights/monthly/inactiveUsersByApplication/monthlyInactiveUsersByApplicationMetricIdValue",
+			Input: "/reports/userInsights/monthly/inactiveUsersByApplication/monthlyInactiveUsersByApplicationMetricId",
 			Expected: &ReportUserInsightMonthlyInactiveUsersByApplicationId{
-				MonthlyInactiveUsersByApplicationMetricId: "monthlyInactiveUsersByApplicationMetricIdValue",
+				MonthlyInactiveUsersByApplicationMetricId: "monthlyInactiveUsersByApplicationMetricId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/reports/userInsights/monthly/inactiveUsersByApplication/monthlyInactiveUsersByApplicationMetricIdValue/extra",
+			Input: "/reports/userInsights/monthly/inactiveUsersByApplication/monthlyInactiveUsersByApplicationMetricId/extra",
 			Error: true,
 		},
 	}
@@ -146,26 +146,26 @@ func TestParseReportUserInsightMonthlyInactiveUsersByApplicationIDInsensitively(
 		},
 		{
 			// Valid URI
-			Input: "/reports/userInsights/monthly/inactiveUsersByApplication/monthlyInactiveUsersByApplicationMetricIdValue",
+			Input: "/reports/userInsights/monthly/inactiveUsersByApplication/monthlyInactiveUsersByApplicationMetricId",
 			Expected: &ReportUserInsightMonthlyInactiveUsersByApplicationId{
-				MonthlyInactiveUsersByApplicationMetricId: "monthlyInactiveUsersByApplicationMetricIdValue",
+				MonthlyInactiveUsersByApplicationMetricId: "monthlyInactiveUsersByApplicationMetricId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/reports/userInsights/monthly/inactiveUsersByApplication/monthlyInactiveUsersByApplicationMetricIdValue/extra",
+			Input: "/reports/userInsights/monthly/inactiveUsersByApplication/monthlyInactiveUsersByApplicationMetricId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/rEpOrTs/uSeRiNsIgHtS/mOnThLy/iNaCtIvEuSeRsByApPlIcAtIoN/mOnThLyInAcTiVeUsErSbYaPpLiCaTiOnMeTrIcIdVaLuE",
+			Input: "/rEpOrTs/uSeRiNsIgHtS/mOnThLy/iNaCtIvEuSeRsByApPlIcAtIoN/mOnThLyInAcTiVeUsErSbYaPpLiCaTiOnMeTrIcId",
 			Expected: &ReportUserInsightMonthlyInactiveUsersByApplicationId{
-				MonthlyInactiveUsersByApplicationMetricId: "mOnThLyInAcTiVeUsErSbYaPpLiCaTiOnMeTrIcIdVaLuE",
+				MonthlyInactiveUsersByApplicationMetricId: "mOnThLyInAcTiVeUsErSbYaPpLiCaTiOnMeTrIcId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/rEpOrTs/uSeRiNsIgHtS/mOnThLy/iNaCtIvEuSeRsByApPlIcAtIoN/mOnThLyInAcTiVeUsErSbYaPpLiCaTiOnMeTrIcIdVaLuE/extra",
+			Input: "/rEpOrTs/uSeRiNsIgHtS/mOnThLy/iNaCtIvEuSeRsByApPlIcAtIoN/mOnThLyInAcTiVeUsErSbYaPpLiCaTiOnMeTrIcId/extra",
 			Error: true,
 		},
 	}

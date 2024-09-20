@@ -17,17 +17,46 @@ type UpdateB2xUserFlowLanguageOverridesPageOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateB2xUserFlowLanguageOverridesPageOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateB2xUserFlowLanguageOverridesPageOperationOptions() UpdateB2xUserFlowLanguageOverridesPageOperationOptions {
+	return UpdateB2xUserFlowLanguageOverridesPageOperationOptions{}
+}
+
+func (o UpdateB2xUserFlowLanguageOverridesPageOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateB2xUserFlowLanguageOverridesPageOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateB2xUserFlowLanguageOverridesPageOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateB2xUserFlowLanguageOverridesPage - Update userFlowLanguagePage. Update the values in an userFlowLanguagePage
 // object. You may only update the values in an overridesPage, which is used to customize the values shown to a user
 // during a user journey defined by a user flow.
-func (c B2xUserFlowLanguageOverridesPageClient) UpdateB2xUserFlowLanguageOverridesPage(ctx context.Context, id stable.IdentityB2xUserFlowIdLanguageIdOverridesPageId, input stable.UserFlowLanguagePage) (result UpdateB2xUserFlowLanguageOverridesPageOperationResponse, err error) {
+func (c B2xUserFlowLanguageOverridesPageClient) UpdateB2xUserFlowLanguageOverridesPage(ctx context.Context, id stable.IdentityB2xUserFlowIdLanguageIdOverridesPageId, input stable.UserFlowLanguagePage, options UpdateB2xUserFlowLanguageOverridesPageOperationOptions) (result UpdateB2xUserFlowLanguageOverridesPageOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

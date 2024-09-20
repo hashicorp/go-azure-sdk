@@ -19,15 +19,44 @@ type CreateTermsOfUseAgreementFileVersionOperationResponse struct {
 	Model        *stable.AgreementFileVersion
 }
 
+type CreateTermsOfUseAgreementFileVersionOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateTermsOfUseAgreementFileVersionOperationOptions() CreateTermsOfUseAgreementFileVersionOperationOptions {
+	return CreateTermsOfUseAgreementFileVersionOperationOptions{}
+}
+
+func (o CreateTermsOfUseAgreementFileVersionOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateTermsOfUseAgreementFileVersionOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateTermsOfUseAgreementFileVersionOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateTermsOfUseAgreementFileVersion - Create new navigation property to versions for identityGovernance
-func (c TermsOfUseAgreementFileVersionClient) CreateTermsOfUseAgreementFileVersion(ctx context.Context, id stable.IdentityGovernanceTermsOfUseAgreementIdFileId, input stable.AgreementFileVersion) (result CreateTermsOfUseAgreementFileVersionOperationResponse, err error) {
+func (c TermsOfUseAgreementFileVersionClient) CreateTermsOfUseAgreementFileVersion(ctx context.Context, id stable.IdentityGovernanceTermsOfUseAgreementIdFileId, input stable.AgreementFileVersion, options CreateTermsOfUseAgreementFileVersionOperationOptions) (result CreateTermsOfUseAgreementFileVersionOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/versions", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/versions", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

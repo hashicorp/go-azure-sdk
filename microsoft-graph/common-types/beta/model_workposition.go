@@ -118,23 +118,41 @@ func (s WorkPosition) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &WorkPosition{}
 
 func (s *WorkPosition) UnmarshalJSON(bytes []byte) error {
-	type alias WorkPosition
-	var decoded alias
+
+	var decoded struct {
+		Categories           *[]string                  `json:"categories,omitempty"`
+		Colleagues           *[]RelatedPerson           `json:"colleagues,omitempty"`
+		Detail               *PositionDetail            `json:"detail,omitempty"`
+		IsCurrent            nullable.Type[bool]        `json:"isCurrent,omitempty"`
+		Manager              *RelatedPerson             `json:"manager,omitempty"`
+		AllowedAudiences     *AllowedAudiences          `json:"allowedAudiences,omitempty"`
+		CreatedBy            IdentitySet                `json:"createdBy"`
+		CreatedDateTime      *string                    `json:"createdDateTime,omitempty"`
+		Inference            *InferenceData             `json:"inference,omitempty"`
+		IsSearchable         nullable.Type[bool]        `json:"isSearchable,omitempty"`
+		LastModifiedBy       IdentitySet                `json:"lastModifiedBy"`
+		LastModifiedDateTime *string                    `json:"lastModifiedDateTime,omitempty"`
+		Source               *PersonDataSources         `json:"source,omitempty"`
+		Sources              *[]ProfileSourceAnnotation `json:"sources,omitempty"`
+		Id                   *string                    `json:"id,omitempty"`
+		ODataId              *string                    `json:"@odata.id,omitempty"`
+		ODataType            *string                    `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into WorkPosition: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
-	s.AllowedAudiences = decoded.AllowedAudiences
 	s.Categories = decoded.Categories
 	s.Colleagues = decoded.Colleagues
-	s.CreatedDateTime = decoded.CreatedDateTime
 	s.Detail = decoded.Detail
+	s.IsCurrent = decoded.IsCurrent
+	s.Manager = decoded.Manager
+	s.AllowedAudiences = decoded.AllowedAudiences
+	s.CreatedDateTime = decoded.CreatedDateTime
 	s.Id = decoded.Id
 	s.Inference = decoded.Inference
-	s.IsCurrent = decoded.IsCurrent
 	s.IsSearchable = decoded.IsSearchable
 	s.LastModifiedDateTime = decoded.LastModifiedDateTime
-	s.Manager = decoded.Manager
 	s.ODataId = decoded.ODataId
 	s.ODataType = decoded.ODataType
 	s.Source = decoded.Source
@@ -160,5 +178,6 @@ func (s *WorkPosition) UnmarshalJSON(bytes []byte) error {
 		}
 		s.LastModifiedBy = impl
 	}
+
 	return nil
 }

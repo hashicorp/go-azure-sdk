@@ -68,16 +68,21 @@ func (s DeviceHealthScriptAssignment) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &DeviceHealthScriptAssignment{}
 
 func (s *DeviceHealthScriptAssignment) UnmarshalJSON(bytes []byte) error {
-	type alias DeviceHealthScriptAssignment
-	var decoded alias
+
+	var decoded struct {
+		RunRemediationScript *bool   `json:"runRemediationScript,omitempty"`
+		Id                   *string `json:"id,omitempty"`
+		ODataId              *string `json:"@odata.id,omitempty"`
+		ODataType            *string `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into DeviceHealthScriptAssignment: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
+	s.RunRemediationScript = decoded.RunRemediationScript
 	s.Id = decoded.Id
 	s.ODataId = decoded.ODataId
 	s.ODataType = decoded.ODataType
-	s.RunRemediationScript = decoded.RunRemediationScript
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -99,5 +104,6 @@ func (s *DeviceHealthScriptAssignment) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Target = impl
 	}
+
 	return nil
 }

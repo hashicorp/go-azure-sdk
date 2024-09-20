@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &DomainIdFederationConfigurationId{}
 
 func TestNewDomainIdFederationConfigurationID(t *testing.T) {
-	id := NewDomainIdFederationConfigurationID("domainIdValue", "internalDomainFederationIdValue")
+	id := NewDomainIdFederationConfigurationID("domainId", "internalDomainFederationId")
 
-	if id.DomainId != "domainIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DomainId'", id.DomainId, "domainIdValue")
+	if id.DomainId != "domainId" {
+		t.Fatalf("Expected %q but got %q for Segment 'DomainId'", id.DomainId, "domainId")
 	}
 
-	if id.InternalDomainFederationId != "internalDomainFederationIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'InternalDomainFederationId'", id.InternalDomainFederationId, "internalDomainFederationIdValue")
+	if id.InternalDomainFederationId != "internalDomainFederationId" {
+		t.Fatalf("Expected %q but got %q for Segment 'InternalDomainFederationId'", id.InternalDomainFederationId, "internalDomainFederationId")
 	}
 }
 
 func TestFormatDomainIdFederationConfigurationID(t *testing.T) {
-	actual := NewDomainIdFederationConfigurationID("domainIdValue", "internalDomainFederationIdValue").ID()
-	expected := "/domains/domainIdValue/federationConfiguration/internalDomainFederationIdValue"
+	actual := NewDomainIdFederationConfigurationID("domainId", "internalDomainFederationId").ID()
+	expected := "/domains/domainId/federationConfiguration/internalDomainFederationId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -49,25 +49,25 @@ func TestParseDomainIdFederationConfigurationID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/domains/domainIdValue",
+			Input: "/domains/domainId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/domains/domainIdValue/federationConfiguration",
+			Input: "/domains/domainId/federationConfiguration",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/domains/domainIdValue/federationConfiguration/internalDomainFederationIdValue",
+			Input: "/domains/domainId/federationConfiguration/internalDomainFederationId",
 			Expected: &DomainIdFederationConfigurationId{
-				DomainId:                   "domainIdValue",
-				InternalDomainFederationId: "internalDomainFederationIdValue",
+				DomainId:                   "domainId",
+				InternalDomainFederationId: "internalDomainFederationId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/domains/domainIdValue/federationConfiguration/internalDomainFederationIdValue/extra",
+			Input: "/domains/domainId/federationConfiguration/internalDomainFederationId/extra",
 			Error: true,
 		},
 	}
@@ -120,48 +120,48 @@ func TestParseDomainIdFederationConfigurationIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/domains/domainIdValue",
+			Input: "/domains/domainId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/dOmAiNs/dOmAiNiDvAlUe",
+			Input: "/dOmAiNs/dOmAiNiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/domains/domainIdValue/federationConfiguration",
+			Input: "/domains/domainId/federationConfiguration",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/dOmAiNs/dOmAiNiDvAlUe/fEdErAtIoNcOnFiGuRaTiOn",
+			Input: "/dOmAiNs/dOmAiNiD/fEdErAtIoNcOnFiGuRaTiOn",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/domains/domainIdValue/federationConfiguration/internalDomainFederationIdValue",
+			Input: "/domains/domainId/federationConfiguration/internalDomainFederationId",
 			Expected: &DomainIdFederationConfigurationId{
-				DomainId:                   "domainIdValue",
-				InternalDomainFederationId: "internalDomainFederationIdValue",
+				DomainId:                   "domainId",
+				InternalDomainFederationId: "internalDomainFederationId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/domains/domainIdValue/federationConfiguration/internalDomainFederationIdValue/extra",
+			Input: "/domains/domainId/federationConfiguration/internalDomainFederationId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/dOmAiNs/dOmAiNiDvAlUe/fEdErAtIoNcOnFiGuRaTiOn/iNtErNaLdOmAiNfEdErAtIoNiDvAlUe",
+			Input: "/dOmAiNs/dOmAiNiD/fEdErAtIoNcOnFiGuRaTiOn/iNtErNaLdOmAiNfEdErAtIoNiD",
 			Expected: &DomainIdFederationConfigurationId{
-				DomainId:                   "dOmAiNiDvAlUe",
-				InternalDomainFederationId: "iNtErNaLdOmAiNfEdErAtIoNiDvAlUe",
+				DomainId:                   "dOmAiNiD",
+				InternalDomainFederationId: "iNtErNaLdOmAiNfEdErAtIoNiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/dOmAiNs/dOmAiNiDvAlUe/fEdErAtIoNcOnFiGuRaTiOn/iNtErNaLdOmAiNfEdErAtIoNiDvAlUe/extra",
+			Input: "/dOmAiNs/dOmAiNiD/fEdErAtIoNcOnFiGuRaTiOn/iNtErNaLdOmAiNfEdErAtIoNiD/extra",
 			Error: true,
 		},
 	}

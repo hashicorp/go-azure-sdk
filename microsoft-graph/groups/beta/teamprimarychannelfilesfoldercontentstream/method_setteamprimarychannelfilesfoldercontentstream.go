@@ -18,16 +18,45 @@ type SetTeamPrimaryChannelFilesFolderContentStreamOperationResponse struct {
 	OData        *odata.OData
 }
 
+type SetTeamPrimaryChannelFilesFolderContentStreamOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultSetTeamPrimaryChannelFilesFolderContentStreamOperationOptions() SetTeamPrimaryChannelFilesFolderContentStreamOperationOptions {
+	return SetTeamPrimaryChannelFilesFolderContentStreamOperationOptions{}
+}
+
+func (o SetTeamPrimaryChannelFilesFolderContentStreamOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o SetTeamPrimaryChannelFilesFolderContentStreamOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o SetTeamPrimaryChannelFilesFolderContentStreamOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // SetTeamPrimaryChannelFilesFolderContentStream - Update contentStream for the navigation property filesFolder in
 // groups. The content stream, if the item represents a file.
-func (c TeamPrimaryChannelFilesFolderContentStreamClient) SetTeamPrimaryChannelFilesFolderContentStream(ctx context.Context, id beta.GroupId, input []byte) (result SetTeamPrimaryChannelFilesFolderContentStreamOperationResponse, err error) {
+func (c TeamPrimaryChannelFilesFolderContentStreamClient) SetTeamPrimaryChannelFilesFolderContentStream(ctx context.Context, id beta.GroupId, input []byte, options SetTeamPrimaryChannelFilesFolderContentStreamOperationOptions) (result SetTeamPrimaryChannelFilesFolderContentStreamOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPut,
-		Path:       fmt.Sprintf("%s/team/primaryChannel/filesFolder/contentStream", id.ID()),
+		HttpMethod:    http.MethodPut,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/team/primaryChannel/filesFolder/contentStream", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

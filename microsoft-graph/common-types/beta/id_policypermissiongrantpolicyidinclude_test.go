@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &PolicyPermissionGrantPolicyIdIncludeId{}
 
 func TestNewPolicyPermissionGrantPolicyIdIncludeID(t *testing.T) {
-	id := NewPolicyPermissionGrantPolicyIdIncludeID("permissionGrantPolicyIdValue", "permissionGrantConditionSetIdValue")
+	id := NewPolicyPermissionGrantPolicyIdIncludeID("permissionGrantPolicyId", "permissionGrantConditionSetId")
 
-	if id.PermissionGrantPolicyId != "permissionGrantPolicyIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'PermissionGrantPolicyId'", id.PermissionGrantPolicyId, "permissionGrantPolicyIdValue")
+	if id.PermissionGrantPolicyId != "permissionGrantPolicyId" {
+		t.Fatalf("Expected %q but got %q for Segment 'PermissionGrantPolicyId'", id.PermissionGrantPolicyId, "permissionGrantPolicyId")
 	}
 
-	if id.PermissionGrantConditionSetId != "permissionGrantConditionSetIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'PermissionGrantConditionSetId'", id.PermissionGrantConditionSetId, "permissionGrantConditionSetIdValue")
+	if id.PermissionGrantConditionSetId != "permissionGrantConditionSetId" {
+		t.Fatalf("Expected %q but got %q for Segment 'PermissionGrantConditionSetId'", id.PermissionGrantConditionSetId, "permissionGrantConditionSetId")
 	}
 }
 
 func TestFormatPolicyPermissionGrantPolicyIdIncludeID(t *testing.T) {
-	actual := NewPolicyPermissionGrantPolicyIdIncludeID("permissionGrantPolicyIdValue", "permissionGrantConditionSetIdValue").ID()
-	expected := "/policies/permissionGrantPolicies/permissionGrantPolicyIdValue/includes/permissionGrantConditionSetIdValue"
+	actual := NewPolicyPermissionGrantPolicyIdIncludeID("permissionGrantPolicyId", "permissionGrantConditionSetId").ID()
+	expected := "/policies/permissionGrantPolicies/permissionGrantPolicyId/includes/permissionGrantConditionSetId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -54,25 +54,25 @@ func TestParsePolicyPermissionGrantPolicyIdIncludeID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/policies/permissionGrantPolicies/permissionGrantPolicyIdValue",
+			Input: "/policies/permissionGrantPolicies/permissionGrantPolicyId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/policies/permissionGrantPolicies/permissionGrantPolicyIdValue/includes",
+			Input: "/policies/permissionGrantPolicies/permissionGrantPolicyId/includes",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/policies/permissionGrantPolicies/permissionGrantPolicyIdValue/includes/permissionGrantConditionSetIdValue",
+			Input: "/policies/permissionGrantPolicies/permissionGrantPolicyId/includes/permissionGrantConditionSetId",
 			Expected: &PolicyPermissionGrantPolicyIdIncludeId{
-				PermissionGrantPolicyId:       "permissionGrantPolicyIdValue",
-				PermissionGrantConditionSetId: "permissionGrantConditionSetIdValue",
+				PermissionGrantPolicyId:       "permissionGrantPolicyId",
+				PermissionGrantConditionSetId: "permissionGrantConditionSetId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/policies/permissionGrantPolicies/permissionGrantPolicyIdValue/includes/permissionGrantConditionSetIdValue/extra",
+			Input: "/policies/permissionGrantPolicies/permissionGrantPolicyId/includes/permissionGrantConditionSetId/extra",
 			Error: true,
 		},
 	}
@@ -135,48 +135,48 @@ func TestParsePolicyPermissionGrantPolicyIdIncludeIDInsensitively(t *testing.T) 
 		},
 		{
 			// Incomplete URI
-			Input: "/policies/permissionGrantPolicies/permissionGrantPolicyIdValue",
+			Input: "/policies/permissionGrantPolicies/permissionGrantPolicyId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/pOlIcIeS/pErMiSsIoNgRaNtPoLiCiEs/pErMiSsIoNgRaNtPoLiCyIdVaLuE",
+			Input: "/pOlIcIeS/pErMiSsIoNgRaNtPoLiCiEs/pErMiSsIoNgRaNtPoLiCyId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/policies/permissionGrantPolicies/permissionGrantPolicyIdValue/includes",
+			Input: "/policies/permissionGrantPolicies/permissionGrantPolicyId/includes",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/pOlIcIeS/pErMiSsIoNgRaNtPoLiCiEs/pErMiSsIoNgRaNtPoLiCyIdVaLuE/iNcLuDeS",
+			Input: "/pOlIcIeS/pErMiSsIoNgRaNtPoLiCiEs/pErMiSsIoNgRaNtPoLiCyId/iNcLuDeS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/policies/permissionGrantPolicies/permissionGrantPolicyIdValue/includes/permissionGrantConditionSetIdValue",
+			Input: "/policies/permissionGrantPolicies/permissionGrantPolicyId/includes/permissionGrantConditionSetId",
 			Expected: &PolicyPermissionGrantPolicyIdIncludeId{
-				PermissionGrantPolicyId:       "permissionGrantPolicyIdValue",
-				PermissionGrantConditionSetId: "permissionGrantConditionSetIdValue",
+				PermissionGrantPolicyId:       "permissionGrantPolicyId",
+				PermissionGrantConditionSetId: "permissionGrantConditionSetId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/policies/permissionGrantPolicies/permissionGrantPolicyIdValue/includes/permissionGrantConditionSetIdValue/extra",
+			Input: "/policies/permissionGrantPolicies/permissionGrantPolicyId/includes/permissionGrantConditionSetId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/pOlIcIeS/pErMiSsIoNgRaNtPoLiCiEs/pErMiSsIoNgRaNtPoLiCyIdVaLuE/iNcLuDeS/pErMiSsIoNgRaNtCoNdItIoNsEtIdVaLuE",
+			Input: "/pOlIcIeS/pErMiSsIoNgRaNtPoLiCiEs/pErMiSsIoNgRaNtPoLiCyId/iNcLuDeS/pErMiSsIoNgRaNtCoNdItIoNsEtId",
 			Expected: &PolicyPermissionGrantPolicyIdIncludeId{
-				PermissionGrantPolicyId:       "pErMiSsIoNgRaNtPoLiCyIdVaLuE",
-				PermissionGrantConditionSetId: "pErMiSsIoNgRaNtCoNdItIoNsEtIdVaLuE",
+				PermissionGrantPolicyId:       "pErMiSsIoNgRaNtPoLiCyId",
+				PermissionGrantConditionSetId: "pErMiSsIoNgRaNtCoNdItIoNsEtId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/pOlIcIeS/pErMiSsIoNgRaNtPoLiCiEs/pErMiSsIoNgRaNtPoLiCyIdVaLuE/iNcLuDeS/pErMiSsIoNgRaNtCoNdItIoNsEtIdVaLuE/extra",
+			Input: "/pOlIcIeS/pErMiSsIoNgRaNtPoLiCiEs/pErMiSsIoNgRaNtPoLiCyId/iNcLuDeS/pErMiSsIoNgRaNtCoNdItIoNsEtId/extra",
 			Error: true,
 		},
 	}

@@ -19,15 +19,44 @@ type CreateSynchronizationJobSchemaDirectoryOperationResponse struct {
 	Model        *stable.DirectoryDefinition
 }
 
+type CreateSynchronizationJobSchemaDirectoryOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateSynchronizationJobSchemaDirectoryOperationOptions() CreateSynchronizationJobSchemaDirectoryOperationOptions {
+	return CreateSynchronizationJobSchemaDirectoryOperationOptions{}
+}
+
+func (o CreateSynchronizationJobSchemaDirectoryOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateSynchronizationJobSchemaDirectoryOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateSynchronizationJobSchemaDirectoryOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateSynchronizationJobSchemaDirectory - Create new navigation property to directories for servicePrincipals
-func (c SynchronizationJobSchemaDirectoryClient) CreateSynchronizationJobSchemaDirectory(ctx context.Context, id stable.ServicePrincipalIdSynchronizationJobId, input stable.DirectoryDefinition) (result CreateSynchronizationJobSchemaDirectoryOperationResponse, err error) {
+func (c SynchronizationJobSchemaDirectoryClient) CreateSynchronizationJobSchemaDirectory(ctx context.Context, id stable.ServicePrincipalIdSynchronizationJobId, input stable.DirectoryDefinition, options CreateSynchronizationJobSchemaDirectoryOperationOptions) (result CreateSynchronizationJobSchemaDirectoryOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/schema/directories", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/schema/directories", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

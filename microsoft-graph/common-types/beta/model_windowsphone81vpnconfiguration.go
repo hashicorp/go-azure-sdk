@@ -250,17 +250,53 @@ func (s WindowsPhone81VpnConfiguration) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &WindowsPhone81VpnConfiguration{}
 
 func (s *WindowsPhone81VpnConfiguration) UnmarshalJSON(bytes []byte) error {
-	type alias WindowsPhone81VpnConfiguration
-	var decoded alias
+
+	var decoded struct {
+		AuthenticationMethod                        *VpnAuthenticationMethod                     `json:"authenticationMethod,omitempty"`
+		BypassVpnOnCompanyWifi                      *bool                                        `json:"bypassVpnOnCompanyWifi,omitempty"`
+		BypassVpnOnHomeWifi                         *bool                                        `json:"bypassVpnOnHomeWifi,omitempty"`
+		DnsSuffixSearchList                         *[]string                                    `json:"dnsSuffixSearchList,omitempty"`
+		RememberUserCredentials                     *bool                                        `json:"rememberUserCredentials,omitempty"`
+		ApplyOnlyToWindows81                        *bool                                        `json:"applyOnlyToWindows81,omitempty"`
+		ConnectionType                              *WindowsVpnConnectionType                    `json:"connectionType,omitempty"`
+		EnableSplitTunneling                        *bool                                        `json:"enableSplitTunneling,omitempty"`
+		LoginGroupOrDomain                          nullable.Type[string]                        `json:"loginGroupOrDomain,omitempty"`
+		ProxyServer                                 *Windows81VpnProxyServer                     `json:"proxyServer,omitempty"`
+		ConnectionName                              *string                                      `json:"connectionName,omitempty"`
+		CustomXml                                   nullable.Type[string]                        `json:"customXml,omitempty"`
+		Servers                                     *[]VpnServer                                 `json:"servers,omitempty"`
+		Assignments                                 *[]DeviceConfigurationAssignment             `json:"assignments,omitempty"`
+		CreatedDateTime                             *string                                      `json:"createdDateTime,omitempty"`
+		Description                                 nullable.Type[string]                        `json:"description,omitempty"`
+		DeviceManagementApplicabilityRuleDeviceMode *DeviceManagementApplicabilityRuleDeviceMode `json:"deviceManagementApplicabilityRuleDeviceMode,omitempty"`
+		DeviceManagementApplicabilityRuleOsEdition  *DeviceManagementApplicabilityRuleOsEdition  `json:"deviceManagementApplicabilityRuleOsEdition,omitempty"`
+		DeviceManagementApplicabilityRuleOsVersion  *DeviceManagementApplicabilityRuleOsVersion  `json:"deviceManagementApplicabilityRuleOsVersion,omitempty"`
+		DeviceSettingStateSummaries                 *[]SettingStateDeviceSummary                 `json:"deviceSettingStateSummaries,omitempty"`
+		DeviceStatusOverview                        *DeviceConfigurationDeviceOverview           `json:"deviceStatusOverview,omitempty"`
+		DeviceStatuses                              *[]DeviceConfigurationDeviceStatus           `json:"deviceStatuses,omitempty"`
+		DisplayName                                 *string                                      `json:"displayName,omitempty"`
+		GroupAssignments                            *[]DeviceConfigurationGroupAssignment        `json:"groupAssignments,omitempty"`
+		LastModifiedDateTime                        *string                                      `json:"lastModifiedDateTime,omitempty"`
+		RoleScopeTagIds                             *[]string                                    `json:"roleScopeTagIds,omitempty"`
+		SupportsScopeTags                           *bool                                        `json:"supportsScopeTags,omitempty"`
+		UserStatusOverview                          *DeviceConfigurationUserOverview             `json:"userStatusOverview,omitempty"`
+		UserStatuses                                *[]DeviceConfigurationUserStatus             `json:"userStatuses,omitempty"`
+		Version                                     *int64                                       `json:"version,omitempty"`
+		Id                                          *string                                      `json:"id,omitempty"`
+		ODataId                                     *string                                      `json:"@odata.id,omitempty"`
+		ODataType                                   *string                                      `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into WindowsPhone81VpnConfiguration: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
-	s.ApplyOnlyToWindows81 = decoded.ApplyOnlyToWindows81
-	s.Assignments = decoded.Assignments
 	s.AuthenticationMethod = decoded.AuthenticationMethod
 	s.BypassVpnOnCompanyWifi = decoded.BypassVpnOnCompanyWifi
 	s.BypassVpnOnHomeWifi = decoded.BypassVpnOnHomeWifi
+	s.DnsSuffixSearchList = decoded.DnsSuffixSearchList
+	s.RememberUserCredentials = decoded.RememberUserCredentials
+	s.ApplyOnlyToWindows81 = decoded.ApplyOnlyToWindows81
+	s.Assignments = decoded.Assignments
 	s.ConnectionName = decoded.ConnectionName
 	s.ConnectionType = decoded.ConnectionType
 	s.CreatedDateTime = decoded.CreatedDateTime
@@ -273,7 +309,6 @@ func (s *WindowsPhone81VpnConfiguration) UnmarshalJSON(bytes []byte) error {
 	s.DeviceStatusOverview = decoded.DeviceStatusOverview
 	s.DeviceStatuses = decoded.DeviceStatuses
 	s.DisplayName = decoded.DisplayName
-	s.DnsSuffixSearchList = decoded.DnsSuffixSearchList
 	s.EnableSplitTunneling = decoded.EnableSplitTunneling
 	s.GroupAssignments = decoded.GroupAssignments
 	s.Id = decoded.Id
@@ -282,7 +317,6 @@ func (s *WindowsPhone81VpnConfiguration) UnmarshalJSON(bytes []byte) error {
 	s.ODataId = decoded.ODataId
 	s.ODataType = decoded.ODataType
 	s.ProxyServer = decoded.ProxyServer
-	s.RememberUserCredentials = decoded.RememberUserCredentials
 	s.RoleScopeTagIds = decoded.RoleScopeTagIds
 	s.Servers = decoded.Servers
 	s.SupportsScopeTags = decoded.SupportsScopeTags
@@ -302,5 +336,6 @@ func (s *WindowsPhone81VpnConfiguration) UnmarshalJSON(bytes []byte) error {
 		}
 		s.IdentityCertificate = &impl
 	}
+
 	return nil
 }

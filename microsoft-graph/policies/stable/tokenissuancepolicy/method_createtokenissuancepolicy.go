@@ -18,15 +18,44 @@ type CreateTokenIssuancePolicyOperationResponse struct {
 	Model        *stable.TokenIssuancePolicy
 }
 
+type CreateTokenIssuancePolicyOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateTokenIssuancePolicyOperationOptions() CreateTokenIssuancePolicyOperationOptions {
+	return CreateTokenIssuancePolicyOperationOptions{}
+}
+
+func (o CreateTokenIssuancePolicyOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateTokenIssuancePolicyOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateTokenIssuancePolicyOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateTokenIssuancePolicy - Create tokenIssuancePolicy. Create a new tokenIssuancePolicy object.
-func (c TokenIssuancePolicyClient) CreateTokenIssuancePolicy(ctx context.Context, input stable.TokenIssuancePolicy) (result CreateTokenIssuancePolicyOperationResponse, err error) {
+func (c TokenIssuancePolicyClient) CreateTokenIssuancePolicy(ctx context.Context, input stable.TokenIssuancePolicy, options CreateTokenIssuancePolicyOperationOptions) (result CreateTokenIssuancePolicyOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/policies/tokenIssuancePolicies",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/policies/tokenIssuancePolicies",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

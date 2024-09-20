@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &DeviceManagementDeviceConfigurationConflictSummaryId{}
 
 func TestNewDeviceManagementDeviceConfigurationConflictSummaryID(t *testing.T) {
-	id := NewDeviceManagementDeviceConfigurationConflictSummaryID("deviceConfigurationConflictSummaryIdValue")
+	id := NewDeviceManagementDeviceConfigurationConflictSummaryID("deviceConfigurationConflictSummaryId")
 
-	if id.DeviceConfigurationConflictSummaryId != "deviceConfigurationConflictSummaryIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DeviceConfigurationConflictSummaryId'", id.DeviceConfigurationConflictSummaryId, "deviceConfigurationConflictSummaryIdValue")
+	if id.DeviceConfigurationConflictSummaryId != "deviceConfigurationConflictSummaryId" {
+		t.Fatalf("Expected %q but got %q for Segment 'DeviceConfigurationConflictSummaryId'", id.DeviceConfigurationConflictSummaryId, "deviceConfigurationConflictSummaryId")
 	}
 }
 
 func TestFormatDeviceManagementDeviceConfigurationConflictSummaryID(t *testing.T) {
-	actual := NewDeviceManagementDeviceConfigurationConflictSummaryID("deviceConfigurationConflictSummaryIdValue").ID()
-	expected := "/deviceManagement/deviceConfigurationConflictSummary/deviceConfigurationConflictSummaryIdValue"
+	actual := NewDeviceManagementDeviceConfigurationConflictSummaryID("deviceConfigurationConflictSummaryId").ID()
+	expected := "/deviceManagement/deviceConfigurationConflictSummary/deviceConfigurationConflictSummaryId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -50,14 +50,14 @@ func TestParseDeviceManagementDeviceConfigurationConflictSummaryID(t *testing.T)
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/deviceConfigurationConflictSummary/deviceConfigurationConflictSummaryIdValue",
+			Input: "/deviceManagement/deviceConfigurationConflictSummary/deviceConfigurationConflictSummaryId",
 			Expected: &DeviceManagementDeviceConfigurationConflictSummaryId{
-				DeviceConfigurationConflictSummaryId: "deviceConfigurationConflictSummaryIdValue",
+				DeviceConfigurationConflictSummaryId: "deviceConfigurationConflictSummaryId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/deviceConfigurationConflictSummary/deviceConfigurationConflictSummaryIdValue/extra",
+			Input: "/deviceManagement/deviceConfigurationConflictSummary/deviceConfigurationConflictSummaryId/extra",
 			Error: true,
 		},
 	}
@@ -116,26 +116,26 @@ func TestParseDeviceManagementDeviceConfigurationConflictSummaryIDInsensitively(
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/deviceConfigurationConflictSummary/deviceConfigurationConflictSummaryIdValue",
+			Input: "/deviceManagement/deviceConfigurationConflictSummary/deviceConfigurationConflictSummaryId",
 			Expected: &DeviceManagementDeviceConfigurationConflictSummaryId{
-				DeviceConfigurationConflictSummaryId: "deviceConfigurationConflictSummaryIdValue",
+				DeviceConfigurationConflictSummaryId: "deviceConfigurationConflictSummaryId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/deviceConfigurationConflictSummary/deviceConfigurationConflictSummaryIdValue/extra",
+			Input: "/deviceManagement/deviceConfigurationConflictSummary/deviceConfigurationConflictSummaryId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/dEvIcEcOnFiGuRaTiOnCoNfLiCtSuMmArY/dEvIcEcOnFiGuRaTiOnCoNfLiCtSuMmArYiDvAlUe",
+			Input: "/dEvIcEmAnAgEmEnT/dEvIcEcOnFiGuRaTiOnCoNfLiCtSuMmArY/dEvIcEcOnFiGuRaTiOnCoNfLiCtSuMmArYiD",
 			Expected: &DeviceManagementDeviceConfigurationConflictSummaryId{
-				DeviceConfigurationConflictSummaryId: "dEvIcEcOnFiGuRaTiOnCoNfLiCtSuMmArYiDvAlUe",
+				DeviceConfigurationConflictSummaryId: "dEvIcEcOnFiGuRaTiOnCoNfLiCtSuMmArYiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/dEvIcEcOnFiGuRaTiOnCoNfLiCtSuMmArY/dEvIcEcOnFiGuRaTiOnCoNfLiCtSuMmArYiDvAlUe/extra",
+			Input: "/dEvIcEmAnAgEmEnT/dEvIcEcOnFiGuRaTiOnCoNfLiCtSuMmArY/dEvIcEcOnFiGuRaTiOnCoNfLiCtSuMmArYiD/extra",
 			Error: true,
 		},
 	}

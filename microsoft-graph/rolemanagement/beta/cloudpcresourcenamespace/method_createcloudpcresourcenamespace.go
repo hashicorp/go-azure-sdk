@@ -18,15 +18,44 @@ type CreateCloudPCResourceNamespaceOperationResponse struct {
 	Model        *beta.UnifiedRbacResourceNamespace
 }
 
+type CreateCloudPCResourceNamespaceOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateCloudPCResourceNamespaceOperationOptions() CreateCloudPCResourceNamespaceOperationOptions {
+	return CreateCloudPCResourceNamespaceOperationOptions{}
+}
+
+func (o CreateCloudPCResourceNamespaceOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateCloudPCResourceNamespaceOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateCloudPCResourceNamespaceOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateCloudPCResourceNamespace - Create new navigation property to resourceNamespaces for roleManagement
-func (c CloudPCResourceNamespaceClient) CreateCloudPCResourceNamespace(ctx context.Context, input beta.UnifiedRbacResourceNamespace) (result CreateCloudPCResourceNamespaceOperationResponse, err error) {
+func (c CloudPCResourceNamespaceClient) CreateCloudPCResourceNamespace(ctx context.Context, input beta.UnifiedRbacResourceNamespace, options CreateCloudPCResourceNamespaceOperationOptions) (result CreateCloudPCResourceNamespaceOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/roleManagement/cloudPC/resourceNamespaces",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/roleManagement/cloudPC/resourceNamespaces",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

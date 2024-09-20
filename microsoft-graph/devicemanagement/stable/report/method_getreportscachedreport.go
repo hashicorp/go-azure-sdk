@@ -17,15 +17,44 @@ type GetReportsCachedReportOperationResponse struct {
 	Model        *[]byte
 }
 
+type GetReportsCachedReportOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultGetReportsCachedReportOperationOptions() GetReportsCachedReportOperationOptions {
+	return GetReportsCachedReportOperationOptions{}
+}
+
+func (o GetReportsCachedReportOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o GetReportsCachedReportOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o GetReportsCachedReportOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // GetReportsCachedReport - Invoke action getCachedReport. Not yet documented
-func (c ReportClient) GetReportsCachedReport(ctx context.Context, input GetReportsCachedReportRequest) (result GetReportsCachedReportOperationResponse, err error) {
+func (c ReportClient) GetReportsCachedReport(ctx context.Context, input GetReportsCachedReportRequest, options GetReportsCachedReportOperationOptions) (result GetReportsCachedReportOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/octet-stream",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/deviceManagement/reports/getCachedReport",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/deviceManagement/reports/getCachedReport",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

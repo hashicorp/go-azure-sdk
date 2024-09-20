@@ -99,9 +99,9 @@ func (id DeviceManagementWindowsDriverUpdateProfileIdDriverInventoryId) Segments
 	return []resourceids.Segment{
 		resourceids.StaticSegment("deviceManagement", "deviceManagement", "deviceManagement"),
 		resourceids.StaticSegment("windowsDriverUpdateProfiles", "windowsDriverUpdateProfiles", "windowsDriverUpdateProfiles"),
-		resourceids.UserSpecifiedSegment("windowsDriverUpdateProfileId", "windowsDriverUpdateProfileIdValue"),
+		resourceids.UserSpecifiedSegment("windowsDriverUpdateProfileId", "windowsDriverUpdateProfileId"),
 		resourceids.StaticSegment("driverInventories", "driverInventories", "driverInventories"),
-		resourceids.UserSpecifiedSegment("windowsDriverUpdateInventoryId", "windowsDriverUpdateInventoryIdValue"),
+		resourceids.UserSpecifiedSegment("windowsDriverUpdateInventoryId", "windowsDriverUpdateInventoryId"),
 	}
 }
 

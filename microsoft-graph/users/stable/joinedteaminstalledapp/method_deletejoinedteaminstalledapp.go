@@ -19,7 +19,8 @@ type DeleteJoinedTeamInstalledAppOperationResponse struct {
 }
 
 type DeleteJoinedTeamInstalledAppOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteJoinedTeamInstalledAppOperationOptions() DeleteJoinedTeamInstalledAppOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteJoinedTeamInstalledAppOperationOptions) ToHeaders() *client.Header
 
 func (o DeleteJoinedTeamInstalledAppOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

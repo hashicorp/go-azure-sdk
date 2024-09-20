@@ -18,15 +18,44 @@ type CreateWindowsDriverUpdateProfileOperationResponse struct {
 	Model        *beta.WindowsDriverUpdateProfile
 }
 
+type CreateWindowsDriverUpdateProfileOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateWindowsDriverUpdateProfileOperationOptions() CreateWindowsDriverUpdateProfileOperationOptions {
+	return CreateWindowsDriverUpdateProfileOperationOptions{}
+}
+
+func (o CreateWindowsDriverUpdateProfileOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateWindowsDriverUpdateProfileOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateWindowsDriverUpdateProfileOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateWindowsDriverUpdateProfile - Create new navigation property to windowsDriverUpdateProfiles for deviceManagement
-func (c WindowsDriverUpdateProfileClient) CreateWindowsDriverUpdateProfile(ctx context.Context, input beta.WindowsDriverUpdateProfile) (result CreateWindowsDriverUpdateProfileOperationResponse, err error) {
+func (c WindowsDriverUpdateProfileClient) CreateWindowsDriverUpdateProfile(ctx context.Context, input beta.WindowsDriverUpdateProfile, options CreateWindowsDriverUpdateProfileOperationOptions) (result CreateWindowsDriverUpdateProfileOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/deviceManagement/windowsDriverUpdateProfiles",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/deviceManagement/windowsDriverUpdateProfiles",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -17,15 +17,44 @@ type UpdatePlannerPlanBucketTaskOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdatePlannerPlanBucketTaskOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdatePlannerPlanBucketTaskOperationOptions() UpdatePlannerPlanBucketTaskOperationOptions {
+	return UpdatePlannerPlanBucketTaskOperationOptions{}
+}
+
+func (o UpdatePlannerPlanBucketTaskOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdatePlannerPlanBucketTaskOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdatePlannerPlanBucketTaskOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdatePlannerPlanBucketTask - Update the navigation property tasks in users
-func (c PlannerPlanBucketTaskClient) UpdatePlannerPlanBucketTask(ctx context.Context, id stable.UserIdPlannerPlanIdBucketIdTaskId, input stable.PlannerTask) (result UpdatePlannerPlanBucketTaskOperationResponse, err error) {
+func (c PlannerPlanBucketTaskClient) UpdatePlannerPlanBucketTask(ctx context.Context, id stable.UserIdPlannerPlanIdBucketIdTaskId, input stable.PlannerTask, options UpdatePlannerPlanBucketTaskOperationOptions) (result UpdatePlannerPlanBucketTaskOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

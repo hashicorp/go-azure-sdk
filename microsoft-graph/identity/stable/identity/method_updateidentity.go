@@ -17,15 +17,44 @@ type UpdateIdentityOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateIdentityOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateIdentityOperationOptions() UpdateIdentityOperationOptions {
+	return UpdateIdentityOperationOptions{}
+}
+
+func (o UpdateIdentityOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateIdentityOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateIdentityOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateIdentity - Update identity
-func (c IdentityClient) UpdateIdentity(ctx context.Context, input stable.IdentityContainer) (result UpdateIdentityOperationResponse, err error) {
+func (c IdentityClient) UpdateIdentity(ctx context.Context, input stable.IdentityContainer, options UpdateIdentityOperationOptions) (result UpdateIdentityOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       "/identity",
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          "/identity",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

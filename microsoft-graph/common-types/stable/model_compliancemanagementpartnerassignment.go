@@ -22,10 +22,13 @@ type ComplianceManagementPartnerAssignment struct {
 var _ json.Unmarshaler = &ComplianceManagementPartnerAssignment{}
 
 func (s *ComplianceManagementPartnerAssignment) UnmarshalJSON(bytes []byte) error {
-	type alias ComplianceManagementPartnerAssignment
-	var decoded alias
+
+	var decoded struct {
+		ODataId   *string `json:"@odata.id,omitempty"`
+		ODataType *string `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into ComplianceManagementPartnerAssignment: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.ODataId = decoded.ODataId
@@ -43,5 +46,6 @@ func (s *ComplianceManagementPartnerAssignment) UnmarshalJSON(bytes []byte) erro
 		}
 		s.Target = impl
 	}
+
 	return nil
 }

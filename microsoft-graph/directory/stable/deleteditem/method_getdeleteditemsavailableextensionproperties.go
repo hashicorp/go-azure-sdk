@@ -25,8 +25,9 @@ type GetDeletedItemsAvailableExtensionPropertiesCompleteResult struct {
 }
 
 type GetDeletedItemsAvailableExtensionPropertiesOperationOptions struct {
-	Skip *int64
-	Top  *int64
+	Metadata *odata.Metadata
+	Skip     *int64
+	Top      *int64
 }
 
 func DefaultGetDeletedItemsAvailableExtensionPropertiesOperationOptions() GetDeletedItemsAvailableExtensionPropertiesOperationOptions {
@@ -41,6 +42,9 @@ func (o GetDeletedItemsAvailableExtensionPropertiesOperationOptions) ToHeaders()
 
 func (o GetDeletedItemsAvailableExtensionPropertiesOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	if o.Skip != nil {
 		out.Skip = int(*o.Skip)
 	}
@@ -70,7 +74,7 @@ func (p *GetDeletedItemsAvailableExtensionPropertiesCustomPager) NextPageLink() 
 
 // GetDeletedItemsAvailableExtensionProperties - Invoke action getAvailableExtensionProperties. Return all directory
 // extension definitions that have been registered in a directory, including through multi-tenant apps. The following
-// entities support extension properties:
+// entities support extension properties
 func (c DeletedItemClient) GetDeletedItemsAvailableExtensionProperties(ctx context.Context, input GetDeletedItemsAvailableExtensionPropertiesRequest, options GetDeletedItemsAvailableExtensionPropertiesOperationOptions) (result GetDeletedItemsAvailableExtensionPropertiesOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",

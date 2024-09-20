@@ -18,16 +18,45 @@ type SetTeamChannelFilesFolderContentOperationResponse struct {
 	OData        *odata.OData
 }
 
+type SetTeamChannelFilesFolderContentOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultSetTeamChannelFilesFolderContentOperationOptions() SetTeamChannelFilesFolderContentOperationOptions {
+	return SetTeamChannelFilesFolderContentOperationOptions{}
+}
+
+func (o SetTeamChannelFilesFolderContentOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o SetTeamChannelFilesFolderContentOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o SetTeamChannelFilesFolderContentOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // SetTeamChannelFilesFolderContent - Update content for the navigation property filesFolder in groups. The content
 // stream, if the item represents a file.
-func (c TeamChannelFilesFolderContentClient) SetTeamChannelFilesFolderContent(ctx context.Context, id stable.GroupIdTeamChannelId, input []byte) (result SetTeamChannelFilesFolderContentOperationResponse, err error) {
+func (c TeamChannelFilesFolderContentClient) SetTeamChannelFilesFolderContent(ctx context.Context, id stable.GroupIdTeamChannelId, input []byte, options SetTeamChannelFilesFolderContentOperationOptions) (result SetTeamChannelFilesFolderContentOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPut,
-		Path:       fmt.Sprintf("%s/filesFolder/content", id.ID()),
+		HttpMethod:    http.MethodPut,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/filesFolder/content", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

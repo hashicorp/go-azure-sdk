@@ -18,15 +18,44 @@ type CreateDeviceComplianceScriptOperationResponse struct {
 	Model        *beta.DeviceComplianceScript
 }
 
+type CreateDeviceComplianceScriptOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateDeviceComplianceScriptOperationOptions() CreateDeviceComplianceScriptOperationOptions {
+	return CreateDeviceComplianceScriptOperationOptions{}
+}
+
+func (o CreateDeviceComplianceScriptOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateDeviceComplianceScriptOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateDeviceComplianceScriptOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateDeviceComplianceScript - Create new navigation property to deviceComplianceScripts for deviceManagement
-func (c DeviceComplianceScriptClient) CreateDeviceComplianceScript(ctx context.Context, input beta.DeviceComplianceScript) (result CreateDeviceComplianceScriptOperationResponse, err error) {
+func (c DeviceComplianceScriptClient) CreateDeviceComplianceScript(ctx context.Context, input beta.DeviceComplianceScript, options CreateDeviceComplianceScriptOperationOptions) (result CreateDeviceComplianceScriptOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/deviceManagement/deviceComplianceScripts",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/deviceManagement/deviceComplianceScripts",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

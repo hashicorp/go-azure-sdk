@@ -60,10 +60,16 @@ func (s SharingInvitation) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &SharingInvitation{}
 
 func (s *SharingInvitation) UnmarshalJSON(bytes []byte) error {
-	type alias SharingInvitation
-	var decoded alias
+
+	var decoded struct {
+		Email          nullable.Type[string] `json:"email,omitempty"`
+		ODataId        *string               `json:"@odata.id,omitempty"`
+		ODataType      *string               `json:"@odata.type,omitempty"`
+		RedeemedBy     nullable.Type[string] `json:"redeemedBy,omitempty"`
+		SignInRequired nullable.Type[bool]   `json:"signInRequired,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into SharingInvitation: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.Email = decoded.Email
@@ -84,5 +90,6 @@ func (s *SharingInvitation) UnmarshalJSON(bytes []byte) error {
 		}
 		s.InvitedBy = &impl
 	}
+
 	return nil
 }

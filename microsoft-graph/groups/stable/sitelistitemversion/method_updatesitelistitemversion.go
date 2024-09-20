@@ -17,15 +17,44 @@ type UpdateSiteListItemVersionOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateSiteListItemVersionOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateSiteListItemVersionOperationOptions() UpdateSiteListItemVersionOperationOptions {
+	return UpdateSiteListItemVersionOperationOptions{}
+}
+
+func (o UpdateSiteListItemVersionOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateSiteListItemVersionOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateSiteListItemVersionOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateSiteListItemVersion - Update the navigation property versions in groups
-func (c SiteListItemVersionClient) UpdateSiteListItemVersion(ctx context.Context, id stable.GroupIdSiteIdListIdItemIdVersionId, input stable.ListItemVersion) (result UpdateSiteListItemVersionOperationResponse, err error) {
+func (c SiteListItemVersionClient) UpdateSiteListItemVersion(ctx context.Context, id stable.GroupIdSiteIdListIdItemIdVersionId, input stable.ListItemVersion, options UpdateSiteListItemVersionOperationOptions) (result UpdateSiteListItemVersionOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -263,18 +263,66 @@ func (s AndroidDeviceOwnerEnterpriseWiFiConfiguration) MarshalJSON() ([]byte, er
 var _ json.Unmarshaler = &AndroidDeviceOwnerEnterpriseWiFiConfiguration{}
 
 func (s *AndroidDeviceOwnerEnterpriseWiFiConfiguration) UnmarshalJSON(bytes []byte) error {
-	type alias AndroidDeviceOwnerEnterpriseWiFiConfiguration
-	var decoded alias
+
+	var decoded struct {
+		AuthenticationMethod                        *WiFiAuthenticationMethod                    `json:"authenticationMethod,omitempty"`
+		DerivedCredentialSettings                   *DeviceManagementDerivedCredentialSettings   `json:"derivedCredentialSettings,omitempty"`
+		EapType                                     *AndroidEapType                              `json:"eapType,omitempty"`
+		InnerAuthenticationProtocolForEapTtls       *NonEapAuthenticationMethodForEapTtlsType    `json:"innerAuthenticationProtocolForEapTtls,omitempty"`
+		InnerAuthenticationProtocolForPeap          *NonEapAuthenticationMethodForPeap           `json:"innerAuthenticationProtocolForPeap,omitempty"`
+		OuterIdentityPrivacyTemporaryValue          nullable.Type[string]                        `json:"outerIdentityPrivacyTemporaryValue,omitempty"`
+		RootCertificateForServerValidation          *AndroidDeviceOwnerTrustedRootCertificate    `json:"rootCertificateForServerValidation,omitempty"`
+		TrustedServerCertificateNames               *[]string                                    `json:"trustedServerCertificateNames,omitempty"`
+		ConnectAutomatically                        nullable.Type[bool]                          `json:"connectAutomatically,omitempty"`
+		ConnectWhenNetworkNameIsHidden              nullable.Type[bool]                          `json:"connectWhenNetworkNameIsHidden,omitempty"`
+		MacAddressRandomizationMode                 *MacAddressRandomizationMode                 `json:"macAddressRandomizationMode,omitempty"`
+		NetworkName                                 *string                                      `json:"networkName,omitempty"`
+		PreSharedKey                                nullable.Type[string]                        `json:"preSharedKey,omitempty"`
+		PreSharedKeyIsSet                           *bool                                        `json:"preSharedKeyIsSet,omitempty"`
+		ProxyAutomaticConfigurationUrl              nullable.Type[string]                        `json:"proxyAutomaticConfigurationUrl,omitempty"`
+		ProxyExclusionList                          nullable.Type[string]                        `json:"proxyExclusionList,omitempty"`
+		ProxyManualAddress                          nullable.Type[string]                        `json:"proxyManualAddress,omitempty"`
+		ProxyManualPort                             nullable.Type[int64]                         `json:"proxyManualPort,omitempty"`
+		ProxySettings                               *WiFiProxySetting                            `json:"proxySettings,omitempty"`
+		Ssid                                        *string                                      `json:"ssid,omitempty"`
+		WiFiSecurityType                            *AndroidDeviceOwnerWiFiSecurityType          `json:"wiFiSecurityType,omitempty"`
+		Assignments                                 *[]DeviceConfigurationAssignment             `json:"assignments,omitempty"`
+		CreatedDateTime                             *string                                      `json:"createdDateTime,omitempty"`
+		Description                                 nullable.Type[string]                        `json:"description,omitempty"`
+		DeviceManagementApplicabilityRuleDeviceMode *DeviceManagementApplicabilityRuleDeviceMode `json:"deviceManagementApplicabilityRuleDeviceMode,omitempty"`
+		DeviceManagementApplicabilityRuleOsEdition  *DeviceManagementApplicabilityRuleOsEdition  `json:"deviceManagementApplicabilityRuleOsEdition,omitempty"`
+		DeviceManagementApplicabilityRuleOsVersion  *DeviceManagementApplicabilityRuleOsVersion  `json:"deviceManagementApplicabilityRuleOsVersion,omitempty"`
+		DeviceSettingStateSummaries                 *[]SettingStateDeviceSummary                 `json:"deviceSettingStateSummaries,omitempty"`
+		DeviceStatusOverview                        *DeviceConfigurationDeviceOverview           `json:"deviceStatusOverview,omitempty"`
+		DeviceStatuses                              *[]DeviceConfigurationDeviceStatus           `json:"deviceStatuses,omitempty"`
+		DisplayName                                 *string                                      `json:"displayName,omitempty"`
+		GroupAssignments                            *[]DeviceConfigurationGroupAssignment        `json:"groupAssignments,omitempty"`
+		LastModifiedDateTime                        *string                                      `json:"lastModifiedDateTime,omitempty"`
+		RoleScopeTagIds                             *[]string                                    `json:"roleScopeTagIds,omitempty"`
+		SupportsScopeTags                           *bool                                        `json:"supportsScopeTags,omitempty"`
+		UserStatusOverview                          *DeviceConfigurationUserOverview             `json:"userStatusOverview,omitempty"`
+		UserStatuses                                *[]DeviceConfigurationUserStatus             `json:"userStatuses,omitempty"`
+		Version                                     *int64                                       `json:"version,omitempty"`
+		Id                                          *string                                      `json:"id,omitempty"`
+		ODataId                                     *string                                      `json:"@odata.id,omitempty"`
+		ODataType                                   *string                                      `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into AndroidDeviceOwnerEnterpriseWiFiConfiguration: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
-	s.Assignments = decoded.Assignments
 	s.AuthenticationMethod = decoded.AuthenticationMethod
+	s.DerivedCredentialSettings = decoded.DerivedCredentialSettings
+	s.EapType = decoded.EapType
+	s.InnerAuthenticationProtocolForEapTtls = decoded.InnerAuthenticationProtocolForEapTtls
+	s.InnerAuthenticationProtocolForPeap = decoded.InnerAuthenticationProtocolForPeap
+	s.OuterIdentityPrivacyTemporaryValue = decoded.OuterIdentityPrivacyTemporaryValue
+	s.RootCertificateForServerValidation = decoded.RootCertificateForServerValidation
+	s.TrustedServerCertificateNames = decoded.TrustedServerCertificateNames
+	s.Assignments = decoded.Assignments
 	s.ConnectAutomatically = decoded.ConnectAutomatically
 	s.ConnectWhenNetworkNameIsHidden = decoded.ConnectWhenNetworkNameIsHidden
 	s.CreatedDateTime = decoded.CreatedDateTime
-	s.DerivedCredentialSettings = decoded.DerivedCredentialSettings
 	s.Description = decoded.Description
 	s.DeviceManagementApplicabilityRuleDeviceMode = decoded.DeviceManagementApplicabilityRuleDeviceMode
 	s.DeviceManagementApplicabilityRuleOsEdition = decoded.DeviceManagementApplicabilityRuleOsEdition
@@ -283,17 +331,13 @@ func (s *AndroidDeviceOwnerEnterpriseWiFiConfiguration) UnmarshalJSON(bytes []by
 	s.DeviceStatusOverview = decoded.DeviceStatusOverview
 	s.DeviceStatuses = decoded.DeviceStatuses
 	s.DisplayName = decoded.DisplayName
-	s.EapType = decoded.EapType
 	s.GroupAssignments = decoded.GroupAssignments
 	s.Id = decoded.Id
-	s.InnerAuthenticationProtocolForEapTtls = decoded.InnerAuthenticationProtocolForEapTtls
-	s.InnerAuthenticationProtocolForPeap = decoded.InnerAuthenticationProtocolForPeap
 	s.LastModifiedDateTime = decoded.LastModifiedDateTime
 	s.MacAddressRandomizationMode = decoded.MacAddressRandomizationMode
 	s.NetworkName = decoded.NetworkName
 	s.ODataId = decoded.ODataId
 	s.ODataType = decoded.ODataType
-	s.OuterIdentityPrivacyTemporaryValue = decoded.OuterIdentityPrivacyTemporaryValue
 	s.PreSharedKey = decoded.PreSharedKey
 	s.PreSharedKeyIsSet = decoded.PreSharedKeyIsSet
 	s.ProxyAutomaticConfigurationUrl = decoded.ProxyAutomaticConfigurationUrl
@@ -302,10 +346,8 @@ func (s *AndroidDeviceOwnerEnterpriseWiFiConfiguration) UnmarshalJSON(bytes []by
 	s.ProxyManualPort = decoded.ProxyManualPort
 	s.ProxySettings = decoded.ProxySettings
 	s.RoleScopeTagIds = decoded.RoleScopeTagIds
-	s.RootCertificateForServerValidation = decoded.RootCertificateForServerValidation
 	s.Ssid = decoded.Ssid
 	s.SupportsScopeTags = decoded.SupportsScopeTags
-	s.TrustedServerCertificateNames = decoded.TrustedServerCertificateNames
 	s.UserStatusOverview = decoded.UserStatusOverview
 	s.UserStatuses = decoded.UserStatuses
 	s.Version = decoded.Version
@@ -323,5 +365,6 @@ func (s *AndroidDeviceOwnerEnterpriseWiFiConfiguration) UnmarshalJSON(bytes []by
 		}
 		s.IdentityCertificateForClientAuthentication = &impl
 	}
+
 	return nil
 }

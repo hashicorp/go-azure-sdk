@@ -18,16 +18,45 @@ type RemoveSiteContentModelFromDriveOperationResponse struct {
 	OData        *odata.OData
 }
 
+type RemoveSiteContentModelFromDriveOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultRemoveSiteContentModelFromDriveOperationOptions() RemoveSiteContentModelFromDriveOperationOptions {
+	return RemoveSiteContentModelFromDriveOperationOptions{}
+}
+
+func (o RemoveSiteContentModelFromDriveOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o RemoveSiteContentModelFromDriveOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o RemoveSiteContentModelFromDriveOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // RemoveSiteContentModelFromDrive - Invoke action removeFromDrive. Remove a contentModel from a SharePoint document
 // library.
-func (c SiteContentModelClient) RemoveSiteContentModelFromDrive(ctx context.Context, id beta.GroupIdSiteIdContentModelId, input RemoveSiteContentModelFromDriveRequest) (result RemoveSiteContentModelFromDriveOperationResponse, err error) {
+func (c SiteContentModelClient) RemoveSiteContentModelFromDrive(ctx context.Context, id beta.GroupIdSiteIdContentModelId, input RemoveSiteContentModelFromDriveRequest, options RemoveSiteContentModelFromDriveOperationOptions) (result RemoveSiteContentModelFromDriveOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/removeFromDrive", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/removeFromDrive", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &DirectoryDeviceLocalCredentialId{}
 
 func TestNewDirectoryDeviceLocalCredentialID(t *testing.T) {
-	id := NewDirectoryDeviceLocalCredentialID("deviceLocalCredentialInfoIdValue")
+	id := NewDirectoryDeviceLocalCredentialID("deviceLocalCredentialInfoId")
 
-	if id.DeviceLocalCredentialInfoId != "deviceLocalCredentialInfoIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DeviceLocalCredentialInfoId'", id.DeviceLocalCredentialInfoId, "deviceLocalCredentialInfoIdValue")
+	if id.DeviceLocalCredentialInfoId != "deviceLocalCredentialInfoId" {
+		t.Fatalf("Expected %q but got %q for Segment 'DeviceLocalCredentialInfoId'", id.DeviceLocalCredentialInfoId, "deviceLocalCredentialInfoId")
 	}
 }
 
 func TestFormatDirectoryDeviceLocalCredentialID(t *testing.T) {
-	actual := NewDirectoryDeviceLocalCredentialID("deviceLocalCredentialInfoIdValue").ID()
-	expected := "/directory/deviceLocalCredentials/deviceLocalCredentialInfoIdValue"
+	actual := NewDirectoryDeviceLocalCredentialID("deviceLocalCredentialInfoId").ID()
+	expected := "/directory/deviceLocalCredentials/deviceLocalCredentialInfoId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -50,14 +50,14 @@ func TestParseDirectoryDeviceLocalCredentialID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/directory/deviceLocalCredentials/deviceLocalCredentialInfoIdValue",
+			Input: "/directory/deviceLocalCredentials/deviceLocalCredentialInfoId",
 			Expected: &DirectoryDeviceLocalCredentialId{
-				DeviceLocalCredentialInfoId: "deviceLocalCredentialInfoIdValue",
+				DeviceLocalCredentialInfoId: "deviceLocalCredentialInfoId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/directory/deviceLocalCredentials/deviceLocalCredentialInfoIdValue/extra",
+			Input: "/directory/deviceLocalCredentials/deviceLocalCredentialInfoId/extra",
 			Error: true,
 		},
 	}
@@ -116,26 +116,26 @@ func TestParseDirectoryDeviceLocalCredentialIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/directory/deviceLocalCredentials/deviceLocalCredentialInfoIdValue",
+			Input: "/directory/deviceLocalCredentials/deviceLocalCredentialInfoId",
 			Expected: &DirectoryDeviceLocalCredentialId{
-				DeviceLocalCredentialInfoId: "deviceLocalCredentialInfoIdValue",
+				DeviceLocalCredentialInfoId: "deviceLocalCredentialInfoId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/directory/deviceLocalCredentials/deviceLocalCredentialInfoIdValue/extra",
+			Input: "/directory/deviceLocalCredentials/deviceLocalCredentialInfoId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/dIrEcToRy/dEvIcElOcAlCrEdEnTiAlS/dEvIcElOcAlCrEdEnTiAlInFoIdVaLuE",
+			Input: "/dIrEcToRy/dEvIcElOcAlCrEdEnTiAlS/dEvIcElOcAlCrEdEnTiAlInFoId",
 			Expected: &DirectoryDeviceLocalCredentialId{
-				DeviceLocalCredentialInfoId: "dEvIcElOcAlCrEdEnTiAlInFoIdVaLuE",
+				DeviceLocalCredentialInfoId: "dEvIcElOcAlCrEdEnTiAlInFoId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/dIrEcToRy/dEvIcElOcAlCrEdEnTiAlS/dEvIcElOcAlCrEdEnTiAlInFoIdVaLuE/extra",
+			Input: "/dIrEcToRy/dEvIcElOcAlCrEdEnTiAlS/dEvIcElOcAlCrEdEnTiAlInFoId/extra",
 			Error: true,
 		},
 	}

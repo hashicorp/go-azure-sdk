@@ -17,15 +17,44 @@ type UpdateTeamScheduleTimeOffRequestOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateTeamScheduleTimeOffRequestOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateTeamScheduleTimeOffRequestOperationOptions() UpdateTeamScheduleTimeOffRequestOperationOptions {
+	return UpdateTeamScheduleTimeOffRequestOperationOptions{}
+}
+
+func (o UpdateTeamScheduleTimeOffRequestOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateTeamScheduleTimeOffRequestOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateTeamScheduleTimeOffRequestOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateTeamScheduleTimeOffRequest - Update the navigation property timeOffRequests in groups
-func (c TeamScheduleTimeOffRequestClient) UpdateTeamScheduleTimeOffRequest(ctx context.Context, id beta.GroupIdTeamScheduleTimeOffRequestId, input beta.TimeOffRequest) (result UpdateTeamScheduleTimeOffRequestOperationResponse, err error) {
+func (c TeamScheduleTimeOffRequestClient) UpdateTeamScheduleTimeOffRequest(ctx context.Context, id beta.GroupIdTeamScheduleTimeOffRequestId, input beta.TimeOffRequest, options UpdateTeamScheduleTimeOffRequestOperationOptions) (result UpdateTeamScheduleTimeOffRequestOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

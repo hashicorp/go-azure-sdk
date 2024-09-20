@@ -12,24 +12,24 @@ import (
 var _ resourceids.ResourceId = &GroupIdSiteIdInformationProtectionBitlockerRecoveryKeyId{}
 
 func TestNewGroupIdSiteIdInformationProtectionBitlockerRecoveryKeyID(t *testing.T) {
-	id := NewGroupIdSiteIdInformationProtectionBitlockerRecoveryKeyID("groupIdValue", "siteIdValue", "bitlockerRecoveryKeyIdValue")
+	id := NewGroupIdSiteIdInformationProtectionBitlockerRecoveryKeyID("groupId", "siteId", "bitlockerRecoveryKeyId")
 
-	if id.GroupId != "groupIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'GroupId'", id.GroupId, "groupIdValue")
+	if id.GroupId != "groupId" {
+		t.Fatalf("Expected %q but got %q for Segment 'GroupId'", id.GroupId, "groupId")
 	}
 
-	if id.SiteId != "siteIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'SiteId'", id.SiteId, "siteIdValue")
+	if id.SiteId != "siteId" {
+		t.Fatalf("Expected %q but got %q for Segment 'SiteId'", id.SiteId, "siteId")
 	}
 
-	if id.BitlockerRecoveryKeyId != "bitlockerRecoveryKeyIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'BitlockerRecoveryKeyId'", id.BitlockerRecoveryKeyId, "bitlockerRecoveryKeyIdValue")
+	if id.BitlockerRecoveryKeyId != "bitlockerRecoveryKeyId" {
+		t.Fatalf("Expected %q but got %q for Segment 'BitlockerRecoveryKeyId'", id.BitlockerRecoveryKeyId, "bitlockerRecoveryKeyId")
 	}
 }
 
 func TestFormatGroupIdSiteIdInformationProtectionBitlockerRecoveryKeyID(t *testing.T) {
-	actual := NewGroupIdSiteIdInformationProtectionBitlockerRecoveryKeyID("groupIdValue", "siteIdValue", "bitlockerRecoveryKeyIdValue").ID()
-	expected := "/groups/groupIdValue/sites/siteIdValue/informationProtection/bitlocker/recoveryKeys/bitlockerRecoveryKeyIdValue"
+	actual := NewGroupIdSiteIdInformationProtectionBitlockerRecoveryKeyID("groupId", "siteId", "bitlockerRecoveryKeyId").ID()
+	expected := "/groups/groupId/sites/siteId/informationProtection/bitlocker/recoveryKeys/bitlockerRecoveryKeyId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -53,46 +53,46 @@ func TestParseGroupIdSiteIdInformationProtectionBitlockerRecoveryKeyID(t *testin
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue",
+			Input: "/groups/groupId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/sites",
+			Input: "/groups/groupId/sites",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/sites/siteIdValue",
+			Input: "/groups/groupId/sites/siteId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/sites/siteIdValue/informationProtection",
+			Input: "/groups/groupId/sites/siteId/informationProtection",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/sites/siteIdValue/informationProtection/bitlocker",
+			Input: "/groups/groupId/sites/siteId/informationProtection/bitlocker",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/sites/siteIdValue/informationProtection/bitlocker/recoveryKeys",
+			Input: "/groups/groupId/sites/siteId/informationProtection/bitlocker/recoveryKeys",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/groups/groupIdValue/sites/siteIdValue/informationProtection/bitlocker/recoveryKeys/bitlockerRecoveryKeyIdValue",
+			Input: "/groups/groupId/sites/siteId/informationProtection/bitlocker/recoveryKeys/bitlockerRecoveryKeyId",
 			Expected: &GroupIdSiteIdInformationProtectionBitlockerRecoveryKeyId{
-				GroupId:                "groupIdValue",
-				SiteId:                 "siteIdValue",
-				BitlockerRecoveryKeyId: "bitlockerRecoveryKeyIdValue",
+				GroupId:                "groupId",
+				SiteId:                 "siteId",
+				BitlockerRecoveryKeyId: "bitlockerRecoveryKeyId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/groups/groupIdValue/sites/siteIdValue/informationProtection/bitlocker/recoveryKeys/bitlockerRecoveryKeyIdValue/extra",
+			Input: "/groups/groupId/sites/siteId/informationProtection/bitlocker/recoveryKeys/bitlockerRecoveryKeyId/extra",
 			Error: true,
 		},
 	}
@@ -149,90 +149,90 @@ func TestParseGroupIdSiteIdInformationProtectionBitlockerRecoveryKeyIDInsensitiv
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue",
+			Input: "/groups/groupId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE",
+			Input: "/gRoUpS/gRoUpId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/sites",
+			Input: "/groups/groupId/sites",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/sItEs",
+			Input: "/gRoUpS/gRoUpId/sItEs",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/sites/siteIdValue",
+			Input: "/groups/groupId/sites/siteId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/sItEs/sItEiDvAlUe",
+			Input: "/gRoUpS/gRoUpId/sItEs/sItEiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/sites/siteIdValue/informationProtection",
+			Input: "/groups/groupId/sites/siteId/informationProtection",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/sItEs/sItEiDvAlUe/iNfOrMaTiOnPrOtEcTiOn",
+			Input: "/gRoUpS/gRoUpId/sItEs/sItEiD/iNfOrMaTiOnPrOtEcTiOn",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/sites/siteIdValue/informationProtection/bitlocker",
+			Input: "/groups/groupId/sites/siteId/informationProtection/bitlocker",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/sItEs/sItEiDvAlUe/iNfOrMaTiOnPrOtEcTiOn/bItLoCkEr",
+			Input: "/gRoUpS/gRoUpId/sItEs/sItEiD/iNfOrMaTiOnPrOtEcTiOn/bItLoCkEr",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/sites/siteIdValue/informationProtection/bitlocker/recoveryKeys",
+			Input: "/groups/groupId/sites/siteId/informationProtection/bitlocker/recoveryKeys",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/sItEs/sItEiDvAlUe/iNfOrMaTiOnPrOtEcTiOn/bItLoCkEr/rEcOvErYkEyS",
+			Input: "/gRoUpS/gRoUpId/sItEs/sItEiD/iNfOrMaTiOnPrOtEcTiOn/bItLoCkEr/rEcOvErYkEyS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/groups/groupIdValue/sites/siteIdValue/informationProtection/bitlocker/recoveryKeys/bitlockerRecoveryKeyIdValue",
+			Input: "/groups/groupId/sites/siteId/informationProtection/bitlocker/recoveryKeys/bitlockerRecoveryKeyId",
 			Expected: &GroupIdSiteIdInformationProtectionBitlockerRecoveryKeyId{
-				GroupId:                "groupIdValue",
-				SiteId:                 "siteIdValue",
-				BitlockerRecoveryKeyId: "bitlockerRecoveryKeyIdValue",
+				GroupId:                "groupId",
+				SiteId:                 "siteId",
+				BitlockerRecoveryKeyId: "bitlockerRecoveryKeyId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/groups/groupIdValue/sites/siteIdValue/informationProtection/bitlocker/recoveryKeys/bitlockerRecoveryKeyIdValue/extra",
+			Input: "/groups/groupId/sites/siteId/informationProtection/bitlocker/recoveryKeys/bitlockerRecoveryKeyId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/sItEs/sItEiDvAlUe/iNfOrMaTiOnPrOtEcTiOn/bItLoCkEr/rEcOvErYkEyS/bItLoCkErReCoVeRyKeYiDvAlUe",
+			Input: "/gRoUpS/gRoUpId/sItEs/sItEiD/iNfOrMaTiOnPrOtEcTiOn/bItLoCkEr/rEcOvErYkEyS/bItLoCkErReCoVeRyKeYiD",
 			Expected: &GroupIdSiteIdInformationProtectionBitlockerRecoveryKeyId{
-				GroupId:                "gRoUpIdVaLuE",
-				SiteId:                 "sItEiDvAlUe",
-				BitlockerRecoveryKeyId: "bItLoCkErReCoVeRyKeYiDvAlUe",
+				GroupId:                "gRoUpId",
+				SiteId:                 "sItEiD",
+				BitlockerRecoveryKeyId: "bItLoCkErReCoVeRyKeYiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/sItEs/sItEiDvAlUe/iNfOrMaTiOnPrOtEcTiOn/bItLoCkEr/rEcOvErYkEyS/bItLoCkErReCoVeRyKeYiDvAlUe/extra",
+			Input: "/gRoUpS/gRoUpId/sItEs/sItEiD/iNfOrMaTiOnPrOtEcTiOn/bItLoCkEr/rEcOvErYkEyS/bItLoCkErReCoVeRyKeYiD/extra",
 			Error: true,
 		},
 	}

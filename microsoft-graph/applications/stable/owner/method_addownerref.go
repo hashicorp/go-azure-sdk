@@ -18,15 +18,44 @@ type AddOwnerRefOperationResponse struct {
 	OData        *odata.OData
 }
 
+type AddOwnerRefOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultAddOwnerRefOperationOptions() AddOwnerRefOperationOptions {
+	return AddOwnerRefOperationOptions{}
+}
+
+func (o AddOwnerRefOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o AddOwnerRefOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o AddOwnerRefOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // AddOwnerRef - Add owner. Add an owner to an application by posting to the owners collection.
-func (c OwnerClient) AddOwnerRef(ctx context.Context, id stable.ApplicationId, input stable.ReferenceCreate) (result AddOwnerRefOperationResponse, err error) {
+func (c OwnerClient) AddOwnerRef(ctx context.Context, id stable.ApplicationId, input stable.ReferenceCreate, options AddOwnerRefOperationOptions) (result AddOwnerRefOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/owners/$ref", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/owners/$ref", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

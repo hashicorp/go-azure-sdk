@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &UserIdProfilePatentId{}
 
 func TestNewUserIdProfilePatentID(t *testing.T) {
-	id := NewUserIdProfilePatentID("userIdValue", "itemPatentIdValue")
+	id := NewUserIdProfilePatentID("userId", "itemPatentId")
 
-	if id.UserId != "userIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'UserId'", id.UserId, "userIdValue")
+	if id.UserId != "userId" {
+		t.Fatalf("Expected %q but got %q for Segment 'UserId'", id.UserId, "userId")
 	}
 
-	if id.ItemPatentId != "itemPatentIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ItemPatentId'", id.ItemPatentId, "itemPatentIdValue")
+	if id.ItemPatentId != "itemPatentId" {
+		t.Fatalf("Expected %q but got %q for Segment 'ItemPatentId'", id.ItemPatentId, "itemPatentId")
 	}
 }
 
 func TestFormatUserIdProfilePatentID(t *testing.T) {
-	actual := NewUserIdProfilePatentID("userIdValue", "itemPatentIdValue").ID()
-	expected := "/users/userIdValue/profile/patents/itemPatentIdValue"
+	actual := NewUserIdProfilePatentID("userId", "itemPatentId").ID()
+	expected := "/users/userId/profile/patents/itemPatentId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -49,30 +49,30 @@ func TestParseUserIdProfilePatentID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue",
+			Input: "/users/userId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/profile",
+			Input: "/users/userId/profile",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/profile/patents",
+			Input: "/users/userId/profile/patents",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/users/userIdValue/profile/patents/itemPatentIdValue",
+			Input: "/users/userId/profile/patents/itemPatentId",
 			Expected: &UserIdProfilePatentId{
-				UserId:       "userIdValue",
-				ItemPatentId: "itemPatentIdValue",
+				UserId:       "userId",
+				ItemPatentId: "itemPatentId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/users/userIdValue/profile/patents/itemPatentIdValue/extra",
+			Input: "/users/userId/profile/patents/itemPatentId/extra",
 			Error: true,
 		},
 	}
@@ -125,58 +125,58 @@ func TestParseUserIdProfilePatentIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue",
+			Input: "/users/userId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe",
+			Input: "/uSeRs/uSeRiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/profile",
+			Input: "/users/userId/profile",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/pRoFiLe",
+			Input: "/uSeRs/uSeRiD/pRoFiLe",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/profile/patents",
+			Input: "/users/userId/profile/patents",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/pRoFiLe/pAtEnTs",
+			Input: "/uSeRs/uSeRiD/pRoFiLe/pAtEnTs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/users/userIdValue/profile/patents/itemPatentIdValue",
+			Input: "/users/userId/profile/patents/itemPatentId",
 			Expected: &UserIdProfilePatentId{
-				UserId:       "userIdValue",
-				ItemPatentId: "itemPatentIdValue",
+				UserId:       "userId",
+				ItemPatentId: "itemPatentId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/users/userIdValue/profile/patents/itemPatentIdValue/extra",
+			Input: "/users/userId/profile/patents/itemPatentId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/pRoFiLe/pAtEnTs/iTeMpAtEnTiDvAlUe",
+			Input: "/uSeRs/uSeRiD/pRoFiLe/pAtEnTs/iTeMpAtEnTiD",
 			Expected: &UserIdProfilePatentId{
-				UserId:       "uSeRiDvAlUe",
-				ItemPatentId: "iTeMpAtEnTiDvAlUe",
+				UserId:       "uSeRiD",
+				ItemPatentId: "iTeMpAtEnTiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/pRoFiLe/pAtEnTs/iTeMpAtEnTiDvAlUe/extra",
+			Input: "/uSeRs/uSeRiD/pRoFiLe/pAtEnTs/iTeMpAtEnTiD/extra",
 			Error: true,
 		},
 	}

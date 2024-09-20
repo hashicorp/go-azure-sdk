@@ -16,18 +16,47 @@ type SendMailOperationResponse struct {
 	OData        *odata.OData
 }
 
+type SendMailOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultSendMailOperationOptions() SendMailOperationOptions {
+	return SendMailOperationOptions{}
+}
+
+func (o SendMailOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o SendMailOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o SendMailOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // SendMail - Invoke action sendMail. Send the message specified in the request body using either JSON or MIME format.
 // When using JSON format, you can include a file attachment in the same sendMail action call. When using MIME format:
 // This method saves the message in the Sent Items folder. Alternatively, create a draft message to send later. To learn
 // more about the steps involved in the backend before a mail is delivered to recipients, see here.
-func (c MeClient) SendMail(ctx context.Context, input SendMailRequest) (result SendMailOperationResponse, err error) {
+func (c MeClient) SendMail(ctx context.Context, input SendMailRequest, options SendMailOperationOptions) (result SendMailOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/me/sendMail",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/me/sendMail",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

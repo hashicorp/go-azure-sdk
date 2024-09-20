@@ -18,15 +18,44 @@ type RemoveGroupPolicyUploadedDefinitionFileOperationResponse struct {
 	OData        *odata.OData
 }
 
+type RemoveGroupPolicyUploadedDefinitionFileOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultRemoveGroupPolicyUploadedDefinitionFileOperationOptions() RemoveGroupPolicyUploadedDefinitionFileOperationOptions {
+	return RemoveGroupPolicyUploadedDefinitionFileOperationOptions{}
+}
+
+func (o RemoveGroupPolicyUploadedDefinitionFileOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o RemoveGroupPolicyUploadedDefinitionFileOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o RemoveGroupPolicyUploadedDefinitionFileOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // RemoveGroupPolicyUploadedDefinitionFile - Invoke action remove
-func (c GroupPolicyUploadedDefinitionFileClient) RemoveGroupPolicyUploadedDefinitionFile(ctx context.Context, id beta.DeviceManagementGroupPolicyUploadedDefinitionFileId) (result RemoveGroupPolicyUploadedDefinitionFileOperationResponse, err error) {
+func (c GroupPolicyUploadedDefinitionFileClient) RemoveGroupPolicyUploadedDefinitionFile(ctx context.Context, id beta.DeviceManagementGroupPolicyUploadedDefinitionFileId, options RemoveGroupPolicyUploadedDefinitionFileOperationOptions) (result RemoveGroupPolicyUploadedDefinitionFileOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/remove", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/remove", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

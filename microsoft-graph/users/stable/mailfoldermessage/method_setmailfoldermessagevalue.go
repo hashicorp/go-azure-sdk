@@ -18,16 +18,45 @@ type SetMailFolderMessageValueOperationResponse struct {
 	OData        *odata.OData
 }
 
+type SetMailFolderMessageValueOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultSetMailFolderMessageValueOperationOptions() SetMailFolderMessageValueOperationOptions {
+	return SetMailFolderMessageValueOperationOptions{}
+}
+
+func (o SetMailFolderMessageValueOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o SetMailFolderMessageValueOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o SetMailFolderMessageValueOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // SetMailFolderMessageValue - Update media content for the navigation property messages in users. The unique identifier
 // for an entity. Read-only.
-func (c MailFolderMessageClient) SetMailFolderMessageValue(ctx context.Context, id stable.UserIdMailFolderIdMessageId, input []byte) (result SetMailFolderMessageValueOperationResponse, err error) {
+func (c MailFolderMessageClient) SetMailFolderMessageValue(ctx context.Context, id stable.UserIdMailFolderIdMessageId, input []byte, options SetMailFolderMessageValueOperationOptions) (result SetMailFolderMessageValueOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPut,
-		Path:       fmt.Sprintf("%s/$value", id.ID()),
+		HttpMethod:    http.MethodPut,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/$value", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

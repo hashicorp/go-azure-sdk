@@ -18,15 +18,44 @@ type CreateComanagedDeviceDeprovisionOperationResponse struct {
 	OData        *odata.OData
 }
 
+type CreateComanagedDeviceDeprovisionOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateComanagedDeviceDeprovisionOperationOptions() CreateComanagedDeviceDeprovisionOperationOptions {
+	return CreateComanagedDeviceDeprovisionOperationOptions{}
+}
+
+func (o CreateComanagedDeviceDeprovisionOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateComanagedDeviceDeprovisionOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateComanagedDeviceDeprovisionOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateComanagedDeviceDeprovision - Invoke action deprovision
-func (c ComanagedDeviceClient) CreateComanagedDeviceDeprovision(ctx context.Context, id beta.DeviceManagementComanagedDeviceId, input CreateComanagedDeviceDeprovisionRequest) (result CreateComanagedDeviceDeprovisionOperationResponse, err error) {
+func (c ComanagedDeviceClient) CreateComanagedDeviceDeprovision(ctx context.Context, id beta.DeviceManagementComanagedDeviceId, input CreateComanagedDeviceDeprovisionRequest, options CreateComanagedDeviceDeprovisionOperationOptions) (result CreateComanagedDeviceDeprovisionOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/deprovision", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/deprovision", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

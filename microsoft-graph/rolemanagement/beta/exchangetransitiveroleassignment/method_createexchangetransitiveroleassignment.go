@@ -18,16 +18,45 @@ type CreateExchangeTransitiveRoleAssignmentOperationResponse struct {
 	Model        *beta.UnifiedRoleAssignment
 }
 
+type CreateExchangeTransitiveRoleAssignmentOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateExchangeTransitiveRoleAssignmentOperationOptions() CreateExchangeTransitiveRoleAssignmentOperationOptions {
+	return CreateExchangeTransitiveRoleAssignmentOperationOptions{}
+}
+
+func (o CreateExchangeTransitiveRoleAssignmentOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateExchangeTransitiveRoleAssignmentOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateExchangeTransitiveRoleAssignmentOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateExchangeTransitiveRoleAssignment - Create new navigation property to transitiveRoleAssignments for
 // roleManagement
-func (c ExchangeTransitiveRoleAssignmentClient) CreateExchangeTransitiveRoleAssignment(ctx context.Context, input beta.UnifiedRoleAssignment) (result CreateExchangeTransitiveRoleAssignmentOperationResponse, err error) {
+func (c ExchangeTransitiveRoleAssignmentClient) CreateExchangeTransitiveRoleAssignment(ctx context.Context, input beta.UnifiedRoleAssignment, options CreateExchangeTransitiveRoleAssignmentOperationOptions) (result CreateExchangeTransitiveRoleAssignmentOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/roleManagement/exchange/transitiveRoleAssignments",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/roleManagement/exchange/transitiveRoleAssignments",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

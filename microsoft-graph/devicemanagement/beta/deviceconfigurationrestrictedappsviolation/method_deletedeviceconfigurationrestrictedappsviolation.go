@@ -19,7 +19,8 @@ type DeleteDeviceConfigurationRestrictedAppsViolationOperationResponse struct {
 }
 
 type DeleteDeviceConfigurationRestrictedAppsViolationOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteDeviceConfigurationRestrictedAppsViolationOperationOptions() DeleteDeviceConfigurationRestrictedAppsViolationOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteDeviceConfigurationRestrictedAppsViolationOperationOptions) ToHead
 
 func (o DeleteDeviceConfigurationRestrictedAppsViolationOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

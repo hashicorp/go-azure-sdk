@@ -18,16 +18,45 @@ type SetB2xUserFlowUserAttributeAssignmentsOrderOperationResponse struct {
 	OData        *odata.OData
 }
 
+type SetB2xUserFlowUserAttributeAssignmentsOrderOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultSetB2xUserFlowUserAttributeAssignmentsOrderOperationOptions() SetB2xUserFlowUserAttributeAssignmentsOrderOperationOptions {
+	return SetB2xUserFlowUserAttributeAssignmentsOrderOperationOptions{}
+}
+
+func (o SetB2xUserFlowUserAttributeAssignmentsOrderOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o SetB2xUserFlowUserAttributeAssignmentsOrderOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o SetB2xUserFlowUserAttributeAssignmentsOrderOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // SetB2xUserFlowUserAttributeAssignmentsOrder - Invoke action setOrder. Set the order of
 // identityUserFlowAttributeAssignments being collected within a user flow.
-func (c B2xUserFlowUserAttributeAssignmentClient) SetB2xUserFlowUserAttributeAssignmentsOrder(ctx context.Context, id stable.IdentityB2xUserFlowId, input SetB2xUserFlowUserAttributeAssignmentsOrderRequest) (result SetB2xUserFlowUserAttributeAssignmentsOrderOperationResponse, err error) {
+func (c B2xUserFlowUserAttributeAssignmentClient) SetB2xUserFlowUserAttributeAssignmentsOrder(ctx context.Context, id stable.IdentityB2xUserFlowId, input SetB2xUserFlowUserAttributeAssignmentsOrderRequest, options SetB2xUserFlowUserAttributeAssignmentsOrderOperationOptions) (result SetB2xUserFlowUserAttributeAssignmentsOrderOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/userAttributeAssignments/setOrder", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/userAttributeAssignments/setOrder", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

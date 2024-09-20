@@ -18,16 +18,45 @@ type CreateEntitlementManagementAccessPackageAssignmentApprovalOperationResponse
 	Model        *beta.Approval
 }
 
+type CreateEntitlementManagementAccessPackageAssignmentApprovalOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateEntitlementManagementAccessPackageAssignmentApprovalOperationOptions() CreateEntitlementManagementAccessPackageAssignmentApprovalOperationOptions {
+	return CreateEntitlementManagementAccessPackageAssignmentApprovalOperationOptions{}
+}
+
+func (o CreateEntitlementManagementAccessPackageAssignmentApprovalOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateEntitlementManagementAccessPackageAssignmentApprovalOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateEntitlementManagementAccessPackageAssignmentApprovalOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateEntitlementManagementAccessPackageAssignmentApproval - Create new navigation property to
 // accessPackageAssignmentApprovals for identityGovernance
-func (c EntitlementManagementAccessPackageAssignmentApprovalClient) CreateEntitlementManagementAccessPackageAssignmentApproval(ctx context.Context, input beta.Approval) (result CreateEntitlementManagementAccessPackageAssignmentApprovalOperationResponse, err error) {
+func (c EntitlementManagementAccessPackageAssignmentApprovalClient) CreateEntitlementManagementAccessPackageAssignmentApproval(ctx context.Context, input beta.Approval, options CreateEntitlementManagementAccessPackageAssignmentApprovalOperationOptions) (result CreateEntitlementManagementAccessPackageAssignmentApprovalOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/identityGovernance/entitlementManagement/accessPackageAssignmentApprovals",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/identityGovernance/entitlementManagement/accessPackageAssignmentApprovals",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -17,15 +17,44 @@ type UpdateTeamOperationOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateTeamOperationOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateTeamOperationOperationOptions() UpdateTeamOperationOperationOptions {
+	return UpdateTeamOperationOperationOptions{}
+}
+
+func (o UpdateTeamOperationOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateTeamOperationOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateTeamOperationOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateTeamOperation - Update the navigation property operations in groups
-func (c TeamOperationClient) UpdateTeamOperation(ctx context.Context, id stable.GroupIdTeamOperationId, input stable.TeamsAsyncOperation) (result UpdateTeamOperationOperationResponse, err error) {
+func (c TeamOperationClient) UpdateTeamOperation(ctx context.Context, id stable.GroupIdTeamOperationId, input stable.TeamsAsyncOperation, options UpdateTeamOperationOperationOptions) (result UpdateTeamOperationOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

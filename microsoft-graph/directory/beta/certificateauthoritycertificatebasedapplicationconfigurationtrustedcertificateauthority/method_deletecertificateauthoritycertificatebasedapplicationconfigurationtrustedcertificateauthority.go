@@ -19,7 +19,8 @@ type DeleteCertificateAuthorityCertificateBasedApplicationConfigurationTrustedCe
 }
 
 type DeleteCertificateAuthorityCertificateBasedApplicationConfigurationTrustedCertificateAuthorityOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteCertificateAuthorityCertificateBasedApplicationConfigurationTrustedCertificateAuthorityOperationOptions() DeleteCertificateAuthorityCertificateBasedApplicationConfigurationTrustedCertificateAuthorityOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteCertificateAuthorityCertificateBasedApplicationConfigurationTruste
 
 func (o DeleteCertificateAuthorityCertificateBasedApplicationConfigurationTrustedCertificateAuthorityOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

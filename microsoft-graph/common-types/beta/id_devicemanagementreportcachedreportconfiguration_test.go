@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &DeviceManagementReportCachedReportConfigurationId{}
 
 func TestNewDeviceManagementReportCachedReportConfigurationID(t *testing.T) {
-	id := NewDeviceManagementReportCachedReportConfigurationID("deviceManagementCachedReportConfigurationIdValue")
+	id := NewDeviceManagementReportCachedReportConfigurationID("deviceManagementCachedReportConfigurationId")
 
-	if id.DeviceManagementCachedReportConfigurationId != "deviceManagementCachedReportConfigurationIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DeviceManagementCachedReportConfigurationId'", id.DeviceManagementCachedReportConfigurationId, "deviceManagementCachedReportConfigurationIdValue")
+	if id.DeviceManagementCachedReportConfigurationId != "deviceManagementCachedReportConfigurationId" {
+		t.Fatalf("Expected %q but got %q for Segment 'DeviceManagementCachedReportConfigurationId'", id.DeviceManagementCachedReportConfigurationId, "deviceManagementCachedReportConfigurationId")
 	}
 }
 
 func TestFormatDeviceManagementReportCachedReportConfigurationID(t *testing.T) {
-	actual := NewDeviceManagementReportCachedReportConfigurationID("deviceManagementCachedReportConfigurationIdValue").ID()
-	expected := "/deviceManagement/reports/cachedReportConfigurations/deviceManagementCachedReportConfigurationIdValue"
+	actual := NewDeviceManagementReportCachedReportConfigurationID("deviceManagementCachedReportConfigurationId").ID()
+	expected := "/deviceManagement/reports/cachedReportConfigurations/deviceManagementCachedReportConfigurationId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -55,14 +55,14 @@ func TestParseDeviceManagementReportCachedReportConfigurationID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/reports/cachedReportConfigurations/deviceManagementCachedReportConfigurationIdValue",
+			Input: "/deviceManagement/reports/cachedReportConfigurations/deviceManagementCachedReportConfigurationId",
 			Expected: &DeviceManagementReportCachedReportConfigurationId{
-				DeviceManagementCachedReportConfigurationId: "deviceManagementCachedReportConfigurationIdValue",
+				DeviceManagementCachedReportConfigurationId: "deviceManagementCachedReportConfigurationId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/reports/cachedReportConfigurations/deviceManagementCachedReportConfigurationIdValue/extra",
+			Input: "/deviceManagement/reports/cachedReportConfigurations/deviceManagementCachedReportConfigurationId/extra",
 			Error: true,
 		},
 	}
@@ -131,26 +131,26 @@ func TestParseDeviceManagementReportCachedReportConfigurationIDInsensitively(t *
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/reports/cachedReportConfigurations/deviceManagementCachedReportConfigurationIdValue",
+			Input: "/deviceManagement/reports/cachedReportConfigurations/deviceManagementCachedReportConfigurationId",
 			Expected: &DeviceManagementReportCachedReportConfigurationId{
-				DeviceManagementCachedReportConfigurationId: "deviceManagementCachedReportConfigurationIdValue",
+				DeviceManagementCachedReportConfigurationId: "deviceManagementCachedReportConfigurationId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/reports/cachedReportConfigurations/deviceManagementCachedReportConfigurationIdValue/extra",
+			Input: "/deviceManagement/reports/cachedReportConfigurations/deviceManagementCachedReportConfigurationId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/rEpOrTs/cAcHeDrEpOrTcOnFiGuRaTiOnS/dEvIcEmAnAgEmEnTcAcHeDrEpOrTcOnFiGuRaTiOnIdVaLuE",
+			Input: "/dEvIcEmAnAgEmEnT/rEpOrTs/cAcHeDrEpOrTcOnFiGuRaTiOnS/dEvIcEmAnAgEmEnTcAcHeDrEpOrTcOnFiGuRaTiOnId",
 			Expected: &DeviceManagementReportCachedReportConfigurationId{
-				DeviceManagementCachedReportConfigurationId: "dEvIcEmAnAgEmEnTcAcHeDrEpOrTcOnFiGuRaTiOnIdVaLuE",
+				DeviceManagementCachedReportConfigurationId: "dEvIcEmAnAgEmEnTcAcHeDrEpOrTcOnFiGuRaTiOnId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/rEpOrTs/cAcHeDrEpOrTcOnFiGuRaTiOnS/dEvIcEmAnAgEmEnTcAcHeDrEpOrTcOnFiGuRaTiOnIdVaLuE/extra",
+			Input: "/dEvIcEmAnAgEmEnT/rEpOrTs/cAcHeDrEpOrTcOnFiGuRaTiOnS/dEvIcEmAnAgEmEnTcAcHeDrEpOrTcOnFiGuRaTiOnId/extra",
 			Error: true,
 		},
 	}

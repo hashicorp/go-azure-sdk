@@ -19,7 +19,8 @@ type DeleteSecurityInformationProtectionSensitivityLabelParentOperationResponse 
 }
 
 type DeleteSecurityInformationProtectionSensitivityLabelParentOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteSecurityInformationProtectionSensitivityLabelParentOperationOptions() DeleteSecurityInformationProtectionSensitivityLabelParentOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteSecurityInformationProtectionSensitivityLabelParentOperationOption
 
 func (o DeleteSecurityInformationProtectionSensitivityLabelParentOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

@@ -257,28 +257,64 @@ func (s Windows10VpnConfiguration) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &Windows10VpnConfiguration{}
 
 func (s *Windows10VpnConfiguration) UnmarshalJSON(bytes []byte) error {
-	type alias Windows10VpnConfiguration
-	var decoded alias
+
+	var decoded struct {
+		AssociatedApps                              *[]Windows10AssociatedApps                   `json:"associatedApps,omitempty"`
+		AuthenticationMethod                        *Windows10VpnAuthenticationMethod            `json:"authenticationMethod,omitempty"`
+		ConnectionType                              *Windows10VpnConnectionType                  `json:"connectionType,omitempty"`
+		CryptographySuite                           *CryptographySuite                           `json:"cryptographySuite,omitempty"`
+		DnsRules                                    *[]VpnDnsRule                                `json:"dnsRules,omitempty"`
+		DnsSuffixes                                 *[]string                                    `json:"dnsSuffixes,omitempty"`
+		EapXml                                      nullable.Type[string]                        `json:"eapXml,omitempty"`
+		EnableAlwaysOn                              nullable.Type[bool]                          `json:"enableAlwaysOn,omitempty"`
+		EnableConditionalAccess                     *bool                                        `json:"enableConditionalAccess,omitempty"`
+		EnableDeviceTunnel                          nullable.Type[bool]                          `json:"enableDeviceTunnel,omitempty"`
+		EnableDnsRegistration                       nullable.Type[bool]                          `json:"enableDnsRegistration,omitempty"`
+		EnableSingleSignOnWithAlternateCertificate  *bool                                        `json:"enableSingleSignOnWithAlternateCertificate,omitempty"`
+		EnableSplitTunneling                        *bool                                        `json:"enableSplitTunneling,omitempty"`
+		MicrosoftTunnelSiteId                       nullable.Type[string]                        `json:"microsoftTunnelSiteId,omitempty"`
+		OnlyAssociatedAppsCanUseConnection          nullable.Type[bool]                          `json:"onlyAssociatedAppsCanUseConnection,omitempty"`
+		ProfileTarget                               *Windows10VpnProfileTarget                   `json:"profileTarget,omitempty"`
+		ProxyServer                                 *Windows10VpnProxyServer                     `json:"proxyServer,omitempty"`
+		RememberUserCredentials                     *bool                                        `json:"rememberUserCredentials,omitempty"`
+		Routes                                      *[]VpnRoute                                  `json:"routes,omitempty"`
+		SingleSignOnEku                             *ExtendedKeyUsage                            `json:"singleSignOnEku,omitempty"`
+		SingleSignOnIssuerHash                      nullable.Type[string]                        `json:"singleSignOnIssuerHash,omitempty"`
+		TrafficRules                                *[]VpnTrafficRule                            `json:"trafficRules,omitempty"`
+		TrustedNetworkDomains                       *[]string                                    `json:"trustedNetworkDomains,omitempty"`
+		WindowsInformationProtectionDomain          nullable.Type[string]                        `json:"windowsInformationProtectionDomain,omitempty"`
+		ConnectionName                              *string                                      `json:"connectionName,omitempty"`
+		CustomXml                                   nullable.Type[string]                        `json:"customXml,omitempty"`
+		Servers                                     *[]VpnServer                                 `json:"servers,omitempty"`
+		Assignments                                 *[]DeviceConfigurationAssignment             `json:"assignments,omitempty"`
+		CreatedDateTime                             *string                                      `json:"createdDateTime,omitempty"`
+		Description                                 nullable.Type[string]                        `json:"description,omitempty"`
+		DeviceManagementApplicabilityRuleDeviceMode *DeviceManagementApplicabilityRuleDeviceMode `json:"deviceManagementApplicabilityRuleDeviceMode,omitempty"`
+		DeviceManagementApplicabilityRuleOsEdition  *DeviceManagementApplicabilityRuleOsEdition  `json:"deviceManagementApplicabilityRuleOsEdition,omitempty"`
+		DeviceManagementApplicabilityRuleOsVersion  *DeviceManagementApplicabilityRuleOsVersion  `json:"deviceManagementApplicabilityRuleOsVersion,omitempty"`
+		DeviceSettingStateSummaries                 *[]SettingStateDeviceSummary                 `json:"deviceSettingStateSummaries,omitempty"`
+		DeviceStatusOverview                        *DeviceConfigurationDeviceOverview           `json:"deviceStatusOverview,omitempty"`
+		DeviceStatuses                              *[]DeviceConfigurationDeviceStatus           `json:"deviceStatuses,omitempty"`
+		DisplayName                                 *string                                      `json:"displayName,omitempty"`
+		GroupAssignments                            *[]DeviceConfigurationGroupAssignment        `json:"groupAssignments,omitempty"`
+		LastModifiedDateTime                        *string                                      `json:"lastModifiedDateTime,omitempty"`
+		RoleScopeTagIds                             *[]string                                    `json:"roleScopeTagIds,omitempty"`
+		SupportsScopeTags                           *bool                                        `json:"supportsScopeTags,omitempty"`
+		UserStatusOverview                          *DeviceConfigurationUserOverview             `json:"userStatusOverview,omitempty"`
+		UserStatuses                                *[]DeviceConfigurationUserStatus             `json:"userStatuses,omitempty"`
+		Version                                     *int64                                       `json:"version,omitempty"`
+		Id                                          *string                                      `json:"id,omitempty"`
+		ODataId                                     *string                                      `json:"@odata.id,omitempty"`
+		ODataType                                   *string                                      `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into Windows10VpnConfiguration: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
-	s.Assignments = decoded.Assignments
 	s.AssociatedApps = decoded.AssociatedApps
 	s.AuthenticationMethod = decoded.AuthenticationMethod
-	s.ConnectionName = decoded.ConnectionName
 	s.ConnectionType = decoded.ConnectionType
-	s.CreatedDateTime = decoded.CreatedDateTime
 	s.CryptographySuite = decoded.CryptographySuite
-	s.CustomXml = decoded.CustomXml
-	s.Description = decoded.Description
-	s.DeviceManagementApplicabilityRuleDeviceMode = decoded.DeviceManagementApplicabilityRuleDeviceMode
-	s.DeviceManagementApplicabilityRuleOsEdition = decoded.DeviceManagementApplicabilityRuleOsEdition
-	s.DeviceManagementApplicabilityRuleOsVersion = decoded.DeviceManagementApplicabilityRuleOsVersion
-	s.DeviceSettingStateSummaries = decoded.DeviceSettingStateSummaries
-	s.DeviceStatusOverview = decoded.DeviceStatusOverview
-	s.DeviceStatuses = decoded.DeviceStatuses
-	s.DisplayName = decoded.DisplayName
 	s.DnsRules = decoded.DnsRules
 	s.DnsSuffixes = decoded.DnsSuffixes
 	s.EapXml = decoded.EapXml
@@ -288,28 +324,40 @@ func (s *Windows10VpnConfiguration) UnmarshalJSON(bytes []byte) error {
 	s.EnableDnsRegistration = decoded.EnableDnsRegistration
 	s.EnableSingleSignOnWithAlternateCertificate = decoded.EnableSingleSignOnWithAlternateCertificate
 	s.EnableSplitTunneling = decoded.EnableSplitTunneling
-	s.GroupAssignments = decoded.GroupAssignments
-	s.Id = decoded.Id
-	s.LastModifiedDateTime = decoded.LastModifiedDateTime
 	s.MicrosoftTunnelSiteId = decoded.MicrosoftTunnelSiteId
-	s.ODataId = decoded.ODataId
-	s.ODataType = decoded.ODataType
 	s.OnlyAssociatedAppsCanUseConnection = decoded.OnlyAssociatedAppsCanUseConnection
 	s.ProfileTarget = decoded.ProfileTarget
 	s.ProxyServer = decoded.ProxyServer
 	s.RememberUserCredentials = decoded.RememberUserCredentials
-	s.RoleScopeTagIds = decoded.RoleScopeTagIds
 	s.Routes = decoded.Routes
-	s.Servers = decoded.Servers
 	s.SingleSignOnEku = decoded.SingleSignOnEku
 	s.SingleSignOnIssuerHash = decoded.SingleSignOnIssuerHash
-	s.SupportsScopeTags = decoded.SupportsScopeTags
 	s.TrafficRules = decoded.TrafficRules
 	s.TrustedNetworkDomains = decoded.TrustedNetworkDomains
+	s.WindowsInformationProtectionDomain = decoded.WindowsInformationProtectionDomain
+	s.Assignments = decoded.Assignments
+	s.ConnectionName = decoded.ConnectionName
+	s.CreatedDateTime = decoded.CreatedDateTime
+	s.CustomXml = decoded.CustomXml
+	s.Description = decoded.Description
+	s.DeviceManagementApplicabilityRuleDeviceMode = decoded.DeviceManagementApplicabilityRuleDeviceMode
+	s.DeviceManagementApplicabilityRuleOsEdition = decoded.DeviceManagementApplicabilityRuleOsEdition
+	s.DeviceManagementApplicabilityRuleOsVersion = decoded.DeviceManagementApplicabilityRuleOsVersion
+	s.DeviceSettingStateSummaries = decoded.DeviceSettingStateSummaries
+	s.DeviceStatusOverview = decoded.DeviceStatusOverview
+	s.DeviceStatuses = decoded.DeviceStatuses
+	s.DisplayName = decoded.DisplayName
+	s.GroupAssignments = decoded.GroupAssignments
+	s.Id = decoded.Id
+	s.LastModifiedDateTime = decoded.LastModifiedDateTime
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
+	s.RoleScopeTagIds = decoded.RoleScopeTagIds
+	s.Servers = decoded.Servers
+	s.SupportsScopeTags = decoded.SupportsScopeTags
 	s.UserStatusOverview = decoded.UserStatusOverview
 	s.UserStatuses = decoded.UserStatuses
 	s.Version = decoded.Version
-	s.WindowsInformationProtectionDomain = decoded.WindowsInformationProtectionDomain
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -323,5 +371,6 @@ func (s *Windows10VpnConfiguration) UnmarshalJSON(bytes []byte) error {
 		}
 		s.IdentityCertificate = &impl
 	}
+
 	return nil
 }

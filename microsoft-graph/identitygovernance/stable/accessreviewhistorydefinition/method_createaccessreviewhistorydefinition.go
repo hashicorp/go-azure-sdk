@@ -18,15 +18,44 @@ type CreateAccessReviewHistoryDefinitionOperationResponse struct {
 	Model        *stable.AccessReviewHistoryDefinition
 }
 
+type CreateAccessReviewHistoryDefinitionOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateAccessReviewHistoryDefinitionOperationOptions() CreateAccessReviewHistoryDefinitionOperationOptions {
+	return CreateAccessReviewHistoryDefinitionOperationOptions{}
+}
+
+func (o CreateAccessReviewHistoryDefinitionOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateAccessReviewHistoryDefinitionOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateAccessReviewHistoryDefinitionOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateAccessReviewHistoryDefinition - Create historyDefinitions. Create a new accessReviewHistoryDefinition object.
-func (c AccessReviewHistoryDefinitionClient) CreateAccessReviewHistoryDefinition(ctx context.Context, input stable.AccessReviewHistoryDefinition) (result CreateAccessReviewHistoryDefinitionOperationResponse, err error) {
+func (c AccessReviewHistoryDefinitionClient) CreateAccessReviewHistoryDefinition(ctx context.Context, input stable.AccessReviewHistoryDefinition, options CreateAccessReviewHistoryDefinitionOperationOptions) (result CreateAccessReviewHistoryDefinitionOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/identityGovernance/accessReviews/historyDefinitions",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/identityGovernance/accessReviews/historyDefinitions",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

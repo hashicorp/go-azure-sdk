@@ -18,15 +18,44 @@ type SetTeamChannelMessageReactionOperationResponse struct {
 	OData        *odata.OData
 }
 
+type SetTeamChannelMessageReactionOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultSetTeamChannelMessageReactionOperationOptions() SetTeamChannelMessageReactionOperationOptions {
+	return SetTeamChannelMessageReactionOperationOptions{}
+}
+
+func (o SetTeamChannelMessageReactionOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o SetTeamChannelMessageReactionOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o SetTeamChannelMessageReactionOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // SetTeamChannelMessageReaction - Invoke action setReaction
-func (c TeamChannelMessageClient) SetTeamChannelMessageReaction(ctx context.Context, id beta.GroupIdTeamChannelIdMessageId, input SetTeamChannelMessageReactionRequest) (result SetTeamChannelMessageReactionOperationResponse, err error) {
+func (c TeamChannelMessageClient) SetTeamChannelMessageReaction(ctx context.Context, id beta.GroupIdTeamChannelIdMessageId, input SetTeamChannelMessageReactionRequest, options SetTeamChannelMessageReactionOperationOptions) (result SetTeamChannelMessageReactionOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/setReaction", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/setReaction", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

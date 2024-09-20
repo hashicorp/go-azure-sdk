@@ -19,16 +19,45 @@ type GetDriveRootListItemActivityDriveItemContentStreamOperationResponse struct 
 	Model        *[]byte
 }
 
+type GetDriveRootListItemActivityDriveItemContentStreamOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultGetDriveRootListItemActivityDriveItemContentStreamOperationOptions() GetDriveRootListItemActivityDriveItemContentStreamOperationOptions {
+	return GetDriveRootListItemActivityDriveItemContentStreamOperationOptions{}
+}
+
+func (o GetDriveRootListItemActivityDriveItemContentStreamOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o GetDriveRootListItemActivityDriveItemContentStreamOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o GetDriveRootListItemActivityDriveItemContentStreamOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // GetDriveRootListItemActivityDriveItemContentStream - Get contentStream for the navigation property driveItem from
 // users. The content stream, if the item represents a file.
-func (c DriveRootListItemActivityDriveItemContentStreamClient) GetDriveRootListItemActivityDriveItemContentStream(ctx context.Context, id beta.UserIdDriveIdRootListItemActivityId) (result GetDriveRootListItemActivityDriveItemContentStreamOperationResponse, err error) {
+func (c DriveRootListItemActivityDriveItemContentStreamClient) GetDriveRootListItemActivityDriveItemContentStream(ctx context.Context, id beta.UserIdDriveIdRootListItemActivityId, options GetDriveRootListItemActivityDriveItemContentStreamOperationOptions) (result GetDriveRootListItemActivityDriveItemContentStreamOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/octet-stream",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/driveItem/contentStream", id.ID()),
+		HttpMethod:    http.MethodGet,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/driveItem/contentStream", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

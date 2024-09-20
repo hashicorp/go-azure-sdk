@@ -19,16 +19,45 @@ type CreateNotificationMessageTemplateLocalizedNotificationMessageOperationRespo
 	Model        *stable.LocalizedNotificationMessage
 }
 
+type CreateNotificationMessageTemplateLocalizedNotificationMessageOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateNotificationMessageTemplateLocalizedNotificationMessageOperationOptions() CreateNotificationMessageTemplateLocalizedNotificationMessageOperationOptions {
+	return CreateNotificationMessageTemplateLocalizedNotificationMessageOperationOptions{}
+}
+
+func (o CreateNotificationMessageTemplateLocalizedNotificationMessageOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateNotificationMessageTemplateLocalizedNotificationMessageOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateNotificationMessageTemplateLocalizedNotificationMessageOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateNotificationMessageTemplateLocalizedNotificationMessage - Create localizedNotificationMessage. Create a new
 // localizedNotificationMessage object.
-func (c NotificationMessageTemplateLocalizedNotificationMessageClient) CreateNotificationMessageTemplateLocalizedNotificationMessage(ctx context.Context, id stable.DeviceManagementNotificationMessageTemplateId, input stable.LocalizedNotificationMessage) (result CreateNotificationMessageTemplateLocalizedNotificationMessageOperationResponse, err error) {
+func (c NotificationMessageTemplateLocalizedNotificationMessageClient) CreateNotificationMessageTemplateLocalizedNotificationMessage(ctx context.Context, id stable.DeviceManagementNotificationMessageTemplateId, input stable.LocalizedNotificationMessage, options CreateNotificationMessageTemplateLocalizedNotificationMessageOperationOptions) (result CreateNotificationMessageTemplateLocalizedNotificationMessageOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/localizedNotificationMessages", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/localizedNotificationMessages", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

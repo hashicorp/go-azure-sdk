@@ -17,15 +17,44 @@ type UpdateFederatedIdentityCredentialOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateFederatedIdentityCredentialOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateFederatedIdentityCredentialOperationOptions() UpdateFederatedIdentityCredentialOperationOptions {
+	return UpdateFederatedIdentityCredentialOperationOptions{}
+}
+
+func (o UpdateFederatedIdentityCredentialOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateFederatedIdentityCredentialOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateFederatedIdentityCredentialOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateFederatedIdentityCredential - Update the navigation property federatedIdentityCredentials in servicePrincipals
-func (c FederatedIdentityCredentialClient) UpdateFederatedIdentityCredential(ctx context.Context, id stable.ServicePrincipalIdFederatedIdentityCredentialId, input stable.FederatedIdentityCredential) (result UpdateFederatedIdentityCredentialOperationResponse, err error) {
+func (c FederatedIdentityCredentialClient) UpdateFederatedIdentityCredential(ctx context.Context, id stable.ServicePrincipalIdFederatedIdentityCredentialId, input stable.FederatedIdentityCredential, options UpdateFederatedIdentityCredentialOperationOptions) (result UpdateFederatedIdentityCredentialOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/sitelistpermission` Documentation
 
-The `sitelistpermission` SDK allows for interaction with the Azure Resource Manager Service `groups` (API Version `beta`).
+The `sitelistpermission` SDK allows for interaction with Microsoft Graph `groups` (API Version `beta`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -15,7 +15,7 @@ import "github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/sitelistpe
 ### Client Initialization
 
 ```go
-client := sitelistpermission.NewSiteListPermissionClientWithBaseURI("https://management.azure.com")
+client := sitelistpermission.NewSiteListPermissionClientWithBaseURI("https://graph.microsoft.com")
 client.Client.Authorizer = authorizer
 ```
 
@@ -24,14 +24,14 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := sitelistpermission.NewGroupIdSiteIdListID("groupIdValue", "siteIdValue", "listIdValue")
+id := sitelistpermission.NewGroupIdSiteIdListID("groupId", "siteId", "listId")
 
 payload := sitelistpermission.Permission{
 	// ...
 }
 
 
-read, err := client.CreateSiteListPermission(ctx, id, payload)
+read, err := client.CreateSiteListPermission(ctx, id, payload, sitelistpermission.DefaultCreateSiteListPermissionOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -45,7 +45,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := sitelistpermission.NewGroupIdSiteIdListIdPermissionID("groupIdValue", "siteIdValue", "listIdValue", "permissionIdValue")
+id := sitelistpermission.NewGroupIdSiteIdListIdPermissionID("groupId", "siteId", "listId", "permissionId")
 
 read, err := client.DeleteSiteListPermission(ctx, id, sitelistpermission.DefaultDeleteSiteListPermissionOperationOptions())
 if err != nil {
@@ -61,7 +61,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := sitelistpermission.NewGroupIdSiteIdListIdPermissionID("groupIdValue", "siteIdValue", "listIdValue", "permissionIdValue")
+id := sitelistpermission.NewGroupIdSiteIdListIdPermissionID("groupId", "siteId", "listId", "permissionId")
 
 read, err := client.GetSiteListPermission(ctx, id, sitelistpermission.DefaultGetSiteListPermissionOperationOptions())
 if err != nil {
@@ -77,7 +77,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := sitelistpermission.NewGroupIdSiteIdListID("groupIdValue", "siteIdValue", "listIdValue")
+id := sitelistpermission.NewGroupIdSiteIdListID("groupId", "siteId", "listId")
 
 read, err := client.GetSiteListPermissionsCount(ctx, id, sitelistpermission.DefaultGetSiteListPermissionsCountOperationOptions())
 if err != nil {
@@ -93,7 +93,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := sitelistpermission.NewGroupIdSiteIdListIdPermissionID("groupIdValue", "siteIdValue", "listIdValue", "permissionIdValue")
+id := sitelistpermission.NewGroupIdSiteIdListIdPermissionID("groupId", "siteId", "listId", "permissionId")
 
 payload := sitelistpermission.ListSiteListPermissionGrantsRequest{
 	// ...
@@ -115,7 +115,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := sitelistpermission.NewGroupIdSiteIdListID("groupIdValue", "siteIdValue", "listIdValue")
+id := sitelistpermission.NewGroupIdSiteIdListID("groupId", "siteId", "listId")
 
 // alternatively `client.ListSiteListPermissions(ctx, id, sitelistpermission.DefaultListSiteListPermissionsOperationOptions())` can be used to do batched pagination
 items, err := client.ListSiteListPermissionsComplete(ctx, id, sitelistpermission.DefaultListSiteListPermissionsOperationOptions())
@@ -128,18 +128,18 @@ for _, item := range items {
 ```
 
 
-### Example Usage: `SiteListPermissionClient.RevokeSiteListPermissionGrant`
+### Example Usage: `SiteListPermissionClient.RevokeSiteListPermissionGrants`
 
 ```go
 ctx := context.TODO()
-id := sitelistpermission.NewGroupIdSiteIdListIdPermissionID("groupIdValue", "siteIdValue", "listIdValue", "permissionIdValue")
+id := sitelistpermission.NewGroupIdSiteIdListIdPermissionID("groupId", "siteId", "listId", "permissionId")
 
-payload := sitelistpermission.RevokeSiteListPermissionGrantRequest{
+payload := sitelistpermission.RevokeSiteListPermissionGrantsRequest{
 	// ...
 }
 
 
-read, err := client.RevokeSiteListPermissionGrant(ctx, id, payload)
+read, err := client.RevokeSiteListPermissionGrants(ctx, id, payload, sitelistpermission.DefaultRevokeSiteListPermissionGrantsOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -153,14 +153,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := sitelistpermission.NewGroupIdSiteIdListIdPermissionID("groupIdValue", "siteIdValue", "listIdValue", "permissionIdValue")
+id := sitelistpermission.NewGroupIdSiteIdListIdPermissionID("groupId", "siteId", "listId", "permissionId")
 
 payload := sitelistpermission.Permission{
 	// ...
 }
 
 
-read, err := client.UpdateSiteListPermission(ctx, id, payload)
+read, err := client.UpdateSiteListPermission(ctx, id, payload, sitelistpermission.DefaultUpdateSiteListPermissionOperationOptions())
 if err != nil {
 	// handle the error
 }

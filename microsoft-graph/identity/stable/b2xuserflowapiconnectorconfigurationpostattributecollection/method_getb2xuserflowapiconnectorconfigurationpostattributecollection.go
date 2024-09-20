@@ -20,8 +20,9 @@ type GetB2xUserFlowApiConnectorConfigurationPostAttributeCollectionOperationResp
 }
 
 type GetB2xUserFlowApiConnectorConfigurationPostAttributeCollectionOperationOptions struct {
-	Expand *odata.Expand
-	Select *[]string
+	Expand   *odata.Expand
+	Metadata *odata.Metadata
+	Select   *[]string
 }
 
 func DefaultGetB2xUserFlowApiConnectorConfigurationPostAttributeCollectionOperationOptions() GetB2xUserFlowApiConnectorConfigurationPostAttributeCollectionOperationOptions {
@@ -38,6 +39,9 @@ func (o GetB2xUserFlowApiConnectorConfigurationPostAttributeCollectionOperationO
 	out := odata.Query{}
 	if o.Expand != nil {
 		out.Expand = *o.Expand
+	}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
 	}
 	if o.Select != nil {
 		out.Select = *o.Select

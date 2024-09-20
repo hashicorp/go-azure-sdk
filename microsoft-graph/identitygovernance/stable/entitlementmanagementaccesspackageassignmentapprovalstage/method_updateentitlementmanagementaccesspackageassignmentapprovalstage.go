@@ -17,16 +17,45 @@ type UpdateEntitlementManagementAccessPackageAssignmentApprovalStageOperationRes
 	OData        *odata.OData
 }
 
+type UpdateEntitlementManagementAccessPackageAssignmentApprovalStageOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateEntitlementManagementAccessPackageAssignmentApprovalStageOperationOptions() UpdateEntitlementManagementAccessPackageAssignmentApprovalStageOperationOptions {
+	return UpdateEntitlementManagementAccessPackageAssignmentApprovalStageOperationOptions{}
+}
+
+func (o UpdateEntitlementManagementAccessPackageAssignmentApprovalStageOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateEntitlementManagementAccessPackageAssignmentApprovalStageOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateEntitlementManagementAccessPackageAssignmentApprovalStageOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateEntitlementManagementAccessPackageAssignmentApprovalStage - Update approvalStage. Approve or deny an
 // approvalStage object in an approval.
-func (c EntitlementManagementAccessPackageAssignmentApprovalStageClient) UpdateEntitlementManagementAccessPackageAssignmentApprovalStage(ctx context.Context, id stable.IdentityGovernanceEntitlementManagementAccessPackageAssignmentApprovalIdStageId, input stable.ApprovalStage) (result UpdateEntitlementManagementAccessPackageAssignmentApprovalStageOperationResponse, err error) {
+func (c EntitlementManagementAccessPackageAssignmentApprovalStageClient) UpdateEntitlementManagementAccessPackageAssignmentApprovalStage(ctx context.Context, id stable.IdentityGovernanceEntitlementManagementAccessPackageAssignmentApprovalIdStageId, input stable.ApprovalStage, options UpdateEntitlementManagementAccessPackageAssignmentApprovalStageOperationOptions) (result UpdateEntitlementManagementAccessPackageAssignmentApprovalStageOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

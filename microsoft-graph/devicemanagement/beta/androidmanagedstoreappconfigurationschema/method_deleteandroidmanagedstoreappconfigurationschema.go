@@ -19,7 +19,8 @@ type DeleteAndroidManagedStoreAppConfigurationSchemaOperationResponse struct {
 }
 
 type DeleteAndroidManagedStoreAppConfigurationSchemaOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteAndroidManagedStoreAppConfigurationSchemaOperationOptions() DeleteAndroidManagedStoreAppConfigurationSchemaOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteAndroidManagedStoreAppConfigurationSchemaOperationOptions) ToHeade
 
 func (o DeleteAndroidManagedStoreAppConfigurationSchemaOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

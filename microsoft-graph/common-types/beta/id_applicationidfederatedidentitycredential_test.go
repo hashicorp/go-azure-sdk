@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &ApplicationIdFederatedIdentityCredentialId{}
 
 func TestNewApplicationIdFederatedIdentityCredentialID(t *testing.T) {
-	id := NewApplicationIdFederatedIdentityCredentialID("applicationIdValue", "federatedIdentityCredentialIdValue")
+	id := NewApplicationIdFederatedIdentityCredentialID("applicationId", "federatedIdentityCredentialId")
 
-	if id.ApplicationId != "applicationIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ApplicationId'", id.ApplicationId, "applicationIdValue")
+	if id.ApplicationId != "applicationId" {
+		t.Fatalf("Expected %q but got %q for Segment 'ApplicationId'", id.ApplicationId, "applicationId")
 	}
 
-	if id.FederatedIdentityCredentialId != "federatedIdentityCredentialIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'FederatedIdentityCredentialId'", id.FederatedIdentityCredentialId, "federatedIdentityCredentialIdValue")
+	if id.FederatedIdentityCredentialId != "federatedIdentityCredentialId" {
+		t.Fatalf("Expected %q but got %q for Segment 'FederatedIdentityCredentialId'", id.FederatedIdentityCredentialId, "federatedIdentityCredentialId")
 	}
 }
 
 func TestFormatApplicationIdFederatedIdentityCredentialID(t *testing.T) {
-	actual := NewApplicationIdFederatedIdentityCredentialID("applicationIdValue", "federatedIdentityCredentialIdValue").ID()
-	expected := "/applications/applicationIdValue/federatedIdentityCredentials/federatedIdentityCredentialIdValue"
+	actual := NewApplicationIdFederatedIdentityCredentialID("applicationId", "federatedIdentityCredentialId").ID()
+	expected := "/applications/applicationId/federatedIdentityCredentials/federatedIdentityCredentialId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -49,25 +49,25 @@ func TestParseApplicationIdFederatedIdentityCredentialID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/applications/applicationIdValue",
+			Input: "/applications/applicationId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/applications/applicationIdValue/federatedIdentityCredentials",
+			Input: "/applications/applicationId/federatedIdentityCredentials",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/applications/applicationIdValue/federatedIdentityCredentials/federatedIdentityCredentialIdValue",
+			Input: "/applications/applicationId/federatedIdentityCredentials/federatedIdentityCredentialId",
 			Expected: &ApplicationIdFederatedIdentityCredentialId{
-				ApplicationId:                 "applicationIdValue",
-				FederatedIdentityCredentialId: "federatedIdentityCredentialIdValue",
+				ApplicationId:                 "applicationId",
+				FederatedIdentityCredentialId: "federatedIdentityCredentialId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/applications/applicationIdValue/federatedIdentityCredentials/federatedIdentityCredentialIdValue/extra",
+			Input: "/applications/applicationId/federatedIdentityCredentials/federatedIdentityCredentialId/extra",
 			Error: true,
 		},
 	}
@@ -120,48 +120,48 @@ func TestParseApplicationIdFederatedIdentityCredentialIDInsensitively(t *testing
 		},
 		{
 			// Incomplete URI
-			Input: "/applications/applicationIdValue",
+			Input: "/applications/applicationId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/aPpLiCaTiOnS/aPpLiCaTiOnIdVaLuE",
+			Input: "/aPpLiCaTiOnS/aPpLiCaTiOnId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/applications/applicationIdValue/federatedIdentityCredentials",
+			Input: "/applications/applicationId/federatedIdentityCredentials",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/aPpLiCaTiOnS/aPpLiCaTiOnIdVaLuE/fEdErAtEdIdEnTiTyCrEdEnTiAlS",
+			Input: "/aPpLiCaTiOnS/aPpLiCaTiOnId/fEdErAtEdIdEnTiTyCrEdEnTiAlS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/applications/applicationIdValue/federatedIdentityCredentials/federatedIdentityCredentialIdValue",
+			Input: "/applications/applicationId/federatedIdentityCredentials/federatedIdentityCredentialId",
 			Expected: &ApplicationIdFederatedIdentityCredentialId{
-				ApplicationId:                 "applicationIdValue",
-				FederatedIdentityCredentialId: "federatedIdentityCredentialIdValue",
+				ApplicationId:                 "applicationId",
+				FederatedIdentityCredentialId: "federatedIdentityCredentialId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/applications/applicationIdValue/federatedIdentityCredentials/federatedIdentityCredentialIdValue/extra",
+			Input: "/applications/applicationId/federatedIdentityCredentials/federatedIdentityCredentialId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/aPpLiCaTiOnS/aPpLiCaTiOnIdVaLuE/fEdErAtEdIdEnTiTyCrEdEnTiAlS/fEdErAtEdIdEnTiTyCrEdEnTiAlIdVaLuE",
+			Input: "/aPpLiCaTiOnS/aPpLiCaTiOnId/fEdErAtEdIdEnTiTyCrEdEnTiAlS/fEdErAtEdIdEnTiTyCrEdEnTiAlId",
 			Expected: &ApplicationIdFederatedIdentityCredentialId{
-				ApplicationId:                 "aPpLiCaTiOnIdVaLuE",
-				FederatedIdentityCredentialId: "fEdErAtEdIdEnTiTyCrEdEnTiAlIdVaLuE",
+				ApplicationId:                 "aPpLiCaTiOnId",
+				FederatedIdentityCredentialId: "fEdErAtEdIdEnTiTyCrEdEnTiAlId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/aPpLiCaTiOnS/aPpLiCaTiOnIdVaLuE/fEdErAtEdIdEnTiTyCrEdEnTiAlS/fEdErAtEdIdEnTiTyCrEdEnTiAlIdVaLuE/extra",
+			Input: "/aPpLiCaTiOnS/aPpLiCaTiOnId/fEdErAtEdIdEnTiTyCrEdEnTiAlS/fEdErAtEdIdEnTiTyCrEdEnTiAlId/extra",
 			Error: true,
 		},
 	}

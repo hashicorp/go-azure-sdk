@@ -18,16 +18,45 @@ type CreateEntitlementManagementTransitiveRoleAssignmentOperationResponse struct
 	Model        *beta.UnifiedRoleAssignment
 }
 
+type CreateEntitlementManagementTransitiveRoleAssignmentOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateEntitlementManagementTransitiveRoleAssignmentOperationOptions() CreateEntitlementManagementTransitiveRoleAssignmentOperationOptions {
+	return CreateEntitlementManagementTransitiveRoleAssignmentOperationOptions{}
+}
+
+func (o CreateEntitlementManagementTransitiveRoleAssignmentOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateEntitlementManagementTransitiveRoleAssignmentOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateEntitlementManagementTransitiveRoleAssignmentOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateEntitlementManagementTransitiveRoleAssignment - Create new navigation property to transitiveRoleAssignments for
 // roleManagement
-func (c EntitlementManagementTransitiveRoleAssignmentClient) CreateEntitlementManagementTransitiveRoleAssignment(ctx context.Context, input beta.UnifiedRoleAssignment) (result CreateEntitlementManagementTransitiveRoleAssignmentOperationResponse, err error) {
+func (c EntitlementManagementTransitiveRoleAssignmentClient) CreateEntitlementManagementTransitiveRoleAssignment(ctx context.Context, input beta.UnifiedRoleAssignment, options CreateEntitlementManagementTransitiveRoleAssignmentOperationOptions) (result CreateEntitlementManagementTransitiveRoleAssignmentOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/roleManagement/entitlementManagement/transitiveRoleAssignments",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/roleManagement/entitlementManagement/transitiveRoleAssignments",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -20,8 +20,9 @@ type GetAuthenticationPhoneMethodsCountOperationResponse struct {
 }
 
 type GetAuthenticationPhoneMethodsCountOperationOptions struct {
-	Filter *string
-	Search *string
+	Filter   *string
+	Metadata *odata.Metadata
+	Search   *string
 }
 
 func DefaultGetAuthenticationPhoneMethodsCountOperationOptions() GetAuthenticationPhoneMethodsCountOperationOptions {
@@ -38,6 +39,9 @@ func (o GetAuthenticationPhoneMethodsCountOperationOptions) ToOData() *odata.Que
 	out := odata.Query{}
 	if o.Filter != nil {
 		out.Filter = *o.Filter
+	}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
 	}
 	if o.Search != nil {
 		out.Search = *o.Search

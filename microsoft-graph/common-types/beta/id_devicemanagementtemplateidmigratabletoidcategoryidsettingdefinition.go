@@ -111,13 +111,13 @@ func (id DeviceManagementTemplateIdMigratableToIdCategoryIdSettingDefinitionId) 
 	return []resourceids.Segment{
 		resourceids.StaticSegment("deviceManagement", "deviceManagement", "deviceManagement"),
 		resourceids.StaticSegment("templates", "templates", "templates"),
-		resourceids.UserSpecifiedSegment("deviceManagementTemplateId", "deviceManagementTemplateIdValue"),
+		resourceids.UserSpecifiedSegment("deviceManagementTemplateId", "deviceManagementTemplateId"),
 		resourceids.StaticSegment("migratableTo", "migratableTo", "migratableTo"),
-		resourceids.UserSpecifiedSegment("deviceManagementTemplateId1", "deviceManagementTemplateId1Value"),
+		resourceids.UserSpecifiedSegment("deviceManagementTemplateId1", "deviceManagementTemplateId1"),
 		resourceids.StaticSegment("categories", "categories", "categories"),
-		resourceids.UserSpecifiedSegment("deviceManagementTemplateSettingCategoryId", "deviceManagementTemplateSettingCategoryIdValue"),
+		resourceids.UserSpecifiedSegment("deviceManagementTemplateSettingCategoryId", "deviceManagementTemplateSettingCategoryId"),
 		resourceids.StaticSegment("settingDefinitions", "settingDefinitions", "settingDefinitions"),
-		resourceids.UserSpecifiedSegment("deviceManagementSettingDefinitionId", "deviceManagementSettingDefinitionIdValue"),
+		resourceids.UserSpecifiedSegment("deviceManagementSettingDefinitionId", "deviceManagementSettingDefinitionId"),
 	}
 }
 

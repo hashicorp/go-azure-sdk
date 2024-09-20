@@ -18,17 +18,46 @@ type DisableAuthenticationPhoneMethodSmsSignInOperationResponse struct {
 	OData        *odata.OData
 }
 
+type DisableAuthenticationPhoneMethodSmsSignInOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultDisableAuthenticationPhoneMethodSmsSignInOperationOptions() DisableAuthenticationPhoneMethodSmsSignInOperationOptions {
+	return DisableAuthenticationPhoneMethodSmsSignInOperationOptions{}
+}
+
+func (o DisableAuthenticationPhoneMethodSmsSignInOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o DisableAuthenticationPhoneMethodSmsSignInOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o DisableAuthenticationPhoneMethodSmsSignInOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // DisableAuthenticationPhoneMethodSmsSignIn - Invoke action disableSmsSignIn. Disable SMS sign-in for an existing
 // mobile phone number registered to a user. The number will no longer be available for SMS sign-in, which can prevent
 // your user from signing in.
-func (c AuthenticationPhoneMethodClient) DisableAuthenticationPhoneMethodSmsSignIn(ctx context.Context, id stable.MeAuthenticationPhoneMethodId) (result DisableAuthenticationPhoneMethodSmsSignInOperationResponse, err error) {
+func (c AuthenticationPhoneMethodClient) DisableAuthenticationPhoneMethodSmsSignIn(ctx context.Context, id stable.MeAuthenticationPhoneMethodId, options DisableAuthenticationPhoneMethodSmsSignInOperationOptions) (result DisableAuthenticationPhoneMethodSmsSignInOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/disableSmsSignIn", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/disableSmsSignIn", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

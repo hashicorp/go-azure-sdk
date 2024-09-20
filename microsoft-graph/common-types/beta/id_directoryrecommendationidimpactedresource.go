@@ -99,9 +99,9 @@ func (id DirectoryRecommendationIdImpactedResourceId) Segments() []resourceids.S
 	return []resourceids.Segment{
 		resourceids.StaticSegment("directory", "directory", "directory"),
 		resourceids.StaticSegment("recommendations", "recommendations", "recommendations"),
-		resourceids.UserSpecifiedSegment("recommendationId", "recommendationIdValue"),
+		resourceids.UserSpecifiedSegment("recommendationId", "recommendationId"),
 		resourceids.StaticSegment("impactedResources", "impactedResources", "impactedResources"),
-		resourceids.UserSpecifiedSegment("impactedResourceId", "impactedResourceIdValue"),
+		resourceids.UserSpecifiedSegment("impactedResourceId", "impactedResourceId"),
 	}
 }
 

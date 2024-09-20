@@ -18,16 +18,45 @@ type UpdateLifecycleWorkflowDeletedItemWorkflowRunTaskProcessingResultSubjectMai
 	OData        *odata.OData
 }
 
+type UpdateLifecycleWorkflowDeletedItemWorkflowRunTaskProcessingResultSubjectMailboxSettingOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateLifecycleWorkflowDeletedItemWorkflowRunTaskProcessingResultSubjectMailboxSettingOperationOptions() UpdateLifecycleWorkflowDeletedItemWorkflowRunTaskProcessingResultSubjectMailboxSettingOperationOptions {
+	return UpdateLifecycleWorkflowDeletedItemWorkflowRunTaskProcessingResultSubjectMailboxSettingOperationOptions{}
+}
+
+func (o UpdateLifecycleWorkflowDeletedItemWorkflowRunTaskProcessingResultSubjectMailboxSettingOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateLifecycleWorkflowDeletedItemWorkflowRunTaskProcessingResultSubjectMailboxSettingOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateLifecycleWorkflowDeletedItemWorkflowRunTaskProcessingResultSubjectMailboxSettingOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateLifecycleWorkflowDeletedItemWorkflowRunTaskProcessingResultSubjectMailboxSetting - Update property
 // mailboxSettings value.
-func (c LifecycleWorkflowDeletedItemWorkflowRunTaskProcessingResultSubjectMailboxSettingClient) UpdateLifecycleWorkflowDeletedItemWorkflowRunTaskProcessingResultSubjectMailboxSetting(ctx context.Context, id stable.IdentityGovernanceLifecycleWorkflowDeletedItemWorkflowIdRunIdTaskProcessingResultId, input stable.MailboxSettings) (result UpdateLifecycleWorkflowDeletedItemWorkflowRunTaskProcessingResultSubjectMailboxSettingOperationResponse, err error) {
+func (c LifecycleWorkflowDeletedItemWorkflowRunTaskProcessingResultSubjectMailboxSettingClient) UpdateLifecycleWorkflowDeletedItemWorkflowRunTaskProcessingResultSubjectMailboxSetting(ctx context.Context, id stable.IdentityGovernanceLifecycleWorkflowDeletedItemWorkflowIdRunIdTaskProcessingResultId, input stable.MailboxSettings, options UpdateLifecycleWorkflowDeletedItemWorkflowRunTaskProcessingResultSubjectMailboxSettingOperationOptions) (result UpdateLifecycleWorkflowDeletedItemWorkflowRunTaskProcessingResultSubjectMailboxSettingOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       fmt.Sprintf("%s/subject/mailboxSettings", id.ID()),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/subject/mailboxSettings", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

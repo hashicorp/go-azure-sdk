@@ -17,15 +17,44 @@ type UpdateManagedDeviceSecurityBaselineStateSettingStateOperationResponse struc
 	OData        *odata.OData
 }
 
+type UpdateManagedDeviceSecurityBaselineStateSettingStateOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateManagedDeviceSecurityBaselineStateSettingStateOperationOptions() UpdateManagedDeviceSecurityBaselineStateSettingStateOperationOptions {
+	return UpdateManagedDeviceSecurityBaselineStateSettingStateOperationOptions{}
+}
+
+func (o UpdateManagedDeviceSecurityBaselineStateSettingStateOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateManagedDeviceSecurityBaselineStateSettingStateOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateManagedDeviceSecurityBaselineStateSettingStateOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateManagedDeviceSecurityBaselineStateSettingState - Update the navigation property settingStates in users
-func (c ManagedDeviceSecurityBaselineStateSettingStateClient) UpdateManagedDeviceSecurityBaselineStateSettingState(ctx context.Context, id beta.UserIdManagedDeviceIdSecurityBaselineStateIdSettingStateId, input beta.SecurityBaselineSettingState) (result UpdateManagedDeviceSecurityBaselineStateSettingStateOperationResponse, err error) {
+func (c ManagedDeviceSecurityBaselineStateSettingStateClient) UpdateManagedDeviceSecurityBaselineStateSettingState(ctx context.Context, id beta.UserIdManagedDeviceIdSecurityBaselineStateIdSettingStateId, input beta.SecurityBaselineSettingState, options UpdateManagedDeviceSecurityBaselineStateSettingStateOperationOptions) (result UpdateManagedDeviceSecurityBaselineStateSettingStateOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

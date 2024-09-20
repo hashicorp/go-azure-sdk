@@ -19,16 +19,45 @@ type GetMailFolderMessageValueOperationResponse struct {
 	Model        *[]byte
 }
 
+type GetMailFolderMessageValueOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultGetMailFolderMessageValueOperationOptions() GetMailFolderMessageValueOperationOptions {
+	return GetMailFolderMessageValueOperationOptions{}
+}
+
+func (o GetMailFolderMessageValueOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o GetMailFolderMessageValueOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o GetMailFolderMessageValueOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // GetMailFolderMessageValue - List messages. List all the messages in the specified user's mailbox, or those messages
 // in a specified folder in the mailbox.
-func (c MailFolderMessageClient) GetMailFolderMessageValue(ctx context.Context, id beta.MeMailFolderIdMessageId) (result GetMailFolderMessageValueOperationResponse, err error) {
+func (c MailFolderMessageClient) GetMailFolderMessageValue(ctx context.Context, id beta.MeMailFolderIdMessageId, options GetMailFolderMessageValueOperationOptions) (result GetMailFolderMessageValueOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/octet-stream",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/$value", id.ID()),
+		HttpMethod:    http.MethodGet,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/$value", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

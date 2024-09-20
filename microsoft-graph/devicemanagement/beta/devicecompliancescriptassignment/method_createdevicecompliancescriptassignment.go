@@ -19,15 +19,44 @@ type CreateDeviceComplianceScriptAssignmentOperationResponse struct {
 	Model        *beta.DeviceHealthScriptAssignment
 }
 
+type CreateDeviceComplianceScriptAssignmentOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateDeviceComplianceScriptAssignmentOperationOptions() CreateDeviceComplianceScriptAssignmentOperationOptions {
+	return CreateDeviceComplianceScriptAssignmentOperationOptions{}
+}
+
+func (o CreateDeviceComplianceScriptAssignmentOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateDeviceComplianceScriptAssignmentOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateDeviceComplianceScriptAssignmentOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateDeviceComplianceScriptAssignment - Create new navigation property to assignments for deviceManagement
-func (c DeviceComplianceScriptAssignmentClient) CreateDeviceComplianceScriptAssignment(ctx context.Context, id beta.DeviceManagementDeviceComplianceScriptId, input beta.DeviceHealthScriptAssignment) (result CreateDeviceComplianceScriptAssignmentOperationResponse, err error) {
+func (c DeviceComplianceScriptAssignmentClient) CreateDeviceComplianceScriptAssignment(ctx context.Context, id beta.DeviceManagementDeviceComplianceScriptId, input beta.DeviceHealthScriptAssignment, options CreateDeviceComplianceScriptAssignmentOperationOptions) (result CreateDeviceComplianceScriptAssignmentOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/assignments", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/assignments", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

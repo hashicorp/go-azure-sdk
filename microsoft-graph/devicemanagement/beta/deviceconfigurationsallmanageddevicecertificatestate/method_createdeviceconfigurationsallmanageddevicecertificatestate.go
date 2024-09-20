@@ -18,16 +18,45 @@ type CreateDeviceConfigurationsAllManagedDeviceCertificateStateOperationResponse
 	Model        *beta.ManagedAllDeviceCertificateState
 }
 
+type CreateDeviceConfigurationsAllManagedDeviceCertificateStateOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateDeviceConfigurationsAllManagedDeviceCertificateStateOperationOptions() CreateDeviceConfigurationsAllManagedDeviceCertificateStateOperationOptions {
+	return CreateDeviceConfigurationsAllManagedDeviceCertificateStateOperationOptions{}
+}
+
+func (o CreateDeviceConfigurationsAllManagedDeviceCertificateStateOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateDeviceConfigurationsAllManagedDeviceCertificateStateOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateDeviceConfigurationsAllManagedDeviceCertificateStateOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateDeviceConfigurationsAllManagedDeviceCertificateState - Create new navigation property to
 // deviceConfigurationsAllManagedDeviceCertificateStates for deviceManagement
-func (c DeviceConfigurationsAllManagedDeviceCertificateStateClient) CreateDeviceConfigurationsAllManagedDeviceCertificateState(ctx context.Context, input beta.ManagedAllDeviceCertificateState) (result CreateDeviceConfigurationsAllManagedDeviceCertificateStateOperationResponse, err error) {
+func (c DeviceConfigurationsAllManagedDeviceCertificateStateClient) CreateDeviceConfigurationsAllManagedDeviceCertificateState(ctx context.Context, input beta.ManagedAllDeviceCertificateState, options CreateDeviceConfigurationsAllManagedDeviceCertificateStateOperationOptions) (result CreateDeviceConfigurationsAllManagedDeviceCertificateStateOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/deviceManagement/deviceConfigurationsAllManagedDeviceCertificateStates",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/deviceManagement/deviceConfigurationsAllManagedDeviceCertificateStates",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -18,16 +18,45 @@ type SetVerifiedPublisherOperationResponse struct {
 	OData        *odata.OData
 }
 
+type SetVerifiedPublisherOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultSetVerifiedPublisherOperationOptions() SetVerifiedPublisherOperationOptions {
+	return SetVerifiedPublisherOperationOptions{}
+}
+
+func (o SetVerifiedPublisherOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o SetVerifiedPublisherOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o SetVerifiedPublisherOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // SetVerifiedPublisher - Invoke action setVerifiedPublisher. Set the verifiedPublisher on an application. For more
 // information, including prerequisites to setting a verified publisher, see Publisher verification.
-func (c ApplicationClient) SetVerifiedPublisher(ctx context.Context, id stable.ApplicationId, input SetVerifiedPublisherRequest) (result SetVerifiedPublisherOperationResponse, err error) {
+func (c ApplicationClient) SetVerifiedPublisher(ctx context.Context, id stable.ApplicationId, input SetVerifiedPublisherRequest, options SetVerifiedPublisherOperationOptions) (result SetVerifiedPublisherOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/setVerifiedPublisher", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/setVerifiedPublisher", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

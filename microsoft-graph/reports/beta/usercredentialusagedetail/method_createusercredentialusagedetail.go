@@ -18,15 +18,44 @@ type CreateUserCredentialUsageDetailOperationResponse struct {
 	Model        *beta.UserCredentialUsageDetails
 }
 
+type CreateUserCredentialUsageDetailOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateUserCredentialUsageDetailOperationOptions() CreateUserCredentialUsageDetailOperationOptions {
+	return CreateUserCredentialUsageDetailOperationOptions{}
+}
+
+func (o CreateUserCredentialUsageDetailOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateUserCredentialUsageDetailOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateUserCredentialUsageDetailOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateUserCredentialUsageDetail - Create new navigation property to userCredentialUsageDetails for reports
-func (c UserCredentialUsageDetailClient) CreateUserCredentialUsageDetail(ctx context.Context, input beta.UserCredentialUsageDetails) (result CreateUserCredentialUsageDetailOperationResponse, err error) {
+func (c UserCredentialUsageDetailClient) CreateUserCredentialUsageDetail(ctx context.Context, input beta.UserCredentialUsageDetails, options CreateUserCredentialUsageDetailOperationOptions) (result CreateUserCredentialUsageDetailOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/reports/userCredentialUsageDetails",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/reports/userCredentialUsageDetails",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

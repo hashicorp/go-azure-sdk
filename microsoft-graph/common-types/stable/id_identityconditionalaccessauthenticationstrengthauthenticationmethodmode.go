@@ -95,7 +95,7 @@ func (id IdentityConditionalAccessAuthenticationStrengthAuthenticationMethodMode
 		resourceids.StaticSegment("conditionalAccess", "conditionalAccess", "conditionalAccess"),
 		resourceids.StaticSegment("authenticationStrength", "authenticationStrength", "authenticationStrength"),
 		resourceids.StaticSegment("authenticationMethodModes", "authenticationMethodModes", "authenticationMethodModes"),
-		resourceids.UserSpecifiedSegment("authenticationMethodModeDetailId", "authenticationMethodModeDetailIdValue"),
+		resourceids.UserSpecifiedSegment("authenticationMethodModeDetailId", "authenticationMethodModeDetailId"),
 	}
 }
 

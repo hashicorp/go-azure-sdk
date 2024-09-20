@@ -19,15 +19,44 @@ type CreateTeamTagOperationResponse struct {
 	Model        *beta.TeamworkTag
 }
 
+type CreateTeamTagOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateTeamTagOperationOptions() CreateTeamTagOperationOptions {
+	return CreateTeamTagOperationOptions{}
+}
+
+func (o CreateTeamTagOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateTeamTagOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateTeamTagOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateTeamTag - Create new navigation property to tags for groups
-func (c TeamTagClient) CreateTeamTag(ctx context.Context, id beta.GroupId, input beta.TeamworkTag) (result CreateTeamTagOperationResponse, err error) {
+func (c TeamTagClient) CreateTeamTag(ctx context.Context, id beta.GroupId, input beta.TeamworkTag, options CreateTeamTagOperationOptions) (result CreateTeamTagOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/team/tags", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/team/tags", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

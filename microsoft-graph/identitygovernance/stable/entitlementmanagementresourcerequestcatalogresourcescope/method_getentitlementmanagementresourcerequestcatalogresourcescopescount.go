@@ -20,8 +20,9 @@ type GetEntitlementManagementResourceRequestCatalogResourceScopesCountOperationR
 }
 
 type GetEntitlementManagementResourceRequestCatalogResourceScopesCountOperationOptions struct {
-	Filter *string
-	Search *string
+	Filter   *string
+	Metadata *odata.Metadata
+	Search   *string
 }
 
 func DefaultGetEntitlementManagementResourceRequestCatalogResourceScopesCountOperationOptions() GetEntitlementManagementResourceRequestCatalogResourceScopesCountOperationOptions {
@@ -39,6 +40,9 @@ func (o GetEntitlementManagementResourceRequestCatalogResourceScopesCountOperati
 	if o.Filter != nil {
 		out.Filter = *o.Filter
 	}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	if o.Search != nil {
 		out.Search = *o.Search
 	}
@@ -52,7 +56,7 @@ func (o GetEntitlementManagementResourceRequestCatalogResourceScopesCountOperati
 }
 
 // GetEntitlementManagementResourceRequestCatalogResourceScopesCount - Get the number of the resource
-func (c EntitlementManagementResourceRequestCatalogResourceScopeClient) GetEntitlementManagementResourceRequestCatalogResourceScopesCount(ctx context.Context, id stable.IdentityGovernanceEntitlementManagementResourceRequestId, options GetEntitlementManagementResourceRequestCatalogResourceScopesCountOperationOptions) (result GetEntitlementManagementResourceRequestCatalogResourceScopesCountOperationResponse, err error) {
+func (c EntitlementManagementResourceRequestCatalogResourceScopeClient) GetEntitlementManagementResourceRequestCatalogResourceScopesCount(ctx context.Context, id stable.IdentityGovernanceEntitlementManagementResourceRequestIdCatalogResourceId, options GetEntitlementManagementResourceRequestCatalogResourceScopesCountOperationOptions) (result GetEntitlementManagementResourceRequestCatalogResourceScopesCountOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "text/plain",
 		ExpectedStatusCodes: []int{
@@ -60,7 +64,7 @@ func (c EntitlementManagementResourceRequestCatalogResourceScopeClient) GetEntit
 		},
 		HttpMethod:    http.MethodGet,
 		OptionsObject: options,
-		Path:          fmt.Sprintf("%s/catalog/resourceScopes/$count", id.ID()),
+		Path:          fmt.Sprintf("%s/scopes/$count", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

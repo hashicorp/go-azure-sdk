@@ -17,15 +17,44 @@ type UpdateContactFolderOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateContactFolderOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateContactFolderOperationOptions() UpdateContactFolderOperationOptions {
+	return UpdateContactFolderOperationOptions{}
+}
+
+func (o UpdateContactFolderOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateContactFolderOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateContactFolderOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateContactFolder - Update contactfolder. Update the properties of contactfolder object.
-func (c ContactFolderClient) UpdateContactFolder(ctx context.Context, id stable.MeContactFolderId, input stable.ContactFolder) (result UpdateContactFolderOperationResponse, err error) {
+func (c ContactFolderClient) UpdateContactFolder(ctx context.Context, id stable.MeContactFolderId, input stable.ContactFolder, options UpdateContactFolderOperationOptions) (result UpdateContactFolderOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

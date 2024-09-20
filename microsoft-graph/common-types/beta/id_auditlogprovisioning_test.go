@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &AuditLogProvisioningId{}
 
 func TestNewAuditLogProvisioningID(t *testing.T) {
-	id := NewAuditLogProvisioningID("provisioningObjectSummaryIdValue")
+	id := NewAuditLogProvisioningID("provisioningObjectSummaryId")
 
-	if id.ProvisioningObjectSummaryId != "provisioningObjectSummaryIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ProvisioningObjectSummaryId'", id.ProvisioningObjectSummaryId, "provisioningObjectSummaryIdValue")
+	if id.ProvisioningObjectSummaryId != "provisioningObjectSummaryId" {
+		t.Fatalf("Expected %q but got %q for Segment 'ProvisioningObjectSummaryId'", id.ProvisioningObjectSummaryId, "provisioningObjectSummaryId")
 	}
 }
 
 func TestFormatAuditLogProvisioningID(t *testing.T) {
-	actual := NewAuditLogProvisioningID("provisioningObjectSummaryIdValue").ID()
-	expected := "/auditLogs/provisioning/provisioningObjectSummaryIdValue"
+	actual := NewAuditLogProvisioningID("provisioningObjectSummaryId").ID()
+	expected := "/auditLogs/provisioning/provisioningObjectSummaryId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -50,14 +50,14 @@ func TestParseAuditLogProvisioningID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/auditLogs/provisioning/provisioningObjectSummaryIdValue",
+			Input: "/auditLogs/provisioning/provisioningObjectSummaryId",
 			Expected: &AuditLogProvisioningId{
-				ProvisioningObjectSummaryId: "provisioningObjectSummaryIdValue",
+				ProvisioningObjectSummaryId: "provisioningObjectSummaryId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/auditLogs/provisioning/provisioningObjectSummaryIdValue/extra",
+			Input: "/auditLogs/provisioning/provisioningObjectSummaryId/extra",
 			Error: true,
 		},
 	}
@@ -116,26 +116,26 @@ func TestParseAuditLogProvisioningIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/auditLogs/provisioning/provisioningObjectSummaryIdValue",
+			Input: "/auditLogs/provisioning/provisioningObjectSummaryId",
 			Expected: &AuditLogProvisioningId{
-				ProvisioningObjectSummaryId: "provisioningObjectSummaryIdValue",
+				ProvisioningObjectSummaryId: "provisioningObjectSummaryId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/auditLogs/provisioning/provisioningObjectSummaryIdValue/extra",
+			Input: "/auditLogs/provisioning/provisioningObjectSummaryId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/aUdItLoGs/pRoViSiOnInG/pRoViSiOnInGoBjEcTsUmMaRyIdVaLuE",
+			Input: "/aUdItLoGs/pRoViSiOnInG/pRoViSiOnInGoBjEcTsUmMaRyId",
 			Expected: &AuditLogProvisioningId{
-				ProvisioningObjectSummaryId: "pRoViSiOnInGoBjEcTsUmMaRyIdVaLuE",
+				ProvisioningObjectSummaryId: "pRoViSiOnInGoBjEcTsUmMaRyId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/aUdItLoGs/pRoViSiOnInG/pRoViSiOnInGoBjEcTsUmMaRyIdVaLuE/extra",
+			Input: "/aUdItLoGs/pRoViSiOnInG/pRoViSiOnInGoBjEcTsUmMaRyId/extra",
 			Error: true,
 		},
 	}

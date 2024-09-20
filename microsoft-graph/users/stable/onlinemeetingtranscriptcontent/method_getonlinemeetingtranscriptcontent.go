@@ -19,18 +19,47 @@ type GetOnlineMeetingTranscriptContentOperationResponse struct {
 	Model        *[]byte
 }
 
+type GetOnlineMeetingTranscriptContentOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultGetOnlineMeetingTranscriptContentOperationOptions() GetOnlineMeetingTranscriptContentOperationOptions {
+	return GetOnlineMeetingTranscriptContentOperationOptions{}
+}
+
+func (o GetOnlineMeetingTranscriptContentOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o GetOnlineMeetingTranscriptContentOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o GetOnlineMeetingTranscriptContentOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // GetOnlineMeetingTranscriptContent - Get callTranscript. Retrieve a callTranscript object associated with a scheduled
 // onlineMeeting. This API doesn't support getting call transcripts from channel meetings. Retrieving the transcript
 // returns the metadata of the single transcript associated with the online meeting. Retrieving the content of the
 // transcript returns the stream of text associated with the transcript.
-func (c OnlineMeetingTranscriptContentClient) GetOnlineMeetingTranscriptContent(ctx context.Context, id stable.UserIdOnlineMeetingIdTranscriptId) (result GetOnlineMeetingTranscriptContentOperationResponse, err error) {
+func (c OnlineMeetingTranscriptContentClient) GetOnlineMeetingTranscriptContent(ctx context.Context, id stable.UserIdOnlineMeetingIdTranscriptId, options GetOnlineMeetingTranscriptContentOperationOptions) (result GetOnlineMeetingTranscriptContentOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/octet-stream",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/content", id.ID()),
+		HttpMethod:    http.MethodGet,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/content", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

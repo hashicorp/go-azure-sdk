@@ -19,8 +19,9 @@ type GetLifecycleWorkflowExecutionScopeOperationResponse struct {
 }
 
 type GetLifecycleWorkflowExecutionScopeOperationOptions struct {
-	Expand *odata.Expand
-	Select *[]string
+	Expand   *odata.Expand
+	Metadata *odata.Metadata
+	Select   *[]string
 }
 
 func DefaultGetLifecycleWorkflowExecutionScopeOperationOptions() GetLifecycleWorkflowExecutionScopeOperationOptions {
@@ -37,6 +38,9 @@ func (o GetLifecycleWorkflowExecutionScopeOperationOptions) ToOData() *odata.Que
 	out := odata.Query{}
 	if o.Expand != nil {
 		out.Expand = *o.Expand
+	}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
 	}
 	if o.Select != nil {
 		out.Select = *o.Select

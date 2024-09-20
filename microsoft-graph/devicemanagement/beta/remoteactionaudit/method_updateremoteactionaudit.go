@@ -17,15 +17,44 @@ type UpdateRemoteActionAuditOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateRemoteActionAuditOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateRemoteActionAuditOperationOptions() UpdateRemoteActionAuditOperationOptions {
+	return UpdateRemoteActionAuditOperationOptions{}
+}
+
+func (o UpdateRemoteActionAuditOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateRemoteActionAuditOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateRemoteActionAuditOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateRemoteActionAudit - Update the navigation property remoteActionAudits in deviceManagement
-func (c RemoteActionAuditClient) UpdateRemoteActionAudit(ctx context.Context, id beta.DeviceManagementRemoteActionAuditId, input beta.RemoteActionAudit) (result UpdateRemoteActionAuditOperationResponse, err error) {
+func (c RemoteActionAuditClient) UpdateRemoteActionAudit(ctx context.Context, id beta.DeviceManagementRemoteActionAuditId, input beta.RemoteActionAudit, options UpdateRemoteActionAuditOperationOptions) (result UpdateRemoteActionAuditOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

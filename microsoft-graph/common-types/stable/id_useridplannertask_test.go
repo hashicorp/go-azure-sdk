@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &UserIdPlannerTaskId{}
 
 func TestNewUserIdPlannerTaskID(t *testing.T) {
-	id := NewUserIdPlannerTaskID("userIdValue", "plannerTaskIdValue")
+	id := NewUserIdPlannerTaskID("userId", "plannerTaskId")
 
-	if id.UserId != "userIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'UserId'", id.UserId, "userIdValue")
+	if id.UserId != "userId" {
+		t.Fatalf("Expected %q but got %q for Segment 'UserId'", id.UserId, "userId")
 	}
 
-	if id.PlannerTaskId != "plannerTaskIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'PlannerTaskId'", id.PlannerTaskId, "plannerTaskIdValue")
+	if id.PlannerTaskId != "plannerTaskId" {
+		t.Fatalf("Expected %q but got %q for Segment 'PlannerTaskId'", id.PlannerTaskId, "plannerTaskId")
 	}
 }
 
 func TestFormatUserIdPlannerTaskID(t *testing.T) {
-	actual := NewUserIdPlannerTaskID("userIdValue", "plannerTaskIdValue").ID()
-	expected := "/users/userIdValue/planner/tasks/plannerTaskIdValue"
+	actual := NewUserIdPlannerTaskID("userId", "plannerTaskId").ID()
+	expected := "/users/userId/planner/tasks/plannerTaskId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -49,30 +49,30 @@ func TestParseUserIdPlannerTaskID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue",
+			Input: "/users/userId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/planner",
+			Input: "/users/userId/planner",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/planner/tasks",
+			Input: "/users/userId/planner/tasks",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/users/userIdValue/planner/tasks/plannerTaskIdValue",
+			Input: "/users/userId/planner/tasks/plannerTaskId",
 			Expected: &UserIdPlannerTaskId{
-				UserId:        "userIdValue",
-				PlannerTaskId: "plannerTaskIdValue",
+				UserId:        "userId",
+				PlannerTaskId: "plannerTaskId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/users/userIdValue/planner/tasks/plannerTaskIdValue/extra",
+			Input: "/users/userId/planner/tasks/plannerTaskId/extra",
 			Error: true,
 		},
 	}
@@ -125,58 +125,58 @@ func TestParseUserIdPlannerTaskIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue",
+			Input: "/users/userId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe",
+			Input: "/uSeRs/uSeRiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/planner",
+			Input: "/users/userId/planner",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/pLaNnEr",
+			Input: "/uSeRs/uSeRiD/pLaNnEr",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/planner/tasks",
+			Input: "/users/userId/planner/tasks",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/pLaNnEr/tAsKs",
+			Input: "/uSeRs/uSeRiD/pLaNnEr/tAsKs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/users/userIdValue/planner/tasks/plannerTaskIdValue",
+			Input: "/users/userId/planner/tasks/plannerTaskId",
 			Expected: &UserIdPlannerTaskId{
-				UserId:        "userIdValue",
-				PlannerTaskId: "plannerTaskIdValue",
+				UserId:        "userId",
+				PlannerTaskId: "plannerTaskId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/users/userIdValue/planner/tasks/plannerTaskIdValue/extra",
+			Input: "/users/userId/planner/tasks/plannerTaskId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/pLaNnEr/tAsKs/pLaNnErTaSkIdVaLuE",
+			Input: "/uSeRs/uSeRiD/pLaNnEr/tAsKs/pLaNnErTaSkId",
 			Expected: &UserIdPlannerTaskId{
-				UserId:        "uSeRiDvAlUe",
-				PlannerTaskId: "pLaNnErTaSkIdVaLuE",
+				UserId:        "uSeRiD",
+				PlannerTaskId: "pLaNnErTaSkId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/pLaNnEr/tAsKs/pLaNnErTaSkIdVaLuE/extra",
+			Input: "/uSeRs/uSeRiD/pLaNnEr/tAsKs/pLaNnErTaSkId/extra",
 			Error: true,
 		},
 	}

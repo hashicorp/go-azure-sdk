@@ -19,7 +19,8 @@ type DeleteExchangeResourceNamespaceOperationResponse struct {
 }
 
 type DeleteExchangeResourceNamespaceOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteExchangeResourceNamespaceOperationOptions() DeleteExchangeResourceNamespaceOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteExchangeResourceNamespaceOperationOptions) ToHeaders() *client.Hea
 
 func (o DeleteExchangeResourceNamespaceOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

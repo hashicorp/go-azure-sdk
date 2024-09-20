@@ -18,15 +18,44 @@ type EnableManagedDeviceLostModeOperationResponse struct {
 	OData        *odata.OData
 }
 
+type EnableManagedDeviceLostModeOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultEnableManagedDeviceLostModeOperationOptions() EnableManagedDeviceLostModeOperationOptions {
+	return EnableManagedDeviceLostModeOperationOptions{}
+}
+
+func (o EnableManagedDeviceLostModeOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o EnableManagedDeviceLostModeOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o EnableManagedDeviceLostModeOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // EnableManagedDeviceLostMode - Invoke action enableLostMode. Enable lost mode
-func (c ManagedDeviceClient) EnableManagedDeviceLostMode(ctx context.Context, id beta.MeManagedDeviceId, input EnableManagedDeviceLostModeRequest) (result EnableManagedDeviceLostModeOperationResponse, err error) {
+func (c ManagedDeviceClient) EnableManagedDeviceLostMode(ctx context.Context, id beta.MeManagedDeviceId, input EnableManagedDeviceLostModeRequest, options EnableManagedDeviceLostModeOperationOptions) (result EnableManagedDeviceLostModeOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/enableLostMode", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/enableLostMode", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

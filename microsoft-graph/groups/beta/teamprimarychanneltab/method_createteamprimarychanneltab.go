@@ -19,15 +19,44 @@ type CreateTeamPrimaryChannelTabOperationResponse struct {
 	Model        *beta.TeamsTab
 }
 
+type CreateTeamPrimaryChannelTabOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateTeamPrimaryChannelTabOperationOptions() CreateTeamPrimaryChannelTabOperationOptions {
+	return CreateTeamPrimaryChannelTabOperationOptions{}
+}
+
+func (o CreateTeamPrimaryChannelTabOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateTeamPrimaryChannelTabOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateTeamPrimaryChannelTabOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateTeamPrimaryChannelTab - Create new navigation property to tabs for groups
-func (c TeamPrimaryChannelTabClient) CreateTeamPrimaryChannelTab(ctx context.Context, id beta.GroupId, input beta.TeamsTab) (result CreateTeamPrimaryChannelTabOperationResponse, err error) {
+func (c TeamPrimaryChannelTabClient) CreateTeamPrimaryChannelTab(ctx context.Context, id beta.GroupId, input beta.TeamsTab, options CreateTeamPrimaryChannelTabOperationOptions) (result CreateTeamPrimaryChannelTabOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/team/primaryChannel/tabs", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/team/primaryChannel/tabs", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

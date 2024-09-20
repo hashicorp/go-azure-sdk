@@ -19,15 +19,44 @@ type CreateDirectoryObjectOperationResponse struct {
 	Model        beta.DirectoryObject
 }
 
+type CreateDirectoryObjectOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateDirectoryObjectOperationOptions() CreateDirectoryObjectOperationOptions {
+	return CreateDirectoryObjectOperationOptions{}
+}
+
+func (o CreateDirectoryObjectOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateDirectoryObjectOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateDirectoryObjectOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateDirectoryObject - Add new entity to directoryObjects
-func (c DirectoryObjectClient) CreateDirectoryObject(ctx context.Context, input beta.DirectoryObject) (result CreateDirectoryObjectOperationResponse, err error) {
+func (c DirectoryObjectClient) CreateDirectoryObject(ctx context.Context, input beta.DirectoryObject, options CreateDirectoryObjectOperationOptions) (result CreateDirectoryObjectOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/directoryObjects",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/directoryObjects",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

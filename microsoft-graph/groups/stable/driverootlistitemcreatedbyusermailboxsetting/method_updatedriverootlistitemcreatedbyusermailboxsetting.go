@@ -18,15 +18,44 @@ type UpdateDriveRootListItemCreatedByUserMailboxSettingOperationResponse struct 
 	OData        *odata.OData
 }
 
+type UpdateDriveRootListItemCreatedByUserMailboxSettingOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateDriveRootListItemCreatedByUserMailboxSettingOperationOptions() UpdateDriveRootListItemCreatedByUserMailboxSettingOperationOptions {
+	return UpdateDriveRootListItemCreatedByUserMailboxSettingOperationOptions{}
+}
+
+func (o UpdateDriveRootListItemCreatedByUserMailboxSettingOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateDriveRootListItemCreatedByUserMailboxSettingOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateDriveRootListItemCreatedByUserMailboxSettingOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateDriveRootListItemCreatedByUserMailboxSetting - Update property mailboxSettings value.
-func (c DriveRootListItemCreatedByUserMailboxSettingClient) UpdateDriveRootListItemCreatedByUserMailboxSetting(ctx context.Context, id stable.GroupIdDriveId, input stable.MailboxSettings) (result UpdateDriveRootListItemCreatedByUserMailboxSettingOperationResponse, err error) {
+func (c DriveRootListItemCreatedByUserMailboxSettingClient) UpdateDriveRootListItemCreatedByUserMailboxSetting(ctx context.Context, id stable.GroupIdDriveId, input stable.MailboxSettings, options UpdateDriveRootListItemCreatedByUserMailboxSettingOperationOptions) (result UpdateDriveRootListItemCreatedByUserMailboxSettingOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       fmt.Sprintf("%s/root/listItem/createdByUser/mailboxSettings", id.ID()),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/root/listItem/createdByUser/mailboxSettings", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

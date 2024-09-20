@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &DeviceManagementWindowsQualityUpdatePolicyId{}
 
 func TestNewDeviceManagementWindowsQualityUpdatePolicyID(t *testing.T) {
-	id := NewDeviceManagementWindowsQualityUpdatePolicyID("windowsQualityUpdatePolicyIdValue")
+	id := NewDeviceManagementWindowsQualityUpdatePolicyID("windowsQualityUpdatePolicyId")
 
-	if id.WindowsQualityUpdatePolicyId != "windowsQualityUpdatePolicyIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'WindowsQualityUpdatePolicyId'", id.WindowsQualityUpdatePolicyId, "windowsQualityUpdatePolicyIdValue")
+	if id.WindowsQualityUpdatePolicyId != "windowsQualityUpdatePolicyId" {
+		t.Fatalf("Expected %q but got %q for Segment 'WindowsQualityUpdatePolicyId'", id.WindowsQualityUpdatePolicyId, "windowsQualityUpdatePolicyId")
 	}
 }
 
 func TestFormatDeviceManagementWindowsQualityUpdatePolicyID(t *testing.T) {
-	actual := NewDeviceManagementWindowsQualityUpdatePolicyID("windowsQualityUpdatePolicyIdValue").ID()
-	expected := "/deviceManagement/windowsQualityUpdatePolicies/windowsQualityUpdatePolicyIdValue"
+	actual := NewDeviceManagementWindowsQualityUpdatePolicyID("windowsQualityUpdatePolicyId").ID()
+	expected := "/deviceManagement/windowsQualityUpdatePolicies/windowsQualityUpdatePolicyId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -50,14 +50,14 @@ func TestParseDeviceManagementWindowsQualityUpdatePolicyID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/windowsQualityUpdatePolicies/windowsQualityUpdatePolicyIdValue",
+			Input: "/deviceManagement/windowsQualityUpdatePolicies/windowsQualityUpdatePolicyId",
 			Expected: &DeviceManagementWindowsQualityUpdatePolicyId{
-				WindowsQualityUpdatePolicyId: "windowsQualityUpdatePolicyIdValue",
+				WindowsQualityUpdatePolicyId: "windowsQualityUpdatePolicyId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/windowsQualityUpdatePolicies/windowsQualityUpdatePolicyIdValue/extra",
+			Input: "/deviceManagement/windowsQualityUpdatePolicies/windowsQualityUpdatePolicyId/extra",
 			Error: true,
 		},
 	}
@@ -116,26 +116,26 @@ func TestParseDeviceManagementWindowsQualityUpdatePolicyIDInsensitively(t *testi
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/windowsQualityUpdatePolicies/windowsQualityUpdatePolicyIdValue",
+			Input: "/deviceManagement/windowsQualityUpdatePolicies/windowsQualityUpdatePolicyId",
 			Expected: &DeviceManagementWindowsQualityUpdatePolicyId{
-				WindowsQualityUpdatePolicyId: "windowsQualityUpdatePolicyIdValue",
+				WindowsQualityUpdatePolicyId: "windowsQualityUpdatePolicyId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/windowsQualityUpdatePolicies/windowsQualityUpdatePolicyIdValue/extra",
+			Input: "/deviceManagement/windowsQualityUpdatePolicies/windowsQualityUpdatePolicyId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/wInDoWsQuAlItYuPdAtEpOlIcIeS/wInDoWsQuAlItYuPdAtEpOlIcYiDvAlUe",
+			Input: "/dEvIcEmAnAgEmEnT/wInDoWsQuAlItYuPdAtEpOlIcIeS/wInDoWsQuAlItYuPdAtEpOlIcYiD",
 			Expected: &DeviceManagementWindowsQualityUpdatePolicyId{
-				WindowsQualityUpdatePolicyId: "wInDoWsQuAlItYuPdAtEpOlIcYiDvAlUe",
+				WindowsQualityUpdatePolicyId: "wInDoWsQuAlItYuPdAtEpOlIcYiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/wInDoWsQuAlItYuPdAtEpOlIcIeS/wInDoWsQuAlItYuPdAtEpOlIcYiDvAlUe/extra",
+			Input: "/dEvIcEmAnAgEmEnT/wInDoWsQuAlItYuPdAtEpOlIcIeS/wInDoWsQuAlItYuPdAtEpOlIcYiD/extra",
 			Error: true,
 		},
 	}

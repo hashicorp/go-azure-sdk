@@ -17,15 +17,44 @@ type GetReportsConfigurationPoliciesReportForDeviceOperationResponse struct {
 	Model        *[]byte
 }
 
+type GetReportsConfigurationPoliciesReportForDeviceOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultGetReportsConfigurationPoliciesReportForDeviceOperationOptions() GetReportsConfigurationPoliciesReportForDeviceOperationOptions {
+	return GetReportsConfigurationPoliciesReportForDeviceOperationOptions{}
+}
+
+func (o GetReportsConfigurationPoliciesReportForDeviceOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o GetReportsConfigurationPoliciesReportForDeviceOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o GetReportsConfigurationPoliciesReportForDeviceOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // GetReportsConfigurationPoliciesReportForDevice - Invoke action getConfigurationPoliciesReportForDevice
-func (c ReportClient) GetReportsConfigurationPoliciesReportForDevice(ctx context.Context, input GetReportsConfigurationPoliciesReportForDeviceRequest) (result GetReportsConfigurationPoliciesReportForDeviceOperationResponse, err error) {
+func (c ReportClient) GetReportsConfigurationPoliciesReportForDevice(ctx context.Context, input GetReportsConfigurationPoliciesReportForDeviceRequest, options GetReportsConfigurationPoliciesReportForDeviceOperationOptions) (result GetReportsConfigurationPoliciesReportForDeviceOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/octet-stream",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/deviceManagement/reports/getConfigurationPoliciesReportForDevice",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/deviceManagement/reports/getConfigurationPoliciesReportForDevice",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

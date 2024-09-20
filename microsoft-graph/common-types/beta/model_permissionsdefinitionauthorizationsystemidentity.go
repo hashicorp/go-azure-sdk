@@ -27,10 +27,15 @@ type PermissionsDefinitionAuthorizationSystemIdentity struct {
 var _ json.Unmarshaler = &PermissionsDefinitionAuthorizationSystemIdentity{}
 
 func (s *PermissionsDefinitionAuthorizationSystemIdentity) UnmarshalJSON(bytes []byte) error {
-	type alias PermissionsDefinitionAuthorizationSystemIdentity
-	var decoded alias
+
+	var decoded struct {
+		ExternalId   *string                            `json:"externalId,omitempty"`
+		IdentityType *PermissionsDefinitionIdentityType `json:"identityType,omitempty"`
+		ODataId      *string                            `json:"@odata.id,omitempty"`
+		ODataType    *string                            `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into PermissionsDefinitionAuthorizationSystemIdentity: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.ExternalId = decoded.ExternalId
@@ -50,5 +55,6 @@ func (s *PermissionsDefinitionAuthorizationSystemIdentity) UnmarshalJSON(bytes [
 		}
 		s.Source = impl
 	}
+
 	return nil
 }

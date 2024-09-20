@@ -17,15 +17,44 @@ type UpdateAppConsentRequestsForApprovalUserApprovalStepOperationResponse struct
 	OData        *odata.OData
 }
 
+type UpdateAppConsentRequestsForApprovalUserApprovalStepOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateAppConsentRequestsForApprovalUserApprovalStepOperationOptions() UpdateAppConsentRequestsForApprovalUserApprovalStepOperationOptions {
+	return UpdateAppConsentRequestsForApprovalUserApprovalStepOperationOptions{}
+}
+
+func (o UpdateAppConsentRequestsForApprovalUserApprovalStepOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateAppConsentRequestsForApprovalUserApprovalStepOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateAppConsentRequestsForApprovalUserApprovalStepOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateAppConsentRequestsForApprovalUserApprovalStep - Update the navigation property steps in users
-func (c AppConsentRequestsForApprovalUserConsentRequestApprovalStepClient) UpdateAppConsentRequestsForApprovalUserApprovalStep(ctx context.Context, id beta.UserIdAppConsentRequestsForApprovalIdUserConsentRequestIdApprovalStepId, input beta.ApprovalStep) (result UpdateAppConsentRequestsForApprovalUserApprovalStepOperationResponse, err error) {
+func (c AppConsentRequestsForApprovalUserConsentRequestApprovalStepClient) UpdateAppConsentRequestsForApprovalUserApprovalStep(ctx context.Context, id beta.UserIdAppConsentRequestsForApprovalIdUserConsentRequestIdApprovalStepId, input beta.ApprovalStep, options UpdateAppConsentRequestsForApprovalUserApprovalStepOperationOptions) (result UpdateAppConsentRequestsForApprovalUserApprovalStepOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -18,16 +18,45 @@ type AddMobileDeviceManagementPolicyIncludedGroupRefOperationResponse struct {
 	OData        *odata.OData
 }
 
+type AddMobileDeviceManagementPolicyIncludedGroupRefOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultAddMobileDeviceManagementPolicyIncludedGroupRefOperationOptions() AddMobileDeviceManagementPolicyIncludedGroupRefOperationOptions {
+	return AddMobileDeviceManagementPolicyIncludedGroupRefOperationOptions{}
+}
+
+func (o AddMobileDeviceManagementPolicyIncludedGroupRefOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o AddMobileDeviceManagementPolicyIncludedGroupRefOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o AddMobileDeviceManagementPolicyIncludedGroupRefOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // AddMobileDeviceManagementPolicyIncludedGroupRef - Add includedGroups. Add groups to be included in a mobile app
 // management policy.
-func (c MobileDeviceManagementPolicyIncludedGroupClient) AddMobileDeviceManagementPolicyIncludedGroupRef(ctx context.Context, id beta.PolicyMobileDeviceManagementPolicyId, input beta.ReferenceCreate) (result AddMobileDeviceManagementPolicyIncludedGroupRefOperationResponse, err error) {
+func (c MobileDeviceManagementPolicyIncludedGroupClient) AddMobileDeviceManagementPolicyIncludedGroupRef(ctx context.Context, id beta.PolicyMobileDeviceManagementPolicyId, input beta.ReferenceCreate, options AddMobileDeviceManagementPolicyIncludedGroupRefOperationOptions) (result AddMobileDeviceManagementPolicyIncludedGroupRefOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/includedGroups/$ref", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/includedGroups/$ref", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

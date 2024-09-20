@@ -18,16 +18,45 @@ type SetDriveItemListItemActivityContentStreamOperationResponse struct {
 	OData        *odata.OData
 }
 
+type SetDriveItemListItemActivityContentStreamOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultSetDriveItemListItemActivityContentStreamOperationOptions() SetDriveItemListItemActivityContentStreamOperationOptions {
+	return SetDriveItemListItemActivityContentStreamOperationOptions{}
+}
+
+func (o SetDriveItemListItemActivityContentStreamOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o SetDriveItemListItemActivityContentStreamOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o SetDriveItemListItemActivityContentStreamOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // SetDriveItemListItemActivityContentStream - Update contentStream for the navigation property driveItem in groups. The
 // content stream, if the item represents a file.
-func (c DriveItemListItemActivityDriveItemContentStreamClient) SetDriveItemListItemActivityContentStream(ctx context.Context, id beta.GroupIdDriveIdItemIdListItemActivityId, input []byte) (result SetDriveItemListItemActivityContentStreamOperationResponse, err error) {
+func (c DriveItemListItemActivityDriveItemContentStreamClient) SetDriveItemListItemActivityContentStream(ctx context.Context, id beta.GroupIdDriveIdItemIdListItemActivityId, input []byte, options SetDriveItemListItemActivityContentStreamOperationOptions) (result SetDriveItemListItemActivityContentStreamOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPut,
-		Path:       fmt.Sprintf("%s/driveItem/contentStream", id.ID()),
+		HttpMethod:    http.MethodPut,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/driveItem/contentStream", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

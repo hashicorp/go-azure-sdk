@@ -17,16 +17,45 @@ type GetReportsWindowsQualityUpdateAlertsPerPolicyPerDeviceReportOperationRespon
 	Model        *[]byte
 }
 
+type GetReportsWindowsQualityUpdateAlertsPerPolicyPerDeviceReportOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultGetReportsWindowsQualityUpdateAlertsPerPolicyPerDeviceReportOperationOptions() GetReportsWindowsQualityUpdateAlertsPerPolicyPerDeviceReportOperationOptions {
+	return GetReportsWindowsQualityUpdateAlertsPerPolicyPerDeviceReportOperationOptions{}
+}
+
+func (o GetReportsWindowsQualityUpdateAlertsPerPolicyPerDeviceReportOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o GetReportsWindowsQualityUpdateAlertsPerPolicyPerDeviceReportOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o GetReportsWindowsQualityUpdateAlertsPerPolicyPerDeviceReportOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // GetReportsWindowsQualityUpdateAlertsPerPolicyPerDeviceReport - Invoke action
 // getWindowsQualityUpdateAlertsPerPolicyPerDeviceReport
-func (c ReportClient) GetReportsWindowsQualityUpdateAlertsPerPolicyPerDeviceReport(ctx context.Context, input GetReportsWindowsQualityUpdateAlertsPerPolicyPerDeviceReportRequest) (result GetReportsWindowsQualityUpdateAlertsPerPolicyPerDeviceReportOperationResponse, err error) {
+func (c ReportClient) GetReportsWindowsQualityUpdateAlertsPerPolicyPerDeviceReport(ctx context.Context, input GetReportsWindowsQualityUpdateAlertsPerPolicyPerDeviceReportRequest, options GetReportsWindowsQualityUpdateAlertsPerPolicyPerDeviceReportOperationOptions) (result GetReportsWindowsQualityUpdateAlertsPerPolicyPerDeviceReportOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/octet-stream",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/deviceManagement/reports/getWindowsQualityUpdateAlertsPerPolicyPerDeviceReport",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/deviceManagement/reports/getWindowsQualityUpdateAlertsPerPolicyPerDeviceReport",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

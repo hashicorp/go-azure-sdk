@@ -16,15 +16,44 @@ type EnableTenantAttachRBACOperationResponse struct {
 	OData        *odata.OData
 }
 
+type EnableTenantAttachRBACOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultEnableTenantAttachRBACOperationOptions() EnableTenantAttachRBACOperationOptions {
+	return EnableTenantAttachRBACOperationOptions{}
+}
+
+func (o EnableTenantAttachRBACOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o EnableTenantAttachRBACOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o EnableTenantAttachRBACOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // EnableTenantAttachRBAC - Invoke action enable
-func (c TenantAttachRBACClient) EnableTenantAttachRBAC(ctx context.Context, input EnableTenantAttachRBACRequest) (result EnableTenantAttachRBACOperationResponse, err error) {
+func (c TenantAttachRBACClient) EnableTenantAttachRBAC(ctx context.Context, input EnableTenantAttachRBACRequest, options EnableTenantAttachRBACOperationOptions) (result EnableTenantAttachRBACOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/deviceManagement/tenantAttachRBAC/enable",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/deviceManagement/tenantAttachRBAC/enable",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

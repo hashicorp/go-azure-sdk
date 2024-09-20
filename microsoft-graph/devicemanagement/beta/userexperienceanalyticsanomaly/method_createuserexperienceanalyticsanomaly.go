@@ -18,16 +18,45 @@ type CreateUserExperienceAnalyticsAnomalyOperationResponse struct {
 	Model        *beta.UserExperienceAnalyticsAnomaly
 }
 
+type CreateUserExperienceAnalyticsAnomalyOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateUserExperienceAnalyticsAnomalyOperationOptions() CreateUserExperienceAnalyticsAnomalyOperationOptions {
+	return CreateUserExperienceAnalyticsAnomalyOperationOptions{}
+}
+
+func (o CreateUserExperienceAnalyticsAnomalyOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateUserExperienceAnalyticsAnomalyOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateUserExperienceAnalyticsAnomalyOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateUserExperienceAnalyticsAnomaly - Create new navigation property to userExperienceAnalyticsAnomaly for
 // deviceManagement
-func (c UserExperienceAnalyticsAnomalyClient) CreateUserExperienceAnalyticsAnomaly(ctx context.Context, input beta.UserExperienceAnalyticsAnomaly) (result CreateUserExperienceAnalyticsAnomalyOperationResponse, err error) {
+func (c UserExperienceAnalyticsAnomalyClient) CreateUserExperienceAnalyticsAnomaly(ctx context.Context, input beta.UserExperienceAnalyticsAnomaly, options CreateUserExperienceAnalyticsAnomalyOperationOptions) (result CreateUserExperienceAnalyticsAnomalyOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/deviceManagement/userExperienceAnalyticsAnomaly",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/deviceManagement/userExperienceAnalyticsAnomaly",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

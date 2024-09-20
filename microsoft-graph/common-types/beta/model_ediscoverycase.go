@@ -116,10 +116,29 @@ func (s EdiscoveryCase) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &EdiscoveryCase{}
 
 func (s *EdiscoveryCase) UnmarshalJSON(bytes []byte) error {
-	type alias EdiscoveryCase
-	var decoded alias
+
+	var decoded struct {
+		ClosedDateTime          nullable.Type[string]               `json:"closedDateTime,omitempty"`
+		CreatedDateTime         nullable.Type[string]               `json:"createdDateTime,omitempty"`
+		Custodians              *[]EdiscoveryCustodian              `json:"custodians,omitempty"`
+		Description             nullable.Type[string]               `json:"description,omitempty"`
+		DisplayName             nullable.Type[string]               `json:"displayName,omitempty"`
+		ExternalId              nullable.Type[string]               `json:"externalId,omitempty"`
+		LastModifiedDateTime    nullable.Type[string]               `json:"lastModifiedDateTime,omitempty"`
+		LegalHolds              *[]EdiscoveryLegalHold              `json:"legalHolds,omitempty"`
+		NoncustodialDataSources *[]EdiscoveryNoncustodialDataSource `json:"noncustodialDataSources,omitempty"`
+		Operations              *[]EdiscoveryCaseOperation          `json:"operations,omitempty"`
+		ReviewSets              *[]EdiscoveryReviewSet              `json:"reviewSets,omitempty"`
+		Settings                *EdiscoveryCaseSettings             `json:"settings,omitempty"`
+		SourceCollections       *[]EdiscoverySourceCollection       `json:"sourceCollections,omitempty"`
+		Status                  *EdiscoveryCaseStatus               `json:"status,omitempty"`
+		Tags                    *[]EdiscoveryTag                    `json:"tags,omitempty"`
+		Id                      *string                             `json:"id,omitempty"`
+		ODataId                 *string                             `json:"@odata.id,omitempty"`
+		ODataType               *string                             `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into EdiscoveryCase: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.ClosedDateTime = decoded.ClosedDateTime
@@ -128,17 +147,17 @@ func (s *EdiscoveryCase) UnmarshalJSON(bytes []byte) error {
 	s.Description = decoded.Description
 	s.DisplayName = decoded.DisplayName
 	s.ExternalId = decoded.ExternalId
-	s.Id = decoded.Id
 	s.LastModifiedDateTime = decoded.LastModifiedDateTime
 	s.LegalHolds = decoded.LegalHolds
 	s.NoncustodialDataSources = decoded.NoncustodialDataSources
-	s.ODataId = decoded.ODataId
-	s.ODataType = decoded.ODataType
 	s.ReviewSets = decoded.ReviewSets
 	s.Settings = decoded.Settings
 	s.SourceCollections = decoded.SourceCollections
 	s.Status = decoded.Status
 	s.Tags = decoded.Tags
+	s.Id = decoded.Id
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -177,5 +196,6 @@ func (s *EdiscoveryCase) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Operations = &output
 	}
+
 	return nil
 }

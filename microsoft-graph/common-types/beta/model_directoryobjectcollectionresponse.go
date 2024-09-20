@@ -65,16 +65,22 @@ func (s DirectoryObjectCollectionResponse) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &DirectoryObjectCollectionResponse{}
 
 func (s *DirectoryObjectCollectionResponse) UnmarshalJSON(bytes []byte) error {
-	type alias DirectoryObjectCollectionResponse
-	var decoded alias
+
+	var decoded struct {
+		Value           *[]DirectoryObject    `json:"value,omitempty"`
+		Value_ODataBind *[]string             `json:"value@odata.bind,omitempty"`
+		ODataId         *string               `json:"@odata.id,omitempty"`
+		ODataNextLink   nullable.Type[string] `json:"@odata.nextLink,omitempty"`
+		ODataType       *string               `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into DirectoryObjectCollectionResponse: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
+	s.Value_ODataBind = decoded.Value_ODataBind
 	s.ODataId = decoded.ODataId
 	s.ODataNextLink = decoded.ODataNextLink
 	s.ODataType = decoded.ODataType
-	s.Value_ODataBind = decoded.Value_ODataBind
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -97,5 +103,6 @@ func (s *DirectoryObjectCollectionResponse) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Value = &output
 	}
+
 	return nil
 }

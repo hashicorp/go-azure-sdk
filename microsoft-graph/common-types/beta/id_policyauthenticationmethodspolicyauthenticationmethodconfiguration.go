@@ -94,7 +94,7 @@ func (id PolicyAuthenticationMethodsPolicyAuthenticationMethodConfigurationId) S
 		resourceids.StaticSegment("policies", "policies", "policies"),
 		resourceids.StaticSegment("authenticationMethodsPolicy", "authenticationMethodsPolicy", "authenticationMethodsPolicy"),
 		resourceids.StaticSegment("authenticationMethodConfigurations", "authenticationMethodConfigurations", "authenticationMethodConfigurations"),
-		resourceids.UserSpecifiedSegment("authenticationMethodConfigurationId", "authenticationMethodConfigurationIdValue"),
+		resourceids.UserSpecifiedSegment("authenticationMethodConfigurationId", "authenticationMethodConfigurationId"),
 	}
 }
 

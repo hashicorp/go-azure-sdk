@@ -19,15 +19,44 @@ type CreateOutlookMasterCategoryOperationResponse struct {
 	Model        *beta.OutlookCategory
 }
 
+type CreateOutlookMasterCategoryOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateOutlookMasterCategoryOperationOptions() CreateOutlookMasterCategoryOperationOptions {
+	return CreateOutlookMasterCategoryOperationOptions{}
+}
+
+func (o CreateOutlookMasterCategoryOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateOutlookMasterCategoryOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateOutlookMasterCategoryOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateOutlookMasterCategory - Create new navigation property to masterCategories for users
-func (c OutlookMasterCategoryClient) CreateOutlookMasterCategory(ctx context.Context, id beta.UserId, input beta.OutlookCategory) (result CreateOutlookMasterCategoryOperationResponse, err error) {
+func (c OutlookMasterCategoryClient) CreateOutlookMasterCategory(ctx context.Context, id beta.UserId, input beta.OutlookCategory, options CreateOutlookMasterCategoryOperationOptions) (result CreateOutlookMasterCategoryOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/outlook/masterCategories", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/outlook/masterCategories", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

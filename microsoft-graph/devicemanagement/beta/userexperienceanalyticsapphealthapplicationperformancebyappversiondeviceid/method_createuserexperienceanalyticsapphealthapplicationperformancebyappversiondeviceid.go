@@ -18,16 +18,45 @@ type CreateUserExperienceAnalyticsAppHealthApplicationPerformanceByAppVersionDev
 	Model        *beta.UserExperienceAnalyticsAppHealthAppPerformanceByAppVersionDeviceId
 }
 
+type CreateUserExperienceAnalyticsAppHealthApplicationPerformanceByAppVersionDeviceIdOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateUserExperienceAnalyticsAppHealthApplicationPerformanceByAppVersionDeviceIdOperationOptions() CreateUserExperienceAnalyticsAppHealthApplicationPerformanceByAppVersionDeviceIdOperationOptions {
+	return CreateUserExperienceAnalyticsAppHealthApplicationPerformanceByAppVersionDeviceIdOperationOptions{}
+}
+
+func (o CreateUserExperienceAnalyticsAppHealthApplicationPerformanceByAppVersionDeviceIdOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateUserExperienceAnalyticsAppHealthApplicationPerformanceByAppVersionDeviceIdOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateUserExperienceAnalyticsAppHealthApplicationPerformanceByAppVersionDeviceIdOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateUserExperienceAnalyticsAppHealthApplicationPerformanceByAppVersionDeviceId - Create new navigation property to
 // userExperienceAnalyticsAppHealthApplicationPerformanceByAppVersionDeviceId for deviceManagement
-func (c UserExperienceAnalyticsAppHealthApplicationPerformanceByAppVersionDeviceIdClient) CreateUserExperienceAnalyticsAppHealthApplicationPerformanceByAppVersionDeviceId(ctx context.Context, input beta.UserExperienceAnalyticsAppHealthAppPerformanceByAppVersionDeviceId) (result CreateUserExperienceAnalyticsAppHealthApplicationPerformanceByAppVersionDeviceIdOperationResponse, err error) {
+func (c UserExperienceAnalyticsAppHealthApplicationPerformanceByAppVersionDeviceIdClient) CreateUserExperienceAnalyticsAppHealthApplicationPerformanceByAppVersionDeviceId(ctx context.Context, input beta.UserExperienceAnalyticsAppHealthAppPerformanceByAppVersionDeviceId, options CreateUserExperienceAnalyticsAppHealthApplicationPerformanceByAppVersionDeviceIdOperationOptions) (result CreateUserExperienceAnalyticsAppHealthApplicationPerformanceByAppVersionDeviceIdOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/deviceManagement/userExperienceAnalyticsAppHealthApplicationPerformanceByAppVersionDeviceId",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/deviceManagement/userExperienceAnalyticsAppHealthApplicationPerformanceByAppVersionDeviceId",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

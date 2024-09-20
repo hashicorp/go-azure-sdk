@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta"
 	"github.com/hashicorp/go-azure-sdk/sdk/client"
 	"github.com/hashicorp/go-azure-sdk/sdk/odata"
 )
@@ -18,7 +19,8 @@ type DeleteExchangeOnPremisesPolicyConditionalAccessSettingOperationResponse str
 }
 
 type DeleteExchangeOnPremisesPolicyConditionalAccessSettingOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteExchangeOnPremisesPolicyConditionalAccessSettingOperationOptions() DeleteExchangeOnPremisesPolicyConditionalAccessSettingOperationOptions {
@@ -35,7 +37,9 @@ func (o DeleteExchangeOnPremisesPolicyConditionalAccessSettingOperationOptions) 
 
 func (o DeleteExchangeOnPremisesPolicyConditionalAccessSettingOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 
@@ -47,7 +51,7 @@ func (o DeleteExchangeOnPremisesPolicyConditionalAccessSettingOperationOptions) 
 
 // DeleteExchangeOnPremisesPolicyConditionalAccessSetting - Delete navigation property conditionalAccessSettings for
 // deviceManagement
-func (c ExchangeOnPremisesPolicyConditionalAccessSettingClient) DeleteExchangeOnPremisesPolicyConditionalAccessSetting(ctx context.Context, options DeleteExchangeOnPremisesPolicyConditionalAccessSettingOperationOptions) (result DeleteExchangeOnPremisesPolicyConditionalAccessSettingOperationResponse, err error) {
+func (c ExchangeOnPremisesPolicyConditionalAccessSettingClient) DeleteExchangeOnPremisesPolicyConditionalAccessSetting(ctx context.Context, id beta.DeviceManagementExchangeOnPremisesPolicyId, options DeleteExchangeOnPremisesPolicyConditionalAccessSettingOperationOptions) (result DeleteExchangeOnPremisesPolicyConditionalAccessSettingOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
@@ -55,7 +59,7 @@ func (c ExchangeOnPremisesPolicyConditionalAccessSettingClient) DeleteExchangeOn
 		},
 		HttpMethod:    http.MethodDelete,
 		OptionsObject: options,
-		Path:          "/deviceManagement/exchangeOnPremisesPolicy/conditionalAccessSettings",
+		Path:          fmt.Sprintf("%s/conditionalAccessSettings", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

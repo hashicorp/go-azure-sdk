@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &UserIdInsightUsedId{}
 
 func TestNewUserIdInsightUsedID(t *testing.T) {
-	id := NewUserIdInsightUsedID("userIdValue", "usedInsightIdValue")
+	id := NewUserIdInsightUsedID("userId", "usedInsightId")
 
-	if id.UserId != "userIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'UserId'", id.UserId, "userIdValue")
+	if id.UserId != "userId" {
+		t.Fatalf("Expected %q but got %q for Segment 'UserId'", id.UserId, "userId")
 	}
 
-	if id.UsedInsightId != "usedInsightIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'UsedInsightId'", id.UsedInsightId, "usedInsightIdValue")
+	if id.UsedInsightId != "usedInsightId" {
+		t.Fatalf("Expected %q but got %q for Segment 'UsedInsightId'", id.UsedInsightId, "usedInsightId")
 	}
 }
 
 func TestFormatUserIdInsightUsedID(t *testing.T) {
-	actual := NewUserIdInsightUsedID("userIdValue", "usedInsightIdValue").ID()
-	expected := "/users/userIdValue/insights/used/usedInsightIdValue"
+	actual := NewUserIdInsightUsedID("userId", "usedInsightId").ID()
+	expected := "/users/userId/insights/used/usedInsightId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -49,30 +49,30 @@ func TestParseUserIdInsightUsedID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue",
+			Input: "/users/userId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/insights",
+			Input: "/users/userId/insights",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/insights/used",
+			Input: "/users/userId/insights/used",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/users/userIdValue/insights/used/usedInsightIdValue",
+			Input: "/users/userId/insights/used/usedInsightId",
 			Expected: &UserIdInsightUsedId{
-				UserId:        "userIdValue",
-				UsedInsightId: "usedInsightIdValue",
+				UserId:        "userId",
+				UsedInsightId: "usedInsightId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/users/userIdValue/insights/used/usedInsightIdValue/extra",
+			Input: "/users/userId/insights/used/usedInsightId/extra",
 			Error: true,
 		},
 	}
@@ -125,58 +125,58 @@ func TestParseUserIdInsightUsedIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue",
+			Input: "/users/userId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe",
+			Input: "/uSeRs/uSeRiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/insights",
+			Input: "/users/userId/insights",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/iNsIgHtS",
+			Input: "/uSeRs/uSeRiD/iNsIgHtS",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/insights/used",
+			Input: "/users/userId/insights/used",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/iNsIgHtS/uSeD",
+			Input: "/uSeRs/uSeRiD/iNsIgHtS/uSeD",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/users/userIdValue/insights/used/usedInsightIdValue",
+			Input: "/users/userId/insights/used/usedInsightId",
 			Expected: &UserIdInsightUsedId{
-				UserId:        "userIdValue",
-				UsedInsightId: "usedInsightIdValue",
+				UserId:        "userId",
+				UsedInsightId: "usedInsightId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/users/userIdValue/insights/used/usedInsightIdValue/extra",
+			Input: "/users/userId/insights/used/usedInsightId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/iNsIgHtS/uSeD/uSeDiNsIgHtIdVaLuE",
+			Input: "/uSeRs/uSeRiD/iNsIgHtS/uSeD/uSeDiNsIgHtId",
 			Expected: &UserIdInsightUsedId{
-				UserId:        "uSeRiDvAlUe",
-				UsedInsightId: "uSeDiNsIgHtIdVaLuE",
+				UserId:        "uSeRiD",
+				UsedInsightId: "uSeDiNsIgHtId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/iNsIgHtS/uSeD/uSeDiNsIgHtIdVaLuE/extra",
+			Input: "/uSeRs/uSeRiD/iNsIgHtS/uSeD/uSeDiNsIgHtId/extra",
 			Error: true,
 		},
 	}

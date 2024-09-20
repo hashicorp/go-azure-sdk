@@ -17,16 +17,45 @@ type UpdateGroupPolicyDefinitionPreviousVersionDefinitionNextPresentationOperati
 	OData        *odata.OData
 }
 
+type UpdateGroupPolicyDefinitionPreviousVersionDefinitionNextPresentationOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateGroupPolicyDefinitionPreviousVersionDefinitionNextPresentationOperationOptions() UpdateGroupPolicyDefinitionPreviousVersionDefinitionNextPresentationOperationOptions {
+	return UpdateGroupPolicyDefinitionPreviousVersionDefinitionNextPresentationOperationOptions{}
+}
+
+func (o UpdateGroupPolicyDefinitionPreviousVersionDefinitionNextPresentationOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateGroupPolicyDefinitionPreviousVersionDefinitionNextPresentationOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateGroupPolicyDefinitionPreviousVersionDefinitionNextPresentationOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateGroupPolicyDefinitionPreviousVersionDefinitionNextPresentation - Update the navigation property presentations
 // in deviceManagement
-func (c GroupPolicyDefinitionPreviousVersionDefinitionNextVersionDefinitionPresentationClient) UpdateGroupPolicyDefinitionPreviousVersionDefinitionNextPresentation(ctx context.Context, id beta.DeviceManagementGroupPolicyDefinitionIdPreviousVersionDefinitionNextVersionDefinitionPresentationId, input beta.GroupPolicyPresentation) (result UpdateGroupPolicyDefinitionPreviousVersionDefinitionNextPresentationOperationResponse, err error) {
+func (c GroupPolicyDefinitionPreviousVersionDefinitionNextVersionDefinitionPresentationClient) UpdateGroupPolicyDefinitionPreviousVersionDefinitionNextPresentation(ctx context.Context, id beta.DeviceManagementGroupPolicyDefinitionIdPreviousVersionDefinitionNextVersionDefinitionPresentationId, input beta.GroupPolicyPresentation, options UpdateGroupPolicyDefinitionPreviousVersionDefinitionNextPresentationOperationOptions) (result UpdateGroupPolicyDefinitionPreviousVersionDefinitionNextPresentationOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

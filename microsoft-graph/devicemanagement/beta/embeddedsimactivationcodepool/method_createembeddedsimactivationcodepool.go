@@ -18,16 +18,45 @@ type CreateEmbeddedSIMActivationCodePoolOperationResponse struct {
 	Model        *beta.EmbeddedSIMActivationCodePool
 }
 
+type CreateEmbeddedSIMActivationCodePoolOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateEmbeddedSIMActivationCodePoolOperationOptions() CreateEmbeddedSIMActivationCodePoolOperationOptions {
+	return CreateEmbeddedSIMActivationCodePoolOperationOptions{}
+}
+
+func (o CreateEmbeddedSIMActivationCodePoolOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateEmbeddedSIMActivationCodePoolOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateEmbeddedSIMActivationCodePoolOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateEmbeddedSIMActivationCodePool - Create new navigation property to embeddedSIMActivationCodePools for
 // deviceManagement
-func (c EmbeddedSIMActivationCodePoolClient) CreateEmbeddedSIMActivationCodePool(ctx context.Context, input beta.EmbeddedSIMActivationCodePool) (result CreateEmbeddedSIMActivationCodePoolOperationResponse, err error) {
+func (c EmbeddedSIMActivationCodePoolClient) CreateEmbeddedSIMActivationCodePool(ctx context.Context, input beta.EmbeddedSIMActivationCodePool, options CreateEmbeddedSIMActivationCodePoolOperationOptions) (result CreateEmbeddedSIMActivationCodePoolOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/deviceManagement/embeddedSIMActivationCodePools",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/deviceManagement/embeddedSIMActivationCodePools",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -19,7 +19,8 @@ type DeleteAuthenticationPhoneMethodOperationResponse struct {
 }
 
 type DeleteAuthenticationPhoneMethodOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteAuthenticationPhoneMethodOperationOptions() DeleteAuthenticationPhoneMethodOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteAuthenticationPhoneMethodOperationOptions) ToHeaders() *client.Hea
 
 func (o DeleteAuthenticationPhoneMethodOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

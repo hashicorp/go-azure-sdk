@@ -17,15 +17,44 @@ type UpdateUserCredentialUsageDetailOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateUserCredentialUsageDetailOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateUserCredentialUsageDetailOperationOptions() UpdateUserCredentialUsageDetailOperationOptions {
+	return UpdateUserCredentialUsageDetailOperationOptions{}
+}
+
+func (o UpdateUserCredentialUsageDetailOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateUserCredentialUsageDetailOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateUserCredentialUsageDetailOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateUserCredentialUsageDetail - Update the navigation property userCredentialUsageDetails in reports
-func (c UserCredentialUsageDetailClient) UpdateUserCredentialUsageDetail(ctx context.Context, id beta.ReportUserCredentialUsageDetailId, input beta.UserCredentialUsageDetails) (result UpdateUserCredentialUsageDetailOperationResponse, err error) {
+func (c UserCredentialUsageDetailClient) UpdateUserCredentialUsageDetail(ctx context.Context, id beta.ReportUserCredentialUsageDetailId, input beta.UserCredentialUsageDetails, options UpdateUserCredentialUsageDetailOperationOptions) (result UpdateUserCredentialUsageDetailOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

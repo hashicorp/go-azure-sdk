@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/microsoft-graph/me/beta/outlooktaskfoldertaskattachment` Documentation
 
-The `outlooktaskfoldertaskattachment` SDK allows for interaction with the Azure Resource Manager Service `me` (API Version `beta`).
+The `outlooktaskfoldertaskattachment` SDK allows for interaction with Microsoft Graph `me` (API Version `beta`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -15,7 +15,7 @@ import "github.com/hashicorp/go-azure-sdk/microsoft-graph/me/beta/outlooktaskfol
 ### Client Initialization
 
 ```go
-client := outlooktaskfoldertaskattachment.NewOutlookTaskFolderTaskAttachmentClientWithBaseURI("https://management.azure.com")
+client := outlooktaskfoldertaskattachment.NewOutlookTaskFolderTaskAttachmentClientWithBaseURI("https://graph.microsoft.com")
 client.Client.Authorizer = authorizer
 ```
 
@@ -24,14 +24,14 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := outlooktaskfoldertaskattachment.NewMeOutlookTaskFolderIdTaskID("outlookTaskFolderIdValue", "outlookTaskIdValue")
+id := outlooktaskfoldertaskattachment.NewMeOutlookTaskFolderIdTaskID("outlookTaskFolderId", "outlookTaskId")
 
 payload := outlooktaskfoldertaskattachment.Attachment{
 	// ...
 }
 
 
-read, err := client.CreateOutlookTaskFolderTaskAttachment(ctx, id, payload)
+read, err := client.CreateOutlookTaskFolderTaskAttachment(ctx, id, payload, outlooktaskfoldertaskattachment.DefaultCreateOutlookTaskFolderTaskAttachmentOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -45,14 +45,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := outlooktaskfoldertaskattachment.NewMeOutlookTaskFolderIdTaskID("outlookTaskFolderIdValue", "outlookTaskIdValue")
+id := outlooktaskfoldertaskattachment.NewMeOutlookTaskFolderIdTaskID("outlookTaskFolderId", "outlookTaskId")
 
 payload := outlooktaskfoldertaskattachment.CreateOutlookTaskFolderTaskAttachmentsUploadSessionRequest{
 	// ...
 }
 
 
-read, err := client.CreateOutlookTaskFolderTaskAttachmentsUploadSession(ctx, id, payload)
+read, err := client.CreateOutlookTaskFolderTaskAttachmentsUploadSession(ctx, id, payload, outlooktaskfoldertaskattachment.DefaultCreateOutlookTaskFolderTaskAttachmentsUploadSessionOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -66,7 +66,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := outlooktaskfoldertaskattachment.NewMeOutlookTaskFolderIdTaskIdAttachmentID("outlookTaskFolderIdValue", "outlookTaskIdValue", "attachmentIdValue")
+id := outlooktaskfoldertaskattachment.NewMeOutlookTaskFolderIdTaskIdAttachmentID("outlookTaskFolderId", "outlookTaskId", "attachmentId")
 
 read, err := client.DeleteOutlookTaskFolderTaskAttachment(ctx, id, outlooktaskfoldertaskattachment.DefaultDeleteOutlookTaskFolderTaskAttachmentOperationOptions())
 if err != nil {
@@ -82,7 +82,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := outlooktaskfoldertaskattachment.NewMeOutlookTaskFolderIdTaskIdAttachmentID("outlookTaskFolderIdValue", "outlookTaskIdValue", "attachmentIdValue")
+id := outlooktaskfoldertaskattachment.NewMeOutlookTaskFolderIdTaskIdAttachmentID("outlookTaskFolderId", "outlookTaskId", "attachmentId")
 
 read, err := client.GetOutlookTaskFolderTaskAttachment(ctx, id, outlooktaskfoldertaskattachment.DefaultGetOutlookTaskFolderTaskAttachmentOperationOptions())
 if err != nil {
@@ -98,7 +98,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := outlooktaskfoldertaskattachment.NewMeOutlookTaskFolderIdTaskID("outlookTaskFolderIdValue", "outlookTaskIdValue")
+id := outlooktaskfoldertaskattachment.NewMeOutlookTaskFolderIdTaskID("outlookTaskFolderId", "outlookTaskId")
 
 read, err := client.GetOutlookTaskFolderTaskAttachmentsCount(ctx, id, outlooktaskfoldertaskattachment.DefaultGetOutlookTaskFolderTaskAttachmentsCountOperationOptions())
 if err != nil {
@@ -114,7 +114,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := outlooktaskfoldertaskattachment.NewMeOutlookTaskFolderIdTaskID("outlookTaskFolderIdValue", "outlookTaskIdValue")
+id := outlooktaskfoldertaskattachment.NewMeOutlookTaskFolderIdTaskID("outlookTaskFolderId", "outlookTaskId")
 
 // alternatively `client.ListOutlookTaskFolderTaskAttachments(ctx, id, outlooktaskfoldertaskattachment.DefaultListOutlookTaskFolderTaskAttachmentsOperationOptions())` can be used to do batched pagination
 items, err := client.ListOutlookTaskFolderTaskAttachmentsComplete(ctx, id, outlooktaskfoldertaskattachment.DefaultListOutlookTaskFolderTaskAttachmentsOperationOptions())

@@ -19,8 +19,9 @@ type GetExchangeOnPremisesPolicyOperationResponse struct {
 }
 
 type GetExchangeOnPremisesPolicyOperationOptions struct {
-	Expand *odata.Expand
-	Select *[]string
+	Expand   *odata.Expand
+	Metadata *odata.Metadata
+	Select   *[]string
 }
 
 func DefaultGetExchangeOnPremisesPolicyOperationOptions() GetExchangeOnPremisesPolicyOperationOptions {
@@ -38,6 +39,9 @@ func (o GetExchangeOnPremisesPolicyOperationOptions) ToOData() *odata.Query {
 	if o.Expand != nil {
 		out.Expand = *o.Expand
 	}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	if o.Select != nil {
 		out.Select = *o.Select
 	}
@@ -50,9 +54,9 @@ func (o GetExchangeOnPremisesPolicyOperationOptions) ToQuery() *client.QueryPara
 	return &out
 }
 
-// GetExchangeOnPremisesPolicy - Get exchangeOnPremisesPolicy from deviceManagement. The policy which controls mobile
-// device access to Exchange On Premises
-func (c ExchangeOnPremisesPolicyClient) GetExchangeOnPremisesPolicy(ctx context.Context, options GetExchangeOnPremisesPolicyOperationOptions) (result GetExchangeOnPremisesPolicyOperationResponse, err error) {
+// GetExchangeOnPremisesPolicy - Get exchangeOnPremisesPolicies from deviceManagement. The list of Exchange On Premisis
+// policies configured by the tenant.
+func (c ExchangeOnPremisesPolicyClient) GetExchangeOnPremisesPolicy(ctx context.Context, id beta.DeviceManagementExchangeOnPremisesPolicyId, options GetExchangeOnPremisesPolicyOperationOptions) (result GetExchangeOnPremisesPolicyOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
@@ -60,7 +64,7 @@ func (c ExchangeOnPremisesPolicyClient) GetExchangeOnPremisesPolicy(ctx context.
 		},
 		HttpMethod:    http.MethodGet,
 		OptionsObject: options,
-		Path:          "/deviceManagement/exchangeOnPremisesPolicy",
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

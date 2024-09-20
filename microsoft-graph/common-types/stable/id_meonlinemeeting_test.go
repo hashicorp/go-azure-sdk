@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &MeOnlineMeetingId{}
 
 func TestNewMeOnlineMeetingID(t *testing.T) {
-	id := NewMeOnlineMeetingID("onlineMeetingIdValue")
+	id := NewMeOnlineMeetingID("onlineMeetingId")
 
-	if id.OnlineMeetingId != "onlineMeetingIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'OnlineMeetingId'", id.OnlineMeetingId, "onlineMeetingIdValue")
+	if id.OnlineMeetingId != "onlineMeetingId" {
+		t.Fatalf("Expected %q but got %q for Segment 'OnlineMeetingId'", id.OnlineMeetingId, "onlineMeetingId")
 	}
 }
 
 func TestFormatMeOnlineMeetingID(t *testing.T) {
-	actual := NewMeOnlineMeetingID("onlineMeetingIdValue").ID()
-	expected := "/me/onlineMeetings/onlineMeetingIdValue"
+	actual := NewMeOnlineMeetingID("onlineMeetingId").ID()
+	expected := "/me/onlineMeetings/onlineMeetingId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -50,14 +50,14 @@ func TestParseMeOnlineMeetingID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/me/onlineMeetings/onlineMeetingIdValue",
+			Input: "/me/onlineMeetings/onlineMeetingId",
 			Expected: &MeOnlineMeetingId{
-				OnlineMeetingId: "onlineMeetingIdValue",
+				OnlineMeetingId: "onlineMeetingId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/onlineMeetings/onlineMeetingIdValue/extra",
+			Input: "/me/onlineMeetings/onlineMeetingId/extra",
 			Error: true,
 		},
 	}
@@ -116,26 +116,26 @@ func TestParseMeOnlineMeetingIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/me/onlineMeetings/onlineMeetingIdValue",
+			Input: "/me/onlineMeetings/onlineMeetingId",
 			Expected: &MeOnlineMeetingId{
-				OnlineMeetingId: "onlineMeetingIdValue",
+				OnlineMeetingId: "onlineMeetingId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/onlineMeetings/onlineMeetingIdValue/extra",
+			Input: "/me/onlineMeetings/onlineMeetingId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/oNlInEmEeTiNgS/oNlInEmEeTiNgIdVaLuE",
+			Input: "/mE/oNlInEmEeTiNgS/oNlInEmEeTiNgId",
 			Expected: &MeOnlineMeetingId{
-				OnlineMeetingId: "oNlInEmEeTiNgIdVaLuE",
+				OnlineMeetingId: "oNlInEmEeTiNgId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/mE/oNlInEmEeTiNgS/oNlInEmEeTiNgIdVaLuE/extra",
+			Input: "/mE/oNlInEmEeTiNgS/oNlInEmEeTiNgId/extra",
 			Error: true,
 		},
 	}

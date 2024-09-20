@@ -17,16 +17,45 @@ type UpdateAdvancedThreatProtectionOnboardingStateSummaryOperationResponse struc
 	OData        *odata.OData
 }
 
+type UpdateAdvancedThreatProtectionOnboardingStateSummaryOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateAdvancedThreatProtectionOnboardingStateSummaryOperationOptions() UpdateAdvancedThreatProtectionOnboardingStateSummaryOperationOptions {
+	return UpdateAdvancedThreatProtectionOnboardingStateSummaryOperationOptions{}
+}
+
+func (o UpdateAdvancedThreatProtectionOnboardingStateSummaryOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateAdvancedThreatProtectionOnboardingStateSummaryOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateAdvancedThreatProtectionOnboardingStateSummaryOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateAdvancedThreatProtectionOnboardingStateSummary - Update the navigation property
 // advancedThreatProtectionOnboardingStateSummary in deviceManagement
-func (c AdvancedThreatProtectionOnboardingStateSummaryClient) UpdateAdvancedThreatProtectionOnboardingStateSummary(ctx context.Context, input beta.AdvancedThreatProtectionOnboardingStateSummary) (result UpdateAdvancedThreatProtectionOnboardingStateSummaryOperationResponse, err error) {
+func (c AdvancedThreatProtectionOnboardingStateSummaryClient) UpdateAdvancedThreatProtectionOnboardingStateSummary(ctx context.Context, input beta.AdvancedThreatProtectionOnboardingStateSummary, options UpdateAdvancedThreatProtectionOnboardingStateSummaryOperationOptions) (result UpdateAdvancedThreatProtectionOnboardingStateSummaryOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       "/deviceManagement/advancedThreatProtectionOnboardingStateSummary",
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          "/deviceManagement/advancedThreatProtectionOnboardingStateSummary",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

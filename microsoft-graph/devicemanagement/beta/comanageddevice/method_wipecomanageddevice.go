@@ -18,15 +18,44 @@ type WipeComanagedDeviceOperationResponse struct {
 	OData        *odata.OData
 }
 
+type WipeComanagedDeviceOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultWipeComanagedDeviceOperationOptions() WipeComanagedDeviceOperationOptions {
+	return WipeComanagedDeviceOperationOptions{}
+}
+
+func (o WipeComanagedDeviceOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o WipeComanagedDeviceOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o WipeComanagedDeviceOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // WipeComanagedDevice - Invoke action wipe. Wipe a device
-func (c ComanagedDeviceClient) WipeComanagedDevice(ctx context.Context, id beta.DeviceManagementComanagedDeviceId, input WipeComanagedDeviceRequest) (result WipeComanagedDeviceOperationResponse, err error) {
+func (c ComanagedDeviceClient) WipeComanagedDevice(ctx context.Context, id beta.DeviceManagementComanagedDeviceId, input WipeComanagedDeviceRequest, options WipeComanagedDeviceOperationOptions) (result WipeComanagedDeviceOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/wipe", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/wipe", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

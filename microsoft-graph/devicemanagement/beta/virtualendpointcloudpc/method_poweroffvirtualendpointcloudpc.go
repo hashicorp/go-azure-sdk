@@ -18,17 +18,46 @@ type PowerOffVirtualEndpointCloudPCOperationResponse struct {
 	OData        *odata.OData
 }
 
+type PowerOffVirtualEndpointCloudPCOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultPowerOffVirtualEndpointCloudPCOperationOptions() PowerOffVirtualEndpointCloudPCOperationOptions {
+	return PowerOffVirtualEndpointCloudPCOperationOptions{}
+}
+
+func (o PowerOffVirtualEndpointCloudPCOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o PowerOffVirtualEndpointCloudPCOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o PowerOffVirtualEndpointCloudPCOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // PowerOffVirtualEndpointCloudPC - Invoke action powerOff. Power off a Windows 365 Frontline Cloud PC. This action
 // supports Microsoft Endpoint Manager (MEM) admin scenarios. After a Windows 365 Frontline Cloud PC is powered off,
 // it's deallocated, and licenses are revoked immediately. Only IT admin users can perform this action.
-func (c VirtualEndpointCloudPCClient) PowerOffVirtualEndpointCloudPC(ctx context.Context, id beta.DeviceManagementVirtualEndpointCloudPCId) (result PowerOffVirtualEndpointCloudPCOperationResponse, err error) {
+func (c VirtualEndpointCloudPCClient) PowerOffVirtualEndpointCloudPC(ctx context.Context, id beta.DeviceManagementVirtualEndpointCloudPCId, options PowerOffVirtualEndpointCloudPCOperationOptions) (result PowerOffVirtualEndpointCloudPCOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/powerOff", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/powerOff", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

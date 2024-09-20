@@ -17,15 +17,44 @@ type UpdateTokenIssuancePolicyOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateTokenIssuancePolicyOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateTokenIssuancePolicyOperationOptions() UpdateTokenIssuancePolicyOperationOptions {
+	return UpdateTokenIssuancePolicyOperationOptions{}
+}
+
+func (o UpdateTokenIssuancePolicyOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateTokenIssuancePolicyOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateTokenIssuancePolicyOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateTokenIssuancePolicy - Update tokenIssuancePolicy. Update the properties of a tokenIssuancePolicy object.
-func (c TokenIssuancePolicyClient) UpdateTokenIssuancePolicy(ctx context.Context, id stable.PolicyTokenIssuancePolicyId, input stable.TokenIssuancePolicy) (result UpdateTokenIssuancePolicyOperationResponse, err error) {
+func (c TokenIssuancePolicyClient) UpdateTokenIssuancePolicy(ctx context.Context, id stable.PolicyTokenIssuancePolicyId, input stable.TokenIssuancePolicy, options UpdateTokenIssuancePolicyOperationOptions) (result UpdateTokenIssuancePolicyOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

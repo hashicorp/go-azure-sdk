@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &ReportUserInsightDailyUserCountId{}
 
 func TestNewReportUserInsightDailyUserCountID(t *testing.T) {
-	id := NewReportUserInsightDailyUserCountID("userCountMetricIdValue")
+	id := NewReportUserInsightDailyUserCountID("userCountMetricId")
 
-	if id.UserCountMetricId != "userCountMetricIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'UserCountMetricId'", id.UserCountMetricId, "userCountMetricIdValue")
+	if id.UserCountMetricId != "userCountMetricId" {
+		t.Fatalf("Expected %q but got %q for Segment 'UserCountMetricId'", id.UserCountMetricId, "userCountMetricId")
 	}
 }
 
 func TestFormatReportUserInsightDailyUserCountID(t *testing.T) {
-	actual := NewReportUserInsightDailyUserCountID("userCountMetricIdValue").ID()
-	expected := "/reports/userInsights/daily/userCount/userCountMetricIdValue"
+	actual := NewReportUserInsightDailyUserCountID("userCountMetricId").ID()
+	expected := "/reports/userInsights/daily/userCount/userCountMetricId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -60,14 +60,14 @@ func TestParseReportUserInsightDailyUserCountID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/reports/userInsights/daily/userCount/userCountMetricIdValue",
+			Input: "/reports/userInsights/daily/userCount/userCountMetricId",
 			Expected: &ReportUserInsightDailyUserCountId{
-				UserCountMetricId: "userCountMetricIdValue",
+				UserCountMetricId: "userCountMetricId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/reports/userInsights/daily/userCount/userCountMetricIdValue/extra",
+			Input: "/reports/userInsights/daily/userCount/userCountMetricId/extra",
 			Error: true,
 		},
 	}
@@ -146,26 +146,26 @@ func TestParseReportUserInsightDailyUserCountIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/reports/userInsights/daily/userCount/userCountMetricIdValue",
+			Input: "/reports/userInsights/daily/userCount/userCountMetricId",
 			Expected: &ReportUserInsightDailyUserCountId{
-				UserCountMetricId: "userCountMetricIdValue",
+				UserCountMetricId: "userCountMetricId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/reports/userInsights/daily/userCount/userCountMetricIdValue/extra",
+			Input: "/reports/userInsights/daily/userCount/userCountMetricId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/rEpOrTs/uSeRiNsIgHtS/dAiLy/uSeRcOuNt/uSeRcOuNtMeTrIcIdVaLuE",
+			Input: "/rEpOrTs/uSeRiNsIgHtS/dAiLy/uSeRcOuNt/uSeRcOuNtMeTrIcId",
 			Expected: &ReportUserInsightDailyUserCountId{
-				UserCountMetricId: "uSeRcOuNtMeTrIcIdVaLuE",
+				UserCountMetricId: "uSeRcOuNtMeTrIcId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/rEpOrTs/uSeRiNsIgHtS/dAiLy/uSeRcOuNt/uSeRcOuNtMeTrIcIdVaLuE/extra",
+			Input: "/rEpOrTs/uSeRiNsIgHtS/dAiLy/uSeRcOuNt/uSeRcOuNtMeTrIcId/extra",
 			Error: true,
 		},
 	}

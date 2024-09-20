@@ -18,16 +18,45 @@ type CreateAccessReviewDecisionInstanceBatchRecordDecisionOperationResponse stru
 	OData        *odata.OData
 }
 
+type CreateAccessReviewDecisionInstanceBatchRecordDecisionOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateAccessReviewDecisionInstanceBatchRecordDecisionOperationOptions() CreateAccessReviewDecisionInstanceBatchRecordDecisionOperationOptions {
+	return CreateAccessReviewDecisionInstanceBatchRecordDecisionOperationOptions{}
+}
+
+func (o CreateAccessReviewDecisionInstanceBatchRecordDecisionOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateAccessReviewDecisionInstanceBatchRecordDecisionOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateAccessReviewDecisionInstanceBatchRecordDecisionOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateAccessReviewDecisionInstanceBatchRecordDecision - Invoke action batchRecordDecisions. Enables reviewers to
 // review all accessReviewInstanceDecisionItem objects in batches by using principalId, resourceId, or neither.
-func (c AccessReviewDecisionInstanceClient) CreateAccessReviewDecisionInstanceBatchRecordDecision(ctx context.Context, id beta.IdentityGovernanceAccessReviewDecisionId, input CreateAccessReviewDecisionInstanceBatchRecordDecisionRequest) (result CreateAccessReviewDecisionInstanceBatchRecordDecisionOperationResponse, err error) {
+func (c AccessReviewDecisionInstanceClient) CreateAccessReviewDecisionInstanceBatchRecordDecision(ctx context.Context, id beta.IdentityGovernanceAccessReviewDecisionId, input CreateAccessReviewDecisionInstanceBatchRecordDecisionRequest, options CreateAccessReviewDecisionInstanceBatchRecordDecisionOperationOptions) (result CreateAccessReviewDecisionInstanceBatchRecordDecisionOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/instance/batchRecordDecisions", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/instance/batchRecordDecisions", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

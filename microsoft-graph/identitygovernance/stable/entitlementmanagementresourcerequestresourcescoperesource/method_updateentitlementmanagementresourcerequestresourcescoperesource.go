@@ -18,16 +18,45 @@ type UpdateEntitlementManagementResourceRequestResourceScopeResourceOperationRes
 	OData        *odata.OData
 }
 
+type UpdateEntitlementManagementResourceRequestResourceScopeResourceOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateEntitlementManagementResourceRequestResourceScopeResourceOperationOptions() UpdateEntitlementManagementResourceRequestResourceScopeResourceOperationOptions {
+	return UpdateEntitlementManagementResourceRequestResourceScopeResourceOperationOptions{}
+}
+
+func (o UpdateEntitlementManagementResourceRequestResourceScopeResourceOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateEntitlementManagementResourceRequestResourceScopeResourceOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateEntitlementManagementResourceRequestResourceScopeResourceOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateEntitlementManagementResourceRequestResourceScopeResource - Update the navigation property resource in
 // identityGovernance
-func (c EntitlementManagementResourceRequestResourceScopeResourceClient) UpdateEntitlementManagementResourceRequestResourceScopeResource(ctx context.Context, id stable.IdentityGovernanceEntitlementManagementResourceRequestIdResourceScopeId, input stable.AccessPackageResource) (result UpdateEntitlementManagementResourceRequestResourceScopeResourceOperationResponse, err error) {
+func (c EntitlementManagementResourceRequestResourceScopeResourceClient) UpdateEntitlementManagementResourceRequestResourceScopeResource(ctx context.Context, id stable.IdentityGovernanceEntitlementManagementResourceRequestIdResourceScopeId, input stable.AccessPackageResource, options UpdateEntitlementManagementResourceRequestResourceScopeResourceOperationOptions) (result UpdateEntitlementManagementResourceRequestResourceScopeResourceOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       fmt.Sprintf("%s/resource", id.ID()),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/resource", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

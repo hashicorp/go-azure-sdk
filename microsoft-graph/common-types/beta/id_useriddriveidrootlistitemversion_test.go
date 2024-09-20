@@ -12,24 +12,24 @@ import (
 var _ resourceids.ResourceId = &UserIdDriveIdRootListItemVersionId{}
 
 func TestNewUserIdDriveIdRootListItemVersionID(t *testing.T) {
-	id := NewUserIdDriveIdRootListItemVersionID("userIdValue", "driveIdValue", "listItemVersionIdValue")
+	id := NewUserIdDriveIdRootListItemVersionID("userId", "driveId", "listItemVersionId")
 
-	if id.UserId != "userIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'UserId'", id.UserId, "userIdValue")
+	if id.UserId != "userId" {
+		t.Fatalf("Expected %q but got %q for Segment 'UserId'", id.UserId, "userId")
 	}
 
-	if id.DriveId != "driveIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DriveId'", id.DriveId, "driveIdValue")
+	if id.DriveId != "driveId" {
+		t.Fatalf("Expected %q but got %q for Segment 'DriveId'", id.DriveId, "driveId")
 	}
 
-	if id.ListItemVersionId != "listItemVersionIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ListItemVersionId'", id.ListItemVersionId, "listItemVersionIdValue")
+	if id.ListItemVersionId != "listItemVersionId" {
+		t.Fatalf("Expected %q but got %q for Segment 'ListItemVersionId'", id.ListItemVersionId, "listItemVersionId")
 	}
 }
 
 func TestFormatUserIdDriveIdRootListItemVersionID(t *testing.T) {
-	actual := NewUserIdDriveIdRootListItemVersionID("userIdValue", "driveIdValue", "listItemVersionIdValue").ID()
-	expected := "/users/userIdValue/drives/driveIdValue/root/listItem/versions/listItemVersionIdValue"
+	actual := NewUserIdDriveIdRootListItemVersionID("userId", "driveId", "listItemVersionId").ID()
+	expected := "/users/userId/drives/driveId/root/listItem/versions/listItemVersionId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -53,46 +53,46 @@ func TestParseUserIdDriveIdRootListItemVersionID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue",
+			Input: "/users/userId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/drives",
+			Input: "/users/userId/drives",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/drives/driveIdValue",
+			Input: "/users/userId/drives/driveId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/drives/driveIdValue/root",
+			Input: "/users/userId/drives/driveId/root",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/drives/driveIdValue/root/listItem",
+			Input: "/users/userId/drives/driveId/root/listItem",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/drives/driveIdValue/root/listItem/versions",
+			Input: "/users/userId/drives/driveId/root/listItem/versions",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/users/userIdValue/drives/driveIdValue/root/listItem/versions/listItemVersionIdValue",
+			Input: "/users/userId/drives/driveId/root/listItem/versions/listItemVersionId",
 			Expected: &UserIdDriveIdRootListItemVersionId{
-				UserId:            "userIdValue",
-				DriveId:           "driveIdValue",
-				ListItemVersionId: "listItemVersionIdValue",
+				UserId:            "userId",
+				DriveId:           "driveId",
+				ListItemVersionId: "listItemVersionId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/users/userIdValue/drives/driveIdValue/root/listItem/versions/listItemVersionIdValue/extra",
+			Input: "/users/userId/drives/driveId/root/listItem/versions/listItemVersionId/extra",
 			Error: true,
 		},
 	}
@@ -149,90 +149,90 @@ func TestParseUserIdDriveIdRootListItemVersionIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue",
+			Input: "/users/userId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe",
+			Input: "/uSeRs/uSeRiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/drives",
+			Input: "/users/userId/drives",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/dRiVeS",
+			Input: "/uSeRs/uSeRiD/dRiVeS",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/drives/driveIdValue",
+			Input: "/users/userId/drives/driveId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/dRiVeS/dRiVeIdVaLuE",
+			Input: "/uSeRs/uSeRiD/dRiVeS/dRiVeId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/drives/driveIdValue/root",
+			Input: "/users/userId/drives/driveId/root",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/dRiVeS/dRiVeIdVaLuE/rOoT",
+			Input: "/uSeRs/uSeRiD/dRiVeS/dRiVeId/rOoT",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/drives/driveIdValue/root/listItem",
+			Input: "/users/userId/drives/driveId/root/listItem",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/dRiVeS/dRiVeIdVaLuE/rOoT/lIsTiTeM",
+			Input: "/uSeRs/uSeRiD/dRiVeS/dRiVeId/rOoT/lIsTiTeM",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/drives/driveIdValue/root/listItem/versions",
+			Input: "/users/userId/drives/driveId/root/listItem/versions",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/dRiVeS/dRiVeIdVaLuE/rOoT/lIsTiTeM/vErSiOnS",
+			Input: "/uSeRs/uSeRiD/dRiVeS/dRiVeId/rOoT/lIsTiTeM/vErSiOnS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/users/userIdValue/drives/driveIdValue/root/listItem/versions/listItemVersionIdValue",
+			Input: "/users/userId/drives/driveId/root/listItem/versions/listItemVersionId",
 			Expected: &UserIdDriveIdRootListItemVersionId{
-				UserId:            "userIdValue",
-				DriveId:           "driveIdValue",
-				ListItemVersionId: "listItemVersionIdValue",
+				UserId:            "userId",
+				DriveId:           "driveId",
+				ListItemVersionId: "listItemVersionId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/users/userIdValue/drives/driveIdValue/root/listItem/versions/listItemVersionIdValue/extra",
+			Input: "/users/userId/drives/driveId/root/listItem/versions/listItemVersionId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/dRiVeS/dRiVeIdVaLuE/rOoT/lIsTiTeM/vErSiOnS/lIsTiTeMvErSiOnIdVaLuE",
+			Input: "/uSeRs/uSeRiD/dRiVeS/dRiVeId/rOoT/lIsTiTeM/vErSiOnS/lIsTiTeMvErSiOnId",
 			Expected: &UserIdDriveIdRootListItemVersionId{
-				UserId:            "uSeRiDvAlUe",
-				DriveId:           "dRiVeIdVaLuE",
-				ListItemVersionId: "lIsTiTeMvErSiOnIdVaLuE",
+				UserId:            "uSeRiD",
+				DriveId:           "dRiVeId",
+				ListItemVersionId: "lIsTiTeMvErSiOnId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/dRiVeS/dRiVeIdVaLuE/rOoT/lIsTiTeM/vErSiOnS/lIsTiTeMvErSiOnIdVaLuE/extra",
+			Input: "/uSeRs/uSeRiD/dRiVeS/dRiVeId/rOoT/lIsTiTeM/vErSiOnS/lIsTiTeMvErSiOnId/extra",
 			Error: true,
 		},
 	}

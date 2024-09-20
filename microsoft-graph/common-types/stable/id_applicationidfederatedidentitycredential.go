@@ -98,9 +98,9 @@ func (id ApplicationIdFederatedIdentityCredentialId) ID() string {
 func (id ApplicationIdFederatedIdentityCredentialId) Segments() []resourceids.Segment {
 	return []resourceids.Segment{
 		resourceids.StaticSegment("applications", "applications", "applications"),
-		resourceids.UserSpecifiedSegment("applicationId", "applicationIdValue"),
+		resourceids.UserSpecifiedSegment("applicationId", "applicationId"),
 		resourceids.StaticSegment("federatedIdentityCredentials", "federatedIdentityCredentials", "federatedIdentityCredentials"),
-		resourceids.UserSpecifiedSegment("federatedIdentityCredentialId", "federatedIdentityCredentialIdValue"),
+		resourceids.UserSpecifiedSegment("federatedIdentityCredentialId", "federatedIdentityCredentialId"),
 	}
 }
 

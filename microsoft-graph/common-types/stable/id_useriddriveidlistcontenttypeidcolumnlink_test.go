@@ -12,28 +12,28 @@ import (
 var _ resourceids.ResourceId = &UserIdDriveIdListContentTypeIdColumnLinkId{}
 
 func TestNewUserIdDriveIdListContentTypeIdColumnLinkID(t *testing.T) {
-	id := NewUserIdDriveIdListContentTypeIdColumnLinkID("userIdValue", "driveIdValue", "contentTypeIdValue", "columnLinkIdValue")
+	id := NewUserIdDriveIdListContentTypeIdColumnLinkID("userId", "driveId", "contentTypeId", "columnLinkId")
 
-	if id.UserId != "userIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'UserId'", id.UserId, "userIdValue")
+	if id.UserId != "userId" {
+		t.Fatalf("Expected %q but got %q for Segment 'UserId'", id.UserId, "userId")
 	}
 
-	if id.DriveId != "driveIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DriveId'", id.DriveId, "driveIdValue")
+	if id.DriveId != "driveId" {
+		t.Fatalf("Expected %q but got %q for Segment 'DriveId'", id.DriveId, "driveId")
 	}
 
-	if id.ContentTypeId != "contentTypeIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ContentTypeId'", id.ContentTypeId, "contentTypeIdValue")
+	if id.ContentTypeId != "contentTypeId" {
+		t.Fatalf("Expected %q but got %q for Segment 'ContentTypeId'", id.ContentTypeId, "contentTypeId")
 	}
 
-	if id.ColumnLinkId != "columnLinkIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ColumnLinkId'", id.ColumnLinkId, "columnLinkIdValue")
+	if id.ColumnLinkId != "columnLinkId" {
+		t.Fatalf("Expected %q but got %q for Segment 'ColumnLinkId'", id.ColumnLinkId, "columnLinkId")
 	}
 }
 
 func TestFormatUserIdDriveIdListContentTypeIdColumnLinkID(t *testing.T) {
-	actual := NewUserIdDriveIdListContentTypeIdColumnLinkID("userIdValue", "driveIdValue", "contentTypeIdValue", "columnLinkIdValue").ID()
-	expected := "/users/userIdValue/drives/driveIdValue/list/contentTypes/contentTypeIdValue/columnLinks/columnLinkIdValue"
+	actual := NewUserIdDriveIdListContentTypeIdColumnLinkID("userId", "driveId", "contentTypeId", "columnLinkId").ID()
+	expected := "/users/userId/drives/driveId/list/contentTypes/contentTypeId/columnLinks/columnLinkId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -57,52 +57,52 @@ func TestParseUserIdDriveIdListContentTypeIdColumnLinkID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue",
+			Input: "/users/userId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/drives",
+			Input: "/users/userId/drives",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/drives/driveIdValue",
+			Input: "/users/userId/drives/driveId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/drives/driveIdValue/list",
+			Input: "/users/userId/drives/driveId/list",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/drives/driveIdValue/list/contentTypes",
+			Input: "/users/userId/drives/driveId/list/contentTypes",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/drives/driveIdValue/list/contentTypes/contentTypeIdValue",
+			Input: "/users/userId/drives/driveId/list/contentTypes/contentTypeId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/drives/driveIdValue/list/contentTypes/contentTypeIdValue/columnLinks",
+			Input: "/users/userId/drives/driveId/list/contentTypes/contentTypeId/columnLinks",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/users/userIdValue/drives/driveIdValue/list/contentTypes/contentTypeIdValue/columnLinks/columnLinkIdValue",
+			Input: "/users/userId/drives/driveId/list/contentTypes/contentTypeId/columnLinks/columnLinkId",
 			Expected: &UserIdDriveIdListContentTypeIdColumnLinkId{
-				UserId:        "userIdValue",
-				DriveId:       "driveIdValue",
-				ContentTypeId: "contentTypeIdValue",
-				ColumnLinkId:  "columnLinkIdValue",
+				UserId:        "userId",
+				DriveId:       "driveId",
+				ContentTypeId: "contentTypeId",
+				ColumnLinkId:  "columnLinkId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/users/userIdValue/drives/driveIdValue/list/contentTypes/contentTypeIdValue/columnLinks/columnLinkIdValue/extra",
+			Input: "/users/userId/drives/driveId/list/contentTypes/contentTypeId/columnLinks/columnLinkId/extra",
 			Error: true,
 		},
 	}
@@ -163,102 +163,102 @@ func TestParseUserIdDriveIdListContentTypeIdColumnLinkIDInsensitively(t *testing
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue",
+			Input: "/users/userId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe",
+			Input: "/uSeRs/uSeRiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/drives",
+			Input: "/users/userId/drives",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/dRiVeS",
+			Input: "/uSeRs/uSeRiD/dRiVeS",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/drives/driveIdValue",
+			Input: "/users/userId/drives/driveId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/dRiVeS/dRiVeIdVaLuE",
+			Input: "/uSeRs/uSeRiD/dRiVeS/dRiVeId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/drives/driveIdValue/list",
+			Input: "/users/userId/drives/driveId/list",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/dRiVeS/dRiVeIdVaLuE/lIsT",
+			Input: "/uSeRs/uSeRiD/dRiVeS/dRiVeId/lIsT",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/drives/driveIdValue/list/contentTypes",
+			Input: "/users/userId/drives/driveId/list/contentTypes",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/dRiVeS/dRiVeIdVaLuE/lIsT/cOnTeNtTyPeS",
+			Input: "/uSeRs/uSeRiD/dRiVeS/dRiVeId/lIsT/cOnTeNtTyPeS",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/drives/driveIdValue/list/contentTypes/contentTypeIdValue",
+			Input: "/users/userId/drives/driveId/list/contentTypes/contentTypeId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/dRiVeS/dRiVeIdVaLuE/lIsT/cOnTeNtTyPeS/cOnTeNtTyPeIdVaLuE",
+			Input: "/uSeRs/uSeRiD/dRiVeS/dRiVeId/lIsT/cOnTeNtTyPeS/cOnTeNtTyPeId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/drives/driveIdValue/list/contentTypes/contentTypeIdValue/columnLinks",
+			Input: "/users/userId/drives/driveId/list/contentTypes/contentTypeId/columnLinks",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/dRiVeS/dRiVeIdVaLuE/lIsT/cOnTeNtTyPeS/cOnTeNtTyPeIdVaLuE/cOlUmNlInKs",
+			Input: "/uSeRs/uSeRiD/dRiVeS/dRiVeId/lIsT/cOnTeNtTyPeS/cOnTeNtTyPeId/cOlUmNlInKs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/users/userIdValue/drives/driveIdValue/list/contentTypes/contentTypeIdValue/columnLinks/columnLinkIdValue",
+			Input: "/users/userId/drives/driveId/list/contentTypes/contentTypeId/columnLinks/columnLinkId",
 			Expected: &UserIdDriveIdListContentTypeIdColumnLinkId{
-				UserId:        "userIdValue",
-				DriveId:       "driveIdValue",
-				ContentTypeId: "contentTypeIdValue",
-				ColumnLinkId:  "columnLinkIdValue",
+				UserId:        "userId",
+				DriveId:       "driveId",
+				ContentTypeId: "contentTypeId",
+				ColumnLinkId:  "columnLinkId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/users/userIdValue/drives/driveIdValue/list/contentTypes/contentTypeIdValue/columnLinks/columnLinkIdValue/extra",
+			Input: "/users/userId/drives/driveId/list/contentTypes/contentTypeId/columnLinks/columnLinkId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/dRiVeS/dRiVeIdVaLuE/lIsT/cOnTeNtTyPeS/cOnTeNtTyPeIdVaLuE/cOlUmNlInKs/cOlUmNlInKiDvAlUe",
+			Input: "/uSeRs/uSeRiD/dRiVeS/dRiVeId/lIsT/cOnTeNtTyPeS/cOnTeNtTyPeId/cOlUmNlInKs/cOlUmNlInKiD",
 			Expected: &UserIdDriveIdListContentTypeIdColumnLinkId{
-				UserId:        "uSeRiDvAlUe",
-				DriveId:       "dRiVeIdVaLuE",
-				ContentTypeId: "cOnTeNtTyPeIdVaLuE",
-				ColumnLinkId:  "cOlUmNlInKiDvAlUe",
+				UserId:        "uSeRiD",
+				DriveId:       "dRiVeId",
+				ContentTypeId: "cOnTeNtTyPeId",
+				ColumnLinkId:  "cOlUmNlInKiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/dRiVeS/dRiVeIdVaLuE/lIsT/cOnTeNtTyPeS/cOnTeNtTyPeIdVaLuE/cOlUmNlInKs/cOlUmNlInKiDvAlUe/extra",
+			Input: "/uSeRs/uSeRiD/dRiVeS/dRiVeId/lIsT/cOnTeNtTyPeS/cOnTeNtTyPeId/cOlUmNlInKs/cOlUmNlInKiD/extra",
 			Error: true,
 		},
 	}

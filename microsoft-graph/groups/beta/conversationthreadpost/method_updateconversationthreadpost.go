@@ -17,15 +17,44 @@ type UpdateConversationThreadPostOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateConversationThreadPostOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateConversationThreadPostOperationOptions() UpdateConversationThreadPostOperationOptions {
+	return UpdateConversationThreadPostOperationOptions{}
+}
+
+func (o UpdateConversationThreadPostOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateConversationThreadPostOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateConversationThreadPostOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateConversationThreadPost - Update the navigation property posts in groups
-func (c ConversationThreadPostClient) UpdateConversationThreadPost(ctx context.Context, id beta.GroupIdConversationIdThreadIdPostId, input beta.Post) (result UpdateConversationThreadPostOperationResponse, err error) {
+func (c ConversationThreadPostClient) UpdateConversationThreadPost(ctx context.Context, id beta.GroupIdConversationIdThreadIdPostId, input beta.Post, options UpdateConversationThreadPostOperationOptions) (result UpdateConversationThreadPostOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

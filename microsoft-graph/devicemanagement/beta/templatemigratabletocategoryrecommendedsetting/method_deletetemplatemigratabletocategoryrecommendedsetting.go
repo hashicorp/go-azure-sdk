@@ -19,7 +19,8 @@ type DeleteTemplateMigratableToCategoryRecommendedSettingOperationResponse struc
 }
 
 type DeleteTemplateMigratableToCategoryRecommendedSettingOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteTemplateMigratableToCategoryRecommendedSettingOperationOptions() DeleteTemplateMigratableToCategoryRecommendedSettingOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteTemplateMigratableToCategoryRecommendedSettingOperationOptions) To
 
 func (o DeleteTemplateMigratableToCategoryRecommendedSettingOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

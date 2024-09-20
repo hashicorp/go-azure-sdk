@@ -105,11 +105,11 @@ func (id MeMailFolderIdChildFolderIdUserConfigurationId) Segments() []resourceid
 	return []resourceids.Segment{
 		resourceids.StaticSegment("me", "me", "me"),
 		resourceids.StaticSegment("mailFolders", "mailFolders", "mailFolders"),
-		resourceids.UserSpecifiedSegment("mailFolderId", "mailFolderIdValue"),
+		resourceids.UserSpecifiedSegment("mailFolderId", "mailFolderId"),
 		resourceids.StaticSegment("childFolders", "childFolders", "childFolders"),
-		resourceids.UserSpecifiedSegment("mailFolderId1", "mailFolderId1Value"),
+		resourceids.UserSpecifiedSegment("mailFolderId1", "mailFolderId1"),
 		resourceids.StaticSegment("userConfigurations", "userConfigurations", "userConfigurations"),
-		resourceids.UserSpecifiedSegment("userConfigurationId", "userConfigurationIdValue"),
+		resourceids.UserSpecifiedSegment("userConfigurationId", "userConfigurationId"),
 	}
 }
 

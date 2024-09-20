@@ -103,10 +103,27 @@ func (s ArchivedPrintJob) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &ArchivedPrintJob{}
 
 func (s *ArchivedPrintJob) UnmarshalJSON(bytes []byte) error {
-	type alias ArchivedPrintJob
-	var decoded alias
+
+	var decoded struct {
+		AcquiredByPrinter      *bool                    `json:"acquiredByPrinter,omitempty"`
+		AcquiredDateTime       nullable.Type[string]    `json:"acquiredDateTime,omitempty"`
+		BlackAndWhitePageCount *int64                   `json:"blackAndWhitePageCount,omitempty"`
+		ColorPageCount         *int64                   `json:"colorPageCount,omitempty"`
+		CompletionDateTime     nullable.Type[string]    `json:"completionDateTime,omitempty"`
+		CopiesPrinted          *int64                   `json:"copiesPrinted,omitempty"`
+		CreatedDateTime        *string                  `json:"createdDateTime,omitempty"`
+		DuplexPageCount        *int64                   `json:"duplexPageCount,omitempty"`
+		Id                     *string                  `json:"id,omitempty"`
+		ODataId                *string                  `json:"@odata.id,omitempty"`
+		ODataType              *string                  `json:"@odata.type,omitempty"`
+		PageCount              *int64                   `json:"pageCount,omitempty"`
+		PrinterId              nullable.Type[string]    `json:"printerId,omitempty"`
+		PrinterName            nullable.Type[string]    `json:"printerName,omitempty"`
+		ProcessingState        *PrintJobProcessingState `json:"processingState,omitempty"`
+		SimplexPageCount       *int64                   `json:"simplexPageCount,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into ArchivedPrintJob: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.AcquiredByPrinter = decoded.AcquiredByPrinter
@@ -138,5 +155,6 @@ func (s *ArchivedPrintJob) UnmarshalJSON(bytes []byte) error {
 		}
 		s.CreatedBy = &impl
 	}
+
 	return nil
 }

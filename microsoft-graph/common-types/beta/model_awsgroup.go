@@ -100,10 +100,18 @@ func (s AwsGroup) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &AwsGroup{}
 
 func (s *AwsGroup) UnmarshalJSON(bytes []byte) error {
-	type alias AwsGroup
-	var decoded alias
+
+	var decoded struct {
+		AuthorizationSystem *AuthorizationSystem              `json:"authorizationSystem,omitempty"`
+		DisplayName         nullable.Type[string]             `json:"displayName,omitempty"`
+		ExternalId          *string                           `json:"externalId,omitempty"`
+		Source              AuthorizationSystemIdentitySource `json:"source"`
+		Id                  *string                           `json:"id,omitempty"`
+		ODataId             *string                           `json:"@odata.id,omitempty"`
+		ODataType           *string                           `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into AwsGroup: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.DisplayName = decoded.DisplayName
@@ -132,5 +140,6 @@ func (s *AwsGroup) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Source = impl
 	}
+
 	return nil
 }

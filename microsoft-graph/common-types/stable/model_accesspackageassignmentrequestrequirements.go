@@ -45,10 +45,21 @@ type AccessPackageAssignmentRequestRequirements struct {
 var _ json.Unmarshaler = &AccessPackageAssignmentRequestRequirements{}
 
 func (s *AccessPackageAssignmentRequestRequirements) UnmarshalJSON(bytes []byte) error {
-	type alias AccessPackageAssignmentRequestRequirements
-	var decoded alias
+
+	var decoded struct {
+		AllowCustomAssignmentSchedule nullable.Type[bool]            `json:"allowCustomAssignmentSchedule,omitempty"`
+		IsApprovalRequiredForAdd      nullable.Type[bool]            `json:"isApprovalRequiredForAdd,omitempty"`
+		IsApprovalRequiredForUpdate   nullable.Type[bool]            `json:"isApprovalRequiredForUpdate,omitempty"`
+		ODataId                       *string                        `json:"@odata.id,omitempty"`
+		ODataType                     *string                        `json:"@odata.type,omitempty"`
+		PolicyDescription             nullable.Type[string]          `json:"policyDescription,omitempty"`
+		PolicyDisplayName             nullable.Type[string]          `json:"policyDisplayName,omitempty"`
+		PolicyId                      nullable.Type[string]          `json:"policyId,omitempty"`
+		Questions                     *[]AccessPackageQuestion       `json:"questions,omitempty"`
+		Schedule                      *EntitlementManagementSchedule `json:"schedule,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into AccessPackageAssignmentRequestRequirements: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.AllowCustomAssignmentSchedule = decoded.AllowCustomAssignmentSchedule
@@ -82,5 +93,6 @@ func (s *AccessPackageAssignmentRequestRequirements) UnmarshalJSON(bytes []byte)
 		}
 		s.Questions = &output
 	}
+
 	return nil
 }

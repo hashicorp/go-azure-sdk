@@ -19,7 +19,8 @@ type DeleteMailFolderMessageExtensionOperationResponse struct {
 }
 
 type DeleteMailFolderMessageExtensionOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteMailFolderMessageExtensionOperationOptions() DeleteMailFolderMessageExtensionOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteMailFolderMessageExtensionOperationOptions) ToHeaders() *client.He
 
 func (o DeleteMailFolderMessageExtensionOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

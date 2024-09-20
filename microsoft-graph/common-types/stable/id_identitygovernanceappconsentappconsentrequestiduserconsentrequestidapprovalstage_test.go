@@ -12,24 +12,24 @@ import (
 var _ resourceids.ResourceId = &IdentityGovernanceAppConsentAppConsentRequestIdUserConsentRequestIdApprovalStageId{}
 
 func TestNewIdentityGovernanceAppConsentAppConsentRequestIdUserConsentRequestIdApprovalStageID(t *testing.T) {
-	id := NewIdentityGovernanceAppConsentAppConsentRequestIdUserConsentRequestIdApprovalStageID("appConsentRequestIdValue", "userConsentRequestIdValue", "approvalStageIdValue")
+	id := NewIdentityGovernanceAppConsentAppConsentRequestIdUserConsentRequestIdApprovalStageID("appConsentRequestId", "userConsentRequestId", "approvalStageId")
 
-	if id.AppConsentRequestId != "appConsentRequestIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'AppConsentRequestId'", id.AppConsentRequestId, "appConsentRequestIdValue")
+	if id.AppConsentRequestId != "appConsentRequestId" {
+		t.Fatalf("Expected %q but got %q for Segment 'AppConsentRequestId'", id.AppConsentRequestId, "appConsentRequestId")
 	}
 
-	if id.UserConsentRequestId != "userConsentRequestIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'UserConsentRequestId'", id.UserConsentRequestId, "userConsentRequestIdValue")
+	if id.UserConsentRequestId != "userConsentRequestId" {
+		t.Fatalf("Expected %q but got %q for Segment 'UserConsentRequestId'", id.UserConsentRequestId, "userConsentRequestId")
 	}
 
-	if id.ApprovalStageId != "approvalStageIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ApprovalStageId'", id.ApprovalStageId, "approvalStageIdValue")
+	if id.ApprovalStageId != "approvalStageId" {
+		t.Fatalf("Expected %q but got %q for Segment 'ApprovalStageId'", id.ApprovalStageId, "approvalStageId")
 	}
 }
 
 func TestFormatIdentityGovernanceAppConsentAppConsentRequestIdUserConsentRequestIdApprovalStageID(t *testing.T) {
-	actual := NewIdentityGovernanceAppConsentAppConsentRequestIdUserConsentRequestIdApprovalStageID("appConsentRequestIdValue", "userConsentRequestIdValue", "approvalStageIdValue").ID()
-	expected := "/identityGovernance/appConsent/appConsentRequests/appConsentRequestIdValue/userConsentRequests/userConsentRequestIdValue/approval/stages/approvalStageIdValue"
+	actual := NewIdentityGovernanceAppConsentAppConsentRequestIdUserConsentRequestIdApprovalStageID("appConsentRequestId", "userConsentRequestId", "approvalStageId").ID()
+	expected := "/identityGovernance/appConsent/appConsentRequests/appConsentRequestId/userConsentRequests/userConsentRequestId/approval/stages/approvalStageId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -63,41 +63,41 @@ func TestParseIdentityGovernanceAppConsentAppConsentRequestIdUserConsentRequestI
 		},
 		{
 			// Incomplete URI
-			Input: "/identityGovernance/appConsent/appConsentRequests/appConsentRequestIdValue",
+			Input: "/identityGovernance/appConsent/appConsentRequests/appConsentRequestId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/identityGovernance/appConsent/appConsentRequests/appConsentRequestIdValue/userConsentRequests",
+			Input: "/identityGovernance/appConsent/appConsentRequests/appConsentRequestId/userConsentRequests",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/identityGovernance/appConsent/appConsentRequests/appConsentRequestIdValue/userConsentRequests/userConsentRequestIdValue",
+			Input: "/identityGovernance/appConsent/appConsentRequests/appConsentRequestId/userConsentRequests/userConsentRequestId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/identityGovernance/appConsent/appConsentRequests/appConsentRequestIdValue/userConsentRequests/userConsentRequestIdValue/approval",
+			Input: "/identityGovernance/appConsent/appConsentRequests/appConsentRequestId/userConsentRequests/userConsentRequestId/approval",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/identityGovernance/appConsent/appConsentRequests/appConsentRequestIdValue/userConsentRequests/userConsentRequestIdValue/approval/stages",
+			Input: "/identityGovernance/appConsent/appConsentRequests/appConsentRequestId/userConsentRequests/userConsentRequestId/approval/stages",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/identityGovernance/appConsent/appConsentRequests/appConsentRequestIdValue/userConsentRequests/userConsentRequestIdValue/approval/stages/approvalStageIdValue",
+			Input: "/identityGovernance/appConsent/appConsentRequests/appConsentRequestId/userConsentRequests/userConsentRequestId/approval/stages/approvalStageId",
 			Expected: &IdentityGovernanceAppConsentAppConsentRequestIdUserConsentRequestIdApprovalStageId{
-				AppConsentRequestId:  "appConsentRequestIdValue",
-				UserConsentRequestId: "userConsentRequestIdValue",
-				ApprovalStageId:      "approvalStageIdValue",
+				AppConsentRequestId:  "appConsentRequestId",
+				UserConsentRequestId: "userConsentRequestId",
+				ApprovalStageId:      "approvalStageId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/identityGovernance/appConsent/appConsentRequests/appConsentRequestIdValue/userConsentRequests/userConsentRequestIdValue/approval/stages/approvalStageIdValue/extra",
+			Input: "/identityGovernance/appConsent/appConsentRequests/appConsentRequestId/userConsentRequests/userConsentRequestId/approval/stages/approvalStageId/extra",
 			Error: true,
 		},
 	}
@@ -174,80 +174,80 @@ func TestParseIdentityGovernanceAppConsentAppConsentRequestIdUserConsentRequestI
 		},
 		{
 			// Incomplete URI
-			Input: "/identityGovernance/appConsent/appConsentRequests/appConsentRequestIdValue",
+			Input: "/identityGovernance/appConsent/appConsentRequests/appConsentRequestId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/iDeNtItYgOvErNaNcE/aPpCoNsEnT/aPpCoNsEnTrEqUeStS/aPpCoNsEnTrEqUeStIdVaLuE",
+			Input: "/iDeNtItYgOvErNaNcE/aPpCoNsEnT/aPpCoNsEnTrEqUeStS/aPpCoNsEnTrEqUeStId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/identityGovernance/appConsent/appConsentRequests/appConsentRequestIdValue/userConsentRequests",
+			Input: "/identityGovernance/appConsent/appConsentRequests/appConsentRequestId/userConsentRequests",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/iDeNtItYgOvErNaNcE/aPpCoNsEnT/aPpCoNsEnTrEqUeStS/aPpCoNsEnTrEqUeStIdVaLuE/uSeRcOnSeNtReQuEsTs",
+			Input: "/iDeNtItYgOvErNaNcE/aPpCoNsEnT/aPpCoNsEnTrEqUeStS/aPpCoNsEnTrEqUeStId/uSeRcOnSeNtReQuEsTs",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/identityGovernance/appConsent/appConsentRequests/appConsentRequestIdValue/userConsentRequests/userConsentRequestIdValue",
+			Input: "/identityGovernance/appConsent/appConsentRequests/appConsentRequestId/userConsentRequests/userConsentRequestId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/iDeNtItYgOvErNaNcE/aPpCoNsEnT/aPpCoNsEnTrEqUeStS/aPpCoNsEnTrEqUeStIdVaLuE/uSeRcOnSeNtReQuEsTs/uSeRcOnSeNtReQuEsTiDvAlUe",
+			Input: "/iDeNtItYgOvErNaNcE/aPpCoNsEnT/aPpCoNsEnTrEqUeStS/aPpCoNsEnTrEqUeStId/uSeRcOnSeNtReQuEsTs/uSeRcOnSeNtReQuEsTiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/identityGovernance/appConsent/appConsentRequests/appConsentRequestIdValue/userConsentRequests/userConsentRequestIdValue/approval",
+			Input: "/identityGovernance/appConsent/appConsentRequests/appConsentRequestId/userConsentRequests/userConsentRequestId/approval",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/iDeNtItYgOvErNaNcE/aPpCoNsEnT/aPpCoNsEnTrEqUeStS/aPpCoNsEnTrEqUeStIdVaLuE/uSeRcOnSeNtReQuEsTs/uSeRcOnSeNtReQuEsTiDvAlUe/aPpRoVaL",
+			Input: "/iDeNtItYgOvErNaNcE/aPpCoNsEnT/aPpCoNsEnTrEqUeStS/aPpCoNsEnTrEqUeStId/uSeRcOnSeNtReQuEsTs/uSeRcOnSeNtReQuEsTiD/aPpRoVaL",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/identityGovernance/appConsent/appConsentRequests/appConsentRequestIdValue/userConsentRequests/userConsentRequestIdValue/approval/stages",
+			Input: "/identityGovernance/appConsent/appConsentRequests/appConsentRequestId/userConsentRequests/userConsentRequestId/approval/stages",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/iDeNtItYgOvErNaNcE/aPpCoNsEnT/aPpCoNsEnTrEqUeStS/aPpCoNsEnTrEqUeStIdVaLuE/uSeRcOnSeNtReQuEsTs/uSeRcOnSeNtReQuEsTiDvAlUe/aPpRoVaL/sTaGeS",
+			Input: "/iDeNtItYgOvErNaNcE/aPpCoNsEnT/aPpCoNsEnTrEqUeStS/aPpCoNsEnTrEqUeStId/uSeRcOnSeNtReQuEsTs/uSeRcOnSeNtReQuEsTiD/aPpRoVaL/sTaGeS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/identityGovernance/appConsent/appConsentRequests/appConsentRequestIdValue/userConsentRequests/userConsentRequestIdValue/approval/stages/approvalStageIdValue",
+			Input: "/identityGovernance/appConsent/appConsentRequests/appConsentRequestId/userConsentRequests/userConsentRequestId/approval/stages/approvalStageId",
 			Expected: &IdentityGovernanceAppConsentAppConsentRequestIdUserConsentRequestIdApprovalStageId{
-				AppConsentRequestId:  "appConsentRequestIdValue",
-				UserConsentRequestId: "userConsentRequestIdValue",
-				ApprovalStageId:      "approvalStageIdValue",
+				AppConsentRequestId:  "appConsentRequestId",
+				UserConsentRequestId: "userConsentRequestId",
+				ApprovalStageId:      "approvalStageId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/identityGovernance/appConsent/appConsentRequests/appConsentRequestIdValue/userConsentRequests/userConsentRequestIdValue/approval/stages/approvalStageIdValue/extra",
+			Input: "/identityGovernance/appConsent/appConsentRequests/appConsentRequestId/userConsentRequests/userConsentRequestId/approval/stages/approvalStageId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/iDeNtItYgOvErNaNcE/aPpCoNsEnT/aPpCoNsEnTrEqUeStS/aPpCoNsEnTrEqUeStIdVaLuE/uSeRcOnSeNtReQuEsTs/uSeRcOnSeNtReQuEsTiDvAlUe/aPpRoVaL/sTaGeS/aPpRoVaLsTaGeIdVaLuE",
+			Input: "/iDeNtItYgOvErNaNcE/aPpCoNsEnT/aPpCoNsEnTrEqUeStS/aPpCoNsEnTrEqUeStId/uSeRcOnSeNtReQuEsTs/uSeRcOnSeNtReQuEsTiD/aPpRoVaL/sTaGeS/aPpRoVaLsTaGeId",
 			Expected: &IdentityGovernanceAppConsentAppConsentRequestIdUserConsentRequestIdApprovalStageId{
-				AppConsentRequestId:  "aPpCoNsEnTrEqUeStIdVaLuE",
-				UserConsentRequestId: "uSeRcOnSeNtReQuEsTiDvAlUe",
-				ApprovalStageId:      "aPpRoVaLsTaGeIdVaLuE",
+				AppConsentRequestId:  "aPpCoNsEnTrEqUeStId",
+				UserConsentRequestId: "uSeRcOnSeNtReQuEsTiD",
+				ApprovalStageId:      "aPpRoVaLsTaGeId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/iDeNtItYgOvErNaNcE/aPpCoNsEnT/aPpCoNsEnTrEqUeStS/aPpCoNsEnTrEqUeStIdVaLuE/uSeRcOnSeNtReQuEsTs/uSeRcOnSeNtReQuEsTiDvAlUe/aPpRoVaL/sTaGeS/aPpRoVaLsTaGeIdVaLuE/extra",
+			Input: "/iDeNtItYgOvErNaNcE/aPpCoNsEnT/aPpCoNsEnTrEqUeStS/aPpCoNsEnTrEqUeStId/uSeRcOnSeNtReQuEsTs/uSeRcOnSeNtReQuEsTiD/aPpRoVaL/sTaGeS/aPpRoVaLsTaGeId/extra",
 			Error: true,
 		},
 	}

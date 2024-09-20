@@ -18,15 +18,44 @@ type CreateComanagedDeviceRotateFileVaultKeyOperationResponse struct {
 	OData        *odata.OData
 }
 
+type CreateComanagedDeviceRotateFileVaultKeyOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateComanagedDeviceRotateFileVaultKeyOperationOptions() CreateComanagedDeviceRotateFileVaultKeyOperationOptions {
+	return CreateComanagedDeviceRotateFileVaultKeyOperationOptions{}
+}
+
+func (o CreateComanagedDeviceRotateFileVaultKeyOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateComanagedDeviceRotateFileVaultKeyOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateComanagedDeviceRotateFileVaultKeyOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateComanagedDeviceRotateFileVaultKey - Invoke action rotateFileVaultKey
-func (c ComanagedDeviceClient) CreateComanagedDeviceRotateFileVaultKey(ctx context.Context, id beta.DeviceManagementComanagedDeviceId) (result CreateComanagedDeviceRotateFileVaultKeyOperationResponse, err error) {
+func (c ComanagedDeviceClient) CreateComanagedDeviceRotateFileVaultKey(ctx context.Context, id beta.DeviceManagementComanagedDeviceId, options CreateComanagedDeviceRotateFileVaultKeyOperationOptions) (result CreateComanagedDeviceRotateFileVaultKeyOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/rotateFileVaultKey", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/rotateFileVaultKey", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

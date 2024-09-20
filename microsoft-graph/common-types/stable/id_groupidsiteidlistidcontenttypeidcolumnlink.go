@@ -116,15 +116,15 @@ func (id GroupIdSiteIdListIdContentTypeIdColumnLinkId) ID() string {
 func (id GroupIdSiteIdListIdContentTypeIdColumnLinkId) Segments() []resourceids.Segment {
 	return []resourceids.Segment{
 		resourceids.StaticSegment("groups", "groups", "groups"),
-		resourceids.UserSpecifiedSegment("groupId", "groupIdValue"),
+		resourceids.UserSpecifiedSegment("groupId", "groupId"),
 		resourceids.StaticSegment("sites", "sites", "sites"),
-		resourceids.UserSpecifiedSegment("siteId", "siteIdValue"),
+		resourceids.UserSpecifiedSegment("siteId", "siteId"),
 		resourceids.StaticSegment("lists", "lists", "lists"),
-		resourceids.UserSpecifiedSegment("listId", "listIdValue"),
+		resourceids.UserSpecifiedSegment("listId", "listId"),
 		resourceids.StaticSegment("contentTypes", "contentTypes", "contentTypes"),
-		resourceids.UserSpecifiedSegment("contentTypeId", "contentTypeIdValue"),
+		resourceids.UserSpecifiedSegment("contentTypeId", "contentTypeId"),
 		resourceids.StaticSegment("columnLinks", "columnLinks", "columnLinks"),
-		resourceids.UserSpecifiedSegment("columnLinkId", "columnLinkIdValue"),
+		resourceids.UserSpecifiedSegment("columnLinkId", "columnLinkId"),
 	}
 }
 

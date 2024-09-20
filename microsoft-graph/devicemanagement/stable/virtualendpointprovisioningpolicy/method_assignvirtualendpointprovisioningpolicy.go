@@ -18,15 +18,44 @@ type AssignVirtualEndpointProvisioningPolicyOperationResponse struct {
 	OData        *odata.OData
 }
 
+type AssignVirtualEndpointProvisioningPolicyOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultAssignVirtualEndpointProvisioningPolicyOperationOptions() AssignVirtualEndpointProvisioningPolicyOperationOptions {
+	return AssignVirtualEndpointProvisioningPolicyOperationOptions{}
+}
+
+func (o AssignVirtualEndpointProvisioningPolicyOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o AssignVirtualEndpointProvisioningPolicyOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o AssignVirtualEndpointProvisioningPolicyOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // AssignVirtualEndpointProvisioningPolicy - Invoke action assign. Assign a cloudPcProvisioningPolicy to user groups.
-func (c VirtualEndpointProvisioningPolicyClient) AssignVirtualEndpointProvisioningPolicy(ctx context.Context, id stable.DeviceManagementVirtualEndpointProvisioningPolicyId, input AssignVirtualEndpointProvisioningPolicyRequest) (result AssignVirtualEndpointProvisioningPolicyOperationResponse, err error) {
+func (c VirtualEndpointProvisioningPolicyClient) AssignVirtualEndpointProvisioningPolicy(ctx context.Context, id stable.DeviceManagementVirtualEndpointProvisioningPolicyId, input AssignVirtualEndpointProvisioningPolicyRequest, options AssignVirtualEndpointProvisioningPolicyOperationOptions) (result AssignVirtualEndpointProvisioningPolicyOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/assign", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/assign", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

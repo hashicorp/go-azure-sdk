@@ -159,16 +159,50 @@ func (s DeviceAppManagement) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &DeviceAppManagement{}
 
 func (s *DeviceAppManagement) UnmarshalJSON(bytes []byte) error {
-	type alias DeviceAppManagement
-	var decoded alias
+
+	var decoded struct {
+		AndroidManagedAppProtections                              *[]AndroidManagedAppProtection                         `json:"androidManagedAppProtections,omitempty"`
+		DefaultManagedAppProtections                              *[]DefaultManagedAppProtection                         `json:"defaultManagedAppProtections,omitempty"`
+		DeviceAppManagementTasks                                  *[]DeviceAppManagementTask                             `json:"deviceAppManagementTasks,omitempty"`
+		EnterpriseCodeSigningCertificates                         *[]EnterpriseCodeSigningCertificate                    `json:"enterpriseCodeSigningCertificates,omitempty"`
+		IosLobAppProvisioningConfigurations                       *[]IosLobAppProvisioningConfiguration                  `json:"iosLobAppProvisioningConfigurations,omitempty"`
+		IosManagedAppProtections                                  *[]IosManagedAppProtection                             `json:"iosManagedAppProtections,omitempty"`
+		IsEnabledForMicrosoftStoreForBusiness                     *bool                                                  `json:"isEnabledForMicrosoftStoreForBusiness,omitempty"`
+		ManagedAppPolicies                                        *[]ManagedAppPolicy                                    `json:"managedAppPolicies,omitempty"`
+		ManagedAppRegistrations                                   *[]ManagedAppRegistration                              `json:"managedAppRegistrations,omitempty"`
+		ManagedAppStatuses                                        *[]ManagedAppStatus                                    `json:"managedAppStatuses,omitempty"`
+		ManagedEBookCategories                                    *[]ManagedEBookCategory                                `json:"managedEBookCategories,omitempty"`
+		ManagedEBooks                                             *[]ManagedEBook                                        `json:"managedEBooks,omitempty"`
+		MdmWindowsInformationProtectionPolicies                   *[]MdmWindowsInformationProtectionPolicy               `json:"mdmWindowsInformationProtectionPolicies,omitempty"`
+		MicrosoftStoreForBusinessLanguage                         nullable.Type[string]                                  `json:"microsoftStoreForBusinessLanguage,omitempty"`
+		MicrosoftStoreForBusinessLastCompletedApplicationSyncTime *string                                                `json:"microsoftStoreForBusinessLastCompletedApplicationSyncTime,omitempty"`
+		MicrosoftStoreForBusinessLastSuccessfulSyncDateTime       *string                                                `json:"microsoftStoreForBusinessLastSuccessfulSyncDateTime,omitempty"`
+		MicrosoftStoreForBusinessPortalSelection                  *MicrosoftStoreForBusinessPortalSelectionOptions       `json:"microsoftStoreForBusinessPortalSelection,omitempty"`
+		MobileAppCatalogPackages                                  *[]MobileAppCatalogPackage                             `json:"mobileAppCatalogPackages,omitempty"`
+		MobileAppCategories                                       *[]MobileAppCategory                                   `json:"mobileAppCategories,omitempty"`
+		MobileAppConfigurations                                   *[]ManagedDeviceMobileAppConfiguration                 `json:"mobileAppConfigurations,omitempty"`
+		MobileApps                                                *[]MobileApp                                           `json:"mobileApps,omitempty"`
+		PolicySets                                                *[]PolicySet                                           `json:"policySets,omitempty"`
+		SymantecCodeSigningCertificate                            *SymantecCodeSigningCertificate                        `json:"symantecCodeSigningCertificate,omitempty"`
+		TargetedManagedAppConfigurations                          *[]TargetedManagedAppConfiguration                     `json:"targetedManagedAppConfigurations,omitempty"`
+		VppTokens                                                 *[]VppToken                                            `json:"vppTokens,omitempty"`
+		WdacSupplementalPolicies                                  *[]WindowsDefenderApplicationControlSupplementalPolicy `json:"wdacSupplementalPolicies,omitempty"`
+		WindowsInformationProtectionDeviceRegistrations           *[]WindowsInformationProtectionDeviceRegistration      `json:"windowsInformationProtectionDeviceRegistrations,omitempty"`
+		WindowsInformationProtectionPolicies                      *[]WindowsInformationProtectionPolicy                  `json:"windowsInformationProtectionPolicies,omitempty"`
+		WindowsInformationProtectionWipeActions                   *[]WindowsInformationProtectionWipeAction              `json:"windowsInformationProtectionWipeActions,omitempty"`
+		WindowsManagedAppProtections                              *[]WindowsManagedAppProtection                         `json:"windowsManagedAppProtections,omitempty"`
+		WindowsManagementApp                                      *WindowsManagementApp                                  `json:"windowsManagementApp,omitempty"`
+		Id                                                        *string                                                `json:"id,omitempty"`
+		ODataId                                                   *string                                                `json:"@odata.id,omitempty"`
+		ODataType                                                 *string                                                `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into DeviceAppManagement: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.AndroidManagedAppProtections = decoded.AndroidManagedAppProtections
 	s.DefaultManagedAppProtections = decoded.DefaultManagedAppProtections
 	s.EnterpriseCodeSigningCertificates = decoded.EnterpriseCodeSigningCertificates
-	s.Id = decoded.Id
 	s.IosLobAppProvisioningConfigurations = decoded.IosLobAppProvisioningConfigurations
 	s.IosManagedAppProtections = decoded.IosManagedAppProtections
 	s.IsEnabledForMicrosoftStoreForBusiness = decoded.IsEnabledForMicrosoftStoreForBusiness
@@ -179,8 +213,6 @@ func (s *DeviceAppManagement) UnmarshalJSON(bytes []byte) error {
 	s.MicrosoftStoreForBusinessLastSuccessfulSyncDateTime = decoded.MicrosoftStoreForBusinessLastSuccessfulSyncDateTime
 	s.MicrosoftStoreForBusinessPortalSelection = decoded.MicrosoftStoreForBusinessPortalSelection
 	s.MobileAppCategories = decoded.MobileAppCategories
-	s.ODataId = decoded.ODataId
-	s.ODataType = decoded.ODataType
 	s.PolicySets = decoded.PolicySets
 	s.SymantecCodeSigningCertificate = decoded.SymantecCodeSigningCertificate
 	s.TargetedManagedAppConfigurations = decoded.TargetedManagedAppConfigurations
@@ -191,6 +223,9 @@ func (s *DeviceAppManagement) UnmarshalJSON(bytes []byte) error {
 	s.WindowsInformationProtectionWipeActions = decoded.WindowsInformationProtectionWipeActions
 	s.WindowsManagedAppProtections = decoded.WindowsManagedAppProtections
 	s.WindowsManagementApp = decoded.WindowsManagementApp
+	s.Id = decoded.Id
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -332,5 +367,6 @@ func (s *DeviceAppManagement) UnmarshalJSON(bytes []byte) error {
 		}
 		s.MobileApps = &output
 	}
+
 	return nil
 }

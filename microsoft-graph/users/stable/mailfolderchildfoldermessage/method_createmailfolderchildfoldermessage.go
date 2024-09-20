@@ -20,15 +20,44 @@ type CreateMailFolderChildFolderMessageOperationResponse struct {
 	Model        stable.Message
 }
 
+type CreateMailFolderChildFolderMessageOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateMailFolderChildFolderMessageOperationOptions() CreateMailFolderChildFolderMessageOperationOptions {
+	return CreateMailFolderChildFolderMessageOperationOptions{}
+}
+
+func (o CreateMailFolderChildFolderMessageOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateMailFolderChildFolderMessageOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateMailFolderChildFolderMessageOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateMailFolderChildFolderMessage - Create new navigation property to messages for users
-func (c MailFolderChildFolderMessageClient) CreateMailFolderChildFolderMessage(ctx context.Context, id stable.UserIdMailFolderIdChildFolderId, input stable.Message) (result CreateMailFolderChildFolderMessageOperationResponse, err error) {
+func (c MailFolderChildFolderMessageClient) CreateMailFolderChildFolderMessage(ctx context.Context, id stable.UserIdMailFolderIdChildFolderId, input stable.Message, options CreateMailFolderChildFolderMessageOperationOptions) (result CreateMailFolderChildFolderMessageOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/messages", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/messages", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

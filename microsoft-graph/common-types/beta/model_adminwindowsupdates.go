@@ -81,20 +81,31 @@ func (s AdminWindowsUpdates) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &AdminWindowsUpdates{}
 
 func (s *AdminWindowsUpdates) UnmarshalJSON(bytes []byte) error {
-	type alias AdminWindowsUpdates
-	var decoded alias
+
+	var decoded struct {
+		Catalog             *WindowsUpdatesCatalog              `json:"catalog,omitempty"`
+		DeploymentAudiences *[]WindowsUpdatesDeploymentAudience `json:"deploymentAudiences,omitempty"`
+		Deployments         *[]WindowsUpdatesDeployment         `json:"deployments,omitempty"`
+		Products            *[]WindowsUpdatesProduct            `json:"products,omitempty"`
+		ResourceConnections *[]WindowsUpdatesResourceConnection `json:"resourceConnections,omitempty"`
+		UpdatableAssets     *[]WindowsUpdatesUpdatableAsset     `json:"updatableAssets,omitempty"`
+		UpdatePolicies      *[]WindowsUpdatesUpdatePolicy       `json:"updatePolicies,omitempty"`
+		Id                  *string                             `json:"id,omitempty"`
+		ODataId             *string                             `json:"@odata.id,omitempty"`
+		ODataType           *string                             `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into AdminWindowsUpdates: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.Catalog = decoded.Catalog
 	s.DeploymentAudiences = decoded.DeploymentAudiences
 	s.Deployments = decoded.Deployments
+	s.Products = decoded.Products
+	s.UpdatePolicies = decoded.UpdatePolicies
 	s.Id = decoded.Id
 	s.ODataId = decoded.ODataId
 	s.ODataType = decoded.ODataType
-	s.Products = decoded.Products
-	s.UpdatePolicies = decoded.UpdatePolicies
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -134,5 +145,6 @@ func (s *AdminWindowsUpdates) UnmarshalJSON(bytes []byte) error {
 		}
 		s.UpdatableAssets = &output
 	}
+
 	return nil
 }

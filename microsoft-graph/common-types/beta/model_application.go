@@ -288,10 +288,66 @@ func (s Application) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &Application{}
 
 func (s *Application) UnmarshalJSON(bytes []byte) error {
-	type alias Application
-	var decoded alias
+
+	var decoded struct {
+		Api                               *ApiApplication                    `json:"api,omitempty"`
+		AppId                             nullable.Type[string]              `json:"appId,omitempty"`
+		AppManagementPolicies             *[]AppManagementPolicy             `json:"appManagementPolicies,omitempty"`
+		AppRoles                          *[]AppRole                         `json:"appRoles,omitempty"`
+		ApplicationTemplateId             nullable.Type[string]              `json:"applicationTemplateId,omitempty"`
+		AuthenticationBehaviors           *AuthenticationBehaviors           `json:"authenticationBehaviors,omitempty"`
+		Certification                     *Certification                     `json:"certification,omitempty"`
+		ConnectorGroup                    *ConnectorGroup                    `json:"connectorGroup,omitempty"`
+		CreatedDateTime                   nullable.Type[string]              `json:"createdDateTime,omitempty"`
+		CreatedOnBehalfOf_ODataBind       *string                            `json:"createdOnBehalfOf@odata.bind,omitempty"`
+		DefaultRedirectUri                nullable.Type[string]              `json:"defaultRedirectUri,omitempty"`
+		Description                       nullable.Type[string]              `json:"description,omitempty"`
+		DisabledByMicrosoftStatus         nullable.Type[string]              `json:"disabledByMicrosoftStatus,omitempty"`
+		DisplayName                       nullable.Type[string]              `json:"displayName,omitempty"`
+		ExtensionProperties               *[]ExtensionProperty               `json:"extensionProperties,omitempty"`
+		FederatedIdentityCredentials      *[]FederatedIdentityCredential     `json:"federatedIdentityCredentials,omitempty"`
+		GroupMembershipClaims             nullable.Type[string]              `json:"groupMembershipClaims,omitempty"`
+		HomeRealmDiscoveryPolicies        *[]HomeRealmDiscoveryPolicy        `json:"homeRealmDiscoveryPolicies,omitempty"`
+		IdentifierUris                    *[]string                          `json:"identifierUris,omitempty"`
+		Info                              *InformationalUrl                  `json:"info,omitempty"`
+		IsDeviceOnlyAuthSupported         nullable.Type[bool]                `json:"isDeviceOnlyAuthSupported,omitempty"`
+		IsFallbackPublicClient            nullable.Type[bool]                `json:"isFallbackPublicClient,omitempty"`
+		KeyCredentials                    *[]KeyCredential                   `json:"keyCredentials,omitempty"`
+		Logo                              *string                            `json:"logo,omitempty"`
+		NativeAuthenticationApisEnabled   *NativeAuthenticationApisEnabled   `json:"nativeAuthenticationApisEnabled,omitempty"`
+		Notes                             nullable.Type[string]              `json:"notes,omitempty"`
+		OAuth2RequirePostResponse         *bool                              `json:"oauth2RequirePostResponse,omitempty"`
+		OnPremisesPublishing              *OnPremisesPublishing              `json:"onPremisesPublishing,omitempty"`
+		OptionalClaims                    *OptionalClaims                    `json:"optionalClaims,omitempty"`
+		Owners                            *[]DirectoryObject                 `json:"owners,omitempty"`
+		Owners_ODataBind                  *[]string                          `json:"owners@odata.bind,omitempty"`
+		ParentalControlSettings           *ParentalControlSettings           `json:"parentalControlSettings,omitempty"`
+		PasswordCredentials               *[]PasswordCredential              `json:"passwordCredentials,omitempty"`
+		PublicClient                      *PublicClientApplication           `json:"publicClient,omitempty"`
+		PublisherDomain                   nullable.Type[string]              `json:"publisherDomain,omitempty"`
+		RequestSignatureVerification      *RequestSignatureVerification      `json:"requestSignatureVerification,omitempty"`
+		RequiredResourceAccess            *[]RequiredResourceAccess          `json:"requiredResourceAccess,omitempty"`
+		SamlMetadataUrl                   nullable.Type[string]              `json:"samlMetadataUrl,omitempty"`
+		ServiceManagementReference        nullable.Type[string]              `json:"serviceManagementReference,omitempty"`
+		ServicePrincipalLockConfiguration *ServicePrincipalLockConfiguration `json:"servicePrincipalLockConfiguration,omitempty"`
+		SignInAudience                    nullable.Type[string]              `json:"signInAudience,omitempty"`
+		Spa                               *SpaApplication                    `json:"spa,omitempty"`
+		Synchronization                   *Synchronization                   `json:"synchronization,omitempty"`
+		Tags                              *[]string                          `json:"tags,omitempty"`
+		TokenEncryptionKeyId              nullable.Type[string]              `json:"tokenEncryptionKeyId,omitempty"`
+		TokenIssuancePolicies             *[]TokenIssuancePolicy             `json:"tokenIssuancePolicies,omitempty"`
+		TokenLifetimePolicies             *[]TokenLifetimePolicy             `json:"tokenLifetimePolicies,omitempty"`
+		UniqueName                        nullable.Type[string]              `json:"uniqueName,omitempty"`
+		VerifiedPublisher                 *VerifiedPublisher                 `json:"verifiedPublisher,omitempty"`
+		Web                               *WebApplication                    `json:"web,omitempty"`
+		Windows                           *WindowsApplication                `json:"windows,omitempty"`
+		DeletedDateTime                   nullable.Type[string]              `json:"deletedDateTime,omitempty"`
+		Id                                *string                            `json:"id,omitempty"`
+		ODataId                           *string                            `json:"@odata.id,omitempty"`
+		ODataType                         *string                            `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into Application: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.Api = decoded.Api
@@ -305,7 +361,6 @@ func (s *Application) UnmarshalJSON(bytes []byte) error {
 	s.CreatedDateTime = decoded.CreatedDateTime
 	s.CreatedOnBehalfOf_ODataBind = decoded.CreatedOnBehalfOf_ODataBind
 	s.DefaultRedirectUri = decoded.DefaultRedirectUri
-	s.DeletedDateTime = decoded.DeletedDateTime
 	s.Description = decoded.Description
 	s.DisabledByMicrosoftStatus = decoded.DisabledByMicrosoftStatus
 	s.DisplayName = decoded.DisplayName
@@ -313,7 +368,6 @@ func (s *Application) UnmarshalJSON(bytes []byte) error {
 	s.FederatedIdentityCredentials = decoded.FederatedIdentityCredentials
 	s.GroupMembershipClaims = decoded.GroupMembershipClaims
 	s.HomeRealmDiscoveryPolicies = decoded.HomeRealmDiscoveryPolicies
-	s.Id = decoded.Id
 	s.IdentifierUris = decoded.IdentifierUris
 	s.Info = decoded.Info
 	s.IsDeviceOnlyAuthSupported = decoded.IsDeviceOnlyAuthSupported
@@ -323,8 +377,6 @@ func (s *Application) UnmarshalJSON(bytes []byte) error {
 	s.NativeAuthenticationApisEnabled = decoded.NativeAuthenticationApisEnabled
 	s.Notes = decoded.Notes
 	s.OAuth2RequirePostResponse = decoded.OAuth2RequirePostResponse
-	s.ODataId = decoded.ODataId
-	s.ODataType = decoded.ODataType
 	s.OnPremisesPublishing = decoded.OnPremisesPublishing
 	s.OptionalClaims = decoded.OptionalClaims
 	s.Owners_ODataBind = decoded.Owners_ODataBind
@@ -348,6 +400,10 @@ func (s *Application) UnmarshalJSON(bytes []byte) error {
 	s.VerifiedPublisher = decoded.VerifiedPublisher
 	s.Web = decoded.Web
 	s.Windows = decoded.Windows
+	s.DeletedDateTime = decoded.DeletedDateTime
+	s.Id = decoded.Id
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -378,5 +434,6 @@ func (s *Application) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Owners = &output
 	}
+
 	return nil
 }

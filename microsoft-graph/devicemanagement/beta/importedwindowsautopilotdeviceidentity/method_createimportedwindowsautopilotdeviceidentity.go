@@ -18,16 +18,45 @@ type CreateImportedWindowsAutopilotDeviceIdentityOperationResponse struct {
 	Model        *beta.ImportedWindowsAutopilotDeviceIdentity
 }
 
+type CreateImportedWindowsAutopilotDeviceIdentityOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateImportedWindowsAutopilotDeviceIdentityOperationOptions() CreateImportedWindowsAutopilotDeviceIdentityOperationOptions {
+	return CreateImportedWindowsAutopilotDeviceIdentityOperationOptions{}
+}
+
+func (o CreateImportedWindowsAutopilotDeviceIdentityOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateImportedWindowsAutopilotDeviceIdentityOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateImportedWindowsAutopilotDeviceIdentityOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateImportedWindowsAutopilotDeviceIdentity - Create new navigation property to
 // importedWindowsAutopilotDeviceIdentities for deviceManagement
-func (c ImportedWindowsAutopilotDeviceIdentityClient) CreateImportedWindowsAutopilotDeviceIdentity(ctx context.Context, input beta.ImportedWindowsAutopilotDeviceIdentity) (result CreateImportedWindowsAutopilotDeviceIdentityOperationResponse, err error) {
+func (c ImportedWindowsAutopilotDeviceIdentityClient) CreateImportedWindowsAutopilotDeviceIdentity(ctx context.Context, input beta.ImportedWindowsAutopilotDeviceIdentity, options CreateImportedWindowsAutopilotDeviceIdentityOperationOptions) (result CreateImportedWindowsAutopilotDeviceIdentityOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/deviceManagement/importedWindowsAutopilotDeviceIdentities",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/deviceManagement/importedWindowsAutopilotDeviceIdentities",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

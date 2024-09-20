@@ -19,7 +19,8 @@ type DeleteDeviceEnrollmentConfigurationAssignmentOperationResponse struct {
 }
 
 type DeleteDeviceEnrollmentConfigurationAssignmentOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteDeviceEnrollmentConfigurationAssignmentOperationOptions() DeleteDeviceEnrollmentConfigurationAssignmentOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteDeviceEnrollmentConfigurationAssignmentOperationOptions) ToHeaders
 
 func (o DeleteDeviceEnrollmentConfigurationAssignmentOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

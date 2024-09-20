@@ -95,7 +95,7 @@ func (id ReportPartnerBillingOperationId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("partners", "partners", "partners"),
 		resourceids.StaticSegment("billing", "billing", "billing"),
 		resourceids.StaticSegment("operations", "operations", "operations"),
-		resourceids.UserSpecifiedSegment("operationId", "operationIdValue"),
+		resourceids.UserSpecifiedSegment("operationId", "operationId"),
 	}
 }
 

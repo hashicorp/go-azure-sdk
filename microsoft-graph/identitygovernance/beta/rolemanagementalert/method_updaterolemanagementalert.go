@@ -17,15 +17,44 @@ type UpdateRoleManagementAlertOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateRoleManagementAlertOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateRoleManagementAlertOperationOptions() UpdateRoleManagementAlertOperationOptions {
+	return UpdateRoleManagementAlertOperationOptions{}
+}
+
+func (o UpdateRoleManagementAlertOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateRoleManagementAlertOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateRoleManagementAlertOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateRoleManagementAlert - Update the navigation property roleManagementAlerts in identityGovernance
-func (c RoleManagementAlertClient) UpdateRoleManagementAlert(ctx context.Context, input beta.RoleManagementAlert) (result UpdateRoleManagementAlertOperationResponse, err error) {
+func (c RoleManagementAlertClient) UpdateRoleManagementAlert(ctx context.Context, input beta.RoleManagementAlert, options UpdateRoleManagementAlertOperationOptions) (result UpdateRoleManagementAlertOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       "/identityGovernance/roleManagementAlerts",
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          "/identityGovernance/roleManagementAlerts",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

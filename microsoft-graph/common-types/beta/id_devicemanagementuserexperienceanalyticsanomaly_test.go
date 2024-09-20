@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &DeviceManagementUserExperienceAnalyticsAnomalyId{}
 
 func TestNewDeviceManagementUserExperienceAnalyticsAnomalyID(t *testing.T) {
-	id := NewDeviceManagementUserExperienceAnalyticsAnomalyID("userExperienceAnalyticsAnomalyIdValue")
+	id := NewDeviceManagementUserExperienceAnalyticsAnomalyID("userExperienceAnalyticsAnomalyId")
 
-	if id.UserExperienceAnalyticsAnomalyId != "userExperienceAnalyticsAnomalyIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'UserExperienceAnalyticsAnomalyId'", id.UserExperienceAnalyticsAnomalyId, "userExperienceAnalyticsAnomalyIdValue")
+	if id.UserExperienceAnalyticsAnomalyId != "userExperienceAnalyticsAnomalyId" {
+		t.Fatalf("Expected %q but got %q for Segment 'UserExperienceAnalyticsAnomalyId'", id.UserExperienceAnalyticsAnomalyId, "userExperienceAnalyticsAnomalyId")
 	}
 }
 
 func TestFormatDeviceManagementUserExperienceAnalyticsAnomalyID(t *testing.T) {
-	actual := NewDeviceManagementUserExperienceAnalyticsAnomalyID("userExperienceAnalyticsAnomalyIdValue").ID()
-	expected := "/deviceManagement/userExperienceAnalyticsAnomaly/userExperienceAnalyticsAnomalyIdValue"
+	actual := NewDeviceManagementUserExperienceAnalyticsAnomalyID("userExperienceAnalyticsAnomalyId").ID()
+	expected := "/deviceManagement/userExperienceAnalyticsAnomaly/userExperienceAnalyticsAnomalyId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -50,14 +50,14 @@ func TestParseDeviceManagementUserExperienceAnalyticsAnomalyID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/userExperienceAnalyticsAnomaly/userExperienceAnalyticsAnomalyIdValue",
+			Input: "/deviceManagement/userExperienceAnalyticsAnomaly/userExperienceAnalyticsAnomalyId",
 			Expected: &DeviceManagementUserExperienceAnalyticsAnomalyId{
-				UserExperienceAnalyticsAnomalyId: "userExperienceAnalyticsAnomalyIdValue",
+				UserExperienceAnalyticsAnomalyId: "userExperienceAnalyticsAnomalyId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/userExperienceAnalyticsAnomaly/userExperienceAnalyticsAnomalyIdValue/extra",
+			Input: "/deviceManagement/userExperienceAnalyticsAnomaly/userExperienceAnalyticsAnomalyId/extra",
 			Error: true,
 		},
 	}
@@ -116,26 +116,26 @@ func TestParseDeviceManagementUserExperienceAnalyticsAnomalyIDInsensitively(t *t
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/userExperienceAnalyticsAnomaly/userExperienceAnalyticsAnomalyIdValue",
+			Input: "/deviceManagement/userExperienceAnalyticsAnomaly/userExperienceAnalyticsAnomalyId",
 			Expected: &DeviceManagementUserExperienceAnalyticsAnomalyId{
-				UserExperienceAnalyticsAnomalyId: "userExperienceAnalyticsAnomalyIdValue",
+				UserExperienceAnalyticsAnomalyId: "userExperienceAnalyticsAnomalyId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/userExperienceAnalyticsAnomaly/userExperienceAnalyticsAnomalyIdValue/extra",
+			Input: "/deviceManagement/userExperienceAnalyticsAnomaly/userExperienceAnalyticsAnomalyId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/uSeReXpErIeNcEaNaLyTiCsAnOmAlY/uSeReXpErIeNcEaNaLyTiCsAnOmAlYiDvAlUe",
+			Input: "/dEvIcEmAnAgEmEnT/uSeReXpErIeNcEaNaLyTiCsAnOmAlY/uSeReXpErIeNcEaNaLyTiCsAnOmAlYiD",
 			Expected: &DeviceManagementUserExperienceAnalyticsAnomalyId{
-				UserExperienceAnalyticsAnomalyId: "uSeReXpErIeNcEaNaLyTiCsAnOmAlYiDvAlUe",
+				UserExperienceAnalyticsAnomalyId: "uSeReXpErIeNcEaNaLyTiCsAnOmAlYiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/uSeReXpErIeNcEaNaLyTiCsAnOmAlY/uSeReXpErIeNcEaNaLyTiCsAnOmAlYiDvAlUe/extra",
+			Input: "/dEvIcEmAnAgEmEnT/uSeReXpErIeNcEaNaLyTiCsAnOmAlY/uSeReXpErIeNcEaNaLyTiCsAnOmAlYiD/extra",
 			Error: true,
 		},
 	}

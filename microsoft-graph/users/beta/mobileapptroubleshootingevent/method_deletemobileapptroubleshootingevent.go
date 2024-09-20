@@ -19,7 +19,8 @@ type DeleteMobileAppTroubleshootingEventOperationResponse struct {
 }
 
 type DeleteMobileAppTroubleshootingEventOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteMobileAppTroubleshootingEventOperationOptions() DeleteMobileAppTroubleshootingEventOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteMobileAppTroubleshootingEventOperationOptions) ToHeaders() *client
 
 func (o DeleteMobileAppTroubleshootingEventOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &MeMessageIdMentionId{}
 
 func TestNewMeMessageIdMentionID(t *testing.T) {
-	id := NewMeMessageIdMentionID("messageIdValue", "mentionIdValue")
+	id := NewMeMessageIdMentionID("messageId", "mentionId")
 
-	if id.MessageId != "messageIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'MessageId'", id.MessageId, "messageIdValue")
+	if id.MessageId != "messageId" {
+		t.Fatalf("Expected %q but got %q for Segment 'MessageId'", id.MessageId, "messageId")
 	}
 
-	if id.MentionId != "mentionIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'MentionId'", id.MentionId, "mentionIdValue")
+	if id.MentionId != "mentionId" {
+		t.Fatalf("Expected %q but got %q for Segment 'MentionId'", id.MentionId, "mentionId")
 	}
 }
 
 func TestFormatMeMessageIdMentionID(t *testing.T) {
-	actual := NewMeMessageIdMentionID("messageIdValue", "mentionIdValue").ID()
-	expected := "/me/messages/messageIdValue/mentions/mentionIdValue"
+	actual := NewMeMessageIdMentionID("messageId", "mentionId").ID()
+	expected := "/me/messages/messageId/mentions/mentionId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -54,25 +54,25 @@ func TestParseMeMessageIdMentionID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/me/messages/messageIdValue",
+			Input: "/me/messages/messageId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/me/messages/messageIdValue/mentions",
+			Input: "/me/messages/messageId/mentions",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/me/messages/messageIdValue/mentions/mentionIdValue",
+			Input: "/me/messages/messageId/mentions/mentionId",
 			Expected: &MeMessageIdMentionId{
-				MessageId: "messageIdValue",
-				MentionId: "mentionIdValue",
+				MessageId: "messageId",
+				MentionId: "mentionId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/messages/messageIdValue/mentions/mentionIdValue/extra",
+			Input: "/me/messages/messageId/mentions/mentionId/extra",
 			Error: true,
 		},
 	}
@@ -135,48 +135,48 @@ func TestParseMeMessageIdMentionIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/me/messages/messageIdValue",
+			Input: "/me/messages/messageId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/mEsSaGeS/mEsSaGeIdVaLuE",
+			Input: "/mE/mEsSaGeS/mEsSaGeId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/me/messages/messageIdValue/mentions",
+			Input: "/me/messages/messageId/mentions",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/mEsSaGeS/mEsSaGeIdVaLuE/mEnTiOnS",
+			Input: "/mE/mEsSaGeS/mEsSaGeId/mEnTiOnS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/me/messages/messageIdValue/mentions/mentionIdValue",
+			Input: "/me/messages/messageId/mentions/mentionId",
 			Expected: &MeMessageIdMentionId{
-				MessageId: "messageIdValue",
-				MentionId: "mentionIdValue",
+				MessageId: "messageId",
+				MentionId: "mentionId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/messages/messageIdValue/mentions/mentionIdValue/extra",
+			Input: "/me/messages/messageId/mentions/mentionId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/mEsSaGeS/mEsSaGeIdVaLuE/mEnTiOnS/mEnTiOnIdVaLuE",
+			Input: "/mE/mEsSaGeS/mEsSaGeId/mEnTiOnS/mEnTiOnId",
 			Expected: &MeMessageIdMentionId{
-				MessageId: "mEsSaGeIdVaLuE",
-				MentionId: "mEnTiOnIdVaLuE",
+				MessageId: "mEsSaGeId",
+				MentionId: "mEnTiOnId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/mE/mEsSaGeS/mEsSaGeIdVaLuE/mEnTiOnS/mEnTiOnIdVaLuE/extra",
+			Input: "/mE/mEsSaGeS/mEsSaGeId/mEnTiOnS/mEnTiOnId/extra",
 			Error: true,
 		},
 	}

@@ -18,15 +18,44 @@ type CreateResourceOperationOperationResponse struct {
 	Model        *stable.ResourceOperation
 }
 
+type CreateResourceOperationOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateResourceOperationOperationOptions() CreateResourceOperationOperationOptions {
+	return CreateResourceOperationOperationOptions{}
+}
+
+func (o CreateResourceOperationOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateResourceOperationOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateResourceOperationOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateResourceOperation - Create resourceOperation. Create a new resourceOperation object.
-func (c ResourceOperationClient) CreateResourceOperation(ctx context.Context, input stable.ResourceOperation) (result CreateResourceOperationOperationResponse, err error) {
+func (c ResourceOperationClient) CreateResourceOperation(ctx context.Context, input stable.ResourceOperation, options CreateResourceOperationOperationOptions) (result CreateResourceOperationOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/deviceManagement/resourceOperations",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/deviceManagement/resourceOperations",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -19,7 +19,8 @@ type DeleteZebraFotaArtifactOperationResponse struct {
 }
 
 type DeleteZebraFotaArtifactOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteZebraFotaArtifactOperationOptions() DeleteZebraFotaArtifactOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteZebraFotaArtifactOperationOptions) ToHeaders() *client.Headers {
 
 func (o DeleteZebraFotaArtifactOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

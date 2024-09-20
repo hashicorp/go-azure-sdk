@@ -131,33 +131,56 @@ func (s IdentityGovernanceWorkflow) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &IdentityGovernanceWorkflow{}
 
 func (s *IdentityGovernanceWorkflow) UnmarshalJSON(bytes []byte) error {
-	type alias IdentityGovernanceWorkflow
-	var decoded alias
+
+	var decoded struct {
+		DeletedDateTime         nullable.Type[string]                         `json:"deletedDateTime,omitempty"`
+		ExecutionScope          *[]IdentityGovernanceUserProcessingResult     `json:"executionScope,omitempty"`
+		Id                      *string                                       `json:"id,omitempty"`
+		NextScheduleRunDateTime nullable.Type[string]                         `json:"nextScheduleRunDateTime,omitempty"`
+		Runs                    *[]IdentityGovernanceRun                      `json:"runs,omitempty"`
+		TaskReports             *[]IdentityGovernanceTaskReport               `json:"taskReports,omitempty"`
+		UserProcessingResults   *[]IdentityGovernanceUserProcessingResult     `json:"userProcessingResults,omitempty"`
+		Version                 nullable.Type[int64]                          `json:"version,omitempty"`
+		Versions                *[]IdentityGovernanceWorkflowVersion          `json:"versions,omitempty"`
+		Category                *IdentityGovernanceLifecycleWorkflowCategory  `json:"category,omitempty"`
+		CreatedBy               *User                                         `json:"createdBy,omitempty"`
+		CreatedDateTime         nullable.Type[string]                         `json:"createdDateTime,omitempty"`
+		Description             nullable.Type[string]                         `json:"description,omitempty"`
+		DisplayName             *string                                       `json:"displayName,omitempty"`
+		ExecutionConditions     IdentityGovernanceWorkflowExecutionConditions `json:"executionConditions"`
+		IsEnabled               *bool                                         `json:"isEnabled,omitempty"`
+		IsSchedulingEnabled     *bool                                         `json:"isSchedulingEnabled,omitempty"`
+		LastModifiedBy          *User                                         `json:"lastModifiedBy,omitempty"`
+		LastModifiedDateTime    nullable.Type[string]                         `json:"lastModifiedDateTime,omitempty"`
+		ODataId                 *string                                       `json:"@odata.id,omitempty"`
+		ODataType               *string                                       `json:"@odata.type,omitempty"`
+		Tasks                   *[]IdentityGovernanceTask                     `json:"tasks,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into IdentityGovernanceWorkflow: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
+	s.DeletedDateTime = decoded.DeletedDateTime
+	s.ExecutionScope = decoded.ExecutionScope
+	s.Id = decoded.Id
+	s.NextScheduleRunDateTime = decoded.NextScheduleRunDateTime
+	s.Runs = decoded.Runs
+	s.TaskReports = decoded.TaskReports
+	s.UserProcessingResults = decoded.UserProcessingResults
+	s.Version = decoded.Version
+	s.Versions = decoded.Versions
 	s.Category = decoded.Category
 	s.CreatedBy = decoded.CreatedBy
 	s.CreatedDateTime = decoded.CreatedDateTime
-	s.DeletedDateTime = decoded.DeletedDateTime
 	s.Description = decoded.Description
 	s.DisplayName = decoded.DisplayName
-	s.ExecutionScope = decoded.ExecutionScope
-	s.Id = decoded.Id
 	s.IsEnabled = decoded.IsEnabled
 	s.IsSchedulingEnabled = decoded.IsSchedulingEnabled
 	s.LastModifiedBy = decoded.LastModifiedBy
 	s.LastModifiedDateTime = decoded.LastModifiedDateTime
-	s.NextScheduleRunDateTime = decoded.NextScheduleRunDateTime
 	s.ODataId = decoded.ODataId
 	s.ODataType = decoded.ODataType
-	s.Runs = decoded.Runs
-	s.TaskReports = decoded.TaskReports
 	s.Tasks = decoded.Tasks
-	s.UserProcessingResults = decoded.UserProcessingResults
-	s.Version = decoded.Version
-	s.Versions = decoded.Versions
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -171,5 +194,6 @@ func (s *IdentityGovernanceWorkflow) UnmarshalJSON(bytes []byte) error {
 		}
 		s.ExecutionConditions = impl
 	}
+
 	return nil
 }

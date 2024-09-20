@@ -17,16 +17,45 @@ type UpdateFederatedTokenValidationPolicyOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateFederatedTokenValidationPolicyOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateFederatedTokenValidationPolicyOperationOptions() UpdateFederatedTokenValidationPolicyOperationOptions {
+	return UpdateFederatedTokenValidationPolicyOperationOptions{}
+}
+
+func (o UpdateFederatedTokenValidationPolicyOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateFederatedTokenValidationPolicyOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateFederatedTokenValidationPolicyOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateFederatedTokenValidationPolicy - Update federatedTokenValidationPolicy. Update the properties of a
 // federatedTokenValidationPolicy object.
-func (c FederatedTokenValidationPolicyClient) UpdateFederatedTokenValidationPolicy(ctx context.Context, input beta.FederatedTokenValidationPolicy) (result UpdateFederatedTokenValidationPolicyOperationResponse, err error) {
+func (c FederatedTokenValidationPolicyClient) UpdateFederatedTokenValidationPolicy(ctx context.Context, input beta.FederatedTokenValidationPolicy, options UpdateFederatedTokenValidationPolicyOperationOptions) (result UpdateFederatedTokenValidationPolicyOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       "/policies/federatedTokenValidationPolicy",
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          "/policies/federatedTokenValidationPolicy",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

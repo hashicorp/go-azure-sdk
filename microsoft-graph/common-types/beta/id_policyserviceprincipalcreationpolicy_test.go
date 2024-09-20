@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &PolicyServicePrincipalCreationPolicyId{}
 
 func TestNewPolicyServicePrincipalCreationPolicyID(t *testing.T) {
-	id := NewPolicyServicePrincipalCreationPolicyID("servicePrincipalCreationPolicyIdValue")
+	id := NewPolicyServicePrincipalCreationPolicyID("servicePrincipalCreationPolicyId")
 
-	if id.ServicePrincipalCreationPolicyId != "servicePrincipalCreationPolicyIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ServicePrincipalCreationPolicyId'", id.ServicePrincipalCreationPolicyId, "servicePrincipalCreationPolicyIdValue")
+	if id.ServicePrincipalCreationPolicyId != "servicePrincipalCreationPolicyId" {
+		t.Fatalf("Expected %q but got %q for Segment 'ServicePrincipalCreationPolicyId'", id.ServicePrincipalCreationPolicyId, "servicePrincipalCreationPolicyId")
 	}
 }
 
 func TestFormatPolicyServicePrincipalCreationPolicyID(t *testing.T) {
-	actual := NewPolicyServicePrincipalCreationPolicyID("servicePrincipalCreationPolicyIdValue").ID()
-	expected := "/policies/servicePrincipalCreationPolicies/servicePrincipalCreationPolicyIdValue"
+	actual := NewPolicyServicePrincipalCreationPolicyID("servicePrincipalCreationPolicyId").ID()
+	expected := "/policies/servicePrincipalCreationPolicies/servicePrincipalCreationPolicyId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -50,14 +50,14 @@ func TestParsePolicyServicePrincipalCreationPolicyID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/policies/servicePrincipalCreationPolicies/servicePrincipalCreationPolicyIdValue",
+			Input: "/policies/servicePrincipalCreationPolicies/servicePrincipalCreationPolicyId",
 			Expected: &PolicyServicePrincipalCreationPolicyId{
-				ServicePrincipalCreationPolicyId: "servicePrincipalCreationPolicyIdValue",
+				ServicePrincipalCreationPolicyId: "servicePrincipalCreationPolicyId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/policies/servicePrincipalCreationPolicies/servicePrincipalCreationPolicyIdValue/extra",
+			Input: "/policies/servicePrincipalCreationPolicies/servicePrincipalCreationPolicyId/extra",
 			Error: true,
 		},
 	}
@@ -116,26 +116,26 @@ func TestParsePolicyServicePrincipalCreationPolicyIDInsensitively(t *testing.T) 
 		},
 		{
 			// Valid URI
-			Input: "/policies/servicePrincipalCreationPolicies/servicePrincipalCreationPolicyIdValue",
+			Input: "/policies/servicePrincipalCreationPolicies/servicePrincipalCreationPolicyId",
 			Expected: &PolicyServicePrincipalCreationPolicyId{
-				ServicePrincipalCreationPolicyId: "servicePrincipalCreationPolicyIdValue",
+				ServicePrincipalCreationPolicyId: "servicePrincipalCreationPolicyId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/policies/servicePrincipalCreationPolicies/servicePrincipalCreationPolicyIdValue/extra",
+			Input: "/policies/servicePrincipalCreationPolicies/servicePrincipalCreationPolicyId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/pOlIcIeS/sErViCePrInCiPaLcReAtIoNpOlIcIeS/sErViCePrInCiPaLcReAtIoNpOlIcYiDvAlUe",
+			Input: "/pOlIcIeS/sErViCePrInCiPaLcReAtIoNpOlIcIeS/sErViCePrInCiPaLcReAtIoNpOlIcYiD",
 			Expected: &PolicyServicePrincipalCreationPolicyId{
-				ServicePrincipalCreationPolicyId: "sErViCePrInCiPaLcReAtIoNpOlIcYiDvAlUe",
+				ServicePrincipalCreationPolicyId: "sErViCePrInCiPaLcReAtIoNpOlIcYiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/pOlIcIeS/sErViCePrInCiPaLcReAtIoNpOlIcIeS/sErViCePrInCiPaLcReAtIoNpOlIcYiDvAlUe/extra",
+			Input: "/pOlIcIeS/sErViCePrInCiPaLcReAtIoNpOlIcIeS/sErViCePrInCiPaLcReAtIoNpOlIcYiD/extra",
 			Error: true,
 		},
 	}

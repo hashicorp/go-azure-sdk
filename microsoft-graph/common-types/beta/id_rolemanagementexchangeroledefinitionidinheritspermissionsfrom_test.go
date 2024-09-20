@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &RoleManagementExchangeRoleDefinitionIdInheritsPermissionsFromId{}
 
 func TestNewRoleManagementExchangeRoleDefinitionIdInheritsPermissionsFromID(t *testing.T) {
-	id := NewRoleManagementExchangeRoleDefinitionIdInheritsPermissionsFromID("unifiedRoleDefinitionIdValue", "unifiedRoleDefinitionId1Value")
+	id := NewRoleManagementExchangeRoleDefinitionIdInheritsPermissionsFromID("unifiedRoleDefinitionId", "unifiedRoleDefinitionId1")
 
-	if id.UnifiedRoleDefinitionId != "unifiedRoleDefinitionIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'UnifiedRoleDefinitionId'", id.UnifiedRoleDefinitionId, "unifiedRoleDefinitionIdValue")
+	if id.UnifiedRoleDefinitionId != "unifiedRoleDefinitionId" {
+		t.Fatalf("Expected %q but got %q for Segment 'UnifiedRoleDefinitionId'", id.UnifiedRoleDefinitionId, "unifiedRoleDefinitionId")
 	}
 
-	if id.UnifiedRoleDefinitionId1 != "unifiedRoleDefinitionId1Value" {
-		t.Fatalf("Expected %q but got %q for Segment 'UnifiedRoleDefinitionId1'", id.UnifiedRoleDefinitionId1, "unifiedRoleDefinitionId1Value")
+	if id.UnifiedRoleDefinitionId1 != "unifiedRoleDefinitionId1" {
+		t.Fatalf("Expected %q but got %q for Segment 'UnifiedRoleDefinitionId1'", id.UnifiedRoleDefinitionId1, "unifiedRoleDefinitionId1")
 	}
 }
 
 func TestFormatRoleManagementExchangeRoleDefinitionIdInheritsPermissionsFromID(t *testing.T) {
-	actual := NewRoleManagementExchangeRoleDefinitionIdInheritsPermissionsFromID("unifiedRoleDefinitionIdValue", "unifiedRoleDefinitionId1Value").ID()
-	expected := "/roleManagement/exchange/roleDefinitions/unifiedRoleDefinitionIdValue/inheritsPermissionsFrom/unifiedRoleDefinitionId1Value"
+	actual := NewRoleManagementExchangeRoleDefinitionIdInheritsPermissionsFromID("unifiedRoleDefinitionId", "unifiedRoleDefinitionId1").ID()
+	expected := "/roleManagement/exchange/roleDefinitions/unifiedRoleDefinitionId/inheritsPermissionsFrom/unifiedRoleDefinitionId1"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -59,25 +59,25 @@ func TestParseRoleManagementExchangeRoleDefinitionIdInheritsPermissionsFromID(t 
 		},
 		{
 			// Incomplete URI
-			Input: "/roleManagement/exchange/roleDefinitions/unifiedRoleDefinitionIdValue",
+			Input: "/roleManagement/exchange/roleDefinitions/unifiedRoleDefinitionId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/roleManagement/exchange/roleDefinitions/unifiedRoleDefinitionIdValue/inheritsPermissionsFrom",
+			Input: "/roleManagement/exchange/roleDefinitions/unifiedRoleDefinitionId/inheritsPermissionsFrom",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/roleManagement/exchange/roleDefinitions/unifiedRoleDefinitionIdValue/inheritsPermissionsFrom/unifiedRoleDefinitionId1Value",
+			Input: "/roleManagement/exchange/roleDefinitions/unifiedRoleDefinitionId/inheritsPermissionsFrom/unifiedRoleDefinitionId1",
 			Expected: &RoleManagementExchangeRoleDefinitionIdInheritsPermissionsFromId{
-				UnifiedRoleDefinitionId:  "unifiedRoleDefinitionIdValue",
-				UnifiedRoleDefinitionId1: "unifiedRoleDefinitionId1Value",
+				UnifiedRoleDefinitionId:  "unifiedRoleDefinitionId",
+				UnifiedRoleDefinitionId1: "unifiedRoleDefinitionId1",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/roleManagement/exchange/roleDefinitions/unifiedRoleDefinitionIdValue/inheritsPermissionsFrom/unifiedRoleDefinitionId1Value/extra",
+			Input: "/roleManagement/exchange/roleDefinitions/unifiedRoleDefinitionId/inheritsPermissionsFrom/unifiedRoleDefinitionId1/extra",
 			Error: true,
 		},
 	}
@@ -150,48 +150,48 @@ func TestParseRoleManagementExchangeRoleDefinitionIdInheritsPermissionsFromIDIns
 		},
 		{
 			// Incomplete URI
-			Input: "/roleManagement/exchange/roleDefinitions/unifiedRoleDefinitionIdValue",
+			Input: "/roleManagement/exchange/roleDefinitions/unifiedRoleDefinitionId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/rOlEmAnAgEmEnT/eXcHaNgE/rOlEdEfInItIoNs/uNiFiEdRoLeDeFiNiTiOnIdVaLuE",
+			Input: "/rOlEmAnAgEmEnT/eXcHaNgE/rOlEdEfInItIoNs/uNiFiEdRoLeDeFiNiTiOnId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/roleManagement/exchange/roleDefinitions/unifiedRoleDefinitionIdValue/inheritsPermissionsFrom",
+			Input: "/roleManagement/exchange/roleDefinitions/unifiedRoleDefinitionId/inheritsPermissionsFrom",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/rOlEmAnAgEmEnT/eXcHaNgE/rOlEdEfInItIoNs/uNiFiEdRoLeDeFiNiTiOnIdVaLuE/iNhErItSpErMiSsIoNsFrOm",
+			Input: "/rOlEmAnAgEmEnT/eXcHaNgE/rOlEdEfInItIoNs/uNiFiEdRoLeDeFiNiTiOnId/iNhErItSpErMiSsIoNsFrOm",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/roleManagement/exchange/roleDefinitions/unifiedRoleDefinitionIdValue/inheritsPermissionsFrom/unifiedRoleDefinitionId1Value",
+			Input: "/roleManagement/exchange/roleDefinitions/unifiedRoleDefinitionId/inheritsPermissionsFrom/unifiedRoleDefinitionId1",
 			Expected: &RoleManagementExchangeRoleDefinitionIdInheritsPermissionsFromId{
-				UnifiedRoleDefinitionId:  "unifiedRoleDefinitionIdValue",
-				UnifiedRoleDefinitionId1: "unifiedRoleDefinitionId1Value",
+				UnifiedRoleDefinitionId:  "unifiedRoleDefinitionId",
+				UnifiedRoleDefinitionId1: "unifiedRoleDefinitionId1",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/roleManagement/exchange/roleDefinitions/unifiedRoleDefinitionIdValue/inheritsPermissionsFrom/unifiedRoleDefinitionId1Value/extra",
+			Input: "/roleManagement/exchange/roleDefinitions/unifiedRoleDefinitionId/inheritsPermissionsFrom/unifiedRoleDefinitionId1/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/rOlEmAnAgEmEnT/eXcHaNgE/rOlEdEfInItIoNs/uNiFiEdRoLeDeFiNiTiOnIdVaLuE/iNhErItSpErMiSsIoNsFrOm/uNiFiEdRoLeDeFiNiTiOnId1vAlUe",
+			Input: "/rOlEmAnAgEmEnT/eXcHaNgE/rOlEdEfInItIoNs/uNiFiEdRoLeDeFiNiTiOnId/iNhErItSpErMiSsIoNsFrOm/uNiFiEdRoLeDeFiNiTiOnId1",
 			Expected: &RoleManagementExchangeRoleDefinitionIdInheritsPermissionsFromId{
-				UnifiedRoleDefinitionId:  "uNiFiEdRoLeDeFiNiTiOnIdVaLuE",
-				UnifiedRoleDefinitionId1: "uNiFiEdRoLeDeFiNiTiOnId1vAlUe",
+				UnifiedRoleDefinitionId:  "uNiFiEdRoLeDeFiNiTiOnId",
+				UnifiedRoleDefinitionId1: "uNiFiEdRoLeDeFiNiTiOnId1",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/rOlEmAnAgEmEnT/eXcHaNgE/rOlEdEfInItIoNs/uNiFiEdRoLeDeFiNiTiOnIdVaLuE/iNhErItSpErMiSsIoNsFrOm/uNiFiEdRoLeDeFiNiTiOnId1vAlUe/extra",
+			Input: "/rOlEmAnAgEmEnT/eXcHaNgE/rOlEdEfInItIoNs/uNiFiEdRoLeDeFiNiTiOnId/iNhErItSpErMiSsIoNsFrOm/uNiFiEdRoLeDeFiNiTiOnId1/extra",
 			Error: true,
 		},
 	}

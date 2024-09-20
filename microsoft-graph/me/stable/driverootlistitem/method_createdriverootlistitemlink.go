@@ -19,15 +19,44 @@ type CreateDriveRootListItemLinkOperationResponse struct {
 	Model        *stable.Permission
 }
 
+type CreateDriveRootListItemLinkOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateDriveRootListItemLinkOperationOptions() CreateDriveRootListItemLinkOperationOptions {
+	return CreateDriveRootListItemLinkOperationOptions{}
+}
+
+func (o CreateDriveRootListItemLinkOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateDriveRootListItemLinkOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateDriveRootListItemLinkOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateDriveRootListItemLink - Invoke action createLink
-func (c DriveRootListItemClient) CreateDriveRootListItemLink(ctx context.Context, id stable.MeDriveId, input CreateDriveRootListItemLinkRequest) (result CreateDriveRootListItemLinkOperationResponse, err error) {
+func (c DriveRootListItemClient) CreateDriveRootListItemLink(ctx context.Context, id stable.MeDriveId, input CreateDriveRootListItemLinkRequest, options CreateDriveRootListItemLinkOperationOptions) (result CreateDriveRootListItemLinkOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/root/listItem/createLink", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/root/listItem/createLink", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -18,16 +18,45 @@ type UpdateDeviceConfigurationDeviceStatusOverviewOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateDeviceConfigurationDeviceStatusOverviewOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateDeviceConfigurationDeviceStatusOverviewOperationOptions() UpdateDeviceConfigurationDeviceStatusOverviewOperationOptions {
+	return UpdateDeviceConfigurationDeviceStatusOverviewOperationOptions{}
+}
+
+func (o UpdateDeviceConfigurationDeviceStatusOverviewOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateDeviceConfigurationDeviceStatusOverviewOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateDeviceConfigurationDeviceStatusOverviewOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateDeviceConfigurationDeviceStatusOverview - Update deviceConfigurationDeviceOverview. Update the properties of a
 // deviceConfigurationDeviceOverview object.
-func (c DeviceConfigurationDeviceStatusOverviewClient) UpdateDeviceConfigurationDeviceStatusOverview(ctx context.Context, id stable.DeviceManagementDeviceConfigurationId, input stable.DeviceConfigurationDeviceOverview) (result UpdateDeviceConfigurationDeviceStatusOverviewOperationResponse, err error) {
+func (c DeviceConfigurationDeviceStatusOverviewClient) UpdateDeviceConfigurationDeviceStatusOverview(ctx context.Context, id stable.DeviceManagementDeviceConfigurationId, input stable.DeviceConfigurationDeviceOverview, options UpdateDeviceConfigurationDeviceStatusOverviewOperationOptions) (result UpdateDeviceConfigurationDeviceStatusOverviewOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       fmt.Sprintf("%s/deviceStatusOverview", id.ID()),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/deviceStatusOverview", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

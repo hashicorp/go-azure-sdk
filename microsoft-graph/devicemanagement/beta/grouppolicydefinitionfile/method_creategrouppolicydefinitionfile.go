@@ -19,15 +19,44 @@ type CreateGroupPolicyDefinitionFileOperationResponse struct {
 	Model        beta.GroupPolicyDefinitionFile
 }
 
+type CreateGroupPolicyDefinitionFileOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateGroupPolicyDefinitionFileOperationOptions() CreateGroupPolicyDefinitionFileOperationOptions {
+	return CreateGroupPolicyDefinitionFileOperationOptions{}
+}
+
+func (o CreateGroupPolicyDefinitionFileOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateGroupPolicyDefinitionFileOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateGroupPolicyDefinitionFileOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateGroupPolicyDefinitionFile - Create new navigation property to groupPolicyDefinitionFiles for deviceManagement
-func (c GroupPolicyDefinitionFileClient) CreateGroupPolicyDefinitionFile(ctx context.Context, input beta.GroupPolicyDefinitionFile) (result CreateGroupPolicyDefinitionFileOperationResponse, err error) {
+func (c GroupPolicyDefinitionFileClient) CreateGroupPolicyDefinitionFile(ctx context.Context, input beta.GroupPolicyDefinitionFile, options CreateGroupPolicyDefinitionFileOperationOptions) (result CreateGroupPolicyDefinitionFileOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/deviceManagement/groupPolicyDefinitionFiles",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/deviceManagement/groupPolicyDefinitionFiles",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

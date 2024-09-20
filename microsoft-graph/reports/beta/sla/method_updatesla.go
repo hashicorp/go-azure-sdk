@@ -17,15 +17,44 @@ type UpdateSlaOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateSlaOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateSlaOperationOptions() UpdateSlaOperationOptions {
+	return UpdateSlaOperationOptions{}
+}
+
+func (o UpdateSlaOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateSlaOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateSlaOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateSla - Update the navigation property sla in reports
-func (c SlaClient) UpdateSla(ctx context.Context, input beta.ServiceLevelAgreementRoot) (result UpdateSlaOperationResponse, err error) {
+func (c SlaClient) UpdateSla(ctx context.Context, input beta.ServiceLevelAgreementRoot, options UpdateSlaOperationOptions) (result UpdateSlaOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       "/reports/sla",
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          "/reports/sla",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

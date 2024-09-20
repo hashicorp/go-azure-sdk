@@ -18,16 +18,45 @@ type CreateComplianceManagementPartnerOperationResponse struct {
 	Model        *beta.ComplianceManagementPartner
 }
 
+type CreateComplianceManagementPartnerOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateComplianceManagementPartnerOperationOptions() CreateComplianceManagementPartnerOperationOptions {
+	return CreateComplianceManagementPartnerOperationOptions{}
+}
+
+func (o CreateComplianceManagementPartnerOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateComplianceManagementPartnerOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateComplianceManagementPartnerOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateComplianceManagementPartner - Create new navigation property to complianceManagementPartners for
 // deviceManagement
-func (c ComplianceManagementPartnerClient) CreateComplianceManagementPartner(ctx context.Context, input beta.ComplianceManagementPartner) (result CreateComplianceManagementPartnerOperationResponse, err error) {
+func (c ComplianceManagementPartnerClient) CreateComplianceManagementPartner(ctx context.Context, input beta.ComplianceManagementPartner, options CreateComplianceManagementPartnerOperationOptions) (result CreateComplianceManagementPartnerOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/deviceManagement/complianceManagementPartners",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/deviceManagement/complianceManagementPartners",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

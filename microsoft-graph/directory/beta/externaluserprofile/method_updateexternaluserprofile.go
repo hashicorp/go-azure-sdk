@@ -17,15 +17,44 @@ type UpdateExternalUserProfileOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateExternalUserProfileOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateExternalUserProfileOperationOptions() UpdateExternalUserProfileOperationOptions {
+	return UpdateExternalUserProfileOperationOptions{}
+}
+
+func (o UpdateExternalUserProfileOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateExternalUserProfileOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateExternalUserProfileOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateExternalUserProfile - Update externalUserProfile. Update the properties of a externalUserProfile object.
-func (c ExternalUserProfileClient) UpdateExternalUserProfile(ctx context.Context, id beta.DirectoryExternalUserProfileId, input beta.ExternalUserProfile) (result UpdateExternalUserProfileOperationResponse, err error) {
+func (c ExternalUserProfileClient) UpdateExternalUserProfile(ctx context.Context, id beta.DirectoryExternalUserProfileId, input beta.ExternalUserProfile, options UpdateExternalUserProfileOperationOptions) (result UpdateExternalUserProfileOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

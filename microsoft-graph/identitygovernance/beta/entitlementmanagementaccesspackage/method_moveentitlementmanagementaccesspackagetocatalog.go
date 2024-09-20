@@ -18,17 +18,46 @@ type MoveEntitlementManagementAccessPackageToCatalogOperationResponse struct {
 	OData        *odata.OData
 }
 
+type MoveEntitlementManagementAccessPackageToCatalogOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultMoveEntitlementManagementAccessPackageToCatalogOperationOptions() MoveEntitlementManagementAccessPackageToCatalogOperationOptions {
+	return MoveEntitlementManagementAccessPackageToCatalogOperationOptions{}
+}
+
+func (o MoveEntitlementManagementAccessPackageToCatalogOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o MoveEntitlementManagementAccessPackageToCatalogOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o MoveEntitlementManagementAccessPackageToCatalogOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // MoveEntitlementManagementAccessPackageToCatalog - Invoke action moveToCatalog. In Microsoft Entra entitlement
 // management, this action moves the accessPackage to a specified target accessPackageCatalog. The resources in the
 // access package must be present in the target catalog.
-func (c EntitlementManagementAccessPackageClient) MoveEntitlementManagementAccessPackageToCatalog(ctx context.Context, id beta.IdentityGovernanceEntitlementManagementAccessPackageId, input MoveEntitlementManagementAccessPackageToCatalogRequest) (result MoveEntitlementManagementAccessPackageToCatalogOperationResponse, err error) {
+func (c EntitlementManagementAccessPackageClient) MoveEntitlementManagementAccessPackageToCatalog(ctx context.Context, id beta.IdentityGovernanceEntitlementManagementAccessPackageId, input MoveEntitlementManagementAccessPackageToCatalogRequest, options MoveEntitlementManagementAccessPackageToCatalogOperationOptions) (result MoveEntitlementManagementAccessPackageToCatalogOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/moveToCatalog", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/moveToCatalog", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

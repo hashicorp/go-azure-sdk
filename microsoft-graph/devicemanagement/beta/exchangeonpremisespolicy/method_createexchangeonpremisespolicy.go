@@ -18,15 +18,44 @@ type CreateExchangeOnPremisesPolicyOperationResponse struct {
 	Model        *beta.DeviceManagementExchangeOnPremisesPolicy
 }
 
+type CreateExchangeOnPremisesPolicyOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateExchangeOnPremisesPolicyOperationOptions() CreateExchangeOnPremisesPolicyOperationOptions {
+	return CreateExchangeOnPremisesPolicyOperationOptions{}
+}
+
+func (o CreateExchangeOnPremisesPolicyOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateExchangeOnPremisesPolicyOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateExchangeOnPremisesPolicyOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateExchangeOnPremisesPolicy - Create new navigation property to exchangeOnPremisesPolicies for deviceManagement
-func (c ExchangeOnPremisesPolicyClient) CreateExchangeOnPremisesPolicy(ctx context.Context, input beta.DeviceManagementExchangeOnPremisesPolicy) (result CreateExchangeOnPremisesPolicyOperationResponse, err error) {
+func (c ExchangeOnPremisesPolicyClient) CreateExchangeOnPremisesPolicy(ctx context.Context, input beta.DeviceManagementExchangeOnPremisesPolicy, options CreateExchangeOnPremisesPolicyOperationOptions) (result CreateExchangeOnPremisesPolicyOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/deviceManagement/exchangeOnPremisesPolicies",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/deviceManagement/exchangeOnPremisesPolicies",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

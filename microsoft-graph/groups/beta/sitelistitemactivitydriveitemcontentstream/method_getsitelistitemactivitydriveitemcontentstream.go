@@ -19,16 +19,45 @@ type GetSiteListItemActivityDriveItemContentStreamOperationResponse struct {
 	Model        *[]byte
 }
 
+type GetSiteListItemActivityDriveItemContentStreamOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultGetSiteListItemActivityDriveItemContentStreamOperationOptions() GetSiteListItemActivityDriveItemContentStreamOperationOptions {
+	return GetSiteListItemActivityDriveItemContentStreamOperationOptions{}
+}
+
+func (o GetSiteListItemActivityDriveItemContentStreamOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o GetSiteListItemActivityDriveItemContentStreamOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o GetSiteListItemActivityDriveItemContentStreamOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // GetSiteListItemActivityDriveItemContentStream - Get contentStream for the navigation property driveItem from groups.
 // The content stream, if the item represents a file.
-func (c SiteListItemActivityDriveItemContentStreamClient) GetSiteListItemActivityDriveItemContentStream(ctx context.Context, id beta.GroupIdSiteIdListIdItemIdActivityId) (result GetSiteListItemActivityDriveItemContentStreamOperationResponse, err error) {
+func (c SiteListItemActivityDriveItemContentStreamClient) GetSiteListItemActivityDriveItemContentStream(ctx context.Context, id beta.GroupIdSiteIdListIdItemIdActivityId, options GetSiteListItemActivityDriveItemContentStreamOperationOptions) (result GetSiteListItemActivityDriveItemContentStreamOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/octet-stream",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/driveItem/contentStream", id.ID()),
+		HttpMethod:    http.MethodGet,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/driveItem/contentStream", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

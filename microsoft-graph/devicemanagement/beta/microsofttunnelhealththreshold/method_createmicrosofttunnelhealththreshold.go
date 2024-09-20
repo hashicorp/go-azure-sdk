@@ -18,16 +18,45 @@ type CreateMicrosoftTunnelHealthThresholdOperationResponse struct {
 	Model        *beta.MicrosoftTunnelHealthThreshold
 }
 
+type CreateMicrosoftTunnelHealthThresholdOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateMicrosoftTunnelHealthThresholdOperationOptions() CreateMicrosoftTunnelHealthThresholdOperationOptions {
+	return CreateMicrosoftTunnelHealthThresholdOperationOptions{}
+}
+
+func (o CreateMicrosoftTunnelHealthThresholdOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateMicrosoftTunnelHealthThresholdOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateMicrosoftTunnelHealthThresholdOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateMicrosoftTunnelHealthThreshold - Create new navigation property to microsoftTunnelHealthThresholds for
 // deviceManagement
-func (c MicrosoftTunnelHealthThresholdClient) CreateMicrosoftTunnelHealthThreshold(ctx context.Context, input beta.MicrosoftTunnelHealthThreshold) (result CreateMicrosoftTunnelHealthThresholdOperationResponse, err error) {
+func (c MicrosoftTunnelHealthThresholdClient) CreateMicrosoftTunnelHealthThreshold(ctx context.Context, input beta.MicrosoftTunnelHealthThreshold, options CreateMicrosoftTunnelHealthThresholdOperationOptions) (result CreateMicrosoftTunnelHealthThresholdOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/deviceManagement/microsoftTunnelHealthThresholds",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/deviceManagement/microsoftTunnelHealthThresholds",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

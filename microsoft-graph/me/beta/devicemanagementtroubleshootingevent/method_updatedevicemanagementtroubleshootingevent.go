@@ -17,16 +17,45 @@ type UpdateDeviceManagementTroubleshootingEventOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateDeviceManagementTroubleshootingEventOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateDeviceManagementTroubleshootingEventOperationOptions() UpdateDeviceManagementTroubleshootingEventOperationOptions {
+	return UpdateDeviceManagementTroubleshootingEventOperationOptions{}
+}
+
+func (o UpdateDeviceManagementTroubleshootingEventOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateDeviceManagementTroubleshootingEventOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateDeviceManagementTroubleshootingEventOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateDeviceManagementTroubleshootingEvent - Update the navigation property deviceManagementTroubleshootingEvents in
 // me
-func (c DeviceManagementTroubleshootingEventClient) UpdateDeviceManagementTroubleshootingEvent(ctx context.Context, id beta.MeDeviceManagementTroubleshootingEventId, input beta.DeviceManagementTroubleshootingEvent) (result UpdateDeviceManagementTroubleshootingEventOperationResponse, err error) {
+func (c DeviceManagementTroubleshootingEventClient) UpdateDeviceManagementTroubleshootingEvent(ctx context.Context, id beta.MeDeviceManagementTroubleshootingEventId, input beta.DeviceManagementTroubleshootingEvent, options UpdateDeviceManagementTroubleshootingEventOperationOptions) (result UpdateDeviceManagementTroubleshootingEventOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

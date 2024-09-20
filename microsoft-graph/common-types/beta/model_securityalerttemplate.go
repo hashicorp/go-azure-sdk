@@ -41,10 +41,20 @@ type SecurityAlertTemplate struct {
 var _ json.Unmarshaler = &SecurityAlertTemplate{}
 
 func (s *SecurityAlertTemplate) UnmarshalJSON(bytes []byte) error {
-	type alias SecurityAlertTemplate
-	var decoded alias
+
+	var decoded struct {
+		Category           *string                  `json:"category,omitempty"`
+		Description        *string                  `json:"description,omitempty"`
+		ImpactedAssets     *[]SecurityImpactedAsset `json:"impactedAssets,omitempty"`
+		MitreTechniques    *[]string                `json:"mitreTechniques,omitempty"`
+		ODataId            *string                  `json:"@odata.id,omitempty"`
+		ODataType          *string                  `json:"@odata.type,omitempty"`
+		RecommendedActions nullable.Type[string]    `json:"recommendedActions,omitempty"`
+		Severity           *SecurityAlertSeverity   `json:"severity,omitempty"`
+		Title              *string                  `json:"title,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into SecurityAlertTemplate: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.Category = decoded.Category
@@ -77,5 +87,6 @@ func (s *SecurityAlertTemplate) UnmarshalJSON(bytes []byte) error {
 		}
 		s.ImpactedAssets = &output
 	}
+
 	return nil
 }

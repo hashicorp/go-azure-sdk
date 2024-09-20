@@ -17,16 +17,45 @@ type UpdateDefaultAppManagementPolicyOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateDefaultAppManagementPolicyOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateDefaultAppManagementPolicyOperationOptions() UpdateDefaultAppManagementPolicyOperationOptions {
+	return UpdateDefaultAppManagementPolicyOperationOptions{}
+}
+
+func (o UpdateDefaultAppManagementPolicyOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateDefaultAppManagementPolicyOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateDefaultAppManagementPolicyOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateDefaultAppManagementPolicy - Update tenantAppManagementPolicy. Update the properties of a
 // tenantAppManagementPolicy object.
-func (c DefaultAppManagementPolicyClient) UpdateDefaultAppManagementPolicy(ctx context.Context, input beta.TenantAppManagementPolicy) (result UpdateDefaultAppManagementPolicyOperationResponse, err error) {
+func (c DefaultAppManagementPolicyClient) UpdateDefaultAppManagementPolicy(ctx context.Context, input beta.TenantAppManagementPolicy, options UpdateDefaultAppManagementPolicyOperationOptions) (result UpdateDefaultAppManagementPolicyOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       "/policies/defaultAppManagementPolicy",
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          "/policies/defaultAppManagementPolicy",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

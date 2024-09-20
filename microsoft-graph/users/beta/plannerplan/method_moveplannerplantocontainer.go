@@ -19,16 +19,45 @@ type MovePlannerPlanToContainerOperationResponse struct {
 	Model        *beta.PlannerPlan
 }
 
+type MovePlannerPlanToContainerOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultMovePlannerPlanToContainerOperationOptions() MovePlannerPlanToContainerOperationOptions {
+	return MovePlannerPlanToContainerOperationOptions{}
+}
+
+func (o MovePlannerPlanToContainerOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o MovePlannerPlanToContainerOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o MovePlannerPlanToContainerOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // MovePlannerPlanToContainer - Invoke action moveToContainer. Move a planner plan object from one planner plan
 // container to another. Planner plans can only be moved from a user container to a group container.
-func (c PlannerPlanClient) MovePlannerPlanToContainer(ctx context.Context, id beta.UserIdPlannerPlanId, input MovePlannerPlanToContainerRequest) (result MovePlannerPlanToContainerOperationResponse, err error) {
+func (c PlannerPlanClient) MovePlannerPlanToContainer(ctx context.Context, id beta.UserIdPlannerPlanId, input MovePlannerPlanToContainerRequest, options MovePlannerPlanToContainerOperationOptions) (result MovePlannerPlanToContainerOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/moveToContainer", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/moveToContainer", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

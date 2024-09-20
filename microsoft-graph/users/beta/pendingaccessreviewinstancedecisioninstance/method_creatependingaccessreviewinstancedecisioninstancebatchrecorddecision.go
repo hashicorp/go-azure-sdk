@@ -18,17 +18,46 @@ type CreatePendingAccessReviewInstanceDecisionInstanceBatchRecordDecisionOperati
 	OData        *odata.OData
 }
 
+type CreatePendingAccessReviewInstanceDecisionInstanceBatchRecordDecisionOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreatePendingAccessReviewInstanceDecisionInstanceBatchRecordDecisionOperationOptions() CreatePendingAccessReviewInstanceDecisionInstanceBatchRecordDecisionOperationOptions {
+	return CreatePendingAccessReviewInstanceDecisionInstanceBatchRecordDecisionOperationOptions{}
+}
+
+func (o CreatePendingAccessReviewInstanceDecisionInstanceBatchRecordDecisionOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreatePendingAccessReviewInstanceDecisionInstanceBatchRecordDecisionOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreatePendingAccessReviewInstanceDecisionInstanceBatchRecordDecisionOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreatePendingAccessReviewInstanceDecisionInstanceBatchRecordDecision - Invoke action batchRecordDecisions. Enables
 // reviewers to review all accessReviewInstanceDecisionItem objects in batches by using principalId, resourceId, or
 // neither.
-func (c PendingAccessReviewInstanceDecisionInstanceClient) CreatePendingAccessReviewInstanceDecisionInstanceBatchRecordDecision(ctx context.Context, id beta.UserIdPendingAccessReviewInstanceIdDecisionId, input CreatePendingAccessReviewInstanceDecisionInstanceBatchRecordDecisionRequest) (result CreatePendingAccessReviewInstanceDecisionInstanceBatchRecordDecisionOperationResponse, err error) {
+func (c PendingAccessReviewInstanceDecisionInstanceClient) CreatePendingAccessReviewInstanceDecisionInstanceBatchRecordDecision(ctx context.Context, id beta.UserIdPendingAccessReviewInstanceIdDecisionId, input CreatePendingAccessReviewInstanceDecisionInstanceBatchRecordDecisionRequest, options CreatePendingAccessReviewInstanceDecisionInstanceBatchRecordDecisionOperationOptions) (result CreatePendingAccessReviewInstanceDecisionInstanceBatchRecordDecisionOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/instance/batchRecordDecisions", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/instance/batchRecordDecisions", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -12,28 +12,28 @@ import (
 var _ resourceids.ResourceId = &GroupIdSiteIdListIdColumnId{}
 
 func TestNewGroupIdSiteIdListIdColumnID(t *testing.T) {
-	id := NewGroupIdSiteIdListIdColumnID("groupIdValue", "siteIdValue", "listIdValue", "columnDefinitionIdValue")
+	id := NewGroupIdSiteIdListIdColumnID("groupId", "siteId", "listId", "columnDefinitionId")
 
-	if id.GroupId != "groupIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'GroupId'", id.GroupId, "groupIdValue")
+	if id.GroupId != "groupId" {
+		t.Fatalf("Expected %q but got %q for Segment 'GroupId'", id.GroupId, "groupId")
 	}
 
-	if id.SiteId != "siteIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'SiteId'", id.SiteId, "siteIdValue")
+	if id.SiteId != "siteId" {
+		t.Fatalf("Expected %q but got %q for Segment 'SiteId'", id.SiteId, "siteId")
 	}
 
-	if id.ListId != "listIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ListId'", id.ListId, "listIdValue")
+	if id.ListId != "listId" {
+		t.Fatalf("Expected %q but got %q for Segment 'ListId'", id.ListId, "listId")
 	}
 
-	if id.ColumnDefinitionId != "columnDefinitionIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ColumnDefinitionId'", id.ColumnDefinitionId, "columnDefinitionIdValue")
+	if id.ColumnDefinitionId != "columnDefinitionId" {
+		t.Fatalf("Expected %q but got %q for Segment 'ColumnDefinitionId'", id.ColumnDefinitionId, "columnDefinitionId")
 	}
 }
 
 func TestFormatGroupIdSiteIdListIdColumnID(t *testing.T) {
-	actual := NewGroupIdSiteIdListIdColumnID("groupIdValue", "siteIdValue", "listIdValue", "columnDefinitionIdValue").ID()
-	expected := "/groups/groupIdValue/sites/siteIdValue/lists/listIdValue/columns/columnDefinitionIdValue"
+	actual := NewGroupIdSiteIdListIdColumnID("groupId", "siteId", "listId", "columnDefinitionId").ID()
+	expected := "/groups/groupId/sites/siteId/lists/listId/columns/columnDefinitionId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -57,47 +57,47 @@ func TestParseGroupIdSiteIdListIdColumnID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue",
+			Input: "/groups/groupId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/sites",
+			Input: "/groups/groupId/sites",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/sites/siteIdValue",
+			Input: "/groups/groupId/sites/siteId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/sites/siteIdValue/lists",
+			Input: "/groups/groupId/sites/siteId/lists",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/sites/siteIdValue/lists/listIdValue",
+			Input: "/groups/groupId/sites/siteId/lists/listId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/sites/siteIdValue/lists/listIdValue/columns",
+			Input: "/groups/groupId/sites/siteId/lists/listId/columns",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/groups/groupIdValue/sites/siteIdValue/lists/listIdValue/columns/columnDefinitionIdValue",
+			Input: "/groups/groupId/sites/siteId/lists/listId/columns/columnDefinitionId",
 			Expected: &GroupIdSiteIdListIdColumnId{
-				GroupId:            "groupIdValue",
-				SiteId:             "siteIdValue",
-				ListId:             "listIdValue",
-				ColumnDefinitionId: "columnDefinitionIdValue",
+				GroupId:            "groupId",
+				SiteId:             "siteId",
+				ListId:             "listId",
+				ColumnDefinitionId: "columnDefinitionId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/groups/groupIdValue/sites/siteIdValue/lists/listIdValue/columns/columnDefinitionIdValue/extra",
+			Input: "/groups/groupId/sites/siteId/lists/listId/columns/columnDefinitionId/extra",
 			Error: true,
 		},
 	}
@@ -158,92 +158,92 @@ func TestParseGroupIdSiteIdListIdColumnIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue",
+			Input: "/groups/groupId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE",
+			Input: "/gRoUpS/gRoUpId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/sites",
+			Input: "/groups/groupId/sites",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/sItEs",
+			Input: "/gRoUpS/gRoUpId/sItEs",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/sites/siteIdValue",
+			Input: "/groups/groupId/sites/siteId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/sItEs/sItEiDvAlUe",
+			Input: "/gRoUpS/gRoUpId/sItEs/sItEiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/sites/siteIdValue/lists",
+			Input: "/groups/groupId/sites/siteId/lists",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/sItEs/sItEiDvAlUe/lIsTs",
+			Input: "/gRoUpS/gRoUpId/sItEs/sItEiD/lIsTs",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/sites/siteIdValue/lists/listIdValue",
+			Input: "/groups/groupId/sites/siteId/lists/listId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/sItEs/sItEiDvAlUe/lIsTs/lIsTiDvAlUe",
+			Input: "/gRoUpS/gRoUpId/sItEs/sItEiD/lIsTs/lIsTiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/sites/siteIdValue/lists/listIdValue/columns",
+			Input: "/groups/groupId/sites/siteId/lists/listId/columns",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/sItEs/sItEiDvAlUe/lIsTs/lIsTiDvAlUe/cOlUmNs",
+			Input: "/gRoUpS/gRoUpId/sItEs/sItEiD/lIsTs/lIsTiD/cOlUmNs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/groups/groupIdValue/sites/siteIdValue/lists/listIdValue/columns/columnDefinitionIdValue",
+			Input: "/groups/groupId/sites/siteId/lists/listId/columns/columnDefinitionId",
 			Expected: &GroupIdSiteIdListIdColumnId{
-				GroupId:            "groupIdValue",
-				SiteId:             "siteIdValue",
-				ListId:             "listIdValue",
-				ColumnDefinitionId: "columnDefinitionIdValue",
+				GroupId:            "groupId",
+				SiteId:             "siteId",
+				ListId:             "listId",
+				ColumnDefinitionId: "columnDefinitionId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/groups/groupIdValue/sites/siteIdValue/lists/listIdValue/columns/columnDefinitionIdValue/extra",
+			Input: "/groups/groupId/sites/siteId/lists/listId/columns/columnDefinitionId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/sItEs/sItEiDvAlUe/lIsTs/lIsTiDvAlUe/cOlUmNs/cOlUmNdEfInItIoNiDvAlUe",
+			Input: "/gRoUpS/gRoUpId/sItEs/sItEiD/lIsTs/lIsTiD/cOlUmNs/cOlUmNdEfInItIoNiD",
 			Expected: &GroupIdSiteIdListIdColumnId{
-				GroupId:            "gRoUpIdVaLuE",
-				SiteId:             "sItEiDvAlUe",
-				ListId:             "lIsTiDvAlUe",
-				ColumnDefinitionId: "cOlUmNdEfInItIoNiDvAlUe",
+				GroupId:            "gRoUpId",
+				SiteId:             "sItEiD",
+				ListId:             "lIsTiD",
+				ColumnDefinitionId: "cOlUmNdEfInItIoNiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/sItEs/sItEiDvAlUe/lIsTs/lIsTiDvAlUe/cOlUmNs/cOlUmNdEfInItIoNiDvAlUe/extra",
+			Input: "/gRoUpS/gRoUpId/sItEs/sItEiD/lIsTs/lIsTiD/cOlUmNs/cOlUmNdEfInItIoNiD/extra",
 			Error: true,
 		},
 	}

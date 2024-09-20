@@ -93,7 +93,7 @@ func (id IdentityAuthenticationEventListenerId) Segments() []resourceids.Segment
 	return []resourceids.Segment{
 		resourceids.StaticSegment("identity", "identity", "identity"),
 		resourceids.StaticSegment("authenticationEventListeners", "authenticationEventListeners", "authenticationEventListeners"),
-		resourceids.UserSpecifiedSegment("authenticationEventListenerId", "authenticationEventListenerIdValue"),
+		resourceids.UserSpecifiedSegment("authenticationEventListenerId", "authenticationEventListenerId"),
 	}
 }
 

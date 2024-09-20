@@ -29,10 +29,18 @@ type UpdateWindowsDeviceAccountActionParameter struct {
 var _ json.Unmarshaler = &UpdateWindowsDeviceAccountActionParameter{}
 
 func (s *UpdateWindowsDeviceAccountActionParameter) UnmarshalJSON(bytes []byte) error {
-	type alias UpdateWindowsDeviceAccountActionParameter
-	var decoded alias
+
+	var decoded struct {
+		CalendarSyncEnabled              nullable.Type[bool]   `json:"calendarSyncEnabled,omitempty"`
+		DeviceAccountEmail               nullable.Type[string] `json:"deviceAccountEmail,omitempty"`
+		ExchangeServer                   nullable.Type[string] `json:"exchangeServer,omitempty"`
+		ODataId                          *string               `json:"@odata.id,omitempty"`
+		ODataType                        *string               `json:"@odata.type,omitempty"`
+		PasswordRotationEnabled          nullable.Type[bool]   `json:"passwordRotationEnabled,omitempty"`
+		SessionInitiationProtocalAddress nullable.Type[string] `json:"sessionInitiationProtocalAddress,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into UpdateWindowsDeviceAccountActionParameter: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.CalendarSyncEnabled = decoded.CalendarSyncEnabled
@@ -55,5 +63,6 @@ func (s *UpdateWindowsDeviceAccountActionParameter) UnmarshalJSON(bytes []byte) 
 		}
 		s.DeviceAccount = impl
 	}
+
 	return nil
 }

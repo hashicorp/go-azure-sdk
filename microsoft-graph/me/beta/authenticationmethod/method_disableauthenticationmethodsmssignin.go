@@ -18,15 +18,44 @@ type DisableAuthenticationMethodSmsSignInOperationResponse struct {
 	OData        *odata.OData
 }
 
+type DisableAuthenticationMethodSmsSignInOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultDisableAuthenticationMethodSmsSignInOperationOptions() DisableAuthenticationMethodSmsSignInOperationOptions {
+	return DisableAuthenticationMethodSmsSignInOperationOptions{}
+}
+
+func (o DisableAuthenticationMethodSmsSignInOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o DisableAuthenticationMethodSmsSignInOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o DisableAuthenticationMethodSmsSignInOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // DisableAuthenticationMethodSmsSignIn - Invoke action disableSmsSignIn
-func (c AuthenticationMethodClient) DisableAuthenticationMethodSmsSignIn(ctx context.Context, id beta.MeAuthenticationMethodId) (result DisableAuthenticationMethodSmsSignInOperationResponse, err error) {
+func (c AuthenticationMethodClient) DisableAuthenticationMethodSmsSignIn(ctx context.Context, id beta.MeAuthenticationMethodId, options DisableAuthenticationMethodSmsSignInOperationOptions) (result DisableAuthenticationMethodSmsSignInOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/disableSmsSignIn", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/disableSmsSignIn", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

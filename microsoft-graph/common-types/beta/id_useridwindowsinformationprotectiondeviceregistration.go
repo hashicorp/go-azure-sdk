@@ -98,9 +98,9 @@ func (id UserIdWindowsInformationProtectionDeviceRegistrationId) ID() string {
 func (id UserIdWindowsInformationProtectionDeviceRegistrationId) Segments() []resourceids.Segment {
 	return []resourceids.Segment{
 		resourceids.StaticSegment("users", "users", "users"),
-		resourceids.UserSpecifiedSegment("userId", "userIdValue"),
+		resourceids.UserSpecifiedSegment("userId", "userId"),
 		resourceids.StaticSegment("windowsInformationProtectionDeviceRegistrations", "windowsInformationProtectionDeviceRegistrations", "windowsInformationProtectionDeviceRegistrations"),
-		resourceids.UserSpecifiedSegment("windowsInformationProtectionDeviceRegistrationId", "windowsInformationProtectionDeviceRegistrationIdValue"),
+		resourceids.UserSpecifiedSegment("windowsInformationProtectionDeviceRegistrationId", "windowsInformationProtectionDeviceRegistrationId"),
 	}
 }
 

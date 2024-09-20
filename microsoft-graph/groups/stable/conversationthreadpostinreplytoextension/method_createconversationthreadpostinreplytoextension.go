@@ -20,15 +20,44 @@ type CreateConversationThreadPostInReplyToExtensionOperationResponse struct {
 	Model        stable.Extension
 }
 
+type CreateConversationThreadPostInReplyToExtensionOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateConversationThreadPostInReplyToExtensionOperationOptions() CreateConversationThreadPostInReplyToExtensionOperationOptions {
+	return CreateConversationThreadPostInReplyToExtensionOperationOptions{}
+}
+
+func (o CreateConversationThreadPostInReplyToExtensionOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateConversationThreadPostInReplyToExtensionOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateConversationThreadPostInReplyToExtensionOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateConversationThreadPostInReplyToExtension - Create new navigation property to extensions for groups
-func (c ConversationThreadPostInReplyToExtensionClient) CreateConversationThreadPostInReplyToExtension(ctx context.Context, id stable.GroupIdConversationIdThreadIdPostId, input stable.Extension) (result CreateConversationThreadPostInReplyToExtensionOperationResponse, err error) {
+func (c ConversationThreadPostInReplyToExtensionClient) CreateConversationThreadPostInReplyToExtension(ctx context.Context, id stable.GroupIdConversationIdThreadIdPostId, input stable.Extension, options CreateConversationThreadPostInReplyToExtensionOperationOptions) (result CreateConversationThreadPostInReplyToExtensionOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/inReplyTo/extensions", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/inReplyTo/extensions", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

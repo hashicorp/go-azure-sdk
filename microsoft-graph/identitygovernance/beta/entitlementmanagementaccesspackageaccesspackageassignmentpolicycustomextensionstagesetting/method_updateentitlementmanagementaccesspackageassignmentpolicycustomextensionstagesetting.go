@@ -17,16 +17,45 @@ type UpdateEntitlementManagementAccessPackageAssignmentPolicyCustomExtensionStag
 	OData        *odata.OData
 }
 
+type UpdateEntitlementManagementAccessPackageAssignmentPolicyCustomExtensionStageSettingOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateEntitlementManagementAccessPackageAssignmentPolicyCustomExtensionStageSettingOperationOptions() UpdateEntitlementManagementAccessPackageAssignmentPolicyCustomExtensionStageSettingOperationOptions {
+	return UpdateEntitlementManagementAccessPackageAssignmentPolicyCustomExtensionStageSettingOperationOptions{}
+}
+
+func (o UpdateEntitlementManagementAccessPackageAssignmentPolicyCustomExtensionStageSettingOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateEntitlementManagementAccessPackageAssignmentPolicyCustomExtensionStageSettingOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateEntitlementManagementAccessPackageAssignmentPolicyCustomExtensionStageSettingOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateEntitlementManagementAccessPackageAssignmentPolicyCustomExtensionStageSetting - Update the navigation property
 // customExtensionStageSettings in identityGovernance
-func (c EntitlementManagementAccessPackageAccessPackageAssignmentPolicyCustomExtensionStageSettingClient) UpdateEntitlementManagementAccessPackageAssignmentPolicyCustomExtensionStageSetting(ctx context.Context, id beta.IdentityGovernanceEntitlementManagementAccessPackageIdAccessPackageAssignmentPolicyIdCustomExtensionStageSettingId, input beta.CustomExtensionStageSetting) (result UpdateEntitlementManagementAccessPackageAssignmentPolicyCustomExtensionStageSettingOperationResponse, err error) {
+func (c EntitlementManagementAccessPackageAccessPackageAssignmentPolicyCustomExtensionStageSettingClient) UpdateEntitlementManagementAccessPackageAssignmentPolicyCustomExtensionStageSetting(ctx context.Context, id beta.IdentityGovernanceEntitlementManagementAccessPackageIdAccessPackageAssignmentPolicyIdCustomExtensionStageSettingId, input beta.CustomExtensionStageSetting, options UpdateEntitlementManagementAccessPackageAssignmentPolicyCustomExtensionStageSettingOperationOptions) (result UpdateEntitlementManagementAccessPackageAssignmentPolicyCustomExtensionStageSettingOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

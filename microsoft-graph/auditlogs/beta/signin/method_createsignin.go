@@ -18,15 +18,44 @@ type CreateSignInOperationResponse struct {
 	Model        *beta.SignIn
 }
 
+type CreateSignInOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateSignInOperationOptions() CreateSignInOperationOptions {
+	return CreateSignInOperationOptions{}
+}
+
+func (o CreateSignInOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateSignInOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateSignInOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateSignIn - Create new navigation property to signIns for auditLogs
-func (c SignInClient) CreateSignIn(ctx context.Context, input beta.SignIn) (result CreateSignInOperationResponse, err error) {
+func (c SignInClient) CreateSignIn(ctx context.Context, input beta.SignIn, options CreateSignInOperationOptions) (result CreateSignInOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/auditLogs/signIns",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/auditLogs/signIns",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

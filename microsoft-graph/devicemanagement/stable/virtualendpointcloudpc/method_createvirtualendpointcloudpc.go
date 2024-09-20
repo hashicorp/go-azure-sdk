@@ -18,15 +18,44 @@ type CreateVirtualEndpointCloudPCOperationResponse struct {
 	Model        *stable.CloudPC
 }
 
+type CreateVirtualEndpointCloudPCOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateVirtualEndpointCloudPCOperationOptions() CreateVirtualEndpointCloudPCOperationOptions {
+	return CreateVirtualEndpointCloudPCOperationOptions{}
+}
+
+func (o CreateVirtualEndpointCloudPCOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateVirtualEndpointCloudPCOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateVirtualEndpointCloudPCOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateVirtualEndpointCloudPC - Create new navigation property to cloudPCs for deviceManagement
-func (c VirtualEndpointCloudPCClient) CreateVirtualEndpointCloudPC(ctx context.Context, input stable.CloudPC) (result CreateVirtualEndpointCloudPCOperationResponse, err error) {
+func (c VirtualEndpointCloudPCClient) CreateVirtualEndpointCloudPC(ctx context.Context, input stable.CloudPC, options CreateVirtualEndpointCloudPCOperationOptions) (result CreateVirtualEndpointCloudPCOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/deviceManagement/virtualEndpoint/cloudPCs",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/deviceManagement/virtualEndpoint/cloudPCs",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

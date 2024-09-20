@@ -21,8 +21,9 @@ type GetDirectoryRoleAssignmentScheduleInstanceDirectoryScopeOperationResponse s
 }
 
 type GetDirectoryRoleAssignmentScheduleInstanceDirectoryScopeOperationOptions struct {
-	Expand *odata.Expand
-	Select *[]string
+	Expand   *odata.Expand
+	Metadata *odata.Metadata
+	Select   *[]string
 }
 
 func DefaultGetDirectoryRoleAssignmentScheduleInstanceDirectoryScopeOperationOptions() GetDirectoryRoleAssignmentScheduleInstanceDirectoryScopeOperationOptions {
@@ -39,6 +40,9 @@ func (o GetDirectoryRoleAssignmentScheduleInstanceDirectoryScopeOperationOptions
 	out := odata.Query{}
 	if o.Expand != nil {
 		out.Expand = *o.Expand
+	}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
 	}
 	if o.Select != nil {
 		out.Select = *o.Select

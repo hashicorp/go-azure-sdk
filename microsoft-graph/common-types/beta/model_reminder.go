@@ -48,10 +48,20 @@ type Reminder struct {
 var _ json.Unmarshaler = &Reminder{}
 
 func (s *Reminder) UnmarshalJSON(bytes []byte) error {
-	type alias Reminder
-	var decoded alias
+
+	var decoded struct {
+		ChangeKey        nullable.Type[string] `json:"changeKey,omitempty"`
+		EventEndTime     *DateTimeTimeZone     `json:"eventEndTime,omitempty"`
+		EventId          nullable.Type[string] `json:"eventId,omitempty"`
+		EventStartTime   *DateTimeTimeZone     `json:"eventStartTime,omitempty"`
+		EventSubject     nullable.Type[string] `json:"eventSubject,omitempty"`
+		EventWebLink     nullable.Type[string] `json:"eventWebLink,omitempty"`
+		ODataId          *string               `json:"@odata.id,omitempty"`
+		ODataType        *string               `json:"@odata.type,omitempty"`
+		ReminderFireTime *DateTimeTimeZone     `json:"reminderFireTime,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into Reminder: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.ChangeKey = decoded.ChangeKey
@@ -76,5 +86,6 @@ func (s *Reminder) UnmarshalJSON(bytes []byte) error {
 		}
 		s.EventLocation = impl
 	}
+
 	return nil
 }

@@ -19,7 +19,8 @@ type DeleteIntentCategorySettingOperationResponse struct {
 }
 
 type DeleteIntentCategorySettingOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteIntentCategorySettingOperationOptions() DeleteIntentCategorySettingOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteIntentCategorySettingOperationOptions) ToHeaders() *client.Headers
 
 func (o DeleteIntentCategorySettingOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

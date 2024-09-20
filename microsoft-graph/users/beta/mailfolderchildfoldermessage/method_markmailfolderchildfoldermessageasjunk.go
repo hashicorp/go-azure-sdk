@@ -20,16 +20,45 @@ type MarkMailFolderChildFolderMessageAsJunkOperationResponse struct {
 	Model        beta.Message
 }
 
+type MarkMailFolderChildFolderMessageAsJunkOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultMarkMailFolderChildFolderMessageAsJunkOperationOptions() MarkMailFolderChildFolderMessageAsJunkOperationOptions {
+	return MarkMailFolderChildFolderMessageAsJunkOperationOptions{}
+}
+
+func (o MarkMailFolderChildFolderMessageAsJunkOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o MarkMailFolderChildFolderMessageAsJunkOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o MarkMailFolderChildFolderMessageAsJunkOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // MarkMailFolderChildFolderMessageAsJunk - Invoke action markAsJunk. Mark a message as junk. This API adds the sender
 // to the list of blocked senders and moves the message to the Junk Email folder, when moveToJunk is true.
-func (c MailFolderChildFolderMessageClient) MarkMailFolderChildFolderMessageAsJunk(ctx context.Context, id beta.UserIdMailFolderIdChildFolderIdMessageId, input MarkMailFolderChildFolderMessageAsJunkRequest) (result MarkMailFolderChildFolderMessageAsJunkOperationResponse, err error) {
+func (c MailFolderChildFolderMessageClient) MarkMailFolderChildFolderMessageAsJunk(ctx context.Context, id beta.UserIdMailFolderIdChildFolderIdMessageId, input MarkMailFolderChildFolderMessageAsJunkRequest, options MarkMailFolderChildFolderMessageAsJunkOperationOptions) (result MarkMailFolderChildFolderMessageAsJunkOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/markAsJunk", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/markAsJunk", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

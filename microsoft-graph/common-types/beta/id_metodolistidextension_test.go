@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &MeTodoListIdExtensionId{}
 
 func TestNewMeTodoListIdExtensionID(t *testing.T) {
-	id := NewMeTodoListIdExtensionID("todoTaskListIdValue", "extensionIdValue")
+	id := NewMeTodoListIdExtensionID("todoTaskListId", "extensionId")
 
-	if id.TodoTaskListId != "todoTaskListIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'TodoTaskListId'", id.TodoTaskListId, "todoTaskListIdValue")
+	if id.TodoTaskListId != "todoTaskListId" {
+		t.Fatalf("Expected %q but got %q for Segment 'TodoTaskListId'", id.TodoTaskListId, "todoTaskListId")
 	}
 
-	if id.ExtensionId != "extensionIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ExtensionId'", id.ExtensionId, "extensionIdValue")
+	if id.ExtensionId != "extensionId" {
+		t.Fatalf("Expected %q but got %q for Segment 'ExtensionId'", id.ExtensionId, "extensionId")
 	}
 }
 
 func TestFormatMeTodoListIdExtensionID(t *testing.T) {
-	actual := NewMeTodoListIdExtensionID("todoTaskListIdValue", "extensionIdValue").ID()
-	expected := "/me/todo/lists/todoTaskListIdValue/extensions/extensionIdValue"
+	actual := NewMeTodoListIdExtensionID("todoTaskListId", "extensionId").ID()
+	expected := "/me/todo/lists/todoTaskListId/extensions/extensionId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -59,25 +59,25 @@ func TestParseMeTodoListIdExtensionID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/me/todo/lists/todoTaskListIdValue",
+			Input: "/me/todo/lists/todoTaskListId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/me/todo/lists/todoTaskListIdValue/extensions",
+			Input: "/me/todo/lists/todoTaskListId/extensions",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/me/todo/lists/todoTaskListIdValue/extensions/extensionIdValue",
+			Input: "/me/todo/lists/todoTaskListId/extensions/extensionId",
 			Expected: &MeTodoListIdExtensionId{
-				TodoTaskListId: "todoTaskListIdValue",
-				ExtensionId:    "extensionIdValue",
+				TodoTaskListId: "todoTaskListId",
+				ExtensionId:    "extensionId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/todo/lists/todoTaskListIdValue/extensions/extensionIdValue/extra",
+			Input: "/me/todo/lists/todoTaskListId/extensions/extensionId/extra",
 			Error: true,
 		},
 	}
@@ -150,48 +150,48 @@ func TestParseMeTodoListIdExtensionIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/me/todo/lists/todoTaskListIdValue",
+			Input: "/me/todo/lists/todoTaskListId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/tOdO/lIsTs/tOdOtAsKlIsTiDvAlUe",
+			Input: "/mE/tOdO/lIsTs/tOdOtAsKlIsTiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/me/todo/lists/todoTaskListIdValue/extensions",
+			Input: "/me/todo/lists/todoTaskListId/extensions",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/tOdO/lIsTs/tOdOtAsKlIsTiDvAlUe/eXtEnSiOnS",
+			Input: "/mE/tOdO/lIsTs/tOdOtAsKlIsTiD/eXtEnSiOnS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/me/todo/lists/todoTaskListIdValue/extensions/extensionIdValue",
+			Input: "/me/todo/lists/todoTaskListId/extensions/extensionId",
 			Expected: &MeTodoListIdExtensionId{
-				TodoTaskListId: "todoTaskListIdValue",
-				ExtensionId:    "extensionIdValue",
+				TodoTaskListId: "todoTaskListId",
+				ExtensionId:    "extensionId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/todo/lists/todoTaskListIdValue/extensions/extensionIdValue/extra",
+			Input: "/me/todo/lists/todoTaskListId/extensions/extensionId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/tOdO/lIsTs/tOdOtAsKlIsTiDvAlUe/eXtEnSiOnS/eXtEnSiOnIdVaLuE",
+			Input: "/mE/tOdO/lIsTs/tOdOtAsKlIsTiD/eXtEnSiOnS/eXtEnSiOnId",
 			Expected: &MeTodoListIdExtensionId{
-				TodoTaskListId: "tOdOtAsKlIsTiDvAlUe",
-				ExtensionId:    "eXtEnSiOnIdVaLuE",
+				TodoTaskListId: "tOdOtAsKlIsTiD",
+				ExtensionId:    "eXtEnSiOnId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/mE/tOdO/lIsTs/tOdOtAsKlIsTiDvAlUe/eXtEnSiOnS/eXtEnSiOnIdVaLuE/extra",
+			Input: "/mE/tOdO/lIsTs/tOdOtAsKlIsTiD/eXtEnSiOnS/eXtEnSiOnId/extra",
 			Error: true,
 		},
 	}

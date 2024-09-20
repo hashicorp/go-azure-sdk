@@ -19,7 +19,8 @@ type DeleteMailFolderMessageRuleOperationResponse struct {
 }
 
 type DeleteMailFolderMessageRuleOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteMailFolderMessageRuleOperationOptions() DeleteMailFolderMessageRuleOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteMailFolderMessageRuleOperationOptions) ToHeaders() *client.Headers
 
 func (o DeleteMailFolderMessageRuleOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

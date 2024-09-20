@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &DomainIdServiceConfigurationRecordId{}
 
 func TestNewDomainIdServiceConfigurationRecordID(t *testing.T) {
-	id := NewDomainIdServiceConfigurationRecordID("domainIdValue", "domainDnsRecordIdValue")
+	id := NewDomainIdServiceConfigurationRecordID("domainId", "domainDnsRecordId")
 
-	if id.DomainId != "domainIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DomainId'", id.DomainId, "domainIdValue")
+	if id.DomainId != "domainId" {
+		t.Fatalf("Expected %q but got %q for Segment 'DomainId'", id.DomainId, "domainId")
 	}
 
-	if id.DomainDnsRecordId != "domainDnsRecordIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DomainDnsRecordId'", id.DomainDnsRecordId, "domainDnsRecordIdValue")
+	if id.DomainDnsRecordId != "domainDnsRecordId" {
+		t.Fatalf("Expected %q but got %q for Segment 'DomainDnsRecordId'", id.DomainDnsRecordId, "domainDnsRecordId")
 	}
 }
 
 func TestFormatDomainIdServiceConfigurationRecordID(t *testing.T) {
-	actual := NewDomainIdServiceConfigurationRecordID("domainIdValue", "domainDnsRecordIdValue").ID()
-	expected := "/domains/domainIdValue/serviceConfigurationRecords/domainDnsRecordIdValue"
+	actual := NewDomainIdServiceConfigurationRecordID("domainId", "domainDnsRecordId").ID()
+	expected := "/domains/domainId/serviceConfigurationRecords/domainDnsRecordId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -49,25 +49,25 @@ func TestParseDomainIdServiceConfigurationRecordID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/domains/domainIdValue",
+			Input: "/domains/domainId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/domains/domainIdValue/serviceConfigurationRecords",
+			Input: "/domains/domainId/serviceConfigurationRecords",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/domains/domainIdValue/serviceConfigurationRecords/domainDnsRecordIdValue",
+			Input: "/domains/domainId/serviceConfigurationRecords/domainDnsRecordId",
 			Expected: &DomainIdServiceConfigurationRecordId{
-				DomainId:          "domainIdValue",
-				DomainDnsRecordId: "domainDnsRecordIdValue",
+				DomainId:          "domainId",
+				DomainDnsRecordId: "domainDnsRecordId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/domains/domainIdValue/serviceConfigurationRecords/domainDnsRecordIdValue/extra",
+			Input: "/domains/domainId/serviceConfigurationRecords/domainDnsRecordId/extra",
 			Error: true,
 		},
 	}
@@ -120,48 +120,48 @@ func TestParseDomainIdServiceConfigurationRecordIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/domains/domainIdValue",
+			Input: "/domains/domainId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/dOmAiNs/dOmAiNiDvAlUe",
+			Input: "/dOmAiNs/dOmAiNiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/domains/domainIdValue/serviceConfigurationRecords",
+			Input: "/domains/domainId/serviceConfigurationRecords",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/dOmAiNs/dOmAiNiDvAlUe/sErViCeCoNfIgUrAtIoNrEcOrDs",
+			Input: "/dOmAiNs/dOmAiNiD/sErViCeCoNfIgUrAtIoNrEcOrDs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/domains/domainIdValue/serviceConfigurationRecords/domainDnsRecordIdValue",
+			Input: "/domains/domainId/serviceConfigurationRecords/domainDnsRecordId",
 			Expected: &DomainIdServiceConfigurationRecordId{
-				DomainId:          "domainIdValue",
-				DomainDnsRecordId: "domainDnsRecordIdValue",
+				DomainId:          "domainId",
+				DomainDnsRecordId: "domainDnsRecordId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/domains/domainIdValue/serviceConfigurationRecords/domainDnsRecordIdValue/extra",
+			Input: "/domains/domainId/serviceConfigurationRecords/domainDnsRecordId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/dOmAiNs/dOmAiNiDvAlUe/sErViCeCoNfIgUrAtIoNrEcOrDs/dOmAiNdNsReCoRdIdVaLuE",
+			Input: "/dOmAiNs/dOmAiNiD/sErViCeCoNfIgUrAtIoNrEcOrDs/dOmAiNdNsReCoRdId",
 			Expected: &DomainIdServiceConfigurationRecordId{
-				DomainId:          "dOmAiNiDvAlUe",
-				DomainDnsRecordId: "dOmAiNdNsReCoRdIdVaLuE",
+				DomainId:          "dOmAiNiD",
+				DomainDnsRecordId: "dOmAiNdNsReCoRdId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/dOmAiNs/dOmAiNiDvAlUe/sErViCeCoNfIgUrAtIoNrEcOrDs/dOmAiNdNsReCoRdIdVaLuE/extra",
+			Input: "/dOmAiNs/dOmAiNiD/sErViCeCoNfIgUrAtIoNrEcOrDs/dOmAiNdNsReCoRdId/extra",
 			Error: true,
 		},
 	}

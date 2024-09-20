@@ -17,15 +17,44 @@ type UpdateEnterpriseAppResourceNamespaceOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateEnterpriseAppResourceNamespaceOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateEnterpriseAppResourceNamespaceOperationOptions() UpdateEnterpriseAppResourceNamespaceOperationOptions {
+	return UpdateEnterpriseAppResourceNamespaceOperationOptions{}
+}
+
+func (o UpdateEnterpriseAppResourceNamespaceOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateEnterpriseAppResourceNamespaceOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateEnterpriseAppResourceNamespaceOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateEnterpriseAppResourceNamespace - Update the navigation property resourceNamespaces in roleManagement
-func (c EnterpriseAppResourceNamespaceClient) UpdateEnterpriseAppResourceNamespace(ctx context.Context, id beta.RoleManagementEnterpriseAppIdResourceNamespaceId, input beta.UnifiedRbacResourceNamespace) (result UpdateEnterpriseAppResourceNamespaceOperationResponse, err error) {
+func (c EnterpriseAppResourceNamespaceClient) UpdateEnterpriseAppResourceNamespace(ctx context.Context, id beta.RoleManagementEnterpriseAppIdResourceNamespaceId, input beta.UnifiedRbacResourceNamespace, options UpdateEnterpriseAppResourceNamespaceOperationOptions) (result UpdateEnterpriseAppResourceNamespaceOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

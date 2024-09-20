@@ -71,10 +71,18 @@ func (s PrivilegeEscalation) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &PrivilegeEscalation{}
 
 func (s *PrivilegeEscalation) UnmarshalJSON(bytes []byte) error {
-	type alias PrivilegeEscalation
-	var decoded alias
+
+	var decoded struct {
+		Actions     *[]AuthorizationSystemTypeAction `json:"actions,omitempty"`
+		Description *string                          `json:"description,omitempty"`
+		DisplayName *string                          `json:"displayName,omitempty"`
+		Resources   *[]AuthorizationSystemResource   `json:"resources,omitempty"`
+		Id          *string                          `json:"id,omitempty"`
+		ODataId     *string                          `json:"@odata.id,omitempty"`
+		ODataType   *string                          `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into PrivilegeEscalation: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.Description = decoded.Description
@@ -121,5 +129,6 @@ func (s *PrivilegeEscalation) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Resources = &output
 	}
+
 	return nil
 }

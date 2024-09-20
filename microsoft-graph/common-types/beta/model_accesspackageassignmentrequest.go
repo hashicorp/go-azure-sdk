@@ -130,10 +130,30 @@ func (s AccessPackageAssignmentRequest) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &AccessPackageAssignmentRequest{}
 
 func (s *AccessPackageAssignmentRequest) UnmarshalJSON(bytes []byte) error {
-	type alias AccessPackageAssignmentRequest
-	var decoded alias
+
+	var decoded struct {
+		AccessPackage                   *AccessPackage                    `json:"accessPackage,omitempty"`
+		AccessPackageAssignment         *AccessPackageAssignment          `json:"accessPackageAssignment,omitempty"`
+		Answers                         *[]AccessPackageAnswer            `json:"answers,omitempty"`
+		CompletedDate                   nullable.Type[string]             `json:"completedDate,omitempty"`
+		CreatedDateTime                 nullable.Type[string]             `json:"createdDateTime,omitempty"`
+		CustomExtensionCalloutInstances *[]CustomExtensionCalloutInstance `json:"customExtensionCalloutInstances,omitempty"`
+		CustomExtensionHandlerInstances *[]CustomExtensionHandlerInstance `json:"customExtensionHandlerInstances,omitempty"`
+		ExpirationDateTime              nullable.Type[string]             `json:"expirationDateTime,omitempty"`
+		IsValidationOnly                nullable.Type[bool]               `json:"isValidationOnly,omitempty"`
+		Justification                   nullable.Type[string]             `json:"justification,omitempty"`
+		RequestState                    nullable.Type[string]             `json:"requestState,omitempty"`
+		RequestStatus                   nullable.Type[string]             `json:"requestStatus,omitempty"`
+		RequestType                     nullable.Type[string]             `json:"requestType,omitempty"`
+		Requestor                       *AccessPackageSubject             `json:"requestor,omitempty"`
+		Schedule                        *RequestSchedule                  `json:"schedule,omitempty"`
+		VerifiedCredentialsData         *[]VerifiedCredentialData         `json:"verifiedCredentialsData,omitempty"`
+		Id                              *string                           `json:"id,omitempty"`
+		ODataId                         *string                           `json:"@odata.id,omitempty"`
+		ODataType                       *string                           `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into AccessPackageAssignmentRequest: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.AccessPackage = decoded.AccessPackage
@@ -143,17 +163,17 @@ func (s *AccessPackageAssignmentRequest) UnmarshalJSON(bytes []byte) error {
 	s.CustomExtensionCalloutInstances = decoded.CustomExtensionCalloutInstances
 	s.CustomExtensionHandlerInstances = decoded.CustomExtensionHandlerInstances
 	s.ExpirationDateTime = decoded.ExpirationDateTime
-	s.Id = decoded.Id
 	s.IsValidationOnly = decoded.IsValidationOnly
 	s.Justification = decoded.Justification
-	s.ODataId = decoded.ODataId
-	s.ODataType = decoded.ODataType
 	s.RequestState = decoded.RequestState
 	s.RequestStatus = decoded.RequestStatus
 	s.RequestType = decoded.RequestType
 	s.Requestor = decoded.Requestor
 	s.Schedule = decoded.Schedule
 	s.VerifiedCredentialsData = decoded.VerifiedCredentialsData
+	s.Id = decoded.Id
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -176,5 +196,6 @@ func (s *AccessPackageAssignmentRequest) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Answers = &output
 	}
+
 	return nil
 }

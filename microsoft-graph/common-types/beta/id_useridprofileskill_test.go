@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &UserIdProfileSkillId{}
 
 func TestNewUserIdProfileSkillID(t *testing.T) {
-	id := NewUserIdProfileSkillID("userIdValue", "skillProficiencyIdValue")
+	id := NewUserIdProfileSkillID("userId", "skillProficiencyId")
 
-	if id.UserId != "userIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'UserId'", id.UserId, "userIdValue")
+	if id.UserId != "userId" {
+		t.Fatalf("Expected %q but got %q for Segment 'UserId'", id.UserId, "userId")
 	}
 
-	if id.SkillProficiencyId != "skillProficiencyIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'SkillProficiencyId'", id.SkillProficiencyId, "skillProficiencyIdValue")
+	if id.SkillProficiencyId != "skillProficiencyId" {
+		t.Fatalf("Expected %q but got %q for Segment 'SkillProficiencyId'", id.SkillProficiencyId, "skillProficiencyId")
 	}
 }
 
 func TestFormatUserIdProfileSkillID(t *testing.T) {
-	actual := NewUserIdProfileSkillID("userIdValue", "skillProficiencyIdValue").ID()
-	expected := "/users/userIdValue/profile/skills/skillProficiencyIdValue"
+	actual := NewUserIdProfileSkillID("userId", "skillProficiencyId").ID()
+	expected := "/users/userId/profile/skills/skillProficiencyId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -49,30 +49,30 @@ func TestParseUserIdProfileSkillID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue",
+			Input: "/users/userId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/profile",
+			Input: "/users/userId/profile",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/profile/skills",
+			Input: "/users/userId/profile/skills",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/users/userIdValue/profile/skills/skillProficiencyIdValue",
+			Input: "/users/userId/profile/skills/skillProficiencyId",
 			Expected: &UserIdProfileSkillId{
-				UserId:             "userIdValue",
-				SkillProficiencyId: "skillProficiencyIdValue",
+				UserId:             "userId",
+				SkillProficiencyId: "skillProficiencyId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/users/userIdValue/profile/skills/skillProficiencyIdValue/extra",
+			Input: "/users/userId/profile/skills/skillProficiencyId/extra",
 			Error: true,
 		},
 	}
@@ -125,58 +125,58 @@ func TestParseUserIdProfileSkillIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue",
+			Input: "/users/userId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe",
+			Input: "/uSeRs/uSeRiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/profile",
+			Input: "/users/userId/profile",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/pRoFiLe",
+			Input: "/uSeRs/uSeRiD/pRoFiLe",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/profile/skills",
+			Input: "/users/userId/profile/skills",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/pRoFiLe/sKiLlS",
+			Input: "/uSeRs/uSeRiD/pRoFiLe/sKiLlS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/users/userIdValue/profile/skills/skillProficiencyIdValue",
+			Input: "/users/userId/profile/skills/skillProficiencyId",
 			Expected: &UserIdProfileSkillId{
-				UserId:             "userIdValue",
-				SkillProficiencyId: "skillProficiencyIdValue",
+				UserId:             "userId",
+				SkillProficiencyId: "skillProficiencyId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/users/userIdValue/profile/skills/skillProficiencyIdValue/extra",
+			Input: "/users/userId/profile/skills/skillProficiencyId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/pRoFiLe/sKiLlS/sKiLlPrOfIcIeNcYiDvAlUe",
+			Input: "/uSeRs/uSeRiD/pRoFiLe/sKiLlS/sKiLlPrOfIcIeNcYiD",
 			Expected: &UserIdProfileSkillId{
-				UserId:             "uSeRiDvAlUe",
-				SkillProficiencyId: "sKiLlPrOfIcIeNcYiDvAlUe",
+				UserId:             "uSeRiD",
+				SkillProficiencyId: "sKiLlPrOfIcIeNcYiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/pRoFiLe/sKiLlS/sKiLlPrOfIcIeNcYiDvAlUe/extra",
+			Input: "/uSeRs/uSeRiD/pRoFiLe/sKiLlS/sKiLlPrOfIcIeNcYiD/extra",
 			Error: true,
 		},
 	}

@@ -18,15 +18,44 @@ type CreateInsightSharedOperationResponse struct {
 	Model        *beta.SharedInsight
 }
 
+type CreateInsightSharedOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateInsightSharedOperationOptions() CreateInsightSharedOperationOptions {
+	return CreateInsightSharedOperationOptions{}
+}
+
+func (o CreateInsightSharedOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateInsightSharedOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateInsightSharedOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateInsightShared - Create new navigation property to shared for me
-func (c InsightSharedClient) CreateInsightShared(ctx context.Context, input beta.SharedInsight) (result CreateInsightSharedOperationResponse, err error) {
+func (c InsightSharedClient) CreateInsightShared(ctx context.Context, input beta.SharedInsight, options CreateInsightSharedOperationOptions) (result CreateInsightSharedOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/me/insights/shared",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/me/insights/shared",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

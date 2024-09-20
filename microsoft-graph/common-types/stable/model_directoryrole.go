@@ -100,21 +100,32 @@ func (s DirectoryRole) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &DirectoryRole{}
 
 func (s *DirectoryRole) UnmarshalJSON(bytes []byte) error {
-	type alias DirectoryRole
-	var decoded alias
+
+	var decoded struct {
+		Description       nullable.Type[string]   `json:"description,omitempty"`
+		DisplayName       nullable.Type[string]   `json:"displayName,omitempty"`
+		Members           *[]DirectoryObject      `json:"members,omitempty"`
+		Members_ODataBind *[]string               `json:"members@odata.bind,omitempty"`
+		RoleTemplateId    nullable.Type[string]   `json:"roleTemplateId,omitempty"`
+		ScopedMembers     *[]ScopedRoleMembership `json:"scopedMembers,omitempty"`
+		DeletedDateTime   nullable.Type[string]   `json:"deletedDateTime,omitempty"`
+		Id                *string                 `json:"id,omitempty"`
+		ODataId           *string                 `json:"@odata.id,omitempty"`
+		ODataType         *string                 `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into DirectoryRole: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
-	s.DeletedDateTime = decoded.DeletedDateTime
 	s.Description = decoded.Description
 	s.DisplayName = decoded.DisplayName
-	s.Id = decoded.Id
 	s.Members_ODataBind = decoded.Members_ODataBind
-	s.ODataId = decoded.ODataId
-	s.ODataType = decoded.ODataType
 	s.RoleTemplateId = decoded.RoleTemplateId
 	s.ScopedMembers = decoded.ScopedMembers
+	s.DeletedDateTime = decoded.DeletedDateTime
+	s.Id = decoded.Id
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -137,5 +148,6 @@ func (s *DirectoryRole) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Members = &output
 	}
+
 	return nil
 }

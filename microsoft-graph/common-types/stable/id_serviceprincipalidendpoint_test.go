@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &ServicePrincipalIdEndpointId{}
 
 func TestNewServicePrincipalIdEndpointID(t *testing.T) {
-	id := NewServicePrincipalIdEndpointID("servicePrincipalIdValue", "endpointIdValue")
+	id := NewServicePrincipalIdEndpointID("servicePrincipalId", "endpointId")
 
-	if id.ServicePrincipalId != "servicePrincipalIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ServicePrincipalId'", id.ServicePrincipalId, "servicePrincipalIdValue")
+	if id.ServicePrincipalId != "servicePrincipalId" {
+		t.Fatalf("Expected %q but got %q for Segment 'ServicePrincipalId'", id.ServicePrincipalId, "servicePrincipalId")
 	}
 
-	if id.EndpointId != "endpointIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'EndpointId'", id.EndpointId, "endpointIdValue")
+	if id.EndpointId != "endpointId" {
+		t.Fatalf("Expected %q but got %q for Segment 'EndpointId'", id.EndpointId, "endpointId")
 	}
 }
 
 func TestFormatServicePrincipalIdEndpointID(t *testing.T) {
-	actual := NewServicePrincipalIdEndpointID("servicePrincipalIdValue", "endpointIdValue").ID()
-	expected := "/servicePrincipals/servicePrincipalIdValue/endpoints/endpointIdValue"
+	actual := NewServicePrincipalIdEndpointID("servicePrincipalId", "endpointId").ID()
+	expected := "/servicePrincipals/servicePrincipalId/endpoints/endpointId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -49,25 +49,25 @@ func TestParseServicePrincipalIdEndpointID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/servicePrincipals/servicePrincipalIdValue",
+			Input: "/servicePrincipals/servicePrincipalId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/servicePrincipals/servicePrincipalIdValue/endpoints",
+			Input: "/servicePrincipals/servicePrincipalId/endpoints",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/servicePrincipals/servicePrincipalIdValue/endpoints/endpointIdValue",
+			Input: "/servicePrincipals/servicePrincipalId/endpoints/endpointId",
 			Expected: &ServicePrincipalIdEndpointId{
-				ServicePrincipalId: "servicePrincipalIdValue",
-				EndpointId:         "endpointIdValue",
+				ServicePrincipalId: "servicePrincipalId",
+				EndpointId:         "endpointId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/servicePrincipals/servicePrincipalIdValue/endpoints/endpointIdValue/extra",
+			Input: "/servicePrincipals/servicePrincipalId/endpoints/endpointId/extra",
 			Error: true,
 		},
 	}
@@ -120,48 +120,48 @@ func TestParseServicePrincipalIdEndpointIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/servicePrincipals/servicePrincipalIdValue",
+			Input: "/servicePrincipals/servicePrincipalId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sErViCePrInCiPaLs/sErViCePrInCiPaLiDvAlUe",
+			Input: "/sErViCePrInCiPaLs/sErViCePrInCiPaLiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/servicePrincipals/servicePrincipalIdValue/endpoints",
+			Input: "/servicePrincipals/servicePrincipalId/endpoints",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sErViCePrInCiPaLs/sErViCePrInCiPaLiDvAlUe/eNdPoInTs",
+			Input: "/sErViCePrInCiPaLs/sErViCePrInCiPaLiD/eNdPoInTs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/servicePrincipals/servicePrincipalIdValue/endpoints/endpointIdValue",
+			Input: "/servicePrincipals/servicePrincipalId/endpoints/endpointId",
 			Expected: &ServicePrincipalIdEndpointId{
-				ServicePrincipalId: "servicePrincipalIdValue",
-				EndpointId:         "endpointIdValue",
+				ServicePrincipalId: "servicePrincipalId",
+				EndpointId:         "endpointId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/servicePrincipals/servicePrincipalIdValue/endpoints/endpointIdValue/extra",
+			Input: "/servicePrincipals/servicePrincipalId/endpoints/endpointId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sErViCePrInCiPaLs/sErViCePrInCiPaLiDvAlUe/eNdPoInTs/eNdPoInTiDvAlUe",
+			Input: "/sErViCePrInCiPaLs/sErViCePrInCiPaLiD/eNdPoInTs/eNdPoInTiD",
 			Expected: &ServicePrincipalIdEndpointId{
-				ServicePrincipalId: "sErViCePrInCiPaLiDvAlUe",
-				EndpointId:         "eNdPoInTiDvAlUe",
+				ServicePrincipalId: "sErViCePrInCiPaLiD",
+				EndpointId:         "eNdPoInTiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sErViCePrInCiPaLs/sErViCePrInCiPaLiDvAlUe/eNdPoInTs/eNdPoInTiDvAlUe/extra",
+			Input: "/sErViCePrInCiPaLs/sErViCePrInCiPaLiD/eNdPoInTs/eNdPoInTiD/extra",
 			Error: true,
 		},
 	}

@@ -17,15 +17,44 @@ type UpdateDeviceShellScriptOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateDeviceShellScriptOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateDeviceShellScriptOperationOptions() UpdateDeviceShellScriptOperationOptions {
+	return UpdateDeviceShellScriptOperationOptions{}
+}
+
+func (o UpdateDeviceShellScriptOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateDeviceShellScriptOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateDeviceShellScriptOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateDeviceShellScript - Update the navigation property deviceShellScripts in deviceManagement
-func (c DeviceShellScriptClient) UpdateDeviceShellScript(ctx context.Context, id beta.DeviceManagementDeviceShellScriptId, input beta.DeviceShellScript) (result UpdateDeviceShellScriptOperationResponse, err error) {
+func (c DeviceShellScriptClient) UpdateDeviceShellScript(ctx context.Context, id beta.DeviceManagementDeviceShellScriptId, input beta.DeviceShellScript, options UpdateDeviceShellScriptOperationOptions) (result UpdateDeviceShellScriptOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

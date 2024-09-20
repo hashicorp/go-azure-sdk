@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &MeRegisteredDeviceId{}
 
 func TestNewMeRegisteredDeviceID(t *testing.T) {
-	id := NewMeRegisteredDeviceID("directoryObjectIdValue")
+	id := NewMeRegisteredDeviceID("directoryObjectId")
 
-	if id.DirectoryObjectId != "directoryObjectIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DirectoryObjectId'", id.DirectoryObjectId, "directoryObjectIdValue")
+	if id.DirectoryObjectId != "directoryObjectId" {
+		t.Fatalf("Expected %q but got %q for Segment 'DirectoryObjectId'", id.DirectoryObjectId, "directoryObjectId")
 	}
 }
 
 func TestFormatMeRegisteredDeviceID(t *testing.T) {
-	actual := NewMeRegisteredDeviceID("directoryObjectIdValue").ID()
-	expected := "/me/registeredDevices/directoryObjectIdValue"
+	actual := NewMeRegisteredDeviceID("directoryObjectId").ID()
+	expected := "/me/registeredDevices/directoryObjectId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -50,14 +50,14 @@ func TestParseMeRegisteredDeviceID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/me/registeredDevices/directoryObjectIdValue",
+			Input: "/me/registeredDevices/directoryObjectId",
 			Expected: &MeRegisteredDeviceId{
-				DirectoryObjectId: "directoryObjectIdValue",
+				DirectoryObjectId: "directoryObjectId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/registeredDevices/directoryObjectIdValue/extra",
+			Input: "/me/registeredDevices/directoryObjectId/extra",
 			Error: true,
 		},
 	}
@@ -116,26 +116,26 @@ func TestParseMeRegisteredDeviceIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/me/registeredDevices/directoryObjectIdValue",
+			Input: "/me/registeredDevices/directoryObjectId",
 			Expected: &MeRegisteredDeviceId{
-				DirectoryObjectId: "directoryObjectIdValue",
+				DirectoryObjectId: "directoryObjectId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/registeredDevices/directoryObjectIdValue/extra",
+			Input: "/me/registeredDevices/directoryObjectId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/rEgIsTeReDdEvIcEs/dIrEcToRyObJeCtIdVaLuE",
+			Input: "/mE/rEgIsTeReDdEvIcEs/dIrEcToRyObJeCtId",
 			Expected: &MeRegisteredDeviceId{
-				DirectoryObjectId: "dIrEcToRyObJeCtIdVaLuE",
+				DirectoryObjectId: "dIrEcToRyObJeCtId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/mE/rEgIsTeReDdEvIcEs/dIrEcToRyObJeCtIdVaLuE/extra",
+			Input: "/mE/rEgIsTeReDdEvIcEs/dIrEcToRyObJeCtId/extra",
 			Error: true,
 		},
 	}

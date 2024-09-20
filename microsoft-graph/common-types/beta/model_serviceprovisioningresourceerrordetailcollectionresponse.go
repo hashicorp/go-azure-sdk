@@ -62,10 +62,15 @@ func (s ServiceProvisioningResourceErrorDetailCollectionResponse) MarshalJSON() 
 var _ json.Unmarshaler = &ServiceProvisioningResourceErrorDetailCollectionResponse{}
 
 func (s *ServiceProvisioningResourceErrorDetailCollectionResponse) UnmarshalJSON(bytes []byte) error {
-	type alias ServiceProvisioningResourceErrorDetailCollectionResponse
-	var decoded alias
+
+	var decoded struct {
+		Value         *[]ServiceProvisioningResourceErrorDetail `json:"value,omitempty"`
+		ODataId       *string                                   `json:"@odata.id,omitempty"`
+		ODataNextLink nullable.Type[string]                     `json:"@odata.nextLink,omitempty"`
+		ODataType     *string                                   `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into ServiceProvisioningResourceErrorDetailCollectionResponse: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.ODataId = decoded.ODataId
@@ -93,5 +98,6 @@ func (s *ServiceProvisioningResourceErrorDetailCollectionResponse) UnmarshalJSON
 		}
 		s.Value = &output
 	}
+
 	return nil
 }

@@ -19,7 +19,8 @@ type DeleteProfilePositionOperationResponse struct {
 }
 
 type DeleteProfilePositionOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteProfilePositionOperationOptions() DeleteProfilePositionOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteProfilePositionOperationOptions) ToHeaders() *client.Headers {
 
 func (o DeleteProfilePositionOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

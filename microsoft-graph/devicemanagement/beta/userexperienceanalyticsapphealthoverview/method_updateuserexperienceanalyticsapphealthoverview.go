@@ -17,16 +17,45 @@ type UpdateUserExperienceAnalyticsAppHealthOverviewOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateUserExperienceAnalyticsAppHealthOverviewOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateUserExperienceAnalyticsAppHealthOverviewOperationOptions() UpdateUserExperienceAnalyticsAppHealthOverviewOperationOptions {
+	return UpdateUserExperienceAnalyticsAppHealthOverviewOperationOptions{}
+}
+
+func (o UpdateUserExperienceAnalyticsAppHealthOverviewOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateUserExperienceAnalyticsAppHealthOverviewOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateUserExperienceAnalyticsAppHealthOverviewOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateUserExperienceAnalyticsAppHealthOverview - Update the navigation property
 // userExperienceAnalyticsAppHealthOverview in deviceManagement
-func (c UserExperienceAnalyticsAppHealthOverviewClient) UpdateUserExperienceAnalyticsAppHealthOverview(ctx context.Context, input beta.UserExperienceAnalyticsCategory) (result UpdateUserExperienceAnalyticsAppHealthOverviewOperationResponse, err error) {
+func (c UserExperienceAnalyticsAppHealthOverviewClient) UpdateUserExperienceAnalyticsAppHealthOverview(ctx context.Context, input beta.UserExperienceAnalyticsCategory, options UpdateUserExperienceAnalyticsAppHealthOverviewOperationOptions) (result UpdateUserExperienceAnalyticsAppHealthOverviewOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       "/deviceManagement/userExperienceAnalyticsAppHealthOverview",
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          "/deviceManagement/userExperienceAnalyticsAppHealthOverview",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -104,11 +104,11 @@ func (id UserIdPendingAccessReviewInstanceIdContactedReviewerId) ID() string {
 func (id UserIdPendingAccessReviewInstanceIdContactedReviewerId) Segments() []resourceids.Segment {
 	return []resourceids.Segment{
 		resourceids.StaticSegment("users", "users", "users"),
-		resourceids.UserSpecifiedSegment("userId", "userIdValue"),
+		resourceids.UserSpecifiedSegment("userId", "userId"),
 		resourceids.StaticSegment("pendingAccessReviewInstances", "pendingAccessReviewInstances", "pendingAccessReviewInstances"),
-		resourceids.UserSpecifiedSegment("accessReviewInstanceId", "accessReviewInstanceIdValue"),
+		resourceids.UserSpecifiedSegment("accessReviewInstanceId", "accessReviewInstanceId"),
 		resourceids.StaticSegment("contactedReviewers", "contactedReviewers", "contactedReviewers"),
-		resourceids.UserSpecifiedSegment("accessReviewReviewerId", "accessReviewReviewerIdValue"),
+		resourceids.UserSpecifiedSegment("accessReviewReviewerId", "accessReviewReviewerId"),
 	}
 }
 

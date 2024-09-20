@@ -93,7 +93,7 @@ func (id DeviceManagementNotificationMessageTemplateId) Segments() []resourceids
 	return []resourceids.Segment{
 		resourceids.StaticSegment("deviceManagement", "deviceManagement", "deviceManagement"),
 		resourceids.StaticSegment("notificationMessageTemplates", "notificationMessageTemplates", "notificationMessageTemplates"),
-		resourceids.UserSpecifiedSegment("notificationMessageTemplateId", "notificationMessageTemplateIdValue"),
+		resourceids.UserSpecifiedSegment("notificationMessageTemplateId", "notificationMessageTemplateId"),
 	}
 }
 

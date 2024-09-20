@@ -94,7 +94,7 @@ func (id DeviceManagementVirtualEndpointDeviceImageId) Segments() []resourceids.
 		resourceids.StaticSegment("deviceManagement", "deviceManagement", "deviceManagement"),
 		resourceids.StaticSegment("virtualEndpoint", "virtualEndpoint", "virtualEndpoint"),
 		resourceids.StaticSegment("deviceImages", "deviceImages", "deviceImages"),
-		resourceids.UserSpecifiedSegment("cloudPCDeviceImageId", "cloudPCDeviceImageIdValue"),
+		resourceids.UserSpecifiedSegment("cloudPCDeviceImageId", "cloudPCDeviceImageId"),
 	}
 }
 

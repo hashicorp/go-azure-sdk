@@ -94,20 +94,30 @@ func (s PlannerBucket) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &PlannerBucket{}
 
 func (s *PlannerBucket) UnmarshalJSON(bytes []byte) error {
-	type alias PlannerBucket
-	var decoded alias
+
+	var decoded struct {
+		ArchivalInfo *PlannerArchivalInfo  `json:"archivalInfo,omitempty"`
+		IsArchived   nullable.Type[bool]   `json:"isArchived,omitempty"`
+		Name         *string               `json:"name,omitempty"`
+		OrderHint    nullable.Type[string] `json:"orderHint,omitempty"`
+		PlanId       nullable.Type[string] `json:"planId,omitempty"`
+		Tasks        *[]PlannerTask        `json:"tasks,omitempty"`
+		Id           *string               `json:"id,omitempty"`
+		ODataId      *string               `json:"@odata.id,omitempty"`
+		ODataType    *string               `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into PlannerBucket: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.ArchivalInfo = decoded.ArchivalInfo
-	s.Id = decoded.Id
 	s.IsArchived = decoded.IsArchived
 	s.Name = decoded.Name
-	s.ODataId = decoded.ODataId
-	s.ODataType = decoded.ODataType
 	s.OrderHint = decoded.OrderHint
 	s.PlanId = decoded.PlanId
+	s.Id = decoded.Id
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -138,5 +148,6 @@ func (s *PlannerBucket) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Tasks = &output
 	}
+
 	return nil
 }

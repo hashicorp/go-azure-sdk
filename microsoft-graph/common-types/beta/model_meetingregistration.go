@@ -105,24 +105,38 @@ func (s MeetingRegistration) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &MeetingRegistration{}
 
 func (s *MeetingRegistration) UnmarshalJSON(bytes []byte) error {
-	type alias MeetingRegistration
-	var decoded alias
+
+	var decoded struct {
+		CustomQuestions           *[]MeetingRegistrationQuestion `json:"customQuestions,omitempty"`
+		Description               nullable.Type[string]          `json:"description,omitempty"`
+		EndDateTime               nullable.Type[string]          `json:"endDateTime,omitempty"`
+		RegistrationPageViewCount nullable.Type[int64]           `json:"registrationPageViewCount,omitempty"`
+		RegistrationPageWebUrl    nullable.Type[string]          `json:"registrationPageWebUrl,omitempty"`
+		Speakers                  *[]MeetingSpeaker              `json:"speakers,omitempty"`
+		StartDateTime             nullable.Type[string]          `json:"startDateTime,omitempty"`
+		Subject                   nullable.Type[string]          `json:"subject,omitempty"`
+		AllowedRegistrant         *MeetingAudience               `json:"allowedRegistrant,omitempty"`
+		Registrants               *[]MeetingRegistrantBase       `json:"registrants,omitempty"`
+		Id                        *string                        `json:"id,omitempty"`
+		ODataId                   *string                        `json:"@odata.id,omitempty"`
+		ODataType                 *string                        `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into MeetingRegistration: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
-	s.AllowedRegistrant = decoded.AllowedRegistrant
 	s.CustomQuestions = decoded.CustomQuestions
 	s.Description = decoded.Description
 	s.EndDateTime = decoded.EndDateTime
-	s.Id = decoded.Id
-	s.ODataId = decoded.ODataId
-	s.ODataType = decoded.ODataType
 	s.RegistrationPageViewCount = decoded.RegistrationPageViewCount
 	s.RegistrationPageWebUrl = decoded.RegistrationPageWebUrl
 	s.Speakers = decoded.Speakers
 	s.StartDateTime = decoded.StartDateTime
 	s.Subject = decoded.Subject
+	s.AllowedRegistrant = decoded.AllowedRegistrant
+	s.Id = decoded.Id
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -145,5 +159,6 @@ func (s *MeetingRegistration) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Registrants = &output
 	}
+
 	return nil
 }

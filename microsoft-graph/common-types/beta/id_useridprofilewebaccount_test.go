@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &UserIdProfileWebAccountId{}
 
 func TestNewUserIdProfileWebAccountID(t *testing.T) {
-	id := NewUserIdProfileWebAccountID("userIdValue", "webAccountIdValue")
+	id := NewUserIdProfileWebAccountID("userId", "webAccountId")
 
-	if id.UserId != "userIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'UserId'", id.UserId, "userIdValue")
+	if id.UserId != "userId" {
+		t.Fatalf("Expected %q but got %q for Segment 'UserId'", id.UserId, "userId")
 	}
 
-	if id.WebAccountId != "webAccountIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'WebAccountId'", id.WebAccountId, "webAccountIdValue")
+	if id.WebAccountId != "webAccountId" {
+		t.Fatalf("Expected %q but got %q for Segment 'WebAccountId'", id.WebAccountId, "webAccountId")
 	}
 }
 
 func TestFormatUserIdProfileWebAccountID(t *testing.T) {
-	actual := NewUserIdProfileWebAccountID("userIdValue", "webAccountIdValue").ID()
-	expected := "/users/userIdValue/profile/webAccounts/webAccountIdValue"
+	actual := NewUserIdProfileWebAccountID("userId", "webAccountId").ID()
+	expected := "/users/userId/profile/webAccounts/webAccountId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -49,30 +49,30 @@ func TestParseUserIdProfileWebAccountID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue",
+			Input: "/users/userId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/profile",
+			Input: "/users/userId/profile",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/profile/webAccounts",
+			Input: "/users/userId/profile/webAccounts",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/users/userIdValue/profile/webAccounts/webAccountIdValue",
+			Input: "/users/userId/profile/webAccounts/webAccountId",
 			Expected: &UserIdProfileWebAccountId{
-				UserId:       "userIdValue",
-				WebAccountId: "webAccountIdValue",
+				UserId:       "userId",
+				WebAccountId: "webAccountId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/users/userIdValue/profile/webAccounts/webAccountIdValue/extra",
+			Input: "/users/userId/profile/webAccounts/webAccountId/extra",
 			Error: true,
 		},
 	}
@@ -125,58 +125,58 @@ func TestParseUserIdProfileWebAccountIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue",
+			Input: "/users/userId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe",
+			Input: "/uSeRs/uSeRiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/profile",
+			Input: "/users/userId/profile",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/pRoFiLe",
+			Input: "/uSeRs/uSeRiD/pRoFiLe",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/profile/webAccounts",
+			Input: "/users/userId/profile/webAccounts",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/pRoFiLe/wEbAcCoUnTs",
+			Input: "/uSeRs/uSeRiD/pRoFiLe/wEbAcCoUnTs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/users/userIdValue/profile/webAccounts/webAccountIdValue",
+			Input: "/users/userId/profile/webAccounts/webAccountId",
 			Expected: &UserIdProfileWebAccountId{
-				UserId:       "userIdValue",
-				WebAccountId: "webAccountIdValue",
+				UserId:       "userId",
+				WebAccountId: "webAccountId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/users/userIdValue/profile/webAccounts/webAccountIdValue/extra",
+			Input: "/users/userId/profile/webAccounts/webAccountId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/pRoFiLe/wEbAcCoUnTs/wEbAcCoUnTiDvAlUe",
+			Input: "/uSeRs/uSeRiD/pRoFiLe/wEbAcCoUnTs/wEbAcCoUnTiD",
 			Expected: &UserIdProfileWebAccountId{
-				UserId:       "uSeRiDvAlUe",
-				WebAccountId: "wEbAcCoUnTiDvAlUe",
+				UserId:       "uSeRiD",
+				WebAccountId: "wEbAcCoUnTiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/pRoFiLe/wEbAcCoUnTs/wEbAcCoUnTiDvAlUe/extra",
+			Input: "/uSeRs/uSeRiD/pRoFiLe/wEbAcCoUnTs/wEbAcCoUnTiD/extra",
 			Error: true,
 		},
 	}

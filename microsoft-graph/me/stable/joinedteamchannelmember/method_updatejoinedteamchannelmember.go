@@ -17,15 +17,44 @@ type UpdateJoinedTeamChannelMemberOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateJoinedTeamChannelMemberOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateJoinedTeamChannelMemberOperationOptions() UpdateJoinedTeamChannelMemberOperationOptions {
+	return UpdateJoinedTeamChannelMemberOperationOptions{}
+}
+
+func (o UpdateJoinedTeamChannelMemberOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateJoinedTeamChannelMemberOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateJoinedTeamChannelMemberOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateJoinedTeamChannelMember - Update the navigation property members in me
-func (c JoinedTeamChannelMemberClient) UpdateJoinedTeamChannelMember(ctx context.Context, id stable.MeJoinedTeamIdChannelIdMemberId, input stable.ConversationMember) (result UpdateJoinedTeamChannelMemberOperationResponse, err error) {
+func (c JoinedTeamChannelMemberClient) UpdateJoinedTeamChannelMember(ctx context.Context, id stable.MeJoinedTeamIdChannelIdMemberId, input stable.ConversationMember, options UpdateJoinedTeamChannelMemberOperationOptions) (result UpdateJoinedTeamChannelMemberOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

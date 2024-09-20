@@ -17,16 +17,45 @@ type UpdateNotificationMessageTemplateLocalizedNotificationMessageOperationRespo
 	OData        *odata.OData
 }
 
+type UpdateNotificationMessageTemplateLocalizedNotificationMessageOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateNotificationMessageTemplateLocalizedNotificationMessageOperationOptions() UpdateNotificationMessageTemplateLocalizedNotificationMessageOperationOptions {
+	return UpdateNotificationMessageTemplateLocalizedNotificationMessageOperationOptions{}
+}
+
+func (o UpdateNotificationMessageTemplateLocalizedNotificationMessageOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateNotificationMessageTemplateLocalizedNotificationMessageOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateNotificationMessageTemplateLocalizedNotificationMessageOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateNotificationMessageTemplateLocalizedNotificationMessage - Update localizedNotificationMessage. Update the
 // properties of a localizedNotificationMessage object.
-func (c NotificationMessageTemplateLocalizedNotificationMessageClient) UpdateNotificationMessageTemplateLocalizedNotificationMessage(ctx context.Context, id stable.DeviceManagementNotificationMessageTemplateIdLocalizedNotificationMessageId, input stable.LocalizedNotificationMessage) (result UpdateNotificationMessageTemplateLocalizedNotificationMessageOperationResponse, err error) {
+func (c NotificationMessageTemplateLocalizedNotificationMessageClient) UpdateNotificationMessageTemplateLocalizedNotificationMessage(ctx context.Context, id stable.DeviceManagementNotificationMessageTemplateIdLocalizedNotificationMessageId, input stable.LocalizedNotificationMessage, options UpdateNotificationMessageTemplateLocalizedNotificationMessageOperationOptions) (result UpdateNotificationMessageTemplateLocalizedNotificationMessageOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

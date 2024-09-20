@@ -99,20 +99,31 @@ func (s DayNote) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &DayNote{}
 
 func (s *DayNote) UnmarshalJSON(bytes []byte) error {
-	type alias DayNote
-	var decoded alias
+
+	var decoded struct {
+		DayNoteDate          nullable.Type[string] `json:"dayNoteDate,omitempty"`
+		DraftDayNote         *ItemBody             `json:"draftDayNote,omitempty"`
+		SharedDayNote        *ItemBody             `json:"sharedDayNote,omitempty"`
+		CreatedBy            IdentitySet           `json:"createdBy"`
+		CreatedDateTime      nullable.Type[string] `json:"createdDateTime,omitempty"`
+		LastModifiedBy       *IdentitySet          `json:"lastModifiedBy,omitempty"`
+		LastModifiedDateTime nullable.Type[string] `json:"lastModifiedDateTime,omitempty"`
+		Id                   *string               `json:"id,omitempty"`
+		ODataId              *string               `json:"@odata.id,omitempty"`
+		ODataType            *string               `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into DayNote: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
-	s.CreatedDateTime = decoded.CreatedDateTime
 	s.DayNoteDate = decoded.DayNoteDate
 	s.DraftDayNote = decoded.DraftDayNote
+	s.SharedDayNote = decoded.SharedDayNote
+	s.CreatedDateTime = decoded.CreatedDateTime
 	s.Id = decoded.Id
 	s.LastModifiedDateTime = decoded.LastModifiedDateTime
 	s.ODataId = decoded.ODataId
 	s.ODataType = decoded.ODataType
-	s.SharedDayNote = decoded.SharedDayNote
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -134,5 +145,6 @@ func (s *DayNote) UnmarshalJSON(bytes []byte) error {
 		}
 		s.LastModifiedBy = &impl
 	}
+
 	return nil
 }

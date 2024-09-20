@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/outlooktaskgrouptaskfoldertaskattachment` Documentation
 
-The `outlooktaskgrouptaskfoldertaskattachment` SDK allows for interaction with the Azure Resource Manager Service `users` (API Version `beta`).
+The `outlooktaskgrouptaskfoldertaskattachment` SDK allows for interaction with Microsoft Graph `users` (API Version `beta`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -15,7 +15,7 @@ import "github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/outlooktask
 ### Client Initialization
 
 ```go
-client := outlooktaskgrouptaskfoldertaskattachment.NewOutlookTaskGroupTaskFolderTaskAttachmentClientWithBaseURI("https://management.azure.com")
+client := outlooktaskgrouptaskfoldertaskattachment.NewOutlookTaskGroupTaskFolderTaskAttachmentClientWithBaseURI("https://graph.microsoft.com")
 client.Client.Authorizer = authorizer
 ```
 
@@ -24,14 +24,14 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := outlooktaskgrouptaskfoldertaskattachment.NewUserIdOutlookTaskGroupIdTaskFolderIdTaskID("userIdValue", "outlookTaskGroupIdValue", "outlookTaskFolderIdValue", "outlookTaskIdValue")
+id := outlooktaskgrouptaskfoldertaskattachment.NewUserIdOutlookTaskGroupIdTaskFolderIdTaskID("userId", "outlookTaskGroupId", "outlookTaskFolderId", "outlookTaskId")
 
 payload := outlooktaskgrouptaskfoldertaskattachment.Attachment{
 	// ...
 }
 
 
-read, err := client.CreateOutlookTaskGroupTaskFolderTaskAttachment(ctx, id, payload)
+read, err := client.CreateOutlookTaskGroupTaskFolderTaskAttachment(ctx, id, payload, outlooktaskgrouptaskfoldertaskattachment.DefaultCreateOutlookTaskGroupTaskFolderTaskAttachmentOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -45,14 +45,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := outlooktaskgrouptaskfoldertaskattachment.NewUserIdOutlookTaskGroupIdTaskFolderIdTaskID("userIdValue", "outlookTaskGroupIdValue", "outlookTaskFolderIdValue", "outlookTaskIdValue")
+id := outlooktaskgrouptaskfoldertaskattachment.NewUserIdOutlookTaskGroupIdTaskFolderIdTaskID("userId", "outlookTaskGroupId", "outlookTaskFolderId", "outlookTaskId")
 
 payload := outlooktaskgrouptaskfoldertaskattachment.CreateOutlookTaskGroupTaskFolderTaskAttachmentsUploadSessionRequest{
 	// ...
 }
 
 
-read, err := client.CreateOutlookTaskGroupTaskFolderTaskAttachmentsUploadSession(ctx, id, payload)
+read, err := client.CreateOutlookTaskGroupTaskFolderTaskAttachmentsUploadSession(ctx, id, payload, outlooktaskgrouptaskfoldertaskattachment.DefaultCreateOutlookTaskGroupTaskFolderTaskAttachmentsUploadSessionOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -66,7 +66,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := outlooktaskgrouptaskfoldertaskattachment.NewUserIdOutlookTaskGroupIdTaskFolderIdTaskIdAttachmentID("userIdValue", "outlookTaskGroupIdValue", "outlookTaskFolderIdValue", "outlookTaskIdValue", "attachmentIdValue")
+id := outlooktaskgrouptaskfoldertaskattachment.NewUserIdOutlookTaskGroupIdTaskFolderIdTaskIdAttachmentID("userId", "outlookTaskGroupId", "outlookTaskFolderId", "outlookTaskId", "attachmentId")
 
 read, err := client.DeleteOutlookTaskGroupTaskFolderTaskAttachment(ctx, id, outlooktaskgrouptaskfoldertaskattachment.DefaultDeleteOutlookTaskGroupTaskFolderTaskAttachmentOperationOptions())
 if err != nil {
@@ -82,7 +82,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := outlooktaskgrouptaskfoldertaskattachment.NewUserIdOutlookTaskGroupIdTaskFolderIdTaskIdAttachmentID("userIdValue", "outlookTaskGroupIdValue", "outlookTaskFolderIdValue", "outlookTaskIdValue", "attachmentIdValue")
+id := outlooktaskgrouptaskfoldertaskattachment.NewUserIdOutlookTaskGroupIdTaskFolderIdTaskIdAttachmentID("userId", "outlookTaskGroupId", "outlookTaskFolderId", "outlookTaskId", "attachmentId")
 
 read, err := client.GetOutlookTaskGroupTaskFolderTaskAttachment(ctx, id, outlooktaskgrouptaskfoldertaskattachment.DefaultGetOutlookTaskGroupTaskFolderTaskAttachmentOperationOptions())
 if err != nil {
@@ -98,7 +98,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := outlooktaskgrouptaskfoldertaskattachment.NewUserIdOutlookTaskGroupIdTaskFolderIdTaskID("userIdValue", "outlookTaskGroupIdValue", "outlookTaskFolderIdValue", "outlookTaskIdValue")
+id := outlooktaskgrouptaskfoldertaskattachment.NewUserIdOutlookTaskGroupIdTaskFolderIdTaskID("userId", "outlookTaskGroupId", "outlookTaskFolderId", "outlookTaskId")
 
 read, err := client.GetOutlookTaskGroupTaskFolderTaskAttachmentsCount(ctx, id, outlooktaskgrouptaskfoldertaskattachment.DefaultGetOutlookTaskGroupTaskFolderTaskAttachmentsCountOperationOptions())
 if err != nil {
@@ -114,7 +114,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := outlooktaskgrouptaskfoldertaskattachment.NewUserIdOutlookTaskGroupIdTaskFolderIdTaskID("userIdValue", "outlookTaskGroupIdValue", "outlookTaskFolderIdValue", "outlookTaskIdValue")
+id := outlooktaskgrouptaskfoldertaskattachment.NewUserIdOutlookTaskGroupIdTaskFolderIdTaskID("userId", "outlookTaskGroupId", "outlookTaskFolderId", "outlookTaskId")
 
 // alternatively `client.ListOutlookTaskGroupTaskFolderTaskAttachments(ctx, id, outlooktaskgrouptaskfoldertaskattachment.DefaultListOutlookTaskGroupTaskFolderTaskAttachmentsOperationOptions())` can be used to do batched pagination
 items, err := client.ListOutlookTaskGroupTaskFolderTaskAttachmentsComplete(ctx, id, outlooktaskgrouptaskfoldertaskattachment.DefaultListOutlookTaskGroupTaskFolderTaskAttachmentsOperationOptions())

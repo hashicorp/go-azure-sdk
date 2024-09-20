@@ -155,27 +155,45 @@ func (s Notebook) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &Notebook{}
 
 func (s *Notebook) UnmarshalJSON(bytes []byte) error {
-	type alias Notebook
-	var decoded alias
+
+	var decoded struct {
+		IsDefault            nullable.Type[bool]   `json:"isDefault,omitempty"`
+		IsShared             nullable.Type[bool]   `json:"isShared,omitempty"`
+		Links                *NotebookLinks        `json:"links,omitempty"`
+		SectionGroups        *[]SectionGroup       `json:"sectionGroups,omitempty"`
+		SectionGroupsUrl     nullable.Type[string] `json:"sectionGroupsUrl,omitempty"`
+		Sections             *[]OnenoteSection     `json:"sections,omitempty"`
+		SectionsUrl          nullable.Type[string] `json:"sectionsUrl,omitempty"`
+		UserRole             *OnenoteUserRole      `json:"userRole,omitempty"`
+		CreatedBy            *IdentitySet          `json:"createdBy,omitempty"`
+		DisplayName          nullable.Type[string] `json:"displayName,omitempty"`
+		LastModifiedBy       *IdentitySet          `json:"lastModifiedBy,omitempty"`
+		LastModifiedDateTime nullable.Type[string] `json:"lastModifiedDateTime,omitempty"`
+		CreatedDateTime      nullable.Type[string] `json:"createdDateTime,omitempty"`
+		Self                 nullable.Type[string] `json:"self,omitempty"`
+		Id                   *string               `json:"id,omitempty"`
+		ODataId              *string               `json:"@odata.id,omitempty"`
+		ODataType            *string               `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into Notebook: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
-	s.CreatedDateTime = decoded.CreatedDateTime
-	s.DisplayName = decoded.DisplayName
-	s.Id = decoded.Id
 	s.IsDefault = decoded.IsDefault
 	s.IsShared = decoded.IsShared
-	s.LastModifiedDateTime = decoded.LastModifiedDateTime
 	s.Links = decoded.Links
-	s.ODataId = decoded.ODataId
-	s.ODataType = decoded.ODataType
 	s.SectionGroups = decoded.SectionGroups
 	s.SectionGroupsUrl = decoded.SectionGroupsUrl
 	s.Sections = decoded.Sections
 	s.SectionsUrl = decoded.SectionsUrl
-	s.Self = decoded.Self
 	s.UserRole = decoded.UserRole
+	s.CreatedDateTime = decoded.CreatedDateTime
+	s.DisplayName = decoded.DisplayName
+	s.Id = decoded.Id
+	s.LastModifiedDateTime = decoded.LastModifiedDateTime
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
+	s.Self = decoded.Self
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -197,5 +215,6 @@ func (s *Notebook) UnmarshalJSON(bytes []byte) error {
 		}
 		s.LastModifiedBy = &impl
 	}
+
 	return nil
 }

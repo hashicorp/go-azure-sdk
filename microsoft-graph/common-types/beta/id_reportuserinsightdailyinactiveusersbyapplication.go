@@ -95,7 +95,7 @@ func (id ReportUserInsightDailyInactiveUsersByApplicationId) Segments() []resour
 		resourceids.StaticSegment("userInsights", "userInsights", "userInsights"),
 		resourceids.StaticSegment("daily", "daily", "daily"),
 		resourceids.StaticSegment("inactiveUsersByApplication", "inactiveUsersByApplication", "inactiveUsersByApplication"),
-		resourceids.UserSpecifiedSegment("dailyInactiveUsersByApplicationMetricId", "dailyInactiveUsersByApplicationMetricIdValue"),
+		resourceids.UserSpecifiedSegment("dailyInactiveUsersByApplicationMetricId", "dailyInactiveUsersByApplicationMetricId"),
 	}
 }
 

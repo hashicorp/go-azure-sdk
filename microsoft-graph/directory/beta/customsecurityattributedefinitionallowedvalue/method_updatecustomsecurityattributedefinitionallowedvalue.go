@@ -17,16 +17,45 @@ type UpdateCustomSecurityAttributeDefinitionAllowedValueOperationResponse struct
 	OData        *odata.OData
 }
 
+type UpdateCustomSecurityAttributeDefinitionAllowedValueOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateCustomSecurityAttributeDefinitionAllowedValueOperationOptions() UpdateCustomSecurityAttributeDefinitionAllowedValueOperationOptions {
+	return UpdateCustomSecurityAttributeDefinitionAllowedValueOperationOptions{}
+}
+
+func (o UpdateCustomSecurityAttributeDefinitionAllowedValueOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateCustomSecurityAttributeDefinitionAllowedValueOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateCustomSecurityAttributeDefinitionAllowedValueOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateCustomSecurityAttributeDefinitionAllowedValue - Update allowedValue. Update the properties of an allowedValue
 // object.
-func (c CustomSecurityAttributeDefinitionAllowedValueClient) UpdateCustomSecurityAttributeDefinitionAllowedValue(ctx context.Context, id beta.DirectoryCustomSecurityAttributeDefinitionIdAllowedValueId, input beta.AllowedValue) (result UpdateCustomSecurityAttributeDefinitionAllowedValueOperationResponse, err error) {
+func (c CustomSecurityAttributeDefinitionAllowedValueClient) UpdateCustomSecurityAttributeDefinitionAllowedValue(ctx context.Context, id beta.DirectoryCustomSecurityAttributeDefinitionIdAllowedValueId, input beta.AllowedValue, options UpdateCustomSecurityAttributeDefinitionAllowedValueOperationOptions) (result UpdateCustomSecurityAttributeDefinitionAllowedValueOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -66,10 +66,15 @@ func (s ChatRenamedEventMessageDetail) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &ChatRenamedEventMessageDetail{}
 
 func (s *ChatRenamedEventMessageDetail) UnmarshalJSON(bytes []byte) error {
-	type alias ChatRenamedEventMessageDetail
-	var decoded alias
+
+	var decoded struct {
+		ChatDisplayName nullable.Type[string] `json:"chatDisplayName,omitempty"`
+		ChatId          nullable.Type[string] `json:"chatId,omitempty"`
+		ODataId         *string               `json:"@odata.id,omitempty"`
+		ODataType       *string               `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into ChatRenamedEventMessageDetail: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.ChatDisplayName = decoded.ChatDisplayName
@@ -89,5 +94,6 @@ func (s *ChatRenamedEventMessageDetail) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Initiator = impl
 	}
+
 	return nil
 }

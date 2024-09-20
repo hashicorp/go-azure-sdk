@@ -18,15 +18,44 @@ type CreateDeviceManagementResourceNamespaceOperationResponse struct {
 	Model        *beta.UnifiedRbacResourceNamespace
 }
 
+type CreateDeviceManagementResourceNamespaceOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateDeviceManagementResourceNamespaceOperationOptions() CreateDeviceManagementResourceNamespaceOperationOptions {
+	return CreateDeviceManagementResourceNamespaceOperationOptions{}
+}
+
+func (o CreateDeviceManagementResourceNamespaceOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateDeviceManagementResourceNamespaceOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateDeviceManagementResourceNamespaceOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateDeviceManagementResourceNamespace - Create new navigation property to resourceNamespaces for roleManagement
-func (c DeviceManagementResourceNamespaceClient) CreateDeviceManagementResourceNamespace(ctx context.Context, input beta.UnifiedRbacResourceNamespace) (result CreateDeviceManagementResourceNamespaceOperationResponse, err error) {
+func (c DeviceManagementResourceNamespaceClient) CreateDeviceManagementResourceNamespace(ctx context.Context, input beta.UnifiedRbacResourceNamespace, options CreateDeviceManagementResourceNamespaceOperationOptions) (result CreateDeviceManagementResourceNamespaceOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/roleManagement/deviceManagement/resourceNamespaces",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/roleManagement/deviceManagement/resourceNamespaces",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

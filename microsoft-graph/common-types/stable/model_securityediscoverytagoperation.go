@@ -102,10 +102,21 @@ func (s SecurityEdiscoveryTagOperation) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &SecurityEdiscoveryTagOperation{}
 
 func (s *SecurityEdiscoveryTagOperation) UnmarshalJSON(bytes []byte) error {
-	type alias SecurityEdiscoveryTagOperation
-	var decoded alias
+
+	var decoded struct {
+		Action            *SecurityCaseAction          `json:"action,omitempty"`
+		CompletedDateTime nullable.Type[string]        `json:"completedDateTime,omitempty"`
+		CreatedBy         IdentitySet                  `json:"createdBy"`
+		CreatedDateTime   nullable.Type[string]        `json:"createdDateTime,omitempty"`
+		PercentProgress   nullable.Type[int64]         `json:"percentProgress,omitempty"`
+		ResultInfo        *ResultInfo                  `json:"resultInfo,omitempty"`
+		Status            *SecurityCaseOperationStatus `json:"status,omitempty"`
+		Id                *string                      `json:"id,omitempty"`
+		ODataId           *string                      `json:"@odata.id,omitempty"`
+		ODataType         *string                      `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into SecurityEdiscoveryTagOperation: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.Action = decoded.Action
@@ -130,5 +141,6 @@ func (s *SecurityEdiscoveryTagOperation) UnmarshalJSON(bytes []byte) error {
 		}
 		s.CreatedBy = impl
 	}
+
 	return nil
 }

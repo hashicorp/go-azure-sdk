@@ -18,17 +18,46 @@ type CancelEntitlementManagementAssignmentRequestOperationResponse struct {
 	OData        *odata.OData
 }
 
+type CancelEntitlementManagementAssignmentRequestOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCancelEntitlementManagementAssignmentRequestOperationOptions() CancelEntitlementManagementAssignmentRequestOperationOptions {
+	return CancelEntitlementManagementAssignmentRequestOperationOptions{}
+}
+
+func (o CancelEntitlementManagementAssignmentRequestOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CancelEntitlementManagementAssignmentRequestOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CancelEntitlementManagementAssignmentRequestOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CancelEntitlementManagementAssignmentRequest - Invoke action cancel. In Microsoft Entra Entitlement Management,
 // cancel accessPackageAssignmentRequest objects that are in a cancelable state: accepted, pendingApproval,
 // pendingNotBefore, pendingApprovalEscalated.
-func (c EntitlementManagementAssignmentRequestClient) CancelEntitlementManagementAssignmentRequest(ctx context.Context, id beta.IdentityGovernanceEntitlementManagementAssignmentRequestId) (result CancelEntitlementManagementAssignmentRequestOperationResponse, err error) {
+func (c EntitlementManagementAssignmentRequestClient) CancelEntitlementManagementAssignmentRequest(ctx context.Context, id beta.IdentityGovernanceEntitlementManagementAssignmentRequestId, options CancelEntitlementManagementAssignmentRequestOperationOptions) (result CancelEntitlementManagementAssignmentRequestOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/cancel", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/cancel", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

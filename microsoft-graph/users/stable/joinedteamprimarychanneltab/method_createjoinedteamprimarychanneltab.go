@@ -19,15 +19,44 @@ type CreateJoinedTeamPrimaryChannelTabOperationResponse struct {
 	Model        *stable.TeamsTab
 }
 
+type CreateJoinedTeamPrimaryChannelTabOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateJoinedTeamPrimaryChannelTabOperationOptions() CreateJoinedTeamPrimaryChannelTabOperationOptions {
+	return CreateJoinedTeamPrimaryChannelTabOperationOptions{}
+}
+
+func (o CreateJoinedTeamPrimaryChannelTabOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateJoinedTeamPrimaryChannelTabOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateJoinedTeamPrimaryChannelTabOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateJoinedTeamPrimaryChannelTab - Create new navigation property to tabs for users
-func (c JoinedTeamPrimaryChannelTabClient) CreateJoinedTeamPrimaryChannelTab(ctx context.Context, id stable.UserIdJoinedTeamId, input stable.TeamsTab) (result CreateJoinedTeamPrimaryChannelTabOperationResponse, err error) {
+func (c JoinedTeamPrimaryChannelTabClient) CreateJoinedTeamPrimaryChannelTab(ctx context.Context, id stable.UserIdJoinedTeamId, input stable.TeamsTab, options CreateJoinedTeamPrimaryChannelTabOperationOptions) (result CreateJoinedTeamPrimaryChannelTabOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/primaryChannel/tabs", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/primaryChannel/tabs", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

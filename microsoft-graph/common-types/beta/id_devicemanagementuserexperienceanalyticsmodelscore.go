@@ -93,7 +93,7 @@ func (id DeviceManagementUserExperienceAnalyticsModelScoreId) Segments() []resou
 	return []resourceids.Segment{
 		resourceids.StaticSegment("deviceManagement", "deviceManagement", "deviceManagement"),
 		resourceids.StaticSegment("userExperienceAnalyticsModelScores", "userExperienceAnalyticsModelScores", "userExperienceAnalyticsModelScores"),
-		resourceids.UserSpecifiedSegment("userExperienceAnalyticsModelScoresId", "userExperienceAnalyticsModelScoresIdValue"),
+		resourceids.UserSpecifiedSegment("userExperienceAnalyticsModelScoresId", "userExperienceAnalyticsModelScoresId"),
 	}
 }
 

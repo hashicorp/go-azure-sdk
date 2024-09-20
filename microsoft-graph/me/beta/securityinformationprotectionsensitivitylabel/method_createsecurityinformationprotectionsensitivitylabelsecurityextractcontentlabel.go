@@ -18,17 +18,46 @@ type CreateSecurityInformationProtectionSensitivityLabelSecurityExtractContentLa
 	Model        *beta.SecurityContentLabel
 }
 
+type CreateSecurityInformationProtectionSensitivityLabelSecurityExtractContentLabelOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateSecurityInformationProtectionSensitivityLabelSecurityExtractContentLabelOperationOptions() CreateSecurityInformationProtectionSensitivityLabelSecurityExtractContentLabelOperationOptions {
+	return CreateSecurityInformationProtectionSensitivityLabelSecurityExtractContentLabelOperationOptions{}
+}
+
+func (o CreateSecurityInformationProtectionSensitivityLabelSecurityExtractContentLabelOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateSecurityInformationProtectionSensitivityLabelSecurityExtractContentLabelOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateSecurityInformationProtectionSensitivityLabelSecurityExtractContentLabelOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateSecurityInformationProtectionSensitivityLabelSecurityExtractContentLabel - Invoke action extractContentLabel.
 // Use the metadata that exists on an already-labeled piece of information to resolve the metadata to a specific
 // sensitivity label. The contentInfo input is resolved to informationProtectionContentLabel.
-func (c SecurityInformationProtectionSensitivityLabelClient) CreateSecurityInformationProtectionSensitivityLabelSecurityExtractContentLabel(ctx context.Context, input CreateSecurityInformationProtectionSensitivityLabelSecurityExtractContentLabelRequest) (result CreateSecurityInformationProtectionSensitivityLabelSecurityExtractContentLabelOperationResponse, err error) {
+func (c SecurityInformationProtectionSensitivityLabelClient) CreateSecurityInformationProtectionSensitivityLabelSecurityExtractContentLabel(ctx context.Context, input CreateSecurityInformationProtectionSensitivityLabelSecurityExtractContentLabelRequest, options CreateSecurityInformationProtectionSensitivityLabelSecurityExtractContentLabelOperationOptions) (result CreateSecurityInformationProtectionSensitivityLabelSecurityExtractContentLabelOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/me/security/informationProtection/sensitivityLabels/security.extractContentLabel",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/me/security/informationProtection/sensitivityLabels/security.extractContentLabel",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -94,7 +94,7 @@ func (id MePlannerFavoritePlanId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("me", "me", "me"),
 		resourceids.StaticSegment("planner", "planner", "planner"),
 		resourceids.StaticSegment("favoritePlans", "favoritePlans", "favoritePlans"),
-		resourceids.UserSpecifiedSegment("plannerPlanId", "plannerPlanIdValue"),
+		resourceids.UserSpecifiedSegment("plannerPlanId", "plannerPlanId"),
 	}
 }
 

@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &UserIdContactId{}
 
 func TestNewUserIdContactID(t *testing.T) {
-	id := NewUserIdContactID("userIdValue", "contactIdValue")
+	id := NewUserIdContactID("userId", "contactId")
 
-	if id.UserId != "userIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'UserId'", id.UserId, "userIdValue")
+	if id.UserId != "userId" {
+		t.Fatalf("Expected %q but got %q for Segment 'UserId'", id.UserId, "userId")
 	}
 
-	if id.ContactId != "contactIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ContactId'", id.ContactId, "contactIdValue")
+	if id.ContactId != "contactId" {
+		t.Fatalf("Expected %q but got %q for Segment 'ContactId'", id.ContactId, "contactId")
 	}
 }
 
 func TestFormatUserIdContactID(t *testing.T) {
-	actual := NewUserIdContactID("userIdValue", "contactIdValue").ID()
-	expected := "/users/userIdValue/contacts/contactIdValue"
+	actual := NewUserIdContactID("userId", "contactId").ID()
+	expected := "/users/userId/contacts/contactId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -49,25 +49,25 @@ func TestParseUserIdContactID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue",
+			Input: "/users/userId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/contacts",
+			Input: "/users/userId/contacts",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/users/userIdValue/contacts/contactIdValue",
+			Input: "/users/userId/contacts/contactId",
 			Expected: &UserIdContactId{
-				UserId:    "userIdValue",
-				ContactId: "contactIdValue",
+				UserId:    "userId",
+				ContactId: "contactId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/users/userIdValue/contacts/contactIdValue/extra",
+			Input: "/users/userId/contacts/contactId/extra",
 			Error: true,
 		},
 	}
@@ -120,48 +120,48 @@ func TestParseUserIdContactIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue",
+			Input: "/users/userId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe",
+			Input: "/uSeRs/uSeRiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/contacts",
+			Input: "/users/userId/contacts",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/cOnTaCtS",
+			Input: "/uSeRs/uSeRiD/cOnTaCtS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/users/userIdValue/contacts/contactIdValue",
+			Input: "/users/userId/contacts/contactId",
 			Expected: &UserIdContactId{
-				UserId:    "userIdValue",
-				ContactId: "contactIdValue",
+				UserId:    "userId",
+				ContactId: "contactId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/users/userIdValue/contacts/contactIdValue/extra",
+			Input: "/users/userId/contacts/contactId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/cOnTaCtS/cOnTaCtIdVaLuE",
+			Input: "/uSeRs/uSeRiD/cOnTaCtS/cOnTaCtId",
 			Expected: &UserIdContactId{
-				UserId:    "uSeRiDvAlUe",
-				ContactId: "cOnTaCtIdVaLuE",
+				UserId:    "uSeRiD",
+				ContactId: "cOnTaCtId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/cOnTaCtS/cOnTaCtIdVaLuE/extra",
+			Input: "/uSeRs/uSeRiD/cOnTaCtS/cOnTaCtId/extra",
 			Error: true,
 		},
 	}

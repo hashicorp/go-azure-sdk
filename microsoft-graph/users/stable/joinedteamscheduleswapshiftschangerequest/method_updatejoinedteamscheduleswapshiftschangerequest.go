@@ -17,15 +17,44 @@ type UpdateJoinedTeamScheduleSwapShiftsChangeRequestOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateJoinedTeamScheduleSwapShiftsChangeRequestOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateJoinedTeamScheduleSwapShiftsChangeRequestOperationOptions() UpdateJoinedTeamScheduleSwapShiftsChangeRequestOperationOptions {
+	return UpdateJoinedTeamScheduleSwapShiftsChangeRequestOperationOptions{}
+}
+
+func (o UpdateJoinedTeamScheduleSwapShiftsChangeRequestOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateJoinedTeamScheduleSwapShiftsChangeRequestOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateJoinedTeamScheduleSwapShiftsChangeRequestOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateJoinedTeamScheduleSwapShiftsChangeRequest - Update the navigation property swapShiftsChangeRequests in users
-func (c JoinedTeamScheduleSwapShiftsChangeRequestClient) UpdateJoinedTeamScheduleSwapShiftsChangeRequest(ctx context.Context, id stable.UserIdJoinedTeamIdScheduleSwapShiftsChangeRequestId, input stable.SwapShiftsChangeRequest) (result UpdateJoinedTeamScheduleSwapShiftsChangeRequestOperationResponse, err error) {
+func (c JoinedTeamScheduleSwapShiftsChangeRequestClient) UpdateJoinedTeamScheduleSwapShiftsChangeRequest(ctx context.Context, id stable.UserIdJoinedTeamIdScheduleSwapShiftsChangeRequestId, input stable.SwapShiftsChangeRequest, options UpdateJoinedTeamScheduleSwapShiftsChangeRequestOperationOptions) (result UpdateJoinedTeamScheduleSwapShiftsChangeRequestOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -81,16 +81,23 @@ func (s Attendee) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &Attendee{}
 
 func (s *Attendee) UnmarshalJSON(bytes []byte) error {
-	type alias Attendee
-	var decoded alias
+
+	var decoded struct {
+		ProposedNewTime *TimeSlot       `json:"proposedNewTime,omitempty"`
+		Status          *ResponseStatus `json:"status,omitempty"`
+		Type            *AttendeeType   `json:"type,omitempty"`
+		EmailAddress    EmailAddress    `json:"emailAddress"`
+		ODataId         *string         `json:"@odata.id,omitempty"`
+		ODataType       *string         `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into Attendee: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
-	s.ODataId = decoded.ODataId
-	s.ODataType = decoded.ODataType
 	s.ProposedNewTime = decoded.ProposedNewTime
 	s.Status = decoded.Status
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
 	s.Type = decoded.Type
 
 	var temp map[string]json.RawMessage
@@ -105,5 +112,6 @@ func (s *Attendee) UnmarshalJSON(bytes []byte) error {
 		}
 		s.EmailAddress = impl
 	}
+
 	return nil
 }

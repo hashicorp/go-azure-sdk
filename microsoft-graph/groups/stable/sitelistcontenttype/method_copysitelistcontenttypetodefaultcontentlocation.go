@@ -18,17 +18,46 @@ type CopySiteListContentTypeToDefaultContentLocationOperationResponse struct {
 	OData        *odata.OData
 }
 
+type CopySiteListContentTypeToDefaultContentLocationOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCopySiteListContentTypeToDefaultContentLocationOperationOptions() CopySiteListContentTypeToDefaultContentLocationOperationOptions {
+	return CopySiteListContentTypeToDefaultContentLocationOperationOptions{}
+}
+
+func (o CopySiteListContentTypeToDefaultContentLocationOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CopySiteListContentTypeToDefaultContentLocationOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CopySiteListContentTypeToDefaultContentLocationOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CopySiteListContentTypeToDefaultContentLocation - Invoke action copyToDefaultContentLocation. Copy a file to a
 // default content location in a content type. The file can then be added as a default file or template via a POST
 // operation.
-func (c SiteListContentTypeClient) CopySiteListContentTypeToDefaultContentLocation(ctx context.Context, id stable.GroupIdSiteIdListIdContentTypeId, input CopySiteListContentTypeToDefaultContentLocationRequest) (result CopySiteListContentTypeToDefaultContentLocationOperationResponse, err error) {
+func (c SiteListContentTypeClient) CopySiteListContentTypeToDefaultContentLocation(ctx context.Context, id stable.GroupIdSiteIdListIdContentTypeId, input CopySiteListContentTypeToDefaultContentLocationRequest, options CopySiteListContentTypeToDefaultContentLocationOperationOptions) (result CopySiteListContentTypeToDefaultContentLocationOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/copyToDefaultContentLocation", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/copyToDefaultContentLocation", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

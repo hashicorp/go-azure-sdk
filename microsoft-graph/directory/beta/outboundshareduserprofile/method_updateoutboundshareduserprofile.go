@@ -17,15 +17,44 @@ type UpdateOutboundSharedUserProfileOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateOutboundSharedUserProfileOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateOutboundSharedUserProfileOperationOptions() UpdateOutboundSharedUserProfileOperationOptions {
+	return UpdateOutboundSharedUserProfileOperationOptions{}
+}
+
+func (o UpdateOutboundSharedUserProfileOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateOutboundSharedUserProfileOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateOutboundSharedUserProfileOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateOutboundSharedUserProfile - Update the navigation property outboundSharedUserProfiles in directory
-func (c OutboundSharedUserProfileClient) UpdateOutboundSharedUserProfile(ctx context.Context, id beta.DirectoryOutboundSharedUserProfileId, input beta.OutboundSharedUserProfile) (result UpdateOutboundSharedUserProfileOperationResponse, err error) {
+func (c OutboundSharedUserProfileClient) UpdateOutboundSharedUserProfile(ctx context.Context, id beta.DirectoryOutboundSharedUserProfileId, input beta.OutboundSharedUserProfile, options UpdateOutboundSharedUserProfileOperationOptions) (result UpdateOutboundSharedUserProfileOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

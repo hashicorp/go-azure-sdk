@@ -19,7 +19,8 @@ type DeleteCalendarEventExceptionOccurrenceInstanceExtensionOperationResponse st
 }
 
 type DeleteCalendarEventExceptionOccurrenceInstanceExtensionOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteCalendarEventExceptionOccurrenceInstanceExtensionOperationOptions() DeleteCalendarEventExceptionOccurrenceInstanceExtensionOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteCalendarEventExceptionOccurrenceInstanceExtensionOperationOptions)
 
 func (o DeleteCalendarEventExceptionOccurrenceInstanceExtensionOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

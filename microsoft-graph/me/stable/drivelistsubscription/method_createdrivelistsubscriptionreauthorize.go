@@ -18,16 +18,45 @@ type CreateDriveListSubscriptionReauthorizeOperationResponse struct {
 	OData        *odata.OData
 }
 
+type CreateDriveListSubscriptionReauthorizeOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateDriveListSubscriptionReauthorizeOperationOptions() CreateDriveListSubscriptionReauthorizeOperationOptions {
+	return CreateDriveListSubscriptionReauthorizeOperationOptions{}
+}
+
+func (o CreateDriveListSubscriptionReauthorizeOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateDriveListSubscriptionReauthorizeOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateDriveListSubscriptionReauthorizeOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateDriveListSubscriptionReauthorize - Invoke action reauthorize. Reauthorize a subscription when you receive a
 // reauthorizationRequired challenge.
-func (c DriveListSubscriptionClient) CreateDriveListSubscriptionReauthorize(ctx context.Context, id stable.MeDriveIdListSubscriptionId) (result CreateDriveListSubscriptionReauthorizeOperationResponse, err error) {
+func (c DriveListSubscriptionClient) CreateDriveListSubscriptionReauthorize(ctx context.Context, id stable.MeDriveIdListSubscriptionId, options CreateDriveListSubscriptionReauthorizeOperationOptions) (result CreateDriveListSubscriptionReauthorizeOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/reauthorize", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/reauthorize", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

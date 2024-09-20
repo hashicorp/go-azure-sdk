@@ -17,16 +17,45 @@ type UpdateConditionalAccessAuthenticationStrengthAuthenticationMethodModeOperat
 	OData        *odata.OData
 }
 
+type UpdateConditionalAccessAuthenticationStrengthAuthenticationMethodModeOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateConditionalAccessAuthenticationStrengthAuthenticationMethodModeOperationOptions() UpdateConditionalAccessAuthenticationStrengthAuthenticationMethodModeOperationOptions {
+	return UpdateConditionalAccessAuthenticationStrengthAuthenticationMethodModeOperationOptions{}
+}
+
+func (o UpdateConditionalAccessAuthenticationStrengthAuthenticationMethodModeOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateConditionalAccessAuthenticationStrengthAuthenticationMethodModeOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateConditionalAccessAuthenticationStrengthAuthenticationMethodModeOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateConditionalAccessAuthenticationStrengthAuthenticationMethodMode - Update the navigation property
 // authenticationMethodModes in identity
-func (c ConditionalAccessAuthenticationStrengthAuthenticationMethodModeClient) UpdateConditionalAccessAuthenticationStrengthAuthenticationMethodMode(ctx context.Context, id stable.IdentityConditionalAccessAuthenticationStrengthAuthenticationMethodModeId, input stable.AuthenticationMethodModeDetail) (result UpdateConditionalAccessAuthenticationStrengthAuthenticationMethodModeOperationResponse, err error) {
+func (c ConditionalAccessAuthenticationStrengthAuthenticationMethodModeClient) UpdateConditionalAccessAuthenticationStrengthAuthenticationMethodMode(ctx context.Context, id stable.IdentityConditionalAccessAuthenticationStrengthAuthenticationMethodModeId, input stable.AuthenticationMethodModeDetail, options UpdateConditionalAccessAuthenticationStrengthAuthenticationMethodModeOperationOptions) (result UpdateConditionalAccessAuthenticationStrengthAuthenticationMethodModeOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -19,7 +19,8 @@ type DeleteLicenseDetailOperationResponse struct {
 }
 
 type DeleteLicenseDetailOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteLicenseDetailOperationOptions() DeleteLicenseDetailOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteLicenseDetailOperationOptions) ToHeaders() *client.Headers {
 
 func (o DeleteLicenseDetailOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

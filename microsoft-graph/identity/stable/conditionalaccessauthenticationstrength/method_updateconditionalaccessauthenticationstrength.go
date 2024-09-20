@@ -17,15 +17,44 @@ type UpdateConditionalAccessAuthenticationStrengthOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateConditionalAccessAuthenticationStrengthOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateConditionalAccessAuthenticationStrengthOperationOptions() UpdateConditionalAccessAuthenticationStrengthOperationOptions {
+	return UpdateConditionalAccessAuthenticationStrengthOperationOptions{}
+}
+
+func (o UpdateConditionalAccessAuthenticationStrengthOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateConditionalAccessAuthenticationStrengthOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateConditionalAccessAuthenticationStrengthOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateConditionalAccessAuthenticationStrength - Update the navigation property authenticationStrength in identity
-func (c ConditionalAccessAuthenticationStrengthClient) UpdateConditionalAccessAuthenticationStrength(ctx context.Context, input stable.AuthenticationStrengthRoot) (result UpdateConditionalAccessAuthenticationStrengthOperationResponse, err error) {
+func (c ConditionalAccessAuthenticationStrengthClient) UpdateConditionalAccessAuthenticationStrength(ctx context.Context, input stable.AuthenticationStrengthRoot, options UpdateConditionalAccessAuthenticationStrengthOperationOptions) (result UpdateConditionalAccessAuthenticationStrengthOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       "/identity/conditionalAccess/authenticationStrength",
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          "/identity/conditionalAccess/authenticationStrength",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

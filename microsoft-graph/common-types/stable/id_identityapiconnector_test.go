@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &IdentityApiConnectorId{}
 
 func TestNewIdentityApiConnectorID(t *testing.T) {
-	id := NewIdentityApiConnectorID("identityApiConnectorIdValue")
+	id := NewIdentityApiConnectorID("identityApiConnectorId")
 
-	if id.IdentityApiConnectorId != "identityApiConnectorIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'IdentityApiConnectorId'", id.IdentityApiConnectorId, "identityApiConnectorIdValue")
+	if id.IdentityApiConnectorId != "identityApiConnectorId" {
+		t.Fatalf("Expected %q but got %q for Segment 'IdentityApiConnectorId'", id.IdentityApiConnectorId, "identityApiConnectorId")
 	}
 }
 
 func TestFormatIdentityApiConnectorID(t *testing.T) {
-	actual := NewIdentityApiConnectorID("identityApiConnectorIdValue").ID()
-	expected := "/identity/apiConnectors/identityApiConnectorIdValue"
+	actual := NewIdentityApiConnectorID("identityApiConnectorId").ID()
+	expected := "/identity/apiConnectors/identityApiConnectorId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -50,14 +50,14 @@ func TestParseIdentityApiConnectorID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/identity/apiConnectors/identityApiConnectorIdValue",
+			Input: "/identity/apiConnectors/identityApiConnectorId",
 			Expected: &IdentityApiConnectorId{
-				IdentityApiConnectorId: "identityApiConnectorIdValue",
+				IdentityApiConnectorId: "identityApiConnectorId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/identity/apiConnectors/identityApiConnectorIdValue/extra",
+			Input: "/identity/apiConnectors/identityApiConnectorId/extra",
 			Error: true,
 		},
 	}
@@ -116,26 +116,26 @@ func TestParseIdentityApiConnectorIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/identity/apiConnectors/identityApiConnectorIdValue",
+			Input: "/identity/apiConnectors/identityApiConnectorId",
 			Expected: &IdentityApiConnectorId{
-				IdentityApiConnectorId: "identityApiConnectorIdValue",
+				IdentityApiConnectorId: "identityApiConnectorId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/identity/apiConnectors/identityApiConnectorIdValue/extra",
+			Input: "/identity/apiConnectors/identityApiConnectorId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/iDeNtItY/aPiCoNnEcToRs/iDeNtItYaPiCoNnEcToRiDvAlUe",
+			Input: "/iDeNtItY/aPiCoNnEcToRs/iDeNtItYaPiCoNnEcToRiD",
 			Expected: &IdentityApiConnectorId{
-				IdentityApiConnectorId: "iDeNtItYaPiCoNnEcToRiDvAlUe",
+				IdentityApiConnectorId: "iDeNtItYaPiCoNnEcToRiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/iDeNtItY/aPiCoNnEcToRs/iDeNtItYaPiCoNnEcToRiDvAlUe/extra",
+			Input: "/iDeNtItY/aPiCoNnEcToRs/iDeNtItYaPiCoNnEcToRiD/extra",
 			Error: true,
 		},
 	}

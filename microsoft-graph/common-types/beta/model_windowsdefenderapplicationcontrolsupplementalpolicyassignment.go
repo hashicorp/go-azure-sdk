@@ -62,10 +62,14 @@ func (s WindowsDefenderApplicationControlSupplementalPolicyAssignment) MarshalJS
 var _ json.Unmarshaler = &WindowsDefenderApplicationControlSupplementalPolicyAssignment{}
 
 func (s *WindowsDefenderApplicationControlSupplementalPolicyAssignment) UnmarshalJSON(bytes []byte) error {
-	type alias WindowsDefenderApplicationControlSupplementalPolicyAssignment
-	var decoded alias
+
+	var decoded struct {
+		Id        *string `json:"id,omitempty"`
+		ODataId   *string `json:"@odata.id,omitempty"`
+		ODataType *string `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into WindowsDefenderApplicationControlSupplementalPolicyAssignment: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.Id = decoded.Id
@@ -84,5 +88,6 @@ func (s *WindowsDefenderApplicationControlSupplementalPolicyAssignment) Unmarsha
 		}
 		s.Target = impl
 	}
+
 	return nil
 }

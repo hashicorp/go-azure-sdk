@@ -18,16 +18,45 @@ type UpdateGroupPolicyDefinitionPreviousVersionDefinitionOperationResponse struc
 	OData        *odata.OData
 }
 
+type UpdateGroupPolicyDefinitionPreviousVersionDefinitionOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateGroupPolicyDefinitionPreviousVersionDefinitionOperationOptions() UpdateGroupPolicyDefinitionPreviousVersionDefinitionOperationOptions {
+	return UpdateGroupPolicyDefinitionPreviousVersionDefinitionOperationOptions{}
+}
+
+func (o UpdateGroupPolicyDefinitionPreviousVersionDefinitionOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateGroupPolicyDefinitionPreviousVersionDefinitionOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateGroupPolicyDefinitionPreviousVersionDefinitionOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateGroupPolicyDefinitionPreviousVersionDefinition - Update the navigation property previousVersionDefinition in
 // deviceManagement
-func (c GroupPolicyDefinitionPreviousVersionDefinitionClient) UpdateGroupPolicyDefinitionPreviousVersionDefinition(ctx context.Context, id beta.DeviceManagementGroupPolicyDefinitionId, input beta.GroupPolicyDefinition) (result UpdateGroupPolicyDefinitionPreviousVersionDefinitionOperationResponse, err error) {
+func (c GroupPolicyDefinitionPreviousVersionDefinitionClient) UpdateGroupPolicyDefinitionPreviousVersionDefinition(ctx context.Context, id beta.DeviceManagementGroupPolicyDefinitionId, input beta.GroupPolicyDefinition, options UpdateGroupPolicyDefinitionPreviousVersionDefinitionOperationOptions) (result UpdateGroupPolicyDefinitionPreviousVersionDefinitionOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       fmt.Sprintf("%s/previousVersionDefinition", id.ID()),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/previousVersionDefinition", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

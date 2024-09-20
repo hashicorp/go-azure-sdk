@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &ReportUserCredentialUsageDetailId{}
 
 func TestNewReportUserCredentialUsageDetailID(t *testing.T) {
-	id := NewReportUserCredentialUsageDetailID("userCredentialUsageDetailsIdValue")
+	id := NewReportUserCredentialUsageDetailID("userCredentialUsageDetailsId")
 
-	if id.UserCredentialUsageDetailsId != "userCredentialUsageDetailsIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'UserCredentialUsageDetailsId'", id.UserCredentialUsageDetailsId, "userCredentialUsageDetailsIdValue")
+	if id.UserCredentialUsageDetailsId != "userCredentialUsageDetailsId" {
+		t.Fatalf("Expected %q but got %q for Segment 'UserCredentialUsageDetailsId'", id.UserCredentialUsageDetailsId, "userCredentialUsageDetailsId")
 	}
 }
 
 func TestFormatReportUserCredentialUsageDetailID(t *testing.T) {
-	actual := NewReportUserCredentialUsageDetailID("userCredentialUsageDetailsIdValue").ID()
-	expected := "/reports/userCredentialUsageDetails/userCredentialUsageDetailsIdValue"
+	actual := NewReportUserCredentialUsageDetailID("userCredentialUsageDetailsId").ID()
+	expected := "/reports/userCredentialUsageDetails/userCredentialUsageDetailsId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -50,14 +50,14 @@ func TestParseReportUserCredentialUsageDetailID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/reports/userCredentialUsageDetails/userCredentialUsageDetailsIdValue",
+			Input: "/reports/userCredentialUsageDetails/userCredentialUsageDetailsId",
 			Expected: &ReportUserCredentialUsageDetailId{
-				UserCredentialUsageDetailsId: "userCredentialUsageDetailsIdValue",
+				UserCredentialUsageDetailsId: "userCredentialUsageDetailsId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/reports/userCredentialUsageDetails/userCredentialUsageDetailsIdValue/extra",
+			Input: "/reports/userCredentialUsageDetails/userCredentialUsageDetailsId/extra",
 			Error: true,
 		},
 	}
@@ -116,26 +116,26 @@ func TestParseReportUserCredentialUsageDetailIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/reports/userCredentialUsageDetails/userCredentialUsageDetailsIdValue",
+			Input: "/reports/userCredentialUsageDetails/userCredentialUsageDetailsId",
 			Expected: &ReportUserCredentialUsageDetailId{
-				UserCredentialUsageDetailsId: "userCredentialUsageDetailsIdValue",
+				UserCredentialUsageDetailsId: "userCredentialUsageDetailsId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/reports/userCredentialUsageDetails/userCredentialUsageDetailsIdValue/extra",
+			Input: "/reports/userCredentialUsageDetails/userCredentialUsageDetailsId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/rEpOrTs/uSeRcReDeNtIaLuSaGeDeTaIlS/uSeRcReDeNtIaLuSaGeDeTaIlSiDvAlUe",
+			Input: "/rEpOrTs/uSeRcReDeNtIaLuSaGeDeTaIlS/uSeRcReDeNtIaLuSaGeDeTaIlSiD",
 			Expected: &ReportUserCredentialUsageDetailId{
-				UserCredentialUsageDetailsId: "uSeRcReDeNtIaLuSaGeDeTaIlSiDvAlUe",
+				UserCredentialUsageDetailsId: "uSeRcReDeNtIaLuSaGeDeTaIlSiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/rEpOrTs/uSeRcReDeNtIaLuSaGeDeTaIlS/uSeRcReDeNtIaLuSaGeDeTaIlSiDvAlUe/extra",
+			Input: "/rEpOrTs/uSeRcReDeNtIaLuSaGeDeTaIlS/uSeRcReDeNtIaLuSaGeDeTaIlSiD/extra",
 			Error: true,
 		},
 	}

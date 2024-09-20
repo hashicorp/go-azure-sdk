@@ -12,24 +12,24 @@ import (
 var _ resourceids.ResourceId = &MeDriveIdItemIdVersionId{}
 
 func TestNewMeDriveIdItemIdVersionID(t *testing.T) {
-	id := NewMeDriveIdItemIdVersionID("driveIdValue", "driveItemIdValue", "driveItemVersionIdValue")
+	id := NewMeDriveIdItemIdVersionID("driveId", "driveItemId", "driveItemVersionId")
 
-	if id.DriveId != "driveIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DriveId'", id.DriveId, "driveIdValue")
+	if id.DriveId != "driveId" {
+		t.Fatalf("Expected %q but got %q for Segment 'DriveId'", id.DriveId, "driveId")
 	}
 
-	if id.DriveItemId != "driveItemIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DriveItemId'", id.DriveItemId, "driveItemIdValue")
+	if id.DriveItemId != "driveItemId" {
+		t.Fatalf("Expected %q but got %q for Segment 'DriveItemId'", id.DriveItemId, "driveItemId")
 	}
 
-	if id.DriveItemVersionId != "driveItemVersionIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DriveItemVersionId'", id.DriveItemVersionId, "driveItemVersionIdValue")
+	if id.DriveItemVersionId != "driveItemVersionId" {
+		t.Fatalf("Expected %q but got %q for Segment 'DriveItemVersionId'", id.DriveItemVersionId, "driveItemVersionId")
 	}
 }
 
 func TestFormatMeDriveIdItemIdVersionID(t *testing.T) {
-	actual := NewMeDriveIdItemIdVersionID("driveIdValue", "driveItemIdValue", "driveItemVersionIdValue").ID()
-	expected := "/me/drives/driveIdValue/items/driveItemIdValue/versions/driveItemVersionIdValue"
+	actual := NewMeDriveIdItemIdVersionID("driveId", "driveItemId", "driveItemVersionId").ID()
+	expected := "/me/drives/driveId/items/driveItemId/versions/driveItemVersionId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -58,36 +58,36 @@ func TestParseMeDriveIdItemIdVersionID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/me/drives/driveIdValue",
+			Input: "/me/drives/driveId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/me/drives/driveIdValue/items",
+			Input: "/me/drives/driveId/items",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/me/drives/driveIdValue/items/driveItemIdValue",
+			Input: "/me/drives/driveId/items/driveItemId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/me/drives/driveIdValue/items/driveItemIdValue/versions",
+			Input: "/me/drives/driveId/items/driveItemId/versions",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/me/drives/driveIdValue/items/driveItemIdValue/versions/driveItemVersionIdValue",
+			Input: "/me/drives/driveId/items/driveItemId/versions/driveItemVersionId",
 			Expected: &MeDriveIdItemIdVersionId{
-				DriveId:            "driveIdValue",
-				DriveItemId:        "driveItemIdValue",
-				DriveItemVersionId: "driveItemVersionIdValue",
+				DriveId:            "driveId",
+				DriveItemId:        "driveItemId",
+				DriveItemVersionId: "driveItemVersionId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/drives/driveIdValue/items/driveItemIdValue/versions/driveItemVersionIdValue/extra",
+			Input: "/me/drives/driveId/items/driveItemId/versions/driveItemVersionId/extra",
 			Error: true,
 		},
 	}
@@ -154,70 +154,70 @@ func TestParseMeDriveIdItemIdVersionIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/me/drives/driveIdValue",
+			Input: "/me/drives/driveId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/dRiVeS/dRiVeIdVaLuE",
+			Input: "/mE/dRiVeS/dRiVeId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/me/drives/driveIdValue/items",
+			Input: "/me/drives/driveId/items",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/dRiVeS/dRiVeIdVaLuE/iTeMs",
+			Input: "/mE/dRiVeS/dRiVeId/iTeMs",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/me/drives/driveIdValue/items/driveItemIdValue",
+			Input: "/me/drives/driveId/items/driveItemId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/dRiVeS/dRiVeIdVaLuE/iTeMs/dRiVeItEmIdVaLuE",
+			Input: "/mE/dRiVeS/dRiVeId/iTeMs/dRiVeItEmId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/me/drives/driveIdValue/items/driveItemIdValue/versions",
+			Input: "/me/drives/driveId/items/driveItemId/versions",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/dRiVeS/dRiVeIdVaLuE/iTeMs/dRiVeItEmIdVaLuE/vErSiOnS",
+			Input: "/mE/dRiVeS/dRiVeId/iTeMs/dRiVeItEmId/vErSiOnS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/me/drives/driveIdValue/items/driveItemIdValue/versions/driveItemVersionIdValue",
+			Input: "/me/drives/driveId/items/driveItemId/versions/driveItemVersionId",
 			Expected: &MeDriveIdItemIdVersionId{
-				DriveId:            "driveIdValue",
-				DriveItemId:        "driveItemIdValue",
-				DriveItemVersionId: "driveItemVersionIdValue",
+				DriveId:            "driveId",
+				DriveItemId:        "driveItemId",
+				DriveItemVersionId: "driveItemVersionId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/drives/driveIdValue/items/driveItemIdValue/versions/driveItemVersionIdValue/extra",
+			Input: "/me/drives/driveId/items/driveItemId/versions/driveItemVersionId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/dRiVeS/dRiVeIdVaLuE/iTeMs/dRiVeItEmIdVaLuE/vErSiOnS/dRiVeItEmVeRsIoNiDvAlUe",
+			Input: "/mE/dRiVeS/dRiVeId/iTeMs/dRiVeItEmId/vErSiOnS/dRiVeItEmVeRsIoNiD",
 			Expected: &MeDriveIdItemIdVersionId{
-				DriveId:            "dRiVeIdVaLuE",
-				DriveItemId:        "dRiVeItEmIdVaLuE",
-				DriveItemVersionId: "dRiVeItEmVeRsIoNiDvAlUe",
+				DriveId:            "dRiVeId",
+				DriveItemId:        "dRiVeItEmId",
+				DriveItemVersionId: "dRiVeItEmVeRsIoNiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/mE/dRiVeS/dRiVeIdVaLuE/iTeMs/dRiVeItEmIdVaLuE/vErSiOnS/dRiVeItEmVeRsIoNiDvAlUe/extra",
+			Input: "/mE/dRiVeS/dRiVeId/iTeMs/dRiVeItEmId/vErSiOnS/dRiVeItEmVeRsIoNiD/extra",
 			Error: true,
 		},
 	}

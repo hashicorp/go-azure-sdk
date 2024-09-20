@@ -18,16 +18,45 @@ type SetMailFolderChildFolderMessageValueOperationResponse struct {
 	OData        *odata.OData
 }
 
+type SetMailFolderChildFolderMessageValueOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultSetMailFolderChildFolderMessageValueOperationOptions() SetMailFolderChildFolderMessageValueOperationOptions {
+	return SetMailFolderChildFolderMessageValueOperationOptions{}
+}
+
+func (o SetMailFolderChildFolderMessageValueOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o SetMailFolderChildFolderMessageValueOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o SetMailFolderChildFolderMessageValueOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // SetMailFolderChildFolderMessageValue - Update media content for the navigation property messages in me. The unique
 // identifier for an entity. Read-only.
-func (c MailFolderChildFolderMessageClient) SetMailFolderChildFolderMessageValue(ctx context.Context, id stable.MeMailFolderIdChildFolderIdMessageId, input []byte) (result SetMailFolderChildFolderMessageValueOperationResponse, err error) {
+func (c MailFolderChildFolderMessageClient) SetMailFolderChildFolderMessageValue(ctx context.Context, id stable.MeMailFolderIdChildFolderIdMessageId, input []byte, options SetMailFolderChildFolderMessageValueOperationOptions) (result SetMailFolderChildFolderMessageValueOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPut,
-		Path:       fmt.Sprintf("%s/$value", id.ID()),
+		HttpMethod:    http.MethodPut,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/$value", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

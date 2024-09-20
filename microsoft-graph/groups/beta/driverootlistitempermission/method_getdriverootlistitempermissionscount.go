@@ -20,8 +20,9 @@ type GetDriveRootListItemPermissionsCountOperationResponse struct {
 }
 
 type GetDriveRootListItemPermissionsCountOperationOptions struct {
-	Filter *string
-	Search *string
+	Filter   *string
+	Metadata *odata.Metadata
+	Search   *string
 }
 
 func DefaultGetDriveRootListItemPermissionsCountOperationOptions() GetDriveRootListItemPermissionsCountOperationOptions {
@@ -38,6 +39,9 @@ func (o GetDriveRootListItemPermissionsCountOperationOptions) ToOData() *odata.Q
 	out := odata.Query{}
 	if o.Filter != nil {
 		out.Filter = *o.Filter
+	}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
 	}
 	if o.Search != nil {
 		out.Search = *o.Search

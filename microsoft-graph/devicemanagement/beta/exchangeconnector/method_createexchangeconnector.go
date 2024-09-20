@@ -18,15 +18,44 @@ type CreateExchangeConnectorOperationResponse struct {
 	Model        *beta.DeviceManagementExchangeConnector
 }
 
+type CreateExchangeConnectorOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateExchangeConnectorOperationOptions() CreateExchangeConnectorOperationOptions {
+	return CreateExchangeConnectorOperationOptions{}
+}
+
+func (o CreateExchangeConnectorOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateExchangeConnectorOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateExchangeConnectorOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateExchangeConnector - Create new navigation property to exchangeConnectors for deviceManagement
-func (c ExchangeConnectorClient) CreateExchangeConnector(ctx context.Context, input beta.DeviceManagementExchangeConnector) (result CreateExchangeConnectorOperationResponse, err error) {
+func (c ExchangeConnectorClient) CreateExchangeConnector(ctx context.Context, input beta.DeviceManagementExchangeConnector, options CreateExchangeConnectorOperationOptions) (result CreateExchangeConnectorOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/deviceManagement/exchangeConnectors",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/deviceManagement/exchangeConnectors",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

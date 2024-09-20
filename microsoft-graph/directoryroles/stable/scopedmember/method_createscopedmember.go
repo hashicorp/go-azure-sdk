@@ -19,15 +19,44 @@ type CreateScopedMemberOperationResponse struct {
 	Model        *stable.ScopedRoleMembership
 }
 
+type CreateScopedMemberOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateScopedMemberOperationOptions() CreateScopedMemberOperationOptions {
+	return CreateScopedMemberOperationOptions{}
+}
+
+func (o CreateScopedMemberOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateScopedMemberOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateScopedMemberOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateScopedMember - Create new navigation property to scopedMembers for directoryRoles
-func (c ScopedMemberClient) CreateScopedMember(ctx context.Context, id stable.DirectoryRoleId, input stable.ScopedRoleMembership) (result CreateScopedMemberOperationResponse, err error) {
+func (c ScopedMemberClient) CreateScopedMember(ctx context.Context, id stable.DirectoryRoleId, input stable.ScopedRoleMembership, options CreateScopedMemberOperationOptions) (result CreateScopedMemberOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/scopedMembers", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/scopedMembers", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

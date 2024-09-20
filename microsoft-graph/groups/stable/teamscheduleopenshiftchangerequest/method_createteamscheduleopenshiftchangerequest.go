@@ -19,15 +19,44 @@ type CreateTeamScheduleOpenShiftChangeRequestOperationResponse struct {
 	Model        *stable.OpenShiftChangeRequest
 }
 
+type CreateTeamScheduleOpenShiftChangeRequestOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateTeamScheduleOpenShiftChangeRequestOperationOptions() CreateTeamScheduleOpenShiftChangeRequestOperationOptions {
+	return CreateTeamScheduleOpenShiftChangeRequestOperationOptions{}
+}
+
+func (o CreateTeamScheduleOpenShiftChangeRequestOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateTeamScheduleOpenShiftChangeRequestOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateTeamScheduleOpenShiftChangeRequestOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateTeamScheduleOpenShiftChangeRequest - Create new navigation property to openShiftChangeRequests for groups
-func (c TeamScheduleOpenShiftChangeRequestClient) CreateTeamScheduleOpenShiftChangeRequest(ctx context.Context, id stable.GroupId, input stable.OpenShiftChangeRequest) (result CreateTeamScheduleOpenShiftChangeRequestOperationResponse, err error) {
+func (c TeamScheduleOpenShiftChangeRequestClient) CreateTeamScheduleOpenShiftChangeRequest(ctx context.Context, id stable.GroupId, input stable.OpenShiftChangeRequest, options CreateTeamScheduleOpenShiftChangeRequestOperationOptions) (result CreateTeamScheduleOpenShiftChangeRequestOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/team/schedule/openShiftChangeRequests", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/team/schedule/openShiftChangeRequests", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -19,15 +19,44 @@ type CancelZebraFotaDeploymentOperationResponse struct {
 	Model        *CancelZebraFotaDeploymentResult
 }
 
+type CancelZebraFotaDeploymentOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCancelZebraFotaDeploymentOperationOptions() CancelZebraFotaDeploymentOperationOptions {
+	return CancelZebraFotaDeploymentOperationOptions{}
+}
+
+func (o CancelZebraFotaDeploymentOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CancelZebraFotaDeploymentOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CancelZebraFotaDeploymentOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CancelZebraFotaDeployment - Invoke action cancel
-func (c ZebraFotaDeploymentClient) CancelZebraFotaDeployment(ctx context.Context, id beta.DeviceManagementZebraFotaDeploymentId) (result CancelZebraFotaDeploymentOperationResponse, err error) {
+func (c ZebraFotaDeploymentClient) CancelZebraFotaDeployment(ctx context.Context, id beta.DeviceManagementZebraFotaDeploymentId, options CancelZebraFotaDeploymentOperationOptions) (result CancelZebraFotaDeploymentOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/cancel", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/cancel", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

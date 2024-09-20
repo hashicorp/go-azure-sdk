@@ -184,10 +184,39 @@ func (s EducationAssignment) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &EducationAssignment{}
 
 func (s *EducationAssignment) UnmarshalJSON(bytes []byte) error {
-	type alias EducationAssignment
-	var decoded alias
+
+	var decoded struct {
+		AddToCalendarAction                     *EducationAddToCalendarOptions `json:"addToCalendarAction,omitempty"`
+		AddedStudentAction                      *EducationAddedStudentAction   `json:"addedStudentAction,omitempty"`
+		AllowLateSubmissions                    nullable.Type[bool]            `json:"allowLateSubmissions,omitempty"`
+		AllowStudentsToAddResourcesToSubmission nullable.Type[bool]            `json:"allowStudentsToAddResourcesToSubmission,omitempty"`
+		AssignDateTime                          nullable.Type[string]          `json:"assignDateTime,omitempty"`
+		AssignedDateTime                        nullable.Type[string]          `json:"assignedDateTime,omitempty"`
+		Categories                              *[]EducationCategory           `json:"categories,omitempty"`
+		ClassId                                 nullable.Type[string]          `json:"classId,omitempty"`
+		CloseDateTime                           nullable.Type[string]          `json:"closeDateTime,omitempty"`
+		CreatedDateTime                         nullable.Type[string]          `json:"createdDateTime,omitempty"`
+		DisplayName                             nullable.Type[string]          `json:"displayName,omitempty"`
+		DueDateTime                             nullable.Type[string]          `json:"dueDateTime,omitempty"`
+		FeedbackResourcesFolderUrl              nullable.Type[string]          `json:"feedbackResourcesFolderUrl,omitempty"`
+		GradingCategory                         *EducationGradingCategory      `json:"gradingCategory,omitempty"`
+		GradingScheme                           *EducationGradingScheme        `json:"gradingScheme,omitempty"`
+		Instructions                            *EducationItemBody             `json:"instructions,omitempty"`
+		LastModifiedDateTime                    nullable.Type[string]          `json:"lastModifiedDateTime,omitempty"`
+		ModuleUrl                               nullable.Type[string]          `json:"moduleUrl,omitempty"`
+		NotificationChannelUrl                  nullable.Type[string]          `json:"notificationChannelUrl,omitempty"`
+		Resources                               *[]EducationAssignmentResource `json:"resources,omitempty"`
+		ResourcesFolderUrl                      nullable.Type[string]          `json:"resourcesFolderUrl,omitempty"`
+		Rubric                                  *EducationRubric               `json:"rubric,omitempty"`
+		Status                                  *EducationAssignmentStatus     `json:"status,omitempty"`
+		Submissions                             *[]EducationSubmission         `json:"submissions,omitempty"`
+		WebUrl                                  nullable.Type[string]          `json:"webUrl,omitempty"`
+		Id                                      *string                        `json:"id,omitempty"`
+		ODataId                                 *string                        `json:"@odata.id,omitempty"`
+		ODataType                               *string                        `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into EducationAssignment: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.AddToCalendarAction = decoded.AddToCalendarAction
@@ -205,19 +234,19 @@ func (s *EducationAssignment) UnmarshalJSON(bytes []byte) error {
 	s.FeedbackResourcesFolderUrl = decoded.FeedbackResourcesFolderUrl
 	s.GradingCategory = decoded.GradingCategory
 	s.GradingScheme = decoded.GradingScheme
-	s.Id = decoded.Id
 	s.Instructions = decoded.Instructions
 	s.LastModifiedDateTime = decoded.LastModifiedDateTime
 	s.ModuleUrl = decoded.ModuleUrl
 	s.NotificationChannelUrl = decoded.NotificationChannelUrl
-	s.ODataId = decoded.ODataId
-	s.ODataType = decoded.ODataType
 	s.Resources = decoded.Resources
 	s.ResourcesFolderUrl = decoded.ResourcesFolderUrl
 	s.Rubric = decoded.Rubric
 	s.Status = decoded.Status
 	s.Submissions = decoded.Submissions
 	s.WebUrl = decoded.WebUrl
+	s.Id = decoded.Id
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -255,5 +284,6 @@ func (s *EducationAssignment) UnmarshalJSON(bytes []byte) error {
 		}
 		s.LastModifiedBy = &impl
 	}
+
 	return nil
 }

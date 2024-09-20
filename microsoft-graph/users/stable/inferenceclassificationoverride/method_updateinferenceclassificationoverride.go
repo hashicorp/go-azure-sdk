@@ -17,15 +17,44 @@ type UpdateInferenceClassificationOverrideOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateInferenceClassificationOverrideOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateInferenceClassificationOverrideOperationOptions() UpdateInferenceClassificationOverrideOperationOptions {
+	return UpdateInferenceClassificationOverrideOperationOptions{}
+}
+
+func (o UpdateInferenceClassificationOverrideOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateInferenceClassificationOverrideOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateInferenceClassificationOverrideOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateInferenceClassificationOverride - Update the navigation property overrides in users
-func (c InferenceClassificationOverrideClient) UpdateInferenceClassificationOverride(ctx context.Context, id stable.UserIdInferenceClassificationOverrideId, input stable.InferenceClassificationOverride) (result UpdateInferenceClassificationOverrideOperationResponse, err error) {
+func (c InferenceClassificationOverrideClient) UpdateInferenceClassificationOverride(ctx context.Context, id stable.UserIdInferenceClassificationOverrideId, input stable.InferenceClassificationOverride, options UpdateInferenceClassificationOverrideOperationOptions) (result UpdateInferenceClassificationOverrideOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

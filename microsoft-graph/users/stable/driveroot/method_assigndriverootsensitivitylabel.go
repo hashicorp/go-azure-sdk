@@ -18,15 +18,44 @@ type AssignDriveRootSensitivityLabelOperationResponse struct {
 	OData        *odata.OData
 }
 
+type AssignDriveRootSensitivityLabelOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultAssignDriveRootSensitivityLabelOperationOptions() AssignDriveRootSensitivityLabelOperationOptions {
+	return AssignDriveRootSensitivityLabelOperationOptions{}
+}
+
+func (o AssignDriveRootSensitivityLabelOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o AssignDriveRootSensitivityLabelOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o AssignDriveRootSensitivityLabelOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // AssignDriveRootSensitivityLabel - Invoke action assignSensitivityLabel
-func (c DriveRootClient) AssignDriveRootSensitivityLabel(ctx context.Context, id stable.UserIdDriveId, input AssignDriveRootSensitivityLabelRequest) (result AssignDriveRootSensitivityLabelOperationResponse, err error) {
+func (c DriveRootClient) AssignDriveRootSensitivityLabel(ctx context.Context, id stable.UserIdDriveId, input AssignDriveRootSensitivityLabelRequest, options AssignDriveRootSensitivityLabelOperationOptions) (result AssignDriveRootSensitivityLabelOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/root/assignSensitivityLabel", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/root/assignSensitivityLabel", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

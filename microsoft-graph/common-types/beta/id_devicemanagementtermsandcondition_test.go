@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &DeviceManagementTermsAndConditionId{}
 
 func TestNewDeviceManagementTermsAndConditionID(t *testing.T) {
-	id := NewDeviceManagementTermsAndConditionID("termsAndConditionsIdValue")
+	id := NewDeviceManagementTermsAndConditionID("termsAndConditionsId")
 
-	if id.TermsAndConditionsId != "termsAndConditionsIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'TermsAndConditionsId'", id.TermsAndConditionsId, "termsAndConditionsIdValue")
+	if id.TermsAndConditionsId != "termsAndConditionsId" {
+		t.Fatalf("Expected %q but got %q for Segment 'TermsAndConditionsId'", id.TermsAndConditionsId, "termsAndConditionsId")
 	}
 }
 
 func TestFormatDeviceManagementTermsAndConditionID(t *testing.T) {
-	actual := NewDeviceManagementTermsAndConditionID("termsAndConditionsIdValue").ID()
-	expected := "/deviceManagement/termsAndConditions/termsAndConditionsIdValue"
+	actual := NewDeviceManagementTermsAndConditionID("termsAndConditionsId").ID()
+	expected := "/deviceManagement/termsAndConditions/termsAndConditionsId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -50,14 +50,14 @@ func TestParseDeviceManagementTermsAndConditionID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/termsAndConditions/termsAndConditionsIdValue",
+			Input: "/deviceManagement/termsAndConditions/termsAndConditionsId",
 			Expected: &DeviceManagementTermsAndConditionId{
-				TermsAndConditionsId: "termsAndConditionsIdValue",
+				TermsAndConditionsId: "termsAndConditionsId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/termsAndConditions/termsAndConditionsIdValue/extra",
+			Input: "/deviceManagement/termsAndConditions/termsAndConditionsId/extra",
 			Error: true,
 		},
 	}
@@ -116,26 +116,26 @@ func TestParseDeviceManagementTermsAndConditionIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/termsAndConditions/termsAndConditionsIdValue",
+			Input: "/deviceManagement/termsAndConditions/termsAndConditionsId",
 			Expected: &DeviceManagementTermsAndConditionId{
-				TermsAndConditionsId: "termsAndConditionsIdValue",
+				TermsAndConditionsId: "termsAndConditionsId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/termsAndConditions/termsAndConditionsIdValue/extra",
+			Input: "/deviceManagement/termsAndConditions/termsAndConditionsId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/tErMsAnDcOnDiTiOnS/tErMsAnDcOnDiTiOnSiDvAlUe",
+			Input: "/dEvIcEmAnAgEmEnT/tErMsAnDcOnDiTiOnS/tErMsAnDcOnDiTiOnSiD",
 			Expected: &DeviceManagementTermsAndConditionId{
-				TermsAndConditionsId: "tErMsAnDcOnDiTiOnSiDvAlUe",
+				TermsAndConditionsId: "tErMsAnDcOnDiTiOnSiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/tErMsAnDcOnDiTiOnS/tErMsAnDcOnDiTiOnSiDvAlUe/extra",
+			Input: "/dEvIcEmAnAgEmEnT/tErMsAnDcOnDiTiOnS/tErMsAnDcOnDiTiOnSiD/extra",
 			Error: true,
 		},
 	}

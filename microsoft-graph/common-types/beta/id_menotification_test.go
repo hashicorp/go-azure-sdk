@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &MeNotificationId{}
 
 func TestNewMeNotificationID(t *testing.T) {
-	id := NewMeNotificationID("notificationIdValue")
+	id := NewMeNotificationID("notificationId")
 
-	if id.NotificationId != "notificationIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'NotificationId'", id.NotificationId, "notificationIdValue")
+	if id.NotificationId != "notificationId" {
+		t.Fatalf("Expected %q but got %q for Segment 'NotificationId'", id.NotificationId, "notificationId")
 	}
 }
 
 func TestFormatMeNotificationID(t *testing.T) {
-	actual := NewMeNotificationID("notificationIdValue").ID()
-	expected := "/me/notifications/notificationIdValue"
+	actual := NewMeNotificationID("notificationId").ID()
+	expected := "/me/notifications/notificationId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -50,14 +50,14 @@ func TestParseMeNotificationID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/me/notifications/notificationIdValue",
+			Input: "/me/notifications/notificationId",
 			Expected: &MeNotificationId{
-				NotificationId: "notificationIdValue",
+				NotificationId: "notificationId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/notifications/notificationIdValue/extra",
+			Input: "/me/notifications/notificationId/extra",
 			Error: true,
 		},
 	}
@@ -116,26 +116,26 @@ func TestParseMeNotificationIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/me/notifications/notificationIdValue",
+			Input: "/me/notifications/notificationId",
 			Expected: &MeNotificationId{
-				NotificationId: "notificationIdValue",
+				NotificationId: "notificationId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/notifications/notificationIdValue/extra",
+			Input: "/me/notifications/notificationId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/nOtIfIcAtIoNs/nOtIfIcAtIoNiDvAlUe",
+			Input: "/mE/nOtIfIcAtIoNs/nOtIfIcAtIoNiD",
 			Expected: &MeNotificationId{
-				NotificationId: "nOtIfIcAtIoNiDvAlUe",
+				NotificationId: "nOtIfIcAtIoNiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/mE/nOtIfIcAtIoNs/nOtIfIcAtIoNiDvAlUe/extra",
+			Input: "/mE/nOtIfIcAtIoNs/nOtIfIcAtIoNiD/extra",
 			Error: true,
 		},
 	}

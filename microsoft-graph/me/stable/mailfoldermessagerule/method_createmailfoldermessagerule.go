@@ -19,16 +19,45 @@ type CreateMailFolderMessageRuleOperationResponse struct {
 	Model        *stable.MessageRule
 }
 
+type CreateMailFolderMessageRuleOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateMailFolderMessageRuleOperationOptions() CreateMailFolderMessageRuleOperationOptions {
+	return CreateMailFolderMessageRuleOperationOptions{}
+}
+
+func (o CreateMailFolderMessageRuleOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateMailFolderMessageRuleOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateMailFolderMessageRuleOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateMailFolderMessageRule - Create rule. Create a messageRule object by specifying a set of conditions and actions.
 // Outlook carries out those actions if an incoming message in the user's Inbox meets the specified conditions.
-func (c MailFolderMessageRuleClient) CreateMailFolderMessageRule(ctx context.Context, id stable.MeMailFolderId, input stable.MessageRule) (result CreateMailFolderMessageRuleOperationResponse, err error) {
+func (c MailFolderMessageRuleClient) CreateMailFolderMessageRule(ctx context.Context, id stable.MeMailFolderId, input stable.MessageRule, options CreateMailFolderMessageRuleOperationOptions) (result CreateMailFolderMessageRuleOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/messageRules", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/messageRules", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

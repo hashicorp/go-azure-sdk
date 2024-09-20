@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/microsoft-graph/directory/beta/deleteditem` Documentation
 
-The `deleteditem` SDK allows for interaction with the Azure Resource Manager Service `directory` (API Version `beta`).
+The `deleteditem` SDK allows for interaction with Microsoft Graph `directory` (API Version `beta`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -15,7 +15,7 @@ import "github.com/hashicorp/go-azure-sdk/microsoft-graph/directory/beta/deleted
 ### Client Initialization
 
 ```go
-client := deleteditem.NewDeletedItemClientWithBaseURI("https://management.azure.com")
+client := deleteditem.NewDeletedItemClientWithBaseURI("https://graph.microsoft.com")
 client.Client.Authorizer = authorizer
 ```
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := deleteditem.NewDirectoryDeletedItemID("directoryObjectIdValue")
+id := deleteditem.NewDirectoryDeletedItemID("directoryObjectId")
 
 payload := deleteditem.CheckDeletedItemMemberGroupsRequest{
 	// ...
@@ -46,7 +46,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := deleteditem.NewDirectoryDeletedItemID("directoryObjectIdValue")
+id := deleteditem.NewDirectoryDeletedItemID("directoryObjectId")
 
 payload := deleteditem.CheckDeletedItemMemberObjectsRequest{
 	// ...
@@ -68,7 +68,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := deleteditem.NewDirectoryDeletedItemID("directoryObjectIdValue")
+id := deleteditem.NewDirectoryDeletedItemID("directoryObjectId")
 
 read, err := client.DeleteDeletedItem(ctx, id, deleteditem.DefaultDeleteDeletedItemOperationOptions())
 if err != nil {
@@ -84,7 +84,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := deleteditem.NewDirectoryDeletedItemID("directoryObjectIdValue")
+id := deleteditem.NewDirectoryDeletedItemID("directoryObjectId")
 
 read, err := client.GetDeletedItem(ctx, id, deleteditem.DefaultGetDeletedItemOperationOptions())
 if err != nil {
@@ -100,7 +100,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := deleteditem.NewDirectoryDeletedItemID("directoryObjectIdValue")
+id := deleteditem.NewDirectoryDeletedItemID("directoryObjectId")
 
 payload := deleteditem.GetDeletedItemMemberGroupsRequest{
 	// ...
@@ -122,7 +122,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := deleteditem.NewDirectoryDeletedItemID("directoryObjectIdValue")
+id := deleteditem.NewDirectoryDeletedItemID("directoryObjectId")
 
 payload := deleteditem.GetDeletedItemMemberObjectsRequest{
 	// ...
@@ -198,14 +198,14 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := deleteditem.NewDirectoryDeletedItemID("directoryObjectIdValue")
+id := deleteditem.NewDirectoryDeletedItemID("directoryObjectId")
 
 payload := deleteditem.RestoreDeletedItemRequest{
 	// ...
 }
 
 
-read, err := client.RestoreDeletedItem(ctx, id, payload)
+read, err := client.RestoreDeletedItem(ctx, id, payload, deleteditem.DefaultRestoreDeletedItemOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -215,17 +215,17 @@ if model := read.Model; model != nil {
 ```
 
 
-### Example Usage: `DeletedItemClient.ValidateDeletedItemsProperty`
+### Example Usage: `DeletedItemClient.ValidateDeletedItemsProperties`
 
 ```go
 ctx := context.TODO()
 
-payload := deleteditem.ValidateDeletedItemsPropertyRequest{
+payload := deleteditem.ValidateDeletedItemsPropertiesRequest{
 	// ...
 }
 
 
-read, err := client.ValidateDeletedItemsProperty(ctx, payload)
+read, err := client.ValidateDeletedItemsProperties(ctx, payload, deleteditem.DefaultValidateDeletedItemsPropertiesOperationOptions())
 if err != nil {
 	// handle the error
 }

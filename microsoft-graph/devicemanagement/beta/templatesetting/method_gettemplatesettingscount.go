@@ -2,8 +2,10 @@ package templatesetting
 
 import (
 	"context"
+	"fmt"
 	"net/http"
 
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta"
 	"github.com/hashicorp/go-azure-sdk/sdk/client"
 	"github.com/hashicorp/go-azure-sdk/sdk/odata"
 )
@@ -18,8 +20,9 @@ type GetTemplateSettingsCountOperationResponse struct {
 }
 
 type GetTemplateSettingsCountOperationOptions struct {
-	Filter *string
-	Search *string
+	Filter   *string
+	Metadata *odata.Metadata
+	Search   *string
 }
 
 func DefaultGetTemplateSettingsCountOperationOptions() GetTemplateSettingsCountOperationOptions {
@@ -37,6 +40,9 @@ func (o GetTemplateSettingsCountOperationOptions) ToOData() *odata.Query {
 	if o.Filter != nil {
 		out.Filter = *o.Filter
 	}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	if o.Search != nil {
 		out.Search = *o.Search
 	}
@@ -50,7 +56,7 @@ func (o GetTemplateSettingsCountOperationOptions) ToQuery() *client.QueryParams 
 }
 
 // GetTemplateSettingsCount - Get the number of the resource
-func (c TemplateSettingClient) GetTemplateSettingsCount(ctx context.Context, options GetTemplateSettingsCountOperationOptions) (result GetTemplateSettingsCountOperationResponse, err error) {
+func (c TemplateSettingClient) GetTemplateSettingsCount(ctx context.Context, id beta.DeviceManagementTemplateId, options GetTemplateSettingsCountOperationOptions) (result GetTemplateSettingsCountOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "text/plain",
 		ExpectedStatusCodes: []int{
@@ -58,7 +64,7 @@ func (c TemplateSettingClient) GetTemplateSettingsCount(ctx context.Context, opt
 		},
 		HttpMethod:    http.MethodGet,
 		OptionsObject: options,
-		Path:          "/deviceManagement/templateSettings/$count",
+		Path:          fmt.Sprintf("%s/settings/$count", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

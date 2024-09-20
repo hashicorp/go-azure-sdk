@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/threadpost` Documentation
 
-The `threadpost` SDK allows for interaction with the Azure Resource Manager Service `groups` (API Version `beta`).
+The `threadpost` SDK allows for interaction with Microsoft Graph `groups` (API Version `beta`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -15,7 +15,7 @@ import "github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/threadpost
 ### Client Initialization
 
 ```go
-client := threadpost.NewThreadPostClientWithBaseURI("https://management.azure.com")
+client := threadpost.NewThreadPostClientWithBaseURI("https://graph.microsoft.com")
 client.Client.Authorizer = authorizer
 ```
 
@@ -24,14 +24,14 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := threadpost.NewGroupIdThreadIdPostID("groupIdValue", "conversationThreadIdValue", "postIdValue")
+id := threadpost.NewGroupIdThreadIdPostID("groupId", "conversationThreadId", "postId")
 
 payload := threadpost.ForwardThreadPostRequest{
 	// ...
 }
 
 
-read, err := client.ForwardThreadPost(ctx, id, payload)
+read, err := client.ForwardThreadPost(ctx, id, payload, threadpost.DefaultForwardThreadPostOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -45,7 +45,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := threadpost.NewGroupIdThreadIdPostID("groupIdValue", "conversationThreadIdValue", "postIdValue")
+id := threadpost.NewGroupIdThreadIdPostID("groupId", "conversationThreadId", "postId")
 
 read, err := client.GetThreadPost(ctx, id, threadpost.DefaultGetThreadPostOperationOptions())
 if err != nil {
@@ -61,7 +61,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := threadpost.NewGroupIdThreadID("groupIdValue", "conversationThreadIdValue")
+id := threadpost.NewGroupIdThreadID("groupId", "conversationThreadId")
 
 read, err := client.GetThreadPostsCount(ctx, id, threadpost.DefaultGetThreadPostsCountOperationOptions())
 if err != nil {
@@ -77,7 +77,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := threadpost.NewGroupIdThreadID("groupIdValue", "conversationThreadIdValue")
+id := threadpost.NewGroupIdThreadID("groupId", "conversationThreadId")
 
 // alternatively `client.ListThreadPosts(ctx, id, threadpost.DefaultListThreadPostsOperationOptions())` can be used to do batched pagination
 items, err := client.ListThreadPostsComplete(ctx, id, threadpost.DefaultListThreadPostsOperationOptions())
@@ -94,14 +94,14 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := threadpost.NewGroupIdThreadIdPostID("groupIdValue", "conversationThreadIdValue", "postIdValue")
+id := threadpost.NewGroupIdThreadIdPostID("groupId", "conversationThreadId", "postId")
 
 payload := threadpost.ReplyThreadPostRequest{
 	// ...
 }
 
 
-read, err := client.ReplyThreadPost(ctx, id, payload)
+read, err := client.ReplyThreadPost(ctx, id, payload, threadpost.DefaultReplyThreadPostOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -115,14 +115,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := threadpost.NewGroupIdThreadIdPostID("groupIdValue", "conversationThreadIdValue", "postIdValue")
+id := threadpost.NewGroupIdThreadIdPostID("groupId", "conversationThreadId", "postId")
 
 payload := threadpost.Post{
 	// ...
 }
 
 
-read, err := client.UpdateThreadPost(ctx, id, payload)
+read, err := client.UpdateThreadPost(ctx, id, payload, threadpost.DefaultUpdateThreadPostOperationOptions())
 if err != nil {
 	// handle the error
 }

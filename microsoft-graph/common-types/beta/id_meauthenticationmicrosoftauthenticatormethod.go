@@ -94,7 +94,7 @@ func (id MeAuthenticationMicrosoftAuthenticatorMethodId) Segments() []resourceid
 		resourceids.StaticSegment("me", "me", "me"),
 		resourceids.StaticSegment("authentication", "authentication", "authentication"),
 		resourceids.StaticSegment("microsoftAuthenticatorMethods", "microsoftAuthenticatorMethods", "microsoftAuthenticatorMethods"),
-		resourceids.UserSpecifiedSegment("microsoftAuthenticatorAuthenticationMethodId", "microsoftAuthenticatorAuthenticationMethodIdValue"),
+		resourceids.UserSpecifiedSegment("microsoftAuthenticatorAuthenticationMethodId", "microsoftAuthenticatorAuthenticationMethodId"),
 	}
 }
 

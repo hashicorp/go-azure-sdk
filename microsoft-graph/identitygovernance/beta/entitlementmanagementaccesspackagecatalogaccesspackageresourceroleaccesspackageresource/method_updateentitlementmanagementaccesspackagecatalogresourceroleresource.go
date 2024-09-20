@@ -18,16 +18,45 @@ type UpdateEntitlementManagementAccessPackageCatalogResourceRoleResourceOperatio
 	OData        *odata.OData
 }
 
+type UpdateEntitlementManagementAccessPackageCatalogResourceRoleResourceOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateEntitlementManagementAccessPackageCatalogResourceRoleResourceOperationOptions() UpdateEntitlementManagementAccessPackageCatalogResourceRoleResourceOperationOptions {
+	return UpdateEntitlementManagementAccessPackageCatalogResourceRoleResourceOperationOptions{}
+}
+
+func (o UpdateEntitlementManagementAccessPackageCatalogResourceRoleResourceOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateEntitlementManagementAccessPackageCatalogResourceRoleResourceOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateEntitlementManagementAccessPackageCatalogResourceRoleResourceOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateEntitlementManagementAccessPackageCatalogResourceRoleResource - Update the navigation property
 // accessPackageResource in identityGovernance
-func (c EntitlementManagementAccessPackageCatalogAccessPackageResourceRoleAccessPackageResourceClient) UpdateEntitlementManagementAccessPackageCatalogResourceRoleResource(ctx context.Context, id beta.IdentityGovernanceEntitlementManagementAccessPackageCatalogIdAccessPackageResourceRoleId, input beta.AccessPackageResource) (result UpdateEntitlementManagementAccessPackageCatalogResourceRoleResourceOperationResponse, err error) {
+func (c EntitlementManagementAccessPackageCatalogAccessPackageResourceRoleAccessPackageResourceClient) UpdateEntitlementManagementAccessPackageCatalogResourceRoleResource(ctx context.Context, id beta.IdentityGovernanceEntitlementManagementAccessPackageCatalogIdAccessPackageResourceRoleId, input beta.AccessPackageResource, options UpdateEntitlementManagementAccessPackageCatalogResourceRoleResourceOperationOptions) (result UpdateEntitlementManagementAccessPackageCatalogResourceRoleResourceOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       fmt.Sprintf("%s/accessPackageResource", id.ID()),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/accessPackageResource", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

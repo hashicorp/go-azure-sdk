@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &UserIdWindowsInformationProtectionDeviceRegistrationId{}
 
 func TestNewUserIdWindowsInformationProtectionDeviceRegistrationID(t *testing.T) {
-	id := NewUserIdWindowsInformationProtectionDeviceRegistrationID("userIdValue", "windowsInformationProtectionDeviceRegistrationIdValue")
+	id := NewUserIdWindowsInformationProtectionDeviceRegistrationID("userId", "windowsInformationProtectionDeviceRegistrationId")
 
-	if id.UserId != "userIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'UserId'", id.UserId, "userIdValue")
+	if id.UserId != "userId" {
+		t.Fatalf("Expected %q but got %q for Segment 'UserId'", id.UserId, "userId")
 	}
 
-	if id.WindowsInformationProtectionDeviceRegistrationId != "windowsInformationProtectionDeviceRegistrationIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'WindowsInformationProtectionDeviceRegistrationId'", id.WindowsInformationProtectionDeviceRegistrationId, "windowsInformationProtectionDeviceRegistrationIdValue")
+	if id.WindowsInformationProtectionDeviceRegistrationId != "windowsInformationProtectionDeviceRegistrationId" {
+		t.Fatalf("Expected %q but got %q for Segment 'WindowsInformationProtectionDeviceRegistrationId'", id.WindowsInformationProtectionDeviceRegistrationId, "windowsInformationProtectionDeviceRegistrationId")
 	}
 }
 
 func TestFormatUserIdWindowsInformationProtectionDeviceRegistrationID(t *testing.T) {
-	actual := NewUserIdWindowsInformationProtectionDeviceRegistrationID("userIdValue", "windowsInformationProtectionDeviceRegistrationIdValue").ID()
-	expected := "/users/userIdValue/windowsInformationProtectionDeviceRegistrations/windowsInformationProtectionDeviceRegistrationIdValue"
+	actual := NewUserIdWindowsInformationProtectionDeviceRegistrationID("userId", "windowsInformationProtectionDeviceRegistrationId").ID()
+	expected := "/users/userId/windowsInformationProtectionDeviceRegistrations/windowsInformationProtectionDeviceRegistrationId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -49,25 +49,25 @@ func TestParseUserIdWindowsInformationProtectionDeviceRegistrationID(t *testing.
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue",
+			Input: "/users/userId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/windowsInformationProtectionDeviceRegistrations",
+			Input: "/users/userId/windowsInformationProtectionDeviceRegistrations",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/users/userIdValue/windowsInformationProtectionDeviceRegistrations/windowsInformationProtectionDeviceRegistrationIdValue",
+			Input: "/users/userId/windowsInformationProtectionDeviceRegistrations/windowsInformationProtectionDeviceRegistrationId",
 			Expected: &UserIdWindowsInformationProtectionDeviceRegistrationId{
-				UserId: "userIdValue",
-				WindowsInformationProtectionDeviceRegistrationId: "windowsInformationProtectionDeviceRegistrationIdValue",
+				UserId: "userId",
+				WindowsInformationProtectionDeviceRegistrationId: "windowsInformationProtectionDeviceRegistrationId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/users/userIdValue/windowsInformationProtectionDeviceRegistrations/windowsInformationProtectionDeviceRegistrationIdValue/extra",
+			Input: "/users/userId/windowsInformationProtectionDeviceRegistrations/windowsInformationProtectionDeviceRegistrationId/extra",
 			Error: true,
 		},
 	}
@@ -120,48 +120,48 @@ func TestParseUserIdWindowsInformationProtectionDeviceRegistrationIDInsensitivel
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue",
+			Input: "/users/userId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe",
+			Input: "/uSeRs/uSeRiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/windowsInformationProtectionDeviceRegistrations",
+			Input: "/users/userId/windowsInformationProtectionDeviceRegistrations",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/wInDoWsInFoRmAtIoNpRoTeCtIoNdEvIcErEgIsTrAtIoNs",
+			Input: "/uSeRs/uSeRiD/wInDoWsInFoRmAtIoNpRoTeCtIoNdEvIcErEgIsTrAtIoNs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/users/userIdValue/windowsInformationProtectionDeviceRegistrations/windowsInformationProtectionDeviceRegistrationIdValue",
+			Input: "/users/userId/windowsInformationProtectionDeviceRegistrations/windowsInformationProtectionDeviceRegistrationId",
 			Expected: &UserIdWindowsInformationProtectionDeviceRegistrationId{
-				UserId: "userIdValue",
-				WindowsInformationProtectionDeviceRegistrationId: "windowsInformationProtectionDeviceRegistrationIdValue",
+				UserId: "userId",
+				WindowsInformationProtectionDeviceRegistrationId: "windowsInformationProtectionDeviceRegistrationId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/users/userIdValue/windowsInformationProtectionDeviceRegistrations/windowsInformationProtectionDeviceRegistrationIdValue/extra",
+			Input: "/users/userId/windowsInformationProtectionDeviceRegistrations/windowsInformationProtectionDeviceRegistrationId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/wInDoWsInFoRmAtIoNpRoTeCtIoNdEvIcErEgIsTrAtIoNs/wInDoWsInFoRmAtIoNpRoTeCtIoNdEvIcErEgIsTrAtIoNiDvAlUe",
+			Input: "/uSeRs/uSeRiD/wInDoWsInFoRmAtIoNpRoTeCtIoNdEvIcErEgIsTrAtIoNs/wInDoWsInFoRmAtIoNpRoTeCtIoNdEvIcErEgIsTrAtIoNiD",
 			Expected: &UserIdWindowsInformationProtectionDeviceRegistrationId{
-				UserId: "uSeRiDvAlUe",
-				WindowsInformationProtectionDeviceRegistrationId: "wInDoWsInFoRmAtIoNpRoTeCtIoNdEvIcErEgIsTrAtIoNiDvAlUe",
+				UserId: "uSeRiD",
+				WindowsInformationProtectionDeviceRegistrationId: "wInDoWsInFoRmAtIoNpRoTeCtIoNdEvIcErEgIsTrAtIoNiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/wInDoWsInFoRmAtIoNpRoTeCtIoNdEvIcErEgIsTrAtIoNs/wInDoWsInFoRmAtIoNpRoTeCtIoNdEvIcErEgIsTrAtIoNiDvAlUe/extra",
+			Input: "/uSeRs/uSeRiD/wInDoWsInFoRmAtIoNpRoTeCtIoNdEvIcErEgIsTrAtIoNs/wInDoWsInFoRmAtIoNpRoTeCtIoNdEvIcErEgIsTrAtIoNiD/extra",
 			Error: true,
 		},
 	}

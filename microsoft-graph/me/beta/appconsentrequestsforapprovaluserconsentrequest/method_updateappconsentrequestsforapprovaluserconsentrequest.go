@@ -17,15 +17,44 @@ type UpdateAppConsentRequestsForApprovalUserConsentRequestOperationResponse stru
 	OData        *odata.OData
 }
 
+type UpdateAppConsentRequestsForApprovalUserConsentRequestOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateAppConsentRequestsForApprovalUserConsentRequestOperationOptions() UpdateAppConsentRequestsForApprovalUserConsentRequestOperationOptions {
+	return UpdateAppConsentRequestsForApprovalUserConsentRequestOperationOptions{}
+}
+
+func (o UpdateAppConsentRequestsForApprovalUserConsentRequestOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateAppConsentRequestsForApprovalUserConsentRequestOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateAppConsentRequestsForApprovalUserConsentRequestOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateAppConsentRequestsForApprovalUserConsentRequest - Update the navigation property userConsentRequests in me
-func (c AppConsentRequestsForApprovalUserConsentRequestClient) UpdateAppConsentRequestsForApprovalUserConsentRequest(ctx context.Context, id beta.MeAppConsentRequestsForApprovalIdUserConsentRequestId, input beta.UserConsentRequest) (result UpdateAppConsentRequestsForApprovalUserConsentRequestOperationResponse, err error) {
+func (c AppConsentRequestsForApprovalUserConsentRequestClient) UpdateAppConsentRequestsForApprovalUserConsentRequest(ctx context.Context, id beta.MeAppConsentRequestsForApprovalIdUserConsentRequestId, input beta.UserConsentRequest, options UpdateAppConsentRequestsForApprovalUserConsentRequestOperationOptions) (result UpdateAppConsentRequestsForApprovalUserConsentRequestOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

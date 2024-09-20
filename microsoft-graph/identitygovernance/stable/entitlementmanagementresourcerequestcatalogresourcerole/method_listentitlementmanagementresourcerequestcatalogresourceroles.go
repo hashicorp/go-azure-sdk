@@ -25,14 +25,15 @@ type ListEntitlementManagementResourceRequestCatalogResourceRolesCompleteResult 
 }
 
 type ListEntitlementManagementResourceRequestCatalogResourceRolesOperationOptions struct {
-	Count   *bool
-	Expand  *odata.Expand
-	Filter  *string
-	OrderBy *odata.OrderBy
-	Search  *string
-	Select  *[]string
-	Skip    *int64
-	Top     *int64
+	Count    *bool
+	Expand   *odata.Expand
+	Filter   *string
+	Metadata *odata.Metadata
+	OrderBy  *odata.OrderBy
+	Search   *string
+	Select   *[]string
+	Skip     *int64
+	Top      *int64
 }
 
 func DefaultListEntitlementManagementResourceRequestCatalogResourceRolesOperationOptions() ListEntitlementManagementResourceRequestCatalogResourceRolesOperationOptions {
@@ -55,6 +56,9 @@ func (o ListEntitlementManagementResourceRequestCatalogResourceRolesOperationOpt
 	}
 	if o.Filter != nil {
 		out.Filter = *o.Filter
+	}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
 	}
 	if o.OrderBy != nil {
 		out.OrderBy = *o.OrderBy
@@ -92,8 +96,9 @@ func (p *ListEntitlementManagementResourceRequestCatalogResourceRolesCustomPager
 	return p.NextLink
 }
 
-// ListEntitlementManagementResourceRequestCatalogResourceRoles - Get resourceRoles from identityGovernance
-func (c EntitlementManagementResourceRequestCatalogResourceRoleClient) ListEntitlementManagementResourceRequestCatalogResourceRoles(ctx context.Context, id stable.IdentityGovernanceEntitlementManagementResourceRequestId, options ListEntitlementManagementResourceRequestCatalogResourceRolesOperationOptions) (result ListEntitlementManagementResourceRequestCatalogResourceRolesOperationResponse, err error) {
+// ListEntitlementManagementResourceRequestCatalogResourceRoles - Get roles from identityGovernance. Read-only.
+// Nullable. Supports $expand.
+func (c EntitlementManagementResourceRequestCatalogResourceRoleClient) ListEntitlementManagementResourceRequestCatalogResourceRoles(ctx context.Context, id stable.IdentityGovernanceEntitlementManagementResourceRequestIdCatalogResourceId, options ListEntitlementManagementResourceRequestCatalogResourceRolesOperationOptions) (result ListEntitlementManagementResourceRequestCatalogResourceRolesOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
@@ -102,7 +107,7 @@ func (c EntitlementManagementResourceRequestCatalogResourceRoleClient) ListEntit
 		HttpMethod:    http.MethodGet,
 		OptionsObject: options,
 		Pager:         &ListEntitlementManagementResourceRequestCatalogResourceRolesCustomPager{},
-		Path:          fmt.Sprintf("%s/catalog/resourceRoles", id.ID()),
+		Path:          fmt.Sprintf("%s/roles", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)
@@ -133,12 +138,12 @@ func (c EntitlementManagementResourceRequestCatalogResourceRoleClient) ListEntit
 }
 
 // ListEntitlementManagementResourceRequestCatalogResourceRolesComplete retrieves all the results into a single object
-func (c EntitlementManagementResourceRequestCatalogResourceRoleClient) ListEntitlementManagementResourceRequestCatalogResourceRolesComplete(ctx context.Context, id stable.IdentityGovernanceEntitlementManagementResourceRequestId, options ListEntitlementManagementResourceRequestCatalogResourceRolesOperationOptions) (ListEntitlementManagementResourceRequestCatalogResourceRolesCompleteResult, error) {
+func (c EntitlementManagementResourceRequestCatalogResourceRoleClient) ListEntitlementManagementResourceRequestCatalogResourceRolesComplete(ctx context.Context, id stable.IdentityGovernanceEntitlementManagementResourceRequestIdCatalogResourceId, options ListEntitlementManagementResourceRequestCatalogResourceRolesOperationOptions) (ListEntitlementManagementResourceRequestCatalogResourceRolesCompleteResult, error) {
 	return c.ListEntitlementManagementResourceRequestCatalogResourceRolesCompleteMatchingPredicate(ctx, id, options, AccessPackageResourceRoleOperationPredicate{})
 }
 
 // ListEntitlementManagementResourceRequestCatalogResourceRolesCompleteMatchingPredicate retrieves all the results and then applies the predicate
-func (c EntitlementManagementResourceRequestCatalogResourceRoleClient) ListEntitlementManagementResourceRequestCatalogResourceRolesCompleteMatchingPredicate(ctx context.Context, id stable.IdentityGovernanceEntitlementManagementResourceRequestId, options ListEntitlementManagementResourceRequestCatalogResourceRolesOperationOptions, predicate AccessPackageResourceRoleOperationPredicate) (result ListEntitlementManagementResourceRequestCatalogResourceRolesCompleteResult, err error) {
+func (c EntitlementManagementResourceRequestCatalogResourceRoleClient) ListEntitlementManagementResourceRequestCatalogResourceRolesCompleteMatchingPredicate(ctx context.Context, id stable.IdentityGovernanceEntitlementManagementResourceRequestIdCatalogResourceId, options ListEntitlementManagementResourceRequestCatalogResourceRolesOperationOptions, predicate AccessPackageResourceRoleOperationPredicate) (result ListEntitlementManagementResourceRequestCatalogResourceRolesCompleteResult, err error) {
 	items := make([]stable.AccessPackageResourceRole, 0)
 
 	resp, err := c.ListEntitlementManagementResourceRequestCatalogResourceRoles(ctx, id, options)

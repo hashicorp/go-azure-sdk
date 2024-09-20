@@ -18,15 +18,44 @@ type CreateOnPremisesSynchronizationOperationResponse struct {
 	Model        *stable.OnPremisesDirectorySynchronization
 }
 
+type CreateOnPremisesSynchronizationOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateOnPremisesSynchronizationOperationOptions() CreateOnPremisesSynchronizationOperationOptions {
+	return CreateOnPremisesSynchronizationOperationOptions{}
+}
+
+func (o CreateOnPremisesSynchronizationOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateOnPremisesSynchronizationOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateOnPremisesSynchronizationOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateOnPremisesSynchronization - Create new navigation property to onPremisesSynchronization for directory
-func (c OnPremisesSynchronizationClient) CreateOnPremisesSynchronization(ctx context.Context, input stable.OnPremisesDirectorySynchronization) (result CreateOnPremisesSynchronizationOperationResponse, err error) {
+func (c OnPremisesSynchronizationClient) CreateOnPremisesSynchronization(ctx context.Context, input stable.OnPremisesDirectorySynchronization, options CreateOnPremisesSynchronizationOperationOptions) (result CreateOnPremisesSynchronizationOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/directory/onPremisesSynchronization",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/directory/onPremisesSynchronization",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

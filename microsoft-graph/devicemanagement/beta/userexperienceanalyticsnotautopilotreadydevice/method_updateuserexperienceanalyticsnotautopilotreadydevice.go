@@ -17,16 +17,45 @@ type UpdateUserExperienceAnalyticsNotAutopilotReadyDeviceOperationResponse struc
 	OData        *odata.OData
 }
 
+type UpdateUserExperienceAnalyticsNotAutopilotReadyDeviceOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateUserExperienceAnalyticsNotAutopilotReadyDeviceOperationOptions() UpdateUserExperienceAnalyticsNotAutopilotReadyDeviceOperationOptions {
+	return UpdateUserExperienceAnalyticsNotAutopilotReadyDeviceOperationOptions{}
+}
+
+func (o UpdateUserExperienceAnalyticsNotAutopilotReadyDeviceOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateUserExperienceAnalyticsNotAutopilotReadyDeviceOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateUserExperienceAnalyticsNotAutopilotReadyDeviceOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateUserExperienceAnalyticsNotAutopilotReadyDevice - Update the navigation property
 // userExperienceAnalyticsNotAutopilotReadyDevice in deviceManagement
-func (c UserExperienceAnalyticsNotAutopilotReadyDeviceClient) UpdateUserExperienceAnalyticsNotAutopilotReadyDevice(ctx context.Context, id beta.DeviceManagementUserExperienceAnalyticsNotAutopilotReadyDeviceId, input beta.UserExperienceAnalyticsNotAutopilotReadyDevice) (result UpdateUserExperienceAnalyticsNotAutopilotReadyDeviceOperationResponse, err error) {
+func (c UserExperienceAnalyticsNotAutopilotReadyDeviceClient) UpdateUserExperienceAnalyticsNotAutopilotReadyDevice(ctx context.Context, id beta.DeviceManagementUserExperienceAnalyticsNotAutopilotReadyDeviceId, input beta.UserExperienceAnalyticsNotAutopilotReadyDevice, options UpdateUserExperienceAnalyticsNotAutopilotReadyDeviceOperationOptions) (result UpdateUserExperienceAnalyticsNotAutopilotReadyDeviceOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

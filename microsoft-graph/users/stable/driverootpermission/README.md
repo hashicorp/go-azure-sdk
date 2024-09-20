@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/microsoft-graph/users/stable/driverootpermission` Documentation
 
-The `driverootpermission` SDK allows for interaction with the Azure Resource Manager Service `users` (API Version `stable`).
+The `driverootpermission` SDK allows for interaction with Microsoft Graph `users` (API Version `stable`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -15,7 +15,7 @@ import "github.com/hashicorp/go-azure-sdk/microsoft-graph/users/stable/driveroot
 ### Client Initialization
 
 ```go
-client := driverootpermission.NewDriveRootPermissionClientWithBaseURI("https://management.azure.com")
+client := driverootpermission.NewDriveRootPermissionClientWithBaseURI("https://graph.microsoft.com")
 client.Client.Authorizer = authorizer
 ```
 
@@ -24,14 +24,14 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := driverootpermission.NewUserIdDriveID("userIdValue", "driveIdValue")
+id := driverootpermission.NewUserIdDriveID("userId", "driveId")
 
 payload := driverootpermission.Permission{
 	// ...
 }
 
 
-read, err := client.CreateDriveRootPermission(ctx, id, payload)
+read, err := client.CreateDriveRootPermission(ctx, id, payload, driverootpermission.DefaultCreateDriveRootPermissionOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -45,7 +45,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := driverootpermission.NewUserIdDriveIdRootPermissionID("userIdValue", "driveIdValue", "permissionIdValue")
+id := driverootpermission.NewUserIdDriveIdRootPermissionID("userId", "driveId", "permissionId")
 
 read, err := client.DeleteDriveRootPermission(ctx, id, driverootpermission.DefaultDeleteDriveRootPermissionOperationOptions())
 if err != nil {
@@ -61,7 +61,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := driverootpermission.NewUserIdDriveIdRootPermissionID("userIdValue", "driveIdValue", "permissionIdValue")
+id := driverootpermission.NewUserIdDriveIdRootPermissionID("userId", "driveId", "permissionId")
 
 read, err := client.GetDriveRootPermission(ctx, id, driverootpermission.DefaultGetDriveRootPermissionOperationOptions())
 if err != nil {
@@ -77,7 +77,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := driverootpermission.NewUserIdDriveID("userIdValue", "driveIdValue")
+id := driverootpermission.NewUserIdDriveID("userId", "driveId")
 
 read, err := client.GetDriveRootPermissionsCount(ctx, id, driverootpermission.DefaultGetDriveRootPermissionsCountOperationOptions())
 if err != nil {
@@ -93,7 +93,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := driverootpermission.NewUserIdDriveIdRootPermissionID("userIdValue", "driveIdValue", "permissionIdValue")
+id := driverootpermission.NewUserIdDriveIdRootPermissionID("userId", "driveId", "permissionId")
 
 payload := driverootpermission.ListDriveRootPermissionGrantsRequest{
 	// ...
@@ -115,7 +115,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := driverootpermission.NewUserIdDriveID("userIdValue", "driveIdValue")
+id := driverootpermission.NewUserIdDriveID("userId", "driveId")
 
 // alternatively `client.ListDriveRootPermissions(ctx, id, driverootpermission.DefaultListDriveRootPermissionsOperationOptions())` can be used to do batched pagination
 items, err := client.ListDriveRootPermissionsComplete(ctx, id, driverootpermission.DefaultListDriveRootPermissionsOperationOptions())
@@ -132,14 +132,14 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := driverootpermission.NewUserIdDriveIdRootPermissionID("userIdValue", "driveIdValue", "permissionIdValue")
+id := driverootpermission.NewUserIdDriveIdRootPermissionID("userId", "driveId", "permissionId")
 
 payload := driverootpermission.Permission{
 	// ...
 }
 
 
-read, err := client.UpdateDriveRootPermission(ctx, id, payload)
+read, err := client.UpdateDriveRootPermission(ctx, id, payload, driverootpermission.DefaultUpdateDriveRootPermissionOperationOptions())
 if err != nil {
 	// handle the error
 }

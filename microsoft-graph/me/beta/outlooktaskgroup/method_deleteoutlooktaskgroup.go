@@ -19,7 +19,8 @@ type DeleteOutlookTaskGroupOperationResponse struct {
 }
 
 type DeleteOutlookTaskGroupOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteOutlookTaskGroupOperationOptions() DeleteOutlookTaskGroupOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteOutlookTaskGroupOperationOptions) ToHeaders() *client.Headers {
 
 func (o DeleteOutlookTaskGroupOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

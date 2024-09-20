@@ -105,25 +105,40 @@ func (s CallRecordsCallRecord) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &CallRecordsCallRecord{}
 
 func (s *CallRecordsCallRecord) UnmarshalJSON(bytes []byte) error {
-	type alias CallRecordsCallRecord
-	var decoded alias
+
+	var decoded struct {
+		EndDateTime          *string                   `json:"endDateTime,omitempty"`
+		JoinWebUrl           nullable.Type[string]     `json:"joinWebUrl,omitempty"`
+		LastModifiedDateTime *string                   `json:"lastModifiedDateTime,omitempty"`
+		Modalities           *[]CallRecordsModality    `json:"modalities,omitempty"`
+		Organizerv2          *CallRecordsOrganizer     `json:"organizer_v2,omitempty"`
+		Participants         *[]IdentitySet            `json:"participants,omitempty"`
+		Participantsv2       *[]CallRecordsParticipant `json:"participants_v2,omitempty"`
+		Sessions             *[]CallRecordsSession     `json:"sessions,omitempty"`
+		StartDateTime        *string                   `json:"startDateTime,omitempty"`
+		Type                 *CallRecordsCallType      `json:"type,omitempty"`
+		Version              *int64                    `json:"version,omitempty"`
+		Id                   *string                   `json:"id,omitempty"`
+		ODataId              *string                   `json:"@odata.id,omitempty"`
+		ODataType            *string                   `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into CallRecordsCallRecord: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.EndDateTime = decoded.EndDateTime
-	s.Id = decoded.Id
 	s.JoinWebUrl = decoded.JoinWebUrl
 	s.LastModifiedDateTime = decoded.LastModifiedDateTime
 	s.Modalities = decoded.Modalities
-	s.ODataId = decoded.ODataId
-	s.ODataType = decoded.ODataType
 	s.Organizerv2 = decoded.Organizerv2
 	s.Participantsv2 = decoded.Participantsv2
 	s.Sessions = decoded.Sessions
 	s.StartDateTime = decoded.StartDateTime
 	s.Type = decoded.Type
 	s.Version = decoded.Version
+	s.Id = decoded.Id
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -154,5 +169,6 @@ func (s *CallRecordsCallRecord) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Participants = &output
 	}
+
 	return nil
 }

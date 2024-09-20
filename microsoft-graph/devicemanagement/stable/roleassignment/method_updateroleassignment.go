@@ -17,16 +17,45 @@ type UpdateRoleAssignmentOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateRoleAssignmentOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateRoleAssignmentOperationOptions() UpdateRoleAssignmentOperationOptions {
+	return UpdateRoleAssignmentOperationOptions{}
+}
+
+func (o UpdateRoleAssignmentOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateRoleAssignmentOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateRoleAssignmentOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateRoleAssignment - Update deviceAndAppManagementRoleAssignment. Update the properties of a
 // deviceAndAppManagementRoleAssignment object.
-func (c RoleAssignmentClient) UpdateRoleAssignment(ctx context.Context, id stable.DeviceManagementRoleAssignmentId, input stable.DeviceAndAppManagementRoleAssignment) (result UpdateRoleAssignmentOperationResponse, err error) {
+func (c RoleAssignmentClient) UpdateRoleAssignment(ctx context.Context, id stable.DeviceManagementRoleAssignmentId, input stable.DeviceAndAppManagementRoleAssignment, options UpdateRoleAssignmentOperationOptions) (result UpdateRoleAssignmentOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -99,9 +99,9 @@ func (id DeviceManagementRoleAssignmentIdRoleScopeTagId) Segments() []resourceid
 	return []resourceids.Segment{
 		resourceids.StaticSegment("deviceManagement", "deviceManagement", "deviceManagement"),
 		resourceids.StaticSegment("roleAssignments", "roleAssignments", "roleAssignments"),
-		resourceids.UserSpecifiedSegment("deviceAndAppManagementRoleAssignmentId", "deviceAndAppManagementRoleAssignmentIdValue"),
+		resourceids.UserSpecifiedSegment("deviceAndAppManagementRoleAssignmentId", "deviceAndAppManagementRoleAssignmentId"),
 		resourceids.StaticSegment("roleScopeTags", "roleScopeTags", "roleScopeTags"),
-		resourceids.UserSpecifiedSegment("roleScopeTagId", "roleScopeTagIdValue"),
+		resourceids.UserSpecifiedSegment("roleScopeTagId", "roleScopeTagId"),
 	}
 }
 

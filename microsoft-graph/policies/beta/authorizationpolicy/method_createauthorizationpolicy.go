@@ -18,15 +18,44 @@ type CreateAuthorizationPolicyOperationResponse struct {
 	Model        *beta.AuthorizationPolicy
 }
 
+type CreateAuthorizationPolicyOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateAuthorizationPolicyOperationOptions() CreateAuthorizationPolicyOperationOptions {
+	return CreateAuthorizationPolicyOperationOptions{}
+}
+
+func (o CreateAuthorizationPolicyOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateAuthorizationPolicyOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateAuthorizationPolicyOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateAuthorizationPolicy - Create new navigation property to authorizationPolicy for policies
-func (c AuthorizationPolicyClient) CreateAuthorizationPolicy(ctx context.Context, input beta.AuthorizationPolicy) (result CreateAuthorizationPolicyOperationResponse, err error) {
+func (c AuthorizationPolicyClient) CreateAuthorizationPolicy(ctx context.Context, input beta.AuthorizationPolicy, options CreateAuthorizationPolicyOperationOptions) (result CreateAuthorizationPolicyOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/policies/authorizationPolicy",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/policies/authorizationPolicy",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -19,7 +19,8 @@ type DeleteVirtualEndpointAuditEventOperationResponse struct {
 }
 
 type DeleteVirtualEndpointAuditEventOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteVirtualEndpointAuditEventOperationOptions() DeleteVirtualEndpointAuditEventOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteVirtualEndpointAuditEventOperationOptions) ToHeaders() *client.Hea
 
 func (o DeleteVirtualEndpointAuditEventOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

@@ -35,10 +35,16 @@ type AndroidFotaDeploymentAssignment struct {
 var _ json.Unmarshaler = &AndroidFotaDeploymentAssignment{}
 
 func (s *AndroidFotaDeploymentAssignment) UnmarshalJSON(bytes []byte) error {
-	type alias AndroidFotaDeploymentAssignment
-	var decoded alias
+
+	var decoded struct {
+		DisplayName *string                                `json:"displayName,omitempty"`
+		Id          nullable.Type[string]                  `json:"id,omitempty"`
+		ODataId     *string                                `json:"@odata.id,omitempty"`
+		ODataType   *string                                `json:"@odata.type,omitempty"`
+		Target      *AndroidFotaDeploymentAssignmentTarget `json:"target,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into AndroidFotaDeploymentAssignment: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.DisplayName = decoded.DisplayName
@@ -59,5 +65,6 @@ func (s *AndroidFotaDeploymentAssignment) UnmarshalJSON(bytes []byte) error {
 		}
 		s.AssignmentTarget = impl
 	}
+
 	return nil
 }

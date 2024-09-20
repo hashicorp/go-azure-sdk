@@ -104,12 +104,12 @@ func (id UserIdInformationProtectionThreatAssessmentRequestIdResultId) ID() stri
 func (id UserIdInformationProtectionThreatAssessmentRequestIdResultId) Segments() []resourceids.Segment {
 	return []resourceids.Segment{
 		resourceids.StaticSegment("users", "users", "users"),
-		resourceids.UserSpecifiedSegment("userId", "userIdValue"),
+		resourceids.UserSpecifiedSegment("userId", "userId"),
 		resourceids.StaticSegment("informationProtection", "informationProtection", "informationProtection"),
 		resourceids.StaticSegment("threatAssessmentRequests", "threatAssessmentRequests", "threatAssessmentRequests"),
-		resourceids.UserSpecifiedSegment("threatAssessmentRequestId", "threatAssessmentRequestIdValue"),
+		resourceids.UserSpecifiedSegment("threatAssessmentRequestId", "threatAssessmentRequestId"),
 		resourceids.StaticSegment("results", "results", "results"),
-		resourceids.UserSpecifiedSegment("threatAssessmentResultId", "threatAssessmentResultIdValue"),
+		resourceids.UserSpecifiedSegment("threatAssessmentResultId", "threatAssessmentResultId"),
 	}
 }
 

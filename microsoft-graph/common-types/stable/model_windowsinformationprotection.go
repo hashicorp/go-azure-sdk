@@ -221,18 +221,49 @@ func (s BaseWindowsInformationProtectionImpl) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &BaseWindowsInformationProtectionImpl{}
 
 func (s *BaseWindowsInformationProtectionImpl) UnmarshalJSON(bytes []byte) error {
-	type alias BaseWindowsInformationProtectionImpl
-	var decoded alias
+
+	var decoded struct {
+		Assignments                            *[]TargetedManagedAppPolicyAssignment                  `json:"assignments,omitempty"`
+		AzureRightsManagementServicesAllowed   *bool                                                  `json:"azureRightsManagementServicesAllowed,omitempty"`
+		DataRecoveryCertificate                *WindowsInformationProtectionDataRecoveryCertificate   `json:"dataRecoveryCertificate,omitempty"`
+		EnforcementLevel                       *WindowsInformationProtectionEnforcementLevel          `json:"enforcementLevel,omitempty"`
+		EnterpriseDomain                       nullable.Type[string]                                  `json:"enterpriseDomain,omitempty"`
+		EnterpriseIPRanges                     *[]WindowsInformationProtectionIPRangeCollection       `json:"enterpriseIPRanges,omitempty"`
+		EnterpriseIPRangesAreAuthoritative     *bool                                                  `json:"enterpriseIPRangesAreAuthoritative,omitempty"`
+		EnterpriseInternalProxyServers         *[]WindowsInformationProtectionResourceCollection      `json:"enterpriseInternalProxyServers,omitempty"`
+		EnterpriseNetworkDomainNames           *[]WindowsInformationProtectionResourceCollection      `json:"enterpriseNetworkDomainNames,omitempty"`
+		EnterpriseProtectedDomainNames         *[]WindowsInformationProtectionResourceCollection      `json:"enterpriseProtectedDomainNames,omitempty"`
+		EnterpriseProxiedDomains               *[]WindowsInformationProtectionProxiedDomainCollection `json:"enterpriseProxiedDomains,omitempty"`
+		EnterpriseProxyServers                 *[]WindowsInformationProtectionResourceCollection      `json:"enterpriseProxyServers,omitempty"`
+		EnterpriseProxyServersAreAuthoritative *bool                                                  `json:"enterpriseProxyServersAreAuthoritative,omitempty"`
+		ExemptAppLockerFiles                   *[]WindowsInformationProtectionAppLockerFile           `json:"exemptAppLockerFiles,omitempty"`
+		ExemptApps                             *[]WindowsInformationProtectionApp                     `json:"exemptApps,omitempty"`
+		IconsVisible                           *bool                                                  `json:"iconsVisible,omitempty"`
+		IndexingEncryptedStoresOrItemsBlocked  *bool                                                  `json:"indexingEncryptedStoresOrItemsBlocked,omitempty"`
+		IsAssigned                             *bool                                                  `json:"isAssigned,omitempty"`
+		NeutralDomainResources                 *[]WindowsInformationProtectionResourceCollection      `json:"neutralDomainResources,omitempty"`
+		ProtectedAppLockerFiles                *[]WindowsInformationProtectionAppLockerFile           `json:"protectedAppLockerFiles,omitempty"`
+		ProtectedApps                          *[]WindowsInformationProtectionApp                     `json:"protectedApps,omitempty"`
+		ProtectionUnderLockConfigRequired      *bool                                                  `json:"protectionUnderLockConfigRequired,omitempty"`
+		RevokeOnUnenrollDisabled               *bool                                                  `json:"revokeOnUnenrollDisabled,omitempty"`
+		RightsManagementServicesTemplateId     nullable.Type[string]                                  `json:"rightsManagementServicesTemplateId,omitempty"`
+		SmbAutoEncryptedFileExtensions         *[]WindowsInformationProtectionResourceCollection      `json:"smbAutoEncryptedFileExtensions,omitempty"`
+		CreatedDateTime                        *string                                                `json:"createdDateTime,omitempty"`
+		Description                            nullable.Type[string]                                  `json:"description,omitempty"`
+		DisplayName                            *string                                                `json:"displayName,omitempty"`
+		LastModifiedDateTime                   *string                                                `json:"lastModifiedDateTime,omitempty"`
+		Version                                nullable.Type[string]                                  `json:"version,omitempty"`
+		Id                                     *string                                                `json:"id,omitempty"`
+		ODataId                                *string                                                `json:"@odata.id,omitempty"`
+		ODataType                              *string                                                `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into BaseWindowsInformationProtectionImpl: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.Assignments = decoded.Assignments
 	s.AzureRightsManagementServicesAllowed = decoded.AzureRightsManagementServicesAllowed
-	s.CreatedDateTime = decoded.CreatedDateTime
 	s.DataRecoveryCertificate = decoded.DataRecoveryCertificate
-	s.Description = decoded.Description
-	s.DisplayName = decoded.DisplayName
 	s.EnforcementLevel = decoded.EnforcementLevel
 	s.EnterpriseDomain = decoded.EnterpriseDomain
 	s.EnterpriseIPRanges = decoded.EnterpriseIPRanges
@@ -245,18 +276,21 @@ func (s *BaseWindowsInformationProtectionImpl) UnmarshalJSON(bytes []byte) error
 	s.EnterpriseProxyServersAreAuthoritative = decoded.EnterpriseProxyServersAreAuthoritative
 	s.ExemptAppLockerFiles = decoded.ExemptAppLockerFiles
 	s.IconsVisible = decoded.IconsVisible
-	s.Id = decoded.Id
 	s.IndexingEncryptedStoresOrItemsBlocked = decoded.IndexingEncryptedStoresOrItemsBlocked
 	s.IsAssigned = decoded.IsAssigned
-	s.LastModifiedDateTime = decoded.LastModifiedDateTime
 	s.NeutralDomainResources = decoded.NeutralDomainResources
-	s.ODataId = decoded.ODataId
-	s.ODataType = decoded.ODataType
 	s.ProtectedAppLockerFiles = decoded.ProtectedAppLockerFiles
 	s.ProtectionUnderLockConfigRequired = decoded.ProtectionUnderLockConfigRequired
 	s.RevokeOnUnenrollDisabled = decoded.RevokeOnUnenrollDisabled
 	s.RightsManagementServicesTemplateId = decoded.RightsManagementServicesTemplateId
 	s.SmbAutoEncryptedFileExtensions = decoded.SmbAutoEncryptedFileExtensions
+	s.CreatedDateTime = decoded.CreatedDateTime
+	s.Description = decoded.Description
+	s.DisplayName = decoded.DisplayName
+	s.Id = decoded.Id
+	s.LastModifiedDateTime = decoded.LastModifiedDateTime
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
 	s.Version = decoded.Version
 
 	var temp map[string]json.RawMessage
@@ -297,6 +331,7 @@ func (s *BaseWindowsInformationProtectionImpl) UnmarshalJSON(bytes []byte) error
 		}
 		s.ProtectedApps = &output
 	}
+
 	return nil
 }
 
@@ -310,9 +345,9 @@ func UnmarshalWindowsInformationProtectionImplementation(input []byte) (WindowsI
 		return nil, fmt.Errorf("unmarshaling WindowsInformationProtection into map[string]interface: %+v", err)
 	}
 
-	value, ok := temp["@odata.type"].(string)
-	if !ok {
-		return nil, nil
+	var value string
+	if v, ok := temp["@odata.type"]; ok {
+		value = fmt.Sprintf("%v", v)
 	}
 
 	if strings.EqualFold(value, "#microsoft.graph.mdmWindowsInformationProtectionPolicy") {

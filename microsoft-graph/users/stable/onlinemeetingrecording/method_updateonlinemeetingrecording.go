@@ -17,15 +17,44 @@ type UpdateOnlineMeetingRecordingOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateOnlineMeetingRecordingOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateOnlineMeetingRecordingOperationOptions() UpdateOnlineMeetingRecordingOperationOptions {
+	return UpdateOnlineMeetingRecordingOperationOptions{}
+}
+
+func (o UpdateOnlineMeetingRecordingOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateOnlineMeetingRecordingOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateOnlineMeetingRecordingOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateOnlineMeetingRecording - Update the navigation property recordings in users
-func (c OnlineMeetingRecordingClient) UpdateOnlineMeetingRecording(ctx context.Context, id stable.UserIdOnlineMeetingIdRecordingId, input stable.CallRecording) (result UpdateOnlineMeetingRecordingOperationResponse, err error) {
+func (c OnlineMeetingRecordingClient) UpdateOnlineMeetingRecording(ctx context.Context, id stable.UserIdOnlineMeetingIdRecordingId, input stable.CallRecording, options UpdateOnlineMeetingRecordingOperationOptions) (result UpdateOnlineMeetingRecordingOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

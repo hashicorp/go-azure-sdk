@@ -24,10 +24,16 @@ type GcpAssociatedIdentities struct {
 var _ json.Unmarshaler = &GcpAssociatedIdentities{}
 
 func (s *GcpAssociatedIdentities) UnmarshalJSON(bytes []byte) error {
-	type alias GcpAssociatedIdentities
-	var decoded alias
+
+	var decoded struct {
+		All             *[]GcpIdentity       `json:"all,omitempty"`
+		ODataId         *string              `json:"@odata.id,omitempty"`
+		ODataType       *string              `json:"@odata.type,omitempty"`
+		ServiceAccounts *[]GcpServiceAccount `json:"serviceAccounts,omitempty"`
+		Users           *[]GcpUser           `json:"users,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into GcpAssociatedIdentities: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.ODataId = decoded.ODataId
@@ -56,5 +62,6 @@ func (s *GcpAssociatedIdentities) UnmarshalJSON(bytes []byte) error {
 		}
 		s.All = &output
 	}
+
 	return nil
 }

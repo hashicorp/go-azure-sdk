@@ -89,21 +89,31 @@ func (s ApprovalStep) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &ApprovalStep{}
 
 func (s *ApprovalStep) UnmarshalJSON(bytes []byte) error {
-	type alias ApprovalStep
-	var decoded alias
+
+	var decoded struct {
+		AssignedToMe     nullable.Type[bool]   `json:"assignedToMe,omitempty"`
+		DisplayName      nullable.Type[string] `json:"displayName,omitempty"`
+		Justification    nullable.Type[string] `json:"justification,omitempty"`
+		ReviewResult     nullable.Type[string] `json:"reviewResult,omitempty"`
+		ReviewedDateTime nullable.Type[string] `json:"reviewedDateTime,omitempty"`
+		Status           nullable.Type[string] `json:"status,omitempty"`
+		Id               *string               `json:"id,omitempty"`
+		ODataId          *string               `json:"@odata.id,omitempty"`
+		ODataType        *string               `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into ApprovalStep: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.AssignedToMe = decoded.AssignedToMe
 	s.DisplayName = decoded.DisplayName
-	s.Id = decoded.Id
 	s.Justification = decoded.Justification
-	s.ODataId = decoded.ODataId
-	s.ODataType = decoded.ODataType
 	s.ReviewResult = decoded.ReviewResult
 	s.ReviewedDateTime = decoded.ReviewedDateTime
 	s.Status = decoded.Status
+	s.Id = decoded.Id
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -117,5 +127,6 @@ func (s *ApprovalStep) UnmarshalJSON(bytes []byte) error {
 		}
 		s.ReviewedBy = &impl
 	}
+
 	return nil
 }

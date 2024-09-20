@@ -110,20 +110,29 @@ func (s BaseRequestImpl) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &BaseRequestImpl{}
 
 func (s *BaseRequestImpl) UnmarshalJSON(bytes []byte) error {
-	type alias BaseRequestImpl
-	var decoded alias
+
+	var decoded struct {
+		ApprovalId        nullable.Type[string] `json:"approvalId,omitempty"`
+		CompletedDateTime nullable.Type[string] `json:"completedDateTime,omitempty"`
+		CreatedDateTime   nullable.Type[string] `json:"createdDateTime,omitempty"`
+		CustomData        nullable.Type[string] `json:"customData,omitempty"`
+		Status            *string               `json:"status,omitempty"`
+		Id                *string               `json:"id,omitempty"`
+		ODataId           *string               `json:"@odata.id,omitempty"`
+		ODataType         *string               `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into BaseRequestImpl: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.ApprovalId = decoded.ApprovalId
 	s.CompletedDateTime = decoded.CompletedDateTime
 	s.CreatedDateTime = decoded.CreatedDateTime
 	s.CustomData = decoded.CustomData
+	s.Status = decoded.Status
 	s.Id = decoded.Id
 	s.ODataId = decoded.ODataId
 	s.ODataType = decoded.ODataType
-	s.Status = decoded.Status
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -137,6 +146,7 @@ func (s *BaseRequestImpl) UnmarshalJSON(bytes []byte) error {
 		}
 		s.CreatedBy = impl
 	}
+
 	return nil
 }
 
@@ -150,9 +160,9 @@ func UnmarshalRequestImplementation(input []byte) (Request, error) {
 		return nil, fmt.Errorf("unmarshaling Request into map[string]interface: %+v", err)
 	}
 
-	value, ok := temp["@odata.type"].(string)
-	if !ok {
-		return nil, nil
+	var value string
+	if v, ok := temp["@odata.type"]; ok {
+		value = fmt.Sprintf("%v", v)
 	}
 
 	if strings.EqualFold(value, "#microsoft.graph.privilegedAccessScheduleRequest") {

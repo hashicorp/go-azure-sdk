@@ -19,15 +19,44 @@ type CreateElevationRequestDenyOperationResponse struct {
 	Model        *beta.PrivilegeManagementElevationRequest
 }
 
+type CreateElevationRequestDenyOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateElevationRequestDenyOperationOptions() CreateElevationRequestDenyOperationOptions {
+	return CreateElevationRequestDenyOperationOptions{}
+}
+
+func (o CreateElevationRequestDenyOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateElevationRequestDenyOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateElevationRequestDenyOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateElevationRequestDeny - Invoke action deny
-func (c ElevationRequestClient) CreateElevationRequestDeny(ctx context.Context, id beta.DeviceManagementElevationRequestId, input CreateElevationRequestDenyRequest) (result CreateElevationRequestDenyOperationResponse, err error) {
+func (c ElevationRequestClient) CreateElevationRequestDeny(ctx context.Context, id beta.DeviceManagementElevationRequestId, input CreateElevationRequestDenyRequest, options CreateElevationRequestDenyOperationOptions) (result CreateElevationRequestDenyOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/deny", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/deny", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

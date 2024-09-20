@@ -19,16 +19,45 @@ type CreateOperationApprovalRequestRejectOperationResponse struct {
 	Model        *CreateOperationApprovalRequestRejectResult
 }
 
+type CreateOperationApprovalRequestRejectOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateOperationApprovalRequestRejectOperationOptions() CreateOperationApprovalRequestRejectOperationOptions {
+	return CreateOperationApprovalRequestRejectOperationOptions{}
+}
+
+func (o CreateOperationApprovalRequestRejectOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateOperationApprovalRequestRejectOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateOperationApprovalRequestRejectOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateOperationApprovalRequestReject - Invoke action reject. Rejects the requested instance of an
 // operationApprovalRequest.
-func (c OperationApprovalRequestClient) CreateOperationApprovalRequestReject(ctx context.Context, id beta.DeviceManagementOperationApprovalRequestId, input CreateOperationApprovalRequestRejectRequest) (result CreateOperationApprovalRequestRejectOperationResponse, err error) {
+func (c OperationApprovalRequestClient) CreateOperationApprovalRequestReject(ctx context.Context, id beta.DeviceManagementOperationApprovalRequestId, input CreateOperationApprovalRequestRejectRequest, options CreateOperationApprovalRequestRejectOperationOptions) (result CreateOperationApprovalRequestRejectOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/reject", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/reject", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

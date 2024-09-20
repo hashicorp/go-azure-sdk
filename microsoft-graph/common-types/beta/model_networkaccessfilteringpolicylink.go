@@ -89,19 +89,30 @@ func (s NetworkaccessFilteringPolicyLink) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &NetworkaccessFilteringPolicyLink{}
 
 func (s *NetworkaccessFilteringPolicyLink) UnmarshalJSON(bytes []byte) error {
-	type alias NetworkaccessFilteringPolicyLink
-	var decoded alias
+
+	var decoded struct {
+		CreatedDateTime      *string              `json:"createdDateTime,omitempty"`
+		LastModifiedDateTime *string              `json:"lastModifiedDateTime,omitempty"`
+		LoggingState         *NetworkaccessStatus `json:"loggingState,omitempty"`
+		Priority             int64                `json:"priority"`
+		Policy               *NetworkaccessPolicy `json:"policy,omitempty"`
+		State                *NetworkaccessStatus `json:"state,omitempty"`
+		Version              *string              `json:"version,omitempty"`
+		Id                   *string              `json:"id,omitempty"`
+		ODataId              *string              `json:"@odata.id,omitempty"`
+		ODataType            *string              `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into NetworkaccessFilteringPolicyLink: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.CreatedDateTime = decoded.CreatedDateTime
-	s.Id = decoded.Id
 	s.LastModifiedDateTime = decoded.LastModifiedDateTime
 	s.LoggingState = decoded.LoggingState
+	s.Priority = decoded.Priority
+	s.Id = decoded.Id
 	s.ODataId = decoded.ODataId
 	s.ODataType = decoded.ODataType
-	s.Priority = decoded.Priority
 	s.State = decoded.State
 	s.Version = decoded.Version
 
@@ -117,5 +128,6 @@ func (s *NetworkaccessFilteringPolicyLink) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Policy = &impl
 	}
+
 	return nil
 }

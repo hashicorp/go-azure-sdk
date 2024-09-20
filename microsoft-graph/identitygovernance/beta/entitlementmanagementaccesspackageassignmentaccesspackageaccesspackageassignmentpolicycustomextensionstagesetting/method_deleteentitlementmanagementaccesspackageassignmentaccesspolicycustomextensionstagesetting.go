@@ -19,7 +19,8 @@ type DeleteEntitlementManagementAccessPackageAssignmentAccessPolicyCustomExtensi
 }
 
 type DeleteEntitlementManagementAccessPackageAssignmentAccessPolicyCustomExtensionStageSettingOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteEntitlementManagementAccessPackageAssignmentAccessPolicyCustomExtensionStageSettingOperationOptions() DeleteEntitlementManagementAccessPackageAssignmentAccessPolicyCustomExtensionStageSettingOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteEntitlementManagementAccessPackageAssignmentAccessPolicyCustomExte
 
 func (o DeleteEntitlementManagementAccessPackageAssignmentAccessPolicyCustomExtensionStageSettingOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

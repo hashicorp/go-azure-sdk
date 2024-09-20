@@ -89,10 +89,21 @@ func (s LabelDetails) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &LabelDetails{}
 
 func (s *LabelDetails) UnmarshalJSON(bytes []byte) error {
-	type alias LabelDetails
-	var decoded alias
+
+	var decoded struct {
+		Color       nullable.Type[string] `json:"color,omitempty"`
+		Description nullable.Type[string] `json:"description,omitempty"`
+		Id          nullable.Type[string] `json:"id,omitempty"`
+		IsActive    *bool                 `json:"isActive,omitempty"`
+		Name        nullable.Type[string] `json:"name,omitempty"`
+		ODataId     *string               `json:"@odata.id,omitempty"`
+		ODataType   *string               `json:"@odata.type,omitempty"`
+		Parent      ParentLabelDetails    `json:"parent"`
+		Sensitivity *int64                `json:"sensitivity,omitempty"`
+		Tooltip     nullable.Type[string] `json:"tooltip,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into LabelDetails: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.Color = decoded.Color
@@ -117,5 +128,6 @@ func (s *LabelDetails) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Parent = impl
 	}
+
 	return nil
 }

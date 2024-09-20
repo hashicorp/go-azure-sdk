@@ -12,28 +12,28 @@ import (
 var _ resourceids.ResourceId = &UserIdOutlookTaskGroupIdTaskFolderIdTaskId{}
 
 func TestNewUserIdOutlookTaskGroupIdTaskFolderIdTaskID(t *testing.T) {
-	id := NewUserIdOutlookTaskGroupIdTaskFolderIdTaskID("userIdValue", "outlookTaskGroupIdValue", "outlookTaskFolderIdValue", "outlookTaskIdValue")
+	id := NewUserIdOutlookTaskGroupIdTaskFolderIdTaskID("userId", "outlookTaskGroupId", "outlookTaskFolderId", "outlookTaskId")
 
-	if id.UserId != "userIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'UserId'", id.UserId, "userIdValue")
+	if id.UserId != "userId" {
+		t.Fatalf("Expected %q but got %q for Segment 'UserId'", id.UserId, "userId")
 	}
 
-	if id.OutlookTaskGroupId != "outlookTaskGroupIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'OutlookTaskGroupId'", id.OutlookTaskGroupId, "outlookTaskGroupIdValue")
+	if id.OutlookTaskGroupId != "outlookTaskGroupId" {
+		t.Fatalf("Expected %q but got %q for Segment 'OutlookTaskGroupId'", id.OutlookTaskGroupId, "outlookTaskGroupId")
 	}
 
-	if id.OutlookTaskFolderId != "outlookTaskFolderIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'OutlookTaskFolderId'", id.OutlookTaskFolderId, "outlookTaskFolderIdValue")
+	if id.OutlookTaskFolderId != "outlookTaskFolderId" {
+		t.Fatalf("Expected %q but got %q for Segment 'OutlookTaskFolderId'", id.OutlookTaskFolderId, "outlookTaskFolderId")
 	}
 
-	if id.OutlookTaskId != "outlookTaskIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'OutlookTaskId'", id.OutlookTaskId, "outlookTaskIdValue")
+	if id.OutlookTaskId != "outlookTaskId" {
+		t.Fatalf("Expected %q but got %q for Segment 'OutlookTaskId'", id.OutlookTaskId, "outlookTaskId")
 	}
 }
 
 func TestFormatUserIdOutlookTaskGroupIdTaskFolderIdTaskID(t *testing.T) {
-	actual := NewUserIdOutlookTaskGroupIdTaskFolderIdTaskID("userIdValue", "outlookTaskGroupIdValue", "outlookTaskFolderIdValue", "outlookTaskIdValue").ID()
-	expected := "/users/userIdValue/outlook/taskGroups/outlookTaskGroupIdValue/taskFolders/outlookTaskFolderIdValue/tasks/outlookTaskIdValue"
+	actual := NewUserIdOutlookTaskGroupIdTaskFolderIdTaskID("userId", "outlookTaskGroupId", "outlookTaskFolderId", "outlookTaskId").ID()
+	expected := "/users/userId/outlook/taskGroups/outlookTaskGroupId/taskFolders/outlookTaskFolderId/tasks/outlookTaskId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -57,52 +57,52 @@ func TestParseUserIdOutlookTaskGroupIdTaskFolderIdTaskID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue",
+			Input: "/users/userId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/outlook",
+			Input: "/users/userId/outlook",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/outlook/taskGroups",
+			Input: "/users/userId/outlook/taskGroups",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/outlook/taskGroups/outlookTaskGroupIdValue",
+			Input: "/users/userId/outlook/taskGroups/outlookTaskGroupId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/outlook/taskGroups/outlookTaskGroupIdValue/taskFolders",
+			Input: "/users/userId/outlook/taskGroups/outlookTaskGroupId/taskFolders",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/outlook/taskGroups/outlookTaskGroupIdValue/taskFolders/outlookTaskFolderIdValue",
+			Input: "/users/userId/outlook/taskGroups/outlookTaskGroupId/taskFolders/outlookTaskFolderId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/outlook/taskGroups/outlookTaskGroupIdValue/taskFolders/outlookTaskFolderIdValue/tasks",
+			Input: "/users/userId/outlook/taskGroups/outlookTaskGroupId/taskFolders/outlookTaskFolderId/tasks",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/users/userIdValue/outlook/taskGroups/outlookTaskGroupIdValue/taskFolders/outlookTaskFolderIdValue/tasks/outlookTaskIdValue",
+			Input: "/users/userId/outlook/taskGroups/outlookTaskGroupId/taskFolders/outlookTaskFolderId/tasks/outlookTaskId",
 			Expected: &UserIdOutlookTaskGroupIdTaskFolderIdTaskId{
-				UserId:              "userIdValue",
-				OutlookTaskGroupId:  "outlookTaskGroupIdValue",
-				OutlookTaskFolderId: "outlookTaskFolderIdValue",
-				OutlookTaskId:       "outlookTaskIdValue",
+				UserId:              "userId",
+				OutlookTaskGroupId:  "outlookTaskGroupId",
+				OutlookTaskFolderId: "outlookTaskFolderId",
+				OutlookTaskId:       "outlookTaskId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/users/userIdValue/outlook/taskGroups/outlookTaskGroupIdValue/taskFolders/outlookTaskFolderIdValue/tasks/outlookTaskIdValue/extra",
+			Input: "/users/userId/outlook/taskGroups/outlookTaskGroupId/taskFolders/outlookTaskFolderId/tasks/outlookTaskId/extra",
 			Error: true,
 		},
 	}
@@ -163,102 +163,102 @@ func TestParseUserIdOutlookTaskGroupIdTaskFolderIdTaskIDInsensitively(t *testing
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue",
+			Input: "/users/userId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe",
+			Input: "/uSeRs/uSeRiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/outlook",
+			Input: "/users/userId/outlook",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/oUtLoOk",
+			Input: "/uSeRs/uSeRiD/oUtLoOk",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/outlook/taskGroups",
+			Input: "/users/userId/outlook/taskGroups",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/oUtLoOk/tAsKgRoUpS",
+			Input: "/uSeRs/uSeRiD/oUtLoOk/tAsKgRoUpS",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/outlook/taskGroups/outlookTaskGroupIdValue",
+			Input: "/users/userId/outlook/taskGroups/outlookTaskGroupId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/oUtLoOk/tAsKgRoUpS/oUtLoOkTaSkGrOuPiDvAlUe",
+			Input: "/uSeRs/uSeRiD/oUtLoOk/tAsKgRoUpS/oUtLoOkTaSkGrOuPiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/outlook/taskGroups/outlookTaskGroupIdValue/taskFolders",
+			Input: "/users/userId/outlook/taskGroups/outlookTaskGroupId/taskFolders",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/oUtLoOk/tAsKgRoUpS/oUtLoOkTaSkGrOuPiDvAlUe/tAsKfOlDeRs",
+			Input: "/uSeRs/uSeRiD/oUtLoOk/tAsKgRoUpS/oUtLoOkTaSkGrOuPiD/tAsKfOlDeRs",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/outlook/taskGroups/outlookTaskGroupIdValue/taskFolders/outlookTaskFolderIdValue",
+			Input: "/users/userId/outlook/taskGroups/outlookTaskGroupId/taskFolders/outlookTaskFolderId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/oUtLoOk/tAsKgRoUpS/oUtLoOkTaSkGrOuPiDvAlUe/tAsKfOlDeRs/oUtLoOkTaSkFoLdErIdVaLuE",
+			Input: "/uSeRs/uSeRiD/oUtLoOk/tAsKgRoUpS/oUtLoOkTaSkGrOuPiD/tAsKfOlDeRs/oUtLoOkTaSkFoLdErId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/outlook/taskGroups/outlookTaskGroupIdValue/taskFolders/outlookTaskFolderIdValue/tasks",
+			Input: "/users/userId/outlook/taskGroups/outlookTaskGroupId/taskFolders/outlookTaskFolderId/tasks",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/oUtLoOk/tAsKgRoUpS/oUtLoOkTaSkGrOuPiDvAlUe/tAsKfOlDeRs/oUtLoOkTaSkFoLdErIdVaLuE/tAsKs",
+			Input: "/uSeRs/uSeRiD/oUtLoOk/tAsKgRoUpS/oUtLoOkTaSkGrOuPiD/tAsKfOlDeRs/oUtLoOkTaSkFoLdErId/tAsKs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/users/userIdValue/outlook/taskGroups/outlookTaskGroupIdValue/taskFolders/outlookTaskFolderIdValue/tasks/outlookTaskIdValue",
+			Input: "/users/userId/outlook/taskGroups/outlookTaskGroupId/taskFolders/outlookTaskFolderId/tasks/outlookTaskId",
 			Expected: &UserIdOutlookTaskGroupIdTaskFolderIdTaskId{
-				UserId:              "userIdValue",
-				OutlookTaskGroupId:  "outlookTaskGroupIdValue",
-				OutlookTaskFolderId: "outlookTaskFolderIdValue",
-				OutlookTaskId:       "outlookTaskIdValue",
+				UserId:              "userId",
+				OutlookTaskGroupId:  "outlookTaskGroupId",
+				OutlookTaskFolderId: "outlookTaskFolderId",
+				OutlookTaskId:       "outlookTaskId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/users/userIdValue/outlook/taskGroups/outlookTaskGroupIdValue/taskFolders/outlookTaskFolderIdValue/tasks/outlookTaskIdValue/extra",
+			Input: "/users/userId/outlook/taskGroups/outlookTaskGroupId/taskFolders/outlookTaskFolderId/tasks/outlookTaskId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/oUtLoOk/tAsKgRoUpS/oUtLoOkTaSkGrOuPiDvAlUe/tAsKfOlDeRs/oUtLoOkTaSkFoLdErIdVaLuE/tAsKs/oUtLoOkTaSkIdVaLuE",
+			Input: "/uSeRs/uSeRiD/oUtLoOk/tAsKgRoUpS/oUtLoOkTaSkGrOuPiD/tAsKfOlDeRs/oUtLoOkTaSkFoLdErId/tAsKs/oUtLoOkTaSkId",
 			Expected: &UserIdOutlookTaskGroupIdTaskFolderIdTaskId{
-				UserId:              "uSeRiDvAlUe",
-				OutlookTaskGroupId:  "oUtLoOkTaSkGrOuPiDvAlUe",
-				OutlookTaskFolderId: "oUtLoOkTaSkFoLdErIdVaLuE",
-				OutlookTaskId:       "oUtLoOkTaSkIdVaLuE",
+				UserId:              "uSeRiD",
+				OutlookTaskGroupId:  "oUtLoOkTaSkGrOuPiD",
+				OutlookTaskFolderId: "oUtLoOkTaSkFoLdErId",
+				OutlookTaskId:       "oUtLoOkTaSkId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/oUtLoOk/tAsKgRoUpS/oUtLoOkTaSkGrOuPiDvAlUe/tAsKfOlDeRs/oUtLoOkTaSkFoLdErIdVaLuE/tAsKs/oUtLoOkTaSkIdVaLuE/extra",
+			Input: "/uSeRs/uSeRiD/oUtLoOk/tAsKgRoUpS/oUtLoOkTaSkGrOuPiD/tAsKfOlDeRs/oUtLoOkTaSkFoLdErId/tAsKs/oUtLoOkTaSkId/extra",
 			Error: true,
 		},
 	}

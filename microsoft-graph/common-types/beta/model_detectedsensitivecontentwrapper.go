@@ -21,10 +21,14 @@ type DetectedSensitiveContentWrapper struct {
 var _ json.Unmarshaler = &DetectedSensitiveContentWrapper{}
 
 func (s *DetectedSensitiveContentWrapper) UnmarshalJSON(bytes []byte) error {
-	type alias DetectedSensitiveContentWrapper
-	var decoded alias
+
+	var decoded struct {
+		Classification *[]DetectedSensitiveContent `json:"classification,omitempty"`
+		ODataId        *string                     `json:"@odata.id,omitempty"`
+		ODataType      *string                     `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into DetectedSensitiveContentWrapper: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.ODataId = decoded.ODataId
@@ -51,5 +55,6 @@ func (s *DetectedSensitiveContentWrapper) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Classification = &output
 	}
+
 	return nil
 }

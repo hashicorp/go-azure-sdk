@@ -71,10 +71,17 @@ func (s ServiceProvisioningResourceError) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &ServiceProvisioningResourceError{}
 
 func (s *ServiceProvisioningResourceError) UnmarshalJSON(bytes []byte) error {
-	type alias ServiceProvisioningResourceError
-	var decoded alias
+
+	var decoded struct {
+		Errors          *[]ServiceProvisioningResourceErrorDetail `json:"errors,omitempty"`
+		CreatedDateTime nullable.Type[string]                     `json:"createdDateTime,omitempty"`
+		IsResolved      nullable.Type[bool]                       `json:"isResolved,omitempty"`
+		ODataId         *string                                   `json:"@odata.id,omitempty"`
+		ODataType       *string                                   `json:"@odata.type,omitempty"`
+		ServiceInstance nullable.Type[string]                     `json:"serviceInstance,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into ServiceProvisioningResourceError: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.CreatedDateTime = decoded.CreatedDateTime
@@ -104,5 +111,6 @@ func (s *ServiceProvisioningResourceError) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Errors = &output
 	}
+
 	return nil
 }

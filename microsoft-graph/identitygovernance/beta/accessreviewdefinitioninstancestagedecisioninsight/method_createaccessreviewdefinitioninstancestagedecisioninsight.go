@@ -20,16 +20,45 @@ type CreateAccessReviewDefinitionInstanceStageDecisionInsightOperationResponse s
 	Model        beta.GovernanceInsight
 }
 
+type CreateAccessReviewDefinitionInstanceStageDecisionInsightOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateAccessReviewDefinitionInstanceStageDecisionInsightOperationOptions() CreateAccessReviewDefinitionInstanceStageDecisionInsightOperationOptions {
+	return CreateAccessReviewDefinitionInstanceStageDecisionInsightOperationOptions{}
+}
+
+func (o CreateAccessReviewDefinitionInstanceStageDecisionInsightOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateAccessReviewDefinitionInstanceStageDecisionInsightOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateAccessReviewDefinitionInstanceStageDecisionInsightOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateAccessReviewDefinitionInstanceStageDecisionInsight - Create new navigation property to insights for
 // identityGovernance
-func (c AccessReviewDefinitionInstanceStageDecisionInsightClient) CreateAccessReviewDefinitionInstanceStageDecisionInsight(ctx context.Context, id beta.IdentityGovernanceAccessReviewDefinitionIdInstanceIdStageIdDecisionId, input beta.GovernanceInsight) (result CreateAccessReviewDefinitionInstanceStageDecisionInsightOperationResponse, err error) {
+func (c AccessReviewDefinitionInstanceStageDecisionInsightClient) CreateAccessReviewDefinitionInstanceStageDecisionInsight(ctx context.Context, id beta.IdentityGovernanceAccessReviewDefinitionIdInstanceIdStageIdDecisionId, input beta.GovernanceInsight, options CreateAccessReviewDefinitionInstanceStageDecisionInsightOperationOptions) (result CreateAccessReviewDefinitionInstanceStageDecisionInsightOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/insights", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/insights", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

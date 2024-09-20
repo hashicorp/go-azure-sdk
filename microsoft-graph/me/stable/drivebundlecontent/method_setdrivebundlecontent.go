@@ -18,16 +18,45 @@ type SetDriveBundleContentOperationResponse struct {
 	OData        *odata.OData
 }
 
+type SetDriveBundleContentOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultSetDriveBundleContentOperationOptions() SetDriveBundleContentOperationOptions {
+	return SetDriveBundleContentOperationOptions{}
+}
+
+func (o SetDriveBundleContentOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o SetDriveBundleContentOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o SetDriveBundleContentOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // SetDriveBundleContent - Update content for the navigation property bundles in me. The content stream, if the item
 // represents a file.
-func (c DriveBundleContentClient) SetDriveBundleContent(ctx context.Context, id stable.MeDriveIdBundleId, input []byte) (result SetDriveBundleContentOperationResponse, err error) {
+func (c DriveBundleContentClient) SetDriveBundleContent(ctx context.Context, id stable.MeDriveIdBundleId, input []byte, options SetDriveBundleContentOperationOptions) (result SetDriveBundleContentOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPut,
-		Path:       fmt.Sprintf("%s/content", id.ID()),
+		HttpMethod:    http.MethodPut,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/content", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

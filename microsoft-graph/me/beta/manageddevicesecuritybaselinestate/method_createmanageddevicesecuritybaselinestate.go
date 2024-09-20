@@ -19,15 +19,44 @@ type CreateManagedDeviceSecurityBaselineStateOperationResponse struct {
 	Model        *beta.SecurityBaselineState
 }
 
+type CreateManagedDeviceSecurityBaselineStateOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateManagedDeviceSecurityBaselineStateOperationOptions() CreateManagedDeviceSecurityBaselineStateOperationOptions {
+	return CreateManagedDeviceSecurityBaselineStateOperationOptions{}
+}
+
+func (o CreateManagedDeviceSecurityBaselineStateOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateManagedDeviceSecurityBaselineStateOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateManagedDeviceSecurityBaselineStateOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateManagedDeviceSecurityBaselineState - Create new navigation property to securityBaselineStates for me
-func (c ManagedDeviceSecurityBaselineStateClient) CreateManagedDeviceSecurityBaselineState(ctx context.Context, id beta.MeManagedDeviceId, input beta.SecurityBaselineState) (result CreateManagedDeviceSecurityBaselineStateOperationResponse, err error) {
+func (c ManagedDeviceSecurityBaselineStateClient) CreateManagedDeviceSecurityBaselineState(ctx context.Context, id beta.MeManagedDeviceId, input beta.SecurityBaselineState, options CreateManagedDeviceSecurityBaselineStateOperationOptions) (result CreateManagedDeviceSecurityBaselineStateOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/securityBaselineStates", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/securityBaselineStates", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &UserIdMobileAppIntentAndStateId{}
 
 func TestNewUserIdMobileAppIntentAndStateID(t *testing.T) {
-	id := NewUserIdMobileAppIntentAndStateID("userIdValue", "mobileAppIntentAndStateIdValue")
+	id := NewUserIdMobileAppIntentAndStateID("userId", "mobileAppIntentAndStateId")
 
-	if id.UserId != "userIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'UserId'", id.UserId, "userIdValue")
+	if id.UserId != "userId" {
+		t.Fatalf("Expected %q but got %q for Segment 'UserId'", id.UserId, "userId")
 	}
 
-	if id.MobileAppIntentAndStateId != "mobileAppIntentAndStateIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'MobileAppIntentAndStateId'", id.MobileAppIntentAndStateId, "mobileAppIntentAndStateIdValue")
+	if id.MobileAppIntentAndStateId != "mobileAppIntentAndStateId" {
+		t.Fatalf("Expected %q but got %q for Segment 'MobileAppIntentAndStateId'", id.MobileAppIntentAndStateId, "mobileAppIntentAndStateId")
 	}
 }
 
 func TestFormatUserIdMobileAppIntentAndStateID(t *testing.T) {
-	actual := NewUserIdMobileAppIntentAndStateID("userIdValue", "mobileAppIntentAndStateIdValue").ID()
-	expected := "/users/userIdValue/mobileAppIntentAndStates/mobileAppIntentAndStateIdValue"
+	actual := NewUserIdMobileAppIntentAndStateID("userId", "mobileAppIntentAndStateId").ID()
+	expected := "/users/userId/mobileAppIntentAndStates/mobileAppIntentAndStateId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -49,25 +49,25 @@ func TestParseUserIdMobileAppIntentAndStateID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue",
+			Input: "/users/userId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/mobileAppIntentAndStates",
+			Input: "/users/userId/mobileAppIntentAndStates",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/users/userIdValue/mobileAppIntentAndStates/mobileAppIntentAndStateIdValue",
+			Input: "/users/userId/mobileAppIntentAndStates/mobileAppIntentAndStateId",
 			Expected: &UserIdMobileAppIntentAndStateId{
-				UserId:                    "userIdValue",
-				MobileAppIntentAndStateId: "mobileAppIntentAndStateIdValue",
+				UserId:                    "userId",
+				MobileAppIntentAndStateId: "mobileAppIntentAndStateId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/users/userIdValue/mobileAppIntentAndStates/mobileAppIntentAndStateIdValue/extra",
+			Input: "/users/userId/mobileAppIntentAndStates/mobileAppIntentAndStateId/extra",
 			Error: true,
 		},
 	}
@@ -120,48 +120,48 @@ func TestParseUserIdMobileAppIntentAndStateIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue",
+			Input: "/users/userId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe",
+			Input: "/uSeRs/uSeRiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/mobileAppIntentAndStates",
+			Input: "/users/userId/mobileAppIntentAndStates",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/mObIlEaPpInTeNtAnDsTaTeS",
+			Input: "/uSeRs/uSeRiD/mObIlEaPpInTeNtAnDsTaTeS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/users/userIdValue/mobileAppIntentAndStates/mobileAppIntentAndStateIdValue",
+			Input: "/users/userId/mobileAppIntentAndStates/mobileAppIntentAndStateId",
 			Expected: &UserIdMobileAppIntentAndStateId{
-				UserId:                    "userIdValue",
-				MobileAppIntentAndStateId: "mobileAppIntentAndStateIdValue",
+				UserId:                    "userId",
+				MobileAppIntentAndStateId: "mobileAppIntentAndStateId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/users/userIdValue/mobileAppIntentAndStates/mobileAppIntentAndStateIdValue/extra",
+			Input: "/users/userId/mobileAppIntentAndStates/mobileAppIntentAndStateId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/mObIlEaPpInTeNtAnDsTaTeS/mObIlEaPpInTeNtAnDsTaTeIdVaLuE",
+			Input: "/uSeRs/uSeRiD/mObIlEaPpInTeNtAnDsTaTeS/mObIlEaPpInTeNtAnDsTaTeId",
 			Expected: &UserIdMobileAppIntentAndStateId{
-				UserId:                    "uSeRiDvAlUe",
-				MobileAppIntentAndStateId: "mObIlEaPpInTeNtAnDsTaTeIdVaLuE",
+				UserId:                    "uSeRiD",
+				MobileAppIntentAndStateId: "mObIlEaPpInTeNtAnDsTaTeId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/mObIlEaPpInTeNtAnDsTaTeS/mObIlEaPpInTeNtAnDsTaTeIdVaLuE/extra",
+			Input: "/uSeRs/uSeRiD/mObIlEaPpInTeNtAnDsTaTeS/mObIlEaPpInTeNtAnDsTaTeId/extra",
 			Error: true,
 		},
 	}

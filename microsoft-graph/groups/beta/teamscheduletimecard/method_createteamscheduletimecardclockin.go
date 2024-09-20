@@ -19,15 +19,44 @@ type CreateTeamScheduleTimeCardClockInOperationResponse struct {
 	Model        *beta.TimeCard
 }
 
+type CreateTeamScheduleTimeCardClockInOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateTeamScheduleTimeCardClockInOperationOptions() CreateTeamScheduleTimeCardClockInOperationOptions {
+	return CreateTeamScheduleTimeCardClockInOperationOptions{}
+}
+
+func (o CreateTeamScheduleTimeCardClockInOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateTeamScheduleTimeCardClockInOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateTeamScheduleTimeCardClockInOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateTeamScheduleTimeCardClockIn - Invoke action clockIn. Clock in to start a timeCard.
-func (c TeamScheduleTimeCardClient) CreateTeamScheduleTimeCardClockIn(ctx context.Context, id beta.GroupId, input CreateTeamScheduleTimeCardClockInRequest) (result CreateTeamScheduleTimeCardClockInOperationResponse, err error) {
+func (c TeamScheduleTimeCardClient) CreateTeamScheduleTimeCardClockIn(ctx context.Context, id beta.GroupId, input CreateTeamScheduleTimeCardClockInRequest, options CreateTeamScheduleTimeCardClockInOperationOptions) (result CreateTeamScheduleTimeCardClockInOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/team/schedule/timeCards/clockIn", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/team/schedule/timeCards/clockIn", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

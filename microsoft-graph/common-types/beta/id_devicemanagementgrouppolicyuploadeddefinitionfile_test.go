@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &DeviceManagementGroupPolicyUploadedDefinitionFileId{}
 
 func TestNewDeviceManagementGroupPolicyUploadedDefinitionFileID(t *testing.T) {
-	id := NewDeviceManagementGroupPolicyUploadedDefinitionFileID("groupPolicyUploadedDefinitionFileIdValue")
+	id := NewDeviceManagementGroupPolicyUploadedDefinitionFileID("groupPolicyUploadedDefinitionFileId")
 
-	if id.GroupPolicyUploadedDefinitionFileId != "groupPolicyUploadedDefinitionFileIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'GroupPolicyUploadedDefinitionFileId'", id.GroupPolicyUploadedDefinitionFileId, "groupPolicyUploadedDefinitionFileIdValue")
+	if id.GroupPolicyUploadedDefinitionFileId != "groupPolicyUploadedDefinitionFileId" {
+		t.Fatalf("Expected %q but got %q for Segment 'GroupPolicyUploadedDefinitionFileId'", id.GroupPolicyUploadedDefinitionFileId, "groupPolicyUploadedDefinitionFileId")
 	}
 }
 
 func TestFormatDeviceManagementGroupPolicyUploadedDefinitionFileID(t *testing.T) {
-	actual := NewDeviceManagementGroupPolicyUploadedDefinitionFileID("groupPolicyUploadedDefinitionFileIdValue").ID()
-	expected := "/deviceManagement/groupPolicyUploadedDefinitionFiles/groupPolicyUploadedDefinitionFileIdValue"
+	actual := NewDeviceManagementGroupPolicyUploadedDefinitionFileID("groupPolicyUploadedDefinitionFileId").ID()
+	expected := "/deviceManagement/groupPolicyUploadedDefinitionFiles/groupPolicyUploadedDefinitionFileId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -50,14 +50,14 @@ func TestParseDeviceManagementGroupPolicyUploadedDefinitionFileID(t *testing.T) 
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/groupPolicyUploadedDefinitionFiles/groupPolicyUploadedDefinitionFileIdValue",
+			Input: "/deviceManagement/groupPolicyUploadedDefinitionFiles/groupPolicyUploadedDefinitionFileId",
 			Expected: &DeviceManagementGroupPolicyUploadedDefinitionFileId{
-				GroupPolicyUploadedDefinitionFileId: "groupPolicyUploadedDefinitionFileIdValue",
+				GroupPolicyUploadedDefinitionFileId: "groupPolicyUploadedDefinitionFileId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/groupPolicyUploadedDefinitionFiles/groupPolicyUploadedDefinitionFileIdValue/extra",
+			Input: "/deviceManagement/groupPolicyUploadedDefinitionFiles/groupPolicyUploadedDefinitionFileId/extra",
 			Error: true,
 		},
 	}
@@ -116,26 +116,26 @@ func TestParseDeviceManagementGroupPolicyUploadedDefinitionFileIDInsensitively(t
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/groupPolicyUploadedDefinitionFiles/groupPolicyUploadedDefinitionFileIdValue",
+			Input: "/deviceManagement/groupPolicyUploadedDefinitionFiles/groupPolicyUploadedDefinitionFileId",
 			Expected: &DeviceManagementGroupPolicyUploadedDefinitionFileId{
-				GroupPolicyUploadedDefinitionFileId: "groupPolicyUploadedDefinitionFileIdValue",
+				GroupPolicyUploadedDefinitionFileId: "groupPolicyUploadedDefinitionFileId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/groupPolicyUploadedDefinitionFiles/groupPolicyUploadedDefinitionFileIdValue/extra",
+			Input: "/deviceManagement/groupPolicyUploadedDefinitionFiles/groupPolicyUploadedDefinitionFileId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/gRoUpPoLiCyUpLoAdEdDeFiNiTiOnFiLeS/gRoUpPoLiCyUpLoAdEdDeFiNiTiOnFiLeIdVaLuE",
+			Input: "/dEvIcEmAnAgEmEnT/gRoUpPoLiCyUpLoAdEdDeFiNiTiOnFiLeS/gRoUpPoLiCyUpLoAdEdDeFiNiTiOnFiLeId",
 			Expected: &DeviceManagementGroupPolicyUploadedDefinitionFileId{
-				GroupPolicyUploadedDefinitionFileId: "gRoUpPoLiCyUpLoAdEdDeFiNiTiOnFiLeIdVaLuE",
+				GroupPolicyUploadedDefinitionFileId: "gRoUpPoLiCyUpLoAdEdDeFiNiTiOnFiLeId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/gRoUpPoLiCyUpLoAdEdDeFiNiTiOnFiLeS/gRoUpPoLiCyUpLoAdEdDeFiNiTiOnFiLeIdVaLuE/extra",
+			Input: "/dEvIcEmAnAgEmEnT/gRoUpPoLiCyUpLoAdEdDeFiNiTiOnFiLeS/gRoUpPoLiCyUpLoAdEdDeFiNiTiOnFiLeId/extra",
 			Error: true,
 		},
 	}

@@ -19,7 +19,8 @@ type UpdatePlannerPlanBucketTaskProgressTaskBoardFormatOperationResponse struct 
 }
 
 type UpdatePlannerPlanBucketTaskProgressTaskBoardFormatOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultUpdatePlannerPlanBucketTaskProgressTaskBoardFormatOperationOptions() UpdatePlannerPlanBucketTaskProgressTaskBoardFormatOperationOptions {
@@ -36,7 +37,9 @@ func (o UpdatePlannerPlanBucketTaskProgressTaskBoardFormatOperationOptions) ToHe
 
 func (o UpdatePlannerPlanBucketTaskProgressTaskBoardFormatOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

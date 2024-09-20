@@ -19,15 +19,44 @@ type CreateDeviceManagementResourceNamespaceImportResourceActionOperationRespons
 	Model        *beta.UnifiedRbacResourceNamespace
 }
 
+type CreateDeviceManagementResourceNamespaceImportResourceActionOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateDeviceManagementResourceNamespaceImportResourceActionOperationOptions() CreateDeviceManagementResourceNamespaceImportResourceActionOperationOptions {
+	return CreateDeviceManagementResourceNamespaceImportResourceActionOperationOptions{}
+}
+
+func (o CreateDeviceManagementResourceNamespaceImportResourceActionOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateDeviceManagementResourceNamespaceImportResourceActionOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateDeviceManagementResourceNamespaceImportResourceActionOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateDeviceManagementResourceNamespaceImportResourceAction - Invoke action importResourceActions
-func (c DeviceManagementResourceNamespaceClient) CreateDeviceManagementResourceNamespaceImportResourceAction(ctx context.Context, id beta.RoleManagementDeviceManagementResourceNamespaceId, input CreateDeviceManagementResourceNamespaceImportResourceActionRequest) (result CreateDeviceManagementResourceNamespaceImportResourceActionOperationResponse, err error) {
+func (c DeviceManagementResourceNamespaceClient) CreateDeviceManagementResourceNamespaceImportResourceAction(ctx context.Context, id beta.RoleManagementDeviceManagementResourceNamespaceId, input CreateDeviceManagementResourceNamespaceImportResourceActionRequest, options CreateDeviceManagementResourceNamespaceImportResourceActionOperationOptions) (result CreateDeviceManagementResourceNamespaceImportResourceActionOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/importResourceActions", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/importResourceActions", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

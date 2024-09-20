@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &IdentityGovernancePermissionsAnalyticAzurePermissionsCreepIndexDistributionId{}
 
 func TestNewIdentityGovernancePermissionsAnalyticAzurePermissionsCreepIndexDistributionID(t *testing.T) {
-	id := NewIdentityGovernancePermissionsAnalyticAzurePermissionsCreepIndexDistributionID("permissionsCreepIndexDistributionIdValue")
+	id := NewIdentityGovernancePermissionsAnalyticAzurePermissionsCreepIndexDistributionID("permissionsCreepIndexDistributionId")
 
-	if id.PermissionsCreepIndexDistributionId != "permissionsCreepIndexDistributionIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'PermissionsCreepIndexDistributionId'", id.PermissionsCreepIndexDistributionId, "permissionsCreepIndexDistributionIdValue")
+	if id.PermissionsCreepIndexDistributionId != "permissionsCreepIndexDistributionId" {
+		t.Fatalf("Expected %q but got %q for Segment 'PermissionsCreepIndexDistributionId'", id.PermissionsCreepIndexDistributionId, "permissionsCreepIndexDistributionId")
 	}
 }
 
 func TestFormatIdentityGovernancePermissionsAnalyticAzurePermissionsCreepIndexDistributionID(t *testing.T) {
-	actual := NewIdentityGovernancePermissionsAnalyticAzurePermissionsCreepIndexDistributionID("permissionsCreepIndexDistributionIdValue").ID()
-	expected := "/identityGovernance/permissionsAnalytics/azure/permissionsCreepIndexDistributions/permissionsCreepIndexDistributionIdValue"
+	actual := NewIdentityGovernancePermissionsAnalyticAzurePermissionsCreepIndexDistributionID("permissionsCreepIndexDistributionId").ID()
+	expected := "/identityGovernance/permissionsAnalytics/azure/permissionsCreepIndexDistributions/permissionsCreepIndexDistributionId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -60,14 +60,14 @@ func TestParseIdentityGovernancePermissionsAnalyticAzurePermissionsCreepIndexDis
 		},
 		{
 			// Valid URI
-			Input: "/identityGovernance/permissionsAnalytics/azure/permissionsCreepIndexDistributions/permissionsCreepIndexDistributionIdValue",
+			Input: "/identityGovernance/permissionsAnalytics/azure/permissionsCreepIndexDistributions/permissionsCreepIndexDistributionId",
 			Expected: &IdentityGovernancePermissionsAnalyticAzurePermissionsCreepIndexDistributionId{
-				PermissionsCreepIndexDistributionId: "permissionsCreepIndexDistributionIdValue",
+				PermissionsCreepIndexDistributionId: "permissionsCreepIndexDistributionId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/identityGovernance/permissionsAnalytics/azure/permissionsCreepIndexDistributions/permissionsCreepIndexDistributionIdValue/extra",
+			Input: "/identityGovernance/permissionsAnalytics/azure/permissionsCreepIndexDistributions/permissionsCreepIndexDistributionId/extra",
 			Error: true,
 		},
 	}
@@ -146,26 +146,26 @@ func TestParseIdentityGovernancePermissionsAnalyticAzurePermissionsCreepIndexDis
 		},
 		{
 			// Valid URI
-			Input: "/identityGovernance/permissionsAnalytics/azure/permissionsCreepIndexDistributions/permissionsCreepIndexDistributionIdValue",
+			Input: "/identityGovernance/permissionsAnalytics/azure/permissionsCreepIndexDistributions/permissionsCreepIndexDistributionId",
 			Expected: &IdentityGovernancePermissionsAnalyticAzurePermissionsCreepIndexDistributionId{
-				PermissionsCreepIndexDistributionId: "permissionsCreepIndexDistributionIdValue",
+				PermissionsCreepIndexDistributionId: "permissionsCreepIndexDistributionId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/identityGovernance/permissionsAnalytics/azure/permissionsCreepIndexDistributions/permissionsCreepIndexDistributionIdValue/extra",
+			Input: "/identityGovernance/permissionsAnalytics/azure/permissionsCreepIndexDistributions/permissionsCreepIndexDistributionId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/iDeNtItYgOvErNaNcE/pErMiSsIoNsAnAlYtIcS/aZuRe/pErMiSsIoNsCrEePiNdExDiStRiBuTiOnS/pErMiSsIoNsCrEePiNdExDiStRiBuTiOnIdVaLuE",
+			Input: "/iDeNtItYgOvErNaNcE/pErMiSsIoNsAnAlYtIcS/aZuRe/pErMiSsIoNsCrEePiNdExDiStRiBuTiOnS/pErMiSsIoNsCrEePiNdExDiStRiBuTiOnId",
 			Expected: &IdentityGovernancePermissionsAnalyticAzurePermissionsCreepIndexDistributionId{
-				PermissionsCreepIndexDistributionId: "pErMiSsIoNsCrEePiNdExDiStRiBuTiOnIdVaLuE",
+				PermissionsCreepIndexDistributionId: "pErMiSsIoNsCrEePiNdExDiStRiBuTiOnId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/iDeNtItYgOvErNaNcE/pErMiSsIoNsAnAlYtIcS/aZuRe/pErMiSsIoNsCrEePiNdExDiStRiBuTiOnS/pErMiSsIoNsCrEePiNdExDiStRiBuTiOnIdVaLuE/extra",
+			Input: "/iDeNtItYgOvErNaNcE/pErMiSsIoNsAnAlYtIcS/aZuRe/pErMiSsIoNsCrEePiNdExDiStRiBuTiOnS/pErMiSsIoNsCrEePiNdExDiStRiBuTiOnId/extra",
 			Error: true,
 		},
 	}

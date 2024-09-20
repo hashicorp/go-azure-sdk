@@ -25,10 +25,15 @@ type AuthenticationConfigurationValidation struct {
 var _ json.Unmarshaler = &AuthenticationConfigurationValidation{}
 
 func (s *AuthenticationConfigurationValidation) UnmarshalJSON(bytes []byte) error {
-	type alias AuthenticationConfigurationValidation
-	var decoded alias
+
+	var decoded struct {
+		Errors    *[]GenericError `json:"errors,omitempty"`
+		ODataId   *string         `json:"@odata.id,omitempty"`
+		ODataType *string         `json:"@odata.type,omitempty"`
+		Warnings  *[]GenericError `json:"warnings,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into AuthenticationConfigurationValidation: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.ODataId = decoded.ODataId
@@ -72,5 +77,6 @@ func (s *AuthenticationConfigurationValidation) UnmarshalJSON(bytes []byte) erro
 		}
 		s.Warnings = &output
 	}
+
 	return nil
 }

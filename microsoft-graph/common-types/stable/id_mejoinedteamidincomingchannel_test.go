@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &MeJoinedTeamIdIncomingChannelId{}
 
 func TestNewMeJoinedTeamIdIncomingChannelID(t *testing.T) {
-	id := NewMeJoinedTeamIdIncomingChannelID("teamIdValue", "channelIdValue")
+	id := NewMeJoinedTeamIdIncomingChannelID("teamId", "channelId")
 
-	if id.TeamId != "teamIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'TeamId'", id.TeamId, "teamIdValue")
+	if id.TeamId != "teamId" {
+		t.Fatalf("Expected %q but got %q for Segment 'TeamId'", id.TeamId, "teamId")
 	}
 
-	if id.ChannelId != "channelIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ChannelId'", id.ChannelId, "channelIdValue")
+	if id.ChannelId != "channelId" {
+		t.Fatalf("Expected %q but got %q for Segment 'ChannelId'", id.ChannelId, "channelId")
 	}
 }
 
 func TestFormatMeJoinedTeamIdIncomingChannelID(t *testing.T) {
-	actual := NewMeJoinedTeamIdIncomingChannelID("teamIdValue", "channelIdValue").ID()
-	expected := "/me/joinedTeams/teamIdValue/incomingChannels/channelIdValue"
+	actual := NewMeJoinedTeamIdIncomingChannelID("teamId", "channelId").ID()
+	expected := "/me/joinedTeams/teamId/incomingChannels/channelId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -54,25 +54,25 @@ func TestParseMeJoinedTeamIdIncomingChannelID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/me/joinedTeams/teamIdValue",
+			Input: "/me/joinedTeams/teamId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/me/joinedTeams/teamIdValue/incomingChannels",
+			Input: "/me/joinedTeams/teamId/incomingChannels",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/me/joinedTeams/teamIdValue/incomingChannels/channelIdValue",
+			Input: "/me/joinedTeams/teamId/incomingChannels/channelId",
 			Expected: &MeJoinedTeamIdIncomingChannelId{
-				TeamId:    "teamIdValue",
-				ChannelId: "channelIdValue",
+				TeamId:    "teamId",
+				ChannelId: "channelId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/joinedTeams/teamIdValue/incomingChannels/channelIdValue/extra",
+			Input: "/me/joinedTeams/teamId/incomingChannels/channelId/extra",
 			Error: true,
 		},
 	}
@@ -135,48 +135,48 @@ func TestParseMeJoinedTeamIdIncomingChannelIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/me/joinedTeams/teamIdValue",
+			Input: "/me/joinedTeams/teamId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/jOiNeDtEaMs/tEaMiDvAlUe",
+			Input: "/mE/jOiNeDtEaMs/tEaMiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/me/joinedTeams/teamIdValue/incomingChannels",
+			Input: "/me/joinedTeams/teamId/incomingChannels",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/jOiNeDtEaMs/tEaMiDvAlUe/iNcOmInGcHaNnElS",
+			Input: "/mE/jOiNeDtEaMs/tEaMiD/iNcOmInGcHaNnElS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/me/joinedTeams/teamIdValue/incomingChannels/channelIdValue",
+			Input: "/me/joinedTeams/teamId/incomingChannels/channelId",
 			Expected: &MeJoinedTeamIdIncomingChannelId{
-				TeamId:    "teamIdValue",
-				ChannelId: "channelIdValue",
+				TeamId:    "teamId",
+				ChannelId: "channelId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/joinedTeams/teamIdValue/incomingChannels/channelIdValue/extra",
+			Input: "/me/joinedTeams/teamId/incomingChannels/channelId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/jOiNeDtEaMs/tEaMiDvAlUe/iNcOmInGcHaNnElS/cHaNnElIdVaLuE",
+			Input: "/mE/jOiNeDtEaMs/tEaMiD/iNcOmInGcHaNnElS/cHaNnElId",
 			Expected: &MeJoinedTeamIdIncomingChannelId{
-				TeamId:    "tEaMiDvAlUe",
-				ChannelId: "cHaNnElIdVaLuE",
+				TeamId:    "tEaMiD",
+				ChannelId: "cHaNnElId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/mE/jOiNeDtEaMs/tEaMiDvAlUe/iNcOmInGcHaNnElS/cHaNnElIdVaLuE/extra",
+			Input: "/mE/jOiNeDtEaMs/tEaMiD/iNcOmInGcHaNnElS/cHaNnElId/extra",
 			Error: true,
 		},
 	}

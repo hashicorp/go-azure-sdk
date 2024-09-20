@@ -94,7 +94,7 @@ func (id MeInsightSharedId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("me", "me", "me"),
 		resourceids.StaticSegment("insights", "insights", "insights"),
 		resourceids.StaticSegment("shared", "shared", "shared"),
-		resourceids.UserSpecifiedSegment("sharedInsightId", "sharedInsightIdValue"),
+		resourceids.UserSpecifiedSegment("sharedInsightId", "sharedInsightId"),
 	}
 }
 

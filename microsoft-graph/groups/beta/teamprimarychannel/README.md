@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/teamprimarychannel` Documentation
 
-The `teamprimarychannel` SDK allows for interaction with the Azure Resource Manager Service `groups` (API Version `beta`).
+The `teamprimarychannel` SDK allows for interaction with Microsoft Graph `groups` (API Version `beta`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -15,7 +15,7 @@ import "github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/teamprimar
 ### Client Initialization
 
 ```go
-client := teamprimarychannel.NewTeamPrimaryChannelClientWithBaseURI("https://management.azure.com")
+client := teamprimarychannel.NewTeamPrimaryChannelClientWithBaseURI("https://graph.microsoft.com")
 client.Client.Authorizer = authorizer
 ```
 
@@ -24,14 +24,14 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := teamprimarychannel.NewGroupID("groupIdValue")
+id := teamprimarychannel.NewGroupID("groupId")
 
 payload := teamprimarychannel.CreateTeamPrimaryChannelArchiveRequest{
 	// ...
 }
 
 
-read, err := client.CreateTeamPrimaryChannelArchive(ctx, id, payload)
+read, err := client.CreateTeamPrimaryChannelArchive(ctx, id, payload, teamprimarychannel.DefaultCreateTeamPrimaryChannelArchiveOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -45,9 +45,9 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := teamprimarychannel.NewGroupID("groupIdValue")
+id := teamprimarychannel.NewGroupID("groupId")
 
-read, err := client.CreateTeamPrimaryChannelCompleteMigration(ctx, id)
+read, err := client.CreateTeamPrimaryChannelCompleteMigration(ctx, id, teamprimarychannel.DefaultCreateTeamPrimaryChannelCompleteMigrationOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -61,9 +61,9 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := teamprimarychannel.NewGroupID("groupIdValue")
+id := teamprimarychannel.NewGroupID("groupId")
 
-read, err := client.CreateTeamPrimaryChannelUnarchive(ctx, id)
+read, err := client.CreateTeamPrimaryChannelUnarchive(ctx, id, teamprimarychannel.DefaultCreateTeamPrimaryChannelUnarchiveOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -77,7 +77,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := teamprimarychannel.NewGroupID("groupIdValue")
+id := teamprimarychannel.NewGroupID("groupId")
 
 read, err := client.DeleteTeamPrimaryChannel(ctx, id, teamprimarychannel.DefaultDeleteTeamPrimaryChannelOperationOptions())
 if err != nil {
@@ -93,7 +93,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := teamprimarychannel.NewGroupID("groupIdValue")
+id := teamprimarychannel.NewGroupID("groupId")
 
 read, err := client.GetTeamPrimaryChannel(ctx, id, teamprimarychannel.DefaultGetTeamPrimaryChannelOperationOptions())
 if err != nil {
@@ -109,9 +109,9 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := teamprimarychannel.NewGroupID("groupIdValue")
+id := teamprimarychannel.NewGroupID("groupId")
 
-read, err := client.ProvisionTeamPrimaryChannelEmail(ctx, id)
+read, err := client.ProvisionTeamPrimaryChannelEmail(ctx, id, teamprimarychannel.DefaultProvisionTeamPrimaryChannelEmailOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -125,9 +125,9 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := teamprimarychannel.NewGroupID("groupIdValue")
+id := teamprimarychannel.NewGroupID("groupId")
 
-read, err := client.RemoveTeamPrimaryChannelEmail(ctx, id)
+read, err := client.RemoveTeamPrimaryChannelEmail(ctx, id, teamprimarychannel.DefaultRemoveTeamPrimaryChannelEmailOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -141,14 +141,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := teamprimarychannel.NewGroupID("groupIdValue")
+id := teamprimarychannel.NewGroupID("groupId")
 
 payload := teamprimarychannel.Channel{
 	// ...
 }
 
 
-read, err := client.UpdateTeamPrimaryChannel(ctx, id, payload)
+read, err := client.UpdateTeamPrimaryChannel(ctx, id, payload, teamprimarychannel.DefaultUpdateTeamPrimaryChannelOperationOptions())
 if err != nil {
 	// handle the error
 }

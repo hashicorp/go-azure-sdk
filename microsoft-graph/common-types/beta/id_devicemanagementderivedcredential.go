@@ -93,7 +93,7 @@ func (id DeviceManagementDerivedCredentialId) Segments() []resourceids.Segment {
 	return []resourceids.Segment{
 		resourceids.StaticSegment("deviceManagement", "deviceManagement", "deviceManagement"),
 		resourceids.StaticSegment("derivedCredentials", "derivedCredentials", "derivedCredentials"),
-		resourceids.UserSpecifiedSegment("deviceManagementDerivedCredentialSettingsId", "deviceManagementDerivedCredentialSettingsIdValue"),
+		resourceids.UserSpecifiedSegment("deviceManagementDerivedCredentialSettingsId", "deviceManagementDerivedCredentialSettingsId"),
 	}
 }
 

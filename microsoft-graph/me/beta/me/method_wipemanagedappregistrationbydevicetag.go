@@ -16,16 +16,45 @@ type WipeManagedAppRegistrationByDeviceTagOperationResponse struct {
 	OData        *odata.OData
 }
 
+type WipeManagedAppRegistrationByDeviceTagOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultWipeManagedAppRegistrationByDeviceTagOperationOptions() WipeManagedAppRegistrationByDeviceTagOperationOptions {
+	return WipeManagedAppRegistrationByDeviceTagOperationOptions{}
+}
+
+func (o WipeManagedAppRegistrationByDeviceTagOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o WipeManagedAppRegistrationByDeviceTagOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o WipeManagedAppRegistrationByDeviceTagOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // WipeManagedAppRegistrationByDeviceTag - Invoke action wipeManagedAppRegistrationByDeviceTag. Issues a wipe operation
 // on an app registration with specified device tag.
-func (c MeClient) WipeManagedAppRegistrationByDeviceTag(ctx context.Context, input WipeManagedAppRegistrationByDeviceTagRequest) (result WipeManagedAppRegistrationByDeviceTagOperationResponse, err error) {
+func (c MeClient) WipeManagedAppRegistrationByDeviceTag(ctx context.Context, input WipeManagedAppRegistrationByDeviceTagRequest, options WipeManagedAppRegistrationByDeviceTagOperationOptions) (result WipeManagedAppRegistrationByDeviceTagOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/me/wipeManagedAppRegistrationByDeviceTag",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/me/wipeManagedAppRegistrationByDeviceTag",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

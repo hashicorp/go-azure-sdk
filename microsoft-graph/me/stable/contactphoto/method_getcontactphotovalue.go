@@ -19,16 +19,45 @@ type GetContactPhotoValueOperationResponse struct {
 	Model        *[]byte
 }
 
+type GetContactPhotoValueOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultGetContactPhotoValueOperationOptions() GetContactPhotoValueOperationOptions {
+	return GetContactPhotoValueOperationOptions{}
+}
+
+func (o GetContactPhotoValueOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o GetContactPhotoValueOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o GetContactPhotoValueOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // GetContactPhotoValue - Get media content for the navigation property photo from me. Optional contact picture. You can
 // get or set a photo for a contact.
-func (c ContactPhotoClient) GetContactPhotoValue(ctx context.Context, id stable.MeContactId) (result GetContactPhotoValueOperationResponse, err error) {
+func (c ContactPhotoClient) GetContactPhotoValue(ctx context.Context, id stable.MeContactId, options GetContactPhotoValueOperationOptions) (result GetContactPhotoValueOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/octet-stream",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/photo/$value", id.ID()),
+		HttpMethod:    http.MethodGet,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/photo/$value", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

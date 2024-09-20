@@ -20,8 +20,9 @@ type GetEntitlementManagementResourceScopesCountOperationResponse struct {
 }
 
 type GetEntitlementManagementResourceScopesCountOperationOptions struct {
-	Filter *string
-	Search *string
+	Filter   *string
+	Metadata *odata.Metadata
+	Search   *string
 }
 
 func DefaultGetEntitlementManagementResourceScopesCountOperationOptions() GetEntitlementManagementResourceScopesCountOperationOptions {
@@ -38,6 +39,9 @@ func (o GetEntitlementManagementResourceScopesCountOperationOptions) ToOData() *
 	out := odata.Query{}
 	if o.Filter != nil {
 		out.Filter = *o.Filter
+	}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
 	}
 	if o.Search != nil {
 		out.Search = *o.Search

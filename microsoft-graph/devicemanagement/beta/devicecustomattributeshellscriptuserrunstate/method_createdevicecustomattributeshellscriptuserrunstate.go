@@ -19,16 +19,45 @@ type CreateDeviceCustomAttributeShellScriptUserRunStateOperationResponse struct 
 	Model        *beta.DeviceManagementScriptUserState
 }
 
+type CreateDeviceCustomAttributeShellScriptUserRunStateOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateDeviceCustomAttributeShellScriptUserRunStateOperationOptions() CreateDeviceCustomAttributeShellScriptUserRunStateOperationOptions {
+	return CreateDeviceCustomAttributeShellScriptUserRunStateOperationOptions{}
+}
+
+func (o CreateDeviceCustomAttributeShellScriptUserRunStateOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateDeviceCustomAttributeShellScriptUserRunStateOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateDeviceCustomAttributeShellScriptUserRunStateOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateDeviceCustomAttributeShellScriptUserRunState - Create new navigation property to userRunStates for
 // deviceManagement
-func (c DeviceCustomAttributeShellScriptUserRunStateClient) CreateDeviceCustomAttributeShellScriptUserRunState(ctx context.Context, id beta.DeviceManagementDeviceCustomAttributeShellScriptId, input beta.DeviceManagementScriptUserState) (result CreateDeviceCustomAttributeShellScriptUserRunStateOperationResponse, err error) {
+func (c DeviceCustomAttributeShellScriptUserRunStateClient) CreateDeviceCustomAttributeShellScriptUserRunState(ctx context.Context, id beta.DeviceManagementDeviceCustomAttributeShellScriptId, input beta.DeviceManagementScriptUserState, options CreateDeviceCustomAttributeShellScriptUserRunStateOperationOptions) (result CreateDeviceCustomAttributeShellScriptUserRunStateOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/userRunStates", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/userRunStates", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

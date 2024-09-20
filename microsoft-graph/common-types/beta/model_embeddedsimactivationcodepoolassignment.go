@@ -62,10 +62,14 @@ func (s EmbeddedSIMActivationCodePoolAssignment) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &EmbeddedSIMActivationCodePoolAssignment{}
 
 func (s *EmbeddedSIMActivationCodePoolAssignment) UnmarshalJSON(bytes []byte) error {
-	type alias EmbeddedSIMActivationCodePoolAssignment
-	var decoded alias
+
+	var decoded struct {
+		Id        *string `json:"id,omitempty"`
+		ODataId   *string `json:"@odata.id,omitempty"`
+		ODataType *string `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into EmbeddedSIMActivationCodePoolAssignment: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.Id = decoded.Id
@@ -84,5 +88,6 @@ func (s *EmbeddedSIMActivationCodePoolAssignment) UnmarshalJSON(bytes []byte) er
 		}
 		s.Target = impl
 	}
+
 	return nil
 }

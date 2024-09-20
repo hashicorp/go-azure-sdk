@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/comanageddevicelogcollectionrequest` Documentation
 
-The `comanageddevicelogcollectionrequest` SDK allows for interaction with the Azure Resource Manager Service `devicemanagement` (API Version `beta`).
+The `comanageddevicelogcollectionrequest` SDK allows for interaction with Microsoft Graph `devicemanagement` (API Version `beta`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -15,7 +15,7 @@ import "github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/
 ### Client Initialization
 
 ```go
-client := comanageddevicelogcollectionrequest.NewComanagedDeviceLogCollectionRequestClientWithBaseURI("https://management.azure.com")
+client := comanageddevicelogcollectionrequest.NewComanagedDeviceLogCollectionRequestClientWithBaseURI("https://graph.microsoft.com")
 client.Client.Authorizer = authorizer
 ```
 
@@ -24,14 +24,14 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := comanageddevicelogcollectionrequest.NewDeviceManagementComanagedDeviceID("managedDeviceIdValue")
+id := comanageddevicelogcollectionrequest.NewDeviceManagementComanagedDeviceID("managedDeviceId")
 
 payload := comanageddevicelogcollectionrequest.DeviceLogCollectionResponse{
 	// ...
 }
 
 
-read, err := client.CreateComanagedDeviceLogCollectionRequest(ctx, id, payload)
+read, err := client.CreateComanagedDeviceLogCollectionRequest(ctx, id, payload, comanageddevicelogcollectionrequest.DefaultCreateComanagedDeviceLogCollectionRequestOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -45,9 +45,9 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := comanageddevicelogcollectionrequest.NewDeviceManagementComanagedDeviceIdLogCollectionRequestID("managedDeviceIdValue", "deviceLogCollectionResponseIdValue")
+id := comanageddevicelogcollectionrequest.NewDeviceManagementComanagedDeviceIdLogCollectionRequestID("managedDeviceId", "deviceLogCollectionResponseId")
 
-read, err := client.CreateComanagedDeviceLogCollectionRequestDownloadUrl(ctx, id)
+read, err := client.CreateComanagedDeviceLogCollectionRequestDownloadUrl(ctx, id, comanageddevicelogcollectionrequest.DefaultCreateComanagedDeviceLogCollectionRequestDownloadUrlOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -61,7 +61,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := comanageddevicelogcollectionrequest.NewDeviceManagementComanagedDeviceIdLogCollectionRequestID("managedDeviceIdValue", "deviceLogCollectionResponseIdValue")
+id := comanageddevicelogcollectionrequest.NewDeviceManagementComanagedDeviceIdLogCollectionRequestID("managedDeviceId", "deviceLogCollectionResponseId")
 
 read, err := client.DeleteComanagedDeviceLogCollectionRequest(ctx, id, comanageddevicelogcollectionrequest.DefaultDeleteComanagedDeviceLogCollectionRequestOperationOptions())
 if err != nil {
@@ -77,7 +77,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := comanageddevicelogcollectionrequest.NewDeviceManagementComanagedDeviceIdLogCollectionRequestID("managedDeviceIdValue", "deviceLogCollectionResponseIdValue")
+id := comanageddevicelogcollectionrequest.NewDeviceManagementComanagedDeviceIdLogCollectionRequestID("managedDeviceId", "deviceLogCollectionResponseId")
 
 read, err := client.GetComanagedDeviceLogCollectionRequest(ctx, id, comanageddevicelogcollectionrequest.DefaultGetComanagedDeviceLogCollectionRequestOperationOptions())
 if err != nil {
@@ -93,7 +93,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := comanageddevicelogcollectionrequest.NewDeviceManagementComanagedDeviceID("managedDeviceIdValue")
+id := comanageddevicelogcollectionrequest.NewDeviceManagementComanagedDeviceID("managedDeviceId")
 
 read, err := client.GetComanagedDeviceLogCollectionRequestsCount(ctx, id, comanageddevicelogcollectionrequest.DefaultGetComanagedDeviceLogCollectionRequestsCountOperationOptions())
 if err != nil {
@@ -109,7 +109,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := comanageddevicelogcollectionrequest.NewDeviceManagementComanagedDeviceID("managedDeviceIdValue")
+id := comanageddevicelogcollectionrequest.NewDeviceManagementComanagedDeviceID("managedDeviceId")
 
 // alternatively `client.ListComanagedDeviceLogCollectionRequests(ctx, id, comanageddevicelogcollectionrequest.DefaultListComanagedDeviceLogCollectionRequestsOperationOptions())` can be used to do batched pagination
 items, err := client.ListComanagedDeviceLogCollectionRequestsComplete(ctx, id, comanageddevicelogcollectionrequest.DefaultListComanagedDeviceLogCollectionRequestsOperationOptions())
@@ -126,14 +126,14 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := comanageddevicelogcollectionrequest.NewDeviceManagementComanagedDeviceIdLogCollectionRequestID("managedDeviceIdValue", "deviceLogCollectionResponseIdValue")
+id := comanageddevicelogcollectionrequest.NewDeviceManagementComanagedDeviceIdLogCollectionRequestID("managedDeviceId", "deviceLogCollectionResponseId")
 
 payload := comanageddevicelogcollectionrequest.DeviceLogCollectionResponse{
 	// ...
 }
 
 
-read, err := client.UpdateComanagedDeviceLogCollectionRequest(ctx, id, payload)
+read, err := client.UpdateComanagedDeviceLogCollectionRequest(ctx, id, payload, comanageddevicelogcollectionrequest.DefaultUpdateComanagedDeviceLogCollectionRequestOperationOptions())
 if err != nil {
 	// handle the error
 }

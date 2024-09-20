@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &MeOnlineMeetingIdRecordingId{}
 
 func TestNewMeOnlineMeetingIdRecordingID(t *testing.T) {
-	id := NewMeOnlineMeetingIdRecordingID("onlineMeetingIdValue", "callRecordingIdValue")
+	id := NewMeOnlineMeetingIdRecordingID("onlineMeetingId", "callRecordingId")
 
-	if id.OnlineMeetingId != "onlineMeetingIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'OnlineMeetingId'", id.OnlineMeetingId, "onlineMeetingIdValue")
+	if id.OnlineMeetingId != "onlineMeetingId" {
+		t.Fatalf("Expected %q but got %q for Segment 'OnlineMeetingId'", id.OnlineMeetingId, "onlineMeetingId")
 	}
 
-	if id.CallRecordingId != "callRecordingIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'CallRecordingId'", id.CallRecordingId, "callRecordingIdValue")
+	if id.CallRecordingId != "callRecordingId" {
+		t.Fatalf("Expected %q but got %q for Segment 'CallRecordingId'", id.CallRecordingId, "callRecordingId")
 	}
 }
 
 func TestFormatMeOnlineMeetingIdRecordingID(t *testing.T) {
-	actual := NewMeOnlineMeetingIdRecordingID("onlineMeetingIdValue", "callRecordingIdValue").ID()
-	expected := "/me/onlineMeetings/onlineMeetingIdValue/recordings/callRecordingIdValue"
+	actual := NewMeOnlineMeetingIdRecordingID("onlineMeetingId", "callRecordingId").ID()
+	expected := "/me/onlineMeetings/onlineMeetingId/recordings/callRecordingId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -54,25 +54,25 @@ func TestParseMeOnlineMeetingIdRecordingID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/me/onlineMeetings/onlineMeetingIdValue",
+			Input: "/me/onlineMeetings/onlineMeetingId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/me/onlineMeetings/onlineMeetingIdValue/recordings",
+			Input: "/me/onlineMeetings/onlineMeetingId/recordings",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/me/onlineMeetings/onlineMeetingIdValue/recordings/callRecordingIdValue",
+			Input: "/me/onlineMeetings/onlineMeetingId/recordings/callRecordingId",
 			Expected: &MeOnlineMeetingIdRecordingId{
-				OnlineMeetingId: "onlineMeetingIdValue",
-				CallRecordingId: "callRecordingIdValue",
+				OnlineMeetingId: "onlineMeetingId",
+				CallRecordingId: "callRecordingId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/onlineMeetings/onlineMeetingIdValue/recordings/callRecordingIdValue/extra",
+			Input: "/me/onlineMeetings/onlineMeetingId/recordings/callRecordingId/extra",
 			Error: true,
 		},
 	}
@@ -135,48 +135,48 @@ func TestParseMeOnlineMeetingIdRecordingIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/me/onlineMeetings/onlineMeetingIdValue",
+			Input: "/me/onlineMeetings/onlineMeetingId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/oNlInEmEeTiNgS/oNlInEmEeTiNgIdVaLuE",
+			Input: "/mE/oNlInEmEeTiNgS/oNlInEmEeTiNgId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/me/onlineMeetings/onlineMeetingIdValue/recordings",
+			Input: "/me/onlineMeetings/onlineMeetingId/recordings",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/oNlInEmEeTiNgS/oNlInEmEeTiNgIdVaLuE/rEcOrDiNgS",
+			Input: "/mE/oNlInEmEeTiNgS/oNlInEmEeTiNgId/rEcOrDiNgS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/me/onlineMeetings/onlineMeetingIdValue/recordings/callRecordingIdValue",
+			Input: "/me/onlineMeetings/onlineMeetingId/recordings/callRecordingId",
 			Expected: &MeOnlineMeetingIdRecordingId{
-				OnlineMeetingId: "onlineMeetingIdValue",
-				CallRecordingId: "callRecordingIdValue",
+				OnlineMeetingId: "onlineMeetingId",
+				CallRecordingId: "callRecordingId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/onlineMeetings/onlineMeetingIdValue/recordings/callRecordingIdValue/extra",
+			Input: "/me/onlineMeetings/onlineMeetingId/recordings/callRecordingId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/oNlInEmEeTiNgS/oNlInEmEeTiNgIdVaLuE/rEcOrDiNgS/cAlLrEcOrDiNgIdVaLuE",
+			Input: "/mE/oNlInEmEeTiNgS/oNlInEmEeTiNgId/rEcOrDiNgS/cAlLrEcOrDiNgId",
 			Expected: &MeOnlineMeetingIdRecordingId{
-				OnlineMeetingId: "oNlInEmEeTiNgIdVaLuE",
-				CallRecordingId: "cAlLrEcOrDiNgIdVaLuE",
+				OnlineMeetingId: "oNlInEmEeTiNgId",
+				CallRecordingId: "cAlLrEcOrDiNgId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/mE/oNlInEmEeTiNgS/oNlInEmEeTiNgIdVaLuE/rEcOrDiNgS/cAlLrEcOrDiNgIdVaLuE/extra",
+			Input: "/mE/oNlInEmEeTiNgS/oNlInEmEeTiNgId/rEcOrDiNgS/cAlLrEcOrDiNgId/extra",
 			Error: true,
 		},
 	}

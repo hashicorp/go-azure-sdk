@@ -19,8 +19,9 @@ type GetUserExperienceAnalyticsMetricHistoryOperationResponse struct {
 }
 
 type GetUserExperienceAnalyticsMetricHistoryOperationOptions struct {
-	Expand *odata.Expand
-	Select *[]string
+	Expand   *odata.Expand
+	Metadata *odata.Metadata
+	Select   *[]string
 }
 
 func DefaultGetUserExperienceAnalyticsMetricHistoryOperationOptions() GetUserExperienceAnalyticsMetricHistoryOperationOptions {
@@ -37,6 +38,9 @@ func (o GetUserExperienceAnalyticsMetricHistoryOperationOptions) ToOData() *odat
 	out := odata.Query{}
 	if o.Expand != nil {
 		out.Expand = *o.Expand
+	}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
 	}
 	if o.Select != nil {
 		out.Select = *o.Select

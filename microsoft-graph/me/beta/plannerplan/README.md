@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/microsoft-graph/me/beta/plannerplan` Documentation
 
-The `plannerplan` SDK allows for interaction with the Azure Resource Manager Service `me` (API Version `beta`).
+The `plannerplan` SDK allows for interaction with Microsoft Graph `me` (API Version `beta`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -15,7 +15,7 @@ import "github.com/hashicorp/go-azure-sdk/microsoft-graph/me/beta/plannerplan"
 ### Client Initialization
 
 ```go
-client := plannerplan.NewPlannerPlanClientWithBaseURI("https://management.azure.com")
+client := plannerplan.NewPlannerPlanClientWithBaseURI("https://graph.microsoft.com")
 client.Client.Authorizer = authorizer
 ```
 
@@ -30,7 +30,7 @@ payload := plannerplan.PlannerPlan{
 }
 
 
-read, err := client.CreatePlannerPlan(ctx, payload)
+read, err := client.CreatePlannerPlan(ctx, payload, plannerplan.DefaultCreatePlannerPlanOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -44,14 +44,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := plannerplan.NewMePlannerPlanID("plannerPlanIdValue")
+id := plannerplan.NewMePlannerPlanID("plannerPlanId")
 
 payload := plannerplan.CreatePlannerPlanArchiveRequest{
 	// ...
 }
 
 
-read, err := client.CreatePlannerPlanArchive(ctx, id, payload)
+read, err := client.CreatePlannerPlanArchive(ctx, id, payload, plannerplan.DefaultCreatePlannerPlanArchiveOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -65,14 +65,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := plannerplan.NewMePlannerPlanID("plannerPlanIdValue")
+id := plannerplan.NewMePlannerPlanID("plannerPlanId")
 
 payload := plannerplan.CreatePlannerPlanUnarchiveRequest{
 	// ...
 }
 
 
-read, err := client.CreatePlannerPlanUnarchive(ctx, id, payload)
+read, err := client.CreatePlannerPlanUnarchive(ctx, id, payload, plannerplan.DefaultCreatePlannerPlanUnarchiveOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -86,7 +86,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := plannerplan.NewMePlannerPlanID("plannerPlanIdValue")
+id := plannerplan.NewMePlannerPlanID("plannerPlanId")
 
 read, err := client.DeletePlannerPlan(ctx, id, plannerplan.DefaultDeletePlannerPlanOperationOptions())
 if err != nil {
@@ -102,7 +102,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := plannerplan.NewMePlannerPlanID("plannerPlanIdValue")
+id := plannerplan.NewMePlannerPlanID("plannerPlanId")
 
 read, err := client.GetPlannerPlan(ctx, id, plannerplan.DefaultGetPlannerPlanOperationOptions())
 if err != nil {
@@ -151,14 +151,14 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := plannerplan.NewMePlannerPlanID("plannerPlanIdValue")
+id := plannerplan.NewMePlannerPlanID("plannerPlanId")
 
 payload := plannerplan.MovePlannerPlanToContainerRequest{
 	// ...
 }
 
 
-read, err := client.MovePlannerPlanToContainer(ctx, id, payload)
+read, err := client.MovePlannerPlanToContainer(ctx, id, payload, plannerplan.DefaultMovePlannerPlanToContainerOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -172,14 +172,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := plannerplan.NewMePlannerPlanID("plannerPlanIdValue")
+id := plannerplan.NewMePlannerPlanID("plannerPlanId")
 
 payload := plannerplan.PlannerPlan{
 	// ...
 }
 
 
-read, err := client.UpdatePlannerPlan(ctx, id, payload)
+read, err := client.UpdatePlannerPlan(ctx, id, payload, plannerplan.DefaultUpdatePlannerPlanOperationOptions())
 if err != nil {
 	// handle the error
 }

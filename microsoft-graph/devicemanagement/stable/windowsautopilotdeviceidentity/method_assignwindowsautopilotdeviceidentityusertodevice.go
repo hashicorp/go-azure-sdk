@@ -18,16 +18,45 @@ type AssignWindowsAutopilotDeviceIdentityUserToDeviceOperationResponse struct {
 	OData        *odata.OData
 }
 
+type AssignWindowsAutopilotDeviceIdentityUserToDeviceOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultAssignWindowsAutopilotDeviceIdentityUserToDeviceOperationOptions() AssignWindowsAutopilotDeviceIdentityUserToDeviceOperationOptions {
+	return AssignWindowsAutopilotDeviceIdentityUserToDeviceOperationOptions{}
+}
+
+func (o AssignWindowsAutopilotDeviceIdentityUserToDeviceOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o AssignWindowsAutopilotDeviceIdentityUserToDeviceOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o AssignWindowsAutopilotDeviceIdentityUserToDeviceOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // AssignWindowsAutopilotDeviceIdentityUserToDevice - Invoke action assignUserToDevice. Assigns user to Autopilot
 // devices.
-func (c WindowsAutopilotDeviceIdentityClient) AssignWindowsAutopilotDeviceIdentityUserToDevice(ctx context.Context, id stable.DeviceManagementWindowsAutopilotDeviceIdentityId, input AssignWindowsAutopilotDeviceIdentityUserToDeviceRequest) (result AssignWindowsAutopilotDeviceIdentityUserToDeviceOperationResponse, err error) {
+func (c WindowsAutopilotDeviceIdentityClient) AssignWindowsAutopilotDeviceIdentityUserToDevice(ctx context.Context, id stable.DeviceManagementWindowsAutopilotDeviceIdentityId, input AssignWindowsAutopilotDeviceIdentityUserToDeviceRequest, options AssignWindowsAutopilotDeviceIdentityUserToDeviceOperationOptions) (result AssignWindowsAutopilotDeviceIdentityUserToDeviceOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/assignUserToDevice", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/assignUserToDevice", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

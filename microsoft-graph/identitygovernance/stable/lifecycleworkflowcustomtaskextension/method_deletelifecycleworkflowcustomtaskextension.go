@@ -19,7 +19,8 @@ type DeleteLifecycleWorkflowCustomTaskExtensionOperationResponse struct {
 }
 
 type DeleteLifecycleWorkflowCustomTaskExtensionOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteLifecycleWorkflowCustomTaskExtensionOperationOptions() DeleteLifecycleWorkflowCustomTaskExtensionOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteLifecycleWorkflowCustomTaskExtensionOperationOptions) ToHeaders() 
 
 func (o DeleteLifecycleWorkflowCustomTaskExtensionOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

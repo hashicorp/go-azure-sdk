@@ -17,15 +17,44 @@ type UpdateZebraFotaArtifactOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateZebraFotaArtifactOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateZebraFotaArtifactOperationOptions() UpdateZebraFotaArtifactOperationOptions {
+	return UpdateZebraFotaArtifactOperationOptions{}
+}
+
+func (o UpdateZebraFotaArtifactOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateZebraFotaArtifactOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateZebraFotaArtifactOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateZebraFotaArtifact - Update the navigation property zebraFotaArtifacts in deviceManagement
-func (c ZebraFotaArtifactClient) UpdateZebraFotaArtifact(ctx context.Context, id beta.DeviceManagementZebraFotaArtifactId, input beta.ZebraFotaArtifact) (result UpdateZebraFotaArtifactOperationResponse, err error) {
+func (c ZebraFotaArtifactClient) UpdateZebraFotaArtifact(ctx context.Context, id beta.DeviceManagementZebraFotaArtifactId, input beta.ZebraFotaArtifact, options UpdateZebraFotaArtifactOperationOptions) (result UpdateZebraFotaArtifactOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

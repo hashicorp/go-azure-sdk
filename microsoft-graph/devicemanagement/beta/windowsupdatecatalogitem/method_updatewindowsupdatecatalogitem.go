@@ -17,15 +17,44 @@ type UpdateWindowsUpdateCatalogItemOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateWindowsUpdateCatalogItemOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateWindowsUpdateCatalogItemOperationOptions() UpdateWindowsUpdateCatalogItemOperationOptions {
+	return UpdateWindowsUpdateCatalogItemOperationOptions{}
+}
+
+func (o UpdateWindowsUpdateCatalogItemOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateWindowsUpdateCatalogItemOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateWindowsUpdateCatalogItemOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateWindowsUpdateCatalogItem - Update the navigation property windowsUpdateCatalogItems in deviceManagement
-func (c WindowsUpdateCatalogItemClient) UpdateWindowsUpdateCatalogItem(ctx context.Context, id beta.DeviceManagementWindowsUpdateCatalogItemId, input beta.WindowsUpdateCatalogItem) (result UpdateWindowsUpdateCatalogItemOperationResponse, err error) {
+func (c WindowsUpdateCatalogItemClient) UpdateWindowsUpdateCatalogItem(ctx context.Context, id beta.DeviceManagementWindowsUpdateCatalogItemId, input beta.WindowsUpdateCatalogItem, options UpdateWindowsUpdateCatalogItemOperationOptions) (result UpdateWindowsUpdateCatalogItemOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

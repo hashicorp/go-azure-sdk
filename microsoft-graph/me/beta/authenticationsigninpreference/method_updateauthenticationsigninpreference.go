@@ -17,15 +17,44 @@ type UpdateAuthenticationSignInPreferenceOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateAuthenticationSignInPreferenceOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateAuthenticationSignInPreferenceOperationOptions() UpdateAuthenticationSignInPreferenceOperationOptions {
+	return UpdateAuthenticationSignInPreferenceOperationOptions{}
+}
+
+func (o UpdateAuthenticationSignInPreferenceOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateAuthenticationSignInPreferenceOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateAuthenticationSignInPreferenceOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateAuthenticationSignInPreference - Update property signInPreferences value.
-func (c AuthenticationSignInPreferenceClient) UpdateAuthenticationSignInPreference(ctx context.Context, input beta.SignInPreferences) (result UpdateAuthenticationSignInPreferenceOperationResponse, err error) {
+func (c AuthenticationSignInPreferenceClient) UpdateAuthenticationSignInPreference(ctx context.Context, input beta.SignInPreferences, options UpdateAuthenticationSignInPreferenceOperationOptions) (result UpdateAuthenticationSignInPreferenceOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       "/me/authentication/signInPreferences",
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          "/me/authentication/signInPreferences",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

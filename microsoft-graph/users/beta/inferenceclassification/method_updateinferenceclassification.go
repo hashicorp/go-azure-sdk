@@ -18,15 +18,44 @@ type UpdateInferenceClassificationOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateInferenceClassificationOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateInferenceClassificationOperationOptions() UpdateInferenceClassificationOperationOptions {
+	return UpdateInferenceClassificationOperationOptions{}
+}
+
+func (o UpdateInferenceClassificationOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateInferenceClassificationOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateInferenceClassificationOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateInferenceClassification - Update the navigation property inferenceClassification in users
-func (c InferenceClassificationClient) UpdateInferenceClassification(ctx context.Context, id beta.UserId, input beta.InferenceClassification) (result UpdateInferenceClassificationOperationResponse, err error) {
+func (c InferenceClassificationClient) UpdateInferenceClassification(ctx context.Context, id beta.UserId, input beta.InferenceClassification, options UpdateInferenceClassificationOperationOptions) (result UpdateInferenceClassificationOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       fmt.Sprintf("%s/inferenceClassification", id.ID()),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/inferenceClassification", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

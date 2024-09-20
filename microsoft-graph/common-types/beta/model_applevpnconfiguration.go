@@ -249,20 +249,77 @@ func (s BaseAppleVpnConfigurationImpl) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &BaseAppleVpnConfigurationImpl{}
 
 func (s *BaseAppleVpnConfigurationImpl) UnmarshalJSON(bytes []byte) error {
-	type alias BaseAppleVpnConfigurationImpl
-	var decoded alias
+
+	var decoded struct {
+		AssociatedDomains                           *[]string                                    `json:"associatedDomains,omitempty"`
+		AuthenticationMethod                        *VpnAuthenticationMethod                     `json:"authenticationMethod,omitempty"`
+		ConnectionName                              *string                                      `json:"connectionName,omitempty"`
+		ConnectionType                              *AppleVpnConnectionType                      `json:"connectionType,omitempty"`
+		CustomData                                  *[]KeyValue                                  `json:"customData,omitempty"`
+		CustomKeyValueData                          *[]KeyValuePair                              `json:"customKeyValueData,omitempty"`
+		DisableOnDemandUserOverride                 nullable.Type[bool]                          `json:"disableOnDemandUserOverride,omitempty"`
+		DisconnectOnIdle                            nullable.Type[bool]                          `json:"disconnectOnIdle,omitempty"`
+		DisconnectOnIdleTimerInSeconds              nullable.Type[int64]                         `json:"disconnectOnIdleTimerInSeconds,omitempty"`
+		EnablePerApp                                nullable.Type[bool]                          `json:"enablePerApp,omitempty"`
+		EnableSplitTunneling                        *bool                                        `json:"enableSplitTunneling,omitempty"`
+		ExcludedDomains                             *[]string                                    `json:"excludedDomains,omitempty"`
+		Identifier                                  nullable.Type[string]                        `json:"identifier,omitempty"`
+		LoginGroupOrDomain                          nullable.Type[string]                        `json:"loginGroupOrDomain,omitempty"`
+		OnDemandRules                               *[]VpnOnDemandRule                           `json:"onDemandRules,omitempty"`
+		OptInToDeviceIdSharing                      nullable.Type[bool]                          `json:"optInToDeviceIdSharing,omitempty"`
+		ProviderType                                *VpnProviderType                             `json:"providerType,omitempty"`
+		Realm                                       nullable.Type[string]                        `json:"realm,omitempty"`
+		Role                                        nullable.Type[string]                        `json:"role,omitempty"`
+		SafariDomains                               *[]string                                    `json:"safariDomains,omitempty"`
+		Server                                      *VpnServer                                   `json:"server,omitempty"`
+		Assignments                                 *[]DeviceConfigurationAssignment             `json:"assignments,omitempty"`
+		CreatedDateTime                             *string                                      `json:"createdDateTime,omitempty"`
+		Description                                 nullable.Type[string]                        `json:"description,omitempty"`
+		DeviceManagementApplicabilityRuleDeviceMode *DeviceManagementApplicabilityRuleDeviceMode `json:"deviceManagementApplicabilityRuleDeviceMode,omitempty"`
+		DeviceManagementApplicabilityRuleOsEdition  *DeviceManagementApplicabilityRuleOsEdition  `json:"deviceManagementApplicabilityRuleOsEdition,omitempty"`
+		DeviceManagementApplicabilityRuleOsVersion  *DeviceManagementApplicabilityRuleOsVersion  `json:"deviceManagementApplicabilityRuleOsVersion,omitempty"`
+		DeviceSettingStateSummaries                 *[]SettingStateDeviceSummary                 `json:"deviceSettingStateSummaries,omitempty"`
+		DeviceStatusOverview                        *DeviceConfigurationDeviceOverview           `json:"deviceStatusOverview,omitempty"`
+		DeviceStatuses                              *[]DeviceConfigurationDeviceStatus           `json:"deviceStatuses,omitempty"`
+		DisplayName                                 *string                                      `json:"displayName,omitempty"`
+		GroupAssignments                            *[]DeviceConfigurationGroupAssignment        `json:"groupAssignments,omitempty"`
+		LastModifiedDateTime                        *string                                      `json:"lastModifiedDateTime,omitempty"`
+		RoleScopeTagIds                             *[]string                                    `json:"roleScopeTagIds,omitempty"`
+		SupportsScopeTags                           *bool                                        `json:"supportsScopeTags,omitempty"`
+		UserStatusOverview                          *DeviceConfigurationUserOverview             `json:"userStatusOverview,omitempty"`
+		UserStatuses                                *[]DeviceConfigurationUserStatus             `json:"userStatuses,omitempty"`
+		Version                                     *int64                                       `json:"version,omitempty"`
+		Id                                          *string                                      `json:"id,omitempty"`
+		ODataId                                     *string                                      `json:"@odata.id,omitempty"`
+		ODataType                                   *string                                      `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into BaseAppleVpnConfigurationImpl: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
-	s.Assignments = decoded.Assignments
 	s.AssociatedDomains = decoded.AssociatedDomains
 	s.AuthenticationMethod = decoded.AuthenticationMethod
 	s.ConnectionName = decoded.ConnectionName
 	s.ConnectionType = decoded.ConnectionType
-	s.CreatedDateTime = decoded.CreatedDateTime
 	s.CustomData = decoded.CustomData
 	s.CustomKeyValueData = decoded.CustomKeyValueData
+	s.DisableOnDemandUserOverride = decoded.DisableOnDemandUserOverride
+	s.DisconnectOnIdle = decoded.DisconnectOnIdle
+	s.DisconnectOnIdleTimerInSeconds = decoded.DisconnectOnIdleTimerInSeconds
+	s.EnablePerApp = decoded.EnablePerApp
+	s.EnableSplitTunneling = decoded.EnableSplitTunneling
+	s.ExcludedDomains = decoded.ExcludedDomains
+	s.Identifier = decoded.Identifier
+	s.LoginGroupOrDomain = decoded.LoginGroupOrDomain
+	s.OnDemandRules = decoded.OnDemandRules
+	s.OptInToDeviceIdSharing = decoded.OptInToDeviceIdSharing
+	s.ProviderType = decoded.ProviderType
+	s.Realm = decoded.Realm
+	s.Role = decoded.Role
+	s.SafariDomains = decoded.SafariDomains
+	s.Server = decoded.Server
+	s.Assignments = decoded.Assignments
+	s.CreatedDateTime = decoded.CreatedDateTime
 	s.Description = decoded.Description
 	s.DeviceManagementApplicabilityRuleDeviceMode = decoded.DeviceManagementApplicabilityRuleDeviceMode
 	s.DeviceManagementApplicabilityRuleOsEdition = decoded.DeviceManagementApplicabilityRuleOsEdition
@@ -270,28 +327,13 @@ func (s *BaseAppleVpnConfigurationImpl) UnmarshalJSON(bytes []byte) error {
 	s.DeviceSettingStateSummaries = decoded.DeviceSettingStateSummaries
 	s.DeviceStatusOverview = decoded.DeviceStatusOverview
 	s.DeviceStatuses = decoded.DeviceStatuses
-	s.DisableOnDemandUserOverride = decoded.DisableOnDemandUserOverride
-	s.DisconnectOnIdle = decoded.DisconnectOnIdle
-	s.DisconnectOnIdleTimerInSeconds = decoded.DisconnectOnIdleTimerInSeconds
 	s.DisplayName = decoded.DisplayName
-	s.EnablePerApp = decoded.EnablePerApp
-	s.EnableSplitTunneling = decoded.EnableSplitTunneling
-	s.ExcludedDomains = decoded.ExcludedDomains
 	s.GroupAssignments = decoded.GroupAssignments
 	s.Id = decoded.Id
-	s.Identifier = decoded.Identifier
 	s.LastModifiedDateTime = decoded.LastModifiedDateTime
-	s.LoginGroupOrDomain = decoded.LoginGroupOrDomain
 	s.ODataId = decoded.ODataId
 	s.ODataType = decoded.ODataType
-	s.OnDemandRules = decoded.OnDemandRules
-	s.OptInToDeviceIdSharing = decoded.OptInToDeviceIdSharing
-	s.ProviderType = decoded.ProviderType
-	s.Realm = decoded.Realm
-	s.Role = decoded.Role
 	s.RoleScopeTagIds = decoded.RoleScopeTagIds
-	s.SafariDomains = decoded.SafariDomains
-	s.Server = decoded.Server
 	s.SupportsScopeTags = decoded.SupportsScopeTags
 	s.UserStatusOverview = decoded.UserStatusOverview
 	s.UserStatuses = decoded.UserStatuses
@@ -309,6 +351,7 @@ func (s *BaseAppleVpnConfigurationImpl) UnmarshalJSON(bytes []byte) error {
 		}
 		s.ProxyServer = impl
 	}
+
 	return nil
 }
 
@@ -322,9 +365,9 @@ func UnmarshalAppleVpnConfigurationImplementation(input []byte) (AppleVpnConfigu
 		return nil, fmt.Errorf("unmarshaling AppleVpnConfiguration into map[string]interface: %+v", err)
 	}
 
-	value, ok := temp["@odata.type"].(string)
-	if !ok {
-		return nil, nil
+	var value string
+	if v, ok := temp["@odata.type"]; ok {
+		value = fmt.Sprintf("%v", v)
 	}
 
 	if strings.EqualFold(value, "#microsoft.graph.iosVpnConfiguration") {

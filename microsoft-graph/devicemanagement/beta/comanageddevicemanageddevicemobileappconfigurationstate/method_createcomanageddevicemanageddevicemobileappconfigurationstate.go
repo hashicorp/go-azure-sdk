@@ -19,16 +19,45 @@ type CreateComanagedDeviceManagedDeviceMobileAppConfigurationStateOperationRespo
 	Model        *beta.ManagedDeviceMobileAppConfigurationState
 }
 
+type CreateComanagedDeviceManagedDeviceMobileAppConfigurationStateOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateComanagedDeviceManagedDeviceMobileAppConfigurationStateOperationOptions() CreateComanagedDeviceManagedDeviceMobileAppConfigurationStateOperationOptions {
+	return CreateComanagedDeviceManagedDeviceMobileAppConfigurationStateOperationOptions{}
+}
+
+func (o CreateComanagedDeviceManagedDeviceMobileAppConfigurationStateOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateComanagedDeviceManagedDeviceMobileAppConfigurationStateOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateComanagedDeviceManagedDeviceMobileAppConfigurationStateOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateComanagedDeviceManagedDeviceMobileAppConfigurationState - Create new navigation property to
 // managedDeviceMobileAppConfigurationStates for deviceManagement
-func (c ComanagedDeviceManagedDeviceMobileAppConfigurationStateClient) CreateComanagedDeviceManagedDeviceMobileAppConfigurationState(ctx context.Context, id beta.DeviceManagementComanagedDeviceId, input beta.ManagedDeviceMobileAppConfigurationState) (result CreateComanagedDeviceManagedDeviceMobileAppConfigurationStateOperationResponse, err error) {
+func (c ComanagedDeviceManagedDeviceMobileAppConfigurationStateClient) CreateComanagedDeviceManagedDeviceMobileAppConfigurationState(ctx context.Context, id beta.DeviceManagementComanagedDeviceId, input beta.ManagedDeviceMobileAppConfigurationState, options CreateComanagedDeviceManagedDeviceMobileAppConfigurationStateOperationOptions) (result CreateComanagedDeviceManagedDeviceMobileAppConfigurationStateOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/managedDeviceMobileAppConfigurationStates", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/managedDeviceMobileAppConfigurationStates", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

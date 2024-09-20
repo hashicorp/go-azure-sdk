@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/microsoft-graph/applications/stable/synchronizationtemplateschema` Documentation
 
-The `synchronizationtemplateschema` SDK allows for interaction with the Azure Resource Manager Service `applications` (API Version `stable`).
+The `synchronizationtemplateschema` SDK allows for interaction with Microsoft Graph `applications` (API Version `stable`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -15,7 +15,7 @@ import "github.com/hashicorp/go-azure-sdk/microsoft-graph/applications/stable/sy
 ### Client Initialization
 
 ```go
-client := synchronizationtemplateschema.NewSynchronizationTemplateSchemaClientWithBaseURI("https://management.azure.com")
+client := synchronizationtemplateschema.NewSynchronizationTemplateSchemaClientWithBaseURI("https://graph.microsoft.com")
 client.Client.Authorizer = authorizer
 ```
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := synchronizationtemplateschema.NewApplicationIdSynchronizationTemplateID("applicationIdValue", "synchronizationTemplateIdValue")
+id := synchronizationtemplateschema.NewApplicationIdSynchronizationTemplateID("applicationId", "synchronizationTemplateId")
 
 read, err := client.DeleteSynchronizationTemplateSchema(ctx, id, synchronizationtemplateschema.DefaultDeleteSynchronizationTemplateSchemaOperationOptions())
 if err != nil {
@@ -40,7 +40,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := synchronizationtemplateschema.NewApplicationIdSynchronizationTemplateID("applicationIdValue", "synchronizationTemplateIdValue")
+id := synchronizationtemplateschema.NewApplicationIdSynchronizationTemplateID("applicationId", "synchronizationTemplateId")
 
 read, err := client.GetSynchronizationTemplateSchema(ctx, id, synchronizationtemplateschema.DefaultGetSynchronizationTemplateSchemaOperationOptions())
 if err != nil {
@@ -56,14 +56,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := synchronizationtemplateschema.NewApplicationIdSynchronizationTemplateID("applicationIdValue", "synchronizationTemplateIdValue")
+id := synchronizationtemplateschema.NewApplicationIdSynchronizationTemplateID("applicationId", "synchronizationTemplateId")
 
 payload := synchronizationtemplateschema.ParseSynchronizationTemplateSchemaExpressionRequest{
 	// ...
 }
 
 
-read, err := client.ParseSynchronizationTemplateSchemaExpression(ctx, id, payload)
+read, err := client.ParseSynchronizationTemplateSchemaExpression(ctx, id, payload, synchronizationtemplateschema.DefaultParseSynchronizationTemplateSchemaExpressionOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -77,14 +77,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := synchronizationtemplateschema.NewApplicationIdSynchronizationTemplateID("applicationIdValue", "synchronizationTemplateIdValue")
+id := synchronizationtemplateschema.NewApplicationIdSynchronizationTemplateID("applicationId", "synchronizationTemplateId")
 
 payload := synchronizationtemplateschema.SynchronizationSchema{
 	// ...
 }
 
 
-read, err := client.UpdateSynchronizationTemplateSchema(ctx, id, payload)
+read, err := client.UpdateSynchronizationTemplateSchema(ctx, id, payload, synchronizationtemplateschema.DefaultUpdateSynchronizationTemplateSchemaOperationOptions())
 if err != nil {
 	// handle the error
 }

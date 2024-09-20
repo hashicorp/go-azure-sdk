@@ -98,10 +98,10 @@ func (id GroupIdTeamAllChannelId) ID() string {
 func (id GroupIdTeamAllChannelId) Segments() []resourceids.Segment {
 	return []resourceids.Segment{
 		resourceids.StaticSegment("groups", "groups", "groups"),
-		resourceids.UserSpecifiedSegment("groupId", "groupIdValue"),
+		resourceids.UserSpecifiedSegment("groupId", "groupId"),
 		resourceids.StaticSegment("team", "team", "team"),
 		resourceids.StaticSegment("allChannels", "allChannels", "allChannels"),
-		resourceids.UserSpecifiedSegment("channelId", "channelIdValue"),
+		resourceids.UserSpecifiedSegment("channelId", "channelId"),
 	}
 }
 

@@ -20,15 +20,44 @@ type MoveMailFolderOperationResponse struct {
 	Model        beta.MailFolder
 }
 
+type MoveMailFolderOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultMoveMailFolderOperationOptions() MoveMailFolderOperationOptions {
+	return MoveMailFolderOperationOptions{}
+}
+
+func (o MoveMailFolderOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o MoveMailFolderOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o MoveMailFolderOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // MoveMailFolder - Invoke action move. Move a mail folder and its contents to another mail folder.
-func (c MailFolderClient) MoveMailFolder(ctx context.Context, id beta.MeMailFolderId, input MoveMailFolderRequest) (result MoveMailFolderOperationResponse, err error) {
+func (c MailFolderClient) MoveMailFolder(ctx context.Context, id beta.MeMailFolderId, input MoveMailFolderRequest, options MoveMailFolderOperationOptions) (result MoveMailFolderOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/move", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/move", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

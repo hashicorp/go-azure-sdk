@@ -18,15 +18,44 @@ type CreateMobileAppTroubleshootingEventOperationResponse struct {
 	Model        *beta.MobileAppTroubleshootingEvent
 }
 
+type CreateMobileAppTroubleshootingEventOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateMobileAppTroubleshootingEventOperationOptions() CreateMobileAppTroubleshootingEventOperationOptions {
+	return CreateMobileAppTroubleshootingEventOperationOptions{}
+}
+
+func (o CreateMobileAppTroubleshootingEventOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateMobileAppTroubleshootingEventOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateMobileAppTroubleshootingEventOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateMobileAppTroubleshootingEvent - Create new navigation property to mobileAppTroubleshootingEvents for me
-func (c MobileAppTroubleshootingEventClient) CreateMobileAppTroubleshootingEvent(ctx context.Context, input beta.MobileAppTroubleshootingEvent) (result CreateMobileAppTroubleshootingEventOperationResponse, err error) {
+func (c MobileAppTroubleshootingEventClient) CreateMobileAppTroubleshootingEvent(ctx context.Context, input beta.MobileAppTroubleshootingEvent, options CreateMobileAppTroubleshootingEventOperationOptions) (result CreateMobileAppTroubleshootingEventOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/me/mobileAppTroubleshootingEvents",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/me/mobileAppTroubleshootingEvents",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

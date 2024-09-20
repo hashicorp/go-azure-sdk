@@ -19,7 +19,8 @@ type DeletePrivilegedAccessGroupEligibilityScheduleRequestOperationResponse stru
 }
 
 type DeletePrivilegedAccessGroupEligibilityScheduleRequestOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeletePrivilegedAccessGroupEligibilityScheduleRequestOperationOptions() DeletePrivilegedAccessGroupEligibilityScheduleRequestOperationOptions {
@@ -36,7 +37,9 @@ func (o DeletePrivilegedAccessGroupEligibilityScheduleRequestOperationOptions) T
 
 func (o DeletePrivilegedAccessGroupEligibilityScheduleRequestOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

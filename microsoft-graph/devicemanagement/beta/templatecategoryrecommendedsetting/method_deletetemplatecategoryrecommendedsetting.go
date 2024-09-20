@@ -19,7 +19,8 @@ type DeleteTemplateCategoryRecommendedSettingOperationResponse struct {
 }
 
 type DeleteTemplateCategoryRecommendedSettingOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteTemplateCategoryRecommendedSettingOperationOptions() DeleteTemplateCategoryRecommendedSettingOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteTemplateCategoryRecommendedSettingOperationOptions) ToHeaders() *c
 
 func (o DeleteTemplateCategoryRecommendedSettingOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

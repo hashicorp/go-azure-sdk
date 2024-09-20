@@ -18,15 +18,44 @@ type UpdateInsightOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateInsightOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateInsightOperationOptions() UpdateInsightOperationOptions {
+	return UpdateInsightOperationOptions{}
+}
+
+func (o UpdateInsightOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateInsightOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateInsightOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateInsight - Update the navigation property insights in users
-func (c InsightClient) UpdateInsight(ctx context.Context, id stable.UserId, input stable.ItemInsights) (result UpdateInsightOperationResponse, err error) {
+func (c InsightClient) UpdateInsight(ctx context.Context, id stable.UserId, input stable.ItemInsights, options UpdateInsightOperationOptions) (result UpdateInsightOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       fmt.Sprintf("%s/insights", id.ID()),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/insights", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

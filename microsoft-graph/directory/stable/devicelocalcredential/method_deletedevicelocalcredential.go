@@ -19,7 +19,8 @@ type DeleteDeviceLocalCredentialOperationResponse struct {
 }
 
 type DeleteDeviceLocalCredentialOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteDeviceLocalCredentialOperationOptions() DeleteDeviceLocalCredentialOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteDeviceLocalCredentialOperationOptions) ToHeaders() *client.Headers
 
 func (o DeleteDeviceLocalCredentialOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

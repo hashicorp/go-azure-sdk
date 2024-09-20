@@ -17,15 +17,44 @@ type UpdateCalendarViewExceptionOccurrenceInstanceExtensionOperationResponse str
 	OData        *odata.OData
 }
 
+type UpdateCalendarViewExceptionOccurrenceInstanceExtensionOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateCalendarViewExceptionOccurrenceInstanceExtensionOperationOptions() UpdateCalendarViewExceptionOccurrenceInstanceExtensionOperationOptions {
+	return UpdateCalendarViewExceptionOccurrenceInstanceExtensionOperationOptions{}
+}
+
+func (o UpdateCalendarViewExceptionOccurrenceInstanceExtensionOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateCalendarViewExceptionOccurrenceInstanceExtensionOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateCalendarViewExceptionOccurrenceInstanceExtensionOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateCalendarViewExceptionOccurrenceInstanceExtension - Update the navigation property extensions in groups
-func (c CalendarViewExceptionOccurrenceInstanceExtensionClient) UpdateCalendarViewExceptionOccurrenceInstanceExtension(ctx context.Context, id beta.GroupIdCalendarViewIdExceptionOccurrenceIdInstanceIdExtensionId, input beta.Extension) (result UpdateCalendarViewExceptionOccurrenceInstanceExtensionOperationResponse, err error) {
+func (c CalendarViewExceptionOccurrenceInstanceExtensionClient) UpdateCalendarViewExceptionOccurrenceInstanceExtension(ctx context.Context, id beta.GroupIdCalendarViewIdExceptionOccurrenceIdInstanceIdExtensionId, input beta.Extension, options UpdateCalendarViewExceptionOccurrenceInstanceExtensionOperationOptions) (result UpdateCalendarViewExceptionOccurrenceInstanceExtensionOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

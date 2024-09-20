@@ -17,15 +17,44 @@ type UpdateInvitedUserMailboxSettingOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateInvitedUserMailboxSettingOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateInvitedUserMailboxSettingOperationOptions() UpdateInvitedUserMailboxSettingOperationOptions {
+	return UpdateInvitedUserMailboxSettingOperationOptions{}
+}
+
+func (o UpdateInvitedUserMailboxSettingOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateInvitedUserMailboxSettingOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateInvitedUserMailboxSettingOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateInvitedUserMailboxSetting - Update property mailboxSettings value.
-func (c InvitedUserMailboxSettingClient) UpdateInvitedUserMailboxSetting(ctx context.Context, input beta.MailboxSettings) (result UpdateInvitedUserMailboxSettingOperationResponse, err error) {
+func (c InvitedUserMailboxSettingClient) UpdateInvitedUserMailboxSetting(ctx context.Context, input beta.MailboxSettings, options UpdateInvitedUserMailboxSettingOperationOptions) (result UpdateInvitedUserMailboxSettingOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       "/invitations/invitedUser/mailboxSettings",
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          "/invitations/invitedUser/mailboxSettings",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

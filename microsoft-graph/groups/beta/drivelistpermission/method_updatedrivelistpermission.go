@@ -17,15 +17,44 @@ type UpdateDriveListPermissionOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateDriveListPermissionOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateDriveListPermissionOperationOptions() UpdateDriveListPermissionOperationOptions {
+	return UpdateDriveListPermissionOperationOptions{}
+}
+
+func (o UpdateDriveListPermissionOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateDriveListPermissionOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateDriveListPermissionOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateDriveListPermission - Update the navigation property permissions in groups
-func (c DriveListPermissionClient) UpdateDriveListPermission(ctx context.Context, id beta.GroupIdDriveIdListPermissionId, input beta.Permission) (result UpdateDriveListPermissionOperationResponse, err error) {
+func (c DriveListPermissionClient) UpdateDriveListPermission(ctx context.Context, id beta.GroupIdDriveIdListPermissionId, input beta.Permission, options UpdateDriveListPermissionOperationOptions) (result UpdateDriveListPermissionOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

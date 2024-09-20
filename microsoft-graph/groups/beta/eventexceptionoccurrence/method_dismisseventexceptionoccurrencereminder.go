@@ -18,16 +18,45 @@ type DismissEventExceptionOccurrenceReminderOperationResponse struct {
 	OData        *odata.OData
 }
 
+type DismissEventExceptionOccurrenceReminderOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultDismissEventExceptionOccurrenceReminderOperationOptions() DismissEventExceptionOccurrenceReminderOperationOptions {
+	return DismissEventExceptionOccurrenceReminderOperationOptions{}
+}
+
+func (o DismissEventExceptionOccurrenceReminderOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o DismissEventExceptionOccurrenceReminderOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o DismissEventExceptionOccurrenceReminderOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // DismissEventExceptionOccurrenceReminder - Invoke action dismissReminder. Dismiss a reminder that has been triggered
 // for an event in a user calendar.
-func (c EventExceptionOccurrenceClient) DismissEventExceptionOccurrenceReminder(ctx context.Context, id beta.GroupIdEventIdExceptionOccurrenceId) (result DismissEventExceptionOccurrenceReminderOperationResponse, err error) {
+func (c EventExceptionOccurrenceClient) DismissEventExceptionOccurrenceReminder(ctx context.Context, id beta.GroupIdEventIdExceptionOccurrenceId, options DismissEventExceptionOccurrenceReminderOperationOptions) (result DismissEventExceptionOccurrenceReminderOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/dismissReminder", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/dismissReminder", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

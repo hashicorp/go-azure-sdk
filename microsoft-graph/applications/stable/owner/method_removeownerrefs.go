@@ -19,8 +19,9 @@ type RemoveOwnerRefsOperationResponse struct {
 }
 
 type RemoveOwnerRefsOperationOptions struct {
-	Id      *string
-	IfMatch *string
+	Id       *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultRemoveOwnerRefsOperationOptions() RemoveOwnerRefsOperationOptions {
@@ -37,7 +38,9 @@ func (o RemoveOwnerRefsOperationOptions) ToHeaders() *client.Headers {
 
 func (o RemoveOwnerRefsOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

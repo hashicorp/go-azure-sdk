@@ -17,16 +17,45 @@ type UpdateUserExperienceAnalyticsAnomalyOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateUserExperienceAnalyticsAnomalyOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateUserExperienceAnalyticsAnomalyOperationOptions() UpdateUserExperienceAnalyticsAnomalyOperationOptions {
+	return UpdateUserExperienceAnalyticsAnomalyOperationOptions{}
+}
+
+func (o UpdateUserExperienceAnalyticsAnomalyOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateUserExperienceAnalyticsAnomalyOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateUserExperienceAnalyticsAnomalyOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateUserExperienceAnalyticsAnomaly - Update the navigation property userExperienceAnalyticsAnomaly in
 // deviceManagement
-func (c UserExperienceAnalyticsAnomalyClient) UpdateUserExperienceAnalyticsAnomaly(ctx context.Context, id beta.DeviceManagementUserExperienceAnalyticsAnomalyId, input beta.UserExperienceAnalyticsAnomaly) (result UpdateUserExperienceAnalyticsAnomalyOperationResponse, err error) {
+func (c UserExperienceAnalyticsAnomalyClient) UpdateUserExperienceAnalyticsAnomaly(ctx context.Context, id beta.DeviceManagementUserExperienceAnalyticsAnomalyId, input beta.UserExperienceAnalyticsAnomaly, options UpdateUserExperienceAnalyticsAnomalyOperationOptions) (result UpdateUserExperienceAnalyticsAnomalyOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

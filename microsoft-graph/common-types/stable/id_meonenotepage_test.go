@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &MeOnenotePageId{}
 
 func TestNewMeOnenotePageID(t *testing.T) {
-	id := NewMeOnenotePageID("onenotePageIdValue")
+	id := NewMeOnenotePageID("onenotePageId")
 
-	if id.OnenotePageId != "onenotePageIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'OnenotePageId'", id.OnenotePageId, "onenotePageIdValue")
+	if id.OnenotePageId != "onenotePageId" {
+		t.Fatalf("Expected %q but got %q for Segment 'OnenotePageId'", id.OnenotePageId, "onenotePageId")
 	}
 }
 
 func TestFormatMeOnenotePageID(t *testing.T) {
-	actual := NewMeOnenotePageID("onenotePageIdValue").ID()
-	expected := "/me/onenote/pages/onenotePageIdValue"
+	actual := NewMeOnenotePageID("onenotePageId").ID()
+	expected := "/me/onenote/pages/onenotePageId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -55,14 +55,14 @@ func TestParseMeOnenotePageID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/me/onenote/pages/onenotePageIdValue",
+			Input: "/me/onenote/pages/onenotePageId",
 			Expected: &MeOnenotePageId{
-				OnenotePageId: "onenotePageIdValue",
+				OnenotePageId: "onenotePageId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/onenote/pages/onenotePageIdValue/extra",
+			Input: "/me/onenote/pages/onenotePageId/extra",
 			Error: true,
 		},
 	}
@@ -131,26 +131,26 @@ func TestParseMeOnenotePageIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/me/onenote/pages/onenotePageIdValue",
+			Input: "/me/onenote/pages/onenotePageId",
 			Expected: &MeOnenotePageId{
-				OnenotePageId: "onenotePageIdValue",
+				OnenotePageId: "onenotePageId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/onenote/pages/onenotePageIdValue/extra",
+			Input: "/me/onenote/pages/onenotePageId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/oNeNoTe/pAgEs/oNeNoTePaGeIdVaLuE",
+			Input: "/mE/oNeNoTe/pAgEs/oNeNoTePaGeId",
 			Expected: &MeOnenotePageId{
-				OnenotePageId: "oNeNoTePaGeIdVaLuE",
+				OnenotePageId: "oNeNoTePaGeId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/mE/oNeNoTe/pAgEs/oNeNoTePaGeIdVaLuE/extra",
+			Input: "/mE/oNeNoTe/pAgEs/oNeNoTePaGeId/extra",
 			Error: true,
 		},
 	}

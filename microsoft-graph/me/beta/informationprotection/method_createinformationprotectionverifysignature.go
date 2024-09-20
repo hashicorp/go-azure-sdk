@@ -18,15 +18,44 @@ type CreateInformationProtectionVerifySignatureOperationResponse struct {
 	Model        *beta.VerificationResult
 }
 
+type CreateInformationProtectionVerifySignatureOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateInformationProtectionVerifySignatureOperationOptions() CreateInformationProtectionVerifySignatureOperationOptions {
+	return CreateInformationProtectionVerifySignatureOperationOptions{}
+}
+
+func (o CreateInformationProtectionVerifySignatureOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateInformationProtectionVerifySignatureOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateInformationProtectionVerifySignatureOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateInformationProtectionVerifySignature - Invoke action verifySignature
-func (c InformationProtectionClient) CreateInformationProtectionVerifySignature(ctx context.Context, input CreateInformationProtectionVerifySignatureRequest) (result CreateInformationProtectionVerifySignatureOperationResponse, err error) {
+func (c InformationProtectionClient) CreateInformationProtectionVerifySignature(ctx context.Context, input CreateInformationProtectionVerifySignatureRequest, options CreateInformationProtectionVerifySignatureOperationOptions) (result CreateInformationProtectionVerifySignatureOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/me/informationProtection/verifySignature",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/me/informationProtection/verifySignature",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

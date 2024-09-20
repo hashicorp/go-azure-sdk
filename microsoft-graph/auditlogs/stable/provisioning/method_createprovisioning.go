@@ -18,15 +18,44 @@ type CreateProvisioningOperationResponse struct {
 	Model        *stable.ProvisioningObjectSummary
 }
 
+type CreateProvisioningOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateProvisioningOperationOptions() CreateProvisioningOperationOptions {
+	return CreateProvisioningOperationOptions{}
+}
+
+func (o CreateProvisioningOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateProvisioningOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateProvisioningOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateProvisioning - Create new navigation property to provisioning for auditLogs
-func (c ProvisioningClient) CreateProvisioning(ctx context.Context, input stable.ProvisioningObjectSummary) (result CreateProvisioningOperationResponse, err error) {
+func (c ProvisioningClient) CreateProvisioning(ctx context.Context, input stable.ProvisioningObjectSummary, options CreateProvisioningOperationOptions) (result CreateProvisioningOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/auditLogs/provisioning",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/auditLogs/provisioning",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

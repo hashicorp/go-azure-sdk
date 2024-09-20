@@ -17,15 +17,44 @@ type UpdateSiteAnalyticsItemActivityStatOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateSiteAnalyticsItemActivityStatOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateSiteAnalyticsItemActivityStatOperationOptions() UpdateSiteAnalyticsItemActivityStatOperationOptions {
+	return UpdateSiteAnalyticsItemActivityStatOperationOptions{}
+}
+
+func (o UpdateSiteAnalyticsItemActivityStatOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateSiteAnalyticsItemActivityStatOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateSiteAnalyticsItemActivityStatOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateSiteAnalyticsItemActivityStat - Update the navigation property itemActivityStats in groups
-func (c SiteAnalyticsItemActivityStatClient) UpdateSiteAnalyticsItemActivityStat(ctx context.Context, id stable.GroupIdSiteIdAnalyticsItemActivityStatId, input stable.ItemActivityStat) (result UpdateSiteAnalyticsItemActivityStatOperationResponse, err error) {
+func (c SiteAnalyticsItemActivityStatClient) UpdateSiteAnalyticsItemActivityStat(ctx context.Context, id stable.GroupIdSiteIdAnalyticsItemActivityStatId, input stable.ItemActivityStat, options UpdateSiteAnalyticsItemActivityStatOperationOptions) (result UpdateSiteAnalyticsItemActivityStatOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

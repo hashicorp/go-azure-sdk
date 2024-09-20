@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/calendar` Documentation
 
-The `calendar` SDK allows for interaction with the Azure Resource Manager Service `groups` (API Version `beta`).
+The `calendar` SDK allows for interaction with Microsoft Graph `groups` (API Version `beta`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -15,7 +15,7 @@ import "github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/calendar"
 ### Client Initialization
 
 ```go
-client := calendar.NewCalendarClientWithBaseURI("https://management.azure.com")
+client := calendar.NewCalendarClientWithBaseURI("https://graph.microsoft.com")
 client.Client.Authorizer = authorizer
 ```
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := calendar.NewGroupID("groupIdValue")
+id := calendar.NewGroupID("groupId")
 
 read, err := client.GetCalendar(ctx, id, calendar.DefaultGetCalendarOperationOptions())
 if err != nil {
@@ -40,7 +40,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := calendar.NewGroupID("groupIdValue")
+id := calendar.NewGroupID("groupId")
 
 payload := calendar.GetCalendarSchedulesRequest{
 	// ...

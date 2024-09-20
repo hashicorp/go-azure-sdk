@@ -98,10 +98,10 @@ func (id UserIdAuthenticationPasswordMethodId) ID() string {
 func (id UserIdAuthenticationPasswordMethodId) Segments() []resourceids.Segment {
 	return []resourceids.Segment{
 		resourceids.StaticSegment("users", "users", "users"),
-		resourceids.UserSpecifiedSegment("userId", "userIdValue"),
+		resourceids.UserSpecifiedSegment("userId", "userId"),
 		resourceids.StaticSegment("authentication", "authentication", "authentication"),
 		resourceids.StaticSegment("passwordMethods", "passwordMethods", "passwordMethods"),
-		resourceids.UserSpecifiedSegment("passwordAuthenticationMethodId", "passwordAuthenticationMethodIdValue"),
+		resourceids.UserSpecifiedSegment("passwordAuthenticationMethodId", "passwordAuthenticationMethodId"),
 	}
 }
 

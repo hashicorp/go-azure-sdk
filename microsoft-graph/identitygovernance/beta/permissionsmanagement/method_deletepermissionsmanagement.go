@@ -18,7 +18,8 @@ type DeletePermissionsManagementOperationResponse struct {
 }
 
 type DeletePermissionsManagementOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeletePermissionsManagementOperationOptions() DeletePermissionsManagementOperationOptions {
@@ -35,7 +36,9 @@ func (o DeletePermissionsManagementOperationOptions) ToHeaders() *client.Headers
 
 func (o DeletePermissionsManagementOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

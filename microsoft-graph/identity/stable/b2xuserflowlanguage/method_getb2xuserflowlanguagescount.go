@@ -20,8 +20,9 @@ type GetB2xUserFlowLanguagesCountOperationResponse struct {
 }
 
 type GetB2xUserFlowLanguagesCountOperationOptions struct {
-	Filter *string
-	Search *string
+	Filter   *string
+	Metadata *odata.Metadata
+	Search   *string
 }
 
 func DefaultGetB2xUserFlowLanguagesCountOperationOptions() GetB2xUserFlowLanguagesCountOperationOptions {
@@ -38,6 +39,9 @@ func (o GetB2xUserFlowLanguagesCountOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
 	if o.Filter != nil {
 		out.Filter = *o.Filter
+	}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
 	}
 	if o.Search != nil {
 		out.Search = *o.Search

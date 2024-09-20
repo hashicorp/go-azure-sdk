@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &DeviceManagementConfigurationPolicyTemplateId{}
 
 func TestNewDeviceManagementConfigurationPolicyTemplateID(t *testing.T) {
-	id := NewDeviceManagementConfigurationPolicyTemplateID("deviceManagementConfigurationPolicyTemplateIdValue")
+	id := NewDeviceManagementConfigurationPolicyTemplateID("deviceManagementConfigurationPolicyTemplateId")
 
-	if id.DeviceManagementConfigurationPolicyTemplateId != "deviceManagementConfigurationPolicyTemplateIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DeviceManagementConfigurationPolicyTemplateId'", id.DeviceManagementConfigurationPolicyTemplateId, "deviceManagementConfigurationPolicyTemplateIdValue")
+	if id.DeviceManagementConfigurationPolicyTemplateId != "deviceManagementConfigurationPolicyTemplateId" {
+		t.Fatalf("Expected %q but got %q for Segment 'DeviceManagementConfigurationPolicyTemplateId'", id.DeviceManagementConfigurationPolicyTemplateId, "deviceManagementConfigurationPolicyTemplateId")
 	}
 }
 
 func TestFormatDeviceManagementConfigurationPolicyTemplateID(t *testing.T) {
-	actual := NewDeviceManagementConfigurationPolicyTemplateID("deviceManagementConfigurationPolicyTemplateIdValue").ID()
-	expected := "/deviceManagement/configurationPolicyTemplates/deviceManagementConfigurationPolicyTemplateIdValue"
+	actual := NewDeviceManagementConfigurationPolicyTemplateID("deviceManagementConfigurationPolicyTemplateId").ID()
+	expected := "/deviceManagement/configurationPolicyTemplates/deviceManagementConfigurationPolicyTemplateId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -50,14 +50,14 @@ func TestParseDeviceManagementConfigurationPolicyTemplateID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/configurationPolicyTemplates/deviceManagementConfigurationPolicyTemplateIdValue",
+			Input: "/deviceManagement/configurationPolicyTemplates/deviceManagementConfigurationPolicyTemplateId",
 			Expected: &DeviceManagementConfigurationPolicyTemplateId{
-				DeviceManagementConfigurationPolicyTemplateId: "deviceManagementConfigurationPolicyTemplateIdValue",
+				DeviceManagementConfigurationPolicyTemplateId: "deviceManagementConfigurationPolicyTemplateId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/configurationPolicyTemplates/deviceManagementConfigurationPolicyTemplateIdValue/extra",
+			Input: "/deviceManagement/configurationPolicyTemplates/deviceManagementConfigurationPolicyTemplateId/extra",
 			Error: true,
 		},
 	}
@@ -116,26 +116,26 @@ func TestParseDeviceManagementConfigurationPolicyTemplateIDInsensitively(t *test
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/configurationPolicyTemplates/deviceManagementConfigurationPolicyTemplateIdValue",
+			Input: "/deviceManagement/configurationPolicyTemplates/deviceManagementConfigurationPolicyTemplateId",
 			Expected: &DeviceManagementConfigurationPolicyTemplateId{
-				DeviceManagementConfigurationPolicyTemplateId: "deviceManagementConfigurationPolicyTemplateIdValue",
+				DeviceManagementConfigurationPolicyTemplateId: "deviceManagementConfigurationPolicyTemplateId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/configurationPolicyTemplates/deviceManagementConfigurationPolicyTemplateIdValue/extra",
+			Input: "/deviceManagement/configurationPolicyTemplates/deviceManagementConfigurationPolicyTemplateId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/cOnFiGuRaTiOnPoLiCyTeMpLaTeS/dEvIcEmAnAgEmEnTcOnFiGuRaTiOnPoLiCyTeMpLaTeIdVaLuE",
+			Input: "/dEvIcEmAnAgEmEnT/cOnFiGuRaTiOnPoLiCyTeMpLaTeS/dEvIcEmAnAgEmEnTcOnFiGuRaTiOnPoLiCyTeMpLaTeId",
 			Expected: &DeviceManagementConfigurationPolicyTemplateId{
-				DeviceManagementConfigurationPolicyTemplateId: "dEvIcEmAnAgEmEnTcOnFiGuRaTiOnPoLiCyTeMpLaTeIdVaLuE",
+				DeviceManagementConfigurationPolicyTemplateId: "dEvIcEmAnAgEmEnTcOnFiGuRaTiOnPoLiCyTeMpLaTeId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/cOnFiGuRaTiOnPoLiCyTeMpLaTeS/dEvIcEmAnAgEmEnTcOnFiGuRaTiOnPoLiCyTeMpLaTeIdVaLuE/extra",
+			Input: "/dEvIcEmAnAgEmEnT/cOnFiGuRaTiOnPoLiCyTeMpLaTeS/dEvIcEmAnAgEmEnTcOnFiGuRaTiOnPoLiCyTeMpLaTeId/extra",
 			Error: true,
 		},
 	}

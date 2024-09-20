@@ -94,7 +94,7 @@ func (id PolicyCrossTenantAccessPolicyPartnerId) Segments() []resourceids.Segmen
 		resourceids.StaticSegment("policies", "policies", "policies"),
 		resourceids.StaticSegment("crossTenantAccessPolicy", "crossTenantAccessPolicy", "crossTenantAccessPolicy"),
 		resourceids.StaticSegment("partners", "partners", "partners"),
-		resourceids.UserSpecifiedSegment("crossTenantAccessPolicyConfigurationPartnerTenantId", "crossTenantAccessPolicyConfigurationPartnerTenantIdValue"),
+		resourceids.UserSpecifiedSegment("crossTenantAccessPolicyConfigurationPartnerTenantId", "crossTenantAccessPolicyConfigurationPartnerTenantId"),
 	}
 }
 

@@ -30,10 +30,15 @@ type CustomExtensionCalloutResponse struct {
 var _ json.Unmarshaler = &CustomExtensionCalloutResponse{}
 
 func (s *CustomExtensionCalloutResponse) UnmarshalJSON(bytes []byte) error {
-	type alias CustomExtensionCalloutResponse
-	var decoded alias
+
+	var decoded struct {
+		ODataId   *string               `json:"@odata.id,omitempty"`
+		ODataType *string               `json:"@odata.type,omitempty"`
+		Source    nullable.Type[string] `json:"source,omitempty"`
+		Type      nullable.Type[string] `json:"type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into CustomExtensionCalloutResponse: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.ODataId = decoded.ODataId
@@ -53,5 +58,6 @@ func (s *CustomExtensionCalloutResponse) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Data = impl
 	}
+
 	return nil
 }

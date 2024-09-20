@@ -17,15 +17,44 @@ type UpdateChatInstalledAppOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateChatInstalledAppOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateChatInstalledAppOperationOptions() UpdateChatInstalledAppOperationOptions {
+	return UpdateChatInstalledAppOperationOptions{}
+}
+
+func (o UpdateChatInstalledAppOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateChatInstalledAppOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateChatInstalledAppOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateChatInstalledApp - Update the navigation property installedApps in users
-func (c ChatInstalledAppClient) UpdateChatInstalledApp(ctx context.Context, id beta.UserIdChatIdInstalledAppId, input beta.TeamsAppInstallation) (result UpdateChatInstalledAppOperationResponse, err error) {
+func (c ChatInstalledAppClient) UpdateChatInstalledApp(ctx context.Context, id beta.UserIdChatIdInstalledAppId, input beta.TeamsAppInstallation, options UpdateChatInstalledAppOperationOptions) (result UpdateChatInstalledAppOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

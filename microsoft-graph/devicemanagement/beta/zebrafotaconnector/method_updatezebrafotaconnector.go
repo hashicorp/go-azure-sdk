@@ -17,15 +17,44 @@ type UpdateZebraFotaConnectorOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateZebraFotaConnectorOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateZebraFotaConnectorOperationOptions() UpdateZebraFotaConnectorOperationOptions {
+	return UpdateZebraFotaConnectorOperationOptions{}
+}
+
+func (o UpdateZebraFotaConnectorOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateZebraFotaConnectorOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateZebraFotaConnectorOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateZebraFotaConnector - Update the navigation property zebraFotaConnector in deviceManagement
-func (c ZebraFotaConnectorClient) UpdateZebraFotaConnector(ctx context.Context, input beta.ZebraFotaConnector) (result UpdateZebraFotaConnectorOperationResponse, err error) {
+func (c ZebraFotaConnectorClient) UpdateZebraFotaConnector(ctx context.Context, input beta.ZebraFotaConnector, options UpdateZebraFotaConnectorOperationOptions) (result UpdateZebraFotaConnectorOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       "/deviceManagement/zebraFotaConnector",
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          "/deviceManagement/zebraFotaConnector",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

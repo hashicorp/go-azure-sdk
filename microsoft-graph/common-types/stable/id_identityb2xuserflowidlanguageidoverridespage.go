@@ -105,11 +105,11 @@ func (id IdentityB2xUserFlowIdLanguageIdOverridesPageId) Segments() []resourceid
 	return []resourceids.Segment{
 		resourceids.StaticSegment("identity", "identity", "identity"),
 		resourceids.StaticSegment("b2xUserFlows", "b2xUserFlows", "b2xUserFlows"),
-		resourceids.UserSpecifiedSegment("b2xIdentityUserFlowId", "b2xIdentityUserFlowIdValue"),
+		resourceids.UserSpecifiedSegment("b2xIdentityUserFlowId", "b2xIdentityUserFlowId"),
 		resourceids.StaticSegment("languages", "languages", "languages"),
-		resourceids.UserSpecifiedSegment("userFlowLanguageConfigurationId", "userFlowLanguageConfigurationIdValue"),
+		resourceids.UserSpecifiedSegment("userFlowLanguageConfigurationId", "userFlowLanguageConfigurationId"),
 		resourceids.StaticSegment("overridesPages", "overridesPages", "overridesPages"),
-		resourceids.UserSpecifiedSegment("userFlowLanguagePageId", "userFlowLanguagePageIdValue"),
+		resourceids.UserSpecifiedSegment("userFlowLanguagePageId", "userFlowLanguagePageId"),
 	}
 }
 

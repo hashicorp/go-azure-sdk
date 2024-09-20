@@ -98,10 +98,10 @@ func (id UserIdOutlookMasterCategoryId) ID() string {
 func (id UserIdOutlookMasterCategoryId) Segments() []resourceids.Segment {
 	return []resourceids.Segment{
 		resourceids.StaticSegment("users", "users", "users"),
-		resourceids.UserSpecifiedSegment("userId", "userIdValue"),
+		resourceids.UserSpecifiedSegment("userId", "userId"),
 		resourceids.StaticSegment("outlook", "outlook", "outlook"),
 		resourceids.StaticSegment("masterCategories", "masterCategories", "masterCategories"),
-		resourceids.UserSpecifiedSegment("outlookCategoryId", "outlookCategoryIdValue"),
+		resourceids.UserSpecifiedSegment("outlookCategoryId", "outlookCategoryId"),
 	}
 }
 

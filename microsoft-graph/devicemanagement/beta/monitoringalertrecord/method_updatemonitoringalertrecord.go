@@ -17,15 +17,44 @@ type UpdateMonitoringAlertRecordOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateMonitoringAlertRecordOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateMonitoringAlertRecordOperationOptions() UpdateMonitoringAlertRecordOperationOptions {
+	return UpdateMonitoringAlertRecordOperationOptions{}
+}
+
+func (o UpdateMonitoringAlertRecordOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateMonitoringAlertRecordOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateMonitoringAlertRecordOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateMonitoringAlertRecord - Update the navigation property alertRecords in deviceManagement
-func (c MonitoringAlertRecordClient) UpdateMonitoringAlertRecord(ctx context.Context, id beta.DeviceManagementMonitoringAlertRecordId, input beta.DeviceManagementAlertRecord) (result UpdateMonitoringAlertRecordOperationResponse, err error) {
+func (c MonitoringAlertRecordClient) UpdateMonitoringAlertRecord(ctx context.Context, id beta.DeviceManagementMonitoringAlertRecordId, input beta.DeviceManagementAlertRecord, options UpdateMonitoringAlertRecordOperationOptions) (result UpdateMonitoringAlertRecordOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

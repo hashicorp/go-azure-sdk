@@ -18,16 +18,45 @@ type TroubleshootVirtualEndpointCloudPCOperationResponse struct {
 	OData        *odata.OData
 }
 
+type TroubleshootVirtualEndpointCloudPCOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultTroubleshootVirtualEndpointCloudPCOperationOptions() TroubleshootVirtualEndpointCloudPCOperationOptions {
+	return TroubleshootVirtualEndpointCloudPCOperationOptions{}
+}
+
+func (o TroubleshootVirtualEndpointCloudPCOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o TroubleshootVirtualEndpointCloudPCOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o TroubleshootVirtualEndpointCloudPCOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // TroubleshootVirtualEndpointCloudPC - Invoke action troubleshoot. Troubleshoot a specific Cloud PC. Use this API to
 // check the health status of the Cloud PC and the session host.
-func (c VirtualEndpointCloudPCClient) TroubleshootVirtualEndpointCloudPC(ctx context.Context, id beta.DeviceManagementVirtualEndpointCloudPCId) (result TroubleshootVirtualEndpointCloudPCOperationResponse, err error) {
+func (c VirtualEndpointCloudPCClient) TroubleshootVirtualEndpointCloudPC(ctx context.Context, id beta.DeviceManagementVirtualEndpointCloudPCId, options TroubleshootVirtualEndpointCloudPCOperationOptions) (result TroubleshootVirtualEndpointCloudPCOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/troubleshoot", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/troubleshoot", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

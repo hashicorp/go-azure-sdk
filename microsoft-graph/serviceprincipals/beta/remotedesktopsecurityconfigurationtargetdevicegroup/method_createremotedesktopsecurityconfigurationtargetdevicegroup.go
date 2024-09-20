@@ -19,17 +19,46 @@ type CreateRemoteDesktopSecurityConfigurationTargetDeviceGroupOperationResponse 
 	Model        *beta.TargetDeviceGroup
 }
 
+type CreateRemoteDesktopSecurityConfigurationTargetDeviceGroupOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateRemoteDesktopSecurityConfigurationTargetDeviceGroupOperationOptions() CreateRemoteDesktopSecurityConfigurationTargetDeviceGroupOperationOptions {
+	return CreateRemoteDesktopSecurityConfigurationTargetDeviceGroupOperationOptions{}
+}
+
+func (o CreateRemoteDesktopSecurityConfigurationTargetDeviceGroupOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateRemoteDesktopSecurityConfigurationTargetDeviceGroupOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateRemoteDesktopSecurityConfigurationTargetDeviceGroupOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateRemoteDesktopSecurityConfigurationTargetDeviceGroup - Create targetDeviceGroup. Create a new targetDeviceGroup
 // object for the remoteDesktopSecurityConfiguration object on the servicePrincipal. You can configure a maximum of 10
 // target device groups for the remoteDesktopSecurityConfiguraiton object on the servicePrincipal.
-func (c RemoteDesktopSecurityConfigurationTargetDeviceGroupClient) CreateRemoteDesktopSecurityConfigurationTargetDeviceGroup(ctx context.Context, id beta.ServicePrincipalId, input beta.TargetDeviceGroup) (result CreateRemoteDesktopSecurityConfigurationTargetDeviceGroupOperationResponse, err error) {
+func (c RemoteDesktopSecurityConfigurationTargetDeviceGroupClient) CreateRemoteDesktopSecurityConfigurationTargetDeviceGroup(ctx context.Context, id beta.ServicePrincipalId, input beta.TargetDeviceGroup, options CreateRemoteDesktopSecurityConfigurationTargetDeviceGroupOperationOptions) (result CreateRemoteDesktopSecurityConfigurationTargetDeviceGroupOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/remoteDesktopSecurityConfiguration/targetDeviceGroups", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/remoteDesktopSecurityConfiguration/targetDeviceGroups", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

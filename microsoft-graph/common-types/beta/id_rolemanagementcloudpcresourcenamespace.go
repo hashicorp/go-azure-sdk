@@ -94,7 +94,7 @@ func (id RoleManagementCloudPCResourceNamespaceId) Segments() []resourceids.Segm
 		resourceids.StaticSegment("roleManagement", "roleManagement", "roleManagement"),
 		resourceids.StaticSegment("cloudPC", "cloudPC", "cloudPC"),
 		resourceids.StaticSegment("resourceNamespaces", "resourceNamespaces", "resourceNamespaces"),
-		resourceids.UserSpecifiedSegment("unifiedRbacResourceNamespaceId", "unifiedRbacResourceNamespaceIdValue"),
+		resourceids.UserSpecifiedSegment("unifiedRbacResourceNamespaceId", "unifiedRbacResourceNamespaceId"),
 	}
 }
 

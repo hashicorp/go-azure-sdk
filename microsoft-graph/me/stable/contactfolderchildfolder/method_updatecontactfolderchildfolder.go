@@ -17,15 +17,44 @@ type UpdateContactFolderChildFolderOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateContactFolderChildFolderOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateContactFolderChildFolderOperationOptions() UpdateContactFolderChildFolderOperationOptions {
+	return UpdateContactFolderChildFolderOperationOptions{}
+}
+
+func (o UpdateContactFolderChildFolderOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateContactFolderChildFolderOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateContactFolderChildFolderOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateContactFolderChildFolder - Update the navigation property childFolders in me
-func (c ContactFolderChildFolderClient) UpdateContactFolderChildFolder(ctx context.Context, id stable.MeContactFolderIdChildFolderId, input stable.ContactFolder) (result UpdateContactFolderChildFolderOperationResponse, err error) {
+func (c ContactFolderChildFolderClient) UpdateContactFolderChildFolder(ctx context.Context, id stable.MeContactFolderIdChildFolderId, input stable.ContactFolder, options UpdateContactFolderChildFolderOperationOptions) (result UpdateContactFolderChildFolderOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -111,13 +111,28 @@ func (s Invitation) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &Invitation{}
 
 func (s *Invitation) UnmarshalJSON(bytes []byte) error {
-	type alias Invitation
-	var decoded alias
+
+	var decoded struct {
+		InviteRedeemUrl               nullable.Type[string]   `json:"inviteRedeemUrl,omitempty"`
+		InviteRedirectUrl             string                  `json:"inviteRedirectUrl"`
+		InvitedUser                   *User                   `json:"invitedUser,omitempty"`
+		InvitedUserDisplayName        nullable.Type[string]   `json:"invitedUserDisplayName,omitempty"`
+		InvitedUserEmailAddress       string                  `json:"invitedUserEmailAddress"`
+		InvitedUserMessageInfo        *InvitedUserMessageInfo `json:"invitedUserMessageInfo,omitempty"`
+		InvitedUserSponsors           *[]DirectoryObject      `json:"invitedUserSponsors,omitempty"`
+		InvitedUserSponsors_ODataBind *[]string               `json:"invitedUserSponsors@odata.bind,omitempty"`
+		InvitedUserType               nullable.Type[string]   `json:"invitedUserType,omitempty"`
+		ResetRedemption               nullable.Type[bool]     `json:"resetRedemption,omitempty"`
+		SendInvitationMessage         nullable.Type[bool]     `json:"sendInvitationMessage,omitempty"`
+		Status                        nullable.Type[string]   `json:"status,omitempty"`
+		Id                            *string                 `json:"id,omitempty"`
+		ODataId                       *string                 `json:"@odata.id,omitempty"`
+		ODataType                     *string                 `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into Invitation: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
-	s.Id = decoded.Id
 	s.InviteRedeemUrl = decoded.InviteRedeemUrl
 	s.InviteRedirectUrl = decoded.InviteRedirectUrl
 	s.InvitedUser = decoded.InvitedUser
@@ -126,11 +141,12 @@ func (s *Invitation) UnmarshalJSON(bytes []byte) error {
 	s.InvitedUserMessageInfo = decoded.InvitedUserMessageInfo
 	s.InvitedUserSponsors_ODataBind = decoded.InvitedUserSponsors_ODataBind
 	s.InvitedUserType = decoded.InvitedUserType
-	s.ODataId = decoded.ODataId
-	s.ODataType = decoded.ODataType
 	s.ResetRedemption = decoded.ResetRedemption
 	s.SendInvitationMessage = decoded.SendInvitationMessage
 	s.Status = decoded.Status
+	s.Id = decoded.Id
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -153,5 +169,6 @@ func (s *Invitation) UnmarshalJSON(bytes []byte) error {
 		}
 		s.InvitedUserSponsors = &output
 	}
+
 	return nil
 }

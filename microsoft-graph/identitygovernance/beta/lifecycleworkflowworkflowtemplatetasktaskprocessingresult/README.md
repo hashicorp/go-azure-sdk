@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/microsoft-graph/identitygovernance/beta/lifecycleworkflowworkflowtemplatetasktaskprocessingresult` Documentation
 
-The `lifecycleworkflowworkflowtemplatetasktaskprocessingresult` SDK allows for interaction with the Azure Resource Manager Service `identitygovernance` (API Version `beta`).
+The `lifecycleworkflowworkflowtemplatetasktaskprocessingresult` SDK allows for interaction with Microsoft Graph `identitygovernance` (API Version `beta`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -15,7 +15,7 @@ import "github.com/hashicorp/go-azure-sdk/microsoft-graph/identitygovernance/bet
 ### Client Initialization
 
 ```go
-client := lifecycleworkflowworkflowtemplatetasktaskprocessingresult.NewLifecycleWorkflowWorkflowTemplateTaskTaskProcessingResultClientWithBaseURI("https://management.azure.com")
+client := lifecycleworkflowworkflowtemplatetasktaskprocessingresult.NewLifecycleWorkflowWorkflowTemplateTaskTaskProcessingResultClientWithBaseURI("https://graph.microsoft.com")
 client.Client.Authorizer = authorizer
 ```
 
@@ -24,14 +24,14 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := lifecycleworkflowworkflowtemplatetasktaskprocessingresult.NewIdentityGovernanceLifecycleWorkflowWorkflowTemplateIdTaskIdTaskProcessingResultID("workflowTemplateIdValue", "taskIdValue", "taskProcessingResultIdValue")
+id := lifecycleworkflowworkflowtemplatetasktaskprocessingresult.NewIdentityGovernanceLifecycleWorkflowWorkflowTemplateIdTaskIdTaskProcessingResultID("workflowTemplateId", "taskId", "taskProcessingResultId")
 
 payload := lifecycleworkflowworkflowtemplatetasktaskprocessingresult.CreateLifecycleWorkflowTemplateTaskProcessingResultIdentityGovernanceResumeRequest{
 	// ...
 }
 
 
-read, err := client.CreateLifecycleWorkflowTemplateTaskProcessingResultIdentityGovernanceResume(ctx, id, payload)
+read, err := client.CreateLifecycleWorkflowTemplateTaskProcessingResultIdentityGovernanceResume(ctx, id, payload, lifecycleworkflowworkflowtemplatetasktaskprocessingresult.DefaultCreateLifecycleWorkflowTemplateTaskProcessingResultIdentityGovernanceResumeOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -45,7 +45,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := lifecycleworkflowworkflowtemplatetasktaskprocessingresult.NewIdentityGovernanceLifecycleWorkflowWorkflowTemplateIdTaskIdTaskProcessingResultID("workflowTemplateIdValue", "taskIdValue", "taskProcessingResultIdValue")
+id := lifecycleworkflowworkflowtemplatetasktaskprocessingresult.NewIdentityGovernanceLifecycleWorkflowWorkflowTemplateIdTaskIdTaskProcessingResultID("workflowTemplateId", "taskId", "taskProcessingResultId")
 
 read, err := client.GetLifecycleWorkflowTemplateTaskProcessingResult(ctx, id, lifecycleworkflowworkflowtemplatetasktaskprocessingresult.DefaultGetLifecycleWorkflowTemplateTaskProcessingResultOperationOptions())
 if err != nil {
@@ -61,7 +61,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := lifecycleworkflowworkflowtemplatetasktaskprocessingresult.NewIdentityGovernanceLifecycleWorkflowWorkflowTemplateIdTaskID("workflowTemplateIdValue", "taskIdValue")
+id := lifecycleworkflowworkflowtemplatetasktaskprocessingresult.NewIdentityGovernanceLifecycleWorkflowWorkflowTemplateIdTaskID("workflowTemplateId", "taskId")
 
 read, err := client.GetLifecycleWorkflowTemplateTaskProcessingResultsCount(ctx, id, lifecycleworkflowworkflowtemplatetasktaskprocessingresult.DefaultGetLifecycleWorkflowTemplateTaskProcessingResultsCountOperationOptions())
 if err != nil {
@@ -77,7 +77,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := lifecycleworkflowworkflowtemplatetasktaskprocessingresult.NewIdentityGovernanceLifecycleWorkflowWorkflowTemplateIdTaskID("workflowTemplateIdValue", "taskIdValue")
+id := lifecycleworkflowworkflowtemplatetasktaskprocessingresult.NewIdentityGovernanceLifecycleWorkflowWorkflowTemplateIdTaskID("workflowTemplateId", "taskId")
 
 // alternatively `client.ListLifecycleWorkflowTemplateTaskProcessingResults(ctx, id, lifecycleworkflowworkflowtemplatetasktaskprocessingresult.DefaultListLifecycleWorkflowTemplateTaskProcessingResultsOperationOptions())` can be used to do batched pagination
 items, err := client.ListLifecycleWorkflowTemplateTaskProcessingResultsComplete(ctx, id, lifecycleworkflowworkflowtemplatetasktaskprocessingresult.DefaultListLifecycleWorkflowTemplateTaskProcessingResultsOperationOptions())

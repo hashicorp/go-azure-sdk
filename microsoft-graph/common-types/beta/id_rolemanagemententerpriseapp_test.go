@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &RoleManagementEnterpriseAppId{}
 
 func TestNewRoleManagementEnterpriseAppID(t *testing.T) {
-	id := NewRoleManagementEnterpriseAppID("rbacApplicationIdValue")
+	id := NewRoleManagementEnterpriseAppID("rbacApplicationId")
 
-	if id.RbacApplicationId != "rbacApplicationIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'RbacApplicationId'", id.RbacApplicationId, "rbacApplicationIdValue")
+	if id.RbacApplicationId != "rbacApplicationId" {
+		t.Fatalf("Expected %q but got %q for Segment 'RbacApplicationId'", id.RbacApplicationId, "rbacApplicationId")
 	}
 }
 
 func TestFormatRoleManagementEnterpriseAppID(t *testing.T) {
-	actual := NewRoleManagementEnterpriseAppID("rbacApplicationIdValue").ID()
-	expected := "/roleManagement/enterpriseApps/rbacApplicationIdValue"
+	actual := NewRoleManagementEnterpriseAppID("rbacApplicationId").ID()
+	expected := "/roleManagement/enterpriseApps/rbacApplicationId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -50,14 +50,14 @@ func TestParseRoleManagementEnterpriseAppID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/roleManagement/enterpriseApps/rbacApplicationIdValue",
+			Input: "/roleManagement/enterpriseApps/rbacApplicationId",
 			Expected: &RoleManagementEnterpriseAppId{
-				RbacApplicationId: "rbacApplicationIdValue",
+				RbacApplicationId: "rbacApplicationId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/roleManagement/enterpriseApps/rbacApplicationIdValue/extra",
+			Input: "/roleManagement/enterpriseApps/rbacApplicationId/extra",
 			Error: true,
 		},
 	}
@@ -116,26 +116,26 @@ func TestParseRoleManagementEnterpriseAppIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/roleManagement/enterpriseApps/rbacApplicationIdValue",
+			Input: "/roleManagement/enterpriseApps/rbacApplicationId",
 			Expected: &RoleManagementEnterpriseAppId{
-				RbacApplicationId: "rbacApplicationIdValue",
+				RbacApplicationId: "rbacApplicationId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/roleManagement/enterpriseApps/rbacApplicationIdValue/extra",
+			Input: "/roleManagement/enterpriseApps/rbacApplicationId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/rOlEmAnAgEmEnT/eNtErPrIsEaPpS/rBaCaPpLiCaTiOnIdVaLuE",
+			Input: "/rOlEmAnAgEmEnT/eNtErPrIsEaPpS/rBaCaPpLiCaTiOnId",
 			Expected: &RoleManagementEnterpriseAppId{
-				RbacApplicationId: "rBaCaPpLiCaTiOnIdVaLuE",
+				RbacApplicationId: "rBaCaPpLiCaTiOnId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/rOlEmAnAgEmEnT/eNtErPrIsEaPpS/rBaCaPpLiCaTiOnIdVaLuE/extra",
+			Input: "/rOlEmAnAgEmEnT/eNtErPrIsEaPpS/rBaCaPpLiCaTiOnId/extra",
 			Error: true,
 		},
 	}

@@ -17,15 +17,44 @@ type UpdateMonitoringAlertRuleOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateMonitoringAlertRuleOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateMonitoringAlertRuleOperationOptions() UpdateMonitoringAlertRuleOperationOptions {
+	return UpdateMonitoringAlertRuleOperationOptions{}
+}
+
+func (o UpdateMonitoringAlertRuleOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateMonitoringAlertRuleOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateMonitoringAlertRuleOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateMonitoringAlertRule - Update alertRule. Update the properties of an alertRule object.
-func (c MonitoringAlertRuleClient) UpdateMonitoringAlertRule(ctx context.Context, id beta.DeviceManagementMonitoringAlertRuleId, input beta.DeviceManagementAlertRule) (result UpdateMonitoringAlertRuleOperationResponse, err error) {
+func (c MonitoringAlertRuleClient) UpdateMonitoringAlertRule(ctx context.Context, id beta.DeviceManagementMonitoringAlertRuleId, input beta.DeviceManagementAlertRule, options UpdateMonitoringAlertRuleOperationOptions) (result UpdateMonitoringAlertRuleOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -93,7 +93,7 @@ func (id DirectoryCustomSecurityAttributeDefinitionId) Segments() []resourceids.
 	return []resourceids.Segment{
 		resourceids.StaticSegment("directory", "directory", "directory"),
 		resourceids.StaticSegment("customSecurityAttributeDefinitions", "customSecurityAttributeDefinitions", "customSecurityAttributeDefinitions"),
-		resourceids.UserSpecifiedSegment("customSecurityAttributeDefinitionId", "customSecurityAttributeDefinitionIdValue"),
+		resourceids.UserSpecifiedSegment("customSecurityAttributeDefinitionId", "customSecurityAttributeDefinitionId"),
 	}
 }
 

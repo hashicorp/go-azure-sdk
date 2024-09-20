@@ -18,15 +18,44 @@ type CreateDirectoryRoleAssignmentScheduleOperationResponse struct {
 	Model        *beta.UnifiedRoleAssignmentSchedule
 }
 
+type CreateDirectoryRoleAssignmentScheduleOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateDirectoryRoleAssignmentScheduleOperationOptions() CreateDirectoryRoleAssignmentScheduleOperationOptions {
+	return CreateDirectoryRoleAssignmentScheduleOperationOptions{}
+}
+
+func (o CreateDirectoryRoleAssignmentScheduleOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateDirectoryRoleAssignmentScheduleOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateDirectoryRoleAssignmentScheduleOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateDirectoryRoleAssignmentSchedule - Create new navigation property to roleAssignmentSchedules for roleManagement
-func (c DirectoryRoleAssignmentScheduleClient) CreateDirectoryRoleAssignmentSchedule(ctx context.Context, input beta.UnifiedRoleAssignmentSchedule) (result CreateDirectoryRoleAssignmentScheduleOperationResponse, err error) {
+func (c DirectoryRoleAssignmentScheduleClient) CreateDirectoryRoleAssignmentSchedule(ctx context.Context, input beta.UnifiedRoleAssignmentSchedule, options CreateDirectoryRoleAssignmentScheduleOperationOptions) (result CreateDirectoryRoleAssignmentScheduleOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/roleManagement/directory/roleAssignmentSchedules",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/roleManagement/directory/roleAssignmentSchedules",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

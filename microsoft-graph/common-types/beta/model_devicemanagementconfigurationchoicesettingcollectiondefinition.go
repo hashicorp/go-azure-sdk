@@ -184,12 +184,40 @@ func (s DeviceManagementConfigurationChoiceSettingCollectionDefinition) MarshalJ
 var _ json.Unmarshaler = &DeviceManagementConfigurationChoiceSettingCollectionDefinition{}
 
 func (s *DeviceManagementConfigurationChoiceSettingCollectionDefinition) UnmarshalJSON(bytes []byte) error {
-	type alias DeviceManagementConfigurationChoiceSettingCollectionDefinition
-	var decoded alias
+
+	var decoded struct {
+		MaximumCount                   *int64                                                     `json:"maximumCount,omitempty"`
+		MinimumCount                   *int64                                                     `json:"minimumCount,omitempty"`
+		DefaultOptionId                nullable.Type[string]                                      `json:"defaultOptionId,omitempty"`
+		Options                        *[]DeviceManagementConfigurationOptionDefinition           `json:"options,omitempty"`
+		AccessTypes                    *DeviceManagementConfigurationSettingAccessTypes           `json:"accessTypes,omitempty"`
+		Applicability                  DeviceManagementConfigurationSettingApplicability          `json:"applicability"`
+		BaseUri                        nullable.Type[string]                                      `json:"baseUri,omitempty"`
+		CategoryId                     nullable.Type[string]                                      `json:"categoryId,omitempty"`
+		Description                    nullable.Type[string]                                      `json:"description,omitempty"`
+		DisplayName                    nullable.Type[string]                                      `json:"displayName,omitempty"`
+		HelpText                       nullable.Type[string]                                      `json:"helpText,omitempty"`
+		InfoUrls                       *[]string                                                  `json:"infoUrls,omitempty"`
+		Keywords                       *[]string                                                  `json:"keywords,omitempty"`
+		Name                           nullable.Type[string]                                      `json:"name,omitempty"`
+		Occurrence                     *DeviceManagementConfigurationSettingOccurrence            `json:"occurrence,omitempty"`
+		OffsetUri                      nullable.Type[string]                                      `json:"offsetUri,omitempty"`
+		ReferredSettingInformationList *[]DeviceManagementConfigurationReferredSettingInformation `json:"referredSettingInformationList,omitempty"`
+		RootDefinitionId               nullable.Type[string]                                      `json:"rootDefinitionId,omitempty"`
+		SettingUsage                   *DeviceManagementConfigurationSettingUsage                 `json:"settingUsage,omitempty"`
+		UxBehavior                     *DeviceManagementConfigurationControlType                  `json:"uxBehavior,omitempty"`
+		Version                        nullable.Type[string]                                      `json:"version,omitempty"`
+		Visibility                     *DeviceManagementConfigurationSettingVisibility            `json:"visibility,omitempty"`
+		Id                             *string                                                    `json:"id,omitempty"`
+		ODataId                        *string                                                    `json:"@odata.id,omitempty"`
+		ODataType                      *string                                                    `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into DeviceManagementConfigurationChoiceSettingCollectionDefinition: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
+	s.MaximumCount = decoded.MaximumCount
+	s.MinimumCount = decoded.MinimumCount
 	s.AccessTypes = decoded.AccessTypes
 	s.BaseUri = decoded.BaseUri
 	s.CategoryId = decoded.CategoryId
@@ -200,8 +228,6 @@ func (s *DeviceManagementConfigurationChoiceSettingCollectionDefinition) Unmarsh
 	s.Id = decoded.Id
 	s.InfoUrls = decoded.InfoUrls
 	s.Keywords = decoded.Keywords
-	s.MaximumCount = decoded.MaximumCount
-	s.MinimumCount = decoded.MinimumCount
 	s.Name = decoded.Name
 	s.ODataId = decoded.ODataId
 	s.ODataType = decoded.ODataType
@@ -227,5 +253,6 @@ func (s *DeviceManagementConfigurationChoiceSettingCollectionDefinition) Unmarsh
 		}
 		s.Applicability = impl
 	}
+
 	return nil
 }

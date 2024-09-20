@@ -327,12 +327,62 @@ func (s Win32CatalogApp) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &Win32CatalogApp{}
 
 func (s *Win32CatalogApp) UnmarshalJSON(bytes []byte) error {
-	type alias Win32CatalogApp
-	var decoded alias
+
+	var decoded struct {
+		MobileAppCatalogPackageId       nullable.Type[string]          `json:"mobileAppCatalogPackageId,omitempty"`
+		AllowAvailableUninstall         *bool                          `json:"allowAvailableUninstall,omitempty"`
+		ApplicableArchitectures         *WindowsArchitecture           `json:"applicableArchitectures,omitempty"`
+		DetectionRules                  *[]Win32LobAppDetection        `json:"detectionRules,omitempty"`
+		DisplayVersion                  nullable.Type[string]          `json:"displayVersion,omitempty"`
+		InstallCommandLine              nullable.Type[string]          `json:"installCommandLine,omitempty"`
+		InstallExperience               *Win32LobAppInstallExperience  `json:"installExperience,omitempty"`
+		MinimumCpuSpeedInMHz            nullable.Type[int64]           `json:"minimumCpuSpeedInMHz,omitempty"`
+		MinimumFreeDiskSpaceInMB        nullable.Type[int64]           `json:"minimumFreeDiskSpaceInMB,omitempty"`
+		MinimumMemoryInMB               nullable.Type[int64]           `json:"minimumMemoryInMB,omitempty"`
+		MinimumNumberOfProcessors       nullable.Type[int64]           `json:"minimumNumberOfProcessors,omitempty"`
+		MinimumSupportedOperatingSystem *WindowsMinimumOperatingSystem `json:"minimumSupportedOperatingSystem,omitempty"`
+		MinimumSupportedWindowsRelease  nullable.Type[string]          `json:"minimumSupportedWindowsRelease,omitempty"`
+		MsiInformation                  *Win32LobAppMsiInformation     `json:"msiInformation,omitempty"`
+		RequirementRules                *[]Win32LobAppRequirement      `json:"requirementRules,omitempty"`
+		ReturnCodes                     *[]Win32LobAppReturnCode       `json:"returnCodes,omitempty"`
+		Rules                           *[]Win32LobAppRule             `json:"rules,omitempty"`
+		SetupFilePath                   nullable.Type[string]          `json:"setupFilePath,omitempty"`
+		UninstallCommandLine            nullable.Type[string]          `json:"uninstallCommandLine,omitempty"`
+		CommittedContentVersion         nullable.Type[string]          `json:"committedContentVersion,omitempty"`
+		ContentVersions                 *[]MobileAppContent            `json:"contentVersions,omitempty"`
+		FileName                        nullable.Type[string]          `json:"fileName,omitempty"`
+		Size                            *int64                         `json:"size,omitempty"`
+		Assignments                     *[]MobileAppAssignment         `json:"assignments,omitempty"`
+		Categories                      *[]MobileAppCategory           `json:"categories,omitempty"`
+		CreatedDateTime                 *string                        `json:"createdDateTime,omitempty"`
+		DependentAppCount               *int64                         `json:"dependentAppCount,omitempty"`
+		Description                     nullable.Type[string]          `json:"description,omitempty"`
+		Developer                       nullable.Type[string]          `json:"developer,omitempty"`
+		DisplayName                     nullable.Type[string]          `json:"displayName,omitempty"`
+		InformationUrl                  nullable.Type[string]          `json:"informationUrl,omitempty"`
+		IsAssigned                      *bool                          `json:"isAssigned,omitempty"`
+		IsFeatured                      *bool                          `json:"isFeatured,omitempty"`
+		LargeIcon                       *MimeContent                   `json:"largeIcon,omitempty"`
+		LastModifiedDateTime            *string                        `json:"lastModifiedDateTime,omitempty"`
+		Notes                           nullable.Type[string]          `json:"notes,omitempty"`
+		Owner                           nullable.Type[string]          `json:"owner,omitempty"`
+		PrivacyInformationUrl           nullable.Type[string]          `json:"privacyInformationUrl,omitempty"`
+		Publisher                       nullable.Type[string]          `json:"publisher,omitempty"`
+		PublishingState                 *MobileAppPublishingState      `json:"publishingState,omitempty"`
+		Relationships                   *[]MobileAppRelationship       `json:"relationships,omitempty"`
+		RoleScopeTagIds                 *[]string                      `json:"roleScopeTagIds,omitempty"`
+		SupersededAppCount              *int64                         `json:"supersededAppCount,omitempty"`
+		SupersedingAppCount             *int64                         `json:"supersedingAppCount,omitempty"`
+		UploadState                     *int64                         `json:"uploadState,omitempty"`
+		Id                              *string                        `json:"id,omitempty"`
+		ODataId                         *string                        `json:"@odata.id,omitempty"`
+		ODataType                       *string                        `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into Win32CatalogApp: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
+	s.MobileAppCatalogPackageId = decoded.MobileAppCatalogPackageId
 	s.AllowAvailableUninstall = decoded.AllowAvailableUninstall
 	s.ApplicableArchitectures = decoded.ApplicableArchitectures
 	s.Assignments = decoded.Assignments
@@ -360,7 +410,6 @@ func (s *Win32CatalogApp) UnmarshalJSON(bytes []byte) error {
 	s.MinimumNumberOfProcessors = decoded.MinimumNumberOfProcessors
 	s.MinimumSupportedOperatingSystem = decoded.MinimumSupportedOperatingSystem
 	s.MinimumSupportedWindowsRelease = decoded.MinimumSupportedWindowsRelease
-	s.MobileAppCatalogPackageId = decoded.MobileAppCatalogPackageId
 	s.MsiInformation = decoded.MsiInformation
 	s.Notes = decoded.Notes
 	s.ODataId = decoded.ODataId
@@ -466,5 +515,6 @@ func (s *Win32CatalogApp) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Rules = &output
 	}
+
 	return nil
 }

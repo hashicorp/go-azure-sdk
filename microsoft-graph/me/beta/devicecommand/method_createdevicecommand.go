@@ -19,15 +19,44 @@ type CreateDeviceCommandOperationResponse struct {
 	Model        *beta.Command
 }
 
+type CreateDeviceCommandOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateDeviceCommandOperationOptions() CreateDeviceCommandOperationOptions {
+	return CreateDeviceCommandOperationOptions{}
+}
+
+func (o CreateDeviceCommandOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateDeviceCommandOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateDeviceCommandOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateDeviceCommand - Create new navigation property to commands for me
-func (c DeviceCommandClient) CreateDeviceCommand(ctx context.Context, id beta.MeDeviceId, input beta.Command) (result CreateDeviceCommandOperationResponse, err error) {
+func (c DeviceCommandClient) CreateDeviceCommand(ctx context.Context, id beta.MeDeviceId, input beta.Command, options CreateDeviceCommandOperationOptions) (result CreateDeviceCommandOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/commands", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/commands", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

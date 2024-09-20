@@ -17,15 +17,44 @@ type UpdateSiteRecycleBinItemOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateSiteRecycleBinItemOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateSiteRecycleBinItemOperationOptions() UpdateSiteRecycleBinItemOperationOptions {
+	return UpdateSiteRecycleBinItemOperationOptions{}
+}
+
+func (o UpdateSiteRecycleBinItemOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateSiteRecycleBinItemOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateSiteRecycleBinItemOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateSiteRecycleBinItem - Update the navigation property items in groups
-func (c SiteRecycleBinItemClient) UpdateSiteRecycleBinItem(ctx context.Context, id beta.GroupIdSiteIdRecycleBinItemId, input beta.RecycleBinItem) (result UpdateSiteRecycleBinItemOperationResponse, err error) {
+func (c SiteRecycleBinItemClient) UpdateSiteRecycleBinItem(ctx context.Context, id beta.GroupIdSiteIdRecycleBinItemId, input beta.RecycleBinItem, options UpdateSiteRecycleBinItemOperationOptions) (result UpdateSiteRecycleBinItemOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

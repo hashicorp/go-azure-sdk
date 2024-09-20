@@ -19,15 +19,44 @@ type CreateTemplateMigratableToCategoryOperationResponse struct {
 	Model        *beta.DeviceManagementTemplateSettingCategory
 }
 
+type CreateTemplateMigratableToCategoryOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateTemplateMigratableToCategoryOperationOptions() CreateTemplateMigratableToCategoryOperationOptions {
+	return CreateTemplateMigratableToCategoryOperationOptions{}
+}
+
+func (o CreateTemplateMigratableToCategoryOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateTemplateMigratableToCategoryOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateTemplateMigratableToCategoryOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateTemplateMigratableToCategory - Create new navigation property to categories for deviceManagement
-func (c TemplateMigratableToCategoryClient) CreateTemplateMigratableToCategory(ctx context.Context, id beta.DeviceManagementTemplateIdMigratableToId, input beta.DeviceManagementTemplateSettingCategory) (result CreateTemplateMigratableToCategoryOperationResponse, err error) {
+func (c TemplateMigratableToCategoryClient) CreateTemplateMigratableToCategory(ctx context.Context, id beta.DeviceManagementTemplateIdMigratableToId, input beta.DeviceManagementTemplateSettingCategory, options CreateTemplateMigratableToCategoryOperationOptions) (result CreateTemplateMigratableToCategoryOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/categories", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/categories", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

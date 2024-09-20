@@ -90,10 +90,24 @@ func (s PolicySet) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &PolicySet{}
 
 func (s *PolicySet) UnmarshalJSON(bytes []byte) error {
-	type alias PolicySet
-	var decoded alias
+
+	var decoded struct {
+		Assignments          *[]PolicySetAssignment `json:"assignments,omitempty"`
+		CreatedDateTime      *string                `json:"createdDateTime,omitempty"`
+		Description          nullable.Type[string]  `json:"description,omitempty"`
+		DisplayName          *string                `json:"displayName,omitempty"`
+		ErrorCode            *ErrorCode             `json:"errorCode,omitempty"`
+		GuidedDeploymentTags *[]string              `json:"guidedDeploymentTags,omitempty"`
+		Items                *[]PolicySetItem       `json:"items,omitempty"`
+		LastModifiedDateTime *string                `json:"lastModifiedDateTime,omitempty"`
+		RoleScopeTags        *[]string              `json:"roleScopeTags,omitempty"`
+		Status               *PolicySetStatus       `json:"status,omitempty"`
+		Id                   *string                `json:"id,omitempty"`
+		ODataId              *string                `json:"@odata.id,omitempty"`
+		ODataType            *string                `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into PolicySet: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.Assignments = decoded.Assignments
@@ -102,12 +116,12 @@ func (s *PolicySet) UnmarshalJSON(bytes []byte) error {
 	s.DisplayName = decoded.DisplayName
 	s.ErrorCode = decoded.ErrorCode
 	s.GuidedDeploymentTags = decoded.GuidedDeploymentTags
-	s.Id = decoded.Id
 	s.LastModifiedDateTime = decoded.LastModifiedDateTime
-	s.ODataId = decoded.ODataId
-	s.ODataType = decoded.ODataType
 	s.RoleScopeTags = decoded.RoleScopeTags
 	s.Status = decoded.Status
+	s.Id = decoded.Id
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -130,5 +144,6 @@ func (s *PolicySet) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Items = &output
 	}
+
 	return nil
 }

@@ -18,15 +18,44 @@ type CreateLifecycleWorkflowCustomTaskExtensionOperationResponse struct {
 	Model        *beta.IdentityGovernanceCustomTaskExtension
 }
 
+type CreateLifecycleWorkflowCustomTaskExtensionOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateLifecycleWorkflowCustomTaskExtensionOperationOptions() CreateLifecycleWorkflowCustomTaskExtensionOperationOptions {
+	return CreateLifecycleWorkflowCustomTaskExtensionOperationOptions{}
+}
+
+func (o CreateLifecycleWorkflowCustomTaskExtensionOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateLifecycleWorkflowCustomTaskExtensionOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateLifecycleWorkflowCustomTaskExtensionOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateLifecycleWorkflowCustomTaskExtension - Create customTaskExtensions. Create a new customTaskExtension object.
-func (c LifecycleWorkflowCustomTaskExtensionClient) CreateLifecycleWorkflowCustomTaskExtension(ctx context.Context, input beta.IdentityGovernanceCustomTaskExtension) (result CreateLifecycleWorkflowCustomTaskExtensionOperationResponse, err error) {
+func (c LifecycleWorkflowCustomTaskExtensionClient) CreateLifecycleWorkflowCustomTaskExtension(ctx context.Context, input beta.IdentityGovernanceCustomTaskExtension, options CreateLifecycleWorkflowCustomTaskExtensionOperationOptions) (result CreateLifecycleWorkflowCustomTaskExtensionOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/identityGovernance/lifecycleWorkflows/customTaskExtensions",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/identityGovernance/lifecycleWorkflows/customTaskExtensions",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

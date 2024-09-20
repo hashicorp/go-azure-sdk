@@ -18,15 +18,44 @@ type CreateSiteListContentTypeAssociateWithHubSiteOperationResponse struct {
 	OData        *odata.OData
 }
 
+type CreateSiteListContentTypeAssociateWithHubSiteOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateSiteListContentTypeAssociateWithHubSiteOperationOptions() CreateSiteListContentTypeAssociateWithHubSiteOperationOptions {
+	return CreateSiteListContentTypeAssociateWithHubSiteOperationOptions{}
+}
+
+func (o CreateSiteListContentTypeAssociateWithHubSiteOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateSiteListContentTypeAssociateWithHubSiteOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateSiteListContentTypeAssociateWithHubSiteOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateSiteListContentTypeAssociateWithHubSite - Invoke action associateWithHubSites
-func (c SiteListContentTypeClient) CreateSiteListContentTypeAssociateWithHubSite(ctx context.Context, id beta.GroupIdSiteIdListIdContentTypeId, input CreateSiteListContentTypeAssociateWithHubSiteRequest) (result CreateSiteListContentTypeAssociateWithHubSiteOperationResponse, err error) {
+func (c SiteListContentTypeClient) CreateSiteListContentTypeAssociateWithHubSite(ctx context.Context, id beta.GroupIdSiteIdListIdContentTypeId, input CreateSiteListContentTypeAssociateWithHubSiteRequest, options CreateSiteListContentTypeAssociateWithHubSiteOperationOptions) (result CreateSiteListContentTypeAssociateWithHubSiteOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/associateWithHubSites", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/associateWithHubSites", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

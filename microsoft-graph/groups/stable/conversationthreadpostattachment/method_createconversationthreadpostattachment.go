@@ -20,15 +20,44 @@ type CreateConversationThreadPostAttachmentOperationResponse struct {
 	Model        stable.Attachment
 }
 
+type CreateConversationThreadPostAttachmentOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateConversationThreadPostAttachmentOperationOptions() CreateConversationThreadPostAttachmentOperationOptions {
+	return CreateConversationThreadPostAttachmentOperationOptions{}
+}
+
+func (o CreateConversationThreadPostAttachmentOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateConversationThreadPostAttachmentOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateConversationThreadPostAttachmentOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateConversationThreadPostAttachment - Create new navigation property to attachments for groups
-func (c ConversationThreadPostAttachmentClient) CreateConversationThreadPostAttachment(ctx context.Context, id stable.GroupIdConversationIdThreadIdPostId, input stable.Attachment) (result CreateConversationThreadPostAttachmentOperationResponse, err error) {
+func (c ConversationThreadPostAttachmentClient) CreateConversationThreadPostAttachment(ctx context.Context, id stable.GroupIdConversationIdThreadIdPostId, input stable.Attachment, options CreateConversationThreadPostAttachmentOperationOptions) (result CreateConversationThreadPostAttachmentOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/attachments", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/attachments", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

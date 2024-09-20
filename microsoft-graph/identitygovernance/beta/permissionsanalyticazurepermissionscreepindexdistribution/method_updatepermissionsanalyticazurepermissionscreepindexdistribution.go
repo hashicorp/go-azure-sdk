@@ -17,16 +17,45 @@ type UpdatePermissionsAnalyticAzurePermissionsCreepIndexDistributionOperationRes
 	OData        *odata.OData
 }
 
+type UpdatePermissionsAnalyticAzurePermissionsCreepIndexDistributionOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdatePermissionsAnalyticAzurePermissionsCreepIndexDistributionOperationOptions() UpdatePermissionsAnalyticAzurePermissionsCreepIndexDistributionOperationOptions {
+	return UpdatePermissionsAnalyticAzurePermissionsCreepIndexDistributionOperationOptions{}
+}
+
+func (o UpdatePermissionsAnalyticAzurePermissionsCreepIndexDistributionOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdatePermissionsAnalyticAzurePermissionsCreepIndexDistributionOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdatePermissionsAnalyticAzurePermissionsCreepIndexDistributionOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdatePermissionsAnalyticAzurePermissionsCreepIndexDistribution - Update the navigation property
 // permissionsCreepIndexDistributions in identityGovernance
-func (c PermissionsAnalyticAzurePermissionsCreepIndexDistributionClient) UpdatePermissionsAnalyticAzurePermissionsCreepIndexDistribution(ctx context.Context, id beta.IdentityGovernancePermissionsAnalyticAzurePermissionsCreepIndexDistributionId, input beta.PermissionsCreepIndexDistribution) (result UpdatePermissionsAnalyticAzurePermissionsCreepIndexDistributionOperationResponse, err error) {
+func (c PermissionsAnalyticAzurePermissionsCreepIndexDistributionClient) UpdatePermissionsAnalyticAzurePermissionsCreepIndexDistribution(ctx context.Context, id beta.IdentityGovernancePermissionsAnalyticAzurePermissionsCreepIndexDistributionId, input beta.PermissionsCreepIndexDistribution, options UpdatePermissionsAnalyticAzurePermissionsCreepIndexDistributionOperationOptions) (result UpdatePermissionsAnalyticAzurePermissionsCreepIndexDistributionOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

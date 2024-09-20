@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &IdentityGovernanceLifecycleWorkflowWorkflowIdRunId{}
 
 func TestNewIdentityGovernanceLifecycleWorkflowWorkflowIdRunID(t *testing.T) {
-	id := NewIdentityGovernanceLifecycleWorkflowWorkflowIdRunID("workflowIdValue", "runIdValue")
+	id := NewIdentityGovernanceLifecycleWorkflowWorkflowIdRunID("workflowId", "runId")
 
-	if id.WorkflowId != "workflowIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'WorkflowId'", id.WorkflowId, "workflowIdValue")
+	if id.WorkflowId != "workflowId" {
+		t.Fatalf("Expected %q but got %q for Segment 'WorkflowId'", id.WorkflowId, "workflowId")
 	}
 
-	if id.RunId != "runIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'RunId'", id.RunId, "runIdValue")
+	if id.RunId != "runId" {
+		t.Fatalf("Expected %q but got %q for Segment 'RunId'", id.RunId, "runId")
 	}
 }
 
 func TestFormatIdentityGovernanceLifecycleWorkflowWorkflowIdRunID(t *testing.T) {
-	actual := NewIdentityGovernanceLifecycleWorkflowWorkflowIdRunID("workflowIdValue", "runIdValue").ID()
-	expected := "/identityGovernance/lifecycleWorkflows/workflows/workflowIdValue/runs/runIdValue"
+	actual := NewIdentityGovernanceLifecycleWorkflowWorkflowIdRunID("workflowId", "runId").ID()
+	expected := "/identityGovernance/lifecycleWorkflows/workflows/workflowId/runs/runId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -59,25 +59,25 @@ func TestParseIdentityGovernanceLifecycleWorkflowWorkflowIdRunID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/identityGovernance/lifecycleWorkflows/workflows/workflowIdValue",
+			Input: "/identityGovernance/lifecycleWorkflows/workflows/workflowId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/identityGovernance/lifecycleWorkflows/workflows/workflowIdValue/runs",
+			Input: "/identityGovernance/lifecycleWorkflows/workflows/workflowId/runs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/identityGovernance/lifecycleWorkflows/workflows/workflowIdValue/runs/runIdValue",
+			Input: "/identityGovernance/lifecycleWorkflows/workflows/workflowId/runs/runId",
 			Expected: &IdentityGovernanceLifecycleWorkflowWorkflowIdRunId{
-				WorkflowId: "workflowIdValue",
-				RunId:      "runIdValue",
+				WorkflowId: "workflowId",
+				RunId:      "runId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/identityGovernance/lifecycleWorkflows/workflows/workflowIdValue/runs/runIdValue/extra",
+			Input: "/identityGovernance/lifecycleWorkflows/workflows/workflowId/runs/runId/extra",
 			Error: true,
 		},
 	}
@@ -150,48 +150,48 @@ func TestParseIdentityGovernanceLifecycleWorkflowWorkflowIdRunIDInsensitively(t 
 		},
 		{
 			// Incomplete URI
-			Input: "/identityGovernance/lifecycleWorkflows/workflows/workflowIdValue",
+			Input: "/identityGovernance/lifecycleWorkflows/workflows/workflowId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/iDeNtItYgOvErNaNcE/lIfEcYcLeWoRkFlOwS/wOrKfLoWs/wOrKfLoWiDvAlUe",
+			Input: "/iDeNtItYgOvErNaNcE/lIfEcYcLeWoRkFlOwS/wOrKfLoWs/wOrKfLoWiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/identityGovernance/lifecycleWorkflows/workflows/workflowIdValue/runs",
+			Input: "/identityGovernance/lifecycleWorkflows/workflows/workflowId/runs",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/iDeNtItYgOvErNaNcE/lIfEcYcLeWoRkFlOwS/wOrKfLoWs/wOrKfLoWiDvAlUe/rUnS",
+			Input: "/iDeNtItYgOvErNaNcE/lIfEcYcLeWoRkFlOwS/wOrKfLoWs/wOrKfLoWiD/rUnS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/identityGovernance/lifecycleWorkflows/workflows/workflowIdValue/runs/runIdValue",
+			Input: "/identityGovernance/lifecycleWorkflows/workflows/workflowId/runs/runId",
 			Expected: &IdentityGovernanceLifecycleWorkflowWorkflowIdRunId{
-				WorkflowId: "workflowIdValue",
-				RunId:      "runIdValue",
+				WorkflowId: "workflowId",
+				RunId:      "runId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/identityGovernance/lifecycleWorkflows/workflows/workflowIdValue/runs/runIdValue/extra",
+			Input: "/identityGovernance/lifecycleWorkflows/workflows/workflowId/runs/runId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/iDeNtItYgOvErNaNcE/lIfEcYcLeWoRkFlOwS/wOrKfLoWs/wOrKfLoWiDvAlUe/rUnS/rUnIdVaLuE",
+			Input: "/iDeNtItYgOvErNaNcE/lIfEcYcLeWoRkFlOwS/wOrKfLoWs/wOrKfLoWiD/rUnS/rUnId",
 			Expected: &IdentityGovernanceLifecycleWorkflowWorkflowIdRunId{
-				WorkflowId: "wOrKfLoWiDvAlUe",
-				RunId:      "rUnIdVaLuE",
+				WorkflowId: "wOrKfLoWiD",
+				RunId:      "rUnId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/iDeNtItYgOvErNaNcE/lIfEcYcLeWoRkFlOwS/wOrKfLoWs/wOrKfLoWiDvAlUe/rUnS/rUnIdVaLuE/extra",
+			Input: "/iDeNtItYgOvErNaNcE/lIfEcYcLeWoRkFlOwS/wOrKfLoWs/wOrKfLoWiD/rUnS/rUnId/extra",
 			Error: true,
 		},
 	}

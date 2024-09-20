@@ -18,15 +18,44 @@ type CreateRemoteActionAuditOperationResponse struct {
 	Model        *beta.RemoteActionAudit
 }
 
+type CreateRemoteActionAuditOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateRemoteActionAuditOperationOptions() CreateRemoteActionAuditOperationOptions {
+	return CreateRemoteActionAuditOperationOptions{}
+}
+
+func (o CreateRemoteActionAuditOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateRemoteActionAuditOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateRemoteActionAuditOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateRemoteActionAudit - Create new navigation property to remoteActionAudits for deviceManagement
-func (c RemoteActionAuditClient) CreateRemoteActionAudit(ctx context.Context, input beta.RemoteActionAudit) (result CreateRemoteActionAuditOperationResponse, err error) {
+func (c RemoteActionAuditClient) CreateRemoteActionAudit(ctx context.Context, input beta.RemoteActionAudit, options CreateRemoteActionAuditOperationOptions) (result CreateRemoteActionAuditOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/deviceManagement/remoteActionAudits",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/deviceManagement/remoteActionAudits",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

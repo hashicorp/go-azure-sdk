@@ -18,15 +18,44 @@ type CreateSecurityInformationProtectionSensitivityLabelOperationResponse struct
 	Model        *beta.SecuritySensitivityLabel
 }
 
+type CreateSecurityInformationProtectionSensitivityLabelOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateSecurityInformationProtectionSensitivityLabelOperationOptions() CreateSecurityInformationProtectionSensitivityLabelOperationOptions {
+	return CreateSecurityInformationProtectionSensitivityLabelOperationOptions{}
+}
+
+func (o CreateSecurityInformationProtectionSensitivityLabelOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateSecurityInformationProtectionSensitivityLabelOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateSecurityInformationProtectionSensitivityLabelOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateSecurityInformationProtectionSensitivityLabel - Create new navigation property to sensitivityLabels for me
-func (c SecurityInformationProtectionSensitivityLabelClient) CreateSecurityInformationProtectionSensitivityLabel(ctx context.Context, input beta.SecuritySensitivityLabel) (result CreateSecurityInformationProtectionSensitivityLabelOperationResponse, err error) {
+func (c SecurityInformationProtectionSensitivityLabelClient) CreateSecurityInformationProtectionSensitivityLabel(ctx context.Context, input beta.SecuritySensitivityLabel, options CreateSecurityInformationProtectionSensitivityLabelOperationOptions) (result CreateSecurityInformationProtectionSensitivityLabelOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/me/security/informationProtection/sensitivityLabels",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/me/security/informationProtection/sensitivityLabels",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

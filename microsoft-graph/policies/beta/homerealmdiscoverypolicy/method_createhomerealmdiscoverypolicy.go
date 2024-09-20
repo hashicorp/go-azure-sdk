@@ -18,15 +18,44 @@ type CreateHomeRealmDiscoveryPolicyOperationResponse struct {
 	Model        *beta.HomeRealmDiscoveryPolicy
 }
 
+type CreateHomeRealmDiscoveryPolicyOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateHomeRealmDiscoveryPolicyOperationOptions() CreateHomeRealmDiscoveryPolicyOperationOptions {
+	return CreateHomeRealmDiscoveryPolicyOperationOptions{}
+}
+
+func (o CreateHomeRealmDiscoveryPolicyOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateHomeRealmDiscoveryPolicyOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateHomeRealmDiscoveryPolicyOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateHomeRealmDiscoveryPolicy - Create homeRealmDiscoveryPolicy. Create a new homeRealmDiscoveryPolicy object.
-func (c HomeRealmDiscoveryPolicyClient) CreateHomeRealmDiscoveryPolicy(ctx context.Context, input beta.HomeRealmDiscoveryPolicy) (result CreateHomeRealmDiscoveryPolicyOperationResponse, err error) {
+func (c HomeRealmDiscoveryPolicyClient) CreateHomeRealmDiscoveryPolicy(ctx context.Context, input beta.HomeRealmDiscoveryPolicy, options CreateHomeRealmDiscoveryPolicyOperationOptions) (result CreateHomeRealmDiscoveryPolicyOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/policies/homeRealmDiscoveryPolicies",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/policies/homeRealmDiscoveryPolicies",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

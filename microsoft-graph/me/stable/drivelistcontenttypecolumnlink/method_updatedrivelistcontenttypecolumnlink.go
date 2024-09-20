@@ -17,15 +17,44 @@ type UpdateDriveListContentTypeColumnLinkOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateDriveListContentTypeColumnLinkOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateDriveListContentTypeColumnLinkOperationOptions() UpdateDriveListContentTypeColumnLinkOperationOptions {
+	return UpdateDriveListContentTypeColumnLinkOperationOptions{}
+}
+
+func (o UpdateDriveListContentTypeColumnLinkOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateDriveListContentTypeColumnLinkOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateDriveListContentTypeColumnLinkOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateDriveListContentTypeColumnLink - Update the navigation property columnLinks in me
-func (c DriveListContentTypeColumnLinkClient) UpdateDriveListContentTypeColumnLink(ctx context.Context, id stable.MeDriveIdListContentTypeIdColumnLinkId, input stable.ColumnLink) (result UpdateDriveListContentTypeColumnLinkOperationResponse, err error) {
+func (c DriveListContentTypeColumnLinkClient) UpdateDriveListContentTypeColumnLink(ctx context.Context, id stable.MeDriveIdListContentTypeIdColumnLinkId, input stable.ColumnLink, options UpdateDriveListContentTypeColumnLinkOperationOptions) (result UpdateDriveListContentTypeColumnLinkOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

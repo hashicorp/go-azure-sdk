@@ -18,15 +18,44 @@ type UpdateDriveListItemLastModifiedByUserMailboxSettingOperationResponse struct
 	OData        *odata.OData
 }
 
+type UpdateDriveListItemLastModifiedByUserMailboxSettingOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateDriveListItemLastModifiedByUserMailboxSettingOperationOptions() UpdateDriveListItemLastModifiedByUserMailboxSettingOperationOptions {
+	return UpdateDriveListItemLastModifiedByUserMailboxSettingOperationOptions{}
+}
+
+func (o UpdateDriveListItemLastModifiedByUserMailboxSettingOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateDriveListItemLastModifiedByUserMailboxSettingOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateDriveListItemLastModifiedByUserMailboxSettingOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateDriveListItemLastModifiedByUserMailboxSetting - Update property mailboxSettings value.
-func (c DriveListItemLastModifiedByUserMailboxSettingClient) UpdateDriveListItemLastModifiedByUserMailboxSetting(ctx context.Context, id stable.MeDriveIdListItemId, input stable.MailboxSettings) (result UpdateDriveListItemLastModifiedByUserMailboxSettingOperationResponse, err error) {
+func (c DriveListItemLastModifiedByUserMailboxSettingClient) UpdateDriveListItemLastModifiedByUserMailboxSetting(ctx context.Context, id stable.MeDriveIdListItemId, input stable.MailboxSettings, options UpdateDriveListItemLastModifiedByUserMailboxSettingOperationOptions) (result UpdateDriveListItemLastModifiedByUserMailboxSettingOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       fmt.Sprintf("%s/lastModifiedByUser/mailboxSettings", id.ID()),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/lastModifiedByUser/mailboxSettings", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

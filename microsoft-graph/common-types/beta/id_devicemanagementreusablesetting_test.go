@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &DeviceManagementReusableSettingId{}
 
 func TestNewDeviceManagementReusableSettingID(t *testing.T) {
-	id := NewDeviceManagementReusableSettingID("deviceManagementConfigurationSettingDefinitionIdValue")
+	id := NewDeviceManagementReusableSettingID("deviceManagementConfigurationSettingDefinitionId")
 
-	if id.DeviceManagementConfigurationSettingDefinitionId != "deviceManagementConfigurationSettingDefinitionIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DeviceManagementConfigurationSettingDefinitionId'", id.DeviceManagementConfigurationSettingDefinitionId, "deviceManagementConfigurationSettingDefinitionIdValue")
+	if id.DeviceManagementConfigurationSettingDefinitionId != "deviceManagementConfigurationSettingDefinitionId" {
+		t.Fatalf("Expected %q but got %q for Segment 'DeviceManagementConfigurationSettingDefinitionId'", id.DeviceManagementConfigurationSettingDefinitionId, "deviceManagementConfigurationSettingDefinitionId")
 	}
 }
 
 func TestFormatDeviceManagementReusableSettingID(t *testing.T) {
-	actual := NewDeviceManagementReusableSettingID("deviceManagementConfigurationSettingDefinitionIdValue").ID()
-	expected := "/deviceManagement/reusableSettings/deviceManagementConfigurationSettingDefinitionIdValue"
+	actual := NewDeviceManagementReusableSettingID("deviceManagementConfigurationSettingDefinitionId").ID()
+	expected := "/deviceManagement/reusableSettings/deviceManagementConfigurationSettingDefinitionId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -50,14 +50,14 @@ func TestParseDeviceManagementReusableSettingID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/reusableSettings/deviceManagementConfigurationSettingDefinitionIdValue",
+			Input: "/deviceManagement/reusableSettings/deviceManagementConfigurationSettingDefinitionId",
 			Expected: &DeviceManagementReusableSettingId{
-				DeviceManagementConfigurationSettingDefinitionId: "deviceManagementConfigurationSettingDefinitionIdValue",
+				DeviceManagementConfigurationSettingDefinitionId: "deviceManagementConfigurationSettingDefinitionId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/reusableSettings/deviceManagementConfigurationSettingDefinitionIdValue/extra",
+			Input: "/deviceManagement/reusableSettings/deviceManagementConfigurationSettingDefinitionId/extra",
 			Error: true,
 		},
 	}
@@ -116,26 +116,26 @@ func TestParseDeviceManagementReusableSettingIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/reusableSettings/deviceManagementConfigurationSettingDefinitionIdValue",
+			Input: "/deviceManagement/reusableSettings/deviceManagementConfigurationSettingDefinitionId",
 			Expected: &DeviceManagementReusableSettingId{
-				DeviceManagementConfigurationSettingDefinitionId: "deviceManagementConfigurationSettingDefinitionIdValue",
+				DeviceManagementConfigurationSettingDefinitionId: "deviceManagementConfigurationSettingDefinitionId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/reusableSettings/deviceManagementConfigurationSettingDefinitionIdValue/extra",
+			Input: "/deviceManagement/reusableSettings/deviceManagementConfigurationSettingDefinitionId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/rEuSaBlEsEtTiNgS/dEvIcEmAnAgEmEnTcOnFiGuRaTiOnSeTtInGdEfInItIoNiDvAlUe",
+			Input: "/dEvIcEmAnAgEmEnT/rEuSaBlEsEtTiNgS/dEvIcEmAnAgEmEnTcOnFiGuRaTiOnSeTtInGdEfInItIoNiD",
 			Expected: &DeviceManagementReusableSettingId{
-				DeviceManagementConfigurationSettingDefinitionId: "dEvIcEmAnAgEmEnTcOnFiGuRaTiOnSeTtInGdEfInItIoNiDvAlUe",
+				DeviceManagementConfigurationSettingDefinitionId: "dEvIcEmAnAgEmEnTcOnFiGuRaTiOnSeTtInGdEfInItIoNiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/rEuSaBlEsEtTiNgS/dEvIcEmAnAgEmEnTcOnFiGuRaTiOnSeTtInGdEfInItIoNiDvAlUe/extra",
+			Input: "/dEvIcEmAnAgEmEnT/rEuSaBlEsEtTiNgS/dEvIcEmAnAgEmEnTcOnFiGuRaTiOnSeTtInGdEfInItIoNiD/extra",
 			Error: true,
 		},
 	}

@@ -104,11 +104,11 @@ func (id UserIdOnlineMeetingIdTranscriptId) ID() string {
 func (id UserIdOnlineMeetingIdTranscriptId) Segments() []resourceids.Segment {
 	return []resourceids.Segment{
 		resourceids.StaticSegment("users", "users", "users"),
-		resourceids.UserSpecifiedSegment("userId", "userIdValue"),
+		resourceids.UserSpecifiedSegment("userId", "userId"),
 		resourceids.StaticSegment("onlineMeetings", "onlineMeetings", "onlineMeetings"),
-		resourceids.UserSpecifiedSegment("onlineMeetingId", "onlineMeetingIdValue"),
+		resourceids.UserSpecifiedSegment("onlineMeetingId", "onlineMeetingId"),
 		resourceids.StaticSegment("transcripts", "transcripts", "transcripts"),
-		resourceids.UserSpecifiedSegment("callTranscriptId", "callTranscriptIdValue"),
+		resourceids.UserSpecifiedSegment("callTranscriptId", "callTranscriptId"),
 	}
 }
 

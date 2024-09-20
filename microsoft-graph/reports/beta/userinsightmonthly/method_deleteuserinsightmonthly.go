@@ -18,7 +18,8 @@ type DeleteUserInsightMonthlyOperationResponse struct {
 }
 
 type DeleteUserInsightMonthlyOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteUserInsightMonthlyOperationOptions() DeleteUserInsightMonthlyOperationOptions {
@@ -35,7 +36,9 @@ func (o DeleteUserInsightMonthlyOperationOptions) ToHeaders() *client.Headers {
 
 func (o DeleteUserInsightMonthlyOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

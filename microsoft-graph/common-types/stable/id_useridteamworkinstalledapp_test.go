@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &UserIdTeamworkInstalledAppId{}
 
 func TestNewUserIdTeamworkInstalledAppID(t *testing.T) {
-	id := NewUserIdTeamworkInstalledAppID("userIdValue", "userScopeTeamsAppInstallationIdValue")
+	id := NewUserIdTeamworkInstalledAppID("userId", "userScopeTeamsAppInstallationId")
 
-	if id.UserId != "userIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'UserId'", id.UserId, "userIdValue")
+	if id.UserId != "userId" {
+		t.Fatalf("Expected %q but got %q for Segment 'UserId'", id.UserId, "userId")
 	}
 
-	if id.UserScopeTeamsAppInstallationId != "userScopeTeamsAppInstallationIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'UserScopeTeamsAppInstallationId'", id.UserScopeTeamsAppInstallationId, "userScopeTeamsAppInstallationIdValue")
+	if id.UserScopeTeamsAppInstallationId != "userScopeTeamsAppInstallationId" {
+		t.Fatalf("Expected %q but got %q for Segment 'UserScopeTeamsAppInstallationId'", id.UserScopeTeamsAppInstallationId, "userScopeTeamsAppInstallationId")
 	}
 }
 
 func TestFormatUserIdTeamworkInstalledAppID(t *testing.T) {
-	actual := NewUserIdTeamworkInstalledAppID("userIdValue", "userScopeTeamsAppInstallationIdValue").ID()
-	expected := "/users/userIdValue/teamwork/installedApps/userScopeTeamsAppInstallationIdValue"
+	actual := NewUserIdTeamworkInstalledAppID("userId", "userScopeTeamsAppInstallationId").ID()
+	expected := "/users/userId/teamwork/installedApps/userScopeTeamsAppInstallationId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -49,30 +49,30 @@ func TestParseUserIdTeamworkInstalledAppID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue",
+			Input: "/users/userId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/teamwork",
+			Input: "/users/userId/teamwork",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/teamwork/installedApps",
+			Input: "/users/userId/teamwork/installedApps",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/users/userIdValue/teamwork/installedApps/userScopeTeamsAppInstallationIdValue",
+			Input: "/users/userId/teamwork/installedApps/userScopeTeamsAppInstallationId",
 			Expected: &UserIdTeamworkInstalledAppId{
-				UserId:                          "userIdValue",
-				UserScopeTeamsAppInstallationId: "userScopeTeamsAppInstallationIdValue",
+				UserId:                          "userId",
+				UserScopeTeamsAppInstallationId: "userScopeTeamsAppInstallationId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/users/userIdValue/teamwork/installedApps/userScopeTeamsAppInstallationIdValue/extra",
+			Input: "/users/userId/teamwork/installedApps/userScopeTeamsAppInstallationId/extra",
 			Error: true,
 		},
 	}
@@ -125,58 +125,58 @@ func TestParseUserIdTeamworkInstalledAppIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue",
+			Input: "/users/userId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe",
+			Input: "/uSeRs/uSeRiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/teamwork",
+			Input: "/users/userId/teamwork",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/tEaMwOrK",
+			Input: "/uSeRs/uSeRiD/tEaMwOrK",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/teamwork/installedApps",
+			Input: "/users/userId/teamwork/installedApps",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/tEaMwOrK/iNsTaLlEdApPs",
+			Input: "/uSeRs/uSeRiD/tEaMwOrK/iNsTaLlEdApPs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/users/userIdValue/teamwork/installedApps/userScopeTeamsAppInstallationIdValue",
+			Input: "/users/userId/teamwork/installedApps/userScopeTeamsAppInstallationId",
 			Expected: &UserIdTeamworkInstalledAppId{
-				UserId:                          "userIdValue",
-				UserScopeTeamsAppInstallationId: "userScopeTeamsAppInstallationIdValue",
+				UserId:                          "userId",
+				UserScopeTeamsAppInstallationId: "userScopeTeamsAppInstallationId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/users/userIdValue/teamwork/installedApps/userScopeTeamsAppInstallationIdValue/extra",
+			Input: "/users/userId/teamwork/installedApps/userScopeTeamsAppInstallationId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/tEaMwOrK/iNsTaLlEdApPs/uSeRsCoPeTeAmSaPpInStAlLaTiOnIdVaLuE",
+			Input: "/uSeRs/uSeRiD/tEaMwOrK/iNsTaLlEdApPs/uSeRsCoPeTeAmSaPpInStAlLaTiOnId",
 			Expected: &UserIdTeamworkInstalledAppId{
-				UserId:                          "uSeRiDvAlUe",
-				UserScopeTeamsAppInstallationId: "uSeRsCoPeTeAmSaPpInStAlLaTiOnIdVaLuE",
+				UserId:                          "uSeRiD",
+				UserScopeTeamsAppInstallationId: "uSeRsCoPeTeAmSaPpInStAlLaTiOnId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/tEaMwOrK/iNsTaLlEdApPs/uSeRsCoPeTeAmSaPpInStAlLaTiOnIdVaLuE/extra",
+			Input: "/uSeRs/uSeRiD/tEaMwOrK/iNsTaLlEdApPs/uSeRsCoPeTeAmSaPpInStAlLaTiOnId/extra",
 			Error: true,
 		},
 	}

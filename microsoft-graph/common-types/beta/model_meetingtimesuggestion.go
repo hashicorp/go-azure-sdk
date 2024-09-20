@@ -41,10 +41,19 @@ type MeetingTimeSuggestion struct {
 var _ json.Unmarshaler = &MeetingTimeSuggestion{}
 
 func (s *MeetingTimeSuggestion) UnmarshalJSON(bytes []byte) error {
-	type alias MeetingTimeSuggestion
-	var decoded alias
+
+	var decoded struct {
+		AttendeeAvailability  *[]AttendeeAvailability `json:"attendeeAvailability,omitempty"`
+		Locations             *[]Location             `json:"locations,omitempty"`
+		MeetingTimeSlot       *TimeSlot               `json:"meetingTimeSlot,omitempty"`
+		ODataId               *string                 `json:"@odata.id,omitempty"`
+		ODataType             *string                 `json:"@odata.type,omitempty"`
+		Order                 nullable.Type[int64]    `json:"order,omitempty"`
+		OrganizerAvailability *FreeBusyStatus         `json:"organizerAvailability,omitempty"`
+		SuggestionReason      nullable.Type[string]   `json:"suggestionReason,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into MeetingTimeSuggestion: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.AttendeeAvailability = decoded.AttendeeAvailability
@@ -76,5 +85,6 @@ func (s *MeetingTimeSuggestion) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Locations = &output
 	}
+
 	return nil
 }

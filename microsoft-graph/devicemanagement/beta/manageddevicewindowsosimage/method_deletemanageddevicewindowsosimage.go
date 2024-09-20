@@ -19,7 +19,8 @@ type DeleteManagedDeviceWindowsOSImageOperationResponse struct {
 }
 
 type DeleteManagedDeviceWindowsOSImageOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteManagedDeviceWindowsOSImageOperationOptions() DeleteManagedDeviceWindowsOSImageOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteManagedDeviceWindowsOSImageOperationOptions) ToHeaders() *client.H
 
 func (o DeleteManagedDeviceWindowsOSImageOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

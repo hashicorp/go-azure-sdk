@@ -18,16 +18,45 @@ type PauseComanagedDeviceConfigurationRefreshOperationResponse struct {
 	OData        *odata.OData
 }
 
+type PauseComanagedDeviceConfigurationRefreshOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultPauseComanagedDeviceConfigurationRefreshOperationOptions() PauseComanagedDeviceConfigurationRefreshOperationOptions {
+	return PauseComanagedDeviceConfigurationRefreshOperationOptions{}
+}
+
+func (o PauseComanagedDeviceConfigurationRefreshOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o PauseComanagedDeviceConfigurationRefreshOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o PauseComanagedDeviceConfigurationRefreshOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // PauseComanagedDeviceConfigurationRefresh - Invoke action pauseConfigurationRefresh. Initiates a command to pause
 // config refresh for the device.
-func (c ComanagedDeviceClient) PauseComanagedDeviceConfigurationRefresh(ctx context.Context, id beta.DeviceManagementComanagedDeviceId, input PauseComanagedDeviceConfigurationRefreshRequest) (result PauseComanagedDeviceConfigurationRefreshOperationResponse, err error) {
+func (c ComanagedDeviceClient) PauseComanagedDeviceConfigurationRefresh(ctx context.Context, id beta.DeviceManagementComanagedDeviceId, input PauseComanagedDeviceConfigurationRefreshRequest, options PauseComanagedDeviceConfigurationRefreshOperationOptions) (result PauseComanagedDeviceConfigurationRefreshOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/pauseConfigurationRefresh", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/pauseConfigurationRefresh", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

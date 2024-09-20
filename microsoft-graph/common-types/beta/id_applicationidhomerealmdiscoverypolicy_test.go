@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &ApplicationIdHomeRealmDiscoveryPolicyId{}
 
 func TestNewApplicationIdHomeRealmDiscoveryPolicyID(t *testing.T) {
-	id := NewApplicationIdHomeRealmDiscoveryPolicyID("applicationIdValue", "homeRealmDiscoveryPolicyIdValue")
+	id := NewApplicationIdHomeRealmDiscoveryPolicyID("applicationId", "homeRealmDiscoveryPolicyId")
 
-	if id.ApplicationId != "applicationIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ApplicationId'", id.ApplicationId, "applicationIdValue")
+	if id.ApplicationId != "applicationId" {
+		t.Fatalf("Expected %q but got %q for Segment 'ApplicationId'", id.ApplicationId, "applicationId")
 	}
 
-	if id.HomeRealmDiscoveryPolicyId != "homeRealmDiscoveryPolicyIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'HomeRealmDiscoveryPolicyId'", id.HomeRealmDiscoveryPolicyId, "homeRealmDiscoveryPolicyIdValue")
+	if id.HomeRealmDiscoveryPolicyId != "homeRealmDiscoveryPolicyId" {
+		t.Fatalf("Expected %q but got %q for Segment 'HomeRealmDiscoveryPolicyId'", id.HomeRealmDiscoveryPolicyId, "homeRealmDiscoveryPolicyId")
 	}
 }
 
 func TestFormatApplicationIdHomeRealmDiscoveryPolicyID(t *testing.T) {
-	actual := NewApplicationIdHomeRealmDiscoveryPolicyID("applicationIdValue", "homeRealmDiscoveryPolicyIdValue").ID()
-	expected := "/applications/applicationIdValue/homeRealmDiscoveryPolicies/homeRealmDiscoveryPolicyIdValue"
+	actual := NewApplicationIdHomeRealmDiscoveryPolicyID("applicationId", "homeRealmDiscoveryPolicyId").ID()
+	expected := "/applications/applicationId/homeRealmDiscoveryPolicies/homeRealmDiscoveryPolicyId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -49,25 +49,25 @@ func TestParseApplicationIdHomeRealmDiscoveryPolicyID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/applications/applicationIdValue",
+			Input: "/applications/applicationId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/applications/applicationIdValue/homeRealmDiscoveryPolicies",
+			Input: "/applications/applicationId/homeRealmDiscoveryPolicies",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/applications/applicationIdValue/homeRealmDiscoveryPolicies/homeRealmDiscoveryPolicyIdValue",
+			Input: "/applications/applicationId/homeRealmDiscoveryPolicies/homeRealmDiscoveryPolicyId",
 			Expected: &ApplicationIdHomeRealmDiscoveryPolicyId{
-				ApplicationId:              "applicationIdValue",
-				HomeRealmDiscoveryPolicyId: "homeRealmDiscoveryPolicyIdValue",
+				ApplicationId:              "applicationId",
+				HomeRealmDiscoveryPolicyId: "homeRealmDiscoveryPolicyId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/applications/applicationIdValue/homeRealmDiscoveryPolicies/homeRealmDiscoveryPolicyIdValue/extra",
+			Input: "/applications/applicationId/homeRealmDiscoveryPolicies/homeRealmDiscoveryPolicyId/extra",
 			Error: true,
 		},
 	}
@@ -120,48 +120,48 @@ func TestParseApplicationIdHomeRealmDiscoveryPolicyIDInsensitively(t *testing.T)
 		},
 		{
 			// Incomplete URI
-			Input: "/applications/applicationIdValue",
+			Input: "/applications/applicationId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/aPpLiCaTiOnS/aPpLiCaTiOnIdVaLuE",
+			Input: "/aPpLiCaTiOnS/aPpLiCaTiOnId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/applications/applicationIdValue/homeRealmDiscoveryPolicies",
+			Input: "/applications/applicationId/homeRealmDiscoveryPolicies",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/aPpLiCaTiOnS/aPpLiCaTiOnIdVaLuE/hOmErEaLmDiScOvErYpOlIcIeS",
+			Input: "/aPpLiCaTiOnS/aPpLiCaTiOnId/hOmErEaLmDiScOvErYpOlIcIeS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/applications/applicationIdValue/homeRealmDiscoveryPolicies/homeRealmDiscoveryPolicyIdValue",
+			Input: "/applications/applicationId/homeRealmDiscoveryPolicies/homeRealmDiscoveryPolicyId",
 			Expected: &ApplicationIdHomeRealmDiscoveryPolicyId{
-				ApplicationId:              "applicationIdValue",
-				HomeRealmDiscoveryPolicyId: "homeRealmDiscoveryPolicyIdValue",
+				ApplicationId:              "applicationId",
+				HomeRealmDiscoveryPolicyId: "homeRealmDiscoveryPolicyId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/applications/applicationIdValue/homeRealmDiscoveryPolicies/homeRealmDiscoveryPolicyIdValue/extra",
+			Input: "/applications/applicationId/homeRealmDiscoveryPolicies/homeRealmDiscoveryPolicyId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/aPpLiCaTiOnS/aPpLiCaTiOnIdVaLuE/hOmErEaLmDiScOvErYpOlIcIeS/hOmErEaLmDiScOvErYpOlIcYiDvAlUe",
+			Input: "/aPpLiCaTiOnS/aPpLiCaTiOnId/hOmErEaLmDiScOvErYpOlIcIeS/hOmErEaLmDiScOvErYpOlIcYiD",
 			Expected: &ApplicationIdHomeRealmDiscoveryPolicyId{
-				ApplicationId:              "aPpLiCaTiOnIdVaLuE",
-				HomeRealmDiscoveryPolicyId: "hOmErEaLmDiScOvErYpOlIcYiDvAlUe",
+				ApplicationId:              "aPpLiCaTiOnId",
+				HomeRealmDiscoveryPolicyId: "hOmErEaLmDiScOvErYpOlIcYiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/aPpLiCaTiOnS/aPpLiCaTiOnIdVaLuE/hOmErEaLmDiScOvErYpOlIcIeS/hOmErEaLmDiScOvErYpOlIcYiDvAlUe/extra",
+			Input: "/aPpLiCaTiOnS/aPpLiCaTiOnId/hOmErEaLmDiScOvErYpOlIcIeS/hOmErEaLmDiScOvErYpOlIcYiD/extra",
 			Error: true,
 		},
 	}

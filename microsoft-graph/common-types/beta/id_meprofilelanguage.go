@@ -94,7 +94,7 @@ func (id MeProfileLanguageId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("me", "me", "me"),
 		resourceids.StaticSegment("profile", "profile", "profile"),
 		resourceids.StaticSegment("languages", "languages", "languages"),
-		resourceids.UserSpecifiedSegment("languageProficiencyId", "languageProficiencyIdValue"),
+		resourceids.UserSpecifiedSegment("languageProficiencyId", "languageProficiencyId"),
 	}
 }
 

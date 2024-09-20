@@ -19,7 +19,8 @@ type DeleteExchangeRoleDefinitionInheritsPermissionsFromOperationResponse struct
 }
 
 type DeleteExchangeRoleDefinitionInheritsPermissionsFromOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteExchangeRoleDefinitionInheritsPermissionsFromOperationOptions() DeleteExchangeRoleDefinitionInheritsPermissionsFromOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteExchangeRoleDefinitionInheritsPermissionsFromOperationOptions) ToH
 
 func (o DeleteExchangeRoleDefinitionInheritsPermissionsFromOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

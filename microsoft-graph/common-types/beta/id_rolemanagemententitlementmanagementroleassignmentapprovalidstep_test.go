@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &RoleManagementEntitlementManagementRoleAssignmentApprovalIdStepId{}
 
 func TestNewRoleManagementEntitlementManagementRoleAssignmentApprovalIdStepID(t *testing.T) {
-	id := NewRoleManagementEntitlementManagementRoleAssignmentApprovalIdStepID("approvalIdValue", "approvalStepIdValue")
+	id := NewRoleManagementEntitlementManagementRoleAssignmentApprovalIdStepID("approvalId", "approvalStepId")
 
-	if id.ApprovalId != "approvalIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ApprovalId'", id.ApprovalId, "approvalIdValue")
+	if id.ApprovalId != "approvalId" {
+		t.Fatalf("Expected %q but got %q for Segment 'ApprovalId'", id.ApprovalId, "approvalId")
 	}
 
-	if id.ApprovalStepId != "approvalStepIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ApprovalStepId'", id.ApprovalStepId, "approvalStepIdValue")
+	if id.ApprovalStepId != "approvalStepId" {
+		t.Fatalf("Expected %q but got %q for Segment 'ApprovalStepId'", id.ApprovalStepId, "approvalStepId")
 	}
 }
 
 func TestFormatRoleManagementEntitlementManagementRoleAssignmentApprovalIdStepID(t *testing.T) {
-	actual := NewRoleManagementEntitlementManagementRoleAssignmentApprovalIdStepID("approvalIdValue", "approvalStepIdValue").ID()
-	expected := "/roleManagement/entitlementManagement/roleAssignmentApprovals/approvalIdValue/steps/approvalStepIdValue"
+	actual := NewRoleManagementEntitlementManagementRoleAssignmentApprovalIdStepID("approvalId", "approvalStepId").ID()
+	expected := "/roleManagement/entitlementManagement/roleAssignmentApprovals/approvalId/steps/approvalStepId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -59,25 +59,25 @@ func TestParseRoleManagementEntitlementManagementRoleAssignmentApprovalIdStepID(
 		},
 		{
 			// Incomplete URI
-			Input: "/roleManagement/entitlementManagement/roleAssignmentApprovals/approvalIdValue",
+			Input: "/roleManagement/entitlementManagement/roleAssignmentApprovals/approvalId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/roleManagement/entitlementManagement/roleAssignmentApprovals/approvalIdValue/steps",
+			Input: "/roleManagement/entitlementManagement/roleAssignmentApprovals/approvalId/steps",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/roleManagement/entitlementManagement/roleAssignmentApprovals/approvalIdValue/steps/approvalStepIdValue",
+			Input: "/roleManagement/entitlementManagement/roleAssignmentApprovals/approvalId/steps/approvalStepId",
 			Expected: &RoleManagementEntitlementManagementRoleAssignmentApprovalIdStepId{
-				ApprovalId:     "approvalIdValue",
-				ApprovalStepId: "approvalStepIdValue",
+				ApprovalId:     "approvalId",
+				ApprovalStepId: "approvalStepId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/roleManagement/entitlementManagement/roleAssignmentApprovals/approvalIdValue/steps/approvalStepIdValue/extra",
+			Input: "/roleManagement/entitlementManagement/roleAssignmentApprovals/approvalId/steps/approvalStepId/extra",
 			Error: true,
 		},
 	}
@@ -150,48 +150,48 @@ func TestParseRoleManagementEntitlementManagementRoleAssignmentApprovalIdStepIDI
 		},
 		{
 			// Incomplete URI
-			Input: "/roleManagement/entitlementManagement/roleAssignmentApprovals/approvalIdValue",
+			Input: "/roleManagement/entitlementManagement/roleAssignmentApprovals/approvalId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/rOlEmAnAgEmEnT/eNtItLeMeNtMaNaGeMeNt/rOlEaSsIgNmEnTaPpRoVaLs/aPpRoVaLiDvAlUe",
+			Input: "/rOlEmAnAgEmEnT/eNtItLeMeNtMaNaGeMeNt/rOlEaSsIgNmEnTaPpRoVaLs/aPpRoVaLiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/roleManagement/entitlementManagement/roleAssignmentApprovals/approvalIdValue/steps",
+			Input: "/roleManagement/entitlementManagement/roleAssignmentApprovals/approvalId/steps",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/rOlEmAnAgEmEnT/eNtItLeMeNtMaNaGeMeNt/rOlEaSsIgNmEnTaPpRoVaLs/aPpRoVaLiDvAlUe/sTePs",
+			Input: "/rOlEmAnAgEmEnT/eNtItLeMeNtMaNaGeMeNt/rOlEaSsIgNmEnTaPpRoVaLs/aPpRoVaLiD/sTePs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/roleManagement/entitlementManagement/roleAssignmentApprovals/approvalIdValue/steps/approvalStepIdValue",
+			Input: "/roleManagement/entitlementManagement/roleAssignmentApprovals/approvalId/steps/approvalStepId",
 			Expected: &RoleManagementEntitlementManagementRoleAssignmentApprovalIdStepId{
-				ApprovalId:     "approvalIdValue",
-				ApprovalStepId: "approvalStepIdValue",
+				ApprovalId:     "approvalId",
+				ApprovalStepId: "approvalStepId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/roleManagement/entitlementManagement/roleAssignmentApprovals/approvalIdValue/steps/approvalStepIdValue/extra",
+			Input: "/roleManagement/entitlementManagement/roleAssignmentApprovals/approvalId/steps/approvalStepId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/rOlEmAnAgEmEnT/eNtItLeMeNtMaNaGeMeNt/rOlEaSsIgNmEnTaPpRoVaLs/aPpRoVaLiDvAlUe/sTePs/aPpRoVaLsTePiDvAlUe",
+			Input: "/rOlEmAnAgEmEnT/eNtItLeMeNtMaNaGeMeNt/rOlEaSsIgNmEnTaPpRoVaLs/aPpRoVaLiD/sTePs/aPpRoVaLsTePiD",
 			Expected: &RoleManagementEntitlementManagementRoleAssignmentApprovalIdStepId{
-				ApprovalId:     "aPpRoVaLiDvAlUe",
-				ApprovalStepId: "aPpRoVaLsTePiDvAlUe",
+				ApprovalId:     "aPpRoVaLiD",
+				ApprovalStepId: "aPpRoVaLsTePiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/rOlEmAnAgEmEnT/eNtItLeMeNtMaNaGeMeNt/rOlEaSsIgNmEnTaPpRoVaLs/aPpRoVaLiDvAlUe/sTePs/aPpRoVaLsTePiDvAlUe/extra",
+			Input: "/rOlEmAnAgEmEnT/eNtItLeMeNtMaNaGeMeNt/rOlEaSsIgNmEnTaPpRoVaLs/aPpRoVaLiD/sTePs/aPpRoVaLsTePiD/extra",
 			Error: true,
 		},
 	}

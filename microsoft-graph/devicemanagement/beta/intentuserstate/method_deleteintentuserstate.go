@@ -19,7 +19,8 @@ type DeleteIntentUserStateOperationResponse struct {
 }
 
 type DeleteIntentUserStateOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteIntentUserStateOperationOptions() DeleteIntentUserStateOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteIntentUserStateOperationOptions) ToHeaders() *client.Headers {
 
 func (o DeleteIntentUserStateOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

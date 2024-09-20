@@ -19,16 +19,45 @@ type CreateAuthenticationEventListenerOperationResponse struct {
 	Model        stable.AuthenticationEventListener
 }
 
+type CreateAuthenticationEventListenerOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateAuthenticationEventListenerOperationOptions() CreateAuthenticationEventListenerOperationOptions {
+	return CreateAuthenticationEventListenerOperationOptions{}
+}
+
+func (o CreateAuthenticationEventListenerOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateAuthenticationEventListenerOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateAuthenticationEventListenerOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateAuthenticationEventListener - Create authenticationEventListener. Create a new authenticationEventListener
 // object. You can create one of the following subtypes that are derived from authenticationEventListener.
-func (c AuthenticationEventListenerClient) CreateAuthenticationEventListener(ctx context.Context, input stable.AuthenticationEventListener) (result CreateAuthenticationEventListenerOperationResponse, err error) {
+func (c AuthenticationEventListenerClient) CreateAuthenticationEventListener(ctx context.Context, input stable.AuthenticationEventListener, options CreateAuthenticationEventListenerOperationOptions) (result CreateAuthenticationEventListenerOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/identity/authenticationEventListeners",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/identity/authenticationEventListeners",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

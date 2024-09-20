@@ -17,15 +17,44 @@ type GetReportsUnhealthyDefenderAgentsReportOperationResponse struct {
 	Model        *[]byte
 }
 
+type GetReportsUnhealthyDefenderAgentsReportOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultGetReportsUnhealthyDefenderAgentsReportOperationOptions() GetReportsUnhealthyDefenderAgentsReportOperationOptions {
+	return GetReportsUnhealthyDefenderAgentsReportOperationOptions{}
+}
+
+func (o GetReportsUnhealthyDefenderAgentsReportOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o GetReportsUnhealthyDefenderAgentsReportOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o GetReportsUnhealthyDefenderAgentsReportOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // GetReportsUnhealthyDefenderAgentsReport - Invoke action getUnhealthyDefenderAgentsReport
-func (c ReportClient) GetReportsUnhealthyDefenderAgentsReport(ctx context.Context, input GetReportsUnhealthyDefenderAgentsReportRequest) (result GetReportsUnhealthyDefenderAgentsReportOperationResponse, err error) {
+func (c ReportClient) GetReportsUnhealthyDefenderAgentsReport(ctx context.Context, input GetReportsUnhealthyDefenderAgentsReportRequest, options GetReportsUnhealthyDefenderAgentsReportOperationOptions) (result GetReportsUnhealthyDefenderAgentsReportOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/octet-stream",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/deviceManagement/reports/getUnhealthyDefenderAgentsReport",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/deviceManagement/reports/getUnhealthyDefenderAgentsReport",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

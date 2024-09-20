@@ -18,16 +18,45 @@ type PauseSynchronizationJobOperationResponse struct {
 	OData        *odata.OData
 }
 
+type PauseSynchronizationJobOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultPauseSynchronizationJobOperationOptions() PauseSynchronizationJobOperationOptions {
+	return PauseSynchronizationJobOperationOptions{}
+}
+
+func (o PauseSynchronizationJobOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o PauseSynchronizationJobOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o PauseSynchronizationJobOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // PauseSynchronizationJob - Invoke action pause. Temporarily stop a running synchronization job. All the progress,
 // including job state, is persisted, and the job continues from where it left off when a start call is made.
-func (c SynchronizationJobClient) PauseSynchronizationJob(ctx context.Context, id beta.ServicePrincipalIdSynchronizationJobId) (result PauseSynchronizationJobOperationResponse, err error) {
+func (c SynchronizationJobClient) PauseSynchronizationJob(ctx context.Context, id beta.ServicePrincipalIdSynchronizationJobId, options PauseSynchronizationJobOperationOptions) (result PauseSynchronizationJobOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/pause", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/pause", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

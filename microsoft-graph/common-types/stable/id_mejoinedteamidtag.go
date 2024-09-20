@@ -99,9 +99,9 @@ func (id MeJoinedTeamIdTagId) Segments() []resourceids.Segment {
 	return []resourceids.Segment{
 		resourceids.StaticSegment("me", "me", "me"),
 		resourceids.StaticSegment("joinedTeams", "joinedTeams", "joinedTeams"),
-		resourceids.UserSpecifiedSegment("teamId", "teamIdValue"),
+		resourceids.UserSpecifiedSegment("teamId", "teamId"),
 		resourceids.StaticSegment("tags", "tags", "tags"),
-		resourceids.UserSpecifiedSegment("teamworkTagId", "teamworkTagIdValue"),
+		resourceids.UserSpecifiedSegment("teamworkTagId", "teamworkTagId"),
 	}
 }
 

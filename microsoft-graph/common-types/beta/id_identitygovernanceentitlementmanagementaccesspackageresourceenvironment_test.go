@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &IdentityGovernanceEntitlementManagementAccessPackageResourceEnvironmentId{}
 
 func TestNewIdentityGovernanceEntitlementManagementAccessPackageResourceEnvironmentID(t *testing.T) {
-	id := NewIdentityGovernanceEntitlementManagementAccessPackageResourceEnvironmentID("accessPackageResourceEnvironmentIdValue")
+	id := NewIdentityGovernanceEntitlementManagementAccessPackageResourceEnvironmentID("accessPackageResourceEnvironmentId")
 
-	if id.AccessPackageResourceEnvironmentId != "accessPackageResourceEnvironmentIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'AccessPackageResourceEnvironmentId'", id.AccessPackageResourceEnvironmentId, "accessPackageResourceEnvironmentIdValue")
+	if id.AccessPackageResourceEnvironmentId != "accessPackageResourceEnvironmentId" {
+		t.Fatalf("Expected %q but got %q for Segment 'AccessPackageResourceEnvironmentId'", id.AccessPackageResourceEnvironmentId, "accessPackageResourceEnvironmentId")
 	}
 }
 
 func TestFormatIdentityGovernanceEntitlementManagementAccessPackageResourceEnvironmentID(t *testing.T) {
-	actual := NewIdentityGovernanceEntitlementManagementAccessPackageResourceEnvironmentID("accessPackageResourceEnvironmentIdValue").ID()
-	expected := "/identityGovernance/entitlementManagement/accessPackageResourceEnvironments/accessPackageResourceEnvironmentIdValue"
+	actual := NewIdentityGovernanceEntitlementManagementAccessPackageResourceEnvironmentID("accessPackageResourceEnvironmentId").ID()
+	expected := "/identityGovernance/entitlementManagement/accessPackageResourceEnvironments/accessPackageResourceEnvironmentId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -55,14 +55,14 @@ func TestParseIdentityGovernanceEntitlementManagementAccessPackageResourceEnviro
 		},
 		{
 			// Valid URI
-			Input: "/identityGovernance/entitlementManagement/accessPackageResourceEnvironments/accessPackageResourceEnvironmentIdValue",
+			Input: "/identityGovernance/entitlementManagement/accessPackageResourceEnvironments/accessPackageResourceEnvironmentId",
 			Expected: &IdentityGovernanceEntitlementManagementAccessPackageResourceEnvironmentId{
-				AccessPackageResourceEnvironmentId: "accessPackageResourceEnvironmentIdValue",
+				AccessPackageResourceEnvironmentId: "accessPackageResourceEnvironmentId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/identityGovernance/entitlementManagement/accessPackageResourceEnvironments/accessPackageResourceEnvironmentIdValue/extra",
+			Input: "/identityGovernance/entitlementManagement/accessPackageResourceEnvironments/accessPackageResourceEnvironmentId/extra",
 			Error: true,
 		},
 	}
@@ -131,26 +131,26 @@ func TestParseIdentityGovernanceEntitlementManagementAccessPackageResourceEnviro
 		},
 		{
 			// Valid URI
-			Input: "/identityGovernance/entitlementManagement/accessPackageResourceEnvironments/accessPackageResourceEnvironmentIdValue",
+			Input: "/identityGovernance/entitlementManagement/accessPackageResourceEnvironments/accessPackageResourceEnvironmentId",
 			Expected: &IdentityGovernanceEntitlementManagementAccessPackageResourceEnvironmentId{
-				AccessPackageResourceEnvironmentId: "accessPackageResourceEnvironmentIdValue",
+				AccessPackageResourceEnvironmentId: "accessPackageResourceEnvironmentId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/identityGovernance/entitlementManagement/accessPackageResourceEnvironments/accessPackageResourceEnvironmentIdValue/extra",
+			Input: "/identityGovernance/entitlementManagement/accessPackageResourceEnvironments/accessPackageResourceEnvironmentId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/iDeNtItYgOvErNaNcE/eNtItLeMeNtMaNaGeMeNt/aCcEsSpAcKaGeReSoUrCeEnViRoNmEnTs/aCcEsSpAcKaGeReSoUrCeEnViRoNmEnTiDvAlUe",
+			Input: "/iDeNtItYgOvErNaNcE/eNtItLeMeNtMaNaGeMeNt/aCcEsSpAcKaGeReSoUrCeEnViRoNmEnTs/aCcEsSpAcKaGeReSoUrCeEnViRoNmEnTiD",
 			Expected: &IdentityGovernanceEntitlementManagementAccessPackageResourceEnvironmentId{
-				AccessPackageResourceEnvironmentId: "aCcEsSpAcKaGeReSoUrCeEnViRoNmEnTiDvAlUe",
+				AccessPackageResourceEnvironmentId: "aCcEsSpAcKaGeReSoUrCeEnViRoNmEnTiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/iDeNtItYgOvErNaNcE/eNtItLeMeNtMaNaGeMeNt/aCcEsSpAcKaGeReSoUrCeEnViRoNmEnTs/aCcEsSpAcKaGeReSoUrCeEnViRoNmEnTiDvAlUe/extra",
+			Input: "/iDeNtItYgOvErNaNcE/eNtItLeMeNtMaNaGeMeNt/aCcEsSpAcKaGeReSoUrCeEnViRoNmEnTs/aCcEsSpAcKaGeReSoUrCeEnViRoNmEnTiD/extra",
 			Error: true,
 		},
 	}

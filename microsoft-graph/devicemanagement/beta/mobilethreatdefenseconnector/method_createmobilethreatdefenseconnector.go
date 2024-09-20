@@ -18,16 +18,45 @@ type CreateMobileThreatDefenseConnectorOperationResponse struct {
 	Model        *beta.MobileThreatDefenseConnector
 }
 
+type CreateMobileThreatDefenseConnectorOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateMobileThreatDefenseConnectorOperationOptions() CreateMobileThreatDefenseConnectorOperationOptions {
+	return CreateMobileThreatDefenseConnectorOperationOptions{}
+}
+
+func (o CreateMobileThreatDefenseConnectorOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateMobileThreatDefenseConnectorOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateMobileThreatDefenseConnectorOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateMobileThreatDefenseConnector - Create new navigation property to mobileThreatDefenseConnectors for
 // deviceManagement
-func (c MobileThreatDefenseConnectorClient) CreateMobileThreatDefenseConnector(ctx context.Context, input beta.MobileThreatDefenseConnector) (result CreateMobileThreatDefenseConnectorOperationResponse, err error) {
+func (c MobileThreatDefenseConnectorClient) CreateMobileThreatDefenseConnector(ctx context.Context, input beta.MobileThreatDefenseConnector, options CreateMobileThreatDefenseConnectorOperationOptions) (result CreateMobileThreatDefenseConnectorOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/deviceManagement/mobileThreatDefenseConnectors",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/deviceManagement/mobileThreatDefenseConnectors",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

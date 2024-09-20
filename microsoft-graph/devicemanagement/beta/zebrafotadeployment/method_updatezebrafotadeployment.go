@@ -17,15 +17,44 @@ type UpdateZebraFotaDeploymentOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateZebraFotaDeploymentOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateZebraFotaDeploymentOperationOptions() UpdateZebraFotaDeploymentOperationOptions {
+	return UpdateZebraFotaDeploymentOperationOptions{}
+}
+
+func (o UpdateZebraFotaDeploymentOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateZebraFotaDeploymentOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateZebraFotaDeploymentOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateZebraFotaDeployment - Update the navigation property zebraFotaDeployments in deviceManagement
-func (c ZebraFotaDeploymentClient) UpdateZebraFotaDeployment(ctx context.Context, id beta.DeviceManagementZebraFotaDeploymentId, input beta.ZebraFotaDeployment) (result UpdateZebraFotaDeploymentOperationResponse, err error) {
+func (c ZebraFotaDeploymentClient) UpdateZebraFotaDeployment(ctx context.Context, id beta.DeviceManagementZebraFotaDeploymentId, input beta.ZebraFotaDeployment, options UpdateZebraFotaDeploymentOperationOptions) (result UpdateZebraFotaDeploymentOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

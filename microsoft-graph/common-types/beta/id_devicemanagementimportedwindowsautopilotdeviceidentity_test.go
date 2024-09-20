@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &DeviceManagementImportedWindowsAutopilotDeviceIdentityId{}
 
 func TestNewDeviceManagementImportedWindowsAutopilotDeviceIdentityID(t *testing.T) {
-	id := NewDeviceManagementImportedWindowsAutopilotDeviceIdentityID("importedWindowsAutopilotDeviceIdentityIdValue")
+	id := NewDeviceManagementImportedWindowsAutopilotDeviceIdentityID("importedWindowsAutopilotDeviceIdentityId")
 
-	if id.ImportedWindowsAutopilotDeviceIdentityId != "importedWindowsAutopilotDeviceIdentityIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ImportedWindowsAutopilotDeviceIdentityId'", id.ImportedWindowsAutopilotDeviceIdentityId, "importedWindowsAutopilotDeviceIdentityIdValue")
+	if id.ImportedWindowsAutopilotDeviceIdentityId != "importedWindowsAutopilotDeviceIdentityId" {
+		t.Fatalf("Expected %q but got %q for Segment 'ImportedWindowsAutopilotDeviceIdentityId'", id.ImportedWindowsAutopilotDeviceIdentityId, "importedWindowsAutopilotDeviceIdentityId")
 	}
 }
 
 func TestFormatDeviceManagementImportedWindowsAutopilotDeviceIdentityID(t *testing.T) {
-	actual := NewDeviceManagementImportedWindowsAutopilotDeviceIdentityID("importedWindowsAutopilotDeviceIdentityIdValue").ID()
-	expected := "/deviceManagement/importedWindowsAutopilotDeviceIdentities/importedWindowsAutopilotDeviceIdentityIdValue"
+	actual := NewDeviceManagementImportedWindowsAutopilotDeviceIdentityID("importedWindowsAutopilotDeviceIdentityId").ID()
+	expected := "/deviceManagement/importedWindowsAutopilotDeviceIdentities/importedWindowsAutopilotDeviceIdentityId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -50,14 +50,14 @@ func TestParseDeviceManagementImportedWindowsAutopilotDeviceIdentityID(t *testin
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/importedWindowsAutopilotDeviceIdentities/importedWindowsAutopilotDeviceIdentityIdValue",
+			Input: "/deviceManagement/importedWindowsAutopilotDeviceIdentities/importedWindowsAutopilotDeviceIdentityId",
 			Expected: &DeviceManagementImportedWindowsAutopilotDeviceIdentityId{
-				ImportedWindowsAutopilotDeviceIdentityId: "importedWindowsAutopilotDeviceIdentityIdValue",
+				ImportedWindowsAutopilotDeviceIdentityId: "importedWindowsAutopilotDeviceIdentityId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/importedWindowsAutopilotDeviceIdentities/importedWindowsAutopilotDeviceIdentityIdValue/extra",
+			Input: "/deviceManagement/importedWindowsAutopilotDeviceIdentities/importedWindowsAutopilotDeviceIdentityId/extra",
 			Error: true,
 		},
 	}
@@ -116,26 +116,26 @@ func TestParseDeviceManagementImportedWindowsAutopilotDeviceIdentityIDInsensitiv
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/importedWindowsAutopilotDeviceIdentities/importedWindowsAutopilotDeviceIdentityIdValue",
+			Input: "/deviceManagement/importedWindowsAutopilotDeviceIdentities/importedWindowsAutopilotDeviceIdentityId",
 			Expected: &DeviceManagementImportedWindowsAutopilotDeviceIdentityId{
-				ImportedWindowsAutopilotDeviceIdentityId: "importedWindowsAutopilotDeviceIdentityIdValue",
+				ImportedWindowsAutopilotDeviceIdentityId: "importedWindowsAutopilotDeviceIdentityId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/importedWindowsAutopilotDeviceIdentities/importedWindowsAutopilotDeviceIdentityIdValue/extra",
+			Input: "/deviceManagement/importedWindowsAutopilotDeviceIdentities/importedWindowsAutopilotDeviceIdentityId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/iMpOrTeDwInDoWsAuToPiLoTdEvIcEiDeNtItIeS/iMpOrTeDwInDoWsAuToPiLoTdEvIcEiDeNtItYiDvAlUe",
+			Input: "/dEvIcEmAnAgEmEnT/iMpOrTeDwInDoWsAuToPiLoTdEvIcEiDeNtItIeS/iMpOrTeDwInDoWsAuToPiLoTdEvIcEiDeNtItYiD",
 			Expected: &DeviceManagementImportedWindowsAutopilotDeviceIdentityId{
-				ImportedWindowsAutopilotDeviceIdentityId: "iMpOrTeDwInDoWsAuToPiLoTdEvIcEiDeNtItYiDvAlUe",
+				ImportedWindowsAutopilotDeviceIdentityId: "iMpOrTeDwInDoWsAuToPiLoTdEvIcEiDeNtItYiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/iMpOrTeDwInDoWsAuToPiLoTdEvIcEiDeNtItIeS/iMpOrTeDwInDoWsAuToPiLoTdEvIcEiDeNtItYiDvAlUe/extra",
+			Input: "/dEvIcEmAnAgEmEnT/iMpOrTeDwInDoWsAuToPiLoTdEvIcEiDeNtItIeS/iMpOrTeDwInDoWsAuToPiLoTdEvIcEiDeNtItYiD/extra",
 			Error: true,
 		},
 	}

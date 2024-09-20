@@ -18,15 +18,44 @@ type CreatePlannerPlanOperationResponse struct {
 	Model        *stable.PlannerPlan
 }
 
+type CreatePlannerPlanOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreatePlannerPlanOperationOptions() CreatePlannerPlanOperationOptions {
+	return CreatePlannerPlanOperationOptions{}
+}
+
+func (o CreatePlannerPlanOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreatePlannerPlanOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreatePlannerPlanOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreatePlannerPlan - Create new navigation property to plans for me
-func (c PlannerPlanClient) CreatePlannerPlan(ctx context.Context, input stable.PlannerPlan) (result CreatePlannerPlanOperationResponse, err error) {
+func (c PlannerPlanClient) CreatePlannerPlan(ctx context.Context, input stable.PlannerPlan, options CreatePlannerPlanOperationOptions) (result CreatePlannerPlanOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/me/planner/plans",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/me/planner/plans",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

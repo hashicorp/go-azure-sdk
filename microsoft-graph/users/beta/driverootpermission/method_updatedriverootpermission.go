@@ -17,15 +17,44 @@ type UpdateDriveRootPermissionOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateDriveRootPermissionOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateDriveRootPermissionOperationOptions() UpdateDriveRootPermissionOperationOptions {
+	return UpdateDriveRootPermissionOperationOptions{}
+}
+
+func (o UpdateDriveRootPermissionOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateDriveRootPermissionOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateDriveRootPermissionOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateDriveRootPermission - Update the navigation property permissions in users
-func (c DriveRootPermissionClient) UpdateDriveRootPermission(ctx context.Context, id beta.UserIdDriveIdRootPermissionId, input beta.Permission) (result UpdateDriveRootPermissionOperationResponse, err error) {
+func (c DriveRootPermissionClient) UpdateDriveRootPermission(ctx context.Context, id beta.UserIdDriveIdRootPermissionId, input beta.Permission, options UpdateDriveRootPermissionOperationOptions) (result UpdateDriveRootPermissionOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

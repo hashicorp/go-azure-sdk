@@ -154,10 +154,34 @@ func (s Calendar) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &Calendar{}
 
 func (s *Calendar) UnmarshalJSON(bytes []byte) error {
-	type alias Calendar
-	var decoded alias
+
+	var decoded struct {
+		AllowedOnlineMeetingProviders *[]OnlineMeetingProviderType         `json:"allowedOnlineMeetingProviders,omitempty"`
+		CalendarGroupId               nullable.Type[string]                `json:"calendarGroupId,omitempty"`
+		CalendarPermissions           *[]CalendarPermission                `json:"calendarPermissions,omitempty"`
+		CalendarView                  *[]Event                             `json:"calendarView,omitempty"`
+		CanEdit                       nullable.Type[bool]                  `json:"canEdit,omitempty"`
+		CanShare                      nullable.Type[bool]                  `json:"canShare,omitempty"`
+		CanViewPrivateItems           nullable.Type[bool]                  `json:"canViewPrivateItems,omitempty"`
+		ChangeKey                     nullable.Type[string]                `json:"changeKey,omitempty"`
+		Color                         *CalendarColor                       `json:"color,omitempty"`
+		DefaultOnlineMeetingProvider  *OnlineMeetingProviderType           `json:"defaultOnlineMeetingProvider,omitempty"`
+		Events                        *[]Event                             `json:"events,omitempty"`
+		HexColor                      nullable.Type[string]                `json:"hexColor,omitempty"`
+		IsDefaultCalendar             nullable.Type[bool]                  `json:"isDefaultCalendar,omitempty"`
+		IsRemovable                   nullable.Type[bool]                  `json:"isRemovable,omitempty"`
+		IsShared                      nullable.Type[bool]                  `json:"isShared,omitempty"`
+		IsSharedWithMe                nullable.Type[bool]                  `json:"isSharedWithMe,omitempty"`
+		IsTallyingResponses           nullable.Type[bool]                  `json:"isTallyingResponses,omitempty"`
+		MultiValueExtendedProperties  *[]MultiValueLegacyExtendedProperty  `json:"multiValueExtendedProperties,omitempty"`
+		Name                          nullable.Type[string]                `json:"name,omitempty"`
+		SingleValueExtendedProperties *[]SingleValueLegacyExtendedProperty `json:"singleValueExtendedProperties,omitempty"`
+		Id                            *string                              `json:"id,omitempty"`
+		ODataId                       *string                              `json:"@odata.id,omitempty"`
+		ODataType                     *string                              `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into Calendar: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.AllowedOnlineMeetingProviders = decoded.AllowedOnlineMeetingProviders
@@ -172,7 +196,6 @@ func (s *Calendar) UnmarshalJSON(bytes []byte) error {
 	s.DefaultOnlineMeetingProvider = decoded.DefaultOnlineMeetingProvider
 	s.Events = decoded.Events
 	s.HexColor = decoded.HexColor
-	s.Id = decoded.Id
 	s.IsDefaultCalendar = decoded.IsDefaultCalendar
 	s.IsRemovable = decoded.IsRemovable
 	s.IsShared = decoded.IsShared
@@ -180,9 +203,10 @@ func (s *Calendar) UnmarshalJSON(bytes []byte) error {
 	s.IsTallyingResponses = decoded.IsTallyingResponses
 	s.MultiValueExtendedProperties = decoded.MultiValueExtendedProperties
 	s.Name = decoded.Name
+	s.SingleValueExtendedProperties = decoded.SingleValueExtendedProperties
+	s.Id = decoded.Id
 	s.ODataId = decoded.ODataId
 	s.ODataType = decoded.ODataType
-	s.SingleValueExtendedProperties = decoded.SingleValueExtendedProperties
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -196,5 +220,6 @@ func (s *Calendar) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Owner = &impl
 	}
+
 	return nil
 }

@@ -98,10 +98,10 @@ func (id GroupIdCalendarCalendarViewId) ID() string {
 func (id GroupIdCalendarCalendarViewId) Segments() []resourceids.Segment {
 	return []resourceids.Segment{
 		resourceids.StaticSegment("groups", "groups", "groups"),
-		resourceids.UserSpecifiedSegment("groupId", "groupIdValue"),
+		resourceids.UserSpecifiedSegment("groupId", "groupId"),
 		resourceids.StaticSegment("calendar", "calendar", "calendar"),
 		resourceids.StaticSegment("calendarView", "calendarView", "calendarView"),
-		resourceids.UserSpecifiedSegment("eventId", "eventIdValue"),
+		resourceids.UserSpecifiedSegment("eventId", "eventId"),
 	}
 }
 

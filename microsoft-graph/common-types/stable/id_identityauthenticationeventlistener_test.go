@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &IdentityAuthenticationEventListenerId{}
 
 func TestNewIdentityAuthenticationEventListenerID(t *testing.T) {
-	id := NewIdentityAuthenticationEventListenerID("authenticationEventListenerIdValue")
+	id := NewIdentityAuthenticationEventListenerID("authenticationEventListenerId")
 
-	if id.AuthenticationEventListenerId != "authenticationEventListenerIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'AuthenticationEventListenerId'", id.AuthenticationEventListenerId, "authenticationEventListenerIdValue")
+	if id.AuthenticationEventListenerId != "authenticationEventListenerId" {
+		t.Fatalf("Expected %q but got %q for Segment 'AuthenticationEventListenerId'", id.AuthenticationEventListenerId, "authenticationEventListenerId")
 	}
 }
 
 func TestFormatIdentityAuthenticationEventListenerID(t *testing.T) {
-	actual := NewIdentityAuthenticationEventListenerID("authenticationEventListenerIdValue").ID()
-	expected := "/identity/authenticationEventListeners/authenticationEventListenerIdValue"
+	actual := NewIdentityAuthenticationEventListenerID("authenticationEventListenerId").ID()
+	expected := "/identity/authenticationEventListeners/authenticationEventListenerId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -50,14 +50,14 @@ func TestParseIdentityAuthenticationEventListenerID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/identity/authenticationEventListeners/authenticationEventListenerIdValue",
+			Input: "/identity/authenticationEventListeners/authenticationEventListenerId",
 			Expected: &IdentityAuthenticationEventListenerId{
-				AuthenticationEventListenerId: "authenticationEventListenerIdValue",
+				AuthenticationEventListenerId: "authenticationEventListenerId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/identity/authenticationEventListeners/authenticationEventListenerIdValue/extra",
+			Input: "/identity/authenticationEventListeners/authenticationEventListenerId/extra",
 			Error: true,
 		},
 	}
@@ -116,26 +116,26 @@ func TestParseIdentityAuthenticationEventListenerIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/identity/authenticationEventListeners/authenticationEventListenerIdValue",
+			Input: "/identity/authenticationEventListeners/authenticationEventListenerId",
 			Expected: &IdentityAuthenticationEventListenerId{
-				AuthenticationEventListenerId: "authenticationEventListenerIdValue",
+				AuthenticationEventListenerId: "authenticationEventListenerId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/identity/authenticationEventListeners/authenticationEventListenerIdValue/extra",
+			Input: "/identity/authenticationEventListeners/authenticationEventListenerId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/iDeNtItY/aUtHeNtIcAtIoNeVeNtLiStEnErS/aUtHeNtIcAtIoNeVeNtLiStEnErIdVaLuE",
+			Input: "/iDeNtItY/aUtHeNtIcAtIoNeVeNtLiStEnErS/aUtHeNtIcAtIoNeVeNtLiStEnErId",
 			Expected: &IdentityAuthenticationEventListenerId{
-				AuthenticationEventListenerId: "aUtHeNtIcAtIoNeVeNtLiStEnErIdVaLuE",
+				AuthenticationEventListenerId: "aUtHeNtIcAtIoNeVeNtLiStEnErId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/iDeNtItY/aUtHeNtIcAtIoNeVeNtLiStEnErS/aUtHeNtIcAtIoNeVeNtLiStEnErIdVaLuE/extra",
+			Input: "/iDeNtItY/aUtHeNtIcAtIoNeVeNtLiStEnErS/aUtHeNtIcAtIoNeVeNtLiStEnErId/extra",
 			Error: true,
 		},
 	}

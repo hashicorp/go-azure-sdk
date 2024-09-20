@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/stable/team` Documentation
 
-The `team` SDK allows for interaction with the Azure Resource Manager Service `groups` (API Version `stable`).
+The `team` SDK allows for interaction with Microsoft Graph `groups` (API Version `stable`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -15,7 +15,7 @@ import "github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/stable/team"
 ### Client Initialization
 
 ```go
-client := team.NewTeamClientWithBaseURI("https://management.azure.com")
+client := team.NewTeamClientWithBaseURI("https://graph.microsoft.com")
 client.Client.Authorizer = authorizer
 ```
 
@@ -24,14 +24,14 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := team.NewGroupID("groupIdValue")
+id := team.NewGroupID("groupId")
 
 payload := team.CreateTeamArchiveRequest{
 	// ...
 }
 
 
-read, err := client.CreateTeamArchive(ctx, id, payload)
+read, err := client.CreateTeamArchive(ctx, id, payload, team.DefaultCreateTeamArchiveOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -45,14 +45,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := team.NewGroupID("groupIdValue")
+id := team.NewGroupID("groupId")
 
 payload := team.CreateTeamCloneRequest{
 	// ...
 }
 
 
-read, err := client.CreateTeamClone(ctx, id, payload)
+read, err := client.CreateTeamClone(ctx, id, payload, team.DefaultCreateTeamCloneOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -66,9 +66,9 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := team.NewGroupID("groupIdValue")
+id := team.NewGroupID("groupId")
 
-read, err := client.CreateTeamCompleteMigration(ctx, id)
+read, err := client.CreateTeamCompleteMigration(ctx, id, team.DefaultCreateTeamCompleteMigrationOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -82,9 +82,9 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := team.NewGroupID("groupIdValue")
+id := team.NewGroupID("groupId")
 
-read, err := client.CreateTeamUnarchive(ctx, id)
+read, err := client.CreateTeamUnarchive(ctx, id, team.DefaultCreateTeamUnarchiveOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -98,7 +98,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := team.NewGroupID("groupIdValue")
+id := team.NewGroupID("groupId")
 
 read, err := client.DeleteTeam(ctx, id, team.DefaultDeleteTeamOperationOptions())
 if err != nil {
@@ -114,7 +114,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := team.NewGroupID("groupIdValue")
+id := team.NewGroupID("groupId")
 
 read, err := client.GetTeam(ctx, id, team.DefaultGetTeamOperationOptions())
 if err != nil {
@@ -130,14 +130,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := team.NewGroupID("groupIdValue")
+id := team.NewGroupID("groupId")
 
 payload := team.SendTeamActivityNotificationRequest{
 	// ...
 }
 
 
-read, err := client.SendTeamActivityNotification(ctx, id, payload)
+read, err := client.SendTeamActivityNotification(ctx, id, payload, team.DefaultSendTeamActivityNotificationOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -151,14 +151,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := team.NewGroupID("groupIdValue")
+id := team.NewGroupID("groupId")
 
 payload := team.Team{
 	// ...
 }
 
 
-read, err := client.SetTeam(ctx, id, payload)
+read, err := client.SetTeam(ctx, id, payload, team.DefaultSetTeamOperationOptions())
 if err != nil {
 	// handle the error
 }

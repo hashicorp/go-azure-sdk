@@ -19,16 +19,45 @@ type GetOnlineMeetingTranscriptContentOperationResponse struct {
 	Model        *[]byte
 }
 
+type GetOnlineMeetingTranscriptContentOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultGetOnlineMeetingTranscriptContentOperationOptions() GetOnlineMeetingTranscriptContentOperationOptions {
+	return GetOnlineMeetingTranscriptContentOperationOptions{}
+}
+
+func (o GetOnlineMeetingTranscriptContentOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o GetOnlineMeetingTranscriptContentOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o GetOnlineMeetingTranscriptContentOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // GetOnlineMeetingTranscriptContent - Get content for the navigation property transcripts from me. The content of the
 // transcript. Read-only.
-func (c OnlineMeetingTranscriptContentClient) GetOnlineMeetingTranscriptContent(ctx context.Context, id beta.MeOnlineMeetingIdTranscriptId) (result GetOnlineMeetingTranscriptContentOperationResponse, err error) {
+func (c OnlineMeetingTranscriptContentClient) GetOnlineMeetingTranscriptContent(ctx context.Context, id beta.MeOnlineMeetingIdTranscriptId, options GetOnlineMeetingTranscriptContentOperationOptions) (result GetOnlineMeetingTranscriptContentOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/octet-stream",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/content", id.ID()),
+		HttpMethod:    http.MethodGet,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/content", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -78,10 +78,16 @@ func (s ExternalMeetingRegistration) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &ExternalMeetingRegistration{}
 
 func (s *ExternalMeetingRegistration) UnmarshalJSON(bytes []byte) error {
-	type alias ExternalMeetingRegistration
-	var decoded alias
+
+	var decoded struct {
+		AllowedRegistrant *MeetingAudience         `json:"allowedRegistrant,omitempty"`
+		Registrants       *[]MeetingRegistrantBase `json:"registrants,omitempty"`
+		Id                *string                  `json:"id,omitempty"`
+		ODataId           *string                  `json:"@odata.id,omitempty"`
+		ODataType         *string                  `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into ExternalMeetingRegistration: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.AllowedRegistrant = decoded.AllowedRegistrant
@@ -110,5 +116,6 @@ func (s *ExternalMeetingRegistration) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Registrants = &output
 	}
+
 	return nil
 }

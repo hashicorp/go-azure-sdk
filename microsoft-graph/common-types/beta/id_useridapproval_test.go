@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &UserIdApprovalId{}
 
 func TestNewUserIdApprovalID(t *testing.T) {
-	id := NewUserIdApprovalID("userIdValue", "approvalIdValue")
+	id := NewUserIdApprovalID("userId", "approvalId")
 
-	if id.UserId != "userIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'UserId'", id.UserId, "userIdValue")
+	if id.UserId != "userId" {
+		t.Fatalf("Expected %q but got %q for Segment 'UserId'", id.UserId, "userId")
 	}
 
-	if id.ApprovalId != "approvalIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ApprovalId'", id.ApprovalId, "approvalIdValue")
+	if id.ApprovalId != "approvalId" {
+		t.Fatalf("Expected %q but got %q for Segment 'ApprovalId'", id.ApprovalId, "approvalId")
 	}
 }
 
 func TestFormatUserIdApprovalID(t *testing.T) {
-	actual := NewUserIdApprovalID("userIdValue", "approvalIdValue").ID()
-	expected := "/users/userIdValue/approvals/approvalIdValue"
+	actual := NewUserIdApprovalID("userId", "approvalId").ID()
+	expected := "/users/userId/approvals/approvalId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -49,25 +49,25 @@ func TestParseUserIdApprovalID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue",
+			Input: "/users/userId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/approvals",
+			Input: "/users/userId/approvals",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/users/userIdValue/approvals/approvalIdValue",
+			Input: "/users/userId/approvals/approvalId",
 			Expected: &UserIdApprovalId{
-				UserId:     "userIdValue",
-				ApprovalId: "approvalIdValue",
+				UserId:     "userId",
+				ApprovalId: "approvalId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/users/userIdValue/approvals/approvalIdValue/extra",
+			Input: "/users/userId/approvals/approvalId/extra",
 			Error: true,
 		},
 	}
@@ -120,48 +120,48 @@ func TestParseUserIdApprovalIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue",
+			Input: "/users/userId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe",
+			Input: "/uSeRs/uSeRiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/approvals",
+			Input: "/users/userId/approvals",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/aPpRoVaLs",
+			Input: "/uSeRs/uSeRiD/aPpRoVaLs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/users/userIdValue/approvals/approvalIdValue",
+			Input: "/users/userId/approvals/approvalId",
 			Expected: &UserIdApprovalId{
-				UserId:     "userIdValue",
-				ApprovalId: "approvalIdValue",
+				UserId:     "userId",
+				ApprovalId: "approvalId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/users/userIdValue/approvals/approvalIdValue/extra",
+			Input: "/users/userId/approvals/approvalId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/aPpRoVaLs/aPpRoVaLiDvAlUe",
+			Input: "/uSeRs/uSeRiD/aPpRoVaLs/aPpRoVaLiD",
 			Expected: &UserIdApprovalId{
-				UserId:     "uSeRiDvAlUe",
-				ApprovalId: "aPpRoVaLiDvAlUe",
+				UserId:     "uSeRiD",
+				ApprovalId: "aPpRoVaLiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/aPpRoVaLs/aPpRoVaLiDvAlUe/extra",
+			Input: "/uSeRs/uSeRiD/aPpRoVaLs/aPpRoVaLiD/extra",
 			Error: true,
 		},
 	}

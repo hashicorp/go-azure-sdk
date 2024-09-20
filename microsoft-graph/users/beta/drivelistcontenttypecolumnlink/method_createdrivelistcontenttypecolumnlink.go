@@ -19,15 +19,44 @@ type CreateDriveListContentTypeColumnLinkOperationResponse struct {
 	Model        *beta.ColumnLink
 }
 
+type CreateDriveListContentTypeColumnLinkOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateDriveListContentTypeColumnLinkOperationOptions() CreateDriveListContentTypeColumnLinkOperationOptions {
+	return CreateDriveListContentTypeColumnLinkOperationOptions{}
+}
+
+func (o CreateDriveListContentTypeColumnLinkOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateDriveListContentTypeColumnLinkOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateDriveListContentTypeColumnLinkOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateDriveListContentTypeColumnLink - Create new navigation property to columnLinks for users
-func (c DriveListContentTypeColumnLinkClient) CreateDriveListContentTypeColumnLink(ctx context.Context, id beta.UserIdDriveIdListContentTypeId, input beta.ColumnLink) (result CreateDriveListContentTypeColumnLinkOperationResponse, err error) {
+func (c DriveListContentTypeColumnLinkClient) CreateDriveListContentTypeColumnLink(ctx context.Context, id beta.UserIdDriveIdListContentTypeId, input beta.ColumnLink, options CreateDriveListContentTypeColumnLinkOperationOptions) (result CreateDriveListContentTypeColumnLinkOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/columnLinks", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/columnLinks", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

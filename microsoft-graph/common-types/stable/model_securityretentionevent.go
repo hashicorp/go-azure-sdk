@@ -99,10 +99,24 @@ func (s SecurityRetentionEvent) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &SecurityRetentionEvent{}
 
 func (s *SecurityRetentionEvent) UnmarshalJSON(bytes []byte) error {
-	type alias SecurityRetentionEvent
-	var decoded alias
+
+	var decoded struct {
+		CreatedDateTime          nullable.Type[string]             `json:"createdDateTime,omitempty"`
+		Description              nullable.Type[string]             `json:"description,omitempty"`
+		DisplayName              nullable.Type[string]             `json:"displayName,omitempty"`
+		EventPropagationResults  *[]SecurityEventPropagationResult `json:"eventPropagationResults,omitempty"`
+		EventQueries             *[]SecurityEventQuery             `json:"eventQueries,omitempty"`
+		EventStatus              *SecurityRetentionEventStatus     `json:"eventStatus,omitempty"`
+		EventTriggerDateTime     nullable.Type[string]             `json:"eventTriggerDateTime,omitempty"`
+		LastModifiedDateTime     nullable.Type[string]             `json:"lastModifiedDateTime,omitempty"`
+		LastStatusUpdateDateTime nullable.Type[string]             `json:"lastStatusUpdateDateTime,omitempty"`
+		RetentionEventType       *SecurityRetentionEventType       `json:"retentionEventType,omitempty"`
+		Id                       *string                           `json:"id,omitempty"`
+		ODataId                  *string                           `json:"@odata.id,omitempty"`
+		ODataType                *string                           `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into SecurityRetentionEvent: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.CreatedDateTime = decoded.CreatedDateTime
@@ -112,12 +126,12 @@ func (s *SecurityRetentionEvent) UnmarshalJSON(bytes []byte) error {
 	s.EventQueries = decoded.EventQueries
 	s.EventStatus = decoded.EventStatus
 	s.EventTriggerDateTime = decoded.EventTriggerDateTime
-	s.Id = decoded.Id
 	s.LastModifiedDateTime = decoded.LastModifiedDateTime
 	s.LastStatusUpdateDateTime = decoded.LastStatusUpdateDateTime
+	s.RetentionEventType = decoded.RetentionEventType
+	s.Id = decoded.Id
 	s.ODataId = decoded.ODataId
 	s.ODataType = decoded.ODataType
-	s.RetentionEventType = decoded.RetentionEventType
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -139,5 +153,6 @@ func (s *SecurityRetentionEvent) UnmarshalJSON(bytes []byte) error {
 		}
 		s.LastModifiedBy = impl
 	}
+
 	return nil
 }

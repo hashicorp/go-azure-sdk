@@ -19,7 +19,8 @@ type DeleteAdministrativeUnitScopedRoleMemberOperationResponse struct {
 }
 
 type DeleteAdministrativeUnitScopedRoleMemberOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteAdministrativeUnitScopedRoleMemberOperationOptions() DeleteAdministrativeUnitScopedRoleMemberOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteAdministrativeUnitScopedRoleMemberOperationOptions) ToHeaders() *c
 
 func (o DeleteAdministrativeUnitScopedRoleMemberOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

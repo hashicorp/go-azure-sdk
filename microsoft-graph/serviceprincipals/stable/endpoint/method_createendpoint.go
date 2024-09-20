@@ -19,15 +19,44 @@ type CreateEndpointOperationResponse struct {
 	Model        *stable.Endpoint
 }
 
+type CreateEndpointOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateEndpointOperationOptions() CreateEndpointOperationOptions {
+	return CreateEndpointOperationOptions{}
+}
+
+func (o CreateEndpointOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateEndpointOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateEndpointOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateEndpoint - Create new navigation property to endpoints for servicePrincipals
-func (c EndpointClient) CreateEndpoint(ctx context.Context, id stable.ServicePrincipalId, input stable.Endpoint) (result CreateEndpointOperationResponse, err error) {
+func (c EndpointClient) CreateEndpoint(ctx context.Context, id stable.ServicePrincipalId, input stable.Endpoint, options CreateEndpointOperationOptions) (result CreateEndpointOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/endpoints", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/endpoints", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

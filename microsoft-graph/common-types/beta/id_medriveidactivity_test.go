@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &MeDriveIdActivityId{}
 
 func TestNewMeDriveIdActivityID(t *testing.T) {
-	id := NewMeDriveIdActivityID("driveIdValue", "itemActivityOLDIdValue")
+	id := NewMeDriveIdActivityID("driveId", "itemActivityOLDId")
 
-	if id.DriveId != "driveIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DriveId'", id.DriveId, "driveIdValue")
+	if id.DriveId != "driveId" {
+		t.Fatalf("Expected %q but got %q for Segment 'DriveId'", id.DriveId, "driveId")
 	}
 
-	if id.ItemActivityOLDId != "itemActivityOLDIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ItemActivityOLDId'", id.ItemActivityOLDId, "itemActivityOLDIdValue")
+	if id.ItemActivityOLDId != "itemActivityOLDId" {
+		t.Fatalf("Expected %q but got %q for Segment 'ItemActivityOLDId'", id.ItemActivityOLDId, "itemActivityOLDId")
 	}
 }
 
 func TestFormatMeDriveIdActivityID(t *testing.T) {
-	actual := NewMeDriveIdActivityID("driveIdValue", "itemActivityOLDIdValue").ID()
-	expected := "/me/drives/driveIdValue/activities/itemActivityOLDIdValue"
+	actual := NewMeDriveIdActivityID("driveId", "itemActivityOLDId").ID()
+	expected := "/me/drives/driveId/activities/itemActivityOLDId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -54,25 +54,25 @@ func TestParseMeDriveIdActivityID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/me/drives/driveIdValue",
+			Input: "/me/drives/driveId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/me/drives/driveIdValue/activities",
+			Input: "/me/drives/driveId/activities",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/me/drives/driveIdValue/activities/itemActivityOLDIdValue",
+			Input: "/me/drives/driveId/activities/itemActivityOLDId",
 			Expected: &MeDriveIdActivityId{
-				DriveId:           "driveIdValue",
-				ItemActivityOLDId: "itemActivityOLDIdValue",
+				DriveId:           "driveId",
+				ItemActivityOLDId: "itemActivityOLDId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/drives/driveIdValue/activities/itemActivityOLDIdValue/extra",
+			Input: "/me/drives/driveId/activities/itemActivityOLDId/extra",
 			Error: true,
 		},
 	}
@@ -135,48 +135,48 @@ func TestParseMeDriveIdActivityIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/me/drives/driveIdValue",
+			Input: "/me/drives/driveId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/dRiVeS/dRiVeIdVaLuE",
+			Input: "/mE/dRiVeS/dRiVeId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/me/drives/driveIdValue/activities",
+			Input: "/me/drives/driveId/activities",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/dRiVeS/dRiVeIdVaLuE/aCtIvItIeS",
+			Input: "/mE/dRiVeS/dRiVeId/aCtIvItIeS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/me/drives/driveIdValue/activities/itemActivityOLDIdValue",
+			Input: "/me/drives/driveId/activities/itemActivityOLDId",
 			Expected: &MeDriveIdActivityId{
-				DriveId:           "driveIdValue",
-				ItemActivityOLDId: "itemActivityOLDIdValue",
+				DriveId:           "driveId",
+				ItemActivityOLDId: "itemActivityOLDId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/drives/driveIdValue/activities/itemActivityOLDIdValue/extra",
+			Input: "/me/drives/driveId/activities/itemActivityOLDId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/dRiVeS/dRiVeIdVaLuE/aCtIvItIeS/iTeMaCtIvItYoLdIdVaLuE",
+			Input: "/mE/dRiVeS/dRiVeId/aCtIvItIeS/iTeMaCtIvItYoLdId",
 			Expected: &MeDriveIdActivityId{
-				DriveId:           "dRiVeIdVaLuE",
-				ItemActivityOLDId: "iTeMaCtIvItYoLdIdVaLuE",
+				DriveId:           "dRiVeId",
+				ItemActivityOLDId: "iTeMaCtIvItYoLdId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/mE/dRiVeS/dRiVeIdVaLuE/aCtIvItIeS/iTeMaCtIvItYoLdIdVaLuE/extra",
+			Input: "/mE/dRiVeS/dRiVeId/aCtIvItIeS/iTeMaCtIvItYoLdId/extra",
 			Error: true,
 		},
 	}

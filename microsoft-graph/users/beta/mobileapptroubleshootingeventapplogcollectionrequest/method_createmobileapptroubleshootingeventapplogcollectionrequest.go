@@ -19,16 +19,45 @@ type CreateMobileAppTroubleshootingEventAppLogCollectionRequestOperationResponse
 	Model        *beta.AppLogCollectionRequest
 }
 
+type CreateMobileAppTroubleshootingEventAppLogCollectionRequestOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateMobileAppTroubleshootingEventAppLogCollectionRequestOperationOptions() CreateMobileAppTroubleshootingEventAppLogCollectionRequestOperationOptions {
+	return CreateMobileAppTroubleshootingEventAppLogCollectionRequestOperationOptions{}
+}
+
+func (o CreateMobileAppTroubleshootingEventAppLogCollectionRequestOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateMobileAppTroubleshootingEventAppLogCollectionRequestOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateMobileAppTroubleshootingEventAppLogCollectionRequestOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateMobileAppTroubleshootingEventAppLogCollectionRequest - Create new navigation property to
 // appLogCollectionRequests for users
-func (c MobileAppTroubleshootingEventAppLogCollectionRequestClient) CreateMobileAppTroubleshootingEventAppLogCollectionRequest(ctx context.Context, id beta.UserIdMobileAppTroubleshootingEventId, input beta.AppLogCollectionRequest) (result CreateMobileAppTroubleshootingEventAppLogCollectionRequestOperationResponse, err error) {
+func (c MobileAppTroubleshootingEventAppLogCollectionRequestClient) CreateMobileAppTroubleshootingEventAppLogCollectionRequest(ctx context.Context, id beta.UserIdMobileAppTroubleshootingEventId, input beta.AppLogCollectionRequest, options CreateMobileAppTroubleshootingEventAppLogCollectionRequestOperationOptions) (result CreateMobileAppTroubleshootingEventAppLogCollectionRequestOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/appLogCollectionRequests", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/appLogCollectionRequests", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

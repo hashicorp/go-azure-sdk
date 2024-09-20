@@ -66,17 +66,24 @@ func (s RecommendLabelAction) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &RecommendLabelAction{}
 
 func (s *RecommendLabelAction) UnmarshalJSON(bytes []byte) error {
-	type alias RecommendLabelAction
-	var decoded alias
+
+	var decoded struct {
+		ActionSource                *ActionSource                  `json:"actionSource,omitempty"`
+		Actions                     *[]InformationProtectionAction `json:"actions,omitempty"`
+		Label                       *LabelDetails                  `json:"label,omitempty"`
+		ResponsibleSensitiveTypeIds *[]string                      `json:"responsibleSensitiveTypeIds,omitempty"`
+		ODataId                     *string                        `json:"@odata.id,omitempty"`
+		ODataType                   *string                        `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into RecommendLabelAction: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.ActionSource = decoded.ActionSource
 	s.Label = decoded.Label
+	s.ResponsibleSensitiveTypeIds = decoded.ResponsibleSensitiveTypeIds
 	s.ODataId = decoded.ODataId
 	s.ODataType = decoded.ODataType
-	s.ResponsibleSensitiveTypeIds = decoded.ResponsibleSensitiveTypeIds
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -99,5 +106,6 @@ func (s *RecommendLabelAction) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Actions = &output
 	}
+
 	return nil
 }

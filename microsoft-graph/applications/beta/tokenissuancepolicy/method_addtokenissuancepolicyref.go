@@ -18,15 +18,44 @@ type AddTokenIssuancePolicyRefOperationResponse struct {
 	OData        *odata.OData
 }
 
+type AddTokenIssuancePolicyRefOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultAddTokenIssuancePolicyRefOperationOptions() AddTokenIssuancePolicyRefOperationOptions {
+	return AddTokenIssuancePolicyRefOperationOptions{}
+}
+
+func (o AddTokenIssuancePolicyRefOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o AddTokenIssuancePolicyRefOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o AddTokenIssuancePolicyRefOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // AddTokenIssuancePolicyRef - Assign tokenIssuancePolicy. Assign a tokenIssuancePolicy to an application.
-func (c TokenIssuancePolicyClient) AddTokenIssuancePolicyRef(ctx context.Context, id beta.ApplicationId, input beta.ReferenceCreate) (result AddTokenIssuancePolicyRefOperationResponse, err error) {
+func (c TokenIssuancePolicyClient) AddTokenIssuancePolicyRef(ctx context.Context, id beta.ApplicationId, input beta.ReferenceCreate, options AddTokenIssuancePolicyRefOperationOptions) (result AddTokenIssuancePolicyRefOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/tokenIssuancePolicies/$ref", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/tokenIssuancePolicies/$ref", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

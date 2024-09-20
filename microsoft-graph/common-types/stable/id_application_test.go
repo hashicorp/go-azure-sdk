@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &ApplicationId{}
 
 func TestNewApplicationID(t *testing.T) {
-	id := NewApplicationID("applicationIdValue")
+	id := NewApplicationID("applicationId")
 
-	if id.ApplicationId != "applicationIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ApplicationId'", id.ApplicationId, "applicationIdValue")
+	if id.ApplicationId != "applicationId" {
+		t.Fatalf("Expected %q but got %q for Segment 'ApplicationId'", id.ApplicationId, "applicationId")
 	}
 }
 
 func TestFormatApplicationID(t *testing.T) {
-	actual := NewApplicationID("applicationIdValue").ID()
-	expected := "/applications/applicationIdValue"
+	actual := NewApplicationID("applicationId").ID()
+	expected := "/applications/applicationId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -45,14 +45,14 @@ func TestParseApplicationID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/applications/applicationIdValue",
+			Input: "/applications/applicationId",
 			Expected: &ApplicationId{
-				ApplicationId: "applicationIdValue",
+				ApplicationId: "applicationId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/applications/applicationIdValue/extra",
+			Input: "/applications/applicationId/extra",
 			Error: true,
 		},
 	}
@@ -101,26 +101,26 @@ func TestParseApplicationIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/applications/applicationIdValue",
+			Input: "/applications/applicationId",
 			Expected: &ApplicationId{
-				ApplicationId: "applicationIdValue",
+				ApplicationId: "applicationId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/applications/applicationIdValue/extra",
+			Input: "/applications/applicationId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/aPpLiCaTiOnS/aPpLiCaTiOnIdVaLuE",
+			Input: "/aPpLiCaTiOnS/aPpLiCaTiOnId",
 			Expected: &ApplicationId{
-				ApplicationId: "aPpLiCaTiOnIdVaLuE",
+				ApplicationId: "aPpLiCaTiOnId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/aPpLiCaTiOnS/aPpLiCaTiOnIdVaLuE/extra",
+			Input: "/aPpLiCaTiOnS/aPpLiCaTiOnId/extra",
 			Error: true,
 		},
 	}

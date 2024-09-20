@@ -20,8 +20,9 @@ type GetAuthenticationEventsFlowConditionOperationResponse struct {
 }
 
 type GetAuthenticationEventsFlowConditionOperationOptions struct {
-	Expand *odata.Expand
-	Select *[]string
+	Expand   *odata.Expand
+	Metadata *odata.Metadata
+	Select   *[]string
 }
 
 func DefaultGetAuthenticationEventsFlowConditionOperationOptions() GetAuthenticationEventsFlowConditionOperationOptions {
@@ -38,6 +39,9 @@ func (o GetAuthenticationEventsFlowConditionOperationOptions) ToOData() *odata.Q
 	out := odata.Query{}
 	if o.Expand != nil {
 		out.Expand = *o.Expand
+	}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
 	}
 	if o.Select != nil {
 		out.Select = *o.Select

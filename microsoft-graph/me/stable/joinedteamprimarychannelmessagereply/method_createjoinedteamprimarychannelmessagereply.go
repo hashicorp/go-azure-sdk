@@ -19,15 +19,44 @@ type CreateJoinedTeamPrimaryChannelMessageReplyOperationResponse struct {
 	Model        *stable.ChatMessage
 }
 
+type CreateJoinedTeamPrimaryChannelMessageReplyOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateJoinedTeamPrimaryChannelMessageReplyOperationOptions() CreateJoinedTeamPrimaryChannelMessageReplyOperationOptions {
+	return CreateJoinedTeamPrimaryChannelMessageReplyOperationOptions{}
+}
+
+func (o CreateJoinedTeamPrimaryChannelMessageReplyOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateJoinedTeamPrimaryChannelMessageReplyOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateJoinedTeamPrimaryChannelMessageReplyOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateJoinedTeamPrimaryChannelMessageReply - Create new navigation property to replies for me
-func (c JoinedTeamPrimaryChannelMessageReplyClient) CreateJoinedTeamPrimaryChannelMessageReply(ctx context.Context, id stable.MeJoinedTeamIdPrimaryChannelMessageId, input stable.ChatMessage) (result CreateJoinedTeamPrimaryChannelMessageReplyOperationResponse, err error) {
+func (c JoinedTeamPrimaryChannelMessageReplyClient) CreateJoinedTeamPrimaryChannelMessageReply(ctx context.Context, id stable.MeJoinedTeamIdPrimaryChannelMessageId, input stable.ChatMessage, options CreateJoinedTeamPrimaryChannelMessageReplyOperationOptions) (result CreateJoinedTeamPrimaryChannelMessageReplyOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/replies", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/replies", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -19,15 +19,44 @@ type CreateChatMessageReplyOperationResponse struct {
 	Model        *beta.ChatMessage
 }
 
+type CreateChatMessageReplyOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateChatMessageReplyOperationOptions() CreateChatMessageReplyOperationOptions {
+	return CreateChatMessageReplyOperationOptions{}
+}
+
+func (o CreateChatMessageReplyOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateChatMessageReplyOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateChatMessageReplyOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateChatMessageReply - Create new navigation property to replies for users
-func (c ChatMessageReplyClient) CreateChatMessageReply(ctx context.Context, id beta.UserIdChatIdMessageId, input beta.ChatMessage) (result CreateChatMessageReplyOperationResponse, err error) {
+func (c ChatMessageReplyClient) CreateChatMessageReply(ctx context.Context, id beta.UserIdChatIdMessageId, input beta.ChatMessage, options CreateChatMessageReplyOperationOptions) (result CreateChatMessageReplyOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/replies", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/replies", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &DeviceManagementDeviceManagementScriptId{}
 
 func TestNewDeviceManagementDeviceManagementScriptID(t *testing.T) {
-	id := NewDeviceManagementDeviceManagementScriptID("deviceManagementScriptIdValue")
+	id := NewDeviceManagementDeviceManagementScriptID("deviceManagementScriptId")
 
-	if id.DeviceManagementScriptId != "deviceManagementScriptIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DeviceManagementScriptId'", id.DeviceManagementScriptId, "deviceManagementScriptIdValue")
+	if id.DeviceManagementScriptId != "deviceManagementScriptId" {
+		t.Fatalf("Expected %q but got %q for Segment 'DeviceManagementScriptId'", id.DeviceManagementScriptId, "deviceManagementScriptId")
 	}
 }
 
 func TestFormatDeviceManagementDeviceManagementScriptID(t *testing.T) {
-	actual := NewDeviceManagementDeviceManagementScriptID("deviceManagementScriptIdValue").ID()
-	expected := "/deviceManagement/deviceManagementScripts/deviceManagementScriptIdValue"
+	actual := NewDeviceManagementDeviceManagementScriptID("deviceManagementScriptId").ID()
+	expected := "/deviceManagement/deviceManagementScripts/deviceManagementScriptId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -50,14 +50,14 @@ func TestParseDeviceManagementDeviceManagementScriptID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/deviceManagementScripts/deviceManagementScriptIdValue",
+			Input: "/deviceManagement/deviceManagementScripts/deviceManagementScriptId",
 			Expected: &DeviceManagementDeviceManagementScriptId{
-				DeviceManagementScriptId: "deviceManagementScriptIdValue",
+				DeviceManagementScriptId: "deviceManagementScriptId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/deviceManagementScripts/deviceManagementScriptIdValue/extra",
+			Input: "/deviceManagement/deviceManagementScripts/deviceManagementScriptId/extra",
 			Error: true,
 		},
 	}
@@ -116,26 +116,26 @@ func TestParseDeviceManagementDeviceManagementScriptIDInsensitively(t *testing.T
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/deviceManagementScripts/deviceManagementScriptIdValue",
+			Input: "/deviceManagement/deviceManagementScripts/deviceManagementScriptId",
 			Expected: &DeviceManagementDeviceManagementScriptId{
-				DeviceManagementScriptId: "deviceManagementScriptIdValue",
+				DeviceManagementScriptId: "deviceManagementScriptId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/deviceManagementScripts/deviceManagementScriptIdValue/extra",
+			Input: "/deviceManagement/deviceManagementScripts/deviceManagementScriptId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/dEvIcEmAnAgEmEnTsCrIpTs/dEvIcEmAnAgEmEnTsCrIpTiDvAlUe",
+			Input: "/dEvIcEmAnAgEmEnT/dEvIcEmAnAgEmEnTsCrIpTs/dEvIcEmAnAgEmEnTsCrIpTiD",
 			Expected: &DeviceManagementDeviceManagementScriptId{
-				DeviceManagementScriptId: "dEvIcEmAnAgEmEnTsCrIpTiDvAlUe",
+				DeviceManagementScriptId: "dEvIcEmAnAgEmEnTsCrIpTiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/dEvIcEmAnAgEmEnTsCrIpTs/dEvIcEmAnAgEmEnTsCrIpTiDvAlUe/extra",
+			Input: "/dEvIcEmAnAgEmEnT/dEvIcEmAnAgEmEnTsCrIpTs/dEvIcEmAnAgEmEnTsCrIpTiD/extra",
 			Error: true,
 		},
 	}

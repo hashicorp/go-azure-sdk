@@ -100,9 +100,9 @@ func (id IdentityGovernanceEntitlementManagementCatalogIdResourceId) Segments() 
 		resourceids.StaticSegment("identityGovernance", "identityGovernance", "identityGovernance"),
 		resourceids.StaticSegment("entitlementManagement", "entitlementManagement", "entitlementManagement"),
 		resourceids.StaticSegment("catalogs", "catalogs", "catalogs"),
-		resourceids.UserSpecifiedSegment("accessPackageCatalogId", "accessPackageCatalogIdValue"),
+		resourceids.UserSpecifiedSegment("accessPackageCatalogId", "accessPackageCatalogId"),
 		resourceids.StaticSegment("resources", "resources", "resources"),
-		resourceids.UserSpecifiedSegment("accessPackageResourceId", "accessPackageResourceIdValue"),
+		resourceids.UserSpecifiedSegment("accessPackageResourceId", "accessPackageResourceId"),
 	}
 }
 

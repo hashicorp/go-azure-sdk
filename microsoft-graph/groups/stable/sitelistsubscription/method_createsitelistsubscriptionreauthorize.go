@@ -18,16 +18,45 @@ type CreateSiteListSubscriptionReauthorizeOperationResponse struct {
 	OData        *odata.OData
 }
 
+type CreateSiteListSubscriptionReauthorizeOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateSiteListSubscriptionReauthorizeOperationOptions() CreateSiteListSubscriptionReauthorizeOperationOptions {
+	return CreateSiteListSubscriptionReauthorizeOperationOptions{}
+}
+
+func (o CreateSiteListSubscriptionReauthorizeOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateSiteListSubscriptionReauthorizeOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateSiteListSubscriptionReauthorizeOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateSiteListSubscriptionReauthorize - Invoke action reauthorize. Reauthorize a subscription when you receive a
 // reauthorizationRequired challenge.
-func (c SiteListSubscriptionClient) CreateSiteListSubscriptionReauthorize(ctx context.Context, id stable.GroupIdSiteIdListIdSubscriptionId) (result CreateSiteListSubscriptionReauthorizeOperationResponse, err error) {
+func (c SiteListSubscriptionClient) CreateSiteListSubscriptionReauthorize(ctx context.Context, id stable.GroupIdSiteIdListIdSubscriptionId, options CreateSiteListSubscriptionReauthorizeOperationOptions) (result CreateSiteListSubscriptionReauthorizeOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/reauthorize", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/reauthorize", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

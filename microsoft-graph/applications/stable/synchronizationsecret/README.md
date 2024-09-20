@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/microsoft-graph/applications/stable/synchronizationsecret` Documentation
 
-The `synchronizationsecret` SDK allows for interaction with the Azure Resource Manager Service `applications` (API Version `stable`).
+The `synchronizationsecret` SDK allows for interaction with Microsoft Graph `applications` (API Version `stable`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -15,7 +15,7 @@ import "github.com/hashicorp/go-azure-sdk/microsoft-graph/applications/stable/sy
 ### Client Initialization
 
 ```go
-client := synchronizationsecret.NewSynchronizationSecretClientWithBaseURI("https://management.azure.com")
+client := synchronizationsecret.NewSynchronizationSecretClientWithBaseURI("https://graph.microsoft.com")
 client.Client.Authorizer = authorizer
 ```
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := synchronizationsecret.NewApplicationID("applicationIdValue")
+id := synchronizationsecret.NewApplicationID("applicationId")
 
 read, err := client.GetSynchronizationSecretsCount(ctx, id, synchronizationsecret.DefaultGetSynchronizationSecretsCountOperationOptions())
 if err != nil {
@@ -40,7 +40,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := synchronizationsecret.NewApplicationID("applicationIdValue")
+id := synchronizationsecret.NewApplicationID("applicationId")
 
 // alternatively `client.ListSynchronizationSecrets(ctx, id, synchronizationsecret.DefaultListSynchronizationSecretsOperationOptions())` can be used to do batched pagination
 items, err := client.ListSynchronizationSecretsComplete(ctx, id, synchronizationsecret.DefaultListSynchronizationSecretsOperationOptions())
@@ -57,14 +57,14 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := synchronizationsecret.NewApplicationID("applicationIdValue")
+id := synchronizationsecret.NewApplicationID("applicationId")
 
 payload := synchronizationsecret.SetSynchronizationSecretRequest{
 	// ...
 }
 
 
-read, err := client.SetSynchronizationSecret(ctx, id, payload)
+read, err := client.SetSynchronizationSecret(ctx, id, payload, synchronizationsecret.DefaultSetSynchronizationSecretOperationOptions())
 if err != nil {
 	// handle the error
 }

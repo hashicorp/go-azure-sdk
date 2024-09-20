@@ -17,19 +17,48 @@ type UpdateGroupOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateGroupOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateGroupOperationOptions() UpdateGroupOperationOptions {
+	return UpdateGroupOperationOptions{}
+}
+
+func (o UpdateGroupOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateGroupOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateGroupOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateGroup - Upsert group. Create a new group object if it doesn't exist, or update the properties of an existing
 // group object. You can create or update the following types of group: By default, this operation returns only a subset
 // of the properties for each group. For a list of properties that are returned by default, see the Properties section
 // of the group resource. To get properties that are not returned by default, do a GET operation and specify the
 // properties in a $select OData query option.
-func (c GroupClient) UpdateGroup(ctx context.Context, id beta.GroupId, input beta.Group) (result UpdateGroupOperationResponse, err error) {
+func (c GroupClient) UpdateGroup(ctx context.Context, id beta.GroupId, input beta.Group, options UpdateGroupOperationOptions) (result UpdateGroupOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

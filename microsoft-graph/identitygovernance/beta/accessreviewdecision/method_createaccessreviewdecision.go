@@ -18,15 +18,44 @@ type CreateAccessReviewDecisionOperationResponse struct {
 	Model        *beta.AccessReviewInstanceDecisionItem
 }
 
+type CreateAccessReviewDecisionOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateAccessReviewDecisionOperationOptions() CreateAccessReviewDecisionOperationOptions {
+	return CreateAccessReviewDecisionOperationOptions{}
+}
+
+func (o CreateAccessReviewDecisionOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateAccessReviewDecisionOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateAccessReviewDecisionOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateAccessReviewDecision - Create new navigation property to decisions for identityGovernance
-func (c AccessReviewDecisionClient) CreateAccessReviewDecision(ctx context.Context, input beta.AccessReviewInstanceDecisionItem) (result CreateAccessReviewDecisionOperationResponse, err error) {
+func (c AccessReviewDecisionClient) CreateAccessReviewDecision(ctx context.Context, input beta.AccessReviewInstanceDecisionItem, options CreateAccessReviewDecisionOperationOptions) (result CreateAccessReviewDecisionOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/identityGovernance/accessReviews/decisions",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/identityGovernance/accessReviews/decisions",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

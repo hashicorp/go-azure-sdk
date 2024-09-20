@@ -20,8 +20,9 @@ type GetEnterpriseAppRoleAssignmentScheduleRequestsCountOperationResponse struct
 }
 
 type GetEnterpriseAppRoleAssignmentScheduleRequestsCountOperationOptions struct {
-	Filter *string
-	Search *string
+	Filter   *string
+	Metadata *odata.Metadata
+	Search   *string
 }
 
 func DefaultGetEnterpriseAppRoleAssignmentScheduleRequestsCountOperationOptions() GetEnterpriseAppRoleAssignmentScheduleRequestsCountOperationOptions {
@@ -38,6 +39,9 @@ func (o GetEnterpriseAppRoleAssignmentScheduleRequestsCountOperationOptions) ToO
 	out := odata.Query{}
 	if o.Filter != nil {
 		out.Filter = *o.Filter
+	}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
 	}
 	if o.Search != nil {
 		out.Search = *o.Search

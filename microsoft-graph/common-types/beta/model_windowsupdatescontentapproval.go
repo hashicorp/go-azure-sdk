@@ -96,15 +96,25 @@ func (s WindowsUpdatesContentApproval) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &WindowsUpdatesContentApproval{}
 
 func (s *WindowsUpdatesContentApproval) UnmarshalJSON(bytes []byte) error {
-	type alias WindowsUpdatesContentApproval
-	var decoded alias
+
+	var decoded struct {
+		DeploymentSettings *WindowsUpdatesDeploymentSettings `json:"deploymentSettings,omitempty"`
+		Deployments        *[]WindowsUpdatesDeployment       `json:"deployments,omitempty"`
+		CreatedDateTime    nullable.Type[string]             `json:"createdDateTime,omitempty"`
+		IsRevoked          nullable.Type[bool]               `json:"isRevoked,omitempty"`
+		RevokedDateTime    nullable.Type[string]             `json:"revokedDateTime,omitempty"`
+		UpdatePolicy       *WindowsUpdatesUpdatePolicy       `json:"updatePolicy,omitempty"`
+		Id                 *string                           `json:"id,omitempty"`
+		ODataId            *string                           `json:"@odata.id,omitempty"`
+		ODataType          *string                           `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into WindowsUpdatesContentApproval: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
-	s.CreatedDateTime = decoded.CreatedDateTime
 	s.DeploymentSettings = decoded.DeploymentSettings
 	s.Deployments = decoded.Deployments
+	s.CreatedDateTime = decoded.CreatedDateTime
 	s.Id = decoded.Id
 	s.IsRevoked = decoded.IsRevoked
 	s.ODataId = decoded.ODataId
@@ -124,5 +134,6 @@ func (s *WindowsUpdatesContentApproval) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Content = impl
 	}
+
 	return nil
 }

@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &UserIdAuthenticationOperationId{}
 
 func TestNewUserIdAuthenticationOperationID(t *testing.T) {
-	id := NewUserIdAuthenticationOperationID("userIdValue", "longRunningOperationIdValue")
+	id := NewUserIdAuthenticationOperationID("userId", "longRunningOperationId")
 
-	if id.UserId != "userIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'UserId'", id.UserId, "userIdValue")
+	if id.UserId != "userId" {
+		t.Fatalf("Expected %q but got %q for Segment 'UserId'", id.UserId, "userId")
 	}
 
-	if id.LongRunningOperationId != "longRunningOperationIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'LongRunningOperationId'", id.LongRunningOperationId, "longRunningOperationIdValue")
+	if id.LongRunningOperationId != "longRunningOperationId" {
+		t.Fatalf("Expected %q but got %q for Segment 'LongRunningOperationId'", id.LongRunningOperationId, "longRunningOperationId")
 	}
 }
 
 func TestFormatUserIdAuthenticationOperationID(t *testing.T) {
-	actual := NewUserIdAuthenticationOperationID("userIdValue", "longRunningOperationIdValue").ID()
-	expected := "/users/userIdValue/authentication/operations/longRunningOperationIdValue"
+	actual := NewUserIdAuthenticationOperationID("userId", "longRunningOperationId").ID()
+	expected := "/users/userId/authentication/operations/longRunningOperationId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -49,30 +49,30 @@ func TestParseUserIdAuthenticationOperationID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue",
+			Input: "/users/userId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/authentication",
+			Input: "/users/userId/authentication",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/authentication/operations",
+			Input: "/users/userId/authentication/operations",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/users/userIdValue/authentication/operations/longRunningOperationIdValue",
+			Input: "/users/userId/authentication/operations/longRunningOperationId",
 			Expected: &UserIdAuthenticationOperationId{
-				UserId:                 "userIdValue",
-				LongRunningOperationId: "longRunningOperationIdValue",
+				UserId:                 "userId",
+				LongRunningOperationId: "longRunningOperationId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/users/userIdValue/authentication/operations/longRunningOperationIdValue/extra",
+			Input: "/users/userId/authentication/operations/longRunningOperationId/extra",
 			Error: true,
 		},
 	}
@@ -125,58 +125,58 @@ func TestParseUserIdAuthenticationOperationIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue",
+			Input: "/users/userId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe",
+			Input: "/uSeRs/uSeRiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/authentication",
+			Input: "/users/userId/authentication",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/aUtHeNtIcAtIoN",
+			Input: "/uSeRs/uSeRiD/aUtHeNtIcAtIoN",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/authentication/operations",
+			Input: "/users/userId/authentication/operations",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/aUtHeNtIcAtIoN/oPeRaTiOnS",
+			Input: "/uSeRs/uSeRiD/aUtHeNtIcAtIoN/oPeRaTiOnS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/users/userIdValue/authentication/operations/longRunningOperationIdValue",
+			Input: "/users/userId/authentication/operations/longRunningOperationId",
 			Expected: &UserIdAuthenticationOperationId{
-				UserId:                 "userIdValue",
-				LongRunningOperationId: "longRunningOperationIdValue",
+				UserId:                 "userId",
+				LongRunningOperationId: "longRunningOperationId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/users/userIdValue/authentication/operations/longRunningOperationIdValue/extra",
+			Input: "/users/userId/authentication/operations/longRunningOperationId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/aUtHeNtIcAtIoN/oPeRaTiOnS/lOnGrUnNiNgOpErAtIoNiDvAlUe",
+			Input: "/uSeRs/uSeRiD/aUtHeNtIcAtIoN/oPeRaTiOnS/lOnGrUnNiNgOpErAtIoNiD",
 			Expected: &UserIdAuthenticationOperationId{
-				UserId:                 "uSeRiDvAlUe",
-				LongRunningOperationId: "lOnGrUnNiNgOpErAtIoNiDvAlUe",
+				UserId:                 "uSeRiD",
+				LongRunningOperationId: "lOnGrUnNiNgOpErAtIoNiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/aUtHeNtIcAtIoN/oPeRaTiOnS/lOnGrUnNiNgOpErAtIoNiDvAlUe/extra",
+			Input: "/uSeRs/uSeRiD/aUtHeNtIcAtIoN/oPeRaTiOnS/lOnGrUnNiNgOpErAtIoNiD/extra",
 			Error: true,
 		},
 	}

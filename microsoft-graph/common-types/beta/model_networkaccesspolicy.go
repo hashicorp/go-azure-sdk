@@ -102,18 +102,26 @@ func (s BaseNetworkaccessPolicyImpl) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &BaseNetworkaccessPolicyImpl{}
 
 func (s *BaseNetworkaccessPolicyImpl) UnmarshalJSON(bytes []byte) error {
-	type alias BaseNetworkaccessPolicyImpl
-	var decoded alias
+
+	var decoded struct {
+		Description nullable.Type[string]      `json:"description,omitempty"`
+		Name        *string                    `json:"name,omitempty"`
+		PolicyRules *[]NetworkaccessPolicyRule `json:"policyRules,omitempty"`
+		Version     *string                    `json:"version,omitempty"`
+		Id          *string                    `json:"id,omitempty"`
+		ODataId     *string                    `json:"@odata.id,omitempty"`
+		ODataType   *string                    `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into BaseNetworkaccessPolicyImpl: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.Description = decoded.Description
-	s.Id = decoded.Id
 	s.Name = decoded.Name
+	s.Version = decoded.Version
+	s.Id = decoded.Id
 	s.ODataId = decoded.ODataId
 	s.ODataType = decoded.ODataType
-	s.Version = decoded.Version
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -136,6 +144,7 @@ func (s *BaseNetworkaccessPolicyImpl) UnmarshalJSON(bytes []byte) error {
 		}
 		s.PolicyRules = &output
 	}
+
 	return nil
 }
 
@@ -149,9 +158,9 @@ func UnmarshalNetworkaccessPolicyImplementation(input []byte) (NetworkaccessPoli
 		return nil, fmt.Errorf("unmarshaling NetworkaccessPolicy into map[string]interface: %+v", err)
 	}
 
-	value, ok := temp["@odata.type"].(string)
-	if !ok {
-		return nil, nil
+	var value string
+	if v, ok := temp["@odata.type"]; ok {
+		value = fmt.Sprintf("%v", v)
 	}
 
 	if strings.EqualFold(value, "#microsoft.graph.networkaccess.filteringPolicy") {

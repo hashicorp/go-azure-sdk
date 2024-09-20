@@ -2,6 +2,7 @@ package exchangeonpremisespolicyconditionalaccesssetting
 
 import (
 	"context"
+	"fmt"
 	"net/http"
 
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta"
@@ -19,8 +20,9 @@ type GetExchangeOnPremisesPolicyConditionalAccessSettingOperationResponse struct
 }
 
 type GetExchangeOnPremisesPolicyConditionalAccessSettingOperationOptions struct {
-	Expand *odata.Expand
-	Select *[]string
+	Expand   *odata.Expand
+	Metadata *odata.Metadata
+	Select   *[]string
 }
 
 func DefaultGetExchangeOnPremisesPolicyConditionalAccessSettingOperationOptions() GetExchangeOnPremisesPolicyConditionalAccessSettingOperationOptions {
@@ -38,6 +40,9 @@ func (o GetExchangeOnPremisesPolicyConditionalAccessSettingOperationOptions) ToO
 	if o.Expand != nil {
 		out.Expand = *o.Expand
 	}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	if o.Select != nil {
 		out.Select = *o.Select
 	}
@@ -53,7 +58,7 @@ func (o GetExchangeOnPremisesPolicyConditionalAccessSettingOperationOptions) ToQ
 // GetExchangeOnPremisesPolicyConditionalAccessSetting - Get conditionalAccessSettings from deviceManagement. The
 // Exchange on premises conditional access settings. On premises conditional access will require devices to be both
 // enrolled and compliant for mail access
-func (c ExchangeOnPremisesPolicyConditionalAccessSettingClient) GetExchangeOnPremisesPolicyConditionalAccessSetting(ctx context.Context, options GetExchangeOnPremisesPolicyConditionalAccessSettingOperationOptions) (result GetExchangeOnPremisesPolicyConditionalAccessSettingOperationResponse, err error) {
+func (c ExchangeOnPremisesPolicyConditionalAccessSettingClient) GetExchangeOnPremisesPolicyConditionalAccessSetting(ctx context.Context, id beta.DeviceManagementExchangeOnPremisesPolicyId, options GetExchangeOnPremisesPolicyConditionalAccessSettingOperationOptions) (result GetExchangeOnPremisesPolicyConditionalAccessSettingOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
@@ -61,7 +66,7 @@ func (c ExchangeOnPremisesPolicyConditionalAccessSettingClient) GetExchangeOnPre
 		},
 		HttpMethod:    http.MethodGet,
 		OptionsObject: options,
-		Path:          "/deviceManagement/exchangeOnPremisesPolicy/conditionalAccessSettings",
+		Path:          fmt.Sprintf("%s/conditionalAccessSettings", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

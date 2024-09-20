@@ -94,7 +94,7 @@ func (id RoleManagementExchangeCustomAppScopeId) Segments() []resourceids.Segmen
 		resourceids.StaticSegment("roleManagement", "roleManagement", "roleManagement"),
 		resourceids.StaticSegment("exchange", "exchange", "exchange"),
 		resourceids.StaticSegment("customAppScopes", "customAppScopes", "customAppScopes"),
-		resourceids.UserSpecifiedSegment("customAppScopeId", "customAppScopeIdValue"),
+		resourceids.UserSpecifiedSegment("customAppScopeId", "customAppScopeId"),
 	}
 }
 

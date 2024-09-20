@@ -32,10 +32,16 @@ type InvitedUserMessageInfo struct {
 var _ json.Unmarshaler = &InvitedUserMessageInfo{}
 
 func (s *InvitedUserMessageInfo) UnmarshalJSON(bytes []byte) error {
-	type alias InvitedUserMessageInfo
-	var decoded alias
+
+	var decoded struct {
+		CcRecipients          *[]Recipient          `json:"ccRecipients,omitempty"`
+		CustomizedMessageBody nullable.Type[string] `json:"customizedMessageBody,omitempty"`
+		MessageLanguage       nullable.Type[string] `json:"messageLanguage,omitempty"`
+		ODataId               *string               `json:"@odata.id,omitempty"`
+		ODataType             *string               `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into InvitedUserMessageInfo: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.CustomizedMessageBody = decoded.CustomizedMessageBody
@@ -64,5 +70,6 @@ func (s *InvitedUserMessageInfo) UnmarshalJSON(bytes []byte) error {
 		}
 		s.CcRecipients = &output
 	}
+
 	return nil
 }

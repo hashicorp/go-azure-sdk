@@ -18,15 +18,44 @@ type UnsetJoinedTeamPrimaryChannelMessageReplyReactionOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UnsetJoinedTeamPrimaryChannelMessageReplyReactionOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUnsetJoinedTeamPrimaryChannelMessageReplyReactionOperationOptions() UnsetJoinedTeamPrimaryChannelMessageReplyReactionOperationOptions {
+	return UnsetJoinedTeamPrimaryChannelMessageReplyReactionOperationOptions{}
+}
+
+func (o UnsetJoinedTeamPrimaryChannelMessageReplyReactionOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UnsetJoinedTeamPrimaryChannelMessageReplyReactionOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UnsetJoinedTeamPrimaryChannelMessageReplyReactionOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UnsetJoinedTeamPrimaryChannelMessageReplyReaction - Invoke action unsetReaction
-func (c JoinedTeamPrimaryChannelMessageReplyClient) UnsetJoinedTeamPrimaryChannelMessageReplyReaction(ctx context.Context, id stable.MeJoinedTeamIdPrimaryChannelMessageIdReplyId, input UnsetJoinedTeamPrimaryChannelMessageReplyReactionRequest) (result UnsetJoinedTeamPrimaryChannelMessageReplyReactionOperationResponse, err error) {
+func (c JoinedTeamPrimaryChannelMessageReplyClient) UnsetJoinedTeamPrimaryChannelMessageReplyReaction(ctx context.Context, id stable.MeJoinedTeamIdPrimaryChannelMessageIdReplyId, input UnsetJoinedTeamPrimaryChannelMessageReplyReactionRequest, options UnsetJoinedTeamPrimaryChannelMessageReplyReactionOperationOptions) (result UnsetJoinedTeamPrimaryChannelMessageReplyReactionOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/unsetReaction", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/unsetReaction", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -93,7 +93,7 @@ func (id DeviceManagementMobileThreatDefenseConnectorId) Segments() []resourceid
 	return []resourceids.Segment{
 		resourceids.StaticSegment("deviceManagement", "deviceManagement", "deviceManagement"),
 		resourceids.StaticSegment("mobileThreatDefenseConnectors", "mobileThreatDefenseConnectors", "mobileThreatDefenseConnectors"),
-		resourceids.UserSpecifiedSegment("mobileThreatDefenseConnectorId", "mobileThreatDefenseConnectorIdValue"),
+		resourceids.UserSpecifiedSegment("mobileThreatDefenseConnectorId", "mobileThreatDefenseConnectorId"),
 	}
 }
 

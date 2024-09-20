@@ -17,15 +17,44 @@ type UpdateLifecycleWorkflowDeletedItemWorkflowVersionTaskOperationResponse stru
 	OData        *odata.OData
 }
 
+type UpdateLifecycleWorkflowDeletedItemWorkflowVersionTaskOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateLifecycleWorkflowDeletedItemWorkflowVersionTaskOperationOptions() UpdateLifecycleWorkflowDeletedItemWorkflowVersionTaskOperationOptions {
+	return UpdateLifecycleWorkflowDeletedItemWorkflowVersionTaskOperationOptions{}
+}
+
+func (o UpdateLifecycleWorkflowDeletedItemWorkflowVersionTaskOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateLifecycleWorkflowDeletedItemWorkflowVersionTaskOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateLifecycleWorkflowDeletedItemWorkflowVersionTaskOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateLifecycleWorkflowDeletedItemWorkflowVersionTask - Update the navigation property tasks in identityGovernance
-func (c LifecycleWorkflowDeletedItemWorkflowVersionTaskClient) UpdateLifecycleWorkflowDeletedItemWorkflowVersionTask(ctx context.Context, id stable.IdentityGovernanceLifecycleWorkflowDeletedItemWorkflowIdVersionIdTaskId, input stable.IdentityGovernanceTask) (result UpdateLifecycleWorkflowDeletedItemWorkflowVersionTaskOperationResponse, err error) {
+func (c LifecycleWorkflowDeletedItemWorkflowVersionTaskClient) UpdateLifecycleWorkflowDeletedItemWorkflowVersionTask(ctx context.Context, id stable.IdentityGovernanceLifecycleWorkflowDeletedItemWorkflowIdVersionIdTaskId, input stable.IdentityGovernanceTask, options UpdateLifecycleWorkflowDeletedItemWorkflowVersionTaskOperationOptions) (result UpdateLifecycleWorkflowDeletedItemWorkflowVersionTaskOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

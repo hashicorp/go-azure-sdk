@@ -26,8 +26,9 @@ type ListSecurityInformationProtectionSensitivityLabelSecurityEvaluateClassifica
 }
 
 type ListSecurityInformationProtectionSensitivityLabelSecurityEvaluateClassificationResultsOperationOptions struct {
-	Skip *int64
-	Top  *int64
+	Metadata *odata.Metadata
+	Skip     *int64
+	Top      *int64
 }
 
 func DefaultListSecurityInformationProtectionSensitivityLabelSecurityEvaluateClassificationResultsOperationOptions() ListSecurityInformationProtectionSensitivityLabelSecurityEvaluateClassificationResultsOperationOptions {
@@ -42,6 +43,9 @@ func (o ListSecurityInformationProtectionSensitivityLabelSecurityEvaluateClassif
 
 func (o ListSecurityInformationProtectionSensitivityLabelSecurityEvaluateClassificationResultsOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	if o.Skip != nil {
 		out.Skip = int(*o.Skip)
 	}
@@ -75,7 +79,7 @@ func (p *ListSecurityInformationProtectionSensitivityLabelSecurityEvaluateClassi
 // should be set automatically based on classification of the file contents, rather than labeled directly by a user or
 // service. To evaluate based on classification results, provide the contentInfo, which includes existing content
 // metadata key-value pairs, and classification results. The API returns an informationProtectionAction that contains
-// one of more of the following:
+// one of more of the following
 func (c SecurityInformationProtectionSensitivityLabelClient) ListSecurityInformationProtectionSensitivityLabelSecurityEvaluateClassificationResults(ctx context.Context, id beta.UserId, input ListSecurityInformationProtectionSensitivityLabelSecurityEvaluateClassificationResultsRequest, options ListSecurityInformationProtectionSensitivityLabelSecurityEvaluateClassificationResultsOperationOptions) (result ListSecurityInformationProtectionSensitivityLabelSecurityEvaluateClassificationResultsOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",

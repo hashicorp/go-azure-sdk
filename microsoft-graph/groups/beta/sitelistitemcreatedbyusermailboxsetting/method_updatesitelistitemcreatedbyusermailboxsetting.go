@@ -18,15 +18,44 @@ type UpdateSiteListItemCreatedByUserMailboxSettingOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateSiteListItemCreatedByUserMailboxSettingOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateSiteListItemCreatedByUserMailboxSettingOperationOptions() UpdateSiteListItemCreatedByUserMailboxSettingOperationOptions {
+	return UpdateSiteListItemCreatedByUserMailboxSettingOperationOptions{}
+}
+
+func (o UpdateSiteListItemCreatedByUserMailboxSettingOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateSiteListItemCreatedByUserMailboxSettingOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateSiteListItemCreatedByUserMailboxSettingOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateSiteListItemCreatedByUserMailboxSetting - Update property mailboxSettings value.
-func (c SiteListItemCreatedByUserMailboxSettingClient) UpdateSiteListItemCreatedByUserMailboxSetting(ctx context.Context, id beta.GroupIdSiteIdListIdItemId, input beta.MailboxSettings) (result UpdateSiteListItemCreatedByUserMailboxSettingOperationResponse, err error) {
+func (c SiteListItemCreatedByUserMailboxSettingClient) UpdateSiteListItemCreatedByUserMailboxSetting(ctx context.Context, id beta.GroupIdSiteIdListIdItemId, input beta.MailboxSettings, options UpdateSiteListItemCreatedByUserMailboxSettingOperationOptions) (result UpdateSiteListItemCreatedByUserMailboxSettingOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       fmt.Sprintf("%s/createdByUser/mailboxSettings", id.ID()),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/createdByUser/mailboxSettings", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

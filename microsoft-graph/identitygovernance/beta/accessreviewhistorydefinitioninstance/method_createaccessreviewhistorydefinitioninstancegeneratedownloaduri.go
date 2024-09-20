@@ -19,18 +19,47 @@ type CreateAccessReviewHistoryDefinitionInstanceGenerateDownloadUriOperationResp
 	Model        *beta.AccessReviewHistoryInstance
 }
 
+type CreateAccessReviewHistoryDefinitionInstanceGenerateDownloadUriOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateAccessReviewHistoryDefinitionInstanceGenerateDownloadUriOperationOptions() CreateAccessReviewHistoryDefinitionInstanceGenerateDownloadUriOperationOptions {
+	return CreateAccessReviewHistoryDefinitionInstanceGenerateDownloadUriOperationOptions{}
+}
+
+func (o CreateAccessReviewHistoryDefinitionInstanceGenerateDownloadUriOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateAccessReviewHistoryDefinitionInstanceGenerateDownloadUriOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateAccessReviewHistoryDefinitionInstanceGenerateDownloadUriOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateAccessReviewHistoryDefinitionInstanceGenerateDownloadUri - Invoke action generateDownloadUri. Generates a URI
 // for an accessReviewHistoryInstance object the status for which is done. Each URI can be used to retrieve the
 // instance's review history data. Each URI is valid for 24 hours and can be retrieved by fetching the downloadUri
 // property from the accessReviewHistoryInstance object.
-func (c AccessReviewHistoryDefinitionInstanceClient) CreateAccessReviewHistoryDefinitionInstanceGenerateDownloadUri(ctx context.Context, id beta.IdentityGovernanceAccessReviewHistoryDefinitionIdInstanceId) (result CreateAccessReviewHistoryDefinitionInstanceGenerateDownloadUriOperationResponse, err error) {
+func (c AccessReviewHistoryDefinitionInstanceClient) CreateAccessReviewHistoryDefinitionInstanceGenerateDownloadUri(ctx context.Context, id beta.IdentityGovernanceAccessReviewHistoryDefinitionIdInstanceId, options CreateAccessReviewHistoryDefinitionInstanceGenerateDownloadUriOperationOptions) (result CreateAccessReviewHistoryDefinitionInstanceGenerateDownloadUriOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/generateDownloadUri", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/generateDownloadUri", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

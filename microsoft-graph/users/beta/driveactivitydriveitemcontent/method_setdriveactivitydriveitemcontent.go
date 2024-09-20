@@ -18,18 +18,47 @@ type SetDriveActivityDriveItemContentOperationResponse struct {
 	OData        *odata.OData
 }
 
+type SetDriveActivityDriveItemContentOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultSetDriveActivityDriveItemContentOperationOptions() SetDriveActivityDriveItemContentOperationOptions {
+	return SetDriveActivityDriveItemContentOperationOptions{}
+}
+
+func (o SetDriveActivityDriveItemContentOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o SetDriveActivityDriveItemContentOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o SetDriveActivityDriveItemContentOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // SetDriveActivityDriveItemContent - Update content for the navigation property driveItem in users. The content stream,
 // if the item represents a file. The content property will have a potentially breaking change in behavior in the
 // future. It will stream content directly instead of redirecting. To proactively opt in to the new behavior ahead of
 // time, use the contentStream property instead.
-func (c DriveActivityDriveItemContentClient) SetDriveActivityDriveItemContent(ctx context.Context, id beta.UserIdDriveIdActivityId, input []byte) (result SetDriveActivityDriveItemContentOperationResponse, err error) {
+func (c DriveActivityDriveItemContentClient) SetDriveActivityDriveItemContent(ctx context.Context, id beta.UserIdDriveIdActivityId, input []byte, options SetDriveActivityDriveItemContentOperationOptions) (result SetDriveActivityDriveItemContentOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPut,
-		Path:       fmt.Sprintf("%s/driveItem/content", id.ID()),
+		HttpMethod:    http.MethodPut,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/driveItem/content", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

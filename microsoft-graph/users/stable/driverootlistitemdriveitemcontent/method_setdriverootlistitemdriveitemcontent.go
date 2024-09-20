@@ -18,16 +18,45 @@ type SetDriveRootListItemDriveItemContentOperationResponse struct {
 	OData        *odata.OData
 }
 
+type SetDriveRootListItemDriveItemContentOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultSetDriveRootListItemDriveItemContentOperationOptions() SetDriveRootListItemDriveItemContentOperationOptions {
+	return SetDriveRootListItemDriveItemContentOperationOptions{}
+}
+
+func (o SetDriveRootListItemDriveItemContentOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o SetDriveRootListItemDriveItemContentOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o SetDriveRootListItemDriveItemContentOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // SetDriveRootListItemDriveItemContent - Update content for the navigation property driveItem in users. The content
 // stream, if the item represents a file.
-func (c DriveRootListItemDriveItemContentClient) SetDriveRootListItemDriveItemContent(ctx context.Context, id stable.UserIdDriveId, input []byte) (result SetDriveRootListItemDriveItemContentOperationResponse, err error) {
+func (c DriveRootListItemDriveItemContentClient) SetDriveRootListItemDriveItemContent(ctx context.Context, id stable.UserIdDriveId, input []byte, options SetDriveRootListItemDriveItemContentOperationOptions) (result SetDriveRootListItemDriveItemContentOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPut,
-		Path:       fmt.Sprintf("%s/root/listItem/driveItem/content", id.ID()),
+		HttpMethod:    http.MethodPut,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/root/listItem/driveItem/content", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

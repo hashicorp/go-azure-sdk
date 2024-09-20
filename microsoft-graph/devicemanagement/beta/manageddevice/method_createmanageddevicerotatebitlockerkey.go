@@ -18,15 +18,44 @@ type CreateManagedDeviceRotateBitLockerKeyOperationResponse struct {
 	OData        *odata.OData
 }
 
+type CreateManagedDeviceRotateBitLockerKeyOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateManagedDeviceRotateBitLockerKeyOperationOptions() CreateManagedDeviceRotateBitLockerKeyOperationOptions {
+	return CreateManagedDeviceRotateBitLockerKeyOperationOptions{}
+}
+
+func (o CreateManagedDeviceRotateBitLockerKeyOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateManagedDeviceRotateBitLockerKeyOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateManagedDeviceRotateBitLockerKeyOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateManagedDeviceRotateBitLockerKey - Invoke action rotateBitLockerKeys. Rotate BitLockerKeys
-func (c ManagedDeviceClient) CreateManagedDeviceRotateBitLockerKey(ctx context.Context, id beta.DeviceManagementManagedDeviceId) (result CreateManagedDeviceRotateBitLockerKeyOperationResponse, err error) {
+func (c ManagedDeviceClient) CreateManagedDeviceRotateBitLockerKey(ctx context.Context, id beta.DeviceManagementManagedDeviceId, options CreateManagedDeviceRotateBitLockerKeyOperationOptions) (result CreateManagedDeviceRotateBitLockerKeyOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/rotateBitLockerKeys", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/rotateBitLockerKeys", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

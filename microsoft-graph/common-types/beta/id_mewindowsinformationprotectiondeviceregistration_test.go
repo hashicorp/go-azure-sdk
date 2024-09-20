@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &MeWindowsInformationProtectionDeviceRegistrationId{}
 
 func TestNewMeWindowsInformationProtectionDeviceRegistrationID(t *testing.T) {
-	id := NewMeWindowsInformationProtectionDeviceRegistrationID("windowsInformationProtectionDeviceRegistrationIdValue")
+	id := NewMeWindowsInformationProtectionDeviceRegistrationID("windowsInformationProtectionDeviceRegistrationId")
 
-	if id.WindowsInformationProtectionDeviceRegistrationId != "windowsInformationProtectionDeviceRegistrationIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'WindowsInformationProtectionDeviceRegistrationId'", id.WindowsInformationProtectionDeviceRegistrationId, "windowsInformationProtectionDeviceRegistrationIdValue")
+	if id.WindowsInformationProtectionDeviceRegistrationId != "windowsInformationProtectionDeviceRegistrationId" {
+		t.Fatalf("Expected %q but got %q for Segment 'WindowsInformationProtectionDeviceRegistrationId'", id.WindowsInformationProtectionDeviceRegistrationId, "windowsInformationProtectionDeviceRegistrationId")
 	}
 }
 
 func TestFormatMeWindowsInformationProtectionDeviceRegistrationID(t *testing.T) {
-	actual := NewMeWindowsInformationProtectionDeviceRegistrationID("windowsInformationProtectionDeviceRegistrationIdValue").ID()
-	expected := "/me/windowsInformationProtectionDeviceRegistrations/windowsInformationProtectionDeviceRegistrationIdValue"
+	actual := NewMeWindowsInformationProtectionDeviceRegistrationID("windowsInformationProtectionDeviceRegistrationId").ID()
+	expected := "/me/windowsInformationProtectionDeviceRegistrations/windowsInformationProtectionDeviceRegistrationId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -50,14 +50,14 @@ func TestParseMeWindowsInformationProtectionDeviceRegistrationID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/me/windowsInformationProtectionDeviceRegistrations/windowsInformationProtectionDeviceRegistrationIdValue",
+			Input: "/me/windowsInformationProtectionDeviceRegistrations/windowsInformationProtectionDeviceRegistrationId",
 			Expected: &MeWindowsInformationProtectionDeviceRegistrationId{
-				WindowsInformationProtectionDeviceRegistrationId: "windowsInformationProtectionDeviceRegistrationIdValue",
+				WindowsInformationProtectionDeviceRegistrationId: "windowsInformationProtectionDeviceRegistrationId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/windowsInformationProtectionDeviceRegistrations/windowsInformationProtectionDeviceRegistrationIdValue/extra",
+			Input: "/me/windowsInformationProtectionDeviceRegistrations/windowsInformationProtectionDeviceRegistrationId/extra",
 			Error: true,
 		},
 	}
@@ -116,26 +116,26 @@ func TestParseMeWindowsInformationProtectionDeviceRegistrationIDInsensitively(t 
 		},
 		{
 			// Valid URI
-			Input: "/me/windowsInformationProtectionDeviceRegistrations/windowsInformationProtectionDeviceRegistrationIdValue",
+			Input: "/me/windowsInformationProtectionDeviceRegistrations/windowsInformationProtectionDeviceRegistrationId",
 			Expected: &MeWindowsInformationProtectionDeviceRegistrationId{
-				WindowsInformationProtectionDeviceRegistrationId: "windowsInformationProtectionDeviceRegistrationIdValue",
+				WindowsInformationProtectionDeviceRegistrationId: "windowsInformationProtectionDeviceRegistrationId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/windowsInformationProtectionDeviceRegistrations/windowsInformationProtectionDeviceRegistrationIdValue/extra",
+			Input: "/me/windowsInformationProtectionDeviceRegistrations/windowsInformationProtectionDeviceRegistrationId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/wInDoWsInFoRmAtIoNpRoTeCtIoNdEvIcErEgIsTrAtIoNs/wInDoWsInFoRmAtIoNpRoTeCtIoNdEvIcErEgIsTrAtIoNiDvAlUe",
+			Input: "/mE/wInDoWsInFoRmAtIoNpRoTeCtIoNdEvIcErEgIsTrAtIoNs/wInDoWsInFoRmAtIoNpRoTeCtIoNdEvIcErEgIsTrAtIoNiD",
 			Expected: &MeWindowsInformationProtectionDeviceRegistrationId{
-				WindowsInformationProtectionDeviceRegistrationId: "wInDoWsInFoRmAtIoNpRoTeCtIoNdEvIcErEgIsTrAtIoNiDvAlUe",
+				WindowsInformationProtectionDeviceRegistrationId: "wInDoWsInFoRmAtIoNpRoTeCtIoNdEvIcErEgIsTrAtIoNiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/mE/wInDoWsInFoRmAtIoNpRoTeCtIoNdEvIcErEgIsTrAtIoNs/wInDoWsInFoRmAtIoNpRoTeCtIoNdEvIcErEgIsTrAtIoNiDvAlUe/extra",
+			Input: "/mE/wInDoWsInFoRmAtIoNpRoTeCtIoNdEvIcErEgIsTrAtIoNs/wInDoWsInFoRmAtIoNpRoTeCtIoNdEvIcErEgIsTrAtIoNiD/extra",
 			Error: true,
 		},
 	}

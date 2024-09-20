@@ -17,16 +17,45 @@ type UpdateEntitlementManagementAccessPackageCatalogResourceResourceScopeOperati
 	OData        *odata.OData
 }
 
+type UpdateEntitlementManagementAccessPackageCatalogResourceResourceScopeOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateEntitlementManagementAccessPackageCatalogResourceResourceScopeOperationOptions() UpdateEntitlementManagementAccessPackageCatalogResourceResourceScopeOperationOptions {
+	return UpdateEntitlementManagementAccessPackageCatalogResourceResourceScopeOperationOptions{}
+}
+
+func (o UpdateEntitlementManagementAccessPackageCatalogResourceResourceScopeOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateEntitlementManagementAccessPackageCatalogResourceResourceScopeOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateEntitlementManagementAccessPackageCatalogResourceResourceScopeOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateEntitlementManagementAccessPackageCatalogResourceResourceScope - Update the navigation property
 // accessPackageResourceScopes in identityGovernance
-func (c EntitlementManagementAccessPackageCatalogAccessPackageResourceAccessPackageResourceScopeClient) UpdateEntitlementManagementAccessPackageCatalogResourceResourceScope(ctx context.Context, id beta.IdentityGovernanceEntitlementManagementAccessPackageCatalogIdAccessPackageResourceIdAccessPackageResourceScopeId, input beta.AccessPackageResourceScope) (result UpdateEntitlementManagementAccessPackageCatalogResourceResourceScopeOperationResponse, err error) {
+func (c EntitlementManagementAccessPackageCatalogAccessPackageResourceAccessPackageResourceScopeClient) UpdateEntitlementManagementAccessPackageCatalogResourceResourceScope(ctx context.Context, id beta.IdentityGovernanceEntitlementManagementAccessPackageCatalogIdAccessPackageResourceIdAccessPackageResourceScopeId, input beta.AccessPackageResourceScope, options UpdateEntitlementManagementAccessPackageCatalogResourceResourceScopeOperationOptions) (result UpdateEntitlementManagementAccessPackageCatalogResourceResourceScopeOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

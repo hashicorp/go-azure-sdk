@@ -93,7 +93,7 @@ func (id DeviceManagementHardwarePasswordInfoId) Segments() []resourceids.Segmen
 	return []resourceids.Segment{
 		resourceids.StaticSegment("deviceManagement", "deviceManagement", "deviceManagement"),
 		resourceids.StaticSegment("hardwarePasswordInfo", "hardwarePasswordInfo", "hardwarePasswordInfo"),
-		resourceids.UserSpecifiedSegment("hardwarePasswordInfoId", "hardwarePasswordInfoIdValue"),
+		resourceids.UserSpecifiedSegment("hardwarePasswordInfoId", "hardwarePasswordInfoId"),
 	}
 }
 

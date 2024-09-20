@@ -18,16 +18,45 @@ type AddEntitlementManagementAccessPackageIncompatibleRefOperationResponse struc
 	OData        *odata.OData
 }
 
+type AddEntitlementManagementAccessPackageIncompatibleRefOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultAddEntitlementManagementAccessPackageIncompatibleRefOperationOptions() AddEntitlementManagementAccessPackageIncompatibleRefOperationOptions {
+	return AddEntitlementManagementAccessPackageIncompatibleRefOperationOptions{}
+}
+
+func (o AddEntitlementManagementAccessPackageIncompatibleRefOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o AddEntitlementManagementAccessPackageIncompatibleRefOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o AddEntitlementManagementAccessPackageIncompatibleRefOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // AddEntitlementManagementAccessPackageIncompatibleRef - Add accessPackage to incompatibleAccessPackages. Add an
 // accessPackage to the list of access packages that have been marked as incompatible on an accessPackage.
-func (c EntitlementManagementAccessPackageIncompatibleAccessPackageClient) AddEntitlementManagementAccessPackageIncompatibleRef(ctx context.Context, id stable.IdentityGovernanceEntitlementManagementAccessPackageId, input stable.ReferenceCreate) (result AddEntitlementManagementAccessPackageIncompatibleRefOperationResponse, err error) {
+func (c EntitlementManagementAccessPackageIncompatibleAccessPackageClient) AddEntitlementManagementAccessPackageIncompatibleRef(ctx context.Context, id stable.IdentityGovernanceEntitlementManagementAccessPackageId, input stable.ReferenceCreate, options AddEntitlementManagementAccessPackageIncompatibleRefOperationOptions) (result AddEntitlementManagementAccessPackageIncompatibleRefOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/incompatibleAccessPackages/$ref", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/incompatibleAccessPackages/$ref", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

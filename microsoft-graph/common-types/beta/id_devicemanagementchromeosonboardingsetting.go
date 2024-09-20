@@ -93,7 +93,7 @@ func (id DeviceManagementChromeOSOnboardingSettingId) Segments() []resourceids.S
 	return []resourceids.Segment{
 		resourceids.StaticSegment("deviceManagement", "deviceManagement", "deviceManagement"),
 		resourceids.StaticSegment("chromeOSOnboardingSettings", "chromeOSOnboardingSettings", "chromeOSOnboardingSettings"),
-		resourceids.UserSpecifiedSegment("chromeOSOnboardingSettingsId", "chromeOSOnboardingSettingsIdValue"),
+		resourceids.UserSpecifiedSegment("chromeOSOnboardingSettingsId", "chromeOSOnboardingSettingsId"),
 	}
 }
 

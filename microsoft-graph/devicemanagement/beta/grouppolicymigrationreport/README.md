@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/grouppolicymigrationreport` Documentation
 
-The `grouppolicymigrationreport` SDK allows for interaction with the Azure Resource Manager Service `devicemanagement` (API Version `beta`).
+The `grouppolicymigrationreport` SDK allows for interaction with Microsoft Graph `devicemanagement` (API Version `beta`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -15,7 +15,7 @@ import "github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/
 ### Client Initialization
 
 ```go
-client := grouppolicymigrationreport.NewGroupPolicyMigrationReportClientWithBaseURI("https://management.azure.com")
+client := grouppolicymigrationreport.NewGroupPolicyMigrationReportClientWithBaseURI("https://graph.microsoft.com")
 client.Client.Authorizer = authorizer
 ```
 
@@ -30,7 +30,7 @@ payload := grouppolicymigrationreport.GroupPolicyMigrationReport{
 }
 
 
-read, err := client.CreateGroupPolicyMigrationReport(ctx, payload)
+read, err := client.CreateGroupPolicyMigrationReport(ctx, payload, grouppolicymigrationreport.DefaultCreateGroupPolicyMigrationReportOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -50,7 +50,7 @@ payload := grouppolicymigrationreport.CreateGroupPolicyMigrationReportsMigration
 }
 
 
-read, err := client.CreateGroupPolicyMigrationReportsMigrationReport(ctx, payload)
+read, err := client.CreateGroupPolicyMigrationReportsMigrationReport(ctx, payload, grouppolicymigrationreport.DefaultCreateGroupPolicyMigrationReportsMigrationReportOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -64,7 +64,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := grouppolicymigrationreport.NewDeviceManagementGroupPolicyMigrationReportID("groupPolicyMigrationReportIdValue")
+id := grouppolicymigrationreport.NewDeviceManagementGroupPolicyMigrationReportID("groupPolicyMigrationReportId")
 
 read, err := client.DeleteGroupPolicyMigrationReport(ctx, id, grouppolicymigrationreport.DefaultDeleteGroupPolicyMigrationReportOperationOptions())
 if err != nil {
@@ -80,7 +80,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := grouppolicymigrationreport.NewDeviceManagementGroupPolicyMigrationReportID("groupPolicyMigrationReportIdValue")
+id := grouppolicymigrationreport.NewDeviceManagementGroupPolicyMigrationReportID("groupPolicyMigrationReportId")
 
 read, err := client.GetGroupPolicyMigrationReport(ctx, id, grouppolicymigrationreport.DefaultGetGroupPolicyMigrationReportOperationOptions())
 if err != nil {
@@ -129,14 +129,14 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := grouppolicymigrationreport.NewDeviceManagementGroupPolicyMigrationReportID("groupPolicyMigrationReportIdValue")
+id := grouppolicymigrationreport.NewDeviceManagementGroupPolicyMigrationReportID("groupPolicyMigrationReportId")
 
 payload := grouppolicymigrationreport.GroupPolicyMigrationReport{
 	// ...
 }
 
 
-read, err := client.UpdateGroupPolicyMigrationReport(ctx, id, payload)
+read, err := client.UpdateGroupPolicyMigrationReport(ctx, id, payload, grouppolicymigrationreport.DefaultUpdateGroupPolicyMigrationReportOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -146,18 +146,18 @@ if model := read.Model; model != nil {
 ```
 
 
-### Example Usage: `GroupPolicyMigrationReportClient.UpdateGroupPolicyMigrationReportScopeTag`
+### Example Usage: `GroupPolicyMigrationReportClient.UpdateGroupPolicyMigrationReportScopeTags`
 
 ```go
 ctx := context.TODO()
-id := grouppolicymigrationreport.NewDeviceManagementGroupPolicyMigrationReportID("groupPolicyMigrationReportIdValue")
+id := grouppolicymigrationreport.NewDeviceManagementGroupPolicyMigrationReportID("groupPolicyMigrationReportId")
 
-payload := grouppolicymigrationreport.UpdateGroupPolicyMigrationReportScopeTagRequest{
+payload := grouppolicymigrationreport.UpdateGroupPolicyMigrationReportScopeTagsRequest{
 	// ...
 }
 
 
-read, err := client.UpdateGroupPolicyMigrationReportScopeTag(ctx, id, payload)
+read, err := client.UpdateGroupPolicyMigrationReportScopeTags(ctx, id, payload, grouppolicymigrationreport.DefaultUpdateGroupPolicyMigrationReportScopeTagsOperationOptions())
 if err != nil {
 	// handle the error
 }

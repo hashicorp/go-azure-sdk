@@ -17,15 +17,44 @@ type UpdateServiceActivityOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateServiceActivityOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateServiceActivityOperationOptions() UpdateServiceActivityOperationOptions {
+	return UpdateServiceActivityOperationOptions{}
+}
+
+func (o UpdateServiceActivityOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateServiceActivityOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateServiceActivityOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateServiceActivity - Update the navigation property serviceActivity in reports
-func (c ServiceActivityClient) UpdateServiceActivity(ctx context.Context, input beta.ServiceActivity) (result UpdateServiceActivityOperationResponse, err error) {
+func (c ServiceActivityClient) UpdateServiceActivity(ctx context.Context, input beta.ServiceActivity, options UpdateServiceActivityOperationOptions) (result UpdateServiceActivityOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       "/reports/serviceActivity",
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          "/reports/serviceActivity",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

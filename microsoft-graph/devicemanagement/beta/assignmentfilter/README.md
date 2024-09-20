@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/assignmentfilter` Documentation
 
-The `assignmentfilter` SDK allows for interaction with the Azure Resource Manager Service `devicemanagement` (API Version `beta`).
+The `assignmentfilter` SDK allows for interaction with Microsoft Graph `devicemanagement` (API Version `beta`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -15,7 +15,7 @@ import "github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/
 ### Client Initialization
 
 ```go
-client := assignmentfilter.NewAssignmentFilterClientWithBaseURI("https://management.azure.com")
+client := assignmentfilter.NewAssignmentFilterClientWithBaseURI("https://graph.microsoft.com")
 client.Client.Authorizer = authorizer
 ```
 
@@ -30,7 +30,7 @@ payload := assignmentfilter.DeviceAndAppManagementAssignmentFilter{
 }
 
 
-read, err := client.CreateAssignmentFilter(ctx, payload)
+read, err := client.CreateAssignmentFilter(ctx, payload, assignmentfilter.DefaultCreateAssignmentFilterOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -44,7 +44,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := assignmentfilter.NewDeviceManagementAssignmentFilterID("deviceAndAppManagementAssignmentFilterIdValue")
+id := assignmentfilter.NewDeviceManagementAssignmentFilterID("deviceAndAppManagementAssignmentFilterId")
 
 read, err := client.DeleteAssignmentFilter(ctx, id, assignmentfilter.DefaultDeleteAssignmentFilterOperationOptions())
 if err != nil {
@@ -56,17 +56,17 @@ if model := read.Model; model != nil {
 ```
 
 
-### Example Usage: `AssignmentFilterClient.EnableAssignmentFilter`
+### Example Usage: `AssignmentFilterClient.EnableAssignmentFilters`
 
 ```go
 ctx := context.TODO()
 
-payload := assignmentfilter.EnableAssignmentFilterRequest{
+payload := assignmentfilter.EnableAssignmentFiltersRequest{
 	// ...
 }
 
 
-read, err := client.EnableAssignmentFilter(ctx, payload)
+read, err := client.EnableAssignmentFilters(ctx, payload, assignmentfilter.DefaultEnableAssignmentFiltersOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -80,7 +80,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := assignmentfilter.NewDeviceManagementAssignmentFilterID("deviceAndAppManagementAssignmentFilterIdValue")
+id := assignmentfilter.NewDeviceManagementAssignmentFilterID("deviceAndAppManagementAssignmentFilterId")
 
 read, err := client.GetAssignmentFilter(ctx, id, assignmentfilter.DefaultGetAssignmentFilterOperationOptions())
 if err != nil {
@@ -129,14 +129,14 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := assignmentfilter.NewDeviceManagementAssignmentFilterID("deviceAndAppManagementAssignmentFilterIdValue")
+id := assignmentfilter.NewDeviceManagementAssignmentFilterID("deviceAndAppManagementAssignmentFilterId")
 
 payload := assignmentfilter.DeviceAndAppManagementAssignmentFilter{
 	// ...
 }
 
 
-read, err := client.UpdateAssignmentFilter(ctx, id, payload)
+read, err := client.UpdateAssignmentFilter(ctx, id, payload, assignmentfilter.DefaultUpdateAssignmentFilterOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -146,17 +146,17 @@ if model := read.Model; model != nil {
 ```
 
 
-### Example Usage: `AssignmentFilterClient.ValidateAssignmentFilter`
+### Example Usage: `AssignmentFilterClient.ValidateAssignmentFiltersFilter`
 
 ```go
 ctx := context.TODO()
 
-payload := assignmentfilter.ValidateAssignmentFilterRequest{
+payload := assignmentfilter.ValidateAssignmentFiltersFilterRequest{
 	// ...
 }
 
 
-read, err := client.ValidateAssignmentFilter(ctx, payload)
+read, err := client.ValidateAssignmentFiltersFilter(ctx, payload, assignmentfilter.DefaultValidateAssignmentFiltersFilterOperationOptions())
 if err != nil {
 	// handle the error
 }

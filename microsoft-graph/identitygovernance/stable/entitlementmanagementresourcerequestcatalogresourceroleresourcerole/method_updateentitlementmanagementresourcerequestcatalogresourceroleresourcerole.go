@@ -17,16 +17,45 @@ type UpdateEntitlementManagementResourceRequestCatalogResourceRoleResourceRoleOp
 	OData        *odata.OData
 }
 
+type UpdateEntitlementManagementResourceRequestCatalogResourceRoleResourceRoleOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateEntitlementManagementResourceRequestCatalogResourceRoleResourceRoleOperationOptions() UpdateEntitlementManagementResourceRequestCatalogResourceRoleResourceRoleOperationOptions {
+	return UpdateEntitlementManagementResourceRequestCatalogResourceRoleResourceRoleOperationOptions{}
+}
+
+func (o UpdateEntitlementManagementResourceRequestCatalogResourceRoleResourceRoleOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateEntitlementManagementResourceRequestCatalogResourceRoleResourceRoleOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateEntitlementManagementResourceRequestCatalogResourceRoleResourceRoleOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateEntitlementManagementResourceRequestCatalogResourceRoleResourceRole - Update the navigation property roles in
 // identityGovernance
-func (c EntitlementManagementResourceRequestCatalogResourceRoleResourceRoleClient) UpdateEntitlementManagementResourceRequestCatalogResourceRoleResourceRole(ctx context.Context, id stable.IdentityGovernanceEntitlementManagementResourceRequestIdCatalogResourceRoleIdResourceRoleId, input stable.AccessPackageResourceRole) (result UpdateEntitlementManagementResourceRequestCatalogResourceRoleResourceRoleOperationResponse, err error) {
+func (c EntitlementManagementResourceRequestCatalogResourceRoleResourceRoleClient) UpdateEntitlementManagementResourceRequestCatalogResourceRoleResourceRole(ctx context.Context, id stable.IdentityGovernanceEntitlementManagementResourceRequestIdCatalogResourceRoleIdResourceRoleId, input stable.AccessPackageResourceRole, options UpdateEntitlementManagementResourceRequestCatalogResourceRoleResourceRoleOperationOptions) (result UpdateEntitlementManagementResourceRequestCatalogResourceRoleResourceRoleOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

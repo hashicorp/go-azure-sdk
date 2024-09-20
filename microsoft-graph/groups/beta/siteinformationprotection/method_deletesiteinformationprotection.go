@@ -19,7 +19,8 @@ type DeleteSiteInformationProtectionOperationResponse struct {
 }
 
 type DeleteSiteInformationProtectionOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteSiteInformationProtectionOperationOptions() DeleteSiteInformationProtectionOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteSiteInformationProtectionOperationOptions) ToHeaders() *client.Hea
 
 func (o DeleteSiteInformationProtectionOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

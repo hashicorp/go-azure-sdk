@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/joinedteamprimarychannelmessagereply` Documentation
 
-The `joinedteamprimarychannelmessagereply` SDK allows for interaction with the Azure Resource Manager Service `me` (API Version `stable`).
+The `joinedteamprimarychannelmessagereply` SDK allows for interaction with Microsoft Graph `me` (API Version `stable`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -15,7 +15,7 @@ import "github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/joinedteampr
 ### Client Initialization
 
 ```go
-client := joinedteamprimarychannelmessagereply.NewJoinedTeamPrimaryChannelMessageReplyClientWithBaseURI("https://management.azure.com")
+client := joinedteamprimarychannelmessagereply.NewJoinedTeamPrimaryChannelMessageReplyClientWithBaseURI("https://graph.microsoft.com")
 client.Client.Authorizer = authorizer
 ```
 
@@ -24,14 +24,14 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := joinedteamprimarychannelmessagereply.NewMeJoinedTeamIdPrimaryChannelMessageID("teamIdValue", "chatMessageIdValue")
+id := joinedteamprimarychannelmessagereply.NewMeJoinedTeamIdPrimaryChannelMessageID("teamId", "chatMessageId")
 
 payload := joinedteamprimarychannelmessagereply.ChatMessage{
 	// ...
 }
 
 
-read, err := client.CreateJoinedTeamPrimaryChannelMessageReply(ctx, id, payload)
+read, err := client.CreateJoinedTeamPrimaryChannelMessageReply(ctx, id, payload, joinedteamprimarychannelmessagereply.DefaultCreateJoinedTeamPrimaryChannelMessageReplyOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -45,9 +45,9 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := joinedteamprimarychannelmessagereply.NewMeJoinedTeamIdPrimaryChannelMessageIdReplyID("teamIdValue", "chatMessageIdValue", "chatMessageId1Value")
+id := joinedteamprimarychannelmessagereply.NewMeJoinedTeamIdPrimaryChannelMessageIdReplyID("teamId", "chatMessageId", "chatMessageId1")
 
-read, err := client.CreateJoinedTeamPrimaryChannelMessageReplySoftDelete(ctx, id)
+read, err := client.CreateJoinedTeamPrimaryChannelMessageReplySoftDelete(ctx, id, joinedteamprimarychannelmessagereply.DefaultCreateJoinedTeamPrimaryChannelMessageReplySoftDeleteOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -61,9 +61,9 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := joinedteamprimarychannelmessagereply.NewMeJoinedTeamIdPrimaryChannelMessageIdReplyID("teamIdValue", "chatMessageIdValue", "chatMessageId1Value")
+id := joinedteamprimarychannelmessagereply.NewMeJoinedTeamIdPrimaryChannelMessageIdReplyID("teamId", "chatMessageId", "chatMessageId1")
 
-read, err := client.CreateJoinedTeamPrimaryChannelMessageReplyUndoSoftDelete(ctx, id)
+read, err := client.CreateJoinedTeamPrimaryChannelMessageReplyUndoSoftDelete(ctx, id, joinedteamprimarychannelmessagereply.DefaultCreateJoinedTeamPrimaryChannelMessageReplyUndoSoftDeleteOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -77,7 +77,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := joinedteamprimarychannelmessagereply.NewMeJoinedTeamIdPrimaryChannelMessageIdReplyID("teamIdValue", "chatMessageIdValue", "chatMessageId1Value")
+id := joinedteamprimarychannelmessagereply.NewMeJoinedTeamIdPrimaryChannelMessageIdReplyID("teamId", "chatMessageId", "chatMessageId1")
 
 read, err := client.DeleteJoinedTeamPrimaryChannelMessageReply(ctx, id, joinedteamprimarychannelmessagereply.DefaultDeleteJoinedTeamPrimaryChannelMessageReplyOperationOptions())
 if err != nil {
@@ -93,7 +93,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := joinedteamprimarychannelmessagereply.NewMeJoinedTeamIdPrimaryChannelMessageID("teamIdValue", "chatMessageIdValue")
+id := joinedteamprimarychannelmessagereply.NewMeJoinedTeamIdPrimaryChannelMessageID("teamId", "chatMessageId")
 
 read, err := client.GetJoinedTeamPrimaryChannelMessageRepliesCount(ctx, id, joinedteamprimarychannelmessagereply.DefaultGetJoinedTeamPrimaryChannelMessageRepliesCountOperationOptions())
 if err != nil {
@@ -109,7 +109,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := joinedteamprimarychannelmessagereply.NewMeJoinedTeamIdPrimaryChannelMessageIdReplyID("teamIdValue", "chatMessageIdValue", "chatMessageId1Value")
+id := joinedteamprimarychannelmessagereply.NewMeJoinedTeamIdPrimaryChannelMessageIdReplyID("teamId", "chatMessageId", "chatMessageId1")
 
 read, err := client.GetJoinedTeamPrimaryChannelMessageReply(ctx, id, joinedteamprimarychannelmessagereply.DefaultGetJoinedTeamPrimaryChannelMessageReplyOperationOptions())
 if err != nil {
@@ -125,7 +125,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := joinedteamprimarychannelmessagereply.NewMeJoinedTeamIdPrimaryChannelMessageID("teamIdValue", "chatMessageIdValue")
+id := joinedteamprimarychannelmessagereply.NewMeJoinedTeamIdPrimaryChannelMessageID("teamId", "chatMessageId")
 
 // alternatively `client.ListJoinedTeamPrimaryChannelMessageReplies(ctx, id, joinedteamprimarychannelmessagereply.DefaultListJoinedTeamPrimaryChannelMessageRepliesOperationOptions())` can be used to do batched pagination
 items, err := client.ListJoinedTeamPrimaryChannelMessageRepliesComplete(ctx, id, joinedteamprimarychannelmessagereply.DefaultListJoinedTeamPrimaryChannelMessageRepliesOperationOptions())
@@ -142,14 +142,14 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := joinedteamprimarychannelmessagereply.NewMeJoinedTeamIdPrimaryChannelMessageIdReplyID("teamIdValue", "chatMessageIdValue", "chatMessageId1Value")
+id := joinedteamprimarychannelmessagereply.NewMeJoinedTeamIdPrimaryChannelMessageIdReplyID("teamId", "chatMessageId", "chatMessageId1")
 
 payload := joinedteamprimarychannelmessagereply.SetJoinedTeamPrimaryChannelMessageReplyReactionRequest{
 	// ...
 }
 
 
-read, err := client.SetJoinedTeamPrimaryChannelMessageReplyReaction(ctx, id, payload)
+read, err := client.SetJoinedTeamPrimaryChannelMessageReplyReaction(ctx, id, payload, joinedteamprimarychannelmessagereply.DefaultSetJoinedTeamPrimaryChannelMessageReplyReactionOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -163,14 +163,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := joinedteamprimarychannelmessagereply.NewMeJoinedTeamIdPrimaryChannelMessageIdReplyID("teamIdValue", "chatMessageIdValue", "chatMessageId1Value")
+id := joinedteamprimarychannelmessagereply.NewMeJoinedTeamIdPrimaryChannelMessageIdReplyID("teamId", "chatMessageId", "chatMessageId1")
 
 payload := joinedteamprimarychannelmessagereply.UnsetJoinedTeamPrimaryChannelMessageReplyReactionRequest{
 	// ...
 }
 
 
-read, err := client.UnsetJoinedTeamPrimaryChannelMessageReplyReaction(ctx, id, payload)
+read, err := client.UnsetJoinedTeamPrimaryChannelMessageReplyReaction(ctx, id, payload, joinedteamprimarychannelmessagereply.DefaultUnsetJoinedTeamPrimaryChannelMessageReplyReactionOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -184,14 +184,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := joinedteamprimarychannelmessagereply.NewMeJoinedTeamIdPrimaryChannelMessageIdReplyID("teamIdValue", "chatMessageIdValue", "chatMessageId1Value")
+id := joinedteamprimarychannelmessagereply.NewMeJoinedTeamIdPrimaryChannelMessageIdReplyID("teamId", "chatMessageId", "chatMessageId1")
 
 payload := joinedteamprimarychannelmessagereply.ChatMessage{
 	// ...
 }
 
 
-read, err := client.UpdateJoinedTeamPrimaryChannelMessageReply(ctx, id, payload)
+read, err := client.UpdateJoinedTeamPrimaryChannelMessageReply(ctx, id, payload, joinedteamprimarychannelmessagereply.DefaultUpdateJoinedTeamPrimaryChannelMessageReplyOperationOptions())
 if err != nil {
 	// handle the error
 }

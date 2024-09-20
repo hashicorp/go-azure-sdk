@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &DeviceManagementDepOnboardingSettingIdEnrollmentProfileId{}
 
 func TestNewDeviceManagementDepOnboardingSettingIdEnrollmentProfileID(t *testing.T) {
-	id := NewDeviceManagementDepOnboardingSettingIdEnrollmentProfileID("depOnboardingSettingIdValue", "enrollmentProfileIdValue")
+	id := NewDeviceManagementDepOnboardingSettingIdEnrollmentProfileID("depOnboardingSettingId", "enrollmentProfileId")
 
-	if id.DepOnboardingSettingId != "depOnboardingSettingIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DepOnboardingSettingId'", id.DepOnboardingSettingId, "depOnboardingSettingIdValue")
+	if id.DepOnboardingSettingId != "depOnboardingSettingId" {
+		t.Fatalf("Expected %q but got %q for Segment 'DepOnboardingSettingId'", id.DepOnboardingSettingId, "depOnboardingSettingId")
 	}
 
-	if id.EnrollmentProfileId != "enrollmentProfileIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'EnrollmentProfileId'", id.EnrollmentProfileId, "enrollmentProfileIdValue")
+	if id.EnrollmentProfileId != "enrollmentProfileId" {
+		t.Fatalf("Expected %q but got %q for Segment 'EnrollmentProfileId'", id.EnrollmentProfileId, "enrollmentProfileId")
 	}
 }
 
 func TestFormatDeviceManagementDepOnboardingSettingIdEnrollmentProfileID(t *testing.T) {
-	actual := NewDeviceManagementDepOnboardingSettingIdEnrollmentProfileID("depOnboardingSettingIdValue", "enrollmentProfileIdValue").ID()
-	expected := "/deviceManagement/depOnboardingSettings/depOnboardingSettingIdValue/enrollmentProfiles/enrollmentProfileIdValue"
+	actual := NewDeviceManagementDepOnboardingSettingIdEnrollmentProfileID("depOnboardingSettingId", "enrollmentProfileId").ID()
+	expected := "/deviceManagement/depOnboardingSettings/depOnboardingSettingId/enrollmentProfiles/enrollmentProfileId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -54,25 +54,25 @@ func TestParseDeviceManagementDepOnboardingSettingIdEnrollmentProfileID(t *testi
 		},
 		{
 			// Incomplete URI
-			Input: "/deviceManagement/depOnboardingSettings/depOnboardingSettingIdValue",
+			Input: "/deviceManagement/depOnboardingSettings/depOnboardingSettingId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/deviceManagement/depOnboardingSettings/depOnboardingSettingIdValue/enrollmentProfiles",
+			Input: "/deviceManagement/depOnboardingSettings/depOnboardingSettingId/enrollmentProfiles",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/depOnboardingSettings/depOnboardingSettingIdValue/enrollmentProfiles/enrollmentProfileIdValue",
+			Input: "/deviceManagement/depOnboardingSettings/depOnboardingSettingId/enrollmentProfiles/enrollmentProfileId",
 			Expected: &DeviceManagementDepOnboardingSettingIdEnrollmentProfileId{
-				DepOnboardingSettingId: "depOnboardingSettingIdValue",
-				EnrollmentProfileId:    "enrollmentProfileIdValue",
+				DepOnboardingSettingId: "depOnboardingSettingId",
+				EnrollmentProfileId:    "enrollmentProfileId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/depOnboardingSettings/depOnboardingSettingIdValue/enrollmentProfiles/enrollmentProfileIdValue/extra",
+			Input: "/deviceManagement/depOnboardingSettings/depOnboardingSettingId/enrollmentProfiles/enrollmentProfileId/extra",
 			Error: true,
 		},
 	}
@@ -135,48 +135,48 @@ func TestParseDeviceManagementDepOnboardingSettingIdEnrollmentProfileIDInsensiti
 		},
 		{
 			// Incomplete URI
-			Input: "/deviceManagement/depOnboardingSettings/depOnboardingSettingIdValue",
+			Input: "/deviceManagement/depOnboardingSettings/depOnboardingSettingId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/dEpOnBoArDiNgSeTtInGs/dEpOnBoArDiNgSeTtInGiDvAlUe",
+			Input: "/dEvIcEmAnAgEmEnT/dEpOnBoArDiNgSeTtInGs/dEpOnBoArDiNgSeTtInGiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/deviceManagement/depOnboardingSettings/depOnboardingSettingIdValue/enrollmentProfiles",
+			Input: "/deviceManagement/depOnboardingSettings/depOnboardingSettingId/enrollmentProfiles",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/dEpOnBoArDiNgSeTtInGs/dEpOnBoArDiNgSeTtInGiDvAlUe/eNrOlLmEnTpRoFiLeS",
+			Input: "/dEvIcEmAnAgEmEnT/dEpOnBoArDiNgSeTtInGs/dEpOnBoArDiNgSeTtInGiD/eNrOlLmEnTpRoFiLeS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/depOnboardingSettings/depOnboardingSettingIdValue/enrollmentProfiles/enrollmentProfileIdValue",
+			Input: "/deviceManagement/depOnboardingSettings/depOnboardingSettingId/enrollmentProfiles/enrollmentProfileId",
 			Expected: &DeviceManagementDepOnboardingSettingIdEnrollmentProfileId{
-				DepOnboardingSettingId: "depOnboardingSettingIdValue",
-				EnrollmentProfileId:    "enrollmentProfileIdValue",
+				DepOnboardingSettingId: "depOnboardingSettingId",
+				EnrollmentProfileId:    "enrollmentProfileId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/depOnboardingSettings/depOnboardingSettingIdValue/enrollmentProfiles/enrollmentProfileIdValue/extra",
+			Input: "/deviceManagement/depOnboardingSettings/depOnboardingSettingId/enrollmentProfiles/enrollmentProfileId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/dEpOnBoArDiNgSeTtInGs/dEpOnBoArDiNgSeTtInGiDvAlUe/eNrOlLmEnTpRoFiLeS/eNrOlLmEnTpRoFiLeIdVaLuE",
+			Input: "/dEvIcEmAnAgEmEnT/dEpOnBoArDiNgSeTtInGs/dEpOnBoArDiNgSeTtInGiD/eNrOlLmEnTpRoFiLeS/eNrOlLmEnTpRoFiLeId",
 			Expected: &DeviceManagementDepOnboardingSettingIdEnrollmentProfileId{
-				DepOnboardingSettingId: "dEpOnBoArDiNgSeTtInGiDvAlUe",
-				EnrollmentProfileId:    "eNrOlLmEnTpRoFiLeIdVaLuE",
+				DepOnboardingSettingId: "dEpOnBoArDiNgSeTtInGiD",
+				EnrollmentProfileId:    "eNrOlLmEnTpRoFiLeId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/dEpOnBoArDiNgSeTtInGs/dEpOnBoArDiNgSeTtInGiDvAlUe/eNrOlLmEnTpRoFiLeS/eNrOlLmEnTpRoFiLeIdVaLuE/extra",
+			Input: "/dEvIcEmAnAgEmEnT/dEpOnBoArDiNgSeTtInGs/dEpOnBoArDiNgSeTtInGiD/eNrOlLmEnTpRoFiLeS/eNrOlLmEnTpRoFiLeId/extra",
 			Error: true,
 		},
 	}

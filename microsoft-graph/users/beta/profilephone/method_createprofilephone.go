@@ -19,15 +19,44 @@ type CreateProfilePhoneOperationResponse struct {
 	Model        *beta.ItemPhone
 }
 
+type CreateProfilePhoneOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateProfilePhoneOperationOptions() CreateProfilePhoneOperationOptions {
+	return CreateProfilePhoneOperationOptions{}
+}
+
+func (o CreateProfilePhoneOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateProfilePhoneOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateProfilePhoneOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateProfilePhone - Create new navigation property to phones for users
-func (c ProfilePhoneClient) CreateProfilePhone(ctx context.Context, id beta.UserId, input beta.ItemPhone) (result CreateProfilePhoneOperationResponse, err error) {
+func (c ProfilePhoneClient) CreateProfilePhone(ctx context.Context, id beta.UserId, input beta.ItemPhone, options CreateProfilePhoneOperationOptions) (result CreateProfilePhoneOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/profile/phones", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/profile/phones", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

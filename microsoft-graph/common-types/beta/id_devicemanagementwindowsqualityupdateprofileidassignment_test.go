@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &DeviceManagementWindowsQualityUpdateProfileIdAssignmentId{}
 
 func TestNewDeviceManagementWindowsQualityUpdateProfileIdAssignmentID(t *testing.T) {
-	id := NewDeviceManagementWindowsQualityUpdateProfileIdAssignmentID("windowsQualityUpdateProfileIdValue", "windowsQualityUpdateProfileAssignmentIdValue")
+	id := NewDeviceManagementWindowsQualityUpdateProfileIdAssignmentID("windowsQualityUpdateProfileId", "windowsQualityUpdateProfileAssignmentId")
 
-	if id.WindowsQualityUpdateProfileId != "windowsQualityUpdateProfileIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'WindowsQualityUpdateProfileId'", id.WindowsQualityUpdateProfileId, "windowsQualityUpdateProfileIdValue")
+	if id.WindowsQualityUpdateProfileId != "windowsQualityUpdateProfileId" {
+		t.Fatalf("Expected %q but got %q for Segment 'WindowsQualityUpdateProfileId'", id.WindowsQualityUpdateProfileId, "windowsQualityUpdateProfileId")
 	}
 
-	if id.WindowsQualityUpdateProfileAssignmentId != "windowsQualityUpdateProfileAssignmentIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'WindowsQualityUpdateProfileAssignmentId'", id.WindowsQualityUpdateProfileAssignmentId, "windowsQualityUpdateProfileAssignmentIdValue")
+	if id.WindowsQualityUpdateProfileAssignmentId != "windowsQualityUpdateProfileAssignmentId" {
+		t.Fatalf("Expected %q but got %q for Segment 'WindowsQualityUpdateProfileAssignmentId'", id.WindowsQualityUpdateProfileAssignmentId, "windowsQualityUpdateProfileAssignmentId")
 	}
 }
 
 func TestFormatDeviceManagementWindowsQualityUpdateProfileIdAssignmentID(t *testing.T) {
-	actual := NewDeviceManagementWindowsQualityUpdateProfileIdAssignmentID("windowsQualityUpdateProfileIdValue", "windowsQualityUpdateProfileAssignmentIdValue").ID()
-	expected := "/deviceManagement/windowsQualityUpdateProfiles/windowsQualityUpdateProfileIdValue/assignments/windowsQualityUpdateProfileAssignmentIdValue"
+	actual := NewDeviceManagementWindowsQualityUpdateProfileIdAssignmentID("windowsQualityUpdateProfileId", "windowsQualityUpdateProfileAssignmentId").ID()
+	expected := "/deviceManagement/windowsQualityUpdateProfiles/windowsQualityUpdateProfileId/assignments/windowsQualityUpdateProfileAssignmentId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -54,25 +54,25 @@ func TestParseDeviceManagementWindowsQualityUpdateProfileIdAssignmentID(t *testi
 		},
 		{
 			// Incomplete URI
-			Input: "/deviceManagement/windowsQualityUpdateProfiles/windowsQualityUpdateProfileIdValue",
+			Input: "/deviceManagement/windowsQualityUpdateProfiles/windowsQualityUpdateProfileId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/deviceManagement/windowsQualityUpdateProfiles/windowsQualityUpdateProfileIdValue/assignments",
+			Input: "/deviceManagement/windowsQualityUpdateProfiles/windowsQualityUpdateProfileId/assignments",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/windowsQualityUpdateProfiles/windowsQualityUpdateProfileIdValue/assignments/windowsQualityUpdateProfileAssignmentIdValue",
+			Input: "/deviceManagement/windowsQualityUpdateProfiles/windowsQualityUpdateProfileId/assignments/windowsQualityUpdateProfileAssignmentId",
 			Expected: &DeviceManagementWindowsQualityUpdateProfileIdAssignmentId{
-				WindowsQualityUpdateProfileId:           "windowsQualityUpdateProfileIdValue",
-				WindowsQualityUpdateProfileAssignmentId: "windowsQualityUpdateProfileAssignmentIdValue",
+				WindowsQualityUpdateProfileId:           "windowsQualityUpdateProfileId",
+				WindowsQualityUpdateProfileAssignmentId: "windowsQualityUpdateProfileAssignmentId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/windowsQualityUpdateProfiles/windowsQualityUpdateProfileIdValue/assignments/windowsQualityUpdateProfileAssignmentIdValue/extra",
+			Input: "/deviceManagement/windowsQualityUpdateProfiles/windowsQualityUpdateProfileId/assignments/windowsQualityUpdateProfileAssignmentId/extra",
 			Error: true,
 		},
 	}
@@ -135,48 +135,48 @@ func TestParseDeviceManagementWindowsQualityUpdateProfileIdAssignmentIDInsensiti
 		},
 		{
 			// Incomplete URI
-			Input: "/deviceManagement/windowsQualityUpdateProfiles/windowsQualityUpdateProfileIdValue",
+			Input: "/deviceManagement/windowsQualityUpdateProfiles/windowsQualityUpdateProfileId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/wInDoWsQuAlItYuPdAtEpRoFiLeS/wInDoWsQuAlItYuPdAtEpRoFiLeIdVaLuE",
+			Input: "/dEvIcEmAnAgEmEnT/wInDoWsQuAlItYuPdAtEpRoFiLeS/wInDoWsQuAlItYuPdAtEpRoFiLeId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/deviceManagement/windowsQualityUpdateProfiles/windowsQualityUpdateProfileIdValue/assignments",
+			Input: "/deviceManagement/windowsQualityUpdateProfiles/windowsQualityUpdateProfileId/assignments",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/wInDoWsQuAlItYuPdAtEpRoFiLeS/wInDoWsQuAlItYuPdAtEpRoFiLeIdVaLuE/aSsIgNmEnTs",
+			Input: "/dEvIcEmAnAgEmEnT/wInDoWsQuAlItYuPdAtEpRoFiLeS/wInDoWsQuAlItYuPdAtEpRoFiLeId/aSsIgNmEnTs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/windowsQualityUpdateProfiles/windowsQualityUpdateProfileIdValue/assignments/windowsQualityUpdateProfileAssignmentIdValue",
+			Input: "/deviceManagement/windowsQualityUpdateProfiles/windowsQualityUpdateProfileId/assignments/windowsQualityUpdateProfileAssignmentId",
 			Expected: &DeviceManagementWindowsQualityUpdateProfileIdAssignmentId{
-				WindowsQualityUpdateProfileId:           "windowsQualityUpdateProfileIdValue",
-				WindowsQualityUpdateProfileAssignmentId: "windowsQualityUpdateProfileAssignmentIdValue",
+				WindowsQualityUpdateProfileId:           "windowsQualityUpdateProfileId",
+				WindowsQualityUpdateProfileAssignmentId: "windowsQualityUpdateProfileAssignmentId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/windowsQualityUpdateProfiles/windowsQualityUpdateProfileIdValue/assignments/windowsQualityUpdateProfileAssignmentIdValue/extra",
+			Input: "/deviceManagement/windowsQualityUpdateProfiles/windowsQualityUpdateProfileId/assignments/windowsQualityUpdateProfileAssignmentId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/wInDoWsQuAlItYuPdAtEpRoFiLeS/wInDoWsQuAlItYuPdAtEpRoFiLeIdVaLuE/aSsIgNmEnTs/wInDoWsQuAlItYuPdAtEpRoFiLeAsSiGnMeNtIdVaLuE",
+			Input: "/dEvIcEmAnAgEmEnT/wInDoWsQuAlItYuPdAtEpRoFiLeS/wInDoWsQuAlItYuPdAtEpRoFiLeId/aSsIgNmEnTs/wInDoWsQuAlItYuPdAtEpRoFiLeAsSiGnMeNtId",
 			Expected: &DeviceManagementWindowsQualityUpdateProfileIdAssignmentId{
-				WindowsQualityUpdateProfileId:           "wInDoWsQuAlItYuPdAtEpRoFiLeIdVaLuE",
-				WindowsQualityUpdateProfileAssignmentId: "wInDoWsQuAlItYuPdAtEpRoFiLeAsSiGnMeNtIdVaLuE",
+				WindowsQualityUpdateProfileId:           "wInDoWsQuAlItYuPdAtEpRoFiLeId",
+				WindowsQualityUpdateProfileAssignmentId: "wInDoWsQuAlItYuPdAtEpRoFiLeAsSiGnMeNtId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/wInDoWsQuAlItYuPdAtEpRoFiLeS/wInDoWsQuAlItYuPdAtEpRoFiLeIdVaLuE/aSsIgNmEnTs/wInDoWsQuAlItYuPdAtEpRoFiLeAsSiGnMeNtIdVaLuE/extra",
+			Input: "/dEvIcEmAnAgEmEnT/wInDoWsQuAlItYuPdAtEpRoFiLeS/wInDoWsQuAlItYuPdAtEpRoFiLeId/aSsIgNmEnTs/wInDoWsQuAlItYuPdAtEpRoFiLeAsSiGnMeNtId/extra",
 			Error: true,
 		},
 	}

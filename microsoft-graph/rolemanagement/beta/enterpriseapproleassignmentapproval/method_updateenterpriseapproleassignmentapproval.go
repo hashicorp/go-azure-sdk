@@ -17,15 +17,44 @@ type UpdateEnterpriseAppRoleAssignmentApprovalOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateEnterpriseAppRoleAssignmentApprovalOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateEnterpriseAppRoleAssignmentApprovalOperationOptions() UpdateEnterpriseAppRoleAssignmentApprovalOperationOptions {
+	return UpdateEnterpriseAppRoleAssignmentApprovalOperationOptions{}
+}
+
+func (o UpdateEnterpriseAppRoleAssignmentApprovalOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateEnterpriseAppRoleAssignmentApprovalOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateEnterpriseAppRoleAssignmentApprovalOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateEnterpriseAppRoleAssignmentApproval - Update the navigation property roleAssignmentApprovals in roleManagement
-func (c EnterpriseAppRoleAssignmentApprovalClient) UpdateEnterpriseAppRoleAssignmentApproval(ctx context.Context, id beta.RoleManagementEnterpriseAppIdRoleAssignmentApprovalId, input beta.Approval) (result UpdateEnterpriseAppRoleAssignmentApprovalOperationResponse, err error) {
+func (c EnterpriseAppRoleAssignmentApprovalClient) UpdateEnterpriseAppRoleAssignmentApproval(ctx context.Context, id beta.RoleManagementEnterpriseAppIdRoleAssignmentApprovalId, input beta.Approval, options UpdateEnterpriseAppRoleAssignmentApprovalOperationOptions) (result UpdateEnterpriseAppRoleAssignmentApprovalOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

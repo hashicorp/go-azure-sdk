@@ -18,16 +18,45 @@ type CreateEntitlementManagementResourceRoleScopeOperationResponse struct {
 	Model        *stable.AccessPackageResourceRoleScope
 }
 
+type CreateEntitlementManagementResourceRoleScopeOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateEntitlementManagementResourceRoleScopeOperationOptions() CreateEntitlementManagementResourceRoleScopeOperationOptions {
+	return CreateEntitlementManagementResourceRoleScopeOperationOptions{}
+}
+
+func (o CreateEntitlementManagementResourceRoleScopeOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateEntitlementManagementResourceRoleScopeOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateEntitlementManagementResourceRoleScopeOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateEntitlementManagementResourceRoleScope - Create new navigation property to resourceRoleScopes for
 // identityGovernance
-func (c EntitlementManagementResourceRoleScopeClient) CreateEntitlementManagementResourceRoleScope(ctx context.Context, input stable.AccessPackageResourceRoleScope) (result CreateEntitlementManagementResourceRoleScopeOperationResponse, err error) {
+func (c EntitlementManagementResourceRoleScopeClient) CreateEntitlementManagementResourceRoleScope(ctx context.Context, input stable.AccessPackageResourceRoleScope, options CreateEntitlementManagementResourceRoleScopeOperationOptions) (result CreateEntitlementManagementResourceRoleScopeOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/identityGovernance/entitlementManagement/resourceRoleScopes",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/identityGovernance/entitlementManagement/resourceRoleScopes",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

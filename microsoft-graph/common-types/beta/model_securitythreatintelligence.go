@@ -109,10 +109,31 @@ func (s SecurityThreatIntelligence) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &SecurityThreatIntelligence{}
 
 func (s *SecurityThreatIntelligence) UnmarshalJSON(bytes []byte) error {
-	type alias SecurityThreatIntelligence
-	var decoded alias
+
+	var decoded struct {
+		ArticleIndicators             *[]SecurityArticleIndicator             `json:"articleIndicators,omitempty"`
+		Articles                      *[]SecurityArticle                      `json:"articles,omitempty"`
+		HostComponents                *[]SecurityHostComponent                `json:"hostComponents,omitempty"`
+		HostCookies                   *[]SecurityHostCookie                   `json:"hostCookies,omitempty"`
+		HostPairs                     *[]SecurityHostPair                     `json:"hostPairs,omitempty"`
+		HostPorts                     *[]SecurityHostPort                     `json:"hostPorts,omitempty"`
+		HostSslCertificates           *[]SecurityHostSslCertificate           `json:"hostSslCertificates,omitempty"`
+		HostTrackers                  *[]SecurityHostTracker                  `json:"hostTrackers,omitempty"`
+		Hosts                         *[]SecurityHost                         `json:"hosts,omitempty"`
+		IntelProfiles                 *[]SecurityIntelligenceProfile          `json:"intelProfiles,omitempty"`
+		IntelligenceProfileIndicators *[]SecurityIntelligenceProfileIndicator `json:"intelligenceProfileIndicators,omitempty"`
+		PassiveDnsRecords             *[]SecurityPassiveDnsRecord             `json:"passiveDnsRecords,omitempty"`
+		SslCertificates               *[]SecuritySslCertificate               `json:"sslCertificates,omitempty"`
+		Subdomains                    *[]SecuritySubdomain                    `json:"subdomains,omitempty"`
+		Vulnerabilities               *[]SecurityVulnerability                `json:"vulnerabilities,omitempty"`
+		WhoisHistoryRecords           *[]SecurityWhoisHistoryRecord           `json:"whoisHistoryRecords,omitempty"`
+		WhoisRecords                  *[]SecurityWhoisRecord                  `json:"whoisRecords,omitempty"`
+		Id                            *string                                 `json:"id,omitempty"`
+		ODataId                       *string                                 `json:"@odata.id,omitempty"`
+		ODataType                     *string                                 `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into SecurityThreatIntelligence: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.ArticleIndicators = decoded.ArticleIndicators
@@ -123,17 +144,17 @@ func (s *SecurityThreatIntelligence) UnmarshalJSON(bytes []byte) error {
 	s.HostPorts = decoded.HostPorts
 	s.HostSslCertificates = decoded.HostSslCertificates
 	s.HostTrackers = decoded.HostTrackers
-	s.Id = decoded.Id
 	s.IntelProfiles = decoded.IntelProfiles
 	s.IntelligenceProfileIndicators = decoded.IntelligenceProfileIndicators
-	s.ODataId = decoded.ODataId
-	s.ODataType = decoded.ODataType
 	s.PassiveDnsRecords = decoded.PassiveDnsRecords
 	s.SslCertificates = decoded.SslCertificates
 	s.Subdomains = decoded.Subdomains
 	s.Vulnerabilities = decoded.Vulnerabilities
 	s.WhoisHistoryRecords = decoded.WhoisHistoryRecords
 	s.WhoisRecords = decoded.WhoisRecords
+	s.Id = decoded.Id
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -156,5 +177,6 @@ func (s *SecurityThreatIntelligence) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Hosts = &output
 	}
+
 	return nil
 }

@@ -17,16 +17,45 @@ type UpdateEntitlementManagementResourceRoleScopeResourceScopeOperationResponse 
 	OData        *odata.OData
 }
 
+type UpdateEntitlementManagementResourceRoleScopeResourceScopeOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateEntitlementManagementResourceRoleScopeResourceScopeOperationOptions() UpdateEntitlementManagementResourceRoleScopeResourceScopeOperationOptions {
+	return UpdateEntitlementManagementResourceRoleScopeResourceScopeOperationOptions{}
+}
+
+func (o UpdateEntitlementManagementResourceRoleScopeResourceScopeOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateEntitlementManagementResourceRoleScopeResourceScopeOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateEntitlementManagementResourceRoleScopeResourceScopeOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateEntitlementManagementResourceRoleScopeResourceScope - Update the navigation property scopes in
 // identityGovernance
-func (c EntitlementManagementResourceRoleScopeScopeResourceScopeClient) UpdateEntitlementManagementResourceRoleScopeResourceScope(ctx context.Context, id stable.IdentityGovernanceEntitlementManagementResourceRoleScopeIdScopeResourceScopeId, input stable.AccessPackageResourceScope) (result UpdateEntitlementManagementResourceRoleScopeResourceScopeOperationResponse, err error) {
+func (c EntitlementManagementResourceRoleScopeScopeResourceScopeClient) UpdateEntitlementManagementResourceRoleScopeResourceScope(ctx context.Context, id stable.IdentityGovernanceEntitlementManagementResourceRoleScopeIdScopeResourceScopeId, input stable.AccessPackageResourceScope, options UpdateEntitlementManagementResourceRoleScopeResourceScopeOperationOptions) (result UpdateEntitlementManagementResourceRoleScopeResourceScopeOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

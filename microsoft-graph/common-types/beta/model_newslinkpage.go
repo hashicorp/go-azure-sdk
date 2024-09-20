@@ -152,13 +152,36 @@ func (s NewsLinkPage) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &NewsLinkPage{}
 
 func (s *NewsLinkPage) UnmarshalJSON(bytes []byte) error {
-	type alias NewsLinkPage
-	var decoded alias
+
+	var decoded struct {
+		BannerImageWebUrl    nullable.Type[string] `json:"bannerImageWebUrl,omitempty"`
+		NewsSharepointIds    *SharepointIds        `json:"newsSharepointIds,omitempty"`
+		NewsWebUrl           nullable.Type[string] `json:"newsWebUrl,omitempty"`
+		PageLayout           *PageLayoutType       `json:"pageLayout,omitempty"`
+		PublishingState      *PublicationFacet     `json:"publishingState,omitempty"`
+		Title                nullable.Type[string] `json:"title,omitempty"`
+		CreatedBy            *IdentitySet          `json:"createdBy,omitempty"`
+		CreatedByUser        *User                 `json:"createdByUser,omitempty"`
+		CreatedDateTime      *string               `json:"createdDateTime,omitempty"`
+		Description          nullable.Type[string] `json:"description,omitempty"`
+		ETag                 nullable.Type[string] `json:"eTag,omitempty"`
+		LastModifiedBy       *IdentitySet          `json:"lastModifiedBy,omitempty"`
+		LastModifiedByUser   *User                 `json:"lastModifiedByUser,omitempty"`
+		LastModifiedDateTime *string               `json:"lastModifiedDateTime,omitempty"`
+		Name                 nullable.Type[string] `json:"name,omitempty"`
+		ParentReference      *ItemReference        `json:"parentReference,omitempty"`
+		WebUrl               nullable.Type[string] `json:"webUrl,omitempty"`
+		Id                   *string               `json:"id,omitempty"`
+		ODataId              *string               `json:"@odata.id,omitempty"`
+		ODataType            *string               `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into NewsLinkPage: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.BannerImageWebUrl = decoded.BannerImageWebUrl
+	s.NewsSharepointIds = decoded.NewsSharepointIds
+	s.NewsWebUrl = decoded.NewsWebUrl
 	s.CreatedByUser = decoded.CreatedByUser
 	s.CreatedDateTime = decoded.CreatedDateTime
 	s.Description = decoded.Description
@@ -167,8 +190,6 @@ func (s *NewsLinkPage) UnmarshalJSON(bytes []byte) error {
 	s.LastModifiedByUser = decoded.LastModifiedByUser
 	s.LastModifiedDateTime = decoded.LastModifiedDateTime
 	s.Name = decoded.Name
-	s.NewsSharepointIds = decoded.NewsSharepointIds
-	s.NewsWebUrl = decoded.NewsWebUrl
 	s.ODataId = decoded.ODataId
 	s.ODataType = decoded.ODataType
 	s.PageLayout = decoded.PageLayout
@@ -197,5 +218,6 @@ func (s *NewsLinkPage) UnmarshalJSON(bytes []byte) error {
 		}
 		s.LastModifiedBy = &impl
 	}
+
 	return nil
 }

@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &UserIdProfileInterestId{}
 
 func TestNewUserIdProfileInterestID(t *testing.T) {
-	id := NewUserIdProfileInterestID("userIdValue", "personInterestIdValue")
+	id := NewUserIdProfileInterestID("userId", "personInterestId")
 
-	if id.UserId != "userIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'UserId'", id.UserId, "userIdValue")
+	if id.UserId != "userId" {
+		t.Fatalf("Expected %q but got %q for Segment 'UserId'", id.UserId, "userId")
 	}
 
-	if id.PersonInterestId != "personInterestIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'PersonInterestId'", id.PersonInterestId, "personInterestIdValue")
+	if id.PersonInterestId != "personInterestId" {
+		t.Fatalf("Expected %q but got %q for Segment 'PersonInterestId'", id.PersonInterestId, "personInterestId")
 	}
 }
 
 func TestFormatUserIdProfileInterestID(t *testing.T) {
-	actual := NewUserIdProfileInterestID("userIdValue", "personInterestIdValue").ID()
-	expected := "/users/userIdValue/profile/interests/personInterestIdValue"
+	actual := NewUserIdProfileInterestID("userId", "personInterestId").ID()
+	expected := "/users/userId/profile/interests/personInterestId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -49,30 +49,30 @@ func TestParseUserIdProfileInterestID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue",
+			Input: "/users/userId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/profile",
+			Input: "/users/userId/profile",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/profile/interests",
+			Input: "/users/userId/profile/interests",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/users/userIdValue/profile/interests/personInterestIdValue",
+			Input: "/users/userId/profile/interests/personInterestId",
 			Expected: &UserIdProfileInterestId{
-				UserId:           "userIdValue",
-				PersonInterestId: "personInterestIdValue",
+				UserId:           "userId",
+				PersonInterestId: "personInterestId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/users/userIdValue/profile/interests/personInterestIdValue/extra",
+			Input: "/users/userId/profile/interests/personInterestId/extra",
 			Error: true,
 		},
 	}
@@ -125,58 +125,58 @@ func TestParseUserIdProfileInterestIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue",
+			Input: "/users/userId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe",
+			Input: "/uSeRs/uSeRiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/profile",
+			Input: "/users/userId/profile",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/pRoFiLe",
+			Input: "/uSeRs/uSeRiD/pRoFiLe",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/profile/interests",
+			Input: "/users/userId/profile/interests",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/pRoFiLe/iNtErEsTs",
+			Input: "/uSeRs/uSeRiD/pRoFiLe/iNtErEsTs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/users/userIdValue/profile/interests/personInterestIdValue",
+			Input: "/users/userId/profile/interests/personInterestId",
 			Expected: &UserIdProfileInterestId{
-				UserId:           "userIdValue",
-				PersonInterestId: "personInterestIdValue",
+				UserId:           "userId",
+				PersonInterestId: "personInterestId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/users/userIdValue/profile/interests/personInterestIdValue/extra",
+			Input: "/users/userId/profile/interests/personInterestId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/pRoFiLe/iNtErEsTs/pErSoNiNtErEsTiDvAlUe",
+			Input: "/uSeRs/uSeRiD/pRoFiLe/iNtErEsTs/pErSoNiNtErEsTiD",
 			Expected: &UserIdProfileInterestId{
-				UserId:           "uSeRiDvAlUe",
-				PersonInterestId: "pErSoNiNtErEsTiDvAlUe",
+				UserId:           "uSeRiD",
+				PersonInterestId: "pErSoNiNtErEsTiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/pRoFiLe/iNtErEsTs/pErSoNiNtErEsTiDvAlUe/extra",
+			Input: "/uSeRs/uSeRiD/pRoFiLe/iNtErEsTs/pErSoNiNtErEsTiD/extra",
 			Error: true,
 		},
 	}

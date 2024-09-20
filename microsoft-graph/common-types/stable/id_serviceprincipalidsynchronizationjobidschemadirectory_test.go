@@ -12,24 +12,24 @@ import (
 var _ resourceids.ResourceId = &ServicePrincipalIdSynchronizationJobIdSchemaDirectoryId{}
 
 func TestNewServicePrincipalIdSynchronizationJobIdSchemaDirectoryID(t *testing.T) {
-	id := NewServicePrincipalIdSynchronizationJobIdSchemaDirectoryID("servicePrincipalIdValue", "synchronizationJobIdValue", "directoryDefinitionIdValue")
+	id := NewServicePrincipalIdSynchronizationJobIdSchemaDirectoryID("servicePrincipalId", "synchronizationJobId", "directoryDefinitionId")
 
-	if id.ServicePrincipalId != "servicePrincipalIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ServicePrincipalId'", id.ServicePrincipalId, "servicePrincipalIdValue")
+	if id.ServicePrincipalId != "servicePrincipalId" {
+		t.Fatalf("Expected %q but got %q for Segment 'ServicePrincipalId'", id.ServicePrincipalId, "servicePrincipalId")
 	}
 
-	if id.SynchronizationJobId != "synchronizationJobIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'SynchronizationJobId'", id.SynchronizationJobId, "synchronizationJobIdValue")
+	if id.SynchronizationJobId != "synchronizationJobId" {
+		t.Fatalf("Expected %q but got %q for Segment 'SynchronizationJobId'", id.SynchronizationJobId, "synchronizationJobId")
 	}
 
-	if id.DirectoryDefinitionId != "directoryDefinitionIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DirectoryDefinitionId'", id.DirectoryDefinitionId, "directoryDefinitionIdValue")
+	if id.DirectoryDefinitionId != "directoryDefinitionId" {
+		t.Fatalf("Expected %q but got %q for Segment 'DirectoryDefinitionId'", id.DirectoryDefinitionId, "directoryDefinitionId")
 	}
 }
 
 func TestFormatServicePrincipalIdSynchronizationJobIdSchemaDirectoryID(t *testing.T) {
-	actual := NewServicePrincipalIdSynchronizationJobIdSchemaDirectoryID("servicePrincipalIdValue", "synchronizationJobIdValue", "directoryDefinitionIdValue").ID()
-	expected := "/servicePrincipals/servicePrincipalIdValue/synchronization/jobs/synchronizationJobIdValue/schema/directories/directoryDefinitionIdValue"
+	actual := NewServicePrincipalIdSynchronizationJobIdSchemaDirectoryID("servicePrincipalId", "synchronizationJobId", "directoryDefinitionId").ID()
+	expected := "/servicePrincipals/servicePrincipalId/synchronization/jobs/synchronizationJobId/schema/directories/directoryDefinitionId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -53,46 +53,46 @@ func TestParseServicePrincipalIdSynchronizationJobIdSchemaDirectoryID(t *testing
 		},
 		{
 			// Incomplete URI
-			Input: "/servicePrincipals/servicePrincipalIdValue",
+			Input: "/servicePrincipals/servicePrincipalId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/servicePrincipals/servicePrincipalIdValue/synchronization",
+			Input: "/servicePrincipals/servicePrincipalId/synchronization",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/servicePrincipals/servicePrincipalIdValue/synchronization/jobs",
+			Input: "/servicePrincipals/servicePrincipalId/synchronization/jobs",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/servicePrincipals/servicePrincipalIdValue/synchronization/jobs/synchronizationJobIdValue",
+			Input: "/servicePrincipals/servicePrincipalId/synchronization/jobs/synchronizationJobId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/servicePrincipals/servicePrincipalIdValue/synchronization/jobs/synchronizationJobIdValue/schema",
+			Input: "/servicePrincipals/servicePrincipalId/synchronization/jobs/synchronizationJobId/schema",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/servicePrincipals/servicePrincipalIdValue/synchronization/jobs/synchronizationJobIdValue/schema/directories",
+			Input: "/servicePrincipals/servicePrincipalId/synchronization/jobs/synchronizationJobId/schema/directories",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/servicePrincipals/servicePrincipalIdValue/synchronization/jobs/synchronizationJobIdValue/schema/directories/directoryDefinitionIdValue",
+			Input: "/servicePrincipals/servicePrincipalId/synchronization/jobs/synchronizationJobId/schema/directories/directoryDefinitionId",
 			Expected: &ServicePrincipalIdSynchronizationJobIdSchemaDirectoryId{
-				ServicePrincipalId:    "servicePrincipalIdValue",
-				SynchronizationJobId:  "synchronizationJobIdValue",
-				DirectoryDefinitionId: "directoryDefinitionIdValue",
+				ServicePrincipalId:    "servicePrincipalId",
+				SynchronizationJobId:  "synchronizationJobId",
+				DirectoryDefinitionId: "directoryDefinitionId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/servicePrincipals/servicePrincipalIdValue/synchronization/jobs/synchronizationJobIdValue/schema/directories/directoryDefinitionIdValue/extra",
+			Input: "/servicePrincipals/servicePrincipalId/synchronization/jobs/synchronizationJobId/schema/directories/directoryDefinitionId/extra",
 			Error: true,
 		},
 	}
@@ -149,90 +149,90 @@ func TestParseServicePrincipalIdSynchronizationJobIdSchemaDirectoryIDInsensitive
 		},
 		{
 			// Incomplete URI
-			Input: "/servicePrincipals/servicePrincipalIdValue",
+			Input: "/servicePrincipals/servicePrincipalId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sErViCePrInCiPaLs/sErViCePrInCiPaLiDvAlUe",
+			Input: "/sErViCePrInCiPaLs/sErViCePrInCiPaLiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/servicePrincipals/servicePrincipalIdValue/synchronization",
+			Input: "/servicePrincipals/servicePrincipalId/synchronization",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sErViCePrInCiPaLs/sErViCePrInCiPaLiDvAlUe/sYnChRoNiZaTiOn",
+			Input: "/sErViCePrInCiPaLs/sErViCePrInCiPaLiD/sYnChRoNiZaTiOn",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/servicePrincipals/servicePrincipalIdValue/synchronization/jobs",
+			Input: "/servicePrincipals/servicePrincipalId/synchronization/jobs",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sErViCePrInCiPaLs/sErViCePrInCiPaLiDvAlUe/sYnChRoNiZaTiOn/jObS",
+			Input: "/sErViCePrInCiPaLs/sErViCePrInCiPaLiD/sYnChRoNiZaTiOn/jObS",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/servicePrincipals/servicePrincipalIdValue/synchronization/jobs/synchronizationJobIdValue",
+			Input: "/servicePrincipals/servicePrincipalId/synchronization/jobs/synchronizationJobId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sErViCePrInCiPaLs/sErViCePrInCiPaLiDvAlUe/sYnChRoNiZaTiOn/jObS/sYnChRoNiZaTiOnJoBiDvAlUe",
+			Input: "/sErViCePrInCiPaLs/sErViCePrInCiPaLiD/sYnChRoNiZaTiOn/jObS/sYnChRoNiZaTiOnJoBiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/servicePrincipals/servicePrincipalIdValue/synchronization/jobs/synchronizationJobIdValue/schema",
+			Input: "/servicePrincipals/servicePrincipalId/synchronization/jobs/synchronizationJobId/schema",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sErViCePrInCiPaLs/sErViCePrInCiPaLiDvAlUe/sYnChRoNiZaTiOn/jObS/sYnChRoNiZaTiOnJoBiDvAlUe/sChEmA",
+			Input: "/sErViCePrInCiPaLs/sErViCePrInCiPaLiD/sYnChRoNiZaTiOn/jObS/sYnChRoNiZaTiOnJoBiD/sChEmA",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/servicePrincipals/servicePrincipalIdValue/synchronization/jobs/synchronizationJobIdValue/schema/directories",
+			Input: "/servicePrincipals/servicePrincipalId/synchronization/jobs/synchronizationJobId/schema/directories",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sErViCePrInCiPaLs/sErViCePrInCiPaLiDvAlUe/sYnChRoNiZaTiOn/jObS/sYnChRoNiZaTiOnJoBiDvAlUe/sChEmA/dIrEcToRiEs",
+			Input: "/sErViCePrInCiPaLs/sErViCePrInCiPaLiD/sYnChRoNiZaTiOn/jObS/sYnChRoNiZaTiOnJoBiD/sChEmA/dIrEcToRiEs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/servicePrincipals/servicePrincipalIdValue/synchronization/jobs/synchronizationJobIdValue/schema/directories/directoryDefinitionIdValue",
+			Input: "/servicePrincipals/servicePrincipalId/synchronization/jobs/synchronizationJobId/schema/directories/directoryDefinitionId",
 			Expected: &ServicePrincipalIdSynchronizationJobIdSchemaDirectoryId{
-				ServicePrincipalId:    "servicePrincipalIdValue",
-				SynchronizationJobId:  "synchronizationJobIdValue",
-				DirectoryDefinitionId: "directoryDefinitionIdValue",
+				ServicePrincipalId:    "servicePrincipalId",
+				SynchronizationJobId:  "synchronizationJobId",
+				DirectoryDefinitionId: "directoryDefinitionId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/servicePrincipals/servicePrincipalIdValue/synchronization/jobs/synchronizationJobIdValue/schema/directories/directoryDefinitionIdValue/extra",
+			Input: "/servicePrincipals/servicePrincipalId/synchronization/jobs/synchronizationJobId/schema/directories/directoryDefinitionId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sErViCePrInCiPaLs/sErViCePrInCiPaLiDvAlUe/sYnChRoNiZaTiOn/jObS/sYnChRoNiZaTiOnJoBiDvAlUe/sChEmA/dIrEcToRiEs/dIrEcToRyDeFiNiTiOnIdVaLuE",
+			Input: "/sErViCePrInCiPaLs/sErViCePrInCiPaLiD/sYnChRoNiZaTiOn/jObS/sYnChRoNiZaTiOnJoBiD/sChEmA/dIrEcToRiEs/dIrEcToRyDeFiNiTiOnId",
 			Expected: &ServicePrincipalIdSynchronizationJobIdSchemaDirectoryId{
-				ServicePrincipalId:    "sErViCePrInCiPaLiDvAlUe",
-				SynchronizationJobId:  "sYnChRoNiZaTiOnJoBiDvAlUe",
-				DirectoryDefinitionId: "dIrEcToRyDeFiNiTiOnIdVaLuE",
+				ServicePrincipalId:    "sErViCePrInCiPaLiD",
+				SynchronizationJobId:  "sYnChRoNiZaTiOnJoBiD",
+				DirectoryDefinitionId: "dIrEcToRyDeFiNiTiOnId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sErViCePrInCiPaLs/sErViCePrInCiPaLiDvAlUe/sYnChRoNiZaTiOn/jObS/sYnChRoNiZaTiOnJoBiDvAlUe/sChEmA/dIrEcToRiEs/dIrEcToRyDeFiNiTiOnIdVaLuE/extra",
+			Input: "/sErViCePrInCiPaLs/sErViCePrInCiPaLiD/sYnChRoNiZaTiOn/jObS/sYnChRoNiZaTiOnJoBiD/sChEmA/dIrEcToRiEs/dIrEcToRyDeFiNiTiOnId/extra",
 			Error: true,
 		},
 	}

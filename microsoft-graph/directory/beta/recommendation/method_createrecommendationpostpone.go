@@ -19,17 +19,46 @@ type CreateRecommendationPostponeOperationResponse struct {
 	Model        *beta.Recommendation
 }
 
+type CreateRecommendationPostponeOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateRecommendationPostponeOperationOptions() CreateRecommendationPostponeOperationOptions {
+	return CreateRecommendationPostponeOperationOptions{}
+}
+
+func (o CreateRecommendationPostponeOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateRecommendationPostponeOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateRecommendationPostponeOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateRecommendationPostpone - Invoke action postpone. Postpone action on a recommendation object to a specified
 // future date and time by marking its status as postponed. On the date and time provided, Microsoft Entra ID will
 // automatically update the status of the recommendation object to active again.
-func (c RecommendationClient) CreateRecommendationPostpone(ctx context.Context, id beta.DirectoryRecommendationId, input CreateRecommendationPostponeRequest) (result CreateRecommendationPostponeOperationResponse, err error) {
+func (c RecommendationClient) CreateRecommendationPostpone(ctx context.Context, id beta.DirectoryRecommendationId, input CreateRecommendationPostponeRequest, options CreateRecommendationPostponeOperationOptions) (result CreateRecommendationPostponeOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/postpone", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/postpone", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -94,7 +94,7 @@ func (id RoleManagementEntitlementManagementRoleDefinitionId) Segments() []resou
 		resourceids.StaticSegment("roleManagement", "roleManagement", "roleManagement"),
 		resourceids.StaticSegment("entitlementManagement", "entitlementManagement", "entitlementManagement"),
 		resourceids.StaticSegment("roleDefinitions", "roleDefinitions", "roleDefinitions"),
-		resourceids.UserSpecifiedSegment("unifiedRoleDefinitionId", "unifiedRoleDefinitionIdValue"),
+		resourceids.UserSpecifiedSegment("unifiedRoleDefinitionId", "unifiedRoleDefinitionId"),
 	}
 }
 

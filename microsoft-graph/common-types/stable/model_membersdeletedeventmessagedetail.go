@@ -61,10 +61,14 @@ func (s MembersDeletedEventMessageDetail) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &MembersDeletedEventMessageDetail{}
 
 func (s *MembersDeletedEventMessageDetail) UnmarshalJSON(bytes []byte) error {
-	type alias MembersDeletedEventMessageDetail
-	var decoded alias
+
+	var decoded struct {
+		Members   *[]TeamworkUserIdentity `json:"members,omitempty"`
+		ODataId   *string                 `json:"@odata.id,omitempty"`
+		ODataType *string                 `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into MembersDeletedEventMessageDetail: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.Members = decoded.Members
@@ -83,5 +87,6 @@ func (s *MembersDeletedEventMessageDetail) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Initiator = impl
 	}
+
 	return nil
 }

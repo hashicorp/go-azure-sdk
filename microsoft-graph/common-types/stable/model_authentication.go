@@ -90,23 +90,37 @@ func (s Authentication) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &Authentication{}
 
 func (s *Authentication) UnmarshalJSON(bytes []byte) error {
-	type alias Authentication
-	var decoded alias
+
+	var decoded struct {
+		EmailMethods                   *[]EmailAuthenticationMethod                   `json:"emailMethods,omitempty"`
+		Fido2Methods                   *[]Fido2AuthenticationMethod                   `json:"fido2Methods,omitempty"`
+		Methods                        *[]AuthenticationMethod                        `json:"methods,omitempty"`
+		MicrosoftAuthenticatorMethods  *[]MicrosoftAuthenticatorAuthenticationMethod  `json:"microsoftAuthenticatorMethods,omitempty"`
+		Operations                     *[]LongRunningOperation                        `json:"operations,omitempty"`
+		PasswordMethods                *[]PasswordAuthenticationMethod                `json:"passwordMethods,omitempty"`
+		PhoneMethods                   *[]PhoneAuthenticationMethod                   `json:"phoneMethods,omitempty"`
+		SoftwareOathMethods            *[]SoftwareOathAuthenticationMethod            `json:"softwareOathMethods,omitempty"`
+		TemporaryAccessPassMethods     *[]TemporaryAccessPassAuthenticationMethod     `json:"temporaryAccessPassMethods,omitempty"`
+		WindowsHelloForBusinessMethods *[]WindowsHelloForBusinessAuthenticationMethod `json:"windowsHelloForBusinessMethods,omitempty"`
+		Id                             *string                                        `json:"id,omitempty"`
+		ODataId                        *string                                        `json:"@odata.id,omitempty"`
+		ODataType                      *string                                        `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into Authentication: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.EmailMethods = decoded.EmailMethods
 	s.Fido2Methods = decoded.Fido2Methods
-	s.Id = decoded.Id
 	s.MicrosoftAuthenticatorMethods = decoded.MicrosoftAuthenticatorMethods
-	s.ODataId = decoded.ODataId
-	s.ODataType = decoded.ODataType
 	s.PasswordMethods = decoded.PasswordMethods
 	s.PhoneMethods = decoded.PhoneMethods
 	s.SoftwareOathMethods = decoded.SoftwareOathMethods
 	s.TemporaryAccessPassMethods = decoded.TemporaryAccessPassMethods
 	s.WindowsHelloForBusinessMethods = decoded.WindowsHelloForBusinessMethods
+	s.Id = decoded.Id
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -146,5 +160,6 @@ func (s *Authentication) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Operations = &output
 	}
+
 	return nil
 }

@@ -111,10 +111,29 @@ func (s AccessPackageCatalog) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &AccessPackageCatalog{}
 
 func (s *AccessPackageCatalog) UnmarshalJSON(bytes []byte) error {
-	type alias AccessPackageCatalog
-	var decoded alias
+
+	var decoded struct {
+		AccessPackageCustomWorkflowExtensions *[]CustomCalloutExtension               `json:"accessPackageCustomWorkflowExtensions,omitempty"`
+		AccessPackageResourceRoles            *[]AccessPackageResourceRole            `json:"accessPackageResourceRoles,omitempty"`
+		AccessPackageResourceScopes           *[]AccessPackageResourceScope           `json:"accessPackageResourceScopes,omitempty"`
+		AccessPackageResources                *[]AccessPackageResource                `json:"accessPackageResources,omitempty"`
+		AccessPackages                        *[]AccessPackage                        `json:"accessPackages,omitempty"`
+		CatalogStatus                         nullable.Type[string]                   `json:"catalogStatus,omitempty"`
+		CatalogType                           nullable.Type[string]                   `json:"catalogType,omitempty"`
+		CreatedBy                             nullable.Type[string]                   `json:"createdBy,omitempty"`
+		CreatedDateTime                       nullable.Type[string]                   `json:"createdDateTime,omitempty"`
+		CustomAccessPackageWorkflowExtensions *[]CustomAccessPackageWorkflowExtension `json:"customAccessPackageWorkflowExtensions,omitempty"`
+		Description                           nullable.Type[string]                   `json:"description,omitempty"`
+		DisplayName                           nullable.Type[string]                   `json:"displayName,omitempty"`
+		IsExternallyVisible                   nullable.Type[bool]                     `json:"isExternallyVisible,omitempty"`
+		ModifiedBy                            nullable.Type[string]                   `json:"modifiedBy,omitempty"`
+		ModifiedDateTime                      nullable.Type[string]                   `json:"modifiedDateTime,omitempty"`
+		Id                                    *string                                 `json:"id,omitempty"`
+		ODataId                               *string                                 `json:"@odata.id,omitempty"`
+		ODataType                             *string                                 `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into AccessPackageCatalog: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.AccessPackageResourceRoles = decoded.AccessPackageResourceRoles
@@ -128,10 +147,10 @@ func (s *AccessPackageCatalog) UnmarshalJSON(bytes []byte) error {
 	s.CustomAccessPackageWorkflowExtensions = decoded.CustomAccessPackageWorkflowExtensions
 	s.Description = decoded.Description
 	s.DisplayName = decoded.DisplayName
-	s.Id = decoded.Id
 	s.IsExternallyVisible = decoded.IsExternallyVisible
 	s.ModifiedBy = decoded.ModifiedBy
 	s.ModifiedDateTime = decoded.ModifiedDateTime
+	s.Id = decoded.Id
 	s.ODataId = decoded.ODataId
 	s.ODataType = decoded.ODataType
 
@@ -156,5 +175,6 @@ func (s *AccessPackageCatalog) UnmarshalJSON(bytes []byte) error {
 		}
 		s.AccessPackageCustomWorkflowExtensions = &output
 	}
+
 	return nil
 }

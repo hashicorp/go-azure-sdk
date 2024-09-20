@@ -17,15 +17,44 @@ type UpdateResourceOperationOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateResourceOperationOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateResourceOperationOperationOptions() UpdateResourceOperationOperationOptions {
+	return UpdateResourceOperationOperationOptions{}
+}
+
+func (o UpdateResourceOperationOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateResourceOperationOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateResourceOperationOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateResourceOperation - Update the navigation property resourceOperations in deviceManagement
-func (c ResourceOperationClient) UpdateResourceOperation(ctx context.Context, id beta.DeviceManagementResourceOperationId, input beta.ResourceOperation) (result UpdateResourceOperationOperationResponse, err error) {
+func (c ResourceOperationClient) UpdateResourceOperation(ctx context.Context, id beta.DeviceManagementResourceOperationId, input beta.ResourceOperation, options UpdateResourceOperationOperationOptions) (result UpdateResourceOperationOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

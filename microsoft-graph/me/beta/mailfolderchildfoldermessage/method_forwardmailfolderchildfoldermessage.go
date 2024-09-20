@@ -18,6 +18,34 @@ type ForwardMailFolderChildFolderMessageOperationResponse struct {
 	OData        *odata.OData
 }
 
+type ForwardMailFolderChildFolderMessageOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultForwardMailFolderChildFolderMessageOperationOptions() ForwardMailFolderChildFolderMessageOperationOptions {
+	return ForwardMailFolderChildFolderMessageOperationOptions{}
+}
+
+func (o ForwardMailFolderChildFolderMessageOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o ForwardMailFolderChildFolderMessageOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o ForwardMailFolderChildFolderMessageOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // ForwardMailFolderChildFolderMessage - Invoke action forward. Forward a message using either JSON or MIME format. When
 // using JSON format, you can: - Specify either a comment or the body property of the message parameter. Specifying both
 // will return an HTTP 400 Bad Request error. - Specify either the toRecipients parameter or the toRecipients property
@@ -25,14 +53,15 @@ type ForwardMailFolderChildFolderMessageOperationResponse struct {
 // MIME format: - Provide the applicable Internet message headers and the MIME content, all encoded in base64 format in
 // the request body. - Add any attachments and S/MIME properties to the MIME content. This method saves the message in
 // the Sent Items folder. Alternatively, create a draft to forward a message, and send it later.
-func (c MailFolderChildFolderMessageClient) ForwardMailFolderChildFolderMessage(ctx context.Context, id beta.MeMailFolderIdChildFolderIdMessageId, input ForwardMailFolderChildFolderMessageRequest) (result ForwardMailFolderChildFolderMessageOperationResponse, err error) {
+func (c MailFolderChildFolderMessageClient) ForwardMailFolderChildFolderMessage(ctx context.Context, id beta.MeMailFolderIdChildFolderIdMessageId, input ForwardMailFolderChildFolderMessageRequest, options ForwardMailFolderChildFolderMessageOperationOptions) (result ForwardMailFolderChildFolderMessageOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/forward", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/forward", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

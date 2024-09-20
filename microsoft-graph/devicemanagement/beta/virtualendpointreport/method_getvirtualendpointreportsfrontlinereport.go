@@ -17,16 +17,45 @@ type GetVirtualEndpointReportsFrontlineReportOperationResponse struct {
 	Model        *[]byte
 }
 
+type GetVirtualEndpointReportsFrontlineReportOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultGetVirtualEndpointReportsFrontlineReportOperationOptions() GetVirtualEndpointReportsFrontlineReportOperationOptions {
+	return GetVirtualEndpointReportsFrontlineReportOperationOptions{}
+}
+
+func (o GetVirtualEndpointReportsFrontlineReportOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o GetVirtualEndpointReportsFrontlineReportOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o GetVirtualEndpointReportsFrontlineReportOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // GetVirtualEndpointReportsFrontlineReport - Invoke action getFrontlineReport. Get the Windows 365 Frontline reports,
 // such as real-time or historical data reports.
-func (c VirtualEndpointReportClient) GetVirtualEndpointReportsFrontlineReport(ctx context.Context, input GetVirtualEndpointReportsFrontlineReportRequest) (result GetVirtualEndpointReportsFrontlineReportOperationResponse, err error) {
+func (c VirtualEndpointReportClient) GetVirtualEndpointReportsFrontlineReport(ctx context.Context, input GetVirtualEndpointReportsFrontlineReportRequest, options GetVirtualEndpointReportsFrontlineReportOperationOptions) (result GetVirtualEndpointReportsFrontlineReportOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/octet-stream",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/deviceManagement/virtualEndpoint/reports/getFrontlineReport",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/deviceManagement/virtualEndpoint/reports/getFrontlineReport",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

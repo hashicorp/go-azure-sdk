@@ -18,7 +18,8 @@ type DeleteVirtualEndpointCrossCloudGovernmentOrganizationMappingOperationRespon
 }
 
 type DeleteVirtualEndpointCrossCloudGovernmentOrganizationMappingOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteVirtualEndpointCrossCloudGovernmentOrganizationMappingOperationOptions() DeleteVirtualEndpointCrossCloudGovernmentOrganizationMappingOperationOptions {
@@ -35,7 +36,9 @@ func (o DeleteVirtualEndpointCrossCloudGovernmentOrganizationMappingOperationOpt
 
 func (o DeleteVirtualEndpointCrossCloudGovernmentOrganizationMappingOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

@@ -17,15 +17,44 @@ type UpdateSiteContentTypeColumnOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateSiteContentTypeColumnOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateSiteContentTypeColumnOperationOptions() UpdateSiteContentTypeColumnOperationOptions {
+	return UpdateSiteContentTypeColumnOperationOptions{}
+}
+
+func (o UpdateSiteContentTypeColumnOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateSiteContentTypeColumnOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateSiteContentTypeColumnOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateSiteContentTypeColumn - Update the navigation property columns in groups
-func (c SiteContentTypeColumnClient) UpdateSiteContentTypeColumn(ctx context.Context, id beta.GroupIdSiteIdContentTypeIdColumnId, input beta.ColumnDefinition) (result UpdateSiteContentTypeColumnOperationResponse, err error) {
+func (c SiteContentTypeColumnClient) UpdateSiteContentTypeColumn(ctx context.Context, id beta.GroupIdSiteIdContentTypeIdColumnId, input beta.ColumnDefinition, options UpdateSiteContentTypeColumnOperationOptions) (result UpdateSiteContentTypeColumnOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &MeDriveId{}
 
 func TestNewMeDriveID(t *testing.T) {
-	id := NewMeDriveID("driveIdValue")
+	id := NewMeDriveID("driveId")
 
-	if id.DriveId != "driveIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DriveId'", id.DriveId, "driveIdValue")
+	if id.DriveId != "driveId" {
+		t.Fatalf("Expected %q but got %q for Segment 'DriveId'", id.DriveId, "driveId")
 	}
 }
 
 func TestFormatMeDriveID(t *testing.T) {
-	actual := NewMeDriveID("driveIdValue").ID()
-	expected := "/me/drives/driveIdValue"
+	actual := NewMeDriveID("driveId").ID()
+	expected := "/me/drives/driveId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -50,14 +50,14 @@ func TestParseMeDriveID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/me/drives/driveIdValue",
+			Input: "/me/drives/driveId",
 			Expected: &MeDriveId{
-				DriveId: "driveIdValue",
+				DriveId: "driveId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/drives/driveIdValue/extra",
+			Input: "/me/drives/driveId/extra",
 			Error: true,
 		},
 	}
@@ -116,26 +116,26 @@ func TestParseMeDriveIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/me/drives/driveIdValue",
+			Input: "/me/drives/driveId",
 			Expected: &MeDriveId{
-				DriveId: "driveIdValue",
+				DriveId: "driveId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/drives/driveIdValue/extra",
+			Input: "/me/drives/driveId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/dRiVeS/dRiVeIdVaLuE",
+			Input: "/mE/dRiVeS/dRiVeId",
 			Expected: &MeDriveId{
-				DriveId: "dRiVeIdVaLuE",
+				DriveId: "dRiVeId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/mE/dRiVeS/dRiVeIdVaLuE/extra",
+			Input: "/mE/dRiVeS/dRiVeId/extra",
 			Error: true,
 		},
 	}

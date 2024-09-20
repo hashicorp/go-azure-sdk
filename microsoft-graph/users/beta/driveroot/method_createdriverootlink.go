@@ -19,18 +19,47 @@ type CreateDriveRootLinkOperationResponse struct {
 	Model        *beta.Permission
 }
 
+type CreateDriveRootLinkOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateDriveRootLinkOperationOptions() CreateDriveRootLinkOperationOptions {
+	return CreateDriveRootLinkOperationOptions{}
+}
+
+func (o CreateDriveRootLinkOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateDriveRootLinkOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateDriveRootLinkOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateDriveRootLink - Invoke action createLink. Create a link to share a driveItem driveItem. The createLink action
 // creates a new sharing link if the specified link type doesn't already exist for the calling application. If a sharing
 // link of the specified type already exists for the app, the existing sharing link is returned. DriveItem resources
 // inherit sharing permissions from their ancestors.
-func (c DriveRootClient) CreateDriveRootLink(ctx context.Context, id beta.UserIdDriveId, input CreateDriveRootLinkRequest) (result CreateDriveRootLinkOperationResponse, err error) {
+func (c DriveRootClient) CreateDriveRootLink(ctx context.Context, id beta.UserIdDriveId, input CreateDriveRootLinkRequest, options CreateDriveRootLinkOperationOptions) (result CreateDriveRootLinkOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/root/createLink", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/root/createLink", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

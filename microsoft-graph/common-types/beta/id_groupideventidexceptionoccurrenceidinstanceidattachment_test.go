@@ -12,32 +12,32 @@ import (
 var _ resourceids.ResourceId = &GroupIdEventIdExceptionOccurrenceIdInstanceIdAttachmentId{}
 
 func TestNewGroupIdEventIdExceptionOccurrenceIdInstanceIdAttachmentID(t *testing.T) {
-	id := NewGroupIdEventIdExceptionOccurrenceIdInstanceIdAttachmentID("groupIdValue", "eventIdValue", "eventId1Value", "eventId2Value", "attachmentIdValue")
+	id := NewGroupIdEventIdExceptionOccurrenceIdInstanceIdAttachmentID("groupId", "eventId", "eventId1", "eventId2", "attachmentId")
 
-	if id.GroupId != "groupIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'GroupId'", id.GroupId, "groupIdValue")
+	if id.GroupId != "groupId" {
+		t.Fatalf("Expected %q but got %q for Segment 'GroupId'", id.GroupId, "groupId")
 	}
 
-	if id.EventId != "eventIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'EventId'", id.EventId, "eventIdValue")
+	if id.EventId != "eventId" {
+		t.Fatalf("Expected %q but got %q for Segment 'EventId'", id.EventId, "eventId")
 	}
 
-	if id.EventId1 != "eventId1Value" {
-		t.Fatalf("Expected %q but got %q for Segment 'EventId1'", id.EventId1, "eventId1Value")
+	if id.EventId1 != "eventId1" {
+		t.Fatalf("Expected %q but got %q for Segment 'EventId1'", id.EventId1, "eventId1")
 	}
 
-	if id.EventId2 != "eventId2Value" {
-		t.Fatalf("Expected %q but got %q for Segment 'EventId2'", id.EventId2, "eventId2Value")
+	if id.EventId2 != "eventId2" {
+		t.Fatalf("Expected %q but got %q for Segment 'EventId2'", id.EventId2, "eventId2")
 	}
 
-	if id.AttachmentId != "attachmentIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'AttachmentId'", id.AttachmentId, "attachmentIdValue")
+	if id.AttachmentId != "attachmentId" {
+		t.Fatalf("Expected %q but got %q for Segment 'AttachmentId'", id.AttachmentId, "attachmentId")
 	}
 }
 
 func TestFormatGroupIdEventIdExceptionOccurrenceIdInstanceIdAttachmentID(t *testing.T) {
-	actual := NewGroupIdEventIdExceptionOccurrenceIdInstanceIdAttachmentID("groupIdValue", "eventIdValue", "eventId1Value", "eventId2Value", "attachmentIdValue").ID()
-	expected := "/groups/groupIdValue/events/eventIdValue/exceptionOccurrences/eventId1Value/instances/eventId2Value/attachments/attachmentIdValue"
+	actual := NewGroupIdEventIdExceptionOccurrenceIdInstanceIdAttachmentID("groupId", "eventId", "eventId1", "eventId2", "attachmentId").ID()
+	expected := "/groups/groupId/events/eventId/exceptionOccurrences/eventId1/instances/eventId2/attachments/attachmentId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -61,58 +61,58 @@ func TestParseGroupIdEventIdExceptionOccurrenceIdInstanceIdAttachmentID(t *testi
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue",
+			Input: "/groups/groupId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/events",
+			Input: "/groups/groupId/events",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/events/eventIdValue",
+			Input: "/groups/groupId/events/eventId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/events/eventIdValue/exceptionOccurrences",
+			Input: "/groups/groupId/events/eventId/exceptionOccurrences",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/events/eventIdValue/exceptionOccurrences/eventId1Value",
+			Input: "/groups/groupId/events/eventId/exceptionOccurrences/eventId1",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/events/eventIdValue/exceptionOccurrences/eventId1Value/instances",
+			Input: "/groups/groupId/events/eventId/exceptionOccurrences/eventId1/instances",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/events/eventIdValue/exceptionOccurrences/eventId1Value/instances/eventId2Value",
+			Input: "/groups/groupId/events/eventId/exceptionOccurrences/eventId1/instances/eventId2",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/events/eventIdValue/exceptionOccurrences/eventId1Value/instances/eventId2Value/attachments",
+			Input: "/groups/groupId/events/eventId/exceptionOccurrences/eventId1/instances/eventId2/attachments",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/groups/groupIdValue/events/eventIdValue/exceptionOccurrences/eventId1Value/instances/eventId2Value/attachments/attachmentIdValue",
+			Input: "/groups/groupId/events/eventId/exceptionOccurrences/eventId1/instances/eventId2/attachments/attachmentId",
 			Expected: &GroupIdEventIdExceptionOccurrenceIdInstanceIdAttachmentId{
-				GroupId:      "groupIdValue",
-				EventId:      "eventIdValue",
-				EventId1:     "eventId1Value",
-				EventId2:     "eventId2Value",
-				AttachmentId: "attachmentIdValue",
+				GroupId:      "groupId",
+				EventId:      "eventId",
+				EventId1:     "eventId1",
+				EventId2:     "eventId2",
+				AttachmentId: "attachmentId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/groups/groupIdValue/events/eventIdValue/exceptionOccurrences/eventId1Value/instances/eventId2Value/attachments/attachmentIdValue/extra",
+			Input: "/groups/groupId/events/eventId/exceptionOccurrences/eventId1/instances/eventId2/attachments/attachmentId/extra",
 			Error: true,
 		},
 	}
@@ -177,114 +177,114 @@ func TestParseGroupIdEventIdExceptionOccurrenceIdInstanceIdAttachmentIDInsensiti
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue",
+			Input: "/groups/groupId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE",
+			Input: "/gRoUpS/gRoUpId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/events",
+			Input: "/groups/groupId/events",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/eVeNtS",
+			Input: "/gRoUpS/gRoUpId/eVeNtS",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/events/eventIdValue",
+			Input: "/groups/groupId/events/eventId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/eVeNtS/eVeNtIdVaLuE",
+			Input: "/gRoUpS/gRoUpId/eVeNtS/eVeNtId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/events/eventIdValue/exceptionOccurrences",
+			Input: "/groups/groupId/events/eventId/exceptionOccurrences",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/eVeNtS/eVeNtIdVaLuE/eXcEpTiOnOcCuRrEnCeS",
+			Input: "/gRoUpS/gRoUpId/eVeNtS/eVeNtId/eXcEpTiOnOcCuRrEnCeS",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/events/eventIdValue/exceptionOccurrences/eventId1Value",
+			Input: "/groups/groupId/events/eventId/exceptionOccurrences/eventId1",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/eVeNtS/eVeNtIdVaLuE/eXcEpTiOnOcCuRrEnCeS/eVeNtId1vAlUe",
+			Input: "/gRoUpS/gRoUpId/eVeNtS/eVeNtId/eXcEpTiOnOcCuRrEnCeS/eVeNtId1",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/events/eventIdValue/exceptionOccurrences/eventId1Value/instances",
+			Input: "/groups/groupId/events/eventId/exceptionOccurrences/eventId1/instances",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/eVeNtS/eVeNtIdVaLuE/eXcEpTiOnOcCuRrEnCeS/eVeNtId1vAlUe/iNsTaNcEs",
+			Input: "/gRoUpS/gRoUpId/eVeNtS/eVeNtId/eXcEpTiOnOcCuRrEnCeS/eVeNtId1/iNsTaNcEs",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/events/eventIdValue/exceptionOccurrences/eventId1Value/instances/eventId2Value",
+			Input: "/groups/groupId/events/eventId/exceptionOccurrences/eventId1/instances/eventId2",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/eVeNtS/eVeNtIdVaLuE/eXcEpTiOnOcCuRrEnCeS/eVeNtId1vAlUe/iNsTaNcEs/eVeNtId2vAlUe",
+			Input: "/gRoUpS/gRoUpId/eVeNtS/eVeNtId/eXcEpTiOnOcCuRrEnCeS/eVeNtId1/iNsTaNcEs/eVeNtId2",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/events/eventIdValue/exceptionOccurrences/eventId1Value/instances/eventId2Value/attachments",
+			Input: "/groups/groupId/events/eventId/exceptionOccurrences/eventId1/instances/eventId2/attachments",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/eVeNtS/eVeNtIdVaLuE/eXcEpTiOnOcCuRrEnCeS/eVeNtId1vAlUe/iNsTaNcEs/eVeNtId2vAlUe/aTtAcHmEnTs",
+			Input: "/gRoUpS/gRoUpId/eVeNtS/eVeNtId/eXcEpTiOnOcCuRrEnCeS/eVeNtId1/iNsTaNcEs/eVeNtId2/aTtAcHmEnTs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/groups/groupIdValue/events/eventIdValue/exceptionOccurrences/eventId1Value/instances/eventId2Value/attachments/attachmentIdValue",
+			Input: "/groups/groupId/events/eventId/exceptionOccurrences/eventId1/instances/eventId2/attachments/attachmentId",
 			Expected: &GroupIdEventIdExceptionOccurrenceIdInstanceIdAttachmentId{
-				GroupId:      "groupIdValue",
-				EventId:      "eventIdValue",
-				EventId1:     "eventId1Value",
-				EventId2:     "eventId2Value",
-				AttachmentId: "attachmentIdValue",
+				GroupId:      "groupId",
+				EventId:      "eventId",
+				EventId1:     "eventId1",
+				EventId2:     "eventId2",
+				AttachmentId: "attachmentId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/groups/groupIdValue/events/eventIdValue/exceptionOccurrences/eventId1Value/instances/eventId2Value/attachments/attachmentIdValue/extra",
+			Input: "/groups/groupId/events/eventId/exceptionOccurrences/eventId1/instances/eventId2/attachments/attachmentId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/eVeNtS/eVeNtIdVaLuE/eXcEpTiOnOcCuRrEnCeS/eVeNtId1vAlUe/iNsTaNcEs/eVeNtId2vAlUe/aTtAcHmEnTs/aTtAcHmEnTiDvAlUe",
+			Input: "/gRoUpS/gRoUpId/eVeNtS/eVeNtId/eXcEpTiOnOcCuRrEnCeS/eVeNtId1/iNsTaNcEs/eVeNtId2/aTtAcHmEnTs/aTtAcHmEnTiD",
 			Expected: &GroupIdEventIdExceptionOccurrenceIdInstanceIdAttachmentId{
-				GroupId:      "gRoUpIdVaLuE",
-				EventId:      "eVeNtIdVaLuE",
-				EventId1:     "eVeNtId1vAlUe",
-				EventId2:     "eVeNtId2vAlUe",
-				AttachmentId: "aTtAcHmEnTiDvAlUe",
+				GroupId:      "gRoUpId",
+				EventId:      "eVeNtId",
+				EventId1:     "eVeNtId1",
+				EventId2:     "eVeNtId2",
+				AttachmentId: "aTtAcHmEnTiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/eVeNtS/eVeNtIdVaLuE/eXcEpTiOnOcCuRrEnCeS/eVeNtId1vAlUe/iNsTaNcEs/eVeNtId2vAlUe/aTtAcHmEnTs/aTtAcHmEnTiDvAlUe/extra",
+			Input: "/gRoUpS/gRoUpId/eVeNtS/eVeNtId/eXcEpTiOnOcCuRrEnCeS/eVeNtId1/iNsTaNcEs/eVeNtId2/aTtAcHmEnTs/aTtAcHmEnTiD/extra",
 			Error: true,
 		},
 	}

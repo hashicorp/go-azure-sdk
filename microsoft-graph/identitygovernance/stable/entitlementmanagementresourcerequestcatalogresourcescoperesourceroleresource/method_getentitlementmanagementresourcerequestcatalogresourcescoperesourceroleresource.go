@@ -20,8 +20,9 @@ type GetEntitlementManagementResourceRequestCatalogResourceScopeResourceRoleReso
 }
 
 type GetEntitlementManagementResourceRequestCatalogResourceScopeResourceRoleResourceOperationOptions struct {
-	Expand *odata.Expand
-	Select *[]string
+	Expand   *odata.Expand
+	Metadata *odata.Metadata
+	Select   *[]string
 }
 
 func DefaultGetEntitlementManagementResourceRequestCatalogResourceScopeResourceRoleResourceOperationOptions() GetEntitlementManagementResourceRequestCatalogResourceScopeResourceRoleResourceOperationOptions {
@@ -39,6 +40,9 @@ func (o GetEntitlementManagementResourceRequestCatalogResourceScopeResourceRoleR
 	if o.Expand != nil {
 		out.Expand = *o.Expand
 	}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	if o.Select != nil {
 		out.Select = *o.Select
 	}
@@ -53,7 +57,7 @@ func (o GetEntitlementManagementResourceRequestCatalogResourceScopeResourceRoleR
 
 // GetEntitlementManagementResourceRequestCatalogResourceScopeResourceRoleResource - Get resource from
 // identityGovernance
-func (c EntitlementManagementResourceRequestCatalogResourceScopeResourceRoleResourceClient) GetEntitlementManagementResourceRequestCatalogResourceScopeResourceRoleResource(ctx context.Context, id stable.IdentityGovernanceEntitlementManagementResourceRequestIdCatalogResourceScopeIdResourceRoleId, options GetEntitlementManagementResourceRequestCatalogResourceScopeResourceRoleResourceOperationOptions) (result GetEntitlementManagementResourceRequestCatalogResourceScopeResourceRoleResourceOperationResponse, err error) {
+func (c EntitlementManagementResourceRequestCatalogResourceScopeResourceRoleResourceClient) GetEntitlementManagementResourceRequestCatalogResourceScopeResourceRoleResource(ctx context.Context, id stable.IdentityGovernanceEntitlementManagementResourceRequestIdCatalogResourceIdScopeIdResourceRoleId, options GetEntitlementManagementResourceRequestCatalogResourceScopeResourceRoleResourceOperationOptions) (result GetEntitlementManagementResourceRequestCatalogResourceScopeResourceRoleResourceOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{

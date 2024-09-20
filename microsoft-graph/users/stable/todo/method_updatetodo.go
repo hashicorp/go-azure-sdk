@@ -18,15 +18,44 @@ type UpdateTodoOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateTodoOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateTodoOperationOptions() UpdateTodoOperationOptions {
+	return UpdateTodoOperationOptions{}
+}
+
+func (o UpdateTodoOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateTodoOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateTodoOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateTodo - Update the navigation property todo in users
-func (c TodoClient) UpdateTodo(ctx context.Context, id stable.UserId, input stable.Todo) (result UpdateTodoOperationResponse, err error) {
+func (c TodoClient) UpdateTodo(ctx context.Context, id stable.UserId, input stable.Todo, options UpdateTodoOperationOptions) (result UpdateTodoOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       fmt.Sprintf("%s/todo", id.ID()),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/todo", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

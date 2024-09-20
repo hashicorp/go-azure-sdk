@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &MePhotoId{}
 
 func TestNewMePhotoID(t *testing.T) {
-	id := NewMePhotoID("profilePhotoIdValue")
+	id := NewMePhotoID("profilePhotoId")
 
-	if id.ProfilePhotoId != "profilePhotoIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ProfilePhotoId'", id.ProfilePhotoId, "profilePhotoIdValue")
+	if id.ProfilePhotoId != "profilePhotoId" {
+		t.Fatalf("Expected %q but got %q for Segment 'ProfilePhotoId'", id.ProfilePhotoId, "profilePhotoId")
 	}
 }
 
 func TestFormatMePhotoID(t *testing.T) {
-	actual := NewMePhotoID("profilePhotoIdValue").ID()
-	expected := "/me/photos/profilePhotoIdValue"
+	actual := NewMePhotoID("profilePhotoId").ID()
+	expected := "/me/photos/profilePhotoId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -50,14 +50,14 @@ func TestParseMePhotoID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/me/photos/profilePhotoIdValue",
+			Input: "/me/photos/profilePhotoId",
 			Expected: &MePhotoId{
-				ProfilePhotoId: "profilePhotoIdValue",
+				ProfilePhotoId: "profilePhotoId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/photos/profilePhotoIdValue/extra",
+			Input: "/me/photos/profilePhotoId/extra",
 			Error: true,
 		},
 	}
@@ -116,26 +116,26 @@ func TestParseMePhotoIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/me/photos/profilePhotoIdValue",
+			Input: "/me/photos/profilePhotoId",
 			Expected: &MePhotoId{
-				ProfilePhotoId: "profilePhotoIdValue",
+				ProfilePhotoId: "profilePhotoId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/photos/profilePhotoIdValue/extra",
+			Input: "/me/photos/profilePhotoId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/pHoToS/pRoFiLePhOtOiDvAlUe",
+			Input: "/mE/pHoToS/pRoFiLePhOtOiD",
 			Expected: &MePhotoId{
-				ProfilePhotoId: "pRoFiLePhOtOiDvAlUe",
+				ProfilePhotoId: "pRoFiLePhOtOiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/mE/pHoToS/pRoFiLePhOtOiDvAlUe/extra",
+			Input: "/mE/pHoToS/pRoFiLePhOtOiD/extra",
 			Error: true,
 		},
 	}

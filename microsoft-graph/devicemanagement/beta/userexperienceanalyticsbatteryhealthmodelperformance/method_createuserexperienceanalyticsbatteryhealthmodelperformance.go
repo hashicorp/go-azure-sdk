@@ -18,16 +18,45 @@ type CreateUserExperienceAnalyticsBatteryHealthModelPerformanceOperationResponse
 	Model        *beta.UserExperienceAnalyticsBatteryHealthModelPerformance
 }
 
+type CreateUserExperienceAnalyticsBatteryHealthModelPerformanceOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateUserExperienceAnalyticsBatteryHealthModelPerformanceOperationOptions() CreateUserExperienceAnalyticsBatteryHealthModelPerformanceOperationOptions {
+	return CreateUserExperienceAnalyticsBatteryHealthModelPerformanceOperationOptions{}
+}
+
+func (o CreateUserExperienceAnalyticsBatteryHealthModelPerformanceOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateUserExperienceAnalyticsBatteryHealthModelPerformanceOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateUserExperienceAnalyticsBatteryHealthModelPerformanceOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateUserExperienceAnalyticsBatteryHealthModelPerformance - Create new navigation property to
 // userExperienceAnalyticsBatteryHealthModelPerformance for deviceManagement
-func (c UserExperienceAnalyticsBatteryHealthModelPerformanceClient) CreateUserExperienceAnalyticsBatteryHealthModelPerformance(ctx context.Context, input beta.UserExperienceAnalyticsBatteryHealthModelPerformance) (result CreateUserExperienceAnalyticsBatteryHealthModelPerformanceOperationResponse, err error) {
+func (c UserExperienceAnalyticsBatteryHealthModelPerformanceClient) CreateUserExperienceAnalyticsBatteryHealthModelPerformance(ctx context.Context, input beta.UserExperienceAnalyticsBatteryHealthModelPerformance, options CreateUserExperienceAnalyticsBatteryHealthModelPerformanceOperationOptions) (result CreateUserExperienceAnalyticsBatteryHealthModelPerformanceOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/deviceManagement/userExperienceAnalyticsBatteryHealthModelPerformance",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/deviceManagement/userExperienceAnalyticsBatteryHealthModelPerformance",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

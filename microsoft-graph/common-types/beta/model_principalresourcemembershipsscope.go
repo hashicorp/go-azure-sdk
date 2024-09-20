@@ -61,10 +61,15 @@ func (s PrincipalResourceMembershipsScope) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &PrincipalResourceMembershipsScope{}
 
 func (s *PrincipalResourceMembershipsScope) UnmarshalJSON(bytes []byte) error {
-	type alias PrincipalResourceMembershipsScope
-	var decoded alias
+
+	var decoded struct {
+		PrincipalScopes *[]AccessReviewScope `json:"principalScopes,omitempty"`
+		ResourceScopes  *[]AccessReviewScope `json:"resourceScopes,omitempty"`
+		ODataId         *string              `json:"@odata.id,omitempty"`
+		ODataType       *string              `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into PrincipalResourceMembershipsScope: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.ODataId = decoded.ODataId
@@ -108,5 +113,6 @@ func (s *PrincipalResourceMembershipsScope) UnmarshalJSON(bytes []byte) error {
 		}
 		s.ResourceScopes = &output
 	}
+
 	return nil
 }

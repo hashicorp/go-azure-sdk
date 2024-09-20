@@ -102,18 +102,27 @@ func (s AwsAccessKey) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &AwsAccessKey{}
 
 func (s *AwsAccessKey) UnmarshalJSON(bytes []byte) error {
-	type alias AwsAccessKey
-	var decoded alias
+
+	var decoded struct {
+		Owner               *AwsUser                          `json:"owner,omitempty"`
+		AuthorizationSystem *AuthorizationSystem              `json:"authorizationSystem,omitempty"`
+		DisplayName         nullable.Type[string]             `json:"displayName,omitempty"`
+		ExternalId          *string                           `json:"externalId,omitempty"`
+		Source              AuthorizationSystemIdentitySource `json:"source"`
+		Id                  *string                           `json:"id,omitempty"`
+		ODataId             *string                           `json:"@odata.id,omitempty"`
+		ODataType           *string                           `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into AwsAccessKey: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
+	s.Owner = decoded.Owner
 	s.DisplayName = decoded.DisplayName
 	s.ExternalId = decoded.ExternalId
 	s.Id = decoded.Id
 	s.ODataId = decoded.ODataId
 	s.ODataType = decoded.ODataType
-	s.Owner = decoded.Owner
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -135,5 +144,6 @@ func (s *AwsAccessKey) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Source = impl
 	}
+
 	return nil
 }

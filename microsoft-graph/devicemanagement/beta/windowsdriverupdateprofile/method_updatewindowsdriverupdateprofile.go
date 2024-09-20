@@ -17,15 +17,44 @@ type UpdateWindowsDriverUpdateProfileOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateWindowsDriverUpdateProfileOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateWindowsDriverUpdateProfileOperationOptions() UpdateWindowsDriverUpdateProfileOperationOptions {
+	return UpdateWindowsDriverUpdateProfileOperationOptions{}
+}
+
+func (o UpdateWindowsDriverUpdateProfileOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateWindowsDriverUpdateProfileOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateWindowsDriverUpdateProfileOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateWindowsDriverUpdateProfile - Update the navigation property windowsDriverUpdateProfiles in deviceManagement
-func (c WindowsDriverUpdateProfileClient) UpdateWindowsDriverUpdateProfile(ctx context.Context, id beta.DeviceManagementWindowsDriverUpdateProfileId, input beta.WindowsDriverUpdateProfile) (result UpdateWindowsDriverUpdateProfileOperationResponse, err error) {
+func (c WindowsDriverUpdateProfileClient) UpdateWindowsDriverUpdateProfile(ctx context.Context, id beta.DeviceManagementWindowsDriverUpdateProfileId, input beta.WindowsDriverUpdateProfile, options UpdateWindowsDriverUpdateProfileOperationOptions) (result UpdateWindowsDriverUpdateProfileOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

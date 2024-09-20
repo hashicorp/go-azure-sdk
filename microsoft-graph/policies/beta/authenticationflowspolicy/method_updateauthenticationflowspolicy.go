@@ -17,16 +17,45 @@ type UpdateAuthenticationFlowsPolicyOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateAuthenticationFlowsPolicyOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateAuthenticationFlowsPolicyOperationOptions() UpdateAuthenticationFlowsPolicyOperationOptions {
+	return UpdateAuthenticationFlowsPolicyOperationOptions{}
+}
+
+func (o UpdateAuthenticationFlowsPolicyOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateAuthenticationFlowsPolicyOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateAuthenticationFlowsPolicyOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateAuthenticationFlowsPolicy - Update authenticationFlowsPolicy. Update the Boolean selfServiceSignUp property of
 // an authenticationFlowsPolicy object. The properties id, type, and description cannot be modified.
-func (c AuthenticationFlowsPolicyClient) UpdateAuthenticationFlowsPolicy(ctx context.Context, input beta.AuthenticationFlowsPolicy) (result UpdateAuthenticationFlowsPolicyOperationResponse, err error) {
+func (c AuthenticationFlowsPolicyClient) UpdateAuthenticationFlowsPolicy(ctx context.Context, input beta.AuthenticationFlowsPolicy, options UpdateAuthenticationFlowsPolicyOperationOptions) (result UpdateAuthenticationFlowsPolicyOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       "/policies/authenticationFlowsPolicy",
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          "/policies/authenticationFlowsPolicy",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

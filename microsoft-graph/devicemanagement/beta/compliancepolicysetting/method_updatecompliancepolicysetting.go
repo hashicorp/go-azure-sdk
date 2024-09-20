@@ -17,15 +17,44 @@ type UpdateCompliancePolicySettingOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateCompliancePolicySettingOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateCompliancePolicySettingOperationOptions() UpdateCompliancePolicySettingOperationOptions {
+	return UpdateCompliancePolicySettingOperationOptions{}
+}
+
+func (o UpdateCompliancePolicySettingOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateCompliancePolicySettingOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateCompliancePolicySettingOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateCompliancePolicySetting - Update the navigation property settings in deviceManagement
-func (c CompliancePolicySettingClient) UpdateCompliancePolicySetting(ctx context.Context, id beta.DeviceManagementCompliancePolicyIdSettingId, input beta.DeviceManagementConfigurationSetting) (result UpdateCompliancePolicySettingOperationResponse, err error) {
+func (c CompliancePolicySettingClient) UpdateCompliancePolicySetting(ctx context.Context, id beta.DeviceManagementCompliancePolicyIdSettingId, input beta.DeviceManagementConfigurationSetting, options UpdateCompliancePolicySettingOperationOptions) (result UpdateCompliancePolicySettingOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

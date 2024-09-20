@@ -17,16 +17,45 @@ type UpdateUserExperienceAnalyticsWorkFromAnywhereMetricDeviceOperationResponse 
 	OData        *odata.OData
 }
 
+type UpdateUserExperienceAnalyticsWorkFromAnywhereMetricDeviceOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateUserExperienceAnalyticsWorkFromAnywhereMetricDeviceOperationOptions() UpdateUserExperienceAnalyticsWorkFromAnywhereMetricDeviceOperationOptions {
+	return UpdateUserExperienceAnalyticsWorkFromAnywhereMetricDeviceOperationOptions{}
+}
+
+func (o UpdateUserExperienceAnalyticsWorkFromAnywhereMetricDeviceOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateUserExperienceAnalyticsWorkFromAnywhereMetricDeviceOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateUserExperienceAnalyticsWorkFromAnywhereMetricDeviceOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateUserExperienceAnalyticsWorkFromAnywhereMetricDevice - Update the navigation property metricDevices in
 // deviceManagement
-func (c UserExperienceAnalyticsWorkFromAnywhereMetricMetricDeviceClient) UpdateUserExperienceAnalyticsWorkFromAnywhereMetricDevice(ctx context.Context, id stable.DeviceManagementUserExperienceAnalyticsWorkFromAnywhereMetricIdMetricDeviceId, input stable.UserExperienceAnalyticsWorkFromAnywhereDevice) (result UpdateUserExperienceAnalyticsWorkFromAnywhereMetricDeviceOperationResponse, err error) {
+func (c UserExperienceAnalyticsWorkFromAnywhereMetricMetricDeviceClient) UpdateUserExperienceAnalyticsWorkFromAnywhereMetricDevice(ctx context.Context, id stable.DeviceManagementUserExperienceAnalyticsWorkFromAnywhereMetricIdMetricDeviceId, input stable.UserExperienceAnalyticsWorkFromAnywhereDevice, options UpdateUserExperienceAnalyticsWorkFromAnywhereMetricDeviceOperationOptions) (result UpdateUserExperienceAnalyticsWorkFromAnywhereMetricDeviceOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

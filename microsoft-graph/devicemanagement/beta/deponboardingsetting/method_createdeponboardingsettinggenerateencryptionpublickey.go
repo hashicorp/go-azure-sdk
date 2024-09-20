@@ -19,16 +19,45 @@ type CreateDepOnboardingSettingGenerateEncryptionPublicKeyOperationResponse stru
 	Model        *CreateDepOnboardingSettingGenerateEncryptionPublicKeyResult
 }
 
+type CreateDepOnboardingSettingGenerateEncryptionPublicKeyOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateDepOnboardingSettingGenerateEncryptionPublicKeyOperationOptions() CreateDepOnboardingSettingGenerateEncryptionPublicKeyOperationOptions {
+	return CreateDepOnboardingSettingGenerateEncryptionPublicKeyOperationOptions{}
+}
+
+func (o CreateDepOnboardingSettingGenerateEncryptionPublicKeyOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateDepOnboardingSettingGenerateEncryptionPublicKeyOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateDepOnboardingSettingGenerateEncryptionPublicKeyOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateDepOnboardingSettingGenerateEncryptionPublicKey - Invoke action generateEncryptionPublicKey. Generate a public
 // key to use to encrypt the Apple device enrollment program token
-func (c DepOnboardingSettingClient) CreateDepOnboardingSettingGenerateEncryptionPublicKey(ctx context.Context, id beta.DeviceManagementDepOnboardingSettingId) (result CreateDepOnboardingSettingGenerateEncryptionPublicKeyOperationResponse, err error) {
+func (c DepOnboardingSettingClient) CreateDepOnboardingSettingGenerateEncryptionPublicKey(ctx context.Context, id beta.DeviceManagementDepOnboardingSettingId, options CreateDepOnboardingSettingGenerateEncryptionPublicKeyOperationOptions) (result CreateDepOnboardingSettingGenerateEncryptionPublicKeyOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/generateEncryptionPublicKey", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/generateEncryptionPublicKey", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

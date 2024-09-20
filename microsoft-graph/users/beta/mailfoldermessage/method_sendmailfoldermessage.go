@@ -18,17 +18,46 @@ type SendMailFolderMessageOperationResponse struct {
 	OData        *odata.OData
 }
 
+type SendMailFolderMessageOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultSendMailFolderMessageOperationOptions() SendMailFolderMessageOperationOptions {
+	return SendMailFolderMessageOperationOptions{}
+}
+
+func (o SendMailFolderMessageOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o SendMailFolderMessageOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o SendMailFolderMessageOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // SendMailFolderMessage - Invoke action send. Send an existing draft message. The draft message can be a new message
 // draft, reply draft, reply-all draft, or a forward draft. This method saves the message in the Sent Items folder.
 // Alternatively, send a new message in a single operation.
-func (c MailFolderMessageClient) SendMailFolderMessage(ctx context.Context, id beta.UserIdMailFolderIdMessageId) (result SendMailFolderMessageOperationResponse, err error) {
+func (c MailFolderMessageClient) SendMailFolderMessage(ctx context.Context, id beta.UserIdMailFolderIdMessageId, options SendMailFolderMessageOperationOptions) (result SendMailFolderMessageOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/send", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/send", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

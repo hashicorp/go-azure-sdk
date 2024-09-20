@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &DeviceManagementTelecomExpenseManagementPartnerId{}
 
 func TestNewDeviceManagementTelecomExpenseManagementPartnerID(t *testing.T) {
-	id := NewDeviceManagementTelecomExpenseManagementPartnerID("telecomExpenseManagementPartnerIdValue")
+	id := NewDeviceManagementTelecomExpenseManagementPartnerID("telecomExpenseManagementPartnerId")
 
-	if id.TelecomExpenseManagementPartnerId != "telecomExpenseManagementPartnerIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'TelecomExpenseManagementPartnerId'", id.TelecomExpenseManagementPartnerId, "telecomExpenseManagementPartnerIdValue")
+	if id.TelecomExpenseManagementPartnerId != "telecomExpenseManagementPartnerId" {
+		t.Fatalf("Expected %q but got %q for Segment 'TelecomExpenseManagementPartnerId'", id.TelecomExpenseManagementPartnerId, "telecomExpenseManagementPartnerId")
 	}
 }
 
 func TestFormatDeviceManagementTelecomExpenseManagementPartnerID(t *testing.T) {
-	actual := NewDeviceManagementTelecomExpenseManagementPartnerID("telecomExpenseManagementPartnerIdValue").ID()
-	expected := "/deviceManagement/telecomExpenseManagementPartners/telecomExpenseManagementPartnerIdValue"
+	actual := NewDeviceManagementTelecomExpenseManagementPartnerID("telecomExpenseManagementPartnerId").ID()
+	expected := "/deviceManagement/telecomExpenseManagementPartners/telecomExpenseManagementPartnerId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -50,14 +50,14 @@ func TestParseDeviceManagementTelecomExpenseManagementPartnerID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/telecomExpenseManagementPartners/telecomExpenseManagementPartnerIdValue",
+			Input: "/deviceManagement/telecomExpenseManagementPartners/telecomExpenseManagementPartnerId",
 			Expected: &DeviceManagementTelecomExpenseManagementPartnerId{
-				TelecomExpenseManagementPartnerId: "telecomExpenseManagementPartnerIdValue",
+				TelecomExpenseManagementPartnerId: "telecomExpenseManagementPartnerId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/telecomExpenseManagementPartners/telecomExpenseManagementPartnerIdValue/extra",
+			Input: "/deviceManagement/telecomExpenseManagementPartners/telecomExpenseManagementPartnerId/extra",
 			Error: true,
 		},
 	}
@@ -116,26 +116,26 @@ func TestParseDeviceManagementTelecomExpenseManagementPartnerIDInsensitively(t *
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/telecomExpenseManagementPartners/telecomExpenseManagementPartnerIdValue",
+			Input: "/deviceManagement/telecomExpenseManagementPartners/telecomExpenseManagementPartnerId",
 			Expected: &DeviceManagementTelecomExpenseManagementPartnerId{
-				TelecomExpenseManagementPartnerId: "telecomExpenseManagementPartnerIdValue",
+				TelecomExpenseManagementPartnerId: "telecomExpenseManagementPartnerId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/telecomExpenseManagementPartners/telecomExpenseManagementPartnerIdValue/extra",
+			Input: "/deviceManagement/telecomExpenseManagementPartners/telecomExpenseManagementPartnerId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/tElEcOmExPeNsEmAnAgEmEnTpArTnErS/tElEcOmExPeNsEmAnAgEmEnTpArTnErIdVaLuE",
+			Input: "/dEvIcEmAnAgEmEnT/tElEcOmExPeNsEmAnAgEmEnTpArTnErS/tElEcOmExPeNsEmAnAgEmEnTpArTnErId",
 			Expected: &DeviceManagementTelecomExpenseManagementPartnerId{
-				TelecomExpenseManagementPartnerId: "tElEcOmExPeNsEmAnAgEmEnTpArTnErIdVaLuE",
+				TelecomExpenseManagementPartnerId: "tElEcOmExPeNsEmAnAgEmEnTpArTnErId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/tElEcOmExPeNsEmAnAgEmEnTpArTnErS/tElEcOmExPeNsEmAnAgEmEnTpArTnErIdVaLuE/extra",
+			Input: "/dEvIcEmAnAgEmEnT/tElEcOmExPeNsEmAnAgEmEnTpArTnErS/tElEcOmExPeNsEmAnAgEmEnTpArTnErId/extra",
 			Error: true,
 		},
 	}

@@ -19,7 +19,8 @@ type DeleteManagedDeviceEncryptionStateOperationResponse struct {
 }
 
 type DeleteManagedDeviceEncryptionStateOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteManagedDeviceEncryptionStateOperationOptions() DeleteManagedDeviceEncryptionStateOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteManagedDeviceEncryptionStateOperationOptions) ToHeaders() *client.
 
 func (o DeleteManagedDeviceEncryptionStateOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

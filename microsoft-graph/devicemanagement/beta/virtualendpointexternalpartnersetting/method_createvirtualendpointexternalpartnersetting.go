@@ -18,16 +18,45 @@ type CreateVirtualEndpointExternalPartnerSettingOperationResponse struct {
 	Model        *beta.CloudPCExternalPartnerSetting
 }
 
+type CreateVirtualEndpointExternalPartnerSettingOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateVirtualEndpointExternalPartnerSettingOperationOptions() CreateVirtualEndpointExternalPartnerSettingOperationOptions {
+	return CreateVirtualEndpointExternalPartnerSettingOperationOptions{}
+}
+
+func (o CreateVirtualEndpointExternalPartnerSettingOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateVirtualEndpointExternalPartnerSettingOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateVirtualEndpointExternalPartnerSettingOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateVirtualEndpointExternalPartnerSetting - Create cloudPcExternalPartnerSetting. Create a new
 // cloudPcExternalPartnerSetting object.
-func (c VirtualEndpointExternalPartnerSettingClient) CreateVirtualEndpointExternalPartnerSetting(ctx context.Context, input beta.CloudPCExternalPartnerSetting) (result CreateVirtualEndpointExternalPartnerSettingOperationResponse, err error) {
+func (c VirtualEndpointExternalPartnerSettingClient) CreateVirtualEndpointExternalPartnerSetting(ctx context.Context, input beta.CloudPCExternalPartnerSetting, options CreateVirtualEndpointExternalPartnerSettingOperationOptions) (result CreateVirtualEndpointExternalPartnerSettingOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/deviceManagement/virtualEndpoint/externalPartnerSettings",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/deviceManagement/virtualEndpoint/externalPartnerSettings",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

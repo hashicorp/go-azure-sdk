@@ -18,18 +18,47 @@ type CreateEntitlementManagementAssignmentRequestResumeOperationResponse struct 
 	OData        *odata.OData
 }
 
+type CreateEntitlementManagementAssignmentRequestResumeOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateEntitlementManagementAssignmentRequestResumeOperationOptions() CreateEntitlementManagementAssignmentRequestResumeOperationOptions {
+	return CreateEntitlementManagementAssignmentRequestResumeOperationOptions{}
+}
+
+func (o CreateEntitlementManagementAssignmentRequestResumeOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateEntitlementManagementAssignmentRequestResumeOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateEntitlementManagementAssignmentRequestResumeOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateEntitlementManagementAssignmentRequestResume - Invoke action resume. In Microsoft Entra entitlement management,
 // when an access package policy has been enabled to call out a custom extension and the request processing is waiting
 // for the callback from the customer, the customer can initiate a resume action. It is performed on an
 // accessPackageAssignmentRequest object whose requestStatus is in a WaitingForCallback state.
-func (c EntitlementManagementAssignmentRequestClient) CreateEntitlementManagementAssignmentRequestResume(ctx context.Context, id beta.IdentityGovernanceEntitlementManagementAssignmentRequestId, input CreateEntitlementManagementAssignmentRequestResumeRequest) (result CreateEntitlementManagementAssignmentRequestResumeOperationResponse, err error) {
+func (c EntitlementManagementAssignmentRequestClient) CreateEntitlementManagementAssignmentRequestResume(ctx context.Context, id beta.IdentityGovernanceEntitlementManagementAssignmentRequestId, input CreateEntitlementManagementAssignmentRequestResumeRequest, options CreateEntitlementManagementAssignmentRequestResumeOperationOptions) (result CreateEntitlementManagementAssignmentRequestResumeOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/resume", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/resume", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

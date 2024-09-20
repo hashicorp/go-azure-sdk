@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &DeviceManagementIosUpdateStatusId{}
 
 func TestNewDeviceManagementIosUpdateStatusID(t *testing.T) {
-	id := NewDeviceManagementIosUpdateStatusID("iosUpdateDeviceStatusIdValue")
+	id := NewDeviceManagementIosUpdateStatusID("iosUpdateDeviceStatusId")
 
-	if id.IosUpdateDeviceStatusId != "iosUpdateDeviceStatusIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'IosUpdateDeviceStatusId'", id.IosUpdateDeviceStatusId, "iosUpdateDeviceStatusIdValue")
+	if id.IosUpdateDeviceStatusId != "iosUpdateDeviceStatusId" {
+		t.Fatalf("Expected %q but got %q for Segment 'IosUpdateDeviceStatusId'", id.IosUpdateDeviceStatusId, "iosUpdateDeviceStatusId")
 	}
 }
 
 func TestFormatDeviceManagementIosUpdateStatusID(t *testing.T) {
-	actual := NewDeviceManagementIosUpdateStatusID("iosUpdateDeviceStatusIdValue").ID()
-	expected := "/deviceManagement/iosUpdateStatuses/iosUpdateDeviceStatusIdValue"
+	actual := NewDeviceManagementIosUpdateStatusID("iosUpdateDeviceStatusId").ID()
+	expected := "/deviceManagement/iosUpdateStatuses/iosUpdateDeviceStatusId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -50,14 +50,14 @@ func TestParseDeviceManagementIosUpdateStatusID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/iosUpdateStatuses/iosUpdateDeviceStatusIdValue",
+			Input: "/deviceManagement/iosUpdateStatuses/iosUpdateDeviceStatusId",
 			Expected: &DeviceManagementIosUpdateStatusId{
-				IosUpdateDeviceStatusId: "iosUpdateDeviceStatusIdValue",
+				IosUpdateDeviceStatusId: "iosUpdateDeviceStatusId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/iosUpdateStatuses/iosUpdateDeviceStatusIdValue/extra",
+			Input: "/deviceManagement/iosUpdateStatuses/iosUpdateDeviceStatusId/extra",
 			Error: true,
 		},
 	}
@@ -116,26 +116,26 @@ func TestParseDeviceManagementIosUpdateStatusIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/iosUpdateStatuses/iosUpdateDeviceStatusIdValue",
+			Input: "/deviceManagement/iosUpdateStatuses/iosUpdateDeviceStatusId",
 			Expected: &DeviceManagementIosUpdateStatusId{
-				IosUpdateDeviceStatusId: "iosUpdateDeviceStatusIdValue",
+				IosUpdateDeviceStatusId: "iosUpdateDeviceStatusId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/iosUpdateStatuses/iosUpdateDeviceStatusIdValue/extra",
+			Input: "/deviceManagement/iosUpdateStatuses/iosUpdateDeviceStatusId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/iOsUpDaTeStAtUsEs/iOsUpDaTeDeViCeStAtUsIdVaLuE",
+			Input: "/dEvIcEmAnAgEmEnT/iOsUpDaTeStAtUsEs/iOsUpDaTeDeViCeStAtUsId",
 			Expected: &DeviceManagementIosUpdateStatusId{
-				IosUpdateDeviceStatusId: "iOsUpDaTeDeViCeStAtUsIdVaLuE",
+				IosUpdateDeviceStatusId: "iOsUpDaTeDeViCeStAtUsId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/iOsUpDaTeStAtUsEs/iOsUpDaTeDeViCeStAtUsIdVaLuE/extra",
+			Input: "/dEvIcEmAnAgEmEnT/iOsUpDaTeStAtUsEs/iOsUpDaTeDeViCeStAtUsId/extra",
 			Error: true,
 		},
 	}

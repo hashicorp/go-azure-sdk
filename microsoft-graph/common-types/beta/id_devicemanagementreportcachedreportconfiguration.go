@@ -94,7 +94,7 @@ func (id DeviceManagementReportCachedReportConfigurationId) Segments() []resourc
 		resourceids.StaticSegment("deviceManagement", "deviceManagement", "deviceManagement"),
 		resourceids.StaticSegment("reports", "reports", "reports"),
 		resourceids.StaticSegment("cachedReportConfigurations", "cachedReportConfigurations", "cachedReportConfigurations"),
-		resourceids.UserSpecifiedSegment("deviceManagementCachedReportConfigurationId", "deviceManagementCachedReportConfigurationIdValue"),
+		resourceids.UserSpecifiedSegment("deviceManagementCachedReportConfigurationId", "deviceManagementCachedReportConfigurationId"),
 	}
 }
 

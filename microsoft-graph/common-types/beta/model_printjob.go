@@ -90,10 +90,26 @@ func (s PrintJob) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &PrintJob{}
 
 func (s *PrintJob) UnmarshalJSON(bytes []byte) error {
-	type alias PrintJob
-	var decoded alias
+
+	var decoded struct {
+		AcknowledgedDateTime nullable.Type[string]  `json:"acknowledgedDateTime,omitempty"`
+		CompletedDateTime    nullable.Type[string]  `json:"completedDateTime,omitempty"`
+		Configuration        *PrintJobConfiguration `json:"configuration,omitempty"`
+		CreatedDateTime      *string                `json:"createdDateTime,omitempty"`
+		DisplayName          nullable.Type[string]  `json:"displayName,omitempty"`
+		Documents            *[]PrintDocument       `json:"documents,omitempty"`
+		ErrorCode            nullable.Type[int64]   `json:"errorCode,omitempty"`
+		IsFetchable          *bool                  `json:"isFetchable,omitempty"`
+		RedirectedFrom       nullable.Type[string]  `json:"redirectedFrom,omitempty"`
+		RedirectedTo         nullable.Type[string]  `json:"redirectedTo,omitempty"`
+		Status               *PrintJobStatus        `json:"status,omitempty"`
+		Tasks                *[]PrintTask           `json:"tasks,omitempty"`
+		Id                   *string                `json:"id,omitempty"`
+		ODataId              *string                `json:"@odata.id,omitempty"`
+		ODataType            *string                `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into PrintJob: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.AcknowledgedDateTime = decoded.AcknowledgedDateTime
@@ -103,14 +119,14 @@ func (s *PrintJob) UnmarshalJSON(bytes []byte) error {
 	s.DisplayName = decoded.DisplayName
 	s.Documents = decoded.Documents
 	s.ErrorCode = decoded.ErrorCode
-	s.Id = decoded.Id
 	s.IsFetchable = decoded.IsFetchable
-	s.ODataId = decoded.ODataId
-	s.ODataType = decoded.ODataType
 	s.RedirectedFrom = decoded.RedirectedFrom
 	s.RedirectedTo = decoded.RedirectedTo
 	s.Status = decoded.Status
 	s.Tasks = decoded.Tasks
+	s.Id = decoded.Id
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -124,5 +140,6 @@ func (s *PrintJob) UnmarshalJSON(bytes []byte) error {
 		}
 		s.CreatedBy = &impl
 	}
+
 	return nil
 }

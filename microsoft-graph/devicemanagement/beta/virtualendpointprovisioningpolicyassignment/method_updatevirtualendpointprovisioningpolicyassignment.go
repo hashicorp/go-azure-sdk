@@ -17,15 +17,44 @@ type UpdateVirtualEndpointProvisioningPolicyAssignmentOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateVirtualEndpointProvisioningPolicyAssignmentOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateVirtualEndpointProvisioningPolicyAssignmentOperationOptions() UpdateVirtualEndpointProvisioningPolicyAssignmentOperationOptions {
+	return UpdateVirtualEndpointProvisioningPolicyAssignmentOperationOptions{}
+}
+
+func (o UpdateVirtualEndpointProvisioningPolicyAssignmentOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateVirtualEndpointProvisioningPolicyAssignmentOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateVirtualEndpointProvisioningPolicyAssignmentOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateVirtualEndpointProvisioningPolicyAssignment - Update the navigation property assignments in deviceManagement
-func (c VirtualEndpointProvisioningPolicyAssignmentClient) UpdateVirtualEndpointProvisioningPolicyAssignment(ctx context.Context, id beta.DeviceManagementVirtualEndpointProvisioningPolicyIdAssignmentId, input beta.CloudPCProvisioningPolicyAssignment) (result UpdateVirtualEndpointProvisioningPolicyAssignmentOperationResponse, err error) {
+func (c VirtualEndpointProvisioningPolicyAssignmentClient) UpdateVirtualEndpointProvisioningPolicyAssignment(ctx context.Context, id beta.DeviceManagementVirtualEndpointProvisioningPolicyIdAssignmentId, input beta.CloudPCProvisioningPolicyAssignment, options UpdateVirtualEndpointProvisioningPolicyAssignmentOperationOptions) (result UpdateVirtualEndpointProvisioningPolicyAssignmentOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

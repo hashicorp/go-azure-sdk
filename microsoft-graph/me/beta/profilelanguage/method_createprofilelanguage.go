@@ -18,16 +18,45 @@ type CreateProfileLanguageOperationResponse struct {
 	Model        *beta.LanguageProficiency
 }
 
+type CreateProfileLanguageOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateProfileLanguageOperationOptions() CreateProfileLanguageOperationOptions {
+	return CreateProfileLanguageOperationOptions{}
+}
+
+func (o CreateProfileLanguageOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateProfileLanguageOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateProfileLanguageOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateProfileLanguage - Create languageProficiency. Use this API to create a new languageProficiency object in a
 // user's profile.
-func (c ProfileLanguageClient) CreateProfileLanguage(ctx context.Context, input beta.LanguageProficiency) (result CreateProfileLanguageOperationResponse, err error) {
+func (c ProfileLanguageClient) CreateProfileLanguage(ctx context.Context, input beta.LanguageProficiency, options CreateProfileLanguageOperationOptions) (result CreateProfileLanguageOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/me/profile/languages",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/me/profile/languages",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

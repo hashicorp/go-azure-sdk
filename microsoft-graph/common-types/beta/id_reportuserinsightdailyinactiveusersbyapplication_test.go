@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &ReportUserInsightDailyInactiveUsersByApplicationId{}
 
 func TestNewReportUserInsightDailyInactiveUsersByApplicationID(t *testing.T) {
-	id := NewReportUserInsightDailyInactiveUsersByApplicationID("dailyInactiveUsersByApplicationMetricIdValue")
+	id := NewReportUserInsightDailyInactiveUsersByApplicationID("dailyInactiveUsersByApplicationMetricId")
 
-	if id.DailyInactiveUsersByApplicationMetricId != "dailyInactiveUsersByApplicationMetricIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DailyInactiveUsersByApplicationMetricId'", id.DailyInactiveUsersByApplicationMetricId, "dailyInactiveUsersByApplicationMetricIdValue")
+	if id.DailyInactiveUsersByApplicationMetricId != "dailyInactiveUsersByApplicationMetricId" {
+		t.Fatalf("Expected %q but got %q for Segment 'DailyInactiveUsersByApplicationMetricId'", id.DailyInactiveUsersByApplicationMetricId, "dailyInactiveUsersByApplicationMetricId")
 	}
 }
 
 func TestFormatReportUserInsightDailyInactiveUsersByApplicationID(t *testing.T) {
-	actual := NewReportUserInsightDailyInactiveUsersByApplicationID("dailyInactiveUsersByApplicationMetricIdValue").ID()
-	expected := "/reports/userInsights/daily/inactiveUsersByApplication/dailyInactiveUsersByApplicationMetricIdValue"
+	actual := NewReportUserInsightDailyInactiveUsersByApplicationID("dailyInactiveUsersByApplicationMetricId").ID()
+	expected := "/reports/userInsights/daily/inactiveUsersByApplication/dailyInactiveUsersByApplicationMetricId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -60,14 +60,14 @@ func TestParseReportUserInsightDailyInactiveUsersByApplicationID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/reports/userInsights/daily/inactiveUsersByApplication/dailyInactiveUsersByApplicationMetricIdValue",
+			Input: "/reports/userInsights/daily/inactiveUsersByApplication/dailyInactiveUsersByApplicationMetricId",
 			Expected: &ReportUserInsightDailyInactiveUsersByApplicationId{
-				DailyInactiveUsersByApplicationMetricId: "dailyInactiveUsersByApplicationMetricIdValue",
+				DailyInactiveUsersByApplicationMetricId: "dailyInactiveUsersByApplicationMetricId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/reports/userInsights/daily/inactiveUsersByApplication/dailyInactiveUsersByApplicationMetricIdValue/extra",
+			Input: "/reports/userInsights/daily/inactiveUsersByApplication/dailyInactiveUsersByApplicationMetricId/extra",
 			Error: true,
 		},
 	}
@@ -146,26 +146,26 @@ func TestParseReportUserInsightDailyInactiveUsersByApplicationIDInsensitively(t 
 		},
 		{
 			// Valid URI
-			Input: "/reports/userInsights/daily/inactiveUsersByApplication/dailyInactiveUsersByApplicationMetricIdValue",
+			Input: "/reports/userInsights/daily/inactiveUsersByApplication/dailyInactiveUsersByApplicationMetricId",
 			Expected: &ReportUserInsightDailyInactiveUsersByApplicationId{
-				DailyInactiveUsersByApplicationMetricId: "dailyInactiveUsersByApplicationMetricIdValue",
+				DailyInactiveUsersByApplicationMetricId: "dailyInactiveUsersByApplicationMetricId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/reports/userInsights/daily/inactiveUsersByApplication/dailyInactiveUsersByApplicationMetricIdValue/extra",
+			Input: "/reports/userInsights/daily/inactiveUsersByApplication/dailyInactiveUsersByApplicationMetricId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/rEpOrTs/uSeRiNsIgHtS/dAiLy/iNaCtIvEuSeRsByApPlIcAtIoN/dAiLyInAcTiVeUsErSbYaPpLiCaTiOnMeTrIcIdVaLuE",
+			Input: "/rEpOrTs/uSeRiNsIgHtS/dAiLy/iNaCtIvEuSeRsByApPlIcAtIoN/dAiLyInAcTiVeUsErSbYaPpLiCaTiOnMeTrIcId",
 			Expected: &ReportUserInsightDailyInactiveUsersByApplicationId{
-				DailyInactiveUsersByApplicationMetricId: "dAiLyInAcTiVeUsErSbYaPpLiCaTiOnMeTrIcIdVaLuE",
+				DailyInactiveUsersByApplicationMetricId: "dAiLyInAcTiVeUsErSbYaPpLiCaTiOnMeTrIcId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/rEpOrTs/uSeRiNsIgHtS/dAiLy/iNaCtIvEuSeRsByApPlIcAtIoN/dAiLyInAcTiVeUsErSbYaPpLiCaTiOnMeTrIcIdVaLuE/extra",
+			Input: "/rEpOrTs/uSeRiNsIgHtS/dAiLy/iNaCtIvEuSeRsByApPlIcAtIoN/dAiLyInAcTiVeUsErSbYaPpLiCaTiOnMeTrIcId/extra",
 			Error: true,
 		},
 	}

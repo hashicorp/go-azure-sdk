@@ -19,7 +19,8 @@ type DeleteImportedWindowsAutopilotDeviceIdentityOperationResponse struct {
 }
 
 type DeleteImportedWindowsAutopilotDeviceIdentityOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteImportedWindowsAutopilotDeviceIdentityOperationOptions() DeleteImportedWindowsAutopilotDeviceIdentityOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteImportedWindowsAutopilotDeviceIdentityOperationOptions) ToHeaders(
 
 func (o DeleteImportedWindowsAutopilotDeviceIdentityOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

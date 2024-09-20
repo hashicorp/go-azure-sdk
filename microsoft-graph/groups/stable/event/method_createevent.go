@@ -19,15 +19,44 @@ type CreateEventOperationResponse struct {
 	Model        *stable.Event
 }
 
+type CreateEventOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateEventOperationOptions() CreateEventOperationOptions {
+	return CreateEventOperationOptions{}
+}
+
+func (o CreateEventOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateEventOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateEventOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateEvent - Create event. Use this API to create a new event.
-func (c EventClient) CreateEvent(ctx context.Context, id stable.GroupId, input stable.Event) (result CreateEventOperationResponse, err error) {
+func (c EventClient) CreateEvent(ctx context.Context, id stable.GroupId, input stable.Event, options CreateEventOperationOptions) (result CreateEventOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/events", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/events", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

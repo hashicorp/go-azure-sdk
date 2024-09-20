@@ -17,15 +17,44 @@ type UpdateConversationThreadPostInReplyToExtensionOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateConversationThreadPostInReplyToExtensionOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateConversationThreadPostInReplyToExtensionOperationOptions() UpdateConversationThreadPostInReplyToExtensionOperationOptions {
+	return UpdateConversationThreadPostInReplyToExtensionOperationOptions{}
+}
+
+func (o UpdateConversationThreadPostInReplyToExtensionOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateConversationThreadPostInReplyToExtensionOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateConversationThreadPostInReplyToExtensionOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateConversationThreadPostInReplyToExtension - Update the navigation property extensions in groups
-func (c ConversationThreadPostInReplyToExtensionClient) UpdateConversationThreadPostInReplyToExtension(ctx context.Context, id stable.GroupIdConversationIdThreadIdPostIdInReplyToExtensionId, input stable.Extension) (result UpdateConversationThreadPostInReplyToExtensionOperationResponse, err error) {
+func (c ConversationThreadPostInReplyToExtensionClient) UpdateConversationThreadPostInReplyToExtension(ctx context.Context, id stable.GroupIdConversationIdThreadIdPostIdInReplyToExtensionId, input stable.Extension, options UpdateConversationThreadPostInReplyToExtensionOperationOptions) (result UpdateConversationThreadPostInReplyToExtensionOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

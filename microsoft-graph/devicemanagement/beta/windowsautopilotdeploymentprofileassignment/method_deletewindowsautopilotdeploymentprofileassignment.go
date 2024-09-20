@@ -19,7 +19,8 @@ type DeleteWindowsAutopilotDeploymentProfileAssignmentOperationResponse struct {
 }
 
 type DeleteWindowsAutopilotDeploymentProfileAssignmentOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteWindowsAutopilotDeploymentProfileAssignmentOperationOptions() DeleteWindowsAutopilotDeploymentProfileAssignmentOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteWindowsAutopilotDeploymentProfileAssignmentOperationOptions) ToHea
 
 func (o DeleteWindowsAutopilotDeploymentProfileAssignmentOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

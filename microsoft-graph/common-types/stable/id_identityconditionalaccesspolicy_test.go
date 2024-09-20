@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &IdentityConditionalAccessPolicyId{}
 
 func TestNewIdentityConditionalAccessPolicyID(t *testing.T) {
-	id := NewIdentityConditionalAccessPolicyID("conditionalAccessPolicyIdValue")
+	id := NewIdentityConditionalAccessPolicyID("conditionalAccessPolicyId")
 
-	if id.ConditionalAccessPolicyId != "conditionalAccessPolicyIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ConditionalAccessPolicyId'", id.ConditionalAccessPolicyId, "conditionalAccessPolicyIdValue")
+	if id.ConditionalAccessPolicyId != "conditionalAccessPolicyId" {
+		t.Fatalf("Expected %q but got %q for Segment 'ConditionalAccessPolicyId'", id.ConditionalAccessPolicyId, "conditionalAccessPolicyId")
 	}
 }
 
 func TestFormatIdentityConditionalAccessPolicyID(t *testing.T) {
-	actual := NewIdentityConditionalAccessPolicyID("conditionalAccessPolicyIdValue").ID()
-	expected := "/identity/conditionalAccess/policies/conditionalAccessPolicyIdValue"
+	actual := NewIdentityConditionalAccessPolicyID("conditionalAccessPolicyId").ID()
+	expected := "/identity/conditionalAccess/policies/conditionalAccessPolicyId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -55,14 +55,14 @@ func TestParseIdentityConditionalAccessPolicyID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/identity/conditionalAccess/policies/conditionalAccessPolicyIdValue",
+			Input: "/identity/conditionalAccess/policies/conditionalAccessPolicyId",
 			Expected: &IdentityConditionalAccessPolicyId{
-				ConditionalAccessPolicyId: "conditionalAccessPolicyIdValue",
+				ConditionalAccessPolicyId: "conditionalAccessPolicyId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/identity/conditionalAccess/policies/conditionalAccessPolicyIdValue/extra",
+			Input: "/identity/conditionalAccess/policies/conditionalAccessPolicyId/extra",
 			Error: true,
 		},
 	}
@@ -131,26 +131,26 @@ func TestParseIdentityConditionalAccessPolicyIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/identity/conditionalAccess/policies/conditionalAccessPolicyIdValue",
+			Input: "/identity/conditionalAccess/policies/conditionalAccessPolicyId",
 			Expected: &IdentityConditionalAccessPolicyId{
-				ConditionalAccessPolicyId: "conditionalAccessPolicyIdValue",
+				ConditionalAccessPolicyId: "conditionalAccessPolicyId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/identity/conditionalAccess/policies/conditionalAccessPolicyIdValue/extra",
+			Input: "/identity/conditionalAccess/policies/conditionalAccessPolicyId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/iDeNtItY/cOnDiTiOnAlAcCeSs/pOlIcIeS/cOnDiTiOnAlAcCeSsPoLiCyIdVaLuE",
+			Input: "/iDeNtItY/cOnDiTiOnAlAcCeSs/pOlIcIeS/cOnDiTiOnAlAcCeSsPoLiCyId",
 			Expected: &IdentityConditionalAccessPolicyId{
-				ConditionalAccessPolicyId: "cOnDiTiOnAlAcCeSsPoLiCyIdVaLuE",
+				ConditionalAccessPolicyId: "cOnDiTiOnAlAcCeSsPoLiCyId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/iDeNtItY/cOnDiTiOnAlAcCeSs/pOlIcIeS/cOnDiTiOnAlAcCeSsPoLiCyIdVaLuE/extra",
+			Input: "/iDeNtItY/cOnDiTiOnAlAcCeSs/pOlIcIeS/cOnDiTiOnAlAcCeSsPoLiCyId/extra",
 			Error: true,
 		},
 	}

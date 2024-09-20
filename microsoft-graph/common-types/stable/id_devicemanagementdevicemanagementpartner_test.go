@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &DeviceManagementDeviceManagementPartnerId{}
 
 func TestNewDeviceManagementDeviceManagementPartnerID(t *testing.T) {
-	id := NewDeviceManagementDeviceManagementPartnerID("deviceManagementPartnerIdValue")
+	id := NewDeviceManagementDeviceManagementPartnerID("deviceManagementPartnerId")
 
-	if id.DeviceManagementPartnerId != "deviceManagementPartnerIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DeviceManagementPartnerId'", id.DeviceManagementPartnerId, "deviceManagementPartnerIdValue")
+	if id.DeviceManagementPartnerId != "deviceManagementPartnerId" {
+		t.Fatalf("Expected %q but got %q for Segment 'DeviceManagementPartnerId'", id.DeviceManagementPartnerId, "deviceManagementPartnerId")
 	}
 }
 
 func TestFormatDeviceManagementDeviceManagementPartnerID(t *testing.T) {
-	actual := NewDeviceManagementDeviceManagementPartnerID("deviceManagementPartnerIdValue").ID()
-	expected := "/deviceManagement/deviceManagementPartners/deviceManagementPartnerIdValue"
+	actual := NewDeviceManagementDeviceManagementPartnerID("deviceManagementPartnerId").ID()
+	expected := "/deviceManagement/deviceManagementPartners/deviceManagementPartnerId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -50,14 +50,14 @@ func TestParseDeviceManagementDeviceManagementPartnerID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/deviceManagementPartners/deviceManagementPartnerIdValue",
+			Input: "/deviceManagement/deviceManagementPartners/deviceManagementPartnerId",
 			Expected: &DeviceManagementDeviceManagementPartnerId{
-				DeviceManagementPartnerId: "deviceManagementPartnerIdValue",
+				DeviceManagementPartnerId: "deviceManagementPartnerId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/deviceManagementPartners/deviceManagementPartnerIdValue/extra",
+			Input: "/deviceManagement/deviceManagementPartners/deviceManagementPartnerId/extra",
 			Error: true,
 		},
 	}
@@ -116,26 +116,26 @@ func TestParseDeviceManagementDeviceManagementPartnerIDInsensitively(t *testing.
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/deviceManagementPartners/deviceManagementPartnerIdValue",
+			Input: "/deviceManagement/deviceManagementPartners/deviceManagementPartnerId",
 			Expected: &DeviceManagementDeviceManagementPartnerId{
-				DeviceManagementPartnerId: "deviceManagementPartnerIdValue",
+				DeviceManagementPartnerId: "deviceManagementPartnerId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/deviceManagementPartners/deviceManagementPartnerIdValue/extra",
+			Input: "/deviceManagement/deviceManagementPartners/deviceManagementPartnerId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/dEvIcEmAnAgEmEnTpArTnErS/dEvIcEmAnAgEmEnTpArTnErIdVaLuE",
+			Input: "/dEvIcEmAnAgEmEnT/dEvIcEmAnAgEmEnTpArTnErS/dEvIcEmAnAgEmEnTpArTnErId",
 			Expected: &DeviceManagementDeviceManagementPartnerId{
-				DeviceManagementPartnerId: "dEvIcEmAnAgEmEnTpArTnErIdVaLuE",
+				DeviceManagementPartnerId: "dEvIcEmAnAgEmEnTpArTnErId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/dEvIcEmAnAgEmEnTpArTnErS/dEvIcEmAnAgEmEnTpArTnErIdVaLuE/extra",
+			Input: "/dEvIcEmAnAgEmEnT/dEvIcEmAnAgEmEnTpArTnErS/dEvIcEmAnAgEmEnTpArTnErId/extra",
 			Error: true,
 		},
 	}

@@ -19,15 +19,44 @@ type CreateApprovalOperationResponse struct {
 	Model        *beta.Approval
 }
 
+type CreateApprovalOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateApprovalOperationOptions() CreateApprovalOperationOptions {
+	return CreateApprovalOperationOptions{}
+}
+
+func (o CreateApprovalOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateApprovalOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateApprovalOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateApproval - Create new navigation property to approvals for users
-func (c ApprovalClient) CreateApproval(ctx context.Context, id beta.UserId, input beta.Approval) (result CreateApprovalOperationResponse, err error) {
+func (c ApprovalClient) CreateApproval(ctx context.Context, id beta.UserId, input beta.Approval, options CreateApprovalOperationOptions) (result CreateApprovalOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/approvals", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/approvals", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

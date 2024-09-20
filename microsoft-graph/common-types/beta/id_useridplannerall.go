@@ -98,10 +98,10 @@ func (id UserIdPlannerAllId) ID() string {
 func (id UserIdPlannerAllId) Segments() []resourceids.Segment {
 	return []resourceids.Segment{
 		resourceids.StaticSegment("users", "users", "users"),
-		resourceids.UserSpecifiedSegment("userId", "userIdValue"),
+		resourceids.UserSpecifiedSegment("userId", "userId"),
 		resourceids.StaticSegment("planner", "planner", "planner"),
 		resourceids.StaticSegment("all", "all", "all"),
-		resourceids.UserSpecifiedSegment("plannerDeltaId", "plannerDeltaIdValue"),
+		resourceids.UserSpecifiedSegment("plannerDeltaId", "plannerDeltaId"),
 	}
 }
 

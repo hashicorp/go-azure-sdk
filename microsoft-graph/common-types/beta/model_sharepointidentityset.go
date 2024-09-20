@@ -76,16 +76,24 @@ func (s SharePointIdentitySet) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &SharePointIdentitySet{}
 
 func (s *SharePointIdentitySet) UnmarshalJSON(bytes []byte) error {
-	type alias SharePointIdentitySet
-	var decoded alias
+
+	var decoded struct {
+		SiteGroup   *SharePointIdentity `json:"siteGroup,omitempty"`
+		SiteUser    *SharePointIdentity `json:"siteUser,omitempty"`
+		Application Identity            `json:"application"`
+		Device      Identity            `json:"device"`
+		ODataId     *string             `json:"@odata.id,omitempty"`
+		ODataType   *string             `json:"@odata.type,omitempty"`
+		User        Identity            `json:"user"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into SharePointIdentitySet: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
-	s.ODataId = decoded.ODataId
-	s.ODataType = decoded.ODataType
 	s.SiteGroup = decoded.SiteGroup
 	s.SiteUser = decoded.SiteUser
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -123,5 +131,6 @@ func (s *SharePointIdentitySet) UnmarshalJSON(bytes []byte) error {
 		}
 		s.User = impl
 	}
+
 	return nil
 }

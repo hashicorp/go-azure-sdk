@@ -62,10 +62,15 @@ func (s IdentityUserFlowAttributeCollectionResponse) MarshalJSON() ([]byte, erro
 var _ json.Unmarshaler = &IdentityUserFlowAttributeCollectionResponse{}
 
 func (s *IdentityUserFlowAttributeCollectionResponse) UnmarshalJSON(bytes []byte) error {
-	type alias IdentityUserFlowAttributeCollectionResponse
-	var decoded alias
+
+	var decoded struct {
+		Value         *[]IdentityUserFlowAttribute `json:"value,omitempty"`
+		ODataId       *string                      `json:"@odata.id,omitempty"`
+		ODataNextLink nullable.Type[string]        `json:"@odata.nextLink,omitempty"`
+		ODataType     *string                      `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into IdentityUserFlowAttributeCollectionResponse: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.ODataId = decoded.ODataId
@@ -93,5 +98,6 @@ func (s *IdentityUserFlowAttributeCollectionResponse) UnmarshalJSON(bytes []byte
 		}
 		s.Value = &output
 	}
+
 	return nil
 }

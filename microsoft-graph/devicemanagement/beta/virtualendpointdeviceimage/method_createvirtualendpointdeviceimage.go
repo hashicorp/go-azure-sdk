@@ -18,16 +18,45 @@ type CreateVirtualEndpointDeviceImageOperationResponse struct {
 	Model        *beta.CloudPCDeviceImage
 }
 
+type CreateVirtualEndpointDeviceImageOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateVirtualEndpointDeviceImageOperationOptions() CreateVirtualEndpointDeviceImageOperationOptions {
+	return CreateVirtualEndpointDeviceImageOperationOptions{}
+}
+
+func (o CreateVirtualEndpointDeviceImageOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateVirtualEndpointDeviceImageOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateVirtualEndpointDeviceImageOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateVirtualEndpointDeviceImage - Create cloudPcDeviceImage. Create a new cloudPcDeviceImage object. Upload a custom
 // OS image that you can later provision on Cloud PCs.
-func (c VirtualEndpointDeviceImageClient) CreateVirtualEndpointDeviceImage(ctx context.Context, input beta.CloudPCDeviceImage) (result CreateVirtualEndpointDeviceImageOperationResponse, err error) {
+func (c VirtualEndpointDeviceImageClient) CreateVirtualEndpointDeviceImage(ctx context.Context, input beta.CloudPCDeviceImage, options CreateVirtualEndpointDeviceImageOperationOptions) (result CreateVirtualEndpointDeviceImageOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/deviceManagement/virtualEndpoint/deviceImages",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/deviceManagement/virtualEndpoint/deviceImages",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

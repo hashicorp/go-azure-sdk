@@ -19,16 +19,45 @@ type CreateAuthorizationPolicyDefaultUserRoleOverrideOperationResponse struct {
 	Model        *beta.DefaultUserRoleOverride
 }
 
+type CreateAuthorizationPolicyDefaultUserRoleOverrideOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateAuthorizationPolicyDefaultUserRoleOverrideOperationOptions() CreateAuthorizationPolicyDefaultUserRoleOverrideOperationOptions {
+	return CreateAuthorizationPolicyDefaultUserRoleOverrideOperationOptions{}
+}
+
+func (o CreateAuthorizationPolicyDefaultUserRoleOverrideOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateAuthorizationPolicyDefaultUserRoleOverrideOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateAuthorizationPolicyDefaultUserRoleOverrideOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateAuthorizationPolicyDefaultUserRoleOverride - Create new navigation property to defaultUserRoleOverrides for
 // policies
-func (c AuthorizationPolicyDefaultUserRoleOverrideClient) CreateAuthorizationPolicyDefaultUserRoleOverride(ctx context.Context, id beta.PolicyAuthorizationPolicyId, input beta.DefaultUserRoleOverride) (result CreateAuthorizationPolicyDefaultUserRoleOverrideOperationResponse, err error) {
+func (c AuthorizationPolicyDefaultUserRoleOverrideClient) CreateAuthorizationPolicyDefaultUserRoleOverride(ctx context.Context, id beta.PolicyAuthorizationPolicyId, input beta.DefaultUserRoleOverride, options CreateAuthorizationPolicyDefaultUserRoleOverrideOperationOptions) (result CreateAuthorizationPolicyDefaultUserRoleOverrideOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/defaultUserRoleOverrides", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/defaultUserRoleOverrides", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

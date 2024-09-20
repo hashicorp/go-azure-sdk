@@ -105,22 +105,39 @@ func (s SecurityEdiscoverySearch) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &SecurityEdiscoverySearch{}
 
 func (s *SecurityEdiscoverySearch) UnmarshalJSON(bytes []byte) error {
-	type alias SecurityEdiscoverySearch
-	var decoded alias
+
+	var decoded struct {
+		AddToReviewSetOperation         *SecurityEdiscoveryAddToReviewSetOperation  `json:"addToReviewSetOperation,omitempty"`
+		AdditionalSources               *[]SecurityDataSource                       `json:"additionalSources,omitempty"`
+		CustodianSources                *[]SecurityDataSource                       `json:"custodianSources,omitempty"`
+		DataSourceScopes                *SecurityDataSourceScopes                   `json:"dataSourceScopes,omitempty"`
+		LastEstimateStatisticsOperation *SecurityEdiscoveryEstimateOperation        `json:"lastEstimateStatisticsOperation,omitempty"`
+		NoncustodialSources             *[]SecurityEdiscoveryNoncustodialDataSource `json:"noncustodialSources,omitempty"`
+		ContentQuery                    nullable.Type[string]                       `json:"contentQuery,omitempty"`
+		CreatedBy                       IdentitySet                                 `json:"createdBy"`
+		CreatedDateTime                 nullable.Type[string]                       `json:"createdDateTime,omitempty"`
+		Description                     nullable.Type[string]                       `json:"description,omitempty"`
+		DisplayName                     nullable.Type[string]                       `json:"displayName,omitempty"`
+		LastModifiedBy                  IdentitySet                                 `json:"lastModifiedBy"`
+		LastModifiedDateTime            nullable.Type[string]                       `json:"lastModifiedDateTime,omitempty"`
+		Id                              *string                                     `json:"id,omitempty"`
+		ODataId                         *string                                     `json:"@odata.id,omitempty"`
+		ODataType                       *string                                     `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into SecurityEdiscoverySearch: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.AddToReviewSetOperation = decoded.AddToReviewSetOperation
+	s.DataSourceScopes = decoded.DataSourceScopes
+	s.LastEstimateStatisticsOperation = decoded.LastEstimateStatisticsOperation
+	s.NoncustodialSources = decoded.NoncustodialSources
 	s.ContentQuery = decoded.ContentQuery
 	s.CreatedDateTime = decoded.CreatedDateTime
-	s.DataSourceScopes = decoded.DataSourceScopes
 	s.Description = decoded.Description
 	s.DisplayName = decoded.DisplayName
 	s.Id = decoded.Id
-	s.LastEstimateStatisticsOperation = decoded.LastEstimateStatisticsOperation
 	s.LastModifiedDateTime = decoded.LastModifiedDateTime
-	s.NoncustodialSources = decoded.NoncustodialSources
 	s.ODataId = decoded.ODataId
 	s.ODataType = decoded.ODataType
 
@@ -178,5 +195,6 @@ func (s *SecurityEdiscoverySearch) UnmarshalJSON(bytes []byte) error {
 		}
 		s.LastModifiedBy = impl
 	}
+
 	return nil
 }

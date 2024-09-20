@@ -17,16 +17,45 @@ type UpdateDeviceCompliancePolicyDeviceStateSummaryOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateDeviceCompliancePolicyDeviceStateSummaryOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateDeviceCompliancePolicyDeviceStateSummaryOperationOptions() UpdateDeviceCompliancePolicyDeviceStateSummaryOperationOptions {
+	return UpdateDeviceCompliancePolicyDeviceStateSummaryOperationOptions{}
+}
+
+func (o UpdateDeviceCompliancePolicyDeviceStateSummaryOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateDeviceCompliancePolicyDeviceStateSummaryOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateDeviceCompliancePolicyDeviceStateSummaryOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateDeviceCompliancePolicyDeviceStateSummary - Update the navigation property
 // deviceCompliancePolicyDeviceStateSummary in deviceManagement
-func (c DeviceCompliancePolicyDeviceStateSummaryClient) UpdateDeviceCompliancePolicyDeviceStateSummary(ctx context.Context, input beta.DeviceCompliancePolicyDeviceStateSummary) (result UpdateDeviceCompliancePolicyDeviceStateSummaryOperationResponse, err error) {
+func (c DeviceCompliancePolicyDeviceStateSummaryClient) UpdateDeviceCompliancePolicyDeviceStateSummary(ctx context.Context, input beta.DeviceCompliancePolicyDeviceStateSummary, options UpdateDeviceCompliancePolicyDeviceStateSummaryOperationOptions) (result UpdateDeviceCompliancePolicyDeviceStateSummaryOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       "/deviceManagement/deviceCompliancePolicyDeviceStateSummary",
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          "/deviceManagement/deviceCompliancePolicyDeviceStateSummary",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

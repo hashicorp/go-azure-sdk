@@ -18,15 +18,44 @@ type AcceptEventExceptionOccurrenceOperationResponse struct {
 	OData        *odata.OData
 }
 
+type AcceptEventExceptionOccurrenceOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultAcceptEventExceptionOccurrenceOperationOptions() AcceptEventExceptionOccurrenceOperationOptions {
+	return AcceptEventExceptionOccurrenceOperationOptions{}
+}
+
+func (o AcceptEventExceptionOccurrenceOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o AcceptEventExceptionOccurrenceOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o AcceptEventExceptionOccurrenceOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // AcceptEventExceptionOccurrence - Invoke action accept. Accept the specified event in a user calendar.
-func (c EventExceptionOccurrenceClient) AcceptEventExceptionOccurrence(ctx context.Context, id beta.GroupIdEventIdExceptionOccurrenceId, input AcceptEventExceptionOccurrenceRequest) (result AcceptEventExceptionOccurrenceOperationResponse, err error) {
+func (c EventExceptionOccurrenceClient) AcceptEventExceptionOccurrence(ctx context.Context, id beta.GroupIdEventIdExceptionOccurrenceId, input AcceptEventExceptionOccurrenceRequest, options AcceptEventExceptionOccurrenceOperationOptions) (result AcceptEventExceptionOccurrenceOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/accept", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/accept", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

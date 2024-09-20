@@ -33,10 +33,16 @@ type WindowsKioskProfile struct {
 var _ json.Unmarshaler = &WindowsKioskProfile{}
 
 func (s *WindowsKioskProfile) UnmarshalJSON(bytes []byte) error {
-	type alias WindowsKioskProfile
-	var decoded alias
+
+	var decoded struct {
+		ODataId                   *string             `json:"@odata.id,omitempty"`
+		ODataType                 *string             `json:"@odata.type,omitempty"`
+		ProfileId                 *string             `json:"profileId,omitempty"`
+		ProfileName               *string             `json:"profileName,omitempty"`
+		UserAccountsConfiguration *[]WindowsKioskUser `json:"userAccountsConfiguration,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into WindowsKioskProfile: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.ODataId = decoded.ODataId
@@ -73,5 +79,6 @@ func (s *WindowsKioskProfile) UnmarshalJSON(bytes []byte) error {
 		}
 		s.UserAccountsConfiguration = &output
 	}
+
 	return nil
 }

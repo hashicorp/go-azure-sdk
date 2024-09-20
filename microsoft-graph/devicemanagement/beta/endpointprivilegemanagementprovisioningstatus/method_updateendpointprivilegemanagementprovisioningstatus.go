@@ -17,16 +17,45 @@ type UpdateEndpointPrivilegeManagementProvisioningStatusOperationResponse struct
 	OData        *odata.OData
 }
 
+type UpdateEndpointPrivilegeManagementProvisioningStatusOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateEndpointPrivilegeManagementProvisioningStatusOperationOptions() UpdateEndpointPrivilegeManagementProvisioningStatusOperationOptions {
+	return UpdateEndpointPrivilegeManagementProvisioningStatusOperationOptions{}
+}
+
+func (o UpdateEndpointPrivilegeManagementProvisioningStatusOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateEndpointPrivilegeManagementProvisioningStatusOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateEndpointPrivilegeManagementProvisioningStatusOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateEndpointPrivilegeManagementProvisioningStatus - Update the navigation property
 // endpointPrivilegeManagementProvisioningStatus in deviceManagement
-func (c EndpointPrivilegeManagementProvisioningStatusClient) UpdateEndpointPrivilegeManagementProvisioningStatus(ctx context.Context, input beta.EndpointPrivilegeManagementProvisioningStatus) (result UpdateEndpointPrivilegeManagementProvisioningStatusOperationResponse, err error) {
+func (c EndpointPrivilegeManagementProvisioningStatusClient) UpdateEndpointPrivilegeManagementProvisioningStatus(ctx context.Context, input beta.EndpointPrivilegeManagementProvisioningStatus, options UpdateEndpointPrivilegeManagementProvisioningStatusOperationOptions) (result UpdateEndpointPrivilegeManagementProvisioningStatusOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       "/deviceManagement/endpointPrivilegeManagementProvisioningStatus",
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          "/deviceManagement/endpointPrivilegeManagementProvisioningStatus",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

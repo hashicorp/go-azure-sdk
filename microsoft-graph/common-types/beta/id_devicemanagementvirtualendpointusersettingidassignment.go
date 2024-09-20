@@ -100,9 +100,9 @@ func (id DeviceManagementVirtualEndpointUserSettingIdAssignmentId) Segments() []
 		resourceids.StaticSegment("deviceManagement", "deviceManagement", "deviceManagement"),
 		resourceids.StaticSegment("virtualEndpoint", "virtualEndpoint", "virtualEndpoint"),
 		resourceids.StaticSegment("userSettings", "userSettings", "userSettings"),
-		resourceids.UserSpecifiedSegment("cloudPCUserSettingId", "cloudPCUserSettingIdValue"),
+		resourceids.UserSpecifiedSegment("cloudPCUserSettingId", "cloudPCUserSettingId"),
 		resourceids.StaticSegment("assignments", "assignments", "assignments"),
-		resourceids.UserSpecifiedSegment("cloudPCUserSettingAssignmentId", "cloudPCUserSettingAssignmentIdValue"),
+		resourceids.UserSpecifiedSegment("cloudPCUserSettingAssignmentId", "cloudPCUserSettingAssignmentId"),
 	}
 }
 

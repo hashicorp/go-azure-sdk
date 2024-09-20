@@ -18,19 +18,48 @@ type TentativelyAcceptCalendarViewInstanceExceptionOccurrenceOperationResponse s
 	OData        *odata.OData
 }
 
+type TentativelyAcceptCalendarViewInstanceExceptionOccurrenceOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultTentativelyAcceptCalendarViewInstanceExceptionOccurrenceOperationOptions() TentativelyAcceptCalendarViewInstanceExceptionOccurrenceOperationOptions {
+	return TentativelyAcceptCalendarViewInstanceExceptionOccurrenceOperationOptions{}
+}
+
+func (o TentativelyAcceptCalendarViewInstanceExceptionOccurrenceOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o TentativelyAcceptCalendarViewInstanceExceptionOccurrenceOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o TentativelyAcceptCalendarViewInstanceExceptionOccurrenceOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // TentativelyAcceptCalendarViewInstanceExceptionOccurrence - Invoke action tentativelyAccept. Tentatively accept the
 // specified event in a user calendar. If the event allows proposals for new times, on responding tentative to the
 // event, an invitee can choose to suggest an alternative time by including the proposedNewTime parameter. For more
 // information on how to propose a time, and how to receive and accept a new time proposal, see Propose new meeting
 // times.
-func (c CalendarCalendarViewInstanceExceptionOccurrenceClient) TentativelyAcceptCalendarViewInstanceExceptionOccurrence(ctx context.Context, id beta.GroupIdCalendarCalendarViewIdInstanceIdExceptionOccurrenceId, input TentativelyAcceptCalendarViewInstanceExceptionOccurrenceRequest) (result TentativelyAcceptCalendarViewInstanceExceptionOccurrenceOperationResponse, err error) {
+func (c CalendarCalendarViewInstanceExceptionOccurrenceClient) TentativelyAcceptCalendarViewInstanceExceptionOccurrence(ctx context.Context, id beta.GroupIdCalendarCalendarViewIdInstanceIdExceptionOccurrenceId, input TentativelyAcceptCalendarViewInstanceExceptionOccurrenceRequest, options TentativelyAcceptCalendarViewInstanceExceptionOccurrenceOperationOptions) (result TentativelyAcceptCalendarViewInstanceExceptionOccurrenceOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/tentativelyAccept", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/tentativelyAccept", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

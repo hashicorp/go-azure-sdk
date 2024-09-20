@@ -181,10 +181,51 @@ func (s EducationUser) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &EducationUser{}
 
 func (s *EducationUser) UnmarshalJSON(bytes []byte) error {
-	type alias EducationUser
-	var decoded alias
+
+	var decoded struct {
+		AccountEnabled                 nullable.Type[bool]      `json:"accountEnabled,omitempty"`
+		AssignedLicenses               *[]AssignedLicense       `json:"assignedLicenses,omitempty"`
+		AssignedPlans                  *[]AssignedPlan          `json:"assignedPlans,omitempty"`
+		Assignments                    *[]EducationAssignment   `json:"assignments,omitempty"`
+		BusinessPhones                 *[]string                `json:"businessPhones,omitempty"`
+		Classes                        *[]EducationClass        `json:"classes,omitempty"`
+		Department                     nullable.Type[string]    `json:"department,omitempty"`
+		DisplayName                    nullable.Type[string]    `json:"displayName,omitempty"`
+		ExternalSource                 *EducationExternalSource `json:"externalSource,omitempty"`
+		ExternalSourceDetail           nullable.Type[string]    `json:"externalSourceDetail,omitempty"`
+		GivenName                      nullable.Type[string]    `json:"givenName,omitempty"`
+		Mail                           nullable.Type[string]    `json:"mail,omitempty"`
+		MailNickname                   nullable.Type[string]    `json:"mailNickname,omitempty"`
+		MailingAddress                 *PhysicalAddress         `json:"mailingAddress,omitempty"`
+		MiddleName                     nullable.Type[string]    `json:"middleName,omitempty"`
+		MobilePhone                    nullable.Type[string]    `json:"mobilePhone,omitempty"`
+		OfficeLocation                 nullable.Type[string]    `json:"officeLocation,omitempty"`
+		OnPremisesInfo                 *EducationOnPremisesInfo `json:"onPremisesInfo,omitempty"`
+		PasswordPolicies               nullable.Type[string]    `json:"passwordPolicies,omitempty"`
+		PasswordProfile                *PasswordProfile         `json:"passwordProfile,omitempty"`
+		PreferredLanguage              nullable.Type[string]    `json:"preferredLanguage,omitempty"`
+		PrimaryRole                    *EducationUserRole       `json:"primaryRole,omitempty"`
+		ProvisionedPlans               *[]ProvisionedPlan       `json:"provisionedPlans,omitempty"`
+		RefreshTokensValidFromDateTime nullable.Type[string]    `json:"refreshTokensValidFromDateTime,omitempty"`
+		RelatedContacts                *[]RelatedContact        `json:"relatedContacts,omitempty"`
+		ResidenceAddress               *PhysicalAddress         `json:"residenceAddress,omitempty"`
+		Rubrics                        *[]EducationRubric       `json:"rubrics,omitempty"`
+		Schools                        *[]EducationSchool       `json:"schools,omitempty"`
+		ShowInAddressList              nullable.Type[bool]      `json:"showInAddressList,omitempty"`
+		Student                        *EducationStudent        `json:"student,omitempty"`
+		Surname                        nullable.Type[string]    `json:"surname,omitempty"`
+		TaughtClasses                  *[]EducationClass        `json:"taughtClasses,omitempty"`
+		Teacher                        *EducationTeacher        `json:"teacher,omitempty"`
+		UsageLocation                  nullable.Type[string]    `json:"usageLocation,omitempty"`
+		User                           *User                    `json:"user,omitempty"`
+		UserPrincipalName              nullable.Type[string]    `json:"userPrincipalName,omitempty"`
+		UserType                       nullable.Type[string]    `json:"userType,omitempty"`
+		Id                             *string                  `json:"id,omitempty"`
+		ODataId                        *string                  `json:"@odata.id,omitempty"`
+		ODataType                      *string                  `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into EducationUser: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.AccountEnabled = decoded.AccountEnabled
@@ -198,14 +239,11 @@ func (s *EducationUser) UnmarshalJSON(bytes []byte) error {
 	s.ExternalSource = decoded.ExternalSource
 	s.ExternalSourceDetail = decoded.ExternalSourceDetail
 	s.GivenName = decoded.GivenName
-	s.Id = decoded.Id
 	s.Mail = decoded.Mail
 	s.MailNickname = decoded.MailNickname
 	s.MailingAddress = decoded.MailingAddress
 	s.MiddleName = decoded.MiddleName
 	s.MobilePhone = decoded.MobilePhone
-	s.ODataId = decoded.ODataId
-	s.ODataType = decoded.ODataType
 	s.OfficeLocation = decoded.OfficeLocation
 	s.OnPremisesInfo = decoded.OnPremisesInfo
 	s.PasswordPolicies = decoded.PasswordPolicies
@@ -227,6 +265,9 @@ func (s *EducationUser) UnmarshalJSON(bytes []byte) error {
 	s.User = decoded.User
 	s.UserPrincipalName = decoded.UserPrincipalName
 	s.UserType = decoded.UserType
+	s.Id = decoded.Id
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -240,5 +281,6 @@ func (s *EducationUser) UnmarshalJSON(bytes []byte) error {
 		}
 		s.CreatedBy = impl
 	}
+
 	return nil
 }

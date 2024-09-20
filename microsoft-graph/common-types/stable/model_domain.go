@@ -131,17 +131,38 @@ func (s Domain) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &Domain{}
 
 func (s *Domain) UnmarshalJSON(bytes []byte) error {
-	type alias Domain
-	var decoded alias
+
+	var decoded struct {
+		AuthenticationType               *string                     `json:"authenticationType,omitempty"`
+		AvailabilityStatus               nullable.Type[string]       `json:"availabilityStatus,omitempty"`
+		DomainNameReferences             *[]DirectoryObject          `json:"domainNameReferences,omitempty"`
+		DomainNameReferences_ODataBind   *[]string                   `json:"domainNameReferences@odata.bind,omitempty"`
+		FederationConfiguration          *[]InternalDomainFederation `json:"federationConfiguration,omitempty"`
+		IsAdminManaged                   *bool                       `json:"isAdminManaged,omitempty"`
+		IsDefault                        *bool                       `json:"isDefault,omitempty"`
+		IsInitial                        *bool                       `json:"isInitial,omitempty"`
+		IsRoot                           *bool                       `json:"isRoot,omitempty"`
+		IsVerified                       *bool                       `json:"isVerified,omitempty"`
+		Manufacturer                     nullable.Type[string]       `json:"manufacturer,omitempty"`
+		Model                            nullable.Type[string]       `json:"model,omitempty"`
+		PasswordNotificationWindowInDays nullable.Type[int64]        `json:"passwordNotificationWindowInDays,omitempty"`
+		PasswordValidityPeriodInDays     nullable.Type[int64]        `json:"passwordValidityPeriodInDays,omitempty"`
+		ServiceConfigurationRecords      *[]DomainDnsRecord          `json:"serviceConfigurationRecords,omitempty"`
+		State                            *DomainState                `json:"state,omitempty"`
+		SupportedServices                *[]string                   `json:"supportedServices,omitempty"`
+		VerificationDnsRecords           *[]DomainDnsRecord          `json:"verificationDnsRecords,omitempty"`
+		Id                               *string                     `json:"id,omitempty"`
+		ODataId                          *string                     `json:"@odata.id,omitempty"`
+		ODataType                        *string                     `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into Domain: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.AuthenticationType = decoded.AuthenticationType
 	s.AvailabilityStatus = decoded.AvailabilityStatus
 	s.DomainNameReferences_ODataBind = decoded.DomainNameReferences_ODataBind
 	s.FederationConfiguration = decoded.FederationConfiguration
-	s.Id = decoded.Id
 	s.IsAdminManaged = decoded.IsAdminManaged
 	s.IsDefault = decoded.IsDefault
 	s.IsInitial = decoded.IsInitial
@@ -149,12 +170,13 @@ func (s *Domain) UnmarshalJSON(bytes []byte) error {
 	s.IsVerified = decoded.IsVerified
 	s.Manufacturer = decoded.Manufacturer
 	s.Model = decoded.Model
-	s.ODataId = decoded.ODataId
-	s.ODataType = decoded.ODataType
 	s.PasswordNotificationWindowInDays = decoded.PasswordNotificationWindowInDays
 	s.PasswordValidityPeriodInDays = decoded.PasswordValidityPeriodInDays
 	s.State = decoded.State
 	s.SupportedServices = decoded.SupportedServices
+	s.Id = decoded.Id
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -211,5 +233,6 @@ func (s *Domain) UnmarshalJSON(bytes []byte) error {
 		}
 		s.VerificationDnsRecords = &output
 	}
+
 	return nil
 }

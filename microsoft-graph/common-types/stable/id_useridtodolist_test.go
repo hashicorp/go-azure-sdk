@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &UserIdTodoListId{}
 
 func TestNewUserIdTodoListID(t *testing.T) {
-	id := NewUserIdTodoListID("userIdValue", "todoTaskListIdValue")
+	id := NewUserIdTodoListID("userId", "todoTaskListId")
 
-	if id.UserId != "userIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'UserId'", id.UserId, "userIdValue")
+	if id.UserId != "userId" {
+		t.Fatalf("Expected %q but got %q for Segment 'UserId'", id.UserId, "userId")
 	}
 
-	if id.TodoTaskListId != "todoTaskListIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'TodoTaskListId'", id.TodoTaskListId, "todoTaskListIdValue")
+	if id.TodoTaskListId != "todoTaskListId" {
+		t.Fatalf("Expected %q but got %q for Segment 'TodoTaskListId'", id.TodoTaskListId, "todoTaskListId")
 	}
 }
 
 func TestFormatUserIdTodoListID(t *testing.T) {
-	actual := NewUserIdTodoListID("userIdValue", "todoTaskListIdValue").ID()
-	expected := "/users/userIdValue/todo/lists/todoTaskListIdValue"
+	actual := NewUserIdTodoListID("userId", "todoTaskListId").ID()
+	expected := "/users/userId/todo/lists/todoTaskListId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -49,30 +49,30 @@ func TestParseUserIdTodoListID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue",
+			Input: "/users/userId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/todo",
+			Input: "/users/userId/todo",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/todo/lists",
+			Input: "/users/userId/todo/lists",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/users/userIdValue/todo/lists/todoTaskListIdValue",
+			Input: "/users/userId/todo/lists/todoTaskListId",
 			Expected: &UserIdTodoListId{
-				UserId:         "userIdValue",
-				TodoTaskListId: "todoTaskListIdValue",
+				UserId:         "userId",
+				TodoTaskListId: "todoTaskListId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/users/userIdValue/todo/lists/todoTaskListIdValue/extra",
+			Input: "/users/userId/todo/lists/todoTaskListId/extra",
 			Error: true,
 		},
 	}
@@ -125,58 +125,58 @@ func TestParseUserIdTodoListIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue",
+			Input: "/users/userId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe",
+			Input: "/uSeRs/uSeRiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/todo",
+			Input: "/users/userId/todo",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/tOdO",
+			Input: "/uSeRs/uSeRiD/tOdO",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/todo/lists",
+			Input: "/users/userId/todo/lists",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/tOdO/lIsTs",
+			Input: "/uSeRs/uSeRiD/tOdO/lIsTs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/users/userIdValue/todo/lists/todoTaskListIdValue",
+			Input: "/users/userId/todo/lists/todoTaskListId",
 			Expected: &UserIdTodoListId{
-				UserId:         "userIdValue",
-				TodoTaskListId: "todoTaskListIdValue",
+				UserId:         "userId",
+				TodoTaskListId: "todoTaskListId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/users/userIdValue/todo/lists/todoTaskListIdValue/extra",
+			Input: "/users/userId/todo/lists/todoTaskListId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/tOdO/lIsTs/tOdOtAsKlIsTiDvAlUe",
+			Input: "/uSeRs/uSeRiD/tOdO/lIsTs/tOdOtAsKlIsTiD",
 			Expected: &UserIdTodoListId{
-				UserId:         "uSeRiDvAlUe",
-				TodoTaskListId: "tOdOtAsKlIsTiDvAlUe",
+				UserId:         "uSeRiD",
+				TodoTaskListId: "tOdOtAsKlIsTiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/tOdO/lIsTs/tOdOtAsKlIsTiDvAlUe/extra",
+			Input: "/uSeRs/uSeRiD/tOdO/lIsTs/tOdOtAsKlIsTiD/extra",
 			Error: true,
 		},
 	}

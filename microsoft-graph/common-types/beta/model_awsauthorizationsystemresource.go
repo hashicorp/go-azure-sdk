@@ -90,19 +90,28 @@ func (s AwsAuthorizationSystemResource) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &AwsAuthorizationSystemResource{}
 
 func (s *AwsAuthorizationSystemResource) UnmarshalJSON(bytes []byte) error {
-	type alias AwsAuthorizationSystemResource
-	var decoded alias
+
+	var decoded struct {
+		Service             *AuthorizationSystemTypeService `json:"service,omitempty"`
+		AuthorizationSystem *AuthorizationSystem            `json:"authorizationSystem,omitempty"`
+		DisplayName         nullable.Type[string]           `json:"displayName,omitempty"`
+		ExternalId          *string                         `json:"externalId,omitempty"`
+		ResourceType        nullable.Type[string]           `json:"resourceType,omitempty"`
+		Id                  *string                         `json:"id,omitempty"`
+		ODataId             *string                         `json:"@odata.id,omitempty"`
+		ODataType           *string                         `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into AwsAuthorizationSystemResource: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
+	s.Service = decoded.Service
 	s.DisplayName = decoded.DisplayName
 	s.ExternalId = decoded.ExternalId
 	s.Id = decoded.Id
 	s.ODataId = decoded.ODataId
 	s.ODataType = decoded.ODataType
 	s.ResourceType = decoded.ResourceType
-	s.Service = decoded.Service
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -116,5 +125,6 @@ func (s *AwsAuthorizationSystemResource) UnmarshalJSON(bytes []byte) error {
 		}
 		s.AuthorizationSystem = &impl
 	}
+
 	return nil
 }

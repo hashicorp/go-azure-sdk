@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &IdentityGovernanceEntitlementManagementAccessPackageAssignmentApprovalIdStepId{}
 
 func TestNewIdentityGovernanceEntitlementManagementAccessPackageAssignmentApprovalIdStepID(t *testing.T) {
-	id := NewIdentityGovernanceEntitlementManagementAccessPackageAssignmentApprovalIdStepID("approvalIdValue", "approvalStepIdValue")
+	id := NewIdentityGovernanceEntitlementManagementAccessPackageAssignmentApprovalIdStepID("approvalId", "approvalStepId")
 
-	if id.ApprovalId != "approvalIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ApprovalId'", id.ApprovalId, "approvalIdValue")
+	if id.ApprovalId != "approvalId" {
+		t.Fatalf("Expected %q but got %q for Segment 'ApprovalId'", id.ApprovalId, "approvalId")
 	}
 
-	if id.ApprovalStepId != "approvalStepIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ApprovalStepId'", id.ApprovalStepId, "approvalStepIdValue")
+	if id.ApprovalStepId != "approvalStepId" {
+		t.Fatalf("Expected %q but got %q for Segment 'ApprovalStepId'", id.ApprovalStepId, "approvalStepId")
 	}
 }
 
 func TestFormatIdentityGovernanceEntitlementManagementAccessPackageAssignmentApprovalIdStepID(t *testing.T) {
-	actual := NewIdentityGovernanceEntitlementManagementAccessPackageAssignmentApprovalIdStepID("approvalIdValue", "approvalStepIdValue").ID()
-	expected := "/identityGovernance/entitlementManagement/accessPackageAssignmentApprovals/approvalIdValue/steps/approvalStepIdValue"
+	actual := NewIdentityGovernanceEntitlementManagementAccessPackageAssignmentApprovalIdStepID("approvalId", "approvalStepId").ID()
+	expected := "/identityGovernance/entitlementManagement/accessPackageAssignmentApprovals/approvalId/steps/approvalStepId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -59,25 +59,25 @@ func TestParseIdentityGovernanceEntitlementManagementAccessPackageAssignmentAppr
 		},
 		{
 			// Incomplete URI
-			Input: "/identityGovernance/entitlementManagement/accessPackageAssignmentApprovals/approvalIdValue",
+			Input: "/identityGovernance/entitlementManagement/accessPackageAssignmentApprovals/approvalId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/identityGovernance/entitlementManagement/accessPackageAssignmentApprovals/approvalIdValue/steps",
+			Input: "/identityGovernance/entitlementManagement/accessPackageAssignmentApprovals/approvalId/steps",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/identityGovernance/entitlementManagement/accessPackageAssignmentApprovals/approvalIdValue/steps/approvalStepIdValue",
+			Input: "/identityGovernance/entitlementManagement/accessPackageAssignmentApprovals/approvalId/steps/approvalStepId",
 			Expected: &IdentityGovernanceEntitlementManagementAccessPackageAssignmentApprovalIdStepId{
-				ApprovalId:     "approvalIdValue",
-				ApprovalStepId: "approvalStepIdValue",
+				ApprovalId:     "approvalId",
+				ApprovalStepId: "approvalStepId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/identityGovernance/entitlementManagement/accessPackageAssignmentApprovals/approvalIdValue/steps/approvalStepIdValue/extra",
+			Input: "/identityGovernance/entitlementManagement/accessPackageAssignmentApprovals/approvalId/steps/approvalStepId/extra",
 			Error: true,
 		},
 	}
@@ -150,48 +150,48 @@ func TestParseIdentityGovernanceEntitlementManagementAccessPackageAssignmentAppr
 		},
 		{
 			// Incomplete URI
-			Input: "/identityGovernance/entitlementManagement/accessPackageAssignmentApprovals/approvalIdValue",
+			Input: "/identityGovernance/entitlementManagement/accessPackageAssignmentApprovals/approvalId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/iDeNtItYgOvErNaNcE/eNtItLeMeNtMaNaGeMeNt/aCcEsSpAcKaGeAsSiGnMeNtApPrOvAlS/aPpRoVaLiDvAlUe",
+			Input: "/iDeNtItYgOvErNaNcE/eNtItLeMeNtMaNaGeMeNt/aCcEsSpAcKaGeAsSiGnMeNtApPrOvAlS/aPpRoVaLiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/identityGovernance/entitlementManagement/accessPackageAssignmentApprovals/approvalIdValue/steps",
+			Input: "/identityGovernance/entitlementManagement/accessPackageAssignmentApprovals/approvalId/steps",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/iDeNtItYgOvErNaNcE/eNtItLeMeNtMaNaGeMeNt/aCcEsSpAcKaGeAsSiGnMeNtApPrOvAlS/aPpRoVaLiDvAlUe/sTePs",
+			Input: "/iDeNtItYgOvErNaNcE/eNtItLeMeNtMaNaGeMeNt/aCcEsSpAcKaGeAsSiGnMeNtApPrOvAlS/aPpRoVaLiD/sTePs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/identityGovernance/entitlementManagement/accessPackageAssignmentApprovals/approvalIdValue/steps/approvalStepIdValue",
+			Input: "/identityGovernance/entitlementManagement/accessPackageAssignmentApprovals/approvalId/steps/approvalStepId",
 			Expected: &IdentityGovernanceEntitlementManagementAccessPackageAssignmentApprovalIdStepId{
-				ApprovalId:     "approvalIdValue",
-				ApprovalStepId: "approvalStepIdValue",
+				ApprovalId:     "approvalId",
+				ApprovalStepId: "approvalStepId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/identityGovernance/entitlementManagement/accessPackageAssignmentApprovals/approvalIdValue/steps/approvalStepIdValue/extra",
+			Input: "/identityGovernance/entitlementManagement/accessPackageAssignmentApprovals/approvalId/steps/approvalStepId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/iDeNtItYgOvErNaNcE/eNtItLeMeNtMaNaGeMeNt/aCcEsSpAcKaGeAsSiGnMeNtApPrOvAlS/aPpRoVaLiDvAlUe/sTePs/aPpRoVaLsTePiDvAlUe",
+			Input: "/iDeNtItYgOvErNaNcE/eNtItLeMeNtMaNaGeMeNt/aCcEsSpAcKaGeAsSiGnMeNtApPrOvAlS/aPpRoVaLiD/sTePs/aPpRoVaLsTePiD",
 			Expected: &IdentityGovernanceEntitlementManagementAccessPackageAssignmentApprovalIdStepId{
-				ApprovalId:     "aPpRoVaLiDvAlUe",
-				ApprovalStepId: "aPpRoVaLsTePiDvAlUe",
+				ApprovalId:     "aPpRoVaLiD",
+				ApprovalStepId: "aPpRoVaLsTePiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/iDeNtItYgOvErNaNcE/eNtItLeMeNtMaNaGeMeNt/aCcEsSpAcKaGeAsSiGnMeNtApPrOvAlS/aPpRoVaLiDvAlUe/sTePs/aPpRoVaLsTePiDvAlUe/extra",
+			Input: "/iDeNtItYgOvErNaNcE/eNtItLeMeNtMaNaGeMeNt/aCcEsSpAcKaGeAsSiGnMeNtApPrOvAlS/aPpRoVaLiD/sTePs/aPpRoVaLsTePiD/extra",
 			Error: true,
 		},
 	}

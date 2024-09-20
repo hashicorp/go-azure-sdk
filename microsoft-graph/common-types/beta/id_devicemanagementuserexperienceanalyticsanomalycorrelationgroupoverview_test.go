@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &DeviceManagementUserExperienceAnalyticsAnomalyCorrelationGroupOverviewId{}
 
 func TestNewDeviceManagementUserExperienceAnalyticsAnomalyCorrelationGroupOverviewID(t *testing.T) {
-	id := NewDeviceManagementUserExperienceAnalyticsAnomalyCorrelationGroupOverviewID("userExperienceAnalyticsAnomalyCorrelationGroupOverviewIdValue")
+	id := NewDeviceManagementUserExperienceAnalyticsAnomalyCorrelationGroupOverviewID("userExperienceAnalyticsAnomalyCorrelationGroupOverviewId")
 
-	if id.UserExperienceAnalyticsAnomalyCorrelationGroupOverviewId != "userExperienceAnalyticsAnomalyCorrelationGroupOverviewIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'UserExperienceAnalyticsAnomalyCorrelationGroupOverviewId'", id.UserExperienceAnalyticsAnomalyCorrelationGroupOverviewId, "userExperienceAnalyticsAnomalyCorrelationGroupOverviewIdValue")
+	if id.UserExperienceAnalyticsAnomalyCorrelationGroupOverviewId != "userExperienceAnalyticsAnomalyCorrelationGroupOverviewId" {
+		t.Fatalf("Expected %q but got %q for Segment 'UserExperienceAnalyticsAnomalyCorrelationGroupOverviewId'", id.UserExperienceAnalyticsAnomalyCorrelationGroupOverviewId, "userExperienceAnalyticsAnomalyCorrelationGroupOverviewId")
 	}
 }
 
 func TestFormatDeviceManagementUserExperienceAnalyticsAnomalyCorrelationGroupOverviewID(t *testing.T) {
-	actual := NewDeviceManagementUserExperienceAnalyticsAnomalyCorrelationGroupOverviewID("userExperienceAnalyticsAnomalyCorrelationGroupOverviewIdValue").ID()
-	expected := "/deviceManagement/userExperienceAnalyticsAnomalyCorrelationGroupOverview/userExperienceAnalyticsAnomalyCorrelationGroupOverviewIdValue"
+	actual := NewDeviceManagementUserExperienceAnalyticsAnomalyCorrelationGroupOverviewID("userExperienceAnalyticsAnomalyCorrelationGroupOverviewId").ID()
+	expected := "/deviceManagement/userExperienceAnalyticsAnomalyCorrelationGroupOverview/userExperienceAnalyticsAnomalyCorrelationGroupOverviewId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -50,14 +50,14 @@ func TestParseDeviceManagementUserExperienceAnalyticsAnomalyCorrelationGroupOver
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/userExperienceAnalyticsAnomalyCorrelationGroupOverview/userExperienceAnalyticsAnomalyCorrelationGroupOverviewIdValue",
+			Input: "/deviceManagement/userExperienceAnalyticsAnomalyCorrelationGroupOverview/userExperienceAnalyticsAnomalyCorrelationGroupOverviewId",
 			Expected: &DeviceManagementUserExperienceAnalyticsAnomalyCorrelationGroupOverviewId{
-				UserExperienceAnalyticsAnomalyCorrelationGroupOverviewId: "userExperienceAnalyticsAnomalyCorrelationGroupOverviewIdValue",
+				UserExperienceAnalyticsAnomalyCorrelationGroupOverviewId: "userExperienceAnalyticsAnomalyCorrelationGroupOverviewId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/userExperienceAnalyticsAnomalyCorrelationGroupOverview/userExperienceAnalyticsAnomalyCorrelationGroupOverviewIdValue/extra",
+			Input: "/deviceManagement/userExperienceAnalyticsAnomalyCorrelationGroupOverview/userExperienceAnalyticsAnomalyCorrelationGroupOverviewId/extra",
 			Error: true,
 		},
 	}
@@ -116,26 +116,26 @@ func TestParseDeviceManagementUserExperienceAnalyticsAnomalyCorrelationGroupOver
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/userExperienceAnalyticsAnomalyCorrelationGroupOverview/userExperienceAnalyticsAnomalyCorrelationGroupOverviewIdValue",
+			Input: "/deviceManagement/userExperienceAnalyticsAnomalyCorrelationGroupOverview/userExperienceAnalyticsAnomalyCorrelationGroupOverviewId",
 			Expected: &DeviceManagementUserExperienceAnalyticsAnomalyCorrelationGroupOverviewId{
-				UserExperienceAnalyticsAnomalyCorrelationGroupOverviewId: "userExperienceAnalyticsAnomalyCorrelationGroupOverviewIdValue",
+				UserExperienceAnalyticsAnomalyCorrelationGroupOverviewId: "userExperienceAnalyticsAnomalyCorrelationGroupOverviewId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/userExperienceAnalyticsAnomalyCorrelationGroupOverview/userExperienceAnalyticsAnomalyCorrelationGroupOverviewIdValue/extra",
+			Input: "/deviceManagement/userExperienceAnalyticsAnomalyCorrelationGroupOverview/userExperienceAnalyticsAnomalyCorrelationGroupOverviewId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/uSeReXpErIeNcEaNaLyTiCsAnOmAlYcOrReLaTiOnGrOuPoVeRvIeW/uSeReXpErIeNcEaNaLyTiCsAnOmAlYcOrReLaTiOnGrOuPoVeRvIeWiDvAlUe",
+			Input: "/dEvIcEmAnAgEmEnT/uSeReXpErIeNcEaNaLyTiCsAnOmAlYcOrReLaTiOnGrOuPoVeRvIeW/uSeReXpErIeNcEaNaLyTiCsAnOmAlYcOrReLaTiOnGrOuPoVeRvIeWiD",
 			Expected: &DeviceManagementUserExperienceAnalyticsAnomalyCorrelationGroupOverviewId{
-				UserExperienceAnalyticsAnomalyCorrelationGroupOverviewId: "uSeReXpErIeNcEaNaLyTiCsAnOmAlYcOrReLaTiOnGrOuPoVeRvIeWiDvAlUe",
+				UserExperienceAnalyticsAnomalyCorrelationGroupOverviewId: "uSeReXpErIeNcEaNaLyTiCsAnOmAlYcOrReLaTiOnGrOuPoVeRvIeWiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/uSeReXpErIeNcEaNaLyTiCsAnOmAlYcOrReLaTiOnGrOuPoVeRvIeW/uSeReXpErIeNcEaNaLyTiCsAnOmAlYcOrReLaTiOnGrOuPoVeRvIeWiDvAlUe/extra",
+			Input: "/dEvIcEmAnAgEmEnT/uSeReXpErIeNcEaNaLyTiCsAnOmAlYcOrReLaTiOnGrOuPoVeRvIeW/uSeReXpErIeNcEaNaLyTiCsAnOmAlYcOrReLaTiOnGrOuPoVeRvIeWiD/extra",
 			Error: true,
 		},
 	}

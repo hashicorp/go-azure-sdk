@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/pendingaccessreviewinstancedecision` Documentation
 
-The `pendingaccessreviewinstancedecision` SDK allows for interaction with the Azure Resource Manager Service `users` (API Version `beta`).
+The `pendingaccessreviewinstancedecision` SDK allows for interaction with Microsoft Graph `users` (API Version `beta`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -15,7 +15,7 @@ import "github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/pendingacce
 ### Client Initialization
 
 ```go
-client := pendingaccessreviewinstancedecision.NewPendingAccessReviewInstanceDecisionClientWithBaseURI("https://management.azure.com")
+client := pendingaccessreviewinstancedecision.NewPendingAccessReviewInstanceDecisionClientWithBaseURI("https://graph.microsoft.com")
 client.Client.Authorizer = authorizer
 ```
 
@@ -24,14 +24,14 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := pendingaccessreviewinstancedecision.NewUserIdPendingAccessReviewInstanceID("userIdValue", "accessReviewInstanceIdValue")
+id := pendingaccessreviewinstancedecision.NewUserIdPendingAccessReviewInstanceID("userId", "accessReviewInstanceId")
 
 payload := pendingaccessreviewinstancedecision.AccessReviewInstanceDecisionItem{
 	// ...
 }
 
 
-read, err := client.CreatePendingAccessReviewInstanceDecision(ctx, id, payload)
+read, err := client.CreatePendingAccessReviewInstanceDecision(ctx, id, payload, pendingaccessreviewinstancedecision.DefaultCreatePendingAccessReviewInstanceDecisionOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -45,14 +45,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := pendingaccessreviewinstancedecision.NewUserIdPendingAccessReviewInstanceID("userIdValue", "accessReviewInstanceIdValue")
+id := pendingaccessreviewinstancedecision.NewUserIdPendingAccessReviewInstanceID("userId", "accessReviewInstanceId")
 
 payload := pendingaccessreviewinstancedecision.CreatePendingAccessReviewInstanceDecisionRecordAllDecisionRequest{
 	// ...
 }
 
 
-read, err := client.CreatePendingAccessReviewInstanceDecisionRecordAllDecision(ctx, id, payload)
+read, err := client.CreatePendingAccessReviewInstanceDecisionRecordAllDecision(ctx, id, payload, pendingaccessreviewinstancedecision.DefaultCreatePendingAccessReviewInstanceDecisionRecordAllDecisionOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -66,7 +66,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := pendingaccessreviewinstancedecision.NewUserIdPendingAccessReviewInstanceIdDecisionID("userIdValue", "accessReviewInstanceIdValue", "accessReviewInstanceDecisionItemIdValue")
+id := pendingaccessreviewinstancedecision.NewUserIdPendingAccessReviewInstanceIdDecisionID("userId", "accessReviewInstanceId", "accessReviewInstanceDecisionItemId")
 
 read, err := client.DeletePendingAccessReviewInstanceDecision(ctx, id, pendingaccessreviewinstancedecision.DefaultDeletePendingAccessReviewInstanceDecisionOperationOptions())
 if err != nil {
@@ -82,7 +82,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := pendingaccessreviewinstancedecision.NewUserIdPendingAccessReviewInstanceIdDecisionID("userIdValue", "accessReviewInstanceIdValue", "accessReviewInstanceDecisionItemIdValue")
+id := pendingaccessreviewinstancedecision.NewUserIdPendingAccessReviewInstanceIdDecisionID("userId", "accessReviewInstanceId", "accessReviewInstanceDecisionItemId")
 
 read, err := client.GetPendingAccessReviewInstanceDecision(ctx, id, pendingaccessreviewinstancedecision.DefaultGetPendingAccessReviewInstanceDecisionOperationOptions())
 if err != nil {
@@ -98,7 +98,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := pendingaccessreviewinstancedecision.NewUserIdPendingAccessReviewInstanceID("userIdValue", "accessReviewInstanceIdValue")
+id := pendingaccessreviewinstancedecision.NewUserIdPendingAccessReviewInstanceID("userId", "accessReviewInstanceId")
 
 read, err := client.GetPendingAccessReviewInstanceDecisionsCount(ctx, id, pendingaccessreviewinstancedecision.DefaultGetPendingAccessReviewInstanceDecisionsCountOperationOptions())
 if err != nil {
@@ -114,7 +114,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := pendingaccessreviewinstancedecision.NewUserIdPendingAccessReviewInstanceID("userIdValue", "accessReviewInstanceIdValue")
+id := pendingaccessreviewinstancedecision.NewUserIdPendingAccessReviewInstanceID("userId", "accessReviewInstanceId")
 
 // alternatively `client.ListPendingAccessReviewInstanceDecisions(ctx, id, pendingaccessreviewinstancedecision.DefaultListPendingAccessReviewInstanceDecisionsOperationOptions())` can be used to do batched pagination
 items, err := client.ListPendingAccessReviewInstanceDecisionsComplete(ctx, id, pendingaccessreviewinstancedecision.DefaultListPendingAccessReviewInstanceDecisionsOperationOptions())
@@ -131,14 +131,14 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := pendingaccessreviewinstancedecision.NewUserIdPendingAccessReviewInstanceIdDecisionID("userIdValue", "accessReviewInstanceIdValue", "accessReviewInstanceDecisionItemIdValue")
+id := pendingaccessreviewinstancedecision.NewUserIdPendingAccessReviewInstanceIdDecisionID("userId", "accessReviewInstanceId", "accessReviewInstanceDecisionItemId")
 
 payload := pendingaccessreviewinstancedecision.AccessReviewInstanceDecisionItem{
 	// ...
 }
 
 
-read, err := client.UpdatePendingAccessReviewInstanceDecision(ctx, id, payload)
+read, err := client.UpdatePendingAccessReviewInstanceDecision(ctx, id, payload, pendingaccessreviewinstancedecision.DefaultUpdatePendingAccessReviewInstanceDecisionOperationOptions())
 if err != nil {
 	// handle the error
 }

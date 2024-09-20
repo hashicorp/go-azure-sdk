@@ -18,16 +18,45 @@ type ReprovisionComanagedDeviceCloudPCOperationResponse struct {
 	OData        *odata.OData
 }
 
+type ReprovisionComanagedDeviceCloudPCOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultReprovisionComanagedDeviceCloudPCOperationOptions() ReprovisionComanagedDeviceCloudPCOperationOptions {
+	return ReprovisionComanagedDeviceCloudPCOperationOptions{}
+}
+
+func (o ReprovisionComanagedDeviceCloudPCOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o ReprovisionComanagedDeviceCloudPCOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o ReprovisionComanagedDeviceCloudPCOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // ReprovisionComanagedDeviceCloudPC - Invoke action reprovisionCloudPc. Reprovision a Cloud PC with an Intune managed
 // device ID.
-func (c ComanagedDeviceClient) ReprovisionComanagedDeviceCloudPC(ctx context.Context, id beta.DeviceManagementComanagedDeviceId) (result ReprovisionComanagedDeviceCloudPCOperationResponse, err error) {
+func (c ComanagedDeviceClient) ReprovisionComanagedDeviceCloudPC(ctx context.Context, id beta.DeviceManagementComanagedDeviceId, options ReprovisionComanagedDeviceCloudPCOperationOptions) (result ReprovisionComanagedDeviceCloudPCOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/reprovisionCloudPc", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/reprovisionCloudPc", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

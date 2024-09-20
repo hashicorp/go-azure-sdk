@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &MeMessageIdAttachmentId{}
 
 func TestNewMeMessageIdAttachmentID(t *testing.T) {
-	id := NewMeMessageIdAttachmentID("messageIdValue", "attachmentIdValue")
+	id := NewMeMessageIdAttachmentID("messageId", "attachmentId")
 
-	if id.MessageId != "messageIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'MessageId'", id.MessageId, "messageIdValue")
+	if id.MessageId != "messageId" {
+		t.Fatalf("Expected %q but got %q for Segment 'MessageId'", id.MessageId, "messageId")
 	}
 
-	if id.AttachmentId != "attachmentIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'AttachmentId'", id.AttachmentId, "attachmentIdValue")
+	if id.AttachmentId != "attachmentId" {
+		t.Fatalf("Expected %q but got %q for Segment 'AttachmentId'", id.AttachmentId, "attachmentId")
 	}
 }
 
 func TestFormatMeMessageIdAttachmentID(t *testing.T) {
-	actual := NewMeMessageIdAttachmentID("messageIdValue", "attachmentIdValue").ID()
-	expected := "/me/messages/messageIdValue/attachments/attachmentIdValue"
+	actual := NewMeMessageIdAttachmentID("messageId", "attachmentId").ID()
+	expected := "/me/messages/messageId/attachments/attachmentId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -54,25 +54,25 @@ func TestParseMeMessageIdAttachmentID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/me/messages/messageIdValue",
+			Input: "/me/messages/messageId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/me/messages/messageIdValue/attachments",
+			Input: "/me/messages/messageId/attachments",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/me/messages/messageIdValue/attachments/attachmentIdValue",
+			Input: "/me/messages/messageId/attachments/attachmentId",
 			Expected: &MeMessageIdAttachmentId{
-				MessageId:    "messageIdValue",
-				AttachmentId: "attachmentIdValue",
+				MessageId:    "messageId",
+				AttachmentId: "attachmentId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/messages/messageIdValue/attachments/attachmentIdValue/extra",
+			Input: "/me/messages/messageId/attachments/attachmentId/extra",
 			Error: true,
 		},
 	}
@@ -135,48 +135,48 @@ func TestParseMeMessageIdAttachmentIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/me/messages/messageIdValue",
+			Input: "/me/messages/messageId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/mEsSaGeS/mEsSaGeIdVaLuE",
+			Input: "/mE/mEsSaGeS/mEsSaGeId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/me/messages/messageIdValue/attachments",
+			Input: "/me/messages/messageId/attachments",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/mEsSaGeS/mEsSaGeIdVaLuE/aTtAcHmEnTs",
+			Input: "/mE/mEsSaGeS/mEsSaGeId/aTtAcHmEnTs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/me/messages/messageIdValue/attachments/attachmentIdValue",
+			Input: "/me/messages/messageId/attachments/attachmentId",
 			Expected: &MeMessageIdAttachmentId{
-				MessageId:    "messageIdValue",
-				AttachmentId: "attachmentIdValue",
+				MessageId:    "messageId",
+				AttachmentId: "attachmentId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/messages/messageIdValue/attachments/attachmentIdValue/extra",
+			Input: "/me/messages/messageId/attachments/attachmentId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/mEsSaGeS/mEsSaGeIdVaLuE/aTtAcHmEnTs/aTtAcHmEnTiDvAlUe",
+			Input: "/mE/mEsSaGeS/mEsSaGeId/aTtAcHmEnTs/aTtAcHmEnTiD",
 			Expected: &MeMessageIdAttachmentId{
-				MessageId:    "mEsSaGeIdVaLuE",
-				AttachmentId: "aTtAcHmEnTiDvAlUe",
+				MessageId:    "mEsSaGeId",
+				AttachmentId: "aTtAcHmEnTiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/mE/mEsSaGeS/mEsSaGeIdVaLuE/aTtAcHmEnTs/aTtAcHmEnTiDvAlUe/extra",
+			Input: "/mE/mEsSaGeS/mEsSaGeId/aTtAcHmEnTs/aTtAcHmEnTiD/extra",
 			Error: true,
 		},
 	}

@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/microsoft-graph/identitygovernance/beta/accessreviewdecision` Documentation
 
-The `accessreviewdecision` SDK allows for interaction with the Azure Resource Manager Service `identitygovernance` (API Version `beta`).
+The `accessreviewdecision` SDK allows for interaction with Microsoft Graph `identitygovernance` (API Version `beta`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -15,7 +15,7 @@ import "github.com/hashicorp/go-azure-sdk/microsoft-graph/identitygovernance/bet
 ### Client Initialization
 
 ```go
-client := accessreviewdecision.NewAccessReviewDecisionClientWithBaseURI("https://management.azure.com")
+client := accessreviewdecision.NewAccessReviewDecisionClientWithBaseURI("https://graph.microsoft.com")
 client.Client.Authorizer = authorizer
 ```
 
@@ -30,7 +30,7 @@ payload := accessreviewdecision.AccessReviewInstanceDecisionItem{
 }
 
 
-read, err := client.CreateAccessReviewDecision(ctx, payload)
+read, err := client.CreateAccessReviewDecision(ctx, payload, accessreviewdecision.DefaultCreateAccessReviewDecisionOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -50,7 +50,7 @@ payload := accessreviewdecision.CreateAccessReviewDecisionRecordAllDecisionReque
 }
 
 
-read, err := client.CreateAccessReviewDecisionRecordAllDecision(ctx, payload)
+read, err := client.CreateAccessReviewDecisionRecordAllDecision(ctx, payload, accessreviewdecision.DefaultCreateAccessReviewDecisionRecordAllDecisionOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -64,7 +64,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := accessreviewdecision.NewIdentityGovernanceAccessReviewDecisionID("accessReviewInstanceDecisionItemIdValue")
+id := accessreviewdecision.NewIdentityGovernanceAccessReviewDecisionID("accessReviewInstanceDecisionItemId")
 
 read, err := client.DeleteAccessReviewDecision(ctx, id, accessreviewdecision.DefaultDeleteAccessReviewDecisionOperationOptions())
 if err != nil {
@@ -80,7 +80,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := accessreviewdecision.NewIdentityGovernanceAccessReviewDecisionID("accessReviewInstanceDecisionItemIdValue")
+id := accessreviewdecision.NewIdentityGovernanceAccessReviewDecisionID("accessReviewInstanceDecisionItemId")
 
 read, err := client.GetAccessReviewDecision(ctx, id, accessreviewdecision.DefaultGetAccessReviewDecisionOperationOptions())
 if err != nil {
@@ -129,14 +129,14 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := accessreviewdecision.NewIdentityGovernanceAccessReviewDecisionID("accessReviewInstanceDecisionItemIdValue")
+id := accessreviewdecision.NewIdentityGovernanceAccessReviewDecisionID("accessReviewInstanceDecisionItemId")
 
 payload := accessreviewdecision.AccessReviewInstanceDecisionItem{
 	// ...
 }
 
 
-read, err := client.UpdateAccessReviewDecision(ctx, id, payload)
+read, err := client.UpdateAccessReviewDecision(ctx, id, payload, accessreviewdecision.DefaultUpdateAccessReviewDecisionOperationOptions())
 if err != nil {
 	// handle the error
 }

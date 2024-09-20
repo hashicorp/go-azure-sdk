@@ -17,15 +17,44 @@ type UpdateOnlineMeetingAttendanceReportAttendanceRecordOperationResponse struct
 	OData        *odata.OData
 }
 
+type UpdateOnlineMeetingAttendanceReportAttendanceRecordOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateOnlineMeetingAttendanceReportAttendanceRecordOperationOptions() UpdateOnlineMeetingAttendanceReportAttendanceRecordOperationOptions {
+	return UpdateOnlineMeetingAttendanceReportAttendanceRecordOperationOptions{}
+}
+
+func (o UpdateOnlineMeetingAttendanceReportAttendanceRecordOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateOnlineMeetingAttendanceReportAttendanceRecordOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateOnlineMeetingAttendanceReportAttendanceRecordOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateOnlineMeetingAttendanceReportAttendanceRecord - Update the navigation property attendanceRecords in users
-func (c OnlineMeetingMeetingAttendanceReportAttendanceRecordClient) UpdateOnlineMeetingAttendanceReportAttendanceRecord(ctx context.Context, id beta.UserIdOnlineMeetingIdMeetingAttendanceReportAttendanceRecordId, input beta.AttendanceRecord) (result UpdateOnlineMeetingAttendanceReportAttendanceRecordOperationResponse, err error) {
+func (c OnlineMeetingMeetingAttendanceReportAttendanceRecordClient) UpdateOnlineMeetingAttendanceReportAttendanceRecord(ctx context.Context, id beta.UserIdOnlineMeetingIdMeetingAttendanceReportAttendanceRecordId, input beta.AttendanceRecord, options UpdateOnlineMeetingAttendanceReportAttendanceRecordOperationOptions) (result UpdateOnlineMeetingAttendanceReportAttendanceRecordOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

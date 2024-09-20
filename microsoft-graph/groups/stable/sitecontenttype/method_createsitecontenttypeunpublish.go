@@ -18,15 +18,44 @@ type CreateSiteContentTypeUnpublishOperationResponse struct {
 	OData        *odata.OData
 }
 
+type CreateSiteContentTypeUnpublishOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateSiteContentTypeUnpublishOperationOptions() CreateSiteContentTypeUnpublishOperationOptions {
+	return CreateSiteContentTypeUnpublishOperationOptions{}
+}
+
+func (o CreateSiteContentTypeUnpublishOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateSiteContentTypeUnpublishOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateSiteContentTypeUnpublishOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateSiteContentTypeUnpublish - Invoke action unpublish. Unpublish a contentType from a content type hub site.
-func (c SiteContentTypeClient) CreateSiteContentTypeUnpublish(ctx context.Context, id stable.GroupIdSiteIdContentTypeId) (result CreateSiteContentTypeUnpublishOperationResponse, err error) {
+func (c SiteContentTypeClient) CreateSiteContentTypeUnpublish(ctx context.Context, id stable.GroupIdSiteIdContentTypeId, options CreateSiteContentTypeUnpublishOperationOptions) (result CreateSiteContentTypeUnpublishOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/unpublish", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/unpublish", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

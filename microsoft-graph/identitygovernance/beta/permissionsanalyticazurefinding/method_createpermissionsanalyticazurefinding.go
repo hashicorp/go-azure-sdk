@@ -19,15 +19,44 @@ type CreatePermissionsAnalyticAzureFindingOperationResponse struct {
 	Model        beta.Finding
 }
 
+type CreatePermissionsAnalyticAzureFindingOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreatePermissionsAnalyticAzureFindingOperationOptions() CreatePermissionsAnalyticAzureFindingOperationOptions {
+	return CreatePermissionsAnalyticAzureFindingOperationOptions{}
+}
+
+func (o CreatePermissionsAnalyticAzureFindingOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreatePermissionsAnalyticAzureFindingOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreatePermissionsAnalyticAzureFindingOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreatePermissionsAnalyticAzureFinding - Create new navigation property to findings for identityGovernance
-func (c PermissionsAnalyticAzureFindingClient) CreatePermissionsAnalyticAzureFinding(ctx context.Context, input beta.Finding) (result CreatePermissionsAnalyticAzureFindingOperationResponse, err error) {
+func (c PermissionsAnalyticAzureFindingClient) CreatePermissionsAnalyticAzureFinding(ctx context.Context, input beta.Finding, options CreatePermissionsAnalyticAzureFindingOperationOptions) (result CreatePermissionsAnalyticAzureFindingOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/identityGovernance/permissionsAnalytics/azure/findings",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/identityGovernance/permissionsAnalytics/azure/findings",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

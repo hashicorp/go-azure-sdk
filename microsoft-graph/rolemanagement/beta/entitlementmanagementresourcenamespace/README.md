@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/microsoft-graph/rolemanagement/beta/entitlementmanagementresourcenamespace` Documentation
 
-The `entitlementmanagementresourcenamespace` SDK allows for interaction with the Azure Resource Manager Service `rolemanagement` (API Version `beta`).
+The `entitlementmanagementresourcenamespace` SDK allows for interaction with Microsoft Graph `rolemanagement` (API Version `beta`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -15,7 +15,7 @@ import "github.com/hashicorp/go-azure-sdk/microsoft-graph/rolemanagement/beta/en
 ### Client Initialization
 
 ```go
-client := entitlementmanagementresourcenamespace.NewEntitlementManagementResourceNamespaceClientWithBaseURI("https://management.azure.com")
+client := entitlementmanagementresourcenamespace.NewEntitlementManagementResourceNamespaceClientWithBaseURI("https://graph.microsoft.com")
 client.Client.Authorizer = authorizer
 ```
 
@@ -30,7 +30,7 @@ payload := entitlementmanagementresourcenamespace.UnifiedRbacResourceNamespace{
 }
 
 
-read, err := client.CreateEntitlementManagementResourceNamespace(ctx, payload)
+read, err := client.CreateEntitlementManagementResourceNamespace(ctx, payload, entitlementmanagementresourcenamespace.DefaultCreateEntitlementManagementResourceNamespaceOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -44,14 +44,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := entitlementmanagementresourcenamespace.NewRoleManagementEntitlementManagementResourceNamespaceID("unifiedRbacResourceNamespaceIdValue")
+id := entitlementmanagementresourcenamespace.NewRoleManagementEntitlementManagementResourceNamespaceID("unifiedRbacResourceNamespaceId")
 
 payload := entitlementmanagementresourcenamespace.CreateEntitlementManagementResourceNamespaceImportResourceActionRequest{
 	// ...
 }
 
 
-read, err := client.CreateEntitlementManagementResourceNamespaceImportResourceAction(ctx, id, payload)
+read, err := client.CreateEntitlementManagementResourceNamespaceImportResourceAction(ctx, id, payload, entitlementmanagementresourcenamespace.DefaultCreateEntitlementManagementResourceNamespaceImportResourceActionOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -65,7 +65,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := entitlementmanagementresourcenamespace.NewRoleManagementEntitlementManagementResourceNamespaceID("unifiedRbacResourceNamespaceIdValue")
+id := entitlementmanagementresourcenamespace.NewRoleManagementEntitlementManagementResourceNamespaceID("unifiedRbacResourceNamespaceId")
 
 read, err := client.DeleteEntitlementManagementResourceNamespace(ctx, id, entitlementmanagementresourcenamespace.DefaultDeleteEntitlementManagementResourceNamespaceOperationOptions())
 if err != nil {
@@ -81,7 +81,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := entitlementmanagementresourcenamespace.NewRoleManagementEntitlementManagementResourceNamespaceID("unifiedRbacResourceNamespaceIdValue")
+id := entitlementmanagementresourcenamespace.NewRoleManagementEntitlementManagementResourceNamespaceID("unifiedRbacResourceNamespaceId")
 
 read, err := client.GetEntitlementManagementResourceNamespace(ctx, id, entitlementmanagementresourcenamespace.DefaultGetEntitlementManagementResourceNamespaceOperationOptions())
 if err != nil {
@@ -130,14 +130,14 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := entitlementmanagementresourcenamespace.NewRoleManagementEntitlementManagementResourceNamespaceID("unifiedRbacResourceNamespaceIdValue")
+id := entitlementmanagementresourcenamespace.NewRoleManagementEntitlementManagementResourceNamespaceID("unifiedRbacResourceNamespaceId")
 
 payload := entitlementmanagementresourcenamespace.UnifiedRbacResourceNamespace{
 	// ...
 }
 
 
-read, err := client.UpdateEntitlementManagementResourceNamespace(ctx, id, payload)
+read, err := client.UpdateEntitlementManagementResourceNamespace(ctx, id, payload, entitlementmanagementresourcenamespace.DefaultUpdateEntitlementManagementResourceNamespaceOperationOptions())
 if err != nil {
 	// handle the error
 }

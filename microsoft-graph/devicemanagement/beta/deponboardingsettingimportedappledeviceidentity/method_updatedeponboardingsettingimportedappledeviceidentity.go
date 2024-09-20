@@ -17,16 +17,45 @@ type UpdateDepOnboardingSettingImportedAppleDeviceIdentityOperationResponse stru
 	OData        *odata.OData
 }
 
+type UpdateDepOnboardingSettingImportedAppleDeviceIdentityOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateDepOnboardingSettingImportedAppleDeviceIdentityOperationOptions() UpdateDepOnboardingSettingImportedAppleDeviceIdentityOperationOptions {
+	return UpdateDepOnboardingSettingImportedAppleDeviceIdentityOperationOptions{}
+}
+
+func (o UpdateDepOnboardingSettingImportedAppleDeviceIdentityOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateDepOnboardingSettingImportedAppleDeviceIdentityOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateDepOnboardingSettingImportedAppleDeviceIdentityOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateDepOnboardingSettingImportedAppleDeviceIdentity - Update the navigation property importedAppleDeviceIdentities
 // in deviceManagement
-func (c DepOnboardingSettingImportedAppleDeviceIdentityClient) UpdateDepOnboardingSettingImportedAppleDeviceIdentity(ctx context.Context, id beta.DeviceManagementDepOnboardingSettingIdImportedAppleDeviceIdentityId, input beta.ImportedAppleDeviceIdentity) (result UpdateDepOnboardingSettingImportedAppleDeviceIdentityOperationResponse, err error) {
+func (c DepOnboardingSettingImportedAppleDeviceIdentityClient) UpdateDepOnboardingSettingImportedAppleDeviceIdentity(ctx context.Context, id beta.DeviceManagementDepOnboardingSettingIdImportedAppleDeviceIdentityId, input beta.ImportedAppleDeviceIdentity, options UpdateDepOnboardingSettingImportedAppleDeviceIdentityOperationOptions) (result UpdateDepOnboardingSettingImportedAppleDeviceIdentityOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

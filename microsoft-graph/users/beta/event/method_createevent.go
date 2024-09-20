@@ -19,15 +19,44 @@ type CreateEventOperationResponse struct {
 	Model        *beta.Event
 }
 
+type CreateEventOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateEventOperationOptions() CreateEventOperationOptions {
+	return CreateEventOperationOptions{}
+}
+
+func (o CreateEventOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateEventOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateEventOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateEvent - Create new navigation property to events for users
-func (c EventClient) CreateEvent(ctx context.Context, id beta.UserId, input beta.Event) (result CreateEventOperationResponse, err error) {
+func (c EventClient) CreateEvent(ctx context.Context, id beta.UserId, input beta.Event, options CreateEventOperationOptions) (result CreateEventOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/events", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/events", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

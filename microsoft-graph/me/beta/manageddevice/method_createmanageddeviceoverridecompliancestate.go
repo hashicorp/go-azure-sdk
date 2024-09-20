@@ -18,15 +18,44 @@ type CreateManagedDeviceOverrideComplianceStateOperationResponse struct {
 	OData        *odata.OData
 }
 
+type CreateManagedDeviceOverrideComplianceStateOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateManagedDeviceOverrideComplianceStateOperationOptions() CreateManagedDeviceOverrideComplianceStateOperationOptions {
+	return CreateManagedDeviceOverrideComplianceStateOperationOptions{}
+}
+
+func (o CreateManagedDeviceOverrideComplianceStateOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateManagedDeviceOverrideComplianceStateOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateManagedDeviceOverrideComplianceStateOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateManagedDeviceOverrideComplianceState - Invoke action overrideComplianceState
-func (c ManagedDeviceClient) CreateManagedDeviceOverrideComplianceState(ctx context.Context, id beta.MeManagedDeviceId, input CreateManagedDeviceOverrideComplianceStateRequest) (result CreateManagedDeviceOverrideComplianceStateOperationResponse, err error) {
+func (c ManagedDeviceClient) CreateManagedDeviceOverrideComplianceState(ctx context.Context, id beta.MeManagedDeviceId, input CreateManagedDeviceOverrideComplianceStateRequest, options CreateManagedDeviceOverrideComplianceStateOperationOptions) (result CreateManagedDeviceOverrideComplianceStateOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/overrideComplianceState", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/overrideComplianceState", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

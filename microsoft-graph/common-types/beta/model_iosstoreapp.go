@@ -171,16 +171,47 @@ func (s IosStoreApp) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &IosStoreApp{}
 
 func (s *IosStoreApp) UnmarshalJSON(bytes []byte) error {
-	type alias IosStoreApp
-	var decoded alias
+
+	var decoded struct {
+		AppStoreUrl                     nullable.Type[string]      `json:"appStoreUrl,omitempty"`
+		ApplicableDeviceType            *IosDeviceType             `json:"applicableDeviceType,omitempty"`
+		BundleId                        nullable.Type[string]      `json:"bundleId,omitempty"`
+		MinimumSupportedOperatingSystem *IosMinimumOperatingSystem `json:"minimumSupportedOperatingSystem,omitempty"`
+		Assignments                     *[]MobileAppAssignment     `json:"assignments,omitempty"`
+		Categories                      *[]MobileAppCategory       `json:"categories,omitempty"`
+		CreatedDateTime                 *string                    `json:"createdDateTime,omitempty"`
+		DependentAppCount               *int64                     `json:"dependentAppCount,omitempty"`
+		Description                     nullable.Type[string]      `json:"description,omitempty"`
+		Developer                       nullable.Type[string]      `json:"developer,omitempty"`
+		DisplayName                     nullable.Type[string]      `json:"displayName,omitempty"`
+		InformationUrl                  nullable.Type[string]      `json:"informationUrl,omitempty"`
+		IsAssigned                      *bool                      `json:"isAssigned,omitempty"`
+		IsFeatured                      *bool                      `json:"isFeatured,omitempty"`
+		LargeIcon                       *MimeContent               `json:"largeIcon,omitempty"`
+		LastModifiedDateTime            *string                    `json:"lastModifiedDateTime,omitempty"`
+		Notes                           nullable.Type[string]      `json:"notes,omitempty"`
+		Owner                           nullable.Type[string]      `json:"owner,omitempty"`
+		PrivacyInformationUrl           nullable.Type[string]      `json:"privacyInformationUrl,omitempty"`
+		Publisher                       nullable.Type[string]      `json:"publisher,omitempty"`
+		PublishingState                 *MobileAppPublishingState  `json:"publishingState,omitempty"`
+		Relationships                   *[]MobileAppRelationship   `json:"relationships,omitempty"`
+		RoleScopeTagIds                 *[]string                  `json:"roleScopeTagIds,omitempty"`
+		SupersededAppCount              *int64                     `json:"supersededAppCount,omitempty"`
+		SupersedingAppCount             *int64                     `json:"supersedingAppCount,omitempty"`
+		UploadState                     *int64                     `json:"uploadState,omitempty"`
+		Id                              *string                    `json:"id,omitempty"`
+		ODataId                         *string                    `json:"@odata.id,omitempty"`
+		ODataType                       *string                    `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into IosStoreApp: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.AppStoreUrl = decoded.AppStoreUrl
 	s.ApplicableDeviceType = decoded.ApplicableDeviceType
-	s.Assignments = decoded.Assignments
 	s.BundleId = decoded.BundleId
+	s.MinimumSupportedOperatingSystem = decoded.MinimumSupportedOperatingSystem
+	s.Assignments = decoded.Assignments
 	s.Categories = decoded.Categories
 	s.CreatedDateTime = decoded.CreatedDateTime
 	s.DependentAppCount = decoded.DependentAppCount
@@ -193,7 +224,6 @@ func (s *IosStoreApp) UnmarshalJSON(bytes []byte) error {
 	s.IsFeatured = decoded.IsFeatured
 	s.LargeIcon = decoded.LargeIcon
 	s.LastModifiedDateTime = decoded.LastModifiedDateTime
-	s.MinimumSupportedOperatingSystem = decoded.MinimumSupportedOperatingSystem
 	s.Notes = decoded.Notes
 	s.ODataId = decoded.ODataId
 	s.ODataType = decoded.ODataType
@@ -227,5 +257,6 @@ func (s *IosStoreApp) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Relationships = &output
 	}
+
 	return nil
 }

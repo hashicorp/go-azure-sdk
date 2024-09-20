@@ -17,16 +17,45 @@ type UpdatePendingAccessReviewInstanceDecisionInstanceContactedReviewerOperation
 	OData        *odata.OData
 }
 
+type UpdatePendingAccessReviewInstanceDecisionInstanceContactedReviewerOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdatePendingAccessReviewInstanceDecisionInstanceContactedReviewerOperationOptions() UpdatePendingAccessReviewInstanceDecisionInstanceContactedReviewerOperationOptions {
+	return UpdatePendingAccessReviewInstanceDecisionInstanceContactedReviewerOperationOptions{}
+}
+
+func (o UpdatePendingAccessReviewInstanceDecisionInstanceContactedReviewerOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdatePendingAccessReviewInstanceDecisionInstanceContactedReviewerOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdatePendingAccessReviewInstanceDecisionInstanceContactedReviewerOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdatePendingAccessReviewInstanceDecisionInstanceContactedReviewer - Update the navigation property
 // contactedReviewers in users
-func (c PendingAccessReviewInstanceDecisionInstanceContactedReviewerClient) UpdatePendingAccessReviewInstanceDecisionInstanceContactedReviewer(ctx context.Context, id beta.UserIdPendingAccessReviewInstanceIdDecisionIdInstanceContactedReviewerId, input beta.AccessReviewReviewer) (result UpdatePendingAccessReviewInstanceDecisionInstanceContactedReviewerOperationResponse, err error) {
+func (c PendingAccessReviewInstanceDecisionInstanceContactedReviewerClient) UpdatePendingAccessReviewInstanceDecisionInstanceContactedReviewer(ctx context.Context, id beta.UserIdPendingAccessReviewInstanceIdDecisionIdInstanceContactedReviewerId, input beta.AccessReviewReviewer, options UpdatePendingAccessReviewInstanceDecisionInstanceContactedReviewerOperationOptions) (result UpdatePendingAccessReviewInstanceDecisionInstanceContactedReviewerOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

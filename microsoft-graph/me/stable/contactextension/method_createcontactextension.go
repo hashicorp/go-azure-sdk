@@ -20,15 +20,44 @@ type CreateContactExtensionOperationResponse struct {
 	Model        stable.Extension
 }
 
+type CreateContactExtensionOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateContactExtensionOperationOptions() CreateContactExtensionOperationOptions {
+	return CreateContactExtensionOperationOptions{}
+}
+
+func (o CreateContactExtensionOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateContactExtensionOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateContactExtensionOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateContactExtension - Create new navigation property to extensions for me
-func (c ContactExtensionClient) CreateContactExtension(ctx context.Context, id stable.MeContactId, input stable.Extension) (result CreateContactExtensionOperationResponse, err error) {
+func (c ContactExtensionClient) CreateContactExtension(ctx context.Context, id stable.MeContactId, input stable.Extension, options CreateContactExtensionOperationOptions) (result CreateContactExtensionOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/extensions", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/extensions", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

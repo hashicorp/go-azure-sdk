@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &IdentityGovernanceEntitlementManagementAccessPackageResourceRoleScopeId{}
 
 func TestNewIdentityGovernanceEntitlementManagementAccessPackageResourceRoleScopeID(t *testing.T) {
-	id := NewIdentityGovernanceEntitlementManagementAccessPackageResourceRoleScopeID("accessPackageResourceRoleScopeIdValue")
+	id := NewIdentityGovernanceEntitlementManagementAccessPackageResourceRoleScopeID("accessPackageResourceRoleScopeId")
 
-	if id.AccessPackageResourceRoleScopeId != "accessPackageResourceRoleScopeIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'AccessPackageResourceRoleScopeId'", id.AccessPackageResourceRoleScopeId, "accessPackageResourceRoleScopeIdValue")
+	if id.AccessPackageResourceRoleScopeId != "accessPackageResourceRoleScopeId" {
+		t.Fatalf("Expected %q but got %q for Segment 'AccessPackageResourceRoleScopeId'", id.AccessPackageResourceRoleScopeId, "accessPackageResourceRoleScopeId")
 	}
 }
 
 func TestFormatIdentityGovernanceEntitlementManagementAccessPackageResourceRoleScopeID(t *testing.T) {
-	actual := NewIdentityGovernanceEntitlementManagementAccessPackageResourceRoleScopeID("accessPackageResourceRoleScopeIdValue").ID()
-	expected := "/identityGovernance/entitlementManagement/accessPackageResourceRoleScopes/accessPackageResourceRoleScopeIdValue"
+	actual := NewIdentityGovernanceEntitlementManagementAccessPackageResourceRoleScopeID("accessPackageResourceRoleScopeId").ID()
+	expected := "/identityGovernance/entitlementManagement/accessPackageResourceRoleScopes/accessPackageResourceRoleScopeId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -55,14 +55,14 @@ func TestParseIdentityGovernanceEntitlementManagementAccessPackageResourceRoleSc
 		},
 		{
 			// Valid URI
-			Input: "/identityGovernance/entitlementManagement/accessPackageResourceRoleScopes/accessPackageResourceRoleScopeIdValue",
+			Input: "/identityGovernance/entitlementManagement/accessPackageResourceRoleScopes/accessPackageResourceRoleScopeId",
 			Expected: &IdentityGovernanceEntitlementManagementAccessPackageResourceRoleScopeId{
-				AccessPackageResourceRoleScopeId: "accessPackageResourceRoleScopeIdValue",
+				AccessPackageResourceRoleScopeId: "accessPackageResourceRoleScopeId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/identityGovernance/entitlementManagement/accessPackageResourceRoleScopes/accessPackageResourceRoleScopeIdValue/extra",
+			Input: "/identityGovernance/entitlementManagement/accessPackageResourceRoleScopes/accessPackageResourceRoleScopeId/extra",
 			Error: true,
 		},
 	}
@@ -131,26 +131,26 @@ func TestParseIdentityGovernanceEntitlementManagementAccessPackageResourceRoleSc
 		},
 		{
 			// Valid URI
-			Input: "/identityGovernance/entitlementManagement/accessPackageResourceRoleScopes/accessPackageResourceRoleScopeIdValue",
+			Input: "/identityGovernance/entitlementManagement/accessPackageResourceRoleScopes/accessPackageResourceRoleScopeId",
 			Expected: &IdentityGovernanceEntitlementManagementAccessPackageResourceRoleScopeId{
-				AccessPackageResourceRoleScopeId: "accessPackageResourceRoleScopeIdValue",
+				AccessPackageResourceRoleScopeId: "accessPackageResourceRoleScopeId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/identityGovernance/entitlementManagement/accessPackageResourceRoleScopes/accessPackageResourceRoleScopeIdValue/extra",
+			Input: "/identityGovernance/entitlementManagement/accessPackageResourceRoleScopes/accessPackageResourceRoleScopeId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/iDeNtItYgOvErNaNcE/eNtItLeMeNtMaNaGeMeNt/aCcEsSpAcKaGeReSoUrCeRoLeScOpEs/aCcEsSpAcKaGeReSoUrCeRoLeScOpEiDvAlUe",
+			Input: "/iDeNtItYgOvErNaNcE/eNtItLeMeNtMaNaGeMeNt/aCcEsSpAcKaGeReSoUrCeRoLeScOpEs/aCcEsSpAcKaGeReSoUrCeRoLeScOpEiD",
 			Expected: &IdentityGovernanceEntitlementManagementAccessPackageResourceRoleScopeId{
-				AccessPackageResourceRoleScopeId: "aCcEsSpAcKaGeReSoUrCeRoLeScOpEiDvAlUe",
+				AccessPackageResourceRoleScopeId: "aCcEsSpAcKaGeReSoUrCeRoLeScOpEiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/iDeNtItYgOvErNaNcE/eNtItLeMeNtMaNaGeMeNt/aCcEsSpAcKaGeReSoUrCeRoLeScOpEs/aCcEsSpAcKaGeReSoUrCeRoLeScOpEiDvAlUe/extra",
+			Input: "/iDeNtItYgOvErNaNcE/eNtItLeMeNtMaNaGeMeNt/aCcEsSpAcKaGeReSoUrCeRoLeScOpEs/aCcEsSpAcKaGeReSoUrCeRoLeScOpEiD/extra",
 			Error: true,
 		},
 	}

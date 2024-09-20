@@ -18,16 +18,45 @@ type SetSynchronizationJobBulkUploadValueOperationResponse struct {
 	OData        *odata.OData
 }
 
+type SetSynchronizationJobBulkUploadValueOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultSetSynchronizationJobBulkUploadValueOperationOptions() SetSynchronizationJobBulkUploadValueOperationOptions {
+	return SetSynchronizationJobBulkUploadValueOperationOptions{}
+}
+
+func (o SetSynchronizationJobBulkUploadValueOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o SetSynchronizationJobBulkUploadValueOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o SetSynchronizationJobBulkUploadValueOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // SetSynchronizationJobBulkUploadValue - Update media content for the navigation property bulkUpload in applications.
 // The bulk upload operation for the job.
-func (c SynchronizationJobBulkUploadClient) SetSynchronizationJobBulkUploadValue(ctx context.Context, id stable.ApplicationIdSynchronizationJobId, input []byte) (result SetSynchronizationJobBulkUploadValueOperationResponse, err error) {
+func (c SynchronizationJobBulkUploadClient) SetSynchronizationJobBulkUploadValue(ctx context.Context, id stable.ApplicationIdSynchronizationJobId, input []byte, options SetSynchronizationJobBulkUploadValueOperationOptions) (result SetSynchronizationJobBulkUploadValueOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPut,
-		Path:       fmt.Sprintf("%s/bulkUpload/$value", id.ID()),
+		HttpMethod:    http.MethodPut,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/bulkUpload/$value", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

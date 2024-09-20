@@ -19,18 +19,47 @@ type CopyDriveRootOperationResponse struct {
 	Model        *beta.DriveItem
 }
 
+type CopyDriveRootOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCopyDriveRootOperationOptions() CopyDriveRootOperationOptions {
+	return CopyDriveRootOperationOptions{}
+}
+
+func (o CopyDriveRootOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CopyDriveRootOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CopyDriveRootOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CopyDriveRoot - Invoke action copy. Asynchronously create a copy of a driveItem (including any children) under a new
 // parent item or with a new name. After the request is acknowledged, it enters a queue. The actual copying, including
 // any subitems, occurs at an undetermined time. Progress is reported until the operation is completed by monitoring the
 // progress.
-func (c DriveRootClient) CopyDriveRoot(ctx context.Context, id beta.MeDriveId, input CopyDriveRootRequest) (result CopyDriveRootOperationResponse, err error) {
+func (c DriveRootClient) CopyDriveRoot(ctx context.Context, id beta.MeDriveId, input CopyDriveRootRequest, options CopyDriveRootOperationOptions) (result CopyDriveRootOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/root/copy", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/root/copy", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

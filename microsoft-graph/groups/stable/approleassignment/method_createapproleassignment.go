@@ -19,18 +19,47 @@ type CreateAppRoleAssignmentOperationResponse struct {
 	Model        *stable.AppRoleAssignment
 }
 
+type CreateAppRoleAssignmentOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateAppRoleAssignmentOperationOptions() CreateAppRoleAssignmentOperationOptions {
+	return CreateAppRoleAssignmentOperationOptions{}
+}
+
+func (o CreateAppRoleAssignmentOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateAppRoleAssignmentOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateAppRoleAssignmentOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateAppRoleAssignment - Grant an appRoleAssignment to a group. Use this API to assign an app role to a security
 // group. All direct members of the group will be considered assigned. Security groups with dynamic memberships are
 // supported. To grant an app role assignment to a group, you need three identifiers: Additional licenses might be
 // required to use a group to manage access to applications.
-func (c AppRoleAssignmentClient) CreateAppRoleAssignment(ctx context.Context, id stable.GroupId, input stable.AppRoleAssignment) (result CreateAppRoleAssignmentOperationResponse, err error) {
+func (c AppRoleAssignmentClient) CreateAppRoleAssignment(ctx context.Context, id stable.GroupId, input stable.AppRoleAssignment, options CreateAppRoleAssignmentOperationOptions) (result CreateAppRoleAssignmentOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/appRoleAssignments", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/appRoleAssignments", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

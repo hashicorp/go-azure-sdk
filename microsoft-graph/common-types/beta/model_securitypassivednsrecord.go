@@ -89,19 +89,27 @@ func (s SecurityPassiveDnsRecord) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &SecurityPassiveDnsRecord{}
 
 func (s *SecurityPassiveDnsRecord) UnmarshalJSON(bytes []byte) error {
-	type alias SecurityPassiveDnsRecord
-	var decoded alias
+
+	var decoded struct {
+		CollectedDateTime *string `json:"collectedDateTime,omitempty"`
+		FirstSeenDateTime *string `json:"firstSeenDateTime,omitempty"`
+		LastSeenDateTime  *string `json:"lastSeenDateTime,omitempty"`
+		RecordType        *string `json:"recordType,omitempty"`
+		Id                *string `json:"id,omitempty"`
+		ODataId           *string `json:"@odata.id,omitempty"`
+		ODataType         *string `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into SecurityPassiveDnsRecord: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.CollectedDateTime = decoded.CollectedDateTime
 	s.FirstSeenDateTime = decoded.FirstSeenDateTime
-	s.Id = decoded.Id
 	s.LastSeenDateTime = decoded.LastSeenDateTime
+	s.RecordType = decoded.RecordType
+	s.Id = decoded.Id
 	s.ODataId = decoded.ODataId
 	s.ODataType = decoded.ODataType
-	s.RecordType = decoded.RecordType
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -123,5 +131,6 @@ func (s *SecurityPassiveDnsRecord) UnmarshalJSON(bytes []byte) error {
 		}
 		s.ParentHost = &impl
 	}
+
 	return nil
 }

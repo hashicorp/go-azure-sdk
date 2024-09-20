@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &DeviceManagementWindowsInformationProtectionAppLearningSummaryId{}
 
 func TestNewDeviceManagementWindowsInformationProtectionAppLearningSummaryID(t *testing.T) {
-	id := NewDeviceManagementWindowsInformationProtectionAppLearningSummaryID("windowsInformationProtectionAppLearningSummaryIdValue")
+	id := NewDeviceManagementWindowsInformationProtectionAppLearningSummaryID("windowsInformationProtectionAppLearningSummaryId")
 
-	if id.WindowsInformationProtectionAppLearningSummaryId != "windowsInformationProtectionAppLearningSummaryIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'WindowsInformationProtectionAppLearningSummaryId'", id.WindowsInformationProtectionAppLearningSummaryId, "windowsInformationProtectionAppLearningSummaryIdValue")
+	if id.WindowsInformationProtectionAppLearningSummaryId != "windowsInformationProtectionAppLearningSummaryId" {
+		t.Fatalf("Expected %q but got %q for Segment 'WindowsInformationProtectionAppLearningSummaryId'", id.WindowsInformationProtectionAppLearningSummaryId, "windowsInformationProtectionAppLearningSummaryId")
 	}
 }
 
 func TestFormatDeviceManagementWindowsInformationProtectionAppLearningSummaryID(t *testing.T) {
-	actual := NewDeviceManagementWindowsInformationProtectionAppLearningSummaryID("windowsInformationProtectionAppLearningSummaryIdValue").ID()
-	expected := "/deviceManagement/windowsInformationProtectionAppLearningSummaries/windowsInformationProtectionAppLearningSummaryIdValue"
+	actual := NewDeviceManagementWindowsInformationProtectionAppLearningSummaryID("windowsInformationProtectionAppLearningSummaryId").ID()
+	expected := "/deviceManagement/windowsInformationProtectionAppLearningSummaries/windowsInformationProtectionAppLearningSummaryId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -50,14 +50,14 @@ func TestParseDeviceManagementWindowsInformationProtectionAppLearningSummaryID(t
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/windowsInformationProtectionAppLearningSummaries/windowsInformationProtectionAppLearningSummaryIdValue",
+			Input: "/deviceManagement/windowsInformationProtectionAppLearningSummaries/windowsInformationProtectionAppLearningSummaryId",
 			Expected: &DeviceManagementWindowsInformationProtectionAppLearningSummaryId{
-				WindowsInformationProtectionAppLearningSummaryId: "windowsInformationProtectionAppLearningSummaryIdValue",
+				WindowsInformationProtectionAppLearningSummaryId: "windowsInformationProtectionAppLearningSummaryId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/windowsInformationProtectionAppLearningSummaries/windowsInformationProtectionAppLearningSummaryIdValue/extra",
+			Input: "/deviceManagement/windowsInformationProtectionAppLearningSummaries/windowsInformationProtectionAppLearningSummaryId/extra",
 			Error: true,
 		},
 	}
@@ -116,26 +116,26 @@ func TestParseDeviceManagementWindowsInformationProtectionAppLearningSummaryIDIn
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/windowsInformationProtectionAppLearningSummaries/windowsInformationProtectionAppLearningSummaryIdValue",
+			Input: "/deviceManagement/windowsInformationProtectionAppLearningSummaries/windowsInformationProtectionAppLearningSummaryId",
 			Expected: &DeviceManagementWindowsInformationProtectionAppLearningSummaryId{
-				WindowsInformationProtectionAppLearningSummaryId: "windowsInformationProtectionAppLearningSummaryIdValue",
+				WindowsInformationProtectionAppLearningSummaryId: "windowsInformationProtectionAppLearningSummaryId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/windowsInformationProtectionAppLearningSummaries/windowsInformationProtectionAppLearningSummaryIdValue/extra",
+			Input: "/deviceManagement/windowsInformationProtectionAppLearningSummaries/windowsInformationProtectionAppLearningSummaryId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/wInDoWsInFoRmAtIoNpRoTeCtIoNaPpLeArNiNgSuMmArIeS/wInDoWsInFoRmAtIoNpRoTeCtIoNaPpLeArNiNgSuMmArYiDvAlUe",
+			Input: "/dEvIcEmAnAgEmEnT/wInDoWsInFoRmAtIoNpRoTeCtIoNaPpLeArNiNgSuMmArIeS/wInDoWsInFoRmAtIoNpRoTeCtIoNaPpLeArNiNgSuMmArYiD",
 			Expected: &DeviceManagementWindowsInformationProtectionAppLearningSummaryId{
-				WindowsInformationProtectionAppLearningSummaryId: "wInDoWsInFoRmAtIoNpRoTeCtIoNaPpLeArNiNgSuMmArYiDvAlUe",
+				WindowsInformationProtectionAppLearningSummaryId: "wInDoWsInFoRmAtIoNpRoTeCtIoNaPpLeArNiNgSuMmArYiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/wInDoWsInFoRmAtIoNpRoTeCtIoNaPpLeArNiNgSuMmArIeS/wInDoWsInFoRmAtIoNpRoTeCtIoNaPpLeArNiNgSuMmArYiDvAlUe/extra",
+			Input: "/dEvIcEmAnAgEmEnT/wInDoWsInFoRmAtIoNpRoTeCtIoNaPpLeArNiNgSuMmArIeS/wInDoWsInFoRmAtIoNpRoTeCtIoNaPpLeArNiNgSuMmArYiD/extra",
 			Error: true,
 		},
 	}

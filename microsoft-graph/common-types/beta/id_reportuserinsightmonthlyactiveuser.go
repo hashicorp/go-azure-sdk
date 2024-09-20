@@ -95,7 +95,7 @@ func (id ReportUserInsightMonthlyActiveUserId) Segments() []resourceids.Segment 
 		resourceids.StaticSegment("userInsights", "userInsights", "userInsights"),
 		resourceids.StaticSegment("monthly", "monthly", "monthly"),
 		resourceids.StaticSegment("activeUsers", "activeUsers", "activeUsers"),
-		resourceids.UserSpecifiedSegment("activeUsersMetricId", "activeUsersMetricIdValue"),
+		resourceids.UserSpecifiedSegment("activeUsersMetricId", "activeUsersMetricId"),
 	}
 }
 

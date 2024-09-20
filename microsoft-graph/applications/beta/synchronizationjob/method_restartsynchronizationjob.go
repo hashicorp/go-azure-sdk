@@ -18,16 +18,45 @@ type RestartSynchronizationJobOperationResponse struct {
 	OData        *odata.OData
 }
 
+type RestartSynchronizationJobOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultRestartSynchronizationJobOperationOptions() RestartSynchronizationJobOperationOptions {
+	return RestartSynchronizationJobOperationOptions{}
+}
+
+func (o RestartSynchronizationJobOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o RestartSynchronizationJobOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o RestartSynchronizationJobOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // RestartSynchronizationJob - Invoke action restart. Restart a stopped synchronization job, forcing it to reprocess all
 // the objects in the directory. Optionally clears existing the synchronization state and previous errors.
-func (c SynchronizationJobClient) RestartSynchronizationJob(ctx context.Context, id beta.ApplicationIdSynchronizationJobId, input RestartSynchronizationJobRequest) (result RestartSynchronizationJobOperationResponse, err error) {
+func (c SynchronizationJobClient) RestartSynchronizationJob(ctx context.Context, id beta.ApplicationIdSynchronizationJobId, input RestartSynchronizationJobRequest, options RestartSynchronizationJobOperationOptions) (result RestartSynchronizationJobOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/restart", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/restart", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

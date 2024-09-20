@@ -19,15 +19,44 @@ type CreatePartnerBillingUsageBilledExportOperationResponse struct {
 	Model        stable.PartnersBillingOperation
 }
 
+type CreatePartnerBillingUsageBilledExportOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreatePartnerBillingUsageBilledExportOperationOptions() CreatePartnerBillingUsageBilledExportOperationOptions {
+	return CreatePartnerBillingUsageBilledExportOperationOptions{}
+}
+
+func (o CreatePartnerBillingUsageBilledExportOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreatePartnerBillingUsageBilledExportOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreatePartnerBillingUsageBilledExportOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreatePartnerBillingUsageBilledExport - Invoke action export. Export the billed Azure usage data.
-func (c PartnerBillingUsageBilledClient) CreatePartnerBillingUsageBilledExport(ctx context.Context, input CreatePartnerBillingUsageBilledExportRequest) (result CreatePartnerBillingUsageBilledExportOperationResponse, err error) {
+func (c PartnerBillingUsageBilledClient) CreatePartnerBillingUsageBilledExport(ctx context.Context, input CreatePartnerBillingUsageBilledExportRequest, options CreatePartnerBillingUsageBilledExportOperationOptions) (result CreatePartnerBillingUsageBilledExportOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/reports/partners/billing/usage/billed/partners.billing.export",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/reports/partners/billing/usage/billed/partners.billing.export",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

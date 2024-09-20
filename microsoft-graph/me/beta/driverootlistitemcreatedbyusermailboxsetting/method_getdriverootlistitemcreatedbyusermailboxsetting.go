@@ -20,8 +20,9 @@ type GetDriveRootListItemCreatedByUserMailboxSettingOperationResponse struct {
 }
 
 type GetDriveRootListItemCreatedByUserMailboxSettingOperationOptions struct {
-	Expand *odata.Expand
-	Select *[]string
+	Expand   *odata.Expand
+	Metadata *odata.Metadata
+	Select   *[]string
 }
 
 func DefaultGetDriveRootListItemCreatedByUserMailboxSettingOperationOptions() GetDriveRootListItemCreatedByUserMailboxSettingOperationOptions {
@@ -38,6 +39,9 @@ func (o GetDriveRootListItemCreatedByUserMailboxSettingOperationOptions) ToOData
 	out := odata.Query{}
 	if o.Expand != nil {
 		out.Expand = *o.Expand
+	}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
 	}
 	if o.Select != nil {
 		out.Select = *o.Select

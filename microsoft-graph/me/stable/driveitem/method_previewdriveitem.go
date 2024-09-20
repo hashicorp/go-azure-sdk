@@ -19,15 +19,44 @@ type PreviewDriveItemOperationResponse struct {
 	Model        *stable.ItemPreviewInfo
 }
 
+type PreviewDriveItemOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultPreviewDriveItemOperationOptions() PreviewDriveItemOperationOptions {
+	return PreviewDriveItemOperationOptions{}
+}
+
+func (o PreviewDriveItemOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o PreviewDriveItemOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o PreviewDriveItemOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // PreviewDriveItem - Invoke action preview
-func (c DriveItemClient) PreviewDriveItem(ctx context.Context, id stable.MeDriveIdItemId, input PreviewDriveItemRequest) (result PreviewDriveItemOperationResponse, err error) {
+func (c DriveItemClient) PreviewDriveItem(ctx context.Context, id stable.MeDriveIdItemId, input PreviewDriveItemRequest, options PreviewDriveItemOperationOptions) (result PreviewDriveItemOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/preview", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/preview", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

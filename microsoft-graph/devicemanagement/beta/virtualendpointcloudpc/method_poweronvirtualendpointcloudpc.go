@@ -18,17 +18,46 @@ type PowerOnVirtualEndpointCloudPCOperationResponse struct {
 	OData        *odata.OData
 }
 
+type PowerOnVirtualEndpointCloudPCOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultPowerOnVirtualEndpointCloudPCOperationOptions() PowerOnVirtualEndpointCloudPCOperationOptions {
+	return PowerOnVirtualEndpointCloudPCOperationOptions{}
+}
+
+func (o PowerOnVirtualEndpointCloudPCOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o PowerOnVirtualEndpointCloudPCOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o PowerOnVirtualEndpointCloudPCOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // PowerOnVirtualEndpointCloudPC - Invoke action powerOn. Power on a Windows 365 Frontline Cloud PC. This action
 // supports Microsoft Endpoint Manager (MEM) admin scenarios. After a Windows 365 Frontline Cloud PC is powered on, it
 // is allocated to a user, and licenses are assigned immediately. Only IT admin users can perform this action.
-func (c VirtualEndpointCloudPCClient) PowerOnVirtualEndpointCloudPC(ctx context.Context, id beta.DeviceManagementVirtualEndpointCloudPCId) (result PowerOnVirtualEndpointCloudPCOperationResponse, err error) {
+func (c VirtualEndpointCloudPCClient) PowerOnVirtualEndpointCloudPC(ctx context.Context, id beta.DeviceManagementVirtualEndpointCloudPCId, options PowerOnVirtualEndpointCloudPCOperationOptions) (result PowerOnVirtualEndpointCloudPCOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/powerOn", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/powerOn", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

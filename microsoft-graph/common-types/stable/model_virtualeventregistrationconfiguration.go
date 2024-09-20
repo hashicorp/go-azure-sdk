@@ -94,17 +94,24 @@ func (s BaseVirtualEventRegistrationConfigurationImpl) MarshalJSON() ([]byte, er
 var _ json.Unmarshaler = &BaseVirtualEventRegistrationConfigurationImpl{}
 
 func (s *BaseVirtualEventRegistrationConfigurationImpl) UnmarshalJSON(bytes []byte) error {
-	type alias BaseVirtualEventRegistrationConfigurationImpl
-	var decoded alias
+
+	var decoded struct {
+		Capacity           nullable.Type[int64]                    `json:"capacity,omitempty"`
+		Questions          *[]VirtualEventRegistrationQuestionBase `json:"questions,omitempty"`
+		RegistrationWebUrl nullable.Type[string]                   `json:"registrationWebUrl,omitempty"`
+		Id                 *string                                 `json:"id,omitempty"`
+		ODataId            *string                                 `json:"@odata.id,omitempty"`
+		ODataType          *string                                 `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into BaseVirtualEventRegistrationConfigurationImpl: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.Capacity = decoded.Capacity
+	s.RegistrationWebUrl = decoded.RegistrationWebUrl
 	s.Id = decoded.Id
 	s.ODataId = decoded.ODataId
 	s.ODataType = decoded.ODataType
-	s.RegistrationWebUrl = decoded.RegistrationWebUrl
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -127,6 +134,7 @@ func (s *BaseVirtualEventRegistrationConfigurationImpl) UnmarshalJSON(bytes []by
 		}
 		s.Questions = &output
 	}
+
 	return nil
 }
 
@@ -140,9 +148,9 @@ func UnmarshalVirtualEventRegistrationConfigurationImplementation(input []byte) 
 		return nil, fmt.Errorf("unmarshaling VirtualEventRegistrationConfiguration into map[string]interface: %+v", err)
 	}
 
-	value, ok := temp["@odata.type"].(string)
-	if !ok {
-		return nil, nil
+	var value string
+	if v, ok := temp["@odata.type"]; ok {
+		value = fmt.Sprintf("%v", v)
 	}
 
 	if strings.EqualFold(value, "#microsoft.graph.virtualEventWebinarRegistrationConfiguration") {

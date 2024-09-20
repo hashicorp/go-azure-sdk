@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/microsoft-graph/serviceprincipals/stable/synchronizationjobschema` Documentation
 
-The `synchronizationjobschema` SDK allows for interaction with the Azure Resource Manager Service `serviceprincipals` (API Version `stable`).
+The `synchronizationjobschema` SDK allows for interaction with Microsoft Graph `serviceprincipals` (API Version `stable`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -15,7 +15,7 @@ import "github.com/hashicorp/go-azure-sdk/microsoft-graph/serviceprincipals/stab
 ### Client Initialization
 
 ```go
-client := synchronizationjobschema.NewSynchronizationJobSchemaClientWithBaseURI("https://management.azure.com")
+client := synchronizationjobschema.NewSynchronizationJobSchemaClientWithBaseURI("https://graph.microsoft.com")
 client.Client.Authorizer = authorizer
 ```
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := synchronizationjobschema.NewServicePrincipalIdSynchronizationJobID("servicePrincipalIdValue", "synchronizationJobIdValue")
+id := synchronizationjobschema.NewServicePrincipalIdSynchronizationJobID("servicePrincipalId", "synchronizationJobId")
 
 read, err := client.DeleteSynchronizationJobSchema(ctx, id, synchronizationjobschema.DefaultDeleteSynchronizationJobSchemaOperationOptions())
 if err != nil {
@@ -40,7 +40,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := synchronizationjobschema.NewServicePrincipalIdSynchronizationJobID("servicePrincipalIdValue", "synchronizationJobIdValue")
+id := synchronizationjobschema.NewServicePrincipalIdSynchronizationJobID("servicePrincipalId", "synchronizationJobId")
 
 read, err := client.GetSynchronizationJobSchema(ctx, id, synchronizationjobschema.DefaultGetSynchronizationJobSchemaOperationOptions())
 if err != nil {
@@ -56,14 +56,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := synchronizationjobschema.NewServicePrincipalIdSynchronizationJobID("servicePrincipalIdValue", "synchronizationJobIdValue")
+id := synchronizationjobschema.NewServicePrincipalIdSynchronizationJobID("servicePrincipalId", "synchronizationJobId")
 
 payload := synchronizationjobschema.ParseSynchronizationJobSchemaExpressionRequest{
 	// ...
 }
 
 
-read, err := client.ParseSynchronizationJobSchemaExpression(ctx, id, payload)
+read, err := client.ParseSynchronizationJobSchemaExpression(ctx, id, payload, synchronizationjobschema.DefaultParseSynchronizationJobSchemaExpressionOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -77,14 +77,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := synchronizationjobschema.NewServicePrincipalIdSynchronizationJobID("servicePrincipalIdValue", "synchronizationJobIdValue")
+id := synchronizationjobschema.NewServicePrincipalIdSynchronizationJobID("servicePrincipalId", "synchronizationJobId")
 
 payload := synchronizationjobschema.SynchronizationSchema{
 	// ...
 }
 
 
-read, err := client.UpdateSynchronizationJobSchema(ctx, id, payload)
+read, err := client.UpdateSynchronizationJobSchema(ctx, id, payload, synchronizationjobschema.DefaultUpdateSynchronizationJobSchemaOperationOptions())
 if err != nil {
 	// handle the error
 }

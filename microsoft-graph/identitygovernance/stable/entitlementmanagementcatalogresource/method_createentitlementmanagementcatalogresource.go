@@ -19,15 +19,44 @@ type CreateEntitlementManagementCatalogResourceOperationResponse struct {
 	Model        *stable.AccessPackageResource
 }
 
+type CreateEntitlementManagementCatalogResourceOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateEntitlementManagementCatalogResourceOperationOptions() CreateEntitlementManagementCatalogResourceOperationOptions {
+	return CreateEntitlementManagementCatalogResourceOperationOptions{}
+}
+
+func (o CreateEntitlementManagementCatalogResourceOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateEntitlementManagementCatalogResourceOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateEntitlementManagementCatalogResourceOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateEntitlementManagementCatalogResource - Create new navigation property to resources for identityGovernance
-func (c EntitlementManagementCatalogResourceClient) CreateEntitlementManagementCatalogResource(ctx context.Context, id stable.IdentityGovernanceEntitlementManagementCatalogId, input stable.AccessPackageResource) (result CreateEntitlementManagementCatalogResourceOperationResponse, err error) {
+func (c EntitlementManagementCatalogResourceClient) CreateEntitlementManagementCatalogResource(ctx context.Context, id stable.IdentityGovernanceEntitlementManagementCatalogId, input stable.AccessPackageResource, options CreateEntitlementManagementCatalogResourceOperationOptions) (result CreateEntitlementManagementCatalogResourceOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/resources", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/resources", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -17,15 +17,44 @@ type UpdateTodoListOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateTodoListOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateTodoListOperationOptions() UpdateTodoListOperationOptions {
+	return UpdateTodoListOperationOptions{}
+}
+
+func (o UpdateTodoListOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateTodoListOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateTodoListOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateTodoList - Update the navigation property lists in users
-func (c TodoListClient) UpdateTodoList(ctx context.Context, id beta.UserIdTodoListId, input beta.TodoTaskList) (result UpdateTodoListOperationResponse, err error) {
+func (c TodoListClient) UpdateTodoList(ctx context.Context, id beta.UserIdTodoListId, input beta.TodoTaskList, options UpdateTodoListOperationOptions) (result UpdateTodoListOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

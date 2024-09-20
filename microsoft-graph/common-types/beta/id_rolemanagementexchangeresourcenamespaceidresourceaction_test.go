@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &RoleManagementExchangeResourceNamespaceIdResourceActionId{}
 
 func TestNewRoleManagementExchangeResourceNamespaceIdResourceActionID(t *testing.T) {
-	id := NewRoleManagementExchangeResourceNamespaceIdResourceActionID("unifiedRbacResourceNamespaceIdValue", "unifiedRbacResourceActionIdValue")
+	id := NewRoleManagementExchangeResourceNamespaceIdResourceActionID("unifiedRbacResourceNamespaceId", "unifiedRbacResourceActionId")
 
-	if id.UnifiedRbacResourceNamespaceId != "unifiedRbacResourceNamespaceIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'UnifiedRbacResourceNamespaceId'", id.UnifiedRbacResourceNamespaceId, "unifiedRbacResourceNamespaceIdValue")
+	if id.UnifiedRbacResourceNamespaceId != "unifiedRbacResourceNamespaceId" {
+		t.Fatalf("Expected %q but got %q for Segment 'UnifiedRbacResourceNamespaceId'", id.UnifiedRbacResourceNamespaceId, "unifiedRbacResourceNamespaceId")
 	}
 
-	if id.UnifiedRbacResourceActionId != "unifiedRbacResourceActionIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'UnifiedRbacResourceActionId'", id.UnifiedRbacResourceActionId, "unifiedRbacResourceActionIdValue")
+	if id.UnifiedRbacResourceActionId != "unifiedRbacResourceActionId" {
+		t.Fatalf("Expected %q but got %q for Segment 'UnifiedRbacResourceActionId'", id.UnifiedRbacResourceActionId, "unifiedRbacResourceActionId")
 	}
 }
 
 func TestFormatRoleManagementExchangeResourceNamespaceIdResourceActionID(t *testing.T) {
-	actual := NewRoleManagementExchangeResourceNamespaceIdResourceActionID("unifiedRbacResourceNamespaceIdValue", "unifiedRbacResourceActionIdValue").ID()
-	expected := "/roleManagement/exchange/resourceNamespaces/unifiedRbacResourceNamespaceIdValue/resourceActions/unifiedRbacResourceActionIdValue"
+	actual := NewRoleManagementExchangeResourceNamespaceIdResourceActionID("unifiedRbacResourceNamespaceId", "unifiedRbacResourceActionId").ID()
+	expected := "/roleManagement/exchange/resourceNamespaces/unifiedRbacResourceNamespaceId/resourceActions/unifiedRbacResourceActionId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -59,25 +59,25 @@ func TestParseRoleManagementExchangeResourceNamespaceIdResourceActionID(t *testi
 		},
 		{
 			// Incomplete URI
-			Input: "/roleManagement/exchange/resourceNamespaces/unifiedRbacResourceNamespaceIdValue",
+			Input: "/roleManagement/exchange/resourceNamespaces/unifiedRbacResourceNamespaceId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/roleManagement/exchange/resourceNamespaces/unifiedRbacResourceNamespaceIdValue/resourceActions",
+			Input: "/roleManagement/exchange/resourceNamespaces/unifiedRbacResourceNamespaceId/resourceActions",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/roleManagement/exchange/resourceNamespaces/unifiedRbacResourceNamespaceIdValue/resourceActions/unifiedRbacResourceActionIdValue",
+			Input: "/roleManagement/exchange/resourceNamespaces/unifiedRbacResourceNamespaceId/resourceActions/unifiedRbacResourceActionId",
 			Expected: &RoleManagementExchangeResourceNamespaceIdResourceActionId{
-				UnifiedRbacResourceNamespaceId: "unifiedRbacResourceNamespaceIdValue",
-				UnifiedRbacResourceActionId:    "unifiedRbacResourceActionIdValue",
+				UnifiedRbacResourceNamespaceId: "unifiedRbacResourceNamespaceId",
+				UnifiedRbacResourceActionId:    "unifiedRbacResourceActionId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/roleManagement/exchange/resourceNamespaces/unifiedRbacResourceNamespaceIdValue/resourceActions/unifiedRbacResourceActionIdValue/extra",
+			Input: "/roleManagement/exchange/resourceNamespaces/unifiedRbacResourceNamespaceId/resourceActions/unifiedRbacResourceActionId/extra",
 			Error: true,
 		},
 	}
@@ -150,48 +150,48 @@ func TestParseRoleManagementExchangeResourceNamespaceIdResourceActionIDInsensiti
 		},
 		{
 			// Incomplete URI
-			Input: "/roleManagement/exchange/resourceNamespaces/unifiedRbacResourceNamespaceIdValue",
+			Input: "/roleManagement/exchange/resourceNamespaces/unifiedRbacResourceNamespaceId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/rOlEmAnAgEmEnT/eXcHaNgE/rEsOuRcEnAmEsPaCeS/uNiFiEdRbAcReSoUrCeNaMeSpAcEiDvAlUe",
+			Input: "/rOlEmAnAgEmEnT/eXcHaNgE/rEsOuRcEnAmEsPaCeS/uNiFiEdRbAcReSoUrCeNaMeSpAcEiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/roleManagement/exchange/resourceNamespaces/unifiedRbacResourceNamespaceIdValue/resourceActions",
+			Input: "/roleManagement/exchange/resourceNamespaces/unifiedRbacResourceNamespaceId/resourceActions",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/rOlEmAnAgEmEnT/eXcHaNgE/rEsOuRcEnAmEsPaCeS/uNiFiEdRbAcReSoUrCeNaMeSpAcEiDvAlUe/rEsOuRcEaCtIoNs",
+			Input: "/rOlEmAnAgEmEnT/eXcHaNgE/rEsOuRcEnAmEsPaCeS/uNiFiEdRbAcReSoUrCeNaMeSpAcEiD/rEsOuRcEaCtIoNs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/roleManagement/exchange/resourceNamespaces/unifiedRbacResourceNamespaceIdValue/resourceActions/unifiedRbacResourceActionIdValue",
+			Input: "/roleManagement/exchange/resourceNamespaces/unifiedRbacResourceNamespaceId/resourceActions/unifiedRbacResourceActionId",
 			Expected: &RoleManagementExchangeResourceNamespaceIdResourceActionId{
-				UnifiedRbacResourceNamespaceId: "unifiedRbacResourceNamespaceIdValue",
-				UnifiedRbacResourceActionId:    "unifiedRbacResourceActionIdValue",
+				UnifiedRbacResourceNamespaceId: "unifiedRbacResourceNamespaceId",
+				UnifiedRbacResourceActionId:    "unifiedRbacResourceActionId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/roleManagement/exchange/resourceNamespaces/unifiedRbacResourceNamespaceIdValue/resourceActions/unifiedRbacResourceActionIdValue/extra",
+			Input: "/roleManagement/exchange/resourceNamespaces/unifiedRbacResourceNamespaceId/resourceActions/unifiedRbacResourceActionId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/rOlEmAnAgEmEnT/eXcHaNgE/rEsOuRcEnAmEsPaCeS/uNiFiEdRbAcReSoUrCeNaMeSpAcEiDvAlUe/rEsOuRcEaCtIoNs/uNiFiEdRbAcReSoUrCeAcTiOnIdVaLuE",
+			Input: "/rOlEmAnAgEmEnT/eXcHaNgE/rEsOuRcEnAmEsPaCeS/uNiFiEdRbAcReSoUrCeNaMeSpAcEiD/rEsOuRcEaCtIoNs/uNiFiEdRbAcReSoUrCeAcTiOnId",
 			Expected: &RoleManagementExchangeResourceNamespaceIdResourceActionId{
-				UnifiedRbacResourceNamespaceId: "uNiFiEdRbAcReSoUrCeNaMeSpAcEiDvAlUe",
-				UnifiedRbacResourceActionId:    "uNiFiEdRbAcReSoUrCeAcTiOnIdVaLuE",
+				UnifiedRbacResourceNamespaceId: "uNiFiEdRbAcReSoUrCeNaMeSpAcEiD",
+				UnifiedRbacResourceActionId:    "uNiFiEdRbAcReSoUrCeAcTiOnId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/rOlEmAnAgEmEnT/eXcHaNgE/rEsOuRcEnAmEsPaCeS/uNiFiEdRbAcReSoUrCeNaMeSpAcEiDvAlUe/rEsOuRcEaCtIoNs/uNiFiEdRbAcReSoUrCeAcTiOnIdVaLuE/extra",
+			Input: "/rOlEmAnAgEmEnT/eXcHaNgE/rEsOuRcEnAmEsPaCeS/uNiFiEdRbAcReSoUrCeNaMeSpAcEiD/rEsOuRcEaCtIoNs/uNiFiEdRbAcReSoUrCeAcTiOnId/extra",
 			Error: true,
 		},
 	}

@@ -18,15 +18,44 @@ type CreatePartnerBillingManifestOperationResponse struct {
 	Model        *beta.PartnersBillingManifest
 }
 
+type CreatePartnerBillingManifestOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreatePartnerBillingManifestOperationOptions() CreatePartnerBillingManifestOperationOptions {
+	return CreatePartnerBillingManifestOperationOptions{}
+}
+
+func (o CreatePartnerBillingManifestOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreatePartnerBillingManifestOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreatePartnerBillingManifestOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreatePartnerBillingManifest - Create new navigation property to manifests for reports
-func (c PartnerBillingManifestClient) CreatePartnerBillingManifest(ctx context.Context, input beta.PartnersBillingManifest) (result CreatePartnerBillingManifestOperationResponse, err error) {
+func (c PartnerBillingManifestClient) CreatePartnerBillingManifest(ctx context.Context, input beta.PartnersBillingManifest, options CreatePartnerBillingManifestOperationOptions) (result CreatePartnerBillingManifestOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/reports/partners/billing/manifests",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/reports/partners/billing/manifests",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

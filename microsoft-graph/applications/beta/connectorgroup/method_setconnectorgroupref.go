@@ -18,15 +18,44 @@ type SetConnectorGroupRefOperationResponse struct {
 	OData        *odata.OData
 }
 
+type SetConnectorGroupRefOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultSetConnectorGroupRefOperationOptions() SetConnectorGroupRefOperationOptions {
+	return SetConnectorGroupRefOperationOptions{}
+}
+
+func (o SetConnectorGroupRefOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o SetConnectorGroupRefOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o SetConnectorGroupRefOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // SetConnectorGroupRef - Assign a connectorGroup to an application. Assign a connectorGroup to an application.
-func (c ConnectorGroupClient) SetConnectorGroupRef(ctx context.Context, id beta.ApplicationId, input beta.ReferenceUpdate) (result SetConnectorGroupRefOperationResponse, err error) {
+func (c ConnectorGroupClient) SetConnectorGroupRef(ctx context.Context, id beta.ApplicationId, input beta.ReferenceUpdate, options SetConnectorGroupRefOperationOptions) (result SetConnectorGroupRefOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPut,
-		Path:       fmt.Sprintf("%s/connectorGroup/$ref", id.ID()),
+		HttpMethod:    http.MethodPut,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/connectorGroup/$ref", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

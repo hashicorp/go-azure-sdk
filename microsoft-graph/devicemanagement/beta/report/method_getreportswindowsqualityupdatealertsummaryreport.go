@@ -17,15 +17,44 @@ type GetReportsWindowsQualityUpdateAlertSummaryReportOperationResponse struct {
 	Model        *[]byte
 }
 
+type GetReportsWindowsQualityUpdateAlertSummaryReportOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultGetReportsWindowsQualityUpdateAlertSummaryReportOperationOptions() GetReportsWindowsQualityUpdateAlertSummaryReportOperationOptions {
+	return GetReportsWindowsQualityUpdateAlertSummaryReportOperationOptions{}
+}
+
+func (o GetReportsWindowsQualityUpdateAlertSummaryReportOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o GetReportsWindowsQualityUpdateAlertSummaryReportOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o GetReportsWindowsQualityUpdateAlertSummaryReportOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // GetReportsWindowsQualityUpdateAlertSummaryReport - Invoke action getWindowsQualityUpdateAlertSummaryReport
-func (c ReportClient) GetReportsWindowsQualityUpdateAlertSummaryReport(ctx context.Context, input GetReportsWindowsQualityUpdateAlertSummaryReportRequest) (result GetReportsWindowsQualityUpdateAlertSummaryReportOperationResponse, err error) {
+func (c ReportClient) GetReportsWindowsQualityUpdateAlertSummaryReport(ctx context.Context, input GetReportsWindowsQualityUpdateAlertSummaryReportRequest, options GetReportsWindowsQualityUpdateAlertSummaryReportOperationOptions) (result GetReportsWindowsQualityUpdateAlertSummaryReportOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/octet-stream",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/deviceManagement/reports/getWindowsQualityUpdateAlertSummaryReport",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/deviceManagement/reports/getWindowsQualityUpdateAlertSummaryReport",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

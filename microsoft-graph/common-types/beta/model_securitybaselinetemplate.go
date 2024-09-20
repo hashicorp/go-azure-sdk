@@ -128,16 +128,34 @@ func (s SecurityBaselineTemplate) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &SecurityBaselineTemplate{}
 
 func (s *SecurityBaselineTemplate) UnmarshalJSON(bytes []byte) error {
-	type alias SecurityBaselineTemplate
-	var decoded alias
+
+	var decoded struct {
+		CategoryDeviceStateSummaries *[]SecurityBaselineCategoryStateSummary    `json:"categoryDeviceStateSummaries,omitempty"`
+		DeviceStates                 *[]SecurityBaselineDeviceState             `json:"deviceStates,omitempty"`
+		Categories                   *[]DeviceManagementTemplateSettingCategory `json:"categories,omitempty"`
+		Description                  nullable.Type[string]                      `json:"description,omitempty"`
+		DisplayName                  *string                                    `json:"displayName,omitempty"`
+		IntentCount                  *int64                                     `json:"intentCount,omitempty"`
+		IsDeprecated                 *bool                                      `json:"isDeprecated,omitempty"`
+		MigratableTo                 *[]DeviceManagementTemplate                `json:"migratableTo,omitempty"`
+		PlatformType                 *PolicyPlatformType                        `json:"platformType,omitempty"`
+		PublishedDateTime            *string                                    `json:"publishedDateTime,omitempty"`
+		Settings                     *[]DeviceManagementSettingInstance         `json:"settings,omitempty"`
+		TemplateSubtype              *DeviceManagementTemplateSubtype           `json:"templateSubtype,omitempty"`
+		TemplateType                 *DeviceManagementTemplateType              `json:"templateType,omitempty"`
+		VersionInfo                  nullable.Type[string]                      `json:"versionInfo,omitempty"`
+		Id                           *string                                    `json:"id,omitempty"`
+		ODataId                      *string                                    `json:"@odata.id,omitempty"`
+		ODataType                    *string                                    `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into SecurityBaselineTemplate: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
-	s.Categories = decoded.Categories
 	s.CategoryDeviceStateSummaries = decoded.CategoryDeviceStateSummaries
-	s.Description = decoded.Description
 	s.DeviceStates = decoded.DeviceStates
+	s.Categories = decoded.Categories
+	s.Description = decoded.Description
 	s.DisplayName = decoded.DisplayName
 	s.Id = decoded.Id
 	s.IntentCount = decoded.IntentCount
@@ -196,5 +214,6 @@ func (s *SecurityBaselineTemplate) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Settings = &output
 	}
+
 	return nil
 }

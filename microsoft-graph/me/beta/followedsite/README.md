@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/microsoft-graph/me/beta/followedsite` Documentation
 
-The `followedsite` SDK allows for interaction with the Azure Resource Manager Service `me` (API Version `beta`).
+The `followedsite` SDK allows for interaction with Microsoft Graph `me` (API Version `beta`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -15,7 +15,7 @@ import "github.com/hashicorp/go-azure-sdk/microsoft-graph/me/beta/followedsite"
 ### Client Initialization
 
 ```go
-client := followedsite.NewFollowedSiteClientWithBaseURI("https://management.azure.com")
+client := followedsite.NewFollowedSiteClientWithBaseURI("https://graph.microsoft.com")
 client.Client.Authorizer = authorizer
 ```
 
@@ -45,7 +45,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := followedsite.NewMeFollowedSiteID("siteIdValue")
+id := followedsite.NewMeFollowedSiteID("siteId")
 
 read, err := client.GetFollowedSite(ctx, id, followedsite.DefaultGetFollowedSiteOperationOptions())
 if err != nil {

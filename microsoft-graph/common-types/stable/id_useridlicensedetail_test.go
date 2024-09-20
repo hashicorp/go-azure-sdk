@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &UserIdLicenseDetailId{}
 
 func TestNewUserIdLicenseDetailID(t *testing.T) {
-	id := NewUserIdLicenseDetailID("userIdValue", "licenseDetailsIdValue")
+	id := NewUserIdLicenseDetailID("userId", "licenseDetailsId")
 
-	if id.UserId != "userIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'UserId'", id.UserId, "userIdValue")
+	if id.UserId != "userId" {
+		t.Fatalf("Expected %q but got %q for Segment 'UserId'", id.UserId, "userId")
 	}
 
-	if id.LicenseDetailsId != "licenseDetailsIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'LicenseDetailsId'", id.LicenseDetailsId, "licenseDetailsIdValue")
+	if id.LicenseDetailsId != "licenseDetailsId" {
+		t.Fatalf("Expected %q but got %q for Segment 'LicenseDetailsId'", id.LicenseDetailsId, "licenseDetailsId")
 	}
 }
 
 func TestFormatUserIdLicenseDetailID(t *testing.T) {
-	actual := NewUserIdLicenseDetailID("userIdValue", "licenseDetailsIdValue").ID()
-	expected := "/users/userIdValue/licenseDetails/licenseDetailsIdValue"
+	actual := NewUserIdLicenseDetailID("userId", "licenseDetailsId").ID()
+	expected := "/users/userId/licenseDetails/licenseDetailsId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -49,25 +49,25 @@ func TestParseUserIdLicenseDetailID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue",
+			Input: "/users/userId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/licenseDetails",
+			Input: "/users/userId/licenseDetails",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/users/userIdValue/licenseDetails/licenseDetailsIdValue",
+			Input: "/users/userId/licenseDetails/licenseDetailsId",
 			Expected: &UserIdLicenseDetailId{
-				UserId:           "userIdValue",
-				LicenseDetailsId: "licenseDetailsIdValue",
+				UserId:           "userId",
+				LicenseDetailsId: "licenseDetailsId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/users/userIdValue/licenseDetails/licenseDetailsIdValue/extra",
+			Input: "/users/userId/licenseDetails/licenseDetailsId/extra",
 			Error: true,
 		},
 	}
@@ -120,48 +120,48 @@ func TestParseUserIdLicenseDetailIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue",
+			Input: "/users/userId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe",
+			Input: "/uSeRs/uSeRiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/licenseDetails",
+			Input: "/users/userId/licenseDetails",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/lIcEnSeDeTaIlS",
+			Input: "/uSeRs/uSeRiD/lIcEnSeDeTaIlS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/users/userIdValue/licenseDetails/licenseDetailsIdValue",
+			Input: "/users/userId/licenseDetails/licenseDetailsId",
 			Expected: &UserIdLicenseDetailId{
-				UserId:           "userIdValue",
-				LicenseDetailsId: "licenseDetailsIdValue",
+				UserId:           "userId",
+				LicenseDetailsId: "licenseDetailsId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/users/userIdValue/licenseDetails/licenseDetailsIdValue/extra",
+			Input: "/users/userId/licenseDetails/licenseDetailsId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/lIcEnSeDeTaIlS/lIcEnSeDeTaIlSiDvAlUe",
+			Input: "/uSeRs/uSeRiD/lIcEnSeDeTaIlS/lIcEnSeDeTaIlSiD",
 			Expected: &UserIdLicenseDetailId{
-				UserId:           "uSeRiDvAlUe",
-				LicenseDetailsId: "lIcEnSeDeTaIlSiDvAlUe",
+				UserId:           "uSeRiD",
+				LicenseDetailsId: "lIcEnSeDeTaIlSiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/lIcEnSeDeTaIlS/lIcEnSeDeTaIlSiDvAlUe/extra",
+			Input: "/uSeRs/uSeRiD/lIcEnSeDeTaIlS/lIcEnSeDeTaIlSiD/extra",
 			Error: true,
 		},
 	}

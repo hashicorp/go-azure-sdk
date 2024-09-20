@@ -23,6 +23,7 @@ type GetMailFolderChildFolderOperationResponse struct {
 type GetMailFolderChildFolderOperationOptions struct {
 	Expand               *odata.Expand
 	IncludeHiddenFolders *string
+	Metadata             *odata.Metadata
 	Select               *[]string
 }
 
@@ -40,6 +41,9 @@ func (o GetMailFolderChildFolderOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
 	if o.Expand != nil {
 		out.Expand = *o.Expand
+	}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
 	}
 	if o.Select != nil {
 		out.Select = *o.Select

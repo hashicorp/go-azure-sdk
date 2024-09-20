@@ -17,15 +17,44 @@ type UpdateMessageOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateMessageOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateMessageOperationOptions() UpdateMessageOperationOptions {
+	return UpdateMessageOperationOptions{}
+}
+
+func (o UpdateMessageOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateMessageOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateMessageOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateMessage - Update the navigation property messages in users
-func (c MessageClient) UpdateMessage(ctx context.Context, id stable.UserIdMessageId, input stable.Message) (result UpdateMessageOperationResponse, err error) {
+func (c MessageClient) UpdateMessage(ctx context.Context, id stable.UserIdMessageId, input stable.Message, options UpdateMessageOperationOptions) (result UpdateMessageOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

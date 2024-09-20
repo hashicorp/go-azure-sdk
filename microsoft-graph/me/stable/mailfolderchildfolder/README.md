@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/mailfolderchildfolder` Documentation
 
-The `mailfolderchildfolder` SDK allows for interaction with the Azure Resource Manager Service `me` (API Version `stable`).
+The `mailfolderchildfolder` SDK allows for interaction with Microsoft Graph `me` (API Version `stable`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -15,7 +15,7 @@ import "github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/mailfolderch
 ### Client Initialization
 
 ```go
-client := mailfolderchildfolder.NewMailFolderChildFolderClientWithBaseURI("https://management.azure.com")
+client := mailfolderchildfolder.NewMailFolderChildFolderClientWithBaseURI("https://graph.microsoft.com")
 client.Client.Authorizer = authorizer
 ```
 
@@ -24,14 +24,14 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := mailfolderchildfolder.NewMeMailFolderIdChildFolderID("mailFolderIdValue", "mailFolderId1Value")
+id := mailfolderchildfolder.NewMeMailFolderIdChildFolderID("mailFolderId", "mailFolderId1")
 
 payload := mailfolderchildfolder.CopyMailFolderChildFolderRequest{
 	// ...
 }
 
 
-read, err := client.CopyMailFolderChildFolder(ctx, id, payload)
+read, err := client.CopyMailFolderChildFolder(ctx, id, payload, mailfolderchildfolder.DefaultCopyMailFolderChildFolderOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -45,14 +45,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := mailfolderchildfolder.NewMeMailFolderID("mailFolderIdValue")
+id := mailfolderchildfolder.NewMeMailFolderID("mailFolderId")
 
 payload := mailfolderchildfolder.MailFolder{
 	// ...
 }
 
 
-read, err := client.CreateMailFolderChildFolder(ctx, id, payload)
+read, err := client.CreateMailFolderChildFolder(ctx, id, payload, mailfolderchildfolder.DefaultCreateMailFolderChildFolderOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -66,7 +66,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := mailfolderchildfolder.NewMeMailFolderIdChildFolderID("mailFolderIdValue", "mailFolderId1Value")
+id := mailfolderchildfolder.NewMeMailFolderIdChildFolderID("mailFolderId", "mailFolderId1")
 
 read, err := client.DeleteMailFolderChildFolder(ctx, id, mailfolderchildfolder.DefaultDeleteMailFolderChildFolderOperationOptions())
 if err != nil {
@@ -82,7 +82,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := mailfolderchildfolder.NewMeMailFolderIdChildFolderID("mailFolderIdValue", "mailFolderId1Value")
+id := mailfolderchildfolder.NewMeMailFolderIdChildFolderID("mailFolderId", "mailFolderId1")
 
 read, err := client.GetMailFolderChildFolder(ctx, id, mailfolderchildfolder.DefaultGetMailFolderChildFolderOperationOptions())
 if err != nil {
@@ -98,7 +98,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := mailfolderchildfolder.NewMeMailFolderID("mailFolderIdValue")
+id := mailfolderchildfolder.NewMeMailFolderID("mailFolderId")
 
 read, err := client.GetMailFolderChildFoldersCount(ctx, id, mailfolderchildfolder.DefaultGetMailFolderChildFoldersCountOperationOptions())
 if err != nil {
@@ -114,7 +114,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := mailfolderchildfolder.NewMeMailFolderID("mailFolderIdValue")
+id := mailfolderchildfolder.NewMeMailFolderID("mailFolderId")
 
 // alternatively `client.ListMailFolderChildFolders(ctx, id, mailfolderchildfolder.DefaultListMailFolderChildFoldersOperationOptions())` can be used to do batched pagination
 items, err := client.ListMailFolderChildFoldersComplete(ctx, id, mailfolderchildfolder.DefaultListMailFolderChildFoldersOperationOptions())
@@ -131,14 +131,14 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := mailfolderchildfolder.NewMeMailFolderIdChildFolderID("mailFolderIdValue", "mailFolderId1Value")
+id := mailfolderchildfolder.NewMeMailFolderIdChildFolderID("mailFolderId", "mailFolderId1")
 
 payload := mailfolderchildfolder.MoveMailFolderChildFolderRequest{
 	// ...
 }
 
 
-read, err := client.MoveMailFolderChildFolder(ctx, id, payload)
+read, err := client.MoveMailFolderChildFolder(ctx, id, payload, mailfolderchildfolder.DefaultMoveMailFolderChildFolderOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -152,14 +152,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := mailfolderchildfolder.NewMeMailFolderIdChildFolderID("mailFolderIdValue", "mailFolderId1Value")
+id := mailfolderchildfolder.NewMeMailFolderIdChildFolderID("mailFolderId", "mailFolderId1")
 
 payload := mailfolderchildfolder.MailFolder{
 	// ...
 }
 
 
-read, err := client.UpdateMailFolderChildFolder(ctx, id, payload)
+read, err := client.UpdateMailFolderChildFolder(ctx, id, payload, mailfolderchildfolder.DefaultUpdateMailFolderChildFolderOperationOptions())
 if err != nil {
 	// handle the error
 }

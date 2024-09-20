@@ -68,10 +68,15 @@ func (s CloudPCProvisioningPolicyAssignment) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &CloudPCProvisioningPolicyAssignment{}
 
 func (s *CloudPCProvisioningPolicyAssignment) UnmarshalJSON(bytes []byte) error {
-	type alias CloudPCProvisioningPolicyAssignment
-	var decoded alias
+
+	var decoded struct {
+		AssignedUsers *[]User `json:"assignedUsers,omitempty"`
+		Id            *string `json:"id,omitempty"`
+		ODataId       *string `json:"@odata.id,omitempty"`
+		ODataType     *string `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into CloudPCProvisioningPolicyAssignment: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.AssignedUsers = decoded.AssignedUsers
@@ -91,5 +96,6 @@ func (s *CloudPCProvisioningPolicyAssignment) UnmarshalJSON(bytes []byte) error 
 		}
 		s.Target = impl
 	}
+
 	return nil
 }

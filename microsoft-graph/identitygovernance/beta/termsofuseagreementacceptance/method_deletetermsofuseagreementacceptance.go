@@ -19,7 +19,8 @@ type DeleteTermsOfUseAgreementAcceptanceOperationResponse struct {
 }
 
 type DeleteTermsOfUseAgreementAcceptanceOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteTermsOfUseAgreementAcceptanceOperationOptions() DeleteTermsOfUseAgreementAcceptanceOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteTermsOfUseAgreementAcceptanceOperationOptions) ToHeaders() *client
 
 func (o DeleteTermsOfUseAgreementAcceptanceOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 
@@ -46,8 +49,8 @@ func (o DeleteTermsOfUseAgreementAcceptanceOperationOptions) ToQuery() *client.Q
 	return &out
 }
 
-// DeleteTermsOfUseAgreementAcceptance - Delete navigation property agreementAcceptances for identityGovernance
-func (c TermsOfUseAgreementAcceptanceClient) DeleteTermsOfUseAgreementAcceptance(ctx context.Context, id beta.IdentityGovernanceTermsOfUseAgreementAcceptanceId, options DeleteTermsOfUseAgreementAcceptanceOperationOptions) (result DeleteTermsOfUseAgreementAcceptanceOperationResponse, err error) {
+// DeleteTermsOfUseAgreementAcceptance - Delete navigation property acceptances for identityGovernance
+func (c TermsOfUseAgreementAcceptanceClient) DeleteTermsOfUseAgreementAcceptance(ctx context.Context, id beta.IdentityGovernanceTermsOfUseAgreementIdAcceptanceId, options DeleteTermsOfUseAgreementAcceptanceOperationOptions) (result DeleteTermsOfUseAgreementAcceptanceOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{

@@ -81,20 +81,29 @@ func (s AttendanceRecord) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &AttendanceRecord{}
 
 func (s *AttendanceRecord) UnmarshalJSON(bytes []byte) error {
-	type alias AttendanceRecord
-	var decoded alias
+
+	var decoded struct {
+		AttendanceIntervals      *[]AttendanceInterval `json:"attendanceIntervals,omitempty"`
+		EmailAddress             nullable.Type[string] `json:"emailAddress,omitempty"`
+		RegistrantId             nullable.Type[string] `json:"registrantId,omitempty"`
+		Role                     nullable.Type[string] `json:"role,omitempty"`
+		TotalAttendanceInSeconds nullable.Type[int64]  `json:"totalAttendanceInSeconds,omitempty"`
+		Id                       *string               `json:"id,omitempty"`
+		ODataId                  *string               `json:"@odata.id,omitempty"`
+		ODataType                *string               `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into AttendanceRecord: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.AttendanceIntervals = decoded.AttendanceIntervals
 	s.EmailAddress = decoded.EmailAddress
-	s.Id = decoded.Id
-	s.ODataId = decoded.ODataId
-	s.ODataType = decoded.ODataType
 	s.RegistrantId = decoded.RegistrantId
 	s.Role = decoded.Role
 	s.TotalAttendanceInSeconds = decoded.TotalAttendanceInSeconds
+	s.Id = decoded.Id
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -108,5 +117,6 @@ func (s *AttendanceRecord) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Identity = impl
 	}
+
 	return nil
 }

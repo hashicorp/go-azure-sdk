@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &DeviceManagementWindowsAutopilotDeploymentProfileIdAssignedDeviceId{}
 
 func TestNewDeviceManagementWindowsAutopilotDeploymentProfileIdAssignedDeviceID(t *testing.T) {
-	id := NewDeviceManagementWindowsAutopilotDeploymentProfileIdAssignedDeviceID("windowsAutopilotDeploymentProfileIdValue", "windowsAutopilotDeviceIdentityIdValue")
+	id := NewDeviceManagementWindowsAutopilotDeploymentProfileIdAssignedDeviceID("windowsAutopilotDeploymentProfileId", "windowsAutopilotDeviceIdentityId")
 
-	if id.WindowsAutopilotDeploymentProfileId != "windowsAutopilotDeploymentProfileIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'WindowsAutopilotDeploymentProfileId'", id.WindowsAutopilotDeploymentProfileId, "windowsAutopilotDeploymentProfileIdValue")
+	if id.WindowsAutopilotDeploymentProfileId != "windowsAutopilotDeploymentProfileId" {
+		t.Fatalf("Expected %q but got %q for Segment 'WindowsAutopilotDeploymentProfileId'", id.WindowsAutopilotDeploymentProfileId, "windowsAutopilotDeploymentProfileId")
 	}
 
-	if id.WindowsAutopilotDeviceIdentityId != "windowsAutopilotDeviceIdentityIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'WindowsAutopilotDeviceIdentityId'", id.WindowsAutopilotDeviceIdentityId, "windowsAutopilotDeviceIdentityIdValue")
+	if id.WindowsAutopilotDeviceIdentityId != "windowsAutopilotDeviceIdentityId" {
+		t.Fatalf("Expected %q but got %q for Segment 'WindowsAutopilotDeviceIdentityId'", id.WindowsAutopilotDeviceIdentityId, "windowsAutopilotDeviceIdentityId")
 	}
 }
 
 func TestFormatDeviceManagementWindowsAutopilotDeploymentProfileIdAssignedDeviceID(t *testing.T) {
-	actual := NewDeviceManagementWindowsAutopilotDeploymentProfileIdAssignedDeviceID("windowsAutopilotDeploymentProfileIdValue", "windowsAutopilotDeviceIdentityIdValue").ID()
-	expected := "/deviceManagement/windowsAutopilotDeploymentProfiles/windowsAutopilotDeploymentProfileIdValue/assignedDevices/windowsAutopilotDeviceIdentityIdValue"
+	actual := NewDeviceManagementWindowsAutopilotDeploymentProfileIdAssignedDeviceID("windowsAutopilotDeploymentProfileId", "windowsAutopilotDeviceIdentityId").ID()
+	expected := "/deviceManagement/windowsAutopilotDeploymentProfiles/windowsAutopilotDeploymentProfileId/assignedDevices/windowsAutopilotDeviceIdentityId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -54,25 +54,25 @@ func TestParseDeviceManagementWindowsAutopilotDeploymentProfileIdAssignedDeviceI
 		},
 		{
 			// Incomplete URI
-			Input: "/deviceManagement/windowsAutopilotDeploymentProfiles/windowsAutopilotDeploymentProfileIdValue",
+			Input: "/deviceManagement/windowsAutopilotDeploymentProfiles/windowsAutopilotDeploymentProfileId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/deviceManagement/windowsAutopilotDeploymentProfiles/windowsAutopilotDeploymentProfileIdValue/assignedDevices",
+			Input: "/deviceManagement/windowsAutopilotDeploymentProfiles/windowsAutopilotDeploymentProfileId/assignedDevices",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/windowsAutopilotDeploymentProfiles/windowsAutopilotDeploymentProfileIdValue/assignedDevices/windowsAutopilotDeviceIdentityIdValue",
+			Input: "/deviceManagement/windowsAutopilotDeploymentProfiles/windowsAutopilotDeploymentProfileId/assignedDevices/windowsAutopilotDeviceIdentityId",
 			Expected: &DeviceManagementWindowsAutopilotDeploymentProfileIdAssignedDeviceId{
-				WindowsAutopilotDeploymentProfileId: "windowsAutopilotDeploymentProfileIdValue",
-				WindowsAutopilotDeviceIdentityId:    "windowsAutopilotDeviceIdentityIdValue",
+				WindowsAutopilotDeploymentProfileId: "windowsAutopilotDeploymentProfileId",
+				WindowsAutopilotDeviceIdentityId:    "windowsAutopilotDeviceIdentityId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/windowsAutopilotDeploymentProfiles/windowsAutopilotDeploymentProfileIdValue/assignedDevices/windowsAutopilotDeviceIdentityIdValue/extra",
+			Input: "/deviceManagement/windowsAutopilotDeploymentProfiles/windowsAutopilotDeploymentProfileId/assignedDevices/windowsAutopilotDeviceIdentityId/extra",
 			Error: true,
 		},
 	}
@@ -135,48 +135,48 @@ func TestParseDeviceManagementWindowsAutopilotDeploymentProfileIdAssignedDeviceI
 		},
 		{
 			// Incomplete URI
-			Input: "/deviceManagement/windowsAutopilotDeploymentProfiles/windowsAutopilotDeploymentProfileIdValue",
+			Input: "/deviceManagement/windowsAutopilotDeploymentProfiles/windowsAutopilotDeploymentProfileId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/wInDoWsAuToPiLoTdEpLoYmEnTpRoFiLeS/wInDoWsAuToPiLoTdEpLoYmEnTpRoFiLeIdVaLuE",
+			Input: "/dEvIcEmAnAgEmEnT/wInDoWsAuToPiLoTdEpLoYmEnTpRoFiLeS/wInDoWsAuToPiLoTdEpLoYmEnTpRoFiLeId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/deviceManagement/windowsAutopilotDeploymentProfiles/windowsAutopilotDeploymentProfileIdValue/assignedDevices",
+			Input: "/deviceManagement/windowsAutopilotDeploymentProfiles/windowsAutopilotDeploymentProfileId/assignedDevices",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/wInDoWsAuToPiLoTdEpLoYmEnTpRoFiLeS/wInDoWsAuToPiLoTdEpLoYmEnTpRoFiLeIdVaLuE/aSsIgNeDdEvIcEs",
+			Input: "/dEvIcEmAnAgEmEnT/wInDoWsAuToPiLoTdEpLoYmEnTpRoFiLeS/wInDoWsAuToPiLoTdEpLoYmEnTpRoFiLeId/aSsIgNeDdEvIcEs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/windowsAutopilotDeploymentProfiles/windowsAutopilotDeploymentProfileIdValue/assignedDevices/windowsAutopilotDeviceIdentityIdValue",
+			Input: "/deviceManagement/windowsAutopilotDeploymentProfiles/windowsAutopilotDeploymentProfileId/assignedDevices/windowsAutopilotDeviceIdentityId",
 			Expected: &DeviceManagementWindowsAutopilotDeploymentProfileIdAssignedDeviceId{
-				WindowsAutopilotDeploymentProfileId: "windowsAutopilotDeploymentProfileIdValue",
-				WindowsAutopilotDeviceIdentityId:    "windowsAutopilotDeviceIdentityIdValue",
+				WindowsAutopilotDeploymentProfileId: "windowsAutopilotDeploymentProfileId",
+				WindowsAutopilotDeviceIdentityId:    "windowsAutopilotDeviceIdentityId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/windowsAutopilotDeploymentProfiles/windowsAutopilotDeploymentProfileIdValue/assignedDevices/windowsAutopilotDeviceIdentityIdValue/extra",
+			Input: "/deviceManagement/windowsAutopilotDeploymentProfiles/windowsAutopilotDeploymentProfileId/assignedDevices/windowsAutopilotDeviceIdentityId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/wInDoWsAuToPiLoTdEpLoYmEnTpRoFiLeS/wInDoWsAuToPiLoTdEpLoYmEnTpRoFiLeIdVaLuE/aSsIgNeDdEvIcEs/wInDoWsAuToPiLoTdEvIcEiDeNtItYiDvAlUe",
+			Input: "/dEvIcEmAnAgEmEnT/wInDoWsAuToPiLoTdEpLoYmEnTpRoFiLeS/wInDoWsAuToPiLoTdEpLoYmEnTpRoFiLeId/aSsIgNeDdEvIcEs/wInDoWsAuToPiLoTdEvIcEiDeNtItYiD",
 			Expected: &DeviceManagementWindowsAutopilotDeploymentProfileIdAssignedDeviceId{
-				WindowsAutopilotDeploymentProfileId: "wInDoWsAuToPiLoTdEpLoYmEnTpRoFiLeIdVaLuE",
-				WindowsAutopilotDeviceIdentityId:    "wInDoWsAuToPiLoTdEvIcEiDeNtItYiDvAlUe",
+				WindowsAutopilotDeploymentProfileId: "wInDoWsAuToPiLoTdEpLoYmEnTpRoFiLeId",
+				WindowsAutopilotDeviceIdentityId:    "wInDoWsAuToPiLoTdEvIcEiDeNtItYiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/wInDoWsAuToPiLoTdEpLoYmEnTpRoFiLeS/wInDoWsAuToPiLoTdEpLoYmEnTpRoFiLeIdVaLuE/aSsIgNeDdEvIcEs/wInDoWsAuToPiLoTdEvIcEiDeNtItYiDvAlUe/extra",
+			Input: "/dEvIcEmAnAgEmEnT/wInDoWsAuToPiLoTdEpLoYmEnTpRoFiLeS/wInDoWsAuToPiLoTdEpLoYmEnTpRoFiLeId/aSsIgNeDdEvIcEs/wInDoWsAuToPiLoTdEvIcEiDeNtItYiD/extra",
 			Error: true,
 		},
 	}

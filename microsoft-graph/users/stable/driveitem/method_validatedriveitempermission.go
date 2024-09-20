@@ -18,15 +18,44 @@ type ValidateDriveItemPermissionOperationResponse struct {
 	OData        *odata.OData
 }
 
+type ValidateDriveItemPermissionOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultValidateDriveItemPermissionOperationOptions() ValidateDriveItemPermissionOperationOptions {
+	return ValidateDriveItemPermissionOperationOptions{}
+}
+
+func (o ValidateDriveItemPermissionOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o ValidateDriveItemPermissionOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o ValidateDriveItemPermissionOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // ValidateDriveItemPermission - Invoke action validatePermission
-func (c DriveItemClient) ValidateDriveItemPermission(ctx context.Context, id stable.UserIdDriveIdItemId, input ValidateDriveItemPermissionRequest) (result ValidateDriveItemPermissionOperationResponse, err error) {
+func (c DriveItemClient) ValidateDriveItemPermission(ctx context.Context, id stable.UserIdDriveIdItemId, input ValidateDriveItemPermissionRequest, options ValidateDriveItemPermissionOperationOptions) (result ValidateDriveItemPermissionOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/validatePermission", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/validatePermission", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

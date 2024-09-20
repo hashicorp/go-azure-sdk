@@ -19,15 +19,44 @@ type CreatePendingAccessReviewInstanceContactedReviewerOperationResponse struct 
 	Model        *beta.AccessReviewReviewer
 }
 
+type CreatePendingAccessReviewInstanceContactedReviewerOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreatePendingAccessReviewInstanceContactedReviewerOperationOptions() CreatePendingAccessReviewInstanceContactedReviewerOperationOptions {
+	return CreatePendingAccessReviewInstanceContactedReviewerOperationOptions{}
+}
+
+func (o CreatePendingAccessReviewInstanceContactedReviewerOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreatePendingAccessReviewInstanceContactedReviewerOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreatePendingAccessReviewInstanceContactedReviewerOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreatePendingAccessReviewInstanceContactedReviewer - Create new navigation property to contactedReviewers for me
-func (c PendingAccessReviewInstanceContactedReviewerClient) CreatePendingAccessReviewInstanceContactedReviewer(ctx context.Context, id beta.MePendingAccessReviewInstanceId, input beta.AccessReviewReviewer) (result CreatePendingAccessReviewInstanceContactedReviewerOperationResponse, err error) {
+func (c PendingAccessReviewInstanceContactedReviewerClient) CreatePendingAccessReviewInstanceContactedReviewer(ctx context.Context, id beta.MePendingAccessReviewInstanceId, input beta.AccessReviewReviewer, options CreatePendingAccessReviewInstanceContactedReviewerOperationOptions) (result CreatePendingAccessReviewInstanceContactedReviewerOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/contactedReviewers", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/contactedReviewers", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

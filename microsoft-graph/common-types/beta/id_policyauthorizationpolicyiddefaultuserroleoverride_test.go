@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &PolicyAuthorizationPolicyIdDefaultUserRoleOverrideId{}
 
 func TestNewPolicyAuthorizationPolicyIdDefaultUserRoleOverrideID(t *testing.T) {
-	id := NewPolicyAuthorizationPolicyIdDefaultUserRoleOverrideID("authorizationPolicyIdValue", "defaultUserRoleOverrideIdValue")
+	id := NewPolicyAuthorizationPolicyIdDefaultUserRoleOverrideID("authorizationPolicyId", "defaultUserRoleOverrideId")
 
-	if id.AuthorizationPolicyId != "authorizationPolicyIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'AuthorizationPolicyId'", id.AuthorizationPolicyId, "authorizationPolicyIdValue")
+	if id.AuthorizationPolicyId != "authorizationPolicyId" {
+		t.Fatalf("Expected %q but got %q for Segment 'AuthorizationPolicyId'", id.AuthorizationPolicyId, "authorizationPolicyId")
 	}
 
-	if id.DefaultUserRoleOverrideId != "defaultUserRoleOverrideIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DefaultUserRoleOverrideId'", id.DefaultUserRoleOverrideId, "defaultUserRoleOverrideIdValue")
+	if id.DefaultUserRoleOverrideId != "defaultUserRoleOverrideId" {
+		t.Fatalf("Expected %q but got %q for Segment 'DefaultUserRoleOverrideId'", id.DefaultUserRoleOverrideId, "defaultUserRoleOverrideId")
 	}
 }
 
 func TestFormatPolicyAuthorizationPolicyIdDefaultUserRoleOverrideID(t *testing.T) {
-	actual := NewPolicyAuthorizationPolicyIdDefaultUserRoleOverrideID("authorizationPolicyIdValue", "defaultUserRoleOverrideIdValue").ID()
-	expected := "/policies/authorizationPolicy/authorizationPolicyIdValue/defaultUserRoleOverrides/defaultUserRoleOverrideIdValue"
+	actual := NewPolicyAuthorizationPolicyIdDefaultUserRoleOverrideID("authorizationPolicyId", "defaultUserRoleOverrideId").ID()
+	expected := "/policies/authorizationPolicy/authorizationPolicyId/defaultUserRoleOverrides/defaultUserRoleOverrideId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -54,25 +54,25 @@ func TestParsePolicyAuthorizationPolicyIdDefaultUserRoleOverrideID(t *testing.T)
 		},
 		{
 			// Incomplete URI
-			Input: "/policies/authorizationPolicy/authorizationPolicyIdValue",
+			Input: "/policies/authorizationPolicy/authorizationPolicyId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/policies/authorizationPolicy/authorizationPolicyIdValue/defaultUserRoleOverrides",
+			Input: "/policies/authorizationPolicy/authorizationPolicyId/defaultUserRoleOverrides",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/policies/authorizationPolicy/authorizationPolicyIdValue/defaultUserRoleOverrides/defaultUserRoleOverrideIdValue",
+			Input: "/policies/authorizationPolicy/authorizationPolicyId/defaultUserRoleOverrides/defaultUserRoleOverrideId",
 			Expected: &PolicyAuthorizationPolicyIdDefaultUserRoleOverrideId{
-				AuthorizationPolicyId:     "authorizationPolicyIdValue",
-				DefaultUserRoleOverrideId: "defaultUserRoleOverrideIdValue",
+				AuthorizationPolicyId:     "authorizationPolicyId",
+				DefaultUserRoleOverrideId: "defaultUserRoleOverrideId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/policies/authorizationPolicy/authorizationPolicyIdValue/defaultUserRoleOverrides/defaultUserRoleOverrideIdValue/extra",
+			Input: "/policies/authorizationPolicy/authorizationPolicyId/defaultUserRoleOverrides/defaultUserRoleOverrideId/extra",
 			Error: true,
 		},
 	}
@@ -135,48 +135,48 @@ func TestParsePolicyAuthorizationPolicyIdDefaultUserRoleOverrideIDInsensitively(
 		},
 		{
 			// Incomplete URI
-			Input: "/policies/authorizationPolicy/authorizationPolicyIdValue",
+			Input: "/policies/authorizationPolicy/authorizationPolicyId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/pOlIcIeS/aUtHoRiZaTiOnPoLiCy/aUtHoRiZaTiOnPoLiCyIdVaLuE",
+			Input: "/pOlIcIeS/aUtHoRiZaTiOnPoLiCy/aUtHoRiZaTiOnPoLiCyId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/policies/authorizationPolicy/authorizationPolicyIdValue/defaultUserRoleOverrides",
+			Input: "/policies/authorizationPolicy/authorizationPolicyId/defaultUserRoleOverrides",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/pOlIcIeS/aUtHoRiZaTiOnPoLiCy/aUtHoRiZaTiOnPoLiCyIdVaLuE/dEfAuLtUsErRoLeOvErRiDeS",
+			Input: "/pOlIcIeS/aUtHoRiZaTiOnPoLiCy/aUtHoRiZaTiOnPoLiCyId/dEfAuLtUsErRoLeOvErRiDeS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/policies/authorizationPolicy/authorizationPolicyIdValue/defaultUserRoleOverrides/defaultUserRoleOverrideIdValue",
+			Input: "/policies/authorizationPolicy/authorizationPolicyId/defaultUserRoleOverrides/defaultUserRoleOverrideId",
 			Expected: &PolicyAuthorizationPolicyIdDefaultUserRoleOverrideId{
-				AuthorizationPolicyId:     "authorizationPolicyIdValue",
-				DefaultUserRoleOverrideId: "defaultUserRoleOverrideIdValue",
+				AuthorizationPolicyId:     "authorizationPolicyId",
+				DefaultUserRoleOverrideId: "defaultUserRoleOverrideId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/policies/authorizationPolicy/authorizationPolicyIdValue/defaultUserRoleOverrides/defaultUserRoleOverrideIdValue/extra",
+			Input: "/policies/authorizationPolicy/authorizationPolicyId/defaultUserRoleOverrides/defaultUserRoleOverrideId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/pOlIcIeS/aUtHoRiZaTiOnPoLiCy/aUtHoRiZaTiOnPoLiCyIdVaLuE/dEfAuLtUsErRoLeOvErRiDeS/dEfAuLtUsErRoLeOvErRiDeIdVaLuE",
+			Input: "/pOlIcIeS/aUtHoRiZaTiOnPoLiCy/aUtHoRiZaTiOnPoLiCyId/dEfAuLtUsErRoLeOvErRiDeS/dEfAuLtUsErRoLeOvErRiDeId",
 			Expected: &PolicyAuthorizationPolicyIdDefaultUserRoleOverrideId{
-				AuthorizationPolicyId:     "aUtHoRiZaTiOnPoLiCyIdVaLuE",
-				DefaultUserRoleOverrideId: "dEfAuLtUsErRoLeOvErRiDeIdVaLuE",
+				AuthorizationPolicyId:     "aUtHoRiZaTiOnPoLiCyId",
+				DefaultUserRoleOverrideId: "dEfAuLtUsErRoLeOvErRiDeId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/pOlIcIeS/aUtHoRiZaTiOnPoLiCy/aUtHoRiZaTiOnPoLiCyIdVaLuE/dEfAuLtUsErRoLeOvErRiDeS/dEfAuLtUsErRoLeOvErRiDeIdVaLuE/extra",
+			Input: "/pOlIcIeS/aUtHoRiZaTiOnPoLiCy/aUtHoRiZaTiOnPoLiCyId/dEfAuLtUsErRoLeOvErRiDeS/dEfAuLtUsErRoLeOvErRiDeId/extra",
 			Error: true,
 		},
 	}

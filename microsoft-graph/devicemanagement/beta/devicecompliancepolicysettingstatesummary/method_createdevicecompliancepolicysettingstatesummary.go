@@ -18,16 +18,45 @@ type CreateDeviceCompliancePolicySettingStateSummaryOperationResponse struct {
 	Model        *beta.DeviceCompliancePolicySettingStateSummary
 }
 
+type CreateDeviceCompliancePolicySettingStateSummaryOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateDeviceCompliancePolicySettingStateSummaryOperationOptions() CreateDeviceCompliancePolicySettingStateSummaryOperationOptions {
+	return CreateDeviceCompliancePolicySettingStateSummaryOperationOptions{}
+}
+
+func (o CreateDeviceCompliancePolicySettingStateSummaryOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateDeviceCompliancePolicySettingStateSummaryOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateDeviceCompliancePolicySettingStateSummaryOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateDeviceCompliancePolicySettingStateSummary - Create new navigation property to
 // deviceCompliancePolicySettingStateSummaries for deviceManagement
-func (c DeviceCompliancePolicySettingStateSummaryClient) CreateDeviceCompliancePolicySettingStateSummary(ctx context.Context, input beta.DeviceCompliancePolicySettingStateSummary) (result CreateDeviceCompliancePolicySettingStateSummaryOperationResponse, err error) {
+func (c DeviceCompliancePolicySettingStateSummaryClient) CreateDeviceCompliancePolicySettingStateSummary(ctx context.Context, input beta.DeviceCompliancePolicySettingStateSummary, options CreateDeviceCompliancePolicySettingStateSummaryOperationOptions) (result CreateDeviceCompliancePolicySettingStateSummaryOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/deviceManagement/deviceCompliancePolicySettingStateSummaries",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/deviceManagement/deviceCompliancePolicySettingStateSummaries",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

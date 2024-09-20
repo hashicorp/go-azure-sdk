@@ -17,16 +17,45 @@ type UpdateUserExperienceAnalyticsAppHealthApplicationPerformanceByOSVersionOper
 	OData        *odata.OData
 }
 
+type UpdateUserExperienceAnalyticsAppHealthApplicationPerformanceByOSVersionOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateUserExperienceAnalyticsAppHealthApplicationPerformanceByOSVersionOperationOptions() UpdateUserExperienceAnalyticsAppHealthApplicationPerformanceByOSVersionOperationOptions {
+	return UpdateUserExperienceAnalyticsAppHealthApplicationPerformanceByOSVersionOperationOptions{}
+}
+
+func (o UpdateUserExperienceAnalyticsAppHealthApplicationPerformanceByOSVersionOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateUserExperienceAnalyticsAppHealthApplicationPerformanceByOSVersionOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateUserExperienceAnalyticsAppHealthApplicationPerformanceByOSVersionOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateUserExperienceAnalyticsAppHealthApplicationPerformanceByOSVersion - Update the navigation property
 // userExperienceAnalyticsAppHealthApplicationPerformanceByOSVersion in deviceManagement
-func (c UserExperienceAnalyticsAppHealthApplicationPerformanceByOSVersionClient) UpdateUserExperienceAnalyticsAppHealthApplicationPerformanceByOSVersion(ctx context.Context, id stable.DeviceManagementUserExperienceAnalyticsAppHealthApplicationPerformanceByOSVersionId, input stable.UserExperienceAnalyticsAppHealthAppPerformanceByOSVersion) (result UpdateUserExperienceAnalyticsAppHealthApplicationPerformanceByOSVersionOperationResponse, err error) {
+func (c UserExperienceAnalyticsAppHealthApplicationPerformanceByOSVersionClient) UpdateUserExperienceAnalyticsAppHealthApplicationPerformanceByOSVersion(ctx context.Context, id stable.DeviceManagementUserExperienceAnalyticsAppHealthApplicationPerformanceByOSVersionId, input stable.UserExperienceAnalyticsAppHealthAppPerformanceByOSVersion, options UpdateUserExperienceAnalyticsAppHealthApplicationPerformanceByOSVersionOperationOptions) (result UpdateUserExperienceAnalyticsAppHealthApplicationPerformanceByOSVersionOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/virtualendpointonpremisesconnection` Documentation
 
-The `virtualendpointonpremisesconnection` SDK allows for interaction with the Azure Resource Manager Service `devicemanagement` (API Version `beta`).
+The `virtualendpointonpremisesconnection` SDK allows for interaction with Microsoft Graph `devicemanagement` (API Version `beta`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -15,7 +15,7 @@ import "github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/
 ### Client Initialization
 
 ```go
-client := virtualendpointonpremisesconnection.NewVirtualEndpointOnPremisesConnectionClientWithBaseURI("https://management.azure.com")
+client := virtualendpointonpremisesconnection.NewVirtualEndpointOnPremisesConnectionClientWithBaseURI("https://graph.microsoft.com")
 client.Client.Authorizer = authorizer
 ```
 
@@ -30,7 +30,7 @@ payload := virtualendpointonpremisesconnection.CloudPCOnPremisesConnection{
 }
 
 
-read, err := client.CreateVirtualEndpointOnPremisesConnection(ctx, payload)
+read, err := client.CreateVirtualEndpointOnPremisesConnection(ctx, payload, virtualendpointonpremisesconnection.DefaultCreateVirtualEndpointOnPremisesConnectionOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -44,9 +44,9 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := virtualendpointonpremisesconnection.NewDeviceManagementVirtualEndpointOnPremisesConnectionID("cloudPCOnPremisesConnectionIdValue")
+id := virtualendpointonpremisesconnection.NewDeviceManagementVirtualEndpointOnPremisesConnectionID("cloudPCOnPremisesConnectionId")
 
-read, err := client.CreateVirtualEndpointOnPremisesConnectionRunHealthCheck(ctx, id)
+read, err := client.CreateVirtualEndpointOnPremisesConnectionRunHealthCheck(ctx, id, virtualendpointonpremisesconnection.DefaultCreateVirtualEndpointOnPremisesConnectionRunHealthCheckOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -60,7 +60,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := virtualendpointonpremisesconnection.NewDeviceManagementVirtualEndpointOnPremisesConnectionID("cloudPCOnPremisesConnectionIdValue")
+id := virtualendpointonpremisesconnection.NewDeviceManagementVirtualEndpointOnPremisesConnectionID("cloudPCOnPremisesConnectionId")
 
 read, err := client.DeleteVirtualEndpointOnPremisesConnection(ctx, id, virtualendpointonpremisesconnection.DefaultDeleteVirtualEndpointOnPremisesConnectionOperationOptions())
 if err != nil {
@@ -76,7 +76,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := virtualendpointonpremisesconnection.NewDeviceManagementVirtualEndpointOnPremisesConnectionID("cloudPCOnPremisesConnectionIdValue")
+id := virtualendpointonpremisesconnection.NewDeviceManagementVirtualEndpointOnPremisesConnectionID("cloudPCOnPremisesConnectionId")
 
 read, err := client.GetVirtualEndpointOnPremisesConnection(ctx, id, virtualendpointonpremisesconnection.DefaultGetVirtualEndpointOnPremisesConnectionOperationOptions())
 if err != nil {
@@ -125,14 +125,14 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := virtualendpointonpremisesconnection.NewDeviceManagementVirtualEndpointOnPremisesConnectionID("cloudPCOnPremisesConnectionIdValue")
+id := virtualendpointonpremisesconnection.NewDeviceManagementVirtualEndpointOnPremisesConnectionID("cloudPCOnPremisesConnectionId")
 
 payload := virtualendpointonpremisesconnection.CloudPCOnPremisesConnection{
 	// ...
 }
 
 
-read, err := client.UpdateVirtualEndpointOnPremisesConnection(ctx, id, payload)
+read, err := client.UpdateVirtualEndpointOnPremisesConnection(ctx, id, payload, virtualendpointonpremisesconnection.DefaultUpdateVirtualEndpointOnPremisesConnectionOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -146,14 +146,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := virtualendpointonpremisesconnection.NewDeviceManagementVirtualEndpointOnPremisesConnectionID("cloudPCOnPremisesConnectionIdValue")
+id := virtualendpointonpremisesconnection.NewDeviceManagementVirtualEndpointOnPremisesConnectionID("cloudPCOnPremisesConnectionId")
 
 payload := virtualendpointonpremisesconnection.UpdateVirtualEndpointOnPremisesConnectionAdDomainPasswordRequest{
 	// ...
 }
 
 
-read, err := client.UpdateVirtualEndpointOnPremisesConnectionAdDomainPassword(ctx, id, payload)
+read, err := client.UpdateVirtualEndpointOnPremisesConnectionAdDomainPassword(ctx, id, payload, virtualendpointonpremisesconnection.DefaultUpdateVirtualEndpointOnPremisesConnectionAdDomainPasswordOperationOptions())
 if err != nil {
 	// handle the error
 }

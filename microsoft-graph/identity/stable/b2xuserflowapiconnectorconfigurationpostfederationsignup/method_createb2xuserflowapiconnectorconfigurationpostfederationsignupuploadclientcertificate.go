@@ -19,17 +19,46 @@ type CreateB2xUserFlowApiConnectorConfigurationPostFederationSignupUploadClientC
 	Model        *stable.IdentityApiConnector
 }
 
+type CreateB2xUserFlowApiConnectorConfigurationPostFederationSignupUploadClientCertificateOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateB2xUserFlowApiConnectorConfigurationPostFederationSignupUploadClientCertificateOperationOptions() CreateB2xUserFlowApiConnectorConfigurationPostFederationSignupUploadClientCertificateOperationOptions {
+	return CreateB2xUserFlowApiConnectorConfigurationPostFederationSignupUploadClientCertificateOperationOptions{}
+}
+
+func (o CreateB2xUserFlowApiConnectorConfigurationPostFederationSignupUploadClientCertificateOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateB2xUserFlowApiConnectorConfigurationPostFederationSignupUploadClientCertificateOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateB2xUserFlowApiConnectorConfigurationPostFederationSignupUploadClientCertificateOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateB2xUserFlowApiConnectorConfigurationPostFederationSignupUploadClientCertificate - Invoke action
 // uploadClientCertificate. Upload a PKCS 12 format key (.pfx) to an API connector's authentication configuration. The
 // input is a base-64 encoded value of the PKCS 12 certificate contents. This method returns an apiConnector.
-func (c B2xUserFlowApiConnectorConfigurationPostFederationSignupClient) CreateB2xUserFlowApiConnectorConfigurationPostFederationSignupUploadClientCertificate(ctx context.Context, id stable.IdentityB2xUserFlowId, input CreateB2xUserFlowApiConnectorConfigurationPostFederationSignupUploadClientCertificateRequest) (result CreateB2xUserFlowApiConnectorConfigurationPostFederationSignupUploadClientCertificateOperationResponse, err error) {
+func (c B2xUserFlowApiConnectorConfigurationPostFederationSignupClient) CreateB2xUserFlowApiConnectorConfigurationPostFederationSignupUploadClientCertificate(ctx context.Context, id stable.IdentityB2xUserFlowId, input CreateB2xUserFlowApiConnectorConfigurationPostFederationSignupUploadClientCertificateRequest, options CreateB2xUserFlowApiConnectorConfigurationPostFederationSignupUploadClientCertificateOperationOptions) (result CreateB2xUserFlowApiConnectorConfigurationPostFederationSignupUploadClientCertificateOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/apiConnectorConfiguration/postFederationSignup/uploadClientCertificate", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/apiConnectorConfiguration/postFederationSignup/uploadClientCertificate", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

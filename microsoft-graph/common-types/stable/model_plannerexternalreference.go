@@ -63,10 +63,17 @@ func (s PlannerExternalReference) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &PlannerExternalReference{}
 
 func (s *PlannerExternalReference) UnmarshalJSON(bytes []byte) error {
-	type alias PlannerExternalReference
-	var decoded alias
+
+	var decoded struct {
+		Alias                nullable.Type[string] `json:"alias,omitempty"`
+		LastModifiedDateTime nullable.Type[string] `json:"lastModifiedDateTime,omitempty"`
+		ODataId              *string               `json:"@odata.id,omitempty"`
+		ODataType            *string               `json:"@odata.type,omitempty"`
+		PreviewPriority      nullable.Type[string] `json:"previewPriority,omitempty"`
+		Type                 nullable.Type[string] `json:"type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into PlannerExternalReference: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.Alias = decoded.Alias
@@ -88,5 +95,6 @@ func (s *PlannerExternalReference) UnmarshalJSON(bytes []byte) error {
 		}
 		s.LastModifiedBy = &impl
 	}
+
 	return nil
 }

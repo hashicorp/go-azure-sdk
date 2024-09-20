@@ -18,15 +18,44 @@ type UpdateManagedDeviceWindowsDeviceAccountOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateManagedDeviceWindowsDeviceAccountOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateManagedDeviceWindowsDeviceAccountOperationOptions() UpdateManagedDeviceWindowsDeviceAccountOperationOptions {
+	return UpdateManagedDeviceWindowsDeviceAccountOperationOptions{}
+}
+
+func (o UpdateManagedDeviceWindowsDeviceAccountOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateManagedDeviceWindowsDeviceAccountOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateManagedDeviceWindowsDeviceAccountOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateManagedDeviceWindowsDeviceAccount - Invoke action updateWindowsDeviceAccount
-func (c ManagedDeviceClient) UpdateManagedDeviceWindowsDeviceAccount(ctx context.Context, id beta.DeviceManagementManagedDeviceId, input UpdateManagedDeviceWindowsDeviceAccountRequest) (result UpdateManagedDeviceWindowsDeviceAccountOperationResponse, err error) {
+func (c ManagedDeviceClient) UpdateManagedDeviceWindowsDeviceAccount(ctx context.Context, id beta.DeviceManagementManagedDeviceId, input UpdateManagedDeviceWindowsDeviceAccountRequest, options UpdateManagedDeviceWindowsDeviceAccountOperationOptions) (result UpdateManagedDeviceWindowsDeviceAccountOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/updateWindowsDeviceAccount", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/updateWindowsDeviceAccount", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

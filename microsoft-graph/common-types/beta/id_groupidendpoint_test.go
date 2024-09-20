@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &GroupIdEndpointId{}
 
 func TestNewGroupIdEndpointID(t *testing.T) {
-	id := NewGroupIdEndpointID("groupIdValue", "endpointIdValue")
+	id := NewGroupIdEndpointID("groupId", "endpointId")
 
-	if id.GroupId != "groupIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'GroupId'", id.GroupId, "groupIdValue")
+	if id.GroupId != "groupId" {
+		t.Fatalf("Expected %q but got %q for Segment 'GroupId'", id.GroupId, "groupId")
 	}
 
-	if id.EndpointId != "endpointIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'EndpointId'", id.EndpointId, "endpointIdValue")
+	if id.EndpointId != "endpointId" {
+		t.Fatalf("Expected %q but got %q for Segment 'EndpointId'", id.EndpointId, "endpointId")
 	}
 }
 
 func TestFormatGroupIdEndpointID(t *testing.T) {
-	actual := NewGroupIdEndpointID("groupIdValue", "endpointIdValue").ID()
-	expected := "/groups/groupIdValue/endpoints/endpointIdValue"
+	actual := NewGroupIdEndpointID("groupId", "endpointId").ID()
+	expected := "/groups/groupId/endpoints/endpointId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -49,25 +49,25 @@ func TestParseGroupIdEndpointID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue",
+			Input: "/groups/groupId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/endpoints",
+			Input: "/groups/groupId/endpoints",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/groups/groupIdValue/endpoints/endpointIdValue",
+			Input: "/groups/groupId/endpoints/endpointId",
 			Expected: &GroupIdEndpointId{
-				GroupId:    "groupIdValue",
-				EndpointId: "endpointIdValue",
+				GroupId:    "groupId",
+				EndpointId: "endpointId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/groups/groupIdValue/endpoints/endpointIdValue/extra",
+			Input: "/groups/groupId/endpoints/endpointId/extra",
 			Error: true,
 		},
 	}
@@ -120,48 +120,48 @@ func TestParseGroupIdEndpointIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue",
+			Input: "/groups/groupId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE",
+			Input: "/gRoUpS/gRoUpId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/endpoints",
+			Input: "/groups/groupId/endpoints",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/eNdPoInTs",
+			Input: "/gRoUpS/gRoUpId/eNdPoInTs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/groups/groupIdValue/endpoints/endpointIdValue",
+			Input: "/groups/groupId/endpoints/endpointId",
 			Expected: &GroupIdEndpointId{
-				GroupId:    "groupIdValue",
-				EndpointId: "endpointIdValue",
+				GroupId:    "groupId",
+				EndpointId: "endpointId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/groups/groupIdValue/endpoints/endpointIdValue/extra",
+			Input: "/groups/groupId/endpoints/endpointId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/eNdPoInTs/eNdPoInTiDvAlUe",
+			Input: "/gRoUpS/gRoUpId/eNdPoInTs/eNdPoInTiD",
 			Expected: &GroupIdEndpointId{
-				GroupId:    "gRoUpIdVaLuE",
-				EndpointId: "eNdPoInTiDvAlUe",
+				GroupId:    "gRoUpId",
+				EndpointId: "eNdPoInTiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/eNdPoInTs/eNdPoInTiDvAlUe/extra",
+			Input: "/gRoUpS/gRoUpId/eNdPoInTs/eNdPoInTiD/extra",
 			Error: true,
 		},
 	}

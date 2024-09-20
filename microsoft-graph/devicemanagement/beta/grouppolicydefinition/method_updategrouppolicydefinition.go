@@ -17,15 +17,44 @@ type UpdateGroupPolicyDefinitionOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateGroupPolicyDefinitionOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateGroupPolicyDefinitionOperationOptions() UpdateGroupPolicyDefinitionOperationOptions {
+	return UpdateGroupPolicyDefinitionOperationOptions{}
+}
+
+func (o UpdateGroupPolicyDefinitionOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateGroupPolicyDefinitionOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateGroupPolicyDefinitionOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateGroupPolicyDefinition - Update the navigation property groupPolicyDefinitions in deviceManagement
-func (c GroupPolicyDefinitionClient) UpdateGroupPolicyDefinition(ctx context.Context, id beta.DeviceManagementGroupPolicyDefinitionId, input beta.GroupPolicyDefinition) (result UpdateGroupPolicyDefinitionOperationResponse, err error) {
+func (c GroupPolicyDefinitionClient) UpdateGroupPolicyDefinition(ctx context.Context, id beta.DeviceManagementGroupPolicyDefinitionId, input beta.GroupPolicyDefinition, options UpdateGroupPolicyDefinitionOperationOptions) (result UpdateGroupPolicyDefinitionOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

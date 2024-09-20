@@ -112,19 +112,27 @@ func (s BaseAwsSecurityToolAdministrationFindingImpl) MarshalJSON() ([]byte, err
 var _ json.Unmarshaler = &BaseAwsSecurityToolAdministrationFindingImpl{}
 
 func (s *BaseAwsSecurityToolAdministrationFindingImpl) UnmarshalJSON(bytes []byte) error {
-	type alias BaseAwsSecurityToolAdministrationFindingImpl
-	var decoded alias
+
+	var decoded struct {
+		IdentityDetails       *IdentityDetails            `json:"identityDetails,omitempty"`
+		PermissionsCreepIndex *PermissionsCreepIndex      `json:"permissionsCreepIndex,omitempty"`
+		SecurityTools         *AwsSecurityToolWebServices `json:"securityTools,omitempty"`
+		CreatedDateTime       *string                     `json:"createdDateTime,omitempty"`
+		Id                    *string                     `json:"id,omitempty"`
+		ODataId               *string                     `json:"@odata.id,omitempty"`
+		ODataType             *string                     `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into BaseAwsSecurityToolAdministrationFindingImpl: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
-	s.CreatedDateTime = decoded.CreatedDateTime
-	s.Id = decoded.Id
 	s.IdentityDetails = decoded.IdentityDetails
-	s.ODataId = decoded.ODataId
-	s.ODataType = decoded.ODataType
 	s.PermissionsCreepIndex = decoded.PermissionsCreepIndex
 	s.SecurityTools = decoded.SecurityTools
+	s.CreatedDateTime = decoded.CreatedDateTime
+	s.Id = decoded.Id
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -138,6 +146,7 @@ func (s *BaseAwsSecurityToolAdministrationFindingImpl) UnmarshalJSON(bytes []byt
 		}
 		s.Identity = &impl
 	}
+
 	return nil
 }
 
@@ -151,9 +160,9 @@ func UnmarshalAwsSecurityToolAdministrationFindingImplementation(input []byte) (
 		return nil, fmt.Errorf("unmarshaling AwsSecurityToolAdministrationFinding into map[string]interface: %+v", err)
 	}
 
-	value, ok := temp["@odata.type"].(string)
-	if !ok {
-		return nil, nil
+	var value string
+	if v, ok := temp["@odata.type"]; ok {
+		value = fmt.Sprintf("%v", v)
 	}
 
 	if strings.EqualFold(value, "#microsoft.graph.securityToolAwsResourceAdministratorFinding") {

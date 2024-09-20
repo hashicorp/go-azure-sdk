@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &DeviceManagementGroupPolicyCategoryIdChildId{}
 
 func TestNewDeviceManagementGroupPolicyCategoryIdChildID(t *testing.T) {
-	id := NewDeviceManagementGroupPolicyCategoryIdChildID("groupPolicyCategoryIdValue", "groupPolicyCategoryId1Value")
+	id := NewDeviceManagementGroupPolicyCategoryIdChildID("groupPolicyCategoryId", "groupPolicyCategoryId1")
 
-	if id.GroupPolicyCategoryId != "groupPolicyCategoryIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'GroupPolicyCategoryId'", id.GroupPolicyCategoryId, "groupPolicyCategoryIdValue")
+	if id.GroupPolicyCategoryId != "groupPolicyCategoryId" {
+		t.Fatalf("Expected %q but got %q for Segment 'GroupPolicyCategoryId'", id.GroupPolicyCategoryId, "groupPolicyCategoryId")
 	}
 
-	if id.GroupPolicyCategoryId1 != "groupPolicyCategoryId1Value" {
-		t.Fatalf("Expected %q but got %q for Segment 'GroupPolicyCategoryId1'", id.GroupPolicyCategoryId1, "groupPolicyCategoryId1Value")
+	if id.GroupPolicyCategoryId1 != "groupPolicyCategoryId1" {
+		t.Fatalf("Expected %q but got %q for Segment 'GroupPolicyCategoryId1'", id.GroupPolicyCategoryId1, "groupPolicyCategoryId1")
 	}
 }
 
 func TestFormatDeviceManagementGroupPolicyCategoryIdChildID(t *testing.T) {
-	actual := NewDeviceManagementGroupPolicyCategoryIdChildID("groupPolicyCategoryIdValue", "groupPolicyCategoryId1Value").ID()
-	expected := "/deviceManagement/groupPolicyCategories/groupPolicyCategoryIdValue/children/groupPolicyCategoryId1Value"
+	actual := NewDeviceManagementGroupPolicyCategoryIdChildID("groupPolicyCategoryId", "groupPolicyCategoryId1").ID()
+	expected := "/deviceManagement/groupPolicyCategories/groupPolicyCategoryId/children/groupPolicyCategoryId1"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -54,25 +54,25 @@ func TestParseDeviceManagementGroupPolicyCategoryIdChildID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/deviceManagement/groupPolicyCategories/groupPolicyCategoryIdValue",
+			Input: "/deviceManagement/groupPolicyCategories/groupPolicyCategoryId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/deviceManagement/groupPolicyCategories/groupPolicyCategoryIdValue/children",
+			Input: "/deviceManagement/groupPolicyCategories/groupPolicyCategoryId/children",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/groupPolicyCategories/groupPolicyCategoryIdValue/children/groupPolicyCategoryId1Value",
+			Input: "/deviceManagement/groupPolicyCategories/groupPolicyCategoryId/children/groupPolicyCategoryId1",
 			Expected: &DeviceManagementGroupPolicyCategoryIdChildId{
-				GroupPolicyCategoryId:  "groupPolicyCategoryIdValue",
-				GroupPolicyCategoryId1: "groupPolicyCategoryId1Value",
+				GroupPolicyCategoryId:  "groupPolicyCategoryId",
+				GroupPolicyCategoryId1: "groupPolicyCategoryId1",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/groupPolicyCategories/groupPolicyCategoryIdValue/children/groupPolicyCategoryId1Value/extra",
+			Input: "/deviceManagement/groupPolicyCategories/groupPolicyCategoryId/children/groupPolicyCategoryId1/extra",
 			Error: true,
 		},
 	}
@@ -135,48 +135,48 @@ func TestParseDeviceManagementGroupPolicyCategoryIdChildIDInsensitively(t *testi
 		},
 		{
 			// Incomplete URI
-			Input: "/deviceManagement/groupPolicyCategories/groupPolicyCategoryIdValue",
+			Input: "/deviceManagement/groupPolicyCategories/groupPolicyCategoryId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/gRoUpPoLiCyCaTeGoRiEs/gRoUpPoLiCyCaTeGoRyIdVaLuE",
+			Input: "/dEvIcEmAnAgEmEnT/gRoUpPoLiCyCaTeGoRiEs/gRoUpPoLiCyCaTeGoRyId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/deviceManagement/groupPolicyCategories/groupPolicyCategoryIdValue/children",
+			Input: "/deviceManagement/groupPolicyCategories/groupPolicyCategoryId/children",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/gRoUpPoLiCyCaTeGoRiEs/gRoUpPoLiCyCaTeGoRyIdVaLuE/cHiLdReN",
+			Input: "/dEvIcEmAnAgEmEnT/gRoUpPoLiCyCaTeGoRiEs/gRoUpPoLiCyCaTeGoRyId/cHiLdReN",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/groupPolicyCategories/groupPolicyCategoryIdValue/children/groupPolicyCategoryId1Value",
+			Input: "/deviceManagement/groupPolicyCategories/groupPolicyCategoryId/children/groupPolicyCategoryId1",
 			Expected: &DeviceManagementGroupPolicyCategoryIdChildId{
-				GroupPolicyCategoryId:  "groupPolicyCategoryIdValue",
-				GroupPolicyCategoryId1: "groupPolicyCategoryId1Value",
+				GroupPolicyCategoryId:  "groupPolicyCategoryId",
+				GroupPolicyCategoryId1: "groupPolicyCategoryId1",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/groupPolicyCategories/groupPolicyCategoryIdValue/children/groupPolicyCategoryId1Value/extra",
+			Input: "/deviceManagement/groupPolicyCategories/groupPolicyCategoryId/children/groupPolicyCategoryId1/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/gRoUpPoLiCyCaTeGoRiEs/gRoUpPoLiCyCaTeGoRyIdVaLuE/cHiLdReN/gRoUpPoLiCyCaTeGoRyId1vAlUe",
+			Input: "/dEvIcEmAnAgEmEnT/gRoUpPoLiCyCaTeGoRiEs/gRoUpPoLiCyCaTeGoRyId/cHiLdReN/gRoUpPoLiCyCaTeGoRyId1",
 			Expected: &DeviceManagementGroupPolicyCategoryIdChildId{
-				GroupPolicyCategoryId:  "gRoUpPoLiCyCaTeGoRyIdVaLuE",
-				GroupPolicyCategoryId1: "gRoUpPoLiCyCaTeGoRyId1vAlUe",
+				GroupPolicyCategoryId:  "gRoUpPoLiCyCaTeGoRyId",
+				GroupPolicyCategoryId1: "gRoUpPoLiCyCaTeGoRyId1",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/gRoUpPoLiCyCaTeGoRiEs/gRoUpPoLiCyCaTeGoRyIdVaLuE/cHiLdReN/gRoUpPoLiCyCaTeGoRyId1vAlUe/extra",
+			Input: "/dEvIcEmAnAgEmEnT/gRoUpPoLiCyCaTeGoRiEs/gRoUpPoLiCyCaTeGoRyId/cHiLdReN/gRoUpPoLiCyCaTeGoRyId1/extra",
 			Error: true,
 		},
 	}

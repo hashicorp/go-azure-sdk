@@ -17,15 +17,44 @@ type UpdateSynchronizationTemplateOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateSynchronizationTemplateOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateSynchronizationTemplateOperationOptions() UpdateSynchronizationTemplateOperationOptions {
+	return UpdateSynchronizationTemplateOperationOptions{}
+}
+
+func (o UpdateSynchronizationTemplateOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateSynchronizationTemplateOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateSynchronizationTemplateOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateSynchronizationTemplate - Update the navigation property templates in servicePrincipals
-func (c SynchronizationTemplateClient) UpdateSynchronizationTemplate(ctx context.Context, id beta.ServicePrincipalIdSynchronizationTemplateId, input beta.SynchronizationTemplate) (result UpdateSynchronizationTemplateOperationResponse, err error) {
+func (c SynchronizationTemplateClient) UpdateSynchronizationTemplate(ctx context.Context, id beta.ServicePrincipalIdSynchronizationTemplateId, input beta.SynchronizationTemplate, options UpdateSynchronizationTemplateOperationOptions) (result UpdateSynchronizationTemplateOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

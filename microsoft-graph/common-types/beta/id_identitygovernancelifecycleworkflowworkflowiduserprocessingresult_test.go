@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &IdentityGovernanceLifecycleWorkflowWorkflowIdUserProcessingResultId{}
 
 func TestNewIdentityGovernanceLifecycleWorkflowWorkflowIdUserProcessingResultID(t *testing.T) {
-	id := NewIdentityGovernanceLifecycleWorkflowWorkflowIdUserProcessingResultID("workflowIdValue", "userProcessingResultIdValue")
+	id := NewIdentityGovernanceLifecycleWorkflowWorkflowIdUserProcessingResultID("workflowId", "userProcessingResultId")
 
-	if id.WorkflowId != "workflowIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'WorkflowId'", id.WorkflowId, "workflowIdValue")
+	if id.WorkflowId != "workflowId" {
+		t.Fatalf("Expected %q but got %q for Segment 'WorkflowId'", id.WorkflowId, "workflowId")
 	}
 
-	if id.UserProcessingResultId != "userProcessingResultIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'UserProcessingResultId'", id.UserProcessingResultId, "userProcessingResultIdValue")
+	if id.UserProcessingResultId != "userProcessingResultId" {
+		t.Fatalf("Expected %q but got %q for Segment 'UserProcessingResultId'", id.UserProcessingResultId, "userProcessingResultId")
 	}
 }
 
 func TestFormatIdentityGovernanceLifecycleWorkflowWorkflowIdUserProcessingResultID(t *testing.T) {
-	actual := NewIdentityGovernanceLifecycleWorkflowWorkflowIdUserProcessingResultID("workflowIdValue", "userProcessingResultIdValue").ID()
-	expected := "/identityGovernance/lifecycleWorkflows/workflows/workflowIdValue/userProcessingResults/userProcessingResultIdValue"
+	actual := NewIdentityGovernanceLifecycleWorkflowWorkflowIdUserProcessingResultID("workflowId", "userProcessingResultId").ID()
+	expected := "/identityGovernance/lifecycleWorkflows/workflows/workflowId/userProcessingResults/userProcessingResultId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -59,25 +59,25 @@ func TestParseIdentityGovernanceLifecycleWorkflowWorkflowIdUserProcessingResultI
 		},
 		{
 			// Incomplete URI
-			Input: "/identityGovernance/lifecycleWorkflows/workflows/workflowIdValue",
+			Input: "/identityGovernance/lifecycleWorkflows/workflows/workflowId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/identityGovernance/lifecycleWorkflows/workflows/workflowIdValue/userProcessingResults",
+			Input: "/identityGovernance/lifecycleWorkflows/workflows/workflowId/userProcessingResults",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/identityGovernance/lifecycleWorkflows/workflows/workflowIdValue/userProcessingResults/userProcessingResultIdValue",
+			Input: "/identityGovernance/lifecycleWorkflows/workflows/workflowId/userProcessingResults/userProcessingResultId",
 			Expected: &IdentityGovernanceLifecycleWorkflowWorkflowIdUserProcessingResultId{
-				WorkflowId:             "workflowIdValue",
-				UserProcessingResultId: "userProcessingResultIdValue",
+				WorkflowId:             "workflowId",
+				UserProcessingResultId: "userProcessingResultId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/identityGovernance/lifecycleWorkflows/workflows/workflowIdValue/userProcessingResults/userProcessingResultIdValue/extra",
+			Input: "/identityGovernance/lifecycleWorkflows/workflows/workflowId/userProcessingResults/userProcessingResultId/extra",
 			Error: true,
 		},
 	}
@@ -150,48 +150,48 @@ func TestParseIdentityGovernanceLifecycleWorkflowWorkflowIdUserProcessingResultI
 		},
 		{
 			// Incomplete URI
-			Input: "/identityGovernance/lifecycleWorkflows/workflows/workflowIdValue",
+			Input: "/identityGovernance/lifecycleWorkflows/workflows/workflowId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/iDeNtItYgOvErNaNcE/lIfEcYcLeWoRkFlOwS/wOrKfLoWs/wOrKfLoWiDvAlUe",
+			Input: "/iDeNtItYgOvErNaNcE/lIfEcYcLeWoRkFlOwS/wOrKfLoWs/wOrKfLoWiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/identityGovernance/lifecycleWorkflows/workflows/workflowIdValue/userProcessingResults",
+			Input: "/identityGovernance/lifecycleWorkflows/workflows/workflowId/userProcessingResults",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/iDeNtItYgOvErNaNcE/lIfEcYcLeWoRkFlOwS/wOrKfLoWs/wOrKfLoWiDvAlUe/uSeRpRoCeSsInGrEsUlTs",
+			Input: "/iDeNtItYgOvErNaNcE/lIfEcYcLeWoRkFlOwS/wOrKfLoWs/wOrKfLoWiD/uSeRpRoCeSsInGrEsUlTs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/identityGovernance/lifecycleWorkflows/workflows/workflowIdValue/userProcessingResults/userProcessingResultIdValue",
+			Input: "/identityGovernance/lifecycleWorkflows/workflows/workflowId/userProcessingResults/userProcessingResultId",
 			Expected: &IdentityGovernanceLifecycleWorkflowWorkflowIdUserProcessingResultId{
-				WorkflowId:             "workflowIdValue",
-				UserProcessingResultId: "userProcessingResultIdValue",
+				WorkflowId:             "workflowId",
+				UserProcessingResultId: "userProcessingResultId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/identityGovernance/lifecycleWorkflows/workflows/workflowIdValue/userProcessingResults/userProcessingResultIdValue/extra",
+			Input: "/identityGovernance/lifecycleWorkflows/workflows/workflowId/userProcessingResults/userProcessingResultId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/iDeNtItYgOvErNaNcE/lIfEcYcLeWoRkFlOwS/wOrKfLoWs/wOrKfLoWiDvAlUe/uSeRpRoCeSsInGrEsUlTs/uSeRpRoCeSsInGrEsUlTiDvAlUe",
+			Input: "/iDeNtItYgOvErNaNcE/lIfEcYcLeWoRkFlOwS/wOrKfLoWs/wOrKfLoWiD/uSeRpRoCeSsInGrEsUlTs/uSeRpRoCeSsInGrEsUlTiD",
 			Expected: &IdentityGovernanceLifecycleWorkflowWorkflowIdUserProcessingResultId{
-				WorkflowId:             "wOrKfLoWiDvAlUe",
-				UserProcessingResultId: "uSeRpRoCeSsInGrEsUlTiDvAlUe",
+				WorkflowId:             "wOrKfLoWiD",
+				UserProcessingResultId: "uSeRpRoCeSsInGrEsUlTiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/iDeNtItYgOvErNaNcE/lIfEcYcLeWoRkFlOwS/wOrKfLoWs/wOrKfLoWiDvAlUe/uSeRpRoCeSsInGrEsUlTs/uSeRpRoCeSsInGrEsUlTiDvAlUe/extra",
+			Input: "/iDeNtItYgOvErNaNcE/lIfEcYcLeWoRkFlOwS/wOrKfLoWs/wOrKfLoWiD/uSeRpRoCeSsInGrEsUlTs/uSeRpRoCeSsInGrEsUlTiD/extra",
 			Error: true,
 		},
 	}

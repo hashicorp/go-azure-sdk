@@ -70,17 +70,23 @@ func (s DeviceCompliancePolicyGroupAssignment) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &DeviceCompliancePolicyGroupAssignment{}
 
 func (s *DeviceCompliancePolicyGroupAssignment) UnmarshalJSON(bytes []byte) error {
-	type alias DeviceCompliancePolicyGroupAssignment
-	var decoded alias
+
+	var decoded struct {
+		ExcludeGroup  *bool                 `json:"excludeGroup,omitempty"`
+		TargetGroupId nullable.Type[string] `json:"targetGroupId,omitempty"`
+		Id            *string               `json:"id,omitempty"`
+		ODataId       *string               `json:"@odata.id,omitempty"`
+		ODataType     *string               `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into DeviceCompliancePolicyGroupAssignment: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.ExcludeGroup = decoded.ExcludeGroup
+	s.TargetGroupId = decoded.TargetGroupId
 	s.Id = decoded.Id
 	s.ODataId = decoded.ODataId
 	s.ODataType = decoded.ODataType
-	s.TargetGroupId = decoded.TargetGroupId
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -94,5 +100,6 @@ func (s *DeviceCompliancePolicyGroupAssignment) UnmarshalJSON(bytes []byte) erro
 		}
 		s.DeviceCompliancePolicy = &impl
 	}
+
 	return nil
 }

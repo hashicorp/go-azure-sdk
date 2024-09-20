@@ -19,15 +19,44 @@ type CreateTeamScheduleTimeCardConfirmOperationResponse struct {
 	Model        *beta.TimeCard
 }
 
+type CreateTeamScheduleTimeCardConfirmOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateTeamScheduleTimeCardConfirmOperationOptions() CreateTeamScheduleTimeCardConfirmOperationOptions {
+	return CreateTeamScheduleTimeCardConfirmOperationOptions{}
+}
+
+func (o CreateTeamScheduleTimeCardConfirmOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateTeamScheduleTimeCardConfirmOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateTeamScheduleTimeCardConfirmOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateTeamScheduleTimeCardConfirm - Invoke action confirm. Confirm a specific timeCard.
-func (c TeamScheduleTimeCardClient) CreateTeamScheduleTimeCardConfirm(ctx context.Context, id beta.GroupIdTeamScheduleTimeCardId) (result CreateTeamScheduleTimeCardConfirmOperationResponse, err error) {
+func (c TeamScheduleTimeCardClient) CreateTeamScheduleTimeCardConfirm(ctx context.Context, id beta.GroupIdTeamScheduleTimeCardId, options CreateTeamScheduleTimeCardConfirmOperationOptions) (result CreateTeamScheduleTimeCardConfirmOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/confirm", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/confirm", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

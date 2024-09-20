@@ -19,16 +19,45 @@ type CreateDeviceCompliancePolicyOperationResponse struct {
 	Model        stable.DeviceCompliancePolicy
 }
 
+type CreateDeviceCompliancePolicyOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateDeviceCompliancePolicyOperationOptions() CreateDeviceCompliancePolicyOperationOptions {
+	return CreateDeviceCompliancePolicyOperationOptions{}
+}
+
+func (o CreateDeviceCompliancePolicyOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateDeviceCompliancePolicyOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateDeviceCompliancePolicyOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateDeviceCompliancePolicy - Create androidWorkProfileCompliancePolicy. Create a new
 // androidWorkProfileCompliancePolicy object.
-func (c DeviceCompliancePolicyClient) CreateDeviceCompliancePolicy(ctx context.Context, input stable.DeviceCompliancePolicy) (result CreateDeviceCompliancePolicyOperationResponse, err error) {
+func (c DeviceCompliancePolicyClient) CreateDeviceCompliancePolicy(ctx context.Context, input stable.DeviceCompliancePolicy, options CreateDeviceCompliancePolicyOperationOptions) (result CreateDeviceCompliancePolicyOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/deviceManagement/deviceCompliancePolicies",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/deviceManagement/deviceCompliancePolicies",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

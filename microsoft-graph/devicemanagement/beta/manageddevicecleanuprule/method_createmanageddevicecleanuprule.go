@@ -18,15 +18,44 @@ type CreateManagedDeviceCleanupRuleOperationResponse struct {
 	Model        *beta.ManagedDeviceCleanupRule
 }
 
+type CreateManagedDeviceCleanupRuleOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateManagedDeviceCleanupRuleOperationOptions() CreateManagedDeviceCleanupRuleOperationOptions {
+	return CreateManagedDeviceCleanupRuleOperationOptions{}
+}
+
+func (o CreateManagedDeviceCleanupRuleOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateManagedDeviceCleanupRuleOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateManagedDeviceCleanupRuleOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateManagedDeviceCleanupRule - Create new navigation property to managedDeviceCleanupRules for deviceManagement
-func (c ManagedDeviceCleanupRuleClient) CreateManagedDeviceCleanupRule(ctx context.Context, input beta.ManagedDeviceCleanupRule) (result CreateManagedDeviceCleanupRuleOperationResponse, err error) {
+func (c ManagedDeviceCleanupRuleClient) CreateManagedDeviceCleanupRule(ctx context.Context, input beta.ManagedDeviceCleanupRule, options CreateManagedDeviceCleanupRuleOperationOptions) (result CreateManagedDeviceCleanupRuleOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/deviceManagement/managedDeviceCleanupRules",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/deviceManagement/managedDeviceCleanupRules",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

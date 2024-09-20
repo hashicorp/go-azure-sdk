@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &IdentityGovernanceAccessReviewDecisionId{}
 
 func TestNewIdentityGovernanceAccessReviewDecisionID(t *testing.T) {
-	id := NewIdentityGovernanceAccessReviewDecisionID("accessReviewInstanceDecisionItemIdValue")
+	id := NewIdentityGovernanceAccessReviewDecisionID("accessReviewInstanceDecisionItemId")
 
-	if id.AccessReviewInstanceDecisionItemId != "accessReviewInstanceDecisionItemIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'AccessReviewInstanceDecisionItemId'", id.AccessReviewInstanceDecisionItemId, "accessReviewInstanceDecisionItemIdValue")
+	if id.AccessReviewInstanceDecisionItemId != "accessReviewInstanceDecisionItemId" {
+		t.Fatalf("Expected %q but got %q for Segment 'AccessReviewInstanceDecisionItemId'", id.AccessReviewInstanceDecisionItemId, "accessReviewInstanceDecisionItemId")
 	}
 }
 
 func TestFormatIdentityGovernanceAccessReviewDecisionID(t *testing.T) {
-	actual := NewIdentityGovernanceAccessReviewDecisionID("accessReviewInstanceDecisionItemIdValue").ID()
-	expected := "/identityGovernance/accessReviews/decisions/accessReviewInstanceDecisionItemIdValue"
+	actual := NewIdentityGovernanceAccessReviewDecisionID("accessReviewInstanceDecisionItemId").ID()
+	expected := "/identityGovernance/accessReviews/decisions/accessReviewInstanceDecisionItemId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -55,14 +55,14 @@ func TestParseIdentityGovernanceAccessReviewDecisionID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/identityGovernance/accessReviews/decisions/accessReviewInstanceDecisionItemIdValue",
+			Input: "/identityGovernance/accessReviews/decisions/accessReviewInstanceDecisionItemId",
 			Expected: &IdentityGovernanceAccessReviewDecisionId{
-				AccessReviewInstanceDecisionItemId: "accessReviewInstanceDecisionItemIdValue",
+				AccessReviewInstanceDecisionItemId: "accessReviewInstanceDecisionItemId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/identityGovernance/accessReviews/decisions/accessReviewInstanceDecisionItemIdValue/extra",
+			Input: "/identityGovernance/accessReviews/decisions/accessReviewInstanceDecisionItemId/extra",
 			Error: true,
 		},
 	}
@@ -131,26 +131,26 @@ func TestParseIdentityGovernanceAccessReviewDecisionIDInsensitively(t *testing.T
 		},
 		{
 			// Valid URI
-			Input: "/identityGovernance/accessReviews/decisions/accessReviewInstanceDecisionItemIdValue",
+			Input: "/identityGovernance/accessReviews/decisions/accessReviewInstanceDecisionItemId",
 			Expected: &IdentityGovernanceAccessReviewDecisionId{
-				AccessReviewInstanceDecisionItemId: "accessReviewInstanceDecisionItemIdValue",
+				AccessReviewInstanceDecisionItemId: "accessReviewInstanceDecisionItemId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/identityGovernance/accessReviews/decisions/accessReviewInstanceDecisionItemIdValue/extra",
+			Input: "/identityGovernance/accessReviews/decisions/accessReviewInstanceDecisionItemId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/iDeNtItYgOvErNaNcE/aCcEsSrEvIeWs/dEcIsIoNs/aCcEsSrEvIeWiNsTaNcEdEcIsIoNiTeMiDvAlUe",
+			Input: "/iDeNtItYgOvErNaNcE/aCcEsSrEvIeWs/dEcIsIoNs/aCcEsSrEvIeWiNsTaNcEdEcIsIoNiTeMiD",
 			Expected: &IdentityGovernanceAccessReviewDecisionId{
-				AccessReviewInstanceDecisionItemId: "aCcEsSrEvIeWiNsTaNcEdEcIsIoNiTeMiDvAlUe",
+				AccessReviewInstanceDecisionItemId: "aCcEsSrEvIeWiNsTaNcEdEcIsIoNiTeMiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/iDeNtItYgOvErNaNcE/aCcEsSrEvIeWs/dEcIsIoNs/aCcEsSrEvIeWiNsTaNcEdEcIsIoNiTeMiDvAlUe/extra",
+			Input: "/iDeNtItYgOvErNaNcE/aCcEsSrEvIeWs/dEcIsIoNs/aCcEsSrEvIeWiNsTaNcEdEcIsIoNiTeMiD/extra",
 			Error: true,
 		},
 	}

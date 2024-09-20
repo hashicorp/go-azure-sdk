@@ -18,15 +18,44 @@ type RequestComanagedDeviceRemoteAssistanceOperationResponse struct {
 	OData        *odata.OData
 }
 
+type RequestComanagedDeviceRemoteAssistanceOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultRequestComanagedDeviceRemoteAssistanceOperationOptions() RequestComanagedDeviceRemoteAssistanceOperationOptions {
+	return RequestComanagedDeviceRemoteAssistanceOperationOptions{}
+}
+
+func (o RequestComanagedDeviceRemoteAssistanceOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o RequestComanagedDeviceRemoteAssistanceOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o RequestComanagedDeviceRemoteAssistanceOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // RequestComanagedDeviceRemoteAssistance - Invoke action requestRemoteAssistance. Request remote assistance
-func (c ComanagedDeviceClient) RequestComanagedDeviceRemoteAssistance(ctx context.Context, id beta.DeviceManagementComanagedDeviceId) (result RequestComanagedDeviceRemoteAssistanceOperationResponse, err error) {
+func (c ComanagedDeviceClient) RequestComanagedDeviceRemoteAssistance(ctx context.Context, id beta.DeviceManagementComanagedDeviceId, options RequestComanagedDeviceRemoteAssistanceOperationOptions) (result RequestComanagedDeviceRemoteAssistanceOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/requestRemoteAssistance", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/requestRemoteAssistance", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

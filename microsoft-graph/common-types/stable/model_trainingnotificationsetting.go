@@ -74,18 +74,25 @@ func (s TrainingNotificationSetting) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &TrainingNotificationSetting{}
 
 func (s *TrainingNotificationSetting) UnmarshalJSON(bytes []byte) error {
-	type alias TrainingNotificationSetting
-	var decoded alias
+
+	var decoded struct {
+		TrainingReminder       *TrainingReminderNotification      `json:"trainingReminder,omitempty"`
+		NotificationPreference *EndUserNotificationPreference     `json:"notificationPreference,omitempty"`
+		ODataId                *string                            `json:"@odata.id,omitempty"`
+		ODataType              *string                            `json:"@odata.type,omitempty"`
+		PositiveReinforcement  *PositiveReinforcementNotification `json:"positiveReinforcement,omitempty"`
+		SettingType            *EndUserNotificationSettingType    `json:"settingType,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into TrainingNotificationSetting: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
+	s.TrainingReminder = decoded.TrainingReminder
 	s.NotificationPreference = decoded.NotificationPreference
 	s.ODataId = decoded.ODataId
 	s.ODataType = decoded.ODataType
 	s.PositiveReinforcement = decoded.PositiveReinforcement
 	s.SettingType = decoded.SettingType
-	s.TrainingReminder = decoded.TrainingReminder
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -99,5 +106,6 @@ func (s *TrainingNotificationSetting) UnmarshalJSON(bytes []byte) error {
 		}
 		s.TrainingAssignment = impl
 	}
+
 	return nil
 }

@@ -19,7 +19,8 @@ type DeleteSettingWindowOperationResponse struct {
 }
 
 type DeleteSettingWindowOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteSettingWindowOperationOptions() DeleteSettingWindowOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteSettingWindowOperationOptions) ToHeaders() *client.Headers {
 
 func (o DeleteSettingWindowOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

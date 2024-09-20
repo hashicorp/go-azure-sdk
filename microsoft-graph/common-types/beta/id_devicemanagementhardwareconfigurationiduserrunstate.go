@@ -99,9 +99,9 @@ func (id DeviceManagementHardwareConfigurationIdUserRunStateId) Segments() []res
 	return []resourceids.Segment{
 		resourceids.StaticSegment("deviceManagement", "deviceManagement", "deviceManagement"),
 		resourceids.StaticSegment("hardwareConfigurations", "hardwareConfigurations", "hardwareConfigurations"),
-		resourceids.UserSpecifiedSegment("hardwareConfigurationId", "hardwareConfigurationIdValue"),
+		resourceids.UserSpecifiedSegment("hardwareConfigurationId", "hardwareConfigurationId"),
 		resourceids.StaticSegment("userRunStates", "userRunStates", "userRunStates"),
-		resourceids.UserSpecifiedSegment("hardwareConfigurationUserStateId", "hardwareConfigurationUserStateIdValue"),
+		resourceids.UserSpecifiedSegment("hardwareConfigurationUserStateId", "hardwareConfigurationUserStateId"),
 	}
 }
 

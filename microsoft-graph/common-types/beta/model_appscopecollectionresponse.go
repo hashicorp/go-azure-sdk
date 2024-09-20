@@ -62,10 +62,15 @@ func (s AppScopeCollectionResponse) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &AppScopeCollectionResponse{}
 
 func (s *AppScopeCollectionResponse) UnmarshalJSON(bytes []byte) error {
-	type alias AppScopeCollectionResponse
-	var decoded alias
+
+	var decoded struct {
+		Value         *[]AppScope           `json:"value,omitempty"`
+		ODataId       *string               `json:"@odata.id,omitempty"`
+		ODataNextLink nullable.Type[string] `json:"@odata.nextLink,omitempty"`
+		ODataType     *string               `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into AppScopeCollectionResponse: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.ODataId = decoded.ODataId
@@ -93,5 +98,6 @@ func (s *AppScopeCollectionResponse) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Value = &output
 	}
+
 	return nil
 }

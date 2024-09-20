@@ -18,15 +18,44 @@ type CreateAuditEventOperationResponse struct {
 	Model        *beta.AuditEvent
 }
 
+type CreateAuditEventOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateAuditEventOperationOptions() CreateAuditEventOperationOptions {
+	return CreateAuditEventOperationOptions{}
+}
+
+func (o CreateAuditEventOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateAuditEventOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateAuditEventOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateAuditEvent - Create new navigation property to auditEvents for deviceManagement
-func (c AuditEventClient) CreateAuditEvent(ctx context.Context, input beta.AuditEvent) (result CreateAuditEventOperationResponse, err error) {
+func (c AuditEventClient) CreateAuditEvent(ctx context.Context, input beta.AuditEvent, options CreateAuditEventOperationOptions) (result CreateAuditEventOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/deviceManagement/auditEvents",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/deviceManagement/auditEvents",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -18,16 +18,45 @@ type CreateMicrosoftTunnelServerLogCollectionResponseOperationResponse struct {
 	Model        *beta.MicrosoftTunnelServerLogCollectionResponse
 }
 
+type CreateMicrosoftTunnelServerLogCollectionResponseOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateMicrosoftTunnelServerLogCollectionResponseOperationOptions() CreateMicrosoftTunnelServerLogCollectionResponseOperationOptions {
+	return CreateMicrosoftTunnelServerLogCollectionResponseOperationOptions{}
+}
+
+func (o CreateMicrosoftTunnelServerLogCollectionResponseOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateMicrosoftTunnelServerLogCollectionResponseOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateMicrosoftTunnelServerLogCollectionResponseOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateMicrosoftTunnelServerLogCollectionResponse - Create new navigation property to
 // microsoftTunnelServerLogCollectionResponses for deviceManagement
-func (c MicrosoftTunnelServerLogCollectionResponseClient) CreateMicrosoftTunnelServerLogCollectionResponse(ctx context.Context, input beta.MicrosoftTunnelServerLogCollectionResponse) (result CreateMicrosoftTunnelServerLogCollectionResponseOperationResponse, err error) {
+func (c MicrosoftTunnelServerLogCollectionResponseClient) CreateMicrosoftTunnelServerLogCollectionResponse(ctx context.Context, input beta.MicrosoftTunnelServerLogCollectionResponse, options CreateMicrosoftTunnelServerLogCollectionResponseOperationOptions) (result CreateMicrosoftTunnelServerLogCollectionResponseOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/deviceManagement/microsoftTunnelServerLogCollectionResponses",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/deviceManagement/microsoftTunnelServerLogCollectionResponses",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

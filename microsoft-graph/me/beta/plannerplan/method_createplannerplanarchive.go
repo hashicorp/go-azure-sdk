@@ -18,18 +18,47 @@ type CreatePlannerPlanArchiveOperationResponse struct {
 	OData        *odata.OData
 }
 
+type CreatePlannerPlanArchiveOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreatePlannerPlanArchiveOperationOptions() CreatePlannerPlanArchiveOperationOptions {
+	return CreatePlannerPlanArchiveOperationOptions{}
+}
+
+func (o CreatePlannerPlanArchiveOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreatePlannerPlanArchiveOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreatePlannerPlanArchiveOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreatePlannerPlanArchive - Invoke action archive. Archive a plannerPlan object. Archiving a plan, also archives the
 // plannerTasks and plannerBuckets in the plan. An archived entity is read-only. Archived entities cannot be updated. An
 // archived plan can be unarchived. All archived entities can be deleted. Archived tasks are not included in the
 // response for list of tasks assigned to a user.
-func (c PlannerPlanClient) CreatePlannerPlanArchive(ctx context.Context, id beta.MePlannerPlanId, input CreatePlannerPlanArchiveRequest) (result CreatePlannerPlanArchiveOperationResponse, err error) {
+func (c PlannerPlanClient) CreatePlannerPlanArchive(ctx context.Context, id beta.MePlannerPlanId, input CreatePlannerPlanArchiveRequest, options CreatePlannerPlanArchiveOperationOptions) (result CreatePlannerPlanArchiveOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/archive", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/archive", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

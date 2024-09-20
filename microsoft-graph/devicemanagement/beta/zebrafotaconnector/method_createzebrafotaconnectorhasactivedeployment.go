@@ -17,15 +17,44 @@ type CreateZebraFotaConnectorHasActiveDeploymentOperationResponse struct {
 	Model        *CreateZebraFotaConnectorHasActiveDeploymentResult
 }
 
+type CreateZebraFotaConnectorHasActiveDeploymentOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateZebraFotaConnectorHasActiveDeploymentOperationOptions() CreateZebraFotaConnectorHasActiveDeploymentOperationOptions {
+	return CreateZebraFotaConnectorHasActiveDeploymentOperationOptions{}
+}
+
+func (o CreateZebraFotaConnectorHasActiveDeploymentOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateZebraFotaConnectorHasActiveDeploymentOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateZebraFotaConnectorHasActiveDeploymentOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateZebraFotaConnectorHasActiveDeployment - Invoke action hasActiveDeployments
-func (c ZebraFotaConnectorClient) CreateZebraFotaConnectorHasActiveDeployment(ctx context.Context) (result CreateZebraFotaConnectorHasActiveDeploymentOperationResponse, err error) {
+func (c ZebraFotaConnectorClient) CreateZebraFotaConnectorHasActiveDeployment(ctx context.Context, options CreateZebraFotaConnectorHasActiveDeploymentOperationOptions) (result CreateZebraFotaConnectorHasActiveDeploymentOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/deviceManagement/zebraFotaConnector/hasActiveDeployments",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/deviceManagement/zebraFotaConnector/hasActiveDeployments",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

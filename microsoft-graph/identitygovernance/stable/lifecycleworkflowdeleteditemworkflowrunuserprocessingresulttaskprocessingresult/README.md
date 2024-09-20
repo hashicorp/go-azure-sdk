@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/microsoft-graph/identitygovernance/stable/lifecycleworkflowdeleteditemworkflowrunuserprocessingresulttaskprocessingresult` Documentation
 
-The `lifecycleworkflowdeleteditemworkflowrunuserprocessingresulttaskprocessingresult` SDK allows for interaction with the Azure Resource Manager Service `identitygovernance` (API Version `stable`).
+The `lifecycleworkflowdeleteditemworkflowrunuserprocessingresulttaskprocessingresult` SDK allows for interaction with Microsoft Graph `identitygovernance` (API Version `stable`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -15,7 +15,7 @@ import "github.com/hashicorp/go-azure-sdk/microsoft-graph/identitygovernance/sta
 ### Client Initialization
 
 ```go
-client := lifecycleworkflowdeleteditemworkflowrunuserprocessingresulttaskprocessingresult.NewLifecycleWorkflowDeletedItemWorkflowRunUserProcessingResultTaskProcessingResultClientWithBaseURI("https://management.azure.com")
+client := lifecycleworkflowdeleteditemworkflowrunuserprocessingresulttaskprocessingresult.NewLifecycleWorkflowDeletedItemWorkflowRunUserProcessingResultTaskProcessingResultClientWithBaseURI("https://graph.microsoft.com")
 client.Client.Authorizer = authorizer
 ```
 
@@ -24,14 +24,14 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := lifecycleworkflowdeleteditemworkflowrunuserprocessingresulttaskprocessingresult.NewIdentityGovernanceLifecycleWorkflowDeletedItemWorkflowIdRunIdUserProcessingResultIdTaskProcessingResultID("workflowIdValue", "runIdValue", "userProcessingResultIdValue", "taskProcessingResultIdValue")
+id := lifecycleworkflowdeleteditemworkflowrunuserprocessingresulttaskprocessingresult.NewIdentityGovernanceLifecycleWorkflowDeletedItemWorkflowIdRunIdUserProcessingResultIdTaskProcessingResultID("workflowId", "runId", "userProcessingResultId", "taskProcessingResultId")
 
 payload := lifecycleworkflowdeleteditemworkflowrunuserprocessingresulttaskprocessingresult.CreateLifecycleWorkflowDeletedItemWorkflowRunUserProcessingResultTaskIdentityGovernanceResumeRequest{
 	// ...
 }
 
 
-read, err := client.CreateLifecycleWorkflowDeletedItemWorkflowRunUserProcessingResultTaskIdentityGovernanceResume(ctx, id, payload)
+read, err := client.CreateLifecycleWorkflowDeletedItemWorkflowRunUserProcessingResultTaskIdentityGovernanceResume(ctx, id, payload, lifecycleworkflowdeleteditemworkflowrunuserprocessingresulttaskprocessingresult.DefaultCreateLifecycleWorkflowDeletedItemWorkflowRunUserProcessingResultTaskIdentityGovernanceResumeOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -45,7 +45,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := lifecycleworkflowdeleteditemworkflowrunuserprocessingresulttaskprocessingresult.NewIdentityGovernanceLifecycleWorkflowDeletedItemWorkflowIdRunIdUserProcessingResultID("workflowIdValue", "runIdValue", "userProcessingResultIdValue")
+id := lifecycleworkflowdeleteditemworkflowrunuserprocessingresulttaskprocessingresult.NewIdentityGovernanceLifecycleWorkflowDeletedItemWorkflowIdRunIdUserProcessingResultID("workflowId", "runId", "userProcessingResultId")
 
 read, err := client.GetLifecycleWorkflowDeletedItemWorkflowRunUserProcessingResultTaskCount(ctx, id, lifecycleworkflowdeleteditemworkflowrunuserprocessingresulttaskprocessingresult.DefaultGetLifecycleWorkflowDeletedItemWorkflowRunUserProcessingResultTaskCountOperationOptions())
 if err != nil {
@@ -61,7 +61,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := lifecycleworkflowdeleteditemworkflowrunuserprocessingresulttaskprocessingresult.NewIdentityGovernanceLifecycleWorkflowDeletedItemWorkflowIdRunIdUserProcessingResultIdTaskProcessingResultID("workflowIdValue", "runIdValue", "userProcessingResultIdValue", "taskProcessingResultIdValue")
+id := lifecycleworkflowdeleteditemworkflowrunuserprocessingresulttaskprocessingresult.NewIdentityGovernanceLifecycleWorkflowDeletedItemWorkflowIdRunIdUserProcessingResultIdTaskProcessingResultID("workflowId", "runId", "userProcessingResultId", "taskProcessingResultId")
 
 read, err := client.GetLifecycleWorkflowDeletedItemWorkflowRunUserProcessingResultTaskProcessingResult(ctx, id, lifecycleworkflowdeleteditemworkflowrunuserprocessingresulttaskprocessingresult.DefaultGetLifecycleWorkflowDeletedItemWorkflowRunUserProcessingResultTaskProcessingResultOperationOptions())
 if err != nil {
@@ -77,7 +77,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := lifecycleworkflowdeleteditemworkflowrunuserprocessingresulttaskprocessingresult.NewIdentityGovernanceLifecycleWorkflowDeletedItemWorkflowIdRunIdUserProcessingResultID("workflowIdValue", "runIdValue", "userProcessingResultIdValue")
+id := lifecycleworkflowdeleteditemworkflowrunuserprocessingresulttaskprocessingresult.NewIdentityGovernanceLifecycleWorkflowDeletedItemWorkflowIdRunIdUserProcessingResultID("workflowId", "runId", "userProcessingResultId")
 
 // alternatively `client.ListLifecycleWorkflowDeletedItemWorkflowRunUserProcessingResultTaskProcessingResults(ctx, id, lifecycleworkflowdeleteditemworkflowrunuserprocessingresulttaskprocessingresult.DefaultListLifecycleWorkflowDeletedItemWorkflowRunUserProcessingResultTaskProcessingResultsOperationOptions())` can be used to do batched pagination
 items, err := client.ListLifecycleWorkflowDeletedItemWorkflowRunUserProcessingResultTaskProcessingResultsComplete(ctx, id, lifecycleworkflowdeleteditemworkflowrunuserprocessingresulttaskprocessingresult.DefaultListLifecycleWorkflowDeletedItemWorkflowRunUserProcessingResultTaskProcessingResultsOperationOptions())

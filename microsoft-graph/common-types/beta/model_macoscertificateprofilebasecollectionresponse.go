@@ -62,10 +62,15 @@ func (s MacOSCertificateProfileBaseCollectionResponse) MarshalJSON() ([]byte, er
 var _ json.Unmarshaler = &MacOSCertificateProfileBaseCollectionResponse{}
 
 func (s *MacOSCertificateProfileBaseCollectionResponse) UnmarshalJSON(bytes []byte) error {
-	type alias MacOSCertificateProfileBaseCollectionResponse
-	var decoded alias
+
+	var decoded struct {
+		Value         *[]MacOSCertificateProfileBase `json:"value,omitempty"`
+		ODataId       *string                        `json:"@odata.id,omitempty"`
+		ODataNextLink nullable.Type[string]          `json:"@odata.nextLink,omitempty"`
+		ODataType     *string                        `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into MacOSCertificateProfileBaseCollectionResponse: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.ODataId = decoded.ODataId
@@ -93,5 +98,6 @@ func (s *MacOSCertificateProfileBaseCollectionResponse) UnmarshalJSON(bytes []by
 		}
 		s.Value = &output
 	}
+
 	return nil
 }

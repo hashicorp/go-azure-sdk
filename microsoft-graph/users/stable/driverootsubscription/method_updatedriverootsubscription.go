@@ -17,15 +17,44 @@ type UpdateDriveRootSubscriptionOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateDriveRootSubscriptionOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateDriveRootSubscriptionOperationOptions() UpdateDriveRootSubscriptionOperationOptions {
+	return UpdateDriveRootSubscriptionOperationOptions{}
+}
+
+func (o UpdateDriveRootSubscriptionOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateDriveRootSubscriptionOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateDriveRootSubscriptionOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateDriveRootSubscription - Update the navigation property subscriptions in users
-func (c DriveRootSubscriptionClient) UpdateDriveRootSubscription(ctx context.Context, id stable.UserIdDriveIdRootSubscriptionId, input stable.Subscription) (result UpdateDriveRootSubscriptionOperationResponse, err error) {
+func (c DriveRootSubscriptionClient) UpdateDriveRootSubscription(ctx context.Context, id stable.UserIdDriveIdRootSubscriptionId, input stable.Subscription, options UpdateDriveRootSubscriptionOperationOptions) (result UpdateDriveRootSubscriptionOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -12,24 +12,24 @@ import (
 var _ resourceids.ResourceId = &UserIdDriveIdListOperationId{}
 
 func TestNewUserIdDriveIdListOperationID(t *testing.T) {
-	id := NewUserIdDriveIdListOperationID("userIdValue", "driveIdValue", "richLongRunningOperationIdValue")
+	id := NewUserIdDriveIdListOperationID("userId", "driveId", "richLongRunningOperationId")
 
-	if id.UserId != "userIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'UserId'", id.UserId, "userIdValue")
+	if id.UserId != "userId" {
+		t.Fatalf("Expected %q but got %q for Segment 'UserId'", id.UserId, "userId")
 	}
 
-	if id.DriveId != "driveIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DriveId'", id.DriveId, "driveIdValue")
+	if id.DriveId != "driveId" {
+		t.Fatalf("Expected %q but got %q for Segment 'DriveId'", id.DriveId, "driveId")
 	}
 
-	if id.RichLongRunningOperationId != "richLongRunningOperationIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'RichLongRunningOperationId'", id.RichLongRunningOperationId, "richLongRunningOperationIdValue")
+	if id.RichLongRunningOperationId != "richLongRunningOperationId" {
+		t.Fatalf("Expected %q but got %q for Segment 'RichLongRunningOperationId'", id.RichLongRunningOperationId, "richLongRunningOperationId")
 	}
 }
 
 func TestFormatUserIdDriveIdListOperationID(t *testing.T) {
-	actual := NewUserIdDriveIdListOperationID("userIdValue", "driveIdValue", "richLongRunningOperationIdValue").ID()
-	expected := "/users/userIdValue/drives/driveIdValue/list/operations/richLongRunningOperationIdValue"
+	actual := NewUserIdDriveIdListOperationID("userId", "driveId", "richLongRunningOperationId").ID()
+	expected := "/users/userId/drives/driveId/list/operations/richLongRunningOperationId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -53,41 +53,41 @@ func TestParseUserIdDriveIdListOperationID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue",
+			Input: "/users/userId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/drives",
+			Input: "/users/userId/drives",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/drives/driveIdValue",
+			Input: "/users/userId/drives/driveId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/drives/driveIdValue/list",
+			Input: "/users/userId/drives/driveId/list",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/drives/driveIdValue/list/operations",
+			Input: "/users/userId/drives/driveId/list/operations",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/users/userIdValue/drives/driveIdValue/list/operations/richLongRunningOperationIdValue",
+			Input: "/users/userId/drives/driveId/list/operations/richLongRunningOperationId",
 			Expected: &UserIdDriveIdListOperationId{
-				UserId:                     "userIdValue",
-				DriveId:                    "driveIdValue",
-				RichLongRunningOperationId: "richLongRunningOperationIdValue",
+				UserId:                     "userId",
+				DriveId:                    "driveId",
+				RichLongRunningOperationId: "richLongRunningOperationId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/users/userIdValue/drives/driveIdValue/list/operations/richLongRunningOperationIdValue/extra",
+			Input: "/users/userId/drives/driveId/list/operations/richLongRunningOperationId/extra",
 			Error: true,
 		},
 	}
@@ -144,80 +144,80 @@ func TestParseUserIdDriveIdListOperationIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue",
+			Input: "/users/userId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe",
+			Input: "/uSeRs/uSeRiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/drives",
+			Input: "/users/userId/drives",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/dRiVeS",
+			Input: "/uSeRs/uSeRiD/dRiVeS",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/drives/driveIdValue",
+			Input: "/users/userId/drives/driveId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/dRiVeS/dRiVeIdVaLuE",
+			Input: "/uSeRs/uSeRiD/dRiVeS/dRiVeId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/drives/driveIdValue/list",
+			Input: "/users/userId/drives/driveId/list",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/dRiVeS/dRiVeIdVaLuE/lIsT",
+			Input: "/uSeRs/uSeRiD/dRiVeS/dRiVeId/lIsT",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/drives/driveIdValue/list/operations",
+			Input: "/users/userId/drives/driveId/list/operations",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/dRiVeS/dRiVeIdVaLuE/lIsT/oPeRaTiOnS",
+			Input: "/uSeRs/uSeRiD/dRiVeS/dRiVeId/lIsT/oPeRaTiOnS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/users/userIdValue/drives/driveIdValue/list/operations/richLongRunningOperationIdValue",
+			Input: "/users/userId/drives/driveId/list/operations/richLongRunningOperationId",
 			Expected: &UserIdDriveIdListOperationId{
-				UserId:                     "userIdValue",
-				DriveId:                    "driveIdValue",
-				RichLongRunningOperationId: "richLongRunningOperationIdValue",
+				UserId:                     "userId",
+				DriveId:                    "driveId",
+				RichLongRunningOperationId: "richLongRunningOperationId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/users/userIdValue/drives/driveIdValue/list/operations/richLongRunningOperationIdValue/extra",
+			Input: "/users/userId/drives/driveId/list/operations/richLongRunningOperationId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/dRiVeS/dRiVeIdVaLuE/lIsT/oPeRaTiOnS/rIcHlOnGrUnNiNgOpErAtIoNiDvAlUe",
+			Input: "/uSeRs/uSeRiD/dRiVeS/dRiVeId/lIsT/oPeRaTiOnS/rIcHlOnGrUnNiNgOpErAtIoNiD",
 			Expected: &UserIdDriveIdListOperationId{
-				UserId:                     "uSeRiDvAlUe",
-				DriveId:                    "dRiVeIdVaLuE",
-				RichLongRunningOperationId: "rIcHlOnGrUnNiNgOpErAtIoNiDvAlUe",
+				UserId:                     "uSeRiD",
+				DriveId:                    "dRiVeId",
+				RichLongRunningOperationId: "rIcHlOnGrUnNiNgOpErAtIoNiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/dRiVeS/dRiVeIdVaLuE/lIsT/oPeRaTiOnS/rIcHlOnGrUnNiNgOpErAtIoNiDvAlUe/extra",
+			Input: "/uSeRs/uSeRiD/dRiVeS/dRiVeId/lIsT/oPeRaTiOnS/rIcHlOnGrUnNiNgOpErAtIoNiD/extra",
 			Error: true,
 		},
 	}

@@ -17,16 +17,45 @@ type UpdateDeviceConfigurationDeviceStateSummaryOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateDeviceConfigurationDeviceStateSummaryOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateDeviceConfigurationDeviceStateSummaryOperationOptions() UpdateDeviceConfigurationDeviceStateSummaryOperationOptions {
+	return UpdateDeviceConfigurationDeviceStateSummaryOperationOptions{}
+}
+
+func (o UpdateDeviceConfigurationDeviceStateSummaryOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateDeviceConfigurationDeviceStateSummaryOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateDeviceConfigurationDeviceStateSummaryOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateDeviceConfigurationDeviceStateSummary - Update the navigation property deviceConfigurationDeviceStateSummaries
 // in deviceManagement
-func (c DeviceConfigurationDeviceStateSummaryClient) UpdateDeviceConfigurationDeviceStateSummary(ctx context.Context, input beta.DeviceConfigurationDeviceStateSummary) (result UpdateDeviceConfigurationDeviceStateSummaryOperationResponse, err error) {
+func (c DeviceConfigurationDeviceStateSummaryClient) UpdateDeviceConfigurationDeviceStateSummary(ctx context.Context, input beta.DeviceConfigurationDeviceStateSummary, options UpdateDeviceConfigurationDeviceStateSummaryOperationOptions) (result UpdateDeviceConfigurationDeviceStateSummaryOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       "/deviceManagement/deviceConfigurationDeviceStateSummaries",
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          "/deviceManagement/deviceConfigurationDeviceStateSummaries",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

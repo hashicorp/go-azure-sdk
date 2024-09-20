@@ -18,7 +18,8 @@ type DeleteFederatedTokenValidationPolicyOperationResponse struct {
 }
 
 type DeleteFederatedTokenValidationPolicyOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteFederatedTokenValidationPolicyOperationOptions() DeleteFederatedTokenValidationPolicyOperationOptions {
@@ -35,7 +36,9 @@ func (o DeleteFederatedTokenValidationPolicyOperationOptions) ToHeaders() *clien
 
 func (o DeleteFederatedTokenValidationPolicyOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

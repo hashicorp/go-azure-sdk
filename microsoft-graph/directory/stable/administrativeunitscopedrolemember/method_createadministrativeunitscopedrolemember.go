@@ -19,17 +19,46 @@ type CreateAdministrativeUnitScopedRoleMemberOperationResponse struct {
 	Model        *stable.ScopedRoleMembership
 }
 
+type CreateAdministrativeUnitScopedRoleMemberOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateAdministrativeUnitScopedRoleMemberOperationOptions() CreateAdministrativeUnitScopedRoleMemberOperationOptions {
+	return CreateAdministrativeUnitScopedRoleMemberOperationOptions{}
+}
+
+func (o CreateAdministrativeUnitScopedRoleMemberOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateAdministrativeUnitScopedRoleMemberOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateAdministrativeUnitScopedRoleMemberOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateAdministrativeUnitScopedRoleMember - Add a scopedRoleMember. Assign a Microsoft Entra role with administrative
 // unit scope. For a list of roles that can be assigned with administrative unit scope, see Assign Microsoft Entra roles
 // with administrative unit scope.
-func (c AdministrativeUnitScopedRoleMemberClient) CreateAdministrativeUnitScopedRoleMember(ctx context.Context, id stable.DirectoryAdministrativeUnitId, input stable.ScopedRoleMembership) (result CreateAdministrativeUnitScopedRoleMemberOperationResponse, err error) {
+func (c AdministrativeUnitScopedRoleMemberClient) CreateAdministrativeUnitScopedRoleMember(ctx context.Context, id stable.DirectoryAdministrativeUnitId, input stable.ScopedRoleMembership, options CreateAdministrativeUnitScopedRoleMemberOperationOptions) (result CreateAdministrativeUnitScopedRoleMemberOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/scopedRoleMembers", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/scopedRoleMembers", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

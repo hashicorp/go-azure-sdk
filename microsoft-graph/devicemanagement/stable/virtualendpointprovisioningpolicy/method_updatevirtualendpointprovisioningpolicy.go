@@ -17,16 +17,45 @@ type UpdateVirtualEndpointProvisioningPolicyOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateVirtualEndpointProvisioningPolicyOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateVirtualEndpointProvisioningPolicyOperationOptions() UpdateVirtualEndpointProvisioningPolicyOperationOptions {
+	return UpdateVirtualEndpointProvisioningPolicyOperationOptions{}
+}
+
+func (o UpdateVirtualEndpointProvisioningPolicyOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateVirtualEndpointProvisioningPolicyOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateVirtualEndpointProvisioningPolicyOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateVirtualEndpointProvisioningPolicy - Update cloudPcProvisioningPolicy. Update the properties of a
 // cloudPcProvisioningPolicy object.
-func (c VirtualEndpointProvisioningPolicyClient) UpdateVirtualEndpointProvisioningPolicy(ctx context.Context, id stable.DeviceManagementVirtualEndpointProvisioningPolicyId, input stable.CloudPCProvisioningPolicy) (result UpdateVirtualEndpointProvisioningPolicyOperationResponse, err error) {
+func (c VirtualEndpointProvisioningPolicyClient) UpdateVirtualEndpointProvisioningPolicy(ctx context.Context, id stable.DeviceManagementVirtualEndpointProvisioningPolicyId, input stable.CloudPCProvisioningPolicy, options UpdateVirtualEndpointProvisioningPolicyOperationOptions) (result UpdateVirtualEndpointProvisioningPolicyOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

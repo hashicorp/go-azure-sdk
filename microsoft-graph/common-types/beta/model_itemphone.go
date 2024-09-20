@@ -112,25 +112,41 @@ func (s ItemPhone) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &ItemPhone{}
 
 func (s *ItemPhone) UnmarshalJSON(bytes []byte) error {
-	type alias ItemPhone
-	var decoded alias
+
+	var decoded struct {
+		DisplayName          nullable.Type[string]      `json:"displayName,omitempty"`
+		Number               *string                    `json:"number,omitempty"`
+		Type                 *PhoneType                 `json:"type,omitempty"`
+		AllowedAudiences     *AllowedAudiences          `json:"allowedAudiences,omitempty"`
+		CreatedBy            IdentitySet                `json:"createdBy"`
+		CreatedDateTime      *string                    `json:"createdDateTime,omitempty"`
+		Inference            *InferenceData             `json:"inference,omitempty"`
+		IsSearchable         nullable.Type[bool]        `json:"isSearchable,omitempty"`
+		LastModifiedBy       IdentitySet                `json:"lastModifiedBy"`
+		LastModifiedDateTime *string                    `json:"lastModifiedDateTime,omitempty"`
+		Source               *PersonDataSources         `json:"source,omitempty"`
+		Sources              *[]ProfileSourceAnnotation `json:"sources,omitempty"`
+		Id                   *string                    `json:"id,omitempty"`
+		ODataId              *string                    `json:"@odata.id,omitempty"`
+		ODataType            *string                    `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into ItemPhone: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
+	s.DisplayName = decoded.DisplayName
+	s.Number = decoded.Number
+	s.Type = decoded.Type
 	s.AllowedAudiences = decoded.AllowedAudiences
 	s.CreatedDateTime = decoded.CreatedDateTime
-	s.DisplayName = decoded.DisplayName
 	s.Id = decoded.Id
 	s.Inference = decoded.Inference
 	s.IsSearchable = decoded.IsSearchable
 	s.LastModifiedDateTime = decoded.LastModifiedDateTime
-	s.Number = decoded.Number
 	s.ODataId = decoded.ODataId
 	s.ODataType = decoded.ODataType
 	s.Source = decoded.Source
 	s.Sources = decoded.Sources
-	s.Type = decoded.Type
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -152,5 +168,6 @@ func (s *ItemPhone) UnmarshalJSON(bytes []byte) error {
 		}
 		s.LastModifiedBy = impl
 	}
+
 	return nil
 }

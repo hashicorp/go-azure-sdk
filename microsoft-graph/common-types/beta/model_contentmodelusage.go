@@ -42,10 +42,18 @@ type ContentModelUsage struct {
 var _ json.Unmarshaler = &ContentModelUsage{}
 
 func (s *ContentModelUsage) UnmarshalJSON(bytes []byte) error {
-	type alias ContentModelUsage
-	var decoded alias
+
+	var decoded struct {
+		CreatedDateTime      nullable.Type[string] `json:"createdDateTime,omitempty"`
+		DriveId              nullable.Type[string] `json:"driveId,omitempty"`
+		LastModifiedDateTime nullable.Type[string] `json:"lastModifiedDateTime,omitempty"`
+		ModelId              nullable.Type[string] `json:"modelId,omitempty"`
+		ModelVersion         nullable.Type[string] `json:"modelVersion,omitempty"`
+		ODataId              *string               `json:"@odata.id,omitempty"`
+		ODataType            *string               `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into ContentModelUsage: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.CreatedDateTime = decoded.CreatedDateTime
@@ -76,5 +84,6 @@ func (s *ContentModelUsage) UnmarshalJSON(bytes []byte) error {
 		}
 		s.LastModifiedBy = impl
 	}
+
 	return nil
 }

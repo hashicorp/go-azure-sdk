@@ -19,7 +19,8 @@ type DeleteCompliancePolicyAssignmentOperationResponse struct {
 }
 
 type DeleteCompliancePolicyAssignmentOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteCompliancePolicyAssignmentOperationOptions() DeleteCompliancePolicyAssignmentOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteCompliancePolicyAssignmentOperationOptions) ToHeaders() *client.He
 
 func (o DeleteCompliancePolicyAssignmentOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

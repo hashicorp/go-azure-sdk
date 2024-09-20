@@ -19,8 +19,9 @@ type GetEntitlementManagementCatalogResourceRoleOperationResponse struct {
 }
 
 type GetEntitlementManagementCatalogResourceRoleOperationOptions struct {
-	Expand *odata.Expand
-	Select *[]string
+	Expand   *odata.Expand
+	Metadata *odata.Metadata
+	Select   *[]string
 }
 
 func DefaultGetEntitlementManagementCatalogResourceRoleOperationOptions() GetEntitlementManagementCatalogResourceRoleOperationOptions {
@@ -38,6 +39,9 @@ func (o GetEntitlementManagementCatalogResourceRoleOperationOptions) ToOData() *
 	if o.Expand != nil {
 		out.Expand = *o.Expand
 	}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	if o.Select != nil {
 		out.Select = *o.Select
 	}
@@ -50,8 +54,9 @@ func (o GetEntitlementManagementCatalogResourceRoleOperationOptions) ToQuery() *
 	return &out
 }
 
-// GetEntitlementManagementCatalogResourceRole - Get resourceRoles from identityGovernance
-func (c EntitlementManagementCatalogResourceRoleClient) GetEntitlementManagementCatalogResourceRole(ctx context.Context, id stable.IdentityGovernanceEntitlementManagementCatalogIdResourceRoleId, options GetEntitlementManagementCatalogResourceRoleOperationOptions) (result GetEntitlementManagementCatalogResourceRoleOperationResponse, err error) {
+// GetEntitlementManagementCatalogResourceRole - Get roles from identityGovernance. Read-only. Nullable. Supports
+// $expand.
+func (c EntitlementManagementCatalogResourceRoleClient) GetEntitlementManagementCatalogResourceRole(ctx context.Context, id stable.IdentityGovernanceEntitlementManagementCatalogIdResourceIdRoleId, options GetEntitlementManagementCatalogResourceRoleOperationOptions) (result GetEntitlementManagementCatalogResourceRoleOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{

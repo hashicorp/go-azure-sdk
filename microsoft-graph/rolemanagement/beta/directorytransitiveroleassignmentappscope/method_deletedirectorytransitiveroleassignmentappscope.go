@@ -19,7 +19,8 @@ type DeleteDirectoryTransitiveRoleAssignmentAppScopeOperationResponse struct {
 }
 
 type DeleteDirectoryTransitiveRoleAssignmentAppScopeOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteDirectoryTransitiveRoleAssignmentAppScopeOperationOptions() DeleteDirectoryTransitiveRoleAssignmentAppScopeOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteDirectoryTransitiveRoleAssignmentAppScopeOperationOptions) ToHeade
 
 func (o DeleteDirectoryTransitiveRoleAssignmentAppScopeOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

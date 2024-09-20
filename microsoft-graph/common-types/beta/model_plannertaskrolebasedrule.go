@@ -30,10 +30,15 @@ type PlannerTaskRoleBasedRule struct {
 var _ json.Unmarshaler = &PlannerTaskRoleBasedRule{}
 
 func (s *PlannerTaskRoleBasedRule) UnmarshalJSON(bytes []byte) error {
-	type alias PlannerTaskRoleBasedRule
-	var decoded alias
+
+	var decoded struct {
+		DefaultRule  nullable.Type[string]    `json:"defaultRule,omitempty"`
+		ODataId      *string                  `json:"@odata.id,omitempty"`
+		ODataType    *string                  `json:"@odata.type,omitempty"`
+		PropertyRule *PlannerTaskPropertyRule `json:"propertyRule,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into PlannerTaskRoleBasedRule: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.DefaultRule = decoded.DefaultRule
@@ -53,5 +58,6 @@ func (s *PlannerTaskRoleBasedRule) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Role = impl
 	}
+
 	return nil
 }

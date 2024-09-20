@@ -12,24 +12,24 @@ import (
 var _ resourceids.ResourceId = &UserIdApprovalIdStepId{}
 
 func TestNewUserIdApprovalIdStepID(t *testing.T) {
-	id := NewUserIdApprovalIdStepID("userIdValue", "approvalIdValue", "approvalStepIdValue")
+	id := NewUserIdApprovalIdStepID("userId", "approvalId", "approvalStepId")
 
-	if id.UserId != "userIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'UserId'", id.UserId, "userIdValue")
+	if id.UserId != "userId" {
+		t.Fatalf("Expected %q but got %q for Segment 'UserId'", id.UserId, "userId")
 	}
 
-	if id.ApprovalId != "approvalIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ApprovalId'", id.ApprovalId, "approvalIdValue")
+	if id.ApprovalId != "approvalId" {
+		t.Fatalf("Expected %q but got %q for Segment 'ApprovalId'", id.ApprovalId, "approvalId")
 	}
 
-	if id.ApprovalStepId != "approvalStepIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ApprovalStepId'", id.ApprovalStepId, "approvalStepIdValue")
+	if id.ApprovalStepId != "approvalStepId" {
+		t.Fatalf("Expected %q but got %q for Segment 'ApprovalStepId'", id.ApprovalStepId, "approvalStepId")
 	}
 }
 
 func TestFormatUserIdApprovalIdStepID(t *testing.T) {
-	actual := NewUserIdApprovalIdStepID("userIdValue", "approvalIdValue", "approvalStepIdValue").ID()
-	expected := "/users/userIdValue/approvals/approvalIdValue/steps/approvalStepIdValue"
+	actual := NewUserIdApprovalIdStepID("userId", "approvalId", "approvalStepId").ID()
+	expected := "/users/userId/approvals/approvalId/steps/approvalStepId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -53,36 +53,36 @@ func TestParseUserIdApprovalIdStepID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue",
+			Input: "/users/userId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/approvals",
+			Input: "/users/userId/approvals",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/approvals/approvalIdValue",
+			Input: "/users/userId/approvals/approvalId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/approvals/approvalIdValue/steps",
+			Input: "/users/userId/approvals/approvalId/steps",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/users/userIdValue/approvals/approvalIdValue/steps/approvalStepIdValue",
+			Input: "/users/userId/approvals/approvalId/steps/approvalStepId",
 			Expected: &UserIdApprovalIdStepId{
-				UserId:         "userIdValue",
-				ApprovalId:     "approvalIdValue",
-				ApprovalStepId: "approvalStepIdValue",
+				UserId:         "userId",
+				ApprovalId:     "approvalId",
+				ApprovalStepId: "approvalStepId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/users/userIdValue/approvals/approvalIdValue/steps/approvalStepIdValue/extra",
+			Input: "/users/userId/approvals/approvalId/steps/approvalStepId/extra",
 			Error: true,
 		},
 	}
@@ -139,70 +139,70 @@ func TestParseUserIdApprovalIdStepIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue",
+			Input: "/users/userId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe",
+			Input: "/uSeRs/uSeRiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/approvals",
+			Input: "/users/userId/approvals",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/aPpRoVaLs",
+			Input: "/uSeRs/uSeRiD/aPpRoVaLs",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/approvals/approvalIdValue",
+			Input: "/users/userId/approvals/approvalId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/aPpRoVaLs/aPpRoVaLiDvAlUe",
+			Input: "/uSeRs/uSeRiD/aPpRoVaLs/aPpRoVaLiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/approvals/approvalIdValue/steps",
+			Input: "/users/userId/approvals/approvalId/steps",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/aPpRoVaLs/aPpRoVaLiDvAlUe/sTePs",
+			Input: "/uSeRs/uSeRiD/aPpRoVaLs/aPpRoVaLiD/sTePs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/users/userIdValue/approvals/approvalIdValue/steps/approvalStepIdValue",
+			Input: "/users/userId/approvals/approvalId/steps/approvalStepId",
 			Expected: &UserIdApprovalIdStepId{
-				UserId:         "userIdValue",
-				ApprovalId:     "approvalIdValue",
-				ApprovalStepId: "approvalStepIdValue",
+				UserId:         "userId",
+				ApprovalId:     "approvalId",
+				ApprovalStepId: "approvalStepId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/users/userIdValue/approvals/approvalIdValue/steps/approvalStepIdValue/extra",
+			Input: "/users/userId/approvals/approvalId/steps/approvalStepId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/aPpRoVaLs/aPpRoVaLiDvAlUe/sTePs/aPpRoVaLsTePiDvAlUe",
+			Input: "/uSeRs/uSeRiD/aPpRoVaLs/aPpRoVaLiD/sTePs/aPpRoVaLsTePiD",
 			Expected: &UserIdApprovalIdStepId{
-				UserId:         "uSeRiDvAlUe",
-				ApprovalId:     "aPpRoVaLiDvAlUe",
-				ApprovalStepId: "aPpRoVaLsTePiDvAlUe",
+				UserId:         "uSeRiD",
+				ApprovalId:     "aPpRoVaLiD",
+				ApprovalStepId: "aPpRoVaLsTePiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/aPpRoVaLs/aPpRoVaLiDvAlUe/sTePs/aPpRoVaLsTePiDvAlUe/extra",
+			Input: "/uSeRs/uSeRiD/aPpRoVaLs/aPpRoVaLiD/sTePs/aPpRoVaLsTePiD/extra",
 			Error: true,
 		},
 	}

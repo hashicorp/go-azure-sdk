@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &MeOutlookTaskId{}
 
 func TestNewMeOutlookTaskID(t *testing.T) {
-	id := NewMeOutlookTaskID("outlookTaskIdValue")
+	id := NewMeOutlookTaskID("outlookTaskId")
 
-	if id.OutlookTaskId != "outlookTaskIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'OutlookTaskId'", id.OutlookTaskId, "outlookTaskIdValue")
+	if id.OutlookTaskId != "outlookTaskId" {
+		t.Fatalf("Expected %q but got %q for Segment 'OutlookTaskId'", id.OutlookTaskId, "outlookTaskId")
 	}
 }
 
 func TestFormatMeOutlookTaskID(t *testing.T) {
-	actual := NewMeOutlookTaskID("outlookTaskIdValue").ID()
-	expected := "/me/outlook/tasks/outlookTaskIdValue"
+	actual := NewMeOutlookTaskID("outlookTaskId").ID()
+	expected := "/me/outlook/tasks/outlookTaskId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -55,14 +55,14 @@ func TestParseMeOutlookTaskID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/me/outlook/tasks/outlookTaskIdValue",
+			Input: "/me/outlook/tasks/outlookTaskId",
 			Expected: &MeOutlookTaskId{
-				OutlookTaskId: "outlookTaskIdValue",
+				OutlookTaskId: "outlookTaskId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/outlook/tasks/outlookTaskIdValue/extra",
+			Input: "/me/outlook/tasks/outlookTaskId/extra",
 			Error: true,
 		},
 	}
@@ -131,26 +131,26 @@ func TestParseMeOutlookTaskIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/me/outlook/tasks/outlookTaskIdValue",
+			Input: "/me/outlook/tasks/outlookTaskId",
 			Expected: &MeOutlookTaskId{
-				OutlookTaskId: "outlookTaskIdValue",
+				OutlookTaskId: "outlookTaskId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/outlook/tasks/outlookTaskIdValue/extra",
+			Input: "/me/outlook/tasks/outlookTaskId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/oUtLoOk/tAsKs/oUtLoOkTaSkIdVaLuE",
+			Input: "/mE/oUtLoOk/tAsKs/oUtLoOkTaSkId",
 			Expected: &MeOutlookTaskId{
-				OutlookTaskId: "oUtLoOkTaSkIdVaLuE",
+				OutlookTaskId: "oUtLoOkTaSkId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/mE/oUtLoOk/tAsKs/oUtLoOkTaSkIdVaLuE/extra",
+			Input: "/mE/oUtLoOk/tAsKs/oUtLoOkTaSkId/extra",
 			Error: true,
 		},
 	}

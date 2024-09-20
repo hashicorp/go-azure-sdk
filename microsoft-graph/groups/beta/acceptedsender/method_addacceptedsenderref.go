@@ -18,18 +18,47 @@ type AddAcceptedSenderRefOperationResponse struct {
 	OData        *odata.OData
 }
 
+type AddAcceptedSenderRefOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultAddAcceptedSenderRefOperationOptions() AddAcceptedSenderRefOperationOptions {
+	return AddAcceptedSenderRefOperationOptions{}
+}
+
+func (o AddAcceptedSenderRefOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o AddAcceptedSenderRefOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o AddAcceptedSenderRefOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // AddAcceptedSenderRef - Create acceptedSender. Add a new user or group to the acceptedSender list. Specify the user or
 // group in @odata.id in the request body. Users in the accepted senders list can post to conversations of the group.
 // Make sure you don't specify the same user or group in the accepted senders and rejected senders lists, otherwise
 // you'll get an error.
-func (c AcceptedSenderClient) AddAcceptedSenderRef(ctx context.Context, id beta.GroupId, input beta.ReferenceCreate) (result AddAcceptedSenderRefOperationResponse, err error) {
+func (c AcceptedSenderClient) AddAcceptedSenderRef(ctx context.Context, id beta.GroupId, input beta.ReferenceCreate, options AddAcceptedSenderRefOperationOptions) (result AddAcceptedSenderRefOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/acceptedSenders/$ref", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/acceptedSenders/$ref", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

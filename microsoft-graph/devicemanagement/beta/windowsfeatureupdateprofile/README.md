@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/windowsfeatureupdateprofile` Documentation
 
-The `windowsfeatureupdateprofile` SDK allows for interaction with the Azure Resource Manager Service `devicemanagement` (API Version `beta`).
+The `windowsfeatureupdateprofile` SDK allows for interaction with Microsoft Graph `devicemanagement` (API Version `beta`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -15,7 +15,7 @@ import "github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/
 ### Client Initialization
 
 ```go
-client := windowsfeatureupdateprofile.NewWindowsFeatureUpdateProfileClientWithBaseURI("https://management.azure.com")
+client := windowsfeatureupdateprofile.NewWindowsFeatureUpdateProfileClientWithBaseURI("https://graph.microsoft.com")
 client.Client.Authorizer = authorizer
 ```
 
@@ -24,14 +24,14 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := windowsfeatureupdateprofile.NewDeviceManagementWindowsFeatureUpdateProfileID("windowsFeatureUpdateProfileIdValue")
+id := windowsfeatureupdateprofile.NewDeviceManagementWindowsFeatureUpdateProfileID("windowsFeatureUpdateProfileId")
 
 payload := windowsfeatureupdateprofile.AssignWindowsFeatureUpdateProfileRequest{
 	// ...
 }
 
 
-read, err := client.AssignWindowsFeatureUpdateProfile(ctx, id, payload)
+read, err := client.AssignWindowsFeatureUpdateProfile(ctx, id, payload, windowsfeatureupdateprofile.DefaultAssignWindowsFeatureUpdateProfileOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -51,7 +51,7 @@ payload := windowsfeatureupdateprofile.WindowsFeatureUpdateProfile{
 }
 
 
-read, err := client.CreateWindowsFeatureUpdateProfile(ctx, payload)
+read, err := client.CreateWindowsFeatureUpdateProfile(ctx, payload, windowsfeatureupdateprofile.DefaultCreateWindowsFeatureUpdateProfileOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -65,7 +65,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := windowsfeatureupdateprofile.NewDeviceManagementWindowsFeatureUpdateProfileID("windowsFeatureUpdateProfileIdValue")
+id := windowsfeatureupdateprofile.NewDeviceManagementWindowsFeatureUpdateProfileID("windowsFeatureUpdateProfileId")
 
 read, err := client.DeleteWindowsFeatureUpdateProfile(ctx, id, windowsfeatureupdateprofile.DefaultDeleteWindowsFeatureUpdateProfileOperationOptions())
 if err != nil {
@@ -81,7 +81,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := windowsfeatureupdateprofile.NewDeviceManagementWindowsFeatureUpdateProfileID("windowsFeatureUpdateProfileIdValue")
+id := windowsfeatureupdateprofile.NewDeviceManagementWindowsFeatureUpdateProfileID("windowsFeatureUpdateProfileId")
 
 read, err := client.GetWindowsFeatureUpdateProfile(ctx, id, windowsfeatureupdateprofile.DefaultGetWindowsFeatureUpdateProfileOperationOptions())
 if err != nil {
@@ -130,14 +130,14 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := windowsfeatureupdateprofile.NewDeviceManagementWindowsFeatureUpdateProfileID("windowsFeatureUpdateProfileIdValue")
+id := windowsfeatureupdateprofile.NewDeviceManagementWindowsFeatureUpdateProfileID("windowsFeatureUpdateProfileId")
 
 payload := windowsfeatureupdateprofile.WindowsFeatureUpdateProfile{
 	// ...
 }
 
 
-read, err := client.UpdateWindowsFeatureUpdateProfile(ctx, id, payload)
+read, err := client.UpdateWindowsFeatureUpdateProfile(ctx, id, payload, windowsfeatureupdateprofile.DefaultUpdateWindowsFeatureUpdateProfileOperationOptions())
 if err != nil {
 	// handle the error
 }

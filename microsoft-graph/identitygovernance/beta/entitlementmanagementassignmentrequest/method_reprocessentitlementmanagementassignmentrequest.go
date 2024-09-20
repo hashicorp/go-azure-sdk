@@ -18,15 +18,44 @@ type ReprocessEntitlementManagementAssignmentRequestOperationResponse struct {
 	OData        *odata.OData
 }
 
+type ReprocessEntitlementManagementAssignmentRequestOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultReprocessEntitlementManagementAssignmentRequestOperationOptions() ReprocessEntitlementManagementAssignmentRequestOperationOptions {
+	return ReprocessEntitlementManagementAssignmentRequestOperationOptions{}
+}
+
+func (o ReprocessEntitlementManagementAssignmentRequestOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o ReprocessEntitlementManagementAssignmentRequestOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o ReprocessEntitlementManagementAssignmentRequestOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // ReprocessEntitlementManagementAssignmentRequest - Invoke action reprocess
-func (c EntitlementManagementAssignmentRequestClient) ReprocessEntitlementManagementAssignmentRequest(ctx context.Context, id beta.IdentityGovernanceEntitlementManagementAssignmentRequestId) (result ReprocessEntitlementManagementAssignmentRequestOperationResponse, err error) {
+func (c EntitlementManagementAssignmentRequestClient) ReprocessEntitlementManagementAssignmentRequest(ctx context.Context, id beta.IdentityGovernanceEntitlementManagementAssignmentRequestId, options ReprocessEntitlementManagementAssignmentRequestOperationOptions) (result ReprocessEntitlementManagementAssignmentRequestOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/reprocess", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/reprocess", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

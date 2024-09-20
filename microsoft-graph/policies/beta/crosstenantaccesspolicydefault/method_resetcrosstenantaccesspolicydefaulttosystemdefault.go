@@ -16,16 +16,45 @@ type ResetCrossTenantAccessPolicyDefaultToSystemDefaultOperationResponse struct 
 	OData        *odata.OData
 }
 
+type ResetCrossTenantAccessPolicyDefaultToSystemDefaultOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultResetCrossTenantAccessPolicyDefaultToSystemDefaultOperationOptions() ResetCrossTenantAccessPolicyDefaultToSystemDefaultOperationOptions {
+	return ResetCrossTenantAccessPolicyDefaultToSystemDefaultOperationOptions{}
+}
+
+func (o ResetCrossTenantAccessPolicyDefaultToSystemDefaultOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o ResetCrossTenantAccessPolicyDefaultToSystemDefaultOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o ResetCrossTenantAccessPolicyDefaultToSystemDefaultOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // ResetCrossTenantAccessPolicyDefaultToSystemDefault - Invoke action resetToSystemDefault. Reset any changes made to
 // the default configuration in a cross-tenant access policy back to the system default.
-func (c CrossTenantAccessPolicyDefaultClient) ResetCrossTenantAccessPolicyDefaultToSystemDefault(ctx context.Context) (result ResetCrossTenantAccessPolicyDefaultToSystemDefaultOperationResponse, err error) {
+func (c CrossTenantAccessPolicyDefaultClient) ResetCrossTenantAccessPolicyDefaultToSystemDefault(ctx context.Context, options ResetCrossTenantAccessPolicyDefaultToSystemDefaultOperationOptions) (result ResetCrossTenantAccessPolicyDefaultToSystemDefaultOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/policies/crossTenantAccessPolicy/default/resetToSystemDefault",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/policies/crossTenantAccessPolicy/default/resetToSystemDefault",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

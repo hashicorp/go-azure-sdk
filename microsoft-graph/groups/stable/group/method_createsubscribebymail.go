@@ -18,17 +18,46 @@ type CreateSubscribeByMailOperationResponse struct {
 	OData        *odata.OData
 }
 
+type CreateSubscribeByMailOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateSubscribeByMailOperationOptions() CreateSubscribeByMailOperationOptions {
+	return CreateSubscribeByMailOperationOptions{}
+}
+
+func (o CreateSubscribeByMailOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateSubscribeByMailOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateSubscribeByMailOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateSubscribeByMail - Invoke action subscribeByMail. Calling this method will enable the current user to receive
 // email notifications for this group, about new posts, events, and files in that group. Supported for Microsoft 365
 // groups only.
-func (c GroupClient) CreateSubscribeByMail(ctx context.Context, id stable.GroupId) (result CreateSubscribeByMailOperationResponse, err error) {
+func (c GroupClient) CreateSubscribeByMail(ctx context.Context, id stable.GroupId, options CreateSubscribeByMailOperationOptions) (result CreateSubscribeByMailOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/subscribeByMail", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/subscribeByMail", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

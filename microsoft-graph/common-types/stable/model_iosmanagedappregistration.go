@@ -133,10 +133,29 @@ func (s IosManagedAppRegistration) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &IosManagedAppRegistration{}
 
 func (s *IosManagedAppRegistration) UnmarshalJSON(bytes []byte) error {
-	type alias IosManagedAppRegistration
-	var decoded alias
+
+	var decoded struct {
+		AppIdentifier        MobileAppIdentifier        `json:"appIdentifier"`
+		ApplicationVersion   nullable.Type[string]      `json:"applicationVersion,omitempty"`
+		AppliedPolicies      *[]ManagedAppPolicy        `json:"appliedPolicies,omitempty"`
+		CreatedDateTime      *string                    `json:"createdDateTime,omitempty"`
+		DeviceName           nullable.Type[string]      `json:"deviceName,omitempty"`
+		DeviceTag            nullable.Type[string]      `json:"deviceTag,omitempty"`
+		DeviceType           nullable.Type[string]      `json:"deviceType,omitempty"`
+		FlaggedReasons       *[]ManagedAppFlaggedReason `json:"flaggedReasons,omitempty"`
+		IntendedPolicies     *[]ManagedAppPolicy        `json:"intendedPolicies,omitempty"`
+		LastSyncDateTime     *string                    `json:"lastSyncDateTime,omitempty"`
+		ManagementSdkVersion nullable.Type[string]      `json:"managementSdkVersion,omitempty"`
+		Operations           *[]ManagedAppOperation     `json:"operations,omitempty"`
+		PlatformVersion      nullable.Type[string]      `json:"platformVersion,omitempty"`
+		UserId               nullable.Type[string]      `json:"userId,omitempty"`
+		Version              nullable.Type[string]      `json:"version,omitempty"`
+		Id                   *string                    `json:"id,omitempty"`
+		ODataId              *string                    `json:"@odata.id,omitempty"`
+		ODataType            *string                    `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into IosManagedAppRegistration: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.ApplicationVersion = decoded.ApplicationVersion
@@ -201,5 +220,6 @@ func (s *IosManagedAppRegistration) UnmarshalJSON(bytes []byte) error {
 		}
 		s.IntendedPolicies = &output
 	}
+
 	return nil
 }

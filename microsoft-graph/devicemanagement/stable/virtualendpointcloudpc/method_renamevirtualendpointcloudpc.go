@@ -18,16 +18,45 @@ type RenameVirtualEndpointCloudPCOperationResponse struct {
 	OData        *odata.OData
 }
 
+type RenameVirtualEndpointCloudPCOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultRenameVirtualEndpointCloudPCOperationOptions() RenameVirtualEndpointCloudPCOperationOptions {
+	return RenameVirtualEndpointCloudPCOperationOptions{}
+}
+
+func (o RenameVirtualEndpointCloudPCOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o RenameVirtualEndpointCloudPCOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o RenameVirtualEndpointCloudPCOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // RenameVirtualEndpointCloudPC - Invoke action rename. Rename a specific cloudPC object. Use this API to update the
 // displayName of a Cloud PC entity.
-func (c VirtualEndpointCloudPCClient) RenameVirtualEndpointCloudPC(ctx context.Context, id stable.DeviceManagementVirtualEndpointCloudPCId, input RenameVirtualEndpointCloudPCRequest) (result RenameVirtualEndpointCloudPCOperationResponse, err error) {
+func (c VirtualEndpointCloudPCClient) RenameVirtualEndpointCloudPC(ctx context.Context, id stable.DeviceManagementVirtualEndpointCloudPCId, input RenameVirtualEndpointCloudPCRequest, options RenameVirtualEndpointCloudPCOperationOptions) (result RenameVirtualEndpointCloudPCOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/rename", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/rename", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/deviceshellscript` Documentation
 
-The `deviceshellscript` SDK allows for interaction with the Azure Resource Manager Service `devicemanagement` (API Version `beta`).
+The `deviceshellscript` SDK allows for interaction with Microsoft Graph `devicemanagement` (API Version `beta`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -15,7 +15,7 @@ import "github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/
 ### Client Initialization
 
 ```go
-client := deviceshellscript.NewDeviceShellScriptClientWithBaseURI("https://management.azure.com")
+client := deviceshellscript.NewDeviceShellScriptClientWithBaseURI("https://graph.microsoft.com")
 client.Client.Authorizer = authorizer
 ```
 
@@ -24,14 +24,14 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := deviceshellscript.NewDeviceManagementDeviceShellScriptID("deviceShellScriptIdValue")
+id := deviceshellscript.NewDeviceManagementDeviceShellScriptID("deviceShellScriptId")
 
 payload := deviceshellscript.AssignDeviceShellScriptRequest{
 	// ...
 }
 
 
-read, err := client.AssignDeviceShellScript(ctx, id, payload)
+read, err := client.AssignDeviceShellScript(ctx, id, payload, deviceshellscript.DefaultAssignDeviceShellScriptOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -51,7 +51,7 @@ payload := deviceshellscript.DeviceShellScript{
 }
 
 
-read, err := client.CreateDeviceShellScript(ctx, payload)
+read, err := client.CreateDeviceShellScript(ctx, payload, deviceshellscript.DefaultCreateDeviceShellScriptOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -65,7 +65,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := deviceshellscript.NewDeviceManagementDeviceShellScriptID("deviceShellScriptIdValue")
+id := deviceshellscript.NewDeviceManagementDeviceShellScriptID("deviceShellScriptId")
 
 read, err := client.DeleteDeviceShellScript(ctx, id, deviceshellscript.DefaultDeleteDeviceShellScriptOperationOptions())
 if err != nil {
@@ -81,7 +81,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := deviceshellscript.NewDeviceManagementDeviceShellScriptID("deviceShellScriptIdValue")
+id := deviceshellscript.NewDeviceManagementDeviceShellScriptID("deviceShellScriptId")
 
 read, err := client.GetDeviceShellScript(ctx, id, deviceshellscript.DefaultGetDeviceShellScriptOperationOptions())
 if err != nil {
@@ -130,14 +130,14 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := deviceshellscript.NewDeviceManagementDeviceShellScriptID("deviceShellScriptIdValue")
+id := deviceshellscript.NewDeviceManagementDeviceShellScriptID("deviceShellScriptId")
 
 payload := deviceshellscript.DeviceShellScript{
 	// ...
 }
 
 
-read, err := client.UpdateDeviceShellScript(ctx, id, payload)
+read, err := client.UpdateDeviceShellScript(ctx, id, payload, deviceshellscript.DefaultUpdateDeviceShellScriptOperationOptions())
 if err != nil {
 	// handle the error
 }

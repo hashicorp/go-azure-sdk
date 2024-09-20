@@ -18,15 +18,44 @@ type UpdateComanagedDeviceWindowsDeviceAccountOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateComanagedDeviceWindowsDeviceAccountOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateComanagedDeviceWindowsDeviceAccountOperationOptions() UpdateComanagedDeviceWindowsDeviceAccountOperationOptions {
+	return UpdateComanagedDeviceWindowsDeviceAccountOperationOptions{}
+}
+
+func (o UpdateComanagedDeviceWindowsDeviceAccountOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateComanagedDeviceWindowsDeviceAccountOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateComanagedDeviceWindowsDeviceAccountOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateComanagedDeviceWindowsDeviceAccount - Invoke action updateWindowsDeviceAccount
-func (c ComanagedDeviceClient) UpdateComanagedDeviceWindowsDeviceAccount(ctx context.Context, id beta.DeviceManagementComanagedDeviceId, input UpdateComanagedDeviceWindowsDeviceAccountRequest) (result UpdateComanagedDeviceWindowsDeviceAccountOperationResponse, err error) {
+func (c ComanagedDeviceClient) UpdateComanagedDeviceWindowsDeviceAccount(ctx context.Context, id beta.DeviceManagementComanagedDeviceId, input UpdateComanagedDeviceWindowsDeviceAccountRequest, options UpdateComanagedDeviceWindowsDeviceAccountOperationOptions) (result UpdateComanagedDeviceWindowsDeviceAccountOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/updateWindowsDeviceAccount", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/updateWindowsDeviceAccount", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

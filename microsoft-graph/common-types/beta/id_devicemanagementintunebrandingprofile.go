@@ -93,7 +93,7 @@ func (id DeviceManagementIntuneBrandingProfileId) Segments() []resourceids.Segme
 	return []resourceids.Segment{
 		resourceids.StaticSegment("deviceManagement", "deviceManagement", "deviceManagement"),
 		resourceids.StaticSegment("intuneBrandingProfiles", "intuneBrandingProfiles", "intuneBrandingProfiles"),
-		resourceids.UserSpecifiedSegment("intuneBrandingProfileId", "intuneBrandingProfileIdValue"),
+		resourceids.UserSpecifiedSegment("intuneBrandingProfileId", "intuneBrandingProfileId"),
 	}
 }
 

@@ -19,7 +19,8 @@ type DeleteDeviceCustomAttributeShellScriptGroupAssignmentOperationResponse stru
 }
 
 type DeleteDeviceCustomAttributeShellScriptGroupAssignmentOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteDeviceCustomAttributeShellScriptGroupAssignmentOperationOptions() DeleteDeviceCustomAttributeShellScriptGroupAssignmentOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteDeviceCustomAttributeShellScriptGroupAssignmentOperationOptions) T
 
 func (o DeleteDeviceCustomAttributeShellScriptGroupAssignmentOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

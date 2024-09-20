@@ -98,18 +98,27 @@ func (s BaseSecuritySearchImpl) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &BaseSecuritySearchImpl{}
 
 func (s *BaseSecuritySearchImpl) UnmarshalJSON(bytes []byte) error {
-	type alias BaseSecuritySearchImpl
-	var decoded alias
+
+	var decoded struct {
+		ContentQuery         nullable.Type[string] `json:"contentQuery,omitempty"`
+		CreatedDateTime      nullable.Type[string] `json:"createdDateTime,omitempty"`
+		Description          nullable.Type[string] `json:"description,omitempty"`
+		DisplayName          nullable.Type[string] `json:"displayName,omitempty"`
+		LastModifiedDateTime nullable.Type[string] `json:"lastModifiedDateTime,omitempty"`
+		Id                   *string               `json:"id,omitempty"`
+		ODataId              *string               `json:"@odata.id,omitempty"`
+		ODataType            *string               `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into BaseSecuritySearchImpl: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.ContentQuery = decoded.ContentQuery
 	s.CreatedDateTime = decoded.CreatedDateTime
 	s.Description = decoded.Description
 	s.DisplayName = decoded.DisplayName
-	s.Id = decoded.Id
 	s.LastModifiedDateTime = decoded.LastModifiedDateTime
+	s.Id = decoded.Id
 	s.ODataId = decoded.ODataId
 	s.ODataType = decoded.ODataType
 
@@ -133,6 +142,7 @@ func (s *BaseSecuritySearchImpl) UnmarshalJSON(bytes []byte) error {
 		}
 		s.LastModifiedBy = impl
 	}
+
 	return nil
 }
 
@@ -146,9 +156,9 @@ func UnmarshalSecuritySearchImplementation(input []byte) (SecuritySearch, error)
 		return nil, fmt.Errorf("unmarshaling SecuritySearch into map[string]interface: %+v", err)
 	}
 
-	value, ok := temp["@odata.type"].(string)
-	if !ok {
-		return nil, nil
+	var value string
+	if v, ok := temp["@odata.type"]; ok {
+		value = fmt.Sprintf("%v", v)
 	}
 
 	if strings.EqualFold(value, "#microsoft.graph.security.ediscoveryReviewSetQuery") {

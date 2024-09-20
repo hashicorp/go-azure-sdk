@@ -18,15 +18,44 @@ type SetTeamPhotoValueOperationResponse struct {
 	OData        *odata.OData
 }
 
+type SetTeamPhotoValueOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultSetTeamPhotoValueOperationOptions() SetTeamPhotoValueOperationOptions {
+	return SetTeamPhotoValueOperationOptions{}
+}
+
+func (o SetTeamPhotoValueOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o SetTeamPhotoValueOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o SetTeamPhotoValueOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // SetTeamPhotoValue - Update media content for the navigation property photo in groups. The profile photo for the team.
-func (c TeamPhotoClient) SetTeamPhotoValue(ctx context.Context, id stable.GroupId, input []byte) (result SetTeamPhotoValueOperationResponse, err error) {
+func (c TeamPhotoClient) SetTeamPhotoValue(ctx context.Context, id stable.GroupId, input []byte, options SetTeamPhotoValueOperationOptions) (result SetTeamPhotoValueOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPut,
-		Path:       fmt.Sprintf("%s/team/photo/$value", id.ID()),
+		HttpMethod:    http.MethodPut,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/team/photo/$value", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

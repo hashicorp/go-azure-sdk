@@ -104,11 +104,11 @@ func (id GroupIdCalendarViewIdExceptionOccurrenceId) ID() string {
 func (id GroupIdCalendarViewIdExceptionOccurrenceId) Segments() []resourceids.Segment {
 	return []resourceids.Segment{
 		resourceids.StaticSegment("groups", "groups", "groups"),
-		resourceids.UserSpecifiedSegment("groupId", "groupIdValue"),
+		resourceids.UserSpecifiedSegment("groupId", "groupId"),
 		resourceids.StaticSegment("calendarView", "calendarView", "calendarView"),
-		resourceids.UserSpecifiedSegment("eventId", "eventIdValue"),
+		resourceids.UserSpecifiedSegment("eventId", "eventId"),
 		resourceids.StaticSegment("exceptionOccurrences", "exceptionOccurrences", "exceptionOccurrences"),
-		resourceids.UserSpecifiedSegment("eventId1", "eventId1Value"),
+		resourceids.UserSpecifiedSegment("eventId1", "eventId1"),
 	}
 }
 

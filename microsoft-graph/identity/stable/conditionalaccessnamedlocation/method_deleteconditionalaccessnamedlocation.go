@@ -19,7 +19,8 @@ type DeleteConditionalAccessNamedLocationOperationResponse struct {
 }
 
 type DeleteConditionalAccessNamedLocationOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteConditionalAccessNamedLocationOperationOptions() DeleteConditionalAccessNamedLocationOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteConditionalAccessNamedLocationOperationOptions) ToHeaders() *clien
 
 func (o DeleteConditionalAccessNamedLocationOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

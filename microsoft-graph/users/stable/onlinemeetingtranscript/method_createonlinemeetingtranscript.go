@@ -19,15 +19,44 @@ type CreateOnlineMeetingTranscriptOperationResponse struct {
 	Model        *stable.CallTranscript
 }
 
+type CreateOnlineMeetingTranscriptOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateOnlineMeetingTranscriptOperationOptions() CreateOnlineMeetingTranscriptOperationOptions {
+	return CreateOnlineMeetingTranscriptOperationOptions{}
+}
+
+func (o CreateOnlineMeetingTranscriptOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateOnlineMeetingTranscriptOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateOnlineMeetingTranscriptOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateOnlineMeetingTranscript - Create new navigation property to transcripts for users
-func (c OnlineMeetingTranscriptClient) CreateOnlineMeetingTranscript(ctx context.Context, id stable.UserIdOnlineMeetingId, input stable.CallTranscript) (result CreateOnlineMeetingTranscriptOperationResponse, err error) {
+func (c OnlineMeetingTranscriptClient) CreateOnlineMeetingTranscript(ctx context.Context, id stable.UserIdOnlineMeetingId, input stable.CallTranscript, options CreateOnlineMeetingTranscriptOperationOptions) (result CreateOnlineMeetingTranscriptOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/transcripts", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/transcripts", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

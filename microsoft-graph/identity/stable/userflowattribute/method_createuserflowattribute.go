@@ -19,15 +19,44 @@ type CreateUserFlowAttributeOperationResponse struct {
 	Model        stable.IdentityUserFlowAttribute
 }
 
+type CreateUserFlowAttributeOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateUserFlowAttributeOperationOptions() CreateUserFlowAttributeOperationOptions {
+	return CreateUserFlowAttributeOperationOptions{}
+}
+
+func (o CreateUserFlowAttributeOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateUserFlowAttributeOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateUserFlowAttributeOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateUserFlowAttribute - Create identityUserFlowAttribute. Create a new custom identityUserFlowAttribute object.
-func (c UserFlowAttributeClient) CreateUserFlowAttribute(ctx context.Context, input stable.IdentityUserFlowAttribute) (result CreateUserFlowAttributeOperationResponse, err error) {
+func (c UserFlowAttributeClient) CreateUserFlowAttribute(ctx context.Context, input stable.IdentityUserFlowAttribute, options CreateUserFlowAttributeOperationOptions) (result CreateUserFlowAttributeOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/identity/userFlowAttributes",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/identity/userFlowAttributes",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -156,12 +156,33 @@ func (s SwapShiftsChangeRequest) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &SwapShiftsChangeRequest{}
 
 func (s *SwapShiftsChangeRequest) UnmarshalJSON(bytes []byte) error {
-	type alias SwapShiftsChangeRequest
-	var decoded alias
+
+	var decoded struct {
+		RecipientShiftId        nullable.Type[string]       `json:"recipientShiftId,omitempty"`
+		RecipientActionDateTime nullable.Type[string]       `json:"recipientActionDateTime,omitempty"`
+		RecipientActionMessage  nullable.Type[string]       `json:"recipientActionMessage,omitempty"`
+		RecipientUserId         nullable.Type[string]       `json:"recipientUserId,omitempty"`
+		SenderShiftId           nullable.Type[string]       `json:"senderShiftId,omitempty"`
+		AssignedTo              *ScheduleChangeRequestActor `json:"assignedTo,omitempty"`
+		ManagerActionDateTime   nullable.Type[string]       `json:"managerActionDateTime,omitempty"`
+		ManagerActionMessage    nullable.Type[string]       `json:"managerActionMessage,omitempty"`
+		ManagerUserId           nullable.Type[string]       `json:"managerUserId,omitempty"`
+		SenderDateTime          nullable.Type[string]       `json:"senderDateTime,omitempty"`
+		SenderMessage           nullable.Type[string]       `json:"senderMessage,omitempty"`
+		SenderUserId            nullable.Type[string]       `json:"senderUserId,omitempty"`
+		State                   *ScheduleChangeState        `json:"state,omitempty"`
+		CreatedDateTime         nullable.Type[string]       `json:"createdDateTime,omitempty"`
+		LastModifiedBy          *IdentitySet                `json:"lastModifiedBy,omitempty"`
+		LastModifiedDateTime    nullable.Type[string]       `json:"lastModifiedDateTime,omitempty"`
+		Id                      *string                     `json:"id,omitempty"`
+		ODataId                 *string                     `json:"@odata.id,omitempty"`
+		ODataType               *string                     `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into SwapShiftsChangeRequest: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
+	s.RecipientShiftId = decoded.RecipientShiftId
 	s.AssignedTo = decoded.AssignedTo
 	s.CreatedDateTime = decoded.CreatedDateTime
 	s.Id = decoded.Id
@@ -173,7 +194,6 @@ func (s *SwapShiftsChangeRequest) UnmarshalJSON(bytes []byte) error {
 	s.ODataType = decoded.ODataType
 	s.RecipientActionDateTime = decoded.RecipientActionDateTime
 	s.RecipientActionMessage = decoded.RecipientActionMessage
-	s.RecipientShiftId = decoded.RecipientShiftId
 	s.RecipientUserId = decoded.RecipientUserId
 	s.SenderDateTime = decoded.SenderDateTime
 	s.SenderMessage = decoded.SenderMessage
@@ -193,5 +213,6 @@ func (s *SwapShiftsChangeRequest) UnmarshalJSON(bytes []byte) error {
 		}
 		s.LastModifiedBy = &impl
 	}
+
 	return nil
 }

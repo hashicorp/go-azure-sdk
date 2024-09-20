@@ -19,8 +19,9 @@ type GetPermissionGrantOperationResponse struct {
 }
 
 type GetPermissionGrantOperationOptions struct {
-	Expand *odata.Expand
-	Select *[]string
+	Expand   *odata.Expand
+	Metadata *odata.Metadata
+	Select   *[]string
 }
 
 func DefaultGetPermissionGrantOperationOptions() GetPermissionGrantOperationOptions {
@@ -37,6 +38,9 @@ func (o GetPermissionGrantOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
 	if o.Expand != nil {
 		out.Expand = *o.Expand
+	}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
 	}
 	if o.Select != nil {
 		out.Select = *o.Select

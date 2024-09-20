@@ -18,15 +18,44 @@ type CreateVirtualEndpointGalleryImageOperationResponse struct {
 	Model        *beta.CloudPCGalleryImage
 }
 
+type CreateVirtualEndpointGalleryImageOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateVirtualEndpointGalleryImageOperationOptions() CreateVirtualEndpointGalleryImageOperationOptions {
+	return CreateVirtualEndpointGalleryImageOperationOptions{}
+}
+
+func (o CreateVirtualEndpointGalleryImageOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateVirtualEndpointGalleryImageOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateVirtualEndpointGalleryImageOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateVirtualEndpointGalleryImage - Create new navigation property to galleryImages for deviceManagement
-func (c VirtualEndpointGalleryImageClient) CreateVirtualEndpointGalleryImage(ctx context.Context, input beta.CloudPCGalleryImage) (result CreateVirtualEndpointGalleryImageOperationResponse, err error) {
+func (c VirtualEndpointGalleryImageClient) CreateVirtualEndpointGalleryImage(ctx context.Context, input beta.CloudPCGalleryImage, options CreateVirtualEndpointGalleryImageOperationOptions) (result CreateVirtualEndpointGalleryImageOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/deviceManagement/virtualEndpoint/galleryImages",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/deviceManagement/virtualEndpoint/galleryImages",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

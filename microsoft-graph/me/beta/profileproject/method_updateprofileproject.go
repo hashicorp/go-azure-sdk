@@ -17,16 +17,45 @@ type UpdateProfileProjectOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateProfileProjectOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateProfileProjectOperationOptions() UpdateProfileProjectOperationOptions {
+	return UpdateProfileProjectOperationOptions{}
+}
+
+func (o UpdateProfileProjectOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateProfileProjectOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateProfileProjectOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateProfileProject - Update projectparticipation. Update the properties of a projectParticipation object in a
 // user's profile.
-func (c ProfileProjectClient) UpdateProfileProject(ctx context.Context, id beta.MeProfileProjectId, input beta.ProjectParticipation) (result UpdateProfileProjectOperationResponse, err error) {
+func (c ProfileProjectClient) UpdateProfileProject(ctx context.Context, id beta.MeProfileProjectId, input beta.ProjectParticipation, options UpdateProfileProjectOperationOptions) (result UpdateProfileProjectOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

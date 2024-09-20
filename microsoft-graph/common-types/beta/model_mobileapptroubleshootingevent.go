@@ -109,25 +109,40 @@ func (s MobileAppTroubleshootingEvent) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &MobileAppTroubleshootingEvent{}
 
 func (s *MobileAppTroubleshootingEvent) UnmarshalJSON(bytes []byte) error {
-	type alias MobileAppTroubleshootingEvent
-	var decoded alias
+
+	var decoded struct {
+		AppLogCollectionRequests    *[]AppLogCollectionRequest                   `json:"appLogCollectionRequests,omitempty"`
+		ApplicationId               nullable.Type[string]                        `json:"applicationId,omitempty"`
+		DeviceId                    nullable.Type[string]                        `json:"deviceId,omitempty"`
+		History                     *[]MobileAppTroubleshootingHistoryItem       `json:"history,omitempty"`
+		ManagedDeviceIdentifier     nullable.Type[string]                        `json:"managedDeviceIdentifier,omitempty"`
+		UserId                      nullable.Type[string]                        `json:"userId,omitempty"`
+		AdditionalInformation       *[]KeyValuePair                              `json:"additionalInformation,omitempty"`
+		CorrelationId               nullable.Type[string]                        `json:"correlationId,omitempty"`
+		EventDateTime               *string                                      `json:"eventDateTime,omitempty"`
+		EventName                   nullable.Type[string]                        `json:"eventName,omitempty"`
+		TroubleshootingErrorDetails *DeviceManagementTroubleshootingErrorDetails `json:"troubleshootingErrorDetails,omitempty"`
+		Id                          *string                                      `json:"id,omitempty"`
+		ODataId                     *string                                      `json:"@odata.id,omitempty"`
+		ODataType                   *string                                      `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into MobileAppTroubleshootingEvent: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
-	s.AdditionalInformation = decoded.AdditionalInformation
 	s.AppLogCollectionRequests = decoded.AppLogCollectionRequests
 	s.ApplicationId = decoded.ApplicationId
-	s.CorrelationId = decoded.CorrelationId
 	s.DeviceId = decoded.DeviceId
+	s.ManagedDeviceIdentifier = decoded.ManagedDeviceIdentifier
+	s.UserId = decoded.UserId
+	s.AdditionalInformation = decoded.AdditionalInformation
+	s.CorrelationId = decoded.CorrelationId
 	s.EventDateTime = decoded.EventDateTime
 	s.EventName = decoded.EventName
 	s.Id = decoded.Id
-	s.ManagedDeviceIdentifier = decoded.ManagedDeviceIdentifier
 	s.ODataId = decoded.ODataId
 	s.ODataType = decoded.ODataType
 	s.TroubleshootingErrorDetails = decoded.TroubleshootingErrorDetails
-	s.UserId = decoded.UserId
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -150,5 +165,6 @@ func (s *MobileAppTroubleshootingEvent) UnmarshalJSON(bytes []byte) error {
 		}
 		s.History = &output
 	}
+
 	return nil
 }

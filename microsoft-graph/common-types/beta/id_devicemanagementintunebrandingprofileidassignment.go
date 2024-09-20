@@ -99,9 +99,9 @@ func (id DeviceManagementIntuneBrandingProfileIdAssignmentId) Segments() []resou
 	return []resourceids.Segment{
 		resourceids.StaticSegment("deviceManagement", "deviceManagement", "deviceManagement"),
 		resourceids.StaticSegment("intuneBrandingProfiles", "intuneBrandingProfiles", "intuneBrandingProfiles"),
-		resourceids.UserSpecifiedSegment("intuneBrandingProfileId", "intuneBrandingProfileIdValue"),
+		resourceids.UserSpecifiedSegment("intuneBrandingProfileId", "intuneBrandingProfileId"),
 		resourceids.StaticSegment("assignments", "assignments", "assignments"),
-		resourceids.UserSpecifiedSegment("intuneBrandingProfileAssignmentId", "intuneBrandingProfileAssignmentIdValue"),
+		resourceids.UserSpecifiedSegment("intuneBrandingProfileAssignmentId", "intuneBrandingProfileAssignmentId"),
 	}
 }
 

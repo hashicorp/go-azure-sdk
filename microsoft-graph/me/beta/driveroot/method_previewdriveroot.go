@@ -19,15 +19,44 @@ type PreviewDriveRootOperationResponse struct {
 	Model        *beta.ItemPreviewInfo
 }
 
+type PreviewDriveRootOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultPreviewDriveRootOperationOptions() PreviewDriveRootOperationOptions {
+	return PreviewDriveRootOperationOptions{}
+}
+
+func (o PreviewDriveRootOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o PreviewDriveRootOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o PreviewDriveRootOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // PreviewDriveRoot - Invoke action preview
-func (c DriveRootClient) PreviewDriveRoot(ctx context.Context, id beta.MeDriveId, input PreviewDriveRootRequest) (result PreviewDriveRootOperationResponse, err error) {
+func (c DriveRootClient) PreviewDriveRoot(ctx context.Context, id beta.MeDriveId, input PreviewDriveRootRequest, options PreviewDriveRootOperationOptions) (result PreviewDriveRootOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/root/preview", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/root/preview", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

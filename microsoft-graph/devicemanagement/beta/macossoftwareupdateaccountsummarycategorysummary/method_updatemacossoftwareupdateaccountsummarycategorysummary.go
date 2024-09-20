@@ -17,16 +17,45 @@ type UpdateMacOSSoftwareUpdateAccountSummaryCategorySummaryOperationResponse str
 	OData        *odata.OData
 }
 
+type UpdateMacOSSoftwareUpdateAccountSummaryCategorySummaryOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateMacOSSoftwareUpdateAccountSummaryCategorySummaryOperationOptions() UpdateMacOSSoftwareUpdateAccountSummaryCategorySummaryOperationOptions {
+	return UpdateMacOSSoftwareUpdateAccountSummaryCategorySummaryOperationOptions{}
+}
+
+func (o UpdateMacOSSoftwareUpdateAccountSummaryCategorySummaryOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateMacOSSoftwareUpdateAccountSummaryCategorySummaryOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateMacOSSoftwareUpdateAccountSummaryCategorySummaryOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateMacOSSoftwareUpdateAccountSummaryCategorySummary - Update the navigation property categorySummaries in
 // deviceManagement
-func (c MacOSSoftwareUpdateAccountSummaryCategorySummaryClient) UpdateMacOSSoftwareUpdateAccountSummaryCategorySummary(ctx context.Context, id beta.DeviceManagementMacOSSoftwareUpdateAccountSummaryIdCategorySummaryId, input beta.MacOSSoftwareUpdateCategorySummary) (result UpdateMacOSSoftwareUpdateAccountSummaryCategorySummaryOperationResponse, err error) {
+func (c MacOSSoftwareUpdateAccountSummaryCategorySummaryClient) UpdateMacOSSoftwareUpdateAccountSummaryCategorySummary(ctx context.Context, id beta.DeviceManagementMacOSSoftwareUpdateAccountSummaryIdCategorySummaryId, input beta.MacOSSoftwareUpdateCategorySummary, options UpdateMacOSSoftwareUpdateAccountSummaryCategorySummaryOperationOptions) (result UpdateMacOSSoftwareUpdateAccountSummaryCategorySummaryOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

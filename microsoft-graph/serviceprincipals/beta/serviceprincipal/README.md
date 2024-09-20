@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/microsoft-graph/serviceprincipals/beta/serviceprincipal` Documentation
 
-The `serviceprincipal` SDK allows for interaction with the Azure Resource Manager Service `serviceprincipals` (API Version `beta`).
+The `serviceprincipal` SDK allows for interaction with Microsoft Graph `serviceprincipals` (API Version `beta`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -15,7 +15,7 @@ import "github.com/hashicorp/go-azure-sdk/microsoft-graph/serviceprincipals/beta
 ### Client Initialization
 
 ```go
-client := serviceprincipal.NewServicePrincipalClientWithBaseURI("https://management.azure.com")
+client := serviceprincipal.NewServicePrincipalClientWithBaseURI("https://graph.microsoft.com")
 client.Client.Authorizer = authorizer
 ```
 
@@ -24,14 +24,14 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := serviceprincipal.NewServicePrincipalID("servicePrincipalIdValue")
+id := serviceprincipal.NewServicePrincipalID("servicePrincipalId")
 
 payload := serviceprincipal.AddTokenSigningCertificateRequest{
 	// ...
 }
 
 
-read, err := client.AddTokenSigningCertificate(ctx, id, payload)
+read, err := client.AddTokenSigningCertificate(ctx, id, payload, serviceprincipal.DefaultAddTokenSigningCertificateOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -45,7 +45,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := serviceprincipal.NewServicePrincipalID("servicePrincipalIdValue")
+id := serviceprincipal.NewServicePrincipalID("servicePrincipalId")
 
 payload := serviceprincipal.CheckMemberGroupsRequest{
 	// ...
@@ -67,7 +67,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := serviceprincipal.NewServicePrincipalID("servicePrincipalIdValue")
+id := serviceprincipal.NewServicePrincipalID("servicePrincipalId")
 
 payload := serviceprincipal.CheckMemberObjectsRequest{
 	// ...
@@ -85,18 +85,38 @@ for _, item := range items {
 ```
 
 
-### Example Usage: `ServicePrincipalClient.CreatePasswordSingleSignOnCredential`
+### Example Usage: `ServicePrincipalClient.CreateGetsUserOwnedObject`
 
 ```go
 ctx := context.TODO()
-id := serviceprincipal.NewServicePrincipalID("servicePrincipalIdValue")
 
-payload := serviceprincipal.CreatePasswordSingleSignOnCredentialRequest{
+payload := serviceprincipal.CreateGetsUserOwnedObjectRequest{
 	// ...
 }
 
 
-read, err := client.CreatePasswordSingleSignOnCredential(ctx, id, payload)
+read, err := client.CreateGetsUserOwnedObject(ctx, payload, serviceprincipal.DefaultCreateGetsUserOwnedObjectOperationOptions())
+if err != nil {
+	// handle the error
+}
+if model := read.Model; model != nil {
+	// do something with the model/response object
+}
+```
+
+
+### Example Usage: `ServicePrincipalClient.CreatePasswordSingleSignOnCredentials`
+
+```go
+ctx := context.TODO()
+id := serviceprincipal.NewServicePrincipalID("servicePrincipalId")
+
+payload := serviceprincipal.CreatePasswordSingleSignOnCredentialsRequest{
+	// ...
+}
+
+
+read, err := client.CreatePasswordSingleSignOnCredentials(ctx, id, payload, serviceprincipal.DefaultCreatePasswordSingleSignOnCredentialsOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -116,7 +136,7 @@ payload := serviceprincipal.ServicePrincipal{
 }
 
 
-read, err := client.CreateServicePrincipal(ctx, payload)
+read, err := client.CreateServicePrincipal(ctx, payload, serviceprincipal.DefaultCreateServicePrincipalOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -126,18 +146,38 @@ if model := read.Model; model != nil {
 ```
 
 
-### Example Usage: `ServicePrincipalClient.DeletePasswordSingleSignOnCredential`
+### Example Usage: `ServicePrincipalClient.CreateValidatesProperty`
 
 ```go
 ctx := context.TODO()
-id := serviceprincipal.NewServicePrincipalID("servicePrincipalIdValue")
 
-payload := serviceprincipal.DeletePasswordSingleSignOnCredentialRequest{
+payload := serviceprincipal.CreateValidatesPropertyRequest{
 	// ...
 }
 
 
-read, err := client.DeletePasswordSingleSignOnCredential(ctx, id, payload)
+read, err := client.CreateValidatesProperty(ctx, payload, serviceprincipal.DefaultCreateValidatesPropertyOperationOptions())
+if err != nil {
+	// handle the error
+}
+if model := read.Model; model != nil {
+	// do something with the model/response object
+}
+```
+
+
+### Example Usage: `ServicePrincipalClient.DeletePasswordSingleSignOnCredentials`
+
+```go
+ctx := context.TODO()
+id := serviceprincipal.NewServicePrincipalID("servicePrincipalId")
+
+payload := serviceprincipal.DeletePasswordSingleSignOnCredentialsRequest{
+	// ...
+}
+
+
+read, err := client.DeletePasswordSingleSignOnCredentials(ctx, id, payload, serviceprincipal.DefaultDeletePasswordSingleSignOnCredentialsOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -151,46 +191,9 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := serviceprincipal.NewServicePrincipalID("servicePrincipalIdValue")
+id := serviceprincipal.NewServicePrincipalID("servicePrincipalId")
 
 read, err := client.DeleteServicePrincipal(ctx, id, serviceprincipal.DefaultDeleteServicePrincipalOperationOptions())
-if err != nil {
-	// handle the error
-}
-if model := read.Model; model != nil {
-	// do something with the model/response object
-}
-```
-
-
-### Example Usage: `ServicePrincipalClient.GetByIds`
-
-```go
-ctx := context.TODO()
-
-payload := serviceprincipal.GetByIdsRequest{
-	// ...
-}
-
-
-// alternatively `client.GetByIds(ctx, payload, serviceprincipal.DefaultGetByIdsOperationOptions())` can be used to do batched pagination
-items, err := client.GetByIdsComplete(ctx, payload, serviceprincipal.DefaultGetByIdsOperationOptions())
-if err != nil {
-	// handle the error
-}
-for _, item := range items {
-	// do something
-}
-```
-
-
-### Example Usage: `ServicePrincipalClient.GetCount`
-
-```go
-ctx := context.TODO()
-
-
-read, err := client.GetCount(ctx, serviceprincipal.DefaultGetCountOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -204,7 +207,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := serviceprincipal.NewServicePrincipalID("servicePrincipalIdValue")
+id := serviceprincipal.NewServicePrincipalID("servicePrincipalId")
 
 payload := serviceprincipal.GetMemberGroupsRequest{
 	// ...
@@ -226,7 +229,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := serviceprincipal.NewServicePrincipalID("servicePrincipalIdValue")
+id := serviceprincipal.NewServicePrincipalID("servicePrincipalId")
 
 payload := serviceprincipal.GetMemberObjectsRequest{
 	// ...
@@ -244,18 +247,18 @@ for _, item := range items {
 ```
 
 
-### Example Usage: `ServicePrincipalClient.GetPasswordSingleSignOnCredential`
+### Example Usage: `ServicePrincipalClient.GetPasswordSingleSignOnCredentials`
 
 ```go
 ctx := context.TODO()
-id := serviceprincipal.NewServicePrincipalID("servicePrincipalIdValue")
+id := serviceprincipal.NewServicePrincipalID("servicePrincipalId")
 
-payload := serviceprincipal.GetPasswordSingleSignOnCredentialRequest{
+payload := serviceprincipal.GetPasswordSingleSignOnCredentialsRequest{
 	// ...
 }
 
 
-read, err := client.GetPasswordSingleSignOnCredential(ctx, id, payload)
+read, err := client.GetPasswordSingleSignOnCredentials(ctx, id, payload, serviceprincipal.DefaultGetPasswordSingleSignOnCredentialsOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -269,7 +272,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := serviceprincipal.NewServicePrincipalID("servicePrincipalIdValue")
+id := serviceprincipal.NewServicePrincipalID("servicePrincipalId")
 
 read, err := client.GetServicePrincipal(ctx, id, serviceprincipal.DefaultGetServicePrincipalOperationOptions())
 if err != nil {
@@ -281,22 +284,39 @@ if model := read.Model; model != nil {
 ```
 
 
-### Example Usage: `ServicePrincipalClient.GetUserOwnedObject`
+### Example Usage: `ServicePrincipalClient.GetsCount`
 
 ```go
 ctx := context.TODO()
 
-payload := serviceprincipal.GetUserOwnedObjectRequest{
-	// ...
-}
 
-
-read, err := client.GetUserOwnedObject(ctx, payload)
+read, err := client.GetsCount(ctx, serviceprincipal.DefaultGetsCountOperationOptions())
 if err != nil {
 	// handle the error
 }
 if model := read.Model; model != nil {
 	// do something with the model/response object
+}
+```
+
+
+### Example Usage: `ServicePrincipalClient.ListGetsByIds`
+
+```go
+ctx := context.TODO()
+
+payload := serviceprincipal.ListGetsByIdsRequest{
+	// ...
+}
+
+
+// alternatively `client.ListGetsByIds(ctx, payload, serviceprincipal.DefaultListGetsByIdsOperationOptions())` can be used to do batched pagination
+items, err := client.ListGetsByIdsComplete(ctx, payload, serviceprincipal.DefaultListGetsByIdsOperationOptions())
+if err != nil {
+	// handle the error
+}
+for _, item := range items {
+	// do something
 }
 ```
 
@@ -322,14 +342,14 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := serviceprincipal.NewServicePrincipalID("servicePrincipalIdValue")
+id := serviceprincipal.NewServicePrincipalID("servicePrincipalId")
 
 payload := serviceprincipal.RestoreRequest{
 	// ...
 }
 
 
-read, err := client.Restore(ctx, id, payload)
+read, err := client.Restore(ctx, id, payload, serviceprincipal.DefaultRestoreOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -339,18 +359,18 @@ if model := read.Model; model != nil {
 ```
 
 
-### Example Usage: `ServicePrincipalClient.UpdatePasswordSingleSignOnCredential`
+### Example Usage: `ServicePrincipalClient.UpdatePasswordSingleSignOnCredentials`
 
 ```go
 ctx := context.TODO()
-id := serviceprincipal.NewServicePrincipalID("servicePrincipalIdValue")
+id := serviceprincipal.NewServicePrincipalID("servicePrincipalId")
 
-payload := serviceprincipal.UpdatePasswordSingleSignOnCredentialRequest{
+payload := serviceprincipal.UpdatePasswordSingleSignOnCredentialsRequest{
 	// ...
 }
 
 
-read, err := client.UpdatePasswordSingleSignOnCredential(ctx, id, payload)
+read, err := client.UpdatePasswordSingleSignOnCredentials(ctx, id, payload, serviceprincipal.DefaultUpdatePasswordSingleSignOnCredentialsOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -364,34 +384,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := serviceprincipal.NewServicePrincipalID("servicePrincipalIdValue")
+id := serviceprincipal.NewServicePrincipalID("servicePrincipalId")
 
 payload := serviceprincipal.ServicePrincipal{
 	// ...
 }
 
 
-read, err := client.UpdateServicePrincipal(ctx, id, payload)
-if err != nil {
-	// handle the error
-}
-if model := read.Model; model != nil {
-	// do something with the model/response object
-}
-```
-
-
-### Example Usage: `ServicePrincipalClient.ValidateProperty`
-
-```go
-ctx := context.TODO()
-
-payload := serviceprincipal.ValidatePropertyRequest{
-	// ...
-}
-
-
-read, err := client.ValidateProperty(ctx, payload)
+read, err := client.UpdateServicePrincipal(ctx, id, payload, serviceprincipal.DefaultUpdateServicePrincipalOperationOptions())
 if err != nil {
 	// handle the error
 }

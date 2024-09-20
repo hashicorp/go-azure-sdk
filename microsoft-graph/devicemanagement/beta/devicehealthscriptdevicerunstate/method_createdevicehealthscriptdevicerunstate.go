@@ -19,15 +19,44 @@ type CreateDeviceHealthScriptDeviceRunStateOperationResponse struct {
 	Model        *beta.DeviceHealthScriptDeviceState
 }
 
+type CreateDeviceHealthScriptDeviceRunStateOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateDeviceHealthScriptDeviceRunStateOperationOptions() CreateDeviceHealthScriptDeviceRunStateOperationOptions {
+	return CreateDeviceHealthScriptDeviceRunStateOperationOptions{}
+}
+
+func (o CreateDeviceHealthScriptDeviceRunStateOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateDeviceHealthScriptDeviceRunStateOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateDeviceHealthScriptDeviceRunStateOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateDeviceHealthScriptDeviceRunState - Create new navigation property to deviceRunStates for deviceManagement
-func (c DeviceHealthScriptDeviceRunStateClient) CreateDeviceHealthScriptDeviceRunState(ctx context.Context, id beta.DeviceManagementDeviceHealthScriptId, input beta.DeviceHealthScriptDeviceState) (result CreateDeviceHealthScriptDeviceRunStateOperationResponse, err error) {
+func (c DeviceHealthScriptDeviceRunStateClient) CreateDeviceHealthScriptDeviceRunState(ctx context.Context, id beta.DeviceManagementDeviceHealthScriptId, input beta.DeviceHealthScriptDeviceState, options CreateDeviceHealthScriptDeviceRunStateOperationOptions) (result CreateDeviceHealthScriptDeviceRunStateOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/deviceRunStates", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/deviceRunStates", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

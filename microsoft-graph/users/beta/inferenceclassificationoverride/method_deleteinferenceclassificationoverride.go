@@ -19,7 +19,8 @@ type DeleteInferenceClassificationOverrideOperationResponse struct {
 }
 
 type DeleteInferenceClassificationOverrideOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteInferenceClassificationOverrideOperationOptions() DeleteInferenceClassificationOverrideOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteInferenceClassificationOverrideOperationOptions) ToHeaders() *clie
 
 func (o DeleteInferenceClassificationOverrideOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

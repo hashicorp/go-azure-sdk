@@ -18,16 +18,45 @@ type CreateWindowsFeatureUpdateProfileOperationResponse struct {
 	Model        *beta.WindowsFeatureUpdateProfile
 }
 
+type CreateWindowsFeatureUpdateProfileOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateWindowsFeatureUpdateProfileOperationOptions() CreateWindowsFeatureUpdateProfileOperationOptions {
+	return CreateWindowsFeatureUpdateProfileOperationOptions{}
+}
+
+func (o CreateWindowsFeatureUpdateProfileOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateWindowsFeatureUpdateProfileOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateWindowsFeatureUpdateProfileOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateWindowsFeatureUpdateProfile - Create new navigation property to windowsFeatureUpdateProfiles for
 // deviceManagement
-func (c WindowsFeatureUpdateProfileClient) CreateWindowsFeatureUpdateProfile(ctx context.Context, input beta.WindowsFeatureUpdateProfile) (result CreateWindowsFeatureUpdateProfileOperationResponse, err error) {
+func (c WindowsFeatureUpdateProfileClient) CreateWindowsFeatureUpdateProfile(ctx context.Context, input beta.WindowsFeatureUpdateProfile, options CreateWindowsFeatureUpdateProfileOperationOptions) (result CreateWindowsFeatureUpdateProfileOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/deviceManagement/windowsFeatureUpdateProfiles",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/deviceManagement/windowsFeatureUpdateProfiles",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

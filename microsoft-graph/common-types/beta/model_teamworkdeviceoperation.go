@@ -88,22 +88,33 @@ func (s TeamworkDeviceOperation) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &TeamworkDeviceOperation{}
 
 func (s *TeamworkDeviceOperation) UnmarshalJSON(bytes []byte) error {
-	type alias TeamworkDeviceOperation
-	var decoded alias
+
+	var decoded struct {
+		CompletedDateTime  nullable.Type[string]        `json:"completedDateTime,omitempty"`
+		CreatedDateTime    nullable.Type[string]        `json:"createdDateTime,omitempty"`
+		Error              *OperationError              `json:"error,omitempty"`
+		LastActionDateTime nullable.Type[string]        `json:"lastActionDateTime,omitempty"`
+		OperationType      *TeamworkDeviceOperationType `json:"operationType,omitempty"`
+		StartedDateTime    nullable.Type[string]        `json:"startedDateTime,omitempty"`
+		Status             *string                      `json:"status,omitempty"`
+		Id                 *string                      `json:"id,omitempty"`
+		ODataId            *string                      `json:"@odata.id,omitempty"`
+		ODataType          *string                      `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into TeamworkDeviceOperation: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.CompletedDateTime = decoded.CompletedDateTime
 	s.CreatedDateTime = decoded.CreatedDateTime
 	s.Error = decoded.Error
-	s.Id = decoded.Id
 	s.LastActionDateTime = decoded.LastActionDateTime
-	s.ODataId = decoded.ODataId
-	s.ODataType = decoded.ODataType
 	s.OperationType = decoded.OperationType
 	s.StartedDateTime = decoded.StartedDateTime
 	s.Status = decoded.Status
+	s.Id = decoded.Id
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -125,5 +136,6 @@ func (s *TeamworkDeviceOperation) UnmarshalJSON(bytes []byte) error {
 		}
 		s.LastActionBy = impl
 	}
+
 	return nil
 }

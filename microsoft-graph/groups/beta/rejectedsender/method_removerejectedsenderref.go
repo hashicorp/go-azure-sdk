@@ -19,7 +19,8 @@ type RemoveRejectedSenderRefOperationResponse struct {
 }
 
 type RemoveRejectedSenderRefOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultRemoveRejectedSenderRefOperationOptions() RemoveRejectedSenderRefOperationOptions {
@@ -36,7 +37,9 @@ func (o RemoveRejectedSenderRefOperationOptions) ToHeaders() *client.Headers {
 
 func (o RemoveRejectedSenderRefOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

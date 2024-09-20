@@ -62,10 +62,15 @@ func (s CustomClaimTransformationCollectionResponse) MarshalJSON() ([]byte, erro
 var _ json.Unmarshaler = &CustomClaimTransformationCollectionResponse{}
 
 func (s *CustomClaimTransformationCollectionResponse) UnmarshalJSON(bytes []byte) error {
-	type alias CustomClaimTransformationCollectionResponse
-	var decoded alias
+
+	var decoded struct {
+		Value         *[]CustomClaimTransformation `json:"value,omitempty"`
+		ODataId       *string                      `json:"@odata.id,omitempty"`
+		ODataNextLink nullable.Type[string]        `json:"@odata.nextLink,omitempty"`
+		ODataType     *string                      `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into CustomClaimTransformationCollectionResponse: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.ODataId = decoded.ODataId
@@ -93,5 +98,6 @@ func (s *CustomClaimTransformationCollectionResponse) UnmarshalJSON(bytes []byte
 		}
 		s.Value = &output
 	}
+
 	return nil
 }

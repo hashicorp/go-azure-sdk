@@ -18,7 +18,8 @@ type DeleteSlaOperationResponse struct {
 }
 
 type DeleteSlaOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteSlaOperationOptions() DeleteSlaOperationOptions {
@@ -35,7 +36,9 @@ func (o DeleteSlaOperationOptions) ToHeaders() *client.Headers {
 
 func (o DeleteSlaOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

@@ -18,16 +18,45 @@ type CreateUserExperienceAnalyticsImpactingProcessOperationResponse struct {
 	Model        *beta.UserExperienceAnalyticsImpactingProcess
 }
 
+type CreateUserExperienceAnalyticsImpactingProcessOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateUserExperienceAnalyticsImpactingProcessOperationOptions() CreateUserExperienceAnalyticsImpactingProcessOperationOptions {
+	return CreateUserExperienceAnalyticsImpactingProcessOperationOptions{}
+}
+
+func (o CreateUserExperienceAnalyticsImpactingProcessOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateUserExperienceAnalyticsImpactingProcessOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateUserExperienceAnalyticsImpactingProcessOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateUserExperienceAnalyticsImpactingProcess - Create new navigation property to
 // userExperienceAnalyticsImpactingProcess for deviceManagement
-func (c UserExperienceAnalyticsImpactingProcessClient) CreateUserExperienceAnalyticsImpactingProcess(ctx context.Context, input beta.UserExperienceAnalyticsImpactingProcess) (result CreateUserExperienceAnalyticsImpactingProcessOperationResponse, err error) {
+func (c UserExperienceAnalyticsImpactingProcessClient) CreateUserExperienceAnalyticsImpactingProcess(ctx context.Context, input beta.UserExperienceAnalyticsImpactingProcess, options CreateUserExperienceAnalyticsImpactingProcessOperationOptions) (result CreateUserExperienceAnalyticsImpactingProcessOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/deviceManagement/userExperienceAnalyticsImpactingProcess",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/deviceManagement/userExperienceAnalyticsImpactingProcess",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

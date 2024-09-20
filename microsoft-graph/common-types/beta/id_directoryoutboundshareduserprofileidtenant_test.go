@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &DirectoryOutboundSharedUserProfileIdTenantId{}
 
 func TestNewDirectoryOutboundSharedUserProfileIdTenantID(t *testing.T) {
-	id := NewDirectoryOutboundSharedUserProfileIdTenantID("outboundSharedUserProfileUserIdValue", "tenantReferenceTenantIdValue")
+	id := NewDirectoryOutboundSharedUserProfileIdTenantID("outboundSharedUserProfileUserId", "tenantReferenceTenantId")
 
-	if id.OutboundSharedUserProfileUserId != "outboundSharedUserProfileUserIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'OutboundSharedUserProfileUserId'", id.OutboundSharedUserProfileUserId, "outboundSharedUserProfileUserIdValue")
+	if id.OutboundSharedUserProfileUserId != "outboundSharedUserProfileUserId" {
+		t.Fatalf("Expected %q but got %q for Segment 'OutboundSharedUserProfileUserId'", id.OutboundSharedUserProfileUserId, "outboundSharedUserProfileUserId")
 	}
 
-	if id.TenantReferenceTenantId != "tenantReferenceTenantIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'TenantReferenceTenantId'", id.TenantReferenceTenantId, "tenantReferenceTenantIdValue")
+	if id.TenantReferenceTenantId != "tenantReferenceTenantId" {
+		t.Fatalf("Expected %q but got %q for Segment 'TenantReferenceTenantId'", id.TenantReferenceTenantId, "tenantReferenceTenantId")
 	}
 }
 
 func TestFormatDirectoryOutboundSharedUserProfileIdTenantID(t *testing.T) {
-	actual := NewDirectoryOutboundSharedUserProfileIdTenantID("outboundSharedUserProfileUserIdValue", "tenantReferenceTenantIdValue").ID()
-	expected := "/directory/outboundSharedUserProfiles/outboundSharedUserProfileUserIdValue/tenants/tenantReferenceTenantIdValue"
+	actual := NewDirectoryOutboundSharedUserProfileIdTenantID("outboundSharedUserProfileUserId", "tenantReferenceTenantId").ID()
+	expected := "/directory/outboundSharedUserProfiles/outboundSharedUserProfileUserId/tenants/tenantReferenceTenantId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -54,25 +54,25 @@ func TestParseDirectoryOutboundSharedUserProfileIdTenantID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/directory/outboundSharedUserProfiles/outboundSharedUserProfileUserIdValue",
+			Input: "/directory/outboundSharedUserProfiles/outboundSharedUserProfileUserId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/directory/outboundSharedUserProfiles/outboundSharedUserProfileUserIdValue/tenants",
+			Input: "/directory/outboundSharedUserProfiles/outboundSharedUserProfileUserId/tenants",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/directory/outboundSharedUserProfiles/outboundSharedUserProfileUserIdValue/tenants/tenantReferenceTenantIdValue",
+			Input: "/directory/outboundSharedUserProfiles/outboundSharedUserProfileUserId/tenants/tenantReferenceTenantId",
 			Expected: &DirectoryOutboundSharedUserProfileIdTenantId{
-				OutboundSharedUserProfileUserId: "outboundSharedUserProfileUserIdValue",
-				TenantReferenceTenantId:         "tenantReferenceTenantIdValue",
+				OutboundSharedUserProfileUserId: "outboundSharedUserProfileUserId",
+				TenantReferenceTenantId:         "tenantReferenceTenantId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/directory/outboundSharedUserProfiles/outboundSharedUserProfileUserIdValue/tenants/tenantReferenceTenantIdValue/extra",
+			Input: "/directory/outboundSharedUserProfiles/outboundSharedUserProfileUserId/tenants/tenantReferenceTenantId/extra",
 			Error: true,
 		},
 	}
@@ -135,48 +135,48 @@ func TestParseDirectoryOutboundSharedUserProfileIdTenantIDInsensitively(t *testi
 		},
 		{
 			// Incomplete URI
-			Input: "/directory/outboundSharedUserProfiles/outboundSharedUserProfileUserIdValue",
+			Input: "/directory/outboundSharedUserProfiles/outboundSharedUserProfileUserId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/dIrEcToRy/oUtBoUnDsHaReDuSeRpRoFiLeS/oUtBoUnDsHaReDuSeRpRoFiLeUsErIdVaLuE",
+			Input: "/dIrEcToRy/oUtBoUnDsHaReDuSeRpRoFiLeS/oUtBoUnDsHaReDuSeRpRoFiLeUsErId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/directory/outboundSharedUserProfiles/outboundSharedUserProfileUserIdValue/tenants",
+			Input: "/directory/outboundSharedUserProfiles/outboundSharedUserProfileUserId/tenants",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/dIrEcToRy/oUtBoUnDsHaReDuSeRpRoFiLeS/oUtBoUnDsHaReDuSeRpRoFiLeUsErIdVaLuE/tEnAnTs",
+			Input: "/dIrEcToRy/oUtBoUnDsHaReDuSeRpRoFiLeS/oUtBoUnDsHaReDuSeRpRoFiLeUsErId/tEnAnTs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/directory/outboundSharedUserProfiles/outboundSharedUserProfileUserIdValue/tenants/tenantReferenceTenantIdValue",
+			Input: "/directory/outboundSharedUserProfiles/outboundSharedUserProfileUserId/tenants/tenantReferenceTenantId",
 			Expected: &DirectoryOutboundSharedUserProfileIdTenantId{
-				OutboundSharedUserProfileUserId: "outboundSharedUserProfileUserIdValue",
-				TenantReferenceTenantId:         "tenantReferenceTenantIdValue",
+				OutboundSharedUserProfileUserId: "outboundSharedUserProfileUserId",
+				TenantReferenceTenantId:         "tenantReferenceTenantId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/directory/outboundSharedUserProfiles/outboundSharedUserProfileUserIdValue/tenants/tenantReferenceTenantIdValue/extra",
+			Input: "/directory/outboundSharedUserProfiles/outboundSharedUserProfileUserId/tenants/tenantReferenceTenantId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/dIrEcToRy/oUtBoUnDsHaReDuSeRpRoFiLeS/oUtBoUnDsHaReDuSeRpRoFiLeUsErIdVaLuE/tEnAnTs/tEnAnTrEfErEnCeTeNaNtIdVaLuE",
+			Input: "/dIrEcToRy/oUtBoUnDsHaReDuSeRpRoFiLeS/oUtBoUnDsHaReDuSeRpRoFiLeUsErId/tEnAnTs/tEnAnTrEfErEnCeTeNaNtId",
 			Expected: &DirectoryOutboundSharedUserProfileIdTenantId{
-				OutboundSharedUserProfileUserId: "oUtBoUnDsHaReDuSeRpRoFiLeUsErIdVaLuE",
-				TenantReferenceTenantId:         "tEnAnTrEfErEnCeTeNaNtIdVaLuE",
+				OutboundSharedUserProfileUserId: "oUtBoUnDsHaReDuSeRpRoFiLeUsErId",
+				TenantReferenceTenantId:         "tEnAnTrEfErEnCeTeNaNtId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/dIrEcToRy/oUtBoUnDsHaReDuSeRpRoFiLeS/oUtBoUnDsHaReDuSeRpRoFiLeUsErIdVaLuE/tEnAnTs/tEnAnTrEfErEnCeTeNaNtIdVaLuE/extra",
+			Input: "/dIrEcToRy/oUtBoUnDsHaReDuSeRpRoFiLeS/oUtBoUnDsHaReDuSeRpRoFiLeUsErId/tEnAnTs/tEnAnTrEfErEnCeTeNaNtId/extra",
 			Error: true,
 		},
 	}

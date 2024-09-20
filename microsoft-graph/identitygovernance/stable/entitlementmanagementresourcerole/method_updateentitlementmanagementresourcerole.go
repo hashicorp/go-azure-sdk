@@ -17,15 +17,44 @@ type UpdateEntitlementManagementResourceRoleOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateEntitlementManagementResourceRoleOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateEntitlementManagementResourceRoleOperationOptions() UpdateEntitlementManagementResourceRoleOperationOptions {
+	return UpdateEntitlementManagementResourceRoleOperationOptions{}
+}
+
+func (o UpdateEntitlementManagementResourceRoleOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateEntitlementManagementResourceRoleOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateEntitlementManagementResourceRoleOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateEntitlementManagementResourceRole - Update the navigation property roles in identityGovernance
-func (c EntitlementManagementResourceRoleClient) UpdateEntitlementManagementResourceRole(ctx context.Context, id stable.IdentityGovernanceEntitlementManagementResourceIdRoleId, input stable.AccessPackageResourceRole) (result UpdateEntitlementManagementResourceRoleOperationResponse, err error) {
+func (c EntitlementManagementResourceRoleClient) UpdateEntitlementManagementResourceRole(ctx context.Context, id stable.IdentityGovernanceEntitlementManagementResourceIdRoleId, input stable.AccessPackageResourceRole, options UpdateEntitlementManagementResourceRoleOperationOptions) (result UpdateEntitlementManagementResourceRoleOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

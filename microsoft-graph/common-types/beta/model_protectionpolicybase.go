@@ -112,20 +112,29 @@ func (s BaseProtectionPolicyBaseImpl) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &BaseProtectionPolicyBaseImpl{}
 
 func (s *BaseProtectionPolicyBaseImpl) UnmarshalJSON(bytes []byte) error {
-	type alias BaseProtectionPolicyBaseImpl
-	var decoded alias
+
+	var decoded struct {
+		CreatedDateTime      nullable.Type[string]   `json:"createdDateTime,omitempty"`
+		DisplayName          nullable.Type[string]   `json:"displayName,omitempty"`
+		LastModifiedDateTime nullable.Type[string]   `json:"lastModifiedDateTime,omitempty"`
+		RetentionSettings    *[]RetentionSetting     `json:"retentionSettings,omitempty"`
+		Status               *ProtectionPolicyStatus `json:"status,omitempty"`
+		Id                   *string                 `json:"id,omitempty"`
+		ODataId              *string                 `json:"@odata.id,omitempty"`
+		ODataType            *string                 `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into BaseProtectionPolicyBaseImpl: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.CreatedDateTime = decoded.CreatedDateTime
 	s.DisplayName = decoded.DisplayName
-	s.Id = decoded.Id
 	s.LastModifiedDateTime = decoded.LastModifiedDateTime
-	s.ODataId = decoded.ODataId
-	s.ODataType = decoded.ODataType
 	s.RetentionSettings = decoded.RetentionSettings
 	s.Status = decoded.Status
+	s.Id = decoded.Id
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -147,6 +156,7 @@ func (s *BaseProtectionPolicyBaseImpl) UnmarshalJSON(bytes []byte) error {
 		}
 		s.LastModifiedBy = impl
 	}
+
 	return nil
 }
 
@@ -160,9 +170,9 @@ func UnmarshalProtectionPolicyBaseImplementation(input []byte) (ProtectionPolicy
 		return nil, fmt.Errorf("unmarshaling ProtectionPolicyBase into map[string]interface: %+v", err)
 	}
 
-	value, ok := temp["@odata.type"].(string)
-	if !ok {
-		return nil, nil
+	var value string
+	if v, ok := temp["@odata.type"]; ok {
+		value = fmt.Sprintf("%v", v)
 	}
 
 	if strings.EqualFold(value, "#microsoft.graph.exchangeProtectionPolicy") {

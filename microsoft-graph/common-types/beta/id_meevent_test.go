@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &MeEventId{}
 
 func TestNewMeEventID(t *testing.T) {
-	id := NewMeEventID("eventIdValue")
+	id := NewMeEventID("eventId")
 
-	if id.EventId != "eventIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'EventId'", id.EventId, "eventIdValue")
+	if id.EventId != "eventId" {
+		t.Fatalf("Expected %q but got %q for Segment 'EventId'", id.EventId, "eventId")
 	}
 }
 
 func TestFormatMeEventID(t *testing.T) {
-	actual := NewMeEventID("eventIdValue").ID()
-	expected := "/me/events/eventIdValue"
+	actual := NewMeEventID("eventId").ID()
+	expected := "/me/events/eventId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -50,14 +50,14 @@ func TestParseMeEventID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/me/events/eventIdValue",
+			Input: "/me/events/eventId",
 			Expected: &MeEventId{
-				EventId: "eventIdValue",
+				EventId: "eventId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/events/eventIdValue/extra",
+			Input: "/me/events/eventId/extra",
 			Error: true,
 		},
 	}
@@ -116,26 +116,26 @@ func TestParseMeEventIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/me/events/eventIdValue",
+			Input: "/me/events/eventId",
 			Expected: &MeEventId{
-				EventId: "eventIdValue",
+				EventId: "eventId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/events/eventIdValue/extra",
+			Input: "/me/events/eventId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/eVeNtS/eVeNtIdVaLuE",
+			Input: "/mE/eVeNtS/eVeNtId",
 			Expected: &MeEventId{
-				EventId: "eVeNtIdVaLuE",
+				EventId: "eVeNtId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/mE/eVeNtS/eVeNtIdVaLuE/extra",
+			Input: "/mE/eVeNtS/eVeNtId/extra",
 			Error: true,
 		},
 	}

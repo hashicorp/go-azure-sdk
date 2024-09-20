@@ -18,8 +18,9 @@ type GetUserInsightMonthlyRequestsCountOperationResponse struct {
 }
 
 type GetUserInsightMonthlyRequestsCountOperationOptions struct {
-	Filter *string
-	Search *string
+	Filter   *string
+	Metadata *odata.Metadata
+	Search   *string
 }
 
 func DefaultGetUserInsightMonthlyRequestsCountOperationOptions() GetUserInsightMonthlyRequestsCountOperationOptions {
@@ -36,6 +37,9 @@ func (o GetUserInsightMonthlyRequestsCountOperationOptions) ToOData() *odata.Que
 	out := odata.Query{}
 	if o.Filter != nil {
 		out.Filter = *o.Filter
+	}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
 	}
 	if o.Search != nil {
 		out.Search = *o.Search

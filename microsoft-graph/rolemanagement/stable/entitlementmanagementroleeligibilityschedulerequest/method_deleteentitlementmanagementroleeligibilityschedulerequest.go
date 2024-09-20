@@ -19,7 +19,8 @@ type DeleteEntitlementManagementRoleEligibilityScheduleRequestOperationResponse 
 }
 
 type DeleteEntitlementManagementRoleEligibilityScheduleRequestOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteEntitlementManagementRoleEligibilityScheduleRequestOperationOptions() DeleteEntitlementManagementRoleEligibilityScheduleRequestOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteEntitlementManagementRoleEligibilityScheduleRequestOperationOption
 
 func (o DeleteEntitlementManagementRoleEligibilityScheduleRequestOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

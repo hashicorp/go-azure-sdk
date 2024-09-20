@@ -18,18 +18,47 @@ type CreateAccessReviewDefinitionInstanceStageDecisionInstanceApplyDecisionOpera
 	OData        *odata.OData
 }
 
+type CreateAccessReviewDefinitionInstanceStageDecisionInstanceApplyDecisionOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateAccessReviewDefinitionInstanceStageDecisionInstanceApplyDecisionOperationOptions() CreateAccessReviewDefinitionInstanceStageDecisionInstanceApplyDecisionOperationOptions {
+	return CreateAccessReviewDefinitionInstanceStageDecisionInstanceApplyDecisionOperationOptions{}
+}
+
+func (o CreateAccessReviewDefinitionInstanceStageDecisionInstanceApplyDecisionOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateAccessReviewDefinitionInstanceStageDecisionInstanceApplyDecisionOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateAccessReviewDefinitionInstanceStageDecisionInstanceApplyDecisionOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateAccessReviewDefinitionInstanceStageDecisionInstanceApplyDecision - Invoke action applyDecisions. Apply review
 // decisions on an accessReviewInstance if the decisions were not applied automatically because the
 // autoApplyDecisionsEnabled property is false in the review's accessReviewScheduleSettings. The status of the
 // accessReviewInstance must be Completed to call this method.
-func (c AccessReviewDefinitionInstanceStageDecisionInstanceClient) CreateAccessReviewDefinitionInstanceStageDecisionInstanceApplyDecision(ctx context.Context, id beta.IdentityGovernanceAccessReviewDefinitionIdInstanceIdStageIdDecisionId) (result CreateAccessReviewDefinitionInstanceStageDecisionInstanceApplyDecisionOperationResponse, err error) {
+func (c AccessReviewDefinitionInstanceStageDecisionInstanceClient) CreateAccessReviewDefinitionInstanceStageDecisionInstanceApplyDecision(ctx context.Context, id beta.IdentityGovernanceAccessReviewDefinitionIdInstanceIdStageIdDecisionId, options CreateAccessReviewDefinitionInstanceStageDecisionInstanceApplyDecisionOperationOptions) (result CreateAccessReviewDefinitionInstanceStageDecisionInstanceApplyDecisionOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/instance/applyDecisions", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/instance/applyDecisions", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &DeviceManagementHardwareConfigurationIdUserRunStateId{}
 
 func TestNewDeviceManagementHardwareConfigurationIdUserRunStateID(t *testing.T) {
-	id := NewDeviceManagementHardwareConfigurationIdUserRunStateID("hardwareConfigurationIdValue", "hardwareConfigurationUserStateIdValue")
+	id := NewDeviceManagementHardwareConfigurationIdUserRunStateID("hardwareConfigurationId", "hardwareConfigurationUserStateId")
 
-	if id.HardwareConfigurationId != "hardwareConfigurationIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'HardwareConfigurationId'", id.HardwareConfigurationId, "hardwareConfigurationIdValue")
+	if id.HardwareConfigurationId != "hardwareConfigurationId" {
+		t.Fatalf("Expected %q but got %q for Segment 'HardwareConfigurationId'", id.HardwareConfigurationId, "hardwareConfigurationId")
 	}
 
-	if id.HardwareConfigurationUserStateId != "hardwareConfigurationUserStateIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'HardwareConfigurationUserStateId'", id.HardwareConfigurationUserStateId, "hardwareConfigurationUserStateIdValue")
+	if id.HardwareConfigurationUserStateId != "hardwareConfigurationUserStateId" {
+		t.Fatalf("Expected %q but got %q for Segment 'HardwareConfigurationUserStateId'", id.HardwareConfigurationUserStateId, "hardwareConfigurationUserStateId")
 	}
 }
 
 func TestFormatDeviceManagementHardwareConfigurationIdUserRunStateID(t *testing.T) {
-	actual := NewDeviceManagementHardwareConfigurationIdUserRunStateID("hardwareConfigurationIdValue", "hardwareConfigurationUserStateIdValue").ID()
-	expected := "/deviceManagement/hardwareConfigurations/hardwareConfigurationIdValue/userRunStates/hardwareConfigurationUserStateIdValue"
+	actual := NewDeviceManagementHardwareConfigurationIdUserRunStateID("hardwareConfigurationId", "hardwareConfigurationUserStateId").ID()
+	expected := "/deviceManagement/hardwareConfigurations/hardwareConfigurationId/userRunStates/hardwareConfigurationUserStateId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -54,25 +54,25 @@ func TestParseDeviceManagementHardwareConfigurationIdUserRunStateID(t *testing.T
 		},
 		{
 			// Incomplete URI
-			Input: "/deviceManagement/hardwareConfigurations/hardwareConfigurationIdValue",
+			Input: "/deviceManagement/hardwareConfigurations/hardwareConfigurationId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/deviceManagement/hardwareConfigurations/hardwareConfigurationIdValue/userRunStates",
+			Input: "/deviceManagement/hardwareConfigurations/hardwareConfigurationId/userRunStates",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/hardwareConfigurations/hardwareConfigurationIdValue/userRunStates/hardwareConfigurationUserStateIdValue",
+			Input: "/deviceManagement/hardwareConfigurations/hardwareConfigurationId/userRunStates/hardwareConfigurationUserStateId",
 			Expected: &DeviceManagementHardwareConfigurationIdUserRunStateId{
-				HardwareConfigurationId:          "hardwareConfigurationIdValue",
-				HardwareConfigurationUserStateId: "hardwareConfigurationUserStateIdValue",
+				HardwareConfigurationId:          "hardwareConfigurationId",
+				HardwareConfigurationUserStateId: "hardwareConfigurationUserStateId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/hardwareConfigurations/hardwareConfigurationIdValue/userRunStates/hardwareConfigurationUserStateIdValue/extra",
+			Input: "/deviceManagement/hardwareConfigurations/hardwareConfigurationId/userRunStates/hardwareConfigurationUserStateId/extra",
 			Error: true,
 		},
 	}
@@ -135,48 +135,48 @@ func TestParseDeviceManagementHardwareConfigurationIdUserRunStateIDInsensitively
 		},
 		{
 			// Incomplete URI
-			Input: "/deviceManagement/hardwareConfigurations/hardwareConfigurationIdValue",
+			Input: "/deviceManagement/hardwareConfigurations/hardwareConfigurationId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/hArDwArEcOnFiGuRaTiOnS/hArDwArEcOnFiGuRaTiOnIdVaLuE",
+			Input: "/dEvIcEmAnAgEmEnT/hArDwArEcOnFiGuRaTiOnS/hArDwArEcOnFiGuRaTiOnId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/deviceManagement/hardwareConfigurations/hardwareConfigurationIdValue/userRunStates",
+			Input: "/deviceManagement/hardwareConfigurations/hardwareConfigurationId/userRunStates",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/hArDwArEcOnFiGuRaTiOnS/hArDwArEcOnFiGuRaTiOnIdVaLuE/uSeRrUnStAtEs",
+			Input: "/dEvIcEmAnAgEmEnT/hArDwArEcOnFiGuRaTiOnS/hArDwArEcOnFiGuRaTiOnId/uSeRrUnStAtEs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/hardwareConfigurations/hardwareConfigurationIdValue/userRunStates/hardwareConfigurationUserStateIdValue",
+			Input: "/deviceManagement/hardwareConfigurations/hardwareConfigurationId/userRunStates/hardwareConfigurationUserStateId",
 			Expected: &DeviceManagementHardwareConfigurationIdUserRunStateId{
-				HardwareConfigurationId:          "hardwareConfigurationIdValue",
-				HardwareConfigurationUserStateId: "hardwareConfigurationUserStateIdValue",
+				HardwareConfigurationId:          "hardwareConfigurationId",
+				HardwareConfigurationUserStateId: "hardwareConfigurationUserStateId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/hardwareConfigurations/hardwareConfigurationIdValue/userRunStates/hardwareConfigurationUserStateIdValue/extra",
+			Input: "/deviceManagement/hardwareConfigurations/hardwareConfigurationId/userRunStates/hardwareConfigurationUserStateId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/hArDwArEcOnFiGuRaTiOnS/hArDwArEcOnFiGuRaTiOnIdVaLuE/uSeRrUnStAtEs/hArDwArEcOnFiGuRaTiOnUsErStAtEiDvAlUe",
+			Input: "/dEvIcEmAnAgEmEnT/hArDwArEcOnFiGuRaTiOnS/hArDwArEcOnFiGuRaTiOnId/uSeRrUnStAtEs/hArDwArEcOnFiGuRaTiOnUsErStAtEiD",
 			Expected: &DeviceManagementHardwareConfigurationIdUserRunStateId{
-				HardwareConfigurationId:          "hArDwArEcOnFiGuRaTiOnIdVaLuE",
-				HardwareConfigurationUserStateId: "hArDwArEcOnFiGuRaTiOnUsErStAtEiDvAlUe",
+				HardwareConfigurationId:          "hArDwArEcOnFiGuRaTiOnId",
+				HardwareConfigurationUserStateId: "hArDwArEcOnFiGuRaTiOnUsErStAtEiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/hArDwArEcOnFiGuRaTiOnS/hArDwArEcOnFiGuRaTiOnIdVaLuE/uSeRrUnStAtEs/hArDwArEcOnFiGuRaTiOnUsErStAtEiDvAlUe/extra",
+			Input: "/dEvIcEmAnAgEmEnT/hArDwArEcOnFiGuRaTiOnS/hArDwArEcOnFiGuRaTiOnId/uSeRrUnStAtEs/hArDwArEcOnFiGuRaTiOnUsErStAtEiD/extra",
 			Error: true,
 		},
 	}

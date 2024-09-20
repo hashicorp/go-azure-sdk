@@ -19,15 +19,44 @@ type CreateAuthenticationOperationOperationResponse struct {
 	Model        beta.LongRunningOperation
 }
 
+type CreateAuthenticationOperationOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateAuthenticationOperationOperationOptions() CreateAuthenticationOperationOperationOptions {
+	return CreateAuthenticationOperationOperationOptions{}
+}
+
+func (o CreateAuthenticationOperationOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateAuthenticationOperationOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateAuthenticationOperationOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateAuthenticationOperation - Create new navigation property to operations for me
-func (c AuthenticationOperationClient) CreateAuthenticationOperation(ctx context.Context, input beta.LongRunningOperation) (result CreateAuthenticationOperationOperationResponse, err error) {
+func (c AuthenticationOperationClient) CreateAuthenticationOperation(ctx context.Context, input beta.LongRunningOperation, options CreateAuthenticationOperationOperationOptions) (result CreateAuthenticationOperationOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/me/authentication/operations",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/me/authentication/operations",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

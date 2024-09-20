@@ -12,24 +12,24 @@ import (
 var _ resourceids.ResourceId = &GroupIdSiteIdInformationProtectionThreatAssessmentRequestId{}
 
 func TestNewGroupIdSiteIdInformationProtectionThreatAssessmentRequestID(t *testing.T) {
-	id := NewGroupIdSiteIdInformationProtectionThreatAssessmentRequestID("groupIdValue", "siteIdValue", "threatAssessmentRequestIdValue")
+	id := NewGroupIdSiteIdInformationProtectionThreatAssessmentRequestID("groupId", "siteId", "threatAssessmentRequestId")
 
-	if id.GroupId != "groupIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'GroupId'", id.GroupId, "groupIdValue")
+	if id.GroupId != "groupId" {
+		t.Fatalf("Expected %q but got %q for Segment 'GroupId'", id.GroupId, "groupId")
 	}
 
-	if id.SiteId != "siteIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'SiteId'", id.SiteId, "siteIdValue")
+	if id.SiteId != "siteId" {
+		t.Fatalf("Expected %q but got %q for Segment 'SiteId'", id.SiteId, "siteId")
 	}
 
-	if id.ThreatAssessmentRequestId != "threatAssessmentRequestIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ThreatAssessmentRequestId'", id.ThreatAssessmentRequestId, "threatAssessmentRequestIdValue")
+	if id.ThreatAssessmentRequestId != "threatAssessmentRequestId" {
+		t.Fatalf("Expected %q but got %q for Segment 'ThreatAssessmentRequestId'", id.ThreatAssessmentRequestId, "threatAssessmentRequestId")
 	}
 }
 
 func TestFormatGroupIdSiteIdInformationProtectionThreatAssessmentRequestID(t *testing.T) {
-	actual := NewGroupIdSiteIdInformationProtectionThreatAssessmentRequestID("groupIdValue", "siteIdValue", "threatAssessmentRequestIdValue").ID()
-	expected := "/groups/groupIdValue/sites/siteIdValue/informationProtection/threatAssessmentRequests/threatAssessmentRequestIdValue"
+	actual := NewGroupIdSiteIdInformationProtectionThreatAssessmentRequestID("groupId", "siteId", "threatAssessmentRequestId").ID()
+	expected := "/groups/groupId/sites/siteId/informationProtection/threatAssessmentRequests/threatAssessmentRequestId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -53,41 +53,41 @@ func TestParseGroupIdSiteIdInformationProtectionThreatAssessmentRequestID(t *tes
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue",
+			Input: "/groups/groupId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/sites",
+			Input: "/groups/groupId/sites",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/sites/siteIdValue",
+			Input: "/groups/groupId/sites/siteId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/sites/siteIdValue/informationProtection",
+			Input: "/groups/groupId/sites/siteId/informationProtection",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/sites/siteIdValue/informationProtection/threatAssessmentRequests",
+			Input: "/groups/groupId/sites/siteId/informationProtection/threatAssessmentRequests",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/groups/groupIdValue/sites/siteIdValue/informationProtection/threatAssessmentRequests/threatAssessmentRequestIdValue",
+			Input: "/groups/groupId/sites/siteId/informationProtection/threatAssessmentRequests/threatAssessmentRequestId",
 			Expected: &GroupIdSiteIdInformationProtectionThreatAssessmentRequestId{
-				GroupId:                   "groupIdValue",
-				SiteId:                    "siteIdValue",
-				ThreatAssessmentRequestId: "threatAssessmentRequestIdValue",
+				GroupId:                   "groupId",
+				SiteId:                    "siteId",
+				ThreatAssessmentRequestId: "threatAssessmentRequestId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/groups/groupIdValue/sites/siteIdValue/informationProtection/threatAssessmentRequests/threatAssessmentRequestIdValue/extra",
+			Input: "/groups/groupId/sites/siteId/informationProtection/threatAssessmentRequests/threatAssessmentRequestId/extra",
 			Error: true,
 		},
 	}
@@ -144,80 +144,80 @@ func TestParseGroupIdSiteIdInformationProtectionThreatAssessmentRequestIDInsensi
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue",
+			Input: "/groups/groupId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE",
+			Input: "/gRoUpS/gRoUpId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/sites",
+			Input: "/groups/groupId/sites",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/sItEs",
+			Input: "/gRoUpS/gRoUpId/sItEs",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/sites/siteIdValue",
+			Input: "/groups/groupId/sites/siteId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/sItEs/sItEiDvAlUe",
+			Input: "/gRoUpS/gRoUpId/sItEs/sItEiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/sites/siteIdValue/informationProtection",
+			Input: "/groups/groupId/sites/siteId/informationProtection",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/sItEs/sItEiDvAlUe/iNfOrMaTiOnPrOtEcTiOn",
+			Input: "/gRoUpS/gRoUpId/sItEs/sItEiD/iNfOrMaTiOnPrOtEcTiOn",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/sites/siteIdValue/informationProtection/threatAssessmentRequests",
+			Input: "/groups/groupId/sites/siteId/informationProtection/threatAssessmentRequests",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/sItEs/sItEiDvAlUe/iNfOrMaTiOnPrOtEcTiOn/tHrEaTaSsEsSmEnTrEqUeStS",
+			Input: "/gRoUpS/gRoUpId/sItEs/sItEiD/iNfOrMaTiOnPrOtEcTiOn/tHrEaTaSsEsSmEnTrEqUeStS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/groups/groupIdValue/sites/siteIdValue/informationProtection/threatAssessmentRequests/threatAssessmentRequestIdValue",
+			Input: "/groups/groupId/sites/siteId/informationProtection/threatAssessmentRequests/threatAssessmentRequestId",
 			Expected: &GroupIdSiteIdInformationProtectionThreatAssessmentRequestId{
-				GroupId:                   "groupIdValue",
-				SiteId:                    "siteIdValue",
-				ThreatAssessmentRequestId: "threatAssessmentRequestIdValue",
+				GroupId:                   "groupId",
+				SiteId:                    "siteId",
+				ThreatAssessmentRequestId: "threatAssessmentRequestId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/groups/groupIdValue/sites/siteIdValue/informationProtection/threatAssessmentRequests/threatAssessmentRequestIdValue/extra",
+			Input: "/groups/groupId/sites/siteId/informationProtection/threatAssessmentRequests/threatAssessmentRequestId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/sItEs/sItEiDvAlUe/iNfOrMaTiOnPrOtEcTiOn/tHrEaTaSsEsSmEnTrEqUeStS/tHrEaTaSsEsSmEnTrEqUeStIdVaLuE",
+			Input: "/gRoUpS/gRoUpId/sItEs/sItEiD/iNfOrMaTiOnPrOtEcTiOn/tHrEaTaSsEsSmEnTrEqUeStS/tHrEaTaSsEsSmEnTrEqUeStId",
 			Expected: &GroupIdSiteIdInformationProtectionThreatAssessmentRequestId{
-				GroupId:                   "gRoUpIdVaLuE",
-				SiteId:                    "sItEiDvAlUe",
-				ThreatAssessmentRequestId: "tHrEaTaSsEsSmEnTrEqUeStIdVaLuE",
+				GroupId:                   "gRoUpId",
+				SiteId:                    "sItEiD",
+				ThreatAssessmentRequestId: "tHrEaTaSsEsSmEnTrEqUeStId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/sItEs/sItEiDvAlUe/iNfOrMaTiOnPrOtEcTiOn/tHrEaTaSsEsSmEnTrEqUeStS/tHrEaTaSsEsSmEnTrEqUeStIdVaLuE/extra",
+			Input: "/gRoUpS/gRoUpId/sItEs/sItEiD/iNfOrMaTiOnPrOtEcTiOn/tHrEaTaSsEsSmEnTrEqUeStS/tHrEaTaSsEsSmEnTrEqUeStId/extra",
 			Error: true,
 		},
 	}

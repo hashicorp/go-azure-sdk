@@ -93,7 +93,7 @@ func (id DeviceManagementWindowsInformationProtectionAppLearningSummaryId) Segme
 	return []resourceids.Segment{
 		resourceids.StaticSegment("deviceManagement", "deviceManagement", "deviceManagement"),
 		resourceids.StaticSegment("windowsInformationProtectionAppLearningSummaries", "windowsInformationProtectionAppLearningSummaries", "windowsInformationProtectionAppLearningSummaries"),
-		resourceids.UserSpecifiedSegment("windowsInformationProtectionAppLearningSummaryId", "windowsInformationProtectionAppLearningSummaryIdValue"),
+		resourceids.UserSpecifiedSegment("windowsInformationProtectionAppLearningSummaryId", "windowsInformationProtectionAppLearningSummaryId"),
 	}
 }
 

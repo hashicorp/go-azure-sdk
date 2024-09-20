@@ -18,15 +18,44 @@ type CreatePendingExternalUserProfileOperationResponse struct {
 	Model        *beta.PendingExternalUserProfile
 }
 
+type CreatePendingExternalUserProfileOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreatePendingExternalUserProfileOperationOptions() CreatePendingExternalUserProfileOperationOptions {
+	return CreatePendingExternalUserProfileOperationOptions{}
+}
+
+func (o CreatePendingExternalUserProfileOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreatePendingExternalUserProfileOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreatePendingExternalUserProfileOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreatePendingExternalUserProfile - Create pendingExternalUserProfile. Create a new pendingExternalUserProfile object.
-func (c PendingExternalUserProfileClient) CreatePendingExternalUserProfile(ctx context.Context, input beta.PendingExternalUserProfile) (result CreatePendingExternalUserProfileOperationResponse, err error) {
+func (c PendingExternalUserProfileClient) CreatePendingExternalUserProfile(ctx context.Context, input beta.PendingExternalUserProfile, options CreatePendingExternalUserProfileOperationOptions) (result CreatePendingExternalUserProfileOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/directory/pendingExternalUserProfiles",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/directory/pendingExternalUserProfiles",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

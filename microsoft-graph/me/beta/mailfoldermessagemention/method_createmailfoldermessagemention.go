@@ -19,15 +19,44 @@ type CreateMailFolderMessageMentionOperationResponse struct {
 	Model        *beta.Mention
 }
 
+type CreateMailFolderMessageMentionOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateMailFolderMessageMentionOperationOptions() CreateMailFolderMessageMentionOperationOptions {
+	return CreateMailFolderMessageMentionOperationOptions{}
+}
+
+func (o CreateMailFolderMessageMentionOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateMailFolderMessageMentionOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateMailFolderMessageMentionOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateMailFolderMessageMention - Create new navigation property to mentions for me
-func (c MailFolderMessageMentionClient) CreateMailFolderMessageMention(ctx context.Context, id beta.MeMailFolderIdMessageId, input beta.Mention) (result CreateMailFolderMessageMentionOperationResponse, err error) {
+func (c MailFolderMessageMentionClient) CreateMailFolderMessageMention(ctx context.Context, id beta.MeMailFolderIdMessageId, input beta.Mention, options CreateMailFolderMessageMentionOperationOptions) (result CreateMailFolderMessageMentionOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/mentions", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/mentions", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

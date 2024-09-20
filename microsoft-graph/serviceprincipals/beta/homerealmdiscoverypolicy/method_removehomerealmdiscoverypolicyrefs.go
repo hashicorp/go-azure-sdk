@@ -19,8 +19,9 @@ type RemoveHomeRealmDiscoveryPolicyRefsOperationResponse struct {
 }
 
 type RemoveHomeRealmDiscoveryPolicyRefsOperationOptions struct {
-	Id      *string
-	IfMatch *string
+	Id       *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultRemoveHomeRealmDiscoveryPolicyRefsOperationOptions() RemoveHomeRealmDiscoveryPolicyRefsOperationOptions {
@@ -37,7 +38,9 @@ func (o RemoveHomeRealmDiscoveryPolicyRefsOperationOptions) ToHeaders() *client.
 
 func (o RemoveHomeRealmDiscoveryPolicyRefsOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

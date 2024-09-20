@@ -19,15 +19,44 @@ type CreatePlannerPlanBucketTaskOperationResponse struct {
 	Model        *stable.PlannerTask
 }
 
+type CreatePlannerPlanBucketTaskOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreatePlannerPlanBucketTaskOperationOptions() CreatePlannerPlanBucketTaskOperationOptions {
+	return CreatePlannerPlanBucketTaskOperationOptions{}
+}
+
+func (o CreatePlannerPlanBucketTaskOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreatePlannerPlanBucketTaskOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreatePlannerPlanBucketTaskOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreatePlannerPlanBucketTask - Create new navigation property to tasks for users
-func (c PlannerPlanBucketTaskClient) CreatePlannerPlanBucketTask(ctx context.Context, id stable.UserIdPlannerPlanIdBucketId, input stable.PlannerTask) (result CreatePlannerPlanBucketTaskOperationResponse, err error) {
+func (c PlannerPlanBucketTaskClient) CreatePlannerPlanBucketTask(ctx context.Context, id stable.UserIdPlannerPlanIdBucketId, input stable.PlannerTask, options CreatePlannerPlanBucketTaskOperationOptions) (result CreatePlannerPlanBucketTaskOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/tasks", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/tasks", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

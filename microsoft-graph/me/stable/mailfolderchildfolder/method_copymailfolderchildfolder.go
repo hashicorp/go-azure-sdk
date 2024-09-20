@@ -20,15 +20,44 @@ type CopyMailFolderChildFolderOperationResponse struct {
 	Model        stable.MailFolder
 }
 
+type CopyMailFolderChildFolderOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCopyMailFolderChildFolderOperationOptions() CopyMailFolderChildFolderOperationOptions {
+	return CopyMailFolderChildFolderOperationOptions{}
+}
+
+func (o CopyMailFolderChildFolderOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CopyMailFolderChildFolderOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CopyMailFolderChildFolderOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CopyMailFolderChildFolder - Invoke action copy. Copy a mailfolder and its contents to another mailfolder.
-func (c MailFolderChildFolderClient) CopyMailFolderChildFolder(ctx context.Context, id stable.MeMailFolderIdChildFolderId, input CopyMailFolderChildFolderRequest) (result CopyMailFolderChildFolderOperationResponse, err error) {
+func (c MailFolderChildFolderClient) CopyMailFolderChildFolder(ctx context.Context, id stable.MeMailFolderIdChildFolderId, input CopyMailFolderChildFolderRequest, options CopyMailFolderChildFolderOperationOptions) (result CopyMailFolderChildFolderOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/copy", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/copy", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

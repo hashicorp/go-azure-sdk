@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &IdentityGovernanceEntitlementManagementAccessPackageId{}
 
 func TestNewIdentityGovernanceEntitlementManagementAccessPackageID(t *testing.T) {
-	id := NewIdentityGovernanceEntitlementManagementAccessPackageID("accessPackageIdValue")
+	id := NewIdentityGovernanceEntitlementManagementAccessPackageID("accessPackageId")
 
-	if id.AccessPackageId != "accessPackageIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'AccessPackageId'", id.AccessPackageId, "accessPackageIdValue")
+	if id.AccessPackageId != "accessPackageId" {
+		t.Fatalf("Expected %q but got %q for Segment 'AccessPackageId'", id.AccessPackageId, "accessPackageId")
 	}
 }
 
 func TestFormatIdentityGovernanceEntitlementManagementAccessPackageID(t *testing.T) {
-	actual := NewIdentityGovernanceEntitlementManagementAccessPackageID("accessPackageIdValue").ID()
-	expected := "/identityGovernance/entitlementManagement/accessPackages/accessPackageIdValue"
+	actual := NewIdentityGovernanceEntitlementManagementAccessPackageID("accessPackageId").ID()
+	expected := "/identityGovernance/entitlementManagement/accessPackages/accessPackageId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -55,14 +55,14 @@ func TestParseIdentityGovernanceEntitlementManagementAccessPackageID(t *testing.
 		},
 		{
 			// Valid URI
-			Input: "/identityGovernance/entitlementManagement/accessPackages/accessPackageIdValue",
+			Input: "/identityGovernance/entitlementManagement/accessPackages/accessPackageId",
 			Expected: &IdentityGovernanceEntitlementManagementAccessPackageId{
-				AccessPackageId: "accessPackageIdValue",
+				AccessPackageId: "accessPackageId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/identityGovernance/entitlementManagement/accessPackages/accessPackageIdValue/extra",
+			Input: "/identityGovernance/entitlementManagement/accessPackages/accessPackageId/extra",
 			Error: true,
 		},
 	}
@@ -131,26 +131,26 @@ func TestParseIdentityGovernanceEntitlementManagementAccessPackageIDInsensitivel
 		},
 		{
 			// Valid URI
-			Input: "/identityGovernance/entitlementManagement/accessPackages/accessPackageIdValue",
+			Input: "/identityGovernance/entitlementManagement/accessPackages/accessPackageId",
 			Expected: &IdentityGovernanceEntitlementManagementAccessPackageId{
-				AccessPackageId: "accessPackageIdValue",
+				AccessPackageId: "accessPackageId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/identityGovernance/entitlementManagement/accessPackages/accessPackageIdValue/extra",
+			Input: "/identityGovernance/entitlementManagement/accessPackages/accessPackageId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/iDeNtItYgOvErNaNcE/eNtItLeMeNtMaNaGeMeNt/aCcEsSpAcKaGeS/aCcEsSpAcKaGeIdVaLuE",
+			Input: "/iDeNtItYgOvErNaNcE/eNtItLeMeNtMaNaGeMeNt/aCcEsSpAcKaGeS/aCcEsSpAcKaGeId",
 			Expected: &IdentityGovernanceEntitlementManagementAccessPackageId{
-				AccessPackageId: "aCcEsSpAcKaGeIdVaLuE",
+				AccessPackageId: "aCcEsSpAcKaGeId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/iDeNtItYgOvErNaNcE/eNtItLeMeNtMaNaGeMeNt/aCcEsSpAcKaGeS/aCcEsSpAcKaGeIdVaLuE/extra",
+			Input: "/iDeNtItYgOvErNaNcE/eNtItLeMeNtMaNaGeMeNt/aCcEsSpAcKaGeS/aCcEsSpAcKaGeId/extra",
 			Error: true,
 		},
 	}

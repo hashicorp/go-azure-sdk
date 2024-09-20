@@ -17,15 +17,44 @@ type UpdateVirtualEndpointFrontLineServicePlanOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateVirtualEndpointFrontLineServicePlanOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateVirtualEndpointFrontLineServicePlanOperationOptions() UpdateVirtualEndpointFrontLineServicePlanOperationOptions {
+	return UpdateVirtualEndpointFrontLineServicePlanOperationOptions{}
+}
+
+func (o UpdateVirtualEndpointFrontLineServicePlanOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateVirtualEndpointFrontLineServicePlanOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateVirtualEndpointFrontLineServicePlanOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateVirtualEndpointFrontLineServicePlan - Update the navigation property frontLineServicePlans in deviceManagement
-func (c VirtualEndpointFrontLineServicePlanClient) UpdateVirtualEndpointFrontLineServicePlan(ctx context.Context, id beta.DeviceManagementVirtualEndpointFrontLineServicePlanId, input beta.CloudPCFrontLineServicePlan) (result UpdateVirtualEndpointFrontLineServicePlanOperationResponse, err error) {
+func (c VirtualEndpointFrontLineServicePlanClient) UpdateVirtualEndpointFrontLineServicePlan(ctx context.Context, id beta.DeviceManagementVirtualEndpointFrontLineServicePlanId, input beta.CloudPCFrontLineServicePlan, options UpdateVirtualEndpointFrontLineServicePlanOperationOptions) (result UpdateVirtualEndpointFrontLineServicePlanOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

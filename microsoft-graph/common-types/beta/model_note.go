@@ -99,25 +99,41 @@ func (s Note) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &Note{}
 
 func (s *Note) UnmarshalJSON(bytes []byte) error {
-	type alias Note
-	var decoded alias
+
+	var decoded struct {
+		Attachments                   *[]Attachment                        `json:"attachments,omitempty"`
+		Body                          *ItemBody                            `json:"body,omitempty"`
+		Extensions                    *[]Extension                         `json:"extensions,omitempty"`
+		HasAttachments                nullable.Type[bool]                  `json:"hasAttachments,omitempty"`
+		IsDeleted                     nullable.Type[bool]                  `json:"isDeleted,omitempty"`
+		MultiValueExtendedProperties  *[]MultiValueLegacyExtendedProperty  `json:"multiValueExtendedProperties,omitempty"`
+		SingleValueExtendedProperties *[]SingleValueLegacyExtendedProperty `json:"singleValueExtendedProperties,omitempty"`
+		Subject                       nullable.Type[string]                `json:"subject,omitempty"`
+		Categories                    *[]string                            `json:"categories,omitempty"`
+		ChangeKey                     nullable.Type[string]                `json:"changeKey,omitempty"`
+		CreatedDateTime               nullable.Type[string]                `json:"createdDateTime,omitempty"`
+		LastModifiedDateTime          nullable.Type[string]                `json:"lastModifiedDateTime,omitempty"`
+		Id                            *string                              `json:"id,omitempty"`
+		ODataId                       *string                              `json:"@odata.id,omitempty"`
+		ODataType                     *string                              `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into Note: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.Body = decoded.Body
+	s.HasAttachments = decoded.HasAttachments
+	s.IsDeleted = decoded.IsDeleted
+	s.MultiValueExtendedProperties = decoded.MultiValueExtendedProperties
+	s.SingleValueExtendedProperties = decoded.SingleValueExtendedProperties
+	s.Subject = decoded.Subject
 	s.Categories = decoded.Categories
 	s.ChangeKey = decoded.ChangeKey
 	s.CreatedDateTime = decoded.CreatedDateTime
-	s.HasAttachments = decoded.HasAttachments
 	s.Id = decoded.Id
-	s.IsDeleted = decoded.IsDeleted
 	s.LastModifiedDateTime = decoded.LastModifiedDateTime
-	s.MultiValueExtendedProperties = decoded.MultiValueExtendedProperties
 	s.ODataId = decoded.ODataId
 	s.ODataType = decoded.ODataType
-	s.SingleValueExtendedProperties = decoded.SingleValueExtendedProperties
-	s.Subject = decoded.Subject
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -157,5 +173,6 @@ func (s *Note) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Extensions = &output
 	}
+
 	return nil
 }

@@ -99,9 +99,9 @@ func (id PolicyActivityBasedTimeoutPolicyIdAppliesToId) Segments() []resourceids
 	return []resourceids.Segment{
 		resourceids.StaticSegment("policies", "policies", "policies"),
 		resourceids.StaticSegment("activityBasedTimeoutPolicies", "activityBasedTimeoutPolicies", "activityBasedTimeoutPolicies"),
-		resourceids.UserSpecifiedSegment("activityBasedTimeoutPolicyId", "activityBasedTimeoutPolicyIdValue"),
+		resourceids.UserSpecifiedSegment("activityBasedTimeoutPolicyId", "activityBasedTimeoutPolicyId"),
 		resourceids.StaticSegment("appliesTo", "appliesTo", "appliesTo"),
-		resourceids.UserSpecifiedSegment("directoryObjectId", "directoryObjectIdValue"),
+		resourceids.UserSpecifiedSegment("directoryObjectId", "directoryObjectId"),
 	}
 }
 

@@ -18,15 +18,44 @@ type CreateProfileAddressOperationResponse struct {
 	Model        *beta.ItemAddress
 }
 
+type CreateProfileAddressOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateProfileAddressOperationOptions() CreateProfileAddressOperationOptions {
+	return CreateProfileAddressOperationOptions{}
+}
+
+func (o CreateProfileAddressOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateProfileAddressOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateProfileAddressOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateProfileAddress - Create addresses. Create a new itemAddress object in a user's profile.
-func (c ProfileAddressClient) CreateProfileAddress(ctx context.Context, input beta.ItemAddress) (result CreateProfileAddressOperationResponse, err error) {
+func (c ProfileAddressClient) CreateProfileAddress(ctx context.Context, input beta.ItemAddress, options CreateProfileAddressOperationOptions) (result CreateProfileAddressOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/me/profile/addresses",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/me/profile/addresses",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

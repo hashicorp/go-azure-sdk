@@ -19,8 +19,9 @@ type GetDirectoryRoleEligibilityScheduleRequestOperationResponse struct {
 }
 
 type GetDirectoryRoleEligibilityScheduleRequestOperationOptions struct {
-	Expand *odata.Expand
-	Select *[]string
+	Expand   *odata.Expand
+	Metadata *odata.Metadata
+	Select   *[]string
 }
 
 func DefaultGetDirectoryRoleEligibilityScheduleRequestOperationOptions() GetDirectoryRoleEligibilityScheduleRequestOperationOptions {
@@ -37,6 +38,9 @@ func (o GetDirectoryRoleEligibilityScheduleRequestOperationOptions) ToOData() *o
 	out := odata.Query{}
 	if o.Expand != nil {
 		out.Expand = *o.Expand
+	}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
 	}
 	if o.Select != nil {
 		out.Select = *o.Select

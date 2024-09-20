@@ -94,7 +94,7 @@ func (id MeAuthenticationEmailMethodId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("me", "me", "me"),
 		resourceids.StaticSegment("authentication", "authentication", "authentication"),
 		resourceids.StaticSegment("emailMethods", "emailMethods", "emailMethods"),
-		resourceids.UserSpecifiedSegment("emailAuthenticationMethodId", "emailAuthenticationMethodIdValue"),
+		resourceids.UserSpecifiedSegment("emailAuthenticationMethodId", "emailAuthenticationMethodId"),
 	}
 }
 

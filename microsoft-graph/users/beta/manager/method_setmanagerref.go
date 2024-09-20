@@ -18,15 +18,44 @@ type SetManagerRefOperationResponse struct {
 	OData        *odata.OData
 }
 
+type SetManagerRefOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultSetManagerRefOperationOptions() SetManagerRefOperationOptions {
+	return SetManagerRefOperationOptions{}
+}
+
+func (o SetManagerRefOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o SetManagerRefOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o SetManagerRefOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // SetManagerRef - Assign a manager. Assign a user's manager.
-func (c ManagerClient) SetManagerRef(ctx context.Context, id beta.UserId, input beta.ReferenceUpdate) (result SetManagerRefOperationResponse, err error) {
+func (c ManagerClient) SetManagerRef(ctx context.Context, id beta.UserId, input beta.ReferenceUpdate, options SetManagerRefOperationOptions) (result SetManagerRefOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPut,
-		Path:       fmt.Sprintf("%s/manager/$ref", id.ID()),
+		HttpMethod:    http.MethodPut,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/manager/$ref", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

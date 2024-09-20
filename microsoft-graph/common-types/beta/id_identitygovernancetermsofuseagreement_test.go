@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &IdentityGovernanceTermsOfUseAgreementId{}
 
 func TestNewIdentityGovernanceTermsOfUseAgreementID(t *testing.T) {
-	id := NewIdentityGovernanceTermsOfUseAgreementID("agreementIdValue")
+	id := NewIdentityGovernanceTermsOfUseAgreementID("agreementId")
 
-	if id.AgreementId != "agreementIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'AgreementId'", id.AgreementId, "agreementIdValue")
+	if id.AgreementId != "agreementId" {
+		t.Fatalf("Expected %q but got %q for Segment 'AgreementId'", id.AgreementId, "agreementId")
 	}
 }
 
 func TestFormatIdentityGovernanceTermsOfUseAgreementID(t *testing.T) {
-	actual := NewIdentityGovernanceTermsOfUseAgreementID("agreementIdValue").ID()
-	expected := "/identityGovernance/termsOfUse/agreements/agreementIdValue"
+	actual := NewIdentityGovernanceTermsOfUseAgreementID("agreementId").ID()
+	expected := "/identityGovernance/termsOfUse/agreements/agreementId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -55,14 +55,14 @@ func TestParseIdentityGovernanceTermsOfUseAgreementID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/identityGovernance/termsOfUse/agreements/agreementIdValue",
+			Input: "/identityGovernance/termsOfUse/agreements/agreementId",
 			Expected: &IdentityGovernanceTermsOfUseAgreementId{
-				AgreementId: "agreementIdValue",
+				AgreementId: "agreementId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/identityGovernance/termsOfUse/agreements/agreementIdValue/extra",
+			Input: "/identityGovernance/termsOfUse/agreements/agreementId/extra",
 			Error: true,
 		},
 	}
@@ -131,26 +131,26 @@ func TestParseIdentityGovernanceTermsOfUseAgreementIDInsensitively(t *testing.T)
 		},
 		{
 			// Valid URI
-			Input: "/identityGovernance/termsOfUse/agreements/agreementIdValue",
+			Input: "/identityGovernance/termsOfUse/agreements/agreementId",
 			Expected: &IdentityGovernanceTermsOfUseAgreementId{
-				AgreementId: "agreementIdValue",
+				AgreementId: "agreementId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/identityGovernance/termsOfUse/agreements/agreementIdValue/extra",
+			Input: "/identityGovernance/termsOfUse/agreements/agreementId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/iDeNtItYgOvErNaNcE/tErMsOfUsE/aGrEeMeNtS/aGrEeMeNtIdVaLuE",
+			Input: "/iDeNtItYgOvErNaNcE/tErMsOfUsE/aGrEeMeNtS/aGrEeMeNtId",
 			Expected: &IdentityGovernanceTermsOfUseAgreementId{
-				AgreementId: "aGrEeMeNtIdVaLuE",
+				AgreementId: "aGrEeMeNtId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/iDeNtItYgOvErNaNcE/tErMsOfUsE/aGrEeMeNtS/aGrEeMeNtIdVaLuE/extra",
+			Input: "/iDeNtItYgOvErNaNcE/tErMsOfUsE/aGrEeMeNtS/aGrEeMeNtId/extra",
 			Error: true,
 		},
 	}

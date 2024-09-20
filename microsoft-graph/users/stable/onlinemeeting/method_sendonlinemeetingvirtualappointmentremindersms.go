@@ -18,17 +18,46 @@ type SendOnlineMeetingVirtualAppointmentReminderSmsOperationResponse struct {
 	OData        *odata.OData
 }
 
+type SendOnlineMeetingVirtualAppointmentReminderSmsOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultSendOnlineMeetingVirtualAppointmentReminderSmsOperationOptions() SendOnlineMeetingVirtualAppointmentReminderSmsOperationOptions {
+	return SendOnlineMeetingVirtualAppointmentReminderSmsOperationOptions{}
+}
+
+func (o SendOnlineMeetingVirtualAppointmentReminderSmsOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o SendOnlineMeetingVirtualAppointmentReminderSmsOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o SendOnlineMeetingVirtualAppointmentReminderSmsOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // SendOnlineMeetingVirtualAppointmentReminderSms - Invoke action sendVirtualAppointmentReminderSms. Send an SMS
 // reminder to external attendees for a Teams virtual appointment. This feature requires Teams premium and attendees
 // must have a valid United States phone number to receive SMS notifications.
-func (c OnlineMeetingClient) SendOnlineMeetingVirtualAppointmentReminderSms(ctx context.Context, id stable.UserIdOnlineMeetingId, input SendOnlineMeetingVirtualAppointmentReminderSmsRequest) (result SendOnlineMeetingVirtualAppointmentReminderSmsOperationResponse, err error) {
+func (c OnlineMeetingClient) SendOnlineMeetingVirtualAppointmentReminderSms(ctx context.Context, id stable.UserIdOnlineMeetingId, input SendOnlineMeetingVirtualAppointmentReminderSmsRequest, options SendOnlineMeetingVirtualAppointmentReminderSmsOperationOptions) (result SendOnlineMeetingVirtualAppointmentReminderSmsOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/sendVirtualAppointmentReminderSms", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/sendVirtualAppointmentReminderSms", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

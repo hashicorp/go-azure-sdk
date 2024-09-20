@@ -18,17 +18,46 @@ type AddMemberRefOperationResponse struct {
 	OData        *odata.OData
 }
 
+type AddMemberRefOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultAddMemberRefOperationOptions() AddMemberRefOperationOptions {
+	return AddMemberRefOperationOptions{}
+}
+
+func (o AddMemberRefOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o AddMemberRefOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o AddMemberRefOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // AddMemberRef - Add members. Add a member to a security or Microsoft 365 group. When using the API to add multiple
 // members in one request, you can add up to only 20 members. The following table shows the types of members that can be
 // added to either security groups or Microsoft 365 groups.
-func (c MemberClient) AddMemberRef(ctx context.Context, id beta.GroupId, input beta.ReferenceCreate) (result AddMemberRefOperationResponse, err error) {
+func (c MemberClient) AddMemberRef(ctx context.Context, id beta.GroupId, input beta.ReferenceCreate, options AddMemberRefOperationOptions) (result AddMemberRefOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/members/$ref", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/members/$ref", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

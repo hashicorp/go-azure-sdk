@@ -19,8 +19,9 @@ type GetDeviceConfigurationDeviceStatusOperationResponse struct {
 }
 
 type GetDeviceConfigurationDeviceStatusOperationOptions struct {
-	Expand *odata.Expand
-	Select *[]string
+	Expand   *odata.Expand
+	Metadata *odata.Metadata
+	Select   *[]string
 }
 
 func DefaultGetDeviceConfigurationDeviceStatusOperationOptions() GetDeviceConfigurationDeviceStatusOperationOptions {
@@ -37,6 +38,9 @@ func (o GetDeviceConfigurationDeviceStatusOperationOptions) ToOData() *odata.Que
 	out := odata.Query{}
 	if o.Expand != nil {
 		out.Expand = *o.Expand
+	}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
 	}
 	if o.Select != nil {
 		out.Select = *o.Select

@@ -18,18 +18,47 @@ type SetDriveSpecialContentOperationResponse struct {
 	OData        *odata.OData
 }
 
+type SetDriveSpecialContentOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultSetDriveSpecialContentOperationOptions() SetDriveSpecialContentOperationOptions {
+	return SetDriveSpecialContentOperationOptions{}
+}
+
+func (o SetDriveSpecialContentOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o SetDriveSpecialContentOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o SetDriveSpecialContentOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // SetDriveSpecialContent - Update content for the navigation property special in users. The content stream, if the item
 // represents a file. The content property will have a potentially breaking change in behavior in the future. It will
 // stream content directly instead of redirecting. To proactively opt in to the new behavior ahead of time, use the
 // contentStream property instead.
-func (c DriveSpecialContentClient) SetDriveSpecialContent(ctx context.Context, id beta.UserIdDriveIdSpecialId, input []byte) (result SetDriveSpecialContentOperationResponse, err error) {
+func (c DriveSpecialContentClient) SetDriveSpecialContent(ctx context.Context, id beta.UserIdDriveIdSpecialId, input []byte, options SetDriveSpecialContentOperationOptions) (result SetDriveSpecialContentOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPut,
-		Path:       fmt.Sprintf("%s/content", id.ID()),
+		HttpMethod:    http.MethodPut,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/content", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

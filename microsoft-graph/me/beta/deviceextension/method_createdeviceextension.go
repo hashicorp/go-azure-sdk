@@ -20,15 +20,44 @@ type CreateDeviceExtensionOperationResponse struct {
 	Model        beta.Extension
 }
 
+type CreateDeviceExtensionOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateDeviceExtensionOperationOptions() CreateDeviceExtensionOperationOptions {
+	return CreateDeviceExtensionOperationOptions{}
+}
+
+func (o CreateDeviceExtensionOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateDeviceExtensionOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateDeviceExtensionOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateDeviceExtension - Create new navigation property to extensions for me
-func (c DeviceExtensionClient) CreateDeviceExtension(ctx context.Context, id beta.MeDeviceId, input beta.Extension) (result CreateDeviceExtensionOperationResponse, err error) {
+func (c DeviceExtensionClient) CreateDeviceExtension(ctx context.Context, id beta.MeDeviceId, input beta.Extension, options CreateDeviceExtensionOperationOptions) (result CreateDeviceExtensionOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/extensions", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/extensions", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

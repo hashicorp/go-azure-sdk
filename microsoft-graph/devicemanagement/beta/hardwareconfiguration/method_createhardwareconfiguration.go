@@ -18,15 +18,44 @@ type CreateHardwareConfigurationOperationResponse struct {
 	Model        *beta.HardwareConfiguration
 }
 
+type CreateHardwareConfigurationOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateHardwareConfigurationOperationOptions() CreateHardwareConfigurationOperationOptions {
+	return CreateHardwareConfigurationOperationOptions{}
+}
+
+func (o CreateHardwareConfigurationOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateHardwareConfigurationOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateHardwareConfigurationOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateHardwareConfiguration - Create new navigation property to hardwareConfigurations for deviceManagement
-func (c HardwareConfigurationClient) CreateHardwareConfiguration(ctx context.Context, input beta.HardwareConfiguration) (result CreateHardwareConfigurationOperationResponse, err error) {
+func (c HardwareConfigurationClient) CreateHardwareConfiguration(ctx context.Context, input beta.HardwareConfiguration, options CreateHardwareConfigurationOperationOptions) (result CreateHardwareConfigurationOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/deviceManagement/hardwareConfigurations",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/deviceManagement/hardwareConfigurations",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

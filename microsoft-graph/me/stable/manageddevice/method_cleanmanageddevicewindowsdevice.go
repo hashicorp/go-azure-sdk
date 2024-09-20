@@ -18,15 +18,44 @@ type CleanManagedDeviceWindowsDeviceOperationResponse struct {
 	OData        *odata.OData
 }
 
+type CleanManagedDeviceWindowsDeviceOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCleanManagedDeviceWindowsDeviceOperationOptions() CleanManagedDeviceWindowsDeviceOperationOptions {
+	return CleanManagedDeviceWindowsDeviceOperationOptions{}
+}
+
+func (o CleanManagedDeviceWindowsDeviceOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CleanManagedDeviceWindowsDeviceOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CleanManagedDeviceWindowsDeviceOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CleanManagedDeviceWindowsDevice - Invoke action cleanWindowsDevice. Clean Windows device
-func (c ManagedDeviceClient) CleanManagedDeviceWindowsDevice(ctx context.Context, id stable.MeManagedDeviceId, input CleanManagedDeviceWindowsDeviceRequest) (result CleanManagedDeviceWindowsDeviceOperationResponse, err error) {
+func (c ManagedDeviceClient) CleanManagedDeviceWindowsDevice(ctx context.Context, id stable.MeManagedDeviceId, input CleanManagedDeviceWindowsDeviceRequest, options CleanManagedDeviceWindowsDeviceOperationOptions) (result CleanManagedDeviceWindowsDeviceOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/cleanWindowsDevice", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/cleanWindowsDevice", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

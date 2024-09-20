@@ -18,19 +18,48 @@ type CreateUserOperationResponse struct {
 	Model        *beta.User
 }
 
+type CreateUserOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateUserOperationOptions() CreateUserOperationOptions {
+	return CreateUserOperationOptions{}
+}
+
+func (o CreateUserOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateUserOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateUserOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateUser - Create user. Create a new user. The request body contains the user to create. At a minimum, you must
 // specify the required properties for the user. You can optionally specify any other writable properties. This
 // operation returns by default only a subset of the properties for each user. These default properties are noted in the
 // Properties section. To get properties that are not returned by default, do a GET operation and specify the properties
 // in a $select OData query option.
-func (c UserClient) CreateUser(ctx context.Context, input beta.User) (result CreateUserOperationResponse, err error) {
+func (c UserClient) CreateUser(ctx context.Context, input beta.User, options CreateUserOperationOptions) (result CreateUserOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/users",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/users",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

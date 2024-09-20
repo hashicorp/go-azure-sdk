@@ -19,15 +19,44 @@ type CreateDriveItemPermissionOperationResponse struct {
 	Model        *stable.Permission
 }
 
+type CreateDriveItemPermissionOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateDriveItemPermissionOperationOptions() CreateDriveItemPermissionOperationOptions {
+	return CreateDriveItemPermissionOperationOptions{}
+}
+
+func (o CreateDriveItemPermissionOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateDriveItemPermissionOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateDriveItemPermissionOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateDriveItemPermission - Create new navigation property to permissions for groups
-func (c DriveItemPermissionClient) CreateDriveItemPermission(ctx context.Context, id stable.GroupIdDriveIdItemId, input stable.Permission) (result CreateDriveItemPermissionOperationResponse, err error) {
+func (c DriveItemPermissionClient) CreateDriveItemPermission(ctx context.Context, id stable.GroupIdDriveIdItemId, input stable.Permission, options CreateDriveItemPermissionOperationOptions) (result CreateDriveItemPermissionOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/permissions", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/permissions", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -68,18 +68,26 @@ func (s PartnersBillingBilling) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &PartnersBillingBilling{}
 
 func (s *PartnersBillingBilling) UnmarshalJSON(bytes []byte) error {
-	type alias PartnersBillingBilling
-	var decoded alias
+
+	var decoded struct {
+		Manifests      *[]PartnersBillingManifest            `json:"manifests,omitempty"`
+		Operations     *[]PartnersBillingOperation           `json:"operations,omitempty"`
+		Reconciliation *PartnersBillingBillingReconciliation `json:"reconciliation,omitempty"`
+		Usage          *PartnersBillingAzureUsage            `json:"usage,omitempty"`
+		Id             *string                               `json:"id,omitempty"`
+		ODataId        *string                               `json:"@odata.id,omitempty"`
+		ODataType      *string                               `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into PartnersBillingBilling: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
-	s.Id = decoded.Id
 	s.Manifests = decoded.Manifests
-	s.ODataId = decoded.ODataId
-	s.ODataType = decoded.ODataType
 	s.Reconciliation = decoded.Reconciliation
 	s.Usage = decoded.Usage
+	s.Id = decoded.Id
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -102,5 +110,6 @@ func (s *PartnersBillingBilling) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Operations = &output
 	}
+
 	return nil
 }

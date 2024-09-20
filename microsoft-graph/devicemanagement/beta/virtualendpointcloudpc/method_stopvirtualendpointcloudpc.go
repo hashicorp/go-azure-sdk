@@ -18,16 +18,45 @@ type StopVirtualEndpointCloudPCOperationResponse struct {
 	OData        *odata.OData
 }
 
+type StopVirtualEndpointCloudPCOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultStopVirtualEndpointCloudPCOperationOptions() StopVirtualEndpointCloudPCOperationOptions {
+	return StopVirtualEndpointCloudPCOperationOptions{}
+}
+
+func (o StopVirtualEndpointCloudPCOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o StopVirtualEndpointCloudPCOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o StopVirtualEndpointCloudPCOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // StopVirtualEndpointCloudPC - Invoke action stop. Stop a specific Cloud PC for a user. Currently, only Windows 365
 // Frontline Cloud PCs are supported.
-func (c VirtualEndpointCloudPCClient) StopVirtualEndpointCloudPC(ctx context.Context, id beta.DeviceManagementVirtualEndpointCloudPCId) (result StopVirtualEndpointCloudPCOperationResponse, err error) {
+func (c VirtualEndpointCloudPCClient) StopVirtualEndpointCloudPC(ctx context.Context, id beta.DeviceManagementVirtualEndpointCloudPCId, options StopVirtualEndpointCloudPCOperationOptions) (result StopVirtualEndpointCloudPCOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/stop", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/stop", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

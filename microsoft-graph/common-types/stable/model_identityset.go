@@ -54,10 +54,13 @@ func (s RawIdentitySetImpl) IdentitySet() BaseIdentitySetImpl {
 var _ json.Unmarshaler = &BaseIdentitySetImpl{}
 
 func (s *BaseIdentitySetImpl) UnmarshalJSON(bytes []byte) error {
-	type alias BaseIdentitySetImpl
-	var decoded alias
+
+	var decoded struct {
+		ODataId   *string `json:"@odata.id,omitempty"`
+		ODataType *string `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into BaseIdentitySetImpl: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.ODataId = decoded.ODataId
@@ -91,6 +94,7 @@ func (s *BaseIdentitySetImpl) UnmarshalJSON(bytes []byte) error {
 		}
 		s.User = impl
 	}
+
 	return nil
 }
 
@@ -104,9 +108,9 @@ func UnmarshalIdentitySetImplementation(input []byte) (IdentitySet, error) {
 		return nil, fmt.Errorf("unmarshaling IdentitySet into map[string]interface: %+v", err)
 	}
 
-	value, ok := temp["@odata.type"].(string)
-	if !ok {
-		return nil, nil
+	var value string
+	if v, ok := temp["@odata.type"]; ok {
+		value = fmt.Sprintf("%v", v)
 	}
 
 	if strings.EqualFold(value, "#microsoft.graph.chatMessageFromIdentitySet") {

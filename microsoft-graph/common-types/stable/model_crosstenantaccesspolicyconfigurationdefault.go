@@ -98,20 +98,29 @@ func (s CrossTenantAccessPolicyConfigurationDefault) MarshalJSON() ([]byte, erro
 var _ json.Unmarshaler = &CrossTenantAccessPolicyConfigurationDefault{}
 
 func (s *CrossTenantAccessPolicyConfigurationDefault) UnmarshalJSON(bytes []byte) error {
-	type alias CrossTenantAccessPolicyConfigurationDefault
-	var decoded alias
+
+	var decoded struct {
+		AutomaticUserConsentSettings                      *InboundOutboundPolicyConfiguration                       `json:"automaticUserConsentSettings,omitempty"`
+		InboundTrust                                      *CrossTenantAccessPolicyInboundTrust                      `json:"inboundTrust,omitempty"`
+		InvitationRedemptionIdentityProviderConfiguration *DefaultInvitationRedemptionIdentityProviderConfiguration `json:"invitationRedemptionIdentityProviderConfiguration,omitempty"`
+		IsServiceDefault                                  nullable.Type[bool]                                       `json:"isServiceDefault,omitempty"`
+		TenantRestrictions                                *CrossTenantAccessPolicyTenantRestrictions                `json:"tenantRestrictions,omitempty"`
+		Id                                                *string                                                   `json:"id,omitempty"`
+		ODataId                                           *string                                                   `json:"@odata.id,omitempty"`
+		ODataType                                         *string                                                   `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into CrossTenantAccessPolicyConfigurationDefault: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.AutomaticUserConsentSettings = decoded.AutomaticUserConsentSettings
-	s.Id = decoded.Id
 	s.InboundTrust = decoded.InboundTrust
 	s.InvitationRedemptionIdentityProviderConfiguration = decoded.InvitationRedemptionIdentityProviderConfiguration
 	s.IsServiceDefault = decoded.IsServiceDefault
+	s.TenantRestrictions = decoded.TenantRestrictions
+	s.Id = decoded.Id
 	s.ODataId = decoded.ODataId
 	s.ODataType = decoded.ODataType
-	s.TenantRestrictions = decoded.TenantRestrictions
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -149,5 +158,6 @@ func (s *CrossTenantAccessPolicyConfigurationDefault) UnmarshalJSON(bytes []byte
 		}
 		s.B2bDirectConnectOutbound = impl
 	}
+
 	return nil
 }

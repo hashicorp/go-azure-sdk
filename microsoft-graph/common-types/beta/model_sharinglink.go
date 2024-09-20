@@ -43,10 +43,19 @@ type SharingLink struct {
 var _ json.Unmarshaler = &SharingLink{}
 
 func (s *SharingLink) UnmarshalJSON(bytes []byte) error {
-	type alias SharingLink
-	var decoded alias
+
+	var decoded struct {
+		ConfiguratorUrl  nullable.Type[string] `json:"configuratorUrl,omitempty"`
+		ODataId          *string               `json:"@odata.id,omitempty"`
+		ODataType        *string               `json:"@odata.type,omitempty"`
+		PreventsDownload nullable.Type[bool]   `json:"preventsDownload,omitempty"`
+		Scope            nullable.Type[string] `json:"scope,omitempty"`
+		Type             nullable.Type[string] `json:"type,omitempty"`
+		WebHtml          nullable.Type[string] `json:"webHtml,omitempty"`
+		WebUrl           nullable.Type[string] `json:"webUrl,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into SharingLink: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.ConfiguratorUrl = decoded.ConfiguratorUrl
@@ -70,5 +79,6 @@ func (s *SharingLink) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Application = impl
 	}
+
 	return nil
 }

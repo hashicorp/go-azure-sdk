@@ -94,7 +94,7 @@ func (id IdentityGovernanceAppConsentAppConsentRequestId) Segments() []resourcei
 		resourceids.StaticSegment("identityGovernance", "identityGovernance", "identityGovernance"),
 		resourceids.StaticSegment("appConsent", "appConsent", "appConsent"),
 		resourceids.StaticSegment("appConsentRequests", "appConsentRequests", "appConsentRequests"),
-		resourceids.UserSpecifiedSegment("appConsentRequestId", "appConsentRequestIdValue"),
+		resourceids.UserSpecifiedSegment("appConsentRequestId", "appConsentRequestId"),
 	}
 }
 

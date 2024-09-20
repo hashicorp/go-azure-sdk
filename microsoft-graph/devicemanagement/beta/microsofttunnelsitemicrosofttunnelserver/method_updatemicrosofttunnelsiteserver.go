@@ -17,15 +17,44 @@ type UpdateMicrosoftTunnelSiteServerOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateMicrosoftTunnelSiteServerOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateMicrosoftTunnelSiteServerOperationOptions() UpdateMicrosoftTunnelSiteServerOperationOptions {
+	return UpdateMicrosoftTunnelSiteServerOperationOptions{}
+}
+
+func (o UpdateMicrosoftTunnelSiteServerOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateMicrosoftTunnelSiteServerOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateMicrosoftTunnelSiteServerOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateMicrosoftTunnelSiteServer - Update the navigation property microsoftTunnelServers in deviceManagement
-func (c MicrosoftTunnelSiteMicrosoftTunnelServerClient) UpdateMicrosoftTunnelSiteServer(ctx context.Context, id beta.DeviceManagementMicrosoftTunnelSiteIdMicrosoftTunnelServerId, input beta.MicrosoftTunnelServer) (result UpdateMicrosoftTunnelSiteServerOperationResponse, err error) {
+func (c MicrosoftTunnelSiteMicrosoftTunnelServerClient) UpdateMicrosoftTunnelSiteServer(ctx context.Context, id beta.DeviceManagementMicrosoftTunnelSiteIdMicrosoftTunnelServerId, input beta.MicrosoftTunnelServer, options UpdateMicrosoftTunnelSiteServerOperationOptions) (result UpdateMicrosoftTunnelSiteServerOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

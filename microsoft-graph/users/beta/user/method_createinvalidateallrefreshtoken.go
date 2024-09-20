@@ -19,6 +19,34 @@ type CreateInvalidateAllRefreshTokenOperationResponse struct {
 	Model        *CreateInvalidateAllRefreshTokenResult
 }
 
+type CreateInvalidateAllRefreshTokenOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateInvalidateAllRefreshTokenOperationOptions() CreateInvalidateAllRefreshTokenOperationOptions {
+	return CreateInvalidateAllRefreshTokenOperationOptions{}
+}
+
+func (o CreateInvalidateAllRefreshTokenOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateInvalidateAllRefreshTokenOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateInvalidateAllRefreshTokenOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateInvalidateAllRefreshToken - Invoke action invalidateAllRefreshTokens. Invalidates all of the user's refresh
 // tokens issued to applications (as well as session cookies in a user's browser), by resetting the
 // refreshTokensValidFromDateTime user property to the current date-time. Typically, this operation is performed (by the
@@ -29,14 +57,15 @@ type CreateInvalidateAllRefreshTokenOperationResponse struct {
 // for this user by using an invalidated refresh token, the application will get an error. If this happens, the
 // application will need to acquire a new refresh token by making a request to the authorize endpoint, which will force
 // the user to sign in.
-func (c UserClient) CreateInvalidateAllRefreshToken(ctx context.Context, id beta.UserId) (result CreateInvalidateAllRefreshTokenOperationResponse, err error) {
+func (c UserClient) CreateInvalidateAllRefreshToken(ctx context.Context, id beta.UserId, options CreateInvalidateAllRefreshTokenOperationOptions) (result CreateInvalidateAllRefreshTokenOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/invalidateAllRefreshTokens", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/invalidateAllRefreshTokens", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

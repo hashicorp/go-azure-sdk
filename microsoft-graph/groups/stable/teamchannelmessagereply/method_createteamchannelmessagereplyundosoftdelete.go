@@ -18,16 +18,45 @@ type CreateTeamChannelMessageReplyUndoSoftDeleteOperationResponse struct {
 	OData        *odata.OData
 }
 
+type CreateTeamChannelMessageReplyUndoSoftDeleteOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateTeamChannelMessageReplyUndoSoftDeleteOperationOptions() CreateTeamChannelMessageReplyUndoSoftDeleteOperationOptions {
+	return CreateTeamChannelMessageReplyUndoSoftDeleteOperationOptions{}
+}
+
+func (o CreateTeamChannelMessageReplyUndoSoftDeleteOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateTeamChannelMessageReplyUndoSoftDeleteOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateTeamChannelMessageReplyUndoSoftDeleteOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateTeamChannelMessageReplyUndoSoftDelete - Invoke action undoSoftDelete. Undo soft deletion of a single
 // chatMessage or a chat message reply in a channel or a chat.
-func (c TeamChannelMessageReplyClient) CreateTeamChannelMessageReplyUndoSoftDelete(ctx context.Context, id stable.GroupIdTeamChannelIdMessageIdReplyId) (result CreateTeamChannelMessageReplyUndoSoftDeleteOperationResponse, err error) {
+func (c TeamChannelMessageReplyClient) CreateTeamChannelMessageReplyUndoSoftDelete(ctx context.Context, id stable.GroupIdTeamChannelIdMessageIdReplyId, options CreateTeamChannelMessageReplyUndoSoftDeleteOperationOptions) (result CreateTeamChannelMessageReplyUndoSoftDeleteOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/undoSoftDelete", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/undoSoftDelete", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

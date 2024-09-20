@@ -19,7 +19,8 @@ type DeleteDeviceManagementRoleDefinitionInheritsPermissionsFromOperationRespons
 }
 
 type DeleteDeviceManagementRoleDefinitionInheritsPermissionsFromOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteDeviceManagementRoleDefinitionInheritsPermissionsFromOperationOptions() DeleteDeviceManagementRoleDefinitionInheritsPermissionsFromOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteDeviceManagementRoleDefinitionInheritsPermissionsFromOperationOpti
 
 func (o DeleteDeviceManagementRoleDefinitionInheritsPermissionsFromOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

@@ -12,24 +12,24 @@ import (
 var _ resourceids.ResourceId = &UserIdInformationProtectionThreatAssessmentRequestIdResultId{}
 
 func TestNewUserIdInformationProtectionThreatAssessmentRequestIdResultID(t *testing.T) {
-	id := NewUserIdInformationProtectionThreatAssessmentRequestIdResultID("userIdValue", "threatAssessmentRequestIdValue", "threatAssessmentResultIdValue")
+	id := NewUserIdInformationProtectionThreatAssessmentRequestIdResultID("userId", "threatAssessmentRequestId", "threatAssessmentResultId")
 
-	if id.UserId != "userIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'UserId'", id.UserId, "userIdValue")
+	if id.UserId != "userId" {
+		t.Fatalf("Expected %q but got %q for Segment 'UserId'", id.UserId, "userId")
 	}
 
-	if id.ThreatAssessmentRequestId != "threatAssessmentRequestIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ThreatAssessmentRequestId'", id.ThreatAssessmentRequestId, "threatAssessmentRequestIdValue")
+	if id.ThreatAssessmentRequestId != "threatAssessmentRequestId" {
+		t.Fatalf("Expected %q but got %q for Segment 'ThreatAssessmentRequestId'", id.ThreatAssessmentRequestId, "threatAssessmentRequestId")
 	}
 
-	if id.ThreatAssessmentResultId != "threatAssessmentResultIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ThreatAssessmentResultId'", id.ThreatAssessmentResultId, "threatAssessmentResultIdValue")
+	if id.ThreatAssessmentResultId != "threatAssessmentResultId" {
+		t.Fatalf("Expected %q but got %q for Segment 'ThreatAssessmentResultId'", id.ThreatAssessmentResultId, "threatAssessmentResultId")
 	}
 }
 
 func TestFormatUserIdInformationProtectionThreatAssessmentRequestIdResultID(t *testing.T) {
-	actual := NewUserIdInformationProtectionThreatAssessmentRequestIdResultID("userIdValue", "threatAssessmentRequestIdValue", "threatAssessmentResultIdValue").ID()
-	expected := "/users/userIdValue/informationProtection/threatAssessmentRequests/threatAssessmentRequestIdValue/results/threatAssessmentResultIdValue"
+	actual := NewUserIdInformationProtectionThreatAssessmentRequestIdResultID("userId", "threatAssessmentRequestId", "threatAssessmentResultId").ID()
+	expected := "/users/userId/informationProtection/threatAssessmentRequests/threatAssessmentRequestId/results/threatAssessmentResultId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -53,41 +53,41 @@ func TestParseUserIdInformationProtectionThreatAssessmentRequestIdResultID(t *te
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue",
+			Input: "/users/userId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/informationProtection",
+			Input: "/users/userId/informationProtection",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/informationProtection/threatAssessmentRequests",
+			Input: "/users/userId/informationProtection/threatAssessmentRequests",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/informationProtection/threatAssessmentRequests/threatAssessmentRequestIdValue",
+			Input: "/users/userId/informationProtection/threatAssessmentRequests/threatAssessmentRequestId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/informationProtection/threatAssessmentRequests/threatAssessmentRequestIdValue/results",
+			Input: "/users/userId/informationProtection/threatAssessmentRequests/threatAssessmentRequestId/results",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/users/userIdValue/informationProtection/threatAssessmentRequests/threatAssessmentRequestIdValue/results/threatAssessmentResultIdValue",
+			Input: "/users/userId/informationProtection/threatAssessmentRequests/threatAssessmentRequestId/results/threatAssessmentResultId",
 			Expected: &UserIdInformationProtectionThreatAssessmentRequestIdResultId{
-				UserId:                    "userIdValue",
-				ThreatAssessmentRequestId: "threatAssessmentRequestIdValue",
-				ThreatAssessmentResultId:  "threatAssessmentResultIdValue",
+				UserId:                    "userId",
+				ThreatAssessmentRequestId: "threatAssessmentRequestId",
+				ThreatAssessmentResultId:  "threatAssessmentResultId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/users/userIdValue/informationProtection/threatAssessmentRequests/threatAssessmentRequestIdValue/results/threatAssessmentResultIdValue/extra",
+			Input: "/users/userId/informationProtection/threatAssessmentRequests/threatAssessmentRequestId/results/threatAssessmentResultId/extra",
 			Error: true,
 		},
 	}
@@ -144,80 +144,80 @@ func TestParseUserIdInformationProtectionThreatAssessmentRequestIdResultIDInsens
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue",
+			Input: "/users/userId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe",
+			Input: "/uSeRs/uSeRiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/informationProtection",
+			Input: "/users/userId/informationProtection",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/iNfOrMaTiOnPrOtEcTiOn",
+			Input: "/uSeRs/uSeRiD/iNfOrMaTiOnPrOtEcTiOn",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/informationProtection/threatAssessmentRequests",
+			Input: "/users/userId/informationProtection/threatAssessmentRequests",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/iNfOrMaTiOnPrOtEcTiOn/tHrEaTaSsEsSmEnTrEqUeStS",
+			Input: "/uSeRs/uSeRiD/iNfOrMaTiOnPrOtEcTiOn/tHrEaTaSsEsSmEnTrEqUeStS",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/informationProtection/threatAssessmentRequests/threatAssessmentRequestIdValue",
+			Input: "/users/userId/informationProtection/threatAssessmentRequests/threatAssessmentRequestId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/iNfOrMaTiOnPrOtEcTiOn/tHrEaTaSsEsSmEnTrEqUeStS/tHrEaTaSsEsSmEnTrEqUeStIdVaLuE",
+			Input: "/uSeRs/uSeRiD/iNfOrMaTiOnPrOtEcTiOn/tHrEaTaSsEsSmEnTrEqUeStS/tHrEaTaSsEsSmEnTrEqUeStId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/informationProtection/threatAssessmentRequests/threatAssessmentRequestIdValue/results",
+			Input: "/users/userId/informationProtection/threatAssessmentRequests/threatAssessmentRequestId/results",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/iNfOrMaTiOnPrOtEcTiOn/tHrEaTaSsEsSmEnTrEqUeStS/tHrEaTaSsEsSmEnTrEqUeStIdVaLuE/rEsUlTs",
+			Input: "/uSeRs/uSeRiD/iNfOrMaTiOnPrOtEcTiOn/tHrEaTaSsEsSmEnTrEqUeStS/tHrEaTaSsEsSmEnTrEqUeStId/rEsUlTs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/users/userIdValue/informationProtection/threatAssessmentRequests/threatAssessmentRequestIdValue/results/threatAssessmentResultIdValue",
+			Input: "/users/userId/informationProtection/threatAssessmentRequests/threatAssessmentRequestId/results/threatAssessmentResultId",
 			Expected: &UserIdInformationProtectionThreatAssessmentRequestIdResultId{
-				UserId:                    "userIdValue",
-				ThreatAssessmentRequestId: "threatAssessmentRequestIdValue",
-				ThreatAssessmentResultId:  "threatAssessmentResultIdValue",
+				UserId:                    "userId",
+				ThreatAssessmentRequestId: "threatAssessmentRequestId",
+				ThreatAssessmentResultId:  "threatAssessmentResultId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/users/userIdValue/informationProtection/threatAssessmentRequests/threatAssessmentRequestIdValue/results/threatAssessmentResultIdValue/extra",
+			Input: "/users/userId/informationProtection/threatAssessmentRequests/threatAssessmentRequestId/results/threatAssessmentResultId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/iNfOrMaTiOnPrOtEcTiOn/tHrEaTaSsEsSmEnTrEqUeStS/tHrEaTaSsEsSmEnTrEqUeStIdVaLuE/rEsUlTs/tHrEaTaSsEsSmEnTrEsUlTiDvAlUe",
+			Input: "/uSeRs/uSeRiD/iNfOrMaTiOnPrOtEcTiOn/tHrEaTaSsEsSmEnTrEqUeStS/tHrEaTaSsEsSmEnTrEqUeStId/rEsUlTs/tHrEaTaSsEsSmEnTrEsUlTiD",
 			Expected: &UserIdInformationProtectionThreatAssessmentRequestIdResultId{
-				UserId:                    "uSeRiDvAlUe",
-				ThreatAssessmentRequestId: "tHrEaTaSsEsSmEnTrEqUeStIdVaLuE",
-				ThreatAssessmentResultId:  "tHrEaTaSsEsSmEnTrEsUlTiDvAlUe",
+				UserId:                    "uSeRiD",
+				ThreatAssessmentRequestId: "tHrEaTaSsEsSmEnTrEqUeStId",
+				ThreatAssessmentResultId:  "tHrEaTaSsEsSmEnTrEsUlTiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/iNfOrMaTiOnPrOtEcTiOn/tHrEaTaSsEsSmEnTrEqUeStS/tHrEaTaSsEsSmEnTrEqUeStIdVaLuE/rEsUlTs/tHrEaTaSsEsSmEnTrEsUlTiDvAlUe/extra",
+			Input: "/uSeRs/uSeRiD/iNfOrMaTiOnPrOtEcTiOn/tHrEaTaSsEsSmEnTrEqUeStS/tHrEaTaSsEsSmEnTrEqUeStId/rEsUlTs/tHrEaTaSsEsSmEnTrEsUlTiD/extra",
 			Error: true,
 		},
 	}

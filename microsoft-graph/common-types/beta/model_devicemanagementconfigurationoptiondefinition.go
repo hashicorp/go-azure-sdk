@@ -45,10 +45,20 @@ type DeviceManagementConfigurationOptionDefinition struct {
 var _ json.Unmarshaler = &DeviceManagementConfigurationOptionDefinition{}
 
 func (s *DeviceManagementConfigurationOptionDefinition) UnmarshalJSON(bytes []byte) error {
-	type alias DeviceManagementConfigurationOptionDefinition
-	var decoded alias
+
+	var decoded struct {
+		DependedOnBy *[]DeviceManagementConfigurationSettingDependedOnBy `json:"dependedOnBy,omitempty"`
+		DependentOn  *[]DeviceManagementConfigurationDependentOn         `json:"dependentOn,omitempty"`
+		Description  nullable.Type[string]                               `json:"description,omitempty"`
+		DisplayName  nullable.Type[string]                               `json:"displayName,omitempty"`
+		HelpText     nullable.Type[string]                               `json:"helpText,omitempty"`
+		ItemId       nullable.Type[string]                               `json:"itemId,omitempty"`
+		Name         nullable.Type[string]                               `json:"name,omitempty"`
+		ODataId      *string                                             `json:"@odata.id,omitempty"`
+		ODataType    *string                                             `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into DeviceManagementConfigurationOptionDefinition: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.DependedOnBy = decoded.DependedOnBy
@@ -73,5 +83,6 @@ func (s *DeviceManagementConfigurationOptionDefinition) UnmarshalJSON(bytes []by
 		}
 		s.OptionValue = impl
 	}
+
 	return nil
 }

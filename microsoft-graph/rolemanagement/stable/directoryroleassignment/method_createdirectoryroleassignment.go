@@ -18,15 +18,44 @@ type CreateDirectoryRoleAssignmentOperationResponse struct {
 	Model        *stable.UnifiedRoleAssignment
 }
 
+type CreateDirectoryRoleAssignmentOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateDirectoryRoleAssignmentOperationOptions() CreateDirectoryRoleAssignmentOperationOptions {
+	return CreateDirectoryRoleAssignmentOperationOptions{}
+}
+
+func (o CreateDirectoryRoleAssignmentOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateDirectoryRoleAssignmentOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateDirectoryRoleAssignmentOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateDirectoryRoleAssignment - Create unifiedRoleAssignment. Create a new unifiedRoleAssignment object.
-func (c DirectoryRoleAssignmentClient) CreateDirectoryRoleAssignment(ctx context.Context, input stable.UnifiedRoleAssignment) (result CreateDirectoryRoleAssignmentOperationResponse, err error) {
+func (c DirectoryRoleAssignmentClient) CreateDirectoryRoleAssignment(ctx context.Context, input stable.UnifiedRoleAssignment, options CreateDirectoryRoleAssignmentOperationOptions) (result CreateDirectoryRoleAssignmentOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/roleManagement/directory/roleAssignments",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/roleManagement/directory/roleAssignments",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

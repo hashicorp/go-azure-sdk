@@ -16,17 +16,46 @@ type CreateSignInConfirmSafeOperationResponse struct {
 	OData        *odata.OData
 }
 
+type CreateSignInConfirmSafeOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateSignInConfirmSafeOperationOptions() CreateSignInConfirmSafeOperationOptions {
+	return CreateSignInConfirmSafeOperationOptions{}
+}
+
+func (o CreateSignInConfirmSafeOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateSignInConfirmSafeOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateSignInConfirmSafeOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateSignInConfirmSafe - Invoke action confirmSafe. Allow admins to mark an event in Microsoft Entra sign-in logs as
 // safe. Admins can either mark the events flagged as risky by Microsoft Entra ID Protection as safe, or they can mark
 // unflagged events as safe. For details about investigating Identity Protection risks, see How to investigate risk.
-func (c SignInClient) CreateSignInConfirmSafe(ctx context.Context, input CreateSignInConfirmSafeRequest) (result CreateSignInConfirmSafeOperationResponse, err error) {
+func (c SignInClient) CreateSignInConfirmSafe(ctx context.Context, input CreateSignInConfirmSafeRequest, options CreateSignInConfirmSafeOperationOptions) (result CreateSignInConfirmSafeOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/auditLogs/signIns/confirmSafe",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/auditLogs/signIns/confirmSafe",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/microsoft-graph/users/stable/chatinstalledapp` Documentation
 
-The `chatinstalledapp` SDK allows for interaction with the Azure Resource Manager Service `users` (API Version `stable`).
+The `chatinstalledapp` SDK allows for interaction with Microsoft Graph `users` (API Version `stable`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -15,7 +15,7 @@ import "github.com/hashicorp/go-azure-sdk/microsoft-graph/users/stable/chatinsta
 ### Client Initialization
 
 ```go
-client := chatinstalledapp.NewChatInstalledAppClientWithBaseURI("https://management.azure.com")
+client := chatinstalledapp.NewChatInstalledAppClientWithBaseURI("https://graph.microsoft.com")
 client.Client.Authorizer = authorizer
 ```
 
@@ -24,14 +24,14 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := chatinstalledapp.NewUserIdChatID("userIdValue", "chatIdValue")
+id := chatinstalledapp.NewUserIdChatID("userId", "chatId")
 
 payload := chatinstalledapp.TeamsAppInstallation{
 	// ...
 }
 
 
-read, err := client.CreateChatInstalledApp(ctx, id, payload)
+read, err := client.CreateChatInstalledApp(ctx, id, payload, chatinstalledapp.DefaultCreateChatInstalledAppOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -45,14 +45,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := chatinstalledapp.NewUserIdChatIdInstalledAppID("userIdValue", "chatIdValue", "teamsAppInstallationIdValue")
+id := chatinstalledapp.NewUserIdChatIdInstalledAppID("userId", "chatId", "teamsAppInstallationId")
 
 payload := chatinstalledapp.CreateChatInstalledAppUpgradeRequest{
 	// ...
 }
 
 
-read, err := client.CreateChatInstalledAppUpgrade(ctx, id, payload)
+read, err := client.CreateChatInstalledAppUpgrade(ctx, id, payload, chatinstalledapp.DefaultCreateChatInstalledAppUpgradeOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -66,7 +66,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := chatinstalledapp.NewUserIdChatIdInstalledAppID("userIdValue", "chatIdValue", "teamsAppInstallationIdValue")
+id := chatinstalledapp.NewUserIdChatIdInstalledAppID("userId", "chatId", "teamsAppInstallationId")
 
 read, err := client.DeleteChatInstalledApp(ctx, id, chatinstalledapp.DefaultDeleteChatInstalledAppOperationOptions())
 if err != nil {
@@ -82,7 +82,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := chatinstalledapp.NewUserIdChatIdInstalledAppID("userIdValue", "chatIdValue", "teamsAppInstallationIdValue")
+id := chatinstalledapp.NewUserIdChatIdInstalledAppID("userId", "chatId", "teamsAppInstallationId")
 
 read, err := client.GetChatInstalledApp(ctx, id, chatinstalledapp.DefaultGetChatInstalledAppOperationOptions())
 if err != nil {
@@ -98,7 +98,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := chatinstalledapp.NewUserIdChatID("userIdValue", "chatIdValue")
+id := chatinstalledapp.NewUserIdChatID("userId", "chatId")
 
 read, err := client.GetChatInstalledAppsCount(ctx, id, chatinstalledapp.DefaultGetChatInstalledAppsCountOperationOptions())
 if err != nil {
@@ -114,7 +114,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := chatinstalledapp.NewUserIdChatID("userIdValue", "chatIdValue")
+id := chatinstalledapp.NewUserIdChatID("userId", "chatId")
 
 // alternatively `client.ListChatInstalledApps(ctx, id, chatinstalledapp.DefaultListChatInstalledAppsOperationOptions())` can be used to do batched pagination
 items, err := client.ListChatInstalledAppsComplete(ctx, id, chatinstalledapp.DefaultListChatInstalledAppsOperationOptions())
@@ -131,14 +131,14 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := chatinstalledapp.NewUserIdChatIdInstalledAppID("userIdValue", "chatIdValue", "teamsAppInstallationIdValue")
+id := chatinstalledapp.NewUserIdChatIdInstalledAppID("userId", "chatId", "teamsAppInstallationId")
 
 payload := chatinstalledapp.TeamsAppInstallation{
 	// ...
 }
 
 
-read, err := client.UpdateChatInstalledApp(ctx, id, payload)
+read, err := client.UpdateChatInstalledApp(ctx, id, payload, chatinstalledapp.DefaultUpdateChatInstalledAppOperationOptions())
 if err != nil {
 	// handle the error
 }

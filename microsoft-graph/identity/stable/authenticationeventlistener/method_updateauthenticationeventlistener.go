@@ -17,17 +17,46 @@ type UpdateAuthenticationEventListenerOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateAuthenticationEventListenerOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateAuthenticationEventListenerOperationOptions() UpdateAuthenticationEventListenerOperationOptions {
+	return UpdateAuthenticationEventListenerOperationOptions{}
+}
+
+func (o UpdateAuthenticationEventListenerOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateAuthenticationEventListenerOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateAuthenticationEventListenerOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateAuthenticationEventListener - Update authenticationEventListener. Update the properties of an
 // authenticationEventListener object. You must specify the @odata.type property and the value of the
 // authenticationEventListener object type to update.
-func (c AuthenticationEventListenerClient) UpdateAuthenticationEventListener(ctx context.Context, id stable.IdentityAuthenticationEventListenerId, input stable.AuthenticationEventListener) (result UpdateAuthenticationEventListenerOperationResponse, err error) {
+func (c AuthenticationEventListenerClient) UpdateAuthenticationEventListener(ctx context.Context, id stable.IdentityAuthenticationEventListenerId, input stable.AuthenticationEventListener, options UpdateAuthenticationEventListenerOperationOptions) (result UpdateAuthenticationEventListenerOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

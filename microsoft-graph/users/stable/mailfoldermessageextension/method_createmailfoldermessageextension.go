@@ -20,15 +20,44 @@ type CreateMailFolderMessageExtensionOperationResponse struct {
 	Model        stable.Extension
 }
 
+type CreateMailFolderMessageExtensionOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateMailFolderMessageExtensionOperationOptions() CreateMailFolderMessageExtensionOperationOptions {
+	return CreateMailFolderMessageExtensionOperationOptions{}
+}
+
+func (o CreateMailFolderMessageExtensionOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateMailFolderMessageExtensionOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateMailFolderMessageExtensionOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateMailFolderMessageExtension - Create new navigation property to extensions for users
-func (c MailFolderMessageExtensionClient) CreateMailFolderMessageExtension(ctx context.Context, id stable.UserIdMailFolderIdMessageId, input stable.Extension) (result CreateMailFolderMessageExtensionOperationResponse, err error) {
+func (c MailFolderMessageExtensionClient) CreateMailFolderMessageExtension(ctx context.Context, id stable.UserIdMailFolderIdMessageId, input stable.Extension, options CreateMailFolderMessageExtensionOperationOptions) (result CreateMailFolderMessageExtensionOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/extensions", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/extensions", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

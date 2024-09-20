@@ -19,7 +19,8 @@ type DeleteSynchronizationJobSchemaDirectoryOperationResponse struct {
 }
 
 type DeleteSynchronizationJobSchemaDirectoryOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteSynchronizationJobSchemaDirectoryOperationOptions() DeleteSynchronizationJobSchemaDirectoryOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteSynchronizationJobSchemaDirectoryOperationOptions) ToHeaders() *cl
 
 func (o DeleteSynchronizationJobSchemaDirectoryOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

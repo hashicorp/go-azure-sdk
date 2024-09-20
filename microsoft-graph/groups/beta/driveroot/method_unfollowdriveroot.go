@@ -18,15 +18,44 @@ type UnfollowDriveRootOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UnfollowDriveRootOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUnfollowDriveRootOperationOptions() UnfollowDriveRootOperationOptions {
+	return UnfollowDriveRootOperationOptions{}
+}
+
+func (o UnfollowDriveRootOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UnfollowDriveRootOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UnfollowDriveRootOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UnfollowDriveRoot - Invoke action unfollow. Unfollow a driveItem.
-func (c DriveRootClient) UnfollowDriveRoot(ctx context.Context, id beta.GroupIdDriveId) (result UnfollowDriveRootOperationResponse, err error) {
+func (c DriveRootClient) UnfollowDriveRoot(ctx context.Context, id beta.GroupIdDriveId, options UnfollowDriveRootOperationOptions) (result UnfollowDriveRootOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/root/unfollow", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/root/unfollow", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -17,15 +17,44 @@ type UpdateAppleUserInitiatedEnrollmentProfileAssignmentOperationResponse struct
 	OData        *odata.OData
 }
 
+type UpdateAppleUserInitiatedEnrollmentProfileAssignmentOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateAppleUserInitiatedEnrollmentProfileAssignmentOperationOptions() UpdateAppleUserInitiatedEnrollmentProfileAssignmentOperationOptions {
+	return UpdateAppleUserInitiatedEnrollmentProfileAssignmentOperationOptions{}
+}
+
+func (o UpdateAppleUserInitiatedEnrollmentProfileAssignmentOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateAppleUserInitiatedEnrollmentProfileAssignmentOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateAppleUserInitiatedEnrollmentProfileAssignmentOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateAppleUserInitiatedEnrollmentProfileAssignment - Update the navigation property assignments in deviceManagement
-func (c AppleUserInitiatedEnrollmentProfileAssignmentClient) UpdateAppleUserInitiatedEnrollmentProfileAssignment(ctx context.Context, id beta.DeviceManagementAppleUserInitiatedEnrollmentProfileIdAssignmentId, input beta.AppleEnrollmentProfileAssignment) (result UpdateAppleUserInitiatedEnrollmentProfileAssignmentOperationResponse, err error) {
+func (c AppleUserInitiatedEnrollmentProfileAssignmentClient) UpdateAppleUserInitiatedEnrollmentProfileAssignment(ctx context.Context, id beta.DeviceManagementAppleUserInitiatedEnrollmentProfileIdAssignmentId, input beta.AppleEnrollmentProfileAssignment, options UpdateAppleUserInitiatedEnrollmentProfileAssignmentOperationOptions) (result UpdateAppleUserInitiatedEnrollmentProfileAssignmentOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &DeviceManagementTemplateInsightId{}
 
 func TestNewDeviceManagementTemplateInsightID(t *testing.T) {
-	id := NewDeviceManagementTemplateInsightID("deviceManagementTemplateInsightsDefinitionIdValue")
+	id := NewDeviceManagementTemplateInsightID("deviceManagementTemplateInsightsDefinitionId")
 
-	if id.DeviceManagementTemplateInsightsDefinitionId != "deviceManagementTemplateInsightsDefinitionIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DeviceManagementTemplateInsightsDefinitionId'", id.DeviceManagementTemplateInsightsDefinitionId, "deviceManagementTemplateInsightsDefinitionIdValue")
+	if id.DeviceManagementTemplateInsightsDefinitionId != "deviceManagementTemplateInsightsDefinitionId" {
+		t.Fatalf("Expected %q but got %q for Segment 'DeviceManagementTemplateInsightsDefinitionId'", id.DeviceManagementTemplateInsightsDefinitionId, "deviceManagementTemplateInsightsDefinitionId")
 	}
 }
 
 func TestFormatDeviceManagementTemplateInsightID(t *testing.T) {
-	actual := NewDeviceManagementTemplateInsightID("deviceManagementTemplateInsightsDefinitionIdValue").ID()
-	expected := "/deviceManagement/templateInsights/deviceManagementTemplateInsightsDefinitionIdValue"
+	actual := NewDeviceManagementTemplateInsightID("deviceManagementTemplateInsightsDefinitionId").ID()
+	expected := "/deviceManagement/templateInsights/deviceManagementTemplateInsightsDefinitionId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -50,14 +50,14 @@ func TestParseDeviceManagementTemplateInsightID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/templateInsights/deviceManagementTemplateInsightsDefinitionIdValue",
+			Input: "/deviceManagement/templateInsights/deviceManagementTemplateInsightsDefinitionId",
 			Expected: &DeviceManagementTemplateInsightId{
-				DeviceManagementTemplateInsightsDefinitionId: "deviceManagementTemplateInsightsDefinitionIdValue",
+				DeviceManagementTemplateInsightsDefinitionId: "deviceManagementTemplateInsightsDefinitionId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/templateInsights/deviceManagementTemplateInsightsDefinitionIdValue/extra",
+			Input: "/deviceManagement/templateInsights/deviceManagementTemplateInsightsDefinitionId/extra",
 			Error: true,
 		},
 	}
@@ -116,26 +116,26 @@ func TestParseDeviceManagementTemplateInsightIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/templateInsights/deviceManagementTemplateInsightsDefinitionIdValue",
+			Input: "/deviceManagement/templateInsights/deviceManagementTemplateInsightsDefinitionId",
 			Expected: &DeviceManagementTemplateInsightId{
-				DeviceManagementTemplateInsightsDefinitionId: "deviceManagementTemplateInsightsDefinitionIdValue",
+				DeviceManagementTemplateInsightsDefinitionId: "deviceManagementTemplateInsightsDefinitionId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/templateInsights/deviceManagementTemplateInsightsDefinitionIdValue/extra",
+			Input: "/deviceManagement/templateInsights/deviceManagementTemplateInsightsDefinitionId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/tEmPlAtEiNsIgHtS/dEvIcEmAnAgEmEnTtEmPlAtEiNsIgHtSdEfInItIoNiDvAlUe",
+			Input: "/dEvIcEmAnAgEmEnT/tEmPlAtEiNsIgHtS/dEvIcEmAnAgEmEnTtEmPlAtEiNsIgHtSdEfInItIoNiD",
 			Expected: &DeviceManagementTemplateInsightId{
-				DeviceManagementTemplateInsightsDefinitionId: "dEvIcEmAnAgEmEnTtEmPlAtEiNsIgHtSdEfInItIoNiDvAlUe",
+				DeviceManagementTemplateInsightsDefinitionId: "dEvIcEmAnAgEmEnTtEmPlAtEiNsIgHtSdEfInItIoNiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/tEmPlAtEiNsIgHtS/dEvIcEmAnAgEmEnTtEmPlAtEiNsIgHtSdEfInItIoNiDvAlUe/extra",
+			Input: "/dEvIcEmAnAgEmEnT/tEmPlAtEiNsIgHtS/dEvIcEmAnAgEmEnTtEmPlAtEiNsIgHtSdEfInItIoNiD/extra",
 			Error: true,
 		},
 	}

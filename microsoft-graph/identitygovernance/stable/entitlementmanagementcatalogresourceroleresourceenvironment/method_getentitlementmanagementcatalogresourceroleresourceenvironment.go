@@ -20,8 +20,9 @@ type GetEntitlementManagementCatalogResourceRoleResourceEnvironmentOperationResp
 }
 
 type GetEntitlementManagementCatalogResourceRoleResourceEnvironmentOperationOptions struct {
-	Expand *odata.Expand
-	Select *[]string
+	Expand   *odata.Expand
+	Metadata *odata.Metadata
+	Select   *[]string
 }
 
 func DefaultGetEntitlementManagementCatalogResourceRoleResourceEnvironmentOperationOptions() GetEntitlementManagementCatalogResourceRoleResourceEnvironmentOperationOptions {
@@ -39,6 +40,9 @@ func (o GetEntitlementManagementCatalogResourceRoleResourceEnvironmentOperationO
 	if o.Expand != nil {
 		out.Expand = *o.Expand
 	}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	if o.Select != nil {
 		out.Select = *o.Select
 	}
@@ -54,7 +58,7 @@ func (o GetEntitlementManagementCatalogResourceRoleResourceEnvironmentOperationO
 // GetEntitlementManagementCatalogResourceRoleResourceEnvironment - Get environment from identityGovernance. Contains
 // the environment information for the resource. This can be set using either the @odata.bind annotation or the
 // environment's originId.Supports $expand.
-func (c EntitlementManagementCatalogResourceRoleResourceEnvironmentClient) GetEntitlementManagementCatalogResourceRoleResourceEnvironment(ctx context.Context, id stable.IdentityGovernanceEntitlementManagementCatalogIdResourceRoleId, options GetEntitlementManagementCatalogResourceRoleResourceEnvironmentOperationOptions) (result GetEntitlementManagementCatalogResourceRoleResourceEnvironmentOperationResponse, err error) {
+func (c EntitlementManagementCatalogResourceRoleResourceEnvironmentClient) GetEntitlementManagementCatalogResourceRoleResourceEnvironment(ctx context.Context, id stable.IdentityGovernanceEntitlementManagementCatalogIdResourceIdRoleId, options GetEntitlementManagementCatalogResourceRoleResourceEnvironmentOperationOptions) (result GetEntitlementManagementCatalogResourceRoleResourceEnvironmentOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{

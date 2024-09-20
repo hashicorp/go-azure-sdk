@@ -93,7 +93,7 @@ func (id DeviceManagementTroubleshootingEventId) Segments() []resourceids.Segmen
 	return []resourceids.Segment{
 		resourceids.StaticSegment("deviceManagement", "deviceManagement", "deviceManagement"),
 		resourceids.StaticSegment("troubleshootingEvents", "troubleshootingEvents", "troubleshootingEvents"),
-		resourceids.UserSpecifiedSegment("deviceManagementTroubleshootingEventId", "deviceManagementTroubleshootingEventIdValue"),
+		resourceids.UserSpecifiedSegment("deviceManagementTroubleshootingEventId", "deviceManagementTroubleshootingEventId"),
 	}
 }
 

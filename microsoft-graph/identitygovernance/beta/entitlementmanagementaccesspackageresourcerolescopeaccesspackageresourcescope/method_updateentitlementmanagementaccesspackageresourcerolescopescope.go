@@ -18,16 +18,45 @@ type UpdateEntitlementManagementAccessPackageResourceRoleScopeScopeOperationResp
 	OData        *odata.OData
 }
 
+type UpdateEntitlementManagementAccessPackageResourceRoleScopeScopeOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateEntitlementManagementAccessPackageResourceRoleScopeScopeOperationOptions() UpdateEntitlementManagementAccessPackageResourceRoleScopeScopeOperationOptions {
+	return UpdateEntitlementManagementAccessPackageResourceRoleScopeScopeOperationOptions{}
+}
+
+func (o UpdateEntitlementManagementAccessPackageResourceRoleScopeScopeOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateEntitlementManagementAccessPackageResourceRoleScopeScopeOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateEntitlementManagementAccessPackageResourceRoleScopeScopeOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateEntitlementManagementAccessPackageResourceRoleScopeScope - Update the navigation property
 // accessPackageResourceScope in identityGovernance
-func (c EntitlementManagementAccessPackageResourceRoleScopeAccessPackageResourceScopeClient) UpdateEntitlementManagementAccessPackageResourceRoleScopeScope(ctx context.Context, id beta.IdentityGovernanceEntitlementManagementAccessPackageResourceRoleScopeId, input beta.AccessPackageResourceScope) (result UpdateEntitlementManagementAccessPackageResourceRoleScopeScopeOperationResponse, err error) {
+func (c EntitlementManagementAccessPackageResourceRoleScopeAccessPackageResourceScopeClient) UpdateEntitlementManagementAccessPackageResourceRoleScopeScope(ctx context.Context, id beta.IdentityGovernanceEntitlementManagementAccessPackageResourceRoleScopeId, input beta.AccessPackageResourceScope, options UpdateEntitlementManagementAccessPackageResourceRoleScopeScopeOperationOptions) (result UpdateEntitlementManagementAccessPackageResourceRoleScopeScopeOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       fmt.Sprintf("%s/accessPackageResourceScope", id.ID()),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/accessPackageResourceScope", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

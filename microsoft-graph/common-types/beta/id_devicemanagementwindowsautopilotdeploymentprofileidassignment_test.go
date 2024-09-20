@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &DeviceManagementWindowsAutopilotDeploymentProfileIdAssignmentId{}
 
 func TestNewDeviceManagementWindowsAutopilotDeploymentProfileIdAssignmentID(t *testing.T) {
-	id := NewDeviceManagementWindowsAutopilotDeploymentProfileIdAssignmentID("windowsAutopilotDeploymentProfileIdValue", "windowsAutopilotDeploymentProfileAssignmentIdValue")
+	id := NewDeviceManagementWindowsAutopilotDeploymentProfileIdAssignmentID("windowsAutopilotDeploymentProfileId", "windowsAutopilotDeploymentProfileAssignmentId")
 
-	if id.WindowsAutopilotDeploymentProfileId != "windowsAutopilotDeploymentProfileIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'WindowsAutopilotDeploymentProfileId'", id.WindowsAutopilotDeploymentProfileId, "windowsAutopilotDeploymentProfileIdValue")
+	if id.WindowsAutopilotDeploymentProfileId != "windowsAutopilotDeploymentProfileId" {
+		t.Fatalf("Expected %q but got %q for Segment 'WindowsAutopilotDeploymentProfileId'", id.WindowsAutopilotDeploymentProfileId, "windowsAutopilotDeploymentProfileId")
 	}
 
-	if id.WindowsAutopilotDeploymentProfileAssignmentId != "windowsAutopilotDeploymentProfileAssignmentIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'WindowsAutopilotDeploymentProfileAssignmentId'", id.WindowsAutopilotDeploymentProfileAssignmentId, "windowsAutopilotDeploymentProfileAssignmentIdValue")
+	if id.WindowsAutopilotDeploymentProfileAssignmentId != "windowsAutopilotDeploymentProfileAssignmentId" {
+		t.Fatalf("Expected %q but got %q for Segment 'WindowsAutopilotDeploymentProfileAssignmentId'", id.WindowsAutopilotDeploymentProfileAssignmentId, "windowsAutopilotDeploymentProfileAssignmentId")
 	}
 }
 
 func TestFormatDeviceManagementWindowsAutopilotDeploymentProfileIdAssignmentID(t *testing.T) {
-	actual := NewDeviceManagementWindowsAutopilotDeploymentProfileIdAssignmentID("windowsAutopilotDeploymentProfileIdValue", "windowsAutopilotDeploymentProfileAssignmentIdValue").ID()
-	expected := "/deviceManagement/windowsAutopilotDeploymentProfiles/windowsAutopilotDeploymentProfileIdValue/assignments/windowsAutopilotDeploymentProfileAssignmentIdValue"
+	actual := NewDeviceManagementWindowsAutopilotDeploymentProfileIdAssignmentID("windowsAutopilotDeploymentProfileId", "windowsAutopilotDeploymentProfileAssignmentId").ID()
+	expected := "/deviceManagement/windowsAutopilotDeploymentProfiles/windowsAutopilotDeploymentProfileId/assignments/windowsAutopilotDeploymentProfileAssignmentId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -54,25 +54,25 @@ func TestParseDeviceManagementWindowsAutopilotDeploymentProfileIdAssignmentID(t 
 		},
 		{
 			// Incomplete URI
-			Input: "/deviceManagement/windowsAutopilotDeploymentProfiles/windowsAutopilotDeploymentProfileIdValue",
+			Input: "/deviceManagement/windowsAutopilotDeploymentProfiles/windowsAutopilotDeploymentProfileId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/deviceManagement/windowsAutopilotDeploymentProfiles/windowsAutopilotDeploymentProfileIdValue/assignments",
+			Input: "/deviceManagement/windowsAutopilotDeploymentProfiles/windowsAutopilotDeploymentProfileId/assignments",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/windowsAutopilotDeploymentProfiles/windowsAutopilotDeploymentProfileIdValue/assignments/windowsAutopilotDeploymentProfileAssignmentIdValue",
+			Input: "/deviceManagement/windowsAutopilotDeploymentProfiles/windowsAutopilotDeploymentProfileId/assignments/windowsAutopilotDeploymentProfileAssignmentId",
 			Expected: &DeviceManagementWindowsAutopilotDeploymentProfileIdAssignmentId{
-				WindowsAutopilotDeploymentProfileId:           "windowsAutopilotDeploymentProfileIdValue",
-				WindowsAutopilotDeploymentProfileAssignmentId: "windowsAutopilotDeploymentProfileAssignmentIdValue",
+				WindowsAutopilotDeploymentProfileId:           "windowsAutopilotDeploymentProfileId",
+				WindowsAutopilotDeploymentProfileAssignmentId: "windowsAutopilotDeploymentProfileAssignmentId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/windowsAutopilotDeploymentProfiles/windowsAutopilotDeploymentProfileIdValue/assignments/windowsAutopilotDeploymentProfileAssignmentIdValue/extra",
+			Input: "/deviceManagement/windowsAutopilotDeploymentProfiles/windowsAutopilotDeploymentProfileId/assignments/windowsAutopilotDeploymentProfileAssignmentId/extra",
 			Error: true,
 		},
 	}
@@ -135,48 +135,48 @@ func TestParseDeviceManagementWindowsAutopilotDeploymentProfileIdAssignmentIDIns
 		},
 		{
 			// Incomplete URI
-			Input: "/deviceManagement/windowsAutopilotDeploymentProfiles/windowsAutopilotDeploymentProfileIdValue",
+			Input: "/deviceManagement/windowsAutopilotDeploymentProfiles/windowsAutopilotDeploymentProfileId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/wInDoWsAuToPiLoTdEpLoYmEnTpRoFiLeS/wInDoWsAuToPiLoTdEpLoYmEnTpRoFiLeIdVaLuE",
+			Input: "/dEvIcEmAnAgEmEnT/wInDoWsAuToPiLoTdEpLoYmEnTpRoFiLeS/wInDoWsAuToPiLoTdEpLoYmEnTpRoFiLeId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/deviceManagement/windowsAutopilotDeploymentProfiles/windowsAutopilotDeploymentProfileIdValue/assignments",
+			Input: "/deviceManagement/windowsAutopilotDeploymentProfiles/windowsAutopilotDeploymentProfileId/assignments",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/wInDoWsAuToPiLoTdEpLoYmEnTpRoFiLeS/wInDoWsAuToPiLoTdEpLoYmEnTpRoFiLeIdVaLuE/aSsIgNmEnTs",
+			Input: "/dEvIcEmAnAgEmEnT/wInDoWsAuToPiLoTdEpLoYmEnTpRoFiLeS/wInDoWsAuToPiLoTdEpLoYmEnTpRoFiLeId/aSsIgNmEnTs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/windowsAutopilotDeploymentProfiles/windowsAutopilotDeploymentProfileIdValue/assignments/windowsAutopilotDeploymentProfileAssignmentIdValue",
+			Input: "/deviceManagement/windowsAutopilotDeploymentProfiles/windowsAutopilotDeploymentProfileId/assignments/windowsAutopilotDeploymentProfileAssignmentId",
 			Expected: &DeviceManagementWindowsAutopilotDeploymentProfileIdAssignmentId{
-				WindowsAutopilotDeploymentProfileId:           "windowsAutopilotDeploymentProfileIdValue",
-				WindowsAutopilotDeploymentProfileAssignmentId: "windowsAutopilotDeploymentProfileAssignmentIdValue",
+				WindowsAutopilotDeploymentProfileId:           "windowsAutopilotDeploymentProfileId",
+				WindowsAutopilotDeploymentProfileAssignmentId: "windowsAutopilotDeploymentProfileAssignmentId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/windowsAutopilotDeploymentProfiles/windowsAutopilotDeploymentProfileIdValue/assignments/windowsAutopilotDeploymentProfileAssignmentIdValue/extra",
+			Input: "/deviceManagement/windowsAutopilotDeploymentProfiles/windowsAutopilotDeploymentProfileId/assignments/windowsAutopilotDeploymentProfileAssignmentId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/wInDoWsAuToPiLoTdEpLoYmEnTpRoFiLeS/wInDoWsAuToPiLoTdEpLoYmEnTpRoFiLeIdVaLuE/aSsIgNmEnTs/wInDoWsAuToPiLoTdEpLoYmEnTpRoFiLeAsSiGnMeNtIdVaLuE",
+			Input: "/dEvIcEmAnAgEmEnT/wInDoWsAuToPiLoTdEpLoYmEnTpRoFiLeS/wInDoWsAuToPiLoTdEpLoYmEnTpRoFiLeId/aSsIgNmEnTs/wInDoWsAuToPiLoTdEpLoYmEnTpRoFiLeAsSiGnMeNtId",
 			Expected: &DeviceManagementWindowsAutopilotDeploymentProfileIdAssignmentId{
-				WindowsAutopilotDeploymentProfileId:           "wInDoWsAuToPiLoTdEpLoYmEnTpRoFiLeIdVaLuE",
-				WindowsAutopilotDeploymentProfileAssignmentId: "wInDoWsAuToPiLoTdEpLoYmEnTpRoFiLeAsSiGnMeNtIdVaLuE",
+				WindowsAutopilotDeploymentProfileId:           "wInDoWsAuToPiLoTdEpLoYmEnTpRoFiLeId",
+				WindowsAutopilotDeploymentProfileAssignmentId: "wInDoWsAuToPiLoTdEpLoYmEnTpRoFiLeAsSiGnMeNtId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/wInDoWsAuToPiLoTdEpLoYmEnTpRoFiLeS/wInDoWsAuToPiLoTdEpLoYmEnTpRoFiLeIdVaLuE/aSsIgNmEnTs/wInDoWsAuToPiLoTdEpLoYmEnTpRoFiLeAsSiGnMeNtIdVaLuE/extra",
+			Input: "/dEvIcEmAnAgEmEnT/wInDoWsAuToPiLoTdEpLoYmEnTpRoFiLeS/wInDoWsAuToPiLoTdEpLoYmEnTpRoFiLeId/aSsIgNmEnTs/wInDoWsAuToPiLoTdEpLoYmEnTpRoFiLeAsSiGnMeNtId/extra",
 			Error: true,
 		},
 	}

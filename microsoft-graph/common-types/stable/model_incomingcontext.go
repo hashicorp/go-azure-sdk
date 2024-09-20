@@ -59,10 +59,15 @@ func (s IncomingContext) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &IncomingContext{}
 
 func (s *IncomingContext) UnmarshalJSON(bytes []byte) error {
-	type alias IncomingContext
-	var decoded alias
+
+	var decoded struct {
+		ODataId               *string               `json:"@odata.id,omitempty"`
+		ODataType             *string               `json:"@odata.type,omitempty"`
+		ObservedParticipantId nullable.Type[string] `json:"observedParticipantId,omitempty"`
+		SourceParticipantId   nullable.Type[string] `json:"sourceParticipantId,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into IncomingContext: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.ODataId = decoded.ODataId
@@ -90,5 +95,6 @@ func (s *IncomingContext) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Transferor = impl
 	}
+
 	return nil
 }

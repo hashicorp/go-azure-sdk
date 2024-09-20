@@ -19,15 +19,44 @@ type CreateTermsAndConditionGroupAssignmentOperationResponse struct {
 	Model        *beta.TermsAndConditionsGroupAssignment
 }
 
+type CreateTermsAndConditionGroupAssignmentOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateTermsAndConditionGroupAssignmentOperationOptions() CreateTermsAndConditionGroupAssignmentOperationOptions {
+	return CreateTermsAndConditionGroupAssignmentOperationOptions{}
+}
+
+func (o CreateTermsAndConditionGroupAssignmentOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateTermsAndConditionGroupAssignmentOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateTermsAndConditionGroupAssignmentOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateTermsAndConditionGroupAssignment - Create new navigation property to groupAssignments for deviceManagement
-func (c TermsAndConditionGroupAssignmentClient) CreateTermsAndConditionGroupAssignment(ctx context.Context, id beta.DeviceManagementTermsAndConditionId, input beta.TermsAndConditionsGroupAssignment) (result CreateTermsAndConditionGroupAssignmentOperationResponse, err error) {
+func (c TermsAndConditionGroupAssignmentClient) CreateTermsAndConditionGroupAssignment(ctx context.Context, id beta.DeviceManagementTermsAndConditionId, input beta.TermsAndConditionsGroupAssignment, options CreateTermsAndConditionGroupAssignmentOperationOptions) (result CreateTermsAndConditionGroupAssignmentOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/groupAssignments", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/groupAssignments", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

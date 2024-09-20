@@ -19,15 +19,44 @@ type CreateTeamChannelOperationResponse struct {
 	Model        *stable.Channel
 }
 
+type CreateTeamChannelOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateTeamChannelOperationOptions() CreateTeamChannelOperationOptions {
+	return CreateTeamChannelOperationOptions{}
+}
+
+func (o CreateTeamChannelOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateTeamChannelOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateTeamChannelOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateTeamChannel - Create new navigation property to channels for groups
-func (c TeamChannelClient) CreateTeamChannel(ctx context.Context, id stable.GroupId, input stable.Channel) (result CreateTeamChannelOperationResponse, err error) {
+func (c TeamChannelClient) CreateTeamChannel(ctx context.Context, id stable.GroupId, input stable.Channel, options CreateTeamChannelOperationOptions) (result CreateTeamChannelOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/team/channels", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/team/channels", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

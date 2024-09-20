@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &MeInformationProtectionBitlockerRecoveryKeyId{}
 
 func TestNewMeInformationProtectionBitlockerRecoveryKeyID(t *testing.T) {
-	id := NewMeInformationProtectionBitlockerRecoveryKeyID("bitlockerRecoveryKeyIdValue")
+	id := NewMeInformationProtectionBitlockerRecoveryKeyID("bitlockerRecoveryKeyId")
 
-	if id.BitlockerRecoveryKeyId != "bitlockerRecoveryKeyIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'BitlockerRecoveryKeyId'", id.BitlockerRecoveryKeyId, "bitlockerRecoveryKeyIdValue")
+	if id.BitlockerRecoveryKeyId != "bitlockerRecoveryKeyId" {
+		t.Fatalf("Expected %q but got %q for Segment 'BitlockerRecoveryKeyId'", id.BitlockerRecoveryKeyId, "bitlockerRecoveryKeyId")
 	}
 }
 
 func TestFormatMeInformationProtectionBitlockerRecoveryKeyID(t *testing.T) {
-	actual := NewMeInformationProtectionBitlockerRecoveryKeyID("bitlockerRecoveryKeyIdValue").ID()
-	expected := "/me/informationProtection/bitlocker/recoveryKeys/bitlockerRecoveryKeyIdValue"
+	actual := NewMeInformationProtectionBitlockerRecoveryKeyID("bitlockerRecoveryKeyId").ID()
+	expected := "/me/informationProtection/bitlocker/recoveryKeys/bitlockerRecoveryKeyId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -60,14 +60,14 @@ func TestParseMeInformationProtectionBitlockerRecoveryKeyID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/me/informationProtection/bitlocker/recoveryKeys/bitlockerRecoveryKeyIdValue",
+			Input: "/me/informationProtection/bitlocker/recoveryKeys/bitlockerRecoveryKeyId",
 			Expected: &MeInformationProtectionBitlockerRecoveryKeyId{
-				BitlockerRecoveryKeyId: "bitlockerRecoveryKeyIdValue",
+				BitlockerRecoveryKeyId: "bitlockerRecoveryKeyId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/informationProtection/bitlocker/recoveryKeys/bitlockerRecoveryKeyIdValue/extra",
+			Input: "/me/informationProtection/bitlocker/recoveryKeys/bitlockerRecoveryKeyId/extra",
 			Error: true,
 		},
 	}
@@ -146,26 +146,26 @@ func TestParseMeInformationProtectionBitlockerRecoveryKeyIDInsensitively(t *test
 		},
 		{
 			// Valid URI
-			Input: "/me/informationProtection/bitlocker/recoveryKeys/bitlockerRecoveryKeyIdValue",
+			Input: "/me/informationProtection/bitlocker/recoveryKeys/bitlockerRecoveryKeyId",
 			Expected: &MeInformationProtectionBitlockerRecoveryKeyId{
-				BitlockerRecoveryKeyId: "bitlockerRecoveryKeyIdValue",
+				BitlockerRecoveryKeyId: "bitlockerRecoveryKeyId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/informationProtection/bitlocker/recoveryKeys/bitlockerRecoveryKeyIdValue/extra",
+			Input: "/me/informationProtection/bitlocker/recoveryKeys/bitlockerRecoveryKeyId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/iNfOrMaTiOnPrOtEcTiOn/bItLoCkEr/rEcOvErYkEyS/bItLoCkErReCoVeRyKeYiDvAlUe",
+			Input: "/mE/iNfOrMaTiOnPrOtEcTiOn/bItLoCkEr/rEcOvErYkEyS/bItLoCkErReCoVeRyKeYiD",
 			Expected: &MeInformationProtectionBitlockerRecoveryKeyId{
-				BitlockerRecoveryKeyId: "bItLoCkErReCoVeRyKeYiDvAlUe",
+				BitlockerRecoveryKeyId: "bItLoCkErReCoVeRyKeYiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/mE/iNfOrMaTiOnPrOtEcTiOn/bItLoCkEr/rEcOvErYkEyS/bItLoCkErReCoVeRyKeYiDvAlUe/extra",
+			Input: "/mE/iNfOrMaTiOnPrOtEcTiOn/bItLoCkEr/rEcOvErYkEyS/bItLoCkErReCoVeRyKeYiD/extra",
 			Error: true,
 		},
 	}

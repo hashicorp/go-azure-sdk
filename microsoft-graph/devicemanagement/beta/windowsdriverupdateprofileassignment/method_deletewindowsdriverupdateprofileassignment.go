@@ -19,7 +19,8 @@ type DeleteWindowsDriverUpdateProfileAssignmentOperationResponse struct {
 }
 
 type DeleteWindowsDriverUpdateProfileAssignmentOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteWindowsDriverUpdateProfileAssignmentOperationOptions() DeleteWindowsDriverUpdateProfileAssignmentOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteWindowsDriverUpdateProfileAssignmentOperationOptions) ToHeaders() 
 
 func (o DeleteWindowsDriverUpdateProfileAssignmentOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &MeChatIdPinnedMessageId{}
 
 func TestNewMeChatIdPinnedMessageID(t *testing.T) {
-	id := NewMeChatIdPinnedMessageID("chatIdValue", "pinnedChatMessageInfoIdValue")
+	id := NewMeChatIdPinnedMessageID("chatId", "pinnedChatMessageInfoId")
 
-	if id.ChatId != "chatIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ChatId'", id.ChatId, "chatIdValue")
+	if id.ChatId != "chatId" {
+		t.Fatalf("Expected %q but got %q for Segment 'ChatId'", id.ChatId, "chatId")
 	}
 
-	if id.PinnedChatMessageInfoId != "pinnedChatMessageInfoIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'PinnedChatMessageInfoId'", id.PinnedChatMessageInfoId, "pinnedChatMessageInfoIdValue")
+	if id.PinnedChatMessageInfoId != "pinnedChatMessageInfoId" {
+		t.Fatalf("Expected %q but got %q for Segment 'PinnedChatMessageInfoId'", id.PinnedChatMessageInfoId, "pinnedChatMessageInfoId")
 	}
 }
 
 func TestFormatMeChatIdPinnedMessageID(t *testing.T) {
-	actual := NewMeChatIdPinnedMessageID("chatIdValue", "pinnedChatMessageInfoIdValue").ID()
-	expected := "/me/chats/chatIdValue/pinnedMessages/pinnedChatMessageInfoIdValue"
+	actual := NewMeChatIdPinnedMessageID("chatId", "pinnedChatMessageInfoId").ID()
+	expected := "/me/chats/chatId/pinnedMessages/pinnedChatMessageInfoId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -54,25 +54,25 @@ func TestParseMeChatIdPinnedMessageID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/me/chats/chatIdValue",
+			Input: "/me/chats/chatId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/me/chats/chatIdValue/pinnedMessages",
+			Input: "/me/chats/chatId/pinnedMessages",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/me/chats/chatIdValue/pinnedMessages/pinnedChatMessageInfoIdValue",
+			Input: "/me/chats/chatId/pinnedMessages/pinnedChatMessageInfoId",
 			Expected: &MeChatIdPinnedMessageId{
-				ChatId:                  "chatIdValue",
-				PinnedChatMessageInfoId: "pinnedChatMessageInfoIdValue",
+				ChatId:                  "chatId",
+				PinnedChatMessageInfoId: "pinnedChatMessageInfoId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/chats/chatIdValue/pinnedMessages/pinnedChatMessageInfoIdValue/extra",
+			Input: "/me/chats/chatId/pinnedMessages/pinnedChatMessageInfoId/extra",
 			Error: true,
 		},
 	}
@@ -135,48 +135,48 @@ func TestParseMeChatIdPinnedMessageIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/me/chats/chatIdValue",
+			Input: "/me/chats/chatId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/cHaTs/cHaTiDvAlUe",
+			Input: "/mE/cHaTs/cHaTiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/me/chats/chatIdValue/pinnedMessages",
+			Input: "/me/chats/chatId/pinnedMessages",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/cHaTs/cHaTiDvAlUe/pInNeDmEsSaGeS",
+			Input: "/mE/cHaTs/cHaTiD/pInNeDmEsSaGeS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/me/chats/chatIdValue/pinnedMessages/pinnedChatMessageInfoIdValue",
+			Input: "/me/chats/chatId/pinnedMessages/pinnedChatMessageInfoId",
 			Expected: &MeChatIdPinnedMessageId{
-				ChatId:                  "chatIdValue",
-				PinnedChatMessageInfoId: "pinnedChatMessageInfoIdValue",
+				ChatId:                  "chatId",
+				PinnedChatMessageInfoId: "pinnedChatMessageInfoId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/chats/chatIdValue/pinnedMessages/pinnedChatMessageInfoIdValue/extra",
+			Input: "/me/chats/chatId/pinnedMessages/pinnedChatMessageInfoId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/cHaTs/cHaTiDvAlUe/pInNeDmEsSaGeS/pInNeDcHaTmEsSaGeInFoIdVaLuE",
+			Input: "/mE/cHaTs/cHaTiD/pInNeDmEsSaGeS/pInNeDcHaTmEsSaGeInFoId",
 			Expected: &MeChatIdPinnedMessageId{
-				ChatId:                  "cHaTiDvAlUe",
-				PinnedChatMessageInfoId: "pInNeDcHaTmEsSaGeInFoIdVaLuE",
+				ChatId:                  "cHaTiD",
+				PinnedChatMessageInfoId: "pInNeDcHaTmEsSaGeInFoId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/mE/cHaTs/cHaTiDvAlUe/pInNeDmEsSaGeS/pInNeDcHaTmEsSaGeInFoIdVaLuE/extra",
+			Input: "/mE/cHaTs/cHaTiD/pInNeDmEsSaGeS/pInNeDcHaTmEsSaGeInFoId/extra",
 			Error: true,
 		},
 	}

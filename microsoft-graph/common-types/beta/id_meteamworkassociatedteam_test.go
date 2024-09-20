@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &MeTeamworkAssociatedTeamId{}
 
 func TestNewMeTeamworkAssociatedTeamID(t *testing.T) {
-	id := NewMeTeamworkAssociatedTeamID("associatedTeamInfoIdValue")
+	id := NewMeTeamworkAssociatedTeamID("associatedTeamInfoId")
 
-	if id.AssociatedTeamInfoId != "associatedTeamInfoIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'AssociatedTeamInfoId'", id.AssociatedTeamInfoId, "associatedTeamInfoIdValue")
+	if id.AssociatedTeamInfoId != "associatedTeamInfoId" {
+		t.Fatalf("Expected %q but got %q for Segment 'AssociatedTeamInfoId'", id.AssociatedTeamInfoId, "associatedTeamInfoId")
 	}
 }
 
 func TestFormatMeTeamworkAssociatedTeamID(t *testing.T) {
-	actual := NewMeTeamworkAssociatedTeamID("associatedTeamInfoIdValue").ID()
-	expected := "/me/teamwork/associatedTeams/associatedTeamInfoIdValue"
+	actual := NewMeTeamworkAssociatedTeamID("associatedTeamInfoId").ID()
+	expected := "/me/teamwork/associatedTeams/associatedTeamInfoId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -55,14 +55,14 @@ func TestParseMeTeamworkAssociatedTeamID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/me/teamwork/associatedTeams/associatedTeamInfoIdValue",
+			Input: "/me/teamwork/associatedTeams/associatedTeamInfoId",
 			Expected: &MeTeamworkAssociatedTeamId{
-				AssociatedTeamInfoId: "associatedTeamInfoIdValue",
+				AssociatedTeamInfoId: "associatedTeamInfoId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/teamwork/associatedTeams/associatedTeamInfoIdValue/extra",
+			Input: "/me/teamwork/associatedTeams/associatedTeamInfoId/extra",
 			Error: true,
 		},
 	}
@@ -131,26 +131,26 @@ func TestParseMeTeamworkAssociatedTeamIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/me/teamwork/associatedTeams/associatedTeamInfoIdValue",
+			Input: "/me/teamwork/associatedTeams/associatedTeamInfoId",
 			Expected: &MeTeamworkAssociatedTeamId{
-				AssociatedTeamInfoId: "associatedTeamInfoIdValue",
+				AssociatedTeamInfoId: "associatedTeamInfoId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/teamwork/associatedTeams/associatedTeamInfoIdValue/extra",
+			Input: "/me/teamwork/associatedTeams/associatedTeamInfoId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/tEaMwOrK/aSsOcIaTeDtEaMs/aSsOcIaTeDtEaMiNfOiDvAlUe",
+			Input: "/mE/tEaMwOrK/aSsOcIaTeDtEaMs/aSsOcIaTeDtEaMiNfOiD",
 			Expected: &MeTeamworkAssociatedTeamId{
-				AssociatedTeamInfoId: "aSsOcIaTeDtEaMiNfOiDvAlUe",
+				AssociatedTeamInfoId: "aSsOcIaTeDtEaMiNfOiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/mE/tEaMwOrK/aSsOcIaTeDtEaMs/aSsOcIaTeDtEaMiNfOiDvAlUe/extra",
+			Input: "/mE/tEaMwOrK/aSsOcIaTeDtEaMs/aSsOcIaTeDtEaMiNfOiD/extra",
 			Error: true,
 		},
 	}

@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &RoleManagementCloudPCRoleAssignmentIdAppScopeId{}
 
 func TestNewRoleManagementCloudPCRoleAssignmentIdAppScopeID(t *testing.T) {
-	id := NewRoleManagementCloudPCRoleAssignmentIdAppScopeID("unifiedRoleAssignmentMultipleIdValue", "appScopeIdValue")
+	id := NewRoleManagementCloudPCRoleAssignmentIdAppScopeID("unifiedRoleAssignmentMultipleId", "appScopeId")
 
-	if id.UnifiedRoleAssignmentMultipleId != "unifiedRoleAssignmentMultipleIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'UnifiedRoleAssignmentMultipleId'", id.UnifiedRoleAssignmentMultipleId, "unifiedRoleAssignmentMultipleIdValue")
+	if id.UnifiedRoleAssignmentMultipleId != "unifiedRoleAssignmentMultipleId" {
+		t.Fatalf("Expected %q but got %q for Segment 'UnifiedRoleAssignmentMultipleId'", id.UnifiedRoleAssignmentMultipleId, "unifiedRoleAssignmentMultipleId")
 	}
 
-	if id.AppScopeId != "appScopeIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'AppScopeId'", id.AppScopeId, "appScopeIdValue")
+	if id.AppScopeId != "appScopeId" {
+		t.Fatalf("Expected %q but got %q for Segment 'AppScopeId'", id.AppScopeId, "appScopeId")
 	}
 }
 
 func TestFormatRoleManagementCloudPCRoleAssignmentIdAppScopeID(t *testing.T) {
-	actual := NewRoleManagementCloudPCRoleAssignmentIdAppScopeID("unifiedRoleAssignmentMultipleIdValue", "appScopeIdValue").ID()
-	expected := "/roleManagement/cloudPC/roleAssignments/unifiedRoleAssignmentMultipleIdValue/appScopes/appScopeIdValue"
+	actual := NewRoleManagementCloudPCRoleAssignmentIdAppScopeID("unifiedRoleAssignmentMultipleId", "appScopeId").ID()
+	expected := "/roleManagement/cloudPC/roleAssignments/unifiedRoleAssignmentMultipleId/appScopes/appScopeId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -59,25 +59,25 @@ func TestParseRoleManagementCloudPCRoleAssignmentIdAppScopeID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/roleManagement/cloudPC/roleAssignments/unifiedRoleAssignmentMultipleIdValue",
+			Input: "/roleManagement/cloudPC/roleAssignments/unifiedRoleAssignmentMultipleId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/roleManagement/cloudPC/roleAssignments/unifiedRoleAssignmentMultipleIdValue/appScopes",
+			Input: "/roleManagement/cloudPC/roleAssignments/unifiedRoleAssignmentMultipleId/appScopes",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/roleManagement/cloudPC/roleAssignments/unifiedRoleAssignmentMultipleIdValue/appScopes/appScopeIdValue",
+			Input: "/roleManagement/cloudPC/roleAssignments/unifiedRoleAssignmentMultipleId/appScopes/appScopeId",
 			Expected: &RoleManagementCloudPCRoleAssignmentIdAppScopeId{
-				UnifiedRoleAssignmentMultipleId: "unifiedRoleAssignmentMultipleIdValue",
-				AppScopeId:                      "appScopeIdValue",
+				UnifiedRoleAssignmentMultipleId: "unifiedRoleAssignmentMultipleId",
+				AppScopeId:                      "appScopeId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/roleManagement/cloudPC/roleAssignments/unifiedRoleAssignmentMultipleIdValue/appScopes/appScopeIdValue/extra",
+			Input: "/roleManagement/cloudPC/roleAssignments/unifiedRoleAssignmentMultipleId/appScopes/appScopeId/extra",
 			Error: true,
 		},
 	}
@@ -150,48 +150,48 @@ func TestParseRoleManagementCloudPCRoleAssignmentIdAppScopeIDInsensitively(t *te
 		},
 		{
 			// Incomplete URI
-			Input: "/roleManagement/cloudPC/roleAssignments/unifiedRoleAssignmentMultipleIdValue",
+			Input: "/roleManagement/cloudPC/roleAssignments/unifiedRoleAssignmentMultipleId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/rOlEmAnAgEmEnT/cLoUdPc/rOlEaSsIgNmEnTs/uNiFiEdRoLeAsSiGnMeNtMuLtIpLeIdVaLuE",
+			Input: "/rOlEmAnAgEmEnT/cLoUdPc/rOlEaSsIgNmEnTs/uNiFiEdRoLeAsSiGnMeNtMuLtIpLeId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/roleManagement/cloudPC/roleAssignments/unifiedRoleAssignmentMultipleIdValue/appScopes",
+			Input: "/roleManagement/cloudPC/roleAssignments/unifiedRoleAssignmentMultipleId/appScopes",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/rOlEmAnAgEmEnT/cLoUdPc/rOlEaSsIgNmEnTs/uNiFiEdRoLeAsSiGnMeNtMuLtIpLeIdVaLuE/aPpScOpEs",
+			Input: "/rOlEmAnAgEmEnT/cLoUdPc/rOlEaSsIgNmEnTs/uNiFiEdRoLeAsSiGnMeNtMuLtIpLeId/aPpScOpEs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/roleManagement/cloudPC/roleAssignments/unifiedRoleAssignmentMultipleIdValue/appScopes/appScopeIdValue",
+			Input: "/roleManagement/cloudPC/roleAssignments/unifiedRoleAssignmentMultipleId/appScopes/appScopeId",
 			Expected: &RoleManagementCloudPCRoleAssignmentIdAppScopeId{
-				UnifiedRoleAssignmentMultipleId: "unifiedRoleAssignmentMultipleIdValue",
-				AppScopeId:                      "appScopeIdValue",
+				UnifiedRoleAssignmentMultipleId: "unifiedRoleAssignmentMultipleId",
+				AppScopeId:                      "appScopeId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/roleManagement/cloudPC/roleAssignments/unifiedRoleAssignmentMultipleIdValue/appScopes/appScopeIdValue/extra",
+			Input: "/roleManagement/cloudPC/roleAssignments/unifiedRoleAssignmentMultipleId/appScopes/appScopeId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/rOlEmAnAgEmEnT/cLoUdPc/rOlEaSsIgNmEnTs/uNiFiEdRoLeAsSiGnMeNtMuLtIpLeIdVaLuE/aPpScOpEs/aPpScOpEiDvAlUe",
+			Input: "/rOlEmAnAgEmEnT/cLoUdPc/rOlEaSsIgNmEnTs/uNiFiEdRoLeAsSiGnMeNtMuLtIpLeId/aPpScOpEs/aPpScOpEiD",
 			Expected: &RoleManagementCloudPCRoleAssignmentIdAppScopeId{
-				UnifiedRoleAssignmentMultipleId: "uNiFiEdRoLeAsSiGnMeNtMuLtIpLeIdVaLuE",
-				AppScopeId:                      "aPpScOpEiDvAlUe",
+				UnifiedRoleAssignmentMultipleId: "uNiFiEdRoLeAsSiGnMeNtMuLtIpLeId",
+				AppScopeId:                      "aPpScOpEiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/rOlEmAnAgEmEnT/cLoUdPc/rOlEaSsIgNmEnTs/uNiFiEdRoLeAsSiGnMeNtMuLtIpLeIdVaLuE/aPpScOpEs/aPpScOpEiDvAlUe/extra",
+			Input: "/rOlEmAnAgEmEnT/cLoUdPc/rOlEaSsIgNmEnTs/uNiFiEdRoLeAsSiGnMeNtMuLtIpLeId/aPpScOpEs/aPpScOpEiD/extra",
 			Error: true,
 		},
 	}

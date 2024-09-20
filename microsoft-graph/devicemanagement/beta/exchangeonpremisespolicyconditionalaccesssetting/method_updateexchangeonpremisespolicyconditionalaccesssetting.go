@@ -2,6 +2,7 @@ package exchangeonpremisespolicyconditionalaccesssetting
 
 import (
 	"context"
+	"fmt"
 	"net/http"
 
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta"
@@ -17,16 +18,45 @@ type UpdateExchangeOnPremisesPolicyConditionalAccessSettingOperationResponse str
 	OData        *odata.OData
 }
 
+type UpdateExchangeOnPremisesPolicyConditionalAccessSettingOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateExchangeOnPremisesPolicyConditionalAccessSettingOperationOptions() UpdateExchangeOnPremisesPolicyConditionalAccessSettingOperationOptions {
+	return UpdateExchangeOnPremisesPolicyConditionalAccessSettingOperationOptions{}
+}
+
+func (o UpdateExchangeOnPremisesPolicyConditionalAccessSettingOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateExchangeOnPremisesPolicyConditionalAccessSettingOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateExchangeOnPremisesPolicyConditionalAccessSettingOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateExchangeOnPremisesPolicyConditionalAccessSetting - Update the navigation property conditionalAccessSettings in
 // deviceManagement
-func (c ExchangeOnPremisesPolicyConditionalAccessSettingClient) UpdateExchangeOnPremisesPolicyConditionalAccessSetting(ctx context.Context, input beta.OnPremisesConditionalAccessSettings) (result UpdateExchangeOnPremisesPolicyConditionalAccessSettingOperationResponse, err error) {
+func (c ExchangeOnPremisesPolicyConditionalAccessSettingClient) UpdateExchangeOnPremisesPolicyConditionalAccessSetting(ctx context.Context, id beta.DeviceManagementExchangeOnPremisesPolicyId, input beta.OnPremisesConditionalAccessSettings, options UpdateExchangeOnPremisesPolicyConditionalAccessSettingOperationOptions) (result UpdateExchangeOnPremisesPolicyConditionalAccessSettingOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       "/deviceManagement/exchangeOnPremisesPolicy/conditionalAccessSettings",
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/conditionalAccessSettings", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

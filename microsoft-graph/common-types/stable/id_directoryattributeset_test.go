@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &DirectoryAttributeSetId{}
 
 func TestNewDirectoryAttributeSetID(t *testing.T) {
-	id := NewDirectoryAttributeSetID("attributeSetIdValue")
+	id := NewDirectoryAttributeSetID("attributeSetId")
 
-	if id.AttributeSetId != "attributeSetIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'AttributeSetId'", id.AttributeSetId, "attributeSetIdValue")
+	if id.AttributeSetId != "attributeSetId" {
+		t.Fatalf("Expected %q but got %q for Segment 'AttributeSetId'", id.AttributeSetId, "attributeSetId")
 	}
 }
 
 func TestFormatDirectoryAttributeSetID(t *testing.T) {
-	actual := NewDirectoryAttributeSetID("attributeSetIdValue").ID()
-	expected := "/directory/attributeSets/attributeSetIdValue"
+	actual := NewDirectoryAttributeSetID("attributeSetId").ID()
+	expected := "/directory/attributeSets/attributeSetId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -50,14 +50,14 @@ func TestParseDirectoryAttributeSetID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/directory/attributeSets/attributeSetIdValue",
+			Input: "/directory/attributeSets/attributeSetId",
 			Expected: &DirectoryAttributeSetId{
-				AttributeSetId: "attributeSetIdValue",
+				AttributeSetId: "attributeSetId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/directory/attributeSets/attributeSetIdValue/extra",
+			Input: "/directory/attributeSets/attributeSetId/extra",
 			Error: true,
 		},
 	}
@@ -116,26 +116,26 @@ func TestParseDirectoryAttributeSetIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/directory/attributeSets/attributeSetIdValue",
+			Input: "/directory/attributeSets/attributeSetId",
 			Expected: &DirectoryAttributeSetId{
-				AttributeSetId: "attributeSetIdValue",
+				AttributeSetId: "attributeSetId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/directory/attributeSets/attributeSetIdValue/extra",
+			Input: "/directory/attributeSets/attributeSetId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/dIrEcToRy/aTtRiBuTeSeTs/aTtRiBuTeSeTiDvAlUe",
+			Input: "/dIrEcToRy/aTtRiBuTeSeTs/aTtRiBuTeSeTiD",
 			Expected: &DirectoryAttributeSetId{
-				AttributeSetId: "aTtRiBuTeSeTiDvAlUe",
+				AttributeSetId: "aTtRiBuTeSeTiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/dIrEcToRy/aTtRiBuTeSeTs/aTtRiBuTeSeTiDvAlUe/extra",
+			Input: "/dIrEcToRy/aTtRiBuTeSeTs/aTtRiBuTeSeTiD/extra",
 			Error: true,
 		},
 	}

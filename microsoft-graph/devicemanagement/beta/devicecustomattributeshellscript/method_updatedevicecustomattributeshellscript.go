@@ -17,16 +17,45 @@ type UpdateDeviceCustomAttributeShellScriptOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateDeviceCustomAttributeShellScriptOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateDeviceCustomAttributeShellScriptOperationOptions() UpdateDeviceCustomAttributeShellScriptOperationOptions {
+	return UpdateDeviceCustomAttributeShellScriptOperationOptions{}
+}
+
+func (o UpdateDeviceCustomAttributeShellScriptOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateDeviceCustomAttributeShellScriptOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateDeviceCustomAttributeShellScriptOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateDeviceCustomAttributeShellScript - Update the navigation property deviceCustomAttributeShellScripts in
 // deviceManagement
-func (c DeviceCustomAttributeShellScriptClient) UpdateDeviceCustomAttributeShellScript(ctx context.Context, id beta.DeviceManagementDeviceCustomAttributeShellScriptId, input beta.DeviceCustomAttributeShellScript) (result UpdateDeviceCustomAttributeShellScriptOperationResponse, err error) {
+func (c DeviceCustomAttributeShellScriptClient) UpdateDeviceCustomAttributeShellScript(ctx context.Context, id beta.DeviceManagementDeviceCustomAttributeShellScriptId, input beta.DeviceCustomAttributeShellScript, options UpdateDeviceCustomAttributeShellScriptOperationOptions) (result UpdateDeviceCustomAttributeShellScriptOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -20,15 +20,44 @@ type CreateRoleManagementAlertIncidentOperationResponse struct {
 	Model        beta.UnifiedRoleManagementAlertIncident
 }
 
+type CreateRoleManagementAlertIncidentOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateRoleManagementAlertIncidentOperationOptions() CreateRoleManagementAlertIncidentOperationOptions {
+	return CreateRoleManagementAlertIncidentOperationOptions{}
+}
+
+func (o CreateRoleManagementAlertIncidentOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateRoleManagementAlertIncidentOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateRoleManagementAlertIncidentOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateRoleManagementAlertIncident - Create new navigation property to alertIncidents for identityGovernance
-func (c RoleManagementAlertAlertAlertIncidentClient) CreateRoleManagementAlertIncident(ctx context.Context, id beta.IdentityGovernanceRoleManagementAlertAlertId, input beta.UnifiedRoleManagementAlertIncident) (result CreateRoleManagementAlertIncidentOperationResponse, err error) {
+func (c RoleManagementAlertAlertAlertIncidentClient) CreateRoleManagementAlertIncident(ctx context.Context, id beta.IdentityGovernanceRoleManagementAlertAlertId, input beta.UnifiedRoleManagementAlertIncident, options CreateRoleManagementAlertIncidentOperationOptions) (result CreateRoleManagementAlertIncidentOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/alertIncidents", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/alertIncidents", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

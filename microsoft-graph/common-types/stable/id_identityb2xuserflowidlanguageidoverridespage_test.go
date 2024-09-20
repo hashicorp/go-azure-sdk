@@ -12,24 +12,24 @@ import (
 var _ resourceids.ResourceId = &IdentityB2xUserFlowIdLanguageIdOverridesPageId{}
 
 func TestNewIdentityB2xUserFlowIdLanguageIdOverridesPageID(t *testing.T) {
-	id := NewIdentityB2xUserFlowIdLanguageIdOverridesPageID("b2xIdentityUserFlowIdValue", "userFlowLanguageConfigurationIdValue", "userFlowLanguagePageIdValue")
+	id := NewIdentityB2xUserFlowIdLanguageIdOverridesPageID("b2xIdentityUserFlowId", "userFlowLanguageConfigurationId", "userFlowLanguagePageId")
 
-	if id.B2xIdentityUserFlowId != "b2xIdentityUserFlowIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'B2xIdentityUserFlowId'", id.B2xIdentityUserFlowId, "b2xIdentityUserFlowIdValue")
+	if id.B2xIdentityUserFlowId != "b2xIdentityUserFlowId" {
+		t.Fatalf("Expected %q but got %q for Segment 'B2xIdentityUserFlowId'", id.B2xIdentityUserFlowId, "b2xIdentityUserFlowId")
 	}
 
-	if id.UserFlowLanguageConfigurationId != "userFlowLanguageConfigurationIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'UserFlowLanguageConfigurationId'", id.UserFlowLanguageConfigurationId, "userFlowLanguageConfigurationIdValue")
+	if id.UserFlowLanguageConfigurationId != "userFlowLanguageConfigurationId" {
+		t.Fatalf("Expected %q but got %q for Segment 'UserFlowLanguageConfigurationId'", id.UserFlowLanguageConfigurationId, "userFlowLanguageConfigurationId")
 	}
 
-	if id.UserFlowLanguagePageId != "userFlowLanguagePageIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'UserFlowLanguagePageId'", id.UserFlowLanguagePageId, "userFlowLanguagePageIdValue")
+	if id.UserFlowLanguagePageId != "userFlowLanguagePageId" {
+		t.Fatalf("Expected %q but got %q for Segment 'UserFlowLanguagePageId'", id.UserFlowLanguagePageId, "userFlowLanguagePageId")
 	}
 }
 
 func TestFormatIdentityB2xUserFlowIdLanguageIdOverridesPageID(t *testing.T) {
-	actual := NewIdentityB2xUserFlowIdLanguageIdOverridesPageID("b2xIdentityUserFlowIdValue", "userFlowLanguageConfigurationIdValue", "userFlowLanguagePageIdValue").ID()
-	expected := "/identity/b2xUserFlows/b2xIdentityUserFlowIdValue/languages/userFlowLanguageConfigurationIdValue/overridesPages/userFlowLanguagePageIdValue"
+	actual := NewIdentityB2xUserFlowIdLanguageIdOverridesPageID("b2xIdentityUserFlowId", "userFlowLanguageConfigurationId", "userFlowLanguagePageId").ID()
+	expected := "/identity/b2xUserFlows/b2xIdentityUserFlowId/languages/userFlowLanguageConfigurationId/overridesPages/userFlowLanguagePageId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -58,36 +58,36 @@ func TestParseIdentityB2xUserFlowIdLanguageIdOverridesPageID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/identity/b2xUserFlows/b2xIdentityUserFlowIdValue",
+			Input: "/identity/b2xUserFlows/b2xIdentityUserFlowId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/identity/b2xUserFlows/b2xIdentityUserFlowIdValue/languages",
+			Input: "/identity/b2xUserFlows/b2xIdentityUserFlowId/languages",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/identity/b2xUserFlows/b2xIdentityUserFlowIdValue/languages/userFlowLanguageConfigurationIdValue",
+			Input: "/identity/b2xUserFlows/b2xIdentityUserFlowId/languages/userFlowLanguageConfigurationId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/identity/b2xUserFlows/b2xIdentityUserFlowIdValue/languages/userFlowLanguageConfigurationIdValue/overridesPages",
+			Input: "/identity/b2xUserFlows/b2xIdentityUserFlowId/languages/userFlowLanguageConfigurationId/overridesPages",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/identity/b2xUserFlows/b2xIdentityUserFlowIdValue/languages/userFlowLanguageConfigurationIdValue/overridesPages/userFlowLanguagePageIdValue",
+			Input: "/identity/b2xUserFlows/b2xIdentityUserFlowId/languages/userFlowLanguageConfigurationId/overridesPages/userFlowLanguagePageId",
 			Expected: &IdentityB2xUserFlowIdLanguageIdOverridesPageId{
-				B2xIdentityUserFlowId:           "b2xIdentityUserFlowIdValue",
-				UserFlowLanguageConfigurationId: "userFlowLanguageConfigurationIdValue",
-				UserFlowLanguagePageId:          "userFlowLanguagePageIdValue",
+				B2xIdentityUserFlowId:           "b2xIdentityUserFlowId",
+				UserFlowLanguageConfigurationId: "userFlowLanguageConfigurationId",
+				UserFlowLanguagePageId:          "userFlowLanguagePageId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/identity/b2xUserFlows/b2xIdentityUserFlowIdValue/languages/userFlowLanguageConfigurationIdValue/overridesPages/userFlowLanguagePageIdValue/extra",
+			Input: "/identity/b2xUserFlows/b2xIdentityUserFlowId/languages/userFlowLanguageConfigurationId/overridesPages/userFlowLanguagePageId/extra",
 			Error: true,
 		},
 	}
@@ -154,70 +154,70 @@ func TestParseIdentityB2xUserFlowIdLanguageIdOverridesPageIDInsensitively(t *tes
 		},
 		{
 			// Incomplete URI
-			Input: "/identity/b2xUserFlows/b2xIdentityUserFlowIdValue",
+			Input: "/identity/b2xUserFlows/b2xIdentityUserFlowId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/iDeNtItY/b2xUsErFlOwS/b2xIdEnTiTyUsErFlOwIdVaLuE",
+			Input: "/iDeNtItY/b2xUsErFlOwS/b2xIdEnTiTyUsErFlOwId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/identity/b2xUserFlows/b2xIdentityUserFlowIdValue/languages",
+			Input: "/identity/b2xUserFlows/b2xIdentityUserFlowId/languages",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/iDeNtItY/b2xUsErFlOwS/b2xIdEnTiTyUsErFlOwIdVaLuE/lAnGuAgEs",
+			Input: "/iDeNtItY/b2xUsErFlOwS/b2xIdEnTiTyUsErFlOwId/lAnGuAgEs",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/identity/b2xUserFlows/b2xIdentityUserFlowIdValue/languages/userFlowLanguageConfigurationIdValue",
+			Input: "/identity/b2xUserFlows/b2xIdentityUserFlowId/languages/userFlowLanguageConfigurationId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/iDeNtItY/b2xUsErFlOwS/b2xIdEnTiTyUsErFlOwIdVaLuE/lAnGuAgEs/uSeRfLoWlAnGuAgEcOnFiGuRaTiOnIdVaLuE",
+			Input: "/iDeNtItY/b2xUsErFlOwS/b2xIdEnTiTyUsErFlOwId/lAnGuAgEs/uSeRfLoWlAnGuAgEcOnFiGuRaTiOnId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/identity/b2xUserFlows/b2xIdentityUserFlowIdValue/languages/userFlowLanguageConfigurationIdValue/overridesPages",
+			Input: "/identity/b2xUserFlows/b2xIdentityUserFlowId/languages/userFlowLanguageConfigurationId/overridesPages",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/iDeNtItY/b2xUsErFlOwS/b2xIdEnTiTyUsErFlOwIdVaLuE/lAnGuAgEs/uSeRfLoWlAnGuAgEcOnFiGuRaTiOnIdVaLuE/oVeRrIdEsPaGeS",
+			Input: "/iDeNtItY/b2xUsErFlOwS/b2xIdEnTiTyUsErFlOwId/lAnGuAgEs/uSeRfLoWlAnGuAgEcOnFiGuRaTiOnId/oVeRrIdEsPaGeS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/identity/b2xUserFlows/b2xIdentityUserFlowIdValue/languages/userFlowLanguageConfigurationIdValue/overridesPages/userFlowLanguagePageIdValue",
+			Input: "/identity/b2xUserFlows/b2xIdentityUserFlowId/languages/userFlowLanguageConfigurationId/overridesPages/userFlowLanguagePageId",
 			Expected: &IdentityB2xUserFlowIdLanguageIdOverridesPageId{
-				B2xIdentityUserFlowId:           "b2xIdentityUserFlowIdValue",
-				UserFlowLanguageConfigurationId: "userFlowLanguageConfigurationIdValue",
-				UserFlowLanguagePageId:          "userFlowLanguagePageIdValue",
+				B2xIdentityUserFlowId:           "b2xIdentityUserFlowId",
+				UserFlowLanguageConfigurationId: "userFlowLanguageConfigurationId",
+				UserFlowLanguagePageId:          "userFlowLanguagePageId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/identity/b2xUserFlows/b2xIdentityUserFlowIdValue/languages/userFlowLanguageConfigurationIdValue/overridesPages/userFlowLanguagePageIdValue/extra",
+			Input: "/identity/b2xUserFlows/b2xIdentityUserFlowId/languages/userFlowLanguageConfigurationId/overridesPages/userFlowLanguagePageId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/iDeNtItY/b2xUsErFlOwS/b2xIdEnTiTyUsErFlOwIdVaLuE/lAnGuAgEs/uSeRfLoWlAnGuAgEcOnFiGuRaTiOnIdVaLuE/oVeRrIdEsPaGeS/uSeRfLoWlAnGuAgEpAgEiDvAlUe",
+			Input: "/iDeNtItY/b2xUsErFlOwS/b2xIdEnTiTyUsErFlOwId/lAnGuAgEs/uSeRfLoWlAnGuAgEcOnFiGuRaTiOnId/oVeRrIdEsPaGeS/uSeRfLoWlAnGuAgEpAgEiD",
 			Expected: &IdentityB2xUserFlowIdLanguageIdOverridesPageId{
-				B2xIdentityUserFlowId:           "b2xIdEnTiTyUsErFlOwIdVaLuE",
-				UserFlowLanguageConfigurationId: "uSeRfLoWlAnGuAgEcOnFiGuRaTiOnIdVaLuE",
-				UserFlowLanguagePageId:          "uSeRfLoWlAnGuAgEpAgEiDvAlUe",
+				B2xIdentityUserFlowId:           "b2xIdEnTiTyUsErFlOwId",
+				UserFlowLanguageConfigurationId: "uSeRfLoWlAnGuAgEcOnFiGuRaTiOnId",
+				UserFlowLanguagePageId:          "uSeRfLoWlAnGuAgEpAgEiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/iDeNtItY/b2xUsErFlOwS/b2xIdEnTiTyUsErFlOwIdVaLuE/lAnGuAgEs/uSeRfLoWlAnGuAgEcOnFiGuRaTiOnIdVaLuE/oVeRrIdEsPaGeS/uSeRfLoWlAnGuAgEpAgEiDvAlUe/extra",
+			Input: "/iDeNtItY/b2xUsErFlOwS/b2xIdEnTiTyUsErFlOwId/lAnGuAgEs/uSeRfLoWlAnGuAgEcOnFiGuRaTiOnId/oVeRrIdEsPaGeS/uSeRfLoWlAnGuAgEpAgEiD/extra",
 			Error: true,
 		},
 	}

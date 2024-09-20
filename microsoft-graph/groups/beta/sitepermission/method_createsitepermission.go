@@ -19,15 +19,44 @@ type CreateSitePermissionOperationResponse struct {
 	Model        *beta.Permission
 }
 
+type CreateSitePermissionOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateSitePermissionOperationOptions() CreateSitePermissionOperationOptions {
+	return CreateSitePermissionOperationOptions{}
+}
+
+func (o CreateSitePermissionOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateSitePermissionOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateSitePermissionOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateSitePermission - Create new navigation property to permissions for groups
-func (c SitePermissionClient) CreateSitePermission(ctx context.Context, id beta.GroupIdSiteId, input beta.Permission) (result CreateSitePermissionOperationResponse, err error) {
+func (c SitePermissionClient) CreateSitePermission(ctx context.Context, id beta.GroupIdSiteId, input beta.Permission, options CreateSitePermissionOperationOptions) (result CreateSitePermissionOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/permissions", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/permissions", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

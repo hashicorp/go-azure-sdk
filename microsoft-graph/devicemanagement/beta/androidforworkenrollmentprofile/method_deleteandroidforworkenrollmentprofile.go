@@ -19,7 +19,8 @@ type DeleteAndroidForWorkEnrollmentProfileOperationResponse struct {
 }
 
 type DeleteAndroidForWorkEnrollmentProfileOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteAndroidForWorkEnrollmentProfileOperationOptions() DeleteAndroidForWorkEnrollmentProfileOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteAndroidForWorkEnrollmentProfileOperationOptions) ToHeaders() *clie
 
 func (o DeleteAndroidForWorkEnrollmentProfileOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

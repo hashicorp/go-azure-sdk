@@ -19,7 +19,8 @@ type RemoveB2xUserFlowApiConnectorConfigurationPostFederationSignupRefOperationR
 }
 
 type RemoveB2xUserFlowApiConnectorConfigurationPostFederationSignupRefOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultRemoveB2xUserFlowApiConnectorConfigurationPostFederationSignupRefOperationOptions() RemoveB2xUserFlowApiConnectorConfigurationPostFederationSignupRefOperationOptions {
@@ -36,7 +37,9 @@ func (o RemoveB2xUserFlowApiConnectorConfigurationPostFederationSignupRefOperati
 
 func (o RemoveB2xUserFlowApiConnectorConfigurationPostFederationSignupRefOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

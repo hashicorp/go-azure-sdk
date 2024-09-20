@@ -19,7 +19,8 @@ type DeleteMonthlyPrintUsageByUserOperationResponse struct {
 }
 
 type DeleteMonthlyPrintUsageByUserOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteMonthlyPrintUsageByUserOperationOptions() DeleteMonthlyPrintUsageByUserOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteMonthlyPrintUsageByUserOperationOptions) ToHeaders() *client.Heade
 
 func (o DeleteMonthlyPrintUsageByUserOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

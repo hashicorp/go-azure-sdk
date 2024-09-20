@@ -19,15 +19,44 @@ type CreateDriveRootListItemDocumentSetVersionOperationResponse struct {
 	Model        *stable.DocumentSetVersion
 }
 
+type CreateDriveRootListItemDocumentSetVersionOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateDriveRootListItemDocumentSetVersionOperationOptions() CreateDriveRootListItemDocumentSetVersionOperationOptions {
+	return CreateDriveRootListItemDocumentSetVersionOperationOptions{}
+}
+
+func (o CreateDriveRootListItemDocumentSetVersionOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateDriveRootListItemDocumentSetVersionOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateDriveRootListItemDocumentSetVersionOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateDriveRootListItemDocumentSetVersion - Create new navigation property to documentSetVersions for users
-func (c DriveRootListItemDocumentSetVersionClient) CreateDriveRootListItemDocumentSetVersion(ctx context.Context, id stable.UserIdDriveId, input stable.DocumentSetVersion) (result CreateDriveRootListItemDocumentSetVersionOperationResponse, err error) {
+func (c DriveRootListItemDocumentSetVersionClient) CreateDriveRootListItemDocumentSetVersion(ctx context.Context, id stable.UserIdDriveId, input stable.DocumentSetVersion, options CreateDriveRootListItemDocumentSetVersionOperationOptions) (result CreateDriveRootListItemDocumentSetVersionOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/root/listItem/documentSetVersions", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/root/listItem/documentSetVersions", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

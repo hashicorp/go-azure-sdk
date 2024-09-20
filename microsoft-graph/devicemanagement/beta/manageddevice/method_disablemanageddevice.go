@@ -18,15 +18,44 @@ type DisableManagedDeviceOperationResponse struct {
 	OData        *odata.OData
 }
 
+type DisableManagedDeviceOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultDisableManagedDeviceOperationOptions() DisableManagedDeviceOperationOptions {
+	return DisableManagedDeviceOperationOptions{}
+}
+
+func (o DisableManagedDeviceOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o DisableManagedDeviceOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o DisableManagedDeviceOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // DisableManagedDevice - Invoke action disable
-func (c ManagedDeviceClient) DisableManagedDevice(ctx context.Context, id beta.DeviceManagementManagedDeviceId) (result DisableManagedDeviceOperationResponse, err error) {
+func (c ManagedDeviceClient) DisableManagedDevice(ctx context.Context, id beta.DeviceManagementManagedDeviceId, options DisableManagedDeviceOperationOptions) (result DisableManagedDeviceOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/disable", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/disable", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

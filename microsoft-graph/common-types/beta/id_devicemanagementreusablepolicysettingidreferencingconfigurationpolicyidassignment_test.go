@@ -12,24 +12,24 @@ import (
 var _ resourceids.ResourceId = &DeviceManagementReusablePolicySettingIdReferencingConfigurationPolicyIdAssignmentId{}
 
 func TestNewDeviceManagementReusablePolicySettingIdReferencingConfigurationPolicyIdAssignmentID(t *testing.T) {
-	id := NewDeviceManagementReusablePolicySettingIdReferencingConfigurationPolicyIdAssignmentID("deviceManagementReusablePolicySettingIdValue", "deviceManagementConfigurationPolicyIdValue", "deviceManagementConfigurationPolicyAssignmentIdValue")
+	id := NewDeviceManagementReusablePolicySettingIdReferencingConfigurationPolicyIdAssignmentID("deviceManagementReusablePolicySettingId", "deviceManagementConfigurationPolicyId", "deviceManagementConfigurationPolicyAssignmentId")
 
-	if id.DeviceManagementReusablePolicySettingId != "deviceManagementReusablePolicySettingIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DeviceManagementReusablePolicySettingId'", id.DeviceManagementReusablePolicySettingId, "deviceManagementReusablePolicySettingIdValue")
+	if id.DeviceManagementReusablePolicySettingId != "deviceManagementReusablePolicySettingId" {
+		t.Fatalf("Expected %q but got %q for Segment 'DeviceManagementReusablePolicySettingId'", id.DeviceManagementReusablePolicySettingId, "deviceManagementReusablePolicySettingId")
 	}
 
-	if id.DeviceManagementConfigurationPolicyId != "deviceManagementConfigurationPolicyIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DeviceManagementConfigurationPolicyId'", id.DeviceManagementConfigurationPolicyId, "deviceManagementConfigurationPolicyIdValue")
+	if id.DeviceManagementConfigurationPolicyId != "deviceManagementConfigurationPolicyId" {
+		t.Fatalf("Expected %q but got %q for Segment 'DeviceManagementConfigurationPolicyId'", id.DeviceManagementConfigurationPolicyId, "deviceManagementConfigurationPolicyId")
 	}
 
-	if id.DeviceManagementConfigurationPolicyAssignmentId != "deviceManagementConfigurationPolicyAssignmentIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DeviceManagementConfigurationPolicyAssignmentId'", id.DeviceManagementConfigurationPolicyAssignmentId, "deviceManagementConfigurationPolicyAssignmentIdValue")
+	if id.DeviceManagementConfigurationPolicyAssignmentId != "deviceManagementConfigurationPolicyAssignmentId" {
+		t.Fatalf("Expected %q but got %q for Segment 'DeviceManagementConfigurationPolicyAssignmentId'", id.DeviceManagementConfigurationPolicyAssignmentId, "deviceManagementConfigurationPolicyAssignmentId")
 	}
 }
 
 func TestFormatDeviceManagementReusablePolicySettingIdReferencingConfigurationPolicyIdAssignmentID(t *testing.T) {
-	actual := NewDeviceManagementReusablePolicySettingIdReferencingConfigurationPolicyIdAssignmentID("deviceManagementReusablePolicySettingIdValue", "deviceManagementConfigurationPolicyIdValue", "deviceManagementConfigurationPolicyAssignmentIdValue").ID()
-	expected := "/deviceManagement/reusablePolicySettings/deviceManagementReusablePolicySettingIdValue/referencingConfigurationPolicies/deviceManagementConfigurationPolicyIdValue/assignments/deviceManagementConfigurationPolicyAssignmentIdValue"
+	actual := NewDeviceManagementReusablePolicySettingIdReferencingConfigurationPolicyIdAssignmentID("deviceManagementReusablePolicySettingId", "deviceManagementConfigurationPolicyId", "deviceManagementConfigurationPolicyAssignmentId").ID()
+	expected := "/deviceManagement/reusablePolicySettings/deviceManagementReusablePolicySettingId/referencingConfigurationPolicies/deviceManagementConfigurationPolicyId/assignments/deviceManagementConfigurationPolicyAssignmentId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -58,36 +58,36 @@ func TestParseDeviceManagementReusablePolicySettingIdReferencingConfigurationPol
 		},
 		{
 			// Incomplete URI
-			Input: "/deviceManagement/reusablePolicySettings/deviceManagementReusablePolicySettingIdValue",
+			Input: "/deviceManagement/reusablePolicySettings/deviceManagementReusablePolicySettingId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/deviceManagement/reusablePolicySettings/deviceManagementReusablePolicySettingIdValue/referencingConfigurationPolicies",
+			Input: "/deviceManagement/reusablePolicySettings/deviceManagementReusablePolicySettingId/referencingConfigurationPolicies",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/deviceManagement/reusablePolicySettings/deviceManagementReusablePolicySettingIdValue/referencingConfigurationPolicies/deviceManagementConfigurationPolicyIdValue",
+			Input: "/deviceManagement/reusablePolicySettings/deviceManagementReusablePolicySettingId/referencingConfigurationPolicies/deviceManagementConfigurationPolicyId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/deviceManagement/reusablePolicySettings/deviceManagementReusablePolicySettingIdValue/referencingConfigurationPolicies/deviceManagementConfigurationPolicyIdValue/assignments",
+			Input: "/deviceManagement/reusablePolicySettings/deviceManagementReusablePolicySettingId/referencingConfigurationPolicies/deviceManagementConfigurationPolicyId/assignments",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/reusablePolicySettings/deviceManagementReusablePolicySettingIdValue/referencingConfigurationPolicies/deviceManagementConfigurationPolicyIdValue/assignments/deviceManagementConfigurationPolicyAssignmentIdValue",
+			Input: "/deviceManagement/reusablePolicySettings/deviceManagementReusablePolicySettingId/referencingConfigurationPolicies/deviceManagementConfigurationPolicyId/assignments/deviceManagementConfigurationPolicyAssignmentId",
 			Expected: &DeviceManagementReusablePolicySettingIdReferencingConfigurationPolicyIdAssignmentId{
-				DeviceManagementReusablePolicySettingId:         "deviceManagementReusablePolicySettingIdValue",
-				DeviceManagementConfigurationPolicyId:           "deviceManagementConfigurationPolicyIdValue",
-				DeviceManagementConfigurationPolicyAssignmentId: "deviceManagementConfigurationPolicyAssignmentIdValue",
+				DeviceManagementReusablePolicySettingId:         "deviceManagementReusablePolicySettingId",
+				DeviceManagementConfigurationPolicyId:           "deviceManagementConfigurationPolicyId",
+				DeviceManagementConfigurationPolicyAssignmentId: "deviceManagementConfigurationPolicyAssignmentId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/reusablePolicySettings/deviceManagementReusablePolicySettingIdValue/referencingConfigurationPolicies/deviceManagementConfigurationPolicyIdValue/assignments/deviceManagementConfigurationPolicyAssignmentIdValue/extra",
+			Input: "/deviceManagement/reusablePolicySettings/deviceManagementReusablePolicySettingId/referencingConfigurationPolicies/deviceManagementConfigurationPolicyId/assignments/deviceManagementConfigurationPolicyAssignmentId/extra",
 			Error: true,
 		},
 	}
@@ -154,70 +154,70 @@ func TestParseDeviceManagementReusablePolicySettingIdReferencingConfigurationPol
 		},
 		{
 			// Incomplete URI
-			Input: "/deviceManagement/reusablePolicySettings/deviceManagementReusablePolicySettingIdValue",
+			Input: "/deviceManagement/reusablePolicySettings/deviceManagementReusablePolicySettingId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/rEuSaBlEpOlIcYsEtTiNgS/dEvIcEmAnAgEmEnTrEuSaBlEpOlIcYsEtTiNgIdVaLuE",
+			Input: "/dEvIcEmAnAgEmEnT/rEuSaBlEpOlIcYsEtTiNgS/dEvIcEmAnAgEmEnTrEuSaBlEpOlIcYsEtTiNgId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/deviceManagement/reusablePolicySettings/deviceManagementReusablePolicySettingIdValue/referencingConfigurationPolicies",
+			Input: "/deviceManagement/reusablePolicySettings/deviceManagementReusablePolicySettingId/referencingConfigurationPolicies",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/rEuSaBlEpOlIcYsEtTiNgS/dEvIcEmAnAgEmEnTrEuSaBlEpOlIcYsEtTiNgIdVaLuE/rEfErEnCiNgCoNfIgUrAtIoNpOlIcIeS",
+			Input: "/dEvIcEmAnAgEmEnT/rEuSaBlEpOlIcYsEtTiNgS/dEvIcEmAnAgEmEnTrEuSaBlEpOlIcYsEtTiNgId/rEfErEnCiNgCoNfIgUrAtIoNpOlIcIeS",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/deviceManagement/reusablePolicySettings/deviceManagementReusablePolicySettingIdValue/referencingConfigurationPolicies/deviceManagementConfigurationPolicyIdValue",
+			Input: "/deviceManagement/reusablePolicySettings/deviceManagementReusablePolicySettingId/referencingConfigurationPolicies/deviceManagementConfigurationPolicyId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/rEuSaBlEpOlIcYsEtTiNgS/dEvIcEmAnAgEmEnTrEuSaBlEpOlIcYsEtTiNgIdVaLuE/rEfErEnCiNgCoNfIgUrAtIoNpOlIcIeS/dEvIcEmAnAgEmEnTcOnFiGuRaTiOnPoLiCyIdVaLuE",
+			Input: "/dEvIcEmAnAgEmEnT/rEuSaBlEpOlIcYsEtTiNgS/dEvIcEmAnAgEmEnTrEuSaBlEpOlIcYsEtTiNgId/rEfErEnCiNgCoNfIgUrAtIoNpOlIcIeS/dEvIcEmAnAgEmEnTcOnFiGuRaTiOnPoLiCyId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/deviceManagement/reusablePolicySettings/deviceManagementReusablePolicySettingIdValue/referencingConfigurationPolicies/deviceManagementConfigurationPolicyIdValue/assignments",
+			Input: "/deviceManagement/reusablePolicySettings/deviceManagementReusablePolicySettingId/referencingConfigurationPolicies/deviceManagementConfigurationPolicyId/assignments",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/rEuSaBlEpOlIcYsEtTiNgS/dEvIcEmAnAgEmEnTrEuSaBlEpOlIcYsEtTiNgIdVaLuE/rEfErEnCiNgCoNfIgUrAtIoNpOlIcIeS/dEvIcEmAnAgEmEnTcOnFiGuRaTiOnPoLiCyIdVaLuE/aSsIgNmEnTs",
+			Input: "/dEvIcEmAnAgEmEnT/rEuSaBlEpOlIcYsEtTiNgS/dEvIcEmAnAgEmEnTrEuSaBlEpOlIcYsEtTiNgId/rEfErEnCiNgCoNfIgUrAtIoNpOlIcIeS/dEvIcEmAnAgEmEnTcOnFiGuRaTiOnPoLiCyId/aSsIgNmEnTs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/reusablePolicySettings/deviceManagementReusablePolicySettingIdValue/referencingConfigurationPolicies/deviceManagementConfigurationPolicyIdValue/assignments/deviceManagementConfigurationPolicyAssignmentIdValue",
+			Input: "/deviceManagement/reusablePolicySettings/deviceManagementReusablePolicySettingId/referencingConfigurationPolicies/deviceManagementConfigurationPolicyId/assignments/deviceManagementConfigurationPolicyAssignmentId",
 			Expected: &DeviceManagementReusablePolicySettingIdReferencingConfigurationPolicyIdAssignmentId{
-				DeviceManagementReusablePolicySettingId:         "deviceManagementReusablePolicySettingIdValue",
-				DeviceManagementConfigurationPolicyId:           "deviceManagementConfigurationPolicyIdValue",
-				DeviceManagementConfigurationPolicyAssignmentId: "deviceManagementConfigurationPolicyAssignmentIdValue",
+				DeviceManagementReusablePolicySettingId:         "deviceManagementReusablePolicySettingId",
+				DeviceManagementConfigurationPolicyId:           "deviceManagementConfigurationPolicyId",
+				DeviceManagementConfigurationPolicyAssignmentId: "deviceManagementConfigurationPolicyAssignmentId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/reusablePolicySettings/deviceManagementReusablePolicySettingIdValue/referencingConfigurationPolicies/deviceManagementConfigurationPolicyIdValue/assignments/deviceManagementConfigurationPolicyAssignmentIdValue/extra",
+			Input: "/deviceManagement/reusablePolicySettings/deviceManagementReusablePolicySettingId/referencingConfigurationPolicies/deviceManagementConfigurationPolicyId/assignments/deviceManagementConfigurationPolicyAssignmentId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/rEuSaBlEpOlIcYsEtTiNgS/dEvIcEmAnAgEmEnTrEuSaBlEpOlIcYsEtTiNgIdVaLuE/rEfErEnCiNgCoNfIgUrAtIoNpOlIcIeS/dEvIcEmAnAgEmEnTcOnFiGuRaTiOnPoLiCyIdVaLuE/aSsIgNmEnTs/dEvIcEmAnAgEmEnTcOnFiGuRaTiOnPoLiCyAsSiGnMeNtIdVaLuE",
+			Input: "/dEvIcEmAnAgEmEnT/rEuSaBlEpOlIcYsEtTiNgS/dEvIcEmAnAgEmEnTrEuSaBlEpOlIcYsEtTiNgId/rEfErEnCiNgCoNfIgUrAtIoNpOlIcIeS/dEvIcEmAnAgEmEnTcOnFiGuRaTiOnPoLiCyId/aSsIgNmEnTs/dEvIcEmAnAgEmEnTcOnFiGuRaTiOnPoLiCyAsSiGnMeNtId",
 			Expected: &DeviceManagementReusablePolicySettingIdReferencingConfigurationPolicyIdAssignmentId{
-				DeviceManagementReusablePolicySettingId:         "dEvIcEmAnAgEmEnTrEuSaBlEpOlIcYsEtTiNgIdVaLuE",
-				DeviceManagementConfigurationPolicyId:           "dEvIcEmAnAgEmEnTcOnFiGuRaTiOnPoLiCyIdVaLuE",
-				DeviceManagementConfigurationPolicyAssignmentId: "dEvIcEmAnAgEmEnTcOnFiGuRaTiOnPoLiCyAsSiGnMeNtIdVaLuE",
+				DeviceManagementReusablePolicySettingId:         "dEvIcEmAnAgEmEnTrEuSaBlEpOlIcYsEtTiNgId",
+				DeviceManagementConfigurationPolicyId:           "dEvIcEmAnAgEmEnTcOnFiGuRaTiOnPoLiCyId",
+				DeviceManagementConfigurationPolicyAssignmentId: "dEvIcEmAnAgEmEnTcOnFiGuRaTiOnPoLiCyAsSiGnMeNtId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/rEuSaBlEpOlIcYsEtTiNgS/dEvIcEmAnAgEmEnTrEuSaBlEpOlIcYsEtTiNgIdVaLuE/rEfErEnCiNgCoNfIgUrAtIoNpOlIcIeS/dEvIcEmAnAgEmEnTcOnFiGuRaTiOnPoLiCyIdVaLuE/aSsIgNmEnTs/dEvIcEmAnAgEmEnTcOnFiGuRaTiOnPoLiCyAsSiGnMeNtIdVaLuE/extra",
+			Input: "/dEvIcEmAnAgEmEnT/rEuSaBlEpOlIcYsEtTiNgS/dEvIcEmAnAgEmEnTrEuSaBlEpOlIcYsEtTiNgId/rEfErEnCiNgCoNfIgUrAtIoNpOlIcIeS/dEvIcEmAnAgEmEnTcOnFiGuRaTiOnPoLiCyId/aSsIgNmEnTs/dEvIcEmAnAgEmEnTcOnFiGuRaTiOnPoLiCyAsSiGnMeNtId/extra",
 			Error: true,
 		},
 	}

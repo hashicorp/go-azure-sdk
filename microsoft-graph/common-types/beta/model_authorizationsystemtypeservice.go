@@ -62,10 +62,15 @@ func (s AuthorizationSystemTypeService) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &AuthorizationSystemTypeService{}
 
 func (s *AuthorizationSystemTypeService) UnmarshalJSON(bytes []byte) error {
-	type alias AuthorizationSystemTypeService
-	var decoded alias
+
+	var decoded struct {
+		Actions   *[]AuthorizationSystemTypeAction `json:"actions,omitempty"`
+		Id        *string                          `json:"id,omitempty"`
+		ODataId   *string                          `json:"@odata.id,omitempty"`
+		ODataType *string                          `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into AuthorizationSystemTypeService: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.Id = decoded.Id
@@ -93,5 +98,6 @@ func (s *AuthorizationSystemTypeService) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Actions = &output
 	}
+
 	return nil
 }

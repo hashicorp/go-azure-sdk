@@ -17,16 +17,45 @@ type UpdateEnterpriseAppRoleEligibilityScheduleOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateEnterpriseAppRoleEligibilityScheduleOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateEnterpriseAppRoleEligibilityScheduleOperationOptions() UpdateEnterpriseAppRoleEligibilityScheduleOperationOptions {
+	return UpdateEnterpriseAppRoleEligibilityScheduleOperationOptions{}
+}
+
+func (o UpdateEnterpriseAppRoleEligibilityScheduleOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateEnterpriseAppRoleEligibilityScheduleOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateEnterpriseAppRoleEligibilityScheduleOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateEnterpriseAppRoleEligibilitySchedule - Update the navigation property roleEligibilitySchedules in
 // roleManagement
-func (c EnterpriseAppRoleEligibilityScheduleClient) UpdateEnterpriseAppRoleEligibilitySchedule(ctx context.Context, id beta.RoleManagementEnterpriseAppIdRoleEligibilityScheduleId, input beta.UnifiedRoleEligibilitySchedule) (result UpdateEnterpriseAppRoleEligibilityScheduleOperationResponse, err error) {
+func (c EnterpriseAppRoleEligibilityScheduleClient) UpdateEnterpriseAppRoleEligibilitySchedule(ctx context.Context, id beta.RoleManagementEnterpriseAppIdRoleEligibilityScheduleId, input beta.UnifiedRoleEligibilitySchedule, options UpdateEnterpriseAppRoleEligibilityScheduleOperationOptions) (result UpdateEnterpriseAppRoleEligibilityScheduleOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -20,8 +20,9 @@ type GetMailFolderOperationResponse struct {
 }
 
 type GetMailFolderOperationOptions struct {
-	Expand *odata.Expand
-	Select *[]string
+	Expand   *odata.Expand
+	Metadata *odata.Metadata
+	Select   *[]string
 }
 
 func DefaultGetMailFolderOperationOptions() GetMailFolderOperationOptions {
@@ -39,6 +40,9 @@ func (o GetMailFolderOperationOptions) ToOData() *odata.Query {
 	if o.Expand != nil {
 		out.Expand = *o.Expand
 	}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	if o.Select != nil {
 		out.Select = *o.Select
 	}
@@ -52,7 +56,7 @@ func (o GetMailFolderOperationOptions) ToQuery() *client.QueryParams {
 }
 
 // GetMailFolder - Get mailFolder. Retrieve the properties and relationships of a message folder object. The following
-// list shows the two existing scenarios where an app can get another user's mail folder:
+// list shows the two existing scenarios where an app can get another user's mail folder
 func (c MailFolderClient) GetMailFolder(ctx context.Context, id stable.MeMailFolderId, options GetMailFolderOperationOptions) (result GetMailFolderOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",

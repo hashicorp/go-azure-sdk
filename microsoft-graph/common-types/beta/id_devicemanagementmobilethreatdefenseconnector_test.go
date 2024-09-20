@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &DeviceManagementMobileThreatDefenseConnectorId{}
 
 func TestNewDeviceManagementMobileThreatDefenseConnectorID(t *testing.T) {
-	id := NewDeviceManagementMobileThreatDefenseConnectorID("mobileThreatDefenseConnectorIdValue")
+	id := NewDeviceManagementMobileThreatDefenseConnectorID("mobileThreatDefenseConnectorId")
 
-	if id.MobileThreatDefenseConnectorId != "mobileThreatDefenseConnectorIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'MobileThreatDefenseConnectorId'", id.MobileThreatDefenseConnectorId, "mobileThreatDefenseConnectorIdValue")
+	if id.MobileThreatDefenseConnectorId != "mobileThreatDefenseConnectorId" {
+		t.Fatalf("Expected %q but got %q for Segment 'MobileThreatDefenseConnectorId'", id.MobileThreatDefenseConnectorId, "mobileThreatDefenseConnectorId")
 	}
 }
 
 func TestFormatDeviceManagementMobileThreatDefenseConnectorID(t *testing.T) {
-	actual := NewDeviceManagementMobileThreatDefenseConnectorID("mobileThreatDefenseConnectorIdValue").ID()
-	expected := "/deviceManagement/mobileThreatDefenseConnectors/mobileThreatDefenseConnectorIdValue"
+	actual := NewDeviceManagementMobileThreatDefenseConnectorID("mobileThreatDefenseConnectorId").ID()
+	expected := "/deviceManagement/mobileThreatDefenseConnectors/mobileThreatDefenseConnectorId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -50,14 +50,14 @@ func TestParseDeviceManagementMobileThreatDefenseConnectorID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/mobileThreatDefenseConnectors/mobileThreatDefenseConnectorIdValue",
+			Input: "/deviceManagement/mobileThreatDefenseConnectors/mobileThreatDefenseConnectorId",
 			Expected: &DeviceManagementMobileThreatDefenseConnectorId{
-				MobileThreatDefenseConnectorId: "mobileThreatDefenseConnectorIdValue",
+				MobileThreatDefenseConnectorId: "mobileThreatDefenseConnectorId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/mobileThreatDefenseConnectors/mobileThreatDefenseConnectorIdValue/extra",
+			Input: "/deviceManagement/mobileThreatDefenseConnectors/mobileThreatDefenseConnectorId/extra",
 			Error: true,
 		},
 	}
@@ -116,26 +116,26 @@ func TestParseDeviceManagementMobileThreatDefenseConnectorIDInsensitively(t *tes
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/mobileThreatDefenseConnectors/mobileThreatDefenseConnectorIdValue",
+			Input: "/deviceManagement/mobileThreatDefenseConnectors/mobileThreatDefenseConnectorId",
 			Expected: &DeviceManagementMobileThreatDefenseConnectorId{
-				MobileThreatDefenseConnectorId: "mobileThreatDefenseConnectorIdValue",
+				MobileThreatDefenseConnectorId: "mobileThreatDefenseConnectorId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/mobileThreatDefenseConnectors/mobileThreatDefenseConnectorIdValue/extra",
+			Input: "/deviceManagement/mobileThreatDefenseConnectors/mobileThreatDefenseConnectorId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/mObIlEtHrEaTdEfEnSeCoNnEcToRs/mObIlEtHrEaTdEfEnSeCoNnEcToRiDvAlUe",
+			Input: "/dEvIcEmAnAgEmEnT/mObIlEtHrEaTdEfEnSeCoNnEcToRs/mObIlEtHrEaTdEfEnSeCoNnEcToRiD",
 			Expected: &DeviceManagementMobileThreatDefenseConnectorId{
-				MobileThreatDefenseConnectorId: "mObIlEtHrEaTdEfEnSeCoNnEcToRiDvAlUe",
+				MobileThreatDefenseConnectorId: "mObIlEtHrEaTdEfEnSeCoNnEcToRiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/mObIlEtHrEaTdEfEnSeCoNnEcToRs/mObIlEtHrEaTdEfEnSeCoNnEcToRiDvAlUe/extra",
+			Input: "/dEvIcEmAnAgEmEnT/mObIlEtHrEaTdEfEnSeCoNnEcToRs/mObIlEtHrEaTdEfEnSeCoNnEcToRiD/extra",
 			Error: true,
 		},
 	}

@@ -17,15 +17,44 @@ type UpdateJoinedTeamChannelMessageHostedContentOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateJoinedTeamChannelMessageHostedContentOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateJoinedTeamChannelMessageHostedContentOperationOptions() UpdateJoinedTeamChannelMessageHostedContentOperationOptions {
+	return UpdateJoinedTeamChannelMessageHostedContentOperationOptions{}
+}
+
+func (o UpdateJoinedTeamChannelMessageHostedContentOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateJoinedTeamChannelMessageHostedContentOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateJoinedTeamChannelMessageHostedContentOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateJoinedTeamChannelMessageHostedContent - Update the navigation property hostedContents in me
-func (c JoinedTeamChannelMessageHostedContentClient) UpdateJoinedTeamChannelMessageHostedContent(ctx context.Context, id stable.MeJoinedTeamIdChannelIdMessageIdHostedContentId, input stable.ChatMessageHostedContent) (result UpdateJoinedTeamChannelMessageHostedContentOperationResponse, err error) {
+func (c JoinedTeamChannelMessageHostedContentClient) UpdateJoinedTeamChannelMessageHostedContent(ctx context.Context, id stable.MeJoinedTeamIdChannelIdMessageIdHostedContentId, input stable.ChatMessageHostedContent, options UpdateJoinedTeamChannelMessageHostedContentOperationOptions) (result UpdateJoinedTeamChannelMessageHostedContentOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

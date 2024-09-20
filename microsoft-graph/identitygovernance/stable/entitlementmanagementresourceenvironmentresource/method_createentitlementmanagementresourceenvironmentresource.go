@@ -19,16 +19,45 @@ type CreateEntitlementManagementResourceEnvironmentResourceOperationResponse str
 	Model        *stable.AccessPackageResource
 }
 
+type CreateEntitlementManagementResourceEnvironmentResourceOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateEntitlementManagementResourceEnvironmentResourceOperationOptions() CreateEntitlementManagementResourceEnvironmentResourceOperationOptions {
+	return CreateEntitlementManagementResourceEnvironmentResourceOperationOptions{}
+}
+
+func (o CreateEntitlementManagementResourceEnvironmentResourceOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateEntitlementManagementResourceEnvironmentResourceOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateEntitlementManagementResourceEnvironmentResourceOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateEntitlementManagementResourceEnvironmentResource - Create new navigation property to resources for
 // identityGovernance
-func (c EntitlementManagementResourceEnvironmentResourceClient) CreateEntitlementManagementResourceEnvironmentResource(ctx context.Context, id stable.IdentityGovernanceEntitlementManagementResourceEnvironmentId, input stable.AccessPackageResource) (result CreateEntitlementManagementResourceEnvironmentResourceOperationResponse, err error) {
+func (c EntitlementManagementResourceEnvironmentResourceClient) CreateEntitlementManagementResourceEnvironmentResource(ctx context.Context, id stable.IdentityGovernanceEntitlementManagementResourceEnvironmentId, input stable.AccessPackageResource, options CreateEntitlementManagementResourceEnvironmentResourceOperationOptions) (result CreateEntitlementManagementResourceEnvironmentResourceOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/resources", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/resources", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

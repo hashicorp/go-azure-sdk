@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &MeInferenceClassificationOverrideId{}
 
 func TestNewMeInferenceClassificationOverrideID(t *testing.T) {
-	id := NewMeInferenceClassificationOverrideID("inferenceClassificationOverrideIdValue")
+	id := NewMeInferenceClassificationOverrideID("inferenceClassificationOverrideId")
 
-	if id.InferenceClassificationOverrideId != "inferenceClassificationOverrideIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'InferenceClassificationOverrideId'", id.InferenceClassificationOverrideId, "inferenceClassificationOverrideIdValue")
+	if id.InferenceClassificationOverrideId != "inferenceClassificationOverrideId" {
+		t.Fatalf("Expected %q but got %q for Segment 'InferenceClassificationOverrideId'", id.InferenceClassificationOverrideId, "inferenceClassificationOverrideId")
 	}
 }
 
 func TestFormatMeInferenceClassificationOverrideID(t *testing.T) {
-	actual := NewMeInferenceClassificationOverrideID("inferenceClassificationOverrideIdValue").ID()
-	expected := "/me/inferenceClassification/overrides/inferenceClassificationOverrideIdValue"
+	actual := NewMeInferenceClassificationOverrideID("inferenceClassificationOverrideId").ID()
+	expected := "/me/inferenceClassification/overrides/inferenceClassificationOverrideId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -55,14 +55,14 @@ func TestParseMeInferenceClassificationOverrideID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/me/inferenceClassification/overrides/inferenceClassificationOverrideIdValue",
+			Input: "/me/inferenceClassification/overrides/inferenceClassificationOverrideId",
 			Expected: &MeInferenceClassificationOverrideId{
-				InferenceClassificationOverrideId: "inferenceClassificationOverrideIdValue",
+				InferenceClassificationOverrideId: "inferenceClassificationOverrideId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/inferenceClassification/overrides/inferenceClassificationOverrideIdValue/extra",
+			Input: "/me/inferenceClassification/overrides/inferenceClassificationOverrideId/extra",
 			Error: true,
 		},
 	}
@@ -131,26 +131,26 @@ func TestParseMeInferenceClassificationOverrideIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/me/inferenceClassification/overrides/inferenceClassificationOverrideIdValue",
+			Input: "/me/inferenceClassification/overrides/inferenceClassificationOverrideId",
 			Expected: &MeInferenceClassificationOverrideId{
-				InferenceClassificationOverrideId: "inferenceClassificationOverrideIdValue",
+				InferenceClassificationOverrideId: "inferenceClassificationOverrideId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/inferenceClassification/overrides/inferenceClassificationOverrideIdValue/extra",
+			Input: "/me/inferenceClassification/overrides/inferenceClassificationOverrideId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/iNfErEnCeClAsSiFiCaTiOn/oVeRrIdEs/iNfErEnCeClAsSiFiCaTiOnOvErRiDeIdVaLuE",
+			Input: "/mE/iNfErEnCeClAsSiFiCaTiOn/oVeRrIdEs/iNfErEnCeClAsSiFiCaTiOnOvErRiDeId",
 			Expected: &MeInferenceClassificationOverrideId{
-				InferenceClassificationOverrideId: "iNfErEnCeClAsSiFiCaTiOnOvErRiDeIdVaLuE",
+				InferenceClassificationOverrideId: "iNfErEnCeClAsSiFiCaTiOnOvErRiDeId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/mE/iNfErEnCeClAsSiFiCaTiOn/oVeRrIdEs/iNfErEnCeClAsSiFiCaTiOnOvErRiDeIdVaLuE/extra",
+			Input: "/mE/iNfErEnCeClAsSiFiCaTiOn/oVeRrIdEs/iNfErEnCeClAsSiFiCaTiOnOvErRiDeId/extra",
 			Error: true,
 		},
 	}

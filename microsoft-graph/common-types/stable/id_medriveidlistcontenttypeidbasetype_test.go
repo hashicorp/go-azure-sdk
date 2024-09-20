@@ -12,24 +12,24 @@ import (
 var _ resourceids.ResourceId = &MeDriveIdListContentTypeIdBaseTypeId{}
 
 func TestNewMeDriveIdListContentTypeIdBaseTypeID(t *testing.T) {
-	id := NewMeDriveIdListContentTypeIdBaseTypeID("driveIdValue", "contentTypeIdValue", "contentTypeId1Value")
+	id := NewMeDriveIdListContentTypeIdBaseTypeID("driveId", "contentTypeId", "contentTypeId1")
 
-	if id.DriveId != "driveIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DriveId'", id.DriveId, "driveIdValue")
+	if id.DriveId != "driveId" {
+		t.Fatalf("Expected %q but got %q for Segment 'DriveId'", id.DriveId, "driveId")
 	}
 
-	if id.ContentTypeId != "contentTypeIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ContentTypeId'", id.ContentTypeId, "contentTypeIdValue")
+	if id.ContentTypeId != "contentTypeId" {
+		t.Fatalf("Expected %q but got %q for Segment 'ContentTypeId'", id.ContentTypeId, "contentTypeId")
 	}
 
-	if id.ContentTypeId1 != "contentTypeId1Value" {
-		t.Fatalf("Expected %q but got %q for Segment 'ContentTypeId1'", id.ContentTypeId1, "contentTypeId1Value")
+	if id.ContentTypeId1 != "contentTypeId1" {
+		t.Fatalf("Expected %q but got %q for Segment 'ContentTypeId1'", id.ContentTypeId1, "contentTypeId1")
 	}
 }
 
 func TestFormatMeDriveIdListContentTypeIdBaseTypeID(t *testing.T) {
-	actual := NewMeDriveIdListContentTypeIdBaseTypeID("driveIdValue", "contentTypeIdValue", "contentTypeId1Value").ID()
-	expected := "/me/drives/driveIdValue/list/contentTypes/contentTypeIdValue/baseTypes/contentTypeId1Value"
+	actual := NewMeDriveIdListContentTypeIdBaseTypeID("driveId", "contentTypeId", "contentTypeId1").ID()
+	expected := "/me/drives/driveId/list/contentTypes/contentTypeId/baseTypes/contentTypeId1"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -58,41 +58,41 @@ func TestParseMeDriveIdListContentTypeIdBaseTypeID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/me/drives/driveIdValue",
+			Input: "/me/drives/driveId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/me/drives/driveIdValue/list",
+			Input: "/me/drives/driveId/list",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/me/drives/driveIdValue/list/contentTypes",
+			Input: "/me/drives/driveId/list/contentTypes",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/me/drives/driveIdValue/list/contentTypes/contentTypeIdValue",
+			Input: "/me/drives/driveId/list/contentTypes/contentTypeId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/me/drives/driveIdValue/list/contentTypes/contentTypeIdValue/baseTypes",
+			Input: "/me/drives/driveId/list/contentTypes/contentTypeId/baseTypes",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/me/drives/driveIdValue/list/contentTypes/contentTypeIdValue/baseTypes/contentTypeId1Value",
+			Input: "/me/drives/driveId/list/contentTypes/contentTypeId/baseTypes/contentTypeId1",
 			Expected: &MeDriveIdListContentTypeIdBaseTypeId{
-				DriveId:        "driveIdValue",
-				ContentTypeId:  "contentTypeIdValue",
-				ContentTypeId1: "contentTypeId1Value",
+				DriveId:        "driveId",
+				ContentTypeId:  "contentTypeId",
+				ContentTypeId1: "contentTypeId1",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/drives/driveIdValue/list/contentTypes/contentTypeIdValue/baseTypes/contentTypeId1Value/extra",
+			Input: "/me/drives/driveId/list/contentTypes/contentTypeId/baseTypes/contentTypeId1/extra",
 			Error: true,
 		},
 	}
@@ -159,80 +159,80 @@ func TestParseMeDriveIdListContentTypeIdBaseTypeIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/me/drives/driveIdValue",
+			Input: "/me/drives/driveId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/dRiVeS/dRiVeIdVaLuE",
+			Input: "/mE/dRiVeS/dRiVeId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/me/drives/driveIdValue/list",
+			Input: "/me/drives/driveId/list",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/dRiVeS/dRiVeIdVaLuE/lIsT",
+			Input: "/mE/dRiVeS/dRiVeId/lIsT",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/me/drives/driveIdValue/list/contentTypes",
+			Input: "/me/drives/driveId/list/contentTypes",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/dRiVeS/dRiVeIdVaLuE/lIsT/cOnTeNtTyPeS",
+			Input: "/mE/dRiVeS/dRiVeId/lIsT/cOnTeNtTyPeS",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/me/drives/driveIdValue/list/contentTypes/contentTypeIdValue",
+			Input: "/me/drives/driveId/list/contentTypes/contentTypeId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/dRiVeS/dRiVeIdVaLuE/lIsT/cOnTeNtTyPeS/cOnTeNtTyPeIdVaLuE",
+			Input: "/mE/dRiVeS/dRiVeId/lIsT/cOnTeNtTyPeS/cOnTeNtTyPeId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/me/drives/driveIdValue/list/contentTypes/contentTypeIdValue/baseTypes",
+			Input: "/me/drives/driveId/list/contentTypes/contentTypeId/baseTypes",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/dRiVeS/dRiVeIdVaLuE/lIsT/cOnTeNtTyPeS/cOnTeNtTyPeIdVaLuE/bAsEtYpEs",
+			Input: "/mE/dRiVeS/dRiVeId/lIsT/cOnTeNtTyPeS/cOnTeNtTyPeId/bAsEtYpEs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/me/drives/driveIdValue/list/contentTypes/contentTypeIdValue/baseTypes/contentTypeId1Value",
+			Input: "/me/drives/driveId/list/contentTypes/contentTypeId/baseTypes/contentTypeId1",
 			Expected: &MeDriveIdListContentTypeIdBaseTypeId{
-				DriveId:        "driveIdValue",
-				ContentTypeId:  "contentTypeIdValue",
-				ContentTypeId1: "contentTypeId1Value",
+				DriveId:        "driveId",
+				ContentTypeId:  "contentTypeId",
+				ContentTypeId1: "contentTypeId1",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/drives/driveIdValue/list/contentTypes/contentTypeIdValue/baseTypes/contentTypeId1Value/extra",
+			Input: "/me/drives/driveId/list/contentTypes/contentTypeId/baseTypes/contentTypeId1/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/dRiVeS/dRiVeIdVaLuE/lIsT/cOnTeNtTyPeS/cOnTeNtTyPeIdVaLuE/bAsEtYpEs/cOnTeNtTyPeId1vAlUe",
+			Input: "/mE/dRiVeS/dRiVeId/lIsT/cOnTeNtTyPeS/cOnTeNtTyPeId/bAsEtYpEs/cOnTeNtTyPeId1",
 			Expected: &MeDriveIdListContentTypeIdBaseTypeId{
-				DriveId:        "dRiVeIdVaLuE",
-				ContentTypeId:  "cOnTeNtTyPeIdVaLuE",
-				ContentTypeId1: "cOnTeNtTyPeId1vAlUe",
+				DriveId:        "dRiVeId",
+				ContentTypeId:  "cOnTeNtTyPeId",
+				ContentTypeId1: "cOnTeNtTyPeId1",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/mE/dRiVeS/dRiVeIdVaLuE/lIsT/cOnTeNtTyPeS/cOnTeNtTyPeIdVaLuE/bAsEtYpEs/cOnTeNtTyPeId1vAlUe/extra",
+			Input: "/mE/dRiVeS/dRiVeId/lIsT/cOnTeNtTyPeS/cOnTeNtTyPeId/bAsEtYpEs/cOnTeNtTyPeId1/extra",
 			Error: true,
 		},
 	}

@@ -85,19 +85,27 @@ func (s SecurityHostTracker) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &SecurityHostTracker{}
 
 func (s *SecurityHostTracker) UnmarshalJSON(bytes []byte) error {
-	type alias SecurityHostTracker
-	var decoded alias
+
+	var decoded struct {
+		FirstSeenDateTime *string `json:"firstSeenDateTime,omitempty"`
+		Kind              *string `json:"kind,omitempty"`
+		LastSeenDateTime  *string `json:"lastSeenDateTime,omitempty"`
+		Value             *string `json:"value,omitempty"`
+		Id                *string `json:"id,omitempty"`
+		ODataId           *string `json:"@odata.id,omitempty"`
+		ODataType         *string `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into SecurityHostTracker: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.FirstSeenDateTime = decoded.FirstSeenDateTime
-	s.Id = decoded.Id
 	s.Kind = decoded.Kind
 	s.LastSeenDateTime = decoded.LastSeenDateTime
+	s.Value = decoded.Value
+	s.Id = decoded.Id
 	s.ODataId = decoded.ODataId
 	s.ODataType = decoded.ODataType
-	s.Value = decoded.Value
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -111,5 +119,6 @@ func (s *SecurityHostTracker) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Host = &impl
 	}
+
 	return nil
 }

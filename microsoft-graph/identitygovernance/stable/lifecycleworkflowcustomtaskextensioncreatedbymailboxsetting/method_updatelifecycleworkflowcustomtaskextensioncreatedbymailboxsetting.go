@@ -18,15 +18,44 @@ type UpdateLifecycleWorkflowCustomTaskExtensionCreatedByMailboxSettingOperationR
 	OData        *odata.OData
 }
 
+type UpdateLifecycleWorkflowCustomTaskExtensionCreatedByMailboxSettingOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateLifecycleWorkflowCustomTaskExtensionCreatedByMailboxSettingOperationOptions() UpdateLifecycleWorkflowCustomTaskExtensionCreatedByMailboxSettingOperationOptions {
+	return UpdateLifecycleWorkflowCustomTaskExtensionCreatedByMailboxSettingOperationOptions{}
+}
+
+func (o UpdateLifecycleWorkflowCustomTaskExtensionCreatedByMailboxSettingOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateLifecycleWorkflowCustomTaskExtensionCreatedByMailboxSettingOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateLifecycleWorkflowCustomTaskExtensionCreatedByMailboxSettingOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateLifecycleWorkflowCustomTaskExtensionCreatedByMailboxSetting - Update property mailboxSettings value.
-func (c LifecycleWorkflowCustomTaskExtensionCreatedByMailboxSettingClient) UpdateLifecycleWorkflowCustomTaskExtensionCreatedByMailboxSetting(ctx context.Context, id stable.IdentityGovernanceLifecycleWorkflowCustomTaskExtensionId, input stable.MailboxSettings) (result UpdateLifecycleWorkflowCustomTaskExtensionCreatedByMailboxSettingOperationResponse, err error) {
+func (c LifecycleWorkflowCustomTaskExtensionCreatedByMailboxSettingClient) UpdateLifecycleWorkflowCustomTaskExtensionCreatedByMailboxSetting(ctx context.Context, id stable.IdentityGovernanceLifecycleWorkflowCustomTaskExtensionId, input stable.MailboxSettings, options UpdateLifecycleWorkflowCustomTaskExtensionCreatedByMailboxSettingOperationOptions) (result UpdateLifecycleWorkflowCustomTaskExtensionCreatedByMailboxSettingOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       fmt.Sprintf("%s/createdBy/mailboxSettings", id.ID()),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/createdBy/mailboxSettings", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

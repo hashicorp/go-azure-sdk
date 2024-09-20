@@ -19,7 +19,8 @@ type DeleteTemplateSettingOperationResponse struct {
 }
 
 type DeleteTemplateSettingOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteTemplateSettingOperationOptions() DeleteTemplateSettingOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteTemplateSettingOperationOptions) ToHeaders() *client.Headers {
 
 func (o DeleteTemplateSettingOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 
@@ -46,8 +49,8 @@ func (o DeleteTemplateSettingOperationOptions) ToQuery() *client.QueryParams {
 	return &out
 }
 
-// DeleteTemplateSetting - Delete navigation property templateSettings for deviceManagement
-func (c TemplateSettingClient) DeleteTemplateSetting(ctx context.Context, id beta.DeviceManagementTemplateSettingId, options DeleteTemplateSettingOperationOptions) (result DeleteTemplateSettingOperationResponse, err error) {
+// DeleteTemplateSetting - Delete navigation property settings for deviceManagement
+func (c TemplateSettingClient) DeleteTemplateSetting(ctx context.Context, id beta.DeviceManagementTemplateIdSettingId, options DeleteTemplateSettingOperationOptions) (result DeleteTemplateSettingOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{

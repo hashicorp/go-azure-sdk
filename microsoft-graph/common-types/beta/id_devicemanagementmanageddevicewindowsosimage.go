@@ -93,7 +93,7 @@ func (id DeviceManagementManagedDeviceWindowsOSImageId) Segments() []resourceids
 	return []resourceids.Segment{
 		resourceids.StaticSegment("deviceManagement", "deviceManagement", "deviceManagement"),
 		resourceids.StaticSegment("managedDeviceWindowsOSImages", "managedDeviceWindowsOSImages", "managedDeviceWindowsOSImages"),
-		resourceids.UserSpecifiedSegment("managedDeviceWindowsOperatingSystemImageId", "managedDeviceWindowsOperatingSystemImageIdValue"),
+		resourceids.UserSpecifiedSegment("managedDeviceWindowsOperatingSystemImageId", "managedDeviceWindowsOperatingSystemImageId"),
 	}
 }
 

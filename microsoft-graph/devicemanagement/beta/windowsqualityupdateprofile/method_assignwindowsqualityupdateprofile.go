@@ -18,15 +18,44 @@ type AssignWindowsQualityUpdateProfileOperationResponse struct {
 	OData        *odata.OData
 }
 
+type AssignWindowsQualityUpdateProfileOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultAssignWindowsQualityUpdateProfileOperationOptions() AssignWindowsQualityUpdateProfileOperationOptions {
+	return AssignWindowsQualityUpdateProfileOperationOptions{}
+}
+
+func (o AssignWindowsQualityUpdateProfileOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o AssignWindowsQualityUpdateProfileOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o AssignWindowsQualityUpdateProfileOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // AssignWindowsQualityUpdateProfile - Invoke action assign
-func (c WindowsQualityUpdateProfileClient) AssignWindowsQualityUpdateProfile(ctx context.Context, id beta.DeviceManagementWindowsQualityUpdateProfileId, input AssignWindowsQualityUpdateProfileRequest) (result AssignWindowsQualityUpdateProfileOperationResponse, err error) {
+func (c WindowsQualityUpdateProfileClient) AssignWindowsQualityUpdateProfile(ctx context.Context, id beta.DeviceManagementWindowsQualityUpdateProfileId, input AssignWindowsQualityUpdateProfileRequest, options AssignWindowsQualityUpdateProfileOperationOptions) (result AssignWindowsQualityUpdateProfileOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/assign", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/assign", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

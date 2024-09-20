@@ -12,28 +12,28 @@ import (
 var _ resourceids.ResourceId = &IdentityGovernanceLifecycleWorkflowWorkflowIdVersionIdTaskIdTaskProcessingResultId{}
 
 func TestNewIdentityGovernanceLifecycleWorkflowWorkflowIdVersionIdTaskIdTaskProcessingResultID(t *testing.T) {
-	id := NewIdentityGovernanceLifecycleWorkflowWorkflowIdVersionIdTaskIdTaskProcessingResultID("workflowIdValue", "workflowVersionVersionNumberValue", "taskIdValue", "taskProcessingResultIdValue")
+	id := NewIdentityGovernanceLifecycleWorkflowWorkflowIdVersionIdTaskIdTaskProcessingResultID("workflowId", "workflowVersionVersionNumber", "taskId", "taskProcessingResultId")
 
-	if id.WorkflowId != "workflowIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'WorkflowId'", id.WorkflowId, "workflowIdValue")
+	if id.WorkflowId != "workflowId" {
+		t.Fatalf("Expected %q but got %q for Segment 'WorkflowId'", id.WorkflowId, "workflowId")
 	}
 
-	if id.WorkflowVersionVersionNumber != "workflowVersionVersionNumberValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'WorkflowVersionVersionNumber'", id.WorkflowVersionVersionNumber, "workflowVersionVersionNumberValue")
+	if id.WorkflowVersionVersionNumber != "workflowVersionVersionNumber" {
+		t.Fatalf("Expected %q but got %q for Segment 'WorkflowVersionVersionNumber'", id.WorkflowVersionVersionNumber, "workflowVersionVersionNumber")
 	}
 
-	if id.TaskId != "taskIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'TaskId'", id.TaskId, "taskIdValue")
+	if id.TaskId != "taskId" {
+		t.Fatalf("Expected %q but got %q for Segment 'TaskId'", id.TaskId, "taskId")
 	}
 
-	if id.TaskProcessingResultId != "taskProcessingResultIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'TaskProcessingResultId'", id.TaskProcessingResultId, "taskProcessingResultIdValue")
+	if id.TaskProcessingResultId != "taskProcessingResultId" {
+		t.Fatalf("Expected %q but got %q for Segment 'TaskProcessingResultId'", id.TaskProcessingResultId, "taskProcessingResultId")
 	}
 }
 
 func TestFormatIdentityGovernanceLifecycleWorkflowWorkflowIdVersionIdTaskIdTaskProcessingResultID(t *testing.T) {
-	actual := NewIdentityGovernanceLifecycleWorkflowWorkflowIdVersionIdTaskIdTaskProcessingResultID("workflowIdValue", "workflowVersionVersionNumberValue", "taskIdValue", "taskProcessingResultIdValue").ID()
-	expected := "/identityGovernance/lifecycleWorkflows/workflows/workflowIdValue/versions/workflowVersionVersionNumberValue/tasks/taskIdValue/taskProcessingResults/taskProcessingResultIdValue"
+	actual := NewIdentityGovernanceLifecycleWorkflowWorkflowIdVersionIdTaskIdTaskProcessingResultID("workflowId", "workflowVersionVersionNumber", "taskId", "taskProcessingResultId").ID()
+	expected := "/identityGovernance/lifecycleWorkflows/workflows/workflowId/versions/workflowVersionVersionNumber/tasks/taskId/taskProcessingResults/taskProcessingResultId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -67,47 +67,47 @@ func TestParseIdentityGovernanceLifecycleWorkflowWorkflowIdVersionIdTaskIdTaskPr
 		},
 		{
 			// Incomplete URI
-			Input: "/identityGovernance/lifecycleWorkflows/workflows/workflowIdValue",
+			Input: "/identityGovernance/lifecycleWorkflows/workflows/workflowId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/identityGovernance/lifecycleWorkflows/workflows/workflowIdValue/versions",
+			Input: "/identityGovernance/lifecycleWorkflows/workflows/workflowId/versions",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/identityGovernance/lifecycleWorkflows/workflows/workflowIdValue/versions/workflowVersionVersionNumberValue",
+			Input: "/identityGovernance/lifecycleWorkflows/workflows/workflowId/versions/workflowVersionVersionNumber",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/identityGovernance/lifecycleWorkflows/workflows/workflowIdValue/versions/workflowVersionVersionNumberValue/tasks",
+			Input: "/identityGovernance/lifecycleWorkflows/workflows/workflowId/versions/workflowVersionVersionNumber/tasks",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/identityGovernance/lifecycleWorkflows/workflows/workflowIdValue/versions/workflowVersionVersionNumberValue/tasks/taskIdValue",
+			Input: "/identityGovernance/lifecycleWorkflows/workflows/workflowId/versions/workflowVersionVersionNumber/tasks/taskId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/identityGovernance/lifecycleWorkflows/workflows/workflowIdValue/versions/workflowVersionVersionNumberValue/tasks/taskIdValue/taskProcessingResults",
+			Input: "/identityGovernance/lifecycleWorkflows/workflows/workflowId/versions/workflowVersionVersionNumber/tasks/taskId/taskProcessingResults",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/identityGovernance/lifecycleWorkflows/workflows/workflowIdValue/versions/workflowVersionVersionNumberValue/tasks/taskIdValue/taskProcessingResults/taskProcessingResultIdValue",
+			Input: "/identityGovernance/lifecycleWorkflows/workflows/workflowId/versions/workflowVersionVersionNumber/tasks/taskId/taskProcessingResults/taskProcessingResultId",
 			Expected: &IdentityGovernanceLifecycleWorkflowWorkflowIdVersionIdTaskIdTaskProcessingResultId{
-				WorkflowId:                   "workflowIdValue",
-				WorkflowVersionVersionNumber: "workflowVersionVersionNumberValue",
-				TaskId:                       "taskIdValue",
-				TaskProcessingResultId:       "taskProcessingResultIdValue",
+				WorkflowId:                   "workflowId",
+				WorkflowVersionVersionNumber: "workflowVersionVersionNumber",
+				TaskId:                       "taskId",
+				TaskProcessingResultId:       "taskProcessingResultId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/identityGovernance/lifecycleWorkflows/workflows/workflowIdValue/versions/workflowVersionVersionNumberValue/tasks/taskIdValue/taskProcessingResults/taskProcessingResultIdValue/extra",
+			Input: "/identityGovernance/lifecycleWorkflows/workflows/workflowId/versions/workflowVersionVersionNumber/tasks/taskId/taskProcessingResults/taskProcessingResultId/extra",
 			Error: true,
 		},
 	}
@@ -188,92 +188,92 @@ func TestParseIdentityGovernanceLifecycleWorkflowWorkflowIdVersionIdTaskIdTaskPr
 		},
 		{
 			// Incomplete URI
-			Input: "/identityGovernance/lifecycleWorkflows/workflows/workflowIdValue",
+			Input: "/identityGovernance/lifecycleWorkflows/workflows/workflowId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/iDeNtItYgOvErNaNcE/lIfEcYcLeWoRkFlOwS/wOrKfLoWs/wOrKfLoWiDvAlUe",
+			Input: "/iDeNtItYgOvErNaNcE/lIfEcYcLeWoRkFlOwS/wOrKfLoWs/wOrKfLoWiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/identityGovernance/lifecycleWorkflows/workflows/workflowIdValue/versions",
+			Input: "/identityGovernance/lifecycleWorkflows/workflows/workflowId/versions",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/iDeNtItYgOvErNaNcE/lIfEcYcLeWoRkFlOwS/wOrKfLoWs/wOrKfLoWiDvAlUe/vErSiOnS",
+			Input: "/iDeNtItYgOvErNaNcE/lIfEcYcLeWoRkFlOwS/wOrKfLoWs/wOrKfLoWiD/vErSiOnS",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/identityGovernance/lifecycleWorkflows/workflows/workflowIdValue/versions/workflowVersionVersionNumberValue",
+			Input: "/identityGovernance/lifecycleWorkflows/workflows/workflowId/versions/workflowVersionVersionNumber",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/iDeNtItYgOvErNaNcE/lIfEcYcLeWoRkFlOwS/wOrKfLoWs/wOrKfLoWiDvAlUe/vErSiOnS/wOrKfLoWvErSiOnVeRsIoNnUmBeRvAlUe",
+			Input: "/iDeNtItYgOvErNaNcE/lIfEcYcLeWoRkFlOwS/wOrKfLoWs/wOrKfLoWiD/vErSiOnS/wOrKfLoWvErSiOnVeRsIoNnUmBeR",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/identityGovernance/lifecycleWorkflows/workflows/workflowIdValue/versions/workflowVersionVersionNumberValue/tasks",
+			Input: "/identityGovernance/lifecycleWorkflows/workflows/workflowId/versions/workflowVersionVersionNumber/tasks",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/iDeNtItYgOvErNaNcE/lIfEcYcLeWoRkFlOwS/wOrKfLoWs/wOrKfLoWiDvAlUe/vErSiOnS/wOrKfLoWvErSiOnVeRsIoNnUmBeRvAlUe/tAsKs",
+			Input: "/iDeNtItYgOvErNaNcE/lIfEcYcLeWoRkFlOwS/wOrKfLoWs/wOrKfLoWiD/vErSiOnS/wOrKfLoWvErSiOnVeRsIoNnUmBeR/tAsKs",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/identityGovernance/lifecycleWorkflows/workflows/workflowIdValue/versions/workflowVersionVersionNumberValue/tasks/taskIdValue",
+			Input: "/identityGovernance/lifecycleWorkflows/workflows/workflowId/versions/workflowVersionVersionNumber/tasks/taskId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/iDeNtItYgOvErNaNcE/lIfEcYcLeWoRkFlOwS/wOrKfLoWs/wOrKfLoWiDvAlUe/vErSiOnS/wOrKfLoWvErSiOnVeRsIoNnUmBeRvAlUe/tAsKs/tAsKiDvAlUe",
+			Input: "/iDeNtItYgOvErNaNcE/lIfEcYcLeWoRkFlOwS/wOrKfLoWs/wOrKfLoWiD/vErSiOnS/wOrKfLoWvErSiOnVeRsIoNnUmBeR/tAsKs/tAsKiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/identityGovernance/lifecycleWorkflows/workflows/workflowIdValue/versions/workflowVersionVersionNumberValue/tasks/taskIdValue/taskProcessingResults",
+			Input: "/identityGovernance/lifecycleWorkflows/workflows/workflowId/versions/workflowVersionVersionNumber/tasks/taskId/taskProcessingResults",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/iDeNtItYgOvErNaNcE/lIfEcYcLeWoRkFlOwS/wOrKfLoWs/wOrKfLoWiDvAlUe/vErSiOnS/wOrKfLoWvErSiOnVeRsIoNnUmBeRvAlUe/tAsKs/tAsKiDvAlUe/tAsKpRoCeSsInGrEsUlTs",
+			Input: "/iDeNtItYgOvErNaNcE/lIfEcYcLeWoRkFlOwS/wOrKfLoWs/wOrKfLoWiD/vErSiOnS/wOrKfLoWvErSiOnVeRsIoNnUmBeR/tAsKs/tAsKiD/tAsKpRoCeSsInGrEsUlTs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/identityGovernance/lifecycleWorkflows/workflows/workflowIdValue/versions/workflowVersionVersionNumberValue/tasks/taskIdValue/taskProcessingResults/taskProcessingResultIdValue",
+			Input: "/identityGovernance/lifecycleWorkflows/workflows/workflowId/versions/workflowVersionVersionNumber/tasks/taskId/taskProcessingResults/taskProcessingResultId",
 			Expected: &IdentityGovernanceLifecycleWorkflowWorkflowIdVersionIdTaskIdTaskProcessingResultId{
-				WorkflowId:                   "workflowIdValue",
-				WorkflowVersionVersionNumber: "workflowVersionVersionNumberValue",
-				TaskId:                       "taskIdValue",
-				TaskProcessingResultId:       "taskProcessingResultIdValue",
+				WorkflowId:                   "workflowId",
+				WorkflowVersionVersionNumber: "workflowVersionVersionNumber",
+				TaskId:                       "taskId",
+				TaskProcessingResultId:       "taskProcessingResultId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/identityGovernance/lifecycleWorkflows/workflows/workflowIdValue/versions/workflowVersionVersionNumberValue/tasks/taskIdValue/taskProcessingResults/taskProcessingResultIdValue/extra",
+			Input: "/identityGovernance/lifecycleWorkflows/workflows/workflowId/versions/workflowVersionVersionNumber/tasks/taskId/taskProcessingResults/taskProcessingResultId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/iDeNtItYgOvErNaNcE/lIfEcYcLeWoRkFlOwS/wOrKfLoWs/wOrKfLoWiDvAlUe/vErSiOnS/wOrKfLoWvErSiOnVeRsIoNnUmBeRvAlUe/tAsKs/tAsKiDvAlUe/tAsKpRoCeSsInGrEsUlTs/tAsKpRoCeSsInGrEsUlTiDvAlUe",
+			Input: "/iDeNtItYgOvErNaNcE/lIfEcYcLeWoRkFlOwS/wOrKfLoWs/wOrKfLoWiD/vErSiOnS/wOrKfLoWvErSiOnVeRsIoNnUmBeR/tAsKs/tAsKiD/tAsKpRoCeSsInGrEsUlTs/tAsKpRoCeSsInGrEsUlTiD",
 			Expected: &IdentityGovernanceLifecycleWorkflowWorkflowIdVersionIdTaskIdTaskProcessingResultId{
-				WorkflowId:                   "wOrKfLoWiDvAlUe",
-				WorkflowVersionVersionNumber: "wOrKfLoWvErSiOnVeRsIoNnUmBeRvAlUe",
-				TaskId:                       "tAsKiDvAlUe",
-				TaskProcessingResultId:       "tAsKpRoCeSsInGrEsUlTiDvAlUe",
+				WorkflowId:                   "wOrKfLoWiD",
+				WorkflowVersionVersionNumber: "wOrKfLoWvErSiOnVeRsIoNnUmBeR",
+				TaskId:                       "tAsKiD",
+				TaskProcessingResultId:       "tAsKpRoCeSsInGrEsUlTiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/iDeNtItYgOvErNaNcE/lIfEcYcLeWoRkFlOwS/wOrKfLoWs/wOrKfLoWiDvAlUe/vErSiOnS/wOrKfLoWvErSiOnVeRsIoNnUmBeRvAlUe/tAsKs/tAsKiDvAlUe/tAsKpRoCeSsInGrEsUlTs/tAsKpRoCeSsInGrEsUlTiDvAlUe/extra",
+			Input: "/iDeNtItYgOvErNaNcE/lIfEcYcLeWoRkFlOwS/wOrKfLoWs/wOrKfLoWiD/vErSiOnS/wOrKfLoWvErSiOnVeRsIoNnUmBeR/tAsKs/tAsKiD/tAsKpRoCeSsInGrEsUlTs/tAsKpRoCeSsInGrEsUlTiD/extra",
 			Error: true,
 		},
 	}

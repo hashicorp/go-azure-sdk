@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &PolicyMobileDeviceManagementPolicyIdIncludedGroupId{}
 
 func TestNewPolicyMobileDeviceManagementPolicyIdIncludedGroupID(t *testing.T) {
-	id := NewPolicyMobileDeviceManagementPolicyIdIncludedGroupID("mobilityManagementPolicyIdValue", "groupIdValue")
+	id := NewPolicyMobileDeviceManagementPolicyIdIncludedGroupID("mobilityManagementPolicyId", "groupId")
 
-	if id.MobilityManagementPolicyId != "mobilityManagementPolicyIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'MobilityManagementPolicyId'", id.MobilityManagementPolicyId, "mobilityManagementPolicyIdValue")
+	if id.MobilityManagementPolicyId != "mobilityManagementPolicyId" {
+		t.Fatalf("Expected %q but got %q for Segment 'MobilityManagementPolicyId'", id.MobilityManagementPolicyId, "mobilityManagementPolicyId")
 	}
 
-	if id.GroupId != "groupIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'GroupId'", id.GroupId, "groupIdValue")
+	if id.GroupId != "groupId" {
+		t.Fatalf("Expected %q but got %q for Segment 'GroupId'", id.GroupId, "groupId")
 	}
 }
 
 func TestFormatPolicyMobileDeviceManagementPolicyIdIncludedGroupID(t *testing.T) {
-	actual := NewPolicyMobileDeviceManagementPolicyIdIncludedGroupID("mobilityManagementPolicyIdValue", "groupIdValue").ID()
-	expected := "/policies/mobileDeviceManagementPolicies/mobilityManagementPolicyIdValue/includedGroups/groupIdValue"
+	actual := NewPolicyMobileDeviceManagementPolicyIdIncludedGroupID("mobilityManagementPolicyId", "groupId").ID()
+	expected := "/policies/mobileDeviceManagementPolicies/mobilityManagementPolicyId/includedGroups/groupId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -54,25 +54,25 @@ func TestParsePolicyMobileDeviceManagementPolicyIdIncludedGroupID(t *testing.T) 
 		},
 		{
 			// Incomplete URI
-			Input: "/policies/mobileDeviceManagementPolicies/mobilityManagementPolicyIdValue",
+			Input: "/policies/mobileDeviceManagementPolicies/mobilityManagementPolicyId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/policies/mobileDeviceManagementPolicies/mobilityManagementPolicyIdValue/includedGroups",
+			Input: "/policies/mobileDeviceManagementPolicies/mobilityManagementPolicyId/includedGroups",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/policies/mobileDeviceManagementPolicies/mobilityManagementPolicyIdValue/includedGroups/groupIdValue",
+			Input: "/policies/mobileDeviceManagementPolicies/mobilityManagementPolicyId/includedGroups/groupId",
 			Expected: &PolicyMobileDeviceManagementPolicyIdIncludedGroupId{
-				MobilityManagementPolicyId: "mobilityManagementPolicyIdValue",
-				GroupId:                    "groupIdValue",
+				MobilityManagementPolicyId: "mobilityManagementPolicyId",
+				GroupId:                    "groupId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/policies/mobileDeviceManagementPolicies/mobilityManagementPolicyIdValue/includedGroups/groupIdValue/extra",
+			Input: "/policies/mobileDeviceManagementPolicies/mobilityManagementPolicyId/includedGroups/groupId/extra",
 			Error: true,
 		},
 	}
@@ -135,48 +135,48 @@ func TestParsePolicyMobileDeviceManagementPolicyIdIncludedGroupIDInsensitively(t
 		},
 		{
 			// Incomplete URI
-			Input: "/policies/mobileDeviceManagementPolicies/mobilityManagementPolicyIdValue",
+			Input: "/policies/mobileDeviceManagementPolicies/mobilityManagementPolicyId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/pOlIcIeS/mObIlEdEvIcEmAnAgEmEnTpOlIcIeS/mObIlItYmAnAgEmEnTpOlIcYiDvAlUe",
+			Input: "/pOlIcIeS/mObIlEdEvIcEmAnAgEmEnTpOlIcIeS/mObIlItYmAnAgEmEnTpOlIcYiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/policies/mobileDeviceManagementPolicies/mobilityManagementPolicyIdValue/includedGroups",
+			Input: "/policies/mobileDeviceManagementPolicies/mobilityManagementPolicyId/includedGroups",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/pOlIcIeS/mObIlEdEvIcEmAnAgEmEnTpOlIcIeS/mObIlItYmAnAgEmEnTpOlIcYiDvAlUe/iNcLuDeDgRoUpS",
+			Input: "/pOlIcIeS/mObIlEdEvIcEmAnAgEmEnTpOlIcIeS/mObIlItYmAnAgEmEnTpOlIcYiD/iNcLuDeDgRoUpS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/policies/mobileDeviceManagementPolicies/mobilityManagementPolicyIdValue/includedGroups/groupIdValue",
+			Input: "/policies/mobileDeviceManagementPolicies/mobilityManagementPolicyId/includedGroups/groupId",
 			Expected: &PolicyMobileDeviceManagementPolicyIdIncludedGroupId{
-				MobilityManagementPolicyId: "mobilityManagementPolicyIdValue",
-				GroupId:                    "groupIdValue",
+				MobilityManagementPolicyId: "mobilityManagementPolicyId",
+				GroupId:                    "groupId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/policies/mobileDeviceManagementPolicies/mobilityManagementPolicyIdValue/includedGroups/groupIdValue/extra",
+			Input: "/policies/mobileDeviceManagementPolicies/mobilityManagementPolicyId/includedGroups/groupId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/pOlIcIeS/mObIlEdEvIcEmAnAgEmEnTpOlIcIeS/mObIlItYmAnAgEmEnTpOlIcYiDvAlUe/iNcLuDeDgRoUpS/gRoUpIdVaLuE",
+			Input: "/pOlIcIeS/mObIlEdEvIcEmAnAgEmEnTpOlIcIeS/mObIlItYmAnAgEmEnTpOlIcYiD/iNcLuDeDgRoUpS/gRoUpId",
 			Expected: &PolicyMobileDeviceManagementPolicyIdIncludedGroupId{
-				MobilityManagementPolicyId: "mObIlItYmAnAgEmEnTpOlIcYiDvAlUe",
-				GroupId:                    "gRoUpIdVaLuE",
+				MobilityManagementPolicyId: "mObIlItYmAnAgEmEnTpOlIcYiD",
+				GroupId:                    "gRoUpId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/pOlIcIeS/mObIlEdEvIcEmAnAgEmEnTpOlIcIeS/mObIlItYmAnAgEmEnTpOlIcYiDvAlUe/iNcLuDeDgRoUpS/gRoUpIdVaLuE/extra",
+			Input: "/pOlIcIeS/mObIlEdEvIcEmAnAgEmEnTpOlIcIeS/mObIlItYmAnAgEmEnTpOlIcYiD/iNcLuDeDgRoUpS/gRoUpId/extra",
 			Error: true,
 		},
 	}

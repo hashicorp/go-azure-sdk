@@ -18,15 +18,44 @@ type CreateInformationProtectionSignDigestOperationResponse struct {
 	Model        *beta.SigningResult
 }
 
+type CreateInformationProtectionSignDigestOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateInformationProtectionSignDigestOperationOptions() CreateInformationProtectionSignDigestOperationOptions {
+	return CreateInformationProtectionSignDigestOperationOptions{}
+}
+
+func (o CreateInformationProtectionSignDigestOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateInformationProtectionSignDigestOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateInformationProtectionSignDigestOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateInformationProtectionSignDigest - Invoke action signDigest
-func (c InformationProtectionClient) CreateInformationProtectionSignDigest(ctx context.Context, input CreateInformationProtectionSignDigestRequest) (result CreateInformationProtectionSignDigestOperationResponse, err error) {
+func (c InformationProtectionClient) CreateInformationProtectionSignDigest(ctx context.Context, input CreateInformationProtectionSignDigestRequest, options CreateInformationProtectionSignDigestOperationOptions) (result CreateInformationProtectionSignDigestOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/me/informationProtection/signDigest",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/me/informationProtection/signDigest",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

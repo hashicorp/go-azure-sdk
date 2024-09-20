@@ -102,19 +102,29 @@ func (s AwsRole) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &AwsRole{}
 
 func (s *AwsRole) UnmarshalJSON(bytes []byte) error {
-	type alias AwsRole
-	var decoded alias
+
+	var decoded struct {
+		RoleType            *AwsRoleType                      `json:"roleType,omitempty"`
+		TrustEntityType     *AwsRoleTrustEntityType           `json:"trustEntityType,omitempty"`
+		AuthorizationSystem *AuthorizationSystem              `json:"authorizationSystem,omitempty"`
+		DisplayName         nullable.Type[string]             `json:"displayName,omitempty"`
+		ExternalId          *string                           `json:"externalId,omitempty"`
+		Source              AuthorizationSystemIdentitySource `json:"source"`
+		Id                  *string                           `json:"id,omitempty"`
+		ODataId             *string                           `json:"@odata.id,omitempty"`
+		ODataType           *string                           `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into AwsRole: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
+	s.RoleType = decoded.RoleType
+	s.TrustEntityType = decoded.TrustEntityType
 	s.DisplayName = decoded.DisplayName
 	s.ExternalId = decoded.ExternalId
 	s.Id = decoded.Id
 	s.ODataId = decoded.ODataId
 	s.ODataType = decoded.ODataType
-	s.RoleType = decoded.RoleType
-	s.TrustEntityType = decoded.TrustEntityType
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -136,5 +146,6 @@ func (s *AwsRole) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Source = impl
 	}
+
 	return nil
 }

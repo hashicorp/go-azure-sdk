@@ -18,16 +18,45 @@ type GetManagerRefOperationResponse struct {
 	OData        *odata.OData
 }
 
+type GetManagerRefOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultGetManagerRefOperationOptions() GetManagerRefOperationOptions {
+	return GetManagerRefOperationOptions{}
+}
+
+func (o GetManagerRefOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o GetManagerRefOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o GetManagerRefOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // GetManagerRef - List manager. Returns the user or organizational contact assigned as the user's manager. Optionally,
 // you can expand the manager's chain up to the root node.
-func (c ManagerClient) GetManagerRef(ctx context.Context, id stable.UserId) (result GetManagerRefOperationResponse, err error) {
+func (c ManagerClient) GetManagerRef(ctx context.Context, id stable.UserId, options GetManagerRefOperationOptions) (result GetManagerRefOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/manager/$ref", id.ID()),
+		HttpMethod:    http.MethodGet,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/manager/$ref", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

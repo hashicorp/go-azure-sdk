@@ -17,15 +17,44 @@ type UpdateConversationThreadOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateConversationThreadOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateConversationThreadOperationOptions() UpdateConversationThreadOperationOptions {
+	return UpdateConversationThreadOperationOptions{}
+}
+
+func (o UpdateConversationThreadOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateConversationThreadOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateConversationThreadOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateConversationThread - Update the navigation property threads in groups
-func (c ConversationThreadClient) UpdateConversationThread(ctx context.Context, id stable.GroupIdConversationIdThreadId, input stable.ConversationThread) (result UpdateConversationThreadOperationResponse, err error) {
+func (c ConversationThreadClient) UpdateConversationThread(ctx context.Context, id stable.GroupIdConversationIdThreadId, input stable.ConversationThread, options UpdateConversationThreadOperationOptions) (result UpdateConversationThreadOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

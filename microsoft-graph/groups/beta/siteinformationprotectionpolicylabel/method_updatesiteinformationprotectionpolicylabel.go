@@ -17,15 +17,44 @@ type UpdateSiteInformationProtectionPolicyLabelOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateSiteInformationProtectionPolicyLabelOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateSiteInformationProtectionPolicyLabelOperationOptions() UpdateSiteInformationProtectionPolicyLabelOperationOptions {
+	return UpdateSiteInformationProtectionPolicyLabelOperationOptions{}
+}
+
+func (o UpdateSiteInformationProtectionPolicyLabelOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateSiteInformationProtectionPolicyLabelOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateSiteInformationProtectionPolicyLabelOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateSiteInformationProtectionPolicyLabel - Update the navigation property labels in groups
-func (c SiteInformationProtectionPolicyLabelClient) UpdateSiteInformationProtectionPolicyLabel(ctx context.Context, id beta.GroupIdSiteIdInformationProtectionPolicyLabelId, input beta.InformationProtectionLabel) (result UpdateSiteInformationProtectionPolicyLabelOperationResponse, err error) {
+func (c SiteInformationProtectionPolicyLabelClient) UpdateSiteInformationProtectionPolicyLabel(ctx context.Context, id beta.GroupIdSiteIdInformationProtectionPolicyLabelId, input beta.InformationProtectionLabel, options UpdateSiteInformationProtectionPolicyLabelOperationOptions) (result UpdateSiteInformationProtectionPolicyLabelOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

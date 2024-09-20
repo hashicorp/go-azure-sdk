@@ -17,15 +17,44 @@ type UpdateSiteDocumentProcessingJobOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateSiteDocumentProcessingJobOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateSiteDocumentProcessingJobOperationOptions() UpdateSiteDocumentProcessingJobOperationOptions {
+	return UpdateSiteDocumentProcessingJobOperationOptions{}
+}
+
+func (o UpdateSiteDocumentProcessingJobOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateSiteDocumentProcessingJobOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateSiteDocumentProcessingJobOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateSiteDocumentProcessingJob - Update the navigation property documentProcessingJobs in groups
-func (c SiteDocumentProcessingJobClient) UpdateSiteDocumentProcessingJob(ctx context.Context, id beta.GroupIdSiteIdDocumentProcessingJobId, input beta.DocumentProcessingJob) (result UpdateSiteDocumentProcessingJobOperationResponse, err error) {
+func (c SiteDocumentProcessingJobClient) UpdateSiteDocumentProcessingJob(ctx context.Context, id beta.GroupIdSiteIdDocumentProcessingJobId, input beta.DocumentProcessingJob, options UpdateSiteDocumentProcessingJobOperationOptions) (result UpdateSiteDocumentProcessingJobOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

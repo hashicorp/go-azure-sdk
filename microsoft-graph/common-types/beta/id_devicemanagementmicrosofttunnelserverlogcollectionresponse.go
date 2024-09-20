@@ -93,7 +93,7 @@ func (id DeviceManagementMicrosoftTunnelServerLogCollectionResponseId) Segments(
 	return []resourceids.Segment{
 		resourceids.StaticSegment("deviceManagement", "deviceManagement", "deviceManagement"),
 		resourceids.StaticSegment("microsoftTunnelServerLogCollectionResponses", "microsoftTunnelServerLogCollectionResponses", "microsoftTunnelServerLogCollectionResponses"),
-		resourceids.UserSpecifiedSegment("microsoftTunnelServerLogCollectionResponseId", "microsoftTunnelServerLogCollectionResponseIdValue"),
+		resourceids.UserSpecifiedSegment("microsoftTunnelServerLogCollectionResponseId", "microsoftTunnelServerLogCollectionResponseId"),
 	}
 }
 

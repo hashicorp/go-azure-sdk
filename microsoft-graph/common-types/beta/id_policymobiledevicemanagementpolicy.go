@@ -93,7 +93,7 @@ func (id PolicyMobileDeviceManagementPolicyId) Segments() []resourceids.Segment 
 	return []resourceids.Segment{
 		resourceids.StaticSegment("policies", "policies", "policies"),
 		resourceids.StaticSegment("mobileDeviceManagementPolicies", "mobileDeviceManagementPolicies", "mobileDeviceManagementPolicies"),
-		resourceids.UserSpecifiedSegment("mobilityManagementPolicyId", "mobilityManagementPolicyIdValue"),
+		resourceids.UserSpecifiedSegment("mobilityManagementPolicyId", "mobilityManagementPolicyId"),
 	}
 }
 

@@ -17,16 +17,45 @@ type UpdateUserExperienceAnalyticsAnomalyDeviceOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateUserExperienceAnalyticsAnomalyDeviceOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateUserExperienceAnalyticsAnomalyDeviceOperationOptions() UpdateUserExperienceAnalyticsAnomalyDeviceOperationOptions {
+	return UpdateUserExperienceAnalyticsAnomalyDeviceOperationOptions{}
+}
+
+func (o UpdateUserExperienceAnalyticsAnomalyDeviceOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateUserExperienceAnalyticsAnomalyDeviceOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateUserExperienceAnalyticsAnomalyDeviceOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateUserExperienceAnalyticsAnomalyDevice - Update the navigation property userExperienceAnalyticsAnomalyDevice in
 // deviceManagement
-func (c UserExperienceAnalyticsAnomalyDeviceClient) UpdateUserExperienceAnalyticsAnomalyDevice(ctx context.Context, id beta.DeviceManagementUserExperienceAnalyticsAnomalyDeviceId, input beta.UserExperienceAnalyticsAnomalyDevice) (result UpdateUserExperienceAnalyticsAnomalyDeviceOperationResponse, err error) {
+func (c UserExperienceAnalyticsAnomalyDeviceClient) UpdateUserExperienceAnalyticsAnomalyDevice(ctx context.Context, id beta.DeviceManagementUserExperienceAnalyticsAnomalyDeviceId, input beta.UserExperienceAnalyticsAnomalyDevice, options UpdateUserExperienceAnalyticsAnomalyDeviceOperationOptions) (result UpdateUserExperienceAnalyticsAnomalyDeviceOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -19,7 +19,8 @@ type DeletePermissionGrantPreApprovalPolicyOperationResponse struct {
 }
 
 type DeletePermissionGrantPreApprovalPolicyOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeletePermissionGrantPreApprovalPolicyOperationOptions() DeletePermissionGrantPreApprovalPolicyOperationOptions {
@@ -36,7 +37,9 @@ func (o DeletePermissionGrantPreApprovalPolicyOperationOptions) ToHeaders() *cli
 
 func (o DeletePermissionGrantPreApprovalPolicyOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

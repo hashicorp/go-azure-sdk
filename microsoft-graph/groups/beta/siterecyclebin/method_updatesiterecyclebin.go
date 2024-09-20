@@ -18,15 +18,44 @@ type UpdateSiteRecycleBinOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateSiteRecycleBinOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateSiteRecycleBinOperationOptions() UpdateSiteRecycleBinOperationOptions {
+	return UpdateSiteRecycleBinOperationOptions{}
+}
+
+func (o UpdateSiteRecycleBinOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateSiteRecycleBinOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateSiteRecycleBinOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateSiteRecycleBin - Update the navigation property recycleBin in groups
-func (c SiteRecycleBinClient) UpdateSiteRecycleBin(ctx context.Context, id beta.GroupIdSiteId, input beta.RecycleBin) (result UpdateSiteRecycleBinOperationResponse, err error) {
+func (c SiteRecycleBinClient) UpdateSiteRecycleBin(ctx context.Context, id beta.GroupIdSiteId, input beta.RecycleBin, options UpdateSiteRecycleBinOperationOptions) (result UpdateSiteRecycleBinOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       fmt.Sprintf("%s/recycleBin", id.ID()),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/recycleBin", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

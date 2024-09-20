@@ -19,16 +19,45 @@ type GetChatMessageReplyHostedContentValueOperationResponse struct {
 	Model        *[]byte
 }
 
+type GetChatMessageReplyHostedContentValueOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultGetChatMessageReplyHostedContentValueOperationOptions() GetChatMessageReplyHostedContentValueOperationOptions {
+	return GetChatMessageReplyHostedContentValueOperationOptions{}
+}
+
+func (o GetChatMessageReplyHostedContentValueOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o GetChatMessageReplyHostedContentValueOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o GetChatMessageReplyHostedContentValueOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // GetChatMessageReplyHostedContentValue - Get media content for the navigation property hostedContents from me. The
 // unique identifier for an entity. Read-only.
-func (c ChatMessageReplyHostedContentClient) GetChatMessageReplyHostedContentValue(ctx context.Context, id stable.MeChatIdMessageIdReplyIdHostedContentId) (result GetChatMessageReplyHostedContentValueOperationResponse, err error) {
+func (c ChatMessageReplyHostedContentClient) GetChatMessageReplyHostedContentValue(ctx context.Context, id stable.MeChatIdMessageIdReplyIdHostedContentId, options GetChatMessageReplyHostedContentValueOperationOptions) (result GetChatMessageReplyHostedContentValueOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/octet-stream",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/$value", id.ID()),
+		HttpMethod:    http.MethodGet,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/$value", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

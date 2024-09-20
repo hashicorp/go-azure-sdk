@@ -19,7 +19,8 @@ type DeleteEntitlementManagementRoleAssignmentApprovalOperationResponse struct {
 }
 
 type DeleteEntitlementManagementRoleAssignmentApprovalOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteEntitlementManagementRoleAssignmentApprovalOperationOptions() DeleteEntitlementManagementRoleAssignmentApprovalOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteEntitlementManagementRoleAssignmentApprovalOperationOptions) ToHea
 
 func (o DeleteEntitlementManagementRoleAssignmentApprovalOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

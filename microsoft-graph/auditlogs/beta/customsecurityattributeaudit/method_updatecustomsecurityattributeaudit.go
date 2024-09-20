@@ -17,15 +17,44 @@ type UpdateCustomSecurityAttributeAuditOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateCustomSecurityAttributeAuditOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateCustomSecurityAttributeAuditOperationOptions() UpdateCustomSecurityAttributeAuditOperationOptions {
+	return UpdateCustomSecurityAttributeAuditOperationOptions{}
+}
+
+func (o UpdateCustomSecurityAttributeAuditOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateCustomSecurityAttributeAuditOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateCustomSecurityAttributeAuditOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateCustomSecurityAttributeAudit - Update the navigation property customSecurityAttributeAudits in auditLogs
-func (c CustomSecurityAttributeAuditClient) UpdateCustomSecurityAttributeAudit(ctx context.Context, id beta.AuditLogCustomSecurityAttributeAuditId, input beta.CustomSecurityAttributeAudit) (result UpdateCustomSecurityAttributeAuditOperationResponse, err error) {
+func (c CustomSecurityAttributeAuditClient) UpdateCustomSecurityAttributeAudit(ctx context.Context, id beta.AuditLogCustomSecurityAttributeAuditId, input beta.CustomSecurityAttributeAudit, options UpdateCustomSecurityAttributeAuditOperationOptions) (result UpdateCustomSecurityAttributeAuditOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

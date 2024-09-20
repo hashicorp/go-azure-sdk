@@ -19,16 +19,45 @@ type GetSiteListItemDriveItemContentStreamOperationResponse struct {
 	Model        *[]byte
 }
 
+type GetSiteListItemDriveItemContentStreamOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultGetSiteListItemDriveItemContentStreamOperationOptions() GetSiteListItemDriveItemContentStreamOperationOptions {
+	return GetSiteListItemDriveItemContentStreamOperationOptions{}
+}
+
+func (o GetSiteListItemDriveItemContentStreamOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o GetSiteListItemDriveItemContentStreamOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o GetSiteListItemDriveItemContentStreamOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // GetSiteListItemDriveItemContentStream - Get contentStream for the navigation property driveItem from groups. The
 // content stream, if the item represents a file.
-func (c SiteListItemDriveItemContentStreamClient) GetSiteListItemDriveItemContentStream(ctx context.Context, id beta.GroupIdSiteIdListIdItemId) (result GetSiteListItemDriveItemContentStreamOperationResponse, err error) {
+func (c SiteListItemDriveItemContentStreamClient) GetSiteListItemDriveItemContentStream(ctx context.Context, id beta.GroupIdSiteIdListIdItemId, options GetSiteListItemDriveItemContentStreamOperationOptions) (result GetSiteListItemDriveItemContentStreamOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/octet-stream",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/driveItem/contentStream", id.ID()),
+		HttpMethod:    http.MethodGet,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/driveItem/contentStream", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

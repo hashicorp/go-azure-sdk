@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &DeviceManagementDeviceCustomAttributeShellScriptId{}
 
 func TestNewDeviceManagementDeviceCustomAttributeShellScriptID(t *testing.T) {
-	id := NewDeviceManagementDeviceCustomAttributeShellScriptID("deviceCustomAttributeShellScriptIdValue")
+	id := NewDeviceManagementDeviceCustomAttributeShellScriptID("deviceCustomAttributeShellScriptId")
 
-	if id.DeviceCustomAttributeShellScriptId != "deviceCustomAttributeShellScriptIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DeviceCustomAttributeShellScriptId'", id.DeviceCustomAttributeShellScriptId, "deviceCustomAttributeShellScriptIdValue")
+	if id.DeviceCustomAttributeShellScriptId != "deviceCustomAttributeShellScriptId" {
+		t.Fatalf("Expected %q but got %q for Segment 'DeviceCustomAttributeShellScriptId'", id.DeviceCustomAttributeShellScriptId, "deviceCustomAttributeShellScriptId")
 	}
 }
 
 func TestFormatDeviceManagementDeviceCustomAttributeShellScriptID(t *testing.T) {
-	actual := NewDeviceManagementDeviceCustomAttributeShellScriptID("deviceCustomAttributeShellScriptIdValue").ID()
-	expected := "/deviceManagement/deviceCustomAttributeShellScripts/deviceCustomAttributeShellScriptIdValue"
+	actual := NewDeviceManagementDeviceCustomAttributeShellScriptID("deviceCustomAttributeShellScriptId").ID()
+	expected := "/deviceManagement/deviceCustomAttributeShellScripts/deviceCustomAttributeShellScriptId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -50,14 +50,14 @@ func TestParseDeviceManagementDeviceCustomAttributeShellScriptID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/deviceCustomAttributeShellScripts/deviceCustomAttributeShellScriptIdValue",
+			Input: "/deviceManagement/deviceCustomAttributeShellScripts/deviceCustomAttributeShellScriptId",
 			Expected: &DeviceManagementDeviceCustomAttributeShellScriptId{
-				DeviceCustomAttributeShellScriptId: "deviceCustomAttributeShellScriptIdValue",
+				DeviceCustomAttributeShellScriptId: "deviceCustomAttributeShellScriptId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/deviceCustomAttributeShellScripts/deviceCustomAttributeShellScriptIdValue/extra",
+			Input: "/deviceManagement/deviceCustomAttributeShellScripts/deviceCustomAttributeShellScriptId/extra",
 			Error: true,
 		},
 	}
@@ -116,26 +116,26 @@ func TestParseDeviceManagementDeviceCustomAttributeShellScriptIDInsensitively(t 
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/deviceCustomAttributeShellScripts/deviceCustomAttributeShellScriptIdValue",
+			Input: "/deviceManagement/deviceCustomAttributeShellScripts/deviceCustomAttributeShellScriptId",
 			Expected: &DeviceManagementDeviceCustomAttributeShellScriptId{
-				DeviceCustomAttributeShellScriptId: "deviceCustomAttributeShellScriptIdValue",
+				DeviceCustomAttributeShellScriptId: "deviceCustomAttributeShellScriptId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/deviceCustomAttributeShellScripts/deviceCustomAttributeShellScriptIdValue/extra",
+			Input: "/deviceManagement/deviceCustomAttributeShellScripts/deviceCustomAttributeShellScriptId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/dEvIcEcUsToMaTtRiBuTeShElLsCrIpTs/dEvIcEcUsToMaTtRiBuTeShElLsCrIpTiDvAlUe",
+			Input: "/dEvIcEmAnAgEmEnT/dEvIcEcUsToMaTtRiBuTeShElLsCrIpTs/dEvIcEcUsToMaTtRiBuTeShElLsCrIpTiD",
 			Expected: &DeviceManagementDeviceCustomAttributeShellScriptId{
-				DeviceCustomAttributeShellScriptId: "dEvIcEcUsToMaTtRiBuTeShElLsCrIpTiDvAlUe",
+				DeviceCustomAttributeShellScriptId: "dEvIcEcUsToMaTtRiBuTeShElLsCrIpTiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/dEvIcEcUsToMaTtRiBuTeShElLsCrIpTs/dEvIcEcUsToMaTtRiBuTeShElLsCrIpTiDvAlUe/extra",
+			Input: "/dEvIcEmAnAgEmEnT/dEvIcEcUsToMaTtRiBuTeShElLsCrIpTs/dEvIcEcUsToMaTtRiBuTeShElLsCrIpTiD/extra",
 			Error: true,
 		},
 	}

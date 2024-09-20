@@ -19,15 +19,44 @@ type AddGroupLifecyclePolicyGroupOperationResponse struct {
 	Model        *AddGroupLifecyclePolicyGroupResult
 }
 
+type AddGroupLifecyclePolicyGroupOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultAddGroupLifecyclePolicyGroupOperationOptions() AddGroupLifecyclePolicyGroupOperationOptions {
+	return AddGroupLifecyclePolicyGroupOperationOptions{}
+}
+
+func (o AddGroupLifecyclePolicyGroupOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o AddGroupLifecyclePolicyGroupOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o AddGroupLifecyclePolicyGroupOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // AddGroupLifecyclePolicyGroup - Invoke action addGroup
-func (c GroupLifecyclePolicyClient) AddGroupLifecyclePolicyGroup(ctx context.Context, id beta.GroupIdGroupLifecyclePolicyId, input AddGroupLifecyclePolicyGroupRequest) (result AddGroupLifecyclePolicyGroupOperationResponse, err error) {
+func (c GroupLifecyclePolicyClient) AddGroupLifecyclePolicyGroup(ctx context.Context, id beta.GroupIdGroupLifecyclePolicyId, input AddGroupLifecyclePolicyGroupRequest, options AddGroupLifecyclePolicyGroupOperationOptions) (result AddGroupLifecyclePolicyGroupOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/addGroup", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/addGroup", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

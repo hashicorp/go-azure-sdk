@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/configurationpolicy` Documentation
 
-The `configurationpolicy` SDK allows for interaction with the Azure Resource Manager Service `devicemanagement` (API Version `beta`).
+The `configurationpolicy` SDK allows for interaction with Microsoft Graph `devicemanagement` (API Version `beta`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -15,7 +15,7 @@ import "github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/
 ### Client Initialization
 
 ```go
-client := configurationpolicy.NewConfigurationPolicyClientWithBaseURI("https://management.azure.com")
+client := configurationpolicy.NewConfigurationPolicyClientWithBaseURI("https://graph.microsoft.com")
 client.Client.Authorizer = authorizer
 ```
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := configurationpolicy.NewDeviceManagementConfigurationPolicyID("deviceManagementConfigurationPolicyIdValue")
+id := configurationpolicy.NewDeviceManagementConfigurationPolicyID("deviceManagementConfigurationPolicyId")
 
 payload := configurationpolicy.AssignConfigurationPoliciesRequest{
 	// ...
@@ -46,9 +46,9 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := configurationpolicy.NewDeviceManagementConfigurationPolicyID("deviceManagementConfigurationPolicyIdValue")
+id := configurationpolicy.NewDeviceManagementConfigurationPolicyID("deviceManagementConfigurationPolicyId")
 
-read, err := client.ClearConfigurationPolicyEnrollmentTimeDeviceMembershipTarget(ctx, id)
+read, err := client.ClearConfigurationPolicyEnrollmentTimeDeviceMembershipTarget(ctx, id, configurationpolicy.DefaultClearConfigurationPolicyEnrollmentTimeDeviceMembershipTargetOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -68,7 +68,7 @@ payload := configurationpolicy.DeviceManagementConfigurationPolicy{
 }
 
 
-read, err := client.CreateConfigurationPolicy(ctx, payload)
+read, err := client.CreateConfigurationPolicy(ctx, payload, configurationpolicy.DefaultCreateConfigurationPolicyOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -82,14 +82,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := configurationpolicy.NewDeviceManagementConfigurationPolicyID("deviceManagementConfigurationPolicyIdValue")
+id := configurationpolicy.NewDeviceManagementConfigurationPolicyID("deviceManagementConfigurationPolicyId")
 
 payload := configurationpolicy.CreateConfigurationPolicyCopyRequest{
 	// ...
 }
 
 
-read, err := client.CreateConfigurationPolicyCopy(ctx, id, payload)
+read, err := client.CreateConfigurationPolicyCopy(ctx, id, payload, configurationpolicy.DefaultCreateConfigurationPolicyCopyOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -103,14 +103,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := configurationpolicy.NewDeviceManagementConfigurationPolicyID("deviceManagementConfigurationPolicyIdValue")
+id := configurationpolicy.NewDeviceManagementConfigurationPolicyID("deviceManagementConfigurationPolicyId")
 
 payload := configurationpolicy.CreateConfigurationPolicyReorderRequest{
 	// ...
 }
 
 
-read, err := client.CreateConfigurationPolicyReorder(ctx, id, payload)
+read, err := client.CreateConfigurationPolicyReorder(ctx, id, payload, configurationpolicy.DefaultCreateConfigurationPolicyReorderOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -124,9 +124,9 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := configurationpolicy.NewDeviceManagementConfigurationPolicyID("deviceManagementConfigurationPolicyIdValue")
+id := configurationpolicy.NewDeviceManagementConfigurationPolicyID("deviceManagementConfigurationPolicyId")
 
-read, err := client.CreateConfigurationPolicyRetrieveEnrollmentTimeDeviceMembershipTarget(ctx, id)
+read, err := client.CreateConfigurationPolicyRetrieveEnrollmentTimeDeviceMembershipTarget(ctx, id, configurationpolicy.DefaultCreateConfigurationPolicyRetrieveEnrollmentTimeDeviceMembershipTargetOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -140,7 +140,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := configurationpolicy.NewDeviceManagementConfigurationPolicyID("deviceManagementConfigurationPolicyIdValue")
+id := configurationpolicy.NewDeviceManagementConfigurationPolicyID("deviceManagementConfigurationPolicyId")
 
 read, err := client.DeleteConfigurationPolicy(ctx, id, configurationpolicy.DefaultDeleteConfigurationPolicyOperationOptions())
 if err != nil {
@@ -172,7 +172,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := configurationpolicy.NewDeviceManagementConfigurationPolicyID("deviceManagementConfigurationPolicyIdValue")
+id := configurationpolicy.NewDeviceManagementConfigurationPolicyID("deviceManagementConfigurationPolicyId")
 
 read, err := client.GetConfigurationPolicy(ctx, id, configurationpolicy.DefaultGetConfigurationPolicyOperationOptions())
 if err != nil {
@@ -205,14 +205,14 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := configurationpolicy.NewDeviceManagementConfigurationPolicyID("deviceManagementConfigurationPolicyIdValue")
+id := configurationpolicy.NewDeviceManagementConfigurationPolicyID("deviceManagementConfigurationPolicyId")
 
 payload := configurationpolicy.SetConfigurationPolicyEnrollmentTimeDeviceMembershipTargetRequest{
 	// ...
 }
 
 
-read, err := client.SetConfigurationPolicyEnrollmentTimeDeviceMembershipTarget(ctx, id, payload)
+read, err := client.SetConfigurationPolicyEnrollmentTimeDeviceMembershipTarget(ctx, id, payload, configurationpolicy.DefaultSetConfigurationPolicyEnrollmentTimeDeviceMembershipTargetOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -226,14 +226,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := configurationpolicy.NewDeviceManagementConfigurationPolicyID("deviceManagementConfigurationPolicyIdValue")
+id := configurationpolicy.NewDeviceManagementConfigurationPolicyID("deviceManagementConfigurationPolicyId")
 
 payload := configurationpolicy.DeviceManagementConfigurationPolicy{
 	// ...
 }
 
 
-read, err := client.UpdateConfigurationPolicy(ctx, id, payload)
+read, err := client.UpdateConfigurationPolicy(ctx, id, payload, configurationpolicy.DefaultUpdateConfigurationPolicyOperationOptions())
 if err != nil {
 	// handle the error
 }

@@ -18,15 +18,44 @@ type CreateTeamworkAssociatedTeamOperationResponse struct {
 	Model        *stable.AssociatedTeamInfo
 }
 
+type CreateTeamworkAssociatedTeamOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateTeamworkAssociatedTeamOperationOptions() CreateTeamworkAssociatedTeamOperationOptions {
+	return CreateTeamworkAssociatedTeamOperationOptions{}
+}
+
+func (o CreateTeamworkAssociatedTeamOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateTeamworkAssociatedTeamOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateTeamworkAssociatedTeamOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateTeamworkAssociatedTeam - Create new navigation property to associatedTeams for me
-func (c TeamworkAssociatedTeamClient) CreateTeamworkAssociatedTeam(ctx context.Context, input stable.AssociatedTeamInfo) (result CreateTeamworkAssociatedTeamOperationResponse, err error) {
+func (c TeamworkAssociatedTeamClient) CreateTeamworkAssociatedTeam(ctx context.Context, input stable.AssociatedTeamInfo, options CreateTeamworkAssociatedTeamOperationOptions) (result CreateTeamworkAssociatedTeamOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/me/teamwork/associatedTeams",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/me/teamwork/associatedTeams",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

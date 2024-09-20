@@ -17,15 +17,44 @@ type UpdateDataSharingConsentOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateDataSharingConsentOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateDataSharingConsentOperationOptions() UpdateDataSharingConsentOperationOptions {
+	return UpdateDataSharingConsentOperationOptions{}
+}
+
+func (o UpdateDataSharingConsentOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateDataSharingConsentOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateDataSharingConsentOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateDataSharingConsent - Update the navigation property dataSharingConsents in deviceManagement
-func (c DataSharingConsentClient) UpdateDataSharingConsent(ctx context.Context, id beta.DeviceManagementDataSharingConsentId, input beta.DataSharingConsent) (result UpdateDataSharingConsentOperationResponse, err error) {
+func (c DataSharingConsentClient) UpdateDataSharingConsent(ctx context.Context, id beta.DeviceManagementDataSharingConsentId, input beta.DataSharingConsent, options UpdateDataSharingConsentOperationOptions) (result UpdateDataSharingConsentOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &MeOwnedObjectId{}
 
 func TestNewMeOwnedObjectID(t *testing.T) {
-	id := NewMeOwnedObjectID("directoryObjectIdValue")
+	id := NewMeOwnedObjectID("directoryObjectId")
 
-	if id.DirectoryObjectId != "directoryObjectIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DirectoryObjectId'", id.DirectoryObjectId, "directoryObjectIdValue")
+	if id.DirectoryObjectId != "directoryObjectId" {
+		t.Fatalf("Expected %q but got %q for Segment 'DirectoryObjectId'", id.DirectoryObjectId, "directoryObjectId")
 	}
 }
 
 func TestFormatMeOwnedObjectID(t *testing.T) {
-	actual := NewMeOwnedObjectID("directoryObjectIdValue").ID()
-	expected := "/me/ownedObjects/directoryObjectIdValue"
+	actual := NewMeOwnedObjectID("directoryObjectId").ID()
+	expected := "/me/ownedObjects/directoryObjectId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -50,14 +50,14 @@ func TestParseMeOwnedObjectID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/me/ownedObjects/directoryObjectIdValue",
+			Input: "/me/ownedObjects/directoryObjectId",
 			Expected: &MeOwnedObjectId{
-				DirectoryObjectId: "directoryObjectIdValue",
+				DirectoryObjectId: "directoryObjectId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/ownedObjects/directoryObjectIdValue/extra",
+			Input: "/me/ownedObjects/directoryObjectId/extra",
 			Error: true,
 		},
 	}
@@ -116,26 +116,26 @@ func TestParseMeOwnedObjectIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/me/ownedObjects/directoryObjectIdValue",
+			Input: "/me/ownedObjects/directoryObjectId",
 			Expected: &MeOwnedObjectId{
-				DirectoryObjectId: "directoryObjectIdValue",
+				DirectoryObjectId: "directoryObjectId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/ownedObjects/directoryObjectIdValue/extra",
+			Input: "/me/ownedObjects/directoryObjectId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/oWnEdObJeCtS/dIrEcToRyObJeCtIdVaLuE",
+			Input: "/mE/oWnEdObJeCtS/dIrEcToRyObJeCtId",
 			Expected: &MeOwnedObjectId{
-				DirectoryObjectId: "dIrEcToRyObJeCtIdVaLuE",
+				DirectoryObjectId: "dIrEcToRyObJeCtId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/mE/oWnEdObJeCtS/dIrEcToRyObJeCtIdVaLuE/extra",
+			Input: "/mE/oWnEdObJeCtS/dIrEcToRyObJeCtId/extra",
 			Error: true,
 		},
 	}

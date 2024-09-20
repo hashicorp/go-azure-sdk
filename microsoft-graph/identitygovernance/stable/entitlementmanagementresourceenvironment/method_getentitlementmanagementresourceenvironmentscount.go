@@ -18,8 +18,9 @@ type GetEntitlementManagementResourceEnvironmentsCountOperationResponse struct {
 }
 
 type GetEntitlementManagementResourceEnvironmentsCountOperationOptions struct {
-	Filter *string
-	Search *string
+	Filter   *string
+	Metadata *odata.Metadata
+	Search   *string
 }
 
 func DefaultGetEntitlementManagementResourceEnvironmentsCountOperationOptions() GetEntitlementManagementResourceEnvironmentsCountOperationOptions {
@@ -36,6 +37,9 @@ func (o GetEntitlementManagementResourceEnvironmentsCountOperationOptions) ToODa
 	out := odata.Query{}
 	if o.Filter != nil {
 		out.Filter = *o.Filter
+	}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
 	}
 	if o.Search != nil {
 		out.Search = *o.Search

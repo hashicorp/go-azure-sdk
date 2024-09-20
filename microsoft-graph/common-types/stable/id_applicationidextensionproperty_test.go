@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &ApplicationIdExtensionPropertyId{}
 
 func TestNewApplicationIdExtensionPropertyID(t *testing.T) {
-	id := NewApplicationIdExtensionPropertyID("applicationIdValue", "extensionPropertyIdValue")
+	id := NewApplicationIdExtensionPropertyID("applicationId", "extensionPropertyId")
 
-	if id.ApplicationId != "applicationIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ApplicationId'", id.ApplicationId, "applicationIdValue")
+	if id.ApplicationId != "applicationId" {
+		t.Fatalf("Expected %q but got %q for Segment 'ApplicationId'", id.ApplicationId, "applicationId")
 	}
 
-	if id.ExtensionPropertyId != "extensionPropertyIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ExtensionPropertyId'", id.ExtensionPropertyId, "extensionPropertyIdValue")
+	if id.ExtensionPropertyId != "extensionPropertyId" {
+		t.Fatalf("Expected %q but got %q for Segment 'ExtensionPropertyId'", id.ExtensionPropertyId, "extensionPropertyId")
 	}
 }
 
 func TestFormatApplicationIdExtensionPropertyID(t *testing.T) {
-	actual := NewApplicationIdExtensionPropertyID("applicationIdValue", "extensionPropertyIdValue").ID()
-	expected := "/applications/applicationIdValue/extensionProperties/extensionPropertyIdValue"
+	actual := NewApplicationIdExtensionPropertyID("applicationId", "extensionPropertyId").ID()
+	expected := "/applications/applicationId/extensionProperties/extensionPropertyId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -49,25 +49,25 @@ func TestParseApplicationIdExtensionPropertyID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/applications/applicationIdValue",
+			Input: "/applications/applicationId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/applications/applicationIdValue/extensionProperties",
+			Input: "/applications/applicationId/extensionProperties",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/applications/applicationIdValue/extensionProperties/extensionPropertyIdValue",
+			Input: "/applications/applicationId/extensionProperties/extensionPropertyId",
 			Expected: &ApplicationIdExtensionPropertyId{
-				ApplicationId:       "applicationIdValue",
-				ExtensionPropertyId: "extensionPropertyIdValue",
+				ApplicationId:       "applicationId",
+				ExtensionPropertyId: "extensionPropertyId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/applications/applicationIdValue/extensionProperties/extensionPropertyIdValue/extra",
+			Input: "/applications/applicationId/extensionProperties/extensionPropertyId/extra",
 			Error: true,
 		},
 	}
@@ -120,48 +120,48 @@ func TestParseApplicationIdExtensionPropertyIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/applications/applicationIdValue",
+			Input: "/applications/applicationId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/aPpLiCaTiOnS/aPpLiCaTiOnIdVaLuE",
+			Input: "/aPpLiCaTiOnS/aPpLiCaTiOnId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/applications/applicationIdValue/extensionProperties",
+			Input: "/applications/applicationId/extensionProperties",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/aPpLiCaTiOnS/aPpLiCaTiOnIdVaLuE/eXtEnSiOnPrOpErTiEs",
+			Input: "/aPpLiCaTiOnS/aPpLiCaTiOnId/eXtEnSiOnPrOpErTiEs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/applications/applicationIdValue/extensionProperties/extensionPropertyIdValue",
+			Input: "/applications/applicationId/extensionProperties/extensionPropertyId",
 			Expected: &ApplicationIdExtensionPropertyId{
-				ApplicationId:       "applicationIdValue",
-				ExtensionPropertyId: "extensionPropertyIdValue",
+				ApplicationId:       "applicationId",
+				ExtensionPropertyId: "extensionPropertyId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/applications/applicationIdValue/extensionProperties/extensionPropertyIdValue/extra",
+			Input: "/applications/applicationId/extensionProperties/extensionPropertyId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/aPpLiCaTiOnS/aPpLiCaTiOnIdVaLuE/eXtEnSiOnPrOpErTiEs/eXtEnSiOnPrOpErTyIdVaLuE",
+			Input: "/aPpLiCaTiOnS/aPpLiCaTiOnId/eXtEnSiOnPrOpErTiEs/eXtEnSiOnPrOpErTyId",
 			Expected: &ApplicationIdExtensionPropertyId{
-				ApplicationId:       "aPpLiCaTiOnIdVaLuE",
-				ExtensionPropertyId: "eXtEnSiOnPrOpErTyIdVaLuE",
+				ApplicationId:       "aPpLiCaTiOnId",
+				ExtensionPropertyId: "eXtEnSiOnPrOpErTyId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/aPpLiCaTiOnS/aPpLiCaTiOnIdVaLuE/eXtEnSiOnPrOpErTiEs/eXtEnSiOnPrOpErTyIdVaLuE/extra",
+			Input: "/aPpLiCaTiOnS/aPpLiCaTiOnId/eXtEnSiOnPrOpErTiEs/eXtEnSiOnPrOpErTyId/extra",
 			Error: true,
 		},
 	}

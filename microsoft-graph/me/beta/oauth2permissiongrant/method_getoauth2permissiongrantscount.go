@@ -18,8 +18,9 @@ type GetOAuth2PermissionGrantsCountOperationResponse struct {
 }
 
 type GetOAuth2PermissionGrantsCountOperationOptions struct {
-	Filter *string
-	Search *string
+	Filter   *string
+	Metadata *odata.Metadata
+	Search   *string
 }
 
 func DefaultGetOAuth2PermissionGrantsCountOperationOptions() GetOAuth2PermissionGrantsCountOperationOptions {
@@ -36,6 +37,9 @@ func (o GetOAuth2PermissionGrantsCountOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
 	if o.Filter != nil {
 		out.Filter = *o.Filter
+	}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
 	}
 	if o.Search != nil {
 		out.Search = *o.Search

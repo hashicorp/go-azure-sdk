@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &DeviceManagementExchangeConnectorId{}
 
 func TestNewDeviceManagementExchangeConnectorID(t *testing.T) {
-	id := NewDeviceManagementExchangeConnectorID("deviceManagementExchangeConnectorIdValue")
+	id := NewDeviceManagementExchangeConnectorID("deviceManagementExchangeConnectorId")
 
-	if id.DeviceManagementExchangeConnectorId != "deviceManagementExchangeConnectorIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DeviceManagementExchangeConnectorId'", id.DeviceManagementExchangeConnectorId, "deviceManagementExchangeConnectorIdValue")
+	if id.DeviceManagementExchangeConnectorId != "deviceManagementExchangeConnectorId" {
+		t.Fatalf("Expected %q but got %q for Segment 'DeviceManagementExchangeConnectorId'", id.DeviceManagementExchangeConnectorId, "deviceManagementExchangeConnectorId")
 	}
 }
 
 func TestFormatDeviceManagementExchangeConnectorID(t *testing.T) {
-	actual := NewDeviceManagementExchangeConnectorID("deviceManagementExchangeConnectorIdValue").ID()
-	expected := "/deviceManagement/exchangeConnectors/deviceManagementExchangeConnectorIdValue"
+	actual := NewDeviceManagementExchangeConnectorID("deviceManagementExchangeConnectorId").ID()
+	expected := "/deviceManagement/exchangeConnectors/deviceManagementExchangeConnectorId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -50,14 +50,14 @@ func TestParseDeviceManagementExchangeConnectorID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/exchangeConnectors/deviceManagementExchangeConnectorIdValue",
+			Input: "/deviceManagement/exchangeConnectors/deviceManagementExchangeConnectorId",
 			Expected: &DeviceManagementExchangeConnectorId{
-				DeviceManagementExchangeConnectorId: "deviceManagementExchangeConnectorIdValue",
+				DeviceManagementExchangeConnectorId: "deviceManagementExchangeConnectorId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/exchangeConnectors/deviceManagementExchangeConnectorIdValue/extra",
+			Input: "/deviceManagement/exchangeConnectors/deviceManagementExchangeConnectorId/extra",
 			Error: true,
 		},
 	}
@@ -116,26 +116,26 @@ func TestParseDeviceManagementExchangeConnectorIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/exchangeConnectors/deviceManagementExchangeConnectorIdValue",
+			Input: "/deviceManagement/exchangeConnectors/deviceManagementExchangeConnectorId",
 			Expected: &DeviceManagementExchangeConnectorId{
-				DeviceManagementExchangeConnectorId: "deviceManagementExchangeConnectorIdValue",
+				DeviceManagementExchangeConnectorId: "deviceManagementExchangeConnectorId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/exchangeConnectors/deviceManagementExchangeConnectorIdValue/extra",
+			Input: "/deviceManagement/exchangeConnectors/deviceManagementExchangeConnectorId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/eXcHaNgEcOnNeCtOrS/dEvIcEmAnAgEmEnTeXcHaNgEcOnNeCtOrIdVaLuE",
+			Input: "/dEvIcEmAnAgEmEnT/eXcHaNgEcOnNeCtOrS/dEvIcEmAnAgEmEnTeXcHaNgEcOnNeCtOrId",
 			Expected: &DeviceManagementExchangeConnectorId{
-				DeviceManagementExchangeConnectorId: "dEvIcEmAnAgEmEnTeXcHaNgEcOnNeCtOrIdVaLuE",
+				DeviceManagementExchangeConnectorId: "dEvIcEmAnAgEmEnTeXcHaNgEcOnNeCtOrId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/eXcHaNgEcOnNeCtOrS/dEvIcEmAnAgEmEnTeXcHaNgEcOnNeCtOrIdVaLuE/extra",
+			Input: "/dEvIcEmAnAgEmEnT/eXcHaNgEcOnNeCtOrS/dEvIcEmAnAgEmEnTeXcHaNgEcOnNeCtOrId/extra",
 			Error: true,
 		},
 	}

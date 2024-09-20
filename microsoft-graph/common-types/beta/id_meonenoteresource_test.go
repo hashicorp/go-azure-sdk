@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &MeOnenoteResourceId{}
 
 func TestNewMeOnenoteResourceID(t *testing.T) {
-	id := NewMeOnenoteResourceID("onenoteResourceIdValue")
+	id := NewMeOnenoteResourceID("onenoteResourceId")
 
-	if id.OnenoteResourceId != "onenoteResourceIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'OnenoteResourceId'", id.OnenoteResourceId, "onenoteResourceIdValue")
+	if id.OnenoteResourceId != "onenoteResourceId" {
+		t.Fatalf("Expected %q but got %q for Segment 'OnenoteResourceId'", id.OnenoteResourceId, "onenoteResourceId")
 	}
 }
 
 func TestFormatMeOnenoteResourceID(t *testing.T) {
-	actual := NewMeOnenoteResourceID("onenoteResourceIdValue").ID()
-	expected := "/me/onenote/resources/onenoteResourceIdValue"
+	actual := NewMeOnenoteResourceID("onenoteResourceId").ID()
+	expected := "/me/onenote/resources/onenoteResourceId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -55,14 +55,14 @@ func TestParseMeOnenoteResourceID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/me/onenote/resources/onenoteResourceIdValue",
+			Input: "/me/onenote/resources/onenoteResourceId",
 			Expected: &MeOnenoteResourceId{
-				OnenoteResourceId: "onenoteResourceIdValue",
+				OnenoteResourceId: "onenoteResourceId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/onenote/resources/onenoteResourceIdValue/extra",
+			Input: "/me/onenote/resources/onenoteResourceId/extra",
 			Error: true,
 		},
 	}
@@ -131,26 +131,26 @@ func TestParseMeOnenoteResourceIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/me/onenote/resources/onenoteResourceIdValue",
+			Input: "/me/onenote/resources/onenoteResourceId",
 			Expected: &MeOnenoteResourceId{
-				OnenoteResourceId: "onenoteResourceIdValue",
+				OnenoteResourceId: "onenoteResourceId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/onenote/resources/onenoteResourceIdValue/extra",
+			Input: "/me/onenote/resources/onenoteResourceId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/oNeNoTe/rEsOuRcEs/oNeNoTeReSoUrCeIdVaLuE",
+			Input: "/mE/oNeNoTe/rEsOuRcEs/oNeNoTeReSoUrCeId",
 			Expected: &MeOnenoteResourceId{
-				OnenoteResourceId: "oNeNoTeReSoUrCeIdVaLuE",
+				OnenoteResourceId: "oNeNoTeReSoUrCeId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/mE/oNeNoTe/rEsOuRcEs/oNeNoTeReSoUrCeIdVaLuE/extra",
+			Input: "/mE/oNeNoTe/rEsOuRcEs/oNeNoTeReSoUrCeId/extra",
 			Error: true,
 		},
 	}

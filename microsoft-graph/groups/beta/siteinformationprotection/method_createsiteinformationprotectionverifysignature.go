@@ -19,15 +19,44 @@ type CreateSiteInformationProtectionVerifySignatureOperationResponse struct {
 	Model        *beta.VerificationResult
 }
 
+type CreateSiteInformationProtectionVerifySignatureOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateSiteInformationProtectionVerifySignatureOperationOptions() CreateSiteInformationProtectionVerifySignatureOperationOptions {
+	return CreateSiteInformationProtectionVerifySignatureOperationOptions{}
+}
+
+func (o CreateSiteInformationProtectionVerifySignatureOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateSiteInformationProtectionVerifySignatureOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateSiteInformationProtectionVerifySignatureOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateSiteInformationProtectionVerifySignature - Invoke action verifySignature
-func (c SiteInformationProtectionClient) CreateSiteInformationProtectionVerifySignature(ctx context.Context, id beta.GroupIdSiteId, input CreateSiteInformationProtectionVerifySignatureRequest) (result CreateSiteInformationProtectionVerifySignatureOperationResponse, err error) {
+func (c SiteInformationProtectionClient) CreateSiteInformationProtectionVerifySignature(ctx context.Context, id beta.GroupIdSiteId, input CreateSiteInformationProtectionVerifySignatureRequest, options CreateSiteInformationProtectionVerifySignatureOperationOptions) (result CreateSiteInformationProtectionVerifySignatureOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/informationProtection/verifySignature", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/informationProtection/verifySignature", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

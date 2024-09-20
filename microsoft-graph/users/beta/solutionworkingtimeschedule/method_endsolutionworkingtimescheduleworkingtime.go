@@ -18,16 +18,45 @@ type EndSolutionWorkingTimeScheduleWorkingTimeOperationResponse struct {
 	OData        *odata.OData
 }
 
+type EndSolutionWorkingTimeScheduleWorkingTimeOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultEndSolutionWorkingTimeScheduleWorkingTimeOperationOptions() EndSolutionWorkingTimeScheduleWorkingTimeOperationOptions {
+	return EndSolutionWorkingTimeScheduleWorkingTimeOperationOptions{}
+}
+
+func (o EndSolutionWorkingTimeScheduleWorkingTimeOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o EndSolutionWorkingTimeScheduleWorkingTimeOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o EndSolutionWorkingTimeScheduleWorkingTimeOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // EndSolutionWorkingTimeScheduleWorkingTime - Invoke action endWorkingTime. Triggers the policies associated with the
 // end of working hours.
-func (c SolutionWorkingTimeScheduleClient) EndSolutionWorkingTimeScheduleWorkingTime(ctx context.Context, id beta.UserId) (result EndSolutionWorkingTimeScheduleWorkingTimeOperationResponse, err error) {
+func (c SolutionWorkingTimeScheduleClient) EndSolutionWorkingTimeScheduleWorkingTime(ctx context.Context, id beta.UserId, options EndSolutionWorkingTimeScheduleWorkingTimeOperationOptions) (result EndSolutionWorkingTimeScheduleWorkingTimeOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/solutions/workingTimeSchedule/endWorkingTime", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/solutions/workingTimeSchedule/endWorkingTime", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

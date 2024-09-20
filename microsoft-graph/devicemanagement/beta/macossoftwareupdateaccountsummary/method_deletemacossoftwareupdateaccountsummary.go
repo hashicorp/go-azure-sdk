@@ -19,7 +19,8 @@ type DeleteMacOSSoftwareUpdateAccountSummaryOperationResponse struct {
 }
 
 type DeleteMacOSSoftwareUpdateAccountSummaryOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteMacOSSoftwareUpdateAccountSummaryOperationOptions() DeleteMacOSSoftwareUpdateAccountSummaryOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteMacOSSoftwareUpdateAccountSummaryOperationOptions) ToHeaders() *cl
 
 func (o DeleteMacOSSoftwareUpdateAccountSummaryOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

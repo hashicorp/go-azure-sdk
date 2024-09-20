@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &GroupIdAppRoleAssignmentId{}
 
 func TestNewGroupIdAppRoleAssignmentID(t *testing.T) {
-	id := NewGroupIdAppRoleAssignmentID("groupIdValue", "appRoleAssignmentIdValue")
+	id := NewGroupIdAppRoleAssignmentID("groupId", "appRoleAssignmentId")
 
-	if id.GroupId != "groupIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'GroupId'", id.GroupId, "groupIdValue")
+	if id.GroupId != "groupId" {
+		t.Fatalf("Expected %q but got %q for Segment 'GroupId'", id.GroupId, "groupId")
 	}
 
-	if id.AppRoleAssignmentId != "appRoleAssignmentIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'AppRoleAssignmentId'", id.AppRoleAssignmentId, "appRoleAssignmentIdValue")
+	if id.AppRoleAssignmentId != "appRoleAssignmentId" {
+		t.Fatalf("Expected %q but got %q for Segment 'AppRoleAssignmentId'", id.AppRoleAssignmentId, "appRoleAssignmentId")
 	}
 }
 
 func TestFormatGroupIdAppRoleAssignmentID(t *testing.T) {
-	actual := NewGroupIdAppRoleAssignmentID("groupIdValue", "appRoleAssignmentIdValue").ID()
-	expected := "/groups/groupIdValue/appRoleAssignments/appRoleAssignmentIdValue"
+	actual := NewGroupIdAppRoleAssignmentID("groupId", "appRoleAssignmentId").ID()
+	expected := "/groups/groupId/appRoleAssignments/appRoleAssignmentId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -49,25 +49,25 @@ func TestParseGroupIdAppRoleAssignmentID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue",
+			Input: "/groups/groupId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/appRoleAssignments",
+			Input: "/groups/groupId/appRoleAssignments",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/groups/groupIdValue/appRoleAssignments/appRoleAssignmentIdValue",
+			Input: "/groups/groupId/appRoleAssignments/appRoleAssignmentId",
 			Expected: &GroupIdAppRoleAssignmentId{
-				GroupId:             "groupIdValue",
-				AppRoleAssignmentId: "appRoleAssignmentIdValue",
+				GroupId:             "groupId",
+				AppRoleAssignmentId: "appRoleAssignmentId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/groups/groupIdValue/appRoleAssignments/appRoleAssignmentIdValue/extra",
+			Input: "/groups/groupId/appRoleAssignments/appRoleAssignmentId/extra",
 			Error: true,
 		},
 	}
@@ -120,48 +120,48 @@ func TestParseGroupIdAppRoleAssignmentIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue",
+			Input: "/groups/groupId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE",
+			Input: "/gRoUpS/gRoUpId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/appRoleAssignments",
+			Input: "/groups/groupId/appRoleAssignments",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/aPpRoLeAsSiGnMeNtS",
+			Input: "/gRoUpS/gRoUpId/aPpRoLeAsSiGnMeNtS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/groups/groupIdValue/appRoleAssignments/appRoleAssignmentIdValue",
+			Input: "/groups/groupId/appRoleAssignments/appRoleAssignmentId",
 			Expected: &GroupIdAppRoleAssignmentId{
-				GroupId:             "groupIdValue",
-				AppRoleAssignmentId: "appRoleAssignmentIdValue",
+				GroupId:             "groupId",
+				AppRoleAssignmentId: "appRoleAssignmentId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/groups/groupIdValue/appRoleAssignments/appRoleAssignmentIdValue/extra",
+			Input: "/groups/groupId/appRoleAssignments/appRoleAssignmentId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/aPpRoLeAsSiGnMeNtS/aPpRoLeAsSiGnMeNtIdVaLuE",
+			Input: "/gRoUpS/gRoUpId/aPpRoLeAsSiGnMeNtS/aPpRoLeAsSiGnMeNtId",
 			Expected: &GroupIdAppRoleAssignmentId{
-				GroupId:             "gRoUpIdVaLuE",
-				AppRoleAssignmentId: "aPpRoLeAsSiGnMeNtIdVaLuE",
+				GroupId:             "gRoUpId",
+				AppRoleAssignmentId: "aPpRoLeAsSiGnMeNtId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/aPpRoLeAsSiGnMeNtS/aPpRoLeAsSiGnMeNtIdVaLuE/extra",
+			Input: "/gRoUpS/gRoUpId/aPpRoLeAsSiGnMeNtS/aPpRoLeAsSiGnMeNtId/extra",
 			Error: true,
 		},
 	}

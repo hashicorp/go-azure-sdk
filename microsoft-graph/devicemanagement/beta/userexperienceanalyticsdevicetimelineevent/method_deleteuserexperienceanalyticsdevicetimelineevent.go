@@ -19,7 +19,8 @@ type DeleteUserExperienceAnalyticsDeviceTimelineEventOperationResponse struct {
 }
 
 type DeleteUserExperienceAnalyticsDeviceTimelineEventOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteUserExperienceAnalyticsDeviceTimelineEventOperationOptions() DeleteUserExperienceAnalyticsDeviceTimelineEventOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteUserExperienceAnalyticsDeviceTimelineEventOperationOptions) ToHead
 
 func (o DeleteUserExperienceAnalyticsDeviceTimelineEventOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

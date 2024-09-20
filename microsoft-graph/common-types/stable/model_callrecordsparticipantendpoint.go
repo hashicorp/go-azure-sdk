@@ -83,10 +83,19 @@ func (s CallRecordsParticipantEndpoint) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &CallRecordsParticipantEndpoint{}
 
 func (s *CallRecordsParticipantEndpoint) UnmarshalJSON(bytes []byte) error {
-	type alias CallRecordsParticipantEndpoint
-	var decoded alias
+
+	var decoded struct {
+		CpuCoresCount          nullable.Type[int64]     `json:"cpuCoresCount,omitempty"`
+		CpuName                nullable.Type[string]    `json:"cpuName,omitempty"`
+		CpuProcessorSpeedInMhz nullable.Type[int64]     `json:"cpuProcessorSpeedInMhz,omitempty"`
+		Feedback               *CallRecordsUserFeedback `json:"feedback,omitempty"`
+		Name                   nullable.Type[string]    `json:"name,omitempty"`
+		ODataId                *string                  `json:"@odata.id,omitempty"`
+		ODataType              *string                  `json:"@odata.type,omitempty"`
+		UserAgent              CallRecordsUserAgent     `json:"userAgent"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into CallRecordsParticipantEndpoint: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.CpuCoresCount = decoded.CpuCoresCount
@@ -125,5 +134,6 @@ func (s *CallRecordsParticipantEndpoint) UnmarshalJSON(bytes []byte) error {
 		}
 		s.UserAgent = impl
 	}
+
 	return nil
 }

@@ -18,16 +18,45 @@ type SetTeamChannelMessageHostedContentValueOperationResponse struct {
 	OData        *odata.OData
 }
 
+type SetTeamChannelMessageHostedContentValueOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultSetTeamChannelMessageHostedContentValueOperationOptions() SetTeamChannelMessageHostedContentValueOperationOptions {
+	return SetTeamChannelMessageHostedContentValueOperationOptions{}
+}
+
+func (o SetTeamChannelMessageHostedContentValueOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o SetTeamChannelMessageHostedContentValueOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o SetTeamChannelMessageHostedContentValueOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // SetTeamChannelMessageHostedContentValue - Update media content for the navigation property hostedContents in groups.
 // The unique identifier for an entity. Read-only.
-func (c TeamChannelMessageHostedContentClient) SetTeamChannelMessageHostedContentValue(ctx context.Context, id stable.GroupIdTeamChannelIdMessageIdHostedContentId, input []byte) (result SetTeamChannelMessageHostedContentValueOperationResponse, err error) {
+func (c TeamChannelMessageHostedContentClient) SetTeamChannelMessageHostedContentValue(ctx context.Context, id stable.GroupIdTeamChannelIdMessageIdHostedContentId, input []byte, options SetTeamChannelMessageHostedContentValueOperationOptions) (result SetTeamChannelMessageHostedContentValueOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPut,
-		Path:       fmt.Sprintf("%s/$value", id.ID()),
+		HttpMethod:    http.MethodPut,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/$value", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

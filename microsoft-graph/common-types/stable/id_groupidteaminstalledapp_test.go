@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &GroupIdTeamInstalledAppId{}
 
 func TestNewGroupIdTeamInstalledAppID(t *testing.T) {
-	id := NewGroupIdTeamInstalledAppID("groupIdValue", "teamsAppInstallationIdValue")
+	id := NewGroupIdTeamInstalledAppID("groupId", "teamsAppInstallationId")
 
-	if id.GroupId != "groupIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'GroupId'", id.GroupId, "groupIdValue")
+	if id.GroupId != "groupId" {
+		t.Fatalf("Expected %q but got %q for Segment 'GroupId'", id.GroupId, "groupId")
 	}
 
-	if id.TeamsAppInstallationId != "teamsAppInstallationIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'TeamsAppInstallationId'", id.TeamsAppInstallationId, "teamsAppInstallationIdValue")
+	if id.TeamsAppInstallationId != "teamsAppInstallationId" {
+		t.Fatalf("Expected %q but got %q for Segment 'TeamsAppInstallationId'", id.TeamsAppInstallationId, "teamsAppInstallationId")
 	}
 }
 
 func TestFormatGroupIdTeamInstalledAppID(t *testing.T) {
-	actual := NewGroupIdTeamInstalledAppID("groupIdValue", "teamsAppInstallationIdValue").ID()
-	expected := "/groups/groupIdValue/team/installedApps/teamsAppInstallationIdValue"
+	actual := NewGroupIdTeamInstalledAppID("groupId", "teamsAppInstallationId").ID()
+	expected := "/groups/groupId/team/installedApps/teamsAppInstallationId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -49,30 +49,30 @@ func TestParseGroupIdTeamInstalledAppID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue",
+			Input: "/groups/groupId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/team",
+			Input: "/groups/groupId/team",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/team/installedApps",
+			Input: "/groups/groupId/team/installedApps",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/groups/groupIdValue/team/installedApps/teamsAppInstallationIdValue",
+			Input: "/groups/groupId/team/installedApps/teamsAppInstallationId",
 			Expected: &GroupIdTeamInstalledAppId{
-				GroupId:                "groupIdValue",
-				TeamsAppInstallationId: "teamsAppInstallationIdValue",
+				GroupId:                "groupId",
+				TeamsAppInstallationId: "teamsAppInstallationId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/groups/groupIdValue/team/installedApps/teamsAppInstallationIdValue/extra",
+			Input: "/groups/groupId/team/installedApps/teamsAppInstallationId/extra",
 			Error: true,
 		},
 	}
@@ -125,58 +125,58 @@ func TestParseGroupIdTeamInstalledAppIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue",
+			Input: "/groups/groupId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE",
+			Input: "/gRoUpS/gRoUpId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/team",
+			Input: "/groups/groupId/team",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/tEaM",
+			Input: "/gRoUpS/gRoUpId/tEaM",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/team/installedApps",
+			Input: "/groups/groupId/team/installedApps",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/tEaM/iNsTaLlEdApPs",
+			Input: "/gRoUpS/gRoUpId/tEaM/iNsTaLlEdApPs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/groups/groupIdValue/team/installedApps/teamsAppInstallationIdValue",
+			Input: "/groups/groupId/team/installedApps/teamsAppInstallationId",
 			Expected: &GroupIdTeamInstalledAppId{
-				GroupId:                "groupIdValue",
-				TeamsAppInstallationId: "teamsAppInstallationIdValue",
+				GroupId:                "groupId",
+				TeamsAppInstallationId: "teamsAppInstallationId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/groups/groupIdValue/team/installedApps/teamsAppInstallationIdValue/extra",
+			Input: "/groups/groupId/team/installedApps/teamsAppInstallationId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/tEaM/iNsTaLlEdApPs/tEaMsApPiNsTaLlAtIoNiDvAlUe",
+			Input: "/gRoUpS/gRoUpId/tEaM/iNsTaLlEdApPs/tEaMsApPiNsTaLlAtIoNiD",
 			Expected: &GroupIdTeamInstalledAppId{
-				GroupId:                "gRoUpIdVaLuE",
-				TeamsAppInstallationId: "tEaMsApPiNsTaLlAtIoNiDvAlUe",
+				GroupId:                "gRoUpId",
+				TeamsAppInstallationId: "tEaMsApPiNsTaLlAtIoNiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/tEaM/iNsTaLlEdApPs/tEaMsApPiNsTaLlAtIoNiDvAlUe/extra",
+			Input: "/gRoUpS/gRoUpId/tEaM/iNsTaLlEdApPs/tEaMsApPiNsTaLlAtIoNiD/extra",
 			Error: true,
 		},
 	}

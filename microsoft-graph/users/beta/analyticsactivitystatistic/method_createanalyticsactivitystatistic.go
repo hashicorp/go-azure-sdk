@@ -20,15 +20,44 @@ type CreateAnalyticsActivityStatisticOperationResponse struct {
 	Model        beta.ActivityStatistics
 }
 
+type CreateAnalyticsActivityStatisticOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateAnalyticsActivityStatisticOperationOptions() CreateAnalyticsActivityStatisticOperationOptions {
+	return CreateAnalyticsActivityStatisticOperationOptions{}
+}
+
+func (o CreateAnalyticsActivityStatisticOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateAnalyticsActivityStatisticOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateAnalyticsActivityStatisticOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateAnalyticsActivityStatistic - Create new navigation property to activityStatistics for users
-func (c AnalyticsActivityStatisticClient) CreateAnalyticsActivityStatistic(ctx context.Context, id beta.UserId, input beta.ActivityStatistics) (result CreateAnalyticsActivityStatisticOperationResponse, err error) {
+func (c AnalyticsActivityStatisticClient) CreateAnalyticsActivityStatistic(ctx context.Context, id beta.UserId, input beta.ActivityStatistics, options CreateAnalyticsActivityStatisticOperationOptions) (result CreateAnalyticsActivityStatisticOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/analytics/activityStatistics", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/analytics/activityStatistics", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

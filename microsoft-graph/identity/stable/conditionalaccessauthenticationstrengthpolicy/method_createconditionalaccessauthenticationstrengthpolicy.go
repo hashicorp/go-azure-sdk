@@ -18,15 +18,44 @@ type CreateConditionalAccessAuthenticationStrengthPolicyOperationResponse struct
 	Model        *stable.AuthenticationStrengthPolicy
 }
 
+type CreateConditionalAccessAuthenticationStrengthPolicyOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateConditionalAccessAuthenticationStrengthPolicyOperationOptions() CreateConditionalAccessAuthenticationStrengthPolicyOperationOptions {
+	return CreateConditionalAccessAuthenticationStrengthPolicyOperationOptions{}
+}
+
+func (o CreateConditionalAccessAuthenticationStrengthPolicyOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateConditionalAccessAuthenticationStrengthPolicyOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateConditionalAccessAuthenticationStrengthPolicyOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateConditionalAccessAuthenticationStrengthPolicy - Create new navigation property to policies for identity
-func (c ConditionalAccessAuthenticationStrengthPolicyClient) CreateConditionalAccessAuthenticationStrengthPolicy(ctx context.Context, input stable.AuthenticationStrengthPolicy) (result CreateConditionalAccessAuthenticationStrengthPolicyOperationResponse, err error) {
+func (c ConditionalAccessAuthenticationStrengthPolicyClient) CreateConditionalAccessAuthenticationStrengthPolicy(ctx context.Context, input stable.AuthenticationStrengthPolicy, options CreateConditionalAccessAuthenticationStrengthPolicyOperationOptions) (result CreateConditionalAccessAuthenticationStrengthPolicyOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/identity/conditionalAccess/authenticationStrength/policies",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/identity/conditionalAccess/authenticationStrength/policies",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

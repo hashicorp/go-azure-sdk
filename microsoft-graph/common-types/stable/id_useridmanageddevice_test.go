@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &UserIdManagedDeviceId{}
 
 func TestNewUserIdManagedDeviceID(t *testing.T) {
-	id := NewUserIdManagedDeviceID("userIdValue", "managedDeviceIdValue")
+	id := NewUserIdManagedDeviceID("userId", "managedDeviceId")
 
-	if id.UserId != "userIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'UserId'", id.UserId, "userIdValue")
+	if id.UserId != "userId" {
+		t.Fatalf("Expected %q but got %q for Segment 'UserId'", id.UserId, "userId")
 	}
 
-	if id.ManagedDeviceId != "managedDeviceIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ManagedDeviceId'", id.ManagedDeviceId, "managedDeviceIdValue")
+	if id.ManagedDeviceId != "managedDeviceId" {
+		t.Fatalf("Expected %q but got %q for Segment 'ManagedDeviceId'", id.ManagedDeviceId, "managedDeviceId")
 	}
 }
 
 func TestFormatUserIdManagedDeviceID(t *testing.T) {
-	actual := NewUserIdManagedDeviceID("userIdValue", "managedDeviceIdValue").ID()
-	expected := "/users/userIdValue/managedDevices/managedDeviceIdValue"
+	actual := NewUserIdManagedDeviceID("userId", "managedDeviceId").ID()
+	expected := "/users/userId/managedDevices/managedDeviceId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -49,25 +49,25 @@ func TestParseUserIdManagedDeviceID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue",
+			Input: "/users/userId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/managedDevices",
+			Input: "/users/userId/managedDevices",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/users/userIdValue/managedDevices/managedDeviceIdValue",
+			Input: "/users/userId/managedDevices/managedDeviceId",
 			Expected: &UserIdManagedDeviceId{
-				UserId:          "userIdValue",
-				ManagedDeviceId: "managedDeviceIdValue",
+				UserId:          "userId",
+				ManagedDeviceId: "managedDeviceId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/users/userIdValue/managedDevices/managedDeviceIdValue/extra",
+			Input: "/users/userId/managedDevices/managedDeviceId/extra",
 			Error: true,
 		},
 	}
@@ -120,48 +120,48 @@ func TestParseUserIdManagedDeviceIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue",
+			Input: "/users/userId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe",
+			Input: "/uSeRs/uSeRiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/managedDevices",
+			Input: "/users/userId/managedDevices",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/mAnAgEdDeViCeS",
+			Input: "/uSeRs/uSeRiD/mAnAgEdDeViCeS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/users/userIdValue/managedDevices/managedDeviceIdValue",
+			Input: "/users/userId/managedDevices/managedDeviceId",
 			Expected: &UserIdManagedDeviceId{
-				UserId:          "userIdValue",
-				ManagedDeviceId: "managedDeviceIdValue",
+				UserId:          "userId",
+				ManagedDeviceId: "managedDeviceId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/users/userIdValue/managedDevices/managedDeviceIdValue/extra",
+			Input: "/users/userId/managedDevices/managedDeviceId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/mAnAgEdDeViCeS/mAnAgEdDeViCeIdVaLuE",
+			Input: "/uSeRs/uSeRiD/mAnAgEdDeViCeS/mAnAgEdDeViCeId",
 			Expected: &UserIdManagedDeviceId{
-				UserId:          "uSeRiDvAlUe",
-				ManagedDeviceId: "mAnAgEdDeViCeIdVaLuE",
+				UserId:          "uSeRiD",
+				ManagedDeviceId: "mAnAgEdDeViCeId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/mAnAgEdDeViCeS/mAnAgEdDeViCeIdVaLuE/extra",
+			Input: "/uSeRs/uSeRiD/mAnAgEdDeViCeS/mAnAgEdDeViCeId/extra",
 			Error: true,
 		},
 	}

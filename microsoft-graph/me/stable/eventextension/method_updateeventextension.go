@@ -17,15 +17,44 @@ type UpdateEventExtensionOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateEventExtensionOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateEventExtensionOperationOptions() UpdateEventExtensionOperationOptions {
+	return UpdateEventExtensionOperationOptions{}
+}
+
+func (o UpdateEventExtensionOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateEventExtensionOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateEventExtensionOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateEventExtension - Update the navigation property extensions in me
-func (c EventExtensionClient) UpdateEventExtension(ctx context.Context, id stable.MeEventIdExtensionId, input stable.Extension) (result UpdateEventExtensionOperationResponse, err error) {
+func (c EventExtensionClient) UpdateEventExtension(ctx context.Context, id stable.MeEventIdExtensionId, input stable.Extension, options UpdateEventExtensionOperationOptions) (result UpdateEventExtensionOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -19,15 +19,44 @@ type CreateDailyPrintUsageOperationResponse struct {
 	Model        beta.PrintUsage
 }
 
+type CreateDailyPrintUsageOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateDailyPrintUsageOperationOptions() CreateDailyPrintUsageOperationOptions {
+	return CreateDailyPrintUsageOperationOptions{}
+}
+
+func (o CreateDailyPrintUsageOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateDailyPrintUsageOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateDailyPrintUsageOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateDailyPrintUsage - Create new navigation property to dailyPrintUsage for reports
-func (c DailyPrintUsageClient) CreateDailyPrintUsage(ctx context.Context, input beta.PrintUsage) (result CreateDailyPrintUsageOperationResponse, err error) {
+func (c DailyPrintUsageClient) CreateDailyPrintUsage(ctx context.Context, input beta.PrintUsage, options CreateDailyPrintUsageOperationOptions) (result CreateDailyPrintUsageOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/reports/dailyPrintUsage",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/reports/dailyPrintUsage",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

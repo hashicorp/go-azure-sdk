@@ -19,7 +19,8 @@ type DeleteDirectoryObjectOperationResponse struct {
 }
 
 type DeleteDirectoryObjectOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteDirectoryObjectOperationOptions() DeleteDirectoryObjectOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteDirectoryObjectOperationOptions) ToHeaders() *client.Headers {
 
 func (o DeleteDirectoryObjectOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

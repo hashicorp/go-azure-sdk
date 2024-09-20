@@ -18,15 +18,44 @@ type UpdateDriveRootAnalyticOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateDriveRootAnalyticOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateDriveRootAnalyticOperationOptions() UpdateDriveRootAnalyticOperationOptions {
+	return UpdateDriveRootAnalyticOperationOptions{}
+}
+
+func (o UpdateDriveRootAnalyticOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateDriveRootAnalyticOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateDriveRootAnalyticOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateDriveRootAnalytic - Update the navigation property analytics in groups
-func (c DriveRootAnalyticsClient) UpdateDriveRootAnalytic(ctx context.Context, id beta.GroupIdDriveId, input beta.ItemAnalytics) (result UpdateDriveRootAnalyticOperationResponse, err error) {
+func (c DriveRootAnalyticsClient) UpdateDriveRootAnalytic(ctx context.Context, id beta.GroupIdDriveId, input beta.ItemAnalytics, options UpdateDriveRootAnalyticOperationOptions) (result UpdateDriveRootAnalyticOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       fmt.Sprintf("%s/root/analytics", id.ID()),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/root/analytics", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

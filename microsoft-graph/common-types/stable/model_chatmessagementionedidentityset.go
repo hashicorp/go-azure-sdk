@@ -70,10 +70,17 @@ func (s ChatMessageMentionedIdentitySet) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &ChatMessageMentionedIdentitySet{}
 
 func (s *ChatMessageMentionedIdentitySet) UnmarshalJSON(bytes []byte) error {
-	type alias ChatMessageMentionedIdentitySet
-	var decoded alias
+
+	var decoded struct {
+		Conversation *TeamworkConversationIdentity `json:"conversation,omitempty"`
+		Application  Identity                      `json:"application"`
+		Device       Identity                      `json:"device"`
+		ODataId      *string                       `json:"@odata.id,omitempty"`
+		ODataType    *string                       `json:"@odata.type,omitempty"`
+		User         Identity                      `json:"user"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into ChatMessageMentionedIdentitySet: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.Conversation = decoded.Conversation
@@ -108,5 +115,6 @@ func (s *ChatMessageMentionedIdentitySet) UnmarshalJSON(bytes []byte) error {
 		}
 		s.User = impl
 	}
+
 	return nil
 }

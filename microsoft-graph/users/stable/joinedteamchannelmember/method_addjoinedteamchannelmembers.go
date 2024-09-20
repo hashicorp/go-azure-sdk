@@ -26,8 +26,9 @@ type AddJoinedTeamChannelMembersCompleteResult struct {
 }
 
 type AddJoinedTeamChannelMembersOperationOptions struct {
-	Skip *int64
-	Top  *int64
+	Metadata *odata.Metadata
+	Skip     *int64
+	Top      *int64
 }
 
 func DefaultAddJoinedTeamChannelMembersOperationOptions() AddJoinedTeamChannelMembersOperationOptions {
@@ -42,6 +43,9 @@ func (o AddJoinedTeamChannelMembersOperationOptions) ToHeaders() *client.Headers
 
 func (o AddJoinedTeamChannelMembersOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	if o.Skip != nil {
 		out.Skip = int(*o.Skip)
 	}

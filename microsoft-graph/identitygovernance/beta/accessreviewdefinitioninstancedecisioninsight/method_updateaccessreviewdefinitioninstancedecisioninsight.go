@@ -17,15 +17,44 @@ type UpdateAccessReviewDefinitionInstanceDecisionInsightOperationResponse struct
 	OData        *odata.OData
 }
 
+type UpdateAccessReviewDefinitionInstanceDecisionInsightOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateAccessReviewDefinitionInstanceDecisionInsightOperationOptions() UpdateAccessReviewDefinitionInstanceDecisionInsightOperationOptions {
+	return UpdateAccessReviewDefinitionInstanceDecisionInsightOperationOptions{}
+}
+
+func (o UpdateAccessReviewDefinitionInstanceDecisionInsightOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateAccessReviewDefinitionInstanceDecisionInsightOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateAccessReviewDefinitionInstanceDecisionInsightOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateAccessReviewDefinitionInstanceDecisionInsight - Update the navigation property insights in identityGovernance
-func (c AccessReviewDefinitionInstanceDecisionInsightClient) UpdateAccessReviewDefinitionInstanceDecisionInsight(ctx context.Context, id beta.IdentityGovernanceAccessReviewDefinitionIdInstanceIdDecisionIdInsightId, input beta.GovernanceInsight) (result UpdateAccessReviewDefinitionInstanceDecisionInsightOperationResponse, err error) {
+func (c AccessReviewDefinitionInstanceDecisionInsightClient) UpdateAccessReviewDefinitionInstanceDecisionInsight(ctx context.Context, id beta.IdentityGovernanceAccessReviewDefinitionIdInstanceIdDecisionIdInsightId, input beta.GovernanceInsight, options UpdateAccessReviewDefinitionInstanceDecisionInsightOperationOptions) (result UpdateAccessReviewDefinitionInstanceDecisionInsightOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

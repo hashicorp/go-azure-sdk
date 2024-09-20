@@ -19,15 +19,44 @@ type CreateSiteAnalyticsItemActivityStatOperationResponse struct {
 	Model        *stable.ItemActivityStat
 }
 
+type CreateSiteAnalyticsItemActivityStatOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateSiteAnalyticsItemActivityStatOperationOptions() CreateSiteAnalyticsItemActivityStatOperationOptions {
+	return CreateSiteAnalyticsItemActivityStatOperationOptions{}
+}
+
+func (o CreateSiteAnalyticsItemActivityStatOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateSiteAnalyticsItemActivityStatOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateSiteAnalyticsItemActivityStatOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateSiteAnalyticsItemActivityStat - Create new navigation property to itemActivityStats for groups
-func (c SiteAnalyticsItemActivityStatClient) CreateSiteAnalyticsItemActivityStat(ctx context.Context, id stable.GroupIdSiteId, input stable.ItemActivityStat) (result CreateSiteAnalyticsItemActivityStatOperationResponse, err error) {
+func (c SiteAnalyticsItemActivityStatClient) CreateSiteAnalyticsItemActivityStat(ctx context.Context, id stable.GroupIdSiteId, input stable.ItemActivityStat, options CreateSiteAnalyticsItemActivityStatOperationOptions) (result CreateSiteAnalyticsItemActivityStatOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/analytics/itemActivityStats", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/analytics/itemActivityStats", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

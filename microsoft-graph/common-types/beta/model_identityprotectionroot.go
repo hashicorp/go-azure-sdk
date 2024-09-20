@@ -31,10 +31,17 @@ type IdentityProtectionRoot struct {
 var _ json.Unmarshaler = &IdentityProtectionRoot{}
 
 func (s *IdentityProtectionRoot) UnmarshalJSON(bytes []byte) error {
-	type alias IdentityProtectionRoot
-	var decoded alias
+
+	var decoded struct {
+		ODataId                        *string                          `json:"@odata.id,omitempty"`
+		ODataType                      *string                          `json:"@odata.type,omitempty"`
+		RiskDetections                 *[]RiskDetection                 `json:"riskDetections,omitempty"`
+		RiskyServicePrincipals         *[]RiskyServicePrincipal         `json:"riskyServicePrincipals,omitempty"`
+		RiskyUsers                     *[]RiskyUser                     `json:"riskyUsers,omitempty"`
+		ServicePrincipalRiskDetections *[]ServicePrincipalRiskDetection `json:"servicePrincipalRiskDetections,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into IdentityProtectionRoot: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.ODataId = decoded.ODataId
@@ -80,5 +87,6 @@ func (s *IdentityProtectionRoot) UnmarshalJSON(bytes []byte) error {
 		}
 		s.RiskyUsers = &output
 	}
+
 	return nil
 }

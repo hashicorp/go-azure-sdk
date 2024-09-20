@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &DeviceManagementWindowsAutopilotDeviceIdentityId{}
 
 func TestNewDeviceManagementWindowsAutopilotDeviceIdentityID(t *testing.T) {
-	id := NewDeviceManagementWindowsAutopilotDeviceIdentityID("windowsAutopilotDeviceIdentityIdValue")
+	id := NewDeviceManagementWindowsAutopilotDeviceIdentityID("windowsAutopilotDeviceIdentityId")
 
-	if id.WindowsAutopilotDeviceIdentityId != "windowsAutopilotDeviceIdentityIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'WindowsAutopilotDeviceIdentityId'", id.WindowsAutopilotDeviceIdentityId, "windowsAutopilotDeviceIdentityIdValue")
+	if id.WindowsAutopilotDeviceIdentityId != "windowsAutopilotDeviceIdentityId" {
+		t.Fatalf("Expected %q but got %q for Segment 'WindowsAutopilotDeviceIdentityId'", id.WindowsAutopilotDeviceIdentityId, "windowsAutopilotDeviceIdentityId")
 	}
 }
 
 func TestFormatDeviceManagementWindowsAutopilotDeviceIdentityID(t *testing.T) {
-	actual := NewDeviceManagementWindowsAutopilotDeviceIdentityID("windowsAutopilotDeviceIdentityIdValue").ID()
-	expected := "/deviceManagement/windowsAutopilotDeviceIdentities/windowsAutopilotDeviceIdentityIdValue"
+	actual := NewDeviceManagementWindowsAutopilotDeviceIdentityID("windowsAutopilotDeviceIdentityId").ID()
+	expected := "/deviceManagement/windowsAutopilotDeviceIdentities/windowsAutopilotDeviceIdentityId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -50,14 +50,14 @@ func TestParseDeviceManagementWindowsAutopilotDeviceIdentityID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/windowsAutopilotDeviceIdentities/windowsAutopilotDeviceIdentityIdValue",
+			Input: "/deviceManagement/windowsAutopilotDeviceIdentities/windowsAutopilotDeviceIdentityId",
 			Expected: &DeviceManagementWindowsAutopilotDeviceIdentityId{
-				WindowsAutopilotDeviceIdentityId: "windowsAutopilotDeviceIdentityIdValue",
+				WindowsAutopilotDeviceIdentityId: "windowsAutopilotDeviceIdentityId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/windowsAutopilotDeviceIdentities/windowsAutopilotDeviceIdentityIdValue/extra",
+			Input: "/deviceManagement/windowsAutopilotDeviceIdentities/windowsAutopilotDeviceIdentityId/extra",
 			Error: true,
 		},
 	}
@@ -116,26 +116,26 @@ func TestParseDeviceManagementWindowsAutopilotDeviceIdentityIDInsensitively(t *t
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/windowsAutopilotDeviceIdentities/windowsAutopilotDeviceIdentityIdValue",
+			Input: "/deviceManagement/windowsAutopilotDeviceIdentities/windowsAutopilotDeviceIdentityId",
 			Expected: &DeviceManagementWindowsAutopilotDeviceIdentityId{
-				WindowsAutopilotDeviceIdentityId: "windowsAutopilotDeviceIdentityIdValue",
+				WindowsAutopilotDeviceIdentityId: "windowsAutopilotDeviceIdentityId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/windowsAutopilotDeviceIdentities/windowsAutopilotDeviceIdentityIdValue/extra",
+			Input: "/deviceManagement/windowsAutopilotDeviceIdentities/windowsAutopilotDeviceIdentityId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/wInDoWsAuToPiLoTdEvIcEiDeNtItIeS/wInDoWsAuToPiLoTdEvIcEiDeNtItYiDvAlUe",
+			Input: "/dEvIcEmAnAgEmEnT/wInDoWsAuToPiLoTdEvIcEiDeNtItIeS/wInDoWsAuToPiLoTdEvIcEiDeNtItYiD",
 			Expected: &DeviceManagementWindowsAutopilotDeviceIdentityId{
-				WindowsAutopilotDeviceIdentityId: "wInDoWsAuToPiLoTdEvIcEiDeNtItYiDvAlUe",
+				WindowsAutopilotDeviceIdentityId: "wInDoWsAuToPiLoTdEvIcEiDeNtItYiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/wInDoWsAuToPiLoTdEvIcEiDeNtItIeS/wInDoWsAuToPiLoTdEvIcEiDeNtItYiDvAlUe/extra",
+			Input: "/dEvIcEmAnAgEmEnT/wInDoWsAuToPiLoTdEvIcEiDeNtItIeS/wInDoWsAuToPiLoTdEvIcEiDeNtItYiD/extra",
 			Error: true,
 		},
 	}

@@ -17,16 +17,45 @@ type UpdateDirectoryRoleDefinitionInheritsPermissionsFromOperationResponse struc
 	OData        *odata.OData
 }
 
+type UpdateDirectoryRoleDefinitionInheritsPermissionsFromOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateDirectoryRoleDefinitionInheritsPermissionsFromOperationOptions() UpdateDirectoryRoleDefinitionInheritsPermissionsFromOperationOptions {
+	return UpdateDirectoryRoleDefinitionInheritsPermissionsFromOperationOptions{}
+}
+
+func (o UpdateDirectoryRoleDefinitionInheritsPermissionsFromOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateDirectoryRoleDefinitionInheritsPermissionsFromOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateDirectoryRoleDefinitionInheritsPermissionsFromOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateDirectoryRoleDefinitionInheritsPermissionsFrom - Update the navigation property inheritsPermissionsFrom in
 // roleManagement
-func (c DirectoryRoleDefinitionInheritsPermissionsFromClient) UpdateDirectoryRoleDefinitionInheritsPermissionsFrom(ctx context.Context, id stable.RoleManagementDirectoryRoleDefinitionIdInheritsPermissionsFromId, input stable.UnifiedRoleDefinition) (result UpdateDirectoryRoleDefinitionInheritsPermissionsFromOperationResponse, err error) {
+func (c DirectoryRoleDefinitionInheritsPermissionsFromClient) UpdateDirectoryRoleDefinitionInheritsPermissionsFrom(ctx context.Context, id stable.RoleManagementDirectoryRoleDefinitionIdInheritsPermissionsFromId, input stable.UnifiedRoleDefinition, options UpdateDirectoryRoleDefinitionInheritsPermissionsFromOperationOptions) (result UpdateDirectoryRoleDefinitionInheritsPermissionsFromOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

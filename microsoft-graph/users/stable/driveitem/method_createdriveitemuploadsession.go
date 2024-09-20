@@ -19,15 +19,44 @@ type CreateDriveItemUploadSessionOperationResponse struct {
 	Model        *stable.UploadSession
 }
 
+type CreateDriveItemUploadSessionOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateDriveItemUploadSessionOperationOptions() CreateDriveItemUploadSessionOperationOptions {
+	return CreateDriveItemUploadSessionOperationOptions{}
+}
+
+func (o CreateDriveItemUploadSessionOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateDriveItemUploadSessionOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateDriveItemUploadSessionOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateDriveItemUploadSession - Invoke action createUploadSession
-func (c DriveItemClient) CreateDriveItemUploadSession(ctx context.Context, id stable.UserIdDriveIdItemId, input CreateDriveItemUploadSessionRequest) (result CreateDriveItemUploadSessionOperationResponse, err error) {
+func (c DriveItemClient) CreateDriveItemUploadSession(ctx context.Context, id stable.UserIdDriveIdItemId, input CreateDriveItemUploadSessionRequest, options CreateDriveItemUploadSessionOperationOptions) (result CreateDriveItemUploadSessionOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/createUploadSession", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/createUploadSession", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

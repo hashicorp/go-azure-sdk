@@ -17,15 +17,44 @@ type UpdateDriveRootThumbnailOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateDriveRootThumbnailOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateDriveRootThumbnailOperationOptions() UpdateDriveRootThumbnailOperationOptions {
+	return UpdateDriveRootThumbnailOperationOptions{}
+}
+
+func (o UpdateDriveRootThumbnailOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateDriveRootThumbnailOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateDriveRootThumbnailOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateDriveRootThumbnail - Update the navigation property thumbnails in users
-func (c DriveRootThumbnailClient) UpdateDriveRootThumbnail(ctx context.Context, id beta.UserIdDriveIdRootThumbnailId, input beta.ThumbnailSet) (result UpdateDriveRootThumbnailOperationResponse, err error) {
+func (c DriveRootThumbnailClient) UpdateDriveRootThumbnail(ctx context.Context, id beta.UserIdDriveIdRootThumbnailId, input beta.ThumbnailSet, options UpdateDriveRootThumbnailOperationOptions) (result UpdateDriveRootThumbnailOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

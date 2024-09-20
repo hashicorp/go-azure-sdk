@@ -17,15 +17,44 @@ type UpdateClaimsMappingPolicyOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateClaimsMappingPolicyOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateClaimsMappingPolicyOperationOptions() UpdateClaimsMappingPolicyOperationOptions {
+	return UpdateClaimsMappingPolicyOperationOptions{}
+}
+
+func (o UpdateClaimsMappingPolicyOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateClaimsMappingPolicyOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateClaimsMappingPolicyOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateClaimsMappingPolicy - Update claimsmappingpolicy. Update the properties of a claimsMappingPolicy object.
-func (c ClaimsMappingPolicyClient) UpdateClaimsMappingPolicy(ctx context.Context, id stable.PolicyClaimsMappingPolicyId, input stable.ClaimsMappingPolicy) (result UpdateClaimsMappingPolicyOperationResponse, err error) {
+func (c ClaimsMappingPolicyClient) UpdateClaimsMappingPolicy(ctx context.Context, id stable.PolicyClaimsMappingPolicyId, input stable.ClaimsMappingPolicy, options UpdateClaimsMappingPolicyOperationOptions) (result UpdateClaimsMappingPolicyOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

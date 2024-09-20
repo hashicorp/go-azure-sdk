@@ -19,7 +19,8 @@ type DeleteFederationConfigurationOperationResponse struct {
 }
 
 type DeleteFederationConfigurationOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteFederationConfigurationOperationOptions() DeleteFederationConfigurationOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteFederationConfigurationOperationOptions) ToHeaders() *client.Heade
 
 func (o DeleteFederationConfigurationOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

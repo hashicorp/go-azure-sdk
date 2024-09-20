@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &PolicyRoleManagementPolicyIdEffectiveRuleId{}
 
 func TestNewPolicyRoleManagementPolicyIdEffectiveRuleID(t *testing.T) {
-	id := NewPolicyRoleManagementPolicyIdEffectiveRuleID("unifiedRoleManagementPolicyIdValue", "unifiedRoleManagementPolicyRuleIdValue")
+	id := NewPolicyRoleManagementPolicyIdEffectiveRuleID("unifiedRoleManagementPolicyId", "unifiedRoleManagementPolicyRuleId")
 
-	if id.UnifiedRoleManagementPolicyId != "unifiedRoleManagementPolicyIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'UnifiedRoleManagementPolicyId'", id.UnifiedRoleManagementPolicyId, "unifiedRoleManagementPolicyIdValue")
+	if id.UnifiedRoleManagementPolicyId != "unifiedRoleManagementPolicyId" {
+		t.Fatalf("Expected %q but got %q for Segment 'UnifiedRoleManagementPolicyId'", id.UnifiedRoleManagementPolicyId, "unifiedRoleManagementPolicyId")
 	}
 
-	if id.UnifiedRoleManagementPolicyRuleId != "unifiedRoleManagementPolicyRuleIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'UnifiedRoleManagementPolicyRuleId'", id.UnifiedRoleManagementPolicyRuleId, "unifiedRoleManagementPolicyRuleIdValue")
+	if id.UnifiedRoleManagementPolicyRuleId != "unifiedRoleManagementPolicyRuleId" {
+		t.Fatalf("Expected %q but got %q for Segment 'UnifiedRoleManagementPolicyRuleId'", id.UnifiedRoleManagementPolicyRuleId, "unifiedRoleManagementPolicyRuleId")
 	}
 }
 
 func TestFormatPolicyRoleManagementPolicyIdEffectiveRuleID(t *testing.T) {
-	actual := NewPolicyRoleManagementPolicyIdEffectiveRuleID("unifiedRoleManagementPolicyIdValue", "unifiedRoleManagementPolicyRuleIdValue").ID()
-	expected := "/policies/roleManagementPolicies/unifiedRoleManagementPolicyIdValue/effectiveRules/unifiedRoleManagementPolicyRuleIdValue"
+	actual := NewPolicyRoleManagementPolicyIdEffectiveRuleID("unifiedRoleManagementPolicyId", "unifiedRoleManagementPolicyRuleId").ID()
+	expected := "/policies/roleManagementPolicies/unifiedRoleManagementPolicyId/effectiveRules/unifiedRoleManagementPolicyRuleId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -54,25 +54,25 @@ func TestParsePolicyRoleManagementPolicyIdEffectiveRuleID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/policies/roleManagementPolicies/unifiedRoleManagementPolicyIdValue",
+			Input: "/policies/roleManagementPolicies/unifiedRoleManagementPolicyId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/policies/roleManagementPolicies/unifiedRoleManagementPolicyIdValue/effectiveRules",
+			Input: "/policies/roleManagementPolicies/unifiedRoleManagementPolicyId/effectiveRules",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/policies/roleManagementPolicies/unifiedRoleManagementPolicyIdValue/effectiveRules/unifiedRoleManagementPolicyRuleIdValue",
+			Input: "/policies/roleManagementPolicies/unifiedRoleManagementPolicyId/effectiveRules/unifiedRoleManagementPolicyRuleId",
 			Expected: &PolicyRoleManagementPolicyIdEffectiveRuleId{
-				UnifiedRoleManagementPolicyId:     "unifiedRoleManagementPolicyIdValue",
-				UnifiedRoleManagementPolicyRuleId: "unifiedRoleManagementPolicyRuleIdValue",
+				UnifiedRoleManagementPolicyId:     "unifiedRoleManagementPolicyId",
+				UnifiedRoleManagementPolicyRuleId: "unifiedRoleManagementPolicyRuleId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/policies/roleManagementPolicies/unifiedRoleManagementPolicyIdValue/effectiveRules/unifiedRoleManagementPolicyRuleIdValue/extra",
+			Input: "/policies/roleManagementPolicies/unifiedRoleManagementPolicyId/effectiveRules/unifiedRoleManagementPolicyRuleId/extra",
 			Error: true,
 		},
 	}
@@ -135,48 +135,48 @@ func TestParsePolicyRoleManagementPolicyIdEffectiveRuleIDInsensitively(t *testin
 		},
 		{
 			// Incomplete URI
-			Input: "/policies/roleManagementPolicies/unifiedRoleManagementPolicyIdValue",
+			Input: "/policies/roleManagementPolicies/unifiedRoleManagementPolicyId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/pOlIcIeS/rOlEmAnAgEmEnTpOlIcIeS/uNiFiEdRoLeMaNaGeMeNtPoLiCyIdVaLuE",
+			Input: "/pOlIcIeS/rOlEmAnAgEmEnTpOlIcIeS/uNiFiEdRoLeMaNaGeMeNtPoLiCyId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/policies/roleManagementPolicies/unifiedRoleManagementPolicyIdValue/effectiveRules",
+			Input: "/policies/roleManagementPolicies/unifiedRoleManagementPolicyId/effectiveRules",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/pOlIcIeS/rOlEmAnAgEmEnTpOlIcIeS/uNiFiEdRoLeMaNaGeMeNtPoLiCyIdVaLuE/eFfEcTiVeRuLeS",
+			Input: "/pOlIcIeS/rOlEmAnAgEmEnTpOlIcIeS/uNiFiEdRoLeMaNaGeMeNtPoLiCyId/eFfEcTiVeRuLeS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/policies/roleManagementPolicies/unifiedRoleManagementPolicyIdValue/effectiveRules/unifiedRoleManagementPolicyRuleIdValue",
+			Input: "/policies/roleManagementPolicies/unifiedRoleManagementPolicyId/effectiveRules/unifiedRoleManagementPolicyRuleId",
 			Expected: &PolicyRoleManagementPolicyIdEffectiveRuleId{
-				UnifiedRoleManagementPolicyId:     "unifiedRoleManagementPolicyIdValue",
-				UnifiedRoleManagementPolicyRuleId: "unifiedRoleManagementPolicyRuleIdValue",
+				UnifiedRoleManagementPolicyId:     "unifiedRoleManagementPolicyId",
+				UnifiedRoleManagementPolicyRuleId: "unifiedRoleManagementPolicyRuleId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/policies/roleManagementPolicies/unifiedRoleManagementPolicyIdValue/effectiveRules/unifiedRoleManagementPolicyRuleIdValue/extra",
+			Input: "/policies/roleManagementPolicies/unifiedRoleManagementPolicyId/effectiveRules/unifiedRoleManagementPolicyRuleId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/pOlIcIeS/rOlEmAnAgEmEnTpOlIcIeS/uNiFiEdRoLeMaNaGeMeNtPoLiCyIdVaLuE/eFfEcTiVeRuLeS/uNiFiEdRoLeMaNaGeMeNtPoLiCyRuLeIdVaLuE",
+			Input: "/pOlIcIeS/rOlEmAnAgEmEnTpOlIcIeS/uNiFiEdRoLeMaNaGeMeNtPoLiCyId/eFfEcTiVeRuLeS/uNiFiEdRoLeMaNaGeMeNtPoLiCyRuLeId",
 			Expected: &PolicyRoleManagementPolicyIdEffectiveRuleId{
-				UnifiedRoleManagementPolicyId:     "uNiFiEdRoLeMaNaGeMeNtPoLiCyIdVaLuE",
-				UnifiedRoleManagementPolicyRuleId: "uNiFiEdRoLeMaNaGeMeNtPoLiCyRuLeIdVaLuE",
+				UnifiedRoleManagementPolicyId:     "uNiFiEdRoLeMaNaGeMeNtPoLiCyId",
+				UnifiedRoleManagementPolicyRuleId: "uNiFiEdRoLeMaNaGeMeNtPoLiCyRuLeId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/pOlIcIeS/rOlEmAnAgEmEnTpOlIcIeS/uNiFiEdRoLeMaNaGeMeNtPoLiCyIdVaLuE/eFfEcTiVeRuLeS/uNiFiEdRoLeMaNaGeMeNtPoLiCyRuLeIdVaLuE/extra",
+			Input: "/pOlIcIeS/rOlEmAnAgEmEnTpOlIcIeS/uNiFiEdRoLeMaNaGeMeNtPoLiCyId/eFfEcTiVeRuLeS/uNiFiEdRoLeMaNaGeMeNtPoLiCyRuLeId/extra",
 			Error: true,
 		},
 	}

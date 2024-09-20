@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/microsoft-graph/users/stable/user` Documentation
 
-The `user` SDK allows for interaction with the Azure Resource Manager Service `users` (API Version `stable`).
+The `user` SDK allows for interaction with Microsoft Graph `users` (API Version `stable`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -15,7 +15,7 @@ import "github.com/hashicorp/go-azure-sdk/microsoft-graph/users/stable/user"
 ### Client Initialization
 
 ```go
-client := user.NewUserClientWithBaseURI("https://management.azure.com")
+client := user.NewUserClientWithBaseURI("https://graph.microsoft.com")
 client.Client.Authorizer = authorizer
 ```
 
@@ -24,14 +24,14 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := user.NewUserID("userIdValue")
+id := user.NewUserID("userId")
 
 payload := user.AssignLicenseRequest{
 	// ...
 }
 
 
-read, err := client.AssignLicense(ctx, id, payload)
+read, err := client.AssignLicense(ctx, id, payload, user.DefaultAssignLicenseOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -45,14 +45,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := user.NewUserID("userIdValue")
+id := user.NewUserID("userId")
 
 payload := user.ChangePasswordRequest{
 	// ...
 }
 
 
-read, err := client.ChangePassword(ctx, id, payload)
+read, err := client.ChangePassword(ctx, id, payload, user.DefaultChangePasswordOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -66,7 +66,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := user.NewUserID("userIdValue")
+id := user.NewUserID("userId")
 
 payload := user.CheckMemberGroupsRequest{
 	// ...
@@ -88,7 +88,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := user.NewUserID("userIdValue")
+id := user.NewUserID("userId")
 
 payload := user.CheckMemberObjectsRequest{
 	// ...
@@ -106,6 +106,27 @@ for _, item := range items {
 ```
 
 
+### Example Usage: `UserClient.CreateExportPersonalData`
+
+```go
+ctx := context.TODO()
+id := user.NewUserID("userId")
+
+payload := user.CreateExportPersonalDataRequest{
+	// ...
+}
+
+
+read, err := client.CreateExportPersonalData(ctx, id, payload, user.DefaultCreateExportPersonalDataOperationOptions())
+if err != nil {
+	// handle the error
+}
+if model := read.Model; model != nil {
+	// do something with the model/response object
+}
+```
+
+
 ### Example Usage: `UserClient.CreateUser`
 
 ```go
@@ -116,7 +137,27 @@ payload := user.User{
 }
 
 
-read, err := client.CreateUser(ctx, payload)
+read, err := client.CreateUser(ctx, payload, user.DefaultCreateUserOperationOptions())
+if err != nil {
+	// handle the error
+}
+if model := read.Model; model != nil {
+	// do something with the model/response object
+}
+```
+
+
+### Example Usage: `UserClient.CreateValidatesProperty`
+
+```go
+ctx := context.TODO()
+
+payload := user.CreateValidatesPropertyRequest{
+	// ...
+}
+
+
+read, err := client.CreateValidatesProperty(ctx, payload, user.DefaultCreateValidatesPropertyOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -130,7 +171,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := user.NewUserID("userIdValue")
+id := user.NewUserID("userId")
 
 read, err := client.DeleteUser(ctx, id, user.DefaultDeleteUserOperationOptions())
 if err != nil {
@@ -142,97 +183,18 @@ if model := read.Model; model != nil {
 ```
 
 
-### Example Usage: `UserClient.ExportPersonalData`
+### Example Usage: `UserClient.FindMeetingTimes`
 
 ```go
 ctx := context.TODO()
-id := user.NewUserID("userIdValue")
+id := user.NewUserID("userId")
 
-payload := user.ExportPersonalDataRequest{
+payload := user.FindMeetingTimesRequest{
 	// ...
 }
 
 
-read, err := client.ExportPersonalData(ctx, id, payload)
-if err != nil {
-	// handle the error
-}
-if model := read.Model; model != nil {
-	// do something with the model/response object
-}
-```
-
-
-### Example Usage: `UserClient.FindMeetingTime`
-
-```go
-ctx := context.TODO()
-id := user.NewUserID("userIdValue")
-
-payload := user.FindMeetingTimeRequest{
-	// ...
-}
-
-
-read, err := client.FindMeetingTime(ctx, id, payload)
-if err != nil {
-	// handle the error
-}
-if model := read.Model; model != nil {
-	// do something with the model/response object
-}
-```
-
-
-### Example Usage: `UserClient.GetAvailableExtensionProperties`
-
-```go
-ctx := context.TODO()
-
-payload := user.GetAvailableExtensionPropertiesRequest{
-	// ...
-}
-
-
-// alternatively `client.GetAvailableExtensionProperties(ctx, payload, user.DefaultGetAvailableExtensionPropertiesOperationOptions())` can be used to do batched pagination
-items, err := client.GetAvailableExtensionPropertiesComplete(ctx, payload, user.DefaultGetAvailableExtensionPropertiesOperationOptions())
-if err != nil {
-	// handle the error
-}
-for _, item := range items {
-	// do something
-}
-```
-
-
-### Example Usage: `UserClient.GetByIds`
-
-```go
-ctx := context.TODO()
-
-payload := user.GetByIdsRequest{
-	// ...
-}
-
-
-// alternatively `client.GetByIds(ctx, payload, user.DefaultGetByIdsOperationOptions())` can be used to do batched pagination
-items, err := client.GetByIdsComplete(ctx, payload, user.DefaultGetByIdsOperationOptions())
-if err != nil {
-	// handle the error
-}
-for _, item := range items {
-	// do something
-}
-```
-
-
-### Example Usage: `UserClient.GetCount`
-
-```go
-ctx := context.TODO()
-
-
-read, err := client.GetCount(ctx, user.DefaultGetCountOperationOptions())
+read, err := client.FindMeetingTimes(ctx, id, payload, user.DefaultFindMeetingTimesOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -246,7 +208,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := user.NewUserID("userIdValue")
+id := user.NewUserID("userId")
 
 payload := user.GetMailTipsRequest{
 	// ...
@@ -268,7 +230,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := user.NewUserID("userIdValue")
+id := user.NewUserID("userId")
 
 payload := user.GetMemberGroupsRequest{
 	// ...
@@ -290,7 +252,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := user.NewUserID("userIdValue")
+id := user.NewUserID("userId")
 
 payload := user.GetMemberObjectsRequest{
 	// ...
@@ -312,7 +274,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := user.NewUserID("userIdValue")
+id := user.NewUserID("userId")
 
 read, err := client.GetUser(ctx, id, user.DefaultGetUserOperationOptions())
 if err != nil {
@@ -320,6 +282,64 @@ if err != nil {
 }
 if model := read.Model; model != nil {
 	// do something with the model/response object
+}
+```
+
+
+### Example Usage: `UserClient.GetsCount`
+
+```go
+ctx := context.TODO()
+
+
+read, err := client.GetsCount(ctx, user.DefaultGetsCountOperationOptions())
+if err != nil {
+	// handle the error
+}
+if model := read.Model; model != nil {
+	// do something with the model/response object
+}
+```
+
+
+### Example Usage: `UserClient.ListGetsAvailableExtensionProperties`
+
+```go
+ctx := context.TODO()
+
+payload := user.ListGetsAvailableExtensionPropertiesRequest{
+	// ...
+}
+
+
+// alternatively `client.ListGetsAvailableExtensionProperties(ctx, payload, user.DefaultListGetsAvailableExtensionPropertiesOperationOptions())` can be used to do batched pagination
+items, err := client.ListGetsAvailableExtensionPropertiesComplete(ctx, payload, user.DefaultListGetsAvailableExtensionPropertiesOperationOptions())
+if err != nil {
+	// handle the error
+}
+for _, item := range items {
+	// do something
+}
+```
+
+
+### Example Usage: `UserClient.ListGetsByIds`
+
+```go
+ctx := context.TODO()
+
+payload := user.ListGetsByIdsRequest{
+	// ...
+}
+
+
+// alternatively `client.ListGetsByIds(ctx, payload, user.DefaultListGetsByIdsOperationOptions())` can be used to do batched pagination
+items, err := client.ListGetsByIdsComplete(ctx, payload, user.DefaultListGetsByIdsOperationOptions())
+if err != nil {
+	// handle the error
+}
+for _, item := range items {
+	// do something
 }
 ```
 
@@ -345,9 +365,9 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := user.NewUserID("userIdValue")
+id := user.NewUserID("userId")
 
-read, err := client.RemoveAllDevicesFromManagement(ctx, id)
+read, err := client.RemoveAllDevicesFromManagement(ctx, id, user.DefaultRemoveAllDevicesFromManagementOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -361,9 +381,9 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := user.NewUserID("userIdValue")
+id := user.NewUserID("userId")
 
-read, err := client.ReprocessLicenseAssignment(ctx, id)
+read, err := client.ReprocessLicenseAssignment(ctx, id, user.DefaultReprocessLicenseAssignmentOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -377,9 +397,9 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := user.NewUserID("userIdValue")
+id := user.NewUserID("userId")
 
-read, err := client.Restore(ctx, id)
+read, err := client.Restore(ctx, id, user.DefaultRestoreOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -393,9 +413,9 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := user.NewUserID("userIdValue")
+id := user.NewUserID("userId")
 
-read, err := client.RetryServiceProvisioning(ctx, id)
+read, err := client.RetryServiceProvisioning(ctx, id, user.DefaultRetryServiceProvisioningOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -405,13 +425,13 @@ if model := read.Model; model != nil {
 ```
 
 
-### Example Usage: `UserClient.RevokeSignInSession`
+### Example Usage: `UserClient.RevokeSignInSessions`
 
 ```go
 ctx := context.TODO()
-id := user.NewUserID("userIdValue")
+id := user.NewUserID("userId")
 
-read, err := client.RevokeSignInSession(ctx, id)
+read, err := client.RevokeSignInSessions(ctx, id, user.DefaultRevokeSignInSessionsOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -425,14 +445,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := user.NewUserID("userIdValue")
+id := user.NewUserID("userId")
 
 payload := user.SendMailRequest{
 	// ...
 }
 
 
-read, err := client.SendMail(ctx, id, payload)
+read, err := client.SendMail(ctx, id, payload, user.DefaultSendMailOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -446,7 +466,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := user.NewUserID("userIdValue")
+id := user.NewUserID("userId")
 
 payload := user.TranslateExchangeIdsRequest{
 	// ...
@@ -468,34 +488,14 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := user.NewUserID("userIdValue")
+id := user.NewUserID("userId")
 
 payload := user.User{
 	// ...
 }
 
 
-read, err := client.UpdateUser(ctx, id, payload)
-if err != nil {
-	// handle the error
-}
-if model := read.Model; model != nil {
-	// do something with the model/response object
-}
-```
-
-
-### Example Usage: `UserClient.ValidateProperty`
-
-```go
-ctx := context.TODO()
-
-payload := user.ValidatePropertyRequest{
-	// ...
-}
-
-
-read, err := client.ValidateProperty(ctx, payload)
+read, err := client.UpdateUser(ctx, id, payload, user.DefaultUpdateUserOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -509,14 +509,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := user.NewUserID("userIdValue")
+id := user.NewUserID("userId")
 
 payload := user.WipeManagedAppRegistrationsByDeviceTagRequest{
 	// ...
 }
 
 
-read, err := client.WipeManagedAppRegistrationsByDeviceTag(ctx, id, payload)
+read, err := client.WipeManagedAppRegistrationsByDeviceTag(ctx, id, payload, user.DefaultWipeManagedAppRegistrationsByDeviceTagOperationOptions())
 if err != nil {
 	// handle the error
 }

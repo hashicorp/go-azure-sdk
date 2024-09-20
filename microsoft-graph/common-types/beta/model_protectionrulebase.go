@@ -112,20 +112,29 @@ func (s BaseProtectionRuleBaseImpl) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &BaseProtectionRuleBaseImpl{}
 
 func (s *BaseProtectionRuleBaseImpl) UnmarshalJSON(bytes []byte) error {
-	type alias BaseProtectionRuleBaseImpl
-	var decoded alias
+
+	var decoded struct {
+		CreatedDateTime      nullable.Type[string] `json:"createdDateTime,omitempty"`
+		Error                *PublicError          `json:"error,omitempty"`
+		IsAutoApplyEnabled   nullable.Type[bool]   `json:"isAutoApplyEnabled,omitempty"`
+		LastModifiedDateTime nullable.Type[string] `json:"lastModifiedDateTime,omitempty"`
+		Status               *ProtectionRuleStatus `json:"status,omitempty"`
+		Id                   *string               `json:"id,omitempty"`
+		ODataId              *string               `json:"@odata.id,omitempty"`
+		ODataType            *string               `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into BaseProtectionRuleBaseImpl: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.CreatedDateTime = decoded.CreatedDateTime
 	s.Error = decoded.Error
-	s.Id = decoded.Id
 	s.IsAutoApplyEnabled = decoded.IsAutoApplyEnabled
 	s.LastModifiedDateTime = decoded.LastModifiedDateTime
+	s.Status = decoded.Status
+	s.Id = decoded.Id
 	s.ODataId = decoded.ODataId
 	s.ODataType = decoded.ODataType
-	s.Status = decoded.Status
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -147,6 +156,7 @@ func (s *BaseProtectionRuleBaseImpl) UnmarshalJSON(bytes []byte) error {
 		}
 		s.LastModifiedBy = impl
 	}
+
 	return nil
 }
 
@@ -160,9 +170,9 @@ func UnmarshalProtectionRuleBaseImplementation(input []byte) (ProtectionRuleBase
 		return nil, fmt.Errorf("unmarshaling ProtectionRuleBase into map[string]interface: %+v", err)
 	}
 
-	value, ok := temp["@odata.type"].(string)
-	if !ok {
-		return nil, nil
+	var value string
+	if v, ok := temp["@odata.type"]; ok {
+		value = fmt.Sprintf("%v", v)
 	}
 
 	if strings.EqualFold(value, "#microsoft.graph.driveProtectionRule") {

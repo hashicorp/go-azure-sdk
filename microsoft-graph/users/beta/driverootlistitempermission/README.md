@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/driverootlistitempermission` Documentation
 
-The `driverootlistitempermission` SDK allows for interaction with the Azure Resource Manager Service `users` (API Version `beta`).
+The `driverootlistitempermission` SDK allows for interaction with Microsoft Graph `users` (API Version `beta`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -15,7 +15,7 @@ import "github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/driverootli
 ### Client Initialization
 
 ```go
-client := driverootlistitempermission.NewDriveRootListItemPermissionClientWithBaseURI("https://management.azure.com")
+client := driverootlistitempermission.NewDriveRootListItemPermissionClientWithBaseURI("https://graph.microsoft.com")
 client.Client.Authorizer = authorizer
 ```
 
@@ -24,14 +24,14 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := driverootlistitempermission.NewUserIdDriveID("userIdValue", "driveIdValue")
+id := driverootlistitempermission.NewUserIdDriveID("userId", "driveId")
 
 payload := driverootlistitempermission.Permission{
 	// ...
 }
 
 
-read, err := client.CreateDriveRootListItemPermission(ctx, id, payload)
+read, err := client.CreateDriveRootListItemPermission(ctx, id, payload, driverootlistitempermission.DefaultCreateDriveRootListItemPermissionOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -45,7 +45,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := driverootlistitempermission.NewUserIdDriveIdRootListItemPermissionID("userIdValue", "driveIdValue", "permissionIdValue")
+id := driverootlistitempermission.NewUserIdDriveIdRootListItemPermissionID("userId", "driveId", "permissionId")
 
 read, err := client.DeleteDriveRootListItemPermission(ctx, id, driverootlistitempermission.DefaultDeleteDriveRootListItemPermissionOperationOptions())
 if err != nil {
@@ -61,7 +61,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := driverootlistitempermission.NewUserIdDriveIdRootListItemPermissionID("userIdValue", "driveIdValue", "permissionIdValue")
+id := driverootlistitempermission.NewUserIdDriveIdRootListItemPermissionID("userId", "driveId", "permissionId")
 
 read, err := client.GetDriveRootListItemPermission(ctx, id, driverootlistitempermission.DefaultGetDriveRootListItemPermissionOperationOptions())
 if err != nil {
@@ -77,7 +77,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := driverootlistitempermission.NewUserIdDriveID("userIdValue", "driveIdValue")
+id := driverootlistitempermission.NewUserIdDriveID("userId", "driveId")
 
 read, err := client.GetDriveRootListItemPermissionsCount(ctx, id, driverootlistitempermission.DefaultGetDriveRootListItemPermissionsCountOperationOptions())
 if err != nil {
@@ -93,7 +93,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := driverootlistitempermission.NewUserIdDriveIdRootListItemPermissionID("userIdValue", "driveIdValue", "permissionIdValue")
+id := driverootlistitempermission.NewUserIdDriveIdRootListItemPermissionID("userId", "driveId", "permissionId")
 
 payload := driverootlistitempermission.ListDriveRootListItemPermissionGrantsRequest{
 	// ...
@@ -115,7 +115,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := driverootlistitempermission.NewUserIdDriveID("userIdValue", "driveIdValue")
+id := driverootlistitempermission.NewUserIdDriveID("userId", "driveId")
 
 // alternatively `client.ListDriveRootListItemPermissions(ctx, id, driverootlistitempermission.DefaultListDriveRootListItemPermissionsOperationOptions())` can be used to do batched pagination
 items, err := client.ListDriveRootListItemPermissionsComplete(ctx, id, driverootlistitempermission.DefaultListDriveRootListItemPermissionsOperationOptions())
@@ -128,18 +128,18 @@ for _, item := range items {
 ```
 
 
-### Example Usage: `DriveRootListItemPermissionClient.RevokeDriveRootListItemPermissionGrant`
+### Example Usage: `DriveRootListItemPermissionClient.RevokeDriveRootListItemPermissionGrants`
 
 ```go
 ctx := context.TODO()
-id := driverootlistitempermission.NewUserIdDriveIdRootListItemPermissionID("userIdValue", "driveIdValue", "permissionIdValue")
+id := driverootlistitempermission.NewUserIdDriveIdRootListItemPermissionID("userId", "driveId", "permissionId")
 
-payload := driverootlistitempermission.RevokeDriveRootListItemPermissionGrantRequest{
+payload := driverootlistitempermission.RevokeDriveRootListItemPermissionGrantsRequest{
 	// ...
 }
 
 
-read, err := client.RevokeDriveRootListItemPermissionGrant(ctx, id, payload)
+read, err := client.RevokeDriveRootListItemPermissionGrants(ctx, id, payload, driverootlistitempermission.DefaultRevokeDriveRootListItemPermissionGrantsOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -153,14 +153,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := driverootlistitempermission.NewUserIdDriveIdRootListItemPermissionID("userIdValue", "driveIdValue", "permissionIdValue")
+id := driverootlistitempermission.NewUserIdDriveIdRootListItemPermissionID("userId", "driveId", "permissionId")
 
 payload := driverootlistitempermission.Permission{
 	// ...
 }
 
 
-read, err := client.UpdateDriveRootListItemPermission(ctx, id, payload)
+read, err := client.UpdateDriveRootListItemPermission(ctx, id, payload, driverootlistitempermission.DefaultUpdateDriveRootListItemPermissionOperationOptions())
 if err != nil {
 	// handle the error
 }

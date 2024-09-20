@@ -185,18 +185,43 @@ func (s BaseDeviceManagementConfigurationSettingGroupDefinitionImpl) MarshalJSON
 var _ json.Unmarshaler = &BaseDeviceManagementConfigurationSettingGroupDefinitionImpl{}
 
 func (s *BaseDeviceManagementConfigurationSettingGroupDefinitionImpl) UnmarshalJSON(bytes []byte) error {
-	type alias BaseDeviceManagementConfigurationSettingGroupDefinitionImpl
-	var decoded alias
+
+	var decoded struct {
+		ChildIds                       *[]string                                                  `json:"childIds,omitempty"`
+		DependedOnBy                   *[]DeviceManagementConfigurationSettingDependedOnBy        `json:"dependedOnBy,omitempty"`
+		DependentOn                    *[]DeviceManagementConfigurationDependentOn                `json:"dependentOn,omitempty"`
+		AccessTypes                    *DeviceManagementConfigurationSettingAccessTypes           `json:"accessTypes,omitempty"`
+		Applicability                  DeviceManagementConfigurationSettingApplicability          `json:"applicability"`
+		BaseUri                        nullable.Type[string]                                      `json:"baseUri,omitempty"`
+		CategoryId                     nullable.Type[string]                                      `json:"categoryId,omitempty"`
+		Description                    nullable.Type[string]                                      `json:"description,omitempty"`
+		DisplayName                    nullable.Type[string]                                      `json:"displayName,omitempty"`
+		HelpText                       nullable.Type[string]                                      `json:"helpText,omitempty"`
+		InfoUrls                       *[]string                                                  `json:"infoUrls,omitempty"`
+		Keywords                       *[]string                                                  `json:"keywords,omitempty"`
+		Name                           nullable.Type[string]                                      `json:"name,omitempty"`
+		Occurrence                     *DeviceManagementConfigurationSettingOccurrence            `json:"occurrence,omitempty"`
+		OffsetUri                      nullable.Type[string]                                      `json:"offsetUri,omitempty"`
+		ReferredSettingInformationList *[]DeviceManagementConfigurationReferredSettingInformation `json:"referredSettingInformationList,omitempty"`
+		RootDefinitionId               nullable.Type[string]                                      `json:"rootDefinitionId,omitempty"`
+		SettingUsage                   *DeviceManagementConfigurationSettingUsage                 `json:"settingUsage,omitempty"`
+		UxBehavior                     *DeviceManagementConfigurationControlType                  `json:"uxBehavior,omitempty"`
+		Version                        nullable.Type[string]                                      `json:"version,omitempty"`
+		Visibility                     *DeviceManagementConfigurationSettingVisibility            `json:"visibility,omitempty"`
+		Id                             *string                                                    `json:"id,omitempty"`
+		ODataId                        *string                                                    `json:"@odata.id,omitempty"`
+		ODataType                      *string                                                    `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into BaseDeviceManagementConfigurationSettingGroupDefinitionImpl: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
-	s.AccessTypes = decoded.AccessTypes
-	s.BaseUri = decoded.BaseUri
-	s.CategoryId = decoded.CategoryId
 	s.ChildIds = decoded.ChildIds
 	s.DependedOnBy = decoded.DependedOnBy
 	s.DependentOn = decoded.DependentOn
+	s.AccessTypes = decoded.AccessTypes
+	s.BaseUri = decoded.BaseUri
+	s.CategoryId = decoded.CategoryId
 	s.Description = decoded.Description
 	s.DisplayName = decoded.DisplayName
 	s.HelpText = decoded.HelpText
@@ -227,6 +252,7 @@ func (s *BaseDeviceManagementConfigurationSettingGroupDefinitionImpl) UnmarshalJ
 		}
 		s.Applicability = impl
 	}
+
 	return nil
 }
 
@@ -240,9 +266,9 @@ func UnmarshalDeviceManagementConfigurationSettingGroupDefinitionImplementation(
 		return nil, fmt.Errorf("unmarshaling DeviceManagementConfigurationSettingGroupDefinition into map[string]interface: %+v", err)
 	}
 
-	value, ok := temp["@odata.type"].(string)
-	if !ok {
-		return nil, nil
+	var value string
+	if v, ok := temp["@odata.type"]; ok {
+		value = fmt.Sprintf("%v", v)
 	}
 
 	if strings.EqualFold(value, "#microsoft.graph.deviceManagementConfigurationSettingGroupCollectionDefinition") {

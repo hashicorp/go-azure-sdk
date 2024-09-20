@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &ServicePrincipalIdOwnerId{}
 
 func TestNewServicePrincipalIdOwnerID(t *testing.T) {
-	id := NewServicePrincipalIdOwnerID("servicePrincipalIdValue", "directoryObjectIdValue")
+	id := NewServicePrincipalIdOwnerID("servicePrincipalId", "directoryObjectId")
 
-	if id.ServicePrincipalId != "servicePrincipalIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ServicePrincipalId'", id.ServicePrincipalId, "servicePrincipalIdValue")
+	if id.ServicePrincipalId != "servicePrincipalId" {
+		t.Fatalf("Expected %q but got %q for Segment 'ServicePrincipalId'", id.ServicePrincipalId, "servicePrincipalId")
 	}
 
-	if id.DirectoryObjectId != "directoryObjectIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DirectoryObjectId'", id.DirectoryObjectId, "directoryObjectIdValue")
+	if id.DirectoryObjectId != "directoryObjectId" {
+		t.Fatalf("Expected %q but got %q for Segment 'DirectoryObjectId'", id.DirectoryObjectId, "directoryObjectId")
 	}
 }
 
 func TestFormatServicePrincipalIdOwnerID(t *testing.T) {
-	actual := NewServicePrincipalIdOwnerID("servicePrincipalIdValue", "directoryObjectIdValue").ID()
-	expected := "/servicePrincipals/servicePrincipalIdValue/owners/directoryObjectIdValue"
+	actual := NewServicePrincipalIdOwnerID("servicePrincipalId", "directoryObjectId").ID()
+	expected := "/servicePrincipals/servicePrincipalId/owners/directoryObjectId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -49,25 +49,25 @@ func TestParseServicePrincipalIdOwnerID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/servicePrincipals/servicePrincipalIdValue",
+			Input: "/servicePrincipals/servicePrincipalId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/servicePrincipals/servicePrincipalIdValue/owners",
+			Input: "/servicePrincipals/servicePrincipalId/owners",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/servicePrincipals/servicePrincipalIdValue/owners/directoryObjectIdValue",
+			Input: "/servicePrincipals/servicePrincipalId/owners/directoryObjectId",
 			Expected: &ServicePrincipalIdOwnerId{
-				ServicePrincipalId: "servicePrincipalIdValue",
-				DirectoryObjectId:  "directoryObjectIdValue",
+				ServicePrincipalId: "servicePrincipalId",
+				DirectoryObjectId:  "directoryObjectId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/servicePrincipals/servicePrincipalIdValue/owners/directoryObjectIdValue/extra",
+			Input: "/servicePrincipals/servicePrincipalId/owners/directoryObjectId/extra",
 			Error: true,
 		},
 	}
@@ -120,48 +120,48 @@ func TestParseServicePrincipalIdOwnerIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/servicePrincipals/servicePrincipalIdValue",
+			Input: "/servicePrincipals/servicePrincipalId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sErViCePrInCiPaLs/sErViCePrInCiPaLiDvAlUe",
+			Input: "/sErViCePrInCiPaLs/sErViCePrInCiPaLiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/servicePrincipals/servicePrincipalIdValue/owners",
+			Input: "/servicePrincipals/servicePrincipalId/owners",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sErViCePrInCiPaLs/sErViCePrInCiPaLiDvAlUe/oWnErS",
+			Input: "/sErViCePrInCiPaLs/sErViCePrInCiPaLiD/oWnErS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/servicePrincipals/servicePrincipalIdValue/owners/directoryObjectIdValue",
+			Input: "/servicePrincipals/servicePrincipalId/owners/directoryObjectId",
 			Expected: &ServicePrincipalIdOwnerId{
-				ServicePrincipalId: "servicePrincipalIdValue",
-				DirectoryObjectId:  "directoryObjectIdValue",
+				ServicePrincipalId: "servicePrincipalId",
+				DirectoryObjectId:  "directoryObjectId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/servicePrincipals/servicePrincipalIdValue/owners/directoryObjectIdValue/extra",
+			Input: "/servicePrincipals/servicePrincipalId/owners/directoryObjectId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sErViCePrInCiPaLs/sErViCePrInCiPaLiDvAlUe/oWnErS/dIrEcToRyObJeCtIdVaLuE",
+			Input: "/sErViCePrInCiPaLs/sErViCePrInCiPaLiD/oWnErS/dIrEcToRyObJeCtId",
 			Expected: &ServicePrincipalIdOwnerId{
-				ServicePrincipalId: "sErViCePrInCiPaLiDvAlUe",
-				DirectoryObjectId:  "dIrEcToRyObJeCtIdVaLuE",
+				ServicePrincipalId: "sErViCePrInCiPaLiD",
+				DirectoryObjectId:  "dIrEcToRyObJeCtId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sErViCePrInCiPaLs/sErViCePrInCiPaLiDvAlUe/oWnErS/dIrEcToRyObJeCtIdVaLuE/extra",
+			Input: "/sErViCePrInCiPaLs/sErViCePrInCiPaLiD/oWnErS/dIrEcToRyObJeCtId/extra",
 			Error: true,
 		},
 	}

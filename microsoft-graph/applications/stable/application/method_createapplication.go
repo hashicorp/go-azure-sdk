@@ -18,15 +18,44 @@ type CreateApplicationOperationResponse struct {
 	Model        *stable.Application
 }
 
+type CreateApplicationOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateApplicationOperationOptions() CreateApplicationOperationOptions {
+	return CreateApplicationOperationOptions{}
+}
+
+func (o CreateApplicationOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateApplicationOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateApplicationOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateApplication - Create application. Create a new application object.
-func (c ApplicationClient) CreateApplication(ctx context.Context, input stable.Application) (result CreateApplicationOperationResponse, err error) {
+func (c ApplicationClient) CreateApplication(ctx context.Context, input stable.Application, options CreateApplicationOperationOptions) (result CreateApplicationOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/applications",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/applications",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

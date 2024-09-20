@@ -17,15 +17,44 @@ type UpdateSiteInformationProtectionSensitivityLabelSublabelOperationResponse st
 	OData        *odata.OData
 }
 
+type UpdateSiteInformationProtectionSensitivityLabelSublabelOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateSiteInformationProtectionSensitivityLabelSublabelOperationOptions() UpdateSiteInformationProtectionSensitivityLabelSublabelOperationOptions {
+	return UpdateSiteInformationProtectionSensitivityLabelSublabelOperationOptions{}
+}
+
+func (o UpdateSiteInformationProtectionSensitivityLabelSublabelOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateSiteInformationProtectionSensitivityLabelSublabelOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateSiteInformationProtectionSensitivityLabelSublabelOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateSiteInformationProtectionSensitivityLabelSublabel - Update the navigation property sublabels in groups
-func (c SiteInformationProtectionSensitivityLabelSublabelClient) UpdateSiteInformationProtectionSensitivityLabelSublabel(ctx context.Context, id beta.GroupIdSiteIdInformationProtectionSensitivityLabelIdSublabelId, input beta.SensitivityLabel) (result UpdateSiteInformationProtectionSensitivityLabelSublabelOperationResponse, err error) {
+func (c SiteInformationProtectionSensitivityLabelSublabelClient) UpdateSiteInformationProtectionSensitivityLabelSublabel(ctx context.Context, id beta.GroupIdSiteIdInformationProtectionSensitivityLabelIdSublabelId, input beta.SensitivityLabel, options UpdateSiteInformationProtectionSensitivityLabelSublabelOperationOptions) (result UpdateSiteInformationProtectionSensitivityLabelSublabelOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

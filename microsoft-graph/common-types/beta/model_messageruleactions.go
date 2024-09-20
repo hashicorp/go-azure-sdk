@@ -54,10 +54,24 @@ type MessageRuleActions struct {
 var _ json.Unmarshaler = &MessageRuleActions{}
 
 func (s *MessageRuleActions) UnmarshalJSON(bytes []byte) error {
-	type alias MessageRuleActions
-	var decoded alias
+
+	var decoded struct {
+		AssignCategories      *[]string             `json:"assignCategories,omitempty"`
+		CopyToFolder          nullable.Type[string] `json:"copyToFolder,omitempty"`
+		Delete                nullable.Type[bool]   `json:"delete,omitempty"`
+		ForwardAsAttachmentTo *[]Recipient          `json:"forwardAsAttachmentTo,omitempty"`
+		ForwardTo             *[]Recipient          `json:"forwardTo,omitempty"`
+		MarkAsRead            nullable.Type[bool]   `json:"markAsRead,omitempty"`
+		MarkImportance        *Importance           `json:"markImportance,omitempty"`
+		MoveToFolder          nullable.Type[string] `json:"moveToFolder,omitempty"`
+		ODataId               *string               `json:"@odata.id,omitempty"`
+		ODataType             *string               `json:"@odata.type,omitempty"`
+		PermanentDelete       nullable.Type[bool]   `json:"permanentDelete,omitempty"`
+		RedirectTo            *[]Recipient          `json:"redirectTo,omitempty"`
+		StopProcessingRules   nullable.Type[bool]   `json:"stopProcessingRules,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into MessageRuleActions: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.AssignCategories = decoded.AssignCategories
@@ -126,5 +140,6 @@ func (s *MessageRuleActions) UnmarshalJSON(bytes []byte) error {
 		}
 		s.RedirectTo = &output
 	}
+
 	return nil
 }

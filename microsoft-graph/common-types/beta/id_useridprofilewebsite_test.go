@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &UserIdProfileWebsiteId{}
 
 func TestNewUserIdProfileWebsiteID(t *testing.T) {
-	id := NewUserIdProfileWebsiteID("userIdValue", "personWebsiteIdValue")
+	id := NewUserIdProfileWebsiteID("userId", "personWebsiteId")
 
-	if id.UserId != "userIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'UserId'", id.UserId, "userIdValue")
+	if id.UserId != "userId" {
+		t.Fatalf("Expected %q but got %q for Segment 'UserId'", id.UserId, "userId")
 	}
 
-	if id.PersonWebsiteId != "personWebsiteIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'PersonWebsiteId'", id.PersonWebsiteId, "personWebsiteIdValue")
+	if id.PersonWebsiteId != "personWebsiteId" {
+		t.Fatalf("Expected %q but got %q for Segment 'PersonWebsiteId'", id.PersonWebsiteId, "personWebsiteId")
 	}
 }
 
 func TestFormatUserIdProfileWebsiteID(t *testing.T) {
-	actual := NewUserIdProfileWebsiteID("userIdValue", "personWebsiteIdValue").ID()
-	expected := "/users/userIdValue/profile/websites/personWebsiteIdValue"
+	actual := NewUserIdProfileWebsiteID("userId", "personWebsiteId").ID()
+	expected := "/users/userId/profile/websites/personWebsiteId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -49,30 +49,30 @@ func TestParseUserIdProfileWebsiteID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue",
+			Input: "/users/userId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/profile",
+			Input: "/users/userId/profile",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/profile/websites",
+			Input: "/users/userId/profile/websites",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/users/userIdValue/profile/websites/personWebsiteIdValue",
+			Input: "/users/userId/profile/websites/personWebsiteId",
 			Expected: &UserIdProfileWebsiteId{
-				UserId:          "userIdValue",
-				PersonWebsiteId: "personWebsiteIdValue",
+				UserId:          "userId",
+				PersonWebsiteId: "personWebsiteId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/users/userIdValue/profile/websites/personWebsiteIdValue/extra",
+			Input: "/users/userId/profile/websites/personWebsiteId/extra",
 			Error: true,
 		},
 	}
@@ -125,58 +125,58 @@ func TestParseUserIdProfileWebsiteIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue",
+			Input: "/users/userId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe",
+			Input: "/uSeRs/uSeRiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/profile",
+			Input: "/users/userId/profile",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/pRoFiLe",
+			Input: "/uSeRs/uSeRiD/pRoFiLe",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/profile/websites",
+			Input: "/users/userId/profile/websites",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/pRoFiLe/wEbSiTeS",
+			Input: "/uSeRs/uSeRiD/pRoFiLe/wEbSiTeS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/users/userIdValue/profile/websites/personWebsiteIdValue",
+			Input: "/users/userId/profile/websites/personWebsiteId",
 			Expected: &UserIdProfileWebsiteId{
-				UserId:          "userIdValue",
-				PersonWebsiteId: "personWebsiteIdValue",
+				UserId:          "userId",
+				PersonWebsiteId: "personWebsiteId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/users/userIdValue/profile/websites/personWebsiteIdValue/extra",
+			Input: "/users/userId/profile/websites/personWebsiteId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/pRoFiLe/wEbSiTeS/pErSoNwEbSiTeIdVaLuE",
+			Input: "/uSeRs/uSeRiD/pRoFiLe/wEbSiTeS/pErSoNwEbSiTeId",
 			Expected: &UserIdProfileWebsiteId{
-				UserId:          "uSeRiDvAlUe",
-				PersonWebsiteId: "pErSoNwEbSiTeIdVaLuE",
+				UserId:          "uSeRiD",
+				PersonWebsiteId: "pErSoNwEbSiTeId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/pRoFiLe/wEbSiTeS/pErSoNwEbSiTeIdVaLuE/extra",
+			Input: "/uSeRs/uSeRiD/pRoFiLe/wEbSiTeS/pErSoNwEbSiTeId/extra",
 			Error: true,
 		},
 	}

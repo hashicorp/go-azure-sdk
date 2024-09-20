@@ -99,20 +99,32 @@ func (s B2cIdentityUserFlow) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &B2cIdentityUserFlow{}
 
 func (s *B2cIdentityUserFlow) UnmarshalJSON(bytes []byte) error {
-	type alias B2cIdentityUserFlow
-	var decoded alias
+
+	var decoded struct {
+		ApiConnectorConfiguration      *UserFlowApiConnectorConfiguration     `json:"apiConnectorConfiguration,omitempty"`
+		DefaultLanguageTag             nullable.Type[string]                  `json:"defaultLanguageTag,omitempty"`
+		IdentityProviders              *[]IdentityProvider                    `json:"identityProviders,omitempty"`
+		IsLanguageCustomizationEnabled *bool                                  `json:"isLanguageCustomizationEnabled,omitempty"`
+		Languages                      *[]UserFlowLanguageConfiguration       `json:"languages,omitempty"`
+		UserAttributeAssignments       *[]IdentityUserFlowAttributeAssignment `json:"userAttributeAssignments,omitempty"`
+		UserFlowIdentityProviders      *[]IdentityProviderBase                `json:"userFlowIdentityProviders,omitempty"`
+		UserFlowType                   *UserFlowType                          `json:"userFlowType,omitempty"`
+		Id                             *string                                `json:"id,omitempty"`
+		ODataId                        *string                                `json:"@odata.id,omitempty"`
+		ODataType                      *string                                `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into B2cIdentityUserFlow: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.ApiConnectorConfiguration = decoded.ApiConnectorConfiguration
 	s.DefaultLanguageTag = decoded.DefaultLanguageTag
-	s.Id = decoded.Id
 	s.IsLanguageCustomizationEnabled = decoded.IsLanguageCustomizationEnabled
 	s.Languages = decoded.Languages
+	s.UserAttributeAssignments = decoded.UserAttributeAssignments
+	s.Id = decoded.Id
 	s.ODataId = decoded.ODataId
 	s.ODataType = decoded.ODataType
-	s.UserAttributeAssignments = decoded.UserAttributeAssignments
 	s.UserFlowType = decoded.UserFlowType
 
 	var temp map[string]json.RawMessage
@@ -153,5 +165,6 @@ func (s *B2cIdentityUserFlow) UnmarshalJSON(bytes []byte) error {
 		}
 		s.UserFlowIdentityProviders = &output
 	}
+
 	return nil
 }

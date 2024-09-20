@@ -25,10 +25,14 @@ type AndroidDeviceOwnerDelegatedScopeAppSetting struct {
 var _ json.Unmarshaler = &AndroidDeviceOwnerDelegatedScopeAppSetting{}
 
 func (s *AndroidDeviceOwnerDelegatedScopeAppSetting) UnmarshalJSON(bytes []byte) error {
-	type alias AndroidDeviceOwnerDelegatedScopeAppSetting
-	var decoded alias
+
+	var decoded struct {
+		AppScopes *[]AndroidDeviceOwnerDelegatedAppScopeType `json:"appScopes,omitempty"`
+		ODataId   *string                                    `json:"@odata.id,omitempty"`
+		ODataType *string                                    `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into AndroidDeviceOwnerDelegatedScopeAppSetting: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.AppScopes = decoded.AppScopes
@@ -47,5 +51,6 @@ func (s *AndroidDeviceOwnerDelegatedScopeAppSetting) UnmarshalJSON(bytes []byte)
 		}
 		s.AppDetail = impl
 	}
+
 	return nil
 }

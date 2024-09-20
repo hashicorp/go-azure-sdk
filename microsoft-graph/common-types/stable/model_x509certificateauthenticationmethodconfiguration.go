@@ -89,10 +89,19 @@ func (s X509CertificateAuthenticationMethodConfiguration) MarshalJSON() ([]byte,
 var _ json.Unmarshaler = &X509CertificateAuthenticationMethodConfiguration{}
 
 func (s *X509CertificateAuthenticationMethodConfiguration) UnmarshalJSON(bytes []byte) error {
-	type alias X509CertificateAuthenticationMethodConfiguration
-	var decoded alias
+
+	var decoded struct {
+		AuthenticationModeConfiguration *X509CertificateAuthenticationModeConfiguration `json:"authenticationModeConfiguration,omitempty"`
+		CertificateUserBindings         *[]X509CertificateUserBinding                   `json:"certificateUserBindings,omitempty"`
+		IncludeTargets                  *[]AuthenticationMethodTarget                   `json:"includeTargets,omitempty"`
+		ExcludeTargets                  *[]ExcludeTarget                                `json:"excludeTargets,omitempty"`
+		State                           *AuthenticationMethodState                      `json:"state,omitempty"`
+		Id                              *string                                         `json:"id,omitempty"`
+		ODataId                         *string                                         `json:"@odata.id,omitempty"`
+		ODataType                       *string                                         `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into X509CertificateAuthenticationMethodConfiguration: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.AuthenticationModeConfiguration = decoded.AuthenticationModeConfiguration
@@ -124,5 +133,6 @@ func (s *X509CertificateAuthenticationMethodConfiguration) UnmarshalJSON(bytes [
 		}
 		s.IncludeTargets = &output
 	}
+
 	return nil
 }

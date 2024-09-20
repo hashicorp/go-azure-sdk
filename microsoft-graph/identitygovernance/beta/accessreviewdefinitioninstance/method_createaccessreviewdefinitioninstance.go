@@ -19,15 +19,44 @@ type CreateAccessReviewDefinitionInstanceOperationResponse struct {
 	Model        *beta.AccessReviewInstance
 }
 
+type CreateAccessReviewDefinitionInstanceOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateAccessReviewDefinitionInstanceOperationOptions() CreateAccessReviewDefinitionInstanceOperationOptions {
+	return CreateAccessReviewDefinitionInstanceOperationOptions{}
+}
+
+func (o CreateAccessReviewDefinitionInstanceOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateAccessReviewDefinitionInstanceOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateAccessReviewDefinitionInstanceOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateAccessReviewDefinitionInstance - Create new navigation property to instances for identityGovernance
-func (c AccessReviewDefinitionInstanceClient) CreateAccessReviewDefinitionInstance(ctx context.Context, id beta.IdentityGovernanceAccessReviewDefinitionId, input beta.AccessReviewInstance) (result CreateAccessReviewDefinitionInstanceOperationResponse, err error) {
+func (c AccessReviewDefinitionInstanceClient) CreateAccessReviewDefinitionInstance(ctx context.Context, id beta.IdentityGovernanceAccessReviewDefinitionId, input beta.AccessReviewInstance, options CreateAccessReviewDefinitionInstanceOperationOptions) (result CreateAccessReviewDefinitionInstanceOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/instances", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/instances", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

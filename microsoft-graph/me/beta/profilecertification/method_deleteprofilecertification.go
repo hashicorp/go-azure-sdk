@@ -19,7 +19,8 @@ type DeleteProfileCertificationOperationResponse struct {
 }
 
 type DeleteProfileCertificationOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteProfileCertificationOperationOptions() DeleteProfileCertificationOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteProfileCertificationOperationOptions) ToHeaders() *client.Headers 
 
 func (o DeleteProfileCertificationOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

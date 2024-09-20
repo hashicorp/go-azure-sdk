@@ -19,7 +19,8 @@ type DeleteEntitlementManagementAccessPackageAssignmentRequestRequestorOperation
 }
 
 type DeleteEntitlementManagementAccessPackageAssignmentRequestRequestorOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteEntitlementManagementAccessPackageAssignmentRequestRequestorOperationOptions() DeleteEntitlementManagementAccessPackageAssignmentRequestRequestorOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteEntitlementManagementAccessPackageAssignmentRequestRequestorOperat
 
 func (o DeleteEntitlementManagementAccessPackageAssignmentRequestRequestorOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

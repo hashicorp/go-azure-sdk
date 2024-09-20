@@ -19,7 +19,8 @@ type DeleteSettingRegionalAndLanguageSettingOperationResponse struct {
 }
 
 type DeleteSettingRegionalAndLanguageSettingOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteSettingRegionalAndLanguageSettingOperationOptions() DeleteSettingRegionalAndLanguageSettingOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteSettingRegionalAndLanguageSettingOperationOptions) ToHeaders() *cl
 
 func (o DeleteSettingRegionalAndLanguageSettingOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

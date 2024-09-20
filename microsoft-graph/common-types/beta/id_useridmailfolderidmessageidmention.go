@@ -110,13 +110,13 @@ func (id UserIdMailFolderIdMessageIdMentionId) ID() string {
 func (id UserIdMailFolderIdMessageIdMentionId) Segments() []resourceids.Segment {
 	return []resourceids.Segment{
 		resourceids.StaticSegment("users", "users", "users"),
-		resourceids.UserSpecifiedSegment("userId", "userIdValue"),
+		resourceids.UserSpecifiedSegment("userId", "userId"),
 		resourceids.StaticSegment("mailFolders", "mailFolders", "mailFolders"),
-		resourceids.UserSpecifiedSegment("mailFolderId", "mailFolderIdValue"),
+		resourceids.UserSpecifiedSegment("mailFolderId", "mailFolderId"),
 		resourceids.StaticSegment("messages", "messages", "messages"),
-		resourceids.UserSpecifiedSegment("messageId", "messageIdValue"),
+		resourceids.UserSpecifiedSegment("messageId", "messageId"),
 		resourceids.StaticSegment("mentions", "mentions", "mentions"),
-		resourceids.UserSpecifiedSegment("mentionId", "mentionIdValue"),
+		resourceids.UserSpecifiedSegment("mentionId", "mentionId"),
 	}
 }
 

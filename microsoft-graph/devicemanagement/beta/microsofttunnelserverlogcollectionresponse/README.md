@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/microsofttunnelserverlogcollectionresponse` Documentation
 
-The `microsofttunnelserverlogcollectionresponse` SDK allows for interaction with the Azure Resource Manager Service `devicemanagement` (API Version `beta`).
+The `microsofttunnelserverlogcollectionresponse` SDK allows for interaction with Microsoft Graph `devicemanagement` (API Version `beta`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -15,7 +15,7 @@ import "github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/
 ### Client Initialization
 
 ```go
-client := microsofttunnelserverlogcollectionresponse.NewMicrosoftTunnelServerLogCollectionResponseClientWithBaseURI("https://management.azure.com")
+client := microsofttunnelserverlogcollectionresponse.NewMicrosoftTunnelServerLogCollectionResponseClientWithBaseURI("https://graph.microsoft.com")
 client.Client.Authorizer = authorizer
 ```
 
@@ -30,7 +30,7 @@ payload := microsofttunnelserverlogcollectionresponse.MicrosoftTunnelServerLogCo
 }
 
 
-read, err := client.CreateMicrosoftTunnelServerLogCollectionResponse(ctx, payload)
+read, err := client.CreateMicrosoftTunnelServerLogCollectionResponse(ctx, payload, microsofttunnelserverlogcollectionresponse.DefaultCreateMicrosoftTunnelServerLogCollectionResponseOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -44,9 +44,9 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := microsofttunnelserverlogcollectionresponse.NewDeviceManagementMicrosoftTunnelServerLogCollectionResponseID("microsoftTunnelServerLogCollectionResponseIdValue")
+id := microsofttunnelserverlogcollectionresponse.NewDeviceManagementMicrosoftTunnelServerLogCollectionResponseID("microsoftTunnelServerLogCollectionResponseId")
 
-read, err := client.CreateMicrosoftTunnelServerLogCollectionResponseDownloadUrl(ctx, id)
+read, err := client.CreateMicrosoftTunnelServerLogCollectionResponseDownloadUrl(ctx, id, microsofttunnelserverlogcollectionresponse.DefaultCreateMicrosoftTunnelServerLogCollectionResponseDownloadUrlOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -60,9 +60,9 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := microsofttunnelserverlogcollectionresponse.NewDeviceManagementMicrosoftTunnelServerLogCollectionResponseID("microsoftTunnelServerLogCollectionResponseIdValue")
+id := microsofttunnelserverlogcollectionresponse.NewDeviceManagementMicrosoftTunnelServerLogCollectionResponseID("microsoftTunnelServerLogCollectionResponseId")
 
-read, err := client.CreateMicrosoftTunnelServerLogCollectionResponseGenerateDownloadUrl(ctx, id)
+read, err := client.CreateMicrosoftTunnelServerLogCollectionResponseGenerateDownloadUrl(ctx, id, microsofttunnelserverlogcollectionresponse.DefaultCreateMicrosoftTunnelServerLogCollectionResponseGenerateDownloadUrlOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -76,7 +76,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := microsofttunnelserverlogcollectionresponse.NewDeviceManagementMicrosoftTunnelServerLogCollectionResponseID("microsoftTunnelServerLogCollectionResponseIdValue")
+id := microsofttunnelserverlogcollectionresponse.NewDeviceManagementMicrosoftTunnelServerLogCollectionResponseID("microsoftTunnelServerLogCollectionResponseId")
 
 read, err := client.DeleteMicrosoftTunnelServerLogCollectionResponse(ctx, id, microsofttunnelserverlogcollectionresponse.DefaultDeleteMicrosoftTunnelServerLogCollectionResponseOperationOptions())
 if err != nil {
@@ -92,7 +92,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := microsofttunnelserverlogcollectionresponse.NewDeviceManagementMicrosoftTunnelServerLogCollectionResponseID("microsoftTunnelServerLogCollectionResponseIdValue")
+id := microsofttunnelserverlogcollectionresponse.NewDeviceManagementMicrosoftTunnelServerLogCollectionResponseID("microsoftTunnelServerLogCollectionResponseId")
 
 read, err := client.GetMicrosoftTunnelServerLogCollectionResponse(ctx, id, microsofttunnelserverlogcollectionresponse.DefaultGetMicrosoftTunnelServerLogCollectionResponseOperationOptions())
 if err != nil {
@@ -141,14 +141,14 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := microsofttunnelserverlogcollectionresponse.NewDeviceManagementMicrosoftTunnelServerLogCollectionResponseID("microsoftTunnelServerLogCollectionResponseIdValue")
+id := microsofttunnelserverlogcollectionresponse.NewDeviceManagementMicrosoftTunnelServerLogCollectionResponseID("microsoftTunnelServerLogCollectionResponseId")
 
 payload := microsofttunnelserverlogcollectionresponse.MicrosoftTunnelServerLogCollectionResponse{
 	// ...
 }
 
 
-read, err := client.UpdateMicrosoftTunnelServerLogCollectionResponse(ctx, id, payload)
+read, err := client.UpdateMicrosoftTunnelServerLogCollectionResponse(ctx, id, payload, microsofttunnelserverlogcollectionresponse.DefaultUpdateMicrosoftTunnelServerLogCollectionResponseOperationOptions())
 if err != nil {
 	// handle the error
 }

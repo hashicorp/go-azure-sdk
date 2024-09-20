@@ -17,15 +17,44 @@ type UpdateTeamScheduleTimeCardOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateTeamScheduleTimeCardOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateTeamScheduleTimeCardOperationOptions() UpdateTeamScheduleTimeCardOperationOptions {
+	return UpdateTeamScheduleTimeCardOperationOptions{}
+}
+
+func (o UpdateTeamScheduleTimeCardOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateTeamScheduleTimeCardOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateTeamScheduleTimeCardOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateTeamScheduleTimeCard - Update the navigation property timeCards in groups
-func (c TeamScheduleTimeCardClient) UpdateTeamScheduleTimeCard(ctx context.Context, id beta.GroupIdTeamScheduleTimeCardId, input beta.TimeCard) (result UpdateTeamScheduleTimeCardOperationResponse, err error) {
+func (c TeamScheduleTimeCardClient) UpdateTeamScheduleTimeCard(ctx context.Context, id beta.GroupIdTeamScheduleTimeCardId, input beta.TimeCard, options UpdateTeamScheduleTimeCardOperationOptions) (result UpdateTeamScheduleTimeCardOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

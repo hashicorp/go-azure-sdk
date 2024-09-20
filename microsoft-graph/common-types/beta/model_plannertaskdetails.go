@@ -99,22 +99,33 @@ func (s PlannerTaskDetails) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &PlannerTaskDetails{}
 
 func (s *PlannerTaskDetails) UnmarshalJSON(bytes []byte) error {
-	type alias PlannerTaskDetails
-	var decoded alias
+
+	var decoded struct {
+		Checklist              *PlannerChecklistItems                   `json:"checklist,omitempty"`
+		CompletionRequirements *PlannerTaskCompletionRequirementDetails `json:"completionRequirements,omitempty"`
+		Description            nullable.Type[string]                    `json:"description,omitempty"`
+		Forms                  *PlannerFormsDictionary                  `json:"forms,omitempty"`
+		Notes                  *ItemBody                                `json:"notes,omitempty"`
+		PreviewType            *PlannerPreviewType                      `json:"previewType,omitempty"`
+		References             *PlannerExternalReferences               `json:"references,omitempty"`
+		Id                     *string                                  `json:"id,omitempty"`
+		ODataId                *string                                  `json:"@odata.id,omitempty"`
+		ODataType              *string                                  `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into PlannerTaskDetails: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.Checklist = decoded.Checklist
 	s.CompletionRequirements = decoded.CompletionRequirements
 	s.Description = decoded.Description
 	s.Forms = decoded.Forms
-	s.Id = decoded.Id
 	s.Notes = decoded.Notes
-	s.ODataId = decoded.ODataId
-	s.ODataType = decoded.ODataType
 	s.PreviewType = decoded.PreviewType
 	s.References = decoded.References
+	s.Id = decoded.Id
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -128,5 +139,6 @@ func (s *PlannerTaskDetails) UnmarshalJSON(bytes []byte) error {
 		}
 		s.ApprovalAttachment = impl
 	}
+
 	return nil
 }

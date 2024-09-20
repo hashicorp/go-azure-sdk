@@ -94,7 +94,7 @@ func (id MeAuthenticationFido2MethodId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("me", "me", "me"),
 		resourceids.StaticSegment("authentication", "authentication", "authentication"),
 		resourceids.StaticSegment("fido2Methods", "fido2Methods", "fido2Methods"),
-		resourceids.UserSpecifiedSegment("fido2AuthenticationMethodId", "fido2AuthenticationMethodIdValue"),
+		resourceids.UserSpecifiedSegment("fido2AuthenticationMethodId", "fido2AuthenticationMethodId"),
 	}
 }
 

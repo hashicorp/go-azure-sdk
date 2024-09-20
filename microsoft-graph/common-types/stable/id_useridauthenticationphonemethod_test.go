@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &UserIdAuthenticationPhoneMethodId{}
 
 func TestNewUserIdAuthenticationPhoneMethodID(t *testing.T) {
-	id := NewUserIdAuthenticationPhoneMethodID("userIdValue", "phoneAuthenticationMethodIdValue")
+	id := NewUserIdAuthenticationPhoneMethodID("userId", "phoneAuthenticationMethodId")
 
-	if id.UserId != "userIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'UserId'", id.UserId, "userIdValue")
+	if id.UserId != "userId" {
+		t.Fatalf("Expected %q but got %q for Segment 'UserId'", id.UserId, "userId")
 	}
 
-	if id.PhoneAuthenticationMethodId != "phoneAuthenticationMethodIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'PhoneAuthenticationMethodId'", id.PhoneAuthenticationMethodId, "phoneAuthenticationMethodIdValue")
+	if id.PhoneAuthenticationMethodId != "phoneAuthenticationMethodId" {
+		t.Fatalf("Expected %q but got %q for Segment 'PhoneAuthenticationMethodId'", id.PhoneAuthenticationMethodId, "phoneAuthenticationMethodId")
 	}
 }
 
 func TestFormatUserIdAuthenticationPhoneMethodID(t *testing.T) {
-	actual := NewUserIdAuthenticationPhoneMethodID("userIdValue", "phoneAuthenticationMethodIdValue").ID()
-	expected := "/users/userIdValue/authentication/phoneMethods/phoneAuthenticationMethodIdValue"
+	actual := NewUserIdAuthenticationPhoneMethodID("userId", "phoneAuthenticationMethodId").ID()
+	expected := "/users/userId/authentication/phoneMethods/phoneAuthenticationMethodId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -49,30 +49,30 @@ func TestParseUserIdAuthenticationPhoneMethodID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue",
+			Input: "/users/userId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/authentication",
+			Input: "/users/userId/authentication",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/authentication/phoneMethods",
+			Input: "/users/userId/authentication/phoneMethods",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/users/userIdValue/authentication/phoneMethods/phoneAuthenticationMethodIdValue",
+			Input: "/users/userId/authentication/phoneMethods/phoneAuthenticationMethodId",
 			Expected: &UserIdAuthenticationPhoneMethodId{
-				UserId:                      "userIdValue",
-				PhoneAuthenticationMethodId: "phoneAuthenticationMethodIdValue",
+				UserId:                      "userId",
+				PhoneAuthenticationMethodId: "phoneAuthenticationMethodId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/users/userIdValue/authentication/phoneMethods/phoneAuthenticationMethodIdValue/extra",
+			Input: "/users/userId/authentication/phoneMethods/phoneAuthenticationMethodId/extra",
 			Error: true,
 		},
 	}
@@ -125,58 +125,58 @@ func TestParseUserIdAuthenticationPhoneMethodIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue",
+			Input: "/users/userId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe",
+			Input: "/uSeRs/uSeRiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/authentication",
+			Input: "/users/userId/authentication",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/aUtHeNtIcAtIoN",
+			Input: "/uSeRs/uSeRiD/aUtHeNtIcAtIoN",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/authentication/phoneMethods",
+			Input: "/users/userId/authentication/phoneMethods",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/aUtHeNtIcAtIoN/pHoNeMeThOdS",
+			Input: "/uSeRs/uSeRiD/aUtHeNtIcAtIoN/pHoNeMeThOdS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/users/userIdValue/authentication/phoneMethods/phoneAuthenticationMethodIdValue",
+			Input: "/users/userId/authentication/phoneMethods/phoneAuthenticationMethodId",
 			Expected: &UserIdAuthenticationPhoneMethodId{
-				UserId:                      "userIdValue",
-				PhoneAuthenticationMethodId: "phoneAuthenticationMethodIdValue",
+				UserId:                      "userId",
+				PhoneAuthenticationMethodId: "phoneAuthenticationMethodId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/users/userIdValue/authentication/phoneMethods/phoneAuthenticationMethodIdValue/extra",
+			Input: "/users/userId/authentication/phoneMethods/phoneAuthenticationMethodId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/aUtHeNtIcAtIoN/pHoNeMeThOdS/pHoNeAuThEnTiCaTiOnMeThOdIdVaLuE",
+			Input: "/uSeRs/uSeRiD/aUtHeNtIcAtIoN/pHoNeMeThOdS/pHoNeAuThEnTiCaTiOnMeThOdId",
 			Expected: &UserIdAuthenticationPhoneMethodId{
-				UserId:                      "uSeRiDvAlUe",
-				PhoneAuthenticationMethodId: "pHoNeAuThEnTiCaTiOnMeThOdIdVaLuE",
+				UserId:                      "uSeRiD",
+				PhoneAuthenticationMethodId: "pHoNeAuThEnTiCaTiOnMeThOdId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/aUtHeNtIcAtIoN/pHoNeMeThOdS/pHoNeAuThEnTiCaTiOnMeThOdIdVaLuE/extra",
+			Input: "/uSeRs/uSeRiD/aUtHeNtIcAtIoN/pHoNeMeThOdS/pHoNeAuThEnTiCaTiOnMeThOdId/extra",
 			Error: true,
 		},
 	}

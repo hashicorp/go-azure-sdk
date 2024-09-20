@@ -18,15 +18,44 @@ type CreateConfigurationPolicyReorderOperationResponse struct {
 	OData        *odata.OData
 }
 
+type CreateConfigurationPolicyReorderOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateConfigurationPolicyReorderOperationOptions() CreateConfigurationPolicyReorderOperationOptions {
+	return CreateConfigurationPolicyReorderOperationOptions{}
+}
+
+func (o CreateConfigurationPolicyReorderOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateConfigurationPolicyReorderOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateConfigurationPolicyReorderOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateConfigurationPolicyReorder - Invoke action reorder
-func (c ConfigurationPolicyClient) CreateConfigurationPolicyReorder(ctx context.Context, id beta.DeviceManagementConfigurationPolicyId, input CreateConfigurationPolicyReorderRequest) (result CreateConfigurationPolicyReorderOperationResponse, err error) {
+func (c ConfigurationPolicyClient) CreateConfigurationPolicyReorder(ctx context.Context, id beta.DeviceManagementConfigurationPolicyId, input CreateConfigurationPolicyReorderRequest, options CreateConfigurationPolicyReorderOperationOptions) (result CreateConfigurationPolicyReorderOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/reorder", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/reorder", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

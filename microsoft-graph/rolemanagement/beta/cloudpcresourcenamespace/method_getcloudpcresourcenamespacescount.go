@@ -18,8 +18,9 @@ type GetCloudPCResourceNamespacesCountOperationResponse struct {
 }
 
 type GetCloudPCResourceNamespacesCountOperationOptions struct {
-	Filter *string
-	Search *string
+	Filter   *string
+	Metadata *odata.Metadata
+	Search   *string
 }
 
 func DefaultGetCloudPCResourceNamespacesCountOperationOptions() GetCloudPCResourceNamespacesCountOperationOptions {
@@ -36,6 +37,9 @@ func (o GetCloudPCResourceNamespacesCountOperationOptions) ToOData() *odata.Quer
 	out := odata.Query{}
 	if o.Filter != nil {
 		out.Filter = *o.Filter
+	}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
 	}
 	if o.Search != nil {
 		out.Search = *o.Search

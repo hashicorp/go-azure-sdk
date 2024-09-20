@@ -17,15 +17,44 @@ type UpdateDriveRootListItemActivityOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateDriveRootListItemActivityOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateDriveRootListItemActivityOperationOptions() UpdateDriveRootListItemActivityOperationOptions {
+	return UpdateDriveRootListItemActivityOperationOptions{}
+}
+
+func (o UpdateDriveRootListItemActivityOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateDriveRootListItemActivityOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateDriveRootListItemActivityOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateDriveRootListItemActivity - Update the navigation property activities in groups
-func (c DriveRootListItemActivityClient) UpdateDriveRootListItemActivity(ctx context.Context, id beta.GroupIdDriveIdRootListItemActivityId, input beta.ItemActivityOLD) (result UpdateDriveRootListItemActivityOperationResponse, err error) {
+func (c DriveRootListItemActivityClient) UpdateDriveRootListItemActivity(ctx context.Context, id beta.GroupIdDriveIdRootListItemActivityId, input beta.ItemActivityOLD, options UpdateDriveRootListItemActivityOperationOptions) (result UpdateDriveRootListItemActivityOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

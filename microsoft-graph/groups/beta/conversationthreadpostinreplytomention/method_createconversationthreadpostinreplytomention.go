@@ -19,15 +19,44 @@ type CreateConversationThreadPostInReplyToMentionOperationResponse struct {
 	Model        *beta.Mention
 }
 
+type CreateConversationThreadPostInReplyToMentionOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateConversationThreadPostInReplyToMentionOperationOptions() CreateConversationThreadPostInReplyToMentionOperationOptions {
+	return CreateConversationThreadPostInReplyToMentionOperationOptions{}
+}
+
+func (o CreateConversationThreadPostInReplyToMentionOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateConversationThreadPostInReplyToMentionOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateConversationThreadPostInReplyToMentionOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateConversationThreadPostInReplyToMention - Create new navigation property to mentions for groups
-func (c ConversationThreadPostInReplyToMentionClient) CreateConversationThreadPostInReplyToMention(ctx context.Context, id beta.GroupIdConversationIdThreadIdPostId, input beta.Mention) (result CreateConversationThreadPostInReplyToMentionOperationResponse, err error) {
+func (c ConversationThreadPostInReplyToMentionClient) CreateConversationThreadPostInReplyToMention(ctx context.Context, id beta.GroupIdConversationIdThreadIdPostId, input beta.Mention, options CreateConversationThreadPostInReplyToMentionOperationOptions) (result CreateConversationThreadPostInReplyToMentionOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/inReplyTo/mentions", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/inReplyTo/mentions", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

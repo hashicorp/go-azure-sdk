@@ -18,16 +18,45 @@ type CreateRemoteAssistancePartnerBeginOnboardingOperationResponse struct {
 	OData        *odata.OData
 }
 
+type CreateRemoteAssistancePartnerBeginOnboardingOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateRemoteAssistancePartnerBeginOnboardingOperationOptions() CreateRemoteAssistancePartnerBeginOnboardingOperationOptions {
+	return CreateRemoteAssistancePartnerBeginOnboardingOperationOptions{}
+}
+
+func (o CreateRemoteAssistancePartnerBeginOnboardingOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateRemoteAssistancePartnerBeginOnboardingOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateRemoteAssistancePartnerBeginOnboardingOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateRemoteAssistancePartnerBeginOnboarding - Invoke action beginOnboarding. A request to start onboarding. Must be
 // coupled with the appropriate TeamViewer account information
-func (c RemoteAssistancePartnerClient) CreateRemoteAssistancePartnerBeginOnboarding(ctx context.Context, id stable.DeviceManagementRemoteAssistancePartnerId) (result CreateRemoteAssistancePartnerBeginOnboardingOperationResponse, err error) {
+func (c RemoteAssistancePartnerClient) CreateRemoteAssistancePartnerBeginOnboarding(ctx context.Context, id stable.DeviceManagementRemoteAssistancePartnerId, options CreateRemoteAssistancePartnerBeginOnboardingOperationOptions) (result CreateRemoteAssistancePartnerBeginOnboardingOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/beginOnboarding", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/beginOnboarding", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

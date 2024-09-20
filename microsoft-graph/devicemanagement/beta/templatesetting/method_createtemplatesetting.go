@@ -20,15 +20,44 @@ type CreateTemplateSettingOperationResponse struct {
 	Model        beta.DeviceManagementSettingInstance
 }
 
+type CreateTemplateSettingOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateTemplateSettingOperationOptions() CreateTemplateSettingOperationOptions {
+	return CreateTemplateSettingOperationOptions{}
+}
+
+func (o CreateTemplateSettingOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateTemplateSettingOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateTemplateSettingOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateTemplateSetting - Create new navigation property to settings for deviceManagement
-func (c TemplateSettingClient) CreateTemplateSetting(ctx context.Context, id beta.DeviceManagementTemplateId, input beta.DeviceManagementSettingInstance) (result CreateTemplateSettingOperationResponse, err error) {
+func (c TemplateSettingClient) CreateTemplateSetting(ctx context.Context, id beta.DeviceManagementTemplateId, input beta.DeviceManagementSettingInstance, options CreateTemplateSettingOperationOptions) (result CreateTemplateSettingOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/settings", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/settings", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

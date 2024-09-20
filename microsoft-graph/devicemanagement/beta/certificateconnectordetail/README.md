@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/certificateconnectordetail` Documentation
 
-The `certificateconnectordetail` SDK allows for interaction with the Azure Resource Manager Service `devicemanagement` (API Version `beta`).
+The `certificateconnectordetail` SDK allows for interaction with Microsoft Graph `devicemanagement` (API Version `beta`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -15,7 +15,7 @@ import "github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/
 ### Client Initialization
 
 ```go
-client := certificateconnectordetail.NewCertificateConnectorDetailClientWithBaseURI("https://management.azure.com")
+client := certificateconnectordetail.NewCertificateConnectorDetailClientWithBaseURI("https://graph.microsoft.com")
 client.Client.Authorizer = authorizer
 ```
 
@@ -30,7 +30,7 @@ payload := certificateconnectordetail.CertificateConnectorDetails{
 }
 
 
-read, err := client.CreateCertificateConnectorDetail(ctx, payload)
+read, err := client.CreateCertificateConnectorDetail(ctx, payload, certificateconnectordetail.DefaultCreateCertificateConnectorDetailOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -44,7 +44,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := certificateconnectordetail.NewDeviceManagementCertificateConnectorDetailID("certificateConnectorDetailsIdValue")
+id := certificateconnectordetail.NewDeviceManagementCertificateConnectorDetailID("certificateConnectorDetailsId")
 
 read, err := client.DeleteCertificateConnectorDetail(ctx, id, certificateconnectordetail.DefaultDeleteCertificateConnectorDetailOperationOptions())
 if err != nil {
@@ -60,7 +60,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := certificateconnectordetail.NewDeviceManagementCertificateConnectorDetailID("certificateConnectorDetailsIdValue")
+id := certificateconnectordetail.NewDeviceManagementCertificateConnectorDetailID("certificateConnectorDetailsId")
 
 read, err := client.GetCertificateConnectorDetail(ctx, id, certificateconnectordetail.DefaultGetCertificateConnectorDetailOperationOptions())
 if err != nil {
@@ -76,7 +76,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := certificateconnectordetail.NewDeviceManagementCertificateConnectorDetailID("certificateConnectorDetailsIdValue")
+id := certificateconnectordetail.NewDeviceManagementCertificateConnectorDetailID("certificateConnectorDetailsId")
 
 payload := certificateconnectordetail.GetCertificateConnectorDetailHealthMetricTimeSeriesRequest{
 	// ...
@@ -98,7 +98,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := certificateconnectordetail.NewDeviceManagementCertificateConnectorDetailID("certificateConnectorDetailsIdValue")
+id := certificateconnectordetail.NewDeviceManagementCertificateConnectorDetailID("certificateConnectorDetailsId")
 
 payload := certificateconnectordetail.GetCertificateConnectorDetailHealthMetricsRequest{
 	// ...
@@ -153,14 +153,14 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := certificateconnectordetail.NewDeviceManagementCertificateConnectorDetailID("certificateConnectorDetailsIdValue")
+id := certificateconnectordetail.NewDeviceManagementCertificateConnectorDetailID("certificateConnectorDetailsId")
 
 payload := certificateconnectordetail.CertificateConnectorDetails{
 	// ...
 }
 
 
-read, err := client.UpdateCertificateConnectorDetail(ctx, id, payload)
+read, err := client.UpdateCertificateConnectorDetail(ctx, id, payload, certificateconnectordetail.DefaultUpdateCertificateConnectorDetailOperationOptions())
 if err != nil {
 	// handle the error
 }

@@ -20,15 +20,44 @@ type CreateTodoListExtensionOperationResponse struct {
 	Model        beta.Extension
 }
 
+type CreateTodoListExtensionOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateTodoListExtensionOperationOptions() CreateTodoListExtensionOperationOptions {
+	return CreateTodoListExtensionOperationOptions{}
+}
+
+func (o CreateTodoListExtensionOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateTodoListExtensionOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateTodoListExtensionOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateTodoListExtension - Create new navigation property to extensions for me
-func (c TodoListExtensionClient) CreateTodoListExtension(ctx context.Context, id beta.MeTodoListId, input beta.Extension) (result CreateTodoListExtensionOperationResponse, err error) {
+func (c TodoListExtensionClient) CreateTodoListExtension(ctx context.Context, id beta.MeTodoListId, input beta.Extension, options CreateTodoListExtensionOperationOptions) (result CreateTodoListExtensionOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/extensions", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/extensions", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

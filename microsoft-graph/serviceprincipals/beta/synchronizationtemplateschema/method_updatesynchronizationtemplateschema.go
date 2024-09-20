@@ -18,15 +18,44 @@ type UpdateSynchronizationTemplateSchemaOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateSynchronizationTemplateSchemaOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateSynchronizationTemplateSchemaOperationOptions() UpdateSynchronizationTemplateSchemaOperationOptions {
+	return UpdateSynchronizationTemplateSchemaOperationOptions{}
+}
+
+func (o UpdateSynchronizationTemplateSchemaOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateSynchronizationTemplateSchemaOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateSynchronizationTemplateSchemaOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateSynchronizationTemplateSchema - Update the navigation property schema in servicePrincipals
-func (c SynchronizationTemplateSchemaClient) UpdateSynchronizationTemplateSchema(ctx context.Context, id beta.ServicePrincipalIdSynchronizationTemplateId, input beta.SynchronizationSchema) (result UpdateSynchronizationTemplateSchemaOperationResponse, err error) {
+func (c SynchronizationTemplateSchemaClient) UpdateSynchronizationTemplateSchema(ctx context.Context, id beta.ServicePrincipalIdSynchronizationTemplateId, input beta.SynchronizationSchema, options UpdateSynchronizationTemplateSchemaOperationOptions) (result UpdateSynchronizationTemplateSchemaOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       fmt.Sprintf("%s/schema", id.ID()),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/schema", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

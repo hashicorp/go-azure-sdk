@@ -18,16 +18,45 @@ type CreateDepOnboardingSettingUploadDepTokenOperationResponse struct {
 	OData        *odata.OData
 }
 
+type CreateDepOnboardingSettingUploadDepTokenOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateDepOnboardingSettingUploadDepTokenOperationOptions() CreateDepOnboardingSettingUploadDepTokenOperationOptions {
+	return CreateDepOnboardingSettingUploadDepTokenOperationOptions{}
+}
+
+func (o CreateDepOnboardingSettingUploadDepTokenOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateDepOnboardingSettingUploadDepTokenOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateDepOnboardingSettingUploadDepTokenOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateDepOnboardingSettingUploadDepToken - Invoke action uploadDepToken. Uploads a new Device Enrollment Program
 // token
-func (c DepOnboardingSettingClient) CreateDepOnboardingSettingUploadDepToken(ctx context.Context, id beta.DeviceManagementDepOnboardingSettingId, input CreateDepOnboardingSettingUploadDepTokenRequest) (result CreateDepOnboardingSettingUploadDepTokenOperationResponse, err error) {
+func (c DepOnboardingSettingClient) CreateDepOnboardingSettingUploadDepToken(ctx context.Context, id beta.DeviceManagementDepOnboardingSettingId, input CreateDepOnboardingSettingUploadDepTokenRequest, options CreateDepOnboardingSettingUploadDepTokenOperationOptions) (result CreateDepOnboardingSettingUploadDepTokenOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/uploadDepToken", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/uploadDepToken", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

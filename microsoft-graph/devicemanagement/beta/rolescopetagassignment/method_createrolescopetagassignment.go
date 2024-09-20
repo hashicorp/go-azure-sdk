@@ -19,15 +19,44 @@ type CreateRoleScopeTagAssignmentOperationResponse struct {
 	Model        *beta.RoleScopeTagAutoAssignment
 }
 
+type CreateRoleScopeTagAssignmentOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateRoleScopeTagAssignmentOperationOptions() CreateRoleScopeTagAssignmentOperationOptions {
+	return CreateRoleScopeTagAssignmentOperationOptions{}
+}
+
+func (o CreateRoleScopeTagAssignmentOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateRoleScopeTagAssignmentOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateRoleScopeTagAssignmentOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateRoleScopeTagAssignment - Create new navigation property to assignments for deviceManagement
-func (c RoleScopeTagAssignmentClient) CreateRoleScopeTagAssignment(ctx context.Context, id beta.DeviceManagementRoleScopeTagId, input beta.RoleScopeTagAutoAssignment) (result CreateRoleScopeTagAssignmentOperationResponse, err error) {
+func (c RoleScopeTagAssignmentClient) CreateRoleScopeTagAssignment(ctx context.Context, id beta.DeviceManagementRoleScopeTagId, input beta.RoleScopeTagAutoAssignment, options CreateRoleScopeTagAssignmentOperationOptions) (result CreateRoleScopeTagAssignmentOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/assignments", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/assignments", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

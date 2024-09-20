@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/microsoft-graph/administrativeunits/beta/administrativeunit` Documentation
 
-The `administrativeunit` SDK allows for interaction with the Azure Resource Manager Service `administrativeunits` (API Version `beta`).
+The `administrativeunit` SDK allows for interaction with Microsoft Graph `administrativeunits` (API Version `beta`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -15,7 +15,7 @@ import "github.com/hashicorp/go-azure-sdk/microsoft-graph/administrativeunits/be
 ### Client Initialization
 
 ```go
-client := administrativeunit.NewAdministrativeUnitClientWithBaseURI("https://management.azure.com")
+client := administrativeunit.NewAdministrativeUnitClientWithBaseURI("https://graph.microsoft.com")
 client.Client.Authorizer = authorizer
 ```
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := administrativeunit.NewAdministrativeUnitID("administrativeUnitIdValue")
+id := administrativeunit.NewAdministrativeUnitID("administrativeUnitId")
 
 payload := administrativeunit.CheckMemberGroupsRequest{
 	// ...
@@ -46,7 +46,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := administrativeunit.NewAdministrativeUnitID("administrativeUnitIdValue")
+id := administrativeunit.NewAdministrativeUnitID("administrativeUnitId")
 
 payload := administrativeunit.CheckMemberObjectsRequest{
 	// ...
@@ -74,7 +74,47 @@ payload := administrativeunit.AdministrativeUnit{
 }
 
 
-read, err := client.CreateAdministrativeUnit(ctx, payload)
+read, err := client.CreateAdministrativeUnit(ctx, payload, administrativeunit.DefaultCreateAdministrativeUnitOperationOptions())
+if err != nil {
+	// handle the error
+}
+if model := read.Model; model != nil {
+	// do something with the model/response object
+}
+```
+
+
+### Example Usage: `AdministrativeUnitClient.CreateGetsUserOwnedObject`
+
+```go
+ctx := context.TODO()
+
+payload := administrativeunit.CreateGetsUserOwnedObjectRequest{
+	// ...
+}
+
+
+read, err := client.CreateGetsUserOwnedObject(ctx, payload, administrativeunit.DefaultCreateGetsUserOwnedObjectOperationOptions())
+if err != nil {
+	// handle the error
+}
+if model := read.Model; model != nil {
+	// do something with the model/response object
+}
+```
+
+
+### Example Usage: `AdministrativeUnitClient.CreateValidatesProperty`
+
+```go
+ctx := context.TODO()
+
+payload := administrativeunit.CreateValidatesPropertyRequest{
+	// ...
+}
+
+
+read, err := client.CreateValidatesProperty(ctx, payload, administrativeunit.DefaultCreateValidatesPropertyOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -88,7 +128,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := administrativeunit.NewAdministrativeUnitID("administrativeUnitIdValue")
+id := administrativeunit.NewAdministrativeUnitID("administrativeUnitId")
 
 read, err := client.DeleteAdministrativeUnit(ctx, id, administrativeunit.DefaultDeleteAdministrativeUnitOperationOptions())
 if err != nil {
@@ -104,46 +144,9 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := administrativeunit.NewAdministrativeUnitID("administrativeUnitIdValue")
+id := administrativeunit.NewAdministrativeUnitID("administrativeUnitId")
 
 read, err := client.GetAdministrativeUnit(ctx, id, administrativeunit.DefaultGetAdministrativeUnitOperationOptions())
-if err != nil {
-	// handle the error
-}
-if model := read.Model; model != nil {
-	// do something with the model/response object
-}
-```
-
-
-### Example Usage: `AdministrativeUnitClient.GetByIds`
-
-```go
-ctx := context.TODO()
-
-payload := administrativeunit.GetByIdsRequest{
-	// ...
-}
-
-
-// alternatively `client.GetByIds(ctx, payload, administrativeunit.DefaultGetByIdsOperationOptions())` can be used to do batched pagination
-items, err := client.GetByIdsComplete(ctx, payload, administrativeunit.DefaultGetByIdsOperationOptions())
-if err != nil {
-	// handle the error
-}
-for _, item := range items {
-	// do something
-}
-```
-
-
-### Example Usage: `AdministrativeUnitClient.GetCount`
-
-```go
-ctx := context.TODO()
-
-
-read, err := client.GetCount(ctx, administrativeunit.DefaultGetCountOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -157,7 +160,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := administrativeunit.NewAdministrativeUnitID("administrativeUnitIdValue")
+id := administrativeunit.NewAdministrativeUnitID("administrativeUnitId")
 
 payload := administrativeunit.GetMemberGroupsRequest{
 	// ...
@@ -179,7 +182,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := administrativeunit.NewAdministrativeUnitID("administrativeUnitIdValue")
+id := administrativeunit.NewAdministrativeUnitID("administrativeUnitId")
 
 payload := administrativeunit.GetMemberObjectsRequest{
 	// ...
@@ -197,17 +200,13 @@ for _, item := range items {
 ```
 
 
-### Example Usage: `AdministrativeUnitClient.GetUserOwnedObject`
+### Example Usage: `AdministrativeUnitClient.GetsCount`
 
 ```go
 ctx := context.TODO()
 
-payload := administrativeunit.GetUserOwnedObjectRequest{
-	// ...
-}
 
-
-read, err := client.GetUserOwnedObject(ctx, payload)
+read, err := client.GetsCount(ctx, administrativeunit.DefaultGetsCountOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -234,18 +233,39 @@ for _, item := range items {
 ```
 
 
+### Example Usage: `AdministrativeUnitClient.ListGetsByIds`
+
+```go
+ctx := context.TODO()
+
+payload := administrativeunit.ListGetsByIdsRequest{
+	// ...
+}
+
+
+// alternatively `client.ListGetsByIds(ctx, payload, administrativeunit.DefaultListGetsByIdsOperationOptions())` can be used to do batched pagination
+items, err := client.ListGetsByIdsComplete(ctx, payload, administrativeunit.DefaultListGetsByIdsOperationOptions())
+if err != nil {
+	// handle the error
+}
+for _, item := range items {
+	// do something
+}
+```
+
+
 ### Example Usage: `AdministrativeUnitClient.Restore`
 
 ```go
 ctx := context.TODO()
-id := administrativeunit.NewAdministrativeUnitID("administrativeUnitIdValue")
+id := administrativeunit.NewAdministrativeUnitID("administrativeUnitId")
 
 payload := administrativeunit.RestoreRequest{
 	// ...
 }
 
 
-read, err := client.Restore(ctx, id, payload)
+read, err := client.Restore(ctx, id, payload, administrativeunit.DefaultRestoreOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -259,34 +279,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := administrativeunit.NewAdministrativeUnitID("administrativeUnitIdValue")
+id := administrativeunit.NewAdministrativeUnitID("administrativeUnitId")
 
 payload := administrativeunit.AdministrativeUnit{
 	// ...
 }
 
 
-read, err := client.UpdateAdministrativeUnit(ctx, id, payload)
-if err != nil {
-	// handle the error
-}
-if model := read.Model; model != nil {
-	// do something with the model/response object
-}
-```
-
-
-### Example Usage: `AdministrativeUnitClient.ValidateProperty`
-
-```go
-ctx := context.TODO()
-
-payload := administrativeunit.ValidatePropertyRequest{
-	// ...
-}
-
-
-read, err := client.ValidateProperty(ctx, payload)
+read, err := client.UpdateAdministrativeUnit(ctx, id, payload, administrativeunit.DefaultUpdateAdministrativeUnitOperationOptions())
 if err != nil {
 	// handle the error
 }

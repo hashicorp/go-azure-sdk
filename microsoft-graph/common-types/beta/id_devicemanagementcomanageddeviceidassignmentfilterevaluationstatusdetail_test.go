@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &DeviceManagementComanagedDeviceIdAssignmentFilterEvaluationStatusDetailId{}
 
 func TestNewDeviceManagementComanagedDeviceIdAssignmentFilterEvaluationStatusDetailID(t *testing.T) {
-	id := NewDeviceManagementComanagedDeviceIdAssignmentFilterEvaluationStatusDetailID("managedDeviceIdValue", "assignmentFilterEvaluationStatusDetailsIdValue")
+	id := NewDeviceManagementComanagedDeviceIdAssignmentFilterEvaluationStatusDetailID("managedDeviceId", "assignmentFilterEvaluationStatusDetailsId")
 
-	if id.ManagedDeviceId != "managedDeviceIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ManagedDeviceId'", id.ManagedDeviceId, "managedDeviceIdValue")
+	if id.ManagedDeviceId != "managedDeviceId" {
+		t.Fatalf("Expected %q but got %q for Segment 'ManagedDeviceId'", id.ManagedDeviceId, "managedDeviceId")
 	}
 
-	if id.AssignmentFilterEvaluationStatusDetailsId != "assignmentFilterEvaluationStatusDetailsIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'AssignmentFilterEvaluationStatusDetailsId'", id.AssignmentFilterEvaluationStatusDetailsId, "assignmentFilterEvaluationStatusDetailsIdValue")
+	if id.AssignmentFilterEvaluationStatusDetailsId != "assignmentFilterEvaluationStatusDetailsId" {
+		t.Fatalf("Expected %q but got %q for Segment 'AssignmentFilterEvaluationStatusDetailsId'", id.AssignmentFilterEvaluationStatusDetailsId, "assignmentFilterEvaluationStatusDetailsId")
 	}
 }
 
 func TestFormatDeviceManagementComanagedDeviceIdAssignmentFilterEvaluationStatusDetailID(t *testing.T) {
-	actual := NewDeviceManagementComanagedDeviceIdAssignmentFilterEvaluationStatusDetailID("managedDeviceIdValue", "assignmentFilterEvaluationStatusDetailsIdValue").ID()
-	expected := "/deviceManagement/comanagedDevices/managedDeviceIdValue/assignmentFilterEvaluationStatusDetails/assignmentFilterEvaluationStatusDetailsIdValue"
+	actual := NewDeviceManagementComanagedDeviceIdAssignmentFilterEvaluationStatusDetailID("managedDeviceId", "assignmentFilterEvaluationStatusDetailsId").ID()
+	expected := "/deviceManagement/comanagedDevices/managedDeviceId/assignmentFilterEvaluationStatusDetails/assignmentFilterEvaluationStatusDetailsId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -54,25 +54,25 @@ func TestParseDeviceManagementComanagedDeviceIdAssignmentFilterEvaluationStatusD
 		},
 		{
 			// Incomplete URI
-			Input: "/deviceManagement/comanagedDevices/managedDeviceIdValue",
+			Input: "/deviceManagement/comanagedDevices/managedDeviceId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/deviceManagement/comanagedDevices/managedDeviceIdValue/assignmentFilterEvaluationStatusDetails",
+			Input: "/deviceManagement/comanagedDevices/managedDeviceId/assignmentFilterEvaluationStatusDetails",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/comanagedDevices/managedDeviceIdValue/assignmentFilterEvaluationStatusDetails/assignmentFilterEvaluationStatusDetailsIdValue",
+			Input: "/deviceManagement/comanagedDevices/managedDeviceId/assignmentFilterEvaluationStatusDetails/assignmentFilterEvaluationStatusDetailsId",
 			Expected: &DeviceManagementComanagedDeviceIdAssignmentFilterEvaluationStatusDetailId{
-				ManagedDeviceId: "managedDeviceIdValue",
-				AssignmentFilterEvaluationStatusDetailsId: "assignmentFilterEvaluationStatusDetailsIdValue",
+				ManagedDeviceId: "managedDeviceId",
+				AssignmentFilterEvaluationStatusDetailsId: "assignmentFilterEvaluationStatusDetailsId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/comanagedDevices/managedDeviceIdValue/assignmentFilterEvaluationStatusDetails/assignmentFilterEvaluationStatusDetailsIdValue/extra",
+			Input: "/deviceManagement/comanagedDevices/managedDeviceId/assignmentFilterEvaluationStatusDetails/assignmentFilterEvaluationStatusDetailsId/extra",
 			Error: true,
 		},
 	}
@@ -135,48 +135,48 @@ func TestParseDeviceManagementComanagedDeviceIdAssignmentFilterEvaluationStatusD
 		},
 		{
 			// Incomplete URI
-			Input: "/deviceManagement/comanagedDevices/managedDeviceIdValue",
+			Input: "/deviceManagement/comanagedDevices/managedDeviceId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/cOmAnAgEdDeViCeS/mAnAgEdDeViCeIdVaLuE",
+			Input: "/dEvIcEmAnAgEmEnT/cOmAnAgEdDeViCeS/mAnAgEdDeViCeId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/deviceManagement/comanagedDevices/managedDeviceIdValue/assignmentFilterEvaluationStatusDetails",
+			Input: "/deviceManagement/comanagedDevices/managedDeviceId/assignmentFilterEvaluationStatusDetails",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/cOmAnAgEdDeViCeS/mAnAgEdDeViCeIdVaLuE/aSsIgNmEnTfIlTeReVaLuAtIoNsTaTuSdEtAiLs",
+			Input: "/dEvIcEmAnAgEmEnT/cOmAnAgEdDeViCeS/mAnAgEdDeViCeId/aSsIgNmEnTfIlTeReVaLuAtIoNsTaTuSdEtAiLs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/comanagedDevices/managedDeviceIdValue/assignmentFilterEvaluationStatusDetails/assignmentFilterEvaluationStatusDetailsIdValue",
+			Input: "/deviceManagement/comanagedDevices/managedDeviceId/assignmentFilterEvaluationStatusDetails/assignmentFilterEvaluationStatusDetailsId",
 			Expected: &DeviceManagementComanagedDeviceIdAssignmentFilterEvaluationStatusDetailId{
-				ManagedDeviceId: "managedDeviceIdValue",
-				AssignmentFilterEvaluationStatusDetailsId: "assignmentFilterEvaluationStatusDetailsIdValue",
+				ManagedDeviceId: "managedDeviceId",
+				AssignmentFilterEvaluationStatusDetailsId: "assignmentFilterEvaluationStatusDetailsId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/comanagedDevices/managedDeviceIdValue/assignmentFilterEvaluationStatusDetails/assignmentFilterEvaluationStatusDetailsIdValue/extra",
+			Input: "/deviceManagement/comanagedDevices/managedDeviceId/assignmentFilterEvaluationStatusDetails/assignmentFilterEvaluationStatusDetailsId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/cOmAnAgEdDeViCeS/mAnAgEdDeViCeIdVaLuE/aSsIgNmEnTfIlTeReVaLuAtIoNsTaTuSdEtAiLs/aSsIgNmEnTfIlTeReVaLuAtIoNsTaTuSdEtAiLsIdVaLuE",
+			Input: "/dEvIcEmAnAgEmEnT/cOmAnAgEdDeViCeS/mAnAgEdDeViCeId/aSsIgNmEnTfIlTeReVaLuAtIoNsTaTuSdEtAiLs/aSsIgNmEnTfIlTeReVaLuAtIoNsTaTuSdEtAiLsId",
 			Expected: &DeviceManagementComanagedDeviceIdAssignmentFilterEvaluationStatusDetailId{
-				ManagedDeviceId: "mAnAgEdDeViCeIdVaLuE",
-				AssignmentFilterEvaluationStatusDetailsId: "aSsIgNmEnTfIlTeReVaLuAtIoNsTaTuSdEtAiLsIdVaLuE",
+				ManagedDeviceId: "mAnAgEdDeViCeId",
+				AssignmentFilterEvaluationStatusDetailsId: "aSsIgNmEnTfIlTeReVaLuAtIoNsTaTuSdEtAiLsId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/cOmAnAgEdDeViCeS/mAnAgEdDeViCeIdVaLuE/aSsIgNmEnTfIlTeReVaLuAtIoNsTaTuSdEtAiLs/aSsIgNmEnTfIlTeReVaLuAtIoNsTaTuSdEtAiLsIdVaLuE/extra",
+			Input: "/dEvIcEmAnAgEmEnT/cOmAnAgEdDeViCeS/mAnAgEdDeViCeId/aSsIgNmEnTfIlTeReVaLuAtIoNsTaTuSdEtAiLs/aSsIgNmEnTfIlTeReVaLuAtIoNsTaTuSdEtAiLsId/extra",
 			Error: true,
 		},
 	}

@@ -95,7 +95,7 @@ func (id ReportUserInsightDailyMfaCompletionId) Segments() []resourceids.Segment
 		resourceids.StaticSegment("userInsights", "userInsights", "userInsights"),
 		resourceids.StaticSegment("daily", "daily", "daily"),
 		resourceids.StaticSegment("mfaCompletions", "mfaCompletions", "mfaCompletions"),
-		resourceids.UserSpecifiedSegment("mfaCompletionMetricId", "mfaCompletionMetricIdValue"),
+		resourceids.UserSpecifiedSegment("mfaCompletionMetricId", "mfaCompletionMetricId"),
 	}
 }
 

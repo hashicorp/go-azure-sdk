@@ -17,15 +17,44 @@ type GetReportsQuietTimePolicyUserSummaryReportOperationResponse struct {
 	Model        *[]byte
 }
 
+type GetReportsQuietTimePolicyUserSummaryReportOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultGetReportsQuietTimePolicyUserSummaryReportOperationOptions() GetReportsQuietTimePolicyUserSummaryReportOperationOptions {
+	return GetReportsQuietTimePolicyUserSummaryReportOperationOptions{}
+}
+
+func (o GetReportsQuietTimePolicyUserSummaryReportOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o GetReportsQuietTimePolicyUserSummaryReportOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o GetReportsQuietTimePolicyUserSummaryReportOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // GetReportsQuietTimePolicyUserSummaryReport - Invoke action getQuietTimePolicyUserSummaryReport
-func (c ReportClient) GetReportsQuietTimePolicyUserSummaryReport(ctx context.Context, input GetReportsQuietTimePolicyUserSummaryReportRequest) (result GetReportsQuietTimePolicyUserSummaryReportOperationResponse, err error) {
+func (c ReportClient) GetReportsQuietTimePolicyUserSummaryReport(ctx context.Context, input GetReportsQuietTimePolicyUserSummaryReportRequest, options GetReportsQuietTimePolicyUserSummaryReportOperationOptions) (result GetReportsQuietTimePolicyUserSummaryReportOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/octet-stream",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/deviceManagement/reports/getQuietTimePolicyUserSummaryReport",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/deviceManagement/reports/getQuietTimePolicyUserSummaryReport",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

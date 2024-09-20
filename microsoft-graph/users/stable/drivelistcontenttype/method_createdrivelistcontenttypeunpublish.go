@@ -18,15 +18,44 @@ type CreateDriveListContentTypeUnpublishOperationResponse struct {
 	OData        *odata.OData
 }
 
+type CreateDriveListContentTypeUnpublishOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateDriveListContentTypeUnpublishOperationOptions() CreateDriveListContentTypeUnpublishOperationOptions {
+	return CreateDriveListContentTypeUnpublishOperationOptions{}
+}
+
+func (o CreateDriveListContentTypeUnpublishOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateDriveListContentTypeUnpublishOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateDriveListContentTypeUnpublishOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateDriveListContentTypeUnpublish - Invoke action unpublish. Unpublish a contentType from a content type hub site.
-func (c DriveListContentTypeClient) CreateDriveListContentTypeUnpublish(ctx context.Context, id stable.UserIdDriveIdListContentTypeId) (result CreateDriveListContentTypeUnpublishOperationResponse, err error) {
+func (c DriveListContentTypeClient) CreateDriveListContentTypeUnpublish(ctx context.Context, id stable.UserIdDriveIdListContentTypeId, options CreateDriveListContentTypeUnpublishOperationOptions) (result CreateDriveListContentTypeUnpublishOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/unpublish", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/unpublish", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

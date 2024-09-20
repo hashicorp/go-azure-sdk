@@ -62,10 +62,14 @@ func (s WindowsQualityUpdateProfileAssignment) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &WindowsQualityUpdateProfileAssignment{}
 
 func (s *WindowsQualityUpdateProfileAssignment) UnmarshalJSON(bytes []byte) error {
-	type alias WindowsQualityUpdateProfileAssignment
-	var decoded alias
+
+	var decoded struct {
+		Id        *string `json:"id,omitempty"`
+		ODataId   *string `json:"@odata.id,omitempty"`
+		ODataType *string `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into WindowsQualityUpdateProfileAssignment: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.Id = decoded.Id
@@ -84,5 +88,6 @@ func (s *WindowsQualityUpdateProfileAssignment) UnmarshalJSON(bytes []byte) erro
 		}
 		s.Target = impl
 	}
+
 	return nil
 }

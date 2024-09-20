@@ -17,15 +17,44 @@ type UpdateTermsOfUseAgreementFileVersionOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateTermsOfUseAgreementFileVersionOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateTermsOfUseAgreementFileVersionOperationOptions() UpdateTermsOfUseAgreementFileVersionOperationOptions {
+	return UpdateTermsOfUseAgreementFileVersionOperationOptions{}
+}
+
+func (o UpdateTermsOfUseAgreementFileVersionOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateTermsOfUseAgreementFileVersionOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateTermsOfUseAgreementFileVersionOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateTermsOfUseAgreementFileVersion - Update the navigation property versions in identityGovernance
-func (c TermsOfUseAgreementFileVersionClient) UpdateTermsOfUseAgreementFileVersion(ctx context.Context, id beta.IdentityGovernanceTermsOfUseAgreementIdFileIdVersionId, input beta.AgreementFileVersion) (result UpdateTermsOfUseAgreementFileVersionOperationResponse, err error) {
+func (c TermsOfUseAgreementFileVersionClient) UpdateTermsOfUseAgreementFileVersion(ctx context.Context, id beta.IdentityGovernanceTermsOfUseAgreementIdFileIdVersionId, input beta.AgreementFileVersion, options UpdateTermsOfUseAgreementFileVersionOperationOptions) (result UpdateTermsOfUseAgreementFileVersionOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

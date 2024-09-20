@@ -18,15 +18,44 @@ type CreateChromeOSOnboardingSettingOperationResponse struct {
 	Model        *beta.ChromeOSOnboardingSettings
 }
 
+type CreateChromeOSOnboardingSettingOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateChromeOSOnboardingSettingOperationOptions() CreateChromeOSOnboardingSettingOperationOptions {
+	return CreateChromeOSOnboardingSettingOperationOptions{}
+}
+
+func (o CreateChromeOSOnboardingSettingOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateChromeOSOnboardingSettingOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateChromeOSOnboardingSettingOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateChromeOSOnboardingSetting - Create new navigation property to chromeOSOnboardingSettings for deviceManagement
-func (c ChromeOSOnboardingSettingClient) CreateChromeOSOnboardingSetting(ctx context.Context, input beta.ChromeOSOnboardingSettings) (result CreateChromeOSOnboardingSettingOperationResponse, err error) {
+func (c ChromeOSOnboardingSettingClient) CreateChromeOSOnboardingSetting(ctx context.Context, input beta.ChromeOSOnboardingSettings, options CreateChromeOSOnboardingSettingOperationOptions) (result CreateChromeOSOnboardingSettingOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/deviceManagement/chromeOSOnboardingSettings",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/deviceManagement/chromeOSOnboardingSettings",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

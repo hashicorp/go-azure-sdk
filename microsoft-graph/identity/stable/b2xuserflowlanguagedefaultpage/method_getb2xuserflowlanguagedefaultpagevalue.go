@@ -19,16 +19,45 @@ type GetB2xUserFlowLanguageDefaultPageValueOperationResponse struct {
 	Model        *[]byte
 }
 
+type GetB2xUserFlowLanguageDefaultPageValueOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultGetB2xUserFlowLanguageDefaultPageValueOperationOptions() GetB2xUserFlowLanguageDefaultPageValueOperationOptions {
+	return GetB2xUserFlowLanguageDefaultPageValueOperationOptions{}
+}
+
+func (o GetB2xUserFlowLanguageDefaultPageValueOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o GetB2xUserFlowLanguageDefaultPageValueOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o GetB2xUserFlowLanguageDefaultPageValueOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // GetB2xUserFlowLanguageDefaultPageValue - Get userFlowLanguagePage. Read the values in a userFlowLanguagePage object
 // for a language in a user flow. These values are shown to a user during a user journey defined by a user flow.
-func (c B2xUserFlowLanguageDefaultPageClient) GetB2xUserFlowLanguageDefaultPageValue(ctx context.Context, id stable.IdentityB2xUserFlowIdLanguageIdDefaultPageId) (result GetB2xUserFlowLanguageDefaultPageValueOperationResponse, err error) {
+func (c B2xUserFlowLanguageDefaultPageClient) GetB2xUserFlowLanguageDefaultPageValue(ctx context.Context, id stable.IdentityB2xUserFlowIdLanguageIdDefaultPageId, options GetB2xUserFlowLanguageDefaultPageValueOperationOptions) (result GetB2xUserFlowLanguageDefaultPageValueOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/octet-stream",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/$value", id.ID()),
+		HttpMethod:    http.MethodGet,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/$value", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

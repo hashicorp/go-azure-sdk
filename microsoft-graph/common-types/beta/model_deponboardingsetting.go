@@ -108,29 +108,49 @@ func (s DepOnboardingSetting) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &DepOnboardingSetting{}
 
 func (s *DepOnboardingSetting) UnmarshalJSON(bytes []byte) error {
-	type alias DepOnboardingSetting
-	var decoded alias
+
+	var decoded struct {
+		AppleIdentifier                     nullable.Type[string]          `json:"appleIdentifier,omitempty"`
+		DataSharingConsentGranted           *bool                          `json:"dataSharingConsentGranted,omitempty"`
+		DefaultIosEnrollmentProfile         *DepIOSEnrollmentProfile       `json:"defaultIosEnrollmentProfile,omitempty"`
+		DefaultMacOsEnrollmentProfile       *DepMacOSEnrollmentProfile     `json:"defaultMacOsEnrollmentProfile,omitempty"`
+		EnrollmentProfiles                  *[]EnrollmentProfile           `json:"enrollmentProfiles,omitempty"`
+		ImportedAppleDeviceIdentities       *[]ImportedAppleDeviceIdentity `json:"importedAppleDeviceIdentities,omitempty"`
+		LastModifiedDateTime                *string                        `json:"lastModifiedDateTime,omitempty"`
+		LastSuccessfulSyncDateTime          *string                        `json:"lastSuccessfulSyncDateTime,omitempty"`
+		LastSyncErrorCode                   *int64                         `json:"lastSyncErrorCode,omitempty"`
+		LastSyncTriggeredDateTime           *string                        `json:"lastSyncTriggeredDateTime,omitempty"`
+		RoleScopeTagIds                     *[]string                      `json:"roleScopeTagIds,omitempty"`
+		ShareTokenWithSchoolDataSyncService *bool                          `json:"shareTokenWithSchoolDataSyncService,omitempty"`
+		SyncedDeviceCount                   *int64                         `json:"syncedDeviceCount,omitempty"`
+		TokenExpirationDateTime             *string                        `json:"tokenExpirationDateTime,omitempty"`
+		TokenName                           nullable.Type[string]          `json:"tokenName,omitempty"`
+		TokenType                           *DepTokenType                  `json:"tokenType,omitempty"`
+		Id                                  *string                        `json:"id,omitempty"`
+		ODataId                             *string                        `json:"@odata.id,omitempty"`
+		ODataType                           *string                        `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into DepOnboardingSetting: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.AppleIdentifier = decoded.AppleIdentifier
 	s.DataSharingConsentGranted = decoded.DataSharingConsentGranted
 	s.DefaultIosEnrollmentProfile = decoded.DefaultIosEnrollmentProfile
 	s.DefaultMacOsEnrollmentProfile = decoded.DefaultMacOsEnrollmentProfile
-	s.Id = decoded.Id
 	s.LastModifiedDateTime = decoded.LastModifiedDateTime
 	s.LastSuccessfulSyncDateTime = decoded.LastSuccessfulSyncDateTime
 	s.LastSyncErrorCode = decoded.LastSyncErrorCode
 	s.LastSyncTriggeredDateTime = decoded.LastSyncTriggeredDateTime
-	s.ODataId = decoded.ODataId
-	s.ODataType = decoded.ODataType
 	s.RoleScopeTagIds = decoded.RoleScopeTagIds
 	s.ShareTokenWithSchoolDataSyncService = decoded.ShareTokenWithSchoolDataSyncService
 	s.SyncedDeviceCount = decoded.SyncedDeviceCount
 	s.TokenExpirationDateTime = decoded.TokenExpirationDateTime
 	s.TokenName = decoded.TokenName
 	s.TokenType = decoded.TokenType
+	s.Id = decoded.Id
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -170,5 +190,6 @@ func (s *DepOnboardingSetting) UnmarshalJSON(bytes []byte) error {
 		}
 		s.ImportedAppleDeviceIdentities = &output
 	}
+
 	return nil
 }

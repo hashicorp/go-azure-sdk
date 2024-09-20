@@ -17,15 +17,44 @@ type UpdateRoleScopeTagAssignmentOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateRoleScopeTagAssignmentOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateRoleScopeTagAssignmentOperationOptions() UpdateRoleScopeTagAssignmentOperationOptions {
+	return UpdateRoleScopeTagAssignmentOperationOptions{}
+}
+
+func (o UpdateRoleScopeTagAssignmentOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateRoleScopeTagAssignmentOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateRoleScopeTagAssignmentOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateRoleScopeTagAssignment - Update the navigation property assignments in deviceManagement
-func (c RoleScopeTagAssignmentClient) UpdateRoleScopeTagAssignment(ctx context.Context, id beta.DeviceManagementRoleScopeTagIdAssignmentId, input beta.RoleScopeTagAutoAssignment) (result UpdateRoleScopeTagAssignmentOperationResponse, err error) {
+func (c RoleScopeTagAssignmentClient) UpdateRoleScopeTagAssignment(ctx context.Context, id beta.DeviceManagementRoleScopeTagIdAssignmentId, input beta.RoleScopeTagAutoAssignment, options UpdateRoleScopeTagAssignmentOperationOptions) (result UpdateRoleScopeTagAssignmentOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

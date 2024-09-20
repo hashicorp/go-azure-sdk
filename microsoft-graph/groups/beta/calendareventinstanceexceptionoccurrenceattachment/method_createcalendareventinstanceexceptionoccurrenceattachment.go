@@ -20,15 +20,44 @@ type CreateCalendarEventInstanceExceptionOccurrenceAttachmentOperationResponse s
 	Model        beta.Attachment
 }
 
+type CreateCalendarEventInstanceExceptionOccurrenceAttachmentOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateCalendarEventInstanceExceptionOccurrenceAttachmentOperationOptions() CreateCalendarEventInstanceExceptionOccurrenceAttachmentOperationOptions {
+	return CreateCalendarEventInstanceExceptionOccurrenceAttachmentOperationOptions{}
+}
+
+func (o CreateCalendarEventInstanceExceptionOccurrenceAttachmentOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateCalendarEventInstanceExceptionOccurrenceAttachmentOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateCalendarEventInstanceExceptionOccurrenceAttachmentOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateCalendarEventInstanceExceptionOccurrenceAttachment - Create new navigation property to attachments for groups
-func (c CalendarEventInstanceExceptionOccurrenceAttachmentClient) CreateCalendarEventInstanceExceptionOccurrenceAttachment(ctx context.Context, id beta.GroupIdCalendarEventIdInstanceIdExceptionOccurrenceId, input beta.Attachment) (result CreateCalendarEventInstanceExceptionOccurrenceAttachmentOperationResponse, err error) {
+func (c CalendarEventInstanceExceptionOccurrenceAttachmentClient) CreateCalendarEventInstanceExceptionOccurrenceAttachment(ctx context.Context, id beta.GroupIdCalendarEventIdInstanceIdExceptionOccurrenceId, input beta.Attachment, options CreateCalendarEventInstanceExceptionOccurrenceAttachmentOperationOptions) (result CreateCalendarEventInstanceExceptionOccurrenceAttachmentOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/attachments", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/attachments", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

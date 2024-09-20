@@ -19,7 +19,8 @@ type DeletePermissionsAnalyticGcpFindingOperationResponse struct {
 }
 
 type DeletePermissionsAnalyticGcpFindingOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeletePermissionsAnalyticGcpFindingOperationOptions() DeletePermissionsAnalyticGcpFindingOperationOptions {
@@ -36,7 +37,9 @@ func (o DeletePermissionsAnalyticGcpFindingOperationOptions) ToHeaders() *client
 
 func (o DeletePermissionsAnalyticGcpFindingOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

@@ -18,15 +18,44 @@ type UpdateDriveRootLastModifiedByUserMailboxSettingOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateDriveRootLastModifiedByUserMailboxSettingOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateDriveRootLastModifiedByUserMailboxSettingOperationOptions() UpdateDriveRootLastModifiedByUserMailboxSettingOperationOptions {
+	return UpdateDriveRootLastModifiedByUserMailboxSettingOperationOptions{}
+}
+
+func (o UpdateDriveRootLastModifiedByUserMailboxSettingOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateDriveRootLastModifiedByUserMailboxSettingOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateDriveRootLastModifiedByUserMailboxSettingOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateDriveRootLastModifiedByUserMailboxSetting - Update property mailboxSettings value.
-func (c DriveRootLastModifiedByUserMailboxSettingClient) UpdateDriveRootLastModifiedByUserMailboxSetting(ctx context.Context, id beta.GroupIdDriveId, input beta.MailboxSettings) (result UpdateDriveRootLastModifiedByUserMailboxSettingOperationResponse, err error) {
+func (c DriveRootLastModifiedByUserMailboxSettingClient) UpdateDriveRootLastModifiedByUserMailboxSetting(ctx context.Context, id beta.GroupIdDriveId, input beta.MailboxSettings, options UpdateDriveRootLastModifiedByUserMailboxSettingOperationOptions) (result UpdateDriveRootLastModifiedByUserMailboxSettingOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       fmt.Sprintf("%s/root/lastModifiedByUser/mailboxSettings", id.ID()),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/root/lastModifiedByUser/mailboxSettings", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

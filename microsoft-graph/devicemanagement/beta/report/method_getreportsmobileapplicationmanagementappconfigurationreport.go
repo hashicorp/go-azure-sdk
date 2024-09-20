@@ -17,16 +17,45 @@ type GetReportsMobileApplicationManagementAppConfigurationReportOperationRespons
 	Model        *[]byte
 }
 
+type GetReportsMobileApplicationManagementAppConfigurationReportOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultGetReportsMobileApplicationManagementAppConfigurationReportOperationOptions() GetReportsMobileApplicationManagementAppConfigurationReportOperationOptions {
+	return GetReportsMobileApplicationManagementAppConfigurationReportOperationOptions{}
+}
+
+func (o GetReportsMobileApplicationManagementAppConfigurationReportOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o GetReportsMobileApplicationManagementAppConfigurationReportOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o GetReportsMobileApplicationManagementAppConfigurationReportOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // GetReportsMobileApplicationManagementAppConfigurationReport - Invoke action
 // getMobileApplicationManagementAppConfigurationReport
-func (c ReportClient) GetReportsMobileApplicationManagementAppConfigurationReport(ctx context.Context, input GetReportsMobileApplicationManagementAppConfigurationReportRequest) (result GetReportsMobileApplicationManagementAppConfigurationReportOperationResponse, err error) {
+func (c ReportClient) GetReportsMobileApplicationManagementAppConfigurationReport(ctx context.Context, input GetReportsMobileApplicationManagementAppConfigurationReportRequest, options GetReportsMobileApplicationManagementAppConfigurationReportOperationOptions) (result GetReportsMobileApplicationManagementAppConfigurationReportOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/octet-stream",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/deviceManagement/reports/getMobileApplicationManagementAppConfigurationReport",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/deviceManagement/reports/getMobileApplicationManagementAppConfigurationReport",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

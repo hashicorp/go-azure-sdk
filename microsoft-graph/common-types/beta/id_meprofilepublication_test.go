@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &MeProfilePublicationId{}
 
 func TestNewMeProfilePublicationID(t *testing.T) {
-	id := NewMeProfilePublicationID("itemPublicationIdValue")
+	id := NewMeProfilePublicationID("itemPublicationId")
 
-	if id.ItemPublicationId != "itemPublicationIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ItemPublicationId'", id.ItemPublicationId, "itemPublicationIdValue")
+	if id.ItemPublicationId != "itemPublicationId" {
+		t.Fatalf("Expected %q but got %q for Segment 'ItemPublicationId'", id.ItemPublicationId, "itemPublicationId")
 	}
 }
 
 func TestFormatMeProfilePublicationID(t *testing.T) {
-	actual := NewMeProfilePublicationID("itemPublicationIdValue").ID()
-	expected := "/me/profile/publications/itemPublicationIdValue"
+	actual := NewMeProfilePublicationID("itemPublicationId").ID()
+	expected := "/me/profile/publications/itemPublicationId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -55,14 +55,14 @@ func TestParseMeProfilePublicationID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/me/profile/publications/itemPublicationIdValue",
+			Input: "/me/profile/publications/itemPublicationId",
 			Expected: &MeProfilePublicationId{
-				ItemPublicationId: "itemPublicationIdValue",
+				ItemPublicationId: "itemPublicationId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/profile/publications/itemPublicationIdValue/extra",
+			Input: "/me/profile/publications/itemPublicationId/extra",
 			Error: true,
 		},
 	}
@@ -131,26 +131,26 @@ func TestParseMeProfilePublicationIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/me/profile/publications/itemPublicationIdValue",
+			Input: "/me/profile/publications/itemPublicationId",
 			Expected: &MeProfilePublicationId{
-				ItemPublicationId: "itemPublicationIdValue",
+				ItemPublicationId: "itemPublicationId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/profile/publications/itemPublicationIdValue/extra",
+			Input: "/me/profile/publications/itemPublicationId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/pRoFiLe/pUbLiCaTiOnS/iTeMpUbLiCaTiOnIdVaLuE",
+			Input: "/mE/pRoFiLe/pUbLiCaTiOnS/iTeMpUbLiCaTiOnId",
 			Expected: &MeProfilePublicationId{
-				ItemPublicationId: "iTeMpUbLiCaTiOnIdVaLuE",
+				ItemPublicationId: "iTeMpUbLiCaTiOnId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/mE/pRoFiLe/pUbLiCaTiOnS/iTeMpUbLiCaTiOnIdVaLuE/extra",
+			Input: "/mE/pRoFiLe/pUbLiCaTiOnS/iTeMpUbLiCaTiOnId/extra",
 			Error: true,
 		},
 	}

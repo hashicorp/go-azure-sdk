@@ -19,20 +19,49 @@ type CreateAuthenticationPhoneMethodOperationResponse struct {
 	Model        *stable.PhoneAuthenticationMethod
 }
 
+type CreateAuthenticationPhoneMethodOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateAuthenticationPhoneMethodOperationOptions() CreateAuthenticationPhoneMethodOperationOptions {
+	return CreateAuthenticationPhoneMethodOperationOptions{}
+}
+
+func (o CreateAuthenticationPhoneMethodOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateAuthenticationPhoneMethodOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateAuthenticationPhoneMethodOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateAuthenticationPhoneMethod - Create phoneMethod. Add a new phone authentication method for a user. A user may
 // only have one phone of each type, captured in the phoneType property. This means, for example, adding a mobile phone
 // to a user with a pre-existing mobile phone fails. Additionally, a user must always have a mobile phone before adding
 // an alternateMobile phone. Adding a phone number makes it available for use in both Azure multi-factor authentication
 // (MFA) and self-service password reset (SSPR), if enabled. Additionally, if a user is enabled by policy to use SMS
 // sign-in and a mobile number is added, the system attempts to register the number for use in that system.
-func (c AuthenticationPhoneMethodClient) CreateAuthenticationPhoneMethod(ctx context.Context, id stable.UserId, input stable.PhoneAuthenticationMethod) (result CreateAuthenticationPhoneMethodOperationResponse, err error) {
+func (c AuthenticationPhoneMethodClient) CreateAuthenticationPhoneMethod(ctx context.Context, id stable.UserId, input stable.PhoneAuthenticationMethod, options CreateAuthenticationPhoneMethodOperationOptions) (result CreateAuthenticationPhoneMethodOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/authentication/phoneMethods", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/authentication/phoneMethods", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &UserIdInformationProtectionDataLossPreventionPolicyId{}
 
 func TestNewUserIdInformationProtectionDataLossPreventionPolicyID(t *testing.T) {
-	id := NewUserIdInformationProtectionDataLossPreventionPolicyID("userIdValue", "dataLossPreventionPolicyIdValue")
+	id := NewUserIdInformationProtectionDataLossPreventionPolicyID("userId", "dataLossPreventionPolicyId")
 
-	if id.UserId != "userIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'UserId'", id.UserId, "userIdValue")
+	if id.UserId != "userId" {
+		t.Fatalf("Expected %q but got %q for Segment 'UserId'", id.UserId, "userId")
 	}
 
-	if id.DataLossPreventionPolicyId != "dataLossPreventionPolicyIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DataLossPreventionPolicyId'", id.DataLossPreventionPolicyId, "dataLossPreventionPolicyIdValue")
+	if id.DataLossPreventionPolicyId != "dataLossPreventionPolicyId" {
+		t.Fatalf("Expected %q but got %q for Segment 'DataLossPreventionPolicyId'", id.DataLossPreventionPolicyId, "dataLossPreventionPolicyId")
 	}
 }
 
 func TestFormatUserIdInformationProtectionDataLossPreventionPolicyID(t *testing.T) {
-	actual := NewUserIdInformationProtectionDataLossPreventionPolicyID("userIdValue", "dataLossPreventionPolicyIdValue").ID()
-	expected := "/users/userIdValue/informationProtection/dataLossPreventionPolicies/dataLossPreventionPolicyIdValue"
+	actual := NewUserIdInformationProtectionDataLossPreventionPolicyID("userId", "dataLossPreventionPolicyId").ID()
+	expected := "/users/userId/informationProtection/dataLossPreventionPolicies/dataLossPreventionPolicyId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -49,30 +49,30 @@ func TestParseUserIdInformationProtectionDataLossPreventionPolicyID(t *testing.T
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue",
+			Input: "/users/userId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/informationProtection",
+			Input: "/users/userId/informationProtection",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/informationProtection/dataLossPreventionPolicies",
+			Input: "/users/userId/informationProtection/dataLossPreventionPolicies",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/users/userIdValue/informationProtection/dataLossPreventionPolicies/dataLossPreventionPolicyIdValue",
+			Input: "/users/userId/informationProtection/dataLossPreventionPolicies/dataLossPreventionPolicyId",
 			Expected: &UserIdInformationProtectionDataLossPreventionPolicyId{
-				UserId:                     "userIdValue",
-				DataLossPreventionPolicyId: "dataLossPreventionPolicyIdValue",
+				UserId:                     "userId",
+				DataLossPreventionPolicyId: "dataLossPreventionPolicyId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/users/userIdValue/informationProtection/dataLossPreventionPolicies/dataLossPreventionPolicyIdValue/extra",
+			Input: "/users/userId/informationProtection/dataLossPreventionPolicies/dataLossPreventionPolicyId/extra",
 			Error: true,
 		},
 	}
@@ -125,58 +125,58 @@ func TestParseUserIdInformationProtectionDataLossPreventionPolicyIDInsensitively
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue",
+			Input: "/users/userId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe",
+			Input: "/uSeRs/uSeRiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/informationProtection",
+			Input: "/users/userId/informationProtection",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/iNfOrMaTiOnPrOtEcTiOn",
+			Input: "/uSeRs/uSeRiD/iNfOrMaTiOnPrOtEcTiOn",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/informationProtection/dataLossPreventionPolicies",
+			Input: "/users/userId/informationProtection/dataLossPreventionPolicies",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/iNfOrMaTiOnPrOtEcTiOn/dAtAlOsSpReVeNtIoNpOlIcIeS",
+			Input: "/uSeRs/uSeRiD/iNfOrMaTiOnPrOtEcTiOn/dAtAlOsSpReVeNtIoNpOlIcIeS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/users/userIdValue/informationProtection/dataLossPreventionPolicies/dataLossPreventionPolicyIdValue",
+			Input: "/users/userId/informationProtection/dataLossPreventionPolicies/dataLossPreventionPolicyId",
 			Expected: &UserIdInformationProtectionDataLossPreventionPolicyId{
-				UserId:                     "userIdValue",
-				DataLossPreventionPolicyId: "dataLossPreventionPolicyIdValue",
+				UserId:                     "userId",
+				DataLossPreventionPolicyId: "dataLossPreventionPolicyId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/users/userIdValue/informationProtection/dataLossPreventionPolicies/dataLossPreventionPolicyIdValue/extra",
+			Input: "/users/userId/informationProtection/dataLossPreventionPolicies/dataLossPreventionPolicyId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/iNfOrMaTiOnPrOtEcTiOn/dAtAlOsSpReVeNtIoNpOlIcIeS/dAtAlOsSpReVeNtIoNpOlIcYiDvAlUe",
+			Input: "/uSeRs/uSeRiD/iNfOrMaTiOnPrOtEcTiOn/dAtAlOsSpReVeNtIoNpOlIcIeS/dAtAlOsSpReVeNtIoNpOlIcYiD",
 			Expected: &UserIdInformationProtectionDataLossPreventionPolicyId{
-				UserId:                     "uSeRiDvAlUe",
-				DataLossPreventionPolicyId: "dAtAlOsSpReVeNtIoNpOlIcYiDvAlUe",
+				UserId:                     "uSeRiD",
+				DataLossPreventionPolicyId: "dAtAlOsSpReVeNtIoNpOlIcYiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/iNfOrMaTiOnPrOtEcTiOn/dAtAlOsSpReVeNtIoNpOlIcIeS/dAtAlOsSpReVeNtIoNpOlIcYiDvAlUe/extra",
+			Input: "/uSeRs/uSeRiD/iNfOrMaTiOnPrOtEcTiOn/dAtAlOsSpReVeNtIoNpOlIcIeS/dAtAlOsSpReVeNtIoNpOlIcYiD/extra",
 			Error: true,
 		},
 	}

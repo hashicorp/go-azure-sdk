@@ -17,16 +17,45 @@ type UpdateEntitlementManagementAccessPackageAssignmentRequestOperationResponse 
 	OData        *odata.OData
 }
 
+type UpdateEntitlementManagementAccessPackageAssignmentRequestOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateEntitlementManagementAccessPackageAssignmentRequestOperationOptions() UpdateEntitlementManagementAccessPackageAssignmentRequestOperationOptions {
+	return UpdateEntitlementManagementAccessPackageAssignmentRequestOperationOptions{}
+}
+
+func (o UpdateEntitlementManagementAccessPackageAssignmentRequestOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateEntitlementManagementAccessPackageAssignmentRequestOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateEntitlementManagementAccessPackageAssignmentRequestOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateEntitlementManagementAccessPackageAssignmentRequest - Update the navigation property
 // accessPackageAssignmentRequests in identityGovernance
-func (c EntitlementManagementAccessPackageAssignmentAccessPackageAssignmentRequestClient) UpdateEntitlementManagementAccessPackageAssignmentRequest(ctx context.Context, id beta.IdentityGovernanceEntitlementManagementAccessPackageAssignmentIdAccessPackageAssignmentRequestId, input beta.AccessPackageAssignmentRequest) (result UpdateEntitlementManagementAccessPackageAssignmentRequestOperationResponse, err error) {
+func (c EntitlementManagementAccessPackageAssignmentAccessPackageAssignmentRequestClient) UpdateEntitlementManagementAccessPackageAssignmentRequest(ctx context.Context, id beta.IdentityGovernanceEntitlementManagementAccessPackageAssignmentIdAccessPackageAssignmentRequestId, input beta.AccessPackageAssignmentRequest, options UpdateEntitlementManagementAccessPackageAssignmentRequestOperationOptions) (result UpdateEntitlementManagementAccessPackageAssignmentRequestOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

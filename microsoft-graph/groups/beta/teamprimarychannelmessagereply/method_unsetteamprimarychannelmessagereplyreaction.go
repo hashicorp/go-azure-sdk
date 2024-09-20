@@ -18,15 +18,44 @@ type UnsetTeamPrimaryChannelMessageReplyReactionOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UnsetTeamPrimaryChannelMessageReplyReactionOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUnsetTeamPrimaryChannelMessageReplyReactionOperationOptions() UnsetTeamPrimaryChannelMessageReplyReactionOperationOptions {
+	return UnsetTeamPrimaryChannelMessageReplyReactionOperationOptions{}
+}
+
+func (o UnsetTeamPrimaryChannelMessageReplyReactionOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UnsetTeamPrimaryChannelMessageReplyReactionOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UnsetTeamPrimaryChannelMessageReplyReactionOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UnsetTeamPrimaryChannelMessageReplyReaction - Invoke action unsetReaction
-func (c TeamPrimaryChannelMessageReplyClient) UnsetTeamPrimaryChannelMessageReplyReaction(ctx context.Context, id beta.GroupIdTeamPrimaryChannelMessageIdReplyId, input UnsetTeamPrimaryChannelMessageReplyReactionRequest) (result UnsetTeamPrimaryChannelMessageReplyReactionOperationResponse, err error) {
+func (c TeamPrimaryChannelMessageReplyClient) UnsetTeamPrimaryChannelMessageReplyReaction(ctx context.Context, id beta.GroupIdTeamPrimaryChannelMessageIdReplyId, input UnsetTeamPrimaryChannelMessageReplyReactionRequest, options UnsetTeamPrimaryChannelMessageReplyReactionOperationOptions) (result UnsetTeamPrimaryChannelMessageReplyReactionOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/unsetReaction", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/unsetReaction", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

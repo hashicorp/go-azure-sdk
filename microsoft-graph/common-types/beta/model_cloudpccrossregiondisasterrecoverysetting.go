@@ -25,10 +25,15 @@ type CloudPCCrossRegionDisasterRecoverySetting struct {
 var _ json.Unmarshaler = &CloudPCCrossRegionDisasterRecoverySetting{}
 
 func (s *CloudPCCrossRegionDisasterRecoverySetting) UnmarshalJSON(bytes []byte) error {
-	type alias CloudPCCrossRegionDisasterRecoverySetting
-	var decoded alias
+
+	var decoded struct {
+		CrossRegionDisasterRecoveryEnabled     *bool               `json:"crossRegionDisasterRecoveryEnabled,omitempty"`
+		MaintainCrossRegionRestorePointEnabled nullable.Type[bool] `json:"maintainCrossRegionRestorePointEnabled,omitempty"`
+		ODataId                                *string             `json:"@odata.id,omitempty"`
+		ODataType                              *string             `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into CloudPCCrossRegionDisasterRecoverySetting: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.CrossRegionDisasterRecoveryEnabled = decoded.CrossRegionDisasterRecoveryEnabled
@@ -48,5 +53,6 @@ func (s *CloudPCCrossRegionDisasterRecoverySetting) UnmarshalJSON(bytes []byte) 
 		}
 		s.DisasterRecoveryNetworkSetting = impl
 	}
+
 	return nil
 }

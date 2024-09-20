@@ -18,15 +18,44 @@ type SetLogoOperationResponse struct {
 	OData        *odata.OData
 }
 
+type SetLogoOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultSetLogoOperationOptions() SetLogoOperationOptions {
+	return SetLogoOperationOptions{}
+}
+
+func (o SetLogoOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o SetLogoOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o SetLogoOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // SetLogo - Update logo for application in applications. The main logo for the application. Not nullable.
-func (c LogoClient) SetLogo(ctx context.Context, id stable.ApplicationId, input []byte) (result SetLogoOperationResponse, err error) {
+func (c LogoClient) SetLogo(ctx context.Context, id stable.ApplicationId, input []byte, options SetLogoOperationOptions) (result SetLogoOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPut,
-		Path:       fmt.Sprintf("%s/logo", id.ID()),
+		HttpMethod:    http.MethodPut,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/logo", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

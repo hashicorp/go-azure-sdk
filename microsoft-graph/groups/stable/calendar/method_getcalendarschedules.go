@@ -25,8 +25,9 @@ type GetCalendarSchedulesCompleteResult struct {
 }
 
 type GetCalendarSchedulesOperationOptions struct {
-	Skip *int64
-	Top  *int64
+	Metadata *odata.Metadata
+	Skip     *int64
+	Top      *int64
 }
 
 func DefaultGetCalendarSchedulesOperationOptions() GetCalendarSchedulesOperationOptions {
@@ -41,6 +42,9 @@ func (o GetCalendarSchedulesOperationOptions) ToHeaders() *client.Headers {
 
 func (o GetCalendarSchedulesOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	if o.Skip != nil {
 		out.Skip = int(*o.Skip)
 	}

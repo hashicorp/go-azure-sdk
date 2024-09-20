@@ -19,7 +19,8 @@ type DeleteDriveRootListItemFieldOperationResponse struct {
 }
 
 type DeleteDriveRootListItemFieldOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteDriveRootListItemFieldOperationOptions() DeleteDriveRootListItemFieldOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteDriveRootListItemFieldOperationOptions) ToHeaders() *client.Header
 
 func (o DeleteDriveRootListItemFieldOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

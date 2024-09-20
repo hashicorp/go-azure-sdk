@@ -19,7 +19,8 @@ type DeleteEntitlementManagementAccessPackageAssignmentResourceRoleOperationResp
 }
 
 type DeleteEntitlementManagementAccessPackageAssignmentResourceRoleOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteEntitlementManagementAccessPackageAssignmentResourceRoleOperationOptions() DeleteEntitlementManagementAccessPackageAssignmentResourceRoleOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteEntitlementManagementAccessPackageAssignmentResourceRoleOperationO
 
 func (o DeleteEntitlementManagementAccessPackageAssignmentResourceRoleOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

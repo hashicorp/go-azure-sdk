@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta"
 	"github.com/hashicorp/go-azure-sdk/sdk/client"
 	"github.com/hashicorp/go-azure-sdk/sdk/odata"
 )
@@ -18,7 +19,8 @@ type DeleteExchangeOnPremisesPolicyOperationResponse struct {
 }
 
 type DeleteExchangeOnPremisesPolicyOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteExchangeOnPremisesPolicyOperationOptions() DeleteExchangeOnPremisesPolicyOperationOptions {
@@ -35,7 +37,9 @@ func (o DeleteExchangeOnPremisesPolicyOperationOptions) ToHeaders() *client.Head
 
 func (o DeleteExchangeOnPremisesPolicyOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 
@@ -45,8 +49,8 @@ func (o DeleteExchangeOnPremisesPolicyOperationOptions) ToQuery() *client.QueryP
 	return &out
 }
 
-// DeleteExchangeOnPremisesPolicy - Delete navigation property exchangeOnPremisesPolicy for deviceManagement
-func (c ExchangeOnPremisesPolicyClient) DeleteExchangeOnPremisesPolicy(ctx context.Context, options DeleteExchangeOnPremisesPolicyOperationOptions) (result DeleteExchangeOnPremisesPolicyOperationResponse, err error) {
+// DeleteExchangeOnPremisesPolicy - Delete navigation property exchangeOnPremisesPolicies for deviceManagement
+func (c ExchangeOnPremisesPolicyClient) DeleteExchangeOnPremisesPolicy(ctx context.Context, id beta.DeviceManagementExchangeOnPremisesPolicyId, options DeleteExchangeOnPremisesPolicyOperationOptions) (result DeleteExchangeOnPremisesPolicyOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
@@ -54,7 +58,7 @@ func (c ExchangeOnPremisesPolicyClient) DeleteExchangeOnPremisesPolicy(ctx conte
 		},
 		HttpMethod:    http.MethodDelete,
 		OptionsObject: options,
-		Path:          "/deviceManagement/exchangeOnPremisesPolicy",
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

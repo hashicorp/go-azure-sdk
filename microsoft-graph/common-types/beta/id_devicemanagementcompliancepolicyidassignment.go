@@ -99,9 +99,9 @@ func (id DeviceManagementCompliancePolicyIdAssignmentId) Segments() []resourceid
 	return []resourceids.Segment{
 		resourceids.StaticSegment("deviceManagement", "deviceManagement", "deviceManagement"),
 		resourceids.StaticSegment("compliancePolicies", "compliancePolicies", "compliancePolicies"),
-		resourceids.UserSpecifiedSegment("deviceManagementCompliancePolicyId", "deviceManagementCompliancePolicyIdValue"),
+		resourceids.UserSpecifiedSegment("deviceManagementCompliancePolicyId", "deviceManagementCompliancePolicyId"),
 		resourceids.StaticSegment("assignments", "assignments", "assignments"),
-		resourceids.UserSpecifiedSegment("deviceManagementConfigurationPolicyAssignmentId", "deviceManagementConfigurationPolicyAssignmentIdValue"),
+		resourceids.UserSpecifiedSegment("deviceManagementConfigurationPolicyAssignmentId", "deviceManagementConfigurationPolicyAssignmentId"),
 	}
 }
 

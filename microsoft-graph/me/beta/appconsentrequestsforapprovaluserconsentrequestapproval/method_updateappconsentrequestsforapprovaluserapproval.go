@@ -18,15 +18,44 @@ type UpdateAppConsentRequestsForApprovalUserApprovalOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateAppConsentRequestsForApprovalUserApprovalOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateAppConsentRequestsForApprovalUserApprovalOperationOptions() UpdateAppConsentRequestsForApprovalUserApprovalOperationOptions {
+	return UpdateAppConsentRequestsForApprovalUserApprovalOperationOptions{}
+}
+
+func (o UpdateAppConsentRequestsForApprovalUserApprovalOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateAppConsentRequestsForApprovalUserApprovalOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateAppConsentRequestsForApprovalUserApprovalOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateAppConsentRequestsForApprovalUserApproval - Update the navigation property approval in me
-func (c AppConsentRequestsForApprovalUserConsentRequestApprovalClient) UpdateAppConsentRequestsForApprovalUserApproval(ctx context.Context, id beta.MeAppConsentRequestsForApprovalIdUserConsentRequestId, input beta.Approval) (result UpdateAppConsentRequestsForApprovalUserApprovalOperationResponse, err error) {
+func (c AppConsentRequestsForApprovalUserConsentRequestApprovalClient) UpdateAppConsentRequestsForApprovalUserApproval(ctx context.Context, id beta.MeAppConsentRequestsForApprovalIdUserConsentRequestId, input beta.Approval, options UpdateAppConsentRequestsForApprovalUserApprovalOperationOptions) (result UpdateAppConsentRequestsForApprovalUserApprovalOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       fmt.Sprintf("%s/approval", id.ID()),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/approval", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

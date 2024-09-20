@@ -159,16 +159,43 @@ func (s WindowsDomainJoinConfiguration) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &WindowsDomainJoinConfiguration{}
 
 func (s *WindowsDomainJoinConfiguration) UnmarshalJSON(bytes []byte) error {
-	type alias WindowsDomainJoinConfiguration
-	var decoded alias
+
+	var decoded struct {
+		ActiveDirectoryDomainName                   *string                                      `json:"activeDirectoryDomainName,omitempty"`
+		ComputerNameStaticPrefix                    *string                                      `json:"computerNameStaticPrefix,omitempty"`
+		ComputerNameSuffixRandomCharCount           *int64                                       `json:"computerNameSuffixRandomCharCount,omitempty"`
+		NetworkAccessConfigurations                 *[]DeviceConfiguration                       `json:"networkAccessConfigurations,omitempty"`
+		OrganizationalUnit                          nullable.Type[string]                        `json:"organizationalUnit,omitempty"`
+		Assignments                                 *[]DeviceConfigurationAssignment             `json:"assignments,omitempty"`
+		CreatedDateTime                             *string                                      `json:"createdDateTime,omitempty"`
+		Description                                 nullable.Type[string]                        `json:"description,omitempty"`
+		DeviceManagementApplicabilityRuleDeviceMode *DeviceManagementApplicabilityRuleDeviceMode `json:"deviceManagementApplicabilityRuleDeviceMode,omitempty"`
+		DeviceManagementApplicabilityRuleOsEdition  *DeviceManagementApplicabilityRuleOsEdition  `json:"deviceManagementApplicabilityRuleOsEdition,omitempty"`
+		DeviceManagementApplicabilityRuleOsVersion  *DeviceManagementApplicabilityRuleOsVersion  `json:"deviceManagementApplicabilityRuleOsVersion,omitempty"`
+		DeviceSettingStateSummaries                 *[]SettingStateDeviceSummary                 `json:"deviceSettingStateSummaries,omitempty"`
+		DeviceStatusOverview                        *DeviceConfigurationDeviceOverview           `json:"deviceStatusOverview,omitempty"`
+		DeviceStatuses                              *[]DeviceConfigurationDeviceStatus           `json:"deviceStatuses,omitempty"`
+		DisplayName                                 *string                                      `json:"displayName,omitempty"`
+		GroupAssignments                            *[]DeviceConfigurationGroupAssignment        `json:"groupAssignments,omitempty"`
+		LastModifiedDateTime                        *string                                      `json:"lastModifiedDateTime,omitempty"`
+		RoleScopeTagIds                             *[]string                                    `json:"roleScopeTagIds,omitempty"`
+		SupportsScopeTags                           *bool                                        `json:"supportsScopeTags,omitempty"`
+		UserStatusOverview                          *DeviceConfigurationUserOverview             `json:"userStatusOverview,omitempty"`
+		UserStatuses                                *[]DeviceConfigurationUserStatus             `json:"userStatuses,omitempty"`
+		Version                                     *int64                                       `json:"version,omitempty"`
+		Id                                          *string                                      `json:"id,omitempty"`
+		ODataId                                     *string                                      `json:"@odata.id,omitempty"`
+		ODataType                                   *string                                      `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into WindowsDomainJoinConfiguration: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.ActiveDirectoryDomainName = decoded.ActiveDirectoryDomainName
-	s.Assignments = decoded.Assignments
 	s.ComputerNameStaticPrefix = decoded.ComputerNameStaticPrefix
 	s.ComputerNameSuffixRandomCharCount = decoded.ComputerNameSuffixRandomCharCount
+	s.OrganizationalUnit = decoded.OrganizationalUnit
+	s.Assignments = decoded.Assignments
 	s.CreatedDateTime = decoded.CreatedDateTime
 	s.Description = decoded.Description
 	s.DeviceManagementApplicabilityRuleDeviceMode = decoded.DeviceManagementApplicabilityRuleDeviceMode
@@ -183,7 +210,6 @@ func (s *WindowsDomainJoinConfiguration) UnmarshalJSON(bytes []byte) error {
 	s.LastModifiedDateTime = decoded.LastModifiedDateTime
 	s.ODataId = decoded.ODataId
 	s.ODataType = decoded.ODataType
-	s.OrganizationalUnit = decoded.OrganizationalUnit
 	s.RoleScopeTagIds = decoded.RoleScopeTagIds
 	s.SupportsScopeTags = decoded.SupportsScopeTags
 	s.UserStatusOverview = decoded.UserStatusOverview
@@ -211,5 +237,6 @@ func (s *WindowsDomainJoinConfiguration) UnmarshalJSON(bytes []byte) error {
 		}
 		s.NetworkAccessConfigurations = &output
 	}
+
 	return nil
 }

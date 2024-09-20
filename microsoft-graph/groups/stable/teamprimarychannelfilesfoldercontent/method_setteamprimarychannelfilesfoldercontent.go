@@ -18,16 +18,45 @@ type SetTeamPrimaryChannelFilesFolderContentOperationResponse struct {
 	OData        *odata.OData
 }
 
+type SetTeamPrimaryChannelFilesFolderContentOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultSetTeamPrimaryChannelFilesFolderContentOperationOptions() SetTeamPrimaryChannelFilesFolderContentOperationOptions {
+	return SetTeamPrimaryChannelFilesFolderContentOperationOptions{}
+}
+
+func (o SetTeamPrimaryChannelFilesFolderContentOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o SetTeamPrimaryChannelFilesFolderContentOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o SetTeamPrimaryChannelFilesFolderContentOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // SetTeamPrimaryChannelFilesFolderContent - Update content for the navigation property filesFolder in groups. The
 // content stream, if the item represents a file.
-func (c TeamPrimaryChannelFilesFolderContentClient) SetTeamPrimaryChannelFilesFolderContent(ctx context.Context, id stable.GroupId, input []byte) (result SetTeamPrimaryChannelFilesFolderContentOperationResponse, err error) {
+func (c TeamPrimaryChannelFilesFolderContentClient) SetTeamPrimaryChannelFilesFolderContent(ctx context.Context, id stable.GroupId, input []byte, options SetTeamPrimaryChannelFilesFolderContentOperationOptions) (result SetTeamPrimaryChannelFilesFolderContentOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPut,
-		Path:       fmt.Sprintf("%s/team/primaryChannel/filesFolder/content", id.ID()),
+		HttpMethod:    http.MethodPut,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/team/primaryChannel/filesFolder/content", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

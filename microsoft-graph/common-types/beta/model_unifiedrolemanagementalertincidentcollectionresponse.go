@@ -62,10 +62,15 @@ func (s UnifiedRoleManagementAlertIncidentCollectionResponse) MarshalJSON() ([]b
 var _ json.Unmarshaler = &UnifiedRoleManagementAlertIncidentCollectionResponse{}
 
 func (s *UnifiedRoleManagementAlertIncidentCollectionResponse) UnmarshalJSON(bytes []byte) error {
-	type alias UnifiedRoleManagementAlertIncidentCollectionResponse
-	var decoded alias
+
+	var decoded struct {
+		Value         *[]UnifiedRoleManagementAlertIncident `json:"value,omitempty"`
+		ODataId       *string                               `json:"@odata.id,omitempty"`
+		ODataNextLink nullable.Type[string]                 `json:"@odata.nextLink,omitempty"`
+		ODataType     *string                               `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into UnifiedRoleManagementAlertIncidentCollectionResponse: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.ODataId = decoded.ODataId
@@ -93,5 +98,6 @@ func (s *UnifiedRoleManagementAlertIncidentCollectionResponse) UnmarshalJSON(byt
 		}
 		s.Value = &output
 	}
+
 	return nil
 }

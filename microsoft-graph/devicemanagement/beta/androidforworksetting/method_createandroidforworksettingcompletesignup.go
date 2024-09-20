@@ -16,15 +16,44 @@ type CreateAndroidForWorkSettingCompleteSignupOperationResponse struct {
 	OData        *odata.OData
 }
 
+type CreateAndroidForWorkSettingCompleteSignupOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateAndroidForWorkSettingCompleteSignupOperationOptions() CreateAndroidForWorkSettingCompleteSignupOperationOptions {
+	return CreateAndroidForWorkSettingCompleteSignupOperationOptions{}
+}
+
+func (o CreateAndroidForWorkSettingCompleteSignupOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateAndroidForWorkSettingCompleteSignupOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateAndroidForWorkSettingCompleteSignupOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateAndroidForWorkSettingCompleteSignup - Invoke action completeSignup
-func (c AndroidForWorkSettingClient) CreateAndroidForWorkSettingCompleteSignup(ctx context.Context, input CreateAndroidForWorkSettingCompleteSignupRequest) (result CreateAndroidForWorkSettingCompleteSignupOperationResponse, err error) {
+func (c AndroidForWorkSettingClient) CreateAndroidForWorkSettingCompleteSignup(ctx context.Context, input CreateAndroidForWorkSettingCompleteSignupRequest, options CreateAndroidForWorkSettingCompleteSignupOperationOptions) (result CreateAndroidForWorkSettingCompleteSignupOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/deviceManagement/androidForWorkSettings/completeSignup",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/deviceManagement/androidForWorkSettings/completeSignup",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -19,7 +19,8 @@ type DeleteRoleManagementAlertIncidentOperationResponse struct {
 }
 
 type DeleteRoleManagementAlertIncidentOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteRoleManagementAlertIncidentOperationOptions() DeleteRoleManagementAlertIncidentOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteRoleManagementAlertIncidentOperationOptions) ToHeaders() *client.H
 
 func (o DeleteRoleManagementAlertIncidentOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

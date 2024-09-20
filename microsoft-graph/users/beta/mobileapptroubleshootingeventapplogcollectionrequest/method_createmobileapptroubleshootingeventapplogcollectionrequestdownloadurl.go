@@ -19,15 +19,44 @@ type CreateMobileAppTroubleshootingEventAppLogCollectionRequestDownloadUrlOperat
 	Model        *beta.AppLogCollectionDownloadDetails
 }
 
+type CreateMobileAppTroubleshootingEventAppLogCollectionRequestDownloadUrlOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateMobileAppTroubleshootingEventAppLogCollectionRequestDownloadUrlOperationOptions() CreateMobileAppTroubleshootingEventAppLogCollectionRequestDownloadUrlOperationOptions {
+	return CreateMobileAppTroubleshootingEventAppLogCollectionRequestDownloadUrlOperationOptions{}
+}
+
+func (o CreateMobileAppTroubleshootingEventAppLogCollectionRequestDownloadUrlOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateMobileAppTroubleshootingEventAppLogCollectionRequestDownloadUrlOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateMobileAppTroubleshootingEventAppLogCollectionRequestDownloadUrlOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateMobileAppTroubleshootingEventAppLogCollectionRequestDownloadUrl - Invoke action createDownloadUrl
-func (c MobileAppTroubleshootingEventAppLogCollectionRequestClient) CreateMobileAppTroubleshootingEventAppLogCollectionRequestDownloadUrl(ctx context.Context, id beta.UserIdMobileAppTroubleshootingEventIdAppLogCollectionRequestId) (result CreateMobileAppTroubleshootingEventAppLogCollectionRequestDownloadUrlOperationResponse, err error) {
+func (c MobileAppTroubleshootingEventAppLogCollectionRequestClient) CreateMobileAppTroubleshootingEventAppLogCollectionRequestDownloadUrl(ctx context.Context, id beta.UserIdMobileAppTroubleshootingEventIdAppLogCollectionRequestId, options CreateMobileAppTroubleshootingEventAppLogCollectionRequestDownloadUrlOperationOptions) (result CreateMobileAppTroubleshootingEventAppLogCollectionRequestDownloadUrlOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/createDownloadUrl", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/createDownloadUrl", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

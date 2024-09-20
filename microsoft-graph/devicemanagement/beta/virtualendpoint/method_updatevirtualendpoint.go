@@ -17,15 +17,44 @@ type UpdateVirtualEndpointOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateVirtualEndpointOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateVirtualEndpointOperationOptions() UpdateVirtualEndpointOperationOptions {
+	return UpdateVirtualEndpointOperationOptions{}
+}
+
+func (o UpdateVirtualEndpointOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateVirtualEndpointOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateVirtualEndpointOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateVirtualEndpoint - Update the navigation property virtualEndpoint in deviceManagement
-func (c VirtualEndpointClient) UpdateVirtualEndpoint(ctx context.Context, input beta.VirtualEndpoint) (result UpdateVirtualEndpointOperationResponse, err error) {
+func (c VirtualEndpointClient) UpdateVirtualEndpoint(ctx context.Context, input beta.VirtualEndpoint, options UpdateVirtualEndpointOperationOptions) (result UpdateVirtualEndpointOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       "/deviceManagement/virtualEndpoint",
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          "/deviceManagement/virtualEndpoint",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

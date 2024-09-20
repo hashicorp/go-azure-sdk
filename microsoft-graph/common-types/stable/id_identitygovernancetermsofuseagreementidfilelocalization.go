@@ -100,10 +100,10 @@ func (id IdentityGovernanceTermsOfUseAgreementIdFileLocalizationId) Segments() [
 		resourceids.StaticSegment("identityGovernance", "identityGovernance", "identityGovernance"),
 		resourceids.StaticSegment("termsOfUse", "termsOfUse", "termsOfUse"),
 		resourceids.StaticSegment("agreements", "agreements", "agreements"),
-		resourceids.UserSpecifiedSegment("agreementId", "agreementIdValue"),
+		resourceids.UserSpecifiedSegment("agreementId", "agreementId"),
 		resourceids.StaticSegment("file", "file", "file"),
 		resourceids.StaticSegment("localizations", "localizations", "localizations"),
-		resourceids.UserSpecifiedSegment("agreementFileLocalizationId", "agreementFileLocalizationIdValue"),
+		resourceids.UserSpecifiedSegment("agreementFileLocalizationId", "agreementFileLocalizationId"),
 	}
 }
 

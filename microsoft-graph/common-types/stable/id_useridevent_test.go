@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &UserIdEventId{}
 
 func TestNewUserIdEventID(t *testing.T) {
-	id := NewUserIdEventID("userIdValue", "eventIdValue")
+	id := NewUserIdEventID("userId", "eventId")
 
-	if id.UserId != "userIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'UserId'", id.UserId, "userIdValue")
+	if id.UserId != "userId" {
+		t.Fatalf("Expected %q but got %q for Segment 'UserId'", id.UserId, "userId")
 	}
 
-	if id.EventId != "eventIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'EventId'", id.EventId, "eventIdValue")
+	if id.EventId != "eventId" {
+		t.Fatalf("Expected %q but got %q for Segment 'EventId'", id.EventId, "eventId")
 	}
 }
 
 func TestFormatUserIdEventID(t *testing.T) {
-	actual := NewUserIdEventID("userIdValue", "eventIdValue").ID()
-	expected := "/users/userIdValue/events/eventIdValue"
+	actual := NewUserIdEventID("userId", "eventId").ID()
+	expected := "/users/userId/events/eventId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -49,25 +49,25 @@ func TestParseUserIdEventID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue",
+			Input: "/users/userId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/events",
+			Input: "/users/userId/events",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/users/userIdValue/events/eventIdValue",
+			Input: "/users/userId/events/eventId",
 			Expected: &UserIdEventId{
-				UserId:  "userIdValue",
-				EventId: "eventIdValue",
+				UserId:  "userId",
+				EventId: "eventId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/users/userIdValue/events/eventIdValue/extra",
+			Input: "/users/userId/events/eventId/extra",
 			Error: true,
 		},
 	}
@@ -120,48 +120,48 @@ func TestParseUserIdEventIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue",
+			Input: "/users/userId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe",
+			Input: "/uSeRs/uSeRiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/events",
+			Input: "/users/userId/events",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/eVeNtS",
+			Input: "/uSeRs/uSeRiD/eVeNtS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/users/userIdValue/events/eventIdValue",
+			Input: "/users/userId/events/eventId",
 			Expected: &UserIdEventId{
-				UserId:  "userIdValue",
-				EventId: "eventIdValue",
+				UserId:  "userId",
+				EventId: "eventId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/users/userIdValue/events/eventIdValue/extra",
+			Input: "/users/userId/events/eventId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/eVeNtS/eVeNtIdVaLuE",
+			Input: "/uSeRs/uSeRiD/eVeNtS/eVeNtId",
 			Expected: &UserIdEventId{
-				UserId:  "uSeRiDvAlUe",
-				EventId: "eVeNtIdVaLuE",
+				UserId:  "uSeRiD",
+				EventId: "eVeNtId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/eVeNtS/eVeNtIdVaLuE/extra",
+			Input: "/uSeRs/uSeRiD/eVeNtS/eVeNtId/extra",
 			Error: true,
 		},
 	}

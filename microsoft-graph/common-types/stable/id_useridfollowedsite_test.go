@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &UserIdFollowedSiteId{}
 
 func TestNewUserIdFollowedSiteID(t *testing.T) {
-	id := NewUserIdFollowedSiteID("userIdValue", "siteIdValue")
+	id := NewUserIdFollowedSiteID("userId", "siteId")
 
-	if id.UserId != "userIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'UserId'", id.UserId, "userIdValue")
+	if id.UserId != "userId" {
+		t.Fatalf("Expected %q but got %q for Segment 'UserId'", id.UserId, "userId")
 	}
 
-	if id.SiteId != "siteIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'SiteId'", id.SiteId, "siteIdValue")
+	if id.SiteId != "siteId" {
+		t.Fatalf("Expected %q but got %q for Segment 'SiteId'", id.SiteId, "siteId")
 	}
 }
 
 func TestFormatUserIdFollowedSiteID(t *testing.T) {
-	actual := NewUserIdFollowedSiteID("userIdValue", "siteIdValue").ID()
-	expected := "/users/userIdValue/followedSites/siteIdValue"
+	actual := NewUserIdFollowedSiteID("userId", "siteId").ID()
+	expected := "/users/userId/followedSites/siteId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -49,25 +49,25 @@ func TestParseUserIdFollowedSiteID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue",
+			Input: "/users/userId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/followedSites",
+			Input: "/users/userId/followedSites",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/users/userIdValue/followedSites/siteIdValue",
+			Input: "/users/userId/followedSites/siteId",
 			Expected: &UserIdFollowedSiteId{
-				UserId: "userIdValue",
-				SiteId: "siteIdValue",
+				UserId: "userId",
+				SiteId: "siteId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/users/userIdValue/followedSites/siteIdValue/extra",
+			Input: "/users/userId/followedSites/siteId/extra",
 			Error: true,
 		},
 	}
@@ -120,48 +120,48 @@ func TestParseUserIdFollowedSiteIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue",
+			Input: "/users/userId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe",
+			Input: "/uSeRs/uSeRiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/followedSites",
+			Input: "/users/userId/followedSites",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/fOlLoWeDsItEs",
+			Input: "/uSeRs/uSeRiD/fOlLoWeDsItEs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/users/userIdValue/followedSites/siteIdValue",
+			Input: "/users/userId/followedSites/siteId",
 			Expected: &UserIdFollowedSiteId{
-				UserId: "userIdValue",
-				SiteId: "siteIdValue",
+				UserId: "userId",
+				SiteId: "siteId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/users/userIdValue/followedSites/siteIdValue/extra",
+			Input: "/users/userId/followedSites/siteId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/fOlLoWeDsItEs/sItEiDvAlUe",
+			Input: "/uSeRs/uSeRiD/fOlLoWeDsItEs/sItEiD",
 			Expected: &UserIdFollowedSiteId{
-				UserId: "uSeRiDvAlUe",
-				SiteId: "sItEiDvAlUe",
+				UserId: "uSeRiD",
+				SiteId: "sItEiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/fOlLoWeDsItEs/sItEiDvAlUe/extra",
+			Input: "/uSeRs/uSeRiD/fOlLoWeDsItEs/sItEiD/extra",
 			Error: true,
 		},
 	}

@@ -110,10 +110,32 @@ func (s Directory) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &Directory{}
 
 func (s *Directory) UnmarshalJSON(bytes []byte) error {
-	type alias Directory
-	var decoded alias
+
+	var decoded struct {
+		AdministrativeUnits                *[]AdministrativeUnit                 `json:"administrativeUnits,omitempty"`
+		AttributeSets                      *[]AttributeSet                       `json:"attributeSets,omitempty"`
+		CertificateAuthorities             *CertificateAuthorityPath             `json:"certificateAuthorities,omitempty"`
+		CustomSecurityAttributeDefinitions *[]CustomSecurityAttributeDefinition  `json:"customSecurityAttributeDefinitions,omitempty"`
+		DeletedItems                       *[]DirectoryObject                    `json:"deletedItems,omitempty"`
+		DeletedItems_ODataBind             *[]string                             `json:"deletedItems@odata.bind,omitempty"`
+		DeviceLocalCredentials             *[]DeviceLocalCredentialInfo          `json:"deviceLocalCredentials,omitempty"`
+		ExternalUserProfiles               *[]ExternalUserProfile                `json:"externalUserProfiles,omitempty"`
+		FeatureRolloutPolicies             *[]FeatureRolloutPolicy               `json:"featureRolloutPolicies,omitempty"`
+		FederationConfigurations           *[]IdentityProviderBase               `json:"federationConfigurations,omitempty"`
+		ImpactedResources                  *[]ImpactedResource                   `json:"impactedResources,omitempty"`
+		InboundSharedUserProfiles          *[]InboundSharedUserProfile           `json:"inboundSharedUserProfiles,omitempty"`
+		OnPremisesSynchronization          *[]OnPremisesDirectorySynchronization `json:"onPremisesSynchronization,omitempty"`
+		OutboundSharedUserProfiles         *[]OutboundSharedUserProfile          `json:"outboundSharedUserProfiles,omitempty"`
+		PendingExternalUserProfiles        *[]PendingExternalUserProfile         `json:"pendingExternalUserProfiles,omitempty"`
+		Recommendations                    *[]Recommendation                     `json:"recommendations,omitempty"`
+		SharedEmailDomains                 *[]SharedEmailDomain                  `json:"sharedEmailDomains,omitempty"`
+		Subscriptions                      *[]CompanySubscription                `json:"subscriptions,omitempty"`
+		Id                                 *string                               `json:"id,omitempty"`
+		ODataId                            *string                               `json:"@odata.id,omitempty"`
+		ODataType                          *string                               `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into Directory: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.AdministrativeUnits = decoded.AdministrativeUnits
@@ -124,17 +146,17 @@ func (s *Directory) UnmarshalJSON(bytes []byte) error {
 	s.DeviceLocalCredentials = decoded.DeviceLocalCredentials
 	s.ExternalUserProfiles = decoded.ExternalUserProfiles
 	s.FeatureRolloutPolicies = decoded.FeatureRolloutPolicies
-	s.Id = decoded.Id
 	s.ImpactedResources = decoded.ImpactedResources
 	s.InboundSharedUserProfiles = decoded.InboundSharedUserProfiles
-	s.ODataId = decoded.ODataId
-	s.ODataType = decoded.ODataType
 	s.OnPremisesSynchronization = decoded.OnPremisesSynchronization
 	s.OutboundSharedUserProfiles = decoded.OutboundSharedUserProfiles
 	s.PendingExternalUserProfiles = decoded.PendingExternalUserProfiles
 	s.Recommendations = decoded.Recommendations
 	s.SharedEmailDomains = decoded.SharedEmailDomains
 	s.Subscriptions = decoded.Subscriptions
+	s.Id = decoded.Id
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -174,5 +196,6 @@ func (s *Directory) UnmarshalJSON(bytes []byte) error {
 		}
 		s.FederationConfigurations = &output
 	}
+
 	return nil
 }

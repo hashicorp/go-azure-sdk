@@ -122,28 +122,46 @@ func (s EdiscoveryEstimateStatisticsOperation) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &EdiscoveryEstimateStatisticsOperation{}
 
 func (s *EdiscoveryEstimateStatisticsOperation) UnmarshalJSON(bytes []byte) error {
-	type alias EdiscoveryEstimateStatisticsOperation
-	var decoded alias
+
+	var decoded struct {
+		IndexedItemCount   nullable.Type[int64]           `json:"indexedItemCount,omitempty"`
+		IndexedItemsSize   nullable.Type[int64]           `json:"indexedItemsSize,omitempty"`
+		MailboxCount       nullable.Type[int64]           `json:"mailboxCount,omitempty"`
+		SiteCount          nullable.Type[int64]           `json:"siteCount,omitempty"`
+		SourceCollection   *EdiscoverySourceCollection    `json:"sourceCollection,omitempty"`
+		UnindexedItemCount nullable.Type[int64]           `json:"unindexedItemCount,omitempty"`
+		UnindexedItemsSize nullable.Type[int64]           `json:"unindexedItemsSize,omitempty"`
+		Action             *EdiscoveryCaseAction          `json:"action,omitempty"`
+		CompletedDateTime  nullable.Type[string]          `json:"completedDateTime,omitempty"`
+		CreatedBy          IdentitySet                    `json:"createdBy"`
+		CreatedDateTime    nullable.Type[string]          `json:"createdDateTime,omitempty"`
+		PercentProgress    nullable.Type[int64]           `json:"percentProgress,omitempty"`
+		ResultInfo         *ResultInfo                    `json:"resultInfo,omitempty"`
+		Status             *EdiscoveryCaseOperationStatus `json:"status,omitempty"`
+		Id                 *string                        `json:"id,omitempty"`
+		ODataId            *string                        `json:"@odata.id,omitempty"`
+		ODataType          *string                        `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into EdiscoveryEstimateStatisticsOperation: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
+	s.IndexedItemCount = decoded.IndexedItemCount
+	s.IndexedItemsSize = decoded.IndexedItemsSize
+	s.MailboxCount = decoded.MailboxCount
+	s.SiteCount = decoded.SiteCount
+	s.SourceCollection = decoded.SourceCollection
+	s.UnindexedItemCount = decoded.UnindexedItemCount
+	s.UnindexedItemsSize = decoded.UnindexedItemsSize
 	s.Action = decoded.Action
 	s.CompletedDateTime = decoded.CompletedDateTime
 	s.CreatedDateTime = decoded.CreatedDateTime
 	s.Id = decoded.Id
-	s.IndexedItemCount = decoded.IndexedItemCount
-	s.IndexedItemsSize = decoded.IndexedItemsSize
-	s.MailboxCount = decoded.MailboxCount
 	s.ODataId = decoded.ODataId
 	s.ODataType = decoded.ODataType
 	s.PercentProgress = decoded.PercentProgress
 	s.ResultInfo = decoded.ResultInfo
-	s.SiteCount = decoded.SiteCount
-	s.SourceCollection = decoded.SourceCollection
 	s.Status = decoded.Status
-	s.UnindexedItemCount = decoded.UnindexedItemCount
-	s.UnindexedItemsSize = decoded.UnindexedItemsSize
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -157,5 +175,6 @@ func (s *EdiscoveryEstimateStatisticsOperation) UnmarshalJSON(bytes []byte) erro
 		}
 		s.CreatedBy = impl
 	}
+
 	return nil
 }

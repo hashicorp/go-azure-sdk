@@ -20,15 +20,44 @@ type CreateExtensionOperationResponse struct {
 	Model        beta.Extension
 }
 
+type CreateExtensionOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateExtensionOperationOptions() CreateExtensionOperationOptions {
+	return CreateExtensionOperationOptions{}
+}
+
+func (o CreateExtensionOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateExtensionOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateExtensionOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateExtension - Create new navigation property to extensions for groups
-func (c ExtensionClient) CreateExtension(ctx context.Context, id beta.GroupId, input beta.Extension) (result CreateExtensionOperationResponse, err error) {
+func (c ExtensionClient) CreateExtension(ctx context.Context, id beta.GroupId, input beta.Extension, options CreateExtensionOperationOptions) (result CreateExtensionOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/extensions", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/extensions", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

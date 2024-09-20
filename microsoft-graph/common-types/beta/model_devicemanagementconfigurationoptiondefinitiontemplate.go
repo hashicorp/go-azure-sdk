@@ -27,10 +27,15 @@ type DeviceManagementConfigurationOptionDefinitionTemplate struct {
 var _ json.Unmarshaler = &DeviceManagementConfigurationOptionDefinitionTemplate{}
 
 func (s *DeviceManagementConfigurationOptionDefinitionTemplate) UnmarshalJSON(bytes []byte) error {
-	type alias DeviceManagementConfigurationOptionDefinitionTemplate
-	var decoded alias
+
+	var decoded struct {
+		Children  *[]DeviceManagementConfigurationSettingInstanceTemplate `json:"children,omitempty"`
+		ItemId    nullable.Type[string]                                   `json:"itemId,omitempty"`
+		ODataId   *string                                                 `json:"@odata.id,omitempty"`
+		ODataType *string                                                 `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into DeviceManagementConfigurationOptionDefinitionTemplate: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.ItemId = decoded.ItemId
@@ -58,5 +63,6 @@ func (s *DeviceManagementConfigurationOptionDefinitionTemplate) UnmarshalJSON(by
 		}
 		s.Children = &output
 	}
+
 	return nil
 }

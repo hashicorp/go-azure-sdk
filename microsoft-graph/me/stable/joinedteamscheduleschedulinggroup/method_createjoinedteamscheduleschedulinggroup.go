@@ -19,15 +19,44 @@ type CreateJoinedTeamScheduleSchedulingGroupOperationResponse struct {
 	Model        *stable.SchedulingGroup
 }
 
+type CreateJoinedTeamScheduleSchedulingGroupOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateJoinedTeamScheduleSchedulingGroupOperationOptions() CreateJoinedTeamScheduleSchedulingGroupOperationOptions {
+	return CreateJoinedTeamScheduleSchedulingGroupOperationOptions{}
+}
+
+func (o CreateJoinedTeamScheduleSchedulingGroupOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateJoinedTeamScheduleSchedulingGroupOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateJoinedTeamScheduleSchedulingGroupOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateJoinedTeamScheduleSchedulingGroup - Create new navigation property to schedulingGroups for me
-func (c JoinedTeamScheduleSchedulingGroupClient) CreateJoinedTeamScheduleSchedulingGroup(ctx context.Context, id stable.MeJoinedTeamId, input stable.SchedulingGroup) (result CreateJoinedTeamScheduleSchedulingGroupOperationResponse, err error) {
+func (c JoinedTeamScheduleSchedulingGroupClient) CreateJoinedTeamScheduleSchedulingGroup(ctx context.Context, id stable.MeJoinedTeamId, input stable.SchedulingGroup, options CreateJoinedTeamScheduleSchedulingGroupOperationOptions) (result CreateJoinedTeamScheduleSchedulingGroupOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/schedule/schedulingGroups", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/schedule/schedulingGroups", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

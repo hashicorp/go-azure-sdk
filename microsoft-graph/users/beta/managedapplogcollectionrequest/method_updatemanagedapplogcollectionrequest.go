@@ -17,15 +17,44 @@ type UpdateManagedAppLogCollectionRequestOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateManagedAppLogCollectionRequestOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateManagedAppLogCollectionRequestOperationOptions() UpdateManagedAppLogCollectionRequestOperationOptions {
+	return UpdateManagedAppLogCollectionRequestOperationOptions{}
+}
+
+func (o UpdateManagedAppLogCollectionRequestOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateManagedAppLogCollectionRequestOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateManagedAppLogCollectionRequestOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateManagedAppLogCollectionRequest - Update the navigation property managedAppLogCollectionRequests in users
-func (c ManagedAppLogCollectionRequestClient) UpdateManagedAppLogCollectionRequest(ctx context.Context, id beta.UserIdManagedAppLogCollectionRequestId, input beta.ManagedAppLogCollectionRequest) (result UpdateManagedAppLogCollectionRequestOperationResponse, err error) {
+func (c ManagedAppLogCollectionRequestClient) UpdateManagedAppLogCollectionRequest(ctx context.Context, id beta.UserIdManagedAppLogCollectionRequestId, input beta.ManagedAppLogCollectionRequest, options UpdateManagedAppLogCollectionRequestOperationOptions) (result UpdateManagedAppLogCollectionRequestOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

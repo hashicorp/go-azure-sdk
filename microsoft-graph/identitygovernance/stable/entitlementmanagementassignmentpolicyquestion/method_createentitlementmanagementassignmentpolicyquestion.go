@@ -20,16 +20,45 @@ type CreateEntitlementManagementAssignmentPolicyQuestionOperationResponse struct
 	Model        stable.AccessPackageQuestion
 }
 
+type CreateEntitlementManagementAssignmentPolicyQuestionOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateEntitlementManagementAssignmentPolicyQuestionOperationOptions() CreateEntitlementManagementAssignmentPolicyQuestionOperationOptions {
+	return CreateEntitlementManagementAssignmentPolicyQuestionOperationOptions{}
+}
+
+func (o CreateEntitlementManagementAssignmentPolicyQuestionOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateEntitlementManagementAssignmentPolicyQuestionOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateEntitlementManagementAssignmentPolicyQuestionOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateEntitlementManagementAssignmentPolicyQuestion - Create new navigation property to questions for
 // identityGovernance
-func (c EntitlementManagementAssignmentPolicyQuestionClient) CreateEntitlementManagementAssignmentPolicyQuestion(ctx context.Context, id stable.IdentityGovernanceEntitlementManagementAssignmentPolicyId, input stable.AccessPackageQuestion) (result CreateEntitlementManagementAssignmentPolicyQuestionOperationResponse, err error) {
+func (c EntitlementManagementAssignmentPolicyQuestionClient) CreateEntitlementManagementAssignmentPolicyQuestion(ctx context.Context, id stable.IdentityGovernanceEntitlementManagementAssignmentPolicyId, input stable.AccessPackageQuestion, options CreateEntitlementManagementAssignmentPolicyQuestionOperationOptions) (result CreateEntitlementManagementAssignmentPolicyQuestionOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/questions", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/questions", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

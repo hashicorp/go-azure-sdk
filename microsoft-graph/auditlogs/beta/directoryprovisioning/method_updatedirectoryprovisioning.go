@@ -17,15 +17,44 @@ type UpdateDirectoryProvisioningOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateDirectoryProvisioningOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateDirectoryProvisioningOperationOptions() UpdateDirectoryProvisioningOperationOptions {
+	return UpdateDirectoryProvisioningOperationOptions{}
+}
+
+func (o UpdateDirectoryProvisioningOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateDirectoryProvisioningOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateDirectoryProvisioningOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateDirectoryProvisioning - Update the navigation property directoryProvisioning in auditLogs
-func (c DirectoryProvisioningClient) UpdateDirectoryProvisioning(ctx context.Context, id beta.AuditLogDirectoryProvisioningId, input beta.ProvisioningObjectSummary) (result UpdateDirectoryProvisioningOperationResponse, err error) {
+func (c DirectoryProvisioningClient) UpdateDirectoryProvisioning(ctx context.Context, id beta.AuditLogDirectoryProvisioningId, input beta.ProvisioningObjectSummary, options UpdateDirectoryProvisioningOperationOptions) (result UpdateDirectoryProvisioningOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

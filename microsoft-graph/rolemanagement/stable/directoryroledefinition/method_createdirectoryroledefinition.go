@@ -18,16 +18,45 @@ type CreateDirectoryRoleDefinitionOperationResponse struct {
 	Model        *stable.UnifiedRoleDefinition
 }
 
+type CreateDirectoryRoleDefinitionOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateDirectoryRoleDefinitionOperationOptions() CreateDirectoryRoleDefinitionOperationOptions {
+	return CreateDirectoryRoleDefinitionOperationOptions{}
+}
+
+func (o CreateDirectoryRoleDefinitionOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateDirectoryRoleDefinitionOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateDirectoryRoleDefinitionOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateDirectoryRoleDefinition - Create roleDefinitions. Create a new custom unifiedRoleDefinition object. This
 // feature requires a Microsoft Entra ID P1 or P2 license.
-func (c DirectoryRoleDefinitionClient) CreateDirectoryRoleDefinition(ctx context.Context, input stable.UnifiedRoleDefinition) (result CreateDirectoryRoleDefinitionOperationResponse, err error) {
+func (c DirectoryRoleDefinitionClient) CreateDirectoryRoleDefinition(ctx context.Context, input stable.UnifiedRoleDefinition, options CreateDirectoryRoleDefinitionOperationOptions) (result CreateDirectoryRoleDefinitionOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/roleManagement/directory/roleDefinitions",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/roleManagement/directory/roleDefinitions",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

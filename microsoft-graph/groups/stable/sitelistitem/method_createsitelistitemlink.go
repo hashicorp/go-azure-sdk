@@ -19,15 +19,44 @@ type CreateSiteListItemLinkOperationResponse struct {
 	Model        *stable.Permission
 }
 
+type CreateSiteListItemLinkOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateSiteListItemLinkOperationOptions() CreateSiteListItemLinkOperationOptions {
+	return CreateSiteListItemLinkOperationOptions{}
+}
+
+func (o CreateSiteListItemLinkOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateSiteListItemLinkOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateSiteListItemLinkOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateSiteListItemLink - Invoke action createLink
-func (c SiteListItemClient) CreateSiteListItemLink(ctx context.Context, id stable.GroupIdSiteIdListIdItemId, input CreateSiteListItemLinkRequest) (result CreateSiteListItemLinkOperationResponse, err error) {
+func (c SiteListItemClient) CreateSiteListItemLink(ctx context.Context, id stable.GroupIdSiteIdListIdItemId, input CreateSiteListItemLinkRequest, options CreateSiteListItemLinkOperationOptions) (result CreateSiteListItemLinkOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/createLink", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/createLink", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

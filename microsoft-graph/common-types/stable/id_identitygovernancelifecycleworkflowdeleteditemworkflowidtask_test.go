@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &IdentityGovernanceLifecycleWorkflowDeletedItemWorkflowIdTaskId{}
 
 func TestNewIdentityGovernanceLifecycleWorkflowDeletedItemWorkflowIdTaskID(t *testing.T) {
-	id := NewIdentityGovernanceLifecycleWorkflowDeletedItemWorkflowIdTaskID("workflowIdValue", "taskIdValue")
+	id := NewIdentityGovernanceLifecycleWorkflowDeletedItemWorkflowIdTaskID("workflowId", "taskId")
 
-	if id.WorkflowId != "workflowIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'WorkflowId'", id.WorkflowId, "workflowIdValue")
+	if id.WorkflowId != "workflowId" {
+		t.Fatalf("Expected %q but got %q for Segment 'WorkflowId'", id.WorkflowId, "workflowId")
 	}
 
-	if id.TaskId != "taskIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'TaskId'", id.TaskId, "taskIdValue")
+	if id.TaskId != "taskId" {
+		t.Fatalf("Expected %q but got %q for Segment 'TaskId'", id.TaskId, "taskId")
 	}
 }
 
 func TestFormatIdentityGovernanceLifecycleWorkflowDeletedItemWorkflowIdTaskID(t *testing.T) {
-	actual := NewIdentityGovernanceLifecycleWorkflowDeletedItemWorkflowIdTaskID("workflowIdValue", "taskIdValue").ID()
-	expected := "/identityGovernance/lifecycleWorkflows/deletedItems/workflows/workflowIdValue/tasks/taskIdValue"
+	actual := NewIdentityGovernanceLifecycleWorkflowDeletedItemWorkflowIdTaskID("workflowId", "taskId").ID()
+	expected := "/identityGovernance/lifecycleWorkflows/deletedItems/workflows/workflowId/tasks/taskId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -64,25 +64,25 @@ func TestParseIdentityGovernanceLifecycleWorkflowDeletedItemWorkflowIdTaskID(t *
 		},
 		{
 			// Incomplete URI
-			Input: "/identityGovernance/lifecycleWorkflows/deletedItems/workflows/workflowIdValue",
+			Input: "/identityGovernance/lifecycleWorkflows/deletedItems/workflows/workflowId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/identityGovernance/lifecycleWorkflows/deletedItems/workflows/workflowIdValue/tasks",
+			Input: "/identityGovernance/lifecycleWorkflows/deletedItems/workflows/workflowId/tasks",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/identityGovernance/lifecycleWorkflows/deletedItems/workflows/workflowIdValue/tasks/taskIdValue",
+			Input: "/identityGovernance/lifecycleWorkflows/deletedItems/workflows/workflowId/tasks/taskId",
 			Expected: &IdentityGovernanceLifecycleWorkflowDeletedItemWorkflowIdTaskId{
-				WorkflowId: "workflowIdValue",
-				TaskId:     "taskIdValue",
+				WorkflowId: "workflowId",
+				TaskId:     "taskId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/identityGovernance/lifecycleWorkflows/deletedItems/workflows/workflowIdValue/tasks/taskIdValue/extra",
+			Input: "/identityGovernance/lifecycleWorkflows/deletedItems/workflows/workflowId/tasks/taskId/extra",
 			Error: true,
 		},
 	}
@@ -165,48 +165,48 @@ func TestParseIdentityGovernanceLifecycleWorkflowDeletedItemWorkflowIdTaskIDInse
 		},
 		{
 			// Incomplete URI
-			Input: "/identityGovernance/lifecycleWorkflows/deletedItems/workflows/workflowIdValue",
+			Input: "/identityGovernance/lifecycleWorkflows/deletedItems/workflows/workflowId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/iDeNtItYgOvErNaNcE/lIfEcYcLeWoRkFlOwS/dElEtEdItEmS/wOrKfLoWs/wOrKfLoWiDvAlUe",
+			Input: "/iDeNtItYgOvErNaNcE/lIfEcYcLeWoRkFlOwS/dElEtEdItEmS/wOrKfLoWs/wOrKfLoWiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/identityGovernance/lifecycleWorkflows/deletedItems/workflows/workflowIdValue/tasks",
+			Input: "/identityGovernance/lifecycleWorkflows/deletedItems/workflows/workflowId/tasks",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/iDeNtItYgOvErNaNcE/lIfEcYcLeWoRkFlOwS/dElEtEdItEmS/wOrKfLoWs/wOrKfLoWiDvAlUe/tAsKs",
+			Input: "/iDeNtItYgOvErNaNcE/lIfEcYcLeWoRkFlOwS/dElEtEdItEmS/wOrKfLoWs/wOrKfLoWiD/tAsKs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/identityGovernance/lifecycleWorkflows/deletedItems/workflows/workflowIdValue/tasks/taskIdValue",
+			Input: "/identityGovernance/lifecycleWorkflows/deletedItems/workflows/workflowId/tasks/taskId",
 			Expected: &IdentityGovernanceLifecycleWorkflowDeletedItemWorkflowIdTaskId{
-				WorkflowId: "workflowIdValue",
-				TaskId:     "taskIdValue",
+				WorkflowId: "workflowId",
+				TaskId:     "taskId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/identityGovernance/lifecycleWorkflows/deletedItems/workflows/workflowIdValue/tasks/taskIdValue/extra",
+			Input: "/identityGovernance/lifecycleWorkflows/deletedItems/workflows/workflowId/tasks/taskId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/iDeNtItYgOvErNaNcE/lIfEcYcLeWoRkFlOwS/dElEtEdItEmS/wOrKfLoWs/wOrKfLoWiDvAlUe/tAsKs/tAsKiDvAlUe",
+			Input: "/iDeNtItYgOvErNaNcE/lIfEcYcLeWoRkFlOwS/dElEtEdItEmS/wOrKfLoWs/wOrKfLoWiD/tAsKs/tAsKiD",
 			Expected: &IdentityGovernanceLifecycleWorkflowDeletedItemWorkflowIdTaskId{
-				WorkflowId: "wOrKfLoWiDvAlUe",
-				TaskId:     "tAsKiDvAlUe",
+				WorkflowId: "wOrKfLoWiD",
+				TaskId:     "tAsKiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/iDeNtItYgOvErNaNcE/lIfEcYcLeWoRkFlOwS/dElEtEdItEmS/wOrKfLoWs/wOrKfLoWiDvAlUe/tAsKs/tAsKiDvAlUe/extra",
+			Input: "/iDeNtItYgOvErNaNcE/lIfEcYcLeWoRkFlOwS/dElEtEdItEmS/wOrKfLoWs/wOrKfLoWiD/tAsKs/tAsKiD/extra",
 			Error: true,
 		},
 	}

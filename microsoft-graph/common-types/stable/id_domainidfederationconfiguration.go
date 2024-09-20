@@ -98,9 +98,9 @@ func (id DomainIdFederationConfigurationId) ID() string {
 func (id DomainIdFederationConfigurationId) Segments() []resourceids.Segment {
 	return []resourceids.Segment{
 		resourceids.StaticSegment("domains", "domains", "domains"),
-		resourceids.UserSpecifiedSegment("domainId", "domainIdValue"),
+		resourceids.UserSpecifiedSegment("domainId", "domainId"),
 		resourceids.StaticSegment("federationConfiguration", "federationConfiguration", "federationConfiguration"),
-		resourceids.UserSpecifiedSegment("internalDomainFederationId", "internalDomainFederationIdValue"),
+		resourceids.UserSpecifiedSegment("internalDomainFederationId", "internalDomainFederationId"),
 	}
 }
 

@@ -19,19 +19,48 @@ type RestoreOperationResponse struct {
 	Model        stable.DirectoryObject
 }
 
+type RestoreOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultRestoreOperationOptions() RestoreOperationOptions {
+	return RestoreOperationOptions{}
+}
+
+func (o RestoreOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o RestoreOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o RestoreOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // Restore - Invoke action restore. Restore a recently deleted application, group, servicePrincipal, administrative
 // unit, or user object from deleted items. If an item was accidentally deleted, you can fully restore the item.
 // However, security groups cannot be restored. Also, restoring an application doesn't restore the associated service
 // principal automatically. You must call this API to explicitly restore the deleted service principal. A recently
 // deleted item remains available for up to 30 days. After 30 days, the item is permanently deleted.
-func (c MeClient) Restore(ctx context.Context) (result RestoreOperationResponse, err error) {
+func (c MeClient) Restore(ctx context.Context, options RestoreOperationOptions) (result RestoreOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/me/restore",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/me/restore",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

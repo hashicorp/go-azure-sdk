@@ -92,16 +92,25 @@ func (s IPNamedLocation) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &IPNamedLocation{}
 
 func (s *IPNamedLocation) UnmarshalJSON(bytes []byte) error {
-	type alias IPNamedLocation
-	var decoded alias
+
+	var decoded struct {
+		IPRanges         []IPRange             `json:"ipRanges"`
+		IsTrusted        *bool                 `json:"isTrusted,omitempty"`
+		CreatedDateTime  nullable.Type[string] `json:"createdDateTime,omitempty"`
+		DisplayName      *string               `json:"displayName,omitempty"`
+		ModifiedDateTime nullable.Type[string] `json:"modifiedDateTime,omitempty"`
+		Id               *string               `json:"id,omitempty"`
+		ODataId          *string               `json:"@odata.id,omitempty"`
+		ODataType        *string               `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into IPNamedLocation: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
+	s.IsTrusted = decoded.IsTrusted
 	s.CreatedDateTime = decoded.CreatedDateTime
 	s.DisplayName = decoded.DisplayName
 	s.Id = decoded.Id
-	s.IsTrusted = decoded.IsTrusted
 	s.ModifiedDateTime = decoded.ModifiedDateTime
 	s.ODataId = decoded.ODataId
 	s.ODataType = decoded.ODataType
@@ -127,5 +136,6 @@ func (s *IPNamedLocation) UnmarshalJSON(bytes []byte) error {
 		}
 		s.IPRanges = output
 	}
+
 	return nil
 }

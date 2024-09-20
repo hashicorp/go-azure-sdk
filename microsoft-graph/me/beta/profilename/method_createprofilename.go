@@ -18,15 +18,44 @@ type CreateProfileNameOperationResponse struct {
 	Model        *beta.PersonName
 }
 
+type CreateProfileNameOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateProfileNameOperationOptions() CreateProfileNameOperationOptions {
+	return CreateProfileNameOperationOptions{}
+}
+
+func (o CreateProfileNameOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateProfileNameOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateProfileNameOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateProfileName - Create personName. Use this API to create a new personName object in a user's profile.
-func (c ProfileNameClient) CreateProfileName(ctx context.Context, input beta.PersonName) (result CreateProfileNameOperationResponse, err error) {
+func (c ProfileNameClient) CreateProfileName(ctx context.Context, input beta.PersonName, options CreateProfileNameOperationOptions) (result CreateProfileNameOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/me/profile/names",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/me/profile/names",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

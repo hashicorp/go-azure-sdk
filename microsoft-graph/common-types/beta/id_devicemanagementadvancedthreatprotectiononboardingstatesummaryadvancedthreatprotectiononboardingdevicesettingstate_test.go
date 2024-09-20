@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &DeviceManagementAdvancedThreatProtectionOnboardingStateSummaryAdvancedThreatProtectionOnboardingDeviceSettingStateId{}
 
 func TestNewDeviceManagementAdvancedThreatProtectionOnboardingStateSummaryAdvancedThreatProtectionOnboardingDeviceSettingStateID(t *testing.T) {
-	id := NewDeviceManagementAdvancedThreatProtectionOnboardingStateSummaryAdvancedThreatProtectionOnboardingDeviceSettingStateID("advancedThreatProtectionOnboardingDeviceSettingStateIdValue")
+	id := NewDeviceManagementAdvancedThreatProtectionOnboardingStateSummaryAdvancedThreatProtectionOnboardingDeviceSettingStateID("advancedThreatProtectionOnboardingDeviceSettingStateId")
 
-	if id.AdvancedThreatProtectionOnboardingDeviceSettingStateId != "advancedThreatProtectionOnboardingDeviceSettingStateIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'AdvancedThreatProtectionOnboardingDeviceSettingStateId'", id.AdvancedThreatProtectionOnboardingDeviceSettingStateId, "advancedThreatProtectionOnboardingDeviceSettingStateIdValue")
+	if id.AdvancedThreatProtectionOnboardingDeviceSettingStateId != "advancedThreatProtectionOnboardingDeviceSettingStateId" {
+		t.Fatalf("Expected %q but got %q for Segment 'AdvancedThreatProtectionOnboardingDeviceSettingStateId'", id.AdvancedThreatProtectionOnboardingDeviceSettingStateId, "advancedThreatProtectionOnboardingDeviceSettingStateId")
 	}
 }
 
 func TestFormatDeviceManagementAdvancedThreatProtectionOnboardingStateSummaryAdvancedThreatProtectionOnboardingDeviceSettingStateID(t *testing.T) {
-	actual := NewDeviceManagementAdvancedThreatProtectionOnboardingStateSummaryAdvancedThreatProtectionOnboardingDeviceSettingStateID("advancedThreatProtectionOnboardingDeviceSettingStateIdValue").ID()
-	expected := "/deviceManagement/advancedThreatProtectionOnboardingStateSummary/advancedThreatProtectionOnboardingDeviceSettingStates/advancedThreatProtectionOnboardingDeviceSettingStateIdValue"
+	actual := NewDeviceManagementAdvancedThreatProtectionOnboardingStateSummaryAdvancedThreatProtectionOnboardingDeviceSettingStateID("advancedThreatProtectionOnboardingDeviceSettingStateId").ID()
+	expected := "/deviceManagement/advancedThreatProtectionOnboardingStateSummary/advancedThreatProtectionOnboardingDeviceSettingStates/advancedThreatProtectionOnboardingDeviceSettingStateId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -55,14 +55,14 @@ func TestParseDeviceManagementAdvancedThreatProtectionOnboardingStateSummaryAdva
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/advancedThreatProtectionOnboardingStateSummary/advancedThreatProtectionOnboardingDeviceSettingStates/advancedThreatProtectionOnboardingDeviceSettingStateIdValue",
+			Input: "/deviceManagement/advancedThreatProtectionOnboardingStateSummary/advancedThreatProtectionOnboardingDeviceSettingStates/advancedThreatProtectionOnboardingDeviceSettingStateId",
 			Expected: &DeviceManagementAdvancedThreatProtectionOnboardingStateSummaryAdvancedThreatProtectionOnboardingDeviceSettingStateId{
-				AdvancedThreatProtectionOnboardingDeviceSettingStateId: "advancedThreatProtectionOnboardingDeviceSettingStateIdValue",
+				AdvancedThreatProtectionOnboardingDeviceSettingStateId: "advancedThreatProtectionOnboardingDeviceSettingStateId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/advancedThreatProtectionOnboardingStateSummary/advancedThreatProtectionOnboardingDeviceSettingStates/advancedThreatProtectionOnboardingDeviceSettingStateIdValue/extra",
+			Input: "/deviceManagement/advancedThreatProtectionOnboardingStateSummary/advancedThreatProtectionOnboardingDeviceSettingStates/advancedThreatProtectionOnboardingDeviceSettingStateId/extra",
 			Error: true,
 		},
 	}
@@ -131,26 +131,26 @@ func TestParseDeviceManagementAdvancedThreatProtectionOnboardingStateSummaryAdva
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/advancedThreatProtectionOnboardingStateSummary/advancedThreatProtectionOnboardingDeviceSettingStates/advancedThreatProtectionOnboardingDeviceSettingStateIdValue",
+			Input: "/deviceManagement/advancedThreatProtectionOnboardingStateSummary/advancedThreatProtectionOnboardingDeviceSettingStates/advancedThreatProtectionOnboardingDeviceSettingStateId",
 			Expected: &DeviceManagementAdvancedThreatProtectionOnboardingStateSummaryAdvancedThreatProtectionOnboardingDeviceSettingStateId{
-				AdvancedThreatProtectionOnboardingDeviceSettingStateId: "advancedThreatProtectionOnboardingDeviceSettingStateIdValue",
+				AdvancedThreatProtectionOnboardingDeviceSettingStateId: "advancedThreatProtectionOnboardingDeviceSettingStateId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/advancedThreatProtectionOnboardingStateSummary/advancedThreatProtectionOnboardingDeviceSettingStates/advancedThreatProtectionOnboardingDeviceSettingStateIdValue/extra",
+			Input: "/deviceManagement/advancedThreatProtectionOnboardingStateSummary/advancedThreatProtectionOnboardingDeviceSettingStates/advancedThreatProtectionOnboardingDeviceSettingStateId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/aDvAnCeDtHrEaTpRoTeCtIoNoNbOaRdInGsTaTeSuMmArY/aDvAnCeDtHrEaTpRoTeCtIoNoNbOaRdInGdEvIcEsEtTiNgStAtEs/aDvAnCeDtHrEaTpRoTeCtIoNoNbOaRdInGdEvIcEsEtTiNgStAtEiDvAlUe",
+			Input: "/dEvIcEmAnAgEmEnT/aDvAnCeDtHrEaTpRoTeCtIoNoNbOaRdInGsTaTeSuMmArY/aDvAnCeDtHrEaTpRoTeCtIoNoNbOaRdInGdEvIcEsEtTiNgStAtEs/aDvAnCeDtHrEaTpRoTeCtIoNoNbOaRdInGdEvIcEsEtTiNgStAtEiD",
 			Expected: &DeviceManagementAdvancedThreatProtectionOnboardingStateSummaryAdvancedThreatProtectionOnboardingDeviceSettingStateId{
-				AdvancedThreatProtectionOnboardingDeviceSettingStateId: "aDvAnCeDtHrEaTpRoTeCtIoNoNbOaRdInGdEvIcEsEtTiNgStAtEiDvAlUe",
+				AdvancedThreatProtectionOnboardingDeviceSettingStateId: "aDvAnCeDtHrEaTpRoTeCtIoNoNbOaRdInGdEvIcEsEtTiNgStAtEiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/aDvAnCeDtHrEaTpRoTeCtIoNoNbOaRdInGsTaTeSuMmArY/aDvAnCeDtHrEaTpRoTeCtIoNoNbOaRdInGdEvIcEsEtTiNgStAtEs/aDvAnCeDtHrEaTpRoTeCtIoNoNbOaRdInGdEvIcEsEtTiNgStAtEiDvAlUe/extra",
+			Input: "/dEvIcEmAnAgEmEnT/aDvAnCeDtHrEaTpRoTeCtIoNoNbOaRdInGsTaTeSuMmArY/aDvAnCeDtHrEaTpRoTeCtIoNoNbOaRdInGdEvIcEsEtTiNgStAtEs/aDvAnCeDtHrEaTpRoTeCtIoNoNbOaRdInGdEvIcEsEtTiNgStAtEiD/extra",
 			Error: true,
 		},
 	}

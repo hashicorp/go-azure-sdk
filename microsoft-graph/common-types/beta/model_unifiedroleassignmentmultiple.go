@@ -114,10 +114,27 @@ func (s UnifiedRoleAssignmentMultiple) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &UnifiedRoleAssignmentMultiple{}
 
 func (s *UnifiedRoleAssignmentMultiple) UnmarshalJSON(bytes []byte) error {
-	type alias UnifiedRoleAssignmentMultiple
-	var decoded alias
+
+	var decoded struct {
+		AppScopeIds               *[]string              `json:"appScopeIds,omitempty"`
+		AppScopes                 *[]AppScope            `json:"appScopes,omitempty"`
+		Condition                 nullable.Type[string]  `json:"condition,omitempty"`
+		Description               nullable.Type[string]  `json:"description,omitempty"`
+		DirectoryScopeIds         *[]string              `json:"directoryScopeIds,omitempty"`
+		DirectoryScopes           *[]DirectoryObject     `json:"directoryScopes,omitempty"`
+		DirectoryScopes_ODataBind *[]string              `json:"directoryScopes@odata.bind,omitempty"`
+		DisplayName               nullable.Type[string]  `json:"displayName,omitempty"`
+		PrincipalIds              *[]string              `json:"principalIds,omitempty"`
+		Principals                *[]DirectoryObject     `json:"principals,omitempty"`
+		Principals_ODataBind      *[]string              `json:"principals@odata.bind,omitempty"`
+		RoleDefinition            *UnifiedRoleDefinition `json:"roleDefinition,omitempty"`
+		RoleDefinitionId          *string                `json:"roleDefinitionId,omitempty"`
+		Id                        *string                `json:"id,omitempty"`
+		ODataId                   *string                `json:"@odata.id,omitempty"`
+		ODataType                 *string                `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into UnifiedRoleAssignmentMultiple: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.AppScopeIds = decoded.AppScopeIds
@@ -126,13 +143,13 @@ func (s *UnifiedRoleAssignmentMultiple) UnmarshalJSON(bytes []byte) error {
 	s.DirectoryScopeIds = decoded.DirectoryScopeIds
 	s.DirectoryScopes_ODataBind = decoded.DirectoryScopes_ODataBind
 	s.DisplayName = decoded.DisplayName
-	s.Id = decoded.Id
-	s.ODataId = decoded.ODataId
-	s.ODataType = decoded.ODataType
 	s.PrincipalIds = decoded.PrincipalIds
 	s.Principals_ODataBind = decoded.Principals_ODataBind
 	s.RoleDefinition = decoded.RoleDefinition
 	s.RoleDefinitionId = decoded.RoleDefinitionId
+	s.Id = decoded.Id
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -189,5 +206,6 @@ func (s *UnifiedRoleAssignmentMultiple) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Principals = &output
 	}
+
 	return nil
 }

@@ -19,17 +19,46 @@ type GetTodoListTaskAttachmentValueOperationResponse struct {
 	Model        *[]byte
 }
 
+type GetTodoListTaskAttachmentValueOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultGetTodoListTaskAttachmentValueOperationOptions() GetTodoListTaskAttachmentValueOperationOptions {
+	return GetTodoListTaskAttachmentValueOperationOptions{}
+}
+
+func (o GetTodoListTaskAttachmentValueOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o GetTodoListTaskAttachmentValueOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o GetTodoListTaskAttachmentValueOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // GetTodoListTaskAttachmentValue - List taskFileAttachments. Get a list of the taskFileAttachment objects and their
 // properties. The contentBytes property will not be returned in the response. Use the Get attachment API to view the
 // contentBytes.
-func (c TodoListTaskAttachmentClient) GetTodoListTaskAttachmentValue(ctx context.Context, id beta.MeTodoListIdTaskIdAttachmentId) (result GetTodoListTaskAttachmentValueOperationResponse, err error) {
+func (c TodoListTaskAttachmentClient) GetTodoListTaskAttachmentValue(ctx context.Context, id beta.MeTodoListIdTaskIdAttachmentId, options GetTodoListTaskAttachmentValueOperationOptions) (result GetTodoListTaskAttachmentValueOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/octet-stream",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/$value", id.ID()),
+		HttpMethod:    http.MethodGet,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/$value", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

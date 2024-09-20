@@ -96,7 +96,7 @@ func (id MeSettingStorageQuotaServiceId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("storage", "storage", "storage"),
 		resourceids.StaticSegment("quota", "quota", "quota"),
 		resourceids.StaticSegment("services", "services", "services"),
-		resourceids.UserSpecifiedSegment("serviceStorageQuotaBreakdownId", "serviceStorageQuotaBreakdownIdValue"),
+		resourceids.UserSpecifiedSegment("serviceStorageQuotaBreakdownId", "serviceStorageQuotaBreakdownId"),
 	}
 }
 

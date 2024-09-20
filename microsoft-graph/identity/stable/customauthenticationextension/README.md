@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/microsoft-graph/identity/stable/customauthenticationextension` Documentation
 
-The `customauthenticationextension` SDK allows for interaction with the Azure Resource Manager Service `identity` (API Version `stable`).
+The `customauthenticationextension` SDK allows for interaction with Microsoft Graph `identity` (API Version `stable`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -15,7 +15,7 @@ import "github.com/hashicorp/go-azure-sdk/microsoft-graph/identity/stable/custom
 ### Client Initialization
 
 ```go
-client := customauthenticationextension.NewCustomAuthenticationExtensionClientWithBaseURI("https://management.azure.com")
+client := customauthenticationextension.NewCustomAuthenticationExtensionClientWithBaseURI("https://graph.microsoft.com")
 client.Client.Authorizer = authorizer
 ```
 
@@ -30,7 +30,7 @@ payload := customauthenticationextension.CustomAuthenticationExtension{
 }
 
 
-read, err := client.CreateCustomAuthenticationExtension(ctx, payload)
+read, err := client.CreateCustomAuthenticationExtension(ctx, payload, customauthenticationextension.DefaultCreateCustomAuthenticationExtensionOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -44,7 +44,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := customauthenticationextension.NewIdentityCustomAuthenticationExtensionID("customAuthenticationExtensionIdValue")
+id := customauthenticationextension.NewIdentityCustomAuthenticationExtensionID("customAuthenticationExtensionId")
 
 read, err := client.DeleteCustomAuthenticationExtension(ctx, id, customauthenticationextension.DefaultDeleteCustomAuthenticationExtensionOperationOptions())
 if err != nil {
@@ -60,7 +60,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := customauthenticationextension.NewIdentityCustomAuthenticationExtensionID("customAuthenticationExtensionIdValue")
+id := customauthenticationextension.NewIdentityCustomAuthenticationExtensionID("customAuthenticationExtensionId")
 
 read, err := client.GetCustomAuthenticationExtension(ctx, id, customauthenticationextension.DefaultGetCustomAuthenticationExtensionOperationOptions())
 if err != nil {
@@ -109,14 +109,14 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := customauthenticationextension.NewIdentityCustomAuthenticationExtensionID("customAuthenticationExtensionIdValue")
+id := customauthenticationextension.NewIdentityCustomAuthenticationExtensionID("customAuthenticationExtensionId")
 
 payload := customauthenticationextension.CustomAuthenticationExtension{
 	// ...
 }
 
 
-read, err := client.UpdateCustomAuthenticationExtension(ctx, id, payload)
+read, err := client.UpdateCustomAuthenticationExtension(ctx, id, payload, customauthenticationextension.DefaultUpdateCustomAuthenticationExtensionOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -130,9 +130,9 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := customauthenticationextension.NewIdentityCustomAuthenticationExtensionID("customAuthenticationExtensionIdValue")
+id := customauthenticationextension.NewIdentityCustomAuthenticationExtensionID("customAuthenticationExtensionId")
 
-read, err := client.ValidateCustomAuthenticationExtensionAuthenticationConfiguration(ctx, id)
+read, err := client.ValidateCustomAuthenticationExtensionAuthenticationConfiguration(ctx, id, customauthenticationextension.DefaultValidateCustomAuthenticationExtensionAuthenticationConfigurationOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -152,7 +152,7 @@ payload := customauthenticationextension.ValidateCustomAuthenticationExtensionsA
 }
 
 
-read, err := client.ValidateCustomAuthenticationExtensionsAuthenticationConfiguration(ctx, payload)
+read, err := client.ValidateCustomAuthenticationExtensionsAuthenticationConfiguration(ctx, payload, customauthenticationextension.DefaultValidateCustomAuthenticationExtensionsAuthenticationConfigurationOperationOptions())
 if err != nil {
 	// handle the error
 }

@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/todolisttaskattachment` Documentation
 
-The `todolisttaskattachment` SDK allows for interaction with the Azure Resource Manager Service `users` (API Version `beta`).
+The `todolisttaskattachment` SDK allows for interaction with Microsoft Graph `users` (API Version `beta`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -15,7 +15,7 @@ import "github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/todolisttas
 ### Client Initialization
 
 ```go
-client := todolisttaskattachment.NewTodoListTaskAttachmentClientWithBaseURI("https://management.azure.com")
+client := todolisttaskattachment.NewTodoListTaskAttachmentClientWithBaseURI("https://graph.microsoft.com")
 client.Client.Authorizer = authorizer
 ```
 
@@ -24,14 +24,14 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := todolisttaskattachment.NewUserIdTodoListIdTaskID("userIdValue", "todoTaskListIdValue", "todoTaskIdValue")
+id := todolisttaskattachment.NewUserIdTodoListIdTaskID("userId", "todoTaskListId", "todoTaskId")
 
 payload := todolisttaskattachment.AttachmentBase{
 	// ...
 }
 
 
-read, err := client.CreateTodoListTaskAttachment(ctx, id, payload)
+read, err := client.CreateTodoListTaskAttachment(ctx, id, payload, todolisttaskattachment.DefaultCreateTodoListTaskAttachmentOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -45,14 +45,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := todolisttaskattachment.NewUserIdTodoListIdTaskID("userIdValue", "todoTaskListIdValue", "todoTaskIdValue")
+id := todolisttaskattachment.NewUserIdTodoListIdTaskID("userId", "todoTaskListId", "todoTaskId")
 
 payload := todolisttaskattachment.CreateTodoListTaskAttachmentsUploadSessionRequest{
 	// ...
 }
 
 
-read, err := client.CreateTodoListTaskAttachmentsUploadSession(ctx, id, payload)
+read, err := client.CreateTodoListTaskAttachmentsUploadSession(ctx, id, payload, todolisttaskattachment.DefaultCreateTodoListTaskAttachmentsUploadSessionOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -66,7 +66,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := todolisttaskattachment.NewUserIdTodoListIdTaskIdAttachmentID("userIdValue", "todoTaskListIdValue", "todoTaskIdValue", "attachmentBaseIdValue")
+id := todolisttaskattachment.NewUserIdTodoListIdTaskIdAttachmentID("userId", "todoTaskListId", "todoTaskId", "attachmentBaseId")
 
 read, err := client.DeleteTodoListTaskAttachment(ctx, id, todolisttaskattachment.DefaultDeleteTodoListTaskAttachmentOperationOptions())
 if err != nil {
@@ -82,7 +82,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := todolisttaskattachment.NewUserIdTodoListIdTaskIdAttachmentID("userIdValue", "todoTaskListIdValue", "todoTaskIdValue", "attachmentBaseIdValue")
+id := todolisttaskattachment.NewUserIdTodoListIdTaskIdAttachmentID("userId", "todoTaskListId", "todoTaskId", "attachmentBaseId")
 
 read, err := client.GetTodoListTaskAttachment(ctx, id, todolisttaskattachment.DefaultGetTodoListTaskAttachmentOperationOptions())
 if err != nil {
@@ -98,9 +98,9 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := todolisttaskattachment.NewUserIdTodoListIdTaskIdAttachmentID("userIdValue", "todoTaskListIdValue", "todoTaskIdValue", "attachmentBaseIdValue")
+id := todolisttaskattachment.NewUserIdTodoListIdTaskIdAttachmentID("userId", "todoTaskListId", "todoTaskId", "attachmentBaseId")
 
-read, err := client.GetTodoListTaskAttachmentValue(ctx, id)
+read, err := client.GetTodoListTaskAttachmentValue(ctx, id, todolisttaskattachment.DefaultGetTodoListTaskAttachmentValueOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -114,7 +114,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := todolisttaskattachment.NewUserIdTodoListIdTaskID("userIdValue", "todoTaskListIdValue", "todoTaskIdValue")
+id := todolisttaskattachment.NewUserIdTodoListIdTaskID("userId", "todoTaskListId", "todoTaskId")
 
 read, err := client.GetTodoListTaskAttachmentsCount(ctx, id, todolisttaskattachment.DefaultGetTodoListTaskAttachmentsCountOperationOptions())
 if err != nil {
@@ -130,7 +130,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := todolisttaskattachment.NewUserIdTodoListIdTaskID("userIdValue", "todoTaskListIdValue", "todoTaskIdValue")
+id := todolisttaskattachment.NewUserIdTodoListIdTaskID("userId", "todoTaskListId", "todoTaskId")
 
 // alternatively `client.ListTodoListTaskAttachments(ctx, id, todolisttaskattachment.DefaultListTodoListTaskAttachmentsOperationOptions())` can be used to do batched pagination
 items, err := client.ListTodoListTaskAttachmentsComplete(ctx, id, todolisttaskattachment.DefaultListTodoListTaskAttachmentsOperationOptions())
@@ -147,7 +147,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := todolisttaskattachment.NewUserIdTodoListIdTaskIdAttachmentID("userIdValue", "todoTaskListIdValue", "todoTaskIdValue", "attachmentBaseIdValue")
+id := todolisttaskattachment.NewUserIdTodoListIdTaskIdAttachmentID("userId", "todoTaskListId", "todoTaskId", "attachmentBaseId")
 
 read, err := client.RemoveTodoListTaskAttachmentValue(ctx, id, todolisttaskattachment.DefaultRemoveTodoListTaskAttachmentValueOperationOptions())
 if err != nil {
@@ -163,10 +163,10 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := todolisttaskattachment.NewUserIdTodoListIdTaskIdAttachmentID("userIdValue", "todoTaskListIdValue", "todoTaskIdValue", "attachmentBaseIdValue")
+id := todolisttaskattachment.NewUserIdTodoListIdTaskIdAttachmentID("userId", "todoTaskListId", "todoTaskId", "attachmentBaseId")
 var payload []byte
 
-read, err := client.SetTodoListTaskAttachmentValue(ctx, id, payload)
+read, err := client.SetTodoListTaskAttachmentValue(ctx, id, payload, todolisttaskattachment.DefaultSetTodoListTaskAttachmentValueOperationOptions())
 if err != nil {
 	// handle the error
 }

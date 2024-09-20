@@ -94,7 +94,7 @@ func (id MeInformationProtectionDataLossPreventionPolicyId) Segments() []resourc
 		resourceids.StaticSegment("me", "me", "me"),
 		resourceids.StaticSegment("informationProtection", "informationProtection", "informationProtection"),
 		resourceids.StaticSegment("dataLossPreventionPolicies", "dataLossPreventionPolicies", "dataLossPreventionPolicies"),
-		resourceids.UserSpecifiedSegment("dataLossPreventionPolicyId", "dataLossPreventionPolicyIdValue"),
+		resourceids.UserSpecifiedSegment("dataLossPreventionPolicyId", "dataLossPreventionPolicyId"),
 	}
 }
 

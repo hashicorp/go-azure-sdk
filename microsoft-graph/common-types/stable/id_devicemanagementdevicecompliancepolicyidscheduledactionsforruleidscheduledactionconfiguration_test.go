@@ -12,24 +12,24 @@ import (
 var _ resourceids.ResourceId = &DeviceManagementDeviceCompliancePolicyIdScheduledActionsForRuleIdScheduledActionConfigurationId{}
 
 func TestNewDeviceManagementDeviceCompliancePolicyIdScheduledActionsForRuleIdScheduledActionConfigurationID(t *testing.T) {
-	id := NewDeviceManagementDeviceCompliancePolicyIdScheduledActionsForRuleIdScheduledActionConfigurationID("deviceCompliancePolicyIdValue", "deviceComplianceScheduledActionForRuleIdValue", "deviceComplianceActionItemIdValue")
+	id := NewDeviceManagementDeviceCompliancePolicyIdScheduledActionsForRuleIdScheduledActionConfigurationID("deviceCompliancePolicyId", "deviceComplianceScheduledActionForRuleId", "deviceComplianceActionItemId")
 
-	if id.DeviceCompliancePolicyId != "deviceCompliancePolicyIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DeviceCompliancePolicyId'", id.DeviceCompliancePolicyId, "deviceCompliancePolicyIdValue")
+	if id.DeviceCompliancePolicyId != "deviceCompliancePolicyId" {
+		t.Fatalf("Expected %q but got %q for Segment 'DeviceCompliancePolicyId'", id.DeviceCompliancePolicyId, "deviceCompliancePolicyId")
 	}
 
-	if id.DeviceComplianceScheduledActionForRuleId != "deviceComplianceScheduledActionForRuleIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DeviceComplianceScheduledActionForRuleId'", id.DeviceComplianceScheduledActionForRuleId, "deviceComplianceScheduledActionForRuleIdValue")
+	if id.DeviceComplianceScheduledActionForRuleId != "deviceComplianceScheduledActionForRuleId" {
+		t.Fatalf("Expected %q but got %q for Segment 'DeviceComplianceScheduledActionForRuleId'", id.DeviceComplianceScheduledActionForRuleId, "deviceComplianceScheduledActionForRuleId")
 	}
 
-	if id.DeviceComplianceActionItemId != "deviceComplianceActionItemIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DeviceComplianceActionItemId'", id.DeviceComplianceActionItemId, "deviceComplianceActionItemIdValue")
+	if id.DeviceComplianceActionItemId != "deviceComplianceActionItemId" {
+		t.Fatalf("Expected %q but got %q for Segment 'DeviceComplianceActionItemId'", id.DeviceComplianceActionItemId, "deviceComplianceActionItemId")
 	}
 }
 
 func TestFormatDeviceManagementDeviceCompliancePolicyIdScheduledActionsForRuleIdScheduledActionConfigurationID(t *testing.T) {
-	actual := NewDeviceManagementDeviceCompliancePolicyIdScheduledActionsForRuleIdScheduledActionConfigurationID("deviceCompliancePolicyIdValue", "deviceComplianceScheduledActionForRuleIdValue", "deviceComplianceActionItemIdValue").ID()
-	expected := "/deviceManagement/deviceCompliancePolicies/deviceCompliancePolicyIdValue/scheduledActionsForRule/deviceComplianceScheduledActionForRuleIdValue/scheduledActionConfigurations/deviceComplianceActionItemIdValue"
+	actual := NewDeviceManagementDeviceCompliancePolicyIdScheduledActionsForRuleIdScheduledActionConfigurationID("deviceCompliancePolicyId", "deviceComplianceScheduledActionForRuleId", "deviceComplianceActionItemId").ID()
+	expected := "/deviceManagement/deviceCompliancePolicies/deviceCompliancePolicyId/scheduledActionsForRule/deviceComplianceScheduledActionForRuleId/scheduledActionConfigurations/deviceComplianceActionItemId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -58,36 +58,36 @@ func TestParseDeviceManagementDeviceCompliancePolicyIdScheduledActionsForRuleIdS
 		},
 		{
 			// Incomplete URI
-			Input: "/deviceManagement/deviceCompliancePolicies/deviceCompliancePolicyIdValue",
+			Input: "/deviceManagement/deviceCompliancePolicies/deviceCompliancePolicyId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/deviceManagement/deviceCompliancePolicies/deviceCompliancePolicyIdValue/scheduledActionsForRule",
+			Input: "/deviceManagement/deviceCompliancePolicies/deviceCompliancePolicyId/scheduledActionsForRule",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/deviceManagement/deviceCompliancePolicies/deviceCompliancePolicyIdValue/scheduledActionsForRule/deviceComplianceScheduledActionForRuleIdValue",
+			Input: "/deviceManagement/deviceCompliancePolicies/deviceCompliancePolicyId/scheduledActionsForRule/deviceComplianceScheduledActionForRuleId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/deviceManagement/deviceCompliancePolicies/deviceCompliancePolicyIdValue/scheduledActionsForRule/deviceComplianceScheduledActionForRuleIdValue/scheduledActionConfigurations",
+			Input: "/deviceManagement/deviceCompliancePolicies/deviceCompliancePolicyId/scheduledActionsForRule/deviceComplianceScheduledActionForRuleId/scheduledActionConfigurations",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/deviceCompliancePolicies/deviceCompliancePolicyIdValue/scheduledActionsForRule/deviceComplianceScheduledActionForRuleIdValue/scheduledActionConfigurations/deviceComplianceActionItemIdValue",
+			Input: "/deviceManagement/deviceCompliancePolicies/deviceCompliancePolicyId/scheduledActionsForRule/deviceComplianceScheduledActionForRuleId/scheduledActionConfigurations/deviceComplianceActionItemId",
 			Expected: &DeviceManagementDeviceCompliancePolicyIdScheduledActionsForRuleIdScheduledActionConfigurationId{
-				DeviceCompliancePolicyId:                 "deviceCompliancePolicyIdValue",
-				DeviceComplianceScheduledActionForRuleId: "deviceComplianceScheduledActionForRuleIdValue",
-				DeviceComplianceActionItemId:             "deviceComplianceActionItemIdValue",
+				DeviceCompliancePolicyId:                 "deviceCompliancePolicyId",
+				DeviceComplianceScheduledActionForRuleId: "deviceComplianceScheduledActionForRuleId",
+				DeviceComplianceActionItemId:             "deviceComplianceActionItemId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/deviceCompliancePolicies/deviceCompliancePolicyIdValue/scheduledActionsForRule/deviceComplianceScheduledActionForRuleIdValue/scheduledActionConfigurations/deviceComplianceActionItemIdValue/extra",
+			Input: "/deviceManagement/deviceCompliancePolicies/deviceCompliancePolicyId/scheduledActionsForRule/deviceComplianceScheduledActionForRuleId/scheduledActionConfigurations/deviceComplianceActionItemId/extra",
 			Error: true,
 		},
 	}
@@ -154,70 +154,70 @@ func TestParseDeviceManagementDeviceCompliancePolicyIdScheduledActionsForRuleIdS
 		},
 		{
 			// Incomplete URI
-			Input: "/deviceManagement/deviceCompliancePolicies/deviceCompliancePolicyIdValue",
+			Input: "/deviceManagement/deviceCompliancePolicies/deviceCompliancePolicyId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/dEvIcEcOmPlIaNcEpOlIcIeS/dEvIcEcOmPlIaNcEpOlIcYiDvAlUe",
+			Input: "/dEvIcEmAnAgEmEnT/dEvIcEcOmPlIaNcEpOlIcIeS/dEvIcEcOmPlIaNcEpOlIcYiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/deviceManagement/deviceCompliancePolicies/deviceCompliancePolicyIdValue/scheduledActionsForRule",
+			Input: "/deviceManagement/deviceCompliancePolicies/deviceCompliancePolicyId/scheduledActionsForRule",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/dEvIcEcOmPlIaNcEpOlIcIeS/dEvIcEcOmPlIaNcEpOlIcYiDvAlUe/sChEdUlEdAcTiOnSfOrRuLe",
+			Input: "/dEvIcEmAnAgEmEnT/dEvIcEcOmPlIaNcEpOlIcIeS/dEvIcEcOmPlIaNcEpOlIcYiD/sChEdUlEdAcTiOnSfOrRuLe",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/deviceManagement/deviceCompliancePolicies/deviceCompliancePolicyIdValue/scheduledActionsForRule/deviceComplianceScheduledActionForRuleIdValue",
+			Input: "/deviceManagement/deviceCompliancePolicies/deviceCompliancePolicyId/scheduledActionsForRule/deviceComplianceScheduledActionForRuleId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/dEvIcEcOmPlIaNcEpOlIcIeS/dEvIcEcOmPlIaNcEpOlIcYiDvAlUe/sChEdUlEdAcTiOnSfOrRuLe/dEvIcEcOmPlIaNcEsChEdUlEdAcTiOnFoRrUlEiDvAlUe",
+			Input: "/dEvIcEmAnAgEmEnT/dEvIcEcOmPlIaNcEpOlIcIeS/dEvIcEcOmPlIaNcEpOlIcYiD/sChEdUlEdAcTiOnSfOrRuLe/dEvIcEcOmPlIaNcEsChEdUlEdAcTiOnFoRrUlEiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/deviceManagement/deviceCompliancePolicies/deviceCompliancePolicyIdValue/scheduledActionsForRule/deviceComplianceScheduledActionForRuleIdValue/scheduledActionConfigurations",
+			Input: "/deviceManagement/deviceCompliancePolicies/deviceCompliancePolicyId/scheduledActionsForRule/deviceComplianceScheduledActionForRuleId/scheduledActionConfigurations",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/dEvIcEcOmPlIaNcEpOlIcIeS/dEvIcEcOmPlIaNcEpOlIcYiDvAlUe/sChEdUlEdAcTiOnSfOrRuLe/dEvIcEcOmPlIaNcEsChEdUlEdAcTiOnFoRrUlEiDvAlUe/sChEdUlEdAcTiOnCoNfIgUrAtIoNs",
+			Input: "/dEvIcEmAnAgEmEnT/dEvIcEcOmPlIaNcEpOlIcIeS/dEvIcEcOmPlIaNcEpOlIcYiD/sChEdUlEdAcTiOnSfOrRuLe/dEvIcEcOmPlIaNcEsChEdUlEdAcTiOnFoRrUlEiD/sChEdUlEdAcTiOnCoNfIgUrAtIoNs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/deviceCompliancePolicies/deviceCompliancePolicyIdValue/scheduledActionsForRule/deviceComplianceScheduledActionForRuleIdValue/scheduledActionConfigurations/deviceComplianceActionItemIdValue",
+			Input: "/deviceManagement/deviceCompliancePolicies/deviceCompliancePolicyId/scheduledActionsForRule/deviceComplianceScheduledActionForRuleId/scheduledActionConfigurations/deviceComplianceActionItemId",
 			Expected: &DeviceManagementDeviceCompliancePolicyIdScheduledActionsForRuleIdScheduledActionConfigurationId{
-				DeviceCompliancePolicyId:                 "deviceCompliancePolicyIdValue",
-				DeviceComplianceScheduledActionForRuleId: "deviceComplianceScheduledActionForRuleIdValue",
-				DeviceComplianceActionItemId:             "deviceComplianceActionItemIdValue",
+				DeviceCompliancePolicyId:                 "deviceCompliancePolicyId",
+				DeviceComplianceScheduledActionForRuleId: "deviceComplianceScheduledActionForRuleId",
+				DeviceComplianceActionItemId:             "deviceComplianceActionItemId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/deviceCompliancePolicies/deviceCompliancePolicyIdValue/scheduledActionsForRule/deviceComplianceScheduledActionForRuleIdValue/scheduledActionConfigurations/deviceComplianceActionItemIdValue/extra",
+			Input: "/deviceManagement/deviceCompliancePolicies/deviceCompliancePolicyId/scheduledActionsForRule/deviceComplianceScheduledActionForRuleId/scheduledActionConfigurations/deviceComplianceActionItemId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/dEvIcEcOmPlIaNcEpOlIcIeS/dEvIcEcOmPlIaNcEpOlIcYiDvAlUe/sChEdUlEdAcTiOnSfOrRuLe/dEvIcEcOmPlIaNcEsChEdUlEdAcTiOnFoRrUlEiDvAlUe/sChEdUlEdAcTiOnCoNfIgUrAtIoNs/dEvIcEcOmPlIaNcEaCtIoNiTeMiDvAlUe",
+			Input: "/dEvIcEmAnAgEmEnT/dEvIcEcOmPlIaNcEpOlIcIeS/dEvIcEcOmPlIaNcEpOlIcYiD/sChEdUlEdAcTiOnSfOrRuLe/dEvIcEcOmPlIaNcEsChEdUlEdAcTiOnFoRrUlEiD/sChEdUlEdAcTiOnCoNfIgUrAtIoNs/dEvIcEcOmPlIaNcEaCtIoNiTeMiD",
 			Expected: &DeviceManagementDeviceCompliancePolicyIdScheduledActionsForRuleIdScheduledActionConfigurationId{
-				DeviceCompliancePolicyId:                 "dEvIcEcOmPlIaNcEpOlIcYiDvAlUe",
-				DeviceComplianceScheduledActionForRuleId: "dEvIcEcOmPlIaNcEsChEdUlEdAcTiOnFoRrUlEiDvAlUe",
-				DeviceComplianceActionItemId:             "dEvIcEcOmPlIaNcEaCtIoNiTeMiDvAlUe",
+				DeviceCompliancePolicyId:                 "dEvIcEcOmPlIaNcEpOlIcYiD",
+				DeviceComplianceScheduledActionForRuleId: "dEvIcEcOmPlIaNcEsChEdUlEdAcTiOnFoRrUlEiD",
+				DeviceComplianceActionItemId:             "dEvIcEcOmPlIaNcEaCtIoNiTeMiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/dEvIcEcOmPlIaNcEpOlIcIeS/dEvIcEcOmPlIaNcEpOlIcYiDvAlUe/sChEdUlEdAcTiOnSfOrRuLe/dEvIcEcOmPlIaNcEsChEdUlEdAcTiOnFoRrUlEiDvAlUe/sChEdUlEdAcTiOnCoNfIgUrAtIoNs/dEvIcEcOmPlIaNcEaCtIoNiTeMiDvAlUe/extra",
+			Input: "/dEvIcEmAnAgEmEnT/dEvIcEcOmPlIaNcEpOlIcIeS/dEvIcEcOmPlIaNcEpOlIcYiD/sChEdUlEdAcTiOnSfOrRuLe/dEvIcEcOmPlIaNcEsChEdUlEdAcTiOnFoRrUlEiD/sChEdUlEdAcTiOnCoNfIgUrAtIoNs/dEvIcEcOmPlIaNcEaCtIoNiTeMiD/extra",
 			Error: true,
 		},
 	}

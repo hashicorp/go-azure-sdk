@@ -95,7 +95,7 @@ func (id IdentityGovernancePrivilegedAccessGroupAssignmentScheduleInstanceId) Se
 		resourceids.StaticSegment("privilegedAccess", "privilegedAccess", "privilegedAccess"),
 		resourceids.StaticSegment("group", "group", "group"),
 		resourceids.StaticSegment("assignmentScheduleInstances", "assignmentScheduleInstances", "assignmentScheduleInstances"),
-		resourceids.UserSpecifiedSegment("privilegedAccessGroupAssignmentScheduleInstanceId", "privilegedAccessGroupAssignmentScheduleInstanceIdValue"),
+		resourceids.UserSpecifiedSegment("privilegedAccessGroupAssignmentScheduleInstanceId", "privilegedAccessGroupAssignmentScheduleInstanceId"),
 	}
 }
 

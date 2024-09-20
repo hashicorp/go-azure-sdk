@@ -302,10 +302,74 @@ func (s ManagedDevice) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &ManagedDevice{}
 
 func (s *ManagedDevice) UnmarshalJSON(bytes []byte) error {
-	type alias ManagedDevice
-	var decoded alias
+
+	var decoded struct {
+		ActivationLockBypassCode                  nullable.Type[string]                      `json:"activationLockBypassCode,omitempty"`
+		AndroidSecurityPatchLevel                 nullable.Type[string]                      `json:"androidSecurityPatchLevel,omitempty"`
+		AzureADDeviceId                           nullable.Type[string]                      `json:"azureADDeviceId,omitempty"`
+		AzureADRegistered                         nullable.Type[bool]                        `json:"azureADRegistered,omitempty"`
+		ComplianceGracePeriodExpirationDateTime   *string                                    `json:"complianceGracePeriodExpirationDateTime,omitempty"`
+		ComplianceState                           *ComplianceState                           `json:"complianceState,omitempty"`
+		ConfigurationManagerClientEnabledFeatures *ConfigurationManagerClientEnabledFeatures `json:"configurationManagerClientEnabledFeatures,omitempty"`
+		DeviceActionResults                       *[]DeviceActionResult                      `json:"deviceActionResults,omitempty"`
+		DeviceCategory                            *DeviceCategory                            `json:"deviceCategory,omitempty"`
+		DeviceCategoryDisplayName                 nullable.Type[string]                      `json:"deviceCategoryDisplayName,omitempty"`
+		DeviceCompliancePolicyStates              *[]DeviceCompliancePolicyState             `json:"deviceCompliancePolicyStates,omitempty"`
+		DeviceConfigurationStates                 *[]DeviceConfigurationState                `json:"deviceConfigurationStates,omitempty"`
+		DeviceEnrollmentType                      *DeviceEnrollmentType                      `json:"deviceEnrollmentType,omitempty"`
+		DeviceHealthAttestationState              *DeviceHealthAttestationState              `json:"deviceHealthAttestationState,omitempty"`
+		DeviceName                                nullable.Type[string]                      `json:"deviceName,omitempty"`
+		DeviceRegistrationState                   *DeviceRegistrationState                   `json:"deviceRegistrationState,omitempty"`
+		EasActivated                              *bool                                      `json:"easActivated,omitempty"`
+		EasActivationDateTime                     *string                                    `json:"easActivationDateTime,omitempty"`
+		EasDeviceId                               nullable.Type[string]                      `json:"easDeviceId,omitempty"`
+		EmailAddress                              nullable.Type[string]                      `json:"emailAddress,omitempty"`
+		EnrolledDateTime                          *string                                    `json:"enrolledDateTime,omitempty"`
+		EnrollmentProfileName                     nullable.Type[string]                      `json:"enrollmentProfileName,omitempty"`
+		EthernetMacAddress                        nullable.Type[string]                      `json:"ethernetMacAddress,omitempty"`
+		ExchangeAccessState                       *DeviceManagementExchangeAccessState       `json:"exchangeAccessState,omitempty"`
+		ExchangeAccessStateReason                 *DeviceManagementExchangeAccessStateReason `json:"exchangeAccessStateReason,omitempty"`
+		ExchangeLastSuccessfulSyncDateTime        *string                                    `json:"exchangeLastSuccessfulSyncDateTime,omitempty"`
+		FreeStorageSpaceInBytes                   *int64                                     `json:"freeStorageSpaceInBytes,omitempty"`
+		Iccid                                     nullable.Type[string]                      `json:"iccid,omitempty"`
+		Imei                                      nullable.Type[string]                      `json:"imei,omitempty"`
+		IsEncrypted                               *bool                                      `json:"isEncrypted,omitempty"`
+		IsSupervised                              *bool                                      `json:"isSupervised,omitempty"`
+		JailBroken                                nullable.Type[string]                      `json:"jailBroken,omitempty"`
+		LastSyncDateTime                          *string                                    `json:"lastSyncDateTime,omitempty"`
+		LogCollectionRequests                     *[]DeviceLogCollectionResponse             `json:"logCollectionRequests,omitempty"`
+		ManagedDeviceName                         nullable.Type[string]                      `json:"managedDeviceName,omitempty"`
+		ManagedDeviceOwnerType                    *ManagedDeviceOwnerType                    `json:"managedDeviceOwnerType,omitempty"`
+		ManagementAgent                           *ManagementAgentType                       `json:"managementAgent,omitempty"`
+		ManagementCertificateExpirationDate       *string                                    `json:"managementCertificateExpirationDate,omitempty"`
+		Manufacturer                              nullable.Type[string]                      `json:"manufacturer,omitempty"`
+		Meid                                      nullable.Type[string]                      `json:"meid,omitempty"`
+		Model                                     nullable.Type[string]                      `json:"model,omitempty"`
+		Notes                                     nullable.Type[string]                      `json:"notes,omitempty"`
+		OperatingSystem                           nullable.Type[string]                      `json:"operatingSystem,omitempty"`
+		OsVersion                                 nullable.Type[string]                      `json:"osVersion,omitempty"`
+		PartnerReportedThreatState                *ManagedDevicePartnerReportedHealthState   `json:"partnerReportedThreatState,omitempty"`
+		PhoneNumber                               nullable.Type[string]                      `json:"phoneNumber,omitempty"`
+		PhysicalMemoryInBytes                     *int64                                     `json:"physicalMemoryInBytes,omitempty"`
+		RemoteAssistanceSessionErrorDetails       nullable.Type[string]                      `json:"remoteAssistanceSessionErrorDetails,omitempty"`
+		RemoteAssistanceSessionUrl                nullable.Type[string]                      `json:"remoteAssistanceSessionUrl,omitempty"`
+		RequireUserEnrollmentApproval             nullable.Type[bool]                        `json:"requireUserEnrollmentApproval,omitempty"`
+		SerialNumber                              nullable.Type[string]                      `json:"serialNumber,omitempty"`
+		SubscriberCarrier                         nullable.Type[string]                      `json:"subscriberCarrier,omitempty"`
+		TotalStorageSpaceInBytes                  *int64                                     `json:"totalStorageSpaceInBytes,omitempty"`
+		Udid                                      nullable.Type[string]                      `json:"udid,omitempty"`
+		UserDisplayName                           nullable.Type[string]                      `json:"userDisplayName,omitempty"`
+		UserId                                    nullable.Type[string]                      `json:"userId,omitempty"`
+		UserPrincipalName                         nullable.Type[string]                      `json:"userPrincipalName,omitempty"`
+		Users                                     *[]User                                    `json:"users,omitempty"`
+		WiFiMacAddress                            nullable.Type[string]                      `json:"wiFiMacAddress,omitempty"`
+		WindowsProtectionState                    *WindowsProtectionState                    `json:"windowsProtectionState,omitempty"`
+		Id                                        *string                                    `json:"id,omitempty"`
+		ODataId                                   *string                                    `json:"@odata.id,omitempty"`
+		ODataType                                 *string                                    `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into ManagedDevice: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.ActivationLockBypassCode = decoded.ActivationLockBypassCode
@@ -335,7 +399,6 @@ func (s *ManagedDevice) UnmarshalJSON(bytes []byte) error {
 	s.ExchangeLastSuccessfulSyncDateTime = decoded.ExchangeLastSuccessfulSyncDateTime
 	s.FreeStorageSpaceInBytes = decoded.FreeStorageSpaceInBytes
 	s.Iccid = decoded.Iccid
-	s.Id = decoded.Id
 	s.Imei = decoded.Imei
 	s.IsEncrypted = decoded.IsEncrypted
 	s.IsSupervised = decoded.IsSupervised
@@ -350,8 +413,6 @@ func (s *ManagedDevice) UnmarshalJSON(bytes []byte) error {
 	s.Meid = decoded.Meid
 	s.Model = decoded.Model
 	s.Notes = decoded.Notes
-	s.ODataId = decoded.ODataId
-	s.ODataType = decoded.ODataType
 	s.OperatingSystem = decoded.OperatingSystem
 	s.OsVersion = decoded.OsVersion
 	s.PartnerReportedThreatState = decoded.PartnerReportedThreatState
@@ -370,6 +431,9 @@ func (s *ManagedDevice) UnmarshalJSON(bytes []byte) error {
 	s.Users = decoded.Users
 	s.WiFiMacAddress = decoded.WiFiMacAddress
 	s.WindowsProtectionState = decoded.WindowsProtectionState
+	s.Id = decoded.Id
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -392,5 +456,6 @@ func (s *ManagedDevice) UnmarshalJSON(bytes []byte) error {
 		}
 		s.DeviceActionResults = &output
 	}
+
 	return nil
 }

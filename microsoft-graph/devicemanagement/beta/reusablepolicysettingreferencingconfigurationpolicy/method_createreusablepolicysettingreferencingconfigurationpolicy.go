@@ -19,16 +19,45 @@ type CreateReusablePolicySettingReferencingConfigurationPolicyOperationResponse 
 	Model        *beta.DeviceManagementConfigurationPolicy
 }
 
+type CreateReusablePolicySettingReferencingConfigurationPolicyOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateReusablePolicySettingReferencingConfigurationPolicyOperationOptions() CreateReusablePolicySettingReferencingConfigurationPolicyOperationOptions {
+	return CreateReusablePolicySettingReferencingConfigurationPolicyOperationOptions{}
+}
+
+func (o CreateReusablePolicySettingReferencingConfigurationPolicyOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateReusablePolicySettingReferencingConfigurationPolicyOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateReusablePolicySettingReferencingConfigurationPolicyOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateReusablePolicySettingReferencingConfigurationPolicy - Create new navigation property to
 // referencingConfigurationPolicies for deviceManagement
-func (c ReusablePolicySettingReferencingConfigurationPolicyClient) CreateReusablePolicySettingReferencingConfigurationPolicy(ctx context.Context, id beta.DeviceManagementReusablePolicySettingId, input beta.DeviceManagementConfigurationPolicy) (result CreateReusablePolicySettingReferencingConfigurationPolicyOperationResponse, err error) {
+func (c ReusablePolicySettingReferencingConfigurationPolicyClient) CreateReusablePolicySettingReferencingConfigurationPolicy(ctx context.Context, id beta.DeviceManagementReusablePolicySettingId, input beta.DeviceManagementConfigurationPolicy, options CreateReusablePolicySettingReferencingConfigurationPolicyOperationOptions) (result CreateReusablePolicySettingReferencingConfigurationPolicyOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/referencingConfigurationPolicies", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/referencingConfigurationPolicies", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

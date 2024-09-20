@@ -18,16 +18,45 @@ type CreateWindowsAutopilotDeploymentProfileAssignedDeviceUnassignUserFromDevice
 	OData        *odata.OData
 }
 
+type CreateWindowsAutopilotDeploymentProfileAssignedDeviceUnassignUserFromDeviceOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateWindowsAutopilotDeploymentProfileAssignedDeviceUnassignUserFromDeviceOperationOptions() CreateWindowsAutopilotDeploymentProfileAssignedDeviceUnassignUserFromDeviceOperationOptions {
+	return CreateWindowsAutopilotDeploymentProfileAssignedDeviceUnassignUserFromDeviceOperationOptions{}
+}
+
+func (o CreateWindowsAutopilotDeploymentProfileAssignedDeviceUnassignUserFromDeviceOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateWindowsAutopilotDeploymentProfileAssignedDeviceUnassignUserFromDeviceOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateWindowsAutopilotDeploymentProfileAssignedDeviceUnassignUserFromDeviceOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateWindowsAutopilotDeploymentProfileAssignedDeviceUnassignUserFromDevice - Invoke action unassignUserFromDevice.
 // Unassigns the user from an Autopilot device.
-func (c WindowsAutopilotDeploymentProfileAssignedDeviceClient) CreateWindowsAutopilotDeploymentProfileAssignedDeviceUnassignUserFromDevice(ctx context.Context, id beta.DeviceManagementWindowsAutopilotDeploymentProfileIdAssignedDeviceId) (result CreateWindowsAutopilotDeploymentProfileAssignedDeviceUnassignUserFromDeviceOperationResponse, err error) {
+func (c WindowsAutopilotDeploymentProfileAssignedDeviceClient) CreateWindowsAutopilotDeploymentProfileAssignedDeviceUnassignUserFromDevice(ctx context.Context, id beta.DeviceManagementWindowsAutopilotDeploymentProfileIdAssignedDeviceId, options CreateWindowsAutopilotDeploymentProfileAssignedDeviceUnassignUserFromDeviceOperationOptions) (result CreateWindowsAutopilotDeploymentProfileAssignedDeviceUnassignUserFromDeviceOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/unassignUserFromDevice", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/unassignUserFromDevice", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

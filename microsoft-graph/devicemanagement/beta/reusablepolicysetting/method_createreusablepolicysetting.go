@@ -18,15 +18,44 @@ type CreateReusablePolicySettingOperationResponse struct {
 	Model        *beta.DeviceManagementReusablePolicySetting
 }
 
+type CreateReusablePolicySettingOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateReusablePolicySettingOperationOptions() CreateReusablePolicySettingOperationOptions {
+	return CreateReusablePolicySettingOperationOptions{}
+}
+
+func (o CreateReusablePolicySettingOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateReusablePolicySettingOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateReusablePolicySettingOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateReusablePolicySetting - Create new navigation property to reusablePolicySettings for deviceManagement
-func (c ReusablePolicySettingClient) CreateReusablePolicySetting(ctx context.Context, input beta.DeviceManagementReusablePolicySetting) (result CreateReusablePolicySettingOperationResponse, err error) {
+func (c ReusablePolicySettingClient) CreateReusablePolicySetting(ctx context.Context, input beta.DeviceManagementReusablePolicySetting, options CreateReusablePolicySettingOperationOptions) (result CreateReusablePolicySettingOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/deviceManagement/reusablePolicySettings",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/deviceManagement/reusablePolicySettings",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

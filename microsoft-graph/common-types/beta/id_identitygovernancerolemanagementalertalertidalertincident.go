@@ -100,9 +100,9 @@ func (id IdentityGovernanceRoleManagementAlertAlertIdAlertIncidentId) Segments()
 		resourceids.StaticSegment("identityGovernance", "identityGovernance", "identityGovernance"),
 		resourceids.StaticSegment("roleManagementAlerts", "roleManagementAlerts", "roleManagementAlerts"),
 		resourceids.StaticSegment("alerts", "alerts", "alerts"),
-		resourceids.UserSpecifiedSegment("unifiedRoleManagementAlertId", "unifiedRoleManagementAlertIdValue"),
+		resourceids.UserSpecifiedSegment("unifiedRoleManagementAlertId", "unifiedRoleManagementAlertId"),
 		resourceids.StaticSegment("alertIncidents", "alertIncidents", "alertIncidents"),
-		resourceids.UserSpecifiedSegment("unifiedRoleManagementAlertIncidentId", "unifiedRoleManagementAlertIncidentIdValue"),
+		resourceids.UserSpecifiedSegment("unifiedRoleManagementAlertIncidentId", "unifiedRoleManagementAlertIncidentId"),
 	}
 }
 

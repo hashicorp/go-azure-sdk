@@ -126,25 +126,41 @@ func (s BaseDeviceManagementTemplateImpl) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &BaseDeviceManagementTemplateImpl{}
 
 func (s *BaseDeviceManagementTemplateImpl) UnmarshalJSON(bytes []byte) error {
-	type alias BaseDeviceManagementTemplateImpl
-	var decoded alias
+
+	var decoded struct {
+		Categories        *[]DeviceManagementTemplateSettingCategory `json:"categories,omitempty"`
+		Description       nullable.Type[string]                      `json:"description,omitempty"`
+		DisplayName       *string                                    `json:"displayName,omitempty"`
+		IntentCount       *int64                                     `json:"intentCount,omitempty"`
+		IsDeprecated      *bool                                      `json:"isDeprecated,omitempty"`
+		MigratableTo      *[]DeviceManagementTemplate                `json:"migratableTo,omitempty"`
+		PlatformType      *PolicyPlatformType                        `json:"platformType,omitempty"`
+		PublishedDateTime *string                                    `json:"publishedDateTime,omitempty"`
+		Settings          *[]DeviceManagementSettingInstance         `json:"settings,omitempty"`
+		TemplateSubtype   *DeviceManagementTemplateSubtype           `json:"templateSubtype,omitempty"`
+		TemplateType      *DeviceManagementTemplateType              `json:"templateType,omitempty"`
+		VersionInfo       nullable.Type[string]                      `json:"versionInfo,omitempty"`
+		Id                *string                                    `json:"id,omitempty"`
+		ODataId           *string                                    `json:"@odata.id,omitempty"`
+		ODataType         *string                                    `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into BaseDeviceManagementTemplateImpl: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.Categories = decoded.Categories
 	s.Description = decoded.Description
 	s.DisplayName = decoded.DisplayName
-	s.Id = decoded.Id
 	s.IntentCount = decoded.IntentCount
 	s.IsDeprecated = decoded.IsDeprecated
-	s.ODataId = decoded.ODataId
-	s.ODataType = decoded.ODataType
 	s.PlatformType = decoded.PlatformType
 	s.PublishedDateTime = decoded.PublishedDateTime
 	s.TemplateSubtype = decoded.TemplateSubtype
 	s.TemplateType = decoded.TemplateType
 	s.VersionInfo = decoded.VersionInfo
+	s.Id = decoded.Id
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -184,6 +200,7 @@ func (s *BaseDeviceManagementTemplateImpl) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Settings = &output
 	}
+
 	return nil
 }
 
@@ -197,9 +214,9 @@ func UnmarshalDeviceManagementTemplateImplementation(input []byte) (DeviceManage
 		return nil, fmt.Errorf("unmarshaling DeviceManagementTemplate into map[string]interface: %+v", err)
 	}
 
-	value, ok := temp["@odata.type"].(string)
-	if !ok {
-		return nil, nil
+	var value string
+	if v, ok := temp["@odata.type"]; ok {
+		value = fmt.Sprintf("%v", v)
 	}
 
 	if strings.EqualFold(value, "#microsoft.graph.securityBaselineTemplate") {

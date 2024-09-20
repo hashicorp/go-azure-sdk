@@ -18,15 +18,44 @@ type SetJoinedTeamChannelMessageReplyReactionOperationResponse struct {
 	OData        *odata.OData
 }
 
+type SetJoinedTeamChannelMessageReplyReactionOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultSetJoinedTeamChannelMessageReplyReactionOperationOptions() SetJoinedTeamChannelMessageReplyReactionOperationOptions {
+	return SetJoinedTeamChannelMessageReplyReactionOperationOptions{}
+}
+
+func (o SetJoinedTeamChannelMessageReplyReactionOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o SetJoinedTeamChannelMessageReplyReactionOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o SetJoinedTeamChannelMessageReplyReactionOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // SetJoinedTeamChannelMessageReplyReaction - Invoke action setReaction
-func (c JoinedTeamChannelMessageReplyClient) SetJoinedTeamChannelMessageReplyReaction(ctx context.Context, id stable.UserIdJoinedTeamIdChannelIdMessageIdReplyId, input SetJoinedTeamChannelMessageReplyReactionRequest) (result SetJoinedTeamChannelMessageReplyReactionOperationResponse, err error) {
+func (c JoinedTeamChannelMessageReplyClient) SetJoinedTeamChannelMessageReplyReaction(ctx context.Context, id stable.UserIdJoinedTeamIdChannelIdMessageIdReplyId, input SetJoinedTeamChannelMessageReplyReactionRequest, options SetJoinedTeamChannelMessageReplyReactionOperationOptions) (result SetJoinedTeamChannelMessageReplyReactionOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/setReaction", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/setReaction", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/deviceconfiguration` Documentation
 
-The `deviceconfiguration` SDK allows for interaction with the Azure Resource Manager Service `devicemanagement` (API Version `beta`).
+The `deviceconfiguration` SDK allows for interaction with Microsoft Graph `devicemanagement` (API Version `beta`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -15,7 +15,7 @@ import "github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/
 ### Client Initialization
 
 ```go
-client := deviceconfiguration.NewDeviceConfigurationClientWithBaseURI("https://management.azure.com")
+client := deviceconfiguration.NewDeviceConfigurationClientWithBaseURI("https://graph.microsoft.com")
 client.Client.Authorizer = authorizer
 ```
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := deviceconfiguration.NewDeviceManagementDeviceConfigurationID("deviceConfigurationIdValue")
+id := deviceconfiguration.NewDeviceManagementDeviceConfigurationID("deviceConfigurationId")
 
 payload := deviceconfiguration.AssignDeviceConfigurationsRequest{
 	// ...
@@ -52,7 +52,7 @@ payload := deviceconfiguration.DeviceConfiguration{
 }
 
 
-read, err := client.CreateDeviceConfiguration(ctx, payload)
+read, err := client.CreateDeviceConfiguration(ctx, payload, deviceconfiguration.DefaultCreateDeviceConfigurationOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -66,14 +66,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := deviceconfiguration.NewDeviceManagementDeviceConfigurationID("deviceConfigurationIdValue")
+id := deviceconfiguration.NewDeviceManagementDeviceConfigurationID("deviceConfigurationId")
 
 payload := deviceconfiguration.CreateDeviceConfigurationAssignedAccessMultiModeProfileRequest{
 	// ...
 }
 
 
-read, err := client.CreateDeviceConfigurationAssignedAccessMultiModeProfile(ctx, id, payload)
+read, err := client.CreateDeviceConfigurationAssignedAccessMultiModeProfile(ctx, id, payload, deviceconfiguration.DefaultCreateDeviceConfigurationAssignedAccessMultiModeProfileOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -87,14 +87,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := deviceconfiguration.NewDeviceManagementDeviceConfigurationID("deviceConfigurationIdValue")
+id := deviceconfiguration.NewDeviceManagementDeviceConfigurationID("deviceConfigurationId")
 
 payload := deviceconfiguration.CreateDeviceConfigurationWindowsPrivacyAccessControlRequest{
 	// ...
 }
 
 
-read, err := client.CreateDeviceConfigurationWindowsPrivacyAccessControl(ctx, id, payload)
+read, err := client.CreateDeviceConfigurationWindowsPrivacyAccessControl(ctx, id, payload, deviceconfiguration.DefaultCreateDeviceConfigurationWindowsPrivacyAccessControlOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -108,7 +108,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := deviceconfiguration.NewDeviceManagementDeviceConfigurationID("deviceConfigurationIdValue")
+id := deviceconfiguration.NewDeviceManagementDeviceConfigurationID("deviceConfigurationId")
 
 read, err := client.DeleteDeviceConfiguration(ctx, id, deviceconfiguration.DefaultDeleteDeviceConfigurationOperationOptions())
 if err != nil {
@@ -124,7 +124,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := deviceconfiguration.NewDeviceManagementDeviceConfigurationID("deviceConfigurationIdValue")
+id := deviceconfiguration.NewDeviceManagementDeviceConfigurationID("deviceConfigurationId")
 
 read, err := client.GetDeviceConfiguration(ctx, id, deviceconfiguration.DefaultGetDeviceConfigurationOperationOptions())
 if err != nil {
@@ -215,14 +215,14 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := deviceconfiguration.NewDeviceManagementDeviceConfigurationID("deviceConfigurationIdValue")
+id := deviceconfiguration.NewDeviceManagementDeviceConfigurationID("deviceConfigurationId")
 
 payload := deviceconfiguration.DeviceConfiguration{
 	// ...
 }
 
 
-read, err := client.UpdateDeviceConfiguration(ctx, id, payload)
+read, err := client.UpdateDeviceConfiguration(ctx, id, payload, deviceconfiguration.DefaultUpdateDeviceConfigurationOperationOptions())
 if err != nil {
 	// handle the error
 }

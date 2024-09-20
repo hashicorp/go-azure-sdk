@@ -116,15 +116,34 @@ func (s UserAccountInformation) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &UserAccountInformation{}
 
 func (s *UserAccountInformation) UnmarshalJSON(bytes []byte) error {
-	type alias UserAccountInformation
-	var decoded alias
+
+	var decoded struct {
+		AgeGroup             nullable.Type[string]      `json:"ageGroup,omitempty"`
+		CountryCode          *string                    `json:"countryCode,omitempty"`
+		PreferredLanguageTag *LocaleInfo                `json:"preferredLanguageTag,omitempty"`
+		UserPrincipalName    *string                    `json:"userPrincipalName,omitempty"`
+		AllowedAudiences     *AllowedAudiences          `json:"allowedAudiences,omitempty"`
+		CreatedBy            IdentitySet                `json:"createdBy"`
+		CreatedDateTime      *string                    `json:"createdDateTime,omitempty"`
+		Inference            *InferenceData             `json:"inference,omitempty"`
+		IsSearchable         nullable.Type[bool]        `json:"isSearchable,omitempty"`
+		LastModifiedBy       IdentitySet                `json:"lastModifiedBy"`
+		LastModifiedDateTime *string                    `json:"lastModifiedDateTime,omitempty"`
+		Source               *PersonDataSources         `json:"source,omitempty"`
+		Sources              *[]ProfileSourceAnnotation `json:"sources,omitempty"`
+		Id                   *string                    `json:"id,omitempty"`
+		ODataId              *string                    `json:"@odata.id,omitempty"`
+		ODataType            *string                    `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into UserAccountInformation: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.AgeGroup = decoded.AgeGroup
-	s.AllowedAudiences = decoded.AllowedAudiences
 	s.CountryCode = decoded.CountryCode
+	s.PreferredLanguageTag = decoded.PreferredLanguageTag
+	s.UserPrincipalName = decoded.UserPrincipalName
+	s.AllowedAudiences = decoded.AllowedAudiences
 	s.CreatedDateTime = decoded.CreatedDateTime
 	s.Id = decoded.Id
 	s.Inference = decoded.Inference
@@ -132,10 +151,8 @@ func (s *UserAccountInformation) UnmarshalJSON(bytes []byte) error {
 	s.LastModifiedDateTime = decoded.LastModifiedDateTime
 	s.ODataId = decoded.ODataId
 	s.ODataType = decoded.ODataType
-	s.PreferredLanguageTag = decoded.PreferredLanguageTag
 	s.Source = decoded.Source
 	s.Sources = decoded.Sources
-	s.UserPrincipalName = decoded.UserPrincipalName
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -157,5 +174,6 @@ func (s *UserAccountInformation) UnmarshalJSON(bytes []byte) error {
 		}
 		s.LastModifiedBy = impl
 	}
+
 	return nil
 }

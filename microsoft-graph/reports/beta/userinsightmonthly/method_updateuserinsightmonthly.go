@@ -17,15 +17,44 @@ type UpdateUserInsightMonthlyOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateUserInsightMonthlyOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateUserInsightMonthlyOperationOptions() UpdateUserInsightMonthlyOperationOptions {
+	return UpdateUserInsightMonthlyOperationOptions{}
+}
+
+func (o UpdateUserInsightMonthlyOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateUserInsightMonthlyOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateUserInsightMonthlyOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateUserInsightMonthly - Update the navigation property monthly in reports
-func (c UserInsightMonthlyClient) UpdateUserInsightMonthly(ctx context.Context, input beta.MonthlyUserInsightMetricsRoot) (result UpdateUserInsightMonthlyOperationResponse, err error) {
+func (c UserInsightMonthlyClient) UpdateUserInsightMonthly(ctx context.Context, input beta.MonthlyUserInsightMetricsRoot, options UpdateUserInsightMonthlyOperationOptions) (result UpdateUserInsightMonthlyOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       "/reports/userInsights/monthly",
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          "/reports/userInsights/monthly",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

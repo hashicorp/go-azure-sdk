@@ -18,16 +18,45 @@ type CreateAdvancedThreatProtectionOnboardingStateSummaryDeviceSettingStateOpera
 	Model        *beta.AdvancedThreatProtectionOnboardingDeviceSettingState
 }
 
+type CreateAdvancedThreatProtectionOnboardingStateSummaryDeviceSettingStateOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateAdvancedThreatProtectionOnboardingStateSummaryDeviceSettingStateOperationOptions() CreateAdvancedThreatProtectionOnboardingStateSummaryDeviceSettingStateOperationOptions {
+	return CreateAdvancedThreatProtectionOnboardingStateSummaryDeviceSettingStateOperationOptions{}
+}
+
+func (o CreateAdvancedThreatProtectionOnboardingStateSummaryDeviceSettingStateOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateAdvancedThreatProtectionOnboardingStateSummaryDeviceSettingStateOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateAdvancedThreatProtectionOnboardingStateSummaryDeviceSettingStateOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateAdvancedThreatProtectionOnboardingStateSummaryDeviceSettingState - Create new navigation property to
 // advancedThreatProtectionOnboardingDeviceSettingStates for deviceManagement
-func (c AdvancedThreatProtectionOnboardingStateSummaryAdvancedThreatProtectionOnboardingDeviceSettingStateClient) CreateAdvancedThreatProtectionOnboardingStateSummaryDeviceSettingState(ctx context.Context, input beta.AdvancedThreatProtectionOnboardingDeviceSettingState) (result CreateAdvancedThreatProtectionOnboardingStateSummaryDeviceSettingStateOperationResponse, err error) {
+func (c AdvancedThreatProtectionOnboardingStateSummaryAdvancedThreatProtectionOnboardingDeviceSettingStateClient) CreateAdvancedThreatProtectionOnboardingStateSummaryDeviceSettingState(ctx context.Context, input beta.AdvancedThreatProtectionOnboardingDeviceSettingState, options CreateAdvancedThreatProtectionOnboardingStateSummaryDeviceSettingStateOperationOptions) (result CreateAdvancedThreatProtectionOnboardingStateSummaryDeviceSettingStateOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/deviceManagement/advancedThreatProtectionOnboardingStateSummary/advancedThreatProtectionOnboardingDeviceSettingStates",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/deviceManagement/advancedThreatProtectionOnboardingStateSummary/advancedThreatProtectionOnboardingDeviceSettingStates",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

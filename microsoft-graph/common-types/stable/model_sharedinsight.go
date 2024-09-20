@@ -78,19 +78,27 @@ func (s SharedInsight) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &SharedInsight{}
 
 func (s *SharedInsight) UnmarshalJSON(bytes []byte) error {
-	type alias SharedInsight
-	var decoded alias
+
+	var decoded struct {
+		LastShared            *SharingDetail         `json:"lastShared,omitempty"`
+		ResourceReference     *ResourceReference     `json:"resourceReference,omitempty"`
+		ResourceVisualization *ResourceVisualization `json:"resourceVisualization,omitempty"`
+		SharingHistory        *[]SharingDetail       `json:"sharingHistory,omitempty"`
+		Id                    *string                `json:"id,omitempty"`
+		ODataId               *string                `json:"@odata.id,omitempty"`
+		ODataType             *string                `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into SharedInsight: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
-	s.Id = decoded.Id
 	s.LastShared = decoded.LastShared
-	s.ODataId = decoded.ODataId
-	s.ODataType = decoded.ODataType
 	s.ResourceReference = decoded.ResourceReference
 	s.ResourceVisualization = decoded.ResourceVisualization
 	s.SharingHistory = decoded.SharingHistory
+	s.Id = decoded.Id
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -112,5 +120,6 @@ func (s *SharedInsight) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Resource = impl
 	}
+
 	return nil
 }

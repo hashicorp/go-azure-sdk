@@ -19,15 +19,44 @@ type CreateSiteAnalyticsItemActivityStatActivityOperationResponse struct {
 	Model        *beta.ItemActivity
 }
 
+type CreateSiteAnalyticsItemActivityStatActivityOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateSiteAnalyticsItemActivityStatActivityOperationOptions() CreateSiteAnalyticsItemActivityStatActivityOperationOptions {
+	return CreateSiteAnalyticsItemActivityStatActivityOperationOptions{}
+}
+
+func (o CreateSiteAnalyticsItemActivityStatActivityOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateSiteAnalyticsItemActivityStatActivityOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateSiteAnalyticsItemActivityStatActivityOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateSiteAnalyticsItemActivityStatActivity - Create new navigation property to activities for groups
-func (c SiteAnalyticsItemActivityStatActivityClient) CreateSiteAnalyticsItemActivityStatActivity(ctx context.Context, id beta.GroupIdSiteIdAnalyticsItemActivityStatId, input beta.ItemActivity) (result CreateSiteAnalyticsItemActivityStatActivityOperationResponse, err error) {
+func (c SiteAnalyticsItemActivityStatActivityClient) CreateSiteAnalyticsItemActivityStatActivity(ctx context.Context, id beta.GroupIdSiteIdAnalyticsItemActivityStatId, input beta.ItemActivity, options CreateSiteAnalyticsItemActivityStatActivityOperationOptions) (result CreateSiteAnalyticsItemActivityStatActivityOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/activities", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/activities", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

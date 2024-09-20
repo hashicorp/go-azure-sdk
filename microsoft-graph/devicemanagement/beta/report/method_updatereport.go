@@ -17,15 +17,44 @@ type UpdateReportOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateReportOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateReportOperationOptions() UpdateReportOperationOptions {
+	return UpdateReportOperationOptions{}
+}
+
+func (o UpdateReportOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateReportOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateReportOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateReport - Update the navigation property reports in deviceManagement
-func (c ReportClient) UpdateReport(ctx context.Context, input beta.DeviceManagementReports) (result UpdateReportOperationResponse, err error) {
+func (c ReportClient) UpdateReport(ctx context.Context, input beta.DeviceManagementReports, options UpdateReportOperationOptions) (result UpdateReportOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       "/deviceManagement/reports",
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          "/deviceManagement/reports",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

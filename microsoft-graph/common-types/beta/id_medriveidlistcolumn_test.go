@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &MeDriveIdListColumnId{}
 
 func TestNewMeDriveIdListColumnID(t *testing.T) {
-	id := NewMeDriveIdListColumnID("driveIdValue", "columnDefinitionIdValue")
+	id := NewMeDriveIdListColumnID("driveId", "columnDefinitionId")
 
-	if id.DriveId != "driveIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DriveId'", id.DriveId, "driveIdValue")
+	if id.DriveId != "driveId" {
+		t.Fatalf("Expected %q but got %q for Segment 'DriveId'", id.DriveId, "driveId")
 	}
 
-	if id.ColumnDefinitionId != "columnDefinitionIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ColumnDefinitionId'", id.ColumnDefinitionId, "columnDefinitionIdValue")
+	if id.ColumnDefinitionId != "columnDefinitionId" {
+		t.Fatalf("Expected %q but got %q for Segment 'ColumnDefinitionId'", id.ColumnDefinitionId, "columnDefinitionId")
 	}
 }
 
 func TestFormatMeDriveIdListColumnID(t *testing.T) {
-	actual := NewMeDriveIdListColumnID("driveIdValue", "columnDefinitionIdValue").ID()
-	expected := "/me/drives/driveIdValue/list/columns/columnDefinitionIdValue"
+	actual := NewMeDriveIdListColumnID("driveId", "columnDefinitionId").ID()
+	expected := "/me/drives/driveId/list/columns/columnDefinitionId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -54,30 +54,30 @@ func TestParseMeDriveIdListColumnID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/me/drives/driveIdValue",
+			Input: "/me/drives/driveId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/me/drives/driveIdValue/list",
+			Input: "/me/drives/driveId/list",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/me/drives/driveIdValue/list/columns",
+			Input: "/me/drives/driveId/list/columns",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/me/drives/driveIdValue/list/columns/columnDefinitionIdValue",
+			Input: "/me/drives/driveId/list/columns/columnDefinitionId",
 			Expected: &MeDriveIdListColumnId{
-				DriveId:            "driveIdValue",
-				ColumnDefinitionId: "columnDefinitionIdValue",
+				DriveId:            "driveId",
+				ColumnDefinitionId: "columnDefinitionId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/drives/driveIdValue/list/columns/columnDefinitionIdValue/extra",
+			Input: "/me/drives/driveId/list/columns/columnDefinitionId/extra",
 			Error: true,
 		},
 	}
@@ -140,58 +140,58 @@ func TestParseMeDriveIdListColumnIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/me/drives/driveIdValue",
+			Input: "/me/drives/driveId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/dRiVeS/dRiVeIdVaLuE",
+			Input: "/mE/dRiVeS/dRiVeId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/me/drives/driveIdValue/list",
+			Input: "/me/drives/driveId/list",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/dRiVeS/dRiVeIdVaLuE/lIsT",
+			Input: "/mE/dRiVeS/dRiVeId/lIsT",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/me/drives/driveIdValue/list/columns",
+			Input: "/me/drives/driveId/list/columns",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/dRiVeS/dRiVeIdVaLuE/lIsT/cOlUmNs",
+			Input: "/mE/dRiVeS/dRiVeId/lIsT/cOlUmNs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/me/drives/driveIdValue/list/columns/columnDefinitionIdValue",
+			Input: "/me/drives/driveId/list/columns/columnDefinitionId",
 			Expected: &MeDriveIdListColumnId{
-				DriveId:            "driveIdValue",
-				ColumnDefinitionId: "columnDefinitionIdValue",
+				DriveId:            "driveId",
+				ColumnDefinitionId: "columnDefinitionId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/drives/driveIdValue/list/columns/columnDefinitionIdValue/extra",
+			Input: "/me/drives/driveId/list/columns/columnDefinitionId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/dRiVeS/dRiVeIdVaLuE/lIsT/cOlUmNs/cOlUmNdEfInItIoNiDvAlUe",
+			Input: "/mE/dRiVeS/dRiVeId/lIsT/cOlUmNs/cOlUmNdEfInItIoNiD",
 			Expected: &MeDriveIdListColumnId{
-				DriveId:            "dRiVeIdVaLuE",
-				ColumnDefinitionId: "cOlUmNdEfInItIoNiDvAlUe",
+				DriveId:            "dRiVeId",
+				ColumnDefinitionId: "cOlUmNdEfInItIoNiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/mE/dRiVeS/dRiVeIdVaLuE/lIsT/cOlUmNs/cOlUmNdEfInItIoNiDvAlUe/extra",
+			Input: "/mE/dRiVeS/dRiVeId/lIsT/cOlUmNs/cOlUmNdEfInItIoNiD/extra",
 			Error: true,
 		},
 	}

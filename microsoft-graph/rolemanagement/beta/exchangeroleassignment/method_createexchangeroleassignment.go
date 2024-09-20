@@ -18,15 +18,44 @@ type CreateExchangeRoleAssignmentOperationResponse struct {
 	Model        *beta.UnifiedRoleAssignment
 }
 
+type CreateExchangeRoleAssignmentOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateExchangeRoleAssignmentOperationOptions() CreateExchangeRoleAssignmentOperationOptions {
+	return CreateExchangeRoleAssignmentOperationOptions{}
+}
+
+func (o CreateExchangeRoleAssignmentOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateExchangeRoleAssignmentOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateExchangeRoleAssignmentOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateExchangeRoleAssignment - Create unifiedRoleAssignment. Create a new unifiedRoleAssignment object.
-func (c ExchangeRoleAssignmentClient) CreateExchangeRoleAssignment(ctx context.Context, input beta.UnifiedRoleAssignment) (result CreateExchangeRoleAssignmentOperationResponse, err error) {
+func (c ExchangeRoleAssignmentClient) CreateExchangeRoleAssignment(ctx context.Context, input beta.UnifiedRoleAssignment, options CreateExchangeRoleAssignmentOperationOptions) (result CreateExchangeRoleAssignmentOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/roleManagement/exchange/roleAssignments",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/roleManagement/exchange/roleAssignments",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

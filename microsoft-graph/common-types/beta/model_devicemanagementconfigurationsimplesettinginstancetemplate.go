@@ -70,10 +70,16 @@ func (s DeviceManagementConfigurationSimpleSettingInstanceTemplate) MarshalJSON(
 var _ json.Unmarshaler = &DeviceManagementConfigurationSimpleSettingInstanceTemplate{}
 
 func (s *DeviceManagementConfigurationSimpleSettingInstanceTemplate) UnmarshalJSON(bytes []byte) error {
-	type alias DeviceManagementConfigurationSimpleSettingInstanceTemplate
-	var decoded alias
+
+	var decoded struct {
+		IsRequired                *bool   `json:"isRequired,omitempty"`
+		ODataId                   *string `json:"@odata.id,omitempty"`
+		ODataType                 *string `json:"@odata.type,omitempty"`
+		SettingDefinitionId       *string `json:"settingDefinitionId,omitempty"`
+		SettingInstanceTemplateId *string `json:"settingInstanceTemplateId,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into DeviceManagementConfigurationSimpleSettingInstanceTemplate: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.IsRequired = decoded.IsRequired
@@ -94,5 +100,6 @@ func (s *DeviceManagementConfigurationSimpleSettingInstanceTemplate) UnmarshalJS
 		}
 		s.SimpleSettingValueTemplate = impl
 	}
+
 	return nil
 }

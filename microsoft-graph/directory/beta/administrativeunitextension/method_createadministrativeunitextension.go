@@ -20,15 +20,44 @@ type CreateAdministrativeUnitExtensionOperationResponse struct {
 	Model        beta.Extension
 }
 
+type CreateAdministrativeUnitExtensionOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateAdministrativeUnitExtensionOperationOptions() CreateAdministrativeUnitExtensionOperationOptions {
+	return CreateAdministrativeUnitExtensionOperationOptions{}
+}
+
+func (o CreateAdministrativeUnitExtensionOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateAdministrativeUnitExtensionOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateAdministrativeUnitExtensionOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateAdministrativeUnitExtension - Create new navigation property to extensions for directory
-func (c AdministrativeUnitExtensionClient) CreateAdministrativeUnitExtension(ctx context.Context, id beta.DirectoryAdministrativeUnitId, input beta.Extension) (result CreateAdministrativeUnitExtensionOperationResponse, err error) {
+func (c AdministrativeUnitExtensionClient) CreateAdministrativeUnitExtension(ctx context.Context, id beta.DirectoryAdministrativeUnitId, input beta.Extension, options CreateAdministrativeUnitExtensionOperationOptions) (result CreateAdministrativeUnitExtensionOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/extensions", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/extensions", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

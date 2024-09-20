@@ -17,16 +17,45 @@ type CreateReportRetrieveAssignedApplicationsReportOperationResponse struct {
 	Model        *[]byte
 }
 
+type CreateReportRetrieveAssignedApplicationsReportOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateReportRetrieveAssignedApplicationsReportOperationOptions() CreateReportRetrieveAssignedApplicationsReportOperationOptions {
+	return CreateReportRetrieveAssignedApplicationsReportOperationOptions{}
+}
+
+func (o CreateReportRetrieveAssignedApplicationsReportOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateReportRetrieveAssignedApplicationsReportOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateReportRetrieveAssignedApplicationsReportOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateReportRetrieveAssignedApplicationsReport - Invoke action retrieveAssignedApplicationsReport. Retrieves assigned
 // applications report for troubleshooting blade
-func (c ReportClient) CreateReportRetrieveAssignedApplicationsReport(ctx context.Context, input CreateReportRetrieveAssignedApplicationsReportRequest) (result CreateReportRetrieveAssignedApplicationsReportOperationResponse, err error) {
+func (c ReportClient) CreateReportRetrieveAssignedApplicationsReport(ctx context.Context, input CreateReportRetrieveAssignedApplicationsReportRequest, options CreateReportRetrieveAssignedApplicationsReportOperationOptions) (result CreateReportRetrieveAssignedApplicationsReportOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/octet-stream",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/deviceManagement/reports/retrieveAssignedApplicationsReport",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/deviceManagement/reports/retrieveAssignedApplicationsReport",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

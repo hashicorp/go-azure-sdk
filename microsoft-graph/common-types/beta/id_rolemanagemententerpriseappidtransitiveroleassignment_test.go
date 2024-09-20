@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &RoleManagementEnterpriseAppIdTransitiveRoleAssignmentId{}
 
 func TestNewRoleManagementEnterpriseAppIdTransitiveRoleAssignmentID(t *testing.T) {
-	id := NewRoleManagementEnterpriseAppIdTransitiveRoleAssignmentID("rbacApplicationIdValue", "unifiedRoleAssignmentIdValue")
+	id := NewRoleManagementEnterpriseAppIdTransitiveRoleAssignmentID("rbacApplicationId", "unifiedRoleAssignmentId")
 
-	if id.RbacApplicationId != "rbacApplicationIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'RbacApplicationId'", id.RbacApplicationId, "rbacApplicationIdValue")
+	if id.RbacApplicationId != "rbacApplicationId" {
+		t.Fatalf("Expected %q but got %q for Segment 'RbacApplicationId'", id.RbacApplicationId, "rbacApplicationId")
 	}
 
-	if id.UnifiedRoleAssignmentId != "unifiedRoleAssignmentIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'UnifiedRoleAssignmentId'", id.UnifiedRoleAssignmentId, "unifiedRoleAssignmentIdValue")
+	if id.UnifiedRoleAssignmentId != "unifiedRoleAssignmentId" {
+		t.Fatalf("Expected %q but got %q for Segment 'UnifiedRoleAssignmentId'", id.UnifiedRoleAssignmentId, "unifiedRoleAssignmentId")
 	}
 }
 
 func TestFormatRoleManagementEnterpriseAppIdTransitiveRoleAssignmentID(t *testing.T) {
-	actual := NewRoleManagementEnterpriseAppIdTransitiveRoleAssignmentID("rbacApplicationIdValue", "unifiedRoleAssignmentIdValue").ID()
-	expected := "/roleManagement/enterpriseApps/rbacApplicationIdValue/transitiveRoleAssignments/unifiedRoleAssignmentIdValue"
+	actual := NewRoleManagementEnterpriseAppIdTransitiveRoleAssignmentID("rbacApplicationId", "unifiedRoleAssignmentId").ID()
+	expected := "/roleManagement/enterpriseApps/rbacApplicationId/transitiveRoleAssignments/unifiedRoleAssignmentId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -54,25 +54,25 @@ func TestParseRoleManagementEnterpriseAppIdTransitiveRoleAssignmentID(t *testing
 		},
 		{
 			// Incomplete URI
-			Input: "/roleManagement/enterpriseApps/rbacApplicationIdValue",
+			Input: "/roleManagement/enterpriseApps/rbacApplicationId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/roleManagement/enterpriseApps/rbacApplicationIdValue/transitiveRoleAssignments",
+			Input: "/roleManagement/enterpriseApps/rbacApplicationId/transitiveRoleAssignments",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/roleManagement/enterpriseApps/rbacApplicationIdValue/transitiveRoleAssignments/unifiedRoleAssignmentIdValue",
+			Input: "/roleManagement/enterpriseApps/rbacApplicationId/transitiveRoleAssignments/unifiedRoleAssignmentId",
 			Expected: &RoleManagementEnterpriseAppIdTransitiveRoleAssignmentId{
-				RbacApplicationId:       "rbacApplicationIdValue",
-				UnifiedRoleAssignmentId: "unifiedRoleAssignmentIdValue",
+				RbacApplicationId:       "rbacApplicationId",
+				UnifiedRoleAssignmentId: "unifiedRoleAssignmentId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/roleManagement/enterpriseApps/rbacApplicationIdValue/transitiveRoleAssignments/unifiedRoleAssignmentIdValue/extra",
+			Input: "/roleManagement/enterpriseApps/rbacApplicationId/transitiveRoleAssignments/unifiedRoleAssignmentId/extra",
 			Error: true,
 		},
 	}
@@ -135,48 +135,48 @@ func TestParseRoleManagementEnterpriseAppIdTransitiveRoleAssignmentIDInsensitive
 		},
 		{
 			// Incomplete URI
-			Input: "/roleManagement/enterpriseApps/rbacApplicationIdValue",
+			Input: "/roleManagement/enterpriseApps/rbacApplicationId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/rOlEmAnAgEmEnT/eNtErPrIsEaPpS/rBaCaPpLiCaTiOnIdVaLuE",
+			Input: "/rOlEmAnAgEmEnT/eNtErPrIsEaPpS/rBaCaPpLiCaTiOnId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/roleManagement/enterpriseApps/rbacApplicationIdValue/transitiveRoleAssignments",
+			Input: "/roleManagement/enterpriseApps/rbacApplicationId/transitiveRoleAssignments",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/rOlEmAnAgEmEnT/eNtErPrIsEaPpS/rBaCaPpLiCaTiOnIdVaLuE/tRaNsItIvErOlEaSsIgNmEnTs",
+			Input: "/rOlEmAnAgEmEnT/eNtErPrIsEaPpS/rBaCaPpLiCaTiOnId/tRaNsItIvErOlEaSsIgNmEnTs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/roleManagement/enterpriseApps/rbacApplicationIdValue/transitiveRoleAssignments/unifiedRoleAssignmentIdValue",
+			Input: "/roleManagement/enterpriseApps/rbacApplicationId/transitiveRoleAssignments/unifiedRoleAssignmentId",
 			Expected: &RoleManagementEnterpriseAppIdTransitiveRoleAssignmentId{
-				RbacApplicationId:       "rbacApplicationIdValue",
-				UnifiedRoleAssignmentId: "unifiedRoleAssignmentIdValue",
+				RbacApplicationId:       "rbacApplicationId",
+				UnifiedRoleAssignmentId: "unifiedRoleAssignmentId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/roleManagement/enterpriseApps/rbacApplicationIdValue/transitiveRoleAssignments/unifiedRoleAssignmentIdValue/extra",
+			Input: "/roleManagement/enterpriseApps/rbacApplicationId/transitiveRoleAssignments/unifiedRoleAssignmentId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/rOlEmAnAgEmEnT/eNtErPrIsEaPpS/rBaCaPpLiCaTiOnIdVaLuE/tRaNsItIvErOlEaSsIgNmEnTs/uNiFiEdRoLeAsSiGnMeNtIdVaLuE",
+			Input: "/rOlEmAnAgEmEnT/eNtErPrIsEaPpS/rBaCaPpLiCaTiOnId/tRaNsItIvErOlEaSsIgNmEnTs/uNiFiEdRoLeAsSiGnMeNtId",
 			Expected: &RoleManagementEnterpriseAppIdTransitiveRoleAssignmentId{
-				RbacApplicationId:       "rBaCaPpLiCaTiOnIdVaLuE",
-				UnifiedRoleAssignmentId: "uNiFiEdRoLeAsSiGnMeNtIdVaLuE",
+				RbacApplicationId:       "rBaCaPpLiCaTiOnId",
+				UnifiedRoleAssignmentId: "uNiFiEdRoLeAsSiGnMeNtId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/rOlEmAnAgEmEnT/eNtErPrIsEaPpS/rBaCaPpLiCaTiOnIdVaLuE/tRaNsItIvErOlEaSsIgNmEnTs/uNiFiEdRoLeAsSiGnMeNtIdVaLuE/extra",
+			Input: "/rOlEmAnAgEmEnT/eNtErPrIsEaPpS/rBaCaPpLiCaTiOnId/tRaNsItIvErOlEaSsIgNmEnTs/uNiFiEdRoLeAsSiGnMeNtId/extra",
 			Error: true,
 		},
 	}

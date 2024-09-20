@@ -19,15 +19,44 @@ type RemoveGroupLifecyclePolicyGroupOperationResponse struct {
 	Model        *RemoveGroupLifecyclePolicyGroupResult
 }
 
+type RemoveGroupLifecyclePolicyGroupOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultRemoveGroupLifecyclePolicyGroupOperationOptions() RemoveGroupLifecyclePolicyGroupOperationOptions {
+	return RemoveGroupLifecyclePolicyGroupOperationOptions{}
+}
+
+func (o RemoveGroupLifecyclePolicyGroupOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o RemoveGroupLifecyclePolicyGroupOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o RemoveGroupLifecyclePolicyGroupOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // RemoveGroupLifecyclePolicyGroup - Invoke action removeGroup
-func (c GroupLifecyclePolicyClient) RemoveGroupLifecyclePolicyGroup(ctx context.Context, id beta.GroupIdGroupLifecyclePolicyId, input RemoveGroupLifecyclePolicyGroupRequest) (result RemoveGroupLifecyclePolicyGroupOperationResponse, err error) {
+func (c GroupLifecyclePolicyClient) RemoveGroupLifecyclePolicyGroup(ctx context.Context, id beta.GroupIdGroupLifecyclePolicyId, input RemoveGroupLifecyclePolicyGroupRequest, options RemoveGroupLifecyclePolicyGroupOperationOptions) (result RemoveGroupLifecyclePolicyGroupOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/removeGroup", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/removeGroup", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

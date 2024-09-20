@@ -18,15 +18,44 @@ type SetDeviceEnrollmentConfigurationPriorityOperationResponse struct {
 	OData        *odata.OData
 }
 
+type SetDeviceEnrollmentConfigurationPriorityOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultSetDeviceEnrollmentConfigurationPriorityOperationOptions() SetDeviceEnrollmentConfigurationPriorityOperationOptions {
+	return SetDeviceEnrollmentConfigurationPriorityOperationOptions{}
+}
+
+func (o SetDeviceEnrollmentConfigurationPriorityOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o SetDeviceEnrollmentConfigurationPriorityOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o SetDeviceEnrollmentConfigurationPriorityOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // SetDeviceEnrollmentConfigurationPriority - Invoke action setPriority
-func (c DeviceEnrollmentConfigurationClient) SetDeviceEnrollmentConfigurationPriority(ctx context.Context, id beta.UserIdDeviceEnrollmentConfigurationId, input SetDeviceEnrollmentConfigurationPriorityRequest) (result SetDeviceEnrollmentConfigurationPriorityOperationResponse, err error) {
+func (c DeviceEnrollmentConfigurationClient) SetDeviceEnrollmentConfigurationPriority(ctx context.Context, id beta.UserIdDeviceEnrollmentConfigurationId, input SetDeviceEnrollmentConfigurationPriorityRequest, options SetDeviceEnrollmentConfigurationPriorityOperationOptions) (result SetDeviceEnrollmentConfigurationPriorityOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/setPriority", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/setPriority", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

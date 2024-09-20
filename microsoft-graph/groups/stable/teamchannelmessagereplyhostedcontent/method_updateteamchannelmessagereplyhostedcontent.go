@@ -17,15 +17,44 @@ type UpdateTeamChannelMessageReplyHostedContentOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateTeamChannelMessageReplyHostedContentOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateTeamChannelMessageReplyHostedContentOperationOptions() UpdateTeamChannelMessageReplyHostedContentOperationOptions {
+	return UpdateTeamChannelMessageReplyHostedContentOperationOptions{}
+}
+
+func (o UpdateTeamChannelMessageReplyHostedContentOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateTeamChannelMessageReplyHostedContentOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateTeamChannelMessageReplyHostedContentOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateTeamChannelMessageReplyHostedContent - Update the navigation property hostedContents in groups
-func (c TeamChannelMessageReplyHostedContentClient) UpdateTeamChannelMessageReplyHostedContent(ctx context.Context, id stable.GroupIdTeamChannelIdMessageIdReplyIdHostedContentId, input stable.ChatMessageHostedContent) (result UpdateTeamChannelMessageReplyHostedContentOperationResponse, err error) {
+func (c TeamChannelMessageReplyHostedContentClient) UpdateTeamChannelMessageReplyHostedContent(ctx context.Context, id stable.GroupIdTeamChannelIdMessageIdReplyIdHostedContentId, input stable.ChatMessageHostedContent, options UpdateTeamChannelMessageReplyHostedContentOperationOptions) (result UpdateTeamChannelMessageReplyHostedContentOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

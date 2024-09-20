@@ -99,9 +99,9 @@ func (id DeviceManagementUserExperienceAnalyticsWorkFromAnywhereMetricIdMetricDe
 	return []resourceids.Segment{
 		resourceids.StaticSegment("deviceManagement", "deviceManagement", "deviceManagement"),
 		resourceids.StaticSegment("userExperienceAnalyticsWorkFromAnywhereMetrics", "userExperienceAnalyticsWorkFromAnywhereMetrics", "userExperienceAnalyticsWorkFromAnywhereMetrics"),
-		resourceids.UserSpecifiedSegment("userExperienceAnalyticsWorkFromAnywhereMetricId", "userExperienceAnalyticsWorkFromAnywhereMetricIdValue"),
+		resourceids.UserSpecifiedSegment("userExperienceAnalyticsWorkFromAnywhereMetricId", "userExperienceAnalyticsWorkFromAnywhereMetricId"),
 		resourceids.StaticSegment("metricDevices", "metricDevices", "metricDevices"),
-		resourceids.UserSpecifiedSegment("userExperienceAnalyticsWorkFromAnywhereDeviceId", "userExperienceAnalyticsWorkFromAnywhereDeviceIdValue"),
+		resourceids.UserSpecifiedSegment("userExperienceAnalyticsWorkFromAnywhereDeviceId", "userExperienceAnalyticsWorkFromAnywhereDeviceId"),
 	}
 }
 

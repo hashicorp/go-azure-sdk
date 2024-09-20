@@ -12,24 +12,24 @@ import (
 var _ resourceids.ResourceId = &UserIdJoinedTeamIdPrimaryChannelTabId{}
 
 func TestNewUserIdJoinedTeamIdPrimaryChannelTabID(t *testing.T) {
-	id := NewUserIdJoinedTeamIdPrimaryChannelTabID("userIdValue", "teamIdValue", "teamsTabIdValue")
+	id := NewUserIdJoinedTeamIdPrimaryChannelTabID("userId", "teamId", "teamsTabId")
 
-	if id.UserId != "userIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'UserId'", id.UserId, "userIdValue")
+	if id.UserId != "userId" {
+		t.Fatalf("Expected %q but got %q for Segment 'UserId'", id.UserId, "userId")
 	}
 
-	if id.TeamId != "teamIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'TeamId'", id.TeamId, "teamIdValue")
+	if id.TeamId != "teamId" {
+		t.Fatalf("Expected %q but got %q for Segment 'TeamId'", id.TeamId, "teamId")
 	}
 
-	if id.TeamsTabId != "teamsTabIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'TeamsTabId'", id.TeamsTabId, "teamsTabIdValue")
+	if id.TeamsTabId != "teamsTabId" {
+		t.Fatalf("Expected %q but got %q for Segment 'TeamsTabId'", id.TeamsTabId, "teamsTabId")
 	}
 }
 
 func TestFormatUserIdJoinedTeamIdPrimaryChannelTabID(t *testing.T) {
-	actual := NewUserIdJoinedTeamIdPrimaryChannelTabID("userIdValue", "teamIdValue", "teamsTabIdValue").ID()
-	expected := "/users/userIdValue/joinedTeams/teamIdValue/primaryChannel/tabs/teamsTabIdValue"
+	actual := NewUserIdJoinedTeamIdPrimaryChannelTabID("userId", "teamId", "teamsTabId").ID()
+	expected := "/users/userId/joinedTeams/teamId/primaryChannel/tabs/teamsTabId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -53,41 +53,41 @@ func TestParseUserIdJoinedTeamIdPrimaryChannelTabID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue",
+			Input: "/users/userId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/joinedTeams",
+			Input: "/users/userId/joinedTeams",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/joinedTeams/teamIdValue",
+			Input: "/users/userId/joinedTeams/teamId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/joinedTeams/teamIdValue/primaryChannel",
+			Input: "/users/userId/joinedTeams/teamId/primaryChannel",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/joinedTeams/teamIdValue/primaryChannel/tabs",
+			Input: "/users/userId/joinedTeams/teamId/primaryChannel/tabs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/users/userIdValue/joinedTeams/teamIdValue/primaryChannel/tabs/teamsTabIdValue",
+			Input: "/users/userId/joinedTeams/teamId/primaryChannel/tabs/teamsTabId",
 			Expected: &UserIdJoinedTeamIdPrimaryChannelTabId{
-				UserId:     "userIdValue",
-				TeamId:     "teamIdValue",
-				TeamsTabId: "teamsTabIdValue",
+				UserId:     "userId",
+				TeamId:     "teamId",
+				TeamsTabId: "teamsTabId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/users/userIdValue/joinedTeams/teamIdValue/primaryChannel/tabs/teamsTabIdValue/extra",
+			Input: "/users/userId/joinedTeams/teamId/primaryChannel/tabs/teamsTabId/extra",
 			Error: true,
 		},
 	}
@@ -144,80 +144,80 @@ func TestParseUserIdJoinedTeamIdPrimaryChannelTabIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue",
+			Input: "/users/userId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe",
+			Input: "/uSeRs/uSeRiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/joinedTeams",
+			Input: "/users/userId/joinedTeams",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/jOiNeDtEaMs",
+			Input: "/uSeRs/uSeRiD/jOiNeDtEaMs",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/joinedTeams/teamIdValue",
+			Input: "/users/userId/joinedTeams/teamId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/jOiNeDtEaMs/tEaMiDvAlUe",
+			Input: "/uSeRs/uSeRiD/jOiNeDtEaMs/tEaMiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/joinedTeams/teamIdValue/primaryChannel",
+			Input: "/users/userId/joinedTeams/teamId/primaryChannel",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/jOiNeDtEaMs/tEaMiDvAlUe/pRiMaRyChAnNeL",
+			Input: "/uSeRs/uSeRiD/jOiNeDtEaMs/tEaMiD/pRiMaRyChAnNeL",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/joinedTeams/teamIdValue/primaryChannel/tabs",
+			Input: "/users/userId/joinedTeams/teamId/primaryChannel/tabs",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/jOiNeDtEaMs/tEaMiDvAlUe/pRiMaRyChAnNeL/tAbS",
+			Input: "/uSeRs/uSeRiD/jOiNeDtEaMs/tEaMiD/pRiMaRyChAnNeL/tAbS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/users/userIdValue/joinedTeams/teamIdValue/primaryChannel/tabs/teamsTabIdValue",
+			Input: "/users/userId/joinedTeams/teamId/primaryChannel/tabs/teamsTabId",
 			Expected: &UserIdJoinedTeamIdPrimaryChannelTabId{
-				UserId:     "userIdValue",
-				TeamId:     "teamIdValue",
-				TeamsTabId: "teamsTabIdValue",
+				UserId:     "userId",
+				TeamId:     "teamId",
+				TeamsTabId: "teamsTabId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/users/userIdValue/joinedTeams/teamIdValue/primaryChannel/tabs/teamsTabIdValue/extra",
+			Input: "/users/userId/joinedTeams/teamId/primaryChannel/tabs/teamsTabId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/jOiNeDtEaMs/tEaMiDvAlUe/pRiMaRyChAnNeL/tAbS/tEaMsTaBiDvAlUe",
+			Input: "/uSeRs/uSeRiD/jOiNeDtEaMs/tEaMiD/pRiMaRyChAnNeL/tAbS/tEaMsTaBiD",
 			Expected: &UserIdJoinedTeamIdPrimaryChannelTabId{
-				UserId:     "uSeRiDvAlUe",
-				TeamId:     "tEaMiDvAlUe",
-				TeamsTabId: "tEaMsTaBiDvAlUe",
+				UserId:     "uSeRiD",
+				TeamId:     "tEaMiD",
+				TeamsTabId: "tEaMsTaBiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/jOiNeDtEaMs/tEaMiDvAlUe/pRiMaRyChAnNeL/tAbS/tEaMsTaBiDvAlUe/extra",
+			Input: "/uSeRs/uSeRiD/jOiNeDtEaMs/tEaMiD/pRiMaRyChAnNeL/tAbS/tEaMsTaBiD/extra",
 			Error: true,
 		},
 	}

@@ -62,10 +62,15 @@ func (s IosVppAppAssignedLicenseCollectionResponse) MarshalJSON() ([]byte, error
 var _ json.Unmarshaler = &IosVppAppAssignedLicenseCollectionResponse{}
 
 func (s *IosVppAppAssignedLicenseCollectionResponse) UnmarshalJSON(bytes []byte) error {
-	type alias IosVppAppAssignedLicenseCollectionResponse
-	var decoded alias
+
+	var decoded struct {
+		Value         *[]IosVppAppAssignedLicense `json:"value,omitempty"`
+		ODataId       *string                     `json:"@odata.id,omitempty"`
+		ODataNextLink nullable.Type[string]       `json:"@odata.nextLink,omitempty"`
+		ODataType     *string                     `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into IosVppAppAssignedLicenseCollectionResponse: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.ODataId = decoded.ODataId
@@ -93,5 +98,6 @@ func (s *IosVppAppAssignedLicenseCollectionResponse) UnmarshalJSON(bytes []byte)
 		}
 		s.Value = &output
 	}
+
 	return nil
 }

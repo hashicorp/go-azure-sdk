@@ -18,15 +18,44 @@ type CreateAppManagementPolicyOperationResponse struct {
 	Model        *beta.AppManagementPolicy
 }
 
+type CreateAppManagementPolicyOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateAppManagementPolicyOperationOptions() CreateAppManagementPolicyOperationOptions {
+	return CreateAppManagementPolicyOperationOptions{}
+}
+
+func (o CreateAppManagementPolicyOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateAppManagementPolicyOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateAppManagementPolicyOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateAppManagementPolicy - Create appManagementPolicy. Create an appManagementPolicy object.
-func (c AppManagementPolicyClient) CreateAppManagementPolicy(ctx context.Context, input beta.AppManagementPolicy) (result CreateAppManagementPolicyOperationResponse, err error) {
+func (c AppManagementPolicyClient) CreateAppManagementPolicy(ctx context.Context, input beta.AppManagementPolicy, options CreateAppManagementPolicyOperationOptions) (result CreateAppManagementPolicyOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/policies/appManagementPolicies",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/policies/appManagementPolicies",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -159,10 +159,37 @@ func (s SubjectRightsRequest) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &SubjectRightsRequest{}
 
 func (s *SubjectRightsRequest) UnmarshalJSON(bytes []byte) error {
-	type alias SubjectRightsRequest
-	var decoded alias
+
+	var decoded struct {
+		Approvers              *[]User                            `json:"approvers,omitempty"`
+		ClosedDateTime         nullable.Type[string]              `json:"closedDateTime,omitempty"`
+		Collaborators          *[]User                            `json:"collaborators,omitempty"`
+		ContentQuery           nullable.Type[string]              `json:"contentQuery,omitempty"`
+		CreatedDateTime        nullable.Type[string]              `json:"createdDateTime,omitempty"`
+		DataSubject            *DataSubject                       `json:"dataSubject,omitempty"`
+		DataSubjectType        *DataSubjectType                   `json:"dataSubjectType,omitempty"`
+		Description            nullable.Type[string]              `json:"description,omitempty"`
+		DisplayName            nullable.Type[string]              `json:"displayName,omitempty"`
+		ExternalId             nullable.Type[string]              `json:"externalId,omitempty"`
+		History                *[]SubjectRightsRequestHistory     `json:"history,omitempty"`
+		IncludeAllVersions     nullable.Type[bool]                `json:"includeAllVersions,omitempty"`
+		IncludeAuthoredContent nullable.Type[bool]                `json:"includeAuthoredContent,omitempty"`
+		Insight                *SubjectRightsRequestDetail        `json:"insight,omitempty"`
+		InternalDueDateTime    nullable.Type[string]              `json:"internalDueDateTime,omitempty"`
+		LastModifiedDateTime   nullable.Type[string]              `json:"lastModifiedDateTime,omitempty"`
+		Notes                  *[]AuthoredNote                    `json:"notes,omitempty"`
+		PauseAfterEstimate     nullable.Type[bool]                `json:"pauseAfterEstimate,omitempty"`
+		Regulations            *[]string                          `json:"regulations,omitempty"`
+		Stages                 *[]SubjectRightsRequestStageDetail `json:"stages,omitempty"`
+		Status                 *SubjectRightsRequestStatus        `json:"status,omitempty"`
+		Team                   *Team                              `json:"team,omitempty"`
+		Type                   *SubjectRightsRequestType          `json:"type,omitempty"`
+		Id                     *string                            `json:"id,omitempty"`
+		ODataId                *string                            `json:"@odata.id,omitempty"`
+		ODataType              *string                            `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into SubjectRightsRequest: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.Approvers = decoded.Approvers
@@ -176,21 +203,21 @@ func (s *SubjectRightsRequest) UnmarshalJSON(bytes []byte) error {
 	s.DisplayName = decoded.DisplayName
 	s.ExternalId = decoded.ExternalId
 	s.History = decoded.History
-	s.Id = decoded.Id
 	s.IncludeAllVersions = decoded.IncludeAllVersions
 	s.IncludeAuthoredContent = decoded.IncludeAuthoredContent
 	s.Insight = decoded.Insight
 	s.InternalDueDateTime = decoded.InternalDueDateTime
 	s.LastModifiedDateTime = decoded.LastModifiedDateTime
 	s.Notes = decoded.Notes
-	s.ODataId = decoded.ODataId
-	s.ODataType = decoded.ODataType
 	s.PauseAfterEstimate = decoded.PauseAfterEstimate
 	s.Regulations = decoded.Regulations
 	s.Stages = decoded.Stages
 	s.Status = decoded.Status
 	s.Team = decoded.Team
 	s.Type = decoded.Type
+	s.Id = decoded.Id
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -236,5 +263,6 @@ func (s *SubjectRightsRequest) UnmarshalJSON(bytes []byte) error {
 		}
 		s.SiteLocations = impl
 	}
+
 	return nil
 }

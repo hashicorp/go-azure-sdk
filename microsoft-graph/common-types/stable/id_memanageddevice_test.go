@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &MeManagedDeviceId{}
 
 func TestNewMeManagedDeviceID(t *testing.T) {
-	id := NewMeManagedDeviceID("managedDeviceIdValue")
+	id := NewMeManagedDeviceID("managedDeviceId")
 
-	if id.ManagedDeviceId != "managedDeviceIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ManagedDeviceId'", id.ManagedDeviceId, "managedDeviceIdValue")
+	if id.ManagedDeviceId != "managedDeviceId" {
+		t.Fatalf("Expected %q but got %q for Segment 'ManagedDeviceId'", id.ManagedDeviceId, "managedDeviceId")
 	}
 }
 
 func TestFormatMeManagedDeviceID(t *testing.T) {
-	actual := NewMeManagedDeviceID("managedDeviceIdValue").ID()
-	expected := "/me/managedDevices/managedDeviceIdValue"
+	actual := NewMeManagedDeviceID("managedDeviceId").ID()
+	expected := "/me/managedDevices/managedDeviceId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -50,14 +50,14 @@ func TestParseMeManagedDeviceID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/me/managedDevices/managedDeviceIdValue",
+			Input: "/me/managedDevices/managedDeviceId",
 			Expected: &MeManagedDeviceId{
-				ManagedDeviceId: "managedDeviceIdValue",
+				ManagedDeviceId: "managedDeviceId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/managedDevices/managedDeviceIdValue/extra",
+			Input: "/me/managedDevices/managedDeviceId/extra",
 			Error: true,
 		},
 	}
@@ -116,26 +116,26 @@ func TestParseMeManagedDeviceIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/me/managedDevices/managedDeviceIdValue",
+			Input: "/me/managedDevices/managedDeviceId",
 			Expected: &MeManagedDeviceId{
-				ManagedDeviceId: "managedDeviceIdValue",
+				ManagedDeviceId: "managedDeviceId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/managedDevices/managedDeviceIdValue/extra",
+			Input: "/me/managedDevices/managedDeviceId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/mAnAgEdDeViCeS/mAnAgEdDeViCeIdVaLuE",
+			Input: "/mE/mAnAgEdDeViCeS/mAnAgEdDeViCeId",
 			Expected: &MeManagedDeviceId{
-				ManagedDeviceId: "mAnAgEdDeViCeIdVaLuE",
+				ManagedDeviceId: "mAnAgEdDeViCeId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/mE/mAnAgEdDeViCeS/mAnAgEdDeViCeIdVaLuE/extra",
+			Input: "/mE/mAnAgEdDeViCeS/mAnAgEdDeViCeId/extra",
 			Error: true,
 		},
 	}

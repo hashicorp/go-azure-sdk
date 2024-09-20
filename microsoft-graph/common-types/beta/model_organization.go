@@ -188,10 +188,48 @@ func (s Organization) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &Organization{}
 
 func (s *Organization) UnmarshalJSON(bytes []byte) error {
-	type alias Organization
-	var decoded alias
+
+	var decoded struct {
+		AssignedPlans                             *[]AssignedPlan                      `json:"assignedPlans,omitempty"`
+		Branding                                  *OrganizationalBranding              `json:"branding,omitempty"`
+		BusinessPhones                            *[]string                            `json:"businessPhones,omitempty"`
+		CertificateBasedAuthConfiguration         *[]CertificateBasedAuthConfiguration `json:"certificateBasedAuthConfiguration,omitempty"`
+		CertificateConnectorSetting               *CertificateConnectorSetting         `json:"certificateConnectorSetting,omitempty"`
+		City                                      nullable.Type[string]                `json:"city,omitempty"`
+		Country                                   nullable.Type[string]                `json:"country,omitempty"`
+		CountryLetterCode                         nullable.Type[string]                `json:"countryLetterCode,omitempty"`
+		CreatedDateTime                           nullable.Type[string]                `json:"createdDateTime,omitempty"`
+		DefaultUsageLocation                      nullable.Type[string]                `json:"defaultUsageLocation,omitempty"`
+		DirectorySizeQuota                        *DirectorySizeQuota                  `json:"directorySizeQuota,omitempty"`
+		DisplayName                               nullable.Type[string]                `json:"displayName,omitempty"`
+		Extensions                                *[]Extension                         `json:"extensions,omitempty"`
+		IsMultipleDataLocationsForServicesEnabled nullable.Type[bool]                  `json:"isMultipleDataLocationsForServicesEnabled,omitempty"`
+		MarketingNotificationEmails               *[]string                            `json:"marketingNotificationEmails,omitempty"`
+		MobileDeviceManagementAuthority           *MdmAuthority                        `json:"mobileDeviceManagementAuthority,omitempty"`
+		OnPremisesLastPasswordSyncDateTime        nullable.Type[string]                `json:"onPremisesLastPasswordSyncDateTime,omitempty"`
+		OnPremisesLastSyncDateTime                nullable.Type[string]                `json:"onPremisesLastSyncDateTime,omitempty"`
+		OnPremisesSyncEnabled                     nullable.Type[bool]                  `json:"onPremisesSyncEnabled,omitempty"`
+		PartnerInformation                        *PartnerInformation                  `json:"partnerInformation,omitempty"`
+		PartnerTenantType                         *PartnerTenantType                   `json:"partnerTenantType,omitempty"`
+		PostalCode                                nullable.Type[string]                `json:"postalCode,omitempty"`
+		PreferredLanguage                         nullable.Type[string]                `json:"preferredLanguage,omitempty"`
+		PrivacyProfile                            *PrivacyProfile                      `json:"privacyProfile,omitempty"`
+		ProvisionedPlans                          *[]ProvisionedPlan                   `json:"provisionedPlans,omitempty"`
+		SecurityComplianceNotificationMails       *[]string                            `json:"securityComplianceNotificationMails,omitempty"`
+		SecurityComplianceNotificationPhones      *[]string                            `json:"securityComplianceNotificationPhones,omitempty"`
+		Settings                                  *OrganizationSettings                `json:"settings,omitempty"`
+		State                                     nullable.Type[string]                `json:"state,omitempty"`
+		Street                                    nullable.Type[string]                `json:"street,omitempty"`
+		TechnicalNotificationMails                *[]string                            `json:"technicalNotificationMails,omitempty"`
+		TenantType                                nullable.Type[string]                `json:"tenantType,omitempty"`
+		VerifiedDomains                           *[]VerifiedDomain                    `json:"verifiedDomains,omitempty"`
+		DeletedDateTime                           nullable.Type[string]                `json:"deletedDateTime,omitempty"`
+		Id                                        *string                              `json:"id,omitempty"`
+		ODataId                                   *string                              `json:"@odata.id,omitempty"`
+		ODataType                                 *string                              `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into Organization: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.AssignedPlans = decoded.AssignedPlans
@@ -204,15 +242,11 @@ func (s *Organization) UnmarshalJSON(bytes []byte) error {
 	s.CountryLetterCode = decoded.CountryLetterCode
 	s.CreatedDateTime = decoded.CreatedDateTime
 	s.DefaultUsageLocation = decoded.DefaultUsageLocation
-	s.DeletedDateTime = decoded.DeletedDateTime
 	s.DirectorySizeQuota = decoded.DirectorySizeQuota
 	s.DisplayName = decoded.DisplayName
-	s.Id = decoded.Id
 	s.IsMultipleDataLocationsForServicesEnabled = decoded.IsMultipleDataLocationsForServicesEnabled
 	s.MarketingNotificationEmails = decoded.MarketingNotificationEmails
 	s.MobileDeviceManagementAuthority = decoded.MobileDeviceManagementAuthority
-	s.ODataId = decoded.ODataId
-	s.ODataType = decoded.ODataType
 	s.OnPremisesLastPasswordSyncDateTime = decoded.OnPremisesLastPasswordSyncDateTime
 	s.OnPremisesLastSyncDateTime = decoded.OnPremisesLastSyncDateTime
 	s.OnPremisesSyncEnabled = decoded.OnPremisesSyncEnabled
@@ -230,6 +264,10 @@ func (s *Organization) UnmarshalJSON(bytes []byte) error {
 	s.TechnicalNotificationMails = decoded.TechnicalNotificationMails
 	s.TenantType = decoded.TenantType
 	s.VerifiedDomains = decoded.VerifiedDomains
+	s.DeletedDateTime = decoded.DeletedDateTime
+	s.Id = decoded.Id
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -252,5 +290,6 @@ func (s *Organization) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Extensions = &output
 	}
+
 	return nil
 }

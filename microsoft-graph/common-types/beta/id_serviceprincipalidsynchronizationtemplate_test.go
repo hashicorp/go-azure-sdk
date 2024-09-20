@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &ServicePrincipalIdSynchronizationTemplateId{}
 
 func TestNewServicePrincipalIdSynchronizationTemplateID(t *testing.T) {
-	id := NewServicePrincipalIdSynchronizationTemplateID("servicePrincipalIdValue", "synchronizationTemplateIdValue")
+	id := NewServicePrincipalIdSynchronizationTemplateID("servicePrincipalId", "synchronizationTemplateId")
 
-	if id.ServicePrincipalId != "servicePrincipalIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ServicePrincipalId'", id.ServicePrincipalId, "servicePrincipalIdValue")
+	if id.ServicePrincipalId != "servicePrincipalId" {
+		t.Fatalf("Expected %q but got %q for Segment 'ServicePrincipalId'", id.ServicePrincipalId, "servicePrincipalId")
 	}
 
-	if id.SynchronizationTemplateId != "synchronizationTemplateIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'SynchronizationTemplateId'", id.SynchronizationTemplateId, "synchronizationTemplateIdValue")
+	if id.SynchronizationTemplateId != "synchronizationTemplateId" {
+		t.Fatalf("Expected %q but got %q for Segment 'SynchronizationTemplateId'", id.SynchronizationTemplateId, "synchronizationTemplateId")
 	}
 }
 
 func TestFormatServicePrincipalIdSynchronizationTemplateID(t *testing.T) {
-	actual := NewServicePrincipalIdSynchronizationTemplateID("servicePrincipalIdValue", "synchronizationTemplateIdValue").ID()
-	expected := "/servicePrincipals/servicePrincipalIdValue/synchronization/templates/synchronizationTemplateIdValue"
+	actual := NewServicePrincipalIdSynchronizationTemplateID("servicePrincipalId", "synchronizationTemplateId").ID()
+	expected := "/servicePrincipals/servicePrincipalId/synchronization/templates/synchronizationTemplateId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -49,30 +49,30 @@ func TestParseServicePrincipalIdSynchronizationTemplateID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/servicePrincipals/servicePrincipalIdValue",
+			Input: "/servicePrincipals/servicePrincipalId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/servicePrincipals/servicePrincipalIdValue/synchronization",
+			Input: "/servicePrincipals/servicePrincipalId/synchronization",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/servicePrincipals/servicePrincipalIdValue/synchronization/templates",
+			Input: "/servicePrincipals/servicePrincipalId/synchronization/templates",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/servicePrincipals/servicePrincipalIdValue/synchronization/templates/synchronizationTemplateIdValue",
+			Input: "/servicePrincipals/servicePrincipalId/synchronization/templates/synchronizationTemplateId",
 			Expected: &ServicePrincipalIdSynchronizationTemplateId{
-				ServicePrincipalId:        "servicePrincipalIdValue",
-				SynchronizationTemplateId: "synchronizationTemplateIdValue",
+				ServicePrincipalId:        "servicePrincipalId",
+				SynchronizationTemplateId: "synchronizationTemplateId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/servicePrincipals/servicePrincipalIdValue/synchronization/templates/synchronizationTemplateIdValue/extra",
+			Input: "/servicePrincipals/servicePrincipalId/synchronization/templates/synchronizationTemplateId/extra",
 			Error: true,
 		},
 	}
@@ -125,58 +125,58 @@ func TestParseServicePrincipalIdSynchronizationTemplateIDInsensitively(t *testin
 		},
 		{
 			// Incomplete URI
-			Input: "/servicePrincipals/servicePrincipalIdValue",
+			Input: "/servicePrincipals/servicePrincipalId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sErViCePrInCiPaLs/sErViCePrInCiPaLiDvAlUe",
+			Input: "/sErViCePrInCiPaLs/sErViCePrInCiPaLiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/servicePrincipals/servicePrincipalIdValue/synchronization",
+			Input: "/servicePrincipals/servicePrincipalId/synchronization",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sErViCePrInCiPaLs/sErViCePrInCiPaLiDvAlUe/sYnChRoNiZaTiOn",
+			Input: "/sErViCePrInCiPaLs/sErViCePrInCiPaLiD/sYnChRoNiZaTiOn",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/servicePrincipals/servicePrincipalIdValue/synchronization/templates",
+			Input: "/servicePrincipals/servicePrincipalId/synchronization/templates",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sErViCePrInCiPaLs/sErViCePrInCiPaLiDvAlUe/sYnChRoNiZaTiOn/tEmPlAtEs",
+			Input: "/sErViCePrInCiPaLs/sErViCePrInCiPaLiD/sYnChRoNiZaTiOn/tEmPlAtEs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/servicePrincipals/servicePrincipalIdValue/synchronization/templates/synchronizationTemplateIdValue",
+			Input: "/servicePrincipals/servicePrincipalId/synchronization/templates/synchronizationTemplateId",
 			Expected: &ServicePrincipalIdSynchronizationTemplateId{
-				ServicePrincipalId:        "servicePrincipalIdValue",
-				SynchronizationTemplateId: "synchronizationTemplateIdValue",
+				ServicePrincipalId:        "servicePrincipalId",
+				SynchronizationTemplateId: "synchronizationTemplateId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/servicePrincipals/servicePrincipalIdValue/synchronization/templates/synchronizationTemplateIdValue/extra",
+			Input: "/servicePrincipals/servicePrincipalId/synchronization/templates/synchronizationTemplateId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sErViCePrInCiPaLs/sErViCePrInCiPaLiDvAlUe/sYnChRoNiZaTiOn/tEmPlAtEs/sYnChRoNiZaTiOnTeMpLaTeIdVaLuE",
+			Input: "/sErViCePrInCiPaLs/sErViCePrInCiPaLiD/sYnChRoNiZaTiOn/tEmPlAtEs/sYnChRoNiZaTiOnTeMpLaTeId",
 			Expected: &ServicePrincipalIdSynchronizationTemplateId{
-				ServicePrincipalId:        "sErViCePrInCiPaLiDvAlUe",
-				SynchronizationTemplateId: "sYnChRoNiZaTiOnTeMpLaTeIdVaLuE",
+				ServicePrincipalId:        "sErViCePrInCiPaLiD",
+				SynchronizationTemplateId: "sYnChRoNiZaTiOnTeMpLaTeId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sErViCePrInCiPaLs/sErViCePrInCiPaLiDvAlUe/sYnChRoNiZaTiOn/tEmPlAtEs/sYnChRoNiZaTiOnTeMpLaTeIdVaLuE/extra",
+			Input: "/sErViCePrInCiPaLs/sErViCePrInCiPaLiD/sYnChRoNiZaTiOn/tEmPlAtEs/sYnChRoNiZaTiOnTeMpLaTeId/extra",
 			Error: true,
 		},
 	}

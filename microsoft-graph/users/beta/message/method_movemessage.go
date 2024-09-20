@@ -20,16 +20,45 @@ type MoveMessageOperationResponse struct {
 	Model        beta.Message
 }
 
+type MoveMessageOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultMoveMessageOperationOptions() MoveMessageOperationOptions {
+	return MoveMessageOperationOptions{}
+}
+
+func (o MoveMessageOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o MoveMessageOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o MoveMessageOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // MoveMessage - Invoke action move. Move a message to another folder within the specified user's mailbox. This creates
 // a new copy of the message in the destination folder and removes the original message.
-func (c MessageClient) MoveMessage(ctx context.Context, id beta.UserIdMessageId, input MoveMessageRequest) (result MoveMessageOperationResponse, err error) {
+func (c MessageClient) MoveMessage(ctx context.Context, id beta.UserIdMessageId, input MoveMessageRequest, options MoveMessageOperationOptions) (result MoveMessageOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/move", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/move", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

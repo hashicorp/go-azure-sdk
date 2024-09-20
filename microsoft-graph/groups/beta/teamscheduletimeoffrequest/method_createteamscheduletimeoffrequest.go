@@ -19,15 +19,44 @@ type CreateTeamScheduleTimeOffRequestOperationResponse struct {
 	Model        *beta.TimeOffRequest
 }
 
+type CreateTeamScheduleTimeOffRequestOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateTeamScheduleTimeOffRequestOperationOptions() CreateTeamScheduleTimeOffRequestOperationOptions {
+	return CreateTeamScheduleTimeOffRequestOperationOptions{}
+}
+
+func (o CreateTeamScheduleTimeOffRequestOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateTeamScheduleTimeOffRequestOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateTeamScheduleTimeOffRequestOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateTeamScheduleTimeOffRequest - Create new navigation property to timeOffRequests for groups
-func (c TeamScheduleTimeOffRequestClient) CreateTeamScheduleTimeOffRequest(ctx context.Context, id beta.GroupId, input beta.TimeOffRequest) (result CreateTeamScheduleTimeOffRequestOperationResponse, err error) {
+func (c TeamScheduleTimeOffRequestClient) CreateTeamScheduleTimeOffRequest(ctx context.Context, id beta.GroupId, input beta.TimeOffRequest, options CreateTeamScheduleTimeOffRequestOperationOptions) (result CreateTeamScheduleTimeOffRequestOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/team/schedule/timeOffRequests", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/team/schedule/timeOffRequests", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

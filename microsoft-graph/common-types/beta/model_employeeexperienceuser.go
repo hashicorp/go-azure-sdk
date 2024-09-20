@@ -61,10 +61,15 @@ func (s EmployeeExperienceUser) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &EmployeeExperienceUser{}
 
 func (s *EmployeeExperienceUser) UnmarshalJSON(bytes []byte) error {
-	type alias EmployeeExperienceUser
-	var decoded alias
+
+	var decoded struct {
+		LearningCourseActivities *[]LearningCourseActivity `json:"learningCourseActivities,omitempty"`
+		Id                       *string                   `json:"id,omitempty"`
+		ODataId                  *string                   `json:"@odata.id,omitempty"`
+		ODataType                *string                   `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into EmployeeExperienceUser: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.Id = decoded.Id
@@ -92,5 +97,6 @@ func (s *EmployeeExperienceUser) UnmarshalJSON(bytes []byte) error {
 		}
 		s.LearningCourseActivities = &output
 	}
+
 	return nil
 }

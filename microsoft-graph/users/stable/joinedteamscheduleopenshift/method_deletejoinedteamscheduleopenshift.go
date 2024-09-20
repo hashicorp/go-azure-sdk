@@ -19,7 +19,8 @@ type DeleteJoinedTeamScheduleOpenShiftOperationResponse struct {
 }
 
 type DeleteJoinedTeamScheduleOpenShiftOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteJoinedTeamScheduleOpenShiftOperationOptions() DeleteJoinedTeamScheduleOpenShiftOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteJoinedTeamScheduleOpenShiftOperationOptions) ToHeaders() *client.H
 
 func (o DeleteJoinedTeamScheduleOpenShiftOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

@@ -66,16 +66,21 @@ func (s TeamsAppRemovedEventMessageDetail) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &TeamsAppRemovedEventMessageDetail{}
 
 func (s *TeamsAppRemovedEventMessageDetail) UnmarshalJSON(bytes []byte) error {
-	type alias TeamsAppRemovedEventMessageDetail
-	var decoded alias
+
+	var decoded struct {
+		TeamsAppDisplayName nullable.Type[string] `json:"teamsAppDisplayName,omitempty"`
+		TeamsAppId          nullable.Type[string] `json:"teamsAppId,omitempty"`
+		ODataId             *string               `json:"@odata.id,omitempty"`
+		ODataType           *string               `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into TeamsAppRemovedEventMessageDetail: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
-	s.ODataId = decoded.ODataId
-	s.ODataType = decoded.ODataType
 	s.TeamsAppDisplayName = decoded.TeamsAppDisplayName
 	s.TeamsAppId = decoded.TeamsAppId
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -89,5 +94,6 @@ func (s *TeamsAppRemovedEventMessageDetail) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Initiator = impl
 	}
+
 	return nil
 }

@@ -17,15 +17,44 @@ type UpdateAuthenticationEmailMethodOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateAuthenticationEmailMethodOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateAuthenticationEmailMethodOperationOptions() UpdateAuthenticationEmailMethodOperationOptions {
+	return UpdateAuthenticationEmailMethodOperationOptions{}
+}
+
+func (o UpdateAuthenticationEmailMethodOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateAuthenticationEmailMethodOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateAuthenticationEmailMethodOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateAuthenticationEmailMethod - Update the navigation property emailMethods in me
-func (c AuthenticationEmailMethodClient) UpdateAuthenticationEmailMethod(ctx context.Context, id stable.MeAuthenticationEmailMethodId, input stable.EmailAuthenticationMethod) (result UpdateAuthenticationEmailMethodOperationResponse, err error) {
+func (c AuthenticationEmailMethodClient) UpdateAuthenticationEmailMethod(ctx context.Context, id stable.MeAuthenticationEmailMethodId, input stable.EmailAuthenticationMethod, options UpdateAuthenticationEmailMethodOperationOptions) (result UpdateAuthenticationEmailMethodOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

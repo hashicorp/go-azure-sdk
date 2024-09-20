@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &DeviceManagementGroupPolicyCategoryId{}
 
 func TestNewDeviceManagementGroupPolicyCategoryID(t *testing.T) {
-	id := NewDeviceManagementGroupPolicyCategoryID("groupPolicyCategoryIdValue")
+	id := NewDeviceManagementGroupPolicyCategoryID("groupPolicyCategoryId")
 
-	if id.GroupPolicyCategoryId != "groupPolicyCategoryIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'GroupPolicyCategoryId'", id.GroupPolicyCategoryId, "groupPolicyCategoryIdValue")
+	if id.GroupPolicyCategoryId != "groupPolicyCategoryId" {
+		t.Fatalf("Expected %q but got %q for Segment 'GroupPolicyCategoryId'", id.GroupPolicyCategoryId, "groupPolicyCategoryId")
 	}
 }
 
 func TestFormatDeviceManagementGroupPolicyCategoryID(t *testing.T) {
-	actual := NewDeviceManagementGroupPolicyCategoryID("groupPolicyCategoryIdValue").ID()
-	expected := "/deviceManagement/groupPolicyCategories/groupPolicyCategoryIdValue"
+	actual := NewDeviceManagementGroupPolicyCategoryID("groupPolicyCategoryId").ID()
+	expected := "/deviceManagement/groupPolicyCategories/groupPolicyCategoryId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -50,14 +50,14 @@ func TestParseDeviceManagementGroupPolicyCategoryID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/groupPolicyCategories/groupPolicyCategoryIdValue",
+			Input: "/deviceManagement/groupPolicyCategories/groupPolicyCategoryId",
 			Expected: &DeviceManagementGroupPolicyCategoryId{
-				GroupPolicyCategoryId: "groupPolicyCategoryIdValue",
+				GroupPolicyCategoryId: "groupPolicyCategoryId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/groupPolicyCategories/groupPolicyCategoryIdValue/extra",
+			Input: "/deviceManagement/groupPolicyCategories/groupPolicyCategoryId/extra",
 			Error: true,
 		},
 	}
@@ -116,26 +116,26 @@ func TestParseDeviceManagementGroupPolicyCategoryIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/groupPolicyCategories/groupPolicyCategoryIdValue",
+			Input: "/deviceManagement/groupPolicyCategories/groupPolicyCategoryId",
 			Expected: &DeviceManagementGroupPolicyCategoryId{
-				GroupPolicyCategoryId: "groupPolicyCategoryIdValue",
+				GroupPolicyCategoryId: "groupPolicyCategoryId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/groupPolicyCategories/groupPolicyCategoryIdValue/extra",
+			Input: "/deviceManagement/groupPolicyCategories/groupPolicyCategoryId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/gRoUpPoLiCyCaTeGoRiEs/gRoUpPoLiCyCaTeGoRyIdVaLuE",
+			Input: "/dEvIcEmAnAgEmEnT/gRoUpPoLiCyCaTeGoRiEs/gRoUpPoLiCyCaTeGoRyId",
 			Expected: &DeviceManagementGroupPolicyCategoryId{
-				GroupPolicyCategoryId: "gRoUpPoLiCyCaTeGoRyIdVaLuE",
+				GroupPolicyCategoryId: "gRoUpPoLiCyCaTeGoRyId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/gRoUpPoLiCyCaTeGoRiEs/gRoUpPoLiCyCaTeGoRyIdVaLuE/extra",
+			Input: "/dEvIcEmAnAgEmEnT/gRoUpPoLiCyCaTeGoRiEs/gRoUpPoLiCyCaTeGoRyId/extra",
 			Error: true,
 		},
 	}

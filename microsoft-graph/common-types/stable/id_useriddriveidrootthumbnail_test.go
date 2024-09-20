@@ -12,24 +12,24 @@ import (
 var _ resourceids.ResourceId = &UserIdDriveIdRootThumbnailId{}
 
 func TestNewUserIdDriveIdRootThumbnailID(t *testing.T) {
-	id := NewUserIdDriveIdRootThumbnailID("userIdValue", "driveIdValue", "thumbnailSetIdValue")
+	id := NewUserIdDriveIdRootThumbnailID("userId", "driveId", "thumbnailSetId")
 
-	if id.UserId != "userIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'UserId'", id.UserId, "userIdValue")
+	if id.UserId != "userId" {
+		t.Fatalf("Expected %q but got %q for Segment 'UserId'", id.UserId, "userId")
 	}
 
-	if id.DriveId != "driveIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DriveId'", id.DriveId, "driveIdValue")
+	if id.DriveId != "driveId" {
+		t.Fatalf("Expected %q but got %q for Segment 'DriveId'", id.DriveId, "driveId")
 	}
 
-	if id.ThumbnailSetId != "thumbnailSetIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ThumbnailSetId'", id.ThumbnailSetId, "thumbnailSetIdValue")
+	if id.ThumbnailSetId != "thumbnailSetId" {
+		t.Fatalf("Expected %q but got %q for Segment 'ThumbnailSetId'", id.ThumbnailSetId, "thumbnailSetId")
 	}
 }
 
 func TestFormatUserIdDriveIdRootThumbnailID(t *testing.T) {
-	actual := NewUserIdDriveIdRootThumbnailID("userIdValue", "driveIdValue", "thumbnailSetIdValue").ID()
-	expected := "/users/userIdValue/drives/driveIdValue/root/thumbnails/thumbnailSetIdValue"
+	actual := NewUserIdDriveIdRootThumbnailID("userId", "driveId", "thumbnailSetId").ID()
+	expected := "/users/userId/drives/driveId/root/thumbnails/thumbnailSetId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -53,41 +53,41 @@ func TestParseUserIdDriveIdRootThumbnailID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue",
+			Input: "/users/userId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/drives",
+			Input: "/users/userId/drives",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/drives/driveIdValue",
+			Input: "/users/userId/drives/driveId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/drives/driveIdValue/root",
+			Input: "/users/userId/drives/driveId/root",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/drives/driveIdValue/root/thumbnails",
+			Input: "/users/userId/drives/driveId/root/thumbnails",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/users/userIdValue/drives/driveIdValue/root/thumbnails/thumbnailSetIdValue",
+			Input: "/users/userId/drives/driveId/root/thumbnails/thumbnailSetId",
 			Expected: &UserIdDriveIdRootThumbnailId{
-				UserId:         "userIdValue",
-				DriveId:        "driveIdValue",
-				ThumbnailSetId: "thumbnailSetIdValue",
+				UserId:         "userId",
+				DriveId:        "driveId",
+				ThumbnailSetId: "thumbnailSetId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/users/userIdValue/drives/driveIdValue/root/thumbnails/thumbnailSetIdValue/extra",
+			Input: "/users/userId/drives/driveId/root/thumbnails/thumbnailSetId/extra",
 			Error: true,
 		},
 	}
@@ -144,80 +144,80 @@ func TestParseUserIdDriveIdRootThumbnailIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue",
+			Input: "/users/userId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe",
+			Input: "/uSeRs/uSeRiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/drives",
+			Input: "/users/userId/drives",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/dRiVeS",
+			Input: "/uSeRs/uSeRiD/dRiVeS",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/drives/driveIdValue",
+			Input: "/users/userId/drives/driveId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/dRiVeS/dRiVeIdVaLuE",
+			Input: "/uSeRs/uSeRiD/dRiVeS/dRiVeId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/drives/driveIdValue/root",
+			Input: "/users/userId/drives/driveId/root",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/dRiVeS/dRiVeIdVaLuE/rOoT",
+			Input: "/uSeRs/uSeRiD/dRiVeS/dRiVeId/rOoT",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/drives/driveIdValue/root/thumbnails",
+			Input: "/users/userId/drives/driveId/root/thumbnails",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/dRiVeS/dRiVeIdVaLuE/rOoT/tHuMbNaIlS",
+			Input: "/uSeRs/uSeRiD/dRiVeS/dRiVeId/rOoT/tHuMbNaIlS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/users/userIdValue/drives/driveIdValue/root/thumbnails/thumbnailSetIdValue",
+			Input: "/users/userId/drives/driveId/root/thumbnails/thumbnailSetId",
 			Expected: &UserIdDriveIdRootThumbnailId{
-				UserId:         "userIdValue",
-				DriveId:        "driveIdValue",
-				ThumbnailSetId: "thumbnailSetIdValue",
+				UserId:         "userId",
+				DriveId:        "driveId",
+				ThumbnailSetId: "thumbnailSetId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/users/userIdValue/drives/driveIdValue/root/thumbnails/thumbnailSetIdValue/extra",
+			Input: "/users/userId/drives/driveId/root/thumbnails/thumbnailSetId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/dRiVeS/dRiVeIdVaLuE/rOoT/tHuMbNaIlS/tHuMbNaIlSeTiDvAlUe",
+			Input: "/uSeRs/uSeRiD/dRiVeS/dRiVeId/rOoT/tHuMbNaIlS/tHuMbNaIlSeTiD",
 			Expected: &UserIdDriveIdRootThumbnailId{
-				UserId:         "uSeRiDvAlUe",
-				DriveId:        "dRiVeIdVaLuE",
-				ThumbnailSetId: "tHuMbNaIlSeTiDvAlUe",
+				UserId:         "uSeRiD",
+				DriveId:        "dRiVeId",
+				ThumbnailSetId: "tHuMbNaIlSeTiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/dRiVeS/dRiVeIdVaLuE/rOoT/tHuMbNaIlS/tHuMbNaIlSeTiDvAlUe/extra",
+			Input: "/uSeRs/uSeRiD/dRiVeS/dRiVeId/rOoT/tHuMbNaIlS/tHuMbNaIlSeTiD/extra",
 			Error: true,
 		},
 	}

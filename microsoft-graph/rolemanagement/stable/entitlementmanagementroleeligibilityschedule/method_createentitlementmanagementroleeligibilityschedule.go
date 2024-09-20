@@ -18,16 +18,45 @@ type CreateEntitlementManagementRoleEligibilityScheduleOperationResponse struct 
 	Model        *stable.UnifiedRoleEligibilitySchedule
 }
 
+type CreateEntitlementManagementRoleEligibilityScheduleOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateEntitlementManagementRoleEligibilityScheduleOperationOptions() CreateEntitlementManagementRoleEligibilityScheduleOperationOptions {
+	return CreateEntitlementManagementRoleEligibilityScheduleOperationOptions{}
+}
+
+func (o CreateEntitlementManagementRoleEligibilityScheduleOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateEntitlementManagementRoleEligibilityScheduleOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateEntitlementManagementRoleEligibilityScheduleOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateEntitlementManagementRoleEligibilitySchedule - Create new navigation property to roleEligibilitySchedules for
 // roleManagement
-func (c EntitlementManagementRoleEligibilityScheduleClient) CreateEntitlementManagementRoleEligibilitySchedule(ctx context.Context, input stable.UnifiedRoleEligibilitySchedule) (result CreateEntitlementManagementRoleEligibilityScheduleOperationResponse, err error) {
+func (c EntitlementManagementRoleEligibilityScheduleClient) CreateEntitlementManagementRoleEligibilitySchedule(ctx context.Context, input stable.UnifiedRoleEligibilitySchedule, options CreateEntitlementManagementRoleEligibilityScheduleOperationOptions) (result CreateEntitlementManagementRoleEligibilityScheduleOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/roleManagement/entitlementManagement/roleEligibilitySchedules",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/roleManagement/entitlementManagement/roleEligibilitySchedules",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

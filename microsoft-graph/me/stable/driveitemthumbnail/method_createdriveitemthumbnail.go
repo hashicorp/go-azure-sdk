@@ -19,15 +19,44 @@ type CreateDriveItemThumbnailOperationResponse struct {
 	Model        *stable.ThumbnailSet
 }
 
+type CreateDriveItemThumbnailOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateDriveItemThumbnailOperationOptions() CreateDriveItemThumbnailOperationOptions {
+	return CreateDriveItemThumbnailOperationOptions{}
+}
+
+func (o CreateDriveItemThumbnailOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateDriveItemThumbnailOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateDriveItemThumbnailOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateDriveItemThumbnail - Create new navigation property to thumbnails for me
-func (c DriveItemThumbnailClient) CreateDriveItemThumbnail(ctx context.Context, id stable.MeDriveIdItemId, input stable.ThumbnailSet) (result CreateDriveItemThumbnailOperationResponse, err error) {
+func (c DriveItemThumbnailClient) CreateDriveItemThumbnail(ctx context.Context, id stable.MeDriveIdItemId, input stable.ThumbnailSet, options CreateDriveItemThumbnailOperationOptions) (result CreateDriveItemThumbnailOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/thumbnails", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/thumbnails", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

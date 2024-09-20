@@ -17,15 +17,44 @@ type UpdateVirtualEndpointBulkActionOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateVirtualEndpointBulkActionOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateVirtualEndpointBulkActionOperationOptions() UpdateVirtualEndpointBulkActionOperationOptions {
+	return UpdateVirtualEndpointBulkActionOperationOptions{}
+}
+
+func (o UpdateVirtualEndpointBulkActionOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateVirtualEndpointBulkActionOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateVirtualEndpointBulkActionOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateVirtualEndpointBulkAction - Update the navigation property bulkActions in deviceManagement
-func (c VirtualEndpointBulkActionClient) UpdateVirtualEndpointBulkAction(ctx context.Context, id beta.DeviceManagementVirtualEndpointBulkActionId, input beta.CloudPCBulkAction) (result UpdateVirtualEndpointBulkActionOperationResponse, err error) {
+func (c VirtualEndpointBulkActionClient) UpdateVirtualEndpointBulkAction(ctx context.Context, id beta.DeviceManagementVirtualEndpointBulkActionId, input beta.CloudPCBulkAction, options UpdateVirtualEndpointBulkActionOperationOptions) (result UpdateVirtualEndpointBulkActionOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

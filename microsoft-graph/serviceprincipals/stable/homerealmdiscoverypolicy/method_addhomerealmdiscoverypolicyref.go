@@ -18,16 +18,45 @@ type AddHomeRealmDiscoveryPolicyRefOperationResponse struct {
 	OData        *odata.OData
 }
 
+type AddHomeRealmDiscoveryPolicyRefOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultAddHomeRealmDiscoveryPolicyRefOperationOptions() AddHomeRealmDiscoveryPolicyRefOperationOptions {
+	return AddHomeRealmDiscoveryPolicyRefOperationOptions{}
+}
+
+func (o AddHomeRealmDiscoveryPolicyRefOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o AddHomeRealmDiscoveryPolicyRefOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o AddHomeRealmDiscoveryPolicyRefOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // AddHomeRealmDiscoveryPolicyRef - Assign homeRealmDiscoveryPolicy. Assign a homeRealmDiscoveryPolicy to a
 // servicePrincipal.
-func (c HomeRealmDiscoveryPolicyClient) AddHomeRealmDiscoveryPolicyRef(ctx context.Context, id stable.ServicePrincipalId, input stable.ReferenceCreate) (result AddHomeRealmDiscoveryPolicyRefOperationResponse, err error) {
+func (c HomeRealmDiscoveryPolicyClient) AddHomeRealmDiscoveryPolicyRef(ctx context.Context, id stable.ServicePrincipalId, input stable.ReferenceCreate, options AddHomeRealmDiscoveryPolicyRefOperationOptions) (result AddHomeRealmDiscoveryPolicyRefOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/homeRealmDiscoveryPolicies/$ref", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/homeRealmDiscoveryPolicies/$ref", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

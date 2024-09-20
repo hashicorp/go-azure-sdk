@@ -18,7 +18,8 @@ type DeleteAdminConsentRequestPolicyOperationResponse struct {
 }
 
 type DeleteAdminConsentRequestPolicyOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteAdminConsentRequestPolicyOperationOptions() DeleteAdminConsentRequestPolicyOperationOptions {
@@ -35,7 +36,9 @@ func (o DeleteAdminConsentRequestPolicyOperationOptions) ToHeaders() *client.Hea
 
 func (o DeleteAdminConsentRequestPolicyOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

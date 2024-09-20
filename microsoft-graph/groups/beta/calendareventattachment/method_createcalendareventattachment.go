@@ -20,15 +20,44 @@ type CreateCalendarEventAttachmentOperationResponse struct {
 	Model        beta.Attachment
 }
 
+type CreateCalendarEventAttachmentOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateCalendarEventAttachmentOperationOptions() CreateCalendarEventAttachmentOperationOptions {
+	return CreateCalendarEventAttachmentOperationOptions{}
+}
+
+func (o CreateCalendarEventAttachmentOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateCalendarEventAttachmentOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateCalendarEventAttachmentOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateCalendarEventAttachment - Create new navigation property to attachments for groups
-func (c CalendarEventAttachmentClient) CreateCalendarEventAttachment(ctx context.Context, id beta.GroupIdCalendarEventId, input beta.Attachment) (result CreateCalendarEventAttachmentOperationResponse, err error) {
+func (c CalendarEventAttachmentClient) CreateCalendarEventAttachment(ctx context.Context, id beta.GroupIdCalendarEventId, input beta.Attachment, options CreateCalendarEventAttachmentOperationOptions) (result CreateCalendarEventAttachmentOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/attachments", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/attachments", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

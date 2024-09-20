@@ -84,21 +84,32 @@ func (s DetectedApp) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &DetectedApp{}
 
 func (s *DetectedApp) UnmarshalJSON(bytes []byte) error {
-	type alias DetectedApp
-	var decoded alias
+
+	var decoded struct {
+		DeviceCount    *int64                   `json:"deviceCount,omitempty"`
+		DisplayName    nullable.Type[string]    `json:"displayName,omitempty"`
+		ManagedDevices *[]ManagedDevice         `json:"managedDevices,omitempty"`
+		Platform       *DetectedAppPlatformType `json:"platform,omitempty"`
+		Publisher      nullable.Type[string]    `json:"publisher,omitempty"`
+		SizeInByte     *int64                   `json:"sizeInByte,omitempty"`
+		Version        nullable.Type[string]    `json:"version,omitempty"`
+		Id             *string                  `json:"id,omitempty"`
+		ODataId        *string                  `json:"@odata.id,omitempty"`
+		ODataType      *string                  `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into DetectedApp: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.DeviceCount = decoded.DeviceCount
 	s.DisplayName = decoded.DisplayName
-	s.Id = decoded.Id
-	s.ODataId = decoded.ODataId
-	s.ODataType = decoded.ODataType
 	s.Platform = decoded.Platform
 	s.Publisher = decoded.Publisher
 	s.SizeInByte = decoded.SizeInByte
 	s.Version = decoded.Version
+	s.Id = decoded.Id
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -121,5 +132,6 @@ func (s *DetectedApp) UnmarshalJSON(bytes []byte) error {
 		}
 		s.ManagedDevices = &output
 	}
+
 	return nil
 }

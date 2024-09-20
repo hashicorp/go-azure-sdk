@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &UserIdProfileEducationalActivityId{}
 
 func TestNewUserIdProfileEducationalActivityID(t *testing.T) {
-	id := NewUserIdProfileEducationalActivityID("userIdValue", "educationalActivityIdValue")
+	id := NewUserIdProfileEducationalActivityID("userId", "educationalActivityId")
 
-	if id.UserId != "userIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'UserId'", id.UserId, "userIdValue")
+	if id.UserId != "userId" {
+		t.Fatalf("Expected %q but got %q for Segment 'UserId'", id.UserId, "userId")
 	}
 
-	if id.EducationalActivityId != "educationalActivityIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'EducationalActivityId'", id.EducationalActivityId, "educationalActivityIdValue")
+	if id.EducationalActivityId != "educationalActivityId" {
+		t.Fatalf("Expected %q but got %q for Segment 'EducationalActivityId'", id.EducationalActivityId, "educationalActivityId")
 	}
 }
 
 func TestFormatUserIdProfileEducationalActivityID(t *testing.T) {
-	actual := NewUserIdProfileEducationalActivityID("userIdValue", "educationalActivityIdValue").ID()
-	expected := "/users/userIdValue/profile/educationalActivities/educationalActivityIdValue"
+	actual := NewUserIdProfileEducationalActivityID("userId", "educationalActivityId").ID()
+	expected := "/users/userId/profile/educationalActivities/educationalActivityId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -49,30 +49,30 @@ func TestParseUserIdProfileEducationalActivityID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue",
+			Input: "/users/userId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/profile",
+			Input: "/users/userId/profile",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/profile/educationalActivities",
+			Input: "/users/userId/profile/educationalActivities",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/users/userIdValue/profile/educationalActivities/educationalActivityIdValue",
+			Input: "/users/userId/profile/educationalActivities/educationalActivityId",
 			Expected: &UserIdProfileEducationalActivityId{
-				UserId:                "userIdValue",
-				EducationalActivityId: "educationalActivityIdValue",
+				UserId:                "userId",
+				EducationalActivityId: "educationalActivityId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/users/userIdValue/profile/educationalActivities/educationalActivityIdValue/extra",
+			Input: "/users/userId/profile/educationalActivities/educationalActivityId/extra",
 			Error: true,
 		},
 	}
@@ -125,58 +125,58 @@ func TestParseUserIdProfileEducationalActivityIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue",
+			Input: "/users/userId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe",
+			Input: "/uSeRs/uSeRiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/profile",
+			Input: "/users/userId/profile",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/pRoFiLe",
+			Input: "/uSeRs/uSeRiD/pRoFiLe",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/profile/educationalActivities",
+			Input: "/users/userId/profile/educationalActivities",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/pRoFiLe/eDuCaTiOnAlAcTiViTiEs",
+			Input: "/uSeRs/uSeRiD/pRoFiLe/eDuCaTiOnAlAcTiViTiEs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/users/userIdValue/profile/educationalActivities/educationalActivityIdValue",
+			Input: "/users/userId/profile/educationalActivities/educationalActivityId",
 			Expected: &UserIdProfileEducationalActivityId{
-				UserId:                "userIdValue",
-				EducationalActivityId: "educationalActivityIdValue",
+				UserId:                "userId",
+				EducationalActivityId: "educationalActivityId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/users/userIdValue/profile/educationalActivities/educationalActivityIdValue/extra",
+			Input: "/users/userId/profile/educationalActivities/educationalActivityId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/pRoFiLe/eDuCaTiOnAlAcTiViTiEs/eDuCaTiOnAlAcTiViTyIdVaLuE",
+			Input: "/uSeRs/uSeRiD/pRoFiLe/eDuCaTiOnAlAcTiViTiEs/eDuCaTiOnAlAcTiViTyId",
 			Expected: &UserIdProfileEducationalActivityId{
-				UserId:                "uSeRiDvAlUe",
-				EducationalActivityId: "eDuCaTiOnAlAcTiViTyIdVaLuE",
+				UserId:                "uSeRiD",
+				EducationalActivityId: "eDuCaTiOnAlAcTiViTyId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/pRoFiLe/eDuCaTiOnAlAcTiViTiEs/eDuCaTiOnAlAcTiViTyIdVaLuE/extra",
+			Input: "/uSeRs/uSeRiD/pRoFiLe/eDuCaTiOnAlAcTiViTiEs/eDuCaTiOnAlAcTiViTyId/extra",
 			Error: true,
 		},
 	}

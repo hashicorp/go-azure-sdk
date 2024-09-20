@@ -19,16 +19,45 @@ type CreateEntitlementManagementAccessPackageCatalogResourceOperationResponse st
 	Model        *beta.AccessPackageResource
 }
 
+type CreateEntitlementManagementAccessPackageCatalogResourceOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateEntitlementManagementAccessPackageCatalogResourceOperationOptions() CreateEntitlementManagementAccessPackageCatalogResourceOperationOptions {
+	return CreateEntitlementManagementAccessPackageCatalogResourceOperationOptions{}
+}
+
+func (o CreateEntitlementManagementAccessPackageCatalogResourceOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateEntitlementManagementAccessPackageCatalogResourceOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateEntitlementManagementAccessPackageCatalogResourceOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateEntitlementManagementAccessPackageCatalogResource - Create new navigation property to accessPackageResources
 // for identityGovernance
-func (c EntitlementManagementAccessPackageCatalogAccessPackageResourceClient) CreateEntitlementManagementAccessPackageCatalogResource(ctx context.Context, id beta.IdentityGovernanceEntitlementManagementAccessPackageCatalogId, input beta.AccessPackageResource) (result CreateEntitlementManagementAccessPackageCatalogResourceOperationResponse, err error) {
+func (c EntitlementManagementAccessPackageCatalogAccessPackageResourceClient) CreateEntitlementManagementAccessPackageCatalogResource(ctx context.Context, id beta.IdentityGovernanceEntitlementManagementAccessPackageCatalogId, input beta.AccessPackageResource, options CreateEntitlementManagementAccessPackageCatalogResourceOperationOptions) (result CreateEntitlementManagementAccessPackageCatalogResourceOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/accessPackageResources", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/accessPackageResources", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

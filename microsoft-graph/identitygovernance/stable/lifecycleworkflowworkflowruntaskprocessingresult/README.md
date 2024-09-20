@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/microsoft-graph/identitygovernance/stable/lifecycleworkflowworkflowruntaskprocessingresult` Documentation
 
-The `lifecycleworkflowworkflowruntaskprocessingresult` SDK allows for interaction with the Azure Resource Manager Service `identitygovernance` (API Version `stable`).
+The `lifecycleworkflowworkflowruntaskprocessingresult` SDK allows for interaction with Microsoft Graph `identitygovernance` (API Version `stable`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -15,7 +15,7 @@ import "github.com/hashicorp/go-azure-sdk/microsoft-graph/identitygovernance/sta
 ### Client Initialization
 
 ```go
-client := lifecycleworkflowworkflowruntaskprocessingresult.NewLifecycleWorkflowWorkflowRunTaskProcessingResultClientWithBaseURI("https://management.azure.com")
+client := lifecycleworkflowworkflowruntaskprocessingresult.NewLifecycleWorkflowWorkflowRunTaskProcessingResultClientWithBaseURI("https://graph.microsoft.com")
 client.Client.Authorizer = authorizer
 ```
 
@@ -24,14 +24,14 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := lifecycleworkflowworkflowruntaskprocessingresult.NewIdentityGovernanceLifecycleWorkflowWorkflowIdRunIdTaskProcessingResultID("workflowIdValue", "runIdValue", "taskProcessingResultIdValue")
+id := lifecycleworkflowworkflowruntaskprocessingresult.NewIdentityGovernanceLifecycleWorkflowWorkflowIdRunIdTaskProcessingResultID("workflowId", "runId", "taskProcessingResultId")
 
 payload := lifecycleworkflowworkflowruntaskprocessingresult.CreateLifecycleWorkflowRunTaskProcessingResultIdentityGovernanceResumeRequest{
 	// ...
 }
 
 
-read, err := client.CreateLifecycleWorkflowRunTaskProcessingResultIdentityGovernanceResume(ctx, id, payload)
+read, err := client.CreateLifecycleWorkflowRunTaskProcessingResultIdentityGovernanceResume(ctx, id, payload, lifecycleworkflowworkflowruntaskprocessingresult.DefaultCreateLifecycleWorkflowRunTaskProcessingResultIdentityGovernanceResumeOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -45,7 +45,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := lifecycleworkflowworkflowruntaskprocessingresult.NewIdentityGovernanceLifecycleWorkflowWorkflowIdRunIdTaskProcessingResultID("workflowIdValue", "runIdValue", "taskProcessingResultIdValue")
+id := lifecycleworkflowworkflowruntaskprocessingresult.NewIdentityGovernanceLifecycleWorkflowWorkflowIdRunIdTaskProcessingResultID("workflowId", "runId", "taskProcessingResultId")
 
 read, err := client.GetLifecycleWorkflowRunTaskProcessingResult(ctx, id, lifecycleworkflowworkflowruntaskprocessingresult.DefaultGetLifecycleWorkflowRunTaskProcessingResultOperationOptions())
 if err != nil {
@@ -61,7 +61,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := lifecycleworkflowworkflowruntaskprocessingresult.NewIdentityGovernanceLifecycleWorkflowWorkflowIdRunID("workflowIdValue", "runIdValue")
+id := lifecycleworkflowworkflowruntaskprocessingresult.NewIdentityGovernanceLifecycleWorkflowWorkflowIdRunID("workflowId", "runId")
 
 read, err := client.GetLifecycleWorkflowRunTaskProcessingResultsCount(ctx, id, lifecycleworkflowworkflowruntaskprocessingresult.DefaultGetLifecycleWorkflowRunTaskProcessingResultsCountOperationOptions())
 if err != nil {
@@ -77,7 +77,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := lifecycleworkflowworkflowruntaskprocessingresult.NewIdentityGovernanceLifecycleWorkflowWorkflowIdRunID("workflowIdValue", "runIdValue")
+id := lifecycleworkflowworkflowruntaskprocessingresult.NewIdentityGovernanceLifecycleWorkflowWorkflowIdRunID("workflowId", "runId")
 
 // alternatively `client.ListLifecycleWorkflowRunTaskProcessingResults(ctx, id, lifecycleworkflowworkflowruntaskprocessingresult.DefaultListLifecycleWorkflowRunTaskProcessingResultsOperationOptions())` can be used to do batched pagination
 items, err := client.ListLifecycleWorkflowRunTaskProcessingResultsComplete(ctx, id, lifecycleworkflowworkflowruntaskprocessingresult.DefaultListLifecycleWorkflowRunTaskProcessingResultsOperationOptions())

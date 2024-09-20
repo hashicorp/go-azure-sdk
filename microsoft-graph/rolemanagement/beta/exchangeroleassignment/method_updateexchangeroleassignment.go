@@ -17,15 +17,44 @@ type UpdateExchangeRoleAssignmentOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateExchangeRoleAssignmentOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateExchangeRoleAssignmentOperationOptions() UpdateExchangeRoleAssignmentOperationOptions {
+	return UpdateExchangeRoleAssignmentOperationOptions{}
+}
+
+func (o UpdateExchangeRoleAssignmentOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateExchangeRoleAssignmentOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateExchangeRoleAssignmentOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateExchangeRoleAssignment - Update the navigation property roleAssignments in roleManagement
-func (c ExchangeRoleAssignmentClient) UpdateExchangeRoleAssignment(ctx context.Context, id beta.RoleManagementExchangeRoleAssignmentId, input beta.UnifiedRoleAssignment) (result UpdateExchangeRoleAssignmentOperationResponse, err error) {
+func (c ExchangeRoleAssignmentClient) UpdateExchangeRoleAssignment(ctx context.Context, id beta.RoleManagementExchangeRoleAssignmentId, input beta.UnifiedRoleAssignment, options UpdateExchangeRoleAssignmentOperationOptions) (result UpdateExchangeRoleAssignmentOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

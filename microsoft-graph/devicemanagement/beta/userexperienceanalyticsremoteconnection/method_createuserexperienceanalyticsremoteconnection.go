@@ -18,16 +18,45 @@ type CreateUserExperienceAnalyticsRemoteConnectionOperationResponse struct {
 	Model        *beta.UserExperienceAnalyticsRemoteConnection
 }
 
+type CreateUserExperienceAnalyticsRemoteConnectionOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateUserExperienceAnalyticsRemoteConnectionOperationOptions() CreateUserExperienceAnalyticsRemoteConnectionOperationOptions {
+	return CreateUserExperienceAnalyticsRemoteConnectionOperationOptions{}
+}
+
+func (o CreateUserExperienceAnalyticsRemoteConnectionOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateUserExperienceAnalyticsRemoteConnectionOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateUserExperienceAnalyticsRemoteConnectionOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateUserExperienceAnalyticsRemoteConnection - Create new navigation property to
 // userExperienceAnalyticsRemoteConnection for deviceManagement
-func (c UserExperienceAnalyticsRemoteConnectionClient) CreateUserExperienceAnalyticsRemoteConnection(ctx context.Context, input beta.UserExperienceAnalyticsRemoteConnection) (result CreateUserExperienceAnalyticsRemoteConnectionOperationResponse, err error) {
+func (c UserExperienceAnalyticsRemoteConnectionClient) CreateUserExperienceAnalyticsRemoteConnection(ctx context.Context, input beta.UserExperienceAnalyticsRemoteConnection, options CreateUserExperienceAnalyticsRemoteConnectionOperationOptions) (result CreateUserExperienceAnalyticsRemoteConnectionOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/deviceManagement/userExperienceAnalyticsRemoteConnection",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/deviceManagement/userExperienceAnalyticsRemoteConnection",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

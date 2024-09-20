@@ -71,10 +71,15 @@ func (s WindowsUpdatesUpdatableAssetGroup) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &WindowsUpdatesUpdatableAssetGroup{}
 
 func (s *WindowsUpdatesUpdatableAssetGroup) UnmarshalJSON(bytes []byte) error {
-	type alias WindowsUpdatesUpdatableAssetGroup
-	var decoded alias
+
+	var decoded struct {
+		Members   *[]WindowsUpdatesUpdatableAsset `json:"members,omitempty"`
+		Id        *string                         `json:"id,omitempty"`
+		ODataId   *string                         `json:"@odata.id,omitempty"`
+		ODataType *string                         `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into WindowsUpdatesUpdatableAssetGroup: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.Id = decoded.Id
@@ -102,5 +107,6 @@ func (s *WindowsUpdatesUpdatableAssetGroup) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Members = &output
 	}
+
 	return nil
 }

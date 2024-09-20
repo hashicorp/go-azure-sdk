@@ -150,8 +150,6 @@ import (
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/exchangeconnector"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/exchangeonpremisespolicy"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/exchangeonpremisespolicyconditionalaccesssetting"
-	"github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/exportdevicemanagementreportsjobs"
-	"github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/exportdevicemanagementvirtualendpointreportsjobs"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/grouppolicycategory"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/grouppolicycategorychild"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/grouppolicycategorydefinition"
@@ -223,6 +221,7 @@ import (
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/iosupdatestatus"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/macossoftwareupdateaccountsummary"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/macossoftwareupdateaccountsummarycategorysummary"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/macossoftwareupdateaccountsummarycategorysummaryupdatestatesummary"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/manageddevice"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/manageddeviceassignmentfilterevaluationstatusdetail"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/manageddevicecleanuprule"
@@ -266,6 +265,7 @@ import (
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/remoteassistancesetting"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/report"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/reportcachedreportconfiguration"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/reportexportjob"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/resourceaccessprofile"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/resourceaccessprofileassignment"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/resourceoperation"
@@ -378,6 +378,7 @@ import (
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/virtualendpointprovisioningpolicyassignmentassignedusermailboxsetting"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/virtualendpointprovisioningpolicyassignmentassigneduserserviceprovisioningerror"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/virtualendpointreport"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/virtualendpointreportexportjob"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/virtualendpointserviceplan"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/virtualendpointsnapshot"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/virtualendpointsupportedregion"
@@ -558,8 +559,6 @@ type Client struct {
 	ExchangeConnector                                                                                  *exchangeconnector.ExchangeConnectorClient
 	ExchangeOnPremisesPolicy                                                                           *exchangeonpremisespolicy.ExchangeOnPremisesPolicyClient
 	ExchangeOnPremisesPolicyConditionalAccessSetting                                                   *exchangeonpremisespolicyconditionalaccesssetting.ExchangeOnPremisesPolicyConditionalAccessSettingClient
-	ExportDeviceManagementReportsJobs                                                                  *exportdevicemanagementreportsjobs.ExportDeviceManagementReportsJobsClient
-	ExportDeviceManagementVirtualEndpointReportsJobs                                                   *exportdevicemanagementvirtualendpointreportsjobs.ExportDeviceManagementVirtualEndpointReportsJobsClient
 	GroupPolicyCategory                                                                                *grouppolicycategory.GroupPolicyCategoryClient
 	GroupPolicyCategoryChild                                                                           *grouppolicycategorychild.GroupPolicyCategoryChildClient
 	GroupPolicyCategoryDefinition                                                                      *grouppolicycategorydefinition.GroupPolicyCategoryDefinitionClient
@@ -631,6 +630,7 @@ type Client struct {
 	IosUpdateStatus                                                                                    *iosupdatestatus.IosUpdateStatusClient
 	MacOSSoftwareUpdateAccountSummary                                                                  *macossoftwareupdateaccountsummary.MacOSSoftwareUpdateAccountSummaryClient
 	MacOSSoftwareUpdateAccountSummaryCategorySummary                                                   *macossoftwareupdateaccountsummarycategorysummary.MacOSSoftwareUpdateAccountSummaryCategorySummaryClient
+	MacOSSoftwareUpdateAccountSummaryCategorySummaryUpdateStateSummary                                 *macossoftwareupdateaccountsummarycategorysummaryupdatestatesummary.MacOSSoftwareUpdateAccountSummaryCategorySummaryUpdateStateSummaryClient
 	ManagedDevice                                                                                      *manageddevice.ManagedDeviceClient
 	ManagedDeviceAssignmentFilterEvaluationStatusDetail                                                *manageddeviceassignmentfilterevaluationstatusdetail.ManagedDeviceAssignmentFilterEvaluationStatusDetailClient
 	ManagedDeviceCleanupRule                                                                           *manageddevicecleanuprule.ManagedDeviceCleanupRuleClient
@@ -674,6 +674,7 @@ type Client struct {
 	RemoteAssistanceSetting                                                                            *remoteassistancesetting.RemoteAssistanceSettingClient
 	Report                                                                                             *report.ReportClient
 	ReportCachedReportConfiguration                                                                    *reportcachedreportconfiguration.ReportCachedReportConfigurationClient
+	ReportExportJob                                                                                    *reportexportjob.ReportExportJobClient
 	ResourceAccessProfile                                                                              *resourceaccessprofile.ResourceAccessProfileClient
 	ResourceAccessProfileAssignment                                                                    *resourceaccessprofileassignment.ResourceAccessProfileAssignmentClient
 	ResourceOperation                                                                                  *resourceoperation.ResourceOperationClient
@@ -786,6 +787,7 @@ type Client struct {
 	VirtualEndpointProvisioningPolicyAssignmentAssignedUserMailboxSetting                              *virtualendpointprovisioningpolicyassignmentassignedusermailboxsetting.VirtualEndpointProvisioningPolicyAssignmentAssignedUserMailboxSettingClient
 	VirtualEndpointProvisioningPolicyAssignmentAssignedUserServiceProvisioningError                    *virtualendpointprovisioningpolicyassignmentassigneduserserviceprovisioningerror.VirtualEndpointProvisioningPolicyAssignmentAssignedUserServiceProvisioningErrorClient
 	VirtualEndpointReport                                                                              *virtualendpointreport.VirtualEndpointReportClient
+	VirtualEndpointReportExportJob                                                                     *virtualendpointreportexportjob.VirtualEndpointReportExportJobClient
 	VirtualEndpointServicePlan                                                                         *virtualendpointserviceplan.VirtualEndpointServicePlanClient
 	VirtualEndpointSnapshot                                                                            *virtualendpointsnapshot.VirtualEndpointSnapshotClient
 	VirtualEndpointSupportedRegion                                                                     *virtualendpointsupportedregion.VirtualEndpointSupportedRegionClient
@@ -1684,18 +1686,6 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *msgraph.Clien
 	}
 	configureFunc(exchangeOnPremisesPolicyConditionalAccessSettingClient.Client)
 
-	exportDeviceManagementReportsJobsClient, err := exportdevicemanagementreportsjobs.NewExportDeviceManagementReportsJobsClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building ExportDeviceManagementReportsJobs client: %+v", err)
-	}
-	configureFunc(exportDeviceManagementReportsJobsClient.Client)
-
-	exportDeviceManagementVirtualEndpointReportsJobsClient, err := exportdevicemanagementvirtualendpointreportsjobs.NewExportDeviceManagementVirtualEndpointReportsJobsClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building ExportDeviceManagementVirtualEndpointReportsJobs client: %+v", err)
-	}
-	configureFunc(exportDeviceManagementVirtualEndpointReportsJobsClient.Client)
-
 	groupPolicyCategoryChildClient, err := grouppolicycategorychild.NewGroupPolicyCategoryChildClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building GroupPolicyCategoryChild client: %+v", err)
@@ -2116,6 +2106,12 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *msgraph.Clien
 	}
 	configureFunc(macOSSoftwareUpdateAccountSummaryCategorySummaryClient.Client)
 
+	macOSSoftwareUpdateAccountSummaryCategorySummaryUpdateStateSummaryClient, err := macossoftwareupdateaccountsummarycategorysummaryupdatestatesummary.NewMacOSSoftwareUpdateAccountSummaryCategorySummaryUpdateStateSummaryClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building MacOSSoftwareUpdateAccountSummaryCategorySummaryUpdateStateSummary client: %+v", err)
+	}
+	configureFunc(macOSSoftwareUpdateAccountSummaryCategorySummaryUpdateStateSummaryClient.Client)
+
 	macOSSoftwareUpdateAccountSummaryClient, err := macossoftwareupdateaccountsummary.NewMacOSSoftwareUpdateAccountSummaryClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building MacOSSoftwareUpdateAccountSummary client: %+v", err)
@@ -2379,6 +2375,12 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *msgraph.Clien
 		return nil, fmt.Errorf("building Report client: %+v", err)
 	}
 	configureFunc(reportClient.Client)
+
+	reportExportJobClient, err := reportexportjob.NewReportExportJobClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building ReportExportJob client: %+v", err)
+	}
+	configureFunc(reportExportJobClient.Client)
 
 	resourceAccessProfileAssignmentClient, err := resourceaccessprofileassignment.NewResourceAccessProfileAssignmentClientWithBaseURI(sdkApi)
 	if err != nil {
@@ -3052,6 +3054,12 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *msgraph.Clien
 	}
 	configureFunc(virtualEndpointReportClient.Client)
 
+	virtualEndpointReportExportJobClient, err := virtualendpointreportexportjob.NewVirtualEndpointReportExportJobClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building VirtualEndpointReportExportJob client: %+v", err)
+	}
+	configureFunc(virtualEndpointReportExportJobClient.Client)
+
 	virtualEndpointServicePlanClient, err := virtualendpointserviceplan.NewVirtualEndpointServicePlanClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building VirtualEndpointServicePlan client: %+v", err)
@@ -3383,8 +3391,6 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *msgraph.Clien
 		ExchangeConnector:                                                                         exchangeConnectorClient,
 		ExchangeOnPremisesPolicy:                                                                  exchangeOnPremisesPolicyClient,
 		ExchangeOnPremisesPolicyConditionalAccessSetting:                                          exchangeOnPremisesPolicyConditionalAccessSettingClient,
-		ExportDeviceManagementReportsJobs:                                                         exportDeviceManagementReportsJobsClient,
-		ExportDeviceManagementVirtualEndpointReportsJobs:                                          exportDeviceManagementVirtualEndpointReportsJobsClient,
 		GroupPolicyCategory:                                                                       groupPolicyCategoryClient,
 		GroupPolicyCategoryChild:                                                                  groupPolicyCategoryChildClient,
 		GroupPolicyCategoryDefinition:                                                             groupPolicyCategoryDefinitionClient,
@@ -3456,6 +3462,7 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *msgraph.Clien
 		IosUpdateStatus:                                                                           iosUpdateStatusClient,
 		MacOSSoftwareUpdateAccountSummary:                                                         macOSSoftwareUpdateAccountSummaryClient,
 		MacOSSoftwareUpdateAccountSummaryCategorySummary:                                          macOSSoftwareUpdateAccountSummaryCategorySummaryClient,
+		MacOSSoftwareUpdateAccountSummaryCategorySummaryUpdateStateSummary:                        macOSSoftwareUpdateAccountSummaryCategorySummaryUpdateStateSummaryClient,
 		ManagedDevice: managedDeviceClient,
 		ManagedDeviceAssignmentFilterEvaluationStatusDetail:                      managedDeviceAssignmentFilterEvaluationStatusDetailClient,
 		ManagedDeviceCleanupRule:                                                 managedDeviceCleanupRuleClient,
@@ -3499,6 +3506,7 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *msgraph.Clien
 		RemoteAssistanceSetting:                                                  remoteAssistanceSettingClient,
 		Report:                                                                   reportClient,
 		ReportCachedReportConfiguration:                                          reportCachedReportConfigurationClient,
+		ReportExportJob:                                                          reportExportJobClient,
 		ResourceAccessProfile:                                                    resourceAccessProfileClient,
 		ResourceAccessProfileAssignment:                                          resourceAccessProfileAssignmentClient,
 		ResourceOperation:                                                        resourceOperationClient,
@@ -3611,6 +3619,7 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *msgraph.Clien
 		VirtualEndpointProvisioningPolicyAssignmentAssignedUserMailboxSetting:           virtualEndpointProvisioningPolicyAssignmentAssignedUserMailboxSettingClient,
 		VirtualEndpointProvisioningPolicyAssignmentAssignedUserServiceProvisioningError: virtualEndpointProvisioningPolicyAssignmentAssignedUserServiceProvisioningErrorClient,
 		VirtualEndpointReport:                                                           virtualEndpointReportClient,
+		VirtualEndpointReportExportJob:                                                  virtualEndpointReportExportJobClient,
 		VirtualEndpointServicePlan:                                                      virtualEndpointServicePlanClient,
 		VirtualEndpointSnapshot:                                                         virtualEndpointSnapshotClient,
 		VirtualEndpointSupportedRegion:                                                  virtualEndpointSupportedRegionClient,

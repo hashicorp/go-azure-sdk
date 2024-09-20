@@ -100,9 +100,9 @@ func (id IdentityGovernanceEntitlementManagementConnectedOrganizationIdInternalS
 		resourceids.StaticSegment("identityGovernance", "identityGovernance", "identityGovernance"),
 		resourceids.StaticSegment("entitlementManagement", "entitlementManagement", "entitlementManagement"),
 		resourceids.StaticSegment("connectedOrganizations", "connectedOrganizations", "connectedOrganizations"),
-		resourceids.UserSpecifiedSegment("connectedOrganizationId", "connectedOrganizationIdValue"),
+		resourceids.UserSpecifiedSegment("connectedOrganizationId", "connectedOrganizationId"),
 		resourceids.StaticSegment("internalSponsors", "internalSponsors", "internalSponsors"),
-		resourceids.UserSpecifiedSegment("directoryObjectId", "directoryObjectIdValue"),
+		resourceids.UserSpecifiedSegment("directoryObjectId", "directoryObjectId"),
 	}
 }
 

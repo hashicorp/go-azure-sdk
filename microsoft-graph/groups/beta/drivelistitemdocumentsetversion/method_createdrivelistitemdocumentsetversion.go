@@ -19,15 +19,44 @@ type CreateDriveListItemDocumentSetVersionOperationResponse struct {
 	Model        *beta.DocumentSetVersion
 }
 
+type CreateDriveListItemDocumentSetVersionOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateDriveListItemDocumentSetVersionOperationOptions() CreateDriveListItemDocumentSetVersionOperationOptions {
+	return CreateDriveListItemDocumentSetVersionOperationOptions{}
+}
+
+func (o CreateDriveListItemDocumentSetVersionOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateDriveListItemDocumentSetVersionOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateDriveListItemDocumentSetVersionOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateDriveListItemDocumentSetVersion - Create new navigation property to documentSetVersions for groups
-func (c DriveListItemDocumentSetVersionClient) CreateDriveListItemDocumentSetVersion(ctx context.Context, id beta.GroupIdDriveIdListItemId, input beta.DocumentSetVersion) (result CreateDriveListItemDocumentSetVersionOperationResponse, err error) {
+func (c DriveListItemDocumentSetVersionClient) CreateDriveListItemDocumentSetVersion(ctx context.Context, id beta.GroupIdDriveIdListItemId, input beta.DocumentSetVersion, options CreateDriveListItemDocumentSetVersionOperationOptions) (result CreateDriveListItemDocumentSetVersionOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/documentSetVersions", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/documentSetVersions", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

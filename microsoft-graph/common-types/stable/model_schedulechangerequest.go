@@ -132,25 +132,40 @@ func (s BaseScheduleChangeRequestImpl) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &BaseScheduleChangeRequestImpl{}
 
 func (s *BaseScheduleChangeRequestImpl) UnmarshalJSON(bytes []byte) error {
-	type alias BaseScheduleChangeRequestImpl
-	var decoded alias
+
+	var decoded struct {
+		AssignedTo            *ScheduleChangeRequestActor `json:"assignedTo,omitempty"`
+		ManagerActionDateTime nullable.Type[string]       `json:"managerActionDateTime,omitempty"`
+		ManagerActionMessage  nullable.Type[string]       `json:"managerActionMessage,omitempty"`
+		ManagerUserId         nullable.Type[string]       `json:"managerUserId,omitempty"`
+		SenderDateTime        nullable.Type[string]       `json:"senderDateTime,omitempty"`
+		SenderMessage         nullable.Type[string]       `json:"senderMessage,omitempty"`
+		SenderUserId          nullable.Type[string]       `json:"senderUserId,omitempty"`
+		State                 *ScheduleChangeState        `json:"state,omitempty"`
+		CreatedDateTime       nullable.Type[string]       `json:"createdDateTime,omitempty"`
+		LastModifiedBy        *IdentitySet                `json:"lastModifiedBy,omitempty"`
+		LastModifiedDateTime  nullable.Type[string]       `json:"lastModifiedDateTime,omitempty"`
+		Id                    *string                     `json:"id,omitempty"`
+		ODataId               *string                     `json:"@odata.id,omitempty"`
+		ODataType             *string                     `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into BaseScheduleChangeRequestImpl: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.AssignedTo = decoded.AssignedTo
-	s.CreatedDateTime = decoded.CreatedDateTime
-	s.Id = decoded.Id
-	s.LastModifiedDateTime = decoded.LastModifiedDateTime
 	s.ManagerActionDateTime = decoded.ManagerActionDateTime
 	s.ManagerActionMessage = decoded.ManagerActionMessage
 	s.ManagerUserId = decoded.ManagerUserId
-	s.ODataId = decoded.ODataId
-	s.ODataType = decoded.ODataType
 	s.SenderDateTime = decoded.SenderDateTime
 	s.SenderMessage = decoded.SenderMessage
 	s.SenderUserId = decoded.SenderUserId
 	s.State = decoded.State
+	s.CreatedDateTime = decoded.CreatedDateTime
+	s.Id = decoded.Id
+	s.LastModifiedDateTime = decoded.LastModifiedDateTime
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -164,6 +179,7 @@ func (s *BaseScheduleChangeRequestImpl) UnmarshalJSON(bytes []byte) error {
 		}
 		s.LastModifiedBy = &impl
 	}
+
 	return nil
 }
 
@@ -177,9 +193,9 @@ func UnmarshalScheduleChangeRequestImplementation(input []byte) (ScheduleChangeR
 		return nil, fmt.Errorf("unmarshaling ScheduleChangeRequest into map[string]interface: %+v", err)
 	}
 
-	value, ok := temp["@odata.type"].(string)
-	if !ok {
-		return nil, nil
+	var value string
+	if v, ok := temp["@odata.type"]; ok {
+		value = fmt.Sprintf("%v", v)
 	}
 
 	if strings.EqualFold(value, "#microsoft.graph.offerShiftRequest") {

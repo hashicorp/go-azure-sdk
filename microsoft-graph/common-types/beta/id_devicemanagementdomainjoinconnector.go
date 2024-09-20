@@ -93,7 +93,7 @@ func (id DeviceManagementDomainJoinConnectorId) Segments() []resourceids.Segment
 	return []resourceids.Segment{
 		resourceids.StaticSegment("deviceManagement", "deviceManagement", "deviceManagement"),
 		resourceids.StaticSegment("domainJoinConnectors", "domainJoinConnectors", "domainJoinConnectors"),
-		resourceids.UserSpecifiedSegment("deviceManagementDomainJoinConnectorId", "deviceManagementDomainJoinConnectorIdValue"),
+		resourceids.UserSpecifiedSegment("deviceManagementDomainJoinConnectorId", "deviceManagementDomainJoinConnectorId"),
 	}
 }
 

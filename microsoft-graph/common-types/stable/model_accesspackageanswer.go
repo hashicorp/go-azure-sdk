@@ -52,10 +52,14 @@ func (s RawAccessPackageAnswerImpl) AccessPackageAnswer() BaseAccessPackageAnswe
 var _ json.Unmarshaler = &BaseAccessPackageAnswerImpl{}
 
 func (s *BaseAccessPackageAnswerImpl) UnmarshalJSON(bytes []byte) error {
-	type alias BaseAccessPackageAnswerImpl
-	var decoded alias
+
+	var decoded struct {
+		DisplayValue nullable.Type[string] `json:"displayValue,omitempty"`
+		ODataId      *string               `json:"@odata.id,omitempty"`
+		ODataType    *string               `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into BaseAccessPackageAnswerImpl: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.DisplayValue = decoded.DisplayValue
@@ -74,6 +78,7 @@ func (s *BaseAccessPackageAnswerImpl) UnmarshalJSON(bytes []byte) error {
 		}
 		s.AnsweredQuestion = &impl
 	}
+
 	return nil
 }
 
@@ -87,9 +92,9 @@ func UnmarshalAccessPackageAnswerImplementation(input []byte) (AccessPackageAnsw
 		return nil, fmt.Errorf("unmarshaling AccessPackageAnswer into map[string]interface: %+v", err)
 	}
 
-	value, ok := temp["@odata.type"].(string)
-	if !ok {
-		return nil, nil
+	var value string
+	if v, ok := temp["@odata.type"]; ok {
+		value = fmt.Sprintf("%v", v)
 	}
 
 	if strings.EqualFold(value, "#microsoft.graph.accessPackageAnswerString") {

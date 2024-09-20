@@ -94,7 +94,7 @@ func (id MeOutlookTaskFolderId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("me", "me", "me"),
 		resourceids.StaticSegment("outlook", "outlook", "outlook"),
 		resourceids.StaticSegment("taskFolders", "taskFolders", "taskFolders"),
-		resourceids.UserSpecifiedSegment("outlookTaskFolderId", "outlookTaskFolderIdValue"),
+		resourceids.UserSpecifiedSegment("outlookTaskFolderId", "outlookTaskFolderId"),
 	}
 }
 

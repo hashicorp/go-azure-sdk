@@ -18,15 +18,44 @@ type CreateDirectoryAuditOperationResponse struct {
 	Model        *stable.DirectoryAudit
 }
 
+type CreateDirectoryAuditOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateDirectoryAuditOperationOptions() CreateDirectoryAuditOperationOptions {
+	return CreateDirectoryAuditOperationOptions{}
+}
+
+func (o CreateDirectoryAuditOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateDirectoryAuditOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateDirectoryAuditOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateDirectoryAudit - Create new navigation property to directoryAudits for auditLogs
-func (c DirectoryAuditClient) CreateDirectoryAudit(ctx context.Context, input stable.DirectoryAudit) (result CreateDirectoryAuditOperationResponse, err error) {
+func (c DirectoryAuditClient) CreateDirectoryAudit(ctx context.Context, input stable.DirectoryAudit, options CreateDirectoryAuditOperationOptions) (result CreateDirectoryAuditOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/auditLogs/directoryAudits",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/auditLogs/directoryAudits",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

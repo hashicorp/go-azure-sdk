@@ -19,15 +19,44 @@ type CreatePendingAccessReviewInstanceDecisionInstanceStageOperationResponse str
 	Model        *beta.AccessReviewStage
 }
 
+type CreatePendingAccessReviewInstanceDecisionInstanceStageOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreatePendingAccessReviewInstanceDecisionInstanceStageOperationOptions() CreatePendingAccessReviewInstanceDecisionInstanceStageOperationOptions {
+	return CreatePendingAccessReviewInstanceDecisionInstanceStageOperationOptions{}
+}
+
+func (o CreatePendingAccessReviewInstanceDecisionInstanceStageOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreatePendingAccessReviewInstanceDecisionInstanceStageOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreatePendingAccessReviewInstanceDecisionInstanceStageOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreatePendingAccessReviewInstanceDecisionInstanceStage - Create new navigation property to stages for me
-func (c PendingAccessReviewInstanceDecisionInstanceStageClient) CreatePendingAccessReviewInstanceDecisionInstanceStage(ctx context.Context, id beta.MePendingAccessReviewInstanceIdDecisionId, input beta.AccessReviewStage) (result CreatePendingAccessReviewInstanceDecisionInstanceStageOperationResponse, err error) {
+func (c PendingAccessReviewInstanceDecisionInstanceStageClient) CreatePendingAccessReviewInstanceDecisionInstanceStage(ctx context.Context, id beta.MePendingAccessReviewInstanceIdDecisionId, input beta.AccessReviewStage, options CreatePendingAccessReviewInstanceDecisionInstanceStageOperationOptions) (result CreatePendingAccessReviewInstanceDecisionInstanceStageOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/instance/stages", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/instance/stages", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

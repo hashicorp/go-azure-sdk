@@ -19,16 +19,45 @@ type GetDeviceHealthScriptGlobalScriptHighestAvailableVersionOperationResponse s
 	Model        *GetDeviceHealthScriptGlobalScriptHighestAvailableVersionResult
 }
 
+type GetDeviceHealthScriptGlobalScriptHighestAvailableVersionOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultGetDeviceHealthScriptGlobalScriptHighestAvailableVersionOperationOptions() GetDeviceHealthScriptGlobalScriptHighestAvailableVersionOperationOptions {
+	return GetDeviceHealthScriptGlobalScriptHighestAvailableVersionOperationOptions{}
+}
+
+func (o GetDeviceHealthScriptGlobalScriptHighestAvailableVersionOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o GetDeviceHealthScriptGlobalScriptHighestAvailableVersionOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o GetDeviceHealthScriptGlobalScriptHighestAvailableVersionOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // GetDeviceHealthScriptGlobalScriptHighestAvailableVersion - Invoke action getGlobalScriptHighestAvailableVersion.
 // Update the Proprietary Device Health Script
-func (c DeviceHealthScriptClient) GetDeviceHealthScriptGlobalScriptHighestAvailableVersion(ctx context.Context, id beta.DeviceManagementDeviceHealthScriptId) (result GetDeviceHealthScriptGlobalScriptHighestAvailableVersionOperationResponse, err error) {
+func (c DeviceHealthScriptClient) GetDeviceHealthScriptGlobalScriptHighestAvailableVersion(ctx context.Context, id beta.DeviceManagementDeviceHealthScriptId, options GetDeviceHealthScriptGlobalScriptHighestAvailableVersionOperationOptions) (result GetDeviceHealthScriptGlobalScriptHighestAvailableVersionOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/getGlobalScriptHighestAvailableVersion", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/getGlobalScriptHighestAvailableVersion", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

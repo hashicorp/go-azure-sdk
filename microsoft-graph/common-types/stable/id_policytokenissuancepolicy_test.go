@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &PolicyTokenIssuancePolicyId{}
 
 func TestNewPolicyTokenIssuancePolicyID(t *testing.T) {
-	id := NewPolicyTokenIssuancePolicyID("tokenIssuancePolicyIdValue")
+	id := NewPolicyTokenIssuancePolicyID("tokenIssuancePolicyId")
 
-	if id.TokenIssuancePolicyId != "tokenIssuancePolicyIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'TokenIssuancePolicyId'", id.TokenIssuancePolicyId, "tokenIssuancePolicyIdValue")
+	if id.TokenIssuancePolicyId != "tokenIssuancePolicyId" {
+		t.Fatalf("Expected %q but got %q for Segment 'TokenIssuancePolicyId'", id.TokenIssuancePolicyId, "tokenIssuancePolicyId")
 	}
 }
 
 func TestFormatPolicyTokenIssuancePolicyID(t *testing.T) {
-	actual := NewPolicyTokenIssuancePolicyID("tokenIssuancePolicyIdValue").ID()
-	expected := "/policies/tokenIssuancePolicies/tokenIssuancePolicyIdValue"
+	actual := NewPolicyTokenIssuancePolicyID("tokenIssuancePolicyId").ID()
+	expected := "/policies/tokenIssuancePolicies/tokenIssuancePolicyId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -50,14 +50,14 @@ func TestParsePolicyTokenIssuancePolicyID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/policies/tokenIssuancePolicies/tokenIssuancePolicyIdValue",
+			Input: "/policies/tokenIssuancePolicies/tokenIssuancePolicyId",
 			Expected: &PolicyTokenIssuancePolicyId{
-				TokenIssuancePolicyId: "tokenIssuancePolicyIdValue",
+				TokenIssuancePolicyId: "tokenIssuancePolicyId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/policies/tokenIssuancePolicies/tokenIssuancePolicyIdValue/extra",
+			Input: "/policies/tokenIssuancePolicies/tokenIssuancePolicyId/extra",
 			Error: true,
 		},
 	}
@@ -116,26 +116,26 @@ func TestParsePolicyTokenIssuancePolicyIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/policies/tokenIssuancePolicies/tokenIssuancePolicyIdValue",
+			Input: "/policies/tokenIssuancePolicies/tokenIssuancePolicyId",
 			Expected: &PolicyTokenIssuancePolicyId{
-				TokenIssuancePolicyId: "tokenIssuancePolicyIdValue",
+				TokenIssuancePolicyId: "tokenIssuancePolicyId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/policies/tokenIssuancePolicies/tokenIssuancePolicyIdValue/extra",
+			Input: "/policies/tokenIssuancePolicies/tokenIssuancePolicyId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/pOlIcIeS/tOkEnIsSuAnCePoLiCiEs/tOkEnIsSuAnCePoLiCyIdVaLuE",
+			Input: "/pOlIcIeS/tOkEnIsSuAnCePoLiCiEs/tOkEnIsSuAnCePoLiCyId",
 			Expected: &PolicyTokenIssuancePolicyId{
-				TokenIssuancePolicyId: "tOkEnIsSuAnCePoLiCyIdVaLuE",
+				TokenIssuancePolicyId: "tOkEnIsSuAnCePoLiCyId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/pOlIcIeS/tOkEnIsSuAnCePoLiCiEs/tOkEnIsSuAnCePoLiCyIdVaLuE/extra",
+			Input: "/pOlIcIeS/tOkEnIsSuAnCePoLiCiEs/tOkEnIsSuAnCePoLiCyId/extra",
 			Error: true,
 		},
 	}

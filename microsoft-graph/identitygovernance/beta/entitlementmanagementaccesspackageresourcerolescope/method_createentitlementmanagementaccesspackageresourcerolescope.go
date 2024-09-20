@@ -18,16 +18,45 @@ type CreateEntitlementManagementAccessPackageResourceRoleScopeOperationResponse 
 	Model        *beta.AccessPackageResourceRoleScope
 }
 
+type CreateEntitlementManagementAccessPackageResourceRoleScopeOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateEntitlementManagementAccessPackageResourceRoleScopeOperationOptions() CreateEntitlementManagementAccessPackageResourceRoleScopeOperationOptions {
+	return CreateEntitlementManagementAccessPackageResourceRoleScopeOperationOptions{}
+}
+
+func (o CreateEntitlementManagementAccessPackageResourceRoleScopeOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateEntitlementManagementAccessPackageResourceRoleScopeOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateEntitlementManagementAccessPackageResourceRoleScopeOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateEntitlementManagementAccessPackageResourceRoleScope - Create new navigation property to
 // accessPackageResourceRoleScopes for identityGovernance
-func (c EntitlementManagementAccessPackageResourceRoleScopeClient) CreateEntitlementManagementAccessPackageResourceRoleScope(ctx context.Context, input beta.AccessPackageResourceRoleScope) (result CreateEntitlementManagementAccessPackageResourceRoleScopeOperationResponse, err error) {
+func (c EntitlementManagementAccessPackageResourceRoleScopeClient) CreateEntitlementManagementAccessPackageResourceRoleScope(ctx context.Context, input beta.AccessPackageResourceRoleScope, options CreateEntitlementManagementAccessPackageResourceRoleScopeOperationOptions) (result CreateEntitlementManagementAccessPackageResourceRoleScopeOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/identityGovernance/entitlementManagement/accessPackageResourceRoleScopes",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/identityGovernance/entitlementManagement/accessPackageResourceRoleScopes",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

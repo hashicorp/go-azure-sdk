@@ -17,16 +17,45 @@ type GetReportsDeviceStatusSummaryByCompliancePolicySettingsReportOperationRespo
 	Model        *[]byte
 }
 
+type GetReportsDeviceStatusSummaryByCompliancePolicySettingsReportOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultGetReportsDeviceStatusSummaryByCompliancePolicySettingsReportOperationOptions() GetReportsDeviceStatusSummaryByCompliancePolicySettingsReportOperationOptions {
+	return GetReportsDeviceStatusSummaryByCompliancePolicySettingsReportOperationOptions{}
+}
+
+func (o GetReportsDeviceStatusSummaryByCompliancePolicySettingsReportOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o GetReportsDeviceStatusSummaryByCompliancePolicySettingsReportOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o GetReportsDeviceStatusSummaryByCompliancePolicySettingsReportOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // GetReportsDeviceStatusSummaryByCompliancePolicySettingsReport - Invoke action
 // getDeviceStatusSummaryByCompliancePolicySettingsReport
-func (c ReportClient) GetReportsDeviceStatusSummaryByCompliancePolicySettingsReport(ctx context.Context, input GetReportsDeviceStatusSummaryByCompliancePolicySettingsReportRequest) (result GetReportsDeviceStatusSummaryByCompliancePolicySettingsReportOperationResponse, err error) {
+func (c ReportClient) GetReportsDeviceStatusSummaryByCompliancePolicySettingsReport(ctx context.Context, input GetReportsDeviceStatusSummaryByCompliancePolicySettingsReportRequest, options GetReportsDeviceStatusSummaryByCompliancePolicySettingsReportOperationOptions) (result GetReportsDeviceStatusSummaryByCompliancePolicySettingsReportOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/octet-stream",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/deviceManagement/reports/getDeviceStatusSummaryByCompliancePolicySettingsReport",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/deviceManagement/reports/getDeviceStatusSummaryByCompliancePolicySettingsReport",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

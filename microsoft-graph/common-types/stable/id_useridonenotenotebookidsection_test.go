@@ -12,24 +12,24 @@ import (
 var _ resourceids.ResourceId = &UserIdOnenoteNotebookIdSectionId{}
 
 func TestNewUserIdOnenoteNotebookIdSectionID(t *testing.T) {
-	id := NewUserIdOnenoteNotebookIdSectionID("userIdValue", "notebookIdValue", "onenoteSectionIdValue")
+	id := NewUserIdOnenoteNotebookIdSectionID("userId", "notebookId", "onenoteSectionId")
 
-	if id.UserId != "userIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'UserId'", id.UserId, "userIdValue")
+	if id.UserId != "userId" {
+		t.Fatalf("Expected %q but got %q for Segment 'UserId'", id.UserId, "userId")
 	}
 
-	if id.NotebookId != "notebookIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'NotebookId'", id.NotebookId, "notebookIdValue")
+	if id.NotebookId != "notebookId" {
+		t.Fatalf("Expected %q but got %q for Segment 'NotebookId'", id.NotebookId, "notebookId")
 	}
 
-	if id.OnenoteSectionId != "onenoteSectionIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'OnenoteSectionId'", id.OnenoteSectionId, "onenoteSectionIdValue")
+	if id.OnenoteSectionId != "onenoteSectionId" {
+		t.Fatalf("Expected %q but got %q for Segment 'OnenoteSectionId'", id.OnenoteSectionId, "onenoteSectionId")
 	}
 }
 
 func TestFormatUserIdOnenoteNotebookIdSectionID(t *testing.T) {
-	actual := NewUserIdOnenoteNotebookIdSectionID("userIdValue", "notebookIdValue", "onenoteSectionIdValue").ID()
-	expected := "/users/userIdValue/onenote/notebooks/notebookIdValue/sections/onenoteSectionIdValue"
+	actual := NewUserIdOnenoteNotebookIdSectionID("userId", "notebookId", "onenoteSectionId").ID()
+	expected := "/users/userId/onenote/notebooks/notebookId/sections/onenoteSectionId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -53,41 +53,41 @@ func TestParseUserIdOnenoteNotebookIdSectionID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue",
+			Input: "/users/userId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/onenote",
+			Input: "/users/userId/onenote",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/onenote/notebooks",
+			Input: "/users/userId/onenote/notebooks",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/onenote/notebooks/notebookIdValue",
+			Input: "/users/userId/onenote/notebooks/notebookId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/onenote/notebooks/notebookIdValue/sections",
+			Input: "/users/userId/onenote/notebooks/notebookId/sections",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/users/userIdValue/onenote/notebooks/notebookIdValue/sections/onenoteSectionIdValue",
+			Input: "/users/userId/onenote/notebooks/notebookId/sections/onenoteSectionId",
 			Expected: &UserIdOnenoteNotebookIdSectionId{
-				UserId:           "userIdValue",
-				NotebookId:       "notebookIdValue",
-				OnenoteSectionId: "onenoteSectionIdValue",
+				UserId:           "userId",
+				NotebookId:       "notebookId",
+				OnenoteSectionId: "onenoteSectionId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/users/userIdValue/onenote/notebooks/notebookIdValue/sections/onenoteSectionIdValue/extra",
+			Input: "/users/userId/onenote/notebooks/notebookId/sections/onenoteSectionId/extra",
 			Error: true,
 		},
 	}
@@ -144,80 +144,80 @@ func TestParseUserIdOnenoteNotebookIdSectionIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue",
+			Input: "/users/userId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe",
+			Input: "/uSeRs/uSeRiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/onenote",
+			Input: "/users/userId/onenote",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/oNeNoTe",
+			Input: "/uSeRs/uSeRiD/oNeNoTe",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/onenote/notebooks",
+			Input: "/users/userId/onenote/notebooks",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/oNeNoTe/nOtEbOoKs",
+			Input: "/uSeRs/uSeRiD/oNeNoTe/nOtEbOoKs",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/onenote/notebooks/notebookIdValue",
+			Input: "/users/userId/onenote/notebooks/notebookId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/oNeNoTe/nOtEbOoKs/nOtEbOoKiDvAlUe",
+			Input: "/uSeRs/uSeRiD/oNeNoTe/nOtEbOoKs/nOtEbOoKiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/onenote/notebooks/notebookIdValue/sections",
+			Input: "/users/userId/onenote/notebooks/notebookId/sections",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/oNeNoTe/nOtEbOoKs/nOtEbOoKiDvAlUe/sEcTiOnS",
+			Input: "/uSeRs/uSeRiD/oNeNoTe/nOtEbOoKs/nOtEbOoKiD/sEcTiOnS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/users/userIdValue/onenote/notebooks/notebookIdValue/sections/onenoteSectionIdValue",
+			Input: "/users/userId/onenote/notebooks/notebookId/sections/onenoteSectionId",
 			Expected: &UserIdOnenoteNotebookIdSectionId{
-				UserId:           "userIdValue",
-				NotebookId:       "notebookIdValue",
-				OnenoteSectionId: "onenoteSectionIdValue",
+				UserId:           "userId",
+				NotebookId:       "notebookId",
+				OnenoteSectionId: "onenoteSectionId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/users/userIdValue/onenote/notebooks/notebookIdValue/sections/onenoteSectionIdValue/extra",
+			Input: "/users/userId/onenote/notebooks/notebookId/sections/onenoteSectionId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/oNeNoTe/nOtEbOoKs/nOtEbOoKiDvAlUe/sEcTiOnS/oNeNoTeSeCtIoNiDvAlUe",
+			Input: "/uSeRs/uSeRiD/oNeNoTe/nOtEbOoKs/nOtEbOoKiD/sEcTiOnS/oNeNoTeSeCtIoNiD",
 			Expected: &UserIdOnenoteNotebookIdSectionId{
-				UserId:           "uSeRiDvAlUe",
-				NotebookId:       "nOtEbOoKiDvAlUe",
-				OnenoteSectionId: "oNeNoTeSeCtIoNiDvAlUe",
+				UserId:           "uSeRiD",
+				NotebookId:       "nOtEbOoKiD",
+				OnenoteSectionId: "oNeNoTeSeCtIoNiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/oNeNoTe/nOtEbOoKs/nOtEbOoKiDvAlUe/sEcTiOnS/oNeNoTeSeCtIoNiDvAlUe/extra",
+			Input: "/uSeRs/uSeRiD/oNeNoTe/nOtEbOoKs/nOtEbOoKiD/sEcTiOnS/oNeNoTeSeCtIoNiD/extra",
 			Error: true,
 		},
 	}

@@ -110,14 +110,14 @@ func (id UserIdTodoListIdTaskIdAttachmentSessionId) ID() string {
 func (id UserIdTodoListIdTaskIdAttachmentSessionId) Segments() []resourceids.Segment {
 	return []resourceids.Segment{
 		resourceids.StaticSegment("users", "users", "users"),
-		resourceids.UserSpecifiedSegment("userId", "userIdValue"),
+		resourceids.UserSpecifiedSegment("userId", "userId"),
 		resourceids.StaticSegment("todo", "todo", "todo"),
 		resourceids.StaticSegment("lists", "lists", "lists"),
-		resourceids.UserSpecifiedSegment("todoTaskListId", "todoTaskListIdValue"),
+		resourceids.UserSpecifiedSegment("todoTaskListId", "todoTaskListId"),
 		resourceids.StaticSegment("tasks", "tasks", "tasks"),
-		resourceids.UserSpecifiedSegment("todoTaskId", "todoTaskIdValue"),
+		resourceids.UserSpecifiedSegment("todoTaskId", "todoTaskId"),
 		resourceids.StaticSegment("attachmentSessions", "attachmentSessions", "attachmentSessions"),
-		resourceids.UserSpecifiedSegment("attachmentSessionId", "attachmentSessionIdValue"),
+		resourceids.UserSpecifiedSegment("attachmentSessionId", "attachmentSessionId"),
 	}
 }
 

@@ -17,19 +17,48 @@ type UpdateMailboxSettingOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateMailboxSettingOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateMailboxSettingOperationOptions() UpdateMailboxSettingOperationOptions {
+	return UpdateMailboxSettingOperationOptions{}
+}
+
+func (o UpdateMailboxSettingOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateMailboxSettingOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateMailboxSettingOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateMailboxSetting - Update user mailbox settings. Enable, configure, or disable one or more of the following
 // settings as part of a user's mailboxSettings: When updating the preferred date or time format for a user, specify it
 // in respectively, the short date or short time format. When updating the preferred time zone for a user, specify it in
 // the Windows or Internet Assigned Numbers Authority (IANA) time zone (also known as Olson time zone) format. You can
 // also further customize the time zone as shown in example 2 below.
-func (c MailboxSettingClient) UpdateMailboxSetting(ctx context.Context, input beta.MailboxSettings) (result UpdateMailboxSettingOperationResponse, err error) {
+func (c MailboxSettingClient) UpdateMailboxSetting(ctx context.Context, input beta.MailboxSettings, options UpdateMailboxSettingOperationOptions) (result UpdateMailboxSettingOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       "/me/mailboxSettings",
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          "/me/mailboxSettings",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -18,15 +18,44 @@ type UpdateContactFolderChildFolderContactPhotoOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateContactFolderChildFolderContactPhotoOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateContactFolderChildFolderContactPhotoOperationOptions() UpdateContactFolderChildFolderContactPhotoOperationOptions {
+	return UpdateContactFolderChildFolderContactPhotoOperationOptions{}
+}
+
+func (o UpdateContactFolderChildFolderContactPhotoOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateContactFolderChildFolderContactPhotoOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateContactFolderChildFolderContactPhotoOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateContactFolderChildFolderContactPhoto - Update the navigation property photo in users
-func (c ContactFolderChildFolderContactPhotoClient) UpdateContactFolderChildFolderContactPhoto(ctx context.Context, id stable.UserIdContactFolderIdChildFolderIdContactId, input stable.ProfilePhoto) (result UpdateContactFolderChildFolderContactPhotoOperationResponse, err error) {
+func (c ContactFolderChildFolderContactPhotoClient) UpdateContactFolderChildFolderContactPhoto(ctx context.Context, id stable.UserIdContactFolderIdChildFolderIdContactId, input stable.ProfilePhoto, options UpdateContactFolderChildFolderContactPhotoOperationOptions) (result UpdateContactFolderChildFolderContactPhotoOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       fmt.Sprintf("%s/photo", id.ID()),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/photo", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

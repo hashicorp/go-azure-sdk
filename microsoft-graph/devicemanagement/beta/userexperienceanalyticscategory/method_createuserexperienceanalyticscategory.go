@@ -18,16 +18,45 @@ type CreateUserExperienceAnalyticsCategoryOperationResponse struct {
 	Model        *beta.UserExperienceAnalyticsCategory
 }
 
+type CreateUserExperienceAnalyticsCategoryOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateUserExperienceAnalyticsCategoryOperationOptions() CreateUserExperienceAnalyticsCategoryOperationOptions {
+	return CreateUserExperienceAnalyticsCategoryOperationOptions{}
+}
+
+func (o CreateUserExperienceAnalyticsCategoryOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateUserExperienceAnalyticsCategoryOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateUserExperienceAnalyticsCategoryOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateUserExperienceAnalyticsCategory - Create new navigation property to userExperienceAnalyticsCategories for
 // deviceManagement
-func (c UserExperienceAnalyticsCategoryClient) CreateUserExperienceAnalyticsCategory(ctx context.Context, input beta.UserExperienceAnalyticsCategory) (result CreateUserExperienceAnalyticsCategoryOperationResponse, err error) {
+func (c UserExperienceAnalyticsCategoryClient) CreateUserExperienceAnalyticsCategory(ctx context.Context, input beta.UserExperienceAnalyticsCategory, options CreateUserExperienceAnalyticsCategoryOperationOptions) (result CreateUserExperienceAnalyticsCategoryOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/deviceManagement/userExperienceAnalyticsCategories",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/deviceManagement/userExperienceAnalyticsCategories",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

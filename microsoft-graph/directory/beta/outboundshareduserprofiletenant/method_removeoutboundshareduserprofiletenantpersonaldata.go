@@ -18,16 +18,45 @@ type RemoveOutboundSharedUserProfileTenantPersonalDataOperationResponse struct {
 	OData        *odata.OData
 }
 
+type RemoveOutboundSharedUserProfileTenantPersonalDataOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultRemoveOutboundSharedUserProfileTenantPersonalDataOperationOptions() RemoveOutboundSharedUserProfileTenantPersonalDataOperationOptions {
+	return RemoveOutboundSharedUserProfileTenantPersonalDataOperationOptions{}
+}
+
+func (o RemoveOutboundSharedUserProfileTenantPersonalDataOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o RemoveOutboundSharedUserProfileTenantPersonalDataOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o RemoveOutboundSharedUserProfileTenantPersonalDataOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // RemoveOutboundSharedUserProfileTenantPersonalData - Invoke action removePersonalData. Create a request to remove the
 // personal data for an outboundSharedUserProfile.
-func (c OutboundSharedUserProfileTenantClient) RemoveOutboundSharedUserProfileTenantPersonalData(ctx context.Context, id beta.DirectoryOutboundSharedUserProfileIdTenantId) (result RemoveOutboundSharedUserProfileTenantPersonalDataOperationResponse, err error) {
+func (c OutboundSharedUserProfileTenantClient) RemoveOutboundSharedUserProfileTenantPersonalData(ctx context.Context, id beta.DirectoryOutboundSharedUserProfileIdTenantId, options RemoveOutboundSharedUserProfileTenantPersonalDataOperationOptions) (result RemoveOutboundSharedUserProfileTenantPersonalDataOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/removePersonalData", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/removePersonalData", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

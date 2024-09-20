@@ -19,16 +19,45 @@ type DiscoverSynchronizationTemplateSchemaDirectoryOperationResponse struct {
 	Model        *stable.DirectoryDefinition
 }
 
+type DiscoverSynchronizationTemplateSchemaDirectoryOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultDiscoverSynchronizationTemplateSchemaDirectoryOperationOptions() DiscoverSynchronizationTemplateSchemaDirectoryOperationOptions {
+	return DiscoverSynchronizationTemplateSchemaDirectoryOperationOptions{}
+}
+
+func (o DiscoverSynchronizationTemplateSchemaDirectoryOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o DiscoverSynchronizationTemplateSchemaDirectoryOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o DiscoverSynchronizationTemplateSchemaDirectoryOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // DiscoverSynchronizationTemplateSchemaDirectory - Invoke action discover. Discover the latest schema definition for
 // provisioning to an application.
-func (c SynchronizationTemplateSchemaDirectoryClient) DiscoverSynchronizationTemplateSchemaDirectory(ctx context.Context, id stable.ApplicationIdSynchronizationTemplateIdSchemaDirectoryId) (result DiscoverSynchronizationTemplateSchemaDirectoryOperationResponse, err error) {
+func (c SynchronizationTemplateSchemaDirectoryClient) DiscoverSynchronizationTemplateSchemaDirectory(ctx context.Context, id stable.ApplicationIdSynchronizationTemplateIdSchemaDirectoryId, options DiscoverSynchronizationTemplateSchemaDirectoryOperationOptions) (result DiscoverSynchronizationTemplateSchemaDirectoryOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/discover", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/discover", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &MeApprovalIdStepId{}
 
 func TestNewMeApprovalIdStepID(t *testing.T) {
-	id := NewMeApprovalIdStepID("approvalIdValue", "approvalStepIdValue")
+	id := NewMeApprovalIdStepID("approvalId", "approvalStepId")
 
-	if id.ApprovalId != "approvalIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ApprovalId'", id.ApprovalId, "approvalIdValue")
+	if id.ApprovalId != "approvalId" {
+		t.Fatalf("Expected %q but got %q for Segment 'ApprovalId'", id.ApprovalId, "approvalId")
 	}
 
-	if id.ApprovalStepId != "approvalStepIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ApprovalStepId'", id.ApprovalStepId, "approvalStepIdValue")
+	if id.ApprovalStepId != "approvalStepId" {
+		t.Fatalf("Expected %q but got %q for Segment 'ApprovalStepId'", id.ApprovalStepId, "approvalStepId")
 	}
 }
 
 func TestFormatMeApprovalIdStepID(t *testing.T) {
-	actual := NewMeApprovalIdStepID("approvalIdValue", "approvalStepIdValue").ID()
-	expected := "/me/approvals/approvalIdValue/steps/approvalStepIdValue"
+	actual := NewMeApprovalIdStepID("approvalId", "approvalStepId").ID()
+	expected := "/me/approvals/approvalId/steps/approvalStepId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -54,25 +54,25 @@ func TestParseMeApprovalIdStepID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/me/approvals/approvalIdValue",
+			Input: "/me/approvals/approvalId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/me/approvals/approvalIdValue/steps",
+			Input: "/me/approvals/approvalId/steps",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/me/approvals/approvalIdValue/steps/approvalStepIdValue",
+			Input: "/me/approvals/approvalId/steps/approvalStepId",
 			Expected: &MeApprovalIdStepId{
-				ApprovalId:     "approvalIdValue",
-				ApprovalStepId: "approvalStepIdValue",
+				ApprovalId:     "approvalId",
+				ApprovalStepId: "approvalStepId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/approvals/approvalIdValue/steps/approvalStepIdValue/extra",
+			Input: "/me/approvals/approvalId/steps/approvalStepId/extra",
 			Error: true,
 		},
 	}
@@ -135,48 +135,48 @@ func TestParseMeApprovalIdStepIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/me/approvals/approvalIdValue",
+			Input: "/me/approvals/approvalId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/aPpRoVaLs/aPpRoVaLiDvAlUe",
+			Input: "/mE/aPpRoVaLs/aPpRoVaLiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/me/approvals/approvalIdValue/steps",
+			Input: "/me/approvals/approvalId/steps",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/aPpRoVaLs/aPpRoVaLiDvAlUe/sTePs",
+			Input: "/mE/aPpRoVaLs/aPpRoVaLiD/sTePs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/me/approvals/approvalIdValue/steps/approvalStepIdValue",
+			Input: "/me/approvals/approvalId/steps/approvalStepId",
 			Expected: &MeApprovalIdStepId{
-				ApprovalId:     "approvalIdValue",
-				ApprovalStepId: "approvalStepIdValue",
+				ApprovalId:     "approvalId",
+				ApprovalStepId: "approvalStepId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/approvals/approvalIdValue/steps/approvalStepIdValue/extra",
+			Input: "/me/approvals/approvalId/steps/approvalStepId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/aPpRoVaLs/aPpRoVaLiDvAlUe/sTePs/aPpRoVaLsTePiDvAlUe",
+			Input: "/mE/aPpRoVaLs/aPpRoVaLiD/sTePs/aPpRoVaLsTePiD",
 			Expected: &MeApprovalIdStepId{
-				ApprovalId:     "aPpRoVaLiDvAlUe",
-				ApprovalStepId: "aPpRoVaLsTePiDvAlUe",
+				ApprovalId:     "aPpRoVaLiD",
+				ApprovalStepId: "aPpRoVaLsTePiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/mE/aPpRoVaLs/aPpRoVaLiDvAlUe/sTePs/aPpRoVaLsTePiDvAlUe/extra",
+			Input: "/mE/aPpRoVaLs/aPpRoVaLiD/sTePs/aPpRoVaLsTePiD/extra",
 			Error: true,
 		},
 	}

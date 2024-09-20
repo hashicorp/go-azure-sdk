@@ -19,15 +19,44 @@ type CreateDriveListContentTypeOperationResponse struct {
 	Model        *beta.ContentType
 }
 
+type CreateDriveListContentTypeOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateDriveListContentTypeOperationOptions() CreateDriveListContentTypeOperationOptions {
+	return CreateDriveListContentTypeOperationOptions{}
+}
+
+func (o CreateDriveListContentTypeOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateDriveListContentTypeOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateDriveListContentTypeOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateDriveListContentType - Create new navigation property to contentTypes for me
-func (c DriveListContentTypeClient) CreateDriveListContentType(ctx context.Context, id beta.MeDriveId, input beta.ContentType) (result CreateDriveListContentTypeOperationResponse, err error) {
+func (c DriveListContentTypeClient) CreateDriveListContentType(ctx context.Context, id beta.MeDriveId, input beta.ContentType, options CreateDriveListContentTypeOperationOptions) (result CreateDriveListContentTypeOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/list/contentTypes", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/list/contentTypes", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

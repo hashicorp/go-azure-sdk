@@ -94,7 +94,7 @@ func (id MeProfilePatentId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("me", "me", "me"),
 		resourceids.StaticSegment("profile", "profile", "profile"),
 		resourceids.StaticSegment("patents", "patents", "patents"),
-		resourceids.UserSpecifiedSegment("itemPatentId", "itemPatentIdValue"),
+		resourceids.UserSpecifiedSegment("itemPatentId", "itemPatentId"),
 	}
 }
 

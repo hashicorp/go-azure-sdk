@@ -19,7 +19,8 @@ type DeleteActivityHistoryItemOperationResponse struct {
 }
 
 type DeleteActivityHistoryItemOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteActivityHistoryItemOperationOptions() DeleteActivityHistoryItemOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteActivityHistoryItemOperationOptions) ToHeaders() *client.Headers {
 
 func (o DeleteActivityHistoryItemOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

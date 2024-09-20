@@ -18,15 +18,44 @@ type CreateAuthenticationPhoneMethodOperationResponse struct {
 	Model        *beta.PhoneAuthenticationMethod
 }
 
+type CreateAuthenticationPhoneMethodOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateAuthenticationPhoneMethodOperationOptions() CreateAuthenticationPhoneMethodOperationOptions {
+	return CreateAuthenticationPhoneMethodOperationOptions{}
+}
+
+func (o CreateAuthenticationPhoneMethodOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateAuthenticationPhoneMethodOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateAuthenticationPhoneMethodOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateAuthenticationPhoneMethod - Create new navigation property to phoneMethods for me
-func (c AuthenticationPhoneMethodClient) CreateAuthenticationPhoneMethod(ctx context.Context, input beta.PhoneAuthenticationMethod) (result CreateAuthenticationPhoneMethodOperationResponse, err error) {
+func (c AuthenticationPhoneMethodClient) CreateAuthenticationPhoneMethod(ctx context.Context, input beta.PhoneAuthenticationMethod, options CreateAuthenticationPhoneMethodOperationOptions) (result CreateAuthenticationPhoneMethodOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/me/authentication/phoneMethods",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/me/authentication/phoneMethods",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/tenantattachrbac` Documentation
 
-The `tenantattachrbac` SDK allows for interaction with the Azure Resource Manager Service `devicemanagement` (API Version `beta`).
+The `tenantattachrbac` SDK allows for interaction with Microsoft Graph `devicemanagement` (API Version `beta`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -15,7 +15,7 @@ import "github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/
 ### Client Initialization
 
 ```go
-client := tenantattachrbac.NewTenantAttachRBACClientWithBaseURI("https://management.azure.com")
+client := tenantattachrbac.NewTenantAttachRBACClientWithBaseURI("https://graph.microsoft.com")
 client.Client.Authorizer = authorizer
 ```
 
@@ -46,7 +46,7 @@ payload := tenantattachrbac.EnableTenantAttachRBACRequest{
 }
 
 
-read, err := client.EnableTenantAttachRBAC(ctx, payload)
+read, err := client.EnableTenantAttachRBAC(ctx, payload, tenantattachrbac.DefaultEnableTenantAttachRBACOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -82,7 +82,7 @@ payload := tenantattachrbac.TenantAttachRBAC{
 }
 
 
-read, err := client.UpdateTenantAttachRBAC(ctx, payload)
+read, err := client.UpdateTenantAttachRBAC(ctx, payload, tenantattachrbac.DefaultUpdateTenantAttachRBACOperationOptions())
 if err != nil {
 	// handle the error
 }

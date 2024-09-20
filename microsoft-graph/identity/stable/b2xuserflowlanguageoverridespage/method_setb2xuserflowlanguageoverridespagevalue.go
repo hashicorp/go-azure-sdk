@@ -18,17 +18,46 @@ type SetB2xUserFlowLanguageOverridesPageValueOperationResponse struct {
 	OData        *odata.OData
 }
 
+type SetB2xUserFlowLanguageOverridesPageValueOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultSetB2xUserFlowLanguageOverridesPageValueOperationOptions() SetB2xUserFlowLanguageOverridesPageValueOperationOptions {
+	return SetB2xUserFlowLanguageOverridesPageValueOperationOptions{}
+}
+
+func (o SetB2xUserFlowLanguageOverridesPageValueOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o SetB2xUserFlowLanguageOverridesPageValueOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o SetB2xUserFlowLanguageOverridesPageValueOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // SetB2xUserFlowLanguageOverridesPageValue - Update userFlowLanguagePage. Update the values in an userFlowLanguagePage
 // object. You may only update the values in an overridesPage, which is used to customize the values shown to a user
 // during a user journey defined by a user flow.
-func (c B2xUserFlowLanguageOverridesPageClient) SetB2xUserFlowLanguageOverridesPageValue(ctx context.Context, id stable.IdentityB2xUserFlowIdLanguageIdOverridesPageId, input []byte) (result SetB2xUserFlowLanguageOverridesPageValueOperationResponse, err error) {
+func (c B2xUserFlowLanguageOverridesPageClient) SetB2xUserFlowLanguageOverridesPageValue(ctx context.Context, id stable.IdentityB2xUserFlowIdLanguageIdOverridesPageId, input []byte, options SetB2xUserFlowLanguageOverridesPageValueOperationOptions) (result SetB2xUserFlowLanguageOverridesPageValueOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPut,
-		Path:       fmt.Sprintf("%s/$value", id.ID()),
+		HttpMethod:    http.MethodPut,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/$value", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

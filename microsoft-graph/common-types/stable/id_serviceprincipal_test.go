@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &ServicePrincipalId{}
 
 func TestNewServicePrincipalID(t *testing.T) {
-	id := NewServicePrincipalID("servicePrincipalIdValue")
+	id := NewServicePrincipalID("servicePrincipalId")
 
-	if id.ServicePrincipalId != "servicePrincipalIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ServicePrincipalId'", id.ServicePrincipalId, "servicePrincipalIdValue")
+	if id.ServicePrincipalId != "servicePrincipalId" {
+		t.Fatalf("Expected %q but got %q for Segment 'ServicePrincipalId'", id.ServicePrincipalId, "servicePrincipalId")
 	}
 }
 
 func TestFormatServicePrincipalID(t *testing.T) {
-	actual := NewServicePrincipalID("servicePrincipalIdValue").ID()
-	expected := "/servicePrincipals/servicePrincipalIdValue"
+	actual := NewServicePrincipalID("servicePrincipalId").ID()
+	expected := "/servicePrincipals/servicePrincipalId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -45,14 +45,14 @@ func TestParseServicePrincipalID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/servicePrincipals/servicePrincipalIdValue",
+			Input: "/servicePrincipals/servicePrincipalId",
 			Expected: &ServicePrincipalId{
-				ServicePrincipalId: "servicePrincipalIdValue",
+				ServicePrincipalId: "servicePrincipalId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/servicePrincipals/servicePrincipalIdValue/extra",
+			Input: "/servicePrincipals/servicePrincipalId/extra",
 			Error: true,
 		},
 	}
@@ -101,26 +101,26 @@ func TestParseServicePrincipalIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/servicePrincipals/servicePrincipalIdValue",
+			Input: "/servicePrincipals/servicePrincipalId",
 			Expected: &ServicePrincipalId{
-				ServicePrincipalId: "servicePrincipalIdValue",
+				ServicePrincipalId: "servicePrincipalId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/servicePrincipals/servicePrincipalIdValue/extra",
+			Input: "/servicePrincipals/servicePrincipalId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sErViCePrInCiPaLs/sErViCePrInCiPaLiDvAlUe",
+			Input: "/sErViCePrInCiPaLs/sErViCePrInCiPaLiD",
 			Expected: &ServicePrincipalId{
-				ServicePrincipalId: "sErViCePrInCiPaLiDvAlUe",
+				ServicePrincipalId: "sErViCePrInCiPaLiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sErViCePrInCiPaLs/sErViCePrInCiPaLiDvAlUe/extra",
+			Input: "/sErViCePrInCiPaLs/sErViCePrInCiPaLiD/extra",
 			Error: true,
 		},
 	}

@@ -17,15 +17,44 @@ type UpdateChatMessageReplyOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateChatMessageReplyOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateChatMessageReplyOperationOptions() UpdateChatMessageReplyOperationOptions {
+	return UpdateChatMessageReplyOperationOptions{}
+}
+
+func (o UpdateChatMessageReplyOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateChatMessageReplyOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateChatMessageReplyOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateChatMessageReply - Update the navigation property replies in users
-func (c ChatMessageReplyClient) UpdateChatMessageReply(ctx context.Context, id stable.UserIdChatIdMessageIdReplyId, input stable.ChatMessage) (result UpdateChatMessageReplyOperationResponse, err error) {
+func (c ChatMessageReplyClient) UpdateChatMessageReply(ctx context.Context, id stable.UserIdChatIdMessageIdReplyId, input stable.ChatMessage, options UpdateChatMessageReplyOperationOptions) (result UpdateChatMessageReplyOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

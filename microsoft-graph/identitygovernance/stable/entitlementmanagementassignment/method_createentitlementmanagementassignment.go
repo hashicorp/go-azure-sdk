@@ -18,15 +18,44 @@ type CreateEntitlementManagementAssignmentOperationResponse struct {
 	Model        *stable.AccessPackageAssignment
 }
 
+type CreateEntitlementManagementAssignmentOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateEntitlementManagementAssignmentOperationOptions() CreateEntitlementManagementAssignmentOperationOptions {
+	return CreateEntitlementManagementAssignmentOperationOptions{}
+}
+
+func (o CreateEntitlementManagementAssignmentOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateEntitlementManagementAssignmentOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateEntitlementManagementAssignmentOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateEntitlementManagementAssignment - Create new navigation property to assignments for identityGovernance
-func (c EntitlementManagementAssignmentClient) CreateEntitlementManagementAssignment(ctx context.Context, input stable.AccessPackageAssignment) (result CreateEntitlementManagementAssignmentOperationResponse, err error) {
+func (c EntitlementManagementAssignmentClient) CreateEntitlementManagementAssignment(ctx context.Context, input stable.AccessPackageAssignment, options CreateEntitlementManagementAssignmentOperationOptions) (result CreateEntitlementManagementAssignmentOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/identityGovernance/entitlementManagement/assignments",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/identityGovernance/entitlementManagement/assignments",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

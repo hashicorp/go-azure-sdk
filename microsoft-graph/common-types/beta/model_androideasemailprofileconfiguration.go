@@ -194,17 +194,65 @@ func (s AndroidEasEmailProfileConfiguration) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &AndroidEasEmailProfileConfiguration{}
 
 func (s *AndroidEasEmailProfileConfiguration) UnmarshalJSON(bytes []byte) error {
-	type alias AndroidEasEmailProfileConfiguration
-	var decoded alias
+
+	var decoded struct {
+		AccountName                                 *string                                      `json:"accountName,omitempty"`
+		AuthenticationMethod                        *EasAuthenticationMethod                     `json:"authenticationMethod,omitempty"`
+		CustomDomainName                            nullable.Type[string]                        `json:"customDomainName,omitempty"`
+		DurationOfEmailToSync                       *EmailSyncDuration                           `json:"durationOfEmailToSync,omitempty"`
+		EmailAddressSource                          *UserEmailSource                             `json:"emailAddressSource,omitempty"`
+		EmailSyncSchedule                           *EmailSyncSchedule                           `json:"emailSyncSchedule,omitempty"`
+		HostName                                    *string                                      `json:"hostName,omitempty"`
+		RequireSmime                                *bool                                        `json:"requireSmime,omitempty"`
+		RequireSsl                                  *bool                                        `json:"requireSsl,omitempty"`
+		SyncCalendar                                *bool                                        `json:"syncCalendar,omitempty"`
+		SyncContacts                                *bool                                        `json:"syncContacts,omitempty"`
+		SyncNotes                                   *bool                                        `json:"syncNotes,omitempty"`
+		SyncTasks                                   *bool                                        `json:"syncTasks,omitempty"`
+		UserDomainNameSource                        *DomainNameSource                            `json:"userDomainNameSource,omitempty"`
+		UsernameSource                              *AndroidUsernameSource                       `json:"usernameSource,omitempty"`
+		Assignments                                 *[]DeviceConfigurationAssignment             `json:"assignments,omitempty"`
+		CreatedDateTime                             *string                                      `json:"createdDateTime,omitempty"`
+		Description                                 nullable.Type[string]                        `json:"description,omitempty"`
+		DeviceManagementApplicabilityRuleDeviceMode *DeviceManagementApplicabilityRuleDeviceMode `json:"deviceManagementApplicabilityRuleDeviceMode,omitempty"`
+		DeviceManagementApplicabilityRuleOsEdition  *DeviceManagementApplicabilityRuleOsEdition  `json:"deviceManagementApplicabilityRuleOsEdition,omitempty"`
+		DeviceManagementApplicabilityRuleOsVersion  *DeviceManagementApplicabilityRuleOsVersion  `json:"deviceManagementApplicabilityRuleOsVersion,omitempty"`
+		DeviceSettingStateSummaries                 *[]SettingStateDeviceSummary                 `json:"deviceSettingStateSummaries,omitempty"`
+		DeviceStatusOverview                        *DeviceConfigurationDeviceOverview           `json:"deviceStatusOverview,omitempty"`
+		DeviceStatuses                              *[]DeviceConfigurationDeviceStatus           `json:"deviceStatuses,omitempty"`
+		DisplayName                                 *string                                      `json:"displayName,omitempty"`
+		GroupAssignments                            *[]DeviceConfigurationGroupAssignment        `json:"groupAssignments,omitempty"`
+		LastModifiedDateTime                        *string                                      `json:"lastModifiedDateTime,omitempty"`
+		RoleScopeTagIds                             *[]string                                    `json:"roleScopeTagIds,omitempty"`
+		SupportsScopeTags                           *bool                                        `json:"supportsScopeTags,omitempty"`
+		UserStatusOverview                          *DeviceConfigurationUserOverview             `json:"userStatusOverview,omitempty"`
+		UserStatuses                                *[]DeviceConfigurationUserStatus             `json:"userStatuses,omitempty"`
+		Version                                     *int64                                       `json:"version,omitempty"`
+		Id                                          *string                                      `json:"id,omitempty"`
+		ODataId                                     *string                                      `json:"@odata.id,omitempty"`
+		ODataType                                   *string                                      `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into AndroidEasEmailProfileConfiguration: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.AccountName = decoded.AccountName
-	s.Assignments = decoded.Assignments
 	s.AuthenticationMethod = decoded.AuthenticationMethod
-	s.CreatedDateTime = decoded.CreatedDateTime
 	s.CustomDomainName = decoded.CustomDomainName
+	s.DurationOfEmailToSync = decoded.DurationOfEmailToSync
+	s.EmailAddressSource = decoded.EmailAddressSource
+	s.EmailSyncSchedule = decoded.EmailSyncSchedule
+	s.HostName = decoded.HostName
+	s.RequireSmime = decoded.RequireSmime
+	s.RequireSsl = decoded.RequireSsl
+	s.SyncCalendar = decoded.SyncCalendar
+	s.SyncContacts = decoded.SyncContacts
+	s.SyncNotes = decoded.SyncNotes
+	s.SyncTasks = decoded.SyncTasks
+	s.UserDomainNameSource = decoded.UserDomainNameSource
+	s.UsernameSource = decoded.UsernameSource
+	s.Assignments = decoded.Assignments
+	s.CreatedDateTime = decoded.CreatedDateTime
 	s.Description = decoded.Description
 	s.DeviceManagementApplicabilityRuleDeviceMode = decoded.DeviceManagementApplicabilityRuleDeviceMode
 	s.DeviceManagementApplicabilityRuleOsEdition = decoded.DeviceManagementApplicabilityRuleOsEdition
@@ -213,27 +261,15 @@ func (s *AndroidEasEmailProfileConfiguration) UnmarshalJSON(bytes []byte) error 
 	s.DeviceStatusOverview = decoded.DeviceStatusOverview
 	s.DeviceStatuses = decoded.DeviceStatuses
 	s.DisplayName = decoded.DisplayName
-	s.DurationOfEmailToSync = decoded.DurationOfEmailToSync
-	s.EmailAddressSource = decoded.EmailAddressSource
-	s.EmailSyncSchedule = decoded.EmailSyncSchedule
 	s.GroupAssignments = decoded.GroupAssignments
-	s.HostName = decoded.HostName
 	s.Id = decoded.Id
 	s.LastModifiedDateTime = decoded.LastModifiedDateTime
 	s.ODataId = decoded.ODataId
 	s.ODataType = decoded.ODataType
-	s.RequireSmime = decoded.RequireSmime
-	s.RequireSsl = decoded.RequireSsl
 	s.RoleScopeTagIds = decoded.RoleScopeTagIds
 	s.SupportsScopeTags = decoded.SupportsScopeTags
-	s.SyncCalendar = decoded.SyncCalendar
-	s.SyncContacts = decoded.SyncContacts
-	s.SyncNotes = decoded.SyncNotes
-	s.SyncTasks = decoded.SyncTasks
-	s.UserDomainNameSource = decoded.UserDomainNameSource
 	s.UserStatusOverview = decoded.UserStatusOverview
 	s.UserStatuses = decoded.UserStatuses
-	s.UsernameSource = decoded.UsernameSource
 	s.Version = decoded.Version
 
 	var temp map[string]json.RawMessage
@@ -256,5 +292,6 @@ func (s *AndroidEasEmailProfileConfiguration) UnmarshalJSON(bytes []byte) error 
 		}
 		s.SmimeSigningCertificate = &impl
 	}
+
 	return nil
 }

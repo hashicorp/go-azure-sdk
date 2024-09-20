@@ -19,16 +19,45 @@ type CreateConfigurationPolicyTemplateSettingTemplateOperationResponse struct {
 	Model        *beta.DeviceManagementConfigurationSettingTemplate
 }
 
+type CreateConfigurationPolicyTemplateSettingTemplateOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateConfigurationPolicyTemplateSettingTemplateOperationOptions() CreateConfigurationPolicyTemplateSettingTemplateOperationOptions {
+	return CreateConfigurationPolicyTemplateSettingTemplateOperationOptions{}
+}
+
+func (o CreateConfigurationPolicyTemplateSettingTemplateOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateConfigurationPolicyTemplateSettingTemplateOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateConfigurationPolicyTemplateSettingTemplateOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateConfigurationPolicyTemplateSettingTemplate - Create new navigation property to settingTemplates for
 // deviceManagement
-func (c ConfigurationPolicyTemplateSettingTemplateClient) CreateConfigurationPolicyTemplateSettingTemplate(ctx context.Context, id beta.DeviceManagementConfigurationPolicyTemplateId, input beta.DeviceManagementConfigurationSettingTemplate) (result CreateConfigurationPolicyTemplateSettingTemplateOperationResponse, err error) {
+func (c ConfigurationPolicyTemplateSettingTemplateClient) CreateConfigurationPolicyTemplateSettingTemplate(ctx context.Context, id beta.DeviceManagementConfigurationPolicyTemplateId, input beta.DeviceManagementConfigurationSettingTemplate, options CreateConfigurationPolicyTemplateSettingTemplateOperationOptions) (result CreateConfigurationPolicyTemplateSettingTemplateOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/settingTemplates", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/settingTemplates", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

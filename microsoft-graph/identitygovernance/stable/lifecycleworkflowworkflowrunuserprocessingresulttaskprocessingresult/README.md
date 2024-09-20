@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/microsoft-graph/identitygovernance/stable/lifecycleworkflowworkflowrunuserprocessingresulttaskprocessingresult` Documentation
 
-The `lifecycleworkflowworkflowrunuserprocessingresulttaskprocessingresult` SDK allows for interaction with the Azure Resource Manager Service `identitygovernance` (API Version `stable`).
+The `lifecycleworkflowworkflowrunuserprocessingresulttaskprocessingresult` SDK allows for interaction with Microsoft Graph `identitygovernance` (API Version `stable`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -15,7 +15,7 @@ import "github.com/hashicorp/go-azure-sdk/microsoft-graph/identitygovernance/sta
 ### Client Initialization
 
 ```go
-client := lifecycleworkflowworkflowrunuserprocessingresulttaskprocessingresult.NewLifecycleWorkflowWorkflowRunUserProcessingResultTaskProcessingResultClientWithBaseURI("https://management.azure.com")
+client := lifecycleworkflowworkflowrunuserprocessingresulttaskprocessingresult.NewLifecycleWorkflowWorkflowRunUserProcessingResultTaskProcessingResultClientWithBaseURI("https://graph.microsoft.com")
 client.Client.Authorizer = authorizer
 ```
 
@@ -24,14 +24,14 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := lifecycleworkflowworkflowrunuserprocessingresulttaskprocessingresult.NewIdentityGovernanceLifecycleWorkflowWorkflowIdRunIdUserProcessingResultIdTaskProcessingResultID("workflowIdValue", "runIdValue", "userProcessingResultIdValue", "taskProcessingResultIdValue")
+id := lifecycleworkflowworkflowrunuserprocessingresulttaskprocessingresult.NewIdentityGovernanceLifecycleWorkflowWorkflowIdRunIdUserProcessingResultIdTaskProcessingResultID("workflowId", "runId", "userProcessingResultId", "taskProcessingResultId")
 
 payload := lifecycleworkflowworkflowrunuserprocessingresulttaskprocessingresult.CreateLifecycleWorkflowRunUserProcessingResultTaskIdentityGovernanceResumeRequest{
 	// ...
 }
 
 
-read, err := client.CreateLifecycleWorkflowRunUserProcessingResultTaskIdentityGovernanceResume(ctx, id, payload)
+read, err := client.CreateLifecycleWorkflowRunUserProcessingResultTaskIdentityGovernanceResume(ctx, id, payload, lifecycleworkflowworkflowrunuserprocessingresulttaskprocessingresult.DefaultCreateLifecycleWorkflowRunUserProcessingResultTaskIdentityGovernanceResumeOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -45,7 +45,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := lifecycleworkflowworkflowrunuserprocessingresulttaskprocessingresult.NewIdentityGovernanceLifecycleWorkflowWorkflowIdRunIdUserProcessingResultID("workflowIdValue", "runIdValue", "userProcessingResultIdValue")
+id := lifecycleworkflowworkflowrunuserprocessingresulttaskprocessingresult.NewIdentityGovernanceLifecycleWorkflowWorkflowIdRunIdUserProcessingResultID("workflowId", "runId", "userProcessingResultId")
 
 read, err := client.GetLifecycleWorkflowRunUserProcessingResultTaskCount(ctx, id, lifecycleworkflowworkflowrunuserprocessingresulttaskprocessingresult.DefaultGetLifecycleWorkflowRunUserProcessingResultTaskCountOperationOptions())
 if err != nil {
@@ -61,7 +61,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := lifecycleworkflowworkflowrunuserprocessingresulttaskprocessingresult.NewIdentityGovernanceLifecycleWorkflowWorkflowIdRunIdUserProcessingResultIdTaskProcessingResultID("workflowIdValue", "runIdValue", "userProcessingResultIdValue", "taskProcessingResultIdValue")
+id := lifecycleworkflowworkflowrunuserprocessingresulttaskprocessingresult.NewIdentityGovernanceLifecycleWorkflowWorkflowIdRunIdUserProcessingResultIdTaskProcessingResultID("workflowId", "runId", "userProcessingResultId", "taskProcessingResultId")
 
 read, err := client.GetLifecycleWorkflowRunUserProcessingResultTaskProcessingResult(ctx, id, lifecycleworkflowworkflowrunuserprocessingresulttaskprocessingresult.DefaultGetLifecycleWorkflowRunUserProcessingResultTaskProcessingResultOperationOptions())
 if err != nil {
@@ -77,7 +77,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := lifecycleworkflowworkflowrunuserprocessingresulttaskprocessingresult.NewIdentityGovernanceLifecycleWorkflowWorkflowIdRunIdUserProcessingResultID("workflowIdValue", "runIdValue", "userProcessingResultIdValue")
+id := lifecycleworkflowworkflowrunuserprocessingresulttaskprocessingresult.NewIdentityGovernanceLifecycleWorkflowWorkflowIdRunIdUserProcessingResultID("workflowId", "runId", "userProcessingResultId")
 
 // alternatively `client.ListLifecycleWorkflowRunUserProcessingResultTaskProcessingResults(ctx, id, lifecycleworkflowworkflowrunuserprocessingresulttaskprocessingresult.DefaultListLifecycleWorkflowRunUserProcessingResultTaskProcessingResultsOperationOptions())` can be used to do batched pagination
 items, err := client.ListLifecycleWorkflowRunUserProcessingResultTaskProcessingResultsComplete(ctx, id, lifecycleworkflowworkflowrunuserprocessingresulttaskprocessingresult.DefaultListLifecycleWorkflowRunUserProcessingResultTaskProcessingResultsOperationOptions())

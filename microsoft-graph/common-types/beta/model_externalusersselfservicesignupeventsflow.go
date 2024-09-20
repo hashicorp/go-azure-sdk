@@ -108,10 +108,18 @@ func (s ExternalUsersSelfServiceSignUpEventsFlow) MarshalJSON() ([]byte, error) 
 var _ json.Unmarshaler = &ExternalUsersSelfServiceSignUpEventsFlow{}
 
 func (s *ExternalUsersSelfServiceSignUpEventsFlow) UnmarshalJSON(bytes []byte) error {
-	type alias ExternalUsersSelfServiceSignUpEventsFlow
-	var decoded alias
+
+	var decoded struct {
+		Conditions  *AuthenticationConditions `json:"conditions,omitempty"`
+		Description nullable.Type[string]     `json:"description,omitempty"`
+		DisplayName string                    `json:"displayName"`
+		Priority    *int64                    `json:"priority,omitempty"`
+		Id          *string                   `json:"id,omitempty"`
+		ODataId     *string                   `json:"@odata.id,omitempty"`
+		ODataType   *string                   `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into ExternalUsersSelfServiceSignUpEventsFlow: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.Conditions = decoded.Conditions
@@ -174,5 +182,6 @@ func (s *ExternalUsersSelfServiceSignUpEventsFlow) UnmarshalJSON(bytes []byte) e
 		}
 		s.OnUserCreateStart = impl
 	}
+
 	return nil
 }

@@ -93,7 +93,7 @@ func (id MeAppConsentRequestsForApprovalId) Segments() []resourceids.Segment {
 	return []resourceids.Segment{
 		resourceids.StaticSegment("me", "me", "me"),
 		resourceids.StaticSegment("appConsentRequestsForApproval", "appConsentRequestsForApproval", "appConsentRequestsForApproval"),
-		resourceids.UserSpecifiedSegment("appConsentRequestId", "appConsentRequestIdValue"),
+		resourceids.UserSpecifiedSegment("appConsentRequestId", "appConsentRequestId"),
 	}
 }
 

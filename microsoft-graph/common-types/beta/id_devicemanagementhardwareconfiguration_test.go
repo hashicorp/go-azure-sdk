@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &DeviceManagementHardwareConfigurationId{}
 
 func TestNewDeviceManagementHardwareConfigurationID(t *testing.T) {
-	id := NewDeviceManagementHardwareConfigurationID("hardwareConfigurationIdValue")
+	id := NewDeviceManagementHardwareConfigurationID("hardwareConfigurationId")
 
-	if id.HardwareConfigurationId != "hardwareConfigurationIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'HardwareConfigurationId'", id.HardwareConfigurationId, "hardwareConfigurationIdValue")
+	if id.HardwareConfigurationId != "hardwareConfigurationId" {
+		t.Fatalf("Expected %q but got %q for Segment 'HardwareConfigurationId'", id.HardwareConfigurationId, "hardwareConfigurationId")
 	}
 }
 
 func TestFormatDeviceManagementHardwareConfigurationID(t *testing.T) {
-	actual := NewDeviceManagementHardwareConfigurationID("hardwareConfigurationIdValue").ID()
-	expected := "/deviceManagement/hardwareConfigurations/hardwareConfigurationIdValue"
+	actual := NewDeviceManagementHardwareConfigurationID("hardwareConfigurationId").ID()
+	expected := "/deviceManagement/hardwareConfigurations/hardwareConfigurationId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -50,14 +50,14 @@ func TestParseDeviceManagementHardwareConfigurationID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/hardwareConfigurations/hardwareConfigurationIdValue",
+			Input: "/deviceManagement/hardwareConfigurations/hardwareConfigurationId",
 			Expected: &DeviceManagementHardwareConfigurationId{
-				HardwareConfigurationId: "hardwareConfigurationIdValue",
+				HardwareConfigurationId: "hardwareConfigurationId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/hardwareConfigurations/hardwareConfigurationIdValue/extra",
+			Input: "/deviceManagement/hardwareConfigurations/hardwareConfigurationId/extra",
 			Error: true,
 		},
 	}
@@ -116,26 +116,26 @@ func TestParseDeviceManagementHardwareConfigurationIDInsensitively(t *testing.T)
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/hardwareConfigurations/hardwareConfigurationIdValue",
+			Input: "/deviceManagement/hardwareConfigurations/hardwareConfigurationId",
 			Expected: &DeviceManagementHardwareConfigurationId{
-				HardwareConfigurationId: "hardwareConfigurationIdValue",
+				HardwareConfigurationId: "hardwareConfigurationId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/hardwareConfigurations/hardwareConfigurationIdValue/extra",
+			Input: "/deviceManagement/hardwareConfigurations/hardwareConfigurationId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/hArDwArEcOnFiGuRaTiOnS/hArDwArEcOnFiGuRaTiOnIdVaLuE",
+			Input: "/dEvIcEmAnAgEmEnT/hArDwArEcOnFiGuRaTiOnS/hArDwArEcOnFiGuRaTiOnId",
 			Expected: &DeviceManagementHardwareConfigurationId{
-				HardwareConfigurationId: "hArDwArEcOnFiGuRaTiOnIdVaLuE",
+				HardwareConfigurationId: "hArDwArEcOnFiGuRaTiOnId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/hArDwArEcOnFiGuRaTiOnS/hArDwArEcOnFiGuRaTiOnIdVaLuE/extra",
+			Input: "/dEvIcEmAnAgEmEnT/hArDwArEcOnFiGuRaTiOnS/hArDwArEcOnFiGuRaTiOnId/extra",
 			Error: true,
 		},
 	}

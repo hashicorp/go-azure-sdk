@@ -19,16 +19,45 @@ type GetDriveSpecialContentStreamOperationResponse struct {
 	Model        *[]byte
 }
 
+type GetDriveSpecialContentStreamOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultGetDriveSpecialContentStreamOperationOptions() GetDriveSpecialContentStreamOperationOptions {
+	return GetDriveSpecialContentStreamOperationOptions{}
+}
+
+func (o GetDriveSpecialContentStreamOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o GetDriveSpecialContentStreamOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o GetDriveSpecialContentStreamOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // GetDriveSpecialContentStream - Get contentStream for the navigation property special from users. The content stream,
 // if the item represents a file.
-func (c DriveSpecialContentStreamClient) GetDriveSpecialContentStream(ctx context.Context, id beta.UserIdDriveIdSpecialId) (result GetDriveSpecialContentStreamOperationResponse, err error) {
+func (c DriveSpecialContentStreamClient) GetDriveSpecialContentStream(ctx context.Context, id beta.UserIdDriveIdSpecialId, options GetDriveSpecialContentStreamOperationOptions) (result GetDriveSpecialContentStreamOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/octet-stream",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/contentStream", id.ID()),
+		HttpMethod:    http.MethodGet,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/contentStream", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

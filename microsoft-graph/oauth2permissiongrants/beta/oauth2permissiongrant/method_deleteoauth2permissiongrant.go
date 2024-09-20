@@ -19,7 +19,8 @@ type DeleteOAuth2PermissionGrantOperationResponse struct {
 }
 
 type DeleteOAuth2PermissionGrantOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteOAuth2PermissionGrantOperationOptions() DeleteOAuth2PermissionGrantOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteOAuth2PermissionGrantOperationOptions) ToHeaders() *client.Headers
 
 func (o DeleteOAuth2PermissionGrantOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

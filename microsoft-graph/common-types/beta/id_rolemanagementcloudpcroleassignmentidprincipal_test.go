@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &RoleManagementCloudPCRoleAssignmentIdPrincipalId{}
 
 func TestNewRoleManagementCloudPCRoleAssignmentIdPrincipalID(t *testing.T) {
-	id := NewRoleManagementCloudPCRoleAssignmentIdPrincipalID("unifiedRoleAssignmentMultipleIdValue", "directoryObjectIdValue")
+	id := NewRoleManagementCloudPCRoleAssignmentIdPrincipalID("unifiedRoleAssignmentMultipleId", "directoryObjectId")
 
-	if id.UnifiedRoleAssignmentMultipleId != "unifiedRoleAssignmentMultipleIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'UnifiedRoleAssignmentMultipleId'", id.UnifiedRoleAssignmentMultipleId, "unifiedRoleAssignmentMultipleIdValue")
+	if id.UnifiedRoleAssignmentMultipleId != "unifiedRoleAssignmentMultipleId" {
+		t.Fatalf("Expected %q but got %q for Segment 'UnifiedRoleAssignmentMultipleId'", id.UnifiedRoleAssignmentMultipleId, "unifiedRoleAssignmentMultipleId")
 	}
 
-	if id.DirectoryObjectId != "directoryObjectIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DirectoryObjectId'", id.DirectoryObjectId, "directoryObjectIdValue")
+	if id.DirectoryObjectId != "directoryObjectId" {
+		t.Fatalf("Expected %q but got %q for Segment 'DirectoryObjectId'", id.DirectoryObjectId, "directoryObjectId")
 	}
 }
 
 func TestFormatRoleManagementCloudPCRoleAssignmentIdPrincipalID(t *testing.T) {
-	actual := NewRoleManagementCloudPCRoleAssignmentIdPrincipalID("unifiedRoleAssignmentMultipleIdValue", "directoryObjectIdValue").ID()
-	expected := "/roleManagement/cloudPC/roleAssignments/unifiedRoleAssignmentMultipleIdValue/principals/directoryObjectIdValue"
+	actual := NewRoleManagementCloudPCRoleAssignmentIdPrincipalID("unifiedRoleAssignmentMultipleId", "directoryObjectId").ID()
+	expected := "/roleManagement/cloudPC/roleAssignments/unifiedRoleAssignmentMultipleId/principals/directoryObjectId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -59,25 +59,25 @@ func TestParseRoleManagementCloudPCRoleAssignmentIdPrincipalID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/roleManagement/cloudPC/roleAssignments/unifiedRoleAssignmentMultipleIdValue",
+			Input: "/roleManagement/cloudPC/roleAssignments/unifiedRoleAssignmentMultipleId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/roleManagement/cloudPC/roleAssignments/unifiedRoleAssignmentMultipleIdValue/principals",
+			Input: "/roleManagement/cloudPC/roleAssignments/unifiedRoleAssignmentMultipleId/principals",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/roleManagement/cloudPC/roleAssignments/unifiedRoleAssignmentMultipleIdValue/principals/directoryObjectIdValue",
+			Input: "/roleManagement/cloudPC/roleAssignments/unifiedRoleAssignmentMultipleId/principals/directoryObjectId",
 			Expected: &RoleManagementCloudPCRoleAssignmentIdPrincipalId{
-				UnifiedRoleAssignmentMultipleId: "unifiedRoleAssignmentMultipleIdValue",
-				DirectoryObjectId:               "directoryObjectIdValue",
+				UnifiedRoleAssignmentMultipleId: "unifiedRoleAssignmentMultipleId",
+				DirectoryObjectId:               "directoryObjectId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/roleManagement/cloudPC/roleAssignments/unifiedRoleAssignmentMultipleIdValue/principals/directoryObjectIdValue/extra",
+			Input: "/roleManagement/cloudPC/roleAssignments/unifiedRoleAssignmentMultipleId/principals/directoryObjectId/extra",
 			Error: true,
 		},
 	}
@@ -150,48 +150,48 @@ func TestParseRoleManagementCloudPCRoleAssignmentIdPrincipalIDInsensitively(t *t
 		},
 		{
 			// Incomplete URI
-			Input: "/roleManagement/cloudPC/roleAssignments/unifiedRoleAssignmentMultipleIdValue",
+			Input: "/roleManagement/cloudPC/roleAssignments/unifiedRoleAssignmentMultipleId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/rOlEmAnAgEmEnT/cLoUdPc/rOlEaSsIgNmEnTs/uNiFiEdRoLeAsSiGnMeNtMuLtIpLeIdVaLuE",
+			Input: "/rOlEmAnAgEmEnT/cLoUdPc/rOlEaSsIgNmEnTs/uNiFiEdRoLeAsSiGnMeNtMuLtIpLeId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/roleManagement/cloudPC/roleAssignments/unifiedRoleAssignmentMultipleIdValue/principals",
+			Input: "/roleManagement/cloudPC/roleAssignments/unifiedRoleAssignmentMultipleId/principals",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/rOlEmAnAgEmEnT/cLoUdPc/rOlEaSsIgNmEnTs/uNiFiEdRoLeAsSiGnMeNtMuLtIpLeIdVaLuE/pRiNcIpAlS",
+			Input: "/rOlEmAnAgEmEnT/cLoUdPc/rOlEaSsIgNmEnTs/uNiFiEdRoLeAsSiGnMeNtMuLtIpLeId/pRiNcIpAlS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/roleManagement/cloudPC/roleAssignments/unifiedRoleAssignmentMultipleIdValue/principals/directoryObjectIdValue",
+			Input: "/roleManagement/cloudPC/roleAssignments/unifiedRoleAssignmentMultipleId/principals/directoryObjectId",
 			Expected: &RoleManagementCloudPCRoleAssignmentIdPrincipalId{
-				UnifiedRoleAssignmentMultipleId: "unifiedRoleAssignmentMultipleIdValue",
-				DirectoryObjectId:               "directoryObjectIdValue",
+				UnifiedRoleAssignmentMultipleId: "unifiedRoleAssignmentMultipleId",
+				DirectoryObjectId:               "directoryObjectId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/roleManagement/cloudPC/roleAssignments/unifiedRoleAssignmentMultipleIdValue/principals/directoryObjectIdValue/extra",
+			Input: "/roleManagement/cloudPC/roleAssignments/unifiedRoleAssignmentMultipleId/principals/directoryObjectId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/rOlEmAnAgEmEnT/cLoUdPc/rOlEaSsIgNmEnTs/uNiFiEdRoLeAsSiGnMeNtMuLtIpLeIdVaLuE/pRiNcIpAlS/dIrEcToRyObJeCtIdVaLuE",
+			Input: "/rOlEmAnAgEmEnT/cLoUdPc/rOlEaSsIgNmEnTs/uNiFiEdRoLeAsSiGnMeNtMuLtIpLeId/pRiNcIpAlS/dIrEcToRyObJeCtId",
 			Expected: &RoleManagementCloudPCRoleAssignmentIdPrincipalId{
-				UnifiedRoleAssignmentMultipleId: "uNiFiEdRoLeAsSiGnMeNtMuLtIpLeIdVaLuE",
-				DirectoryObjectId:               "dIrEcToRyObJeCtIdVaLuE",
+				UnifiedRoleAssignmentMultipleId: "uNiFiEdRoLeAsSiGnMeNtMuLtIpLeId",
+				DirectoryObjectId:               "dIrEcToRyObJeCtId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/rOlEmAnAgEmEnT/cLoUdPc/rOlEaSsIgNmEnTs/uNiFiEdRoLeAsSiGnMeNtMuLtIpLeIdVaLuE/pRiNcIpAlS/dIrEcToRyObJeCtIdVaLuE/extra",
+			Input: "/rOlEmAnAgEmEnT/cLoUdPc/rOlEaSsIgNmEnTs/uNiFiEdRoLeAsSiGnMeNtMuLtIpLeId/pRiNcIpAlS/dIrEcToRyObJeCtId/extra",
 			Error: true,
 		},
 	}

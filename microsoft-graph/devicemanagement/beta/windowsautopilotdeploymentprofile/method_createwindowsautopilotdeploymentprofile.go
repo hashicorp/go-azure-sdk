@@ -19,16 +19,45 @@ type CreateWindowsAutopilotDeploymentProfileOperationResponse struct {
 	Model        beta.WindowsAutopilotDeploymentProfile
 }
 
+type CreateWindowsAutopilotDeploymentProfileOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateWindowsAutopilotDeploymentProfileOperationOptions() CreateWindowsAutopilotDeploymentProfileOperationOptions {
+	return CreateWindowsAutopilotDeploymentProfileOperationOptions{}
+}
+
+func (o CreateWindowsAutopilotDeploymentProfileOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateWindowsAutopilotDeploymentProfileOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateWindowsAutopilotDeploymentProfileOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateWindowsAutopilotDeploymentProfile - Create new navigation property to windowsAutopilotDeploymentProfiles for
 // deviceManagement
-func (c WindowsAutopilotDeploymentProfileClient) CreateWindowsAutopilotDeploymentProfile(ctx context.Context, input beta.WindowsAutopilotDeploymentProfile) (result CreateWindowsAutopilotDeploymentProfileOperationResponse, err error) {
+func (c WindowsAutopilotDeploymentProfileClient) CreateWindowsAutopilotDeploymentProfile(ctx context.Context, input beta.WindowsAutopilotDeploymentProfile, options CreateWindowsAutopilotDeploymentProfileOperationOptions) (result CreateWindowsAutopilotDeploymentProfileOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/deviceManagement/windowsAutopilotDeploymentProfiles",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/deviceManagement/windowsAutopilotDeploymentProfiles",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

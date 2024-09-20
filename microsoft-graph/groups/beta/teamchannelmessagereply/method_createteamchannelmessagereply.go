@@ -19,15 +19,44 @@ type CreateTeamChannelMessageReplyOperationResponse struct {
 	Model        *beta.ChatMessage
 }
 
+type CreateTeamChannelMessageReplyOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateTeamChannelMessageReplyOperationOptions() CreateTeamChannelMessageReplyOperationOptions {
+	return CreateTeamChannelMessageReplyOperationOptions{}
+}
+
+func (o CreateTeamChannelMessageReplyOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateTeamChannelMessageReplyOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateTeamChannelMessageReplyOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateTeamChannelMessageReply - Create new navigation property to replies for groups
-func (c TeamChannelMessageReplyClient) CreateTeamChannelMessageReply(ctx context.Context, id beta.GroupIdTeamChannelIdMessageId, input beta.ChatMessage) (result CreateTeamChannelMessageReplyOperationResponse, err error) {
+func (c TeamChannelMessageReplyClient) CreateTeamChannelMessageReply(ctx context.Context, id beta.GroupIdTeamChannelIdMessageId, input beta.ChatMessage, options CreateTeamChannelMessageReplyOperationOptions) (result CreateTeamChannelMessageReplyOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/replies", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/replies", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

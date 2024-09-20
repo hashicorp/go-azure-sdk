@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/zebrafotaconnector` Documentation
 
-The `zebrafotaconnector` SDK allows for interaction with the Azure Resource Manager Service `devicemanagement` (API Version `beta`).
+The `zebrafotaconnector` SDK allows for interaction with Microsoft Graph `devicemanagement` (API Version `beta`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -15,7 +15,7 @@ import "github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/
 ### Client Initialization
 
 ```go
-client := zebrafotaconnector.NewZebraFotaConnectorClientWithBaseURI("https://management.azure.com")
+client := zebrafotaconnector.NewZebraFotaConnectorClientWithBaseURI("https://graph.microsoft.com")
 client.Client.Authorizer = authorizer
 ```
 
@@ -26,7 +26,7 @@ client.Client.Authorizer = authorizer
 ctx := context.TODO()
 
 
-read, err := client.CreateZebraFotaConnectorApproveFotaApp(ctx)
+read, err := client.CreateZebraFotaConnectorApproveFotaApp(ctx, zebrafotaconnector.DefaultCreateZebraFotaConnectorApproveFotaAppOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -42,7 +42,7 @@ if model := read.Model; model != nil {
 ctx := context.TODO()
 
 
-read, err := client.CreateZebraFotaConnectorConnect(ctx)
+read, err := client.CreateZebraFotaConnectorConnect(ctx, zebrafotaconnector.DefaultCreateZebraFotaConnectorConnectOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -58,7 +58,7 @@ if model := read.Model; model != nil {
 ctx := context.TODO()
 
 
-read, err := client.CreateZebraFotaConnectorDisconnect(ctx)
+read, err := client.CreateZebraFotaConnectorDisconnect(ctx, zebrafotaconnector.DefaultCreateZebraFotaConnectorDisconnectOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -74,7 +74,7 @@ if model := read.Model; model != nil {
 ctx := context.TODO()
 
 
-read, err := client.CreateZebraFotaConnectorHasActiveDeployment(ctx)
+read, err := client.CreateZebraFotaConnectorHasActiveDeployment(ctx, zebrafotaconnector.DefaultCreateZebraFotaConnectorHasActiveDeploymentOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -126,7 +126,7 @@ payload := zebrafotaconnector.ZebraFotaConnector{
 }
 
 
-read, err := client.UpdateZebraFotaConnector(ctx, payload)
+read, err := client.UpdateZebraFotaConnector(ctx, payload, zebrafotaconnector.DefaultUpdateZebraFotaConnectorOperationOptions())
 if err != nil {
 	// handle the error
 }

@@ -17,15 +17,44 @@ type UpdateB2xUserFlowLanguageOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateB2xUserFlowLanguageOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateB2xUserFlowLanguageOperationOptions() UpdateB2xUserFlowLanguageOperationOptions {
+	return UpdateB2xUserFlowLanguageOperationOptions{}
+}
+
+func (o UpdateB2xUserFlowLanguageOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateB2xUserFlowLanguageOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateB2xUserFlowLanguageOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateB2xUserFlowLanguage - Update the navigation property languages in identity
-func (c B2xUserFlowLanguageClient) UpdateB2xUserFlowLanguage(ctx context.Context, id stable.IdentityB2xUserFlowIdLanguageId, input stable.UserFlowLanguageConfiguration) (result UpdateB2xUserFlowLanguageOperationResponse, err error) {
+func (c B2xUserFlowLanguageClient) UpdateB2xUserFlowLanguage(ctx context.Context, id stable.IdentityB2xUserFlowIdLanguageId, input stable.UserFlowLanguageConfiguration, options UpdateB2xUserFlowLanguageOperationOptions) (result UpdateB2xUserFlowLanguageOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &ApplicationIdAppManagementPolicyId{}
 
 func TestNewApplicationIdAppManagementPolicyID(t *testing.T) {
-	id := NewApplicationIdAppManagementPolicyID("applicationIdValue", "appManagementPolicyIdValue")
+	id := NewApplicationIdAppManagementPolicyID("applicationId", "appManagementPolicyId")
 
-	if id.ApplicationId != "applicationIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ApplicationId'", id.ApplicationId, "applicationIdValue")
+	if id.ApplicationId != "applicationId" {
+		t.Fatalf("Expected %q but got %q for Segment 'ApplicationId'", id.ApplicationId, "applicationId")
 	}
 
-	if id.AppManagementPolicyId != "appManagementPolicyIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'AppManagementPolicyId'", id.AppManagementPolicyId, "appManagementPolicyIdValue")
+	if id.AppManagementPolicyId != "appManagementPolicyId" {
+		t.Fatalf("Expected %q but got %q for Segment 'AppManagementPolicyId'", id.AppManagementPolicyId, "appManagementPolicyId")
 	}
 }
 
 func TestFormatApplicationIdAppManagementPolicyID(t *testing.T) {
-	actual := NewApplicationIdAppManagementPolicyID("applicationIdValue", "appManagementPolicyIdValue").ID()
-	expected := "/applications/applicationIdValue/appManagementPolicies/appManagementPolicyIdValue"
+	actual := NewApplicationIdAppManagementPolicyID("applicationId", "appManagementPolicyId").ID()
+	expected := "/applications/applicationId/appManagementPolicies/appManagementPolicyId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -49,25 +49,25 @@ func TestParseApplicationIdAppManagementPolicyID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/applications/applicationIdValue",
+			Input: "/applications/applicationId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/applications/applicationIdValue/appManagementPolicies",
+			Input: "/applications/applicationId/appManagementPolicies",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/applications/applicationIdValue/appManagementPolicies/appManagementPolicyIdValue",
+			Input: "/applications/applicationId/appManagementPolicies/appManagementPolicyId",
 			Expected: &ApplicationIdAppManagementPolicyId{
-				ApplicationId:         "applicationIdValue",
-				AppManagementPolicyId: "appManagementPolicyIdValue",
+				ApplicationId:         "applicationId",
+				AppManagementPolicyId: "appManagementPolicyId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/applications/applicationIdValue/appManagementPolicies/appManagementPolicyIdValue/extra",
+			Input: "/applications/applicationId/appManagementPolicies/appManagementPolicyId/extra",
 			Error: true,
 		},
 	}
@@ -120,48 +120,48 @@ func TestParseApplicationIdAppManagementPolicyIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/applications/applicationIdValue",
+			Input: "/applications/applicationId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/aPpLiCaTiOnS/aPpLiCaTiOnIdVaLuE",
+			Input: "/aPpLiCaTiOnS/aPpLiCaTiOnId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/applications/applicationIdValue/appManagementPolicies",
+			Input: "/applications/applicationId/appManagementPolicies",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/aPpLiCaTiOnS/aPpLiCaTiOnIdVaLuE/aPpMaNaGeMeNtPoLiCiEs",
+			Input: "/aPpLiCaTiOnS/aPpLiCaTiOnId/aPpMaNaGeMeNtPoLiCiEs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/applications/applicationIdValue/appManagementPolicies/appManagementPolicyIdValue",
+			Input: "/applications/applicationId/appManagementPolicies/appManagementPolicyId",
 			Expected: &ApplicationIdAppManagementPolicyId{
-				ApplicationId:         "applicationIdValue",
-				AppManagementPolicyId: "appManagementPolicyIdValue",
+				ApplicationId:         "applicationId",
+				AppManagementPolicyId: "appManagementPolicyId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/applications/applicationIdValue/appManagementPolicies/appManagementPolicyIdValue/extra",
+			Input: "/applications/applicationId/appManagementPolicies/appManagementPolicyId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/aPpLiCaTiOnS/aPpLiCaTiOnIdVaLuE/aPpMaNaGeMeNtPoLiCiEs/aPpMaNaGeMeNtPoLiCyIdVaLuE",
+			Input: "/aPpLiCaTiOnS/aPpLiCaTiOnId/aPpMaNaGeMeNtPoLiCiEs/aPpMaNaGeMeNtPoLiCyId",
 			Expected: &ApplicationIdAppManagementPolicyId{
-				ApplicationId:         "aPpLiCaTiOnIdVaLuE",
-				AppManagementPolicyId: "aPpMaNaGeMeNtPoLiCyIdVaLuE",
+				ApplicationId:         "aPpLiCaTiOnId",
+				AppManagementPolicyId: "aPpMaNaGeMeNtPoLiCyId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/aPpLiCaTiOnS/aPpLiCaTiOnIdVaLuE/aPpMaNaGeMeNtPoLiCiEs/aPpMaNaGeMeNtPoLiCyIdVaLuE/extra",
+			Input: "/aPpLiCaTiOnS/aPpLiCaTiOnId/aPpMaNaGeMeNtPoLiCiEs/aPpMaNaGeMeNtPoLiCyId/extra",
 			Error: true,
 		},
 	}

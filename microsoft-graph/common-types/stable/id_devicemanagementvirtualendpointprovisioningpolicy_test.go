@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &DeviceManagementVirtualEndpointProvisioningPolicyId{}
 
 func TestNewDeviceManagementVirtualEndpointProvisioningPolicyID(t *testing.T) {
-	id := NewDeviceManagementVirtualEndpointProvisioningPolicyID("cloudPCProvisioningPolicyIdValue")
+	id := NewDeviceManagementVirtualEndpointProvisioningPolicyID("cloudPCProvisioningPolicyId")
 
-	if id.CloudPCProvisioningPolicyId != "cloudPCProvisioningPolicyIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'CloudPCProvisioningPolicyId'", id.CloudPCProvisioningPolicyId, "cloudPCProvisioningPolicyIdValue")
+	if id.CloudPCProvisioningPolicyId != "cloudPCProvisioningPolicyId" {
+		t.Fatalf("Expected %q but got %q for Segment 'CloudPCProvisioningPolicyId'", id.CloudPCProvisioningPolicyId, "cloudPCProvisioningPolicyId")
 	}
 }
 
 func TestFormatDeviceManagementVirtualEndpointProvisioningPolicyID(t *testing.T) {
-	actual := NewDeviceManagementVirtualEndpointProvisioningPolicyID("cloudPCProvisioningPolicyIdValue").ID()
-	expected := "/deviceManagement/virtualEndpoint/provisioningPolicies/cloudPCProvisioningPolicyIdValue"
+	actual := NewDeviceManagementVirtualEndpointProvisioningPolicyID("cloudPCProvisioningPolicyId").ID()
+	expected := "/deviceManagement/virtualEndpoint/provisioningPolicies/cloudPCProvisioningPolicyId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -55,14 +55,14 @@ func TestParseDeviceManagementVirtualEndpointProvisioningPolicyID(t *testing.T) 
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/virtualEndpoint/provisioningPolicies/cloudPCProvisioningPolicyIdValue",
+			Input: "/deviceManagement/virtualEndpoint/provisioningPolicies/cloudPCProvisioningPolicyId",
 			Expected: &DeviceManagementVirtualEndpointProvisioningPolicyId{
-				CloudPCProvisioningPolicyId: "cloudPCProvisioningPolicyIdValue",
+				CloudPCProvisioningPolicyId: "cloudPCProvisioningPolicyId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/virtualEndpoint/provisioningPolicies/cloudPCProvisioningPolicyIdValue/extra",
+			Input: "/deviceManagement/virtualEndpoint/provisioningPolicies/cloudPCProvisioningPolicyId/extra",
 			Error: true,
 		},
 	}
@@ -131,26 +131,26 @@ func TestParseDeviceManagementVirtualEndpointProvisioningPolicyIDInsensitively(t
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/virtualEndpoint/provisioningPolicies/cloudPCProvisioningPolicyIdValue",
+			Input: "/deviceManagement/virtualEndpoint/provisioningPolicies/cloudPCProvisioningPolicyId",
 			Expected: &DeviceManagementVirtualEndpointProvisioningPolicyId{
-				CloudPCProvisioningPolicyId: "cloudPCProvisioningPolicyIdValue",
+				CloudPCProvisioningPolicyId: "cloudPCProvisioningPolicyId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/virtualEndpoint/provisioningPolicies/cloudPCProvisioningPolicyIdValue/extra",
+			Input: "/deviceManagement/virtualEndpoint/provisioningPolicies/cloudPCProvisioningPolicyId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/vIrTuAlEnDpOiNt/pRoViSiOnInGpOlIcIeS/cLoUdPcPrOvIsIoNiNgPoLiCyIdVaLuE",
+			Input: "/dEvIcEmAnAgEmEnT/vIrTuAlEnDpOiNt/pRoViSiOnInGpOlIcIeS/cLoUdPcPrOvIsIoNiNgPoLiCyId",
 			Expected: &DeviceManagementVirtualEndpointProvisioningPolicyId{
-				CloudPCProvisioningPolicyId: "cLoUdPcPrOvIsIoNiNgPoLiCyIdVaLuE",
+				CloudPCProvisioningPolicyId: "cLoUdPcPrOvIsIoNiNgPoLiCyId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/vIrTuAlEnDpOiNt/pRoViSiOnInGpOlIcIeS/cLoUdPcPrOvIsIoNiNgPoLiCyIdVaLuE/extra",
+			Input: "/dEvIcEmAnAgEmEnT/vIrTuAlEnDpOiNt/pRoViSiOnInGpOlIcIeS/cLoUdPcPrOvIsIoNiNgPoLiCyId/extra",
 			Error: true,
 		},
 	}

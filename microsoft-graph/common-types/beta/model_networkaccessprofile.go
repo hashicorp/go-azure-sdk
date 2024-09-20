@@ -107,20 +107,30 @@ func (s BaseNetworkaccessProfileImpl) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &BaseNetworkaccessProfileImpl{}
 
 func (s *BaseNetworkaccessProfileImpl) UnmarshalJSON(bytes []byte) error {
-	type alias BaseNetworkaccessProfileImpl
-	var decoded alias
+
+	var decoded struct {
+		Description          nullable.Type[string]      `json:"description,omitempty"`
+		LastModifiedDateTime *string                    `json:"lastModifiedDateTime,omitempty"`
+		Name                 *string                    `json:"name,omitempty"`
+		Policies             *[]NetworkaccessPolicyLink `json:"policies,omitempty"`
+		State                *NetworkaccessStatus       `json:"state,omitempty"`
+		Version              *string                    `json:"version,omitempty"`
+		Id                   *string                    `json:"id,omitempty"`
+		ODataId              *string                    `json:"@odata.id,omitempty"`
+		ODataType            *string                    `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into BaseNetworkaccessProfileImpl: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.Description = decoded.Description
-	s.Id = decoded.Id
 	s.LastModifiedDateTime = decoded.LastModifiedDateTime
 	s.Name = decoded.Name
-	s.ODataId = decoded.ODataId
-	s.ODataType = decoded.ODataType
 	s.State = decoded.State
 	s.Version = decoded.Version
+	s.Id = decoded.Id
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -143,6 +153,7 @@ func (s *BaseNetworkaccessProfileImpl) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Policies = &output
 	}
+
 	return nil
 }
 
@@ -156,9 +167,9 @@ func UnmarshalNetworkaccessProfileImplementation(input []byte) (NetworkaccessPro
 		return nil, fmt.Errorf("unmarshaling NetworkaccessProfile into map[string]interface: %+v", err)
 	}
 
-	value, ok := temp["@odata.type"].(string)
-	if !ok {
-		return nil, nil
+	var value string
+	if v, ok := temp["@odata.type"]; ok {
+		value = fmt.Sprintf("%v", v)
 	}
 
 	if strings.EqualFold(value, "#microsoft.graph.networkaccess.filteringProfile") {

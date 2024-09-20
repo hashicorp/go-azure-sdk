@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &GroupIdRejectedSenderId{}
 
 func TestNewGroupIdRejectedSenderID(t *testing.T) {
-	id := NewGroupIdRejectedSenderID("groupIdValue", "directoryObjectIdValue")
+	id := NewGroupIdRejectedSenderID("groupId", "directoryObjectId")
 
-	if id.GroupId != "groupIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'GroupId'", id.GroupId, "groupIdValue")
+	if id.GroupId != "groupId" {
+		t.Fatalf("Expected %q but got %q for Segment 'GroupId'", id.GroupId, "groupId")
 	}
 
-	if id.DirectoryObjectId != "directoryObjectIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DirectoryObjectId'", id.DirectoryObjectId, "directoryObjectIdValue")
+	if id.DirectoryObjectId != "directoryObjectId" {
+		t.Fatalf("Expected %q but got %q for Segment 'DirectoryObjectId'", id.DirectoryObjectId, "directoryObjectId")
 	}
 }
 
 func TestFormatGroupIdRejectedSenderID(t *testing.T) {
-	actual := NewGroupIdRejectedSenderID("groupIdValue", "directoryObjectIdValue").ID()
-	expected := "/groups/groupIdValue/rejectedSenders/directoryObjectIdValue"
+	actual := NewGroupIdRejectedSenderID("groupId", "directoryObjectId").ID()
+	expected := "/groups/groupId/rejectedSenders/directoryObjectId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -49,25 +49,25 @@ func TestParseGroupIdRejectedSenderID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue",
+			Input: "/groups/groupId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/rejectedSenders",
+			Input: "/groups/groupId/rejectedSenders",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/groups/groupIdValue/rejectedSenders/directoryObjectIdValue",
+			Input: "/groups/groupId/rejectedSenders/directoryObjectId",
 			Expected: &GroupIdRejectedSenderId{
-				GroupId:           "groupIdValue",
-				DirectoryObjectId: "directoryObjectIdValue",
+				GroupId:           "groupId",
+				DirectoryObjectId: "directoryObjectId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/groups/groupIdValue/rejectedSenders/directoryObjectIdValue/extra",
+			Input: "/groups/groupId/rejectedSenders/directoryObjectId/extra",
 			Error: true,
 		},
 	}
@@ -120,48 +120,48 @@ func TestParseGroupIdRejectedSenderIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue",
+			Input: "/groups/groupId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE",
+			Input: "/gRoUpS/gRoUpId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/rejectedSenders",
+			Input: "/groups/groupId/rejectedSenders",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/rEjEcTeDsEnDeRs",
+			Input: "/gRoUpS/gRoUpId/rEjEcTeDsEnDeRs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/groups/groupIdValue/rejectedSenders/directoryObjectIdValue",
+			Input: "/groups/groupId/rejectedSenders/directoryObjectId",
 			Expected: &GroupIdRejectedSenderId{
-				GroupId:           "groupIdValue",
-				DirectoryObjectId: "directoryObjectIdValue",
+				GroupId:           "groupId",
+				DirectoryObjectId: "directoryObjectId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/groups/groupIdValue/rejectedSenders/directoryObjectIdValue/extra",
+			Input: "/groups/groupId/rejectedSenders/directoryObjectId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/rEjEcTeDsEnDeRs/dIrEcToRyObJeCtIdVaLuE",
+			Input: "/gRoUpS/gRoUpId/rEjEcTeDsEnDeRs/dIrEcToRyObJeCtId",
 			Expected: &GroupIdRejectedSenderId{
-				GroupId:           "gRoUpIdVaLuE",
-				DirectoryObjectId: "dIrEcToRyObJeCtIdVaLuE",
+				GroupId:           "gRoUpId",
+				DirectoryObjectId: "dIrEcToRyObJeCtId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/rEjEcTeDsEnDeRs/dIrEcToRyObJeCtIdVaLuE/extra",
+			Input: "/gRoUpS/gRoUpId/rEjEcTeDsEnDeRs/dIrEcToRyObJeCtId/extra",
 			Error: true,
 		},
 	}

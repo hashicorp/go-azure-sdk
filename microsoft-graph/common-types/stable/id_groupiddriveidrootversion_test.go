@@ -12,24 +12,24 @@ import (
 var _ resourceids.ResourceId = &GroupIdDriveIdRootVersionId{}
 
 func TestNewGroupIdDriveIdRootVersionID(t *testing.T) {
-	id := NewGroupIdDriveIdRootVersionID("groupIdValue", "driveIdValue", "driveItemVersionIdValue")
+	id := NewGroupIdDriveIdRootVersionID("groupId", "driveId", "driveItemVersionId")
 
-	if id.GroupId != "groupIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'GroupId'", id.GroupId, "groupIdValue")
+	if id.GroupId != "groupId" {
+		t.Fatalf("Expected %q but got %q for Segment 'GroupId'", id.GroupId, "groupId")
 	}
 
-	if id.DriveId != "driveIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DriveId'", id.DriveId, "driveIdValue")
+	if id.DriveId != "driveId" {
+		t.Fatalf("Expected %q but got %q for Segment 'DriveId'", id.DriveId, "driveId")
 	}
 
-	if id.DriveItemVersionId != "driveItemVersionIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DriveItemVersionId'", id.DriveItemVersionId, "driveItemVersionIdValue")
+	if id.DriveItemVersionId != "driveItemVersionId" {
+		t.Fatalf("Expected %q but got %q for Segment 'DriveItemVersionId'", id.DriveItemVersionId, "driveItemVersionId")
 	}
 }
 
 func TestFormatGroupIdDriveIdRootVersionID(t *testing.T) {
-	actual := NewGroupIdDriveIdRootVersionID("groupIdValue", "driveIdValue", "driveItemVersionIdValue").ID()
-	expected := "/groups/groupIdValue/drives/driveIdValue/root/versions/driveItemVersionIdValue"
+	actual := NewGroupIdDriveIdRootVersionID("groupId", "driveId", "driveItemVersionId").ID()
+	expected := "/groups/groupId/drives/driveId/root/versions/driveItemVersionId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -53,41 +53,41 @@ func TestParseGroupIdDriveIdRootVersionID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue",
+			Input: "/groups/groupId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/drives",
+			Input: "/groups/groupId/drives",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/drives/driveIdValue",
+			Input: "/groups/groupId/drives/driveId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/drives/driveIdValue/root",
+			Input: "/groups/groupId/drives/driveId/root",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/drives/driveIdValue/root/versions",
+			Input: "/groups/groupId/drives/driveId/root/versions",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/groups/groupIdValue/drives/driveIdValue/root/versions/driveItemVersionIdValue",
+			Input: "/groups/groupId/drives/driveId/root/versions/driveItemVersionId",
 			Expected: &GroupIdDriveIdRootVersionId{
-				GroupId:            "groupIdValue",
-				DriveId:            "driveIdValue",
-				DriveItemVersionId: "driveItemVersionIdValue",
+				GroupId:            "groupId",
+				DriveId:            "driveId",
+				DriveItemVersionId: "driveItemVersionId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/groups/groupIdValue/drives/driveIdValue/root/versions/driveItemVersionIdValue/extra",
+			Input: "/groups/groupId/drives/driveId/root/versions/driveItemVersionId/extra",
 			Error: true,
 		},
 	}
@@ -144,80 +144,80 @@ func TestParseGroupIdDriveIdRootVersionIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue",
+			Input: "/groups/groupId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE",
+			Input: "/gRoUpS/gRoUpId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/drives",
+			Input: "/groups/groupId/drives",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/dRiVeS",
+			Input: "/gRoUpS/gRoUpId/dRiVeS",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/drives/driveIdValue",
+			Input: "/groups/groupId/drives/driveId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/dRiVeS/dRiVeIdVaLuE",
+			Input: "/gRoUpS/gRoUpId/dRiVeS/dRiVeId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/drives/driveIdValue/root",
+			Input: "/groups/groupId/drives/driveId/root",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/dRiVeS/dRiVeIdVaLuE/rOoT",
+			Input: "/gRoUpS/gRoUpId/dRiVeS/dRiVeId/rOoT",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/drives/driveIdValue/root/versions",
+			Input: "/groups/groupId/drives/driveId/root/versions",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/dRiVeS/dRiVeIdVaLuE/rOoT/vErSiOnS",
+			Input: "/gRoUpS/gRoUpId/dRiVeS/dRiVeId/rOoT/vErSiOnS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/groups/groupIdValue/drives/driveIdValue/root/versions/driveItemVersionIdValue",
+			Input: "/groups/groupId/drives/driveId/root/versions/driveItemVersionId",
 			Expected: &GroupIdDriveIdRootVersionId{
-				GroupId:            "groupIdValue",
-				DriveId:            "driveIdValue",
-				DriveItemVersionId: "driveItemVersionIdValue",
+				GroupId:            "groupId",
+				DriveId:            "driveId",
+				DriveItemVersionId: "driveItemVersionId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/groups/groupIdValue/drives/driveIdValue/root/versions/driveItemVersionIdValue/extra",
+			Input: "/groups/groupId/drives/driveId/root/versions/driveItemVersionId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/dRiVeS/dRiVeIdVaLuE/rOoT/vErSiOnS/dRiVeItEmVeRsIoNiDvAlUe",
+			Input: "/gRoUpS/gRoUpId/dRiVeS/dRiVeId/rOoT/vErSiOnS/dRiVeItEmVeRsIoNiD",
 			Expected: &GroupIdDriveIdRootVersionId{
-				GroupId:            "gRoUpIdVaLuE",
-				DriveId:            "dRiVeIdVaLuE",
-				DriveItemVersionId: "dRiVeItEmVeRsIoNiDvAlUe",
+				GroupId:            "gRoUpId",
+				DriveId:            "dRiVeId",
+				DriveItemVersionId: "dRiVeItEmVeRsIoNiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/dRiVeS/dRiVeIdVaLuE/rOoT/vErSiOnS/dRiVeItEmVeRsIoNiDvAlUe/extra",
+			Input: "/gRoUpS/gRoUpId/dRiVeS/dRiVeId/rOoT/vErSiOnS/dRiVeItEmVeRsIoNiD/extra",
 			Error: true,
 		},
 	}

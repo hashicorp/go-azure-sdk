@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &MeInformationProtectionDataLossPreventionPolicyId{}
 
 func TestNewMeInformationProtectionDataLossPreventionPolicyID(t *testing.T) {
-	id := NewMeInformationProtectionDataLossPreventionPolicyID("dataLossPreventionPolicyIdValue")
+	id := NewMeInformationProtectionDataLossPreventionPolicyID("dataLossPreventionPolicyId")
 
-	if id.DataLossPreventionPolicyId != "dataLossPreventionPolicyIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DataLossPreventionPolicyId'", id.DataLossPreventionPolicyId, "dataLossPreventionPolicyIdValue")
+	if id.DataLossPreventionPolicyId != "dataLossPreventionPolicyId" {
+		t.Fatalf("Expected %q but got %q for Segment 'DataLossPreventionPolicyId'", id.DataLossPreventionPolicyId, "dataLossPreventionPolicyId")
 	}
 }
 
 func TestFormatMeInformationProtectionDataLossPreventionPolicyID(t *testing.T) {
-	actual := NewMeInformationProtectionDataLossPreventionPolicyID("dataLossPreventionPolicyIdValue").ID()
-	expected := "/me/informationProtection/dataLossPreventionPolicies/dataLossPreventionPolicyIdValue"
+	actual := NewMeInformationProtectionDataLossPreventionPolicyID("dataLossPreventionPolicyId").ID()
+	expected := "/me/informationProtection/dataLossPreventionPolicies/dataLossPreventionPolicyId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -55,14 +55,14 @@ func TestParseMeInformationProtectionDataLossPreventionPolicyID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/me/informationProtection/dataLossPreventionPolicies/dataLossPreventionPolicyIdValue",
+			Input: "/me/informationProtection/dataLossPreventionPolicies/dataLossPreventionPolicyId",
 			Expected: &MeInformationProtectionDataLossPreventionPolicyId{
-				DataLossPreventionPolicyId: "dataLossPreventionPolicyIdValue",
+				DataLossPreventionPolicyId: "dataLossPreventionPolicyId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/informationProtection/dataLossPreventionPolicies/dataLossPreventionPolicyIdValue/extra",
+			Input: "/me/informationProtection/dataLossPreventionPolicies/dataLossPreventionPolicyId/extra",
 			Error: true,
 		},
 	}
@@ -131,26 +131,26 @@ func TestParseMeInformationProtectionDataLossPreventionPolicyIDInsensitively(t *
 		},
 		{
 			// Valid URI
-			Input: "/me/informationProtection/dataLossPreventionPolicies/dataLossPreventionPolicyIdValue",
+			Input: "/me/informationProtection/dataLossPreventionPolicies/dataLossPreventionPolicyId",
 			Expected: &MeInformationProtectionDataLossPreventionPolicyId{
-				DataLossPreventionPolicyId: "dataLossPreventionPolicyIdValue",
+				DataLossPreventionPolicyId: "dataLossPreventionPolicyId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/informationProtection/dataLossPreventionPolicies/dataLossPreventionPolicyIdValue/extra",
+			Input: "/me/informationProtection/dataLossPreventionPolicies/dataLossPreventionPolicyId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/iNfOrMaTiOnPrOtEcTiOn/dAtAlOsSpReVeNtIoNpOlIcIeS/dAtAlOsSpReVeNtIoNpOlIcYiDvAlUe",
+			Input: "/mE/iNfOrMaTiOnPrOtEcTiOn/dAtAlOsSpReVeNtIoNpOlIcIeS/dAtAlOsSpReVeNtIoNpOlIcYiD",
 			Expected: &MeInformationProtectionDataLossPreventionPolicyId{
-				DataLossPreventionPolicyId: "dAtAlOsSpReVeNtIoNpOlIcYiDvAlUe",
+				DataLossPreventionPolicyId: "dAtAlOsSpReVeNtIoNpOlIcYiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/mE/iNfOrMaTiOnPrOtEcTiOn/dAtAlOsSpReVeNtIoNpOlIcIeS/dAtAlOsSpReVeNtIoNpOlIcYiDvAlUe/extra",
+			Input: "/mE/iNfOrMaTiOnPrOtEcTiOn/dAtAlOsSpReVeNtIoNpOlIcIeS/dAtAlOsSpReVeNtIoNpOlIcYiD/extra",
 			Error: true,
 		},
 	}

@@ -20,6 +20,7 @@ type GetEntitlementManagementTransitiveRoleAssignmentsCountOperationResponse str
 type GetEntitlementManagementTransitiveRoleAssignmentsCountOperationOptions struct {
 	ConsistencyLevel *odata.ConsistencyLevel
 	Filter           *string
+	Metadata         *odata.Metadata
 	Search           *string
 }
 
@@ -40,6 +41,9 @@ func (o GetEntitlementManagementTransitiveRoleAssignmentsCountOperationOptions) 
 	}
 	if o.Filter != nil {
 		out.Filter = *o.Filter
+	}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
 	}
 	if o.Search != nil {
 		out.Search = *o.Search

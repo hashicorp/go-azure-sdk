@@ -19,7 +19,8 @@ type DeleteUserPfxCertificateOperationResponse struct {
 }
 
 type DeleteUserPfxCertificateOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteUserPfxCertificateOperationOptions() DeleteUserPfxCertificateOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteUserPfxCertificateOperationOptions) ToHeaders() *client.Headers {
 
 func (o DeleteUserPfxCertificateOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

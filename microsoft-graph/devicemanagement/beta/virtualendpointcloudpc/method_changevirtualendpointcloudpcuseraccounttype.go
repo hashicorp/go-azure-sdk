@@ -18,16 +18,45 @@ type ChangeVirtualEndpointCloudPCUserAccountTypeOperationResponse struct {
 	OData        *odata.OData
 }
 
+type ChangeVirtualEndpointCloudPCUserAccountTypeOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultChangeVirtualEndpointCloudPCUserAccountTypeOperationOptions() ChangeVirtualEndpointCloudPCUserAccountTypeOperationOptions {
+	return ChangeVirtualEndpointCloudPCUserAccountTypeOperationOptions{}
+}
+
+func (o ChangeVirtualEndpointCloudPCUserAccountTypeOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o ChangeVirtualEndpointCloudPCUserAccountTypeOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o ChangeVirtualEndpointCloudPCUserAccountTypeOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // ChangeVirtualEndpointCloudPCUserAccountType - Invoke action changeUserAccountType. Change the account type of the
 // user on a specific Cloud PC.
-func (c VirtualEndpointCloudPCClient) ChangeVirtualEndpointCloudPCUserAccountType(ctx context.Context, id beta.DeviceManagementVirtualEndpointCloudPCId, input ChangeVirtualEndpointCloudPCUserAccountTypeRequest) (result ChangeVirtualEndpointCloudPCUserAccountTypeOperationResponse, err error) {
+func (c VirtualEndpointCloudPCClient) ChangeVirtualEndpointCloudPCUserAccountType(ctx context.Context, id beta.DeviceManagementVirtualEndpointCloudPCId, input ChangeVirtualEndpointCloudPCUserAccountTypeRequest, options ChangeVirtualEndpointCloudPCUserAccountTypeOperationOptions) (result ChangeVirtualEndpointCloudPCUserAccountTypeOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/changeUserAccountType", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/changeUserAccountType", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

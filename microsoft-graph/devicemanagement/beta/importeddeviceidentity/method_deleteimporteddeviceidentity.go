@@ -19,7 +19,8 @@ type DeleteImportedDeviceIdentityOperationResponse struct {
 }
 
 type DeleteImportedDeviceIdentityOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteImportedDeviceIdentityOperationOptions() DeleteImportedDeviceIdentityOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteImportedDeviceIdentityOperationOptions) ToHeaders() *client.Header
 
 func (o DeleteImportedDeviceIdentityOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

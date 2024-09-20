@@ -18,15 +18,44 @@ type CreateCustomSecurityAttributeAuditOperationResponse struct {
 	Model        *beta.CustomSecurityAttributeAudit
 }
 
+type CreateCustomSecurityAttributeAuditOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateCustomSecurityAttributeAuditOperationOptions() CreateCustomSecurityAttributeAuditOperationOptions {
+	return CreateCustomSecurityAttributeAuditOperationOptions{}
+}
+
+func (o CreateCustomSecurityAttributeAuditOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateCustomSecurityAttributeAuditOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateCustomSecurityAttributeAuditOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateCustomSecurityAttributeAudit - Create new navigation property to customSecurityAttributeAudits for auditLogs
-func (c CustomSecurityAttributeAuditClient) CreateCustomSecurityAttributeAudit(ctx context.Context, input beta.CustomSecurityAttributeAudit) (result CreateCustomSecurityAttributeAuditOperationResponse, err error) {
+func (c CustomSecurityAttributeAuditClient) CreateCustomSecurityAttributeAudit(ctx context.Context, input beta.CustomSecurityAttributeAudit, options CreateCustomSecurityAttributeAuditOperationOptions) (result CreateCustomSecurityAttributeAuditOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/auditLogs/customSecurityAttributeAudits",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/auditLogs/customSecurityAttributeAudits",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -18,15 +18,44 @@ type CreateEnterpriseAppOperationResponse struct {
 	Model        *beta.RbacApplication
 }
 
+type CreateEnterpriseAppOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateEnterpriseAppOperationOptions() CreateEnterpriseAppOperationOptions {
+	return CreateEnterpriseAppOperationOptions{}
+}
+
+func (o CreateEnterpriseAppOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateEnterpriseAppOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateEnterpriseAppOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateEnterpriseApp - Create new navigation property to enterpriseApps for roleManagement
-func (c EnterpriseAppClient) CreateEnterpriseApp(ctx context.Context, input beta.RbacApplication) (result CreateEnterpriseAppOperationResponse, err error) {
+func (c EnterpriseAppClient) CreateEnterpriseApp(ctx context.Context, input beta.RbacApplication, options CreateEnterpriseAppOperationOptions) (result CreateEnterpriseAppOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/roleManagement/enterpriseApps",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/roleManagement/enterpriseApps",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -89,19 +89,28 @@ func (s DriveItemVersion) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &DriveItemVersion{}
 
 func (s *DriveItemVersion) UnmarshalJSON(bytes []byte) error {
-	type alias DriveItemVersion
-	var decoded alias
+
+	var decoded struct {
+		Content              nullable.Type[string] `json:"content,omitempty"`
+		Size                 nullable.Type[int64]  `json:"size,omitempty"`
+		LastModifiedBy       *IdentitySet          `json:"lastModifiedBy,omitempty"`
+		LastModifiedDateTime nullable.Type[string] `json:"lastModifiedDateTime,omitempty"`
+		Publication          *PublicationFacet     `json:"publication,omitempty"`
+		Id                   *string               `json:"id,omitempty"`
+		ODataId              *string               `json:"@odata.id,omitempty"`
+		ODataType            *string               `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into DriveItemVersion: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.Content = decoded.Content
+	s.Size = decoded.Size
 	s.Id = decoded.Id
 	s.LastModifiedDateTime = decoded.LastModifiedDateTime
 	s.ODataId = decoded.ODataId
 	s.ODataType = decoded.ODataType
 	s.Publication = decoded.Publication
-	s.Size = decoded.Size
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -115,5 +124,6 @@ func (s *DriveItemVersion) UnmarshalJSON(bytes []byte) error {
 		}
 		s.LastModifiedBy = &impl
 	}
+
 	return nil
 }

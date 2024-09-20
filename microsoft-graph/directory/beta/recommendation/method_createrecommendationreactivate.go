@@ -19,17 +19,46 @@ type CreateRecommendationReactivateOperationResponse struct {
 	Model        *beta.Recommendation
 }
 
+type CreateRecommendationReactivateOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateRecommendationReactivateOperationOptions() CreateRecommendationReactivateOperationOptions {
+	return CreateRecommendationReactivateOperationOptions{}
+}
+
+func (o CreateRecommendationReactivateOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateRecommendationReactivateOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateRecommendationReactivateOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateRecommendationReactivate - Invoke action reactivate. Reactivate a completed, dismissed, or postponed
 // recommendation object. This action updates the status of the recommendation to active. This method only works when
 // the status of the recommendation is completedByUser, dismissed, or postponed.
-func (c RecommendationClient) CreateRecommendationReactivate(ctx context.Context, id beta.DirectoryRecommendationId) (result CreateRecommendationReactivateOperationResponse, err error) {
+func (c RecommendationClient) CreateRecommendationReactivate(ctx context.Context, id beta.DirectoryRecommendationId, options CreateRecommendationReactivateOperationOptions) (result CreateRecommendationReactivateOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/reactivate", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/reactivate", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

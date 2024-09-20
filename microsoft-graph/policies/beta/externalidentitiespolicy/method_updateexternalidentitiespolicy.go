@@ -17,17 +17,46 @@ type UpdateExternalIdentitiesPolicyOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateExternalIdentitiesPolicyOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateExternalIdentitiesPolicyOperationOptions() UpdateExternalIdentitiesPolicyOperationOptions {
+	return UpdateExternalIdentitiesPolicyOperationOptions{}
+}
+
+func (o UpdateExternalIdentitiesPolicyOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateExternalIdentitiesPolicyOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateExternalIdentitiesPolicyOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateExternalIdentitiesPolicy - Update externalIdentitiesPolicy. Update the settings of the tenant-wide
 // externalIdentitiesPolicy object that controls whether external users can leave a Microsoft Entra tenant via
 // self-service controls.
-func (c ExternalIdentitiesPolicyClient) UpdateExternalIdentitiesPolicy(ctx context.Context, input beta.ExternalIdentitiesPolicy) (result UpdateExternalIdentitiesPolicyOperationResponse, err error) {
+func (c ExternalIdentitiesPolicyClient) UpdateExternalIdentitiesPolicy(ctx context.Context, input beta.ExternalIdentitiesPolicy, options UpdateExternalIdentitiesPolicyOperationOptions) (result UpdateExternalIdentitiesPolicyOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       "/policies/externalIdentitiesPolicy",
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          "/policies/externalIdentitiesPolicy",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -19,16 +19,45 @@ type CreatePermissionsManagementScheduledPermissionsApprovalStepOperationRespons
 	Model        *beta.ApprovalStep
 }
 
+type CreatePermissionsManagementScheduledPermissionsApprovalStepOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreatePermissionsManagementScheduledPermissionsApprovalStepOperationOptions() CreatePermissionsManagementScheduledPermissionsApprovalStepOperationOptions {
+	return CreatePermissionsManagementScheduledPermissionsApprovalStepOperationOptions{}
+}
+
+func (o CreatePermissionsManagementScheduledPermissionsApprovalStepOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreatePermissionsManagementScheduledPermissionsApprovalStepOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreatePermissionsManagementScheduledPermissionsApprovalStepOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreatePermissionsManagementScheduledPermissionsApprovalStep - Create new navigation property to steps for
 // identityGovernance
-func (c PermissionsManagementScheduledPermissionsApprovalStepClient) CreatePermissionsManagementScheduledPermissionsApprovalStep(ctx context.Context, id beta.IdentityGovernancePermissionsManagementScheduledPermissionsApprovalId, input beta.ApprovalStep) (result CreatePermissionsManagementScheduledPermissionsApprovalStepOperationResponse, err error) {
+func (c PermissionsManagementScheduledPermissionsApprovalStepClient) CreatePermissionsManagementScheduledPermissionsApprovalStep(ctx context.Context, id beta.IdentityGovernancePermissionsManagementScheduledPermissionsApprovalId, input beta.ApprovalStep, options CreatePermissionsManagementScheduledPermissionsApprovalStepOperationOptions) (result CreatePermissionsManagementScheduledPermissionsApprovalStepOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/steps", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/steps", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

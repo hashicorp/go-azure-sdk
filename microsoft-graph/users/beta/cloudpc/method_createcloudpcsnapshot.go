@@ -18,15 +18,44 @@ type CreateCloudPCSnapshotOperationResponse struct {
 	OData        *odata.OData
 }
 
+type CreateCloudPCSnapshotOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateCloudPCSnapshotOperationOptions() CreateCloudPCSnapshotOperationOptions {
+	return CreateCloudPCSnapshotOperationOptions{}
+}
+
+func (o CreateCloudPCSnapshotOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateCloudPCSnapshotOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateCloudPCSnapshotOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateCloudPCSnapshot - Invoke action createSnapshot. Create a snapshot for a specific Cloud PC device.
-func (c CloudPCClient) CreateCloudPCSnapshot(ctx context.Context, id beta.UserIdCloudPCId) (result CreateCloudPCSnapshotOperationResponse, err error) {
+func (c CloudPCClient) CreateCloudPCSnapshot(ctx context.Context, id beta.UserIdCloudPCId, options CreateCloudPCSnapshotOperationOptions) (result CreateCloudPCSnapshotOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/createSnapshot", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/createSnapshot", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

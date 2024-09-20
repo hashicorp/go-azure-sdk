@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &UserIdAppRoleAssignmentId{}
 
 func TestNewUserIdAppRoleAssignmentID(t *testing.T) {
-	id := NewUserIdAppRoleAssignmentID("userIdValue", "appRoleAssignmentIdValue")
+	id := NewUserIdAppRoleAssignmentID("userId", "appRoleAssignmentId")
 
-	if id.UserId != "userIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'UserId'", id.UserId, "userIdValue")
+	if id.UserId != "userId" {
+		t.Fatalf("Expected %q but got %q for Segment 'UserId'", id.UserId, "userId")
 	}
 
-	if id.AppRoleAssignmentId != "appRoleAssignmentIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'AppRoleAssignmentId'", id.AppRoleAssignmentId, "appRoleAssignmentIdValue")
+	if id.AppRoleAssignmentId != "appRoleAssignmentId" {
+		t.Fatalf("Expected %q but got %q for Segment 'AppRoleAssignmentId'", id.AppRoleAssignmentId, "appRoleAssignmentId")
 	}
 }
 
 func TestFormatUserIdAppRoleAssignmentID(t *testing.T) {
-	actual := NewUserIdAppRoleAssignmentID("userIdValue", "appRoleAssignmentIdValue").ID()
-	expected := "/users/userIdValue/appRoleAssignments/appRoleAssignmentIdValue"
+	actual := NewUserIdAppRoleAssignmentID("userId", "appRoleAssignmentId").ID()
+	expected := "/users/userId/appRoleAssignments/appRoleAssignmentId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -49,25 +49,25 @@ func TestParseUserIdAppRoleAssignmentID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue",
+			Input: "/users/userId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/appRoleAssignments",
+			Input: "/users/userId/appRoleAssignments",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/users/userIdValue/appRoleAssignments/appRoleAssignmentIdValue",
+			Input: "/users/userId/appRoleAssignments/appRoleAssignmentId",
 			Expected: &UserIdAppRoleAssignmentId{
-				UserId:              "userIdValue",
-				AppRoleAssignmentId: "appRoleAssignmentIdValue",
+				UserId:              "userId",
+				AppRoleAssignmentId: "appRoleAssignmentId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/users/userIdValue/appRoleAssignments/appRoleAssignmentIdValue/extra",
+			Input: "/users/userId/appRoleAssignments/appRoleAssignmentId/extra",
 			Error: true,
 		},
 	}
@@ -120,48 +120,48 @@ func TestParseUserIdAppRoleAssignmentIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue",
+			Input: "/users/userId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe",
+			Input: "/uSeRs/uSeRiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/appRoleAssignments",
+			Input: "/users/userId/appRoleAssignments",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/aPpRoLeAsSiGnMeNtS",
+			Input: "/uSeRs/uSeRiD/aPpRoLeAsSiGnMeNtS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/users/userIdValue/appRoleAssignments/appRoleAssignmentIdValue",
+			Input: "/users/userId/appRoleAssignments/appRoleAssignmentId",
 			Expected: &UserIdAppRoleAssignmentId{
-				UserId:              "userIdValue",
-				AppRoleAssignmentId: "appRoleAssignmentIdValue",
+				UserId:              "userId",
+				AppRoleAssignmentId: "appRoleAssignmentId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/users/userIdValue/appRoleAssignments/appRoleAssignmentIdValue/extra",
+			Input: "/users/userId/appRoleAssignments/appRoleAssignmentId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/aPpRoLeAsSiGnMeNtS/aPpRoLeAsSiGnMeNtIdVaLuE",
+			Input: "/uSeRs/uSeRiD/aPpRoLeAsSiGnMeNtS/aPpRoLeAsSiGnMeNtId",
 			Expected: &UserIdAppRoleAssignmentId{
-				UserId:              "uSeRiDvAlUe",
-				AppRoleAssignmentId: "aPpRoLeAsSiGnMeNtIdVaLuE",
+				UserId:              "uSeRiD",
+				AppRoleAssignmentId: "aPpRoLeAsSiGnMeNtId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/aPpRoLeAsSiGnMeNtS/aPpRoLeAsSiGnMeNtIdVaLuE/extra",
+			Input: "/uSeRs/uSeRiD/aPpRoLeAsSiGnMeNtS/aPpRoLeAsSiGnMeNtId/extra",
 			Error: true,
 		},
 	}

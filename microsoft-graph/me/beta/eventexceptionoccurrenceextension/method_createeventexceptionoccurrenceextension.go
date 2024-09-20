@@ -20,15 +20,44 @@ type CreateEventExceptionOccurrenceExtensionOperationResponse struct {
 	Model        beta.Extension
 }
 
+type CreateEventExceptionOccurrenceExtensionOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateEventExceptionOccurrenceExtensionOperationOptions() CreateEventExceptionOccurrenceExtensionOperationOptions {
+	return CreateEventExceptionOccurrenceExtensionOperationOptions{}
+}
+
+func (o CreateEventExceptionOccurrenceExtensionOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateEventExceptionOccurrenceExtensionOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateEventExceptionOccurrenceExtensionOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateEventExceptionOccurrenceExtension - Create new navigation property to extensions for me
-func (c EventExceptionOccurrenceExtensionClient) CreateEventExceptionOccurrenceExtension(ctx context.Context, id beta.MeEventIdExceptionOccurrenceId, input beta.Extension) (result CreateEventExceptionOccurrenceExtensionOperationResponse, err error) {
+func (c EventExceptionOccurrenceExtensionClient) CreateEventExceptionOccurrenceExtension(ctx context.Context, id beta.MeEventIdExceptionOccurrenceId, input beta.Extension, options CreateEventExceptionOccurrenceExtensionOperationOptions) (result CreateEventExceptionOccurrenceExtensionOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/extensions", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/extensions", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -22,6 +22,7 @@ type GetCalendarViewCountOperationResponse struct {
 type GetCalendarViewCountOperationOptions struct {
 	EndDateTime   *string
 	Filter        *string
+	Metadata      *odata.Metadata
 	Search        *string
 	StartDateTime *string
 }
@@ -40,6 +41,9 @@ func (o GetCalendarViewCountOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
 	if o.Filter != nil {
 		out.Filter = *o.Filter
+	}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
 	}
 	if o.Search != nil {
 		out.Search = *o.Search

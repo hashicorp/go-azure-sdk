@@ -18,15 +18,44 @@ type MarkChatUnreadForUserOperationResponse struct {
 	OData        *odata.OData
 }
 
+type MarkChatUnreadForUserOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultMarkChatUnreadForUserOperationOptions() MarkChatUnreadForUserOperationOptions {
+	return MarkChatUnreadForUserOperationOptions{}
+}
+
+func (o MarkChatUnreadForUserOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o MarkChatUnreadForUserOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o MarkChatUnreadForUserOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // MarkChatUnreadForUser - Invoke action markChatUnreadForUser. Mark a chat as unread for a user.
-func (c ChatClient) MarkChatUnreadForUser(ctx context.Context, id beta.UserIdChatId, input MarkChatUnreadForUserRequest) (result MarkChatUnreadForUserOperationResponse, err error) {
+func (c ChatClient) MarkChatUnreadForUser(ctx context.Context, id beta.UserIdChatId, input MarkChatUnreadForUserRequest, options MarkChatUnreadForUserOperationOptions) (result MarkChatUnreadForUserOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/markChatUnreadForUser", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/markChatUnreadForUser", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

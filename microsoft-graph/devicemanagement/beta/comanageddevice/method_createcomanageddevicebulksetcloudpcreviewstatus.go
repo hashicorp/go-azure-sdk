@@ -18,16 +18,45 @@ type CreateComanagedDeviceBulkSetCloudPCReviewStatusOperationResponse struct {
 	Model        *beta.CloudPCBulkRemoteActionResult
 }
 
+type CreateComanagedDeviceBulkSetCloudPCReviewStatusOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateComanagedDeviceBulkSetCloudPCReviewStatusOperationOptions() CreateComanagedDeviceBulkSetCloudPCReviewStatusOperationOptions {
+	return CreateComanagedDeviceBulkSetCloudPCReviewStatusOperationOptions{}
+}
+
+func (o CreateComanagedDeviceBulkSetCloudPCReviewStatusOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateComanagedDeviceBulkSetCloudPCReviewStatusOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateComanagedDeviceBulkSetCloudPCReviewStatusOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateComanagedDeviceBulkSetCloudPCReviewStatus - Invoke action bulkSetCloudPcReviewStatus. Set the review status of
 // multiple Cloud PC devices with a single request that includes the IDs of Intune managed devices.
-func (c ComanagedDeviceClient) CreateComanagedDeviceBulkSetCloudPCReviewStatus(ctx context.Context, input CreateComanagedDeviceBulkSetCloudPCReviewStatusRequest) (result CreateComanagedDeviceBulkSetCloudPCReviewStatusOperationResponse, err error) {
+func (c ComanagedDeviceClient) CreateComanagedDeviceBulkSetCloudPCReviewStatus(ctx context.Context, input CreateComanagedDeviceBulkSetCloudPCReviewStatusRequest, options CreateComanagedDeviceBulkSetCloudPCReviewStatusOperationOptions) (result CreateComanagedDeviceBulkSetCloudPCReviewStatusOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/deviceManagement/comanagedDevices/bulkSetCloudPcReviewStatus",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/deviceManagement/comanagedDevices/bulkSetCloudPcReviewStatus",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

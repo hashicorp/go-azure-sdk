@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &UserIdInferenceClassificationOverrideId{}
 
 func TestNewUserIdInferenceClassificationOverrideID(t *testing.T) {
-	id := NewUserIdInferenceClassificationOverrideID("userIdValue", "inferenceClassificationOverrideIdValue")
+	id := NewUserIdInferenceClassificationOverrideID("userId", "inferenceClassificationOverrideId")
 
-	if id.UserId != "userIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'UserId'", id.UserId, "userIdValue")
+	if id.UserId != "userId" {
+		t.Fatalf("Expected %q but got %q for Segment 'UserId'", id.UserId, "userId")
 	}
 
-	if id.InferenceClassificationOverrideId != "inferenceClassificationOverrideIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'InferenceClassificationOverrideId'", id.InferenceClassificationOverrideId, "inferenceClassificationOverrideIdValue")
+	if id.InferenceClassificationOverrideId != "inferenceClassificationOverrideId" {
+		t.Fatalf("Expected %q but got %q for Segment 'InferenceClassificationOverrideId'", id.InferenceClassificationOverrideId, "inferenceClassificationOverrideId")
 	}
 }
 
 func TestFormatUserIdInferenceClassificationOverrideID(t *testing.T) {
-	actual := NewUserIdInferenceClassificationOverrideID("userIdValue", "inferenceClassificationOverrideIdValue").ID()
-	expected := "/users/userIdValue/inferenceClassification/overrides/inferenceClassificationOverrideIdValue"
+	actual := NewUserIdInferenceClassificationOverrideID("userId", "inferenceClassificationOverrideId").ID()
+	expected := "/users/userId/inferenceClassification/overrides/inferenceClassificationOverrideId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -49,30 +49,30 @@ func TestParseUserIdInferenceClassificationOverrideID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue",
+			Input: "/users/userId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/inferenceClassification",
+			Input: "/users/userId/inferenceClassification",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/inferenceClassification/overrides",
+			Input: "/users/userId/inferenceClassification/overrides",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/users/userIdValue/inferenceClassification/overrides/inferenceClassificationOverrideIdValue",
+			Input: "/users/userId/inferenceClassification/overrides/inferenceClassificationOverrideId",
 			Expected: &UserIdInferenceClassificationOverrideId{
-				UserId:                            "userIdValue",
-				InferenceClassificationOverrideId: "inferenceClassificationOverrideIdValue",
+				UserId:                            "userId",
+				InferenceClassificationOverrideId: "inferenceClassificationOverrideId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/users/userIdValue/inferenceClassification/overrides/inferenceClassificationOverrideIdValue/extra",
+			Input: "/users/userId/inferenceClassification/overrides/inferenceClassificationOverrideId/extra",
 			Error: true,
 		},
 	}
@@ -125,58 +125,58 @@ func TestParseUserIdInferenceClassificationOverrideIDInsensitively(t *testing.T)
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue",
+			Input: "/users/userId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe",
+			Input: "/uSeRs/uSeRiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/inferenceClassification",
+			Input: "/users/userId/inferenceClassification",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/iNfErEnCeClAsSiFiCaTiOn",
+			Input: "/uSeRs/uSeRiD/iNfErEnCeClAsSiFiCaTiOn",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/inferenceClassification/overrides",
+			Input: "/users/userId/inferenceClassification/overrides",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/iNfErEnCeClAsSiFiCaTiOn/oVeRrIdEs",
+			Input: "/uSeRs/uSeRiD/iNfErEnCeClAsSiFiCaTiOn/oVeRrIdEs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/users/userIdValue/inferenceClassification/overrides/inferenceClassificationOverrideIdValue",
+			Input: "/users/userId/inferenceClassification/overrides/inferenceClassificationOverrideId",
 			Expected: &UserIdInferenceClassificationOverrideId{
-				UserId:                            "userIdValue",
-				InferenceClassificationOverrideId: "inferenceClassificationOverrideIdValue",
+				UserId:                            "userId",
+				InferenceClassificationOverrideId: "inferenceClassificationOverrideId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/users/userIdValue/inferenceClassification/overrides/inferenceClassificationOverrideIdValue/extra",
+			Input: "/users/userId/inferenceClassification/overrides/inferenceClassificationOverrideId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/iNfErEnCeClAsSiFiCaTiOn/oVeRrIdEs/iNfErEnCeClAsSiFiCaTiOnOvErRiDeIdVaLuE",
+			Input: "/uSeRs/uSeRiD/iNfErEnCeClAsSiFiCaTiOn/oVeRrIdEs/iNfErEnCeClAsSiFiCaTiOnOvErRiDeId",
 			Expected: &UserIdInferenceClassificationOverrideId{
-				UserId:                            "uSeRiDvAlUe",
-				InferenceClassificationOverrideId: "iNfErEnCeClAsSiFiCaTiOnOvErRiDeIdVaLuE",
+				UserId:                            "uSeRiD",
+				InferenceClassificationOverrideId: "iNfErEnCeClAsSiFiCaTiOnOvErRiDeId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/iNfErEnCeClAsSiFiCaTiOn/oVeRrIdEs/iNfErEnCeClAsSiFiCaTiOnOvErRiDeIdVaLuE/extra",
+			Input: "/uSeRs/uSeRiD/iNfErEnCeClAsSiFiCaTiOn/oVeRrIdEs/iNfErEnCeClAsSiFiCaTiOnOvErRiDeId/extra",
 			Error: true,
 		},
 	}

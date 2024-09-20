@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &DeviceManagementCompliancePolicyIdScheduledActionsForRuleId{}
 
 func TestNewDeviceManagementCompliancePolicyIdScheduledActionsForRuleID(t *testing.T) {
-	id := NewDeviceManagementCompliancePolicyIdScheduledActionsForRuleID("deviceManagementCompliancePolicyIdValue", "deviceManagementComplianceScheduledActionForRuleIdValue")
+	id := NewDeviceManagementCompliancePolicyIdScheduledActionsForRuleID("deviceManagementCompliancePolicyId", "deviceManagementComplianceScheduledActionForRuleId")
 
-	if id.DeviceManagementCompliancePolicyId != "deviceManagementCompliancePolicyIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DeviceManagementCompliancePolicyId'", id.DeviceManagementCompliancePolicyId, "deviceManagementCompliancePolicyIdValue")
+	if id.DeviceManagementCompliancePolicyId != "deviceManagementCompliancePolicyId" {
+		t.Fatalf("Expected %q but got %q for Segment 'DeviceManagementCompliancePolicyId'", id.DeviceManagementCompliancePolicyId, "deviceManagementCompliancePolicyId")
 	}
 
-	if id.DeviceManagementComplianceScheduledActionForRuleId != "deviceManagementComplianceScheduledActionForRuleIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DeviceManagementComplianceScheduledActionForRuleId'", id.DeviceManagementComplianceScheduledActionForRuleId, "deviceManagementComplianceScheduledActionForRuleIdValue")
+	if id.DeviceManagementComplianceScheduledActionForRuleId != "deviceManagementComplianceScheduledActionForRuleId" {
+		t.Fatalf("Expected %q but got %q for Segment 'DeviceManagementComplianceScheduledActionForRuleId'", id.DeviceManagementComplianceScheduledActionForRuleId, "deviceManagementComplianceScheduledActionForRuleId")
 	}
 }
 
 func TestFormatDeviceManagementCompliancePolicyIdScheduledActionsForRuleID(t *testing.T) {
-	actual := NewDeviceManagementCompliancePolicyIdScheduledActionsForRuleID("deviceManagementCompliancePolicyIdValue", "deviceManagementComplianceScheduledActionForRuleIdValue").ID()
-	expected := "/deviceManagement/compliancePolicies/deviceManagementCompliancePolicyIdValue/scheduledActionsForRule/deviceManagementComplianceScheduledActionForRuleIdValue"
+	actual := NewDeviceManagementCompliancePolicyIdScheduledActionsForRuleID("deviceManagementCompliancePolicyId", "deviceManagementComplianceScheduledActionForRuleId").ID()
+	expected := "/deviceManagement/compliancePolicies/deviceManagementCompliancePolicyId/scheduledActionsForRule/deviceManagementComplianceScheduledActionForRuleId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -54,25 +54,25 @@ func TestParseDeviceManagementCompliancePolicyIdScheduledActionsForRuleID(t *tes
 		},
 		{
 			// Incomplete URI
-			Input: "/deviceManagement/compliancePolicies/deviceManagementCompliancePolicyIdValue",
+			Input: "/deviceManagement/compliancePolicies/deviceManagementCompliancePolicyId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/deviceManagement/compliancePolicies/deviceManagementCompliancePolicyIdValue/scheduledActionsForRule",
+			Input: "/deviceManagement/compliancePolicies/deviceManagementCompliancePolicyId/scheduledActionsForRule",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/compliancePolicies/deviceManagementCompliancePolicyIdValue/scheduledActionsForRule/deviceManagementComplianceScheduledActionForRuleIdValue",
+			Input: "/deviceManagement/compliancePolicies/deviceManagementCompliancePolicyId/scheduledActionsForRule/deviceManagementComplianceScheduledActionForRuleId",
 			Expected: &DeviceManagementCompliancePolicyIdScheduledActionsForRuleId{
-				DeviceManagementCompliancePolicyId:                 "deviceManagementCompliancePolicyIdValue",
-				DeviceManagementComplianceScheduledActionForRuleId: "deviceManagementComplianceScheduledActionForRuleIdValue",
+				DeviceManagementCompliancePolicyId:                 "deviceManagementCompliancePolicyId",
+				DeviceManagementComplianceScheduledActionForRuleId: "deviceManagementComplianceScheduledActionForRuleId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/compliancePolicies/deviceManagementCompliancePolicyIdValue/scheduledActionsForRule/deviceManagementComplianceScheduledActionForRuleIdValue/extra",
+			Input: "/deviceManagement/compliancePolicies/deviceManagementCompliancePolicyId/scheduledActionsForRule/deviceManagementComplianceScheduledActionForRuleId/extra",
 			Error: true,
 		},
 	}
@@ -135,48 +135,48 @@ func TestParseDeviceManagementCompliancePolicyIdScheduledActionsForRuleIDInsensi
 		},
 		{
 			// Incomplete URI
-			Input: "/deviceManagement/compliancePolicies/deviceManagementCompliancePolicyIdValue",
+			Input: "/deviceManagement/compliancePolicies/deviceManagementCompliancePolicyId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/cOmPlIaNcEpOlIcIeS/dEvIcEmAnAgEmEnTcOmPlIaNcEpOlIcYiDvAlUe",
+			Input: "/dEvIcEmAnAgEmEnT/cOmPlIaNcEpOlIcIeS/dEvIcEmAnAgEmEnTcOmPlIaNcEpOlIcYiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/deviceManagement/compliancePolicies/deviceManagementCompliancePolicyIdValue/scheduledActionsForRule",
+			Input: "/deviceManagement/compliancePolicies/deviceManagementCompliancePolicyId/scheduledActionsForRule",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/cOmPlIaNcEpOlIcIeS/dEvIcEmAnAgEmEnTcOmPlIaNcEpOlIcYiDvAlUe/sChEdUlEdAcTiOnSfOrRuLe",
+			Input: "/dEvIcEmAnAgEmEnT/cOmPlIaNcEpOlIcIeS/dEvIcEmAnAgEmEnTcOmPlIaNcEpOlIcYiD/sChEdUlEdAcTiOnSfOrRuLe",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/compliancePolicies/deviceManagementCompliancePolicyIdValue/scheduledActionsForRule/deviceManagementComplianceScheduledActionForRuleIdValue",
+			Input: "/deviceManagement/compliancePolicies/deviceManagementCompliancePolicyId/scheduledActionsForRule/deviceManagementComplianceScheduledActionForRuleId",
 			Expected: &DeviceManagementCompliancePolicyIdScheduledActionsForRuleId{
-				DeviceManagementCompliancePolicyId:                 "deviceManagementCompliancePolicyIdValue",
-				DeviceManagementComplianceScheduledActionForRuleId: "deviceManagementComplianceScheduledActionForRuleIdValue",
+				DeviceManagementCompliancePolicyId:                 "deviceManagementCompliancePolicyId",
+				DeviceManagementComplianceScheduledActionForRuleId: "deviceManagementComplianceScheduledActionForRuleId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/compliancePolicies/deviceManagementCompliancePolicyIdValue/scheduledActionsForRule/deviceManagementComplianceScheduledActionForRuleIdValue/extra",
+			Input: "/deviceManagement/compliancePolicies/deviceManagementCompliancePolicyId/scheduledActionsForRule/deviceManagementComplianceScheduledActionForRuleId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/cOmPlIaNcEpOlIcIeS/dEvIcEmAnAgEmEnTcOmPlIaNcEpOlIcYiDvAlUe/sChEdUlEdAcTiOnSfOrRuLe/dEvIcEmAnAgEmEnTcOmPlIaNcEsChEdUlEdAcTiOnFoRrUlEiDvAlUe",
+			Input: "/dEvIcEmAnAgEmEnT/cOmPlIaNcEpOlIcIeS/dEvIcEmAnAgEmEnTcOmPlIaNcEpOlIcYiD/sChEdUlEdAcTiOnSfOrRuLe/dEvIcEmAnAgEmEnTcOmPlIaNcEsChEdUlEdAcTiOnFoRrUlEiD",
 			Expected: &DeviceManagementCompliancePolicyIdScheduledActionsForRuleId{
-				DeviceManagementCompliancePolicyId:                 "dEvIcEmAnAgEmEnTcOmPlIaNcEpOlIcYiDvAlUe",
-				DeviceManagementComplianceScheduledActionForRuleId: "dEvIcEmAnAgEmEnTcOmPlIaNcEsChEdUlEdAcTiOnFoRrUlEiDvAlUe",
+				DeviceManagementCompliancePolicyId:                 "dEvIcEmAnAgEmEnTcOmPlIaNcEpOlIcYiD",
+				DeviceManagementComplianceScheduledActionForRuleId: "dEvIcEmAnAgEmEnTcOmPlIaNcEsChEdUlEdAcTiOnFoRrUlEiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/cOmPlIaNcEpOlIcIeS/dEvIcEmAnAgEmEnTcOmPlIaNcEpOlIcYiDvAlUe/sChEdUlEdAcTiOnSfOrRuLe/dEvIcEmAnAgEmEnTcOmPlIaNcEsChEdUlEdAcTiOnFoRrUlEiDvAlUe/extra",
+			Input: "/dEvIcEmAnAgEmEnT/cOmPlIaNcEpOlIcIeS/dEvIcEmAnAgEmEnTcOmPlIaNcEpOlIcYiD/sChEdUlEdAcTiOnSfOrRuLe/dEvIcEmAnAgEmEnTcOmPlIaNcEsChEdUlEdAcTiOnFoRrUlEiD/extra",
 			Error: true,
 		},
 	}

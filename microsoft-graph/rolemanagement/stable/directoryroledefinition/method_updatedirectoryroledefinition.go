@@ -17,16 +17,45 @@ type UpdateDirectoryRoleDefinitionOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateDirectoryRoleDefinitionOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateDirectoryRoleDefinitionOperationOptions() UpdateDirectoryRoleDefinitionOperationOptions {
+	return UpdateDirectoryRoleDefinitionOperationOptions{}
+}
+
+func (o UpdateDirectoryRoleDefinitionOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateDirectoryRoleDefinitionOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateDirectoryRoleDefinitionOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateDirectoryRoleDefinition - Update unifiedRoleDefinition. Update the properties of a unifiedRoleDefinition
 // object. You cannot update built-in roles. This feature requires a Microsoft Entra ID P1 or P2 license.
-func (c DirectoryRoleDefinitionClient) UpdateDirectoryRoleDefinition(ctx context.Context, id stable.RoleManagementDirectoryRoleDefinitionId, input stable.UnifiedRoleDefinition) (result UpdateDirectoryRoleDefinitionOperationResponse, err error) {
+func (c DirectoryRoleDefinitionClient) UpdateDirectoryRoleDefinition(ctx context.Context, id stable.RoleManagementDirectoryRoleDefinitionId, input stable.UnifiedRoleDefinition, options UpdateDirectoryRoleDefinitionOperationOptions) (result UpdateDirectoryRoleDefinitionOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

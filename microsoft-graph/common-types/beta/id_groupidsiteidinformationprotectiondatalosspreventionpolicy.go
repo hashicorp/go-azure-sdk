@@ -104,12 +104,12 @@ func (id GroupIdSiteIdInformationProtectionDataLossPreventionPolicyId) ID() stri
 func (id GroupIdSiteIdInformationProtectionDataLossPreventionPolicyId) Segments() []resourceids.Segment {
 	return []resourceids.Segment{
 		resourceids.StaticSegment("groups", "groups", "groups"),
-		resourceids.UserSpecifiedSegment("groupId", "groupIdValue"),
+		resourceids.UserSpecifiedSegment("groupId", "groupId"),
 		resourceids.StaticSegment("sites", "sites", "sites"),
-		resourceids.UserSpecifiedSegment("siteId", "siteIdValue"),
+		resourceids.UserSpecifiedSegment("siteId", "siteId"),
 		resourceids.StaticSegment("informationProtection", "informationProtection", "informationProtection"),
 		resourceids.StaticSegment("dataLossPreventionPolicies", "dataLossPreventionPolicies", "dataLossPreventionPolicies"),
-		resourceids.UserSpecifiedSegment("dataLossPreventionPolicyId", "dataLossPreventionPolicyIdValue"),
+		resourceids.UserSpecifiedSegment("dataLossPreventionPolicyId", "dataLossPreventionPolicyId"),
 	}
 }
 

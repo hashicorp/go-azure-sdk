@@ -18,15 +18,44 @@ type CreateCloudPCOperationResponse struct {
 	Model        *beta.CloudPC
 }
 
+type CreateCloudPCOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateCloudPCOperationOptions() CreateCloudPCOperationOptions {
+	return CreateCloudPCOperationOptions{}
+}
+
+func (o CreateCloudPCOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateCloudPCOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateCloudPCOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateCloudPC - Create new navigation property to cloudPCs for me
-func (c CloudPCClient) CreateCloudPC(ctx context.Context, input beta.CloudPC) (result CreateCloudPCOperationResponse, err error) {
+func (c CloudPCClient) CreateCloudPC(ctx context.Context, input beta.CloudPC, options CreateCloudPCOperationOptions) (result CreateCloudPCOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/me/cloudPCs",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/me/cloudPCs",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

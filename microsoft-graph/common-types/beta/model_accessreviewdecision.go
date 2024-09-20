@@ -88,22 +88,33 @@ func (s AccessReviewDecision) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &AccessReviewDecision{}
 
 func (s *AccessReviewDecision) UnmarshalJSON(bytes []byte) error {
-	type alias AccessReviewDecision
-	var decoded alias
+
+	var decoded struct {
+		AccessRecommendation nullable.Type[string] `json:"accessRecommendation,omitempty"`
+		AccessReviewId       nullable.Type[string] `json:"accessReviewId,omitempty"`
+		AppliedDateTime      nullable.Type[string] `json:"appliedDateTime,omitempty"`
+		ApplyResult          nullable.Type[string] `json:"applyResult,omitempty"`
+		Justification        nullable.Type[string] `json:"justification,omitempty"`
+		ReviewResult         nullable.Type[string] `json:"reviewResult,omitempty"`
+		ReviewedDateTime     nullable.Type[string] `json:"reviewedDateTime,omitempty"`
+		Id                   *string               `json:"id,omitempty"`
+		ODataId              *string               `json:"@odata.id,omitempty"`
+		ODataType            *string               `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into AccessReviewDecision: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.AccessRecommendation = decoded.AccessRecommendation
 	s.AccessReviewId = decoded.AccessReviewId
 	s.AppliedDateTime = decoded.AppliedDateTime
 	s.ApplyResult = decoded.ApplyResult
-	s.Id = decoded.Id
 	s.Justification = decoded.Justification
-	s.ODataId = decoded.ODataId
-	s.ODataType = decoded.ODataType
 	s.ReviewResult = decoded.ReviewResult
 	s.ReviewedDateTime = decoded.ReviewedDateTime
+	s.Id = decoded.Id
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -125,5 +136,6 @@ func (s *AccessReviewDecision) UnmarshalJSON(bytes []byte) error {
 		}
 		s.ReviewedBy = &impl
 	}
+
 	return nil
 }

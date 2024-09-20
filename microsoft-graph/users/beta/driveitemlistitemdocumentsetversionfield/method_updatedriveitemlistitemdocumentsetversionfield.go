@@ -18,15 +18,44 @@ type UpdateDriveItemListItemDocumentSetVersionFieldOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateDriveItemListItemDocumentSetVersionFieldOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateDriveItemListItemDocumentSetVersionFieldOperationOptions() UpdateDriveItemListItemDocumentSetVersionFieldOperationOptions {
+	return UpdateDriveItemListItemDocumentSetVersionFieldOperationOptions{}
+}
+
+func (o UpdateDriveItemListItemDocumentSetVersionFieldOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateDriveItemListItemDocumentSetVersionFieldOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateDriveItemListItemDocumentSetVersionFieldOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateDriveItemListItemDocumentSetVersionField - Update the navigation property fields in users
-func (c DriveItemListItemDocumentSetVersionFieldClient) UpdateDriveItemListItemDocumentSetVersionField(ctx context.Context, id beta.UserIdDriveIdItemIdListItemDocumentSetVersionId, input beta.FieldValueSet) (result UpdateDriveItemListItemDocumentSetVersionFieldOperationResponse, err error) {
+func (c DriveItemListItemDocumentSetVersionFieldClient) UpdateDriveItemListItemDocumentSetVersionField(ctx context.Context, id beta.UserIdDriveIdItemIdListItemDocumentSetVersionId, input beta.FieldValueSet, options UpdateDriveItemListItemDocumentSetVersionFieldOperationOptions) (result UpdateDriveItemListItemDocumentSetVersionFieldOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       fmt.Sprintf("%s/fields", id.ID()),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/fields", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

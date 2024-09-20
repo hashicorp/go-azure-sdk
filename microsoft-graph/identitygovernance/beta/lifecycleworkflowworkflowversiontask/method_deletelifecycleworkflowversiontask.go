@@ -19,7 +19,8 @@ type DeleteLifecycleWorkflowVersionTaskOperationResponse struct {
 }
 
 type DeleteLifecycleWorkflowVersionTaskOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteLifecycleWorkflowVersionTaskOperationOptions() DeleteLifecycleWorkflowVersionTaskOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteLifecycleWorkflowVersionTaskOperationOptions) ToHeaders() *client.
 
 func (o DeleteLifecycleWorkflowVersionTaskOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

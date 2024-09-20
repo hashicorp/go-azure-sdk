@@ -17,16 +17,45 @@ type UpdatePhotoOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdatePhotoOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdatePhotoOperationOptions() UpdatePhotoOperationOptions {
+	return UpdatePhotoOperationOptions{}
+}
+
+func (o UpdatePhotoOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdatePhotoOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdatePhotoOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdatePhoto - Update profilePhoto. Update the photo for the specified contact, group, team, or user in a tenant. The
 // size of the photo you can update to is limited to 4 MB. You can use either PATCH or PUT for this operation.
-func (c PhotoClient) UpdatePhoto(ctx context.Context, input beta.ProfilePhoto) (result UpdatePhotoOperationResponse, err error) {
+func (c PhotoClient) UpdatePhoto(ctx context.Context, input beta.ProfilePhoto, options UpdatePhotoOperationOptions) (result UpdatePhotoOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       "/me/photo",
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          "/me/photo",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

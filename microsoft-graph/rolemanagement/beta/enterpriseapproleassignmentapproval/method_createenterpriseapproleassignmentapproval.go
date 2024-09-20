@@ -19,16 +19,45 @@ type CreateEnterpriseAppRoleAssignmentApprovalOperationResponse struct {
 	Model        *beta.Approval
 }
 
+type CreateEnterpriseAppRoleAssignmentApprovalOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateEnterpriseAppRoleAssignmentApprovalOperationOptions() CreateEnterpriseAppRoleAssignmentApprovalOperationOptions {
+	return CreateEnterpriseAppRoleAssignmentApprovalOperationOptions{}
+}
+
+func (o CreateEnterpriseAppRoleAssignmentApprovalOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateEnterpriseAppRoleAssignmentApprovalOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateEnterpriseAppRoleAssignmentApprovalOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateEnterpriseAppRoleAssignmentApproval - Create new navigation property to roleAssignmentApprovals for
 // roleManagement
-func (c EnterpriseAppRoleAssignmentApprovalClient) CreateEnterpriseAppRoleAssignmentApproval(ctx context.Context, id beta.RoleManagementEnterpriseAppId, input beta.Approval) (result CreateEnterpriseAppRoleAssignmentApprovalOperationResponse, err error) {
+func (c EnterpriseAppRoleAssignmentApprovalClient) CreateEnterpriseAppRoleAssignmentApproval(ctx context.Context, id beta.RoleManagementEnterpriseAppId, input beta.Approval, options CreateEnterpriseAppRoleAssignmentApprovalOperationOptions) (result CreateEnterpriseAppRoleAssignmentApprovalOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/roleAssignmentApprovals", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/roleAssignmentApprovals", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -12,24 +12,24 @@ import (
 var _ resourceids.ResourceId = &IdentityGovernanceEntitlementManagementCatalogIdResourceScopeIdResourceScopeId{}
 
 func TestNewIdentityGovernanceEntitlementManagementCatalogIdResourceScopeIdResourceScopeID(t *testing.T) {
-	id := NewIdentityGovernanceEntitlementManagementCatalogIdResourceScopeIdResourceScopeID("accessPackageCatalogIdValue", "accessPackageResourceScopeIdValue", "accessPackageResourceScopeId1Value")
+	id := NewIdentityGovernanceEntitlementManagementCatalogIdResourceScopeIdResourceScopeID("accessPackageCatalogId", "accessPackageResourceScopeId", "accessPackageResourceScopeId1")
 
-	if id.AccessPackageCatalogId != "accessPackageCatalogIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'AccessPackageCatalogId'", id.AccessPackageCatalogId, "accessPackageCatalogIdValue")
+	if id.AccessPackageCatalogId != "accessPackageCatalogId" {
+		t.Fatalf("Expected %q but got %q for Segment 'AccessPackageCatalogId'", id.AccessPackageCatalogId, "accessPackageCatalogId")
 	}
 
-	if id.AccessPackageResourceScopeId != "accessPackageResourceScopeIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'AccessPackageResourceScopeId'", id.AccessPackageResourceScopeId, "accessPackageResourceScopeIdValue")
+	if id.AccessPackageResourceScopeId != "accessPackageResourceScopeId" {
+		t.Fatalf("Expected %q but got %q for Segment 'AccessPackageResourceScopeId'", id.AccessPackageResourceScopeId, "accessPackageResourceScopeId")
 	}
 
-	if id.AccessPackageResourceScopeId1 != "accessPackageResourceScopeId1Value" {
-		t.Fatalf("Expected %q but got %q for Segment 'AccessPackageResourceScopeId1'", id.AccessPackageResourceScopeId1, "accessPackageResourceScopeId1Value")
+	if id.AccessPackageResourceScopeId1 != "accessPackageResourceScopeId1" {
+		t.Fatalf("Expected %q but got %q for Segment 'AccessPackageResourceScopeId1'", id.AccessPackageResourceScopeId1, "accessPackageResourceScopeId1")
 	}
 }
 
 func TestFormatIdentityGovernanceEntitlementManagementCatalogIdResourceScopeIdResourceScopeID(t *testing.T) {
-	actual := NewIdentityGovernanceEntitlementManagementCatalogIdResourceScopeIdResourceScopeID("accessPackageCatalogIdValue", "accessPackageResourceScopeIdValue", "accessPackageResourceScopeId1Value").ID()
-	expected := "/identityGovernance/entitlementManagement/catalogs/accessPackageCatalogIdValue/resourceScopes/accessPackageResourceScopeIdValue/resource/scopes/accessPackageResourceScopeId1Value"
+	actual := NewIdentityGovernanceEntitlementManagementCatalogIdResourceScopeIdResourceScopeID("accessPackageCatalogId", "accessPackageResourceScopeId", "accessPackageResourceScopeId1").ID()
+	expected := "/identityGovernance/entitlementManagement/catalogs/accessPackageCatalogId/resourceScopes/accessPackageResourceScopeId/resource/scopes/accessPackageResourceScopeId1"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -63,41 +63,41 @@ func TestParseIdentityGovernanceEntitlementManagementCatalogIdResourceScopeIdRes
 		},
 		{
 			// Incomplete URI
-			Input: "/identityGovernance/entitlementManagement/catalogs/accessPackageCatalogIdValue",
+			Input: "/identityGovernance/entitlementManagement/catalogs/accessPackageCatalogId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/identityGovernance/entitlementManagement/catalogs/accessPackageCatalogIdValue/resourceScopes",
+			Input: "/identityGovernance/entitlementManagement/catalogs/accessPackageCatalogId/resourceScopes",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/identityGovernance/entitlementManagement/catalogs/accessPackageCatalogIdValue/resourceScopes/accessPackageResourceScopeIdValue",
+			Input: "/identityGovernance/entitlementManagement/catalogs/accessPackageCatalogId/resourceScopes/accessPackageResourceScopeId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/identityGovernance/entitlementManagement/catalogs/accessPackageCatalogIdValue/resourceScopes/accessPackageResourceScopeIdValue/resource",
+			Input: "/identityGovernance/entitlementManagement/catalogs/accessPackageCatalogId/resourceScopes/accessPackageResourceScopeId/resource",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/identityGovernance/entitlementManagement/catalogs/accessPackageCatalogIdValue/resourceScopes/accessPackageResourceScopeIdValue/resource/scopes",
+			Input: "/identityGovernance/entitlementManagement/catalogs/accessPackageCatalogId/resourceScopes/accessPackageResourceScopeId/resource/scopes",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/identityGovernance/entitlementManagement/catalogs/accessPackageCatalogIdValue/resourceScopes/accessPackageResourceScopeIdValue/resource/scopes/accessPackageResourceScopeId1Value",
+			Input: "/identityGovernance/entitlementManagement/catalogs/accessPackageCatalogId/resourceScopes/accessPackageResourceScopeId/resource/scopes/accessPackageResourceScopeId1",
 			Expected: &IdentityGovernanceEntitlementManagementCatalogIdResourceScopeIdResourceScopeId{
-				AccessPackageCatalogId:        "accessPackageCatalogIdValue",
-				AccessPackageResourceScopeId:  "accessPackageResourceScopeIdValue",
-				AccessPackageResourceScopeId1: "accessPackageResourceScopeId1Value",
+				AccessPackageCatalogId:        "accessPackageCatalogId",
+				AccessPackageResourceScopeId:  "accessPackageResourceScopeId",
+				AccessPackageResourceScopeId1: "accessPackageResourceScopeId1",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/identityGovernance/entitlementManagement/catalogs/accessPackageCatalogIdValue/resourceScopes/accessPackageResourceScopeIdValue/resource/scopes/accessPackageResourceScopeId1Value/extra",
+			Input: "/identityGovernance/entitlementManagement/catalogs/accessPackageCatalogId/resourceScopes/accessPackageResourceScopeId/resource/scopes/accessPackageResourceScopeId1/extra",
 			Error: true,
 		},
 	}
@@ -174,80 +174,80 @@ func TestParseIdentityGovernanceEntitlementManagementCatalogIdResourceScopeIdRes
 		},
 		{
 			// Incomplete URI
-			Input: "/identityGovernance/entitlementManagement/catalogs/accessPackageCatalogIdValue",
+			Input: "/identityGovernance/entitlementManagement/catalogs/accessPackageCatalogId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/iDeNtItYgOvErNaNcE/eNtItLeMeNtMaNaGeMeNt/cAtAlOgS/aCcEsSpAcKaGeCaTaLoGiDvAlUe",
+			Input: "/iDeNtItYgOvErNaNcE/eNtItLeMeNtMaNaGeMeNt/cAtAlOgS/aCcEsSpAcKaGeCaTaLoGiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/identityGovernance/entitlementManagement/catalogs/accessPackageCatalogIdValue/resourceScopes",
+			Input: "/identityGovernance/entitlementManagement/catalogs/accessPackageCatalogId/resourceScopes",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/iDeNtItYgOvErNaNcE/eNtItLeMeNtMaNaGeMeNt/cAtAlOgS/aCcEsSpAcKaGeCaTaLoGiDvAlUe/rEsOuRcEsCoPeS",
+			Input: "/iDeNtItYgOvErNaNcE/eNtItLeMeNtMaNaGeMeNt/cAtAlOgS/aCcEsSpAcKaGeCaTaLoGiD/rEsOuRcEsCoPeS",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/identityGovernance/entitlementManagement/catalogs/accessPackageCatalogIdValue/resourceScopes/accessPackageResourceScopeIdValue",
+			Input: "/identityGovernance/entitlementManagement/catalogs/accessPackageCatalogId/resourceScopes/accessPackageResourceScopeId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/iDeNtItYgOvErNaNcE/eNtItLeMeNtMaNaGeMeNt/cAtAlOgS/aCcEsSpAcKaGeCaTaLoGiDvAlUe/rEsOuRcEsCoPeS/aCcEsSpAcKaGeReSoUrCeScOpEiDvAlUe",
+			Input: "/iDeNtItYgOvErNaNcE/eNtItLeMeNtMaNaGeMeNt/cAtAlOgS/aCcEsSpAcKaGeCaTaLoGiD/rEsOuRcEsCoPeS/aCcEsSpAcKaGeReSoUrCeScOpEiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/identityGovernance/entitlementManagement/catalogs/accessPackageCatalogIdValue/resourceScopes/accessPackageResourceScopeIdValue/resource",
+			Input: "/identityGovernance/entitlementManagement/catalogs/accessPackageCatalogId/resourceScopes/accessPackageResourceScopeId/resource",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/iDeNtItYgOvErNaNcE/eNtItLeMeNtMaNaGeMeNt/cAtAlOgS/aCcEsSpAcKaGeCaTaLoGiDvAlUe/rEsOuRcEsCoPeS/aCcEsSpAcKaGeReSoUrCeScOpEiDvAlUe/rEsOuRcE",
+			Input: "/iDeNtItYgOvErNaNcE/eNtItLeMeNtMaNaGeMeNt/cAtAlOgS/aCcEsSpAcKaGeCaTaLoGiD/rEsOuRcEsCoPeS/aCcEsSpAcKaGeReSoUrCeScOpEiD/rEsOuRcE",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/identityGovernance/entitlementManagement/catalogs/accessPackageCatalogIdValue/resourceScopes/accessPackageResourceScopeIdValue/resource/scopes",
+			Input: "/identityGovernance/entitlementManagement/catalogs/accessPackageCatalogId/resourceScopes/accessPackageResourceScopeId/resource/scopes",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/iDeNtItYgOvErNaNcE/eNtItLeMeNtMaNaGeMeNt/cAtAlOgS/aCcEsSpAcKaGeCaTaLoGiDvAlUe/rEsOuRcEsCoPeS/aCcEsSpAcKaGeReSoUrCeScOpEiDvAlUe/rEsOuRcE/sCoPeS",
+			Input: "/iDeNtItYgOvErNaNcE/eNtItLeMeNtMaNaGeMeNt/cAtAlOgS/aCcEsSpAcKaGeCaTaLoGiD/rEsOuRcEsCoPeS/aCcEsSpAcKaGeReSoUrCeScOpEiD/rEsOuRcE/sCoPeS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/identityGovernance/entitlementManagement/catalogs/accessPackageCatalogIdValue/resourceScopes/accessPackageResourceScopeIdValue/resource/scopes/accessPackageResourceScopeId1Value",
+			Input: "/identityGovernance/entitlementManagement/catalogs/accessPackageCatalogId/resourceScopes/accessPackageResourceScopeId/resource/scopes/accessPackageResourceScopeId1",
 			Expected: &IdentityGovernanceEntitlementManagementCatalogIdResourceScopeIdResourceScopeId{
-				AccessPackageCatalogId:        "accessPackageCatalogIdValue",
-				AccessPackageResourceScopeId:  "accessPackageResourceScopeIdValue",
-				AccessPackageResourceScopeId1: "accessPackageResourceScopeId1Value",
+				AccessPackageCatalogId:        "accessPackageCatalogId",
+				AccessPackageResourceScopeId:  "accessPackageResourceScopeId",
+				AccessPackageResourceScopeId1: "accessPackageResourceScopeId1",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/identityGovernance/entitlementManagement/catalogs/accessPackageCatalogIdValue/resourceScopes/accessPackageResourceScopeIdValue/resource/scopes/accessPackageResourceScopeId1Value/extra",
+			Input: "/identityGovernance/entitlementManagement/catalogs/accessPackageCatalogId/resourceScopes/accessPackageResourceScopeId/resource/scopes/accessPackageResourceScopeId1/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/iDeNtItYgOvErNaNcE/eNtItLeMeNtMaNaGeMeNt/cAtAlOgS/aCcEsSpAcKaGeCaTaLoGiDvAlUe/rEsOuRcEsCoPeS/aCcEsSpAcKaGeReSoUrCeScOpEiDvAlUe/rEsOuRcE/sCoPeS/aCcEsSpAcKaGeReSoUrCeScOpEiD1VaLuE",
+			Input: "/iDeNtItYgOvErNaNcE/eNtItLeMeNtMaNaGeMeNt/cAtAlOgS/aCcEsSpAcKaGeCaTaLoGiD/rEsOuRcEsCoPeS/aCcEsSpAcKaGeReSoUrCeScOpEiD/rEsOuRcE/sCoPeS/aCcEsSpAcKaGeReSoUrCeScOpEiD1",
 			Expected: &IdentityGovernanceEntitlementManagementCatalogIdResourceScopeIdResourceScopeId{
-				AccessPackageCatalogId:        "aCcEsSpAcKaGeCaTaLoGiDvAlUe",
-				AccessPackageResourceScopeId:  "aCcEsSpAcKaGeReSoUrCeScOpEiDvAlUe",
-				AccessPackageResourceScopeId1: "aCcEsSpAcKaGeReSoUrCeScOpEiD1VaLuE",
+				AccessPackageCatalogId:        "aCcEsSpAcKaGeCaTaLoGiD",
+				AccessPackageResourceScopeId:  "aCcEsSpAcKaGeReSoUrCeScOpEiD",
+				AccessPackageResourceScopeId1: "aCcEsSpAcKaGeReSoUrCeScOpEiD1",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/iDeNtItYgOvErNaNcE/eNtItLeMeNtMaNaGeMeNt/cAtAlOgS/aCcEsSpAcKaGeCaTaLoGiDvAlUe/rEsOuRcEsCoPeS/aCcEsSpAcKaGeReSoUrCeScOpEiDvAlUe/rEsOuRcE/sCoPeS/aCcEsSpAcKaGeReSoUrCeScOpEiD1VaLuE/extra",
+			Input: "/iDeNtItYgOvErNaNcE/eNtItLeMeNtMaNaGeMeNt/cAtAlOgS/aCcEsSpAcKaGeCaTaLoGiD/rEsOuRcEsCoPeS/aCcEsSpAcKaGeReSoUrCeScOpEiD/rEsOuRcE/sCoPeS/aCcEsSpAcKaGeReSoUrCeScOpEiD1/extra",
 			Error: true,
 		},
 	}

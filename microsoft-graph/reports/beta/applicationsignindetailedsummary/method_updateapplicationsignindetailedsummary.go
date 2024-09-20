@@ -17,15 +17,44 @@ type UpdateApplicationSignInDetailedSummaryOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateApplicationSignInDetailedSummaryOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateApplicationSignInDetailedSummaryOperationOptions() UpdateApplicationSignInDetailedSummaryOperationOptions {
+	return UpdateApplicationSignInDetailedSummaryOperationOptions{}
+}
+
+func (o UpdateApplicationSignInDetailedSummaryOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateApplicationSignInDetailedSummaryOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateApplicationSignInDetailedSummaryOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateApplicationSignInDetailedSummary - Update the navigation property applicationSignInDetailedSummary in reports
-func (c ApplicationSignInDetailedSummaryClient) UpdateApplicationSignInDetailedSummary(ctx context.Context, id beta.ReportApplicationSignInDetailedSummaryId, input beta.ApplicationSignInDetailedSummary) (result UpdateApplicationSignInDetailedSummaryOperationResponse, err error) {
+func (c ApplicationSignInDetailedSummaryClient) UpdateApplicationSignInDetailedSummary(ctx context.Context, id beta.ReportApplicationSignInDetailedSummaryId, input beta.ApplicationSignInDetailedSummary, options UpdateApplicationSignInDetailedSummaryOperationOptions) (result UpdateApplicationSignInDetailedSummaryOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -17,15 +17,44 @@ type UpdateProfilePatentOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateProfilePatentOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateProfilePatentOperationOptions() UpdateProfilePatentOperationOptions {
+	return UpdateProfilePatentOperationOptions{}
+}
+
+func (o UpdateProfilePatentOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateProfilePatentOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateProfilePatentOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateProfilePatent - Update itemPatent. Update the properties of an itemPatent object.
-func (c ProfilePatentClient) UpdateProfilePatent(ctx context.Context, id beta.UserIdProfilePatentId, input beta.ItemPatent) (result UpdateProfilePatentOperationResponse, err error) {
+func (c ProfilePatentClient) UpdateProfilePatent(ctx context.Context, id beta.UserIdProfilePatentId, input beta.ItemPatent, options UpdateProfilePatentOperationOptions) (result UpdateProfilePatentOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

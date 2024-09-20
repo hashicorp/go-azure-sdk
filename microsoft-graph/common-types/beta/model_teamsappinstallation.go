@@ -99,18 +99,25 @@ func (s BaseTeamsAppInstallationImpl) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &BaseTeamsAppInstallationImpl{}
 
 func (s *BaseTeamsAppInstallationImpl) UnmarshalJSON(bytes []byte) error {
-	type alias BaseTeamsAppInstallationImpl
-	var decoded alias
+
+	var decoded struct {
+		ConsentedPermissionSet *TeamsAppPermissionSet `json:"consentedPermissionSet,omitempty"`
+		TeamsApp               *TeamsApp              `json:"teamsApp,omitempty"`
+		TeamsAppDefinition     *TeamsAppDefinition    `json:"teamsAppDefinition,omitempty"`
+		Id                     *string                `json:"id,omitempty"`
+		ODataId                *string                `json:"@odata.id,omitempty"`
+		ODataType              *string                `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into BaseTeamsAppInstallationImpl: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.ConsentedPermissionSet = decoded.ConsentedPermissionSet
+	s.TeamsApp = decoded.TeamsApp
+	s.TeamsAppDefinition = decoded.TeamsAppDefinition
 	s.Id = decoded.Id
 	s.ODataId = decoded.ODataId
 	s.ODataType = decoded.ODataType
-	s.TeamsApp = decoded.TeamsApp
-	s.TeamsAppDefinition = decoded.TeamsAppDefinition
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -124,6 +131,7 @@ func (s *BaseTeamsAppInstallationImpl) UnmarshalJSON(bytes []byte) error {
 		}
 		s.ScopeInfo = impl
 	}
+
 	return nil
 }
 
@@ -137,9 +145,9 @@ func UnmarshalTeamsAppInstallationImplementation(input []byte) (TeamsAppInstalla
 		return nil, fmt.Errorf("unmarshaling TeamsAppInstallation into map[string]interface: %+v", err)
 	}
 
-	value, ok := temp["@odata.type"].(string)
-	if !ok {
-		return nil, nil
+	var value string
+	if v, ok := temp["@odata.type"]; ok {
+		value = fmt.Sprintf("%v", v)
 	}
 
 	if strings.EqualFold(value, "#microsoft.graph.userScopeTeamsAppInstallation") {

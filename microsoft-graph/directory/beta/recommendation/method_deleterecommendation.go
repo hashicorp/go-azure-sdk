@@ -19,7 +19,8 @@ type DeleteRecommendationOperationResponse struct {
 }
 
 type DeleteRecommendationOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteRecommendationOperationOptions() DeleteRecommendationOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteRecommendationOperationOptions) ToHeaders() *client.Headers {
 
 func (o DeleteRecommendationOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

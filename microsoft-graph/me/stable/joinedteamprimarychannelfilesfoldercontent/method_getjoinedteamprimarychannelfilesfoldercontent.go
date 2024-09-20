@@ -20,7 +20,8 @@ type GetJoinedTeamPrimaryChannelFilesFolderContentOperationResponse struct {
 }
 
 type GetJoinedTeamPrimaryChannelFilesFolderContentOperationOptions struct {
-	Format *odata.Format
+	Format   *odata.Format
+	Metadata *odata.Metadata
 }
 
 func DefaultGetJoinedTeamPrimaryChannelFilesFolderContentOperationOptions() GetJoinedTeamPrimaryChannelFilesFolderContentOperationOptions {
@@ -37,6 +38,9 @@ func (o GetJoinedTeamPrimaryChannelFilesFolderContentOperationOptions) ToOData()
 	out := odata.Query{}
 	if o.Format != nil {
 		out.Format = *o.Format
+	}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
 	}
 	return &out
 }

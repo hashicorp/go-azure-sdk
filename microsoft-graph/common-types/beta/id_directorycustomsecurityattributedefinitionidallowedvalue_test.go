@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &DirectoryCustomSecurityAttributeDefinitionIdAllowedValueId{}
 
 func TestNewDirectoryCustomSecurityAttributeDefinitionIdAllowedValueID(t *testing.T) {
-	id := NewDirectoryCustomSecurityAttributeDefinitionIdAllowedValueID("customSecurityAttributeDefinitionIdValue", "allowedValueIdValue")
+	id := NewDirectoryCustomSecurityAttributeDefinitionIdAllowedValueID("customSecurityAttributeDefinitionId", "allowedValueId")
 
-	if id.CustomSecurityAttributeDefinitionId != "customSecurityAttributeDefinitionIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'CustomSecurityAttributeDefinitionId'", id.CustomSecurityAttributeDefinitionId, "customSecurityAttributeDefinitionIdValue")
+	if id.CustomSecurityAttributeDefinitionId != "customSecurityAttributeDefinitionId" {
+		t.Fatalf("Expected %q but got %q for Segment 'CustomSecurityAttributeDefinitionId'", id.CustomSecurityAttributeDefinitionId, "customSecurityAttributeDefinitionId")
 	}
 
-	if id.AllowedValueId != "allowedValueIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'AllowedValueId'", id.AllowedValueId, "allowedValueIdValue")
+	if id.AllowedValueId != "allowedValueId" {
+		t.Fatalf("Expected %q but got %q for Segment 'AllowedValueId'", id.AllowedValueId, "allowedValueId")
 	}
 }
 
 func TestFormatDirectoryCustomSecurityAttributeDefinitionIdAllowedValueID(t *testing.T) {
-	actual := NewDirectoryCustomSecurityAttributeDefinitionIdAllowedValueID("customSecurityAttributeDefinitionIdValue", "allowedValueIdValue").ID()
-	expected := "/directory/customSecurityAttributeDefinitions/customSecurityAttributeDefinitionIdValue/allowedValues/allowedValueIdValue"
+	actual := NewDirectoryCustomSecurityAttributeDefinitionIdAllowedValueID("customSecurityAttributeDefinitionId", "allowedValueId").ID()
+	expected := "/directory/customSecurityAttributeDefinitions/customSecurityAttributeDefinitionId/allowedValues/allowedValueId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -54,25 +54,25 @@ func TestParseDirectoryCustomSecurityAttributeDefinitionIdAllowedValueID(t *test
 		},
 		{
 			// Incomplete URI
-			Input: "/directory/customSecurityAttributeDefinitions/customSecurityAttributeDefinitionIdValue",
+			Input: "/directory/customSecurityAttributeDefinitions/customSecurityAttributeDefinitionId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/directory/customSecurityAttributeDefinitions/customSecurityAttributeDefinitionIdValue/allowedValues",
+			Input: "/directory/customSecurityAttributeDefinitions/customSecurityAttributeDefinitionId/allowedValues",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/directory/customSecurityAttributeDefinitions/customSecurityAttributeDefinitionIdValue/allowedValues/allowedValueIdValue",
+			Input: "/directory/customSecurityAttributeDefinitions/customSecurityAttributeDefinitionId/allowedValues/allowedValueId",
 			Expected: &DirectoryCustomSecurityAttributeDefinitionIdAllowedValueId{
-				CustomSecurityAttributeDefinitionId: "customSecurityAttributeDefinitionIdValue",
-				AllowedValueId:                      "allowedValueIdValue",
+				CustomSecurityAttributeDefinitionId: "customSecurityAttributeDefinitionId",
+				AllowedValueId:                      "allowedValueId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/directory/customSecurityAttributeDefinitions/customSecurityAttributeDefinitionIdValue/allowedValues/allowedValueIdValue/extra",
+			Input: "/directory/customSecurityAttributeDefinitions/customSecurityAttributeDefinitionId/allowedValues/allowedValueId/extra",
 			Error: true,
 		},
 	}
@@ -135,48 +135,48 @@ func TestParseDirectoryCustomSecurityAttributeDefinitionIdAllowedValueIDInsensit
 		},
 		{
 			// Incomplete URI
-			Input: "/directory/customSecurityAttributeDefinitions/customSecurityAttributeDefinitionIdValue",
+			Input: "/directory/customSecurityAttributeDefinitions/customSecurityAttributeDefinitionId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/dIrEcToRy/cUsToMsEcUrItYaTtRiBuTeDeFiNiTiOnS/cUsToMsEcUrItYaTtRiBuTeDeFiNiTiOnIdVaLuE",
+			Input: "/dIrEcToRy/cUsToMsEcUrItYaTtRiBuTeDeFiNiTiOnS/cUsToMsEcUrItYaTtRiBuTeDeFiNiTiOnId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/directory/customSecurityAttributeDefinitions/customSecurityAttributeDefinitionIdValue/allowedValues",
+			Input: "/directory/customSecurityAttributeDefinitions/customSecurityAttributeDefinitionId/allowedValues",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/dIrEcToRy/cUsToMsEcUrItYaTtRiBuTeDeFiNiTiOnS/cUsToMsEcUrItYaTtRiBuTeDeFiNiTiOnIdVaLuE/aLlOwEdVaLuEs",
+			Input: "/dIrEcToRy/cUsToMsEcUrItYaTtRiBuTeDeFiNiTiOnS/cUsToMsEcUrItYaTtRiBuTeDeFiNiTiOnId/aLlOwEdVaLuEs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/directory/customSecurityAttributeDefinitions/customSecurityAttributeDefinitionIdValue/allowedValues/allowedValueIdValue",
+			Input: "/directory/customSecurityAttributeDefinitions/customSecurityAttributeDefinitionId/allowedValues/allowedValueId",
 			Expected: &DirectoryCustomSecurityAttributeDefinitionIdAllowedValueId{
-				CustomSecurityAttributeDefinitionId: "customSecurityAttributeDefinitionIdValue",
-				AllowedValueId:                      "allowedValueIdValue",
+				CustomSecurityAttributeDefinitionId: "customSecurityAttributeDefinitionId",
+				AllowedValueId:                      "allowedValueId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/directory/customSecurityAttributeDefinitions/customSecurityAttributeDefinitionIdValue/allowedValues/allowedValueIdValue/extra",
+			Input: "/directory/customSecurityAttributeDefinitions/customSecurityAttributeDefinitionId/allowedValues/allowedValueId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/dIrEcToRy/cUsToMsEcUrItYaTtRiBuTeDeFiNiTiOnS/cUsToMsEcUrItYaTtRiBuTeDeFiNiTiOnIdVaLuE/aLlOwEdVaLuEs/aLlOwEdVaLuEiDvAlUe",
+			Input: "/dIrEcToRy/cUsToMsEcUrItYaTtRiBuTeDeFiNiTiOnS/cUsToMsEcUrItYaTtRiBuTeDeFiNiTiOnId/aLlOwEdVaLuEs/aLlOwEdVaLuEiD",
 			Expected: &DirectoryCustomSecurityAttributeDefinitionIdAllowedValueId{
-				CustomSecurityAttributeDefinitionId: "cUsToMsEcUrItYaTtRiBuTeDeFiNiTiOnIdVaLuE",
-				AllowedValueId:                      "aLlOwEdVaLuEiDvAlUe",
+				CustomSecurityAttributeDefinitionId: "cUsToMsEcUrItYaTtRiBuTeDeFiNiTiOnId",
+				AllowedValueId:                      "aLlOwEdVaLuEiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/dIrEcToRy/cUsToMsEcUrItYaTtRiBuTeDeFiNiTiOnS/cUsToMsEcUrItYaTtRiBuTeDeFiNiTiOnIdVaLuE/aLlOwEdVaLuEs/aLlOwEdVaLuEiDvAlUe/extra",
+			Input: "/dIrEcToRy/cUsToMsEcUrItYaTtRiBuTeDeFiNiTiOnS/cUsToMsEcUrItYaTtRiBuTeDeFiNiTiOnId/aLlOwEdVaLuEs/aLlOwEdVaLuEiD/extra",
 			Error: true,
 		},
 	}

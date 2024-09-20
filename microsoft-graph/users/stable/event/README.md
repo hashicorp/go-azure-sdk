@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/microsoft-graph/users/stable/event` Documentation
 
-The `event` SDK allows for interaction with the Azure Resource Manager Service `users` (API Version `stable`).
+The `event` SDK allows for interaction with Microsoft Graph `users` (API Version `stable`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -15,7 +15,7 @@ import "github.com/hashicorp/go-azure-sdk/microsoft-graph/users/stable/event"
 ### Client Initialization
 
 ```go
-client := event.NewEventClientWithBaseURI("https://management.azure.com")
+client := event.NewEventClientWithBaseURI("https://graph.microsoft.com")
 client.Client.Authorizer = authorizer
 ```
 
@@ -24,14 +24,14 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := event.NewUserIdEventID("userIdValue", "eventIdValue")
+id := event.NewUserIdEventID("userId", "eventId")
 
 payload := event.AcceptEventRequest{
 	// ...
 }
 
 
-read, err := client.AcceptEvent(ctx, id, payload)
+read, err := client.AcceptEvent(ctx, id, payload, event.DefaultAcceptEventOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -45,14 +45,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := event.NewUserIdEventID("userIdValue", "eventIdValue")
+id := event.NewUserIdEventID("userId", "eventId")
 
 payload := event.CancelEventRequest{
 	// ...
 }
 
 
-read, err := client.CancelEvent(ctx, id, payload)
+read, err := client.CancelEvent(ctx, id, payload, event.DefaultCancelEventOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -66,14 +66,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := event.NewUserID("userIdValue")
+id := event.NewUserID("userId")
 
 payload := event.Event{
 	// ...
 }
 
 
-read, err := client.CreateEvent(ctx, id, payload)
+read, err := client.CreateEvent(ctx, id, payload, event.DefaultCreateEventOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -87,14 +87,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := event.NewUserIdEventID("userIdValue", "eventIdValue")
+id := event.NewUserIdEventID("userId", "eventId")
 
 payload := event.DeclineEventRequest{
 	// ...
 }
 
 
-read, err := client.DeclineEvent(ctx, id, payload)
+read, err := client.DeclineEvent(ctx, id, payload, event.DefaultDeclineEventOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -108,7 +108,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := event.NewUserIdEventID("userIdValue", "eventIdValue")
+id := event.NewUserIdEventID("userId", "eventId")
 
 read, err := client.DeleteEvent(ctx, id, event.DefaultDeleteEventOperationOptions())
 if err != nil {
@@ -124,9 +124,9 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := event.NewUserIdEventID("userIdValue", "eventIdValue")
+id := event.NewUserIdEventID("userId", "eventId")
 
-read, err := client.DismissEventReminder(ctx, id)
+read, err := client.DismissEventReminder(ctx, id, event.DefaultDismissEventReminderOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -140,14 +140,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := event.NewUserIdEventID("userIdValue", "eventIdValue")
+id := event.NewUserIdEventID("userId", "eventId")
 
 payload := event.ForwardEventRequest{
 	// ...
 }
 
 
-read, err := client.ForwardEvent(ctx, id, payload)
+read, err := client.ForwardEvent(ctx, id, payload, event.DefaultForwardEventOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -161,7 +161,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := event.NewUserIdEventID("userIdValue", "eventIdValue")
+id := event.NewUserIdEventID("userId", "eventId")
 
 read, err := client.GetEvent(ctx, id, event.DefaultGetEventOperationOptions())
 if err != nil {
@@ -177,7 +177,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := event.NewUserID("userIdValue")
+id := event.NewUserID("userId")
 
 read, err := client.GetEventsCount(ctx, id, event.DefaultGetEventsCountOperationOptions())
 if err != nil {
@@ -193,7 +193,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := event.NewUserID("userIdValue")
+id := event.NewUserID("userId")
 
 // alternatively `client.ListEvents(ctx, id, event.DefaultListEventsOperationOptions())` can be used to do batched pagination
 items, err := client.ListEventsComplete(ctx, id, event.DefaultListEventsOperationOptions())
@@ -210,14 +210,14 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := event.NewUserIdEventID("userIdValue", "eventIdValue")
+id := event.NewUserIdEventID("userId", "eventId")
 
 payload := event.SnoozeEventReminderRequest{
 	// ...
 }
 
 
-read, err := client.SnoozeEventReminder(ctx, id, payload)
+read, err := client.SnoozeEventReminder(ctx, id, payload, event.DefaultSnoozeEventReminderOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -231,14 +231,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := event.NewUserIdEventID("userIdValue", "eventIdValue")
+id := event.NewUserIdEventID("userId", "eventId")
 
 payload := event.TentativelyAcceptEventRequest{
 	// ...
 }
 
 
-read, err := client.TentativelyAcceptEvent(ctx, id, payload)
+read, err := client.TentativelyAcceptEvent(ctx, id, payload, event.DefaultTentativelyAcceptEventOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -252,14 +252,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := event.NewUserIdEventID("userIdValue", "eventIdValue")
+id := event.NewUserIdEventID("userId", "eventId")
 
 payload := event.Event{
 	// ...
 }
 
 
-read, err := client.UpdateEvent(ctx, id, payload)
+read, err := client.UpdateEvent(ctx, id, payload, event.DefaultUpdateEventOperationOptions())
 if err != nil {
 	// handle the error
 }

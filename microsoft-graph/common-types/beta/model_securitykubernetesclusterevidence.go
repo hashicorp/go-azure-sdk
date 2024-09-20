@@ -103,25 +103,39 @@ func (s SecurityKubernetesClusterEvidence) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &SecurityKubernetesClusterEvidence{}
 
 func (s *SecurityKubernetesClusterEvidence) UnmarshalJSON(bytes []byte) error {
-	type alias SecurityKubernetesClusterEvidence
-	var decoded alias
+
+	var decoded struct {
+		Distribution             nullable.Type[string]              `json:"distribution,omitempty"`
+		Name                     nullable.Type[string]              `json:"name,omitempty"`
+		Platform                 *SecurityKubernetesPlatform        `json:"platform,omitempty"`
+		Version                  nullable.Type[string]              `json:"version,omitempty"`
+		CreatedDateTime          *string                            `json:"createdDateTime,omitempty"`
+		DetailedRoles            *[]string                          `json:"detailedRoles,omitempty"`
+		ODataId                  *string                            `json:"@odata.id,omitempty"`
+		ODataType                *string                            `json:"@odata.type,omitempty"`
+		RemediationStatus        *SecurityEvidenceRemediationStatus `json:"remediationStatus,omitempty"`
+		RemediationStatusDetails nullable.Type[string]              `json:"remediationStatusDetails,omitempty"`
+		Roles                    *[]SecurityEvidenceRole            `json:"roles,omitempty"`
+		Tags                     *[]string                          `json:"tags,omitempty"`
+		Verdict                  *SecurityEvidenceVerdict           `json:"verdict,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into SecurityKubernetesClusterEvidence: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
-	s.CreatedDateTime = decoded.CreatedDateTime
-	s.DetailedRoles = decoded.DetailedRoles
 	s.Distribution = decoded.Distribution
 	s.Name = decoded.Name
+	s.Platform = decoded.Platform
+	s.Version = decoded.Version
+	s.CreatedDateTime = decoded.CreatedDateTime
+	s.DetailedRoles = decoded.DetailedRoles
 	s.ODataId = decoded.ODataId
 	s.ODataType = decoded.ODataType
-	s.Platform = decoded.Platform
 	s.RemediationStatus = decoded.RemediationStatus
 	s.RemediationStatusDetails = decoded.RemediationStatusDetails
 	s.Roles = decoded.Roles
 	s.Tags = decoded.Tags
 	s.Verdict = decoded.Verdict
-	s.Version = decoded.Version
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -135,5 +149,6 @@ func (s *SecurityKubernetesClusterEvidence) UnmarshalJSON(bytes []byte) error {
 		}
 		s.CloudResource = impl
 	}
+
 	return nil
 }

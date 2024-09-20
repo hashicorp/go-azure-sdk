@@ -19,15 +19,44 @@ type CreateB2xUserFlowLanguageOperationResponse struct {
 	Model        *stable.UserFlowLanguageConfiguration
 }
 
+type CreateB2xUserFlowLanguageOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateB2xUserFlowLanguageOperationOptions() CreateB2xUserFlowLanguageOperationOptions {
+	return CreateB2xUserFlowLanguageOperationOptions{}
+}
+
+func (o CreateB2xUserFlowLanguageOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateB2xUserFlowLanguageOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateB2xUserFlowLanguageOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateB2xUserFlowLanguage - Create new navigation property to languages for identity
-func (c B2xUserFlowLanguageClient) CreateB2xUserFlowLanguage(ctx context.Context, id stable.IdentityB2xUserFlowId, input stable.UserFlowLanguageConfiguration) (result CreateB2xUserFlowLanguageOperationResponse, err error) {
+func (c B2xUserFlowLanguageClient) CreateB2xUserFlowLanguage(ctx context.Context, id stable.IdentityB2xUserFlowId, input stable.UserFlowLanguageConfiguration, options CreateB2xUserFlowLanguageOperationOptions) (result CreateB2xUserFlowLanguageOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/languages", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/languages", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

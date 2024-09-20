@@ -18,15 +18,44 @@ type CreateCloudClipboardItemOperationResponse struct {
 	Model        *stable.CloudClipboardItem
 }
 
+type CreateCloudClipboardItemOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateCloudClipboardItemOperationOptions() CreateCloudClipboardItemOperationOptions {
+	return CreateCloudClipboardItemOperationOptions{}
+}
+
+func (o CreateCloudClipboardItemOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateCloudClipboardItemOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateCloudClipboardItemOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateCloudClipboardItem - Create new navigation property to items for me
-func (c CloudClipboardItemClient) CreateCloudClipboardItem(ctx context.Context, input stable.CloudClipboardItem) (result CreateCloudClipboardItemOperationResponse, err error) {
+func (c CloudClipboardItemClient) CreateCloudClipboardItem(ctx context.Context, input stable.CloudClipboardItem, options CreateCloudClipboardItemOperationOptions) (result CreateCloudClipboardItemOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/me/cloudClipboard/items",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/me/cloudClipboard/items",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

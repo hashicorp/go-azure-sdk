@@ -19,7 +19,8 @@ type DeleteJoinedTeamPrimaryChannelTabOperationResponse struct {
 }
 
 type DeleteJoinedTeamPrimaryChannelTabOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteJoinedTeamPrimaryChannelTabOperationOptions() DeleteJoinedTeamPrimaryChannelTabOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteJoinedTeamPrimaryChannelTabOperationOptions) ToHeaders() *client.H
 
 func (o DeleteJoinedTeamPrimaryChannelTabOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

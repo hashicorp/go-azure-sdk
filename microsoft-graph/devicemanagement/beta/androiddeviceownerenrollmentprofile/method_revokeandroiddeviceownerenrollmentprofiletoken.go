@@ -18,15 +18,44 @@ type RevokeAndroidDeviceOwnerEnrollmentProfileTokenOperationResponse struct {
 	OData        *odata.OData
 }
 
+type RevokeAndroidDeviceOwnerEnrollmentProfileTokenOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultRevokeAndroidDeviceOwnerEnrollmentProfileTokenOperationOptions() RevokeAndroidDeviceOwnerEnrollmentProfileTokenOperationOptions {
+	return RevokeAndroidDeviceOwnerEnrollmentProfileTokenOperationOptions{}
+}
+
+func (o RevokeAndroidDeviceOwnerEnrollmentProfileTokenOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o RevokeAndroidDeviceOwnerEnrollmentProfileTokenOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o RevokeAndroidDeviceOwnerEnrollmentProfileTokenOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // RevokeAndroidDeviceOwnerEnrollmentProfileToken - Invoke action revokeToken
-func (c AndroidDeviceOwnerEnrollmentProfileClient) RevokeAndroidDeviceOwnerEnrollmentProfileToken(ctx context.Context, id beta.DeviceManagementAndroidDeviceOwnerEnrollmentProfileId) (result RevokeAndroidDeviceOwnerEnrollmentProfileTokenOperationResponse, err error) {
+func (c AndroidDeviceOwnerEnrollmentProfileClient) RevokeAndroidDeviceOwnerEnrollmentProfileToken(ctx context.Context, id beta.DeviceManagementAndroidDeviceOwnerEnrollmentProfileId, options RevokeAndroidDeviceOwnerEnrollmentProfileTokenOperationOptions) (result RevokeAndroidDeviceOwnerEnrollmentProfileTokenOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/revokeToken", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/revokeToken", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

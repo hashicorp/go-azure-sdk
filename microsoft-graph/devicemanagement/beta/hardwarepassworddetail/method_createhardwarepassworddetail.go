@@ -18,15 +18,44 @@ type CreateHardwarePasswordDetailOperationResponse struct {
 	Model        *beta.HardwarePasswordDetail
 }
 
+type CreateHardwarePasswordDetailOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateHardwarePasswordDetailOperationOptions() CreateHardwarePasswordDetailOperationOptions {
+	return CreateHardwarePasswordDetailOperationOptions{}
+}
+
+func (o CreateHardwarePasswordDetailOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateHardwarePasswordDetailOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateHardwarePasswordDetailOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateHardwarePasswordDetail - Create new navigation property to hardwarePasswordDetails for deviceManagement
-func (c HardwarePasswordDetailClient) CreateHardwarePasswordDetail(ctx context.Context, input beta.HardwarePasswordDetail) (result CreateHardwarePasswordDetailOperationResponse, err error) {
+func (c HardwarePasswordDetailClient) CreateHardwarePasswordDetail(ctx context.Context, input beta.HardwarePasswordDetail, options CreateHardwarePasswordDetailOperationOptions) (result CreateHardwarePasswordDetailOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/deviceManagement/hardwarePasswordDetails",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/deviceManagement/hardwarePasswordDetails",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

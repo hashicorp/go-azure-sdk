@@ -19,16 +19,45 @@ type RestoreDriveItemOperationResponse struct {
 	Model        *stable.DriveItem
 }
 
+type RestoreDriveItemOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultRestoreDriveItemOperationOptions() RestoreDriveItemOperationOptions {
+	return RestoreDriveItemOperationOptions{}
+}
+
+func (o RestoreDriveItemOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o RestoreDriveItemOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o RestoreDriveItemOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // RestoreDriveItem - Invoke action restore. Restore a driveItem that has been deleted and is currently in the recycle
 // bin. NOTE: This functionality is currently only available for OneDrive Personal.
-func (c DriveItemClient) RestoreDriveItem(ctx context.Context, id stable.GroupIdDriveIdItemId, input RestoreDriveItemRequest) (result RestoreDriveItemOperationResponse, err error) {
+func (c DriveItemClient) RestoreDriveItem(ctx context.Context, id stable.GroupIdDriveIdItemId, input RestoreDriveItemRequest, options RestoreDriveItemOperationOptions) (result RestoreDriveItemOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/restore", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/restore", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

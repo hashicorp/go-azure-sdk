@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &DeviceManagementIntuneBrandingProfileId{}
 
 func TestNewDeviceManagementIntuneBrandingProfileID(t *testing.T) {
-	id := NewDeviceManagementIntuneBrandingProfileID("intuneBrandingProfileIdValue")
+	id := NewDeviceManagementIntuneBrandingProfileID("intuneBrandingProfileId")
 
-	if id.IntuneBrandingProfileId != "intuneBrandingProfileIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'IntuneBrandingProfileId'", id.IntuneBrandingProfileId, "intuneBrandingProfileIdValue")
+	if id.IntuneBrandingProfileId != "intuneBrandingProfileId" {
+		t.Fatalf("Expected %q but got %q for Segment 'IntuneBrandingProfileId'", id.IntuneBrandingProfileId, "intuneBrandingProfileId")
 	}
 }
 
 func TestFormatDeviceManagementIntuneBrandingProfileID(t *testing.T) {
-	actual := NewDeviceManagementIntuneBrandingProfileID("intuneBrandingProfileIdValue").ID()
-	expected := "/deviceManagement/intuneBrandingProfiles/intuneBrandingProfileIdValue"
+	actual := NewDeviceManagementIntuneBrandingProfileID("intuneBrandingProfileId").ID()
+	expected := "/deviceManagement/intuneBrandingProfiles/intuneBrandingProfileId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -50,14 +50,14 @@ func TestParseDeviceManagementIntuneBrandingProfileID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/intuneBrandingProfiles/intuneBrandingProfileIdValue",
+			Input: "/deviceManagement/intuneBrandingProfiles/intuneBrandingProfileId",
 			Expected: &DeviceManagementIntuneBrandingProfileId{
-				IntuneBrandingProfileId: "intuneBrandingProfileIdValue",
+				IntuneBrandingProfileId: "intuneBrandingProfileId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/intuneBrandingProfiles/intuneBrandingProfileIdValue/extra",
+			Input: "/deviceManagement/intuneBrandingProfiles/intuneBrandingProfileId/extra",
 			Error: true,
 		},
 	}
@@ -116,26 +116,26 @@ func TestParseDeviceManagementIntuneBrandingProfileIDInsensitively(t *testing.T)
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/intuneBrandingProfiles/intuneBrandingProfileIdValue",
+			Input: "/deviceManagement/intuneBrandingProfiles/intuneBrandingProfileId",
 			Expected: &DeviceManagementIntuneBrandingProfileId{
-				IntuneBrandingProfileId: "intuneBrandingProfileIdValue",
+				IntuneBrandingProfileId: "intuneBrandingProfileId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/intuneBrandingProfiles/intuneBrandingProfileIdValue/extra",
+			Input: "/deviceManagement/intuneBrandingProfiles/intuneBrandingProfileId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/iNtUnEbRaNdInGpRoFiLeS/iNtUnEbRaNdInGpRoFiLeIdVaLuE",
+			Input: "/dEvIcEmAnAgEmEnT/iNtUnEbRaNdInGpRoFiLeS/iNtUnEbRaNdInGpRoFiLeId",
 			Expected: &DeviceManagementIntuneBrandingProfileId{
-				IntuneBrandingProfileId: "iNtUnEbRaNdInGpRoFiLeIdVaLuE",
+				IntuneBrandingProfileId: "iNtUnEbRaNdInGpRoFiLeId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/iNtUnEbRaNdInGpRoFiLeS/iNtUnEbRaNdInGpRoFiLeIdVaLuE/extra",
+			Input: "/dEvIcEmAnAgEmEnT/iNtUnEbRaNdInGpRoFiLeS/iNtUnEbRaNdInGpRoFiLeId/extra",
 			Error: true,
 		},
 	}

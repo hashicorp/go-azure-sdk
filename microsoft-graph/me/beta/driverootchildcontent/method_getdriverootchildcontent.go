@@ -20,7 +20,8 @@ type GetDriveRootChildContentOperationResponse struct {
 }
 
 type GetDriveRootChildContentOperationOptions struct {
-	Format *odata.Format
+	Format   *odata.Format
+	Metadata *odata.Metadata
 }
 
 func DefaultGetDriveRootChildContentOperationOptions() GetDriveRootChildContentOperationOptions {
@@ -37,6 +38,9 @@ func (o GetDriveRootChildContentOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
 	if o.Format != nil {
 		out.Format = *o.Format
+	}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
 	}
 	return &out
 }

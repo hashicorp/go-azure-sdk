@@ -18,15 +18,44 @@ type AddDeviceRegisteredUserRefOperationResponse struct {
 	OData        *odata.OData
 }
 
+type AddDeviceRegisteredUserRefOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultAddDeviceRegisteredUserRefOperationOptions() AddDeviceRegisteredUserRefOperationOptions {
+	return AddDeviceRegisteredUserRefOperationOptions{}
+}
+
+func (o AddDeviceRegisteredUserRefOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o AddDeviceRegisteredUserRefOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o AddDeviceRegisteredUserRefOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // AddDeviceRegisteredUserRef - Create new navigation property ref to registeredUsers for me
-func (c DeviceRegisteredUserClient) AddDeviceRegisteredUserRef(ctx context.Context, id beta.MeDeviceId, input beta.ReferenceCreate) (result AddDeviceRegisteredUserRefOperationResponse, err error) {
+func (c DeviceRegisteredUserClient) AddDeviceRegisteredUserRef(ctx context.Context, id beta.MeDeviceId, input beta.ReferenceCreate, options AddDeviceRegisteredUserRefOperationOptions) (result AddDeviceRegisteredUserRefOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/registeredUsers/$ref", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/registeredUsers/$ref", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

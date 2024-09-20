@@ -93,7 +93,7 @@ func (id DeviceManagementManagedDeviceCleanupRuleId) Segments() []resourceids.Se
 	return []resourceids.Segment{
 		resourceids.StaticSegment("deviceManagement", "deviceManagement", "deviceManagement"),
 		resourceids.StaticSegment("managedDeviceCleanupRules", "managedDeviceCleanupRules", "managedDeviceCleanupRules"),
-		resourceids.UserSpecifiedSegment("managedDeviceCleanupRuleId", "managedDeviceCleanupRuleIdValue"),
+		resourceids.UserSpecifiedSegment("managedDeviceCleanupRuleId", "managedDeviceCleanupRuleId"),
 	}
 }
 

@@ -12,24 +12,24 @@ import (
 var _ resourceids.ResourceId = &UserIdChatIdOperationId{}
 
 func TestNewUserIdChatIdOperationID(t *testing.T) {
-	id := NewUserIdChatIdOperationID("userIdValue", "chatIdValue", "teamsAsyncOperationIdValue")
+	id := NewUserIdChatIdOperationID("userId", "chatId", "teamsAsyncOperationId")
 
-	if id.UserId != "userIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'UserId'", id.UserId, "userIdValue")
+	if id.UserId != "userId" {
+		t.Fatalf("Expected %q but got %q for Segment 'UserId'", id.UserId, "userId")
 	}
 
-	if id.ChatId != "chatIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ChatId'", id.ChatId, "chatIdValue")
+	if id.ChatId != "chatId" {
+		t.Fatalf("Expected %q but got %q for Segment 'ChatId'", id.ChatId, "chatId")
 	}
 
-	if id.TeamsAsyncOperationId != "teamsAsyncOperationIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'TeamsAsyncOperationId'", id.TeamsAsyncOperationId, "teamsAsyncOperationIdValue")
+	if id.TeamsAsyncOperationId != "teamsAsyncOperationId" {
+		t.Fatalf("Expected %q but got %q for Segment 'TeamsAsyncOperationId'", id.TeamsAsyncOperationId, "teamsAsyncOperationId")
 	}
 }
 
 func TestFormatUserIdChatIdOperationID(t *testing.T) {
-	actual := NewUserIdChatIdOperationID("userIdValue", "chatIdValue", "teamsAsyncOperationIdValue").ID()
-	expected := "/users/userIdValue/chats/chatIdValue/operations/teamsAsyncOperationIdValue"
+	actual := NewUserIdChatIdOperationID("userId", "chatId", "teamsAsyncOperationId").ID()
+	expected := "/users/userId/chats/chatId/operations/teamsAsyncOperationId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -53,36 +53,36 @@ func TestParseUserIdChatIdOperationID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue",
+			Input: "/users/userId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/chats",
+			Input: "/users/userId/chats",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/chats/chatIdValue",
+			Input: "/users/userId/chats/chatId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/chats/chatIdValue/operations",
+			Input: "/users/userId/chats/chatId/operations",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/users/userIdValue/chats/chatIdValue/operations/teamsAsyncOperationIdValue",
+			Input: "/users/userId/chats/chatId/operations/teamsAsyncOperationId",
 			Expected: &UserIdChatIdOperationId{
-				UserId:                "userIdValue",
-				ChatId:                "chatIdValue",
-				TeamsAsyncOperationId: "teamsAsyncOperationIdValue",
+				UserId:                "userId",
+				ChatId:                "chatId",
+				TeamsAsyncOperationId: "teamsAsyncOperationId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/users/userIdValue/chats/chatIdValue/operations/teamsAsyncOperationIdValue/extra",
+			Input: "/users/userId/chats/chatId/operations/teamsAsyncOperationId/extra",
 			Error: true,
 		},
 	}
@@ -139,70 +139,70 @@ func TestParseUserIdChatIdOperationIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue",
+			Input: "/users/userId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe",
+			Input: "/uSeRs/uSeRiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/chats",
+			Input: "/users/userId/chats",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/cHaTs",
+			Input: "/uSeRs/uSeRiD/cHaTs",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/chats/chatIdValue",
+			Input: "/users/userId/chats/chatId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/cHaTs/cHaTiDvAlUe",
+			Input: "/uSeRs/uSeRiD/cHaTs/cHaTiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/chats/chatIdValue/operations",
+			Input: "/users/userId/chats/chatId/operations",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/cHaTs/cHaTiDvAlUe/oPeRaTiOnS",
+			Input: "/uSeRs/uSeRiD/cHaTs/cHaTiD/oPeRaTiOnS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/users/userIdValue/chats/chatIdValue/operations/teamsAsyncOperationIdValue",
+			Input: "/users/userId/chats/chatId/operations/teamsAsyncOperationId",
 			Expected: &UserIdChatIdOperationId{
-				UserId:                "userIdValue",
-				ChatId:                "chatIdValue",
-				TeamsAsyncOperationId: "teamsAsyncOperationIdValue",
+				UserId:                "userId",
+				ChatId:                "chatId",
+				TeamsAsyncOperationId: "teamsAsyncOperationId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/users/userIdValue/chats/chatIdValue/operations/teamsAsyncOperationIdValue/extra",
+			Input: "/users/userId/chats/chatId/operations/teamsAsyncOperationId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/cHaTs/cHaTiDvAlUe/oPeRaTiOnS/tEaMsAsYnCoPeRaTiOnIdVaLuE",
+			Input: "/uSeRs/uSeRiD/cHaTs/cHaTiD/oPeRaTiOnS/tEaMsAsYnCoPeRaTiOnId",
 			Expected: &UserIdChatIdOperationId{
-				UserId:                "uSeRiDvAlUe",
-				ChatId:                "cHaTiDvAlUe",
-				TeamsAsyncOperationId: "tEaMsAsYnCoPeRaTiOnIdVaLuE",
+				UserId:                "uSeRiD",
+				ChatId:                "cHaTiD",
+				TeamsAsyncOperationId: "tEaMsAsYnCoPeRaTiOnId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/cHaTs/cHaTiDvAlUe/oPeRaTiOnS/tEaMsAsYnCoPeRaTiOnIdVaLuE/extra",
+			Input: "/uSeRs/uSeRiD/cHaTs/cHaTiD/oPeRaTiOnS/tEaMsAsYnCoPeRaTiOnId/extra",
 			Error: true,
 		},
 	}

@@ -105,12 +105,12 @@ func (id MeAppConsentRequestsForApprovalIdUserConsentRequestIdApprovalStepId) Se
 	return []resourceids.Segment{
 		resourceids.StaticSegment("me", "me", "me"),
 		resourceids.StaticSegment("appConsentRequestsForApproval", "appConsentRequestsForApproval", "appConsentRequestsForApproval"),
-		resourceids.UserSpecifiedSegment("appConsentRequestId", "appConsentRequestIdValue"),
+		resourceids.UserSpecifiedSegment("appConsentRequestId", "appConsentRequestId"),
 		resourceids.StaticSegment("userConsentRequests", "userConsentRequests", "userConsentRequests"),
-		resourceids.UserSpecifiedSegment("userConsentRequestId", "userConsentRequestIdValue"),
+		resourceids.UserSpecifiedSegment("userConsentRequestId", "userConsentRequestId"),
 		resourceids.StaticSegment("approval", "approval", "approval"),
 		resourceids.StaticSegment("steps", "steps", "steps"),
-		resourceids.UserSpecifiedSegment("approvalStepId", "approvalStepIdValue"),
+		resourceids.UserSpecifiedSegment("approvalStepId", "approvalStepId"),
 	}
 }
 

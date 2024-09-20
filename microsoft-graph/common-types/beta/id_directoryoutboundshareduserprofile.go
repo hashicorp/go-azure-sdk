@@ -93,7 +93,7 @@ func (id DirectoryOutboundSharedUserProfileId) Segments() []resourceids.Segment 
 	return []resourceids.Segment{
 		resourceids.StaticSegment("directory", "directory", "directory"),
 		resourceids.StaticSegment("outboundSharedUserProfiles", "outboundSharedUserProfiles", "outboundSharedUserProfiles"),
-		resourceids.UserSpecifiedSegment("outboundSharedUserProfileUserId", "outboundSharedUserProfileUserIdValue"),
+		resourceids.UserSpecifiedSegment("outboundSharedUserProfileUserId", "outboundSharedUserProfileUserId"),
 	}
 }
 

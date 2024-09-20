@@ -19,15 +19,44 @@ type CreateJoinedTeamScheduleSwapShiftsChangeRequestOperationResponse struct {
 	Model        *stable.SwapShiftsChangeRequest
 }
 
+type CreateJoinedTeamScheduleSwapShiftsChangeRequestOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateJoinedTeamScheduleSwapShiftsChangeRequestOperationOptions() CreateJoinedTeamScheduleSwapShiftsChangeRequestOperationOptions {
+	return CreateJoinedTeamScheduleSwapShiftsChangeRequestOperationOptions{}
+}
+
+func (o CreateJoinedTeamScheduleSwapShiftsChangeRequestOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateJoinedTeamScheduleSwapShiftsChangeRequestOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateJoinedTeamScheduleSwapShiftsChangeRequestOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateJoinedTeamScheduleSwapShiftsChangeRequest - Create new navigation property to swapShiftsChangeRequests for me
-func (c JoinedTeamScheduleSwapShiftsChangeRequestClient) CreateJoinedTeamScheduleSwapShiftsChangeRequest(ctx context.Context, id stable.MeJoinedTeamId, input stable.SwapShiftsChangeRequest) (result CreateJoinedTeamScheduleSwapShiftsChangeRequestOperationResponse, err error) {
+func (c JoinedTeamScheduleSwapShiftsChangeRequestClient) CreateJoinedTeamScheduleSwapShiftsChangeRequest(ctx context.Context, id stable.MeJoinedTeamId, input stable.SwapShiftsChangeRequest, options CreateJoinedTeamScheduleSwapShiftsChangeRequestOperationOptions) (result CreateJoinedTeamScheduleSwapShiftsChangeRequestOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/schedule/swapShiftsChangeRequests", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/schedule/swapShiftsChangeRequests", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -18,15 +18,44 @@ type CreateComanagedDeviceOverrideComplianceStateOperationResponse struct {
 	OData        *odata.OData
 }
 
+type CreateComanagedDeviceOverrideComplianceStateOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateComanagedDeviceOverrideComplianceStateOperationOptions() CreateComanagedDeviceOverrideComplianceStateOperationOptions {
+	return CreateComanagedDeviceOverrideComplianceStateOperationOptions{}
+}
+
+func (o CreateComanagedDeviceOverrideComplianceStateOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateComanagedDeviceOverrideComplianceStateOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateComanagedDeviceOverrideComplianceStateOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateComanagedDeviceOverrideComplianceState - Invoke action overrideComplianceState
-func (c ComanagedDeviceClient) CreateComanagedDeviceOverrideComplianceState(ctx context.Context, id beta.DeviceManagementComanagedDeviceId, input CreateComanagedDeviceOverrideComplianceStateRequest) (result CreateComanagedDeviceOverrideComplianceStateOperationResponse, err error) {
+func (c ComanagedDeviceClient) CreateComanagedDeviceOverrideComplianceState(ctx context.Context, id beta.DeviceManagementComanagedDeviceId, input CreateComanagedDeviceOverrideComplianceStateRequest, options CreateComanagedDeviceOverrideComplianceStateOperationOptions) (result CreateComanagedDeviceOverrideComplianceStateOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/overrideComplianceState", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/overrideComplianceState", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -18,15 +18,44 @@ type AddClaimsMappingPolicyRefOperationResponse struct {
 	OData        *odata.OData
 }
 
+type AddClaimsMappingPolicyRefOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultAddClaimsMappingPolicyRefOperationOptions() AddClaimsMappingPolicyRefOperationOptions {
+	return AddClaimsMappingPolicyRefOperationOptions{}
+}
+
+func (o AddClaimsMappingPolicyRefOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o AddClaimsMappingPolicyRefOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o AddClaimsMappingPolicyRefOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // AddClaimsMappingPolicyRef - Assign claimsMappingPolicy. Assign a claimsMappingPolicy to a servicePrincipal.
-func (c ClaimsMappingPolicyClient) AddClaimsMappingPolicyRef(ctx context.Context, id beta.ServicePrincipalId, input beta.ReferenceCreate) (result AddClaimsMappingPolicyRefOperationResponse, err error) {
+func (c ClaimsMappingPolicyClient) AddClaimsMappingPolicyRef(ctx context.Context, id beta.ServicePrincipalId, input beta.ReferenceCreate, options AddClaimsMappingPolicyRefOperationOptions) (result AddClaimsMappingPolicyRefOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/claimsMappingPolicies/$ref", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/claimsMappingPolicies/$ref", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

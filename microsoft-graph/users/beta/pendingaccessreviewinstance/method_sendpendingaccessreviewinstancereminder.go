@@ -18,16 +18,45 @@ type SendPendingAccessReviewInstanceReminderOperationResponse struct {
 	OData        *odata.OData
 }
 
+type SendPendingAccessReviewInstanceReminderOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultSendPendingAccessReviewInstanceReminderOperationOptions() SendPendingAccessReviewInstanceReminderOperationOptions {
+	return SendPendingAccessReviewInstanceReminderOperationOptions{}
+}
+
+func (o SendPendingAccessReviewInstanceReminderOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o SendPendingAccessReviewInstanceReminderOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o SendPendingAccessReviewInstanceReminderOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // SendPendingAccessReviewInstanceReminder - Invoke action sendReminder. Send a reminder to the reviewers of a currently
 // active accessReviewInstance.
-func (c PendingAccessReviewInstanceClient) SendPendingAccessReviewInstanceReminder(ctx context.Context, id beta.UserIdPendingAccessReviewInstanceId) (result SendPendingAccessReviewInstanceReminderOperationResponse, err error) {
+func (c PendingAccessReviewInstanceClient) SendPendingAccessReviewInstanceReminder(ctx context.Context, id beta.UserIdPendingAccessReviewInstanceId, options SendPendingAccessReviewInstanceReminderOperationOptions) (result SendPendingAccessReviewInstanceReminderOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/sendReminder", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/sendReminder", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

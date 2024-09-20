@@ -93,7 +93,7 @@ func (id DirectoryOnPremisesSynchronizationId) Segments() []resourceids.Segment 
 	return []resourceids.Segment{
 		resourceids.StaticSegment("directory", "directory", "directory"),
 		resourceids.StaticSegment("onPremisesSynchronization", "onPremisesSynchronization", "onPremisesSynchronization"),
-		resourceids.UserSpecifiedSegment("onPremisesDirectorySynchronizationId", "onPremisesDirectorySynchronizationIdValue"),
+		resourceids.UserSpecifiedSegment("onPremisesDirectorySynchronizationId", "onPremisesDirectorySynchronizationId"),
 	}
 }
 

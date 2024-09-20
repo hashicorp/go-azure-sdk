@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/microsoft-graph/directoryroletemplates/beta/directoryroletemplate` Documentation
 
-The `directoryroletemplate` SDK allows for interaction with the Azure Resource Manager Service `directoryroletemplates` (API Version `beta`).
+The `directoryroletemplate` SDK allows for interaction with Microsoft Graph `directoryroletemplates` (API Version `beta`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -15,7 +15,7 @@ import "github.com/hashicorp/go-azure-sdk/microsoft-graph/directoryroletemplates
 ### Client Initialization
 
 ```go
-client := directoryroletemplate.NewDirectoryRoleTemplateClientWithBaseURI("https://management.azure.com")
+client := directoryroletemplate.NewDirectoryRoleTemplateClientWithBaseURI("https://graph.microsoft.com")
 client.Client.Authorizer = authorizer
 ```
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := directoryroletemplate.NewDirectoryRoleTemplateID("directoryRoleTemplateIdValue")
+id := directoryroletemplate.NewDirectoryRoleTemplateID("directoryRoleTemplateId")
 
 payload := directoryroletemplate.CheckMemberGroupsRequest{
 	// ...
@@ -46,7 +46,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := directoryroletemplate.NewDirectoryRoleTemplateID("directoryRoleTemplateIdValue")
+id := directoryroletemplate.NewDirectoryRoleTemplateID("directoryRoleTemplateId")
 
 payload := directoryroletemplate.CheckMemberObjectsRequest{
 	// ...
@@ -74,7 +74,47 @@ payload := directoryroletemplate.DirectoryRoleTemplate{
 }
 
 
-read, err := client.CreateDirectoryRoleTemplate(ctx, payload)
+read, err := client.CreateDirectoryRoleTemplate(ctx, payload, directoryroletemplate.DefaultCreateDirectoryRoleTemplateOperationOptions())
+if err != nil {
+	// handle the error
+}
+if model := read.Model; model != nil {
+	// do something with the model/response object
+}
+```
+
+
+### Example Usage: `DirectoryRoleTemplateClient.CreateGetsUserOwnedObject`
+
+```go
+ctx := context.TODO()
+
+payload := directoryroletemplate.CreateGetsUserOwnedObjectRequest{
+	// ...
+}
+
+
+read, err := client.CreateGetsUserOwnedObject(ctx, payload, directoryroletemplate.DefaultCreateGetsUserOwnedObjectOperationOptions())
+if err != nil {
+	// handle the error
+}
+if model := read.Model; model != nil {
+	// do something with the model/response object
+}
+```
+
+
+### Example Usage: `DirectoryRoleTemplateClient.CreateValidatesProperty`
+
+```go
+ctx := context.TODO()
+
+payload := directoryroletemplate.CreateValidatesPropertyRequest{
+	// ...
+}
+
+
+read, err := client.CreateValidatesProperty(ctx, payload, directoryroletemplate.DefaultCreateValidatesPropertyOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -88,46 +128,9 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := directoryroletemplate.NewDirectoryRoleTemplateID("directoryRoleTemplateIdValue")
+id := directoryroletemplate.NewDirectoryRoleTemplateID("directoryRoleTemplateId")
 
 read, err := client.DeleteDirectoryRoleTemplate(ctx, id, directoryroletemplate.DefaultDeleteDirectoryRoleTemplateOperationOptions())
-if err != nil {
-	// handle the error
-}
-if model := read.Model; model != nil {
-	// do something with the model/response object
-}
-```
-
-
-### Example Usage: `DirectoryRoleTemplateClient.GetByIds`
-
-```go
-ctx := context.TODO()
-
-payload := directoryroletemplate.GetByIdsRequest{
-	// ...
-}
-
-
-// alternatively `client.GetByIds(ctx, payload, directoryroletemplate.DefaultGetByIdsOperationOptions())` can be used to do batched pagination
-items, err := client.GetByIdsComplete(ctx, payload, directoryroletemplate.DefaultGetByIdsOperationOptions())
-if err != nil {
-	// handle the error
-}
-for _, item := range items {
-	// do something
-}
-```
-
-
-### Example Usage: `DirectoryRoleTemplateClient.GetCount`
-
-```go
-ctx := context.TODO()
-
-
-read, err := client.GetCount(ctx, directoryroletemplate.DefaultGetCountOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -141,7 +144,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := directoryroletemplate.NewDirectoryRoleTemplateID("directoryRoleTemplateIdValue")
+id := directoryroletemplate.NewDirectoryRoleTemplateID("directoryRoleTemplateId")
 
 read, err := client.GetDirectoryRoleTemplate(ctx, id, directoryroletemplate.DefaultGetDirectoryRoleTemplateOperationOptions())
 if err != nil {
@@ -157,7 +160,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := directoryroletemplate.NewDirectoryRoleTemplateID("directoryRoleTemplateIdValue")
+id := directoryroletemplate.NewDirectoryRoleTemplateID("directoryRoleTemplateId")
 
 payload := directoryroletemplate.GetMemberGroupsRequest{
 	// ...
@@ -179,7 +182,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := directoryroletemplate.NewDirectoryRoleTemplateID("directoryRoleTemplateIdValue")
+id := directoryroletemplate.NewDirectoryRoleTemplateID("directoryRoleTemplateId")
 
 payload := directoryroletemplate.GetMemberObjectsRequest{
 	// ...
@@ -197,17 +200,13 @@ for _, item := range items {
 ```
 
 
-### Example Usage: `DirectoryRoleTemplateClient.GetUserOwnedObject`
+### Example Usage: `DirectoryRoleTemplateClient.GetsCount`
 
 ```go
 ctx := context.TODO()
 
-payload := directoryroletemplate.GetUserOwnedObjectRequest{
-	// ...
-}
 
-
-read, err := client.GetUserOwnedObject(ctx, payload)
+read, err := client.GetsCount(ctx, directoryroletemplate.DefaultGetsCountOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -234,18 +233,39 @@ for _, item := range items {
 ```
 
 
+### Example Usage: `DirectoryRoleTemplateClient.ListGetsByIds`
+
+```go
+ctx := context.TODO()
+
+payload := directoryroletemplate.ListGetsByIdsRequest{
+	// ...
+}
+
+
+// alternatively `client.ListGetsByIds(ctx, payload, directoryroletemplate.DefaultListGetsByIdsOperationOptions())` can be used to do batched pagination
+items, err := client.ListGetsByIdsComplete(ctx, payload, directoryroletemplate.DefaultListGetsByIdsOperationOptions())
+if err != nil {
+	// handle the error
+}
+for _, item := range items {
+	// do something
+}
+```
+
+
 ### Example Usage: `DirectoryRoleTemplateClient.Restore`
 
 ```go
 ctx := context.TODO()
-id := directoryroletemplate.NewDirectoryRoleTemplateID("directoryRoleTemplateIdValue")
+id := directoryroletemplate.NewDirectoryRoleTemplateID("directoryRoleTemplateId")
 
 payload := directoryroletemplate.RestoreRequest{
 	// ...
 }
 
 
-read, err := client.Restore(ctx, id, payload)
+read, err := client.Restore(ctx, id, payload, directoryroletemplate.DefaultRestoreOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -259,34 +279,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := directoryroletemplate.NewDirectoryRoleTemplateID("directoryRoleTemplateIdValue")
+id := directoryroletemplate.NewDirectoryRoleTemplateID("directoryRoleTemplateId")
 
 payload := directoryroletemplate.DirectoryRoleTemplate{
 	// ...
 }
 
 
-read, err := client.UpdateDirectoryRoleTemplate(ctx, id, payload)
-if err != nil {
-	// handle the error
-}
-if model := read.Model; model != nil {
-	// do something with the model/response object
-}
-```
-
-
-### Example Usage: `DirectoryRoleTemplateClient.ValidateProperty`
-
-```go
-ctx := context.TODO()
-
-payload := directoryroletemplate.ValidatePropertyRequest{
-	// ...
-}
-
-
-read, err := client.ValidateProperty(ctx, payload)
+read, err := client.UpdateDirectoryRoleTemplate(ctx, id, payload, directoryroletemplate.DefaultUpdateDirectoryRoleTemplateOperationOptions())
 if err != nil {
 	// handle the error
 }

@@ -18,15 +18,44 @@ type RetireComanagedDeviceOperationResponse struct {
 	OData        *odata.OData
 }
 
+type RetireComanagedDeviceOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultRetireComanagedDeviceOperationOptions() RetireComanagedDeviceOperationOptions {
+	return RetireComanagedDeviceOperationOptions{}
+}
+
+func (o RetireComanagedDeviceOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o RetireComanagedDeviceOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o RetireComanagedDeviceOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // RetireComanagedDevice - Invoke action retire. Retire a device
-func (c ComanagedDeviceClient) RetireComanagedDevice(ctx context.Context, id beta.DeviceManagementComanagedDeviceId) (result RetireComanagedDeviceOperationResponse, err error) {
+func (c ComanagedDeviceClient) RetireComanagedDevice(ctx context.Context, id beta.DeviceManagementComanagedDeviceId, options RetireComanagedDeviceOperationOptions) (result RetireComanagedDeviceOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/retire", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/retire", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -19,7 +19,8 @@ type DeleteDailyPrintUsageSummariesByPrinterOperationResponse struct {
 }
 
 type DeleteDailyPrintUsageSummariesByPrinterOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteDailyPrintUsageSummariesByPrinterOperationOptions() DeleteDailyPrintUsageSummariesByPrinterOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteDailyPrintUsageSummariesByPrinterOperationOptions) ToHeaders() *cl
 
 func (o DeleteDailyPrintUsageSummariesByPrinterOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

@@ -18,15 +18,44 @@ type CreateComplianceCategoryOperationResponse struct {
 	Model        *beta.DeviceManagementConfigurationCategory
 }
 
+type CreateComplianceCategoryOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateComplianceCategoryOperationOptions() CreateComplianceCategoryOperationOptions {
+	return CreateComplianceCategoryOperationOptions{}
+}
+
+func (o CreateComplianceCategoryOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateComplianceCategoryOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateComplianceCategoryOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateComplianceCategory - Create new navigation property to complianceCategories for deviceManagement
-func (c ComplianceCategoryClient) CreateComplianceCategory(ctx context.Context, input beta.DeviceManagementConfigurationCategory) (result CreateComplianceCategoryOperationResponse, err error) {
+func (c ComplianceCategoryClient) CreateComplianceCategory(ctx context.Context, input beta.DeviceManagementConfigurationCategory, options CreateComplianceCategoryOperationOptions) (result CreateComplianceCategoryOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/deviceManagement/complianceCategories",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/deviceManagement/complianceCategories",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

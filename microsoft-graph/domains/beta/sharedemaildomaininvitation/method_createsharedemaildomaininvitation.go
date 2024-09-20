@@ -19,15 +19,44 @@ type CreateSharedEmailDomainInvitationOperationResponse struct {
 	Model        *beta.SharedEmailDomainInvitation
 }
 
+type CreateSharedEmailDomainInvitationOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateSharedEmailDomainInvitationOperationOptions() CreateSharedEmailDomainInvitationOperationOptions {
+	return CreateSharedEmailDomainInvitationOperationOptions{}
+}
+
+func (o CreateSharedEmailDomainInvitationOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateSharedEmailDomainInvitationOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateSharedEmailDomainInvitationOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateSharedEmailDomainInvitation - Create new navigation property to sharedEmailDomainInvitations for domains
-func (c SharedEmailDomainInvitationClient) CreateSharedEmailDomainInvitation(ctx context.Context, id beta.DomainId, input beta.SharedEmailDomainInvitation) (result CreateSharedEmailDomainInvitationOperationResponse, err error) {
+func (c SharedEmailDomainInvitationClient) CreateSharedEmailDomainInvitation(ctx context.Context, id beta.DomainId, input beta.SharedEmailDomainInvitation, options CreateSharedEmailDomainInvitationOperationOptions) (result CreateSharedEmailDomainInvitationOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/sharedEmailDomainInvitations", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/sharedEmailDomainInvitations", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -19,15 +19,44 @@ type CreateAccessReviewHistoryDefinitionInstanceOperationResponse struct {
 	Model        *beta.AccessReviewHistoryInstance
 }
 
+type CreateAccessReviewHistoryDefinitionInstanceOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateAccessReviewHistoryDefinitionInstanceOperationOptions() CreateAccessReviewHistoryDefinitionInstanceOperationOptions {
+	return CreateAccessReviewHistoryDefinitionInstanceOperationOptions{}
+}
+
+func (o CreateAccessReviewHistoryDefinitionInstanceOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateAccessReviewHistoryDefinitionInstanceOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateAccessReviewHistoryDefinitionInstanceOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateAccessReviewHistoryDefinitionInstance - Create new navigation property to instances for identityGovernance
-func (c AccessReviewHistoryDefinitionInstanceClient) CreateAccessReviewHistoryDefinitionInstance(ctx context.Context, id beta.IdentityGovernanceAccessReviewHistoryDefinitionId, input beta.AccessReviewHistoryInstance) (result CreateAccessReviewHistoryDefinitionInstanceOperationResponse, err error) {
+func (c AccessReviewHistoryDefinitionInstanceClient) CreateAccessReviewHistoryDefinitionInstance(ctx context.Context, id beta.IdentityGovernanceAccessReviewHistoryDefinitionId, input beta.AccessReviewHistoryInstance, options CreateAccessReviewHistoryDefinitionInstanceOperationOptions) (result CreateAccessReviewHistoryDefinitionInstanceOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/instances", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/instances", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

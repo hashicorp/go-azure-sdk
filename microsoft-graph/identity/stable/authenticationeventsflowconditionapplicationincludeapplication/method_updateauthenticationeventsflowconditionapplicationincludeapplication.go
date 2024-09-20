@@ -17,16 +17,45 @@ type UpdateAuthenticationEventsFlowConditionApplicationIncludeApplicationOperati
 	OData        *odata.OData
 }
 
+type UpdateAuthenticationEventsFlowConditionApplicationIncludeApplicationOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateAuthenticationEventsFlowConditionApplicationIncludeApplicationOperationOptions() UpdateAuthenticationEventsFlowConditionApplicationIncludeApplicationOperationOptions {
+	return UpdateAuthenticationEventsFlowConditionApplicationIncludeApplicationOperationOptions{}
+}
+
+func (o UpdateAuthenticationEventsFlowConditionApplicationIncludeApplicationOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateAuthenticationEventsFlowConditionApplicationIncludeApplicationOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateAuthenticationEventsFlowConditionApplicationIncludeApplicationOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateAuthenticationEventsFlowConditionApplicationIncludeApplication - Update the navigation property
 // includeApplications in identity
-func (c AuthenticationEventsFlowConditionApplicationIncludeApplicationClient) UpdateAuthenticationEventsFlowConditionApplicationIncludeApplication(ctx context.Context, id stable.IdentityAuthenticationEventsFlowIdConditionApplicationIncludeApplicationId, input stable.AuthenticationConditionApplication) (result UpdateAuthenticationEventsFlowConditionApplicationIncludeApplicationOperationResponse, err error) {
+func (c AuthenticationEventsFlowConditionApplicationIncludeApplicationClient) UpdateAuthenticationEventsFlowConditionApplicationIncludeApplication(ctx context.Context, id stable.IdentityAuthenticationEventsFlowIdConditionApplicationIncludeApplicationId, input stable.AuthenticationConditionApplication, options UpdateAuthenticationEventsFlowConditionApplicationIncludeApplicationOperationOptions) (result UpdateAuthenticationEventsFlowConditionApplicationIncludeApplicationOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -19,17 +19,46 @@ type CreateThreadOperationResponse struct {
 	Model        *beta.ConversationThread
 }
 
+type CreateThreadOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateThreadOperationOptions() CreateThreadOperationOptions {
+	return CreateThreadOperationOptions{}
+}
+
+func (o CreateThreadOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateThreadOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateThreadOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateThread - Create conversation thread. Start a new group conversation by first creating a thread. A new
 // conversation, conversation thread, and post are created in the group. Use reply thread or reply post to further post
 // to that thread. Note: You can also start a new thread in an existing conversation.
-func (c ThreadClient) CreateThread(ctx context.Context, id beta.GroupId, input beta.ConversationThread) (result CreateThreadOperationResponse, err error) {
+func (c ThreadClient) CreateThread(ctx context.Context, id beta.GroupId, input beta.ConversationThread, options CreateThreadOperationOptions) (result CreateThreadOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/threads", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/threads", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

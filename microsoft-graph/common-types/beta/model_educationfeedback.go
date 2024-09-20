@@ -31,10 +31,15 @@ type EducationFeedback struct {
 var _ json.Unmarshaler = &EducationFeedback{}
 
 func (s *EducationFeedback) UnmarshalJSON(bytes []byte) error {
-	type alias EducationFeedback
-	var decoded alias
+
+	var decoded struct {
+		FeedbackDateTime nullable.Type[string] `json:"feedbackDateTime,omitempty"`
+		ODataId          *string               `json:"@odata.id,omitempty"`
+		ODataType        *string               `json:"@odata.type,omitempty"`
+		Text             *EducationItemBody    `json:"text,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into EducationFeedback: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.FeedbackDateTime = decoded.FeedbackDateTime
@@ -54,5 +59,6 @@ func (s *EducationFeedback) UnmarshalJSON(bytes []byte) error {
 		}
 		s.FeedbackBy = impl
 	}
+
 	return nil
 }

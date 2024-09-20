@@ -19,8 +19,9 @@ type GetEntitlementManagementCatalogResourceRoleResourceScopeOperationResponse s
 }
 
 type GetEntitlementManagementCatalogResourceRoleResourceScopeOperationOptions struct {
-	Expand *odata.Expand
-	Select *[]string
+	Expand   *odata.Expand
+	Metadata *odata.Metadata
+	Select   *[]string
 }
 
 func DefaultGetEntitlementManagementCatalogResourceRoleResourceScopeOperationOptions() GetEntitlementManagementCatalogResourceRoleResourceScopeOperationOptions {
@@ -38,6 +39,9 @@ func (o GetEntitlementManagementCatalogResourceRoleResourceScopeOperationOptions
 	if o.Expand != nil {
 		out.Expand = *o.Expand
 	}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	if o.Select != nil {
 		out.Select = *o.Select
 	}
@@ -52,7 +56,7 @@ func (o GetEntitlementManagementCatalogResourceRoleResourceScopeOperationOptions
 
 // GetEntitlementManagementCatalogResourceRoleResourceScope - Get scopes from identityGovernance. Read-only. Nullable.
 // Supports $expand.
-func (c EntitlementManagementCatalogResourceRoleResourceScopeClient) GetEntitlementManagementCatalogResourceRoleResourceScope(ctx context.Context, id stable.IdentityGovernanceEntitlementManagementCatalogIdResourceRoleIdResourceScopeId, options GetEntitlementManagementCatalogResourceRoleResourceScopeOperationOptions) (result GetEntitlementManagementCatalogResourceRoleResourceScopeOperationResponse, err error) {
+func (c EntitlementManagementCatalogResourceRoleResourceScopeClient) GetEntitlementManagementCatalogResourceRoleResourceScope(ctx context.Context, id stable.IdentityGovernanceEntitlementManagementCatalogIdResourceIdRoleIdResourceScopeId, options GetEntitlementManagementCatalogResourceRoleResourceScopeOperationOptions) (result GetEntitlementManagementCatalogResourceRoleResourceScopeOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{

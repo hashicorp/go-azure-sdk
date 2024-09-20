@@ -17,16 +17,45 @@ type UpdateVirtualEndpointCrossCloudGovernmentOrganizationMappingOperationRespon
 	OData        *odata.OData
 }
 
+type UpdateVirtualEndpointCrossCloudGovernmentOrganizationMappingOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateVirtualEndpointCrossCloudGovernmentOrganizationMappingOperationOptions() UpdateVirtualEndpointCrossCloudGovernmentOrganizationMappingOperationOptions {
+	return UpdateVirtualEndpointCrossCloudGovernmentOrganizationMappingOperationOptions{}
+}
+
+func (o UpdateVirtualEndpointCrossCloudGovernmentOrganizationMappingOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateVirtualEndpointCrossCloudGovernmentOrganizationMappingOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateVirtualEndpointCrossCloudGovernmentOrganizationMappingOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateVirtualEndpointCrossCloudGovernmentOrganizationMapping - Update the navigation property
 // crossCloudGovernmentOrganizationMapping in deviceManagement
-func (c VirtualEndpointCrossCloudGovernmentOrganizationMappingClient) UpdateVirtualEndpointCrossCloudGovernmentOrganizationMapping(ctx context.Context, input beta.CloudPCCrossCloudGovernmentOrganizationMapping) (result UpdateVirtualEndpointCrossCloudGovernmentOrganizationMappingOperationResponse, err error) {
+func (c VirtualEndpointCrossCloudGovernmentOrganizationMappingClient) UpdateVirtualEndpointCrossCloudGovernmentOrganizationMapping(ctx context.Context, input beta.CloudPCCrossCloudGovernmentOrganizationMapping, options UpdateVirtualEndpointCrossCloudGovernmentOrganizationMappingOperationOptions) (result UpdateVirtualEndpointCrossCloudGovernmentOrganizationMappingOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       "/deviceManagement/virtualEndpoint/crossCloudGovernmentOrganizationMapping",
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          "/deviceManagement/virtualEndpoint/crossCloudGovernmentOrganizationMapping",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

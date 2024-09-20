@@ -19,7 +19,8 @@ type DeleteEntitlementManagementCatalogResourceRoleOperationResponse struct {
 }
 
 type DeleteEntitlementManagementCatalogResourceRoleOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteEntitlementManagementCatalogResourceRoleOperationOptions() DeleteEntitlementManagementCatalogResourceRoleOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteEntitlementManagementCatalogResourceRoleOperationOptions) ToHeader
 
 func (o DeleteEntitlementManagementCatalogResourceRoleOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 
@@ -46,8 +49,8 @@ func (o DeleteEntitlementManagementCatalogResourceRoleOperationOptions) ToQuery(
 	return &out
 }
 
-// DeleteEntitlementManagementCatalogResourceRole - Delete navigation property resourceRoles for identityGovernance
-func (c EntitlementManagementCatalogResourceRoleClient) DeleteEntitlementManagementCatalogResourceRole(ctx context.Context, id stable.IdentityGovernanceEntitlementManagementCatalogIdResourceRoleId, options DeleteEntitlementManagementCatalogResourceRoleOperationOptions) (result DeleteEntitlementManagementCatalogResourceRoleOperationResponse, err error) {
+// DeleteEntitlementManagementCatalogResourceRole - Delete navigation property roles for identityGovernance
+func (c EntitlementManagementCatalogResourceRoleClient) DeleteEntitlementManagementCatalogResourceRole(ctx context.Context, id stable.IdentityGovernanceEntitlementManagementCatalogIdResourceIdRoleId, options DeleteEntitlementManagementCatalogResourceRoleOperationOptions) (result DeleteEntitlementManagementCatalogResourceRoleOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{

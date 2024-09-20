@@ -2,7 +2,6 @@ package photo
 
 import (
 	"context"
-	"fmt"
 	"net/http"
 
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta"
@@ -20,8 +19,9 @@ type GetPhotoOperationResponse struct {
 }
 
 type GetPhotoOperationOptions struct {
-	Expand *odata.Expand
-	Select *[]string
+	Expand   *odata.Expand
+	Metadata *odata.Metadata
+	Select   *[]string
 }
 
 func DefaultGetPhotoOperationOptions() GetPhotoOperationOptions {
@@ -39,6 +39,9 @@ func (o GetPhotoOperationOptions) ToOData() *odata.Query {
 	if o.Expand != nil {
 		out.Expand = *o.Expand
 	}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	if o.Select != nil {
 		out.Select = *o.Select
 	}
@@ -51,8 +54,8 @@ func (o GetPhotoOperationOptions) ToQuery() *client.QueryParams {
 	return &out
 }
 
-// GetPhoto - Get photo from users. The user's profile photo. Read-only.
-func (c PhotoClient) GetPhoto(ctx context.Context, id beta.UserId, options GetPhotoOperationOptions) (result GetPhotoOperationResponse, err error) {
+// GetPhoto - Get photos from users. The collection of the user's profile photos in different sizes. Read-only.
+func (c PhotoClient) GetPhoto(ctx context.Context, id beta.UserIdPhotoId, options GetPhotoOperationOptions) (result GetPhotoOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
@@ -60,7 +63,7 @@ func (c PhotoClient) GetPhoto(ctx context.Context, id beta.UserId, options GetPh
 		},
 		HttpMethod:    http.MethodGet,
 		OptionsObject: options,
-		Path:          fmt.Sprintf("%s/photo", id.ID()),
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

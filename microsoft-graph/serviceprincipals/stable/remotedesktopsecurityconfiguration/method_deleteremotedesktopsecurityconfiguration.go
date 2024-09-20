@@ -19,7 +19,8 @@ type DeleteRemoteDesktopSecurityConfigurationOperationResponse struct {
 }
 
 type DeleteRemoteDesktopSecurityConfigurationOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteRemoteDesktopSecurityConfigurationOperationOptions() DeleteRemoteDesktopSecurityConfigurationOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteRemoteDesktopSecurityConfigurationOperationOptions) ToHeaders() *c
 
 func (o DeleteRemoteDesktopSecurityConfigurationOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

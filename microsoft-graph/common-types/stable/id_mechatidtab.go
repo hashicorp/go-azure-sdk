@@ -99,9 +99,9 @@ func (id MeChatIdTabId) Segments() []resourceids.Segment {
 	return []resourceids.Segment{
 		resourceids.StaticSegment("me", "me", "me"),
 		resourceids.StaticSegment("chats", "chats", "chats"),
-		resourceids.UserSpecifiedSegment("chatId", "chatIdValue"),
+		resourceids.UserSpecifiedSegment("chatId", "chatId"),
 		resourceids.StaticSegment("tabs", "tabs", "tabs"),
-		resourceids.UserSpecifiedSegment("teamsTabId", "teamsTabIdValue"),
+		resourceids.UserSpecifiedSegment("teamsTabId", "teamsTabId"),
 	}
 }
 

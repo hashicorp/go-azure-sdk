@@ -17,15 +17,44 @@ type UpdateWindowsQualityUpdateProfileOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateWindowsQualityUpdateProfileOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateWindowsQualityUpdateProfileOperationOptions() UpdateWindowsQualityUpdateProfileOperationOptions {
+	return UpdateWindowsQualityUpdateProfileOperationOptions{}
+}
+
+func (o UpdateWindowsQualityUpdateProfileOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateWindowsQualityUpdateProfileOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateWindowsQualityUpdateProfileOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateWindowsQualityUpdateProfile - Update the navigation property windowsQualityUpdateProfiles in deviceManagement
-func (c WindowsQualityUpdateProfileClient) UpdateWindowsQualityUpdateProfile(ctx context.Context, id beta.DeviceManagementWindowsQualityUpdateProfileId, input beta.WindowsQualityUpdateProfile) (result UpdateWindowsQualityUpdateProfileOperationResponse, err error) {
+func (c WindowsQualityUpdateProfileClient) UpdateWindowsQualityUpdateProfile(ctx context.Context, id beta.DeviceManagementWindowsQualityUpdateProfileId, input beta.WindowsQualityUpdateProfile, options UpdateWindowsQualityUpdateProfileOperationOptions) (result UpdateWindowsQualityUpdateProfileOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

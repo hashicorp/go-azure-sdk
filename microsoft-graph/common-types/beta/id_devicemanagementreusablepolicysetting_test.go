@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &DeviceManagementReusablePolicySettingId{}
 
 func TestNewDeviceManagementReusablePolicySettingID(t *testing.T) {
-	id := NewDeviceManagementReusablePolicySettingID("deviceManagementReusablePolicySettingIdValue")
+	id := NewDeviceManagementReusablePolicySettingID("deviceManagementReusablePolicySettingId")
 
-	if id.DeviceManagementReusablePolicySettingId != "deviceManagementReusablePolicySettingIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DeviceManagementReusablePolicySettingId'", id.DeviceManagementReusablePolicySettingId, "deviceManagementReusablePolicySettingIdValue")
+	if id.DeviceManagementReusablePolicySettingId != "deviceManagementReusablePolicySettingId" {
+		t.Fatalf("Expected %q but got %q for Segment 'DeviceManagementReusablePolicySettingId'", id.DeviceManagementReusablePolicySettingId, "deviceManagementReusablePolicySettingId")
 	}
 }
 
 func TestFormatDeviceManagementReusablePolicySettingID(t *testing.T) {
-	actual := NewDeviceManagementReusablePolicySettingID("deviceManagementReusablePolicySettingIdValue").ID()
-	expected := "/deviceManagement/reusablePolicySettings/deviceManagementReusablePolicySettingIdValue"
+	actual := NewDeviceManagementReusablePolicySettingID("deviceManagementReusablePolicySettingId").ID()
+	expected := "/deviceManagement/reusablePolicySettings/deviceManagementReusablePolicySettingId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -50,14 +50,14 @@ func TestParseDeviceManagementReusablePolicySettingID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/reusablePolicySettings/deviceManagementReusablePolicySettingIdValue",
+			Input: "/deviceManagement/reusablePolicySettings/deviceManagementReusablePolicySettingId",
 			Expected: &DeviceManagementReusablePolicySettingId{
-				DeviceManagementReusablePolicySettingId: "deviceManagementReusablePolicySettingIdValue",
+				DeviceManagementReusablePolicySettingId: "deviceManagementReusablePolicySettingId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/reusablePolicySettings/deviceManagementReusablePolicySettingIdValue/extra",
+			Input: "/deviceManagement/reusablePolicySettings/deviceManagementReusablePolicySettingId/extra",
 			Error: true,
 		},
 	}
@@ -116,26 +116,26 @@ func TestParseDeviceManagementReusablePolicySettingIDInsensitively(t *testing.T)
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/reusablePolicySettings/deviceManagementReusablePolicySettingIdValue",
+			Input: "/deviceManagement/reusablePolicySettings/deviceManagementReusablePolicySettingId",
 			Expected: &DeviceManagementReusablePolicySettingId{
-				DeviceManagementReusablePolicySettingId: "deviceManagementReusablePolicySettingIdValue",
+				DeviceManagementReusablePolicySettingId: "deviceManagementReusablePolicySettingId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/reusablePolicySettings/deviceManagementReusablePolicySettingIdValue/extra",
+			Input: "/deviceManagement/reusablePolicySettings/deviceManagementReusablePolicySettingId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/rEuSaBlEpOlIcYsEtTiNgS/dEvIcEmAnAgEmEnTrEuSaBlEpOlIcYsEtTiNgIdVaLuE",
+			Input: "/dEvIcEmAnAgEmEnT/rEuSaBlEpOlIcYsEtTiNgS/dEvIcEmAnAgEmEnTrEuSaBlEpOlIcYsEtTiNgId",
 			Expected: &DeviceManagementReusablePolicySettingId{
-				DeviceManagementReusablePolicySettingId: "dEvIcEmAnAgEmEnTrEuSaBlEpOlIcYsEtTiNgIdVaLuE",
+				DeviceManagementReusablePolicySettingId: "dEvIcEmAnAgEmEnTrEuSaBlEpOlIcYsEtTiNgId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/rEuSaBlEpOlIcYsEtTiNgS/dEvIcEmAnAgEmEnTrEuSaBlEpOlIcYsEtTiNgIdVaLuE/extra",
+			Input: "/dEvIcEmAnAgEmEnT/rEuSaBlEpOlIcYsEtTiNgS/dEvIcEmAnAgEmEnTrEuSaBlEpOlIcYsEtTiNgId/extra",
 			Error: true,
 		},
 	}

@@ -31,10 +31,15 @@ type SecurityWhoisNameserver struct {
 var _ json.Unmarshaler = &SecurityWhoisNameserver{}
 
 func (s *SecurityWhoisNameserver) UnmarshalJSON(bytes []byte) error {
-	type alias SecurityWhoisNameserver
-	var decoded alias
+
+	var decoded struct {
+		FirstSeenDateTime nullable.Type[string] `json:"firstSeenDateTime,omitempty"`
+		LastSeenDateTime  nullable.Type[string] `json:"lastSeenDateTime,omitempty"`
+		ODataId           *string               `json:"@odata.id,omitempty"`
+		ODataType         *string               `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into SecurityWhoisNameserver: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.FirstSeenDateTime = decoded.FirstSeenDateTime
@@ -54,5 +59,6 @@ func (s *SecurityWhoisNameserver) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Host = &impl
 	}
+
 	return nil
 }

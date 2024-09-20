@@ -19,16 +19,45 @@ type CreateGroupPolicyMigrationReportUnsupportedExtensionOperationResponse struc
 	Model        *beta.UnsupportedGroupPolicyExtension
 }
 
+type CreateGroupPolicyMigrationReportUnsupportedExtensionOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateGroupPolicyMigrationReportUnsupportedExtensionOperationOptions() CreateGroupPolicyMigrationReportUnsupportedExtensionOperationOptions {
+	return CreateGroupPolicyMigrationReportUnsupportedExtensionOperationOptions{}
+}
+
+func (o CreateGroupPolicyMigrationReportUnsupportedExtensionOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateGroupPolicyMigrationReportUnsupportedExtensionOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateGroupPolicyMigrationReportUnsupportedExtensionOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateGroupPolicyMigrationReportUnsupportedExtension - Create new navigation property to
 // unsupportedGroupPolicyExtensions for deviceManagement
-func (c GroupPolicyMigrationReportUnsupportedGroupPolicyExtensionClient) CreateGroupPolicyMigrationReportUnsupportedExtension(ctx context.Context, id beta.DeviceManagementGroupPolicyMigrationReportId, input beta.UnsupportedGroupPolicyExtension) (result CreateGroupPolicyMigrationReportUnsupportedExtensionOperationResponse, err error) {
+func (c GroupPolicyMigrationReportUnsupportedGroupPolicyExtensionClient) CreateGroupPolicyMigrationReportUnsupportedExtension(ctx context.Context, id beta.DeviceManagementGroupPolicyMigrationReportId, input beta.UnsupportedGroupPolicyExtension, options CreateGroupPolicyMigrationReportUnsupportedExtensionOperationOptions) (result CreateGroupPolicyMigrationReportUnsupportedExtensionOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/unsupportedGroupPolicyExtensions", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/unsupportedGroupPolicyExtensions", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

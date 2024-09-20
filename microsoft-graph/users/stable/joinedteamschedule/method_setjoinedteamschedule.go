@@ -18,15 +18,44 @@ type SetJoinedTeamScheduleOperationResponse struct {
 	OData        *odata.OData
 }
 
+type SetJoinedTeamScheduleOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultSetJoinedTeamScheduleOperationOptions() SetJoinedTeamScheduleOperationOptions {
+	return SetJoinedTeamScheduleOperationOptions{}
+}
+
+func (o SetJoinedTeamScheduleOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o SetJoinedTeamScheduleOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o SetJoinedTeamScheduleOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // SetJoinedTeamSchedule - Update the navigation property schedule in users
-func (c JoinedTeamScheduleClient) SetJoinedTeamSchedule(ctx context.Context, id stable.UserIdJoinedTeamId, input stable.Schedule) (result SetJoinedTeamScheduleOperationResponse, err error) {
+func (c JoinedTeamScheduleClient) SetJoinedTeamSchedule(ctx context.Context, id stable.UserIdJoinedTeamId, input stable.Schedule, options SetJoinedTeamScheduleOperationOptions) (result SetJoinedTeamScheduleOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPut,
-		Path:       fmt.Sprintf("%s/schedule", id.ID()),
+		HttpMethod:    http.MethodPut,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/schedule", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

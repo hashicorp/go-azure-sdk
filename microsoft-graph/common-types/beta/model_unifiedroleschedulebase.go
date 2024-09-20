@@ -141,10 +141,25 @@ func (s BaseUnifiedRoleScheduleBaseImpl) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &BaseUnifiedRoleScheduleBaseImpl{}
 
 func (s *BaseUnifiedRoleScheduleBaseImpl) UnmarshalJSON(bytes []byte) error {
-	type alias BaseUnifiedRoleScheduleBaseImpl
-	var decoded alias
+
+	var decoded struct {
+		AppScopeId               nullable.Type[string]  `json:"appScopeId,omitempty"`
+		CreatedDateTime          nullable.Type[string]  `json:"createdDateTime,omitempty"`
+		CreatedUsing             nullable.Type[string]  `json:"createdUsing,omitempty"`
+		DirectoryScopeId         nullable.Type[string]  `json:"directoryScopeId,omitempty"`
+		DirectoryScope_ODataBind *string                `json:"directoryScope@odata.bind,omitempty"`
+		ModifiedDateTime         nullable.Type[string]  `json:"modifiedDateTime,omitempty"`
+		PrincipalId              nullable.Type[string]  `json:"principalId,omitempty"`
+		Principal_ODataBind      *string                `json:"principal@odata.bind,omitempty"`
+		RoleDefinition           *UnifiedRoleDefinition `json:"roleDefinition,omitempty"`
+		RoleDefinitionId         nullable.Type[string]  `json:"roleDefinitionId,omitempty"`
+		Status                   nullable.Type[string]  `json:"status,omitempty"`
+		Id                       *string                `json:"id,omitempty"`
+		ODataId                  *string                `json:"@odata.id,omitempty"`
+		ODataType                *string                `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into BaseUnifiedRoleScheduleBaseImpl: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.AppScopeId = decoded.AppScopeId
@@ -152,15 +167,15 @@ func (s *BaseUnifiedRoleScheduleBaseImpl) UnmarshalJSON(bytes []byte) error {
 	s.CreatedUsing = decoded.CreatedUsing
 	s.DirectoryScopeId = decoded.DirectoryScopeId
 	s.DirectoryScope_ODataBind = decoded.DirectoryScope_ODataBind
-	s.Id = decoded.Id
 	s.ModifiedDateTime = decoded.ModifiedDateTime
-	s.ODataId = decoded.ODataId
-	s.ODataType = decoded.ODataType
 	s.PrincipalId = decoded.PrincipalId
 	s.Principal_ODataBind = decoded.Principal_ODataBind
 	s.RoleDefinition = decoded.RoleDefinition
 	s.RoleDefinitionId = decoded.RoleDefinitionId
 	s.Status = decoded.Status
+	s.Id = decoded.Id
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -190,6 +205,7 @@ func (s *BaseUnifiedRoleScheduleBaseImpl) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Principal = &impl
 	}
+
 	return nil
 }
 
@@ -203,9 +219,9 @@ func UnmarshalUnifiedRoleScheduleBaseImplementation(input []byte) (UnifiedRoleSc
 		return nil, fmt.Errorf("unmarshaling UnifiedRoleScheduleBase into map[string]interface: %+v", err)
 	}
 
-	value, ok := temp["@odata.type"].(string)
-	if !ok {
-		return nil, nil
+	var value string
+	if v, ok := temp["@odata.type"]; ok {
+		value = fmt.Sprintf("%v", v)
 	}
 
 	if strings.EqualFold(value, "#microsoft.graph.unifiedRoleAssignmentSchedule") {

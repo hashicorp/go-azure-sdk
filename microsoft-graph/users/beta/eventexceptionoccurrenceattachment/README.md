@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/eventexceptionoccurrenceattachment` Documentation
 
-The `eventexceptionoccurrenceattachment` SDK allows for interaction with the Azure Resource Manager Service `users` (API Version `beta`).
+The `eventexceptionoccurrenceattachment` SDK allows for interaction with Microsoft Graph `users` (API Version `beta`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -15,7 +15,7 @@ import "github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/eventexcept
 ### Client Initialization
 
 ```go
-client := eventexceptionoccurrenceattachment.NewEventExceptionOccurrenceAttachmentClientWithBaseURI("https://management.azure.com")
+client := eventexceptionoccurrenceattachment.NewEventExceptionOccurrenceAttachmentClientWithBaseURI("https://graph.microsoft.com")
 client.Client.Authorizer = authorizer
 ```
 
@@ -24,14 +24,14 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := eventexceptionoccurrenceattachment.NewUserIdEventIdExceptionOccurrenceID("userIdValue", "eventIdValue", "eventId1Value")
+id := eventexceptionoccurrenceattachment.NewUserIdEventIdExceptionOccurrenceID("userId", "eventId", "eventId1")
 
 payload := eventexceptionoccurrenceattachment.Attachment{
 	// ...
 }
 
 
-read, err := client.CreateEventExceptionOccurrenceAttachment(ctx, id, payload)
+read, err := client.CreateEventExceptionOccurrenceAttachment(ctx, id, payload, eventexceptionoccurrenceattachment.DefaultCreateEventExceptionOccurrenceAttachmentOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -45,14 +45,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := eventexceptionoccurrenceattachment.NewUserIdEventIdExceptionOccurrenceID("userIdValue", "eventIdValue", "eventId1Value")
+id := eventexceptionoccurrenceattachment.NewUserIdEventIdExceptionOccurrenceID("userId", "eventId", "eventId1")
 
 payload := eventexceptionoccurrenceattachment.CreateEventExceptionOccurrenceAttachmentsUploadSessionRequest{
 	// ...
 }
 
 
-read, err := client.CreateEventExceptionOccurrenceAttachmentsUploadSession(ctx, id, payload)
+read, err := client.CreateEventExceptionOccurrenceAttachmentsUploadSession(ctx, id, payload, eventexceptionoccurrenceattachment.DefaultCreateEventExceptionOccurrenceAttachmentsUploadSessionOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -66,7 +66,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := eventexceptionoccurrenceattachment.NewUserIdEventIdExceptionOccurrenceIdAttachmentID("userIdValue", "eventIdValue", "eventId1Value", "attachmentIdValue")
+id := eventexceptionoccurrenceattachment.NewUserIdEventIdExceptionOccurrenceIdAttachmentID("userId", "eventId", "eventId1", "attachmentId")
 
 read, err := client.DeleteEventExceptionOccurrenceAttachment(ctx, id, eventexceptionoccurrenceattachment.DefaultDeleteEventExceptionOccurrenceAttachmentOperationOptions())
 if err != nil {
@@ -82,7 +82,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := eventexceptionoccurrenceattachment.NewUserIdEventIdExceptionOccurrenceIdAttachmentID("userIdValue", "eventIdValue", "eventId1Value", "attachmentIdValue")
+id := eventexceptionoccurrenceattachment.NewUserIdEventIdExceptionOccurrenceIdAttachmentID("userId", "eventId", "eventId1", "attachmentId")
 
 read, err := client.GetEventExceptionOccurrenceAttachment(ctx, id, eventexceptionoccurrenceattachment.DefaultGetEventExceptionOccurrenceAttachmentOperationOptions())
 if err != nil {
@@ -98,7 +98,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := eventexceptionoccurrenceattachment.NewUserIdEventIdExceptionOccurrenceID("userIdValue", "eventIdValue", "eventId1Value")
+id := eventexceptionoccurrenceattachment.NewUserIdEventIdExceptionOccurrenceID("userId", "eventId", "eventId1")
 
 read, err := client.GetEventExceptionOccurrenceAttachmentsCount(ctx, id, eventexceptionoccurrenceattachment.DefaultGetEventExceptionOccurrenceAttachmentsCountOperationOptions())
 if err != nil {
@@ -114,7 +114,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := eventexceptionoccurrenceattachment.NewUserIdEventIdExceptionOccurrenceID("userIdValue", "eventIdValue", "eventId1Value")
+id := eventexceptionoccurrenceattachment.NewUserIdEventIdExceptionOccurrenceID("userId", "eventId", "eventId1")
 
 // alternatively `client.ListEventExceptionOccurrenceAttachments(ctx, id, eventexceptionoccurrenceattachment.DefaultListEventExceptionOccurrenceAttachmentsOperationOptions())` can be used to do batched pagination
 items, err := client.ListEventExceptionOccurrenceAttachmentsComplete(ctx, id, eventexceptionoccurrenceattachment.DefaultListEventExceptionOccurrenceAttachmentsOperationOptions())

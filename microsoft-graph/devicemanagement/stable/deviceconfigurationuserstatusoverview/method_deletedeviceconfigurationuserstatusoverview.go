@@ -19,7 +19,8 @@ type DeleteDeviceConfigurationUserStatusOverviewOperationResponse struct {
 }
 
 type DeleteDeviceConfigurationUserStatusOverviewOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteDeviceConfigurationUserStatusOverviewOperationOptions() DeleteDeviceConfigurationUserStatusOverviewOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteDeviceConfigurationUserStatusOverviewOperationOptions) ToHeaders()
 
 func (o DeleteDeviceConfigurationUserStatusOverviewOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

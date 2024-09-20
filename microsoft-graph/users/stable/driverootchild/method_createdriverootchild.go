@@ -19,15 +19,44 @@ type CreateDriveRootChildOperationResponse struct {
 	Model        *stable.DriveItem
 }
 
+type CreateDriveRootChildOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateDriveRootChildOperationOptions() CreateDriveRootChildOperationOptions {
+	return CreateDriveRootChildOperationOptions{}
+}
+
+func (o CreateDriveRootChildOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateDriveRootChildOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateDriveRootChildOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateDriveRootChild - Create new navigation property to children for users
-func (c DriveRootChildClient) CreateDriveRootChild(ctx context.Context, id stable.UserIdDriveId, input stable.DriveItem) (result CreateDriveRootChildOperationResponse, err error) {
+func (c DriveRootChildClient) CreateDriveRootChild(ctx context.Context, id stable.UserIdDriveId, input stable.DriveItem, options CreateDriveRootChildOperationOptions) (result CreateDriveRootChildOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/root/children", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/root/children", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

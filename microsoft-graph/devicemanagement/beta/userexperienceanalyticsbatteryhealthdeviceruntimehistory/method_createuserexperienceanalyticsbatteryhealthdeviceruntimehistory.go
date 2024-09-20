@@ -18,16 +18,45 @@ type CreateUserExperienceAnalyticsBatteryHealthDeviceRuntimeHistoryOperationResp
 	Model        *beta.UserExperienceAnalyticsBatteryHealthDeviceRuntimeHistory
 }
 
+type CreateUserExperienceAnalyticsBatteryHealthDeviceRuntimeHistoryOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateUserExperienceAnalyticsBatteryHealthDeviceRuntimeHistoryOperationOptions() CreateUserExperienceAnalyticsBatteryHealthDeviceRuntimeHistoryOperationOptions {
+	return CreateUserExperienceAnalyticsBatteryHealthDeviceRuntimeHistoryOperationOptions{}
+}
+
+func (o CreateUserExperienceAnalyticsBatteryHealthDeviceRuntimeHistoryOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateUserExperienceAnalyticsBatteryHealthDeviceRuntimeHistoryOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateUserExperienceAnalyticsBatteryHealthDeviceRuntimeHistoryOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateUserExperienceAnalyticsBatteryHealthDeviceRuntimeHistory - Create new navigation property to
 // userExperienceAnalyticsBatteryHealthDeviceRuntimeHistory for deviceManagement
-func (c UserExperienceAnalyticsBatteryHealthDeviceRuntimeHistoryClient) CreateUserExperienceAnalyticsBatteryHealthDeviceRuntimeHistory(ctx context.Context, input beta.UserExperienceAnalyticsBatteryHealthDeviceRuntimeHistory) (result CreateUserExperienceAnalyticsBatteryHealthDeviceRuntimeHistoryOperationResponse, err error) {
+func (c UserExperienceAnalyticsBatteryHealthDeviceRuntimeHistoryClient) CreateUserExperienceAnalyticsBatteryHealthDeviceRuntimeHistory(ctx context.Context, input beta.UserExperienceAnalyticsBatteryHealthDeviceRuntimeHistory, options CreateUserExperienceAnalyticsBatteryHealthDeviceRuntimeHistoryOperationOptions) (result CreateUserExperienceAnalyticsBatteryHealthDeviceRuntimeHistoryOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/deviceManagement/userExperienceAnalyticsBatteryHealthDeviceRuntimeHistory",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/deviceManagement/userExperienceAnalyticsBatteryHealthDeviceRuntimeHistory",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -18,16 +18,45 @@ type CreateUserExperienceAnalyticsAppHealthApplicationPerformanceOperationRespon
 	Model        *stable.UserExperienceAnalyticsAppHealthApplicationPerformance
 }
 
+type CreateUserExperienceAnalyticsAppHealthApplicationPerformanceOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateUserExperienceAnalyticsAppHealthApplicationPerformanceOperationOptions() CreateUserExperienceAnalyticsAppHealthApplicationPerformanceOperationOptions {
+	return CreateUserExperienceAnalyticsAppHealthApplicationPerformanceOperationOptions{}
+}
+
+func (o CreateUserExperienceAnalyticsAppHealthApplicationPerformanceOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateUserExperienceAnalyticsAppHealthApplicationPerformanceOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateUserExperienceAnalyticsAppHealthApplicationPerformanceOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateUserExperienceAnalyticsAppHealthApplicationPerformance - Create new navigation property to
 // userExperienceAnalyticsAppHealthApplicationPerformance for deviceManagement
-func (c UserExperienceAnalyticsAppHealthApplicationPerformanceClient) CreateUserExperienceAnalyticsAppHealthApplicationPerformance(ctx context.Context, input stable.UserExperienceAnalyticsAppHealthApplicationPerformance) (result CreateUserExperienceAnalyticsAppHealthApplicationPerformanceOperationResponse, err error) {
+func (c UserExperienceAnalyticsAppHealthApplicationPerformanceClient) CreateUserExperienceAnalyticsAppHealthApplicationPerformance(ctx context.Context, input stable.UserExperienceAnalyticsAppHealthApplicationPerformance, options CreateUserExperienceAnalyticsAppHealthApplicationPerformanceOperationOptions) (result CreateUserExperienceAnalyticsAppHealthApplicationPerformanceOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/deviceManagement/userExperienceAnalyticsAppHealthApplicationPerformance",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/deviceManagement/userExperienceAnalyticsAppHealthApplicationPerformance",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

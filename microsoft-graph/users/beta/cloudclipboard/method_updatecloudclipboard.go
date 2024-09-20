@@ -18,15 +18,44 @@ type UpdateCloudClipboardOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateCloudClipboardOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateCloudClipboardOperationOptions() UpdateCloudClipboardOperationOptions {
+	return UpdateCloudClipboardOperationOptions{}
+}
+
+func (o UpdateCloudClipboardOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateCloudClipboardOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateCloudClipboardOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateCloudClipboard - Update the navigation property cloudClipboard in users
-func (c CloudClipboardClient) UpdateCloudClipboard(ctx context.Context, id beta.UserId, input beta.CloudClipboardRoot) (result UpdateCloudClipboardOperationResponse, err error) {
+func (c CloudClipboardClient) UpdateCloudClipboard(ctx context.Context, id beta.UserId, input beta.CloudClipboardRoot, options UpdateCloudClipboardOperationOptions) (result UpdateCloudClipboardOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       fmt.Sprintf("%s/cloudClipboard", id.ID()),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/cloudClipboard", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -82,18 +82,27 @@ func (s EducationLinkedAssignmentResource) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &EducationLinkedAssignmentResource{}
 
 func (s *EducationLinkedAssignmentResource) UnmarshalJSON(bytes []byte) error {
-	type alias EducationLinkedAssignmentResource
-	var decoded alias
+
+	var decoded struct {
+		Url                  nullable.Type[string] `json:"url,omitempty"`
+		CreatedBy            *IdentitySet          `json:"createdBy,omitempty"`
+		CreatedDateTime      nullable.Type[string] `json:"createdDateTime,omitempty"`
+		DisplayName          nullable.Type[string] `json:"displayName,omitempty"`
+		LastModifiedBy       *IdentitySet          `json:"lastModifiedBy,omitempty"`
+		LastModifiedDateTime nullable.Type[string] `json:"lastModifiedDateTime,omitempty"`
+		ODataId              *string               `json:"@odata.id,omitempty"`
+		ODataType            *string               `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into EducationLinkedAssignmentResource: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
+	s.Url = decoded.Url
 	s.CreatedDateTime = decoded.CreatedDateTime
 	s.DisplayName = decoded.DisplayName
 	s.LastModifiedDateTime = decoded.LastModifiedDateTime
 	s.ODataId = decoded.ODataId
 	s.ODataType = decoded.ODataType
-	s.Url = decoded.Url
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -115,5 +124,6 @@ func (s *EducationLinkedAssignmentResource) UnmarshalJSON(bytes []byte) error {
 		}
 		s.LastModifiedBy = &impl
 	}
+
 	return nil
 }

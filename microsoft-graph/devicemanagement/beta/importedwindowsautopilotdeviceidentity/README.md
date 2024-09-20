@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/importedwindowsautopilotdeviceidentity` Documentation
 
-The `importedwindowsautopilotdeviceidentity` SDK allows for interaction with the Azure Resource Manager Service `devicemanagement` (API Version `beta`).
+The `importedwindowsautopilotdeviceidentity` SDK allows for interaction with Microsoft Graph `devicemanagement` (API Version `beta`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -15,7 +15,7 @@ import "github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/
 ### Client Initialization
 
 ```go
-client := importedwindowsautopilotdeviceidentity.NewImportedWindowsAutopilotDeviceIdentityClientWithBaseURI("https://management.azure.com")
+client := importedwindowsautopilotdeviceidentity.NewImportedWindowsAutopilotDeviceIdentityClientWithBaseURI("https://graph.microsoft.com")
 client.Client.Authorizer = authorizer
 ```
 
@@ -30,7 +30,7 @@ payload := importedwindowsautopilotdeviceidentity.ImportedWindowsAutopilotDevice
 }
 
 
-read, err := client.CreateImportedWindowsAutopilotDeviceIdentity(ctx, payload)
+read, err := client.CreateImportedWindowsAutopilotDeviceIdentity(ctx, payload, importedwindowsautopilotdeviceidentity.DefaultCreateImportedWindowsAutopilotDeviceIdentityOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -44,7 +44,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := importedwindowsautopilotdeviceidentity.NewDeviceManagementImportedWindowsAutopilotDeviceIdentityID("importedWindowsAutopilotDeviceIdentityIdValue")
+id := importedwindowsautopilotdeviceidentity.NewDeviceManagementImportedWindowsAutopilotDeviceIdentityID("importedWindowsAutopilotDeviceIdentityId")
 
 read, err := client.DeleteImportedWindowsAutopilotDeviceIdentity(ctx, id, importedwindowsautopilotdeviceidentity.DefaultDeleteImportedWindowsAutopilotDeviceIdentityOperationOptions())
 if err != nil {
@@ -76,7 +76,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := importedwindowsautopilotdeviceidentity.NewDeviceManagementImportedWindowsAutopilotDeviceIdentityID("importedWindowsAutopilotDeviceIdentityIdValue")
+id := importedwindowsautopilotdeviceidentity.NewDeviceManagementImportedWindowsAutopilotDeviceIdentityID("importedWindowsAutopilotDeviceIdentityId")
 
 read, err := client.GetImportedWindowsAutopilotDeviceIdentity(ctx, id, importedwindowsautopilotdeviceidentity.DefaultGetImportedWindowsAutopilotDeviceIdentityOperationOptions())
 if err != nil {
@@ -130,14 +130,14 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := importedwindowsautopilotdeviceidentity.NewDeviceManagementImportedWindowsAutopilotDeviceIdentityID("importedWindowsAutopilotDeviceIdentityIdValue")
+id := importedwindowsautopilotdeviceidentity.NewDeviceManagementImportedWindowsAutopilotDeviceIdentityID("importedWindowsAutopilotDeviceIdentityId")
 
 payload := importedwindowsautopilotdeviceidentity.ImportedWindowsAutopilotDeviceIdentity{
 	// ...
 }
 
 
-read, err := client.UpdateImportedWindowsAutopilotDeviceIdentity(ctx, id, payload)
+read, err := client.UpdateImportedWindowsAutopilotDeviceIdentity(ctx, id, payload, importedwindowsautopilotdeviceidentity.DefaultUpdateImportedWindowsAutopilotDeviceIdentityOperationOptions())
 if err != nil {
 	// handle the error
 }

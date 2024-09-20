@@ -17,16 +17,45 @@ type UpdateAndroidForWorkEnrollmentProfileOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateAndroidForWorkEnrollmentProfileOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateAndroidForWorkEnrollmentProfileOperationOptions() UpdateAndroidForWorkEnrollmentProfileOperationOptions {
+	return UpdateAndroidForWorkEnrollmentProfileOperationOptions{}
+}
+
+func (o UpdateAndroidForWorkEnrollmentProfileOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateAndroidForWorkEnrollmentProfileOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateAndroidForWorkEnrollmentProfileOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateAndroidForWorkEnrollmentProfile - Update the navigation property androidForWorkEnrollmentProfiles in
 // deviceManagement
-func (c AndroidForWorkEnrollmentProfileClient) UpdateAndroidForWorkEnrollmentProfile(ctx context.Context, id beta.DeviceManagementAndroidForWorkEnrollmentProfileId, input beta.AndroidForWorkEnrollmentProfile) (result UpdateAndroidForWorkEnrollmentProfileOperationResponse, err error) {
+func (c AndroidForWorkEnrollmentProfileClient) UpdateAndroidForWorkEnrollmentProfile(ctx context.Context, id beta.DeviceManagementAndroidForWorkEnrollmentProfileId, input beta.AndroidForWorkEnrollmentProfile, options UpdateAndroidForWorkEnrollmentProfileOperationOptions) (result UpdateAndroidForWorkEnrollmentProfileOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

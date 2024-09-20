@@ -99,9 +99,9 @@ func (id RoleManagementEnterpriseAppIdRoleEligibilityScheduleRequestId) Segments
 	return []resourceids.Segment{
 		resourceids.StaticSegment("roleManagement", "roleManagement", "roleManagement"),
 		resourceids.StaticSegment("enterpriseApps", "enterpriseApps", "enterpriseApps"),
-		resourceids.UserSpecifiedSegment("rbacApplicationId", "rbacApplicationIdValue"),
+		resourceids.UserSpecifiedSegment("rbacApplicationId", "rbacApplicationId"),
 		resourceids.StaticSegment("roleEligibilityScheduleRequests", "roleEligibilityScheduleRequests", "roleEligibilityScheduleRequests"),
-		resourceids.UserSpecifiedSegment("unifiedRoleEligibilityScheduleRequestId", "unifiedRoleEligibilityScheduleRequestIdValue"),
+		resourceids.UserSpecifiedSegment("unifiedRoleEligibilityScheduleRequestId", "unifiedRoleEligibilityScheduleRequestId"),
 	}
 }
 

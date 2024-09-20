@@ -17,16 +17,45 @@ type UpdateDeviceCompliancePolicySettingStateSummarySettingStateOperationRespons
 	OData        *odata.OData
 }
 
+type UpdateDeviceCompliancePolicySettingStateSummarySettingStateOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateDeviceCompliancePolicySettingStateSummarySettingStateOperationOptions() UpdateDeviceCompliancePolicySettingStateSummarySettingStateOperationOptions {
+	return UpdateDeviceCompliancePolicySettingStateSummarySettingStateOperationOptions{}
+}
+
+func (o UpdateDeviceCompliancePolicySettingStateSummarySettingStateOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateDeviceCompliancePolicySettingStateSummarySettingStateOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateDeviceCompliancePolicySettingStateSummarySettingStateOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateDeviceCompliancePolicySettingStateSummarySettingState - Update deviceComplianceSettingState. Update the
 // properties of a deviceComplianceSettingState object.
-func (c DeviceCompliancePolicySettingStateSummaryDeviceComplianceSettingStateClient) UpdateDeviceCompliancePolicySettingStateSummarySettingState(ctx context.Context, id stable.DeviceManagementDeviceCompliancePolicySettingStateSummaryIdDeviceComplianceSettingStateId, input stable.DeviceComplianceSettingState) (result UpdateDeviceCompliancePolicySettingStateSummarySettingStateOperationResponse, err error) {
+func (c DeviceCompliancePolicySettingStateSummaryDeviceComplianceSettingStateClient) UpdateDeviceCompliancePolicySettingStateSummarySettingState(ctx context.Context, id stable.DeviceManagementDeviceCompliancePolicySettingStateSummaryIdDeviceComplianceSettingStateId, input stable.DeviceComplianceSettingState, options UpdateDeviceCompliancePolicySettingStateSummarySettingStateOperationOptions) (result UpdateDeviceCompliancePolicySettingStateSummarySettingStateOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

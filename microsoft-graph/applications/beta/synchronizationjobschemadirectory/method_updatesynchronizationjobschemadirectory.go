@@ -17,15 +17,44 @@ type UpdateSynchronizationJobSchemaDirectoryOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateSynchronizationJobSchemaDirectoryOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateSynchronizationJobSchemaDirectoryOperationOptions() UpdateSynchronizationJobSchemaDirectoryOperationOptions {
+	return UpdateSynchronizationJobSchemaDirectoryOperationOptions{}
+}
+
+func (o UpdateSynchronizationJobSchemaDirectoryOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateSynchronizationJobSchemaDirectoryOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateSynchronizationJobSchemaDirectoryOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateSynchronizationJobSchemaDirectory - Update the navigation property directories in applications
-func (c SynchronizationJobSchemaDirectoryClient) UpdateSynchronizationJobSchemaDirectory(ctx context.Context, id beta.ApplicationIdSynchronizationJobIdSchemaDirectoryId, input beta.DirectoryDefinition) (result UpdateSynchronizationJobSchemaDirectoryOperationResponse, err error) {
+func (c SynchronizationJobSchemaDirectoryClient) UpdateSynchronizationJobSchemaDirectory(ctx context.Context, id beta.ApplicationIdSynchronizationJobIdSchemaDirectoryId, input beta.DirectoryDefinition, options UpdateSynchronizationJobSchemaDirectoryOperationOptions) (result UpdateSynchronizationJobSchemaDirectoryOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

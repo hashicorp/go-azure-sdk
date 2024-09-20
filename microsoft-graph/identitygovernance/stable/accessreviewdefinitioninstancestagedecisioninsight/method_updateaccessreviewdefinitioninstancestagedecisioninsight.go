@@ -17,16 +17,45 @@ type UpdateAccessReviewDefinitionInstanceStageDecisionInsightOperationResponse s
 	OData        *odata.OData
 }
 
+type UpdateAccessReviewDefinitionInstanceStageDecisionInsightOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateAccessReviewDefinitionInstanceStageDecisionInsightOperationOptions() UpdateAccessReviewDefinitionInstanceStageDecisionInsightOperationOptions {
+	return UpdateAccessReviewDefinitionInstanceStageDecisionInsightOperationOptions{}
+}
+
+func (o UpdateAccessReviewDefinitionInstanceStageDecisionInsightOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateAccessReviewDefinitionInstanceStageDecisionInsightOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateAccessReviewDefinitionInstanceStageDecisionInsightOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateAccessReviewDefinitionInstanceStageDecisionInsight - Update the navigation property insights in
 // identityGovernance
-func (c AccessReviewDefinitionInstanceStageDecisionInsightClient) UpdateAccessReviewDefinitionInstanceStageDecisionInsight(ctx context.Context, id stable.IdentityGovernanceAccessReviewDefinitionIdInstanceIdStageIdDecisionIdInsightId, input stable.GovernanceInsight) (result UpdateAccessReviewDefinitionInstanceStageDecisionInsightOperationResponse, err error) {
+func (c AccessReviewDefinitionInstanceStageDecisionInsightClient) UpdateAccessReviewDefinitionInstanceStageDecisionInsight(ctx context.Context, id stable.IdentityGovernanceAccessReviewDefinitionIdInstanceIdStageIdDecisionIdInsightId, input stable.GovernanceInsight, options UpdateAccessReviewDefinitionInstanceStageDecisionInsightOperationOptions) (result UpdateAccessReviewDefinitionInstanceStageDecisionInsightOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

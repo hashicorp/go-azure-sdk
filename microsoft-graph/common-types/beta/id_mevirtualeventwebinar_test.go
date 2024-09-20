@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &MeVirtualEventWebinarId{}
 
 func TestNewMeVirtualEventWebinarID(t *testing.T) {
-	id := NewMeVirtualEventWebinarID("virtualEventWebinarIdValue")
+	id := NewMeVirtualEventWebinarID("virtualEventWebinarId")
 
-	if id.VirtualEventWebinarId != "virtualEventWebinarIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'VirtualEventWebinarId'", id.VirtualEventWebinarId, "virtualEventWebinarIdValue")
+	if id.VirtualEventWebinarId != "virtualEventWebinarId" {
+		t.Fatalf("Expected %q but got %q for Segment 'VirtualEventWebinarId'", id.VirtualEventWebinarId, "virtualEventWebinarId")
 	}
 }
 
 func TestFormatMeVirtualEventWebinarID(t *testing.T) {
-	actual := NewMeVirtualEventWebinarID("virtualEventWebinarIdValue").ID()
-	expected := "/me/virtualEvents/webinars/virtualEventWebinarIdValue"
+	actual := NewMeVirtualEventWebinarID("virtualEventWebinarId").ID()
+	expected := "/me/virtualEvents/webinars/virtualEventWebinarId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -55,14 +55,14 @@ func TestParseMeVirtualEventWebinarID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/me/virtualEvents/webinars/virtualEventWebinarIdValue",
+			Input: "/me/virtualEvents/webinars/virtualEventWebinarId",
 			Expected: &MeVirtualEventWebinarId{
-				VirtualEventWebinarId: "virtualEventWebinarIdValue",
+				VirtualEventWebinarId: "virtualEventWebinarId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/virtualEvents/webinars/virtualEventWebinarIdValue/extra",
+			Input: "/me/virtualEvents/webinars/virtualEventWebinarId/extra",
 			Error: true,
 		},
 	}
@@ -131,26 +131,26 @@ func TestParseMeVirtualEventWebinarIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/me/virtualEvents/webinars/virtualEventWebinarIdValue",
+			Input: "/me/virtualEvents/webinars/virtualEventWebinarId",
 			Expected: &MeVirtualEventWebinarId{
-				VirtualEventWebinarId: "virtualEventWebinarIdValue",
+				VirtualEventWebinarId: "virtualEventWebinarId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/virtualEvents/webinars/virtualEventWebinarIdValue/extra",
+			Input: "/me/virtualEvents/webinars/virtualEventWebinarId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/vIrTuAlEvEnTs/wEbInArS/vIrTuAlEvEnTwEbInArIdVaLuE",
+			Input: "/mE/vIrTuAlEvEnTs/wEbInArS/vIrTuAlEvEnTwEbInArId",
 			Expected: &MeVirtualEventWebinarId{
-				VirtualEventWebinarId: "vIrTuAlEvEnTwEbInArIdVaLuE",
+				VirtualEventWebinarId: "vIrTuAlEvEnTwEbInArId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/mE/vIrTuAlEvEnTs/wEbInArS/vIrTuAlEvEnTwEbInArIdVaLuE/extra",
+			Input: "/mE/vIrTuAlEvEnTs/wEbInArS/vIrTuAlEvEnTwEbInArId/extra",
 			Error: true,
 		},
 	}

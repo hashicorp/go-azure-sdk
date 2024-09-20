@@ -18,18 +18,47 @@ type UpdateRemoteDesktopSecurityConfigurationOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateRemoteDesktopSecurityConfigurationOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateRemoteDesktopSecurityConfigurationOperationOptions() UpdateRemoteDesktopSecurityConfigurationOperationOptions {
+	return UpdateRemoteDesktopSecurityConfigurationOperationOptions{}
+}
+
+func (o UpdateRemoteDesktopSecurityConfigurationOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateRemoteDesktopSecurityConfigurationOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateRemoteDesktopSecurityConfigurationOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateRemoteDesktopSecurityConfiguration - Update remoteDesktopSecurityConfiguration. Update the properties of a
 // remoteDesktopSecurityConfiguration object on the servicePrincipal. Use this configuration to enable or disable the
 // Microsoft Entra ID Remote Desktop Services (RDS) authentication protocol to authenticate a user to Microsoft Entra
 // joined or Microsoft Entra hybrid joined devices.
-func (c RemoteDesktopSecurityConfigurationClient) UpdateRemoteDesktopSecurityConfiguration(ctx context.Context, id beta.ServicePrincipalId, input beta.RemoteDesktopSecurityConfiguration) (result UpdateRemoteDesktopSecurityConfigurationOperationResponse, err error) {
+func (c RemoteDesktopSecurityConfigurationClient) UpdateRemoteDesktopSecurityConfiguration(ctx context.Context, id beta.ServicePrincipalId, input beta.RemoteDesktopSecurityConfiguration, options UpdateRemoteDesktopSecurityConfigurationOperationOptions) (result UpdateRemoteDesktopSecurityConfigurationOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       fmt.Sprintf("%s/remoteDesktopSecurityConfiguration", id.ID()),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/remoteDesktopSecurityConfiguration", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

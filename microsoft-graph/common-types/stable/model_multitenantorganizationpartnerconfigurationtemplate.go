@@ -85,18 +85,25 @@ func (s MultiTenantOrganizationPartnerConfigurationTemplate) MarshalJSON() ([]by
 var _ json.Unmarshaler = &MultiTenantOrganizationPartnerConfigurationTemplate{}
 
 func (s *MultiTenantOrganizationPartnerConfigurationTemplate) UnmarshalJSON(bytes []byte) error {
-	type alias MultiTenantOrganizationPartnerConfigurationTemplate
-	var decoded alias
+
+	var decoded struct {
+		AutomaticUserConsentSettings *InboundOutboundPolicyConfiguration  `json:"automaticUserConsentSettings,omitempty"`
+		InboundTrust                 *CrossTenantAccessPolicyInboundTrust `json:"inboundTrust,omitempty"`
+		TemplateApplicationLevel     *TemplateApplicationLevel            `json:"templateApplicationLevel,omitempty"`
+		Id                           *string                              `json:"id,omitempty"`
+		ODataId                      *string                              `json:"@odata.id,omitempty"`
+		ODataType                    *string                              `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into MultiTenantOrganizationPartnerConfigurationTemplate: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.AutomaticUserConsentSettings = decoded.AutomaticUserConsentSettings
-	s.Id = decoded.Id
 	s.InboundTrust = decoded.InboundTrust
+	s.TemplateApplicationLevel = decoded.TemplateApplicationLevel
+	s.Id = decoded.Id
 	s.ODataId = decoded.ODataId
 	s.ODataType = decoded.ODataType
-	s.TemplateApplicationLevel = decoded.TemplateApplicationLevel
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -134,5 +141,6 @@ func (s *MultiTenantOrganizationPartnerConfigurationTemplate) UnmarshalJSON(byte
 		}
 		s.B2bDirectConnectOutbound = impl
 	}
+
 	return nil
 }

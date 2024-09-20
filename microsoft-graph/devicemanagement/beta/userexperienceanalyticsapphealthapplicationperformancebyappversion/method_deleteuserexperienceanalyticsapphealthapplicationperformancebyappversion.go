@@ -19,7 +19,8 @@ type DeleteUserExperienceAnalyticsAppHealthApplicationPerformanceByAppVersionOpe
 }
 
 type DeleteUserExperienceAnalyticsAppHealthApplicationPerformanceByAppVersionOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteUserExperienceAnalyticsAppHealthApplicationPerformanceByAppVersionOperationOptions() DeleteUserExperienceAnalyticsAppHealthApplicationPerformanceByAppVersionOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteUserExperienceAnalyticsAppHealthApplicationPerformanceByAppVersion
 
 func (o DeleteUserExperienceAnalyticsAppHealthApplicationPerformanceByAppVersionOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

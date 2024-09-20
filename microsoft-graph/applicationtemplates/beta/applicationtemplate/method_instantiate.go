@@ -19,17 +19,46 @@ type InstantiateOperationResponse struct {
 	Model        *beta.ApplicationServicePrincipal
 }
 
+type InstantiateOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultInstantiateOperationOptions() InstantiateOperationOptions {
+	return InstantiateOperationOptions{}
+}
+
+func (o InstantiateOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o InstantiateOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o InstantiateOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // Instantiate - Invoke action instantiate. Add an instance of an application from the Microsoft Entra application
 // gallery into your directory. The application template with ID 8adf8e6e-67b2-4cf2-a259-e3dc5476c621 can be used to add
 // a non-gallery app that you can configure different single-sign on (SSO) modes like SAML SSO and password-based SSO.
-func (c ApplicationTemplateClient) Instantiate(ctx context.Context, id beta.ApplicationTemplateId, input InstantiateRequest) (result InstantiateOperationResponse, err error) {
+func (c ApplicationTemplateClient) Instantiate(ctx context.Context, id beta.ApplicationTemplateId, input InstantiateRequest, options InstantiateOperationOptions) (result InstantiateOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/instantiate", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/instantiate", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

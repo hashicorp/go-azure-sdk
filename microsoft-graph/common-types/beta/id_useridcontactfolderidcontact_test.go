@@ -12,24 +12,24 @@ import (
 var _ resourceids.ResourceId = &UserIdContactFolderIdContactId{}
 
 func TestNewUserIdContactFolderIdContactID(t *testing.T) {
-	id := NewUserIdContactFolderIdContactID("userIdValue", "contactFolderIdValue", "contactIdValue")
+	id := NewUserIdContactFolderIdContactID("userId", "contactFolderId", "contactId")
 
-	if id.UserId != "userIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'UserId'", id.UserId, "userIdValue")
+	if id.UserId != "userId" {
+		t.Fatalf("Expected %q but got %q for Segment 'UserId'", id.UserId, "userId")
 	}
 
-	if id.ContactFolderId != "contactFolderIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ContactFolderId'", id.ContactFolderId, "contactFolderIdValue")
+	if id.ContactFolderId != "contactFolderId" {
+		t.Fatalf("Expected %q but got %q for Segment 'ContactFolderId'", id.ContactFolderId, "contactFolderId")
 	}
 
-	if id.ContactId != "contactIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ContactId'", id.ContactId, "contactIdValue")
+	if id.ContactId != "contactId" {
+		t.Fatalf("Expected %q but got %q for Segment 'ContactId'", id.ContactId, "contactId")
 	}
 }
 
 func TestFormatUserIdContactFolderIdContactID(t *testing.T) {
-	actual := NewUserIdContactFolderIdContactID("userIdValue", "contactFolderIdValue", "contactIdValue").ID()
-	expected := "/users/userIdValue/contactFolders/contactFolderIdValue/contacts/contactIdValue"
+	actual := NewUserIdContactFolderIdContactID("userId", "contactFolderId", "contactId").ID()
+	expected := "/users/userId/contactFolders/contactFolderId/contacts/contactId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -53,36 +53,36 @@ func TestParseUserIdContactFolderIdContactID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue",
+			Input: "/users/userId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/contactFolders",
+			Input: "/users/userId/contactFolders",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/contactFolders/contactFolderIdValue",
+			Input: "/users/userId/contactFolders/contactFolderId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/contactFolders/contactFolderIdValue/contacts",
+			Input: "/users/userId/contactFolders/contactFolderId/contacts",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/users/userIdValue/contactFolders/contactFolderIdValue/contacts/contactIdValue",
+			Input: "/users/userId/contactFolders/contactFolderId/contacts/contactId",
 			Expected: &UserIdContactFolderIdContactId{
-				UserId:          "userIdValue",
-				ContactFolderId: "contactFolderIdValue",
-				ContactId:       "contactIdValue",
+				UserId:          "userId",
+				ContactFolderId: "contactFolderId",
+				ContactId:       "contactId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/users/userIdValue/contactFolders/contactFolderIdValue/contacts/contactIdValue/extra",
+			Input: "/users/userId/contactFolders/contactFolderId/contacts/contactId/extra",
 			Error: true,
 		},
 	}
@@ -139,70 +139,70 @@ func TestParseUserIdContactFolderIdContactIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue",
+			Input: "/users/userId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe",
+			Input: "/uSeRs/uSeRiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/contactFolders",
+			Input: "/users/userId/contactFolders",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/cOnTaCtFoLdErS",
+			Input: "/uSeRs/uSeRiD/cOnTaCtFoLdErS",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/contactFolders/contactFolderIdValue",
+			Input: "/users/userId/contactFolders/contactFolderId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/cOnTaCtFoLdErS/cOnTaCtFoLdErIdVaLuE",
+			Input: "/uSeRs/uSeRiD/cOnTaCtFoLdErS/cOnTaCtFoLdErId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/contactFolders/contactFolderIdValue/contacts",
+			Input: "/users/userId/contactFolders/contactFolderId/contacts",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/cOnTaCtFoLdErS/cOnTaCtFoLdErIdVaLuE/cOnTaCtS",
+			Input: "/uSeRs/uSeRiD/cOnTaCtFoLdErS/cOnTaCtFoLdErId/cOnTaCtS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/users/userIdValue/contactFolders/contactFolderIdValue/contacts/contactIdValue",
+			Input: "/users/userId/contactFolders/contactFolderId/contacts/contactId",
 			Expected: &UserIdContactFolderIdContactId{
-				UserId:          "userIdValue",
-				ContactFolderId: "contactFolderIdValue",
-				ContactId:       "contactIdValue",
+				UserId:          "userId",
+				ContactFolderId: "contactFolderId",
+				ContactId:       "contactId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/users/userIdValue/contactFolders/contactFolderIdValue/contacts/contactIdValue/extra",
+			Input: "/users/userId/contactFolders/contactFolderId/contacts/contactId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/cOnTaCtFoLdErS/cOnTaCtFoLdErIdVaLuE/cOnTaCtS/cOnTaCtIdVaLuE",
+			Input: "/uSeRs/uSeRiD/cOnTaCtFoLdErS/cOnTaCtFoLdErId/cOnTaCtS/cOnTaCtId",
 			Expected: &UserIdContactFolderIdContactId{
-				UserId:          "uSeRiDvAlUe",
-				ContactFolderId: "cOnTaCtFoLdErIdVaLuE",
-				ContactId:       "cOnTaCtIdVaLuE",
+				UserId:          "uSeRiD",
+				ContactFolderId: "cOnTaCtFoLdErId",
+				ContactId:       "cOnTaCtId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/cOnTaCtFoLdErS/cOnTaCtFoLdErIdVaLuE/cOnTaCtS/cOnTaCtIdVaLuE/extra",
+			Input: "/uSeRs/uSeRiD/cOnTaCtFoLdErS/cOnTaCtFoLdErId/cOnTaCtS/cOnTaCtId/extra",
 			Error: true,
 		},
 	}

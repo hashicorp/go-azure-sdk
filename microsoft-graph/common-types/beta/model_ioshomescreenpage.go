@@ -27,10 +27,15 @@ type IosHomeScreenPage struct {
 var _ json.Unmarshaler = &IosHomeScreenPage{}
 
 func (s *IosHomeScreenPage) UnmarshalJSON(bytes []byte) error {
-	type alias IosHomeScreenPage
-	var decoded alias
+
+	var decoded struct {
+		DisplayName nullable.Type[string] `json:"displayName,omitempty"`
+		Icons       *[]IosHomeScreenItem  `json:"icons,omitempty"`
+		ODataId     *string               `json:"@odata.id,omitempty"`
+		ODataType   *string               `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into IosHomeScreenPage: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.DisplayName = decoded.DisplayName
@@ -58,5 +63,6 @@ func (s *IosHomeScreenPage) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Icons = &output
 	}
+
 	return nil
 }

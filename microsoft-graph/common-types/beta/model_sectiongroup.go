@@ -134,24 +134,40 @@ func (s SectionGroup) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &SectionGroup{}
 
 func (s *SectionGroup) UnmarshalJSON(bytes []byte) error {
-	type alias SectionGroup
-	var decoded alias
+
+	var decoded struct {
+		ParentNotebook       *Notebook             `json:"parentNotebook,omitempty"`
+		ParentSectionGroup   *SectionGroup         `json:"parentSectionGroup,omitempty"`
+		SectionGroups        *[]SectionGroup       `json:"sectionGroups,omitempty"`
+		SectionGroupsUrl     nullable.Type[string] `json:"sectionGroupsUrl,omitempty"`
+		Sections             *[]OnenoteSection     `json:"sections,omitempty"`
+		SectionsUrl          nullable.Type[string] `json:"sectionsUrl,omitempty"`
+		CreatedBy            IdentitySet           `json:"createdBy"`
+		DisplayName          nullable.Type[string] `json:"displayName,omitempty"`
+		LastModifiedBy       IdentitySet           `json:"lastModifiedBy"`
+		LastModifiedDateTime nullable.Type[string] `json:"lastModifiedDateTime,omitempty"`
+		CreatedDateTime      nullable.Type[string] `json:"createdDateTime,omitempty"`
+		Self                 nullable.Type[string] `json:"self,omitempty"`
+		Id                   *string               `json:"id,omitempty"`
+		ODataId              *string               `json:"@odata.id,omitempty"`
+		ODataType            *string               `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into SectionGroup: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
-	s.CreatedDateTime = decoded.CreatedDateTime
-	s.DisplayName = decoded.DisplayName
-	s.Id = decoded.Id
-	s.LastModifiedDateTime = decoded.LastModifiedDateTime
-	s.ODataId = decoded.ODataId
-	s.ODataType = decoded.ODataType
 	s.ParentNotebook = decoded.ParentNotebook
 	s.ParentSectionGroup = decoded.ParentSectionGroup
 	s.SectionGroups = decoded.SectionGroups
 	s.SectionGroupsUrl = decoded.SectionGroupsUrl
 	s.Sections = decoded.Sections
 	s.SectionsUrl = decoded.SectionsUrl
+	s.CreatedDateTime = decoded.CreatedDateTime
+	s.DisplayName = decoded.DisplayName
+	s.Id = decoded.Id
+	s.LastModifiedDateTime = decoded.LastModifiedDateTime
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
 	s.Self = decoded.Self
 
 	var temp map[string]json.RawMessage
@@ -174,5 +190,6 @@ func (s *SectionGroup) UnmarshalJSON(bytes []byte) error {
 		}
 		s.LastModifiedBy = impl
 	}
+
 	return nil
 }

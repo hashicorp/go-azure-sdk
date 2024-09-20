@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &DeviceManagementWindowsInformationProtectionNetworkLearningSummaryId{}
 
 func TestNewDeviceManagementWindowsInformationProtectionNetworkLearningSummaryID(t *testing.T) {
-	id := NewDeviceManagementWindowsInformationProtectionNetworkLearningSummaryID("windowsInformationProtectionNetworkLearningSummaryIdValue")
+	id := NewDeviceManagementWindowsInformationProtectionNetworkLearningSummaryID("windowsInformationProtectionNetworkLearningSummaryId")
 
-	if id.WindowsInformationProtectionNetworkLearningSummaryId != "windowsInformationProtectionNetworkLearningSummaryIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'WindowsInformationProtectionNetworkLearningSummaryId'", id.WindowsInformationProtectionNetworkLearningSummaryId, "windowsInformationProtectionNetworkLearningSummaryIdValue")
+	if id.WindowsInformationProtectionNetworkLearningSummaryId != "windowsInformationProtectionNetworkLearningSummaryId" {
+		t.Fatalf("Expected %q but got %q for Segment 'WindowsInformationProtectionNetworkLearningSummaryId'", id.WindowsInformationProtectionNetworkLearningSummaryId, "windowsInformationProtectionNetworkLearningSummaryId")
 	}
 }
 
 func TestFormatDeviceManagementWindowsInformationProtectionNetworkLearningSummaryID(t *testing.T) {
-	actual := NewDeviceManagementWindowsInformationProtectionNetworkLearningSummaryID("windowsInformationProtectionNetworkLearningSummaryIdValue").ID()
-	expected := "/deviceManagement/windowsInformationProtectionNetworkLearningSummaries/windowsInformationProtectionNetworkLearningSummaryIdValue"
+	actual := NewDeviceManagementWindowsInformationProtectionNetworkLearningSummaryID("windowsInformationProtectionNetworkLearningSummaryId").ID()
+	expected := "/deviceManagement/windowsInformationProtectionNetworkLearningSummaries/windowsInformationProtectionNetworkLearningSummaryId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -50,14 +50,14 @@ func TestParseDeviceManagementWindowsInformationProtectionNetworkLearningSummary
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/windowsInformationProtectionNetworkLearningSummaries/windowsInformationProtectionNetworkLearningSummaryIdValue",
+			Input: "/deviceManagement/windowsInformationProtectionNetworkLearningSummaries/windowsInformationProtectionNetworkLearningSummaryId",
 			Expected: &DeviceManagementWindowsInformationProtectionNetworkLearningSummaryId{
-				WindowsInformationProtectionNetworkLearningSummaryId: "windowsInformationProtectionNetworkLearningSummaryIdValue",
+				WindowsInformationProtectionNetworkLearningSummaryId: "windowsInformationProtectionNetworkLearningSummaryId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/windowsInformationProtectionNetworkLearningSummaries/windowsInformationProtectionNetworkLearningSummaryIdValue/extra",
+			Input: "/deviceManagement/windowsInformationProtectionNetworkLearningSummaries/windowsInformationProtectionNetworkLearningSummaryId/extra",
 			Error: true,
 		},
 	}
@@ -116,26 +116,26 @@ func TestParseDeviceManagementWindowsInformationProtectionNetworkLearningSummary
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/windowsInformationProtectionNetworkLearningSummaries/windowsInformationProtectionNetworkLearningSummaryIdValue",
+			Input: "/deviceManagement/windowsInformationProtectionNetworkLearningSummaries/windowsInformationProtectionNetworkLearningSummaryId",
 			Expected: &DeviceManagementWindowsInformationProtectionNetworkLearningSummaryId{
-				WindowsInformationProtectionNetworkLearningSummaryId: "windowsInformationProtectionNetworkLearningSummaryIdValue",
+				WindowsInformationProtectionNetworkLearningSummaryId: "windowsInformationProtectionNetworkLearningSummaryId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/windowsInformationProtectionNetworkLearningSummaries/windowsInformationProtectionNetworkLearningSummaryIdValue/extra",
+			Input: "/deviceManagement/windowsInformationProtectionNetworkLearningSummaries/windowsInformationProtectionNetworkLearningSummaryId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/wInDoWsInFoRmAtIoNpRoTeCtIoNnEtWoRkLeArNiNgSuMmArIeS/wInDoWsInFoRmAtIoNpRoTeCtIoNnEtWoRkLeArNiNgSuMmArYiDvAlUe",
+			Input: "/dEvIcEmAnAgEmEnT/wInDoWsInFoRmAtIoNpRoTeCtIoNnEtWoRkLeArNiNgSuMmArIeS/wInDoWsInFoRmAtIoNpRoTeCtIoNnEtWoRkLeArNiNgSuMmArYiD",
 			Expected: &DeviceManagementWindowsInformationProtectionNetworkLearningSummaryId{
-				WindowsInformationProtectionNetworkLearningSummaryId: "wInDoWsInFoRmAtIoNpRoTeCtIoNnEtWoRkLeArNiNgSuMmArYiDvAlUe",
+				WindowsInformationProtectionNetworkLearningSummaryId: "wInDoWsInFoRmAtIoNpRoTeCtIoNnEtWoRkLeArNiNgSuMmArYiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/wInDoWsInFoRmAtIoNpRoTeCtIoNnEtWoRkLeArNiNgSuMmArIeS/wInDoWsInFoRmAtIoNpRoTeCtIoNnEtWoRkLeArNiNgSuMmArYiDvAlUe/extra",
+			Input: "/dEvIcEmAnAgEmEnT/wInDoWsInFoRmAtIoNpRoTeCtIoNnEtWoRkLeArNiNgSuMmArIeS/wInDoWsInFoRmAtIoNpRoTeCtIoNnEtWoRkLeArNiNgSuMmArYiD/extra",
 			Error: true,
 		},
 	}

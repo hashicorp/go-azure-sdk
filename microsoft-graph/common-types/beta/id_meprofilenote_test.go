@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &MeProfileNoteId{}
 
 func TestNewMeProfileNoteID(t *testing.T) {
-	id := NewMeProfileNoteID("personAnnotationIdValue")
+	id := NewMeProfileNoteID("personAnnotationId")
 
-	if id.PersonAnnotationId != "personAnnotationIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'PersonAnnotationId'", id.PersonAnnotationId, "personAnnotationIdValue")
+	if id.PersonAnnotationId != "personAnnotationId" {
+		t.Fatalf("Expected %q but got %q for Segment 'PersonAnnotationId'", id.PersonAnnotationId, "personAnnotationId")
 	}
 }
 
 func TestFormatMeProfileNoteID(t *testing.T) {
-	actual := NewMeProfileNoteID("personAnnotationIdValue").ID()
-	expected := "/me/profile/notes/personAnnotationIdValue"
+	actual := NewMeProfileNoteID("personAnnotationId").ID()
+	expected := "/me/profile/notes/personAnnotationId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -55,14 +55,14 @@ func TestParseMeProfileNoteID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/me/profile/notes/personAnnotationIdValue",
+			Input: "/me/profile/notes/personAnnotationId",
 			Expected: &MeProfileNoteId{
-				PersonAnnotationId: "personAnnotationIdValue",
+				PersonAnnotationId: "personAnnotationId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/profile/notes/personAnnotationIdValue/extra",
+			Input: "/me/profile/notes/personAnnotationId/extra",
 			Error: true,
 		},
 	}
@@ -131,26 +131,26 @@ func TestParseMeProfileNoteIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/me/profile/notes/personAnnotationIdValue",
+			Input: "/me/profile/notes/personAnnotationId",
 			Expected: &MeProfileNoteId{
-				PersonAnnotationId: "personAnnotationIdValue",
+				PersonAnnotationId: "personAnnotationId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/profile/notes/personAnnotationIdValue/extra",
+			Input: "/me/profile/notes/personAnnotationId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/pRoFiLe/nOtEs/pErSoNaNnOtAtIoNiDvAlUe",
+			Input: "/mE/pRoFiLe/nOtEs/pErSoNaNnOtAtIoNiD",
 			Expected: &MeProfileNoteId{
-				PersonAnnotationId: "pErSoNaNnOtAtIoNiDvAlUe",
+				PersonAnnotationId: "pErSoNaNnOtAtIoNiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/mE/pRoFiLe/nOtEs/pErSoNaNnOtAtIoNiDvAlUe/extra",
+			Input: "/mE/pRoFiLe/nOtEs/pErSoNaNnOtAtIoNiD/extra",
 			Error: true,
 		},
 	}

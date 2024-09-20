@@ -17,16 +17,45 @@ type UpdateEntitlementManagementResourceRequestCatalogCustomWorkflowExtensionOpe
 	OData        *odata.OData
 }
 
+type UpdateEntitlementManagementResourceRequestCatalogCustomWorkflowExtensionOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateEntitlementManagementResourceRequestCatalogCustomWorkflowExtensionOperationOptions() UpdateEntitlementManagementResourceRequestCatalogCustomWorkflowExtensionOperationOptions {
+	return UpdateEntitlementManagementResourceRequestCatalogCustomWorkflowExtensionOperationOptions{}
+}
+
+func (o UpdateEntitlementManagementResourceRequestCatalogCustomWorkflowExtensionOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateEntitlementManagementResourceRequestCatalogCustomWorkflowExtensionOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateEntitlementManagementResourceRequestCatalogCustomWorkflowExtensionOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateEntitlementManagementResourceRequestCatalogCustomWorkflowExtension - Update the navigation property
 // customWorkflowExtensions in identityGovernance
-func (c EntitlementManagementResourceRequestCatalogCustomWorkflowExtensionClient) UpdateEntitlementManagementResourceRequestCatalogCustomWorkflowExtension(ctx context.Context, id stable.IdentityGovernanceEntitlementManagementResourceRequestIdCatalogCustomWorkflowExtensionId, input stable.CustomCalloutExtension) (result UpdateEntitlementManagementResourceRequestCatalogCustomWorkflowExtensionOperationResponse, err error) {
+func (c EntitlementManagementResourceRequestCatalogCustomWorkflowExtensionClient) UpdateEntitlementManagementResourceRequestCatalogCustomWorkflowExtension(ctx context.Context, id stable.IdentityGovernanceEntitlementManagementResourceRequestIdCatalogCustomWorkflowExtensionId, input stable.CustomCalloutExtension, options UpdateEntitlementManagementResourceRequestCatalogCustomWorkflowExtensionOperationOptions) (result UpdateEntitlementManagementResourceRequestCatalogCustomWorkflowExtensionOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

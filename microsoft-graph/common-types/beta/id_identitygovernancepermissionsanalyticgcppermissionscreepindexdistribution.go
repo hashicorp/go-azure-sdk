@@ -95,7 +95,7 @@ func (id IdentityGovernancePermissionsAnalyticGcpPermissionsCreepIndexDistributi
 		resourceids.StaticSegment("permissionsAnalytics", "permissionsAnalytics", "permissionsAnalytics"),
 		resourceids.StaticSegment("gcp", "gcp", "gcp"),
 		resourceids.StaticSegment("permissionsCreepIndexDistributions", "permissionsCreepIndexDistributions", "permissionsCreepIndexDistributions"),
-		resourceids.UserSpecifiedSegment("permissionsCreepIndexDistributionId", "permissionsCreepIndexDistributionIdValue"),
+		resourceids.UserSpecifiedSegment("permissionsCreepIndexDistributionId", "permissionsCreepIndexDistributionId"),
 	}
 }
 

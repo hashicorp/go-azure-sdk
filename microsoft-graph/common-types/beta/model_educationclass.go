@@ -124,10 +124,34 @@ func (s EducationClass) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &EducationClass{}
 
 func (s *EducationClass) UnmarshalJSON(bytes []byte) error {
-	type alias EducationClass
-	var decoded alias
+
+	var decoded struct {
+		AssignmentCategories *[]EducationCategory         `json:"assignmentCategories,omitempty"`
+		AssignmentDefaults   *EducationAssignmentDefaults `json:"assignmentDefaults,omitempty"`
+		AssignmentSettings   *EducationAssignmentSettings `json:"assignmentSettings,omitempty"`
+		Assignments          *[]EducationAssignment       `json:"assignments,omitempty"`
+		ClassCode            nullable.Type[string]        `json:"classCode,omitempty"`
+		Course               *EducationCourse             `json:"course,omitempty"`
+		Description          nullable.Type[string]        `json:"description,omitempty"`
+		DisplayName          *string                      `json:"displayName,omitempty"`
+		ExternalId           nullable.Type[string]        `json:"externalId,omitempty"`
+		ExternalName         nullable.Type[string]        `json:"externalName,omitempty"`
+		ExternalSource       *EducationExternalSource     `json:"externalSource,omitempty"`
+		ExternalSourceDetail nullable.Type[string]        `json:"externalSourceDetail,omitempty"`
+		Grade                nullable.Type[string]        `json:"grade,omitempty"`
+		Group                *Group                       `json:"group,omitempty"`
+		MailNickname         *string                      `json:"mailNickname,omitempty"`
+		Members              *[]EducationUser             `json:"members,omitempty"`
+		Modules              *[]EducationModule           `json:"modules,omitempty"`
+		Schools              *[]EducationSchool           `json:"schools,omitempty"`
+		Teachers             *[]EducationUser             `json:"teachers,omitempty"`
+		Term                 *EducationTerm               `json:"term,omitempty"`
+		Id                   *string                      `json:"id,omitempty"`
+		ODataId              *string                      `json:"@odata.id,omitempty"`
+		ODataType            *string                      `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into EducationClass: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.AssignmentCategories = decoded.AssignmentCategories
@@ -144,15 +168,15 @@ func (s *EducationClass) UnmarshalJSON(bytes []byte) error {
 	s.ExternalSourceDetail = decoded.ExternalSourceDetail
 	s.Grade = decoded.Grade
 	s.Group = decoded.Group
-	s.Id = decoded.Id
 	s.MailNickname = decoded.MailNickname
 	s.Members = decoded.Members
 	s.Modules = decoded.Modules
-	s.ODataId = decoded.ODataId
-	s.ODataType = decoded.ODataType
 	s.Schools = decoded.Schools
 	s.Teachers = decoded.Teachers
 	s.Term = decoded.Term
+	s.Id = decoded.Id
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -166,5 +190,6 @@ func (s *EducationClass) UnmarshalJSON(bytes []byte) error {
 		}
 		s.CreatedBy = impl
 	}
+
 	return nil
 }

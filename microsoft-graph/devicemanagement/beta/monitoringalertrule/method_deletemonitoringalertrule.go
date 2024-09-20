@@ -19,7 +19,8 @@ type DeleteMonitoringAlertRuleOperationResponse struct {
 }
 
 type DeleteMonitoringAlertRuleOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteMonitoringAlertRuleOperationOptions() DeleteMonitoringAlertRuleOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteMonitoringAlertRuleOperationOptions) ToHeaders() *client.Headers {
 
 func (o DeleteMonitoringAlertRuleOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

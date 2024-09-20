@@ -18,15 +18,44 @@ type CreateApiConnectorOperationResponse struct {
 	Model        *stable.IdentityApiConnector
 }
 
+type CreateApiConnectorOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateApiConnectorOperationOptions() CreateApiConnectorOperationOptions {
+	return CreateApiConnectorOperationOptions{}
+}
+
+func (o CreateApiConnectorOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateApiConnectorOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateApiConnectorOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateApiConnector - Create identityApiConnector. Create a new identityApiConnector object.
-func (c ApiConnectorClient) CreateApiConnector(ctx context.Context, input stable.IdentityApiConnector) (result CreateApiConnectorOperationResponse, err error) {
+func (c ApiConnectorClient) CreateApiConnector(ctx context.Context, input stable.IdentityApiConnector, options CreateApiConnectorOperationOptions) (result CreateApiConnectorOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/identity/apiConnectors",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/identity/apiConnectors",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

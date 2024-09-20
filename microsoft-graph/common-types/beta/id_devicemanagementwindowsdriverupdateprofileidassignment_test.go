@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &DeviceManagementWindowsDriverUpdateProfileIdAssignmentId{}
 
 func TestNewDeviceManagementWindowsDriverUpdateProfileIdAssignmentID(t *testing.T) {
-	id := NewDeviceManagementWindowsDriverUpdateProfileIdAssignmentID("windowsDriverUpdateProfileIdValue", "windowsDriverUpdateProfileAssignmentIdValue")
+	id := NewDeviceManagementWindowsDriverUpdateProfileIdAssignmentID("windowsDriverUpdateProfileId", "windowsDriverUpdateProfileAssignmentId")
 
-	if id.WindowsDriverUpdateProfileId != "windowsDriverUpdateProfileIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'WindowsDriverUpdateProfileId'", id.WindowsDriverUpdateProfileId, "windowsDriverUpdateProfileIdValue")
+	if id.WindowsDriverUpdateProfileId != "windowsDriverUpdateProfileId" {
+		t.Fatalf("Expected %q but got %q for Segment 'WindowsDriverUpdateProfileId'", id.WindowsDriverUpdateProfileId, "windowsDriverUpdateProfileId")
 	}
 
-	if id.WindowsDriverUpdateProfileAssignmentId != "windowsDriverUpdateProfileAssignmentIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'WindowsDriverUpdateProfileAssignmentId'", id.WindowsDriverUpdateProfileAssignmentId, "windowsDriverUpdateProfileAssignmentIdValue")
+	if id.WindowsDriverUpdateProfileAssignmentId != "windowsDriverUpdateProfileAssignmentId" {
+		t.Fatalf("Expected %q but got %q for Segment 'WindowsDriverUpdateProfileAssignmentId'", id.WindowsDriverUpdateProfileAssignmentId, "windowsDriverUpdateProfileAssignmentId")
 	}
 }
 
 func TestFormatDeviceManagementWindowsDriverUpdateProfileIdAssignmentID(t *testing.T) {
-	actual := NewDeviceManagementWindowsDriverUpdateProfileIdAssignmentID("windowsDriverUpdateProfileIdValue", "windowsDriverUpdateProfileAssignmentIdValue").ID()
-	expected := "/deviceManagement/windowsDriverUpdateProfiles/windowsDriverUpdateProfileIdValue/assignments/windowsDriverUpdateProfileAssignmentIdValue"
+	actual := NewDeviceManagementWindowsDriverUpdateProfileIdAssignmentID("windowsDriverUpdateProfileId", "windowsDriverUpdateProfileAssignmentId").ID()
+	expected := "/deviceManagement/windowsDriverUpdateProfiles/windowsDriverUpdateProfileId/assignments/windowsDriverUpdateProfileAssignmentId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -54,25 +54,25 @@ func TestParseDeviceManagementWindowsDriverUpdateProfileIdAssignmentID(t *testin
 		},
 		{
 			// Incomplete URI
-			Input: "/deviceManagement/windowsDriverUpdateProfiles/windowsDriverUpdateProfileIdValue",
+			Input: "/deviceManagement/windowsDriverUpdateProfiles/windowsDriverUpdateProfileId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/deviceManagement/windowsDriverUpdateProfiles/windowsDriverUpdateProfileIdValue/assignments",
+			Input: "/deviceManagement/windowsDriverUpdateProfiles/windowsDriverUpdateProfileId/assignments",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/windowsDriverUpdateProfiles/windowsDriverUpdateProfileIdValue/assignments/windowsDriverUpdateProfileAssignmentIdValue",
+			Input: "/deviceManagement/windowsDriverUpdateProfiles/windowsDriverUpdateProfileId/assignments/windowsDriverUpdateProfileAssignmentId",
 			Expected: &DeviceManagementWindowsDriverUpdateProfileIdAssignmentId{
-				WindowsDriverUpdateProfileId:           "windowsDriverUpdateProfileIdValue",
-				WindowsDriverUpdateProfileAssignmentId: "windowsDriverUpdateProfileAssignmentIdValue",
+				WindowsDriverUpdateProfileId:           "windowsDriverUpdateProfileId",
+				WindowsDriverUpdateProfileAssignmentId: "windowsDriverUpdateProfileAssignmentId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/windowsDriverUpdateProfiles/windowsDriverUpdateProfileIdValue/assignments/windowsDriverUpdateProfileAssignmentIdValue/extra",
+			Input: "/deviceManagement/windowsDriverUpdateProfiles/windowsDriverUpdateProfileId/assignments/windowsDriverUpdateProfileAssignmentId/extra",
 			Error: true,
 		},
 	}
@@ -135,48 +135,48 @@ func TestParseDeviceManagementWindowsDriverUpdateProfileIdAssignmentIDInsensitiv
 		},
 		{
 			// Incomplete URI
-			Input: "/deviceManagement/windowsDriverUpdateProfiles/windowsDriverUpdateProfileIdValue",
+			Input: "/deviceManagement/windowsDriverUpdateProfiles/windowsDriverUpdateProfileId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/wInDoWsDrIvErUpDaTePrOfIlEs/wInDoWsDrIvErUpDaTePrOfIlEiDvAlUe",
+			Input: "/dEvIcEmAnAgEmEnT/wInDoWsDrIvErUpDaTePrOfIlEs/wInDoWsDrIvErUpDaTePrOfIlEiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/deviceManagement/windowsDriverUpdateProfiles/windowsDriverUpdateProfileIdValue/assignments",
+			Input: "/deviceManagement/windowsDriverUpdateProfiles/windowsDriverUpdateProfileId/assignments",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/wInDoWsDrIvErUpDaTePrOfIlEs/wInDoWsDrIvErUpDaTePrOfIlEiDvAlUe/aSsIgNmEnTs",
+			Input: "/dEvIcEmAnAgEmEnT/wInDoWsDrIvErUpDaTePrOfIlEs/wInDoWsDrIvErUpDaTePrOfIlEiD/aSsIgNmEnTs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/windowsDriverUpdateProfiles/windowsDriverUpdateProfileIdValue/assignments/windowsDriverUpdateProfileAssignmentIdValue",
+			Input: "/deviceManagement/windowsDriverUpdateProfiles/windowsDriverUpdateProfileId/assignments/windowsDriverUpdateProfileAssignmentId",
 			Expected: &DeviceManagementWindowsDriverUpdateProfileIdAssignmentId{
-				WindowsDriverUpdateProfileId:           "windowsDriverUpdateProfileIdValue",
-				WindowsDriverUpdateProfileAssignmentId: "windowsDriverUpdateProfileAssignmentIdValue",
+				WindowsDriverUpdateProfileId:           "windowsDriverUpdateProfileId",
+				WindowsDriverUpdateProfileAssignmentId: "windowsDriverUpdateProfileAssignmentId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/windowsDriverUpdateProfiles/windowsDriverUpdateProfileIdValue/assignments/windowsDriverUpdateProfileAssignmentIdValue/extra",
+			Input: "/deviceManagement/windowsDriverUpdateProfiles/windowsDriverUpdateProfileId/assignments/windowsDriverUpdateProfileAssignmentId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/wInDoWsDrIvErUpDaTePrOfIlEs/wInDoWsDrIvErUpDaTePrOfIlEiDvAlUe/aSsIgNmEnTs/wInDoWsDrIvErUpDaTePrOfIlEaSsIgNmEnTiDvAlUe",
+			Input: "/dEvIcEmAnAgEmEnT/wInDoWsDrIvErUpDaTePrOfIlEs/wInDoWsDrIvErUpDaTePrOfIlEiD/aSsIgNmEnTs/wInDoWsDrIvErUpDaTePrOfIlEaSsIgNmEnTiD",
 			Expected: &DeviceManagementWindowsDriverUpdateProfileIdAssignmentId{
-				WindowsDriverUpdateProfileId:           "wInDoWsDrIvErUpDaTePrOfIlEiDvAlUe",
-				WindowsDriverUpdateProfileAssignmentId: "wInDoWsDrIvErUpDaTePrOfIlEaSsIgNmEnTiDvAlUe",
+				WindowsDriverUpdateProfileId:           "wInDoWsDrIvErUpDaTePrOfIlEiD",
+				WindowsDriverUpdateProfileAssignmentId: "wInDoWsDrIvErUpDaTePrOfIlEaSsIgNmEnTiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/wInDoWsDrIvErUpDaTePrOfIlEs/wInDoWsDrIvErUpDaTePrOfIlEiDvAlUe/aSsIgNmEnTs/wInDoWsDrIvErUpDaTePrOfIlEaSsIgNmEnTiDvAlUe/extra",
+			Input: "/dEvIcEmAnAgEmEnT/wInDoWsDrIvErUpDaTePrOfIlEs/wInDoWsDrIvErUpDaTePrOfIlEiD/aSsIgNmEnTs/wInDoWsDrIvErUpDaTePrOfIlEaSsIgNmEnTiD/extra",
 			Error: true,
 		},
 	}

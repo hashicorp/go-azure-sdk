@@ -17,15 +17,44 @@ type UpdateRoleManagementAlertOperationOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateRoleManagementAlertOperationOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateRoleManagementAlertOperationOperationOptions() UpdateRoleManagementAlertOperationOperationOptions {
+	return UpdateRoleManagementAlertOperationOperationOptions{}
+}
+
+func (o UpdateRoleManagementAlertOperationOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateRoleManagementAlertOperationOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateRoleManagementAlertOperationOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateRoleManagementAlertOperation - Update the navigation property operations in identityGovernance
-func (c RoleManagementAlertOperationClient) UpdateRoleManagementAlertOperation(ctx context.Context, id beta.IdentityGovernanceRoleManagementAlertOperationId, input beta.LongRunningOperation) (result UpdateRoleManagementAlertOperationOperationResponse, err error) {
+func (c RoleManagementAlertOperationClient) UpdateRoleManagementAlertOperation(ctx context.Context, id beta.IdentityGovernanceRoleManagementAlertOperationId, input beta.LongRunningOperation, options UpdateRoleManagementAlertOperationOperationOptions) (result UpdateRoleManagementAlertOperationOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

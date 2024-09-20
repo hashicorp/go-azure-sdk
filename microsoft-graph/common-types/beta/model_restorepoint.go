@@ -73,18 +73,25 @@ func (s RestorePoint) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &RestorePoint{}
 
 func (s *RestorePoint) UnmarshalJSON(bytes []byte) error {
-	type alias RestorePoint
-	var decoded alias
+
+	var decoded struct {
+		ExpirationDateTime nullable.Type[string] `json:"expirationDateTime,omitempty"`
+		ProtectionDateTime nullable.Type[string] `json:"protectionDateTime,omitempty"`
+		Tags               *RestorePointTags     `json:"tags,omitempty"`
+		Id                 *string               `json:"id,omitempty"`
+		ODataId            *string               `json:"@odata.id,omitempty"`
+		ODataType          *string               `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into RestorePoint: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.ExpirationDateTime = decoded.ExpirationDateTime
+	s.ProtectionDateTime = decoded.ProtectionDateTime
+	s.Tags = decoded.Tags
 	s.Id = decoded.Id
 	s.ODataId = decoded.ODataId
 	s.ODataType = decoded.ODataType
-	s.ProtectionDateTime = decoded.ProtectionDateTime
-	s.Tags = decoded.Tags
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -98,5 +105,6 @@ func (s *RestorePoint) UnmarshalJSON(bytes []byte) error {
 		}
 		s.ProtectionUnit = &impl
 	}
+
 	return nil
 }

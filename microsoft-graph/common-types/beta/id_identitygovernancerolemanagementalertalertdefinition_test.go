@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &IdentityGovernanceRoleManagementAlertAlertDefinitionId{}
 
 func TestNewIdentityGovernanceRoleManagementAlertAlertDefinitionID(t *testing.T) {
-	id := NewIdentityGovernanceRoleManagementAlertAlertDefinitionID("unifiedRoleManagementAlertDefinitionIdValue")
+	id := NewIdentityGovernanceRoleManagementAlertAlertDefinitionID("unifiedRoleManagementAlertDefinitionId")
 
-	if id.UnifiedRoleManagementAlertDefinitionId != "unifiedRoleManagementAlertDefinitionIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'UnifiedRoleManagementAlertDefinitionId'", id.UnifiedRoleManagementAlertDefinitionId, "unifiedRoleManagementAlertDefinitionIdValue")
+	if id.UnifiedRoleManagementAlertDefinitionId != "unifiedRoleManagementAlertDefinitionId" {
+		t.Fatalf("Expected %q but got %q for Segment 'UnifiedRoleManagementAlertDefinitionId'", id.UnifiedRoleManagementAlertDefinitionId, "unifiedRoleManagementAlertDefinitionId")
 	}
 }
 
 func TestFormatIdentityGovernanceRoleManagementAlertAlertDefinitionID(t *testing.T) {
-	actual := NewIdentityGovernanceRoleManagementAlertAlertDefinitionID("unifiedRoleManagementAlertDefinitionIdValue").ID()
-	expected := "/identityGovernance/roleManagementAlerts/alertDefinitions/unifiedRoleManagementAlertDefinitionIdValue"
+	actual := NewIdentityGovernanceRoleManagementAlertAlertDefinitionID("unifiedRoleManagementAlertDefinitionId").ID()
+	expected := "/identityGovernance/roleManagementAlerts/alertDefinitions/unifiedRoleManagementAlertDefinitionId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -55,14 +55,14 @@ func TestParseIdentityGovernanceRoleManagementAlertAlertDefinitionID(t *testing.
 		},
 		{
 			// Valid URI
-			Input: "/identityGovernance/roleManagementAlerts/alertDefinitions/unifiedRoleManagementAlertDefinitionIdValue",
+			Input: "/identityGovernance/roleManagementAlerts/alertDefinitions/unifiedRoleManagementAlertDefinitionId",
 			Expected: &IdentityGovernanceRoleManagementAlertAlertDefinitionId{
-				UnifiedRoleManagementAlertDefinitionId: "unifiedRoleManagementAlertDefinitionIdValue",
+				UnifiedRoleManagementAlertDefinitionId: "unifiedRoleManagementAlertDefinitionId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/identityGovernance/roleManagementAlerts/alertDefinitions/unifiedRoleManagementAlertDefinitionIdValue/extra",
+			Input: "/identityGovernance/roleManagementAlerts/alertDefinitions/unifiedRoleManagementAlertDefinitionId/extra",
 			Error: true,
 		},
 	}
@@ -131,26 +131,26 @@ func TestParseIdentityGovernanceRoleManagementAlertAlertDefinitionIDInsensitivel
 		},
 		{
 			// Valid URI
-			Input: "/identityGovernance/roleManagementAlerts/alertDefinitions/unifiedRoleManagementAlertDefinitionIdValue",
+			Input: "/identityGovernance/roleManagementAlerts/alertDefinitions/unifiedRoleManagementAlertDefinitionId",
 			Expected: &IdentityGovernanceRoleManagementAlertAlertDefinitionId{
-				UnifiedRoleManagementAlertDefinitionId: "unifiedRoleManagementAlertDefinitionIdValue",
+				UnifiedRoleManagementAlertDefinitionId: "unifiedRoleManagementAlertDefinitionId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/identityGovernance/roleManagementAlerts/alertDefinitions/unifiedRoleManagementAlertDefinitionIdValue/extra",
+			Input: "/identityGovernance/roleManagementAlerts/alertDefinitions/unifiedRoleManagementAlertDefinitionId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/iDeNtItYgOvErNaNcE/rOlEmAnAgEmEnTaLeRtS/aLeRtDeFiNiTiOnS/uNiFiEdRoLeMaNaGeMeNtAlErTdEfInItIoNiDvAlUe",
+			Input: "/iDeNtItYgOvErNaNcE/rOlEmAnAgEmEnTaLeRtS/aLeRtDeFiNiTiOnS/uNiFiEdRoLeMaNaGeMeNtAlErTdEfInItIoNiD",
 			Expected: &IdentityGovernanceRoleManagementAlertAlertDefinitionId{
-				UnifiedRoleManagementAlertDefinitionId: "uNiFiEdRoLeMaNaGeMeNtAlErTdEfInItIoNiDvAlUe",
+				UnifiedRoleManagementAlertDefinitionId: "uNiFiEdRoLeMaNaGeMeNtAlErTdEfInItIoNiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/iDeNtItYgOvErNaNcE/rOlEmAnAgEmEnTaLeRtS/aLeRtDeFiNiTiOnS/uNiFiEdRoLeMaNaGeMeNtAlErTdEfInItIoNiDvAlUe/extra",
+			Input: "/iDeNtItYgOvErNaNcE/rOlEmAnAgEmEnTaLeRtS/aLeRtDeFiNiTiOnS/uNiFiEdRoLeMaNaGeMeNtAlErTdEfInItIoNiD/extra",
 			Error: true,
 		},
 	}

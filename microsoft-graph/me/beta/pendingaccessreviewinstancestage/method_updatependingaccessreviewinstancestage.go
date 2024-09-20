@@ -17,15 +17,44 @@ type UpdatePendingAccessReviewInstanceStageOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdatePendingAccessReviewInstanceStageOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdatePendingAccessReviewInstanceStageOperationOptions() UpdatePendingAccessReviewInstanceStageOperationOptions {
+	return UpdatePendingAccessReviewInstanceStageOperationOptions{}
+}
+
+func (o UpdatePendingAccessReviewInstanceStageOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdatePendingAccessReviewInstanceStageOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdatePendingAccessReviewInstanceStageOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdatePendingAccessReviewInstanceStage - Update the navigation property stages in me
-func (c PendingAccessReviewInstanceStageClient) UpdatePendingAccessReviewInstanceStage(ctx context.Context, id beta.MePendingAccessReviewInstanceIdStageId, input beta.AccessReviewStage) (result UpdatePendingAccessReviewInstanceStageOperationResponse, err error) {
+func (c PendingAccessReviewInstanceStageClient) UpdatePendingAccessReviewInstanceStage(ctx context.Context, id beta.MePendingAccessReviewInstanceIdStageId, input beta.AccessReviewStage, options UpdatePendingAccessReviewInstanceStageOperationOptions) (result UpdatePendingAccessReviewInstanceStageOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

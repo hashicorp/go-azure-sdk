@@ -16,15 +16,44 @@ type CreateAndroidManagedStoreAccountEnterpriseSettingCompleteSignupOperationRes
 	OData        *odata.OData
 }
 
+type CreateAndroidManagedStoreAccountEnterpriseSettingCompleteSignupOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateAndroidManagedStoreAccountEnterpriseSettingCompleteSignupOperationOptions() CreateAndroidManagedStoreAccountEnterpriseSettingCompleteSignupOperationOptions {
+	return CreateAndroidManagedStoreAccountEnterpriseSettingCompleteSignupOperationOptions{}
+}
+
+func (o CreateAndroidManagedStoreAccountEnterpriseSettingCompleteSignupOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateAndroidManagedStoreAccountEnterpriseSettingCompleteSignupOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateAndroidManagedStoreAccountEnterpriseSettingCompleteSignupOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateAndroidManagedStoreAccountEnterpriseSettingCompleteSignup - Invoke action completeSignup
-func (c AndroidManagedStoreAccountEnterpriseSettingClient) CreateAndroidManagedStoreAccountEnterpriseSettingCompleteSignup(ctx context.Context, input CreateAndroidManagedStoreAccountEnterpriseSettingCompleteSignupRequest) (result CreateAndroidManagedStoreAccountEnterpriseSettingCompleteSignupOperationResponse, err error) {
+func (c AndroidManagedStoreAccountEnterpriseSettingClient) CreateAndroidManagedStoreAccountEnterpriseSettingCompleteSignup(ctx context.Context, input CreateAndroidManagedStoreAccountEnterpriseSettingCompleteSignupRequest, options CreateAndroidManagedStoreAccountEnterpriseSettingCompleteSignupOperationOptions) (result CreateAndroidManagedStoreAccountEnterpriseSettingCompleteSignupOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/deviceManagement/androidManagedStoreAccountEnterpriseSettings/completeSignup",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/deviceManagement/androidManagedStoreAccountEnterpriseSettings/completeSignup",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -158,34 +158,60 @@ func (s Drive) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &Drive{}
 
 func (s *Drive) UnmarshalJSON(bytes []byte) error {
-	type alias Drive
-	var decoded alias
+
+	var decoded struct {
+		Activities           *[]ItemActivityOLD    `json:"activities,omitempty"`
+		Bundles              *[]DriveItem          `json:"bundles,omitempty"`
+		DriveType            nullable.Type[string] `json:"driveType,omitempty"`
+		Following            *[]DriveItem          `json:"following,omitempty"`
+		Items                *[]DriveItem          `json:"items,omitempty"`
+		List                 *List                 `json:"list,omitempty"`
+		Quota                *Quota                `json:"quota,omitempty"`
+		Root                 *DriveItem            `json:"root,omitempty"`
+		SharePointIds        *SharepointIds        `json:"sharePointIds,omitempty"`
+		Special              *[]DriveItem          `json:"special,omitempty"`
+		System               *SystemFacet          `json:"system,omitempty"`
+		CreatedBy            *IdentitySet          `json:"createdBy,omitempty"`
+		CreatedByUser        *User                 `json:"createdByUser,omitempty"`
+		CreatedDateTime      *string               `json:"createdDateTime,omitempty"`
+		Description          nullable.Type[string] `json:"description,omitempty"`
+		ETag                 nullable.Type[string] `json:"eTag,omitempty"`
+		LastModifiedBy       *IdentitySet          `json:"lastModifiedBy,omitempty"`
+		LastModifiedByUser   *User                 `json:"lastModifiedByUser,omitempty"`
+		LastModifiedDateTime *string               `json:"lastModifiedDateTime,omitempty"`
+		Name                 nullable.Type[string] `json:"name,omitempty"`
+		ParentReference      *ItemReference        `json:"parentReference,omitempty"`
+		WebUrl               nullable.Type[string] `json:"webUrl,omitempty"`
+		Id                   *string               `json:"id,omitempty"`
+		ODataId              *string               `json:"@odata.id,omitempty"`
+		ODataType            *string               `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into Drive: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.Activities = decoded.Activities
 	s.Bundles = decoded.Bundles
-	s.CreatedByUser = decoded.CreatedByUser
-	s.CreatedDateTime = decoded.CreatedDateTime
-	s.Description = decoded.Description
 	s.DriveType = decoded.DriveType
-	s.ETag = decoded.ETag
 	s.Following = decoded.Following
-	s.Id = decoded.Id
 	s.Items = decoded.Items
-	s.LastModifiedByUser = decoded.LastModifiedByUser
-	s.LastModifiedDateTime = decoded.LastModifiedDateTime
 	s.List = decoded.List
-	s.Name = decoded.Name
-	s.ODataId = decoded.ODataId
-	s.ODataType = decoded.ODataType
-	s.ParentReference = decoded.ParentReference
 	s.Quota = decoded.Quota
 	s.Root = decoded.Root
 	s.SharePointIds = decoded.SharePointIds
 	s.Special = decoded.Special
 	s.System = decoded.System
+	s.CreatedByUser = decoded.CreatedByUser
+	s.CreatedDateTime = decoded.CreatedDateTime
+	s.Description = decoded.Description
+	s.ETag = decoded.ETag
+	s.Id = decoded.Id
+	s.LastModifiedByUser = decoded.LastModifiedByUser
+	s.LastModifiedDateTime = decoded.LastModifiedDateTime
+	s.Name = decoded.Name
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
+	s.ParentReference = decoded.ParentReference
 	s.WebUrl = decoded.WebUrl
 
 	var temp map[string]json.RawMessage
@@ -216,5 +242,6 @@ func (s *Drive) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Owner = &impl
 	}
+
 	return nil
 }

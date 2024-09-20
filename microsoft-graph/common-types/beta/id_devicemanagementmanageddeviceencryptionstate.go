@@ -93,7 +93,7 @@ func (id DeviceManagementManagedDeviceEncryptionStateId) Segments() []resourceid
 	return []resourceids.Segment{
 		resourceids.StaticSegment("deviceManagement", "deviceManagement", "deviceManagement"),
 		resourceids.StaticSegment("managedDeviceEncryptionStates", "managedDeviceEncryptionStates", "managedDeviceEncryptionStates"),
-		resourceids.UserSpecifiedSegment("managedDeviceEncryptionStateId", "managedDeviceEncryptionStateIdValue"),
+		resourceids.UserSpecifiedSegment("managedDeviceEncryptionStateId", "managedDeviceEncryptionStateId"),
 	}
 }
 

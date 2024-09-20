@@ -107,15 +107,21 @@ func (s BaseChangeTrackedEntityImpl) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &BaseChangeTrackedEntityImpl{}
 
 func (s *BaseChangeTrackedEntityImpl) UnmarshalJSON(bytes []byte) error {
-	type alias BaseChangeTrackedEntityImpl
-	var decoded alias
+
+	var decoded struct {
+		CreatedDateTime      nullable.Type[string] `json:"createdDateTime,omitempty"`
+		LastModifiedDateTime nullable.Type[string] `json:"lastModifiedDateTime,omitempty"`
+		Id                   *string               `json:"id,omitempty"`
+		ODataId              *string               `json:"@odata.id,omitempty"`
+		ODataType            *string               `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into BaseChangeTrackedEntityImpl: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.CreatedDateTime = decoded.CreatedDateTime
-	s.Id = decoded.Id
 	s.LastModifiedDateTime = decoded.LastModifiedDateTime
+	s.Id = decoded.Id
 	s.ODataId = decoded.ODataId
 	s.ODataType = decoded.ODataType
 
@@ -139,6 +145,7 @@ func (s *BaseChangeTrackedEntityImpl) UnmarshalJSON(bytes []byte) error {
 		}
 		s.LastModifiedBy = &impl
 	}
+
 	return nil
 }
 
@@ -152,9 +159,9 @@ func UnmarshalChangeTrackedEntityImplementation(input []byte) (ChangeTrackedEnti
 		return nil, fmt.Errorf("unmarshaling ChangeTrackedEntity into map[string]interface: %+v", err)
 	}
 
-	value, ok := temp["@odata.type"].(string)
-	if !ok {
-		return nil, nil
+	var value string
+	if v, ok := temp["@odata.type"]; ok {
+		value = fmt.Sprintf("%v", v)
 	}
 
 	if strings.EqualFold(value, "#microsoft.graph.dayNote") {

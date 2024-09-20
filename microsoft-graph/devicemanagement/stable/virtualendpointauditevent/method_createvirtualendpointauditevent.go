@@ -18,15 +18,44 @@ type CreateVirtualEndpointAuditEventOperationResponse struct {
 	Model        *stable.CloudPCAuditEvent
 }
 
+type CreateVirtualEndpointAuditEventOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateVirtualEndpointAuditEventOperationOptions() CreateVirtualEndpointAuditEventOperationOptions {
+	return CreateVirtualEndpointAuditEventOperationOptions{}
+}
+
+func (o CreateVirtualEndpointAuditEventOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateVirtualEndpointAuditEventOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateVirtualEndpointAuditEventOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateVirtualEndpointAuditEvent - Create new navigation property to auditEvents for deviceManagement
-func (c VirtualEndpointAuditEventClient) CreateVirtualEndpointAuditEvent(ctx context.Context, input stable.CloudPCAuditEvent) (result CreateVirtualEndpointAuditEventOperationResponse, err error) {
+func (c VirtualEndpointAuditEventClient) CreateVirtualEndpointAuditEvent(ctx context.Context, input stable.CloudPCAuditEvent, options CreateVirtualEndpointAuditEventOperationOptions) (result CreateVirtualEndpointAuditEventOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/deviceManagement/virtualEndpoint/auditEvents",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/deviceManagement/virtualEndpoint/auditEvents",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

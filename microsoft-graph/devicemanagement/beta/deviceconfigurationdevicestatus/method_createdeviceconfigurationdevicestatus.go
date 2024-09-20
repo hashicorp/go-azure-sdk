@@ -19,15 +19,44 @@ type CreateDeviceConfigurationDeviceStatusOperationResponse struct {
 	Model        *beta.DeviceConfigurationDeviceStatus
 }
 
+type CreateDeviceConfigurationDeviceStatusOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateDeviceConfigurationDeviceStatusOperationOptions() CreateDeviceConfigurationDeviceStatusOperationOptions {
+	return CreateDeviceConfigurationDeviceStatusOperationOptions{}
+}
+
+func (o CreateDeviceConfigurationDeviceStatusOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateDeviceConfigurationDeviceStatusOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateDeviceConfigurationDeviceStatusOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateDeviceConfigurationDeviceStatus - Create new navigation property to deviceStatuses for deviceManagement
-func (c DeviceConfigurationDeviceStatusClient) CreateDeviceConfigurationDeviceStatus(ctx context.Context, id beta.DeviceManagementDeviceConfigurationId, input beta.DeviceConfigurationDeviceStatus) (result CreateDeviceConfigurationDeviceStatusOperationResponse, err error) {
+func (c DeviceConfigurationDeviceStatusClient) CreateDeviceConfigurationDeviceStatus(ctx context.Context, id beta.DeviceManagementDeviceConfigurationId, input beta.DeviceConfigurationDeviceStatus, options CreateDeviceConfigurationDeviceStatusOperationOptions) (result CreateDeviceConfigurationDeviceStatusOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/deviceStatuses", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/deviceStatuses", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

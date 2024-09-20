@@ -17,15 +17,44 @@ type UpdateB2xUserFlowOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateB2xUserFlowOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateB2xUserFlowOperationOptions() UpdateB2xUserFlowOperationOptions {
+	return UpdateB2xUserFlowOperationOptions{}
+}
+
+func (o UpdateB2xUserFlowOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateB2xUserFlowOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateB2xUserFlowOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateB2xUserFlow - Update the navigation property b2xUserFlows in identity
-func (c B2xUserFlowClient) UpdateB2xUserFlow(ctx context.Context, id stable.IdentityB2xUserFlowId, input stable.B2xIdentityUserFlow) (result UpdateB2xUserFlowOperationResponse, err error) {
+func (c B2xUserFlowClient) UpdateB2xUserFlow(ctx context.Context, id stable.IdentityB2xUserFlowId, input stable.B2xIdentityUserFlow, options UpdateB2xUserFlowOperationOptions) (result UpdateB2xUserFlowOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

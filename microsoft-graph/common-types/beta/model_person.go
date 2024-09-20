@@ -123,10 +123,34 @@ func (s Person) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &Person{}
 
 func (s *Person) UnmarshalJSON(bytes []byte) error {
-	type alias Person
-	var decoded alias
+
+	var decoded struct {
+		Birthday          nullable.Type[string] `json:"birthday,omitempty"`
+		CompanyName       nullable.Type[string] `json:"companyName,omitempty"`
+		Department        nullable.Type[string] `json:"department,omitempty"`
+		DisplayName       nullable.Type[string] `json:"displayName,omitempty"`
+		EmailAddresses    *[]RankedEmailAddress `json:"emailAddresses,omitempty"`
+		GivenName         nullable.Type[string] `json:"givenName,omitempty"`
+		IsFavorite        nullable.Type[bool]   `json:"isFavorite,omitempty"`
+		MailboxType       nullable.Type[string] `json:"mailboxType,omitempty"`
+		OfficeLocation    nullable.Type[string] `json:"officeLocation,omitempty"`
+		PersonNotes       nullable.Type[string] `json:"personNotes,omitempty"`
+		PersonType        nullable.Type[string] `json:"personType,omitempty"`
+		Phones            *[]Phone              `json:"phones,omitempty"`
+		PostalAddresses   *[]Location           `json:"postalAddresses,omitempty"`
+		Profession        nullable.Type[string] `json:"profession,omitempty"`
+		Sources           *[]PersonDataSource   `json:"sources,omitempty"`
+		Surname           nullable.Type[string] `json:"surname,omitempty"`
+		Title             nullable.Type[string] `json:"title,omitempty"`
+		UserPrincipalName nullable.Type[string] `json:"userPrincipalName,omitempty"`
+		Websites          *[]Website            `json:"websites,omitempty"`
+		YomiCompany       nullable.Type[string] `json:"yomiCompany,omitempty"`
+		Id                *string               `json:"id,omitempty"`
+		ODataId           *string               `json:"@odata.id,omitempty"`
+		ODataType         *string               `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into Person: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.Birthday = decoded.Birthday
@@ -135,11 +159,8 @@ func (s *Person) UnmarshalJSON(bytes []byte) error {
 	s.DisplayName = decoded.DisplayName
 	s.EmailAddresses = decoded.EmailAddresses
 	s.GivenName = decoded.GivenName
-	s.Id = decoded.Id
 	s.IsFavorite = decoded.IsFavorite
 	s.MailboxType = decoded.MailboxType
-	s.ODataId = decoded.ODataId
-	s.ODataType = decoded.ODataType
 	s.OfficeLocation = decoded.OfficeLocation
 	s.PersonNotes = decoded.PersonNotes
 	s.PersonType = decoded.PersonType
@@ -151,6 +172,9 @@ func (s *Person) UnmarshalJSON(bytes []byte) error {
 	s.UserPrincipalName = decoded.UserPrincipalName
 	s.Websites = decoded.Websites
 	s.YomiCompany = decoded.YomiCompany
+	s.Id = decoded.Id
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -173,5 +197,6 @@ func (s *Person) UnmarshalJSON(bytes []byte) error {
 		}
 		s.PostalAddresses = &output
 	}
+
 	return nil
 }

@@ -19,15 +19,44 @@ type CreateMailFolderChildFolderMessageRuleOperationResponse struct {
 	Model        *stable.MessageRule
 }
 
+type CreateMailFolderChildFolderMessageRuleOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateMailFolderChildFolderMessageRuleOperationOptions() CreateMailFolderChildFolderMessageRuleOperationOptions {
+	return CreateMailFolderChildFolderMessageRuleOperationOptions{}
+}
+
+func (o CreateMailFolderChildFolderMessageRuleOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateMailFolderChildFolderMessageRuleOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateMailFolderChildFolderMessageRuleOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateMailFolderChildFolderMessageRule - Create new navigation property to messageRules for users
-func (c MailFolderChildFolderMessageRuleClient) CreateMailFolderChildFolderMessageRule(ctx context.Context, id stable.UserIdMailFolderIdChildFolderId, input stable.MessageRule) (result CreateMailFolderChildFolderMessageRuleOperationResponse, err error) {
+func (c MailFolderChildFolderMessageRuleClient) CreateMailFolderChildFolderMessageRule(ctx context.Context, id stable.UserIdMailFolderIdChildFolderId, input stable.MessageRule, options CreateMailFolderChildFolderMessageRuleOperationOptions) (result CreateMailFolderChildFolderMessageRuleOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/messageRules", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/messageRules", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

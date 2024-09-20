@@ -17,16 +17,45 @@ type UpdateGroupPolicyMigrationReportUnsupportedExtensionOperationResponse struc
 	OData        *odata.OData
 }
 
+type UpdateGroupPolicyMigrationReportUnsupportedExtensionOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateGroupPolicyMigrationReportUnsupportedExtensionOperationOptions() UpdateGroupPolicyMigrationReportUnsupportedExtensionOperationOptions {
+	return UpdateGroupPolicyMigrationReportUnsupportedExtensionOperationOptions{}
+}
+
+func (o UpdateGroupPolicyMigrationReportUnsupportedExtensionOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateGroupPolicyMigrationReportUnsupportedExtensionOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateGroupPolicyMigrationReportUnsupportedExtensionOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateGroupPolicyMigrationReportUnsupportedExtension - Update the navigation property
 // unsupportedGroupPolicyExtensions in deviceManagement
-func (c GroupPolicyMigrationReportUnsupportedGroupPolicyExtensionClient) UpdateGroupPolicyMigrationReportUnsupportedExtension(ctx context.Context, id beta.DeviceManagementGroupPolicyMigrationReportIdUnsupportedGroupPolicyExtensionId, input beta.UnsupportedGroupPolicyExtension) (result UpdateGroupPolicyMigrationReportUnsupportedExtensionOperationResponse, err error) {
+func (c GroupPolicyMigrationReportUnsupportedGroupPolicyExtensionClient) UpdateGroupPolicyMigrationReportUnsupportedExtension(ctx context.Context, id beta.DeviceManagementGroupPolicyMigrationReportIdUnsupportedGroupPolicyExtensionId, input beta.UnsupportedGroupPolicyExtension, options UpdateGroupPolicyMigrationReportUnsupportedExtensionOperationOptions) (result UpdateGroupPolicyMigrationReportUnsupportedExtensionOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

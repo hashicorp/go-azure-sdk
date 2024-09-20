@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &IdentityGovernanceEntitlementManagementAccessPackageResourceRequestId{}
 
 func TestNewIdentityGovernanceEntitlementManagementAccessPackageResourceRequestID(t *testing.T) {
-	id := NewIdentityGovernanceEntitlementManagementAccessPackageResourceRequestID("accessPackageResourceRequestIdValue")
+	id := NewIdentityGovernanceEntitlementManagementAccessPackageResourceRequestID("accessPackageResourceRequestId")
 
-	if id.AccessPackageResourceRequestId != "accessPackageResourceRequestIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'AccessPackageResourceRequestId'", id.AccessPackageResourceRequestId, "accessPackageResourceRequestIdValue")
+	if id.AccessPackageResourceRequestId != "accessPackageResourceRequestId" {
+		t.Fatalf("Expected %q but got %q for Segment 'AccessPackageResourceRequestId'", id.AccessPackageResourceRequestId, "accessPackageResourceRequestId")
 	}
 }
 
 func TestFormatIdentityGovernanceEntitlementManagementAccessPackageResourceRequestID(t *testing.T) {
-	actual := NewIdentityGovernanceEntitlementManagementAccessPackageResourceRequestID("accessPackageResourceRequestIdValue").ID()
-	expected := "/identityGovernance/entitlementManagement/accessPackageResourceRequests/accessPackageResourceRequestIdValue"
+	actual := NewIdentityGovernanceEntitlementManagementAccessPackageResourceRequestID("accessPackageResourceRequestId").ID()
+	expected := "/identityGovernance/entitlementManagement/accessPackageResourceRequests/accessPackageResourceRequestId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -55,14 +55,14 @@ func TestParseIdentityGovernanceEntitlementManagementAccessPackageResourceReques
 		},
 		{
 			// Valid URI
-			Input: "/identityGovernance/entitlementManagement/accessPackageResourceRequests/accessPackageResourceRequestIdValue",
+			Input: "/identityGovernance/entitlementManagement/accessPackageResourceRequests/accessPackageResourceRequestId",
 			Expected: &IdentityGovernanceEntitlementManagementAccessPackageResourceRequestId{
-				AccessPackageResourceRequestId: "accessPackageResourceRequestIdValue",
+				AccessPackageResourceRequestId: "accessPackageResourceRequestId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/identityGovernance/entitlementManagement/accessPackageResourceRequests/accessPackageResourceRequestIdValue/extra",
+			Input: "/identityGovernance/entitlementManagement/accessPackageResourceRequests/accessPackageResourceRequestId/extra",
 			Error: true,
 		},
 	}
@@ -131,26 +131,26 @@ func TestParseIdentityGovernanceEntitlementManagementAccessPackageResourceReques
 		},
 		{
 			// Valid URI
-			Input: "/identityGovernance/entitlementManagement/accessPackageResourceRequests/accessPackageResourceRequestIdValue",
+			Input: "/identityGovernance/entitlementManagement/accessPackageResourceRequests/accessPackageResourceRequestId",
 			Expected: &IdentityGovernanceEntitlementManagementAccessPackageResourceRequestId{
-				AccessPackageResourceRequestId: "accessPackageResourceRequestIdValue",
+				AccessPackageResourceRequestId: "accessPackageResourceRequestId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/identityGovernance/entitlementManagement/accessPackageResourceRequests/accessPackageResourceRequestIdValue/extra",
+			Input: "/identityGovernance/entitlementManagement/accessPackageResourceRequests/accessPackageResourceRequestId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/iDeNtItYgOvErNaNcE/eNtItLeMeNtMaNaGeMeNt/aCcEsSpAcKaGeReSoUrCeReQuEsTs/aCcEsSpAcKaGeReSoUrCeReQuEsTiDvAlUe",
+			Input: "/iDeNtItYgOvErNaNcE/eNtItLeMeNtMaNaGeMeNt/aCcEsSpAcKaGeReSoUrCeReQuEsTs/aCcEsSpAcKaGeReSoUrCeReQuEsTiD",
 			Expected: &IdentityGovernanceEntitlementManagementAccessPackageResourceRequestId{
-				AccessPackageResourceRequestId: "aCcEsSpAcKaGeReSoUrCeReQuEsTiDvAlUe",
+				AccessPackageResourceRequestId: "aCcEsSpAcKaGeReSoUrCeReQuEsTiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/iDeNtItYgOvErNaNcE/eNtItLeMeNtMaNaGeMeNt/aCcEsSpAcKaGeReSoUrCeReQuEsTs/aCcEsSpAcKaGeReSoUrCeReQuEsTiDvAlUe/extra",
+			Input: "/iDeNtItYgOvErNaNcE/eNtItLeMeNtMaNaGeMeNt/aCcEsSpAcKaGeReSoUrCeReQuEsTs/aCcEsSpAcKaGeReSoUrCeReQuEsTiD/extra",
 			Error: true,
 		},
 	}

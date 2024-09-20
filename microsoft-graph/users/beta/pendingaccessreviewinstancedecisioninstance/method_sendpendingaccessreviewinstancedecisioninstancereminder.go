@@ -18,16 +18,45 @@ type SendPendingAccessReviewInstanceDecisionInstanceReminderOperationResponse st
 	OData        *odata.OData
 }
 
+type SendPendingAccessReviewInstanceDecisionInstanceReminderOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultSendPendingAccessReviewInstanceDecisionInstanceReminderOperationOptions() SendPendingAccessReviewInstanceDecisionInstanceReminderOperationOptions {
+	return SendPendingAccessReviewInstanceDecisionInstanceReminderOperationOptions{}
+}
+
+func (o SendPendingAccessReviewInstanceDecisionInstanceReminderOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o SendPendingAccessReviewInstanceDecisionInstanceReminderOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o SendPendingAccessReviewInstanceDecisionInstanceReminderOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // SendPendingAccessReviewInstanceDecisionInstanceReminder - Invoke action sendReminder. Send a reminder to the
 // reviewers of a currently active accessReviewInstance.
-func (c PendingAccessReviewInstanceDecisionInstanceClient) SendPendingAccessReviewInstanceDecisionInstanceReminder(ctx context.Context, id beta.UserIdPendingAccessReviewInstanceIdDecisionId) (result SendPendingAccessReviewInstanceDecisionInstanceReminderOperationResponse, err error) {
+func (c PendingAccessReviewInstanceDecisionInstanceClient) SendPendingAccessReviewInstanceDecisionInstanceReminder(ctx context.Context, id beta.UserIdPendingAccessReviewInstanceIdDecisionId, options SendPendingAccessReviewInstanceDecisionInstanceReminderOperationOptions) (result SendPendingAccessReviewInstanceDecisionInstanceReminderOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/instance/sendReminder", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/instance/sendReminder", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

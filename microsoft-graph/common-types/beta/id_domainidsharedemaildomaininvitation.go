@@ -98,9 +98,9 @@ func (id DomainIdSharedEmailDomainInvitationId) ID() string {
 func (id DomainIdSharedEmailDomainInvitationId) Segments() []resourceids.Segment {
 	return []resourceids.Segment{
 		resourceids.StaticSegment("domains", "domains", "domains"),
-		resourceids.UserSpecifiedSegment("domainId", "domainIdValue"),
+		resourceids.UserSpecifiedSegment("domainId", "domainId"),
 		resourceids.StaticSegment("sharedEmailDomainInvitations", "sharedEmailDomainInvitations", "sharedEmailDomainInvitations"),
-		resourceids.UserSpecifiedSegment("sharedEmailDomainInvitationId", "sharedEmailDomainInvitationIdValue"),
+		resourceids.UserSpecifiedSegment("sharedEmailDomainInvitationId", "sharedEmailDomainInvitationId"),
 	}
 }
 

@@ -17,16 +17,45 @@ type UpdatePermissionsAnalyticGcpPermissionsCreepIndexDistributionOperationRespo
 	OData        *odata.OData
 }
 
+type UpdatePermissionsAnalyticGcpPermissionsCreepIndexDistributionOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdatePermissionsAnalyticGcpPermissionsCreepIndexDistributionOperationOptions() UpdatePermissionsAnalyticGcpPermissionsCreepIndexDistributionOperationOptions {
+	return UpdatePermissionsAnalyticGcpPermissionsCreepIndexDistributionOperationOptions{}
+}
+
+func (o UpdatePermissionsAnalyticGcpPermissionsCreepIndexDistributionOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdatePermissionsAnalyticGcpPermissionsCreepIndexDistributionOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdatePermissionsAnalyticGcpPermissionsCreepIndexDistributionOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdatePermissionsAnalyticGcpPermissionsCreepIndexDistribution - Update the navigation property
 // permissionsCreepIndexDistributions in identityGovernance
-func (c PermissionsAnalyticGcpPermissionsCreepIndexDistributionClient) UpdatePermissionsAnalyticGcpPermissionsCreepIndexDistribution(ctx context.Context, id beta.IdentityGovernancePermissionsAnalyticGcpPermissionsCreepIndexDistributionId, input beta.PermissionsCreepIndexDistribution) (result UpdatePermissionsAnalyticGcpPermissionsCreepIndexDistributionOperationResponse, err error) {
+func (c PermissionsAnalyticGcpPermissionsCreepIndexDistributionClient) UpdatePermissionsAnalyticGcpPermissionsCreepIndexDistribution(ctx context.Context, id beta.IdentityGovernancePermissionsAnalyticGcpPermissionsCreepIndexDistributionId, input beta.PermissionsCreepIndexDistribution, options UpdatePermissionsAnalyticGcpPermissionsCreepIndexDistributionOperationOptions) (result UpdatePermissionsAnalyticGcpPermissionsCreepIndexDistributionOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

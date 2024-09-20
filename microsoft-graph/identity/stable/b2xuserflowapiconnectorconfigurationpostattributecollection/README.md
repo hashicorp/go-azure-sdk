@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/microsoft-graph/identity/stable/b2xuserflowapiconnectorconfigurationpostattributecollection` Documentation
 
-The `b2xuserflowapiconnectorconfigurationpostattributecollection` SDK allows for interaction with the Azure Resource Manager Service `identity` (API Version `stable`).
+The `b2xuserflowapiconnectorconfigurationpostattributecollection` SDK allows for interaction with Microsoft Graph `identity` (API Version `stable`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -15,7 +15,7 @@ import "github.com/hashicorp/go-azure-sdk/microsoft-graph/identity/stable/b2xuse
 ### Client Initialization
 
 ```go
-client := b2xuserflowapiconnectorconfigurationpostattributecollection.NewB2xUserFlowApiConnectorConfigurationPostAttributeCollectionClientWithBaseURI("https://management.azure.com")
+client := b2xuserflowapiconnectorconfigurationpostattributecollection.NewB2xUserFlowApiConnectorConfigurationPostAttributeCollectionClientWithBaseURI("https://graph.microsoft.com")
 client.Client.Authorizer = authorizer
 ```
 
@@ -24,14 +24,14 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := b2xuserflowapiconnectorconfigurationpostattributecollection.NewIdentityB2xUserFlowID("b2xIdentityUserFlowIdValue")
+id := b2xuserflowapiconnectorconfigurationpostattributecollection.NewIdentityB2xUserFlowID("b2xIdentityUserFlowId")
 
 payload := b2xuserflowapiconnectorconfigurationpostattributecollection.CreateB2xUserFlowApiConnectorConfigurationPostAttributeCollectionUploadClientCertificateRequest{
 	// ...
 }
 
 
-read, err := client.CreateB2xUserFlowApiConnectorConfigurationPostAttributeCollectionUploadClientCertificate(ctx, id, payload)
+read, err := client.CreateB2xUserFlowApiConnectorConfigurationPostAttributeCollectionUploadClientCertificate(ctx, id, payload, b2xuserflowapiconnectorconfigurationpostattributecollection.DefaultCreateB2xUserFlowApiConnectorConfigurationPostAttributeCollectionUploadClientCertificateOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -45,7 +45,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := b2xuserflowapiconnectorconfigurationpostattributecollection.NewIdentityB2xUserFlowID("b2xIdentityUserFlowIdValue")
+id := b2xuserflowapiconnectorconfigurationpostattributecollection.NewIdentityB2xUserFlowID("b2xIdentityUserFlowId")
 
 read, err := client.DeleteB2xUserFlowApiConnectorConfigurationPostAttributeCollection(ctx, id, b2xuserflowapiconnectorconfigurationpostattributecollection.DefaultDeleteB2xUserFlowApiConnectorConfigurationPostAttributeCollectionOperationOptions())
 if err != nil {
@@ -61,7 +61,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := b2xuserflowapiconnectorconfigurationpostattributecollection.NewIdentityB2xUserFlowID("b2xIdentityUserFlowIdValue")
+id := b2xuserflowapiconnectorconfigurationpostattributecollection.NewIdentityB2xUserFlowID("b2xIdentityUserFlowId")
 
 read, err := client.GetB2xUserFlowApiConnectorConfigurationPostAttributeCollection(ctx, id, b2xuserflowapiconnectorconfigurationpostattributecollection.DefaultGetB2xUserFlowApiConnectorConfigurationPostAttributeCollectionOperationOptions())
 if err != nil {
@@ -77,9 +77,9 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := b2xuserflowapiconnectorconfigurationpostattributecollection.NewIdentityB2xUserFlowID("b2xIdentityUserFlowIdValue")
+id := b2xuserflowapiconnectorconfigurationpostattributecollection.NewIdentityB2xUserFlowID("b2xIdentityUserFlowId")
 
-read, err := client.GetB2xUserFlowApiConnectorConfigurationPostAttributeCollectionRef(ctx, id)
+read, err := client.GetB2xUserFlowApiConnectorConfigurationPostAttributeCollectionRef(ctx, id, b2xuserflowapiconnectorconfigurationpostattributecollection.DefaultGetB2xUserFlowApiConnectorConfigurationPostAttributeCollectionRefOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -93,7 +93,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := b2xuserflowapiconnectorconfigurationpostattributecollection.NewIdentityB2xUserFlowID("b2xIdentityUserFlowIdValue")
+id := b2xuserflowapiconnectorconfigurationpostattributecollection.NewIdentityB2xUserFlowID("b2xIdentityUserFlowId")
 
 read, err := client.RemoveB2xUserFlowApiConnectorConfigurationPostAttributeCollectionRef(ctx, id, b2xuserflowapiconnectorconfigurationpostattributecollection.DefaultRemoveB2xUserFlowApiConnectorConfigurationPostAttributeCollectionRefOperationOptions())
 if err != nil {
@@ -109,14 +109,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := b2xuserflowapiconnectorconfigurationpostattributecollection.NewIdentityB2xUserFlowID("b2xIdentityUserFlowIdValue")
+id := b2xuserflowapiconnectorconfigurationpostattributecollection.NewIdentityB2xUserFlowID("b2xIdentityUserFlowId")
 
 payload := b2xuserflowapiconnectorconfigurationpostattributecollection.ReferenceUpdate{
 	// ...
 }
 
 
-read, err := client.SetB2xUserFlowApiConnectorConfigurationPostAttributeCollectionRef(ctx, id, payload)
+read, err := client.SetB2xUserFlowApiConnectorConfigurationPostAttributeCollectionRef(ctx, id, payload, b2xuserflowapiconnectorconfigurationpostattributecollection.DefaultSetB2xUserFlowApiConnectorConfigurationPostAttributeCollectionRefOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -130,14 +130,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := b2xuserflowapiconnectorconfigurationpostattributecollection.NewIdentityB2xUserFlowID("b2xIdentityUserFlowIdValue")
+id := b2xuserflowapiconnectorconfigurationpostattributecollection.NewIdentityB2xUserFlowID("b2xIdentityUserFlowId")
 
 payload := b2xuserflowapiconnectorconfigurationpostattributecollection.IdentityApiConnector{
 	// ...
 }
 
 
-read, err := client.UpdateB2xUserFlowApiConnectorConfigurationPostAttributeCollection(ctx, id, payload)
+read, err := client.UpdateB2xUserFlowApiConnectorConfigurationPostAttributeCollection(ctx, id, payload, b2xuserflowapiconnectorconfigurationpostattributecollection.DefaultUpdateB2xUserFlowApiConnectorConfigurationPostAttributeCollectionOperationOptions())
 if err != nil {
 	// handle the error
 }

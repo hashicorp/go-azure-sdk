@@ -17,15 +17,44 @@ type UpdateExchangeRoleDefinitionOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateExchangeRoleDefinitionOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateExchangeRoleDefinitionOperationOptions() UpdateExchangeRoleDefinitionOperationOptions {
+	return UpdateExchangeRoleDefinitionOperationOptions{}
+}
+
+func (o UpdateExchangeRoleDefinitionOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateExchangeRoleDefinitionOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateExchangeRoleDefinitionOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateExchangeRoleDefinition - Update the navigation property roleDefinitions in roleManagement
-func (c ExchangeRoleDefinitionClient) UpdateExchangeRoleDefinition(ctx context.Context, id beta.RoleManagementExchangeRoleDefinitionId, input beta.UnifiedRoleDefinition) (result UpdateExchangeRoleDefinitionOperationResponse, err error) {
+func (c ExchangeRoleDefinitionClient) UpdateExchangeRoleDefinition(ctx context.Context, id beta.RoleManagementExchangeRoleDefinitionId, input beta.UnifiedRoleDefinition, options UpdateExchangeRoleDefinitionOperationOptions) (result UpdateExchangeRoleDefinitionOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

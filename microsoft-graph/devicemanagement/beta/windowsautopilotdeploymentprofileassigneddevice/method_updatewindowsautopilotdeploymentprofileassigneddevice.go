@@ -17,16 +17,45 @@ type UpdateWindowsAutopilotDeploymentProfileAssignedDeviceOperationResponse stru
 	OData        *odata.OData
 }
 
+type UpdateWindowsAutopilotDeploymentProfileAssignedDeviceOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateWindowsAutopilotDeploymentProfileAssignedDeviceOperationOptions() UpdateWindowsAutopilotDeploymentProfileAssignedDeviceOperationOptions {
+	return UpdateWindowsAutopilotDeploymentProfileAssignedDeviceOperationOptions{}
+}
+
+func (o UpdateWindowsAutopilotDeploymentProfileAssignedDeviceOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateWindowsAutopilotDeploymentProfileAssignedDeviceOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateWindowsAutopilotDeploymentProfileAssignedDeviceOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateWindowsAutopilotDeploymentProfileAssignedDevice - Update the navigation property assignedDevices in
 // deviceManagement
-func (c WindowsAutopilotDeploymentProfileAssignedDeviceClient) UpdateWindowsAutopilotDeploymentProfileAssignedDevice(ctx context.Context, id beta.DeviceManagementWindowsAutopilotDeploymentProfileIdAssignedDeviceId, input beta.WindowsAutopilotDeviceIdentity) (result UpdateWindowsAutopilotDeploymentProfileAssignedDeviceOperationResponse, err error) {
+func (c WindowsAutopilotDeploymentProfileAssignedDeviceClient) UpdateWindowsAutopilotDeploymentProfileAssignedDevice(ctx context.Context, id beta.DeviceManagementWindowsAutopilotDeploymentProfileIdAssignedDeviceId, input beta.WindowsAutopilotDeviceIdentity, options UpdateWindowsAutopilotDeploymentProfileAssignedDeviceOperationOptions) (result UpdateWindowsAutopilotDeploymentProfileAssignedDeviceOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

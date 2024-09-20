@@ -20,15 +20,44 @@ type CreateCalendarViewAttachmentOperationResponse struct {
 	Model        stable.Attachment
 }
 
+type CreateCalendarViewAttachmentOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateCalendarViewAttachmentOperationOptions() CreateCalendarViewAttachmentOperationOptions {
+	return CreateCalendarViewAttachmentOperationOptions{}
+}
+
+func (o CreateCalendarViewAttachmentOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateCalendarViewAttachmentOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateCalendarViewAttachmentOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateCalendarViewAttachment - Create new navigation property to attachments for groups
-func (c CalendarCalendarViewAttachmentClient) CreateCalendarViewAttachment(ctx context.Context, id stable.GroupIdCalendarCalendarViewId, input stable.Attachment) (result CreateCalendarViewAttachmentOperationResponse, err error) {
+func (c CalendarCalendarViewAttachmentClient) CreateCalendarViewAttachment(ctx context.Context, id stable.GroupIdCalendarCalendarViewId, input stable.Attachment, options CreateCalendarViewAttachmentOperationOptions) (result CreateCalendarViewAttachmentOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/attachments", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/attachments", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

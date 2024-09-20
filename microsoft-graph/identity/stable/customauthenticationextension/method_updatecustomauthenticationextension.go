@@ -17,16 +17,45 @@ type UpdateCustomAuthenticationExtensionOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateCustomAuthenticationExtensionOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateCustomAuthenticationExtensionOperationOptions() UpdateCustomAuthenticationExtensionOperationOptions {
+	return UpdateCustomAuthenticationExtensionOperationOptions{}
+}
+
+func (o UpdateCustomAuthenticationExtensionOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateCustomAuthenticationExtensionOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateCustomAuthenticationExtensionOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateCustomAuthenticationExtension - Update customAuthenticationExtension. Update the properties of a
 // customAuthenticationExtension object.
-func (c CustomAuthenticationExtensionClient) UpdateCustomAuthenticationExtension(ctx context.Context, id stable.IdentityCustomAuthenticationExtensionId, input stable.CustomAuthenticationExtension) (result UpdateCustomAuthenticationExtensionOperationResponse, err error) {
+func (c CustomAuthenticationExtensionClient) UpdateCustomAuthenticationExtension(ctx context.Context, id stable.IdentityCustomAuthenticationExtensionId, input stable.CustomAuthenticationExtension, options UpdateCustomAuthenticationExtensionOperationOptions) (result UpdateCustomAuthenticationExtensionOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

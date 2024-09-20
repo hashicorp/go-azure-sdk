@@ -19,16 +19,45 @@ type CreateEntitlementManagementAccessPackageAssignmentAccessPolicyCustomExtensi
 	Model        *beta.CustomExtensionHandler
 }
 
+type CreateEntitlementManagementAccessPackageAssignmentAccessPolicyCustomExtensionHandlerOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateEntitlementManagementAccessPackageAssignmentAccessPolicyCustomExtensionHandlerOperationOptions() CreateEntitlementManagementAccessPackageAssignmentAccessPolicyCustomExtensionHandlerOperationOptions {
+	return CreateEntitlementManagementAccessPackageAssignmentAccessPolicyCustomExtensionHandlerOperationOptions{}
+}
+
+func (o CreateEntitlementManagementAccessPackageAssignmentAccessPolicyCustomExtensionHandlerOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateEntitlementManagementAccessPackageAssignmentAccessPolicyCustomExtensionHandlerOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateEntitlementManagementAccessPackageAssignmentAccessPolicyCustomExtensionHandlerOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateEntitlementManagementAccessPackageAssignmentAccessPolicyCustomExtensionHandler - Create new navigation property
 // to customExtensionHandlers for identityGovernance
-func (c EntitlementManagementAccessPackageAssignmentAccessPackageAccessPackageAssignmentPolicyCustomExtensionHandlerClient) CreateEntitlementManagementAccessPackageAssignmentAccessPolicyCustomExtensionHandler(ctx context.Context, id beta.IdentityGovernanceEntitlementManagementAccessPackageAssignmentIdAccessPackageAccessPackageAssignmentPolicyId, input beta.CustomExtensionHandler) (result CreateEntitlementManagementAccessPackageAssignmentAccessPolicyCustomExtensionHandlerOperationResponse, err error) {
+func (c EntitlementManagementAccessPackageAssignmentAccessPackageAccessPackageAssignmentPolicyCustomExtensionHandlerClient) CreateEntitlementManagementAccessPackageAssignmentAccessPolicyCustomExtensionHandler(ctx context.Context, id beta.IdentityGovernanceEntitlementManagementAccessPackageAssignmentIdAccessPackageAccessPackageAssignmentPolicyId, input beta.CustomExtensionHandler, options CreateEntitlementManagementAccessPackageAssignmentAccessPolicyCustomExtensionHandlerOperationOptions) (result CreateEntitlementManagementAccessPackageAssignmentAccessPolicyCustomExtensionHandlerOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/customExtensionHandlers", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/customExtensionHandlers", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

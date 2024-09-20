@@ -18,15 +18,44 @@ type CreateVirtualEndpointServicePlanOperationResponse struct {
 	Model        *beta.CloudPCServicePlan
 }
 
+type CreateVirtualEndpointServicePlanOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateVirtualEndpointServicePlanOperationOptions() CreateVirtualEndpointServicePlanOperationOptions {
+	return CreateVirtualEndpointServicePlanOperationOptions{}
+}
+
+func (o CreateVirtualEndpointServicePlanOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateVirtualEndpointServicePlanOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateVirtualEndpointServicePlanOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateVirtualEndpointServicePlan - Create new navigation property to servicePlans for deviceManagement
-func (c VirtualEndpointServicePlanClient) CreateVirtualEndpointServicePlan(ctx context.Context, input beta.CloudPCServicePlan) (result CreateVirtualEndpointServicePlanOperationResponse, err error) {
+func (c VirtualEndpointServicePlanClient) CreateVirtualEndpointServicePlan(ctx context.Context, input beta.CloudPCServicePlan, options CreateVirtualEndpointServicePlanOperationOptions) (result CreateVirtualEndpointServicePlanOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/deviceManagement/virtualEndpoint/servicePlans",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/deviceManagement/virtualEndpoint/servicePlans",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

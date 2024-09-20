@@ -17,15 +17,44 @@ type UpdateTemplateInsightOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateTemplateInsightOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateTemplateInsightOperationOptions() UpdateTemplateInsightOperationOptions {
+	return UpdateTemplateInsightOperationOptions{}
+}
+
+func (o UpdateTemplateInsightOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateTemplateInsightOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateTemplateInsightOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateTemplateInsight - Update the navigation property templateInsights in deviceManagement
-func (c TemplateInsightClient) UpdateTemplateInsight(ctx context.Context, id beta.DeviceManagementTemplateInsightId, input beta.DeviceManagementTemplateInsightsDefinition) (result UpdateTemplateInsightOperationResponse, err error) {
+func (c TemplateInsightClient) UpdateTemplateInsight(ctx context.Context, id beta.DeviceManagementTemplateInsightId, input beta.DeviceManagementTemplateInsightsDefinition, options UpdateTemplateInsightOperationOptions) (result UpdateTemplateInsightOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

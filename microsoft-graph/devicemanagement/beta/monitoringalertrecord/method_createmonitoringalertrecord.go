@@ -18,15 +18,44 @@ type CreateMonitoringAlertRecordOperationResponse struct {
 	Model        *beta.DeviceManagementAlertRecord
 }
 
+type CreateMonitoringAlertRecordOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateMonitoringAlertRecordOperationOptions() CreateMonitoringAlertRecordOperationOptions {
+	return CreateMonitoringAlertRecordOperationOptions{}
+}
+
+func (o CreateMonitoringAlertRecordOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateMonitoringAlertRecordOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateMonitoringAlertRecordOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateMonitoringAlertRecord - Create new navigation property to alertRecords for deviceManagement
-func (c MonitoringAlertRecordClient) CreateMonitoringAlertRecord(ctx context.Context, input beta.DeviceManagementAlertRecord) (result CreateMonitoringAlertRecordOperationResponse, err error) {
+func (c MonitoringAlertRecordClient) CreateMonitoringAlertRecord(ctx context.Context, input beta.DeviceManagementAlertRecord, options CreateMonitoringAlertRecordOperationOptions) (result CreateMonitoringAlertRecordOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/deviceManagement/monitoring/alertRecords",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/deviceManagement/monitoring/alertRecords",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

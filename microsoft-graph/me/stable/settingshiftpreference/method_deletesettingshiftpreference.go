@@ -18,7 +18,8 @@ type DeleteSettingShiftPreferenceOperationResponse struct {
 }
 
 type DeleteSettingShiftPreferenceOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteSettingShiftPreferenceOperationOptions() DeleteSettingShiftPreferenceOperationOptions {
@@ -35,7 +36,9 @@ func (o DeleteSettingShiftPreferenceOperationOptions) ToHeaders() *client.Header
 
 func (o DeleteSettingShiftPreferenceOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

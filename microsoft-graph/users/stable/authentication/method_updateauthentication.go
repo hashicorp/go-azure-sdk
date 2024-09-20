@@ -18,15 +18,44 @@ type UpdateAuthenticationOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateAuthenticationOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateAuthenticationOperationOptions() UpdateAuthenticationOperationOptions {
+	return UpdateAuthenticationOperationOptions{}
+}
+
+func (o UpdateAuthenticationOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateAuthenticationOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateAuthenticationOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateAuthentication - Update the navigation property authentication in users
-func (c AuthenticationClient) UpdateAuthentication(ctx context.Context, id stable.UserId, input stable.Authentication) (result UpdateAuthenticationOperationResponse, err error) {
+func (c AuthenticationClient) UpdateAuthentication(ctx context.Context, id stable.UserId, input stable.Authentication, options UpdateAuthenticationOperationOptions) (result UpdateAuthenticationOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       fmt.Sprintf("%s/authentication", id.ID()),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/authentication", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

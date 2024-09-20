@@ -19,7 +19,8 @@ type DeleteTodoListTaskAttachmentSessionOperationResponse struct {
 }
 
 type DeleteTodoListTaskAttachmentSessionOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteTodoListTaskAttachmentSessionOperationOptions() DeleteTodoListTaskAttachmentSessionOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteTodoListTaskAttachmentSessionOperationOptions) ToHeaders() *client
 
 func (o DeleteTodoListTaskAttachmentSessionOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

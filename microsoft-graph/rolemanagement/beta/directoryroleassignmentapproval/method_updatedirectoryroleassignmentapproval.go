@@ -17,15 +17,44 @@ type UpdateDirectoryRoleAssignmentApprovalOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateDirectoryRoleAssignmentApprovalOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateDirectoryRoleAssignmentApprovalOperationOptions() UpdateDirectoryRoleAssignmentApprovalOperationOptions {
+	return UpdateDirectoryRoleAssignmentApprovalOperationOptions{}
+}
+
+func (o UpdateDirectoryRoleAssignmentApprovalOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateDirectoryRoleAssignmentApprovalOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateDirectoryRoleAssignmentApprovalOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateDirectoryRoleAssignmentApproval - Update the navigation property roleAssignmentApprovals in roleManagement
-func (c DirectoryRoleAssignmentApprovalClient) UpdateDirectoryRoleAssignmentApproval(ctx context.Context, id beta.RoleManagementDirectoryRoleAssignmentApprovalId, input beta.Approval) (result UpdateDirectoryRoleAssignmentApprovalOperationResponse, err error) {
+func (c DirectoryRoleAssignmentApprovalClient) UpdateDirectoryRoleAssignmentApproval(ctx context.Context, id beta.RoleManagementDirectoryRoleAssignmentApprovalId, input beta.Approval, options UpdateDirectoryRoleAssignmentApprovalOperationOptions) (result UpdateDirectoryRoleAssignmentApprovalOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

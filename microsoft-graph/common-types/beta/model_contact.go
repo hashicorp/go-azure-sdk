@@ -205,19 +205,61 @@ func (s Contact) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &Contact{}
 
 func (s *Contact) UnmarshalJSON(bytes []byte) error {
-	type alias Contact
-	var decoded alias
+
+	var decoded struct {
+		AssistantName                 nullable.Type[string]                `json:"assistantName,omitempty"`
+		Birthday                      nullable.Type[string]                `json:"birthday,omitempty"`
+		Children                      *[]string                            `json:"children,omitempty"`
+		CompanyName                   nullable.Type[string]                `json:"companyName,omitempty"`
+		Department                    nullable.Type[string]                `json:"department,omitempty"`
+		DisplayName                   nullable.Type[string]                `json:"displayName,omitempty"`
+		EmailAddresses                *[]TypedEmailAddress                 `json:"emailAddresses,omitempty"`
+		Extensions                    *[]Extension                         `json:"extensions,omitempty"`
+		FileAs                        nullable.Type[string]                `json:"fileAs,omitempty"`
+		Flag                          *FollowupFlag                        `json:"flag,omitempty"`
+		Gender                        nullable.Type[string]                `json:"gender,omitempty"`
+		Generation                    nullable.Type[string]                `json:"generation,omitempty"`
+		GivenName                     nullable.Type[string]                `json:"givenName,omitempty"`
+		ImAddresses                   *[]string                            `json:"imAddresses,omitempty"`
+		Initials                      nullable.Type[string]                `json:"initials,omitempty"`
+		IsFavorite                    nullable.Type[bool]                  `json:"isFavorite,omitempty"`
+		JobTitle                      nullable.Type[string]                `json:"jobTitle,omitempty"`
+		Manager                       nullable.Type[string]                `json:"manager,omitempty"`
+		MiddleName                    nullable.Type[string]                `json:"middleName,omitempty"`
+		MultiValueExtendedProperties  *[]MultiValueLegacyExtendedProperty  `json:"multiValueExtendedProperties,omitempty"`
+		NickName                      nullable.Type[string]                `json:"nickName,omitempty"`
+		OfficeLocation                nullable.Type[string]                `json:"officeLocation,omitempty"`
+		ParentFolderId                nullable.Type[string]                `json:"parentFolderId,omitempty"`
+		PersonalNotes                 nullable.Type[string]                `json:"personalNotes,omitempty"`
+		Phones                        *[]Phone                             `json:"phones,omitempty"`
+		Photo                         *ProfilePhoto                        `json:"photo,omitempty"`
+		PostalAddresses               *[]PhysicalAddress                   `json:"postalAddresses,omitempty"`
+		Profession                    nullable.Type[string]                `json:"profession,omitempty"`
+		SingleValueExtendedProperties *[]SingleValueLegacyExtendedProperty `json:"singleValueExtendedProperties,omitempty"`
+		SpouseName                    nullable.Type[string]                `json:"spouseName,omitempty"`
+		Surname                       nullable.Type[string]                `json:"surname,omitempty"`
+		Title                         nullable.Type[string]                `json:"title,omitempty"`
+		Websites                      *[]Website                           `json:"websites,omitempty"`
+		WeddingAnniversary            nullable.Type[string]                `json:"weddingAnniversary,omitempty"`
+		YomiCompanyName               nullable.Type[string]                `json:"yomiCompanyName,omitempty"`
+		YomiGivenName                 nullable.Type[string]                `json:"yomiGivenName,omitempty"`
+		YomiSurname                   nullable.Type[string]                `json:"yomiSurname,omitempty"`
+		Categories                    *[]string                            `json:"categories,omitempty"`
+		ChangeKey                     nullable.Type[string]                `json:"changeKey,omitempty"`
+		CreatedDateTime               nullable.Type[string]                `json:"createdDateTime,omitempty"`
+		LastModifiedDateTime          nullable.Type[string]                `json:"lastModifiedDateTime,omitempty"`
+		Id                            *string                              `json:"id,omitempty"`
+		ODataId                       *string                              `json:"@odata.id,omitempty"`
+		ODataType                     *string                              `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into Contact: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.AssistantName = decoded.AssistantName
 	s.Birthday = decoded.Birthday
-	s.Categories = decoded.Categories
-	s.ChangeKey = decoded.ChangeKey
 	s.Children = decoded.Children
 	s.CompanyName = decoded.CompanyName
-	s.CreatedDateTime = decoded.CreatedDateTime
 	s.Department = decoded.Department
 	s.DisplayName = decoded.DisplayName
 	s.EmailAddresses = decoded.EmailAddresses
@@ -226,18 +268,14 @@ func (s *Contact) UnmarshalJSON(bytes []byte) error {
 	s.Gender = decoded.Gender
 	s.Generation = decoded.Generation
 	s.GivenName = decoded.GivenName
-	s.Id = decoded.Id
 	s.ImAddresses = decoded.ImAddresses
 	s.Initials = decoded.Initials
 	s.IsFavorite = decoded.IsFavorite
 	s.JobTitle = decoded.JobTitle
-	s.LastModifiedDateTime = decoded.LastModifiedDateTime
 	s.Manager = decoded.Manager
 	s.MiddleName = decoded.MiddleName
 	s.MultiValueExtendedProperties = decoded.MultiValueExtendedProperties
 	s.NickName = decoded.NickName
-	s.ODataId = decoded.ODataId
-	s.ODataType = decoded.ODataType
 	s.OfficeLocation = decoded.OfficeLocation
 	s.ParentFolderId = decoded.ParentFolderId
 	s.PersonalNotes = decoded.PersonalNotes
@@ -254,6 +292,13 @@ func (s *Contact) UnmarshalJSON(bytes []byte) error {
 	s.YomiCompanyName = decoded.YomiCompanyName
 	s.YomiGivenName = decoded.YomiGivenName
 	s.YomiSurname = decoded.YomiSurname
+	s.Categories = decoded.Categories
+	s.ChangeKey = decoded.ChangeKey
+	s.CreatedDateTime = decoded.CreatedDateTime
+	s.Id = decoded.Id
+	s.LastModifiedDateTime = decoded.LastModifiedDateTime
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -276,5 +321,6 @@ func (s *Contact) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Extensions = &output
 	}
+
 	return nil
 }

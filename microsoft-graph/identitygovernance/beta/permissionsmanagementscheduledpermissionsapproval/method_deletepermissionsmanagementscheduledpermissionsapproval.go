@@ -19,7 +19,8 @@ type DeletePermissionsManagementScheduledPermissionsApprovalOperationResponse st
 }
 
 type DeletePermissionsManagementScheduledPermissionsApprovalOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeletePermissionsManagementScheduledPermissionsApprovalOperationOptions() DeletePermissionsManagementScheduledPermissionsApprovalOperationOptions {
@@ -36,7 +37,9 @@ func (o DeletePermissionsManagementScheduledPermissionsApprovalOperationOptions)
 
 func (o DeletePermissionsManagementScheduledPermissionsApprovalOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

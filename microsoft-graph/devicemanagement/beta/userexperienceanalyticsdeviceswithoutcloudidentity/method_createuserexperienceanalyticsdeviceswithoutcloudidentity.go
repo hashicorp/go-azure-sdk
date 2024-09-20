@@ -18,16 +18,45 @@ type CreateUserExperienceAnalyticsDevicesWithoutCloudIdentityOperationResponse s
 	Model        *beta.UserExperienceAnalyticsDeviceWithoutCloudIdentity
 }
 
+type CreateUserExperienceAnalyticsDevicesWithoutCloudIdentityOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateUserExperienceAnalyticsDevicesWithoutCloudIdentityOperationOptions() CreateUserExperienceAnalyticsDevicesWithoutCloudIdentityOperationOptions {
+	return CreateUserExperienceAnalyticsDevicesWithoutCloudIdentityOperationOptions{}
+}
+
+func (o CreateUserExperienceAnalyticsDevicesWithoutCloudIdentityOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateUserExperienceAnalyticsDevicesWithoutCloudIdentityOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateUserExperienceAnalyticsDevicesWithoutCloudIdentityOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateUserExperienceAnalyticsDevicesWithoutCloudIdentity - Create new navigation property to
 // userExperienceAnalyticsDevicesWithoutCloudIdentity for deviceManagement
-func (c UserExperienceAnalyticsDevicesWithoutCloudIdentityClient) CreateUserExperienceAnalyticsDevicesWithoutCloudIdentity(ctx context.Context, input beta.UserExperienceAnalyticsDeviceWithoutCloudIdentity) (result CreateUserExperienceAnalyticsDevicesWithoutCloudIdentityOperationResponse, err error) {
+func (c UserExperienceAnalyticsDevicesWithoutCloudIdentityClient) CreateUserExperienceAnalyticsDevicesWithoutCloudIdentity(ctx context.Context, input beta.UserExperienceAnalyticsDeviceWithoutCloudIdentity, options CreateUserExperienceAnalyticsDevicesWithoutCloudIdentityOperationOptions) (result CreateUserExperienceAnalyticsDevicesWithoutCloudIdentityOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/deviceManagement/userExperienceAnalyticsDevicesWithoutCloudIdentity",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/deviceManagement/userExperienceAnalyticsDevicesWithoutCloudIdentity",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

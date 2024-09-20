@@ -16,18 +16,47 @@ type CreateAccessReviewDecisionRecordAllDecisionOperationResponse struct {
 	OData        *odata.OData
 }
 
+type CreateAccessReviewDecisionRecordAllDecisionOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateAccessReviewDecisionRecordAllDecisionOperationOptions() CreateAccessReviewDecisionRecordAllDecisionOperationOptions {
+	return CreateAccessReviewDecisionRecordAllDecisionOperationOptions{}
+}
+
+func (o CreateAccessReviewDecisionRecordAllDecisionOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateAccessReviewDecisionRecordAllDecisionOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateAccessReviewDecisionRecordAllDecisionOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateAccessReviewDecisionRecordAllDecision - Invoke action recordAllDecisions. As a reviewer of an access review,
 // record a decision for an accessReviewInstanceDecisionItem that is assigned to you and that matches the principal or
 // resource IDs specified. If no IDs are specified, the decisions will apply to every accessReviewInstanceDecisionItem
 // for which you are the reviewer.
-func (c AccessReviewDecisionClient) CreateAccessReviewDecisionRecordAllDecision(ctx context.Context, input CreateAccessReviewDecisionRecordAllDecisionRequest) (result CreateAccessReviewDecisionRecordAllDecisionOperationResponse, err error) {
+func (c AccessReviewDecisionClient) CreateAccessReviewDecisionRecordAllDecision(ctx context.Context, input CreateAccessReviewDecisionRecordAllDecisionRequest, options CreateAccessReviewDecisionRecordAllDecisionOperationOptions) (result CreateAccessReviewDecisionRecordAllDecisionOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/identityGovernance/accessReviews/decisions/recordAllDecisions",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/identityGovernance/accessReviews/decisions/recordAllDecisions",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

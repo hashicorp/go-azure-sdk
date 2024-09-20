@@ -17,15 +17,44 @@ type UpdateTodoListTaskChecklistItemOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateTodoListTaskChecklistItemOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateTodoListTaskChecklistItemOperationOptions() UpdateTodoListTaskChecklistItemOperationOptions {
+	return UpdateTodoListTaskChecklistItemOperationOptions{}
+}
+
+func (o UpdateTodoListTaskChecklistItemOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateTodoListTaskChecklistItemOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateTodoListTaskChecklistItemOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateTodoListTaskChecklistItem - Update the navigation property checklistItems in users
-func (c TodoListTaskChecklistItemClient) UpdateTodoListTaskChecklistItem(ctx context.Context, id stable.UserIdTodoListIdTaskIdChecklistItemId, input stable.ChecklistItem) (result UpdateTodoListTaskChecklistItemOperationResponse, err error) {
+func (c TodoListTaskChecklistItemClient) UpdateTodoListTaskChecklistItem(ctx context.Context, id stable.UserIdTodoListIdTaskIdChecklistItemId, input stable.ChecklistItem, options UpdateTodoListTaskChecklistItemOperationOptions) (result UpdateTodoListTaskChecklistItemOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

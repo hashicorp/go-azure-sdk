@@ -19,15 +19,44 @@ type CreateOnlineMeetingRegistrationCustomQuestionOperationResponse struct {
 	Model        *beta.MeetingRegistrationQuestion
 }
 
+type CreateOnlineMeetingRegistrationCustomQuestionOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateOnlineMeetingRegistrationCustomQuestionOperationOptions() CreateOnlineMeetingRegistrationCustomQuestionOperationOptions {
+	return CreateOnlineMeetingRegistrationCustomQuestionOperationOptions{}
+}
+
+func (o CreateOnlineMeetingRegistrationCustomQuestionOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateOnlineMeetingRegistrationCustomQuestionOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateOnlineMeetingRegistrationCustomQuestionOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateOnlineMeetingRegistrationCustomQuestion - Create new navigation property to customQuestions for me
-func (c OnlineMeetingRegistrationCustomQuestionClient) CreateOnlineMeetingRegistrationCustomQuestion(ctx context.Context, id beta.MeOnlineMeetingId, input beta.MeetingRegistrationQuestion) (result CreateOnlineMeetingRegistrationCustomQuestionOperationResponse, err error) {
+func (c OnlineMeetingRegistrationCustomQuestionClient) CreateOnlineMeetingRegistrationCustomQuestion(ctx context.Context, id beta.MeOnlineMeetingId, input beta.MeetingRegistrationQuestion, options CreateOnlineMeetingRegistrationCustomQuestionOperationOptions) (result CreateOnlineMeetingRegistrationCustomQuestionOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/registration/customQuestions", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/registration/customQuestions", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

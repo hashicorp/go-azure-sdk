@@ -20,15 +20,44 @@ type CreateCalendarEventExtensionOperationResponse struct {
 	Model        stable.Extension
 }
 
+type CreateCalendarEventExtensionOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateCalendarEventExtensionOperationOptions() CreateCalendarEventExtensionOperationOptions {
+	return CreateCalendarEventExtensionOperationOptions{}
+}
+
+func (o CreateCalendarEventExtensionOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateCalendarEventExtensionOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateCalendarEventExtensionOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateCalendarEventExtension - Create new navigation property to extensions for groups
-func (c CalendarEventExtensionClient) CreateCalendarEventExtension(ctx context.Context, id stable.GroupIdCalendarEventId, input stable.Extension) (result CreateCalendarEventExtensionOperationResponse, err error) {
+func (c CalendarEventExtensionClient) CreateCalendarEventExtension(ctx context.Context, id stable.GroupIdCalendarEventId, input stable.Extension, options CreateCalendarEventExtensionOperationOptions) (result CreateCalendarEventExtensionOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/extensions", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/extensions", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

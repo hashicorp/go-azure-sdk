@@ -17,16 +17,45 @@ type UpdateVirtualEndpointExternalPartnerSettingOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateVirtualEndpointExternalPartnerSettingOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateVirtualEndpointExternalPartnerSettingOperationOptions() UpdateVirtualEndpointExternalPartnerSettingOperationOptions {
+	return UpdateVirtualEndpointExternalPartnerSettingOperationOptions{}
+}
+
+func (o UpdateVirtualEndpointExternalPartnerSettingOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateVirtualEndpointExternalPartnerSettingOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateVirtualEndpointExternalPartnerSettingOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateVirtualEndpointExternalPartnerSetting - Update cloudPcExternalPartnerSetting. Update the properties of a
 // cloudPcExternalPartnerSetting object.
-func (c VirtualEndpointExternalPartnerSettingClient) UpdateVirtualEndpointExternalPartnerSetting(ctx context.Context, id beta.DeviceManagementVirtualEndpointExternalPartnerSettingId, input beta.CloudPCExternalPartnerSetting) (result UpdateVirtualEndpointExternalPartnerSettingOperationResponse, err error) {
+func (c VirtualEndpointExternalPartnerSettingClient) UpdateVirtualEndpointExternalPartnerSetting(ctx context.Context, id beta.DeviceManagementVirtualEndpointExternalPartnerSettingId, input beta.CloudPCExternalPartnerSetting, options UpdateVirtualEndpointExternalPartnerSettingOperationOptions) (result UpdateVirtualEndpointExternalPartnerSettingOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

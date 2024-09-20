@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &ApplicationIdTokenIssuancePolicyId{}
 
 func TestNewApplicationIdTokenIssuancePolicyID(t *testing.T) {
-	id := NewApplicationIdTokenIssuancePolicyID("applicationIdValue", "tokenIssuancePolicyIdValue")
+	id := NewApplicationIdTokenIssuancePolicyID("applicationId", "tokenIssuancePolicyId")
 
-	if id.ApplicationId != "applicationIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ApplicationId'", id.ApplicationId, "applicationIdValue")
+	if id.ApplicationId != "applicationId" {
+		t.Fatalf("Expected %q but got %q for Segment 'ApplicationId'", id.ApplicationId, "applicationId")
 	}
 
-	if id.TokenIssuancePolicyId != "tokenIssuancePolicyIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'TokenIssuancePolicyId'", id.TokenIssuancePolicyId, "tokenIssuancePolicyIdValue")
+	if id.TokenIssuancePolicyId != "tokenIssuancePolicyId" {
+		t.Fatalf("Expected %q but got %q for Segment 'TokenIssuancePolicyId'", id.TokenIssuancePolicyId, "tokenIssuancePolicyId")
 	}
 }
 
 func TestFormatApplicationIdTokenIssuancePolicyID(t *testing.T) {
-	actual := NewApplicationIdTokenIssuancePolicyID("applicationIdValue", "tokenIssuancePolicyIdValue").ID()
-	expected := "/applications/applicationIdValue/tokenIssuancePolicies/tokenIssuancePolicyIdValue"
+	actual := NewApplicationIdTokenIssuancePolicyID("applicationId", "tokenIssuancePolicyId").ID()
+	expected := "/applications/applicationId/tokenIssuancePolicies/tokenIssuancePolicyId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -49,25 +49,25 @@ func TestParseApplicationIdTokenIssuancePolicyID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/applications/applicationIdValue",
+			Input: "/applications/applicationId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/applications/applicationIdValue/tokenIssuancePolicies",
+			Input: "/applications/applicationId/tokenIssuancePolicies",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/applications/applicationIdValue/tokenIssuancePolicies/tokenIssuancePolicyIdValue",
+			Input: "/applications/applicationId/tokenIssuancePolicies/tokenIssuancePolicyId",
 			Expected: &ApplicationIdTokenIssuancePolicyId{
-				ApplicationId:         "applicationIdValue",
-				TokenIssuancePolicyId: "tokenIssuancePolicyIdValue",
+				ApplicationId:         "applicationId",
+				TokenIssuancePolicyId: "tokenIssuancePolicyId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/applications/applicationIdValue/tokenIssuancePolicies/tokenIssuancePolicyIdValue/extra",
+			Input: "/applications/applicationId/tokenIssuancePolicies/tokenIssuancePolicyId/extra",
 			Error: true,
 		},
 	}
@@ -120,48 +120,48 @@ func TestParseApplicationIdTokenIssuancePolicyIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/applications/applicationIdValue",
+			Input: "/applications/applicationId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/aPpLiCaTiOnS/aPpLiCaTiOnIdVaLuE",
+			Input: "/aPpLiCaTiOnS/aPpLiCaTiOnId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/applications/applicationIdValue/tokenIssuancePolicies",
+			Input: "/applications/applicationId/tokenIssuancePolicies",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/aPpLiCaTiOnS/aPpLiCaTiOnIdVaLuE/tOkEnIsSuAnCePoLiCiEs",
+			Input: "/aPpLiCaTiOnS/aPpLiCaTiOnId/tOkEnIsSuAnCePoLiCiEs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/applications/applicationIdValue/tokenIssuancePolicies/tokenIssuancePolicyIdValue",
+			Input: "/applications/applicationId/tokenIssuancePolicies/tokenIssuancePolicyId",
 			Expected: &ApplicationIdTokenIssuancePolicyId{
-				ApplicationId:         "applicationIdValue",
-				TokenIssuancePolicyId: "tokenIssuancePolicyIdValue",
+				ApplicationId:         "applicationId",
+				TokenIssuancePolicyId: "tokenIssuancePolicyId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/applications/applicationIdValue/tokenIssuancePolicies/tokenIssuancePolicyIdValue/extra",
+			Input: "/applications/applicationId/tokenIssuancePolicies/tokenIssuancePolicyId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/aPpLiCaTiOnS/aPpLiCaTiOnIdVaLuE/tOkEnIsSuAnCePoLiCiEs/tOkEnIsSuAnCePoLiCyIdVaLuE",
+			Input: "/aPpLiCaTiOnS/aPpLiCaTiOnId/tOkEnIsSuAnCePoLiCiEs/tOkEnIsSuAnCePoLiCyId",
 			Expected: &ApplicationIdTokenIssuancePolicyId{
-				ApplicationId:         "aPpLiCaTiOnIdVaLuE",
-				TokenIssuancePolicyId: "tOkEnIsSuAnCePoLiCyIdVaLuE",
+				ApplicationId:         "aPpLiCaTiOnId",
+				TokenIssuancePolicyId: "tOkEnIsSuAnCePoLiCyId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/aPpLiCaTiOnS/aPpLiCaTiOnIdVaLuE/tOkEnIsSuAnCePoLiCiEs/tOkEnIsSuAnCePoLiCyIdVaLuE/extra",
+			Input: "/aPpLiCaTiOnS/aPpLiCaTiOnId/tOkEnIsSuAnCePoLiCiEs/tOkEnIsSuAnCePoLiCyId/extra",
 			Error: true,
 		},
 	}

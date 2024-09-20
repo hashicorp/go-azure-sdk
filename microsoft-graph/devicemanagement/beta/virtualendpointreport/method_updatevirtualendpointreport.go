@@ -17,15 +17,44 @@ type UpdateVirtualEndpointReportOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateVirtualEndpointReportOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateVirtualEndpointReportOperationOptions() UpdateVirtualEndpointReportOperationOptions {
+	return UpdateVirtualEndpointReportOperationOptions{}
+}
+
+func (o UpdateVirtualEndpointReportOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateVirtualEndpointReportOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateVirtualEndpointReportOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateVirtualEndpointReport - Update the navigation property reports in deviceManagement
-func (c VirtualEndpointReportClient) UpdateVirtualEndpointReport(ctx context.Context, input beta.CloudPCReports) (result UpdateVirtualEndpointReportOperationResponse, err error) {
+func (c VirtualEndpointReportClient) UpdateVirtualEndpointReport(ctx context.Context, input beta.CloudPCReports, options UpdateVirtualEndpointReportOperationOptions) (result UpdateVirtualEndpointReportOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       "/deviceManagement/virtualEndpoint/reports",
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          "/deviceManagement/virtualEndpoint/reports",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

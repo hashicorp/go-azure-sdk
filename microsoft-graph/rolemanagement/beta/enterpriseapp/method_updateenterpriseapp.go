@@ -17,15 +17,44 @@ type UpdateEnterpriseAppOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateEnterpriseAppOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateEnterpriseAppOperationOptions() UpdateEnterpriseAppOperationOptions {
+	return UpdateEnterpriseAppOperationOptions{}
+}
+
+func (o UpdateEnterpriseAppOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateEnterpriseAppOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateEnterpriseAppOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateEnterpriseApp - Update the navigation property enterpriseApps in roleManagement
-func (c EnterpriseAppClient) UpdateEnterpriseApp(ctx context.Context, id beta.RoleManagementEnterpriseAppId, input beta.RbacApplication) (result UpdateEnterpriseAppOperationResponse, err error) {
+func (c EnterpriseAppClient) UpdateEnterpriseApp(ctx context.Context, id beta.RoleManagementEnterpriseAppId, input beta.RbacApplication, options UpdateEnterpriseAppOperationOptions) (result UpdateEnterpriseAppOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

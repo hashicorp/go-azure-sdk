@@ -17,15 +17,44 @@ type UpdatePendingAccessReviewInstanceDecisionInsightOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdatePendingAccessReviewInstanceDecisionInsightOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdatePendingAccessReviewInstanceDecisionInsightOperationOptions() UpdatePendingAccessReviewInstanceDecisionInsightOperationOptions {
+	return UpdatePendingAccessReviewInstanceDecisionInsightOperationOptions{}
+}
+
+func (o UpdatePendingAccessReviewInstanceDecisionInsightOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdatePendingAccessReviewInstanceDecisionInsightOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdatePendingAccessReviewInstanceDecisionInsightOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdatePendingAccessReviewInstanceDecisionInsight - Update the navigation property insights in users
-func (c PendingAccessReviewInstanceDecisionInsightClient) UpdatePendingAccessReviewInstanceDecisionInsight(ctx context.Context, id beta.UserIdPendingAccessReviewInstanceIdDecisionIdInsightId, input beta.GovernanceInsight) (result UpdatePendingAccessReviewInstanceDecisionInsightOperationResponse, err error) {
+func (c PendingAccessReviewInstanceDecisionInsightClient) UpdatePendingAccessReviewInstanceDecisionInsight(ctx context.Context, id beta.UserIdPendingAccessReviewInstanceIdDecisionIdInsightId, input beta.GovernanceInsight, options UpdatePendingAccessReviewInstanceDecisionInsightOperationOptions) (result UpdatePendingAccessReviewInstanceDecisionInsightOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

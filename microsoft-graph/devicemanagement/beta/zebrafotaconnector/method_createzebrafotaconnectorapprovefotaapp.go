@@ -17,15 +17,44 @@ type CreateZebraFotaConnectorApproveFotaAppOperationResponse struct {
 	Model        *CreateZebraFotaConnectorApproveFotaAppResult
 }
 
+type CreateZebraFotaConnectorApproveFotaAppOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateZebraFotaConnectorApproveFotaAppOperationOptions() CreateZebraFotaConnectorApproveFotaAppOperationOptions {
+	return CreateZebraFotaConnectorApproveFotaAppOperationOptions{}
+}
+
+func (o CreateZebraFotaConnectorApproveFotaAppOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateZebraFotaConnectorApproveFotaAppOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateZebraFotaConnectorApproveFotaAppOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateZebraFotaConnectorApproveFotaApp - Invoke action approveFotaApps
-func (c ZebraFotaConnectorClient) CreateZebraFotaConnectorApproveFotaApp(ctx context.Context) (result CreateZebraFotaConnectorApproveFotaAppOperationResponse, err error) {
+func (c ZebraFotaConnectorClient) CreateZebraFotaConnectorApproveFotaApp(ctx context.Context, options CreateZebraFotaConnectorApproveFotaAppOperationOptions) (result CreateZebraFotaConnectorApproveFotaAppOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/deviceManagement/zebraFotaConnector/approveFotaApps",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/deviceManagement/zebraFotaConnector/approveFotaApps",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

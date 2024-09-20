@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &UserIdOnlineMeetingId{}
 
 func TestNewUserIdOnlineMeetingID(t *testing.T) {
-	id := NewUserIdOnlineMeetingID("userIdValue", "onlineMeetingIdValue")
+	id := NewUserIdOnlineMeetingID("userId", "onlineMeetingId")
 
-	if id.UserId != "userIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'UserId'", id.UserId, "userIdValue")
+	if id.UserId != "userId" {
+		t.Fatalf("Expected %q but got %q for Segment 'UserId'", id.UserId, "userId")
 	}
 
-	if id.OnlineMeetingId != "onlineMeetingIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'OnlineMeetingId'", id.OnlineMeetingId, "onlineMeetingIdValue")
+	if id.OnlineMeetingId != "onlineMeetingId" {
+		t.Fatalf("Expected %q but got %q for Segment 'OnlineMeetingId'", id.OnlineMeetingId, "onlineMeetingId")
 	}
 }
 
 func TestFormatUserIdOnlineMeetingID(t *testing.T) {
-	actual := NewUserIdOnlineMeetingID("userIdValue", "onlineMeetingIdValue").ID()
-	expected := "/users/userIdValue/onlineMeetings/onlineMeetingIdValue"
+	actual := NewUserIdOnlineMeetingID("userId", "onlineMeetingId").ID()
+	expected := "/users/userId/onlineMeetings/onlineMeetingId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -49,25 +49,25 @@ func TestParseUserIdOnlineMeetingID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue",
+			Input: "/users/userId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/onlineMeetings",
+			Input: "/users/userId/onlineMeetings",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/users/userIdValue/onlineMeetings/onlineMeetingIdValue",
+			Input: "/users/userId/onlineMeetings/onlineMeetingId",
 			Expected: &UserIdOnlineMeetingId{
-				UserId:          "userIdValue",
-				OnlineMeetingId: "onlineMeetingIdValue",
+				UserId:          "userId",
+				OnlineMeetingId: "onlineMeetingId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/users/userIdValue/onlineMeetings/onlineMeetingIdValue/extra",
+			Input: "/users/userId/onlineMeetings/onlineMeetingId/extra",
 			Error: true,
 		},
 	}
@@ -120,48 +120,48 @@ func TestParseUserIdOnlineMeetingIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue",
+			Input: "/users/userId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe",
+			Input: "/uSeRs/uSeRiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/onlineMeetings",
+			Input: "/users/userId/onlineMeetings",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/oNlInEmEeTiNgS",
+			Input: "/uSeRs/uSeRiD/oNlInEmEeTiNgS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/users/userIdValue/onlineMeetings/onlineMeetingIdValue",
+			Input: "/users/userId/onlineMeetings/onlineMeetingId",
 			Expected: &UserIdOnlineMeetingId{
-				UserId:          "userIdValue",
-				OnlineMeetingId: "onlineMeetingIdValue",
+				UserId:          "userId",
+				OnlineMeetingId: "onlineMeetingId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/users/userIdValue/onlineMeetings/onlineMeetingIdValue/extra",
+			Input: "/users/userId/onlineMeetings/onlineMeetingId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/oNlInEmEeTiNgS/oNlInEmEeTiNgIdVaLuE",
+			Input: "/uSeRs/uSeRiD/oNlInEmEeTiNgS/oNlInEmEeTiNgId",
 			Expected: &UserIdOnlineMeetingId{
-				UserId:          "uSeRiDvAlUe",
-				OnlineMeetingId: "oNlInEmEeTiNgIdVaLuE",
+				UserId:          "uSeRiD",
+				OnlineMeetingId: "oNlInEmEeTiNgId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/oNlInEmEeTiNgS/oNlInEmEeTiNgIdVaLuE/extra",
+			Input: "/uSeRs/uSeRiD/oNlInEmEeTiNgS/oNlInEmEeTiNgId/extra",
 			Error: true,
 		},
 	}

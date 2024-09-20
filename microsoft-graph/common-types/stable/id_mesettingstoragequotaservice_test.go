@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &MeSettingStorageQuotaServiceId{}
 
 func TestNewMeSettingStorageQuotaServiceID(t *testing.T) {
-	id := NewMeSettingStorageQuotaServiceID("serviceStorageQuotaBreakdownIdValue")
+	id := NewMeSettingStorageQuotaServiceID("serviceStorageQuotaBreakdownId")
 
-	if id.ServiceStorageQuotaBreakdownId != "serviceStorageQuotaBreakdownIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ServiceStorageQuotaBreakdownId'", id.ServiceStorageQuotaBreakdownId, "serviceStorageQuotaBreakdownIdValue")
+	if id.ServiceStorageQuotaBreakdownId != "serviceStorageQuotaBreakdownId" {
+		t.Fatalf("Expected %q but got %q for Segment 'ServiceStorageQuotaBreakdownId'", id.ServiceStorageQuotaBreakdownId, "serviceStorageQuotaBreakdownId")
 	}
 }
 
 func TestFormatMeSettingStorageQuotaServiceID(t *testing.T) {
-	actual := NewMeSettingStorageQuotaServiceID("serviceStorageQuotaBreakdownIdValue").ID()
-	expected := "/me/settings/storage/quota/services/serviceStorageQuotaBreakdownIdValue"
+	actual := NewMeSettingStorageQuotaServiceID("serviceStorageQuotaBreakdownId").ID()
+	expected := "/me/settings/storage/quota/services/serviceStorageQuotaBreakdownId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -65,14 +65,14 @@ func TestParseMeSettingStorageQuotaServiceID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/me/settings/storage/quota/services/serviceStorageQuotaBreakdownIdValue",
+			Input: "/me/settings/storage/quota/services/serviceStorageQuotaBreakdownId",
 			Expected: &MeSettingStorageQuotaServiceId{
-				ServiceStorageQuotaBreakdownId: "serviceStorageQuotaBreakdownIdValue",
+				ServiceStorageQuotaBreakdownId: "serviceStorageQuotaBreakdownId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/settings/storage/quota/services/serviceStorageQuotaBreakdownIdValue/extra",
+			Input: "/me/settings/storage/quota/services/serviceStorageQuotaBreakdownId/extra",
 			Error: true,
 		},
 	}
@@ -161,26 +161,26 @@ func TestParseMeSettingStorageQuotaServiceIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/me/settings/storage/quota/services/serviceStorageQuotaBreakdownIdValue",
+			Input: "/me/settings/storage/quota/services/serviceStorageQuotaBreakdownId",
 			Expected: &MeSettingStorageQuotaServiceId{
-				ServiceStorageQuotaBreakdownId: "serviceStorageQuotaBreakdownIdValue",
+				ServiceStorageQuotaBreakdownId: "serviceStorageQuotaBreakdownId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/settings/storage/quota/services/serviceStorageQuotaBreakdownIdValue/extra",
+			Input: "/me/settings/storage/quota/services/serviceStorageQuotaBreakdownId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/sEtTiNgS/sToRaGe/qUoTa/sErViCeS/sErViCeStOrAgEqUoTaBrEaKdOwNiDvAlUe",
+			Input: "/mE/sEtTiNgS/sToRaGe/qUoTa/sErViCeS/sErViCeStOrAgEqUoTaBrEaKdOwNiD",
 			Expected: &MeSettingStorageQuotaServiceId{
-				ServiceStorageQuotaBreakdownId: "sErViCeStOrAgEqUoTaBrEaKdOwNiDvAlUe",
+				ServiceStorageQuotaBreakdownId: "sErViCeStOrAgEqUoTaBrEaKdOwNiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/mE/sEtTiNgS/sToRaGe/qUoTa/sErViCeS/sErViCeStOrAgEqUoTaBrEaKdOwNiDvAlUe/extra",
+			Input: "/mE/sEtTiNgS/sToRaGe/qUoTa/sErViCeS/sErViCeStOrAgEqUoTaBrEaKdOwNiD/extra",
 			Error: true,
 		},
 	}

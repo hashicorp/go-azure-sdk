@@ -17,15 +17,44 @@ type UpdatePermissionGrantPolicyIncludeOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdatePermissionGrantPolicyIncludeOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdatePermissionGrantPolicyIncludeOperationOptions() UpdatePermissionGrantPolicyIncludeOperationOptions {
+	return UpdatePermissionGrantPolicyIncludeOperationOptions{}
+}
+
+func (o UpdatePermissionGrantPolicyIncludeOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdatePermissionGrantPolicyIncludeOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdatePermissionGrantPolicyIncludeOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdatePermissionGrantPolicyInclude - Update the navigation property includes in policies
-func (c PermissionGrantPolicyIncludeClient) UpdatePermissionGrantPolicyInclude(ctx context.Context, id beta.PolicyPermissionGrantPolicyIdIncludeId, input beta.PermissionGrantConditionSet) (result UpdatePermissionGrantPolicyIncludeOperationResponse, err error) {
+func (c PermissionGrantPolicyIncludeClient) UpdatePermissionGrantPolicyInclude(ctx context.Context, id beta.PolicyPermissionGrantPolicyIdIncludeId, input beta.PermissionGrantConditionSet, options UpdatePermissionGrantPolicyIncludeOperationOptions) (result UpdatePermissionGrantPolicyIncludeOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

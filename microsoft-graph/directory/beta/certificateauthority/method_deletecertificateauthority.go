@@ -18,7 +18,8 @@ type DeleteCertificateAuthorityOperationResponse struct {
 }
 
 type DeleteCertificateAuthorityOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteCertificateAuthorityOperationOptions() DeleteCertificateAuthorityOperationOptions {
@@ -35,7 +36,9 @@ func (o DeleteCertificateAuthorityOperationOptions) ToHeaders() *client.Headers 
 
 func (o DeleteCertificateAuthorityOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

@@ -98,10 +98,10 @@ func (id UserIdInformationProtectionSensitivityLabelId) ID() string {
 func (id UserIdInformationProtectionSensitivityLabelId) Segments() []resourceids.Segment {
 	return []resourceids.Segment{
 		resourceids.StaticSegment("users", "users", "users"),
-		resourceids.UserSpecifiedSegment("userId", "userIdValue"),
+		resourceids.UserSpecifiedSegment("userId", "userId"),
 		resourceids.StaticSegment("informationProtection", "informationProtection", "informationProtection"),
 		resourceids.StaticSegment("sensitivityLabels", "sensitivityLabels", "sensitivityLabels"),
-		resourceids.UserSpecifiedSegment("sensitivityLabelId", "sensitivityLabelIdValue"),
+		resourceids.UserSpecifiedSegment("sensitivityLabelId", "sensitivityLabelId"),
 	}
 }
 

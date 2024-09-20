@@ -18,7 +18,8 @@ type DeleteAndroidForWorkSettingOperationResponse struct {
 }
 
 type DeleteAndroidForWorkSettingOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteAndroidForWorkSettingOperationOptions() DeleteAndroidForWorkSettingOperationOptions {
@@ -35,7 +36,9 @@ func (o DeleteAndroidForWorkSettingOperationOptions) ToHeaders() *client.Headers
 
 func (o DeleteAndroidForWorkSettingOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

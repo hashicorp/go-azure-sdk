@@ -18,15 +18,44 @@ type AcceptEventInstanceOperationResponse struct {
 	OData        *odata.OData
 }
 
+type AcceptEventInstanceOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultAcceptEventInstanceOperationOptions() AcceptEventInstanceOperationOptions {
+	return AcceptEventInstanceOperationOptions{}
+}
+
+func (o AcceptEventInstanceOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o AcceptEventInstanceOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o AcceptEventInstanceOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // AcceptEventInstance - Invoke action accept. Accept the specified event in a user calendar.
-func (c EventInstanceClient) AcceptEventInstance(ctx context.Context, id stable.MeEventIdInstanceId, input AcceptEventInstanceRequest) (result AcceptEventInstanceOperationResponse, err error) {
+func (c EventInstanceClient) AcceptEventInstance(ctx context.Context, id stable.MeEventIdInstanceId, input AcceptEventInstanceRequest, options AcceptEventInstanceOperationOptions) (result AcceptEventInstanceOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/accept", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/accept", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

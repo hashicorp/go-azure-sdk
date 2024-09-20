@@ -19,7 +19,8 @@ type DeleteVirtualEndpointSupportedRegionOperationResponse struct {
 }
 
 type DeleteVirtualEndpointSupportedRegionOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteVirtualEndpointSupportedRegionOperationOptions() DeleteVirtualEndpointSupportedRegionOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteVirtualEndpointSupportedRegionOperationOptions) ToHeaders() *clien
 
 func (o DeleteVirtualEndpointSupportedRegionOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

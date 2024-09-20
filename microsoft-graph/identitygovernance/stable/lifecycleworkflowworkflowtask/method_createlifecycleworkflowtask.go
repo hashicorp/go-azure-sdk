@@ -19,15 +19,44 @@ type CreateLifecycleWorkflowTaskOperationResponse struct {
 	Model        *stable.IdentityGovernanceTask
 }
 
+type CreateLifecycleWorkflowTaskOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateLifecycleWorkflowTaskOperationOptions() CreateLifecycleWorkflowTaskOperationOptions {
+	return CreateLifecycleWorkflowTaskOperationOptions{}
+}
+
+func (o CreateLifecycleWorkflowTaskOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateLifecycleWorkflowTaskOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateLifecycleWorkflowTaskOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateLifecycleWorkflowTask - Create new navigation property to tasks for identityGovernance
-func (c LifecycleWorkflowWorkflowTaskClient) CreateLifecycleWorkflowTask(ctx context.Context, id stable.IdentityGovernanceLifecycleWorkflowWorkflowId, input stable.IdentityGovernanceTask) (result CreateLifecycleWorkflowTaskOperationResponse, err error) {
+func (c LifecycleWorkflowWorkflowTaskClient) CreateLifecycleWorkflowTask(ctx context.Context, id stable.IdentityGovernanceLifecycleWorkflowWorkflowId, input stable.IdentityGovernanceTask, options CreateLifecycleWorkflowTaskOperationOptions) (result CreateLifecycleWorkflowTaskOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/tasks", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/tasks", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

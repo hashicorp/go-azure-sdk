@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/microsoft-graph/me/beta/securityinformationprotectionsensitivitylabel` Documentation
 
-The `securityinformationprotectionsensitivitylabel` SDK allows for interaction with the Azure Resource Manager Service `me` (API Version `beta`).
+The `securityinformationprotectionsensitivitylabel` SDK allows for interaction with Microsoft Graph `me` (API Version `beta`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -15,7 +15,7 @@ import "github.com/hashicorp/go-azure-sdk/microsoft-graph/me/beta/securityinform
 ### Client Initialization
 
 ```go
-client := securityinformationprotectionsensitivitylabel.NewSecurityInformationProtectionSensitivityLabelClientWithBaseURI("https://management.azure.com")
+client := securityinformationprotectionsensitivitylabel.NewSecurityInformationProtectionSensitivityLabelClientWithBaseURI("https://graph.microsoft.com")
 client.Client.Authorizer = authorizer
 ```
 
@@ -30,7 +30,7 @@ payload := securityinformationprotectionsensitivitylabel.SecuritySensitivityLabe
 }
 
 
-read, err := client.CreateSecurityInformationProtectionSensitivityLabel(ctx, payload)
+read, err := client.CreateSecurityInformationProtectionSensitivityLabel(ctx, payload, securityinformationprotectionsensitivitylabel.DefaultCreateSecurityInformationProtectionSensitivityLabelOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -50,7 +50,7 @@ payload := securityinformationprotectionsensitivitylabel.CreateSecurityInformati
 }
 
 
-read, err := client.CreateSecurityInformationProtectionSensitivityLabelSecurityExtractContentLabel(ctx, payload)
+read, err := client.CreateSecurityInformationProtectionSensitivityLabelSecurityExtractContentLabel(ctx, payload, securityinformationprotectionsensitivitylabel.DefaultCreateSecurityInformationProtectionSensitivityLabelSecurityExtractContentLabelOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -64,7 +64,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := securityinformationprotectionsensitivitylabel.NewMeSecurityInformationProtectionSensitivityLabelID("sensitivityLabelIdValue")
+id := securityinformationprotectionsensitivitylabel.NewMeSecurityInformationProtectionSensitivityLabelID("sensitivityLabelId")
 
 read, err := client.DeleteSecurityInformationProtectionSensitivityLabel(ctx, id, securityinformationprotectionsensitivitylabel.DefaultDeleteSecurityInformationProtectionSensitivityLabelOperationOptions())
 if err != nil {
@@ -80,7 +80,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := securityinformationprotectionsensitivitylabel.NewMeSecurityInformationProtectionSensitivityLabelID("sensitivityLabelIdValue")
+id := securityinformationprotectionsensitivitylabel.NewMeSecurityInformationProtectionSensitivityLabelID("sensitivityLabelId")
 
 read, err := client.GetSecurityInformationProtectionSensitivityLabel(ctx, id, securityinformationprotectionsensitivitylabel.DefaultGetSecurityInformationProtectionSensitivityLabelOperationOptions())
 if err != nil {
@@ -192,14 +192,14 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := securityinformationprotectionsensitivitylabel.NewMeSecurityInformationProtectionSensitivityLabelID("sensitivityLabelIdValue")
+id := securityinformationprotectionsensitivitylabel.NewMeSecurityInformationProtectionSensitivityLabelID("sensitivityLabelId")
 
 payload := securityinformationprotectionsensitivitylabel.SecuritySensitivityLabel{
 	// ...
 }
 
 
-read, err := client.UpdateSecurityInformationProtectionSensitivityLabel(ctx, id, payload)
+read, err := client.UpdateSecurityInformationProtectionSensitivityLabel(ctx, id, payload, securityinformationprotectionsensitivitylabel.DefaultUpdateSecurityInformationProtectionSensitivityLabelOperationOptions())
 if err != nil {
 	// handle the error
 }

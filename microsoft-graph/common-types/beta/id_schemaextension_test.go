@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &SchemaExtensionId{}
 
 func TestNewSchemaExtensionID(t *testing.T) {
-	id := NewSchemaExtensionID("schemaExtensionIdValue")
+	id := NewSchemaExtensionID("schemaExtensionId")
 
-	if id.SchemaExtensionId != "schemaExtensionIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'SchemaExtensionId'", id.SchemaExtensionId, "schemaExtensionIdValue")
+	if id.SchemaExtensionId != "schemaExtensionId" {
+		t.Fatalf("Expected %q but got %q for Segment 'SchemaExtensionId'", id.SchemaExtensionId, "schemaExtensionId")
 	}
 }
 
 func TestFormatSchemaExtensionID(t *testing.T) {
-	actual := NewSchemaExtensionID("schemaExtensionIdValue").ID()
-	expected := "/schemaExtensions/schemaExtensionIdValue"
+	actual := NewSchemaExtensionID("schemaExtensionId").ID()
+	expected := "/schemaExtensions/schemaExtensionId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -45,14 +45,14 @@ func TestParseSchemaExtensionID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/schemaExtensions/schemaExtensionIdValue",
+			Input: "/schemaExtensions/schemaExtensionId",
 			Expected: &SchemaExtensionId{
-				SchemaExtensionId: "schemaExtensionIdValue",
+				SchemaExtensionId: "schemaExtensionId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/schemaExtensions/schemaExtensionIdValue/extra",
+			Input: "/schemaExtensions/schemaExtensionId/extra",
 			Error: true,
 		},
 	}
@@ -101,26 +101,26 @@ func TestParseSchemaExtensionIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/schemaExtensions/schemaExtensionIdValue",
+			Input: "/schemaExtensions/schemaExtensionId",
 			Expected: &SchemaExtensionId{
-				SchemaExtensionId: "schemaExtensionIdValue",
+				SchemaExtensionId: "schemaExtensionId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/schemaExtensions/schemaExtensionIdValue/extra",
+			Input: "/schemaExtensions/schemaExtensionId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sChEmAeXtEnSiOnS/sChEmAeXtEnSiOnIdVaLuE",
+			Input: "/sChEmAeXtEnSiOnS/sChEmAeXtEnSiOnId",
 			Expected: &SchemaExtensionId{
-				SchemaExtensionId: "sChEmAeXtEnSiOnIdVaLuE",
+				SchemaExtensionId: "sChEmAeXtEnSiOnId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sChEmAeXtEnSiOnS/sChEmAeXtEnSiOnIdVaLuE/extra",
+			Input: "/sChEmAeXtEnSiOnS/sChEmAeXtEnSiOnId/extra",
 			Error: true,
 		},
 	}

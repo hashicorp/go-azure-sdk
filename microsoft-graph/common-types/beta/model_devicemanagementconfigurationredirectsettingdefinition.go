@@ -152,16 +152,43 @@ func (s DeviceManagementConfigurationRedirectSettingDefinition) MarshalJSON() ([
 var _ json.Unmarshaler = &DeviceManagementConfigurationRedirectSettingDefinition{}
 
 func (s *DeviceManagementConfigurationRedirectSettingDefinition) UnmarshalJSON(bytes []byte) error {
-	type alias DeviceManagementConfigurationRedirectSettingDefinition
-	var decoded alias
+
+	var decoded struct {
+		DeepLink                       nullable.Type[string]                                      `json:"deepLink,omitempty"`
+		RedirectMessage                nullable.Type[string]                                      `json:"redirectMessage,omitempty"`
+		RedirectReason                 nullable.Type[string]                                      `json:"redirectReason,omitempty"`
+		AccessTypes                    *DeviceManagementConfigurationSettingAccessTypes           `json:"accessTypes,omitempty"`
+		Applicability                  DeviceManagementConfigurationSettingApplicability          `json:"applicability"`
+		BaseUri                        nullable.Type[string]                                      `json:"baseUri,omitempty"`
+		CategoryId                     nullable.Type[string]                                      `json:"categoryId,omitempty"`
+		Description                    nullable.Type[string]                                      `json:"description,omitempty"`
+		DisplayName                    nullable.Type[string]                                      `json:"displayName,omitempty"`
+		HelpText                       nullable.Type[string]                                      `json:"helpText,omitempty"`
+		InfoUrls                       *[]string                                                  `json:"infoUrls,omitempty"`
+		Keywords                       *[]string                                                  `json:"keywords,omitempty"`
+		Name                           nullable.Type[string]                                      `json:"name,omitempty"`
+		Occurrence                     *DeviceManagementConfigurationSettingOccurrence            `json:"occurrence,omitempty"`
+		OffsetUri                      nullable.Type[string]                                      `json:"offsetUri,omitempty"`
+		ReferredSettingInformationList *[]DeviceManagementConfigurationReferredSettingInformation `json:"referredSettingInformationList,omitempty"`
+		RootDefinitionId               nullable.Type[string]                                      `json:"rootDefinitionId,omitempty"`
+		SettingUsage                   *DeviceManagementConfigurationSettingUsage                 `json:"settingUsage,omitempty"`
+		UxBehavior                     *DeviceManagementConfigurationControlType                  `json:"uxBehavior,omitempty"`
+		Version                        nullable.Type[string]                                      `json:"version,omitempty"`
+		Visibility                     *DeviceManagementConfigurationSettingVisibility            `json:"visibility,omitempty"`
+		Id                             *string                                                    `json:"id,omitempty"`
+		ODataId                        *string                                                    `json:"@odata.id,omitempty"`
+		ODataType                      *string                                                    `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into DeviceManagementConfigurationRedirectSettingDefinition: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
+	s.DeepLink = decoded.DeepLink
+	s.RedirectMessage = decoded.RedirectMessage
+	s.RedirectReason = decoded.RedirectReason
 	s.AccessTypes = decoded.AccessTypes
 	s.BaseUri = decoded.BaseUri
 	s.CategoryId = decoded.CategoryId
-	s.DeepLink = decoded.DeepLink
 	s.Description = decoded.Description
 	s.DisplayName = decoded.DisplayName
 	s.HelpText = decoded.HelpText
@@ -173,8 +200,6 @@ func (s *DeviceManagementConfigurationRedirectSettingDefinition) UnmarshalJSON(b
 	s.ODataType = decoded.ODataType
 	s.Occurrence = decoded.Occurrence
 	s.OffsetUri = decoded.OffsetUri
-	s.RedirectMessage = decoded.RedirectMessage
-	s.RedirectReason = decoded.RedirectReason
 	s.ReferredSettingInformationList = decoded.ReferredSettingInformationList
 	s.RootDefinitionId = decoded.RootDefinitionId
 	s.SettingUsage = decoded.SettingUsage
@@ -194,5 +219,6 @@ func (s *DeviceManagementConfigurationRedirectSettingDefinition) UnmarshalJSON(b
 		}
 		s.Applicability = impl
 	}
+
 	return nil
 }

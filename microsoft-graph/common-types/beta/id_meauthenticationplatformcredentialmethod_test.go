@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &MeAuthenticationPlatformCredentialMethodId{}
 
 func TestNewMeAuthenticationPlatformCredentialMethodID(t *testing.T) {
-	id := NewMeAuthenticationPlatformCredentialMethodID("platformCredentialAuthenticationMethodIdValue")
+	id := NewMeAuthenticationPlatformCredentialMethodID("platformCredentialAuthenticationMethodId")
 
-	if id.PlatformCredentialAuthenticationMethodId != "platformCredentialAuthenticationMethodIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'PlatformCredentialAuthenticationMethodId'", id.PlatformCredentialAuthenticationMethodId, "platformCredentialAuthenticationMethodIdValue")
+	if id.PlatformCredentialAuthenticationMethodId != "platformCredentialAuthenticationMethodId" {
+		t.Fatalf("Expected %q but got %q for Segment 'PlatformCredentialAuthenticationMethodId'", id.PlatformCredentialAuthenticationMethodId, "platformCredentialAuthenticationMethodId")
 	}
 }
 
 func TestFormatMeAuthenticationPlatformCredentialMethodID(t *testing.T) {
-	actual := NewMeAuthenticationPlatformCredentialMethodID("platformCredentialAuthenticationMethodIdValue").ID()
-	expected := "/me/authentication/platformCredentialMethods/platformCredentialAuthenticationMethodIdValue"
+	actual := NewMeAuthenticationPlatformCredentialMethodID("platformCredentialAuthenticationMethodId").ID()
+	expected := "/me/authentication/platformCredentialMethods/platformCredentialAuthenticationMethodId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -55,14 +55,14 @@ func TestParseMeAuthenticationPlatformCredentialMethodID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/me/authentication/platformCredentialMethods/platformCredentialAuthenticationMethodIdValue",
+			Input: "/me/authentication/platformCredentialMethods/platformCredentialAuthenticationMethodId",
 			Expected: &MeAuthenticationPlatformCredentialMethodId{
-				PlatformCredentialAuthenticationMethodId: "platformCredentialAuthenticationMethodIdValue",
+				PlatformCredentialAuthenticationMethodId: "platformCredentialAuthenticationMethodId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/authentication/platformCredentialMethods/platformCredentialAuthenticationMethodIdValue/extra",
+			Input: "/me/authentication/platformCredentialMethods/platformCredentialAuthenticationMethodId/extra",
 			Error: true,
 		},
 	}
@@ -131,26 +131,26 @@ func TestParseMeAuthenticationPlatformCredentialMethodIDInsensitively(t *testing
 		},
 		{
 			// Valid URI
-			Input: "/me/authentication/platformCredentialMethods/platformCredentialAuthenticationMethodIdValue",
+			Input: "/me/authentication/platformCredentialMethods/platformCredentialAuthenticationMethodId",
 			Expected: &MeAuthenticationPlatformCredentialMethodId{
-				PlatformCredentialAuthenticationMethodId: "platformCredentialAuthenticationMethodIdValue",
+				PlatformCredentialAuthenticationMethodId: "platformCredentialAuthenticationMethodId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/authentication/platformCredentialMethods/platformCredentialAuthenticationMethodIdValue/extra",
+			Input: "/me/authentication/platformCredentialMethods/platformCredentialAuthenticationMethodId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/aUtHeNtIcAtIoN/pLaTfOrMcReDeNtIaLmEtHoDs/pLaTfOrMcReDeNtIaLaUtHeNtIcAtIoNmEtHoDiDvAlUe",
+			Input: "/mE/aUtHeNtIcAtIoN/pLaTfOrMcReDeNtIaLmEtHoDs/pLaTfOrMcReDeNtIaLaUtHeNtIcAtIoNmEtHoDiD",
 			Expected: &MeAuthenticationPlatformCredentialMethodId{
-				PlatformCredentialAuthenticationMethodId: "pLaTfOrMcReDeNtIaLaUtHeNtIcAtIoNmEtHoDiDvAlUe",
+				PlatformCredentialAuthenticationMethodId: "pLaTfOrMcReDeNtIaLaUtHeNtIcAtIoNmEtHoDiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/mE/aUtHeNtIcAtIoN/pLaTfOrMcReDeNtIaLmEtHoDs/pLaTfOrMcReDeNtIaLaUtHeNtIcAtIoNmEtHoDiDvAlUe/extra",
+			Input: "/mE/aUtHeNtIcAtIoN/pLaTfOrMcReDeNtIaLmEtHoDs/pLaTfOrMcReDeNtIaLaUtHeNtIcAtIoNmEtHoDiD/extra",
 			Error: true,
 		},
 	}

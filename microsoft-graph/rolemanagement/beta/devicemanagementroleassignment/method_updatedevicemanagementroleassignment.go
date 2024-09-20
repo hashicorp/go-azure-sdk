@@ -17,17 +17,46 @@ type UpdateDeviceManagementRoleAssignmentOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateDeviceManagementRoleAssignmentOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateDeviceManagementRoleAssignmentOperationOptions() UpdateDeviceManagementRoleAssignmentOperationOptions {
+	return UpdateDeviceManagementRoleAssignmentOperationOptions{}
+}
+
+func (o UpdateDeviceManagementRoleAssignmentOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateDeviceManagementRoleAssignmentOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateDeviceManagementRoleAssignmentOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateDeviceManagementRoleAssignment - Update unifiedRoleAssignmentMultiple. Update an existing
 // unifiedRoleAssignmentMultiple object of an RBAC provider. The following RBAC providers are currently supported: -
 // Cloud PC - device management (Intune) In contrast, unifiedRoleAssignment does not support update.
-func (c DeviceManagementRoleAssignmentClient) UpdateDeviceManagementRoleAssignment(ctx context.Context, id beta.RoleManagementDeviceManagementRoleAssignmentId, input beta.UnifiedRoleAssignmentMultiple) (result UpdateDeviceManagementRoleAssignmentOperationResponse, err error) {
+func (c DeviceManagementRoleAssignmentClient) UpdateDeviceManagementRoleAssignment(ctx context.Context, id beta.RoleManagementDeviceManagementRoleAssignmentId, input beta.UnifiedRoleAssignmentMultiple, options UpdateDeviceManagementRoleAssignmentOperationOptions) (result UpdateDeviceManagementRoleAssignmentOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

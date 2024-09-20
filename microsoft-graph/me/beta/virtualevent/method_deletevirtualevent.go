@@ -18,7 +18,8 @@ type DeleteVirtualEventOperationResponse struct {
 }
 
 type DeleteVirtualEventOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteVirtualEventOperationOptions() DeleteVirtualEventOperationOptions {
@@ -35,7 +36,9 @@ func (o DeleteVirtualEventOperationOptions) ToHeaders() *client.Headers {
 
 func (o DeleteVirtualEventOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

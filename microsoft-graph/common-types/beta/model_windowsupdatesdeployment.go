@@ -79,20 +79,29 @@ func (s WindowsUpdatesDeployment) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &WindowsUpdatesDeployment{}
 
 func (s *WindowsUpdatesDeployment) UnmarshalJSON(bytes []byte) error {
-	type alias WindowsUpdatesDeployment
-	var decoded alias
+
+	var decoded struct {
+		Audience             *WindowsUpdatesDeploymentAudience `json:"audience,omitempty"`
+		CreatedDateTime      *string                           `json:"createdDateTime,omitempty"`
+		LastModifiedDateTime *string                           `json:"lastModifiedDateTime,omitempty"`
+		Settings             *WindowsUpdatesDeploymentSettings `json:"settings,omitempty"`
+		State                *WindowsUpdatesDeploymentState    `json:"state,omitempty"`
+		Id                   *string                           `json:"id,omitempty"`
+		ODataId              *string                           `json:"@odata.id,omitempty"`
+		ODataType            *string                           `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into WindowsUpdatesDeployment: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.Audience = decoded.Audience
 	s.CreatedDateTime = decoded.CreatedDateTime
-	s.Id = decoded.Id
 	s.LastModifiedDateTime = decoded.LastModifiedDateTime
-	s.ODataId = decoded.ODataId
-	s.ODataType = decoded.ODataType
 	s.Settings = decoded.Settings
 	s.State = decoded.State
+	s.Id = decoded.Id
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -106,5 +115,6 @@ func (s *WindowsUpdatesDeployment) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Content = impl
 	}
+
 	return nil
 }

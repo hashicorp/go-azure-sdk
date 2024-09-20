@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &MeAppConsentRequestsForApprovalId{}
 
 func TestNewMeAppConsentRequestsForApprovalID(t *testing.T) {
-	id := NewMeAppConsentRequestsForApprovalID("appConsentRequestIdValue")
+	id := NewMeAppConsentRequestsForApprovalID("appConsentRequestId")
 
-	if id.AppConsentRequestId != "appConsentRequestIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'AppConsentRequestId'", id.AppConsentRequestId, "appConsentRequestIdValue")
+	if id.AppConsentRequestId != "appConsentRequestId" {
+		t.Fatalf("Expected %q but got %q for Segment 'AppConsentRequestId'", id.AppConsentRequestId, "appConsentRequestId")
 	}
 }
 
 func TestFormatMeAppConsentRequestsForApprovalID(t *testing.T) {
-	actual := NewMeAppConsentRequestsForApprovalID("appConsentRequestIdValue").ID()
-	expected := "/me/appConsentRequestsForApproval/appConsentRequestIdValue"
+	actual := NewMeAppConsentRequestsForApprovalID("appConsentRequestId").ID()
+	expected := "/me/appConsentRequestsForApproval/appConsentRequestId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -50,14 +50,14 @@ func TestParseMeAppConsentRequestsForApprovalID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/me/appConsentRequestsForApproval/appConsentRequestIdValue",
+			Input: "/me/appConsentRequestsForApproval/appConsentRequestId",
 			Expected: &MeAppConsentRequestsForApprovalId{
-				AppConsentRequestId: "appConsentRequestIdValue",
+				AppConsentRequestId: "appConsentRequestId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/appConsentRequestsForApproval/appConsentRequestIdValue/extra",
+			Input: "/me/appConsentRequestsForApproval/appConsentRequestId/extra",
 			Error: true,
 		},
 	}
@@ -116,26 +116,26 @@ func TestParseMeAppConsentRequestsForApprovalIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/me/appConsentRequestsForApproval/appConsentRequestIdValue",
+			Input: "/me/appConsentRequestsForApproval/appConsentRequestId",
 			Expected: &MeAppConsentRequestsForApprovalId{
-				AppConsentRequestId: "appConsentRequestIdValue",
+				AppConsentRequestId: "appConsentRequestId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/appConsentRequestsForApproval/appConsentRequestIdValue/extra",
+			Input: "/me/appConsentRequestsForApproval/appConsentRequestId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/aPpCoNsEnTrEqUeStSfOrApPrOvAl/aPpCoNsEnTrEqUeStIdVaLuE",
+			Input: "/mE/aPpCoNsEnTrEqUeStSfOrApPrOvAl/aPpCoNsEnTrEqUeStId",
 			Expected: &MeAppConsentRequestsForApprovalId{
-				AppConsentRequestId: "aPpCoNsEnTrEqUeStIdVaLuE",
+				AppConsentRequestId: "aPpCoNsEnTrEqUeStId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/mE/aPpCoNsEnTrEqUeStSfOrApPrOvAl/aPpCoNsEnTrEqUeStIdVaLuE/extra",
+			Input: "/mE/aPpCoNsEnTrEqUeStSfOrApPrOvAl/aPpCoNsEnTrEqUeStId/extra",
 			Error: true,
 		},
 	}

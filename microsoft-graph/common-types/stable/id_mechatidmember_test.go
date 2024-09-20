@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &MeChatIdMemberId{}
 
 func TestNewMeChatIdMemberID(t *testing.T) {
-	id := NewMeChatIdMemberID("chatIdValue", "conversationMemberIdValue")
+	id := NewMeChatIdMemberID("chatId", "conversationMemberId")
 
-	if id.ChatId != "chatIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ChatId'", id.ChatId, "chatIdValue")
+	if id.ChatId != "chatId" {
+		t.Fatalf("Expected %q but got %q for Segment 'ChatId'", id.ChatId, "chatId")
 	}
 
-	if id.ConversationMemberId != "conversationMemberIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ConversationMemberId'", id.ConversationMemberId, "conversationMemberIdValue")
+	if id.ConversationMemberId != "conversationMemberId" {
+		t.Fatalf("Expected %q but got %q for Segment 'ConversationMemberId'", id.ConversationMemberId, "conversationMemberId")
 	}
 }
 
 func TestFormatMeChatIdMemberID(t *testing.T) {
-	actual := NewMeChatIdMemberID("chatIdValue", "conversationMemberIdValue").ID()
-	expected := "/me/chats/chatIdValue/members/conversationMemberIdValue"
+	actual := NewMeChatIdMemberID("chatId", "conversationMemberId").ID()
+	expected := "/me/chats/chatId/members/conversationMemberId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -54,25 +54,25 @@ func TestParseMeChatIdMemberID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/me/chats/chatIdValue",
+			Input: "/me/chats/chatId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/me/chats/chatIdValue/members",
+			Input: "/me/chats/chatId/members",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/me/chats/chatIdValue/members/conversationMemberIdValue",
+			Input: "/me/chats/chatId/members/conversationMemberId",
 			Expected: &MeChatIdMemberId{
-				ChatId:               "chatIdValue",
-				ConversationMemberId: "conversationMemberIdValue",
+				ChatId:               "chatId",
+				ConversationMemberId: "conversationMemberId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/chats/chatIdValue/members/conversationMemberIdValue/extra",
+			Input: "/me/chats/chatId/members/conversationMemberId/extra",
 			Error: true,
 		},
 	}
@@ -135,48 +135,48 @@ func TestParseMeChatIdMemberIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/me/chats/chatIdValue",
+			Input: "/me/chats/chatId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/cHaTs/cHaTiDvAlUe",
+			Input: "/mE/cHaTs/cHaTiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/me/chats/chatIdValue/members",
+			Input: "/me/chats/chatId/members",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/cHaTs/cHaTiDvAlUe/mEmBeRs",
+			Input: "/mE/cHaTs/cHaTiD/mEmBeRs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/me/chats/chatIdValue/members/conversationMemberIdValue",
+			Input: "/me/chats/chatId/members/conversationMemberId",
 			Expected: &MeChatIdMemberId{
-				ChatId:               "chatIdValue",
-				ConversationMemberId: "conversationMemberIdValue",
+				ChatId:               "chatId",
+				ConversationMemberId: "conversationMemberId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/chats/chatIdValue/members/conversationMemberIdValue/extra",
+			Input: "/me/chats/chatId/members/conversationMemberId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/cHaTs/cHaTiDvAlUe/mEmBeRs/cOnVeRsAtIoNmEmBeRiDvAlUe",
+			Input: "/mE/cHaTs/cHaTiD/mEmBeRs/cOnVeRsAtIoNmEmBeRiD",
 			Expected: &MeChatIdMemberId{
-				ChatId:               "cHaTiDvAlUe",
-				ConversationMemberId: "cOnVeRsAtIoNmEmBeRiDvAlUe",
+				ChatId:               "cHaTiD",
+				ConversationMemberId: "cOnVeRsAtIoNmEmBeRiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/mE/cHaTs/cHaTiDvAlUe/mEmBeRs/cOnVeRsAtIoNmEmBeRiDvAlUe/extra",
+			Input: "/mE/cHaTs/cHaTiD/mEmBeRs/cOnVeRsAtIoNmEmBeRiD/extra",
 			Error: true,
 		},
 	}

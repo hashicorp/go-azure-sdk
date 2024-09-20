@@ -12,28 +12,28 @@ import (
 var _ resourceids.ResourceId = &GroupIdCalendarCalendarViewIdExceptionOccurrenceIdInstanceId{}
 
 func TestNewGroupIdCalendarCalendarViewIdExceptionOccurrenceIdInstanceID(t *testing.T) {
-	id := NewGroupIdCalendarCalendarViewIdExceptionOccurrenceIdInstanceID("groupIdValue", "eventIdValue", "eventId1Value", "eventId2Value")
+	id := NewGroupIdCalendarCalendarViewIdExceptionOccurrenceIdInstanceID("groupId", "eventId", "eventId1", "eventId2")
 
-	if id.GroupId != "groupIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'GroupId'", id.GroupId, "groupIdValue")
+	if id.GroupId != "groupId" {
+		t.Fatalf("Expected %q but got %q for Segment 'GroupId'", id.GroupId, "groupId")
 	}
 
-	if id.EventId != "eventIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'EventId'", id.EventId, "eventIdValue")
+	if id.EventId != "eventId" {
+		t.Fatalf("Expected %q but got %q for Segment 'EventId'", id.EventId, "eventId")
 	}
 
-	if id.EventId1 != "eventId1Value" {
-		t.Fatalf("Expected %q but got %q for Segment 'EventId1'", id.EventId1, "eventId1Value")
+	if id.EventId1 != "eventId1" {
+		t.Fatalf("Expected %q but got %q for Segment 'EventId1'", id.EventId1, "eventId1")
 	}
 
-	if id.EventId2 != "eventId2Value" {
-		t.Fatalf("Expected %q but got %q for Segment 'EventId2'", id.EventId2, "eventId2Value")
+	if id.EventId2 != "eventId2" {
+		t.Fatalf("Expected %q but got %q for Segment 'EventId2'", id.EventId2, "eventId2")
 	}
 }
 
 func TestFormatGroupIdCalendarCalendarViewIdExceptionOccurrenceIdInstanceID(t *testing.T) {
-	actual := NewGroupIdCalendarCalendarViewIdExceptionOccurrenceIdInstanceID("groupIdValue", "eventIdValue", "eventId1Value", "eventId2Value").ID()
-	expected := "/groups/groupIdValue/calendar/calendarView/eventIdValue/exceptionOccurrences/eventId1Value/instances/eventId2Value"
+	actual := NewGroupIdCalendarCalendarViewIdExceptionOccurrenceIdInstanceID("groupId", "eventId", "eventId1", "eventId2").ID()
+	expected := "/groups/groupId/calendar/calendarView/eventId/exceptionOccurrences/eventId1/instances/eventId2"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -57,52 +57,52 @@ func TestParseGroupIdCalendarCalendarViewIdExceptionOccurrenceIdInstanceID(t *te
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue",
+			Input: "/groups/groupId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/calendar",
+			Input: "/groups/groupId/calendar",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/calendar/calendarView",
+			Input: "/groups/groupId/calendar/calendarView",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/calendar/calendarView/eventIdValue",
+			Input: "/groups/groupId/calendar/calendarView/eventId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/calendar/calendarView/eventIdValue/exceptionOccurrences",
+			Input: "/groups/groupId/calendar/calendarView/eventId/exceptionOccurrences",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/calendar/calendarView/eventIdValue/exceptionOccurrences/eventId1Value",
+			Input: "/groups/groupId/calendar/calendarView/eventId/exceptionOccurrences/eventId1",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/calendar/calendarView/eventIdValue/exceptionOccurrences/eventId1Value/instances",
+			Input: "/groups/groupId/calendar/calendarView/eventId/exceptionOccurrences/eventId1/instances",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/groups/groupIdValue/calendar/calendarView/eventIdValue/exceptionOccurrences/eventId1Value/instances/eventId2Value",
+			Input: "/groups/groupId/calendar/calendarView/eventId/exceptionOccurrences/eventId1/instances/eventId2",
 			Expected: &GroupIdCalendarCalendarViewIdExceptionOccurrenceIdInstanceId{
-				GroupId:  "groupIdValue",
-				EventId:  "eventIdValue",
-				EventId1: "eventId1Value",
-				EventId2: "eventId2Value",
+				GroupId:  "groupId",
+				EventId:  "eventId",
+				EventId1: "eventId1",
+				EventId2: "eventId2",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/groups/groupIdValue/calendar/calendarView/eventIdValue/exceptionOccurrences/eventId1Value/instances/eventId2Value/extra",
+			Input: "/groups/groupId/calendar/calendarView/eventId/exceptionOccurrences/eventId1/instances/eventId2/extra",
 			Error: true,
 		},
 	}
@@ -163,102 +163,102 @@ func TestParseGroupIdCalendarCalendarViewIdExceptionOccurrenceIdInstanceIDInsens
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue",
+			Input: "/groups/groupId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE",
+			Input: "/gRoUpS/gRoUpId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/calendar",
+			Input: "/groups/groupId/calendar",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/cAlEnDaR",
+			Input: "/gRoUpS/gRoUpId/cAlEnDaR",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/calendar/calendarView",
+			Input: "/groups/groupId/calendar/calendarView",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/cAlEnDaR/cAlEnDaRvIeW",
+			Input: "/gRoUpS/gRoUpId/cAlEnDaR/cAlEnDaRvIeW",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/calendar/calendarView/eventIdValue",
+			Input: "/groups/groupId/calendar/calendarView/eventId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/cAlEnDaR/cAlEnDaRvIeW/eVeNtIdVaLuE",
+			Input: "/gRoUpS/gRoUpId/cAlEnDaR/cAlEnDaRvIeW/eVeNtId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/calendar/calendarView/eventIdValue/exceptionOccurrences",
+			Input: "/groups/groupId/calendar/calendarView/eventId/exceptionOccurrences",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/cAlEnDaR/cAlEnDaRvIeW/eVeNtIdVaLuE/eXcEpTiOnOcCuRrEnCeS",
+			Input: "/gRoUpS/gRoUpId/cAlEnDaR/cAlEnDaRvIeW/eVeNtId/eXcEpTiOnOcCuRrEnCeS",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/calendar/calendarView/eventIdValue/exceptionOccurrences/eventId1Value",
+			Input: "/groups/groupId/calendar/calendarView/eventId/exceptionOccurrences/eventId1",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/cAlEnDaR/cAlEnDaRvIeW/eVeNtIdVaLuE/eXcEpTiOnOcCuRrEnCeS/eVeNtId1vAlUe",
+			Input: "/gRoUpS/gRoUpId/cAlEnDaR/cAlEnDaRvIeW/eVeNtId/eXcEpTiOnOcCuRrEnCeS/eVeNtId1",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/calendar/calendarView/eventIdValue/exceptionOccurrences/eventId1Value/instances",
+			Input: "/groups/groupId/calendar/calendarView/eventId/exceptionOccurrences/eventId1/instances",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/cAlEnDaR/cAlEnDaRvIeW/eVeNtIdVaLuE/eXcEpTiOnOcCuRrEnCeS/eVeNtId1vAlUe/iNsTaNcEs",
+			Input: "/gRoUpS/gRoUpId/cAlEnDaR/cAlEnDaRvIeW/eVeNtId/eXcEpTiOnOcCuRrEnCeS/eVeNtId1/iNsTaNcEs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/groups/groupIdValue/calendar/calendarView/eventIdValue/exceptionOccurrences/eventId1Value/instances/eventId2Value",
+			Input: "/groups/groupId/calendar/calendarView/eventId/exceptionOccurrences/eventId1/instances/eventId2",
 			Expected: &GroupIdCalendarCalendarViewIdExceptionOccurrenceIdInstanceId{
-				GroupId:  "groupIdValue",
-				EventId:  "eventIdValue",
-				EventId1: "eventId1Value",
-				EventId2: "eventId2Value",
+				GroupId:  "groupId",
+				EventId:  "eventId",
+				EventId1: "eventId1",
+				EventId2: "eventId2",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/groups/groupIdValue/calendar/calendarView/eventIdValue/exceptionOccurrences/eventId1Value/instances/eventId2Value/extra",
+			Input: "/groups/groupId/calendar/calendarView/eventId/exceptionOccurrences/eventId1/instances/eventId2/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/cAlEnDaR/cAlEnDaRvIeW/eVeNtIdVaLuE/eXcEpTiOnOcCuRrEnCeS/eVeNtId1vAlUe/iNsTaNcEs/eVeNtId2vAlUe",
+			Input: "/gRoUpS/gRoUpId/cAlEnDaR/cAlEnDaRvIeW/eVeNtId/eXcEpTiOnOcCuRrEnCeS/eVeNtId1/iNsTaNcEs/eVeNtId2",
 			Expected: &GroupIdCalendarCalendarViewIdExceptionOccurrenceIdInstanceId{
-				GroupId:  "gRoUpIdVaLuE",
-				EventId:  "eVeNtIdVaLuE",
-				EventId1: "eVeNtId1vAlUe",
-				EventId2: "eVeNtId2vAlUe",
+				GroupId:  "gRoUpId",
+				EventId:  "eVeNtId",
+				EventId1: "eVeNtId1",
+				EventId2: "eVeNtId2",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/cAlEnDaR/cAlEnDaRvIeW/eVeNtIdVaLuE/eXcEpTiOnOcCuRrEnCeS/eVeNtId1vAlUe/iNsTaNcEs/eVeNtId2vAlUe/extra",
+			Input: "/gRoUpS/gRoUpId/cAlEnDaR/cAlEnDaRvIeW/eVeNtId/eXcEpTiOnOcCuRrEnCeS/eVeNtId1/iNsTaNcEs/eVeNtId2/extra",
 			Error: true,
 		},
 	}

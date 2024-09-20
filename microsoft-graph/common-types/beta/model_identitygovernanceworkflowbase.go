@@ -81,10 +81,23 @@ func (s RawIdentityGovernanceWorkflowBaseImpl) IdentityGovernanceWorkflowBase() 
 var _ json.Unmarshaler = &BaseIdentityGovernanceWorkflowBaseImpl{}
 
 func (s *BaseIdentityGovernanceWorkflowBaseImpl) UnmarshalJSON(bytes []byte) error {
-	type alias BaseIdentityGovernanceWorkflowBaseImpl
-	var decoded alias
+
+	var decoded struct {
+		Category             *IdentityGovernanceLifecycleWorkflowCategory `json:"category,omitempty"`
+		CreatedBy            *User                                        `json:"createdBy,omitempty"`
+		CreatedDateTime      nullable.Type[string]                        `json:"createdDateTime,omitempty"`
+		Description          nullable.Type[string]                        `json:"description,omitempty"`
+		DisplayName          *string                                      `json:"displayName,omitempty"`
+		IsEnabled            *bool                                        `json:"isEnabled,omitempty"`
+		IsSchedulingEnabled  *bool                                        `json:"isSchedulingEnabled,omitempty"`
+		LastModifiedBy       *User                                        `json:"lastModifiedBy,omitempty"`
+		LastModifiedDateTime nullable.Type[string]                        `json:"lastModifiedDateTime,omitempty"`
+		ODataId              *string                                      `json:"@odata.id,omitempty"`
+		ODataType            *string                                      `json:"@odata.type,omitempty"`
+		Tasks                *[]IdentityGovernanceTask                    `json:"tasks,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into BaseIdentityGovernanceWorkflowBaseImpl: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.Category = decoded.Category
@@ -112,6 +125,7 @@ func (s *BaseIdentityGovernanceWorkflowBaseImpl) UnmarshalJSON(bytes []byte) err
 		}
 		s.ExecutionConditions = impl
 	}
+
 	return nil
 }
 
@@ -125,9 +139,9 @@ func UnmarshalIdentityGovernanceWorkflowBaseImplementation(input []byte) (Identi
 		return nil, fmt.Errorf("unmarshaling IdentityGovernanceWorkflowBase into map[string]interface: %+v", err)
 	}
 
-	value, ok := temp["@odata.type"].(string)
-	if !ok {
-		return nil, nil
+	var value string
+	if v, ok := temp["@odata.type"]; ok {
+		value = fmt.Sprintf("%v", v)
 	}
 
 	if strings.EqualFold(value, "#microsoft.graph.identityGovernance.workflow") {

@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &ReportAppCredentialSignInActivityId{}
 
 func TestNewReportAppCredentialSignInActivityID(t *testing.T) {
-	id := NewReportAppCredentialSignInActivityID("appCredentialSignInActivityIdValue")
+	id := NewReportAppCredentialSignInActivityID("appCredentialSignInActivityId")
 
-	if id.AppCredentialSignInActivityId != "appCredentialSignInActivityIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'AppCredentialSignInActivityId'", id.AppCredentialSignInActivityId, "appCredentialSignInActivityIdValue")
+	if id.AppCredentialSignInActivityId != "appCredentialSignInActivityId" {
+		t.Fatalf("Expected %q but got %q for Segment 'AppCredentialSignInActivityId'", id.AppCredentialSignInActivityId, "appCredentialSignInActivityId")
 	}
 }
 
 func TestFormatReportAppCredentialSignInActivityID(t *testing.T) {
-	actual := NewReportAppCredentialSignInActivityID("appCredentialSignInActivityIdValue").ID()
-	expected := "/reports/appCredentialSignInActivities/appCredentialSignInActivityIdValue"
+	actual := NewReportAppCredentialSignInActivityID("appCredentialSignInActivityId").ID()
+	expected := "/reports/appCredentialSignInActivities/appCredentialSignInActivityId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -50,14 +50,14 @@ func TestParseReportAppCredentialSignInActivityID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/reports/appCredentialSignInActivities/appCredentialSignInActivityIdValue",
+			Input: "/reports/appCredentialSignInActivities/appCredentialSignInActivityId",
 			Expected: &ReportAppCredentialSignInActivityId{
-				AppCredentialSignInActivityId: "appCredentialSignInActivityIdValue",
+				AppCredentialSignInActivityId: "appCredentialSignInActivityId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/reports/appCredentialSignInActivities/appCredentialSignInActivityIdValue/extra",
+			Input: "/reports/appCredentialSignInActivities/appCredentialSignInActivityId/extra",
 			Error: true,
 		},
 	}
@@ -116,26 +116,26 @@ func TestParseReportAppCredentialSignInActivityIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/reports/appCredentialSignInActivities/appCredentialSignInActivityIdValue",
+			Input: "/reports/appCredentialSignInActivities/appCredentialSignInActivityId",
 			Expected: &ReportAppCredentialSignInActivityId{
-				AppCredentialSignInActivityId: "appCredentialSignInActivityIdValue",
+				AppCredentialSignInActivityId: "appCredentialSignInActivityId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/reports/appCredentialSignInActivities/appCredentialSignInActivityIdValue/extra",
+			Input: "/reports/appCredentialSignInActivities/appCredentialSignInActivityId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/rEpOrTs/aPpCrEdEnTiAlSiGnInAcTiViTiEs/aPpCrEdEnTiAlSiGnInAcTiViTyIdVaLuE",
+			Input: "/rEpOrTs/aPpCrEdEnTiAlSiGnInAcTiViTiEs/aPpCrEdEnTiAlSiGnInAcTiViTyId",
 			Expected: &ReportAppCredentialSignInActivityId{
-				AppCredentialSignInActivityId: "aPpCrEdEnTiAlSiGnInAcTiViTyIdVaLuE",
+				AppCredentialSignInActivityId: "aPpCrEdEnTiAlSiGnInAcTiViTyId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/rEpOrTs/aPpCrEdEnTiAlSiGnInAcTiViTiEs/aPpCrEdEnTiAlSiGnInAcTiViTyIdVaLuE/extra",
+			Input: "/rEpOrTs/aPpCrEdEnTiAlSiGnInAcTiViTiEs/aPpCrEdEnTiAlSiGnInAcTiViTyId/extra",
 			Error: true,
 		},
 	}

@@ -19,15 +19,44 @@ type CreateImportedDeviceIdentityOperationResponse struct {
 	Model        beta.ImportedDeviceIdentity
 }
 
+type CreateImportedDeviceIdentityOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateImportedDeviceIdentityOperationOptions() CreateImportedDeviceIdentityOperationOptions {
+	return CreateImportedDeviceIdentityOperationOptions{}
+}
+
+func (o CreateImportedDeviceIdentityOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateImportedDeviceIdentityOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateImportedDeviceIdentityOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateImportedDeviceIdentity - Create new navigation property to importedDeviceIdentities for deviceManagement
-func (c ImportedDeviceIdentityClient) CreateImportedDeviceIdentity(ctx context.Context, input beta.ImportedDeviceIdentity) (result CreateImportedDeviceIdentityOperationResponse, err error) {
+func (c ImportedDeviceIdentityClient) CreateImportedDeviceIdentity(ctx context.Context, input beta.ImportedDeviceIdentity, options CreateImportedDeviceIdentityOperationOptions) (result CreateImportedDeviceIdentityOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/deviceManagement/importedDeviceIdentities",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/deviceManagement/importedDeviceIdentities",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

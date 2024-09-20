@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &PolicyMobileAppManagementPolicyId{}
 
 func TestNewPolicyMobileAppManagementPolicyID(t *testing.T) {
-	id := NewPolicyMobileAppManagementPolicyID("mobilityManagementPolicyIdValue")
+	id := NewPolicyMobileAppManagementPolicyID("mobilityManagementPolicyId")
 
-	if id.MobilityManagementPolicyId != "mobilityManagementPolicyIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'MobilityManagementPolicyId'", id.MobilityManagementPolicyId, "mobilityManagementPolicyIdValue")
+	if id.MobilityManagementPolicyId != "mobilityManagementPolicyId" {
+		t.Fatalf("Expected %q but got %q for Segment 'MobilityManagementPolicyId'", id.MobilityManagementPolicyId, "mobilityManagementPolicyId")
 	}
 }
 
 func TestFormatPolicyMobileAppManagementPolicyID(t *testing.T) {
-	actual := NewPolicyMobileAppManagementPolicyID("mobilityManagementPolicyIdValue").ID()
-	expected := "/policies/mobileAppManagementPolicies/mobilityManagementPolicyIdValue"
+	actual := NewPolicyMobileAppManagementPolicyID("mobilityManagementPolicyId").ID()
+	expected := "/policies/mobileAppManagementPolicies/mobilityManagementPolicyId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -50,14 +50,14 @@ func TestParsePolicyMobileAppManagementPolicyID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/policies/mobileAppManagementPolicies/mobilityManagementPolicyIdValue",
+			Input: "/policies/mobileAppManagementPolicies/mobilityManagementPolicyId",
 			Expected: &PolicyMobileAppManagementPolicyId{
-				MobilityManagementPolicyId: "mobilityManagementPolicyIdValue",
+				MobilityManagementPolicyId: "mobilityManagementPolicyId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/policies/mobileAppManagementPolicies/mobilityManagementPolicyIdValue/extra",
+			Input: "/policies/mobileAppManagementPolicies/mobilityManagementPolicyId/extra",
 			Error: true,
 		},
 	}
@@ -116,26 +116,26 @@ func TestParsePolicyMobileAppManagementPolicyIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/policies/mobileAppManagementPolicies/mobilityManagementPolicyIdValue",
+			Input: "/policies/mobileAppManagementPolicies/mobilityManagementPolicyId",
 			Expected: &PolicyMobileAppManagementPolicyId{
-				MobilityManagementPolicyId: "mobilityManagementPolicyIdValue",
+				MobilityManagementPolicyId: "mobilityManagementPolicyId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/policies/mobileAppManagementPolicies/mobilityManagementPolicyIdValue/extra",
+			Input: "/policies/mobileAppManagementPolicies/mobilityManagementPolicyId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/pOlIcIeS/mObIlEaPpMaNaGeMeNtPoLiCiEs/mObIlItYmAnAgEmEnTpOlIcYiDvAlUe",
+			Input: "/pOlIcIeS/mObIlEaPpMaNaGeMeNtPoLiCiEs/mObIlItYmAnAgEmEnTpOlIcYiD",
 			Expected: &PolicyMobileAppManagementPolicyId{
-				MobilityManagementPolicyId: "mObIlItYmAnAgEmEnTpOlIcYiDvAlUe",
+				MobilityManagementPolicyId: "mObIlItYmAnAgEmEnTpOlIcYiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/pOlIcIeS/mObIlEaPpMaNaGeMeNtPoLiCiEs/mObIlItYmAnAgEmEnTpOlIcYiDvAlUe/extra",
+			Input: "/pOlIcIeS/mObIlEaPpMaNaGeMeNtPoLiCiEs/mObIlItYmAnAgEmEnTpOlIcYiD/extra",
 			Error: true,
 		},
 	}

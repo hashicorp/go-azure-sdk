@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &InvitationInvitedUserSponsorId{}
 
 func TestNewInvitationInvitedUserSponsorID(t *testing.T) {
-	id := NewInvitationInvitedUserSponsorID("directoryObjectIdValue")
+	id := NewInvitationInvitedUserSponsorID("directoryObjectId")
 
-	if id.DirectoryObjectId != "directoryObjectIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DirectoryObjectId'", id.DirectoryObjectId, "directoryObjectIdValue")
+	if id.DirectoryObjectId != "directoryObjectId" {
+		t.Fatalf("Expected %q but got %q for Segment 'DirectoryObjectId'", id.DirectoryObjectId, "directoryObjectId")
 	}
 }
 
 func TestFormatInvitationInvitedUserSponsorID(t *testing.T) {
-	actual := NewInvitationInvitedUserSponsorID("directoryObjectIdValue").ID()
-	expected := "/invitations/invitedUserSponsors/directoryObjectIdValue"
+	actual := NewInvitationInvitedUserSponsorID("directoryObjectId").ID()
+	expected := "/invitations/invitedUserSponsors/directoryObjectId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -50,14 +50,14 @@ func TestParseInvitationInvitedUserSponsorID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/invitations/invitedUserSponsors/directoryObjectIdValue",
+			Input: "/invitations/invitedUserSponsors/directoryObjectId",
 			Expected: &InvitationInvitedUserSponsorId{
-				DirectoryObjectId: "directoryObjectIdValue",
+				DirectoryObjectId: "directoryObjectId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/invitations/invitedUserSponsors/directoryObjectIdValue/extra",
+			Input: "/invitations/invitedUserSponsors/directoryObjectId/extra",
 			Error: true,
 		},
 	}
@@ -116,26 +116,26 @@ func TestParseInvitationInvitedUserSponsorIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/invitations/invitedUserSponsors/directoryObjectIdValue",
+			Input: "/invitations/invitedUserSponsors/directoryObjectId",
 			Expected: &InvitationInvitedUserSponsorId{
-				DirectoryObjectId: "directoryObjectIdValue",
+				DirectoryObjectId: "directoryObjectId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/invitations/invitedUserSponsors/directoryObjectIdValue/extra",
+			Input: "/invitations/invitedUserSponsors/directoryObjectId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/iNvItAtIoNs/iNvItEdUsErSpOnSoRs/dIrEcToRyObJeCtIdVaLuE",
+			Input: "/iNvItAtIoNs/iNvItEdUsErSpOnSoRs/dIrEcToRyObJeCtId",
 			Expected: &InvitationInvitedUserSponsorId{
-				DirectoryObjectId: "dIrEcToRyObJeCtIdVaLuE",
+				DirectoryObjectId: "dIrEcToRyObJeCtId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/iNvItAtIoNs/iNvItEdUsErSpOnSoRs/dIrEcToRyObJeCtIdVaLuE/extra",
+			Input: "/iNvItAtIoNs/iNvItEdUsErSpOnSoRs/dIrEcToRyObJeCtId/extra",
 			Error: true,
 		},
 	}

@@ -18,15 +18,44 @@ type UpdateSiteRecycleBinCreatedByUserMailboxSettingOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateSiteRecycleBinCreatedByUserMailboxSettingOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateSiteRecycleBinCreatedByUserMailboxSettingOperationOptions() UpdateSiteRecycleBinCreatedByUserMailboxSettingOperationOptions {
+	return UpdateSiteRecycleBinCreatedByUserMailboxSettingOperationOptions{}
+}
+
+func (o UpdateSiteRecycleBinCreatedByUserMailboxSettingOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateSiteRecycleBinCreatedByUserMailboxSettingOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateSiteRecycleBinCreatedByUserMailboxSettingOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateSiteRecycleBinCreatedByUserMailboxSetting - Update property mailboxSettings value.
-func (c SiteRecycleBinCreatedByUserMailboxSettingClient) UpdateSiteRecycleBinCreatedByUserMailboxSetting(ctx context.Context, id beta.GroupIdSiteId, input beta.MailboxSettings) (result UpdateSiteRecycleBinCreatedByUserMailboxSettingOperationResponse, err error) {
+func (c SiteRecycleBinCreatedByUserMailboxSettingClient) UpdateSiteRecycleBinCreatedByUserMailboxSetting(ctx context.Context, id beta.GroupIdSiteId, input beta.MailboxSettings, options UpdateSiteRecycleBinCreatedByUserMailboxSettingOperationOptions) (result UpdateSiteRecycleBinCreatedByUserMailboxSettingOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       fmt.Sprintf("%s/recycleBin/createdByUser/mailboxSettings", id.ID()),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/recycleBin/createdByUser/mailboxSettings", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

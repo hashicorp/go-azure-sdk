@@ -98,25 +98,41 @@ func (s AdministrativeUnit) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &AdministrativeUnit{}
 
 func (s *AdministrativeUnit) UnmarshalJSON(bytes []byte) error {
-	type alias AdministrativeUnit
-	var decoded alias
+
+	var decoded struct {
+		Description                   nullable.Type[string]   `json:"description,omitempty"`
+		DisplayName                   nullable.Type[string]   `json:"displayName,omitempty"`
+		Extensions                    *[]Extension            `json:"extensions,omitempty"`
+		IsMemberManagementRestricted  nullable.Type[bool]     `json:"isMemberManagementRestricted,omitempty"`
+		Members                       *[]DirectoryObject      `json:"members,omitempty"`
+		Members_ODataBind             *[]string               `json:"members@odata.bind,omitempty"`
+		MembershipRule                nullable.Type[string]   `json:"membershipRule,omitempty"`
+		MembershipRuleProcessingState nullable.Type[string]   `json:"membershipRuleProcessingState,omitempty"`
+		MembershipType                nullable.Type[string]   `json:"membershipType,omitempty"`
+		ScopedRoleMembers             *[]ScopedRoleMembership `json:"scopedRoleMembers,omitempty"`
+		Visibility                    nullable.Type[string]   `json:"visibility,omitempty"`
+		DeletedDateTime               nullable.Type[string]   `json:"deletedDateTime,omitempty"`
+		Id                            *string                 `json:"id,omitempty"`
+		ODataId                       *string                 `json:"@odata.id,omitempty"`
+		ODataType                     *string                 `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into AdministrativeUnit: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
-	s.DeletedDateTime = decoded.DeletedDateTime
 	s.Description = decoded.Description
 	s.DisplayName = decoded.DisplayName
-	s.Id = decoded.Id
 	s.IsMemberManagementRestricted = decoded.IsMemberManagementRestricted
 	s.Members_ODataBind = decoded.Members_ODataBind
 	s.MembershipRule = decoded.MembershipRule
 	s.MembershipRuleProcessingState = decoded.MembershipRuleProcessingState
 	s.MembershipType = decoded.MembershipType
-	s.ODataId = decoded.ODataId
-	s.ODataType = decoded.ODataType
 	s.ScopedRoleMembers = decoded.ScopedRoleMembers
 	s.Visibility = decoded.Visibility
+	s.DeletedDateTime = decoded.DeletedDateTime
+	s.Id = decoded.Id
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -156,5 +172,6 @@ func (s *AdministrativeUnit) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Members = &output
 	}
+
 	return nil
 }

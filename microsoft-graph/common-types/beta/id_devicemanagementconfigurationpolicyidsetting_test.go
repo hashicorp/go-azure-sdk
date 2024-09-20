@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &DeviceManagementConfigurationPolicyIdSettingId{}
 
 func TestNewDeviceManagementConfigurationPolicyIdSettingID(t *testing.T) {
-	id := NewDeviceManagementConfigurationPolicyIdSettingID("deviceManagementConfigurationPolicyIdValue", "deviceManagementConfigurationSettingIdValue")
+	id := NewDeviceManagementConfigurationPolicyIdSettingID("deviceManagementConfigurationPolicyId", "deviceManagementConfigurationSettingId")
 
-	if id.DeviceManagementConfigurationPolicyId != "deviceManagementConfigurationPolicyIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DeviceManagementConfigurationPolicyId'", id.DeviceManagementConfigurationPolicyId, "deviceManagementConfigurationPolicyIdValue")
+	if id.DeviceManagementConfigurationPolicyId != "deviceManagementConfigurationPolicyId" {
+		t.Fatalf("Expected %q but got %q for Segment 'DeviceManagementConfigurationPolicyId'", id.DeviceManagementConfigurationPolicyId, "deviceManagementConfigurationPolicyId")
 	}
 
-	if id.DeviceManagementConfigurationSettingId != "deviceManagementConfigurationSettingIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DeviceManagementConfigurationSettingId'", id.DeviceManagementConfigurationSettingId, "deviceManagementConfigurationSettingIdValue")
+	if id.DeviceManagementConfigurationSettingId != "deviceManagementConfigurationSettingId" {
+		t.Fatalf("Expected %q but got %q for Segment 'DeviceManagementConfigurationSettingId'", id.DeviceManagementConfigurationSettingId, "deviceManagementConfigurationSettingId")
 	}
 }
 
 func TestFormatDeviceManagementConfigurationPolicyIdSettingID(t *testing.T) {
-	actual := NewDeviceManagementConfigurationPolicyIdSettingID("deviceManagementConfigurationPolicyIdValue", "deviceManagementConfigurationSettingIdValue").ID()
-	expected := "/deviceManagement/configurationPolicies/deviceManagementConfigurationPolicyIdValue/settings/deviceManagementConfigurationSettingIdValue"
+	actual := NewDeviceManagementConfigurationPolicyIdSettingID("deviceManagementConfigurationPolicyId", "deviceManagementConfigurationSettingId").ID()
+	expected := "/deviceManagement/configurationPolicies/deviceManagementConfigurationPolicyId/settings/deviceManagementConfigurationSettingId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -54,25 +54,25 @@ func TestParseDeviceManagementConfigurationPolicyIdSettingID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/deviceManagement/configurationPolicies/deviceManagementConfigurationPolicyIdValue",
+			Input: "/deviceManagement/configurationPolicies/deviceManagementConfigurationPolicyId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/deviceManagement/configurationPolicies/deviceManagementConfigurationPolicyIdValue/settings",
+			Input: "/deviceManagement/configurationPolicies/deviceManagementConfigurationPolicyId/settings",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/configurationPolicies/deviceManagementConfigurationPolicyIdValue/settings/deviceManagementConfigurationSettingIdValue",
+			Input: "/deviceManagement/configurationPolicies/deviceManagementConfigurationPolicyId/settings/deviceManagementConfigurationSettingId",
 			Expected: &DeviceManagementConfigurationPolicyIdSettingId{
-				DeviceManagementConfigurationPolicyId:  "deviceManagementConfigurationPolicyIdValue",
-				DeviceManagementConfigurationSettingId: "deviceManagementConfigurationSettingIdValue",
+				DeviceManagementConfigurationPolicyId:  "deviceManagementConfigurationPolicyId",
+				DeviceManagementConfigurationSettingId: "deviceManagementConfigurationSettingId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/configurationPolicies/deviceManagementConfigurationPolicyIdValue/settings/deviceManagementConfigurationSettingIdValue/extra",
+			Input: "/deviceManagement/configurationPolicies/deviceManagementConfigurationPolicyId/settings/deviceManagementConfigurationSettingId/extra",
 			Error: true,
 		},
 	}
@@ -135,48 +135,48 @@ func TestParseDeviceManagementConfigurationPolicyIdSettingIDInsensitively(t *tes
 		},
 		{
 			// Incomplete URI
-			Input: "/deviceManagement/configurationPolicies/deviceManagementConfigurationPolicyIdValue",
+			Input: "/deviceManagement/configurationPolicies/deviceManagementConfigurationPolicyId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/cOnFiGuRaTiOnPoLiCiEs/dEvIcEmAnAgEmEnTcOnFiGuRaTiOnPoLiCyIdVaLuE",
+			Input: "/dEvIcEmAnAgEmEnT/cOnFiGuRaTiOnPoLiCiEs/dEvIcEmAnAgEmEnTcOnFiGuRaTiOnPoLiCyId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/deviceManagement/configurationPolicies/deviceManagementConfigurationPolicyIdValue/settings",
+			Input: "/deviceManagement/configurationPolicies/deviceManagementConfigurationPolicyId/settings",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/cOnFiGuRaTiOnPoLiCiEs/dEvIcEmAnAgEmEnTcOnFiGuRaTiOnPoLiCyIdVaLuE/sEtTiNgS",
+			Input: "/dEvIcEmAnAgEmEnT/cOnFiGuRaTiOnPoLiCiEs/dEvIcEmAnAgEmEnTcOnFiGuRaTiOnPoLiCyId/sEtTiNgS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/configurationPolicies/deviceManagementConfigurationPolicyIdValue/settings/deviceManagementConfigurationSettingIdValue",
+			Input: "/deviceManagement/configurationPolicies/deviceManagementConfigurationPolicyId/settings/deviceManagementConfigurationSettingId",
 			Expected: &DeviceManagementConfigurationPolicyIdSettingId{
-				DeviceManagementConfigurationPolicyId:  "deviceManagementConfigurationPolicyIdValue",
-				DeviceManagementConfigurationSettingId: "deviceManagementConfigurationSettingIdValue",
+				DeviceManagementConfigurationPolicyId:  "deviceManagementConfigurationPolicyId",
+				DeviceManagementConfigurationSettingId: "deviceManagementConfigurationSettingId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/configurationPolicies/deviceManagementConfigurationPolicyIdValue/settings/deviceManagementConfigurationSettingIdValue/extra",
+			Input: "/deviceManagement/configurationPolicies/deviceManagementConfigurationPolicyId/settings/deviceManagementConfigurationSettingId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/cOnFiGuRaTiOnPoLiCiEs/dEvIcEmAnAgEmEnTcOnFiGuRaTiOnPoLiCyIdVaLuE/sEtTiNgS/dEvIcEmAnAgEmEnTcOnFiGuRaTiOnSeTtInGiDvAlUe",
+			Input: "/dEvIcEmAnAgEmEnT/cOnFiGuRaTiOnPoLiCiEs/dEvIcEmAnAgEmEnTcOnFiGuRaTiOnPoLiCyId/sEtTiNgS/dEvIcEmAnAgEmEnTcOnFiGuRaTiOnSeTtInGiD",
 			Expected: &DeviceManagementConfigurationPolicyIdSettingId{
-				DeviceManagementConfigurationPolicyId:  "dEvIcEmAnAgEmEnTcOnFiGuRaTiOnPoLiCyIdVaLuE",
-				DeviceManagementConfigurationSettingId: "dEvIcEmAnAgEmEnTcOnFiGuRaTiOnSeTtInGiDvAlUe",
+				DeviceManagementConfigurationPolicyId:  "dEvIcEmAnAgEmEnTcOnFiGuRaTiOnPoLiCyId",
+				DeviceManagementConfigurationSettingId: "dEvIcEmAnAgEmEnTcOnFiGuRaTiOnSeTtInGiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/cOnFiGuRaTiOnPoLiCiEs/dEvIcEmAnAgEmEnTcOnFiGuRaTiOnPoLiCyIdVaLuE/sEtTiNgS/dEvIcEmAnAgEmEnTcOnFiGuRaTiOnSeTtInGiDvAlUe/extra",
+			Input: "/dEvIcEmAnAgEmEnT/cOnFiGuRaTiOnPoLiCiEs/dEvIcEmAnAgEmEnTcOnFiGuRaTiOnPoLiCyId/sEtTiNgS/dEvIcEmAnAgEmEnTcOnFiGuRaTiOnSeTtInGiD/extra",
 			Error: true,
 		},
 	}

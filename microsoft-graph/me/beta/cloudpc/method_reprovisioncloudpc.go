@@ -18,15 +18,44 @@ type ReprovisionCloudPCOperationResponse struct {
 	OData        *odata.OData
 }
 
+type ReprovisionCloudPCOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultReprovisionCloudPCOperationOptions() ReprovisionCloudPCOperationOptions {
+	return ReprovisionCloudPCOperationOptions{}
+}
+
+func (o ReprovisionCloudPCOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o ReprovisionCloudPCOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o ReprovisionCloudPCOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // ReprovisionCloudPC - Invoke action reprovision. Reprovision a specific Cloud PC.
-func (c CloudPCClient) ReprovisionCloudPC(ctx context.Context, id beta.MeCloudPCId, input ReprovisionCloudPCRequest) (result ReprovisionCloudPCOperationResponse, err error) {
+func (c CloudPCClient) ReprovisionCloudPC(ctx context.Context, id beta.MeCloudPCId, input ReprovisionCloudPCRequest, options ReprovisionCloudPCOperationOptions) (result ReprovisionCloudPCOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/reprovision", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/reprovision", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

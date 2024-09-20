@@ -93,7 +93,7 @@ func (id DeviceManagementUserPfxCertificateId) Segments() []resourceids.Segment 
 	return []resourceids.Segment{
 		resourceids.StaticSegment("deviceManagement", "deviceManagement", "deviceManagement"),
 		resourceids.StaticSegment("userPfxCertificates", "userPfxCertificates", "userPfxCertificates"),
-		resourceids.UserSpecifiedSegment("userPFXCertificateId", "userPFXCertificateIdValue"),
+		resourceids.UserSpecifiedSegment("userPFXCertificateId", "userPFXCertificateId"),
 	}
 }
 

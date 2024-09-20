@@ -19,16 +19,45 @@ type CreateDeviceEnrollmentConfigurationOperationResponse struct {
 	Model        beta.DeviceEnrollmentConfiguration
 }
 
+type CreateDeviceEnrollmentConfigurationOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateDeviceEnrollmentConfigurationOperationOptions() CreateDeviceEnrollmentConfigurationOperationOptions {
+	return CreateDeviceEnrollmentConfigurationOperationOptions{}
+}
+
+func (o CreateDeviceEnrollmentConfigurationOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateDeviceEnrollmentConfigurationOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateDeviceEnrollmentConfigurationOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateDeviceEnrollmentConfiguration - Create new navigation property to deviceEnrollmentConfigurations for
 // deviceManagement
-func (c DeviceEnrollmentConfigurationClient) CreateDeviceEnrollmentConfiguration(ctx context.Context, input beta.DeviceEnrollmentConfiguration) (result CreateDeviceEnrollmentConfigurationOperationResponse, err error) {
+func (c DeviceEnrollmentConfigurationClient) CreateDeviceEnrollmentConfiguration(ctx context.Context, input beta.DeviceEnrollmentConfiguration, options CreateDeviceEnrollmentConfigurationOperationOptions) (result CreateDeviceEnrollmentConfigurationOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/deviceManagement/deviceEnrollmentConfigurations",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/deviceManagement/deviceEnrollmentConfigurations",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -18,16 +18,45 @@ type CreateCrossTenantAccessPolicyPartnerOperationResponse struct {
 	Model        *stable.CrossTenantAccessPolicyConfigurationPartner
 }
 
+type CreateCrossTenantAccessPolicyPartnerOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateCrossTenantAccessPolicyPartnerOperationOptions() CreateCrossTenantAccessPolicyPartnerOperationOptions {
+	return CreateCrossTenantAccessPolicyPartnerOperationOptions{}
+}
+
+func (o CreateCrossTenantAccessPolicyPartnerOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateCrossTenantAccessPolicyPartnerOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateCrossTenantAccessPolicyPartnerOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateCrossTenantAccessPolicyPartner - Create crossTenantAccessPolicyConfigurationPartner. Create a new partner
 // configuration in a cross-tenant access policy.
-func (c CrossTenantAccessPolicyPartnerClient) CreateCrossTenantAccessPolicyPartner(ctx context.Context, input stable.CrossTenantAccessPolicyConfigurationPartner) (result CreateCrossTenantAccessPolicyPartnerOperationResponse, err error) {
+func (c CrossTenantAccessPolicyPartnerClient) CreateCrossTenantAccessPolicyPartner(ctx context.Context, input stable.CrossTenantAccessPolicyConfigurationPartner, options CreateCrossTenantAccessPolicyPartnerOperationOptions) (result CreateCrossTenantAccessPolicyPartnerOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/policies/crossTenantAccessPolicy/partners",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/policies/crossTenantAccessPolicy/partners",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

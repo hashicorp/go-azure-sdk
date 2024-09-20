@@ -17,19 +17,48 @@ type UpdateRoleManagementPolicyRuleOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateRoleManagementPolicyRuleOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateRoleManagementPolicyRuleOperationOptions() UpdateRoleManagementPolicyRuleOperationOptions {
+	return UpdateRoleManagementPolicyRuleOperationOptions{}
+}
+
+func (o UpdateRoleManagementPolicyRuleOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateRoleManagementPolicyRuleOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateRoleManagementPolicyRuleOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateRoleManagementPolicyRule - Update unifiedRoleManagementPolicyRule. Update a rule defined for a role management
 // policy. The rule can be one of the following types that are derived from the unifiedRoleManagementPolicyRule object:
 // For more information about rules for Microsoft Entra roles and examples of updating rules, see the following
 // articles: + Overview of rules for Microsoft Entra roles in PIM APIs in Microsoft Graph + Use PIM APIs in Microsoft
 // Graph to update Microsoft Entra ID rules
-func (c RoleManagementPolicyRuleClient) UpdateRoleManagementPolicyRule(ctx context.Context, id beta.PolicyRoleManagementPolicyIdRuleId, input beta.UnifiedRoleManagementPolicyRule) (result UpdateRoleManagementPolicyRuleOperationResponse, err error) {
+func (c RoleManagementPolicyRuleClient) UpdateRoleManagementPolicyRule(ctx context.Context, id beta.PolicyRoleManagementPolicyIdRuleId, input beta.UnifiedRoleManagementPolicyRule, options UpdateRoleManagementPolicyRuleOperationOptions) (result UpdateRoleManagementPolicyRuleOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

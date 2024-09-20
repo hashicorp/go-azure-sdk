@@ -93,7 +93,7 @@ func (id IdentityAuthenticationEventsFlowId) Segments() []resourceids.Segment {
 	return []resourceids.Segment{
 		resourceids.StaticSegment("identity", "identity", "identity"),
 		resourceids.StaticSegment("authenticationEventsFlows", "authenticationEventsFlows", "authenticationEventsFlows"),
-		resourceids.UserSpecifiedSegment("authenticationEventsFlowId", "authenticationEventsFlowIdValue"),
+		resourceids.UserSpecifiedSegment("authenticationEventsFlowId", "authenticationEventsFlowId"),
 	}
 }
 

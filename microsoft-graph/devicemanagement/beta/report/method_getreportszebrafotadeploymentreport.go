@@ -17,15 +17,44 @@ type GetReportsZebraFotaDeploymentReportOperationResponse struct {
 	Model        *[]byte
 }
 
+type GetReportsZebraFotaDeploymentReportOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultGetReportsZebraFotaDeploymentReportOperationOptions() GetReportsZebraFotaDeploymentReportOperationOptions {
+	return GetReportsZebraFotaDeploymentReportOperationOptions{}
+}
+
+func (o GetReportsZebraFotaDeploymentReportOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o GetReportsZebraFotaDeploymentReportOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o GetReportsZebraFotaDeploymentReportOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // GetReportsZebraFotaDeploymentReport - Invoke action getZebraFotaDeploymentReport
-func (c ReportClient) GetReportsZebraFotaDeploymentReport(ctx context.Context, input GetReportsZebraFotaDeploymentReportRequest) (result GetReportsZebraFotaDeploymentReportOperationResponse, err error) {
+func (c ReportClient) GetReportsZebraFotaDeploymentReport(ctx context.Context, input GetReportsZebraFotaDeploymentReportRequest, options GetReportsZebraFotaDeploymentReportOperationOptions) (result GetReportsZebraFotaDeploymentReportOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/octet-stream",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/deviceManagement/reports/getZebraFotaDeploymentReport",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/deviceManagement/reports/getZebraFotaDeploymentReport",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -12,24 +12,24 @@ import (
 var _ resourceids.ResourceId = &UserIdActivityIdHistoryItemId{}
 
 func TestNewUserIdActivityIdHistoryItemID(t *testing.T) {
-	id := NewUserIdActivityIdHistoryItemID("userIdValue", "userActivityIdValue", "activityHistoryItemIdValue")
+	id := NewUserIdActivityIdHistoryItemID("userId", "userActivityId", "activityHistoryItemId")
 
-	if id.UserId != "userIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'UserId'", id.UserId, "userIdValue")
+	if id.UserId != "userId" {
+		t.Fatalf("Expected %q but got %q for Segment 'UserId'", id.UserId, "userId")
 	}
 
-	if id.UserActivityId != "userActivityIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'UserActivityId'", id.UserActivityId, "userActivityIdValue")
+	if id.UserActivityId != "userActivityId" {
+		t.Fatalf("Expected %q but got %q for Segment 'UserActivityId'", id.UserActivityId, "userActivityId")
 	}
 
-	if id.ActivityHistoryItemId != "activityHistoryItemIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ActivityHistoryItemId'", id.ActivityHistoryItemId, "activityHistoryItemIdValue")
+	if id.ActivityHistoryItemId != "activityHistoryItemId" {
+		t.Fatalf("Expected %q but got %q for Segment 'ActivityHistoryItemId'", id.ActivityHistoryItemId, "activityHistoryItemId")
 	}
 }
 
 func TestFormatUserIdActivityIdHistoryItemID(t *testing.T) {
-	actual := NewUserIdActivityIdHistoryItemID("userIdValue", "userActivityIdValue", "activityHistoryItemIdValue").ID()
-	expected := "/users/userIdValue/activities/userActivityIdValue/historyItems/activityHistoryItemIdValue"
+	actual := NewUserIdActivityIdHistoryItemID("userId", "userActivityId", "activityHistoryItemId").ID()
+	expected := "/users/userId/activities/userActivityId/historyItems/activityHistoryItemId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -53,36 +53,36 @@ func TestParseUserIdActivityIdHistoryItemID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue",
+			Input: "/users/userId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/activities",
+			Input: "/users/userId/activities",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/activities/userActivityIdValue",
+			Input: "/users/userId/activities/userActivityId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/activities/userActivityIdValue/historyItems",
+			Input: "/users/userId/activities/userActivityId/historyItems",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/users/userIdValue/activities/userActivityIdValue/historyItems/activityHistoryItemIdValue",
+			Input: "/users/userId/activities/userActivityId/historyItems/activityHistoryItemId",
 			Expected: &UserIdActivityIdHistoryItemId{
-				UserId:                "userIdValue",
-				UserActivityId:        "userActivityIdValue",
-				ActivityHistoryItemId: "activityHistoryItemIdValue",
+				UserId:                "userId",
+				UserActivityId:        "userActivityId",
+				ActivityHistoryItemId: "activityHistoryItemId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/users/userIdValue/activities/userActivityIdValue/historyItems/activityHistoryItemIdValue/extra",
+			Input: "/users/userId/activities/userActivityId/historyItems/activityHistoryItemId/extra",
 			Error: true,
 		},
 	}
@@ -139,70 +139,70 @@ func TestParseUserIdActivityIdHistoryItemIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue",
+			Input: "/users/userId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe",
+			Input: "/uSeRs/uSeRiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/activities",
+			Input: "/users/userId/activities",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/aCtIvItIeS",
+			Input: "/uSeRs/uSeRiD/aCtIvItIeS",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/activities/userActivityIdValue",
+			Input: "/users/userId/activities/userActivityId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/aCtIvItIeS/uSeRaCtIvItYiDvAlUe",
+			Input: "/uSeRs/uSeRiD/aCtIvItIeS/uSeRaCtIvItYiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/activities/userActivityIdValue/historyItems",
+			Input: "/users/userId/activities/userActivityId/historyItems",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/aCtIvItIeS/uSeRaCtIvItYiDvAlUe/hIsToRyItEmS",
+			Input: "/uSeRs/uSeRiD/aCtIvItIeS/uSeRaCtIvItYiD/hIsToRyItEmS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/users/userIdValue/activities/userActivityIdValue/historyItems/activityHistoryItemIdValue",
+			Input: "/users/userId/activities/userActivityId/historyItems/activityHistoryItemId",
 			Expected: &UserIdActivityIdHistoryItemId{
-				UserId:                "userIdValue",
-				UserActivityId:        "userActivityIdValue",
-				ActivityHistoryItemId: "activityHistoryItemIdValue",
+				UserId:                "userId",
+				UserActivityId:        "userActivityId",
+				ActivityHistoryItemId: "activityHistoryItemId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/users/userIdValue/activities/userActivityIdValue/historyItems/activityHistoryItemIdValue/extra",
+			Input: "/users/userId/activities/userActivityId/historyItems/activityHistoryItemId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/aCtIvItIeS/uSeRaCtIvItYiDvAlUe/hIsToRyItEmS/aCtIvItYhIsToRyItEmIdVaLuE",
+			Input: "/uSeRs/uSeRiD/aCtIvItIeS/uSeRaCtIvItYiD/hIsToRyItEmS/aCtIvItYhIsToRyItEmId",
 			Expected: &UserIdActivityIdHistoryItemId{
-				UserId:                "uSeRiDvAlUe",
-				UserActivityId:        "uSeRaCtIvItYiDvAlUe",
-				ActivityHistoryItemId: "aCtIvItYhIsToRyItEmIdVaLuE",
+				UserId:                "uSeRiD",
+				UserActivityId:        "uSeRaCtIvItYiD",
+				ActivityHistoryItemId: "aCtIvItYhIsToRyItEmId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/aCtIvItIeS/uSeRaCtIvItYiDvAlUe/hIsToRyItEmS/aCtIvItYhIsToRyItEmIdVaLuE/extra",
+			Input: "/uSeRs/uSeRiD/aCtIvItIeS/uSeRaCtIvItYiD/hIsToRyItEmS/aCtIvItYhIsToRyItEmId/extra",
 			Error: true,
 		},
 	}

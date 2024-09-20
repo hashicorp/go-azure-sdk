@@ -19,7 +19,8 @@ type DeleteScopedRoleMemberOfOperationResponse struct {
 }
 
 type DeleteScopedRoleMemberOfOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteScopedRoleMemberOfOperationOptions() DeleteScopedRoleMemberOfOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteScopedRoleMemberOfOperationOptions) ToHeaders() *client.Headers {
 
 func (o DeleteScopedRoleMemberOfOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

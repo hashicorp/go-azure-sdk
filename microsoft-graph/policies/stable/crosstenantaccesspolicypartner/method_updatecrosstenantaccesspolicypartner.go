@@ -17,16 +17,45 @@ type UpdateCrossTenantAccessPolicyPartnerOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateCrossTenantAccessPolicyPartnerOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateCrossTenantAccessPolicyPartnerOperationOptions() UpdateCrossTenantAccessPolicyPartnerOperationOptions {
+	return UpdateCrossTenantAccessPolicyPartnerOperationOptions{}
+}
+
+func (o UpdateCrossTenantAccessPolicyPartnerOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateCrossTenantAccessPolicyPartnerOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateCrossTenantAccessPolicyPartnerOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateCrossTenantAccessPolicyPartner - Update crossTenantAccessPolicyConfigurationPartner. Update the properties of a
 // partner-specific configuration.
-func (c CrossTenantAccessPolicyPartnerClient) UpdateCrossTenantAccessPolicyPartner(ctx context.Context, id stable.PolicyCrossTenantAccessPolicyPartnerId, input stable.CrossTenantAccessPolicyConfigurationPartner) (result UpdateCrossTenantAccessPolicyPartnerOperationResponse, err error) {
+func (c CrossTenantAccessPolicyPartnerClient) UpdateCrossTenantAccessPolicyPartner(ctx context.Context, id stable.PolicyCrossTenantAccessPolicyPartnerId, input stable.CrossTenantAccessPolicyConfigurationPartner, options UpdateCrossTenantAccessPolicyPartnerOperationOptions) (result UpdateCrossTenantAccessPolicyPartnerOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

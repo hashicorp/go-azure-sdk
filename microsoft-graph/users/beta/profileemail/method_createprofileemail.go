@@ -19,15 +19,44 @@ type CreateProfileEmailOperationResponse struct {
 	Model        *beta.ItemEmail
 }
 
+type CreateProfileEmailOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateProfileEmailOperationOptions() CreateProfileEmailOperationOptions {
+	return CreateProfileEmailOperationOptions{}
+}
+
+func (o CreateProfileEmailOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateProfileEmailOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateProfileEmailOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateProfileEmail - Create new navigation property to emails for users
-func (c ProfileEmailClient) CreateProfileEmail(ctx context.Context, id beta.UserId, input beta.ItemEmail) (result CreateProfileEmailOperationResponse, err error) {
+func (c ProfileEmailClient) CreateProfileEmail(ctx context.Context, id beta.UserId, input beta.ItemEmail, options CreateProfileEmailOperationOptions) (result CreateProfileEmailOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/profile/emails", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/profile/emails", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

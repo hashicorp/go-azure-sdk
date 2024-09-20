@@ -17,15 +17,44 @@ type UpdateTeamworkInstalledAppOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateTeamworkInstalledAppOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateTeamworkInstalledAppOperationOptions() UpdateTeamworkInstalledAppOperationOptions {
+	return UpdateTeamworkInstalledAppOperationOptions{}
+}
+
+func (o UpdateTeamworkInstalledAppOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateTeamworkInstalledAppOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateTeamworkInstalledAppOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateTeamworkInstalledApp - Update the navigation property installedApps in me
-func (c TeamworkInstalledAppClient) UpdateTeamworkInstalledApp(ctx context.Context, id stable.MeTeamworkInstalledAppId, input stable.UserScopeTeamsAppInstallation) (result UpdateTeamworkInstalledAppOperationResponse, err error) {
+func (c TeamworkInstalledAppClient) UpdateTeamworkInstalledApp(ctx context.Context, id stable.MeTeamworkInstalledAppId, input stable.UserScopeTeamsAppInstallation, options UpdateTeamworkInstalledAppOperationOptions) (result UpdateTeamworkInstalledAppOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

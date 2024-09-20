@@ -19,7 +19,8 @@ type DeleteDirectoryRoleAssignmentApprovalStepOperationResponse struct {
 }
 
 type DeleteDirectoryRoleAssignmentApprovalStepOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteDirectoryRoleAssignmentApprovalStepOperationOptions() DeleteDirectoryRoleAssignmentApprovalStepOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteDirectoryRoleAssignmentApprovalStepOperationOptions) ToHeaders() *
 
 func (o DeleteDirectoryRoleAssignmentApprovalStepOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

@@ -77,15 +77,22 @@ func (s ExternallyAccessibleAzureBlobContainerFinding) MarshalJSON() ([]byte, er
 var _ json.Unmarshaler = &ExternallyAccessibleAzureBlobContainerFinding{}
 
 func (s *ExternallyAccessibleAzureBlobContainerFinding) UnmarshalJSON(bytes []byte) error {
-	type alias ExternallyAccessibleAzureBlobContainerFinding
-	var decoded alias
+
+	var decoded struct {
+		Accessibility       *AzureAccessType `json:"accessibility,omitempty"`
+		EncryptionManagedBy *AzureEncryption `json:"encryptionManagedBy,omitempty"`
+		CreatedDateTime     *string          `json:"createdDateTime,omitempty"`
+		Id                  *string          `json:"id,omitempty"`
+		ODataId             *string          `json:"@odata.id,omitempty"`
+		ODataType           *string          `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into ExternallyAccessibleAzureBlobContainerFinding: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.Accessibility = decoded.Accessibility
-	s.CreatedDateTime = decoded.CreatedDateTime
 	s.EncryptionManagedBy = decoded.EncryptionManagedBy
+	s.CreatedDateTime = decoded.CreatedDateTime
 	s.Id = decoded.Id
 	s.ODataId = decoded.ODataId
 	s.ODataType = decoded.ODataType
@@ -102,5 +109,6 @@ func (s *ExternallyAccessibleAzureBlobContainerFinding) UnmarshalJSON(bytes []by
 		}
 		s.StorageAccount = &impl
 	}
+
 	return nil
 }

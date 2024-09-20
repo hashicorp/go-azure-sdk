@@ -19,15 +19,44 @@ type CreateDriveItemListItemPermissionOperationResponse struct {
 	Model        *beta.Permission
 }
 
+type CreateDriveItemListItemPermissionOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateDriveItemListItemPermissionOperationOptions() CreateDriveItemListItemPermissionOperationOptions {
+	return CreateDriveItemListItemPermissionOperationOptions{}
+}
+
+func (o CreateDriveItemListItemPermissionOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateDriveItemListItemPermissionOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateDriveItemListItemPermissionOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateDriveItemListItemPermission - Create new navigation property to permissions for me
-func (c DriveItemListItemPermissionClient) CreateDriveItemListItemPermission(ctx context.Context, id beta.MeDriveIdItemId, input beta.Permission) (result CreateDriveItemListItemPermissionOperationResponse, err error) {
+func (c DriveItemListItemPermissionClient) CreateDriveItemListItemPermission(ctx context.Context, id beta.MeDriveIdItemId, input beta.Permission, options CreateDriveItemListItemPermissionOperationOptions) (result CreateDriveItemListItemPermissionOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/listItem/permissions", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/listItem/permissions", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

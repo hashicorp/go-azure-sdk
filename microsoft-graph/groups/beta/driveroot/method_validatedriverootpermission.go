@@ -18,15 +18,44 @@ type ValidateDriveRootPermissionOperationResponse struct {
 	OData        *odata.OData
 }
 
+type ValidateDriveRootPermissionOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultValidateDriveRootPermissionOperationOptions() ValidateDriveRootPermissionOperationOptions {
+	return ValidateDriveRootPermissionOperationOptions{}
+}
+
+func (o ValidateDriveRootPermissionOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o ValidateDriveRootPermissionOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o ValidateDriveRootPermissionOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // ValidateDriveRootPermission - Invoke action validatePermission
-func (c DriveRootClient) ValidateDriveRootPermission(ctx context.Context, id beta.GroupIdDriveId, input ValidateDriveRootPermissionRequest) (result ValidateDriveRootPermissionOperationResponse, err error) {
+func (c DriveRootClient) ValidateDriveRootPermission(ctx context.Context, id beta.GroupIdDriveId, input ValidateDriveRootPermissionRequest, options ValidateDriveRootPermissionOperationOptions) (result ValidateDriveRootPermissionOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/root/validatePermission", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/root/validatePermission", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

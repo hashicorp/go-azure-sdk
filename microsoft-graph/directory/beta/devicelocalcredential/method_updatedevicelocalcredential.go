@@ -17,15 +17,44 @@ type UpdateDeviceLocalCredentialOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateDeviceLocalCredentialOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateDeviceLocalCredentialOperationOptions() UpdateDeviceLocalCredentialOperationOptions {
+	return UpdateDeviceLocalCredentialOperationOptions{}
+}
+
+func (o UpdateDeviceLocalCredentialOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateDeviceLocalCredentialOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateDeviceLocalCredentialOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateDeviceLocalCredential - Update the navigation property deviceLocalCredentials in directory
-func (c DeviceLocalCredentialClient) UpdateDeviceLocalCredential(ctx context.Context, id beta.DirectoryDeviceLocalCredentialId, input beta.DeviceLocalCredentialInfo) (result UpdateDeviceLocalCredentialOperationResponse, err error) {
+func (c DeviceLocalCredentialClient) UpdateDeviceLocalCredential(ctx context.Context, id beta.DirectoryDeviceLocalCredentialId, input beta.DeviceLocalCredentialInfo, options UpdateDeviceLocalCredentialOperationOptions) (result UpdateDeviceLocalCredentialOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

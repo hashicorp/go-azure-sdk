@@ -99,9 +99,9 @@ func (id PolicyAppManagementPolicyIdAppliesToId) Segments() []resourceids.Segmen
 	return []resourceids.Segment{
 		resourceids.StaticSegment("policies", "policies", "policies"),
 		resourceids.StaticSegment("appManagementPolicies", "appManagementPolicies", "appManagementPolicies"),
-		resourceids.UserSpecifiedSegment("appManagementPolicyId", "appManagementPolicyIdValue"),
+		resourceids.UserSpecifiedSegment("appManagementPolicyId", "appManagementPolicyId"),
 		resourceids.StaticSegment("appliesTo", "appliesTo", "appliesTo"),
-		resourceids.UserSpecifiedSegment("directoryObjectId", "directoryObjectIdValue"),
+		resourceids.UserSpecifiedSegment("directoryObjectId", "directoryObjectId"),
 	}
 }
 

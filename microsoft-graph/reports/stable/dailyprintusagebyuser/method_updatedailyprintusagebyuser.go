@@ -17,15 +17,44 @@ type UpdateDailyPrintUsageByUserOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateDailyPrintUsageByUserOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateDailyPrintUsageByUserOperationOptions() UpdateDailyPrintUsageByUserOperationOptions {
+	return UpdateDailyPrintUsageByUserOperationOptions{}
+}
+
+func (o UpdateDailyPrintUsageByUserOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateDailyPrintUsageByUserOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateDailyPrintUsageByUserOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateDailyPrintUsageByUser - Update the navigation property dailyPrintUsageByUser in reports
-func (c DailyPrintUsageByUserClient) UpdateDailyPrintUsageByUser(ctx context.Context, id stable.ReportDailyPrintUsageByUserId, input stable.PrintUsageByUser) (result UpdateDailyPrintUsageByUserOperationResponse, err error) {
+func (c DailyPrintUsageByUserClient) UpdateDailyPrintUsageByUser(ctx context.Context, id stable.ReportDailyPrintUsageByUserId, input stable.PrintUsageByUser, options UpdateDailyPrintUsageByUserOperationOptions) (result UpdateDailyPrintUsageByUserOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

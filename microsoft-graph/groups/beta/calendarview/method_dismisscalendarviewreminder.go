@@ -18,16 +18,45 @@ type DismissCalendarViewReminderOperationResponse struct {
 	OData        *odata.OData
 }
 
+type DismissCalendarViewReminderOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultDismissCalendarViewReminderOperationOptions() DismissCalendarViewReminderOperationOptions {
+	return DismissCalendarViewReminderOperationOptions{}
+}
+
+func (o DismissCalendarViewReminderOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o DismissCalendarViewReminderOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o DismissCalendarViewReminderOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // DismissCalendarViewReminder - Invoke action dismissReminder. Dismiss a reminder that has been triggered for an event
 // in a user calendar.
-func (c CalendarViewClient) DismissCalendarViewReminder(ctx context.Context, id beta.GroupIdCalendarViewId) (result DismissCalendarViewReminderOperationResponse, err error) {
+func (c CalendarViewClient) DismissCalendarViewReminder(ctx context.Context, id beta.GroupIdCalendarViewId, options DismissCalendarViewReminderOperationOptions) (result DismissCalendarViewReminderOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/dismissReminder", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/dismissReminder", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

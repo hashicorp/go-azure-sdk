@@ -60,10 +60,14 @@ func (s CallRecordsServiceEndpoint) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &CallRecordsServiceEndpoint{}
 
 func (s *CallRecordsServiceEndpoint) UnmarshalJSON(bytes []byte) error {
-	type alias CallRecordsServiceEndpoint
-	var decoded alias
+
+	var decoded struct {
+		ODataId   *string              `json:"@odata.id,omitempty"`
+		ODataType *string              `json:"@odata.type,omitempty"`
+		UserAgent CallRecordsUserAgent `json:"userAgent"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into CallRecordsServiceEndpoint: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.ODataId = decoded.ODataId
@@ -81,5 +85,6 @@ func (s *CallRecordsServiceEndpoint) UnmarshalJSON(bytes []byte) error {
 		}
 		s.UserAgent = impl
 	}
+
 	return nil
 }

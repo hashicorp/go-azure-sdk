@@ -18,16 +18,45 @@ type ClearPresenceUserPreferredPresenceOperationResponse struct {
 	OData        *odata.OData
 }
 
+type ClearPresenceUserPreferredPresenceOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultClearPresenceUserPreferredPresenceOperationOptions() ClearPresenceUserPreferredPresenceOperationOptions {
+	return ClearPresenceUserPreferredPresenceOperationOptions{}
+}
+
+func (o ClearPresenceUserPreferredPresenceOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o ClearPresenceUserPreferredPresenceOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o ClearPresenceUserPreferredPresenceOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // ClearPresenceUserPreferredPresence - Invoke action clearUserPreferredPresence. Clear the preferred availability and
 // activity status for a user.
-func (c PresenceClient) ClearPresenceUserPreferredPresence(ctx context.Context, id stable.UserId) (result ClearPresenceUserPreferredPresenceOperationResponse, err error) {
+func (c PresenceClient) ClearPresenceUserPreferredPresence(ctx context.Context, id stable.UserId, options ClearPresenceUserPreferredPresenceOperationOptions) (result ClearPresenceUserPreferredPresenceOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/presence/clearUserPreferredPresence", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/presence/clearUserPreferredPresence", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -102,10 +102,19 @@ func (s AwsUser) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &AwsUser{}
 
 func (s *AwsUser) UnmarshalJSON(bytes []byte) error {
-	type alias AwsUser
-	var decoded alias
+
+	var decoded struct {
+		AssumableRoles      *[]AwsRole                        `json:"assumableRoles,omitempty"`
+		AuthorizationSystem *AuthorizationSystem              `json:"authorizationSystem,omitempty"`
+		DisplayName         nullable.Type[string]             `json:"displayName,omitempty"`
+		ExternalId          *string                           `json:"externalId,omitempty"`
+		Source              AuthorizationSystemIdentitySource `json:"source"`
+		Id                  *string                           `json:"id,omitempty"`
+		ODataId             *string                           `json:"@odata.id,omitempty"`
+		ODataType           *string                           `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into AwsUser: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.AssumableRoles = decoded.AssumableRoles
@@ -135,5 +144,6 @@ func (s *AwsUser) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Source = impl
 	}
+
 	return nil
 }

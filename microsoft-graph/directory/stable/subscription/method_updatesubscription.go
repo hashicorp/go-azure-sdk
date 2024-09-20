@@ -17,15 +17,44 @@ type UpdateSubscriptionOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateSubscriptionOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateSubscriptionOperationOptions() UpdateSubscriptionOperationOptions {
+	return UpdateSubscriptionOperationOptions{}
+}
+
+func (o UpdateSubscriptionOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateSubscriptionOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateSubscriptionOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateSubscription - Update the navigation property subscriptions in directory
-func (c SubscriptionClient) UpdateSubscription(ctx context.Context, id stable.DirectorySubscriptionId, input stable.CompanySubscription) (result UpdateSubscriptionOperationResponse, err error) {
+func (c SubscriptionClient) UpdateSubscription(ctx context.Context, id stable.DirectorySubscriptionId, input stable.CompanySubscription, options UpdateSubscriptionOperationOptions) (result UpdateSubscriptionOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

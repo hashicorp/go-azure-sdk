@@ -19,7 +19,8 @@ type DeleteSettingStorageQuotaOperationResponse struct {
 }
 
 type DeleteSettingStorageQuotaOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteSettingStorageQuotaOperationOptions() DeleteSettingStorageQuotaOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteSettingStorageQuotaOperationOptions) ToHeaders() *client.Headers {
 
 func (o DeleteSettingStorageQuotaOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

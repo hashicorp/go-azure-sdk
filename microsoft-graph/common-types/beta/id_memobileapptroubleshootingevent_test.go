@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &MeMobileAppTroubleshootingEventId{}
 
 func TestNewMeMobileAppTroubleshootingEventID(t *testing.T) {
-	id := NewMeMobileAppTroubleshootingEventID("mobileAppTroubleshootingEventIdValue")
+	id := NewMeMobileAppTroubleshootingEventID("mobileAppTroubleshootingEventId")
 
-	if id.MobileAppTroubleshootingEventId != "mobileAppTroubleshootingEventIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'MobileAppTroubleshootingEventId'", id.MobileAppTroubleshootingEventId, "mobileAppTroubleshootingEventIdValue")
+	if id.MobileAppTroubleshootingEventId != "mobileAppTroubleshootingEventId" {
+		t.Fatalf("Expected %q but got %q for Segment 'MobileAppTroubleshootingEventId'", id.MobileAppTroubleshootingEventId, "mobileAppTroubleshootingEventId")
 	}
 }
 
 func TestFormatMeMobileAppTroubleshootingEventID(t *testing.T) {
-	actual := NewMeMobileAppTroubleshootingEventID("mobileAppTroubleshootingEventIdValue").ID()
-	expected := "/me/mobileAppTroubleshootingEvents/mobileAppTroubleshootingEventIdValue"
+	actual := NewMeMobileAppTroubleshootingEventID("mobileAppTroubleshootingEventId").ID()
+	expected := "/me/mobileAppTroubleshootingEvents/mobileAppTroubleshootingEventId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -50,14 +50,14 @@ func TestParseMeMobileAppTroubleshootingEventID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/me/mobileAppTroubleshootingEvents/mobileAppTroubleshootingEventIdValue",
+			Input: "/me/mobileAppTroubleshootingEvents/mobileAppTroubleshootingEventId",
 			Expected: &MeMobileAppTroubleshootingEventId{
-				MobileAppTroubleshootingEventId: "mobileAppTroubleshootingEventIdValue",
+				MobileAppTroubleshootingEventId: "mobileAppTroubleshootingEventId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/mobileAppTroubleshootingEvents/mobileAppTroubleshootingEventIdValue/extra",
+			Input: "/me/mobileAppTroubleshootingEvents/mobileAppTroubleshootingEventId/extra",
 			Error: true,
 		},
 	}
@@ -116,26 +116,26 @@ func TestParseMeMobileAppTroubleshootingEventIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/me/mobileAppTroubleshootingEvents/mobileAppTroubleshootingEventIdValue",
+			Input: "/me/mobileAppTroubleshootingEvents/mobileAppTroubleshootingEventId",
 			Expected: &MeMobileAppTroubleshootingEventId{
-				MobileAppTroubleshootingEventId: "mobileAppTroubleshootingEventIdValue",
+				MobileAppTroubleshootingEventId: "mobileAppTroubleshootingEventId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/mobileAppTroubleshootingEvents/mobileAppTroubleshootingEventIdValue/extra",
+			Input: "/me/mobileAppTroubleshootingEvents/mobileAppTroubleshootingEventId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/mObIlEaPpTrOuBlEsHoOtInGeVeNtS/mObIlEaPpTrOuBlEsHoOtInGeVeNtIdVaLuE",
+			Input: "/mE/mObIlEaPpTrOuBlEsHoOtInGeVeNtS/mObIlEaPpTrOuBlEsHoOtInGeVeNtId",
 			Expected: &MeMobileAppTroubleshootingEventId{
-				MobileAppTroubleshootingEventId: "mObIlEaPpTrOuBlEsHoOtInGeVeNtIdVaLuE",
+				MobileAppTroubleshootingEventId: "mObIlEaPpTrOuBlEsHoOtInGeVeNtId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/mE/mObIlEaPpTrOuBlEsHoOtInGeVeNtS/mObIlEaPpTrOuBlEsHoOtInGeVeNtIdVaLuE/extra",
+			Input: "/mE/mObIlEaPpTrOuBlEsHoOtInGeVeNtS/mObIlEaPpTrOuBlEsHoOtInGeVeNtId/extra",
 			Error: true,
 		},
 	}

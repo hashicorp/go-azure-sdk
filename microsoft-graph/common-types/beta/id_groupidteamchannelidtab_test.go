@@ -12,24 +12,24 @@ import (
 var _ resourceids.ResourceId = &GroupIdTeamChannelIdTabId{}
 
 func TestNewGroupIdTeamChannelIdTabID(t *testing.T) {
-	id := NewGroupIdTeamChannelIdTabID("groupIdValue", "channelIdValue", "teamsTabIdValue")
+	id := NewGroupIdTeamChannelIdTabID("groupId", "channelId", "teamsTabId")
 
-	if id.GroupId != "groupIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'GroupId'", id.GroupId, "groupIdValue")
+	if id.GroupId != "groupId" {
+		t.Fatalf("Expected %q but got %q for Segment 'GroupId'", id.GroupId, "groupId")
 	}
 
-	if id.ChannelId != "channelIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ChannelId'", id.ChannelId, "channelIdValue")
+	if id.ChannelId != "channelId" {
+		t.Fatalf("Expected %q but got %q for Segment 'ChannelId'", id.ChannelId, "channelId")
 	}
 
-	if id.TeamsTabId != "teamsTabIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'TeamsTabId'", id.TeamsTabId, "teamsTabIdValue")
+	if id.TeamsTabId != "teamsTabId" {
+		t.Fatalf("Expected %q but got %q for Segment 'TeamsTabId'", id.TeamsTabId, "teamsTabId")
 	}
 }
 
 func TestFormatGroupIdTeamChannelIdTabID(t *testing.T) {
-	actual := NewGroupIdTeamChannelIdTabID("groupIdValue", "channelIdValue", "teamsTabIdValue").ID()
-	expected := "/groups/groupIdValue/team/channels/channelIdValue/tabs/teamsTabIdValue"
+	actual := NewGroupIdTeamChannelIdTabID("groupId", "channelId", "teamsTabId").ID()
+	expected := "/groups/groupId/team/channels/channelId/tabs/teamsTabId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -53,41 +53,41 @@ func TestParseGroupIdTeamChannelIdTabID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue",
+			Input: "/groups/groupId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/team",
+			Input: "/groups/groupId/team",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/team/channels",
+			Input: "/groups/groupId/team/channels",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/team/channels/channelIdValue",
+			Input: "/groups/groupId/team/channels/channelId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/team/channels/channelIdValue/tabs",
+			Input: "/groups/groupId/team/channels/channelId/tabs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/groups/groupIdValue/team/channels/channelIdValue/tabs/teamsTabIdValue",
+			Input: "/groups/groupId/team/channels/channelId/tabs/teamsTabId",
 			Expected: &GroupIdTeamChannelIdTabId{
-				GroupId:    "groupIdValue",
-				ChannelId:  "channelIdValue",
-				TeamsTabId: "teamsTabIdValue",
+				GroupId:    "groupId",
+				ChannelId:  "channelId",
+				TeamsTabId: "teamsTabId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/groups/groupIdValue/team/channels/channelIdValue/tabs/teamsTabIdValue/extra",
+			Input: "/groups/groupId/team/channels/channelId/tabs/teamsTabId/extra",
 			Error: true,
 		},
 	}
@@ -144,80 +144,80 @@ func TestParseGroupIdTeamChannelIdTabIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue",
+			Input: "/groups/groupId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE",
+			Input: "/gRoUpS/gRoUpId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/team",
+			Input: "/groups/groupId/team",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/tEaM",
+			Input: "/gRoUpS/gRoUpId/tEaM",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/team/channels",
+			Input: "/groups/groupId/team/channels",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/tEaM/cHaNnElS",
+			Input: "/gRoUpS/gRoUpId/tEaM/cHaNnElS",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/team/channels/channelIdValue",
+			Input: "/groups/groupId/team/channels/channelId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/tEaM/cHaNnElS/cHaNnElIdVaLuE",
+			Input: "/gRoUpS/gRoUpId/tEaM/cHaNnElS/cHaNnElId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/team/channels/channelIdValue/tabs",
+			Input: "/groups/groupId/team/channels/channelId/tabs",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/tEaM/cHaNnElS/cHaNnElIdVaLuE/tAbS",
+			Input: "/gRoUpS/gRoUpId/tEaM/cHaNnElS/cHaNnElId/tAbS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/groups/groupIdValue/team/channels/channelIdValue/tabs/teamsTabIdValue",
+			Input: "/groups/groupId/team/channels/channelId/tabs/teamsTabId",
 			Expected: &GroupIdTeamChannelIdTabId{
-				GroupId:    "groupIdValue",
-				ChannelId:  "channelIdValue",
-				TeamsTabId: "teamsTabIdValue",
+				GroupId:    "groupId",
+				ChannelId:  "channelId",
+				TeamsTabId: "teamsTabId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/groups/groupIdValue/team/channels/channelIdValue/tabs/teamsTabIdValue/extra",
+			Input: "/groups/groupId/team/channels/channelId/tabs/teamsTabId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/tEaM/cHaNnElS/cHaNnElIdVaLuE/tAbS/tEaMsTaBiDvAlUe",
+			Input: "/gRoUpS/gRoUpId/tEaM/cHaNnElS/cHaNnElId/tAbS/tEaMsTaBiD",
 			Expected: &GroupIdTeamChannelIdTabId{
-				GroupId:    "gRoUpIdVaLuE",
-				ChannelId:  "cHaNnElIdVaLuE",
-				TeamsTabId: "tEaMsTaBiDvAlUe",
+				GroupId:    "gRoUpId",
+				ChannelId:  "cHaNnElId",
+				TeamsTabId: "tEaMsTaBiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/tEaM/cHaNnElS/cHaNnElIdVaLuE/tAbS/tEaMsTaBiDvAlUe/extra",
+			Input: "/gRoUpS/gRoUpId/tEaM/cHaNnElS/cHaNnElId/tAbS/tEaMsTaBiD/extra",
 			Error: true,
 		},
 	}

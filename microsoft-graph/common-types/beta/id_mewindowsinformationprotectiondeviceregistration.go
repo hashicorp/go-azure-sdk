@@ -93,7 +93,7 @@ func (id MeWindowsInformationProtectionDeviceRegistrationId) Segments() []resour
 	return []resourceids.Segment{
 		resourceids.StaticSegment("me", "me", "me"),
 		resourceids.StaticSegment("windowsInformationProtectionDeviceRegistrations", "windowsInformationProtectionDeviceRegistrations", "windowsInformationProtectionDeviceRegistrations"),
-		resourceids.UserSpecifiedSegment("windowsInformationProtectionDeviceRegistrationId", "windowsInformationProtectionDeviceRegistrationIdValue"),
+		resourceids.UserSpecifiedSegment("windowsInformationProtectionDeviceRegistrationId", "windowsInformationProtectionDeviceRegistrationId"),
 	}
 }
 

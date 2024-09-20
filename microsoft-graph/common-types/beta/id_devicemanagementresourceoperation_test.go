@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &DeviceManagementResourceOperationId{}
 
 func TestNewDeviceManagementResourceOperationID(t *testing.T) {
-	id := NewDeviceManagementResourceOperationID("resourceOperationIdValue")
+	id := NewDeviceManagementResourceOperationID("resourceOperationId")
 
-	if id.ResourceOperationId != "resourceOperationIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ResourceOperationId'", id.ResourceOperationId, "resourceOperationIdValue")
+	if id.ResourceOperationId != "resourceOperationId" {
+		t.Fatalf("Expected %q but got %q for Segment 'ResourceOperationId'", id.ResourceOperationId, "resourceOperationId")
 	}
 }
 
 func TestFormatDeviceManagementResourceOperationID(t *testing.T) {
-	actual := NewDeviceManagementResourceOperationID("resourceOperationIdValue").ID()
-	expected := "/deviceManagement/resourceOperations/resourceOperationIdValue"
+	actual := NewDeviceManagementResourceOperationID("resourceOperationId").ID()
+	expected := "/deviceManagement/resourceOperations/resourceOperationId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -50,14 +50,14 @@ func TestParseDeviceManagementResourceOperationID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/resourceOperations/resourceOperationIdValue",
+			Input: "/deviceManagement/resourceOperations/resourceOperationId",
 			Expected: &DeviceManagementResourceOperationId{
-				ResourceOperationId: "resourceOperationIdValue",
+				ResourceOperationId: "resourceOperationId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/resourceOperations/resourceOperationIdValue/extra",
+			Input: "/deviceManagement/resourceOperations/resourceOperationId/extra",
 			Error: true,
 		},
 	}
@@ -116,26 +116,26 @@ func TestParseDeviceManagementResourceOperationIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/resourceOperations/resourceOperationIdValue",
+			Input: "/deviceManagement/resourceOperations/resourceOperationId",
 			Expected: &DeviceManagementResourceOperationId{
-				ResourceOperationId: "resourceOperationIdValue",
+				ResourceOperationId: "resourceOperationId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/resourceOperations/resourceOperationIdValue/extra",
+			Input: "/deviceManagement/resourceOperations/resourceOperationId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/rEsOuRcEoPeRaTiOnS/rEsOuRcEoPeRaTiOnIdVaLuE",
+			Input: "/dEvIcEmAnAgEmEnT/rEsOuRcEoPeRaTiOnS/rEsOuRcEoPeRaTiOnId",
 			Expected: &DeviceManagementResourceOperationId{
-				ResourceOperationId: "rEsOuRcEoPeRaTiOnIdVaLuE",
+				ResourceOperationId: "rEsOuRcEoPeRaTiOnId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/rEsOuRcEoPeRaTiOnS/rEsOuRcEoPeRaTiOnIdVaLuE/extra",
+			Input: "/dEvIcEmAnAgEmEnT/rEsOuRcEoPeRaTiOnS/rEsOuRcEoPeRaTiOnId/extra",
 			Error: true,
 		},
 	}

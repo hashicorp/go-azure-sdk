@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &RoleManagementCloudPCRoleAssignmentId{}
 
 func TestNewRoleManagementCloudPCRoleAssignmentID(t *testing.T) {
-	id := NewRoleManagementCloudPCRoleAssignmentID("unifiedRoleAssignmentMultipleIdValue")
+	id := NewRoleManagementCloudPCRoleAssignmentID("unifiedRoleAssignmentMultipleId")
 
-	if id.UnifiedRoleAssignmentMultipleId != "unifiedRoleAssignmentMultipleIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'UnifiedRoleAssignmentMultipleId'", id.UnifiedRoleAssignmentMultipleId, "unifiedRoleAssignmentMultipleIdValue")
+	if id.UnifiedRoleAssignmentMultipleId != "unifiedRoleAssignmentMultipleId" {
+		t.Fatalf("Expected %q but got %q for Segment 'UnifiedRoleAssignmentMultipleId'", id.UnifiedRoleAssignmentMultipleId, "unifiedRoleAssignmentMultipleId")
 	}
 }
 
 func TestFormatRoleManagementCloudPCRoleAssignmentID(t *testing.T) {
-	actual := NewRoleManagementCloudPCRoleAssignmentID("unifiedRoleAssignmentMultipleIdValue").ID()
-	expected := "/roleManagement/cloudPC/roleAssignments/unifiedRoleAssignmentMultipleIdValue"
+	actual := NewRoleManagementCloudPCRoleAssignmentID("unifiedRoleAssignmentMultipleId").ID()
+	expected := "/roleManagement/cloudPC/roleAssignments/unifiedRoleAssignmentMultipleId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -55,14 +55,14 @@ func TestParseRoleManagementCloudPCRoleAssignmentID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/roleManagement/cloudPC/roleAssignments/unifiedRoleAssignmentMultipleIdValue",
+			Input: "/roleManagement/cloudPC/roleAssignments/unifiedRoleAssignmentMultipleId",
 			Expected: &RoleManagementCloudPCRoleAssignmentId{
-				UnifiedRoleAssignmentMultipleId: "unifiedRoleAssignmentMultipleIdValue",
+				UnifiedRoleAssignmentMultipleId: "unifiedRoleAssignmentMultipleId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/roleManagement/cloudPC/roleAssignments/unifiedRoleAssignmentMultipleIdValue/extra",
+			Input: "/roleManagement/cloudPC/roleAssignments/unifiedRoleAssignmentMultipleId/extra",
 			Error: true,
 		},
 	}
@@ -131,26 +131,26 @@ func TestParseRoleManagementCloudPCRoleAssignmentIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/roleManagement/cloudPC/roleAssignments/unifiedRoleAssignmentMultipleIdValue",
+			Input: "/roleManagement/cloudPC/roleAssignments/unifiedRoleAssignmentMultipleId",
 			Expected: &RoleManagementCloudPCRoleAssignmentId{
-				UnifiedRoleAssignmentMultipleId: "unifiedRoleAssignmentMultipleIdValue",
+				UnifiedRoleAssignmentMultipleId: "unifiedRoleAssignmentMultipleId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/roleManagement/cloudPC/roleAssignments/unifiedRoleAssignmentMultipleIdValue/extra",
+			Input: "/roleManagement/cloudPC/roleAssignments/unifiedRoleAssignmentMultipleId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/rOlEmAnAgEmEnT/cLoUdPc/rOlEaSsIgNmEnTs/uNiFiEdRoLeAsSiGnMeNtMuLtIpLeIdVaLuE",
+			Input: "/rOlEmAnAgEmEnT/cLoUdPc/rOlEaSsIgNmEnTs/uNiFiEdRoLeAsSiGnMeNtMuLtIpLeId",
 			Expected: &RoleManagementCloudPCRoleAssignmentId{
-				UnifiedRoleAssignmentMultipleId: "uNiFiEdRoLeAsSiGnMeNtMuLtIpLeIdVaLuE",
+				UnifiedRoleAssignmentMultipleId: "uNiFiEdRoLeAsSiGnMeNtMuLtIpLeId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/rOlEmAnAgEmEnT/cLoUdPc/rOlEaSsIgNmEnTs/uNiFiEdRoLeAsSiGnMeNtMuLtIpLeIdVaLuE/extra",
+			Input: "/rOlEmAnAgEmEnT/cLoUdPc/rOlEaSsIgNmEnTs/uNiFiEdRoLeAsSiGnMeNtMuLtIpLeId/extra",
 			Error: true,
 		},
 	}

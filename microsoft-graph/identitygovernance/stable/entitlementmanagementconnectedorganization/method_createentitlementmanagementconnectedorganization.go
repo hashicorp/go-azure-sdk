@@ -18,16 +18,45 @@ type CreateEntitlementManagementConnectedOrganizationOperationResponse struct {
 	Model        *stable.ConnectedOrganization
 }
 
+type CreateEntitlementManagementConnectedOrganizationOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateEntitlementManagementConnectedOrganizationOperationOptions() CreateEntitlementManagementConnectedOrganizationOperationOptions {
+	return CreateEntitlementManagementConnectedOrganizationOperationOptions{}
+}
+
+func (o CreateEntitlementManagementConnectedOrganizationOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateEntitlementManagementConnectedOrganizationOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateEntitlementManagementConnectedOrganizationOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateEntitlementManagementConnectedOrganization - Create connectedOrganization. Create a new connectedOrganization
 // object.
-func (c EntitlementManagementConnectedOrganizationClient) CreateEntitlementManagementConnectedOrganization(ctx context.Context, input stable.ConnectedOrganization) (result CreateEntitlementManagementConnectedOrganizationOperationResponse, err error) {
+func (c EntitlementManagementConnectedOrganizationClient) CreateEntitlementManagementConnectedOrganization(ctx context.Context, input stable.ConnectedOrganization, options CreateEntitlementManagementConnectedOrganizationOperationOptions) (result CreateEntitlementManagementConnectedOrganizationOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/identityGovernance/entitlementManagement/connectedOrganizations",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/identityGovernance/entitlementManagement/connectedOrganizations",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

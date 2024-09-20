@@ -94,7 +94,7 @@ func (id DeviceManagementVirtualEndpointExternalPartnerSettingId) Segments() []r
 		resourceids.StaticSegment("deviceManagement", "deviceManagement", "deviceManagement"),
 		resourceids.StaticSegment("virtualEndpoint", "virtualEndpoint", "virtualEndpoint"),
 		resourceids.StaticSegment("externalPartnerSettings", "externalPartnerSettings", "externalPartnerSettings"),
-		resourceids.UserSpecifiedSegment("cloudPCExternalPartnerSettingId", "cloudPCExternalPartnerSettingIdValue"),
+		resourceids.UserSpecifiedSegment("cloudPCExternalPartnerSettingId", "cloudPCExternalPartnerSettingId"),
 	}
 }
 

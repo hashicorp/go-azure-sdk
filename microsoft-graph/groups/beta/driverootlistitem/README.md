@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/driverootlistitem` Documentation
 
-The `driverootlistitem` SDK allows for interaction with the Azure Resource Manager Service `groups` (API Version `beta`).
+The `driverootlistitem` SDK allows for interaction with Microsoft Graph `groups` (API Version `beta`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -15,7 +15,7 @@ import "github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/driverootl
 ### Client Initialization
 
 ```go
-client := driverootlistitem.NewDriveRootListItemClientWithBaseURI("https://management.azure.com")
+client := driverootlistitem.NewDriveRootListItemClientWithBaseURI("https://graph.microsoft.com")
 client.Client.Authorizer = authorizer
 ```
 
@@ -24,14 +24,14 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := driverootlistitem.NewGroupIdDriveID("groupIdValue", "driveIdValue")
+id := driverootlistitem.NewGroupIdDriveID("groupId", "driveId")
 
 payload := driverootlistitem.CreateDriveRootListItemLinkRequest{
 	// ...
 }
 
 
-read, err := client.CreateDriveRootListItemLink(ctx, id, payload)
+read, err := client.CreateDriveRootListItemLink(ctx, id, payload, driverootlistitem.DefaultCreateDriveRootListItemLinkOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -45,7 +45,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := driverootlistitem.NewGroupIdDriveID("groupIdValue", "driveIdValue")
+id := driverootlistitem.NewGroupIdDriveID("groupId", "driveId")
 
 read, err := client.DeleteDriveRootListItem(ctx, id, driverootlistitem.DefaultDeleteDriveRootListItemOperationOptions())
 if err != nil {
@@ -61,7 +61,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := driverootlistitem.NewGroupIdDriveID("groupIdValue", "driveIdValue")
+id := driverootlistitem.NewGroupIdDriveID("groupId", "driveId")
 
 read, err := client.GetDriveRootListItem(ctx, id, driverootlistitem.DefaultGetDriveRootListItemOperationOptions())
 if err != nil {
@@ -77,14 +77,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := driverootlistitem.NewGroupIdDriveID("groupIdValue", "driveIdValue")
+id := driverootlistitem.NewGroupIdDriveID("groupId", "driveId")
 
 payload := driverootlistitem.ListItem{
 	// ...
 }
 
 
-read, err := client.UpdateDriveRootListItem(ctx, id, payload)
+read, err := client.UpdateDriveRootListItem(ctx, id, payload, driverootlistitem.DefaultUpdateDriveRootListItemOperationOptions())
 if err != nil {
 	// handle the error
 }

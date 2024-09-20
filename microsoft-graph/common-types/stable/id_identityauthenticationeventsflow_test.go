@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &IdentityAuthenticationEventsFlowId{}
 
 func TestNewIdentityAuthenticationEventsFlowID(t *testing.T) {
-	id := NewIdentityAuthenticationEventsFlowID("authenticationEventsFlowIdValue")
+	id := NewIdentityAuthenticationEventsFlowID("authenticationEventsFlowId")
 
-	if id.AuthenticationEventsFlowId != "authenticationEventsFlowIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'AuthenticationEventsFlowId'", id.AuthenticationEventsFlowId, "authenticationEventsFlowIdValue")
+	if id.AuthenticationEventsFlowId != "authenticationEventsFlowId" {
+		t.Fatalf("Expected %q but got %q for Segment 'AuthenticationEventsFlowId'", id.AuthenticationEventsFlowId, "authenticationEventsFlowId")
 	}
 }
 
 func TestFormatIdentityAuthenticationEventsFlowID(t *testing.T) {
-	actual := NewIdentityAuthenticationEventsFlowID("authenticationEventsFlowIdValue").ID()
-	expected := "/identity/authenticationEventsFlows/authenticationEventsFlowIdValue"
+	actual := NewIdentityAuthenticationEventsFlowID("authenticationEventsFlowId").ID()
+	expected := "/identity/authenticationEventsFlows/authenticationEventsFlowId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -50,14 +50,14 @@ func TestParseIdentityAuthenticationEventsFlowID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/identity/authenticationEventsFlows/authenticationEventsFlowIdValue",
+			Input: "/identity/authenticationEventsFlows/authenticationEventsFlowId",
 			Expected: &IdentityAuthenticationEventsFlowId{
-				AuthenticationEventsFlowId: "authenticationEventsFlowIdValue",
+				AuthenticationEventsFlowId: "authenticationEventsFlowId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/identity/authenticationEventsFlows/authenticationEventsFlowIdValue/extra",
+			Input: "/identity/authenticationEventsFlows/authenticationEventsFlowId/extra",
 			Error: true,
 		},
 	}
@@ -116,26 +116,26 @@ func TestParseIdentityAuthenticationEventsFlowIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/identity/authenticationEventsFlows/authenticationEventsFlowIdValue",
+			Input: "/identity/authenticationEventsFlows/authenticationEventsFlowId",
 			Expected: &IdentityAuthenticationEventsFlowId{
-				AuthenticationEventsFlowId: "authenticationEventsFlowIdValue",
+				AuthenticationEventsFlowId: "authenticationEventsFlowId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/identity/authenticationEventsFlows/authenticationEventsFlowIdValue/extra",
+			Input: "/identity/authenticationEventsFlows/authenticationEventsFlowId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/iDeNtItY/aUtHeNtIcAtIoNeVeNtSfLoWs/aUtHeNtIcAtIoNeVeNtSfLoWiDvAlUe",
+			Input: "/iDeNtItY/aUtHeNtIcAtIoNeVeNtSfLoWs/aUtHeNtIcAtIoNeVeNtSfLoWiD",
 			Expected: &IdentityAuthenticationEventsFlowId{
-				AuthenticationEventsFlowId: "aUtHeNtIcAtIoNeVeNtSfLoWiDvAlUe",
+				AuthenticationEventsFlowId: "aUtHeNtIcAtIoNeVeNtSfLoWiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/iDeNtItY/aUtHeNtIcAtIoNeVeNtSfLoWs/aUtHeNtIcAtIoNeVeNtSfLoWiDvAlUe/extra",
+			Input: "/iDeNtItY/aUtHeNtIcAtIoNeVeNtSfLoWs/aUtHeNtIcAtIoNeVeNtSfLoWiD/extra",
 			Error: true,
 		},
 	}

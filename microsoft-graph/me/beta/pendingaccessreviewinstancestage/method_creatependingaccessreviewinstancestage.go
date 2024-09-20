@@ -19,15 +19,44 @@ type CreatePendingAccessReviewInstanceStageOperationResponse struct {
 	Model        *beta.AccessReviewStage
 }
 
+type CreatePendingAccessReviewInstanceStageOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreatePendingAccessReviewInstanceStageOperationOptions() CreatePendingAccessReviewInstanceStageOperationOptions {
+	return CreatePendingAccessReviewInstanceStageOperationOptions{}
+}
+
+func (o CreatePendingAccessReviewInstanceStageOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreatePendingAccessReviewInstanceStageOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreatePendingAccessReviewInstanceStageOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreatePendingAccessReviewInstanceStage - Create new navigation property to stages for me
-func (c PendingAccessReviewInstanceStageClient) CreatePendingAccessReviewInstanceStage(ctx context.Context, id beta.MePendingAccessReviewInstanceId, input beta.AccessReviewStage) (result CreatePendingAccessReviewInstanceStageOperationResponse, err error) {
+func (c PendingAccessReviewInstanceStageClient) CreatePendingAccessReviewInstanceStage(ctx context.Context, id beta.MePendingAccessReviewInstanceId, input beta.AccessReviewStage, options CreatePendingAccessReviewInstanceStageOperationOptions) (result CreatePendingAccessReviewInstanceStageOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/stages", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/stages", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -62,10 +62,15 @@ func (s DepEnrollmentBaseProfileCollectionResponse) MarshalJSON() ([]byte, error
 var _ json.Unmarshaler = &DepEnrollmentBaseProfileCollectionResponse{}
 
 func (s *DepEnrollmentBaseProfileCollectionResponse) UnmarshalJSON(bytes []byte) error {
-	type alias DepEnrollmentBaseProfileCollectionResponse
-	var decoded alias
+
+	var decoded struct {
+		Value         *[]DepEnrollmentBaseProfile `json:"value,omitempty"`
+		ODataId       *string                     `json:"@odata.id,omitempty"`
+		ODataNextLink nullable.Type[string]       `json:"@odata.nextLink,omitempty"`
+		ODataType     *string                     `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into DepEnrollmentBaseProfileCollectionResponse: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.ODataId = decoded.ODataId
@@ -93,5 +98,6 @@ func (s *DepEnrollmentBaseProfileCollectionResponse) UnmarshalJSON(bytes []byte)
 		}
 		s.Value = &output
 	}
+
 	return nil
 }

@@ -19,16 +19,45 @@ type GetTeamPrimaryChannelFilesFolderContentStreamOperationResponse struct {
 	Model        *[]byte
 }
 
+type GetTeamPrimaryChannelFilesFolderContentStreamOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultGetTeamPrimaryChannelFilesFolderContentStreamOperationOptions() GetTeamPrimaryChannelFilesFolderContentStreamOperationOptions {
+	return GetTeamPrimaryChannelFilesFolderContentStreamOperationOptions{}
+}
+
+func (o GetTeamPrimaryChannelFilesFolderContentStreamOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o GetTeamPrimaryChannelFilesFolderContentStreamOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o GetTeamPrimaryChannelFilesFolderContentStreamOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // GetTeamPrimaryChannelFilesFolderContentStream - Get contentStream for the navigation property filesFolder from
 // groups. The content stream, if the item represents a file.
-func (c TeamPrimaryChannelFilesFolderContentStreamClient) GetTeamPrimaryChannelFilesFolderContentStream(ctx context.Context, id beta.GroupId) (result GetTeamPrimaryChannelFilesFolderContentStreamOperationResponse, err error) {
+func (c TeamPrimaryChannelFilesFolderContentStreamClient) GetTeamPrimaryChannelFilesFolderContentStream(ctx context.Context, id beta.GroupId, options GetTeamPrimaryChannelFilesFolderContentStreamOperationOptions) (result GetTeamPrimaryChannelFilesFolderContentStreamOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/octet-stream",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/team/primaryChannel/filesFolder/contentStream", id.ID()),
+		HttpMethod:    http.MethodGet,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/team/primaryChannel/filesFolder/contentStream", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

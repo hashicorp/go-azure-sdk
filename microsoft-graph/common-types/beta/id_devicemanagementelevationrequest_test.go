@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &DeviceManagementElevationRequestId{}
 
 func TestNewDeviceManagementElevationRequestID(t *testing.T) {
-	id := NewDeviceManagementElevationRequestID("privilegeManagementElevationRequestIdValue")
+	id := NewDeviceManagementElevationRequestID("privilegeManagementElevationRequestId")
 
-	if id.PrivilegeManagementElevationRequestId != "privilegeManagementElevationRequestIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'PrivilegeManagementElevationRequestId'", id.PrivilegeManagementElevationRequestId, "privilegeManagementElevationRequestIdValue")
+	if id.PrivilegeManagementElevationRequestId != "privilegeManagementElevationRequestId" {
+		t.Fatalf("Expected %q but got %q for Segment 'PrivilegeManagementElevationRequestId'", id.PrivilegeManagementElevationRequestId, "privilegeManagementElevationRequestId")
 	}
 }
 
 func TestFormatDeviceManagementElevationRequestID(t *testing.T) {
-	actual := NewDeviceManagementElevationRequestID("privilegeManagementElevationRequestIdValue").ID()
-	expected := "/deviceManagement/elevationRequests/privilegeManagementElevationRequestIdValue"
+	actual := NewDeviceManagementElevationRequestID("privilegeManagementElevationRequestId").ID()
+	expected := "/deviceManagement/elevationRequests/privilegeManagementElevationRequestId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -50,14 +50,14 @@ func TestParseDeviceManagementElevationRequestID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/elevationRequests/privilegeManagementElevationRequestIdValue",
+			Input: "/deviceManagement/elevationRequests/privilegeManagementElevationRequestId",
 			Expected: &DeviceManagementElevationRequestId{
-				PrivilegeManagementElevationRequestId: "privilegeManagementElevationRequestIdValue",
+				PrivilegeManagementElevationRequestId: "privilegeManagementElevationRequestId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/elevationRequests/privilegeManagementElevationRequestIdValue/extra",
+			Input: "/deviceManagement/elevationRequests/privilegeManagementElevationRequestId/extra",
 			Error: true,
 		},
 	}
@@ -116,26 +116,26 @@ func TestParseDeviceManagementElevationRequestIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/elevationRequests/privilegeManagementElevationRequestIdValue",
+			Input: "/deviceManagement/elevationRequests/privilegeManagementElevationRequestId",
 			Expected: &DeviceManagementElevationRequestId{
-				PrivilegeManagementElevationRequestId: "privilegeManagementElevationRequestIdValue",
+				PrivilegeManagementElevationRequestId: "privilegeManagementElevationRequestId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/elevationRequests/privilegeManagementElevationRequestIdValue/extra",
+			Input: "/deviceManagement/elevationRequests/privilegeManagementElevationRequestId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/eLeVaTiOnReQuEsTs/pRiViLeGeMaNaGeMeNtElEvAtIoNrEqUeStIdVaLuE",
+			Input: "/dEvIcEmAnAgEmEnT/eLeVaTiOnReQuEsTs/pRiViLeGeMaNaGeMeNtElEvAtIoNrEqUeStId",
 			Expected: &DeviceManagementElevationRequestId{
-				PrivilegeManagementElevationRequestId: "pRiViLeGeMaNaGeMeNtElEvAtIoNrEqUeStIdVaLuE",
+				PrivilegeManagementElevationRequestId: "pRiViLeGeMaNaGeMeNtElEvAtIoNrEqUeStId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/eLeVaTiOnReQuEsTs/pRiViLeGeMaNaGeMeNtElEvAtIoNrEqUeStIdVaLuE/extra",
+			Input: "/dEvIcEmAnAgEmEnT/eLeVaTiOnReQuEsTs/pRiViLeGeMaNaGeMeNtElEvAtIoNrEqUeStId/extra",
 			Error: true,
 		},
 	}

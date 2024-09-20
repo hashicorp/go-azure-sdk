@@ -18,7 +18,8 @@ type DeletePrivilegedAccessOperationResponse struct {
 }
 
 type DeletePrivilegedAccessOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeletePrivilegedAccessOperationOptions() DeletePrivilegedAccessOperationOptions {
@@ -35,7 +36,9 @@ func (o DeletePrivilegedAccessOperationOptions) ToHeaders() *client.Headers {
 
 func (o DeletePrivilegedAccessOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

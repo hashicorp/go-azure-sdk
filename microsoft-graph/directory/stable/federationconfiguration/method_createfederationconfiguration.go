@@ -19,15 +19,44 @@ type CreateFederationConfigurationOperationResponse struct {
 	Model        stable.IdentityProviderBase
 }
 
+type CreateFederationConfigurationOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateFederationConfigurationOperationOptions() CreateFederationConfigurationOperationOptions {
+	return CreateFederationConfigurationOperationOptions{}
+}
+
+func (o CreateFederationConfigurationOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateFederationConfigurationOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateFederationConfigurationOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateFederationConfiguration - Create new navigation property to federationConfigurations for directory
-func (c FederationConfigurationClient) CreateFederationConfiguration(ctx context.Context, input stable.IdentityProviderBase) (result CreateFederationConfigurationOperationResponse, err error) {
+func (c FederationConfigurationClient) CreateFederationConfiguration(ctx context.Context, input stable.IdentityProviderBase, options CreateFederationConfigurationOperationOptions) (result CreateFederationConfigurationOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/directory/federationConfigurations",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/directory/federationConfigurations",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

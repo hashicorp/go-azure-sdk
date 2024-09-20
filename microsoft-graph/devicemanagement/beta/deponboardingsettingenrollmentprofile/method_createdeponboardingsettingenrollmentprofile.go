@@ -20,16 +20,45 @@ type CreateDepOnboardingSettingEnrollmentProfileOperationResponse struct {
 	Model        beta.EnrollmentProfile
 }
 
+type CreateDepOnboardingSettingEnrollmentProfileOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateDepOnboardingSettingEnrollmentProfileOperationOptions() CreateDepOnboardingSettingEnrollmentProfileOperationOptions {
+	return CreateDepOnboardingSettingEnrollmentProfileOperationOptions{}
+}
+
+func (o CreateDepOnboardingSettingEnrollmentProfileOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateDepOnboardingSettingEnrollmentProfileOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateDepOnboardingSettingEnrollmentProfileOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateDepOnboardingSettingEnrollmentProfile - Create new navigation property to enrollmentProfiles for
 // deviceManagement
-func (c DepOnboardingSettingEnrollmentProfileClient) CreateDepOnboardingSettingEnrollmentProfile(ctx context.Context, id beta.DeviceManagementDepOnboardingSettingId, input beta.EnrollmentProfile) (result CreateDepOnboardingSettingEnrollmentProfileOperationResponse, err error) {
+func (c DepOnboardingSettingEnrollmentProfileClient) CreateDepOnboardingSettingEnrollmentProfile(ctx context.Context, id beta.DeviceManagementDepOnboardingSettingId, input beta.EnrollmentProfile, options CreateDepOnboardingSettingEnrollmentProfileOperationOptions) (result CreateDepOnboardingSettingEnrollmentProfileOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/enrollmentProfiles", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/enrollmentProfiles", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

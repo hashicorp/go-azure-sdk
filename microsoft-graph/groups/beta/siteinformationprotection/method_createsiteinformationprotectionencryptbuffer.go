@@ -19,15 +19,44 @@ type CreateSiteInformationProtectionEncryptBufferOperationResponse struct {
 	Model        *beta.BufferEncryptionResult
 }
 
+type CreateSiteInformationProtectionEncryptBufferOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateSiteInformationProtectionEncryptBufferOperationOptions() CreateSiteInformationProtectionEncryptBufferOperationOptions {
+	return CreateSiteInformationProtectionEncryptBufferOperationOptions{}
+}
+
+func (o CreateSiteInformationProtectionEncryptBufferOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateSiteInformationProtectionEncryptBufferOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateSiteInformationProtectionEncryptBufferOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateSiteInformationProtectionEncryptBuffer - Invoke action encryptBuffer
-func (c SiteInformationProtectionClient) CreateSiteInformationProtectionEncryptBuffer(ctx context.Context, id beta.GroupIdSiteId, input CreateSiteInformationProtectionEncryptBufferRequest) (result CreateSiteInformationProtectionEncryptBufferOperationResponse, err error) {
+func (c SiteInformationProtectionClient) CreateSiteInformationProtectionEncryptBuffer(ctx context.Context, id beta.GroupIdSiteId, input CreateSiteInformationProtectionEncryptBufferRequest, options CreateSiteInformationProtectionEncryptBufferOperationOptions) (result CreateSiteInformationProtectionEncryptBufferOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/informationProtection/encryptBuffer", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/informationProtection/encryptBuffer", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

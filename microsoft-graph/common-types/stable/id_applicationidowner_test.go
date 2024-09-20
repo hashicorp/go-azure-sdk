@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &ApplicationIdOwnerId{}
 
 func TestNewApplicationIdOwnerID(t *testing.T) {
-	id := NewApplicationIdOwnerID("applicationIdValue", "directoryObjectIdValue")
+	id := NewApplicationIdOwnerID("applicationId", "directoryObjectId")
 
-	if id.ApplicationId != "applicationIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ApplicationId'", id.ApplicationId, "applicationIdValue")
+	if id.ApplicationId != "applicationId" {
+		t.Fatalf("Expected %q but got %q for Segment 'ApplicationId'", id.ApplicationId, "applicationId")
 	}
 
-	if id.DirectoryObjectId != "directoryObjectIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DirectoryObjectId'", id.DirectoryObjectId, "directoryObjectIdValue")
+	if id.DirectoryObjectId != "directoryObjectId" {
+		t.Fatalf("Expected %q but got %q for Segment 'DirectoryObjectId'", id.DirectoryObjectId, "directoryObjectId")
 	}
 }
 
 func TestFormatApplicationIdOwnerID(t *testing.T) {
-	actual := NewApplicationIdOwnerID("applicationIdValue", "directoryObjectIdValue").ID()
-	expected := "/applications/applicationIdValue/owners/directoryObjectIdValue"
+	actual := NewApplicationIdOwnerID("applicationId", "directoryObjectId").ID()
+	expected := "/applications/applicationId/owners/directoryObjectId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -49,25 +49,25 @@ func TestParseApplicationIdOwnerID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/applications/applicationIdValue",
+			Input: "/applications/applicationId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/applications/applicationIdValue/owners",
+			Input: "/applications/applicationId/owners",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/applications/applicationIdValue/owners/directoryObjectIdValue",
+			Input: "/applications/applicationId/owners/directoryObjectId",
 			Expected: &ApplicationIdOwnerId{
-				ApplicationId:     "applicationIdValue",
-				DirectoryObjectId: "directoryObjectIdValue",
+				ApplicationId:     "applicationId",
+				DirectoryObjectId: "directoryObjectId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/applications/applicationIdValue/owners/directoryObjectIdValue/extra",
+			Input: "/applications/applicationId/owners/directoryObjectId/extra",
 			Error: true,
 		},
 	}
@@ -120,48 +120,48 @@ func TestParseApplicationIdOwnerIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/applications/applicationIdValue",
+			Input: "/applications/applicationId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/aPpLiCaTiOnS/aPpLiCaTiOnIdVaLuE",
+			Input: "/aPpLiCaTiOnS/aPpLiCaTiOnId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/applications/applicationIdValue/owners",
+			Input: "/applications/applicationId/owners",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/aPpLiCaTiOnS/aPpLiCaTiOnIdVaLuE/oWnErS",
+			Input: "/aPpLiCaTiOnS/aPpLiCaTiOnId/oWnErS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/applications/applicationIdValue/owners/directoryObjectIdValue",
+			Input: "/applications/applicationId/owners/directoryObjectId",
 			Expected: &ApplicationIdOwnerId{
-				ApplicationId:     "applicationIdValue",
-				DirectoryObjectId: "directoryObjectIdValue",
+				ApplicationId:     "applicationId",
+				DirectoryObjectId: "directoryObjectId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/applications/applicationIdValue/owners/directoryObjectIdValue/extra",
+			Input: "/applications/applicationId/owners/directoryObjectId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/aPpLiCaTiOnS/aPpLiCaTiOnIdVaLuE/oWnErS/dIrEcToRyObJeCtIdVaLuE",
+			Input: "/aPpLiCaTiOnS/aPpLiCaTiOnId/oWnErS/dIrEcToRyObJeCtId",
 			Expected: &ApplicationIdOwnerId{
-				ApplicationId:     "aPpLiCaTiOnIdVaLuE",
-				DirectoryObjectId: "dIrEcToRyObJeCtIdVaLuE",
+				ApplicationId:     "aPpLiCaTiOnId",
+				DirectoryObjectId: "dIrEcToRyObJeCtId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/aPpLiCaTiOnS/aPpLiCaTiOnIdVaLuE/oWnErS/dIrEcToRyObJeCtIdVaLuE/extra",
+			Input: "/aPpLiCaTiOnS/aPpLiCaTiOnId/oWnErS/dIrEcToRyObJeCtId/extra",
 			Error: true,
 		},
 	}

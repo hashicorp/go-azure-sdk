@@ -17,15 +17,44 @@ type UpdateInsightSharedOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateInsightSharedOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateInsightSharedOperationOptions() UpdateInsightSharedOperationOptions {
+	return UpdateInsightSharedOperationOptions{}
+}
+
+func (o UpdateInsightSharedOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateInsightSharedOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateInsightSharedOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateInsightShared - Update the navigation property shared in me
-func (c InsightSharedClient) UpdateInsightShared(ctx context.Context, id beta.MeInsightSharedId, input beta.SharedInsight) (result UpdateInsightSharedOperationResponse, err error) {
+func (c InsightSharedClient) UpdateInsightShared(ctx context.Context, id beta.MeInsightSharedId, input beta.SharedInsight, options UpdateInsightSharedOperationOptions) (result UpdateInsightSharedOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

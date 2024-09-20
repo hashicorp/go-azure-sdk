@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &MeChatIdInstalledAppId{}
 
 func TestNewMeChatIdInstalledAppID(t *testing.T) {
-	id := NewMeChatIdInstalledAppID("chatIdValue", "teamsAppInstallationIdValue")
+	id := NewMeChatIdInstalledAppID("chatId", "teamsAppInstallationId")
 
-	if id.ChatId != "chatIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ChatId'", id.ChatId, "chatIdValue")
+	if id.ChatId != "chatId" {
+		t.Fatalf("Expected %q but got %q for Segment 'ChatId'", id.ChatId, "chatId")
 	}
 
-	if id.TeamsAppInstallationId != "teamsAppInstallationIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'TeamsAppInstallationId'", id.TeamsAppInstallationId, "teamsAppInstallationIdValue")
+	if id.TeamsAppInstallationId != "teamsAppInstallationId" {
+		t.Fatalf("Expected %q but got %q for Segment 'TeamsAppInstallationId'", id.TeamsAppInstallationId, "teamsAppInstallationId")
 	}
 }
 
 func TestFormatMeChatIdInstalledAppID(t *testing.T) {
-	actual := NewMeChatIdInstalledAppID("chatIdValue", "teamsAppInstallationIdValue").ID()
-	expected := "/me/chats/chatIdValue/installedApps/teamsAppInstallationIdValue"
+	actual := NewMeChatIdInstalledAppID("chatId", "teamsAppInstallationId").ID()
+	expected := "/me/chats/chatId/installedApps/teamsAppInstallationId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -54,25 +54,25 @@ func TestParseMeChatIdInstalledAppID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/me/chats/chatIdValue",
+			Input: "/me/chats/chatId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/me/chats/chatIdValue/installedApps",
+			Input: "/me/chats/chatId/installedApps",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/me/chats/chatIdValue/installedApps/teamsAppInstallationIdValue",
+			Input: "/me/chats/chatId/installedApps/teamsAppInstallationId",
 			Expected: &MeChatIdInstalledAppId{
-				ChatId:                 "chatIdValue",
-				TeamsAppInstallationId: "teamsAppInstallationIdValue",
+				ChatId:                 "chatId",
+				TeamsAppInstallationId: "teamsAppInstallationId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/chats/chatIdValue/installedApps/teamsAppInstallationIdValue/extra",
+			Input: "/me/chats/chatId/installedApps/teamsAppInstallationId/extra",
 			Error: true,
 		},
 	}
@@ -135,48 +135,48 @@ func TestParseMeChatIdInstalledAppIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/me/chats/chatIdValue",
+			Input: "/me/chats/chatId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/cHaTs/cHaTiDvAlUe",
+			Input: "/mE/cHaTs/cHaTiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/me/chats/chatIdValue/installedApps",
+			Input: "/me/chats/chatId/installedApps",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/cHaTs/cHaTiDvAlUe/iNsTaLlEdApPs",
+			Input: "/mE/cHaTs/cHaTiD/iNsTaLlEdApPs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/me/chats/chatIdValue/installedApps/teamsAppInstallationIdValue",
+			Input: "/me/chats/chatId/installedApps/teamsAppInstallationId",
 			Expected: &MeChatIdInstalledAppId{
-				ChatId:                 "chatIdValue",
-				TeamsAppInstallationId: "teamsAppInstallationIdValue",
+				ChatId:                 "chatId",
+				TeamsAppInstallationId: "teamsAppInstallationId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/chats/chatIdValue/installedApps/teamsAppInstallationIdValue/extra",
+			Input: "/me/chats/chatId/installedApps/teamsAppInstallationId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/cHaTs/cHaTiDvAlUe/iNsTaLlEdApPs/tEaMsApPiNsTaLlAtIoNiDvAlUe",
+			Input: "/mE/cHaTs/cHaTiD/iNsTaLlEdApPs/tEaMsApPiNsTaLlAtIoNiD",
 			Expected: &MeChatIdInstalledAppId{
-				ChatId:                 "cHaTiDvAlUe",
-				TeamsAppInstallationId: "tEaMsApPiNsTaLlAtIoNiDvAlUe",
+				ChatId:                 "cHaTiD",
+				TeamsAppInstallationId: "tEaMsApPiNsTaLlAtIoNiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/mE/cHaTs/cHaTiDvAlUe/iNsTaLlEdApPs/tEaMsApPiNsTaLlAtIoNiDvAlUe/extra",
+			Input: "/mE/cHaTs/cHaTiD/iNsTaLlEdApPs/tEaMsApPiNsTaLlAtIoNiD/extra",
 			Error: true,
 		},
 	}

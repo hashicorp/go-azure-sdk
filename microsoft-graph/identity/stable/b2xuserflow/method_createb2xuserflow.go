@@ -18,15 +18,44 @@ type CreateB2xUserFlowOperationResponse struct {
 	Model        *stable.B2xIdentityUserFlow
 }
 
+type CreateB2xUserFlowOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateB2xUserFlowOperationOptions() CreateB2xUserFlowOperationOptions {
+	return CreateB2xUserFlowOperationOptions{}
+}
+
+func (o CreateB2xUserFlowOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateB2xUserFlowOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateB2xUserFlowOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateB2xUserFlow - Create b2xIdentityUserFlow. Create a new b2xIdentityUserFlow object.
-func (c B2xUserFlowClient) CreateB2xUserFlow(ctx context.Context, input stable.B2xIdentityUserFlow) (result CreateB2xUserFlowOperationResponse, err error) {
+func (c B2xUserFlowClient) CreateB2xUserFlow(ctx context.Context, input stable.B2xIdentityUserFlow, options CreateB2xUserFlowOperationOptions) (result CreateB2xUserFlowOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/identity/b2xUserFlows",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/identity/b2xUserFlows",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

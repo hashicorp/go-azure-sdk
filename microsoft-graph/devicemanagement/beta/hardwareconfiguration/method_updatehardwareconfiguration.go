@@ -17,15 +17,44 @@ type UpdateHardwareConfigurationOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateHardwareConfigurationOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateHardwareConfigurationOperationOptions() UpdateHardwareConfigurationOperationOptions {
+	return UpdateHardwareConfigurationOperationOptions{}
+}
+
+func (o UpdateHardwareConfigurationOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateHardwareConfigurationOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateHardwareConfigurationOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateHardwareConfiguration - Update the navigation property hardwareConfigurations in deviceManagement
-func (c HardwareConfigurationClient) UpdateHardwareConfiguration(ctx context.Context, id beta.DeviceManagementHardwareConfigurationId, input beta.HardwareConfiguration) (result UpdateHardwareConfigurationOperationResponse, err error) {
+func (c HardwareConfigurationClient) UpdateHardwareConfiguration(ctx context.Context, id beta.DeviceManagementHardwareConfigurationId, input beta.HardwareConfiguration, options UpdateHardwareConfigurationOperationOptions) (result UpdateHardwareConfigurationOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

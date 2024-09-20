@@ -18,18 +18,47 @@ type DeclineCalendarViewExceptionOccurrenceInstanceOperationResponse struct {
 	OData        *odata.OData
 }
 
+type DeclineCalendarViewExceptionOccurrenceInstanceOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultDeclineCalendarViewExceptionOccurrenceInstanceOperationOptions() DeclineCalendarViewExceptionOccurrenceInstanceOperationOptions {
+	return DeclineCalendarViewExceptionOccurrenceInstanceOperationOptions{}
+}
+
+func (o DeclineCalendarViewExceptionOccurrenceInstanceOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o DeclineCalendarViewExceptionOccurrenceInstanceOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o DeclineCalendarViewExceptionOccurrenceInstanceOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // DeclineCalendarViewExceptionOccurrenceInstance - Invoke action decline. Decline invitation to the specified event in
 // a user calendar. If the event allows proposals for new times, on declining the event, an invitee can choose to
 // suggest an alternative time by including the proposedNewTime parameter. For more information on how to propose a
 // time, and how to receive and accept a new time proposal, see Propose new meeting times.
-func (c CalendarViewExceptionOccurrenceInstanceClient) DeclineCalendarViewExceptionOccurrenceInstance(ctx context.Context, id beta.GroupIdCalendarViewIdExceptionOccurrenceIdInstanceId, input DeclineCalendarViewExceptionOccurrenceInstanceRequest) (result DeclineCalendarViewExceptionOccurrenceInstanceOperationResponse, err error) {
+func (c CalendarViewExceptionOccurrenceInstanceClient) DeclineCalendarViewExceptionOccurrenceInstance(ctx context.Context, id beta.GroupIdCalendarViewIdExceptionOccurrenceIdInstanceId, input DeclineCalendarViewExceptionOccurrenceInstanceRequest, options DeclineCalendarViewExceptionOccurrenceInstanceOperationOptions) (result DeclineCalendarViewExceptionOccurrenceInstanceOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/decline", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/decline", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

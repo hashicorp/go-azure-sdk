@@ -17,15 +17,44 @@ type UpdateScopedMemberOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateScopedMemberOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateScopedMemberOperationOptions() UpdateScopedMemberOperationOptions {
+	return UpdateScopedMemberOperationOptions{}
+}
+
+func (o UpdateScopedMemberOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateScopedMemberOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateScopedMemberOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateScopedMember - Update the navigation property scopedMembers in directoryRoles
-func (c ScopedMemberClient) UpdateScopedMember(ctx context.Context, id beta.DirectoryRoleIdScopedMemberId, input beta.ScopedRoleMembership) (result UpdateScopedMemberOperationResponse, err error) {
+func (c ScopedMemberClient) UpdateScopedMember(ctx context.Context, id beta.DirectoryRoleIdScopedMemberId, input beta.ScopedRoleMembership, options UpdateScopedMemberOperationOptions) (result UpdateScopedMemberOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

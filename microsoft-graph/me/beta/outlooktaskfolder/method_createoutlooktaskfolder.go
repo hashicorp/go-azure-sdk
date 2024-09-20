@@ -18,16 +18,45 @@ type CreateOutlookTaskFolderOperationResponse struct {
 	Model        *beta.OutlookTaskFolder
 }
 
+type CreateOutlookTaskFolderOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateOutlookTaskFolderOperationOptions() CreateOutlookTaskFolderOperationOptions {
+	return CreateOutlookTaskFolderOperationOptions{}
+}
+
+func (o CreateOutlookTaskFolderOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateOutlookTaskFolderOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateOutlookTaskFolderOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateOutlookTaskFolder - Create outlookTaskFolder (deprecated). Create a task folder in the default task group (My
 // Tasks) of the user's mailbox.
-func (c OutlookTaskFolderClient) CreateOutlookTaskFolder(ctx context.Context, input beta.OutlookTaskFolder) (result CreateOutlookTaskFolderOperationResponse, err error) {
+func (c OutlookTaskFolderClient) CreateOutlookTaskFolder(ctx context.Context, input beta.OutlookTaskFolder, options CreateOutlookTaskFolderOperationOptions) (result CreateOutlookTaskFolderOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/me/outlook/taskFolders",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/me/outlook/taskFolders",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

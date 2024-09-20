@@ -17,15 +17,44 @@ type UpdateTemplateMigratableToSettingOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateTemplateMigratableToSettingOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateTemplateMigratableToSettingOperationOptions() UpdateTemplateMigratableToSettingOperationOptions {
+	return UpdateTemplateMigratableToSettingOperationOptions{}
+}
+
+func (o UpdateTemplateMigratableToSettingOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateTemplateMigratableToSettingOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateTemplateMigratableToSettingOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateTemplateMigratableToSetting - Update the navigation property settings in deviceManagement
-func (c TemplateMigratableToSettingClient) UpdateTemplateMigratableToSetting(ctx context.Context, id beta.DeviceManagementTemplateIdMigratableToIdSettingId, input beta.DeviceManagementSettingInstance) (result UpdateTemplateMigratableToSettingOperationResponse, err error) {
+func (c TemplateMigratableToSettingClient) UpdateTemplateMigratableToSetting(ctx context.Context, id beta.DeviceManagementTemplateIdMigratableToIdSettingId, input beta.DeviceManagementSettingInstance, options UpdateTemplateMigratableToSettingOperationOptions) (result UpdateTemplateMigratableToSettingOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -17,15 +17,44 @@ type UpdateLifecycleWorkflowVersionTaskOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateLifecycleWorkflowVersionTaskOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateLifecycleWorkflowVersionTaskOperationOptions() UpdateLifecycleWorkflowVersionTaskOperationOptions {
+	return UpdateLifecycleWorkflowVersionTaskOperationOptions{}
+}
+
+func (o UpdateLifecycleWorkflowVersionTaskOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateLifecycleWorkflowVersionTaskOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateLifecycleWorkflowVersionTaskOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateLifecycleWorkflowVersionTask - Update the navigation property tasks in identityGovernance
-func (c LifecycleWorkflowWorkflowVersionTaskClient) UpdateLifecycleWorkflowVersionTask(ctx context.Context, id beta.IdentityGovernanceLifecycleWorkflowWorkflowIdVersionIdTaskId, input beta.IdentityGovernanceTask) (result UpdateLifecycleWorkflowVersionTaskOperationResponse, err error) {
+func (c LifecycleWorkflowWorkflowVersionTaskClient) UpdateLifecycleWorkflowVersionTask(ctx context.Context, id beta.IdentityGovernanceLifecycleWorkflowWorkflowIdVersionIdTaskId, input beta.IdentityGovernanceTask, options UpdateLifecycleWorkflowVersionTaskOperationOptions) (result UpdateLifecycleWorkflowVersionTaskOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

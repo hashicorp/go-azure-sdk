@@ -25,14 +25,15 @@ type ListSiteRecycleBinItemsCompleteResult struct {
 }
 
 type ListSiteRecycleBinItemsOperationOptions struct {
-	Count   *bool
-	Expand  *odata.Expand
-	Filter  *string
-	OrderBy *odata.OrderBy
-	Search  *string
-	Select  *[]string
-	Skip    *int64
-	Top     *int64
+	Count    *bool
+	Expand   *odata.Expand
+	Filter   *string
+	Metadata *odata.Metadata
+	OrderBy  *odata.OrderBy
+	Search   *string
+	Select   *[]string
+	Skip     *int64
+	Top      *int64
 }
 
 func DefaultListSiteRecycleBinItemsOperationOptions() ListSiteRecycleBinItemsOperationOptions {
@@ -55,6 +56,9 @@ func (o ListSiteRecycleBinItemsOperationOptions) ToOData() *odata.Query {
 	}
 	if o.Filter != nil {
 		out.Filter = *o.Filter
+	}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
 	}
 	if o.OrderBy != nil {
 		out.OrderBy = *o.OrderBy

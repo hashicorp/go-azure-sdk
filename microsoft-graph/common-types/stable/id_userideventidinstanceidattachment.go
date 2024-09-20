@@ -110,13 +110,13 @@ func (id UserIdEventIdInstanceIdAttachmentId) ID() string {
 func (id UserIdEventIdInstanceIdAttachmentId) Segments() []resourceids.Segment {
 	return []resourceids.Segment{
 		resourceids.StaticSegment("users", "users", "users"),
-		resourceids.UserSpecifiedSegment("userId", "userIdValue"),
+		resourceids.UserSpecifiedSegment("userId", "userId"),
 		resourceids.StaticSegment("events", "events", "events"),
-		resourceids.UserSpecifiedSegment("eventId", "eventIdValue"),
+		resourceids.UserSpecifiedSegment("eventId", "eventId"),
 		resourceids.StaticSegment("instances", "instances", "instances"),
-		resourceids.UserSpecifiedSegment("eventId1", "eventId1Value"),
+		resourceids.UserSpecifiedSegment("eventId1", "eventId1"),
 		resourceids.StaticSegment("attachments", "attachments", "attachments"),
-		resourceids.UserSpecifiedSegment("attachmentId", "attachmentIdValue"),
+		resourceids.UserSpecifiedSegment("attachmentId", "attachmentId"),
 	}
 }
 

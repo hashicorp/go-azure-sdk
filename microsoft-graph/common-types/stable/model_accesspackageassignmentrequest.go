@@ -111,10 +111,25 @@ func (s AccessPackageAssignmentRequest) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &AccessPackageAssignmentRequest{}
 
 func (s *AccessPackageAssignmentRequest) UnmarshalJSON(bytes []byte) error {
-	type alias AccessPackageAssignmentRequest
-	var decoded alias
+
+	var decoded struct {
+		AccessPackage                   *AccessPackage                    `json:"accessPackage,omitempty"`
+		Answers                         *[]AccessPackageAnswer            `json:"answers,omitempty"`
+		Assignment                      *AccessPackageAssignment          `json:"assignment,omitempty"`
+		CompletedDateTime               nullable.Type[string]             `json:"completedDateTime,omitempty"`
+		CreatedDateTime                 nullable.Type[string]             `json:"createdDateTime,omitempty"`
+		CustomExtensionCalloutInstances *[]CustomExtensionCalloutInstance `json:"customExtensionCalloutInstances,omitempty"`
+		RequestType                     *AccessPackageRequestType         `json:"requestType,omitempty"`
+		Requestor                       *AccessPackageSubject             `json:"requestor,omitempty"`
+		Schedule                        *EntitlementManagementSchedule    `json:"schedule,omitempty"`
+		State                           *AccessPackageRequestState        `json:"state,omitempty"`
+		Status                          nullable.Type[string]             `json:"status,omitempty"`
+		Id                              *string                           `json:"id,omitempty"`
+		ODataId                         *string                           `json:"@odata.id,omitempty"`
+		ODataType                       *string                           `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into AccessPackageAssignmentRequest: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.AccessPackage = decoded.AccessPackage
@@ -122,14 +137,14 @@ func (s *AccessPackageAssignmentRequest) UnmarshalJSON(bytes []byte) error {
 	s.CompletedDateTime = decoded.CompletedDateTime
 	s.CreatedDateTime = decoded.CreatedDateTime
 	s.CustomExtensionCalloutInstances = decoded.CustomExtensionCalloutInstances
-	s.Id = decoded.Id
-	s.ODataId = decoded.ODataId
-	s.ODataType = decoded.ODataType
 	s.RequestType = decoded.RequestType
 	s.Requestor = decoded.Requestor
 	s.Schedule = decoded.Schedule
 	s.State = decoded.State
 	s.Status = decoded.Status
+	s.Id = decoded.Id
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -152,5 +167,6 @@ func (s *AccessPackageAssignmentRequest) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Answers = &output
 	}
+
 	return nil
 }

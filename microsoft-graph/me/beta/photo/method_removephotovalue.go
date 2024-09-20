@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta"
 	"github.com/hashicorp/go-azure-sdk/sdk/client"
 	"github.com/hashicorp/go-azure-sdk/sdk/odata"
 )
@@ -18,7 +19,8 @@ type RemovePhotoValueOperationResponse struct {
 }
 
 type RemovePhotoValueOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultRemovePhotoValueOperationOptions() RemovePhotoValueOperationOptions {
@@ -35,7 +37,9 @@ func (o RemovePhotoValueOperationOptions) ToHeaders() *client.Headers {
 
 func (o RemovePhotoValueOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 
@@ -45,8 +49,9 @@ func (o RemovePhotoValueOperationOptions) ToQuery() *client.QueryParams {
 	return &out
 }
 
-// RemovePhotoValue - Delete profilePhoto. Delete the photo for the signed-in user or the specified group.
-func (c PhotoClient) RemovePhotoValue(ctx context.Context, options RemovePhotoValueOperationOptions) (result RemovePhotoValueOperationResponse, err error) {
+// RemovePhotoValue - Delete media content for the navigation property photos in me. The unique identifier for an
+// entity. Read-only.
+func (c PhotoClient) RemovePhotoValue(ctx context.Context, id beta.MePhotoId, options RemovePhotoValueOperationOptions) (result RemovePhotoValueOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
@@ -54,7 +59,7 @@ func (c PhotoClient) RemovePhotoValue(ctx context.Context, options RemovePhotoVa
 		},
 		HttpMethod:    http.MethodDelete,
 		OptionsObject: options,
-		Path:          "/me/photo/$value",
+		Path:          fmt.Sprintf("%s/$value", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

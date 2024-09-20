@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &UserIdUsageRightId{}
 
 func TestNewUserIdUsageRightID(t *testing.T) {
-	id := NewUserIdUsageRightID("userIdValue", "usageRightIdValue")
+	id := NewUserIdUsageRightID("userId", "usageRightId")
 
-	if id.UserId != "userIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'UserId'", id.UserId, "userIdValue")
+	if id.UserId != "userId" {
+		t.Fatalf("Expected %q but got %q for Segment 'UserId'", id.UserId, "userId")
 	}
 
-	if id.UsageRightId != "usageRightIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'UsageRightId'", id.UsageRightId, "usageRightIdValue")
+	if id.UsageRightId != "usageRightId" {
+		t.Fatalf("Expected %q but got %q for Segment 'UsageRightId'", id.UsageRightId, "usageRightId")
 	}
 }
 
 func TestFormatUserIdUsageRightID(t *testing.T) {
-	actual := NewUserIdUsageRightID("userIdValue", "usageRightIdValue").ID()
-	expected := "/users/userIdValue/usageRights/usageRightIdValue"
+	actual := NewUserIdUsageRightID("userId", "usageRightId").ID()
+	expected := "/users/userId/usageRights/usageRightId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -49,25 +49,25 @@ func TestParseUserIdUsageRightID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue",
+			Input: "/users/userId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/usageRights",
+			Input: "/users/userId/usageRights",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/users/userIdValue/usageRights/usageRightIdValue",
+			Input: "/users/userId/usageRights/usageRightId",
 			Expected: &UserIdUsageRightId{
-				UserId:       "userIdValue",
-				UsageRightId: "usageRightIdValue",
+				UserId:       "userId",
+				UsageRightId: "usageRightId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/users/userIdValue/usageRights/usageRightIdValue/extra",
+			Input: "/users/userId/usageRights/usageRightId/extra",
 			Error: true,
 		},
 	}
@@ -120,48 +120,48 @@ func TestParseUserIdUsageRightIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue",
+			Input: "/users/userId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe",
+			Input: "/uSeRs/uSeRiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/usageRights",
+			Input: "/users/userId/usageRights",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/uSaGeRiGhTs",
+			Input: "/uSeRs/uSeRiD/uSaGeRiGhTs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/users/userIdValue/usageRights/usageRightIdValue",
+			Input: "/users/userId/usageRights/usageRightId",
 			Expected: &UserIdUsageRightId{
-				UserId:       "userIdValue",
-				UsageRightId: "usageRightIdValue",
+				UserId:       "userId",
+				UsageRightId: "usageRightId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/users/userIdValue/usageRights/usageRightIdValue/extra",
+			Input: "/users/userId/usageRights/usageRightId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/uSaGeRiGhTs/uSaGeRiGhTiDvAlUe",
+			Input: "/uSeRs/uSeRiD/uSaGeRiGhTs/uSaGeRiGhTiD",
 			Expected: &UserIdUsageRightId{
-				UserId:       "uSeRiDvAlUe",
-				UsageRightId: "uSaGeRiGhTiDvAlUe",
+				UserId:       "uSeRiD",
+				UsageRightId: "uSaGeRiGhTiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/uSaGeRiGhTs/uSaGeRiGhTiDvAlUe/extra",
+			Input: "/uSeRs/uSeRiD/uSaGeRiGhTs/uSaGeRiGhTiD/extra",
 			Error: true,
 		},
 	}

@@ -94,7 +94,7 @@ func (id IdentityGovernanceEntitlementManagementConnectedOrganizationId) Segment
 		resourceids.StaticSegment("identityGovernance", "identityGovernance", "identityGovernance"),
 		resourceids.StaticSegment("entitlementManagement", "entitlementManagement", "entitlementManagement"),
 		resourceids.StaticSegment("connectedOrganizations", "connectedOrganizations", "connectedOrganizations"),
-		resourceids.UserSpecifiedSegment("connectedOrganizationId", "connectedOrganizationIdValue"),
+		resourceids.UserSpecifiedSegment("connectedOrganizationId", "connectedOrganizationId"),
 	}
 }
 

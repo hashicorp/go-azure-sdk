@@ -19,7 +19,8 @@ type DeleteCustomSecurityAttributeDefinitionAllowedValueOperationResponse struct
 }
 
 type DeleteCustomSecurityAttributeDefinitionAllowedValueOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteCustomSecurityAttributeDefinitionAllowedValueOperationOptions() DeleteCustomSecurityAttributeDefinitionAllowedValueOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteCustomSecurityAttributeDefinitionAllowedValueOperationOptions) ToH
 
 func (o DeleteCustomSecurityAttributeDefinitionAllowedValueOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

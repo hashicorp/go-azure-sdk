@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &IdentityGovernanceRoleManagementAlertOperationId{}
 
 func TestNewIdentityGovernanceRoleManagementAlertOperationID(t *testing.T) {
-	id := NewIdentityGovernanceRoleManagementAlertOperationID("longRunningOperationIdValue")
+	id := NewIdentityGovernanceRoleManagementAlertOperationID("longRunningOperationId")
 
-	if id.LongRunningOperationId != "longRunningOperationIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'LongRunningOperationId'", id.LongRunningOperationId, "longRunningOperationIdValue")
+	if id.LongRunningOperationId != "longRunningOperationId" {
+		t.Fatalf("Expected %q but got %q for Segment 'LongRunningOperationId'", id.LongRunningOperationId, "longRunningOperationId")
 	}
 }
 
 func TestFormatIdentityGovernanceRoleManagementAlertOperationID(t *testing.T) {
-	actual := NewIdentityGovernanceRoleManagementAlertOperationID("longRunningOperationIdValue").ID()
-	expected := "/identityGovernance/roleManagementAlerts/operations/longRunningOperationIdValue"
+	actual := NewIdentityGovernanceRoleManagementAlertOperationID("longRunningOperationId").ID()
+	expected := "/identityGovernance/roleManagementAlerts/operations/longRunningOperationId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -55,14 +55,14 @@ func TestParseIdentityGovernanceRoleManagementAlertOperationID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/identityGovernance/roleManagementAlerts/operations/longRunningOperationIdValue",
+			Input: "/identityGovernance/roleManagementAlerts/operations/longRunningOperationId",
 			Expected: &IdentityGovernanceRoleManagementAlertOperationId{
-				LongRunningOperationId: "longRunningOperationIdValue",
+				LongRunningOperationId: "longRunningOperationId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/identityGovernance/roleManagementAlerts/operations/longRunningOperationIdValue/extra",
+			Input: "/identityGovernance/roleManagementAlerts/operations/longRunningOperationId/extra",
 			Error: true,
 		},
 	}
@@ -131,26 +131,26 @@ func TestParseIdentityGovernanceRoleManagementAlertOperationIDInsensitively(t *t
 		},
 		{
 			// Valid URI
-			Input: "/identityGovernance/roleManagementAlerts/operations/longRunningOperationIdValue",
+			Input: "/identityGovernance/roleManagementAlerts/operations/longRunningOperationId",
 			Expected: &IdentityGovernanceRoleManagementAlertOperationId{
-				LongRunningOperationId: "longRunningOperationIdValue",
+				LongRunningOperationId: "longRunningOperationId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/identityGovernance/roleManagementAlerts/operations/longRunningOperationIdValue/extra",
+			Input: "/identityGovernance/roleManagementAlerts/operations/longRunningOperationId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/iDeNtItYgOvErNaNcE/rOlEmAnAgEmEnTaLeRtS/oPeRaTiOnS/lOnGrUnNiNgOpErAtIoNiDvAlUe",
+			Input: "/iDeNtItYgOvErNaNcE/rOlEmAnAgEmEnTaLeRtS/oPeRaTiOnS/lOnGrUnNiNgOpErAtIoNiD",
 			Expected: &IdentityGovernanceRoleManagementAlertOperationId{
-				LongRunningOperationId: "lOnGrUnNiNgOpErAtIoNiDvAlUe",
+				LongRunningOperationId: "lOnGrUnNiNgOpErAtIoNiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/iDeNtItYgOvErNaNcE/rOlEmAnAgEmEnTaLeRtS/oPeRaTiOnS/lOnGrUnNiNgOpErAtIoNiDvAlUe/extra",
+			Input: "/iDeNtItYgOvErNaNcE/rOlEmAnAgEmEnTaLeRtS/oPeRaTiOnS/lOnGrUnNiNgOpErAtIoNiD/extra",
 			Error: true,
 		},
 	}

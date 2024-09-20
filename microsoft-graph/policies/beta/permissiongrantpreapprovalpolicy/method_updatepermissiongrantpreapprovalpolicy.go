@@ -17,16 +17,45 @@ type UpdatePermissionGrantPreApprovalPolicyOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdatePermissionGrantPreApprovalPolicyOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdatePermissionGrantPreApprovalPolicyOperationOptions() UpdatePermissionGrantPreApprovalPolicyOperationOptions {
+	return UpdatePermissionGrantPreApprovalPolicyOperationOptions{}
+}
+
+func (o UpdatePermissionGrantPreApprovalPolicyOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdatePermissionGrantPreApprovalPolicyOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdatePermissionGrantPreApprovalPolicyOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdatePermissionGrantPreApprovalPolicy - Update permissionGrantPreApprovalPolicy. Update the properties of a
 // permissionGrantPreApprovalPolicy object.
-func (c PermissionGrantPreApprovalPolicyClient) UpdatePermissionGrantPreApprovalPolicy(ctx context.Context, id beta.PolicyPermissionGrantPreApprovalPolicyId, input beta.PermissionGrantPreApprovalPolicy) (result UpdatePermissionGrantPreApprovalPolicyOperationResponse, err error) {
+func (c PermissionGrantPreApprovalPolicyClient) UpdatePermissionGrantPreApprovalPolicy(ctx context.Context, id beta.PolicyPermissionGrantPreApprovalPolicyId, input beta.PermissionGrantPreApprovalPolicy, options UpdatePermissionGrantPreApprovalPolicyOperationOptions) (result UpdatePermissionGrantPreApprovalPolicyOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

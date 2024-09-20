@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/microsoft-graph/users/stable/drivelistcontenttype` Documentation
 
-The `drivelistcontenttype` SDK allows for interaction with the Azure Resource Manager Service `users` (API Version `stable`).
+The `drivelistcontenttype` SDK allows for interaction with Microsoft Graph `users` (API Version `stable`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -15,7 +15,7 @@ import "github.com/hashicorp/go-azure-sdk/microsoft-graph/users/stable/drivelist
 ### Client Initialization
 
 ```go
-client := drivelistcontenttype.NewDriveListContentTypeClientWithBaseURI("https://management.azure.com")
+client := drivelistcontenttype.NewDriveListContentTypeClientWithBaseURI("https://graph.microsoft.com")
 client.Client.Authorizer = authorizer
 ```
 
@@ -24,14 +24,14 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := drivelistcontenttype.NewUserIdDriveID("userIdValue", "driveIdValue")
+id := drivelistcontenttype.NewUserIdDriveID("userId", "driveId")
 
 payload := drivelistcontenttype.AddDriveListContentTypesCopyRequest{
 	// ...
 }
 
 
-read, err := client.AddDriveListContentTypesCopy(ctx, id, payload)
+read, err := client.AddDriveListContentTypesCopy(ctx, id, payload, drivelistcontenttype.DefaultAddDriveListContentTypesCopyOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -45,14 +45,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := drivelistcontenttype.NewUserIdDriveID("userIdValue", "driveIdValue")
+id := drivelistcontenttype.NewUserIdDriveID("userId", "driveId")
 
 payload := drivelistcontenttype.AddDriveListContentTypesCopyFromHubRequest{
 	// ...
 }
 
 
-read, err := client.AddDriveListContentTypesCopyFromHub(ctx, id, payload)
+read, err := client.AddDriveListContentTypesCopyFromHub(ctx, id, payload, drivelistcontenttype.DefaultAddDriveListContentTypesCopyFromHubOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -66,14 +66,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := drivelistcontenttype.NewUserIdDriveIdListContentTypeID("userIdValue", "driveIdValue", "contentTypeIdValue")
+id := drivelistcontenttype.NewUserIdDriveIdListContentTypeID("userId", "driveId", "contentTypeId")
 
 payload := drivelistcontenttype.CopyDriveListContentTypeToDefaultContentLocationRequest{
 	// ...
 }
 
 
-read, err := client.CopyDriveListContentTypeToDefaultContentLocation(ctx, id, payload)
+read, err := client.CopyDriveListContentTypeToDefaultContentLocation(ctx, id, payload, drivelistcontenttype.DefaultCopyDriveListContentTypeToDefaultContentLocationOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -87,14 +87,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := drivelistcontenttype.NewUserIdDriveID("userIdValue", "driveIdValue")
+id := drivelistcontenttype.NewUserIdDriveID("userId", "driveId")
 
 payload := drivelistcontenttype.ContentType{
 	// ...
 }
 
 
-read, err := client.CreateDriveListContentType(ctx, id, payload)
+read, err := client.CreateDriveListContentType(ctx, id, payload, drivelistcontenttype.DefaultCreateDriveListContentTypeOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -108,14 +108,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := drivelistcontenttype.NewUserIdDriveIdListContentTypeID("userIdValue", "driveIdValue", "contentTypeIdValue")
+id := drivelistcontenttype.NewUserIdDriveIdListContentTypeID("userId", "driveId", "contentTypeId")
 
 payload := drivelistcontenttype.CreateDriveListContentTypeAssociateWithHubSiteRequest{
 	// ...
 }
 
 
-read, err := client.CreateDriveListContentTypeAssociateWithHubSite(ctx, id, payload)
+read, err := client.CreateDriveListContentTypeAssociateWithHubSite(ctx, id, payload, drivelistcontenttype.DefaultCreateDriveListContentTypeAssociateWithHubSiteOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -129,9 +129,9 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := drivelistcontenttype.NewUserIdDriveIdListContentTypeID("userIdValue", "driveIdValue", "contentTypeIdValue")
+id := drivelistcontenttype.NewUserIdDriveIdListContentTypeID("userId", "driveId", "contentTypeId")
 
-read, err := client.CreateDriveListContentTypePublish(ctx, id)
+read, err := client.CreateDriveListContentTypePublish(ctx, id, drivelistcontenttype.DefaultCreateDriveListContentTypePublishOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -145,9 +145,9 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := drivelistcontenttype.NewUserIdDriveIdListContentTypeID("userIdValue", "driveIdValue", "contentTypeIdValue")
+id := drivelistcontenttype.NewUserIdDriveIdListContentTypeID("userId", "driveId", "contentTypeId")
 
-read, err := client.CreateDriveListContentTypeUnpublish(ctx, id)
+read, err := client.CreateDriveListContentTypeUnpublish(ctx, id, drivelistcontenttype.DefaultCreateDriveListContentTypeUnpublishOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -161,7 +161,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := drivelistcontenttype.NewUserIdDriveIdListContentTypeID("userIdValue", "driveIdValue", "contentTypeIdValue")
+id := drivelistcontenttype.NewUserIdDriveIdListContentTypeID("userId", "driveId", "contentTypeId")
 
 read, err := client.DeleteDriveListContentType(ctx, id, drivelistcontenttype.DefaultDeleteDriveListContentTypeOperationOptions())
 if err != nil {
@@ -177,7 +177,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := drivelistcontenttype.NewUserIdDriveIdListContentTypeID("userIdValue", "driveIdValue", "contentTypeIdValue")
+id := drivelistcontenttype.NewUserIdDriveIdListContentTypeID("userId", "driveId", "contentTypeId")
 
 read, err := client.GetDriveListContentType(ctx, id, drivelistcontenttype.DefaultGetDriveListContentTypeOperationOptions())
 if err != nil {
@@ -193,7 +193,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := drivelistcontenttype.NewUserIdDriveID("userIdValue", "driveIdValue")
+id := drivelistcontenttype.NewUserIdDriveID("userId", "driveId")
 
 read, err := client.GetDriveListContentTypesCount(ctx, id, drivelistcontenttype.DefaultGetDriveListContentTypesCountOperationOptions())
 if err != nil {
@@ -209,7 +209,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := drivelistcontenttype.NewUserIdDriveID("userIdValue", "driveIdValue")
+id := drivelistcontenttype.NewUserIdDriveID("userId", "driveId")
 
 // alternatively `client.ListDriveListContentTypes(ctx, id, drivelistcontenttype.DefaultListDriveListContentTypesOperationOptions())` can be used to do batched pagination
 items, err := client.ListDriveListContentTypesComplete(ctx, id, drivelistcontenttype.DefaultListDriveListContentTypesOperationOptions())
@@ -226,14 +226,14 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := drivelistcontenttype.NewUserIdDriveIdListContentTypeID("userIdValue", "driveIdValue", "contentTypeIdValue")
+id := drivelistcontenttype.NewUserIdDriveIdListContentTypeID("userId", "driveId", "contentTypeId")
 
 payload := drivelistcontenttype.ContentType{
 	// ...
 }
 
 
-read, err := client.UpdateDriveListContentType(ctx, id, payload)
+read, err := client.UpdateDriveListContentType(ctx, id, payload, drivelistcontenttype.DefaultUpdateDriveListContentTypeOperationOptions())
 if err != nil {
 	// handle the error
 }

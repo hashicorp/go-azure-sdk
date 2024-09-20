@@ -18,15 +18,44 @@ type CreateUserPfxCertificateOperationResponse struct {
 	Model        *beta.UserPFXCertificate
 }
 
+type CreateUserPfxCertificateOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateUserPfxCertificateOperationOptions() CreateUserPfxCertificateOperationOptions {
+	return CreateUserPfxCertificateOperationOptions{}
+}
+
+func (o CreateUserPfxCertificateOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateUserPfxCertificateOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateUserPfxCertificateOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateUserPfxCertificate - Create new navigation property to userPfxCertificates for deviceManagement
-func (c UserPfxCertificateClient) CreateUserPfxCertificate(ctx context.Context, input beta.UserPFXCertificate) (result CreateUserPfxCertificateOperationResponse, err error) {
+func (c UserPfxCertificateClient) CreateUserPfxCertificate(ctx context.Context, input beta.UserPFXCertificate, options CreateUserPfxCertificateOperationOptions) (result CreateUserPfxCertificateOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/deviceManagement/userPfxCertificates",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/deviceManagement/userPfxCertificates",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &UserIdVirtualEventWebinarId{}
 
 func TestNewUserIdVirtualEventWebinarID(t *testing.T) {
-	id := NewUserIdVirtualEventWebinarID("userIdValue", "virtualEventWebinarIdValue")
+	id := NewUserIdVirtualEventWebinarID("userId", "virtualEventWebinarId")
 
-	if id.UserId != "userIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'UserId'", id.UserId, "userIdValue")
+	if id.UserId != "userId" {
+		t.Fatalf("Expected %q but got %q for Segment 'UserId'", id.UserId, "userId")
 	}
 
-	if id.VirtualEventWebinarId != "virtualEventWebinarIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'VirtualEventWebinarId'", id.VirtualEventWebinarId, "virtualEventWebinarIdValue")
+	if id.VirtualEventWebinarId != "virtualEventWebinarId" {
+		t.Fatalf("Expected %q but got %q for Segment 'VirtualEventWebinarId'", id.VirtualEventWebinarId, "virtualEventWebinarId")
 	}
 }
 
 func TestFormatUserIdVirtualEventWebinarID(t *testing.T) {
-	actual := NewUserIdVirtualEventWebinarID("userIdValue", "virtualEventWebinarIdValue").ID()
-	expected := "/users/userIdValue/virtualEvents/webinars/virtualEventWebinarIdValue"
+	actual := NewUserIdVirtualEventWebinarID("userId", "virtualEventWebinarId").ID()
+	expected := "/users/userId/virtualEvents/webinars/virtualEventWebinarId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -49,30 +49,30 @@ func TestParseUserIdVirtualEventWebinarID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue",
+			Input: "/users/userId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/virtualEvents",
+			Input: "/users/userId/virtualEvents",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/virtualEvents/webinars",
+			Input: "/users/userId/virtualEvents/webinars",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/users/userIdValue/virtualEvents/webinars/virtualEventWebinarIdValue",
+			Input: "/users/userId/virtualEvents/webinars/virtualEventWebinarId",
 			Expected: &UserIdVirtualEventWebinarId{
-				UserId:                "userIdValue",
-				VirtualEventWebinarId: "virtualEventWebinarIdValue",
+				UserId:                "userId",
+				VirtualEventWebinarId: "virtualEventWebinarId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/users/userIdValue/virtualEvents/webinars/virtualEventWebinarIdValue/extra",
+			Input: "/users/userId/virtualEvents/webinars/virtualEventWebinarId/extra",
 			Error: true,
 		},
 	}
@@ -125,58 +125,58 @@ func TestParseUserIdVirtualEventWebinarIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue",
+			Input: "/users/userId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe",
+			Input: "/uSeRs/uSeRiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/virtualEvents",
+			Input: "/users/userId/virtualEvents",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/vIrTuAlEvEnTs",
+			Input: "/uSeRs/uSeRiD/vIrTuAlEvEnTs",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/virtualEvents/webinars",
+			Input: "/users/userId/virtualEvents/webinars",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/vIrTuAlEvEnTs/wEbInArS",
+			Input: "/uSeRs/uSeRiD/vIrTuAlEvEnTs/wEbInArS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/users/userIdValue/virtualEvents/webinars/virtualEventWebinarIdValue",
+			Input: "/users/userId/virtualEvents/webinars/virtualEventWebinarId",
 			Expected: &UserIdVirtualEventWebinarId{
-				UserId:                "userIdValue",
-				VirtualEventWebinarId: "virtualEventWebinarIdValue",
+				UserId:                "userId",
+				VirtualEventWebinarId: "virtualEventWebinarId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/users/userIdValue/virtualEvents/webinars/virtualEventWebinarIdValue/extra",
+			Input: "/users/userId/virtualEvents/webinars/virtualEventWebinarId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/vIrTuAlEvEnTs/wEbInArS/vIrTuAlEvEnTwEbInArIdVaLuE",
+			Input: "/uSeRs/uSeRiD/vIrTuAlEvEnTs/wEbInArS/vIrTuAlEvEnTwEbInArId",
 			Expected: &UserIdVirtualEventWebinarId{
-				UserId:                "uSeRiDvAlUe",
-				VirtualEventWebinarId: "vIrTuAlEvEnTwEbInArIdVaLuE",
+				UserId:                "uSeRiD",
+				VirtualEventWebinarId: "vIrTuAlEvEnTwEbInArId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/vIrTuAlEvEnTs/wEbInArS/vIrTuAlEvEnTwEbInArIdVaLuE/extra",
+			Input: "/uSeRs/uSeRiD/vIrTuAlEvEnTs/wEbInArS/vIrTuAlEvEnTwEbInArId/extra",
 			Error: true,
 		},
 	}

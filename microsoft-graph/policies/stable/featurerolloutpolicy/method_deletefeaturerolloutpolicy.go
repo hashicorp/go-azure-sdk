@@ -19,7 +19,8 @@ type DeleteFeatureRolloutPolicyOperationResponse struct {
 }
 
 type DeleteFeatureRolloutPolicyOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteFeatureRolloutPolicyOperationOptions() DeleteFeatureRolloutPolicyOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteFeatureRolloutPolicyOperationOptions) ToHeaders() *client.Headers 
 
 func (o DeleteFeatureRolloutPolicyOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

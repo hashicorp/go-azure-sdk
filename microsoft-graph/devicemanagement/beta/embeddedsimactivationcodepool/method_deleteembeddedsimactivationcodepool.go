@@ -19,7 +19,8 @@ type DeleteEmbeddedSIMActivationCodePoolOperationResponse struct {
 }
 
 type DeleteEmbeddedSIMActivationCodePoolOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteEmbeddedSIMActivationCodePoolOperationOptions() DeleteEmbeddedSIMActivationCodePoolOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteEmbeddedSIMActivationCodePoolOperationOptions) ToHeaders() *client
 
 func (o DeleteEmbeddedSIMActivationCodePoolOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &ApplicationIdSynchronizationJobId{}
 
 func TestNewApplicationIdSynchronizationJobID(t *testing.T) {
-	id := NewApplicationIdSynchronizationJobID("applicationIdValue", "synchronizationJobIdValue")
+	id := NewApplicationIdSynchronizationJobID("applicationId", "synchronizationJobId")
 
-	if id.ApplicationId != "applicationIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ApplicationId'", id.ApplicationId, "applicationIdValue")
+	if id.ApplicationId != "applicationId" {
+		t.Fatalf("Expected %q but got %q for Segment 'ApplicationId'", id.ApplicationId, "applicationId")
 	}
 
-	if id.SynchronizationJobId != "synchronizationJobIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'SynchronizationJobId'", id.SynchronizationJobId, "synchronizationJobIdValue")
+	if id.SynchronizationJobId != "synchronizationJobId" {
+		t.Fatalf("Expected %q but got %q for Segment 'SynchronizationJobId'", id.SynchronizationJobId, "synchronizationJobId")
 	}
 }
 
 func TestFormatApplicationIdSynchronizationJobID(t *testing.T) {
-	actual := NewApplicationIdSynchronizationJobID("applicationIdValue", "synchronizationJobIdValue").ID()
-	expected := "/applications/applicationIdValue/synchronization/jobs/synchronizationJobIdValue"
+	actual := NewApplicationIdSynchronizationJobID("applicationId", "synchronizationJobId").ID()
+	expected := "/applications/applicationId/synchronization/jobs/synchronizationJobId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -49,30 +49,30 @@ func TestParseApplicationIdSynchronizationJobID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/applications/applicationIdValue",
+			Input: "/applications/applicationId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/applications/applicationIdValue/synchronization",
+			Input: "/applications/applicationId/synchronization",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/applications/applicationIdValue/synchronization/jobs",
+			Input: "/applications/applicationId/synchronization/jobs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/applications/applicationIdValue/synchronization/jobs/synchronizationJobIdValue",
+			Input: "/applications/applicationId/synchronization/jobs/synchronizationJobId",
 			Expected: &ApplicationIdSynchronizationJobId{
-				ApplicationId:        "applicationIdValue",
-				SynchronizationJobId: "synchronizationJobIdValue",
+				ApplicationId:        "applicationId",
+				SynchronizationJobId: "synchronizationJobId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/applications/applicationIdValue/synchronization/jobs/synchronizationJobIdValue/extra",
+			Input: "/applications/applicationId/synchronization/jobs/synchronizationJobId/extra",
 			Error: true,
 		},
 	}
@@ -125,58 +125,58 @@ func TestParseApplicationIdSynchronizationJobIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/applications/applicationIdValue",
+			Input: "/applications/applicationId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/aPpLiCaTiOnS/aPpLiCaTiOnIdVaLuE",
+			Input: "/aPpLiCaTiOnS/aPpLiCaTiOnId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/applications/applicationIdValue/synchronization",
+			Input: "/applications/applicationId/synchronization",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/aPpLiCaTiOnS/aPpLiCaTiOnIdVaLuE/sYnChRoNiZaTiOn",
+			Input: "/aPpLiCaTiOnS/aPpLiCaTiOnId/sYnChRoNiZaTiOn",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/applications/applicationIdValue/synchronization/jobs",
+			Input: "/applications/applicationId/synchronization/jobs",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/aPpLiCaTiOnS/aPpLiCaTiOnIdVaLuE/sYnChRoNiZaTiOn/jObS",
+			Input: "/aPpLiCaTiOnS/aPpLiCaTiOnId/sYnChRoNiZaTiOn/jObS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/applications/applicationIdValue/synchronization/jobs/synchronizationJobIdValue",
+			Input: "/applications/applicationId/synchronization/jobs/synchronizationJobId",
 			Expected: &ApplicationIdSynchronizationJobId{
-				ApplicationId:        "applicationIdValue",
-				SynchronizationJobId: "synchronizationJobIdValue",
+				ApplicationId:        "applicationId",
+				SynchronizationJobId: "synchronizationJobId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/applications/applicationIdValue/synchronization/jobs/synchronizationJobIdValue/extra",
+			Input: "/applications/applicationId/synchronization/jobs/synchronizationJobId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/aPpLiCaTiOnS/aPpLiCaTiOnIdVaLuE/sYnChRoNiZaTiOn/jObS/sYnChRoNiZaTiOnJoBiDvAlUe",
+			Input: "/aPpLiCaTiOnS/aPpLiCaTiOnId/sYnChRoNiZaTiOn/jObS/sYnChRoNiZaTiOnJoBiD",
 			Expected: &ApplicationIdSynchronizationJobId{
-				ApplicationId:        "aPpLiCaTiOnIdVaLuE",
-				SynchronizationJobId: "sYnChRoNiZaTiOnJoBiDvAlUe",
+				ApplicationId:        "aPpLiCaTiOnId",
+				SynchronizationJobId: "sYnChRoNiZaTiOnJoBiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/aPpLiCaTiOnS/aPpLiCaTiOnIdVaLuE/sYnChRoNiZaTiOn/jObS/sYnChRoNiZaTiOnJoBiDvAlUe/extra",
+			Input: "/aPpLiCaTiOnS/aPpLiCaTiOnId/sYnChRoNiZaTiOn/jObS/sYnChRoNiZaTiOnJoBiD/extra",
 			Error: true,
 		},
 	}

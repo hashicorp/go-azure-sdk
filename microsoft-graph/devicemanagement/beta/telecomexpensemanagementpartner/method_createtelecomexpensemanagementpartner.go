@@ -18,16 +18,45 @@ type CreateTelecomExpenseManagementPartnerOperationResponse struct {
 	Model        *beta.TelecomExpenseManagementPartner
 }
 
+type CreateTelecomExpenseManagementPartnerOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateTelecomExpenseManagementPartnerOperationOptions() CreateTelecomExpenseManagementPartnerOperationOptions {
+	return CreateTelecomExpenseManagementPartnerOperationOptions{}
+}
+
+func (o CreateTelecomExpenseManagementPartnerOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateTelecomExpenseManagementPartnerOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateTelecomExpenseManagementPartnerOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateTelecomExpenseManagementPartner - Create new navigation property to telecomExpenseManagementPartners for
 // deviceManagement
-func (c TelecomExpenseManagementPartnerClient) CreateTelecomExpenseManagementPartner(ctx context.Context, input beta.TelecomExpenseManagementPartner) (result CreateTelecomExpenseManagementPartnerOperationResponse, err error) {
+func (c TelecomExpenseManagementPartnerClient) CreateTelecomExpenseManagementPartner(ctx context.Context, input beta.TelecomExpenseManagementPartner, options CreateTelecomExpenseManagementPartnerOperationOptions) (result CreateTelecomExpenseManagementPartnerOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/deviceManagement/telecomExpenseManagementPartners",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/deviceManagement/telecomExpenseManagementPartners",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

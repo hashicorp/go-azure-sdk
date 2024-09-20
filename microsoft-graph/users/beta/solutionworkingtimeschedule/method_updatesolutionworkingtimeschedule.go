@@ -18,15 +18,44 @@ type UpdateSolutionWorkingTimeScheduleOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateSolutionWorkingTimeScheduleOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateSolutionWorkingTimeScheduleOperationOptions() UpdateSolutionWorkingTimeScheduleOperationOptions {
+	return UpdateSolutionWorkingTimeScheduleOperationOptions{}
+}
+
+func (o UpdateSolutionWorkingTimeScheduleOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateSolutionWorkingTimeScheduleOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateSolutionWorkingTimeScheduleOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateSolutionWorkingTimeSchedule - Update the navigation property workingTimeSchedule in users
-func (c SolutionWorkingTimeScheduleClient) UpdateSolutionWorkingTimeSchedule(ctx context.Context, id beta.UserId, input beta.WorkingTimeSchedule) (result UpdateSolutionWorkingTimeScheduleOperationResponse, err error) {
+func (c SolutionWorkingTimeScheduleClient) UpdateSolutionWorkingTimeSchedule(ctx context.Context, id beta.UserId, input beta.WorkingTimeSchedule, options UpdateSolutionWorkingTimeScheduleOperationOptions) (result UpdateSolutionWorkingTimeScheduleOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       fmt.Sprintf("%s/solutions/workingTimeSchedule", id.ID()),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/solutions/workingTimeSchedule", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -17,16 +17,45 @@ type UpdateComanagedDeviceCompliancePolicyStateOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateComanagedDeviceCompliancePolicyStateOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateComanagedDeviceCompliancePolicyStateOperationOptions() UpdateComanagedDeviceCompliancePolicyStateOperationOptions {
+	return UpdateComanagedDeviceCompliancePolicyStateOperationOptions{}
+}
+
+func (o UpdateComanagedDeviceCompliancePolicyStateOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateComanagedDeviceCompliancePolicyStateOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateComanagedDeviceCompliancePolicyStateOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateComanagedDeviceCompliancePolicyState - Update the navigation property deviceCompliancePolicyStates in
 // deviceManagement
-func (c ComanagedDeviceDeviceCompliancePolicyStateClient) UpdateComanagedDeviceCompliancePolicyState(ctx context.Context, id beta.DeviceManagementComanagedDeviceIdDeviceCompliancePolicyStateId, input beta.DeviceCompliancePolicyState) (result UpdateComanagedDeviceCompliancePolicyStateOperationResponse, err error) {
+func (c ComanagedDeviceDeviceCompliancePolicyStateClient) UpdateComanagedDeviceCompliancePolicyState(ctx context.Context, id beta.DeviceManagementComanagedDeviceIdDeviceCompliancePolicyStateId, input beta.DeviceCompliancePolicyState, options UpdateComanagedDeviceCompliancePolicyStateOperationOptions) (result UpdateComanagedDeviceCompliancePolicyStateOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

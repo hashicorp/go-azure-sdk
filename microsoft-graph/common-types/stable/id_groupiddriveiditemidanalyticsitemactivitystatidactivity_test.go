@@ -12,32 +12,32 @@ import (
 var _ resourceids.ResourceId = &GroupIdDriveIdItemIdAnalyticsItemActivityStatIdActivityId{}
 
 func TestNewGroupIdDriveIdItemIdAnalyticsItemActivityStatIdActivityID(t *testing.T) {
-	id := NewGroupIdDriveIdItemIdAnalyticsItemActivityStatIdActivityID("groupIdValue", "driveIdValue", "driveItemIdValue", "itemActivityStatIdValue", "itemActivityIdValue")
+	id := NewGroupIdDriveIdItemIdAnalyticsItemActivityStatIdActivityID("groupId", "driveId", "driveItemId", "itemActivityStatId", "itemActivityId")
 
-	if id.GroupId != "groupIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'GroupId'", id.GroupId, "groupIdValue")
+	if id.GroupId != "groupId" {
+		t.Fatalf("Expected %q but got %q for Segment 'GroupId'", id.GroupId, "groupId")
 	}
 
-	if id.DriveId != "driveIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DriveId'", id.DriveId, "driveIdValue")
+	if id.DriveId != "driveId" {
+		t.Fatalf("Expected %q but got %q for Segment 'DriveId'", id.DriveId, "driveId")
 	}
 
-	if id.DriveItemId != "driveItemIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DriveItemId'", id.DriveItemId, "driveItemIdValue")
+	if id.DriveItemId != "driveItemId" {
+		t.Fatalf("Expected %q but got %q for Segment 'DriveItemId'", id.DriveItemId, "driveItemId")
 	}
 
-	if id.ItemActivityStatId != "itemActivityStatIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ItemActivityStatId'", id.ItemActivityStatId, "itemActivityStatIdValue")
+	if id.ItemActivityStatId != "itemActivityStatId" {
+		t.Fatalf("Expected %q but got %q for Segment 'ItemActivityStatId'", id.ItemActivityStatId, "itemActivityStatId")
 	}
 
-	if id.ItemActivityId != "itemActivityIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ItemActivityId'", id.ItemActivityId, "itemActivityIdValue")
+	if id.ItemActivityId != "itemActivityId" {
+		t.Fatalf("Expected %q but got %q for Segment 'ItemActivityId'", id.ItemActivityId, "itemActivityId")
 	}
 }
 
 func TestFormatGroupIdDriveIdItemIdAnalyticsItemActivityStatIdActivityID(t *testing.T) {
-	actual := NewGroupIdDriveIdItemIdAnalyticsItemActivityStatIdActivityID("groupIdValue", "driveIdValue", "driveItemIdValue", "itemActivityStatIdValue", "itemActivityIdValue").ID()
-	expected := "/groups/groupIdValue/drives/driveIdValue/items/driveItemIdValue/analytics/itemActivityStats/itemActivityStatIdValue/activities/itemActivityIdValue"
+	actual := NewGroupIdDriveIdItemIdAnalyticsItemActivityStatIdActivityID("groupId", "driveId", "driveItemId", "itemActivityStatId", "itemActivityId").ID()
+	expected := "/groups/groupId/drives/driveId/items/driveItemId/analytics/itemActivityStats/itemActivityStatId/activities/itemActivityId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -61,63 +61,63 @@ func TestParseGroupIdDriveIdItemIdAnalyticsItemActivityStatIdActivityID(t *testi
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue",
+			Input: "/groups/groupId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/drives",
+			Input: "/groups/groupId/drives",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/drives/driveIdValue",
+			Input: "/groups/groupId/drives/driveId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/drives/driveIdValue/items",
+			Input: "/groups/groupId/drives/driveId/items",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/drives/driveIdValue/items/driveItemIdValue",
+			Input: "/groups/groupId/drives/driveId/items/driveItemId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/drives/driveIdValue/items/driveItemIdValue/analytics",
+			Input: "/groups/groupId/drives/driveId/items/driveItemId/analytics",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/drives/driveIdValue/items/driveItemIdValue/analytics/itemActivityStats",
+			Input: "/groups/groupId/drives/driveId/items/driveItemId/analytics/itemActivityStats",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/drives/driveIdValue/items/driveItemIdValue/analytics/itemActivityStats/itemActivityStatIdValue",
+			Input: "/groups/groupId/drives/driveId/items/driveItemId/analytics/itemActivityStats/itemActivityStatId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/drives/driveIdValue/items/driveItemIdValue/analytics/itemActivityStats/itemActivityStatIdValue/activities",
+			Input: "/groups/groupId/drives/driveId/items/driveItemId/analytics/itemActivityStats/itemActivityStatId/activities",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/groups/groupIdValue/drives/driveIdValue/items/driveItemIdValue/analytics/itemActivityStats/itemActivityStatIdValue/activities/itemActivityIdValue",
+			Input: "/groups/groupId/drives/driveId/items/driveItemId/analytics/itemActivityStats/itemActivityStatId/activities/itemActivityId",
 			Expected: &GroupIdDriveIdItemIdAnalyticsItemActivityStatIdActivityId{
-				GroupId:            "groupIdValue",
-				DriveId:            "driveIdValue",
-				DriveItemId:        "driveItemIdValue",
-				ItemActivityStatId: "itemActivityStatIdValue",
-				ItemActivityId:     "itemActivityIdValue",
+				GroupId:            "groupId",
+				DriveId:            "driveId",
+				DriveItemId:        "driveItemId",
+				ItemActivityStatId: "itemActivityStatId",
+				ItemActivityId:     "itemActivityId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/groups/groupIdValue/drives/driveIdValue/items/driveItemIdValue/analytics/itemActivityStats/itemActivityStatIdValue/activities/itemActivityIdValue/extra",
+			Input: "/groups/groupId/drives/driveId/items/driveItemId/analytics/itemActivityStats/itemActivityStatId/activities/itemActivityId/extra",
 			Error: true,
 		},
 	}
@@ -182,124 +182,124 @@ func TestParseGroupIdDriveIdItemIdAnalyticsItemActivityStatIdActivityIDInsensiti
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue",
+			Input: "/groups/groupId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE",
+			Input: "/gRoUpS/gRoUpId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/drives",
+			Input: "/groups/groupId/drives",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/dRiVeS",
+			Input: "/gRoUpS/gRoUpId/dRiVeS",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/drives/driveIdValue",
+			Input: "/groups/groupId/drives/driveId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/dRiVeS/dRiVeIdVaLuE",
+			Input: "/gRoUpS/gRoUpId/dRiVeS/dRiVeId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/drives/driveIdValue/items",
+			Input: "/groups/groupId/drives/driveId/items",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/dRiVeS/dRiVeIdVaLuE/iTeMs",
+			Input: "/gRoUpS/gRoUpId/dRiVeS/dRiVeId/iTeMs",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/drives/driveIdValue/items/driveItemIdValue",
+			Input: "/groups/groupId/drives/driveId/items/driveItemId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/dRiVeS/dRiVeIdVaLuE/iTeMs/dRiVeItEmIdVaLuE",
+			Input: "/gRoUpS/gRoUpId/dRiVeS/dRiVeId/iTeMs/dRiVeItEmId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/drives/driveIdValue/items/driveItemIdValue/analytics",
+			Input: "/groups/groupId/drives/driveId/items/driveItemId/analytics",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/dRiVeS/dRiVeIdVaLuE/iTeMs/dRiVeItEmIdVaLuE/aNaLyTiCs",
+			Input: "/gRoUpS/gRoUpId/dRiVeS/dRiVeId/iTeMs/dRiVeItEmId/aNaLyTiCs",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/drives/driveIdValue/items/driveItemIdValue/analytics/itemActivityStats",
+			Input: "/groups/groupId/drives/driveId/items/driveItemId/analytics/itemActivityStats",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/dRiVeS/dRiVeIdVaLuE/iTeMs/dRiVeItEmIdVaLuE/aNaLyTiCs/iTeMaCtIvItYsTaTs",
+			Input: "/gRoUpS/gRoUpId/dRiVeS/dRiVeId/iTeMs/dRiVeItEmId/aNaLyTiCs/iTeMaCtIvItYsTaTs",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/drives/driveIdValue/items/driveItemIdValue/analytics/itemActivityStats/itemActivityStatIdValue",
+			Input: "/groups/groupId/drives/driveId/items/driveItemId/analytics/itemActivityStats/itemActivityStatId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/dRiVeS/dRiVeIdVaLuE/iTeMs/dRiVeItEmIdVaLuE/aNaLyTiCs/iTeMaCtIvItYsTaTs/iTeMaCtIvItYsTaTiDvAlUe",
+			Input: "/gRoUpS/gRoUpId/dRiVeS/dRiVeId/iTeMs/dRiVeItEmId/aNaLyTiCs/iTeMaCtIvItYsTaTs/iTeMaCtIvItYsTaTiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/drives/driveIdValue/items/driveItemIdValue/analytics/itemActivityStats/itemActivityStatIdValue/activities",
+			Input: "/groups/groupId/drives/driveId/items/driveItemId/analytics/itemActivityStats/itemActivityStatId/activities",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/dRiVeS/dRiVeIdVaLuE/iTeMs/dRiVeItEmIdVaLuE/aNaLyTiCs/iTeMaCtIvItYsTaTs/iTeMaCtIvItYsTaTiDvAlUe/aCtIvItIeS",
+			Input: "/gRoUpS/gRoUpId/dRiVeS/dRiVeId/iTeMs/dRiVeItEmId/aNaLyTiCs/iTeMaCtIvItYsTaTs/iTeMaCtIvItYsTaTiD/aCtIvItIeS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/groups/groupIdValue/drives/driveIdValue/items/driveItemIdValue/analytics/itemActivityStats/itemActivityStatIdValue/activities/itemActivityIdValue",
+			Input: "/groups/groupId/drives/driveId/items/driveItemId/analytics/itemActivityStats/itemActivityStatId/activities/itemActivityId",
 			Expected: &GroupIdDriveIdItemIdAnalyticsItemActivityStatIdActivityId{
-				GroupId:            "groupIdValue",
-				DriveId:            "driveIdValue",
-				DriveItemId:        "driveItemIdValue",
-				ItemActivityStatId: "itemActivityStatIdValue",
-				ItemActivityId:     "itemActivityIdValue",
+				GroupId:            "groupId",
+				DriveId:            "driveId",
+				DriveItemId:        "driveItemId",
+				ItemActivityStatId: "itemActivityStatId",
+				ItemActivityId:     "itemActivityId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/groups/groupIdValue/drives/driveIdValue/items/driveItemIdValue/analytics/itemActivityStats/itemActivityStatIdValue/activities/itemActivityIdValue/extra",
+			Input: "/groups/groupId/drives/driveId/items/driveItemId/analytics/itemActivityStats/itemActivityStatId/activities/itemActivityId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/dRiVeS/dRiVeIdVaLuE/iTeMs/dRiVeItEmIdVaLuE/aNaLyTiCs/iTeMaCtIvItYsTaTs/iTeMaCtIvItYsTaTiDvAlUe/aCtIvItIeS/iTeMaCtIvItYiDvAlUe",
+			Input: "/gRoUpS/gRoUpId/dRiVeS/dRiVeId/iTeMs/dRiVeItEmId/aNaLyTiCs/iTeMaCtIvItYsTaTs/iTeMaCtIvItYsTaTiD/aCtIvItIeS/iTeMaCtIvItYiD",
 			Expected: &GroupIdDriveIdItemIdAnalyticsItemActivityStatIdActivityId{
-				GroupId:            "gRoUpIdVaLuE",
-				DriveId:            "dRiVeIdVaLuE",
-				DriveItemId:        "dRiVeItEmIdVaLuE",
-				ItemActivityStatId: "iTeMaCtIvItYsTaTiDvAlUe",
-				ItemActivityId:     "iTeMaCtIvItYiDvAlUe",
+				GroupId:            "gRoUpId",
+				DriveId:            "dRiVeId",
+				DriveItemId:        "dRiVeItEmId",
+				ItemActivityStatId: "iTeMaCtIvItYsTaTiD",
+				ItemActivityId:     "iTeMaCtIvItYiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/dRiVeS/dRiVeIdVaLuE/iTeMs/dRiVeItEmIdVaLuE/aNaLyTiCs/iTeMaCtIvItYsTaTs/iTeMaCtIvItYsTaTiDvAlUe/aCtIvItIeS/iTeMaCtIvItYiDvAlUe/extra",
+			Input: "/gRoUpS/gRoUpId/dRiVeS/dRiVeId/iTeMs/dRiVeItEmId/aNaLyTiCs/iTeMaCtIvItYsTaTs/iTeMaCtIvItYsTaTiD/aCtIvItIeS/iTeMaCtIvItYiD/extra",
 			Error: true,
 		},
 	}

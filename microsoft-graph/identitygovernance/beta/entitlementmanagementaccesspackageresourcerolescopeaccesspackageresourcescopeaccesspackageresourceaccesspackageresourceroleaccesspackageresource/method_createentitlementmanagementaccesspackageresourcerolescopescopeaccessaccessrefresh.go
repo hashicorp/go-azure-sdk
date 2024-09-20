@@ -18,18 +18,47 @@ type CreateEntitlementManagementAccessPackageResourceRoleScopeScopeAccessAccessR
 	OData        *odata.OData
 }
 
+type CreateEntitlementManagementAccessPackageResourceRoleScopeScopeAccessAccessRefreshOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateEntitlementManagementAccessPackageResourceRoleScopeScopeAccessAccessRefreshOperationOptions() CreateEntitlementManagementAccessPackageResourceRoleScopeScopeAccessAccessRefreshOperationOptions {
+	return CreateEntitlementManagementAccessPackageResourceRoleScopeScopeAccessAccessRefreshOperationOptions{}
+}
+
+func (o CreateEntitlementManagementAccessPackageResourceRoleScopeScopeAccessAccessRefreshOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateEntitlementManagementAccessPackageResourceRoleScopeScopeAccessAccessRefreshOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateEntitlementManagementAccessPackageResourceRoleScopeScopeAccessAccessRefreshOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateEntitlementManagementAccessPackageResourceRoleScopeScopeAccessAccessRefresh - Invoke action refresh. In
 // Microsoft Entra entitlement management, refresh the accessPackageResource object to fetch the latest details for
 // displayName, description, and resourceType from the origin system. For the AadApplication originSystem, this
 // operation also updates the displayName and description for the accessPackageResourceRole.
-func (c EntitlementManagementAccessPackageResourceRoleScopeAccessPackageResourceScopeAccessPackageResourceAccessPackageResourceRoleAccessPackageResourceClient) CreateEntitlementManagementAccessPackageResourceRoleScopeScopeAccessAccessRefresh(ctx context.Context, id beta.IdentityGovernanceEntitlementManagementAccessPackageResourceRoleScopeIdAccessPackageResourceScopeAccessPackageResourceAccessPackageResourceRoleId) (result CreateEntitlementManagementAccessPackageResourceRoleScopeScopeAccessAccessRefreshOperationResponse, err error) {
+func (c EntitlementManagementAccessPackageResourceRoleScopeAccessPackageResourceScopeAccessPackageResourceAccessPackageResourceRoleAccessPackageResourceClient) CreateEntitlementManagementAccessPackageResourceRoleScopeScopeAccessAccessRefresh(ctx context.Context, id beta.IdentityGovernanceEntitlementManagementAccessPackageResourceRoleScopeIdAccessPackageResourceScopeAccessPackageResourceAccessPackageResourceRoleId, options CreateEntitlementManagementAccessPackageResourceRoleScopeScopeAccessAccessRefreshOperationOptions) (result CreateEntitlementManagementAccessPackageResourceRoleScopeScopeAccessAccessRefreshOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/accessPackageResource/refresh", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/accessPackageResource/refresh", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

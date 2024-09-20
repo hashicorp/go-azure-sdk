@@ -18,16 +18,45 @@ type CreatePendingAccessReviewInstanceBatchRecordDecisionOperationResponse struc
 	OData        *odata.OData
 }
 
+type CreatePendingAccessReviewInstanceBatchRecordDecisionOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreatePendingAccessReviewInstanceBatchRecordDecisionOperationOptions() CreatePendingAccessReviewInstanceBatchRecordDecisionOperationOptions {
+	return CreatePendingAccessReviewInstanceBatchRecordDecisionOperationOptions{}
+}
+
+func (o CreatePendingAccessReviewInstanceBatchRecordDecisionOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreatePendingAccessReviewInstanceBatchRecordDecisionOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreatePendingAccessReviewInstanceBatchRecordDecisionOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreatePendingAccessReviewInstanceBatchRecordDecision - Invoke action batchRecordDecisions. Enables reviewers to
 // review all accessReviewInstanceDecisionItem objects in batches by using principalId, resourceId, or neither.
-func (c PendingAccessReviewInstanceClient) CreatePendingAccessReviewInstanceBatchRecordDecision(ctx context.Context, id beta.MePendingAccessReviewInstanceId, input CreatePendingAccessReviewInstanceBatchRecordDecisionRequest) (result CreatePendingAccessReviewInstanceBatchRecordDecisionOperationResponse, err error) {
+func (c PendingAccessReviewInstanceClient) CreatePendingAccessReviewInstanceBatchRecordDecision(ctx context.Context, id beta.MePendingAccessReviewInstanceId, input CreatePendingAccessReviewInstanceBatchRecordDecisionRequest, options CreatePendingAccessReviewInstanceBatchRecordDecisionOperationOptions) (result CreatePendingAccessReviewInstanceBatchRecordDecisionOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/batchRecordDecisions", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/batchRecordDecisions", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &UserIdTransitiveMemberOfId{}
 
 func TestNewUserIdTransitiveMemberOfID(t *testing.T) {
-	id := NewUserIdTransitiveMemberOfID("userIdValue", "directoryObjectIdValue")
+	id := NewUserIdTransitiveMemberOfID("userId", "directoryObjectId")
 
-	if id.UserId != "userIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'UserId'", id.UserId, "userIdValue")
+	if id.UserId != "userId" {
+		t.Fatalf("Expected %q but got %q for Segment 'UserId'", id.UserId, "userId")
 	}
 
-	if id.DirectoryObjectId != "directoryObjectIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DirectoryObjectId'", id.DirectoryObjectId, "directoryObjectIdValue")
+	if id.DirectoryObjectId != "directoryObjectId" {
+		t.Fatalf("Expected %q but got %q for Segment 'DirectoryObjectId'", id.DirectoryObjectId, "directoryObjectId")
 	}
 }
 
 func TestFormatUserIdTransitiveMemberOfID(t *testing.T) {
-	actual := NewUserIdTransitiveMemberOfID("userIdValue", "directoryObjectIdValue").ID()
-	expected := "/users/userIdValue/transitiveMemberOf/directoryObjectIdValue"
+	actual := NewUserIdTransitiveMemberOfID("userId", "directoryObjectId").ID()
+	expected := "/users/userId/transitiveMemberOf/directoryObjectId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -49,25 +49,25 @@ func TestParseUserIdTransitiveMemberOfID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue",
+			Input: "/users/userId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/transitiveMemberOf",
+			Input: "/users/userId/transitiveMemberOf",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/users/userIdValue/transitiveMemberOf/directoryObjectIdValue",
+			Input: "/users/userId/transitiveMemberOf/directoryObjectId",
 			Expected: &UserIdTransitiveMemberOfId{
-				UserId:            "userIdValue",
-				DirectoryObjectId: "directoryObjectIdValue",
+				UserId:            "userId",
+				DirectoryObjectId: "directoryObjectId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/users/userIdValue/transitiveMemberOf/directoryObjectIdValue/extra",
+			Input: "/users/userId/transitiveMemberOf/directoryObjectId/extra",
 			Error: true,
 		},
 	}
@@ -120,48 +120,48 @@ func TestParseUserIdTransitiveMemberOfIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue",
+			Input: "/users/userId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe",
+			Input: "/uSeRs/uSeRiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/transitiveMemberOf",
+			Input: "/users/userId/transitiveMemberOf",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/tRaNsItIvEmEmBeRoF",
+			Input: "/uSeRs/uSeRiD/tRaNsItIvEmEmBeRoF",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/users/userIdValue/transitiveMemberOf/directoryObjectIdValue",
+			Input: "/users/userId/transitiveMemberOf/directoryObjectId",
 			Expected: &UserIdTransitiveMemberOfId{
-				UserId:            "userIdValue",
-				DirectoryObjectId: "directoryObjectIdValue",
+				UserId:            "userId",
+				DirectoryObjectId: "directoryObjectId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/users/userIdValue/transitiveMemberOf/directoryObjectIdValue/extra",
+			Input: "/users/userId/transitiveMemberOf/directoryObjectId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/tRaNsItIvEmEmBeRoF/dIrEcToRyObJeCtIdVaLuE",
+			Input: "/uSeRs/uSeRiD/tRaNsItIvEmEmBeRoF/dIrEcToRyObJeCtId",
 			Expected: &UserIdTransitiveMemberOfId{
-				UserId:            "uSeRiDvAlUe",
-				DirectoryObjectId: "dIrEcToRyObJeCtIdVaLuE",
+				UserId:            "uSeRiD",
+				DirectoryObjectId: "dIrEcToRyObJeCtId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/tRaNsItIvEmEmBeRoF/dIrEcToRyObJeCtIdVaLuE/extra",
+			Input: "/uSeRs/uSeRiD/tRaNsItIvEmEmBeRoF/dIrEcToRyObJeCtId/extra",
 			Error: true,
 		},
 	}

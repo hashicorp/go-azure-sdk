@@ -25,14 +25,15 @@ type ListSchemaExtensionsCompleteResult struct {
 }
 
 type ListSchemaExtensionsOperationOptions struct {
-	Count   *bool
-	Expand  *odata.Expand
-	Filter  *string
-	OrderBy *odata.OrderBy
-	Search  *string
-	Select  *[]string
-	Skip    *int64
-	Top     *int64
+	Count    *bool
+	Expand   *odata.Expand
+	Filter   *string
+	Metadata *odata.Metadata
+	OrderBy  *odata.OrderBy
+	Search   *string
+	Select   *[]string
+	Skip     *int64
+	Top      *int64
 }
 
 func DefaultListSchemaExtensionsOperationOptions() ListSchemaExtensionsOperationOptions {
@@ -55,6 +56,9 @@ func (o ListSchemaExtensionsOperationOptions) ToOData() *odata.Query {
 	}
 	if o.Filter != nil {
 		out.Filter = *o.Filter
+	}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
 	}
 	if o.OrderBy != nil {
 		out.OrderBy = *o.OrderBy
@@ -93,7 +97,7 @@ func (p *ListSchemaExtensionsCustomPager) NextPageLink() *odata.Link {
 }
 
 // ListSchemaExtensions - List schemaExtensions. Get a list of schemaExtension objects in your tenant. The schema
-// extensions can be InDevelopment, Available, or Deprecated and includes schema extensions:
+// extensions can be InDevelopment, Available, or Deprecated and includes schema extensions
 func (c SchemaExtensionClient) ListSchemaExtensions(ctx context.Context, options ListSchemaExtensionsOperationOptions) (result ListSchemaExtensionsOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",

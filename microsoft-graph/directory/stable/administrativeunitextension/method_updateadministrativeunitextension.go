@@ -17,15 +17,44 @@ type UpdateAdministrativeUnitExtensionOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateAdministrativeUnitExtensionOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateAdministrativeUnitExtensionOperationOptions() UpdateAdministrativeUnitExtensionOperationOptions {
+	return UpdateAdministrativeUnitExtensionOperationOptions{}
+}
+
+func (o UpdateAdministrativeUnitExtensionOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateAdministrativeUnitExtensionOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateAdministrativeUnitExtensionOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateAdministrativeUnitExtension - Update the navigation property extensions in directory
-func (c AdministrativeUnitExtensionClient) UpdateAdministrativeUnitExtension(ctx context.Context, id stable.DirectoryAdministrativeUnitIdExtensionId, input stable.Extension) (result UpdateAdministrativeUnitExtensionOperationResponse, err error) {
+func (c AdministrativeUnitExtensionClient) UpdateAdministrativeUnitExtension(ctx context.Context, id stable.DirectoryAdministrativeUnitIdExtensionId, input stable.Extension, options UpdateAdministrativeUnitExtensionOperationOptions) (result UpdateAdministrativeUnitExtensionOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

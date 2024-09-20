@@ -18,16 +18,45 @@ type CreateContactFolderOperationResponse struct {
 	Model        *beta.ContactFolder
 }
 
+type CreateContactFolderOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateContactFolderOperationOptions() CreateContactFolderOperationOptions {
+	return CreateContactFolderOperationOptions{}
+}
+
+func (o CreateContactFolderOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateContactFolderOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateContactFolderOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateContactFolder - Create ContactFolder. Create a new contactFolder under the user's default contacts folder. You
 // can also create a new contactfolder as a child of any specified contact folder.
-func (c ContactFolderClient) CreateContactFolder(ctx context.Context, input beta.ContactFolder) (result CreateContactFolderOperationResponse, err error) {
+func (c ContactFolderClient) CreateContactFolder(ctx context.Context, input beta.ContactFolder, options CreateContactFolderOperationOptions) (result CreateContactFolderOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/me/contactFolders",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/me/contactFolders",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

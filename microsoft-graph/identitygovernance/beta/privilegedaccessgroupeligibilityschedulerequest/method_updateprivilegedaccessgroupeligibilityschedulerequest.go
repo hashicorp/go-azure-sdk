@@ -17,16 +17,45 @@ type UpdatePrivilegedAccessGroupEligibilityScheduleRequestOperationResponse stru
 	OData        *odata.OData
 }
 
+type UpdatePrivilegedAccessGroupEligibilityScheduleRequestOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdatePrivilegedAccessGroupEligibilityScheduleRequestOperationOptions() UpdatePrivilegedAccessGroupEligibilityScheduleRequestOperationOptions {
+	return UpdatePrivilegedAccessGroupEligibilityScheduleRequestOperationOptions{}
+}
+
+func (o UpdatePrivilegedAccessGroupEligibilityScheduleRequestOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdatePrivilegedAccessGroupEligibilityScheduleRequestOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdatePrivilegedAccessGroupEligibilityScheduleRequestOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdatePrivilegedAccessGroupEligibilityScheduleRequest - Update the navigation property eligibilityScheduleRequests in
 // identityGovernance
-func (c PrivilegedAccessGroupEligibilityScheduleRequestClient) UpdatePrivilegedAccessGroupEligibilityScheduleRequest(ctx context.Context, id beta.IdentityGovernancePrivilegedAccessGroupEligibilityScheduleRequestId, input beta.PrivilegedAccessGroupEligibilityScheduleRequest) (result UpdatePrivilegedAccessGroupEligibilityScheduleRequestOperationResponse, err error) {
+func (c PrivilegedAccessGroupEligibilityScheduleRequestClient) UpdatePrivilegedAccessGroupEligibilityScheduleRequest(ctx context.Context, id beta.IdentityGovernancePrivilegedAccessGroupEligibilityScheduleRequestId, input beta.PrivilegedAccessGroupEligibilityScheduleRequest, options UpdatePrivilegedAccessGroupEligibilityScheduleRequestOperationOptions) (result UpdatePrivilegedAccessGroupEligibilityScheduleRequestOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

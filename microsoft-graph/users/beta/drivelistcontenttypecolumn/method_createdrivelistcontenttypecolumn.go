@@ -19,15 +19,44 @@ type CreateDriveListContentTypeColumnOperationResponse struct {
 	Model        *beta.ColumnDefinition
 }
 
+type CreateDriveListContentTypeColumnOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateDriveListContentTypeColumnOperationOptions() CreateDriveListContentTypeColumnOperationOptions {
+	return CreateDriveListContentTypeColumnOperationOptions{}
+}
+
+func (o CreateDriveListContentTypeColumnOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateDriveListContentTypeColumnOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateDriveListContentTypeColumnOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateDriveListContentTypeColumn - Create new navigation property to columns for users
-func (c DriveListContentTypeColumnClient) CreateDriveListContentTypeColumn(ctx context.Context, id beta.UserIdDriveIdListContentTypeId, input beta.ColumnDefinition) (result CreateDriveListContentTypeColumnOperationResponse, err error) {
+func (c DriveListContentTypeColumnClient) CreateDriveListContentTypeColumn(ctx context.Context, id beta.UserIdDriveIdListContentTypeId, input beta.ColumnDefinition, options CreateDriveListContentTypeColumnOperationOptions) (result CreateDriveListContentTypeColumnOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/columns", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/columns", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

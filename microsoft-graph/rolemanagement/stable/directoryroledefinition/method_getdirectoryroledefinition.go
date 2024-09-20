@@ -19,8 +19,9 @@ type GetDirectoryRoleDefinitionOperationResponse struct {
 }
 
 type GetDirectoryRoleDefinitionOperationOptions struct {
-	Expand *odata.Expand
-	Select *[]string
+	Expand   *odata.Expand
+	Metadata *odata.Metadata
+	Select   *[]string
 }
 
 func DefaultGetDirectoryRoleDefinitionOperationOptions() GetDirectoryRoleDefinitionOperationOptions {
@@ -38,6 +39,9 @@ func (o GetDirectoryRoleDefinitionOperationOptions) ToOData() *odata.Query {
 	if o.Expand != nil {
 		out.Expand = *o.Expand
 	}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	if o.Select != nil {
 		out.Select = *o.Select
 	}
@@ -51,7 +55,7 @@ func (o GetDirectoryRoleDefinitionOperationOptions) ToQuery() *client.QueryParam
 }
 
 // GetDirectoryRoleDefinition - Get unifiedRoleDefinition. Read the properties and relationships of a
-// unifiedRoleDefinition object. The following role-based access control (RBAC) providers are currently supported:
+// unifiedRoleDefinition object. The following role-based access control (RBAC) providers are currently supported
 func (c DirectoryRoleDefinitionClient) GetDirectoryRoleDefinition(ctx context.Context, id stable.RoleManagementDirectoryRoleDefinitionId, options GetDirectoryRoleDefinitionOperationOptions) (result GetDirectoryRoleDefinitionOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",

@@ -18,7 +18,8 @@ type DeleteApplePushNotificationCertificateOperationResponse struct {
 }
 
 type DeleteApplePushNotificationCertificateOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteApplePushNotificationCertificateOperationOptions() DeleteApplePushNotificationCertificateOperationOptions {
@@ -35,7 +36,9 @@ func (o DeleteApplePushNotificationCertificateOperationOptions) ToHeaders() *cli
 
 func (o DeleteApplePushNotificationCertificateOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

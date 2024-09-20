@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &DeviceManagementUserExperienceAnalyticsMetricHistoryId{}
 
 func TestNewDeviceManagementUserExperienceAnalyticsMetricHistoryID(t *testing.T) {
-	id := NewDeviceManagementUserExperienceAnalyticsMetricHistoryID("userExperienceAnalyticsMetricHistoryIdValue")
+	id := NewDeviceManagementUserExperienceAnalyticsMetricHistoryID("userExperienceAnalyticsMetricHistoryId")
 
-	if id.UserExperienceAnalyticsMetricHistoryId != "userExperienceAnalyticsMetricHistoryIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'UserExperienceAnalyticsMetricHistoryId'", id.UserExperienceAnalyticsMetricHistoryId, "userExperienceAnalyticsMetricHistoryIdValue")
+	if id.UserExperienceAnalyticsMetricHistoryId != "userExperienceAnalyticsMetricHistoryId" {
+		t.Fatalf("Expected %q but got %q for Segment 'UserExperienceAnalyticsMetricHistoryId'", id.UserExperienceAnalyticsMetricHistoryId, "userExperienceAnalyticsMetricHistoryId")
 	}
 }
 
 func TestFormatDeviceManagementUserExperienceAnalyticsMetricHistoryID(t *testing.T) {
-	actual := NewDeviceManagementUserExperienceAnalyticsMetricHistoryID("userExperienceAnalyticsMetricHistoryIdValue").ID()
-	expected := "/deviceManagement/userExperienceAnalyticsMetricHistory/userExperienceAnalyticsMetricHistoryIdValue"
+	actual := NewDeviceManagementUserExperienceAnalyticsMetricHistoryID("userExperienceAnalyticsMetricHistoryId").ID()
+	expected := "/deviceManagement/userExperienceAnalyticsMetricHistory/userExperienceAnalyticsMetricHistoryId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -50,14 +50,14 @@ func TestParseDeviceManagementUserExperienceAnalyticsMetricHistoryID(t *testing.
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/userExperienceAnalyticsMetricHistory/userExperienceAnalyticsMetricHistoryIdValue",
+			Input: "/deviceManagement/userExperienceAnalyticsMetricHistory/userExperienceAnalyticsMetricHistoryId",
 			Expected: &DeviceManagementUserExperienceAnalyticsMetricHistoryId{
-				UserExperienceAnalyticsMetricHistoryId: "userExperienceAnalyticsMetricHistoryIdValue",
+				UserExperienceAnalyticsMetricHistoryId: "userExperienceAnalyticsMetricHistoryId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/userExperienceAnalyticsMetricHistory/userExperienceAnalyticsMetricHistoryIdValue/extra",
+			Input: "/deviceManagement/userExperienceAnalyticsMetricHistory/userExperienceAnalyticsMetricHistoryId/extra",
 			Error: true,
 		},
 	}
@@ -116,26 +116,26 @@ func TestParseDeviceManagementUserExperienceAnalyticsMetricHistoryIDInsensitivel
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/userExperienceAnalyticsMetricHistory/userExperienceAnalyticsMetricHistoryIdValue",
+			Input: "/deviceManagement/userExperienceAnalyticsMetricHistory/userExperienceAnalyticsMetricHistoryId",
 			Expected: &DeviceManagementUserExperienceAnalyticsMetricHistoryId{
-				UserExperienceAnalyticsMetricHistoryId: "userExperienceAnalyticsMetricHistoryIdValue",
+				UserExperienceAnalyticsMetricHistoryId: "userExperienceAnalyticsMetricHistoryId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/userExperienceAnalyticsMetricHistory/userExperienceAnalyticsMetricHistoryIdValue/extra",
+			Input: "/deviceManagement/userExperienceAnalyticsMetricHistory/userExperienceAnalyticsMetricHistoryId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/uSeReXpErIeNcEaNaLyTiCsMeTrIcHiStOrY/uSeReXpErIeNcEaNaLyTiCsMeTrIcHiStOrYiDvAlUe",
+			Input: "/dEvIcEmAnAgEmEnT/uSeReXpErIeNcEaNaLyTiCsMeTrIcHiStOrY/uSeReXpErIeNcEaNaLyTiCsMeTrIcHiStOrYiD",
 			Expected: &DeviceManagementUserExperienceAnalyticsMetricHistoryId{
-				UserExperienceAnalyticsMetricHistoryId: "uSeReXpErIeNcEaNaLyTiCsMeTrIcHiStOrYiDvAlUe",
+				UserExperienceAnalyticsMetricHistoryId: "uSeReXpErIeNcEaNaLyTiCsMeTrIcHiStOrYiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/uSeReXpErIeNcEaNaLyTiCsMeTrIcHiStOrY/uSeReXpErIeNcEaNaLyTiCsMeTrIcHiStOrYiDvAlUe/extra",
+			Input: "/dEvIcEmAnAgEmEnT/uSeReXpErIeNcEaNaLyTiCsMeTrIcHiStOrY/uSeReXpErIeNcEaNaLyTiCsMeTrIcHiStOrYiD/extra",
 			Error: true,
 		},
 	}

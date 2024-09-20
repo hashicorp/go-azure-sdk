@@ -17,16 +17,45 @@ type UpdateGroupPolicyConfigurationDefinitionValuePresentationValueOperationResp
 	OData        *odata.OData
 }
 
+type UpdateGroupPolicyConfigurationDefinitionValuePresentationValueOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateGroupPolicyConfigurationDefinitionValuePresentationValueOperationOptions() UpdateGroupPolicyConfigurationDefinitionValuePresentationValueOperationOptions {
+	return UpdateGroupPolicyConfigurationDefinitionValuePresentationValueOperationOptions{}
+}
+
+func (o UpdateGroupPolicyConfigurationDefinitionValuePresentationValueOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateGroupPolicyConfigurationDefinitionValuePresentationValueOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateGroupPolicyConfigurationDefinitionValuePresentationValueOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateGroupPolicyConfigurationDefinitionValuePresentationValue - Update the navigation property presentationValues in
 // deviceManagement
-func (c GroupPolicyConfigurationDefinitionValuePresentationValueClient) UpdateGroupPolicyConfigurationDefinitionValuePresentationValue(ctx context.Context, id beta.DeviceManagementGroupPolicyConfigurationIdDefinitionValueIdPresentationValueId, input beta.GroupPolicyPresentationValue) (result UpdateGroupPolicyConfigurationDefinitionValuePresentationValueOperationResponse, err error) {
+func (c GroupPolicyConfigurationDefinitionValuePresentationValueClient) UpdateGroupPolicyConfigurationDefinitionValuePresentationValue(ctx context.Context, id beta.DeviceManagementGroupPolicyConfigurationIdDefinitionValueIdPresentationValueId, input beta.GroupPolicyPresentationValue, options UpdateGroupPolicyConfigurationDefinitionValuePresentationValueOperationOptions) (result UpdateGroupPolicyConfigurationDefinitionValuePresentationValueOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

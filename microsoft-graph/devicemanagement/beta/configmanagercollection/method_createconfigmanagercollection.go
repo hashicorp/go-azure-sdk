@@ -18,15 +18,44 @@ type CreateConfigManagerCollectionOperationResponse struct {
 	Model        *beta.ConfigManagerCollection
 }
 
+type CreateConfigManagerCollectionOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateConfigManagerCollectionOperationOptions() CreateConfigManagerCollectionOperationOptions {
+	return CreateConfigManagerCollectionOperationOptions{}
+}
+
+func (o CreateConfigManagerCollectionOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateConfigManagerCollectionOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateConfigManagerCollectionOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateConfigManagerCollection - Create new navigation property to configManagerCollections for deviceManagement
-func (c ConfigManagerCollectionClient) CreateConfigManagerCollection(ctx context.Context, input beta.ConfigManagerCollection) (result CreateConfigManagerCollectionOperationResponse, err error) {
+func (c ConfigManagerCollectionClient) CreateConfigManagerCollection(ctx context.Context, input beta.ConfigManagerCollection, options CreateConfigManagerCollectionOperationOptions) (result CreateConfigManagerCollectionOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/deviceManagement/configManagerCollections",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/deviceManagement/configManagerCollections",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -118,12 +118,29 @@ func (s OpenShiftChangeRequest) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &OpenShiftChangeRequest{}
 
 func (s *OpenShiftChangeRequest) UnmarshalJSON(bytes []byte) error {
-	type alias OpenShiftChangeRequest
-	var decoded alias
+
+	var decoded struct {
+		OpenShiftId           nullable.Type[string]       `json:"openShiftId,omitempty"`
+		AssignedTo            *ScheduleChangeRequestActor `json:"assignedTo,omitempty"`
+		ManagerActionDateTime nullable.Type[string]       `json:"managerActionDateTime,omitempty"`
+		ManagerActionMessage  nullable.Type[string]       `json:"managerActionMessage,omitempty"`
+		ManagerUserId         nullable.Type[string]       `json:"managerUserId,omitempty"`
+		SenderDateTime        nullable.Type[string]       `json:"senderDateTime,omitempty"`
+		SenderMessage         nullable.Type[string]       `json:"senderMessage,omitempty"`
+		SenderUserId          nullable.Type[string]       `json:"senderUserId,omitempty"`
+		State                 *ScheduleChangeState        `json:"state,omitempty"`
+		CreatedDateTime       nullable.Type[string]       `json:"createdDateTime,omitempty"`
+		LastModifiedBy        *IdentitySet                `json:"lastModifiedBy,omitempty"`
+		LastModifiedDateTime  nullable.Type[string]       `json:"lastModifiedDateTime,omitempty"`
+		Id                    *string                     `json:"id,omitempty"`
+		ODataId               *string                     `json:"@odata.id,omitempty"`
+		ODataType             *string                     `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into OpenShiftChangeRequest: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
+	s.OpenShiftId = decoded.OpenShiftId
 	s.AssignedTo = decoded.AssignedTo
 	s.CreatedDateTime = decoded.CreatedDateTime
 	s.Id = decoded.Id
@@ -133,7 +150,6 @@ func (s *OpenShiftChangeRequest) UnmarshalJSON(bytes []byte) error {
 	s.ManagerUserId = decoded.ManagerUserId
 	s.ODataId = decoded.ODataId
 	s.ODataType = decoded.ODataType
-	s.OpenShiftId = decoded.OpenShiftId
 	s.SenderDateTime = decoded.SenderDateTime
 	s.SenderMessage = decoded.SenderMessage
 	s.SenderUserId = decoded.SenderUserId
@@ -151,5 +167,6 @@ func (s *OpenShiftChangeRequest) UnmarshalJSON(bytes []byte) error {
 		}
 		s.LastModifiedBy = &impl
 	}
+
 	return nil
 }

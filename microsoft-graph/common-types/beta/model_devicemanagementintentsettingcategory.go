@@ -86,10 +86,18 @@ func (s DeviceManagementIntentSettingCategory) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &DeviceManagementIntentSettingCategory{}
 
 func (s *DeviceManagementIntentSettingCategory) UnmarshalJSON(bytes []byte) error {
-	type alias DeviceManagementIntentSettingCategory
-	var decoded alias
+
+	var decoded struct {
+		Settings           *[]DeviceManagementSettingInstance   `json:"settings,omitempty"`
+		DisplayName        nullable.Type[string]                `json:"displayName,omitempty"`
+		HasRequiredSetting nullable.Type[bool]                  `json:"hasRequiredSetting,omitempty"`
+		SettingDefinitions *[]DeviceManagementSettingDefinition `json:"settingDefinitions,omitempty"`
+		Id                 *string                              `json:"id,omitempty"`
+		ODataId            *string                              `json:"@odata.id,omitempty"`
+		ODataType          *string                              `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into DeviceManagementIntentSettingCategory: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.DisplayName = decoded.DisplayName
@@ -136,5 +144,6 @@ func (s *DeviceManagementIntentSettingCategory) UnmarshalJSON(bytes []byte) erro
 		}
 		s.Settings = &output
 	}
+
 	return nil
 }

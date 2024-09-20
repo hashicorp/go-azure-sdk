@@ -17,15 +17,44 @@ type UpdateSecurityInformationProtectionSensitivityLabelOperationResponse struct
 	OData        *odata.OData
 }
 
+type UpdateSecurityInformationProtectionSensitivityLabelOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateSecurityInformationProtectionSensitivityLabelOperationOptions() UpdateSecurityInformationProtectionSensitivityLabelOperationOptions {
+	return UpdateSecurityInformationProtectionSensitivityLabelOperationOptions{}
+}
+
+func (o UpdateSecurityInformationProtectionSensitivityLabelOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateSecurityInformationProtectionSensitivityLabelOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateSecurityInformationProtectionSensitivityLabelOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateSecurityInformationProtectionSensitivityLabel - Update the navigation property sensitivityLabels in users
-func (c SecurityInformationProtectionSensitivityLabelClient) UpdateSecurityInformationProtectionSensitivityLabel(ctx context.Context, id beta.UserIdSecurityInformationProtectionSensitivityLabelId, input beta.SecuritySensitivityLabel) (result UpdateSecurityInformationProtectionSensitivityLabelOperationResponse, err error) {
+func (c SecurityInformationProtectionSensitivityLabelClient) UpdateSecurityInformationProtectionSensitivityLabel(ctx context.Context, id beta.UserIdSecurityInformationProtectionSensitivityLabelId, input beta.SecuritySensitivityLabel, options UpdateSecurityInformationProtectionSensitivityLabelOperationOptions) (result UpdateSecurityInformationProtectionSensitivityLabelOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

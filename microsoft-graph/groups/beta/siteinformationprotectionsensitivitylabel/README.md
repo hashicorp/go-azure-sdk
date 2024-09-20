@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/siteinformationprotectionsensitivitylabel` Documentation
 
-The `siteinformationprotectionsensitivitylabel` SDK allows for interaction with the Azure Resource Manager Service `groups` (API Version `beta`).
+The `siteinformationprotectionsensitivitylabel` SDK allows for interaction with Microsoft Graph `groups` (API Version `beta`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -15,7 +15,7 @@ import "github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/siteinform
 ### Client Initialization
 
 ```go
-client := siteinformationprotectionsensitivitylabel.NewSiteInformationProtectionSensitivityLabelClientWithBaseURI("https://management.azure.com")
+client := siteinformationprotectionsensitivitylabel.NewSiteInformationProtectionSensitivityLabelClientWithBaseURI("https://graph.microsoft.com")
 client.Client.Authorizer = authorizer
 ```
 
@@ -24,35 +24,14 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := siteinformationprotectionsensitivitylabel.NewGroupIdSiteID("groupIdValue", "siteIdValue")
+id := siteinformationprotectionsensitivitylabel.NewGroupIdSiteID("groupId", "siteId")
 
 payload := siteinformationprotectionsensitivitylabel.SensitivityLabel{
 	// ...
 }
 
 
-read, err := client.CreateSiteInformationProtectionSensitivityLabel(ctx, id, payload)
-if err != nil {
-	// handle the error
-}
-if model := read.Model; model != nil {
-	// do something with the model/response object
-}
-```
-
-
-### Example Usage: `SiteInformationProtectionSensitivityLabelClient.CreateSiteInformationProtectionSensitivityLabelEvaluate`
-
-```go
-ctx := context.TODO()
-id := siteinformationprotectionsensitivitylabel.NewGroupIdSiteID("groupIdValue", "siteIdValue")
-
-payload := siteinformationprotectionsensitivitylabel.CreateSiteInformationProtectionSensitivityLabelEvaluateRequest{
-	// ...
-}
-
-
-read, err := client.CreateSiteInformationProtectionSensitivityLabelEvaluate(ctx, id, payload)
+read, err := client.CreateSiteInformationProtectionSensitivityLabel(ctx, id, payload, siteinformationprotectionsensitivitylabel.DefaultCreateSiteInformationProtectionSensitivityLabelOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -66,9 +45,30 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := siteinformationprotectionsensitivitylabel.NewGroupIdSiteIdInformationProtectionSensitivityLabelID("groupIdValue", "siteIdValue", "sensitivityLabelIdValue")
+id := siteinformationprotectionsensitivitylabel.NewGroupIdSiteIdInformationProtectionSensitivityLabelID("groupId", "siteId", "sensitivityLabelId")
 
 read, err := client.DeleteSiteInformationProtectionSensitivityLabel(ctx, id, siteinformationprotectionsensitivitylabel.DefaultDeleteSiteInformationProtectionSensitivityLabelOperationOptions())
+if err != nil {
+	// handle the error
+}
+if model := read.Model; model != nil {
+	// do something with the model/response object
+}
+```
+
+
+### Example Usage: `SiteInformationProtectionSensitivityLabelClient.EvaluateSiteInformationProtectionSensitivityLabels`
+
+```go
+ctx := context.TODO()
+id := siteinformationprotectionsensitivitylabel.NewGroupIdSiteID("groupId", "siteId")
+
+payload := siteinformationprotectionsensitivitylabel.EvaluateSiteInformationProtectionSensitivityLabelsRequest{
+	// ...
+}
+
+
+read, err := client.EvaluateSiteInformationProtectionSensitivityLabels(ctx, id, payload, siteinformationprotectionsensitivitylabel.DefaultEvaluateSiteInformationProtectionSensitivityLabelsOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -82,7 +82,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := siteinformationprotectionsensitivitylabel.NewGroupIdSiteIdInformationProtectionSensitivityLabelID("groupIdValue", "siteIdValue", "sensitivityLabelIdValue")
+id := siteinformationprotectionsensitivitylabel.NewGroupIdSiteIdInformationProtectionSensitivityLabelID("groupId", "siteId", "sensitivityLabelId")
 
 read, err := client.GetSiteInformationProtectionSensitivityLabel(ctx, id, siteinformationprotectionsensitivitylabel.DefaultGetSiteInformationProtectionSensitivityLabelOperationOptions())
 if err != nil {
@@ -98,7 +98,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := siteinformationprotectionsensitivitylabel.NewGroupIdSiteID("groupIdValue", "siteIdValue")
+id := siteinformationprotectionsensitivitylabel.NewGroupIdSiteID("groupId", "siteId")
 
 read, err := client.GetSiteInformationProtectionSensitivityLabelsCount(ctx, id, siteinformationprotectionsensitivitylabel.DefaultGetSiteInformationProtectionSensitivityLabelsCountOperationOptions())
 if err != nil {
@@ -114,7 +114,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := siteinformationprotectionsensitivitylabel.NewGroupIdSiteID("groupIdValue", "siteIdValue")
+id := siteinformationprotectionsensitivitylabel.NewGroupIdSiteID("groupId", "siteId")
 
 // alternatively `client.ListSiteInformationProtectionSensitivityLabels(ctx, id, siteinformationprotectionsensitivitylabel.DefaultListSiteInformationProtectionSensitivityLabelsOperationOptions())` can be used to do batched pagination
 items, err := client.ListSiteInformationProtectionSensitivityLabelsComplete(ctx, id, siteinformationprotectionsensitivitylabel.DefaultListSiteInformationProtectionSensitivityLabelsOperationOptions())
@@ -131,14 +131,14 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := siteinformationprotectionsensitivitylabel.NewGroupIdSiteIdInformationProtectionSensitivityLabelID("groupIdValue", "siteIdValue", "sensitivityLabelIdValue")
+id := siteinformationprotectionsensitivitylabel.NewGroupIdSiteIdInformationProtectionSensitivityLabelID("groupId", "siteId", "sensitivityLabelId")
 
 payload := siteinformationprotectionsensitivitylabel.SensitivityLabel{
 	// ...
 }
 
 
-read, err := client.UpdateSiteInformationProtectionSensitivityLabel(ctx, id, payload)
+read, err := client.UpdateSiteInformationProtectionSensitivityLabel(ctx, id, payload, siteinformationprotectionsensitivitylabel.DefaultUpdateSiteInformationProtectionSensitivityLabelOperationOptions())
 if err != nil {
 	// handle the error
 }

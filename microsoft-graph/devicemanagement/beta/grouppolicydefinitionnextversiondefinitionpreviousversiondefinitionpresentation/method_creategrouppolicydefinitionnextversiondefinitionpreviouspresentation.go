@@ -20,16 +20,45 @@ type CreateGroupPolicyDefinitionNextVersionDefinitionPreviousPresentationOperati
 	Model        beta.GroupPolicyPresentation
 }
 
+type CreateGroupPolicyDefinitionNextVersionDefinitionPreviousPresentationOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateGroupPolicyDefinitionNextVersionDefinitionPreviousPresentationOperationOptions() CreateGroupPolicyDefinitionNextVersionDefinitionPreviousPresentationOperationOptions {
+	return CreateGroupPolicyDefinitionNextVersionDefinitionPreviousPresentationOperationOptions{}
+}
+
+func (o CreateGroupPolicyDefinitionNextVersionDefinitionPreviousPresentationOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateGroupPolicyDefinitionNextVersionDefinitionPreviousPresentationOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateGroupPolicyDefinitionNextVersionDefinitionPreviousPresentationOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateGroupPolicyDefinitionNextVersionDefinitionPreviousPresentation - Create new navigation property to
 // presentations for deviceManagement
-func (c GroupPolicyDefinitionNextVersionDefinitionPreviousVersionDefinitionPresentationClient) CreateGroupPolicyDefinitionNextVersionDefinitionPreviousPresentation(ctx context.Context, id beta.DeviceManagementGroupPolicyDefinitionId, input beta.GroupPolicyPresentation) (result CreateGroupPolicyDefinitionNextVersionDefinitionPreviousPresentationOperationResponse, err error) {
+func (c GroupPolicyDefinitionNextVersionDefinitionPreviousVersionDefinitionPresentationClient) CreateGroupPolicyDefinitionNextVersionDefinitionPreviousPresentation(ctx context.Context, id beta.DeviceManagementGroupPolicyDefinitionId, input beta.GroupPolicyPresentation, options CreateGroupPolicyDefinitionNextVersionDefinitionPreviousPresentationOperationOptions) (result CreateGroupPolicyDefinitionNextVersionDefinitionPreviousPresentationOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/nextVersionDefinition/previousVersionDefinition/presentations", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/nextVersionDefinition/previousVersionDefinition/presentations", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

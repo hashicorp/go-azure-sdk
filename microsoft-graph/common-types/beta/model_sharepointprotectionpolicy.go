@@ -106,12 +106,27 @@ func (s SharePointProtectionPolicy) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &SharePointProtectionPolicy{}
 
 func (s *SharePointProtectionPolicy) UnmarshalJSON(bytes []byte) error {
-	type alias SharePointProtectionPolicy
-	var decoded alias
+
+	var decoded struct {
+		SiteInclusionRules   *[]SiteProtectionRule   `json:"siteInclusionRules,omitempty"`
+		SiteProtectionUnits  *[]SiteProtectionUnit   `json:"siteProtectionUnits,omitempty"`
+		CreatedBy            IdentitySet             `json:"createdBy"`
+		CreatedDateTime      nullable.Type[string]   `json:"createdDateTime,omitempty"`
+		DisplayName          nullable.Type[string]   `json:"displayName,omitempty"`
+		LastModifiedBy       IdentitySet             `json:"lastModifiedBy"`
+		LastModifiedDateTime nullable.Type[string]   `json:"lastModifiedDateTime,omitempty"`
+		RetentionSettings    *[]RetentionSetting     `json:"retentionSettings,omitempty"`
+		Status               *ProtectionPolicyStatus `json:"status,omitempty"`
+		Id                   *string                 `json:"id,omitempty"`
+		ODataId              *string                 `json:"@odata.id,omitempty"`
+		ODataType            *string                 `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into SharePointProtectionPolicy: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
+	s.SiteInclusionRules = decoded.SiteInclusionRules
+	s.SiteProtectionUnits = decoded.SiteProtectionUnits
 	s.CreatedDateTime = decoded.CreatedDateTime
 	s.DisplayName = decoded.DisplayName
 	s.Id = decoded.Id
@@ -119,8 +134,6 @@ func (s *SharePointProtectionPolicy) UnmarshalJSON(bytes []byte) error {
 	s.ODataId = decoded.ODataId
 	s.ODataType = decoded.ODataType
 	s.RetentionSettings = decoded.RetentionSettings
-	s.SiteInclusionRules = decoded.SiteInclusionRules
-	s.SiteProtectionUnits = decoded.SiteProtectionUnits
 	s.Status = decoded.Status
 
 	var temp map[string]json.RawMessage
@@ -143,5 +156,6 @@ func (s *SharePointProtectionPolicy) UnmarshalJSON(bytes []byte) error {
 		}
 		s.LastModifiedBy = impl
 	}
+
 	return nil
 }

@@ -18,16 +18,45 @@ type CreateComanagedDeviceBulkReprovisionCloudPCOperationResponse struct {
 	Model        *beta.CloudPCBulkRemoteActionResult
 }
 
+type CreateComanagedDeviceBulkReprovisionCloudPCOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateComanagedDeviceBulkReprovisionCloudPCOperationOptions() CreateComanagedDeviceBulkReprovisionCloudPCOperationOptions {
+	return CreateComanagedDeviceBulkReprovisionCloudPCOperationOptions{}
+}
+
+func (o CreateComanagedDeviceBulkReprovisionCloudPCOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateComanagedDeviceBulkReprovisionCloudPCOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateComanagedDeviceBulkReprovisionCloudPCOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateComanagedDeviceBulkReprovisionCloudPC - Invoke action bulkReprovisionCloudPc. Bulk reprovision a set of Cloud
 // PC devices with Intune managed device IDs.
-func (c ComanagedDeviceClient) CreateComanagedDeviceBulkReprovisionCloudPC(ctx context.Context, input CreateComanagedDeviceBulkReprovisionCloudPCRequest) (result CreateComanagedDeviceBulkReprovisionCloudPCOperationResponse, err error) {
+func (c ComanagedDeviceClient) CreateComanagedDeviceBulkReprovisionCloudPC(ctx context.Context, input CreateComanagedDeviceBulkReprovisionCloudPCRequest, options CreateComanagedDeviceBulkReprovisionCloudPCOperationOptions) (result CreateComanagedDeviceBulkReprovisionCloudPCOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/deviceManagement/comanagedDevices/bulkReprovisionCloudPc",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/deviceManagement/comanagedDevices/bulkReprovisionCloudPc",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

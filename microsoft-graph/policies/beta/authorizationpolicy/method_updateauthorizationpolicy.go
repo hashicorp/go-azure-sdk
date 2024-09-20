@@ -17,15 +17,44 @@ type UpdateAuthorizationPolicyOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateAuthorizationPolicyOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateAuthorizationPolicyOperationOptions() UpdateAuthorizationPolicyOperationOptions {
+	return UpdateAuthorizationPolicyOperationOptions{}
+}
+
+func (o UpdateAuthorizationPolicyOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateAuthorizationPolicyOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateAuthorizationPolicyOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateAuthorizationPolicy - Update the navigation property authorizationPolicy in policies
-func (c AuthorizationPolicyClient) UpdateAuthorizationPolicy(ctx context.Context, id beta.PolicyAuthorizationPolicyId, input beta.AuthorizationPolicy) (result UpdateAuthorizationPolicyOperationResponse, err error) {
+func (c AuthorizationPolicyClient) UpdateAuthorizationPolicy(ctx context.Context, id beta.PolicyAuthorizationPolicyId, input beta.AuthorizationPolicy, options UpdateAuthorizationPolicyOperationOptions) (result UpdateAuthorizationPolicyOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

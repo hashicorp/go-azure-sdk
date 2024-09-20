@@ -17,15 +17,44 @@ type UpdateGroupPolicyConfigurationAssignmentOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateGroupPolicyConfigurationAssignmentOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateGroupPolicyConfigurationAssignmentOperationOptions() UpdateGroupPolicyConfigurationAssignmentOperationOptions {
+	return UpdateGroupPolicyConfigurationAssignmentOperationOptions{}
+}
+
+func (o UpdateGroupPolicyConfigurationAssignmentOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateGroupPolicyConfigurationAssignmentOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateGroupPolicyConfigurationAssignmentOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateGroupPolicyConfigurationAssignment - Update the navigation property assignments in deviceManagement
-func (c GroupPolicyConfigurationAssignmentClient) UpdateGroupPolicyConfigurationAssignment(ctx context.Context, id beta.DeviceManagementGroupPolicyConfigurationIdAssignmentId, input beta.GroupPolicyConfigurationAssignment) (result UpdateGroupPolicyConfigurationAssignmentOperationResponse, err error) {
+func (c GroupPolicyConfigurationAssignmentClient) UpdateGroupPolicyConfigurationAssignment(ctx context.Context, id beta.DeviceManagementGroupPolicyConfigurationIdAssignmentId, input beta.GroupPolicyConfigurationAssignment, options UpdateGroupPolicyConfigurationAssignmentOperationOptions) (result UpdateGroupPolicyConfigurationAssignmentOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &DeviceManagementDeviceConfigurationProfileId{}
 
 func TestNewDeviceManagementDeviceConfigurationProfileID(t *testing.T) {
-	id := NewDeviceManagementDeviceConfigurationProfileID("deviceConfigurationProfileIdValue")
+	id := NewDeviceManagementDeviceConfigurationProfileID("deviceConfigurationProfileId")
 
-	if id.DeviceConfigurationProfileId != "deviceConfigurationProfileIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DeviceConfigurationProfileId'", id.DeviceConfigurationProfileId, "deviceConfigurationProfileIdValue")
+	if id.DeviceConfigurationProfileId != "deviceConfigurationProfileId" {
+		t.Fatalf("Expected %q but got %q for Segment 'DeviceConfigurationProfileId'", id.DeviceConfigurationProfileId, "deviceConfigurationProfileId")
 	}
 }
 
 func TestFormatDeviceManagementDeviceConfigurationProfileID(t *testing.T) {
-	actual := NewDeviceManagementDeviceConfigurationProfileID("deviceConfigurationProfileIdValue").ID()
-	expected := "/deviceManagement/deviceConfigurationProfiles/deviceConfigurationProfileIdValue"
+	actual := NewDeviceManagementDeviceConfigurationProfileID("deviceConfigurationProfileId").ID()
+	expected := "/deviceManagement/deviceConfigurationProfiles/deviceConfigurationProfileId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -50,14 +50,14 @@ func TestParseDeviceManagementDeviceConfigurationProfileID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/deviceConfigurationProfiles/deviceConfigurationProfileIdValue",
+			Input: "/deviceManagement/deviceConfigurationProfiles/deviceConfigurationProfileId",
 			Expected: &DeviceManagementDeviceConfigurationProfileId{
-				DeviceConfigurationProfileId: "deviceConfigurationProfileIdValue",
+				DeviceConfigurationProfileId: "deviceConfigurationProfileId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/deviceConfigurationProfiles/deviceConfigurationProfileIdValue/extra",
+			Input: "/deviceManagement/deviceConfigurationProfiles/deviceConfigurationProfileId/extra",
 			Error: true,
 		},
 	}
@@ -116,26 +116,26 @@ func TestParseDeviceManagementDeviceConfigurationProfileIDInsensitively(t *testi
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/deviceConfigurationProfiles/deviceConfigurationProfileIdValue",
+			Input: "/deviceManagement/deviceConfigurationProfiles/deviceConfigurationProfileId",
 			Expected: &DeviceManagementDeviceConfigurationProfileId{
-				DeviceConfigurationProfileId: "deviceConfigurationProfileIdValue",
+				DeviceConfigurationProfileId: "deviceConfigurationProfileId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/deviceConfigurationProfiles/deviceConfigurationProfileIdValue/extra",
+			Input: "/deviceManagement/deviceConfigurationProfiles/deviceConfigurationProfileId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/dEvIcEcOnFiGuRaTiOnPrOfIlEs/dEvIcEcOnFiGuRaTiOnPrOfIlEiDvAlUe",
+			Input: "/dEvIcEmAnAgEmEnT/dEvIcEcOnFiGuRaTiOnPrOfIlEs/dEvIcEcOnFiGuRaTiOnPrOfIlEiD",
 			Expected: &DeviceManagementDeviceConfigurationProfileId{
-				DeviceConfigurationProfileId: "dEvIcEcOnFiGuRaTiOnPrOfIlEiDvAlUe",
+				DeviceConfigurationProfileId: "dEvIcEcOnFiGuRaTiOnPrOfIlEiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/dEvIcEcOnFiGuRaTiOnPrOfIlEs/dEvIcEcOnFiGuRaTiOnPrOfIlEiDvAlUe/extra",
+			Input: "/dEvIcEmAnAgEmEnT/dEvIcEcOnFiGuRaTiOnPrOfIlEs/dEvIcEcOnFiGuRaTiOnPrOfIlEiD/extra",
 			Error: true,
 		},
 	}

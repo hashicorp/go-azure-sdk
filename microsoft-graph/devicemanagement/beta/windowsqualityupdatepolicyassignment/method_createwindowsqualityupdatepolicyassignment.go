@@ -19,15 +19,44 @@ type CreateWindowsQualityUpdatePolicyAssignmentOperationResponse struct {
 	Model        *beta.WindowsQualityUpdatePolicyAssignment
 }
 
+type CreateWindowsQualityUpdatePolicyAssignmentOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateWindowsQualityUpdatePolicyAssignmentOperationOptions() CreateWindowsQualityUpdatePolicyAssignmentOperationOptions {
+	return CreateWindowsQualityUpdatePolicyAssignmentOperationOptions{}
+}
+
+func (o CreateWindowsQualityUpdatePolicyAssignmentOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateWindowsQualityUpdatePolicyAssignmentOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateWindowsQualityUpdatePolicyAssignmentOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateWindowsQualityUpdatePolicyAssignment - Create new navigation property to assignments for deviceManagement
-func (c WindowsQualityUpdatePolicyAssignmentClient) CreateWindowsQualityUpdatePolicyAssignment(ctx context.Context, id beta.DeviceManagementWindowsQualityUpdatePolicyId, input beta.WindowsQualityUpdatePolicyAssignment) (result CreateWindowsQualityUpdatePolicyAssignmentOperationResponse, err error) {
+func (c WindowsQualityUpdatePolicyAssignmentClient) CreateWindowsQualityUpdatePolicyAssignment(ctx context.Context, id beta.DeviceManagementWindowsQualityUpdatePolicyId, input beta.WindowsQualityUpdatePolicyAssignment, options CreateWindowsQualityUpdatePolicyAssignmentOperationOptions) (result CreateWindowsQualityUpdatePolicyAssignmentOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/assignments", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/assignments", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

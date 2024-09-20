@@ -99,10 +99,17 @@ func (s BaseDeviceManagementSettingCategoryImpl) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &BaseDeviceManagementSettingCategoryImpl{}
 
 func (s *BaseDeviceManagementSettingCategoryImpl) UnmarshalJSON(bytes []byte) error {
-	type alias BaseDeviceManagementSettingCategoryImpl
-	var decoded alias
+
+	var decoded struct {
+		DisplayName        nullable.Type[string]                `json:"displayName,omitempty"`
+		HasRequiredSetting nullable.Type[bool]                  `json:"hasRequiredSetting,omitempty"`
+		SettingDefinitions *[]DeviceManagementSettingDefinition `json:"settingDefinitions,omitempty"`
+		Id                 *string                              `json:"id,omitempty"`
+		ODataId            *string                              `json:"@odata.id,omitempty"`
+		ODataType          *string                              `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into BaseDeviceManagementSettingCategoryImpl: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.DisplayName = decoded.DisplayName
@@ -132,6 +139,7 @@ func (s *BaseDeviceManagementSettingCategoryImpl) UnmarshalJSON(bytes []byte) er
 		}
 		s.SettingDefinitions = &output
 	}
+
 	return nil
 }
 
@@ -145,9 +153,9 @@ func UnmarshalDeviceManagementSettingCategoryImplementation(input []byte) (Devic
 		return nil, fmt.Errorf("unmarshaling DeviceManagementSettingCategory into map[string]interface: %+v", err)
 	}
 
-	value, ok := temp["@odata.type"].(string)
-	if !ok {
-		return nil, nil
+	var value string
+	if v, ok := temp["@odata.type"]; ok {
+		value = fmt.Sprintf("%v", v)
 	}
 
 	if strings.EqualFold(value, "#microsoft.graph.deviceManagementIntentSettingCategory") {

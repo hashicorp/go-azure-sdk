@@ -19,7 +19,8 @@ type DeleteCompliancePolicyScheduledActionsForRuleOperationResponse struct {
 }
 
 type DeleteCompliancePolicyScheduledActionsForRuleOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteCompliancePolicyScheduledActionsForRuleOperationOptions() DeleteCompliancePolicyScheduledActionsForRuleOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteCompliancePolicyScheduledActionsForRuleOperationOptions) ToHeaders
 
 func (o DeleteCompliancePolicyScheduledActionsForRuleOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

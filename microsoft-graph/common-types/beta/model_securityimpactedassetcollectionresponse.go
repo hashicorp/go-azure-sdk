@@ -62,10 +62,15 @@ func (s SecurityImpactedAssetCollectionResponse) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &SecurityImpactedAssetCollectionResponse{}
 
 func (s *SecurityImpactedAssetCollectionResponse) UnmarshalJSON(bytes []byte) error {
-	type alias SecurityImpactedAssetCollectionResponse
-	var decoded alias
+
+	var decoded struct {
+		Value         *[]SecurityImpactedAsset `json:"value,omitempty"`
+		ODataId       *string                  `json:"@odata.id,omitempty"`
+		ODataNextLink nullable.Type[string]    `json:"@odata.nextLink,omitempty"`
+		ODataType     *string                  `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into SecurityImpactedAssetCollectionResponse: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.ODataId = decoded.ODataId
@@ -93,5 +98,6 @@ func (s *SecurityImpactedAssetCollectionResponse) UnmarshalJSON(bytes []byte) er
 		}
 		s.Value = &output
 	}
+
 	return nil
 }

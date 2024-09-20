@@ -19,8 +19,9 @@ type GetLifecycleWorkflowDeletedItemWorkflowRunUserProcessingResultTaskProcessin
 }
 
 type GetLifecycleWorkflowDeletedItemWorkflowRunUserProcessingResultTaskProcessingResultOperationOptions struct {
-	Expand *odata.Expand
-	Select *[]string
+	Expand   *odata.Expand
+	Metadata *odata.Metadata
+	Select   *[]string
 }
 
 func DefaultGetLifecycleWorkflowDeletedItemWorkflowRunUserProcessingResultTaskProcessingResultOperationOptions() GetLifecycleWorkflowDeletedItemWorkflowRunUserProcessingResultTaskProcessingResultOperationOptions {
@@ -37,6 +38,9 @@ func (o GetLifecycleWorkflowDeletedItemWorkflowRunUserProcessingResultTaskProces
 	out := odata.Query{}
 	if o.Expand != nil {
 		out.Expand = *o.Expand
+	}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
 	}
 	if o.Select != nil {
 		out.Select = *o.Select

@@ -19,15 +19,44 @@ type CreateSiteListItemPermissionOperationResponse struct {
 	Model        *beta.Permission
 }
 
+type CreateSiteListItemPermissionOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateSiteListItemPermissionOperationOptions() CreateSiteListItemPermissionOperationOptions {
+	return CreateSiteListItemPermissionOperationOptions{}
+}
+
+func (o CreateSiteListItemPermissionOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateSiteListItemPermissionOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateSiteListItemPermissionOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateSiteListItemPermission - Create new navigation property to permissions for groups
-func (c SiteListItemPermissionClient) CreateSiteListItemPermission(ctx context.Context, id beta.GroupIdSiteIdListIdItemId, input beta.Permission) (result CreateSiteListItemPermissionOperationResponse, err error) {
+func (c SiteListItemPermissionClient) CreateSiteListItemPermission(ctx context.Context, id beta.GroupIdSiteIdListIdItemId, input beta.Permission, options CreateSiteListItemPermissionOperationOptions) (result CreateSiteListItemPermissionOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/permissions", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/permissions", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

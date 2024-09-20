@@ -18,15 +18,44 @@ type AssignIntuneBrandingProfileOperationResponse struct {
 	OData        *odata.OData
 }
 
+type AssignIntuneBrandingProfileOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultAssignIntuneBrandingProfileOperationOptions() AssignIntuneBrandingProfileOperationOptions {
+	return AssignIntuneBrandingProfileOperationOptions{}
+}
+
+func (o AssignIntuneBrandingProfileOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o AssignIntuneBrandingProfileOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o AssignIntuneBrandingProfileOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // AssignIntuneBrandingProfile - Invoke action assign
-func (c IntuneBrandingProfileClient) AssignIntuneBrandingProfile(ctx context.Context, id beta.DeviceManagementIntuneBrandingProfileId, input AssignIntuneBrandingProfileRequest) (result AssignIntuneBrandingProfileOperationResponse, err error) {
+func (c IntuneBrandingProfileClient) AssignIntuneBrandingProfile(ctx context.Context, id beta.DeviceManagementIntuneBrandingProfileId, input AssignIntuneBrandingProfileRequest, options AssignIntuneBrandingProfileOperationOptions) (result AssignIntuneBrandingProfileOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/assign", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/assign", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

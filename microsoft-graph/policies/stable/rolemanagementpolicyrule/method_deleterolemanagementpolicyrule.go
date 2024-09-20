@@ -19,7 +19,8 @@ type DeleteRoleManagementPolicyRuleOperationResponse struct {
 }
 
 type DeleteRoleManagementPolicyRuleOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteRoleManagementPolicyRuleOperationOptions() DeleteRoleManagementPolicyRuleOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteRoleManagementPolicyRuleOperationOptions) ToHeaders() *client.Head
 
 func (o DeleteRoleManagementPolicyRuleOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

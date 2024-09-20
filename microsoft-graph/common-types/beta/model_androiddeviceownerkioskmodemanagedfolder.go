@@ -30,10 +30,16 @@ type AndroidDeviceOwnerKioskModeManagedFolder struct {
 var _ json.Unmarshaler = &AndroidDeviceOwnerKioskModeManagedFolder{}
 
 func (s *AndroidDeviceOwnerKioskModeManagedFolder) UnmarshalJSON(bytes []byte) error {
-	type alias AndroidDeviceOwnerKioskModeManagedFolder
-	var decoded alias
+
+	var decoded struct {
+		FolderIdentifier nullable.Type[string]                    `json:"folderIdentifier,omitempty"`
+		FolderName       *string                                  `json:"folderName,omitempty"`
+		Items            *[]AndroidDeviceOwnerKioskModeFolderItem `json:"items,omitempty"`
+		ODataId          *string                                  `json:"@odata.id,omitempty"`
+		ODataType        *string                                  `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into AndroidDeviceOwnerKioskModeManagedFolder: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.FolderIdentifier = decoded.FolderIdentifier
@@ -62,5 +68,6 @@ func (s *AndroidDeviceOwnerKioskModeManagedFolder) UnmarshalJSON(bytes []byte) e
 		}
 		s.Items = &output
 	}
+
 	return nil
 }

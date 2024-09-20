@@ -19,15 +19,44 @@ type CreateTemplateOperationResponse struct {
 	Model        beta.DeviceManagementTemplate
 }
 
+type CreateTemplateOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateTemplateOperationOptions() CreateTemplateOperationOptions {
+	return CreateTemplateOperationOptions{}
+}
+
+func (o CreateTemplateOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateTemplateOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateTemplateOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateTemplate - Create new navigation property to templates for deviceManagement
-func (c TemplateClient) CreateTemplate(ctx context.Context, input beta.DeviceManagementTemplate) (result CreateTemplateOperationResponse, err error) {
+func (c TemplateClient) CreateTemplate(ctx context.Context, input beta.DeviceManagementTemplate, options CreateTemplateOperationOptions) (result CreateTemplateOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/deviceManagement/templates",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/deviceManagement/templates",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

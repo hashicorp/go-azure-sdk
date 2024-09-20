@@ -19,7 +19,8 @@ type DeleteEntitlementManagementResourceRequestCatalogResourceScopeResourceOpera
 }
 
 type DeleteEntitlementManagementResourceRequestCatalogResourceScopeResourceOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteEntitlementManagementResourceRequestCatalogResourceScopeResourceOperationOptions() DeleteEntitlementManagementResourceRequestCatalogResourceScopeResourceOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteEntitlementManagementResourceRequestCatalogResourceScopeResourceOp
 
 func (o DeleteEntitlementManagementResourceRequestCatalogResourceScopeResourceOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 
@@ -48,7 +51,7 @@ func (o DeleteEntitlementManagementResourceRequestCatalogResourceScopeResourceOp
 
 // DeleteEntitlementManagementResourceRequestCatalogResourceScopeResource - Delete navigation property resource for
 // identityGovernance
-func (c EntitlementManagementResourceRequestCatalogResourceScopeResourceClient) DeleteEntitlementManagementResourceRequestCatalogResourceScopeResource(ctx context.Context, id stable.IdentityGovernanceEntitlementManagementResourceRequestIdCatalogResourceScopeId, options DeleteEntitlementManagementResourceRequestCatalogResourceScopeResourceOperationOptions) (result DeleteEntitlementManagementResourceRequestCatalogResourceScopeResourceOperationResponse, err error) {
+func (c EntitlementManagementResourceRequestCatalogResourceScopeResourceClient) DeleteEntitlementManagementResourceRequestCatalogResourceScopeResource(ctx context.Context, id stable.IdentityGovernanceEntitlementManagementResourceRequestIdCatalogResourceIdScopeId, options DeleteEntitlementManagementResourceRequestCatalogResourceScopeResourceOperationOptions) (result DeleteEntitlementManagementResourceRequestCatalogResourceScopeResourceOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{

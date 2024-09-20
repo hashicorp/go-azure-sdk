@@ -78,18 +78,26 @@ func (s MacOSCredentialSingleSignOnExtension) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &MacOSCredentialSingleSignOnExtension{}
 
 func (s *MacOSCredentialSingleSignOnExtension) UnmarshalJSON(bytes []byte) error {
-	type alias MacOSCredentialSingleSignOnExtension
-	var decoded alias
+
+	var decoded struct {
+		Configurations      *[]KeyTypedValuePair `json:"configurations,omitempty"`
+		Domains             *[]string            `json:"domains,omitempty"`
+		ExtensionIdentifier *string              `json:"extensionIdentifier,omitempty"`
+		Realm               *string              `json:"realm,omitempty"`
+		TeamIdentifier      *string              `json:"teamIdentifier,omitempty"`
+		ODataId             *string              `json:"@odata.id,omitempty"`
+		ODataType           *string              `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into MacOSCredentialSingleSignOnExtension: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.Domains = decoded.Domains
 	s.ExtensionIdentifier = decoded.ExtensionIdentifier
-	s.ODataId = decoded.ODataId
-	s.ODataType = decoded.ODataType
 	s.Realm = decoded.Realm
 	s.TeamIdentifier = decoded.TeamIdentifier
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -112,5 +120,6 @@ func (s *MacOSCredentialSingleSignOnExtension) UnmarshalJSON(bytes []byte) error
 		}
 		s.Configurations = &output
 	}
+
 	return nil
 }

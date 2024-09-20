@@ -100,9 +100,9 @@ func (id IdentityGovernanceLifecycleWorkflowWorkflowTemplateIdTaskId) Segments()
 		resourceids.StaticSegment("identityGovernance", "identityGovernance", "identityGovernance"),
 		resourceids.StaticSegment("lifecycleWorkflows", "lifecycleWorkflows", "lifecycleWorkflows"),
 		resourceids.StaticSegment("workflowTemplates", "workflowTemplates", "workflowTemplates"),
-		resourceids.UserSpecifiedSegment("workflowTemplateId", "workflowTemplateIdValue"),
+		resourceids.UserSpecifiedSegment("workflowTemplateId", "workflowTemplateId"),
 		resourceids.StaticSegment("tasks", "tasks", "tasks"),
-		resourceids.UserSpecifiedSegment("taskId", "taskIdValue"),
+		resourceids.UserSpecifiedSegment("taskId", "taskId"),
 	}
 }
 

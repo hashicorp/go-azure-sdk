@@ -17,16 +17,45 @@ type CreateApplePushNotificationCertificateGenerateSigningRequestOperationRespon
 	Model        *CreateApplePushNotificationCertificateGenerateSigningRequestResult
 }
 
+type CreateApplePushNotificationCertificateGenerateSigningRequestOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateApplePushNotificationCertificateGenerateSigningRequestOperationOptions() CreateApplePushNotificationCertificateGenerateSigningRequestOperationOptions {
+	return CreateApplePushNotificationCertificateGenerateSigningRequestOperationOptions{}
+}
+
+func (o CreateApplePushNotificationCertificateGenerateSigningRequestOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateApplePushNotificationCertificateGenerateSigningRequestOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateApplePushNotificationCertificateGenerateSigningRequestOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateApplePushNotificationCertificateGenerateSigningRequest - Invoke action
 // generateApplePushNotificationCertificateSigningRequest. Download Apple push notification certificate signing request
-func (c ApplePushNotificationCertificateClient) CreateApplePushNotificationCertificateGenerateSigningRequest(ctx context.Context) (result CreateApplePushNotificationCertificateGenerateSigningRequestOperationResponse, err error) {
+func (c ApplePushNotificationCertificateClient) CreateApplePushNotificationCertificateGenerateSigningRequest(ctx context.Context, options CreateApplePushNotificationCertificateGenerateSigningRequestOperationOptions) (result CreateApplePushNotificationCertificateGenerateSigningRequestOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/deviceManagement/applePushNotificationCertificate/generateApplePushNotificationCertificateSigningRequest",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/deviceManagement/applePushNotificationCertificate/generateApplePushNotificationCertificateSigningRequest",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

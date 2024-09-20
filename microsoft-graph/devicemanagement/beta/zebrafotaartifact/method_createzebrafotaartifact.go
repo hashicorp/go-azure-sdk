@@ -18,15 +18,44 @@ type CreateZebraFotaArtifactOperationResponse struct {
 	Model        *beta.ZebraFotaArtifact
 }
 
+type CreateZebraFotaArtifactOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateZebraFotaArtifactOperationOptions() CreateZebraFotaArtifactOperationOptions {
+	return CreateZebraFotaArtifactOperationOptions{}
+}
+
+func (o CreateZebraFotaArtifactOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateZebraFotaArtifactOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateZebraFotaArtifactOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateZebraFotaArtifact - Create new navigation property to zebraFotaArtifacts for deviceManagement
-func (c ZebraFotaArtifactClient) CreateZebraFotaArtifact(ctx context.Context, input beta.ZebraFotaArtifact) (result CreateZebraFotaArtifactOperationResponse, err error) {
+func (c ZebraFotaArtifactClient) CreateZebraFotaArtifact(ctx context.Context, input beta.ZebraFotaArtifact, options CreateZebraFotaArtifactOperationOptions) (result CreateZebraFotaArtifactOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/deviceManagement/zebraFotaArtifacts",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/deviceManagement/zebraFotaArtifacts",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

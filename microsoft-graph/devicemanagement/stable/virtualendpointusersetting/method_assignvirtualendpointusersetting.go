@@ -18,15 +18,44 @@ type AssignVirtualEndpointUserSettingOperationResponse struct {
 	OData        *odata.OData
 }
 
+type AssignVirtualEndpointUserSettingOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultAssignVirtualEndpointUserSettingOperationOptions() AssignVirtualEndpointUserSettingOperationOptions {
+	return AssignVirtualEndpointUserSettingOperationOptions{}
+}
+
+func (o AssignVirtualEndpointUserSettingOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o AssignVirtualEndpointUserSettingOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o AssignVirtualEndpointUserSettingOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // AssignVirtualEndpointUserSetting - Invoke action assign. Assign a cloudPcUserSetting to user groups.
-func (c VirtualEndpointUserSettingClient) AssignVirtualEndpointUserSetting(ctx context.Context, id stable.DeviceManagementVirtualEndpointUserSettingId, input AssignVirtualEndpointUserSettingRequest) (result AssignVirtualEndpointUserSettingOperationResponse, err error) {
+func (c VirtualEndpointUserSettingClient) AssignVirtualEndpointUserSetting(ctx context.Context, id stable.DeviceManagementVirtualEndpointUserSettingId, input AssignVirtualEndpointUserSettingRequest, options AssignVirtualEndpointUserSettingOperationOptions) (result AssignVirtualEndpointUserSettingOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/assign", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/assign", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

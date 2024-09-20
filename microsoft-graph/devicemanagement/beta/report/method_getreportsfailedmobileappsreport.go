@@ -17,15 +17,44 @@ type GetReportsFailedMobileAppsReportOperationResponse struct {
 	Model        *[]byte
 }
 
+type GetReportsFailedMobileAppsReportOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultGetReportsFailedMobileAppsReportOperationOptions() GetReportsFailedMobileAppsReportOperationOptions {
+	return GetReportsFailedMobileAppsReportOperationOptions{}
+}
+
+func (o GetReportsFailedMobileAppsReportOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o GetReportsFailedMobileAppsReportOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o GetReportsFailedMobileAppsReportOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // GetReportsFailedMobileAppsReport - Invoke action getFailedMobileAppsReport
-func (c ReportClient) GetReportsFailedMobileAppsReport(ctx context.Context, input GetReportsFailedMobileAppsReportRequest) (result GetReportsFailedMobileAppsReportOperationResponse, err error) {
+func (c ReportClient) GetReportsFailedMobileAppsReport(ctx context.Context, input GetReportsFailedMobileAppsReportRequest, options GetReportsFailedMobileAppsReportOperationOptions) (result GetReportsFailedMobileAppsReportOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/octet-stream",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/deviceManagement/reports/getFailedMobileAppsReport",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/deviceManagement/reports/getFailedMobileAppsReport",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &PolicyRoleManagementPolicyAssignmentId{}
 
 func TestNewPolicyRoleManagementPolicyAssignmentID(t *testing.T) {
-	id := NewPolicyRoleManagementPolicyAssignmentID("unifiedRoleManagementPolicyAssignmentIdValue")
+	id := NewPolicyRoleManagementPolicyAssignmentID("unifiedRoleManagementPolicyAssignmentId")
 
-	if id.UnifiedRoleManagementPolicyAssignmentId != "unifiedRoleManagementPolicyAssignmentIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'UnifiedRoleManagementPolicyAssignmentId'", id.UnifiedRoleManagementPolicyAssignmentId, "unifiedRoleManagementPolicyAssignmentIdValue")
+	if id.UnifiedRoleManagementPolicyAssignmentId != "unifiedRoleManagementPolicyAssignmentId" {
+		t.Fatalf("Expected %q but got %q for Segment 'UnifiedRoleManagementPolicyAssignmentId'", id.UnifiedRoleManagementPolicyAssignmentId, "unifiedRoleManagementPolicyAssignmentId")
 	}
 }
 
 func TestFormatPolicyRoleManagementPolicyAssignmentID(t *testing.T) {
-	actual := NewPolicyRoleManagementPolicyAssignmentID("unifiedRoleManagementPolicyAssignmentIdValue").ID()
-	expected := "/policies/roleManagementPolicyAssignments/unifiedRoleManagementPolicyAssignmentIdValue"
+	actual := NewPolicyRoleManagementPolicyAssignmentID("unifiedRoleManagementPolicyAssignmentId").ID()
+	expected := "/policies/roleManagementPolicyAssignments/unifiedRoleManagementPolicyAssignmentId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -50,14 +50,14 @@ func TestParsePolicyRoleManagementPolicyAssignmentID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/policies/roleManagementPolicyAssignments/unifiedRoleManagementPolicyAssignmentIdValue",
+			Input: "/policies/roleManagementPolicyAssignments/unifiedRoleManagementPolicyAssignmentId",
 			Expected: &PolicyRoleManagementPolicyAssignmentId{
-				UnifiedRoleManagementPolicyAssignmentId: "unifiedRoleManagementPolicyAssignmentIdValue",
+				UnifiedRoleManagementPolicyAssignmentId: "unifiedRoleManagementPolicyAssignmentId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/policies/roleManagementPolicyAssignments/unifiedRoleManagementPolicyAssignmentIdValue/extra",
+			Input: "/policies/roleManagementPolicyAssignments/unifiedRoleManagementPolicyAssignmentId/extra",
 			Error: true,
 		},
 	}
@@ -116,26 +116,26 @@ func TestParsePolicyRoleManagementPolicyAssignmentIDInsensitively(t *testing.T) 
 		},
 		{
 			// Valid URI
-			Input: "/policies/roleManagementPolicyAssignments/unifiedRoleManagementPolicyAssignmentIdValue",
+			Input: "/policies/roleManagementPolicyAssignments/unifiedRoleManagementPolicyAssignmentId",
 			Expected: &PolicyRoleManagementPolicyAssignmentId{
-				UnifiedRoleManagementPolicyAssignmentId: "unifiedRoleManagementPolicyAssignmentIdValue",
+				UnifiedRoleManagementPolicyAssignmentId: "unifiedRoleManagementPolicyAssignmentId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/policies/roleManagementPolicyAssignments/unifiedRoleManagementPolicyAssignmentIdValue/extra",
+			Input: "/policies/roleManagementPolicyAssignments/unifiedRoleManagementPolicyAssignmentId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/pOlIcIeS/rOlEmAnAgEmEnTpOlIcYaSsIgNmEnTs/uNiFiEdRoLeMaNaGeMeNtPoLiCyAsSiGnMeNtIdVaLuE",
+			Input: "/pOlIcIeS/rOlEmAnAgEmEnTpOlIcYaSsIgNmEnTs/uNiFiEdRoLeMaNaGeMeNtPoLiCyAsSiGnMeNtId",
 			Expected: &PolicyRoleManagementPolicyAssignmentId{
-				UnifiedRoleManagementPolicyAssignmentId: "uNiFiEdRoLeMaNaGeMeNtPoLiCyAsSiGnMeNtIdVaLuE",
+				UnifiedRoleManagementPolicyAssignmentId: "uNiFiEdRoLeMaNaGeMeNtPoLiCyAsSiGnMeNtId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/pOlIcIeS/rOlEmAnAgEmEnTpOlIcYaSsIgNmEnTs/uNiFiEdRoLeMaNaGeMeNtPoLiCyAsSiGnMeNtIdVaLuE/extra",
+			Input: "/pOlIcIeS/rOlEmAnAgEmEnTpOlIcYaSsIgNmEnTs/uNiFiEdRoLeMaNaGeMeNtPoLiCyAsSiGnMeNtId/extra",
 			Error: true,
 		},
 	}

@@ -18,15 +18,44 @@ type CreateDeviceConfigurationAssignedAccessMultiModeProfileOperationResponse st
 	OData        *odata.OData
 }
 
+type CreateDeviceConfigurationAssignedAccessMultiModeProfileOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateDeviceConfigurationAssignedAccessMultiModeProfileOperationOptions() CreateDeviceConfigurationAssignedAccessMultiModeProfileOperationOptions {
+	return CreateDeviceConfigurationAssignedAccessMultiModeProfileOperationOptions{}
+}
+
+func (o CreateDeviceConfigurationAssignedAccessMultiModeProfileOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateDeviceConfigurationAssignedAccessMultiModeProfileOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateDeviceConfigurationAssignedAccessMultiModeProfileOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateDeviceConfigurationAssignedAccessMultiModeProfile - Invoke action assignedAccessMultiModeProfiles
-func (c DeviceConfigurationClient) CreateDeviceConfigurationAssignedAccessMultiModeProfile(ctx context.Context, id beta.DeviceManagementDeviceConfigurationId, input CreateDeviceConfigurationAssignedAccessMultiModeProfileRequest) (result CreateDeviceConfigurationAssignedAccessMultiModeProfileOperationResponse, err error) {
+func (c DeviceConfigurationClient) CreateDeviceConfigurationAssignedAccessMultiModeProfile(ctx context.Context, id beta.DeviceManagementDeviceConfigurationId, input CreateDeviceConfigurationAssignedAccessMultiModeProfileRequest, options CreateDeviceConfigurationAssignedAccessMultiModeProfileOperationOptions) (result CreateDeviceConfigurationAssignedAccessMultiModeProfileOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/assignedAccessMultiModeProfiles", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/assignedAccessMultiModeProfiles", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

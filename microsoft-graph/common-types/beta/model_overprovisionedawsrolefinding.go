@@ -97,10 +97,19 @@ func (s OverprovisionedAwsRoleFinding) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &OverprovisionedAwsRoleFinding{}
 
 func (s *OverprovisionedAwsRoleFinding) UnmarshalJSON(bytes []byte) error {
-	type alias OverprovisionedAwsRoleFinding
-	var decoded alias
+
+	var decoded struct {
+		ActionSummary         *ActionSummary               `json:"actionSummary,omitempty"`
+		Identity              *AuthorizationSystemIdentity `json:"identity,omitempty"`
+		IdentityDetails       *IdentityDetails             `json:"identityDetails,omitempty"`
+		PermissionsCreepIndex *PermissionsCreepIndex       `json:"permissionsCreepIndex,omitempty"`
+		CreatedDateTime       *string                      `json:"createdDateTime,omitempty"`
+		Id                    *string                      `json:"id,omitempty"`
+		ODataId               *string                      `json:"@odata.id,omitempty"`
+		ODataType             *string                      `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into OverprovisionedAwsRoleFinding: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.ActionSummary = decoded.ActionSummary
@@ -123,5 +132,6 @@ func (s *OverprovisionedAwsRoleFinding) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Identity = &impl
 	}
+
 	return nil
 }

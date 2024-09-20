@@ -18,15 +18,44 @@ type CreateAndroidForWorkEnrollmentProfileTokenOperationResponse struct {
 	OData        *odata.OData
 }
 
+type CreateAndroidForWorkEnrollmentProfileTokenOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateAndroidForWorkEnrollmentProfileTokenOperationOptions() CreateAndroidForWorkEnrollmentProfileTokenOperationOptions {
+	return CreateAndroidForWorkEnrollmentProfileTokenOperationOptions{}
+}
+
+func (o CreateAndroidForWorkEnrollmentProfileTokenOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateAndroidForWorkEnrollmentProfileTokenOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateAndroidForWorkEnrollmentProfileTokenOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateAndroidForWorkEnrollmentProfileToken - Invoke action createToken
-func (c AndroidForWorkEnrollmentProfileClient) CreateAndroidForWorkEnrollmentProfileToken(ctx context.Context, id beta.DeviceManagementAndroidForWorkEnrollmentProfileId, input CreateAndroidForWorkEnrollmentProfileTokenRequest) (result CreateAndroidForWorkEnrollmentProfileTokenOperationResponse, err error) {
+func (c AndroidForWorkEnrollmentProfileClient) CreateAndroidForWorkEnrollmentProfileToken(ctx context.Context, id beta.DeviceManagementAndroidForWorkEnrollmentProfileId, input CreateAndroidForWorkEnrollmentProfileTokenRequest, options CreateAndroidForWorkEnrollmentProfileTokenOperationOptions) (result CreateAndroidForWorkEnrollmentProfileTokenOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/createToken", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/createToken", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

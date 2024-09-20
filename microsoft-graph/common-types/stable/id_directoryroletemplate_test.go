@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &DirectoryRoleTemplateId{}
 
 func TestNewDirectoryRoleTemplateID(t *testing.T) {
-	id := NewDirectoryRoleTemplateID("directoryRoleTemplateIdValue")
+	id := NewDirectoryRoleTemplateID("directoryRoleTemplateId")
 
-	if id.DirectoryRoleTemplateId != "directoryRoleTemplateIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DirectoryRoleTemplateId'", id.DirectoryRoleTemplateId, "directoryRoleTemplateIdValue")
+	if id.DirectoryRoleTemplateId != "directoryRoleTemplateId" {
+		t.Fatalf("Expected %q but got %q for Segment 'DirectoryRoleTemplateId'", id.DirectoryRoleTemplateId, "directoryRoleTemplateId")
 	}
 }
 
 func TestFormatDirectoryRoleTemplateID(t *testing.T) {
-	actual := NewDirectoryRoleTemplateID("directoryRoleTemplateIdValue").ID()
-	expected := "/directoryRoleTemplates/directoryRoleTemplateIdValue"
+	actual := NewDirectoryRoleTemplateID("directoryRoleTemplateId").ID()
+	expected := "/directoryRoleTemplates/directoryRoleTemplateId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -45,14 +45,14 @@ func TestParseDirectoryRoleTemplateID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/directoryRoleTemplates/directoryRoleTemplateIdValue",
+			Input: "/directoryRoleTemplates/directoryRoleTemplateId",
 			Expected: &DirectoryRoleTemplateId{
-				DirectoryRoleTemplateId: "directoryRoleTemplateIdValue",
+				DirectoryRoleTemplateId: "directoryRoleTemplateId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/directoryRoleTemplates/directoryRoleTemplateIdValue/extra",
+			Input: "/directoryRoleTemplates/directoryRoleTemplateId/extra",
 			Error: true,
 		},
 	}
@@ -101,26 +101,26 @@ func TestParseDirectoryRoleTemplateIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/directoryRoleTemplates/directoryRoleTemplateIdValue",
+			Input: "/directoryRoleTemplates/directoryRoleTemplateId",
 			Expected: &DirectoryRoleTemplateId{
-				DirectoryRoleTemplateId: "directoryRoleTemplateIdValue",
+				DirectoryRoleTemplateId: "directoryRoleTemplateId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/directoryRoleTemplates/directoryRoleTemplateIdValue/extra",
+			Input: "/directoryRoleTemplates/directoryRoleTemplateId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/dIrEcToRyRoLeTeMpLaTeS/dIrEcToRyRoLeTeMpLaTeIdVaLuE",
+			Input: "/dIrEcToRyRoLeTeMpLaTeS/dIrEcToRyRoLeTeMpLaTeId",
 			Expected: &DirectoryRoleTemplateId{
-				DirectoryRoleTemplateId: "dIrEcToRyRoLeTeMpLaTeIdVaLuE",
+				DirectoryRoleTemplateId: "dIrEcToRyRoLeTeMpLaTeId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/dIrEcToRyRoLeTeMpLaTeS/dIrEcToRyRoLeTeMpLaTeIdVaLuE/extra",
+			Input: "/dIrEcToRyRoLeTeMpLaTeS/dIrEcToRyRoLeTeMpLaTeId/extra",
 			Error: true,
 		},
 	}

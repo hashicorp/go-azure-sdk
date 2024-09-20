@@ -18,15 +18,44 @@ type UpdateChatLastMessagePreviewOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateChatLastMessagePreviewOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateChatLastMessagePreviewOperationOptions() UpdateChatLastMessagePreviewOperationOptions {
+	return UpdateChatLastMessagePreviewOperationOptions{}
+}
+
+func (o UpdateChatLastMessagePreviewOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateChatLastMessagePreviewOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateChatLastMessagePreviewOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateChatLastMessagePreview - Update the navigation property lastMessagePreview in me
-func (c ChatLastMessagePreviewClient) UpdateChatLastMessagePreview(ctx context.Context, id beta.MeChatId, input beta.ChatMessageInfo) (result UpdateChatLastMessagePreviewOperationResponse, err error) {
+func (c ChatLastMessagePreviewClient) UpdateChatLastMessagePreview(ctx context.Context, id beta.MeChatId, input beta.ChatMessageInfo, options UpdateChatLastMessagePreviewOperationOptions) (result UpdateChatLastMessagePreviewOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       fmt.Sprintf("%s/lastMessagePreview", id.ID()),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/lastMessagePreview", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

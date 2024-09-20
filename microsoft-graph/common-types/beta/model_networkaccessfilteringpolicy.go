@@ -95,17 +95,28 @@ func (s NetworkaccessFilteringPolicy) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &NetworkaccessFilteringPolicy{}
 
 func (s *NetworkaccessFilteringPolicy) UnmarshalJSON(bytes []byte) error {
-	type alias NetworkaccessFilteringPolicy
-	var decoded alias
+
+	var decoded struct {
+		Action               *NetworkaccessFilteringPolicyAction `json:"action,omitempty"`
+		CreatedDateTime      *string                             `json:"createdDateTime,omitempty"`
+		LastModifiedDateTime *string                             `json:"lastModifiedDateTime,omitempty"`
+		Description          nullable.Type[string]               `json:"description,omitempty"`
+		Name                 *string                             `json:"name,omitempty"`
+		PolicyRules          *[]NetworkaccessPolicyRule          `json:"policyRules,omitempty"`
+		Version              *string                             `json:"version,omitempty"`
+		Id                   *string                             `json:"id,omitempty"`
+		ODataId              *string                             `json:"@odata.id,omitempty"`
+		ODataType            *string                             `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into NetworkaccessFilteringPolicy: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.Action = decoded.Action
 	s.CreatedDateTime = decoded.CreatedDateTime
+	s.LastModifiedDateTime = decoded.LastModifiedDateTime
 	s.Description = decoded.Description
 	s.Id = decoded.Id
-	s.LastModifiedDateTime = decoded.LastModifiedDateTime
 	s.Name = decoded.Name
 	s.ODataId = decoded.ODataId
 	s.ODataType = decoded.ODataType
@@ -132,5 +143,6 @@ func (s *NetworkaccessFilteringPolicy) UnmarshalJSON(bytes []byte) error {
 		}
 		s.PolicyRules = &output
 	}
+
 	return nil
 }

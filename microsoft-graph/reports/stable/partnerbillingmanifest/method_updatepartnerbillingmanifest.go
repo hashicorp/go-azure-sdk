@@ -17,15 +17,44 @@ type UpdatePartnerBillingManifestOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdatePartnerBillingManifestOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdatePartnerBillingManifestOperationOptions() UpdatePartnerBillingManifestOperationOptions {
+	return UpdatePartnerBillingManifestOperationOptions{}
+}
+
+func (o UpdatePartnerBillingManifestOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdatePartnerBillingManifestOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdatePartnerBillingManifestOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdatePartnerBillingManifest - Update the navigation property manifests in reports
-func (c PartnerBillingManifestClient) UpdatePartnerBillingManifest(ctx context.Context, id stable.ReportPartnerBillingManifestId, input stable.PartnersBillingManifest) (result UpdatePartnerBillingManifestOperationResponse, err error) {
+func (c PartnerBillingManifestClient) UpdatePartnerBillingManifest(ctx context.Context, id stable.ReportPartnerBillingManifestId, input stable.PartnersBillingManifest, options UpdatePartnerBillingManifestOperationOptions) (result UpdatePartnerBillingManifestOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

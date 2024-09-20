@@ -106,16 +106,29 @@ func (s OneDriveForBusinessProtectionPolicy) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &OneDriveForBusinessProtectionPolicy{}
 
 func (s *OneDriveForBusinessProtectionPolicy) UnmarshalJSON(bytes []byte) error {
-	type alias OneDriveForBusinessProtectionPolicy
-	var decoded alias
+
+	var decoded struct {
+		DriveInclusionRules  *[]DriveProtectionRule  `json:"driveInclusionRules,omitempty"`
+		DriveProtectionUnits *[]DriveProtectionUnit  `json:"driveProtectionUnits,omitempty"`
+		CreatedBy            IdentitySet             `json:"createdBy"`
+		CreatedDateTime      nullable.Type[string]   `json:"createdDateTime,omitempty"`
+		DisplayName          nullable.Type[string]   `json:"displayName,omitempty"`
+		LastModifiedBy       IdentitySet             `json:"lastModifiedBy"`
+		LastModifiedDateTime nullable.Type[string]   `json:"lastModifiedDateTime,omitempty"`
+		RetentionSettings    *[]RetentionSetting     `json:"retentionSettings,omitempty"`
+		Status               *ProtectionPolicyStatus `json:"status,omitempty"`
+		Id                   *string                 `json:"id,omitempty"`
+		ODataId              *string                 `json:"@odata.id,omitempty"`
+		ODataType            *string                 `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into OneDriveForBusinessProtectionPolicy: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
-	s.CreatedDateTime = decoded.CreatedDateTime
-	s.DisplayName = decoded.DisplayName
 	s.DriveInclusionRules = decoded.DriveInclusionRules
 	s.DriveProtectionUnits = decoded.DriveProtectionUnits
+	s.CreatedDateTime = decoded.CreatedDateTime
+	s.DisplayName = decoded.DisplayName
 	s.Id = decoded.Id
 	s.LastModifiedDateTime = decoded.LastModifiedDateTime
 	s.ODataId = decoded.ODataId
@@ -143,5 +156,6 @@ func (s *OneDriveForBusinessProtectionPolicy) UnmarshalJSON(bytes []byte) error 
 		}
 		s.LastModifiedBy = impl
 	}
+
 	return nil
 }

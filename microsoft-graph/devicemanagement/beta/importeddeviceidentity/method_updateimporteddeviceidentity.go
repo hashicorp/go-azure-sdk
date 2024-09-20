@@ -17,15 +17,44 @@ type UpdateImportedDeviceIdentityOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateImportedDeviceIdentityOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateImportedDeviceIdentityOperationOptions() UpdateImportedDeviceIdentityOperationOptions {
+	return UpdateImportedDeviceIdentityOperationOptions{}
+}
+
+func (o UpdateImportedDeviceIdentityOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateImportedDeviceIdentityOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateImportedDeviceIdentityOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateImportedDeviceIdentity - Update the navigation property importedDeviceIdentities in deviceManagement
-func (c ImportedDeviceIdentityClient) UpdateImportedDeviceIdentity(ctx context.Context, id beta.DeviceManagementImportedDeviceIdentityId, input beta.ImportedDeviceIdentity) (result UpdateImportedDeviceIdentityOperationResponse, err error) {
+func (c ImportedDeviceIdentityClient) UpdateImportedDeviceIdentity(ctx context.Context, id beta.DeviceManagementImportedDeviceIdentityId, input beta.ImportedDeviceIdentity, options UpdateImportedDeviceIdentityOperationOptions) (result UpdateImportedDeviceIdentityOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

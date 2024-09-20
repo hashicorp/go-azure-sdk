@@ -23,10 +23,15 @@ type InformationProtection struct {
 var _ json.Unmarshaler = &InformationProtection{}
 
 func (s *InformationProtection) UnmarshalJSON(bytes []byte) error {
-	type alias InformationProtection
-	var decoded alias
+
+	var decoded struct {
+		Bitlocker                *Bitlocker                 `json:"bitlocker,omitempty"`
+		ODataId                  *string                    `json:"@odata.id,omitempty"`
+		ODataType                *string                    `json:"@odata.type,omitempty"`
+		ThreatAssessmentRequests *[]ThreatAssessmentRequest `json:"threatAssessmentRequests,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into InformationProtection: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.Bitlocker = decoded.Bitlocker
@@ -54,5 +59,6 @@ func (s *InformationProtection) UnmarshalJSON(bytes []byte) error {
 		}
 		s.ThreatAssessmentRequests = &output
 	}
+
 	return nil
 }

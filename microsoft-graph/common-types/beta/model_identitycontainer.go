@@ -50,10 +50,24 @@ type IdentityContainer struct {
 var _ json.Unmarshaler = &IdentityContainer{}
 
 func (s *IdentityContainer) UnmarshalJSON(bytes []byte) error {
-	type alias IdentityContainer
-	var decoded alias
+
+	var decoded struct {
+		ApiConnectors                    *[]IdentityApiConnector           `json:"apiConnectors,omitempty"`
+		AuthenticationEventListeners     *[]AuthenticationEventListener    `json:"authenticationEventListeners,omitempty"`
+		AuthenticationEventsFlows        *[]AuthenticationEventsFlow       `json:"authenticationEventsFlows,omitempty"`
+		B2cUserFlows                     *[]B2cIdentityUserFlow            `json:"b2cUserFlows,omitempty"`
+		B2xUserFlows                     *[]B2xIdentityUserFlow            `json:"b2xUserFlows,omitempty"`
+		ConditionalAccess                *ConditionalAccessRoot            `json:"conditionalAccess,omitempty"`
+		ContinuousAccessEvaluationPolicy *ContinuousAccessEvaluationPolicy `json:"continuousAccessEvaluationPolicy,omitempty"`
+		CustomAuthenticationExtensions   *[]CustomAuthenticationExtension  `json:"customAuthenticationExtensions,omitempty"`
+		IdentityProviders                *[]IdentityProviderBase           `json:"identityProviders,omitempty"`
+		ODataId                          *string                           `json:"@odata.id,omitempty"`
+		ODataType                        *string                           `json:"@odata.type,omitempty"`
+		UserFlowAttributes               *[]IdentityUserFlowAttribute      `json:"userFlowAttributes,omitempty"`
+		UserFlows                        *[]IdentityUserFlow               `json:"userFlows,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into IdentityContainer: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.ApiConnectors = decoded.ApiConnectors
@@ -170,5 +184,6 @@ func (s *IdentityContainer) UnmarshalJSON(bytes []byte) error {
 		}
 		s.UserFlows = &output
 	}
+
 	return nil
 }

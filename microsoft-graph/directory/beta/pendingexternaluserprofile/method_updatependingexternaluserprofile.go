@@ -17,16 +17,45 @@ type UpdatePendingExternalUserProfileOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdatePendingExternalUserProfileOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdatePendingExternalUserProfileOperationOptions() UpdatePendingExternalUserProfileOperationOptions {
+	return UpdatePendingExternalUserProfileOperationOptions{}
+}
+
+func (o UpdatePendingExternalUserProfileOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdatePendingExternalUserProfileOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdatePendingExternalUserProfileOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdatePendingExternalUserProfile - Update pendingExternalUserProfile. Update the properties of a
 // pendingExternalUserProfile object.
-func (c PendingExternalUserProfileClient) UpdatePendingExternalUserProfile(ctx context.Context, id beta.DirectoryPendingExternalUserProfileId, input beta.PendingExternalUserProfile) (result UpdatePendingExternalUserProfileOperationResponse, err error) {
+func (c PendingExternalUserProfileClient) UpdatePendingExternalUserProfile(ctx context.Context, id beta.DirectoryPendingExternalUserProfileId, input beta.PendingExternalUserProfile, options UpdatePendingExternalUserProfileOperationOptions) (result UpdatePendingExternalUserProfileOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

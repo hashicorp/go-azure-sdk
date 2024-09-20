@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/authenticationmethod` Documentation
 
-The `authenticationmethod` SDK allows for interaction with the Azure Resource Manager Service `users` (API Version `beta`).
+The `authenticationmethod` SDK allows for interaction with Microsoft Graph `users` (API Version `beta`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -15,7 +15,7 @@ import "github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/authenticat
 ### Client Initialization
 
 ```go
-client := authenticationmethod.NewAuthenticationMethodClientWithBaseURI("https://management.azure.com")
+client := authenticationmethod.NewAuthenticationMethodClientWithBaseURI("https://graph.microsoft.com")
 client.Client.Authorizer = authorizer
 ```
 
@@ -24,14 +24,14 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := authenticationmethod.NewUserID("userIdValue")
+id := authenticationmethod.NewUserID("userId")
 
 payload := authenticationmethod.AuthenticationMethod{
 	// ...
 }
 
 
-read, err := client.CreateAuthenticationMethod(ctx, id, payload)
+read, err := client.CreateAuthenticationMethod(ctx, id, payload, authenticationmethod.DefaultCreateAuthenticationMethodOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -45,9 +45,9 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := authenticationmethod.NewUserIdAuthenticationMethodID("userIdValue", "authenticationMethodIdValue")
+id := authenticationmethod.NewUserIdAuthenticationMethodID("userId", "authenticationMethodId")
 
-read, err := client.DisableAuthenticationMethodSmsSignIn(ctx, id)
+read, err := client.DisableAuthenticationMethodSmsSignIn(ctx, id, authenticationmethod.DefaultDisableAuthenticationMethodSmsSignInOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -61,9 +61,9 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := authenticationmethod.NewUserIdAuthenticationMethodID("userIdValue", "authenticationMethodIdValue")
+id := authenticationmethod.NewUserIdAuthenticationMethodID("userId", "authenticationMethodId")
 
-read, err := client.EnableAuthenticationMethodSmsSignIn(ctx, id)
+read, err := client.EnableAuthenticationMethodSmsSignIn(ctx, id, authenticationmethod.DefaultEnableAuthenticationMethodSmsSignInOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -77,7 +77,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := authenticationmethod.NewUserIdAuthenticationMethodID("userIdValue", "authenticationMethodIdValue")
+id := authenticationmethod.NewUserIdAuthenticationMethodID("userId", "authenticationMethodId")
 
 read, err := client.GetAuthenticationMethod(ctx, id, authenticationmethod.DefaultGetAuthenticationMethodOperationOptions())
 if err != nil {
@@ -93,7 +93,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := authenticationmethod.NewUserID("userIdValue")
+id := authenticationmethod.NewUserID("userId")
 
 read, err := client.GetAuthenticationMethodsCount(ctx, id, authenticationmethod.DefaultGetAuthenticationMethodsCountOperationOptions())
 if err != nil {
@@ -109,7 +109,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := authenticationmethod.NewUserID("userIdValue")
+id := authenticationmethod.NewUserID("userId")
 
 // alternatively `client.ListAuthenticationMethods(ctx, id, authenticationmethod.DefaultListAuthenticationMethodsOperationOptions())` can be used to do batched pagination
 items, err := client.ListAuthenticationMethodsComplete(ctx, id, authenticationmethod.DefaultListAuthenticationMethodsOperationOptions())
@@ -126,14 +126,14 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := authenticationmethod.NewUserIdAuthenticationMethodID("userIdValue", "authenticationMethodIdValue")
+id := authenticationmethod.NewUserIdAuthenticationMethodID("userId", "authenticationMethodId")
 
 payload := authenticationmethod.ResetAuthenticationMethodPasswordRequest{
 	// ...
 }
 
 
-read, err := client.ResetAuthenticationMethodPassword(ctx, id, payload)
+read, err := client.ResetAuthenticationMethodPassword(ctx, id, payload, authenticationmethod.DefaultResetAuthenticationMethodPasswordOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -147,14 +147,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := authenticationmethod.NewUserIdAuthenticationMethodID("userIdValue", "authenticationMethodIdValue")
+id := authenticationmethod.NewUserIdAuthenticationMethodID("userId", "authenticationMethodId")
 
 payload := authenticationmethod.AuthenticationMethod{
 	// ...
 }
 
 
-read, err := client.UpdateAuthenticationMethod(ctx, id, payload)
+read, err := client.UpdateAuthenticationMethod(ctx, id, payload, authenticationmethod.DefaultUpdateAuthenticationMethodOperationOptions())
 if err != nil {
 	// handle the error
 }

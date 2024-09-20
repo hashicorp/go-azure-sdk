@@ -92,7 +92,7 @@ func (id ApplicationTemplateId) ID() string {
 func (id ApplicationTemplateId) Segments() []resourceids.Segment {
 	return []resourceids.Segment{
 		resourceids.StaticSegment("applicationTemplates", "applicationTemplates", "applicationTemplates"),
-		resourceids.UserSpecifiedSegment("applicationTemplateId", "applicationTemplateIdValue"),
+		resourceids.UserSpecifiedSegment("applicationTemplateId", "applicationTemplateId"),
 	}
 }
 

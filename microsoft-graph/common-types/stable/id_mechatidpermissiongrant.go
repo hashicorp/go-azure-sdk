@@ -99,9 +99,9 @@ func (id MeChatIdPermissionGrantId) Segments() []resourceids.Segment {
 	return []resourceids.Segment{
 		resourceids.StaticSegment("me", "me", "me"),
 		resourceids.StaticSegment("chats", "chats", "chats"),
-		resourceids.UserSpecifiedSegment("chatId", "chatIdValue"),
+		resourceids.UserSpecifiedSegment("chatId", "chatId"),
 		resourceids.StaticSegment("permissionGrants", "permissionGrants", "permissionGrants"),
-		resourceids.UserSpecifiedSegment("resourceSpecificPermissionGrantId", "resourceSpecificPermissionGrantIdValue"),
+		resourceids.UserSpecifiedSegment("resourceSpecificPermissionGrantId", "resourceSpecificPermissionGrantId"),
 	}
 }
 

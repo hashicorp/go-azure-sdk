@@ -31,10 +31,15 @@ type ConvertIdResult struct {
 var _ json.Unmarshaler = &ConvertIdResult{}
 
 func (s *ConvertIdResult) UnmarshalJSON(bytes []byte) error {
-	type alias ConvertIdResult
-	var decoded alias
+
+	var decoded struct {
+		ODataId   *string               `json:"@odata.id,omitempty"`
+		ODataType *string               `json:"@odata.type,omitempty"`
+		SourceId  nullable.Type[string] `json:"sourceId,omitempty"`
+		TargetId  nullable.Type[string] `json:"targetId,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into ConvertIdResult: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.ODataId = decoded.ODataId
@@ -54,5 +59,6 @@ func (s *ConvertIdResult) UnmarshalJSON(bytes []byte) error {
 		}
 		s.ErrorDetails = impl
 	}
+
 	return nil
 }

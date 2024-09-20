@@ -18,16 +18,45 @@ type CreateCustomSecurityAttributeDefinitionOperationResponse struct {
 	Model        *stable.CustomSecurityAttributeDefinition
 }
 
+type CreateCustomSecurityAttributeDefinitionOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateCustomSecurityAttributeDefinitionOperationOptions() CreateCustomSecurityAttributeDefinitionOperationOptions {
+	return CreateCustomSecurityAttributeDefinitionOperationOptions{}
+}
+
+func (o CreateCustomSecurityAttributeDefinitionOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateCustomSecurityAttributeDefinitionOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateCustomSecurityAttributeDefinitionOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateCustomSecurityAttributeDefinition - Create customSecurityAttributeDefinition. Create a new
 // customSecurityAttributeDefinition object.
-func (c CustomSecurityAttributeDefinitionClient) CreateCustomSecurityAttributeDefinition(ctx context.Context, input stable.CustomSecurityAttributeDefinition) (result CreateCustomSecurityAttributeDefinitionOperationResponse, err error) {
+func (c CustomSecurityAttributeDefinitionClient) CreateCustomSecurityAttributeDefinition(ctx context.Context, input stable.CustomSecurityAttributeDefinition, options CreateCustomSecurityAttributeDefinitionOperationOptions) (result CreateCustomSecurityAttributeDefinitionOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/directory/customSecurityAttributeDefinitions",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/directory/customSecurityAttributeDefinitions",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

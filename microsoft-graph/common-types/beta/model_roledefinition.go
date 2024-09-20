@@ -116,22 +116,34 @@ func (s BaseRoleDefinitionImpl) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &BaseRoleDefinitionImpl{}
 
 func (s *BaseRoleDefinitionImpl) UnmarshalJSON(bytes []byte) error {
-	type alias BaseRoleDefinitionImpl
-	var decoded alias
+
+	var decoded struct {
+		Description             nullable.Type[string] `json:"description,omitempty"`
+		DisplayName             nullable.Type[string] `json:"displayName,omitempty"`
+		IsBuiltIn               *bool                 `json:"isBuiltIn,omitempty"`
+		IsBuiltInRoleDefinition *bool                 `json:"isBuiltInRoleDefinition,omitempty"`
+		Permissions             *[]RolePermission     `json:"permissions,omitempty"`
+		RoleAssignments         *[]RoleAssignment     `json:"roleAssignments,omitempty"`
+		RolePermissions         *[]RolePermission     `json:"rolePermissions,omitempty"`
+		RoleScopeTagIds         *[]string             `json:"roleScopeTagIds,omitempty"`
+		Id                      *string               `json:"id,omitempty"`
+		ODataId                 *string               `json:"@odata.id,omitempty"`
+		ODataType               *string               `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into BaseRoleDefinitionImpl: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.Description = decoded.Description
 	s.DisplayName = decoded.DisplayName
-	s.Id = decoded.Id
 	s.IsBuiltIn = decoded.IsBuiltIn
 	s.IsBuiltInRoleDefinition = decoded.IsBuiltInRoleDefinition
-	s.ODataId = decoded.ODataId
-	s.ODataType = decoded.ODataType
 	s.Permissions = decoded.Permissions
 	s.RolePermissions = decoded.RolePermissions
 	s.RoleScopeTagIds = decoded.RoleScopeTagIds
+	s.Id = decoded.Id
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -154,6 +166,7 @@ func (s *BaseRoleDefinitionImpl) UnmarshalJSON(bytes []byte) error {
 		}
 		s.RoleAssignments = &output
 	}
+
 	return nil
 }
 
@@ -167,9 +180,9 @@ func UnmarshalRoleDefinitionImplementation(input []byte) (RoleDefinition, error)
 		return nil, fmt.Errorf("unmarshaling RoleDefinition into map[string]interface: %+v", err)
 	}
 
-	value, ok := temp["@odata.type"].(string)
-	if !ok {
-		return nil, nil
+	var value string
+	if v, ok := temp["@odata.type"]; ok {
+		value = fmt.Sprintf("%v", v)
 	}
 
 	if strings.EqualFold(value, "#microsoft.graph.deviceAndAppManagementRoleDefinition") {

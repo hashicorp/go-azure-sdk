@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &DeviceManagementHardwarePasswordInfoId{}
 
 func TestNewDeviceManagementHardwarePasswordInfoID(t *testing.T) {
-	id := NewDeviceManagementHardwarePasswordInfoID("hardwarePasswordInfoIdValue")
+	id := NewDeviceManagementHardwarePasswordInfoID("hardwarePasswordInfoId")
 
-	if id.HardwarePasswordInfoId != "hardwarePasswordInfoIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'HardwarePasswordInfoId'", id.HardwarePasswordInfoId, "hardwarePasswordInfoIdValue")
+	if id.HardwarePasswordInfoId != "hardwarePasswordInfoId" {
+		t.Fatalf("Expected %q but got %q for Segment 'HardwarePasswordInfoId'", id.HardwarePasswordInfoId, "hardwarePasswordInfoId")
 	}
 }
 
 func TestFormatDeviceManagementHardwarePasswordInfoID(t *testing.T) {
-	actual := NewDeviceManagementHardwarePasswordInfoID("hardwarePasswordInfoIdValue").ID()
-	expected := "/deviceManagement/hardwarePasswordInfo/hardwarePasswordInfoIdValue"
+	actual := NewDeviceManagementHardwarePasswordInfoID("hardwarePasswordInfoId").ID()
+	expected := "/deviceManagement/hardwarePasswordInfo/hardwarePasswordInfoId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -50,14 +50,14 @@ func TestParseDeviceManagementHardwarePasswordInfoID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/hardwarePasswordInfo/hardwarePasswordInfoIdValue",
+			Input: "/deviceManagement/hardwarePasswordInfo/hardwarePasswordInfoId",
 			Expected: &DeviceManagementHardwarePasswordInfoId{
-				HardwarePasswordInfoId: "hardwarePasswordInfoIdValue",
+				HardwarePasswordInfoId: "hardwarePasswordInfoId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/hardwarePasswordInfo/hardwarePasswordInfoIdValue/extra",
+			Input: "/deviceManagement/hardwarePasswordInfo/hardwarePasswordInfoId/extra",
 			Error: true,
 		},
 	}
@@ -116,26 +116,26 @@ func TestParseDeviceManagementHardwarePasswordInfoIDInsensitively(t *testing.T) 
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/hardwarePasswordInfo/hardwarePasswordInfoIdValue",
+			Input: "/deviceManagement/hardwarePasswordInfo/hardwarePasswordInfoId",
 			Expected: &DeviceManagementHardwarePasswordInfoId{
-				HardwarePasswordInfoId: "hardwarePasswordInfoIdValue",
+				HardwarePasswordInfoId: "hardwarePasswordInfoId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/hardwarePasswordInfo/hardwarePasswordInfoIdValue/extra",
+			Input: "/deviceManagement/hardwarePasswordInfo/hardwarePasswordInfoId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/hArDwArEpAsSwOrDiNfO/hArDwArEpAsSwOrDiNfOiDvAlUe",
+			Input: "/dEvIcEmAnAgEmEnT/hArDwArEpAsSwOrDiNfO/hArDwArEpAsSwOrDiNfOiD",
 			Expected: &DeviceManagementHardwarePasswordInfoId{
-				HardwarePasswordInfoId: "hArDwArEpAsSwOrDiNfOiDvAlUe",
+				HardwarePasswordInfoId: "hArDwArEpAsSwOrDiNfOiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/hArDwArEpAsSwOrDiNfO/hArDwArEpAsSwOrDiNfOiDvAlUe/extra",
+			Input: "/dEvIcEmAnAgEmEnT/hArDwArEpAsSwOrDiNfO/hArDwArEpAsSwOrDiNfOiD/extra",
 			Error: true,
 		},
 	}

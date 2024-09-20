@@ -19,15 +19,44 @@ type CreateSiteContentTypeColumnOperationResponse struct {
 	Model        *stable.ColumnDefinition
 }
 
+type CreateSiteContentTypeColumnOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateSiteContentTypeColumnOperationOptions() CreateSiteContentTypeColumnOperationOptions {
+	return CreateSiteContentTypeColumnOperationOptions{}
+}
+
+func (o CreateSiteContentTypeColumnOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateSiteContentTypeColumnOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateSiteContentTypeColumnOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateSiteContentTypeColumn - Create new navigation property to columns for groups
-func (c SiteContentTypeColumnClient) CreateSiteContentTypeColumn(ctx context.Context, id stable.GroupIdSiteIdContentTypeId, input stable.ColumnDefinition) (result CreateSiteContentTypeColumnOperationResponse, err error) {
+func (c SiteContentTypeColumnClient) CreateSiteContentTypeColumn(ctx context.Context, id stable.GroupIdSiteIdContentTypeId, input stable.ColumnDefinition, options CreateSiteContentTypeColumnOperationOptions) (result CreateSiteContentTypeColumnOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/columns", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/columns", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -85,22 +85,33 @@ func (s GroupPolicyCategory) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &GroupPolicyCategory{}
 
 func (s *GroupPolicyCategory) UnmarshalJSON(bytes []byte) error {
-	type alias GroupPolicyCategory
-	var decoded alias
+
+	var decoded struct {
+		Children             *[]GroupPolicyCategory   `json:"children,omitempty"`
+		Definitions          *[]GroupPolicyDefinition `json:"definitions,omitempty"`
+		DisplayName          nullable.Type[string]    `json:"displayName,omitempty"`
+		IngestionSource      *IngestionSource         `json:"ingestionSource,omitempty"`
+		IsRoot               *bool                    `json:"isRoot,omitempty"`
+		LastModifiedDateTime *string                  `json:"lastModifiedDateTime,omitempty"`
+		Parent               *GroupPolicyCategory     `json:"parent,omitempty"`
+		Id                   *string                  `json:"id,omitempty"`
+		ODataId              *string                  `json:"@odata.id,omitempty"`
+		ODataType            *string                  `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into GroupPolicyCategory: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.Children = decoded.Children
 	s.Definitions = decoded.Definitions
 	s.DisplayName = decoded.DisplayName
-	s.Id = decoded.Id
 	s.IngestionSource = decoded.IngestionSource
 	s.IsRoot = decoded.IsRoot
 	s.LastModifiedDateTime = decoded.LastModifiedDateTime
+	s.Parent = decoded.Parent
+	s.Id = decoded.Id
 	s.ODataId = decoded.ODataId
 	s.ODataType = decoded.ODataType
-	s.Parent = decoded.Parent
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -114,5 +125,6 @@ func (s *GroupPolicyCategory) UnmarshalJSON(bytes []byte) error {
 		}
 		s.DefinitionFile = &impl
 	}
+
 	return nil
 }

@@ -18,16 +18,45 @@ type WipeManagedAppRegistrationsByAzureAdDeviceIdOperationResponse struct {
 	OData        *odata.OData
 }
 
+type WipeManagedAppRegistrationsByAzureAdDeviceIdOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultWipeManagedAppRegistrationsByAzureAdDeviceIdOperationOptions() WipeManagedAppRegistrationsByAzureAdDeviceIdOperationOptions {
+	return WipeManagedAppRegistrationsByAzureAdDeviceIdOperationOptions{}
+}
+
+func (o WipeManagedAppRegistrationsByAzureAdDeviceIdOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o WipeManagedAppRegistrationsByAzureAdDeviceIdOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o WipeManagedAppRegistrationsByAzureAdDeviceIdOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // WipeManagedAppRegistrationsByAzureAdDeviceId - Invoke action wipeManagedAppRegistrationsByAzureAdDeviceId. Issues a
 // wipe operation on an app registration with specified aad device Id.
-func (c UserClient) WipeManagedAppRegistrationsByAzureAdDeviceId(ctx context.Context, id beta.UserId, input WipeManagedAppRegistrationsByAzureAdDeviceIdRequest) (result WipeManagedAppRegistrationsByAzureAdDeviceIdOperationResponse, err error) {
+func (c UserClient) WipeManagedAppRegistrationsByAzureAdDeviceId(ctx context.Context, id beta.UserId, input WipeManagedAppRegistrationsByAzureAdDeviceIdRequest, options WipeManagedAppRegistrationsByAzureAdDeviceIdOperationOptions) (result WipeManagedAppRegistrationsByAzureAdDeviceIdOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/wipeManagedAppRegistrationsByAzureAdDeviceId", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/wipeManagedAppRegistrationsByAzureAdDeviceId", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

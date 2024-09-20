@@ -80,19 +80,27 @@ func (s ServiceApp) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &ServiceApp{}
 
 func (s *ServiceApp) UnmarshalJSON(bytes []byte) error {
-	type alias ServiceApp
-	var decoded alias
+
+	var decoded struct {
+		EffectiveDateTime    nullable.Type[string] `json:"effectiveDateTime,omitempty"`
+		LastModifiedDateTime nullable.Type[string] `json:"lastModifiedDateTime,omitempty"`
+		RegistrationDateTime nullable.Type[string] `json:"registrationDateTime,omitempty"`
+		Status               *ServiceAppStatus     `json:"status,omitempty"`
+		Id                   *string               `json:"id,omitempty"`
+		ODataId              *string               `json:"@odata.id,omitempty"`
+		ODataType            *string               `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into ServiceApp: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.EffectiveDateTime = decoded.EffectiveDateTime
-	s.Id = decoded.Id
 	s.LastModifiedDateTime = decoded.LastModifiedDateTime
-	s.ODataId = decoded.ODataId
-	s.ODataType = decoded.ODataType
 	s.RegistrationDateTime = decoded.RegistrationDateTime
 	s.Status = decoded.Status
+	s.Id = decoded.Id
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -114,5 +122,6 @@ func (s *ServiceApp) UnmarshalJSON(bytes []byte) error {
 		}
 		s.LastModifiedBy = impl
 	}
+
 	return nil
 }

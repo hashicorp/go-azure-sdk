@@ -231,38 +231,73 @@ func (s WindowsPhone81GeneralConfiguration) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &WindowsPhone81GeneralConfiguration{}
 
 func (s *WindowsPhone81GeneralConfiguration) UnmarshalJSON(bytes []byte) error {
-	type alias WindowsPhone81GeneralConfiguration
-	var decoded alias
+
+	var decoded struct {
+		ApplyOnlyToWindowsPhone81                      *bool                                        `json:"applyOnlyToWindowsPhone81,omitempty"`
+		AppsBlockCopyPaste                             *bool                                        `json:"appsBlockCopyPaste,omitempty"`
+		BluetoothBlocked                               *bool                                        `json:"bluetoothBlocked,omitempty"`
+		CameraBlocked                                  *bool                                        `json:"cameraBlocked,omitempty"`
+		CellularBlockWifiTethering                     *bool                                        `json:"cellularBlockWifiTethering,omitempty"`
+		CompliantAppListType                           *AppListType                                 `json:"compliantAppListType,omitempty"`
+		CompliantAppsList                              *[]AppListItem                               `json:"compliantAppsList,omitempty"`
+		DiagnosticDataBlockSubmission                  *bool                                        `json:"diagnosticDataBlockSubmission,omitempty"`
+		EmailBlockAddingAccounts                       *bool                                        `json:"emailBlockAddingAccounts,omitempty"`
+		LocationServicesBlocked                        *bool                                        `json:"locationServicesBlocked,omitempty"`
+		MicrosoftAccountBlocked                        *bool                                        `json:"microsoftAccountBlocked,omitempty"`
+		NfcBlocked                                     *bool                                        `json:"nfcBlocked,omitempty"`
+		PasswordBlockSimple                            *bool                                        `json:"passwordBlockSimple,omitempty"`
+		PasswordExpirationDays                         nullable.Type[int64]                         `json:"passwordExpirationDays,omitempty"`
+		PasswordMinimumCharacterSetCount               nullable.Type[int64]                         `json:"passwordMinimumCharacterSetCount,omitempty"`
+		PasswordMinimumLength                          nullable.Type[int64]                         `json:"passwordMinimumLength,omitempty"`
+		PasswordMinutesOfInactivityBeforeScreenTimeout nullable.Type[int64]                         `json:"passwordMinutesOfInactivityBeforeScreenTimeout,omitempty"`
+		PasswordPreviousPasswordBlockCount             nullable.Type[int64]                         `json:"passwordPreviousPasswordBlockCount,omitempty"`
+		PasswordRequired                               *bool                                        `json:"passwordRequired,omitempty"`
+		PasswordRequiredType                           *RequiredPasswordType                        `json:"passwordRequiredType,omitempty"`
+		PasswordSignInFailureCountBeforeFactoryReset   nullable.Type[int64]                         `json:"passwordSignInFailureCountBeforeFactoryReset,omitempty"`
+		ScreenCaptureBlocked                           *bool                                        `json:"screenCaptureBlocked,omitempty"`
+		StorageBlockRemovableStorage                   *bool                                        `json:"storageBlockRemovableStorage,omitempty"`
+		StorageRequireEncryption                       *bool                                        `json:"storageRequireEncryption,omitempty"`
+		WebBrowserBlocked                              *bool                                        `json:"webBrowserBlocked,omitempty"`
+		WifiBlockAutomaticConnectHotspots              *bool                                        `json:"wifiBlockAutomaticConnectHotspots,omitempty"`
+		WifiBlockHotspotReporting                      *bool                                        `json:"wifiBlockHotspotReporting,omitempty"`
+		WifiBlocked                                    *bool                                        `json:"wifiBlocked,omitempty"`
+		WindowsStoreBlocked                            *bool                                        `json:"windowsStoreBlocked,omitempty"`
+		Assignments                                    *[]DeviceConfigurationAssignment             `json:"assignments,omitempty"`
+		CreatedDateTime                                *string                                      `json:"createdDateTime,omitempty"`
+		Description                                    nullable.Type[string]                        `json:"description,omitempty"`
+		DeviceManagementApplicabilityRuleDeviceMode    *DeviceManagementApplicabilityRuleDeviceMode `json:"deviceManagementApplicabilityRuleDeviceMode,omitempty"`
+		DeviceManagementApplicabilityRuleOsEdition     *DeviceManagementApplicabilityRuleOsEdition  `json:"deviceManagementApplicabilityRuleOsEdition,omitempty"`
+		DeviceManagementApplicabilityRuleOsVersion     *DeviceManagementApplicabilityRuleOsVersion  `json:"deviceManagementApplicabilityRuleOsVersion,omitempty"`
+		DeviceSettingStateSummaries                    *[]SettingStateDeviceSummary                 `json:"deviceSettingStateSummaries,omitempty"`
+		DeviceStatusOverview                           *DeviceConfigurationDeviceOverview           `json:"deviceStatusOverview,omitempty"`
+		DeviceStatuses                                 *[]DeviceConfigurationDeviceStatus           `json:"deviceStatuses,omitempty"`
+		DisplayName                                    *string                                      `json:"displayName,omitempty"`
+		GroupAssignments                               *[]DeviceConfigurationGroupAssignment        `json:"groupAssignments,omitempty"`
+		LastModifiedDateTime                           *string                                      `json:"lastModifiedDateTime,omitempty"`
+		RoleScopeTagIds                                *[]string                                    `json:"roleScopeTagIds,omitempty"`
+		SupportsScopeTags                              *bool                                        `json:"supportsScopeTags,omitempty"`
+		UserStatusOverview                             *DeviceConfigurationUserOverview             `json:"userStatusOverview,omitempty"`
+		UserStatuses                                   *[]DeviceConfigurationUserStatus             `json:"userStatuses,omitempty"`
+		Version                                        *int64                                       `json:"version,omitempty"`
+		Id                                             *string                                      `json:"id,omitempty"`
+		ODataId                                        *string                                      `json:"@odata.id,omitempty"`
+		ODataType                                      *string                                      `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into WindowsPhone81GeneralConfiguration: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.ApplyOnlyToWindowsPhone81 = decoded.ApplyOnlyToWindowsPhone81
 	s.AppsBlockCopyPaste = decoded.AppsBlockCopyPaste
-	s.Assignments = decoded.Assignments
 	s.BluetoothBlocked = decoded.BluetoothBlocked
 	s.CameraBlocked = decoded.CameraBlocked
 	s.CellularBlockWifiTethering = decoded.CellularBlockWifiTethering
 	s.CompliantAppListType = decoded.CompliantAppListType
-	s.CreatedDateTime = decoded.CreatedDateTime
-	s.Description = decoded.Description
-	s.DeviceManagementApplicabilityRuleDeviceMode = decoded.DeviceManagementApplicabilityRuleDeviceMode
-	s.DeviceManagementApplicabilityRuleOsEdition = decoded.DeviceManagementApplicabilityRuleOsEdition
-	s.DeviceManagementApplicabilityRuleOsVersion = decoded.DeviceManagementApplicabilityRuleOsVersion
-	s.DeviceSettingStateSummaries = decoded.DeviceSettingStateSummaries
-	s.DeviceStatusOverview = decoded.DeviceStatusOverview
-	s.DeviceStatuses = decoded.DeviceStatuses
 	s.DiagnosticDataBlockSubmission = decoded.DiagnosticDataBlockSubmission
-	s.DisplayName = decoded.DisplayName
 	s.EmailBlockAddingAccounts = decoded.EmailBlockAddingAccounts
-	s.GroupAssignments = decoded.GroupAssignments
-	s.Id = decoded.Id
-	s.LastModifiedDateTime = decoded.LastModifiedDateTime
 	s.LocationServicesBlocked = decoded.LocationServicesBlocked
 	s.MicrosoftAccountBlocked = decoded.MicrosoftAccountBlocked
 	s.NfcBlocked = decoded.NfcBlocked
-	s.ODataId = decoded.ODataId
-	s.ODataType = decoded.ODataType
 	s.PasswordBlockSimple = decoded.PasswordBlockSimple
 	s.PasswordExpirationDays = decoded.PasswordExpirationDays
 	s.PasswordMinimumCharacterSetCount = decoded.PasswordMinimumCharacterSetCount
@@ -272,19 +307,34 @@ func (s *WindowsPhone81GeneralConfiguration) UnmarshalJSON(bytes []byte) error {
 	s.PasswordRequired = decoded.PasswordRequired
 	s.PasswordRequiredType = decoded.PasswordRequiredType
 	s.PasswordSignInFailureCountBeforeFactoryReset = decoded.PasswordSignInFailureCountBeforeFactoryReset
-	s.RoleScopeTagIds = decoded.RoleScopeTagIds
 	s.ScreenCaptureBlocked = decoded.ScreenCaptureBlocked
 	s.StorageBlockRemovableStorage = decoded.StorageBlockRemovableStorage
 	s.StorageRequireEncryption = decoded.StorageRequireEncryption
-	s.SupportsScopeTags = decoded.SupportsScopeTags
-	s.UserStatusOverview = decoded.UserStatusOverview
-	s.UserStatuses = decoded.UserStatuses
-	s.Version = decoded.Version
 	s.WebBrowserBlocked = decoded.WebBrowserBlocked
 	s.WifiBlockAutomaticConnectHotspots = decoded.WifiBlockAutomaticConnectHotspots
 	s.WifiBlockHotspotReporting = decoded.WifiBlockHotspotReporting
 	s.WifiBlocked = decoded.WifiBlocked
 	s.WindowsStoreBlocked = decoded.WindowsStoreBlocked
+	s.Assignments = decoded.Assignments
+	s.CreatedDateTime = decoded.CreatedDateTime
+	s.Description = decoded.Description
+	s.DeviceManagementApplicabilityRuleDeviceMode = decoded.DeviceManagementApplicabilityRuleDeviceMode
+	s.DeviceManagementApplicabilityRuleOsEdition = decoded.DeviceManagementApplicabilityRuleOsEdition
+	s.DeviceManagementApplicabilityRuleOsVersion = decoded.DeviceManagementApplicabilityRuleOsVersion
+	s.DeviceSettingStateSummaries = decoded.DeviceSettingStateSummaries
+	s.DeviceStatusOverview = decoded.DeviceStatusOverview
+	s.DeviceStatuses = decoded.DeviceStatuses
+	s.DisplayName = decoded.DisplayName
+	s.GroupAssignments = decoded.GroupAssignments
+	s.Id = decoded.Id
+	s.LastModifiedDateTime = decoded.LastModifiedDateTime
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
+	s.RoleScopeTagIds = decoded.RoleScopeTagIds
+	s.SupportsScopeTags = decoded.SupportsScopeTags
+	s.UserStatusOverview = decoded.UserStatusOverview
+	s.UserStatuses = decoded.UserStatuses
+	s.Version = decoded.Version
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -307,5 +357,6 @@ func (s *WindowsPhone81GeneralConfiguration) UnmarshalJSON(bytes []byte) error {
 		}
 		s.CompliantAppsList = &output
 	}
+
 	return nil
 }

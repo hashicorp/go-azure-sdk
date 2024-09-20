@@ -159,19 +159,31 @@ func (s SecurityAuditLogRecord) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &SecurityAuditLogRecord{}
 
 func (s *SecurityAuditLogRecord) UnmarshalJSON(bytes []byte) error {
-	type alias SecurityAuditLogRecord
-	var decoded alias
+
+	var decoded struct {
+		AdministrativeUnits *[]string                   `json:"administrativeUnits,omitempty"`
+		AuditLogRecordType  *SecurityAuditLogRecordType `json:"auditLogRecordType,omitempty"`
+		ClientIp            nullable.Type[string]       `json:"clientIp,omitempty"`
+		CreatedDateTime     nullable.Type[string]       `json:"createdDateTime,omitempty"`
+		ObjectId            nullable.Type[string]       `json:"objectId,omitempty"`
+		Operation           nullable.Type[string]       `json:"operation,omitempty"`
+		OrganizationId      nullable.Type[string]       `json:"organizationId,omitempty"`
+		Service             nullable.Type[string]       `json:"service,omitempty"`
+		UserId              nullable.Type[string]       `json:"userId,omitempty"`
+		UserPrincipalName   nullable.Type[string]       `json:"userPrincipalName,omitempty"`
+		UserType            *SecurityAuditLogUserType   `json:"userType,omitempty"`
+		Id                  *string                     `json:"id,omitempty"`
+		ODataId             *string                     `json:"@odata.id,omitempty"`
+		ODataType           *string                     `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into SecurityAuditLogRecord: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.AdministrativeUnits = decoded.AdministrativeUnits
 	s.AuditLogRecordType = decoded.AuditLogRecordType
 	s.ClientIp = decoded.ClientIp
 	s.CreatedDateTime = decoded.CreatedDateTime
-	s.Id = decoded.Id
-	s.ODataId = decoded.ODataId
-	s.ODataType = decoded.ODataType
 	s.ObjectId = decoded.ObjectId
 	s.Operation = decoded.Operation
 	s.OrganizationId = decoded.OrganizationId
@@ -179,6 +191,9 @@ func (s *SecurityAuditLogRecord) UnmarshalJSON(bytes []byte) error {
 	s.UserId = decoded.UserId
 	s.UserPrincipalName = decoded.UserPrincipalName
 	s.UserType = decoded.UserType
+	s.Id = decoded.Id
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -192,5 +207,6 @@ func (s *SecurityAuditLogRecord) UnmarshalJSON(bytes []byte) error {
 		}
 		s.AuditData = impl
 	}
+
 	return nil
 }

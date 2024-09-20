@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &MeProfilePositionId{}
 
 func TestNewMeProfilePositionID(t *testing.T) {
-	id := NewMeProfilePositionID("workPositionIdValue")
+	id := NewMeProfilePositionID("workPositionId")
 
-	if id.WorkPositionId != "workPositionIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'WorkPositionId'", id.WorkPositionId, "workPositionIdValue")
+	if id.WorkPositionId != "workPositionId" {
+		t.Fatalf("Expected %q but got %q for Segment 'WorkPositionId'", id.WorkPositionId, "workPositionId")
 	}
 }
 
 func TestFormatMeProfilePositionID(t *testing.T) {
-	actual := NewMeProfilePositionID("workPositionIdValue").ID()
-	expected := "/me/profile/positions/workPositionIdValue"
+	actual := NewMeProfilePositionID("workPositionId").ID()
+	expected := "/me/profile/positions/workPositionId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -55,14 +55,14 @@ func TestParseMeProfilePositionID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/me/profile/positions/workPositionIdValue",
+			Input: "/me/profile/positions/workPositionId",
 			Expected: &MeProfilePositionId{
-				WorkPositionId: "workPositionIdValue",
+				WorkPositionId: "workPositionId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/profile/positions/workPositionIdValue/extra",
+			Input: "/me/profile/positions/workPositionId/extra",
 			Error: true,
 		},
 	}
@@ -131,26 +131,26 @@ func TestParseMeProfilePositionIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/me/profile/positions/workPositionIdValue",
+			Input: "/me/profile/positions/workPositionId",
 			Expected: &MeProfilePositionId{
-				WorkPositionId: "workPositionIdValue",
+				WorkPositionId: "workPositionId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/profile/positions/workPositionIdValue/extra",
+			Input: "/me/profile/positions/workPositionId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/pRoFiLe/pOsItIoNs/wOrKpOsItIoNiDvAlUe",
+			Input: "/mE/pRoFiLe/pOsItIoNs/wOrKpOsItIoNiD",
 			Expected: &MeProfilePositionId{
-				WorkPositionId: "wOrKpOsItIoNiDvAlUe",
+				WorkPositionId: "wOrKpOsItIoNiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/mE/pRoFiLe/pOsItIoNs/wOrKpOsItIoNiDvAlUe/extra",
+			Input: "/mE/pRoFiLe/pOsItIoNs/wOrKpOsItIoNiD/extra",
 			Error: true,
 		},
 	}

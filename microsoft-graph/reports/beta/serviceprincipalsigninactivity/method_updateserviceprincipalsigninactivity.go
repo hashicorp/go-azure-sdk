@@ -17,15 +17,44 @@ type UpdateServicePrincipalSignInActivityOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateServicePrincipalSignInActivityOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateServicePrincipalSignInActivityOperationOptions() UpdateServicePrincipalSignInActivityOperationOptions {
+	return UpdateServicePrincipalSignInActivityOperationOptions{}
+}
+
+func (o UpdateServicePrincipalSignInActivityOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateServicePrincipalSignInActivityOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateServicePrincipalSignInActivityOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateServicePrincipalSignInActivity - Update the navigation property servicePrincipalSignInActivities in reports
-func (c ServicePrincipalSignInActivityClient) UpdateServicePrincipalSignInActivity(ctx context.Context, id beta.ReportServicePrincipalSignInActivityId, input beta.ServicePrincipalSignInActivity) (result UpdateServicePrincipalSignInActivityOperationResponse, err error) {
+func (c ServicePrincipalSignInActivityClient) UpdateServicePrincipalSignInActivity(ctx context.Context, id beta.ReportServicePrincipalSignInActivityId, input beta.ServicePrincipalSignInActivity, options UpdateServicePrincipalSignInActivityOperationOptions) (result UpdateServicePrincipalSignInActivityOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

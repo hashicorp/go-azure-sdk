@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &IdentityGovernanceAccessReviewDecisionIdInstanceStageId{}
 
 func TestNewIdentityGovernanceAccessReviewDecisionIdInstanceStageID(t *testing.T) {
-	id := NewIdentityGovernanceAccessReviewDecisionIdInstanceStageID("accessReviewInstanceDecisionItemIdValue", "accessReviewStageIdValue")
+	id := NewIdentityGovernanceAccessReviewDecisionIdInstanceStageID("accessReviewInstanceDecisionItemId", "accessReviewStageId")
 
-	if id.AccessReviewInstanceDecisionItemId != "accessReviewInstanceDecisionItemIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'AccessReviewInstanceDecisionItemId'", id.AccessReviewInstanceDecisionItemId, "accessReviewInstanceDecisionItemIdValue")
+	if id.AccessReviewInstanceDecisionItemId != "accessReviewInstanceDecisionItemId" {
+		t.Fatalf("Expected %q but got %q for Segment 'AccessReviewInstanceDecisionItemId'", id.AccessReviewInstanceDecisionItemId, "accessReviewInstanceDecisionItemId")
 	}
 
-	if id.AccessReviewStageId != "accessReviewStageIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'AccessReviewStageId'", id.AccessReviewStageId, "accessReviewStageIdValue")
+	if id.AccessReviewStageId != "accessReviewStageId" {
+		t.Fatalf("Expected %q but got %q for Segment 'AccessReviewStageId'", id.AccessReviewStageId, "accessReviewStageId")
 	}
 }
 
 func TestFormatIdentityGovernanceAccessReviewDecisionIdInstanceStageID(t *testing.T) {
-	actual := NewIdentityGovernanceAccessReviewDecisionIdInstanceStageID("accessReviewInstanceDecisionItemIdValue", "accessReviewStageIdValue").ID()
-	expected := "/identityGovernance/accessReviews/decisions/accessReviewInstanceDecisionItemIdValue/instance/stages/accessReviewStageIdValue"
+	actual := NewIdentityGovernanceAccessReviewDecisionIdInstanceStageID("accessReviewInstanceDecisionItemId", "accessReviewStageId").ID()
+	expected := "/identityGovernance/accessReviews/decisions/accessReviewInstanceDecisionItemId/instance/stages/accessReviewStageId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -59,30 +59,30 @@ func TestParseIdentityGovernanceAccessReviewDecisionIdInstanceStageID(t *testing
 		},
 		{
 			// Incomplete URI
-			Input: "/identityGovernance/accessReviews/decisions/accessReviewInstanceDecisionItemIdValue",
+			Input: "/identityGovernance/accessReviews/decisions/accessReviewInstanceDecisionItemId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/identityGovernance/accessReviews/decisions/accessReviewInstanceDecisionItemIdValue/instance",
+			Input: "/identityGovernance/accessReviews/decisions/accessReviewInstanceDecisionItemId/instance",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/identityGovernance/accessReviews/decisions/accessReviewInstanceDecisionItemIdValue/instance/stages",
+			Input: "/identityGovernance/accessReviews/decisions/accessReviewInstanceDecisionItemId/instance/stages",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/identityGovernance/accessReviews/decisions/accessReviewInstanceDecisionItemIdValue/instance/stages/accessReviewStageIdValue",
+			Input: "/identityGovernance/accessReviews/decisions/accessReviewInstanceDecisionItemId/instance/stages/accessReviewStageId",
 			Expected: &IdentityGovernanceAccessReviewDecisionIdInstanceStageId{
-				AccessReviewInstanceDecisionItemId: "accessReviewInstanceDecisionItemIdValue",
-				AccessReviewStageId:                "accessReviewStageIdValue",
+				AccessReviewInstanceDecisionItemId: "accessReviewInstanceDecisionItemId",
+				AccessReviewStageId:                "accessReviewStageId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/identityGovernance/accessReviews/decisions/accessReviewInstanceDecisionItemIdValue/instance/stages/accessReviewStageIdValue/extra",
+			Input: "/identityGovernance/accessReviews/decisions/accessReviewInstanceDecisionItemId/instance/stages/accessReviewStageId/extra",
 			Error: true,
 		},
 	}
@@ -155,58 +155,58 @@ func TestParseIdentityGovernanceAccessReviewDecisionIdInstanceStageIDInsensitive
 		},
 		{
 			// Incomplete URI
-			Input: "/identityGovernance/accessReviews/decisions/accessReviewInstanceDecisionItemIdValue",
+			Input: "/identityGovernance/accessReviews/decisions/accessReviewInstanceDecisionItemId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/iDeNtItYgOvErNaNcE/aCcEsSrEvIeWs/dEcIsIoNs/aCcEsSrEvIeWiNsTaNcEdEcIsIoNiTeMiDvAlUe",
+			Input: "/iDeNtItYgOvErNaNcE/aCcEsSrEvIeWs/dEcIsIoNs/aCcEsSrEvIeWiNsTaNcEdEcIsIoNiTeMiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/identityGovernance/accessReviews/decisions/accessReviewInstanceDecisionItemIdValue/instance",
+			Input: "/identityGovernance/accessReviews/decisions/accessReviewInstanceDecisionItemId/instance",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/iDeNtItYgOvErNaNcE/aCcEsSrEvIeWs/dEcIsIoNs/aCcEsSrEvIeWiNsTaNcEdEcIsIoNiTeMiDvAlUe/iNsTaNcE",
+			Input: "/iDeNtItYgOvErNaNcE/aCcEsSrEvIeWs/dEcIsIoNs/aCcEsSrEvIeWiNsTaNcEdEcIsIoNiTeMiD/iNsTaNcE",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/identityGovernance/accessReviews/decisions/accessReviewInstanceDecisionItemIdValue/instance/stages",
+			Input: "/identityGovernance/accessReviews/decisions/accessReviewInstanceDecisionItemId/instance/stages",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/iDeNtItYgOvErNaNcE/aCcEsSrEvIeWs/dEcIsIoNs/aCcEsSrEvIeWiNsTaNcEdEcIsIoNiTeMiDvAlUe/iNsTaNcE/sTaGeS",
+			Input: "/iDeNtItYgOvErNaNcE/aCcEsSrEvIeWs/dEcIsIoNs/aCcEsSrEvIeWiNsTaNcEdEcIsIoNiTeMiD/iNsTaNcE/sTaGeS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/identityGovernance/accessReviews/decisions/accessReviewInstanceDecisionItemIdValue/instance/stages/accessReviewStageIdValue",
+			Input: "/identityGovernance/accessReviews/decisions/accessReviewInstanceDecisionItemId/instance/stages/accessReviewStageId",
 			Expected: &IdentityGovernanceAccessReviewDecisionIdInstanceStageId{
-				AccessReviewInstanceDecisionItemId: "accessReviewInstanceDecisionItemIdValue",
-				AccessReviewStageId:                "accessReviewStageIdValue",
+				AccessReviewInstanceDecisionItemId: "accessReviewInstanceDecisionItemId",
+				AccessReviewStageId:                "accessReviewStageId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/identityGovernance/accessReviews/decisions/accessReviewInstanceDecisionItemIdValue/instance/stages/accessReviewStageIdValue/extra",
+			Input: "/identityGovernance/accessReviews/decisions/accessReviewInstanceDecisionItemId/instance/stages/accessReviewStageId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/iDeNtItYgOvErNaNcE/aCcEsSrEvIeWs/dEcIsIoNs/aCcEsSrEvIeWiNsTaNcEdEcIsIoNiTeMiDvAlUe/iNsTaNcE/sTaGeS/aCcEsSrEvIeWsTaGeIdVaLuE",
+			Input: "/iDeNtItYgOvErNaNcE/aCcEsSrEvIeWs/dEcIsIoNs/aCcEsSrEvIeWiNsTaNcEdEcIsIoNiTeMiD/iNsTaNcE/sTaGeS/aCcEsSrEvIeWsTaGeId",
 			Expected: &IdentityGovernanceAccessReviewDecisionIdInstanceStageId{
-				AccessReviewInstanceDecisionItemId: "aCcEsSrEvIeWiNsTaNcEdEcIsIoNiTeMiDvAlUe",
-				AccessReviewStageId:                "aCcEsSrEvIeWsTaGeIdVaLuE",
+				AccessReviewInstanceDecisionItemId: "aCcEsSrEvIeWiNsTaNcEdEcIsIoNiTeMiD",
+				AccessReviewStageId:                "aCcEsSrEvIeWsTaGeId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/iDeNtItYgOvErNaNcE/aCcEsSrEvIeWs/dEcIsIoNs/aCcEsSrEvIeWiNsTaNcEdEcIsIoNiTeMiDvAlUe/iNsTaNcE/sTaGeS/aCcEsSrEvIeWsTaGeIdVaLuE/extra",
+			Input: "/iDeNtItYgOvErNaNcE/aCcEsSrEvIeWs/dEcIsIoNs/aCcEsSrEvIeWiNsTaNcEdEcIsIoNiTeMiD/iNsTaNcE/sTaGeS/aCcEsSrEvIeWsTaGeId/extra",
 			Error: true,
 		},
 	}

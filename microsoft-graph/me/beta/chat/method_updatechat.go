@@ -17,15 +17,44 @@ type UpdateChatOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateChatOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateChatOperationOptions() UpdateChatOperationOptions {
+	return UpdateChatOperationOptions{}
+}
+
+func (o UpdateChatOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateChatOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateChatOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateChat - Update the navigation property chats in me
-func (c ChatClient) UpdateChat(ctx context.Context, id beta.MeChatId, input beta.Chat) (result UpdateChatOperationResponse, err error) {
+func (c ChatClient) UpdateChat(ctx context.Context, id beta.MeChatId, input beta.Chat, options UpdateChatOperationOptions) (result UpdateChatOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

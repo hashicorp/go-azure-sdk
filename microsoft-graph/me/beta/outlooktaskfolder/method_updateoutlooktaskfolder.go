@@ -17,16 +17,45 @@ type UpdateOutlookTaskFolderOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateOutlookTaskFolderOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateOutlookTaskFolderOperationOptions() UpdateOutlookTaskFolderOperationOptions {
+	return UpdateOutlookTaskFolderOperationOptions{}
+}
+
+func (o UpdateOutlookTaskFolderOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateOutlookTaskFolderOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateOutlookTaskFolderOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateOutlookTaskFolder - Update outlooktaskfolder (deprecated). Update the writable properties of an Outlook task
 // folder. You cannot change the name property value of the default task folder, 'Tasks'.
-func (c OutlookTaskFolderClient) UpdateOutlookTaskFolder(ctx context.Context, id beta.MeOutlookTaskFolderId, input beta.OutlookTaskFolder) (result UpdateOutlookTaskFolderOperationResponse, err error) {
+func (c OutlookTaskFolderClient) UpdateOutlookTaskFolder(ctx context.Context, id beta.MeOutlookTaskFolderId, input beta.OutlookTaskFolder, options UpdateOutlookTaskFolderOperationOptions) (result UpdateOutlookTaskFolderOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

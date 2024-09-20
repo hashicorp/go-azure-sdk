@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &MeExtensionId{}
 
 func TestNewMeExtensionID(t *testing.T) {
-	id := NewMeExtensionID("extensionIdValue")
+	id := NewMeExtensionID("extensionId")
 
-	if id.ExtensionId != "extensionIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ExtensionId'", id.ExtensionId, "extensionIdValue")
+	if id.ExtensionId != "extensionId" {
+		t.Fatalf("Expected %q but got %q for Segment 'ExtensionId'", id.ExtensionId, "extensionId")
 	}
 }
 
 func TestFormatMeExtensionID(t *testing.T) {
-	actual := NewMeExtensionID("extensionIdValue").ID()
-	expected := "/me/extensions/extensionIdValue"
+	actual := NewMeExtensionID("extensionId").ID()
+	expected := "/me/extensions/extensionId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -50,14 +50,14 @@ func TestParseMeExtensionID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/me/extensions/extensionIdValue",
+			Input: "/me/extensions/extensionId",
 			Expected: &MeExtensionId{
-				ExtensionId: "extensionIdValue",
+				ExtensionId: "extensionId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/extensions/extensionIdValue/extra",
+			Input: "/me/extensions/extensionId/extra",
 			Error: true,
 		},
 	}
@@ -116,26 +116,26 @@ func TestParseMeExtensionIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/me/extensions/extensionIdValue",
+			Input: "/me/extensions/extensionId",
 			Expected: &MeExtensionId{
-				ExtensionId: "extensionIdValue",
+				ExtensionId: "extensionId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/extensions/extensionIdValue/extra",
+			Input: "/me/extensions/extensionId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/eXtEnSiOnS/eXtEnSiOnIdVaLuE",
+			Input: "/mE/eXtEnSiOnS/eXtEnSiOnId",
 			Expected: &MeExtensionId{
-				ExtensionId: "eXtEnSiOnIdVaLuE",
+				ExtensionId: "eXtEnSiOnId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/mE/eXtEnSiOnS/eXtEnSiOnIdVaLuE/extra",
+			Input: "/mE/eXtEnSiOnS/eXtEnSiOnId/extra",
 			Error: true,
 		},
 	}

@@ -19,7 +19,8 @@ type DeleteDeviceHealthScriptRunSummaryOperationResponse struct {
 }
 
 type DeleteDeviceHealthScriptRunSummaryOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteDeviceHealthScriptRunSummaryOperationOptions() DeleteDeviceHealthScriptRunSummaryOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteDeviceHealthScriptRunSummaryOperationOptions) ToHeaders() *client.
 
 func (o DeleteDeviceHealthScriptRunSummaryOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

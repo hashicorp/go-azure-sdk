@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/microsoft-graph/users/stable/joinedteamchannelmessage` Documentation
 
-The `joinedteamchannelmessage` SDK allows for interaction with the Azure Resource Manager Service `users` (API Version `stable`).
+The `joinedteamchannelmessage` SDK allows for interaction with Microsoft Graph `users` (API Version `stable`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -15,7 +15,7 @@ import "github.com/hashicorp/go-azure-sdk/microsoft-graph/users/stable/joinedtea
 ### Client Initialization
 
 ```go
-client := joinedteamchannelmessage.NewJoinedTeamChannelMessageClientWithBaseURI("https://management.azure.com")
+client := joinedteamchannelmessage.NewJoinedTeamChannelMessageClientWithBaseURI("https://graph.microsoft.com")
 client.Client.Authorizer = authorizer
 ```
 
@@ -24,14 +24,14 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := joinedteamchannelmessage.NewUserIdJoinedTeamIdChannelID("userIdValue", "teamIdValue", "channelIdValue")
+id := joinedteamchannelmessage.NewUserIdJoinedTeamIdChannelID("userId", "teamId", "channelId")
 
 payload := joinedteamchannelmessage.ChatMessage{
 	// ...
 }
 
 
-read, err := client.CreateJoinedTeamChannelMessage(ctx, id, payload)
+read, err := client.CreateJoinedTeamChannelMessage(ctx, id, payload, joinedteamchannelmessage.DefaultCreateJoinedTeamChannelMessageOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -45,9 +45,9 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := joinedteamchannelmessage.NewUserIdJoinedTeamIdChannelIdMessageID("userIdValue", "teamIdValue", "channelIdValue", "chatMessageIdValue")
+id := joinedteamchannelmessage.NewUserIdJoinedTeamIdChannelIdMessageID("userId", "teamId", "channelId", "chatMessageId")
 
-read, err := client.CreateJoinedTeamChannelMessageSoftDelete(ctx, id)
+read, err := client.CreateJoinedTeamChannelMessageSoftDelete(ctx, id, joinedteamchannelmessage.DefaultCreateJoinedTeamChannelMessageSoftDeleteOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -61,9 +61,9 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := joinedteamchannelmessage.NewUserIdJoinedTeamIdChannelIdMessageID("userIdValue", "teamIdValue", "channelIdValue", "chatMessageIdValue")
+id := joinedteamchannelmessage.NewUserIdJoinedTeamIdChannelIdMessageID("userId", "teamId", "channelId", "chatMessageId")
 
-read, err := client.CreateJoinedTeamChannelMessageUndoSoftDelete(ctx, id)
+read, err := client.CreateJoinedTeamChannelMessageUndoSoftDelete(ctx, id, joinedteamchannelmessage.DefaultCreateJoinedTeamChannelMessageUndoSoftDeleteOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -77,7 +77,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := joinedteamchannelmessage.NewUserIdJoinedTeamIdChannelIdMessageID("userIdValue", "teamIdValue", "channelIdValue", "chatMessageIdValue")
+id := joinedteamchannelmessage.NewUserIdJoinedTeamIdChannelIdMessageID("userId", "teamId", "channelId", "chatMessageId")
 
 read, err := client.DeleteJoinedTeamChannelMessage(ctx, id, joinedteamchannelmessage.DefaultDeleteJoinedTeamChannelMessageOperationOptions())
 if err != nil {
@@ -93,7 +93,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := joinedteamchannelmessage.NewUserIdJoinedTeamIdChannelIdMessageID("userIdValue", "teamIdValue", "channelIdValue", "chatMessageIdValue")
+id := joinedteamchannelmessage.NewUserIdJoinedTeamIdChannelIdMessageID("userId", "teamId", "channelId", "chatMessageId")
 
 read, err := client.GetJoinedTeamChannelMessage(ctx, id, joinedteamchannelmessage.DefaultGetJoinedTeamChannelMessageOperationOptions())
 if err != nil {
@@ -109,7 +109,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := joinedteamchannelmessage.NewUserIdJoinedTeamIdChannelID("userIdValue", "teamIdValue", "channelIdValue")
+id := joinedteamchannelmessage.NewUserIdJoinedTeamIdChannelID("userId", "teamId", "channelId")
 
 read, err := client.GetJoinedTeamChannelMessagesCount(ctx, id, joinedteamchannelmessage.DefaultGetJoinedTeamChannelMessagesCountOperationOptions())
 if err != nil {
@@ -125,7 +125,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := joinedteamchannelmessage.NewUserIdJoinedTeamIdChannelID("userIdValue", "teamIdValue", "channelIdValue")
+id := joinedteamchannelmessage.NewUserIdJoinedTeamIdChannelID("userId", "teamId", "channelId")
 
 // alternatively `client.ListJoinedTeamChannelMessages(ctx, id, joinedteamchannelmessage.DefaultListJoinedTeamChannelMessagesOperationOptions())` can be used to do batched pagination
 items, err := client.ListJoinedTeamChannelMessagesComplete(ctx, id, joinedteamchannelmessage.DefaultListJoinedTeamChannelMessagesOperationOptions())
@@ -142,14 +142,14 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := joinedteamchannelmessage.NewUserIdJoinedTeamIdChannelIdMessageID("userIdValue", "teamIdValue", "channelIdValue", "chatMessageIdValue")
+id := joinedteamchannelmessage.NewUserIdJoinedTeamIdChannelIdMessageID("userId", "teamId", "channelId", "chatMessageId")
 
 payload := joinedteamchannelmessage.SetJoinedTeamChannelMessageReactionRequest{
 	// ...
 }
 
 
-read, err := client.SetJoinedTeamChannelMessageReaction(ctx, id, payload)
+read, err := client.SetJoinedTeamChannelMessageReaction(ctx, id, payload, joinedteamchannelmessage.DefaultSetJoinedTeamChannelMessageReactionOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -163,14 +163,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := joinedteamchannelmessage.NewUserIdJoinedTeamIdChannelIdMessageID("userIdValue", "teamIdValue", "channelIdValue", "chatMessageIdValue")
+id := joinedteamchannelmessage.NewUserIdJoinedTeamIdChannelIdMessageID("userId", "teamId", "channelId", "chatMessageId")
 
 payload := joinedteamchannelmessage.UnsetJoinedTeamChannelMessageReactionRequest{
 	// ...
 }
 
 
-read, err := client.UnsetJoinedTeamChannelMessageReaction(ctx, id, payload)
+read, err := client.UnsetJoinedTeamChannelMessageReaction(ctx, id, payload, joinedteamchannelmessage.DefaultUnsetJoinedTeamChannelMessageReactionOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -184,14 +184,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := joinedteamchannelmessage.NewUserIdJoinedTeamIdChannelIdMessageID("userIdValue", "teamIdValue", "channelIdValue", "chatMessageIdValue")
+id := joinedteamchannelmessage.NewUserIdJoinedTeamIdChannelIdMessageID("userId", "teamId", "channelId", "chatMessageId")
 
 payload := joinedteamchannelmessage.ChatMessage{
 	// ...
 }
 
 
-read, err := client.UpdateJoinedTeamChannelMessage(ctx, id, payload)
+read, err := client.UpdateJoinedTeamChannelMessage(ctx, id, payload, joinedteamchannelmessage.DefaultUpdateJoinedTeamChannelMessageOperationOptions())
 if err != nil {
 	// handle the error
 }

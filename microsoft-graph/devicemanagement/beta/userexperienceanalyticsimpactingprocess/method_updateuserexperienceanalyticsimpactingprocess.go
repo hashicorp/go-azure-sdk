@@ -17,16 +17,45 @@ type UpdateUserExperienceAnalyticsImpactingProcessOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateUserExperienceAnalyticsImpactingProcessOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateUserExperienceAnalyticsImpactingProcessOperationOptions() UpdateUserExperienceAnalyticsImpactingProcessOperationOptions {
+	return UpdateUserExperienceAnalyticsImpactingProcessOperationOptions{}
+}
+
+func (o UpdateUserExperienceAnalyticsImpactingProcessOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateUserExperienceAnalyticsImpactingProcessOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateUserExperienceAnalyticsImpactingProcessOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateUserExperienceAnalyticsImpactingProcess - Update the navigation property
 // userExperienceAnalyticsImpactingProcess in deviceManagement
-func (c UserExperienceAnalyticsImpactingProcessClient) UpdateUserExperienceAnalyticsImpactingProcess(ctx context.Context, id beta.DeviceManagementUserExperienceAnalyticsImpactingProcessId, input beta.UserExperienceAnalyticsImpactingProcess) (result UpdateUserExperienceAnalyticsImpactingProcessOperationResponse, err error) {
+func (c UserExperienceAnalyticsImpactingProcessClient) UpdateUserExperienceAnalyticsImpactingProcess(ctx context.Context, id beta.DeviceManagementUserExperienceAnalyticsImpactingProcessId, input beta.UserExperienceAnalyticsImpactingProcess, options UpdateUserExperienceAnalyticsImpactingProcessOperationOptions) (result UpdateUserExperienceAnalyticsImpactingProcessOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

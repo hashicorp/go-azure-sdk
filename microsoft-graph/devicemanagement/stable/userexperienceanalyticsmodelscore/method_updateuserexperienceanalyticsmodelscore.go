@@ -17,16 +17,45 @@ type UpdateUserExperienceAnalyticsModelScoreOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateUserExperienceAnalyticsModelScoreOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateUserExperienceAnalyticsModelScoreOperationOptions() UpdateUserExperienceAnalyticsModelScoreOperationOptions {
+	return UpdateUserExperienceAnalyticsModelScoreOperationOptions{}
+}
+
+func (o UpdateUserExperienceAnalyticsModelScoreOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateUserExperienceAnalyticsModelScoreOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateUserExperienceAnalyticsModelScoreOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateUserExperienceAnalyticsModelScore - Update the navigation property userExperienceAnalyticsModelScores in
 // deviceManagement
-func (c UserExperienceAnalyticsModelScoreClient) UpdateUserExperienceAnalyticsModelScore(ctx context.Context, id stable.DeviceManagementUserExperienceAnalyticsModelScoreId, input stable.UserExperienceAnalyticsModelScores) (result UpdateUserExperienceAnalyticsModelScoreOperationResponse, err error) {
+func (c UserExperienceAnalyticsModelScoreClient) UpdateUserExperienceAnalyticsModelScore(ctx context.Context, id stable.DeviceManagementUserExperienceAnalyticsModelScoreId, input stable.UserExperienceAnalyticsModelScores, options UpdateUserExperienceAnalyticsModelScoreOperationOptions) (result UpdateUserExperienceAnalyticsModelScoreOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

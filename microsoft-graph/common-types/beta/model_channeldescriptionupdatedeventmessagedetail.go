@@ -66,10 +66,15 @@ func (s ChannelDescriptionUpdatedEventMessageDetail) MarshalJSON() ([]byte, erro
 var _ json.Unmarshaler = &ChannelDescriptionUpdatedEventMessageDetail{}
 
 func (s *ChannelDescriptionUpdatedEventMessageDetail) UnmarshalJSON(bytes []byte) error {
-	type alias ChannelDescriptionUpdatedEventMessageDetail
-	var decoded alias
+
+	var decoded struct {
+		ChannelDescription nullable.Type[string] `json:"channelDescription,omitempty"`
+		ChannelId          nullable.Type[string] `json:"channelId,omitempty"`
+		ODataId            *string               `json:"@odata.id,omitempty"`
+		ODataType          *string               `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into ChannelDescriptionUpdatedEventMessageDetail: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.ChannelDescription = decoded.ChannelDescription
@@ -89,5 +94,6 @@ func (s *ChannelDescriptionUpdatedEventMessageDetail) UnmarshalJSON(bytes []byte
 		}
 		s.Initiator = impl
 	}
+
 	return nil
 }

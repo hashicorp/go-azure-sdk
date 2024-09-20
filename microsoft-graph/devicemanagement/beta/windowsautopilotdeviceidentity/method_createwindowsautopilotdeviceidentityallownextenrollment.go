@@ -18,16 +18,45 @@ type CreateWindowsAutopilotDeviceIdentityAllowNextEnrollmentOperationResponse st
 	OData        *odata.OData
 }
 
+type CreateWindowsAutopilotDeviceIdentityAllowNextEnrollmentOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateWindowsAutopilotDeviceIdentityAllowNextEnrollmentOperationOptions() CreateWindowsAutopilotDeviceIdentityAllowNextEnrollmentOperationOptions {
+	return CreateWindowsAutopilotDeviceIdentityAllowNextEnrollmentOperationOptions{}
+}
+
+func (o CreateWindowsAutopilotDeviceIdentityAllowNextEnrollmentOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateWindowsAutopilotDeviceIdentityAllowNextEnrollmentOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateWindowsAutopilotDeviceIdentityAllowNextEnrollmentOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateWindowsAutopilotDeviceIdentityAllowNextEnrollment - Invoke action allowNextEnrollment. Unblocks next autopilot
 // enrollment.
-func (c WindowsAutopilotDeviceIdentityClient) CreateWindowsAutopilotDeviceIdentityAllowNextEnrollment(ctx context.Context, id beta.DeviceManagementWindowsAutopilotDeviceIdentityId) (result CreateWindowsAutopilotDeviceIdentityAllowNextEnrollmentOperationResponse, err error) {
+func (c WindowsAutopilotDeviceIdentityClient) CreateWindowsAutopilotDeviceIdentityAllowNextEnrollment(ctx context.Context, id beta.DeviceManagementWindowsAutopilotDeviceIdentityId, options CreateWindowsAutopilotDeviceIdentityAllowNextEnrollmentOperationOptions) (result CreateWindowsAutopilotDeviceIdentityAllowNextEnrollmentOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/allowNextEnrollment", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/allowNextEnrollment", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

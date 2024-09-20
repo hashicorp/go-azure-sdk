@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &DeviceManagementDeviceConfigurationIdGroupAssignmentId{}
 
 func TestNewDeviceManagementDeviceConfigurationIdGroupAssignmentID(t *testing.T) {
-	id := NewDeviceManagementDeviceConfigurationIdGroupAssignmentID("deviceConfigurationIdValue", "deviceConfigurationGroupAssignmentIdValue")
+	id := NewDeviceManagementDeviceConfigurationIdGroupAssignmentID("deviceConfigurationId", "deviceConfigurationGroupAssignmentId")
 
-	if id.DeviceConfigurationId != "deviceConfigurationIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DeviceConfigurationId'", id.DeviceConfigurationId, "deviceConfigurationIdValue")
+	if id.DeviceConfigurationId != "deviceConfigurationId" {
+		t.Fatalf("Expected %q but got %q for Segment 'DeviceConfigurationId'", id.DeviceConfigurationId, "deviceConfigurationId")
 	}
 
-	if id.DeviceConfigurationGroupAssignmentId != "deviceConfigurationGroupAssignmentIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DeviceConfigurationGroupAssignmentId'", id.DeviceConfigurationGroupAssignmentId, "deviceConfigurationGroupAssignmentIdValue")
+	if id.DeviceConfigurationGroupAssignmentId != "deviceConfigurationGroupAssignmentId" {
+		t.Fatalf("Expected %q but got %q for Segment 'DeviceConfigurationGroupAssignmentId'", id.DeviceConfigurationGroupAssignmentId, "deviceConfigurationGroupAssignmentId")
 	}
 }
 
 func TestFormatDeviceManagementDeviceConfigurationIdGroupAssignmentID(t *testing.T) {
-	actual := NewDeviceManagementDeviceConfigurationIdGroupAssignmentID("deviceConfigurationIdValue", "deviceConfigurationGroupAssignmentIdValue").ID()
-	expected := "/deviceManagement/deviceConfigurations/deviceConfigurationIdValue/groupAssignments/deviceConfigurationGroupAssignmentIdValue"
+	actual := NewDeviceManagementDeviceConfigurationIdGroupAssignmentID("deviceConfigurationId", "deviceConfigurationGroupAssignmentId").ID()
+	expected := "/deviceManagement/deviceConfigurations/deviceConfigurationId/groupAssignments/deviceConfigurationGroupAssignmentId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -54,25 +54,25 @@ func TestParseDeviceManagementDeviceConfigurationIdGroupAssignmentID(t *testing.
 		},
 		{
 			// Incomplete URI
-			Input: "/deviceManagement/deviceConfigurations/deviceConfigurationIdValue",
+			Input: "/deviceManagement/deviceConfigurations/deviceConfigurationId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/deviceManagement/deviceConfigurations/deviceConfigurationIdValue/groupAssignments",
+			Input: "/deviceManagement/deviceConfigurations/deviceConfigurationId/groupAssignments",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/deviceConfigurations/deviceConfigurationIdValue/groupAssignments/deviceConfigurationGroupAssignmentIdValue",
+			Input: "/deviceManagement/deviceConfigurations/deviceConfigurationId/groupAssignments/deviceConfigurationGroupAssignmentId",
 			Expected: &DeviceManagementDeviceConfigurationIdGroupAssignmentId{
-				DeviceConfigurationId:                "deviceConfigurationIdValue",
-				DeviceConfigurationGroupAssignmentId: "deviceConfigurationGroupAssignmentIdValue",
+				DeviceConfigurationId:                "deviceConfigurationId",
+				DeviceConfigurationGroupAssignmentId: "deviceConfigurationGroupAssignmentId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/deviceConfigurations/deviceConfigurationIdValue/groupAssignments/deviceConfigurationGroupAssignmentIdValue/extra",
+			Input: "/deviceManagement/deviceConfigurations/deviceConfigurationId/groupAssignments/deviceConfigurationGroupAssignmentId/extra",
 			Error: true,
 		},
 	}
@@ -135,48 +135,48 @@ func TestParseDeviceManagementDeviceConfigurationIdGroupAssignmentIDInsensitivel
 		},
 		{
 			// Incomplete URI
-			Input: "/deviceManagement/deviceConfigurations/deviceConfigurationIdValue",
+			Input: "/deviceManagement/deviceConfigurations/deviceConfigurationId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/dEvIcEcOnFiGuRaTiOnS/dEvIcEcOnFiGuRaTiOnIdVaLuE",
+			Input: "/dEvIcEmAnAgEmEnT/dEvIcEcOnFiGuRaTiOnS/dEvIcEcOnFiGuRaTiOnId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/deviceManagement/deviceConfigurations/deviceConfigurationIdValue/groupAssignments",
+			Input: "/deviceManagement/deviceConfigurations/deviceConfigurationId/groupAssignments",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/dEvIcEcOnFiGuRaTiOnS/dEvIcEcOnFiGuRaTiOnIdVaLuE/gRoUpAsSiGnMeNtS",
+			Input: "/dEvIcEmAnAgEmEnT/dEvIcEcOnFiGuRaTiOnS/dEvIcEcOnFiGuRaTiOnId/gRoUpAsSiGnMeNtS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/deviceConfigurations/deviceConfigurationIdValue/groupAssignments/deviceConfigurationGroupAssignmentIdValue",
+			Input: "/deviceManagement/deviceConfigurations/deviceConfigurationId/groupAssignments/deviceConfigurationGroupAssignmentId",
 			Expected: &DeviceManagementDeviceConfigurationIdGroupAssignmentId{
-				DeviceConfigurationId:                "deviceConfigurationIdValue",
-				DeviceConfigurationGroupAssignmentId: "deviceConfigurationGroupAssignmentIdValue",
+				DeviceConfigurationId:                "deviceConfigurationId",
+				DeviceConfigurationGroupAssignmentId: "deviceConfigurationGroupAssignmentId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/deviceConfigurations/deviceConfigurationIdValue/groupAssignments/deviceConfigurationGroupAssignmentIdValue/extra",
+			Input: "/deviceManagement/deviceConfigurations/deviceConfigurationId/groupAssignments/deviceConfigurationGroupAssignmentId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/dEvIcEcOnFiGuRaTiOnS/dEvIcEcOnFiGuRaTiOnIdVaLuE/gRoUpAsSiGnMeNtS/dEvIcEcOnFiGuRaTiOnGrOuPaSsIgNmEnTiDvAlUe",
+			Input: "/dEvIcEmAnAgEmEnT/dEvIcEcOnFiGuRaTiOnS/dEvIcEcOnFiGuRaTiOnId/gRoUpAsSiGnMeNtS/dEvIcEcOnFiGuRaTiOnGrOuPaSsIgNmEnTiD",
 			Expected: &DeviceManagementDeviceConfigurationIdGroupAssignmentId{
-				DeviceConfigurationId:                "dEvIcEcOnFiGuRaTiOnIdVaLuE",
-				DeviceConfigurationGroupAssignmentId: "dEvIcEcOnFiGuRaTiOnGrOuPaSsIgNmEnTiDvAlUe",
+				DeviceConfigurationId:                "dEvIcEcOnFiGuRaTiOnId",
+				DeviceConfigurationGroupAssignmentId: "dEvIcEcOnFiGuRaTiOnGrOuPaSsIgNmEnTiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/dEvIcEcOnFiGuRaTiOnS/dEvIcEcOnFiGuRaTiOnIdVaLuE/gRoUpAsSiGnMeNtS/dEvIcEcOnFiGuRaTiOnGrOuPaSsIgNmEnTiDvAlUe/extra",
+			Input: "/dEvIcEmAnAgEmEnT/dEvIcEcOnFiGuRaTiOnS/dEvIcEcOnFiGuRaTiOnId/gRoUpAsSiGnMeNtS/dEvIcEcOnFiGuRaTiOnGrOuPaSsIgNmEnTiD/extra",
 			Error: true,
 		},
 	}

@@ -17,15 +17,44 @@ type UpdateTeamPrimaryChannelMessageReplyHostedContentOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateTeamPrimaryChannelMessageReplyHostedContentOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateTeamPrimaryChannelMessageReplyHostedContentOperationOptions() UpdateTeamPrimaryChannelMessageReplyHostedContentOperationOptions {
+	return UpdateTeamPrimaryChannelMessageReplyHostedContentOperationOptions{}
+}
+
+func (o UpdateTeamPrimaryChannelMessageReplyHostedContentOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateTeamPrimaryChannelMessageReplyHostedContentOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateTeamPrimaryChannelMessageReplyHostedContentOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateTeamPrimaryChannelMessageReplyHostedContent - Update the navigation property hostedContents in groups
-func (c TeamPrimaryChannelMessageReplyHostedContentClient) UpdateTeamPrimaryChannelMessageReplyHostedContent(ctx context.Context, id beta.GroupIdTeamPrimaryChannelMessageIdReplyIdHostedContentId, input beta.ChatMessageHostedContent) (result UpdateTeamPrimaryChannelMessageReplyHostedContentOperationResponse, err error) {
+func (c TeamPrimaryChannelMessageReplyHostedContentClient) UpdateTeamPrimaryChannelMessageReplyHostedContent(ctx context.Context, id beta.GroupIdTeamPrimaryChannelMessageIdReplyIdHostedContentId, input beta.ChatMessageHostedContent, options UpdateTeamPrimaryChannelMessageReplyHostedContentOperationOptions) (result UpdateTeamPrimaryChannelMessageReplyHostedContentOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

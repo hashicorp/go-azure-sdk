@@ -17,16 +17,45 @@ type UpdateEntitlementManagementRoleDefinitionInheritsPermissionsFromOperationRe
 	OData        *odata.OData
 }
 
+type UpdateEntitlementManagementRoleDefinitionInheritsPermissionsFromOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateEntitlementManagementRoleDefinitionInheritsPermissionsFromOperationOptions() UpdateEntitlementManagementRoleDefinitionInheritsPermissionsFromOperationOptions {
+	return UpdateEntitlementManagementRoleDefinitionInheritsPermissionsFromOperationOptions{}
+}
+
+func (o UpdateEntitlementManagementRoleDefinitionInheritsPermissionsFromOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateEntitlementManagementRoleDefinitionInheritsPermissionsFromOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateEntitlementManagementRoleDefinitionInheritsPermissionsFromOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateEntitlementManagementRoleDefinitionInheritsPermissionsFrom - Update the navigation property
 // inheritsPermissionsFrom in roleManagement
-func (c EntitlementManagementRoleDefinitionInheritsPermissionsFromClient) UpdateEntitlementManagementRoleDefinitionInheritsPermissionsFrom(ctx context.Context, id stable.RoleManagementEntitlementManagementRoleDefinitionIdInheritsPermissionsFromId, input stable.UnifiedRoleDefinition) (result UpdateEntitlementManagementRoleDefinitionInheritsPermissionsFromOperationResponse, err error) {
+func (c EntitlementManagementRoleDefinitionInheritsPermissionsFromClient) UpdateEntitlementManagementRoleDefinitionInheritsPermissionsFrom(ctx context.Context, id stable.RoleManagementEntitlementManagementRoleDefinitionIdInheritsPermissionsFromId, input stable.UnifiedRoleDefinition, options UpdateEntitlementManagementRoleDefinitionInheritsPermissionsFromOperationOptions) (result UpdateEntitlementManagementRoleDefinitionInheritsPermissionsFromOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

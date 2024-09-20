@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &MeAuthenticationPasswordlessMicrosoftAuthenticatorMethodId{}
 
 func TestNewMeAuthenticationPasswordlessMicrosoftAuthenticatorMethodID(t *testing.T) {
-	id := NewMeAuthenticationPasswordlessMicrosoftAuthenticatorMethodID("passwordlessMicrosoftAuthenticatorAuthenticationMethodIdValue")
+	id := NewMeAuthenticationPasswordlessMicrosoftAuthenticatorMethodID("passwordlessMicrosoftAuthenticatorAuthenticationMethodId")
 
-	if id.PasswordlessMicrosoftAuthenticatorAuthenticationMethodId != "passwordlessMicrosoftAuthenticatorAuthenticationMethodIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'PasswordlessMicrosoftAuthenticatorAuthenticationMethodId'", id.PasswordlessMicrosoftAuthenticatorAuthenticationMethodId, "passwordlessMicrosoftAuthenticatorAuthenticationMethodIdValue")
+	if id.PasswordlessMicrosoftAuthenticatorAuthenticationMethodId != "passwordlessMicrosoftAuthenticatorAuthenticationMethodId" {
+		t.Fatalf("Expected %q but got %q for Segment 'PasswordlessMicrosoftAuthenticatorAuthenticationMethodId'", id.PasswordlessMicrosoftAuthenticatorAuthenticationMethodId, "passwordlessMicrosoftAuthenticatorAuthenticationMethodId")
 	}
 }
 
 func TestFormatMeAuthenticationPasswordlessMicrosoftAuthenticatorMethodID(t *testing.T) {
-	actual := NewMeAuthenticationPasswordlessMicrosoftAuthenticatorMethodID("passwordlessMicrosoftAuthenticatorAuthenticationMethodIdValue").ID()
-	expected := "/me/authentication/passwordlessMicrosoftAuthenticatorMethods/passwordlessMicrosoftAuthenticatorAuthenticationMethodIdValue"
+	actual := NewMeAuthenticationPasswordlessMicrosoftAuthenticatorMethodID("passwordlessMicrosoftAuthenticatorAuthenticationMethodId").ID()
+	expected := "/me/authentication/passwordlessMicrosoftAuthenticatorMethods/passwordlessMicrosoftAuthenticatorAuthenticationMethodId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -55,14 +55,14 @@ func TestParseMeAuthenticationPasswordlessMicrosoftAuthenticatorMethodID(t *test
 		},
 		{
 			// Valid URI
-			Input: "/me/authentication/passwordlessMicrosoftAuthenticatorMethods/passwordlessMicrosoftAuthenticatorAuthenticationMethodIdValue",
+			Input: "/me/authentication/passwordlessMicrosoftAuthenticatorMethods/passwordlessMicrosoftAuthenticatorAuthenticationMethodId",
 			Expected: &MeAuthenticationPasswordlessMicrosoftAuthenticatorMethodId{
-				PasswordlessMicrosoftAuthenticatorAuthenticationMethodId: "passwordlessMicrosoftAuthenticatorAuthenticationMethodIdValue",
+				PasswordlessMicrosoftAuthenticatorAuthenticationMethodId: "passwordlessMicrosoftAuthenticatorAuthenticationMethodId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/authentication/passwordlessMicrosoftAuthenticatorMethods/passwordlessMicrosoftAuthenticatorAuthenticationMethodIdValue/extra",
+			Input: "/me/authentication/passwordlessMicrosoftAuthenticatorMethods/passwordlessMicrosoftAuthenticatorAuthenticationMethodId/extra",
 			Error: true,
 		},
 	}
@@ -131,26 +131,26 @@ func TestParseMeAuthenticationPasswordlessMicrosoftAuthenticatorMethodIDInsensit
 		},
 		{
 			// Valid URI
-			Input: "/me/authentication/passwordlessMicrosoftAuthenticatorMethods/passwordlessMicrosoftAuthenticatorAuthenticationMethodIdValue",
+			Input: "/me/authentication/passwordlessMicrosoftAuthenticatorMethods/passwordlessMicrosoftAuthenticatorAuthenticationMethodId",
 			Expected: &MeAuthenticationPasswordlessMicrosoftAuthenticatorMethodId{
-				PasswordlessMicrosoftAuthenticatorAuthenticationMethodId: "passwordlessMicrosoftAuthenticatorAuthenticationMethodIdValue",
+				PasswordlessMicrosoftAuthenticatorAuthenticationMethodId: "passwordlessMicrosoftAuthenticatorAuthenticationMethodId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/authentication/passwordlessMicrosoftAuthenticatorMethods/passwordlessMicrosoftAuthenticatorAuthenticationMethodIdValue/extra",
+			Input: "/me/authentication/passwordlessMicrosoftAuthenticatorMethods/passwordlessMicrosoftAuthenticatorAuthenticationMethodId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/aUtHeNtIcAtIoN/pAsSwOrDlEsSmIcRoSoFtAuThEnTiCaToRmEtHoDs/pAsSwOrDlEsSmIcRoSoFtAuThEnTiCaToRaUtHeNtIcAtIoNmEtHoDiDvAlUe",
+			Input: "/mE/aUtHeNtIcAtIoN/pAsSwOrDlEsSmIcRoSoFtAuThEnTiCaToRmEtHoDs/pAsSwOrDlEsSmIcRoSoFtAuThEnTiCaToRaUtHeNtIcAtIoNmEtHoDiD",
 			Expected: &MeAuthenticationPasswordlessMicrosoftAuthenticatorMethodId{
-				PasswordlessMicrosoftAuthenticatorAuthenticationMethodId: "pAsSwOrDlEsSmIcRoSoFtAuThEnTiCaToRaUtHeNtIcAtIoNmEtHoDiDvAlUe",
+				PasswordlessMicrosoftAuthenticatorAuthenticationMethodId: "pAsSwOrDlEsSmIcRoSoFtAuThEnTiCaToRaUtHeNtIcAtIoNmEtHoDiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/mE/aUtHeNtIcAtIoN/pAsSwOrDlEsSmIcRoSoFtAuThEnTiCaToRmEtHoDs/pAsSwOrDlEsSmIcRoSoFtAuThEnTiCaToRaUtHeNtIcAtIoNmEtHoDiDvAlUe/extra",
+			Input: "/mE/aUtHeNtIcAtIoN/pAsSwOrDlEsSmIcRoSoFtAuThEnTiCaToRmEtHoDs/pAsSwOrDlEsSmIcRoSoFtAuThEnTiCaToRaUtHeNtIcAtIoNmEtHoDiD/extra",
 			Error: true,
 		},
 	}

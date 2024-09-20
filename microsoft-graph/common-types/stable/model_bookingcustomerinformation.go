@@ -84,10 +84,20 @@ func (s BookingCustomerInformation) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &BookingCustomerInformation{}
 
 func (s *BookingCustomerInformation) UnmarshalJSON(bytes []byte) error {
-	type alias BookingCustomerInformation
-	var decoded alias
+
+	var decoded struct {
+		CustomQuestionAnswers *[]BookingQuestionAnswer `json:"customQuestionAnswers,omitempty"`
+		CustomerId            nullable.Type[string]    `json:"customerId,omitempty"`
+		EmailAddress          nullable.Type[string]    `json:"emailAddress,omitempty"`
+		Name                  nullable.Type[string]    `json:"name,omitempty"`
+		Notes                 nullable.Type[string]    `json:"notes,omitempty"`
+		Phone                 nullable.Type[string]    `json:"phone,omitempty"`
+		TimeZone              nullable.Type[string]    `json:"timeZone,omitempty"`
+		ODataId               *string                  `json:"@odata.id,omitempty"`
+		ODataType             *string                  `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into BookingCustomerInformation: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.CustomQuestionAnswers = decoded.CustomQuestionAnswers
@@ -95,10 +105,10 @@ func (s *BookingCustomerInformation) UnmarshalJSON(bytes []byte) error {
 	s.EmailAddress = decoded.EmailAddress
 	s.Name = decoded.Name
 	s.Notes = decoded.Notes
-	s.ODataId = decoded.ODataId
-	s.ODataType = decoded.ODataType
 	s.Phone = decoded.Phone
 	s.TimeZone = decoded.TimeZone
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -112,5 +122,6 @@ func (s *BookingCustomerInformation) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Location = impl
 	}
+
 	return nil
 }

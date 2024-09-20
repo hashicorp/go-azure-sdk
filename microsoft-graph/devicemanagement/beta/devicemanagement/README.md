@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/devicemanagement` Documentation
 
-The `devicemanagement` SDK allows for interaction with the Azure Resource Manager Service `devicemanagement` (API Version `beta`).
+The `devicemanagement` SDK allows for interaction with Microsoft Graph `devicemanagement` (API Version `beta`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -15,28 +15,8 @@ import "github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/
 ### Client Initialization
 
 ```go
-client := devicemanagement.NewDeviceManagementClientWithBaseURI("https://management.azure.com")
+client := devicemanagement.NewDeviceManagementClientWithBaseURI("https://graph.microsoft.com")
 client.Client.Authorizer = authorizer
-```
-
-
-### Example Usage: `DeviceManagementClient.CreateEvaluateAssignmentFilter`
-
-```go
-ctx := context.TODO()
-
-payload := devicemanagement.CreateEvaluateAssignmentFilterRequest{
-	// ...
-}
-
-
-read, err := client.CreateEvaluateAssignmentFilter(ctx, payload)
-if err != nil {
-	// handle the error
-}
-if model := read.Model; model != nil {
-	// do something with the model/response object
-}
 ```
 
 
@@ -46,7 +26,7 @@ if model := read.Model; model != nil {
 ctx := context.TODO()
 
 
-read, err := client.EnableAndroidDeviceAdministratorEnrollment(ctx)
+read, err := client.EnableAndroidDeviceAdministratorEnrollment(ctx, devicemanagement.DefaultEnableAndroidDeviceAdministratorEnrollmentOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -62,7 +42,7 @@ if model := read.Model; model != nil {
 ctx := context.TODO()
 
 
-read, err := client.EnableLegacyPcManagement(ctx)
+read, err := client.EnableLegacyPcManagement(ctx, devicemanagement.DefaultEnableLegacyPcManagementOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -72,13 +52,13 @@ if model := read.Model; model != nil {
 ```
 
 
-### Example Usage: `DeviceManagementClient.EnableUnlicensedAdminstrator`
+### Example Usage: `DeviceManagementClient.EnableUnlicensedAdminstrators`
 
 ```go
 ctx := context.TODO()
 
 
-read, err := client.EnableUnlicensedAdminstrator(ctx)
+read, err := client.EnableUnlicensedAdminstrators(ctx, devicemanagement.DefaultEnableUnlicensedAdminstratorsOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -88,17 +68,37 @@ if model := read.Model; model != nil {
 ```
 
 
-### Example Usage: `DeviceManagementClient.GetAssignmentFiltersStatusDetail`
+### Example Usage: `DeviceManagementClient.EvaluateAssignmentFilter`
 
 ```go
 ctx := context.TODO()
 
-payload := devicemanagement.GetAssignmentFiltersStatusDetailRequest{
+payload := devicemanagement.EvaluateAssignmentFilterRequest{
 	// ...
 }
 
 
-read, err := client.GetAssignmentFiltersStatusDetail(ctx, payload)
+read, err := client.EvaluateAssignmentFilter(ctx, payload, devicemanagement.DefaultEvaluateAssignmentFilterOperationOptions())
+if err != nil {
+	// handle the error
+}
+if model := read.Model; model != nil {
+	// do something with the model/response object
+}
+```
+
+
+### Example Usage: `DeviceManagementClient.GetAssignmentFiltersStatusDetails`
+
+```go
+ctx := context.TODO()
+
+payload := devicemanagement.GetAssignmentFiltersStatusDetailsRequest{
+	// ...
+}
+
+
+read, err := client.GetAssignmentFiltersStatusDetails(ctx, payload, devicemanagement.DefaultGetAssignmentFiltersStatusDetailsOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -134,7 +134,7 @@ payload := devicemanagement.SendCustomNotificationToCompanyPortalRequest{
 }
 
 
-read, err := client.SendCustomNotificationToCompanyPortal(ctx, payload)
+read, err := client.SendCustomNotificationToCompanyPortal(ctx, payload, devicemanagement.DefaultSendCustomNotificationToCompanyPortalOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -154,7 +154,7 @@ payload := devicemanagement.DeviceManagement{
 }
 
 
-read, err := client.UpdateDeviceManagement(ctx, payload)
+read, err := client.UpdateDeviceManagement(ctx, payload, devicemanagement.DefaultUpdateDeviceManagementOperationOptions())
 if err != nil {
 	// handle the error
 }

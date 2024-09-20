@@ -62,10 +62,15 @@ func (s AccessPackageAnswerCollectionResponse) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &AccessPackageAnswerCollectionResponse{}
 
 func (s *AccessPackageAnswerCollectionResponse) UnmarshalJSON(bytes []byte) error {
-	type alias AccessPackageAnswerCollectionResponse
-	var decoded alias
+
+	var decoded struct {
+		Value         *[]AccessPackageAnswer `json:"value,omitempty"`
+		ODataId       *string                `json:"@odata.id,omitempty"`
+		ODataNextLink nullable.Type[string]  `json:"@odata.nextLink,omitempty"`
+		ODataType     *string                `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into AccessPackageAnswerCollectionResponse: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.ODataId = decoded.ODataId
@@ -93,5 +98,6 @@ func (s *AccessPackageAnswerCollectionResponse) UnmarshalJSON(bytes []byte) erro
 		}
 		s.Value = &output
 	}
+
 	return nil
 }

@@ -93,7 +93,7 @@ func (id DirectoryFeatureRolloutPolicyId) Segments() []resourceids.Segment {
 	return []resourceids.Segment{
 		resourceids.StaticSegment("directory", "directory", "directory"),
 		resourceids.StaticSegment("featureRolloutPolicies", "featureRolloutPolicies", "featureRolloutPolicies"),
-		resourceids.UserSpecifiedSegment("featureRolloutPolicyId", "featureRolloutPolicyIdValue"),
+		resourceids.UserSpecifiedSegment("featureRolloutPolicyId", "featureRolloutPolicyId"),
 	}
 }
 

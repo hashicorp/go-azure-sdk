@@ -17,15 +17,44 @@ type UpdateMonitoringOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateMonitoringOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateMonitoringOperationOptions() UpdateMonitoringOperationOptions {
+	return UpdateMonitoringOperationOptions{}
+}
+
+func (o UpdateMonitoringOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateMonitoringOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateMonitoringOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateMonitoring - Update the navigation property monitoring in deviceManagement
-func (c MonitoringClient) UpdateMonitoring(ctx context.Context, input beta.DeviceManagementMonitoring) (result UpdateMonitoringOperationResponse, err error) {
+func (c MonitoringClient) UpdateMonitoring(ctx context.Context, input beta.DeviceManagementMonitoring, options UpdateMonitoringOperationOptions) (result UpdateMonitoringOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       "/deviceManagement/monitoring",
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          "/deviceManagement/monitoring",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

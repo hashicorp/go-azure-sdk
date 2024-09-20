@@ -18,16 +18,45 @@ type SetOnlineMeetingAttendeeReportOperationResponse struct {
 	OData        *odata.OData
 }
 
+type SetOnlineMeetingAttendeeReportOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultSetOnlineMeetingAttendeeReportOperationOptions() SetOnlineMeetingAttendeeReportOperationOptions {
+	return SetOnlineMeetingAttendeeReportOperationOptions{}
+}
+
+func (o SetOnlineMeetingAttendeeReportOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o SetOnlineMeetingAttendeeReportOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o SetOnlineMeetingAttendeeReportOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // SetOnlineMeetingAttendeeReport - Update attendeeReport for the navigation property onlineMeetings in me. The content
 // stream of the attendee report of a Teams live event. Read-only.
-func (c OnlineMeetingAttendeeReportClient) SetOnlineMeetingAttendeeReport(ctx context.Context, id beta.MeOnlineMeetingId, input []byte) (result SetOnlineMeetingAttendeeReportOperationResponse, err error) {
+func (c OnlineMeetingAttendeeReportClient) SetOnlineMeetingAttendeeReport(ctx context.Context, id beta.MeOnlineMeetingId, input []byte, options SetOnlineMeetingAttendeeReportOperationOptions) (result SetOnlineMeetingAttendeeReportOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPut,
-		Path:       fmt.Sprintf("%s/attendeeReport", id.ID()),
+		HttpMethod:    http.MethodPut,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/attendeeReport", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

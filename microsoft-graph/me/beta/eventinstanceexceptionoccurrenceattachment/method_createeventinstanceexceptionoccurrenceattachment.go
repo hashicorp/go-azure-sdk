@@ -20,15 +20,44 @@ type CreateEventInstanceExceptionOccurrenceAttachmentOperationResponse struct {
 	Model        beta.Attachment
 }
 
+type CreateEventInstanceExceptionOccurrenceAttachmentOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateEventInstanceExceptionOccurrenceAttachmentOperationOptions() CreateEventInstanceExceptionOccurrenceAttachmentOperationOptions {
+	return CreateEventInstanceExceptionOccurrenceAttachmentOperationOptions{}
+}
+
+func (o CreateEventInstanceExceptionOccurrenceAttachmentOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateEventInstanceExceptionOccurrenceAttachmentOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateEventInstanceExceptionOccurrenceAttachmentOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateEventInstanceExceptionOccurrenceAttachment - Create new navigation property to attachments for me
-func (c EventInstanceExceptionOccurrenceAttachmentClient) CreateEventInstanceExceptionOccurrenceAttachment(ctx context.Context, id beta.MeEventIdInstanceIdExceptionOccurrenceId, input beta.Attachment) (result CreateEventInstanceExceptionOccurrenceAttachmentOperationResponse, err error) {
+func (c EventInstanceExceptionOccurrenceAttachmentClient) CreateEventInstanceExceptionOccurrenceAttachment(ctx context.Context, id beta.MeEventIdInstanceIdExceptionOccurrenceId, input beta.Attachment, options CreateEventInstanceExceptionOccurrenceAttachmentOperationOptions) (result CreateEventInstanceExceptionOccurrenceAttachmentOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/attachments", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/attachments", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

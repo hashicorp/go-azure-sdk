@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &MeTransitiveReportId{}
 
 func TestNewMeTransitiveReportID(t *testing.T) {
-	id := NewMeTransitiveReportID("directoryObjectIdValue")
+	id := NewMeTransitiveReportID("directoryObjectId")
 
-	if id.DirectoryObjectId != "directoryObjectIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DirectoryObjectId'", id.DirectoryObjectId, "directoryObjectIdValue")
+	if id.DirectoryObjectId != "directoryObjectId" {
+		t.Fatalf("Expected %q but got %q for Segment 'DirectoryObjectId'", id.DirectoryObjectId, "directoryObjectId")
 	}
 }
 
 func TestFormatMeTransitiveReportID(t *testing.T) {
-	actual := NewMeTransitiveReportID("directoryObjectIdValue").ID()
-	expected := "/me/transitiveReports/directoryObjectIdValue"
+	actual := NewMeTransitiveReportID("directoryObjectId").ID()
+	expected := "/me/transitiveReports/directoryObjectId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -50,14 +50,14 @@ func TestParseMeTransitiveReportID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/me/transitiveReports/directoryObjectIdValue",
+			Input: "/me/transitiveReports/directoryObjectId",
 			Expected: &MeTransitiveReportId{
-				DirectoryObjectId: "directoryObjectIdValue",
+				DirectoryObjectId: "directoryObjectId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/transitiveReports/directoryObjectIdValue/extra",
+			Input: "/me/transitiveReports/directoryObjectId/extra",
 			Error: true,
 		},
 	}
@@ -116,26 +116,26 @@ func TestParseMeTransitiveReportIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/me/transitiveReports/directoryObjectIdValue",
+			Input: "/me/transitiveReports/directoryObjectId",
 			Expected: &MeTransitiveReportId{
-				DirectoryObjectId: "directoryObjectIdValue",
+				DirectoryObjectId: "directoryObjectId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/transitiveReports/directoryObjectIdValue/extra",
+			Input: "/me/transitiveReports/directoryObjectId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/tRaNsItIvErEpOrTs/dIrEcToRyObJeCtIdVaLuE",
+			Input: "/mE/tRaNsItIvErEpOrTs/dIrEcToRyObJeCtId",
 			Expected: &MeTransitiveReportId{
-				DirectoryObjectId: "dIrEcToRyObJeCtIdVaLuE",
+				DirectoryObjectId: "dIrEcToRyObJeCtId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/mE/tRaNsItIvErEpOrTs/dIrEcToRyObJeCtIdVaLuE/extra",
+			Input: "/mE/tRaNsItIvErEpOrTs/dIrEcToRyObJeCtId/extra",
 			Error: true,
 		},
 	}

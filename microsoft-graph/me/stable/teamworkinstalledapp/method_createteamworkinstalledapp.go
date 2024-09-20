@@ -18,15 +18,44 @@ type CreateTeamworkInstalledAppOperationResponse struct {
 	Model        *stable.UserScopeTeamsAppInstallation
 }
 
+type CreateTeamworkInstalledAppOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateTeamworkInstalledAppOperationOptions() CreateTeamworkInstalledAppOperationOptions {
+	return CreateTeamworkInstalledAppOperationOptions{}
+}
+
+func (o CreateTeamworkInstalledAppOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateTeamworkInstalledAppOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateTeamworkInstalledAppOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateTeamworkInstalledApp - Create new navigation property to installedApps for me
-func (c TeamworkInstalledAppClient) CreateTeamworkInstalledApp(ctx context.Context, input stable.UserScopeTeamsAppInstallation) (result CreateTeamworkInstalledAppOperationResponse, err error) {
+func (c TeamworkInstalledAppClient) CreateTeamworkInstalledApp(ctx context.Context, input stable.UserScopeTeamsAppInstallation, options CreateTeamworkInstalledAppOperationOptions) (result CreateTeamworkInstalledAppOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/me/teamwork/installedApps",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/me/teamwork/installedApps",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

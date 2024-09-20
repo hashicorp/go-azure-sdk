@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/microsoft-graph/me/beta/informationprotectiondatalosspreventionpolicy` Documentation
 
-The `informationprotectiondatalosspreventionpolicy` SDK allows for interaction with the Azure Resource Manager Service `me` (API Version `beta`).
+The `informationprotectiondatalosspreventionpolicy` SDK allows for interaction with Microsoft Graph `me` (API Version `beta`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -15,7 +15,7 @@ import "github.com/hashicorp/go-azure-sdk/microsoft-graph/me/beta/informationpro
 ### Client Initialization
 
 ```go
-client := informationprotectiondatalosspreventionpolicy.NewInformationProtectionDataLossPreventionPolicyClientWithBaseURI("https://management.azure.com")
+client := informationprotectiondatalosspreventionpolicy.NewInformationProtectionDataLossPreventionPolicyClientWithBaseURI("https://graph.microsoft.com")
 client.Client.Authorizer = authorizer
 ```
 
@@ -30,27 +30,7 @@ payload := informationprotectiondatalosspreventionpolicy.DataLossPreventionPolic
 }
 
 
-read, err := client.CreateInformationProtectionDataLossPreventionPolicy(ctx, payload)
-if err != nil {
-	// handle the error
-}
-if model := read.Model; model != nil {
-	// do something with the model/response object
-}
-```
-
-
-### Example Usage: `InformationProtectionDataLossPreventionPolicyClient.CreateInformationProtectionDataLossPreventionPolicyEvaluate`
-
-```go
-ctx := context.TODO()
-
-payload := informationprotectiondatalosspreventionpolicy.CreateInformationProtectionDataLossPreventionPolicyEvaluateRequest{
-	// ...
-}
-
-
-read, err := client.CreateInformationProtectionDataLossPreventionPolicyEvaluate(ctx, payload)
+read, err := client.CreateInformationProtectionDataLossPreventionPolicy(ctx, payload, informationprotectiondatalosspreventionpolicy.DefaultCreateInformationProtectionDataLossPreventionPolicyOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -64,9 +44,29 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := informationprotectiondatalosspreventionpolicy.NewMeInformationProtectionDataLossPreventionPolicyID("dataLossPreventionPolicyIdValue")
+id := informationprotectiondatalosspreventionpolicy.NewMeInformationProtectionDataLossPreventionPolicyID("dataLossPreventionPolicyId")
 
 read, err := client.DeleteInformationProtectionDataLossPreventionPolicy(ctx, id, informationprotectiondatalosspreventionpolicy.DefaultDeleteInformationProtectionDataLossPreventionPolicyOperationOptions())
+if err != nil {
+	// handle the error
+}
+if model := read.Model; model != nil {
+	// do something with the model/response object
+}
+```
+
+
+### Example Usage: `InformationProtectionDataLossPreventionPolicyClient.EvaluateInformationProtectionDataLossPreventionPolicies`
+
+```go
+ctx := context.TODO()
+
+payload := informationprotectiondatalosspreventionpolicy.EvaluateInformationProtectionDataLossPreventionPoliciesRequest{
+	// ...
+}
+
+
+read, err := client.EvaluateInformationProtectionDataLossPreventionPolicies(ctx, payload, informationprotectiondatalosspreventionpolicy.DefaultEvaluateInformationProtectionDataLossPreventionPoliciesOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -96,7 +96,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := informationprotectiondatalosspreventionpolicy.NewMeInformationProtectionDataLossPreventionPolicyID("dataLossPreventionPolicyIdValue")
+id := informationprotectiondatalosspreventionpolicy.NewMeInformationProtectionDataLossPreventionPolicyID("dataLossPreventionPolicyId")
 
 read, err := client.GetInformationProtectionDataLossPreventionPolicy(ctx, id, informationprotectiondatalosspreventionpolicy.DefaultGetInformationProtectionDataLossPreventionPolicyOperationOptions())
 if err != nil {
@@ -129,14 +129,14 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := informationprotectiondatalosspreventionpolicy.NewMeInformationProtectionDataLossPreventionPolicyID("dataLossPreventionPolicyIdValue")
+id := informationprotectiondatalosspreventionpolicy.NewMeInformationProtectionDataLossPreventionPolicyID("dataLossPreventionPolicyId")
 
 payload := informationprotectiondatalosspreventionpolicy.DataLossPreventionPolicy{
 	// ...
 }
 
 
-read, err := client.UpdateInformationProtectionDataLossPreventionPolicy(ctx, id, payload)
+read, err := client.UpdateInformationProtectionDataLossPreventionPolicy(ctx, id, payload, informationprotectiondatalosspreventionpolicy.DefaultUpdateInformationProtectionDataLossPreventionPolicyOperationOptions())
 if err != nil {
 	// handle the error
 }

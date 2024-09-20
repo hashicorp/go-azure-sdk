@@ -18,16 +18,45 @@ type CreateSiteContentTypeAssociateWithHubSiteOperationResponse struct {
 	OData        *odata.OData
 }
 
+type CreateSiteContentTypeAssociateWithHubSiteOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateSiteContentTypeAssociateWithHubSiteOperationOptions() CreateSiteContentTypeAssociateWithHubSiteOperationOptions {
+	return CreateSiteContentTypeAssociateWithHubSiteOperationOptions{}
+}
+
+func (o CreateSiteContentTypeAssociateWithHubSiteOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateSiteContentTypeAssociateWithHubSiteOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateSiteContentTypeAssociateWithHubSiteOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateSiteContentTypeAssociateWithHubSite - Invoke action associateWithHubSites. Associate a published content type
 // present in a content type hub with a list of hub sites.
-func (c SiteContentTypeClient) CreateSiteContentTypeAssociateWithHubSite(ctx context.Context, id stable.GroupIdSiteIdContentTypeId, input CreateSiteContentTypeAssociateWithHubSiteRequest) (result CreateSiteContentTypeAssociateWithHubSiteOperationResponse, err error) {
+func (c SiteContentTypeClient) CreateSiteContentTypeAssociateWithHubSite(ctx context.Context, id stable.GroupIdSiteIdContentTypeId, input CreateSiteContentTypeAssociateWithHubSiteRequest, options CreateSiteContentTypeAssociateWithHubSiteOperationOptions) (result CreateSiteContentTypeAssociateWithHubSiteOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/associateWithHubSites", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/associateWithHubSites", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

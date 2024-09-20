@@ -18,17 +18,46 @@ type RemoveJoinedTeamPrimaryChannelEmailOperationResponse struct {
 	OData        *odata.OData
 }
 
+type RemoveJoinedTeamPrimaryChannelEmailOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultRemoveJoinedTeamPrimaryChannelEmailOperationOptions() RemoveJoinedTeamPrimaryChannelEmailOperationOptions {
+	return RemoveJoinedTeamPrimaryChannelEmailOperationOptions{}
+}
+
+func (o RemoveJoinedTeamPrimaryChannelEmailOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o RemoveJoinedTeamPrimaryChannelEmailOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o RemoveJoinedTeamPrimaryChannelEmailOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // RemoveJoinedTeamPrimaryChannelEmail - Invoke action removeEmail. Remove the email address of a channel. You can
 // remove an email address only if it was provisioned using the provisionEmail method or through the Microsoft Teams
 // client.
-func (c JoinedTeamPrimaryChannelClient) RemoveJoinedTeamPrimaryChannelEmail(ctx context.Context, id stable.MeJoinedTeamId) (result RemoveJoinedTeamPrimaryChannelEmailOperationResponse, err error) {
+func (c JoinedTeamPrimaryChannelClient) RemoveJoinedTeamPrimaryChannelEmail(ctx context.Context, id stable.MeJoinedTeamId, options RemoveJoinedTeamPrimaryChannelEmailOperationOptions) (result RemoveJoinedTeamPrimaryChannelEmailOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/primaryChannel/removeEmail", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/primaryChannel/removeEmail", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -17,15 +17,44 @@ type UpdatePendingAccessReviewInstanceContactedReviewerOperationResponse struct 
 	OData        *odata.OData
 }
 
+type UpdatePendingAccessReviewInstanceContactedReviewerOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdatePendingAccessReviewInstanceContactedReviewerOperationOptions() UpdatePendingAccessReviewInstanceContactedReviewerOperationOptions {
+	return UpdatePendingAccessReviewInstanceContactedReviewerOperationOptions{}
+}
+
+func (o UpdatePendingAccessReviewInstanceContactedReviewerOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdatePendingAccessReviewInstanceContactedReviewerOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdatePendingAccessReviewInstanceContactedReviewerOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdatePendingAccessReviewInstanceContactedReviewer - Update the navigation property contactedReviewers in users
-func (c PendingAccessReviewInstanceContactedReviewerClient) UpdatePendingAccessReviewInstanceContactedReviewer(ctx context.Context, id beta.UserIdPendingAccessReviewInstanceIdContactedReviewerId, input beta.AccessReviewReviewer) (result UpdatePendingAccessReviewInstanceContactedReviewerOperationResponse, err error) {
+func (c PendingAccessReviewInstanceContactedReviewerClient) UpdatePendingAccessReviewInstanceContactedReviewer(ctx context.Context, id beta.UserIdPendingAccessReviewInstanceIdContactedReviewerId, input beta.AccessReviewReviewer, options UpdatePendingAccessReviewInstanceContactedReviewerOperationOptions) (result UpdatePendingAccessReviewInstanceContactedReviewerOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -19,7 +19,8 @@ type RemoveMemberRefOperationResponse struct {
 }
 
 type RemoveMemberRefOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultRemoveMemberRefOperationOptions() RemoveMemberRefOperationOptions {
@@ -36,7 +37,9 @@ func (o RemoveMemberRefOperationOptions) ToHeaders() *client.Headers {
 
 func (o RemoveMemberRefOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

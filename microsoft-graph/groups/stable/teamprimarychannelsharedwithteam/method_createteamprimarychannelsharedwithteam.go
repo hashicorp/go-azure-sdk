@@ -19,15 +19,44 @@ type CreateTeamPrimaryChannelSharedWithTeamOperationResponse struct {
 	Model        *stable.SharedWithChannelTeamInfo
 }
 
+type CreateTeamPrimaryChannelSharedWithTeamOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateTeamPrimaryChannelSharedWithTeamOperationOptions() CreateTeamPrimaryChannelSharedWithTeamOperationOptions {
+	return CreateTeamPrimaryChannelSharedWithTeamOperationOptions{}
+}
+
+func (o CreateTeamPrimaryChannelSharedWithTeamOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateTeamPrimaryChannelSharedWithTeamOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateTeamPrimaryChannelSharedWithTeamOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateTeamPrimaryChannelSharedWithTeam - Create new navigation property to sharedWithTeams for groups
-func (c TeamPrimaryChannelSharedWithTeamClient) CreateTeamPrimaryChannelSharedWithTeam(ctx context.Context, id stable.GroupId, input stable.SharedWithChannelTeamInfo) (result CreateTeamPrimaryChannelSharedWithTeamOperationResponse, err error) {
+func (c TeamPrimaryChannelSharedWithTeamClient) CreateTeamPrimaryChannelSharedWithTeam(ctx context.Context, id stable.GroupId, input stable.SharedWithChannelTeamInfo, options CreateTeamPrimaryChannelSharedWithTeamOperationOptions) (result CreateTeamPrimaryChannelSharedWithTeamOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/team/primaryChannel/sharedWithTeams", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/team/primaryChannel/sharedWithTeams", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

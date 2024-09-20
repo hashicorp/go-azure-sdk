@@ -94,7 +94,7 @@ func (id MeEmployeeExperienceLearningCourseActivityId) Segments() []resourceids.
 		resourceids.StaticSegment("me", "me", "me"),
 		resourceids.StaticSegment("employeeExperience", "employeeExperience", "employeeExperience"),
 		resourceids.StaticSegment("learningCourseActivities", "learningCourseActivities", "learningCourseActivities"),
-		resourceids.UserSpecifiedSegment("learningCourseActivityId", "learningCourseActivityIdValue"),
+		resourceids.UserSpecifiedSegment("learningCourseActivityId", "learningCourseActivityId"),
 	}
 }
 

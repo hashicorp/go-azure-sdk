@@ -105,11 +105,11 @@ func (id MeEventIdExceptionOccurrenceIdExtensionId) Segments() []resourceids.Seg
 	return []resourceids.Segment{
 		resourceids.StaticSegment("me", "me", "me"),
 		resourceids.StaticSegment("events", "events", "events"),
-		resourceids.UserSpecifiedSegment("eventId", "eventIdValue"),
+		resourceids.UserSpecifiedSegment("eventId", "eventId"),
 		resourceids.StaticSegment("exceptionOccurrences", "exceptionOccurrences", "exceptionOccurrences"),
-		resourceids.UserSpecifiedSegment("eventId1", "eventId1Value"),
+		resourceids.UserSpecifiedSegment("eventId1", "eventId1"),
 		resourceids.StaticSegment("extensions", "extensions", "extensions"),
-		resourceids.UserSpecifiedSegment("extensionId", "extensionIdValue"),
+		resourceids.UserSpecifiedSegment("extensionId", "extensionId"),
 	}
 }
 

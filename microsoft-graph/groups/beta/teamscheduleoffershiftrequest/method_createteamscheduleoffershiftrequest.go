@@ -20,15 +20,44 @@ type CreateTeamScheduleOfferShiftRequestOperationResponse struct {
 	Model        beta.OfferShiftRequest
 }
 
+type CreateTeamScheduleOfferShiftRequestOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateTeamScheduleOfferShiftRequestOperationOptions() CreateTeamScheduleOfferShiftRequestOperationOptions {
+	return CreateTeamScheduleOfferShiftRequestOperationOptions{}
+}
+
+func (o CreateTeamScheduleOfferShiftRequestOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateTeamScheduleOfferShiftRequestOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateTeamScheduleOfferShiftRequestOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateTeamScheduleOfferShiftRequest - Create new navigation property to offerShiftRequests for groups
-func (c TeamScheduleOfferShiftRequestClient) CreateTeamScheduleOfferShiftRequest(ctx context.Context, id beta.GroupId, input beta.OfferShiftRequest) (result CreateTeamScheduleOfferShiftRequestOperationResponse, err error) {
+func (c TeamScheduleOfferShiftRequestClient) CreateTeamScheduleOfferShiftRequest(ctx context.Context, id beta.GroupId, input beta.OfferShiftRequest, options CreateTeamScheduleOfferShiftRequestOperationOptions) (result CreateTeamScheduleOfferShiftRequestOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/team/schedule/offerShiftRequests", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/team/schedule/offerShiftRequests", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

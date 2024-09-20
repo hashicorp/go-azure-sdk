@@ -17,15 +17,44 @@ type SetManagerRefOperationResponse struct {
 	OData        *odata.OData
 }
 
+type SetManagerRefOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultSetManagerRefOperationOptions() SetManagerRefOperationOptions {
+	return SetManagerRefOperationOptions{}
+}
+
+func (o SetManagerRefOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o SetManagerRefOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o SetManagerRefOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // SetManagerRef - Update the ref of navigation property manager in me
-func (c ManagerClient) SetManagerRef(ctx context.Context, input stable.ReferenceUpdate) (result SetManagerRefOperationResponse, err error) {
+func (c ManagerClient) SetManagerRef(ctx context.Context, input stable.ReferenceUpdate, options SetManagerRefOperationOptions) (result SetManagerRefOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPut,
-		Path:       "/me/manager/$ref",
+		HttpMethod:    http.MethodPut,
+		OptionsObject: options,
+		Path:          "/me/manager/$ref",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

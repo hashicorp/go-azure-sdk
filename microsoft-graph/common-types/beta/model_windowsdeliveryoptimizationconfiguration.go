@@ -198,19 +198,63 @@ func (s WindowsDeliveryOptimizationConfiguration) MarshalJSON() ([]byte, error) 
 var _ json.Unmarshaler = &WindowsDeliveryOptimizationConfiguration{}
 
 func (s *WindowsDeliveryOptimizationConfiguration) UnmarshalJSON(bytes []byte) error {
-	type alias WindowsDeliveryOptimizationConfiguration
-	var decoded alias
+
+	var decoded struct {
+		BackgroundDownloadFromHttpDelayInSeconds                  *int64                                              `json:"backgroundDownloadFromHttpDelayInSeconds,omitempty"`
+		CacheServerBackgroundDownloadFallbackToHttpDelayInSeconds *int64                                              `json:"cacheServerBackgroundDownloadFallbackToHttpDelayInSeconds,omitempty"`
+		CacheServerForegroundDownloadFallbackToHttpDelayInSeconds *int64                                              `json:"cacheServerForegroundDownloadFallbackToHttpDelayInSeconds,omitempty"`
+		CacheServerHostNames                                      *[]string                                           `json:"cacheServerHostNames,omitempty"`
+		DeliveryOptimizationMode                                  *WindowsDeliveryOptimizationMode                    `json:"deliveryOptimizationMode,omitempty"`
+		ForegroundDownloadFromHttpDelayInSeconds                  nullable.Type[int64]                                `json:"foregroundDownloadFromHttpDelayInSeconds,omitempty"`
+		MaximumCacheAgeInDays                                     nullable.Type[int64]                                `json:"maximumCacheAgeInDays,omitempty"`
+		MinimumBatteryPercentageAllowedToUpload                   nullable.Type[int64]                                `json:"minimumBatteryPercentageAllowedToUpload,omitempty"`
+		MinimumDiskSizeAllowedToPeerInGigabytes                   nullable.Type[int64]                                `json:"minimumDiskSizeAllowedToPeerInGigabytes,omitempty"`
+		MinimumFileSizeToCacheInMegabytes                         nullable.Type[int64]                                `json:"minimumFileSizeToCacheInMegabytes,omitempty"`
+		MinimumRamAllowedToPeerInGigabytes                        nullable.Type[int64]                                `json:"minimumRamAllowedToPeerInGigabytes,omitempty"`
+		ModifyCacheLocation                                       nullable.Type[string]                               `json:"modifyCacheLocation,omitempty"`
+		RestrictPeerSelectionBy                                   *DeliveryOptimizationRestrictPeerSelectionByOptions `json:"restrictPeerSelectionBy,omitempty"`
+		VpnPeerCaching                                            *Enablement                                         `json:"vpnPeerCaching,omitempty"`
+		Assignments                                               *[]DeviceConfigurationAssignment                    `json:"assignments,omitempty"`
+		CreatedDateTime                                           *string                                             `json:"createdDateTime,omitempty"`
+		Description                                               nullable.Type[string]                               `json:"description,omitempty"`
+		DeviceManagementApplicabilityRuleDeviceMode               *DeviceManagementApplicabilityRuleDeviceMode        `json:"deviceManagementApplicabilityRuleDeviceMode,omitempty"`
+		DeviceManagementApplicabilityRuleOsEdition                *DeviceManagementApplicabilityRuleOsEdition         `json:"deviceManagementApplicabilityRuleOsEdition,omitempty"`
+		DeviceManagementApplicabilityRuleOsVersion                *DeviceManagementApplicabilityRuleOsVersion         `json:"deviceManagementApplicabilityRuleOsVersion,omitempty"`
+		DeviceSettingStateSummaries                               *[]SettingStateDeviceSummary                        `json:"deviceSettingStateSummaries,omitempty"`
+		DeviceStatusOverview                                      *DeviceConfigurationDeviceOverview                  `json:"deviceStatusOverview,omitempty"`
+		DeviceStatuses                                            *[]DeviceConfigurationDeviceStatus                  `json:"deviceStatuses,omitempty"`
+		DisplayName                                               *string                                             `json:"displayName,omitempty"`
+		GroupAssignments                                          *[]DeviceConfigurationGroupAssignment               `json:"groupAssignments,omitempty"`
+		LastModifiedDateTime                                      *string                                             `json:"lastModifiedDateTime,omitempty"`
+		RoleScopeTagIds                                           *[]string                                           `json:"roleScopeTagIds,omitempty"`
+		SupportsScopeTags                                         *bool                                               `json:"supportsScopeTags,omitempty"`
+		UserStatusOverview                                        *DeviceConfigurationUserOverview                    `json:"userStatusOverview,omitempty"`
+		UserStatuses                                              *[]DeviceConfigurationUserStatus                    `json:"userStatuses,omitempty"`
+		Version                                                   *int64                                              `json:"version,omitempty"`
+		Id                                                        *string                                             `json:"id,omitempty"`
+		ODataId                                                   *string                                             `json:"@odata.id,omitempty"`
+		ODataType                                                 *string                                             `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into WindowsDeliveryOptimizationConfiguration: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
-	s.Assignments = decoded.Assignments
 	s.BackgroundDownloadFromHttpDelayInSeconds = decoded.BackgroundDownloadFromHttpDelayInSeconds
 	s.CacheServerBackgroundDownloadFallbackToHttpDelayInSeconds = decoded.CacheServerBackgroundDownloadFallbackToHttpDelayInSeconds
 	s.CacheServerForegroundDownloadFallbackToHttpDelayInSeconds = decoded.CacheServerForegroundDownloadFallbackToHttpDelayInSeconds
 	s.CacheServerHostNames = decoded.CacheServerHostNames
-	s.CreatedDateTime = decoded.CreatedDateTime
 	s.DeliveryOptimizationMode = decoded.DeliveryOptimizationMode
+	s.ForegroundDownloadFromHttpDelayInSeconds = decoded.ForegroundDownloadFromHttpDelayInSeconds
+	s.MaximumCacheAgeInDays = decoded.MaximumCacheAgeInDays
+	s.MinimumBatteryPercentageAllowedToUpload = decoded.MinimumBatteryPercentageAllowedToUpload
+	s.MinimumDiskSizeAllowedToPeerInGigabytes = decoded.MinimumDiskSizeAllowedToPeerInGigabytes
+	s.MinimumFileSizeToCacheInMegabytes = decoded.MinimumFileSizeToCacheInMegabytes
+	s.MinimumRamAllowedToPeerInGigabytes = decoded.MinimumRamAllowedToPeerInGigabytes
+	s.ModifyCacheLocation = decoded.ModifyCacheLocation
+	s.RestrictPeerSelectionBy = decoded.RestrictPeerSelectionBy
+	s.VpnPeerCaching = decoded.VpnPeerCaching
+	s.Assignments = decoded.Assignments
+	s.CreatedDateTime = decoded.CreatedDateTime
 	s.Description = decoded.Description
 	s.DeviceManagementApplicabilityRuleDeviceMode = decoded.DeviceManagementApplicabilityRuleDeviceMode
 	s.DeviceManagementApplicabilityRuleOsEdition = decoded.DeviceManagementApplicabilityRuleOsEdition
@@ -219,25 +263,16 @@ func (s *WindowsDeliveryOptimizationConfiguration) UnmarshalJSON(bytes []byte) e
 	s.DeviceStatusOverview = decoded.DeviceStatusOverview
 	s.DeviceStatuses = decoded.DeviceStatuses
 	s.DisplayName = decoded.DisplayName
-	s.ForegroundDownloadFromHttpDelayInSeconds = decoded.ForegroundDownloadFromHttpDelayInSeconds
 	s.GroupAssignments = decoded.GroupAssignments
 	s.Id = decoded.Id
 	s.LastModifiedDateTime = decoded.LastModifiedDateTime
-	s.MaximumCacheAgeInDays = decoded.MaximumCacheAgeInDays
-	s.MinimumBatteryPercentageAllowedToUpload = decoded.MinimumBatteryPercentageAllowedToUpload
-	s.MinimumDiskSizeAllowedToPeerInGigabytes = decoded.MinimumDiskSizeAllowedToPeerInGigabytes
-	s.MinimumFileSizeToCacheInMegabytes = decoded.MinimumFileSizeToCacheInMegabytes
-	s.MinimumRamAllowedToPeerInGigabytes = decoded.MinimumRamAllowedToPeerInGigabytes
-	s.ModifyCacheLocation = decoded.ModifyCacheLocation
 	s.ODataId = decoded.ODataId
 	s.ODataType = decoded.ODataType
-	s.RestrictPeerSelectionBy = decoded.RestrictPeerSelectionBy
 	s.RoleScopeTagIds = decoded.RoleScopeTagIds
 	s.SupportsScopeTags = decoded.SupportsScopeTags
 	s.UserStatusOverview = decoded.UserStatusOverview
 	s.UserStatuses = decoded.UserStatuses
 	s.Version = decoded.Version
-	s.VpnPeerCaching = decoded.VpnPeerCaching
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -267,5 +302,6 @@ func (s *WindowsDeliveryOptimizationConfiguration) UnmarshalJSON(bytes []byte) e
 		}
 		s.MaximumCacheSize = impl
 	}
+
 	return nil
 }

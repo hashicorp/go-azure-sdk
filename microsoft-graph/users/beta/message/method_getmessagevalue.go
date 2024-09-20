@@ -19,16 +19,45 @@ type GetMessageValueOperationResponse struct {
 	Model        *[]byte
 }
 
+type GetMessageValueOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultGetMessageValueOperationOptions() GetMessageValueOperationOptions {
+	return GetMessageValueOperationOptions{}
+}
+
+func (o GetMessageValueOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o GetMessageValueOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o GetMessageValueOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // GetMessageValue - Get media content for the navigation property messages from users. The unique identifier for an
 // entity. Read-only.
-func (c MessageClient) GetMessageValue(ctx context.Context, id beta.UserIdMessageId) (result GetMessageValueOperationResponse, err error) {
+func (c MessageClient) GetMessageValue(ctx context.Context, id beta.UserIdMessageId, options GetMessageValueOperationOptions) (result GetMessageValueOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/octet-stream",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/$value", id.ID()),
+		HttpMethod:    http.MethodGet,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/$value", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -18,15 +18,44 @@ type UpdateSecurityOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateSecurityOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateSecurityOperationOptions() UpdateSecurityOperationOptions {
+	return UpdateSecurityOperationOptions{}
+}
+
+func (o UpdateSecurityOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateSecurityOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateSecurityOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateSecurity - Update the navigation property security in users
-func (c SecurityClient) UpdateSecurity(ctx context.Context, id beta.UserId, input beta.SecuritySecurity) (result UpdateSecurityOperationResponse, err error) {
+func (c SecurityClient) UpdateSecurity(ctx context.Context, id beta.UserId, input beta.SecuritySecurity, options UpdateSecurityOperationOptions) (result UpdateSecurityOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       fmt.Sprintf("%s/security", id.ID()),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/security", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

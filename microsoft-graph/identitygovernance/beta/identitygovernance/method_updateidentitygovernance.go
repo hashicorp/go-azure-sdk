@@ -17,15 +17,44 @@ type UpdateIdentityGovernanceOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateIdentityGovernanceOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateIdentityGovernanceOperationOptions() UpdateIdentityGovernanceOperationOptions {
+	return UpdateIdentityGovernanceOperationOptions{}
+}
+
+func (o UpdateIdentityGovernanceOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateIdentityGovernanceOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateIdentityGovernanceOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateIdentityGovernance - Update identityGovernance
-func (c IdentityGovernanceClient) UpdateIdentityGovernance(ctx context.Context, input beta.IdentityGovernance) (result UpdateIdentityGovernanceOperationResponse, err error) {
+func (c IdentityGovernanceClient) UpdateIdentityGovernance(ctx context.Context, input beta.IdentityGovernance, options UpdateIdentityGovernanceOperationOptions) (result UpdateIdentityGovernanceOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       "/identityGovernance",
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          "/identityGovernance",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

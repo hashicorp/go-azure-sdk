@@ -111,23 +111,36 @@ func (s PrivilegedAccessGroupEligibilityScheduleInstance) MarshalJSON() ([]byte,
 var _ json.Unmarshaler = &PrivilegedAccessGroupEligibilityScheduleInstance{}
 
 func (s *PrivilegedAccessGroupEligibilityScheduleInstance) UnmarshalJSON(bytes []byte) error {
-	type alias PrivilegedAccessGroupEligibilityScheduleInstance
-	var decoded alias
+
+	var decoded struct {
+		AccessId              PrivilegedAccessGroupRelationships `json:"accessId"`
+		EligibilityScheduleId nullable.Type[string]              `json:"eligibilityScheduleId,omitempty"`
+		Group                 *Group                             `json:"group,omitempty"`
+		GroupId               nullable.Type[string]              `json:"groupId,omitempty"`
+		MemberType            PrivilegedAccessGroupMemberType    `json:"memberType"`
+		PrincipalId           nullable.Type[string]              `json:"principalId,omitempty"`
+		Principal_ODataBind   *string                            `json:"principal@odata.bind,omitempty"`
+		EndDateTime           nullable.Type[string]              `json:"endDateTime,omitempty"`
+		StartDateTime         nullable.Type[string]              `json:"startDateTime,omitempty"`
+		Id                    *string                            `json:"id,omitempty"`
+		ODataId               *string                            `json:"@odata.id,omitempty"`
+		ODataType             *string                            `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into PrivilegedAccessGroupEligibilityScheduleInstance: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.AccessId = decoded.AccessId
 	s.EligibilityScheduleId = decoded.EligibilityScheduleId
-	s.EndDateTime = decoded.EndDateTime
 	s.Group = decoded.Group
 	s.GroupId = decoded.GroupId
-	s.Id = decoded.Id
 	s.MemberType = decoded.MemberType
-	s.ODataId = decoded.ODataId
-	s.ODataType = decoded.ODataType
 	s.PrincipalId = decoded.PrincipalId
 	s.Principal_ODataBind = decoded.Principal_ODataBind
+	s.EndDateTime = decoded.EndDateTime
+	s.Id = decoded.Id
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
 	s.StartDateTime = decoded.StartDateTime
 
 	var temp map[string]json.RawMessage
@@ -142,5 +155,6 @@ func (s *PrivilegedAccessGroupEligibilityScheduleInstance) UnmarshalJSON(bytes [
 		}
 		s.Principal = &impl
 	}
+
 	return nil
 }

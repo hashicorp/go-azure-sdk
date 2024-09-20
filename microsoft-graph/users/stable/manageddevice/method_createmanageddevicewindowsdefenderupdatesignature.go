@@ -18,15 +18,44 @@ type CreateManagedDeviceWindowsDefenderUpdateSignatureOperationResponse struct {
 	OData        *odata.OData
 }
 
+type CreateManagedDeviceWindowsDefenderUpdateSignatureOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateManagedDeviceWindowsDefenderUpdateSignatureOperationOptions() CreateManagedDeviceWindowsDefenderUpdateSignatureOperationOptions {
+	return CreateManagedDeviceWindowsDefenderUpdateSignatureOperationOptions{}
+}
+
+func (o CreateManagedDeviceWindowsDefenderUpdateSignatureOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateManagedDeviceWindowsDefenderUpdateSignatureOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateManagedDeviceWindowsDefenderUpdateSignatureOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateManagedDeviceWindowsDefenderUpdateSignature - Invoke action windowsDefenderUpdateSignatures. Not yet documented
-func (c ManagedDeviceClient) CreateManagedDeviceWindowsDefenderUpdateSignature(ctx context.Context, id stable.UserIdManagedDeviceId) (result CreateManagedDeviceWindowsDefenderUpdateSignatureOperationResponse, err error) {
+func (c ManagedDeviceClient) CreateManagedDeviceWindowsDefenderUpdateSignature(ctx context.Context, id stable.UserIdManagedDeviceId, options CreateManagedDeviceWindowsDefenderUpdateSignatureOperationOptions) (result CreateManagedDeviceWindowsDefenderUpdateSignatureOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/windowsDefenderUpdateSignatures", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/windowsDefenderUpdateSignatures", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

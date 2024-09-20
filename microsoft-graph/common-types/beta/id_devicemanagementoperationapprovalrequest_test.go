@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &DeviceManagementOperationApprovalRequestId{}
 
 func TestNewDeviceManagementOperationApprovalRequestID(t *testing.T) {
-	id := NewDeviceManagementOperationApprovalRequestID("operationApprovalRequestIdValue")
+	id := NewDeviceManagementOperationApprovalRequestID("operationApprovalRequestId")
 
-	if id.OperationApprovalRequestId != "operationApprovalRequestIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'OperationApprovalRequestId'", id.OperationApprovalRequestId, "operationApprovalRequestIdValue")
+	if id.OperationApprovalRequestId != "operationApprovalRequestId" {
+		t.Fatalf("Expected %q but got %q for Segment 'OperationApprovalRequestId'", id.OperationApprovalRequestId, "operationApprovalRequestId")
 	}
 }
 
 func TestFormatDeviceManagementOperationApprovalRequestID(t *testing.T) {
-	actual := NewDeviceManagementOperationApprovalRequestID("operationApprovalRequestIdValue").ID()
-	expected := "/deviceManagement/operationApprovalRequests/operationApprovalRequestIdValue"
+	actual := NewDeviceManagementOperationApprovalRequestID("operationApprovalRequestId").ID()
+	expected := "/deviceManagement/operationApprovalRequests/operationApprovalRequestId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -50,14 +50,14 @@ func TestParseDeviceManagementOperationApprovalRequestID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/operationApprovalRequests/operationApprovalRequestIdValue",
+			Input: "/deviceManagement/operationApprovalRequests/operationApprovalRequestId",
 			Expected: &DeviceManagementOperationApprovalRequestId{
-				OperationApprovalRequestId: "operationApprovalRequestIdValue",
+				OperationApprovalRequestId: "operationApprovalRequestId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/operationApprovalRequests/operationApprovalRequestIdValue/extra",
+			Input: "/deviceManagement/operationApprovalRequests/operationApprovalRequestId/extra",
 			Error: true,
 		},
 	}
@@ -116,26 +116,26 @@ func TestParseDeviceManagementOperationApprovalRequestIDInsensitively(t *testing
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/operationApprovalRequests/operationApprovalRequestIdValue",
+			Input: "/deviceManagement/operationApprovalRequests/operationApprovalRequestId",
 			Expected: &DeviceManagementOperationApprovalRequestId{
-				OperationApprovalRequestId: "operationApprovalRequestIdValue",
+				OperationApprovalRequestId: "operationApprovalRequestId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/operationApprovalRequests/operationApprovalRequestIdValue/extra",
+			Input: "/deviceManagement/operationApprovalRequests/operationApprovalRequestId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/oPeRaTiOnApPrOvAlReQuEsTs/oPeRaTiOnApPrOvAlReQuEsTiDvAlUe",
+			Input: "/dEvIcEmAnAgEmEnT/oPeRaTiOnApPrOvAlReQuEsTs/oPeRaTiOnApPrOvAlReQuEsTiD",
 			Expected: &DeviceManagementOperationApprovalRequestId{
-				OperationApprovalRequestId: "oPeRaTiOnApPrOvAlReQuEsTiDvAlUe",
+				OperationApprovalRequestId: "oPeRaTiOnApPrOvAlReQuEsTiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/oPeRaTiOnApPrOvAlReQuEsTs/oPeRaTiOnApPrOvAlReQuEsTiDvAlUe/extra",
+			Input: "/dEvIcEmAnAgEmEnT/oPeRaTiOnApPrOvAlReQuEsTs/oPeRaTiOnApPrOvAlReQuEsTiD/extra",
 			Error: true,
 		},
 	}

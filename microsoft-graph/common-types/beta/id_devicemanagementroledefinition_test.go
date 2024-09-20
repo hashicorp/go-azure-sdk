@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &DeviceManagementRoleDefinitionId{}
 
 func TestNewDeviceManagementRoleDefinitionID(t *testing.T) {
-	id := NewDeviceManagementRoleDefinitionID("roleDefinitionIdValue")
+	id := NewDeviceManagementRoleDefinitionID("roleDefinitionId")
 
-	if id.RoleDefinitionId != "roleDefinitionIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'RoleDefinitionId'", id.RoleDefinitionId, "roleDefinitionIdValue")
+	if id.RoleDefinitionId != "roleDefinitionId" {
+		t.Fatalf("Expected %q but got %q for Segment 'RoleDefinitionId'", id.RoleDefinitionId, "roleDefinitionId")
 	}
 }
 
 func TestFormatDeviceManagementRoleDefinitionID(t *testing.T) {
-	actual := NewDeviceManagementRoleDefinitionID("roleDefinitionIdValue").ID()
-	expected := "/deviceManagement/roleDefinitions/roleDefinitionIdValue"
+	actual := NewDeviceManagementRoleDefinitionID("roleDefinitionId").ID()
+	expected := "/deviceManagement/roleDefinitions/roleDefinitionId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -50,14 +50,14 @@ func TestParseDeviceManagementRoleDefinitionID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/roleDefinitions/roleDefinitionIdValue",
+			Input: "/deviceManagement/roleDefinitions/roleDefinitionId",
 			Expected: &DeviceManagementRoleDefinitionId{
-				RoleDefinitionId: "roleDefinitionIdValue",
+				RoleDefinitionId: "roleDefinitionId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/roleDefinitions/roleDefinitionIdValue/extra",
+			Input: "/deviceManagement/roleDefinitions/roleDefinitionId/extra",
 			Error: true,
 		},
 	}
@@ -116,26 +116,26 @@ func TestParseDeviceManagementRoleDefinitionIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/roleDefinitions/roleDefinitionIdValue",
+			Input: "/deviceManagement/roleDefinitions/roleDefinitionId",
 			Expected: &DeviceManagementRoleDefinitionId{
-				RoleDefinitionId: "roleDefinitionIdValue",
+				RoleDefinitionId: "roleDefinitionId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/roleDefinitions/roleDefinitionIdValue/extra",
+			Input: "/deviceManagement/roleDefinitions/roleDefinitionId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/rOlEdEfInItIoNs/rOlEdEfInItIoNiDvAlUe",
+			Input: "/dEvIcEmAnAgEmEnT/rOlEdEfInItIoNs/rOlEdEfInItIoNiD",
 			Expected: &DeviceManagementRoleDefinitionId{
-				RoleDefinitionId: "rOlEdEfInItIoNiDvAlUe",
+				RoleDefinitionId: "rOlEdEfInItIoNiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/rOlEdEfInItIoNs/rOlEdEfInItIoNiDvAlUe/extra",
+			Input: "/dEvIcEmAnAgEmEnT/rOlEdEfInItIoNs/rOlEdEfInItIoNiD/extra",
 			Error: true,
 		},
 	}

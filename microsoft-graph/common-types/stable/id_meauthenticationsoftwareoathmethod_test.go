@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &MeAuthenticationSoftwareOathMethodId{}
 
 func TestNewMeAuthenticationSoftwareOathMethodID(t *testing.T) {
-	id := NewMeAuthenticationSoftwareOathMethodID("softwareOathAuthenticationMethodIdValue")
+	id := NewMeAuthenticationSoftwareOathMethodID("softwareOathAuthenticationMethodId")
 
-	if id.SoftwareOathAuthenticationMethodId != "softwareOathAuthenticationMethodIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'SoftwareOathAuthenticationMethodId'", id.SoftwareOathAuthenticationMethodId, "softwareOathAuthenticationMethodIdValue")
+	if id.SoftwareOathAuthenticationMethodId != "softwareOathAuthenticationMethodId" {
+		t.Fatalf("Expected %q but got %q for Segment 'SoftwareOathAuthenticationMethodId'", id.SoftwareOathAuthenticationMethodId, "softwareOathAuthenticationMethodId")
 	}
 }
 
 func TestFormatMeAuthenticationSoftwareOathMethodID(t *testing.T) {
-	actual := NewMeAuthenticationSoftwareOathMethodID("softwareOathAuthenticationMethodIdValue").ID()
-	expected := "/me/authentication/softwareOathMethods/softwareOathAuthenticationMethodIdValue"
+	actual := NewMeAuthenticationSoftwareOathMethodID("softwareOathAuthenticationMethodId").ID()
+	expected := "/me/authentication/softwareOathMethods/softwareOathAuthenticationMethodId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -55,14 +55,14 @@ func TestParseMeAuthenticationSoftwareOathMethodID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/me/authentication/softwareOathMethods/softwareOathAuthenticationMethodIdValue",
+			Input: "/me/authentication/softwareOathMethods/softwareOathAuthenticationMethodId",
 			Expected: &MeAuthenticationSoftwareOathMethodId{
-				SoftwareOathAuthenticationMethodId: "softwareOathAuthenticationMethodIdValue",
+				SoftwareOathAuthenticationMethodId: "softwareOathAuthenticationMethodId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/authentication/softwareOathMethods/softwareOathAuthenticationMethodIdValue/extra",
+			Input: "/me/authentication/softwareOathMethods/softwareOathAuthenticationMethodId/extra",
 			Error: true,
 		},
 	}
@@ -131,26 +131,26 @@ func TestParseMeAuthenticationSoftwareOathMethodIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/me/authentication/softwareOathMethods/softwareOathAuthenticationMethodIdValue",
+			Input: "/me/authentication/softwareOathMethods/softwareOathAuthenticationMethodId",
 			Expected: &MeAuthenticationSoftwareOathMethodId{
-				SoftwareOathAuthenticationMethodId: "softwareOathAuthenticationMethodIdValue",
+				SoftwareOathAuthenticationMethodId: "softwareOathAuthenticationMethodId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/authentication/softwareOathMethods/softwareOathAuthenticationMethodIdValue/extra",
+			Input: "/me/authentication/softwareOathMethods/softwareOathAuthenticationMethodId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/aUtHeNtIcAtIoN/sOfTwArEoAtHmEtHoDs/sOfTwArEoAtHaUtHeNtIcAtIoNmEtHoDiDvAlUe",
+			Input: "/mE/aUtHeNtIcAtIoN/sOfTwArEoAtHmEtHoDs/sOfTwArEoAtHaUtHeNtIcAtIoNmEtHoDiD",
 			Expected: &MeAuthenticationSoftwareOathMethodId{
-				SoftwareOathAuthenticationMethodId: "sOfTwArEoAtHaUtHeNtIcAtIoNmEtHoDiDvAlUe",
+				SoftwareOathAuthenticationMethodId: "sOfTwArEoAtHaUtHeNtIcAtIoNmEtHoDiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/mE/aUtHeNtIcAtIoN/sOfTwArEoAtHmEtHoDs/sOfTwArEoAtHaUtHeNtIcAtIoNmEtHoDiDvAlUe/extra",
+			Input: "/mE/aUtHeNtIcAtIoN/sOfTwArEoAtHmEtHoDs/sOfTwArEoAtHaUtHeNtIcAtIoNmEtHoDiD/extra",
 			Error: true,
 		},
 	}

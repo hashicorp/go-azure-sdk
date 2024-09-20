@@ -17,16 +17,45 @@ type UpdateComanagedDeviceSecurityBaselineStateOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateComanagedDeviceSecurityBaselineStateOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateComanagedDeviceSecurityBaselineStateOperationOptions() UpdateComanagedDeviceSecurityBaselineStateOperationOptions {
+	return UpdateComanagedDeviceSecurityBaselineStateOperationOptions{}
+}
+
+func (o UpdateComanagedDeviceSecurityBaselineStateOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateComanagedDeviceSecurityBaselineStateOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateComanagedDeviceSecurityBaselineStateOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateComanagedDeviceSecurityBaselineState - Update the navigation property securityBaselineStates in
 // deviceManagement
-func (c ComanagedDeviceSecurityBaselineStateClient) UpdateComanagedDeviceSecurityBaselineState(ctx context.Context, id beta.DeviceManagementComanagedDeviceIdSecurityBaselineStateId, input beta.SecurityBaselineState) (result UpdateComanagedDeviceSecurityBaselineStateOperationResponse, err error) {
+func (c ComanagedDeviceSecurityBaselineStateClient) UpdateComanagedDeviceSecurityBaselineState(ctx context.Context, id beta.DeviceManagementComanagedDeviceIdSecurityBaselineStateId, input beta.SecurityBaselineState, options UpdateComanagedDeviceSecurityBaselineStateOperationOptions) (result UpdateComanagedDeviceSecurityBaselineStateOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

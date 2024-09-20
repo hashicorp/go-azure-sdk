@@ -19,15 +19,44 @@ type CreateIntuneBrandingProfileAssignmentOperationResponse struct {
 	Model        *beta.IntuneBrandingProfileAssignment
 }
 
+type CreateIntuneBrandingProfileAssignmentOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateIntuneBrandingProfileAssignmentOperationOptions() CreateIntuneBrandingProfileAssignmentOperationOptions {
+	return CreateIntuneBrandingProfileAssignmentOperationOptions{}
+}
+
+func (o CreateIntuneBrandingProfileAssignmentOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateIntuneBrandingProfileAssignmentOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateIntuneBrandingProfileAssignmentOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateIntuneBrandingProfileAssignment - Create new navigation property to assignments for deviceManagement
-func (c IntuneBrandingProfileAssignmentClient) CreateIntuneBrandingProfileAssignment(ctx context.Context, id beta.DeviceManagementIntuneBrandingProfileId, input beta.IntuneBrandingProfileAssignment) (result CreateIntuneBrandingProfileAssignmentOperationResponse, err error) {
+func (c IntuneBrandingProfileAssignmentClient) CreateIntuneBrandingProfileAssignment(ctx context.Context, id beta.DeviceManagementIntuneBrandingProfileId, input beta.IntuneBrandingProfileAssignment, options CreateIntuneBrandingProfileAssignmentOperationOptions) (result CreateIntuneBrandingProfileAssignmentOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/assignments", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/assignments", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

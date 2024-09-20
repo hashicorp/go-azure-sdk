@@ -17,15 +17,44 @@ type UpdateChatMessageHostedContentOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateChatMessageHostedContentOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateChatMessageHostedContentOperationOptions() UpdateChatMessageHostedContentOperationOptions {
+	return UpdateChatMessageHostedContentOperationOptions{}
+}
+
+func (o UpdateChatMessageHostedContentOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateChatMessageHostedContentOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateChatMessageHostedContentOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateChatMessageHostedContent - Update the navigation property hostedContents in me
-func (c ChatMessageHostedContentClient) UpdateChatMessageHostedContent(ctx context.Context, id beta.MeChatIdMessageIdHostedContentId, input beta.ChatMessageHostedContent) (result UpdateChatMessageHostedContentOperationResponse, err error) {
+func (c ChatMessageHostedContentClient) UpdateChatMessageHostedContent(ctx context.Context, id beta.MeChatIdMessageIdHostedContentId, input beta.ChatMessageHostedContent, options UpdateChatMessageHostedContentOperationOptions) (result UpdateChatMessageHostedContentOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

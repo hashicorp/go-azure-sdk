@@ -19,7 +19,8 @@ type DeleteApiConnectorOperationResponse struct {
 }
 
 type DeleteApiConnectorOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteApiConnectorOperationOptions() DeleteApiConnectorOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteApiConnectorOperationOptions) ToHeaders() *client.Headers {
 
 func (o DeleteApiConnectorOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

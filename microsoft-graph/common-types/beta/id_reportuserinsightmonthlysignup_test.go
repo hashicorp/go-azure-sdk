@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &ReportUserInsightMonthlySignUpId{}
 
 func TestNewReportUserInsightMonthlySignUpID(t *testing.T) {
-	id := NewReportUserInsightMonthlySignUpID("userSignUpMetricIdValue")
+	id := NewReportUserInsightMonthlySignUpID("userSignUpMetricId")
 
-	if id.UserSignUpMetricId != "userSignUpMetricIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'UserSignUpMetricId'", id.UserSignUpMetricId, "userSignUpMetricIdValue")
+	if id.UserSignUpMetricId != "userSignUpMetricId" {
+		t.Fatalf("Expected %q but got %q for Segment 'UserSignUpMetricId'", id.UserSignUpMetricId, "userSignUpMetricId")
 	}
 }
 
 func TestFormatReportUserInsightMonthlySignUpID(t *testing.T) {
-	actual := NewReportUserInsightMonthlySignUpID("userSignUpMetricIdValue").ID()
-	expected := "/reports/userInsights/monthly/signUps/userSignUpMetricIdValue"
+	actual := NewReportUserInsightMonthlySignUpID("userSignUpMetricId").ID()
+	expected := "/reports/userInsights/monthly/signUps/userSignUpMetricId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -60,14 +60,14 @@ func TestParseReportUserInsightMonthlySignUpID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/reports/userInsights/monthly/signUps/userSignUpMetricIdValue",
+			Input: "/reports/userInsights/monthly/signUps/userSignUpMetricId",
 			Expected: &ReportUserInsightMonthlySignUpId{
-				UserSignUpMetricId: "userSignUpMetricIdValue",
+				UserSignUpMetricId: "userSignUpMetricId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/reports/userInsights/monthly/signUps/userSignUpMetricIdValue/extra",
+			Input: "/reports/userInsights/monthly/signUps/userSignUpMetricId/extra",
 			Error: true,
 		},
 	}
@@ -146,26 +146,26 @@ func TestParseReportUserInsightMonthlySignUpIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/reports/userInsights/monthly/signUps/userSignUpMetricIdValue",
+			Input: "/reports/userInsights/monthly/signUps/userSignUpMetricId",
 			Expected: &ReportUserInsightMonthlySignUpId{
-				UserSignUpMetricId: "userSignUpMetricIdValue",
+				UserSignUpMetricId: "userSignUpMetricId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/reports/userInsights/monthly/signUps/userSignUpMetricIdValue/extra",
+			Input: "/reports/userInsights/monthly/signUps/userSignUpMetricId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/rEpOrTs/uSeRiNsIgHtS/mOnThLy/sIgNuPs/uSeRsIgNuPmEtRiCiDvAlUe",
+			Input: "/rEpOrTs/uSeRiNsIgHtS/mOnThLy/sIgNuPs/uSeRsIgNuPmEtRiCiD",
 			Expected: &ReportUserInsightMonthlySignUpId{
-				UserSignUpMetricId: "uSeRsIgNuPmEtRiCiDvAlUe",
+				UserSignUpMetricId: "uSeRsIgNuPmEtRiCiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/rEpOrTs/uSeRiNsIgHtS/mOnThLy/sIgNuPs/uSeRsIgNuPmEtRiCiDvAlUe/extra",
+			Input: "/rEpOrTs/uSeRiNsIgHtS/mOnThLy/sIgNuPs/uSeRsIgNuPmEtRiCiD/extra",
 			Error: true,
 		},
 	}

@@ -20,16 +20,45 @@ type CreateGroupPolicyDefinitionNextVersionDefinitionPresentationOperationRespon
 	Model        beta.GroupPolicyPresentation
 }
 
+type CreateGroupPolicyDefinitionNextVersionDefinitionPresentationOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateGroupPolicyDefinitionNextVersionDefinitionPresentationOperationOptions() CreateGroupPolicyDefinitionNextVersionDefinitionPresentationOperationOptions {
+	return CreateGroupPolicyDefinitionNextVersionDefinitionPresentationOperationOptions{}
+}
+
+func (o CreateGroupPolicyDefinitionNextVersionDefinitionPresentationOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateGroupPolicyDefinitionNextVersionDefinitionPresentationOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateGroupPolicyDefinitionNextVersionDefinitionPresentationOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateGroupPolicyDefinitionNextVersionDefinitionPresentation - Create new navigation property to presentations for
 // deviceManagement
-func (c GroupPolicyDefinitionNextVersionDefinitionPresentationClient) CreateGroupPolicyDefinitionNextVersionDefinitionPresentation(ctx context.Context, id beta.DeviceManagementGroupPolicyDefinitionId, input beta.GroupPolicyPresentation) (result CreateGroupPolicyDefinitionNextVersionDefinitionPresentationOperationResponse, err error) {
+func (c GroupPolicyDefinitionNextVersionDefinitionPresentationClient) CreateGroupPolicyDefinitionNextVersionDefinitionPresentation(ctx context.Context, id beta.DeviceManagementGroupPolicyDefinitionId, input beta.GroupPolicyPresentation, options CreateGroupPolicyDefinitionNextVersionDefinitionPresentationOperationOptions) (result CreateGroupPolicyDefinitionNextVersionDefinitionPresentationOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/nextVersionDefinition/presentations", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/nextVersionDefinition/presentations", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

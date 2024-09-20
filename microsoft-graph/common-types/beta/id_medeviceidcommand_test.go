@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &MeDeviceIdCommandId{}
 
 func TestNewMeDeviceIdCommandID(t *testing.T) {
-	id := NewMeDeviceIdCommandID("deviceIdValue", "commandIdValue")
+	id := NewMeDeviceIdCommandID("deviceId", "commandId")
 
-	if id.DeviceId != "deviceIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DeviceId'", id.DeviceId, "deviceIdValue")
+	if id.DeviceId != "deviceId" {
+		t.Fatalf("Expected %q but got %q for Segment 'DeviceId'", id.DeviceId, "deviceId")
 	}
 
-	if id.CommandId != "commandIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'CommandId'", id.CommandId, "commandIdValue")
+	if id.CommandId != "commandId" {
+		t.Fatalf("Expected %q but got %q for Segment 'CommandId'", id.CommandId, "commandId")
 	}
 }
 
 func TestFormatMeDeviceIdCommandID(t *testing.T) {
-	actual := NewMeDeviceIdCommandID("deviceIdValue", "commandIdValue").ID()
-	expected := "/me/devices/deviceIdValue/commands/commandIdValue"
+	actual := NewMeDeviceIdCommandID("deviceId", "commandId").ID()
+	expected := "/me/devices/deviceId/commands/commandId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -54,25 +54,25 @@ func TestParseMeDeviceIdCommandID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/me/devices/deviceIdValue",
+			Input: "/me/devices/deviceId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/me/devices/deviceIdValue/commands",
+			Input: "/me/devices/deviceId/commands",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/me/devices/deviceIdValue/commands/commandIdValue",
+			Input: "/me/devices/deviceId/commands/commandId",
 			Expected: &MeDeviceIdCommandId{
-				DeviceId:  "deviceIdValue",
-				CommandId: "commandIdValue",
+				DeviceId:  "deviceId",
+				CommandId: "commandId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/devices/deviceIdValue/commands/commandIdValue/extra",
+			Input: "/me/devices/deviceId/commands/commandId/extra",
 			Error: true,
 		},
 	}
@@ -135,48 +135,48 @@ func TestParseMeDeviceIdCommandIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/me/devices/deviceIdValue",
+			Input: "/me/devices/deviceId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/dEvIcEs/dEvIcEiDvAlUe",
+			Input: "/mE/dEvIcEs/dEvIcEiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/me/devices/deviceIdValue/commands",
+			Input: "/me/devices/deviceId/commands",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/dEvIcEs/dEvIcEiDvAlUe/cOmMaNdS",
+			Input: "/mE/dEvIcEs/dEvIcEiD/cOmMaNdS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/me/devices/deviceIdValue/commands/commandIdValue",
+			Input: "/me/devices/deviceId/commands/commandId",
 			Expected: &MeDeviceIdCommandId{
-				DeviceId:  "deviceIdValue",
-				CommandId: "commandIdValue",
+				DeviceId:  "deviceId",
+				CommandId: "commandId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/devices/deviceIdValue/commands/commandIdValue/extra",
+			Input: "/me/devices/deviceId/commands/commandId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/dEvIcEs/dEvIcEiDvAlUe/cOmMaNdS/cOmMaNdIdVaLuE",
+			Input: "/mE/dEvIcEs/dEvIcEiD/cOmMaNdS/cOmMaNdId",
 			Expected: &MeDeviceIdCommandId{
-				DeviceId:  "dEvIcEiDvAlUe",
-				CommandId: "cOmMaNdIdVaLuE",
+				DeviceId:  "dEvIcEiD",
+				CommandId: "cOmMaNdId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/mE/dEvIcEs/dEvIcEiDvAlUe/cOmMaNdS/cOmMaNdIdVaLuE/extra",
+			Input: "/mE/dEvIcEs/dEvIcEiD/cOmMaNdS/cOmMaNdId/extra",
 			Error: true,
 		},
 	}

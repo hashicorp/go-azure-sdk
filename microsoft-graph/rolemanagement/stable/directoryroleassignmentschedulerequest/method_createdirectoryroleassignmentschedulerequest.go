@@ -18,19 +18,48 @@ type CreateDirectoryRoleAssignmentScheduleRequestOperationResponse struct {
 	Model        *stable.UnifiedRoleAssignmentScheduleRequest
 }
 
+type CreateDirectoryRoleAssignmentScheduleRequestOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateDirectoryRoleAssignmentScheduleRequestOperationOptions() CreateDirectoryRoleAssignmentScheduleRequestOperationOptions {
+	return CreateDirectoryRoleAssignmentScheduleRequestOperationOptions{}
+}
+
+func (o CreateDirectoryRoleAssignmentScheduleRequestOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateDirectoryRoleAssignmentScheduleRequestOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateDirectoryRoleAssignmentScheduleRequestOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateDirectoryRoleAssignmentScheduleRequest - Create roleAssignmentScheduleRequests. In PIM, carry out the following
 // operations through the unifiedRoleAssignmentScheduleRequest object: To call this API to update, renew, and extend
 // assignments for yourself, you must have multifactor authentication (MFA) enforced, and running the query in a session
 // in which they were challenged for MFA. See Enable per-user Microsoft Entra multifactor authentication to secure
 // sign-in events.
-func (c DirectoryRoleAssignmentScheduleRequestClient) CreateDirectoryRoleAssignmentScheduleRequest(ctx context.Context, input stable.UnifiedRoleAssignmentScheduleRequest) (result CreateDirectoryRoleAssignmentScheduleRequestOperationResponse, err error) {
+func (c DirectoryRoleAssignmentScheduleRequestClient) CreateDirectoryRoleAssignmentScheduleRequest(ctx context.Context, input stable.UnifiedRoleAssignmentScheduleRequest, options CreateDirectoryRoleAssignmentScheduleRequestOperationOptions) (result CreateDirectoryRoleAssignmentScheduleRequestOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/roleManagement/directory/roleAssignmentScheduleRequests",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/roleManagement/directory/roleAssignmentScheduleRequests",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

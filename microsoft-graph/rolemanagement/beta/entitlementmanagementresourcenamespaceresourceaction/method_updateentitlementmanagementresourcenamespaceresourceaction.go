@@ -17,16 +17,45 @@ type UpdateEntitlementManagementResourceNamespaceResourceActionOperationResponse
 	OData        *odata.OData
 }
 
+type UpdateEntitlementManagementResourceNamespaceResourceActionOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateEntitlementManagementResourceNamespaceResourceActionOperationOptions() UpdateEntitlementManagementResourceNamespaceResourceActionOperationOptions {
+	return UpdateEntitlementManagementResourceNamespaceResourceActionOperationOptions{}
+}
+
+func (o UpdateEntitlementManagementResourceNamespaceResourceActionOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateEntitlementManagementResourceNamespaceResourceActionOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateEntitlementManagementResourceNamespaceResourceActionOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateEntitlementManagementResourceNamespaceResourceAction - Update the navigation property resourceActions in
 // roleManagement
-func (c EntitlementManagementResourceNamespaceResourceActionClient) UpdateEntitlementManagementResourceNamespaceResourceAction(ctx context.Context, id beta.RoleManagementEntitlementManagementResourceNamespaceIdResourceActionId, input beta.UnifiedRbacResourceAction) (result UpdateEntitlementManagementResourceNamespaceResourceActionOperationResponse, err error) {
+func (c EntitlementManagementResourceNamespaceResourceActionClient) UpdateEntitlementManagementResourceNamespaceResourceAction(ctx context.Context, id beta.RoleManagementEntitlementManagementResourceNamespaceIdResourceActionId, input beta.UnifiedRbacResourceAction, options UpdateEntitlementManagementResourceNamespaceResourceActionOperationOptions) (result UpdateEntitlementManagementResourceNamespaceResourceActionOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &DeviceManagementDepOnboardingSettingIdImportedAppleDeviceIdentityId{}
 
 func TestNewDeviceManagementDepOnboardingSettingIdImportedAppleDeviceIdentityID(t *testing.T) {
-	id := NewDeviceManagementDepOnboardingSettingIdImportedAppleDeviceIdentityID("depOnboardingSettingIdValue", "importedAppleDeviceIdentityIdValue")
+	id := NewDeviceManagementDepOnboardingSettingIdImportedAppleDeviceIdentityID("depOnboardingSettingId", "importedAppleDeviceIdentityId")
 
-	if id.DepOnboardingSettingId != "depOnboardingSettingIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DepOnboardingSettingId'", id.DepOnboardingSettingId, "depOnboardingSettingIdValue")
+	if id.DepOnboardingSettingId != "depOnboardingSettingId" {
+		t.Fatalf("Expected %q but got %q for Segment 'DepOnboardingSettingId'", id.DepOnboardingSettingId, "depOnboardingSettingId")
 	}
 
-	if id.ImportedAppleDeviceIdentityId != "importedAppleDeviceIdentityIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ImportedAppleDeviceIdentityId'", id.ImportedAppleDeviceIdentityId, "importedAppleDeviceIdentityIdValue")
+	if id.ImportedAppleDeviceIdentityId != "importedAppleDeviceIdentityId" {
+		t.Fatalf("Expected %q but got %q for Segment 'ImportedAppleDeviceIdentityId'", id.ImportedAppleDeviceIdentityId, "importedAppleDeviceIdentityId")
 	}
 }
 
 func TestFormatDeviceManagementDepOnboardingSettingIdImportedAppleDeviceIdentityID(t *testing.T) {
-	actual := NewDeviceManagementDepOnboardingSettingIdImportedAppleDeviceIdentityID("depOnboardingSettingIdValue", "importedAppleDeviceIdentityIdValue").ID()
-	expected := "/deviceManagement/depOnboardingSettings/depOnboardingSettingIdValue/importedAppleDeviceIdentities/importedAppleDeviceIdentityIdValue"
+	actual := NewDeviceManagementDepOnboardingSettingIdImportedAppleDeviceIdentityID("depOnboardingSettingId", "importedAppleDeviceIdentityId").ID()
+	expected := "/deviceManagement/depOnboardingSettings/depOnboardingSettingId/importedAppleDeviceIdentities/importedAppleDeviceIdentityId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -54,25 +54,25 @@ func TestParseDeviceManagementDepOnboardingSettingIdImportedAppleDeviceIdentityI
 		},
 		{
 			// Incomplete URI
-			Input: "/deviceManagement/depOnboardingSettings/depOnboardingSettingIdValue",
+			Input: "/deviceManagement/depOnboardingSettings/depOnboardingSettingId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/deviceManagement/depOnboardingSettings/depOnboardingSettingIdValue/importedAppleDeviceIdentities",
+			Input: "/deviceManagement/depOnboardingSettings/depOnboardingSettingId/importedAppleDeviceIdentities",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/depOnboardingSettings/depOnboardingSettingIdValue/importedAppleDeviceIdentities/importedAppleDeviceIdentityIdValue",
+			Input: "/deviceManagement/depOnboardingSettings/depOnboardingSettingId/importedAppleDeviceIdentities/importedAppleDeviceIdentityId",
 			Expected: &DeviceManagementDepOnboardingSettingIdImportedAppleDeviceIdentityId{
-				DepOnboardingSettingId:        "depOnboardingSettingIdValue",
-				ImportedAppleDeviceIdentityId: "importedAppleDeviceIdentityIdValue",
+				DepOnboardingSettingId:        "depOnboardingSettingId",
+				ImportedAppleDeviceIdentityId: "importedAppleDeviceIdentityId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/depOnboardingSettings/depOnboardingSettingIdValue/importedAppleDeviceIdentities/importedAppleDeviceIdentityIdValue/extra",
+			Input: "/deviceManagement/depOnboardingSettings/depOnboardingSettingId/importedAppleDeviceIdentities/importedAppleDeviceIdentityId/extra",
 			Error: true,
 		},
 	}
@@ -135,48 +135,48 @@ func TestParseDeviceManagementDepOnboardingSettingIdImportedAppleDeviceIdentityI
 		},
 		{
 			// Incomplete URI
-			Input: "/deviceManagement/depOnboardingSettings/depOnboardingSettingIdValue",
+			Input: "/deviceManagement/depOnboardingSettings/depOnboardingSettingId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/dEpOnBoArDiNgSeTtInGs/dEpOnBoArDiNgSeTtInGiDvAlUe",
+			Input: "/dEvIcEmAnAgEmEnT/dEpOnBoArDiNgSeTtInGs/dEpOnBoArDiNgSeTtInGiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/deviceManagement/depOnboardingSettings/depOnboardingSettingIdValue/importedAppleDeviceIdentities",
+			Input: "/deviceManagement/depOnboardingSettings/depOnboardingSettingId/importedAppleDeviceIdentities",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/dEpOnBoArDiNgSeTtInGs/dEpOnBoArDiNgSeTtInGiDvAlUe/iMpOrTeDaPpLeDeViCeIdEnTiTiEs",
+			Input: "/dEvIcEmAnAgEmEnT/dEpOnBoArDiNgSeTtInGs/dEpOnBoArDiNgSeTtInGiD/iMpOrTeDaPpLeDeViCeIdEnTiTiEs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/depOnboardingSettings/depOnboardingSettingIdValue/importedAppleDeviceIdentities/importedAppleDeviceIdentityIdValue",
+			Input: "/deviceManagement/depOnboardingSettings/depOnboardingSettingId/importedAppleDeviceIdentities/importedAppleDeviceIdentityId",
 			Expected: &DeviceManagementDepOnboardingSettingIdImportedAppleDeviceIdentityId{
-				DepOnboardingSettingId:        "depOnboardingSettingIdValue",
-				ImportedAppleDeviceIdentityId: "importedAppleDeviceIdentityIdValue",
+				DepOnboardingSettingId:        "depOnboardingSettingId",
+				ImportedAppleDeviceIdentityId: "importedAppleDeviceIdentityId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/depOnboardingSettings/depOnboardingSettingIdValue/importedAppleDeviceIdentities/importedAppleDeviceIdentityIdValue/extra",
+			Input: "/deviceManagement/depOnboardingSettings/depOnboardingSettingId/importedAppleDeviceIdentities/importedAppleDeviceIdentityId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/dEpOnBoArDiNgSeTtInGs/dEpOnBoArDiNgSeTtInGiDvAlUe/iMpOrTeDaPpLeDeViCeIdEnTiTiEs/iMpOrTeDaPpLeDeViCeIdEnTiTyIdVaLuE",
+			Input: "/dEvIcEmAnAgEmEnT/dEpOnBoArDiNgSeTtInGs/dEpOnBoArDiNgSeTtInGiD/iMpOrTeDaPpLeDeViCeIdEnTiTiEs/iMpOrTeDaPpLeDeViCeIdEnTiTyId",
 			Expected: &DeviceManagementDepOnboardingSettingIdImportedAppleDeviceIdentityId{
-				DepOnboardingSettingId:        "dEpOnBoArDiNgSeTtInGiDvAlUe",
-				ImportedAppleDeviceIdentityId: "iMpOrTeDaPpLeDeViCeIdEnTiTyIdVaLuE",
+				DepOnboardingSettingId:        "dEpOnBoArDiNgSeTtInGiD",
+				ImportedAppleDeviceIdentityId: "iMpOrTeDaPpLeDeViCeIdEnTiTyId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/dEpOnBoArDiNgSeTtInGs/dEpOnBoArDiNgSeTtInGiDvAlUe/iMpOrTeDaPpLeDeViCeIdEnTiTiEs/iMpOrTeDaPpLeDeViCeIdEnTiTyIdVaLuE/extra",
+			Input: "/dEvIcEmAnAgEmEnT/dEpOnBoArDiNgSeTtInGs/dEpOnBoArDiNgSeTtInGiD/iMpOrTeDaPpLeDeViCeIdEnTiTiEs/iMpOrTeDaPpLeDeViCeIdEnTiTyId/extra",
 			Error: true,
 		},
 	}

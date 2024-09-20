@@ -18,15 +18,44 @@ type CreateAccessReviewDefinitionOperationResponse struct {
 	Model        *beta.AccessReviewScheduleDefinition
 }
 
+type CreateAccessReviewDefinitionOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateAccessReviewDefinitionOperationOptions() CreateAccessReviewDefinitionOperationOptions {
+	return CreateAccessReviewDefinitionOperationOptions{}
+}
+
+func (o CreateAccessReviewDefinitionOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateAccessReviewDefinitionOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateAccessReviewDefinitionOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateAccessReviewDefinition - Create definitions. Create a new accessReviewScheduleDefinition object.
-func (c AccessReviewDefinitionClient) CreateAccessReviewDefinition(ctx context.Context, input beta.AccessReviewScheduleDefinition) (result CreateAccessReviewDefinitionOperationResponse, err error) {
+func (c AccessReviewDefinitionClient) CreateAccessReviewDefinition(ctx context.Context, input beta.AccessReviewScheduleDefinition, options CreateAccessReviewDefinitionOperationOptions) (result CreateAccessReviewDefinitionOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/identityGovernance/accessReviews/definitions",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/identityGovernance/accessReviews/definitions",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/sitelistcontenttype` Documentation
 
-The `sitelistcontenttype` SDK allows for interaction with the Azure Resource Manager Service `groups` (API Version `beta`).
+The `sitelistcontenttype` SDK allows for interaction with Microsoft Graph `groups` (API Version `beta`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -15,7 +15,7 @@ import "github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/sitelistco
 ### Client Initialization
 
 ```go
-client := sitelistcontenttype.NewSiteListContentTypeClientWithBaseURI("https://management.azure.com")
+client := sitelistcontenttype.NewSiteListContentTypeClientWithBaseURI("https://graph.microsoft.com")
 client.Client.Authorizer = authorizer
 ```
 
@@ -24,14 +24,14 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := sitelistcontenttype.NewGroupIdSiteIdListID("groupIdValue", "siteIdValue", "listIdValue")
+id := sitelistcontenttype.NewGroupIdSiteIdListID("groupId", "siteId", "listId")
 
 payload := sitelistcontenttype.AddSiteListContentTypesCopyRequest{
 	// ...
 }
 
 
-read, err := client.AddSiteListContentTypesCopy(ctx, id, payload)
+read, err := client.AddSiteListContentTypesCopy(ctx, id, payload, sitelistcontenttype.DefaultAddSiteListContentTypesCopyOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -45,14 +45,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := sitelistcontenttype.NewGroupIdSiteIdListID("groupIdValue", "siteIdValue", "listIdValue")
+id := sitelistcontenttype.NewGroupIdSiteIdListID("groupId", "siteId", "listId")
 
 payload := sitelistcontenttype.AddSiteListContentTypesCopyFromHubRequest{
 	// ...
 }
 
 
-read, err := client.AddSiteListContentTypesCopyFromHub(ctx, id, payload)
+read, err := client.AddSiteListContentTypesCopyFromHub(ctx, id, payload, sitelistcontenttype.DefaultAddSiteListContentTypesCopyFromHubOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -66,14 +66,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := sitelistcontenttype.NewGroupIdSiteIdListIdContentTypeID("groupIdValue", "siteIdValue", "listIdValue", "contentTypeIdValue")
+id := sitelistcontenttype.NewGroupIdSiteIdListIdContentTypeID("groupId", "siteId", "listId", "contentTypeId")
 
 payload := sitelistcontenttype.CopySiteListContentTypeToDefaultContentLocationRequest{
 	// ...
 }
 
 
-read, err := client.CopySiteListContentTypeToDefaultContentLocation(ctx, id, payload)
+read, err := client.CopySiteListContentTypeToDefaultContentLocation(ctx, id, payload, sitelistcontenttype.DefaultCopySiteListContentTypeToDefaultContentLocationOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -87,14 +87,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := sitelistcontenttype.NewGroupIdSiteIdListID("groupIdValue", "siteIdValue", "listIdValue")
+id := sitelistcontenttype.NewGroupIdSiteIdListID("groupId", "siteId", "listId")
 
 payload := sitelistcontenttype.ContentType{
 	// ...
 }
 
 
-read, err := client.CreateSiteListContentType(ctx, id, payload)
+read, err := client.CreateSiteListContentType(ctx, id, payload, sitelistcontenttype.DefaultCreateSiteListContentTypeOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -108,14 +108,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := sitelistcontenttype.NewGroupIdSiteIdListIdContentTypeID("groupIdValue", "siteIdValue", "listIdValue", "contentTypeIdValue")
+id := sitelistcontenttype.NewGroupIdSiteIdListIdContentTypeID("groupId", "siteId", "listId", "contentTypeId")
 
 payload := sitelistcontenttype.CreateSiteListContentTypeAssociateWithHubSiteRequest{
 	// ...
 }
 
 
-read, err := client.CreateSiteListContentTypeAssociateWithHubSite(ctx, id, payload)
+read, err := client.CreateSiteListContentTypeAssociateWithHubSite(ctx, id, payload, sitelistcontenttype.DefaultCreateSiteListContentTypeAssociateWithHubSiteOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -129,9 +129,9 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := sitelistcontenttype.NewGroupIdSiteIdListIdContentTypeID("groupIdValue", "siteIdValue", "listIdValue", "contentTypeIdValue")
+id := sitelistcontenttype.NewGroupIdSiteIdListIdContentTypeID("groupId", "siteId", "listId", "contentTypeId")
 
-read, err := client.CreateSiteListContentTypePublish(ctx, id)
+read, err := client.CreateSiteListContentTypePublish(ctx, id, sitelistcontenttype.DefaultCreateSiteListContentTypePublishOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -145,9 +145,9 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := sitelistcontenttype.NewGroupIdSiteIdListIdContentTypeID("groupIdValue", "siteIdValue", "listIdValue", "contentTypeIdValue")
+id := sitelistcontenttype.NewGroupIdSiteIdListIdContentTypeID("groupId", "siteId", "listId", "contentTypeId")
 
-read, err := client.CreateSiteListContentTypeUnpublish(ctx, id)
+read, err := client.CreateSiteListContentTypeUnpublish(ctx, id, sitelistcontenttype.DefaultCreateSiteListContentTypeUnpublishOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -161,7 +161,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := sitelistcontenttype.NewGroupIdSiteIdListIdContentTypeID("groupIdValue", "siteIdValue", "listIdValue", "contentTypeIdValue")
+id := sitelistcontenttype.NewGroupIdSiteIdListIdContentTypeID("groupId", "siteId", "listId", "contentTypeId")
 
 read, err := client.DeleteSiteListContentType(ctx, id, sitelistcontenttype.DefaultDeleteSiteListContentTypeOperationOptions())
 if err != nil {
@@ -177,7 +177,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := sitelistcontenttype.NewGroupIdSiteIdListIdContentTypeID("groupIdValue", "siteIdValue", "listIdValue", "contentTypeIdValue")
+id := sitelistcontenttype.NewGroupIdSiteIdListIdContentTypeID("groupId", "siteId", "listId", "contentTypeId")
 
 read, err := client.GetSiteListContentType(ctx, id, sitelistcontenttype.DefaultGetSiteListContentTypeOperationOptions())
 if err != nil {
@@ -193,7 +193,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := sitelistcontenttype.NewGroupIdSiteIdListID("groupIdValue", "siteIdValue", "listIdValue")
+id := sitelistcontenttype.NewGroupIdSiteIdListID("groupId", "siteId", "listId")
 
 read, err := client.GetSiteListContentTypesCount(ctx, id, sitelistcontenttype.DefaultGetSiteListContentTypesCountOperationOptions())
 if err != nil {
@@ -209,7 +209,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := sitelistcontenttype.NewGroupIdSiteIdListID("groupIdValue", "siteIdValue", "listIdValue")
+id := sitelistcontenttype.NewGroupIdSiteIdListID("groupId", "siteId", "listId")
 
 // alternatively `client.ListSiteListContentTypes(ctx, id, sitelistcontenttype.DefaultListSiteListContentTypesOperationOptions())` can be used to do batched pagination
 items, err := client.ListSiteListContentTypesComplete(ctx, id, sitelistcontenttype.DefaultListSiteListContentTypesOperationOptions())
@@ -226,14 +226,14 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := sitelistcontenttype.NewGroupIdSiteIdListIdContentTypeID("groupIdValue", "siteIdValue", "listIdValue", "contentTypeIdValue")
+id := sitelistcontenttype.NewGroupIdSiteIdListIdContentTypeID("groupId", "siteId", "listId", "contentTypeId")
 
 payload := sitelistcontenttype.ContentType{
 	// ...
 }
 
 
-read, err := client.UpdateSiteListContentType(ctx, id, payload)
+read, err := client.UpdateSiteListContentType(ctx, id, payload, sitelistcontenttype.DefaultUpdateSiteListContentTypeOperationOptions())
 if err != nil {
 	// handle the error
 }

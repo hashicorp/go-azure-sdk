@@ -19,7 +19,8 @@ type DeleteDeviceManagementRoleAssignmentOperationResponse struct {
 }
 
 type DeleteDeviceManagementRoleAssignmentOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteDeviceManagementRoleAssignmentOperationOptions() DeleteDeviceManagementRoleAssignmentOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteDeviceManagementRoleAssignmentOperationOptions) ToHeaders() *clien
 
 func (o DeleteDeviceManagementRoleAssignmentOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

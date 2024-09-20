@@ -17,16 +17,45 @@ type UpdateEntitlementManagementAccessPackageOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateEntitlementManagementAccessPackageOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateEntitlementManagementAccessPackageOperationOptions() UpdateEntitlementManagementAccessPackageOperationOptions {
+	return UpdateEntitlementManagementAccessPackageOperationOptions{}
+}
+
+func (o UpdateEntitlementManagementAccessPackageOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateEntitlementManagementAccessPackageOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateEntitlementManagementAccessPackageOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateEntitlementManagementAccessPackage - Update accessPackage. Update an existing accessPackage object to change
 // one or more of its properties, such as the display name or description.
-func (c EntitlementManagementAccessPackageClient) UpdateEntitlementManagementAccessPackage(ctx context.Context, id beta.IdentityGovernanceEntitlementManagementAccessPackageId, input beta.AccessPackage) (result UpdateEntitlementManagementAccessPackageOperationResponse, err error) {
+func (c EntitlementManagementAccessPackageClient) UpdateEntitlementManagementAccessPackage(ctx context.Context, id beta.IdentityGovernanceEntitlementManagementAccessPackageId, input beta.AccessPackage, options UpdateEntitlementManagementAccessPackageOperationOptions) (result UpdateEntitlementManagementAccessPackageOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

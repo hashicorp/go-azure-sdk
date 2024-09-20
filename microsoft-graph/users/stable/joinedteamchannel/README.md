@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/microsoft-graph/users/stable/joinedteamchannel` Documentation
 
-The `joinedteamchannel` SDK allows for interaction with the Azure Resource Manager Service `users` (API Version `stable`).
+The `joinedteamchannel` SDK allows for interaction with Microsoft Graph `users` (API Version `stable`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -15,7 +15,7 @@ import "github.com/hashicorp/go-azure-sdk/microsoft-graph/users/stable/joinedtea
 ### Client Initialization
 
 ```go
-client := joinedteamchannel.NewJoinedTeamChannelClientWithBaseURI("https://management.azure.com")
+client := joinedteamchannel.NewJoinedTeamChannelClientWithBaseURI("https://graph.microsoft.com")
 client.Client.Authorizer = authorizer
 ```
 
@@ -24,14 +24,14 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := joinedteamchannel.NewUserIdJoinedTeamID("userIdValue", "teamIdValue")
+id := joinedteamchannel.NewUserIdJoinedTeamID("userId", "teamId")
 
 payload := joinedteamchannel.Channel{
 	// ...
 }
 
 
-read, err := client.CreateJoinedTeamChannel(ctx, id, payload)
+read, err := client.CreateJoinedTeamChannel(ctx, id, payload, joinedteamchannel.DefaultCreateJoinedTeamChannelOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -45,14 +45,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := joinedteamchannel.NewUserIdJoinedTeamIdChannelID("userIdValue", "teamIdValue", "channelIdValue")
+id := joinedteamchannel.NewUserIdJoinedTeamIdChannelID("userId", "teamId", "channelId")
 
 payload := joinedteamchannel.CreateJoinedTeamChannelArchiveRequest{
 	// ...
 }
 
 
-read, err := client.CreateJoinedTeamChannelArchive(ctx, id, payload)
+read, err := client.CreateJoinedTeamChannelArchive(ctx, id, payload, joinedteamchannel.DefaultCreateJoinedTeamChannelArchiveOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -66,9 +66,9 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := joinedteamchannel.NewUserIdJoinedTeamIdChannelID("userIdValue", "teamIdValue", "channelIdValue")
+id := joinedteamchannel.NewUserIdJoinedTeamIdChannelID("userId", "teamId", "channelId")
 
-read, err := client.CreateJoinedTeamChannelCompleteMigration(ctx, id)
+read, err := client.CreateJoinedTeamChannelCompleteMigration(ctx, id, joinedteamchannel.DefaultCreateJoinedTeamChannelCompleteMigrationOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -82,9 +82,9 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := joinedteamchannel.NewUserIdJoinedTeamIdChannelID("userIdValue", "teamIdValue", "channelIdValue")
+id := joinedteamchannel.NewUserIdJoinedTeamIdChannelID("userId", "teamId", "channelId")
 
-read, err := client.CreateJoinedTeamChannelUnarchive(ctx, id)
+read, err := client.CreateJoinedTeamChannelUnarchive(ctx, id, joinedteamchannel.DefaultCreateJoinedTeamChannelUnarchiveOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -98,7 +98,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := joinedteamchannel.NewUserIdJoinedTeamIdChannelID("userIdValue", "teamIdValue", "channelIdValue")
+id := joinedteamchannel.NewUserIdJoinedTeamIdChannelID("userId", "teamId", "channelId")
 
 read, err := client.DeleteJoinedTeamChannel(ctx, id, joinedteamchannel.DefaultDeleteJoinedTeamChannelOperationOptions())
 if err != nil {
@@ -114,7 +114,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := joinedteamchannel.NewUserIdJoinedTeamIdChannelID("userIdValue", "teamIdValue", "channelIdValue")
+id := joinedteamchannel.NewUserIdJoinedTeamIdChannelID("userId", "teamId", "channelId")
 
 read, err := client.GetJoinedTeamChannel(ctx, id, joinedteamchannel.DefaultGetJoinedTeamChannelOperationOptions())
 if err != nil {
@@ -130,7 +130,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := joinedteamchannel.NewUserIdJoinedTeamID("userIdValue", "teamIdValue")
+id := joinedteamchannel.NewUserIdJoinedTeamID("userId", "teamId")
 
 read, err := client.GetJoinedTeamChannelsCount(ctx, id, joinedteamchannel.DefaultGetJoinedTeamChannelsCountOperationOptions())
 if err != nil {
@@ -146,7 +146,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := joinedteamchannel.NewUserIdJoinedTeamID("userIdValue", "teamIdValue")
+id := joinedteamchannel.NewUserIdJoinedTeamID("userId", "teamId")
 
 // alternatively `client.ListJoinedTeamChannels(ctx, id, joinedteamchannel.DefaultListJoinedTeamChannelsOperationOptions())` can be used to do batched pagination
 items, err := client.ListJoinedTeamChannelsComplete(ctx, id, joinedteamchannel.DefaultListJoinedTeamChannelsOperationOptions())
@@ -163,9 +163,9 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := joinedteamchannel.NewUserIdJoinedTeamIdChannelID("userIdValue", "teamIdValue", "channelIdValue")
+id := joinedteamchannel.NewUserIdJoinedTeamIdChannelID("userId", "teamId", "channelId")
 
-read, err := client.ProvisionJoinedTeamChannelEmail(ctx, id)
+read, err := client.ProvisionJoinedTeamChannelEmail(ctx, id, joinedteamchannel.DefaultProvisionJoinedTeamChannelEmailOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -179,9 +179,9 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := joinedteamchannel.NewUserIdJoinedTeamIdChannelID("userIdValue", "teamIdValue", "channelIdValue")
+id := joinedteamchannel.NewUserIdJoinedTeamIdChannelID("userId", "teamId", "channelId")
 
-read, err := client.RemoveJoinedTeamChannelEmail(ctx, id)
+read, err := client.RemoveJoinedTeamChannelEmail(ctx, id, joinedteamchannel.DefaultRemoveJoinedTeamChannelEmailOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -195,14 +195,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := joinedteamchannel.NewUserIdJoinedTeamIdChannelID("userIdValue", "teamIdValue", "channelIdValue")
+id := joinedteamchannel.NewUserIdJoinedTeamIdChannelID("userId", "teamId", "channelId")
 
 payload := joinedteamchannel.Channel{
 	// ...
 }
 
 
-read, err := client.UpdateJoinedTeamChannel(ctx, id, payload)
+read, err := client.UpdateJoinedTeamChannel(ctx, id, payload, joinedteamchannel.DefaultUpdateJoinedTeamChannelOperationOptions())
 if err != nil {
 	// handle the error
 }

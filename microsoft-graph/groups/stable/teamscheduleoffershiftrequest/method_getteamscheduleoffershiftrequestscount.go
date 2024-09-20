@@ -20,8 +20,9 @@ type GetTeamScheduleOfferShiftRequestsCountOperationResponse struct {
 }
 
 type GetTeamScheduleOfferShiftRequestsCountOperationOptions struct {
-	Filter *string
-	Search *string
+	Filter   *string
+	Metadata *odata.Metadata
+	Search   *string
 }
 
 func DefaultGetTeamScheduleOfferShiftRequestsCountOperationOptions() GetTeamScheduleOfferShiftRequestsCountOperationOptions {
@@ -38,6 +39,9 @@ func (o GetTeamScheduleOfferShiftRequestsCountOperationOptions) ToOData() *odata
 	out := odata.Query{}
 	if o.Filter != nil {
 		out.Filter = *o.Filter
+	}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
 	}
 	if o.Search != nil {
 		out.Search = *o.Search

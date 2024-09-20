@@ -18,15 +18,44 @@ type CreateDeviceConfigurationWindowsPrivacyAccessControlOperationResponse struc
 	OData        *odata.OData
 }
 
+type CreateDeviceConfigurationWindowsPrivacyAccessControlOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateDeviceConfigurationWindowsPrivacyAccessControlOperationOptions() CreateDeviceConfigurationWindowsPrivacyAccessControlOperationOptions {
+	return CreateDeviceConfigurationWindowsPrivacyAccessControlOperationOptions{}
+}
+
+func (o CreateDeviceConfigurationWindowsPrivacyAccessControlOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateDeviceConfigurationWindowsPrivacyAccessControlOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateDeviceConfigurationWindowsPrivacyAccessControlOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateDeviceConfigurationWindowsPrivacyAccessControl - Invoke action windowsPrivacyAccessControls
-func (c DeviceConfigurationClient) CreateDeviceConfigurationWindowsPrivacyAccessControl(ctx context.Context, id beta.DeviceManagementDeviceConfigurationId, input CreateDeviceConfigurationWindowsPrivacyAccessControlRequest) (result CreateDeviceConfigurationWindowsPrivacyAccessControlOperationResponse, err error) {
+func (c DeviceConfigurationClient) CreateDeviceConfigurationWindowsPrivacyAccessControl(ctx context.Context, id beta.DeviceManagementDeviceConfigurationId, input CreateDeviceConfigurationWindowsPrivacyAccessControlRequest, options CreateDeviceConfigurationWindowsPrivacyAccessControlOperationOptions) (result CreateDeviceConfigurationWindowsPrivacyAccessControlOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/windowsPrivacyAccessControls", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/windowsPrivacyAccessControls", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

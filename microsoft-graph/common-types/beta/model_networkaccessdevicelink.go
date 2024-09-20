@@ -78,22 +78,33 @@ func (s NetworkaccessDeviceLink) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &NetworkaccessDeviceLink{}
 
 func (s *NetworkaccessDeviceLink) UnmarshalJSON(bytes []byte) error {
-	type alias NetworkaccessDeviceLink
-	var decoded alias
+
+	var decoded struct {
+		BandwidthCapacityInMbps *NetworkaccessBandwidthCapacityInMbps `json:"bandwidthCapacityInMbps,omitempty"`
+		BgpConfiguration        *NetworkaccessBgpConfiguration        `json:"bgpConfiguration,omitempty"`
+		DeviceVendor            *NetworkaccessDeviceVendor            `json:"deviceVendor,omitempty"`
+		IPAddress               *string                               `json:"ipAddress,omitempty"`
+		LastModifiedDateTime    *string                               `json:"lastModifiedDateTime,omitempty"`
+		Name                    *string                               `json:"name,omitempty"`
+		RedundancyConfiguration *NetworkaccessRedundancyConfiguration `json:"redundancyConfiguration,omitempty"`
+		Id                      *string                               `json:"id,omitempty"`
+		ODataId                 *string                               `json:"@odata.id,omitempty"`
+		ODataType               *string                               `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into NetworkaccessDeviceLink: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.BandwidthCapacityInMbps = decoded.BandwidthCapacityInMbps
 	s.BgpConfiguration = decoded.BgpConfiguration
 	s.DeviceVendor = decoded.DeviceVendor
 	s.IPAddress = decoded.IPAddress
-	s.Id = decoded.Id
 	s.LastModifiedDateTime = decoded.LastModifiedDateTime
 	s.Name = decoded.Name
+	s.RedundancyConfiguration = decoded.RedundancyConfiguration
+	s.Id = decoded.Id
 	s.ODataId = decoded.ODataId
 	s.ODataType = decoded.ODataType
-	s.RedundancyConfiguration = decoded.RedundancyConfiguration
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -107,5 +118,6 @@ func (s *NetworkaccessDeviceLink) UnmarshalJSON(bytes []byte) error {
 		}
 		s.TunnelConfiguration = impl
 	}
+
 	return nil
 }

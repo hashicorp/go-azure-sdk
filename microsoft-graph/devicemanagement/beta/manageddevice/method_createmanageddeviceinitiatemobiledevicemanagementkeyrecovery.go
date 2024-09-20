@@ -18,16 +18,45 @@ type CreateManagedDeviceInitiateMobileDeviceManagementKeyRecoveryOperationRespon
 	OData        *odata.OData
 }
 
+type CreateManagedDeviceInitiateMobileDeviceManagementKeyRecoveryOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateManagedDeviceInitiateMobileDeviceManagementKeyRecoveryOperationOptions() CreateManagedDeviceInitiateMobileDeviceManagementKeyRecoveryOperationOptions {
+	return CreateManagedDeviceInitiateMobileDeviceManagementKeyRecoveryOperationOptions{}
+}
+
+func (o CreateManagedDeviceInitiateMobileDeviceManagementKeyRecoveryOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateManagedDeviceInitiateMobileDeviceManagementKeyRecoveryOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateManagedDeviceInitiateMobileDeviceManagementKeyRecoveryOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateManagedDeviceInitiateMobileDeviceManagementKeyRecovery - Invoke action
 // initiateMobileDeviceManagementKeyRecovery. Perform MDM key recovery and TPM attestation
-func (c ManagedDeviceClient) CreateManagedDeviceInitiateMobileDeviceManagementKeyRecovery(ctx context.Context, id beta.DeviceManagementManagedDeviceId) (result CreateManagedDeviceInitiateMobileDeviceManagementKeyRecoveryOperationResponse, err error) {
+func (c ManagedDeviceClient) CreateManagedDeviceInitiateMobileDeviceManagementKeyRecovery(ctx context.Context, id beta.DeviceManagementManagedDeviceId, options CreateManagedDeviceInitiateMobileDeviceManagementKeyRecoveryOperationOptions) (result CreateManagedDeviceInitiateMobileDeviceManagementKeyRecoveryOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/initiateMobileDeviceManagementKeyRecovery", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/initiateMobileDeviceManagementKeyRecovery", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

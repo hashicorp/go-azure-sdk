@@ -19,15 +19,44 @@ type CreateDeviceShellScriptDeviceRunStateOperationResponse struct {
 	Model        *beta.DeviceManagementScriptDeviceState
 }
 
+type CreateDeviceShellScriptDeviceRunStateOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateDeviceShellScriptDeviceRunStateOperationOptions() CreateDeviceShellScriptDeviceRunStateOperationOptions {
+	return CreateDeviceShellScriptDeviceRunStateOperationOptions{}
+}
+
+func (o CreateDeviceShellScriptDeviceRunStateOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateDeviceShellScriptDeviceRunStateOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateDeviceShellScriptDeviceRunStateOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateDeviceShellScriptDeviceRunState - Create new navigation property to deviceRunStates for deviceManagement
-func (c DeviceShellScriptDeviceRunStateClient) CreateDeviceShellScriptDeviceRunState(ctx context.Context, id beta.DeviceManagementDeviceShellScriptId, input beta.DeviceManagementScriptDeviceState) (result CreateDeviceShellScriptDeviceRunStateOperationResponse, err error) {
+func (c DeviceShellScriptDeviceRunStateClient) CreateDeviceShellScriptDeviceRunState(ctx context.Context, id beta.DeviceManagementDeviceShellScriptId, input beta.DeviceManagementScriptDeviceState, options CreateDeviceShellScriptDeviceRunStateOperationOptions) (result CreateDeviceShellScriptDeviceRunStateOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/deviceRunStates", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/deviceRunStates", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

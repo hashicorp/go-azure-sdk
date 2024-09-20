@@ -19,7 +19,8 @@ type RemoveConnectorGroupRefOperationResponse struct {
 }
 
 type RemoveConnectorGroupRefOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultRemoveConnectorGroupRefOperationOptions() RemoveConnectorGroupRefOperationOptions {
@@ -36,7 +37,9 @@ func (o RemoveConnectorGroupRefOperationOptions) ToHeaders() *client.Headers {
 
 func (o RemoveConnectorGroupRefOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

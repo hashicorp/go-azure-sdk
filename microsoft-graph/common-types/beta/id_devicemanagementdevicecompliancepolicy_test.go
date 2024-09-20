@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &DeviceManagementDeviceCompliancePolicyId{}
 
 func TestNewDeviceManagementDeviceCompliancePolicyID(t *testing.T) {
-	id := NewDeviceManagementDeviceCompliancePolicyID("deviceCompliancePolicyIdValue")
+	id := NewDeviceManagementDeviceCompliancePolicyID("deviceCompliancePolicyId")
 
-	if id.DeviceCompliancePolicyId != "deviceCompliancePolicyIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DeviceCompliancePolicyId'", id.DeviceCompliancePolicyId, "deviceCompliancePolicyIdValue")
+	if id.DeviceCompliancePolicyId != "deviceCompliancePolicyId" {
+		t.Fatalf("Expected %q but got %q for Segment 'DeviceCompliancePolicyId'", id.DeviceCompliancePolicyId, "deviceCompliancePolicyId")
 	}
 }
 
 func TestFormatDeviceManagementDeviceCompliancePolicyID(t *testing.T) {
-	actual := NewDeviceManagementDeviceCompliancePolicyID("deviceCompliancePolicyIdValue").ID()
-	expected := "/deviceManagement/deviceCompliancePolicies/deviceCompliancePolicyIdValue"
+	actual := NewDeviceManagementDeviceCompliancePolicyID("deviceCompliancePolicyId").ID()
+	expected := "/deviceManagement/deviceCompliancePolicies/deviceCompliancePolicyId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -50,14 +50,14 @@ func TestParseDeviceManagementDeviceCompliancePolicyID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/deviceCompliancePolicies/deviceCompliancePolicyIdValue",
+			Input: "/deviceManagement/deviceCompliancePolicies/deviceCompliancePolicyId",
 			Expected: &DeviceManagementDeviceCompliancePolicyId{
-				DeviceCompliancePolicyId: "deviceCompliancePolicyIdValue",
+				DeviceCompliancePolicyId: "deviceCompliancePolicyId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/deviceCompliancePolicies/deviceCompliancePolicyIdValue/extra",
+			Input: "/deviceManagement/deviceCompliancePolicies/deviceCompliancePolicyId/extra",
 			Error: true,
 		},
 	}
@@ -116,26 +116,26 @@ func TestParseDeviceManagementDeviceCompliancePolicyIDInsensitively(t *testing.T
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/deviceCompliancePolicies/deviceCompliancePolicyIdValue",
+			Input: "/deviceManagement/deviceCompliancePolicies/deviceCompliancePolicyId",
 			Expected: &DeviceManagementDeviceCompliancePolicyId{
-				DeviceCompliancePolicyId: "deviceCompliancePolicyIdValue",
+				DeviceCompliancePolicyId: "deviceCompliancePolicyId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/deviceCompliancePolicies/deviceCompliancePolicyIdValue/extra",
+			Input: "/deviceManagement/deviceCompliancePolicies/deviceCompliancePolicyId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/dEvIcEcOmPlIaNcEpOlIcIeS/dEvIcEcOmPlIaNcEpOlIcYiDvAlUe",
+			Input: "/dEvIcEmAnAgEmEnT/dEvIcEcOmPlIaNcEpOlIcIeS/dEvIcEcOmPlIaNcEpOlIcYiD",
 			Expected: &DeviceManagementDeviceCompliancePolicyId{
-				DeviceCompliancePolicyId: "dEvIcEcOmPlIaNcEpOlIcYiDvAlUe",
+				DeviceCompliancePolicyId: "dEvIcEcOmPlIaNcEpOlIcYiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/dEvIcEcOmPlIaNcEpOlIcIeS/dEvIcEcOmPlIaNcEpOlIcYiDvAlUe/extra",
+			Input: "/dEvIcEmAnAgEmEnT/dEvIcEcOmPlIaNcEpOlIcIeS/dEvIcEcOmPlIaNcEpOlIcYiD/extra",
 			Error: true,
 		},
 	}

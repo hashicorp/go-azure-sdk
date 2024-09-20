@@ -17,16 +17,45 @@ type UpdateUserExperienceAnalyticsBatteryHealthOsPerformanceOperationResponse st
 	OData        *odata.OData
 }
 
+type UpdateUserExperienceAnalyticsBatteryHealthOsPerformanceOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateUserExperienceAnalyticsBatteryHealthOsPerformanceOperationOptions() UpdateUserExperienceAnalyticsBatteryHealthOsPerformanceOperationOptions {
+	return UpdateUserExperienceAnalyticsBatteryHealthOsPerformanceOperationOptions{}
+}
+
+func (o UpdateUserExperienceAnalyticsBatteryHealthOsPerformanceOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateUserExperienceAnalyticsBatteryHealthOsPerformanceOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateUserExperienceAnalyticsBatteryHealthOsPerformanceOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateUserExperienceAnalyticsBatteryHealthOsPerformance - Update the navigation property
 // userExperienceAnalyticsBatteryHealthOsPerformance in deviceManagement
-func (c UserExperienceAnalyticsBatteryHealthOsPerformanceClient) UpdateUserExperienceAnalyticsBatteryHealthOsPerformance(ctx context.Context, id beta.DeviceManagementUserExperienceAnalyticsBatteryHealthOsPerformanceId, input beta.UserExperienceAnalyticsBatteryHealthOsPerformance) (result UpdateUserExperienceAnalyticsBatteryHealthOsPerformanceOperationResponse, err error) {
+func (c UserExperienceAnalyticsBatteryHealthOsPerformanceClient) UpdateUserExperienceAnalyticsBatteryHealthOsPerformance(ctx context.Context, id beta.DeviceManagementUserExperienceAnalyticsBatteryHealthOsPerformanceId, input beta.UserExperienceAnalyticsBatteryHealthOsPerformance, options UpdateUserExperienceAnalyticsBatteryHealthOsPerformanceOperationOptions) (result UpdateUserExperienceAnalyticsBatteryHealthOsPerformanceOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

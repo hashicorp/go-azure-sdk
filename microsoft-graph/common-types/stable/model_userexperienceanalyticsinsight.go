@@ -33,10 +33,17 @@ type UserExperienceAnalyticsInsight struct {
 var _ json.Unmarshaler = &UserExperienceAnalyticsInsight{}
 
 func (s *UserExperienceAnalyticsInsight) UnmarshalJSON(bytes []byte) error {
-	type alias UserExperienceAnalyticsInsight
-	var decoded alias
+
+	var decoded struct {
+		InsightId                       nullable.Type[string]                   `json:"insightId,omitempty"`
+		ODataId                         *string                                 `json:"@odata.id,omitempty"`
+		ODataType                       *string                                 `json:"@odata.type,omitempty"`
+		Severity                        *UserExperienceAnalyticsInsightSeverity `json:"severity,omitempty"`
+		UserExperienceAnalyticsMetricId nullable.Type[string]                   `json:"userExperienceAnalyticsMetricId,omitempty"`
+		Values                          *[]UserExperienceAnalyticsInsightValue  `json:"values,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into UserExperienceAnalyticsInsight: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.InsightId = decoded.InsightId
@@ -66,5 +73,6 @@ func (s *UserExperienceAnalyticsInsight) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Values = &output
 	}
+
 	return nil
 }

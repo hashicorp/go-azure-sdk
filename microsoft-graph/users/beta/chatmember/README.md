@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/chatmember` Documentation
 
-The `chatmember` SDK allows for interaction with the Azure Resource Manager Service `users` (API Version `beta`).
+The `chatmember` SDK allows for interaction with Microsoft Graph `users` (API Version `beta`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -15,7 +15,7 @@ import "github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/chatmember"
 ### Client Initialization
 
 ```go
-client := chatmember.NewChatMemberClientWithBaseURI("https://management.azure.com")
+client := chatmember.NewChatMemberClientWithBaseURI("https://graph.microsoft.com")
 client.Client.Authorizer = authorizer
 ```
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := chatmember.NewUserIdChatID("userIdValue", "chatIdValue")
+id := chatmember.NewUserIdChatID("userId", "chatId")
 
 payload := chatmember.AddChatMembersRequest{
 	// ...
@@ -46,14 +46,14 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := chatmember.NewUserIdChatID("userIdValue", "chatIdValue")
+id := chatmember.NewUserIdChatID("userId", "chatId")
 
 payload := chatmember.ConversationMember{
 	// ...
 }
 
 
-read, err := client.CreateChatMember(ctx, id, payload)
+read, err := client.CreateChatMember(ctx, id, payload, chatmember.DefaultCreateChatMemberOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -67,7 +67,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := chatmember.NewUserIdChatIdMemberID("userIdValue", "chatIdValue", "conversationMemberIdValue")
+id := chatmember.NewUserIdChatIdMemberID("userId", "chatId", "conversationMemberId")
 
 read, err := client.DeleteChatMember(ctx, id, chatmember.DefaultDeleteChatMemberOperationOptions())
 if err != nil {
@@ -83,7 +83,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := chatmember.NewUserIdChatIdMemberID("userIdValue", "chatIdValue", "conversationMemberIdValue")
+id := chatmember.NewUserIdChatIdMemberID("userId", "chatId", "conversationMemberId")
 
 read, err := client.GetChatMember(ctx, id, chatmember.DefaultGetChatMemberOperationOptions())
 if err != nil {
@@ -99,7 +99,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := chatmember.NewUserIdChatID("userIdValue", "chatIdValue")
+id := chatmember.NewUserIdChatID("userId", "chatId")
 
 read, err := client.GetChatMembersCount(ctx, id, chatmember.DefaultGetChatMembersCountOperationOptions())
 if err != nil {
@@ -115,7 +115,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := chatmember.NewUserIdChatID("userIdValue", "chatIdValue")
+id := chatmember.NewUserIdChatID("userId", "chatId")
 
 // alternatively `client.ListChatMembers(ctx, id, chatmember.DefaultListChatMembersOperationOptions())` can be used to do batched pagination
 items, err := client.ListChatMembersComplete(ctx, id, chatmember.DefaultListChatMembersOperationOptions())
@@ -132,14 +132,14 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := chatmember.NewUserIdChatIdMemberID("userIdValue", "chatIdValue", "conversationMemberIdValue")
+id := chatmember.NewUserIdChatIdMemberID("userId", "chatId", "conversationMemberId")
 
 payload := chatmember.ConversationMember{
 	// ...
 }
 
 
-read, err := client.UpdateChatMember(ctx, id, payload)
+read, err := client.UpdateChatMember(ctx, id, payload, chatmember.DefaultUpdateChatMemberOperationOptions())
 if err != nil {
 	// handle the error
 }

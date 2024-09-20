@@ -20,15 +20,44 @@ type CreateTeamPrimaryChannelMemberOperationResponse struct {
 	Model        stable.ConversationMember
 }
 
+type CreateTeamPrimaryChannelMemberOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateTeamPrimaryChannelMemberOperationOptions() CreateTeamPrimaryChannelMemberOperationOptions {
+	return CreateTeamPrimaryChannelMemberOperationOptions{}
+}
+
+func (o CreateTeamPrimaryChannelMemberOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateTeamPrimaryChannelMemberOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateTeamPrimaryChannelMemberOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateTeamPrimaryChannelMember - Create new navigation property to members for groups
-func (c TeamPrimaryChannelMemberClient) CreateTeamPrimaryChannelMember(ctx context.Context, id stable.GroupId, input stable.ConversationMember) (result CreateTeamPrimaryChannelMemberOperationResponse, err error) {
+func (c TeamPrimaryChannelMemberClient) CreateTeamPrimaryChannelMember(ctx context.Context, id stable.GroupId, input stable.ConversationMember, options CreateTeamPrimaryChannelMemberOperationOptions) (result CreateTeamPrimaryChannelMemberOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/team/primaryChannel/members", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/team/primaryChannel/members", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -17,16 +17,45 @@ type UpdateMonthlyPrintUsageSummariesByPrinterOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateMonthlyPrintUsageSummariesByPrinterOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateMonthlyPrintUsageSummariesByPrinterOperationOptions() UpdateMonthlyPrintUsageSummariesByPrinterOperationOptions {
+	return UpdateMonthlyPrintUsageSummariesByPrinterOperationOptions{}
+}
+
+func (o UpdateMonthlyPrintUsageSummariesByPrinterOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateMonthlyPrintUsageSummariesByPrinterOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateMonthlyPrintUsageSummariesByPrinterOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateMonthlyPrintUsageSummariesByPrinter - Update the navigation property monthlyPrintUsageSummariesByPrinter in
 // reports
-func (c MonthlyPrintUsageSummariesByPrinterClient) UpdateMonthlyPrintUsageSummariesByPrinter(ctx context.Context, id beta.ReportMonthlyPrintUsageSummariesByPrinterId, input beta.PrintUsageByPrinter) (result UpdateMonthlyPrintUsageSummariesByPrinterOperationResponse, err error) {
+func (c MonthlyPrintUsageSummariesByPrinterClient) UpdateMonthlyPrintUsageSummariesByPrinter(ctx context.Context, id beta.ReportMonthlyPrintUsageSummariesByPrinterId, input beta.PrintUsageByPrinter, options UpdateMonthlyPrintUsageSummariesByPrinterOperationOptions) (result UpdateMonthlyPrintUsageSummariesByPrinterOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

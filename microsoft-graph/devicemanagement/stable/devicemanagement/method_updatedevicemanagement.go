@@ -17,15 +17,44 @@ type UpdateDeviceManagementOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateDeviceManagementOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateDeviceManagementOperationOptions() UpdateDeviceManagementOperationOptions {
+	return UpdateDeviceManagementOperationOptions{}
+}
+
+func (o UpdateDeviceManagementOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateDeviceManagementOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateDeviceManagementOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateDeviceManagement - Update deviceManagement. Update the properties of a deviceManagement object.
-func (c DeviceManagementClient) UpdateDeviceManagement(ctx context.Context, input stable.DeviceManagement) (result UpdateDeviceManagementOperationResponse, err error) {
+func (c DeviceManagementClient) UpdateDeviceManagement(ctx context.Context, input stable.DeviceManagement, options UpdateDeviceManagementOperationOptions) (result UpdateDeviceManagementOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       "/deviceManagement",
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          "/deviceManagement",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

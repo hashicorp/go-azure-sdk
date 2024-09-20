@@ -17,16 +17,45 @@ type UpdateEntitlementManagementAccessPackageCatalogResourceScopeOperationRespon
 	OData        *odata.OData
 }
 
+type UpdateEntitlementManagementAccessPackageCatalogResourceScopeOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateEntitlementManagementAccessPackageCatalogResourceScopeOperationOptions() UpdateEntitlementManagementAccessPackageCatalogResourceScopeOperationOptions {
+	return UpdateEntitlementManagementAccessPackageCatalogResourceScopeOperationOptions{}
+}
+
+func (o UpdateEntitlementManagementAccessPackageCatalogResourceScopeOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateEntitlementManagementAccessPackageCatalogResourceScopeOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateEntitlementManagementAccessPackageCatalogResourceScopeOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateEntitlementManagementAccessPackageCatalogResourceScope - Update the navigation property
 // accessPackageResourceScopes in identityGovernance
-func (c EntitlementManagementAccessPackageCatalogAccessPackageResourceScopeClient) UpdateEntitlementManagementAccessPackageCatalogResourceScope(ctx context.Context, id beta.IdentityGovernanceEntitlementManagementAccessPackageCatalogIdAccessPackageResourceScopeId, input beta.AccessPackageResourceScope) (result UpdateEntitlementManagementAccessPackageCatalogResourceScopeOperationResponse, err error) {
+func (c EntitlementManagementAccessPackageCatalogAccessPackageResourceScopeClient) UpdateEntitlementManagementAccessPackageCatalogResourceScope(ctx context.Context, id beta.IdentityGovernanceEntitlementManagementAccessPackageCatalogIdAccessPackageResourceScopeId, input beta.AccessPackageResourceScope, options UpdateEntitlementManagementAccessPackageCatalogResourceScopeOperationOptions) (result UpdateEntitlementManagementAccessPackageCatalogResourceScopeOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

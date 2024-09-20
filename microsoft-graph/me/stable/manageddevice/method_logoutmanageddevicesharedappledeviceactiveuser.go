@@ -18,16 +18,45 @@ type LogoutManagedDeviceSharedAppleDeviceActiveUserOperationResponse struct {
 	OData        *odata.OData
 }
 
+type LogoutManagedDeviceSharedAppleDeviceActiveUserOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultLogoutManagedDeviceSharedAppleDeviceActiveUserOperationOptions() LogoutManagedDeviceSharedAppleDeviceActiveUserOperationOptions {
+	return LogoutManagedDeviceSharedAppleDeviceActiveUserOperationOptions{}
+}
+
+func (o LogoutManagedDeviceSharedAppleDeviceActiveUserOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o LogoutManagedDeviceSharedAppleDeviceActiveUserOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o LogoutManagedDeviceSharedAppleDeviceActiveUserOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // LogoutManagedDeviceSharedAppleDeviceActiveUser - Invoke action logoutSharedAppleDeviceActiveUser. Logout shared Apple
 // device active user
-func (c ManagedDeviceClient) LogoutManagedDeviceSharedAppleDeviceActiveUser(ctx context.Context, id stable.MeManagedDeviceId) (result LogoutManagedDeviceSharedAppleDeviceActiveUserOperationResponse, err error) {
+func (c ManagedDeviceClient) LogoutManagedDeviceSharedAppleDeviceActiveUser(ctx context.Context, id stable.MeManagedDeviceId, options LogoutManagedDeviceSharedAppleDeviceActiveUserOperationOptions) (result LogoutManagedDeviceSharedAppleDeviceActiveUserOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/logoutSharedAppleDeviceActiveUser", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/logoutSharedAppleDeviceActiveUser", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -19,16 +19,45 @@ type CreateComanagedDeviceSecurityBaselineStateOperationResponse struct {
 	Model        *beta.SecurityBaselineState
 }
 
+type CreateComanagedDeviceSecurityBaselineStateOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateComanagedDeviceSecurityBaselineStateOperationOptions() CreateComanagedDeviceSecurityBaselineStateOperationOptions {
+	return CreateComanagedDeviceSecurityBaselineStateOperationOptions{}
+}
+
+func (o CreateComanagedDeviceSecurityBaselineStateOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateComanagedDeviceSecurityBaselineStateOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateComanagedDeviceSecurityBaselineStateOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateComanagedDeviceSecurityBaselineState - Create new navigation property to securityBaselineStates for
 // deviceManagement
-func (c ComanagedDeviceSecurityBaselineStateClient) CreateComanagedDeviceSecurityBaselineState(ctx context.Context, id beta.DeviceManagementComanagedDeviceId, input beta.SecurityBaselineState) (result CreateComanagedDeviceSecurityBaselineStateOperationResponse, err error) {
+func (c ComanagedDeviceSecurityBaselineStateClient) CreateComanagedDeviceSecurityBaselineState(ctx context.Context, id beta.DeviceManagementComanagedDeviceId, input beta.SecurityBaselineState, options CreateComanagedDeviceSecurityBaselineStateOperationOptions) (result CreateComanagedDeviceSecurityBaselineStateOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/securityBaselineStates", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/securityBaselineStates", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

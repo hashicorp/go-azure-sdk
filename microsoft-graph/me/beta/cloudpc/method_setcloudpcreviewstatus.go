@@ -18,15 +18,44 @@ type SetCloudPCReviewStatusOperationResponse struct {
 	OData        *odata.OData
 }
 
+type SetCloudPCReviewStatusOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultSetCloudPCReviewStatusOperationOptions() SetCloudPCReviewStatusOperationOptions {
+	return SetCloudPCReviewStatusOperationOptions{}
+}
+
+func (o SetCloudPCReviewStatusOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o SetCloudPCReviewStatusOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o SetCloudPCReviewStatusOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // SetCloudPCReviewStatus - Invoke action setReviewStatus
-func (c CloudPCClient) SetCloudPCReviewStatus(ctx context.Context, id beta.MeCloudPCId, input SetCloudPCReviewStatusRequest) (result SetCloudPCReviewStatusOperationResponse, err error) {
+func (c CloudPCClient) SetCloudPCReviewStatus(ctx context.Context, id beta.MeCloudPCId, input SetCloudPCReviewStatusRequest, options SetCloudPCReviewStatusOperationOptions) (result SetCloudPCReviewStatusOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/setReviewStatus", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/setReviewStatus", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

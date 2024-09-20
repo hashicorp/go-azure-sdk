@@ -83,20 +83,29 @@ func (s VirtualMachineWithAwsStorageBucketAccessFinding) MarshalJSON() ([]byte, 
 var _ json.Unmarshaler = &VirtualMachineWithAwsStorageBucketAccessFinding{}
 
 func (s *VirtualMachineWithAwsStorageBucketAccessFinding) UnmarshalJSON(bytes []byte) error {
-	type alias VirtualMachineWithAwsStorageBucketAccessFinding
-	var decoded alias
+
+	var decoded struct {
+		AccessibleCount       *int64                 `json:"accessibleCount,omitempty"`
+		BucketCount           *int64                 `json:"bucketCount,omitempty"`
+		PermissionsCreepIndex *PermissionsCreepIndex `json:"permissionsCreepIndex,omitempty"`
+		Role                  *AwsRole               `json:"role,omitempty"`
+		CreatedDateTime       *string                `json:"createdDateTime,omitempty"`
+		Id                    *string                `json:"id,omitempty"`
+		ODataId               *string                `json:"@odata.id,omitempty"`
+		ODataType             *string                `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into VirtualMachineWithAwsStorageBucketAccessFinding: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.AccessibleCount = decoded.AccessibleCount
 	s.BucketCount = decoded.BucketCount
+	s.PermissionsCreepIndex = decoded.PermissionsCreepIndex
+	s.Role = decoded.Role
 	s.CreatedDateTime = decoded.CreatedDateTime
 	s.Id = decoded.Id
 	s.ODataId = decoded.ODataId
 	s.ODataType = decoded.ODataType
-	s.PermissionsCreepIndex = decoded.PermissionsCreepIndex
-	s.Role = decoded.Role
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -110,5 +119,6 @@ func (s *VirtualMachineWithAwsStorageBucketAccessFinding) UnmarshalJSON(bytes []
 		}
 		s.Ec2Instance = &impl
 	}
+
 	return nil
 }

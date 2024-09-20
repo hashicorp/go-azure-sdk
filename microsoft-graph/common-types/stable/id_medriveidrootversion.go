@@ -99,10 +99,10 @@ func (id MeDriveIdRootVersionId) Segments() []resourceids.Segment {
 	return []resourceids.Segment{
 		resourceids.StaticSegment("me", "me", "me"),
 		resourceids.StaticSegment("drives", "drives", "drives"),
-		resourceids.UserSpecifiedSegment("driveId", "driveIdValue"),
+		resourceids.UserSpecifiedSegment("driveId", "driveId"),
 		resourceids.StaticSegment("root", "root", "root"),
 		resourceids.StaticSegment("versions", "versions", "versions"),
-		resourceids.UserSpecifiedSegment("driveItemVersionId", "driveItemVersionIdValue"),
+		resourceids.UserSpecifiedSegment("driveItemVersionId", "driveItemVersionId"),
 	}
 }
 

@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &PolicyHomeRealmDiscoveryPolicyId{}
 
 func TestNewPolicyHomeRealmDiscoveryPolicyID(t *testing.T) {
-	id := NewPolicyHomeRealmDiscoveryPolicyID("homeRealmDiscoveryPolicyIdValue")
+	id := NewPolicyHomeRealmDiscoveryPolicyID("homeRealmDiscoveryPolicyId")
 
-	if id.HomeRealmDiscoveryPolicyId != "homeRealmDiscoveryPolicyIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'HomeRealmDiscoveryPolicyId'", id.HomeRealmDiscoveryPolicyId, "homeRealmDiscoveryPolicyIdValue")
+	if id.HomeRealmDiscoveryPolicyId != "homeRealmDiscoveryPolicyId" {
+		t.Fatalf("Expected %q but got %q for Segment 'HomeRealmDiscoveryPolicyId'", id.HomeRealmDiscoveryPolicyId, "homeRealmDiscoveryPolicyId")
 	}
 }
 
 func TestFormatPolicyHomeRealmDiscoveryPolicyID(t *testing.T) {
-	actual := NewPolicyHomeRealmDiscoveryPolicyID("homeRealmDiscoveryPolicyIdValue").ID()
-	expected := "/policies/homeRealmDiscoveryPolicies/homeRealmDiscoveryPolicyIdValue"
+	actual := NewPolicyHomeRealmDiscoveryPolicyID("homeRealmDiscoveryPolicyId").ID()
+	expected := "/policies/homeRealmDiscoveryPolicies/homeRealmDiscoveryPolicyId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -50,14 +50,14 @@ func TestParsePolicyHomeRealmDiscoveryPolicyID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/policies/homeRealmDiscoveryPolicies/homeRealmDiscoveryPolicyIdValue",
+			Input: "/policies/homeRealmDiscoveryPolicies/homeRealmDiscoveryPolicyId",
 			Expected: &PolicyHomeRealmDiscoveryPolicyId{
-				HomeRealmDiscoveryPolicyId: "homeRealmDiscoveryPolicyIdValue",
+				HomeRealmDiscoveryPolicyId: "homeRealmDiscoveryPolicyId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/policies/homeRealmDiscoveryPolicies/homeRealmDiscoveryPolicyIdValue/extra",
+			Input: "/policies/homeRealmDiscoveryPolicies/homeRealmDiscoveryPolicyId/extra",
 			Error: true,
 		},
 	}
@@ -116,26 +116,26 @@ func TestParsePolicyHomeRealmDiscoveryPolicyIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/policies/homeRealmDiscoveryPolicies/homeRealmDiscoveryPolicyIdValue",
+			Input: "/policies/homeRealmDiscoveryPolicies/homeRealmDiscoveryPolicyId",
 			Expected: &PolicyHomeRealmDiscoveryPolicyId{
-				HomeRealmDiscoveryPolicyId: "homeRealmDiscoveryPolicyIdValue",
+				HomeRealmDiscoveryPolicyId: "homeRealmDiscoveryPolicyId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/policies/homeRealmDiscoveryPolicies/homeRealmDiscoveryPolicyIdValue/extra",
+			Input: "/policies/homeRealmDiscoveryPolicies/homeRealmDiscoveryPolicyId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/pOlIcIeS/hOmErEaLmDiScOvErYpOlIcIeS/hOmErEaLmDiScOvErYpOlIcYiDvAlUe",
+			Input: "/pOlIcIeS/hOmErEaLmDiScOvErYpOlIcIeS/hOmErEaLmDiScOvErYpOlIcYiD",
 			Expected: &PolicyHomeRealmDiscoveryPolicyId{
-				HomeRealmDiscoveryPolicyId: "hOmErEaLmDiScOvErYpOlIcYiDvAlUe",
+				HomeRealmDiscoveryPolicyId: "hOmErEaLmDiScOvErYpOlIcYiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/pOlIcIeS/hOmErEaLmDiScOvErYpOlIcIeS/hOmErEaLmDiScOvErYpOlIcYiDvAlUe/extra",
+			Input: "/pOlIcIeS/hOmErEaLmDiScOvErYpOlIcIeS/hOmErEaLmDiScOvErYpOlIcYiD/extra",
 			Error: true,
 		},
 	}

@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &GroupIdTeamOwnerId{}
 
 func TestNewGroupIdTeamOwnerID(t *testing.T) {
-	id := NewGroupIdTeamOwnerID("groupIdValue", "userIdValue")
+	id := NewGroupIdTeamOwnerID("groupId", "userId")
 
-	if id.GroupId != "groupIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'GroupId'", id.GroupId, "groupIdValue")
+	if id.GroupId != "groupId" {
+		t.Fatalf("Expected %q but got %q for Segment 'GroupId'", id.GroupId, "groupId")
 	}
 
-	if id.UserId != "userIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'UserId'", id.UserId, "userIdValue")
+	if id.UserId != "userId" {
+		t.Fatalf("Expected %q but got %q for Segment 'UserId'", id.UserId, "userId")
 	}
 }
 
 func TestFormatGroupIdTeamOwnerID(t *testing.T) {
-	actual := NewGroupIdTeamOwnerID("groupIdValue", "userIdValue").ID()
-	expected := "/groups/groupIdValue/team/owners/userIdValue"
+	actual := NewGroupIdTeamOwnerID("groupId", "userId").ID()
+	expected := "/groups/groupId/team/owners/userId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -49,30 +49,30 @@ func TestParseGroupIdTeamOwnerID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue",
+			Input: "/groups/groupId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/team",
+			Input: "/groups/groupId/team",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/team/owners",
+			Input: "/groups/groupId/team/owners",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/groups/groupIdValue/team/owners/userIdValue",
+			Input: "/groups/groupId/team/owners/userId",
 			Expected: &GroupIdTeamOwnerId{
-				GroupId: "groupIdValue",
-				UserId:  "userIdValue",
+				GroupId: "groupId",
+				UserId:  "userId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/groups/groupIdValue/team/owners/userIdValue/extra",
+			Input: "/groups/groupId/team/owners/userId/extra",
 			Error: true,
 		},
 	}
@@ -125,58 +125,58 @@ func TestParseGroupIdTeamOwnerIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue",
+			Input: "/groups/groupId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE",
+			Input: "/gRoUpS/gRoUpId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/team",
+			Input: "/groups/groupId/team",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/tEaM",
+			Input: "/gRoUpS/gRoUpId/tEaM",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/team/owners",
+			Input: "/groups/groupId/team/owners",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/tEaM/oWnErS",
+			Input: "/gRoUpS/gRoUpId/tEaM/oWnErS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/groups/groupIdValue/team/owners/userIdValue",
+			Input: "/groups/groupId/team/owners/userId",
 			Expected: &GroupIdTeamOwnerId{
-				GroupId: "groupIdValue",
-				UserId:  "userIdValue",
+				GroupId: "groupId",
+				UserId:  "userId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/groups/groupIdValue/team/owners/userIdValue/extra",
+			Input: "/groups/groupId/team/owners/userId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/tEaM/oWnErS/uSeRiDvAlUe",
+			Input: "/gRoUpS/gRoUpId/tEaM/oWnErS/uSeRiD",
 			Expected: &GroupIdTeamOwnerId{
-				GroupId: "gRoUpIdVaLuE",
-				UserId:  "uSeRiDvAlUe",
+				GroupId: "gRoUpId",
+				UserId:  "uSeRiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/tEaM/oWnErS/uSeRiDvAlUe/extra",
+			Input: "/gRoUpS/gRoUpId/tEaM/oWnErS/uSeRiD/extra",
 			Error: true,
 		},
 	}

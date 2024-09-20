@@ -65,14 +65,19 @@ func (s PolicySetAssignment) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &PolicySetAssignment{}
 
 func (s *PolicySetAssignment) UnmarshalJSON(bytes []byte) error {
-	type alias PolicySetAssignment
-	var decoded alias
+
+	var decoded struct {
+		LastModifiedDateTime *string `json:"lastModifiedDateTime,omitempty"`
+		Id                   *string `json:"id,omitempty"`
+		ODataId              *string `json:"@odata.id,omitempty"`
+		ODataType            *string `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into PolicySetAssignment: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
-	s.Id = decoded.Id
 	s.LastModifiedDateTime = decoded.LastModifiedDateTime
+	s.Id = decoded.Id
 	s.ODataId = decoded.ODataId
 	s.ODataType = decoded.ODataType
 
@@ -88,5 +93,6 @@ func (s *PolicySetAssignment) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Target = impl
 	}
+
 	return nil
 }

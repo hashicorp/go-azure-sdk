@@ -19,16 +19,45 @@ type CreateEntitlementManagementCatalogResourceScopeResourceRoleOperationRespons
 	Model        *stable.AccessPackageResourceRole
 }
 
+type CreateEntitlementManagementCatalogResourceScopeResourceRoleOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateEntitlementManagementCatalogResourceScopeResourceRoleOperationOptions() CreateEntitlementManagementCatalogResourceScopeResourceRoleOperationOptions {
+	return CreateEntitlementManagementCatalogResourceScopeResourceRoleOperationOptions{}
+}
+
+func (o CreateEntitlementManagementCatalogResourceScopeResourceRoleOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateEntitlementManagementCatalogResourceScopeResourceRoleOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateEntitlementManagementCatalogResourceScopeResourceRoleOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateEntitlementManagementCatalogResourceScopeResourceRole - Create new navigation property to roles for
 // identityGovernance
-func (c EntitlementManagementCatalogResourceScopeResourceRoleClient) CreateEntitlementManagementCatalogResourceScopeResourceRole(ctx context.Context, id stable.IdentityGovernanceEntitlementManagementCatalogIdResourceScopeId, input stable.AccessPackageResourceRole) (result CreateEntitlementManagementCatalogResourceScopeResourceRoleOperationResponse, err error) {
+func (c EntitlementManagementCatalogResourceScopeResourceRoleClient) CreateEntitlementManagementCatalogResourceScopeResourceRole(ctx context.Context, id stable.IdentityGovernanceEntitlementManagementCatalogIdResourceIdScopeId, input stable.AccessPackageResourceRole, options CreateEntitlementManagementCatalogResourceScopeResourceRoleOperationOptions) (result CreateEntitlementManagementCatalogResourceScopeResourceRoleOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/resource/roles", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/resource/roles", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

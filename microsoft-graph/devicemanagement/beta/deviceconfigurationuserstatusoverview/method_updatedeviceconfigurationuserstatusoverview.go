@@ -18,15 +18,44 @@ type UpdateDeviceConfigurationUserStatusOverviewOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateDeviceConfigurationUserStatusOverviewOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateDeviceConfigurationUserStatusOverviewOperationOptions() UpdateDeviceConfigurationUserStatusOverviewOperationOptions {
+	return UpdateDeviceConfigurationUserStatusOverviewOperationOptions{}
+}
+
+func (o UpdateDeviceConfigurationUserStatusOverviewOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateDeviceConfigurationUserStatusOverviewOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateDeviceConfigurationUserStatusOverviewOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateDeviceConfigurationUserStatusOverview - Update the navigation property userStatusOverview in deviceManagement
-func (c DeviceConfigurationUserStatusOverviewClient) UpdateDeviceConfigurationUserStatusOverview(ctx context.Context, id beta.DeviceManagementDeviceConfigurationId, input beta.DeviceConfigurationUserOverview) (result UpdateDeviceConfigurationUserStatusOverviewOperationResponse, err error) {
+func (c DeviceConfigurationUserStatusOverviewClient) UpdateDeviceConfigurationUserStatusOverview(ctx context.Context, id beta.DeviceManagementDeviceConfigurationId, input beta.DeviceConfigurationUserOverview, options UpdateDeviceConfigurationUserStatusOverviewOperationOptions) (result UpdateDeviceConfigurationUserStatusOverviewOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       fmt.Sprintf("%s/userStatusOverview", id.ID()),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/userStatusOverview", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

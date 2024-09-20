@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &DeviceManagementServiceNowConnectionId{}
 
 func TestNewDeviceManagementServiceNowConnectionID(t *testing.T) {
-	id := NewDeviceManagementServiceNowConnectionID("serviceNowConnectionIdValue")
+	id := NewDeviceManagementServiceNowConnectionID("serviceNowConnectionId")
 
-	if id.ServiceNowConnectionId != "serviceNowConnectionIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ServiceNowConnectionId'", id.ServiceNowConnectionId, "serviceNowConnectionIdValue")
+	if id.ServiceNowConnectionId != "serviceNowConnectionId" {
+		t.Fatalf("Expected %q but got %q for Segment 'ServiceNowConnectionId'", id.ServiceNowConnectionId, "serviceNowConnectionId")
 	}
 }
 
 func TestFormatDeviceManagementServiceNowConnectionID(t *testing.T) {
-	actual := NewDeviceManagementServiceNowConnectionID("serviceNowConnectionIdValue").ID()
-	expected := "/deviceManagement/serviceNowConnections/serviceNowConnectionIdValue"
+	actual := NewDeviceManagementServiceNowConnectionID("serviceNowConnectionId").ID()
+	expected := "/deviceManagement/serviceNowConnections/serviceNowConnectionId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -50,14 +50,14 @@ func TestParseDeviceManagementServiceNowConnectionID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/serviceNowConnections/serviceNowConnectionIdValue",
+			Input: "/deviceManagement/serviceNowConnections/serviceNowConnectionId",
 			Expected: &DeviceManagementServiceNowConnectionId{
-				ServiceNowConnectionId: "serviceNowConnectionIdValue",
+				ServiceNowConnectionId: "serviceNowConnectionId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/serviceNowConnections/serviceNowConnectionIdValue/extra",
+			Input: "/deviceManagement/serviceNowConnections/serviceNowConnectionId/extra",
 			Error: true,
 		},
 	}
@@ -116,26 +116,26 @@ func TestParseDeviceManagementServiceNowConnectionIDInsensitively(t *testing.T) 
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/serviceNowConnections/serviceNowConnectionIdValue",
+			Input: "/deviceManagement/serviceNowConnections/serviceNowConnectionId",
 			Expected: &DeviceManagementServiceNowConnectionId{
-				ServiceNowConnectionId: "serviceNowConnectionIdValue",
+				ServiceNowConnectionId: "serviceNowConnectionId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/serviceNowConnections/serviceNowConnectionIdValue/extra",
+			Input: "/deviceManagement/serviceNowConnections/serviceNowConnectionId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/sErViCeNoWcOnNeCtIoNs/sErViCeNoWcOnNeCtIoNiDvAlUe",
+			Input: "/dEvIcEmAnAgEmEnT/sErViCeNoWcOnNeCtIoNs/sErViCeNoWcOnNeCtIoNiD",
 			Expected: &DeviceManagementServiceNowConnectionId{
-				ServiceNowConnectionId: "sErViCeNoWcOnNeCtIoNiDvAlUe",
+				ServiceNowConnectionId: "sErViCeNoWcOnNeCtIoNiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/sErViCeNoWcOnNeCtIoNs/sErViCeNoWcOnNeCtIoNiDvAlUe/extra",
+			Input: "/dEvIcEmAnAgEmEnT/sErViCeNoWcOnNeCtIoNs/sErViCeNoWcOnNeCtIoNiD/extra",
 			Error: true,
 		},
 	}

@@ -103,20 +103,31 @@ func (s NetworkaccessM365ForwardingRule) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &NetworkaccessM365ForwardingRule{}
 
 func (s *NetworkaccessM365ForwardingRule) UnmarshalJSON(bytes []byte) error {
-	type alias NetworkaccessM365ForwardingRule
-	var decoded alias
+
+	var decoded struct {
+		Category     *NetworkaccessForwardingCategory     `json:"category,omitempty"`
+		Ports        *[]string                            `json:"ports,omitempty"`
+		Protocol     *NetworkaccessNetworkingProtocol     `json:"protocol,omitempty"`
+		Action       *NetworkaccessForwardingRuleAction   `json:"action,omitempty"`
+		Destinations *[]NetworkaccessRuleDestination      `json:"destinations,omitempty"`
+		RuleType     *NetworkaccessNetworkDestinationType `json:"ruleType,omitempty"`
+		Name         *string                              `json:"name,omitempty"`
+		Id           *string                              `json:"id,omitempty"`
+		ODataId      *string                              `json:"@odata.id,omitempty"`
+		ODataType    *string                              `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into NetworkaccessM365ForwardingRule: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
-	s.Action = decoded.Action
 	s.Category = decoded.Category
+	s.Ports = decoded.Ports
+	s.Protocol = decoded.Protocol
+	s.Action = decoded.Action
 	s.Id = decoded.Id
 	s.Name = decoded.Name
 	s.ODataId = decoded.ODataId
 	s.ODataType = decoded.ODataType
-	s.Ports = decoded.Ports
-	s.Protocol = decoded.Protocol
 	s.RuleType = decoded.RuleType
 
 	var temp map[string]json.RawMessage
@@ -140,5 +151,6 @@ func (s *NetworkaccessM365ForwardingRule) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Destinations = &output
 	}
+
 	return nil
 }

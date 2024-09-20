@@ -20,16 +20,45 @@ type MarkMailFolderMessageAsNotJunkOperationResponse struct {
 	Model        beta.Message
 }
 
+type MarkMailFolderMessageAsNotJunkOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultMarkMailFolderMessageAsNotJunkOperationOptions() MarkMailFolderMessageAsNotJunkOperationOptions {
+	return MarkMailFolderMessageAsNotJunkOperationOptions{}
+}
+
+func (o MarkMailFolderMessageAsNotJunkOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o MarkMailFolderMessageAsNotJunkOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o MarkMailFolderMessageAsNotJunkOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // MarkMailFolderMessageAsNotJunk - Invoke action markAsNotJunk. Mark a message as not junk. This API removes the sender
 // from the list of blocked senders and moves the message to the Inbox folder, when moveToInbox is true.
-func (c MailFolderMessageClient) MarkMailFolderMessageAsNotJunk(ctx context.Context, id beta.MeMailFolderIdMessageId, input MarkMailFolderMessageAsNotJunkRequest) (result MarkMailFolderMessageAsNotJunkOperationResponse, err error) {
+func (c MailFolderMessageClient) MarkMailFolderMessageAsNotJunk(ctx context.Context, id beta.MeMailFolderIdMessageId, input MarkMailFolderMessageAsNotJunkRequest, options MarkMailFolderMessageAsNotJunkOperationOptions) (result MarkMailFolderMessageAsNotJunkOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/markAsNotJunk", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/markAsNotJunk", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

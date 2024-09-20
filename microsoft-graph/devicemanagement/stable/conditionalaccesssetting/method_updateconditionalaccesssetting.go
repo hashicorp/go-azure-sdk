@@ -17,16 +17,45 @@ type UpdateConditionalAccessSettingOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateConditionalAccessSettingOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateConditionalAccessSettingOperationOptions() UpdateConditionalAccessSettingOperationOptions {
+	return UpdateConditionalAccessSettingOperationOptions{}
+}
+
+func (o UpdateConditionalAccessSettingOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateConditionalAccessSettingOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateConditionalAccessSettingOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateConditionalAccessSetting - Update onPremisesConditionalAccessSettings. Update the properties of a
 // onPremisesConditionalAccessSettings object.
-func (c ConditionalAccessSettingClient) UpdateConditionalAccessSetting(ctx context.Context, input stable.OnPremisesConditionalAccessSettings) (result UpdateConditionalAccessSettingOperationResponse, err error) {
+func (c ConditionalAccessSettingClient) UpdateConditionalAccessSetting(ctx context.Context, input stable.OnPremisesConditionalAccessSettings, options UpdateConditionalAccessSettingOperationOptions) (result UpdateConditionalAccessSettingOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       "/deviceManagement/conditionalAccessSettings",
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          "/deviceManagement/conditionalAccessSettings",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

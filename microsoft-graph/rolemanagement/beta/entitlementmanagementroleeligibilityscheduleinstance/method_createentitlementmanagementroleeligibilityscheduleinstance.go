@@ -18,16 +18,45 @@ type CreateEntitlementManagementRoleEligibilityScheduleInstanceOperationResponse
 	Model        *beta.UnifiedRoleEligibilityScheduleInstance
 }
 
+type CreateEntitlementManagementRoleEligibilityScheduleInstanceOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateEntitlementManagementRoleEligibilityScheduleInstanceOperationOptions() CreateEntitlementManagementRoleEligibilityScheduleInstanceOperationOptions {
+	return CreateEntitlementManagementRoleEligibilityScheduleInstanceOperationOptions{}
+}
+
+func (o CreateEntitlementManagementRoleEligibilityScheduleInstanceOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateEntitlementManagementRoleEligibilityScheduleInstanceOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateEntitlementManagementRoleEligibilityScheduleInstanceOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateEntitlementManagementRoleEligibilityScheduleInstance - Create new navigation property to
 // roleEligibilityScheduleInstances for roleManagement
-func (c EntitlementManagementRoleEligibilityScheduleInstanceClient) CreateEntitlementManagementRoleEligibilityScheduleInstance(ctx context.Context, input beta.UnifiedRoleEligibilityScheduleInstance) (result CreateEntitlementManagementRoleEligibilityScheduleInstanceOperationResponse, err error) {
+func (c EntitlementManagementRoleEligibilityScheduleInstanceClient) CreateEntitlementManagementRoleEligibilityScheduleInstance(ctx context.Context, input beta.UnifiedRoleEligibilityScheduleInstance, options CreateEntitlementManagementRoleEligibilityScheduleInstanceOperationOptions) (result CreateEntitlementManagementRoleEligibilityScheduleInstanceOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/roleManagement/entitlementManagement/roleEligibilityScheduleInstances",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/roleManagement/entitlementManagement/roleEligibilityScheduleInstances",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -19,15 +19,44 @@ type CreateReusableSettingOperationResponse struct {
 	Model        beta.DeviceManagementConfigurationSettingDefinition
 }
 
+type CreateReusableSettingOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateReusableSettingOperationOptions() CreateReusableSettingOperationOptions {
+	return CreateReusableSettingOperationOptions{}
+}
+
+func (o CreateReusableSettingOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateReusableSettingOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateReusableSettingOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateReusableSetting - Create new navigation property to reusableSettings for deviceManagement
-func (c ReusableSettingClient) CreateReusableSetting(ctx context.Context, input beta.DeviceManagementConfigurationSettingDefinition) (result CreateReusableSettingOperationResponse, err error) {
+func (c ReusableSettingClient) CreateReusableSetting(ctx context.Context, input beta.DeviceManagementConfigurationSettingDefinition, options CreateReusableSettingOperationOptions) (result CreateReusableSettingOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/deviceManagement/reusableSettings",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/deviceManagement/reusableSettings",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

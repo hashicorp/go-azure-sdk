@@ -19,15 +19,44 @@ type CreateHardwareConfigurationUserRunStateOperationResponse struct {
 	Model        *beta.HardwareConfigurationUserState
 }
 
+type CreateHardwareConfigurationUserRunStateOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateHardwareConfigurationUserRunStateOperationOptions() CreateHardwareConfigurationUserRunStateOperationOptions {
+	return CreateHardwareConfigurationUserRunStateOperationOptions{}
+}
+
+func (o CreateHardwareConfigurationUserRunStateOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateHardwareConfigurationUserRunStateOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateHardwareConfigurationUserRunStateOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateHardwareConfigurationUserRunState - Create new navigation property to userRunStates for deviceManagement
-func (c HardwareConfigurationUserRunStateClient) CreateHardwareConfigurationUserRunState(ctx context.Context, id beta.DeviceManagementHardwareConfigurationId, input beta.HardwareConfigurationUserState) (result CreateHardwareConfigurationUserRunStateOperationResponse, err error) {
+func (c HardwareConfigurationUserRunStateClient) CreateHardwareConfigurationUserRunState(ctx context.Context, id beta.DeviceManagementHardwareConfigurationId, input beta.HardwareConfigurationUserState, options CreateHardwareConfigurationUserRunStateOperationOptions) (result CreateHardwareConfigurationUserRunStateOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/userRunStates", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/userRunStates", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -93,10 +93,17 @@ func (s NetworkaccessWebCategoryFilteringRule) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &NetworkaccessWebCategoryFilteringRule{}
 
 func (s *NetworkaccessWebCategoryFilteringRule) UnmarshalJSON(bytes []byte) error {
-	type alias NetworkaccessWebCategoryFilteringRule
-	var decoded alias
+
+	var decoded struct {
+		Destinations *[]NetworkaccessRuleDestination      `json:"destinations,omitempty"`
+		RuleType     *NetworkaccessNetworkDestinationType `json:"ruleType,omitempty"`
+		Name         *string                              `json:"name,omitempty"`
+		Id           *string                              `json:"id,omitempty"`
+		ODataId      *string                              `json:"@odata.id,omitempty"`
+		ODataType    *string                              `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into NetworkaccessWebCategoryFilteringRule: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.Id = decoded.Id
@@ -126,5 +133,6 @@ func (s *NetworkaccessWebCategoryFilteringRule) UnmarshalJSON(bytes []byte) erro
 		}
 		s.Destinations = &output
 	}
+
 	return nil
 }

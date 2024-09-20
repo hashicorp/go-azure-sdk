@@ -19,19 +19,48 @@ type ProvisionTeamChannelEmailOperationResponse struct {
 	Model        *stable.ProvisionChannelEmailResult
 }
 
+type ProvisionTeamChannelEmailOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultProvisionTeamChannelEmailOperationOptions() ProvisionTeamChannelEmailOperationOptions {
+	return ProvisionTeamChannelEmailOperationOptions{}
+}
+
+func (o ProvisionTeamChannelEmailOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o ProvisionTeamChannelEmailOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o ProvisionTeamChannelEmailOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // ProvisionTeamChannelEmail - Invoke action provisionEmail. Provision an email address for a channel. Microsoft Teams
 // doesn't automatically provision an email address for a channel by default. To have Teams provision an email address,
 // you can call provisionEmail, or through the Teams user interface, select Get email address, which triggers Teams to
 // generate an email address if it has not already provisioned one. To remove the email address of a channel, use the
 // removeEmail method.
-func (c TeamChannelClient) ProvisionTeamChannelEmail(ctx context.Context, id stable.GroupIdTeamChannelId) (result ProvisionTeamChannelEmailOperationResponse, err error) {
+func (c TeamChannelClient) ProvisionTeamChannelEmail(ctx context.Context, id stable.GroupIdTeamChannelId, options ProvisionTeamChannelEmailOperationOptions) (result ProvisionTeamChannelEmailOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/provisionEmail", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/provisionEmail", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -19,7 +19,8 @@ type DeleteTermsAndConditionGroupAssignmentOperationResponse struct {
 }
 
 type DeleteTermsAndConditionGroupAssignmentOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteTermsAndConditionGroupAssignmentOperationOptions() DeleteTermsAndConditionGroupAssignmentOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteTermsAndConditionGroupAssignmentOperationOptions) ToHeaders() *cli
 
 func (o DeleteTermsAndConditionGroupAssignmentOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

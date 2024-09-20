@@ -98,10 +98,10 @@ func (id ApplicationIdSynchronizationJobId) ID() string {
 func (id ApplicationIdSynchronizationJobId) Segments() []resourceids.Segment {
 	return []resourceids.Segment{
 		resourceids.StaticSegment("applications", "applications", "applications"),
-		resourceids.UserSpecifiedSegment("applicationId", "applicationIdValue"),
+		resourceids.UserSpecifiedSegment("applicationId", "applicationId"),
 		resourceids.StaticSegment("synchronization", "synchronization", "synchronization"),
 		resourceids.StaticSegment("jobs", "jobs", "jobs"),
-		resourceids.UserSpecifiedSegment("synchronizationJobId", "synchronizationJobIdValue"),
+		resourceids.UserSpecifiedSegment("synchronizationJobId", "synchronizationJobId"),
 	}
 }
 

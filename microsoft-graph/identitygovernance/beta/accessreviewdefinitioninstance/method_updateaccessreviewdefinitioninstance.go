@@ -17,18 +17,47 @@ type UpdateAccessReviewDefinitionInstanceOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateAccessReviewDefinitionInstanceOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateAccessReviewDefinitionInstanceOperationOptions() UpdateAccessReviewDefinitionInstanceOperationOptions {
+	return UpdateAccessReviewDefinitionInstanceOperationOptions{}
+}
+
+func (o UpdateAccessReviewDefinitionInstanceOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateAccessReviewDefinitionInstanceOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateAccessReviewDefinitionInstanceOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateAccessReviewDefinitionInstance - Update accessReviewInstance. Update the properties of an accessReviewInstance
 // object. Only the reviewers and fallbackReviewers properties can be updated but the scope property is also required in
 // the request body. You can only add reviewers to the fallbackReviewers property but can't remove existing
 // fallbackReviewers. To update an accessReviewInstance, its status must be InProgress.
-func (c AccessReviewDefinitionInstanceClient) UpdateAccessReviewDefinitionInstance(ctx context.Context, id beta.IdentityGovernanceAccessReviewDefinitionIdInstanceId, input beta.AccessReviewInstance) (result UpdateAccessReviewDefinitionInstanceOperationResponse, err error) {
+func (c AccessReviewDefinitionInstanceClient) UpdateAccessReviewDefinitionInstance(ctx context.Context, id beta.IdentityGovernanceAccessReviewDefinitionIdInstanceId, input beta.AccessReviewInstance, options UpdateAccessReviewDefinitionInstanceOperationOptions) (result UpdateAccessReviewDefinitionInstanceOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

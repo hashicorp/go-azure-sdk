@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &DeviceManagementAppleUserInitiatedEnrollmentProfileIdAssignmentId{}
 
 func TestNewDeviceManagementAppleUserInitiatedEnrollmentProfileIdAssignmentID(t *testing.T) {
-	id := NewDeviceManagementAppleUserInitiatedEnrollmentProfileIdAssignmentID("appleUserInitiatedEnrollmentProfileIdValue", "appleEnrollmentProfileAssignmentIdValue")
+	id := NewDeviceManagementAppleUserInitiatedEnrollmentProfileIdAssignmentID("appleUserInitiatedEnrollmentProfileId", "appleEnrollmentProfileAssignmentId")
 
-	if id.AppleUserInitiatedEnrollmentProfileId != "appleUserInitiatedEnrollmentProfileIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'AppleUserInitiatedEnrollmentProfileId'", id.AppleUserInitiatedEnrollmentProfileId, "appleUserInitiatedEnrollmentProfileIdValue")
+	if id.AppleUserInitiatedEnrollmentProfileId != "appleUserInitiatedEnrollmentProfileId" {
+		t.Fatalf("Expected %q but got %q for Segment 'AppleUserInitiatedEnrollmentProfileId'", id.AppleUserInitiatedEnrollmentProfileId, "appleUserInitiatedEnrollmentProfileId")
 	}
 
-	if id.AppleEnrollmentProfileAssignmentId != "appleEnrollmentProfileAssignmentIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'AppleEnrollmentProfileAssignmentId'", id.AppleEnrollmentProfileAssignmentId, "appleEnrollmentProfileAssignmentIdValue")
+	if id.AppleEnrollmentProfileAssignmentId != "appleEnrollmentProfileAssignmentId" {
+		t.Fatalf("Expected %q but got %q for Segment 'AppleEnrollmentProfileAssignmentId'", id.AppleEnrollmentProfileAssignmentId, "appleEnrollmentProfileAssignmentId")
 	}
 }
 
 func TestFormatDeviceManagementAppleUserInitiatedEnrollmentProfileIdAssignmentID(t *testing.T) {
-	actual := NewDeviceManagementAppleUserInitiatedEnrollmentProfileIdAssignmentID("appleUserInitiatedEnrollmentProfileIdValue", "appleEnrollmentProfileAssignmentIdValue").ID()
-	expected := "/deviceManagement/appleUserInitiatedEnrollmentProfiles/appleUserInitiatedEnrollmentProfileIdValue/assignments/appleEnrollmentProfileAssignmentIdValue"
+	actual := NewDeviceManagementAppleUserInitiatedEnrollmentProfileIdAssignmentID("appleUserInitiatedEnrollmentProfileId", "appleEnrollmentProfileAssignmentId").ID()
+	expected := "/deviceManagement/appleUserInitiatedEnrollmentProfiles/appleUserInitiatedEnrollmentProfileId/assignments/appleEnrollmentProfileAssignmentId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -54,25 +54,25 @@ func TestParseDeviceManagementAppleUserInitiatedEnrollmentProfileIdAssignmentID(
 		},
 		{
 			// Incomplete URI
-			Input: "/deviceManagement/appleUserInitiatedEnrollmentProfiles/appleUserInitiatedEnrollmentProfileIdValue",
+			Input: "/deviceManagement/appleUserInitiatedEnrollmentProfiles/appleUserInitiatedEnrollmentProfileId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/deviceManagement/appleUserInitiatedEnrollmentProfiles/appleUserInitiatedEnrollmentProfileIdValue/assignments",
+			Input: "/deviceManagement/appleUserInitiatedEnrollmentProfiles/appleUserInitiatedEnrollmentProfileId/assignments",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/appleUserInitiatedEnrollmentProfiles/appleUserInitiatedEnrollmentProfileIdValue/assignments/appleEnrollmentProfileAssignmentIdValue",
+			Input: "/deviceManagement/appleUserInitiatedEnrollmentProfiles/appleUserInitiatedEnrollmentProfileId/assignments/appleEnrollmentProfileAssignmentId",
 			Expected: &DeviceManagementAppleUserInitiatedEnrollmentProfileIdAssignmentId{
-				AppleUserInitiatedEnrollmentProfileId: "appleUserInitiatedEnrollmentProfileIdValue",
-				AppleEnrollmentProfileAssignmentId:    "appleEnrollmentProfileAssignmentIdValue",
+				AppleUserInitiatedEnrollmentProfileId: "appleUserInitiatedEnrollmentProfileId",
+				AppleEnrollmentProfileAssignmentId:    "appleEnrollmentProfileAssignmentId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/appleUserInitiatedEnrollmentProfiles/appleUserInitiatedEnrollmentProfileIdValue/assignments/appleEnrollmentProfileAssignmentIdValue/extra",
+			Input: "/deviceManagement/appleUserInitiatedEnrollmentProfiles/appleUserInitiatedEnrollmentProfileId/assignments/appleEnrollmentProfileAssignmentId/extra",
 			Error: true,
 		},
 	}
@@ -135,48 +135,48 @@ func TestParseDeviceManagementAppleUserInitiatedEnrollmentProfileIdAssignmentIDI
 		},
 		{
 			// Incomplete URI
-			Input: "/deviceManagement/appleUserInitiatedEnrollmentProfiles/appleUserInitiatedEnrollmentProfileIdValue",
+			Input: "/deviceManagement/appleUserInitiatedEnrollmentProfiles/appleUserInitiatedEnrollmentProfileId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/aPpLeUsErInItIaTeDeNrOlLmEnTpRoFiLeS/aPpLeUsErInItIaTeDeNrOlLmEnTpRoFiLeIdVaLuE",
+			Input: "/dEvIcEmAnAgEmEnT/aPpLeUsErInItIaTeDeNrOlLmEnTpRoFiLeS/aPpLeUsErInItIaTeDeNrOlLmEnTpRoFiLeId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/deviceManagement/appleUserInitiatedEnrollmentProfiles/appleUserInitiatedEnrollmentProfileIdValue/assignments",
+			Input: "/deviceManagement/appleUserInitiatedEnrollmentProfiles/appleUserInitiatedEnrollmentProfileId/assignments",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/aPpLeUsErInItIaTeDeNrOlLmEnTpRoFiLeS/aPpLeUsErInItIaTeDeNrOlLmEnTpRoFiLeIdVaLuE/aSsIgNmEnTs",
+			Input: "/dEvIcEmAnAgEmEnT/aPpLeUsErInItIaTeDeNrOlLmEnTpRoFiLeS/aPpLeUsErInItIaTeDeNrOlLmEnTpRoFiLeId/aSsIgNmEnTs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/appleUserInitiatedEnrollmentProfiles/appleUserInitiatedEnrollmentProfileIdValue/assignments/appleEnrollmentProfileAssignmentIdValue",
+			Input: "/deviceManagement/appleUserInitiatedEnrollmentProfiles/appleUserInitiatedEnrollmentProfileId/assignments/appleEnrollmentProfileAssignmentId",
 			Expected: &DeviceManagementAppleUserInitiatedEnrollmentProfileIdAssignmentId{
-				AppleUserInitiatedEnrollmentProfileId: "appleUserInitiatedEnrollmentProfileIdValue",
-				AppleEnrollmentProfileAssignmentId:    "appleEnrollmentProfileAssignmentIdValue",
+				AppleUserInitiatedEnrollmentProfileId: "appleUserInitiatedEnrollmentProfileId",
+				AppleEnrollmentProfileAssignmentId:    "appleEnrollmentProfileAssignmentId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/appleUserInitiatedEnrollmentProfiles/appleUserInitiatedEnrollmentProfileIdValue/assignments/appleEnrollmentProfileAssignmentIdValue/extra",
+			Input: "/deviceManagement/appleUserInitiatedEnrollmentProfiles/appleUserInitiatedEnrollmentProfileId/assignments/appleEnrollmentProfileAssignmentId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/aPpLeUsErInItIaTeDeNrOlLmEnTpRoFiLeS/aPpLeUsErInItIaTeDeNrOlLmEnTpRoFiLeIdVaLuE/aSsIgNmEnTs/aPpLeEnRoLlMeNtPrOfIlEaSsIgNmEnTiDvAlUe",
+			Input: "/dEvIcEmAnAgEmEnT/aPpLeUsErInItIaTeDeNrOlLmEnTpRoFiLeS/aPpLeUsErInItIaTeDeNrOlLmEnTpRoFiLeId/aSsIgNmEnTs/aPpLeEnRoLlMeNtPrOfIlEaSsIgNmEnTiD",
 			Expected: &DeviceManagementAppleUserInitiatedEnrollmentProfileIdAssignmentId{
-				AppleUserInitiatedEnrollmentProfileId: "aPpLeUsErInItIaTeDeNrOlLmEnTpRoFiLeIdVaLuE",
-				AppleEnrollmentProfileAssignmentId:    "aPpLeEnRoLlMeNtPrOfIlEaSsIgNmEnTiDvAlUe",
+				AppleUserInitiatedEnrollmentProfileId: "aPpLeUsErInItIaTeDeNrOlLmEnTpRoFiLeId",
+				AppleEnrollmentProfileAssignmentId:    "aPpLeEnRoLlMeNtPrOfIlEaSsIgNmEnTiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/aPpLeUsErInItIaTeDeNrOlLmEnTpRoFiLeS/aPpLeUsErInItIaTeDeNrOlLmEnTpRoFiLeIdVaLuE/aSsIgNmEnTs/aPpLeEnRoLlMeNtPrOfIlEaSsIgNmEnTiDvAlUe/extra",
+			Input: "/dEvIcEmAnAgEmEnT/aPpLeUsErInItIaTeDeNrOlLmEnTpRoFiLeS/aPpLeUsErInItIaTeDeNrOlLmEnTpRoFiLeId/aSsIgNmEnTs/aPpLeEnRoLlMeNtPrOfIlEaSsIgNmEnTiD/extra",
 			Error: true,
 		},
 	}

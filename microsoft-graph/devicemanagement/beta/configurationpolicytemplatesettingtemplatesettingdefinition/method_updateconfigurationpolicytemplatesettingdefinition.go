@@ -17,16 +17,45 @@ type UpdateConfigurationPolicyTemplateSettingDefinitionOperationResponse struct 
 	OData        *odata.OData
 }
 
+type UpdateConfigurationPolicyTemplateSettingDefinitionOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateConfigurationPolicyTemplateSettingDefinitionOperationOptions() UpdateConfigurationPolicyTemplateSettingDefinitionOperationOptions {
+	return UpdateConfigurationPolicyTemplateSettingDefinitionOperationOptions{}
+}
+
+func (o UpdateConfigurationPolicyTemplateSettingDefinitionOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateConfigurationPolicyTemplateSettingDefinitionOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateConfigurationPolicyTemplateSettingDefinitionOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateConfigurationPolicyTemplateSettingDefinition - Update the navigation property settingDefinitions in
 // deviceManagement
-func (c ConfigurationPolicyTemplateSettingTemplateSettingDefinitionClient) UpdateConfigurationPolicyTemplateSettingDefinition(ctx context.Context, id beta.DeviceManagementConfigurationPolicyTemplateIdSettingTemplateIdSettingDefinitionId, input beta.DeviceManagementConfigurationSettingDefinition) (result UpdateConfigurationPolicyTemplateSettingDefinitionOperationResponse, err error) {
+func (c ConfigurationPolicyTemplateSettingTemplateSettingDefinitionClient) UpdateConfigurationPolicyTemplateSettingDefinition(ctx context.Context, id beta.DeviceManagementConfigurationPolicyTemplateIdSettingTemplateIdSettingDefinitionId, input beta.DeviceManagementConfigurationSettingDefinition, options UpdateConfigurationPolicyTemplateSettingDefinitionOperationOptions) (result UpdateConfigurationPolicyTemplateSettingDefinitionOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

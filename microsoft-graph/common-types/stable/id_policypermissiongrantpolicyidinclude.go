@@ -99,9 +99,9 @@ func (id PolicyPermissionGrantPolicyIdIncludeId) Segments() []resourceids.Segmen
 	return []resourceids.Segment{
 		resourceids.StaticSegment("policies", "policies", "policies"),
 		resourceids.StaticSegment("permissionGrantPolicies", "permissionGrantPolicies", "permissionGrantPolicies"),
-		resourceids.UserSpecifiedSegment("permissionGrantPolicyId", "permissionGrantPolicyIdValue"),
+		resourceids.UserSpecifiedSegment("permissionGrantPolicyId", "permissionGrantPolicyId"),
 		resourceids.StaticSegment("includes", "includes", "includes"),
-		resourceids.UserSpecifiedSegment("permissionGrantConditionSetId", "permissionGrantConditionSetIdValue"),
+		resourceids.UserSpecifiedSegment("permissionGrantConditionSetId", "permissionGrantConditionSetId"),
 	}
 }
 

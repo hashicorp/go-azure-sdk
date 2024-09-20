@@ -19,15 +19,44 @@ type CreateProfileCertificationOperationResponse struct {
 	Model        *beta.PersonCertification
 }
 
+type CreateProfileCertificationOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateProfileCertificationOperationOptions() CreateProfileCertificationOperationOptions {
+	return CreateProfileCertificationOperationOptions{}
+}
+
+func (o CreateProfileCertificationOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateProfileCertificationOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateProfileCertificationOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateProfileCertification - Create new navigation property to certifications for users
-func (c ProfileCertificationClient) CreateProfileCertification(ctx context.Context, id beta.UserId, input beta.PersonCertification) (result CreateProfileCertificationOperationResponse, err error) {
+func (c ProfileCertificationClient) CreateProfileCertification(ctx context.Context, id beta.UserId, input beta.PersonCertification, options CreateProfileCertificationOperationOptions) (result CreateProfileCertificationOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/profile/certifications", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/profile/certifications", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

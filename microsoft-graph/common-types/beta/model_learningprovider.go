@@ -92,23 +92,36 @@ func (s LearningProvider) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &LearningProvider{}
 
 func (s *LearningProvider) UnmarshalJSON(bytes []byte) error {
-	type alias LearningProvider
-	var decoded alias
+
+	var decoded struct {
+		DisplayName                   string                    `json:"displayName"`
+		IsCourseActivitySyncEnabled   nullable.Type[bool]       `json:"isCourseActivitySyncEnabled,omitempty"`
+		LearningContents              *[]LearningContent        `json:"learningContents,omitempty"`
+		LearningCourseActivities      *[]LearningCourseActivity `json:"learningCourseActivities,omitempty"`
+		LoginWebUrl                   nullable.Type[string]     `json:"loginWebUrl,omitempty"`
+		LongLogoWebUrlForDarkTheme    string                    `json:"longLogoWebUrlForDarkTheme"`
+		LongLogoWebUrlForLightTheme   string                    `json:"longLogoWebUrlForLightTheme"`
+		SquareLogoWebUrlForDarkTheme  string                    `json:"squareLogoWebUrlForDarkTheme"`
+		SquareLogoWebUrlForLightTheme string                    `json:"squareLogoWebUrlForLightTheme"`
+		Id                            *string                   `json:"id,omitempty"`
+		ODataId                       *string                   `json:"@odata.id,omitempty"`
+		ODataType                     *string                   `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into LearningProvider: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.DisplayName = decoded.DisplayName
-	s.Id = decoded.Id
 	s.IsCourseActivitySyncEnabled = decoded.IsCourseActivitySyncEnabled
 	s.LearningContents = decoded.LearningContents
 	s.LoginWebUrl = decoded.LoginWebUrl
 	s.LongLogoWebUrlForDarkTheme = decoded.LongLogoWebUrlForDarkTheme
 	s.LongLogoWebUrlForLightTheme = decoded.LongLogoWebUrlForLightTheme
-	s.ODataId = decoded.ODataId
-	s.ODataType = decoded.ODataType
 	s.SquareLogoWebUrlForDarkTheme = decoded.SquareLogoWebUrlForDarkTheme
 	s.SquareLogoWebUrlForLightTheme = decoded.SquareLogoWebUrlForLightTheme
+	s.Id = decoded.Id
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -131,5 +144,6 @@ func (s *LearningProvider) UnmarshalJSON(bytes []byte) error {
 		}
 		s.LearningCourseActivities = &output
 	}
+
 	return nil
 }

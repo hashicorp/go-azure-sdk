@@ -18,15 +18,44 @@ type CreateDirectoryResourceNamespaceOperationResponse struct {
 	Model        *beta.UnifiedRbacResourceNamespace
 }
 
+type CreateDirectoryResourceNamespaceOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateDirectoryResourceNamespaceOperationOptions() CreateDirectoryResourceNamespaceOperationOptions {
+	return CreateDirectoryResourceNamespaceOperationOptions{}
+}
+
+func (o CreateDirectoryResourceNamespaceOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateDirectoryResourceNamespaceOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateDirectoryResourceNamespaceOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateDirectoryResourceNamespace - Create new navigation property to resourceNamespaces for roleManagement
-func (c DirectoryResourceNamespaceClient) CreateDirectoryResourceNamespace(ctx context.Context, input beta.UnifiedRbacResourceNamespace) (result CreateDirectoryResourceNamespaceOperationResponse, err error) {
+func (c DirectoryResourceNamespaceClient) CreateDirectoryResourceNamespace(ctx context.Context, input beta.UnifiedRbacResourceNamespace, options CreateDirectoryResourceNamespaceOperationOptions) (result CreateDirectoryResourceNamespaceOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/roleManagement/directory/resourceNamespaces",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/roleManagement/directory/resourceNamespaces",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -94,7 +94,7 @@ func (id DeviceManagementUserExperienceAnalyticsAppHealthOverviewMetricValueId) 
 		resourceids.StaticSegment("deviceManagement", "deviceManagement", "deviceManagement"),
 		resourceids.StaticSegment("userExperienceAnalyticsAppHealthOverview", "userExperienceAnalyticsAppHealthOverview", "userExperienceAnalyticsAppHealthOverview"),
 		resourceids.StaticSegment("metricValues", "metricValues", "metricValues"),
-		resourceids.UserSpecifiedSegment("userExperienceAnalyticsMetricId", "userExperienceAnalyticsMetricIdValue"),
+		resourceids.UserSpecifiedSegment("userExperienceAnalyticsMetricId", "userExperienceAnalyticsMetricId"),
 	}
 }
 

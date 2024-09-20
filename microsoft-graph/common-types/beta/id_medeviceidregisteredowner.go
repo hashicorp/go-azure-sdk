@@ -99,9 +99,9 @@ func (id MeDeviceIdRegisteredOwnerId) Segments() []resourceids.Segment {
 	return []resourceids.Segment{
 		resourceids.StaticSegment("me", "me", "me"),
 		resourceids.StaticSegment("devices", "devices", "devices"),
-		resourceids.UserSpecifiedSegment("deviceId", "deviceIdValue"),
+		resourceids.UserSpecifiedSegment("deviceId", "deviceId"),
 		resourceids.StaticSegment("registeredOwners", "registeredOwners", "registeredOwners"),
-		resourceids.UserSpecifiedSegment("directoryObjectId", "directoryObjectIdValue"),
+		resourceids.UserSpecifiedSegment("directoryObjectId", "directoryObjectId"),
 	}
 }
 

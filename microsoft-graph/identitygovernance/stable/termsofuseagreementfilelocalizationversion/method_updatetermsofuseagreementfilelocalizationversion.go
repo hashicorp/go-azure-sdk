@@ -17,15 +17,44 @@ type UpdateTermsOfUseAgreementFileLocalizationVersionOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateTermsOfUseAgreementFileLocalizationVersionOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateTermsOfUseAgreementFileLocalizationVersionOperationOptions() UpdateTermsOfUseAgreementFileLocalizationVersionOperationOptions {
+	return UpdateTermsOfUseAgreementFileLocalizationVersionOperationOptions{}
+}
+
+func (o UpdateTermsOfUseAgreementFileLocalizationVersionOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateTermsOfUseAgreementFileLocalizationVersionOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateTermsOfUseAgreementFileLocalizationVersionOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateTermsOfUseAgreementFileLocalizationVersion - Update the navigation property versions in identityGovernance
-func (c TermsOfUseAgreementFileLocalizationVersionClient) UpdateTermsOfUseAgreementFileLocalizationVersion(ctx context.Context, id stable.IdentityGovernanceTermsOfUseAgreementIdFileLocalizationIdVersionId, input stable.AgreementFileVersion) (result UpdateTermsOfUseAgreementFileLocalizationVersionOperationResponse, err error) {
+func (c TermsOfUseAgreementFileLocalizationVersionClient) UpdateTermsOfUseAgreementFileLocalizationVersion(ctx context.Context, id stable.IdentityGovernanceTermsOfUseAgreementIdFileLocalizationIdVersionId, input stable.AgreementFileVersion, options UpdateTermsOfUseAgreementFileLocalizationVersionOperationOptions) (result UpdateTermsOfUseAgreementFileLocalizationVersionOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

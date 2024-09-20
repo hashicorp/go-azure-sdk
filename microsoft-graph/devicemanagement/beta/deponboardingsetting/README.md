@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/deponboardingsetting` Documentation
 
-The `deponboardingsetting` SDK allows for interaction with the Azure Resource Manager Service `devicemanagement` (API Version `beta`).
+The `deponboardingsetting` SDK allows for interaction with Microsoft Graph `devicemanagement` (API Version `beta`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -15,7 +15,7 @@ import "github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/
 ### Client Initialization
 
 ```go
-client := deponboardingsetting.NewDepOnboardingSettingClientWithBaseURI("https://management.azure.com")
+client := deponboardingsetting.NewDepOnboardingSettingClientWithBaseURI("https://graph.microsoft.com")
 client.Client.Authorizer = authorizer
 ```
 
@@ -30,7 +30,7 @@ payload := deponboardingsetting.DepOnboardingSetting{
 }
 
 
-read, err := client.CreateDepOnboardingSetting(ctx, payload)
+read, err := client.CreateDepOnboardingSetting(ctx, payload, deponboardingsetting.DefaultCreateDepOnboardingSettingOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -44,9 +44,9 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := deponboardingsetting.NewDeviceManagementDepOnboardingSettingID("depOnboardingSettingIdValue")
+id := deponboardingsetting.NewDeviceManagementDepOnboardingSettingID("depOnboardingSettingId")
 
-read, err := client.CreateDepOnboardingSettingGenerateEncryptionPublicKey(ctx, id)
+read, err := client.CreateDepOnboardingSettingGenerateEncryptionPublicKey(ctx, id, deponboardingsetting.DefaultCreateDepOnboardingSettingGenerateEncryptionPublicKeyOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -60,14 +60,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := deponboardingsetting.NewDeviceManagementDepOnboardingSettingID("depOnboardingSettingIdValue")
+id := deponboardingsetting.NewDeviceManagementDepOnboardingSettingID("depOnboardingSettingId")
 
 payload := deponboardingsetting.CreateDepOnboardingSettingUploadDepTokenRequest{
 	// ...
 }
 
 
-read, err := client.CreateDepOnboardingSettingUploadDepToken(ctx, id, payload)
+read, err := client.CreateDepOnboardingSettingUploadDepToken(ctx, id, payload, deponboardingsetting.DefaultCreateDepOnboardingSettingUploadDepTokenOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -81,7 +81,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := deponboardingsetting.NewDeviceManagementDepOnboardingSettingID("depOnboardingSettingIdValue")
+id := deponboardingsetting.NewDeviceManagementDepOnboardingSettingID("depOnboardingSettingId")
 
 read, err := client.DeleteDepOnboardingSetting(ctx, id, deponboardingsetting.DefaultDeleteDepOnboardingSettingOperationOptions())
 if err != nil {
@@ -97,7 +97,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := deponboardingsetting.NewDeviceManagementDepOnboardingSettingID("depOnboardingSettingIdValue")
+id := deponboardingsetting.NewDeviceManagementDepOnboardingSettingID("depOnboardingSettingId")
 
 read, err := client.GetDepOnboardingSetting(ctx, id, deponboardingsetting.DefaultGetDepOnboardingSettingOperationOptions())
 if err != nil {
@@ -146,9 +146,9 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := deponboardingsetting.NewDeviceManagementDepOnboardingSettingID("depOnboardingSettingIdValue")
+id := deponboardingsetting.NewDeviceManagementDepOnboardingSettingID("depOnboardingSettingId")
 
-read, err := client.ShareDepOnboardingSettingForSchoolDataSyncService(ctx, id)
+read, err := client.ShareDepOnboardingSettingForSchoolDataSyncService(ctx, id, deponboardingsetting.DefaultShareDepOnboardingSettingForSchoolDataSyncServiceOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -162,9 +162,9 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := deponboardingsetting.NewDeviceManagementDepOnboardingSettingID("depOnboardingSettingIdValue")
+id := deponboardingsetting.NewDeviceManagementDepOnboardingSettingID("depOnboardingSettingId")
 
-read, err := client.SyncDepOnboardingSettingWithAppleDeviceEnrollmentProgram(ctx, id)
+read, err := client.SyncDepOnboardingSettingWithAppleDeviceEnrollmentProgram(ctx, id, deponboardingsetting.DefaultSyncDepOnboardingSettingWithAppleDeviceEnrollmentProgramOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -178,9 +178,9 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := deponboardingsetting.NewDeviceManagementDepOnboardingSettingID("depOnboardingSettingIdValue")
+id := deponboardingsetting.NewDeviceManagementDepOnboardingSettingID("depOnboardingSettingId")
 
-read, err := client.UnshareDepOnboardingSettingForSchoolDataSyncService(ctx, id)
+read, err := client.UnshareDepOnboardingSettingForSchoolDataSyncService(ctx, id, deponboardingsetting.DefaultUnshareDepOnboardingSettingForSchoolDataSyncServiceOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -194,14 +194,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := deponboardingsetting.NewDeviceManagementDepOnboardingSettingID("depOnboardingSettingIdValue")
+id := deponboardingsetting.NewDeviceManagementDepOnboardingSettingID("depOnboardingSettingId")
 
 payload := deponboardingsetting.DepOnboardingSetting{
 	// ...
 }
 
 
-read, err := client.UpdateDepOnboardingSetting(ctx, id, payload)
+read, err := client.UpdateDepOnboardingSetting(ctx, id, payload, deponboardingsetting.DefaultUpdateDepOnboardingSettingOperationOptions())
 if err != nil {
 	// handle the error
 }

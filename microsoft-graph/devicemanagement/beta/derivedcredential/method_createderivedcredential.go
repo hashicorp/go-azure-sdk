@@ -18,15 +18,44 @@ type CreateDerivedCredentialOperationResponse struct {
 	Model        *beta.DeviceManagementDerivedCredentialSettings
 }
 
+type CreateDerivedCredentialOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateDerivedCredentialOperationOptions() CreateDerivedCredentialOperationOptions {
+	return CreateDerivedCredentialOperationOptions{}
+}
+
+func (o CreateDerivedCredentialOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateDerivedCredentialOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateDerivedCredentialOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateDerivedCredential - Create new navigation property to derivedCredentials for deviceManagement
-func (c DerivedCredentialClient) CreateDerivedCredential(ctx context.Context, input beta.DeviceManagementDerivedCredentialSettings) (result CreateDerivedCredentialOperationResponse, err error) {
+func (c DerivedCredentialClient) CreateDerivedCredential(ctx context.Context, input beta.DeviceManagementDerivedCredentialSettings, options CreateDerivedCredentialOperationOptions) (result CreateDerivedCredentialOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/deviceManagement/derivedCredentials",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/deviceManagement/derivedCredentials",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

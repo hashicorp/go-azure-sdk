@@ -17,15 +17,44 @@ type UpdateProfileSkillOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateProfileSkillOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateProfileSkillOperationOptions() UpdateProfileSkillOperationOptions {
+	return UpdateProfileSkillOperationOptions{}
+}
+
+func (o UpdateProfileSkillOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateProfileSkillOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateProfileSkillOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateProfileSkill - Update the navigation property skills in users
-func (c ProfileSkillClient) UpdateProfileSkill(ctx context.Context, id beta.UserIdProfileSkillId, input beta.SkillProficiency) (result UpdateProfileSkillOperationResponse, err error) {
+func (c ProfileSkillClient) UpdateProfileSkill(ctx context.Context, id beta.UserIdProfileSkillId, input beta.SkillProficiency, options UpdateProfileSkillOperationOptions) (result UpdateProfileSkillOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

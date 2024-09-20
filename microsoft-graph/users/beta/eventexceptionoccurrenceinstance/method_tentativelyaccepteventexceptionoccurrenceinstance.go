@@ -18,18 +18,47 @@ type TentativelyAcceptEventExceptionOccurrenceInstanceOperationResponse struct {
 	OData        *odata.OData
 }
 
+type TentativelyAcceptEventExceptionOccurrenceInstanceOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultTentativelyAcceptEventExceptionOccurrenceInstanceOperationOptions() TentativelyAcceptEventExceptionOccurrenceInstanceOperationOptions {
+	return TentativelyAcceptEventExceptionOccurrenceInstanceOperationOptions{}
+}
+
+func (o TentativelyAcceptEventExceptionOccurrenceInstanceOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o TentativelyAcceptEventExceptionOccurrenceInstanceOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o TentativelyAcceptEventExceptionOccurrenceInstanceOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // TentativelyAcceptEventExceptionOccurrenceInstance - Invoke action tentativelyAccept. Tentatively accept the specified
 // event in a user calendar. If the event allows proposals for new times, on responding tentative to the event, an
 // invitee can choose to suggest an alternative time by including the proposedNewTime parameter. For more information on
 // how to propose a time, and how to receive and accept a new time proposal, see Propose new meeting times.
-func (c EventExceptionOccurrenceInstanceClient) TentativelyAcceptEventExceptionOccurrenceInstance(ctx context.Context, id beta.UserIdEventIdExceptionOccurrenceIdInstanceId, input TentativelyAcceptEventExceptionOccurrenceInstanceRequest) (result TentativelyAcceptEventExceptionOccurrenceInstanceOperationResponse, err error) {
+func (c EventExceptionOccurrenceInstanceClient) TentativelyAcceptEventExceptionOccurrenceInstance(ctx context.Context, id beta.UserIdEventIdExceptionOccurrenceIdInstanceId, input TentativelyAcceptEventExceptionOccurrenceInstanceRequest, options TentativelyAcceptEventExceptionOccurrenceInstanceOperationOptions) (result TentativelyAcceptEventExceptionOccurrenceInstanceOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/tentativelyAccept", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/tentativelyAccept", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

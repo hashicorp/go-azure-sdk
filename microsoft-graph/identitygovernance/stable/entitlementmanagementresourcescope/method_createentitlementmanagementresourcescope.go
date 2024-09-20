@@ -19,15 +19,44 @@ type CreateEntitlementManagementResourceScopeOperationResponse struct {
 	Model        *stable.AccessPackageResourceScope
 }
 
+type CreateEntitlementManagementResourceScopeOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateEntitlementManagementResourceScopeOperationOptions() CreateEntitlementManagementResourceScopeOperationOptions {
+	return CreateEntitlementManagementResourceScopeOperationOptions{}
+}
+
+func (o CreateEntitlementManagementResourceScopeOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateEntitlementManagementResourceScopeOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateEntitlementManagementResourceScopeOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateEntitlementManagementResourceScope - Create new navigation property to scopes for identityGovernance
-func (c EntitlementManagementResourceScopeClient) CreateEntitlementManagementResourceScope(ctx context.Context, id stable.IdentityGovernanceEntitlementManagementResourceId, input stable.AccessPackageResourceScope) (result CreateEntitlementManagementResourceScopeOperationResponse, err error) {
+func (c EntitlementManagementResourceScopeClient) CreateEntitlementManagementResourceScope(ctx context.Context, id stable.IdentityGovernanceEntitlementManagementResourceId, input stable.AccessPackageResourceScope, options CreateEntitlementManagementResourceScopeOperationOptions) (result CreateEntitlementManagementResourceScopeOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/scopes", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/scopes", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

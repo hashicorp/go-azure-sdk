@@ -18,15 +18,44 @@ type CreateAppConsentRequestOperationResponse struct {
 	Model        *stable.AppConsentRequest
 }
 
+type CreateAppConsentRequestOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateAppConsentRequestOperationOptions() CreateAppConsentRequestOperationOptions {
+	return CreateAppConsentRequestOperationOptions{}
+}
+
+func (o CreateAppConsentRequestOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateAppConsentRequestOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateAppConsentRequestOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateAppConsentRequest - Create new navigation property to appConsentRequests for identityGovernance
-func (c AppConsentAppConsentRequestClient) CreateAppConsentRequest(ctx context.Context, input stable.AppConsentRequest) (result CreateAppConsentRequestOperationResponse, err error) {
+func (c AppConsentAppConsentRequestClient) CreateAppConsentRequest(ctx context.Context, input stable.AppConsentRequest, options CreateAppConsentRequestOperationOptions) (result CreateAppConsentRequestOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/identityGovernance/appConsent/appConsentRequests",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/identityGovernance/appConsent/appConsentRequests",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

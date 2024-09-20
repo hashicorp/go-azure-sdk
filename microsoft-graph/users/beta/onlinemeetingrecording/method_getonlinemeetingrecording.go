@@ -2,7 +2,6 @@ package onlinemeetingrecording
 
 import (
 	"context"
-	"fmt"
 	"net/http"
 
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta"
@@ -16,19 +15,58 @@ import (
 type GetOnlineMeetingRecordingOperationResponse struct {
 	HttpResponse *http.Response
 	OData        *odata.OData
-	Model        *[]byte
+	Model        *beta.CallRecording
 }
 
-// GetOnlineMeetingRecording - Get recording for the navigation property onlineMeetings from users. The content stream
-// of the recording of a Teams live event. Read-only.
-func (c OnlineMeetingRecordingClient) GetOnlineMeetingRecording(ctx context.Context, id beta.UserIdOnlineMeetingId) (result GetOnlineMeetingRecordingOperationResponse, err error) {
+type GetOnlineMeetingRecordingOperationOptions struct {
+	Expand   *odata.Expand
+	Metadata *odata.Metadata
+	Select   *[]string
+}
+
+func DefaultGetOnlineMeetingRecordingOperationOptions() GetOnlineMeetingRecordingOperationOptions {
+	return GetOnlineMeetingRecordingOperationOptions{}
+}
+
+func (o GetOnlineMeetingRecordingOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o GetOnlineMeetingRecordingOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Expand != nil {
+		out.Expand = *o.Expand
+	}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	if o.Select != nil {
+		out.Select = *o.Select
+	}
+	return &out
+}
+
+func (o GetOnlineMeetingRecordingOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
+// GetOnlineMeetingRecording - Get callRecording. Get a callRecording object associated with a scheduled onlineMeeting.
+// This API doesn't support getting call recordings from channel meetings. For a recording, this API returns the
+// metadata of the single recording associated with the online meeting. For the content of a recording, this API returns
+// the stream of bytes associated with the recording.
+func (c OnlineMeetingRecordingClient) GetOnlineMeetingRecording(ctx context.Context, id beta.UserIdOnlineMeetingIdRecordingId, options GetOnlineMeetingRecordingOperationOptions) (result GetOnlineMeetingRecordingOperationResponse, err error) {
 	opts := client.RequestOptions{
-		ContentType: "application/octet-stream",
+		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/recording", id.ID()),
+		HttpMethod:    http.MethodGet,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)
@@ -46,7 +84,7 @@ func (c OnlineMeetingRecordingClient) GetOnlineMeetingRecording(ctx context.Cont
 		return
 	}
 
-	var model []byte
+	var model beta.CallRecording
 	result.Model = &model
 	if err = resp.Unmarshal(result.Model); err != nil {
 		return

@@ -17,15 +17,44 @@ type UpdateProfileAwardOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateProfileAwardOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateProfileAwardOperationOptions() UpdateProfileAwardOperationOptions {
+	return UpdateProfileAwardOperationOptions{}
+}
+
+func (o UpdateProfileAwardOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateProfileAwardOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateProfileAwardOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateProfileAward - Update the navigation property awards in me
-func (c ProfileAwardClient) UpdateProfileAward(ctx context.Context, id beta.MeProfileAwardId, input beta.PersonAward) (result UpdateProfileAwardOperationResponse, err error) {
+func (c ProfileAwardClient) UpdateProfileAward(ctx context.Context, id beta.MeProfileAwardId, input beta.PersonAward, options UpdateProfileAwardOperationOptions) (result UpdateProfileAwardOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

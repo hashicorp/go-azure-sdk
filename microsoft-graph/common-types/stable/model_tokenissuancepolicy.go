@@ -125,10 +125,21 @@ func (s TokenIssuancePolicy) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &TokenIssuancePolicy{}
 
 func (s *TokenIssuancePolicy) UnmarshalJSON(bytes []byte) error {
-	type alias TokenIssuancePolicy
-	var decoded alias
+
+	var decoded struct {
+		AppliesTo             *[]DirectoryObject    `json:"appliesTo,omitempty"`
+		AppliesTo_ODataBind   *[]string             `json:"appliesTo@odata.bind,omitempty"`
+		Definition            []string              `json:"definition"`
+		IsOrganizationDefault nullable.Type[bool]   `json:"isOrganizationDefault,omitempty"`
+		Description           nullable.Type[string] `json:"description,omitempty"`
+		DisplayName           nullable.Type[string] `json:"displayName,omitempty"`
+		DeletedDateTime       nullable.Type[string] `json:"deletedDateTime,omitempty"`
+		Id                    *string               `json:"id,omitempty"`
+		ODataId               *string               `json:"@odata.id,omitempty"`
+		ODataType             *string               `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into TokenIssuancePolicy: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.AppliesTo_ODataBind = decoded.AppliesTo_ODataBind
@@ -162,5 +173,6 @@ func (s *TokenIssuancePolicy) UnmarshalJSON(bytes []byte) error {
 		}
 		s.AppliesTo = &output
 	}
+
 	return nil
 }

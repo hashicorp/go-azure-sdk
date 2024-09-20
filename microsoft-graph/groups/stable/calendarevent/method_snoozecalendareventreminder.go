@@ -18,16 +18,45 @@ type SnoozeCalendarEventReminderOperationResponse struct {
 	OData        *odata.OData
 }
 
+type SnoozeCalendarEventReminderOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultSnoozeCalendarEventReminderOperationOptions() SnoozeCalendarEventReminderOperationOptions {
+	return SnoozeCalendarEventReminderOperationOptions{}
+}
+
+func (o SnoozeCalendarEventReminderOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o SnoozeCalendarEventReminderOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o SnoozeCalendarEventReminderOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // SnoozeCalendarEventReminder - Invoke action snoozeReminder. Postpone a reminder for an event in a user calendar until
 // a new time.
-func (c CalendarEventClient) SnoozeCalendarEventReminder(ctx context.Context, id stable.GroupIdCalendarEventId, input SnoozeCalendarEventReminderRequest) (result SnoozeCalendarEventReminderOperationResponse, err error) {
+func (c CalendarEventClient) SnoozeCalendarEventReminder(ctx context.Context, id stable.GroupIdCalendarEventId, input SnoozeCalendarEventReminderRequest, options SnoozeCalendarEventReminderOperationOptions) (result SnoozeCalendarEventReminderOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/snoozeReminder", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/snoozeReminder", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

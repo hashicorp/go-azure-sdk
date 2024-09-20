@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &DeviceManagementGroupPolicyConfigurationIdDefinitionValueId{}
 
 func TestNewDeviceManagementGroupPolicyConfigurationIdDefinitionValueID(t *testing.T) {
-	id := NewDeviceManagementGroupPolicyConfigurationIdDefinitionValueID("groupPolicyConfigurationIdValue", "groupPolicyDefinitionValueIdValue")
+	id := NewDeviceManagementGroupPolicyConfigurationIdDefinitionValueID("groupPolicyConfigurationId", "groupPolicyDefinitionValueId")
 
-	if id.GroupPolicyConfigurationId != "groupPolicyConfigurationIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'GroupPolicyConfigurationId'", id.GroupPolicyConfigurationId, "groupPolicyConfigurationIdValue")
+	if id.GroupPolicyConfigurationId != "groupPolicyConfigurationId" {
+		t.Fatalf("Expected %q but got %q for Segment 'GroupPolicyConfigurationId'", id.GroupPolicyConfigurationId, "groupPolicyConfigurationId")
 	}
 
-	if id.GroupPolicyDefinitionValueId != "groupPolicyDefinitionValueIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'GroupPolicyDefinitionValueId'", id.GroupPolicyDefinitionValueId, "groupPolicyDefinitionValueIdValue")
+	if id.GroupPolicyDefinitionValueId != "groupPolicyDefinitionValueId" {
+		t.Fatalf("Expected %q but got %q for Segment 'GroupPolicyDefinitionValueId'", id.GroupPolicyDefinitionValueId, "groupPolicyDefinitionValueId")
 	}
 }
 
 func TestFormatDeviceManagementGroupPolicyConfigurationIdDefinitionValueID(t *testing.T) {
-	actual := NewDeviceManagementGroupPolicyConfigurationIdDefinitionValueID("groupPolicyConfigurationIdValue", "groupPolicyDefinitionValueIdValue").ID()
-	expected := "/deviceManagement/groupPolicyConfigurations/groupPolicyConfigurationIdValue/definitionValues/groupPolicyDefinitionValueIdValue"
+	actual := NewDeviceManagementGroupPolicyConfigurationIdDefinitionValueID("groupPolicyConfigurationId", "groupPolicyDefinitionValueId").ID()
+	expected := "/deviceManagement/groupPolicyConfigurations/groupPolicyConfigurationId/definitionValues/groupPolicyDefinitionValueId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -54,25 +54,25 @@ func TestParseDeviceManagementGroupPolicyConfigurationIdDefinitionValueID(t *tes
 		},
 		{
 			// Incomplete URI
-			Input: "/deviceManagement/groupPolicyConfigurations/groupPolicyConfigurationIdValue",
+			Input: "/deviceManagement/groupPolicyConfigurations/groupPolicyConfigurationId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/deviceManagement/groupPolicyConfigurations/groupPolicyConfigurationIdValue/definitionValues",
+			Input: "/deviceManagement/groupPolicyConfigurations/groupPolicyConfigurationId/definitionValues",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/groupPolicyConfigurations/groupPolicyConfigurationIdValue/definitionValues/groupPolicyDefinitionValueIdValue",
+			Input: "/deviceManagement/groupPolicyConfigurations/groupPolicyConfigurationId/definitionValues/groupPolicyDefinitionValueId",
 			Expected: &DeviceManagementGroupPolicyConfigurationIdDefinitionValueId{
-				GroupPolicyConfigurationId:   "groupPolicyConfigurationIdValue",
-				GroupPolicyDefinitionValueId: "groupPolicyDefinitionValueIdValue",
+				GroupPolicyConfigurationId:   "groupPolicyConfigurationId",
+				GroupPolicyDefinitionValueId: "groupPolicyDefinitionValueId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/groupPolicyConfigurations/groupPolicyConfigurationIdValue/definitionValues/groupPolicyDefinitionValueIdValue/extra",
+			Input: "/deviceManagement/groupPolicyConfigurations/groupPolicyConfigurationId/definitionValues/groupPolicyDefinitionValueId/extra",
 			Error: true,
 		},
 	}
@@ -135,48 +135,48 @@ func TestParseDeviceManagementGroupPolicyConfigurationIdDefinitionValueIDInsensi
 		},
 		{
 			// Incomplete URI
-			Input: "/deviceManagement/groupPolicyConfigurations/groupPolicyConfigurationIdValue",
+			Input: "/deviceManagement/groupPolicyConfigurations/groupPolicyConfigurationId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/gRoUpPoLiCyCoNfIgUrAtIoNs/gRoUpPoLiCyCoNfIgUrAtIoNiDvAlUe",
+			Input: "/dEvIcEmAnAgEmEnT/gRoUpPoLiCyCoNfIgUrAtIoNs/gRoUpPoLiCyCoNfIgUrAtIoNiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/deviceManagement/groupPolicyConfigurations/groupPolicyConfigurationIdValue/definitionValues",
+			Input: "/deviceManagement/groupPolicyConfigurations/groupPolicyConfigurationId/definitionValues",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/gRoUpPoLiCyCoNfIgUrAtIoNs/gRoUpPoLiCyCoNfIgUrAtIoNiDvAlUe/dEfInItIoNvAlUeS",
+			Input: "/dEvIcEmAnAgEmEnT/gRoUpPoLiCyCoNfIgUrAtIoNs/gRoUpPoLiCyCoNfIgUrAtIoNiD/dEfInItIoNvAlUeS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/groupPolicyConfigurations/groupPolicyConfigurationIdValue/definitionValues/groupPolicyDefinitionValueIdValue",
+			Input: "/deviceManagement/groupPolicyConfigurations/groupPolicyConfigurationId/definitionValues/groupPolicyDefinitionValueId",
 			Expected: &DeviceManagementGroupPolicyConfigurationIdDefinitionValueId{
-				GroupPolicyConfigurationId:   "groupPolicyConfigurationIdValue",
-				GroupPolicyDefinitionValueId: "groupPolicyDefinitionValueIdValue",
+				GroupPolicyConfigurationId:   "groupPolicyConfigurationId",
+				GroupPolicyDefinitionValueId: "groupPolicyDefinitionValueId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/groupPolicyConfigurations/groupPolicyConfigurationIdValue/definitionValues/groupPolicyDefinitionValueIdValue/extra",
+			Input: "/deviceManagement/groupPolicyConfigurations/groupPolicyConfigurationId/definitionValues/groupPolicyDefinitionValueId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/gRoUpPoLiCyCoNfIgUrAtIoNs/gRoUpPoLiCyCoNfIgUrAtIoNiDvAlUe/dEfInItIoNvAlUeS/gRoUpPoLiCyDeFiNiTiOnVaLuEiDvAlUe",
+			Input: "/dEvIcEmAnAgEmEnT/gRoUpPoLiCyCoNfIgUrAtIoNs/gRoUpPoLiCyCoNfIgUrAtIoNiD/dEfInItIoNvAlUeS/gRoUpPoLiCyDeFiNiTiOnVaLuEiD",
 			Expected: &DeviceManagementGroupPolicyConfigurationIdDefinitionValueId{
-				GroupPolicyConfigurationId:   "gRoUpPoLiCyCoNfIgUrAtIoNiDvAlUe",
-				GroupPolicyDefinitionValueId: "gRoUpPoLiCyDeFiNiTiOnVaLuEiDvAlUe",
+				GroupPolicyConfigurationId:   "gRoUpPoLiCyCoNfIgUrAtIoNiD",
+				GroupPolicyDefinitionValueId: "gRoUpPoLiCyDeFiNiTiOnVaLuEiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/gRoUpPoLiCyCoNfIgUrAtIoNs/gRoUpPoLiCyCoNfIgUrAtIoNiDvAlUe/dEfInItIoNvAlUeS/gRoUpPoLiCyDeFiNiTiOnVaLuEiDvAlUe/extra",
+			Input: "/dEvIcEmAnAgEmEnT/gRoUpPoLiCyCoNfIgUrAtIoNs/gRoUpPoLiCyCoNfIgUrAtIoNiD/dEfInItIoNvAlUeS/gRoUpPoLiCyDeFiNiTiOnVaLuEiD/extra",
 			Error: true,
 		},
 	}

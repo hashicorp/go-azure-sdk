@@ -104,9 +104,9 @@ func UnmarshalGroupAssignmentTargetImplementation(input []byte) (GroupAssignment
 		return nil, fmt.Errorf("unmarshaling GroupAssignmentTarget into map[string]interface: %+v", err)
 	}
 
-	value, ok := temp["@odata.type"].(string)
-	if !ok {
-		return nil, nil
+	var value string
+	if v, ok := temp["@odata.type"]; ok {
+		value = fmt.Sprintf("%v", v)
 	}
 
 	if strings.EqualFold(value, "#microsoft.graph.exclusionGroupAssignmentTarget") {

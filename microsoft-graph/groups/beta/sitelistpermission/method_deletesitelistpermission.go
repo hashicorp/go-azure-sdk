@@ -19,7 +19,8 @@ type DeleteSiteListPermissionOperationResponse struct {
 }
 
 type DeleteSiteListPermissionOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteSiteListPermissionOperationOptions() DeleteSiteListPermissionOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteSiteListPermissionOperationOptions) ToHeaders() *client.Headers {
 
 func (o DeleteSiteListPermissionOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

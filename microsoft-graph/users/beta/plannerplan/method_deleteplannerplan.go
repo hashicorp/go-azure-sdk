@@ -19,7 +19,8 @@ type DeletePlannerPlanOperationResponse struct {
 }
 
 type DeletePlannerPlanOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeletePlannerPlanOperationOptions() DeletePlannerPlanOperationOptions {
@@ -36,7 +37,9 @@ func (o DeletePlannerPlanOperationOptions) ToHeaders() *client.Headers {
 
 func (o DeletePlannerPlanOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

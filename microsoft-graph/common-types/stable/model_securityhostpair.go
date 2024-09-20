@@ -78,16 +78,23 @@ func (s SecurityHostPair) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &SecurityHostPair{}
 
 func (s *SecurityHostPair) UnmarshalJSON(bytes []byte) error {
-	type alias SecurityHostPair
-	var decoded alias
+
+	var decoded struct {
+		FirstSeenDateTime nullable.Type[string] `json:"firstSeenDateTime,omitempty"`
+		LastSeenDateTime  nullable.Type[string] `json:"lastSeenDateTime,omitempty"`
+		LinkKind          nullable.Type[string] `json:"linkKind,omitempty"`
+		Id                *string               `json:"id,omitempty"`
+		ODataId           *string               `json:"@odata.id,omitempty"`
+		ODataType         *string               `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into SecurityHostPair: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.FirstSeenDateTime = decoded.FirstSeenDateTime
-	s.Id = decoded.Id
 	s.LastSeenDateTime = decoded.LastSeenDateTime
 	s.LinkKind = decoded.LinkKind
+	s.Id = decoded.Id
 	s.ODataId = decoded.ODataId
 	s.ODataType = decoded.ODataType
 
@@ -111,5 +118,6 @@ func (s *SecurityHostPair) UnmarshalJSON(bytes []byte) error {
 		}
 		s.ParentHost = &impl
 	}
+
 	return nil
 }

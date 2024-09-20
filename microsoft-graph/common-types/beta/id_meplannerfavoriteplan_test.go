@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &MePlannerFavoritePlanId{}
 
 func TestNewMePlannerFavoritePlanID(t *testing.T) {
-	id := NewMePlannerFavoritePlanID("plannerPlanIdValue")
+	id := NewMePlannerFavoritePlanID("plannerPlanId")
 
-	if id.PlannerPlanId != "plannerPlanIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'PlannerPlanId'", id.PlannerPlanId, "plannerPlanIdValue")
+	if id.PlannerPlanId != "plannerPlanId" {
+		t.Fatalf("Expected %q but got %q for Segment 'PlannerPlanId'", id.PlannerPlanId, "plannerPlanId")
 	}
 }
 
 func TestFormatMePlannerFavoritePlanID(t *testing.T) {
-	actual := NewMePlannerFavoritePlanID("plannerPlanIdValue").ID()
-	expected := "/me/planner/favoritePlans/plannerPlanIdValue"
+	actual := NewMePlannerFavoritePlanID("plannerPlanId").ID()
+	expected := "/me/planner/favoritePlans/plannerPlanId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -55,14 +55,14 @@ func TestParseMePlannerFavoritePlanID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/me/planner/favoritePlans/plannerPlanIdValue",
+			Input: "/me/planner/favoritePlans/plannerPlanId",
 			Expected: &MePlannerFavoritePlanId{
-				PlannerPlanId: "plannerPlanIdValue",
+				PlannerPlanId: "plannerPlanId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/planner/favoritePlans/plannerPlanIdValue/extra",
+			Input: "/me/planner/favoritePlans/plannerPlanId/extra",
 			Error: true,
 		},
 	}
@@ -131,26 +131,26 @@ func TestParseMePlannerFavoritePlanIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/me/planner/favoritePlans/plannerPlanIdValue",
+			Input: "/me/planner/favoritePlans/plannerPlanId",
 			Expected: &MePlannerFavoritePlanId{
-				PlannerPlanId: "plannerPlanIdValue",
+				PlannerPlanId: "plannerPlanId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/planner/favoritePlans/plannerPlanIdValue/extra",
+			Input: "/me/planner/favoritePlans/plannerPlanId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/pLaNnEr/fAvOrItEpLaNs/pLaNnErPlAnIdVaLuE",
+			Input: "/mE/pLaNnEr/fAvOrItEpLaNs/pLaNnErPlAnId",
 			Expected: &MePlannerFavoritePlanId{
-				PlannerPlanId: "pLaNnErPlAnIdVaLuE",
+				PlannerPlanId: "pLaNnErPlAnId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/mE/pLaNnEr/fAvOrItEpLaNs/pLaNnErPlAnIdVaLuE/extra",
+			Input: "/mE/pLaNnEr/fAvOrItEpLaNs/pLaNnErPlAnId/extra",
 			Error: true,
 		},
 	}

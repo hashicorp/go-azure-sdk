@@ -18,15 +18,44 @@ type CreateZebraFotaDeploymentOperationResponse struct {
 	Model        *beta.ZebraFotaDeployment
 }
 
+type CreateZebraFotaDeploymentOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateZebraFotaDeploymentOperationOptions() CreateZebraFotaDeploymentOperationOptions {
+	return CreateZebraFotaDeploymentOperationOptions{}
+}
+
+func (o CreateZebraFotaDeploymentOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateZebraFotaDeploymentOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateZebraFotaDeploymentOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateZebraFotaDeployment - Create new navigation property to zebraFotaDeployments for deviceManagement
-func (c ZebraFotaDeploymentClient) CreateZebraFotaDeployment(ctx context.Context, input beta.ZebraFotaDeployment) (result CreateZebraFotaDeploymentOperationResponse, err error) {
+func (c ZebraFotaDeploymentClient) CreateZebraFotaDeployment(ctx context.Context, input beta.ZebraFotaDeployment, options CreateZebraFotaDeploymentOperationOptions) (result CreateZebraFotaDeploymentOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/deviceManagement/zebraFotaDeployments",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/deviceManagement/zebraFotaDeployments",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -269,10 +269,63 @@ func (s Device) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &Device{}
 
 func (s *Device) UnmarshalJSON(bytes []byte) error {
-	type alias Device
-	var decoded alias
+
+	var decoded struct {
+		AccountEnabled                nullable.Type[bool]            `json:"accountEnabled,omitempty"`
+		AlternativeSecurityIds        *[]AlternativeSecurityId       `json:"alternativeSecurityIds,omitempty"`
+		ApproximateLastSignInDateTime nullable.Type[string]          `json:"approximateLastSignInDateTime,omitempty"`
+		Commands                      *[]Command                     `json:"commands,omitempty"`
+		ComplianceExpirationDateTime  nullable.Type[string]          `json:"complianceExpirationDateTime,omitempty"`
+		DeviceCategory                nullable.Type[string]          `json:"deviceCategory,omitempty"`
+		DeviceId                      nullable.Type[string]          `json:"deviceId,omitempty"`
+		DeviceMetadata                nullable.Type[string]          `json:"deviceMetadata,omitempty"`
+		DeviceOwnership               nullable.Type[string]          `json:"deviceOwnership,omitempty"`
+		DeviceVersion                 nullable.Type[int64]           `json:"deviceVersion,omitempty"`
+		DisplayName                   nullable.Type[string]          `json:"displayName,omitempty"`
+		DomainName                    nullable.Type[string]          `json:"domainName,omitempty"`
+		EnrollmentProfileName         nullable.Type[string]          `json:"enrollmentProfileName,omitempty"`
+		EnrollmentType                nullable.Type[string]          `json:"enrollmentType,omitempty"`
+		ExtensionAttributes           *OnPremisesExtensionAttributes `json:"extensionAttributes,omitempty"`
+		Extensions                    *[]Extension                   `json:"extensions,omitempty"`
+		Hostnames                     *[]string                      `json:"hostnames,omitempty"`
+		IsCompliant                   nullable.Type[bool]            `json:"isCompliant,omitempty"`
+		IsManaged                     nullable.Type[bool]            `json:"isManaged,omitempty"`
+		IsManagementRestricted        nullable.Type[bool]            `json:"isManagementRestricted,omitempty"`
+		IsRooted                      nullable.Type[bool]            `json:"isRooted,omitempty"`
+		Kind                          nullable.Type[string]          `json:"kind,omitempty"`
+		ManagementType                nullable.Type[string]          `json:"managementType,omitempty"`
+		Manufacturer                  nullable.Type[string]          `json:"manufacturer,omitempty"`
+		MdmAppId                      nullable.Type[string]          `json:"mdmAppId,omitempty"`
+		MemberOf                      *[]DirectoryObject             `json:"memberOf,omitempty"`
+		MemberOf_ODataBind            *[]string                      `json:"memberOf@odata.bind,omitempty"`
+		Model                         nullable.Type[string]          `json:"model,omitempty"`
+		Name                          nullable.Type[string]          `json:"name,omitempty"`
+		OnPremisesLastSyncDateTime    nullable.Type[string]          `json:"onPremisesLastSyncDateTime,omitempty"`
+		OnPremisesSecurityIdentifier  nullable.Type[string]          `json:"onPremisesSecurityIdentifier,omitempty"`
+		OnPremisesSyncEnabled         nullable.Type[bool]            `json:"onPremisesSyncEnabled,omitempty"`
+		OperatingSystem               nullable.Type[string]          `json:"operatingSystem,omitempty"`
+		OperatingSystemVersion        nullable.Type[string]          `json:"operatingSystemVersion,omitempty"`
+		PhysicalIds                   *[]string                      `json:"physicalIds,omitempty"`
+		Platform                      nullable.Type[string]          `json:"platform,omitempty"`
+		ProfileType                   nullable.Type[string]          `json:"profileType,omitempty"`
+		RegisteredOwners              *[]DirectoryObject             `json:"registeredOwners,omitempty"`
+		RegisteredOwners_ODataBind    *[]string                      `json:"registeredOwners@odata.bind,omitempty"`
+		RegisteredUsers               *[]DirectoryObject             `json:"registeredUsers,omitempty"`
+		RegisteredUsers_ODataBind     *[]string                      `json:"registeredUsers@odata.bind,omitempty"`
+		RegistrationDateTime          nullable.Type[string]          `json:"registrationDateTime,omitempty"`
+		Status                        nullable.Type[string]          `json:"status,omitempty"`
+		SystemLabels                  *[]string                      `json:"systemLabels,omitempty"`
+		TransitiveMemberOf            *[]DirectoryObject             `json:"transitiveMemberOf,omitempty"`
+		TransitiveMemberOf_ODataBind  *[]string                      `json:"transitiveMemberOf@odata.bind,omitempty"`
+		TrustType                     nullable.Type[string]          `json:"trustType,omitempty"`
+		UsageRights                   *[]UsageRight                  `json:"usageRights,omitempty"`
+		DeletedDateTime               nullable.Type[string]          `json:"deletedDateTime,omitempty"`
+		Id                            *string                        `json:"id,omitempty"`
+		ODataId                       *string                        `json:"@odata.id,omitempty"`
+		ODataType                     *string                        `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into Device: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.AccountEnabled = decoded.AccountEnabled
@@ -280,7 +333,6 @@ func (s *Device) UnmarshalJSON(bytes []byte) error {
 	s.ApproximateLastSignInDateTime = decoded.ApproximateLastSignInDateTime
 	s.Commands = decoded.Commands
 	s.ComplianceExpirationDateTime = decoded.ComplianceExpirationDateTime
-	s.DeletedDateTime = decoded.DeletedDateTime
 	s.DeviceCategory = decoded.DeviceCategory
 	s.DeviceId = decoded.DeviceId
 	s.DeviceMetadata = decoded.DeviceMetadata
@@ -292,7 +344,6 @@ func (s *Device) UnmarshalJSON(bytes []byte) error {
 	s.EnrollmentType = decoded.EnrollmentType
 	s.ExtensionAttributes = decoded.ExtensionAttributes
 	s.Hostnames = decoded.Hostnames
-	s.Id = decoded.Id
 	s.IsCompliant = decoded.IsCompliant
 	s.IsManaged = decoded.IsManaged
 	s.IsManagementRestricted = decoded.IsManagementRestricted
@@ -304,8 +355,6 @@ func (s *Device) UnmarshalJSON(bytes []byte) error {
 	s.MemberOf_ODataBind = decoded.MemberOf_ODataBind
 	s.Model = decoded.Model
 	s.Name = decoded.Name
-	s.ODataId = decoded.ODataId
-	s.ODataType = decoded.ODataType
 	s.OnPremisesLastSyncDateTime = decoded.OnPremisesLastSyncDateTime
 	s.OnPremisesSecurityIdentifier = decoded.OnPremisesSecurityIdentifier
 	s.OnPremisesSyncEnabled = decoded.OnPremisesSyncEnabled
@@ -322,6 +371,10 @@ func (s *Device) UnmarshalJSON(bytes []byte) error {
 	s.TransitiveMemberOf_ODataBind = decoded.TransitiveMemberOf_ODataBind
 	s.TrustType = decoded.TrustType
 	s.UsageRights = decoded.UsageRights
+	s.DeletedDateTime = decoded.DeletedDateTime
+	s.Id = decoded.Id
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -412,5 +465,6 @@ func (s *Device) UnmarshalJSON(bytes []byte) error {
 		}
 		s.TransitiveMemberOf = &output
 	}
+
 	return nil
 }

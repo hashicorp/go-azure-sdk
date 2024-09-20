@@ -19,15 +19,44 @@ type CreateDriveBundleOperationResponse struct {
 	Model        *stable.DriveItem
 }
 
+type CreateDriveBundleOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateDriveBundleOperationOptions() CreateDriveBundleOperationOptions {
+	return CreateDriveBundleOperationOptions{}
+}
+
+func (o CreateDriveBundleOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateDriveBundleOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateDriveBundleOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateDriveBundle - Create new navigation property to bundles for users
-func (c DriveBundleClient) CreateDriveBundle(ctx context.Context, id stable.UserIdDriveId, input stable.DriveItem) (result CreateDriveBundleOperationResponse, err error) {
+func (c DriveBundleClient) CreateDriveBundle(ctx context.Context, id stable.UserIdDriveId, input stable.DriveItem, options CreateDriveBundleOperationOptions) (result CreateDriveBundleOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/bundles", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/bundles", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

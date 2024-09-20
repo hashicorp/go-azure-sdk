@@ -18,15 +18,44 @@ type CreateAppCredentialSignInActivityOperationResponse struct {
 	Model        *beta.AppCredentialSignInActivity
 }
 
+type CreateAppCredentialSignInActivityOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateAppCredentialSignInActivityOperationOptions() CreateAppCredentialSignInActivityOperationOptions {
+	return CreateAppCredentialSignInActivityOperationOptions{}
+}
+
+func (o CreateAppCredentialSignInActivityOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateAppCredentialSignInActivityOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateAppCredentialSignInActivityOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateAppCredentialSignInActivity - Create new navigation property to appCredentialSignInActivities for reports
-func (c AppCredentialSignInActivityClient) CreateAppCredentialSignInActivity(ctx context.Context, input beta.AppCredentialSignInActivity) (result CreateAppCredentialSignInActivityOperationResponse, err error) {
+func (c AppCredentialSignInActivityClient) CreateAppCredentialSignInActivity(ctx context.Context, input beta.AppCredentialSignInActivity, options CreateAppCredentialSignInActivityOperationOptions) (result CreateAppCredentialSignInActivityOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/reports/appCredentialSignInActivities",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/reports/appCredentialSignInActivities",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

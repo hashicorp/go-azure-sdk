@@ -17,15 +17,44 @@ type UpdateEntitlementManagementRoleAssignmentOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateEntitlementManagementRoleAssignmentOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateEntitlementManagementRoleAssignmentOperationOptions() UpdateEntitlementManagementRoleAssignmentOperationOptions {
+	return UpdateEntitlementManagementRoleAssignmentOperationOptions{}
+}
+
+func (o UpdateEntitlementManagementRoleAssignmentOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateEntitlementManagementRoleAssignmentOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateEntitlementManagementRoleAssignmentOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateEntitlementManagementRoleAssignment - Update the navigation property roleAssignments in roleManagement
-func (c EntitlementManagementRoleAssignmentClient) UpdateEntitlementManagementRoleAssignment(ctx context.Context, id beta.RoleManagementEntitlementManagementRoleAssignmentId, input beta.UnifiedRoleAssignment) (result UpdateEntitlementManagementRoleAssignmentOperationResponse, err error) {
+func (c EntitlementManagementRoleAssignmentClient) UpdateEntitlementManagementRoleAssignment(ctx context.Context, id beta.RoleManagementEntitlementManagementRoleAssignmentId, input beta.UnifiedRoleAssignment, options UpdateEntitlementManagementRoleAssignmentOperationOptions) (result UpdateEntitlementManagementRoleAssignmentOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

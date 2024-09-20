@@ -12,24 +12,24 @@ import (
 var _ resourceids.ResourceId = &RoleManagementEnterpriseAppIdRoleAssignmentApprovalIdStepId{}
 
 func TestNewRoleManagementEnterpriseAppIdRoleAssignmentApprovalIdStepID(t *testing.T) {
-	id := NewRoleManagementEnterpriseAppIdRoleAssignmentApprovalIdStepID("rbacApplicationIdValue", "approvalIdValue", "approvalStepIdValue")
+	id := NewRoleManagementEnterpriseAppIdRoleAssignmentApprovalIdStepID("rbacApplicationId", "approvalId", "approvalStepId")
 
-	if id.RbacApplicationId != "rbacApplicationIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'RbacApplicationId'", id.RbacApplicationId, "rbacApplicationIdValue")
+	if id.RbacApplicationId != "rbacApplicationId" {
+		t.Fatalf("Expected %q but got %q for Segment 'RbacApplicationId'", id.RbacApplicationId, "rbacApplicationId")
 	}
 
-	if id.ApprovalId != "approvalIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ApprovalId'", id.ApprovalId, "approvalIdValue")
+	if id.ApprovalId != "approvalId" {
+		t.Fatalf("Expected %q but got %q for Segment 'ApprovalId'", id.ApprovalId, "approvalId")
 	}
 
-	if id.ApprovalStepId != "approvalStepIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ApprovalStepId'", id.ApprovalStepId, "approvalStepIdValue")
+	if id.ApprovalStepId != "approvalStepId" {
+		t.Fatalf("Expected %q but got %q for Segment 'ApprovalStepId'", id.ApprovalStepId, "approvalStepId")
 	}
 }
 
 func TestFormatRoleManagementEnterpriseAppIdRoleAssignmentApprovalIdStepID(t *testing.T) {
-	actual := NewRoleManagementEnterpriseAppIdRoleAssignmentApprovalIdStepID("rbacApplicationIdValue", "approvalIdValue", "approvalStepIdValue").ID()
-	expected := "/roleManagement/enterpriseApps/rbacApplicationIdValue/roleAssignmentApprovals/approvalIdValue/steps/approvalStepIdValue"
+	actual := NewRoleManagementEnterpriseAppIdRoleAssignmentApprovalIdStepID("rbacApplicationId", "approvalId", "approvalStepId").ID()
+	expected := "/roleManagement/enterpriseApps/rbacApplicationId/roleAssignmentApprovals/approvalId/steps/approvalStepId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -58,36 +58,36 @@ func TestParseRoleManagementEnterpriseAppIdRoleAssignmentApprovalIdStepID(t *tes
 		},
 		{
 			// Incomplete URI
-			Input: "/roleManagement/enterpriseApps/rbacApplicationIdValue",
+			Input: "/roleManagement/enterpriseApps/rbacApplicationId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/roleManagement/enterpriseApps/rbacApplicationIdValue/roleAssignmentApprovals",
+			Input: "/roleManagement/enterpriseApps/rbacApplicationId/roleAssignmentApprovals",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/roleManagement/enterpriseApps/rbacApplicationIdValue/roleAssignmentApprovals/approvalIdValue",
+			Input: "/roleManagement/enterpriseApps/rbacApplicationId/roleAssignmentApprovals/approvalId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/roleManagement/enterpriseApps/rbacApplicationIdValue/roleAssignmentApprovals/approvalIdValue/steps",
+			Input: "/roleManagement/enterpriseApps/rbacApplicationId/roleAssignmentApprovals/approvalId/steps",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/roleManagement/enterpriseApps/rbacApplicationIdValue/roleAssignmentApprovals/approvalIdValue/steps/approvalStepIdValue",
+			Input: "/roleManagement/enterpriseApps/rbacApplicationId/roleAssignmentApprovals/approvalId/steps/approvalStepId",
 			Expected: &RoleManagementEnterpriseAppIdRoleAssignmentApprovalIdStepId{
-				RbacApplicationId: "rbacApplicationIdValue",
-				ApprovalId:        "approvalIdValue",
-				ApprovalStepId:    "approvalStepIdValue",
+				RbacApplicationId: "rbacApplicationId",
+				ApprovalId:        "approvalId",
+				ApprovalStepId:    "approvalStepId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/roleManagement/enterpriseApps/rbacApplicationIdValue/roleAssignmentApprovals/approvalIdValue/steps/approvalStepIdValue/extra",
+			Input: "/roleManagement/enterpriseApps/rbacApplicationId/roleAssignmentApprovals/approvalId/steps/approvalStepId/extra",
 			Error: true,
 		},
 	}
@@ -154,70 +154,70 @@ func TestParseRoleManagementEnterpriseAppIdRoleAssignmentApprovalIdStepIDInsensi
 		},
 		{
 			// Incomplete URI
-			Input: "/roleManagement/enterpriseApps/rbacApplicationIdValue",
+			Input: "/roleManagement/enterpriseApps/rbacApplicationId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/rOlEmAnAgEmEnT/eNtErPrIsEaPpS/rBaCaPpLiCaTiOnIdVaLuE",
+			Input: "/rOlEmAnAgEmEnT/eNtErPrIsEaPpS/rBaCaPpLiCaTiOnId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/roleManagement/enterpriseApps/rbacApplicationIdValue/roleAssignmentApprovals",
+			Input: "/roleManagement/enterpriseApps/rbacApplicationId/roleAssignmentApprovals",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/rOlEmAnAgEmEnT/eNtErPrIsEaPpS/rBaCaPpLiCaTiOnIdVaLuE/rOlEaSsIgNmEnTaPpRoVaLs",
+			Input: "/rOlEmAnAgEmEnT/eNtErPrIsEaPpS/rBaCaPpLiCaTiOnId/rOlEaSsIgNmEnTaPpRoVaLs",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/roleManagement/enterpriseApps/rbacApplicationIdValue/roleAssignmentApprovals/approvalIdValue",
+			Input: "/roleManagement/enterpriseApps/rbacApplicationId/roleAssignmentApprovals/approvalId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/rOlEmAnAgEmEnT/eNtErPrIsEaPpS/rBaCaPpLiCaTiOnIdVaLuE/rOlEaSsIgNmEnTaPpRoVaLs/aPpRoVaLiDvAlUe",
+			Input: "/rOlEmAnAgEmEnT/eNtErPrIsEaPpS/rBaCaPpLiCaTiOnId/rOlEaSsIgNmEnTaPpRoVaLs/aPpRoVaLiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/roleManagement/enterpriseApps/rbacApplicationIdValue/roleAssignmentApprovals/approvalIdValue/steps",
+			Input: "/roleManagement/enterpriseApps/rbacApplicationId/roleAssignmentApprovals/approvalId/steps",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/rOlEmAnAgEmEnT/eNtErPrIsEaPpS/rBaCaPpLiCaTiOnIdVaLuE/rOlEaSsIgNmEnTaPpRoVaLs/aPpRoVaLiDvAlUe/sTePs",
+			Input: "/rOlEmAnAgEmEnT/eNtErPrIsEaPpS/rBaCaPpLiCaTiOnId/rOlEaSsIgNmEnTaPpRoVaLs/aPpRoVaLiD/sTePs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/roleManagement/enterpriseApps/rbacApplicationIdValue/roleAssignmentApprovals/approvalIdValue/steps/approvalStepIdValue",
+			Input: "/roleManagement/enterpriseApps/rbacApplicationId/roleAssignmentApprovals/approvalId/steps/approvalStepId",
 			Expected: &RoleManagementEnterpriseAppIdRoleAssignmentApprovalIdStepId{
-				RbacApplicationId: "rbacApplicationIdValue",
-				ApprovalId:        "approvalIdValue",
-				ApprovalStepId:    "approvalStepIdValue",
+				RbacApplicationId: "rbacApplicationId",
+				ApprovalId:        "approvalId",
+				ApprovalStepId:    "approvalStepId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/roleManagement/enterpriseApps/rbacApplicationIdValue/roleAssignmentApprovals/approvalIdValue/steps/approvalStepIdValue/extra",
+			Input: "/roleManagement/enterpriseApps/rbacApplicationId/roleAssignmentApprovals/approvalId/steps/approvalStepId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/rOlEmAnAgEmEnT/eNtErPrIsEaPpS/rBaCaPpLiCaTiOnIdVaLuE/rOlEaSsIgNmEnTaPpRoVaLs/aPpRoVaLiDvAlUe/sTePs/aPpRoVaLsTePiDvAlUe",
+			Input: "/rOlEmAnAgEmEnT/eNtErPrIsEaPpS/rBaCaPpLiCaTiOnId/rOlEaSsIgNmEnTaPpRoVaLs/aPpRoVaLiD/sTePs/aPpRoVaLsTePiD",
 			Expected: &RoleManagementEnterpriseAppIdRoleAssignmentApprovalIdStepId{
-				RbacApplicationId: "rBaCaPpLiCaTiOnIdVaLuE",
-				ApprovalId:        "aPpRoVaLiDvAlUe",
-				ApprovalStepId:    "aPpRoVaLsTePiDvAlUe",
+				RbacApplicationId: "rBaCaPpLiCaTiOnId",
+				ApprovalId:        "aPpRoVaLiD",
+				ApprovalStepId:    "aPpRoVaLsTePiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/rOlEmAnAgEmEnT/eNtErPrIsEaPpS/rBaCaPpLiCaTiOnIdVaLuE/rOlEaSsIgNmEnTaPpRoVaLs/aPpRoVaLiDvAlUe/sTePs/aPpRoVaLsTePiDvAlUe/extra",
+			Input: "/rOlEmAnAgEmEnT/eNtErPrIsEaPpS/rBaCaPpLiCaTiOnId/rOlEaSsIgNmEnTaPpRoVaLs/aPpRoVaLiD/sTePs/aPpRoVaLsTePiD/extra",
 			Error: true,
 		},
 	}

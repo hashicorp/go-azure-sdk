@@ -84,17 +84,25 @@ func (s ContentModel) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &ContentModel{}
 
 func (s *ContentModel) UnmarshalJSON(bytes []byte) error {
-	type alias ContentModel
-	var decoded alias
+
+	var decoded struct {
+		CreatedDateTime      nullable.Type[string] `json:"createdDateTime,omitempty"`
+		LastModifiedDateTime nullable.Type[string] `json:"lastModifiedDateTime,omitempty"`
+		ModelType            *ContentModelType     `json:"modelType,omitempty"`
+		Name                 nullable.Type[string] `json:"name,omitempty"`
+		Id                   *string               `json:"id,omitempty"`
+		ODataId              *string               `json:"@odata.id,omitempty"`
+		ODataType            *string               `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into ContentModel: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.CreatedDateTime = decoded.CreatedDateTime
-	s.Id = decoded.Id
 	s.LastModifiedDateTime = decoded.LastModifiedDateTime
 	s.ModelType = decoded.ModelType
 	s.Name = decoded.Name
+	s.Id = decoded.Id
 	s.ODataId = decoded.ODataId
 	s.ODataType = decoded.ODataType
 
@@ -118,5 +126,6 @@ func (s *ContentModel) UnmarshalJSON(bytes []byte) error {
 		}
 		s.LastModifiedBy = &impl
 	}
+
 	return nil
 }

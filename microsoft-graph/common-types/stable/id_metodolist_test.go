@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &MeTodoListId{}
 
 func TestNewMeTodoListID(t *testing.T) {
-	id := NewMeTodoListID("todoTaskListIdValue")
+	id := NewMeTodoListID("todoTaskListId")
 
-	if id.TodoTaskListId != "todoTaskListIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'TodoTaskListId'", id.TodoTaskListId, "todoTaskListIdValue")
+	if id.TodoTaskListId != "todoTaskListId" {
+		t.Fatalf("Expected %q but got %q for Segment 'TodoTaskListId'", id.TodoTaskListId, "todoTaskListId")
 	}
 }
 
 func TestFormatMeTodoListID(t *testing.T) {
-	actual := NewMeTodoListID("todoTaskListIdValue").ID()
-	expected := "/me/todo/lists/todoTaskListIdValue"
+	actual := NewMeTodoListID("todoTaskListId").ID()
+	expected := "/me/todo/lists/todoTaskListId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -55,14 +55,14 @@ func TestParseMeTodoListID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/me/todo/lists/todoTaskListIdValue",
+			Input: "/me/todo/lists/todoTaskListId",
 			Expected: &MeTodoListId{
-				TodoTaskListId: "todoTaskListIdValue",
+				TodoTaskListId: "todoTaskListId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/todo/lists/todoTaskListIdValue/extra",
+			Input: "/me/todo/lists/todoTaskListId/extra",
 			Error: true,
 		},
 	}
@@ -131,26 +131,26 @@ func TestParseMeTodoListIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/me/todo/lists/todoTaskListIdValue",
+			Input: "/me/todo/lists/todoTaskListId",
 			Expected: &MeTodoListId{
-				TodoTaskListId: "todoTaskListIdValue",
+				TodoTaskListId: "todoTaskListId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/todo/lists/todoTaskListIdValue/extra",
+			Input: "/me/todo/lists/todoTaskListId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/tOdO/lIsTs/tOdOtAsKlIsTiDvAlUe",
+			Input: "/mE/tOdO/lIsTs/tOdOtAsKlIsTiD",
 			Expected: &MeTodoListId{
-				TodoTaskListId: "tOdOtAsKlIsTiDvAlUe",
+				TodoTaskListId: "tOdOtAsKlIsTiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/mE/tOdO/lIsTs/tOdOtAsKlIsTiDvAlUe/extra",
+			Input: "/mE/tOdO/lIsTs/tOdOtAsKlIsTiD/extra",
 			Error: true,
 		},
 	}

@@ -18,16 +18,45 @@ type CreateUserExperienceAnalyticsAnomalyCorrelationGroupOverviewOperationRespon
 	Model        *beta.UserExperienceAnalyticsAnomalyCorrelationGroupOverview
 }
 
+type CreateUserExperienceAnalyticsAnomalyCorrelationGroupOverviewOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateUserExperienceAnalyticsAnomalyCorrelationGroupOverviewOperationOptions() CreateUserExperienceAnalyticsAnomalyCorrelationGroupOverviewOperationOptions {
+	return CreateUserExperienceAnalyticsAnomalyCorrelationGroupOverviewOperationOptions{}
+}
+
+func (o CreateUserExperienceAnalyticsAnomalyCorrelationGroupOverviewOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateUserExperienceAnalyticsAnomalyCorrelationGroupOverviewOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateUserExperienceAnalyticsAnomalyCorrelationGroupOverviewOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateUserExperienceAnalyticsAnomalyCorrelationGroupOverview - Create new navigation property to
 // userExperienceAnalyticsAnomalyCorrelationGroupOverview for deviceManagement
-func (c UserExperienceAnalyticsAnomalyCorrelationGroupOverviewClient) CreateUserExperienceAnalyticsAnomalyCorrelationGroupOverview(ctx context.Context, input beta.UserExperienceAnalyticsAnomalyCorrelationGroupOverview) (result CreateUserExperienceAnalyticsAnomalyCorrelationGroupOverviewOperationResponse, err error) {
+func (c UserExperienceAnalyticsAnomalyCorrelationGroupOverviewClient) CreateUserExperienceAnalyticsAnomalyCorrelationGroupOverview(ctx context.Context, input beta.UserExperienceAnalyticsAnomalyCorrelationGroupOverview, options CreateUserExperienceAnalyticsAnomalyCorrelationGroupOverviewOperationOptions) (result CreateUserExperienceAnalyticsAnomalyCorrelationGroupOverviewOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/deviceManagement/userExperienceAnalyticsAnomalyCorrelationGroupOverview",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/deviceManagement/userExperienceAnalyticsAnomalyCorrelationGroupOverview",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

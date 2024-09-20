@@ -17,15 +17,44 @@ type UpdateCompliancePolicyAssignmentOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateCompliancePolicyAssignmentOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateCompliancePolicyAssignmentOperationOptions() UpdateCompliancePolicyAssignmentOperationOptions {
+	return UpdateCompliancePolicyAssignmentOperationOptions{}
+}
+
+func (o UpdateCompliancePolicyAssignmentOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateCompliancePolicyAssignmentOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateCompliancePolicyAssignmentOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateCompliancePolicyAssignment - Update the navigation property assignments in deviceManagement
-func (c CompliancePolicyAssignmentClient) UpdateCompliancePolicyAssignment(ctx context.Context, id beta.DeviceManagementCompliancePolicyIdAssignmentId, input beta.DeviceManagementConfigurationPolicyAssignment) (result UpdateCompliancePolicyAssignmentOperationResponse, err error) {
+func (c CompliancePolicyAssignmentClient) UpdateCompliancePolicyAssignment(ctx context.Context, id beta.DeviceManagementCompliancePolicyIdAssignmentId, input beta.DeviceManagementConfigurationPolicyAssignment, options UpdateCompliancePolicyAssignmentOperationOptions) (result UpdateCompliancePolicyAssignmentOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

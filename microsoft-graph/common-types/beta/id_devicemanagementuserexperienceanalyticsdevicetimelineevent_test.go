@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &DeviceManagementUserExperienceAnalyticsDeviceTimelineEventId{}
 
 func TestNewDeviceManagementUserExperienceAnalyticsDeviceTimelineEventID(t *testing.T) {
-	id := NewDeviceManagementUserExperienceAnalyticsDeviceTimelineEventID("userExperienceAnalyticsDeviceTimelineEventIdValue")
+	id := NewDeviceManagementUserExperienceAnalyticsDeviceTimelineEventID("userExperienceAnalyticsDeviceTimelineEventId")
 
-	if id.UserExperienceAnalyticsDeviceTimelineEventId != "userExperienceAnalyticsDeviceTimelineEventIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'UserExperienceAnalyticsDeviceTimelineEventId'", id.UserExperienceAnalyticsDeviceTimelineEventId, "userExperienceAnalyticsDeviceTimelineEventIdValue")
+	if id.UserExperienceAnalyticsDeviceTimelineEventId != "userExperienceAnalyticsDeviceTimelineEventId" {
+		t.Fatalf("Expected %q but got %q for Segment 'UserExperienceAnalyticsDeviceTimelineEventId'", id.UserExperienceAnalyticsDeviceTimelineEventId, "userExperienceAnalyticsDeviceTimelineEventId")
 	}
 }
 
 func TestFormatDeviceManagementUserExperienceAnalyticsDeviceTimelineEventID(t *testing.T) {
-	actual := NewDeviceManagementUserExperienceAnalyticsDeviceTimelineEventID("userExperienceAnalyticsDeviceTimelineEventIdValue").ID()
-	expected := "/deviceManagement/userExperienceAnalyticsDeviceTimelineEvent/userExperienceAnalyticsDeviceTimelineEventIdValue"
+	actual := NewDeviceManagementUserExperienceAnalyticsDeviceTimelineEventID("userExperienceAnalyticsDeviceTimelineEventId").ID()
+	expected := "/deviceManagement/userExperienceAnalyticsDeviceTimelineEvent/userExperienceAnalyticsDeviceTimelineEventId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -50,14 +50,14 @@ func TestParseDeviceManagementUserExperienceAnalyticsDeviceTimelineEventID(t *te
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/userExperienceAnalyticsDeviceTimelineEvent/userExperienceAnalyticsDeviceTimelineEventIdValue",
+			Input: "/deviceManagement/userExperienceAnalyticsDeviceTimelineEvent/userExperienceAnalyticsDeviceTimelineEventId",
 			Expected: &DeviceManagementUserExperienceAnalyticsDeviceTimelineEventId{
-				UserExperienceAnalyticsDeviceTimelineEventId: "userExperienceAnalyticsDeviceTimelineEventIdValue",
+				UserExperienceAnalyticsDeviceTimelineEventId: "userExperienceAnalyticsDeviceTimelineEventId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/userExperienceAnalyticsDeviceTimelineEvent/userExperienceAnalyticsDeviceTimelineEventIdValue/extra",
+			Input: "/deviceManagement/userExperienceAnalyticsDeviceTimelineEvent/userExperienceAnalyticsDeviceTimelineEventId/extra",
 			Error: true,
 		},
 	}
@@ -116,26 +116,26 @@ func TestParseDeviceManagementUserExperienceAnalyticsDeviceTimelineEventIDInsens
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/userExperienceAnalyticsDeviceTimelineEvent/userExperienceAnalyticsDeviceTimelineEventIdValue",
+			Input: "/deviceManagement/userExperienceAnalyticsDeviceTimelineEvent/userExperienceAnalyticsDeviceTimelineEventId",
 			Expected: &DeviceManagementUserExperienceAnalyticsDeviceTimelineEventId{
-				UserExperienceAnalyticsDeviceTimelineEventId: "userExperienceAnalyticsDeviceTimelineEventIdValue",
+				UserExperienceAnalyticsDeviceTimelineEventId: "userExperienceAnalyticsDeviceTimelineEventId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/userExperienceAnalyticsDeviceTimelineEvent/userExperienceAnalyticsDeviceTimelineEventIdValue/extra",
+			Input: "/deviceManagement/userExperienceAnalyticsDeviceTimelineEvent/userExperienceAnalyticsDeviceTimelineEventId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/uSeReXpErIeNcEaNaLyTiCsDeViCeTiMeLiNeEvEnT/uSeReXpErIeNcEaNaLyTiCsDeViCeTiMeLiNeEvEnTiDvAlUe",
+			Input: "/dEvIcEmAnAgEmEnT/uSeReXpErIeNcEaNaLyTiCsDeViCeTiMeLiNeEvEnT/uSeReXpErIeNcEaNaLyTiCsDeViCeTiMeLiNeEvEnTiD",
 			Expected: &DeviceManagementUserExperienceAnalyticsDeviceTimelineEventId{
-				UserExperienceAnalyticsDeviceTimelineEventId: "uSeReXpErIeNcEaNaLyTiCsDeViCeTiMeLiNeEvEnTiDvAlUe",
+				UserExperienceAnalyticsDeviceTimelineEventId: "uSeReXpErIeNcEaNaLyTiCsDeViCeTiMeLiNeEvEnTiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/uSeReXpErIeNcEaNaLyTiCsDeViCeTiMeLiNeEvEnT/uSeReXpErIeNcEaNaLyTiCsDeViCeTiMeLiNeEvEnTiDvAlUe/extra",
+			Input: "/dEvIcEmAnAgEmEnT/uSeReXpErIeNcEaNaLyTiCsDeViCeTiMeLiNeEvEnT/uSeReXpErIeNcEaNaLyTiCsDeViCeTiMeLiNeEvEnTiD/extra",
 			Error: true,
 		},
 	}

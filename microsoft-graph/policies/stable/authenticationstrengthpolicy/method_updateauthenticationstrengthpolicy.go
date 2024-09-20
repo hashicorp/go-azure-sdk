@@ -17,17 +17,46 @@ type UpdateAuthenticationStrengthPolicyOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateAuthenticationStrengthPolicyOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateAuthenticationStrengthPolicyOperationOptions() UpdateAuthenticationStrengthPolicyOperationOptions {
+	return UpdateAuthenticationStrengthPolicyOperationOptions{}
+}
+
+func (o UpdateAuthenticationStrengthPolicyOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateAuthenticationStrengthPolicyOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateAuthenticationStrengthPolicyOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateAuthenticationStrengthPolicy - Update authenticationStrengthPolicy. Update the properties of an
 // authenticationStrengthPolicy object. You cannot update the allowed auth method combinations using this request. To do
 // so, use the Update allowed combinations action.
-func (c AuthenticationStrengthPolicyClient) UpdateAuthenticationStrengthPolicy(ctx context.Context, id stable.PolicyAuthenticationStrengthPolicyId, input stable.AuthenticationStrengthPolicy) (result UpdateAuthenticationStrengthPolicyOperationResponse, err error) {
+func (c AuthenticationStrengthPolicyClient) UpdateAuthenticationStrengthPolicy(ctx context.Context, id stable.PolicyAuthenticationStrengthPolicyId, input stable.AuthenticationStrengthPolicy, options UpdateAuthenticationStrengthPolicyOperationOptions) (result UpdateAuthenticationStrengthPolicyOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

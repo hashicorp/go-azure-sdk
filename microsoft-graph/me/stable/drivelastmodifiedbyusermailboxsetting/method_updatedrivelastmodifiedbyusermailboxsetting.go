@@ -18,15 +18,44 @@ type UpdateDriveLastModifiedByUserMailboxSettingOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateDriveLastModifiedByUserMailboxSettingOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateDriveLastModifiedByUserMailboxSettingOperationOptions() UpdateDriveLastModifiedByUserMailboxSettingOperationOptions {
+	return UpdateDriveLastModifiedByUserMailboxSettingOperationOptions{}
+}
+
+func (o UpdateDriveLastModifiedByUserMailboxSettingOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateDriveLastModifiedByUserMailboxSettingOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateDriveLastModifiedByUserMailboxSettingOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateDriveLastModifiedByUserMailboxSetting - Update property mailboxSettings value.
-func (c DriveLastModifiedByUserMailboxSettingClient) UpdateDriveLastModifiedByUserMailboxSetting(ctx context.Context, id stable.MeDriveId, input stable.MailboxSettings) (result UpdateDriveLastModifiedByUserMailboxSettingOperationResponse, err error) {
+func (c DriveLastModifiedByUserMailboxSettingClient) UpdateDriveLastModifiedByUserMailboxSetting(ctx context.Context, id stable.MeDriveId, input stable.MailboxSettings, options UpdateDriveLastModifiedByUserMailboxSettingOperationOptions) (result UpdateDriveLastModifiedByUserMailboxSettingOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       fmt.Sprintf("%s/lastModifiedByUser/mailboxSettings", id.ID()),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/lastModifiedByUser/mailboxSettings", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

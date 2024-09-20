@@ -105,11 +105,11 @@ func (id MeChatIdMessageIdReplyId) Segments() []resourceids.Segment {
 	return []resourceids.Segment{
 		resourceids.StaticSegment("me", "me", "me"),
 		resourceids.StaticSegment("chats", "chats", "chats"),
-		resourceids.UserSpecifiedSegment("chatId", "chatIdValue"),
+		resourceids.UserSpecifiedSegment("chatId", "chatId"),
 		resourceids.StaticSegment("messages", "messages", "messages"),
-		resourceids.UserSpecifiedSegment("chatMessageId", "chatMessageIdValue"),
+		resourceids.UserSpecifiedSegment("chatMessageId", "chatMessageId"),
 		resourceids.StaticSegment("replies", "replies", "replies"),
-		resourceids.UserSpecifiedSegment("chatMessageId1", "chatMessageId1Value"),
+		resourceids.UserSpecifiedSegment("chatMessageId1", "chatMessageId1"),
 	}
 }
 

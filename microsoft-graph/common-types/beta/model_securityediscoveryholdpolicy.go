@@ -103,25 +103,41 @@ func (s SecurityEdiscoveryHoldPolicy) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &SecurityEdiscoveryHoldPolicy{}
 
 func (s *SecurityEdiscoveryHoldPolicy) UnmarshalJSON(bytes []byte) error {
-	type alias SecurityEdiscoveryHoldPolicy
-	var decoded alias
+
+	var decoded struct {
+		ContentQuery         nullable.Type[string] `json:"contentQuery,omitempty"`
+		Errors               *[]string             `json:"errors,omitempty"`
+		IsEnabled            nullable.Type[bool]   `json:"isEnabled,omitempty"`
+		SiteSources          *[]SecuritySiteSource `json:"siteSources,omitempty"`
+		UserSources          *[]SecurityUserSource `json:"userSources,omitempty"`
+		CreatedBy            IdentitySet           `json:"createdBy"`
+		CreatedDateTime      nullable.Type[string] `json:"createdDateTime,omitempty"`
+		Description          nullable.Type[string] `json:"description,omitempty"`
+		DisplayName          nullable.Type[string] `json:"displayName,omitempty"`
+		LastModifiedBy       IdentitySet           `json:"lastModifiedBy"`
+		LastModifiedDateTime nullable.Type[string] `json:"lastModifiedDateTime,omitempty"`
+		Status               *SecurityPolicyStatus `json:"status,omitempty"`
+		Id                   *string               `json:"id,omitempty"`
+		ODataId              *string               `json:"@odata.id,omitempty"`
+		ODataType            *string               `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into SecurityEdiscoveryHoldPolicy: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.ContentQuery = decoded.ContentQuery
+	s.Errors = decoded.Errors
+	s.IsEnabled = decoded.IsEnabled
+	s.SiteSources = decoded.SiteSources
+	s.UserSources = decoded.UserSources
 	s.CreatedDateTime = decoded.CreatedDateTime
 	s.Description = decoded.Description
 	s.DisplayName = decoded.DisplayName
-	s.Errors = decoded.Errors
 	s.Id = decoded.Id
-	s.IsEnabled = decoded.IsEnabled
 	s.LastModifiedDateTime = decoded.LastModifiedDateTime
 	s.ODataId = decoded.ODataId
 	s.ODataType = decoded.ODataType
-	s.SiteSources = decoded.SiteSources
 	s.Status = decoded.Status
-	s.UserSources = decoded.UserSources
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -143,5 +159,6 @@ func (s *SecurityEdiscoveryHoldPolicy) UnmarshalJSON(bytes []byte) error {
 		}
 		s.LastModifiedBy = impl
 	}
+
 	return nil
 }

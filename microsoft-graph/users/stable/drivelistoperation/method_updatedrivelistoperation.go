@@ -17,15 +17,44 @@ type UpdateDriveListOperationOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateDriveListOperationOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateDriveListOperationOperationOptions() UpdateDriveListOperationOperationOptions {
+	return UpdateDriveListOperationOperationOptions{}
+}
+
+func (o UpdateDriveListOperationOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateDriveListOperationOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateDriveListOperationOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateDriveListOperation - Update the navigation property operations in users
-func (c DriveListOperationClient) UpdateDriveListOperation(ctx context.Context, id stable.UserIdDriveIdListOperationId, input stable.RichLongRunningOperation) (result UpdateDriveListOperationOperationResponse, err error) {
+func (c DriveListOperationClient) UpdateDriveListOperation(ctx context.Context, id stable.UserIdDriveIdListOperationId, input stable.RichLongRunningOperation, options UpdateDriveListOperationOperationOptions) (result UpdateDriveListOperationOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

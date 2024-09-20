@@ -19,16 +19,45 @@ type CreateDeviceConfigurationOperationResponse struct {
 	Model        stable.DeviceConfiguration
 }
 
+type CreateDeviceConfigurationOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateDeviceConfigurationOperationOptions() CreateDeviceConfigurationOperationOptions {
+	return CreateDeviceConfigurationOperationOptions{}
+}
+
+func (o CreateDeviceConfigurationOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateDeviceConfigurationOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateDeviceConfigurationOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateDeviceConfiguration - Create windows10EnterpriseModernAppManagementConfiguration. Create a new
 // windows10EnterpriseModernAppManagementConfiguration object.
-func (c DeviceConfigurationClient) CreateDeviceConfiguration(ctx context.Context, input stable.DeviceConfiguration) (result CreateDeviceConfigurationOperationResponse, err error) {
+func (c DeviceConfigurationClient) CreateDeviceConfiguration(ctx context.Context, input stable.DeviceConfiguration, options CreateDeviceConfigurationOperationOptions) (result CreateDeviceConfigurationOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/deviceManagement/deviceConfigurations",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/deviceManagement/deviceConfigurations",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

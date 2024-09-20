@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &UserIdAuthenticationEmailMethodId{}
 
 func TestNewUserIdAuthenticationEmailMethodID(t *testing.T) {
-	id := NewUserIdAuthenticationEmailMethodID("userIdValue", "emailAuthenticationMethodIdValue")
+	id := NewUserIdAuthenticationEmailMethodID("userId", "emailAuthenticationMethodId")
 
-	if id.UserId != "userIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'UserId'", id.UserId, "userIdValue")
+	if id.UserId != "userId" {
+		t.Fatalf("Expected %q but got %q for Segment 'UserId'", id.UserId, "userId")
 	}
 
-	if id.EmailAuthenticationMethodId != "emailAuthenticationMethodIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'EmailAuthenticationMethodId'", id.EmailAuthenticationMethodId, "emailAuthenticationMethodIdValue")
+	if id.EmailAuthenticationMethodId != "emailAuthenticationMethodId" {
+		t.Fatalf("Expected %q but got %q for Segment 'EmailAuthenticationMethodId'", id.EmailAuthenticationMethodId, "emailAuthenticationMethodId")
 	}
 }
 
 func TestFormatUserIdAuthenticationEmailMethodID(t *testing.T) {
-	actual := NewUserIdAuthenticationEmailMethodID("userIdValue", "emailAuthenticationMethodIdValue").ID()
-	expected := "/users/userIdValue/authentication/emailMethods/emailAuthenticationMethodIdValue"
+	actual := NewUserIdAuthenticationEmailMethodID("userId", "emailAuthenticationMethodId").ID()
+	expected := "/users/userId/authentication/emailMethods/emailAuthenticationMethodId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -49,30 +49,30 @@ func TestParseUserIdAuthenticationEmailMethodID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue",
+			Input: "/users/userId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/authentication",
+			Input: "/users/userId/authentication",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/authentication/emailMethods",
+			Input: "/users/userId/authentication/emailMethods",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/users/userIdValue/authentication/emailMethods/emailAuthenticationMethodIdValue",
+			Input: "/users/userId/authentication/emailMethods/emailAuthenticationMethodId",
 			Expected: &UserIdAuthenticationEmailMethodId{
-				UserId:                      "userIdValue",
-				EmailAuthenticationMethodId: "emailAuthenticationMethodIdValue",
+				UserId:                      "userId",
+				EmailAuthenticationMethodId: "emailAuthenticationMethodId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/users/userIdValue/authentication/emailMethods/emailAuthenticationMethodIdValue/extra",
+			Input: "/users/userId/authentication/emailMethods/emailAuthenticationMethodId/extra",
 			Error: true,
 		},
 	}
@@ -125,58 +125,58 @@ func TestParseUserIdAuthenticationEmailMethodIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue",
+			Input: "/users/userId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe",
+			Input: "/uSeRs/uSeRiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/authentication",
+			Input: "/users/userId/authentication",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/aUtHeNtIcAtIoN",
+			Input: "/uSeRs/uSeRiD/aUtHeNtIcAtIoN",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/authentication/emailMethods",
+			Input: "/users/userId/authentication/emailMethods",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/aUtHeNtIcAtIoN/eMaIlMeThOdS",
+			Input: "/uSeRs/uSeRiD/aUtHeNtIcAtIoN/eMaIlMeThOdS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/users/userIdValue/authentication/emailMethods/emailAuthenticationMethodIdValue",
+			Input: "/users/userId/authentication/emailMethods/emailAuthenticationMethodId",
 			Expected: &UserIdAuthenticationEmailMethodId{
-				UserId:                      "userIdValue",
-				EmailAuthenticationMethodId: "emailAuthenticationMethodIdValue",
+				UserId:                      "userId",
+				EmailAuthenticationMethodId: "emailAuthenticationMethodId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/users/userIdValue/authentication/emailMethods/emailAuthenticationMethodIdValue/extra",
+			Input: "/users/userId/authentication/emailMethods/emailAuthenticationMethodId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/aUtHeNtIcAtIoN/eMaIlMeThOdS/eMaIlAuThEnTiCaTiOnMeThOdIdVaLuE",
+			Input: "/uSeRs/uSeRiD/aUtHeNtIcAtIoN/eMaIlMeThOdS/eMaIlAuThEnTiCaTiOnMeThOdId",
 			Expected: &UserIdAuthenticationEmailMethodId{
-				UserId:                      "uSeRiDvAlUe",
-				EmailAuthenticationMethodId: "eMaIlAuThEnTiCaTiOnMeThOdIdVaLuE",
+				UserId:                      "uSeRiD",
+				EmailAuthenticationMethodId: "eMaIlAuThEnTiCaTiOnMeThOdId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/aUtHeNtIcAtIoN/eMaIlMeThOdS/eMaIlAuThEnTiCaTiOnMeThOdIdVaLuE/extra",
+			Input: "/uSeRs/uSeRiD/aUtHeNtIcAtIoN/eMaIlMeThOdS/eMaIlAuThEnTiCaTiOnMeThOdId/extra",
 			Error: true,
 		},
 	}

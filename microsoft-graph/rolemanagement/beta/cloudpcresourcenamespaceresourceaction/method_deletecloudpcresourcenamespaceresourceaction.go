@@ -19,7 +19,8 @@ type DeleteCloudPCResourceNamespaceResourceActionOperationResponse struct {
 }
 
 type DeleteCloudPCResourceNamespaceResourceActionOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteCloudPCResourceNamespaceResourceActionOperationOptions() DeleteCloudPCResourceNamespaceResourceActionOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteCloudPCResourceNamespaceResourceActionOperationOptions) ToHeaders(
 
 func (o DeleteCloudPCResourceNamespaceResourceActionOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

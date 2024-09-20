@@ -190,38 +190,67 @@ func (s Site) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &Site{}
 
 func (s *Site) UnmarshalJSON(bytes []byte) error {
-	type alias Site
-	var decoded alias
+
+	var decoded struct {
+		Analytics              *ItemAnalytics              `json:"analytics,omitempty"`
+		Columns                *[]ColumnDefinition         `json:"columns,omitempty"`
+		ContentModels          *[]ContentModel             `json:"contentModels,omitempty"`
+		ContentTypes           *[]ContentType              `json:"contentTypes,omitempty"`
+		Deleted                *Deleted                    `json:"deleted,omitempty"`
+		DisplayName            nullable.Type[string]       `json:"displayName,omitempty"`
+		DocumentProcessingJobs *[]DocumentProcessingJob    `json:"documentProcessingJobs,omitempty"`
+		Drive                  *Drive                      `json:"drive,omitempty"`
+		Drives                 *[]Drive                    `json:"drives,omitempty"`
+		ExternalColumns        *[]ColumnDefinition         `json:"externalColumns,omitempty"`
+		InformationProtection  *InformationProtection      `json:"informationProtection,omitempty"`
+		IsPersonalSite         nullable.Type[bool]         `json:"isPersonalSite,omitempty"`
+		Items                  *[]BaseItem                 `json:"items,omitempty"`
+		Lists                  *[]List                     `json:"lists,omitempty"`
+		Onenote                *Onenote                    `json:"onenote,omitempty"`
+		Operations             *[]RichLongRunningOperation `json:"operations,omitempty"`
+		Pages                  *[]BaseSitePage             `json:"pages,omitempty"`
+		Permissions            *[]Permission               `json:"permissions,omitempty"`
+		RecycleBin             *RecycleBin                 `json:"recycleBin,omitempty"`
+		Root                   *Root                       `json:"root,omitempty"`
+		Settings               *SiteSettings               `json:"settings,omitempty"`
+		SharepointIds          *SharepointIds              `json:"sharepointIds,omitempty"`
+		SiteCollection         *SiteCollection             `json:"siteCollection,omitempty"`
+		Sites                  *[]Site                     `json:"sites,omitempty"`
+		TermStore              *TermStoreStore             `json:"termStore,omitempty"`
+		CreatedBy              *IdentitySet                `json:"createdBy,omitempty"`
+		CreatedByUser          *User                       `json:"createdByUser,omitempty"`
+		CreatedDateTime        *string                     `json:"createdDateTime,omitempty"`
+		Description            nullable.Type[string]       `json:"description,omitempty"`
+		ETag                   nullable.Type[string]       `json:"eTag,omitempty"`
+		LastModifiedBy         *IdentitySet                `json:"lastModifiedBy,omitempty"`
+		LastModifiedByUser     *User                       `json:"lastModifiedByUser,omitempty"`
+		LastModifiedDateTime   *string                     `json:"lastModifiedDateTime,omitempty"`
+		Name                   nullable.Type[string]       `json:"name,omitempty"`
+		ParentReference        *ItemReference              `json:"parentReference,omitempty"`
+		WebUrl                 nullable.Type[string]       `json:"webUrl,omitempty"`
+		Id                     *string                     `json:"id,omitempty"`
+		ODataId                *string                     `json:"@odata.id,omitempty"`
+		ODataType              *string                     `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into Site: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.Analytics = decoded.Analytics
 	s.Columns = decoded.Columns
 	s.ContentModels = decoded.ContentModels
 	s.ContentTypes = decoded.ContentTypes
-	s.CreatedByUser = decoded.CreatedByUser
-	s.CreatedDateTime = decoded.CreatedDateTime
 	s.Deleted = decoded.Deleted
-	s.Description = decoded.Description
 	s.DisplayName = decoded.DisplayName
 	s.DocumentProcessingJobs = decoded.DocumentProcessingJobs
 	s.Drive = decoded.Drive
 	s.Drives = decoded.Drives
-	s.ETag = decoded.ETag
 	s.ExternalColumns = decoded.ExternalColumns
-	s.Id = decoded.Id
 	s.InformationProtection = decoded.InformationProtection
 	s.IsPersonalSite = decoded.IsPersonalSite
-	s.LastModifiedByUser = decoded.LastModifiedByUser
-	s.LastModifiedDateTime = decoded.LastModifiedDateTime
 	s.Lists = decoded.Lists
-	s.Name = decoded.Name
-	s.ODataId = decoded.ODataId
-	s.ODataType = decoded.ODataType
 	s.Onenote = decoded.Onenote
 	s.Operations = decoded.Operations
-	s.ParentReference = decoded.ParentReference
 	s.Permissions = decoded.Permissions
 	s.RecycleBin = decoded.RecycleBin
 	s.Root = decoded.Root
@@ -230,6 +259,17 @@ func (s *Site) UnmarshalJSON(bytes []byte) error {
 	s.SiteCollection = decoded.SiteCollection
 	s.Sites = decoded.Sites
 	s.TermStore = decoded.TermStore
+	s.CreatedByUser = decoded.CreatedByUser
+	s.CreatedDateTime = decoded.CreatedDateTime
+	s.Description = decoded.Description
+	s.ETag = decoded.ETag
+	s.Id = decoded.Id
+	s.LastModifiedByUser = decoded.LastModifiedByUser
+	s.LastModifiedDateTime = decoded.LastModifiedDateTime
+	s.Name = decoded.Name
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
+	s.ParentReference = decoded.ParentReference
 	s.WebUrl = decoded.WebUrl
 
 	var temp map[string]json.RawMessage
@@ -286,5 +326,6 @@ func (s *Site) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Pages = &output
 	}
+
 	return nil
 }

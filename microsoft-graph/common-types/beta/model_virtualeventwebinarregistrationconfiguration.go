@@ -86,16 +86,25 @@ func (s VirtualEventWebinarRegistrationConfiguration) MarshalJSON() ([]byte, err
 var _ json.Unmarshaler = &VirtualEventWebinarRegistrationConfiguration{}
 
 func (s *VirtualEventWebinarRegistrationConfiguration) UnmarshalJSON(bytes []byte) error {
-	type alias VirtualEventWebinarRegistrationConfiguration
-	var decoded alias
+
+	var decoded struct {
+		IsManualApprovalEnabled nullable.Type[bool]                     `json:"isManualApprovalEnabled,omitempty"`
+		IsWaitlistEnabled       nullable.Type[bool]                     `json:"isWaitlistEnabled,omitempty"`
+		Capacity                nullable.Type[int64]                    `json:"capacity,omitempty"`
+		Questions               *[]VirtualEventRegistrationQuestionBase `json:"questions,omitempty"`
+		RegistrationWebUrl      nullable.Type[string]                   `json:"registrationWebUrl,omitempty"`
+		Id                      *string                                 `json:"id,omitempty"`
+		ODataId                 *string                                 `json:"@odata.id,omitempty"`
+		ODataType               *string                                 `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into VirtualEventWebinarRegistrationConfiguration: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
-	s.Capacity = decoded.Capacity
-	s.Id = decoded.Id
 	s.IsManualApprovalEnabled = decoded.IsManualApprovalEnabled
 	s.IsWaitlistEnabled = decoded.IsWaitlistEnabled
+	s.Capacity = decoded.Capacity
+	s.Id = decoded.Id
 	s.ODataId = decoded.ODataId
 	s.ODataType = decoded.ODataType
 	s.RegistrationWebUrl = decoded.RegistrationWebUrl
@@ -121,5 +130,6 @@ func (s *VirtualEventWebinarRegistrationConfiguration) UnmarshalJSON(bytes []byt
 		}
 		s.Questions = &output
 	}
+
 	return nil
 }

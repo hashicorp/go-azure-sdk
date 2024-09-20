@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/report` Documentation
 
-The `report` SDK allows for interaction with the Azure Resource Manager Service `devicemanagement` (API Version `beta`).
+The `report` SDK allows for interaction with Microsoft Graph `devicemanagement` (API Version `beta`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -15,7 +15,7 @@ import "github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/
 ### Client Initialization
 
 ```go
-client := report.NewReportClientWithBaseURI("https://management.azure.com")
+client := report.NewReportClientWithBaseURI("https://graph.microsoft.com")
 client.Client.Authorizer = authorizer
 ```
 
@@ -30,7 +30,7 @@ payload := report.CreateReportRetrieveAssignedApplicationsReportRequest{
 }
 
 
-read, err := client.CreateReportRetrieveAssignedApplicationsReport(ctx, payload)
+read, err := client.CreateReportRetrieveAssignedApplicationsReport(ctx, payload, report.DefaultCreateReportRetrieveAssignedApplicationsReportOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -50,7 +50,7 @@ payload := report.CreateReportRetrieveWin32CatalogAppsUpdateReportRequest{
 }
 
 
-read, err := client.CreateReportRetrieveWin32CatalogAppsUpdateReport(ctx, payload)
+read, err := client.CreateReportRetrieveWin32CatalogAppsUpdateReport(ctx, payload, report.DefaultCreateReportRetrieveWin32CatalogAppsUpdateReportOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -102,7 +102,7 @@ payload := report.GetReportsActiveMalwareReportRequest{
 }
 
 
-read, err := client.GetReportsActiveMalwareReport(ctx, payload)
+read, err := client.GetReportsActiveMalwareReport(ctx, payload, report.DefaultGetReportsActiveMalwareReportOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -122,7 +122,7 @@ payload := report.GetReportsActiveMalwareSummaryReportRequest{
 }
 
 
-read, err := client.GetReportsActiveMalwareSummaryReport(ctx, payload)
+read, err := client.GetReportsActiveMalwareSummaryReport(ctx, payload, report.DefaultGetReportsActiveMalwareSummaryReportOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -142,7 +142,7 @@ payload := report.GetReportsAllCertificatesReportRequest{
 }
 
 
-read, err := client.GetReportsAllCertificatesReport(ctx, payload)
+read, err := client.GetReportsAllCertificatesReport(ctx, payload, report.DefaultGetReportsAllCertificatesReportOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -162,7 +162,7 @@ payload := report.GetReportsAppStatusOverviewReportRequest{
 }
 
 
-read, err := client.GetReportsAppStatusOverviewReport(ctx, payload)
+read, err := client.GetReportsAppStatusOverviewReport(ctx, payload, report.DefaultGetReportsAppStatusOverviewReportOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -182,7 +182,7 @@ payload := report.GetReportsAppsInstallSummaryReportRequest{
 }
 
 
-read, err := client.GetReportsAppsInstallSummaryReport(ctx, payload)
+read, err := client.GetReportsAppsInstallSummaryReport(ctx, payload, report.DefaultGetReportsAppsInstallSummaryReportOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -202,7 +202,7 @@ payload := report.GetReportsCachedReportRequest{
 }
 
 
-read, err := client.GetReportsCachedReport(ctx, payload)
+read, err := client.GetReportsCachedReport(ctx, payload, report.DefaultGetReportsCachedReportOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -222,7 +222,7 @@ payload := report.GetReportsCertificatesReportRequest{
 }
 
 
-read, err := client.GetReportsCertificatesReport(ctx, payload)
+read, err := client.GetReportsCertificatesReport(ctx, payload, report.DefaultGetReportsCertificatesReportOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -242,7 +242,7 @@ payload := report.GetReportsCompliancePoliciesReportForDeviceRequest{
 }
 
 
-read, err := client.GetReportsCompliancePoliciesReportForDevice(ctx, payload)
+read, err := client.GetReportsCompliancePoliciesReportForDevice(ctx, payload, report.DefaultGetReportsCompliancePoliciesReportForDeviceOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -262,7 +262,7 @@ payload := report.GetReportsCompliancePolicyDeviceSummaryReportRequest{
 }
 
 
-read, err := client.GetReportsCompliancePolicyDeviceSummaryReport(ctx, payload)
+read, err := client.GetReportsCompliancePolicyDeviceSummaryReport(ctx, payload, report.DefaultGetReportsCompliancePolicyDeviceSummaryReportOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -282,7 +282,7 @@ payload := report.GetReportsCompliancePolicyDevicesReportRequest{
 }
 
 
-read, err := client.GetReportsCompliancePolicyDevicesReport(ctx, payload)
+read, err := client.GetReportsCompliancePolicyDevicesReport(ctx, payload, report.DefaultGetReportsCompliancePolicyDevicesReportOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -302,7 +302,7 @@ payload := report.GetReportsCompliancePolicyNonComplianceReportRequest{
 }
 
 
-read, err := client.GetReportsCompliancePolicyNonComplianceReport(ctx, payload)
+read, err := client.GetReportsCompliancePolicyNonComplianceReport(ctx, payload, report.DefaultGetReportsCompliancePolicyNonComplianceReportOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -322,7 +322,7 @@ payload := report.GetReportsCompliancePolicyNonComplianceSummaryReportRequest{
 }
 
 
-read, err := client.GetReportsCompliancePolicyNonComplianceSummaryReport(ctx, payload)
+read, err := client.GetReportsCompliancePolicyNonComplianceSummaryReport(ctx, payload, report.DefaultGetReportsCompliancePolicyNonComplianceSummaryReportOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -342,7 +342,7 @@ payload := report.GetReportsComplianceSettingDetailsReportRequest{
 }
 
 
-read, err := client.GetReportsComplianceSettingDetailsReport(ctx, payload)
+read, err := client.GetReportsComplianceSettingDetailsReport(ctx, payload, report.DefaultGetReportsComplianceSettingDetailsReportOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -362,7 +362,7 @@ payload := report.GetReportsComplianceSettingNonComplianceReportRequest{
 }
 
 
-read, err := client.GetReportsComplianceSettingNonComplianceReport(ctx, payload)
+read, err := client.GetReportsComplianceSettingNonComplianceReport(ctx, payload, report.DefaultGetReportsComplianceSettingNonComplianceReportOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -382,7 +382,7 @@ payload := report.GetReportsComplianceSettingsReportRequest{
 }
 
 
-read, err := client.GetReportsComplianceSettingsReport(ctx, payload)
+read, err := client.GetReportsComplianceSettingsReport(ctx, payload, report.DefaultGetReportsComplianceSettingsReportOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -402,7 +402,7 @@ payload := report.GetReportsConfigManagerDevicePolicyStatusReportRequest{
 }
 
 
-read, err := client.GetReportsConfigManagerDevicePolicyStatusReport(ctx, payload)
+read, err := client.GetReportsConfigManagerDevicePolicyStatusReport(ctx, payload, report.DefaultGetReportsConfigManagerDevicePolicyStatusReportOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -422,7 +422,7 @@ payload := report.GetReportsConfigurationPoliciesReportForDeviceRequest{
 }
 
 
-read, err := client.GetReportsConfigurationPoliciesReportForDevice(ctx, payload)
+read, err := client.GetReportsConfigurationPoliciesReportForDevice(ctx, payload, report.DefaultGetReportsConfigurationPoliciesReportForDeviceOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -442,7 +442,7 @@ payload := report.GetReportsConfigurationPolicyDeviceSummaryReportRequest{
 }
 
 
-read, err := client.GetReportsConfigurationPolicyDeviceSummaryReport(ctx, payload)
+read, err := client.GetReportsConfigurationPolicyDeviceSummaryReport(ctx, payload, report.DefaultGetReportsConfigurationPolicyDeviceSummaryReportOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -462,7 +462,7 @@ payload := report.GetReportsConfigurationPolicyDevicesReportRequest{
 }
 
 
-read, err := client.GetReportsConfigurationPolicyDevicesReport(ctx, payload)
+read, err := client.GetReportsConfigurationPolicyDevicesReport(ctx, payload, report.DefaultGetReportsConfigurationPolicyDevicesReportOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -482,7 +482,7 @@ payload := report.GetReportsConfigurationPolicyNonComplianceReportRequest{
 }
 
 
-read, err := client.GetReportsConfigurationPolicyNonComplianceReport(ctx, payload)
+read, err := client.GetReportsConfigurationPolicyNonComplianceReport(ctx, payload, report.DefaultGetReportsConfigurationPolicyNonComplianceReportOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -502,7 +502,7 @@ payload := report.GetReportsConfigurationPolicyNonComplianceSummaryReportRequest
 }
 
 
-read, err := client.GetReportsConfigurationPolicyNonComplianceSummaryReport(ctx, payload)
+read, err := client.GetReportsConfigurationPolicyNonComplianceSummaryReport(ctx, payload, report.DefaultGetReportsConfigurationPolicyNonComplianceSummaryReportOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -522,7 +522,7 @@ payload := report.GetReportsConfigurationPolicySettingsDeviceSummaryReportReques
 }
 
 
-read, err := client.GetReportsConfigurationPolicySettingsDeviceSummaryReport(ctx, payload)
+read, err := client.GetReportsConfigurationPolicySettingsDeviceSummaryReport(ctx, payload, report.DefaultGetReportsConfigurationPolicySettingsDeviceSummaryReportOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -542,7 +542,7 @@ payload := report.GetReportsConfigurationSettingDetailsReportRequest{
 }
 
 
-read, err := client.GetReportsConfigurationSettingDetailsReport(ctx, payload)
+read, err := client.GetReportsConfigurationSettingDetailsReport(ctx, payload, report.DefaultGetReportsConfigurationSettingDetailsReportOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -562,7 +562,7 @@ payload := report.GetReportsConfigurationSettingNonComplianceReportRequest{
 }
 
 
-read, err := client.GetReportsConfigurationSettingNonComplianceReport(ctx, payload)
+read, err := client.GetReportsConfigurationSettingNonComplianceReport(ctx, payload, report.DefaultGetReportsConfigurationSettingNonComplianceReportOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -582,7 +582,7 @@ payload := report.GetReportsConfigurationSettingsReportRequest{
 }
 
 
-read, err := client.GetReportsConfigurationSettingsReport(ctx, payload)
+read, err := client.GetReportsConfigurationSettingsReport(ctx, payload, report.DefaultGetReportsConfigurationSettingsReportOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -602,7 +602,7 @@ payload := report.GetReportsDeviceConfigurationPolicySettingsSummaryReportReques
 }
 
 
-read, err := client.GetReportsDeviceConfigurationPolicySettingsSummaryReport(ctx, payload)
+read, err := client.GetReportsDeviceConfigurationPolicySettingsSummaryReport(ctx, payload, report.DefaultGetReportsDeviceConfigurationPolicySettingsSummaryReportOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -622,7 +622,7 @@ payload := report.GetReportsDeviceConfigurationPolicyStatusSummaryRequest{
 }
 
 
-read, err := client.GetReportsDeviceConfigurationPolicyStatusSummary(ctx, payload)
+read, err := client.GetReportsDeviceConfigurationPolicyStatusSummary(ctx, payload, report.DefaultGetReportsDeviceConfigurationPolicyStatusSummaryOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -642,7 +642,7 @@ payload := report.GetReportsDeviceInstallStatusReportRequest{
 }
 
 
-read, err := client.GetReportsDeviceInstallStatusReport(ctx, payload)
+read, err := client.GetReportsDeviceInstallStatusReport(ctx, payload, report.DefaultGetReportsDeviceInstallStatusReportOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -652,17 +652,17 @@ if model := read.Model; model != nil {
 ```
 
 
-### Example Usage: `ReportClient.GetReportsDeviceManagementIntentPerSettingContributingProfile`
+### Example Usage: `ReportClient.GetReportsDeviceManagementIntentPerSettingContributingProfiles`
 
 ```go
 ctx := context.TODO()
 
-payload := report.GetReportsDeviceManagementIntentPerSettingContributingProfileRequest{
+payload := report.GetReportsDeviceManagementIntentPerSettingContributingProfilesRequest{
 	// ...
 }
 
 
-read, err := client.GetReportsDeviceManagementIntentPerSettingContributingProfile(ctx, payload)
+read, err := client.GetReportsDeviceManagementIntentPerSettingContributingProfiles(ctx, payload, report.DefaultGetReportsDeviceManagementIntentPerSettingContributingProfilesOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -682,7 +682,7 @@ payload := report.GetReportsDeviceManagementIntentSettingsReportRequest{
 }
 
 
-read, err := client.GetReportsDeviceManagementIntentSettingsReport(ctx, payload)
+read, err := client.GetReportsDeviceManagementIntentSettingsReport(ctx, payload, report.DefaultGetReportsDeviceManagementIntentSettingsReportOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -702,7 +702,7 @@ payload := report.GetReportsDeviceNonComplianceReportRequest{
 }
 
 
-read, err := client.GetReportsDeviceNonComplianceReport(ctx, payload)
+read, err := client.GetReportsDeviceNonComplianceReport(ctx, payload, report.DefaultGetReportsDeviceNonComplianceReportOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -722,7 +722,7 @@ payload := report.GetReportsDevicePoliciesComplianceReportRequest{
 }
 
 
-read, err := client.GetReportsDevicePoliciesComplianceReport(ctx, payload)
+read, err := client.GetReportsDevicePoliciesComplianceReport(ctx, payload, report.DefaultGetReportsDevicePoliciesComplianceReportOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -742,7 +742,7 @@ payload := report.GetReportsDevicePolicySettingsComplianceReportRequest{
 }
 
 
-read, err := client.GetReportsDevicePolicySettingsComplianceReport(ctx, payload)
+read, err := client.GetReportsDevicePolicySettingsComplianceReport(ctx, payload, report.DefaultGetReportsDevicePolicySettingsComplianceReportOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -762,7 +762,7 @@ payload := report.GetReportsDeviceStatusByCompliacePolicyReportRequest{
 }
 
 
-read, err := client.GetReportsDeviceStatusByCompliacePolicyReport(ctx, payload)
+read, err := client.GetReportsDeviceStatusByCompliacePolicyReport(ctx, payload, report.DefaultGetReportsDeviceStatusByCompliacePolicyReportOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -782,7 +782,7 @@ payload := report.GetReportsDeviceStatusByCompliancePolicySettingReportRequest{
 }
 
 
-read, err := client.GetReportsDeviceStatusByCompliancePolicySettingReport(ctx, payload)
+read, err := client.GetReportsDeviceStatusByCompliancePolicySettingReport(ctx, payload, report.DefaultGetReportsDeviceStatusByCompliancePolicySettingReportOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -802,7 +802,7 @@ payload := report.GetReportsDeviceStatusSummaryByCompliacePolicyReportRequest{
 }
 
 
-read, err := client.GetReportsDeviceStatusSummaryByCompliacePolicyReport(ctx, payload)
+read, err := client.GetReportsDeviceStatusSummaryByCompliacePolicyReport(ctx, payload, report.DefaultGetReportsDeviceStatusSummaryByCompliacePolicyReportOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -822,7 +822,7 @@ payload := report.GetReportsDeviceStatusSummaryByCompliancePolicySettingsReportR
 }
 
 
-read, err := client.GetReportsDeviceStatusSummaryByCompliancePolicySettingsReport(ctx, payload)
+read, err := client.GetReportsDeviceStatusSummaryByCompliancePolicySettingsReport(ctx, payload, report.DefaultGetReportsDeviceStatusSummaryByCompliancePolicySettingsReportOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -842,7 +842,7 @@ payload := report.GetReportsDevicesStatusByPolicyPlatformComplianceReportRequest
 }
 
 
-read, err := client.GetReportsDevicesStatusByPolicyPlatformComplianceReport(ctx, payload)
+read, err := client.GetReportsDevicesStatusByPolicyPlatformComplianceReport(ctx, payload, report.DefaultGetReportsDevicesStatusByPolicyPlatformComplianceReportOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -862,7 +862,7 @@ payload := report.GetReportsDevicesStatusBySettingReportRequest{
 }
 
 
-read, err := client.GetReportsDevicesStatusBySettingReport(ctx, payload)
+read, err := client.GetReportsDevicesStatusBySettingReport(ctx, payload, report.DefaultGetReportsDevicesStatusBySettingReportOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -882,7 +882,7 @@ payload := report.GetReportsDevicesWithoutCompliancePolicyReportRequest{
 }
 
 
-read, err := client.GetReportsDevicesWithoutCompliancePolicyReport(ctx, payload)
+read, err := client.GetReportsDevicesWithoutCompliancePolicyReport(ctx, payload, report.DefaultGetReportsDevicesWithoutCompliancePolicyReportOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -892,17 +892,17 @@ if model := read.Model; model != nil {
 ```
 
 
-### Example Usage: `ReportClient.GetReportsEncryptionReportForDevice`
+### Example Usage: `ReportClient.GetReportsEncryptionReportForDevices`
 
 ```go
 ctx := context.TODO()
 
-payload := report.GetReportsEncryptionReportForDeviceRequest{
+payload := report.GetReportsEncryptionReportForDevicesRequest{
 	// ...
 }
 
 
-read, err := client.GetReportsEncryptionReportForDevice(ctx, payload)
+read, err := client.GetReportsEncryptionReportForDevices(ctx, payload, report.DefaultGetReportsEncryptionReportForDevicesOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -922,7 +922,7 @@ payload := report.GetReportsEnrollmentConfigurationPoliciesByDeviceRequest{
 }
 
 
-read, err := client.GetReportsEnrollmentConfigurationPoliciesByDevice(ctx, payload)
+read, err := client.GetReportsEnrollmentConfigurationPoliciesByDevice(ctx, payload, report.DefaultGetReportsEnrollmentConfigurationPoliciesByDeviceOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -942,7 +942,7 @@ payload := report.GetReportsFailedMobileAppsReportRequest{
 }
 
 
-read, err := client.GetReportsFailedMobileAppsReport(ctx, payload)
+read, err := client.GetReportsFailedMobileAppsReport(ctx, payload, report.DefaultGetReportsFailedMobileAppsReportOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -962,7 +962,7 @@ payload := report.GetReportsFailedMobileAppsSummaryReportRequest{
 }
 
 
-read, err := client.GetReportsFailedMobileAppsSummaryReport(ctx, payload)
+read, err := client.GetReportsFailedMobileAppsSummaryReport(ctx, payload, report.DefaultGetReportsFailedMobileAppsSummaryReportOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -972,17 +972,17 @@ if model := read.Model; model != nil {
 ```
 
 
-### Example Usage: `ReportClient.GetReportsFilter`
+### Example Usage: `ReportClient.GetReportsFilters`
 
 ```go
 ctx := context.TODO()
 
-payload := report.GetReportsFilterRequest{
+payload := report.GetReportsFiltersRequest{
 	// ...
 }
 
 
-read, err := client.GetReportsFilter(ctx, payload)
+read, err := client.GetReportsFilters(ctx, payload, report.DefaultGetReportsFiltersOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -1002,7 +1002,7 @@ payload := report.GetReportsGroupPolicySettingsDeviceSettingsReportRequest{
 }
 
 
-read, err := client.GetReportsGroupPolicySettingsDeviceSettingsReport(ctx, payload)
+read, err := client.GetReportsGroupPolicySettingsDeviceSettingsReport(ctx, payload, report.DefaultGetReportsGroupPolicySettingsDeviceSettingsReportOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -1022,7 +1022,7 @@ payload := report.GetReportsHistoricalReportRequest{
 }
 
 
-read, err := client.GetReportsHistoricalReport(ctx, payload)
+read, err := client.GetReportsHistoricalReport(ctx, payload, report.DefaultGetReportsHistoricalReportOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -1042,7 +1042,7 @@ payload := report.GetReportsMalwareSummaryReportRequest{
 }
 
 
-read, err := client.GetReportsMalwareSummaryReport(ctx, payload)
+read, err := client.GetReportsMalwareSummaryReport(ctx, payload, report.DefaultGetReportsMalwareSummaryReportOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -1062,7 +1062,7 @@ payload := report.GetReportsMobileApplicationManagementAppConfigurationReportReq
 }
 
 
-read, err := client.GetReportsMobileApplicationManagementAppConfigurationReport(ctx, payload)
+read, err := client.GetReportsMobileApplicationManagementAppConfigurationReport(ctx, payload, report.DefaultGetReportsMobileApplicationManagementAppConfigurationReportOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -1082,7 +1082,7 @@ payload := report.GetReportsMobileApplicationManagementAppRegistrationSummaryRep
 }
 
 
-read, err := client.GetReportsMobileApplicationManagementAppRegistrationSummaryReport(ctx, payload)
+read, err := client.GetReportsMobileApplicationManagementAppRegistrationSummaryReport(ctx, payload, report.DefaultGetReportsMobileApplicationManagementAppRegistrationSummaryReportOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -1102,7 +1102,7 @@ payload := report.GetReportsNoncompliantDevicesAndSettingsReportRequest{
 }
 
 
-read, err := client.GetReportsNoncompliantDevicesAndSettingsReport(ctx, payload)
+read, err := client.GetReportsNoncompliantDevicesAndSettingsReport(ctx, payload, report.DefaultGetReportsNoncompliantDevicesAndSettingsReportOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -1122,7 +1122,7 @@ payload := report.GetReportsPolicyNonComplianceMetadataRequest{
 }
 
 
-read, err := client.GetReportsPolicyNonComplianceMetadata(ctx, payload)
+read, err := client.GetReportsPolicyNonComplianceMetadata(ctx, payload, report.DefaultGetReportsPolicyNonComplianceMetadataOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -1142,7 +1142,7 @@ payload := report.GetReportsPolicyNonComplianceReportRequest{
 }
 
 
-read, err := client.GetReportsPolicyNonComplianceReport(ctx, payload)
+read, err := client.GetReportsPolicyNonComplianceReport(ctx, payload, report.DefaultGetReportsPolicyNonComplianceReportOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -1162,7 +1162,7 @@ payload := report.GetReportsPolicyNonComplianceSummaryReportRequest{
 }
 
 
-read, err := client.GetReportsPolicyNonComplianceSummaryReport(ctx, payload)
+read, err := client.GetReportsPolicyNonComplianceSummaryReport(ctx, payload, report.DefaultGetReportsPolicyNonComplianceSummaryReportOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -1182,7 +1182,7 @@ payload := report.GetReportsQuietTimePolicyUserSummaryReportRequest{
 }
 
 
-read, err := client.GetReportsQuietTimePolicyUserSummaryReport(ctx, payload)
+read, err := client.GetReportsQuietTimePolicyUserSummaryReport(ctx, payload, report.DefaultGetReportsQuietTimePolicyUserSummaryReportOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -1202,7 +1202,7 @@ payload := report.GetReportsQuietTimePolicyUsersReportRequest{
 }
 
 
-read, err := client.GetReportsQuietTimePolicyUsersReport(ctx, payload)
+read, err := client.GetReportsQuietTimePolicyUsersReport(ctx, payload, report.DefaultGetReportsQuietTimePolicyUsersReportOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -1222,7 +1222,7 @@ payload := report.GetReportsRelatedAppsStatusReportRequest{
 }
 
 
-read, err := client.GetReportsRelatedAppsStatusReport(ctx, payload)
+read, err := client.GetReportsRelatedAppsStatusReport(ctx, payload, report.DefaultGetReportsRelatedAppsStatusReportOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -1242,7 +1242,7 @@ payload := report.GetReportsRemoteAssistanceSessionsReportRequest{
 }
 
 
-read, err := client.GetReportsRemoteAssistanceSessionsReport(ctx, payload)
+read, err := client.GetReportsRemoteAssistanceSessionsReport(ctx, payload, report.DefaultGetReportsRemoteAssistanceSessionsReportOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -1262,7 +1262,7 @@ payload := report.GetReportsSettingNonComplianceReportRequest{
 }
 
 
-read, err := client.GetReportsSettingNonComplianceReport(ctx, payload)
+read, err := client.GetReportsSettingNonComplianceReport(ctx, payload, report.DefaultGetReportsSettingNonComplianceReportOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -1282,7 +1282,7 @@ payload := report.GetReportsUnhealthyDefenderAgentsReportRequest{
 }
 
 
-read, err := client.GetReportsUnhealthyDefenderAgentsReport(ctx, payload)
+read, err := client.GetReportsUnhealthyDefenderAgentsReport(ctx, payload, report.DefaultGetReportsUnhealthyDefenderAgentsReportOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -1302,7 +1302,7 @@ payload := report.GetReportsUnhealthyFirewallReportRequest{
 }
 
 
-read, err := client.GetReportsUnhealthyFirewallReport(ctx, payload)
+read, err := client.GetReportsUnhealthyFirewallReport(ctx, payload, report.DefaultGetReportsUnhealthyFirewallReportOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -1322,7 +1322,7 @@ payload := report.GetReportsUnhealthyFirewallSummaryReportRequest{
 }
 
 
-read, err := client.GetReportsUnhealthyFirewallSummaryReport(ctx, payload)
+read, err := client.GetReportsUnhealthyFirewallSummaryReport(ctx, payload, report.DefaultGetReportsUnhealthyFirewallSummaryReportOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -1342,7 +1342,7 @@ payload := report.GetReportsUserInstallStatusReportRequest{
 }
 
 
-read, err := client.GetReportsUserInstallStatusReport(ctx, payload)
+read, err := client.GetReportsUserInstallStatusReport(ctx, payload, report.DefaultGetReportsUserInstallStatusReportOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -1362,7 +1362,7 @@ payload := report.GetReportsWindowsDriverUpdateAlertSummaryReportRequest{
 }
 
 
-read, err := client.GetReportsWindowsDriverUpdateAlertSummaryReport(ctx, payload)
+read, err := client.GetReportsWindowsDriverUpdateAlertSummaryReport(ctx, payload, report.DefaultGetReportsWindowsDriverUpdateAlertSummaryReportOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -1382,7 +1382,7 @@ payload := report.GetReportsWindowsDriverUpdateAlertsPerPolicyPerDeviceReportReq
 }
 
 
-read, err := client.GetReportsWindowsDriverUpdateAlertsPerPolicyPerDeviceReport(ctx, payload)
+read, err := client.GetReportsWindowsDriverUpdateAlertsPerPolicyPerDeviceReport(ctx, payload, report.DefaultGetReportsWindowsDriverUpdateAlertsPerPolicyPerDeviceReportOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -1402,7 +1402,7 @@ payload := report.GetReportsWindowsQualityUpdateAlertSummaryReportRequest{
 }
 
 
-read, err := client.GetReportsWindowsQualityUpdateAlertSummaryReport(ctx, payload)
+read, err := client.GetReportsWindowsQualityUpdateAlertSummaryReport(ctx, payload, report.DefaultGetReportsWindowsQualityUpdateAlertSummaryReportOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -1422,7 +1422,7 @@ payload := report.GetReportsWindowsQualityUpdateAlertsPerPolicyPerDeviceReportRe
 }
 
 
-read, err := client.GetReportsWindowsQualityUpdateAlertsPerPolicyPerDeviceReport(ctx, payload)
+read, err := client.GetReportsWindowsQualityUpdateAlertsPerPolicyPerDeviceReport(ctx, payload, report.DefaultGetReportsWindowsQualityUpdateAlertsPerPolicyPerDeviceReportOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -1442,7 +1442,7 @@ payload := report.GetReportsWindowsUpdateAlertSummaryReportRequest{
 }
 
 
-read, err := client.GetReportsWindowsUpdateAlertSummaryReport(ctx, payload)
+read, err := client.GetReportsWindowsUpdateAlertSummaryReport(ctx, payload, report.DefaultGetReportsWindowsUpdateAlertSummaryReportOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -1462,7 +1462,7 @@ payload := report.GetReportsWindowsUpdateAlertsPerPolicyPerDeviceReportRequest{
 }
 
 
-read, err := client.GetReportsWindowsUpdateAlertsPerPolicyPerDeviceReport(ctx, payload)
+read, err := client.GetReportsWindowsUpdateAlertsPerPolicyPerDeviceReport(ctx, payload, report.DefaultGetReportsWindowsUpdateAlertsPerPolicyPerDeviceReportOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -1482,7 +1482,7 @@ payload := report.GetReportsZebraFotaDeploymentReportRequest{
 }
 
 
-read, err := client.GetReportsZebraFotaDeploymentReport(ctx, payload)
+read, err := client.GetReportsZebraFotaDeploymentReport(ctx, payload, report.DefaultGetReportsZebraFotaDeploymentReportOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -1502,7 +1502,7 @@ payload := report.DeviceManagementReports{
 }
 
 
-read, err := client.UpdateReport(ctx, payload)
+read, err := client.UpdateReport(ctx, payload, report.DefaultUpdateReportOperationOptions())
 if err != nil {
 	// handle the error
 }

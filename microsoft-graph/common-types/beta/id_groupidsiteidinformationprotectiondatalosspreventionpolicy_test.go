@@ -12,24 +12,24 @@ import (
 var _ resourceids.ResourceId = &GroupIdSiteIdInformationProtectionDataLossPreventionPolicyId{}
 
 func TestNewGroupIdSiteIdInformationProtectionDataLossPreventionPolicyID(t *testing.T) {
-	id := NewGroupIdSiteIdInformationProtectionDataLossPreventionPolicyID("groupIdValue", "siteIdValue", "dataLossPreventionPolicyIdValue")
+	id := NewGroupIdSiteIdInformationProtectionDataLossPreventionPolicyID("groupId", "siteId", "dataLossPreventionPolicyId")
 
-	if id.GroupId != "groupIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'GroupId'", id.GroupId, "groupIdValue")
+	if id.GroupId != "groupId" {
+		t.Fatalf("Expected %q but got %q for Segment 'GroupId'", id.GroupId, "groupId")
 	}
 
-	if id.SiteId != "siteIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'SiteId'", id.SiteId, "siteIdValue")
+	if id.SiteId != "siteId" {
+		t.Fatalf("Expected %q but got %q for Segment 'SiteId'", id.SiteId, "siteId")
 	}
 
-	if id.DataLossPreventionPolicyId != "dataLossPreventionPolicyIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DataLossPreventionPolicyId'", id.DataLossPreventionPolicyId, "dataLossPreventionPolicyIdValue")
+	if id.DataLossPreventionPolicyId != "dataLossPreventionPolicyId" {
+		t.Fatalf("Expected %q but got %q for Segment 'DataLossPreventionPolicyId'", id.DataLossPreventionPolicyId, "dataLossPreventionPolicyId")
 	}
 }
 
 func TestFormatGroupIdSiteIdInformationProtectionDataLossPreventionPolicyID(t *testing.T) {
-	actual := NewGroupIdSiteIdInformationProtectionDataLossPreventionPolicyID("groupIdValue", "siteIdValue", "dataLossPreventionPolicyIdValue").ID()
-	expected := "/groups/groupIdValue/sites/siteIdValue/informationProtection/dataLossPreventionPolicies/dataLossPreventionPolicyIdValue"
+	actual := NewGroupIdSiteIdInformationProtectionDataLossPreventionPolicyID("groupId", "siteId", "dataLossPreventionPolicyId").ID()
+	expected := "/groups/groupId/sites/siteId/informationProtection/dataLossPreventionPolicies/dataLossPreventionPolicyId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -53,41 +53,41 @@ func TestParseGroupIdSiteIdInformationProtectionDataLossPreventionPolicyID(t *te
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue",
+			Input: "/groups/groupId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/sites",
+			Input: "/groups/groupId/sites",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/sites/siteIdValue",
+			Input: "/groups/groupId/sites/siteId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/sites/siteIdValue/informationProtection",
+			Input: "/groups/groupId/sites/siteId/informationProtection",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/sites/siteIdValue/informationProtection/dataLossPreventionPolicies",
+			Input: "/groups/groupId/sites/siteId/informationProtection/dataLossPreventionPolicies",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/groups/groupIdValue/sites/siteIdValue/informationProtection/dataLossPreventionPolicies/dataLossPreventionPolicyIdValue",
+			Input: "/groups/groupId/sites/siteId/informationProtection/dataLossPreventionPolicies/dataLossPreventionPolicyId",
 			Expected: &GroupIdSiteIdInformationProtectionDataLossPreventionPolicyId{
-				GroupId:                    "groupIdValue",
-				SiteId:                     "siteIdValue",
-				DataLossPreventionPolicyId: "dataLossPreventionPolicyIdValue",
+				GroupId:                    "groupId",
+				SiteId:                     "siteId",
+				DataLossPreventionPolicyId: "dataLossPreventionPolicyId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/groups/groupIdValue/sites/siteIdValue/informationProtection/dataLossPreventionPolicies/dataLossPreventionPolicyIdValue/extra",
+			Input: "/groups/groupId/sites/siteId/informationProtection/dataLossPreventionPolicies/dataLossPreventionPolicyId/extra",
 			Error: true,
 		},
 	}
@@ -144,80 +144,80 @@ func TestParseGroupIdSiteIdInformationProtectionDataLossPreventionPolicyIDInsens
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue",
+			Input: "/groups/groupId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE",
+			Input: "/gRoUpS/gRoUpId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/sites",
+			Input: "/groups/groupId/sites",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/sItEs",
+			Input: "/gRoUpS/gRoUpId/sItEs",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/sites/siteIdValue",
+			Input: "/groups/groupId/sites/siteId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/sItEs/sItEiDvAlUe",
+			Input: "/gRoUpS/gRoUpId/sItEs/sItEiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/sites/siteIdValue/informationProtection",
+			Input: "/groups/groupId/sites/siteId/informationProtection",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/sItEs/sItEiDvAlUe/iNfOrMaTiOnPrOtEcTiOn",
+			Input: "/gRoUpS/gRoUpId/sItEs/sItEiD/iNfOrMaTiOnPrOtEcTiOn",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/sites/siteIdValue/informationProtection/dataLossPreventionPolicies",
+			Input: "/groups/groupId/sites/siteId/informationProtection/dataLossPreventionPolicies",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/sItEs/sItEiDvAlUe/iNfOrMaTiOnPrOtEcTiOn/dAtAlOsSpReVeNtIoNpOlIcIeS",
+			Input: "/gRoUpS/gRoUpId/sItEs/sItEiD/iNfOrMaTiOnPrOtEcTiOn/dAtAlOsSpReVeNtIoNpOlIcIeS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/groups/groupIdValue/sites/siteIdValue/informationProtection/dataLossPreventionPolicies/dataLossPreventionPolicyIdValue",
+			Input: "/groups/groupId/sites/siteId/informationProtection/dataLossPreventionPolicies/dataLossPreventionPolicyId",
 			Expected: &GroupIdSiteIdInformationProtectionDataLossPreventionPolicyId{
-				GroupId:                    "groupIdValue",
-				SiteId:                     "siteIdValue",
-				DataLossPreventionPolicyId: "dataLossPreventionPolicyIdValue",
+				GroupId:                    "groupId",
+				SiteId:                     "siteId",
+				DataLossPreventionPolicyId: "dataLossPreventionPolicyId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/groups/groupIdValue/sites/siteIdValue/informationProtection/dataLossPreventionPolicies/dataLossPreventionPolicyIdValue/extra",
+			Input: "/groups/groupId/sites/siteId/informationProtection/dataLossPreventionPolicies/dataLossPreventionPolicyId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/sItEs/sItEiDvAlUe/iNfOrMaTiOnPrOtEcTiOn/dAtAlOsSpReVeNtIoNpOlIcIeS/dAtAlOsSpReVeNtIoNpOlIcYiDvAlUe",
+			Input: "/gRoUpS/gRoUpId/sItEs/sItEiD/iNfOrMaTiOnPrOtEcTiOn/dAtAlOsSpReVeNtIoNpOlIcIeS/dAtAlOsSpReVeNtIoNpOlIcYiD",
 			Expected: &GroupIdSiteIdInformationProtectionDataLossPreventionPolicyId{
-				GroupId:                    "gRoUpIdVaLuE",
-				SiteId:                     "sItEiDvAlUe",
-				DataLossPreventionPolicyId: "dAtAlOsSpReVeNtIoNpOlIcYiDvAlUe",
+				GroupId:                    "gRoUpId",
+				SiteId:                     "sItEiD",
+				DataLossPreventionPolicyId: "dAtAlOsSpReVeNtIoNpOlIcYiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/sItEs/sItEiDvAlUe/iNfOrMaTiOnPrOtEcTiOn/dAtAlOsSpReVeNtIoNpOlIcIeS/dAtAlOsSpReVeNtIoNpOlIcYiDvAlUe/extra",
+			Input: "/gRoUpS/gRoUpId/sItEs/sItEiD/iNfOrMaTiOnPrOtEcTiOn/dAtAlOsSpReVeNtIoNpOlIcIeS/dAtAlOsSpReVeNtIoNpOlIcYiD/extra",
 			Error: true,
 		},
 	}

@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &GroupIdTeamScheduleSwapShiftsChangeRequestId{}
 
 func TestNewGroupIdTeamScheduleSwapShiftsChangeRequestID(t *testing.T) {
-	id := NewGroupIdTeamScheduleSwapShiftsChangeRequestID("groupIdValue", "swapShiftsChangeRequestIdValue")
+	id := NewGroupIdTeamScheduleSwapShiftsChangeRequestID("groupId", "swapShiftsChangeRequestId")
 
-	if id.GroupId != "groupIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'GroupId'", id.GroupId, "groupIdValue")
+	if id.GroupId != "groupId" {
+		t.Fatalf("Expected %q but got %q for Segment 'GroupId'", id.GroupId, "groupId")
 	}
 
-	if id.SwapShiftsChangeRequestId != "swapShiftsChangeRequestIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'SwapShiftsChangeRequestId'", id.SwapShiftsChangeRequestId, "swapShiftsChangeRequestIdValue")
+	if id.SwapShiftsChangeRequestId != "swapShiftsChangeRequestId" {
+		t.Fatalf("Expected %q but got %q for Segment 'SwapShiftsChangeRequestId'", id.SwapShiftsChangeRequestId, "swapShiftsChangeRequestId")
 	}
 }
 
 func TestFormatGroupIdTeamScheduleSwapShiftsChangeRequestID(t *testing.T) {
-	actual := NewGroupIdTeamScheduleSwapShiftsChangeRequestID("groupIdValue", "swapShiftsChangeRequestIdValue").ID()
-	expected := "/groups/groupIdValue/team/schedule/swapShiftsChangeRequests/swapShiftsChangeRequestIdValue"
+	actual := NewGroupIdTeamScheduleSwapShiftsChangeRequestID("groupId", "swapShiftsChangeRequestId").ID()
+	expected := "/groups/groupId/team/schedule/swapShiftsChangeRequests/swapShiftsChangeRequestId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -49,35 +49,35 @@ func TestParseGroupIdTeamScheduleSwapShiftsChangeRequestID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue",
+			Input: "/groups/groupId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/team",
+			Input: "/groups/groupId/team",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/team/schedule",
+			Input: "/groups/groupId/team/schedule",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/team/schedule/swapShiftsChangeRequests",
+			Input: "/groups/groupId/team/schedule/swapShiftsChangeRequests",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/groups/groupIdValue/team/schedule/swapShiftsChangeRequests/swapShiftsChangeRequestIdValue",
+			Input: "/groups/groupId/team/schedule/swapShiftsChangeRequests/swapShiftsChangeRequestId",
 			Expected: &GroupIdTeamScheduleSwapShiftsChangeRequestId{
-				GroupId:                   "groupIdValue",
-				SwapShiftsChangeRequestId: "swapShiftsChangeRequestIdValue",
+				GroupId:                   "groupId",
+				SwapShiftsChangeRequestId: "swapShiftsChangeRequestId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/groups/groupIdValue/team/schedule/swapShiftsChangeRequests/swapShiftsChangeRequestIdValue/extra",
+			Input: "/groups/groupId/team/schedule/swapShiftsChangeRequests/swapShiftsChangeRequestId/extra",
 			Error: true,
 		},
 	}
@@ -130,68 +130,68 @@ func TestParseGroupIdTeamScheduleSwapShiftsChangeRequestIDInsensitively(t *testi
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue",
+			Input: "/groups/groupId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE",
+			Input: "/gRoUpS/gRoUpId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/team",
+			Input: "/groups/groupId/team",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/tEaM",
+			Input: "/gRoUpS/gRoUpId/tEaM",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/team/schedule",
+			Input: "/groups/groupId/team/schedule",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/tEaM/sChEdUlE",
+			Input: "/gRoUpS/gRoUpId/tEaM/sChEdUlE",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/team/schedule/swapShiftsChangeRequests",
+			Input: "/groups/groupId/team/schedule/swapShiftsChangeRequests",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/tEaM/sChEdUlE/sWaPsHiFtScHaNgErEqUeStS",
+			Input: "/gRoUpS/gRoUpId/tEaM/sChEdUlE/sWaPsHiFtScHaNgErEqUeStS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/groups/groupIdValue/team/schedule/swapShiftsChangeRequests/swapShiftsChangeRequestIdValue",
+			Input: "/groups/groupId/team/schedule/swapShiftsChangeRequests/swapShiftsChangeRequestId",
 			Expected: &GroupIdTeamScheduleSwapShiftsChangeRequestId{
-				GroupId:                   "groupIdValue",
-				SwapShiftsChangeRequestId: "swapShiftsChangeRequestIdValue",
+				GroupId:                   "groupId",
+				SwapShiftsChangeRequestId: "swapShiftsChangeRequestId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/groups/groupIdValue/team/schedule/swapShiftsChangeRequests/swapShiftsChangeRequestIdValue/extra",
+			Input: "/groups/groupId/team/schedule/swapShiftsChangeRequests/swapShiftsChangeRequestId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/tEaM/sChEdUlE/sWaPsHiFtScHaNgErEqUeStS/sWaPsHiFtScHaNgErEqUeStIdVaLuE",
+			Input: "/gRoUpS/gRoUpId/tEaM/sChEdUlE/sWaPsHiFtScHaNgErEqUeStS/sWaPsHiFtScHaNgErEqUeStId",
 			Expected: &GroupIdTeamScheduleSwapShiftsChangeRequestId{
-				GroupId:                   "gRoUpIdVaLuE",
-				SwapShiftsChangeRequestId: "sWaPsHiFtScHaNgErEqUeStIdVaLuE",
+				GroupId:                   "gRoUpId",
+				SwapShiftsChangeRequestId: "sWaPsHiFtScHaNgErEqUeStId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/tEaM/sChEdUlE/sWaPsHiFtScHaNgErEqUeStS/sWaPsHiFtScHaNgErEqUeStIdVaLuE/extra",
+			Input: "/gRoUpS/gRoUpId/tEaM/sChEdUlE/sWaPsHiFtScHaNgErEqUeStS/sWaPsHiFtScHaNgErEqUeStId/extra",
 			Error: true,
 		},
 	}

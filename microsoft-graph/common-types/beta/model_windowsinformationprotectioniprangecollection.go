@@ -25,10 +25,15 @@ type WindowsInformationProtectionIPRangeCollection struct {
 var _ json.Unmarshaler = &WindowsInformationProtectionIPRangeCollection{}
 
 func (s *WindowsInformationProtectionIPRangeCollection) UnmarshalJSON(bytes []byte) error {
-	type alias WindowsInformationProtectionIPRangeCollection
-	var decoded alias
+
+	var decoded struct {
+		DisplayName *string    `json:"displayName,omitempty"`
+		ODataId     *string    `json:"@odata.id,omitempty"`
+		ODataType   *string    `json:"@odata.type,omitempty"`
+		Ranges      *[]IPRange `json:"ranges,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into WindowsInformationProtectionIPRangeCollection: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.DisplayName = decoded.DisplayName
@@ -56,5 +61,6 @@ func (s *WindowsInformationProtectionIPRangeCollection) UnmarshalJSON(bytes []by
 		}
 		s.Ranges = &output
 	}
+
 	return nil
 }

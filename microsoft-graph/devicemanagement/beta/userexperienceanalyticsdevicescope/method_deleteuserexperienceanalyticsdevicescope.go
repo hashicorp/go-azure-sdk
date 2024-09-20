@@ -19,7 +19,8 @@ type DeleteUserExperienceAnalyticsDeviceScopeOperationResponse struct {
 }
 
 type DeleteUserExperienceAnalyticsDeviceScopeOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteUserExperienceAnalyticsDeviceScopeOperationOptions() DeleteUserExperienceAnalyticsDeviceScopeOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteUserExperienceAnalyticsDeviceScopeOperationOptions) ToHeaders() *c
 
 func (o DeleteUserExperienceAnalyticsDeviceScopeOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

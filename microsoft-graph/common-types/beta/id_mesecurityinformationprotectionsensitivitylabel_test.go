@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &MeSecurityInformationProtectionSensitivityLabelId{}
 
 func TestNewMeSecurityInformationProtectionSensitivityLabelID(t *testing.T) {
-	id := NewMeSecurityInformationProtectionSensitivityLabelID("sensitivityLabelIdValue")
+	id := NewMeSecurityInformationProtectionSensitivityLabelID("sensitivityLabelId")
 
-	if id.SensitivityLabelId != "sensitivityLabelIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'SensitivityLabelId'", id.SensitivityLabelId, "sensitivityLabelIdValue")
+	if id.SensitivityLabelId != "sensitivityLabelId" {
+		t.Fatalf("Expected %q but got %q for Segment 'SensitivityLabelId'", id.SensitivityLabelId, "sensitivityLabelId")
 	}
 }
 
 func TestFormatMeSecurityInformationProtectionSensitivityLabelID(t *testing.T) {
-	actual := NewMeSecurityInformationProtectionSensitivityLabelID("sensitivityLabelIdValue").ID()
-	expected := "/me/security/informationProtection/sensitivityLabels/sensitivityLabelIdValue"
+	actual := NewMeSecurityInformationProtectionSensitivityLabelID("sensitivityLabelId").ID()
+	expected := "/me/security/informationProtection/sensitivityLabels/sensitivityLabelId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -60,14 +60,14 @@ func TestParseMeSecurityInformationProtectionSensitivityLabelID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/me/security/informationProtection/sensitivityLabels/sensitivityLabelIdValue",
+			Input: "/me/security/informationProtection/sensitivityLabels/sensitivityLabelId",
 			Expected: &MeSecurityInformationProtectionSensitivityLabelId{
-				SensitivityLabelId: "sensitivityLabelIdValue",
+				SensitivityLabelId: "sensitivityLabelId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/security/informationProtection/sensitivityLabels/sensitivityLabelIdValue/extra",
+			Input: "/me/security/informationProtection/sensitivityLabels/sensitivityLabelId/extra",
 			Error: true,
 		},
 	}
@@ -146,26 +146,26 @@ func TestParseMeSecurityInformationProtectionSensitivityLabelIDInsensitively(t *
 		},
 		{
 			// Valid URI
-			Input: "/me/security/informationProtection/sensitivityLabels/sensitivityLabelIdValue",
+			Input: "/me/security/informationProtection/sensitivityLabels/sensitivityLabelId",
 			Expected: &MeSecurityInformationProtectionSensitivityLabelId{
-				SensitivityLabelId: "sensitivityLabelIdValue",
+				SensitivityLabelId: "sensitivityLabelId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/security/informationProtection/sensitivityLabels/sensitivityLabelIdValue/extra",
+			Input: "/me/security/informationProtection/sensitivityLabels/sensitivityLabelId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/sEcUrItY/iNfOrMaTiOnPrOtEcTiOn/sEnSiTiViTyLaBeLs/sEnSiTiViTyLaBeLiDvAlUe",
+			Input: "/mE/sEcUrItY/iNfOrMaTiOnPrOtEcTiOn/sEnSiTiViTyLaBeLs/sEnSiTiViTyLaBeLiD",
 			Expected: &MeSecurityInformationProtectionSensitivityLabelId{
-				SensitivityLabelId: "sEnSiTiViTyLaBeLiDvAlUe",
+				SensitivityLabelId: "sEnSiTiViTyLaBeLiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/mE/sEcUrItY/iNfOrMaTiOnPrOtEcTiOn/sEnSiTiViTyLaBeLs/sEnSiTiViTyLaBeLiDvAlUe/extra",
+			Input: "/mE/sEcUrItY/iNfOrMaTiOnPrOtEcTiOn/sEnSiTiViTyLaBeLs/sEnSiTiViTyLaBeLiD/extra",
 			Error: true,
 		},
 	}

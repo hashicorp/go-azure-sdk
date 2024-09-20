@@ -75,18 +75,26 @@ func (s Planner) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &Planner{}
 
 func (s *Planner) UnmarshalJSON(bytes []byte) error {
-	type alias Planner
-	var decoded alias
+
+	var decoded struct {
+		Buckets   *[]PlannerBucket `json:"buckets,omitempty"`
+		Plans     *[]PlannerPlan   `json:"plans,omitempty"`
+		Rosters   *[]PlannerRoster `json:"rosters,omitempty"`
+		Tasks     *[]PlannerTask   `json:"tasks,omitempty"`
+		Id        *string          `json:"id,omitempty"`
+		ODataId   *string          `json:"@odata.id,omitempty"`
+		ODataType *string          `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into Planner: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.Buckets = decoded.Buckets
+	s.Plans = decoded.Plans
+	s.Rosters = decoded.Rosters
 	s.Id = decoded.Id
 	s.ODataId = decoded.ODataId
 	s.ODataType = decoded.ODataType
-	s.Plans = decoded.Plans
-	s.Rosters = decoded.Rosters
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -109,5 +117,6 @@ func (s *Planner) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Tasks = &output
 	}
+
 	return nil
 }

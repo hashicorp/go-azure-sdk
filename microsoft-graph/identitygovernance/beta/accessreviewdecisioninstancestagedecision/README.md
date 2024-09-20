@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/microsoft-graph/identitygovernance/beta/accessreviewdecisioninstancestagedecision` Documentation
 
-The `accessreviewdecisioninstancestagedecision` SDK allows for interaction with the Azure Resource Manager Service `identitygovernance` (API Version `beta`).
+The `accessreviewdecisioninstancestagedecision` SDK allows for interaction with Microsoft Graph `identitygovernance` (API Version `beta`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -15,7 +15,7 @@ import "github.com/hashicorp/go-azure-sdk/microsoft-graph/identitygovernance/bet
 ### Client Initialization
 
 ```go
-client := accessreviewdecisioninstancestagedecision.NewAccessReviewDecisionInstanceStageDecisionClientWithBaseURI("https://management.azure.com")
+client := accessreviewdecisioninstancestagedecision.NewAccessReviewDecisionInstanceStageDecisionClientWithBaseURI("https://graph.microsoft.com")
 client.Client.Authorizer = authorizer
 ```
 
@@ -24,14 +24,14 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := accessreviewdecisioninstancestagedecision.NewIdentityGovernanceAccessReviewDecisionIdInstanceStageID("accessReviewInstanceDecisionItemIdValue", "accessReviewStageIdValue")
+id := accessreviewdecisioninstancestagedecision.NewIdentityGovernanceAccessReviewDecisionIdInstanceStageID("accessReviewInstanceDecisionItemId", "accessReviewStageId")
 
 payload := accessreviewdecisioninstancestagedecision.AccessReviewInstanceDecisionItem{
 	// ...
 }
 
 
-read, err := client.CreateAccessReviewDecisionInstanceStageDecision(ctx, id, payload)
+read, err := client.CreateAccessReviewDecisionInstanceStageDecision(ctx, id, payload, accessreviewdecisioninstancestagedecision.DefaultCreateAccessReviewDecisionInstanceStageDecisionOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -45,14 +45,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := accessreviewdecisioninstancestagedecision.NewIdentityGovernanceAccessReviewDecisionIdInstanceStageID("accessReviewInstanceDecisionItemIdValue", "accessReviewStageIdValue")
+id := accessreviewdecisioninstancestagedecision.NewIdentityGovernanceAccessReviewDecisionIdInstanceStageID("accessReviewInstanceDecisionItemId", "accessReviewStageId")
 
 payload := accessreviewdecisioninstancestagedecision.CreateAccessReviewDecisionInstanceStageDecisionRecordAllDecisionRequest{
 	// ...
 }
 
 
-read, err := client.CreateAccessReviewDecisionInstanceStageDecisionRecordAllDecision(ctx, id, payload)
+read, err := client.CreateAccessReviewDecisionInstanceStageDecisionRecordAllDecision(ctx, id, payload, accessreviewdecisioninstancestagedecision.DefaultCreateAccessReviewDecisionInstanceStageDecisionRecordAllDecisionOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -66,7 +66,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := accessreviewdecisioninstancestagedecision.NewIdentityGovernanceAccessReviewDecisionIdInstanceStageID("accessReviewInstanceDecisionItemIdValue", "accessReviewStageIdValue")
+id := accessreviewdecisioninstancestagedecision.NewIdentityGovernanceAccessReviewDecisionIdInstanceStageID("accessReviewInstanceDecisionItemId", "accessReviewStageId")
 
 read, err := client.GetAccessReviewDecisionInstanceStageDecisionsCount(ctx, id, accessreviewdecisioninstancestagedecision.DefaultGetAccessReviewDecisionInstanceStageDecisionsCountOperationOptions())
 if err != nil {
@@ -82,7 +82,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := accessreviewdecisioninstancestagedecision.NewIdentityGovernanceAccessReviewDecisionIdInstanceStageID("accessReviewInstanceDecisionItemIdValue", "accessReviewStageIdValue")
+id := accessreviewdecisioninstancestagedecision.NewIdentityGovernanceAccessReviewDecisionIdInstanceStageID("accessReviewInstanceDecisionItemId", "accessReviewStageId")
 
 // alternatively `client.ListAccessReviewDecisionInstanceStageDecisions(ctx, id, accessreviewdecisioninstancestagedecision.DefaultListAccessReviewDecisionInstanceStageDecisionsOperationOptions())` can be used to do batched pagination
 items, err := client.ListAccessReviewDecisionInstanceStageDecisionsComplete(ctx, id, accessreviewdecisioninstancestagedecision.DefaultListAccessReviewDecisionInstanceStageDecisionsOperationOptions())

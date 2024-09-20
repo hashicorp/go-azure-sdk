@@ -12,24 +12,24 @@ import (
 var _ resourceids.ResourceId = &UserIdMailFolderIdMessageId{}
 
 func TestNewUserIdMailFolderIdMessageID(t *testing.T) {
-	id := NewUserIdMailFolderIdMessageID("userIdValue", "mailFolderIdValue", "messageIdValue")
+	id := NewUserIdMailFolderIdMessageID("userId", "mailFolderId", "messageId")
 
-	if id.UserId != "userIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'UserId'", id.UserId, "userIdValue")
+	if id.UserId != "userId" {
+		t.Fatalf("Expected %q but got %q for Segment 'UserId'", id.UserId, "userId")
 	}
 
-	if id.MailFolderId != "mailFolderIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'MailFolderId'", id.MailFolderId, "mailFolderIdValue")
+	if id.MailFolderId != "mailFolderId" {
+		t.Fatalf("Expected %q but got %q for Segment 'MailFolderId'", id.MailFolderId, "mailFolderId")
 	}
 
-	if id.MessageId != "messageIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'MessageId'", id.MessageId, "messageIdValue")
+	if id.MessageId != "messageId" {
+		t.Fatalf("Expected %q but got %q for Segment 'MessageId'", id.MessageId, "messageId")
 	}
 }
 
 func TestFormatUserIdMailFolderIdMessageID(t *testing.T) {
-	actual := NewUserIdMailFolderIdMessageID("userIdValue", "mailFolderIdValue", "messageIdValue").ID()
-	expected := "/users/userIdValue/mailFolders/mailFolderIdValue/messages/messageIdValue"
+	actual := NewUserIdMailFolderIdMessageID("userId", "mailFolderId", "messageId").ID()
+	expected := "/users/userId/mailFolders/mailFolderId/messages/messageId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -53,36 +53,36 @@ func TestParseUserIdMailFolderIdMessageID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue",
+			Input: "/users/userId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/mailFolders",
+			Input: "/users/userId/mailFolders",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/mailFolders/mailFolderIdValue",
+			Input: "/users/userId/mailFolders/mailFolderId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/mailFolders/mailFolderIdValue/messages",
+			Input: "/users/userId/mailFolders/mailFolderId/messages",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/users/userIdValue/mailFolders/mailFolderIdValue/messages/messageIdValue",
+			Input: "/users/userId/mailFolders/mailFolderId/messages/messageId",
 			Expected: &UserIdMailFolderIdMessageId{
-				UserId:       "userIdValue",
-				MailFolderId: "mailFolderIdValue",
-				MessageId:    "messageIdValue",
+				UserId:       "userId",
+				MailFolderId: "mailFolderId",
+				MessageId:    "messageId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/users/userIdValue/mailFolders/mailFolderIdValue/messages/messageIdValue/extra",
+			Input: "/users/userId/mailFolders/mailFolderId/messages/messageId/extra",
 			Error: true,
 		},
 	}
@@ -139,70 +139,70 @@ func TestParseUserIdMailFolderIdMessageIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue",
+			Input: "/users/userId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe",
+			Input: "/uSeRs/uSeRiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/mailFolders",
+			Input: "/users/userId/mailFolders",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/mAiLfOlDeRs",
+			Input: "/uSeRs/uSeRiD/mAiLfOlDeRs",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/mailFolders/mailFolderIdValue",
+			Input: "/users/userId/mailFolders/mailFolderId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/mAiLfOlDeRs/mAiLfOlDeRiDvAlUe",
+			Input: "/uSeRs/uSeRiD/mAiLfOlDeRs/mAiLfOlDeRiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/mailFolders/mailFolderIdValue/messages",
+			Input: "/users/userId/mailFolders/mailFolderId/messages",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/mAiLfOlDeRs/mAiLfOlDeRiDvAlUe/mEsSaGeS",
+			Input: "/uSeRs/uSeRiD/mAiLfOlDeRs/mAiLfOlDeRiD/mEsSaGeS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/users/userIdValue/mailFolders/mailFolderIdValue/messages/messageIdValue",
+			Input: "/users/userId/mailFolders/mailFolderId/messages/messageId",
 			Expected: &UserIdMailFolderIdMessageId{
-				UserId:       "userIdValue",
-				MailFolderId: "mailFolderIdValue",
-				MessageId:    "messageIdValue",
+				UserId:       "userId",
+				MailFolderId: "mailFolderId",
+				MessageId:    "messageId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/users/userIdValue/mailFolders/mailFolderIdValue/messages/messageIdValue/extra",
+			Input: "/users/userId/mailFolders/mailFolderId/messages/messageId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/mAiLfOlDeRs/mAiLfOlDeRiDvAlUe/mEsSaGeS/mEsSaGeIdVaLuE",
+			Input: "/uSeRs/uSeRiD/mAiLfOlDeRs/mAiLfOlDeRiD/mEsSaGeS/mEsSaGeId",
 			Expected: &UserIdMailFolderIdMessageId{
-				UserId:       "uSeRiDvAlUe",
-				MailFolderId: "mAiLfOlDeRiDvAlUe",
-				MessageId:    "mEsSaGeIdVaLuE",
+				UserId:       "uSeRiD",
+				MailFolderId: "mAiLfOlDeRiD",
+				MessageId:    "mEsSaGeId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/mAiLfOlDeRs/mAiLfOlDeRiDvAlUe/mEsSaGeS/mEsSaGeIdVaLuE/extra",
+			Input: "/uSeRs/uSeRiD/mAiLfOlDeRs/mAiLfOlDeRiD/mEsSaGeS/mEsSaGeId/extra",
 			Error: true,
 		},
 	}

@@ -256,14 +256,61 @@ func (s MacOSEnterpriseWiFiConfiguration) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &MacOSEnterpriseWiFiConfiguration{}
 
 func (s *MacOSEnterpriseWiFiConfiguration) UnmarshalJSON(bytes []byte) error {
-	type alias MacOSEnterpriseWiFiConfiguration
-	var decoded alias
+
+	var decoded struct {
+		AuthenticationMethod                        *WiFiAuthenticationMethod                    `json:"authenticationMethod,omitempty"`
+		EapFastConfiguration                        *EapFastConfiguration                        `json:"eapFastConfiguration,omitempty"`
+		EapType                                     *EapType                                     `json:"eapType,omitempty"`
+		InnerAuthenticationProtocolForEapTtls       *NonEapAuthenticationMethodForEapTtlsType    `json:"innerAuthenticationProtocolForEapTtls,omitempty"`
+		OuterIdentityPrivacyTemporaryValue          nullable.Type[string]                        `json:"outerIdentityPrivacyTemporaryValue,omitempty"`
+		RootCertificateForServerValidation          *MacOSTrustedRootCertificate                 `json:"rootCertificateForServerValidation,omitempty"`
+		RootCertificatesForServerValidation         *[]MacOSTrustedRootCertificate               `json:"rootCertificatesForServerValidation,omitempty"`
+		TrustedServerCertificateNames               *[]string                                    `json:"trustedServerCertificateNames,omitempty"`
+		ConnectAutomatically                        *bool                                        `json:"connectAutomatically,omitempty"`
+		ConnectWhenNetworkNameIsHidden              *bool                                        `json:"connectWhenNetworkNameIsHidden,omitempty"`
+		DeploymentChannel                           *AppleDeploymentChannel                      `json:"deploymentChannel,omitempty"`
+		NetworkName                                 *string                                      `json:"networkName,omitempty"`
+		PreSharedKey                                nullable.Type[string]                        `json:"preSharedKey,omitempty"`
+		ProxyAutomaticConfigurationUrl              nullable.Type[string]                        `json:"proxyAutomaticConfigurationUrl,omitempty"`
+		ProxyManualAddress                          nullable.Type[string]                        `json:"proxyManualAddress,omitempty"`
+		ProxyManualPort                             nullable.Type[int64]                         `json:"proxyManualPort,omitempty"`
+		ProxySettings                               *WiFiProxySetting                            `json:"proxySettings,omitempty"`
+		Ssid                                        *string                                      `json:"ssid,omitempty"`
+		WiFiSecurityType                            *WiFiSecurityType                            `json:"wiFiSecurityType,omitempty"`
+		Assignments                                 *[]DeviceConfigurationAssignment             `json:"assignments,omitempty"`
+		CreatedDateTime                             *string                                      `json:"createdDateTime,omitempty"`
+		Description                                 nullable.Type[string]                        `json:"description,omitempty"`
+		DeviceManagementApplicabilityRuleDeviceMode *DeviceManagementApplicabilityRuleDeviceMode `json:"deviceManagementApplicabilityRuleDeviceMode,omitempty"`
+		DeviceManagementApplicabilityRuleOsEdition  *DeviceManagementApplicabilityRuleOsEdition  `json:"deviceManagementApplicabilityRuleOsEdition,omitempty"`
+		DeviceManagementApplicabilityRuleOsVersion  *DeviceManagementApplicabilityRuleOsVersion  `json:"deviceManagementApplicabilityRuleOsVersion,omitempty"`
+		DeviceSettingStateSummaries                 *[]SettingStateDeviceSummary                 `json:"deviceSettingStateSummaries,omitempty"`
+		DeviceStatusOverview                        *DeviceConfigurationDeviceOverview           `json:"deviceStatusOverview,omitempty"`
+		DeviceStatuses                              *[]DeviceConfigurationDeviceStatus           `json:"deviceStatuses,omitempty"`
+		DisplayName                                 *string                                      `json:"displayName,omitempty"`
+		GroupAssignments                            *[]DeviceConfigurationGroupAssignment        `json:"groupAssignments,omitempty"`
+		LastModifiedDateTime                        *string                                      `json:"lastModifiedDateTime,omitempty"`
+		RoleScopeTagIds                             *[]string                                    `json:"roleScopeTagIds,omitempty"`
+		SupportsScopeTags                           *bool                                        `json:"supportsScopeTags,omitempty"`
+		UserStatusOverview                          *DeviceConfigurationUserOverview             `json:"userStatusOverview,omitempty"`
+		UserStatuses                                *[]DeviceConfigurationUserStatus             `json:"userStatuses,omitempty"`
+		Version                                     *int64                                       `json:"version,omitempty"`
+		Id                                          *string                                      `json:"id,omitempty"`
+		ODataId                                     *string                                      `json:"@odata.id,omitempty"`
+		ODataType                                   *string                                      `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into MacOSEnterpriseWiFiConfiguration: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
-	s.Assignments = decoded.Assignments
 	s.AuthenticationMethod = decoded.AuthenticationMethod
+	s.EapFastConfiguration = decoded.EapFastConfiguration
+	s.EapType = decoded.EapType
+	s.InnerAuthenticationProtocolForEapTtls = decoded.InnerAuthenticationProtocolForEapTtls
+	s.OuterIdentityPrivacyTemporaryValue = decoded.OuterIdentityPrivacyTemporaryValue
+	s.RootCertificateForServerValidation = decoded.RootCertificateForServerValidation
+	s.RootCertificatesForServerValidation = decoded.RootCertificatesForServerValidation
+	s.TrustedServerCertificateNames = decoded.TrustedServerCertificateNames
+	s.Assignments = decoded.Assignments
 	s.ConnectAutomatically = decoded.ConnectAutomatically
 	s.ConnectWhenNetworkNameIsHidden = decoded.ConnectWhenNetworkNameIsHidden
 	s.CreatedDateTime = decoded.CreatedDateTime
@@ -276,27 +323,20 @@ func (s *MacOSEnterpriseWiFiConfiguration) UnmarshalJSON(bytes []byte) error {
 	s.DeviceStatusOverview = decoded.DeviceStatusOverview
 	s.DeviceStatuses = decoded.DeviceStatuses
 	s.DisplayName = decoded.DisplayName
-	s.EapFastConfiguration = decoded.EapFastConfiguration
-	s.EapType = decoded.EapType
 	s.GroupAssignments = decoded.GroupAssignments
 	s.Id = decoded.Id
-	s.InnerAuthenticationProtocolForEapTtls = decoded.InnerAuthenticationProtocolForEapTtls
 	s.LastModifiedDateTime = decoded.LastModifiedDateTime
 	s.NetworkName = decoded.NetworkName
 	s.ODataId = decoded.ODataId
 	s.ODataType = decoded.ODataType
-	s.OuterIdentityPrivacyTemporaryValue = decoded.OuterIdentityPrivacyTemporaryValue
 	s.PreSharedKey = decoded.PreSharedKey
 	s.ProxyAutomaticConfigurationUrl = decoded.ProxyAutomaticConfigurationUrl
 	s.ProxyManualAddress = decoded.ProxyManualAddress
 	s.ProxyManualPort = decoded.ProxyManualPort
 	s.ProxySettings = decoded.ProxySettings
 	s.RoleScopeTagIds = decoded.RoleScopeTagIds
-	s.RootCertificateForServerValidation = decoded.RootCertificateForServerValidation
-	s.RootCertificatesForServerValidation = decoded.RootCertificatesForServerValidation
 	s.Ssid = decoded.Ssid
 	s.SupportsScopeTags = decoded.SupportsScopeTags
-	s.TrustedServerCertificateNames = decoded.TrustedServerCertificateNames
 	s.UserStatusOverview = decoded.UserStatusOverview
 	s.UserStatuses = decoded.UserStatuses
 	s.Version = decoded.Version
@@ -314,5 +354,6 @@ func (s *MacOSEnterpriseWiFiConfiguration) UnmarshalJSON(bytes []byte) error {
 		}
 		s.IdentityCertificateForClientAuthentication = &impl
 	}
+
 	return nil
 }

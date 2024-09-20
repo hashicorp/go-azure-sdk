@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &DeviceManagementMonitoringAlertRuleId{}
 
 func TestNewDeviceManagementMonitoringAlertRuleID(t *testing.T) {
-	id := NewDeviceManagementMonitoringAlertRuleID("alertRuleIdValue")
+	id := NewDeviceManagementMonitoringAlertRuleID("alertRuleId")
 
-	if id.AlertRuleId != "alertRuleIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'AlertRuleId'", id.AlertRuleId, "alertRuleIdValue")
+	if id.AlertRuleId != "alertRuleId" {
+		t.Fatalf("Expected %q but got %q for Segment 'AlertRuleId'", id.AlertRuleId, "alertRuleId")
 	}
 }
 
 func TestFormatDeviceManagementMonitoringAlertRuleID(t *testing.T) {
-	actual := NewDeviceManagementMonitoringAlertRuleID("alertRuleIdValue").ID()
-	expected := "/deviceManagement/monitoring/alertRules/alertRuleIdValue"
+	actual := NewDeviceManagementMonitoringAlertRuleID("alertRuleId").ID()
+	expected := "/deviceManagement/monitoring/alertRules/alertRuleId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -55,14 +55,14 @@ func TestParseDeviceManagementMonitoringAlertRuleID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/monitoring/alertRules/alertRuleIdValue",
+			Input: "/deviceManagement/monitoring/alertRules/alertRuleId",
 			Expected: &DeviceManagementMonitoringAlertRuleId{
-				AlertRuleId: "alertRuleIdValue",
+				AlertRuleId: "alertRuleId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/monitoring/alertRules/alertRuleIdValue/extra",
+			Input: "/deviceManagement/monitoring/alertRules/alertRuleId/extra",
 			Error: true,
 		},
 	}
@@ -131,26 +131,26 @@ func TestParseDeviceManagementMonitoringAlertRuleIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/monitoring/alertRules/alertRuleIdValue",
+			Input: "/deviceManagement/monitoring/alertRules/alertRuleId",
 			Expected: &DeviceManagementMonitoringAlertRuleId{
-				AlertRuleId: "alertRuleIdValue",
+				AlertRuleId: "alertRuleId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/monitoring/alertRules/alertRuleIdValue/extra",
+			Input: "/deviceManagement/monitoring/alertRules/alertRuleId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/mOnItOrInG/aLeRtRuLeS/aLeRtRuLeIdVaLuE",
+			Input: "/dEvIcEmAnAgEmEnT/mOnItOrInG/aLeRtRuLeS/aLeRtRuLeId",
 			Expected: &DeviceManagementMonitoringAlertRuleId{
-				AlertRuleId: "aLeRtRuLeIdVaLuE",
+				AlertRuleId: "aLeRtRuLeId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/mOnItOrInG/aLeRtRuLeS/aLeRtRuLeIdVaLuE/extra",
+			Input: "/dEvIcEmAnAgEmEnT/mOnItOrInG/aLeRtRuLeS/aLeRtRuLeId/extra",
 			Error: true,
 		},
 	}

@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &DomainIdSharedEmailDomainInvitationId{}
 
 func TestNewDomainIdSharedEmailDomainInvitationID(t *testing.T) {
-	id := NewDomainIdSharedEmailDomainInvitationID("domainIdValue", "sharedEmailDomainInvitationIdValue")
+	id := NewDomainIdSharedEmailDomainInvitationID("domainId", "sharedEmailDomainInvitationId")
 
-	if id.DomainId != "domainIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DomainId'", id.DomainId, "domainIdValue")
+	if id.DomainId != "domainId" {
+		t.Fatalf("Expected %q but got %q for Segment 'DomainId'", id.DomainId, "domainId")
 	}
 
-	if id.SharedEmailDomainInvitationId != "sharedEmailDomainInvitationIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'SharedEmailDomainInvitationId'", id.SharedEmailDomainInvitationId, "sharedEmailDomainInvitationIdValue")
+	if id.SharedEmailDomainInvitationId != "sharedEmailDomainInvitationId" {
+		t.Fatalf("Expected %q but got %q for Segment 'SharedEmailDomainInvitationId'", id.SharedEmailDomainInvitationId, "sharedEmailDomainInvitationId")
 	}
 }
 
 func TestFormatDomainIdSharedEmailDomainInvitationID(t *testing.T) {
-	actual := NewDomainIdSharedEmailDomainInvitationID("domainIdValue", "sharedEmailDomainInvitationIdValue").ID()
-	expected := "/domains/domainIdValue/sharedEmailDomainInvitations/sharedEmailDomainInvitationIdValue"
+	actual := NewDomainIdSharedEmailDomainInvitationID("domainId", "sharedEmailDomainInvitationId").ID()
+	expected := "/domains/domainId/sharedEmailDomainInvitations/sharedEmailDomainInvitationId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -49,25 +49,25 @@ func TestParseDomainIdSharedEmailDomainInvitationID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/domains/domainIdValue",
+			Input: "/domains/domainId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/domains/domainIdValue/sharedEmailDomainInvitations",
+			Input: "/domains/domainId/sharedEmailDomainInvitations",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/domains/domainIdValue/sharedEmailDomainInvitations/sharedEmailDomainInvitationIdValue",
+			Input: "/domains/domainId/sharedEmailDomainInvitations/sharedEmailDomainInvitationId",
 			Expected: &DomainIdSharedEmailDomainInvitationId{
-				DomainId:                      "domainIdValue",
-				SharedEmailDomainInvitationId: "sharedEmailDomainInvitationIdValue",
+				DomainId:                      "domainId",
+				SharedEmailDomainInvitationId: "sharedEmailDomainInvitationId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/domains/domainIdValue/sharedEmailDomainInvitations/sharedEmailDomainInvitationIdValue/extra",
+			Input: "/domains/domainId/sharedEmailDomainInvitations/sharedEmailDomainInvitationId/extra",
 			Error: true,
 		},
 	}
@@ -120,48 +120,48 @@ func TestParseDomainIdSharedEmailDomainInvitationIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/domains/domainIdValue",
+			Input: "/domains/domainId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/dOmAiNs/dOmAiNiDvAlUe",
+			Input: "/dOmAiNs/dOmAiNiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/domains/domainIdValue/sharedEmailDomainInvitations",
+			Input: "/domains/domainId/sharedEmailDomainInvitations",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/dOmAiNs/dOmAiNiDvAlUe/sHaReDeMaIlDoMaInInViTaTiOnS",
+			Input: "/dOmAiNs/dOmAiNiD/sHaReDeMaIlDoMaInInViTaTiOnS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/domains/domainIdValue/sharedEmailDomainInvitations/sharedEmailDomainInvitationIdValue",
+			Input: "/domains/domainId/sharedEmailDomainInvitations/sharedEmailDomainInvitationId",
 			Expected: &DomainIdSharedEmailDomainInvitationId{
-				DomainId:                      "domainIdValue",
-				SharedEmailDomainInvitationId: "sharedEmailDomainInvitationIdValue",
+				DomainId:                      "domainId",
+				SharedEmailDomainInvitationId: "sharedEmailDomainInvitationId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/domains/domainIdValue/sharedEmailDomainInvitations/sharedEmailDomainInvitationIdValue/extra",
+			Input: "/domains/domainId/sharedEmailDomainInvitations/sharedEmailDomainInvitationId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/dOmAiNs/dOmAiNiDvAlUe/sHaReDeMaIlDoMaInInViTaTiOnS/sHaReDeMaIlDoMaInInViTaTiOnIdVaLuE",
+			Input: "/dOmAiNs/dOmAiNiD/sHaReDeMaIlDoMaInInViTaTiOnS/sHaReDeMaIlDoMaInInViTaTiOnId",
 			Expected: &DomainIdSharedEmailDomainInvitationId{
-				DomainId:                      "dOmAiNiDvAlUe",
-				SharedEmailDomainInvitationId: "sHaReDeMaIlDoMaInInViTaTiOnIdVaLuE",
+				DomainId:                      "dOmAiNiD",
+				SharedEmailDomainInvitationId: "sHaReDeMaIlDoMaInInViTaTiOnId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/dOmAiNs/dOmAiNiDvAlUe/sHaReDeMaIlDoMaInInViTaTiOnS/sHaReDeMaIlDoMaInInViTaTiOnIdVaLuE/extra",
+			Input: "/dOmAiNs/dOmAiNiD/sHaReDeMaIlDoMaInInViTaTiOnS/sHaReDeMaIlDoMaInInViTaTiOnId/extra",
 			Error: true,
 		},
 	}

@@ -82,19 +82,27 @@ func (s ItemRetentionLabel) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &ItemRetentionLabel{}
 
 func (s *ItemRetentionLabel) UnmarshalJSON(bytes []byte) error {
-	type alias ItemRetentionLabel
-	var decoded alias
+
+	var decoded struct {
+		IsLabelAppliedExplicitly nullable.Type[bool]     `json:"isLabelAppliedExplicitly,omitempty"`
+		LabelAppliedDateTime     nullable.Type[string]   `json:"labelAppliedDateTime,omitempty"`
+		Name                     nullable.Type[string]   `json:"name,omitempty"`
+		RetentionSettings        *RetentionLabelSettings `json:"retentionSettings,omitempty"`
+		Id                       *string                 `json:"id,omitempty"`
+		ODataId                  *string                 `json:"@odata.id,omitempty"`
+		ODataType                *string                 `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into ItemRetentionLabel: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
-	s.Id = decoded.Id
 	s.IsLabelAppliedExplicitly = decoded.IsLabelAppliedExplicitly
 	s.LabelAppliedDateTime = decoded.LabelAppliedDateTime
 	s.Name = decoded.Name
+	s.RetentionSettings = decoded.RetentionSettings
+	s.Id = decoded.Id
 	s.ODataId = decoded.ODataId
 	s.ODataType = decoded.ODataType
-	s.RetentionSettings = decoded.RetentionSettings
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -108,5 +116,6 @@ func (s *ItemRetentionLabel) UnmarshalJSON(bytes []byte) error {
 		}
 		s.LabelAppliedBy = &impl
 	}
+
 	return nil
 }

@@ -25,8 +25,9 @@ type AddSitesCompleteResult struct {
 }
 
 type AddSitesOperationOptions struct {
-	Skip *int64
-	Top  *int64
+	Metadata *odata.Metadata
+	Skip     *int64
+	Top      *int64
 }
 
 func DefaultAddSitesOperationOptions() AddSitesOperationOptions {
@@ -41,6 +42,9 @@ func (o AddSitesOperationOptions) ToHeaders() *client.Headers {
 
 func (o AddSitesOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	if o.Skip != nil {
 		out.Skip = int(*o.Skip)
 	}

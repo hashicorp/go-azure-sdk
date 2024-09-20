@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &DeviceManagementUserExperienceAnalyticsRemoteConnectionId{}
 
 func TestNewDeviceManagementUserExperienceAnalyticsRemoteConnectionID(t *testing.T) {
-	id := NewDeviceManagementUserExperienceAnalyticsRemoteConnectionID("userExperienceAnalyticsRemoteConnectionIdValue")
+	id := NewDeviceManagementUserExperienceAnalyticsRemoteConnectionID("userExperienceAnalyticsRemoteConnectionId")
 
-	if id.UserExperienceAnalyticsRemoteConnectionId != "userExperienceAnalyticsRemoteConnectionIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'UserExperienceAnalyticsRemoteConnectionId'", id.UserExperienceAnalyticsRemoteConnectionId, "userExperienceAnalyticsRemoteConnectionIdValue")
+	if id.UserExperienceAnalyticsRemoteConnectionId != "userExperienceAnalyticsRemoteConnectionId" {
+		t.Fatalf("Expected %q but got %q for Segment 'UserExperienceAnalyticsRemoteConnectionId'", id.UserExperienceAnalyticsRemoteConnectionId, "userExperienceAnalyticsRemoteConnectionId")
 	}
 }
 
 func TestFormatDeviceManagementUserExperienceAnalyticsRemoteConnectionID(t *testing.T) {
-	actual := NewDeviceManagementUserExperienceAnalyticsRemoteConnectionID("userExperienceAnalyticsRemoteConnectionIdValue").ID()
-	expected := "/deviceManagement/userExperienceAnalyticsRemoteConnection/userExperienceAnalyticsRemoteConnectionIdValue"
+	actual := NewDeviceManagementUserExperienceAnalyticsRemoteConnectionID("userExperienceAnalyticsRemoteConnectionId").ID()
+	expected := "/deviceManagement/userExperienceAnalyticsRemoteConnection/userExperienceAnalyticsRemoteConnectionId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -50,14 +50,14 @@ func TestParseDeviceManagementUserExperienceAnalyticsRemoteConnectionID(t *testi
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/userExperienceAnalyticsRemoteConnection/userExperienceAnalyticsRemoteConnectionIdValue",
+			Input: "/deviceManagement/userExperienceAnalyticsRemoteConnection/userExperienceAnalyticsRemoteConnectionId",
 			Expected: &DeviceManagementUserExperienceAnalyticsRemoteConnectionId{
-				UserExperienceAnalyticsRemoteConnectionId: "userExperienceAnalyticsRemoteConnectionIdValue",
+				UserExperienceAnalyticsRemoteConnectionId: "userExperienceAnalyticsRemoteConnectionId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/userExperienceAnalyticsRemoteConnection/userExperienceAnalyticsRemoteConnectionIdValue/extra",
+			Input: "/deviceManagement/userExperienceAnalyticsRemoteConnection/userExperienceAnalyticsRemoteConnectionId/extra",
 			Error: true,
 		},
 	}
@@ -116,26 +116,26 @@ func TestParseDeviceManagementUserExperienceAnalyticsRemoteConnectionIDInsensiti
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/userExperienceAnalyticsRemoteConnection/userExperienceAnalyticsRemoteConnectionIdValue",
+			Input: "/deviceManagement/userExperienceAnalyticsRemoteConnection/userExperienceAnalyticsRemoteConnectionId",
 			Expected: &DeviceManagementUserExperienceAnalyticsRemoteConnectionId{
-				UserExperienceAnalyticsRemoteConnectionId: "userExperienceAnalyticsRemoteConnectionIdValue",
+				UserExperienceAnalyticsRemoteConnectionId: "userExperienceAnalyticsRemoteConnectionId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/userExperienceAnalyticsRemoteConnection/userExperienceAnalyticsRemoteConnectionIdValue/extra",
+			Input: "/deviceManagement/userExperienceAnalyticsRemoteConnection/userExperienceAnalyticsRemoteConnectionId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/uSeReXpErIeNcEaNaLyTiCsReMoTeCoNnEcTiOn/uSeReXpErIeNcEaNaLyTiCsReMoTeCoNnEcTiOnIdVaLuE",
+			Input: "/dEvIcEmAnAgEmEnT/uSeReXpErIeNcEaNaLyTiCsReMoTeCoNnEcTiOn/uSeReXpErIeNcEaNaLyTiCsReMoTeCoNnEcTiOnId",
 			Expected: &DeviceManagementUserExperienceAnalyticsRemoteConnectionId{
-				UserExperienceAnalyticsRemoteConnectionId: "uSeReXpErIeNcEaNaLyTiCsReMoTeCoNnEcTiOnIdVaLuE",
+				UserExperienceAnalyticsRemoteConnectionId: "uSeReXpErIeNcEaNaLyTiCsReMoTeCoNnEcTiOnId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/uSeReXpErIeNcEaNaLyTiCsReMoTeCoNnEcTiOn/uSeReXpErIeNcEaNaLyTiCsReMoTeCoNnEcTiOnIdVaLuE/extra",
+			Input: "/dEvIcEmAnAgEmEnT/uSeReXpErIeNcEaNaLyTiCsReMoTeCoNnEcTiOn/uSeReXpErIeNcEaNaLyTiCsReMoTeCoNnEcTiOnId/extra",
 			Error: true,
 		},
 	}

@@ -18,15 +18,44 @@ type SetDepOnboardingSettingEnrollmentProfileDefaultProfileOperationResponse str
 	OData        *odata.OData
 }
 
+type SetDepOnboardingSettingEnrollmentProfileDefaultProfileOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultSetDepOnboardingSettingEnrollmentProfileDefaultProfileOperationOptions() SetDepOnboardingSettingEnrollmentProfileDefaultProfileOperationOptions {
+	return SetDepOnboardingSettingEnrollmentProfileDefaultProfileOperationOptions{}
+}
+
+func (o SetDepOnboardingSettingEnrollmentProfileDefaultProfileOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o SetDepOnboardingSettingEnrollmentProfileDefaultProfileOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o SetDepOnboardingSettingEnrollmentProfileDefaultProfileOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // SetDepOnboardingSettingEnrollmentProfileDefaultProfile - Invoke action setDefaultProfile
-func (c DepOnboardingSettingEnrollmentProfileClient) SetDepOnboardingSettingEnrollmentProfileDefaultProfile(ctx context.Context, id beta.DeviceManagementDepOnboardingSettingIdEnrollmentProfileId) (result SetDepOnboardingSettingEnrollmentProfileDefaultProfileOperationResponse, err error) {
+func (c DepOnboardingSettingEnrollmentProfileClient) SetDepOnboardingSettingEnrollmentProfileDefaultProfile(ctx context.Context, id beta.DeviceManagementDepOnboardingSettingIdEnrollmentProfileId, options SetDepOnboardingSettingEnrollmentProfileDefaultProfileOperationOptions) (result SetDepOnboardingSettingEnrollmentProfileDefaultProfileOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/setDefaultProfile", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/setDefaultProfile", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

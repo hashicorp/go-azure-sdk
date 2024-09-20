@@ -19,15 +19,44 @@ type CreateOutlookTaskGroupTaskFolderOperationResponse struct {
 	Model        *beta.OutlookTaskFolder
 }
 
+type CreateOutlookTaskGroupTaskFolderOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateOutlookTaskGroupTaskFolderOperationOptions() CreateOutlookTaskGroupTaskFolderOperationOptions {
+	return CreateOutlookTaskGroupTaskFolderOperationOptions{}
+}
+
+func (o CreateOutlookTaskGroupTaskFolderOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateOutlookTaskGroupTaskFolderOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateOutlookTaskGroupTaskFolderOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateOutlookTaskGroupTaskFolder - Create new navigation property to taskFolders for users
-func (c OutlookTaskGroupTaskFolderClient) CreateOutlookTaskGroupTaskFolder(ctx context.Context, id beta.UserIdOutlookTaskGroupId, input beta.OutlookTaskFolder) (result CreateOutlookTaskGroupTaskFolderOperationResponse, err error) {
+func (c OutlookTaskGroupTaskFolderClient) CreateOutlookTaskGroupTaskFolder(ctx context.Context, id beta.UserIdOutlookTaskGroupId, input beta.OutlookTaskFolder, options CreateOutlookTaskGroupTaskFolderOperationOptions) (result CreateOutlookTaskGroupTaskFolderOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/taskFolders", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/taskFolders", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

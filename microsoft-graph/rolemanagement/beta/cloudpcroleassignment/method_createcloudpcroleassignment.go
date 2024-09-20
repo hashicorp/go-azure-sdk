@@ -18,17 +18,46 @@ type CreateCloudPCRoleAssignmentOperationResponse struct {
 	Model        *beta.UnifiedRoleAssignmentMultiple
 }
 
+type CreateCloudPCRoleAssignmentOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateCloudPCRoleAssignmentOperationOptions() CreateCloudPCRoleAssignmentOperationOptions {
+	return CreateCloudPCRoleAssignmentOperationOptions{}
+}
+
+func (o CreateCloudPCRoleAssignmentOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateCloudPCRoleAssignmentOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateCloudPCRoleAssignmentOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateCloudPCRoleAssignment - Create unifiedRoleAssignmentMultiple. Create a new unifiedRoleAssignmentMultiple object
 // for an RBAC provider. The following RBAC providers are currently supported: - Cloud PC - device management (Intune)
 // For other Microsoft 365 applications (like Microsoft Entra ID), use unifiedRoleAssignment.
-func (c CloudPCRoleAssignmentClient) CreateCloudPCRoleAssignment(ctx context.Context, input beta.UnifiedRoleAssignmentMultiple) (result CreateCloudPCRoleAssignmentOperationResponse, err error) {
+func (c CloudPCRoleAssignmentClient) CreateCloudPCRoleAssignment(ctx context.Context, input beta.UnifiedRoleAssignmentMultiple, options CreateCloudPCRoleAssignmentOperationOptions) (result CreateCloudPCRoleAssignmentOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/roleManagement/cloudPC/roleAssignments",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/roleManagement/cloudPC/roleAssignments",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

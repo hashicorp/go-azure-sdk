@@ -18,15 +18,44 @@ type CreateAuthenticationPasswordMethodOperationResponse struct {
 	Model        *beta.PasswordAuthenticationMethod
 }
 
+type CreateAuthenticationPasswordMethodOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateAuthenticationPasswordMethodOperationOptions() CreateAuthenticationPasswordMethodOperationOptions {
+	return CreateAuthenticationPasswordMethodOperationOptions{}
+}
+
+func (o CreateAuthenticationPasswordMethodOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateAuthenticationPasswordMethodOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateAuthenticationPasswordMethodOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateAuthenticationPasswordMethod - Create new navigation property to passwordMethods for me
-func (c AuthenticationPasswordMethodClient) CreateAuthenticationPasswordMethod(ctx context.Context, input beta.PasswordAuthenticationMethod) (result CreateAuthenticationPasswordMethodOperationResponse, err error) {
+func (c AuthenticationPasswordMethodClient) CreateAuthenticationPasswordMethod(ctx context.Context, input beta.PasswordAuthenticationMethod, options CreateAuthenticationPasswordMethodOperationOptions) (result CreateAuthenticationPasswordMethodOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/me/authentication/passwordMethods",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/me/authentication/passwordMethods",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

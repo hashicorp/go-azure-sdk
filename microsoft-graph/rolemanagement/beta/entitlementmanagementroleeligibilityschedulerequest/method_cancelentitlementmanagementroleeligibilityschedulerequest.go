@@ -18,18 +18,47 @@ type CancelEntitlementManagementRoleEligibilityScheduleRequestOperationResponse 
 	OData        *odata.OData
 }
 
+type CancelEntitlementManagementRoleEligibilityScheduleRequestOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCancelEntitlementManagementRoleEligibilityScheduleRequestOperationOptions() CancelEntitlementManagementRoleEligibilityScheduleRequestOperationOptions {
+	return CancelEntitlementManagementRoleEligibilityScheduleRequestOperationOptions{}
+}
+
+func (o CancelEntitlementManagementRoleEligibilityScheduleRequestOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CancelEntitlementManagementRoleEligibilityScheduleRequestOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CancelEntitlementManagementRoleEligibilityScheduleRequestOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CancelEntitlementManagementRoleEligibilityScheduleRequest - Invoke action cancel. Immediately cancel a
 // unifiedRoleEligibilityScheduleRequest that is in a Granted status, and have the system automatically delete the
 // cancelled request after 30 days. After calling this action, the status of the cancelled
 // unifiedRoleEligibilityScheduleRequest changes to Revoked.
-func (c EntitlementManagementRoleEligibilityScheduleRequestClient) CancelEntitlementManagementRoleEligibilityScheduleRequest(ctx context.Context, id beta.RoleManagementEntitlementManagementRoleEligibilityScheduleRequestId) (result CancelEntitlementManagementRoleEligibilityScheduleRequestOperationResponse, err error) {
+func (c EntitlementManagementRoleEligibilityScheduleRequestClient) CancelEntitlementManagementRoleEligibilityScheduleRequest(ctx context.Context, id beta.RoleManagementEntitlementManagementRoleEligibilityScheduleRequestId, options CancelEntitlementManagementRoleEligibilityScheduleRequestOperationOptions) (result CancelEntitlementManagementRoleEligibilityScheduleRequestOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/cancel", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/cancel", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

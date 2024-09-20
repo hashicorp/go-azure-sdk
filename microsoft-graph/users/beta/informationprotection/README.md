@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/informationprotection` Documentation
 
-The `informationprotection` SDK allows for interaction with the Azure Resource Manager Service `users` (API Version `beta`).
+The `informationprotection` SDK allows for interaction with Microsoft Graph `users` (API Version `beta`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -15,7 +15,7 @@ import "github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/information
 ### Client Initialization
 
 ```go
-client := informationprotection.NewInformationProtectionClientWithBaseURI("https://management.azure.com")
+client := informationprotection.NewInformationProtectionClientWithBaseURI("https://graph.microsoft.com")
 client.Client.Authorizer = authorizer
 ```
 
@@ -24,14 +24,14 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := informationprotection.NewUserID("userIdValue")
+id := informationprotection.NewUserID("userId")
 
 payload := informationprotection.CreateInformationProtectionDecryptBufferRequest{
 	// ...
 }
 
 
-read, err := client.CreateInformationProtectionDecryptBuffer(ctx, id, payload)
+read, err := client.CreateInformationProtectionDecryptBuffer(ctx, id, payload, informationprotection.DefaultCreateInformationProtectionDecryptBufferOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -45,14 +45,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := informationprotection.NewUserID("userIdValue")
+id := informationprotection.NewUserID("userId")
 
 payload := informationprotection.CreateInformationProtectionEncryptBufferRequest{
 	// ...
 }
 
 
-read, err := client.CreateInformationProtectionEncryptBuffer(ctx, id, payload)
+read, err := client.CreateInformationProtectionEncryptBuffer(ctx, id, payload, informationprotection.DefaultCreateInformationProtectionEncryptBufferOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -66,14 +66,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := informationprotection.NewUserID("userIdValue")
+id := informationprotection.NewUserID("userId")
 
 payload := informationprotection.CreateInformationProtectionSignDigestRequest{
 	// ...
 }
 
 
-read, err := client.CreateInformationProtectionSignDigest(ctx, id, payload)
+read, err := client.CreateInformationProtectionSignDigest(ctx, id, payload, informationprotection.DefaultCreateInformationProtectionSignDigestOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -87,14 +87,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := informationprotection.NewUserID("userIdValue")
+id := informationprotection.NewUserID("userId")
 
 payload := informationprotection.CreateInformationProtectionVerifySignatureRequest{
 	// ...
 }
 
 
-read, err := client.CreateInformationProtectionVerifySignature(ctx, id, payload)
+read, err := client.CreateInformationProtectionVerifySignature(ctx, id, payload, informationprotection.DefaultCreateInformationProtectionVerifySignatureOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -108,7 +108,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := informationprotection.NewUserID("userIdValue")
+id := informationprotection.NewUserID("userId")
 
 read, err := client.DeleteInformationProtection(ctx, id, informationprotection.DefaultDeleteInformationProtectionOperationOptions())
 if err != nil {
@@ -124,7 +124,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := informationprotection.NewUserID("userIdValue")
+id := informationprotection.NewUserID("userId")
 
 read, err := client.GetInformationProtection(ctx, id, informationprotection.DefaultGetInformationProtectionOperationOptions())
 if err != nil {
@@ -140,14 +140,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := informationprotection.NewUserID("userIdValue")
+id := informationprotection.NewUserID("userId")
 
 payload := informationprotection.InformationProtection{
 	// ...
 }
 
 
-read, err := client.UpdateInformationProtection(ctx, id, payload)
+read, err := client.UpdateInformationProtection(ctx, id, payload, informationprotection.DefaultUpdateInformationProtectionOperationOptions())
 if err != nil {
 	// handle the error
 }

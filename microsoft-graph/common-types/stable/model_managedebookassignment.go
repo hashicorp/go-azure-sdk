@@ -94,14 +94,19 @@ func (s BaseManagedEBookAssignmentImpl) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &BaseManagedEBookAssignmentImpl{}
 
 func (s *BaseManagedEBookAssignmentImpl) UnmarshalJSON(bytes []byte) error {
-	type alias BaseManagedEBookAssignmentImpl
-	var decoded alias
+
+	var decoded struct {
+		InstallIntent *InstallIntent `json:"installIntent,omitempty"`
+		Id            *string        `json:"id,omitempty"`
+		ODataId       *string        `json:"@odata.id,omitempty"`
+		ODataType     *string        `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into BaseManagedEBookAssignmentImpl: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
-	s.Id = decoded.Id
 	s.InstallIntent = decoded.InstallIntent
+	s.Id = decoded.Id
 	s.ODataId = decoded.ODataId
 	s.ODataType = decoded.ODataType
 
@@ -117,6 +122,7 @@ func (s *BaseManagedEBookAssignmentImpl) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Target = impl
 	}
+
 	return nil
 }
 
@@ -130,9 +136,9 @@ func UnmarshalManagedEBookAssignmentImplementation(input []byte) (ManagedEBookAs
 		return nil, fmt.Errorf("unmarshaling ManagedEBookAssignment into map[string]interface: %+v", err)
 	}
 
-	value, ok := temp["@odata.type"].(string)
-	if !ok {
-		return nil, nil
+	var value string
+	if v, ok := temp["@odata.type"]; ok {
+		value = fmt.Sprintf("%v", v)
 	}
 
 	if strings.EqualFold(value, "#microsoft.graph.iosVppEBookAssignment") {

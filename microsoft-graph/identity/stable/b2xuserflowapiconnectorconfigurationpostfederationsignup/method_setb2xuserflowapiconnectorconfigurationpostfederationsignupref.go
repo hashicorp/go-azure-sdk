@@ -18,16 +18,45 @@ type SetB2xUserFlowApiConnectorConfigurationPostFederationSignupRefOperationResp
 	OData        *odata.OData
 }
 
+type SetB2xUserFlowApiConnectorConfigurationPostFederationSignupRefOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultSetB2xUserFlowApiConnectorConfigurationPostFederationSignupRefOperationOptions() SetB2xUserFlowApiConnectorConfigurationPostFederationSignupRefOperationOptions {
+	return SetB2xUserFlowApiConnectorConfigurationPostFederationSignupRefOperationOptions{}
+}
+
+func (o SetB2xUserFlowApiConnectorConfigurationPostFederationSignupRefOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o SetB2xUserFlowApiConnectorConfigurationPostFederationSignupRefOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o SetB2xUserFlowApiConnectorConfigurationPostFederationSignupRefOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // SetB2xUserFlowApiConnectorConfigurationPostFederationSignupRef - Update the ref of navigation property
 // postFederationSignup in identity
-func (c B2xUserFlowApiConnectorConfigurationPostFederationSignupClient) SetB2xUserFlowApiConnectorConfigurationPostFederationSignupRef(ctx context.Context, id stable.IdentityB2xUserFlowId, input stable.ReferenceUpdate) (result SetB2xUserFlowApiConnectorConfigurationPostFederationSignupRefOperationResponse, err error) {
+func (c B2xUserFlowApiConnectorConfigurationPostFederationSignupClient) SetB2xUserFlowApiConnectorConfigurationPostFederationSignupRef(ctx context.Context, id stable.IdentityB2xUserFlowId, input stable.ReferenceUpdate, options SetB2xUserFlowApiConnectorConfigurationPostFederationSignupRefOperationOptions) (result SetB2xUserFlowApiConnectorConfigurationPostFederationSignupRefOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPut,
-		Path:       fmt.Sprintf("%s/apiConnectorConfiguration/postFederationSignup/$ref", id.ID()),
+		HttpMethod:    http.MethodPut,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/apiConnectorConfiguration/postFederationSignup/$ref", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -19,7 +19,8 @@ type DeleteChatPinnedMessageOperationResponse struct {
 }
 
 type DeleteChatPinnedMessageOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteChatPinnedMessageOperationOptions() DeleteChatPinnedMessageOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteChatPinnedMessageOperationOptions) ToHeaders() *client.Headers {
 
 func (o DeleteChatPinnedMessageOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

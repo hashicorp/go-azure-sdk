@@ -86,10 +86,17 @@ func (s OnAttributeCollectionListener) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &OnAttributeCollectionListener{}
 
 func (s *OnAttributeCollectionListener) UnmarshalJSON(bytes []byte) error {
-	type alias OnAttributeCollectionListener
-	var decoded alias
+
+	var decoded struct {
+		AuthenticationEventsFlowId nullable.Type[string]     `json:"authenticationEventsFlowId,omitempty"`
+		Conditions                 *AuthenticationConditions `json:"conditions,omitempty"`
+		Priority                   *int64                    `json:"priority,omitempty"`
+		Id                         *string                   `json:"id,omitempty"`
+		ODataId                    *string                   `json:"@odata.id,omitempty"`
+		ODataType                  *string                   `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into OnAttributeCollectionListener: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.AuthenticationEventsFlowId = decoded.AuthenticationEventsFlowId
@@ -111,5 +118,6 @@ func (s *OnAttributeCollectionListener) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Handler = impl
 	}
+
 	return nil
 }

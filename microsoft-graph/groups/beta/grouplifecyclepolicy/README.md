@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/grouplifecyclepolicy` Documentation
 
-The `grouplifecyclepolicy` SDK allows for interaction with the Azure Resource Manager Service `groups` (API Version `beta`).
+The `grouplifecyclepolicy` SDK allows for interaction with Microsoft Graph `groups` (API Version `beta`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -15,7 +15,7 @@ import "github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/grouplifec
 ### Client Initialization
 
 ```go
-client := grouplifecyclepolicy.NewGroupLifecyclePolicyClientWithBaseURI("https://management.azure.com")
+client := grouplifecyclepolicy.NewGroupLifecyclePolicyClientWithBaseURI("https://graph.microsoft.com")
 client.Client.Authorizer = authorizer
 ```
 
@@ -24,14 +24,14 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := grouplifecyclepolicy.NewGroupIdGroupLifecyclePolicyID("groupIdValue", "groupLifecyclePolicyIdValue")
+id := grouplifecyclepolicy.NewGroupIdGroupLifecyclePolicyID("groupId", "groupLifecyclePolicyId")
 
 payload := grouplifecyclepolicy.AddGroupLifecyclePolicyGroupRequest{
 	// ...
 }
 
 
-read, err := client.AddGroupLifecyclePolicyGroup(ctx, id, payload)
+read, err := client.AddGroupLifecyclePolicyGroup(ctx, id, payload, grouplifecyclepolicy.DefaultAddGroupLifecyclePolicyGroupOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -45,14 +45,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := grouplifecyclepolicy.NewGroupID("groupIdValue")
+id := grouplifecyclepolicy.NewGroupID("groupId")
 
 payload := grouplifecyclepolicy.GroupLifecyclePolicy{
 	// ...
 }
 
 
-read, err := client.CreateGroupLifecyclePolicy(ctx, id, payload)
+read, err := client.CreateGroupLifecyclePolicy(ctx, id, payload, grouplifecyclepolicy.DefaultCreateGroupLifecyclePolicyOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -66,7 +66,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := grouplifecyclepolicy.NewGroupIdGroupLifecyclePolicyID("groupIdValue", "groupLifecyclePolicyIdValue")
+id := grouplifecyclepolicy.NewGroupIdGroupLifecyclePolicyID("groupId", "groupLifecyclePolicyId")
 
 read, err := client.DeleteGroupLifecyclePolicy(ctx, id, grouplifecyclepolicy.DefaultDeleteGroupLifecyclePolicyOperationOptions())
 if err != nil {
@@ -82,7 +82,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := grouplifecyclepolicy.NewGroupID("groupIdValue")
+id := grouplifecyclepolicy.NewGroupID("groupId")
 
 read, err := client.GetGroupLifecyclePoliciesCount(ctx, id, grouplifecyclepolicy.DefaultGetGroupLifecyclePoliciesCountOperationOptions())
 if err != nil {
@@ -98,7 +98,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := grouplifecyclepolicy.NewGroupIdGroupLifecyclePolicyID("groupIdValue", "groupLifecyclePolicyIdValue")
+id := grouplifecyclepolicy.NewGroupIdGroupLifecyclePolicyID("groupId", "groupLifecyclePolicyId")
 
 read, err := client.GetGroupLifecyclePolicy(ctx, id, grouplifecyclepolicy.DefaultGetGroupLifecyclePolicyOperationOptions())
 if err != nil {
@@ -114,7 +114,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := grouplifecyclepolicy.NewGroupID("groupIdValue")
+id := grouplifecyclepolicy.NewGroupID("groupId")
 
 // alternatively `client.ListGroupLifecyclePolicies(ctx, id, grouplifecyclepolicy.DefaultListGroupLifecyclePoliciesOperationOptions())` can be used to do batched pagination
 items, err := client.ListGroupLifecyclePoliciesComplete(ctx, id, grouplifecyclepolicy.DefaultListGroupLifecyclePoliciesOperationOptions())
@@ -131,14 +131,14 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := grouplifecyclepolicy.NewGroupIdGroupLifecyclePolicyID("groupIdValue", "groupLifecyclePolicyIdValue")
+id := grouplifecyclepolicy.NewGroupIdGroupLifecyclePolicyID("groupId", "groupLifecyclePolicyId")
 
 payload := grouplifecyclepolicy.RemoveGroupLifecyclePolicyGroupRequest{
 	// ...
 }
 
 
-read, err := client.RemoveGroupLifecyclePolicyGroup(ctx, id, payload)
+read, err := client.RemoveGroupLifecyclePolicyGroup(ctx, id, payload, grouplifecyclepolicy.DefaultRemoveGroupLifecyclePolicyGroupOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -152,14 +152,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := grouplifecyclepolicy.NewGroupID("groupIdValue")
+id := grouplifecyclepolicy.NewGroupID("groupId")
 
 payload := grouplifecyclepolicy.RenewGroupLifecyclePoliciesGroupRequest{
 	// ...
 }
 
 
-read, err := client.RenewGroupLifecyclePoliciesGroup(ctx, id, payload)
+read, err := client.RenewGroupLifecyclePoliciesGroup(ctx, id, payload, grouplifecyclepolicy.DefaultRenewGroupLifecyclePoliciesGroupOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -173,14 +173,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := grouplifecyclepolicy.NewGroupIdGroupLifecyclePolicyID("groupIdValue", "groupLifecyclePolicyIdValue")
+id := grouplifecyclepolicy.NewGroupIdGroupLifecyclePolicyID("groupId", "groupLifecyclePolicyId")
 
 payload := grouplifecyclepolicy.GroupLifecyclePolicy{
 	// ...
 }
 
 
-read, err := client.UpdateGroupLifecyclePolicy(ctx, id, payload)
+read, err := client.UpdateGroupLifecyclePolicy(ctx, id, payload, grouplifecyclepolicy.DefaultUpdateGroupLifecyclePolicyOperationOptions())
 if err != nil {
 	// handle the error
 }

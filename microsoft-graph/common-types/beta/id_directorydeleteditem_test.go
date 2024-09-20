@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &DirectoryDeletedItemId{}
 
 func TestNewDirectoryDeletedItemID(t *testing.T) {
-	id := NewDirectoryDeletedItemID("directoryObjectIdValue")
+	id := NewDirectoryDeletedItemID("directoryObjectId")
 
-	if id.DirectoryObjectId != "directoryObjectIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DirectoryObjectId'", id.DirectoryObjectId, "directoryObjectIdValue")
+	if id.DirectoryObjectId != "directoryObjectId" {
+		t.Fatalf("Expected %q but got %q for Segment 'DirectoryObjectId'", id.DirectoryObjectId, "directoryObjectId")
 	}
 }
 
 func TestFormatDirectoryDeletedItemID(t *testing.T) {
-	actual := NewDirectoryDeletedItemID("directoryObjectIdValue").ID()
-	expected := "/directory/deletedItems/directoryObjectIdValue"
+	actual := NewDirectoryDeletedItemID("directoryObjectId").ID()
+	expected := "/directory/deletedItems/directoryObjectId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -50,14 +50,14 @@ func TestParseDirectoryDeletedItemID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/directory/deletedItems/directoryObjectIdValue",
+			Input: "/directory/deletedItems/directoryObjectId",
 			Expected: &DirectoryDeletedItemId{
-				DirectoryObjectId: "directoryObjectIdValue",
+				DirectoryObjectId: "directoryObjectId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/directory/deletedItems/directoryObjectIdValue/extra",
+			Input: "/directory/deletedItems/directoryObjectId/extra",
 			Error: true,
 		},
 	}
@@ -116,26 +116,26 @@ func TestParseDirectoryDeletedItemIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/directory/deletedItems/directoryObjectIdValue",
+			Input: "/directory/deletedItems/directoryObjectId",
 			Expected: &DirectoryDeletedItemId{
-				DirectoryObjectId: "directoryObjectIdValue",
+				DirectoryObjectId: "directoryObjectId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/directory/deletedItems/directoryObjectIdValue/extra",
+			Input: "/directory/deletedItems/directoryObjectId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/dIrEcToRy/dElEtEdItEmS/dIrEcToRyObJeCtIdVaLuE",
+			Input: "/dIrEcToRy/dElEtEdItEmS/dIrEcToRyObJeCtId",
 			Expected: &DirectoryDeletedItemId{
-				DirectoryObjectId: "dIrEcToRyObJeCtIdVaLuE",
+				DirectoryObjectId: "dIrEcToRyObJeCtId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/dIrEcToRy/dElEtEdItEmS/dIrEcToRyObJeCtIdVaLuE/extra",
+			Input: "/dIrEcToRy/dElEtEdItEmS/dIrEcToRyObJeCtId/extra",
 			Error: true,
 		},
 	}

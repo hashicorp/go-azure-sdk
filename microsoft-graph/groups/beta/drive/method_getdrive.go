@@ -2,7 +2,6 @@ package drive
 
 import (
 	"context"
-	"fmt"
 	"net/http"
 
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta"
@@ -20,8 +19,9 @@ type GetDriveOperationResponse struct {
 }
 
 type GetDriveOperationOptions struct {
-	Expand *odata.Expand
-	Select *[]string
+	Expand   *odata.Expand
+	Metadata *odata.Metadata
+	Select   *[]string
 }
 
 func DefaultGetDriveOperationOptions() GetDriveOperationOptions {
@@ -39,6 +39,9 @@ func (o GetDriveOperationOptions) ToOData() *odata.Query {
 	if o.Expand != nil {
 		out.Expand = *o.Expand
 	}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	if o.Select != nil {
 		out.Select = *o.Select
 	}
@@ -51,8 +54,8 @@ func (o GetDriveOperationOptions) ToQuery() *client.QueryParams {
 	return &out
 }
 
-// GetDrive - Get drive from groups. The group's default drive. Read-only.
-func (c DriveClient) GetDrive(ctx context.Context, id beta.GroupId, options GetDriveOperationOptions) (result GetDriveOperationResponse, err error) {
+// GetDrive - Get drives from groups. The group's drives. Read-only.
+func (c DriveClient) GetDrive(ctx context.Context, id beta.GroupIdDriveId, options GetDriveOperationOptions) (result GetDriveOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
@@ -60,7 +63,7 @@ func (c DriveClient) GetDrive(ctx context.Context, id beta.GroupId, options GetD
 		},
 		HttpMethod:    http.MethodGet,
 		OptionsObject: options,
-		Path:          fmt.Sprintf("%s/drive", id.ID()),
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

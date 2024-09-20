@@ -123,10 +123,34 @@ func (s DeviceHealthScript) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &DeviceHealthScript{}
 
 func (s *DeviceHealthScript) UnmarshalJSON(bytes []byte) error {
-	type alias DeviceHealthScript
-	var decoded alias
+
+	var decoded struct {
+		Assignments                 *[]DeviceHealthScriptAssignment  `json:"assignments,omitempty"`
+		CreatedDateTime             *string                          `json:"createdDateTime,omitempty"`
+		Description                 nullable.Type[string]            `json:"description,omitempty"`
+		DetectionScriptContent      nullable.Type[string]            `json:"detectionScriptContent,omitempty"`
+		DetectionScriptParameters   *[]DeviceHealthScriptParameter   `json:"detectionScriptParameters,omitempty"`
+		DeviceHealthScriptType      *DeviceHealthScriptType          `json:"deviceHealthScriptType,omitempty"`
+		DeviceRunStates             *[]DeviceHealthScriptDeviceState `json:"deviceRunStates,omitempty"`
+		DisplayName                 nullable.Type[string]            `json:"displayName,omitempty"`
+		EnforceSignatureCheck       *bool                            `json:"enforceSignatureCheck,omitempty"`
+		HighestAvailableVersion     nullable.Type[string]            `json:"highestAvailableVersion,omitempty"`
+		IsGlobalScript              *bool                            `json:"isGlobalScript,omitempty"`
+		LastModifiedDateTime        *string                          `json:"lastModifiedDateTime,omitempty"`
+		Publisher                   nullable.Type[string]            `json:"publisher,omitempty"`
+		RemediationScriptContent    nullable.Type[string]            `json:"remediationScriptContent,omitempty"`
+		RemediationScriptParameters *[]DeviceHealthScriptParameter   `json:"remediationScriptParameters,omitempty"`
+		RoleScopeTagIds             *[]string                        `json:"roleScopeTagIds,omitempty"`
+		RunAs32Bit                  *bool                            `json:"runAs32Bit,omitempty"`
+		RunAsAccount                *RunAsAccountType                `json:"runAsAccount,omitempty"`
+		RunSummary                  *DeviceHealthScriptRunSummary    `json:"runSummary,omitempty"`
+		Version                     nullable.Type[string]            `json:"version,omitempty"`
+		Id                          *string                          `json:"id,omitempty"`
+		ODataId                     *string                          `json:"@odata.id,omitempty"`
+		ODataType                   *string                          `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into DeviceHealthScript: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.Assignments = decoded.Assignments
@@ -138,11 +162,8 @@ func (s *DeviceHealthScript) UnmarshalJSON(bytes []byte) error {
 	s.DisplayName = decoded.DisplayName
 	s.EnforceSignatureCheck = decoded.EnforceSignatureCheck
 	s.HighestAvailableVersion = decoded.HighestAvailableVersion
-	s.Id = decoded.Id
 	s.IsGlobalScript = decoded.IsGlobalScript
 	s.LastModifiedDateTime = decoded.LastModifiedDateTime
-	s.ODataId = decoded.ODataId
-	s.ODataType = decoded.ODataType
 	s.Publisher = decoded.Publisher
 	s.RemediationScriptContent = decoded.RemediationScriptContent
 	s.RoleScopeTagIds = decoded.RoleScopeTagIds
@@ -150,6 +171,9 @@ func (s *DeviceHealthScript) UnmarshalJSON(bytes []byte) error {
 	s.RunAsAccount = decoded.RunAsAccount
 	s.RunSummary = decoded.RunSummary
 	s.Version = decoded.Version
+	s.Id = decoded.Id
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -189,5 +213,6 @@ func (s *DeviceHealthScript) UnmarshalJSON(bytes []byte) error {
 		}
 		s.RemediationScriptParameters = &output
 	}
+
 	return nil
 }

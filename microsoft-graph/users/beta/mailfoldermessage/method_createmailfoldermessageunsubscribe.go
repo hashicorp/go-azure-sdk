@@ -18,6 +18,34 @@ type CreateMailFolderMessageUnsubscribeOperationResponse struct {
 	OData        *odata.OData
 }
 
+type CreateMailFolderMessageUnsubscribeOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateMailFolderMessageUnsubscribeOperationOptions() CreateMailFolderMessageUnsubscribeOperationOptions {
+	return CreateMailFolderMessageUnsubscribeOperationOptions{}
+}
+
+func (o CreateMailFolderMessageUnsubscribeOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateMailFolderMessageUnsubscribeOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateMailFolderMessageUnsubscribeOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateMailFolderMessageUnsubscribe - Invoke action unsubscribe. Submits an email request on behalf of the signed-in
 // user to unsubscribe from an email distribution list. Uses the information in the List-Unsubscribe header. Message
 // senders can use mailing lists in a user-friendly way by including an option for recipients to opt out. They can do so
@@ -28,14 +56,15 @@ type CreateMailFolderMessageUnsubscribeOperationResponse struct {
 // unsubscribe the user from similar future messages as managed by the message sender. A successful unsubscribe action
 // moves the message to the Deleted Items folder. The actual exclusion of the user from future mail distribution is
 // managed by the sender.
-func (c MailFolderMessageClient) CreateMailFolderMessageUnsubscribe(ctx context.Context, id beta.UserIdMailFolderIdMessageId) (result CreateMailFolderMessageUnsubscribeOperationResponse, err error) {
+func (c MailFolderMessageClient) CreateMailFolderMessageUnsubscribe(ctx context.Context, id beta.UserIdMailFolderIdMessageId, options CreateMailFolderMessageUnsubscribeOperationOptions) (result CreateMailFolderMessageUnsubscribeOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/unsubscribe", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/unsubscribe", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

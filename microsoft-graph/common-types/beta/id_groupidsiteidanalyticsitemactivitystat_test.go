@@ -12,24 +12,24 @@ import (
 var _ resourceids.ResourceId = &GroupIdSiteIdAnalyticsItemActivityStatId{}
 
 func TestNewGroupIdSiteIdAnalyticsItemActivityStatID(t *testing.T) {
-	id := NewGroupIdSiteIdAnalyticsItemActivityStatID("groupIdValue", "siteIdValue", "itemActivityStatIdValue")
+	id := NewGroupIdSiteIdAnalyticsItemActivityStatID("groupId", "siteId", "itemActivityStatId")
 
-	if id.GroupId != "groupIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'GroupId'", id.GroupId, "groupIdValue")
+	if id.GroupId != "groupId" {
+		t.Fatalf("Expected %q but got %q for Segment 'GroupId'", id.GroupId, "groupId")
 	}
 
-	if id.SiteId != "siteIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'SiteId'", id.SiteId, "siteIdValue")
+	if id.SiteId != "siteId" {
+		t.Fatalf("Expected %q but got %q for Segment 'SiteId'", id.SiteId, "siteId")
 	}
 
-	if id.ItemActivityStatId != "itemActivityStatIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ItemActivityStatId'", id.ItemActivityStatId, "itemActivityStatIdValue")
+	if id.ItemActivityStatId != "itemActivityStatId" {
+		t.Fatalf("Expected %q but got %q for Segment 'ItemActivityStatId'", id.ItemActivityStatId, "itemActivityStatId")
 	}
 }
 
 func TestFormatGroupIdSiteIdAnalyticsItemActivityStatID(t *testing.T) {
-	actual := NewGroupIdSiteIdAnalyticsItemActivityStatID("groupIdValue", "siteIdValue", "itemActivityStatIdValue").ID()
-	expected := "/groups/groupIdValue/sites/siteIdValue/analytics/itemActivityStats/itemActivityStatIdValue"
+	actual := NewGroupIdSiteIdAnalyticsItemActivityStatID("groupId", "siteId", "itemActivityStatId").ID()
+	expected := "/groups/groupId/sites/siteId/analytics/itemActivityStats/itemActivityStatId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -53,41 +53,41 @@ func TestParseGroupIdSiteIdAnalyticsItemActivityStatID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue",
+			Input: "/groups/groupId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/sites",
+			Input: "/groups/groupId/sites",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/sites/siteIdValue",
+			Input: "/groups/groupId/sites/siteId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/sites/siteIdValue/analytics",
+			Input: "/groups/groupId/sites/siteId/analytics",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/sites/siteIdValue/analytics/itemActivityStats",
+			Input: "/groups/groupId/sites/siteId/analytics/itemActivityStats",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/groups/groupIdValue/sites/siteIdValue/analytics/itemActivityStats/itemActivityStatIdValue",
+			Input: "/groups/groupId/sites/siteId/analytics/itemActivityStats/itemActivityStatId",
 			Expected: &GroupIdSiteIdAnalyticsItemActivityStatId{
-				GroupId:            "groupIdValue",
-				SiteId:             "siteIdValue",
-				ItemActivityStatId: "itemActivityStatIdValue",
+				GroupId:            "groupId",
+				SiteId:             "siteId",
+				ItemActivityStatId: "itemActivityStatId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/groups/groupIdValue/sites/siteIdValue/analytics/itemActivityStats/itemActivityStatIdValue/extra",
+			Input: "/groups/groupId/sites/siteId/analytics/itemActivityStats/itemActivityStatId/extra",
 			Error: true,
 		},
 	}
@@ -144,80 +144,80 @@ func TestParseGroupIdSiteIdAnalyticsItemActivityStatIDInsensitively(t *testing.T
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue",
+			Input: "/groups/groupId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE",
+			Input: "/gRoUpS/gRoUpId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/sites",
+			Input: "/groups/groupId/sites",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/sItEs",
+			Input: "/gRoUpS/gRoUpId/sItEs",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/sites/siteIdValue",
+			Input: "/groups/groupId/sites/siteId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/sItEs/sItEiDvAlUe",
+			Input: "/gRoUpS/gRoUpId/sItEs/sItEiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/sites/siteIdValue/analytics",
+			Input: "/groups/groupId/sites/siteId/analytics",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/sItEs/sItEiDvAlUe/aNaLyTiCs",
+			Input: "/gRoUpS/gRoUpId/sItEs/sItEiD/aNaLyTiCs",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/sites/siteIdValue/analytics/itemActivityStats",
+			Input: "/groups/groupId/sites/siteId/analytics/itemActivityStats",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/sItEs/sItEiDvAlUe/aNaLyTiCs/iTeMaCtIvItYsTaTs",
+			Input: "/gRoUpS/gRoUpId/sItEs/sItEiD/aNaLyTiCs/iTeMaCtIvItYsTaTs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/groups/groupIdValue/sites/siteIdValue/analytics/itemActivityStats/itemActivityStatIdValue",
+			Input: "/groups/groupId/sites/siteId/analytics/itemActivityStats/itemActivityStatId",
 			Expected: &GroupIdSiteIdAnalyticsItemActivityStatId{
-				GroupId:            "groupIdValue",
-				SiteId:             "siteIdValue",
-				ItemActivityStatId: "itemActivityStatIdValue",
+				GroupId:            "groupId",
+				SiteId:             "siteId",
+				ItemActivityStatId: "itemActivityStatId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/groups/groupIdValue/sites/siteIdValue/analytics/itemActivityStats/itemActivityStatIdValue/extra",
+			Input: "/groups/groupId/sites/siteId/analytics/itemActivityStats/itemActivityStatId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/sItEs/sItEiDvAlUe/aNaLyTiCs/iTeMaCtIvItYsTaTs/iTeMaCtIvItYsTaTiDvAlUe",
+			Input: "/gRoUpS/gRoUpId/sItEs/sItEiD/aNaLyTiCs/iTeMaCtIvItYsTaTs/iTeMaCtIvItYsTaTiD",
 			Expected: &GroupIdSiteIdAnalyticsItemActivityStatId{
-				GroupId:            "gRoUpIdVaLuE",
-				SiteId:             "sItEiDvAlUe",
-				ItemActivityStatId: "iTeMaCtIvItYsTaTiDvAlUe",
+				GroupId:            "gRoUpId",
+				SiteId:             "sItEiD",
+				ItemActivityStatId: "iTeMaCtIvItYsTaTiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/sItEs/sItEiDvAlUe/aNaLyTiCs/iTeMaCtIvItYsTaTs/iTeMaCtIvItYsTaTiDvAlUe/extra",
+			Input: "/gRoUpS/gRoUpId/sItEs/sItEiD/aNaLyTiCs/iTeMaCtIvItYsTaTs/iTeMaCtIvItYsTaTiD/extra",
 			Error: true,
 		},
 	}

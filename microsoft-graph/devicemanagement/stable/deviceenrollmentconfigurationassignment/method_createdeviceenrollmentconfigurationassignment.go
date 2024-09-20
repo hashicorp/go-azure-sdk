@@ -19,16 +19,45 @@ type CreateDeviceEnrollmentConfigurationAssignmentOperationResponse struct {
 	Model        *stable.EnrollmentConfigurationAssignment
 }
 
+type CreateDeviceEnrollmentConfigurationAssignmentOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateDeviceEnrollmentConfigurationAssignmentOperationOptions() CreateDeviceEnrollmentConfigurationAssignmentOperationOptions {
+	return CreateDeviceEnrollmentConfigurationAssignmentOperationOptions{}
+}
+
+func (o CreateDeviceEnrollmentConfigurationAssignmentOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateDeviceEnrollmentConfigurationAssignmentOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateDeviceEnrollmentConfigurationAssignmentOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateDeviceEnrollmentConfigurationAssignment - Create enrollmentConfigurationAssignment. Create a new
 // enrollmentConfigurationAssignment object.
-func (c DeviceEnrollmentConfigurationAssignmentClient) CreateDeviceEnrollmentConfigurationAssignment(ctx context.Context, id stable.DeviceManagementDeviceEnrollmentConfigurationId, input stable.EnrollmentConfigurationAssignment) (result CreateDeviceEnrollmentConfigurationAssignmentOperationResponse, err error) {
+func (c DeviceEnrollmentConfigurationAssignmentClient) CreateDeviceEnrollmentConfigurationAssignment(ctx context.Context, id stable.DeviceManagementDeviceEnrollmentConfigurationId, input stable.EnrollmentConfigurationAssignment, options CreateDeviceEnrollmentConfigurationAssignmentOperationOptions) (result CreateDeviceEnrollmentConfigurationAssignmentOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/assignments", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/assignments", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

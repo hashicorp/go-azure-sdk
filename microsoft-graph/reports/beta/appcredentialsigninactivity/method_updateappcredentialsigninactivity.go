@@ -17,15 +17,44 @@ type UpdateAppCredentialSignInActivityOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateAppCredentialSignInActivityOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateAppCredentialSignInActivityOperationOptions() UpdateAppCredentialSignInActivityOperationOptions {
+	return UpdateAppCredentialSignInActivityOperationOptions{}
+}
+
+func (o UpdateAppCredentialSignInActivityOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateAppCredentialSignInActivityOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateAppCredentialSignInActivityOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateAppCredentialSignInActivity - Update the navigation property appCredentialSignInActivities in reports
-func (c AppCredentialSignInActivityClient) UpdateAppCredentialSignInActivity(ctx context.Context, id beta.ReportAppCredentialSignInActivityId, input beta.AppCredentialSignInActivity) (result UpdateAppCredentialSignInActivityOperationResponse, err error) {
+func (c AppCredentialSignInActivityClient) UpdateAppCredentialSignInActivity(ctx context.Context, id beta.ReportAppCredentialSignInActivityId, input beta.AppCredentialSignInActivity, options UpdateAppCredentialSignInActivityOperationOptions) (result UpdateAppCredentialSignInActivityOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -18,16 +18,45 @@ type CreatePermissionGrantPreApprovalPolicyOperationResponse struct {
 	Model        *beta.PermissionGrantPreApprovalPolicy
 }
 
+type CreatePermissionGrantPreApprovalPolicyOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreatePermissionGrantPreApprovalPolicyOperationOptions() CreatePermissionGrantPreApprovalPolicyOperationOptions {
+	return CreatePermissionGrantPreApprovalPolicyOperationOptions{}
+}
+
+func (o CreatePermissionGrantPreApprovalPolicyOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreatePermissionGrantPreApprovalPolicyOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreatePermissionGrantPreApprovalPolicyOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreatePermissionGrantPreApprovalPolicy - Create permissionGrantPreApprovalPolicy. Create a new
 // permissionGrantPreApprovalPolicy object.
-func (c PermissionGrantPreApprovalPolicyClient) CreatePermissionGrantPreApprovalPolicy(ctx context.Context, input beta.PermissionGrantPreApprovalPolicy) (result CreatePermissionGrantPreApprovalPolicyOperationResponse, err error) {
+func (c PermissionGrantPreApprovalPolicyClient) CreatePermissionGrantPreApprovalPolicy(ctx context.Context, input beta.PermissionGrantPreApprovalPolicy, options CreatePermissionGrantPreApprovalPolicyOperationOptions) (result CreatePermissionGrantPreApprovalPolicyOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/policies/permissionGrantPreApprovalPolicies",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/policies/permissionGrantPreApprovalPolicies",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

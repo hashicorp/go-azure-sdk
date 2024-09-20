@@ -182,13 +182,50 @@ func (s IosiPadOSWebClip) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &IosiPadOSWebClip{}
 
 func (s *IosiPadOSWebClip) UnmarshalJSON(bytes []byte) error {
-	type alias IosiPadOSWebClip
-	var decoded alias
+
+	var decoded struct {
+		AppUrl                            nullable.Type[string]     `json:"appUrl,omitempty"`
+		FullScreenEnabled                 nullable.Type[bool]       `json:"fullScreenEnabled,omitempty"`
+		IgnoreManifestScope               nullable.Type[bool]       `json:"ignoreManifestScope,omitempty"`
+		PreComposedIconEnabled            nullable.Type[bool]       `json:"preComposedIconEnabled,omitempty"`
+		TargetApplicationBundleIdentifier nullable.Type[string]     `json:"targetApplicationBundleIdentifier,omitempty"`
+		UseManagedBrowser                 *bool                     `json:"useManagedBrowser,omitempty"`
+		Assignments                       *[]MobileAppAssignment    `json:"assignments,omitempty"`
+		Categories                        *[]MobileAppCategory      `json:"categories,omitempty"`
+		CreatedDateTime                   *string                   `json:"createdDateTime,omitempty"`
+		DependentAppCount                 *int64                    `json:"dependentAppCount,omitempty"`
+		Description                       nullable.Type[string]     `json:"description,omitempty"`
+		Developer                         nullable.Type[string]     `json:"developer,omitempty"`
+		DisplayName                       nullable.Type[string]     `json:"displayName,omitempty"`
+		InformationUrl                    nullable.Type[string]     `json:"informationUrl,omitempty"`
+		IsAssigned                        *bool                     `json:"isAssigned,omitempty"`
+		IsFeatured                        *bool                     `json:"isFeatured,omitempty"`
+		LargeIcon                         *MimeContent              `json:"largeIcon,omitempty"`
+		LastModifiedDateTime              *string                   `json:"lastModifiedDateTime,omitempty"`
+		Notes                             nullable.Type[string]     `json:"notes,omitempty"`
+		Owner                             nullable.Type[string]     `json:"owner,omitempty"`
+		PrivacyInformationUrl             nullable.Type[string]     `json:"privacyInformationUrl,omitempty"`
+		Publisher                         nullable.Type[string]     `json:"publisher,omitempty"`
+		PublishingState                   *MobileAppPublishingState `json:"publishingState,omitempty"`
+		Relationships                     *[]MobileAppRelationship  `json:"relationships,omitempty"`
+		RoleScopeTagIds                   *[]string                 `json:"roleScopeTagIds,omitempty"`
+		SupersededAppCount                *int64                    `json:"supersededAppCount,omitempty"`
+		SupersedingAppCount               *int64                    `json:"supersedingAppCount,omitempty"`
+		UploadState                       *int64                    `json:"uploadState,omitempty"`
+		Id                                *string                   `json:"id,omitempty"`
+		ODataId                           *string                   `json:"@odata.id,omitempty"`
+		ODataType                         *string                   `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into IosiPadOSWebClip: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.AppUrl = decoded.AppUrl
+	s.FullScreenEnabled = decoded.FullScreenEnabled
+	s.IgnoreManifestScope = decoded.IgnoreManifestScope
+	s.PreComposedIconEnabled = decoded.PreComposedIconEnabled
+	s.TargetApplicationBundleIdentifier = decoded.TargetApplicationBundleIdentifier
+	s.UseManagedBrowser = decoded.UseManagedBrowser
 	s.Assignments = decoded.Assignments
 	s.Categories = decoded.Categories
 	s.CreatedDateTime = decoded.CreatedDateTime
@@ -196,9 +233,7 @@ func (s *IosiPadOSWebClip) UnmarshalJSON(bytes []byte) error {
 	s.Description = decoded.Description
 	s.Developer = decoded.Developer
 	s.DisplayName = decoded.DisplayName
-	s.FullScreenEnabled = decoded.FullScreenEnabled
 	s.Id = decoded.Id
-	s.IgnoreManifestScope = decoded.IgnoreManifestScope
 	s.InformationUrl = decoded.InformationUrl
 	s.IsAssigned = decoded.IsAssigned
 	s.IsFeatured = decoded.IsFeatured
@@ -208,16 +243,13 @@ func (s *IosiPadOSWebClip) UnmarshalJSON(bytes []byte) error {
 	s.ODataId = decoded.ODataId
 	s.ODataType = decoded.ODataType
 	s.Owner = decoded.Owner
-	s.PreComposedIconEnabled = decoded.PreComposedIconEnabled
 	s.PrivacyInformationUrl = decoded.PrivacyInformationUrl
 	s.Publisher = decoded.Publisher
 	s.PublishingState = decoded.PublishingState
 	s.RoleScopeTagIds = decoded.RoleScopeTagIds
 	s.SupersededAppCount = decoded.SupersededAppCount
 	s.SupersedingAppCount = decoded.SupersedingAppCount
-	s.TargetApplicationBundleIdentifier = decoded.TargetApplicationBundleIdentifier
 	s.UploadState = decoded.UploadState
-	s.UseManagedBrowser = decoded.UseManagedBrowser
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -240,5 +272,6 @@ func (s *IosiPadOSWebClip) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Relationships = &output
 	}
+
 	return nil
 }

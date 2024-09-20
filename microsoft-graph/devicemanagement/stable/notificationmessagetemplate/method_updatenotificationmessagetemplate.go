@@ -17,16 +17,45 @@ type UpdateNotificationMessageTemplateOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateNotificationMessageTemplateOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateNotificationMessageTemplateOperationOptions() UpdateNotificationMessageTemplateOperationOptions {
+	return UpdateNotificationMessageTemplateOperationOptions{}
+}
+
+func (o UpdateNotificationMessageTemplateOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateNotificationMessageTemplateOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateNotificationMessageTemplateOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateNotificationMessageTemplate - Update notificationMessageTemplate. Update the properties of a
 // notificationMessageTemplate object.
-func (c NotificationMessageTemplateClient) UpdateNotificationMessageTemplate(ctx context.Context, id stable.DeviceManagementNotificationMessageTemplateId, input stable.NotificationMessageTemplate) (result UpdateNotificationMessageTemplateOperationResponse, err error) {
+func (c NotificationMessageTemplateClient) UpdateNotificationMessageTemplate(ctx context.Context, id stable.DeviceManagementNotificationMessageTemplateId, input stable.NotificationMessageTemplate, options UpdateNotificationMessageTemplateOperationOptions) (result UpdateNotificationMessageTemplateOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -17,15 +17,44 @@ type UpdateSiteListColumnOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateSiteListColumnOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateSiteListColumnOperationOptions() UpdateSiteListColumnOperationOptions {
+	return UpdateSiteListColumnOperationOptions{}
+}
+
+func (o UpdateSiteListColumnOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateSiteListColumnOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateSiteListColumnOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateSiteListColumn - Update the navigation property columns in groups
-func (c SiteListColumnClient) UpdateSiteListColumn(ctx context.Context, id stable.GroupIdSiteIdListIdColumnId, input stable.ColumnDefinition) (result UpdateSiteListColumnOperationResponse, err error) {
+func (c SiteListColumnClient) UpdateSiteListColumn(ctx context.Context, id stable.GroupIdSiteIdListIdColumnId, input stable.ColumnDefinition, options UpdateSiteListColumnOperationOptions) (result UpdateSiteListColumnOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -18,17 +18,46 @@ type CreateVirtualEndpointOnPremisesConnectionRunHealthCheckOperationResponse st
 	OData        *odata.OData
 }
 
+type CreateVirtualEndpointOnPremisesConnectionRunHealthCheckOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateVirtualEndpointOnPremisesConnectionRunHealthCheckOperationOptions() CreateVirtualEndpointOnPremisesConnectionRunHealthCheckOperationOptions {
+	return CreateVirtualEndpointOnPremisesConnectionRunHealthCheckOperationOptions{}
+}
+
+func (o CreateVirtualEndpointOnPremisesConnectionRunHealthCheckOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateVirtualEndpointOnPremisesConnectionRunHealthCheckOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateVirtualEndpointOnPremisesConnectionRunHealthCheckOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateVirtualEndpointOnPremisesConnectionRunHealthCheck - Invoke action runHealthChecks. Run health checks on the
 // cloudPcOnPremisesConnection object. It triggers a new health check for this cloudPcOnPremisesConnection object and
 // change the healthCheckStatus and healthCheckStatusDetails properties when check finished.
-func (c VirtualEndpointOnPremisesConnectionClient) CreateVirtualEndpointOnPremisesConnectionRunHealthCheck(ctx context.Context, id beta.DeviceManagementVirtualEndpointOnPremisesConnectionId) (result CreateVirtualEndpointOnPremisesConnectionRunHealthCheckOperationResponse, err error) {
+func (c VirtualEndpointOnPremisesConnectionClient) CreateVirtualEndpointOnPremisesConnectionRunHealthCheck(ctx context.Context, id beta.DeviceManagementVirtualEndpointOnPremisesConnectionId, options CreateVirtualEndpointOnPremisesConnectionRunHealthCheckOperationOptions) (result CreateVirtualEndpointOnPremisesConnectionRunHealthCheckOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/runHealthChecks", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/runHealthChecks", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

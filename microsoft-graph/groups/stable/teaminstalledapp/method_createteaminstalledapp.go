@@ -20,15 +20,44 @@ type CreateTeamInstalledAppOperationResponse struct {
 	Model        stable.TeamsAppInstallation
 }
 
+type CreateTeamInstalledAppOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateTeamInstalledAppOperationOptions() CreateTeamInstalledAppOperationOptions {
+	return CreateTeamInstalledAppOperationOptions{}
+}
+
+func (o CreateTeamInstalledAppOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateTeamInstalledAppOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateTeamInstalledAppOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateTeamInstalledApp - Create new navigation property to installedApps for groups
-func (c TeamInstalledAppClient) CreateTeamInstalledApp(ctx context.Context, id stable.GroupId, input stable.TeamsAppInstallation) (result CreateTeamInstalledAppOperationResponse, err error) {
+func (c TeamInstalledAppClient) CreateTeamInstalledApp(ctx context.Context, id stable.GroupId, input stable.TeamsAppInstallation, options CreateTeamInstalledAppOperationOptions) (result CreateTeamInstalledAppOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/team/installedApps", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/team/installedApps", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

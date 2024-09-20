@@ -105,11 +105,11 @@ func (id RoleManagementEnterpriseAppIdResourceNamespaceIdResourceActionId) Segme
 	return []resourceids.Segment{
 		resourceids.StaticSegment("roleManagement", "roleManagement", "roleManagement"),
 		resourceids.StaticSegment("enterpriseApps", "enterpriseApps", "enterpriseApps"),
-		resourceids.UserSpecifiedSegment("rbacApplicationId", "rbacApplicationIdValue"),
+		resourceids.UserSpecifiedSegment("rbacApplicationId", "rbacApplicationId"),
 		resourceids.StaticSegment("resourceNamespaces", "resourceNamespaces", "resourceNamespaces"),
-		resourceids.UserSpecifiedSegment("unifiedRbacResourceNamespaceId", "unifiedRbacResourceNamespaceIdValue"),
+		resourceids.UserSpecifiedSegment("unifiedRbacResourceNamespaceId", "unifiedRbacResourceNamespaceId"),
 		resourceids.StaticSegment("resourceActions", "resourceActions", "resourceActions"),
-		resourceids.UserSpecifiedSegment("unifiedRbacResourceActionId", "unifiedRbacResourceActionIdValue"),
+		resourceids.UserSpecifiedSegment("unifiedRbacResourceActionId", "unifiedRbacResourceActionId"),
 	}
 }
 

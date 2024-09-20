@@ -19,15 +19,44 @@ type AddSiteListContentTypesCopyOperationResponse struct {
 	Model        *beta.ContentType
 }
 
+type AddSiteListContentTypesCopyOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultAddSiteListContentTypesCopyOperationOptions() AddSiteListContentTypesCopyOperationOptions {
+	return AddSiteListContentTypesCopyOperationOptions{}
+}
+
+func (o AddSiteListContentTypesCopyOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o AddSiteListContentTypesCopyOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o AddSiteListContentTypesCopyOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // AddSiteListContentTypesCopy - Invoke action addCopy
-func (c SiteListContentTypeClient) AddSiteListContentTypesCopy(ctx context.Context, id beta.GroupIdSiteIdListId, input AddSiteListContentTypesCopyRequest) (result AddSiteListContentTypesCopyOperationResponse, err error) {
+func (c SiteListContentTypeClient) AddSiteListContentTypesCopy(ctx context.Context, id beta.GroupIdSiteIdListId, input AddSiteListContentTypesCopyRequest, options AddSiteListContentTypesCopyOperationOptions) (result AddSiteListContentTypesCopyOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/contentTypes/addCopy", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/contentTypes/addCopy", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

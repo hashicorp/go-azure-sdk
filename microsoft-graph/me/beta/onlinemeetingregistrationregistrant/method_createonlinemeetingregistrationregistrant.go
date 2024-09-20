@@ -20,18 +20,47 @@ type CreateOnlineMeetingRegistrationRegistrantOperationResponse struct {
 	Model        beta.MeetingRegistrantBase
 }
 
+type CreateOnlineMeetingRegistrationRegistrantOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateOnlineMeetingRegistrationRegistrantOperationOptions() CreateOnlineMeetingRegistrationRegistrantOperationOptions {
+	return CreateOnlineMeetingRegistrationRegistrantOperationOptions{}
+}
+
+func (o CreateOnlineMeetingRegistrationRegistrantOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateOnlineMeetingRegistrationRegistrantOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateOnlineMeetingRegistrationRegistrantOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateOnlineMeetingRegistrationRegistrant - Create externalMeetingRegistrant (deprecated). Enroll an
 // externalMeetingRegistrant in an online meeting which has externalMeetingRegistration enabled. The meeting organizer
 // enrolls someone by providing a unique id in the external registration system and gets the unique joinWebUrl of this
 // registrant.
-func (c OnlineMeetingRegistrationRegistrantClient) CreateOnlineMeetingRegistrationRegistrant(ctx context.Context, id beta.MeOnlineMeetingId, input beta.MeetingRegistrantBase) (result CreateOnlineMeetingRegistrationRegistrantOperationResponse, err error) {
+func (c OnlineMeetingRegistrationRegistrantClient) CreateOnlineMeetingRegistrationRegistrant(ctx context.Context, id beta.MeOnlineMeetingId, input beta.MeetingRegistrantBase, options CreateOnlineMeetingRegistrationRegistrantOperationOptions) (result CreateOnlineMeetingRegistrationRegistrantOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/registration/registrants", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/registration/registrants", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

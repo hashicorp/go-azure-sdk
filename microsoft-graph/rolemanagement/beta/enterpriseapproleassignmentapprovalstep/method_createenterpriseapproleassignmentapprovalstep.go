@@ -19,15 +19,44 @@ type CreateEnterpriseAppRoleAssignmentApprovalStepOperationResponse struct {
 	Model        *beta.ApprovalStep
 }
 
+type CreateEnterpriseAppRoleAssignmentApprovalStepOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateEnterpriseAppRoleAssignmentApprovalStepOperationOptions() CreateEnterpriseAppRoleAssignmentApprovalStepOperationOptions {
+	return CreateEnterpriseAppRoleAssignmentApprovalStepOperationOptions{}
+}
+
+func (o CreateEnterpriseAppRoleAssignmentApprovalStepOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateEnterpriseAppRoleAssignmentApprovalStepOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateEnterpriseAppRoleAssignmentApprovalStepOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateEnterpriseAppRoleAssignmentApprovalStep - Create new navigation property to steps for roleManagement
-func (c EnterpriseAppRoleAssignmentApprovalStepClient) CreateEnterpriseAppRoleAssignmentApprovalStep(ctx context.Context, id beta.RoleManagementEnterpriseAppIdRoleAssignmentApprovalId, input beta.ApprovalStep) (result CreateEnterpriseAppRoleAssignmentApprovalStepOperationResponse, err error) {
+func (c EnterpriseAppRoleAssignmentApprovalStepClient) CreateEnterpriseAppRoleAssignmentApprovalStep(ctx context.Context, id beta.RoleManagementEnterpriseAppIdRoleAssignmentApprovalId, input beta.ApprovalStep, options CreateEnterpriseAppRoleAssignmentApprovalStepOperationOptions) (result CreateEnterpriseAppRoleAssignmentApprovalStepOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/steps", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/steps", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

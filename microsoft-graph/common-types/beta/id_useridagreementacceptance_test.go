@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &UserIdAgreementAcceptanceId{}
 
 func TestNewUserIdAgreementAcceptanceID(t *testing.T) {
-	id := NewUserIdAgreementAcceptanceID("userIdValue", "agreementAcceptanceIdValue")
+	id := NewUserIdAgreementAcceptanceID("userId", "agreementAcceptanceId")
 
-	if id.UserId != "userIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'UserId'", id.UserId, "userIdValue")
+	if id.UserId != "userId" {
+		t.Fatalf("Expected %q but got %q for Segment 'UserId'", id.UserId, "userId")
 	}
 
-	if id.AgreementAcceptanceId != "agreementAcceptanceIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'AgreementAcceptanceId'", id.AgreementAcceptanceId, "agreementAcceptanceIdValue")
+	if id.AgreementAcceptanceId != "agreementAcceptanceId" {
+		t.Fatalf("Expected %q but got %q for Segment 'AgreementAcceptanceId'", id.AgreementAcceptanceId, "agreementAcceptanceId")
 	}
 }
 
 func TestFormatUserIdAgreementAcceptanceID(t *testing.T) {
-	actual := NewUserIdAgreementAcceptanceID("userIdValue", "agreementAcceptanceIdValue").ID()
-	expected := "/users/userIdValue/agreementAcceptances/agreementAcceptanceIdValue"
+	actual := NewUserIdAgreementAcceptanceID("userId", "agreementAcceptanceId").ID()
+	expected := "/users/userId/agreementAcceptances/agreementAcceptanceId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -49,25 +49,25 @@ func TestParseUserIdAgreementAcceptanceID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue",
+			Input: "/users/userId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/agreementAcceptances",
+			Input: "/users/userId/agreementAcceptances",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/users/userIdValue/agreementAcceptances/agreementAcceptanceIdValue",
+			Input: "/users/userId/agreementAcceptances/agreementAcceptanceId",
 			Expected: &UserIdAgreementAcceptanceId{
-				UserId:                "userIdValue",
-				AgreementAcceptanceId: "agreementAcceptanceIdValue",
+				UserId:                "userId",
+				AgreementAcceptanceId: "agreementAcceptanceId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/users/userIdValue/agreementAcceptances/agreementAcceptanceIdValue/extra",
+			Input: "/users/userId/agreementAcceptances/agreementAcceptanceId/extra",
 			Error: true,
 		},
 	}
@@ -120,48 +120,48 @@ func TestParseUserIdAgreementAcceptanceIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue",
+			Input: "/users/userId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe",
+			Input: "/uSeRs/uSeRiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/agreementAcceptances",
+			Input: "/users/userId/agreementAcceptances",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/aGrEeMeNtAcCePtAnCeS",
+			Input: "/uSeRs/uSeRiD/aGrEeMeNtAcCePtAnCeS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/users/userIdValue/agreementAcceptances/agreementAcceptanceIdValue",
+			Input: "/users/userId/agreementAcceptances/agreementAcceptanceId",
 			Expected: &UserIdAgreementAcceptanceId{
-				UserId:                "userIdValue",
-				AgreementAcceptanceId: "agreementAcceptanceIdValue",
+				UserId:                "userId",
+				AgreementAcceptanceId: "agreementAcceptanceId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/users/userIdValue/agreementAcceptances/agreementAcceptanceIdValue/extra",
+			Input: "/users/userId/agreementAcceptances/agreementAcceptanceId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/aGrEeMeNtAcCePtAnCeS/aGrEeMeNtAcCePtAnCeIdVaLuE",
+			Input: "/uSeRs/uSeRiD/aGrEeMeNtAcCePtAnCeS/aGrEeMeNtAcCePtAnCeId",
 			Expected: &UserIdAgreementAcceptanceId{
-				UserId:                "uSeRiDvAlUe",
-				AgreementAcceptanceId: "aGrEeMeNtAcCePtAnCeIdVaLuE",
+				UserId:                "uSeRiD",
+				AgreementAcceptanceId: "aGrEeMeNtAcCePtAnCeId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/aGrEeMeNtAcCePtAnCeS/aGrEeMeNtAcCePtAnCeIdVaLuE/extra",
+			Input: "/uSeRs/uSeRiD/aGrEeMeNtAcCePtAnCeS/aGrEeMeNtAcCePtAnCeId/extra",
 			Error: true,
 		},
 	}

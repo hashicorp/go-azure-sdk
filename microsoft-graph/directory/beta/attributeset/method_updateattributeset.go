@@ -17,15 +17,44 @@ type UpdateAttributeSetOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateAttributeSetOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateAttributeSetOperationOptions() UpdateAttributeSetOperationOptions {
+	return UpdateAttributeSetOperationOptions{}
+}
+
+func (o UpdateAttributeSetOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateAttributeSetOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateAttributeSetOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateAttributeSet - Update attributeSet. Update the properties of an attributeSet object.
-func (c AttributeSetClient) UpdateAttributeSet(ctx context.Context, id beta.DirectoryAttributeSetId, input beta.AttributeSet) (result UpdateAttributeSetOperationResponse, err error) {
+func (c AttributeSetClient) UpdateAttributeSet(ctx context.Context, id beta.DirectoryAttributeSetId, input beta.AttributeSet, options UpdateAttributeSetOperationOptions) (result UpdateAttributeSetOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

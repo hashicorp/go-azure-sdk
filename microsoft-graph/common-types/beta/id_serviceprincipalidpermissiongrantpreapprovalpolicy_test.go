@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &ServicePrincipalIdPermissionGrantPreApprovalPolicyId{}
 
 func TestNewServicePrincipalIdPermissionGrantPreApprovalPolicyID(t *testing.T) {
-	id := NewServicePrincipalIdPermissionGrantPreApprovalPolicyID("servicePrincipalIdValue", "permissionGrantPreApprovalPolicyIdValue")
+	id := NewServicePrincipalIdPermissionGrantPreApprovalPolicyID("servicePrincipalId", "permissionGrantPreApprovalPolicyId")
 
-	if id.ServicePrincipalId != "servicePrincipalIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ServicePrincipalId'", id.ServicePrincipalId, "servicePrincipalIdValue")
+	if id.ServicePrincipalId != "servicePrincipalId" {
+		t.Fatalf("Expected %q but got %q for Segment 'ServicePrincipalId'", id.ServicePrincipalId, "servicePrincipalId")
 	}
 
-	if id.PermissionGrantPreApprovalPolicyId != "permissionGrantPreApprovalPolicyIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'PermissionGrantPreApprovalPolicyId'", id.PermissionGrantPreApprovalPolicyId, "permissionGrantPreApprovalPolicyIdValue")
+	if id.PermissionGrantPreApprovalPolicyId != "permissionGrantPreApprovalPolicyId" {
+		t.Fatalf("Expected %q but got %q for Segment 'PermissionGrantPreApprovalPolicyId'", id.PermissionGrantPreApprovalPolicyId, "permissionGrantPreApprovalPolicyId")
 	}
 }
 
 func TestFormatServicePrincipalIdPermissionGrantPreApprovalPolicyID(t *testing.T) {
-	actual := NewServicePrincipalIdPermissionGrantPreApprovalPolicyID("servicePrincipalIdValue", "permissionGrantPreApprovalPolicyIdValue").ID()
-	expected := "/servicePrincipals/servicePrincipalIdValue/permissionGrantPreApprovalPolicies/permissionGrantPreApprovalPolicyIdValue"
+	actual := NewServicePrincipalIdPermissionGrantPreApprovalPolicyID("servicePrincipalId", "permissionGrantPreApprovalPolicyId").ID()
+	expected := "/servicePrincipals/servicePrincipalId/permissionGrantPreApprovalPolicies/permissionGrantPreApprovalPolicyId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -49,25 +49,25 @@ func TestParseServicePrincipalIdPermissionGrantPreApprovalPolicyID(t *testing.T)
 		},
 		{
 			// Incomplete URI
-			Input: "/servicePrincipals/servicePrincipalIdValue",
+			Input: "/servicePrincipals/servicePrincipalId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/servicePrincipals/servicePrincipalIdValue/permissionGrantPreApprovalPolicies",
+			Input: "/servicePrincipals/servicePrincipalId/permissionGrantPreApprovalPolicies",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/servicePrincipals/servicePrincipalIdValue/permissionGrantPreApprovalPolicies/permissionGrantPreApprovalPolicyIdValue",
+			Input: "/servicePrincipals/servicePrincipalId/permissionGrantPreApprovalPolicies/permissionGrantPreApprovalPolicyId",
 			Expected: &ServicePrincipalIdPermissionGrantPreApprovalPolicyId{
-				ServicePrincipalId:                 "servicePrincipalIdValue",
-				PermissionGrantPreApprovalPolicyId: "permissionGrantPreApprovalPolicyIdValue",
+				ServicePrincipalId:                 "servicePrincipalId",
+				PermissionGrantPreApprovalPolicyId: "permissionGrantPreApprovalPolicyId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/servicePrincipals/servicePrincipalIdValue/permissionGrantPreApprovalPolicies/permissionGrantPreApprovalPolicyIdValue/extra",
+			Input: "/servicePrincipals/servicePrincipalId/permissionGrantPreApprovalPolicies/permissionGrantPreApprovalPolicyId/extra",
 			Error: true,
 		},
 	}
@@ -120,48 +120,48 @@ func TestParseServicePrincipalIdPermissionGrantPreApprovalPolicyIDInsensitively(
 		},
 		{
 			// Incomplete URI
-			Input: "/servicePrincipals/servicePrincipalIdValue",
+			Input: "/servicePrincipals/servicePrincipalId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sErViCePrInCiPaLs/sErViCePrInCiPaLiDvAlUe",
+			Input: "/sErViCePrInCiPaLs/sErViCePrInCiPaLiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/servicePrincipals/servicePrincipalIdValue/permissionGrantPreApprovalPolicies",
+			Input: "/servicePrincipals/servicePrincipalId/permissionGrantPreApprovalPolicies",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sErViCePrInCiPaLs/sErViCePrInCiPaLiDvAlUe/pErMiSsIoNgRaNtPrEaPpRoVaLpOlIcIeS",
+			Input: "/sErViCePrInCiPaLs/sErViCePrInCiPaLiD/pErMiSsIoNgRaNtPrEaPpRoVaLpOlIcIeS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/servicePrincipals/servicePrincipalIdValue/permissionGrantPreApprovalPolicies/permissionGrantPreApprovalPolicyIdValue",
+			Input: "/servicePrincipals/servicePrincipalId/permissionGrantPreApprovalPolicies/permissionGrantPreApprovalPolicyId",
 			Expected: &ServicePrincipalIdPermissionGrantPreApprovalPolicyId{
-				ServicePrincipalId:                 "servicePrincipalIdValue",
-				PermissionGrantPreApprovalPolicyId: "permissionGrantPreApprovalPolicyIdValue",
+				ServicePrincipalId:                 "servicePrincipalId",
+				PermissionGrantPreApprovalPolicyId: "permissionGrantPreApprovalPolicyId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/servicePrincipals/servicePrincipalIdValue/permissionGrantPreApprovalPolicies/permissionGrantPreApprovalPolicyIdValue/extra",
+			Input: "/servicePrincipals/servicePrincipalId/permissionGrantPreApprovalPolicies/permissionGrantPreApprovalPolicyId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sErViCePrInCiPaLs/sErViCePrInCiPaLiDvAlUe/pErMiSsIoNgRaNtPrEaPpRoVaLpOlIcIeS/pErMiSsIoNgRaNtPrEaPpRoVaLpOlIcYiDvAlUe",
+			Input: "/sErViCePrInCiPaLs/sErViCePrInCiPaLiD/pErMiSsIoNgRaNtPrEaPpRoVaLpOlIcIeS/pErMiSsIoNgRaNtPrEaPpRoVaLpOlIcYiD",
 			Expected: &ServicePrincipalIdPermissionGrantPreApprovalPolicyId{
-				ServicePrincipalId:                 "sErViCePrInCiPaLiDvAlUe",
-				PermissionGrantPreApprovalPolicyId: "pErMiSsIoNgRaNtPrEaPpRoVaLpOlIcYiDvAlUe",
+				ServicePrincipalId:                 "sErViCePrInCiPaLiD",
+				PermissionGrantPreApprovalPolicyId: "pErMiSsIoNgRaNtPrEaPpRoVaLpOlIcYiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sErViCePrInCiPaLs/sErViCePrInCiPaLiDvAlUe/pErMiSsIoNgRaNtPrEaPpRoVaLpOlIcIeS/pErMiSsIoNgRaNtPrEaPpRoVaLpOlIcYiDvAlUe/extra",
+			Input: "/sErViCePrInCiPaLs/sErViCePrInCiPaLiD/pErMiSsIoNgRaNtPrEaPpRoVaLpOlIcIeS/pErMiSsIoNgRaNtPrEaPpRoVaLpOlIcYiD/extra",
 			Error: true,
 		},
 	}

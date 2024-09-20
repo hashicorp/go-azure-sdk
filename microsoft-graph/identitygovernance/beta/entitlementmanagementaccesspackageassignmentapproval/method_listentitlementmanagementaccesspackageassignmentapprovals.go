@@ -25,14 +25,15 @@ type ListEntitlementManagementAccessPackageAssignmentApprovalsCompleteResult str
 }
 
 type ListEntitlementManagementAccessPackageAssignmentApprovalsOperationOptions struct {
-	Count   *bool
-	Expand  *odata.Expand
-	Filter  *string
-	OrderBy *odata.OrderBy
-	Search  *string
-	Select  *[]string
-	Skip    *int64
-	Top     *int64
+	Count    *bool
+	Expand   *odata.Expand
+	Filter   *string
+	Metadata *odata.Metadata
+	OrderBy  *odata.OrderBy
+	Search   *string
+	Select   *[]string
+	Skip     *int64
+	Top      *int64
 }
 
 func DefaultListEntitlementManagementAccessPackageAssignmentApprovalsOperationOptions() ListEntitlementManagementAccessPackageAssignmentApprovalsOperationOptions {
@@ -55,6 +56,9 @@ func (o ListEntitlementManagementAccessPackageAssignmentApprovalsOperationOption
 	}
 	if o.Filter != nil {
 		out.Filter = *o.Filter
+	}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
 	}
 	if o.OrderBy != nil {
 		out.OrderBy = *o.OrderBy
@@ -93,7 +97,7 @@ func (p *ListEntitlementManagementAccessPackageAssignmentApprovalsCustomPager) N
 }
 
 // ListEntitlementManagementAccessPackageAssignmentApprovals - Get approval. Retrieve the properties of an approval
-// object. This API request is made by an approver in the following scenarios:
+// object. This API request is made by an approver in the following scenarios
 func (c EntitlementManagementAccessPackageAssignmentApprovalClient) ListEntitlementManagementAccessPackageAssignmentApprovals(ctx context.Context, options ListEntitlementManagementAccessPackageAssignmentApprovalsOperationOptions) (result ListEntitlementManagementAccessPackageAssignmentApprovalsOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",

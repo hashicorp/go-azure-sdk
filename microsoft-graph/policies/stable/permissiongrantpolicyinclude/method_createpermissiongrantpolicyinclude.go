@@ -19,17 +19,46 @@ type CreatePermissionGrantPolicyIncludeOperationResponse struct {
 	Model        *stable.PermissionGrantConditionSet
 }
 
+type CreatePermissionGrantPolicyIncludeOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreatePermissionGrantPolicyIncludeOperationOptions() CreatePermissionGrantPolicyIncludeOperationOptions {
+	return CreatePermissionGrantPolicyIncludeOperationOptions{}
+}
+
+func (o CreatePermissionGrantPolicyIncludeOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreatePermissionGrantPolicyIncludeOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreatePermissionGrantPolicyIncludeOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreatePermissionGrantPolicyInclude - Create permissionGrantConditionSet in includes collection of
 // permissionGrantPolicy. Add conditions under which a permission grant event is *included* in a permission grant
 // policy. You do this by adding a permissionGrantConditionSet to the includes collection of a permissionGrantPolicy.
-func (c PermissionGrantPolicyIncludeClient) CreatePermissionGrantPolicyInclude(ctx context.Context, id stable.PolicyPermissionGrantPolicyId, input stable.PermissionGrantConditionSet) (result CreatePermissionGrantPolicyIncludeOperationResponse, err error) {
+func (c PermissionGrantPolicyIncludeClient) CreatePermissionGrantPolicyInclude(ctx context.Context, id stable.PolicyPermissionGrantPolicyId, input stable.PermissionGrantConditionSet, options CreatePermissionGrantPolicyIncludeOperationOptions) (result CreatePermissionGrantPolicyIncludeOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/includes", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/includes", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

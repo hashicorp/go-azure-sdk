@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &DeviceManagementImportedDeviceIdentityId{}
 
 func TestNewDeviceManagementImportedDeviceIdentityID(t *testing.T) {
-	id := NewDeviceManagementImportedDeviceIdentityID("importedDeviceIdentityIdValue")
+	id := NewDeviceManagementImportedDeviceIdentityID("importedDeviceIdentityId")
 
-	if id.ImportedDeviceIdentityId != "importedDeviceIdentityIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ImportedDeviceIdentityId'", id.ImportedDeviceIdentityId, "importedDeviceIdentityIdValue")
+	if id.ImportedDeviceIdentityId != "importedDeviceIdentityId" {
+		t.Fatalf("Expected %q but got %q for Segment 'ImportedDeviceIdentityId'", id.ImportedDeviceIdentityId, "importedDeviceIdentityId")
 	}
 }
 
 func TestFormatDeviceManagementImportedDeviceIdentityID(t *testing.T) {
-	actual := NewDeviceManagementImportedDeviceIdentityID("importedDeviceIdentityIdValue").ID()
-	expected := "/deviceManagement/importedDeviceIdentities/importedDeviceIdentityIdValue"
+	actual := NewDeviceManagementImportedDeviceIdentityID("importedDeviceIdentityId").ID()
+	expected := "/deviceManagement/importedDeviceIdentities/importedDeviceIdentityId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -50,14 +50,14 @@ func TestParseDeviceManagementImportedDeviceIdentityID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/importedDeviceIdentities/importedDeviceIdentityIdValue",
+			Input: "/deviceManagement/importedDeviceIdentities/importedDeviceIdentityId",
 			Expected: &DeviceManagementImportedDeviceIdentityId{
-				ImportedDeviceIdentityId: "importedDeviceIdentityIdValue",
+				ImportedDeviceIdentityId: "importedDeviceIdentityId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/importedDeviceIdentities/importedDeviceIdentityIdValue/extra",
+			Input: "/deviceManagement/importedDeviceIdentities/importedDeviceIdentityId/extra",
 			Error: true,
 		},
 	}
@@ -116,26 +116,26 @@ func TestParseDeviceManagementImportedDeviceIdentityIDInsensitively(t *testing.T
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/importedDeviceIdentities/importedDeviceIdentityIdValue",
+			Input: "/deviceManagement/importedDeviceIdentities/importedDeviceIdentityId",
 			Expected: &DeviceManagementImportedDeviceIdentityId{
-				ImportedDeviceIdentityId: "importedDeviceIdentityIdValue",
+				ImportedDeviceIdentityId: "importedDeviceIdentityId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/importedDeviceIdentities/importedDeviceIdentityIdValue/extra",
+			Input: "/deviceManagement/importedDeviceIdentities/importedDeviceIdentityId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/iMpOrTeDdEvIcEiDeNtItIeS/iMpOrTeDdEvIcEiDeNtItYiDvAlUe",
+			Input: "/dEvIcEmAnAgEmEnT/iMpOrTeDdEvIcEiDeNtItIeS/iMpOrTeDdEvIcEiDeNtItYiD",
 			Expected: &DeviceManagementImportedDeviceIdentityId{
-				ImportedDeviceIdentityId: "iMpOrTeDdEvIcEiDeNtItYiDvAlUe",
+				ImportedDeviceIdentityId: "iMpOrTeDdEvIcEiDeNtItYiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/iMpOrTeDdEvIcEiDeNtItIeS/iMpOrTeDdEvIcEiDeNtItYiDvAlUe/extra",
+			Input: "/dEvIcEmAnAgEmEnT/iMpOrTeDdEvIcEiDeNtItIeS/iMpOrTeDdEvIcEiDeNtItYiD/extra",
 			Error: true,
 		},
 	}

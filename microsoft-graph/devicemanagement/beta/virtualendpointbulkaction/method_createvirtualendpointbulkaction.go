@@ -19,15 +19,44 @@ type CreateVirtualEndpointBulkActionOperationResponse struct {
 	Model        beta.CloudPCBulkAction
 }
 
+type CreateVirtualEndpointBulkActionOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateVirtualEndpointBulkActionOperationOptions() CreateVirtualEndpointBulkActionOperationOptions {
+	return CreateVirtualEndpointBulkActionOperationOptions{}
+}
+
+func (o CreateVirtualEndpointBulkActionOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateVirtualEndpointBulkActionOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateVirtualEndpointBulkActionOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateVirtualEndpointBulkAction - Create cloudPcBulkAction. Create a new cloudPcBulkAction object.
-func (c VirtualEndpointBulkActionClient) CreateVirtualEndpointBulkAction(ctx context.Context, input beta.CloudPCBulkAction) (result CreateVirtualEndpointBulkActionOperationResponse, err error) {
+func (c VirtualEndpointBulkActionClient) CreateVirtualEndpointBulkAction(ctx context.Context, input beta.CloudPCBulkAction, options CreateVirtualEndpointBulkActionOperationOptions) (result CreateVirtualEndpointBulkActionOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/deviceManagement/virtualEndpoint/bulkActions",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/deviceManagement/virtualEndpoint/bulkActions",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

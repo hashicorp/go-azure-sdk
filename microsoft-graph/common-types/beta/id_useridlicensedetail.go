@@ -98,9 +98,9 @@ func (id UserIdLicenseDetailId) ID() string {
 func (id UserIdLicenseDetailId) Segments() []resourceids.Segment {
 	return []resourceids.Segment{
 		resourceids.StaticSegment("users", "users", "users"),
-		resourceids.UserSpecifiedSegment("userId", "userIdValue"),
+		resourceids.UserSpecifiedSegment("userId", "userId"),
 		resourceids.StaticSegment("licenseDetails", "licenseDetails", "licenseDetails"),
-		resourceids.UserSpecifiedSegment("licenseDetailsId", "licenseDetailsIdValue"),
+		resourceids.UserSpecifiedSegment("licenseDetailsId", "licenseDetailsId"),
 	}
 }
 

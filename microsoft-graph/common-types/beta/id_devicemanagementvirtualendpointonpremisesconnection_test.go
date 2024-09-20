@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &DeviceManagementVirtualEndpointOnPremisesConnectionId{}
 
 func TestNewDeviceManagementVirtualEndpointOnPremisesConnectionID(t *testing.T) {
-	id := NewDeviceManagementVirtualEndpointOnPremisesConnectionID("cloudPCOnPremisesConnectionIdValue")
+	id := NewDeviceManagementVirtualEndpointOnPremisesConnectionID("cloudPCOnPremisesConnectionId")
 
-	if id.CloudPCOnPremisesConnectionId != "cloudPCOnPremisesConnectionIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'CloudPCOnPremisesConnectionId'", id.CloudPCOnPremisesConnectionId, "cloudPCOnPremisesConnectionIdValue")
+	if id.CloudPCOnPremisesConnectionId != "cloudPCOnPremisesConnectionId" {
+		t.Fatalf("Expected %q but got %q for Segment 'CloudPCOnPremisesConnectionId'", id.CloudPCOnPremisesConnectionId, "cloudPCOnPremisesConnectionId")
 	}
 }
 
 func TestFormatDeviceManagementVirtualEndpointOnPremisesConnectionID(t *testing.T) {
-	actual := NewDeviceManagementVirtualEndpointOnPremisesConnectionID("cloudPCOnPremisesConnectionIdValue").ID()
-	expected := "/deviceManagement/virtualEndpoint/onPremisesConnections/cloudPCOnPremisesConnectionIdValue"
+	actual := NewDeviceManagementVirtualEndpointOnPremisesConnectionID("cloudPCOnPremisesConnectionId").ID()
+	expected := "/deviceManagement/virtualEndpoint/onPremisesConnections/cloudPCOnPremisesConnectionId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -55,14 +55,14 @@ func TestParseDeviceManagementVirtualEndpointOnPremisesConnectionID(t *testing.T
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/virtualEndpoint/onPremisesConnections/cloudPCOnPremisesConnectionIdValue",
+			Input: "/deviceManagement/virtualEndpoint/onPremisesConnections/cloudPCOnPremisesConnectionId",
 			Expected: &DeviceManagementVirtualEndpointOnPremisesConnectionId{
-				CloudPCOnPremisesConnectionId: "cloudPCOnPremisesConnectionIdValue",
+				CloudPCOnPremisesConnectionId: "cloudPCOnPremisesConnectionId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/virtualEndpoint/onPremisesConnections/cloudPCOnPremisesConnectionIdValue/extra",
+			Input: "/deviceManagement/virtualEndpoint/onPremisesConnections/cloudPCOnPremisesConnectionId/extra",
 			Error: true,
 		},
 	}
@@ -131,26 +131,26 @@ func TestParseDeviceManagementVirtualEndpointOnPremisesConnectionIDInsensitively
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/virtualEndpoint/onPremisesConnections/cloudPCOnPremisesConnectionIdValue",
+			Input: "/deviceManagement/virtualEndpoint/onPremisesConnections/cloudPCOnPremisesConnectionId",
 			Expected: &DeviceManagementVirtualEndpointOnPremisesConnectionId{
-				CloudPCOnPremisesConnectionId: "cloudPCOnPremisesConnectionIdValue",
+				CloudPCOnPremisesConnectionId: "cloudPCOnPremisesConnectionId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/virtualEndpoint/onPremisesConnections/cloudPCOnPremisesConnectionIdValue/extra",
+			Input: "/deviceManagement/virtualEndpoint/onPremisesConnections/cloudPCOnPremisesConnectionId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/vIrTuAlEnDpOiNt/oNpReMiSeScOnNeCtIoNs/cLoUdPcOnPrEmIsEsCoNnEcTiOnIdVaLuE",
+			Input: "/dEvIcEmAnAgEmEnT/vIrTuAlEnDpOiNt/oNpReMiSeScOnNeCtIoNs/cLoUdPcOnPrEmIsEsCoNnEcTiOnId",
 			Expected: &DeviceManagementVirtualEndpointOnPremisesConnectionId{
-				CloudPCOnPremisesConnectionId: "cLoUdPcOnPrEmIsEsCoNnEcTiOnIdVaLuE",
+				CloudPCOnPremisesConnectionId: "cLoUdPcOnPrEmIsEsCoNnEcTiOnId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/vIrTuAlEnDpOiNt/oNpReMiSeScOnNeCtIoNs/cLoUdPcOnPrEmIsEsCoNnEcTiOnIdVaLuE/extra",
+			Input: "/dEvIcEmAnAgEmEnT/vIrTuAlEnDpOiNt/oNpReMiSeScOnNeCtIoNs/cLoUdPcOnPrEmIsEsCoNnEcTiOnId/extra",
 			Error: true,
 		},
 	}

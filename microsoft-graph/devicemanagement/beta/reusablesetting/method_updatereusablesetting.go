@@ -17,15 +17,44 @@ type UpdateReusableSettingOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateReusableSettingOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateReusableSettingOperationOptions() UpdateReusableSettingOperationOptions {
+	return UpdateReusableSettingOperationOptions{}
+}
+
+func (o UpdateReusableSettingOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateReusableSettingOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateReusableSettingOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateReusableSetting - Update the navigation property reusableSettings in deviceManagement
-func (c ReusableSettingClient) UpdateReusableSetting(ctx context.Context, id beta.DeviceManagementReusableSettingId, input beta.DeviceManagementConfigurationSettingDefinition) (result UpdateReusableSettingOperationResponse, err error) {
+func (c ReusableSettingClient) UpdateReusableSetting(ctx context.Context, id beta.DeviceManagementReusableSettingId, input beta.DeviceManagementConfigurationSettingDefinition, options UpdateReusableSettingOperationOptions) (result UpdateReusableSettingOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

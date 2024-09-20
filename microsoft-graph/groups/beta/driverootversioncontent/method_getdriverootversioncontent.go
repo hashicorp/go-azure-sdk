@@ -19,15 +19,44 @@ type GetDriveRootVersionContentOperationResponse struct {
 	Model        *[]byte
 }
 
+type GetDriveRootVersionContentOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultGetDriveRootVersionContentOperationOptions() GetDriveRootVersionContentOperationOptions {
+	return GetDriveRootVersionContentOperationOptions{}
+}
+
+func (o GetDriveRootVersionContentOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o GetDriveRootVersionContentOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o GetDriveRootVersionContentOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // GetDriveRootVersionContent - Get content for the navigation property versions from groups
-func (c DriveRootVersionContentClient) GetDriveRootVersionContent(ctx context.Context, id beta.GroupIdDriveIdRootVersionId) (result GetDriveRootVersionContentOperationResponse, err error) {
+func (c DriveRootVersionContentClient) GetDriveRootVersionContent(ctx context.Context, id beta.GroupIdDriveIdRootVersionId, options GetDriveRootVersionContentOperationOptions) (result GetDriveRootVersionContentOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/octet-stream",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/content", id.ID()),
+		HttpMethod:    http.MethodGet,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/content", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

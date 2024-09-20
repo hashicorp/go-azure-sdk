@@ -18,16 +18,45 @@ type CreatePrivilegeManagementElevationOperationResponse struct {
 	Model        *beta.PrivilegeManagementElevation
 }
 
+type CreatePrivilegeManagementElevationOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreatePrivilegeManagementElevationOperationOptions() CreatePrivilegeManagementElevationOperationOptions {
+	return CreatePrivilegeManagementElevationOperationOptions{}
+}
+
+func (o CreatePrivilegeManagementElevationOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreatePrivilegeManagementElevationOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreatePrivilegeManagementElevationOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreatePrivilegeManagementElevation - Create new navigation property to privilegeManagementElevations for
 // deviceManagement
-func (c PrivilegeManagementElevationClient) CreatePrivilegeManagementElevation(ctx context.Context, input beta.PrivilegeManagementElevation) (result CreatePrivilegeManagementElevationOperationResponse, err error) {
+func (c PrivilegeManagementElevationClient) CreatePrivilegeManagementElevation(ctx context.Context, input beta.PrivilegeManagementElevation, options CreatePrivilegeManagementElevationOperationOptions) (result CreatePrivilegeManagementElevationOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/deviceManagement/privilegeManagementElevations",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/deviceManagement/privilegeManagementElevations",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -19,7 +19,8 @@ type DeleteUserExperienceAnalyticsAppHealthDevicePerformanceOperationResponse st
 }
 
 type DeleteUserExperienceAnalyticsAppHealthDevicePerformanceOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteUserExperienceAnalyticsAppHealthDevicePerformanceOperationOptions() DeleteUserExperienceAnalyticsAppHealthDevicePerformanceOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteUserExperienceAnalyticsAppHealthDevicePerformanceOperationOptions)
 
 func (o DeleteUserExperienceAnalyticsAppHealthDevicePerformanceOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

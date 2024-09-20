@@ -18,15 +18,44 @@ type CreateRoleAssignmentOperationResponse struct {
 	Model        *beta.DeviceAndAppManagementRoleAssignment
 }
 
+type CreateRoleAssignmentOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateRoleAssignmentOperationOptions() CreateRoleAssignmentOperationOptions {
+	return CreateRoleAssignmentOperationOptions{}
+}
+
+func (o CreateRoleAssignmentOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateRoleAssignmentOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateRoleAssignmentOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateRoleAssignment - Create new navigation property to roleAssignments for deviceManagement
-func (c RoleAssignmentClient) CreateRoleAssignment(ctx context.Context, input beta.DeviceAndAppManagementRoleAssignment) (result CreateRoleAssignmentOperationResponse, err error) {
+func (c RoleAssignmentClient) CreateRoleAssignment(ctx context.Context, input beta.DeviceAndAppManagementRoleAssignment, options CreateRoleAssignmentOperationOptions) (result CreateRoleAssignmentOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/deviceManagement/roleAssignments",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/deviceManagement/roleAssignments",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

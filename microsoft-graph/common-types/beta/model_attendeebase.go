@@ -92,15 +92,20 @@ func (s BaseAttendeeBaseImpl) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &BaseAttendeeBaseImpl{}
 
 func (s *BaseAttendeeBaseImpl) UnmarshalJSON(bytes []byte) error {
-	type alias BaseAttendeeBaseImpl
-	var decoded alias
+
+	var decoded struct {
+		Type         *AttendeeType `json:"type,omitempty"`
+		EmailAddress EmailAddress  `json:"emailAddress"`
+		ODataId      *string       `json:"@odata.id,omitempty"`
+		ODataType    *string       `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into BaseAttendeeBaseImpl: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
+	s.Type = decoded.Type
 	s.ODataId = decoded.ODataId
 	s.ODataType = decoded.ODataType
-	s.Type = decoded.Type
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -114,6 +119,7 @@ func (s *BaseAttendeeBaseImpl) UnmarshalJSON(bytes []byte) error {
 		}
 		s.EmailAddress = impl
 	}
+
 	return nil
 }
 
@@ -127,9 +133,9 @@ func UnmarshalAttendeeBaseImplementation(input []byte) (AttendeeBase, error) {
 		return nil, fmt.Errorf("unmarshaling AttendeeBase into map[string]interface: %+v", err)
 	}
 
-	value, ok := temp["@odata.type"].(string)
-	if !ok {
-		return nil, nil
+	var value string
+	if v, ok := temp["@odata.type"]; ok {
+		value = fmt.Sprintf("%v", v)
 	}
 
 	if strings.EqualFold(value, "#microsoft.graph.attendee") {

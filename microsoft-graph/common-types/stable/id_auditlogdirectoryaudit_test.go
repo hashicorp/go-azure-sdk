@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &AuditLogDirectoryAuditId{}
 
 func TestNewAuditLogDirectoryAuditID(t *testing.T) {
-	id := NewAuditLogDirectoryAuditID("directoryAuditIdValue")
+	id := NewAuditLogDirectoryAuditID("directoryAuditId")
 
-	if id.DirectoryAuditId != "directoryAuditIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DirectoryAuditId'", id.DirectoryAuditId, "directoryAuditIdValue")
+	if id.DirectoryAuditId != "directoryAuditId" {
+		t.Fatalf("Expected %q but got %q for Segment 'DirectoryAuditId'", id.DirectoryAuditId, "directoryAuditId")
 	}
 }
 
 func TestFormatAuditLogDirectoryAuditID(t *testing.T) {
-	actual := NewAuditLogDirectoryAuditID("directoryAuditIdValue").ID()
-	expected := "/auditLogs/directoryAudits/directoryAuditIdValue"
+	actual := NewAuditLogDirectoryAuditID("directoryAuditId").ID()
+	expected := "/auditLogs/directoryAudits/directoryAuditId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -50,14 +50,14 @@ func TestParseAuditLogDirectoryAuditID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/auditLogs/directoryAudits/directoryAuditIdValue",
+			Input: "/auditLogs/directoryAudits/directoryAuditId",
 			Expected: &AuditLogDirectoryAuditId{
-				DirectoryAuditId: "directoryAuditIdValue",
+				DirectoryAuditId: "directoryAuditId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/auditLogs/directoryAudits/directoryAuditIdValue/extra",
+			Input: "/auditLogs/directoryAudits/directoryAuditId/extra",
 			Error: true,
 		},
 	}
@@ -116,26 +116,26 @@ func TestParseAuditLogDirectoryAuditIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/auditLogs/directoryAudits/directoryAuditIdValue",
+			Input: "/auditLogs/directoryAudits/directoryAuditId",
 			Expected: &AuditLogDirectoryAuditId{
-				DirectoryAuditId: "directoryAuditIdValue",
+				DirectoryAuditId: "directoryAuditId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/auditLogs/directoryAudits/directoryAuditIdValue/extra",
+			Input: "/auditLogs/directoryAudits/directoryAuditId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/aUdItLoGs/dIrEcToRyAuDiTs/dIrEcToRyAuDiTiDvAlUe",
+			Input: "/aUdItLoGs/dIrEcToRyAuDiTs/dIrEcToRyAuDiTiD",
 			Expected: &AuditLogDirectoryAuditId{
-				DirectoryAuditId: "dIrEcToRyAuDiTiDvAlUe",
+				DirectoryAuditId: "dIrEcToRyAuDiTiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/aUdItLoGs/dIrEcToRyAuDiTs/dIrEcToRyAuDiTiDvAlUe/extra",
+			Input: "/aUdItLoGs/dIrEcToRyAuDiTs/dIrEcToRyAuDiTiD/extra",
 			Error: true,
 		},
 	}

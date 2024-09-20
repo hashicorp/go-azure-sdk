@@ -28,10 +28,14 @@ type CustomClaimConfiguration struct {
 var _ json.Unmarshaler = &CustomClaimConfiguration{}
 
 func (s *CustomClaimConfiguration) UnmarshalJSON(bytes []byte) error {
-	type alias CustomClaimConfiguration
-	var decoded alias
+
+	var decoded struct {
+		ODataId         *string                      `json:"@odata.id,omitempty"`
+		ODataType       *string                      `json:"@odata.type,omitempty"`
+		Transformations *[]CustomClaimTransformation `json:"transformations,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into CustomClaimConfiguration: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.ODataId = decoded.ODataId
@@ -74,5 +78,6 @@ func (s *CustomClaimConfiguration) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Transformations = &output
 	}
+
 	return nil
 }

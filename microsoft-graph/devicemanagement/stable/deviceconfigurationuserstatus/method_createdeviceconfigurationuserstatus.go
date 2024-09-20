@@ -19,16 +19,45 @@ type CreateDeviceConfigurationUserStatusOperationResponse struct {
 	Model        *stable.DeviceConfigurationUserStatus
 }
 
+type CreateDeviceConfigurationUserStatusOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateDeviceConfigurationUserStatusOperationOptions() CreateDeviceConfigurationUserStatusOperationOptions {
+	return CreateDeviceConfigurationUserStatusOperationOptions{}
+}
+
+func (o CreateDeviceConfigurationUserStatusOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateDeviceConfigurationUserStatusOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateDeviceConfigurationUserStatusOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateDeviceConfigurationUserStatus - Create deviceConfigurationUserStatus. Create a new
 // deviceConfigurationUserStatus object.
-func (c DeviceConfigurationUserStatusClient) CreateDeviceConfigurationUserStatus(ctx context.Context, id stable.DeviceManagementDeviceConfigurationId, input stable.DeviceConfigurationUserStatus) (result CreateDeviceConfigurationUserStatusOperationResponse, err error) {
+func (c DeviceConfigurationUserStatusClient) CreateDeviceConfigurationUserStatus(ctx context.Context, id stable.DeviceManagementDeviceConfigurationId, input stable.DeviceConfigurationUserStatus, options CreateDeviceConfigurationUserStatusOperationOptions) (result CreateDeviceConfigurationUserStatusOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/userStatuses", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/userStatuses", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

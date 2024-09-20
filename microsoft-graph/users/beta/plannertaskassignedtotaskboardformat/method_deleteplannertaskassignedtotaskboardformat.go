@@ -19,7 +19,8 @@ type DeletePlannerTaskAssignedToTaskBoardFormatOperationResponse struct {
 }
 
 type DeletePlannerTaskAssignedToTaskBoardFormatOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeletePlannerTaskAssignedToTaskBoardFormatOperationOptions() DeletePlannerTaskAssignedToTaskBoardFormatOperationOptions {
@@ -36,7 +37,9 @@ func (o DeletePlannerTaskAssignedToTaskBoardFormatOperationOptions) ToHeaders() 
 
 func (o DeletePlannerTaskAssignedToTaskBoardFormatOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

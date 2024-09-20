@@ -19,16 +19,45 @@ type CreateManagedDeviceBulkReprovisionCloudPCOperationResponse struct {
 	Model        *beta.CloudPCBulkRemoteActionResult
 }
 
+type CreateManagedDeviceBulkReprovisionCloudPCOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateManagedDeviceBulkReprovisionCloudPCOperationOptions() CreateManagedDeviceBulkReprovisionCloudPCOperationOptions {
+	return CreateManagedDeviceBulkReprovisionCloudPCOperationOptions{}
+}
+
+func (o CreateManagedDeviceBulkReprovisionCloudPCOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateManagedDeviceBulkReprovisionCloudPCOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateManagedDeviceBulkReprovisionCloudPCOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateManagedDeviceBulkReprovisionCloudPC - Invoke action bulkReprovisionCloudPc. Bulk reprovision a set of Cloud PC
 // devices with Intune managed device IDs.
-func (c ManagedDeviceClient) CreateManagedDeviceBulkReprovisionCloudPC(ctx context.Context, id beta.UserId, input CreateManagedDeviceBulkReprovisionCloudPCRequest) (result CreateManagedDeviceBulkReprovisionCloudPCOperationResponse, err error) {
+func (c ManagedDeviceClient) CreateManagedDeviceBulkReprovisionCloudPC(ctx context.Context, id beta.UserId, input CreateManagedDeviceBulkReprovisionCloudPCRequest, options CreateManagedDeviceBulkReprovisionCloudPCOperationOptions) (result CreateManagedDeviceBulkReprovisionCloudPCOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/managedDevices/bulkReprovisionCloudPc", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/managedDevices/bulkReprovisionCloudPc", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

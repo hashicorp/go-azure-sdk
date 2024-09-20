@@ -17,15 +17,44 @@ type UpdatePartnerOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdatePartnerOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdatePartnerOperationOptions() UpdatePartnerOperationOptions {
+	return UpdatePartnerOperationOptions{}
+}
+
+func (o UpdatePartnerOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdatePartnerOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdatePartnerOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdatePartner - Update the navigation property partners in reports
-func (c PartnerClient) UpdatePartner(ctx context.Context, input beta.Partners) (result UpdatePartnerOperationResponse, err error) {
+func (c PartnerClient) UpdatePartner(ctx context.Context, input beta.Partners, options UpdatePartnerOperationOptions) (result UpdatePartnerOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       "/reports/partners",
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          "/reports/partners",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

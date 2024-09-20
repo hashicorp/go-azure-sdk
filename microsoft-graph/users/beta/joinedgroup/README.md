@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/joinedgroup` Documentation
 
-The `joinedgroup` SDK allows for interaction with the Azure Resource Manager Service `users` (API Version `beta`).
+The `joinedgroup` SDK allows for interaction with Microsoft Graph `users` (API Version `beta`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -15,23 +15,23 @@ import "github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/joinedgroup
 ### Client Initialization
 
 ```go
-client := joinedgroup.NewJoinedGroupClientWithBaseURI("https://management.azure.com")
+client := joinedgroup.NewJoinedGroupClientWithBaseURI("https://graph.microsoft.com")
 client.Client.Authorizer = authorizer
 ```
 
 
-### Example Usage: `JoinedGroupClient.CreateJoinedGroupEvaluateDynamicMembership`
+### Example Usage: `JoinedGroupClient.EvaluateJoinedGroupsDynamicMembership`
 
 ```go
 ctx := context.TODO()
-id := joinedgroup.NewUserID("userIdValue")
+id := joinedgroup.NewUserID("userId")
 
-payload := joinedgroup.CreateJoinedGroupEvaluateDynamicMembershipRequest{
+payload := joinedgroup.EvaluateJoinedGroupsDynamicMembershipRequest{
 	// ...
 }
 
 
-read, err := client.CreateJoinedGroupEvaluateDynamicMembership(ctx, id, payload)
+read, err := client.EvaluateJoinedGroupsDynamicMembership(ctx, id, payload, joinedgroup.DefaultEvaluateJoinedGroupsDynamicMembershipOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -45,7 +45,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := joinedgroup.NewUserID("userIdValue")
+id := joinedgroup.NewUserID("userId")
 
 // alternatively `client.ListJoinedGroups(ctx, id, joinedgroup.DefaultListJoinedGroupsOperationOptions())` can be used to do batched pagination
 items, err := client.ListJoinedGroupsComplete(ctx, id, joinedgroup.DefaultListJoinedGroupsOperationOptions())

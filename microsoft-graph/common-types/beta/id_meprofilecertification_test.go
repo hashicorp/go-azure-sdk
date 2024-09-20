@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &MeProfileCertificationId{}
 
 func TestNewMeProfileCertificationID(t *testing.T) {
-	id := NewMeProfileCertificationID("personCertificationIdValue")
+	id := NewMeProfileCertificationID("personCertificationId")
 
-	if id.PersonCertificationId != "personCertificationIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'PersonCertificationId'", id.PersonCertificationId, "personCertificationIdValue")
+	if id.PersonCertificationId != "personCertificationId" {
+		t.Fatalf("Expected %q but got %q for Segment 'PersonCertificationId'", id.PersonCertificationId, "personCertificationId")
 	}
 }
 
 func TestFormatMeProfileCertificationID(t *testing.T) {
-	actual := NewMeProfileCertificationID("personCertificationIdValue").ID()
-	expected := "/me/profile/certifications/personCertificationIdValue"
+	actual := NewMeProfileCertificationID("personCertificationId").ID()
+	expected := "/me/profile/certifications/personCertificationId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -55,14 +55,14 @@ func TestParseMeProfileCertificationID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/me/profile/certifications/personCertificationIdValue",
+			Input: "/me/profile/certifications/personCertificationId",
 			Expected: &MeProfileCertificationId{
-				PersonCertificationId: "personCertificationIdValue",
+				PersonCertificationId: "personCertificationId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/profile/certifications/personCertificationIdValue/extra",
+			Input: "/me/profile/certifications/personCertificationId/extra",
 			Error: true,
 		},
 	}
@@ -131,26 +131,26 @@ func TestParseMeProfileCertificationIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/me/profile/certifications/personCertificationIdValue",
+			Input: "/me/profile/certifications/personCertificationId",
 			Expected: &MeProfileCertificationId{
-				PersonCertificationId: "personCertificationIdValue",
+				PersonCertificationId: "personCertificationId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/profile/certifications/personCertificationIdValue/extra",
+			Input: "/me/profile/certifications/personCertificationId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/pRoFiLe/cErTiFiCaTiOnS/pErSoNcErTiFiCaTiOnIdVaLuE",
+			Input: "/mE/pRoFiLe/cErTiFiCaTiOnS/pErSoNcErTiFiCaTiOnId",
 			Expected: &MeProfileCertificationId{
-				PersonCertificationId: "pErSoNcErTiFiCaTiOnIdVaLuE",
+				PersonCertificationId: "pErSoNcErTiFiCaTiOnId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/mE/pRoFiLe/cErTiFiCaTiOnS/pErSoNcErTiFiCaTiOnIdVaLuE/extra",
+			Input: "/mE/pRoFiLe/cErTiFiCaTiOnS/pErSoNcErTiFiCaTiOnId/extra",
 			Error: true,
 		},
 	}

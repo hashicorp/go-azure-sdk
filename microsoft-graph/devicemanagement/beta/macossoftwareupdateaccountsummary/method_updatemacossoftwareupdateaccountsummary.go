@@ -17,16 +17,45 @@ type UpdateMacOSSoftwareUpdateAccountSummaryOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateMacOSSoftwareUpdateAccountSummaryOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateMacOSSoftwareUpdateAccountSummaryOperationOptions() UpdateMacOSSoftwareUpdateAccountSummaryOperationOptions {
+	return UpdateMacOSSoftwareUpdateAccountSummaryOperationOptions{}
+}
+
+func (o UpdateMacOSSoftwareUpdateAccountSummaryOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateMacOSSoftwareUpdateAccountSummaryOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateMacOSSoftwareUpdateAccountSummaryOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateMacOSSoftwareUpdateAccountSummary - Update the navigation property macOSSoftwareUpdateAccountSummaries in
 // deviceManagement
-func (c MacOSSoftwareUpdateAccountSummaryClient) UpdateMacOSSoftwareUpdateAccountSummary(ctx context.Context, id beta.DeviceManagementMacOSSoftwareUpdateAccountSummaryId, input beta.MacOSSoftwareUpdateAccountSummary) (result UpdateMacOSSoftwareUpdateAccountSummaryOperationResponse, err error) {
+func (c MacOSSoftwareUpdateAccountSummaryClient) UpdateMacOSSoftwareUpdateAccountSummary(ctx context.Context, id beta.DeviceManagementMacOSSoftwareUpdateAccountSummaryId, input beta.MacOSSoftwareUpdateAccountSummary, options UpdateMacOSSoftwareUpdateAccountSummaryOperationOptions) (result UpdateMacOSSoftwareUpdateAccountSummaryOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

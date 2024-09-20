@@ -17,16 +17,45 @@ type UpdateDirectoryRoleAssignmentScheduleRequestOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateDirectoryRoleAssignmentScheduleRequestOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateDirectoryRoleAssignmentScheduleRequestOperationOptions() UpdateDirectoryRoleAssignmentScheduleRequestOperationOptions {
+	return UpdateDirectoryRoleAssignmentScheduleRequestOperationOptions{}
+}
+
+func (o UpdateDirectoryRoleAssignmentScheduleRequestOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateDirectoryRoleAssignmentScheduleRequestOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateDirectoryRoleAssignmentScheduleRequestOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateDirectoryRoleAssignmentScheduleRequest - Update the navigation property roleAssignmentScheduleRequests in
 // roleManagement
-func (c DirectoryRoleAssignmentScheduleRequestClient) UpdateDirectoryRoleAssignmentScheduleRequest(ctx context.Context, id stable.RoleManagementDirectoryRoleAssignmentScheduleRequestId, input stable.UnifiedRoleAssignmentScheduleRequest) (result UpdateDirectoryRoleAssignmentScheduleRequestOperationResponse, err error) {
+func (c DirectoryRoleAssignmentScheduleRequestClient) UpdateDirectoryRoleAssignmentScheduleRequest(ctx context.Context, id stable.RoleManagementDirectoryRoleAssignmentScheduleRequestId, input stable.UnifiedRoleAssignmentScheduleRequest, options UpdateDirectoryRoleAssignmentScheduleRequestOperationOptions) (result UpdateDirectoryRoleAssignmentScheduleRequestOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

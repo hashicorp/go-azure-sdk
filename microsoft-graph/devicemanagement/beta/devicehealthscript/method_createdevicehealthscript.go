@@ -18,15 +18,44 @@ type CreateDeviceHealthScriptOperationResponse struct {
 	Model        *beta.DeviceHealthScript
 }
 
+type CreateDeviceHealthScriptOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateDeviceHealthScriptOperationOptions() CreateDeviceHealthScriptOperationOptions {
+	return CreateDeviceHealthScriptOperationOptions{}
+}
+
+func (o CreateDeviceHealthScriptOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateDeviceHealthScriptOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateDeviceHealthScriptOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateDeviceHealthScript - Create new navigation property to deviceHealthScripts for deviceManagement
-func (c DeviceHealthScriptClient) CreateDeviceHealthScript(ctx context.Context, input beta.DeviceHealthScript) (result CreateDeviceHealthScriptOperationResponse, err error) {
+func (c DeviceHealthScriptClient) CreateDeviceHealthScript(ctx context.Context, input beta.DeviceHealthScript, options CreateDeviceHealthScriptOperationOptions) (result CreateDeviceHealthScriptOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/deviceManagement/deviceHealthScripts",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/deviceManagement/deviceHealthScripts",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -19,16 +19,45 @@ type CreateEntitlementManagementAccessPackageAssignmentRequestOperationResponse 
 	Model        *beta.AccessPackageAssignmentRequest
 }
 
+type CreateEntitlementManagementAccessPackageAssignmentRequestOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateEntitlementManagementAccessPackageAssignmentRequestOperationOptions() CreateEntitlementManagementAccessPackageAssignmentRequestOperationOptions {
+	return CreateEntitlementManagementAccessPackageAssignmentRequestOperationOptions{}
+}
+
+func (o CreateEntitlementManagementAccessPackageAssignmentRequestOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateEntitlementManagementAccessPackageAssignmentRequestOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateEntitlementManagementAccessPackageAssignmentRequestOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateEntitlementManagementAccessPackageAssignmentRequest - Create new navigation property to
 // accessPackageAssignmentRequests for identityGovernance
-func (c EntitlementManagementAccessPackageAssignmentAccessPackageAssignmentRequestClient) CreateEntitlementManagementAccessPackageAssignmentRequest(ctx context.Context, id beta.IdentityGovernanceEntitlementManagementAccessPackageAssignmentId, input beta.AccessPackageAssignmentRequest) (result CreateEntitlementManagementAccessPackageAssignmentRequestOperationResponse, err error) {
+func (c EntitlementManagementAccessPackageAssignmentAccessPackageAssignmentRequestClient) CreateEntitlementManagementAccessPackageAssignmentRequest(ctx context.Context, id beta.IdentityGovernanceEntitlementManagementAccessPackageAssignmentId, input beta.AccessPackageAssignmentRequest, options CreateEntitlementManagementAccessPackageAssignmentRequestOperationOptions) (result CreateEntitlementManagementAccessPackageAssignmentRequestOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/accessPackageAssignmentRequests", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/accessPackageAssignmentRequests", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

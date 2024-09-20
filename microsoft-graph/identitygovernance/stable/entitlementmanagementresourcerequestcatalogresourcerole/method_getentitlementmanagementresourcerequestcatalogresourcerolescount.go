@@ -20,8 +20,9 @@ type GetEntitlementManagementResourceRequestCatalogResourceRolesCountOperationRe
 }
 
 type GetEntitlementManagementResourceRequestCatalogResourceRolesCountOperationOptions struct {
-	Filter *string
-	Search *string
+	Filter   *string
+	Metadata *odata.Metadata
+	Search   *string
 }
 
 func DefaultGetEntitlementManagementResourceRequestCatalogResourceRolesCountOperationOptions() GetEntitlementManagementResourceRequestCatalogResourceRolesCountOperationOptions {
@@ -39,6 +40,9 @@ func (o GetEntitlementManagementResourceRequestCatalogResourceRolesCountOperatio
 	if o.Filter != nil {
 		out.Filter = *o.Filter
 	}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	if o.Search != nil {
 		out.Search = *o.Search
 	}
@@ -52,7 +56,7 @@ func (o GetEntitlementManagementResourceRequestCatalogResourceRolesCountOperatio
 }
 
 // GetEntitlementManagementResourceRequestCatalogResourceRolesCount - Get the number of the resource
-func (c EntitlementManagementResourceRequestCatalogResourceRoleClient) GetEntitlementManagementResourceRequestCatalogResourceRolesCount(ctx context.Context, id stable.IdentityGovernanceEntitlementManagementResourceRequestId, options GetEntitlementManagementResourceRequestCatalogResourceRolesCountOperationOptions) (result GetEntitlementManagementResourceRequestCatalogResourceRolesCountOperationResponse, err error) {
+func (c EntitlementManagementResourceRequestCatalogResourceRoleClient) GetEntitlementManagementResourceRequestCatalogResourceRolesCount(ctx context.Context, id stable.IdentityGovernanceEntitlementManagementResourceRequestIdCatalogResourceId, options GetEntitlementManagementResourceRequestCatalogResourceRolesCountOperationOptions) (result GetEntitlementManagementResourceRequestCatalogResourceRolesCountOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "text/plain",
 		ExpectedStatusCodes: []int{
@@ -60,7 +64,7 @@ func (c EntitlementManagementResourceRequestCatalogResourceRoleClient) GetEntitl
 		},
 		HttpMethod:    http.MethodGet,
 		OptionsObject: options,
-		Path:          fmt.Sprintf("%s/catalog/resourceRoles/$count", id.ID()),
+		Path:          fmt.Sprintf("%s/roles/$count", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -106,10 +106,23 @@ func (s UnifiedRoleAssignment) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &UnifiedRoleAssignment{}
 
 func (s *UnifiedRoleAssignment) UnmarshalJSON(bytes []byte) error {
-	type alias UnifiedRoleAssignment
-	var decoded alias
+
+	var decoded struct {
+		AppScope                 *AppScope              `json:"appScope,omitempty"`
+		AppScopeId               nullable.Type[string]  `json:"appScopeId,omitempty"`
+		Condition                nullable.Type[string]  `json:"condition,omitempty"`
+		DirectoryScopeId         nullable.Type[string]  `json:"directoryScopeId,omitempty"`
+		DirectoryScope_ODataBind *string                `json:"directoryScope@odata.bind,omitempty"`
+		PrincipalId              nullable.Type[string]  `json:"principalId,omitempty"`
+		Principal_ODataBind      *string                `json:"principal@odata.bind,omitempty"`
+		RoleDefinition           *UnifiedRoleDefinition `json:"roleDefinition,omitempty"`
+		RoleDefinitionId         nullable.Type[string]  `json:"roleDefinitionId,omitempty"`
+		Id                       *string                `json:"id,omitempty"`
+		ODataId                  *string                `json:"@odata.id,omitempty"`
+		ODataType                *string                `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into UnifiedRoleAssignment: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.AppScope = decoded.AppScope
@@ -117,13 +130,13 @@ func (s *UnifiedRoleAssignment) UnmarshalJSON(bytes []byte) error {
 	s.Condition = decoded.Condition
 	s.DirectoryScopeId = decoded.DirectoryScopeId
 	s.DirectoryScope_ODataBind = decoded.DirectoryScope_ODataBind
-	s.Id = decoded.Id
-	s.ODataId = decoded.ODataId
-	s.ODataType = decoded.ODataType
 	s.PrincipalId = decoded.PrincipalId
 	s.Principal_ODataBind = decoded.Principal_ODataBind
 	s.RoleDefinition = decoded.RoleDefinition
 	s.RoleDefinitionId = decoded.RoleDefinitionId
+	s.Id = decoded.Id
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -145,5 +158,6 @@ func (s *UnifiedRoleAssignment) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Principal = &impl
 	}
+
 	return nil
 }

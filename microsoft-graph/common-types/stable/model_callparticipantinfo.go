@@ -22,10 +22,13 @@ type CallParticipantInfo struct {
 var _ json.Unmarshaler = &CallParticipantInfo{}
 
 func (s *CallParticipantInfo) UnmarshalJSON(bytes []byte) error {
-	type alias CallParticipantInfo
-	var decoded alias
+
+	var decoded struct {
+		ODataId   *string `json:"@odata.id,omitempty"`
+		ODataType *string `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into CallParticipantInfo: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.ODataId = decoded.ODataId
@@ -43,5 +46,6 @@ func (s *CallParticipantInfo) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Participant = impl
 	}
+
 	return nil
 }

@@ -12,24 +12,24 @@ import (
 var _ resourceids.ResourceId = &UserIdManagedDeviceIdDetectedAppId{}
 
 func TestNewUserIdManagedDeviceIdDetectedAppID(t *testing.T) {
-	id := NewUserIdManagedDeviceIdDetectedAppID("userIdValue", "managedDeviceIdValue", "detectedAppIdValue")
+	id := NewUserIdManagedDeviceIdDetectedAppID("userId", "managedDeviceId", "detectedAppId")
 
-	if id.UserId != "userIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'UserId'", id.UserId, "userIdValue")
+	if id.UserId != "userId" {
+		t.Fatalf("Expected %q but got %q for Segment 'UserId'", id.UserId, "userId")
 	}
 
-	if id.ManagedDeviceId != "managedDeviceIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ManagedDeviceId'", id.ManagedDeviceId, "managedDeviceIdValue")
+	if id.ManagedDeviceId != "managedDeviceId" {
+		t.Fatalf("Expected %q but got %q for Segment 'ManagedDeviceId'", id.ManagedDeviceId, "managedDeviceId")
 	}
 
-	if id.DetectedAppId != "detectedAppIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DetectedAppId'", id.DetectedAppId, "detectedAppIdValue")
+	if id.DetectedAppId != "detectedAppId" {
+		t.Fatalf("Expected %q but got %q for Segment 'DetectedAppId'", id.DetectedAppId, "detectedAppId")
 	}
 }
 
 func TestFormatUserIdManagedDeviceIdDetectedAppID(t *testing.T) {
-	actual := NewUserIdManagedDeviceIdDetectedAppID("userIdValue", "managedDeviceIdValue", "detectedAppIdValue").ID()
-	expected := "/users/userIdValue/managedDevices/managedDeviceIdValue/detectedApps/detectedAppIdValue"
+	actual := NewUserIdManagedDeviceIdDetectedAppID("userId", "managedDeviceId", "detectedAppId").ID()
+	expected := "/users/userId/managedDevices/managedDeviceId/detectedApps/detectedAppId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -53,36 +53,36 @@ func TestParseUserIdManagedDeviceIdDetectedAppID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue",
+			Input: "/users/userId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/managedDevices",
+			Input: "/users/userId/managedDevices",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/managedDevices/managedDeviceIdValue",
+			Input: "/users/userId/managedDevices/managedDeviceId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/managedDevices/managedDeviceIdValue/detectedApps",
+			Input: "/users/userId/managedDevices/managedDeviceId/detectedApps",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/users/userIdValue/managedDevices/managedDeviceIdValue/detectedApps/detectedAppIdValue",
+			Input: "/users/userId/managedDevices/managedDeviceId/detectedApps/detectedAppId",
 			Expected: &UserIdManagedDeviceIdDetectedAppId{
-				UserId:          "userIdValue",
-				ManagedDeviceId: "managedDeviceIdValue",
-				DetectedAppId:   "detectedAppIdValue",
+				UserId:          "userId",
+				ManagedDeviceId: "managedDeviceId",
+				DetectedAppId:   "detectedAppId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/users/userIdValue/managedDevices/managedDeviceIdValue/detectedApps/detectedAppIdValue/extra",
+			Input: "/users/userId/managedDevices/managedDeviceId/detectedApps/detectedAppId/extra",
 			Error: true,
 		},
 	}
@@ -139,70 +139,70 @@ func TestParseUserIdManagedDeviceIdDetectedAppIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue",
+			Input: "/users/userId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe",
+			Input: "/uSeRs/uSeRiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/managedDevices",
+			Input: "/users/userId/managedDevices",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/mAnAgEdDeViCeS",
+			Input: "/uSeRs/uSeRiD/mAnAgEdDeViCeS",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/managedDevices/managedDeviceIdValue",
+			Input: "/users/userId/managedDevices/managedDeviceId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/mAnAgEdDeViCeS/mAnAgEdDeViCeIdVaLuE",
+			Input: "/uSeRs/uSeRiD/mAnAgEdDeViCeS/mAnAgEdDeViCeId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/managedDevices/managedDeviceIdValue/detectedApps",
+			Input: "/users/userId/managedDevices/managedDeviceId/detectedApps",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/mAnAgEdDeViCeS/mAnAgEdDeViCeIdVaLuE/dEtEcTeDaPpS",
+			Input: "/uSeRs/uSeRiD/mAnAgEdDeViCeS/mAnAgEdDeViCeId/dEtEcTeDaPpS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/users/userIdValue/managedDevices/managedDeviceIdValue/detectedApps/detectedAppIdValue",
+			Input: "/users/userId/managedDevices/managedDeviceId/detectedApps/detectedAppId",
 			Expected: &UserIdManagedDeviceIdDetectedAppId{
-				UserId:          "userIdValue",
-				ManagedDeviceId: "managedDeviceIdValue",
-				DetectedAppId:   "detectedAppIdValue",
+				UserId:          "userId",
+				ManagedDeviceId: "managedDeviceId",
+				DetectedAppId:   "detectedAppId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/users/userIdValue/managedDevices/managedDeviceIdValue/detectedApps/detectedAppIdValue/extra",
+			Input: "/users/userId/managedDevices/managedDeviceId/detectedApps/detectedAppId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/mAnAgEdDeViCeS/mAnAgEdDeViCeIdVaLuE/dEtEcTeDaPpS/dEtEcTeDaPpIdVaLuE",
+			Input: "/uSeRs/uSeRiD/mAnAgEdDeViCeS/mAnAgEdDeViCeId/dEtEcTeDaPpS/dEtEcTeDaPpId",
 			Expected: &UserIdManagedDeviceIdDetectedAppId{
-				UserId:          "uSeRiDvAlUe",
-				ManagedDeviceId: "mAnAgEdDeViCeIdVaLuE",
-				DetectedAppId:   "dEtEcTeDaPpIdVaLuE",
+				UserId:          "uSeRiD",
+				ManagedDeviceId: "mAnAgEdDeViCeId",
+				DetectedAppId:   "dEtEcTeDaPpId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/mAnAgEdDeViCeS/mAnAgEdDeViCeIdVaLuE/dEtEcTeDaPpS/dEtEcTeDaPpIdVaLuE/extra",
+			Input: "/uSeRs/uSeRiD/mAnAgEdDeViCeS/mAnAgEdDeViCeId/dEtEcTeDaPpS/dEtEcTeDaPpId/extra",
 			Error: true,
 		},
 	}

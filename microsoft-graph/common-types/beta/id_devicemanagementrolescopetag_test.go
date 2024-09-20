@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &DeviceManagementRoleScopeTagId{}
 
 func TestNewDeviceManagementRoleScopeTagID(t *testing.T) {
-	id := NewDeviceManagementRoleScopeTagID("roleScopeTagIdValue")
+	id := NewDeviceManagementRoleScopeTagID("roleScopeTagId")
 
-	if id.RoleScopeTagId != "roleScopeTagIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'RoleScopeTagId'", id.RoleScopeTagId, "roleScopeTagIdValue")
+	if id.RoleScopeTagId != "roleScopeTagId" {
+		t.Fatalf("Expected %q but got %q for Segment 'RoleScopeTagId'", id.RoleScopeTagId, "roleScopeTagId")
 	}
 }
 
 func TestFormatDeviceManagementRoleScopeTagID(t *testing.T) {
-	actual := NewDeviceManagementRoleScopeTagID("roleScopeTagIdValue").ID()
-	expected := "/deviceManagement/roleScopeTags/roleScopeTagIdValue"
+	actual := NewDeviceManagementRoleScopeTagID("roleScopeTagId").ID()
+	expected := "/deviceManagement/roleScopeTags/roleScopeTagId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -50,14 +50,14 @@ func TestParseDeviceManagementRoleScopeTagID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/roleScopeTags/roleScopeTagIdValue",
+			Input: "/deviceManagement/roleScopeTags/roleScopeTagId",
 			Expected: &DeviceManagementRoleScopeTagId{
-				RoleScopeTagId: "roleScopeTagIdValue",
+				RoleScopeTagId: "roleScopeTagId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/roleScopeTags/roleScopeTagIdValue/extra",
+			Input: "/deviceManagement/roleScopeTags/roleScopeTagId/extra",
 			Error: true,
 		},
 	}
@@ -116,26 +116,26 @@ func TestParseDeviceManagementRoleScopeTagIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/roleScopeTags/roleScopeTagIdValue",
+			Input: "/deviceManagement/roleScopeTags/roleScopeTagId",
 			Expected: &DeviceManagementRoleScopeTagId{
-				RoleScopeTagId: "roleScopeTagIdValue",
+				RoleScopeTagId: "roleScopeTagId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/roleScopeTags/roleScopeTagIdValue/extra",
+			Input: "/deviceManagement/roleScopeTags/roleScopeTagId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/rOlEsCoPeTaGs/rOlEsCoPeTaGiDvAlUe",
+			Input: "/dEvIcEmAnAgEmEnT/rOlEsCoPeTaGs/rOlEsCoPeTaGiD",
 			Expected: &DeviceManagementRoleScopeTagId{
-				RoleScopeTagId: "rOlEsCoPeTaGiDvAlUe",
+				RoleScopeTagId: "rOlEsCoPeTaGiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/rOlEsCoPeTaGs/rOlEsCoPeTaGiDvAlUe/extra",
+			Input: "/dEvIcEmAnAgEmEnT/rOlEsCoPeTaGs/rOlEsCoPeTaGiD/extra",
 			Error: true,
 		},
 	}

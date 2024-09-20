@@ -462,10 +462,103 @@ func (s Group) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &Group{}
 
 func (s *Group) UnmarshalJSON(bytes []byte) error {
-	type alias Group
-	var decoded alias
+
+	var decoded struct {
+		AcceptedSenders                    *[]DirectoryObject                 `json:"acceptedSenders,omitempty"`
+		AcceptedSenders_ODataBind          *[]string                          `json:"acceptedSenders@odata.bind,omitempty"`
+		AccessType                         *GroupAccessType                   `json:"accessType,omitempty"`
+		AllowExternalSenders               nullable.Type[bool]                `json:"allowExternalSenders,omitempty"`
+		AppRoleAssignments                 *[]AppRoleAssignment               `json:"appRoleAssignments,omitempty"`
+		AssignedLabels                     *[]AssignedLabel                   `json:"assignedLabels,omitempty"`
+		AssignedLicenses                   *[]AssignedLicense                 `json:"assignedLicenses,omitempty"`
+		AutoSubscribeNewMembers            nullable.Type[bool]                `json:"autoSubscribeNewMembers,omitempty"`
+		Calendar                           *Calendar                          `json:"calendar,omitempty"`
+		CalendarView                       *[]Event                           `json:"calendarView,omitempty"`
+		Classification                     nullable.Type[string]              `json:"classification,omitempty"`
+		Conversations                      *[]Conversation                    `json:"conversations,omitempty"`
+		CreatedByAppId                     nullable.Type[string]              `json:"createdByAppId,omitempty"`
+		CreatedDateTime                    nullable.Type[string]              `json:"createdDateTime,omitempty"`
+		CreatedOnBehalfOf_ODataBind        *string                            `json:"createdOnBehalfOf@odata.bind,omitempty"`
+		Description                        nullable.Type[string]              `json:"description,omitempty"`
+		DisplayName                        nullable.Type[string]              `json:"displayName,omitempty"`
+		Drive                              *Drive                             `json:"drive,omitempty"`
+		Drives                             *[]Drive                           `json:"drives,omitempty"`
+		Endpoints                          *[]Endpoint                        `json:"endpoints,omitempty"`
+		Events                             *[]Event                           `json:"events,omitempty"`
+		ExpirationDateTime                 nullable.Type[string]              `json:"expirationDateTime,omitempty"`
+		Extensions                         *[]Extension                       `json:"extensions,omitempty"`
+		GroupLifecyclePolicies             *[]GroupLifecyclePolicy            `json:"groupLifecyclePolicies,omitempty"`
+		GroupTypes                         *[]string                          `json:"groupTypes,omitempty"`
+		HasMembersWithLicenseErrors        nullable.Type[bool]                `json:"hasMembersWithLicenseErrors,omitempty"`
+		HideFromAddressLists               nullable.Type[bool]                `json:"hideFromAddressLists,omitempty"`
+		HideFromOutlookClients             nullable.Type[bool]                `json:"hideFromOutlookClients,omitempty"`
+		InfoCatalogs                       *[]string                          `json:"infoCatalogs,omitempty"`
+		IsArchived                         nullable.Type[bool]                `json:"isArchived,omitempty"`
+		IsAssignableToRole                 nullable.Type[bool]                `json:"isAssignableToRole,omitempty"`
+		IsFavorite                         nullable.Type[bool]                `json:"isFavorite,omitempty"`
+		IsManagementRestricted             nullable.Type[bool]                `json:"isManagementRestricted,omitempty"`
+		IsSubscribedByMail                 nullable.Type[bool]                `json:"isSubscribedByMail,omitempty"`
+		LicenseProcessingState             *LicenseProcessingState            `json:"licenseProcessingState,omitempty"`
+		Mail                               nullable.Type[string]              `json:"mail,omitempty"`
+		MailEnabled                        nullable.Type[bool]                `json:"mailEnabled,omitempty"`
+		MailNickname                       nullable.Type[string]              `json:"mailNickname,omitempty"`
+		MemberOf                           *[]DirectoryObject                 `json:"memberOf,omitempty"`
+		MemberOf_ODataBind                 *[]string                          `json:"memberOf@odata.bind,omitempty"`
+		Members                            *[]DirectoryObject                 `json:"members,omitempty"`
+		MembersWithLicenseErrors           *[]DirectoryObject                 `json:"membersWithLicenseErrors,omitempty"`
+		MembersWithLicenseErrors_ODataBind *[]string                          `json:"membersWithLicenseErrors@odata.bind,omitempty"`
+		Members_ODataBind                  *[]string                          `json:"members@odata.bind,omitempty"`
+		MembershipRule                     nullable.Type[string]              `json:"membershipRule,omitempty"`
+		MembershipRuleProcessingState      nullable.Type[string]              `json:"membershipRuleProcessingState,omitempty"`
+		MembershipRuleProcessingStatus     *MembershipRuleProcessingStatus    `json:"membershipRuleProcessingStatus,omitempty"`
+		OnPremisesDomainName               nullable.Type[string]              `json:"onPremisesDomainName,omitempty"`
+		OnPremisesLastSyncDateTime         nullable.Type[string]              `json:"onPremisesLastSyncDateTime,omitempty"`
+		OnPremisesNetBiosName              nullable.Type[string]              `json:"onPremisesNetBiosName,omitempty"`
+		OnPremisesProvisioningErrors       *[]OnPremisesProvisioningError     `json:"onPremisesProvisioningErrors,omitempty"`
+		OnPremisesSamAccountName           nullable.Type[string]              `json:"onPremisesSamAccountName,omitempty"`
+		OnPremisesSecurityIdentifier       nullable.Type[string]              `json:"onPremisesSecurityIdentifier,omitempty"`
+		OnPremisesSyncEnabled              nullable.Type[bool]                `json:"onPremisesSyncEnabled,omitempty"`
+		Onenote                            *Onenote                           `json:"onenote,omitempty"`
+		OrganizationId                     nullable.Type[string]              `json:"organizationId,omitempty"`
+		Owners                             *[]DirectoryObject                 `json:"owners,omitempty"`
+		Owners_ODataBind                   *[]string                          `json:"owners@odata.bind,omitempty"`
+		PermissionGrants                   *[]ResourceSpecificPermissionGrant `json:"permissionGrants,omitempty"`
+		Photo                              *ProfilePhoto                      `json:"photo,omitempty"`
+		Photos                             *[]ProfilePhoto                    `json:"photos,omitempty"`
+		Planner                            *PlannerGroup                      `json:"planner,omitempty"`
+		PreferredDataLocation              nullable.Type[string]              `json:"preferredDataLocation,omitempty"`
+		PreferredLanguage                  nullable.Type[string]              `json:"preferredLanguage,omitempty"`
+		ProxyAddresses                     *[]string                          `json:"proxyAddresses,omitempty"`
+		RejectedSenders                    *[]DirectoryObject                 `json:"rejectedSenders,omitempty"`
+		RejectedSenders_ODataBind          *[]string                          `json:"rejectedSenders@odata.bind,omitempty"`
+		RenewedDateTime                    nullable.Type[string]              `json:"renewedDateTime,omitempty"`
+		ResourceBehaviorOptions            *[]string                          `json:"resourceBehaviorOptions,omitempty"`
+		ResourceProvisioningOptions        *[]string                          `json:"resourceProvisioningOptions,omitempty"`
+		SecurityEnabled                    nullable.Type[bool]                `json:"securityEnabled,omitempty"`
+		SecurityIdentifier                 nullable.Type[string]              `json:"securityIdentifier,omitempty"`
+		ServiceProvisioningErrors          *[]ServiceProvisioningError        `json:"serviceProvisioningErrors,omitempty"`
+		Settings                           *[]DirectorySetting                `json:"settings,omitempty"`
+		Sites                              *[]Site                            `json:"sites,omitempty"`
+		Team                               *Team                              `json:"team,omitempty"`
+		Theme                              nullable.Type[string]              `json:"theme,omitempty"`
+		Threads                            *[]ConversationThread              `json:"threads,omitempty"`
+		TransitiveMemberOf                 *[]DirectoryObject                 `json:"transitiveMemberOf,omitempty"`
+		TransitiveMemberOf_ODataBind       *[]string                          `json:"transitiveMemberOf@odata.bind,omitempty"`
+		TransitiveMembers                  *[]DirectoryObject                 `json:"transitiveMembers,omitempty"`
+		TransitiveMembers_ODataBind        *[]string                          `json:"transitiveMembers@odata.bind,omitempty"`
+		UniqueName                         nullable.Type[string]              `json:"uniqueName,omitempty"`
+		UnseenConversationsCount           nullable.Type[int64]               `json:"unseenConversationsCount,omitempty"`
+		UnseenCount                        nullable.Type[int64]               `json:"unseenCount,omitempty"`
+		UnseenMessagesCount                nullable.Type[int64]               `json:"unseenMessagesCount,omitempty"`
+		Visibility                         nullable.Type[string]              `json:"visibility,omitempty"`
+		WritebackConfiguration             *GroupWritebackConfiguration       `json:"writebackConfiguration,omitempty"`
+		DeletedDateTime                    nullable.Type[string]              `json:"deletedDateTime,omitempty"`
+		Id                                 *string                            `json:"id,omitempty"`
+		ODataId                            *string                            `json:"@odata.id,omitempty"`
+		ODataType                          *string                            `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into Group: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.AcceptedSenders_ODataBind = decoded.AcceptedSenders_ODataBind
@@ -482,7 +575,6 @@ func (s *Group) UnmarshalJSON(bytes []byte) error {
 	s.CreatedByAppId = decoded.CreatedByAppId
 	s.CreatedDateTime = decoded.CreatedDateTime
 	s.CreatedOnBehalfOf_ODataBind = decoded.CreatedOnBehalfOf_ODataBind
-	s.DeletedDateTime = decoded.DeletedDateTime
 	s.Description = decoded.Description
 	s.DisplayName = decoded.DisplayName
 	s.Drive = decoded.Drive
@@ -495,7 +587,6 @@ func (s *Group) UnmarshalJSON(bytes []byte) error {
 	s.HasMembersWithLicenseErrors = decoded.HasMembersWithLicenseErrors
 	s.HideFromAddressLists = decoded.HideFromAddressLists
 	s.HideFromOutlookClients = decoded.HideFromOutlookClients
-	s.Id = decoded.Id
 	s.InfoCatalogs = decoded.InfoCatalogs
 	s.IsArchived = decoded.IsArchived
 	s.IsAssignableToRole = decoded.IsAssignableToRole
@@ -512,8 +603,6 @@ func (s *Group) UnmarshalJSON(bytes []byte) error {
 	s.MembershipRule = decoded.MembershipRule
 	s.MembershipRuleProcessingState = decoded.MembershipRuleProcessingState
 	s.MembershipRuleProcessingStatus = decoded.MembershipRuleProcessingStatus
-	s.ODataId = decoded.ODataId
-	s.ODataType = decoded.ODataType
 	s.OnPremisesDomainName = decoded.OnPremisesDomainName
 	s.OnPremisesLastSyncDateTime = decoded.OnPremisesLastSyncDateTime
 	s.OnPremisesNetBiosName = decoded.OnPremisesNetBiosName
@@ -550,6 +639,10 @@ func (s *Group) UnmarshalJSON(bytes []byte) error {
 	s.UnseenMessagesCount = decoded.UnseenMessagesCount
 	s.Visibility = decoded.Visibility
 	s.WritebackConfiguration = decoded.WritebackConfiguration
+	s.DeletedDateTime = decoded.DeletedDateTime
+	s.Id = decoded.Id
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -733,5 +826,6 @@ func (s *Group) UnmarshalJSON(bytes []byte) error {
 		}
 		s.TransitiveMembers = &output
 	}
+
 	return nil
 }

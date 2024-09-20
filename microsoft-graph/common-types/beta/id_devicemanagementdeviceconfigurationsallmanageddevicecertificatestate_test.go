@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &DeviceManagementDeviceConfigurationsAllManagedDeviceCertificateStateId{}
 
 func TestNewDeviceManagementDeviceConfigurationsAllManagedDeviceCertificateStateID(t *testing.T) {
-	id := NewDeviceManagementDeviceConfigurationsAllManagedDeviceCertificateStateID("managedAllDeviceCertificateStateIdValue")
+	id := NewDeviceManagementDeviceConfigurationsAllManagedDeviceCertificateStateID("managedAllDeviceCertificateStateId")
 
-	if id.ManagedAllDeviceCertificateStateId != "managedAllDeviceCertificateStateIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ManagedAllDeviceCertificateStateId'", id.ManagedAllDeviceCertificateStateId, "managedAllDeviceCertificateStateIdValue")
+	if id.ManagedAllDeviceCertificateStateId != "managedAllDeviceCertificateStateId" {
+		t.Fatalf("Expected %q but got %q for Segment 'ManagedAllDeviceCertificateStateId'", id.ManagedAllDeviceCertificateStateId, "managedAllDeviceCertificateStateId")
 	}
 }
 
 func TestFormatDeviceManagementDeviceConfigurationsAllManagedDeviceCertificateStateID(t *testing.T) {
-	actual := NewDeviceManagementDeviceConfigurationsAllManagedDeviceCertificateStateID("managedAllDeviceCertificateStateIdValue").ID()
-	expected := "/deviceManagement/deviceConfigurationsAllManagedDeviceCertificateStates/managedAllDeviceCertificateStateIdValue"
+	actual := NewDeviceManagementDeviceConfigurationsAllManagedDeviceCertificateStateID("managedAllDeviceCertificateStateId").ID()
+	expected := "/deviceManagement/deviceConfigurationsAllManagedDeviceCertificateStates/managedAllDeviceCertificateStateId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -50,14 +50,14 @@ func TestParseDeviceManagementDeviceConfigurationsAllManagedDeviceCertificateSta
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/deviceConfigurationsAllManagedDeviceCertificateStates/managedAllDeviceCertificateStateIdValue",
+			Input: "/deviceManagement/deviceConfigurationsAllManagedDeviceCertificateStates/managedAllDeviceCertificateStateId",
 			Expected: &DeviceManagementDeviceConfigurationsAllManagedDeviceCertificateStateId{
-				ManagedAllDeviceCertificateStateId: "managedAllDeviceCertificateStateIdValue",
+				ManagedAllDeviceCertificateStateId: "managedAllDeviceCertificateStateId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/deviceConfigurationsAllManagedDeviceCertificateStates/managedAllDeviceCertificateStateIdValue/extra",
+			Input: "/deviceManagement/deviceConfigurationsAllManagedDeviceCertificateStates/managedAllDeviceCertificateStateId/extra",
 			Error: true,
 		},
 	}
@@ -116,26 +116,26 @@ func TestParseDeviceManagementDeviceConfigurationsAllManagedDeviceCertificateSta
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/deviceConfigurationsAllManagedDeviceCertificateStates/managedAllDeviceCertificateStateIdValue",
+			Input: "/deviceManagement/deviceConfigurationsAllManagedDeviceCertificateStates/managedAllDeviceCertificateStateId",
 			Expected: &DeviceManagementDeviceConfigurationsAllManagedDeviceCertificateStateId{
-				ManagedAllDeviceCertificateStateId: "managedAllDeviceCertificateStateIdValue",
+				ManagedAllDeviceCertificateStateId: "managedAllDeviceCertificateStateId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/deviceConfigurationsAllManagedDeviceCertificateStates/managedAllDeviceCertificateStateIdValue/extra",
+			Input: "/deviceManagement/deviceConfigurationsAllManagedDeviceCertificateStates/managedAllDeviceCertificateStateId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/dEvIcEcOnFiGuRaTiOnSaLlMaNaGeDdEvIcEcErTiFiCaTeStAtEs/mAnAgEdAlLdEvIcEcErTiFiCaTeStAtEiDvAlUe",
+			Input: "/dEvIcEmAnAgEmEnT/dEvIcEcOnFiGuRaTiOnSaLlMaNaGeDdEvIcEcErTiFiCaTeStAtEs/mAnAgEdAlLdEvIcEcErTiFiCaTeStAtEiD",
 			Expected: &DeviceManagementDeviceConfigurationsAllManagedDeviceCertificateStateId{
-				ManagedAllDeviceCertificateStateId: "mAnAgEdAlLdEvIcEcErTiFiCaTeStAtEiDvAlUe",
+				ManagedAllDeviceCertificateStateId: "mAnAgEdAlLdEvIcEcErTiFiCaTeStAtEiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/dEvIcEcOnFiGuRaTiOnSaLlMaNaGeDdEvIcEcErTiFiCaTeStAtEs/mAnAgEdAlLdEvIcEcErTiFiCaTeStAtEiDvAlUe/extra",
+			Input: "/dEvIcEmAnAgEmEnT/dEvIcEcOnFiGuRaTiOnSaLlMaNaGeDdEvIcEcErTiFiCaTeStAtEs/mAnAgEdAlLdEvIcEcErTiFiCaTeStAtEiD/extra",
 			Error: true,
 		},
 	}

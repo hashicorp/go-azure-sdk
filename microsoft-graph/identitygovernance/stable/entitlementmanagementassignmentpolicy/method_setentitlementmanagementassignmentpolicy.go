@@ -17,15 +17,44 @@ type SetEntitlementManagementAssignmentPolicyOperationResponse struct {
 	OData        *odata.OData
 }
 
+type SetEntitlementManagementAssignmentPolicyOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultSetEntitlementManagementAssignmentPolicyOperationOptions() SetEntitlementManagementAssignmentPolicyOperationOptions {
+	return SetEntitlementManagementAssignmentPolicyOperationOptions{}
+}
+
+func (o SetEntitlementManagementAssignmentPolicyOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o SetEntitlementManagementAssignmentPolicyOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o SetEntitlementManagementAssignmentPolicyOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // SetEntitlementManagementAssignmentPolicy - Update the navigation property assignmentPolicies in identityGovernance
-func (c EntitlementManagementAssignmentPolicyClient) SetEntitlementManagementAssignmentPolicy(ctx context.Context, id stable.IdentityGovernanceEntitlementManagementAssignmentPolicyId, input stable.AccessPackageAssignmentPolicy) (result SetEntitlementManagementAssignmentPolicyOperationResponse, err error) {
+func (c EntitlementManagementAssignmentPolicyClient) SetEntitlementManagementAssignmentPolicy(ctx context.Context, id stable.IdentityGovernanceEntitlementManagementAssignmentPolicyId, input stable.AccessPackageAssignmentPolicy, options SetEntitlementManagementAssignmentPolicyOperationOptions) (result SetEntitlementManagementAssignmentPolicyOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPut,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPut,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

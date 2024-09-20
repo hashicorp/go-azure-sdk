@@ -100,9 +100,9 @@ func (id DeviceManagementVirtualEndpointProvisioningPolicyIdAssignmentId) Segmen
 		resourceids.StaticSegment("deviceManagement", "deviceManagement", "deviceManagement"),
 		resourceids.StaticSegment("virtualEndpoint", "virtualEndpoint", "virtualEndpoint"),
 		resourceids.StaticSegment("provisioningPolicies", "provisioningPolicies", "provisioningPolicies"),
-		resourceids.UserSpecifiedSegment("cloudPCProvisioningPolicyId", "cloudPCProvisioningPolicyIdValue"),
+		resourceids.UserSpecifiedSegment("cloudPCProvisioningPolicyId", "cloudPCProvisioningPolicyId"),
 		resourceids.StaticSegment("assignments", "assignments", "assignments"),
-		resourceids.UserSpecifiedSegment("cloudPCProvisioningPolicyAssignmentId", "cloudPCProvisioningPolicyAssignmentIdValue"),
+		resourceids.UserSpecifiedSegment("cloudPCProvisioningPolicyAssignmentId", "cloudPCProvisioningPolicyAssignmentId"),
 	}
 }
 

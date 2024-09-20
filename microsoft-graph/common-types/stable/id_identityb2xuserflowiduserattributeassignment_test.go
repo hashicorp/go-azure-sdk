@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &IdentityB2xUserFlowIdUserAttributeAssignmentId{}
 
 func TestNewIdentityB2xUserFlowIdUserAttributeAssignmentID(t *testing.T) {
-	id := NewIdentityB2xUserFlowIdUserAttributeAssignmentID("b2xIdentityUserFlowIdValue", "identityUserFlowAttributeAssignmentIdValue")
+	id := NewIdentityB2xUserFlowIdUserAttributeAssignmentID("b2xIdentityUserFlowId", "identityUserFlowAttributeAssignmentId")
 
-	if id.B2xIdentityUserFlowId != "b2xIdentityUserFlowIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'B2xIdentityUserFlowId'", id.B2xIdentityUserFlowId, "b2xIdentityUserFlowIdValue")
+	if id.B2xIdentityUserFlowId != "b2xIdentityUserFlowId" {
+		t.Fatalf("Expected %q but got %q for Segment 'B2xIdentityUserFlowId'", id.B2xIdentityUserFlowId, "b2xIdentityUserFlowId")
 	}
 
-	if id.IdentityUserFlowAttributeAssignmentId != "identityUserFlowAttributeAssignmentIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'IdentityUserFlowAttributeAssignmentId'", id.IdentityUserFlowAttributeAssignmentId, "identityUserFlowAttributeAssignmentIdValue")
+	if id.IdentityUserFlowAttributeAssignmentId != "identityUserFlowAttributeAssignmentId" {
+		t.Fatalf("Expected %q but got %q for Segment 'IdentityUserFlowAttributeAssignmentId'", id.IdentityUserFlowAttributeAssignmentId, "identityUserFlowAttributeAssignmentId")
 	}
 }
 
 func TestFormatIdentityB2xUserFlowIdUserAttributeAssignmentID(t *testing.T) {
-	actual := NewIdentityB2xUserFlowIdUserAttributeAssignmentID("b2xIdentityUserFlowIdValue", "identityUserFlowAttributeAssignmentIdValue").ID()
-	expected := "/identity/b2xUserFlows/b2xIdentityUserFlowIdValue/userAttributeAssignments/identityUserFlowAttributeAssignmentIdValue"
+	actual := NewIdentityB2xUserFlowIdUserAttributeAssignmentID("b2xIdentityUserFlowId", "identityUserFlowAttributeAssignmentId").ID()
+	expected := "/identity/b2xUserFlows/b2xIdentityUserFlowId/userAttributeAssignments/identityUserFlowAttributeAssignmentId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -54,25 +54,25 @@ func TestParseIdentityB2xUserFlowIdUserAttributeAssignmentID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/identity/b2xUserFlows/b2xIdentityUserFlowIdValue",
+			Input: "/identity/b2xUserFlows/b2xIdentityUserFlowId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/identity/b2xUserFlows/b2xIdentityUserFlowIdValue/userAttributeAssignments",
+			Input: "/identity/b2xUserFlows/b2xIdentityUserFlowId/userAttributeAssignments",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/identity/b2xUserFlows/b2xIdentityUserFlowIdValue/userAttributeAssignments/identityUserFlowAttributeAssignmentIdValue",
+			Input: "/identity/b2xUserFlows/b2xIdentityUserFlowId/userAttributeAssignments/identityUserFlowAttributeAssignmentId",
 			Expected: &IdentityB2xUserFlowIdUserAttributeAssignmentId{
-				B2xIdentityUserFlowId:                 "b2xIdentityUserFlowIdValue",
-				IdentityUserFlowAttributeAssignmentId: "identityUserFlowAttributeAssignmentIdValue",
+				B2xIdentityUserFlowId:                 "b2xIdentityUserFlowId",
+				IdentityUserFlowAttributeAssignmentId: "identityUserFlowAttributeAssignmentId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/identity/b2xUserFlows/b2xIdentityUserFlowIdValue/userAttributeAssignments/identityUserFlowAttributeAssignmentIdValue/extra",
+			Input: "/identity/b2xUserFlows/b2xIdentityUserFlowId/userAttributeAssignments/identityUserFlowAttributeAssignmentId/extra",
 			Error: true,
 		},
 	}
@@ -135,48 +135,48 @@ func TestParseIdentityB2xUserFlowIdUserAttributeAssignmentIDInsensitively(t *tes
 		},
 		{
 			// Incomplete URI
-			Input: "/identity/b2xUserFlows/b2xIdentityUserFlowIdValue",
+			Input: "/identity/b2xUserFlows/b2xIdentityUserFlowId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/iDeNtItY/b2xUsErFlOwS/b2xIdEnTiTyUsErFlOwIdVaLuE",
+			Input: "/iDeNtItY/b2xUsErFlOwS/b2xIdEnTiTyUsErFlOwId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/identity/b2xUserFlows/b2xIdentityUserFlowIdValue/userAttributeAssignments",
+			Input: "/identity/b2xUserFlows/b2xIdentityUserFlowId/userAttributeAssignments",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/iDeNtItY/b2xUsErFlOwS/b2xIdEnTiTyUsErFlOwIdVaLuE/uSeRaTtRiBuTeAsSiGnMeNtS",
+			Input: "/iDeNtItY/b2xUsErFlOwS/b2xIdEnTiTyUsErFlOwId/uSeRaTtRiBuTeAsSiGnMeNtS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/identity/b2xUserFlows/b2xIdentityUserFlowIdValue/userAttributeAssignments/identityUserFlowAttributeAssignmentIdValue",
+			Input: "/identity/b2xUserFlows/b2xIdentityUserFlowId/userAttributeAssignments/identityUserFlowAttributeAssignmentId",
 			Expected: &IdentityB2xUserFlowIdUserAttributeAssignmentId{
-				B2xIdentityUserFlowId:                 "b2xIdentityUserFlowIdValue",
-				IdentityUserFlowAttributeAssignmentId: "identityUserFlowAttributeAssignmentIdValue",
+				B2xIdentityUserFlowId:                 "b2xIdentityUserFlowId",
+				IdentityUserFlowAttributeAssignmentId: "identityUserFlowAttributeAssignmentId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/identity/b2xUserFlows/b2xIdentityUserFlowIdValue/userAttributeAssignments/identityUserFlowAttributeAssignmentIdValue/extra",
+			Input: "/identity/b2xUserFlows/b2xIdentityUserFlowId/userAttributeAssignments/identityUserFlowAttributeAssignmentId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/iDeNtItY/b2xUsErFlOwS/b2xIdEnTiTyUsErFlOwIdVaLuE/uSeRaTtRiBuTeAsSiGnMeNtS/iDeNtItYuSeRfLoWaTtRiBuTeAsSiGnMeNtIdVaLuE",
+			Input: "/iDeNtItY/b2xUsErFlOwS/b2xIdEnTiTyUsErFlOwId/uSeRaTtRiBuTeAsSiGnMeNtS/iDeNtItYuSeRfLoWaTtRiBuTeAsSiGnMeNtId",
 			Expected: &IdentityB2xUserFlowIdUserAttributeAssignmentId{
-				B2xIdentityUserFlowId:                 "b2xIdEnTiTyUsErFlOwIdVaLuE",
-				IdentityUserFlowAttributeAssignmentId: "iDeNtItYuSeRfLoWaTtRiBuTeAsSiGnMeNtIdVaLuE",
+				B2xIdentityUserFlowId:                 "b2xIdEnTiTyUsErFlOwId",
+				IdentityUserFlowAttributeAssignmentId: "iDeNtItYuSeRfLoWaTtRiBuTeAsSiGnMeNtId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/iDeNtItY/b2xUsErFlOwS/b2xIdEnTiTyUsErFlOwIdVaLuE/uSeRaTtRiBuTeAsSiGnMeNtS/iDeNtItYuSeRfLoWaTtRiBuTeAsSiGnMeNtIdVaLuE/extra",
+			Input: "/iDeNtItY/b2xUsErFlOwS/b2xIdEnTiTyUsErFlOwId/uSeRaTtRiBuTeAsSiGnMeNtS/iDeNtItYuSeRfLoWaTtRiBuTeAsSiGnMeNtId/extra",
 			Error: true,
 		},
 	}

@@ -104,13 +104,13 @@ func (id ServicePrincipalIdSynchronizationJobIdSchemaDirectoryId) ID() string {
 func (id ServicePrincipalIdSynchronizationJobIdSchemaDirectoryId) Segments() []resourceids.Segment {
 	return []resourceids.Segment{
 		resourceids.StaticSegment("servicePrincipals", "servicePrincipals", "servicePrincipals"),
-		resourceids.UserSpecifiedSegment("servicePrincipalId", "servicePrincipalIdValue"),
+		resourceids.UserSpecifiedSegment("servicePrincipalId", "servicePrincipalId"),
 		resourceids.StaticSegment("synchronization", "synchronization", "synchronization"),
 		resourceids.StaticSegment("jobs", "jobs", "jobs"),
-		resourceids.UserSpecifiedSegment("synchronizationJobId", "synchronizationJobIdValue"),
+		resourceids.UserSpecifiedSegment("synchronizationJobId", "synchronizationJobId"),
 		resourceids.StaticSegment("schema", "schema", "schema"),
 		resourceids.StaticSegment("directories", "directories", "directories"),
-		resourceids.UserSpecifiedSegment("directoryDefinitionId", "directoryDefinitionIdValue"),
+		resourceids.UserSpecifiedSegment("directoryDefinitionId", "directoryDefinitionId"),
 	}
 }
 

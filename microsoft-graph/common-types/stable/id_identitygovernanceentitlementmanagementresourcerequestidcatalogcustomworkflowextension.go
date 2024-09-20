@@ -100,10 +100,10 @@ func (id IdentityGovernanceEntitlementManagementResourceRequestIdCatalogCustomWo
 		resourceids.StaticSegment("identityGovernance", "identityGovernance", "identityGovernance"),
 		resourceids.StaticSegment("entitlementManagement", "entitlementManagement", "entitlementManagement"),
 		resourceids.StaticSegment("resourceRequests", "resourceRequests", "resourceRequests"),
-		resourceids.UserSpecifiedSegment("accessPackageResourceRequestId", "accessPackageResourceRequestIdValue"),
+		resourceids.UserSpecifiedSegment("accessPackageResourceRequestId", "accessPackageResourceRequestId"),
 		resourceids.StaticSegment("catalog", "catalog", "catalog"),
 		resourceids.StaticSegment("customWorkflowExtensions", "customWorkflowExtensions", "customWorkflowExtensions"),
-		resourceids.UserSpecifiedSegment("customCalloutExtensionId", "customCalloutExtensionIdValue"),
+		resourceids.UserSpecifiedSegment("customCalloutExtensionId", "customCalloutExtensionId"),
 	}
 }
 

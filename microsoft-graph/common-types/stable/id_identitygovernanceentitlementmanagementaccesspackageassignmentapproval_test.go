@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &IdentityGovernanceEntitlementManagementAccessPackageAssignmentApprovalId{}
 
 func TestNewIdentityGovernanceEntitlementManagementAccessPackageAssignmentApprovalID(t *testing.T) {
-	id := NewIdentityGovernanceEntitlementManagementAccessPackageAssignmentApprovalID("approvalIdValue")
+	id := NewIdentityGovernanceEntitlementManagementAccessPackageAssignmentApprovalID("approvalId")
 
-	if id.ApprovalId != "approvalIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ApprovalId'", id.ApprovalId, "approvalIdValue")
+	if id.ApprovalId != "approvalId" {
+		t.Fatalf("Expected %q but got %q for Segment 'ApprovalId'", id.ApprovalId, "approvalId")
 	}
 }
 
 func TestFormatIdentityGovernanceEntitlementManagementAccessPackageAssignmentApprovalID(t *testing.T) {
-	actual := NewIdentityGovernanceEntitlementManagementAccessPackageAssignmentApprovalID("approvalIdValue").ID()
-	expected := "/identityGovernance/entitlementManagement/accessPackageAssignmentApprovals/approvalIdValue"
+	actual := NewIdentityGovernanceEntitlementManagementAccessPackageAssignmentApprovalID("approvalId").ID()
+	expected := "/identityGovernance/entitlementManagement/accessPackageAssignmentApprovals/approvalId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -55,14 +55,14 @@ func TestParseIdentityGovernanceEntitlementManagementAccessPackageAssignmentAppr
 		},
 		{
 			// Valid URI
-			Input: "/identityGovernance/entitlementManagement/accessPackageAssignmentApprovals/approvalIdValue",
+			Input: "/identityGovernance/entitlementManagement/accessPackageAssignmentApprovals/approvalId",
 			Expected: &IdentityGovernanceEntitlementManagementAccessPackageAssignmentApprovalId{
-				ApprovalId: "approvalIdValue",
+				ApprovalId: "approvalId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/identityGovernance/entitlementManagement/accessPackageAssignmentApprovals/approvalIdValue/extra",
+			Input: "/identityGovernance/entitlementManagement/accessPackageAssignmentApprovals/approvalId/extra",
 			Error: true,
 		},
 	}
@@ -131,26 +131,26 @@ func TestParseIdentityGovernanceEntitlementManagementAccessPackageAssignmentAppr
 		},
 		{
 			// Valid URI
-			Input: "/identityGovernance/entitlementManagement/accessPackageAssignmentApprovals/approvalIdValue",
+			Input: "/identityGovernance/entitlementManagement/accessPackageAssignmentApprovals/approvalId",
 			Expected: &IdentityGovernanceEntitlementManagementAccessPackageAssignmentApprovalId{
-				ApprovalId: "approvalIdValue",
+				ApprovalId: "approvalId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/identityGovernance/entitlementManagement/accessPackageAssignmentApprovals/approvalIdValue/extra",
+			Input: "/identityGovernance/entitlementManagement/accessPackageAssignmentApprovals/approvalId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/iDeNtItYgOvErNaNcE/eNtItLeMeNtMaNaGeMeNt/aCcEsSpAcKaGeAsSiGnMeNtApPrOvAlS/aPpRoVaLiDvAlUe",
+			Input: "/iDeNtItYgOvErNaNcE/eNtItLeMeNtMaNaGeMeNt/aCcEsSpAcKaGeAsSiGnMeNtApPrOvAlS/aPpRoVaLiD",
 			Expected: &IdentityGovernanceEntitlementManagementAccessPackageAssignmentApprovalId{
-				ApprovalId: "aPpRoVaLiDvAlUe",
+				ApprovalId: "aPpRoVaLiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/iDeNtItYgOvErNaNcE/eNtItLeMeNtMaNaGeMeNt/aCcEsSpAcKaGeAsSiGnMeNtApPrOvAlS/aPpRoVaLiDvAlUe/extra",
+			Input: "/iDeNtItYgOvErNaNcE/eNtItLeMeNtMaNaGeMeNt/aCcEsSpAcKaGeAsSiGnMeNtApPrOvAlS/aPpRoVaLiD/extra",
 			Error: true,
 		},
 	}

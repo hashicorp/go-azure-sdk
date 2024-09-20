@@ -19,15 +19,44 @@ type CreateUsageRightOperationResponse struct {
 	Model        *beta.UsageRight
 }
 
+type CreateUsageRightOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateUsageRightOperationOptions() CreateUsageRightOperationOptions {
+	return CreateUsageRightOperationOptions{}
+}
+
+func (o CreateUsageRightOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateUsageRightOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateUsageRightOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateUsageRight - Create new navigation property to usageRights for users
-func (c UsageRightClient) CreateUsageRight(ctx context.Context, id beta.UserId, input beta.UsageRight) (result CreateUsageRightOperationResponse, err error) {
+func (c UsageRightClient) CreateUsageRight(ctx context.Context, id beta.UserId, input beta.UsageRight, options CreateUsageRightOperationOptions) (result CreateUsageRightOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/usageRights", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/usageRights", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -17,15 +17,44 @@ type UpdateAutopilotEventPolicyStatusDetailOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateAutopilotEventPolicyStatusDetailOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateAutopilotEventPolicyStatusDetailOperationOptions() UpdateAutopilotEventPolicyStatusDetailOperationOptions {
+	return UpdateAutopilotEventPolicyStatusDetailOperationOptions{}
+}
+
+func (o UpdateAutopilotEventPolicyStatusDetailOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateAutopilotEventPolicyStatusDetailOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateAutopilotEventPolicyStatusDetailOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateAutopilotEventPolicyStatusDetail - Update the navigation property policyStatusDetails in deviceManagement
-func (c AutopilotEventPolicyStatusDetailClient) UpdateAutopilotEventPolicyStatusDetail(ctx context.Context, id beta.DeviceManagementAutopilotEventIdPolicyStatusDetailId, input beta.DeviceManagementAutopilotPolicyStatusDetail) (result UpdateAutopilotEventPolicyStatusDetailOperationResponse, err error) {
+func (c AutopilotEventPolicyStatusDetailClient) UpdateAutopilotEventPolicyStatusDetail(ctx context.Context, id beta.DeviceManagementAutopilotEventIdPolicyStatusDetailId, input beta.DeviceManagementAutopilotPolicyStatusDetail, options UpdateAutopilotEventPolicyStatusDetailOperationOptions) (result UpdateAutopilotEventPolicyStatusDetailOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -109,20 +109,33 @@ func (s IdentityGovernanceCustomTaskExtension) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &IdentityGovernanceCustomTaskExtension{}
 
 func (s *IdentityGovernanceCustomTaskExtension) UnmarshalJSON(bytes []byte) error {
-	type alias IdentityGovernanceCustomTaskExtension
-	var decoded alias
+
+	var decoded struct {
+		CreatedBy                   *User                                      `json:"createdBy,omitempty"`
+		CreatedDateTime             nullable.Type[string]                      `json:"createdDateTime,omitempty"`
+		LastModifiedBy              *User                                      `json:"lastModifiedBy,omitempty"`
+		LastModifiedDateTime        nullable.Type[string]                      `json:"lastModifiedDateTime,omitempty"`
+		AuthenticationConfiguration CustomExtensionAuthenticationConfiguration `json:"authenticationConfiguration"`
+		ClientConfiguration         *CustomExtensionClientConfiguration        `json:"clientConfiguration,omitempty"`
+		Description                 nullable.Type[string]                      `json:"description,omitempty"`
+		DisplayName                 nullable.Type[string]                      `json:"displayName,omitempty"`
+		EndpointConfiguration       CustomExtensionEndpointConfiguration       `json:"endpointConfiguration"`
+		Id                          *string                                    `json:"id,omitempty"`
+		ODataId                     *string                                    `json:"@odata.id,omitempty"`
+		ODataType                   *string                                    `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into IdentityGovernanceCustomTaskExtension: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
-	s.ClientConfiguration = decoded.ClientConfiguration
 	s.CreatedBy = decoded.CreatedBy
 	s.CreatedDateTime = decoded.CreatedDateTime
+	s.LastModifiedBy = decoded.LastModifiedBy
+	s.LastModifiedDateTime = decoded.LastModifiedDateTime
+	s.ClientConfiguration = decoded.ClientConfiguration
 	s.Description = decoded.Description
 	s.DisplayName = decoded.DisplayName
 	s.Id = decoded.Id
-	s.LastModifiedBy = decoded.LastModifiedBy
-	s.LastModifiedDateTime = decoded.LastModifiedDateTime
 	s.ODataId = decoded.ODataId
 	s.ODataType = decoded.ODataType
 
@@ -154,5 +167,6 @@ func (s *IdentityGovernanceCustomTaskExtension) UnmarshalJSON(bytes []byte) erro
 		}
 		s.EndpointConfiguration = impl
 	}
+
 	return nil
 }

@@ -19,7 +19,8 @@ type RemoveContactFolderChildFolderContactPhotoValueOperationResponse struct {
 }
 
 type RemoveContactFolderChildFolderContactPhotoValueOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultRemoveContactFolderChildFolderContactPhotoValueOperationOptions() RemoveContactFolderChildFolderContactPhotoValueOperationOptions {
@@ -36,7 +37,9 @@ func (o RemoveContactFolderChildFolderContactPhotoValueOperationOptions) ToHeade
 
 func (o RemoveContactFolderChildFolderContactPhotoValueOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

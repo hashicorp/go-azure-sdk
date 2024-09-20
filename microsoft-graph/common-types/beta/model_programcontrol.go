@@ -89,23 +89,35 @@ func (s ProgramControl) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &ProgramControl{}
 
 func (s *ProgramControl) UnmarshalJSON(bytes []byte) error {
-	type alias ProgramControl
-	var decoded alias
+
+	var decoded struct {
+		ControlId       *string               `json:"controlId,omitempty"`
+		ControlTypeId   *string               `json:"controlTypeId,omitempty"`
+		CreatedDateTime *string               `json:"createdDateTime,omitempty"`
+		DisplayName     nullable.Type[string] `json:"displayName,omitempty"`
+		Program         *Program              `json:"program,omitempty"`
+		ProgramId       *string               `json:"programId,omitempty"`
+		Resource        *ProgramResource      `json:"resource,omitempty"`
+		Status          nullable.Type[string] `json:"status,omitempty"`
+		Id              *string               `json:"id,omitempty"`
+		ODataId         *string               `json:"@odata.id,omitempty"`
+		ODataType       *string               `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into ProgramControl: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.ControlId = decoded.ControlId
 	s.ControlTypeId = decoded.ControlTypeId
 	s.CreatedDateTime = decoded.CreatedDateTime
 	s.DisplayName = decoded.DisplayName
-	s.Id = decoded.Id
-	s.ODataId = decoded.ODataId
-	s.ODataType = decoded.ODataType
 	s.Program = decoded.Program
 	s.ProgramId = decoded.ProgramId
 	s.Resource = decoded.Resource
 	s.Status = decoded.Status
+	s.Id = decoded.Id
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -119,5 +131,6 @@ func (s *ProgramControl) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Owner = &impl
 	}
+
 	return nil
 }

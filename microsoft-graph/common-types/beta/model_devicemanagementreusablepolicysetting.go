@@ -93,23 +93,35 @@ func (s DeviceManagementReusablePolicySetting) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &DeviceManagementReusablePolicySetting{}
 
 func (s *DeviceManagementReusablePolicySetting) UnmarshalJSON(bytes []byte) error {
-	type alias DeviceManagementReusablePolicySetting
-	var decoded alias
+
+	var decoded struct {
+		CreatedDateTime                     *string                                `json:"createdDateTime,omitempty"`
+		Description                         nullable.Type[string]                  `json:"description,omitempty"`
+		DisplayName                         *string                                `json:"displayName,omitempty"`
+		LastModifiedDateTime                *string                                `json:"lastModifiedDateTime,omitempty"`
+		ReferencingConfigurationPolicies    *[]DeviceManagementConfigurationPolicy `json:"referencingConfigurationPolicies,omitempty"`
+		ReferencingConfigurationPolicyCount *int64                                 `json:"referencingConfigurationPolicyCount,omitempty"`
+		SettingDefinitionId                 nullable.Type[string]                  `json:"settingDefinitionId,omitempty"`
+		Version                             *int64                                 `json:"version,omitempty"`
+		Id                                  *string                                `json:"id,omitempty"`
+		ODataId                             *string                                `json:"@odata.id,omitempty"`
+		ODataType                           *string                                `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into DeviceManagementReusablePolicySetting: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.CreatedDateTime = decoded.CreatedDateTime
 	s.Description = decoded.Description
 	s.DisplayName = decoded.DisplayName
-	s.Id = decoded.Id
 	s.LastModifiedDateTime = decoded.LastModifiedDateTime
-	s.ODataId = decoded.ODataId
-	s.ODataType = decoded.ODataType
 	s.ReferencingConfigurationPolicies = decoded.ReferencingConfigurationPolicies
 	s.ReferencingConfigurationPolicyCount = decoded.ReferencingConfigurationPolicyCount
 	s.SettingDefinitionId = decoded.SettingDefinitionId
 	s.Version = decoded.Version
+	s.Id = decoded.Id
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -123,5 +135,6 @@ func (s *DeviceManagementReusablePolicySetting) UnmarshalJSON(bytes []byte) erro
 		}
 		s.SettingInstance = impl
 	}
+
 	return nil
 }

@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &MeDriveIdRootVersionId{}
 
 func TestNewMeDriveIdRootVersionID(t *testing.T) {
-	id := NewMeDriveIdRootVersionID("driveIdValue", "driveItemVersionIdValue")
+	id := NewMeDriveIdRootVersionID("driveId", "driveItemVersionId")
 
-	if id.DriveId != "driveIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DriveId'", id.DriveId, "driveIdValue")
+	if id.DriveId != "driveId" {
+		t.Fatalf("Expected %q but got %q for Segment 'DriveId'", id.DriveId, "driveId")
 	}
 
-	if id.DriveItemVersionId != "driveItemVersionIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DriveItemVersionId'", id.DriveItemVersionId, "driveItemVersionIdValue")
+	if id.DriveItemVersionId != "driveItemVersionId" {
+		t.Fatalf("Expected %q but got %q for Segment 'DriveItemVersionId'", id.DriveItemVersionId, "driveItemVersionId")
 	}
 }
 
 func TestFormatMeDriveIdRootVersionID(t *testing.T) {
-	actual := NewMeDriveIdRootVersionID("driveIdValue", "driveItemVersionIdValue").ID()
-	expected := "/me/drives/driveIdValue/root/versions/driveItemVersionIdValue"
+	actual := NewMeDriveIdRootVersionID("driveId", "driveItemVersionId").ID()
+	expected := "/me/drives/driveId/root/versions/driveItemVersionId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -54,30 +54,30 @@ func TestParseMeDriveIdRootVersionID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/me/drives/driveIdValue",
+			Input: "/me/drives/driveId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/me/drives/driveIdValue/root",
+			Input: "/me/drives/driveId/root",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/me/drives/driveIdValue/root/versions",
+			Input: "/me/drives/driveId/root/versions",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/me/drives/driveIdValue/root/versions/driveItemVersionIdValue",
+			Input: "/me/drives/driveId/root/versions/driveItemVersionId",
 			Expected: &MeDriveIdRootVersionId{
-				DriveId:            "driveIdValue",
-				DriveItemVersionId: "driveItemVersionIdValue",
+				DriveId:            "driveId",
+				DriveItemVersionId: "driveItemVersionId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/drives/driveIdValue/root/versions/driveItemVersionIdValue/extra",
+			Input: "/me/drives/driveId/root/versions/driveItemVersionId/extra",
 			Error: true,
 		},
 	}
@@ -140,58 +140,58 @@ func TestParseMeDriveIdRootVersionIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/me/drives/driveIdValue",
+			Input: "/me/drives/driveId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/dRiVeS/dRiVeIdVaLuE",
+			Input: "/mE/dRiVeS/dRiVeId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/me/drives/driveIdValue/root",
+			Input: "/me/drives/driveId/root",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/dRiVeS/dRiVeIdVaLuE/rOoT",
+			Input: "/mE/dRiVeS/dRiVeId/rOoT",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/me/drives/driveIdValue/root/versions",
+			Input: "/me/drives/driveId/root/versions",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/dRiVeS/dRiVeIdVaLuE/rOoT/vErSiOnS",
+			Input: "/mE/dRiVeS/dRiVeId/rOoT/vErSiOnS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/me/drives/driveIdValue/root/versions/driveItemVersionIdValue",
+			Input: "/me/drives/driveId/root/versions/driveItemVersionId",
 			Expected: &MeDriveIdRootVersionId{
-				DriveId:            "driveIdValue",
-				DriveItemVersionId: "driveItemVersionIdValue",
+				DriveId:            "driveId",
+				DriveItemVersionId: "driveItemVersionId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/drives/driveIdValue/root/versions/driveItemVersionIdValue/extra",
+			Input: "/me/drives/driveId/root/versions/driveItemVersionId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/dRiVeS/dRiVeIdVaLuE/rOoT/vErSiOnS/dRiVeItEmVeRsIoNiDvAlUe",
+			Input: "/mE/dRiVeS/dRiVeId/rOoT/vErSiOnS/dRiVeItEmVeRsIoNiD",
 			Expected: &MeDriveIdRootVersionId{
-				DriveId:            "dRiVeIdVaLuE",
-				DriveItemVersionId: "dRiVeItEmVeRsIoNiDvAlUe",
+				DriveId:            "dRiVeId",
+				DriveItemVersionId: "dRiVeItEmVeRsIoNiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/mE/dRiVeS/dRiVeIdVaLuE/rOoT/vErSiOnS/dRiVeItEmVeRsIoNiDvAlUe/extra",
+			Input: "/mE/dRiVeS/dRiVeId/rOoT/vErSiOnS/dRiVeItEmVeRsIoNiD/extra",
 			Error: true,
 		},
 	}

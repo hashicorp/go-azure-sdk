@@ -18,15 +18,44 @@ type CreateProfilePublicationOperationResponse struct {
 	Model        *beta.ItemPublication
 }
 
+type CreateProfilePublicationOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateProfilePublicationOperationOptions() CreateProfilePublicationOperationOptions {
+	return CreateProfilePublicationOperationOptions{}
+}
+
+func (o CreateProfilePublicationOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateProfilePublicationOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateProfilePublicationOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateProfilePublication - Create itemPublication. Create a new itemPublication object in a user's profile.
-func (c ProfilePublicationClient) CreateProfilePublication(ctx context.Context, input beta.ItemPublication) (result CreateProfilePublicationOperationResponse, err error) {
+func (c ProfilePublicationClient) CreateProfilePublication(ctx context.Context, input beta.ItemPublication, options CreateProfilePublicationOperationOptions) (result CreateProfilePublicationOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/me/profile/publications",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/me/profile/publications",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

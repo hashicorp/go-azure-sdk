@@ -19,16 +19,45 @@ type CreateManagedDeviceHealthScriptStateOperationResponse struct {
 	Model        *beta.DeviceHealthScriptPolicyState
 }
 
+type CreateManagedDeviceHealthScriptStateOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateManagedDeviceHealthScriptStateOperationOptions() CreateManagedDeviceHealthScriptStateOperationOptions {
+	return CreateManagedDeviceHealthScriptStateOperationOptions{}
+}
+
+func (o CreateManagedDeviceHealthScriptStateOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateManagedDeviceHealthScriptStateOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateManagedDeviceHealthScriptStateOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateManagedDeviceHealthScriptState - Create new navigation property to deviceHealthScriptStates for
 // deviceManagement
-func (c ManagedDeviceDeviceHealthScriptStateClient) CreateManagedDeviceHealthScriptState(ctx context.Context, id beta.DeviceManagementManagedDeviceId, input beta.DeviceHealthScriptPolicyState) (result CreateManagedDeviceHealthScriptStateOperationResponse, err error) {
+func (c ManagedDeviceDeviceHealthScriptStateClient) CreateManagedDeviceHealthScriptState(ctx context.Context, id beta.DeviceManagementManagedDeviceId, input beta.DeviceHealthScriptPolicyState, options CreateManagedDeviceHealthScriptStateOperationOptions) (result CreateManagedDeviceHealthScriptStateOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/deviceHealthScriptStates", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/deviceHealthScriptStates", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

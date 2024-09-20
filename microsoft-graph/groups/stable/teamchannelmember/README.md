@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/stable/teamchannelmember` Documentation
 
-The `teamchannelmember` SDK allows for interaction with the Azure Resource Manager Service `groups` (API Version `stable`).
+The `teamchannelmember` SDK allows for interaction with Microsoft Graph `groups` (API Version `stable`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -15,7 +15,7 @@ import "github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/stable/teamchan
 ### Client Initialization
 
 ```go
-client := teamchannelmember.NewTeamChannelMemberClientWithBaseURI("https://management.azure.com")
+client := teamchannelmember.NewTeamChannelMemberClientWithBaseURI("https://graph.microsoft.com")
 client.Client.Authorizer = authorizer
 ```
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := teamchannelmember.NewGroupIdTeamChannelID("groupIdValue", "channelIdValue")
+id := teamchannelmember.NewGroupIdTeamChannelID("groupId", "channelId")
 
 payload := teamchannelmember.AddTeamChannelMembersRequest{
 	// ...
@@ -46,14 +46,14 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := teamchannelmember.NewGroupIdTeamChannelID("groupIdValue", "channelIdValue")
+id := teamchannelmember.NewGroupIdTeamChannelID("groupId", "channelId")
 
 payload := teamchannelmember.ConversationMember{
 	// ...
 }
 
 
-read, err := client.CreateTeamChannelMember(ctx, id, payload)
+read, err := client.CreateTeamChannelMember(ctx, id, payload, teamchannelmember.DefaultCreateTeamChannelMemberOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -67,7 +67,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := teamchannelmember.NewGroupIdTeamChannelIdMemberID("groupIdValue", "channelIdValue", "conversationMemberIdValue")
+id := teamchannelmember.NewGroupIdTeamChannelIdMemberID("groupId", "channelId", "conversationMemberId")
 
 read, err := client.DeleteTeamChannelMember(ctx, id, teamchannelmember.DefaultDeleteTeamChannelMemberOperationOptions())
 if err != nil {
@@ -83,7 +83,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := teamchannelmember.NewGroupIdTeamChannelIdMemberID("groupIdValue", "channelIdValue", "conversationMemberIdValue")
+id := teamchannelmember.NewGroupIdTeamChannelIdMemberID("groupId", "channelId", "conversationMemberId")
 
 read, err := client.GetTeamChannelMember(ctx, id, teamchannelmember.DefaultGetTeamChannelMemberOperationOptions())
 if err != nil {
@@ -99,7 +99,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := teamchannelmember.NewGroupIdTeamChannelID("groupIdValue", "channelIdValue")
+id := teamchannelmember.NewGroupIdTeamChannelID("groupId", "channelId")
 
 read, err := client.GetTeamChannelMembersCount(ctx, id, teamchannelmember.DefaultGetTeamChannelMembersCountOperationOptions())
 if err != nil {
@@ -115,7 +115,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := teamchannelmember.NewGroupIdTeamChannelID("groupIdValue", "channelIdValue")
+id := teamchannelmember.NewGroupIdTeamChannelID("groupId", "channelId")
 
 // alternatively `client.ListTeamChannelMembers(ctx, id, teamchannelmember.DefaultListTeamChannelMembersOperationOptions())` can be used to do batched pagination
 items, err := client.ListTeamChannelMembersComplete(ctx, id, teamchannelmember.DefaultListTeamChannelMembersOperationOptions())
@@ -132,14 +132,14 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := teamchannelmember.NewGroupIdTeamChannelIdMemberID("groupIdValue", "channelIdValue", "conversationMemberIdValue")
+id := teamchannelmember.NewGroupIdTeamChannelIdMemberID("groupId", "channelId", "conversationMemberId")
 
 payload := teamchannelmember.ConversationMember{
 	// ...
 }
 
 
-read, err := client.UpdateTeamChannelMember(ctx, id, payload)
+read, err := client.UpdateTeamChannelMember(ctx, id, payload, teamchannelmember.DefaultUpdateTeamChannelMemberOperationOptions())
 if err != nil {
 	// handle the error
 }

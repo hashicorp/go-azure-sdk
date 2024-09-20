@@ -18,15 +18,44 @@ type CreateMonitoringAlertRuleOperationResponse struct {
 	Model        *beta.DeviceManagementAlertRule
 }
 
+type CreateMonitoringAlertRuleOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateMonitoringAlertRuleOperationOptions() CreateMonitoringAlertRuleOperationOptions {
+	return CreateMonitoringAlertRuleOperationOptions{}
+}
+
+func (o CreateMonitoringAlertRuleOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateMonitoringAlertRuleOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateMonitoringAlertRuleOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateMonitoringAlertRule - Create alertRule. Create an alertRule object.
-func (c MonitoringAlertRuleClient) CreateMonitoringAlertRule(ctx context.Context, input beta.DeviceManagementAlertRule) (result CreateMonitoringAlertRuleOperationResponse, err error) {
+func (c MonitoringAlertRuleClient) CreateMonitoringAlertRule(ctx context.Context, input beta.DeviceManagementAlertRule, options CreateMonitoringAlertRuleOperationOptions) (result CreateMonitoringAlertRuleOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/deviceManagement/monitoring/alertRules",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/deviceManagement/monitoring/alertRules",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

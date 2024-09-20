@@ -12,24 +12,24 @@ import (
 var _ resourceids.ResourceId = &GroupIdSiteIdDocumentProcessingJobId{}
 
 func TestNewGroupIdSiteIdDocumentProcessingJobID(t *testing.T) {
-	id := NewGroupIdSiteIdDocumentProcessingJobID("groupIdValue", "siteIdValue", "documentProcessingJobIdValue")
+	id := NewGroupIdSiteIdDocumentProcessingJobID("groupId", "siteId", "documentProcessingJobId")
 
-	if id.GroupId != "groupIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'GroupId'", id.GroupId, "groupIdValue")
+	if id.GroupId != "groupId" {
+		t.Fatalf("Expected %q but got %q for Segment 'GroupId'", id.GroupId, "groupId")
 	}
 
-	if id.SiteId != "siteIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'SiteId'", id.SiteId, "siteIdValue")
+	if id.SiteId != "siteId" {
+		t.Fatalf("Expected %q but got %q for Segment 'SiteId'", id.SiteId, "siteId")
 	}
 
-	if id.DocumentProcessingJobId != "documentProcessingJobIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DocumentProcessingJobId'", id.DocumentProcessingJobId, "documentProcessingJobIdValue")
+	if id.DocumentProcessingJobId != "documentProcessingJobId" {
+		t.Fatalf("Expected %q but got %q for Segment 'DocumentProcessingJobId'", id.DocumentProcessingJobId, "documentProcessingJobId")
 	}
 }
 
 func TestFormatGroupIdSiteIdDocumentProcessingJobID(t *testing.T) {
-	actual := NewGroupIdSiteIdDocumentProcessingJobID("groupIdValue", "siteIdValue", "documentProcessingJobIdValue").ID()
-	expected := "/groups/groupIdValue/sites/siteIdValue/documentProcessingJobs/documentProcessingJobIdValue"
+	actual := NewGroupIdSiteIdDocumentProcessingJobID("groupId", "siteId", "documentProcessingJobId").ID()
+	expected := "/groups/groupId/sites/siteId/documentProcessingJobs/documentProcessingJobId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -53,36 +53,36 @@ func TestParseGroupIdSiteIdDocumentProcessingJobID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue",
+			Input: "/groups/groupId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/sites",
+			Input: "/groups/groupId/sites",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/sites/siteIdValue",
+			Input: "/groups/groupId/sites/siteId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/sites/siteIdValue/documentProcessingJobs",
+			Input: "/groups/groupId/sites/siteId/documentProcessingJobs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/groups/groupIdValue/sites/siteIdValue/documentProcessingJobs/documentProcessingJobIdValue",
+			Input: "/groups/groupId/sites/siteId/documentProcessingJobs/documentProcessingJobId",
 			Expected: &GroupIdSiteIdDocumentProcessingJobId{
-				GroupId:                 "groupIdValue",
-				SiteId:                  "siteIdValue",
-				DocumentProcessingJobId: "documentProcessingJobIdValue",
+				GroupId:                 "groupId",
+				SiteId:                  "siteId",
+				DocumentProcessingJobId: "documentProcessingJobId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/groups/groupIdValue/sites/siteIdValue/documentProcessingJobs/documentProcessingJobIdValue/extra",
+			Input: "/groups/groupId/sites/siteId/documentProcessingJobs/documentProcessingJobId/extra",
 			Error: true,
 		},
 	}
@@ -139,70 +139,70 @@ func TestParseGroupIdSiteIdDocumentProcessingJobIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue",
+			Input: "/groups/groupId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE",
+			Input: "/gRoUpS/gRoUpId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/sites",
+			Input: "/groups/groupId/sites",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/sItEs",
+			Input: "/gRoUpS/gRoUpId/sItEs",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/sites/siteIdValue",
+			Input: "/groups/groupId/sites/siteId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/sItEs/sItEiDvAlUe",
+			Input: "/gRoUpS/gRoUpId/sItEs/sItEiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/sites/siteIdValue/documentProcessingJobs",
+			Input: "/groups/groupId/sites/siteId/documentProcessingJobs",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/sItEs/sItEiDvAlUe/dOcUmEnTpRoCeSsInGjObS",
+			Input: "/gRoUpS/gRoUpId/sItEs/sItEiD/dOcUmEnTpRoCeSsInGjObS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/groups/groupIdValue/sites/siteIdValue/documentProcessingJobs/documentProcessingJobIdValue",
+			Input: "/groups/groupId/sites/siteId/documentProcessingJobs/documentProcessingJobId",
 			Expected: &GroupIdSiteIdDocumentProcessingJobId{
-				GroupId:                 "groupIdValue",
-				SiteId:                  "siteIdValue",
-				DocumentProcessingJobId: "documentProcessingJobIdValue",
+				GroupId:                 "groupId",
+				SiteId:                  "siteId",
+				DocumentProcessingJobId: "documentProcessingJobId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/groups/groupIdValue/sites/siteIdValue/documentProcessingJobs/documentProcessingJobIdValue/extra",
+			Input: "/groups/groupId/sites/siteId/documentProcessingJobs/documentProcessingJobId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/sItEs/sItEiDvAlUe/dOcUmEnTpRoCeSsInGjObS/dOcUmEnTpRoCeSsInGjObIdVaLuE",
+			Input: "/gRoUpS/gRoUpId/sItEs/sItEiD/dOcUmEnTpRoCeSsInGjObS/dOcUmEnTpRoCeSsInGjObId",
 			Expected: &GroupIdSiteIdDocumentProcessingJobId{
-				GroupId:                 "gRoUpIdVaLuE",
-				SiteId:                  "sItEiDvAlUe",
-				DocumentProcessingJobId: "dOcUmEnTpRoCeSsInGjObIdVaLuE",
+				GroupId:                 "gRoUpId",
+				SiteId:                  "sItEiD",
+				DocumentProcessingJobId: "dOcUmEnTpRoCeSsInGjObId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/sItEs/sItEiDvAlUe/dOcUmEnTpRoCeSsInGjObS/dOcUmEnTpRoCeSsInGjObIdVaLuE/extra",
+			Input: "/gRoUpS/gRoUpId/sItEs/sItEiD/dOcUmEnTpRoCeSsInGjObS/dOcUmEnTpRoCeSsInGjObId/extra",
 			Error: true,
 		},
 	}

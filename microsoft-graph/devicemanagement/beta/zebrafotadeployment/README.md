@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/zebrafotadeployment` Documentation
 
-The `zebrafotadeployment` SDK allows for interaction with the Azure Resource Manager Service `devicemanagement` (API Version `beta`).
+The `zebrafotadeployment` SDK allows for interaction with Microsoft Graph `devicemanagement` (API Version `beta`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -15,7 +15,7 @@ import "github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/
 ### Client Initialization
 
 ```go
-client := zebrafotadeployment.NewZebraFotaDeploymentClientWithBaseURI("https://management.azure.com")
+client := zebrafotadeployment.NewZebraFotaDeploymentClientWithBaseURI("https://graph.microsoft.com")
 client.Client.Authorizer = authorizer
 ```
 
@@ -24,9 +24,9 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := zebrafotadeployment.NewDeviceManagementZebraFotaDeploymentID("zebraFotaDeploymentIdValue")
+id := zebrafotadeployment.NewDeviceManagementZebraFotaDeploymentID("zebraFotaDeploymentId")
 
-read, err := client.CancelZebraFotaDeployment(ctx, id)
+read, err := client.CancelZebraFotaDeployment(ctx, id, zebrafotadeployment.DefaultCancelZebraFotaDeploymentOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -46,7 +46,7 @@ payload := zebrafotadeployment.ZebraFotaDeployment{
 }
 
 
-read, err := client.CreateZebraFotaDeployment(ctx, payload)
+read, err := client.CreateZebraFotaDeployment(ctx, payload, zebrafotadeployment.DefaultCreateZebraFotaDeploymentOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -60,7 +60,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := zebrafotadeployment.NewDeviceManagementZebraFotaDeploymentID("zebraFotaDeploymentIdValue")
+id := zebrafotadeployment.NewDeviceManagementZebraFotaDeploymentID("zebraFotaDeploymentId")
 
 read, err := client.DeleteZebraFotaDeployment(ctx, id, zebrafotadeployment.DefaultDeleteZebraFotaDeploymentOperationOptions())
 if err != nil {
@@ -76,7 +76,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := zebrafotadeployment.NewDeviceManagementZebraFotaDeploymentID("zebraFotaDeploymentIdValue")
+id := zebrafotadeployment.NewDeviceManagementZebraFotaDeploymentID("zebraFotaDeploymentId")
 
 read, err := client.GetZebraFotaDeployment(ctx, id, zebrafotadeployment.DefaultGetZebraFotaDeploymentOperationOptions())
 if err != nil {
@@ -125,14 +125,14 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := zebrafotadeployment.NewDeviceManagementZebraFotaDeploymentID("zebraFotaDeploymentIdValue")
+id := zebrafotadeployment.NewDeviceManagementZebraFotaDeploymentID("zebraFotaDeploymentId")
 
 payload := zebrafotadeployment.ZebraFotaDeployment{
 	// ...
 }
 
 
-read, err := client.UpdateZebraFotaDeployment(ctx, id, payload)
+read, err := client.UpdateZebraFotaDeployment(ctx, id, payload, zebrafotadeployment.DefaultUpdateZebraFotaDeploymentOperationOptions())
 if err != nil {
 	// handle the error
 }

@@ -20,17 +20,46 @@ type CreateMemberOperationResponse struct {
 	Model        beta.DirectoryObject
 }
 
+type CreateMemberOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateMemberOperationOptions() CreateMemberOperationOptions {
+	return CreateMemberOperationOptions{}
+}
+
+func (o CreateMemberOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateMemberOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateMemberOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateMember - Add a member. Use this API to add a member (user, group, or device) to an administrative unit or to
 // create a new group within an administrative unit. All group types can be created within an administrative unit. Note:
 // Currently, it's only possible to add one member at a time to an administrative unit.`
-func (c MemberClient) CreateMember(ctx context.Context, id beta.AdministrativeUnitId, input beta.DirectoryObject) (result CreateMemberOperationResponse, err error) {
+func (c MemberClient) CreateMember(ctx context.Context, id beta.AdministrativeUnitId, input beta.DirectoryObject, options CreateMemberOperationOptions) (result CreateMemberOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/members", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/members", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

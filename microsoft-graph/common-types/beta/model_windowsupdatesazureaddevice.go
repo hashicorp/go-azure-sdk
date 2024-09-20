@@ -76,10 +76,16 @@ func (s WindowsUpdatesAzureADDevice) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &WindowsUpdatesAzureADDevice{}
 
 func (s *WindowsUpdatesAzureADDevice) UnmarshalJSON(bytes []byte) error {
-	type alias WindowsUpdatesAzureADDevice
-	var decoded alias
+
+	var decoded struct {
+		Enrollments *[]WindowsUpdatesUpdatableAssetEnrollment `json:"enrollments,omitempty"`
+		Errors      *[]WindowsUpdatesUpdatableAssetError      `json:"errors,omitempty"`
+		Id          *string                                   `json:"id,omitempty"`
+		ODataId     *string                                   `json:"@odata.id,omitempty"`
+		ODataType   *string                                   `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into WindowsUpdatesAzureADDevice: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.Id = decoded.Id
@@ -124,5 +130,6 @@ func (s *WindowsUpdatesAzureADDevice) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Errors = &output
 	}
+
 	return nil
 }

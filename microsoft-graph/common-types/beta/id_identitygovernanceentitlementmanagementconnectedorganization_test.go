@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &IdentityGovernanceEntitlementManagementConnectedOrganizationId{}
 
 func TestNewIdentityGovernanceEntitlementManagementConnectedOrganizationID(t *testing.T) {
-	id := NewIdentityGovernanceEntitlementManagementConnectedOrganizationID("connectedOrganizationIdValue")
+	id := NewIdentityGovernanceEntitlementManagementConnectedOrganizationID("connectedOrganizationId")
 
-	if id.ConnectedOrganizationId != "connectedOrganizationIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ConnectedOrganizationId'", id.ConnectedOrganizationId, "connectedOrganizationIdValue")
+	if id.ConnectedOrganizationId != "connectedOrganizationId" {
+		t.Fatalf("Expected %q but got %q for Segment 'ConnectedOrganizationId'", id.ConnectedOrganizationId, "connectedOrganizationId")
 	}
 }
 
 func TestFormatIdentityGovernanceEntitlementManagementConnectedOrganizationID(t *testing.T) {
-	actual := NewIdentityGovernanceEntitlementManagementConnectedOrganizationID("connectedOrganizationIdValue").ID()
-	expected := "/identityGovernance/entitlementManagement/connectedOrganizations/connectedOrganizationIdValue"
+	actual := NewIdentityGovernanceEntitlementManagementConnectedOrganizationID("connectedOrganizationId").ID()
+	expected := "/identityGovernance/entitlementManagement/connectedOrganizations/connectedOrganizationId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -55,14 +55,14 @@ func TestParseIdentityGovernanceEntitlementManagementConnectedOrganizationID(t *
 		},
 		{
 			// Valid URI
-			Input: "/identityGovernance/entitlementManagement/connectedOrganizations/connectedOrganizationIdValue",
+			Input: "/identityGovernance/entitlementManagement/connectedOrganizations/connectedOrganizationId",
 			Expected: &IdentityGovernanceEntitlementManagementConnectedOrganizationId{
-				ConnectedOrganizationId: "connectedOrganizationIdValue",
+				ConnectedOrganizationId: "connectedOrganizationId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/identityGovernance/entitlementManagement/connectedOrganizations/connectedOrganizationIdValue/extra",
+			Input: "/identityGovernance/entitlementManagement/connectedOrganizations/connectedOrganizationId/extra",
 			Error: true,
 		},
 	}
@@ -131,26 +131,26 @@ func TestParseIdentityGovernanceEntitlementManagementConnectedOrganizationIDInse
 		},
 		{
 			// Valid URI
-			Input: "/identityGovernance/entitlementManagement/connectedOrganizations/connectedOrganizationIdValue",
+			Input: "/identityGovernance/entitlementManagement/connectedOrganizations/connectedOrganizationId",
 			Expected: &IdentityGovernanceEntitlementManagementConnectedOrganizationId{
-				ConnectedOrganizationId: "connectedOrganizationIdValue",
+				ConnectedOrganizationId: "connectedOrganizationId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/identityGovernance/entitlementManagement/connectedOrganizations/connectedOrganizationIdValue/extra",
+			Input: "/identityGovernance/entitlementManagement/connectedOrganizations/connectedOrganizationId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/iDeNtItYgOvErNaNcE/eNtItLeMeNtMaNaGeMeNt/cOnNeCtEdOrGaNiZaTiOnS/cOnNeCtEdOrGaNiZaTiOnIdVaLuE",
+			Input: "/iDeNtItYgOvErNaNcE/eNtItLeMeNtMaNaGeMeNt/cOnNeCtEdOrGaNiZaTiOnS/cOnNeCtEdOrGaNiZaTiOnId",
 			Expected: &IdentityGovernanceEntitlementManagementConnectedOrganizationId{
-				ConnectedOrganizationId: "cOnNeCtEdOrGaNiZaTiOnIdVaLuE",
+				ConnectedOrganizationId: "cOnNeCtEdOrGaNiZaTiOnId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/iDeNtItYgOvErNaNcE/eNtItLeMeNtMaNaGeMeNt/cOnNeCtEdOrGaNiZaTiOnS/cOnNeCtEdOrGaNiZaTiOnIdVaLuE/extra",
+			Input: "/iDeNtItYgOvErNaNcE/eNtItLeMeNtMaNaGeMeNt/cOnNeCtEdOrGaNiZaTiOnS/cOnNeCtEdOrGaNiZaTiOnId/extra",
 			Error: true,
 		},
 	}

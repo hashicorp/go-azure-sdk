@@ -18,15 +18,44 @@ type SetSynchronizationSecretOperationResponse struct {
 	OData        *odata.OData
 }
 
+type SetSynchronizationSecretOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultSetSynchronizationSecretOperationOptions() SetSynchronizationSecretOperationOptions {
+	return SetSynchronizationSecretOperationOptions{}
+}
+
+func (o SetSynchronizationSecretOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o SetSynchronizationSecretOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o SetSynchronizationSecretOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // SetSynchronizationSecret - Update property secrets value.
-func (c SynchronizationSecretClient) SetSynchronizationSecret(ctx context.Context, id beta.ApplicationId, input SetSynchronizationSecretRequest) (result SetSynchronizationSecretOperationResponse, err error) {
+func (c SynchronizationSecretClient) SetSynchronizationSecret(ctx context.Context, id beta.ApplicationId, input SetSynchronizationSecretRequest, options SetSynchronizationSecretOperationOptions) (result SetSynchronizationSecretOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPut,
-		Path:       fmt.Sprintf("%s/synchronization/secrets", id.ID()),
+		HttpMethod:    http.MethodPut,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/synchronization/secrets", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

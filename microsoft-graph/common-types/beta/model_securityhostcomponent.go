@@ -90,20 +90,29 @@ func (s SecurityHostComponent) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &SecurityHostComponent{}
 
 func (s *SecurityHostComponent) UnmarshalJSON(bytes []byte) error {
-	type alias SecurityHostComponent
-	var decoded alias
+
+	var decoded struct {
+		Category          nullable.Type[string] `json:"category,omitempty"`
+		FirstSeenDateTime *string               `json:"firstSeenDateTime,omitempty"`
+		LastSeenDateTime  *string               `json:"lastSeenDateTime,omitempty"`
+		Name              *string               `json:"name,omitempty"`
+		Version           nullable.Type[string] `json:"version,omitempty"`
+		Id                *string               `json:"id,omitempty"`
+		ODataId           *string               `json:"@odata.id,omitempty"`
+		ODataType         *string               `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into SecurityHostComponent: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.Category = decoded.Category
 	s.FirstSeenDateTime = decoded.FirstSeenDateTime
-	s.Id = decoded.Id
 	s.LastSeenDateTime = decoded.LastSeenDateTime
 	s.Name = decoded.Name
+	s.Version = decoded.Version
+	s.Id = decoded.Id
 	s.ODataId = decoded.ODataId
 	s.ODataType = decoded.ODataType
-	s.Version = decoded.Version
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -117,5 +126,6 @@ func (s *SecurityHostComponent) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Host = &impl
 	}
+
 	return nil
 }

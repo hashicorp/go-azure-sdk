@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &IdentityConditionalAccessAuthenticationStrengthAuthenticationMethodModeId{}
 
 func TestNewIdentityConditionalAccessAuthenticationStrengthAuthenticationMethodModeID(t *testing.T) {
-	id := NewIdentityConditionalAccessAuthenticationStrengthAuthenticationMethodModeID("authenticationMethodModeDetailIdValue")
+	id := NewIdentityConditionalAccessAuthenticationStrengthAuthenticationMethodModeID("authenticationMethodModeDetailId")
 
-	if id.AuthenticationMethodModeDetailId != "authenticationMethodModeDetailIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'AuthenticationMethodModeDetailId'", id.AuthenticationMethodModeDetailId, "authenticationMethodModeDetailIdValue")
+	if id.AuthenticationMethodModeDetailId != "authenticationMethodModeDetailId" {
+		t.Fatalf("Expected %q but got %q for Segment 'AuthenticationMethodModeDetailId'", id.AuthenticationMethodModeDetailId, "authenticationMethodModeDetailId")
 	}
 }
 
 func TestFormatIdentityConditionalAccessAuthenticationStrengthAuthenticationMethodModeID(t *testing.T) {
-	actual := NewIdentityConditionalAccessAuthenticationStrengthAuthenticationMethodModeID("authenticationMethodModeDetailIdValue").ID()
-	expected := "/identity/conditionalAccess/authenticationStrength/authenticationMethodModes/authenticationMethodModeDetailIdValue"
+	actual := NewIdentityConditionalAccessAuthenticationStrengthAuthenticationMethodModeID("authenticationMethodModeDetailId").ID()
+	expected := "/identity/conditionalAccess/authenticationStrength/authenticationMethodModes/authenticationMethodModeDetailId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -60,14 +60,14 @@ func TestParseIdentityConditionalAccessAuthenticationStrengthAuthenticationMetho
 		},
 		{
 			// Valid URI
-			Input: "/identity/conditionalAccess/authenticationStrength/authenticationMethodModes/authenticationMethodModeDetailIdValue",
+			Input: "/identity/conditionalAccess/authenticationStrength/authenticationMethodModes/authenticationMethodModeDetailId",
 			Expected: &IdentityConditionalAccessAuthenticationStrengthAuthenticationMethodModeId{
-				AuthenticationMethodModeDetailId: "authenticationMethodModeDetailIdValue",
+				AuthenticationMethodModeDetailId: "authenticationMethodModeDetailId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/identity/conditionalAccess/authenticationStrength/authenticationMethodModes/authenticationMethodModeDetailIdValue/extra",
+			Input: "/identity/conditionalAccess/authenticationStrength/authenticationMethodModes/authenticationMethodModeDetailId/extra",
 			Error: true,
 		},
 	}
@@ -146,26 +146,26 @@ func TestParseIdentityConditionalAccessAuthenticationStrengthAuthenticationMetho
 		},
 		{
 			// Valid URI
-			Input: "/identity/conditionalAccess/authenticationStrength/authenticationMethodModes/authenticationMethodModeDetailIdValue",
+			Input: "/identity/conditionalAccess/authenticationStrength/authenticationMethodModes/authenticationMethodModeDetailId",
 			Expected: &IdentityConditionalAccessAuthenticationStrengthAuthenticationMethodModeId{
-				AuthenticationMethodModeDetailId: "authenticationMethodModeDetailIdValue",
+				AuthenticationMethodModeDetailId: "authenticationMethodModeDetailId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/identity/conditionalAccess/authenticationStrength/authenticationMethodModes/authenticationMethodModeDetailIdValue/extra",
+			Input: "/identity/conditionalAccess/authenticationStrength/authenticationMethodModes/authenticationMethodModeDetailId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/iDeNtItY/cOnDiTiOnAlAcCeSs/aUtHeNtIcAtIoNsTrEnGtH/aUtHeNtIcAtIoNmEtHoDmOdEs/aUtHeNtIcAtIoNmEtHoDmOdEdEtAiLiDvAlUe",
+			Input: "/iDeNtItY/cOnDiTiOnAlAcCeSs/aUtHeNtIcAtIoNsTrEnGtH/aUtHeNtIcAtIoNmEtHoDmOdEs/aUtHeNtIcAtIoNmEtHoDmOdEdEtAiLiD",
 			Expected: &IdentityConditionalAccessAuthenticationStrengthAuthenticationMethodModeId{
-				AuthenticationMethodModeDetailId: "aUtHeNtIcAtIoNmEtHoDmOdEdEtAiLiDvAlUe",
+				AuthenticationMethodModeDetailId: "aUtHeNtIcAtIoNmEtHoDmOdEdEtAiLiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/iDeNtItY/cOnDiTiOnAlAcCeSs/aUtHeNtIcAtIoNsTrEnGtH/aUtHeNtIcAtIoNmEtHoDmOdEs/aUtHeNtIcAtIoNmEtHoDmOdEdEtAiLiDvAlUe/extra",
+			Input: "/iDeNtItY/cOnDiTiOnAlAcCeSs/aUtHeNtIcAtIoNsTrEnGtH/aUtHeNtIcAtIoNmEtHoDmOdEs/aUtHeNtIcAtIoNmEtHoDmOdEdEtAiLiD/extra",
 			Error: true,
 		},
 	}

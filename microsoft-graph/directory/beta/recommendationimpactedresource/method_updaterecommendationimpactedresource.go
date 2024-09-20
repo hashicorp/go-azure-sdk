@@ -17,15 +17,44 @@ type UpdateRecommendationImpactedResourceOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateRecommendationImpactedResourceOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateRecommendationImpactedResourceOperationOptions() UpdateRecommendationImpactedResourceOperationOptions {
+	return UpdateRecommendationImpactedResourceOperationOptions{}
+}
+
+func (o UpdateRecommendationImpactedResourceOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateRecommendationImpactedResourceOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateRecommendationImpactedResourceOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateRecommendationImpactedResource - Update the navigation property impactedResources in directory
-func (c RecommendationImpactedResourceClient) UpdateRecommendationImpactedResource(ctx context.Context, id beta.DirectoryRecommendationIdImpactedResourceId, input beta.ImpactedResource) (result UpdateRecommendationImpactedResourceOperationResponse, err error) {
+func (c RecommendationImpactedResourceClient) UpdateRecommendationImpactedResource(ctx context.Context, id beta.DirectoryRecommendationIdImpactedResourceId, input beta.ImpactedResource, options UpdateRecommendationImpactedResourceOperationOptions) (result UpdateRecommendationImpactedResourceOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -24,10 +24,16 @@ type AwsAssociatedIdentities struct {
 var _ json.Unmarshaler = &AwsAssociatedIdentities{}
 
 func (s *AwsAssociatedIdentities) UnmarshalJSON(bytes []byte) error {
-	type alias AwsAssociatedIdentities
-	var decoded alias
+
+	var decoded struct {
+		All       *[]AwsIdentity `json:"all,omitempty"`
+		ODataId   *string        `json:"@odata.id,omitempty"`
+		ODataType *string        `json:"@odata.type,omitempty"`
+		Roles     *[]AwsRole     `json:"roles,omitempty"`
+		Users     *[]AwsUser     `json:"users,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into AwsAssociatedIdentities: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.ODataId = decoded.ODataId
@@ -56,5 +62,6 @@ func (s *AwsAssociatedIdentities) UnmarshalJSON(bytes []byte) error {
 		}
 		s.All = &output
 	}
+
 	return nil
 }

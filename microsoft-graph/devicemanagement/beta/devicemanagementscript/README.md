@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/devicemanagementscript` Documentation
 
-The `devicemanagementscript` SDK allows for interaction with the Azure Resource Manager Service `devicemanagement` (API Version `beta`).
+The `devicemanagementscript` SDK allows for interaction with Microsoft Graph `devicemanagement` (API Version `beta`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -15,23 +15,23 @@ import "github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/
 ### Client Initialization
 
 ```go
-client := devicemanagementscript.NewDeviceManagementScriptClientWithBaseURI("https://management.azure.com")
+client := devicemanagementscript.NewDeviceManagementScriptClientWithBaseURI("https://graph.microsoft.com")
 client.Client.Authorizer = authorizer
 ```
 
 
-### Example Usage: `DeviceManagementScriptClient.AssignScript`
+### Example Usage: `DeviceManagementScriptClient.AssignDeviceManagementScript`
 
 ```go
 ctx := context.TODO()
-id := devicemanagementscript.NewDeviceManagementDeviceManagementScriptID("deviceManagementScriptIdValue")
+id := devicemanagementscript.NewDeviceManagementDeviceManagementScriptID("deviceManagementScriptId")
 
-payload := devicemanagementscript.AssignScriptRequest{
+payload := devicemanagementscript.AssignDeviceManagementScriptRequest{
 	// ...
 }
 
 
-read, err := client.AssignScript(ctx, id, payload)
+read, err := client.AssignDeviceManagementScript(ctx, id, payload, devicemanagementscript.DefaultAssignDeviceManagementScriptOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -41,7 +41,7 @@ if model := read.Model; model != nil {
 ```
 
 
-### Example Usage: `DeviceManagementScriptClient.CreateScript`
+### Example Usage: `DeviceManagementScriptClient.CreateDeviceManagementScript`
 
 ```go
 ctx := context.TODO()
@@ -51,7 +51,7 @@ payload := devicemanagementscript.DeviceManagementScript{
 }
 
 
-read, err := client.CreateScript(ctx, payload)
+read, err := client.CreateDeviceManagementScript(ctx, payload, devicemanagementscript.DefaultCreateDeviceManagementScriptOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -61,13 +61,13 @@ if model := read.Model; model != nil {
 ```
 
 
-### Example Usage: `DeviceManagementScriptClient.DeleteScript`
+### Example Usage: `DeviceManagementScriptClient.DeleteDeviceManagementScript`
 
 ```go
 ctx := context.TODO()
-id := devicemanagementscript.NewDeviceManagementDeviceManagementScriptID("deviceManagementScriptIdValue")
+id := devicemanagementscript.NewDeviceManagementDeviceManagementScriptID("deviceManagementScriptId")
 
-read, err := client.DeleteScript(ctx, id, devicemanagementscript.DefaultDeleteScriptOperationOptions())
+read, err := client.DeleteDeviceManagementScript(ctx, id, devicemanagementscript.DefaultDeleteDeviceManagementScriptOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -77,13 +77,13 @@ if model := read.Model; model != nil {
 ```
 
 
-### Example Usage: `DeviceManagementScriptClient.GetScript`
+### Example Usage: `DeviceManagementScriptClient.GetDeviceManagementScript`
 
 ```go
 ctx := context.TODO()
-id := devicemanagementscript.NewDeviceManagementDeviceManagementScriptID("deviceManagementScriptIdValue")
+id := devicemanagementscript.NewDeviceManagementDeviceManagementScriptID("deviceManagementScriptId")
 
-read, err := client.GetScript(ctx, id, devicemanagementscript.DefaultGetScriptOperationOptions())
+read, err := client.GetDeviceManagementScript(ctx, id, devicemanagementscript.DefaultGetDeviceManagementScriptOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -93,13 +93,13 @@ if model := read.Model; model != nil {
 ```
 
 
-### Example Usage: `DeviceManagementScriptClient.GetScriptsCount`
+### Example Usage: `DeviceManagementScriptClient.GetDeviceManagementScriptsCount`
 
 ```go
 ctx := context.TODO()
 
 
-read, err := client.GetScriptsCount(ctx, devicemanagementscript.DefaultGetScriptsCountOperationOptions())
+read, err := client.GetDeviceManagementScriptsCount(ctx, devicemanagementscript.DefaultGetDeviceManagementScriptsCountOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -109,18 +109,18 @@ if model := read.Model; model != nil {
 ```
 
 
-### Example Usage: `DeviceManagementScriptClient.ListScriptHasPayloadLinks`
+### Example Usage: `DeviceManagementScriptClient.ListDeviceManagementScriptHasPayloadLinks`
 
 ```go
 ctx := context.TODO()
 
-payload := devicemanagementscript.ListScriptHasPayloadLinksRequest{
+payload := devicemanagementscript.ListDeviceManagementScriptHasPayloadLinksRequest{
 	// ...
 }
 
 
-// alternatively `client.ListScriptHasPayloadLinks(ctx, payload, devicemanagementscript.DefaultListScriptHasPayloadLinksOperationOptions())` can be used to do batched pagination
-items, err := client.ListScriptHasPayloadLinksComplete(ctx, payload, devicemanagementscript.DefaultListScriptHasPayloadLinksOperationOptions())
+// alternatively `client.ListDeviceManagementScriptHasPayloadLinks(ctx, payload, devicemanagementscript.DefaultListDeviceManagementScriptHasPayloadLinksOperationOptions())` can be used to do batched pagination
+items, err := client.ListDeviceManagementScriptHasPayloadLinksComplete(ctx, payload, devicemanagementscript.DefaultListDeviceManagementScriptHasPayloadLinksOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -130,14 +130,14 @@ for _, item := range items {
 ```
 
 
-### Example Usage: `DeviceManagementScriptClient.ListScripts`
+### Example Usage: `DeviceManagementScriptClient.ListDeviceManagementScripts`
 
 ```go
 ctx := context.TODO()
 
 
-// alternatively `client.ListScripts(ctx, devicemanagementscript.DefaultListScriptsOperationOptions())` can be used to do batched pagination
-items, err := client.ListScriptsComplete(ctx, devicemanagementscript.DefaultListScriptsOperationOptions())
+// alternatively `client.ListDeviceManagementScripts(ctx, devicemanagementscript.DefaultListDeviceManagementScriptsOperationOptions())` can be used to do batched pagination
+items, err := client.ListDeviceManagementScriptsComplete(ctx, devicemanagementscript.DefaultListDeviceManagementScriptsOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -147,18 +147,18 @@ for _, item := range items {
 ```
 
 
-### Example Usage: `DeviceManagementScriptClient.UpdateScript`
+### Example Usage: `DeviceManagementScriptClient.UpdateDeviceManagementScript`
 
 ```go
 ctx := context.TODO()
-id := devicemanagementscript.NewDeviceManagementDeviceManagementScriptID("deviceManagementScriptIdValue")
+id := devicemanagementscript.NewDeviceManagementDeviceManagementScriptID("deviceManagementScriptId")
 
 payload := devicemanagementscript.DeviceManagementScript{
 	// ...
 }
 
 
-read, err := client.UpdateScript(ctx, id, payload)
+read, err := client.UpdateDeviceManagementScript(ctx, id, payload, devicemanagementscript.DefaultUpdateDeviceManagementScriptOperationOptions())
 if err != nil {
 	// handle the error
 }

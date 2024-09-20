@@ -93,7 +93,7 @@ func (id MeCloudPCId) Segments() []resourceids.Segment {
 	return []resourceids.Segment{
 		resourceids.StaticSegment("me", "me", "me"),
 		resourceids.StaticSegment("cloudPCs", "cloudPCs", "cloudPCs"),
-		resourceids.UserSpecifiedSegment("cloudPCId", "cloudPCIdValue"),
+		resourceids.UserSpecifiedSegment("cloudPCId", "cloudPCId"),
 	}
 }
 

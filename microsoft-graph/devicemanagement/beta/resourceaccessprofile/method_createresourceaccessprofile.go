@@ -19,15 +19,44 @@ type CreateResourceAccessProfileOperationResponse struct {
 	Model        beta.DeviceManagementResourceAccessProfileBase
 }
 
+type CreateResourceAccessProfileOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateResourceAccessProfileOperationOptions() CreateResourceAccessProfileOperationOptions {
+	return CreateResourceAccessProfileOperationOptions{}
+}
+
+func (o CreateResourceAccessProfileOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateResourceAccessProfileOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateResourceAccessProfileOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateResourceAccessProfile - Create new navigation property to resourceAccessProfiles for deviceManagement
-func (c ResourceAccessProfileClient) CreateResourceAccessProfile(ctx context.Context, input beta.DeviceManagementResourceAccessProfileBase) (result CreateResourceAccessProfileOperationResponse, err error) {
+func (c ResourceAccessProfileClient) CreateResourceAccessProfile(ctx context.Context, input beta.DeviceManagementResourceAccessProfileBase, options CreateResourceAccessProfileOperationOptions) (result CreateResourceAccessProfileOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/deviceManagement/resourceAccessProfiles",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/deviceManagement/resourceAccessProfiles",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

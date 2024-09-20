@@ -12,24 +12,24 @@ import (
 var _ resourceids.ResourceId = &GroupIdDriveIdRootSubscriptionId{}
 
 func TestNewGroupIdDriveIdRootSubscriptionID(t *testing.T) {
-	id := NewGroupIdDriveIdRootSubscriptionID("groupIdValue", "driveIdValue", "subscriptionIdValue")
+	id := NewGroupIdDriveIdRootSubscriptionID("groupId", "driveId", "subscriptionId")
 
-	if id.GroupId != "groupIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'GroupId'", id.GroupId, "groupIdValue")
+	if id.GroupId != "groupId" {
+		t.Fatalf("Expected %q but got %q for Segment 'GroupId'", id.GroupId, "groupId")
 	}
 
-	if id.DriveId != "driveIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DriveId'", id.DriveId, "driveIdValue")
+	if id.DriveId != "driveId" {
+		t.Fatalf("Expected %q but got %q for Segment 'DriveId'", id.DriveId, "driveId")
 	}
 
-	if id.SubscriptionId != "subscriptionIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "subscriptionIdValue")
+	if id.SubscriptionId != "subscriptionId" {
+		t.Fatalf("Expected %q but got %q for Segment 'SubscriptionId'", id.SubscriptionId, "subscriptionId")
 	}
 }
 
 func TestFormatGroupIdDriveIdRootSubscriptionID(t *testing.T) {
-	actual := NewGroupIdDriveIdRootSubscriptionID("groupIdValue", "driveIdValue", "subscriptionIdValue").ID()
-	expected := "/groups/groupIdValue/drives/driveIdValue/root/subscriptions/subscriptionIdValue"
+	actual := NewGroupIdDriveIdRootSubscriptionID("groupId", "driveId", "subscriptionId").ID()
+	expected := "/groups/groupId/drives/driveId/root/subscriptions/subscriptionId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -53,41 +53,41 @@ func TestParseGroupIdDriveIdRootSubscriptionID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue",
+			Input: "/groups/groupId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/drives",
+			Input: "/groups/groupId/drives",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/drives/driveIdValue",
+			Input: "/groups/groupId/drives/driveId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/drives/driveIdValue/root",
+			Input: "/groups/groupId/drives/driveId/root",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/drives/driveIdValue/root/subscriptions",
+			Input: "/groups/groupId/drives/driveId/root/subscriptions",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/groups/groupIdValue/drives/driveIdValue/root/subscriptions/subscriptionIdValue",
+			Input: "/groups/groupId/drives/driveId/root/subscriptions/subscriptionId",
 			Expected: &GroupIdDriveIdRootSubscriptionId{
-				GroupId:        "groupIdValue",
-				DriveId:        "driveIdValue",
-				SubscriptionId: "subscriptionIdValue",
+				GroupId:        "groupId",
+				DriveId:        "driveId",
+				SubscriptionId: "subscriptionId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/groups/groupIdValue/drives/driveIdValue/root/subscriptions/subscriptionIdValue/extra",
+			Input: "/groups/groupId/drives/driveId/root/subscriptions/subscriptionId/extra",
 			Error: true,
 		},
 	}
@@ -144,80 +144,80 @@ func TestParseGroupIdDriveIdRootSubscriptionIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue",
+			Input: "/groups/groupId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE",
+			Input: "/gRoUpS/gRoUpId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/drives",
+			Input: "/groups/groupId/drives",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/dRiVeS",
+			Input: "/gRoUpS/gRoUpId/dRiVeS",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/drives/driveIdValue",
+			Input: "/groups/groupId/drives/driveId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/dRiVeS/dRiVeIdVaLuE",
+			Input: "/gRoUpS/gRoUpId/dRiVeS/dRiVeId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/drives/driveIdValue/root",
+			Input: "/groups/groupId/drives/driveId/root",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/dRiVeS/dRiVeIdVaLuE/rOoT",
+			Input: "/gRoUpS/gRoUpId/dRiVeS/dRiVeId/rOoT",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/drives/driveIdValue/root/subscriptions",
+			Input: "/groups/groupId/drives/driveId/root/subscriptions",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/dRiVeS/dRiVeIdVaLuE/rOoT/sUbScRiPtIoNs",
+			Input: "/gRoUpS/gRoUpId/dRiVeS/dRiVeId/rOoT/sUbScRiPtIoNs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/groups/groupIdValue/drives/driveIdValue/root/subscriptions/subscriptionIdValue",
+			Input: "/groups/groupId/drives/driveId/root/subscriptions/subscriptionId",
 			Expected: &GroupIdDriveIdRootSubscriptionId{
-				GroupId:        "groupIdValue",
-				DriveId:        "driveIdValue",
-				SubscriptionId: "subscriptionIdValue",
+				GroupId:        "groupId",
+				DriveId:        "driveId",
+				SubscriptionId: "subscriptionId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/groups/groupIdValue/drives/driveIdValue/root/subscriptions/subscriptionIdValue/extra",
+			Input: "/groups/groupId/drives/driveId/root/subscriptions/subscriptionId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/dRiVeS/dRiVeIdVaLuE/rOoT/sUbScRiPtIoNs/sUbScRiPtIoNiDvAlUe",
+			Input: "/gRoUpS/gRoUpId/dRiVeS/dRiVeId/rOoT/sUbScRiPtIoNs/sUbScRiPtIoNiD",
 			Expected: &GroupIdDriveIdRootSubscriptionId{
-				GroupId:        "gRoUpIdVaLuE",
-				DriveId:        "dRiVeIdVaLuE",
-				SubscriptionId: "sUbScRiPtIoNiDvAlUe",
+				GroupId:        "gRoUpId",
+				DriveId:        "dRiVeId",
+				SubscriptionId: "sUbScRiPtIoNiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/dRiVeS/dRiVeIdVaLuE/rOoT/sUbScRiPtIoNs/sUbScRiPtIoNiDvAlUe/extra",
+			Input: "/gRoUpS/gRoUpId/dRiVeS/dRiVeId/rOoT/sUbScRiPtIoNs/sUbScRiPtIoNiD/extra",
 			Error: true,
 		},
 	}

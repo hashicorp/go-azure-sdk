@@ -19,7 +19,8 @@ type DeleteIntentAssignmentOperationResponse struct {
 }
 
 type DeleteIntentAssignmentOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteIntentAssignmentOperationOptions() DeleteIntentAssignmentOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteIntentAssignmentOperationOptions) ToHeaders() *client.Headers {
 
 func (o DeleteIntentAssignmentOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

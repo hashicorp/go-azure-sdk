@@ -20,15 +20,44 @@ type CreateConversationThreadPostInReplyToAttachmentOperationResponse struct {
 	Model        stable.Attachment
 }
 
+type CreateConversationThreadPostInReplyToAttachmentOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateConversationThreadPostInReplyToAttachmentOperationOptions() CreateConversationThreadPostInReplyToAttachmentOperationOptions {
+	return CreateConversationThreadPostInReplyToAttachmentOperationOptions{}
+}
+
+func (o CreateConversationThreadPostInReplyToAttachmentOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateConversationThreadPostInReplyToAttachmentOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateConversationThreadPostInReplyToAttachmentOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateConversationThreadPostInReplyToAttachment - Create new navigation property to attachments for groups
-func (c ConversationThreadPostInReplyToAttachmentClient) CreateConversationThreadPostInReplyToAttachment(ctx context.Context, id stable.GroupIdConversationIdThreadIdPostId, input stable.Attachment) (result CreateConversationThreadPostInReplyToAttachmentOperationResponse, err error) {
+func (c ConversationThreadPostInReplyToAttachmentClient) CreateConversationThreadPostInReplyToAttachment(ctx context.Context, id stable.GroupIdConversationIdThreadIdPostId, input stable.Attachment, options CreateConversationThreadPostInReplyToAttachmentOperationOptions) (result CreateConversationThreadPostInReplyToAttachmentOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/inReplyTo/attachments", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/inReplyTo/attachments", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

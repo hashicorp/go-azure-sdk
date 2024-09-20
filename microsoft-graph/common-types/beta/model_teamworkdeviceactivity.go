@@ -76,16 +76,23 @@ func (s TeamworkDeviceActivity) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &TeamworkDeviceActivity{}
 
 func (s *TeamworkDeviceActivity) UnmarshalJSON(bytes []byte) error {
-	type alias TeamworkDeviceActivity
-	var decoded alias
+
+	var decoded struct {
+		ActivePeripherals    *TeamworkActivePeripherals `json:"activePeripherals,omitempty"`
+		CreatedDateTime      nullable.Type[string]      `json:"createdDateTime,omitempty"`
+		LastModifiedDateTime nullable.Type[string]      `json:"lastModifiedDateTime,omitempty"`
+		Id                   *string                    `json:"id,omitempty"`
+		ODataId              *string                    `json:"@odata.id,omitempty"`
+		ODataType            *string                    `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into TeamworkDeviceActivity: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.ActivePeripherals = decoded.ActivePeripherals
 	s.CreatedDateTime = decoded.CreatedDateTime
-	s.Id = decoded.Id
 	s.LastModifiedDateTime = decoded.LastModifiedDateTime
+	s.Id = decoded.Id
 	s.ODataId = decoded.ODataId
 	s.ODataType = decoded.ODataType
 
@@ -109,5 +116,6 @@ func (s *TeamworkDeviceActivity) UnmarshalJSON(bytes []byte) error {
 		}
 		s.LastModifiedBy = impl
 	}
+
 	return nil
 }

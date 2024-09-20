@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &ServicePrincipalIdTokenLifetimePolicyId{}
 
 func TestNewServicePrincipalIdTokenLifetimePolicyID(t *testing.T) {
-	id := NewServicePrincipalIdTokenLifetimePolicyID("servicePrincipalIdValue", "tokenLifetimePolicyIdValue")
+	id := NewServicePrincipalIdTokenLifetimePolicyID("servicePrincipalId", "tokenLifetimePolicyId")
 
-	if id.ServicePrincipalId != "servicePrincipalIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ServicePrincipalId'", id.ServicePrincipalId, "servicePrincipalIdValue")
+	if id.ServicePrincipalId != "servicePrincipalId" {
+		t.Fatalf("Expected %q but got %q for Segment 'ServicePrincipalId'", id.ServicePrincipalId, "servicePrincipalId")
 	}
 
-	if id.TokenLifetimePolicyId != "tokenLifetimePolicyIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'TokenLifetimePolicyId'", id.TokenLifetimePolicyId, "tokenLifetimePolicyIdValue")
+	if id.TokenLifetimePolicyId != "tokenLifetimePolicyId" {
+		t.Fatalf("Expected %q but got %q for Segment 'TokenLifetimePolicyId'", id.TokenLifetimePolicyId, "tokenLifetimePolicyId")
 	}
 }
 
 func TestFormatServicePrincipalIdTokenLifetimePolicyID(t *testing.T) {
-	actual := NewServicePrincipalIdTokenLifetimePolicyID("servicePrincipalIdValue", "tokenLifetimePolicyIdValue").ID()
-	expected := "/servicePrincipals/servicePrincipalIdValue/tokenLifetimePolicies/tokenLifetimePolicyIdValue"
+	actual := NewServicePrincipalIdTokenLifetimePolicyID("servicePrincipalId", "tokenLifetimePolicyId").ID()
+	expected := "/servicePrincipals/servicePrincipalId/tokenLifetimePolicies/tokenLifetimePolicyId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -49,25 +49,25 @@ func TestParseServicePrincipalIdTokenLifetimePolicyID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/servicePrincipals/servicePrincipalIdValue",
+			Input: "/servicePrincipals/servicePrincipalId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/servicePrincipals/servicePrincipalIdValue/tokenLifetimePolicies",
+			Input: "/servicePrincipals/servicePrincipalId/tokenLifetimePolicies",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/servicePrincipals/servicePrincipalIdValue/tokenLifetimePolicies/tokenLifetimePolicyIdValue",
+			Input: "/servicePrincipals/servicePrincipalId/tokenLifetimePolicies/tokenLifetimePolicyId",
 			Expected: &ServicePrincipalIdTokenLifetimePolicyId{
-				ServicePrincipalId:    "servicePrincipalIdValue",
-				TokenLifetimePolicyId: "tokenLifetimePolicyIdValue",
+				ServicePrincipalId:    "servicePrincipalId",
+				TokenLifetimePolicyId: "tokenLifetimePolicyId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/servicePrincipals/servicePrincipalIdValue/tokenLifetimePolicies/tokenLifetimePolicyIdValue/extra",
+			Input: "/servicePrincipals/servicePrincipalId/tokenLifetimePolicies/tokenLifetimePolicyId/extra",
 			Error: true,
 		},
 	}
@@ -120,48 +120,48 @@ func TestParseServicePrincipalIdTokenLifetimePolicyIDInsensitively(t *testing.T)
 		},
 		{
 			// Incomplete URI
-			Input: "/servicePrincipals/servicePrincipalIdValue",
+			Input: "/servicePrincipals/servicePrincipalId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sErViCePrInCiPaLs/sErViCePrInCiPaLiDvAlUe",
+			Input: "/sErViCePrInCiPaLs/sErViCePrInCiPaLiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/servicePrincipals/servicePrincipalIdValue/tokenLifetimePolicies",
+			Input: "/servicePrincipals/servicePrincipalId/tokenLifetimePolicies",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sErViCePrInCiPaLs/sErViCePrInCiPaLiDvAlUe/tOkEnLiFeTiMePoLiCiEs",
+			Input: "/sErViCePrInCiPaLs/sErViCePrInCiPaLiD/tOkEnLiFeTiMePoLiCiEs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/servicePrincipals/servicePrincipalIdValue/tokenLifetimePolicies/tokenLifetimePolicyIdValue",
+			Input: "/servicePrincipals/servicePrincipalId/tokenLifetimePolicies/tokenLifetimePolicyId",
 			Expected: &ServicePrincipalIdTokenLifetimePolicyId{
-				ServicePrincipalId:    "servicePrincipalIdValue",
-				TokenLifetimePolicyId: "tokenLifetimePolicyIdValue",
+				ServicePrincipalId:    "servicePrincipalId",
+				TokenLifetimePolicyId: "tokenLifetimePolicyId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/servicePrincipals/servicePrincipalIdValue/tokenLifetimePolicies/tokenLifetimePolicyIdValue/extra",
+			Input: "/servicePrincipals/servicePrincipalId/tokenLifetimePolicies/tokenLifetimePolicyId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sErViCePrInCiPaLs/sErViCePrInCiPaLiDvAlUe/tOkEnLiFeTiMePoLiCiEs/tOkEnLiFeTiMePoLiCyIdVaLuE",
+			Input: "/sErViCePrInCiPaLs/sErViCePrInCiPaLiD/tOkEnLiFeTiMePoLiCiEs/tOkEnLiFeTiMePoLiCyId",
 			Expected: &ServicePrincipalIdTokenLifetimePolicyId{
-				ServicePrincipalId:    "sErViCePrInCiPaLiDvAlUe",
-				TokenLifetimePolicyId: "tOkEnLiFeTiMePoLiCyIdVaLuE",
+				ServicePrincipalId:    "sErViCePrInCiPaLiD",
+				TokenLifetimePolicyId: "tOkEnLiFeTiMePoLiCyId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sErViCePrInCiPaLs/sErViCePrInCiPaLiDvAlUe/tOkEnLiFeTiMePoLiCiEs/tOkEnLiFeTiMePoLiCyIdVaLuE/extra",
+			Input: "/sErViCePrInCiPaLs/sErViCePrInCiPaLiD/tOkEnLiFeTiMePoLiCiEs/tOkEnLiFeTiMePoLiCyId/extra",
 			Error: true,
 		},
 	}

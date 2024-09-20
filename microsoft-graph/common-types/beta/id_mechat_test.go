@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &MeChatId{}
 
 func TestNewMeChatID(t *testing.T) {
-	id := NewMeChatID("chatIdValue")
+	id := NewMeChatID("chatId")
 
-	if id.ChatId != "chatIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ChatId'", id.ChatId, "chatIdValue")
+	if id.ChatId != "chatId" {
+		t.Fatalf("Expected %q but got %q for Segment 'ChatId'", id.ChatId, "chatId")
 	}
 }
 
 func TestFormatMeChatID(t *testing.T) {
-	actual := NewMeChatID("chatIdValue").ID()
-	expected := "/me/chats/chatIdValue"
+	actual := NewMeChatID("chatId").ID()
+	expected := "/me/chats/chatId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -50,14 +50,14 @@ func TestParseMeChatID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/me/chats/chatIdValue",
+			Input: "/me/chats/chatId",
 			Expected: &MeChatId{
-				ChatId: "chatIdValue",
+				ChatId: "chatId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/chats/chatIdValue/extra",
+			Input: "/me/chats/chatId/extra",
 			Error: true,
 		},
 	}
@@ -116,26 +116,26 @@ func TestParseMeChatIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/me/chats/chatIdValue",
+			Input: "/me/chats/chatId",
 			Expected: &MeChatId{
-				ChatId: "chatIdValue",
+				ChatId: "chatId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/chats/chatIdValue/extra",
+			Input: "/me/chats/chatId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/cHaTs/cHaTiDvAlUe",
+			Input: "/mE/cHaTs/cHaTiD",
 			Expected: &MeChatId{
-				ChatId: "cHaTiDvAlUe",
+				ChatId: "cHaTiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/mE/cHaTs/cHaTiDvAlUe/extra",
+			Input: "/mE/cHaTs/cHaTiD/extra",
 			Error: true,
 		},
 	}

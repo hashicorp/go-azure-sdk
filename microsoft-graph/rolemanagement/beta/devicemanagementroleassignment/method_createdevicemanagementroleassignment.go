@@ -18,18 +18,47 @@ type CreateDeviceManagementRoleAssignmentOperationResponse struct {
 	Model        *beta.UnifiedRoleAssignmentMultiple
 }
 
+type CreateDeviceManagementRoleAssignmentOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateDeviceManagementRoleAssignmentOperationOptions() CreateDeviceManagementRoleAssignmentOperationOptions {
+	return CreateDeviceManagementRoleAssignmentOperationOptions{}
+}
+
+func (o CreateDeviceManagementRoleAssignmentOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateDeviceManagementRoleAssignmentOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateDeviceManagementRoleAssignmentOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateDeviceManagementRoleAssignment - Create unifiedRoleAssignmentMultiple. Create a new
 // unifiedRoleAssignmentMultiple object for an RBAC provider. The following RBAC providers are currently supported: -
 // Cloud PC - device management (Intune) For other Microsoft 365 applications (like Microsoft Entra ID), use
 // unifiedRoleAssignment.
-func (c DeviceManagementRoleAssignmentClient) CreateDeviceManagementRoleAssignment(ctx context.Context, input beta.UnifiedRoleAssignmentMultiple) (result CreateDeviceManagementRoleAssignmentOperationResponse, err error) {
+func (c DeviceManagementRoleAssignmentClient) CreateDeviceManagementRoleAssignment(ctx context.Context, input beta.UnifiedRoleAssignmentMultiple, options CreateDeviceManagementRoleAssignmentOperationOptions) (result CreateDeviceManagementRoleAssignmentOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/roleManagement/deviceManagement/roleAssignments",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/roleManagement/deviceManagement/roleAssignments",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

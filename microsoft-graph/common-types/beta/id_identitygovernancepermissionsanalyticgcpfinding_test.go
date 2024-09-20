@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &IdentityGovernancePermissionsAnalyticGcpFindingId{}
 
 func TestNewIdentityGovernancePermissionsAnalyticGcpFindingID(t *testing.T) {
-	id := NewIdentityGovernancePermissionsAnalyticGcpFindingID("findingIdValue")
+	id := NewIdentityGovernancePermissionsAnalyticGcpFindingID("findingId")
 
-	if id.FindingId != "findingIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'FindingId'", id.FindingId, "findingIdValue")
+	if id.FindingId != "findingId" {
+		t.Fatalf("Expected %q but got %q for Segment 'FindingId'", id.FindingId, "findingId")
 	}
 }
 
 func TestFormatIdentityGovernancePermissionsAnalyticGcpFindingID(t *testing.T) {
-	actual := NewIdentityGovernancePermissionsAnalyticGcpFindingID("findingIdValue").ID()
-	expected := "/identityGovernance/permissionsAnalytics/gcp/findings/findingIdValue"
+	actual := NewIdentityGovernancePermissionsAnalyticGcpFindingID("findingId").ID()
+	expected := "/identityGovernance/permissionsAnalytics/gcp/findings/findingId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -60,14 +60,14 @@ func TestParseIdentityGovernancePermissionsAnalyticGcpFindingID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/identityGovernance/permissionsAnalytics/gcp/findings/findingIdValue",
+			Input: "/identityGovernance/permissionsAnalytics/gcp/findings/findingId",
 			Expected: &IdentityGovernancePermissionsAnalyticGcpFindingId{
-				FindingId: "findingIdValue",
+				FindingId: "findingId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/identityGovernance/permissionsAnalytics/gcp/findings/findingIdValue/extra",
+			Input: "/identityGovernance/permissionsAnalytics/gcp/findings/findingId/extra",
 			Error: true,
 		},
 	}
@@ -146,26 +146,26 @@ func TestParseIdentityGovernancePermissionsAnalyticGcpFindingIDInsensitively(t *
 		},
 		{
 			// Valid URI
-			Input: "/identityGovernance/permissionsAnalytics/gcp/findings/findingIdValue",
+			Input: "/identityGovernance/permissionsAnalytics/gcp/findings/findingId",
 			Expected: &IdentityGovernancePermissionsAnalyticGcpFindingId{
-				FindingId: "findingIdValue",
+				FindingId: "findingId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/identityGovernance/permissionsAnalytics/gcp/findings/findingIdValue/extra",
+			Input: "/identityGovernance/permissionsAnalytics/gcp/findings/findingId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/iDeNtItYgOvErNaNcE/pErMiSsIoNsAnAlYtIcS/gCp/fInDiNgS/fInDiNgIdVaLuE",
+			Input: "/iDeNtItYgOvErNaNcE/pErMiSsIoNsAnAlYtIcS/gCp/fInDiNgS/fInDiNgId",
 			Expected: &IdentityGovernancePermissionsAnalyticGcpFindingId{
-				FindingId: "fInDiNgIdVaLuE",
+				FindingId: "fInDiNgId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/iDeNtItYgOvErNaNcE/pErMiSsIoNsAnAlYtIcS/gCp/fInDiNgS/fInDiNgIdVaLuE/extra",
+			Input: "/iDeNtItYgOvErNaNcE/pErMiSsIoNsAnAlYtIcS/gCp/fInDiNgS/fInDiNgId/extra",
 			Error: true,
 		},
 	}

@@ -18,15 +18,44 @@ type UpdateLifecycleWorkflowLastModifiedByMailboxSettingOperationResponse struct
 	OData        *odata.OData
 }
 
+type UpdateLifecycleWorkflowLastModifiedByMailboxSettingOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateLifecycleWorkflowLastModifiedByMailboxSettingOperationOptions() UpdateLifecycleWorkflowLastModifiedByMailboxSettingOperationOptions {
+	return UpdateLifecycleWorkflowLastModifiedByMailboxSettingOperationOptions{}
+}
+
+func (o UpdateLifecycleWorkflowLastModifiedByMailboxSettingOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateLifecycleWorkflowLastModifiedByMailboxSettingOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateLifecycleWorkflowLastModifiedByMailboxSettingOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateLifecycleWorkflowLastModifiedByMailboxSetting - Update property mailboxSettings value.
-func (c LifecycleWorkflowWorkflowLastModifiedByMailboxSettingClient) UpdateLifecycleWorkflowLastModifiedByMailboxSetting(ctx context.Context, id beta.IdentityGovernanceLifecycleWorkflowWorkflowId, input beta.MailboxSettings) (result UpdateLifecycleWorkflowLastModifiedByMailboxSettingOperationResponse, err error) {
+func (c LifecycleWorkflowWorkflowLastModifiedByMailboxSettingClient) UpdateLifecycleWorkflowLastModifiedByMailboxSetting(ctx context.Context, id beta.IdentityGovernanceLifecycleWorkflowWorkflowId, input beta.MailboxSettings, options UpdateLifecycleWorkflowLastModifiedByMailboxSettingOperationOptions) (result UpdateLifecycleWorkflowLastModifiedByMailboxSettingOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       fmt.Sprintf("%s/lastModifiedBy/mailboxSettings", id.ID()),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/lastModifiedBy/mailboxSettings", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

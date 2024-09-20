@@ -99,9 +99,9 @@ func (id RoleManagementEnterpriseAppIdRoleAssignmentApprovalId) Segments() []res
 	return []resourceids.Segment{
 		resourceids.StaticSegment("roleManagement", "roleManagement", "roleManagement"),
 		resourceids.StaticSegment("enterpriseApps", "enterpriseApps", "enterpriseApps"),
-		resourceids.UserSpecifiedSegment("rbacApplicationId", "rbacApplicationIdValue"),
+		resourceids.UserSpecifiedSegment("rbacApplicationId", "rbacApplicationId"),
 		resourceids.StaticSegment("roleAssignmentApprovals", "roleAssignmentApprovals", "roleAssignmentApprovals"),
-		resourceids.UserSpecifiedSegment("approvalId", "approvalIdValue"),
+		resourceids.UserSpecifiedSegment("approvalId", "approvalId"),
 	}
 }
 

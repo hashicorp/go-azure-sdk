@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &IdentityGovernancePrivilegedAccessGroupAssignmentApprovalIdStageId{}
 
 func TestNewIdentityGovernancePrivilegedAccessGroupAssignmentApprovalIdStageID(t *testing.T) {
-	id := NewIdentityGovernancePrivilegedAccessGroupAssignmentApprovalIdStageID("approvalIdValue", "approvalStageIdValue")
+	id := NewIdentityGovernancePrivilegedAccessGroupAssignmentApprovalIdStageID("approvalId", "approvalStageId")
 
-	if id.ApprovalId != "approvalIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ApprovalId'", id.ApprovalId, "approvalIdValue")
+	if id.ApprovalId != "approvalId" {
+		t.Fatalf("Expected %q but got %q for Segment 'ApprovalId'", id.ApprovalId, "approvalId")
 	}
 
-	if id.ApprovalStageId != "approvalStageIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ApprovalStageId'", id.ApprovalStageId, "approvalStageIdValue")
+	if id.ApprovalStageId != "approvalStageId" {
+		t.Fatalf("Expected %q but got %q for Segment 'ApprovalStageId'", id.ApprovalStageId, "approvalStageId")
 	}
 }
 
 func TestFormatIdentityGovernancePrivilegedAccessGroupAssignmentApprovalIdStageID(t *testing.T) {
-	actual := NewIdentityGovernancePrivilegedAccessGroupAssignmentApprovalIdStageID("approvalIdValue", "approvalStageIdValue").ID()
-	expected := "/identityGovernance/privilegedAccess/group/assignmentApprovals/approvalIdValue/stages/approvalStageIdValue"
+	actual := NewIdentityGovernancePrivilegedAccessGroupAssignmentApprovalIdStageID("approvalId", "approvalStageId").ID()
+	expected := "/identityGovernance/privilegedAccess/group/assignmentApprovals/approvalId/stages/approvalStageId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -64,25 +64,25 @@ func TestParseIdentityGovernancePrivilegedAccessGroupAssignmentApprovalIdStageID
 		},
 		{
 			// Incomplete URI
-			Input: "/identityGovernance/privilegedAccess/group/assignmentApprovals/approvalIdValue",
+			Input: "/identityGovernance/privilegedAccess/group/assignmentApprovals/approvalId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/identityGovernance/privilegedAccess/group/assignmentApprovals/approvalIdValue/stages",
+			Input: "/identityGovernance/privilegedAccess/group/assignmentApprovals/approvalId/stages",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/identityGovernance/privilegedAccess/group/assignmentApprovals/approvalIdValue/stages/approvalStageIdValue",
+			Input: "/identityGovernance/privilegedAccess/group/assignmentApprovals/approvalId/stages/approvalStageId",
 			Expected: &IdentityGovernancePrivilegedAccessGroupAssignmentApprovalIdStageId{
-				ApprovalId:      "approvalIdValue",
-				ApprovalStageId: "approvalStageIdValue",
+				ApprovalId:      "approvalId",
+				ApprovalStageId: "approvalStageId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/identityGovernance/privilegedAccess/group/assignmentApprovals/approvalIdValue/stages/approvalStageIdValue/extra",
+			Input: "/identityGovernance/privilegedAccess/group/assignmentApprovals/approvalId/stages/approvalStageId/extra",
 			Error: true,
 		},
 	}
@@ -165,48 +165,48 @@ func TestParseIdentityGovernancePrivilegedAccessGroupAssignmentApprovalIdStageID
 		},
 		{
 			// Incomplete URI
-			Input: "/identityGovernance/privilegedAccess/group/assignmentApprovals/approvalIdValue",
+			Input: "/identityGovernance/privilegedAccess/group/assignmentApprovals/approvalId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/iDeNtItYgOvErNaNcE/pRiViLeGeDaCcEsS/gRoUp/aSsIgNmEnTaPpRoVaLs/aPpRoVaLiDvAlUe",
+			Input: "/iDeNtItYgOvErNaNcE/pRiViLeGeDaCcEsS/gRoUp/aSsIgNmEnTaPpRoVaLs/aPpRoVaLiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/identityGovernance/privilegedAccess/group/assignmentApprovals/approvalIdValue/stages",
+			Input: "/identityGovernance/privilegedAccess/group/assignmentApprovals/approvalId/stages",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/iDeNtItYgOvErNaNcE/pRiViLeGeDaCcEsS/gRoUp/aSsIgNmEnTaPpRoVaLs/aPpRoVaLiDvAlUe/sTaGeS",
+			Input: "/iDeNtItYgOvErNaNcE/pRiViLeGeDaCcEsS/gRoUp/aSsIgNmEnTaPpRoVaLs/aPpRoVaLiD/sTaGeS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/identityGovernance/privilegedAccess/group/assignmentApprovals/approvalIdValue/stages/approvalStageIdValue",
+			Input: "/identityGovernance/privilegedAccess/group/assignmentApprovals/approvalId/stages/approvalStageId",
 			Expected: &IdentityGovernancePrivilegedAccessGroupAssignmentApprovalIdStageId{
-				ApprovalId:      "approvalIdValue",
-				ApprovalStageId: "approvalStageIdValue",
+				ApprovalId:      "approvalId",
+				ApprovalStageId: "approvalStageId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/identityGovernance/privilegedAccess/group/assignmentApprovals/approvalIdValue/stages/approvalStageIdValue/extra",
+			Input: "/identityGovernance/privilegedAccess/group/assignmentApprovals/approvalId/stages/approvalStageId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/iDeNtItYgOvErNaNcE/pRiViLeGeDaCcEsS/gRoUp/aSsIgNmEnTaPpRoVaLs/aPpRoVaLiDvAlUe/sTaGeS/aPpRoVaLsTaGeIdVaLuE",
+			Input: "/iDeNtItYgOvErNaNcE/pRiViLeGeDaCcEsS/gRoUp/aSsIgNmEnTaPpRoVaLs/aPpRoVaLiD/sTaGeS/aPpRoVaLsTaGeId",
 			Expected: &IdentityGovernancePrivilegedAccessGroupAssignmentApprovalIdStageId{
-				ApprovalId:      "aPpRoVaLiDvAlUe",
-				ApprovalStageId: "aPpRoVaLsTaGeIdVaLuE",
+				ApprovalId:      "aPpRoVaLiD",
+				ApprovalStageId: "aPpRoVaLsTaGeId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/iDeNtItYgOvErNaNcE/pRiViLeGeDaCcEsS/gRoUp/aSsIgNmEnTaPpRoVaLs/aPpRoVaLiDvAlUe/sTaGeS/aPpRoVaLsTaGeIdVaLuE/extra",
+			Input: "/iDeNtItYgOvErNaNcE/pRiViLeGeDaCcEsS/gRoUp/aSsIgNmEnTaPpRoVaLs/aPpRoVaLiD/sTaGeS/aPpRoVaLsTaGeId/extra",
 			Error: true,
 		},
 	}

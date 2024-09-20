@@ -18,16 +18,45 @@ type CreateWindowsAutopilotDeploymentProfileAssignedDeviceAllowNextEnrollmentOpe
 	OData        *odata.OData
 }
 
+type CreateWindowsAutopilotDeploymentProfileAssignedDeviceAllowNextEnrollmentOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateWindowsAutopilotDeploymentProfileAssignedDeviceAllowNextEnrollmentOperationOptions() CreateWindowsAutopilotDeploymentProfileAssignedDeviceAllowNextEnrollmentOperationOptions {
+	return CreateWindowsAutopilotDeploymentProfileAssignedDeviceAllowNextEnrollmentOperationOptions{}
+}
+
+func (o CreateWindowsAutopilotDeploymentProfileAssignedDeviceAllowNextEnrollmentOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateWindowsAutopilotDeploymentProfileAssignedDeviceAllowNextEnrollmentOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateWindowsAutopilotDeploymentProfileAssignedDeviceAllowNextEnrollmentOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateWindowsAutopilotDeploymentProfileAssignedDeviceAllowNextEnrollment - Invoke action allowNextEnrollment.
 // Unblocks next autopilot enrollment.
-func (c WindowsAutopilotDeploymentProfileAssignedDeviceClient) CreateWindowsAutopilotDeploymentProfileAssignedDeviceAllowNextEnrollment(ctx context.Context, id beta.DeviceManagementWindowsAutopilotDeploymentProfileIdAssignedDeviceId) (result CreateWindowsAutopilotDeploymentProfileAssignedDeviceAllowNextEnrollmentOperationResponse, err error) {
+func (c WindowsAutopilotDeploymentProfileAssignedDeviceClient) CreateWindowsAutopilotDeploymentProfileAssignedDeviceAllowNextEnrollment(ctx context.Context, id beta.DeviceManagementWindowsAutopilotDeploymentProfileIdAssignedDeviceId, options CreateWindowsAutopilotDeploymentProfileAssignedDeviceAllowNextEnrollmentOperationOptions) (result CreateWindowsAutopilotDeploymentProfileAssignedDeviceAllowNextEnrollmentOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/allowNextEnrollment", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/allowNextEnrollment", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

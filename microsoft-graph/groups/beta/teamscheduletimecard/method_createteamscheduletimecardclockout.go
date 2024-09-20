@@ -19,15 +19,44 @@ type CreateTeamScheduleTimeCardClockOutOperationResponse struct {
 	Model        *beta.TimeCard
 }
 
+type CreateTeamScheduleTimeCardClockOutOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateTeamScheduleTimeCardClockOutOperationOptions() CreateTeamScheduleTimeCardClockOutOperationOptions {
+	return CreateTeamScheduleTimeCardClockOutOperationOptions{}
+}
+
+func (o CreateTeamScheduleTimeCardClockOutOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateTeamScheduleTimeCardClockOutOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateTeamScheduleTimeCardClockOutOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateTeamScheduleTimeCardClockOut - Invoke action clockOut. Clock out to end an open timeCard.
-func (c TeamScheduleTimeCardClient) CreateTeamScheduleTimeCardClockOut(ctx context.Context, id beta.GroupIdTeamScheduleTimeCardId, input CreateTeamScheduleTimeCardClockOutRequest) (result CreateTeamScheduleTimeCardClockOutOperationResponse, err error) {
+func (c TeamScheduleTimeCardClient) CreateTeamScheduleTimeCardClockOut(ctx context.Context, id beta.GroupIdTeamScheduleTimeCardId, input CreateTeamScheduleTimeCardClockOutRequest, options CreateTeamScheduleTimeCardClockOutOperationOptions) (result CreateTeamScheduleTimeCardClockOutOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/clockOut", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/clockOut", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

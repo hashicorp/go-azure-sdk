@@ -18,16 +18,45 @@ type SetDriveSpecialContentStreamOperationResponse struct {
 	OData        *odata.OData
 }
 
+type SetDriveSpecialContentStreamOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultSetDriveSpecialContentStreamOperationOptions() SetDriveSpecialContentStreamOperationOptions {
+	return SetDriveSpecialContentStreamOperationOptions{}
+}
+
+func (o SetDriveSpecialContentStreamOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o SetDriveSpecialContentStreamOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o SetDriveSpecialContentStreamOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // SetDriveSpecialContentStream - Update contentStream for the navigation property special in users. The content stream,
 // if the item represents a file.
-func (c DriveSpecialContentStreamClient) SetDriveSpecialContentStream(ctx context.Context, id beta.UserIdDriveIdSpecialId, input []byte) (result SetDriveSpecialContentStreamOperationResponse, err error) {
+func (c DriveSpecialContentStreamClient) SetDriveSpecialContentStream(ctx context.Context, id beta.UserIdDriveIdSpecialId, input []byte, options SetDriveSpecialContentStreamOperationOptions) (result SetDriveSpecialContentStreamOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPut,
-		Path:       fmt.Sprintf("%s/contentStream", id.ID()),
+		HttpMethod:    http.MethodPut,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/contentStream", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

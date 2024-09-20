@@ -17,15 +17,44 @@ type GetReportsSettingNonComplianceReportOperationResponse struct {
 	Model        *[]byte
 }
 
+type GetReportsSettingNonComplianceReportOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultGetReportsSettingNonComplianceReportOperationOptions() GetReportsSettingNonComplianceReportOperationOptions {
+	return GetReportsSettingNonComplianceReportOperationOptions{}
+}
+
+func (o GetReportsSettingNonComplianceReportOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o GetReportsSettingNonComplianceReportOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o GetReportsSettingNonComplianceReportOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // GetReportsSettingNonComplianceReport - Invoke action getSettingNonComplianceReport. Not yet documented
-func (c ReportClient) GetReportsSettingNonComplianceReport(ctx context.Context, input GetReportsSettingNonComplianceReportRequest) (result GetReportsSettingNonComplianceReportOperationResponse, err error) {
+func (c ReportClient) GetReportsSettingNonComplianceReport(ctx context.Context, input GetReportsSettingNonComplianceReportRequest, options GetReportsSettingNonComplianceReportOperationOptions) (result GetReportsSettingNonComplianceReportOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/octet-stream",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/deviceManagement/reports/getSettingNonComplianceReport",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/deviceManagement/reports/getSettingNonComplianceReport",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

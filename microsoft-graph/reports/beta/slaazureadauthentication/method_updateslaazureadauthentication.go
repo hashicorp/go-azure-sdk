@@ -17,15 +17,44 @@ type UpdateSlaAzureADAuthenticationOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateSlaAzureADAuthenticationOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateSlaAzureADAuthenticationOperationOptions() UpdateSlaAzureADAuthenticationOperationOptions {
+	return UpdateSlaAzureADAuthenticationOperationOptions{}
+}
+
+func (o UpdateSlaAzureADAuthenticationOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateSlaAzureADAuthenticationOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateSlaAzureADAuthenticationOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateSlaAzureADAuthentication - Update the navigation property azureADAuthentication in reports
-func (c SlaAzureADAuthenticationClient) UpdateSlaAzureADAuthentication(ctx context.Context, input beta.AzureADAuthentication) (result UpdateSlaAzureADAuthenticationOperationResponse, err error) {
+func (c SlaAzureADAuthenticationClient) UpdateSlaAzureADAuthentication(ctx context.Context, input beta.AzureADAuthentication, options UpdateSlaAzureADAuthenticationOperationOptions) (result UpdateSlaAzureADAuthenticationOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       "/reports/sla/azureADAuthentication",
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          "/reports/sla/azureADAuthentication",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

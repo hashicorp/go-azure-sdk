@@ -19,15 +19,44 @@ type CreateDriveActivityOperationResponse struct {
 	Model        *beta.ItemActivityOLD
 }
 
+type CreateDriveActivityOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateDriveActivityOperationOptions() CreateDriveActivityOperationOptions {
+	return CreateDriveActivityOperationOptions{}
+}
+
+func (o CreateDriveActivityOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateDriveActivityOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateDriveActivityOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateDriveActivity - Create new navigation property to activities for users
-func (c DriveActivityClient) CreateDriveActivity(ctx context.Context, id beta.UserIdDriveId, input beta.ItemActivityOLD) (result CreateDriveActivityOperationResponse, err error) {
+func (c DriveActivityClient) CreateDriveActivity(ctx context.Context, id beta.UserIdDriveId, input beta.ItemActivityOLD, options CreateDriveActivityOperationOptions) (result CreateDriveActivityOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/activities", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/activities", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

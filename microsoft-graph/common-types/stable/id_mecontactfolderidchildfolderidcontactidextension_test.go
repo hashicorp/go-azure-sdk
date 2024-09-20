@@ -12,28 +12,28 @@ import (
 var _ resourceids.ResourceId = &MeContactFolderIdChildFolderIdContactIdExtensionId{}
 
 func TestNewMeContactFolderIdChildFolderIdContactIdExtensionID(t *testing.T) {
-	id := NewMeContactFolderIdChildFolderIdContactIdExtensionID("contactFolderIdValue", "contactFolderId1Value", "contactIdValue", "extensionIdValue")
+	id := NewMeContactFolderIdChildFolderIdContactIdExtensionID("contactFolderId", "contactFolderId1", "contactId", "extensionId")
 
-	if id.ContactFolderId != "contactFolderIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ContactFolderId'", id.ContactFolderId, "contactFolderIdValue")
+	if id.ContactFolderId != "contactFolderId" {
+		t.Fatalf("Expected %q but got %q for Segment 'ContactFolderId'", id.ContactFolderId, "contactFolderId")
 	}
 
-	if id.ContactFolderId1 != "contactFolderId1Value" {
-		t.Fatalf("Expected %q but got %q for Segment 'ContactFolderId1'", id.ContactFolderId1, "contactFolderId1Value")
+	if id.ContactFolderId1 != "contactFolderId1" {
+		t.Fatalf("Expected %q but got %q for Segment 'ContactFolderId1'", id.ContactFolderId1, "contactFolderId1")
 	}
 
-	if id.ContactId != "contactIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ContactId'", id.ContactId, "contactIdValue")
+	if id.ContactId != "contactId" {
+		t.Fatalf("Expected %q but got %q for Segment 'ContactId'", id.ContactId, "contactId")
 	}
 
-	if id.ExtensionId != "extensionIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ExtensionId'", id.ExtensionId, "extensionIdValue")
+	if id.ExtensionId != "extensionId" {
+		t.Fatalf("Expected %q but got %q for Segment 'ExtensionId'", id.ExtensionId, "extensionId")
 	}
 }
 
 func TestFormatMeContactFolderIdChildFolderIdContactIdExtensionID(t *testing.T) {
-	actual := NewMeContactFolderIdChildFolderIdContactIdExtensionID("contactFolderIdValue", "contactFolderId1Value", "contactIdValue", "extensionIdValue").ID()
-	expected := "/me/contactFolders/contactFolderIdValue/childFolders/contactFolderId1Value/contacts/contactIdValue/extensions/extensionIdValue"
+	actual := NewMeContactFolderIdChildFolderIdContactIdExtensionID("contactFolderId", "contactFolderId1", "contactId", "extensionId").ID()
+	expected := "/me/contactFolders/contactFolderId/childFolders/contactFolderId1/contacts/contactId/extensions/extensionId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -62,47 +62,47 @@ func TestParseMeContactFolderIdChildFolderIdContactIdExtensionID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/me/contactFolders/contactFolderIdValue",
+			Input: "/me/contactFolders/contactFolderId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/me/contactFolders/contactFolderIdValue/childFolders",
+			Input: "/me/contactFolders/contactFolderId/childFolders",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/me/contactFolders/contactFolderIdValue/childFolders/contactFolderId1Value",
+			Input: "/me/contactFolders/contactFolderId/childFolders/contactFolderId1",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/me/contactFolders/contactFolderIdValue/childFolders/contactFolderId1Value/contacts",
+			Input: "/me/contactFolders/contactFolderId/childFolders/contactFolderId1/contacts",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/me/contactFolders/contactFolderIdValue/childFolders/contactFolderId1Value/contacts/contactIdValue",
+			Input: "/me/contactFolders/contactFolderId/childFolders/contactFolderId1/contacts/contactId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/me/contactFolders/contactFolderIdValue/childFolders/contactFolderId1Value/contacts/contactIdValue/extensions",
+			Input: "/me/contactFolders/contactFolderId/childFolders/contactFolderId1/contacts/contactId/extensions",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/me/contactFolders/contactFolderIdValue/childFolders/contactFolderId1Value/contacts/contactIdValue/extensions/extensionIdValue",
+			Input: "/me/contactFolders/contactFolderId/childFolders/contactFolderId1/contacts/contactId/extensions/extensionId",
 			Expected: &MeContactFolderIdChildFolderIdContactIdExtensionId{
-				ContactFolderId:  "contactFolderIdValue",
-				ContactFolderId1: "contactFolderId1Value",
-				ContactId:        "contactIdValue",
-				ExtensionId:      "extensionIdValue",
+				ContactFolderId:  "contactFolderId",
+				ContactFolderId1: "contactFolderId1",
+				ContactId:        "contactId",
+				ExtensionId:      "extensionId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/contactFolders/contactFolderIdValue/childFolders/contactFolderId1Value/contacts/contactIdValue/extensions/extensionIdValue/extra",
+			Input: "/me/contactFolders/contactFolderId/childFolders/contactFolderId1/contacts/contactId/extensions/extensionId/extra",
 			Error: true,
 		},
 	}
@@ -173,92 +173,92 @@ func TestParseMeContactFolderIdChildFolderIdContactIdExtensionIDInsensitively(t 
 		},
 		{
 			// Incomplete URI
-			Input: "/me/contactFolders/contactFolderIdValue",
+			Input: "/me/contactFolders/contactFolderId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/cOnTaCtFoLdErS/cOnTaCtFoLdErIdVaLuE",
+			Input: "/mE/cOnTaCtFoLdErS/cOnTaCtFoLdErId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/me/contactFolders/contactFolderIdValue/childFolders",
+			Input: "/me/contactFolders/contactFolderId/childFolders",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/cOnTaCtFoLdErS/cOnTaCtFoLdErIdVaLuE/cHiLdFoLdErS",
+			Input: "/mE/cOnTaCtFoLdErS/cOnTaCtFoLdErId/cHiLdFoLdErS",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/me/contactFolders/contactFolderIdValue/childFolders/contactFolderId1Value",
+			Input: "/me/contactFolders/contactFolderId/childFolders/contactFolderId1",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/cOnTaCtFoLdErS/cOnTaCtFoLdErIdVaLuE/cHiLdFoLdErS/cOnTaCtFoLdErId1vAlUe",
+			Input: "/mE/cOnTaCtFoLdErS/cOnTaCtFoLdErId/cHiLdFoLdErS/cOnTaCtFoLdErId1",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/me/contactFolders/contactFolderIdValue/childFolders/contactFolderId1Value/contacts",
+			Input: "/me/contactFolders/contactFolderId/childFolders/contactFolderId1/contacts",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/cOnTaCtFoLdErS/cOnTaCtFoLdErIdVaLuE/cHiLdFoLdErS/cOnTaCtFoLdErId1vAlUe/cOnTaCtS",
+			Input: "/mE/cOnTaCtFoLdErS/cOnTaCtFoLdErId/cHiLdFoLdErS/cOnTaCtFoLdErId1/cOnTaCtS",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/me/contactFolders/contactFolderIdValue/childFolders/contactFolderId1Value/contacts/contactIdValue",
+			Input: "/me/contactFolders/contactFolderId/childFolders/contactFolderId1/contacts/contactId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/cOnTaCtFoLdErS/cOnTaCtFoLdErIdVaLuE/cHiLdFoLdErS/cOnTaCtFoLdErId1vAlUe/cOnTaCtS/cOnTaCtIdVaLuE",
+			Input: "/mE/cOnTaCtFoLdErS/cOnTaCtFoLdErId/cHiLdFoLdErS/cOnTaCtFoLdErId1/cOnTaCtS/cOnTaCtId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/me/contactFolders/contactFolderIdValue/childFolders/contactFolderId1Value/contacts/contactIdValue/extensions",
+			Input: "/me/contactFolders/contactFolderId/childFolders/contactFolderId1/contacts/contactId/extensions",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/cOnTaCtFoLdErS/cOnTaCtFoLdErIdVaLuE/cHiLdFoLdErS/cOnTaCtFoLdErId1vAlUe/cOnTaCtS/cOnTaCtIdVaLuE/eXtEnSiOnS",
+			Input: "/mE/cOnTaCtFoLdErS/cOnTaCtFoLdErId/cHiLdFoLdErS/cOnTaCtFoLdErId1/cOnTaCtS/cOnTaCtId/eXtEnSiOnS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/me/contactFolders/contactFolderIdValue/childFolders/contactFolderId1Value/contacts/contactIdValue/extensions/extensionIdValue",
+			Input: "/me/contactFolders/contactFolderId/childFolders/contactFolderId1/contacts/contactId/extensions/extensionId",
 			Expected: &MeContactFolderIdChildFolderIdContactIdExtensionId{
-				ContactFolderId:  "contactFolderIdValue",
-				ContactFolderId1: "contactFolderId1Value",
-				ContactId:        "contactIdValue",
-				ExtensionId:      "extensionIdValue",
+				ContactFolderId:  "contactFolderId",
+				ContactFolderId1: "contactFolderId1",
+				ContactId:        "contactId",
+				ExtensionId:      "extensionId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/contactFolders/contactFolderIdValue/childFolders/contactFolderId1Value/contacts/contactIdValue/extensions/extensionIdValue/extra",
+			Input: "/me/contactFolders/contactFolderId/childFolders/contactFolderId1/contacts/contactId/extensions/extensionId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/cOnTaCtFoLdErS/cOnTaCtFoLdErIdVaLuE/cHiLdFoLdErS/cOnTaCtFoLdErId1vAlUe/cOnTaCtS/cOnTaCtIdVaLuE/eXtEnSiOnS/eXtEnSiOnIdVaLuE",
+			Input: "/mE/cOnTaCtFoLdErS/cOnTaCtFoLdErId/cHiLdFoLdErS/cOnTaCtFoLdErId1/cOnTaCtS/cOnTaCtId/eXtEnSiOnS/eXtEnSiOnId",
 			Expected: &MeContactFolderIdChildFolderIdContactIdExtensionId{
-				ContactFolderId:  "cOnTaCtFoLdErIdVaLuE",
-				ContactFolderId1: "cOnTaCtFoLdErId1vAlUe",
-				ContactId:        "cOnTaCtIdVaLuE",
-				ExtensionId:      "eXtEnSiOnIdVaLuE",
+				ContactFolderId:  "cOnTaCtFoLdErId",
+				ContactFolderId1: "cOnTaCtFoLdErId1",
+				ContactId:        "cOnTaCtId",
+				ExtensionId:      "eXtEnSiOnId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/mE/cOnTaCtFoLdErS/cOnTaCtFoLdErIdVaLuE/cHiLdFoLdErS/cOnTaCtFoLdErId1vAlUe/cOnTaCtS/cOnTaCtIdVaLuE/eXtEnSiOnS/eXtEnSiOnIdVaLuE/extra",
+			Input: "/mE/cOnTaCtFoLdErS/cOnTaCtFoLdErId/cHiLdFoLdErS/cOnTaCtFoLdErId1/cOnTaCtS/cOnTaCtId/eXtEnSiOnS/eXtEnSiOnId/extra",
 			Error: true,
 		},
 	}

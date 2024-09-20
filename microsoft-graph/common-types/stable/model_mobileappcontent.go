@@ -65,10 +65,16 @@ func (s MobileAppContent) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &MobileAppContent{}
 
 func (s *MobileAppContent) UnmarshalJSON(bytes []byte) error {
-	type alias MobileAppContent
-	var decoded alias
+
+	var decoded struct {
+		ContainedApps *[]MobileContainedApp   `json:"containedApps,omitempty"`
+		Files         *[]MobileAppContentFile `json:"files,omitempty"`
+		Id            *string                 `json:"id,omitempty"`
+		ODataId       *string                 `json:"@odata.id,omitempty"`
+		ODataType     *string                 `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into MobileAppContent: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.Files = decoded.Files
@@ -97,5 +103,6 @@ func (s *MobileAppContent) UnmarshalJSON(bytes []byte) error {
 		}
 		s.ContainedApps = &output
 	}
+
 	return nil
 }

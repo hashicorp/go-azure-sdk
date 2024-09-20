@@ -17,15 +17,44 @@ type UpdateAppManagementPolicyOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateAppManagementPolicyOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateAppManagementPolicyOperationOptions() UpdateAppManagementPolicyOperationOptions {
+	return UpdateAppManagementPolicyOperationOptions{}
+}
+
+func (o UpdateAppManagementPolicyOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateAppManagementPolicyOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateAppManagementPolicyOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateAppManagementPolicy - Update appManagementPolicy. Update an appManagementPolicy object.
-func (c AppManagementPolicyClient) UpdateAppManagementPolicy(ctx context.Context, id stable.PolicyAppManagementPolicyId, input stable.AppManagementPolicy) (result UpdateAppManagementPolicyOperationResponse, err error) {
+func (c AppManagementPolicyClient) UpdateAppManagementPolicy(ctx context.Context, id stable.PolicyAppManagementPolicyId, input stable.AppManagementPolicy, options UpdateAppManagementPolicyOperationOptions) (result UpdateAppManagementPolicyOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

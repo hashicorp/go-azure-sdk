@@ -18,16 +18,45 @@ type RemoveInboundSharedUserProfilePersonalDataOperationResponse struct {
 	OData        *odata.OData
 }
 
+type RemoveInboundSharedUserProfilePersonalDataOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultRemoveInboundSharedUserProfilePersonalDataOperationOptions() RemoveInboundSharedUserProfilePersonalDataOperationOptions {
+	return RemoveInboundSharedUserProfilePersonalDataOperationOptions{}
+}
+
+func (o RemoveInboundSharedUserProfilePersonalDataOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o RemoveInboundSharedUserProfilePersonalDataOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o RemoveInboundSharedUserProfilePersonalDataOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // RemoveInboundSharedUserProfilePersonalData - Invoke action removePersonalData. Create a request to remove the
 // personal data for an inboundSharedUserProfile.
-func (c InboundSharedUserProfileClient) RemoveInboundSharedUserProfilePersonalData(ctx context.Context, id beta.DirectoryInboundSharedUserProfileId) (result RemoveInboundSharedUserProfilePersonalDataOperationResponse, err error) {
+func (c InboundSharedUserProfileClient) RemoveInboundSharedUserProfilePersonalData(ctx context.Context, id beta.DirectoryInboundSharedUserProfileId, options RemoveInboundSharedUserProfilePersonalDataOperationOptions) (result RemoveInboundSharedUserProfilePersonalDataOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/removePersonalData", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/removePersonalData", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

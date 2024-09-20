@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/microsoft-graph/me/beta/joinedgroup` Documentation
 
-The `joinedgroup` SDK allows for interaction with the Azure Resource Manager Service `me` (API Version `beta`).
+The `joinedgroup` SDK allows for interaction with Microsoft Graph `me` (API Version `beta`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -15,22 +15,22 @@ import "github.com/hashicorp/go-azure-sdk/microsoft-graph/me/beta/joinedgroup"
 ### Client Initialization
 
 ```go
-client := joinedgroup.NewJoinedGroupClientWithBaseURI("https://management.azure.com")
+client := joinedgroup.NewJoinedGroupClientWithBaseURI("https://graph.microsoft.com")
 client.Client.Authorizer = authorizer
 ```
 
 
-### Example Usage: `JoinedGroupClient.CreateJoinedGroupEvaluateDynamicMembership`
+### Example Usage: `JoinedGroupClient.EvaluateJoinedGroupsDynamicMembership`
 
 ```go
 ctx := context.TODO()
 
-payload := joinedgroup.CreateJoinedGroupEvaluateDynamicMembershipRequest{
+payload := joinedgroup.EvaluateJoinedGroupsDynamicMembershipRequest{
 	// ...
 }
 
 
-read, err := client.CreateJoinedGroupEvaluateDynamicMembership(ctx, payload)
+read, err := client.EvaluateJoinedGroupsDynamicMembership(ctx, payload, joinedgroup.DefaultEvaluateJoinedGroupsDynamicMembershipOperationOptions())
 if err != nil {
 	// handle the error
 }

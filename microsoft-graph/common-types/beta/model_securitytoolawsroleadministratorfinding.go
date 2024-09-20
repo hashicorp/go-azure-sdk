@@ -94,10 +94,19 @@ func (s SecurityToolAwsRoleAdministratorFinding) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &SecurityToolAwsRoleAdministratorFinding{}
 
 func (s *SecurityToolAwsRoleAdministratorFinding) UnmarshalJSON(bytes []byte) error {
-	type alias SecurityToolAwsRoleAdministratorFinding
-	var decoded alias
+
+	var decoded struct {
+		Identity              *AuthorizationSystemIdentity `json:"identity,omitempty"`
+		IdentityDetails       *IdentityDetails             `json:"identityDetails,omitempty"`
+		PermissionsCreepIndex *PermissionsCreepIndex       `json:"permissionsCreepIndex,omitempty"`
+		SecurityTools         *AwsSecurityToolWebServices  `json:"securityTools,omitempty"`
+		CreatedDateTime       *string                      `json:"createdDateTime,omitempty"`
+		Id                    *string                      `json:"id,omitempty"`
+		ODataId               *string                      `json:"@odata.id,omitempty"`
+		ODataType             *string                      `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into SecurityToolAwsRoleAdministratorFinding: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.CreatedDateTime = decoded.CreatedDateTime
@@ -120,5 +129,6 @@ func (s *SecurityToolAwsRoleAdministratorFinding) UnmarshalJSON(bytes []byte) er
 		}
 		s.Identity = &impl
 	}
+
 	return nil
 }

@@ -18,15 +18,44 @@ type CreateVirtualEndpointUserSettingOperationResponse struct {
 	Model        *stable.CloudPCUserSetting
 }
 
+type CreateVirtualEndpointUserSettingOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateVirtualEndpointUserSettingOperationOptions() CreateVirtualEndpointUserSettingOperationOptions {
+	return CreateVirtualEndpointUserSettingOperationOptions{}
+}
+
+func (o CreateVirtualEndpointUserSettingOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateVirtualEndpointUserSettingOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateVirtualEndpointUserSettingOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateVirtualEndpointUserSetting - Create cloudPcUserSetting. Create a new cloudPcUserSetting object.
-func (c VirtualEndpointUserSettingClient) CreateVirtualEndpointUserSetting(ctx context.Context, input stable.CloudPCUserSetting) (result CreateVirtualEndpointUserSettingOperationResponse, err error) {
+func (c VirtualEndpointUserSettingClient) CreateVirtualEndpointUserSetting(ctx context.Context, input stable.CloudPCUserSetting, options CreateVirtualEndpointUserSettingOperationOptions) (result CreateVirtualEndpointUserSettingOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/deviceManagement/virtualEndpoint/userSettings",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/deviceManagement/virtualEndpoint/userSettings",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

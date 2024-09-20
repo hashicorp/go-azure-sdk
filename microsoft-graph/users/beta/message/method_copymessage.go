@@ -20,15 +20,44 @@ type CopyMessageOperationResponse struct {
 	Model        beta.Message
 }
 
+type CopyMessageOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCopyMessageOperationOptions() CopyMessageOperationOptions {
+	return CopyMessageOperationOptions{}
+}
+
+func (o CopyMessageOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CopyMessageOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CopyMessageOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CopyMessage - Invoke action copy. Copy a message to a folder within the user's mailbox.
-func (c MessageClient) CopyMessage(ctx context.Context, id beta.UserIdMessageId, input CopyMessageRequest) (result CopyMessageOperationResponse, err error) {
+func (c MessageClient) CopyMessage(ctx context.Context, id beta.UserIdMessageId, input CopyMessageRequest, options CopyMessageOperationOptions) (result CopyMessageOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/copy", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/copy", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

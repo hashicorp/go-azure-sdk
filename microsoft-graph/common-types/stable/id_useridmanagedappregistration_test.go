@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &UserIdManagedAppRegistrationId{}
 
 func TestNewUserIdManagedAppRegistrationID(t *testing.T) {
-	id := NewUserIdManagedAppRegistrationID("userIdValue", "managedAppRegistrationIdValue")
+	id := NewUserIdManagedAppRegistrationID("userId", "managedAppRegistrationId")
 
-	if id.UserId != "userIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'UserId'", id.UserId, "userIdValue")
+	if id.UserId != "userId" {
+		t.Fatalf("Expected %q but got %q for Segment 'UserId'", id.UserId, "userId")
 	}
 
-	if id.ManagedAppRegistrationId != "managedAppRegistrationIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ManagedAppRegistrationId'", id.ManagedAppRegistrationId, "managedAppRegistrationIdValue")
+	if id.ManagedAppRegistrationId != "managedAppRegistrationId" {
+		t.Fatalf("Expected %q but got %q for Segment 'ManagedAppRegistrationId'", id.ManagedAppRegistrationId, "managedAppRegistrationId")
 	}
 }
 
 func TestFormatUserIdManagedAppRegistrationID(t *testing.T) {
-	actual := NewUserIdManagedAppRegistrationID("userIdValue", "managedAppRegistrationIdValue").ID()
-	expected := "/users/userIdValue/managedAppRegistrations/managedAppRegistrationIdValue"
+	actual := NewUserIdManagedAppRegistrationID("userId", "managedAppRegistrationId").ID()
+	expected := "/users/userId/managedAppRegistrations/managedAppRegistrationId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -49,25 +49,25 @@ func TestParseUserIdManagedAppRegistrationID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue",
+			Input: "/users/userId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/managedAppRegistrations",
+			Input: "/users/userId/managedAppRegistrations",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/users/userIdValue/managedAppRegistrations/managedAppRegistrationIdValue",
+			Input: "/users/userId/managedAppRegistrations/managedAppRegistrationId",
 			Expected: &UserIdManagedAppRegistrationId{
-				UserId:                   "userIdValue",
-				ManagedAppRegistrationId: "managedAppRegistrationIdValue",
+				UserId:                   "userId",
+				ManagedAppRegistrationId: "managedAppRegistrationId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/users/userIdValue/managedAppRegistrations/managedAppRegistrationIdValue/extra",
+			Input: "/users/userId/managedAppRegistrations/managedAppRegistrationId/extra",
 			Error: true,
 		},
 	}
@@ -120,48 +120,48 @@ func TestParseUserIdManagedAppRegistrationIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue",
+			Input: "/users/userId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe",
+			Input: "/uSeRs/uSeRiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/managedAppRegistrations",
+			Input: "/users/userId/managedAppRegistrations",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/mAnAgEdApPrEgIsTrAtIoNs",
+			Input: "/uSeRs/uSeRiD/mAnAgEdApPrEgIsTrAtIoNs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/users/userIdValue/managedAppRegistrations/managedAppRegistrationIdValue",
+			Input: "/users/userId/managedAppRegistrations/managedAppRegistrationId",
 			Expected: &UserIdManagedAppRegistrationId{
-				UserId:                   "userIdValue",
-				ManagedAppRegistrationId: "managedAppRegistrationIdValue",
+				UserId:                   "userId",
+				ManagedAppRegistrationId: "managedAppRegistrationId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/users/userIdValue/managedAppRegistrations/managedAppRegistrationIdValue/extra",
+			Input: "/users/userId/managedAppRegistrations/managedAppRegistrationId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/mAnAgEdApPrEgIsTrAtIoNs/mAnAgEdApPrEgIsTrAtIoNiDvAlUe",
+			Input: "/uSeRs/uSeRiD/mAnAgEdApPrEgIsTrAtIoNs/mAnAgEdApPrEgIsTrAtIoNiD",
 			Expected: &UserIdManagedAppRegistrationId{
-				UserId:                   "uSeRiDvAlUe",
-				ManagedAppRegistrationId: "mAnAgEdApPrEgIsTrAtIoNiDvAlUe",
+				UserId:                   "uSeRiD",
+				ManagedAppRegistrationId: "mAnAgEdApPrEgIsTrAtIoNiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/mAnAgEdApPrEgIsTrAtIoNs/mAnAgEdApPrEgIsTrAtIoNiDvAlUe/extra",
+			Input: "/uSeRs/uSeRiD/mAnAgEdApPrEgIsTrAtIoNs/mAnAgEdApPrEgIsTrAtIoNiD/extra",
 			Error: true,
 		},
 	}

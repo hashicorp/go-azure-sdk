@@ -17,15 +17,44 @@ type UpdateDeviceConfigurationProfileOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateDeviceConfigurationProfileOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateDeviceConfigurationProfileOperationOptions() UpdateDeviceConfigurationProfileOperationOptions {
+	return UpdateDeviceConfigurationProfileOperationOptions{}
+}
+
+func (o UpdateDeviceConfigurationProfileOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateDeviceConfigurationProfileOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateDeviceConfigurationProfileOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateDeviceConfigurationProfile - Update the navigation property deviceConfigurationProfiles in deviceManagement
-func (c DeviceConfigurationProfileClient) UpdateDeviceConfigurationProfile(ctx context.Context, id beta.DeviceManagementDeviceConfigurationProfileId, input beta.DeviceConfigurationProfile) (result UpdateDeviceConfigurationProfileOperationResponse, err error) {
+func (c DeviceConfigurationProfileClient) UpdateDeviceConfigurationProfile(ctx context.Context, id beta.DeviceManagementDeviceConfigurationProfileId, input beta.DeviceConfigurationProfile, options UpdateDeviceConfigurationProfileOperationOptions) (result UpdateDeviceConfigurationProfileOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &MeTransitiveMemberOfId{}
 
 func TestNewMeTransitiveMemberOfID(t *testing.T) {
-	id := NewMeTransitiveMemberOfID("directoryObjectIdValue")
+	id := NewMeTransitiveMemberOfID("directoryObjectId")
 
-	if id.DirectoryObjectId != "directoryObjectIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DirectoryObjectId'", id.DirectoryObjectId, "directoryObjectIdValue")
+	if id.DirectoryObjectId != "directoryObjectId" {
+		t.Fatalf("Expected %q but got %q for Segment 'DirectoryObjectId'", id.DirectoryObjectId, "directoryObjectId")
 	}
 }
 
 func TestFormatMeTransitiveMemberOfID(t *testing.T) {
-	actual := NewMeTransitiveMemberOfID("directoryObjectIdValue").ID()
-	expected := "/me/transitiveMemberOf/directoryObjectIdValue"
+	actual := NewMeTransitiveMemberOfID("directoryObjectId").ID()
+	expected := "/me/transitiveMemberOf/directoryObjectId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -50,14 +50,14 @@ func TestParseMeTransitiveMemberOfID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/me/transitiveMemberOf/directoryObjectIdValue",
+			Input: "/me/transitiveMemberOf/directoryObjectId",
 			Expected: &MeTransitiveMemberOfId{
-				DirectoryObjectId: "directoryObjectIdValue",
+				DirectoryObjectId: "directoryObjectId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/transitiveMemberOf/directoryObjectIdValue/extra",
+			Input: "/me/transitiveMemberOf/directoryObjectId/extra",
 			Error: true,
 		},
 	}
@@ -116,26 +116,26 @@ func TestParseMeTransitiveMemberOfIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/me/transitiveMemberOf/directoryObjectIdValue",
+			Input: "/me/transitiveMemberOf/directoryObjectId",
 			Expected: &MeTransitiveMemberOfId{
-				DirectoryObjectId: "directoryObjectIdValue",
+				DirectoryObjectId: "directoryObjectId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/transitiveMemberOf/directoryObjectIdValue/extra",
+			Input: "/me/transitiveMemberOf/directoryObjectId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/tRaNsItIvEmEmBeRoF/dIrEcToRyObJeCtIdVaLuE",
+			Input: "/mE/tRaNsItIvEmEmBeRoF/dIrEcToRyObJeCtId",
 			Expected: &MeTransitiveMemberOfId{
-				DirectoryObjectId: "dIrEcToRyObJeCtIdVaLuE",
+				DirectoryObjectId: "dIrEcToRyObJeCtId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/mE/tRaNsItIvEmEmBeRoF/dIrEcToRyObJeCtIdVaLuE/extra",
+			Input: "/mE/tRaNsItIvEmEmBeRoF/dIrEcToRyObJeCtId/extra",
 			Error: true,
 		},
 	}

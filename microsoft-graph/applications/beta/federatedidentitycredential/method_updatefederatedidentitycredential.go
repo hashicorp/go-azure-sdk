@@ -17,19 +17,48 @@ type UpdateFederatedIdentityCredentialOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateFederatedIdentityCredentialOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateFederatedIdentityCredentialOperationOptions() UpdateFederatedIdentityCredentialOperationOptions {
+	return UpdateFederatedIdentityCredentialOperationOptions{}
+}
+
+func (o UpdateFederatedIdentityCredentialOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateFederatedIdentityCredentialOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateFederatedIdentityCredentialOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateFederatedIdentityCredential - Upsert federatedIdentityCredential. Create a new federatedIdentityCredential
 // object for an application if it doesn't exist, or update the properties of an existing federatedIdentityCredential
 // object. By configuring a trust relationship between your Microsoft Entra application registration and the identity
 // provider for your compute platform, you can use tokens issued by that platform to authenticate with Microsoft
 // identity platform and call APIs in the Microsoft ecosystem. Maximum of 20 objects can be added to an application.
-func (c FederatedIdentityCredentialClient) UpdateFederatedIdentityCredential(ctx context.Context, id beta.ApplicationIdFederatedIdentityCredentialId, input beta.FederatedIdentityCredential) (result UpdateFederatedIdentityCredentialOperationResponse, err error) {
+func (c FederatedIdentityCredentialClient) UpdateFederatedIdentityCredential(ctx context.Context, id beta.ApplicationIdFederatedIdentityCredentialId, input beta.FederatedIdentityCredential, options UpdateFederatedIdentityCredentialOperationOptions) (result UpdateFederatedIdentityCredentialOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

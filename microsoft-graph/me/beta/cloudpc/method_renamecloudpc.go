@@ -18,16 +18,45 @@ type RenameCloudPCOperationResponse struct {
 	OData        *odata.OData
 }
 
+type RenameCloudPCOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultRenameCloudPCOperationOptions() RenameCloudPCOperationOptions {
+	return RenameCloudPCOperationOptions{}
+}
+
+func (o RenameCloudPCOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o RenameCloudPCOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o RenameCloudPCOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // RenameCloudPC - Invoke action rename. Rename a specific Cloud PC. Use this API to update the displayName for the
 // Cloud PC entity.
-func (c CloudPCClient) RenameCloudPC(ctx context.Context, id beta.MeCloudPCId, input RenameCloudPCRequest) (result RenameCloudPCOperationResponse, err error) {
+func (c CloudPCClient) RenameCloudPC(ctx context.Context, id beta.MeCloudPCId, input RenameCloudPCRequest, options RenameCloudPCOperationOptions) (result RenameCloudPCOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/rename", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/rename", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -94,7 +94,7 @@ func (id IdentityGovernancePermissionsManagementPermissionsRequestChangeId) Segm
 		resourceids.StaticSegment("identityGovernance", "identityGovernance", "identityGovernance"),
 		resourceids.StaticSegment("permissionsManagement", "permissionsManagement", "permissionsManagement"),
 		resourceids.StaticSegment("permissionsRequestChanges", "permissionsRequestChanges", "permissionsRequestChanges"),
-		resourceids.UserSpecifiedSegment("permissionsRequestChangeId", "permissionsRequestChangeIdValue"),
+		resourceids.UserSpecifiedSegment("permissionsRequestChangeId", "permissionsRequestChangeId"),
 	}
 }
 

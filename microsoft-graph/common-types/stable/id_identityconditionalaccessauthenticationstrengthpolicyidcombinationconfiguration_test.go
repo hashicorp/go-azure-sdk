@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &IdentityConditionalAccessAuthenticationStrengthPolicyIdCombinationConfigurationId{}
 
 func TestNewIdentityConditionalAccessAuthenticationStrengthPolicyIdCombinationConfigurationID(t *testing.T) {
-	id := NewIdentityConditionalAccessAuthenticationStrengthPolicyIdCombinationConfigurationID("authenticationStrengthPolicyIdValue", "authenticationCombinationConfigurationIdValue")
+	id := NewIdentityConditionalAccessAuthenticationStrengthPolicyIdCombinationConfigurationID("authenticationStrengthPolicyId", "authenticationCombinationConfigurationId")
 
-	if id.AuthenticationStrengthPolicyId != "authenticationStrengthPolicyIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'AuthenticationStrengthPolicyId'", id.AuthenticationStrengthPolicyId, "authenticationStrengthPolicyIdValue")
+	if id.AuthenticationStrengthPolicyId != "authenticationStrengthPolicyId" {
+		t.Fatalf("Expected %q but got %q for Segment 'AuthenticationStrengthPolicyId'", id.AuthenticationStrengthPolicyId, "authenticationStrengthPolicyId")
 	}
 
-	if id.AuthenticationCombinationConfigurationId != "authenticationCombinationConfigurationIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'AuthenticationCombinationConfigurationId'", id.AuthenticationCombinationConfigurationId, "authenticationCombinationConfigurationIdValue")
+	if id.AuthenticationCombinationConfigurationId != "authenticationCombinationConfigurationId" {
+		t.Fatalf("Expected %q but got %q for Segment 'AuthenticationCombinationConfigurationId'", id.AuthenticationCombinationConfigurationId, "authenticationCombinationConfigurationId")
 	}
 }
 
 func TestFormatIdentityConditionalAccessAuthenticationStrengthPolicyIdCombinationConfigurationID(t *testing.T) {
-	actual := NewIdentityConditionalAccessAuthenticationStrengthPolicyIdCombinationConfigurationID("authenticationStrengthPolicyIdValue", "authenticationCombinationConfigurationIdValue").ID()
-	expected := "/identity/conditionalAccess/authenticationStrength/policies/authenticationStrengthPolicyIdValue/combinationConfigurations/authenticationCombinationConfigurationIdValue"
+	actual := NewIdentityConditionalAccessAuthenticationStrengthPolicyIdCombinationConfigurationID("authenticationStrengthPolicyId", "authenticationCombinationConfigurationId").ID()
+	expected := "/identity/conditionalAccess/authenticationStrength/policies/authenticationStrengthPolicyId/combinationConfigurations/authenticationCombinationConfigurationId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -64,25 +64,25 @@ func TestParseIdentityConditionalAccessAuthenticationStrengthPolicyIdCombination
 		},
 		{
 			// Incomplete URI
-			Input: "/identity/conditionalAccess/authenticationStrength/policies/authenticationStrengthPolicyIdValue",
+			Input: "/identity/conditionalAccess/authenticationStrength/policies/authenticationStrengthPolicyId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/identity/conditionalAccess/authenticationStrength/policies/authenticationStrengthPolicyIdValue/combinationConfigurations",
+			Input: "/identity/conditionalAccess/authenticationStrength/policies/authenticationStrengthPolicyId/combinationConfigurations",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/identity/conditionalAccess/authenticationStrength/policies/authenticationStrengthPolicyIdValue/combinationConfigurations/authenticationCombinationConfigurationIdValue",
+			Input: "/identity/conditionalAccess/authenticationStrength/policies/authenticationStrengthPolicyId/combinationConfigurations/authenticationCombinationConfigurationId",
 			Expected: &IdentityConditionalAccessAuthenticationStrengthPolicyIdCombinationConfigurationId{
-				AuthenticationStrengthPolicyId:           "authenticationStrengthPolicyIdValue",
-				AuthenticationCombinationConfigurationId: "authenticationCombinationConfigurationIdValue",
+				AuthenticationStrengthPolicyId:           "authenticationStrengthPolicyId",
+				AuthenticationCombinationConfigurationId: "authenticationCombinationConfigurationId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/identity/conditionalAccess/authenticationStrength/policies/authenticationStrengthPolicyIdValue/combinationConfigurations/authenticationCombinationConfigurationIdValue/extra",
+			Input: "/identity/conditionalAccess/authenticationStrength/policies/authenticationStrengthPolicyId/combinationConfigurations/authenticationCombinationConfigurationId/extra",
 			Error: true,
 		},
 	}
@@ -165,48 +165,48 @@ func TestParseIdentityConditionalAccessAuthenticationStrengthPolicyIdCombination
 		},
 		{
 			// Incomplete URI
-			Input: "/identity/conditionalAccess/authenticationStrength/policies/authenticationStrengthPolicyIdValue",
+			Input: "/identity/conditionalAccess/authenticationStrength/policies/authenticationStrengthPolicyId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/iDeNtItY/cOnDiTiOnAlAcCeSs/aUtHeNtIcAtIoNsTrEnGtH/pOlIcIeS/aUtHeNtIcAtIoNsTrEnGtHpOlIcYiDvAlUe",
+			Input: "/iDeNtItY/cOnDiTiOnAlAcCeSs/aUtHeNtIcAtIoNsTrEnGtH/pOlIcIeS/aUtHeNtIcAtIoNsTrEnGtHpOlIcYiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/identity/conditionalAccess/authenticationStrength/policies/authenticationStrengthPolicyIdValue/combinationConfigurations",
+			Input: "/identity/conditionalAccess/authenticationStrength/policies/authenticationStrengthPolicyId/combinationConfigurations",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/iDeNtItY/cOnDiTiOnAlAcCeSs/aUtHeNtIcAtIoNsTrEnGtH/pOlIcIeS/aUtHeNtIcAtIoNsTrEnGtHpOlIcYiDvAlUe/cOmBiNaTiOnCoNfIgUrAtIoNs",
+			Input: "/iDeNtItY/cOnDiTiOnAlAcCeSs/aUtHeNtIcAtIoNsTrEnGtH/pOlIcIeS/aUtHeNtIcAtIoNsTrEnGtHpOlIcYiD/cOmBiNaTiOnCoNfIgUrAtIoNs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/identity/conditionalAccess/authenticationStrength/policies/authenticationStrengthPolicyIdValue/combinationConfigurations/authenticationCombinationConfigurationIdValue",
+			Input: "/identity/conditionalAccess/authenticationStrength/policies/authenticationStrengthPolicyId/combinationConfigurations/authenticationCombinationConfigurationId",
 			Expected: &IdentityConditionalAccessAuthenticationStrengthPolicyIdCombinationConfigurationId{
-				AuthenticationStrengthPolicyId:           "authenticationStrengthPolicyIdValue",
-				AuthenticationCombinationConfigurationId: "authenticationCombinationConfigurationIdValue",
+				AuthenticationStrengthPolicyId:           "authenticationStrengthPolicyId",
+				AuthenticationCombinationConfigurationId: "authenticationCombinationConfigurationId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/identity/conditionalAccess/authenticationStrength/policies/authenticationStrengthPolicyIdValue/combinationConfigurations/authenticationCombinationConfigurationIdValue/extra",
+			Input: "/identity/conditionalAccess/authenticationStrength/policies/authenticationStrengthPolicyId/combinationConfigurations/authenticationCombinationConfigurationId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/iDeNtItY/cOnDiTiOnAlAcCeSs/aUtHeNtIcAtIoNsTrEnGtH/pOlIcIeS/aUtHeNtIcAtIoNsTrEnGtHpOlIcYiDvAlUe/cOmBiNaTiOnCoNfIgUrAtIoNs/aUtHeNtIcAtIoNcOmBiNaTiOnCoNfIgUrAtIoNiDvAlUe",
+			Input: "/iDeNtItY/cOnDiTiOnAlAcCeSs/aUtHeNtIcAtIoNsTrEnGtH/pOlIcIeS/aUtHeNtIcAtIoNsTrEnGtHpOlIcYiD/cOmBiNaTiOnCoNfIgUrAtIoNs/aUtHeNtIcAtIoNcOmBiNaTiOnCoNfIgUrAtIoNiD",
 			Expected: &IdentityConditionalAccessAuthenticationStrengthPolicyIdCombinationConfigurationId{
-				AuthenticationStrengthPolicyId:           "aUtHeNtIcAtIoNsTrEnGtHpOlIcYiDvAlUe",
-				AuthenticationCombinationConfigurationId: "aUtHeNtIcAtIoNcOmBiNaTiOnCoNfIgUrAtIoNiDvAlUe",
+				AuthenticationStrengthPolicyId:           "aUtHeNtIcAtIoNsTrEnGtHpOlIcYiD",
+				AuthenticationCombinationConfigurationId: "aUtHeNtIcAtIoNcOmBiNaTiOnCoNfIgUrAtIoNiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/iDeNtItY/cOnDiTiOnAlAcCeSs/aUtHeNtIcAtIoNsTrEnGtH/pOlIcIeS/aUtHeNtIcAtIoNsTrEnGtHpOlIcYiDvAlUe/cOmBiNaTiOnCoNfIgUrAtIoNs/aUtHeNtIcAtIoNcOmBiNaTiOnCoNfIgUrAtIoNiDvAlUe/extra",
+			Input: "/iDeNtItY/cOnDiTiOnAlAcCeSs/aUtHeNtIcAtIoNsTrEnGtH/pOlIcIeS/aUtHeNtIcAtIoNsTrEnGtHpOlIcYiD/cOmBiNaTiOnCoNfIgUrAtIoNs/aUtHeNtIcAtIoNcOmBiNaTiOnCoNfIgUrAtIoNiD/extra",
 			Error: true,
 		},
 	}

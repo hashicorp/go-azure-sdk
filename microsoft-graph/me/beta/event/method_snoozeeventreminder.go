@@ -18,16 +18,45 @@ type SnoozeEventReminderOperationResponse struct {
 	OData        *odata.OData
 }
 
+type SnoozeEventReminderOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultSnoozeEventReminderOperationOptions() SnoozeEventReminderOperationOptions {
+	return SnoozeEventReminderOperationOptions{}
+}
+
+func (o SnoozeEventReminderOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o SnoozeEventReminderOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o SnoozeEventReminderOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // SnoozeEventReminder - Invoke action snoozeReminder. Postpone a reminder for an event in a user calendar until a new
 // time.
-func (c EventClient) SnoozeEventReminder(ctx context.Context, id beta.MeEventId, input SnoozeEventReminderRequest) (result SnoozeEventReminderOperationResponse, err error) {
+func (c EventClient) SnoozeEventReminder(ctx context.Context, id beta.MeEventId, input SnoozeEventReminderRequest, options SnoozeEventReminderOperationOptions) (result SnoozeEventReminderOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/snoozeReminder", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/snoozeReminder", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

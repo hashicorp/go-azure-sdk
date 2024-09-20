@@ -12,24 +12,24 @@ import (
 var _ resourceids.ResourceId = &UserIdChatIdTabId{}
 
 func TestNewUserIdChatIdTabID(t *testing.T) {
-	id := NewUserIdChatIdTabID("userIdValue", "chatIdValue", "teamsTabIdValue")
+	id := NewUserIdChatIdTabID("userId", "chatId", "teamsTabId")
 
-	if id.UserId != "userIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'UserId'", id.UserId, "userIdValue")
+	if id.UserId != "userId" {
+		t.Fatalf("Expected %q but got %q for Segment 'UserId'", id.UserId, "userId")
 	}
 
-	if id.ChatId != "chatIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ChatId'", id.ChatId, "chatIdValue")
+	if id.ChatId != "chatId" {
+		t.Fatalf("Expected %q but got %q for Segment 'ChatId'", id.ChatId, "chatId")
 	}
 
-	if id.TeamsTabId != "teamsTabIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'TeamsTabId'", id.TeamsTabId, "teamsTabIdValue")
+	if id.TeamsTabId != "teamsTabId" {
+		t.Fatalf("Expected %q but got %q for Segment 'TeamsTabId'", id.TeamsTabId, "teamsTabId")
 	}
 }
 
 func TestFormatUserIdChatIdTabID(t *testing.T) {
-	actual := NewUserIdChatIdTabID("userIdValue", "chatIdValue", "teamsTabIdValue").ID()
-	expected := "/users/userIdValue/chats/chatIdValue/tabs/teamsTabIdValue"
+	actual := NewUserIdChatIdTabID("userId", "chatId", "teamsTabId").ID()
+	expected := "/users/userId/chats/chatId/tabs/teamsTabId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -53,36 +53,36 @@ func TestParseUserIdChatIdTabID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue",
+			Input: "/users/userId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/chats",
+			Input: "/users/userId/chats",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/chats/chatIdValue",
+			Input: "/users/userId/chats/chatId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/chats/chatIdValue/tabs",
+			Input: "/users/userId/chats/chatId/tabs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/users/userIdValue/chats/chatIdValue/tabs/teamsTabIdValue",
+			Input: "/users/userId/chats/chatId/tabs/teamsTabId",
 			Expected: &UserIdChatIdTabId{
-				UserId:     "userIdValue",
-				ChatId:     "chatIdValue",
-				TeamsTabId: "teamsTabIdValue",
+				UserId:     "userId",
+				ChatId:     "chatId",
+				TeamsTabId: "teamsTabId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/users/userIdValue/chats/chatIdValue/tabs/teamsTabIdValue/extra",
+			Input: "/users/userId/chats/chatId/tabs/teamsTabId/extra",
 			Error: true,
 		},
 	}
@@ -139,70 +139,70 @@ func TestParseUserIdChatIdTabIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue",
+			Input: "/users/userId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe",
+			Input: "/uSeRs/uSeRiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/chats",
+			Input: "/users/userId/chats",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/cHaTs",
+			Input: "/uSeRs/uSeRiD/cHaTs",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/chats/chatIdValue",
+			Input: "/users/userId/chats/chatId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/cHaTs/cHaTiDvAlUe",
+			Input: "/uSeRs/uSeRiD/cHaTs/cHaTiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/chats/chatIdValue/tabs",
+			Input: "/users/userId/chats/chatId/tabs",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/cHaTs/cHaTiDvAlUe/tAbS",
+			Input: "/uSeRs/uSeRiD/cHaTs/cHaTiD/tAbS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/users/userIdValue/chats/chatIdValue/tabs/teamsTabIdValue",
+			Input: "/users/userId/chats/chatId/tabs/teamsTabId",
 			Expected: &UserIdChatIdTabId{
-				UserId:     "userIdValue",
-				ChatId:     "chatIdValue",
-				TeamsTabId: "teamsTabIdValue",
+				UserId:     "userId",
+				ChatId:     "chatId",
+				TeamsTabId: "teamsTabId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/users/userIdValue/chats/chatIdValue/tabs/teamsTabIdValue/extra",
+			Input: "/users/userId/chats/chatId/tabs/teamsTabId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/cHaTs/cHaTiDvAlUe/tAbS/tEaMsTaBiDvAlUe",
+			Input: "/uSeRs/uSeRiD/cHaTs/cHaTiD/tAbS/tEaMsTaBiD",
 			Expected: &UserIdChatIdTabId{
-				UserId:     "uSeRiDvAlUe",
-				ChatId:     "cHaTiDvAlUe",
-				TeamsTabId: "tEaMsTaBiDvAlUe",
+				UserId:     "uSeRiD",
+				ChatId:     "cHaTiD",
+				TeamsTabId: "tEaMsTaBiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/cHaTs/cHaTiDvAlUe/tAbS/tEaMsTaBiDvAlUe/extra",
+			Input: "/uSeRs/uSeRiD/cHaTs/cHaTiD/tAbS/tEaMsTaBiD/extra",
 			Error: true,
 		},
 	}

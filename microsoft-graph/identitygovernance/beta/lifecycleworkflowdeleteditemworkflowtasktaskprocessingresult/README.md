@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/microsoft-graph/identitygovernance/beta/lifecycleworkflowdeleteditemworkflowtasktaskprocessingresult` Documentation
 
-The `lifecycleworkflowdeleteditemworkflowtasktaskprocessingresult` SDK allows for interaction with the Azure Resource Manager Service `identitygovernance` (API Version `beta`).
+The `lifecycleworkflowdeleteditemworkflowtasktaskprocessingresult` SDK allows for interaction with Microsoft Graph `identitygovernance` (API Version `beta`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -15,7 +15,7 @@ import "github.com/hashicorp/go-azure-sdk/microsoft-graph/identitygovernance/bet
 ### Client Initialization
 
 ```go
-client := lifecycleworkflowdeleteditemworkflowtasktaskprocessingresult.NewLifecycleWorkflowDeletedItemWorkflowTaskTaskProcessingResultClientWithBaseURI("https://management.azure.com")
+client := lifecycleworkflowdeleteditemworkflowtasktaskprocessingresult.NewLifecycleWorkflowDeletedItemWorkflowTaskTaskProcessingResultClientWithBaseURI("https://graph.microsoft.com")
 client.Client.Authorizer = authorizer
 ```
 
@@ -24,14 +24,14 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := lifecycleworkflowdeleteditemworkflowtasktaskprocessingresult.NewIdentityGovernanceLifecycleWorkflowDeletedItemWorkflowIdTaskIdTaskProcessingResultID("workflowIdValue", "taskIdValue", "taskProcessingResultIdValue")
+id := lifecycleworkflowdeleteditemworkflowtasktaskprocessingresult.NewIdentityGovernanceLifecycleWorkflowDeletedItemWorkflowIdTaskIdTaskProcessingResultID("workflowId", "taskId", "taskProcessingResultId")
 
 payload := lifecycleworkflowdeleteditemworkflowtasktaskprocessingresult.CreateLifecycleWorkflowDeletedItemWorkflowTaskProcessingResultIdentityGovernanceResumeRequest{
 	// ...
 }
 
 
-read, err := client.CreateLifecycleWorkflowDeletedItemWorkflowTaskProcessingResultIdentityGovernanceResume(ctx, id, payload)
+read, err := client.CreateLifecycleWorkflowDeletedItemWorkflowTaskProcessingResultIdentityGovernanceResume(ctx, id, payload, lifecycleworkflowdeleteditemworkflowtasktaskprocessingresult.DefaultCreateLifecycleWorkflowDeletedItemWorkflowTaskProcessingResultIdentityGovernanceResumeOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -45,7 +45,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := lifecycleworkflowdeleteditemworkflowtasktaskprocessingresult.NewIdentityGovernanceLifecycleWorkflowDeletedItemWorkflowIdTaskIdTaskProcessingResultID("workflowIdValue", "taskIdValue", "taskProcessingResultIdValue")
+id := lifecycleworkflowdeleteditemworkflowtasktaskprocessingresult.NewIdentityGovernanceLifecycleWorkflowDeletedItemWorkflowIdTaskIdTaskProcessingResultID("workflowId", "taskId", "taskProcessingResultId")
 
 read, err := client.GetLifecycleWorkflowDeletedItemWorkflowTaskProcessingResult(ctx, id, lifecycleworkflowdeleteditemworkflowtasktaskprocessingresult.DefaultGetLifecycleWorkflowDeletedItemWorkflowTaskProcessingResultOperationOptions())
 if err != nil {
@@ -61,7 +61,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := lifecycleworkflowdeleteditemworkflowtasktaskprocessingresult.NewIdentityGovernanceLifecycleWorkflowDeletedItemWorkflowIdTaskID("workflowIdValue", "taskIdValue")
+id := lifecycleworkflowdeleteditemworkflowtasktaskprocessingresult.NewIdentityGovernanceLifecycleWorkflowDeletedItemWorkflowIdTaskID("workflowId", "taskId")
 
 read, err := client.GetLifecycleWorkflowDeletedItemWorkflowTaskProcessingResultsCount(ctx, id, lifecycleworkflowdeleteditemworkflowtasktaskprocessingresult.DefaultGetLifecycleWorkflowDeletedItemWorkflowTaskProcessingResultsCountOperationOptions())
 if err != nil {
@@ -77,7 +77,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := lifecycleworkflowdeleteditemworkflowtasktaskprocessingresult.NewIdentityGovernanceLifecycleWorkflowDeletedItemWorkflowIdTaskID("workflowIdValue", "taskIdValue")
+id := lifecycleworkflowdeleteditemworkflowtasktaskprocessingresult.NewIdentityGovernanceLifecycleWorkflowDeletedItemWorkflowIdTaskID("workflowId", "taskId")
 
 // alternatively `client.ListLifecycleWorkflowDeletedItemWorkflowTaskProcessingResults(ctx, id, lifecycleworkflowdeleteditemworkflowtasktaskprocessingresult.DefaultListLifecycleWorkflowDeletedItemWorkflowTaskProcessingResultsOperationOptions())` can be used to do batched pagination
 items, err := client.ListLifecycleWorkflowDeletedItemWorkflowTaskProcessingResultsComplete(ctx, id, lifecycleworkflowdeleteditemworkflowtasktaskprocessingresult.DefaultListLifecycleWorkflowDeletedItemWorkflowTaskProcessingResultsOperationOptions())

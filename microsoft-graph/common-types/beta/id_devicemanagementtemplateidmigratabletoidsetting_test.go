@@ -12,24 +12,24 @@ import (
 var _ resourceids.ResourceId = &DeviceManagementTemplateIdMigratableToIdSettingId{}
 
 func TestNewDeviceManagementTemplateIdMigratableToIdSettingID(t *testing.T) {
-	id := NewDeviceManagementTemplateIdMigratableToIdSettingID("deviceManagementTemplateIdValue", "deviceManagementTemplateId1Value", "deviceManagementSettingInstanceIdValue")
+	id := NewDeviceManagementTemplateIdMigratableToIdSettingID("deviceManagementTemplateId", "deviceManagementTemplateId1", "deviceManagementSettingInstanceId")
 
-	if id.DeviceManagementTemplateId != "deviceManagementTemplateIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DeviceManagementTemplateId'", id.DeviceManagementTemplateId, "deviceManagementTemplateIdValue")
+	if id.DeviceManagementTemplateId != "deviceManagementTemplateId" {
+		t.Fatalf("Expected %q but got %q for Segment 'DeviceManagementTemplateId'", id.DeviceManagementTemplateId, "deviceManagementTemplateId")
 	}
 
-	if id.DeviceManagementTemplateId1 != "deviceManagementTemplateId1Value" {
-		t.Fatalf("Expected %q but got %q for Segment 'DeviceManagementTemplateId1'", id.DeviceManagementTemplateId1, "deviceManagementTemplateId1Value")
+	if id.DeviceManagementTemplateId1 != "deviceManagementTemplateId1" {
+		t.Fatalf("Expected %q but got %q for Segment 'DeviceManagementTemplateId1'", id.DeviceManagementTemplateId1, "deviceManagementTemplateId1")
 	}
 
-	if id.DeviceManagementSettingInstanceId != "deviceManagementSettingInstanceIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DeviceManagementSettingInstanceId'", id.DeviceManagementSettingInstanceId, "deviceManagementSettingInstanceIdValue")
+	if id.DeviceManagementSettingInstanceId != "deviceManagementSettingInstanceId" {
+		t.Fatalf("Expected %q but got %q for Segment 'DeviceManagementSettingInstanceId'", id.DeviceManagementSettingInstanceId, "deviceManagementSettingInstanceId")
 	}
 }
 
 func TestFormatDeviceManagementTemplateIdMigratableToIdSettingID(t *testing.T) {
-	actual := NewDeviceManagementTemplateIdMigratableToIdSettingID("deviceManagementTemplateIdValue", "deviceManagementTemplateId1Value", "deviceManagementSettingInstanceIdValue").ID()
-	expected := "/deviceManagement/templates/deviceManagementTemplateIdValue/migratableTo/deviceManagementTemplateId1Value/settings/deviceManagementSettingInstanceIdValue"
+	actual := NewDeviceManagementTemplateIdMigratableToIdSettingID("deviceManagementTemplateId", "deviceManagementTemplateId1", "deviceManagementSettingInstanceId").ID()
+	expected := "/deviceManagement/templates/deviceManagementTemplateId/migratableTo/deviceManagementTemplateId1/settings/deviceManagementSettingInstanceId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -58,36 +58,36 @@ func TestParseDeviceManagementTemplateIdMigratableToIdSettingID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/deviceManagement/templates/deviceManagementTemplateIdValue",
+			Input: "/deviceManagement/templates/deviceManagementTemplateId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/deviceManagement/templates/deviceManagementTemplateIdValue/migratableTo",
+			Input: "/deviceManagement/templates/deviceManagementTemplateId/migratableTo",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/deviceManagement/templates/deviceManagementTemplateIdValue/migratableTo/deviceManagementTemplateId1Value",
+			Input: "/deviceManagement/templates/deviceManagementTemplateId/migratableTo/deviceManagementTemplateId1",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/deviceManagement/templates/deviceManagementTemplateIdValue/migratableTo/deviceManagementTemplateId1Value/settings",
+			Input: "/deviceManagement/templates/deviceManagementTemplateId/migratableTo/deviceManagementTemplateId1/settings",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/templates/deviceManagementTemplateIdValue/migratableTo/deviceManagementTemplateId1Value/settings/deviceManagementSettingInstanceIdValue",
+			Input: "/deviceManagement/templates/deviceManagementTemplateId/migratableTo/deviceManagementTemplateId1/settings/deviceManagementSettingInstanceId",
 			Expected: &DeviceManagementTemplateIdMigratableToIdSettingId{
-				DeviceManagementTemplateId:        "deviceManagementTemplateIdValue",
-				DeviceManagementTemplateId1:       "deviceManagementTemplateId1Value",
-				DeviceManagementSettingInstanceId: "deviceManagementSettingInstanceIdValue",
+				DeviceManagementTemplateId:        "deviceManagementTemplateId",
+				DeviceManagementTemplateId1:       "deviceManagementTemplateId1",
+				DeviceManagementSettingInstanceId: "deviceManagementSettingInstanceId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/templates/deviceManagementTemplateIdValue/migratableTo/deviceManagementTemplateId1Value/settings/deviceManagementSettingInstanceIdValue/extra",
+			Input: "/deviceManagement/templates/deviceManagementTemplateId/migratableTo/deviceManagementTemplateId1/settings/deviceManagementSettingInstanceId/extra",
 			Error: true,
 		},
 	}
@@ -154,70 +154,70 @@ func TestParseDeviceManagementTemplateIdMigratableToIdSettingIDInsensitively(t *
 		},
 		{
 			// Incomplete URI
-			Input: "/deviceManagement/templates/deviceManagementTemplateIdValue",
+			Input: "/deviceManagement/templates/deviceManagementTemplateId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/tEmPlAtEs/dEvIcEmAnAgEmEnTtEmPlAtEiDvAlUe",
+			Input: "/dEvIcEmAnAgEmEnT/tEmPlAtEs/dEvIcEmAnAgEmEnTtEmPlAtEiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/deviceManagement/templates/deviceManagementTemplateIdValue/migratableTo",
+			Input: "/deviceManagement/templates/deviceManagementTemplateId/migratableTo",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/tEmPlAtEs/dEvIcEmAnAgEmEnTtEmPlAtEiDvAlUe/mIgRaTaBlEtO",
+			Input: "/dEvIcEmAnAgEmEnT/tEmPlAtEs/dEvIcEmAnAgEmEnTtEmPlAtEiD/mIgRaTaBlEtO",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/deviceManagement/templates/deviceManagementTemplateIdValue/migratableTo/deviceManagementTemplateId1Value",
+			Input: "/deviceManagement/templates/deviceManagementTemplateId/migratableTo/deviceManagementTemplateId1",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/tEmPlAtEs/dEvIcEmAnAgEmEnTtEmPlAtEiDvAlUe/mIgRaTaBlEtO/dEvIcEmAnAgEmEnTtEmPlAtEiD1VaLuE",
+			Input: "/dEvIcEmAnAgEmEnT/tEmPlAtEs/dEvIcEmAnAgEmEnTtEmPlAtEiD/mIgRaTaBlEtO/dEvIcEmAnAgEmEnTtEmPlAtEiD1",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/deviceManagement/templates/deviceManagementTemplateIdValue/migratableTo/deviceManagementTemplateId1Value/settings",
+			Input: "/deviceManagement/templates/deviceManagementTemplateId/migratableTo/deviceManagementTemplateId1/settings",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/tEmPlAtEs/dEvIcEmAnAgEmEnTtEmPlAtEiDvAlUe/mIgRaTaBlEtO/dEvIcEmAnAgEmEnTtEmPlAtEiD1VaLuE/sEtTiNgS",
+			Input: "/dEvIcEmAnAgEmEnT/tEmPlAtEs/dEvIcEmAnAgEmEnTtEmPlAtEiD/mIgRaTaBlEtO/dEvIcEmAnAgEmEnTtEmPlAtEiD1/sEtTiNgS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/templates/deviceManagementTemplateIdValue/migratableTo/deviceManagementTemplateId1Value/settings/deviceManagementSettingInstanceIdValue",
+			Input: "/deviceManagement/templates/deviceManagementTemplateId/migratableTo/deviceManagementTemplateId1/settings/deviceManagementSettingInstanceId",
 			Expected: &DeviceManagementTemplateIdMigratableToIdSettingId{
-				DeviceManagementTemplateId:        "deviceManagementTemplateIdValue",
-				DeviceManagementTemplateId1:       "deviceManagementTemplateId1Value",
-				DeviceManagementSettingInstanceId: "deviceManagementSettingInstanceIdValue",
+				DeviceManagementTemplateId:        "deviceManagementTemplateId",
+				DeviceManagementTemplateId1:       "deviceManagementTemplateId1",
+				DeviceManagementSettingInstanceId: "deviceManagementSettingInstanceId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/templates/deviceManagementTemplateIdValue/migratableTo/deviceManagementTemplateId1Value/settings/deviceManagementSettingInstanceIdValue/extra",
+			Input: "/deviceManagement/templates/deviceManagementTemplateId/migratableTo/deviceManagementTemplateId1/settings/deviceManagementSettingInstanceId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/tEmPlAtEs/dEvIcEmAnAgEmEnTtEmPlAtEiDvAlUe/mIgRaTaBlEtO/dEvIcEmAnAgEmEnTtEmPlAtEiD1VaLuE/sEtTiNgS/dEvIcEmAnAgEmEnTsEtTiNgInStAnCeIdVaLuE",
+			Input: "/dEvIcEmAnAgEmEnT/tEmPlAtEs/dEvIcEmAnAgEmEnTtEmPlAtEiD/mIgRaTaBlEtO/dEvIcEmAnAgEmEnTtEmPlAtEiD1/sEtTiNgS/dEvIcEmAnAgEmEnTsEtTiNgInStAnCeId",
 			Expected: &DeviceManagementTemplateIdMigratableToIdSettingId{
-				DeviceManagementTemplateId:        "dEvIcEmAnAgEmEnTtEmPlAtEiDvAlUe",
-				DeviceManagementTemplateId1:       "dEvIcEmAnAgEmEnTtEmPlAtEiD1VaLuE",
-				DeviceManagementSettingInstanceId: "dEvIcEmAnAgEmEnTsEtTiNgInStAnCeIdVaLuE",
+				DeviceManagementTemplateId:        "dEvIcEmAnAgEmEnTtEmPlAtEiD",
+				DeviceManagementTemplateId1:       "dEvIcEmAnAgEmEnTtEmPlAtEiD1",
+				DeviceManagementSettingInstanceId: "dEvIcEmAnAgEmEnTsEtTiNgInStAnCeId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/tEmPlAtEs/dEvIcEmAnAgEmEnTtEmPlAtEiDvAlUe/mIgRaTaBlEtO/dEvIcEmAnAgEmEnTtEmPlAtEiD1VaLuE/sEtTiNgS/dEvIcEmAnAgEmEnTsEtTiNgInStAnCeIdVaLuE/extra",
+			Input: "/dEvIcEmAnAgEmEnT/tEmPlAtEs/dEvIcEmAnAgEmEnTtEmPlAtEiD/mIgRaTaBlEtO/dEvIcEmAnAgEmEnTtEmPlAtEiD1/sEtTiNgS/dEvIcEmAnAgEmEnTsEtTiNgInStAnCeId/extra",
 			Error: true,
 		},
 	}

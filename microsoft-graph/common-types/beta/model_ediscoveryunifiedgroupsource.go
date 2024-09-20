@@ -91,18 +91,28 @@ func (s EdiscoveryUnifiedGroupSource) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &EdiscoveryUnifiedGroupSource{}
 
 func (s *EdiscoveryUnifiedGroupSource) UnmarshalJSON(bytes []byte) error {
-	type alias EdiscoveryUnifiedGroupSource
-	var decoded alias
+
+	var decoded struct {
+		Group           *Group                          `json:"group,omitempty"`
+		IncludedSources *EdiscoverySourceType           `json:"includedSources,omitempty"`
+		CreatedBy       IdentitySet                     `json:"createdBy"`
+		CreatedDateTime nullable.Type[string]           `json:"createdDateTime,omitempty"`
+		DisplayName     nullable.Type[string]           `json:"displayName,omitempty"`
+		HoldStatus      *EdiscoveryDataSourceHoldStatus `json:"holdStatus,omitempty"`
+		Id              *string                         `json:"id,omitempty"`
+		ODataId         *string                         `json:"@odata.id,omitempty"`
+		ODataType       *string                         `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into EdiscoveryUnifiedGroupSource: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
+	s.Group = decoded.Group
+	s.IncludedSources = decoded.IncludedSources
 	s.CreatedDateTime = decoded.CreatedDateTime
 	s.DisplayName = decoded.DisplayName
-	s.Group = decoded.Group
 	s.HoldStatus = decoded.HoldStatus
 	s.Id = decoded.Id
-	s.IncludedSources = decoded.IncludedSources
 	s.ODataId = decoded.ODataId
 	s.ODataType = decoded.ODataType
 
@@ -118,5 +128,6 @@ func (s *EdiscoveryUnifiedGroupSource) UnmarshalJSON(bytes []byte) error {
 		}
 		s.CreatedBy = impl
 	}
+
 	return nil
 }

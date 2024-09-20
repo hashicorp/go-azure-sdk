@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &PolicyTokenLifetimePolicyIdAppliesToId{}
 
 func TestNewPolicyTokenLifetimePolicyIdAppliesToID(t *testing.T) {
-	id := NewPolicyTokenLifetimePolicyIdAppliesToID("tokenLifetimePolicyIdValue", "directoryObjectIdValue")
+	id := NewPolicyTokenLifetimePolicyIdAppliesToID("tokenLifetimePolicyId", "directoryObjectId")
 
-	if id.TokenLifetimePolicyId != "tokenLifetimePolicyIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'TokenLifetimePolicyId'", id.TokenLifetimePolicyId, "tokenLifetimePolicyIdValue")
+	if id.TokenLifetimePolicyId != "tokenLifetimePolicyId" {
+		t.Fatalf("Expected %q but got %q for Segment 'TokenLifetimePolicyId'", id.TokenLifetimePolicyId, "tokenLifetimePolicyId")
 	}
 
-	if id.DirectoryObjectId != "directoryObjectIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DirectoryObjectId'", id.DirectoryObjectId, "directoryObjectIdValue")
+	if id.DirectoryObjectId != "directoryObjectId" {
+		t.Fatalf("Expected %q but got %q for Segment 'DirectoryObjectId'", id.DirectoryObjectId, "directoryObjectId")
 	}
 }
 
 func TestFormatPolicyTokenLifetimePolicyIdAppliesToID(t *testing.T) {
-	actual := NewPolicyTokenLifetimePolicyIdAppliesToID("tokenLifetimePolicyIdValue", "directoryObjectIdValue").ID()
-	expected := "/policies/tokenLifetimePolicies/tokenLifetimePolicyIdValue/appliesTo/directoryObjectIdValue"
+	actual := NewPolicyTokenLifetimePolicyIdAppliesToID("tokenLifetimePolicyId", "directoryObjectId").ID()
+	expected := "/policies/tokenLifetimePolicies/tokenLifetimePolicyId/appliesTo/directoryObjectId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -54,25 +54,25 @@ func TestParsePolicyTokenLifetimePolicyIdAppliesToID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/policies/tokenLifetimePolicies/tokenLifetimePolicyIdValue",
+			Input: "/policies/tokenLifetimePolicies/tokenLifetimePolicyId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/policies/tokenLifetimePolicies/tokenLifetimePolicyIdValue/appliesTo",
+			Input: "/policies/tokenLifetimePolicies/tokenLifetimePolicyId/appliesTo",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/policies/tokenLifetimePolicies/tokenLifetimePolicyIdValue/appliesTo/directoryObjectIdValue",
+			Input: "/policies/tokenLifetimePolicies/tokenLifetimePolicyId/appliesTo/directoryObjectId",
 			Expected: &PolicyTokenLifetimePolicyIdAppliesToId{
-				TokenLifetimePolicyId: "tokenLifetimePolicyIdValue",
-				DirectoryObjectId:     "directoryObjectIdValue",
+				TokenLifetimePolicyId: "tokenLifetimePolicyId",
+				DirectoryObjectId:     "directoryObjectId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/policies/tokenLifetimePolicies/tokenLifetimePolicyIdValue/appliesTo/directoryObjectIdValue/extra",
+			Input: "/policies/tokenLifetimePolicies/tokenLifetimePolicyId/appliesTo/directoryObjectId/extra",
 			Error: true,
 		},
 	}
@@ -135,48 +135,48 @@ func TestParsePolicyTokenLifetimePolicyIdAppliesToIDInsensitively(t *testing.T) 
 		},
 		{
 			// Incomplete URI
-			Input: "/policies/tokenLifetimePolicies/tokenLifetimePolicyIdValue",
+			Input: "/policies/tokenLifetimePolicies/tokenLifetimePolicyId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/pOlIcIeS/tOkEnLiFeTiMePoLiCiEs/tOkEnLiFeTiMePoLiCyIdVaLuE",
+			Input: "/pOlIcIeS/tOkEnLiFeTiMePoLiCiEs/tOkEnLiFeTiMePoLiCyId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/policies/tokenLifetimePolicies/tokenLifetimePolicyIdValue/appliesTo",
+			Input: "/policies/tokenLifetimePolicies/tokenLifetimePolicyId/appliesTo",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/pOlIcIeS/tOkEnLiFeTiMePoLiCiEs/tOkEnLiFeTiMePoLiCyIdVaLuE/aPpLiEsTo",
+			Input: "/pOlIcIeS/tOkEnLiFeTiMePoLiCiEs/tOkEnLiFeTiMePoLiCyId/aPpLiEsTo",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/policies/tokenLifetimePolicies/tokenLifetimePolicyIdValue/appliesTo/directoryObjectIdValue",
+			Input: "/policies/tokenLifetimePolicies/tokenLifetimePolicyId/appliesTo/directoryObjectId",
 			Expected: &PolicyTokenLifetimePolicyIdAppliesToId{
-				TokenLifetimePolicyId: "tokenLifetimePolicyIdValue",
-				DirectoryObjectId:     "directoryObjectIdValue",
+				TokenLifetimePolicyId: "tokenLifetimePolicyId",
+				DirectoryObjectId:     "directoryObjectId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/policies/tokenLifetimePolicies/tokenLifetimePolicyIdValue/appliesTo/directoryObjectIdValue/extra",
+			Input: "/policies/tokenLifetimePolicies/tokenLifetimePolicyId/appliesTo/directoryObjectId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/pOlIcIeS/tOkEnLiFeTiMePoLiCiEs/tOkEnLiFeTiMePoLiCyIdVaLuE/aPpLiEsTo/dIrEcToRyObJeCtIdVaLuE",
+			Input: "/pOlIcIeS/tOkEnLiFeTiMePoLiCiEs/tOkEnLiFeTiMePoLiCyId/aPpLiEsTo/dIrEcToRyObJeCtId",
 			Expected: &PolicyTokenLifetimePolicyIdAppliesToId{
-				TokenLifetimePolicyId: "tOkEnLiFeTiMePoLiCyIdVaLuE",
-				DirectoryObjectId:     "dIrEcToRyObJeCtIdVaLuE",
+				TokenLifetimePolicyId: "tOkEnLiFeTiMePoLiCyId",
+				DirectoryObjectId:     "dIrEcToRyObJeCtId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/pOlIcIeS/tOkEnLiFeTiMePoLiCiEs/tOkEnLiFeTiMePoLiCyIdVaLuE/aPpLiEsTo/dIrEcToRyObJeCtIdVaLuE/extra",
+			Input: "/pOlIcIeS/tOkEnLiFeTiMePoLiCiEs/tOkEnLiFeTiMePoLiCyId/aPpLiEsTo/dIrEcToRyObJeCtId/extra",
 			Error: true,
 		},
 	}

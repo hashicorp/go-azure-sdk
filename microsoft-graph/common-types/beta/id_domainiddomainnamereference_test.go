@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &DomainIdDomainNameReferenceId{}
 
 func TestNewDomainIdDomainNameReferenceID(t *testing.T) {
-	id := NewDomainIdDomainNameReferenceID("domainIdValue", "directoryObjectIdValue")
+	id := NewDomainIdDomainNameReferenceID("domainId", "directoryObjectId")
 
-	if id.DomainId != "domainIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DomainId'", id.DomainId, "domainIdValue")
+	if id.DomainId != "domainId" {
+		t.Fatalf("Expected %q but got %q for Segment 'DomainId'", id.DomainId, "domainId")
 	}
 
-	if id.DirectoryObjectId != "directoryObjectIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DirectoryObjectId'", id.DirectoryObjectId, "directoryObjectIdValue")
+	if id.DirectoryObjectId != "directoryObjectId" {
+		t.Fatalf("Expected %q but got %q for Segment 'DirectoryObjectId'", id.DirectoryObjectId, "directoryObjectId")
 	}
 }
 
 func TestFormatDomainIdDomainNameReferenceID(t *testing.T) {
-	actual := NewDomainIdDomainNameReferenceID("domainIdValue", "directoryObjectIdValue").ID()
-	expected := "/domains/domainIdValue/domainNameReferences/directoryObjectIdValue"
+	actual := NewDomainIdDomainNameReferenceID("domainId", "directoryObjectId").ID()
+	expected := "/domains/domainId/domainNameReferences/directoryObjectId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -49,25 +49,25 @@ func TestParseDomainIdDomainNameReferenceID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/domains/domainIdValue",
+			Input: "/domains/domainId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/domains/domainIdValue/domainNameReferences",
+			Input: "/domains/domainId/domainNameReferences",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/domains/domainIdValue/domainNameReferences/directoryObjectIdValue",
+			Input: "/domains/domainId/domainNameReferences/directoryObjectId",
 			Expected: &DomainIdDomainNameReferenceId{
-				DomainId:          "domainIdValue",
-				DirectoryObjectId: "directoryObjectIdValue",
+				DomainId:          "domainId",
+				DirectoryObjectId: "directoryObjectId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/domains/domainIdValue/domainNameReferences/directoryObjectIdValue/extra",
+			Input: "/domains/domainId/domainNameReferences/directoryObjectId/extra",
 			Error: true,
 		},
 	}
@@ -120,48 +120,48 @@ func TestParseDomainIdDomainNameReferenceIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/domains/domainIdValue",
+			Input: "/domains/domainId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/dOmAiNs/dOmAiNiDvAlUe",
+			Input: "/dOmAiNs/dOmAiNiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/domains/domainIdValue/domainNameReferences",
+			Input: "/domains/domainId/domainNameReferences",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/dOmAiNs/dOmAiNiDvAlUe/dOmAiNnAmErEfErEnCeS",
+			Input: "/dOmAiNs/dOmAiNiD/dOmAiNnAmErEfErEnCeS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/domains/domainIdValue/domainNameReferences/directoryObjectIdValue",
+			Input: "/domains/domainId/domainNameReferences/directoryObjectId",
 			Expected: &DomainIdDomainNameReferenceId{
-				DomainId:          "domainIdValue",
-				DirectoryObjectId: "directoryObjectIdValue",
+				DomainId:          "domainId",
+				DirectoryObjectId: "directoryObjectId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/domains/domainIdValue/domainNameReferences/directoryObjectIdValue/extra",
+			Input: "/domains/domainId/domainNameReferences/directoryObjectId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/dOmAiNs/dOmAiNiDvAlUe/dOmAiNnAmErEfErEnCeS/dIrEcToRyObJeCtIdVaLuE",
+			Input: "/dOmAiNs/dOmAiNiD/dOmAiNnAmErEfErEnCeS/dIrEcToRyObJeCtId",
 			Expected: &DomainIdDomainNameReferenceId{
-				DomainId:          "dOmAiNiDvAlUe",
-				DirectoryObjectId: "dIrEcToRyObJeCtIdVaLuE",
+				DomainId:          "dOmAiNiD",
+				DirectoryObjectId: "dIrEcToRyObJeCtId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/dOmAiNs/dOmAiNiDvAlUe/dOmAiNnAmErEfErEnCeS/dIrEcToRyObJeCtIdVaLuE/extra",
+			Input: "/dOmAiNs/dOmAiNiD/dOmAiNnAmErEfErEnCeS/dIrEcToRyObJeCtId/extra",
 			Error: true,
 		},
 	}

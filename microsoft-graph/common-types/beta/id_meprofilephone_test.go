@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &MeProfilePhoneId{}
 
 func TestNewMeProfilePhoneID(t *testing.T) {
-	id := NewMeProfilePhoneID("itemPhoneIdValue")
+	id := NewMeProfilePhoneID("itemPhoneId")
 
-	if id.ItemPhoneId != "itemPhoneIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ItemPhoneId'", id.ItemPhoneId, "itemPhoneIdValue")
+	if id.ItemPhoneId != "itemPhoneId" {
+		t.Fatalf("Expected %q but got %q for Segment 'ItemPhoneId'", id.ItemPhoneId, "itemPhoneId")
 	}
 }
 
 func TestFormatMeProfilePhoneID(t *testing.T) {
-	actual := NewMeProfilePhoneID("itemPhoneIdValue").ID()
-	expected := "/me/profile/phones/itemPhoneIdValue"
+	actual := NewMeProfilePhoneID("itemPhoneId").ID()
+	expected := "/me/profile/phones/itemPhoneId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -55,14 +55,14 @@ func TestParseMeProfilePhoneID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/me/profile/phones/itemPhoneIdValue",
+			Input: "/me/profile/phones/itemPhoneId",
 			Expected: &MeProfilePhoneId{
-				ItemPhoneId: "itemPhoneIdValue",
+				ItemPhoneId: "itemPhoneId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/profile/phones/itemPhoneIdValue/extra",
+			Input: "/me/profile/phones/itemPhoneId/extra",
 			Error: true,
 		},
 	}
@@ -131,26 +131,26 @@ func TestParseMeProfilePhoneIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/me/profile/phones/itemPhoneIdValue",
+			Input: "/me/profile/phones/itemPhoneId",
 			Expected: &MeProfilePhoneId{
-				ItemPhoneId: "itemPhoneIdValue",
+				ItemPhoneId: "itemPhoneId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/profile/phones/itemPhoneIdValue/extra",
+			Input: "/me/profile/phones/itemPhoneId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/pRoFiLe/pHoNeS/iTeMpHoNeIdVaLuE",
+			Input: "/mE/pRoFiLe/pHoNeS/iTeMpHoNeId",
 			Expected: &MeProfilePhoneId{
-				ItemPhoneId: "iTeMpHoNeIdVaLuE",
+				ItemPhoneId: "iTeMpHoNeId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/mE/pRoFiLe/pHoNeS/iTeMpHoNeIdVaLuE/extra",
+			Input: "/mE/pRoFiLe/pHoNeS/iTeMpHoNeId/extra",
 			Error: true,
 		},
 	}

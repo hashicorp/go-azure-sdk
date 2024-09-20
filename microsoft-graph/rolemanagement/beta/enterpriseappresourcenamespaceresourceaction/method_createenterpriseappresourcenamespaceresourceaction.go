@@ -19,16 +19,45 @@ type CreateEnterpriseAppResourceNamespaceResourceActionOperationResponse struct 
 	Model        *beta.UnifiedRbacResourceAction
 }
 
+type CreateEnterpriseAppResourceNamespaceResourceActionOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateEnterpriseAppResourceNamespaceResourceActionOperationOptions() CreateEnterpriseAppResourceNamespaceResourceActionOperationOptions {
+	return CreateEnterpriseAppResourceNamespaceResourceActionOperationOptions{}
+}
+
+func (o CreateEnterpriseAppResourceNamespaceResourceActionOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateEnterpriseAppResourceNamespaceResourceActionOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateEnterpriseAppResourceNamespaceResourceActionOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateEnterpriseAppResourceNamespaceResourceAction - Create new navigation property to resourceActions for
 // roleManagement
-func (c EnterpriseAppResourceNamespaceResourceActionClient) CreateEnterpriseAppResourceNamespaceResourceAction(ctx context.Context, id beta.RoleManagementEnterpriseAppIdResourceNamespaceId, input beta.UnifiedRbacResourceAction) (result CreateEnterpriseAppResourceNamespaceResourceActionOperationResponse, err error) {
+func (c EnterpriseAppResourceNamespaceResourceActionClient) CreateEnterpriseAppResourceNamespaceResourceAction(ctx context.Context, id beta.RoleManagementEnterpriseAppIdResourceNamespaceId, input beta.UnifiedRbacResourceAction, options CreateEnterpriseAppResourceNamespaceResourceActionOperationOptions) (result CreateEnterpriseAppResourceNamespaceResourceActionOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/resourceActions", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/resourceActions", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

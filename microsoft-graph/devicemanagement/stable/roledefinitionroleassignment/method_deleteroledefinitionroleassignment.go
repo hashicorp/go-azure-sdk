@@ -19,7 +19,8 @@ type DeleteRoleDefinitionRoleAssignmentOperationResponse struct {
 }
 
 type DeleteRoleDefinitionRoleAssignmentOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteRoleDefinitionRoleAssignmentOperationOptions() DeleteRoleDefinitionRoleAssignmentOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteRoleDefinitionRoleAssignmentOperationOptions) ToHeaders() *client.
 
 func (o DeleteRoleDefinitionRoleAssignmentOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

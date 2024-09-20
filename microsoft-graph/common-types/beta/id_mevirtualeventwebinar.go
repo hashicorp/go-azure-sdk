@@ -94,7 +94,7 @@ func (id MeVirtualEventWebinarId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("me", "me", "me"),
 		resourceids.StaticSegment("virtualEvents", "virtualEvents", "virtualEvents"),
 		resourceids.StaticSegment("webinars", "webinars", "webinars"),
-		resourceids.UserSpecifiedSegment("virtualEventWebinarId", "virtualEventWebinarIdValue"),
+		resourceids.UserSpecifiedSegment("virtualEventWebinarId", "virtualEventWebinarId"),
 	}
 }
 

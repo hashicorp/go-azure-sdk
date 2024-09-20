@@ -18,16 +18,45 @@ type CreateVirtualEndpointDeviceImageReuploadOperationResponse struct {
 	OData        *odata.OData
 }
 
+type CreateVirtualEndpointDeviceImageReuploadOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateVirtualEndpointDeviceImageReuploadOperationOptions() CreateVirtualEndpointDeviceImageReuploadOperationOptions {
+	return CreateVirtualEndpointDeviceImageReuploadOperationOptions{}
+}
+
+func (o CreateVirtualEndpointDeviceImageReuploadOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateVirtualEndpointDeviceImageReuploadOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateVirtualEndpointDeviceImageReuploadOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateVirtualEndpointDeviceImageReupload - Invoke action reupload. Reupload a cloudPcDeviceImage object that failed
 // to upload.
-func (c VirtualEndpointDeviceImageClient) CreateVirtualEndpointDeviceImageReupload(ctx context.Context, id beta.DeviceManagementVirtualEndpointDeviceImageId) (result CreateVirtualEndpointDeviceImageReuploadOperationResponse, err error) {
+func (c VirtualEndpointDeviceImageClient) CreateVirtualEndpointDeviceImageReupload(ctx context.Context, id beta.DeviceManagementVirtualEndpointDeviceImageId, options CreateVirtualEndpointDeviceImageReuploadOperationOptions) (result CreateVirtualEndpointDeviceImageReuploadOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/reupload", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/reupload", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

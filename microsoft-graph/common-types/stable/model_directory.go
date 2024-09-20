@@ -88,10 +88,23 @@ func (s Directory) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &Directory{}
 
 func (s *Directory) UnmarshalJSON(bytes []byte) error {
-	type alias Directory
-	var decoded alias
+
+	var decoded struct {
+		AdministrativeUnits                *[]AdministrativeUnit                 `json:"administrativeUnits,omitempty"`
+		AttributeSets                      *[]AttributeSet                       `json:"attributeSets,omitempty"`
+		CustomSecurityAttributeDefinitions *[]CustomSecurityAttributeDefinition  `json:"customSecurityAttributeDefinitions,omitempty"`
+		DeletedItems                       *[]DirectoryObject                    `json:"deletedItems,omitempty"`
+		DeletedItems_ODataBind             *[]string                             `json:"deletedItems@odata.bind,omitempty"`
+		DeviceLocalCredentials             *[]DeviceLocalCredentialInfo          `json:"deviceLocalCredentials,omitempty"`
+		FederationConfigurations           *[]IdentityProviderBase               `json:"federationConfigurations,omitempty"`
+		OnPremisesSynchronization          *[]OnPremisesDirectorySynchronization `json:"onPremisesSynchronization,omitempty"`
+		Subscriptions                      *[]CompanySubscription                `json:"subscriptions,omitempty"`
+		Id                                 *string                               `json:"id,omitempty"`
+		ODataId                            *string                               `json:"@odata.id,omitempty"`
+		ODataType                          *string                               `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into Directory: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.AdministrativeUnits = decoded.AdministrativeUnits
@@ -99,11 +112,11 @@ func (s *Directory) UnmarshalJSON(bytes []byte) error {
 	s.CustomSecurityAttributeDefinitions = decoded.CustomSecurityAttributeDefinitions
 	s.DeletedItems_ODataBind = decoded.DeletedItems_ODataBind
 	s.DeviceLocalCredentials = decoded.DeviceLocalCredentials
+	s.OnPremisesSynchronization = decoded.OnPremisesSynchronization
+	s.Subscriptions = decoded.Subscriptions
 	s.Id = decoded.Id
 	s.ODataId = decoded.ODataId
 	s.ODataType = decoded.ODataType
-	s.OnPremisesSynchronization = decoded.OnPremisesSynchronization
-	s.Subscriptions = decoded.Subscriptions
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -143,5 +156,6 @@ func (s *Directory) UnmarshalJSON(bytes []byte) error {
 		}
 		s.FederationConfigurations = &output
 	}
+
 	return nil
 }

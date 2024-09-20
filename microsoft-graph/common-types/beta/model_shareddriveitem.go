@@ -137,30 +137,52 @@ func (s SharedDriveItem) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &SharedDriveItem{}
 
 func (s *SharedDriveItem) UnmarshalJSON(bytes []byte) error {
-	type alias SharedDriveItem
-	var decoded alias
+
+	var decoded struct {
+		DriveItem            *DriveItem            `json:"driveItem,omitempty"`
+		Items                *[]DriveItem          `json:"items,omitempty"`
+		List                 *List                 `json:"list,omitempty"`
+		ListItem             *ListItem             `json:"listItem,omitempty"`
+		Permission           *Permission           `json:"permission,omitempty"`
+		Root                 *DriveItem            `json:"root,omitempty"`
+		Site                 *Site                 `json:"site,omitempty"`
+		CreatedBy            *IdentitySet          `json:"createdBy,omitempty"`
+		CreatedByUser        *User                 `json:"createdByUser,omitempty"`
+		CreatedDateTime      *string               `json:"createdDateTime,omitempty"`
+		Description          nullable.Type[string] `json:"description,omitempty"`
+		ETag                 nullable.Type[string] `json:"eTag,omitempty"`
+		LastModifiedBy       *IdentitySet          `json:"lastModifiedBy,omitempty"`
+		LastModifiedByUser   *User                 `json:"lastModifiedByUser,omitempty"`
+		LastModifiedDateTime *string               `json:"lastModifiedDateTime,omitempty"`
+		Name                 nullable.Type[string] `json:"name,omitempty"`
+		ParentReference      *ItemReference        `json:"parentReference,omitempty"`
+		WebUrl               nullable.Type[string] `json:"webUrl,omitempty"`
+		Id                   *string               `json:"id,omitempty"`
+		ODataId              *string               `json:"@odata.id,omitempty"`
+		ODataType            *string               `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into SharedDriveItem: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
+	s.DriveItem = decoded.DriveItem
+	s.Items = decoded.Items
+	s.List = decoded.List
+	s.ListItem = decoded.ListItem
+	s.Permission = decoded.Permission
+	s.Root = decoded.Root
+	s.Site = decoded.Site
 	s.CreatedByUser = decoded.CreatedByUser
 	s.CreatedDateTime = decoded.CreatedDateTime
 	s.Description = decoded.Description
-	s.DriveItem = decoded.DriveItem
 	s.ETag = decoded.ETag
 	s.Id = decoded.Id
-	s.Items = decoded.Items
 	s.LastModifiedByUser = decoded.LastModifiedByUser
 	s.LastModifiedDateTime = decoded.LastModifiedDateTime
-	s.List = decoded.List
-	s.ListItem = decoded.ListItem
 	s.Name = decoded.Name
 	s.ODataId = decoded.ODataId
 	s.ODataType = decoded.ODataType
 	s.ParentReference = decoded.ParentReference
-	s.Permission = decoded.Permission
-	s.Root = decoded.Root
-	s.Site = decoded.Site
 	s.WebUrl = decoded.WebUrl
 
 	var temp map[string]json.RawMessage
@@ -191,5 +213,6 @@ func (s *SharedDriveItem) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Owner = impl
 	}
+
 	return nil
 }

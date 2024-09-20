@@ -17,16 +17,45 @@ type UpdateDeviceCompliancePolicyScheduledActionsForRuleConfigurationOperationRe
 	OData        *odata.OData
 }
 
+type UpdateDeviceCompliancePolicyScheduledActionsForRuleConfigurationOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateDeviceCompliancePolicyScheduledActionsForRuleConfigurationOperationOptions() UpdateDeviceCompliancePolicyScheduledActionsForRuleConfigurationOperationOptions {
+	return UpdateDeviceCompliancePolicyScheduledActionsForRuleConfigurationOperationOptions{}
+}
+
+func (o UpdateDeviceCompliancePolicyScheduledActionsForRuleConfigurationOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateDeviceCompliancePolicyScheduledActionsForRuleConfigurationOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateDeviceCompliancePolicyScheduledActionsForRuleConfigurationOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateDeviceCompliancePolicyScheduledActionsForRuleConfiguration - Update deviceComplianceActionItem. Update the
 // properties of a deviceComplianceActionItem object.
-func (c DeviceCompliancePolicyScheduledActionsForRuleScheduledActionConfigurationClient) UpdateDeviceCompliancePolicyScheduledActionsForRuleConfiguration(ctx context.Context, id stable.DeviceManagementDeviceCompliancePolicyIdScheduledActionsForRuleIdScheduledActionConfigurationId, input stable.DeviceComplianceActionItem) (result UpdateDeviceCompliancePolicyScheduledActionsForRuleConfigurationOperationResponse, err error) {
+func (c DeviceCompliancePolicyScheduledActionsForRuleScheduledActionConfigurationClient) UpdateDeviceCompliancePolicyScheduledActionsForRuleConfiguration(ctx context.Context, id stable.DeviceManagementDeviceCompliancePolicyIdScheduledActionsForRuleIdScheduledActionConfigurationId, input stable.DeviceComplianceActionItem, options UpdateDeviceCompliancePolicyScheduledActionsForRuleConfigurationOperationOptions) (result UpdateDeviceCompliancePolicyScheduledActionsForRuleConfigurationOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

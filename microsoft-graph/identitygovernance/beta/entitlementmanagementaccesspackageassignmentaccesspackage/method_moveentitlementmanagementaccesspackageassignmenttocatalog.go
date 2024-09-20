@@ -18,17 +18,46 @@ type MoveEntitlementManagementAccessPackageAssignmentToCatalogOperationResponse 
 	OData        *odata.OData
 }
 
+type MoveEntitlementManagementAccessPackageAssignmentToCatalogOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultMoveEntitlementManagementAccessPackageAssignmentToCatalogOperationOptions() MoveEntitlementManagementAccessPackageAssignmentToCatalogOperationOptions {
+	return MoveEntitlementManagementAccessPackageAssignmentToCatalogOperationOptions{}
+}
+
+func (o MoveEntitlementManagementAccessPackageAssignmentToCatalogOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o MoveEntitlementManagementAccessPackageAssignmentToCatalogOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o MoveEntitlementManagementAccessPackageAssignmentToCatalogOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // MoveEntitlementManagementAccessPackageAssignmentToCatalog - Invoke action moveToCatalog. In Microsoft Entra
 // entitlement management, this action moves the accessPackage to a specified target accessPackageCatalog. The resources
 // in the access package must be present in the target catalog.
-func (c EntitlementManagementAccessPackageAssignmentAccessPackageClient) MoveEntitlementManagementAccessPackageAssignmentToCatalog(ctx context.Context, id beta.IdentityGovernanceEntitlementManagementAccessPackageAssignmentId, input MoveEntitlementManagementAccessPackageAssignmentToCatalogRequest) (result MoveEntitlementManagementAccessPackageAssignmentToCatalogOperationResponse, err error) {
+func (c EntitlementManagementAccessPackageAssignmentAccessPackageClient) MoveEntitlementManagementAccessPackageAssignmentToCatalog(ctx context.Context, id beta.IdentityGovernanceEntitlementManagementAccessPackageAssignmentId, input MoveEntitlementManagementAccessPackageAssignmentToCatalogRequest, options MoveEntitlementManagementAccessPackageAssignmentToCatalogOperationOptions) (result MoveEntitlementManagementAccessPackageAssignmentToCatalogOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/accessPackage/moveToCatalog", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/accessPackage/moveToCatalog", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

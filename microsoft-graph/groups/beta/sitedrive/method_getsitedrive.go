@@ -2,7 +2,6 @@ package sitedrive
 
 import (
 	"context"
-	"fmt"
 	"net/http"
 
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta"
@@ -20,8 +19,9 @@ type GetSiteDriveOperationResponse struct {
 }
 
 type GetSiteDriveOperationOptions struct {
-	Expand *odata.Expand
-	Select *[]string
+	Expand   *odata.Expand
+	Metadata *odata.Metadata
+	Select   *[]string
 }
 
 func DefaultGetSiteDriveOperationOptions() GetSiteDriveOperationOptions {
@@ -39,6 +39,9 @@ func (o GetSiteDriveOperationOptions) ToOData() *odata.Query {
 	if o.Expand != nil {
 		out.Expand = *o.Expand
 	}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	if o.Select != nil {
 		out.Select = *o.Select
 	}
@@ -51,8 +54,8 @@ func (o GetSiteDriveOperationOptions) ToQuery() *client.QueryParams {
 	return &out
 }
 
-// GetSiteDrive - Get drive from groups. The default drive (document library) for this site.
-func (c SiteDriveClient) GetSiteDrive(ctx context.Context, id beta.GroupIdSiteId, options GetSiteDriveOperationOptions) (result GetSiteDriveOperationResponse, err error) {
+// GetSiteDrive - Get drives from groups. The collection of drives (document libraries) under this site.
+func (c SiteDriveClient) GetSiteDrive(ctx context.Context, id beta.GroupIdSiteIdDriveId, options GetSiteDriveOperationOptions) (result GetSiteDriveOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
@@ -60,7 +63,7 @@ func (c SiteDriveClient) GetSiteDrive(ctx context.Context, id beta.GroupIdSiteId
 		},
 		HttpMethod:    http.MethodGet,
 		OptionsObject: options,
-		Path:          fmt.Sprintf("%s/drive", id.ID()),
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

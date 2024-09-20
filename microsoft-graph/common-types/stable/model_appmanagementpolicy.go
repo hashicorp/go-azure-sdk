@@ -106,21 +106,32 @@ func (s AppManagementPolicy) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &AppManagementPolicy{}
 
 func (s *AppManagementPolicy) UnmarshalJSON(bytes []byte) error {
-	type alias AppManagementPolicy
-	var decoded alias
+
+	var decoded struct {
+		AppliesTo           *[]DirectoryObject                `json:"appliesTo,omitempty"`
+		AppliesTo_ODataBind *[]string                         `json:"appliesTo@odata.bind,omitempty"`
+		IsEnabled           *bool                             `json:"isEnabled,omitempty"`
+		Restrictions        *CustomAppManagementConfiguration `json:"restrictions,omitempty"`
+		Description         nullable.Type[string]             `json:"description,omitempty"`
+		DisplayName         nullable.Type[string]             `json:"displayName,omitempty"`
+		DeletedDateTime     nullable.Type[string]             `json:"deletedDateTime,omitempty"`
+		Id                  *string                           `json:"id,omitempty"`
+		ODataId             *string                           `json:"@odata.id,omitempty"`
+		ODataType           *string                           `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into AppManagementPolicy: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.AppliesTo_ODataBind = decoded.AppliesTo_ODataBind
+	s.IsEnabled = decoded.IsEnabled
+	s.Restrictions = decoded.Restrictions
 	s.DeletedDateTime = decoded.DeletedDateTime
 	s.Description = decoded.Description
 	s.DisplayName = decoded.DisplayName
 	s.Id = decoded.Id
-	s.IsEnabled = decoded.IsEnabled
 	s.ODataId = decoded.ODataId
 	s.ODataType = decoded.ODataType
-	s.Restrictions = decoded.Restrictions
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -143,5 +154,6 @@ func (s *AppManagementPolicy) UnmarshalJSON(bytes []byte) error {
 		}
 		s.AppliesTo = &output
 	}
+
 	return nil
 }

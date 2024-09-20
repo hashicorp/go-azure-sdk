@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &DeviceManagementNotificationMessageTemplateIdLocalizedNotificationMessageId{}
 
 func TestNewDeviceManagementNotificationMessageTemplateIdLocalizedNotificationMessageID(t *testing.T) {
-	id := NewDeviceManagementNotificationMessageTemplateIdLocalizedNotificationMessageID("notificationMessageTemplateIdValue", "localizedNotificationMessageIdValue")
+	id := NewDeviceManagementNotificationMessageTemplateIdLocalizedNotificationMessageID("notificationMessageTemplateId", "localizedNotificationMessageId")
 
-	if id.NotificationMessageTemplateId != "notificationMessageTemplateIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'NotificationMessageTemplateId'", id.NotificationMessageTemplateId, "notificationMessageTemplateIdValue")
+	if id.NotificationMessageTemplateId != "notificationMessageTemplateId" {
+		t.Fatalf("Expected %q but got %q for Segment 'NotificationMessageTemplateId'", id.NotificationMessageTemplateId, "notificationMessageTemplateId")
 	}
 
-	if id.LocalizedNotificationMessageId != "localizedNotificationMessageIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'LocalizedNotificationMessageId'", id.LocalizedNotificationMessageId, "localizedNotificationMessageIdValue")
+	if id.LocalizedNotificationMessageId != "localizedNotificationMessageId" {
+		t.Fatalf("Expected %q but got %q for Segment 'LocalizedNotificationMessageId'", id.LocalizedNotificationMessageId, "localizedNotificationMessageId")
 	}
 }
 
 func TestFormatDeviceManagementNotificationMessageTemplateIdLocalizedNotificationMessageID(t *testing.T) {
-	actual := NewDeviceManagementNotificationMessageTemplateIdLocalizedNotificationMessageID("notificationMessageTemplateIdValue", "localizedNotificationMessageIdValue").ID()
-	expected := "/deviceManagement/notificationMessageTemplates/notificationMessageTemplateIdValue/localizedNotificationMessages/localizedNotificationMessageIdValue"
+	actual := NewDeviceManagementNotificationMessageTemplateIdLocalizedNotificationMessageID("notificationMessageTemplateId", "localizedNotificationMessageId").ID()
+	expected := "/deviceManagement/notificationMessageTemplates/notificationMessageTemplateId/localizedNotificationMessages/localizedNotificationMessageId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -54,25 +54,25 @@ func TestParseDeviceManagementNotificationMessageTemplateIdLocalizedNotification
 		},
 		{
 			// Incomplete URI
-			Input: "/deviceManagement/notificationMessageTemplates/notificationMessageTemplateIdValue",
+			Input: "/deviceManagement/notificationMessageTemplates/notificationMessageTemplateId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/deviceManagement/notificationMessageTemplates/notificationMessageTemplateIdValue/localizedNotificationMessages",
+			Input: "/deviceManagement/notificationMessageTemplates/notificationMessageTemplateId/localizedNotificationMessages",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/notificationMessageTemplates/notificationMessageTemplateIdValue/localizedNotificationMessages/localizedNotificationMessageIdValue",
+			Input: "/deviceManagement/notificationMessageTemplates/notificationMessageTemplateId/localizedNotificationMessages/localizedNotificationMessageId",
 			Expected: &DeviceManagementNotificationMessageTemplateIdLocalizedNotificationMessageId{
-				NotificationMessageTemplateId:  "notificationMessageTemplateIdValue",
-				LocalizedNotificationMessageId: "localizedNotificationMessageIdValue",
+				NotificationMessageTemplateId:  "notificationMessageTemplateId",
+				LocalizedNotificationMessageId: "localizedNotificationMessageId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/notificationMessageTemplates/notificationMessageTemplateIdValue/localizedNotificationMessages/localizedNotificationMessageIdValue/extra",
+			Input: "/deviceManagement/notificationMessageTemplates/notificationMessageTemplateId/localizedNotificationMessages/localizedNotificationMessageId/extra",
 			Error: true,
 		},
 	}
@@ -135,48 +135,48 @@ func TestParseDeviceManagementNotificationMessageTemplateIdLocalizedNotification
 		},
 		{
 			// Incomplete URI
-			Input: "/deviceManagement/notificationMessageTemplates/notificationMessageTemplateIdValue",
+			Input: "/deviceManagement/notificationMessageTemplates/notificationMessageTemplateId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/nOtIfIcAtIoNmEsSaGeTeMpLaTeS/nOtIfIcAtIoNmEsSaGeTeMpLaTeIdVaLuE",
+			Input: "/dEvIcEmAnAgEmEnT/nOtIfIcAtIoNmEsSaGeTeMpLaTeS/nOtIfIcAtIoNmEsSaGeTeMpLaTeId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/deviceManagement/notificationMessageTemplates/notificationMessageTemplateIdValue/localizedNotificationMessages",
+			Input: "/deviceManagement/notificationMessageTemplates/notificationMessageTemplateId/localizedNotificationMessages",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/nOtIfIcAtIoNmEsSaGeTeMpLaTeS/nOtIfIcAtIoNmEsSaGeTeMpLaTeIdVaLuE/lOcAlIzEdNoTiFiCaTiOnMeSsAgEs",
+			Input: "/dEvIcEmAnAgEmEnT/nOtIfIcAtIoNmEsSaGeTeMpLaTeS/nOtIfIcAtIoNmEsSaGeTeMpLaTeId/lOcAlIzEdNoTiFiCaTiOnMeSsAgEs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/notificationMessageTemplates/notificationMessageTemplateIdValue/localizedNotificationMessages/localizedNotificationMessageIdValue",
+			Input: "/deviceManagement/notificationMessageTemplates/notificationMessageTemplateId/localizedNotificationMessages/localizedNotificationMessageId",
 			Expected: &DeviceManagementNotificationMessageTemplateIdLocalizedNotificationMessageId{
-				NotificationMessageTemplateId:  "notificationMessageTemplateIdValue",
-				LocalizedNotificationMessageId: "localizedNotificationMessageIdValue",
+				NotificationMessageTemplateId:  "notificationMessageTemplateId",
+				LocalizedNotificationMessageId: "localizedNotificationMessageId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/notificationMessageTemplates/notificationMessageTemplateIdValue/localizedNotificationMessages/localizedNotificationMessageIdValue/extra",
+			Input: "/deviceManagement/notificationMessageTemplates/notificationMessageTemplateId/localizedNotificationMessages/localizedNotificationMessageId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/nOtIfIcAtIoNmEsSaGeTeMpLaTeS/nOtIfIcAtIoNmEsSaGeTeMpLaTeIdVaLuE/lOcAlIzEdNoTiFiCaTiOnMeSsAgEs/lOcAlIzEdNoTiFiCaTiOnMeSsAgEiDvAlUe",
+			Input: "/dEvIcEmAnAgEmEnT/nOtIfIcAtIoNmEsSaGeTeMpLaTeS/nOtIfIcAtIoNmEsSaGeTeMpLaTeId/lOcAlIzEdNoTiFiCaTiOnMeSsAgEs/lOcAlIzEdNoTiFiCaTiOnMeSsAgEiD",
 			Expected: &DeviceManagementNotificationMessageTemplateIdLocalizedNotificationMessageId{
-				NotificationMessageTemplateId:  "nOtIfIcAtIoNmEsSaGeTeMpLaTeIdVaLuE",
-				LocalizedNotificationMessageId: "lOcAlIzEdNoTiFiCaTiOnMeSsAgEiDvAlUe",
+				NotificationMessageTemplateId:  "nOtIfIcAtIoNmEsSaGeTeMpLaTeId",
+				LocalizedNotificationMessageId: "lOcAlIzEdNoTiFiCaTiOnMeSsAgEiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/nOtIfIcAtIoNmEsSaGeTeMpLaTeS/nOtIfIcAtIoNmEsSaGeTeMpLaTeIdVaLuE/lOcAlIzEdNoTiFiCaTiOnMeSsAgEs/lOcAlIzEdNoTiFiCaTiOnMeSsAgEiDvAlUe/extra",
+			Input: "/dEvIcEmAnAgEmEnT/nOtIfIcAtIoNmEsSaGeTeMpLaTeS/nOtIfIcAtIoNmEsSaGeTeMpLaTeId/lOcAlIzEdNoTiFiCaTiOnMeSsAgEs/lOcAlIzEdNoTiFiCaTiOnMeSsAgEiD/extra",
 			Error: true,
 		},
 	}

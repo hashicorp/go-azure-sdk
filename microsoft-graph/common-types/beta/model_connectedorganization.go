@@ -108,10 +108,26 @@ func (s ConnectedOrganization) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &ConnectedOrganization{}
 
 func (s *ConnectedOrganization) UnmarshalJSON(bytes []byte) error {
-	type alias ConnectedOrganization
-	var decoded alias
+
+	var decoded struct {
+		CreatedBy                  nullable.Type[string]       `json:"createdBy,omitempty"`
+		CreatedDateTime            nullable.Type[string]       `json:"createdDateTime,omitempty"`
+		Description                nullable.Type[string]       `json:"description,omitempty"`
+		DisplayName                nullable.Type[string]       `json:"displayName,omitempty"`
+		ExternalSponsors           *[]DirectoryObject          `json:"externalSponsors,omitempty"`
+		ExternalSponsors_ODataBind *[]string                   `json:"externalSponsors@odata.bind,omitempty"`
+		IdentitySources            *[]IdentitySource           `json:"identitySources,omitempty"`
+		InternalSponsors           *[]DirectoryObject          `json:"internalSponsors,omitempty"`
+		InternalSponsors_ODataBind *[]string                   `json:"internalSponsors@odata.bind,omitempty"`
+		ModifiedBy                 nullable.Type[string]       `json:"modifiedBy,omitempty"`
+		ModifiedDateTime           nullable.Type[string]       `json:"modifiedDateTime,omitempty"`
+		State                      *ConnectedOrganizationState `json:"state,omitempty"`
+		Id                         *string                     `json:"id,omitempty"`
+		ODataId                    *string                     `json:"@odata.id,omitempty"`
+		ODataType                  *string                     `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into ConnectedOrganization: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.CreatedBy = decoded.CreatedBy
@@ -119,13 +135,13 @@ func (s *ConnectedOrganization) UnmarshalJSON(bytes []byte) error {
 	s.Description = decoded.Description
 	s.DisplayName = decoded.DisplayName
 	s.ExternalSponsors_ODataBind = decoded.ExternalSponsors_ODataBind
-	s.Id = decoded.Id
 	s.InternalSponsors_ODataBind = decoded.InternalSponsors_ODataBind
 	s.ModifiedBy = decoded.ModifiedBy
 	s.ModifiedDateTime = decoded.ModifiedDateTime
+	s.State = decoded.State
+	s.Id = decoded.Id
 	s.ODataId = decoded.ODataId
 	s.ODataType = decoded.ODataType
-	s.State = decoded.State
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -182,5 +198,6 @@ func (s *ConnectedOrganization) UnmarshalJSON(bytes []byte) error {
 		}
 		s.InternalSponsors = &output
 	}
+
 	return nil
 }

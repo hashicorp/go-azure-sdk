@@ -19,16 +19,45 @@ type CreateEntitlementManagementResourceEnvironmentResourceScopeResourceRoleOper
 	Model        *stable.AccessPackageResourceRole
 }
 
+type CreateEntitlementManagementResourceEnvironmentResourceScopeResourceRoleOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateEntitlementManagementResourceEnvironmentResourceScopeResourceRoleOperationOptions() CreateEntitlementManagementResourceEnvironmentResourceScopeResourceRoleOperationOptions {
+	return CreateEntitlementManagementResourceEnvironmentResourceScopeResourceRoleOperationOptions{}
+}
+
+func (o CreateEntitlementManagementResourceEnvironmentResourceScopeResourceRoleOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateEntitlementManagementResourceEnvironmentResourceScopeResourceRoleOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateEntitlementManagementResourceEnvironmentResourceScopeResourceRoleOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateEntitlementManagementResourceEnvironmentResourceScopeResourceRole - Create new navigation property to roles for
 // identityGovernance
-func (c EntitlementManagementResourceEnvironmentResourceScopeResourceRoleClient) CreateEntitlementManagementResourceEnvironmentResourceScopeResourceRole(ctx context.Context, id stable.IdentityGovernanceEntitlementManagementResourceEnvironmentIdResourceIdScopeId, input stable.AccessPackageResourceRole) (result CreateEntitlementManagementResourceEnvironmentResourceScopeResourceRoleOperationResponse, err error) {
+func (c EntitlementManagementResourceEnvironmentResourceScopeResourceRoleClient) CreateEntitlementManagementResourceEnvironmentResourceScopeResourceRole(ctx context.Context, id stable.IdentityGovernanceEntitlementManagementResourceEnvironmentIdResourceIdScopeId, input stable.AccessPackageResourceRole, options CreateEntitlementManagementResourceEnvironmentResourceScopeResourceRoleOperationOptions) (result CreateEntitlementManagementResourceEnvironmentResourceScopeResourceRoleOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/resource/roles", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/resource/roles", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

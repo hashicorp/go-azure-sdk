@@ -17,15 +17,44 @@ type UpdateAccessReviewDecisionOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateAccessReviewDecisionOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateAccessReviewDecisionOperationOptions() UpdateAccessReviewDecisionOperationOptions {
+	return UpdateAccessReviewDecisionOperationOptions{}
+}
+
+func (o UpdateAccessReviewDecisionOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateAccessReviewDecisionOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateAccessReviewDecisionOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateAccessReviewDecision - Update the navigation property decisions in identityGovernance
-func (c AccessReviewDecisionClient) UpdateAccessReviewDecision(ctx context.Context, id beta.IdentityGovernanceAccessReviewDecisionId, input beta.AccessReviewInstanceDecisionItem) (result UpdateAccessReviewDecisionOperationResponse, err error) {
+func (c AccessReviewDecisionClient) UpdateAccessReviewDecision(ctx context.Context, id beta.IdentityGovernanceAccessReviewDecisionId, input beta.AccessReviewInstanceDecisionItem, options UpdateAccessReviewDecisionOperationOptions) (result UpdateAccessReviewDecisionOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

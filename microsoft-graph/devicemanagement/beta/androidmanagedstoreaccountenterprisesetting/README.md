@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/androidmanagedstoreaccountenterprisesetting` Documentation
 
-The `androidmanagedstoreaccountenterprisesetting` SDK allows for interaction with the Azure Resource Manager Service `devicemanagement` (API Version `beta`).
+The `androidmanagedstoreaccountenterprisesetting` SDK allows for interaction with Microsoft Graph `devicemanagement` (API Version `beta`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -15,22 +15,22 @@ import "github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/
 ### Client Initialization
 
 ```go
-client := androidmanagedstoreaccountenterprisesetting.NewAndroidManagedStoreAccountEnterpriseSettingClientWithBaseURI("https://management.azure.com")
+client := androidmanagedstoreaccountenterprisesetting.NewAndroidManagedStoreAccountEnterpriseSettingClientWithBaseURI("https://graph.microsoft.com")
 client.Client.Authorizer = authorizer
 ```
 
 
-### Example Usage: `AndroidManagedStoreAccountEnterpriseSettingClient.AddAndroidManagedStoreAccountEnterpriseSettingsApp`
+### Example Usage: `AndroidManagedStoreAccountEnterpriseSettingClient.AddAndroidManagedStoreAccountEnterpriseSettingsApps`
 
 ```go
 ctx := context.TODO()
 
-payload := androidmanagedstoreaccountenterprisesetting.AddAndroidManagedStoreAccountEnterpriseSettingsAppRequest{
+payload := androidmanagedstoreaccountenterprisesetting.AddAndroidManagedStoreAccountEnterpriseSettingsAppsRequest{
 	// ...
 }
 
 
-read, err := client.AddAndroidManagedStoreAccountEnterpriseSettingsApp(ctx, payload)
+read, err := client.AddAndroidManagedStoreAccountEnterpriseSettingsApps(ctx, payload, androidmanagedstoreaccountenterprisesetting.DefaultAddAndroidManagedStoreAccountEnterpriseSettingsAppsOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -50,7 +50,7 @@ payload := androidmanagedstoreaccountenterprisesetting.CreateAndroidManagedStore
 }
 
 
-read, err := client.CreateAndroidManagedStoreAccountEnterpriseSettingApproveApp(ctx, payload)
+read, err := client.CreateAndroidManagedStoreAccountEnterpriseSettingApproveApp(ctx, payload, androidmanagedstoreaccountenterprisesetting.DefaultCreateAndroidManagedStoreAccountEnterpriseSettingApproveAppOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -70,7 +70,7 @@ payload := androidmanagedstoreaccountenterprisesetting.CreateAndroidManagedStore
 }
 
 
-read, err := client.CreateAndroidManagedStoreAccountEnterpriseSettingCompleteSignup(ctx, payload)
+read, err := client.CreateAndroidManagedStoreAccountEnterpriseSettingCompleteSignup(ctx, payload, androidmanagedstoreaccountenterprisesetting.DefaultCreateAndroidManagedStoreAccountEnterpriseSettingCompleteSignupOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -86,7 +86,7 @@ if model := read.Model; model != nil {
 ctx := context.TODO()
 
 
-read, err := client.CreateAndroidManagedStoreAccountEnterpriseSettingUnbind(ctx)
+read, err := client.CreateAndroidManagedStoreAccountEnterpriseSettingUnbind(ctx, androidmanagedstoreaccountenterprisesetting.DefaultCreateAndroidManagedStoreAccountEnterpriseSettingUnbindOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -106,7 +106,7 @@ payload := androidmanagedstoreaccountenterprisesetting.CreateAndroidManagedStore
 }
 
 
-read, err := client.CreateAndroidManagedStoreAccountEnterpriseSettingsGooglePlayWebToken(ctx, payload)
+read, err := client.CreateAndroidManagedStoreAccountEnterpriseSettingsGooglePlayWebToken(ctx, payload, androidmanagedstoreaccountenterprisesetting.DefaultCreateAndroidManagedStoreAccountEnterpriseSettingsGooglePlayWebTokenOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -158,7 +158,7 @@ payload := androidmanagedstoreaccountenterprisesetting.RequestAndroidManagedStor
 }
 
 
-read, err := client.RequestAndroidManagedStoreAccountEnterpriseSettingsSignupUrl(ctx, payload)
+read, err := client.RequestAndroidManagedStoreAccountEnterpriseSettingsSignupUrl(ctx, payload, androidmanagedstoreaccountenterprisesetting.DefaultRequestAndroidManagedStoreAccountEnterpriseSettingsSignupUrlOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -178,7 +178,7 @@ payload := androidmanagedstoreaccountenterprisesetting.SetAndroidManagedStoreAcc
 }
 
 
-read, err := client.SetAndroidManagedStoreAccountEnterpriseSettingsAndroidDeviceOwnerFullyManagedEnrollmentState(ctx, payload)
+read, err := client.SetAndroidManagedStoreAccountEnterpriseSettingsAndroidDeviceOwnerFullyManagedEnrollmentState(ctx, payload, androidmanagedstoreaccountenterprisesetting.DefaultSetAndroidManagedStoreAccountEnterpriseSettingsAndroidDeviceOwnerFullyManagedEnrollmentStateOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -188,13 +188,13 @@ if model := read.Model; model != nil {
 ```
 
 
-### Example Usage: `AndroidManagedStoreAccountEnterpriseSettingClient.SyncAndroidManagedStoreAccountEnterpriseSettingsApp`
+### Example Usage: `AndroidManagedStoreAccountEnterpriseSettingClient.SyncAndroidManagedStoreAccountEnterpriseSettingsApps`
 
 ```go
 ctx := context.TODO()
 
 
-read, err := client.SyncAndroidManagedStoreAccountEnterpriseSettingsApp(ctx)
+read, err := client.SyncAndroidManagedStoreAccountEnterpriseSettingsApps(ctx, androidmanagedstoreaccountenterprisesetting.DefaultSyncAndroidManagedStoreAccountEnterpriseSettingsAppsOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -214,7 +214,7 @@ payload := androidmanagedstoreaccountenterprisesetting.AndroidManagedStoreAccoun
 }
 
 
-read, err := client.UpdateAndroidManagedStoreAccountEnterpriseSetting(ctx, payload)
+read, err := client.UpdateAndroidManagedStoreAccountEnterpriseSetting(ctx, payload, androidmanagedstoreaccountenterprisesetting.DefaultUpdateAndroidManagedStoreAccountEnterpriseSettingOperationOptions())
 if err != nil {
 	// handle the error
 }

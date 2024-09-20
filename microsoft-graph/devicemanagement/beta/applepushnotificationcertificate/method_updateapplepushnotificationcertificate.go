@@ -17,16 +17,45 @@ type UpdateApplePushNotificationCertificateOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateApplePushNotificationCertificateOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateApplePushNotificationCertificateOperationOptions() UpdateApplePushNotificationCertificateOperationOptions {
+	return UpdateApplePushNotificationCertificateOperationOptions{}
+}
+
+func (o UpdateApplePushNotificationCertificateOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateApplePushNotificationCertificateOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateApplePushNotificationCertificateOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateApplePushNotificationCertificate - Update the navigation property applePushNotificationCertificate in
 // deviceManagement
-func (c ApplePushNotificationCertificateClient) UpdateApplePushNotificationCertificate(ctx context.Context, input beta.ApplePushNotificationCertificate) (result UpdateApplePushNotificationCertificateOperationResponse, err error) {
+func (c ApplePushNotificationCertificateClient) UpdateApplePushNotificationCertificate(ctx context.Context, input beta.ApplePushNotificationCertificate, options UpdateApplePushNotificationCertificateOperationOptions) (result UpdateApplePushNotificationCertificateOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       "/deviceManagement/applePushNotificationCertificate",
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          "/deviceManagement/applePushNotificationCertificate",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

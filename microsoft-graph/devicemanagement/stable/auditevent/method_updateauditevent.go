@@ -17,15 +17,44 @@ type UpdateAuditEventOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateAuditEventOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateAuditEventOperationOptions() UpdateAuditEventOperationOptions {
+	return UpdateAuditEventOperationOptions{}
+}
+
+func (o UpdateAuditEventOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateAuditEventOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateAuditEventOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateAuditEvent - Update auditEvent. Update the properties of a auditEvent object.
-func (c AuditEventClient) UpdateAuditEvent(ctx context.Context, id stable.DeviceManagementAuditEventId, input stable.AuditEvent) (result UpdateAuditEventOperationResponse, err error) {
+func (c AuditEventClient) UpdateAuditEvent(ctx context.Context, id stable.DeviceManagementAuditEventId, input stable.AuditEvent, options UpdateAuditEventOperationOptions) (result UpdateAuditEventOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -18,15 +18,44 @@ type CreateProfileNoteOperationResponse struct {
 	Model        *beta.PersonAnnotation
 }
 
+type CreateProfileNoteOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateProfileNoteOperationOptions() CreateProfileNoteOperationOptions {
+	return CreateProfileNoteOperationOptions{}
+}
+
+func (o CreateProfileNoteOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateProfileNoteOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateProfileNoteOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateProfileNote - Create personAnnotation. Create a new personAnnotation object in a user's profile.
-func (c ProfileNoteClient) CreateProfileNote(ctx context.Context, input beta.PersonAnnotation) (result CreateProfileNoteOperationResponse, err error) {
+func (c ProfileNoteClient) CreateProfileNote(ctx context.Context, input beta.PersonAnnotation, options CreateProfileNoteOperationOptions) (result CreateProfileNoteOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/me/profile/notes",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/me/profile/notes",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -17,16 +17,45 @@ type UpdateWindowsInformationProtectionAppLearningSummaryOperationResponse struc
 	OData        *odata.OData
 }
 
+type UpdateWindowsInformationProtectionAppLearningSummaryOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateWindowsInformationProtectionAppLearningSummaryOperationOptions() UpdateWindowsInformationProtectionAppLearningSummaryOperationOptions {
+	return UpdateWindowsInformationProtectionAppLearningSummaryOperationOptions{}
+}
+
+func (o UpdateWindowsInformationProtectionAppLearningSummaryOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateWindowsInformationProtectionAppLearningSummaryOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateWindowsInformationProtectionAppLearningSummaryOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateWindowsInformationProtectionAppLearningSummary - Update the navigation property
 // windowsInformationProtectionAppLearningSummaries in deviceManagement
-func (c WindowsInformationProtectionAppLearningSummaryClient) UpdateWindowsInformationProtectionAppLearningSummary(ctx context.Context, id beta.DeviceManagementWindowsInformationProtectionAppLearningSummaryId, input beta.WindowsInformationProtectionAppLearningSummary) (result UpdateWindowsInformationProtectionAppLearningSummaryOperationResponse, err error) {
+func (c WindowsInformationProtectionAppLearningSummaryClient) UpdateWindowsInformationProtectionAppLearningSummary(ctx context.Context, id beta.DeviceManagementWindowsInformationProtectionAppLearningSummaryId, input beta.WindowsInformationProtectionAppLearningSummary, options UpdateWindowsInformationProtectionAppLearningSummaryOperationOptions) (result UpdateWindowsInformationProtectionAppLearningSummaryOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

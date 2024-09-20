@@ -18,16 +18,45 @@ type CreateChatMessageUndoSoftDeleteOperationResponse struct {
 	OData        *odata.OData
 }
 
+type CreateChatMessageUndoSoftDeleteOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateChatMessageUndoSoftDeleteOperationOptions() CreateChatMessageUndoSoftDeleteOperationOptions {
+	return CreateChatMessageUndoSoftDeleteOperationOptions{}
+}
+
+func (o CreateChatMessageUndoSoftDeleteOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateChatMessageUndoSoftDeleteOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateChatMessageUndoSoftDeleteOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateChatMessageUndoSoftDelete - Invoke action undoSoftDelete. Undo soft deletion of a single chatMessage or a chat
 // message reply in a channel or a chat.
-func (c ChatMessageClient) CreateChatMessageUndoSoftDelete(ctx context.Context, id beta.UserIdChatIdMessageId) (result CreateChatMessageUndoSoftDeleteOperationResponse, err error) {
+func (c ChatMessageClient) CreateChatMessageUndoSoftDelete(ctx context.Context, id beta.UserIdChatIdMessageId, options CreateChatMessageUndoSoftDeleteOperationOptions) (result CreateChatMessageUndoSoftDeleteOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/undoSoftDelete", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/undoSoftDelete", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

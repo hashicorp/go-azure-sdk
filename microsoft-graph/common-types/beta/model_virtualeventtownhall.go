@@ -123,20 +123,37 @@ func (s VirtualEventTownhall) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &VirtualEventTownhall{}
 
 func (s *VirtualEventTownhall) UnmarshalJSON(bytes []byte) error {
-	type alias VirtualEventTownhall
-	var decoded alias
+
+	var decoded struct {
+		Audience         *MeetingAudience              `json:"audience,omitempty"`
+		CoOrganizers     *[]CommunicationsUserIdentity `json:"coOrganizers,omitempty"`
+		InvitedAttendees *[]Identity                   `json:"invitedAttendees,omitempty"`
+		IsInviteOnly     nullable.Type[bool]           `json:"isInviteOnly,omitempty"`
+		CreatedBy        *CommunicationsIdentitySet    `json:"createdBy,omitempty"`
+		Description      *ItemBody                     `json:"description,omitempty"`
+		DisplayName      nullable.Type[string]         `json:"displayName,omitempty"`
+		EndDateTime      *DateTimeTimeZone             `json:"endDateTime,omitempty"`
+		Presenters       *[]VirtualEventPresenter      `json:"presenters,omitempty"`
+		Sessions         *[]VirtualEventSession        `json:"sessions,omitempty"`
+		Settings         *VirtualEventSettings         `json:"settings,omitempty"`
+		StartDateTime    *DateTimeTimeZone             `json:"startDateTime,omitempty"`
+		Status           *VirtualEventStatus           `json:"status,omitempty"`
+		Id               *string                       `json:"id,omitempty"`
+		ODataId          *string                       `json:"@odata.id,omitempty"`
+		ODataType        *string                       `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into VirtualEventTownhall: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.Audience = decoded.Audience
 	s.CoOrganizers = decoded.CoOrganizers
+	s.IsInviteOnly = decoded.IsInviteOnly
 	s.CreatedBy = decoded.CreatedBy
 	s.Description = decoded.Description
 	s.DisplayName = decoded.DisplayName
 	s.EndDateTime = decoded.EndDateTime
 	s.Id = decoded.Id
-	s.IsInviteOnly = decoded.IsInviteOnly
 	s.ODataId = decoded.ODataId
 	s.ODataType = decoded.ODataType
 	s.Presenters = decoded.Presenters
@@ -166,5 +183,6 @@ func (s *VirtualEventTownhall) UnmarshalJSON(bytes []byte) error {
 		}
 		s.InvitedAttendees = &output
 	}
+
 	return nil
 }

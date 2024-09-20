@@ -17,15 +17,44 @@ type UpdateIosUpdateStatusOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateIosUpdateStatusOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateIosUpdateStatusOperationOptions() UpdateIosUpdateStatusOperationOptions {
+	return UpdateIosUpdateStatusOperationOptions{}
+}
+
+func (o UpdateIosUpdateStatusOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateIosUpdateStatusOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateIosUpdateStatusOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateIosUpdateStatus - Update the navigation property iosUpdateStatuses in deviceManagement
-func (c IosUpdateStatusClient) UpdateIosUpdateStatus(ctx context.Context, id beta.DeviceManagementIosUpdateStatusId, input beta.IosUpdateDeviceStatus) (result UpdateIosUpdateStatusOperationResponse, err error) {
+func (c IosUpdateStatusClient) UpdateIosUpdateStatus(ctx context.Context, id beta.DeviceManagementIosUpdateStatusId, input beta.IosUpdateDeviceStatus, options UpdateIosUpdateStatusOperationOptions) (result UpdateIosUpdateStatusOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

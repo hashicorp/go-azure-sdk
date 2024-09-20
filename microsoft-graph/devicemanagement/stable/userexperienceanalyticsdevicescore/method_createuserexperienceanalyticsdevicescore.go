@@ -18,16 +18,45 @@ type CreateUserExperienceAnalyticsDeviceScoreOperationResponse struct {
 	Model        *stable.UserExperienceAnalyticsDeviceScores
 }
 
+type CreateUserExperienceAnalyticsDeviceScoreOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateUserExperienceAnalyticsDeviceScoreOperationOptions() CreateUserExperienceAnalyticsDeviceScoreOperationOptions {
+	return CreateUserExperienceAnalyticsDeviceScoreOperationOptions{}
+}
+
+func (o CreateUserExperienceAnalyticsDeviceScoreOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateUserExperienceAnalyticsDeviceScoreOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateUserExperienceAnalyticsDeviceScoreOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateUserExperienceAnalyticsDeviceScore - Create new navigation property to userExperienceAnalyticsDeviceScores for
 // deviceManagement
-func (c UserExperienceAnalyticsDeviceScoreClient) CreateUserExperienceAnalyticsDeviceScore(ctx context.Context, input stable.UserExperienceAnalyticsDeviceScores) (result CreateUserExperienceAnalyticsDeviceScoreOperationResponse, err error) {
+func (c UserExperienceAnalyticsDeviceScoreClient) CreateUserExperienceAnalyticsDeviceScore(ctx context.Context, input stable.UserExperienceAnalyticsDeviceScores, options CreateUserExperienceAnalyticsDeviceScoreOperationOptions) (result CreateUserExperienceAnalyticsDeviceScoreOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/deviceManagement/userExperienceAnalyticsDeviceScores",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/deviceManagement/userExperienceAnalyticsDeviceScores",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

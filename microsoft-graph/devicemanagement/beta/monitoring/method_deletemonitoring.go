@@ -18,7 +18,8 @@ type DeleteMonitoringOperationResponse struct {
 }
 
 type DeleteMonitoringOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteMonitoringOperationOptions() DeleteMonitoringOperationOptions {
@@ -35,7 +36,9 @@ func (o DeleteMonitoringOperationOptions) ToHeaders() *client.Headers {
 
 func (o DeleteMonitoringOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

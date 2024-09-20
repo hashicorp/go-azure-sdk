@@ -63,10 +63,25 @@ type MailTips struct {
 var _ json.Unmarshaler = &MailTips{}
 
 func (s *MailTips) UnmarshalJSON(bytes []byte) error {
-	type alias MailTips
-	var decoded alias
+
+	var decoded struct {
+		AutomaticReplies     *AutomaticRepliesMailTips `json:"automaticReplies,omitempty"`
+		CustomMailTip        nullable.Type[string]     `json:"customMailTip,omitempty"`
+		DeliveryRestricted   nullable.Type[bool]       `json:"deliveryRestricted,omitempty"`
+		EmailAddress         *EmailAddress             `json:"emailAddress,omitempty"`
+		Error                *MailTipsError            `json:"error,omitempty"`
+		ExternalMemberCount  nullable.Type[int64]      `json:"externalMemberCount,omitempty"`
+		IsModerated          nullable.Type[bool]       `json:"isModerated,omitempty"`
+		MailboxFull          nullable.Type[bool]       `json:"mailboxFull,omitempty"`
+		MaxMessageSize       nullable.Type[int64]      `json:"maxMessageSize,omitempty"`
+		ODataId              *string                   `json:"@odata.id,omitempty"`
+		ODataType            *string                   `json:"@odata.type,omitempty"`
+		RecipientScope       *RecipientScopeType       `json:"recipientScope,omitempty"`
+		RecipientSuggestions *[]Recipient              `json:"recipientSuggestions,omitempty"`
+		TotalMemberCount     nullable.Type[int64]      `json:"totalMemberCount,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into MailTips: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.AutomaticReplies = decoded.AutomaticReplies
@@ -104,5 +119,6 @@ func (s *MailTips) UnmarshalJSON(bytes []byte) error {
 		}
 		s.RecipientSuggestions = &output
 	}
+
 	return nil
 }

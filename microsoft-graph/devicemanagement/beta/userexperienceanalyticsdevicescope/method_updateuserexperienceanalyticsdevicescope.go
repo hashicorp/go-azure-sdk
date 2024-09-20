@@ -17,16 +17,45 @@ type UpdateUserExperienceAnalyticsDeviceScopeOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateUserExperienceAnalyticsDeviceScopeOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateUserExperienceAnalyticsDeviceScopeOperationOptions() UpdateUserExperienceAnalyticsDeviceScopeOperationOptions {
+	return UpdateUserExperienceAnalyticsDeviceScopeOperationOptions{}
+}
+
+func (o UpdateUserExperienceAnalyticsDeviceScopeOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateUserExperienceAnalyticsDeviceScopeOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateUserExperienceAnalyticsDeviceScopeOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateUserExperienceAnalyticsDeviceScope - Update the navigation property userExperienceAnalyticsDeviceScopes in
 // deviceManagement
-func (c UserExperienceAnalyticsDeviceScopeClient) UpdateUserExperienceAnalyticsDeviceScope(ctx context.Context, id beta.DeviceManagementUserExperienceAnalyticsDeviceScopeId, input beta.UserExperienceAnalyticsDeviceScope) (result UpdateUserExperienceAnalyticsDeviceScopeOperationResponse, err error) {
+func (c UserExperienceAnalyticsDeviceScopeClient) UpdateUserExperienceAnalyticsDeviceScope(ctx context.Context, id beta.DeviceManagementUserExperienceAnalyticsDeviceScopeId, input beta.UserExperienceAnalyticsDeviceScope, options UpdateUserExperienceAnalyticsDeviceScopeOperationOptions) (result UpdateUserExperienceAnalyticsDeviceScopeOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

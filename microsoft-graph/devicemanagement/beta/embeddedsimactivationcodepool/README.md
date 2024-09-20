@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/embeddedsimactivationcodepool` Documentation
 
-The `embeddedsimactivationcodepool` SDK allows for interaction with the Azure Resource Manager Service `devicemanagement` (API Version `beta`).
+The `embeddedsimactivationcodepool` SDK allows for interaction with Microsoft Graph `devicemanagement` (API Version `beta`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -15,7 +15,7 @@ import "github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/
 ### Client Initialization
 
 ```go
-client := embeddedsimactivationcodepool.NewEmbeddedSIMActivationCodePoolClientWithBaseURI("https://management.azure.com")
+client := embeddedsimactivationcodepool.NewEmbeddedSIMActivationCodePoolClientWithBaseURI("https://graph.microsoft.com")
 client.Client.Authorizer = authorizer
 ```
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := embeddedsimactivationcodepool.NewDeviceManagementEmbeddedSIMActivationCodePoolID("embeddedSIMActivationCodePoolIdValue")
+id := embeddedsimactivationcodepool.NewDeviceManagementEmbeddedSIMActivationCodePoolID("embeddedSIMActivationCodePoolId")
 
 payload := embeddedsimactivationcodepool.AssignEmbeddedSIMActivationCodePoolsRequest{
 	// ...
@@ -52,7 +52,7 @@ payload := embeddedsimactivationcodepool.EmbeddedSIMActivationCodePool{
 }
 
 
-read, err := client.CreateEmbeddedSIMActivationCodePool(ctx, payload)
+read, err := client.CreateEmbeddedSIMActivationCodePool(ctx, payload, embeddedsimactivationcodepool.DefaultCreateEmbeddedSIMActivationCodePoolOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -66,7 +66,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := embeddedsimactivationcodepool.NewDeviceManagementEmbeddedSIMActivationCodePoolID("embeddedSIMActivationCodePoolIdValue")
+id := embeddedsimactivationcodepool.NewDeviceManagementEmbeddedSIMActivationCodePoolID("embeddedSIMActivationCodePoolId")
 
 read, err := client.DeleteEmbeddedSIMActivationCodePool(ctx, id, embeddedsimactivationcodepool.DefaultDeleteEmbeddedSIMActivationCodePoolOperationOptions())
 if err != nil {
@@ -82,7 +82,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := embeddedsimactivationcodepool.NewDeviceManagementEmbeddedSIMActivationCodePoolID("embeddedSIMActivationCodePoolIdValue")
+id := embeddedsimactivationcodepool.NewDeviceManagementEmbeddedSIMActivationCodePoolID("embeddedSIMActivationCodePoolId")
 
 read, err := client.GetEmbeddedSIMActivationCodePool(ctx, id, embeddedsimactivationcodepool.DefaultGetEmbeddedSIMActivationCodePoolOperationOptions())
 if err != nil {
@@ -131,14 +131,14 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := embeddedsimactivationcodepool.NewDeviceManagementEmbeddedSIMActivationCodePoolID("embeddedSIMActivationCodePoolIdValue")
+id := embeddedsimactivationcodepool.NewDeviceManagementEmbeddedSIMActivationCodePoolID("embeddedSIMActivationCodePoolId")
 
 payload := embeddedsimactivationcodepool.EmbeddedSIMActivationCodePool{
 	// ...
 }
 
 
-read, err := client.UpdateEmbeddedSIMActivationCodePool(ctx, id, payload)
+read, err := client.UpdateEmbeddedSIMActivationCodePool(ctx, id, payload, embeddedsimactivationcodepool.DefaultUpdateEmbeddedSIMActivationCodePoolOperationOptions())
 if err != nil {
 	// handle the error
 }

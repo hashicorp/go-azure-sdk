@@ -17,16 +17,45 @@ type GetReportsConfigurationPolicySettingsDeviceSummaryReportOperationResponse s
 	Model        *[]byte
 }
 
+type GetReportsConfigurationPolicySettingsDeviceSummaryReportOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultGetReportsConfigurationPolicySettingsDeviceSummaryReportOperationOptions() GetReportsConfigurationPolicySettingsDeviceSummaryReportOperationOptions {
+	return GetReportsConfigurationPolicySettingsDeviceSummaryReportOperationOptions{}
+}
+
+func (o GetReportsConfigurationPolicySettingsDeviceSummaryReportOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o GetReportsConfigurationPolicySettingsDeviceSummaryReportOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o GetReportsConfigurationPolicySettingsDeviceSummaryReportOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // GetReportsConfigurationPolicySettingsDeviceSummaryReport - Invoke action
 // getConfigurationPolicySettingsDeviceSummaryReport
-func (c ReportClient) GetReportsConfigurationPolicySettingsDeviceSummaryReport(ctx context.Context, input GetReportsConfigurationPolicySettingsDeviceSummaryReportRequest) (result GetReportsConfigurationPolicySettingsDeviceSummaryReportOperationResponse, err error) {
+func (c ReportClient) GetReportsConfigurationPolicySettingsDeviceSummaryReport(ctx context.Context, input GetReportsConfigurationPolicySettingsDeviceSummaryReportRequest, options GetReportsConfigurationPolicySettingsDeviceSummaryReportOperationOptions) (result GetReportsConfigurationPolicySettingsDeviceSummaryReportOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/octet-stream",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/deviceManagement/reports/getConfigurationPolicySettingsDeviceSummaryReport",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/deviceManagement/reports/getConfigurationPolicySettingsDeviceSummaryReport",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

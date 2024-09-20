@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &MeCloudClipboardItemId{}
 
 func TestNewMeCloudClipboardItemID(t *testing.T) {
-	id := NewMeCloudClipboardItemID("cloudClipboardItemIdValue")
+	id := NewMeCloudClipboardItemID("cloudClipboardItemId")
 
-	if id.CloudClipboardItemId != "cloudClipboardItemIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'CloudClipboardItemId'", id.CloudClipboardItemId, "cloudClipboardItemIdValue")
+	if id.CloudClipboardItemId != "cloudClipboardItemId" {
+		t.Fatalf("Expected %q but got %q for Segment 'CloudClipboardItemId'", id.CloudClipboardItemId, "cloudClipboardItemId")
 	}
 }
 
 func TestFormatMeCloudClipboardItemID(t *testing.T) {
-	actual := NewMeCloudClipboardItemID("cloudClipboardItemIdValue").ID()
-	expected := "/me/cloudClipboard/items/cloudClipboardItemIdValue"
+	actual := NewMeCloudClipboardItemID("cloudClipboardItemId").ID()
+	expected := "/me/cloudClipboard/items/cloudClipboardItemId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -55,14 +55,14 @@ func TestParseMeCloudClipboardItemID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/me/cloudClipboard/items/cloudClipboardItemIdValue",
+			Input: "/me/cloudClipboard/items/cloudClipboardItemId",
 			Expected: &MeCloudClipboardItemId{
-				CloudClipboardItemId: "cloudClipboardItemIdValue",
+				CloudClipboardItemId: "cloudClipboardItemId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/cloudClipboard/items/cloudClipboardItemIdValue/extra",
+			Input: "/me/cloudClipboard/items/cloudClipboardItemId/extra",
 			Error: true,
 		},
 	}
@@ -131,26 +131,26 @@ func TestParseMeCloudClipboardItemIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/me/cloudClipboard/items/cloudClipboardItemIdValue",
+			Input: "/me/cloudClipboard/items/cloudClipboardItemId",
 			Expected: &MeCloudClipboardItemId{
-				CloudClipboardItemId: "cloudClipboardItemIdValue",
+				CloudClipboardItemId: "cloudClipboardItemId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/cloudClipboard/items/cloudClipboardItemIdValue/extra",
+			Input: "/me/cloudClipboard/items/cloudClipboardItemId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/cLoUdClIpBoArD/iTeMs/cLoUdClIpBoArDiTeMiDvAlUe",
+			Input: "/mE/cLoUdClIpBoArD/iTeMs/cLoUdClIpBoArDiTeMiD",
 			Expected: &MeCloudClipboardItemId{
-				CloudClipboardItemId: "cLoUdClIpBoArDiTeMiDvAlUe",
+				CloudClipboardItemId: "cLoUdClIpBoArDiTeMiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/mE/cLoUdClIpBoArD/iTeMs/cLoUdClIpBoArDiTeMiDvAlUe/extra",
+			Input: "/mE/cLoUdClIpBoArD/iTeMs/cLoUdClIpBoArDiTeMiD/extra",
 			Error: true,
 		},
 	}

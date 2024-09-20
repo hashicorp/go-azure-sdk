@@ -29,10 +29,16 @@ type IosNetworkUsageRule struct {
 var _ json.Unmarshaler = &IosNetworkUsageRule{}
 
 func (s *IosNetworkUsageRule) UnmarshalJSON(bytes []byte) error {
-	type alias IosNetworkUsageRule
-	var decoded alias
+
+	var decoded struct {
+		CellularDataBlockWhenRoaming *bool          `json:"cellularDataBlockWhenRoaming,omitempty"`
+		CellularDataBlocked          *bool          `json:"cellularDataBlocked,omitempty"`
+		ManagedApps                  *[]AppListItem `json:"managedApps,omitempty"`
+		ODataId                      *string        `json:"@odata.id,omitempty"`
+		ODataType                    *string        `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into IosNetworkUsageRule: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.CellularDataBlockWhenRoaming = decoded.CellularDataBlockWhenRoaming
@@ -61,5 +67,6 @@ func (s *IosNetworkUsageRule) UnmarshalJSON(bytes []byte) error {
 		}
 		s.ManagedApps = &output
 	}
+
 	return nil
 }

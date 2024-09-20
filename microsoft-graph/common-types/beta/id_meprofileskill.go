@@ -94,7 +94,7 @@ func (id MeProfileSkillId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("me", "me", "me"),
 		resourceids.StaticSegment("profile", "profile", "profile"),
 		resourceids.StaticSegment("skills", "skills", "skills"),
-		resourceids.UserSpecifiedSegment("skillProficiencyId", "skillProficiencyIdValue"),
+		resourceids.UserSpecifiedSegment("skillProficiencyId", "skillProficiencyId"),
 	}
 }
 

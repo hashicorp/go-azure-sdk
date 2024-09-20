@@ -17,16 +17,45 @@ type UpdateDeviceConfigurationDeviceSettingStateSummaryOperationResponse struct 
 	OData        *odata.OData
 }
 
+type UpdateDeviceConfigurationDeviceSettingStateSummaryOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateDeviceConfigurationDeviceSettingStateSummaryOperationOptions() UpdateDeviceConfigurationDeviceSettingStateSummaryOperationOptions {
+	return UpdateDeviceConfigurationDeviceSettingStateSummaryOperationOptions{}
+}
+
+func (o UpdateDeviceConfigurationDeviceSettingStateSummaryOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateDeviceConfigurationDeviceSettingStateSummaryOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateDeviceConfigurationDeviceSettingStateSummaryOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateDeviceConfigurationDeviceSettingStateSummary - Update settingStateDeviceSummary. Update the properties of a
 // settingStateDeviceSummary object.
-func (c DeviceConfigurationDeviceSettingStateSummaryClient) UpdateDeviceConfigurationDeviceSettingStateSummary(ctx context.Context, id stable.DeviceManagementDeviceConfigurationIdDeviceSettingStateSummaryId, input stable.SettingStateDeviceSummary) (result UpdateDeviceConfigurationDeviceSettingStateSummaryOperationResponse, err error) {
+func (c DeviceConfigurationDeviceSettingStateSummaryClient) UpdateDeviceConfigurationDeviceSettingStateSummary(ctx context.Context, id stable.DeviceManagementDeviceConfigurationIdDeviceSettingStateSummaryId, input stable.SettingStateDeviceSummary, options UpdateDeviceConfigurationDeviceSettingStateSummaryOperationOptions) (result UpdateDeviceConfigurationDeviceSettingStateSummaryOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -18,15 +18,44 @@ type CreateAppRoleAssignmentOperationResponse struct {
 	Model        *stable.AppRoleAssignment
 }
 
+type CreateAppRoleAssignmentOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateAppRoleAssignmentOperationOptions() CreateAppRoleAssignmentOperationOptions {
+	return CreateAppRoleAssignmentOperationOptions{}
+}
+
+func (o CreateAppRoleAssignmentOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateAppRoleAssignmentOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateAppRoleAssignmentOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateAppRoleAssignment - Create new navigation property to appRoleAssignments for me
-func (c AppRoleAssignmentClient) CreateAppRoleAssignment(ctx context.Context, input stable.AppRoleAssignment) (result CreateAppRoleAssignmentOperationResponse, err error) {
+func (c AppRoleAssignmentClient) CreateAppRoleAssignment(ctx context.Context, input stable.AppRoleAssignment, options CreateAppRoleAssignmentOperationOptions) (result CreateAppRoleAssignmentOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/me/appRoleAssignments",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/me/appRoleAssignments",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

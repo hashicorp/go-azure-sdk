@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/eventinstanceexceptionoccurrenceattachment` Documentation
 
-The `eventinstanceexceptionoccurrenceattachment` SDK allows for interaction with the Azure Resource Manager Service `groups` (API Version `beta`).
+The `eventinstanceexceptionoccurrenceattachment` SDK allows for interaction with Microsoft Graph `groups` (API Version `beta`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -15,7 +15,7 @@ import "github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/eventinsta
 ### Client Initialization
 
 ```go
-client := eventinstanceexceptionoccurrenceattachment.NewEventInstanceExceptionOccurrenceAttachmentClientWithBaseURI("https://management.azure.com")
+client := eventinstanceexceptionoccurrenceattachment.NewEventInstanceExceptionOccurrenceAttachmentClientWithBaseURI("https://graph.microsoft.com")
 client.Client.Authorizer = authorizer
 ```
 
@@ -24,14 +24,14 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := eventinstanceexceptionoccurrenceattachment.NewGroupIdEventIdInstanceIdExceptionOccurrenceID("groupIdValue", "eventIdValue", "eventId1Value", "eventId2Value")
+id := eventinstanceexceptionoccurrenceattachment.NewGroupIdEventIdInstanceIdExceptionOccurrenceID("groupId", "eventId", "eventId1", "eventId2")
 
 payload := eventinstanceexceptionoccurrenceattachment.Attachment{
 	// ...
 }
 
 
-read, err := client.CreateEventInstanceExceptionOccurrenceAttachment(ctx, id, payload)
+read, err := client.CreateEventInstanceExceptionOccurrenceAttachment(ctx, id, payload, eventinstanceexceptionoccurrenceattachment.DefaultCreateEventInstanceExceptionOccurrenceAttachmentOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -45,14 +45,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := eventinstanceexceptionoccurrenceattachment.NewGroupIdEventIdInstanceIdExceptionOccurrenceID("groupIdValue", "eventIdValue", "eventId1Value", "eventId2Value")
+id := eventinstanceexceptionoccurrenceattachment.NewGroupIdEventIdInstanceIdExceptionOccurrenceID("groupId", "eventId", "eventId1", "eventId2")
 
 payload := eventinstanceexceptionoccurrenceattachment.CreateEventInstanceExceptionOccurrenceAttachmentsUploadSessionRequest{
 	// ...
 }
 
 
-read, err := client.CreateEventInstanceExceptionOccurrenceAttachmentsUploadSession(ctx, id, payload)
+read, err := client.CreateEventInstanceExceptionOccurrenceAttachmentsUploadSession(ctx, id, payload, eventinstanceexceptionoccurrenceattachment.DefaultCreateEventInstanceExceptionOccurrenceAttachmentsUploadSessionOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -66,7 +66,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := eventinstanceexceptionoccurrenceattachment.NewGroupIdEventIdInstanceIdExceptionOccurrenceIdAttachmentID("groupIdValue", "eventIdValue", "eventId1Value", "eventId2Value", "attachmentIdValue")
+id := eventinstanceexceptionoccurrenceattachment.NewGroupIdEventIdInstanceIdExceptionOccurrenceIdAttachmentID("groupId", "eventId", "eventId1", "eventId2", "attachmentId")
 
 read, err := client.DeleteEventInstanceExceptionOccurrenceAttachment(ctx, id, eventinstanceexceptionoccurrenceattachment.DefaultDeleteEventInstanceExceptionOccurrenceAttachmentOperationOptions())
 if err != nil {
@@ -82,7 +82,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := eventinstanceexceptionoccurrenceattachment.NewGroupIdEventIdInstanceIdExceptionOccurrenceIdAttachmentID("groupIdValue", "eventIdValue", "eventId1Value", "eventId2Value", "attachmentIdValue")
+id := eventinstanceexceptionoccurrenceattachment.NewGroupIdEventIdInstanceIdExceptionOccurrenceIdAttachmentID("groupId", "eventId", "eventId1", "eventId2", "attachmentId")
 
 read, err := client.GetEventInstanceExceptionOccurrenceAttachment(ctx, id, eventinstanceexceptionoccurrenceattachment.DefaultGetEventInstanceExceptionOccurrenceAttachmentOperationOptions())
 if err != nil {
@@ -98,7 +98,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := eventinstanceexceptionoccurrenceattachment.NewGroupIdEventIdInstanceIdExceptionOccurrenceID("groupIdValue", "eventIdValue", "eventId1Value", "eventId2Value")
+id := eventinstanceexceptionoccurrenceattachment.NewGroupIdEventIdInstanceIdExceptionOccurrenceID("groupId", "eventId", "eventId1", "eventId2")
 
 read, err := client.GetEventInstanceExceptionOccurrenceAttachmentsCount(ctx, id, eventinstanceexceptionoccurrenceattachment.DefaultGetEventInstanceExceptionOccurrenceAttachmentsCountOperationOptions())
 if err != nil {
@@ -114,7 +114,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := eventinstanceexceptionoccurrenceattachment.NewGroupIdEventIdInstanceIdExceptionOccurrenceID("groupIdValue", "eventIdValue", "eventId1Value", "eventId2Value")
+id := eventinstanceexceptionoccurrenceattachment.NewGroupIdEventIdInstanceIdExceptionOccurrenceID("groupId", "eventId", "eventId1", "eventId2")
 
 // alternatively `client.ListEventInstanceExceptionOccurrenceAttachments(ctx, id, eventinstanceexceptionoccurrenceattachment.DefaultListEventInstanceExceptionOccurrenceAttachmentsOperationOptions())` can be used to do batched pagination
 items, err := client.ListEventInstanceExceptionOccurrenceAttachmentsComplete(ctx, id, eventinstanceexceptionoccurrenceattachment.DefaultListEventInstanceExceptionOccurrenceAttachmentsOperationOptions())

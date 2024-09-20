@@ -18,16 +18,45 @@ type CreateWindowsAutopilotDeploymentProfileAssignedDeviceUnassignResourceAccoun
 	OData        *odata.OData
 }
 
+type CreateWindowsAutopilotDeploymentProfileAssignedDeviceUnassignResourceAccountFromDeviceOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateWindowsAutopilotDeploymentProfileAssignedDeviceUnassignResourceAccountFromDeviceOperationOptions() CreateWindowsAutopilotDeploymentProfileAssignedDeviceUnassignResourceAccountFromDeviceOperationOptions {
+	return CreateWindowsAutopilotDeploymentProfileAssignedDeviceUnassignResourceAccountFromDeviceOperationOptions{}
+}
+
+func (o CreateWindowsAutopilotDeploymentProfileAssignedDeviceUnassignResourceAccountFromDeviceOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateWindowsAutopilotDeploymentProfileAssignedDeviceUnassignResourceAccountFromDeviceOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateWindowsAutopilotDeploymentProfileAssignedDeviceUnassignResourceAccountFromDeviceOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateWindowsAutopilotDeploymentProfileAssignedDeviceUnassignResourceAccountFromDevice - Invoke action
 // unassignResourceAccountFromDevice. Unassigns the resource account from an Autopilot device.
-func (c WindowsAutopilotDeploymentProfileAssignedDeviceClient) CreateWindowsAutopilotDeploymentProfileAssignedDeviceUnassignResourceAccountFromDevice(ctx context.Context, id beta.DeviceManagementWindowsAutopilotDeploymentProfileIdAssignedDeviceId) (result CreateWindowsAutopilotDeploymentProfileAssignedDeviceUnassignResourceAccountFromDeviceOperationResponse, err error) {
+func (c WindowsAutopilotDeploymentProfileAssignedDeviceClient) CreateWindowsAutopilotDeploymentProfileAssignedDeviceUnassignResourceAccountFromDevice(ctx context.Context, id beta.DeviceManagementWindowsAutopilotDeploymentProfileIdAssignedDeviceId, options CreateWindowsAutopilotDeploymentProfileAssignedDeviceUnassignResourceAccountFromDeviceOperationOptions) (result CreateWindowsAutopilotDeploymentProfileAssignedDeviceUnassignResourceAccountFromDeviceOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/unassignResourceAccountFromDevice", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/unassignResourceAccountFromDevice", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

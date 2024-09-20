@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &ServicePrincipalIdAppManagementPolicyId{}
 
 func TestNewServicePrincipalIdAppManagementPolicyID(t *testing.T) {
-	id := NewServicePrincipalIdAppManagementPolicyID("servicePrincipalIdValue", "appManagementPolicyIdValue")
+	id := NewServicePrincipalIdAppManagementPolicyID("servicePrincipalId", "appManagementPolicyId")
 
-	if id.ServicePrincipalId != "servicePrincipalIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ServicePrincipalId'", id.ServicePrincipalId, "servicePrincipalIdValue")
+	if id.ServicePrincipalId != "servicePrincipalId" {
+		t.Fatalf("Expected %q but got %q for Segment 'ServicePrincipalId'", id.ServicePrincipalId, "servicePrincipalId")
 	}
 
-	if id.AppManagementPolicyId != "appManagementPolicyIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'AppManagementPolicyId'", id.AppManagementPolicyId, "appManagementPolicyIdValue")
+	if id.AppManagementPolicyId != "appManagementPolicyId" {
+		t.Fatalf("Expected %q but got %q for Segment 'AppManagementPolicyId'", id.AppManagementPolicyId, "appManagementPolicyId")
 	}
 }
 
 func TestFormatServicePrincipalIdAppManagementPolicyID(t *testing.T) {
-	actual := NewServicePrincipalIdAppManagementPolicyID("servicePrincipalIdValue", "appManagementPolicyIdValue").ID()
-	expected := "/servicePrincipals/servicePrincipalIdValue/appManagementPolicies/appManagementPolicyIdValue"
+	actual := NewServicePrincipalIdAppManagementPolicyID("servicePrincipalId", "appManagementPolicyId").ID()
+	expected := "/servicePrincipals/servicePrincipalId/appManagementPolicies/appManagementPolicyId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -49,25 +49,25 @@ func TestParseServicePrincipalIdAppManagementPolicyID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/servicePrincipals/servicePrincipalIdValue",
+			Input: "/servicePrincipals/servicePrincipalId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/servicePrincipals/servicePrincipalIdValue/appManagementPolicies",
+			Input: "/servicePrincipals/servicePrincipalId/appManagementPolicies",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/servicePrincipals/servicePrincipalIdValue/appManagementPolicies/appManagementPolicyIdValue",
+			Input: "/servicePrincipals/servicePrincipalId/appManagementPolicies/appManagementPolicyId",
 			Expected: &ServicePrincipalIdAppManagementPolicyId{
-				ServicePrincipalId:    "servicePrincipalIdValue",
-				AppManagementPolicyId: "appManagementPolicyIdValue",
+				ServicePrincipalId:    "servicePrincipalId",
+				AppManagementPolicyId: "appManagementPolicyId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/servicePrincipals/servicePrincipalIdValue/appManagementPolicies/appManagementPolicyIdValue/extra",
+			Input: "/servicePrincipals/servicePrincipalId/appManagementPolicies/appManagementPolicyId/extra",
 			Error: true,
 		},
 	}
@@ -120,48 +120,48 @@ func TestParseServicePrincipalIdAppManagementPolicyIDInsensitively(t *testing.T)
 		},
 		{
 			// Incomplete URI
-			Input: "/servicePrincipals/servicePrincipalIdValue",
+			Input: "/servicePrincipals/servicePrincipalId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sErViCePrInCiPaLs/sErViCePrInCiPaLiDvAlUe",
+			Input: "/sErViCePrInCiPaLs/sErViCePrInCiPaLiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/servicePrincipals/servicePrincipalIdValue/appManagementPolicies",
+			Input: "/servicePrincipals/servicePrincipalId/appManagementPolicies",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sErViCePrInCiPaLs/sErViCePrInCiPaLiDvAlUe/aPpMaNaGeMeNtPoLiCiEs",
+			Input: "/sErViCePrInCiPaLs/sErViCePrInCiPaLiD/aPpMaNaGeMeNtPoLiCiEs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/servicePrincipals/servicePrincipalIdValue/appManagementPolicies/appManagementPolicyIdValue",
+			Input: "/servicePrincipals/servicePrincipalId/appManagementPolicies/appManagementPolicyId",
 			Expected: &ServicePrincipalIdAppManagementPolicyId{
-				ServicePrincipalId:    "servicePrincipalIdValue",
-				AppManagementPolicyId: "appManagementPolicyIdValue",
+				ServicePrincipalId:    "servicePrincipalId",
+				AppManagementPolicyId: "appManagementPolicyId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/servicePrincipals/servicePrincipalIdValue/appManagementPolicies/appManagementPolicyIdValue/extra",
+			Input: "/servicePrincipals/servicePrincipalId/appManagementPolicies/appManagementPolicyId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sErViCePrInCiPaLs/sErViCePrInCiPaLiDvAlUe/aPpMaNaGeMeNtPoLiCiEs/aPpMaNaGeMeNtPoLiCyIdVaLuE",
+			Input: "/sErViCePrInCiPaLs/sErViCePrInCiPaLiD/aPpMaNaGeMeNtPoLiCiEs/aPpMaNaGeMeNtPoLiCyId",
 			Expected: &ServicePrincipalIdAppManagementPolicyId{
-				ServicePrincipalId:    "sErViCePrInCiPaLiDvAlUe",
-				AppManagementPolicyId: "aPpMaNaGeMeNtPoLiCyIdVaLuE",
+				ServicePrincipalId:    "sErViCePrInCiPaLiD",
+				AppManagementPolicyId: "aPpMaNaGeMeNtPoLiCyId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sErViCePrInCiPaLs/sErViCePrInCiPaLiDvAlUe/aPpMaNaGeMeNtPoLiCiEs/aPpMaNaGeMeNtPoLiCyIdVaLuE/extra",
+			Input: "/sErViCePrInCiPaLs/sErViCePrInCiPaLiD/aPpMaNaGeMeNtPoLiCiEs/aPpMaNaGeMeNtPoLiCyId/extra",
 			Error: true,
 		},
 	}

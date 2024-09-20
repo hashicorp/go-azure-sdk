@@ -132,10 +132,28 @@ func (s BaseManagedEBookImpl) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &BaseManagedEBookImpl{}
 
 func (s *BaseManagedEBookImpl) UnmarshalJSON(bytes []byte) error {
-	type alias BaseManagedEBookImpl
-	var decoded alias
+
+	var decoded struct {
+		Assignments           *[]ManagedEBookAssignment  `json:"assignments,omitempty"`
+		Categories            *[]ManagedEBookCategory    `json:"categories,omitempty"`
+		CreatedDateTime       *string                    `json:"createdDateTime,omitempty"`
+		Description           nullable.Type[string]      `json:"description,omitempty"`
+		DeviceStates          *[]DeviceInstallState      `json:"deviceStates,omitempty"`
+		DisplayName           *string                    `json:"displayName,omitempty"`
+		InformationUrl        nullable.Type[string]      `json:"informationUrl,omitempty"`
+		InstallSummary        *EBookInstallSummary       `json:"installSummary,omitempty"`
+		LargeCover            *MimeContent               `json:"largeCover,omitempty"`
+		LastModifiedDateTime  *string                    `json:"lastModifiedDateTime,omitempty"`
+		PrivacyInformationUrl nullable.Type[string]      `json:"privacyInformationUrl,omitempty"`
+		PublishedDateTime     *string                    `json:"publishedDateTime,omitempty"`
+		Publisher             nullable.Type[string]      `json:"publisher,omitempty"`
+		UserStateSummary      *[]UserInstallStateSummary `json:"userStateSummary,omitempty"`
+		Id                    *string                    `json:"id,omitempty"`
+		ODataId               *string                    `json:"@odata.id,omitempty"`
+		ODataType             *string                    `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into BaseManagedEBookImpl: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.Categories = decoded.Categories
@@ -143,17 +161,17 @@ func (s *BaseManagedEBookImpl) UnmarshalJSON(bytes []byte) error {
 	s.Description = decoded.Description
 	s.DeviceStates = decoded.DeviceStates
 	s.DisplayName = decoded.DisplayName
-	s.Id = decoded.Id
 	s.InformationUrl = decoded.InformationUrl
 	s.InstallSummary = decoded.InstallSummary
 	s.LargeCover = decoded.LargeCover
 	s.LastModifiedDateTime = decoded.LastModifiedDateTime
-	s.ODataId = decoded.ODataId
-	s.ODataType = decoded.ODataType
 	s.PrivacyInformationUrl = decoded.PrivacyInformationUrl
 	s.PublishedDateTime = decoded.PublishedDateTime
 	s.Publisher = decoded.Publisher
 	s.UserStateSummary = decoded.UserStateSummary
+	s.Id = decoded.Id
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -176,6 +194,7 @@ func (s *BaseManagedEBookImpl) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Assignments = &output
 	}
+
 	return nil
 }
 
@@ -189,9 +208,9 @@ func UnmarshalManagedEBookImplementation(input []byte) (ManagedEBook, error) {
 		return nil, fmt.Errorf("unmarshaling ManagedEBook into map[string]interface: %+v", err)
 	}
 
-	value, ok := temp["@odata.type"].(string)
-	if !ok {
-		return nil, nil
+	var value string
+	if v, ok := temp["@odata.type"]; ok {
+		value = fmt.Sprintf("%v", v)
 	}
 
 	if strings.EqualFold(value, "#microsoft.graph.iosVppEBook") {

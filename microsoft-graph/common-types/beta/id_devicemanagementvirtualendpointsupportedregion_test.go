@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &DeviceManagementVirtualEndpointSupportedRegionId{}
 
 func TestNewDeviceManagementVirtualEndpointSupportedRegionID(t *testing.T) {
-	id := NewDeviceManagementVirtualEndpointSupportedRegionID("cloudPCSupportedRegionIdValue")
+	id := NewDeviceManagementVirtualEndpointSupportedRegionID("cloudPCSupportedRegionId")
 
-	if id.CloudPCSupportedRegionId != "cloudPCSupportedRegionIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'CloudPCSupportedRegionId'", id.CloudPCSupportedRegionId, "cloudPCSupportedRegionIdValue")
+	if id.CloudPCSupportedRegionId != "cloudPCSupportedRegionId" {
+		t.Fatalf("Expected %q but got %q for Segment 'CloudPCSupportedRegionId'", id.CloudPCSupportedRegionId, "cloudPCSupportedRegionId")
 	}
 }
 
 func TestFormatDeviceManagementVirtualEndpointSupportedRegionID(t *testing.T) {
-	actual := NewDeviceManagementVirtualEndpointSupportedRegionID("cloudPCSupportedRegionIdValue").ID()
-	expected := "/deviceManagement/virtualEndpoint/supportedRegions/cloudPCSupportedRegionIdValue"
+	actual := NewDeviceManagementVirtualEndpointSupportedRegionID("cloudPCSupportedRegionId").ID()
+	expected := "/deviceManagement/virtualEndpoint/supportedRegions/cloudPCSupportedRegionId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -55,14 +55,14 @@ func TestParseDeviceManagementVirtualEndpointSupportedRegionID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/virtualEndpoint/supportedRegions/cloudPCSupportedRegionIdValue",
+			Input: "/deviceManagement/virtualEndpoint/supportedRegions/cloudPCSupportedRegionId",
 			Expected: &DeviceManagementVirtualEndpointSupportedRegionId{
-				CloudPCSupportedRegionId: "cloudPCSupportedRegionIdValue",
+				CloudPCSupportedRegionId: "cloudPCSupportedRegionId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/virtualEndpoint/supportedRegions/cloudPCSupportedRegionIdValue/extra",
+			Input: "/deviceManagement/virtualEndpoint/supportedRegions/cloudPCSupportedRegionId/extra",
 			Error: true,
 		},
 	}
@@ -131,26 +131,26 @@ func TestParseDeviceManagementVirtualEndpointSupportedRegionIDInsensitively(t *t
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/virtualEndpoint/supportedRegions/cloudPCSupportedRegionIdValue",
+			Input: "/deviceManagement/virtualEndpoint/supportedRegions/cloudPCSupportedRegionId",
 			Expected: &DeviceManagementVirtualEndpointSupportedRegionId{
-				CloudPCSupportedRegionId: "cloudPCSupportedRegionIdValue",
+				CloudPCSupportedRegionId: "cloudPCSupportedRegionId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/virtualEndpoint/supportedRegions/cloudPCSupportedRegionIdValue/extra",
+			Input: "/deviceManagement/virtualEndpoint/supportedRegions/cloudPCSupportedRegionId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/vIrTuAlEnDpOiNt/sUpPoRtEdReGiOnS/cLoUdPcSuPpOrTeDrEgIoNiDvAlUe",
+			Input: "/dEvIcEmAnAgEmEnT/vIrTuAlEnDpOiNt/sUpPoRtEdReGiOnS/cLoUdPcSuPpOrTeDrEgIoNiD",
 			Expected: &DeviceManagementVirtualEndpointSupportedRegionId{
-				CloudPCSupportedRegionId: "cLoUdPcSuPpOrTeDrEgIoNiDvAlUe",
+				CloudPCSupportedRegionId: "cLoUdPcSuPpOrTeDrEgIoNiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/vIrTuAlEnDpOiNt/sUpPoRtEdReGiOnS/cLoUdPcSuPpOrTeDrEgIoNiDvAlUe/extra",
+			Input: "/dEvIcEmAnAgEmEnT/vIrTuAlEnDpOiNt/sUpPoRtEdReGiOnS/cLoUdPcSuPpOrTeDrEgIoNiD/extra",
 			Error: true,
 		},
 	}

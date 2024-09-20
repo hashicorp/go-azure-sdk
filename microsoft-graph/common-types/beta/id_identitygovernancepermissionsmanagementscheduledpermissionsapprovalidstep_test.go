@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &IdentityGovernancePermissionsManagementScheduledPermissionsApprovalIdStepId{}
 
 func TestNewIdentityGovernancePermissionsManagementScheduledPermissionsApprovalIdStepID(t *testing.T) {
-	id := NewIdentityGovernancePermissionsManagementScheduledPermissionsApprovalIdStepID("approvalIdValue", "approvalStepIdValue")
+	id := NewIdentityGovernancePermissionsManagementScheduledPermissionsApprovalIdStepID("approvalId", "approvalStepId")
 
-	if id.ApprovalId != "approvalIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ApprovalId'", id.ApprovalId, "approvalIdValue")
+	if id.ApprovalId != "approvalId" {
+		t.Fatalf("Expected %q but got %q for Segment 'ApprovalId'", id.ApprovalId, "approvalId")
 	}
 
-	if id.ApprovalStepId != "approvalStepIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ApprovalStepId'", id.ApprovalStepId, "approvalStepIdValue")
+	if id.ApprovalStepId != "approvalStepId" {
+		t.Fatalf("Expected %q but got %q for Segment 'ApprovalStepId'", id.ApprovalStepId, "approvalStepId")
 	}
 }
 
 func TestFormatIdentityGovernancePermissionsManagementScheduledPermissionsApprovalIdStepID(t *testing.T) {
-	actual := NewIdentityGovernancePermissionsManagementScheduledPermissionsApprovalIdStepID("approvalIdValue", "approvalStepIdValue").ID()
-	expected := "/identityGovernance/permissionsManagement/scheduledPermissionsApprovals/approvalIdValue/steps/approvalStepIdValue"
+	actual := NewIdentityGovernancePermissionsManagementScheduledPermissionsApprovalIdStepID("approvalId", "approvalStepId").ID()
+	expected := "/identityGovernance/permissionsManagement/scheduledPermissionsApprovals/approvalId/steps/approvalStepId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -59,25 +59,25 @@ func TestParseIdentityGovernancePermissionsManagementScheduledPermissionsApprova
 		},
 		{
 			// Incomplete URI
-			Input: "/identityGovernance/permissionsManagement/scheduledPermissionsApprovals/approvalIdValue",
+			Input: "/identityGovernance/permissionsManagement/scheduledPermissionsApprovals/approvalId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/identityGovernance/permissionsManagement/scheduledPermissionsApprovals/approvalIdValue/steps",
+			Input: "/identityGovernance/permissionsManagement/scheduledPermissionsApprovals/approvalId/steps",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/identityGovernance/permissionsManagement/scheduledPermissionsApprovals/approvalIdValue/steps/approvalStepIdValue",
+			Input: "/identityGovernance/permissionsManagement/scheduledPermissionsApprovals/approvalId/steps/approvalStepId",
 			Expected: &IdentityGovernancePermissionsManagementScheduledPermissionsApprovalIdStepId{
-				ApprovalId:     "approvalIdValue",
-				ApprovalStepId: "approvalStepIdValue",
+				ApprovalId:     "approvalId",
+				ApprovalStepId: "approvalStepId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/identityGovernance/permissionsManagement/scheduledPermissionsApprovals/approvalIdValue/steps/approvalStepIdValue/extra",
+			Input: "/identityGovernance/permissionsManagement/scheduledPermissionsApprovals/approvalId/steps/approvalStepId/extra",
 			Error: true,
 		},
 	}
@@ -150,48 +150,48 @@ func TestParseIdentityGovernancePermissionsManagementScheduledPermissionsApprova
 		},
 		{
 			// Incomplete URI
-			Input: "/identityGovernance/permissionsManagement/scheduledPermissionsApprovals/approvalIdValue",
+			Input: "/identityGovernance/permissionsManagement/scheduledPermissionsApprovals/approvalId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/iDeNtItYgOvErNaNcE/pErMiSsIoNsMaNaGeMeNt/sChEdUlEdPeRmIsSiOnSaPpRoVaLs/aPpRoVaLiDvAlUe",
+			Input: "/iDeNtItYgOvErNaNcE/pErMiSsIoNsMaNaGeMeNt/sChEdUlEdPeRmIsSiOnSaPpRoVaLs/aPpRoVaLiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/identityGovernance/permissionsManagement/scheduledPermissionsApprovals/approvalIdValue/steps",
+			Input: "/identityGovernance/permissionsManagement/scheduledPermissionsApprovals/approvalId/steps",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/iDeNtItYgOvErNaNcE/pErMiSsIoNsMaNaGeMeNt/sChEdUlEdPeRmIsSiOnSaPpRoVaLs/aPpRoVaLiDvAlUe/sTePs",
+			Input: "/iDeNtItYgOvErNaNcE/pErMiSsIoNsMaNaGeMeNt/sChEdUlEdPeRmIsSiOnSaPpRoVaLs/aPpRoVaLiD/sTePs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/identityGovernance/permissionsManagement/scheduledPermissionsApprovals/approvalIdValue/steps/approvalStepIdValue",
+			Input: "/identityGovernance/permissionsManagement/scheduledPermissionsApprovals/approvalId/steps/approvalStepId",
 			Expected: &IdentityGovernancePermissionsManagementScheduledPermissionsApprovalIdStepId{
-				ApprovalId:     "approvalIdValue",
-				ApprovalStepId: "approvalStepIdValue",
+				ApprovalId:     "approvalId",
+				ApprovalStepId: "approvalStepId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/identityGovernance/permissionsManagement/scheduledPermissionsApprovals/approvalIdValue/steps/approvalStepIdValue/extra",
+			Input: "/identityGovernance/permissionsManagement/scheduledPermissionsApprovals/approvalId/steps/approvalStepId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/iDeNtItYgOvErNaNcE/pErMiSsIoNsMaNaGeMeNt/sChEdUlEdPeRmIsSiOnSaPpRoVaLs/aPpRoVaLiDvAlUe/sTePs/aPpRoVaLsTePiDvAlUe",
+			Input: "/iDeNtItYgOvErNaNcE/pErMiSsIoNsMaNaGeMeNt/sChEdUlEdPeRmIsSiOnSaPpRoVaLs/aPpRoVaLiD/sTePs/aPpRoVaLsTePiD",
 			Expected: &IdentityGovernancePermissionsManagementScheduledPermissionsApprovalIdStepId{
-				ApprovalId:     "aPpRoVaLiDvAlUe",
-				ApprovalStepId: "aPpRoVaLsTePiDvAlUe",
+				ApprovalId:     "aPpRoVaLiD",
+				ApprovalStepId: "aPpRoVaLsTePiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/iDeNtItYgOvErNaNcE/pErMiSsIoNsMaNaGeMeNt/sChEdUlEdPeRmIsSiOnSaPpRoVaLs/aPpRoVaLiDvAlUe/sTePs/aPpRoVaLsTePiDvAlUe/extra",
+			Input: "/iDeNtItYgOvErNaNcE/pErMiSsIoNsMaNaGeMeNt/sChEdUlEdPeRmIsSiOnSaPpRoVaLs/aPpRoVaLiD/sTePs/aPpRoVaLsTePiD/extra",
 			Error: true,
 		},
 	}

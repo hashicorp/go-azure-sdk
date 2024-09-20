@@ -17,15 +17,44 @@ type UpdateJoinedTeamTagOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateJoinedTeamTagOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateJoinedTeamTagOperationOptions() UpdateJoinedTeamTagOperationOptions {
+	return UpdateJoinedTeamTagOperationOptions{}
+}
+
+func (o UpdateJoinedTeamTagOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateJoinedTeamTagOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateJoinedTeamTagOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateJoinedTeamTag - Update the navigation property tags in me
-func (c JoinedTeamTagClient) UpdateJoinedTeamTag(ctx context.Context, id stable.MeJoinedTeamIdTagId, input stable.TeamworkTag) (result UpdateJoinedTeamTagOperationResponse, err error) {
+func (c JoinedTeamTagClient) UpdateJoinedTeamTag(ctx context.Context, id stable.MeJoinedTeamIdTagId, input stable.TeamworkTag, options UpdateJoinedTeamTagOperationOptions) (result UpdateJoinedTeamTagOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

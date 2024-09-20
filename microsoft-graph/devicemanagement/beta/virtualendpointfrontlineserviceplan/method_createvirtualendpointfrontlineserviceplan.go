@@ -18,16 +18,45 @@ type CreateVirtualEndpointFrontLineServicePlanOperationResponse struct {
 	Model        *beta.CloudPCFrontLineServicePlan
 }
 
+type CreateVirtualEndpointFrontLineServicePlanOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateVirtualEndpointFrontLineServicePlanOperationOptions() CreateVirtualEndpointFrontLineServicePlanOperationOptions {
+	return CreateVirtualEndpointFrontLineServicePlanOperationOptions{}
+}
+
+func (o CreateVirtualEndpointFrontLineServicePlanOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateVirtualEndpointFrontLineServicePlanOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateVirtualEndpointFrontLineServicePlanOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateVirtualEndpointFrontLineServicePlan - Create new navigation property to frontLineServicePlans for
 // deviceManagement
-func (c VirtualEndpointFrontLineServicePlanClient) CreateVirtualEndpointFrontLineServicePlan(ctx context.Context, input beta.CloudPCFrontLineServicePlan) (result CreateVirtualEndpointFrontLineServicePlanOperationResponse, err error) {
+func (c VirtualEndpointFrontLineServicePlanClient) CreateVirtualEndpointFrontLineServicePlan(ctx context.Context, input beta.CloudPCFrontLineServicePlan, options CreateVirtualEndpointFrontLineServicePlanOperationOptions) (result CreateVirtualEndpointFrontLineServicePlanOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/deviceManagement/virtualEndpoint/frontLineServicePlans",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/deviceManagement/virtualEndpoint/frontLineServicePlans",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

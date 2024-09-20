@@ -19,7 +19,8 @@ type DeleteTemplateSettingDefinitionOperationResponse struct {
 }
 
 type DeleteTemplateSettingDefinitionOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteTemplateSettingDefinitionOperationOptions() DeleteTemplateSettingDefinitionOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteTemplateSettingDefinitionOperationOptions) ToHeaders() *client.Hea
 
 func (o DeleteTemplateSettingDefinitionOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

@@ -18,17 +18,46 @@ type SendMessageOperationResponse struct {
 	OData        *odata.OData
 }
 
+type SendMessageOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultSendMessageOperationOptions() SendMessageOperationOptions {
+	return SendMessageOperationOptions{}
+}
+
+func (o SendMessageOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o SendMessageOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o SendMessageOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // SendMessage - Invoke action send. Send an existing draft message. The draft message can be a new message draft, reply
 // draft, reply-all draft, or a forward draft. This method saves the message in the Sent Items folder. Alternatively,
 // send a new message in a single operation.
-func (c MessageClient) SendMessage(ctx context.Context, id stable.UserIdMessageId) (result SendMessageOperationResponse, err error) {
+func (c MessageClient) SendMessage(ctx context.Context, id stable.UserIdMessageId, options SendMessageOperationOptions) (result SendMessageOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/send", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/send", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -19,7 +19,8 @@ type DeleteDriveItemListItemVersionOperationResponse struct {
 }
 
 type DeleteDriveItemListItemVersionOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteDriveItemListItemVersionOperationOptions() DeleteDriveItemListItemVersionOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteDriveItemListItemVersionOperationOptions) ToHeaders() *client.Head
 
 func (o DeleteDriveItemListItemVersionOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

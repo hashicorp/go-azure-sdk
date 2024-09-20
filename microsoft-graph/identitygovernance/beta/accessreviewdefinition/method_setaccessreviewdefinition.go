@@ -17,16 +17,45 @@ type SetAccessReviewDefinitionOperationResponse struct {
 	OData        *odata.OData
 }
 
+type SetAccessReviewDefinitionOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultSetAccessReviewDefinitionOperationOptions() SetAccessReviewDefinitionOperationOptions {
+	return SetAccessReviewDefinitionOperationOptions{}
+}
+
+func (o SetAccessReviewDefinitionOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o SetAccessReviewDefinitionOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o SetAccessReviewDefinitionOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // SetAccessReviewDefinition - Update accessReviewScheduleDefinition. Update an existing accessReviewScheduleDefinition
 // object to change one or more of its properties.
-func (c AccessReviewDefinitionClient) SetAccessReviewDefinition(ctx context.Context, id beta.IdentityGovernanceAccessReviewDefinitionId, input beta.AccessReviewScheduleDefinition) (result SetAccessReviewDefinitionOperationResponse, err error) {
+func (c AccessReviewDefinitionClient) SetAccessReviewDefinition(ctx context.Context, id beta.IdentityGovernanceAccessReviewDefinitionId, input beta.AccessReviewScheduleDefinition, options SetAccessReviewDefinitionOperationOptions) (result SetAccessReviewDefinitionOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPut,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPut,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

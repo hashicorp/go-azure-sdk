@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &MeProfileWebAccountId{}
 
 func TestNewMeProfileWebAccountID(t *testing.T) {
-	id := NewMeProfileWebAccountID("webAccountIdValue")
+	id := NewMeProfileWebAccountID("webAccountId")
 
-	if id.WebAccountId != "webAccountIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'WebAccountId'", id.WebAccountId, "webAccountIdValue")
+	if id.WebAccountId != "webAccountId" {
+		t.Fatalf("Expected %q but got %q for Segment 'WebAccountId'", id.WebAccountId, "webAccountId")
 	}
 }
 
 func TestFormatMeProfileWebAccountID(t *testing.T) {
-	actual := NewMeProfileWebAccountID("webAccountIdValue").ID()
-	expected := "/me/profile/webAccounts/webAccountIdValue"
+	actual := NewMeProfileWebAccountID("webAccountId").ID()
+	expected := "/me/profile/webAccounts/webAccountId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -55,14 +55,14 @@ func TestParseMeProfileWebAccountID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/me/profile/webAccounts/webAccountIdValue",
+			Input: "/me/profile/webAccounts/webAccountId",
 			Expected: &MeProfileWebAccountId{
-				WebAccountId: "webAccountIdValue",
+				WebAccountId: "webAccountId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/profile/webAccounts/webAccountIdValue/extra",
+			Input: "/me/profile/webAccounts/webAccountId/extra",
 			Error: true,
 		},
 	}
@@ -131,26 +131,26 @@ func TestParseMeProfileWebAccountIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/me/profile/webAccounts/webAccountIdValue",
+			Input: "/me/profile/webAccounts/webAccountId",
 			Expected: &MeProfileWebAccountId{
-				WebAccountId: "webAccountIdValue",
+				WebAccountId: "webAccountId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/profile/webAccounts/webAccountIdValue/extra",
+			Input: "/me/profile/webAccounts/webAccountId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/pRoFiLe/wEbAcCoUnTs/wEbAcCoUnTiDvAlUe",
+			Input: "/mE/pRoFiLe/wEbAcCoUnTs/wEbAcCoUnTiD",
 			Expected: &MeProfileWebAccountId{
-				WebAccountId: "wEbAcCoUnTiDvAlUe",
+				WebAccountId: "wEbAcCoUnTiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/mE/pRoFiLe/wEbAcCoUnTs/wEbAcCoUnTiDvAlUe/extra",
+			Input: "/mE/pRoFiLe/wEbAcCoUnTs/wEbAcCoUnTiD/extra",
 			Error: true,
 		},
 	}

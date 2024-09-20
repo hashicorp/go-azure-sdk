@@ -19,7 +19,8 @@ type DeleteJoinedTeamChannelMessageReplyHostedContentOperationResponse struct {
 }
 
 type DeleteJoinedTeamChannelMessageReplyHostedContentOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteJoinedTeamChannelMessageReplyHostedContentOperationOptions() DeleteJoinedTeamChannelMessageReplyHostedContentOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteJoinedTeamChannelMessageReplyHostedContentOperationOptions) ToHead
 
 func (o DeleteJoinedTeamChannelMessageReplyHostedContentOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

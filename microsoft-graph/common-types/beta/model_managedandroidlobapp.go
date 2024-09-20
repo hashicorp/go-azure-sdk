@@ -264,12 +264,54 @@ func (s ManagedAndroidLobApp) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &ManagedAndroidLobApp{}
 
 func (s *ManagedAndroidLobApp) UnmarshalJSON(bytes []byte) error {
-	type alias ManagedAndroidLobApp
-	var decoded alias
+
+	var decoded struct {
+		MinimumSupportedOperatingSystem *AndroidMinimumOperatingSystem `json:"minimumSupportedOperatingSystem,omitempty"`
+		PackageId                       nullable.Type[string]          `json:"packageId,omitempty"`
+		TargetedPlatforms               *AndroidTargetedPlatforms      `json:"targetedPlatforms,omitempty"`
+		VersionCode                     nullable.Type[string]          `json:"versionCode,omitempty"`
+		VersionName                     nullable.Type[string]          `json:"versionName,omitempty"`
+		CommittedContentVersion         nullable.Type[string]          `json:"committedContentVersion,omitempty"`
+		ContentVersions                 *[]MobileAppContent            `json:"contentVersions,omitempty"`
+		FileName                        nullable.Type[string]          `json:"fileName,omitempty"`
+		Size                            *int64                         `json:"size,omitempty"`
+		AppAvailability                 *ManagedAppAvailability        `json:"appAvailability,omitempty"`
+		Version                         nullable.Type[string]          `json:"version,omitempty"`
+		Assignments                     *[]MobileAppAssignment         `json:"assignments,omitempty"`
+		Categories                      *[]MobileAppCategory           `json:"categories,omitempty"`
+		CreatedDateTime                 *string                        `json:"createdDateTime,omitempty"`
+		DependentAppCount               *int64                         `json:"dependentAppCount,omitempty"`
+		Description                     nullable.Type[string]          `json:"description,omitempty"`
+		Developer                       nullable.Type[string]          `json:"developer,omitempty"`
+		DisplayName                     nullable.Type[string]          `json:"displayName,omitempty"`
+		InformationUrl                  nullable.Type[string]          `json:"informationUrl,omitempty"`
+		IsAssigned                      *bool                          `json:"isAssigned,omitempty"`
+		IsFeatured                      *bool                          `json:"isFeatured,omitempty"`
+		LargeIcon                       *MimeContent                   `json:"largeIcon,omitempty"`
+		LastModifiedDateTime            *string                        `json:"lastModifiedDateTime,omitempty"`
+		Notes                           nullable.Type[string]          `json:"notes,omitempty"`
+		Owner                           nullable.Type[string]          `json:"owner,omitempty"`
+		PrivacyInformationUrl           nullable.Type[string]          `json:"privacyInformationUrl,omitempty"`
+		Publisher                       nullable.Type[string]          `json:"publisher,omitempty"`
+		PublishingState                 *MobileAppPublishingState      `json:"publishingState,omitempty"`
+		Relationships                   *[]MobileAppRelationship       `json:"relationships,omitempty"`
+		RoleScopeTagIds                 *[]string                      `json:"roleScopeTagIds,omitempty"`
+		SupersededAppCount              *int64                         `json:"supersededAppCount,omitempty"`
+		SupersedingAppCount             *int64                         `json:"supersedingAppCount,omitempty"`
+		UploadState                     *int64                         `json:"uploadState,omitempty"`
+		Id                              *string                        `json:"id,omitempty"`
+		ODataId                         *string                        `json:"@odata.id,omitempty"`
+		ODataType                       *string                        `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into ManagedAndroidLobApp: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
+	s.MinimumSupportedOperatingSystem = decoded.MinimumSupportedOperatingSystem
+	s.PackageId = decoded.PackageId
+	s.TargetedPlatforms = decoded.TargetedPlatforms
+	s.VersionCode = decoded.VersionCode
+	s.VersionName = decoded.VersionName
 	s.AppAvailability = decoded.AppAvailability
 	s.Assignments = decoded.Assignments
 	s.Categories = decoded.Categories
@@ -287,12 +329,10 @@ func (s *ManagedAndroidLobApp) UnmarshalJSON(bytes []byte) error {
 	s.IsFeatured = decoded.IsFeatured
 	s.LargeIcon = decoded.LargeIcon
 	s.LastModifiedDateTime = decoded.LastModifiedDateTime
-	s.MinimumSupportedOperatingSystem = decoded.MinimumSupportedOperatingSystem
 	s.Notes = decoded.Notes
 	s.ODataId = decoded.ODataId
 	s.ODataType = decoded.ODataType
 	s.Owner = decoded.Owner
-	s.PackageId = decoded.PackageId
 	s.PrivacyInformationUrl = decoded.PrivacyInformationUrl
 	s.Publisher = decoded.Publisher
 	s.PublishingState = decoded.PublishingState
@@ -300,11 +340,8 @@ func (s *ManagedAndroidLobApp) UnmarshalJSON(bytes []byte) error {
 	s.Size = decoded.Size
 	s.SupersededAppCount = decoded.SupersededAppCount
 	s.SupersedingAppCount = decoded.SupersedingAppCount
-	s.TargetedPlatforms = decoded.TargetedPlatforms
 	s.UploadState = decoded.UploadState
 	s.Version = decoded.Version
-	s.VersionCode = decoded.VersionCode
-	s.VersionName = decoded.VersionName
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -327,5 +364,6 @@ func (s *ManagedAndroidLobApp) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Relationships = &output
 	}
+
 	return nil
 }

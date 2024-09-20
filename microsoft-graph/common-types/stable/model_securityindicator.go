@@ -91,16 +91,21 @@ func (s BaseSecurityIndicatorImpl) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &BaseSecurityIndicatorImpl{}
 
 func (s *BaseSecurityIndicatorImpl) UnmarshalJSON(bytes []byte) error {
-	type alias BaseSecurityIndicatorImpl
-	var decoded alias
+
+	var decoded struct {
+		Source    *SecurityIndicatorSource `json:"source,omitempty"`
+		Id        *string                  `json:"id,omitempty"`
+		ODataId   *string                  `json:"@odata.id,omitempty"`
+		ODataType *string                  `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into BaseSecurityIndicatorImpl: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
+	s.Source = decoded.Source
 	s.Id = decoded.Id
 	s.ODataId = decoded.ODataId
 	s.ODataType = decoded.ODataType
-	s.Source = decoded.Source
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -114,6 +119,7 @@ func (s *BaseSecurityIndicatorImpl) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Artifact = &impl
 	}
+
 	return nil
 }
 
@@ -127,9 +133,9 @@ func UnmarshalSecurityIndicatorImplementation(input []byte) (SecurityIndicator, 
 		return nil, fmt.Errorf("unmarshaling SecurityIndicator into map[string]interface: %+v", err)
 	}
 
-	value, ok := temp["@odata.type"].(string)
-	if !ok {
-		return nil, nil
+	var value string
+	if v, ok := temp["@odata.type"]; ok {
+		value = fmt.Sprintf("%v", v)
 	}
 
 	if strings.EqualFold(value, "#microsoft.graph.security.articleIndicator") {

@@ -12,24 +12,24 @@ import (
 var _ resourceids.ResourceId = &UserIdMailFolderIdMessageRuleId{}
 
 func TestNewUserIdMailFolderIdMessageRuleID(t *testing.T) {
-	id := NewUserIdMailFolderIdMessageRuleID("userIdValue", "mailFolderIdValue", "messageRuleIdValue")
+	id := NewUserIdMailFolderIdMessageRuleID("userId", "mailFolderId", "messageRuleId")
 
-	if id.UserId != "userIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'UserId'", id.UserId, "userIdValue")
+	if id.UserId != "userId" {
+		t.Fatalf("Expected %q but got %q for Segment 'UserId'", id.UserId, "userId")
 	}
 
-	if id.MailFolderId != "mailFolderIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'MailFolderId'", id.MailFolderId, "mailFolderIdValue")
+	if id.MailFolderId != "mailFolderId" {
+		t.Fatalf("Expected %q but got %q for Segment 'MailFolderId'", id.MailFolderId, "mailFolderId")
 	}
 
-	if id.MessageRuleId != "messageRuleIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'MessageRuleId'", id.MessageRuleId, "messageRuleIdValue")
+	if id.MessageRuleId != "messageRuleId" {
+		t.Fatalf("Expected %q but got %q for Segment 'MessageRuleId'", id.MessageRuleId, "messageRuleId")
 	}
 }
 
 func TestFormatUserIdMailFolderIdMessageRuleID(t *testing.T) {
-	actual := NewUserIdMailFolderIdMessageRuleID("userIdValue", "mailFolderIdValue", "messageRuleIdValue").ID()
-	expected := "/users/userIdValue/mailFolders/mailFolderIdValue/messageRules/messageRuleIdValue"
+	actual := NewUserIdMailFolderIdMessageRuleID("userId", "mailFolderId", "messageRuleId").ID()
+	expected := "/users/userId/mailFolders/mailFolderId/messageRules/messageRuleId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -53,36 +53,36 @@ func TestParseUserIdMailFolderIdMessageRuleID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue",
+			Input: "/users/userId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/mailFolders",
+			Input: "/users/userId/mailFolders",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/mailFolders/mailFolderIdValue",
+			Input: "/users/userId/mailFolders/mailFolderId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/mailFolders/mailFolderIdValue/messageRules",
+			Input: "/users/userId/mailFolders/mailFolderId/messageRules",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/users/userIdValue/mailFolders/mailFolderIdValue/messageRules/messageRuleIdValue",
+			Input: "/users/userId/mailFolders/mailFolderId/messageRules/messageRuleId",
 			Expected: &UserIdMailFolderIdMessageRuleId{
-				UserId:        "userIdValue",
-				MailFolderId:  "mailFolderIdValue",
-				MessageRuleId: "messageRuleIdValue",
+				UserId:        "userId",
+				MailFolderId:  "mailFolderId",
+				MessageRuleId: "messageRuleId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/users/userIdValue/mailFolders/mailFolderIdValue/messageRules/messageRuleIdValue/extra",
+			Input: "/users/userId/mailFolders/mailFolderId/messageRules/messageRuleId/extra",
 			Error: true,
 		},
 	}
@@ -139,70 +139,70 @@ func TestParseUserIdMailFolderIdMessageRuleIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue",
+			Input: "/users/userId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe",
+			Input: "/uSeRs/uSeRiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/mailFolders",
+			Input: "/users/userId/mailFolders",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/mAiLfOlDeRs",
+			Input: "/uSeRs/uSeRiD/mAiLfOlDeRs",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/mailFolders/mailFolderIdValue",
+			Input: "/users/userId/mailFolders/mailFolderId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/mAiLfOlDeRs/mAiLfOlDeRiDvAlUe",
+			Input: "/uSeRs/uSeRiD/mAiLfOlDeRs/mAiLfOlDeRiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/mailFolders/mailFolderIdValue/messageRules",
+			Input: "/users/userId/mailFolders/mailFolderId/messageRules",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/mAiLfOlDeRs/mAiLfOlDeRiDvAlUe/mEsSaGeRuLeS",
+			Input: "/uSeRs/uSeRiD/mAiLfOlDeRs/mAiLfOlDeRiD/mEsSaGeRuLeS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/users/userIdValue/mailFolders/mailFolderIdValue/messageRules/messageRuleIdValue",
+			Input: "/users/userId/mailFolders/mailFolderId/messageRules/messageRuleId",
 			Expected: &UserIdMailFolderIdMessageRuleId{
-				UserId:        "userIdValue",
-				MailFolderId:  "mailFolderIdValue",
-				MessageRuleId: "messageRuleIdValue",
+				UserId:        "userId",
+				MailFolderId:  "mailFolderId",
+				MessageRuleId: "messageRuleId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/users/userIdValue/mailFolders/mailFolderIdValue/messageRules/messageRuleIdValue/extra",
+			Input: "/users/userId/mailFolders/mailFolderId/messageRules/messageRuleId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/mAiLfOlDeRs/mAiLfOlDeRiDvAlUe/mEsSaGeRuLeS/mEsSaGeRuLeIdVaLuE",
+			Input: "/uSeRs/uSeRiD/mAiLfOlDeRs/mAiLfOlDeRiD/mEsSaGeRuLeS/mEsSaGeRuLeId",
 			Expected: &UserIdMailFolderIdMessageRuleId{
-				UserId:        "uSeRiDvAlUe",
-				MailFolderId:  "mAiLfOlDeRiDvAlUe",
-				MessageRuleId: "mEsSaGeRuLeIdVaLuE",
+				UserId:        "uSeRiD",
+				MailFolderId:  "mAiLfOlDeRiD",
+				MessageRuleId: "mEsSaGeRuLeId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/mAiLfOlDeRs/mAiLfOlDeRiDvAlUe/mEsSaGeRuLeS/mEsSaGeRuLeIdVaLuE/extra",
+			Input: "/uSeRs/uSeRiD/mAiLfOlDeRs/mAiLfOlDeRiD/mEsSaGeRuLeS/mEsSaGeRuLeId/extra",
 			Error: true,
 		},
 	}

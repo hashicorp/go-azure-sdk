@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &DirectoryRecommendationId{}
 
 func TestNewDirectoryRecommendationID(t *testing.T) {
-	id := NewDirectoryRecommendationID("recommendationIdValue")
+	id := NewDirectoryRecommendationID("recommendationId")
 
-	if id.RecommendationId != "recommendationIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'RecommendationId'", id.RecommendationId, "recommendationIdValue")
+	if id.RecommendationId != "recommendationId" {
+		t.Fatalf("Expected %q but got %q for Segment 'RecommendationId'", id.RecommendationId, "recommendationId")
 	}
 }
 
 func TestFormatDirectoryRecommendationID(t *testing.T) {
-	actual := NewDirectoryRecommendationID("recommendationIdValue").ID()
-	expected := "/directory/recommendations/recommendationIdValue"
+	actual := NewDirectoryRecommendationID("recommendationId").ID()
+	expected := "/directory/recommendations/recommendationId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -50,14 +50,14 @@ func TestParseDirectoryRecommendationID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/directory/recommendations/recommendationIdValue",
+			Input: "/directory/recommendations/recommendationId",
 			Expected: &DirectoryRecommendationId{
-				RecommendationId: "recommendationIdValue",
+				RecommendationId: "recommendationId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/directory/recommendations/recommendationIdValue/extra",
+			Input: "/directory/recommendations/recommendationId/extra",
 			Error: true,
 		},
 	}
@@ -116,26 +116,26 @@ func TestParseDirectoryRecommendationIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/directory/recommendations/recommendationIdValue",
+			Input: "/directory/recommendations/recommendationId",
 			Expected: &DirectoryRecommendationId{
-				RecommendationId: "recommendationIdValue",
+				RecommendationId: "recommendationId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/directory/recommendations/recommendationIdValue/extra",
+			Input: "/directory/recommendations/recommendationId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/dIrEcToRy/rEcOmMeNdAtIoNs/rEcOmMeNdAtIoNiDvAlUe",
+			Input: "/dIrEcToRy/rEcOmMeNdAtIoNs/rEcOmMeNdAtIoNiD",
 			Expected: &DirectoryRecommendationId{
-				RecommendationId: "rEcOmMeNdAtIoNiDvAlUe",
+				RecommendationId: "rEcOmMeNdAtIoNiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/dIrEcToRy/rEcOmMeNdAtIoNs/rEcOmMeNdAtIoNiDvAlUe/extra",
+			Input: "/dIrEcToRy/rEcOmMeNdAtIoNs/rEcOmMeNdAtIoNiD/extra",
 			Error: true,
 		},
 	}

@@ -99,9 +99,9 @@ func (id DirectoryFeatureRolloutPolicyIdAppliesToId) Segments() []resourceids.Se
 	return []resourceids.Segment{
 		resourceids.StaticSegment("directory", "directory", "directory"),
 		resourceids.StaticSegment("featureRolloutPolicies", "featureRolloutPolicies", "featureRolloutPolicies"),
-		resourceids.UserSpecifiedSegment("featureRolloutPolicyId", "featureRolloutPolicyIdValue"),
+		resourceids.UserSpecifiedSegment("featureRolloutPolicyId", "featureRolloutPolicyId"),
 		resourceids.StaticSegment("appliesTo", "appliesTo", "appliesTo"),
-		resourceids.UserSpecifiedSegment("directoryObjectId", "directoryObjectIdValue"),
+		resourceids.UserSpecifiedSegment("directoryObjectId", "directoryObjectId"),
 	}
 }
 

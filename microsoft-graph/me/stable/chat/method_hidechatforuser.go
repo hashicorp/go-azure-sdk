@@ -18,15 +18,44 @@ type HideChatForUserOperationResponse struct {
 	OData        *odata.OData
 }
 
+type HideChatForUserOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultHideChatForUserOperationOptions() HideChatForUserOperationOptions {
+	return HideChatForUserOperationOptions{}
+}
+
+func (o HideChatForUserOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o HideChatForUserOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o HideChatForUserOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // HideChatForUser - Invoke action hideForUser. Hide a chat for a user.
-func (c ChatClient) HideChatForUser(ctx context.Context, id stable.MeChatId, input HideChatForUserRequest) (result HideChatForUserOperationResponse, err error) {
+func (c ChatClient) HideChatForUser(ctx context.Context, id stable.MeChatId, input HideChatForUserRequest, options HideChatForUserOperationOptions) (result HideChatForUserOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/hideForUser", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/hideForUser", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

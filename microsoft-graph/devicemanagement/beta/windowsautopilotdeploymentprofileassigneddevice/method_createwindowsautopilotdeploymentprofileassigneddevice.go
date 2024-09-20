@@ -19,16 +19,45 @@ type CreateWindowsAutopilotDeploymentProfileAssignedDeviceOperationResponse stru
 	Model        *beta.WindowsAutopilotDeviceIdentity
 }
 
+type CreateWindowsAutopilotDeploymentProfileAssignedDeviceOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateWindowsAutopilotDeploymentProfileAssignedDeviceOperationOptions() CreateWindowsAutopilotDeploymentProfileAssignedDeviceOperationOptions {
+	return CreateWindowsAutopilotDeploymentProfileAssignedDeviceOperationOptions{}
+}
+
+func (o CreateWindowsAutopilotDeploymentProfileAssignedDeviceOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateWindowsAutopilotDeploymentProfileAssignedDeviceOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateWindowsAutopilotDeploymentProfileAssignedDeviceOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateWindowsAutopilotDeploymentProfileAssignedDevice - Create new navigation property to assignedDevices for
 // deviceManagement
-func (c WindowsAutopilotDeploymentProfileAssignedDeviceClient) CreateWindowsAutopilotDeploymentProfileAssignedDevice(ctx context.Context, id beta.DeviceManagementWindowsAutopilotDeploymentProfileId, input beta.WindowsAutopilotDeviceIdentity) (result CreateWindowsAutopilotDeploymentProfileAssignedDeviceOperationResponse, err error) {
+func (c WindowsAutopilotDeploymentProfileAssignedDeviceClient) CreateWindowsAutopilotDeploymentProfileAssignedDevice(ctx context.Context, id beta.DeviceManagementWindowsAutopilotDeploymentProfileId, input beta.WindowsAutopilotDeviceIdentity, options CreateWindowsAutopilotDeploymentProfileAssignedDeviceOperationOptions) (result CreateWindowsAutopilotDeploymentProfileAssignedDeviceOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/assignedDevices", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/assignedDevices", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

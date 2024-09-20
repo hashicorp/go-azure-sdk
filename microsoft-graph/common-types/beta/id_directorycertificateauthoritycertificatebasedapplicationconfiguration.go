@@ -94,7 +94,7 @@ func (id DirectoryCertificateAuthorityCertificateBasedApplicationConfigurationId
 		resourceids.StaticSegment("directory", "directory", "directory"),
 		resourceids.StaticSegment("certificateAuthorities", "certificateAuthorities", "certificateAuthorities"),
 		resourceids.StaticSegment("certificateBasedApplicationConfigurations", "certificateBasedApplicationConfigurations", "certificateBasedApplicationConfigurations"),
-		resourceids.UserSpecifiedSegment("certificateBasedApplicationConfigurationId", "certificateBasedApplicationConfigurationIdValue"),
+		resourceids.UserSpecifiedSegment("certificateBasedApplicationConfigurationId", "certificateBasedApplicationConfigurationId"),
 	}
 }
 

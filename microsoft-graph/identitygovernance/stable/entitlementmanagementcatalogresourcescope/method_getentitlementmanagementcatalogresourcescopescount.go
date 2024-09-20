@@ -20,8 +20,9 @@ type GetEntitlementManagementCatalogResourceScopesCountOperationResponse struct 
 }
 
 type GetEntitlementManagementCatalogResourceScopesCountOperationOptions struct {
-	Filter *string
-	Search *string
+	Filter   *string
+	Metadata *odata.Metadata
+	Search   *string
 }
 
 func DefaultGetEntitlementManagementCatalogResourceScopesCountOperationOptions() GetEntitlementManagementCatalogResourceScopesCountOperationOptions {
@@ -39,6 +40,9 @@ func (o GetEntitlementManagementCatalogResourceScopesCountOperationOptions) ToOD
 	if o.Filter != nil {
 		out.Filter = *o.Filter
 	}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	if o.Search != nil {
 		out.Search = *o.Search
 	}
@@ -52,7 +56,7 @@ func (o GetEntitlementManagementCatalogResourceScopesCountOperationOptions) ToQu
 }
 
 // GetEntitlementManagementCatalogResourceScopesCount - Get the number of the resource
-func (c EntitlementManagementCatalogResourceScopeClient) GetEntitlementManagementCatalogResourceScopesCount(ctx context.Context, id stable.IdentityGovernanceEntitlementManagementCatalogId, options GetEntitlementManagementCatalogResourceScopesCountOperationOptions) (result GetEntitlementManagementCatalogResourceScopesCountOperationResponse, err error) {
+func (c EntitlementManagementCatalogResourceScopeClient) GetEntitlementManagementCatalogResourceScopesCount(ctx context.Context, id stable.IdentityGovernanceEntitlementManagementCatalogIdResourceId, options GetEntitlementManagementCatalogResourceScopesCountOperationOptions) (result GetEntitlementManagementCatalogResourceScopesCountOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "text/plain",
 		ExpectedStatusCodes: []int{
@@ -60,7 +64,7 @@ func (c EntitlementManagementCatalogResourceScopeClient) GetEntitlementManagemen
 		},
 		HttpMethod:    http.MethodGet,
 		OptionsObject: options,
-		Path:          fmt.Sprintf("%s/resourceScopes/$count", id.ID()),
+		Path:          fmt.Sprintf("%s/scopes/$count", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

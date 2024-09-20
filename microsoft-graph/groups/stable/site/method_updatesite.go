@@ -17,15 +17,44 @@ type UpdateSiteOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateSiteOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateSiteOperationOptions() UpdateSiteOperationOptions {
+	return UpdateSiteOperationOptions{}
+}
+
+func (o UpdateSiteOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateSiteOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateSiteOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateSite - Update the navigation property sites in groups
-func (c SiteClient) UpdateSite(ctx context.Context, id stable.GroupIdSiteId, input stable.Site) (result UpdateSiteOperationResponse, err error) {
+func (c SiteClient) UpdateSite(ctx context.Context, id stable.GroupIdSiteId, input stable.Site, options UpdateSiteOperationOptions) (result UpdateSiteOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -18,15 +18,44 @@ type AcceptEventOperationResponse struct {
 	OData        *odata.OData
 }
 
+type AcceptEventOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultAcceptEventOperationOptions() AcceptEventOperationOptions {
+	return AcceptEventOperationOptions{}
+}
+
+func (o AcceptEventOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o AcceptEventOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o AcceptEventOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // AcceptEvent - Invoke action accept. Accept the specified event in a user calendar.
-func (c EventClient) AcceptEvent(ctx context.Context, id stable.UserIdEventId, input AcceptEventRequest) (result AcceptEventOperationResponse, err error) {
+func (c EventClient) AcceptEvent(ctx context.Context, id stable.UserIdEventId, input AcceptEventRequest, options AcceptEventOperationOptions) (result AcceptEventOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/accept", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/accept", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

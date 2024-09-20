@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &DeviceManagementUserPfxCertificateId{}
 
 func TestNewDeviceManagementUserPfxCertificateID(t *testing.T) {
-	id := NewDeviceManagementUserPfxCertificateID("userPFXCertificateIdValue")
+	id := NewDeviceManagementUserPfxCertificateID("userPFXCertificateId")
 
-	if id.UserPFXCertificateId != "userPFXCertificateIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'UserPFXCertificateId'", id.UserPFXCertificateId, "userPFXCertificateIdValue")
+	if id.UserPFXCertificateId != "userPFXCertificateId" {
+		t.Fatalf("Expected %q but got %q for Segment 'UserPFXCertificateId'", id.UserPFXCertificateId, "userPFXCertificateId")
 	}
 }
 
 func TestFormatDeviceManagementUserPfxCertificateID(t *testing.T) {
-	actual := NewDeviceManagementUserPfxCertificateID("userPFXCertificateIdValue").ID()
-	expected := "/deviceManagement/userPfxCertificates/userPFXCertificateIdValue"
+	actual := NewDeviceManagementUserPfxCertificateID("userPFXCertificateId").ID()
+	expected := "/deviceManagement/userPfxCertificates/userPFXCertificateId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -50,14 +50,14 @@ func TestParseDeviceManagementUserPfxCertificateID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/userPfxCertificates/userPFXCertificateIdValue",
+			Input: "/deviceManagement/userPfxCertificates/userPFXCertificateId",
 			Expected: &DeviceManagementUserPfxCertificateId{
-				UserPFXCertificateId: "userPFXCertificateIdValue",
+				UserPFXCertificateId: "userPFXCertificateId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/userPfxCertificates/userPFXCertificateIdValue/extra",
+			Input: "/deviceManagement/userPfxCertificates/userPFXCertificateId/extra",
 			Error: true,
 		},
 	}
@@ -116,26 +116,26 @@ func TestParseDeviceManagementUserPfxCertificateIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/userPfxCertificates/userPFXCertificateIdValue",
+			Input: "/deviceManagement/userPfxCertificates/userPFXCertificateId",
 			Expected: &DeviceManagementUserPfxCertificateId{
-				UserPFXCertificateId: "userPFXCertificateIdValue",
+				UserPFXCertificateId: "userPFXCertificateId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/userPfxCertificates/userPFXCertificateIdValue/extra",
+			Input: "/deviceManagement/userPfxCertificates/userPFXCertificateId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/uSeRpFxCeRtIfIcAtEs/uSeRpFxCeRtIfIcAtEiDvAlUe",
+			Input: "/dEvIcEmAnAgEmEnT/uSeRpFxCeRtIfIcAtEs/uSeRpFxCeRtIfIcAtEiD",
 			Expected: &DeviceManagementUserPfxCertificateId{
-				UserPFXCertificateId: "uSeRpFxCeRtIfIcAtEiDvAlUe",
+				UserPFXCertificateId: "uSeRpFxCeRtIfIcAtEiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/uSeRpFxCeRtIfIcAtEs/uSeRpFxCeRtIfIcAtEiDvAlUe/extra",
+			Input: "/dEvIcEmAnAgEmEnT/uSeRpFxCeRtIfIcAtEs/uSeRpFxCeRtIfIcAtEiD/extra",
 			Error: true,
 		},
 	}

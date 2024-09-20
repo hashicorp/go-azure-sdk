@@ -12,24 +12,24 @@ import (
 var _ resourceids.ResourceId = &MeTodoListIdTaskIdLinkedResourceId{}
 
 func TestNewMeTodoListIdTaskIdLinkedResourceID(t *testing.T) {
-	id := NewMeTodoListIdTaskIdLinkedResourceID("todoTaskListIdValue", "todoTaskIdValue", "linkedResourceIdValue")
+	id := NewMeTodoListIdTaskIdLinkedResourceID("todoTaskListId", "todoTaskId", "linkedResourceId")
 
-	if id.TodoTaskListId != "todoTaskListIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'TodoTaskListId'", id.TodoTaskListId, "todoTaskListIdValue")
+	if id.TodoTaskListId != "todoTaskListId" {
+		t.Fatalf("Expected %q but got %q for Segment 'TodoTaskListId'", id.TodoTaskListId, "todoTaskListId")
 	}
 
-	if id.TodoTaskId != "todoTaskIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'TodoTaskId'", id.TodoTaskId, "todoTaskIdValue")
+	if id.TodoTaskId != "todoTaskId" {
+		t.Fatalf("Expected %q but got %q for Segment 'TodoTaskId'", id.TodoTaskId, "todoTaskId")
 	}
 
-	if id.LinkedResourceId != "linkedResourceIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'LinkedResourceId'", id.LinkedResourceId, "linkedResourceIdValue")
+	if id.LinkedResourceId != "linkedResourceId" {
+		t.Fatalf("Expected %q but got %q for Segment 'LinkedResourceId'", id.LinkedResourceId, "linkedResourceId")
 	}
 }
 
 func TestFormatMeTodoListIdTaskIdLinkedResourceID(t *testing.T) {
-	actual := NewMeTodoListIdTaskIdLinkedResourceID("todoTaskListIdValue", "todoTaskIdValue", "linkedResourceIdValue").ID()
-	expected := "/me/todo/lists/todoTaskListIdValue/tasks/todoTaskIdValue/linkedResources/linkedResourceIdValue"
+	actual := NewMeTodoListIdTaskIdLinkedResourceID("todoTaskListId", "todoTaskId", "linkedResourceId").ID()
+	expected := "/me/todo/lists/todoTaskListId/tasks/todoTaskId/linkedResources/linkedResourceId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -63,36 +63,36 @@ func TestParseMeTodoListIdTaskIdLinkedResourceID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/me/todo/lists/todoTaskListIdValue",
+			Input: "/me/todo/lists/todoTaskListId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/me/todo/lists/todoTaskListIdValue/tasks",
+			Input: "/me/todo/lists/todoTaskListId/tasks",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/me/todo/lists/todoTaskListIdValue/tasks/todoTaskIdValue",
+			Input: "/me/todo/lists/todoTaskListId/tasks/todoTaskId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/me/todo/lists/todoTaskListIdValue/tasks/todoTaskIdValue/linkedResources",
+			Input: "/me/todo/lists/todoTaskListId/tasks/todoTaskId/linkedResources",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/me/todo/lists/todoTaskListIdValue/tasks/todoTaskIdValue/linkedResources/linkedResourceIdValue",
+			Input: "/me/todo/lists/todoTaskListId/tasks/todoTaskId/linkedResources/linkedResourceId",
 			Expected: &MeTodoListIdTaskIdLinkedResourceId{
-				TodoTaskListId:   "todoTaskListIdValue",
-				TodoTaskId:       "todoTaskIdValue",
-				LinkedResourceId: "linkedResourceIdValue",
+				TodoTaskListId:   "todoTaskListId",
+				TodoTaskId:       "todoTaskId",
+				LinkedResourceId: "linkedResourceId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/todo/lists/todoTaskListIdValue/tasks/todoTaskIdValue/linkedResources/linkedResourceIdValue/extra",
+			Input: "/me/todo/lists/todoTaskListId/tasks/todoTaskId/linkedResources/linkedResourceId/extra",
 			Error: true,
 		},
 	}
@@ -169,70 +169,70 @@ func TestParseMeTodoListIdTaskIdLinkedResourceIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/me/todo/lists/todoTaskListIdValue",
+			Input: "/me/todo/lists/todoTaskListId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/tOdO/lIsTs/tOdOtAsKlIsTiDvAlUe",
+			Input: "/mE/tOdO/lIsTs/tOdOtAsKlIsTiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/me/todo/lists/todoTaskListIdValue/tasks",
+			Input: "/me/todo/lists/todoTaskListId/tasks",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/tOdO/lIsTs/tOdOtAsKlIsTiDvAlUe/tAsKs",
+			Input: "/mE/tOdO/lIsTs/tOdOtAsKlIsTiD/tAsKs",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/me/todo/lists/todoTaskListIdValue/tasks/todoTaskIdValue",
+			Input: "/me/todo/lists/todoTaskListId/tasks/todoTaskId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/tOdO/lIsTs/tOdOtAsKlIsTiDvAlUe/tAsKs/tOdOtAsKiDvAlUe",
+			Input: "/mE/tOdO/lIsTs/tOdOtAsKlIsTiD/tAsKs/tOdOtAsKiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/me/todo/lists/todoTaskListIdValue/tasks/todoTaskIdValue/linkedResources",
+			Input: "/me/todo/lists/todoTaskListId/tasks/todoTaskId/linkedResources",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/tOdO/lIsTs/tOdOtAsKlIsTiDvAlUe/tAsKs/tOdOtAsKiDvAlUe/lInKeDrEsOuRcEs",
+			Input: "/mE/tOdO/lIsTs/tOdOtAsKlIsTiD/tAsKs/tOdOtAsKiD/lInKeDrEsOuRcEs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/me/todo/lists/todoTaskListIdValue/tasks/todoTaskIdValue/linkedResources/linkedResourceIdValue",
+			Input: "/me/todo/lists/todoTaskListId/tasks/todoTaskId/linkedResources/linkedResourceId",
 			Expected: &MeTodoListIdTaskIdLinkedResourceId{
-				TodoTaskListId:   "todoTaskListIdValue",
-				TodoTaskId:       "todoTaskIdValue",
-				LinkedResourceId: "linkedResourceIdValue",
+				TodoTaskListId:   "todoTaskListId",
+				TodoTaskId:       "todoTaskId",
+				LinkedResourceId: "linkedResourceId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/todo/lists/todoTaskListIdValue/tasks/todoTaskIdValue/linkedResources/linkedResourceIdValue/extra",
+			Input: "/me/todo/lists/todoTaskListId/tasks/todoTaskId/linkedResources/linkedResourceId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/tOdO/lIsTs/tOdOtAsKlIsTiDvAlUe/tAsKs/tOdOtAsKiDvAlUe/lInKeDrEsOuRcEs/lInKeDrEsOuRcEiDvAlUe",
+			Input: "/mE/tOdO/lIsTs/tOdOtAsKlIsTiD/tAsKs/tOdOtAsKiD/lInKeDrEsOuRcEs/lInKeDrEsOuRcEiD",
 			Expected: &MeTodoListIdTaskIdLinkedResourceId{
-				TodoTaskListId:   "tOdOtAsKlIsTiDvAlUe",
-				TodoTaskId:       "tOdOtAsKiDvAlUe",
-				LinkedResourceId: "lInKeDrEsOuRcEiDvAlUe",
+				TodoTaskListId:   "tOdOtAsKlIsTiD",
+				TodoTaskId:       "tOdOtAsKiD",
+				LinkedResourceId: "lInKeDrEsOuRcEiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/mE/tOdO/lIsTs/tOdOtAsKlIsTiDvAlUe/tAsKs/tOdOtAsKiDvAlUe/lInKeDrEsOuRcEs/lInKeDrEsOuRcEiDvAlUe/extra",
+			Input: "/mE/tOdO/lIsTs/tOdOtAsKlIsTiD/tAsKs/tOdOtAsKiD/lInKeDrEsOuRcEs/lInKeDrEsOuRcEiD/extra",
 			Error: true,
 		},
 	}

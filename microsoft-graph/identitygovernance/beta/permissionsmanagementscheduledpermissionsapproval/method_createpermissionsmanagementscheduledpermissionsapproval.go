@@ -18,16 +18,45 @@ type CreatePermissionsManagementScheduledPermissionsApprovalOperationResponse st
 	Model        *beta.Approval
 }
 
+type CreatePermissionsManagementScheduledPermissionsApprovalOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreatePermissionsManagementScheduledPermissionsApprovalOperationOptions() CreatePermissionsManagementScheduledPermissionsApprovalOperationOptions {
+	return CreatePermissionsManagementScheduledPermissionsApprovalOperationOptions{}
+}
+
+func (o CreatePermissionsManagementScheduledPermissionsApprovalOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreatePermissionsManagementScheduledPermissionsApprovalOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreatePermissionsManagementScheduledPermissionsApprovalOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreatePermissionsManagementScheduledPermissionsApproval - Create new navigation property to
 // scheduledPermissionsApprovals for identityGovernance
-func (c PermissionsManagementScheduledPermissionsApprovalClient) CreatePermissionsManagementScheduledPermissionsApproval(ctx context.Context, input beta.Approval) (result CreatePermissionsManagementScheduledPermissionsApprovalOperationResponse, err error) {
+func (c PermissionsManagementScheduledPermissionsApprovalClient) CreatePermissionsManagementScheduledPermissionsApproval(ctx context.Context, input beta.Approval, options CreatePermissionsManagementScheduledPermissionsApprovalOperationOptions) (result CreatePermissionsManagementScheduledPermissionsApprovalOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/identityGovernance/permissionsManagement/scheduledPermissionsApprovals",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/identityGovernance/permissionsManagement/scheduledPermissionsApprovals",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

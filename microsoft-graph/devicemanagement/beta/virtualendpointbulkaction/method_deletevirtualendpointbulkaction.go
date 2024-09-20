@@ -19,7 +19,8 @@ type DeleteVirtualEndpointBulkActionOperationResponse struct {
 }
 
 type DeleteVirtualEndpointBulkActionOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteVirtualEndpointBulkActionOperationOptions() DeleteVirtualEndpointBulkActionOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteVirtualEndpointBulkActionOperationOptions) ToHeaders() *client.Hea
 
 func (o DeleteVirtualEndpointBulkActionOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

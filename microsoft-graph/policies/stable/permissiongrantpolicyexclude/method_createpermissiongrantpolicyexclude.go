@@ -19,17 +19,46 @@ type CreatePermissionGrantPolicyExcludeOperationResponse struct {
 	Model        *stable.PermissionGrantConditionSet
 }
 
+type CreatePermissionGrantPolicyExcludeOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreatePermissionGrantPolicyExcludeOperationOptions() CreatePermissionGrantPolicyExcludeOperationOptions {
+	return CreatePermissionGrantPolicyExcludeOperationOptions{}
+}
+
+func (o CreatePermissionGrantPolicyExcludeOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreatePermissionGrantPolicyExcludeOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreatePermissionGrantPolicyExcludeOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreatePermissionGrantPolicyExclude - Create permissionGrantConditionSet in excludes collection of
 // permissionGrantPolicy. Add conditions under which a permission grant event is *excluded* in a permission grant
 // policy. You do this by adding a permissionGrantConditionSet to the excludes collection of a permissionGrantPolicy.
-func (c PermissionGrantPolicyExcludeClient) CreatePermissionGrantPolicyExclude(ctx context.Context, id stable.PolicyPermissionGrantPolicyId, input stable.PermissionGrantConditionSet) (result CreatePermissionGrantPolicyExcludeOperationResponse, err error) {
+func (c PermissionGrantPolicyExcludeClient) CreatePermissionGrantPolicyExclude(ctx context.Context, id stable.PolicyPermissionGrantPolicyId, input stable.PermissionGrantConditionSet, options CreatePermissionGrantPolicyExcludeOperationOptions) (result CreatePermissionGrantPolicyExcludeOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/excludes", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/excludes", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -25,10 +25,17 @@ type AzureAssociatedIdentities struct {
 var _ json.Unmarshaler = &AzureAssociatedIdentities{}
 
 func (s *AzureAssociatedIdentities) UnmarshalJSON(bytes []byte) error {
-	type alias AzureAssociatedIdentities
-	var decoded alias
+
+	var decoded struct {
+		All               *[]AzureIdentity         `json:"all,omitempty"`
+		ManagedIdentities *[]AzureManagedIdentity  `json:"managedIdentities,omitempty"`
+		ODataId           *string                  `json:"@odata.id,omitempty"`
+		ODataType         *string                  `json:"@odata.type,omitempty"`
+		ServicePrincipals *[]AzureServicePrincipal `json:"servicePrincipals,omitempty"`
+		Users             *[]AzureUser             `json:"users,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into AzureAssociatedIdentities: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.ManagedIdentities = decoded.ManagedIdentities
@@ -58,5 +65,6 @@ func (s *AzureAssociatedIdentities) UnmarshalJSON(bytes []byte) error {
 		}
 		s.All = &output
 	}
+
 	return nil
 }

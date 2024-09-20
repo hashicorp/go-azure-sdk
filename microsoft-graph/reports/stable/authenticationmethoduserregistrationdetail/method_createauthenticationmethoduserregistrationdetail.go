@@ -18,16 +18,45 @@ type CreateAuthenticationMethodUserRegistrationDetailOperationResponse struct {
 	Model        *stable.UserRegistrationDetails
 }
 
+type CreateAuthenticationMethodUserRegistrationDetailOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateAuthenticationMethodUserRegistrationDetailOperationOptions() CreateAuthenticationMethodUserRegistrationDetailOperationOptions {
+	return CreateAuthenticationMethodUserRegistrationDetailOperationOptions{}
+}
+
+func (o CreateAuthenticationMethodUserRegistrationDetailOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateAuthenticationMethodUserRegistrationDetailOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateAuthenticationMethodUserRegistrationDetailOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateAuthenticationMethodUserRegistrationDetail - Create new navigation property to userRegistrationDetails for
 // reports
-func (c AuthenticationMethodUserRegistrationDetailClient) CreateAuthenticationMethodUserRegistrationDetail(ctx context.Context, input stable.UserRegistrationDetails) (result CreateAuthenticationMethodUserRegistrationDetailOperationResponse, err error) {
+func (c AuthenticationMethodUserRegistrationDetailClient) CreateAuthenticationMethodUserRegistrationDetail(ctx context.Context, input stable.UserRegistrationDetails, options CreateAuthenticationMethodUserRegistrationDetailOperationOptions) (result CreateAuthenticationMethodUserRegistrationDetailOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/reports/authenticationMethods/userRegistrationDetails",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/reports/authenticationMethods/userRegistrationDetails",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

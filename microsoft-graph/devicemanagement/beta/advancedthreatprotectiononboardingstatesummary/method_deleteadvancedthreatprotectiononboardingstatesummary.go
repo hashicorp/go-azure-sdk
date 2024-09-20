@@ -18,7 +18,8 @@ type DeleteAdvancedThreatProtectionOnboardingStateSummaryOperationResponse struc
 }
 
 type DeleteAdvancedThreatProtectionOnboardingStateSummaryOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteAdvancedThreatProtectionOnboardingStateSummaryOperationOptions() DeleteAdvancedThreatProtectionOnboardingStateSummaryOperationOptions {
@@ -35,7 +36,9 @@ func (o DeleteAdvancedThreatProtectionOnboardingStateSummaryOperationOptions) To
 
 func (o DeleteAdvancedThreatProtectionOnboardingStateSummaryOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

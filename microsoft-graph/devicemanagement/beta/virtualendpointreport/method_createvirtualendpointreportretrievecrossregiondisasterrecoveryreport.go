@@ -17,19 +17,48 @@ type CreateVirtualEndpointReportRetrieveCrossRegionDisasterRecoveryReportOperati
 	Model        *[]byte
 }
 
+type CreateVirtualEndpointReportRetrieveCrossRegionDisasterRecoveryReportOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateVirtualEndpointReportRetrieveCrossRegionDisasterRecoveryReportOperationOptions() CreateVirtualEndpointReportRetrieveCrossRegionDisasterRecoveryReportOperationOptions {
+	return CreateVirtualEndpointReportRetrieveCrossRegionDisasterRecoveryReportOperationOptions{}
+}
+
+func (o CreateVirtualEndpointReportRetrieveCrossRegionDisasterRecoveryReportOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateVirtualEndpointReportRetrieveCrossRegionDisasterRecoveryReportOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateVirtualEndpointReportRetrieveCrossRegionDisasterRecoveryReportOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateVirtualEndpointReportRetrieveCrossRegionDisasterRecoveryReport - Invoke action
 // retrieveCrossRegionDisasterRecoveryReport. Retrieve the Windows 365 cross-region disaster recovery report, including
 // CloudPcId, UserId, DeviceId, CloudPCDeviceDisplayName, UserPrincipalName, IsCrossRegionEnabled,
 // CrossRegionHealthStatus, LicenseType, DisasterRecoveryStatus, CurrentRestorePointDateTime, and
 // ActivationExpirationDateTime.
-func (c VirtualEndpointReportClient) CreateVirtualEndpointReportRetrieveCrossRegionDisasterRecoveryReport(ctx context.Context, input CreateVirtualEndpointReportRetrieveCrossRegionDisasterRecoveryReportRequest) (result CreateVirtualEndpointReportRetrieveCrossRegionDisasterRecoveryReportOperationResponse, err error) {
+func (c VirtualEndpointReportClient) CreateVirtualEndpointReportRetrieveCrossRegionDisasterRecoveryReport(ctx context.Context, input CreateVirtualEndpointReportRetrieveCrossRegionDisasterRecoveryReportRequest, options CreateVirtualEndpointReportRetrieveCrossRegionDisasterRecoveryReportOperationOptions) (result CreateVirtualEndpointReportRetrieveCrossRegionDisasterRecoveryReportOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/octet-stream",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/deviceManagement/virtualEndpoint/reports/retrieveCrossRegionDisasterRecoveryReport",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/deviceManagement/virtualEndpoint/reports/retrieveCrossRegionDisasterRecoveryReport",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

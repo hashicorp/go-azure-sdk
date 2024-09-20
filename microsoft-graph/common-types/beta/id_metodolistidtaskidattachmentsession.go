@@ -106,11 +106,11 @@ func (id MeTodoListIdTaskIdAttachmentSessionId) Segments() []resourceids.Segment
 		resourceids.StaticSegment("me", "me", "me"),
 		resourceids.StaticSegment("todo", "todo", "todo"),
 		resourceids.StaticSegment("lists", "lists", "lists"),
-		resourceids.UserSpecifiedSegment("todoTaskListId", "todoTaskListIdValue"),
+		resourceids.UserSpecifiedSegment("todoTaskListId", "todoTaskListId"),
 		resourceids.StaticSegment("tasks", "tasks", "tasks"),
-		resourceids.UserSpecifiedSegment("todoTaskId", "todoTaskIdValue"),
+		resourceids.UserSpecifiedSegment("todoTaskId", "todoTaskId"),
 		resourceids.StaticSegment("attachmentSessions", "attachmentSessions", "attachmentSessions"),
-		resourceids.UserSpecifiedSegment("attachmentSessionId", "attachmentSessionIdValue"),
+		resourceids.UserSpecifiedSegment("attachmentSessionId", "attachmentSessionId"),
 	}
 }
 

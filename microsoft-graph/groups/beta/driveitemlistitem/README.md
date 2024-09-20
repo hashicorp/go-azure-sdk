@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/driveitemlistitem` Documentation
 
-The `driveitemlistitem` SDK allows for interaction with the Azure Resource Manager Service `groups` (API Version `beta`).
+The `driveitemlistitem` SDK allows for interaction with Microsoft Graph `groups` (API Version `beta`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -15,7 +15,7 @@ import "github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/driveiteml
 ### Client Initialization
 
 ```go
-client := driveitemlistitem.NewDriveItemListItemClientWithBaseURI("https://management.azure.com")
+client := driveitemlistitem.NewDriveItemListItemClientWithBaseURI("https://graph.microsoft.com")
 client.Client.Authorizer = authorizer
 ```
 
@@ -24,14 +24,14 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := driveitemlistitem.NewGroupIdDriveIdItemID("groupIdValue", "driveIdValue", "driveItemIdValue")
+id := driveitemlistitem.NewGroupIdDriveIdItemID("groupId", "driveId", "driveItemId")
 
 payload := driveitemlistitem.CreateDriveItemListItemLinkRequest{
 	// ...
 }
 
 
-read, err := client.CreateDriveItemListItemLink(ctx, id, payload)
+read, err := client.CreateDriveItemListItemLink(ctx, id, payload, driveitemlistitem.DefaultCreateDriveItemListItemLinkOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -45,7 +45,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := driveitemlistitem.NewGroupIdDriveIdItemID("groupIdValue", "driveIdValue", "driveItemIdValue")
+id := driveitemlistitem.NewGroupIdDriveIdItemID("groupId", "driveId", "driveItemId")
 
 read, err := client.DeleteDriveItemListItem(ctx, id, driveitemlistitem.DefaultDeleteDriveItemListItemOperationOptions())
 if err != nil {
@@ -61,7 +61,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := driveitemlistitem.NewGroupIdDriveIdItemID("groupIdValue", "driveIdValue", "driveItemIdValue")
+id := driveitemlistitem.NewGroupIdDriveIdItemID("groupId", "driveId", "driveItemId")
 
 read, err := client.GetDriveItemListItem(ctx, id, driveitemlistitem.DefaultGetDriveItemListItemOperationOptions())
 if err != nil {
@@ -77,14 +77,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := driveitemlistitem.NewGroupIdDriveIdItemID("groupIdValue", "driveIdValue", "driveItemIdValue")
+id := driveitemlistitem.NewGroupIdDriveIdItemID("groupId", "driveId", "driveItemId")
 
 payload := driveitemlistitem.ListItem{
 	// ...
 }
 
 
-read, err := client.UpdateDriveItemListItem(ctx, id, payload)
+read, err := client.UpdateDriveItemListItem(ctx, id, payload, driveitemlistitem.DefaultUpdateDriveItemListItemOperationOptions())
 if err != nil {
 	// handle the error
 }

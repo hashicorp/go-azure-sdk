@@ -19,7 +19,8 @@ type RemoveTokenIssuancePolicyRefOperationResponse struct {
 }
 
 type RemoveTokenIssuancePolicyRefOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultRemoveTokenIssuancePolicyRefOperationOptions() RemoveTokenIssuancePolicyRefOperationOptions {
@@ -36,7 +37,9 @@ func (o RemoveTokenIssuancePolicyRefOperationOptions) ToHeaders() *client.Header
 
 func (o RemoveTokenIssuancePolicyRefOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

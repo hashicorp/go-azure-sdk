@@ -17,15 +17,44 @@ type UpdateManagedDeviceWindowsOSImageOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateManagedDeviceWindowsOSImageOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateManagedDeviceWindowsOSImageOperationOptions() UpdateManagedDeviceWindowsOSImageOperationOptions {
+	return UpdateManagedDeviceWindowsOSImageOperationOptions{}
+}
+
+func (o UpdateManagedDeviceWindowsOSImageOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateManagedDeviceWindowsOSImageOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateManagedDeviceWindowsOSImageOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateManagedDeviceWindowsOSImage - Update the navigation property managedDeviceWindowsOSImages in deviceManagement
-func (c ManagedDeviceWindowsOSImageClient) UpdateManagedDeviceWindowsOSImage(ctx context.Context, id beta.DeviceManagementManagedDeviceWindowsOSImageId, input beta.ManagedDeviceWindowsOperatingSystemImage) (result UpdateManagedDeviceWindowsOSImageOperationResponse, err error) {
+func (c ManagedDeviceWindowsOSImageClient) UpdateManagedDeviceWindowsOSImage(ctx context.Context, id beta.DeviceManagementManagedDeviceWindowsOSImageId, input beta.ManagedDeviceWindowsOperatingSystemImage, options UpdateManagedDeviceWindowsOSImageOperationOptions) (result UpdateManagedDeviceWindowsOSImageOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

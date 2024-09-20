@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &DeviceManagementTermsAndConditionIdAssignmentId{}
 
 func TestNewDeviceManagementTermsAndConditionIdAssignmentID(t *testing.T) {
-	id := NewDeviceManagementTermsAndConditionIdAssignmentID("termsAndConditionsIdValue", "termsAndConditionsAssignmentIdValue")
+	id := NewDeviceManagementTermsAndConditionIdAssignmentID("termsAndConditionsId", "termsAndConditionsAssignmentId")
 
-	if id.TermsAndConditionsId != "termsAndConditionsIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'TermsAndConditionsId'", id.TermsAndConditionsId, "termsAndConditionsIdValue")
+	if id.TermsAndConditionsId != "termsAndConditionsId" {
+		t.Fatalf("Expected %q but got %q for Segment 'TermsAndConditionsId'", id.TermsAndConditionsId, "termsAndConditionsId")
 	}
 
-	if id.TermsAndConditionsAssignmentId != "termsAndConditionsAssignmentIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'TermsAndConditionsAssignmentId'", id.TermsAndConditionsAssignmentId, "termsAndConditionsAssignmentIdValue")
+	if id.TermsAndConditionsAssignmentId != "termsAndConditionsAssignmentId" {
+		t.Fatalf("Expected %q but got %q for Segment 'TermsAndConditionsAssignmentId'", id.TermsAndConditionsAssignmentId, "termsAndConditionsAssignmentId")
 	}
 }
 
 func TestFormatDeviceManagementTermsAndConditionIdAssignmentID(t *testing.T) {
-	actual := NewDeviceManagementTermsAndConditionIdAssignmentID("termsAndConditionsIdValue", "termsAndConditionsAssignmentIdValue").ID()
-	expected := "/deviceManagement/termsAndConditions/termsAndConditionsIdValue/assignments/termsAndConditionsAssignmentIdValue"
+	actual := NewDeviceManagementTermsAndConditionIdAssignmentID("termsAndConditionsId", "termsAndConditionsAssignmentId").ID()
+	expected := "/deviceManagement/termsAndConditions/termsAndConditionsId/assignments/termsAndConditionsAssignmentId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -54,25 +54,25 @@ func TestParseDeviceManagementTermsAndConditionIdAssignmentID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/deviceManagement/termsAndConditions/termsAndConditionsIdValue",
+			Input: "/deviceManagement/termsAndConditions/termsAndConditionsId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/deviceManagement/termsAndConditions/termsAndConditionsIdValue/assignments",
+			Input: "/deviceManagement/termsAndConditions/termsAndConditionsId/assignments",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/termsAndConditions/termsAndConditionsIdValue/assignments/termsAndConditionsAssignmentIdValue",
+			Input: "/deviceManagement/termsAndConditions/termsAndConditionsId/assignments/termsAndConditionsAssignmentId",
 			Expected: &DeviceManagementTermsAndConditionIdAssignmentId{
-				TermsAndConditionsId:           "termsAndConditionsIdValue",
-				TermsAndConditionsAssignmentId: "termsAndConditionsAssignmentIdValue",
+				TermsAndConditionsId:           "termsAndConditionsId",
+				TermsAndConditionsAssignmentId: "termsAndConditionsAssignmentId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/termsAndConditions/termsAndConditionsIdValue/assignments/termsAndConditionsAssignmentIdValue/extra",
+			Input: "/deviceManagement/termsAndConditions/termsAndConditionsId/assignments/termsAndConditionsAssignmentId/extra",
 			Error: true,
 		},
 	}
@@ -135,48 +135,48 @@ func TestParseDeviceManagementTermsAndConditionIdAssignmentIDInsensitively(t *te
 		},
 		{
 			// Incomplete URI
-			Input: "/deviceManagement/termsAndConditions/termsAndConditionsIdValue",
+			Input: "/deviceManagement/termsAndConditions/termsAndConditionsId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/tErMsAnDcOnDiTiOnS/tErMsAnDcOnDiTiOnSiDvAlUe",
+			Input: "/dEvIcEmAnAgEmEnT/tErMsAnDcOnDiTiOnS/tErMsAnDcOnDiTiOnSiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/deviceManagement/termsAndConditions/termsAndConditionsIdValue/assignments",
+			Input: "/deviceManagement/termsAndConditions/termsAndConditionsId/assignments",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/tErMsAnDcOnDiTiOnS/tErMsAnDcOnDiTiOnSiDvAlUe/aSsIgNmEnTs",
+			Input: "/dEvIcEmAnAgEmEnT/tErMsAnDcOnDiTiOnS/tErMsAnDcOnDiTiOnSiD/aSsIgNmEnTs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/termsAndConditions/termsAndConditionsIdValue/assignments/termsAndConditionsAssignmentIdValue",
+			Input: "/deviceManagement/termsAndConditions/termsAndConditionsId/assignments/termsAndConditionsAssignmentId",
 			Expected: &DeviceManagementTermsAndConditionIdAssignmentId{
-				TermsAndConditionsId:           "termsAndConditionsIdValue",
-				TermsAndConditionsAssignmentId: "termsAndConditionsAssignmentIdValue",
+				TermsAndConditionsId:           "termsAndConditionsId",
+				TermsAndConditionsAssignmentId: "termsAndConditionsAssignmentId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/termsAndConditions/termsAndConditionsIdValue/assignments/termsAndConditionsAssignmentIdValue/extra",
+			Input: "/deviceManagement/termsAndConditions/termsAndConditionsId/assignments/termsAndConditionsAssignmentId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/tErMsAnDcOnDiTiOnS/tErMsAnDcOnDiTiOnSiDvAlUe/aSsIgNmEnTs/tErMsAnDcOnDiTiOnSaSsIgNmEnTiDvAlUe",
+			Input: "/dEvIcEmAnAgEmEnT/tErMsAnDcOnDiTiOnS/tErMsAnDcOnDiTiOnSiD/aSsIgNmEnTs/tErMsAnDcOnDiTiOnSaSsIgNmEnTiD",
 			Expected: &DeviceManagementTermsAndConditionIdAssignmentId{
-				TermsAndConditionsId:           "tErMsAnDcOnDiTiOnSiDvAlUe",
-				TermsAndConditionsAssignmentId: "tErMsAnDcOnDiTiOnSaSsIgNmEnTiDvAlUe",
+				TermsAndConditionsId:           "tErMsAnDcOnDiTiOnSiD",
+				TermsAndConditionsAssignmentId: "tErMsAnDcOnDiTiOnSaSsIgNmEnTiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/tErMsAnDcOnDiTiOnS/tErMsAnDcOnDiTiOnSiDvAlUe/aSsIgNmEnTs/tErMsAnDcOnDiTiOnSaSsIgNmEnTiDvAlUe/extra",
+			Input: "/dEvIcEmAnAgEmEnT/tErMsAnDcOnDiTiOnS/tErMsAnDcOnDiTiOnSiD/aSsIgNmEnTs/tErMsAnDcOnDiTiOnSaSsIgNmEnTiD/extra",
 			Error: true,
 		},
 	}

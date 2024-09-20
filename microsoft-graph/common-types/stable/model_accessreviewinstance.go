@@ -108,23 +108,35 @@ func (s AccessReviewInstance) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &AccessReviewInstance{}
 
 func (s *AccessReviewInstance) UnmarshalJSON(bytes []byte) error {
-	type alias AccessReviewInstance
-	var decoded alias
+
+	var decoded struct {
+		ContactedReviewers *[]AccessReviewReviewer             `json:"contactedReviewers,omitempty"`
+		Decisions          *[]AccessReviewInstanceDecisionItem `json:"decisions,omitempty"`
+		EndDateTime        nullable.Type[string]               `json:"endDateTime,omitempty"`
+		FallbackReviewers  *[]AccessReviewReviewerScope        `json:"fallbackReviewers,omitempty"`
+		Reviewers          *[]AccessReviewReviewerScope        `json:"reviewers,omitempty"`
+		Stages             *[]AccessReviewStage                `json:"stages,omitempty"`
+		StartDateTime      nullable.Type[string]               `json:"startDateTime,omitempty"`
+		Status             nullable.Type[string]               `json:"status,omitempty"`
+		Id                 *string                             `json:"id,omitempty"`
+		ODataId            *string                             `json:"@odata.id,omitempty"`
+		ODataType          *string                             `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into AccessReviewInstance: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.ContactedReviewers = decoded.ContactedReviewers
 	s.Decisions = decoded.Decisions
 	s.EndDateTime = decoded.EndDateTime
 	s.FallbackReviewers = decoded.FallbackReviewers
-	s.Id = decoded.Id
-	s.ODataId = decoded.ODataId
-	s.ODataType = decoded.ODataType
 	s.Reviewers = decoded.Reviewers
 	s.Stages = decoded.Stages
 	s.StartDateTime = decoded.StartDateTime
 	s.Status = decoded.Status
+	s.Id = decoded.Id
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -138,5 +150,6 @@ func (s *AccessReviewInstance) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Scope = &impl
 	}
+
 	return nil
 }

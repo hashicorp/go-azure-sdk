@@ -12,24 +12,24 @@ import (
 var _ resourceids.ResourceId = &ServicePrincipalIdSynchronizationTemplateIdSchemaDirectoryId{}
 
 func TestNewServicePrincipalIdSynchronizationTemplateIdSchemaDirectoryID(t *testing.T) {
-	id := NewServicePrincipalIdSynchronizationTemplateIdSchemaDirectoryID("servicePrincipalIdValue", "synchronizationTemplateIdValue", "directoryDefinitionIdValue")
+	id := NewServicePrincipalIdSynchronizationTemplateIdSchemaDirectoryID("servicePrincipalId", "synchronizationTemplateId", "directoryDefinitionId")
 
-	if id.ServicePrincipalId != "servicePrincipalIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ServicePrincipalId'", id.ServicePrincipalId, "servicePrincipalIdValue")
+	if id.ServicePrincipalId != "servicePrincipalId" {
+		t.Fatalf("Expected %q but got %q for Segment 'ServicePrincipalId'", id.ServicePrincipalId, "servicePrincipalId")
 	}
 
-	if id.SynchronizationTemplateId != "synchronizationTemplateIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'SynchronizationTemplateId'", id.SynchronizationTemplateId, "synchronizationTemplateIdValue")
+	if id.SynchronizationTemplateId != "synchronizationTemplateId" {
+		t.Fatalf("Expected %q but got %q for Segment 'SynchronizationTemplateId'", id.SynchronizationTemplateId, "synchronizationTemplateId")
 	}
 
-	if id.DirectoryDefinitionId != "directoryDefinitionIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DirectoryDefinitionId'", id.DirectoryDefinitionId, "directoryDefinitionIdValue")
+	if id.DirectoryDefinitionId != "directoryDefinitionId" {
+		t.Fatalf("Expected %q but got %q for Segment 'DirectoryDefinitionId'", id.DirectoryDefinitionId, "directoryDefinitionId")
 	}
 }
 
 func TestFormatServicePrincipalIdSynchronizationTemplateIdSchemaDirectoryID(t *testing.T) {
-	actual := NewServicePrincipalIdSynchronizationTemplateIdSchemaDirectoryID("servicePrincipalIdValue", "synchronizationTemplateIdValue", "directoryDefinitionIdValue").ID()
-	expected := "/servicePrincipals/servicePrincipalIdValue/synchronization/templates/synchronizationTemplateIdValue/schema/directories/directoryDefinitionIdValue"
+	actual := NewServicePrincipalIdSynchronizationTemplateIdSchemaDirectoryID("servicePrincipalId", "synchronizationTemplateId", "directoryDefinitionId").ID()
+	expected := "/servicePrincipals/servicePrincipalId/synchronization/templates/synchronizationTemplateId/schema/directories/directoryDefinitionId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -53,46 +53,46 @@ func TestParseServicePrincipalIdSynchronizationTemplateIdSchemaDirectoryID(t *te
 		},
 		{
 			// Incomplete URI
-			Input: "/servicePrincipals/servicePrincipalIdValue",
+			Input: "/servicePrincipals/servicePrincipalId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/servicePrincipals/servicePrincipalIdValue/synchronization",
+			Input: "/servicePrincipals/servicePrincipalId/synchronization",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/servicePrincipals/servicePrincipalIdValue/synchronization/templates",
+			Input: "/servicePrincipals/servicePrincipalId/synchronization/templates",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/servicePrincipals/servicePrincipalIdValue/synchronization/templates/synchronizationTemplateIdValue",
+			Input: "/servicePrincipals/servicePrincipalId/synchronization/templates/synchronizationTemplateId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/servicePrincipals/servicePrincipalIdValue/synchronization/templates/synchronizationTemplateIdValue/schema",
+			Input: "/servicePrincipals/servicePrincipalId/synchronization/templates/synchronizationTemplateId/schema",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/servicePrincipals/servicePrincipalIdValue/synchronization/templates/synchronizationTemplateIdValue/schema/directories",
+			Input: "/servicePrincipals/servicePrincipalId/synchronization/templates/synchronizationTemplateId/schema/directories",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/servicePrincipals/servicePrincipalIdValue/synchronization/templates/synchronizationTemplateIdValue/schema/directories/directoryDefinitionIdValue",
+			Input: "/servicePrincipals/servicePrincipalId/synchronization/templates/synchronizationTemplateId/schema/directories/directoryDefinitionId",
 			Expected: &ServicePrincipalIdSynchronizationTemplateIdSchemaDirectoryId{
-				ServicePrincipalId:        "servicePrincipalIdValue",
-				SynchronizationTemplateId: "synchronizationTemplateIdValue",
-				DirectoryDefinitionId:     "directoryDefinitionIdValue",
+				ServicePrincipalId:        "servicePrincipalId",
+				SynchronizationTemplateId: "synchronizationTemplateId",
+				DirectoryDefinitionId:     "directoryDefinitionId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/servicePrincipals/servicePrincipalIdValue/synchronization/templates/synchronizationTemplateIdValue/schema/directories/directoryDefinitionIdValue/extra",
+			Input: "/servicePrincipals/servicePrincipalId/synchronization/templates/synchronizationTemplateId/schema/directories/directoryDefinitionId/extra",
 			Error: true,
 		},
 	}
@@ -149,90 +149,90 @@ func TestParseServicePrincipalIdSynchronizationTemplateIdSchemaDirectoryIDInsens
 		},
 		{
 			// Incomplete URI
-			Input: "/servicePrincipals/servicePrincipalIdValue",
+			Input: "/servicePrincipals/servicePrincipalId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sErViCePrInCiPaLs/sErViCePrInCiPaLiDvAlUe",
+			Input: "/sErViCePrInCiPaLs/sErViCePrInCiPaLiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/servicePrincipals/servicePrincipalIdValue/synchronization",
+			Input: "/servicePrincipals/servicePrincipalId/synchronization",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sErViCePrInCiPaLs/sErViCePrInCiPaLiDvAlUe/sYnChRoNiZaTiOn",
+			Input: "/sErViCePrInCiPaLs/sErViCePrInCiPaLiD/sYnChRoNiZaTiOn",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/servicePrincipals/servicePrincipalIdValue/synchronization/templates",
+			Input: "/servicePrincipals/servicePrincipalId/synchronization/templates",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sErViCePrInCiPaLs/sErViCePrInCiPaLiDvAlUe/sYnChRoNiZaTiOn/tEmPlAtEs",
+			Input: "/sErViCePrInCiPaLs/sErViCePrInCiPaLiD/sYnChRoNiZaTiOn/tEmPlAtEs",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/servicePrincipals/servicePrincipalIdValue/synchronization/templates/synchronizationTemplateIdValue",
+			Input: "/servicePrincipals/servicePrincipalId/synchronization/templates/synchronizationTemplateId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sErViCePrInCiPaLs/sErViCePrInCiPaLiDvAlUe/sYnChRoNiZaTiOn/tEmPlAtEs/sYnChRoNiZaTiOnTeMpLaTeIdVaLuE",
+			Input: "/sErViCePrInCiPaLs/sErViCePrInCiPaLiD/sYnChRoNiZaTiOn/tEmPlAtEs/sYnChRoNiZaTiOnTeMpLaTeId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/servicePrincipals/servicePrincipalIdValue/synchronization/templates/synchronizationTemplateIdValue/schema",
+			Input: "/servicePrincipals/servicePrincipalId/synchronization/templates/synchronizationTemplateId/schema",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sErViCePrInCiPaLs/sErViCePrInCiPaLiDvAlUe/sYnChRoNiZaTiOn/tEmPlAtEs/sYnChRoNiZaTiOnTeMpLaTeIdVaLuE/sChEmA",
+			Input: "/sErViCePrInCiPaLs/sErViCePrInCiPaLiD/sYnChRoNiZaTiOn/tEmPlAtEs/sYnChRoNiZaTiOnTeMpLaTeId/sChEmA",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/servicePrincipals/servicePrincipalIdValue/synchronization/templates/synchronizationTemplateIdValue/schema/directories",
+			Input: "/servicePrincipals/servicePrincipalId/synchronization/templates/synchronizationTemplateId/schema/directories",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sErViCePrInCiPaLs/sErViCePrInCiPaLiDvAlUe/sYnChRoNiZaTiOn/tEmPlAtEs/sYnChRoNiZaTiOnTeMpLaTeIdVaLuE/sChEmA/dIrEcToRiEs",
+			Input: "/sErViCePrInCiPaLs/sErViCePrInCiPaLiD/sYnChRoNiZaTiOn/tEmPlAtEs/sYnChRoNiZaTiOnTeMpLaTeId/sChEmA/dIrEcToRiEs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/servicePrincipals/servicePrincipalIdValue/synchronization/templates/synchronizationTemplateIdValue/schema/directories/directoryDefinitionIdValue",
+			Input: "/servicePrincipals/servicePrincipalId/synchronization/templates/synchronizationTemplateId/schema/directories/directoryDefinitionId",
 			Expected: &ServicePrincipalIdSynchronizationTemplateIdSchemaDirectoryId{
-				ServicePrincipalId:        "servicePrincipalIdValue",
-				SynchronizationTemplateId: "synchronizationTemplateIdValue",
-				DirectoryDefinitionId:     "directoryDefinitionIdValue",
+				ServicePrincipalId:        "servicePrincipalId",
+				SynchronizationTemplateId: "synchronizationTemplateId",
+				DirectoryDefinitionId:     "directoryDefinitionId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/servicePrincipals/servicePrincipalIdValue/synchronization/templates/synchronizationTemplateIdValue/schema/directories/directoryDefinitionIdValue/extra",
+			Input: "/servicePrincipals/servicePrincipalId/synchronization/templates/synchronizationTemplateId/schema/directories/directoryDefinitionId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sErViCePrInCiPaLs/sErViCePrInCiPaLiDvAlUe/sYnChRoNiZaTiOn/tEmPlAtEs/sYnChRoNiZaTiOnTeMpLaTeIdVaLuE/sChEmA/dIrEcToRiEs/dIrEcToRyDeFiNiTiOnIdVaLuE",
+			Input: "/sErViCePrInCiPaLs/sErViCePrInCiPaLiD/sYnChRoNiZaTiOn/tEmPlAtEs/sYnChRoNiZaTiOnTeMpLaTeId/sChEmA/dIrEcToRiEs/dIrEcToRyDeFiNiTiOnId",
 			Expected: &ServicePrincipalIdSynchronizationTemplateIdSchemaDirectoryId{
-				ServicePrincipalId:        "sErViCePrInCiPaLiDvAlUe",
-				SynchronizationTemplateId: "sYnChRoNiZaTiOnTeMpLaTeIdVaLuE",
-				DirectoryDefinitionId:     "dIrEcToRyDeFiNiTiOnIdVaLuE",
+				ServicePrincipalId:        "sErViCePrInCiPaLiD",
+				SynchronizationTemplateId: "sYnChRoNiZaTiOnTeMpLaTeId",
+				DirectoryDefinitionId:     "dIrEcToRyDeFiNiTiOnId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sErViCePrInCiPaLs/sErViCePrInCiPaLiDvAlUe/sYnChRoNiZaTiOn/tEmPlAtEs/sYnChRoNiZaTiOnTeMpLaTeIdVaLuE/sChEmA/dIrEcToRiEs/dIrEcToRyDeFiNiTiOnIdVaLuE/extra",
+			Input: "/sErViCePrInCiPaLs/sErViCePrInCiPaLiD/sYnChRoNiZaTiOn/tEmPlAtEs/sYnChRoNiZaTiOnTeMpLaTeId/sChEmA/dIrEcToRiEs/dIrEcToRyDeFiNiTiOnId/extra",
 			Error: true,
 		},
 	}

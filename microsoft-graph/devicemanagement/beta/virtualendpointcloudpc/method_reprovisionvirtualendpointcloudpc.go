@@ -18,15 +18,44 @@ type ReprovisionVirtualEndpointCloudPCOperationResponse struct {
 	OData        *odata.OData
 }
 
+type ReprovisionVirtualEndpointCloudPCOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultReprovisionVirtualEndpointCloudPCOperationOptions() ReprovisionVirtualEndpointCloudPCOperationOptions {
+	return ReprovisionVirtualEndpointCloudPCOperationOptions{}
+}
+
+func (o ReprovisionVirtualEndpointCloudPCOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o ReprovisionVirtualEndpointCloudPCOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o ReprovisionVirtualEndpointCloudPCOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // ReprovisionVirtualEndpointCloudPC - Invoke action reprovision. Reprovision a specific Cloud PC.
-func (c VirtualEndpointCloudPCClient) ReprovisionVirtualEndpointCloudPC(ctx context.Context, id beta.DeviceManagementVirtualEndpointCloudPCId, input ReprovisionVirtualEndpointCloudPCRequest) (result ReprovisionVirtualEndpointCloudPCOperationResponse, err error) {
+func (c VirtualEndpointCloudPCClient) ReprovisionVirtualEndpointCloudPC(ctx context.Context, id beta.DeviceManagementVirtualEndpointCloudPCId, input ReprovisionVirtualEndpointCloudPCRequest, options ReprovisionVirtualEndpointCloudPCOperationOptions) (result ReprovisionVirtualEndpointCloudPCOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/reprovision", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/reprovision", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

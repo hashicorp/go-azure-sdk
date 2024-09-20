@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &MeInformationProtectionThreatAssessmentRequestId{}
 
 func TestNewMeInformationProtectionThreatAssessmentRequestID(t *testing.T) {
-	id := NewMeInformationProtectionThreatAssessmentRequestID("threatAssessmentRequestIdValue")
+	id := NewMeInformationProtectionThreatAssessmentRequestID("threatAssessmentRequestId")
 
-	if id.ThreatAssessmentRequestId != "threatAssessmentRequestIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ThreatAssessmentRequestId'", id.ThreatAssessmentRequestId, "threatAssessmentRequestIdValue")
+	if id.ThreatAssessmentRequestId != "threatAssessmentRequestId" {
+		t.Fatalf("Expected %q but got %q for Segment 'ThreatAssessmentRequestId'", id.ThreatAssessmentRequestId, "threatAssessmentRequestId")
 	}
 }
 
 func TestFormatMeInformationProtectionThreatAssessmentRequestID(t *testing.T) {
-	actual := NewMeInformationProtectionThreatAssessmentRequestID("threatAssessmentRequestIdValue").ID()
-	expected := "/me/informationProtection/threatAssessmentRequests/threatAssessmentRequestIdValue"
+	actual := NewMeInformationProtectionThreatAssessmentRequestID("threatAssessmentRequestId").ID()
+	expected := "/me/informationProtection/threatAssessmentRequests/threatAssessmentRequestId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -55,14 +55,14 @@ func TestParseMeInformationProtectionThreatAssessmentRequestID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/me/informationProtection/threatAssessmentRequests/threatAssessmentRequestIdValue",
+			Input: "/me/informationProtection/threatAssessmentRequests/threatAssessmentRequestId",
 			Expected: &MeInformationProtectionThreatAssessmentRequestId{
-				ThreatAssessmentRequestId: "threatAssessmentRequestIdValue",
+				ThreatAssessmentRequestId: "threatAssessmentRequestId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/informationProtection/threatAssessmentRequests/threatAssessmentRequestIdValue/extra",
+			Input: "/me/informationProtection/threatAssessmentRequests/threatAssessmentRequestId/extra",
 			Error: true,
 		},
 	}
@@ -131,26 +131,26 @@ func TestParseMeInformationProtectionThreatAssessmentRequestIDInsensitively(t *t
 		},
 		{
 			// Valid URI
-			Input: "/me/informationProtection/threatAssessmentRequests/threatAssessmentRequestIdValue",
+			Input: "/me/informationProtection/threatAssessmentRequests/threatAssessmentRequestId",
 			Expected: &MeInformationProtectionThreatAssessmentRequestId{
-				ThreatAssessmentRequestId: "threatAssessmentRequestIdValue",
+				ThreatAssessmentRequestId: "threatAssessmentRequestId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/informationProtection/threatAssessmentRequests/threatAssessmentRequestIdValue/extra",
+			Input: "/me/informationProtection/threatAssessmentRequests/threatAssessmentRequestId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/iNfOrMaTiOnPrOtEcTiOn/tHrEaTaSsEsSmEnTrEqUeStS/tHrEaTaSsEsSmEnTrEqUeStIdVaLuE",
+			Input: "/mE/iNfOrMaTiOnPrOtEcTiOn/tHrEaTaSsEsSmEnTrEqUeStS/tHrEaTaSsEsSmEnTrEqUeStId",
 			Expected: &MeInformationProtectionThreatAssessmentRequestId{
-				ThreatAssessmentRequestId: "tHrEaTaSsEsSmEnTrEqUeStIdVaLuE",
+				ThreatAssessmentRequestId: "tHrEaTaSsEsSmEnTrEqUeStId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/mE/iNfOrMaTiOnPrOtEcTiOn/tHrEaTaSsEsSmEnTrEqUeStS/tHrEaTaSsEsSmEnTrEqUeStIdVaLuE/extra",
+			Input: "/mE/iNfOrMaTiOnPrOtEcTiOn/tHrEaTaSsEsSmEnTrEqUeStS/tHrEaTaSsEsSmEnTrEqUeStId/extra",
 			Error: true,
 		},
 	}

@@ -19,15 +19,44 @@ type CreateReusablePolicySettingReferencingConfigurationPolicyCopyOperationRespo
 	Model        *beta.DeviceManagementConfigurationPolicy
 }
 
+type CreateReusablePolicySettingReferencingConfigurationPolicyCopyOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateReusablePolicySettingReferencingConfigurationPolicyCopyOperationOptions() CreateReusablePolicySettingReferencingConfigurationPolicyCopyOperationOptions {
+	return CreateReusablePolicySettingReferencingConfigurationPolicyCopyOperationOptions{}
+}
+
+func (o CreateReusablePolicySettingReferencingConfigurationPolicyCopyOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateReusablePolicySettingReferencingConfigurationPolicyCopyOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateReusablePolicySettingReferencingConfigurationPolicyCopyOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateReusablePolicySettingReferencingConfigurationPolicyCopy - Invoke action createCopy
-func (c ReusablePolicySettingReferencingConfigurationPolicyClient) CreateReusablePolicySettingReferencingConfigurationPolicyCopy(ctx context.Context, id beta.DeviceManagementReusablePolicySettingIdReferencingConfigurationPolicyId, input CreateReusablePolicySettingReferencingConfigurationPolicyCopyRequest) (result CreateReusablePolicySettingReferencingConfigurationPolicyCopyOperationResponse, err error) {
+func (c ReusablePolicySettingReferencingConfigurationPolicyClient) CreateReusablePolicySettingReferencingConfigurationPolicyCopy(ctx context.Context, id beta.DeviceManagementReusablePolicySettingIdReferencingConfigurationPolicyId, input CreateReusablePolicySettingReferencingConfigurationPolicyCopyRequest, options CreateReusablePolicySettingReferencingConfigurationPolicyCopyOperationOptions) (result CreateReusablePolicySettingReferencingConfigurationPolicyCopyOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/createCopy", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/createCopy", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

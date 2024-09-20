@@ -18,15 +18,44 @@ type CreateVirtualEndpointSnapshotOperationResponse struct {
 	Model        *beta.CloudPCSnapshot
 }
 
+type CreateVirtualEndpointSnapshotOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateVirtualEndpointSnapshotOperationOptions() CreateVirtualEndpointSnapshotOperationOptions {
+	return CreateVirtualEndpointSnapshotOperationOptions{}
+}
+
+func (o CreateVirtualEndpointSnapshotOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateVirtualEndpointSnapshotOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateVirtualEndpointSnapshotOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateVirtualEndpointSnapshot - Create new navigation property to snapshots for deviceManagement
-func (c VirtualEndpointSnapshotClient) CreateVirtualEndpointSnapshot(ctx context.Context, input beta.CloudPCSnapshot) (result CreateVirtualEndpointSnapshotOperationResponse, err error) {
+func (c VirtualEndpointSnapshotClient) CreateVirtualEndpointSnapshot(ctx context.Context, input beta.CloudPCSnapshot, options CreateVirtualEndpointSnapshotOperationOptions) (result CreateVirtualEndpointSnapshotOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/deviceManagement/virtualEndpoint/snapshots",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/deviceManagement/virtualEndpoint/snapshots",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

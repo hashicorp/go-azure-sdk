@@ -19,16 +19,45 @@ type CreateWindowsDriverUpdateProfileDriverInventoryOperationResponse struct {
 	Model        *beta.WindowsDriverUpdateInventory
 }
 
+type CreateWindowsDriverUpdateProfileDriverInventoryOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateWindowsDriverUpdateProfileDriverInventoryOperationOptions() CreateWindowsDriverUpdateProfileDriverInventoryOperationOptions {
+	return CreateWindowsDriverUpdateProfileDriverInventoryOperationOptions{}
+}
+
+func (o CreateWindowsDriverUpdateProfileDriverInventoryOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateWindowsDriverUpdateProfileDriverInventoryOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateWindowsDriverUpdateProfileDriverInventoryOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateWindowsDriverUpdateProfileDriverInventory - Create new navigation property to driverInventories for
 // deviceManagement
-func (c WindowsDriverUpdateProfileDriverInventoryClient) CreateWindowsDriverUpdateProfileDriverInventory(ctx context.Context, id beta.DeviceManagementWindowsDriverUpdateProfileId, input beta.WindowsDriverUpdateInventory) (result CreateWindowsDriverUpdateProfileDriverInventoryOperationResponse, err error) {
+func (c WindowsDriverUpdateProfileDriverInventoryClient) CreateWindowsDriverUpdateProfileDriverInventory(ctx context.Context, id beta.DeviceManagementWindowsDriverUpdateProfileId, input beta.WindowsDriverUpdateInventory, options CreateWindowsDriverUpdateProfileDriverInventoryOperationOptions) (result CreateWindowsDriverUpdateProfileDriverInventoryOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/driverInventories", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/driverInventories", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

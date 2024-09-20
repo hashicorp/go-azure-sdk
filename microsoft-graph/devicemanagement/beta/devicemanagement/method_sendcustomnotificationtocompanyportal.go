@@ -16,15 +16,44 @@ type SendCustomNotificationToCompanyPortalOperationResponse struct {
 	OData        *odata.OData
 }
 
+type SendCustomNotificationToCompanyPortalOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultSendCustomNotificationToCompanyPortalOperationOptions() SendCustomNotificationToCompanyPortalOperationOptions {
+	return SendCustomNotificationToCompanyPortalOperationOptions{}
+}
+
+func (o SendCustomNotificationToCompanyPortalOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o SendCustomNotificationToCompanyPortalOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o SendCustomNotificationToCompanyPortalOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // SendCustomNotificationToCompanyPortal - Invoke action sendCustomNotificationToCompanyPortal
-func (c DeviceManagementClient) SendCustomNotificationToCompanyPortal(ctx context.Context, input SendCustomNotificationToCompanyPortalRequest) (result SendCustomNotificationToCompanyPortalOperationResponse, err error) {
+func (c DeviceManagementClient) SendCustomNotificationToCompanyPortal(ctx context.Context, input SendCustomNotificationToCompanyPortalRequest, options SendCustomNotificationToCompanyPortalOperationOptions) (result SendCustomNotificationToCompanyPortalOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/deviceManagement/sendCustomNotificationToCompanyPortal",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/deviceManagement/sendCustomNotificationToCompanyPortal",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

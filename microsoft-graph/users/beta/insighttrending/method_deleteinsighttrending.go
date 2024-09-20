@@ -19,7 +19,8 @@ type DeleteInsightTrendingOperationResponse struct {
 }
 
 type DeleteInsightTrendingOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteInsightTrendingOperationOptions() DeleteInsightTrendingOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteInsightTrendingOperationOptions) ToHeaders() *client.Headers {
 
 func (o DeleteInsightTrendingOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

@@ -19,15 +19,44 @@ type CreateSynchronizationJobOperationResponse struct {
 	Model        *stable.SynchronizationJob
 }
 
+type CreateSynchronizationJobOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateSynchronizationJobOperationOptions() CreateSynchronizationJobOperationOptions {
+	return CreateSynchronizationJobOperationOptions{}
+}
+
+func (o CreateSynchronizationJobOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateSynchronizationJobOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateSynchronizationJobOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateSynchronizationJob - Create new navigation property to jobs for applications
-func (c SynchronizationJobClient) CreateSynchronizationJob(ctx context.Context, id stable.ApplicationId, input stable.SynchronizationJob) (result CreateSynchronizationJobOperationResponse, err error) {
+func (c SynchronizationJobClient) CreateSynchronizationJob(ctx context.Context, id stable.ApplicationId, input stable.SynchronizationJob, options CreateSynchronizationJobOperationOptions) (result CreateSynchronizationJobOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/synchronization/jobs", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/synchronization/jobs", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

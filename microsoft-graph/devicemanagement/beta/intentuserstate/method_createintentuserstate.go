@@ -19,15 +19,44 @@ type CreateIntentUserStateOperationResponse struct {
 	Model        *beta.DeviceManagementIntentUserState
 }
 
+type CreateIntentUserStateOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateIntentUserStateOperationOptions() CreateIntentUserStateOperationOptions {
+	return CreateIntentUserStateOperationOptions{}
+}
+
+func (o CreateIntentUserStateOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateIntentUserStateOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateIntentUserStateOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateIntentUserState - Create new navigation property to userStates for deviceManagement
-func (c IntentUserStateClient) CreateIntentUserState(ctx context.Context, id beta.DeviceManagementIntentId, input beta.DeviceManagementIntentUserState) (result CreateIntentUserStateOperationResponse, err error) {
+func (c IntentUserStateClient) CreateIntentUserState(ctx context.Context, id beta.DeviceManagementIntentId, input beta.DeviceManagementIntentUserState, options CreateIntentUserStateOperationOptions) (result CreateIntentUserStateOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/userStates", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/userStates", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

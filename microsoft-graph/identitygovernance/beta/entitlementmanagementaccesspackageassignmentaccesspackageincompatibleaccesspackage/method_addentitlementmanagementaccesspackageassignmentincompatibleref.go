@@ -18,16 +18,45 @@ type AddEntitlementManagementAccessPackageAssignmentIncompatibleRefOperationResp
 	OData        *odata.OData
 }
 
+type AddEntitlementManagementAccessPackageAssignmentIncompatibleRefOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultAddEntitlementManagementAccessPackageAssignmentIncompatibleRefOperationOptions() AddEntitlementManagementAccessPackageAssignmentIncompatibleRefOperationOptions {
+	return AddEntitlementManagementAccessPackageAssignmentIncompatibleRefOperationOptions{}
+}
+
+func (o AddEntitlementManagementAccessPackageAssignmentIncompatibleRefOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o AddEntitlementManagementAccessPackageAssignmentIncompatibleRefOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o AddEntitlementManagementAccessPackageAssignmentIncompatibleRefOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // AddEntitlementManagementAccessPackageAssignmentIncompatibleRef - Create new navigation property ref to
 // incompatibleAccessPackages for identityGovernance
-func (c EntitlementManagementAccessPackageAssignmentAccessPackageIncompatibleAccessPackageClient) AddEntitlementManagementAccessPackageAssignmentIncompatibleRef(ctx context.Context, id beta.IdentityGovernanceEntitlementManagementAccessPackageAssignmentId, input beta.ReferenceCreate) (result AddEntitlementManagementAccessPackageAssignmentIncompatibleRefOperationResponse, err error) {
+func (c EntitlementManagementAccessPackageAssignmentAccessPackageIncompatibleAccessPackageClient) AddEntitlementManagementAccessPackageAssignmentIncompatibleRef(ctx context.Context, id beta.IdentityGovernanceEntitlementManagementAccessPackageAssignmentId, input beta.ReferenceCreate, options AddEntitlementManagementAccessPackageAssignmentIncompatibleRefOperationOptions) (result AddEntitlementManagementAccessPackageAssignmentIncompatibleRefOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/accessPackage/incompatibleAccessPackages/$ref", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/accessPackage/incompatibleAccessPackages/$ref", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

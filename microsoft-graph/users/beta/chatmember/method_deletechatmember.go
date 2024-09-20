@@ -19,7 +19,8 @@ type DeleteChatMemberOperationResponse struct {
 }
 
 type DeleteChatMemberOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteChatMemberOperationOptions() DeleteChatMemberOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteChatMemberOperationOptions) ToHeaders() *client.Headers {
 
 func (o DeleteChatMemberOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

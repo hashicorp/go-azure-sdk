@@ -17,15 +17,44 @@ type UpdatePartnerBillingUsageUnbilledOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdatePartnerBillingUsageUnbilledOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdatePartnerBillingUsageUnbilledOperationOptions() UpdatePartnerBillingUsageUnbilledOperationOptions {
+	return UpdatePartnerBillingUsageUnbilledOperationOptions{}
+}
+
+func (o UpdatePartnerBillingUsageUnbilledOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdatePartnerBillingUsageUnbilledOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdatePartnerBillingUsageUnbilledOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdatePartnerBillingUsageUnbilled - Update the navigation property unbilled in reports
-func (c PartnerBillingUsageUnbilledClient) UpdatePartnerBillingUsageUnbilled(ctx context.Context, input beta.PartnersBillingUnbilledUsage) (result UpdatePartnerBillingUsageUnbilledOperationResponse, err error) {
+func (c PartnerBillingUsageUnbilledClient) UpdatePartnerBillingUsageUnbilled(ctx context.Context, input beta.PartnersBillingUnbilledUsage, options UpdatePartnerBillingUsageUnbilledOperationOptions) (result UpdatePartnerBillingUsageUnbilledOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       "/reports/partners/billing/usage/unbilled",
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          "/reports/partners/billing/usage/unbilled",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -18,15 +18,44 @@ type UpdateDirectoryRoleAssignmentAppScopeOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateDirectoryRoleAssignmentAppScopeOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateDirectoryRoleAssignmentAppScopeOperationOptions() UpdateDirectoryRoleAssignmentAppScopeOperationOptions {
+	return UpdateDirectoryRoleAssignmentAppScopeOperationOptions{}
+}
+
+func (o UpdateDirectoryRoleAssignmentAppScopeOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateDirectoryRoleAssignmentAppScopeOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateDirectoryRoleAssignmentAppScopeOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateDirectoryRoleAssignmentAppScope - Update the navigation property appScope in roleManagement
-func (c DirectoryRoleAssignmentAppScopeClient) UpdateDirectoryRoleAssignmentAppScope(ctx context.Context, id beta.RoleManagementDirectoryRoleAssignmentId, input beta.AppScope) (result UpdateDirectoryRoleAssignmentAppScopeOperationResponse, err error) {
+func (c DirectoryRoleAssignmentAppScopeClient) UpdateDirectoryRoleAssignmentAppScope(ctx context.Context, id beta.RoleManagementDirectoryRoleAssignmentId, input beta.AppScope, options UpdateDirectoryRoleAssignmentAppScopeOperationOptions) (result UpdateDirectoryRoleAssignmentAppScopeOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       fmt.Sprintf("%s/appScope", id.ID()),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/appScope", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

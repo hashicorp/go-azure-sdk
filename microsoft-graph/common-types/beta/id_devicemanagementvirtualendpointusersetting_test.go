@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &DeviceManagementVirtualEndpointUserSettingId{}
 
 func TestNewDeviceManagementVirtualEndpointUserSettingID(t *testing.T) {
-	id := NewDeviceManagementVirtualEndpointUserSettingID("cloudPCUserSettingIdValue")
+	id := NewDeviceManagementVirtualEndpointUserSettingID("cloudPCUserSettingId")
 
-	if id.CloudPCUserSettingId != "cloudPCUserSettingIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'CloudPCUserSettingId'", id.CloudPCUserSettingId, "cloudPCUserSettingIdValue")
+	if id.CloudPCUserSettingId != "cloudPCUserSettingId" {
+		t.Fatalf("Expected %q but got %q for Segment 'CloudPCUserSettingId'", id.CloudPCUserSettingId, "cloudPCUserSettingId")
 	}
 }
 
 func TestFormatDeviceManagementVirtualEndpointUserSettingID(t *testing.T) {
-	actual := NewDeviceManagementVirtualEndpointUserSettingID("cloudPCUserSettingIdValue").ID()
-	expected := "/deviceManagement/virtualEndpoint/userSettings/cloudPCUserSettingIdValue"
+	actual := NewDeviceManagementVirtualEndpointUserSettingID("cloudPCUserSettingId").ID()
+	expected := "/deviceManagement/virtualEndpoint/userSettings/cloudPCUserSettingId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -55,14 +55,14 @@ func TestParseDeviceManagementVirtualEndpointUserSettingID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/virtualEndpoint/userSettings/cloudPCUserSettingIdValue",
+			Input: "/deviceManagement/virtualEndpoint/userSettings/cloudPCUserSettingId",
 			Expected: &DeviceManagementVirtualEndpointUserSettingId{
-				CloudPCUserSettingId: "cloudPCUserSettingIdValue",
+				CloudPCUserSettingId: "cloudPCUserSettingId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/virtualEndpoint/userSettings/cloudPCUserSettingIdValue/extra",
+			Input: "/deviceManagement/virtualEndpoint/userSettings/cloudPCUserSettingId/extra",
 			Error: true,
 		},
 	}
@@ -131,26 +131,26 @@ func TestParseDeviceManagementVirtualEndpointUserSettingIDInsensitively(t *testi
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/virtualEndpoint/userSettings/cloudPCUserSettingIdValue",
+			Input: "/deviceManagement/virtualEndpoint/userSettings/cloudPCUserSettingId",
 			Expected: &DeviceManagementVirtualEndpointUserSettingId{
-				CloudPCUserSettingId: "cloudPCUserSettingIdValue",
+				CloudPCUserSettingId: "cloudPCUserSettingId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/virtualEndpoint/userSettings/cloudPCUserSettingIdValue/extra",
+			Input: "/deviceManagement/virtualEndpoint/userSettings/cloudPCUserSettingId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/vIrTuAlEnDpOiNt/uSeRsEtTiNgS/cLoUdPcUsErSeTtInGiDvAlUe",
+			Input: "/dEvIcEmAnAgEmEnT/vIrTuAlEnDpOiNt/uSeRsEtTiNgS/cLoUdPcUsErSeTtInGiD",
 			Expected: &DeviceManagementVirtualEndpointUserSettingId{
-				CloudPCUserSettingId: "cLoUdPcUsErSeTtInGiDvAlUe",
+				CloudPCUserSettingId: "cLoUdPcUsErSeTtInGiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/vIrTuAlEnDpOiNt/uSeRsEtTiNgS/cLoUdPcUsErSeTtInGiDvAlUe/extra",
+			Input: "/dEvIcEmAnAgEmEnT/vIrTuAlEnDpOiNt/uSeRsEtTiNgS/cLoUdPcUsErSeTtInGiD/extra",
 			Error: true,
 		},
 	}

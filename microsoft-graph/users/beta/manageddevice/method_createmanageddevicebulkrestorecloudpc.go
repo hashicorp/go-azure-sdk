@@ -19,16 +19,45 @@ type CreateManagedDeviceBulkRestoreCloudPCOperationResponse struct {
 	Model        *beta.CloudPCBulkRemoteActionResult
 }
 
+type CreateManagedDeviceBulkRestoreCloudPCOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateManagedDeviceBulkRestoreCloudPCOperationOptions() CreateManagedDeviceBulkRestoreCloudPCOperationOptions {
+	return CreateManagedDeviceBulkRestoreCloudPCOperationOptions{}
+}
+
+func (o CreateManagedDeviceBulkRestoreCloudPCOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateManagedDeviceBulkRestoreCloudPCOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateManagedDeviceBulkRestoreCloudPCOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateManagedDeviceBulkRestoreCloudPC - Invoke action bulkRestoreCloudPc. Restore multiple Cloud PC devices with a
 // single request that includes the IDs of Intune managed devices and a restore point date and time.
-func (c ManagedDeviceClient) CreateManagedDeviceBulkRestoreCloudPC(ctx context.Context, id beta.UserId, input CreateManagedDeviceBulkRestoreCloudPCRequest) (result CreateManagedDeviceBulkRestoreCloudPCOperationResponse, err error) {
+func (c ManagedDeviceClient) CreateManagedDeviceBulkRestoreCloudPC(ctx context.Context, id beta.UserId, input CreateManagedDeviceBulkRestoreCloudPCRequest, options CreateManagedDeviceBulkRestoreCloudPCOperationOptions) (result CreateManagedDeviceBulkRestoreCloudPCOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/managedDevices/bulkRestoreCloudPc", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/managedDevices/bulkRestoreCloudPc", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

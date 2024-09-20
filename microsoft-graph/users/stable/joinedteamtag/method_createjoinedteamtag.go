@@ -19,15 +19,44 @@ type CreateJoinedTeamTagOperationResponse struct {
 	Model        *stable.TeamworkTag
 }
 
+type CreateJoinedTeamTagOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateJoinedTeamTagOperationOptions() CreateJoinedTeamTagOperationOptions {
+	return CreateJoinedTeamTagOperationOptions{}
+}
+
+func (o CreateJoinedTeamTagOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateJoinedTeamTagOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateJoinedTeamTagOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateJoinedTeamTag - Create new navigation property to tags for users
-func (c JoinedTeamTagClient) CreateJoinedTeamTag(ctx context.Context, id stable.UserIdJoinedTeamId, input stable.TeamworkTag) (result CreateJoinedTeamTagOperationResponse, err error) {
+func (c JoinedTeamTagClient) CreateJoinedTeamTag(ctx context.Context, id stable.UserIdJoinedTeamId, input stable.TeamworkTag, options CreateJoinedTeamTagOperationOptions) (result CreateJoinedTeamTagOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/tags", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/tags", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/elevationrequest` Documentation
 
-The `elevationrequest` SDK allows for interaction with the Azure Resource Manager Service `devicemanagement` (API Version `beta`).
+The `elevationrequest` SDK allows for interaction with Microsoft Graph `devicemanagement` (API Version `beta`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -15,7 +15,7 @@ import "github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/
 ### Client Initialization
 
 ```go
-client := elevationrequest.NewElevationRequestClientWithBaseURI("https://management.azure.com")
+client := elevationrequest.NewElevationRequestClientWithBaseURI("https://graph.microsoft.com")
 client.Client.Authorizer = authorizer
 ```
 
@@ -30,7 +30,7 @@ payload := elevationrequest.PrivilegeManagementElevationRequest{
 }
 
 
-read, err := client.CreateElevationRequest(ctx, payload)
+read, err := client.CreateElevationRequest(ctx, payload, elevationrequest.DefaultCreateElevationRequestOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -44,14 +44,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := elevationrequest.NewDeviceManagementElevationRequestID("privilegeManagementElevationRequestIdValue")
+id := elevationrequest.NewDeviceManagementElevationRequestID("privilegeManagementElevationRequestId")
 
 payload := elevationrequest.CreateElevationRequestApproveRequest{
 	// ...
 }
 
 
-read, err := client.CreateElevationRequestApprove(ctx, id, payload)
+read, err := client.CreateElevationRequestApprove(ctx, id, payload, elevationrequest.DefaultCreateElevationRequestApproveOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -65,14 +65,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := elevationrequest.NewDeviceManagementElevationRequestID("privilegeManagementElevationRequestIdValue")
+id := elevationrequest.NewDeviceManagementElevationRequestID("privilegeManagementElevationRequestId")
 
 payload := elevationrequest.CreateElevationRequestDenyRequest{
 	// ...
 }
 
 
-read, err := client.CreateElevationRequestDeny(ctx, id, payload)
+read, err := client.CreateElevationRequestDeny(ctx, id, payload, elevationrequest.DefaultCreateElevationRequestDenyOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -86,7 +86,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := elevationrequest.NewDeviceManagementElevationRequestID("privilegeManagementElevationRequestIdValue")
+id := elevationrequest.NewDeviceManagementElevationRequestID("privilegeManagementElevationRequestId")
 
 read, err := client.DeleteElevationRequest(ctx, id, elevationrequest.DefaultDeleteElevationRequestOperationOptions())
 if err != nil {
@@ -102,7 +102,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := elevationrequest.NewDeviceManagementElevationRequestID("privilegeManagementElevationRequestIdValue")
+id := elevationrequest.NewDeviceManagementElevationRequestID("privilegeManagementElevationRequestId")
 
 read, err := client.GetElevationRequest(ctx, id, elevationrequest.DefaultGetElevationRequestOperationOptions())
 if err != nil {
@@ -118,7 +118,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := elevationrequest.NewDeviceManagementElevationRequestID("privilegeManagementElevationRequestIdValue")
+id := elevationrequest.NewDeviceManagementElevationRequestID("privilegeManagementElevationRequestId")
 
 // alternatively `client.GetElevationRequestAllElevationRequests(ctx, id, elevationrequest.DefaultGetElevationRequestAllElevationRequestsOperationOptions())` can be used to do batched pagination
 items, err := client.GetElevationRequestAllElevationRequestsComplete(ctx, id, elevationrequest.DefaultGetElevationRequestAllElevationRequestsOperationOptions())
@@ -168,14 +168,14 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := elevationrequest.NewDeviceManagementElevationRequestID("privilegeManagementElevationRequestIdValue")
+id := elevationrequest.NewDeviceManagementElevationRequestID("privilegeManagementElevationRequestId")
 
 payload := elevationrequest.RevokeElevationRequestRequest{
 	// ...
 }
 
 
-read, err := client.RevokeElevationRequest(ctx, id, payload)
+read, err := client.RevokeElevationRequest(ctx, id, payload, elevationrequest.DefaultRevokeElevationRequestOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -189,14 +189,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := elevationrequest.NewDeviceManagementElevationRequestID("privilegeManagementElevationRequestIdValue")
+id := elevationrequest.NewDeviceManagementElevationRequestID("privilegeManagementElevationRequestId")
 
 payload := elevationrequest.PrivilegeManagementElevationRequest{
 	// ...
 }
 
 
-read, err := client.UpdateElevationRequest(ctx, id, payload)
+read, err := client.UpdateElevationRequest(ctx, id, payload, elevationrequest.DefaultUpdateElevationRequestOperationOptions())
 if err != nil {
 	// handle the error
 }

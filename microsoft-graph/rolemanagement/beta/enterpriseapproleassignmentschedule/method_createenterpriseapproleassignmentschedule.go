@@ -19,16 +19,45 @@ type CreateEnterpriseAppRoleAssignmentScheduleOperationResponse struct {
 	Model        *beta.UnifiedRoleAssignmentSchedule
 }
 
+type CreateEnterpriseAppRoleAssignmentScheduleOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateEnterpriseAppRoleAssignmentScheduleOperationOptions() CreateEnterpriseAppRoleAssignmentScheduleOperationOptions {
+	return CreateEnterpriseAppRoleAssignmentScheduleOperationOptions{}
+}
+
+func (o CreateEnterpriseAppRoleAssignmentScheduleOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateEnterpriseAppRoleAssignmentScheduleOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateEnterpriseAppRoleAssignmentScheduleOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateEnterpriseAppRoleAssignmentSchedule - Create new navigation property to roleAssignmentSchedules for
 // roleManagement
-func (c EnterpriseAppRoleAssignmentScheduleClient) CreateEnterpriseAppRoleAssignmentSchedule(ctx context.Context, id beta.RoleManagementEnterpriseAppId, input beta.UnifiedRoleAssignmentSchedule) (result CreateEnterpriseAppRoleAssignmentScheduleOperationResponse, err error) {
+func (c EnterpriseAppRoleAssignmentScheduleClient) CreateEnterpriseAppRoleAssignmentSchedule(ctx context.Context, id beta.RoleManagementEnterpriseAppId, input beta.UnifiedRoleAssignmentSchedule, options CreateEnterpriseAppRoleAssignmentScheduleOperationOptions) (result CreateEnterpriseAppRoleAssignmentScheduleOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/roleAssignmentSchedules", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/roleAssignmentSchedules", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

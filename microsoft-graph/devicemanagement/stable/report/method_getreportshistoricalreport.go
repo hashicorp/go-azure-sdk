@@ -17,15 +17,44 @@ type GetReportsHistoricalReportOperationResponse struct {
 	Model        *[]byte
 }
 
+type GetReportsHistoricalReportOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultGetReportsHistoricalReportOperationOptions() GetReportsHistoricalReportOperationOptions {
+	return GetReportsHistoricalReportOperationOptions{}
+}
+
+func (o GetReportsHistoricalReportOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o GetReportsHistoricalReportOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o GetReportsHistoricalReportOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // GetReportsHistoricalReport - Invoke action getHistoricalReport. Not yet documented
-func (c ReportClient) GetReportsHistoricalReport(ctx context.Context, input GetReportsHistoricalReportRequest) (result GetReportsHistoricalReportOperationResponse, err error) {
+func (c ReportClient) GetReportsHistoricalReport(ctx context.Context, input GetReportsHistoricalReportRequest, options GetReportsHistoricalReportOperationOptions) (result GetReportsHistoricalReportOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/octet-stream",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/deviceManagement/reports/getHistoricalReport",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/deviceManagement/reports/getHistoricalReport",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

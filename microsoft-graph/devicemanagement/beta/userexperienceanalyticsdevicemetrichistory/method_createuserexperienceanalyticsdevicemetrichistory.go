@@ -18,16 +18,45 @@ type CreateUserExperienceAnalyticsDeviceMetricHistoryOperationResponse struct {
 	Model        *beta.UserExperienceAnalyticsMetricHistory
 }
 
+type CreateUserExperienceAnalyticsDeviceMetricHistoryOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateUserExperienceAnalyticsDeviceMetricHistoryOperationOptions() CreateUserExperienceAnalyticsDeviceMetricHistoryOperationOptions {
+	return CreateUserExperienceAnalyticsDeviceMetricHistoryOperationOptions{}
+}
+
+func (o CreateUserExperienceAnalyticsDeviceMetricHistoryOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateUserExperienceAnalyticsDeviceMetricHistoryOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateUserExperienceAnalyticsDeviceMetricHistoryOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateUserExperienceAnalyticsDeviceMetricHistory - Create new navigation property to
 // userExperienceAnalyticsDeviceMetricHistory for deviceManagement
-func (c UserExperienceAnalyticsDeviceMetricHistoryClient) CreateUserExperienceAnalyticsDeviceMetricHistory(ctx context.Context, input beta.UserExperienceAnalyticsMetricHistory) (result CreateUserExperienceAnalyticsDeviceMetricHistoryOperationResponse, err error) {
+func (c UserExperienceAnalyticsDeviceMetricHistoryClient) CreateUserExperienceAnalyticsDeviceMetricHistory(ctx context.Context, input beta.UserExperienceAnalyticsMetricHistory, options CreateUserExperienceAnalyticsDeviceMetricHistoryOperationOptions) (result CreateUserExperienceAnalyticsDeviceMetricHistoryOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/deviceManagement/userExperienceAnalyticsDeviceMetricHistory",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/deviceManagement/userExperienceAnalyticsDeviceMetricHistory",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

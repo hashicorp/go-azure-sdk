@@ -92,7 +92,7 @@ func (id DirectoryObjectId) ID() string {
 func (id DirectoryObjectId) Segments() []resourceids.Segment {
 	return []resourceids.Segment{
 		resourceids.StaticSegment("directoryObjects", "directoryObjects", "directoryObjects"),
-		resourceids.UserSpecifiedSegment("directoryObjectId", "directoryObjectIdValue"),
+		resourceids.UserSpecifiedSegment("directoryObjectId", "directoryObjectId"),
 	}
 }
 

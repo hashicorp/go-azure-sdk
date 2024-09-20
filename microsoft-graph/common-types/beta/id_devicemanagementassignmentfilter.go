@@ -93,7 +93,7 @@ func (id DeviceManagementAssignmentFilterId) Segments() []resourceids.Segment {
 	return []resourceids.Segment{
 		resourceids.StaticSegment("deviceManagement", "deviceManagement", "deviceManagement"),
 		resourceids.StaticSegment("assignmentFilters", "assignmentFilters", "assignmentFilters"),
-		resourceids.UserSpecifiedSegment("deviceAndAppManagementAssignmentFilterId", "deviceAndAppManagementAssignmentFilterIdValue"),
+		resourceids.UserSpecifiedSegment("deviceAndAppManagementAssignmentFilterId", "deviceAndAppManagementAssignmentFilterId"),
 	}
 }
 

@@ -17,16 +17,45 @@ type UpdateEntitlementManagementAccessPackageAssignmentApprovalStepOperationResp
 	OData        *odata.OData
 }
 
+type UpdateEntitlementManagementAccessPackageAssignmentApprovalStepOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateEntitlementManagementAccessPackageAssignmentApprovalStepOperationOptions() UpdateEntitlementManagementAccessPackageAssignmentApprovalStepOperationOptions {
+	return UpdateEntitlementManagementAccessPackageAssignmentApprovalStepOperationOptions{}
+}
+
+func (o UpdateEntitlementManagementAccessPackageAssignmentApprovalStepOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateEntitlementManagementAccessPackageAssignmentApprovalStepOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateEntitlementManagementAccessPackageAssignmentApprovalStepOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateEntitlementManagementAccessPackageAssignmentApprovalStep - Update approvalStep. Apply approve or deny decision
 // on an approvalStep object.
-func (c EntitlementManagementAccessPackageAssignmentApprovalStepClient) UpdateEntitlementManagementAccessPackageAssignmentApprovalStep(ctx context.Context, id beta.IdentityGovernanceEntitlementManagementAccessPackageAssignmentApprovalIdStepId, input beta.ApprovalStep) (result UpdateEntitlementManagementAccessPackageAssignmentApprovalStepOperationResponse, err error) {
+func (c EntitlementManagementAccessPackageAssignmentApprovalStepClient) UpdateEntitlementManagementAccessPackageAssignmentApprovalStep(ctx context.Context, id beta.IdentityGovernanceEntitlementManagementAccessPackageAssignmentApprovalIdStepId, input beta.ApprovalStep, options UpdateEntitlementManagementAccessPackageAssignmentApprovalStepOperationOptions) (result UpdateEntitlementManagementAccessPackageAssignmentApprovalStepOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

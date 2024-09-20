@@ -19,7 +19,8 @@ type DeleteTokenLifetimePolicyOperationResponse struct {
 }
 
 type DeleteTokenLifetimePolicyOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteTokenLifetimePolicyOperationOptions() DeleteTokenLifetimePolicyOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteTokenLifetimePolicyOperationOptions) ToHeaders() *client.Headers {
 
 func (o DeleteTokenLifetimePolicyOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

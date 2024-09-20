@@ -19,8 +19,9 @@ type RemoveAppManagementPolicyRefsOperationResponse struct {
 }
 
 type RemoveAppManagementPolicyRefsOperationOptions struct {
-	Id      *string
-	IfMatch *string
+	Id       *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultRemoveAppManagementPolicyRefsOperationOptions() RemoveAppManagementPolicyRefsOperationOptions {
@@ -37,7 +38,9 @@ func (o RemoveAppManagementPolicyRefsOperationOptions) ToHeaders() *client.Heade
 
 func (o RemoveAppManagementPolicyRefsOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

@@ -19,16 +19,45 @@ type CancelOperationApprovalRequestApprovalOperationResponse struct {
 	Model        *CancelOperationApprovalRequestApprovalResult
 }
 
+type CancelOperationApprovalRequestApprovalOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCancelOperationApprovalRequestApprovalOperationOptions() CancelOperationApprovalRequestApprovalOperationOptions {
+	return CancelOperationApprovalRequestApprovalOperationOptions{}
+}
+
+func (o CancelOperationApprovalRequestApprovalOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CancelOperationApprovalRequestApprovalOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CancelOperationApprovalRequestApprovalOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CancelOperationApprovalRequestApproval - Invoke action cancelApproval. Cancels an already approved instance of an
 // operationApprovalRequest.
-func (c OperationApprovalRequestClient) CancelOperationApprovalRequestApproval(ctx context.Context, id beta.DeviceManagementOperationApprovalRequestId, input CancelOperationApprovalRequestApprovalRequest) (result CancelOperationApprovalRequestApprovalOperationResponse, err error) {
+func (c OperationApprovalRequestClient) CancelOperationApprovalRequestApproval(ctx context.Context, id beta.DeviceManagementOperationApprovalRequestId, input CancelOperationApprovalRequestApprovalRequest, options CancelOperationApprovalRequestApprovalOperationOptions) (result CancelOperationApprovalRequestApprovalOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/cancelApproval", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/cancelApproval", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

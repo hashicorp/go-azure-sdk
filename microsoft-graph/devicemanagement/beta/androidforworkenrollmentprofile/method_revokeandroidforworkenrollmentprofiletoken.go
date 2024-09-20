@@ -18,15 +18,44 @@ type RevokeAndroidForWorkEnrollmentProfileTokenOperationResponse struct {
 	OData        *odata.OData
 }
 
+type RevokeAndroidForWorkEnrollmentProfileTokenOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultRevokeAndroidForWorkEnrollmentProfileTokenOperationOptions() RevokeAndroidForWorkEnrollmentProfileTokenOperationOptions {
+	return RevokeAndroidForWorkEnrollmentProfileTokenOperationOptions{}
+}
+
+func (o RevokeAndroidForWorkEnrollmentProfileTokenOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o RevokeAndroidForWorkEnrollmentProfileTokenOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o RevokeAndroidForWorkEnrollmentProfileTokenOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // RevokeAndroidForWorkEnrollmentProfileToken - Invoke action revokeToken
-func (c AndroidForWorkEnrollmentProfileClient) RevokeAndroidForWorkEnrollmentProfileToken(ctx context.Context, id beta.DeviceManagementAndroidForWorkEnrollmentProfileId) (result RevokeAndroidForWorkEnrollmentProfileTokenOperationResponse, err error) {
+func (c AndroidForWorkEnrollmentProfileClient) RevokeAndroidForWorkEnrollmentProfileToken(ctx context.Context, id beta.DeviceManagementAndroidForWorkEnrollmentProfileId, options RevokeAndroidForWorkEnrollmentProfileTokenOperationOptions) (result RevokeAndroidForWorkEnrollmentProfileTokenOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/revokeToken", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/revokeToken", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

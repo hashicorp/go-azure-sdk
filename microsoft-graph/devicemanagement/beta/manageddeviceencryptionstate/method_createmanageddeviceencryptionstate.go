@@ -18,16 +18,45 @@ type CreateManagedDeviceEncryptionStateOperationResponse struct {
 	Model        *beta.ManagedDeviceEncryptionState
 }
 
+type CreateManagedDeviceEncryptionStateOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateManagedDeviceEncryptionStateOperationOptions() CreateManagedDeviceEncryptionStateOperationOptions {
+	return CreateManagedDeviceEncryptionStateOperationOptions{}
+}
+
+func (o CreateManagedDeviceEncryptionStateOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateManagedDeviceEncryptionStateOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateManagedDeviceEncryptionStateOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateManagedDeviceEncryptionState - Create new navigation property to managedDeviceEncryptionStates for
 // deviceManagement
-func (c ManagedDeviceEncryptionStateClient) CreateManagedDeviceEncryptionState(ctx context.Context, input beta.ManagedDeviceEncryptionState) (result CreateManagedDeviceEncryptionStateOperationResponse, err error) {
+func (c ManagedDeviceEncryptionStateClient) CreateManagedDeviceEncryptionState(ctx context.Context, input beta.ManagedDeviceEncryptionState, options CreateManagedDeviceEncryptionStateOperationOptions) (result CreateManagedDeviceEncryptionStateOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/deviceManagement/managedDeviceEncryptionStates",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/deviceManagement/managedDeviceEncryptionStates",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

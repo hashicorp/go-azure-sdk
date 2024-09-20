@@ -93,7 +93,7 @@ func (id MeManagedAppLogCollectionRequestId) Segments() []resourceids.Segment {
 	return []resourceids.Segment{
 		resourceids.StaticSegment("me", "me", "me"),
 		resourceids.StaticSegment("managedAppLogCollectionRequests", "managedAppLogCollectionRequests", "managedAppLogCollectionRequests"),
-		resourceids.UserSpecifiedSegment("managedAppLogCollectionRequestId", "managedAppLogCollectionRequestIdValue"),
+		resourceids.UserSpecifiedSegment("managedAppLogCollectionRequestId", "managedAppLogCollectionRequestId"),
 	}
 }
 

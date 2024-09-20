@@ -19,7 +19,8 @@ type RemoveClaimsMappingPolicyRefOperationResponse struct {
 }
 
 type RemoveClaimsMappingPolicyRefOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultRemoveClaimsMappingPolicyRefOperationOptions() RemoveClaimsMappingPolicyRefOperationOptions {
@@ -36,7 +37,9 @@ func (o RemoveClaimsMappingPolicyRefOperationOptions) ToHeaders() *client.Header
 
 func (o RemoveClaimsMappingPolicyRefOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

@@ -125,29 +125,49 @@ func (s ItemPatent) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &ItemPatent{}
 
 func (s *ItemPatent) UnmarshalJSON(bytes []byte) error {
-	type alias ItemPatent
-	var decoded alias
+
+	var decoded struct {
+		Description          nullable.Type[string]      `json:"description,omitempty"`
+		DisplayName          *string                    `json:"displayName,omitempty"`
+		IsPending            nullable.Type[bool]        `json:"isPending,omitempty"`
+		IssuedDate           nullable.Type[string]      `json:"issuedDate,omitempty"`
+		IssuingAuthority     nullable.Type[string]      `json:"issuingAuthority,omitempty"`
+		Number               nullable.Type[string]      `json:"number,omitempty"`
+		WebUrl               nullable.Type[string]      `json:"webUrl,omitempty"`
+		AllowedAudiences     *AllowedAudiences          `json:"allowedAudiences,omitempty"`
+		CreatedBy            IdentitySet                `json:"createdBy"`
+		CreatedDateTime      *string                    `json:"createdDateTime,omitempty"`
+		Inference            *InferenceData             `json:"inference,omitempty"`
+		IsSearchable         nullable.Type[bool]        `json:"isSearchable,omitempty"`
+		LastModifiedBy       IdentitySet                `json:"lastModifiedBy"`
+		LastModifiedDateTime *string                    `json:"lastModifiedDateTime,omitempty"`
+		Source               *PersonDataSources         `json:"source,omitempty"`
+		Sources              *[]ProfileSourceAnnotation `json:"sources,omitempty"`
+		Id                   *string                    `json:"id,omitempty"`
+		ODataId              *string                    `json:"@odata.id,omitempty"`
+		ODataType            *string                    `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into ItemPatent: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
-	s.AllowedAudiences = decoded.AllowedAudiences
-	s.CreatedDateTime = decoded.CreatedDateTime
 	s.Description = decoded.Description
 	s.DisplayName = decoded.DisplayName
-	s.Id = decoded.Id
-	s.Inference = decoded.Inference
 	s.IsPending = decoded.IsPending
-	s.IsSearchable = decoded.IsSearchable
 	s.IssuedDate = decoded.IssuedDate
 	s.IssuingAuthority = decoded.IssuingAuthority
-	s.LastModifiedDateTime = decoded.LastModifiedDateTime
 	s.Number = decoded.Number
+	s.WebUrl = decoded.WebUrl
+	s.AllowedAudiences = decoded.AllowedAudiences
+	s.CreatedDateTime = decoded.CreatedDateTime
+	s.Id = decoded.Id
+	s.Inference = decoded.Inference
+	s.IsSearchable = decoded.IsSearchable
+	s.LastModifiedDateTime = decoded.LastModifiedDateTime
 	s.ODataId = decoded.ODataId
 	s.ODataType = decoded.ODataType
 	s.Source = decoded.Source
 	s.Sources = decoded.Sources
-	s.WebUrl = decoded.WebUrl
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -169,5 +189,6 @@ func (s *ItemPatent) UnmarshalJSON(bytes []byte) error {
 		}
 		s.LastModifiedBy = impl
 	}
+
 	return nil
 }

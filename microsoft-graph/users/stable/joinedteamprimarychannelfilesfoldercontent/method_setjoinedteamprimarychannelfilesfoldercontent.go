@@ -18,16 +18,45 @@ type SetJoinedTeamPrimaryChannelFilesFolderContentOperationResponse struct {
 	OData        *odata.OData
 }
 
+type SetJoinedTeamPrimaryChannelFilesFolderContentOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultSetJoinedTeamPrimaryChannelFilesFolderContentOperationOptions() SetJoinedTeamPrimaryChannelFilesFolderContentOperationOptions {
+	return SetJoinedTeamPrimaryChannelFilesFolderContentOperationOptions{}
+}
+
+func (o SetJoinedTeamPrimaryChannelFilesFolderContentOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o SetJoinedTeamPrimaryChannelFilesFolderContentOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o SetJoinedTeamPrimaryChannelFilesFolderContentOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // SetJoinedTeamPrimaryChannelFilesFolderContent - Update content for the navigation property filesFolder in users. The
 // content stream, if the item represents a file.
-func (c JoinedTeamPrimaryChannelFilesFolderContentClient) SetJoinedTeamPrimaryChannelFilesFolderContent(ctx context.Context, id stable.UserIdJoinedTeamId, input []byte) (result SetJoinedTeamPrimaryChannelFilesFolderContentOperationResponse, err error) {
+func (c JoinedTeamPrimaryChannelFilesFolderContentClient) SetJoinedTeamPrimaryChannelFilesFolderContent(ctx context.Context, id stable.UserIdJoinedTeamId, input []byte, options SetJoinedTeamPrimaryChannelFilesFolderContentOperationOptions) (result SetJoinedTeamPrimaryChannelFilesFolderContentOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPut,
-		Path:       fmt.Sprintf("%s/primaryChannel/filesFolder/content", id.ID()),
+		HttpMethod:    http.MethodPut,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/primaryChannel/filesFolder/content", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

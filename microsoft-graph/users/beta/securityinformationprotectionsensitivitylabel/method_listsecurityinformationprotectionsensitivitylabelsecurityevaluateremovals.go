@@ -26,8 +26,9 @@ type ListSecurityInformationProtectionSensitivityLabelSecurityEvaluateRemovalsCo
 }
 
 type ListSecurityInformationProtectionSensitivityLabelSecurityEvaluateRemovalsOperationOptions struct {
-	Skip *int64
-	Top  *int64
+	Metadata *odata.Metadata
+	Skip     *int64
+	Top      *int64
 }
 
 func DefaultListSecurityInformationProtectionSensitivityLabelSecurityEvaluateRemovalsOperationOptions() ListSecurityInformationProtectionSensitivityLabelSecurityEvaluateRemovalsOperationOptions {
@@ -42,6 +43,9 @@ func (o ListSecurityInformationProtectionSensitivityLabelSecurityEvaluateRemoval
 
 func (o ListSecurityInformationProtectionSensitivityLabelSecurityEvaluateRemovalsOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	if o.Skip != nil {
 		out.Skip = int(*o.Skip)
 	}
@@ -72,7 +76,7 @@ func (p *ListSecurityInformationProtectionSensitivityLabelSecurityEvaluateRemova
 // ListSecurityInformationProtectionSensitivityLabelSecurityEvaluateRemovals - Invoke action evaluateRemoval. Indicate
 // to the consuming application what actions it should take to remove the label information. Given contentInfo as an
 // input, which includes existing content metadata key-value pairs, the API returns an informationProtectionAction that
-// contains some combination of one or more of the following:
+// contains some combination of one or more of the following
 func (c SecurityInformationProtectionSensitivityLabelClient) ListSecurityInformationProtectionSensitivityLabelSecurityEvaluateRemovals(ctx context.Context, id beta.UserId, input ListSecurityInformationProtectionSensitivityLabelSecurityEvaluateRemovalsRequest, options ListSecurityInformationProtectionSensitivityLabelSecurityEvaluateRemovalsOperationOptions) (result ListSecurityInformationProtectionSensitivityLabelSecurityEvaluateRemovalsOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",

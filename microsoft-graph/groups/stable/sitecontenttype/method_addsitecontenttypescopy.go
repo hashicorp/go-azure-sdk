@@ -19,15 +19,44 @@ type AddSiteContentTypesCopyOperationResponse struct {
 	Model        *stable.ContentType
 }
 
+type AddSiteContentTypesCopyOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultAddSiteContentTypesCopyOperationOptions() AddSiteContentTypesCopyOperationOptions {
+	return AddSiteContentTypesCopyOperationOptions{}
+}
+
+func (o AddSiteContentTypesCopyOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o AddSiteContentTypesCopyOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o AddSiteContentTypesCopyOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // AddSiteContentTypesCopy - Invoke action addCopy. Add a copy of a content type from a site to a list.
-func (c SiteContentTypeClient) AddSiteContentTypesCopy(ctx context.Context, id stable.GroupIdSiteId, input AddSiteContentTypesCopyRequest) (result AddSiteContentTypesCopyOperationResponse, err error) {
+func (c SiteContentTypeClient) AddSiteContentTypesCopy(ctx context.Context, id stable.GroupIdSiteId, input AddSiteContentTypesCopyRequest, options AddSiteContentTypesCopyOperationOptions) (result AddSiteContentTypesCopyOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/contentTypes/addCopy", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/contentTypes/addCopy", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

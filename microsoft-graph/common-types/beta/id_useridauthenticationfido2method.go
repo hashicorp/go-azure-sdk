@@ -98,10 +98,10 @@ func (id UserIdAuthenticationFido2MethodId) ID() string {
 func (id UserIdAuthenticationFido2MethodId) Segments() []resourceids.Segment {
 	return []resourceids.Segment{
 		resourceids.StaticSegment("users", "users", "users"),
-		resourceids.UserSpecifiedSegment("userId", "userIdValue"),
+		resourceids.UserSpecifiedSegment("userId", "userId"),
 		resourceids.StaticSegment("authentication", "authentication", "authentication"),
 		resourceids.StaticSegment("fido2Methods", "fido2Methods", "fido2Methods"),
-		resourceids.UserSpecifiedSegment("fido2AuthenticationMethodId", "fido2AuthenticationMethodIdValue"),
+		resourceids.UserSpecifiedSegment("fido2AuthenticationMethodId", "fido2AuthenticationMethodId"),
 	}
 }
 

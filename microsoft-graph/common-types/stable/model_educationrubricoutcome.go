@@ -92,20 +92,30 @@ func (s EducationRubricOutcome) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &EducationRubricOutcome{}
 
 func (s *EducationRubricOutcome) UnmarshalJSON(bytes []byte) error {
-	type alias EducationRubricOutcome
-	var decoded alias
+
+	var decoded struct {
+		PublishedRubricQualityFeedback       *[]RubricQualityFeedbackModel       `json:"publishedRubricQualityFeedback,omitempty"`
+		PublishedRubricQualitySelectedLevels *[]RubricQualitySelectedColumnModel `json:"publishedRubricQualitySelectedLevels,omitempty"`
+		RubricQualityFeedback                *[]RubricQualityFeedbackModel       `json:"rubricQualityFeedback,omitempty"`
+		RubricQualitySelectedLevels          *[]RubricQualitySelectedColumnModel `json:"rubricQualitySelectedLevels,omitempty"`
+		LastModifiedBy                       IdentitySet                         `json:"lastModifiedBy"`
+		LastModifiedDateTime                 nullable.Type[string]               `json:"lastModifiedDateTime,omitempty"`
+		Id                                   *string                             `json:"id,omitempty"`
+		ODataId                              *string                             `json:"@odata.id,omitempty"`
+		ODataType                            *string                             `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into EducationRubricOutcome: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
-	s.Id = decoded.Id
-	s.LastModifiedDateTime = decoded.LastModifiedDateTime
-	s.ODataId = decoded.ODataId
-	s.ODataType = decoded.ODataType
 	s.PublishedRubricQualityFeedback = decoded.PublishedRubricQualityFeedback
 	s.PublishedRubricQualitySelectedLevels = decoded.PublishedRubricQualitySelectedLevels
 	s.RubricQualityFeedback = decoded.RubricQualityFeedback
 	s.RubricQualitySelectedLevels = decoded.RubricQualitySelectedLevels
+	s.Id = decoded.Id
+	s.LastModifiedDateTime = decoded.LastModifiedDateTime
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -119,5 +129,6 @@ func (s *EducationRubricOutcome) UnmarshalJSON(bytes []byte) error {
 		}
 		s.LastModifiedBy = impl
 	}
+
 	return nil
 }

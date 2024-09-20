@@ -17,15 +17,44 @@ type UpdatePermissionGrantPolicyExcludeOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdatePermissionGrantPolicyExcludeOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdatePermissionGrantPolicyExcludeOperationOptions() UpdatePermissionGrantPolicyExcludeOperationOptions {
+	return UpdatePermissionGrantPolicyExcludeOperationOptions{}
+}
+
+func (o UpdatePermissionGrantPolicyExcludeOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdatePermissionGrantPolicyExcludeOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdatePermissionGrantPolicyExcludeOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdatePermissionGrantPolicyExclude - Update the navigation property excludes in policies
-func (c PermissionGrantPolicyExcludeClient) UpdatePermissionGrantPolicyExclude(ctx context.Context, id beta.PolicyPermissionGrantPolicyIdExcludeId, input beta.PermissionGrantConditionSet) (result UpdatePermissionGrantPolicyExcludeOperationResponse, err error) {
+func (c PermissionGrantPolicyExcludeClient) UpdatePermissionGrantPolicyExclude(ctx context.Context, id beta.PolicyPermissionGrantPolicyIdExcludeId, input beta.PermissionGrantConditionSet, options UpdatePermissionGrantPolicyExcludeOperationOptions) (result UpdatePermissionGrantPolicyExcludeOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

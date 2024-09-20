@@ -17,20 +17,49 @@ type UpdateInferenceClassificationOverrideOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateInferenceClassificationOverrideOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateInferenceClassificationOverrideOperationOptions() UpdateInferenceClassificationOverrideOperationOptions {
+	return UpdateInferenceClassificationOverrideOperationOptions{}
+}
+
+func (o UpdateInferenceClassificationOverrideOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateInferenceClassificationOverrideOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateInferenceClassificationOverrideOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateInferenceClassificationOverride - Update inferenceclassificationoverride. Change the classifyAs field of an
 // override as specified. You cannot use PATCH to change any other fields in an inferenceClassificationOverride
 // instance. If an override exists for a sender and the sender changes his/her display name, you can use POST to force
 // an update to the name field in the existing override. If an override exists for a sender and the sender changes
 // his/her SMTP address, deleting the existing override and creating a new one with the new SMTP address is the only way
 // to 'update' the override for this sender.
-func (c InferenceClassificationOverrideClient) UpdateInferenceClassificationOverride(ctx context.Context, id stable.MeInferenceClassificationOverrideId, input stable.InferenceClassificationOverride) (result UpdateInferenceClassificationOverrideOperationResponse, err error) {
+func (c InferenceClassificationOverrideClient) UpdateInferenceClassificationOverride(ctx context.Context, id stable.MeInferenceClassificationOverrideId, input stable.InferenceClassificationOverride, options UpdateInferenceClassificationOverrideOperationOptions) (result UpdateInferenceClassificationOverrideOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

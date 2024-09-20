@@ -18,16 +18,45 @@ type ChangeCloudPCUserAccountTypeOperationResponse struct {
 	OData        *odata.OData
 }
 
+type ChangeCloudPCUserAccountTypeOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultChangeCloudPCUserAccountTypeOperationOptions() ChangeCloudPCUserAccountTypeOperationOptions {
+	return ChangeCloudPCUserAccountTypeOperationOptions{}
+}
+
+func (o ChangeCloudPCUserAccountTypeOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o ChangeCloudPCUserAccountTypeOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o ChangeCloudPCUserAccountTypeOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // ChangeCloudPCUserAccountType - Invoke action changeUserAccountType. Change the account type of the user on a specific
 // Cloud PC.
-func (c CloudPCClient) ChangeCloudPCUserAccountType(ctx context.Context, id beta.UserIdCloudPCId, input ChangeCloudPCUserAccountTypeRequest) (result ChangeCloudPCUserAccountTypeOperationResponse, err error) {
+func (c CloudPCClient) ChangeCloudPCUserAccountType(ctx context.Context, id beta.UserIdCloudPCId, input ChangeCloudPCUserAccountTypeRequest, options ChangeCloudPCUserAccountTypeOperationOptions) (result ChangeCloudPCUserAccountTypeOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/changeUserAccountType", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/changeUserAccountType", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

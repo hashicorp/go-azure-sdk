@@ -19,7 +19,8 @@ type DeleteSubscriptionOperationResponse struct {
 }
 
 type DeleteSubscriptionOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteSubscriptionOperationOptions() DeleteSubscriptionOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteSubscriptionOperationOptions) ToHeaders() *client.Headers {
 
 func (o DeleteSubscriptionOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

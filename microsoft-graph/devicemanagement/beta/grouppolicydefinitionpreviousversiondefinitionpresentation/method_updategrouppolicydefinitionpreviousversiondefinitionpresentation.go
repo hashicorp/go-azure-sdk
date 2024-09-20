@@ -17,16 +17,45 @@ type UpdateGroupPolicyDefinitionPreviousVersionDefinitionPresentationOperationRe
 	OData        *odata.OData
 }
 
+type UpdateGroupPolicyDefinitionPreviousVersionDefinitionPresentationOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateGroupPolicyDefinitionPreviousVersionDefinitionPresentationOperationOptions() UpdateGroupPolicyDefinitionPreviousVersionDefinitionPresentationOperationOptions {
+	return UpdateGroupPolicyDefinitionPreviousVersionDefinitionPresentationOperationOptions{}
+}
+
+func (o UpdateGroupPolicyDefinitionPreviousVersionDefinitionPresentationOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateGroupPolicyDefinitionPreviousVersionDefinitionPresentationOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateGroupPolicyDefinitionPreviousVersionDefinitionPresentationOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateGroupPolicyDefinitionPreviousVersionDefinitionPresentation - Update the navigation property presentations in
 // deviceManagement
-func (c GroupPolicyDefinitionPreviousVersionDefinitionPresentationClient) UpdateGroupPolicyDefinitionPreviousVersionDefinitionPresentation(ctx context.Context, id beta.DeviceManagementGroupPolicyDefinitionIdPreviousVersionDefinitionPresentationId, input beta.GroupPolicyPresentation) (result UpdateGroupPolicyDefinitionPreviousVersionDefinitionPresentationOperationResponse, err error) {
+func (c GroupPolicyDefinitionPreviousVersionDefinitionPresentationClient) UpdateGroupPolicyDefinitionPreviousVersionDefinitionPresentation(ctx context.Context, id beta.DeviceManagementGroupPolicyDefinitionIdPreviousVersionDefinitionPresentationId, input beta.GroupPolicyPresentation, options UpdateGroupPolicyDefinitionPreviousVersionDefinitionPresentationOperationOptions) (result UpdateGroupPolicyDefinitionPreviousVersionDefinitionPresentationOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

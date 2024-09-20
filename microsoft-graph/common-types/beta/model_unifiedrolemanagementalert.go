@@ -96,23 +96,36 @@ func (s UnifiedRoleManagementAlert) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &UnifiedRoleManagementAlert{}
 
 func (s *UnifiedRoleManagementAlert) UnmarshalJSON(bytes []byte) error {
-	type alias UnifiedRoleManagementAlert
-	var decoded alias
+
+	var decoded struct {
+		AlertDefinition      *UnifiedRoleManagementAlertDefinition `json:"alertDefinition,omitempty"`
+		AlertDefinitionId    nullable.Type[string]                 `json:"alertDefinitionId,omitempty"`
+		AlertIncidents       *[]UnifiedRoleManagementAlertIncident `json:"alertIncidents,omitempty"`
+		IncidentCount        nullable.Type[int64]                  `json:"incidentCount,omitempty"`
+		IsActive             nullable.Type[bool]                   `json:"isActive,omitempty"`
+		LastModifiedDateTime nullable.Type[string]                 `json:"lastModifiedDateTime,omitempty"`
+		LastScannedDateTime  nullable.Type[string]                 `json:"lastScannedDateTime,omitempty"`
+		ScopeId              nullable.Type[string]                 `json:"scopeId,omitempty"`
+		ScopeType            nullable.Type[string]                 `json:"scopeType,omitempty"`
+		Id                   *string                               `json:"id,omitempty"`
+		ODataId              *string                               `json:"@odata.id,omitempty"`
+		ODataType            *string                               `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into UnifiedRoleManagementAlert: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.AlertDefinition = decoded.AlertDefinition
 	s.AlertDefinitionId = decoded.AlertDefinitionId
-	s.Id = decoded.Id
 	s.IncidentCount = decoded.IncidentCount
 	s.IsActive = decoded.IsActive
 	s.LastModifiedDateTime = decoded.LastModifiedDateTime
 	s.LastScannedDateTime = decoded.LastScannedDateTime
-	s.ODataId = decoded.ODataId
-	s.ODataType = decoded.ODataType
 	s.ScopeId = decoded.ScopeId
 	s.ScopeType = decoded.ScopeType
+	s.Id = decoded.Id
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -143,5 +156,6 @@ func (s *UnifiedRoleManagementAlert) UnmarshalJSON(bytes []byte) error {
 		}
 		s.AlertIncidents = &output
 	}
+
 	return nil
 }

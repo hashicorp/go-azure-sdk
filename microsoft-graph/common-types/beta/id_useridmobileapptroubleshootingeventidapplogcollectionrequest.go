@@ -104,11 +104,11 @@ func (id UserIdMobileAppTroubleshootingEventIdAppLogCollectionRequestId) ID() st
 func (id UserIdMobileAppTroubleshootingEventIdAppLogCollectionRequestId) Segments() []resourceids.Segment {
 	return []resourceids.Segment{
 		resourceids.StaticSegment("users", "users", "users"),
-		resourceids.UserSpecifiedSegment("userId", "userIdValue"),
+		resourceids.UserSpecifiedSegment("userId", "userId"),
 		resourceids.StaticSegment("mobileAppTroubleshootingEvents", "mobileAppTroubleshootingEvents", "mobileAppTroubleshootingEvents"),
-		resourceids.UserSpecifiedSegment("mobileAppTroubleshootingEventId", "mobileAppTroubleshootingEventIdValue"),
+		resourceids.UserSpecifiedSegment("mobileAppTroubleshootingEventId", "mobileAppTroubleshootingEventId"),
 		resourceids.StaticSegment("appLogCollectionRequests", "appLogCollectionRequests", "appLogCollectionRequests"),
-		resourceids.UserSpecifiedSegment("appLogCollectionRequestId", "appLogCollectionRequestIdValue"),
+		resourceids.UserSpecifiedSegment("appLogCollectionRequestId", "appLogCollectionRequestId"),
 	}
 }
 

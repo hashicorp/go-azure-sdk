@@ -18,15 +18,44 @@ type ShutDownComanagedDeviceOperationResponse struct {
 	OData        *odata.OData
 }
 
+type ShutDownComanagedDeviceOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultShutDownComanagedDeviceOperationOptions() ShutDownComanagedDeviceOperationOptions {
+	return ShutDownComanagedDeviceOperationOptions{}
+}
+
+func (o ShutDownComanagedDeviceOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o ShutDownComanagedDeviceOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o ShutDownComanagedDeviceOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // ShutDownComanagedDevice - Invoke action shutDown. Shut down device
-func (c ComanagedDeviceClient) ShutDownComanagedDevice(ctx context.Context, id beta.DeviceManagementComanagedDeviceId) (result ShutDownComanagedDeviceOperationResponse, err error) {
+func (c ComanagedDeviceClient) ShutDownComanagedDevice(ctx context.Context, id beta.DeviceManagementComanagedDeviceId, options ShutDownComanagedDeviceOperationOptions) (result ShutDownComanagedDeviceOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/shutDown", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/shutDown", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

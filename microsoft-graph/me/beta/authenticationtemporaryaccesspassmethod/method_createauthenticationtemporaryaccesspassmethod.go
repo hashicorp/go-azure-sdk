@@ -18,15 +18,44 @@ type CreateAuthenticationTemporaryAccessPassMethodOperationResponse struct {
 	Model        *beta.TemporaryAccessPassAuthenticationMethod
 }
 
+type CreateAuthenticationTemporaryAccessPassMethodOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateAuthenticationTemporaryAccessPassMethodOperationOptions() CreateAuthenticationTemporaryAccessPassMethodOperationOptions {
+	return CreateAuthenticationTemporaryAccessPassMethodOperationOptions{}
+}
+
+func (o CreateAuthenticationTemporaryAccessPassMethodOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateAuthenticationTemporaryAccessPassMethodOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateAuthenticationTemporaryAccessPassMethodOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateAuthenticationTemporaryAccessPassMethod - Create new navigation property to temporaryAccessPassMethods for me
-func (c AuthenticationTemporaryAccessPassMethodClient) CreateAuthenticationTemporaryAccessPassMethod(ctx context.Context, input beta.TemporaryAccessPassAuthenticationMethod) (result CreateAuthenticationTemporaryAccessPassMethodOperationResponse, err error) {
+func (c AuthenticationTemporaryAccessPassMethodClient) CreateAuthenticationTemporaryAccessPassMethod(ctx context.Context, input beta.TemporaryAccessPassAuthenticationMethod, options CreateAuthenticationTemporaryAccessPassMethodOperationOptions) (result CreateAuthenticationTemporaryAccessPassMethodOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/me/authentication/temporaryAccessPassMethods",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/me/authentication/temporaryAccessPassMethods",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

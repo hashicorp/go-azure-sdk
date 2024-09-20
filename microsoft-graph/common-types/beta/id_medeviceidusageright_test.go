@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &MeDeviceIdUsageRightId{}
 
 func TestNewMeDeviceIdUsageRightID(t *testing.T) {
-	id := NewMeDeviceIdUsageRightID("deviceIdValue", "usageRightIdValue")
+	id := NewMeDeviceIdUsageRightID("deviceId", "usageRightId")
 
-	if id.DeviceId != "deviceIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DeviceId'", id.DeviceId, "deviceIdValue")
+	if id.DeviceId != "deviceId" {
+		t.Fatalf("Expected %q but got %q for Segment 'DeviceId'", id.DeviceId, "deviceId")
 	}
 
-	if id.UsageRightId != "usageRightIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'UsageRightId'", id.UsageRightId, "usageRightIdValue")
+	if id.UsageRightId != "usageRightId" {
+		t.Fatalf("Expected %q but got %q for Segment 'UsageRightId'", id.UsageRightId, "usageRightId")
 	}
 }
 
 func TestFormatMeDeviceIdUsageRightID(t *testing.T) {
-	actual := NewMeDeviceIdUsageRightID("deviceIdValue", "usageRightIdValue").ID()
-	expected := "/me/devices/deviceIdValue/usageRights/usageRightIdValue"
+	actual := NewMeDeviceIdUsageRightID("deviceId", "usageRightId").ID()
+	expected := "/me/devices/deviceId/usageRights/usageRightId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -54,25 +54,25 @@ func TestParseMeDeviceIdUsageRightID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/me/devices/deviceIdValue",
+			Input: "/me/devices/deviceId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/me/devices/deviceIdValue/usageRights",
+			Input: "/me/devices/deviceId/usageRights",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/me/devices/deviceIdValue/usageRights/usageRightIdValue",
+			Input: "/me/devices/deviceId/usageRights/usageRightId",
 			Expected: &MeDeviceIdUsageRightId{
-				DeviceId:     "deviceIdValue",
-				UsageRightId: "usageRightIdValue",
+				DeviceId:     "deviceId",
+				UsageRightId: "usageRightId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/devices/deviceIdValue/usageRights/usageRightIdValue/extra",
+			Input: "/me/devices/deviceId/usageRights/usageRightId/extra",
 			Error: true,
 		},
 	}
@@ -135,48 +135,48 @@ func TestParseMeDeviceIdUsageRightIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/me/devices/deviceIdValue",
+			Input: "/me/devices/deviceId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/dEvIcEs/dEvIcEiDvAlUe",
+			Input: "/mE/dEvIcEs/dEvIcEiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/me/devices/deviceIdValue/usageRights",
+			Input: "/me/devices/deviceId/usageRights",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/dEvIcEs/dEvIcEiDvAlUe/uSaGeRiGhTs",
+			Input: "/mE/dEvIcEs/dEvIcEiD/uSaGeRiGhTs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/me/devices/deviceIdValue/usageRights/usageRightIdValue",
+			Input: "/me/devices/deviceId/usageRights/usageRightId",
 			Expected: &MeDeviceIdUsageRightId{
-				DeviceId:     "deviceIdValue",
-				UsageRightId: "usageRightIdValue",
+				DeviceId:     "deviceId",
+				UsageRightId: "usageRightId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/devices/deviceIdValue/usageRights/usageRightIdValue/extra",
+			Input: "/me/devices/deviceId/usageRights/usageRightId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/dEvIcEs/dEvIcEiDvAlUe/uSaGeRiGhTs/uSaGeRiGhTiDvAlUe",
+			Input: "/mE/dEvIcEs/dEvIcEiD/uSaGeRiGhTs/uSaGeRiGhTiD",
 			Expected: &MeDeviceIdUsageRightId{
-				DeviceId:     "dEvIcEiDvAlUe",
-				UsageRightId: "uSaGeRiGhTiDvAlUe",
+				DeviceId:     "dEvIcEiD",
+				UsageRightId: "uSaGeRiGhTiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/mE/dEvIcEs/dEvIcEiDvAlUe/uSaGeRiGhTs/uSaGeRiGhTiDvAlUe/extra",
+			Input: "/mE/dEvIcEs/dEvIcEiD/uSaGeRiGhTs/uSaGeRiGhTiD/extra",
 			Error: true,
 		},
 	}

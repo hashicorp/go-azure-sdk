@@ -19,7 +19,8 @@ type DeleteGroupPolicyMigrationReportOperationResponse struct {
 }
 
 type DeleteGroupPolicyMigrationReportOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteGroupPolicyMigrationReportOperationOptions() DeleteGroupPolicyMigrationReportOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteGroupPolicyMigrationReportOperationOptions) ToHeaders() *client.He
 
 func (o DeleteGroupPolicyMigrationReportOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

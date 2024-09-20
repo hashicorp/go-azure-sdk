@@ -18,15 +18,44 @@ type CreateGroupPolicyConfigurationOperationResponse struct {
 	Model        *beta.GroupPolicyConfiguration
 }
 
+type CreateGroupPolicyConfigurationOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateGroupPolicyConfigurationOperationOptions() CreateGroupPolicyConfigurationOperationOptions {
+	return CreateGroupPolicyConfigurationOperationOptions{}
+}
+
+func (o CreateGroupPolicyConfigurationOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateGroupPolicyConfigurationOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateGroupPolicyConfigurationOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateGroupPolicyConfiguration - Create new navigation property to groupPolicyConfigurations for deviceManagement
-func (c GroupPolicyConfigurationClient) CreateGroupPolicyConfiguration(ctx context.Context, input beta.GroupPolicyConfiguration) (result CreateGroupPolicyConfigurationOperationResponse, err error) {
+func (c GroupPolicyConfigurationClient) CreateGroupPolicyConfiguration(ctx context.Context, input beta.GroupPolicyConfiguration, options CreateGroupPolicyConfigurationOperationOptions) (result CreateGroupPolicyConfigurationOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/deviceManagement/groupPolicyConfigurations",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/deviceManagement/groupPolicyConfigurations",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

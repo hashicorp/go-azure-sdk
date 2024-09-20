@@ -316,10 +316,72 @@ func (s ServicePrincipal) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &ServicePrincipal{}
 
 func (s *ServicePrincipal) UnmarshalJSON(bytes []byte) error {
-	type alias ServicePrincipal
-	var decoded alias
+
+	var decoded struct {
+		AccountEnabled                         nullable.Type[bool]                  `json:"accountEnabled,omitempty"`
+		AddIns                                 *[]AddIn                             `json:"addIns,omitempty"`
+		AlternativeNames                       *[]string                            `json:"alternativeNames,omitempty"`
+		AppDescription                         nullable.Type[string]                `json:"appDescription,omitempty"`
+		AppDisplayName                         nullable.Type[string]                `json:"appDisplayName,omitempty"`
+		AppId                                  nullable.Type[string]                `json:"appId,omitempty"`
+		AppManagementPolicies                  *[]AppManagementPolicy               `json:"appManagementPolicies,omitempty"`
+		AppOwnerOrganizationId                 nullable.Type[string]                `json:"appOwnerOrganizationId,omitempty"`
+		AppRoleAssignedTo                      *[]AppRoleAssignment                 `json:"appRoleAssignedTo,omitempty"`
+		AppRoleAssignmentRequired              *bool                                `json:"appRoleAssignmentRequired,omitempty"`
+		AppRoleAssignments                     *[]AppRoleAssignment                 `json:"appRoleAssignments,omitempty"`
+		AppRoles                               *[]AppRole                           `json:"appRoles,omitempty"`
+		ApplicationTemplateId                  nullable.Type[string]                `json:"applicationTemplateId,omitempty"`
+		ClaimsMappingPolicies                  *[]ClaimsMappingPolicy               `json:"claimsMappingPolicies,omitempty"`
+		CreatedObjects                         *[]DirectoryObject                   `json:"createdObjects,omitempty"`
+		CreatedObjects_ODataBind               *[]string                            `json:"createdObjects@odata.bind,omitempty"`
+		CustomSecurityAttributes               *CustomSecurityAttributeValue        `json:"customSecurityAttributes,omitempty"`
+		DelegatedPermissionClassifications     *[]DelegatedPermissionClassification `json:"delegatedPermissionClassifications,omitempty"`
+		Description                            nullable.Type[string]                `json:"description,omitempty"`
+		DisabledByMicrosoftStatus              nullable.Type[string]                `json:"disabledByMicrosoftStatus,omitempty"`
+		DisplayName                            nullable.Type[string]                `json:"displayName,omitempty"`
+		Endpoints                              *[]Endpoint                          `json:"endpoints,omitempty"`
+		FederatedIdentityCredentials           *[]FederatedIdentityCredential       `json:"federatedIdentityCredentials,omitempty"`
+		HomeRealmDiscoveryPolicies             *[]HomeRealmDiscoveryPolicy          `json:"homeRealmDiscoveryPolicies,omitempty"`
+		Homepage                               nullable.Type[string]                `json:"homepage,omitempty"`
+		Info                                   *InformationalUrl                    `json:"info,omitempty"`
+		KeyCredentials                         *[]KeyCredential                     `json:"keyCredentials,omitempty"`
+		LoginUrl                               nullable.Type[string]                `json:"loginUrl,omitempty"`
+		LogoutUrl                              nullable.Type[string]                `json:"logoutUrl,omitempty"`
+		MemberOf                               *[]DirectoryObject                   `json:"memberOf,omitempty"`
+		MemberOf_ODataBind                     *[]string                            `json:"memberOf@odata.bind,omitempty"`
+		Notes                                  nullable.Type[string]                `json:"notes,omitempty"`
+		NotificationEmailAddresses             *[]string                            `json:"notificationEmailAddresses,omitempty"`
+		OAuth2PermissionGrants                 *[]OAuth2PermissionGrant             `json:"oauth2PermissionGrants,omitempty"`
+		OAuth2PermissionScopes                 *[]PermissionScope                   `json:"oauth2PermissionScopes,omitempty"`
+		OwnedObjects                           *[]DirectoryObject                   `json:"ownedObjects,omitempty"`
+		OwnedObjects_ODataBind                 *[]string                            `json:"ownedObjects@odata.bind,omitempty"`
+		Owners                                 *[]DirectoryObject                   `json:"owners,omitempty"`
+		Owners_ODataBind                       *[]string                            `json:"owners@odata.bind,omitempty"`
+		PasswordCredentials                    *[]PasswordCredential                `json:"passwordCredentials,omitempty"`
+		PreferredSingleSignOnMode              nullable.Type[string]                `json:"preferredSingleSignOnMode,omitempty"`
+		PreferredTokenSigningKeyThumbprint     nullable.Type[string]                `json:"preferredTokenSigningKeyThumbprint,omitempty"`
+		RemoteDesktopSecurityConfiguration     *RemoteDesktopSecurityConfiguration  `json:"remoteDesktopSecurityConfiguration,omitempty"`
+		ReplyUrls                              *[]string                            `json:"replyUrls,omitempty"`
+		ResourceSpecificApplicationPermissions *[]ResourceSpecificPermission        `json:"resourceSpecificApplicationPermissions,omitempty"`
+		SamlSingleSignOnSettings               *SamlSingleSignOnSettings            `json:"samlSingleSignOnSettings,omitempty"`
+		ServicePrincipalNames                  *[]string                            `json:"servicePrincipalNames,omitempty"`
+		ServicePrincipalType                   nullable.Type[string]                `json:"servicePrincipalType,omitempty"`
+		SignInAudience                         nullable.Type[string]                `json:"signInAudience,omitempty"`
+		Synchronization                        *Synchronization                     `json:"synchronization,omitempty"`
+		Tags                                   *[]string                            `json:"tags,omitempty"`
+		TokenEncryptionKeyId                   nullable.Type[string]                `json:"tokenEncryptionKeyId,omitempty"`
+		TokenIssuancePolicies                  *[]TokenIssuancePolicy               `json:"tokenIssuancePolicies,omitempty"`
+		TokenLifetimePolicies                  *[]TokenLifetimePolicy               `json:"tokenLifetimePolicies,omitempty"`
+		TransitiveMemberOf                     *[]DirectoryObject                   `json:"transitiveMemberOf,omitempty"`
+		TransitiveMemberOf_ODataBind           *[]string                            `json:"transitiveMemberOf@odata.bind,omitempty"`
+		VerifiedPublisher                      *VerifiedPublisher                   `json:"verifiedPublisher,omitempty"`
+		DeletedDateTime                        nullable.Type[string]                `json:"deletedDateTime,omitempty"`
+		Id                                     *string                              `json:"id,omitempty"`
+		ODataId                                *string                              `json:"@odata.id,omitempty"`
+		ODataType                              *string                              `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into ServicePrincipal: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.AccountEnabled = decoded.AccountEnabled
@@ -339,7 +401,6 @@ func (s *ServicePrincipal) UnmarshalJSON(bytes []byte) error {
 	s.CreatedObjects_ODataBind = decoded.CreatedObjects_ODataBind
 	s.CustomSecurityAttributes = decoded.CustomSecurityAttributes
 	s.DelegatedPermissionClassifications = decoded.DelegatedPermissionClassifications
-	s.DeletedDateTime = decoded.DeletedDateTime
 	s.Description = decoded.Description
 	s.DisabledByMicrosoftStatus = decoded.DisabledByMicrosoftStatus
 	s.DisplayName = decoded.DisplayName
@@ -347,7 +408,6 @@ func (s *ServicePrincipal) UnmarshalJSON(bytes []byte) error {
 	s.FederatedIdentityCredentials = decoded.FederatedIdentityCredentials
 	s.HomeRealmDiscoveryPolicies = decoded.HomeRealmDiscoveryPolicies
 	s.Homepage = decoded.Homepage
-	s.Id = decoded.Id
 	s.Info = decoded.Info
 	s.KeyCredentials = decoded.KeyCredentials
 	s.LoginUrl = decoded.LoginUrl
@@ -357,8 +417,6 @@ func (s *ServicePrincipal) UnmarshalJSON(bytes []byte) error {
 	s.NotificationEmailAddresses = decoded.NotificationEmailAddresses
 	s.OAuth2PermissionGrants = decoded.OAuth2PermissionGrants
 	s.OAuth2PermissionScopes = decoded.OAuth2PermissionScopes
-	s.ODataId = decoded.ODataId
-	s.ODataType = decoded.ODataType
 	s.OwnedObjects_ODataBind = decoded.OwnedObjects_ODataBind
 	s.Owners_ODataBind = decoded.Owners_ODataBind
 	s.PasswordCredentials = decoded.PasswordCredentials
@@ -378,6 +436,10 @@ func (s *ServicePrincipal) UnmarshalJSON(bytes []byte) error {
 	s.TokenLifetimePolicies = decoded.TokenLifetimePolicies
 	s.TransitiveMemberOf_ODataBind = decoded.TransitiveMemberOf_ODataBind
 	s.VerifiedPublisher = decoded.VerifiedPublisher
+	s.DeletedDateTime = decoded.DeletedDateTime
+	s.Id = decoded.Id
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -468,5 +530,6 @@ func (s *ServicePrincipal) UnmarshalJSON(bytes []byte) error {
 		}
 		s.TransitiveMemberOf = &output
 	}
+
 	return nil
 }

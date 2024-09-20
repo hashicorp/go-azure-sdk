@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &DeviceManagementUserExperienceAnalyticsWorkFromAnywhereMetricId{}
 
 func TestNewDeviceManagementUserExperienceAnalyticsWorkFromAnywhereMetricID(t *testing.T) {
-	id := NewDeviceManagementUserExperienceAnalyticsWorkFromAnywhereMetricID("userExperienceAnalyticsWorkFromAnywhereMetricIdValue")
+	id := NewDeviceManagementUserExperienceAnalyticsWorkFromAnywhereMetricID("userExperienceAnalyticsWorkFromAnywhereMetricId")
 
-	if id.UserExperienceAnalyticsWorkFromAnywhereMetricId != "userExperienceAnalyticsWorkFromAnywhereMetricIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'UserExperienceAnalyticsWorkFromAnywhereMetricId'", id.UserExperienceAnalyticsWorkFromAnywhereMetricId, "userExperienceAnalyticsWorkFromAnywhereMetricIdValue")
+	if id.UserExperienceAnalyticsWorkFromAnywhereMetricId != "userExperienceAnalyticsWorkFromAnywhereMetricId" {
+		t.Fatalf("Expected %q but got %q for Segment 'UserExperienceAnalyticsWorkFromAnywhereMetricId'", id.UserExperienceAnalyticsWorkFromAnywhereMetricId, "userExperienceAnalyticsWorkFromAnywhereMetricId")
 	}
 }
 
 func TestFormatDeviceManagementUserExperienceAnalyticsWorkFromAnywhereMetricID(t *testing.T) {
-	actual := NewDeviceManagementUserExperienceAnalyticsWorkFromAnywhereMetricID("userExperienceAnalyticsWorkFromAnywhereMetricIdValue").ID()
-	expected := "/deviceManagement/userExperienceAnalyticsWorkFromAnywhereMetrics/userExperienceAnalyticsWorkFromAnywhereMetricIdValue"
+	actual := NewDeviceManagementUserExperienceAnalyticsWorkFromAnywhereMetricID("userExperienceAnalyticsWorkFromAnywhereMetricId").ID()
+	expected := "/deviceManagement/userExperienceAnalyticsWorkFromAnywhereMetrics/userExperienceAnalyticsWorkFromAnywhereMetricId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -50,14 +50,14 @@ func TestParseDeviceManagementUserExperienceAnalyticsWorkFromAnywhereMetricID(t 
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/userExperienceAnalyticsWorkFromAnywhereMetrics/userExperienceAnalyticsWorkFromAnywhereMetricIdValue",
+			Input: "/deviceManagement/userExperienceAnalyticsWorkFromAnywhereMetrics/userExperienceAnalyticsWorkFromAnywhereMetricId",
 			Expected: &DeviceManagementUserExperienceAnalyticsWorkFromAnywhereMetricId{
-				UserExperienceAnalyticsWorkFromAnywhereMetricId: "userExperienceAnalyticsWorkFromAnywhereMetricIdValue",
+				UserExperienceAnalyticsWorkFromAnywhereMetricId: "userExperienceAnalyticsWorkFromAnywhereMetricId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/userExperienceAnalyticsWorkFromAnywhereMetrics/userExperienceAnalyticsWorkFromAnywhereMetricIdValue/extra",
+			Input: "/deviceManagement/userExperienceAnalyticsWorkFromAnywhereMetrics/userExperienceAnalyticsWorkFromAnywhereMetricId/extra",
 			Error: true,
 		},
 	}
@@ -116,26 +116,26 @@ func TestParseDeviceManagementUserExperienceAnalyticsWorkFromAnywhereMetricIDIns
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/userExperienceAnalyticsWorkFromAnywhereMetrics/userExperienceAnalyticsWorkFromAnywhereMetricIdValue",
+			Input: "/deviceManagement/userExperienceAnalyticsWorkFromAnywhereMetrics/userExperienceAnalyticsWorkFromAnywhereMetricId",
 			Expected: &DeviceManagementUserExperienceAnalyticsWorkFromAnywhereMetricId{
-				UserExperienceAnalyticsWorkFromAnywhereMetricId: "userExperienceAnalyticsWorkFromAnywhereMetricIdValue",
+				UserExperienceAnalyticsWorkFromAnywhereMetricId: "userExperienceAnalyticsWorkFromAnywhereMetricId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/userExperienceAnalyticsWorkFromAnywhereMetrics/userExperienceAnalyticsWorkFromAnywhereMetricIdValue/extra",
+			Input: "/deviceManagement/userExperienceAnalyticsWorkFromAnywhereMetrics/userExperienceAnalyticsWorkFromAnywhereMetricId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/uSeReXpErIeNcEaNaLyTiCsWoRkFrOmAnYwHeReMeTrIcS/uSeReXpErIeNcEaNaLyTiCsWoRkFrOmAnYwHeReMeTrIcIdVaLuE",
+			Input: "/dEvIcEmAnAgEmEnT/uSeReXpErIeNcEaNaLyTiCsWoRkFrOmAnYwHeReMeTrIcS/uSeReXpErIeNcEaNaLyTiCsWoRkFrOmAnYwHeReMeTrIcId",
 			Expected: &DeviceManagementUserExperienceAnalyticsWorkFromAnywhereMetricId{
-				UserExperienceAnalyticsWorkFromAnywhereMetricId: "uSeReXpErIeNcEaNaLyTiCsWoRkFrOmAnYwHeReMeTrIcIdVaLuE",
+				UserExperienceAnalyticsWorkFromAnywhereMetricId: "uSeReXpErIeNcEaNaLyTiCsWoRkFrOmAnYwHeReMeTrIcId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/uSeReXpErIeNcEaNaLyTiCsWoRkFrOmAnYwHeReMeTrIcS/uSeReXpErIeNcEaNaLyTiCsWoRkFrOmAnYwHeReMeTrIcIdVaLuE/extra",
+			Input: "/dEvIcEmAnAgEmEnT/uSeReXpErIeNcEaNaLyTiCsWoRkFrOmAnYwHeReMeTrIcS/uSeReXpErIeNcEaNaLyTiCsWoRkFrOmAnYwHeReMeTrIcId/extra",
 			Error: true,
 		},
 	}

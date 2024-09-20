@@ -18,16 +18,45 @@ type CreateVirtualEndpointProvisioningPolicyOperationResponse struct {
 	Model        *stable.CloudPCProvisioningPolicy
 }
 
+type CreateVirtualEndpointProvisioningPolicyOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateVirtualEndpointProvisioningPolicyOperationOptions() CreateVirtualEndpointProvisioningPolicyOperationOptions {
+	return CreateVirtualEndpointProvisioningPolicyOperationOptions{}
+}
+
+func (o CreateVirtualEndpointProvisioningPolicyOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateVirtualEndpointProvisioningPolicyOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateVirtualEndpointProvisioningPolicyOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateVirtualEndpointProvisioningPolicy - Create cloudPcProvisioningPolicy. Create a new cloudPcProvisioningPolicy
 // object.
-func (c VirtualEndpointProvisioningPolicyClient) CreateVirtualEndpointProvisioningPolicy(ctx context.Context, input stable.CloudPCProvisioningPolicy) (result CreateVirtualEndpointProvisioningPolicyOperationResponse, err error) {
+func (c VirtualEndpointProvisioningPolicyClient) CreateVirtualEndpointProvisioningPolicy(ctx context.Context, input stable.CloudPCProvisioningPolicy, options CreateVirtualEndpointProvisioningPolicyOperationOptions) (result CreateVirtualEndpointProvisioningPolicyOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/deviceManagement/virtualEndpoint/provisioningPolicies",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/deviceManagement/virtualEndpoint/provisioningPolicies",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

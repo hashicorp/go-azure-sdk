@@ -17,15 +17,44 @@ type UpdateEntitlementManagementOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateEntitlementManagementOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateEntitlementManagementOperationOptions() UpdateEntitlementManagementOperationOptions {
+	return UpdateEntitlementManagementOperationOptions{}
+}
+
+func (o UpdateEntitlementManagementOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateEntitlementManagementOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateEntitlementManagementOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateEntitlementManagement - Update the navigation property entitlementManagement in roleManagement
-func (c EntitlementManagementClient) UpdateEntitlementManagement(ctx context.Context, input stable.RbacApplication) (result UpdateEntitlementManagementOperationResponse, err error) {
+func (c EntitlementManagementClient) UpdateEntitlementManagement(ctx context.Context, input stable.RbacApplication, options UpdateEntitlementManagementOperationOptions) (result UpdateEntitlementManagementOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       "/roleManagement/entitlementManagement",
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          "/roleManagement/entitlementManagement",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

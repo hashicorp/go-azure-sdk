@@ -97,21 +97,34 @@ func (s PlannerUser) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &PlannerUser{}
 
 func (s *PlannerUser) UnmarshalJSON(bytes []byte) error {
-	type alias PlannerUser
-	var decoded alias
+
+	var decoded struct {
+		All                    *[]PlannerDelta                         `json:"all,omitempty"`
+		FavoritePlanReferences *PlannerFavoritePlanReferenceCollection `json:"favoritePlanReferences,omitempty"`
+		FavoritePlans          *[]PlannerPlan                          `json:"favoritePlans,omitempty"`
+		MyDayTasks             *[]PlannerTask                          `json:"myDayTasks,omitempty"`
+		Plans                  *[]PlannerPlan                          `json:"plans,omitempty"`
+		RecentPlanReferences   *PlannerRecentPlanReferenceCollection   `json:"recentPlanReferences,omitempty"`
+		RecentPlans            *[]PlannerPlan                          `json:"recentPlans,omitempty"`
+		RosterPlans            *[]PlannerPlan                          `json:"rosterPlans,omitempty"`
+		Tasks                  *[]PlannerTask                          `json:"tasks,omitempty"`
+		Id                     *string                                 `json:"id,omitempty"`
+		ODataId                *string                                 `json:"@odata.id,omitempty"`
+		ODataType              *string                                 `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into PlannerUser: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.FavoritePlanReferences = decoded.FavoritePlanReferences
 	s.FavoritePlans = decoded.FavoritePlans
-	s.Id = decoded.Id
-	s.ODataId = decoded.ODataId
-	s.ODataType = decoded.ODataType
 	s.Plans = decoded.Plans
 	s.RecentPlanReferences = decoded.RecentPlanReferences
 	s.RecentPlans = decoded.RecentPlans
 	s.RosterPlans = decoded.RosterPlans
+	s.Id = decoded.Id
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -168,5 +181,6 @@ func (s *PlannerUser) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Tasks = &output
 	}
+
 	return nil
 }

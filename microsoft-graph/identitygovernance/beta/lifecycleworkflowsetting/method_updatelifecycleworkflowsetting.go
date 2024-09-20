@@ -17,16 +17,45 @@ type UpdateLifecycleWorkflowSettingOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateLifecycleWorkflowSettingOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateLifecycleWorkflowSettingOperationOptions() UpdateLifecycleWorkflowSettingOperationOptions {
+	return UpdateLifecycleWorkflowSettingOperationOptions{}
+}
+
+func (o UpdateLifecycleWorkflowSettingOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateLifecycleWorkflowSettingOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateLifecycleWorkflowSettingOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateLifecycleWorkflowSetting - Update lifecycleManagementSettings. Update the properties of a
 // lifecycleManagementSettings object.
-func (c LifecycleWorkflowSettingClient) UpdateLifecycleWorkflowSetting(ctx context.Context, input beta.IdentityGovernanceLifecycleManagementSettings) (result UpdateLifecycleWorkflowSettingOperationResponse, err error) {
+func (c LifecycleWorkflowSettingClient) UpdateLifecycleWorkflowSetting(ctx context.Context, input beta.IdentityGovernanceLifecycleManagementSettings, options UpdateLifecycleWorkflowSettingOperationOptions) (result UpdateLifecycleWorkflowSettingOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       "/identityGovernance/lifecycleWorkflows/settings",
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          "/identityGovernance/lifecycleWorkflows/settings",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

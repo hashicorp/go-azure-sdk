@@ -29,10 +29,14 @@ type LocalAdminSettings struct {
 var _ json.Unmarshaler = &LocalAdminSettings{}
 
 func (s *LocalAdminSettings) UnmarshalJSON(bytes []byte) error {
-	type alias LocalAdminSettings
-	var decoded alias
+
+	var decoded struct {
+		EnableGlobalAdmins nullable.Type[bool] `json:"enableGlobalAdmins,omitempty"`
+		ODataId            *string             `json:"@odata.id,omitempty"`
+		ODataType          *string             `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into LocalAdminSettings: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.EnableGlobalAdmins = decoded.EnableGlobalAdmins
@@ -51,5 +55,6 @@ func (s *LocalAdminSettings) UnmarshalJSON(bytes []byte) error {
 		}
 		s.RegisteringUsers = impl
 	}
+
 	return nil
 }

@@ -146,16 +146,24 @@ func (s BaseOnenoteEntityHierarchyModelImpl) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &BaseOnenoteEntityHierarchyModelImpl{}
 
 func (s *BaseOnenoteEntityHierarchyModelImpl) UnmarshalJSON(bytes []byte) error {
-	type alias BaseOnenoteEntityHierarchyModelImpl
-	var decoded alias
+
+	var decoded struct {
+		DisplayName          nullable.Type[string] `json:"displayName,omitempty"`
+		LastModifiedDateTime nullable.Type[string] `json:"lastModifiedDateTime,omitempty"`
+		CreatedDateTime      nullable.Type[string] `json:"createdDateTime,omitempty"`
+		Self                 nullable.Type[string] `json:"self,omitempty"`
+		Id                   *string               `json:"id,omitempty"`
+		ODataId              *string               `json:"@odata.id,omitempty"`
+		ODataType            *string               `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into BaseOnenoteEntityHierarchyModelImpl: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
-	s.CreatedDateTime = decoded.CreatedDateTime
 	s.DisplayName = decoded.DisplayName
-	s.Id = decoded.Id
 	s.LastModifiedDateTime = decoded.LastModifiedDateTime
+	s.CreatedDateTime = decoded.CreatedDateTime
+	s.Id = decoded.Id
 	s.ODataId = decoded.ODataId
 	s.ODataType = decoded.ODataType
 	s.Self = decoded.Self
@@ -180,6 +188,7 @@ func (s *BaseOnenoteEntityHierarchyModelImpl) UnmarshalJSON(bytes []byte) error 
 		}
 		s.LastModifiedBy = &impl
 	}
+
 	return nil
 }
 
@@ -193,9 +202,9 @@ func UnmarshalOnenoteEntityHierarchyModelImplementation(input []byte) (OnenoteEn
 		return nil, fmt.Errorf("unmarshaling OnenoteEntityHierarchyModel into map[string]interface: %+v", err)
 	}
 
-	value, ok := temp["@odata.type"].(string)
-	if !ok {
-		return nil, nil
+	var value string
+	if v, ok := temp["@odata.type"]; ok {
+		value = fmt.Sprintf("%v", v)
 	}
 
 	if strings.EqualFold(value, "#microsoft.graph.notebook") {

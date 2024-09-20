@@ -18,16 +18,45 @@ type CreateAndroidForWorkAppConfigurationSchemaOperationResponse struct {
 	Model        *beta.AndroidForWorkAppConfigurationSchema
 }
 
+type CreateAndroidForWorkAppConfigurationSchemaOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateAndroidForWorkAppConfigurationSchemaOperationOptions() CreateAndroidForWorkAppConfigurationSchemaOperationOptions {
+	return CreateAndroidForWorkAppConfigurationSchemaOperationOptions{}
+}
+
+func (o CreateAndroidForWorkAppConfigurationSchemaOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateAndroidForWorkAppConfigurationSchemaOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateAndroidForWorkAppConfigurationSchemaOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateAndroidForWorkAppConfigurationSchema - Create new navigation property to androidForWorkAppConfigurationSchemas
 // for deviceManagement
-func (c AndroidForWorkAppConfigurationSchemaClient) CreateAndroidForWorkAppConfigurationSchema(ctx context.Context, input beta.AndroidForWorkAppConfigurationSchema) (result CreateAndroidForWorkAppConfigurationSchemaOperationResponse, err error) {
+func (c AndroidForWorkAppConfigurationSchemaClient) CreateAndroidForWorkAppConfigurationSchema(ctx context.Context, input beta.AndroidForWorkAppConfigurationSchema, options CreateAndroidForWorkAppConfigurationSchemaOperationOptions) (result CreateAndroidForWorkAppConfigurationSchemaOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/deviceManagement/androidForWorkAppConfigurationSchemas",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/deviceManagement/androidForWorkAppConfigurationSchemas",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

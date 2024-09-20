@@ -19,15 +19,44 @@ type CreateDriveRootPermissionOperationResponse struct {
 	Model        *stable.Permission
 }
 
+type CreateDriveRootPermissionOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateDriveRootPermissionOperationOptions() CreateDriveRootPermissionOperationOptions {
+	return CreateDriveRootPermissionOperationOptions{}
+}
+
+func (o CreateDriveRootPermissionOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateDriveRootPermissionOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateDriveRootPermissionOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateDriveRootPermission - Create new navigation property to permissions for users
-func (c DriveRootPermissionClient) CreateDriveRootPermission(ctx context.Context, id stable.UserIdDriveId, input stable.Permission) (result CreateDriveRootPermissionOperationResponse, err error) {
+func (c DriveRootPermissionClient) CreateDriveRootPermission(ctx context.Context, id stable.UserIdDriveId, input stable.Permission, options CreateDriveRootPermissionOperationOptions) (result CreateDriveRootPermissionOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/root/permissions", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/root/permissions", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -17,16 +17,45 @@ type UpdateDeviceConfigurationUserStateSummaryOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateDeviceConfigurationUserStateSummaryOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateDeviceConfigurationUserStateSummaryOperationOptions() UpdateDeviceConfigurationUserStateSummaryOperationOptions {
+	return UpdateDeviceConfigurationUserStateSummaryOperationOptions{}
+}
+
+func (o UpdateDeviceConfigurationUserStateSummaryOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateDeviceConfigurationUserStateSummaryOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateDeviceConfigurationUserStateSummaryOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateDeviceConfigurationUserStateSummary - Update the navigation property deviceConfigurationUserStateSummaries in
 // deviceManagement
-func (c DeviceConfigurationUserStateSummaryClient) UpdateDeviceConfigurationUserStateSummary(ctx context.Context, input beta.DeviceConfigurationUserStateSummary) (result UpdateDeviceConfigurationUserStateSummaryOperationResponse, err error) {
+func (c DeviceConfigurationUserStateSummaryClient) UpdateDeviceConfigurationUserStateSummary(ctx context.Context, input beta.DeviceConfigurationUserStateSummary, options UpdateDeviceConfigurationUserStateSummaryOperationOptions) (result UpdateDeviceConfigurationUserStateSummaryOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       "/deviceManagement/deviceConfigurationUserStateSummaries",
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          "/deviceManagement/deviceConfigurationUserStateSummaries",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

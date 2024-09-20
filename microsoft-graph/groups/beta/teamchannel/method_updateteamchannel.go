@@ -17,15 +17,44 @@ type UpdateTeamChannelOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateTeamChannelOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateTeamChannelOperationOptions() UpdateTeamChannelOperationOptions {
+	return UpdateTeamChannelOperationOptions{}
+}
+
+func (o UpdateTeamChannelOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateTeamChannelOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateTeamChannelOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateTeamChannel - Update the navigation property channels in groups
-func (c TeamChannelClient) UpdateTeamChannel(ctx context.Context, id beta.GroupIdTeamChannelId, input beta.Channel) (result UpdateTeamChannelOperationResponse, err error) {
+func (c TeamChannelClient) UpdateTeamChannel(ctx context.Context, id beta.GroupIdTeamChannelId, input beta.Channel, options UpdateTeamChannelOperationOptions) (result UpdateTeamChannelOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

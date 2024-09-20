@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &MeEventIdAttachmentId{}
 
 func TestNewMeEventIdAttachmentID(t *testing.T) {
-	id := NewMeEventIdAttachmentID("eventIdValue", "attachmentIdValue")
+	id := NewMeEventIdAttachmentID("eventId", "attachmentId")
 
-	if id.EventId != "eventIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'EventId'", id.EventId, "eventIdValue")
+	if id.EventId != "eventId" {
+		t.Fatalf("Expected %q but got %q for Segment 'EventId'", id.EventId, "eventId")
 	}
 
-	if id.AttachmentId != "attachmentIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'AttachmentId'", id.AttachmentId, "attachmentIdValue")
+	if id.AttachmentId != "attachmentId" {
+		t.Fatalf("Expected %q but got %q for Segment 'AttachmentId'", id.AttachmentId, "attachmentId")
 	}
 }
 
 func TestFormatMeEventIdAttachmentID(t *testing.T) {
-	actual := NewMeEventIdAttachmentID("eventIdValue", "attachmentIdValue").ID()
-	expected := "/me/events/eventIdValue/attachments/attachmentIdValue"
+	actual := NewMeEventIdAttachmentID("eventId", "attachmentId").ID()
+	expected := "/me/events/eventId/attachments/attachmentId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -54,25 +54,25 @@ func TestParseMeEventIdAttachmentID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/me/events/eventIdValue",
+			Input: "/me/events/eventId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/me/events/eventIdValue/attachments",
+			Input: "/me/events/eventId/attachments",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/me/events/eventIdValue/attachments/attachmentIdValue",
+			Input: "/me/events/eventId/attachments/attachmentId",
 			Expected: &MeEventIdAttachmentId{
-				EventId:      "eventIdValue",
-				AttachmentId: "attachmentIdValue",
+				EventId:      "eventId",
+				AttachmentId: "attachmentId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/events/eventIdValue/attachments/attachmentIdValue/extra",
+			Input: "/me/events/eventId/attachments/attachmentId/extra",
 			Error: true,
 		},
 	}
@@ -135,48 +135,48 @@ func TestParseMeEventIdAttachmentIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/me/events/eventIdValue",
+			Input: "/me/events/eventId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/eVeNtS/eVeNtIdVaLuE",
+			Input: "/mE/eVeNtS/eVeNtId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/me/events/eventIdValue/attachments",
+			Input: "/me/events/eventId/attachments",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/eVeNtS/eVeNtIdVaLuE/aTtAcHmEnTs",
+			Input: "/mE/eVeNtS/eVeNtId/aTtAcHmEnTs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/me/events/eventIdValue/attachments/attachmentIdValue",
+			Input: "/me/events/eventId/attachments/attachmentId",
 			Expected: &MeEventIdAttachmentId{
-				EventId:      "eventIdValue",
-				AttachmentId: "attachmentIdValue",
+				EventId:      "eventId",
+				AttachmentId: "attachmentId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/events/eventIdValue/attachments/attachmentIdValue/extra",
+			Input: "/me/events/eventId/attachments/attachmentId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/eVeNtS/eVeNtIdVaLuE/aTtAcHmEnTs/aTtAcHmEnTiDvAlUe",
+			Input: "/mE/eVeNtS/eVeNtId/aTtAcHmEnTs/aTtAcHmEnTiD",
 			Expected: &MeEventIdAttachmentId{
-				EventId:      "eVeNtIdVaLuE",
-				AttachmentId: "aTtAcHmEnTiDvAlUe",
+				EventId:      "eVeNtId",
+				AttachmentId: "aTtAcHmEnTiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/mE/eVeNtS/eVeNtIdVaLuE/aTtAcHmEnTs/aTtAcHmEnTiDvAlUe/extra",
+			Input: "/mE/eVeNtS/eVeNtId/aTtAcHmEnTs/aTtAcHmEnTiD/extra",
 			Error: true,
 		},
 	}

@@ -17,15 +17,44 @@ type UpdateActivityHistoryItemOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateActivityHistoryItemOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateActivityHistoryItemOperationOptions() UpdateActivityHistoryItemOperationOptions {
+	return UpdateActivityHistoryItemOperationOptions{}
+}
+
+func (o UpdateActivityHistoryItemOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateActivityHistoryItemOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateActivityHistoryItemOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateActivityHistoryItem - Update the navigation property historyItems in users
-func (c ActivityHistoryItemClient) UpdateActivityHistoryItem(ctx context.Context, id stable.UserIdActivityIdHistoryItemId, input stable.ActivityHistoryItem) (result UpdateActivityHistoryItemOperationResponse, err error) {
+func (c ActivityHistoryItemClient) UpdateActivityHistoryItem(ctx context.Context, id stable.UserIdActivityIdHistoryItemId, input stable.ActivityHistoryItem, options UpdateActivityHistoryItemOperationOptions) (result UpdateActivityHistoryItemOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &ReportDailyPrintUsageByPrinterId{}
 
 func TestNewReportDailyPrintUsageByPrinterID(t *testing.T) {
-	id := NewReportDailyPrintUsageByPrinterID("printUsageByPrinterIdValue")
+	id := NewReportDailyPrintUsageByPrinterID("printUsageByPrinterId")
 
-	if id.PrintUsageByPrinterId != "printUsageByPrinterIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'PrintUsageByPrinterId'", id.PrintUsageByPrinterId, "printUsageByPrinterIdValue")
+	if id.PrintUsageByPrinterId != "printUsageByPrinterId" {
+		t.Fatalf("Expected %q but got %q for Segment 'PrintUsageByPrinterId'", id.PrintUsageByPrinterId, "printUsageByPrinterId")
 	}
 }
 
 func TestFormatReportDailyPrintUsageByPrinterID(t *testing.T) {
-	actual := NewReportDailyPrintUsageByPrinterID("printUsageByPrinterIdValue").ID()
-	expected := "/reports/dailyPrintUsageByPrinter/printUsageByPrinterIdValue"
+	actual := NewReportDailyPrintUsageByPrinterID("printUsageByPrinterId").ID()
+	expected := "/reports/dailyPrintUsageByPrinter/printUsageByPrinterId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -50,14 +50,14 @@ func TestParseReportDailyPrintUsageByPrinterID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/reports/dailyPrintUsageByPrinter/printUsageByPrinterIdValue",
+			Input: "/reports/dailyPrintUsageByPrinter/printUsageByPrinterId",
 			Expected: &ReportDailyPrintUsageByPrinterId{
-				PrintUsageByPrinterId: "printUsageByPrinterIdValue",
+				PrintUsageByPrinterId: "printUsageByPrinterId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/reports/dailyPrintUsageByPrinter/printUsageByPrinterIdValue/extra",
+			Input: "/reports/dailyPrintUsageByPrinter/printUsageByPrinterId/extra",
 			Error: true,
 		},
 	}
@@ -116,26 +116,26 @@ func TestParseReportDailyPrintUsageByPrinterIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/reports/dailyPrintUsageByPrinter/printUsageByPrinterIdValue",
+			Input: "/reports/dailyPrintUsageByPrinter/printUsageByPrinterId",
 			Expected: &ReportDailyPrintUsageByPrinterId{
-				PrintUsageByPrinterId: "printUsageByPrinterIdValue",
+				PrintUsageByPrinterId: "printUsageByPrinterId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/reports/dailyPrintUsageByPrinter/printUsageByPrinterIdValue/extra",
+			Input: "/reports/dailyPrintUsageByPrinter/printUsageByPrinterId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/rEpOrTs/dAiLyPrInTuSaGeByPrInTeR/pRiNtUsAgEbYpRiNtErIdVaLuE",
+			Input: "/rEpOrTs/dAiLyPrInTuSaGeByPrInTeR/pRiNtUsAgEbYpRiNtErId",
 			Expected: &ReportDailyPrintUsageByPrinterId{
-				PrintUsageByPrinterId: "pRiNtUsAgEbYpRiNtErIdVaLuE",
+				PrintUsageByPrinterId: "pRiNtUsAgEbYpRiNtErId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/rEpOrTs/dAiLyPrInTuSaGeByPrInTeR/pRiNtUsAgEbYpRiNtErIdVaLuE/extra",
+			Input: "/rEpOrTs/dAiLyPrInTuSaGeByPrInTeR/pRiNtUsAgEbYpRiNtErId/extra",
 			Error: true,
 		},
 	}

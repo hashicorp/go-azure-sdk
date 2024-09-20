@@ -18,6 +18,34 @@ type CreateJoinedTeamCloneOperationResponse struct {
 	OData        *odata.OData
 }
 
+type CreateJoinedTeamCloneOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateJoinedTeamCloneOperationOptions() CreateJoinedTeamCloneOperationOptions {
+	return CreateJoinedTeamCloneOperationOptions{}
+}
+
+func (o CreateJoinedTeamCloneOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateJoinedTeamCloneOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateJoinedTeamCloneOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateJoinedTeamClone - Invoke action clone. Create a copy of a team. This operation also creates a copy of the
 // corresponding group. You can specify which parts of the team to clone: When tabs are cloned, they aren't configured.
 // The tabs are displayed on the tab bar in Microsoft Teams, and the first time a user opens them, they must go through
@@ -25,14 +53,15 @@ type CreateJoinedTeamCloneOperationResponse struct {
 // that says that the tab isn't configured. Cloning is a long-running operation. After the POST clone returns, you need
 // to GET the operation returned by the Location: header to see if it's running, succeeded, or failed. You should
 // continue to GET until the status isn't running. The recommended delay between GETs is 5 seconds.
-func (c JoinedTeamClient) CreateJoinedTeamClone(ctx context.Context, id stable.UserIdJoinedTeamId, input CreateJoinedTeamCloneRequest) (result CreateJoinedTeamCloneOperationResponse, err error) {
+func (c JoinedTeamClient) CreateJoinedTeamClone(ctx context.Context, id stable.UserIdJoinedTeamId, input CreateJoinedTeamCloneRequest, options CreateJoinedTeamCloneOperationOptions) (result CreateJoinedTeamCloneOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/clone", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/clone", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

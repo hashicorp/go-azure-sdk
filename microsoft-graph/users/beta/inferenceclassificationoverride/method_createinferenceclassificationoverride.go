@@ -19,15 +19,44 @@ type CreateInferenceClassificationOverrideOperationResponse struct {
 	Model        *beta.InferenceClassificationOverride
 }
 
+type CreateInferenceClassificationOverrideOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateInferenceClassificationOverrideOperationOptions() CreateInferenceClassificationOverrideOperationOptions {
+	return CreateInferenceClassificationOverrideOperationOptions{}
+}
+
+func (o CreateInferenceClassificationOverrideOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateInferenceClassificationOverrideOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateInferenceClassificationOverrideOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateInferenceClassificationOverride - Create new navigation property to overrides for users
-func (c InferenceClassificationOverrideClient) CreateInferenceClassificationOverride(ctx context.Context, id beta.UserId, input beta.InferenceClassificationOverride) (result CreateInferenceClassificationOverrideOperationResponse, err error) {
+func (c InferenceClassificationOverrideClient) CreateInferenceClassificationOverride(ctx context.Context, id beta.UserId, input beta.InferenceClassificationOverride, options CreateInferenceClassificationOverrideOperationOptions) (result CreateInferenceClassificationOverrideOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/inferenceClassification/overrides", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/inferenceClassification/overrides", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -18,16 +18,45 @@ type SendAccessReviewDecisionInstanceReminderOperationResponse struct {
 	OData        *odata.OData
 }
 
+type SendAccessReviewDecisionInstanceReminderOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultSendAccessReviewDecisionInstanceReminderOperationOptions() SendAccessReviewDecisionInstanceReminderOperationOptions {
+	return SendAccessReviewDecisionInstanceReminderOperationOptions{}
+}
+
+func (o SendAccessReviewDecisionInstanceReminderOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o SendAccessReviewDecisionInstanceReminderOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o SendAccessReviewDecisionInstanceReminderOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // SendAccessReviewDecisionInstanceReminder - Invoke action sendReminder. Send a reminder to the reviewers of a
 // currently active accessReviewInstance.
-func (c AccessReviewDecisionInstanceClient) SendAccessReviewDecisionInstanceReminder(ctx context.Context, id beta.IdentityGovernanceAccessReviewDecisionId) (result SendAccessReviewDecisionInstanceReminderOperationResponse, err error) {
+func (c AccessReviewDecisionInstanceClient) SendAccessReviewDecisionInstanceReminder(ctx context.Context, id beta.IdentityGovernanceAccessReviewDecisionId, options SendAccessReviewDecisionInstanceReminderOperationOptions) (result SendAccessReviewDecisionInstanceReminderOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/instance/sendReminder", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/instance/sendReminder", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

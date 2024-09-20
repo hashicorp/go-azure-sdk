@@ -18,17 +18,46 @@ type CreateInferenceClassificationOverrideOperationResponse struct {
 	Model        *stable.InferenceClassificationOverride
 }
 
+type CreateInferenceClassificationOverrideOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateInferenceClassificationOverrideOperationOptions() CreateInferenceClassificationOverrideOperationOptions {
+	return CreateInferenceClassificationOverrideOperationOptions{}
+}
+
+func (o CreateInferenceClassificationOverrideOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateInferenceClassificationOverrideOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateInferenceClassificationOverrideOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateInferenceClassificationOverride - Create inferenceClassificationOverride. Create an override for a sender
 // identified by an SMTP address. Future messages from that SMTP address will be consistently classified as specified in
 // the override. Note
-func (c InferenceClassificationOverrideClient) CreateInferenceClassificationOverride(ctx context.Context, input stable.InferenceClassificationOverride) (result CreateInferenceClassificationOverrideOperationResponse, err error) {
+func (c InferenceClassificationOverrideClient) CreateInferenceClassificationOverride(ctx context.Context, input stable.InferenceClassificationOverride, options CreateInferenceClassificationOverrideOperationOptions) (result CreateInferenceClassificationOverrideOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/me/inferenceClassification/overrides",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/me/inferenceClassification/overrides",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

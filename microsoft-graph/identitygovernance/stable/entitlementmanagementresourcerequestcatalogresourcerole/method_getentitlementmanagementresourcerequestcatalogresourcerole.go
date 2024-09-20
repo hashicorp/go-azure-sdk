@@ -19,8 +19,9 @@ type GetEntitlementManagementResourceRequestCatalogResourceRoleOperationResponse
 }
 
 type GetEntitlementManagementResourceRequestCatalogResourceRoleOperationOptions struct {
-	Expand *odata.Expand
-	Select *[]string
+	Expand   *odata.Expand
+	Metadata *odata.Metadata
+	Select   *[]string
 }
 
 func DefaultGetEntitlementManagementResourceRequestCatalogResourceRoleOperationOptions() GetEntitlementManagementResourceRequestCatalogResourceRoleOperationOptions {
@@ -38,6 +39,9 @@ func (o GetEntitlementManagementResourceRequestCatalogResourceRoleOperationOptio
 	if o.Expand != nil {
 		out.Expand = *o.Expand
 	}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	if o.Select != nil {
 		out.Select = *o.Select
 	}
@@ -50,8 +54,9 @@ func (o GetEntitlementManagementResourceRequestCatalogResourceRoleOperationOptio
 	return &out
 }
 
-// GetEntitlementManagementResourceRequestCatalogResourceRole - Get resourceRoles from identityGovernance
-func (c EntitlementManagementResourceRequestCatalogResourceRoleClient) GetEntitlementManagementResourceRequestCatalogResourceRole(ctx context.Context, id stable.IdentityGovernanceEntitlementManagementResourceRequestIdCatalogResourceRoleId, options GetEntitlementManagementResourceRequestCatalogResourceRoleOperationOptions) (result GetEntitlementManagementResourceRequestCatalogResourceRoleOperationResponse, err error) {
+// GetEntitlementManagementResourceRequestCatalogResourceRole - Get roles from identityGovernance. Read-only. Nullable.
+// Supports $expand.
+func (c EntitlementManagementResourceRequestCatalogResourceRoleClient) GetEntitlementManagementResourceRequestCatalogResourceRole(ctx context.Context, id stable.IdentityGovernanceEntitlementManagementResourceRequestIdCatalogResourceIdRoleId, options GetEntitlementManagementResourceRequestCatalogResourceRoleOperationOptions) (result GetEntitlementManagementResourceRequestCatalogResourceRoleOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{

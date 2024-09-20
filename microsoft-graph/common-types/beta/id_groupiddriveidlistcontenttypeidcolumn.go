@@ -110,14 +110,14 @@ func (id GroupIdDriveIdListContentTypeIdColumnId) ID() string {
 func (id GroupIdDriveIdListContentTypeIdColumnId) Segments() []resourceids.Segment {
 	return []resourceids.Segment{
 		resourceids.StaticSegment("groups", "groups", "groups"),
-		resourceids.UserSpecifiedSegment("groupId", "groupIdValue"),
+		resourceids.UserSpecifiedSegment("groupId", "groupId"),
 		resourceids.StaticSegment("drives", "drives", "drives"),
-		resourceids.UserSpecifiedSegment("driveId", "driveIdValue"),
+		resourceids.UserSpecifiedSegment("driveId", "driveId"),
 		resourceids.StaticSegment("list", "list", "list"),
 		resourceids.StaticSegment("contentTypes", "contentTypes", "contentTypes"),
-		resourceids.UserSpecifiedSegment("contentTypeId", "contentTypeIdValue"),
+		resourceids.UserSpecifiedSegment("contentTypeId", "contentTypeId"),
 		resourceids.StaticSegment("columns", "columns", "columns"),
-		resourceids.UserSpecifiedSegment("columnDefinitionId", "columnDefinitionIdValue"),
+		resourceids.UserSpecifiedSegment("columnDefinitionId", "columnDefinitionId"),
 	}
 }
 

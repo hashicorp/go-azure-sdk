@@ -18,15 +18,44 @@ type CreateTodoListOperationResponse struct {
 	Model        *beta.TodoTaskList
 }
 
+type CreateTodoListOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateTodoListOperationOptions() CreateTodoListOperationOptions {
+	return CreateTodoListOperationOptions{}
+}
+
+func (o CreateTodoListOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateTodoListOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateTodoListOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateTodoList - Create todoTaskList. Create a new lists object.
-func (c TodoListClient) CreateTodoList(ctx context.Context, input beta.TodoTaskList) (result CreateTodoListOperationResponse, err error) {
+func (c TodoListClient) CreateTodoList(ctx context.Context, input beta.TodoTaskList, options CreateTodoListOperationOptions) (result CreateTodoListOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/me/todo/lists",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/me/todo/lists",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

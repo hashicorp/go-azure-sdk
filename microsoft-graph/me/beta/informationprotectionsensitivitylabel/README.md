@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/microsoft-graph/me/beta/informationprotectionsensitivitylabel` Documentation
 
-The `informationprotectionsensitivitylabel` SDK allows for interaction with the Azure Resource Manager Service `me` (API Version `beta`).
+The `informationprotectionsensitivitylabel` SDK allows for interaction with Microsoft Graph `me` (API Version `beta`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -15,7 +15,7 @@ import "github.com/hashicorp/go-azure-sdk/microsoft-graph/me/beta/informationpro
 ### Client Initialization
 
 ```go
-client := informationprotectionsensitivitylabel.NewInformationProtectionSensitivityLabelClientWithBaseURI("https://management.azure.com")
+client := informationprotectionsensitivitylabel.NewInformationProtectionSensitivityLabelClientWithBaseURI("https://graph.microsoft.com")
 client.Client.Authorizer = authorizer
 ```
 
@@ -30,27 +30,7 @@ payload := informationprotectionsensitivitylabel.SensitivityLabel{
 }
 
 
-read, err := client.CreateInformationProtectionSensitivityLabel(ctx, payload)
-if err != nil {
-	// handle the error
-}
-if model := read.Model; model != nil {
-	// do something with the model/response object
-}
-```
-
-
-### Example Usage: `InformationProtectionSensitivityLabelClient.CreateInformationProtectionSensitivityLabelEvaluate`
-
-```go
-ctx := context.TODO()
-
-payload := informationprotectionsensitivitylabel.CreateInformationProtectionSensitivityLabelEvaluateRequest{
-	// ...
-}
-
-
-read, err := client.CreateInformationProtectionSensitivityLabelEvaluate(ctx, payload)
+read, err := client.CreateInformationProtectionSensitivityLabel(ctx, payload, informationprotectionsensitivitylabel.DefaultCreateInformationProtectionSensitivityLabelOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -64,9 +44,29 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := informationprotectionsensitivitylabel.NewMeInformationProtectionSensitivityLabelID("sensitivityLabelIdValue")
+id := informationprotectionsensitivitylabel.NewMeInformationProtectionSensitivityLabelID("sensitivityLabelId")
 
 read, err := client.DeleteInformationProtectionSensitivityLabel(ctx, id, informationprotectionsensitivitylabel.DefaultDeleteInformationProtectionSensitivityLabelOperationOptions())
+if err != nil {
+	// handle the error
+}
+if model := read.Model; model != nil {
+	// do something with the model/response object
+}
+```
+
+
+### Example Usage: `InformationProtectionSensitivityLabelClient.EvaluateInformationProtectionSensitivityLabels`
+
+```go
+ctx := context.TODO()
+
+payload := informationprotectionsensitivitylabel.EvaluateInformationProtectionSensitivityLabelsRequest{
+	// ...
+}
+
+
+read, err := client.EvaluateInformationProtectionSensitivityLabels(ctx, payload, informationprotectionsensitivitylabel.DefaultEvaluateInformationProtectionSensitivityLabelsOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -80,7 +80,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := informationprotectionsensitivitylabel.NewMeInformationProtectionSensitivityLabelID("sensitivityLabelIdValue")
+id := informationprotectionsensitivitylabel.NewMeInformationProtectionSensitivityLabelID("sensitivityLabelId")
 
 read, err := client.GetInformationProtectionSensitivityLabel(ctx, id, informationprotectionsensitivitylabel.DefaultGetInformationProtectionSensitivityLabelOperationOptions())
 if err != nil {
@@ -129,14 +129,14 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := informationprotectionsensitivitylabel.NewMeInformationProtectionSensitivityLabelID("sensitivityLabelIdValue")
+id := informationprotectionsensitivitylabel.NewMeInformationProtectionSensitivityLabelID("sensitivityLabelId")
 
 payload := informationprotectionsensitivitylabel.SensitivityLabel{
 	// ...
 }
 
 
-read, err := client.UpdateInformationProtectionSensitivityLabel(ctx, id, payload)
+read, err := client.UpdateInformationProtectionSensitivityLabel(ctx, id, payload, informationprotectionsensitivitylabel.DefaultUpdateInformationProtectionSensitivityLabelOperationOptions())
 if err != nil {
 	// handle the error
 }

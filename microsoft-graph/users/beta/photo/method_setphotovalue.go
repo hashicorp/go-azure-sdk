@@ -18,15 +18,45 @@ type SetPhotoValueOperationResponse struct {
 	OData        *odata.OData
 }
 
-// SetPhotoValue - Update media content for the navigation property photo in users. The user's profile photo. Read-only.
-func (c PhotoClient) SetPhotoValue(ctx context.Context, id beta.UserId, input []byte) (result SetPhotoValueOperationResponse, err error) {
+type SetPhotoValueOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultSetPhotoValueOperationOptions() SetPhotoValueOperationOptions {
+	return SetPhotoValueOperationOptions{}
+}
+
+func (o SetPhotoValueOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o SetPhotoValueOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o SetPhotoValueOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
+// SetPhotoValue - Update media content for the navigation property photos in users. The unique identifier for an
+// entity. Read-only.
+func (c PhotoClient) SetPhotoValue(ctx context.Context, id beta.UserIdPhotoId, input []byte, options SetPhotoValueOperationOptions) (result SetPhotoValueOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPut,
-		Path:       fmt.Sprintf("%s/photo/$value", id.ID()),
+		HttpMethod:    http.MethodPut,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/$value", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

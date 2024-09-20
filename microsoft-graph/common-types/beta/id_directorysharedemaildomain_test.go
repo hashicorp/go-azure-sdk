@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &DirectorySharedEmailDomainId{}
 
 func TestNewDirectorySharedEmailDomainID(t *testing.T) {
-	id := NewDirectorySharedEmailDomainID("sharedEmailDomainIdValue")
+	id := NewDirectorySharedEmailDomainID("sharedEmailDomainId")
 
-	if id.SharedEmailDomainId != "sharedEmailDomainIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'SharedEmailDomainId'", id.SharedEmailDomainId, "sharedEmailDomainIdValue")
+	if id.SharedEmailDomainId != "sharedEmailDomainId" {
+		t.Fatalf("Expected %q but got %q for Segment 'SharedEmailDomainId'", id.SharedEmailDomainId, "sharedEmailDomainId")
 	}
 }
 
 func TestFormatDirectorySharedEmailDomainID(t *testing.T) {
-	actual := NewDirectorySharedEmailDomainID("sharedEmailDomainIdValue").ID()
-	expected := "/directory/sharedEmailDomains/sharedEmailDomainIdValue"
+	actual := NewDirectorySharedEmailDomainID("sharedEmailDomainId").ID()
+	expected := "/directory/sharedEmailDomains/sharedEmailDomainId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -50,14 +50,14 @@ func TestParseDirectorySharedEmailDomainID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/directory/sharedEmailDomains/sharedEmailDomainIdValue",
+			Input: "/directory/sharedEmailDomains/sharedEmailDomainId",
 			Expected: &DirectorySharedEmailDomainId{
-				SharedEmailDomainId: "sharedEmailDomainIdValue",
+				SharedEmailDomainId: "sharedEmailDomainId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/directory/sharedEmailDomains/sharedEmailDomainIdValue/extra",
+			Input: "/directory/sharedEmailDomains/sharedEmailDomainId/extra",
 			Error: true,
 		},
 	}
@@ -116,26 +116,26 @@ func TestParseDirectorySharedEmailDomainIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/directory/sharedEmailDomains/sharedEmailDomainIdValue",
+			Input: "/directory/sharedEmailDomains/sharedEmailDomainId",
 			Expected: &DirectorySharedEmailDomainId{
-				SharedEmailDomainId: "sharedEmailDomainIdValue",
+				SharedEmailDomainId: "sharedEmailDomainId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/directory/sharedEmailDomains/sharedEmailDomainIdValue/extra",
+			Input: "/directory/sharedEmailDomains/sharedEmailDomainId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/dIrEcToRy/sHaReDeMaIlDoMaInS/sHaReDeMaIlDoMaInIdVaLuE",
+			Input: "/dIrEcToRy/sHaReDeMaIlDoMaInS/sHaReDeMaIlDoMaInId",
 			Expected: &DirectorySharedEmailDomainId{
-				SharedEmailDomainId: "sHaReDeMaIlDoMaInIdVaLuE",
+				SharedEmailDomainId: "sHaReDeMaIlDoMaInId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/dIrEcToRy/sHaReDeMaIlDoMaInS/sHaReDeMaIlDoMaInIdVaLuE/extra",
+			Input: "/dIrEcToRy/sHaReDeMaIlDoMaInS/sHaReDeMaIlDoMaInId/extra",
 			Error: true,
 		},
 	}

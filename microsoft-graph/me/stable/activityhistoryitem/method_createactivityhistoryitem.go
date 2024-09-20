@@ -19,15 +19,44 @@ type CreateActivityHistoryItemOperationResponse struct {
 	Model        *stable.ActivityHistoryItem
 }
 
+type CreateActivityHistoryItemOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateActivityHistoryItemOperationOptions() CreateActivityHistoryItemOperationOptions {
+	return CreateActivityHistoryItemOperationOptions{}
+}
+
+func (o CreateActivityHistoryItemOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateActivityHistoryItemOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateActivityHistoryItemOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateActivityHistoryItem - Create new navigation property to historyItems for me
-func (c ActivityHistoryItemClient) CreateActivityHistoryItem(ctx context.Context, id stable.MeActivityId, input stable.ActivityHistoryItem) (result CreateActivityHistoryItemOperationResponse, err error) {
+func (c ActivityHistoryItemClient) CreateActivityHistoryItem(ctx context.Context, id stable.MeActivityId, input stable.ActivityHistoryItem, options CreateActivityHistoryItemOperationOptions) (result CreateActivityHistoryItemOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/historyItems", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/historyItems", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -17,15 +17,44 @@ type UpdateTermsAndConditionGroupAssignmentOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateTermsAndConditionGroupAssignmentOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateTermsAndConditionGroupAssignmentOperationOptions() UpdateTermsAndConditionGroupAssignmentOperationOptions {
+	return UpdateTermsAndConditionGroupAssignmentOperationOptions{}
+}
+
+func (o UpdateTermsAndConditionGroupAssignmentOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateTermsAndConditionGroupAssignmentOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateTermsAndConditionGroupAssignmentOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateTermsAndConditionGroupAssignment - Update the navigation property groupAssignments in deviceManagement
-func (c TermsAndConditionGroupAssignmentClient) UpdateTermsAndConditionGroupAssignment(ctx context.Context, id beta.DeviceManagementTermsAndConditionIdGroupAssignmentId, input beta.TermsAndConditionsGroupAssignment) (result UpdateTermsAndConditionGroupAssignmentOperationResponse, err error) {
+func (c TermsAndConditionGroupAssignmentClient) UpdateTermsAndConditionGroupAssignment(ctx context.Context, id beta.DeviceManagementTermsAndConditionIdGroupAssignmentId, input beta.TermsAndConditionsGroupAssignment, options UpdateTermsAndConditionGroupAssignmentOperationOptions) (result UpdateTermsAndConditionGroupAssignmentOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

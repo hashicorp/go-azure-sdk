@@ -18,16 +18,45 @@ type CreateManagedDeviceBulkRestoreCloudPCOperationResponse struct {
 	Model        *beta.CloudPCBulkRemoteActionResult
 }
 
+type CreateManagedDeviceBulkRestoreCloudPCOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateManagedDeviceBulkRestoreCloudPCOperationOptions() CreateManagedDeviceBulkRestoreCloudPCOperationOptions {
+	return CreateManagedDeviceBulkRestoreCloudPCOperationOptions{}
+}
+
+func (o CreateManagedDeviceBulkRestoreCloudPCOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateManagedDeviceBulkRestoreCloudPCOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateManagedDeviceBulkRestoreCloudPCOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateManagedDeviceBulkRestoreCloudPC - Invoke action bulkRestoreCloudPc. Restore multiple Cloud PC devices with a
 // single request that includes the IDs of Intune managed devices and a restore point date and time.
-func (c ManagedDeviceClient) CreateManagedDeviceBulkRestoreCloudPC(ctx context.Context, input CreateManagedDeviceBulkRestoreCloudPCRequest) (result CreateManagedDeviceBulkRestoreCloudPCOperationResponse, err error) {
+func (c ManagedDeviceClient) CreateManagedDeviceBulkRestoreCloudPC(ctx context.Context, input CreateManagedDeviceBulkRestoreCloudPCRequest, options CreateManagedDeviceBulkRestoreCloudPCOperationOptions) (result CreateManagedDeviceBulkRestoreCloudPCOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/me/managedDevices/bulkRestoreCloudPc",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/me/managedDevices/bulkRestoreCloudPc",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

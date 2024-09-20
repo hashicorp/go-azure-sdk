@@ -19,16 +19,45 @@ type CreateRoleDefinitionOperationResponse struct {
 	Model        stable.RoleDefinition
 }
 
+type CreateRoleDefinitionOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateRoleDefinitionOperationOptions() CreateRoleDefinitionOperationOptions {
+	return CreateRoleDefinitionOperationOptions{}
+}
+
+func (o CreateRoleDefinitionOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateRoleDefinitionOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateRoleDefinitionOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateRoleDefinition - Create deviceAndAppManagementRoleDefinition. Create a new deviceAndAppManagementRoleDefinition
 // object.
-func (c RoleDefinitionClient) CreateRoleDefinition(ctx context.Context, input stable.RoleDefinition) (result CreateRoleDefinitionOperationResponse, err error) {
+func (c RoleDefinitionClient) CreateRoleDefinition(ctx context.Context, input stable.RoleDefinition, options CreateRoleDefinitionOperationOptions) (result CreateRoleDefinitionOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/deviceManagement/roleDefinitions",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/deviceManagement/roleDefinitions",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

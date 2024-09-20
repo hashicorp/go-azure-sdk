@@ -73,10 +73,18 @@ func (s DeviceManagementConfigurationSimpleSettingCollectionInstanceTemplate) Ma
 var _ json.Unmarshaler = &DeviceManagementConfigurationSimpleSettingCollectionInstanceTemplate{}
 
 func (s *DeviceManagementConfigurationSimpleSettingCollectionInstanceTemplate) UnmarshalJSON(bytes []byte) error {
-	type alias DeviceManagementConfigurationSimpleSettingCollectionInstanceTemplate
-	var decoded alias
+
+	var decoded struct {
+		AllowUnmanagedValues                 *bool                                                      `json:"allowUnmanagedValues,omitempty"`
+		SimpleSettingCollectionValueTemplate *[]DeviceManagementConfigurationSimpleSettingValueTemplate `json:"simpleSettingCollectionValueTemplate,omitempty"`
+		IsRequired                           *bool                                                      `json:"isRequired,omitempty"`
+		ODataId                              *string                                                    `json:"@odata.id,omitempty"`
+		ODataType                            *string                                                    `json:"@odata.type,omitempty"`
+		SettingDefinitionId                  *string                                                    `json:"settingDefinitionId,omitempty"`
+		SettingInstanceTemplateId            *string                                                    `json:"settingInstanceTemplateId,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into DeviceManagementConfigurationSimpleSettingCollectionInstanceTemplate: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.AllowUnmanagedValues = decoded.AllowUnmanagedValues
@@ -107,5 +115,6 @@ func (s *DeviceManagementConfigurationSimpleSettingCollectionInstanceTemplate) U
 		}
 		s.SimpleSettingCollectionValueTemplate = &output
 	}
+
 	return nil
 }

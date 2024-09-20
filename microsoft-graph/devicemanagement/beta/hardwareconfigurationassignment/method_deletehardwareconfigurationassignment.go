@@ -19,7 +19,8 @@ type DeleteHardwareConfigurationAssignmentOperationResponse struct {
 }
 
 type DeleteHardwareConfigurationAssignmentOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteHardwareConfigurationAssignmentOperationOptions() DeleteHardwareConfigurationAssignmentOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteHardwareConfigurationAssignmentOperationOptions) ToHeaders() *clie
 
 func (o DeleteHardwareConfigurationAssignmentOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

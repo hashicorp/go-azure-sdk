@@ -19,15 +19,44 @@ type CreateSettingWindowOperationResponse struct {
 	Model        *stable.WindowsSetting
 }
 
+type CreateSettingWindowOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateSettingWindowOperationOptions() CreateSettingWindowOperationOptions {
+	return CreateSettingWindowOperationOptions{}
+}
+
+func (o CreateSettingWindowOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateSettingWindowOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateSettingWindowOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateSettingWindow - Create new navigation property to windows for users
-func (c SettingWindowClient) CreateSettingWindow(ctx context.Context, id stable.UserId, input stable.WindowsSetting) (result CreateSettingWindowOperationResponse, err error) {
+func (c SettingWindowClient) CreateSettingWindow(ctx context.Context, id stable.UserId, input stable.WindowsSetting, options CreateSettingWindowOperationOptions) (result CreateSettingWindowOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/settings/windows", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/settings/windows", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

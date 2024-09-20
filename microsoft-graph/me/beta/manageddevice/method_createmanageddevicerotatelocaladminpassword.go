@@ -18,16 +18,45 @@ type CreateManagedDeviceRotateLocalAdminPasswordOperationResponse struct {
 	OData        *odata.OData
 }
 
+type CreateManagedDeviceRotateLocalAdminPasswordOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateManagedDeviceRotateLocalAdminPasswordOperationOptions() CreateManagedDeviceRotateLocalAdminPasswordOperationOptions {
+	return CreateManagedDeviceRotateLocalAdminPasswordOperationOptions{}
+}
+
+func (o CreateManagedDeviceRotateLocalAdminPasswordOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateManagedDeviceRotateLocalAdminPasswordOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateManagedDeviceRotateLocalAdminPasswordOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateManagedDeviceRotateLocalAdminPassword - Invoke action rotateLocalAdminPassword. Initiates a manual rotation for
 // the local admin password on the device
-func (c ManagedDeviceClient) CreateManagedDeviceRotateLocalAdminPassword(ctx context.Context, id beta.MeManagedDeviceId) (result CreateManagedDeviceRotateLocalAdminPasswordOperationResponse, err error) {
+func (c ManagedDeviceClient) CreateManagedDeviceRotateLocalAdminPassword(ctx context.Context, id beta.MeManagedDeviceId, options CreateManagedDeviceRotateLocalAdminPasswordOperationOptions) (result CreateManagedDeviceRotateLocalAdminPasswordOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/rotateLocalAdminPassword", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/rotateLocalAdminPassword", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

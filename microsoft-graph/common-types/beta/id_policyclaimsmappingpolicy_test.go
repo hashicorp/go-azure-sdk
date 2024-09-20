@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &PolicyClaimsMappingPolicyId{}
 
 func TestNewPolicyClaimsMappingPolicyID(t *testing.T) {
-	id := NewPolicyClaimsMappingPolicyID("claimsMappingPolicyIdValue")
+	id := NewPolicyClaimsMappingPolicyID("claimsMappingPolicyId")
 
-	if id.ClaimsMappingPolicyId != "claimsMappingPolicyIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ClaimsMappingPolicyId'", id.ClaimsMappingPolicyId, "claimsMappingPolicyIdValue")
+	if id.ClaimsMappingPolicyId != "claimsMappingPolicyId" {
+		t.Fatalf("Expected %q but got %q for Segment 'ClaimsMappingPolicyId'", id.ClaimsMappingPolicyId, "claimsMappingPolicyId")
 	}
 }
 
 func TestFormatPolicyClaimsMappingPolicyID(t *testing.T) {
-	actual := NewPolicyClaimsMappingPolicyID("claimsMappingPolicyIdValue").ID()
-	expected := "/policies/claimsMappingPolicies/claimsMappingPolicyIdValue"
+	actual := NewPolicyClaimsMappingPolicyID("claimsMappingPolicyId").ID()
+	expected := "/policies/claimsMappingPolicies/claimsMappingPolicyId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -50,14 +50,14 @@ func TestParsePolicyClaimsMappingPolicyID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/policies/claimsMappingPolicies/claimsMappingPolicyIdValue",
+			Input: "/policies/claimsMappingPolicies/claimsMappingPolicyId",
 			Expected: &PolicyClaimsMappingPolicyId{
-				ClaimsMappingPolicyId: "claimsMappingPolicyIdValue",
+				ClaimsMappingPolicyId: "claimsMappingPolicyId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/policies/claimsMappingPolicies/claimsMappingPolicyIdValue/extra",
+			Input: "/policies/claimsMappingPolicies/claimsMappingPolicyId/extra",
 			Error: true,
 		},
 	}
@@ -116,26 +116,26 @@ func TestParsePolicyClaimsMappingPolicyIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/policies/claimsMappingPolicies/claimsMappingPolicyIdValue",
+			Input: "/policies/claimsMappingPolicies/claimsMappingPolicyId",
 			Expected: &PolicyClaimsMappingPolicyId{
-				ClaimsMappingPolicyId: "claimsMappingPolicyIdValue",
+				ClaimsMappingPolicyId: "claimsMappingPolicyId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/policies/claimsMappingPolicies/claimsMappingPolicyIdValue/extra",
+			Input: "/policies/claimsMappingPolicies/claimsMappingPolicyId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/pOlIcIeS/cLaImSmApPiNgPoLiCiEs/cLaImSmApPiNgPoLiCyIdVaLuE",
+			Input: "/pOlIcIeS/cLaImSmApPiNgPoLiCiEs/cLaImSmApPiNgPoLiCyId",
 			Expected: &PolicyClaimsMappingPolicyId{
-				ClaimsMappingPolicyId: "cLaImSmApPiNgPoLiCyIdVaLuE",
+				ClaimsMappingPolicyId: "cLaImSmApPiNgPoLiCyId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/pOlIcIeS/cLaImSmApPiNgPoLiCiEs/cLaImSmApPiNgPoLiCyIdVaLuE/extra",
+			Input: "/pOlIcIeS/cLaImSmApPiNgPoLiCiEs/cLaImSmApPiNgPoLiCyId/extra",
 			Error: true,
 		},
 	}

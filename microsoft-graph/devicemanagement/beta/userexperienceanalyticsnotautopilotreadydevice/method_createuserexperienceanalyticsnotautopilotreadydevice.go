@@ -18,16 +18,45 @@ type CreateUserExperienceAnalyticsNotAutopilotReadyDeviceOperationResponse struc
 	Model        *beta.UserExperienceAnalyticsNotAutopilotReadyDevice
 }
 
+type CreateUserExperienceAnalyticsNotAutopilotReadyDeviceOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateUserExperienceAnalyticsNotAutopilotReadyDeviceOperationOptions() CreateUserExperienceAnalyticsNotAutopilotReadyDeviceOperationOptions {
+	return CreateUserExperienceAnalyticsNotAutopilotReadyDeviceOperationOptions{}
+}
+
+func (o CreateUserExperienceAnalyticsNotAutopilotReadyDeviceOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateUserExperienceAnalyticsNotAutopilotReadyDeviceOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateUserExperienceAnalyticsNotAutopilotReadyDeviceOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateUserExperienceAnalyticsNotAutopilotReadyDevice - Create new navigation property to
 // userExperienceAnalyticsNotAutopilotReadyDevice for deviceManagement
-func (c UserExperienceAnalyticsNotAutopilotReadyDeviceClient) CreateUserExperienceAnalyticsNotAutopilotReadyDevice(ctx context.Context, input beta.UserExperienceAnalyticsNotAutopilotReadyDevice) (result CreateUserExperienceAnalyticsNotAutopilotReadyDeviceOperationResponse, err error) {
+func (c UserExperienceAnalyticsNotAutopilotReadyDeviceClient) CreateUserExperienceAnalyticsNotAutopilotReadyDevice(ctx context.Context, input beta.UserExperienceAnalyticsNotAutopilotReadyDevice, options CreateUserExperienceAnalyticsNotAutopilotReadyDeviceOperationOptions) (result CreateUserExperienceAnalyticsNotAutopilotReadyDeviceOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/deviceManagement/userExperienceAnalyticsNotAutopilotReadyDevice",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/deviceManagement/userExperienceAnalyticsNotAutopilotReadyDevice",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

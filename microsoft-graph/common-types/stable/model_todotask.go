@@ -125,10 +125,34 @@ func (s TodoTask) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &TodoTask{}
 
 func (s *TodoTask) UnmarshalJSON(bytes []byte) error {
-	type alias TodoTask
-	var decoded alias
+
+	var decoded struct {
+		AttachmentSessions       *[]AttachmentSession  `json:"attachmentSessions,omitempty"`
+		Attachments              *[]AttachmentBase     `json:"attachments,omitempty"`
+		Body                     *ItemBody             `json:"body,omitempty"`
+		BodyLastModifiedDateTime *string               `json:"bodyLastModifiedDateTime,omitempty"`
+		Categories               *[]string             `json:"categories,omitempty"`
+		ChecklistItems           *[]ChecklistItem      `json:"checklistItems,omitempty"`
+		CompletedDateTime        *DateTimeTimeZone     `json:"completedDateTime,omitempty"`
+		CreatedDateTime          *string               `json:"createdDateTime,omitempty"`
+		DueDateTime              *DateTimeTimeZone     `json:"dueDateTime,omitempty"`
+		Extensions               *[]Extension          `json:"extensions,omitempty"`
+		HasAttachments           nullable.Type[bool]   `json:"hasAttachments,omitempty"`
+		Importance               *Importance           `json:"importance,omitempty"`
+		IsReminderOn             *bool                 `json:"isReminderOn,omitempty"`
+		LastModifiedDateTime     *string               `json:"lastModifiedDateTime,omitempty"`
+		LinkedResources          *[]LinkedResource     `json:"linkedResources,omitempty"`
+		Recurrence               *PatternedRecurrence  `json:"recurrence,omitempty"`
+		ReminderDateTime         *DateTimeTimeZone     `json:"reminderDateTime,omitempty"`
+		StartDateTime            *DateTimeTimeZone     `json:"startDateTime,omitempty"`
+		Status                   *TaskStatus           `json:"status,omitempty"`
+		Title                    nullable.Type[string] `json:"title,omitempty"`
+		Id                       *string               `json:"id,omitempty"`
+		ODataId                  *string               `json:"@odata.id,omitempty"`
+		ODataType                *string               `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into TodoTask: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.AttachmentSessions = decoded.AttachmentSessions
@@ -140,18 +164,18 @@ func (s *TodoTask) UnmarshalJSON(bytes []byte) error {
 	s.CreatedDateTime = decoded.CreatedDateTime
 	s.DueDateTime = decoded.DueDateTime
 	s.HasAttachments = decoded.HasAttachments
-	s.Id = decoded.Id
 	s.Importance = decoded.Importance
 	s.IsReminderOn = decoded.IsReminderOn
 	s.LastModifiedDateTime = decoded.LastModifiedDateTime
 	s.LinkedResources = decoded.LinkedResources
-	s.ODataId = decoded.ODataId
-	s.ODataType = decoded.ODataType
 	s.Recurrence = decoded.Recurrence
 	s.ReminderDateTime = decoded.ReminderDateTime
 	s.StartDateTime = decoded.StartDateTime
 	s.Status = decoded.Status
 	s.Title = decoded.Title
+	s.Id = decoded.Id
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -191,5 +215,6 @@ func (s *TodoTask) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Extensions = &output
 	}
+
 	return nil
 }

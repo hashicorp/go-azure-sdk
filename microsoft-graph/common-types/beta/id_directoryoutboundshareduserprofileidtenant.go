@@ -99,9 +99,9 @@ func (id DirectoryOutboundSharedUserProfileIdTenantId) Segments() []resourceids.
 	return []resourceids.Segment{
 		resourceids.StaticSegment("directory", "directory", "directory"),
 		resourceids.StaticSegment("outboundSharedUserProfiles", "outboundSharedUserProfiles", "outboundSharedUserProfiles"),
-		resourceids.UserSpecifiedSegment("outboundSharedUserProfileUserId", "outboundSharedUserProfileUserIdValue"),
+		resourceids.UserSpecifiedSegment("outboundSharedUserProfileUserId", "outboundSharedUserProfileUserId"),
 		resourceids.StaticSegment("tenants", "tenants", "tenants"),
-		resourceids.UserSpecifiedSegment("tenantReferenceTenantId", "tenantReferenceTenantIdValue"),
+		resourceids.UserSpecifiedSegment("tenantReferenceTenantId", "tenantReferenceTenantId"),
 	}
 }
 

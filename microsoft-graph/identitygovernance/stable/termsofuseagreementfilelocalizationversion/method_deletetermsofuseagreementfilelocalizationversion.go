@@ -19,7 +19,8 @@ type DeleteTermsOfUseAgreementFileLocalizationVersionOperationResponse struct {
 }
 
 type DeleteTermsOfUseAgreementFileLocalizationVersionOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteTermsOfUseAgreementFileLocalizationVersionOperationOptions() DeleteTermsOfUseAgreementFileLocalizationVersionOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteTermsOfUseAgreementFileLocalizationVersionOperationOptions) ToHead
 
 func (o DeleteTermsOfUseAgreementFileLocalizationVersionOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

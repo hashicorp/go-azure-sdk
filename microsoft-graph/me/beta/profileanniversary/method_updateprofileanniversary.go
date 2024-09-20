@@ -17,16 +17,45 @@ type UpdateProfileAnniversaryOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateProfileAnniversaryOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateProfileAnniversaryOperationOptions() UpdateProfileAnniversaryOperationOptions {
+	return UpdateProfileAnniversaryOperationOptions{}
+}
+
+func (o UpdateProfileAnniversaryOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateProfileAnniversaryOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateProfileAnniversaryOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateProfileAnniversary - Update personAnniversary. Update the properties of a personAnniversary object in a user's
 // profile.
-func (c ProfileAnniversaryClient) UpdateProfileAnniversary(ctx context.Context, id beta.MeProfileAnniversaryId, input beta.PersonAnnualEvent) (result UpdateProfileAnniversaryOperationResponse, err error) {
+func (c ProfileAnniversaryClient) UpdateProfileAnniversary(ctx context.Context, id beta.MeProfileAnniversaryId, input beta.PersonAnnualEvent, options UpdateProfileAnniversaryOperationOptions) (result UpdateProfileAnniversaryOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

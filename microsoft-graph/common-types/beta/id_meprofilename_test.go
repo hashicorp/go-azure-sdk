@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &MeProfileNameId{}
 
 func TestNewMeProfileNameID(t *testing.T) {
-	id := NewMeProfileNameID("personNameIdValue")
+	id := NewMeProfileNameID("personNameId")
 
-	if id.PersonNameId != "personNameIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'PersonNameId'", id.PersonNameId, "personNameIdValue")
+	if id.PersonNameId != "personNameId" {
+		t.Fatalf("Expected %q but got %q for Segment 'PersonNameId'", id.PersonNameId, "personNameId")
 	}
 }
 
 func TestFormatMeProfileNameID(t *testing.T) {
-	actual := NewMeProfileNameID("personNameIdValue").ID()
-	expected := "/me/profile/names/personNameIdValue"
+	actual := NewMeProfileNameID("personNameId").ID()
+	expected := "/me/profile/names/personNameId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -55,14 +55,14 @@ func TestParseMeProfileNameID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/me/profile/names/personNameIdValue",
+			Input: "/me/profile/names/personNameId",
 			Expected: &MeProfileNameId{
-				PersonNameId: "personNameIdValue",
+				PersonNameId: "personNameId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/profile/names/personNameIdValue/extra",
+			Input: "/me/profile/names/personNameId/extra",
 			Error: true,
 		},
 	}
@@ -131,26 +131,26 @@ func TestParseMeProfileNameIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/me/profile/names/personNameIdValue",
+			Input: "/me/profile/names/personNameId",
 			Expected: &MeProfileNameId{
-				PersonNameId: "personNameIdValue",
+				PersonNameId: "personNameId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/profile/names/personNameIdValue/extra",
+			Input: "/me/profile/names/personNameId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/pRoFiLe/nAmEs/pErSoNnAmEiDvAlUe",
+			Input: "/mE/pRoFiLe/nAmEs/pErSoNnAmEiD",
 			Expected: &MeProfileNameId{
-				PersonNameId: "pErSoNnAmEiDvAlUe",
+				PersonNameId: "pErSoNnAmEiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/mE/pRoFiLe/nAmEs/pErSoNnAmEiDvAlUe/extra",
+			Input: "/mE/pRoFiLe/nAmEs/pErSoNnAmEiD/extra",
 			Error: true,
 		},
 	}

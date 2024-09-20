@@ -12,28 +12,28 @@ import (
 var _ resourceids.ResourceId = &GroupIdDriveIdListItemIdDocumentSetVersionId{}
 
 func TestNewGroupIdDriveIdListItemIdDocumentSetVersionID(t *testing.T) {
-	id := NewGroupIdDriveIdListItemIdDocumentSetVersionID("groupIdValue", "driveIdValue", "listItemIdValue", "documentSetVersionIdValue")
+	id := NewGroupIdDriveIdListItemIdDocumentSetVersionID("groupId", "driveId", "listItemId", "documentSetVersionId")
 
-	if id.GroupId != "groupIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'GroupId'", id.GroupId, "groupIdValue")
+	if id.GroupId != "groupId" {
+		t.Fatalf("Expected %q but got %q for Segment 'GroupId'", id.GroupId, "groupId")
 	}
 
-	if id.DriveId != "driveIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DriveId'", id.DriveId, "driveIdValue")
+	if id.DriveId != "driveId" {
+		t.Fatalf("Expected %q but got %q for Segment 'DriveId'", id.DriveId, "driveId")
 	}
 
-	if id.ListItemId != "listItemIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ListItemId'", id.ListItemId, "listItemIdValue")
+	if id.ListItemId != "listItemId" {
+		t.Fatalf("Expected %q but got %q for Segment 'ListItemId'", id.ListItemId, "listItemId")
 	}
 
-	if id.DocumentSetVersionId != "documentSetVersionIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DocumentSetVersionId'", id.DocumentSetVersionId, "documentSetVersionIdValue")
+	if id.DocumentSetVersionId != "documentSetVersionId" {
+		t.Fatalf("Expected %q but got %q for Segment 'DocumentSetVersionId'", id.DocumentSetVersionId, "documentSetVersionId")
 	}
 }
 
 func TestFormatGroupIdDriveIdListItemIdDocumentSetVersionID(t *testing.T) {
-	actual := NewGroupIdDriveIdListItemIdDocumentSetVersionID("groupIdValue", "driveIdValue", "listItemIdValue", "documentSetVersionIdValue").ID()
-	expected := "/groups/groupIdValue/drives/driveIdValue/list/items/listItemIdValue/documentSetVersions/documentSetVersionIdValue"
+	actual := NewGroupIdDriveIdListItemIdDocumentSetVersionID("groupId", "driveId", "listItemId", "documentSetVersionId").ID()
+	expected := "/groups/groupId/drives/driveId/list/items/listItemId/documentSetVersions/documentSetVersionId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -57,52 +57,52 @@ func TestParseGroupIdDriveIdListItemIdDocumentSetVersionID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue",
+			Input: "/groups/groupId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/drives",
+			Input: "/groups/groupId/drives",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/drives/driveIdValue",
+			Input: "/groups/groupId/drives/driveId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/drives/driveIdValue/list",
+			Input: "/groups/groupId/drives/driveId/list",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/drives/driveIdValue/list/items",
+			Input: "/groups/groupId/drives/driveId/list/items",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/drives/driveIdValue/list/items/listItemIdValue",
+			Input: "/groups/groupId/drives/driveId/list/items/listItemId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/drives/driveIdValue/list/items/listItemIdValue/documentSetVersions",
+			Input: "/groups/groupId/drives/driveId/list/items/listItemId/documentSetVersions",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/groups/groupIdValue/drives/driveIdValue/list/items/listItemIdValue/documentSetVersions/documentSetVersionIdValue",
+			Input: "/groups/groupId/drives/driveId/list/items/listItemId/documentSetVersions/documentSetVersionId",
 			Expected: &GroupIdDriveIdListItemIdDocumentSetVersionId{
-				GroupId:              "groupIdValue",
-				DriveId:              "driveIdValue",
-				ListItemId:           "listItemIdValue",
-				DocumentSetVersionId: "documentSetVersionIdValue",
+				GroupId:              "groupId",
+				DriveId:              "driveId",
+				ListItemId:           "listItemId",
+				DocumentSetVersionId: "documentSetVersionId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/groups/groupIdValue/drives/driveIdValue/list/items/listItemIdValue/documentSetVersions/documentSetVersionIdValue/extra",
+			Input: "/groups/groupId/drives/driveId/list/items/listItemId/documentSetVersions/documentSetVersionId/extra",
 			Error: true,
 		},
 	}
@@ -163,102 +163,102 @@ func TestParseGroupIdDriveIdListItemIdDocumentSetVersionIDInsensitively(t *testi
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue",
+			Input: "/groups/groupId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE",
+			Input: "/gRoUpS/gRoUpId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/drives",
+			Input: "/groups/groupId/drives",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/dRiVeS",
+			Input: "/gRoUpS/gRoUpId/dRiVeS",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/drives/driveIdValue",
+			Input: "/groups/groupId/drives/driveId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/dRiVeS/dRiVeIdVaLuE",
+			Input: "/gRoUpS/gRoUpId/dRiVeS/dRiVeId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/drives/driveIdValue/list",
+			Input: "/groups/groupId/drives/driveId/list",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/dRiVeS/dRiVeIdVaLuE/lIsT",
+			Input: "/gRoUpS/gRoUpId/dRiVeS/dRiVeId/lIsT",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/drives/driveIdValue/list/items",
+			Input: "/groups/groupId/drives/driveId/list/items",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/dRiVeS/dRiVeIdVaLuE/lIsT/iTeMs",
+			Input: "/gRoUpS/gRoUpId/dRiVeS/dRiVeId/lIsT/iTeMs",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/drives/driveIdValue/list/items/listItemIdValue",
+			Input: "/groups/groupId/drives/driveId/list/items/listItemId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/dRiVeS/dRiVeIdVaLuE/lIsT/iTeMs/lIsTiTeMiDvAlUe",
+			Input: "/gRoUpS/gRoUpId/dRiVeS/dRiVeId/lIsT/iTeMs/lIsTiTeMiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/drives/driveIdValue/list/items/listItemIdValue/documentSetVersions",
+			Input: "/groups/groupId/drives/driveId/list/items/listItemId/documentSetVersions",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/dRiVeS/dRiVeIdVaLuE/lIsT/iTeMs/lIsTiTeMiDvAlUe/dOcUmEnTsEtVeRsIoNs",
+			Input: "/gRoUpS/gRoUpId/dRiVeS/dRiVeId/lIsT/iTeMs/lIsTiTeMiD/dOcUmEnTsEtVeRsIoNs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/groups/groupIdValue/drives/driveIdValue/list/items/listItemIdValue/documentSetVersions/documentSetVersionIdValue",
+			Input: "/groups/groupId/drives/driveId/list/items/listItemId/documentSetVersions/documentSetVersionId",
 			Expected: &GroupIdDriveIdListItemIdDocumentSetVersionId{
-				GroupId:              "groupIdValue",
-				DriveId:              "driveIdValue",
-				ListItemId:           "listItemIdValue",
-				DocumentSetVersionId: "documentSetVersionIdValue",
+				GroupId:              "groupId",
+				DriveId:              "driveId",
+				ListItemId:           "listItemId",
+				DocumentSetVersionId: "documentSetVersionId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/groups/groupIdValue/drives/driveIdValue/list/items/listItemIdValue/documentSetVersions/documentSetVersionIdValue/extra",
+			Input: "/groups/groupId/drives/driveId/list/items/listItemId/documentSetVersions/documentSetVersionId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/dRiVeS/dRiVeIdVaLuE/lIsT/iTeMs/lIsTiTeMiDvAlUe/dOcUmEnTsEtVeRsIoNs/dOcUmEnTsEtVeRsIoNiDvAlUe",
+			Input: "/gRoUpS/gRoUpId/dRiVeS/dRiVeId/lIsT/iTeMs/lIsTiTeMiD/dOcUmEnTsEtVeRsIoNs/dOcUmEnTsEtVeRsIoNiD",
 			Expected: &GroupIdDriveIdListItemIdDocumentSetVersionId{
-				GroupId:              "gRoUpIdVaLuE",
-				DriveId:              "dRiVeIdVaLuE",
-				ListItemId:           "lIsTiTeMiDvAlUe",
-				DocumentSetVersionId: "dOcUmEnTsEtVeRsIoNiDvAlUe",
+				GroupId:              "gRoUpId",
+				DriveId:              "dRiVeId",
+				ListItemId:           "lIsTiTeMiD",
+				DocumentSetVersionId: "dOcUmEnTsEtVeRsIoNiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/dRiVeS/dRiVeIdVaLuE/lIsT/iTeMs/lIsTiTeMiDvAlUe/dOcUmEnTsEtVeRsIoNs/dOcUmEnTsEtVeRsIoNiDvAlUe/extra",
+			Input: "/gRoUpS/gRoUpId/dRiVeS/dRiVeId/lIsT/iTeMs/lIsTiTeMiD/dOcUmEnTsEtVeRsIoNs/dOcUmEnTsEtVeRsIoNiD/extra",
 			Error: true,
 		},
 	}

@@ -99,9 +99,9 @@ func (id IdentityB2xUserFlowIdIdentityProviderId) Segments() []resourceids.Segme
 	return []resourceids.Segment{
 		resourceids.StaticSegment("identity", "identity", "identity"),
 		resourceids.StaticSegment("b2xUserFlows", "b2xUserFlows", "b2xUserFlows"),
-		resourceids.UserSpecifiedSegment("b2xIdentityUserFlowId", "b2xIdentityUserFlowIdValue"),
+		resourceids.UserSpecifiedSegment("b2xIdentityUserFlowId", "b2xIdentityUserFlowId"),
 		resourceids.StaticSegment("identityProviders", "identityProviders", "identityProviders"),
-		resourceids.UserSpecifiedSegment("identityProviderId", "identityProviderIdValue"),
+		resourceids.UserSpecifiedSegment("identityProviderId", "identityProviderId"),
 	}
 }
 

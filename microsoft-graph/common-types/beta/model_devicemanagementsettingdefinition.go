@@ -122,10 +122,25 @@ func (s BaseDeviceManagementSettingDefinitionImpl) MarshalJSON() ([]byte, error)
 var _ json.Unmarshaler = &BaseDeviceManagementSettingDefinitionImpl{}
 
 func (s *BaseDeviceManagementSettingDefinitionImpl) UnmarshalJSON(bytes []byte) error {
-	type alias BaseDeviceManagementSettingDefinitionImpl
-	var decoded alias
+
+	var decoded struct {
+		Constraints      *[]DeviceManagementConstraint        `json:"constraints,omitempty"`
+		Dependencies     *[]DeviceManagementSettingDependency `json:"dependencies,omitempty"`
+		Description      nullable.Type[string]                `json:"description,omitempty"`
+		DisplayName      *string                              `json:"displayName,omitempty"`
+		DocumentationUrl nullable.Type[string]                `json:"documentationUrl,omitempty"`
+		HeaderSubtitle   nullable.Type[string]                `json:"headerSubtitle,omitempty"`
+		HeaderTitle      nullable.Type[string]                `json:"headerTitle,omitempty"`
+		IsTopLevel       *bool                                `json:"isTopLevel,omitempty"`
+		Keywords         *[]string                            `json:"keywords,omitempty"`
+		PlaceholderText  nullable.Type[string]                `json:"placeholderText,omitempty"`
+		ValueType        *DeviceManangementIntentValueType    `json:"valueType,omitempty"`
+		Id               *string                              `json:"id,omitempty"`
+		ODataId          *string                              `json:"@odata.id,omitempty"`
+		ODataType        *string                              `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into BaseDeviceManagementSettingDefinitionImpl: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.Dependencies = decoded.Dependencies
@@ -134,13 +149,13 @@ func (s *BaseDeviceManagementSettingDefinitionImpl) UnmarshalJSON(bytes []byte) 
 	s.DocumentationUrl = decoded.DocumentationUrl
 	s.HeaderSubtitle = decoded.HeaderSubtitle
 	s.HeaderTitle = decoded.HeaderTitle
-	s.Id = decoded.Id
 	s.IsTopLevel = decoded.IsTopLevel
 	s.Keywords = decoded.Keywords
-	s.ODataId = decoded.ODataId
-	s.ODataType = decoded.ODataType
 	s.PlaceholderText = decoded.PlaceholderText
 	s.ValueType = decoded.ValueType
+	s.Id = decoded.Id
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -163,6 +178,7 @@ func (s *BaseDeviceManagementSettingDefinitionImpl) UnmarshalJSON(bytes []byte) 
 		}
 		s.Constraints = &output
 	}
+
 	return nil
 }
 
@@ -176,9 +192,9 @@ func UnmarshalDeviceManagementSettingDefinitionImplementation(input []byte) (Dev
 		return nil, fmt.Errorf("unmarshaling DeviceManagementSettingDefinition into map[string]interface: %+v", err)
 	}
 
-	value, ok := temp["@odata.type"].(string)
-	if !ok {
-		return nil, nil
+	var value string
+	if v, ok := temp["@odata.type"]; ok {
+		value = fmt.Sprintf("%v", v)
 	}
 
 	if strings.EqualFold(value, "#microsoft.graph.deviceManagementAbstractComplexSettingDefinition") {

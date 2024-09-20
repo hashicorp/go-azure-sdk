@@ -247,10 +247,58 @@ func (s DriveItem) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &DriveItem{}
 
 func (s *DriveItem) UnmarshalJSON(bytes []byte) error {
-	type alias DriveItem
-	var decoded alias
+
+	var decoded struct {
+		Analytics            *ItemAnalytics        `json:"analytics,omitempty"`
+		Audio                *Audio                `json:"audio,omitempty"`
+		Bundle               *Bundle               `json:"bundle,omitempty"`
+		CTag                 nullable.Type[string] `json:"cTag,omitempty"`
+		Children             *[]DriveItem          `json:"children,omitempty"`
+		Content              nullable.Type[string] `json:"content,omitempty"`
+		Deleted              *Deleted              `json:"deleted,omitempty"`
+		File                 *File                 `json:"file,omitempty"`
+		FileSystemInfo       *FileSystemInfo       `json:"fileSystemInfo,omitempty"`
+		Folder               *Folder               `json:"folder,omitempty"`
+		Image                *Image                `json:"image,omitempty"`
+		ListItem             *ListItem             `json:"listItem,omitempty"`
+		Location             *GeoCoordinates       `json:"location,omitempty"`
+		Malware              *Malware              `json:"malware,omitempty"`
+		Package              *Package              `json:"package,omitempty"`
+		PendingOperations    *PendingOperations    `json:"pendingOperations,omitempty"`
+		Permissions          *[]Permission         `json:"permissions,omitempty"`
+		Photo                *Photo                `json:"photo,omitempty"`
+		Publication          *PublicationFacet     `json:"publication,omitempty"`
+		RemoteItem           *RemoteItem           `json:"remoteItem,omitempty"`
+		RetentionLabel       *ItemRetentionLabel   `json:"retentionLabel,omitempty"`
+		Root                 *Root                 `json:"root,omitempty"`
+		SearchResult         *SearchResult         `json:"searchResult,omitempty"`
+		Shared               *Shared               `json:"shared,omitempty"`
+		SharepointIds        *SharepointIds        `json:"sharepointIds,omitempty"`
+		Size                 nullable.Type[int64]  `json:"size,omitempty"`
+		SpecialFolder        *SpecialFolder        `json:"specialFolder,omitempty"`
+		Subscriptions        *[]Subscription       `json:"subscriptions,omitempty"`
+		Thumbnails           *[]ThumbnailSet       `json:"thumbnails,omitempty"`
+		Versions             *[]DriveItemVersion   `json:"versions,omitempty"`
+		Video                *Video                `json:"video,omitempty"`
+		WebDavUrl            nullable.Type[string] `json:"webDavUrl,omitempty"`
+		Workbook             *Workbook             `json:"workbook,omitempty"`
+		CreatedBy            *IdentitySet          `json:"createdBy,omitempty"`
+		CreatedByUser        *User                 `json:"createdByUser,omitempty"`
+		CreatedDateTime      *string               `json:"createdDateTime,omitempty"`
+		Description          nullable.Type[string] `json:"description,omitempty"`
+		ETag                 nullable.Type[string] `json:"eTag,omitempty"`
+		LastModifiedBy       *IdentitySet          `json:"lastModifiedBy,omitempty"`
+		LastModifiedByUser   *User                 `json:"lastModifiedByUser,omitempty"`
+		LastModifiedDateTime *string               `json:"lastModifiedDateTime,omitempty"`
+		Name                 nullable.Type[string] `json:"name,omitempty"`
+		ParentReference      *ItemReference        `json:"parentReference,omitempty"`
+		WebUrl               nullable.Type[string] `json:"webUrl,omitempty"`
+		Id                   *string               `json:"id,omitempty"`
+		ODataId              *string               `json:"@odata.id,omitempty"`
+		ODataType            *string               `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into DriveItem: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.Analytics = decoded.Analytics
@@ -259,26 +307,15 @@ func (s *DriveItem) UnmarshalJSON(bytes []byte) error {
 	s.CTag = decoded.CTag
 	s.Children = decoded.Children
 	s.Content = decoded.Content
-	s.CreatedByUser = decoded.CreatedByUser
-	s.CreatedDateTime = decoded.CreatedDateTime
 	s.Deleted = decoded.Deleted
-	s.Description = decoded.Description
-	s.ETag = decoded.ETag
 	s.File = decoded.File
 	s.FileSystemInfo = decoded.FileSystemInfo
 	s.Folder = decoded.Folder
-	s.Id = decoded.Id
 	s.Image = decoded.Image
-	s.LastModifiedByUser = decoded.LastModifiedByUser
-	s.LastModifiedDateTime = decoded.LastModifiedDateTime
 	s.ListItem = decoded.ListItem
 	s.Location = decoded.Location
 	s.Malware = decoded.Malware
-	s.Name = decoded.Name
-	s.ODataId = decoded.ODataId
-	s.ODataType = decoded.ODataType
 	s.Package = decoded.Package
-	s.ParentReference = decoded.ParentReference
 	s.PendingOperations = decoded.PendingOperations
 	s.Permissions = decoded.Permissions
 	s.Photo = decoded.Photo
@@ -296,8 +333,19 @@ func (s *DriveItem) UnmarshalJSON(bytes []byte) error {
 	s.Versions = decoded.Versions
 	s.Video = decoded.Video
 	s.WebDavUrl = decoded.WebDavUrl
-	s.WebUrl = decoded.WebUrl
 	s.Workbook = decoded.Workbook
+	s.CreatedByUser = decoded.CreatedByUser
+	s.CreatedDateTime = decoded.CreatedDateTime
+	s.Description = decoded.Description
+	s.ETag = decoded.ETag
+	s.Id = decoded.Id
+	s.LastModifiedByUser = decoded.LastModifiedByUser
+	s.LastModifiedDateTime = decoded.LastModifiedDateTime
+	s.Name = decoded.Name
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
+	s.ParentReference = decoded.ParentReference
+	s.WebUrl = decoded.WebUrl
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -319,5 +367,6 @@ func (s *DriveItem) UnmarshalJSON(bytes []byte) error {
 		}
 		s.LastModifiedBy = &impl
 	}
+
 	return nil
 }

@@ -19,16 +19,45 @@ type CreateLifecycleWorkflowIdentityGovernanceCreateNewVersionOperationResponse 
 	Model        *beta.IdentityGovernanceWorkflow
 }
 
+type CreateLifecycleWorkflowIdentityGovernanceCreateNewVersionOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateLifecycleWorkflowIdentityGovernanceCreateNewVersionOperationOptions() CreateLifecycleWorkflowIdentityGovernanceCreateNewVersionOperationOptions {
+	return CreateLifecycleWorkflowIdentityGovernanceCreateNewVersionOperationOptions{}
+}
+
+func (o CreateLifecycleWorkflowIdentityGovernanceCreateNewVersionOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateLifecycleWorkflowIdentityGovernanceCreateNewVersionOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateLifecycleWorkflowIdentityGovernanceCreateNewVersionOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateLifecycleWorkflowIdentityGovernanceCreateNewVersion - Invoke action createNewVersion. Create a new version of
 // the workflow object.
-func (c LifecycleWorkflowWorkflowClient) CreateLifecycleWorkflowIdentityGovernanceCreateNewVersion(ctx context.Context, id beta.IdentityGovernanceLifecycleWorkflowWorkflowId, input CreateLifecycleWorkflowIdentityGovernanceCreateNewVersionRequest) (result CreateLifecycleWorkflowIdentityGovernanceCreateNewVersionOperationResponse, err error) {
+func (c LifecycleWorkflowWorkflowClient) CreateLifecycleWorkflowIdentityGovernanceCreateNewVersion(ctx context.Context, id beta.IdentityGovernanceLifecycleWorkflowWorkflowId, input CreateLifecycleWorkflowIdentityGovernanceCreateNewVersionRequest, options CreateLifecycleWorkflowIdentityGovernanceCreateNewVersionOperationOptions) (result CreateLifecycleWorkflowIdentityGovernanceCreateNewVersionOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/identityGovernance.createNewVersion", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/identityGovernance.createNewVersion", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

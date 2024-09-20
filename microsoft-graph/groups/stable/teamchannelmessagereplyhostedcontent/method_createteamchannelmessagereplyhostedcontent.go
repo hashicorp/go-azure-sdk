@@ -19,15 +19,44 @@ type CreateTeamChannelMessageReplyHostedContentOperationResponse struct {
 	Model        *stable.ChatMessageHostedContent
 }
 
+type CreateTeamChannelMessageReplyHostedContentOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateTeamChannelMessageReplyHostedContentOperationOptions() CreateTeamChannelMessageReplyHostedContentOperationOptions {
+	return CreateTeamChannelMessageReplyHostedContentOperationOptions{}
+}
+
+func (o CreateTeamChannelMessageReplyHostedContentOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateTeamChannelMessageReplyHostedContentOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateTeamChannelMessageReplyHostedContentOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateTeamChannelMessageReplyHostedContent - Create new navigation property to hostedContents for groups
-func (c TeamChannelMessageReplyHostedContentClient) CreateTeamChannelMessageReplyHostedContent(ctx context.Context, id stable.GroupIdTeamChannelIdMessageIdReplyId, input stable.ChatMessageHostedContent) (result CreateTeamChannelMessageReplyHostedContentOperationResponse, err error) {
+func (c TeamChannelMessageReplyHostedContentClient) CreateTeamChannelMessageReplyHostedContent(ctx context.Context, id stable.GroupIdTeamChannelIdMessageIdReplyId, input stable.ChatMessageHostedContent, options CreateTeamChannelMessageReplyHostedContentOperationOptions) (result CreateTeamChannelMessageReplyHostedContentOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/hostedContents", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/hostedContents", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -19,15 +19,44 @@ type CreateAdministrativeUnitScopedRoleMemberOperationResponse struct {
 	Model        *beta.ScopedRoleMembership
 }
 
+type CreateAdministrativeUnitScopedRoleMemberOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateAdministrativeUnitScopedRoleMemberOperationOptions() CreateAdministrativeUnitScopedRoleMemberOperationOptions {
+	return CreateAdministrativeUnitScopedRoleMemberOperationOptions{}
+}
+
+func (o CreateAdministrativeUnitScopedRoleMemberOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateAdministrativeUnitScopedRoleMemberOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateAdministrativeUnitScopedRoleMemberOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateAdministrativeUnitScopedRoleMember - Create new navigation property to scopedRoleMembers for directory
-func (c AdministrativeUnitScopedRoleMemberClient) CreateAdministrativeUnitScopedRoleMember(ctx context.Context, id beta.DirectoryAdministrativeUnitId, input beta.ScopedRoleMembership) (result CreateAdministrativeUnitScopedRoleMemberOperationResponse, err error) {
+func (c AdministrativeUnitScopedRoleMemberClient) CreateAdministrativeUnitScopedRoleMember(ctx context.Context, id beta.DirectoryAdministrativeUnitId, input beta.ScopedRoleMembership, options CreateAdministrativeUnitScopedRoleMemberOperationOptions) (result CreateAdministrativeUnitScopedRoleMemberOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/scopedRoleMembers", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/scopedRoleMembers", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

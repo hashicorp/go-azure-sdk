@@ -125,10 +125,21 @@ func (s ActivityBasedTimeoutPolicy) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &ActivityBasedTimeoutPolicy{}
 
 func (s *ActivityBasedTimeoutPolicy) UnmarshalJSON(bytes []byte) error {
-	type alias ActivityBasedTimeoutPolicy
-	var decoded alias
+
+	var decoded struct {
+		AppliesTo             *[]DirectoryObject    `json:"appliesTo,omitempty"`
+		AppliesTo_ODataBind   *[]string             `json:"appliesTo@odata.bind,omitempty"`
+		Definition            []string              `json:"definition"`
+		IsOrganizationDefault nullable.Type[bool]   `json:"isOrganizationDefault,omitempty"`
+		Description           string                `json:"description"`
+		DisplayName           string                `json:"displayName"`
+		DeletedDateTime       nullable.Type[string] `json:"deletedDateTime,omitempty"`
+		Id                    *string               `json:"id,omitempty"`
+		ODataId               *string               `json:"@odata.id,omitempty"`
+		ODataType             *string               `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into ActivityBasedTimeoutPolicy: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.AppliesTo_ODataBind = decoded.AppliesTo_ODataBind
@@ -162,5 +173,6 @@ func (s *ActivityBasedTimeoutPolicy) UnmarshalJSON(bytes []byte) error {
 		}
 		s.AppliesTo = &output
 	}
+
 	return nil
 }

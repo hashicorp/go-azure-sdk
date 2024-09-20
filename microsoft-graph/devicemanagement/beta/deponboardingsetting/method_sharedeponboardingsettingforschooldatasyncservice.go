@@ -18,15 +18,44 @@ type ShareDepOnboardingSettingForSchoolDataSyncServiceOperationResponse struct {
 	OData        *odata.OData
 }
 
+type ShareDepOnboardingSettingForSchoolDataSyncServiceOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultShareDepOnboardingSettingForSchoolDataSyncServiceOperationOptions() ShareDepOnboardingSettingForSchoolDataSyncServiceOperationOptions {
+	return ShareDepOnboardingSettingForSchoolDataSyncServiceOperationOptions{}
+}
+
+func (o ShareDepOnboardingSettingForSchoolDataSyncServiceOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o ShareDepOnboardingSettingForSchoolDataSyncServiceOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o ShareDepOnboardingSettingForSchoolDataSyncServiceOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // ShareDepOnboardingSettingForSchoolDataSyncService - Invoke action shareForSchoolDataSyncService
-func (c DepOnboardingSettingClient) ShareDepOnboardingSettingForSchoolDataSyncService(ctx context.Context, id beta.DeviceManagementDepOnboardingSettingId) (result ShareDepOnboardingSettingForSchoolDataSyncServiceOperationResponse, err error) {
+func (c DepOnboardingSettingClient) ShareDepOnboardingSettingForSchoolDataSyncService(ctx context.Context, id beta.DeviceManagementDepOnboardingSettingId, options ShareDepOnboardingSettingForSchoolDataSyncServiceOperationOptions) (result ShareDepOnboardingSettingForSchoolDataSyncServiceOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/shareForSchoolDataSyncService", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/shareForSchoolDataSyncService", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

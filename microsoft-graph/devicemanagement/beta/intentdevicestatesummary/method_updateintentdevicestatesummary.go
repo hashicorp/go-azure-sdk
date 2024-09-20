@@ -18,15 +18,44 @@ type UpdateIntentDeviceStateSummaryOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateIntentDeviceStateSummaryOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateIntentDeviceStateSummaryOperationOptions() UpdateIntentDeviceStateSummaryOperationOptions {
+	return UpdateIntentDeviceStateSummaryOperationOptions{}
+}
+
+func (o UpdateIntentDeviceStateSummaryOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateIntentDeviceStateSummaryOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateIntentDeviceStateSummaryOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateIntentDeviceStateSummary - Update the navigation property deviceStateSummary in deviceManagement
-func (c IntentDeviceStateSummaryClient) UpdateIntentDeviceStateSummary(ctx context.Context, id beta.DeviceManagementIntentId, input beta.DeviceManagementIntentDeviceStateSummary) (result UpdateIntentDeviceStateSummaryOperationResponse, err error) {
+func (c IntentDeviceStateSummaryClient) UpdateIntentDeviceStateSummary(ctx context.Context, id beta.DeviceManagementIntentId, input beta.DeviceManagementIntentDeviceStateSummary, options UpdateIntentDeviceStateSummaryOperationOptions) (result UpdateIntentDeviceStateSummaryOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       fmt.Sprintf("%s/deviceStateSummary", id.ID()),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/deviceStateSummary", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

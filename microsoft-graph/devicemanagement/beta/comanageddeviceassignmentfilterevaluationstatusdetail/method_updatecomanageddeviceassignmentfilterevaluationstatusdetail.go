@@ -17,16 +17,45 @@ type UpdateComanagedDeviceAssignmentFilterEvaluationStatusDetailOperationRespons
 	OData        *odata.OData
 }
 
+type UpdateComanagedDeviceAssignmentFilterEvaluationStatusDetailOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateComanagedDeviceAssignmentFilterEvaluationStatusDetailOperationOptions() UpdateComanagedDeviceAssignmentFilterEvaluationStatusDetailOperationOptions {
+	return UpdateComanagedDeviceAssignmentFilterEvaluationStatusDetailOperationOptions{}
+}
+
+func (o UpdateComanagedDeviceAssignmentFilterEvaluationStatusDetailOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateComanagedDeviceAssignmentFilterEvaluationStatusDetailOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateComanagedDeviceAssignmentFilterEvaluationStatusDetailOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateComanagedDeviceAssignmentFilterEvaluationStatusDetail - Update the navigation property
 // assignmentFilterEvaluationStatusDetails in deviceManagement
-func (c ComanagedDeviceAssignmentFilterEvaluationStatusDetailClient) UpdateComanagedDeviceAssignmentFilterEvaluationStatusDetail(ctx context.Context, id beta.DeviceManagementComanagedDeviceIdAssignmentFilterEvaluationStatusDetailId, input beta.AssignmentFilterEvaluationStatusDetails) (result UpdateComanagedDeviceAssignmentFilterEvaluationStatusDetailOperationResponse, err error) {
+func (c ComanagedDeviceAssignmentFilterEvaluationStatusDetailClient) UpdateComanagedDeviceAssignmentFilterEvaluationStatusDetail(ctx context.Context, id beta.DeviceManagementComanagedDeviceIdAssignmentFilterEvaluationStatusDetailId, input beta.AssignmentFilterEvaluationStatusDetails, options UpdateComanagedDeviceAssignmentFilterEvaluationStatusDetailOperationOptions) (result UpdateComanagedDeviceAssignmentFilterEvaluationStatusDetailOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

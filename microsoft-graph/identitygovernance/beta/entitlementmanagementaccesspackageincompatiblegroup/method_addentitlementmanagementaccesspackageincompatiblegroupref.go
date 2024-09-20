@@ -18,16 +18,45 @@ type AddEntitlementManagementAccessPackageIncompatibleGroupRefOperationResponse 
 	OData        *odata.OData
 }
 
+type AddEntitlementManagementAccessPackageIncompatibleGroupRefOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultAddEntitlementManagementAccessPackageIncompatibleGroupRefOperationOptions() AddEntitlementManagementAccessPackageIncompatibleGroupRefOperationOptions {
+	return AddEntitlementManagementAccessPackageIncompatibleGroupRefOperationOptions{}
+}
+
+func (o AddEntitlementManagementAccessPackageIncompatibleGroupRefOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o AddEntitlementManagementAccessPackageIncompatibleGroupRefOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o AddEntitlementManagementAccessPackageIncompatibleGroupRefOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // AddEntitlementManagementAccessPackageIncompatibleGroupRef - Add group to incompatibleGroups. Add a group to the list
 // of groups marked as incompatible on an accessPackage.
-func (c EntitlementManagementAccessPackageIncompatibleGroupClient) AddEntitlementManagementAccessPackageIncompatibleGroupRef(ctx context.Context, id beta.IdentityGovernanceEntitlementManagementAccessPackageId, input beta.ReferenceCreate) (result AddEntitlementManagementAccessPackageIncompatibleGroupRefOperationResponse, err error) {
+func (c EntitlementManagementAccessPackageIncompatibleGroupClient) AddEntitlementManagementAccessPackageIncompatibleGroupRef(ctx context.Context, id beta.IdentityGovernanceEntitlementManagementAccessPackageId, input beta.ReferenceCreate, options AddEntitlementManagementAccessPackageIncompatibleGroupRefOperationOptions) (result AddEntitlementManagementAccessPackageIncompatibleGroupRefOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/incompatibleGroups/$ref", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/incompatibleGroups/$ref", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

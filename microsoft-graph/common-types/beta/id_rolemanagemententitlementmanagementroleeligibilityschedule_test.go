@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &RoleManagementEntitlementManagementRoleEligibilityScheduleId{}
 
 func TestNewRoleManagementEntitlementManagementRoleEligibilityScheduleID(t *testing.T) {
-	id := NewRoleManagementEntitlementManagementRoleEligibilityScheduleID("unifiedRoleEligibilityScheduleIdValue")
+	id := NewRoleManagementEntitlementManagementRoleEligibilityScheduleID("unifiedRoleEligibilityScheduleId")
 
-	if id.UnifiedRoleEligibilityScheduleId != "unifiedRoleEligibilityScheduleIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'UnifiedRoleEligibilityScheduleId'", id.UnifiedRoleEligibilityScheduleId, "unifiedRoleEligibilityScheduleIdValue")
+	if id.UnifiedRoleEligibilityScheduleId != "unifiedRoleEligibilityScheduleId" {
+		t.Fatalf("Expected %q but got %q for Segment 'UnifiedRoleEligibilityScheduleId'", id.UnifiedRoleEligibilityScheduleId, "unifiedRoleEligibilityScheduleId")
 	}
 }
 
 func TestFormatRoleManagementEntitlementManagementRoleEligibilityScheduleID(t *testing.T) {
-	actual := NewRoleManagementEntitlementManagementRoleEligibilityScheduleID("unifiedRoleEligibilityScheduleIdValue").ID()
-	expected := "/roleManagement/entitlementManagement/roleEligibilitySchedules/unifiedRoleEligibilityScheduleIdValue"
+	actual := NewRoleManagementEntitlementManagementRoleEligibilityScheduleID("unifiedRoleEligibilityScheduleId").ID()
+	expected := "/roleManagement/entitlementManagement/roleEligibilitySchedules/unifiedRoleEligibilityScheduleId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -55,14 +55,14 @@ func TestParseRoleManagementEntitlementManagementRoleEligibilityScheduleID(t *te
 		},
 		{
 			// Valid URI
-			Input: "/roleManagement/entitlementManagement/roleEligibilitySchedules/unifiedRoleEligibilityScheduleIdValue",
+			Input: "/roleManagement/entitlementManagement/roleEligibilitySchedules/unifiedRoleEligibilityScheduleId",
 			Expected: &RoleManagementEntitlementManagementRoleEligibilityScheduleId{
-				UnifiedRoleEligibilityScheduleId: "unifiedRoleEligibilityScheduleIdValue",
+				UnifiedRoleEligibilityScheduleId: "unifiedRoleEligibilityScheduleId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/roleManagement/entitlementManagement/roleEligibilitySchedules/unifiedRoleEligibilityScheduleIdValue/extra",
+			Input: "/roleManagement/entitlementManagement/roleEligibilitySchedules/unifiedRoleEligibilityScheduleId/extra",
 			Error: true,
 		},
 	}
@@ -131,26 +131,26 @@ func TestParseRoleManagementEntitlementManagementRoleEligibilityScheduleIDInsens
 		},
 		{
 			// Valid URI
-			Input: "/roleManagement/entitlementManagement/roleEligibilitySchedules/unifiedRoleEligibilityScheduleIdValue",
+			Input: "/roleManagement/entitlementManagement/roleEligibilitySchedules/unifiedRoleEligibilityScheduleId",
 			Expected: &RoleManagementEntitlementManagementRoleEligibilityScheduleId{
-				UnifiedRoleEligibilityScheduleId: "unifiedRoleEligibilityScheduleIdValue",
+				UnifiedRoleEligibilityScheduleId: "unifiedRoleEligibilityScheduleId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/roleManagement/entitlementManagement/roleEligibilitySchedules/unifiedRoleEligibilityScheduleIdValue/extra",
+			Input: "/roleManagement/entitlementManagement/roleEligibilitySchedules/unifiedRoleEligibilityScheduleId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/rOlEmAnAgEmEnT/eNtItLeMeNtMaNaGeMeNt/rOlEeLiGiBiLiTyScHeDuLeS/uNiFiEdRoLeElIgIbIlItYsChEdUlEiDvAlUe",
+			Input: "/rOlEmAnAgEmEnT/eNtItLeMeNtMaNaGeMeNt/rOlEeLiGiBiLiTyScHeDuLeS/uNiFiEdRoLeElIgIbIlItYsChEdUlEiD",
 			Expected: &RoleManagementEntitlementManagementRoleEligibilityScheduleId{
-				UnifiedRoleEligibilityScheduleId: "uNiFiEdRoLeElIgIbIlItYsChEdUlEiDvAlUe",
+				UnifiedRoleEligibilityScheduleId: "uNiFiEdRoLeElIgIbIlItYsChEdUlEiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/rOlEmAnAgEmEnT/eNtItLeMeNtMaNaGeMeNt/rOlEeLiGiBiLiTyScHeDuLeS/uNiFiEdRoLeElIgIbIlItYsChEdUlEiDvAlUe/extra",
+			Input: "/rOlEmAnAgEmEnT/eNtItLeMeNtMaNaGeMeNt/rOlEeLiGiBiLiTyScHeDuLeS/uNiFiEdRoLeElIgIbIlItYsChEdUlEiD/extra",
 			Error: true,
 		},
 	}

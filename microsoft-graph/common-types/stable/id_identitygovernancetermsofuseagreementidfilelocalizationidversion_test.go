@@ -12,24 +12,24 @@ import (
 var _ resourceids.ResourceId = &IdentityGovernanceTermsOfUseAgreementIdFileLocalizationIdVersionId{}
 
 func TestNewIdentityGovernanceTermsOfUseAgreementIdFileLocalizationIdVersionID(t *testing.T) {
-	id := NewIdentityGovernanceTermsOfUseAgreementIdFileLocalizationIdVersionID("agreementIdValue", "agreementFileLocalizationIdValue", "agreementFileVersionIdValue")
+	id := NewIdentityGovernanceTermsOfUseAgreementIdFileLocalizationIdVersionID("agreementId", "agreementFileLocalizationId", "agreementFileVersionId")
 
-	if id.AgreementId != "agreementIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'AgreementId'", id.AgreementId, "agreementIdValue")
+	if id.AgreementId != "agreementId" {
+		t.Fatalf("Expected %q but got %q for Segment 'AgreementId'", id.AgreementId, "agreementId")
 	}
 
-	if id.AgreementFileLocalizationId != "agreementFileLocalizationIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'AgreementFileLocalizationId'", id.AgreementFileLocalizationId, "agreementFileLocalizationIdValue")
+	if id.AgreementFileLocalizationId != "agreementFileLocalizationId" {
+		t.Fatalf("Expected %q but got %q for Segment 'AgreementFileLocalizationId'", id.AgreementFileLocalizationId, "agreementFileLocalizationId")
 	}
 
-	if id.AgreementFileVersionId != "agreementFileVersionIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'AgreementFileVersionId'", id.AgreementFileVersionId, "agreementFileVersionIdValue")
+	if id.AgreementFileVersionId != "agreementFileVersionId" {
+		t.Fatalf("Expected %q but got %q for Segment 'AgreementFileVersionId'", id.AgreementFileVersionId, "agreementFileVersionId")
 	}
 }
 
 func TestFormatIdentityGovernanceTermsOfUseAgreementIdFileLocalizationIdVersionID(t *testing.T) {
-	actual := NewIdentityGovernanceTermsOfUseAgreementIdFileLocalizationIdVersionID("agreementIdValue", "agreementFileLocalizationIdValue", "agreementFileVersionIdValue").ID()
-	expected := "/identityGovernance/termsOfUse/agreements/agreementIdValue/file/localizations/agreementFileLocalizationIdValue/versions/agreementFileVersionIdValue"
+	actual := NewIdentityGovernanceTermsOfUseAgreementIdFileLocalizationIdVersionID("agreementId", "agreementFileLocalizationId", "agreementFileVersionId").ID()
+	expected := "/identityGovernance/termsOfUse/agreements/agreementId/file/localizations/agreementFileLocalizationId/versions/agreementFileVersionId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -63,41 +63,41 @@ func TestParseIdentityGovernanceTermsOfUseAgreementIdFileLocalizationIdVersionID
 		},
 		{
 			// Incomplete URI
-			Input: "/identityGovernance/termsOfUse/agreements/agreementIdValue",
+			Input: "/identityGovernance/termsOfUse/agreements/agreementId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/identityGovernance/termsOfUse/agreements/agreementIdValue/file",
+			Input: "/identityGovernance/termsOfUse/agreements/agreementId/file",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/identityGovernance/termsOfUse/agreements/agreementIdValue/file/localizations",
+			Input: "/identityGovernance/termsOfUse/agreements/agreementId/file/localizations",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/identityGovernance/termsOfUse/agreements/agreementIdValue/file/localizations/agreementFileLocalizationIdValue",
+			Input: "/identityGovernance/termsOfUse/agreements/agreementId/file/localizations/agreementFileLocalizationId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/identityGovernance/termsOfUse/agreements/agreementIdValue/file/localizations/agreementFileLocalizationIdValue/versions",
+			Input: "/identityGovernance/termsOfUse/agreements/agreementId/file/localizations/agreementFileLocalizationId/versions",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/identityGovernance/termsOfUse/agreements/agreementIdValue/file/localizations/agreementFileLocalizationIdValue/versions/agreementFileVersionIdValue",
+			Input: "/identityGovernance/termsOfUse/agreements/agreementId/file/localizations/agreementFileLocalizationId/versions/agreementFileVersionId",
 			Expected: &IdentityGovernanceTermsOfUseAgreementIdFileLocalizationIdVersionId{
-				AgreementId:                 "agreementIdValue",
-				AgreementFileLocalizationId: "agreementFileLocalizationIdValue",
-				AgreementFileVersionId:      "agreementFileVersionIdValue",
+				AgreementId:                 "agreementId",
+				AgreementFileLocalizationId: "agreementFileLocalizationId",
+				AgreementFileVersionId:      "agreementFileVersionId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/identityGovernance/termsOfUse/agreements/agreementIdValue/file/localizations/agreementFileLocalizationIdValue/versions/agreementFileVersionIdValue/extra",
+			Input: "/identityGovernance/termsOfUse/agreements/agreementId/file/localizations/agreementFileLocalizationId/versions/agreementFileVersionId/extra",
 			Error: true,
 		},
 	}
@@ -174,80 +174,80 @@ func TestParseIdentityGovernanceTermsOfUseAgreementIdFileLocalizationIdVersionID
 		},
 		{
 			// Incomplete URI
-			Input: "/identityGovernance/termsOfUse/agreements/agreementIdValue",
+			Input: "/identityGovernance/termsOfUse/agreements/agreementId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/iDeNtItYgOvErNaNcE/tErMsOfUsE/aGrEeMeNtS/aGrEeMeNtIdVaLuE",
+			Input: "/iDeNtItYgOvErNaNcE/tErMsOfUsE/aGrEeMeNtS/aGrEeMeNtId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/identityGovernance/termsOfUse/agreements/agreementIdValue/file",
+			Input: "/identityGovernance/termsOfUse/agreements/agreementId/file",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/iDeNtItYgOvErNaNcE/tErMsOfUsE/aGrEeMeNtS/aGrEeMeNtIdVaLuE/fIlE",
+			Input: "/iDeNtItYgOvErNaNcE/tErMsOfUsE/aGrEeMeNtS/aGrEeMeNtId/fIlE",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/identityGovernance/termsOfUse/agreements/agreementIdValue/file/localizations",
+			Input: "/identityGovernance/termsOfUse/agreements/agreementId/file/localizations",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/iDeNtItYgOvErNaNcE/tErMsOfUsE/aGrEeMeNtS/aGrEeMeNtIdVaLuE/fIlE/lOcAlIzAtIoNs",
+			Input: "/iDeNtItYgOvErNaNcE/tErMsOfUsE/aGrEeMeNtS/aGrEeMeNtId/fIlE/lOcAlIzAtIoNs",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/identityGovernance/termsOfUse/agreements/agreementIdValue/file/localizations/agreementFileLocalizationIdValue",
+			Input: "/identityGovernance/termsOfUse/agreements/agreementId/file/localizations/agreementFileLocalizationId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/iDeNtItYgOvErNaNcE/tErMsOfUsE/aGrEeMeNtS/aGrEeMeNtIdVaLuE/fIlE/lOcAlIzAtIoNs/aGrEeMeNtFiLeLoCaLiZaTiOnIdVaLuE",
+			Input: "/iDeNtItYgOvErNaNcE/tErMsOfUsE/aGrEeMeNtS/aGrEeMeNtId/fIlE/lOcAlIzAtIoNs/aGrEeMeNtFiLeLoCaLiZaTiOnId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/identityGovernance/termsOfUse/agreements/agreementIdValue/file/localizations/agreementFileLocalizationIdValue/versions",
+			Input: "/identityGovernance/termsOfUse/agreements/agreementId/file/localizations/agreementFileLocalizationId/versions",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/iDeNtItYgOvErNaNcE/tErMsOfUsE/aGrEeMeNtS/aGrEeMeNtIdVaLuE/fIlE/lOcAlIzAtIoNs/aGrEeMeNtFiLeLoCaLiZaTiOnIdVaLuE/vErSiOnS",
+			Input: "/iDeNtItYgOvErNaNcE/tErMsOfUsE/aGrEeMeNtS/aGrEeMeNtId/fIlE/lOcAlIzAtIoNs/aGrEeMeNtFiLeLoCaLiZaTiOnId/vErSiOnS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/identityGovernance/termsOfUse/agreements/agreementIdValue/file/localizations/agreementFileLocalizationIdValue/versions/agreementFileVersionIdValue",
+			Input: "/identityGovernance/termsOfUse/agreements/agreementId/file/localizations/agreementFileLocalizationId/versions/agreementFileVersionId",
 			Expected: &IdentityGovernanceTermsOfUseAgreementIdFileLocalizationIdVersionId{
-				AgreementId:                 "agreementIdValue",
-				AgreementFileLocalizationId: "agreementFileLocalizationIdValue",
-				AgreementFileVersionId:      "agreementFileVersionIdValue",
+				AgreementId:                 "agreementId",
+				AgreementFileLocalizationId: "agreementFileLocalizationId",
+				AgreementFileVersionId:      "agreementFileVersionId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/identityGovernance/termsOfUse/agreements/agreementIdValue/file/localizations/agreementFileLocalizationIdValue/versions/agreementFileVersionIdValue/extra",
+			Input: "/identityGovernance/termsOfUse/agreements/agreementId/file/localizations/agreementFileLocalizationId/versions/agreementFileVersionId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/iDeNtItYgOvErNaNcE/tErMsOfUsE/aGrEeMeNtS/aGrEeMeNtIdVaLuE/fIlE/lOcAlIzAtIoNs/aGrEeMeNtFiLeLoCaLiZaTiOnIdVaLuE/vErSiOnS/aGrEeMeNtFiLeVeRsIoNiDvAlUe",
+			Input: "/iDeNtItYgOvErNaNcE/tErMsOfUsE/aGrEeMeNtS/aGrEeMeNtId/fIlE/lOcAlIzAtIoNs/aGrEeMeNtFiLeLoCaLiZaTiOnId/vErSiOnS/aGrEeMeNtFiLeVeRsIoNiD",
 			Expected: &IdentityGovernanceTermsOfUseAgreementIdFileLocalizationIdVersionId{
-				AgreementId:                 "aGrEeMeNtIdVaLuE",
-				AgreementFileLocalizationId: "aGrEeMeNtFiLeLoCaLiZaTiOnIdVaLuE",
-				AgreementFileVersionId:      "aGrEeMeNtFiLeVeRsIoNiDvAlUe",
+				AgreementId:                 "aGrEeMeNtId",
+				AgreementFileLocalizationId: "aGrEeMeNtFiLeLoCaLiZaTiOnId",
+				AgreementFileVersionId:      "aGrEeMeNtFiLeVeRsIoNiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/iDeNtItYgOvErNaNcE/tErMsOfUsE/aGrEeMeNtS/aGrEeMeNtIdVaLuE/fIlE/lOcAlIzAtIoNs/aGrEeMeNtFiLeLoCaLiZaTiOnIdVaLuE/vErSiOnS/aGrEeMeNtFiLeVeRsIoNiDvAlUe/extra",
+			Input: "/iDeNtItYgOvErNaNcE/tErMsOfUsE/aGrEeMeNtS/aGrEeMeNtId/fIlE/lOcAlIzAtIoNs/aGrEeMeNtFiLeLoCaLiZaTiOnId/vErSiOnS/aGrEeMeNtFiLeVeRsIoNiD/extra",
 			Error: true,
 		},
 	}

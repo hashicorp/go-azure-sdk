@@ -19,15 +19,44 @@ type CreateGroupPolicyConfigurationAssignmentOperationResponse struct {
 	Model        *beta.GroupPolicyConfigurationAssignment
 }
 
+type CreateGroupPolicyConfigurationAssignmentOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateGroupPolicyConfigurationAssignmentOperationOptions() CreateGroupPolicyConfigurationAssignmentOperationOptions {
+	return CreateGroupPolicyConfigurationAssignmentOperationOptions{}
+}
+
+func (o CreateGroupPolicyConfigurationAssignmentOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateGroupPolicyConfigurationAssignmentOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateGroupPolicyConfigurationAssignmentOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateGroupPolicyConfigurationAssignment - Create new navigation property to assignments for deviceManagement
-func (c GroupPolicyConfigurationAssignmentClient) CreateGroupPolicyConfigurationAssignment(ctx context.Context, id beta.DeviceManagementGroupPolicyConfigurationId, input beta.GroupPolicyConfigurationAssignment) (result CreateGroupPolicyConfigurationAssignmentOperationResponse, err error) {
+func (c GroupPolicyConfigurationAssignmentClient) CreateGroupPolicyConfigurationAssignment(ctx context.Context, id beta.DeviceManagementGroupPolicyConfigurationId, input beta.GroupPolicyConfigurationAssignment, options CreateGroupPolicyConfigurationAssignmentOperationOptions) (result CreateGroupPolicyConfigurationAssignmentOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/assignments", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/assignments", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

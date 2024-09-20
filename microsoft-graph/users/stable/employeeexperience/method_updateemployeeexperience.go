@@ -18,15 +18,44 @@ type UpdateEmployeeExperienceOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateEmployeeExperienceOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateEmployeeExperienceOperationOptions() UpdateEmployeeExperienceOperationOptions {
+	return UpdateEmployeeExperienceOperationOptions{}
+}
+
+func (o UpdateEmployeeExperienceOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateEmployeeExperienceOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateEmployeeExperienceOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateEmployeeExperience - Update the navigation property employeeExperience in users
-func (c EmployeeExperienceClient) UpdateEmployeeExperience(ctx context.Context, id stable.UserId, input stable.EmployeeExperienceUser) (result UpdateEmployeeExperienceOperationResponse, err error) {
+func (c EmployeeExperienceClient) UpdateEmployeeExperience(ctx context.Context, id stable.UserId, input stable.EmployeeExperienceUser, options UpdateEmployeeExperienceOperationOptions) (result UpdateEmployeeExperienceOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       fmt.Sprintf("%s/employeeExperience", id.ID()),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/employeeExperience", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &DeviceManagementUserExperienceAnalyticsDeviceMetricHistoryId{}
 
 func TestNewDeviceManagementUserExperienceAnalyticsDeviceMetricHistoryID(t *testing.T) {
-	id := NewDeviceManagementUserExperienceAnalyticsDeviceMetricHistoryID("userExperienceAnalyticsMetricHistoryIdValue")
+	id := NewDeviceManagementUserExperienceAnalyticsDeviceMetricHistoryID("userExperienceAnalyticsMetricHistoryId")
 
-	if id.UserExperienceAnalyticsMetricHistoryId != "userExperienceAnalyticsMetricHistoryIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'UserExperienceAnalyticsMetricHistoryId'", id.UserExperienceAnalyticsMetricHistoryId, "userExperienceAnalyticsMetricHistoryIdValue")
+	if id.UserExperienceAnalyticsMetricHistoryId != "userExperienceAnalyticsMetricHistoryId" {
+		t.Fatalf("Expected %q but got %q for Segment 'UserExperienceAnalyticsMetricHistoryId'", id.UserExperienceAnalyticsMetricHistoryId, "userExperienceAnalyticsMetricHistoryId")
 	}
 }
 
 func TestFormatDeviceManagementUserExperienceAnalyticsDeviceMetricHistoryID(t *testing.T) {
-	actual := NewDeviceManagementUserExperienceAnalyticsDeviceMetricHistoryID("userExperienceAnalyticsMetricHistoryIdValue").ID()
-	expected := "/deviceManagement/userExperienceAnalyticsDeviceMetricHistory/userExperienceAnalyticsMetricHistoryIdValue"
+	actual := NewDeviceManagementUserExperienceAnalyticsDeviceMetricHistoryID("userExperienceAnalyticsMetricHistoryId").ID()
+	expected := "/deviceManagement/userExperienceAnalyticsDeviceMetricHistory/userExperienceAnalyticsMetricHistoryId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -50,14 +50,14 @@ func TestParseDeviceManagementUserExperienceAnalyticsDeviceMetricHistoryID(t *te
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/userExperienceAnalyticsDeviceMetricHistory/userExperienceAnalyticsMetricHistoryIdValue",
+			Input: "/deviceManagement/userExperienceAnalyticsDeviceMetricHistory/userExperienceAnalyticsMetricHistoryId",
 			Expected: &DeviceManagementUserExperienceAnalyticsDeviceMetricHistoryId{
-				UserExperienceAnalyticsMetricHistoryId: "userExperienceAnalyticsMetricHistoryIdValue",
+				UserExperienceAnalyticsMetricHistoryId: "userExperienceAnalyticsMetricHistoryId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/userExperienceAnalyticsDeviceMetricHistory/userExperienceAnalyticsMetricHistoryIdValue/extra",
+			Input: "/deviceManagement/userExperienceAnalyticsDeviceMetricHistory/userExperienceAnalyticsMetricHistoryId/extra",
 			Error: true,
 		},
 	}
@@ -116,26 +116,26 @@ func TestParseDeviceManagementUserExperienceAnalyticsDeviceMetricHistoryIDInsens
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/userExperienceAnalyticsDeviceMetricHistory/userExperienceAnalyticsMetricHistoryIdValue",
+			Input: "/deviceManagement/userExperienceAnalyticsDeviceMetricHistory/userExperienceAnalyticsMetricHistoryId",
 			Expected: &DeviceManagementUserExperienceAnalyticsDeviceMetricHistoryId{
-				UserExperienceAnalyticsMetricHistoryId: "userExperienceAnalyticsMetricHistoryIdValue",
+				UserExperienceAnalyticsMetricHistoryId: "userExperienceAnalyticsMetricHistoryId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/userExperienceAnalyticsDeviceMetricHistory/userExperienceAnalyticsMetricHistoryIdValue/extra",
+			Input: "/deviceManagement/userExperienceAnalyticsDeviceMetricHistory/userExperienceAnalyticsMetricHistoryId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/uSeReXpErIeNcEaNaLyTiCsDeViCeMeTrIcHiStOrY/uSeReXpErIeNcEaNaLyTiCsMeTrIcHiStOrYiDvAlUe",
+			Input: "/dEvIcEmAnAgEmEnT/uSeReXpErIeNcEaNaLyTiCsDeViCeMeTrIcHiStOrY/uSeReXpErIeNcEaNaLyTiCsMeTrIcHiStOrYiD",
 			Expected: &DeviceManagementUserExperienceAnalyticsDeviceMetricHistoryId{
-				UserExperienceAnalyticsMetricHistoryId: "uSeReXpErIeNcEaNaLyTiCsMeTrIcHiStOrYiDvAlUe",
+				UserExperienceAnalyticsMetricHistoryId: "uSeReXpErIeNcEaNaLyTiCsMeTrIcHiStOrYiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/uSeReXpErIeNcEaNaLyTiCsDeViCeMeTrIcHiStOrY/uSeReXpErIeNcEaNaLyTiCsMeTrIcHiStOrYiDvAlUe/extra",
+			Input: "/dEvIcEmAnAgEmEnT/uSeReXpErIeNcEaNaLyTiCsDeViCeMeTrIcHiStOrY/uSeReXpErIeNcEaNaLyTiCsMeTrIcHiStOrYiD/extra",
 			Error: true,
 		},
 	}

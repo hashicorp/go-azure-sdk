@@ -20,15 +20,44 @@ type CreateJoinedTeamPrimaryChannelMemberOperationResponse struct {
 	Model        stable.ConversationMember
 }
 
+type CreateJoinedTeamPrimaryChannelMemberOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateJoinedTeamPrimaryChannelMemberOperationOptions() CreateJoinedTeamPrimaryChannelMemberOperationOptions {
+	return CreateJoinedTeamPrimaryChannelMemberOperationOptions{}
+}
+
+func (o CreateJoinedTeamPrimaryChannelMemberOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateJoinedTeamPrimaryChannelMemberOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateJoinedTeamPrimaryChannelMemberOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateJoinedTeamPrimaryChannelMember - Create new navigation property to members for users
-func (c JoinedTeamPrimaryChannelMemberClient) CreateJoinedTeamPrimaryChannelMember(ctx context.Context, id stable.UserIdJoinedTeamId, input stable.ConversationMember) (result CreateJoinedTeamPrimaryChannelMemberOperationResponse, err error) {
+func (c JoinedTeamPrimaryChannelMemberClient) CreateJoinedTeamPrimaryChannelMember(ctx context.Context, id stable.UserIdJoinedTeamId, input stable.ConversationMember, options CreateJoinedTeamPrimaryChannelMemberOperationOptions) (result CreateJoinedTeamPrimaryChannelMemberOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/primaryChannel/members", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/primaryChannel/members", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

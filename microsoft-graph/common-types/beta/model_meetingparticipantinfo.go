@@ -56,10 +56,15 @@ func (s RawMeetingParticipantInfoImpl) MeetingParticipantInfo() BaseMeetingParti
 var _ json.Unmarshaler = &BaseMeetingParticipantInfoImpl{}
 
 func (s *BaseMeetingParticipantInfoImpl) UnmarshalJSON(bytes []byte) error {
-	type alias BaseMeetingParticipantInfoImpl
-	var decoded alias
+
+	var decoded struct {
+		ODataId   *string               `json:"@odata.id,omitempty"`
+		ODataType *string               `json:"@odata.type,omitempty"`
+		Role      *OnlineMeetingRole    `json:"role,omitempty"`
+		Upn       nullable.Type[string] `json:"upn,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into BaseMeetingParticipantInfoImpl: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.ODataId = decoded.ODataId
@@ -79,6 +84,7 @@ func (s *BaseMeetingParticipantInfoImpl) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Identity = impl
 	}
+
 	return nil
 }
 
@@ -92,9 +98,9 @@ func UnmarshalMeetingParticipantInfoImplementation(input []byte) (MeetingPartici
 		return nil, fmt.Errorf("unmarshaling MeetingParticipantInfo into map[string]interface: %+v", err)
 	}
 
-	value, ok := temp["@odata.type"].(string)
-	if !ok {
-		return nil, nil
+	var value string
+	if v, ok := temp["@odata.type"]; ok {
+		value = fmt.Sprintf("%v", v)
 	}
 
 	if strings.EqualFold(value, "#microsoft.graph.virtualEventPresenterInfo") {

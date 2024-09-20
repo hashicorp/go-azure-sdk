@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &ReportServicePrincipalSignInActivityId{}
 
 func TestNewReportServicePrincipalSignInActivityID(t *testing.T) {
-	id := NewReportServicePrincipalSignInActivityID("servicePrincipalSignInActivityIdValue")
+	id := NewReportServicePrincipalSignInActivityID("servicePrincipalSignInActivityId")
 
-	if id.ServicePrincipalSignInActivityId != "servicePrincipalSignInActivityIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ServicePrincipalSignInActivityId'", id.ServicePrincipalSignInActivityId, "servicePrincipalSignInActivityIdValue")
+	if id.ServicePrincipalSignInActivityId != "servicePrincipalSignInActivityId" {
+		t.Fatalf("Expected %q but got %q for Segment 'ServicePrincipalSignInActivityId'", id.ServicePrincipalSignInActivityId, "servicePrincipalSignInActivityId")
 	}
 }
 
 func TestFormatReportServicePrincipalSignInActivityID(t *testing.T) {
-	actual := NewReportServicePrincipalSignInActivityID("servicePrincipalSignInActivityIdValue").ID()
-	expected := "/reports/servicePrincipalSignInActivities/servicePrincipalSignInActivityIdValue"
+	actual := NewReportServicePrincipalSignInActivityID("servicePrincipalSignInActivityId").ID()
+	expected := "/reports/servicePrincipalSignInActivities/servicePrincipalSignInActivityId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -50,14 +50,14 @@ func TestParseReportServicePrincipalSignInActivityID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/reports/servicePrincipalSignInActivities/servicePrincipalSignInActivityIdValue",
+			Input: "/reports/servicePrincipalSignInActivities/servicePrincipalSignInActivityId",
 			Expected: &ReportServicePrincipalSignInActivityId{
-				ServicePrincipalSignInActivityId: "servicePrincipalSignInActivityIdValue",
+				ServicePrincipalSignInActivityId: "servicePrincipalSignInActivityId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/reports/servicePrincipalSignInActivities/servicePrincipalSignInActivityIdValue/extra",
+			Input: "/reports/servicePrincipalSignInActivities/servicePrincipalSignInActivityId/extra",
 			Error: true,
 		},
 	}
@@ -116,26 +116,26 @@ func TestParseReportServicePrincipalSignInActivityIDInsensitively(t *testing.T) 
 		},
 		{
 			// Valid URI
-			Input: "/reports/servicePrincipalSignInActivities/servicePrincipalSignInActivityIdValue",
+			Input: "/reports/servicePrincipalSignInActivities/servicePrincipalSignInActivityId",
 			Expected: &ReportServicePrincipalSignInActivityId{
-				ServicePrincipalSignInActivityId: "servicePrincipalSignInActivityIdValue",
+				ServicePrincipalSignInActivityId: "servicePrincipalSignInActivityId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/reports/servicePrincipalSignInActivities/servicePrincipalSignInActivityIdValue/extra",
+			Input: "/reports/servicePrincipalSignInActivities/servicePrincipalSignInActivityId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/rEpOrTs/sErViCePrInCiPaLsIgNiNaCtIvItIeS/sErViCePrInCiPaLsIgNiNaCtIvItYiDvAlUe",
+			Input: "/rEpOrTs/sErViCePrInCiPaLsIgNiNaCtIvItIeS/sErViCePrInCiPaLsIgNiNaCtIvItYiD",
 			Expected: &ReportServicePrincipalSignInActivityId{
-				ServicePrincipalSignInActivityId: "sErViCePrInCiPaLsIgNiNaCtIvItYiDvAlUe",
+				ServicePrincipalSignInActivityId: "sErViCePrInCiPaLsIgNiNaCtIvItYiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/rEpOrTs/sErViCePrInCiPaLsIgNiNaCtIvItIeS/sErViCePrInCiPaLsIgNiNaCtIvItYiDvAlUe/extra",
+			Input: "/rEpOrTs/sErViCePrInCiPaLsIgNiNaCtIvItIeS/sErViCePrInCiPaLsIgNiNaCtIvItYiD/extra",
 			Error: true,
 		},
 	}

@@ -22,10 +22,15 @@ type AuthenticationStrengthUsage struct {
 var _ json.Unmarshaler = &AuthenticationStrengthUsage{}
 
 func (s *AuthenticationStrengthUsage) UnmarshalJSON(bytes []byte) error {
-	type alias AuthenticationStrengthUsage
-	var decoded alias
+
+	var decoded struct {
+		Mfa       *[]ConditionalAccessPolicy `json:"mfa,omitempty"`
+		None      *[]ConditionalAccessPolicy `json:"none,omitempty"`
+		ODataId   *string                    `json:"@odata.id,omitempty"`
+		ODataType *string                    `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into AuthenticationStrengthUsage: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.ODataId = decoded.ODataId
@@ -69,5 +74,6 @@ func (s *AuthenticationStrengthUsage) UnmarshalJSON(bytes []byte) error {
 		}
 		s.None = &output
 	}
+
 	return nil
 }

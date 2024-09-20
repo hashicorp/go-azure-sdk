@@ -18,16 +18,45 @@ type CreatePrivilegedAccessGroupEligibilityScheduleRequestOperationResponse stru
 	Model        *stable.PrivilegedAccessGroupEligibilityScheduleRequest
 }
 
+type CreatePrivilegedAccessGroupEligibilityScheduleRequestOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreatePrivilegedAccessGroupEligibilityScheduleRequestOperationOptions() CreatePrivilegedAccessGroupEligibilityScheduleRequestOperationOptions {
+	return CreatePrivilegedAccessGroupEligibilityScheduleRequestOperationOptions{}
+}
+
+func (o CreatePrivilegedAccessGroupEligibilityScheduleRequestOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreatePrivilegedAccessGroupEligibilityScheduleRequestOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreatePrivilegedAccessGroupEligibilityScheduleRequestOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreatePrivilegedAccessGroupEligibilityScheduleRequest - Create eligibilityScheduleRequest. Create a new
 // privilegedAccessGroupEligibilityScheduleRequest object.
-func (c PrivilegedAccessGroupEligibilityScheduleRequestClient) CreatePrivilegedAccessGroupEligibilityScheduleRequest(ctx context.Context, input stable.PrivilegedAccessGroupEligibilityScheduleRequest) (result CreatePrivilegedAccessGroupEligibilityScheduleRequestOperationResponse, err error) {
+func (c PrivilegedAccessGroupEligibilityScheduleRequestClient) CreatePrivilegedAccessGroupEligibilityScheduleRequest(ctx context.Context, input stable.PrivilegedAccessGroupEligibilityScheduleRequest, options CreatePrivilegedAccessGroupEligibilityScheduleRequestOperationOptions) (result CreatePrivilegedAccessGroupEligibilityScheduleRequestOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/identityGovernance/privilegedAccess/group/eligibilityScheduleRequests",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/identityGovernance/privilegedAccess/group/eligibilityScheduleRequests",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

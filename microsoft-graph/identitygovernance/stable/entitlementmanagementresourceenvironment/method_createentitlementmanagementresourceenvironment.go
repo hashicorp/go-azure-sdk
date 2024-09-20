@@ -18,16 +18,45 @@ type CreateEntitlementManagementResourceEnvironmentOperationResponse struct {
 	Model        *stable.AccessPackageResourceEnvironment
 }
 
+type CreateEntitlementManagementResourceEnvironmentOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateEntitlementManagementResourceEnvironmentOperationOptions() CreateEntitlementManagementResourceEnvironmentOperationOptions {
+	return CreateEntitlementManagementResourceEnvironmentOperationOptions{}
+}
+
+func (o CreateEntitlementManagementResourceEnvironmentOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateEntitlementManagementResourceEnvironmentOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateEntitlementManagementResourceEnvironmentOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateEntitlementManagementResourceEnvironment - Create new navigation property to resourceEnvironments for
 // identityGovernance
-func (c EntitlementManagementResourceEnvironmentClient) CreateEntitlementManagementResourceEnvironment(ctx context.Context, input stable.AccessPackageResourceEnvironment) (result CreateEntitlementManagementResourceEnvironmentOperationResponse, err error) {
+func (c EntitlementManagementResourceEnvironmentClient) CreateEntitlementManagementResourceEnvironment(ctx context.Context, input stable.AccessPackageResourceEnvironment, options CreateEntitlementManagementResourceEnvironmentOperationOptions) (result CreateEntitlementManagementResourceEnvironmentOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/identityGovernance/entitlementManagement/resourceEnvironments",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/identityGovernance/entitlementManagement/resourceEnvironments",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

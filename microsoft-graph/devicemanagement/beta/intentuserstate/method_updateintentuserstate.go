@@ -17,15 +17,44 @@ type UpdateIntentUserStateOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateIntentUserStateOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateIntentUserStateOperationOptions() UpdateIntentUserStateOperationOptions {
+	return UpdateIntentUserStateOperationOptions{}
+}
+
+func (o UpdateIntentUserStateOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateIntentUserStateOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateIntentUserStateOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateIntentUserState - Update the navigation property userStates in deviceManagement
-func (c IntentUserStateClient) UpdateIntentUserState(ctx context.Context, id beta.DeviceManagementIntentIdUserStateId, input beta.DeviceManagementIntentUserState) (result UpdateIntentUserStateOperationResponse, err error) {
+func (c IntentUserStateClient) UpdateIntentUserState(ctx context.Context, id beta.DeviceManagementIntentIdUserStateId, input beta.DeviceManagementIntentUserState, options UpdateIntentUserStateOperationOptions) (result UpdateIntentUserStateOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

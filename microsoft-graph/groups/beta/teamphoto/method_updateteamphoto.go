@@ -18,15 +18,44 @@ type UpdateTeamPhotoOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateTeamPhotoOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateTeamPhotoOperationOptions() UpdateTeamPhotoOperationOptions {
+	return UpdateTeamPhotoOperationOptions{}
+}
+
+func (o UpdateTeamPhotoOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateTeamPhotoOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateTeamPhotoOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateTeamPhoto - Update the navigation property photo in groups
-func (c TeamPhotoClient) UpdateTeamPhoto(ctx context.Context, id beta.GroupId, input beta.ProfilePhoto) (result UpdateTeamPhotoOperationResponse, err error) {
+func (c TeamPhotoClient) UpdateTeamPhoto(ctx context.Context, id beta.GroupId, input beta.ProfilePhoto, options UpdateTeamPhotoOperationOptions) (result UpdateTeamPhotoOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       fmt.Sprintf("%s/team/photo", id.ID()),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/team/photo", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

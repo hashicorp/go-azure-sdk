@@ -17,16 +17,45 @@ type UpdateDeviceCompliancePolicyUserStatusOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateDeviceCompliancePolicyUserStatusOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateDeviceCompliancePolicyUserStatusOperationOptions() UpdateDeviceCompliancePolicyUserStatusOperationOptions {
+	return UpdateDeviceCompliancePolicyUserStatusOperationOptions{}
+}
+
+func (o UpdateDeviceCompliancePolicyUserStatusOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateDeviceCompliancePolicyUserStatusOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateDeviceCompliancePolicyUserStatusOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateDeviceCompliancePolicyUserStatus - Update deviceComplianceUserStatus. Update the properties of a
 // deviceComplianceUserStatus object.
-func (c DeviceCompliancePolicyUserStatusClient) UpdateDeviceCompliancePolicyUserStatus(ctx context.Context, id stable.DeviceManagementDeviceCompliancePolicyIdUserStatusId, input stable.DeviceComplianceUserStatus) (result UpdateDeviceCompliancePolicyUserStatusOperationResponse, err error) {
+func (c DeviceCompliancePolicyUserStatusClient) UpdateDeviceCompliancePolicyUserStatus(ctx context.Context, id stable.DeviceManagementDeviceCompliancePolicyIdUserStatusId, input stable.DeviceComplianceUserStatus, options UpdateDeviceCompliancePolicyUserStatusOperationOptions) (result UpdateDeviceCompliancePolicyUserStatusOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -32,10 +32,14 @@ type WindowsUpdatesScheduleSettings struct {
 var _ json.Unmarshaler = &WindowsUpdatesScheduleSettings{}
 
 func (s *WindowsUpdatesScheduleSettings) UnmarshalJSON(bytes []byte) error {
-	type alias WindowsUpdatesScheduleSettings
-	var decoded alias
+
+	var decoded struct {
+		ODataId       *string               `json:"@odata.id,omitempty"`
+		ODataType     *string               `json:"@odata.type,omitempty"`
+		StartDateTime nullable.Type[string] `json:"startDateTime,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into WindowsUpdatesScheduleSettings: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.ODataId = decoded.ODataId
@@ -54,5 +58,6 @@ func (s *WindowsUpdatesScheduleSettings) UnmarshalJSON(bytes []byte) error {
 		}
 		s.GradualRollout = impl
 	}
+
 	return nil
 }

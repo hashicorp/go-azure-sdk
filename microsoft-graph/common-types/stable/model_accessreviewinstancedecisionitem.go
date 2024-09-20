@@ -133,10 +133,26 @@ func (s AccessReviewInstanceDecisionItem) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &AccessReviewInstanceDecisionItem{}
 
 func (s *AccessReviewInstanceDecisionItem) UnmarshalJSON(bytes []byte) error {
-	type alias AccessReviewInstanceDecisionItem
-	var decoded alias
+
+	var decoded struct {
+		AccessReviewId   *string               `json:"accessReviewId,omitempty"`
+		AppliedBy        *UserIdentity         `json:"appliedBy,omitempty"`
+		AppliedDateTime  nullable.Type[string] `json:"appliedDateTime,omitempty"`
+		ApplyResult      nullable.Type[string] `json:"applyResult,omitempty"`
+		Decision         nullable.Type[string] `json:"decision,omitempty"`
+		Insights         *[]GovernanceInsight  `json:"insights,omitempty"`
+		Justification    nullable.Type[string] `json:"justification,omitempty"`
+		PrincipalLink    nullable.Type[string] `json:"principalLink,omitempty"`
+		Recommendation   nullable.Type[string] `json:"recommendation,omitempty"`
+		ResourceLink     nullable.Type[string] `json:"resourceLink,omitempty"`
+		ReviewedBy       *UserIdentity         `json:"reviewedBy,omitempty"`
+		ReviewedDateTime nullable.Type[string] `json:"reviewedDateTime,omitempty"`
+		Id               *string               `json:"id,omitempty"`
+		ODataId          *string               `json:"@odata.id,omitempty"`
+		ODataType        *string               `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into AccessReviewInstanceDecisionItem: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.AccessReviewId = decoded.AccessReviewId
@@ -144,15 +160,15 @@ func (s *AccessReviewInstanceDecisionItem) UnmarshalJSON(bytes []byte) error {
 	s.AppliedDateTime = decoded.AppliedDateTime
 	s.ApplyResult = decoded.ApplyResult
 	s.Decision = decoded.Decision
-	s.Id = decoded.Id
 	s.Justification = decoded.Justification
-	s.ODataId = decoded.ODataId
-	s.ODataType = decoded.ODataType
 	s.PrincipalLink = decoded.PrincipalLink
 	s.Recommendation = decoded.Recommendation
 	s.ResourceLink = decoded.ResourceLink
 	s.ReviewedBy = decoded.ReviewedBy
 	s.ReviewedDateTime = decoded.ReviewedDateTime
+	s.Id = decoded.Id
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -191,5 +207,6 @@ func (s *AccessReviewInstanceDecisionItem) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Resource = &impl
 	}
+
 	return nil
 }

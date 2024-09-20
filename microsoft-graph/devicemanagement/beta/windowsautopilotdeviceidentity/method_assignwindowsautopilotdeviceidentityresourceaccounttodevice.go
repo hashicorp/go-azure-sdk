@@ -18,16 +18,45 @@ type AssignWindowsAutopilotDeviceIdentityResourceAccountToDeviceOperationRespons
 	OData        *odata.OData
 }
 
+type AssignWindowsAutopilotDeviceIdentityResourceAccountToDeviceOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultAssignWindowsAutopilotDeviceIdentityResourceAccountToDeviceOperationOptions() AssignWindowsAutopilotDeviceIdentityResourceAccountToDeviceOperationOptions {
+	return AssignWindowsAutopilotDeviceIdentityResourceAccountToDeviceOperationOptions{}
+}
+
+func (o AssignWindowsAutopilotDeviceIdentityResourceAccountToDeviceOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o AssignWindowsAutopilotDeviceIdentityResourceAccountToDeviceOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o AssignWindowsAutopilotDeviceIdentityResourceAccountToDeviceOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // AssignWindowsAutopilotDeviceIdentityResourceAccountToDevice - Invoke action assignResourceAccountToDevice. Assigns
 // resource account to Autopilot devices.
-func (c WindowsAutopilotDeviceIdentityClient) AssignWindowsAutopilotDeviceIdentityResourceAccountToDevice(ctx context.Context, id beta.DeviceManagementWindowsAutopilotDeviceIdentityId, input AssignWindowsAutopilotDeviceIdentityResourceAccountToDeviceRequest) (result AssignWindowsAutopilotDeviceIdentityResourceAccountToDeviceOperationResponse, err error) {
+func (c WindowsAutopilotDeviceIdentityClient) AssignWindowsAutopilotDeviceIdentityResourceAccountToDevice(ctx context.Context, id beta.DeviceManagementWindowsAutopilotDeviceIdentityId, input AssignWindowsAutopilotDeviceIdentityResourceAccountToDeviceRequest, options AssignWindowsAutopilotDeviceIdentityResourceAccountToDeviceOperationOptions) (result AssignWindowsAutopilotDeviceIdentityResourceAccountToDeviceOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/assignResourceAccountToDevice", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/assignResourceAccountToDevice", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

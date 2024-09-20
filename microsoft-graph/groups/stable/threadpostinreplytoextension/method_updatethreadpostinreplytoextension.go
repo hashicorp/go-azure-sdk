@@ -17,15 +17,44 @@ type UpdateThreadPostInReplyToExtensionOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateThreadPostInReplyToExtensionOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateThreadPostInReplyToExtensionOperationOptions() UpdateThreadPostInReplyToExtensionOperationOptions {
+	return UpdateThreadPostInReplyToExtensionOperationOptions{}
+}
+
+func (o UpdateThreadPostInReplyToExtensionOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateThreadPostInReplyToExtensionOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateThreadPostInReplyToExtensionOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateThreadPostInReplyToExtension - Update the navigation property extensions in groups
-func (c ThreadPostInReplyToExtensionClient) UpdateThreadPostInReplyToExtension(ctx context.Context, id stable.GroupIdThreadIdPostIdInReplyToExtensionId, input stable.Extension) (result UpdateThreadPostInReplyToExtensionOperationResponse, err error) {
+func (c ThreadPostInReplyToExtensionClient) UpdateThreadPostInReplyToExtension(ctx context.Context, id stable.GroupIdThreadIdPostIdInReplyToExtensionId, input stable.Extension, options UpdateThreadPostInReplyToExtensionOperationOptions) (result UpdateThreadPostInReplyToExtensionOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

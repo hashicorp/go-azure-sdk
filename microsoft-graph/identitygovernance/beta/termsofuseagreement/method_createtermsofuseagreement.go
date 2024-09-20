@@ -18,15 +18,44 @@ type CreateTermsOfUseAgreementOperationResponse struct {
 	Model        *beta.Agreement
 }
 
+type CreateTermsOfUseAgreementOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateTermsOfUseAgreementOperationOptions() CreateTermsOfUseAgreementOperationOptions {
+	return CreateTermsOfUseAgreementOperationOptions{}
+}
+
+func (o CreateTermsOfUseAgreementOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateTermsOfUseAgreementOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateTermsOfUseAgreementOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateTermsOfUseAgreement - Create agreement. Create a new agreement object.
-func (c TermsOfUseAgreementClient) CreateTermsOfUseAgreement(ctx context.Context, input beta.Agreement) (result CreateTermsOfUseAgreementOperationResponse, err error) {
+func (c TermsOfUseAgreementClient) CreateTermsOfUseAgreement(ctx context.Context, input beta.Agreement, options CreateTermsOfUseAgreementOperationOptions) (result CreateTermsOfUseAgreementOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/identityGovernance/termsOfUse/agreements",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/identityGovernance/termsOfUse/agreements",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

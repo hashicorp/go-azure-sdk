@@ -18,15 +18,44 @@ type CreateProfileAwardOperationResponse struct {
 	Model        *beta.PersonAward
 }
 
+type CreateProfileAwardOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateProfileAwardOperationOptions() CreateProfileAwardOperationOptions {
+	return CreateProfileAwardOperationOptions{}
+}
+
+func (o CreateProfileAwardOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateProfileAwardOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateProfileAwardOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateProfileAward - Create personAward. Create a new personAward object in a user's profile.
-func (c ProfileAwardClient) CreateProfileAward(ctx context.Context, input beta.PersonAward) (result CreateProfileAwardOperationResponse, err error) {
+func (c ProfileAwardClient) CreateProfileAward(ctx context.Context, input beta.PersonAward, options CreateProfileAwardOperationOptions) (result CreateProfileAwardOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/me/profile/awards",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/me/profile/awards",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

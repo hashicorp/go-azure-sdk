@@ -92,10 +92,17 @@ func (s CommunicationsIdentitySet) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &CommunicationsIdentitySet{}
 
 func (s *CommunicationsIdentitySet) UnmarshalJSON(bytes []byte) error {
-	type alias CommunicationsIdentitySet
-	var decoded alias
+
+	var decoded struct {
+		EndpointType *EndpointType `json:"endpointType,omitempty"`
+		Application  Identity      `json:"application"`
+		Device       Identity      `json:"device"`
+		ODataId      *string       `json:"@odata.id,omitempty"`
+		ODataType    *string       `json:"@odata.type,omitempty"`
+		User         Identity      `json:"user"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into CommunicationsIdentitySet: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.EndpointType = decoded.EndpointType
@@ -186,5 +193,6 @@ func (s *CommunicationsIdentitySet) UnmarshalJSON(bytes []byte) error {
 		}
 		s.User = impl
 	}
+
 	return nil
 }

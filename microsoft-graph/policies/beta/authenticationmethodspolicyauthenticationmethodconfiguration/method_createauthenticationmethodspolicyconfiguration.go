@@ -19,16 +19,45 @@ type CreateAuthenticationMethodsPolicyConfigurationOperationResponse struct {
 	Model        beta.AuthenticationMethodConfiguration
 }
 
+type CreateAuthenticationMethodsPolicyConfigurationOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateAuthenticationMethodsPolicyConfigurationOperationOptions() CreateAuthenticationMethodsPolicyConfigurationOperationOptions {
+	return CreateAuthenticationMethodsPolicyConfigurationOperationOptions{}
+}
+
+func (o CreateAuthenticationMethodsPolicyConfigurationOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateAuthenticationMethodsPolicyConfigurationOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateAuthenticationMethodsPolicyConfigurationOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateAuthenticationMethodsPolicyConfiguration - Create new navigation property to authenticationMethodConfigurations
 // for policies
-func (c AuthenticationMethodsPolicyAuthenticationMethodConfigurationClient) CreateAuthenticationMethodsPolicyConfiguration(ctx context.Context, input beta.AuthenticationMethodConfiguration) (result CreateAuthenticationMethodsPolicyConfigurationOperationResponse, err error) {
+func (c AuthenticationMethodsPolicyAuthenticationMethodConfigurationClient) CreateAuthenticationMethodsPolicyConfiguration(ctx context.Context, input beta.AuthenticationMethodConfiguration, options CreateAuthenticationMethodsPolicyConfigurationOperationOptions) (result CreateAuthenticationMethodsPolicyConfigurationOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/policies/authenticationMethodsPolicy/authenticationMethodConfigurations",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/policies/authenticationMethodsPolicy/authenticationMethodConfigurations",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

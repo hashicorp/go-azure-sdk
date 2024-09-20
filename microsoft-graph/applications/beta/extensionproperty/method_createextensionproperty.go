@@ -19,16 +19,45 @@ type CreateExtensionPropertyOperationResponse struct {
 	Model        *beta.ExtensionProperty
 }
 
+type CreateExtensionPropertyOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateExtensionPropertyOperationOptions() CreateExtensionPropertyOperationOptions {
+	return CreateExtensionPropertyOperationOptions{}
+}
+
+func (o CreateExtensionPropertyOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateExtensionPropertyOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateExtensionPropertyOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateExtensionProperty - Create extensionProperty (directory extension). Create a new directory extension
 // definition, represented by an extensionProperty object.
-func (c ExtensionPropertyClient) CreateExtensionProperty(ctx context.Context, id beta.ApplicationId, input beta.ExtensionProperty) (result CreateExtensionPropertyOperationResponse, err error) {
+func (c ExtensionPropertyClient) CreateExtensionProperty(ctx context.Context, id beta.ApplicationId, input beta.ExtensionProperty, options CreateExtensionPropertyOperationOptions) (result CreateExtensionPropertyOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/extensionProperties", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/extensionProperties", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

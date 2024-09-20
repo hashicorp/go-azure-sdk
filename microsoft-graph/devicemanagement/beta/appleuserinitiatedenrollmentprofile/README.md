@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/appleuserinitiatedenrollmentprofile` Documentation
 
-The `appleuserinitiatedenrollmentprofile` SDK allows for interaction with the Azure Resource Manager Service `devicemanagement` (API Version `beta`).
+The `appleuserinitiatedenrollmentprofile` SDK allows for interaction with Microsoft Graph `devicemanagement` (API Version `beta`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -15,7 +15,7 @@ import "github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/
 ### Client Initialization
 
 ```go
-client := appleuserinitiatedenrollmentprofile.NewAppleUserInitiatedEnrollmentProfileClientWithBaseURI("https://management.azure.com")
+client := appleuserinitiatedenrollmentprofile.NewAppleUserInitiatedEnrollmentProfileClientWithBaseURI("https://graph.microsoft.com")
 client.Client.Authorizer = authorizer
 ```
 
@@ -30,7 +30,7 @@ payload := appleuserinitiatedenrollmentprofile.AppleUserInitiatedEnrollmentProfi
 }
 
 
-read, err := client.CreateAppleUserInitiatedEnrollmentProfile(ctx, payload)
+read, err := client.CreateAppleUserInitiatedEnrollmentProfile(ctx, payload, appleuserinitiatedenrollmentprofile.DefaultCreateAppleUserInitiatedEnrollmentProfileOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -44,7 +44,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := appleuserinitiatedenrollmentprofile.NewDeviceManagementAppleUserInitiatedEnrollmentProfileID("appleUserInitiatedEnrollmentProfileIdValue")
+id := appleuserinitiatedenrollmentprofile.NewDeviceManagementAppleUserInitiatedEnrollmentProfileID("appleUserInitiatedEnrollmentProfileId")
 
 read, err := client.DeleteAppleUserInitiatedEnrollmentProfile(ctx, id, appleuserinitiatedenrollmentprofile.DefaultDeleteAppleUserInitiatedEnrollmentProfileOperationOptions())
 if err != nil {
@@ -60,7 +60,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := appleuserinitiatedenrollmentprofile.NewDeviceManagementAppleUserInitiatedEnrollmentProfileID("appleUserInitiatedEnrollmentProfileIdValue")
+id := appleuserinitiatedenrollmentprofile.NewDeviceManagementAppleUserInitiatedEnrollmentProfileID("appleUserInitiatedEnrollmentProfileId")
 
 read, err := client.GetAppleUserInitiatedEnrollmentProfile(ctx, id, appleuserinitiatedenrollmentprofile.DefaultGetAppleUserInitiatedEnrollmentProfileOperationOptions())
 if err != nil {
@@ -109,14 +109,14 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := appleuserinitiatedenrollmentprofile.NewDeviceManagementAppleUserInitiatedEnrollmentProfileID("appleUserInitiatedEnrollmentProfileIdValue")
+id := appleuserinitiatedenrollmentprofile.NewDeviceManagementAppleUserInitiatedEnrollmentProfileID("appleUserInitiatedEnrollmentProfileId")
 
 payload := appleuserinitiatedenrollmentprofile.SetAppleUserInitiatedEnrollmentProfilePriorityRequest{
 	// ...
 }
 
 
-read, err := client.SetAppleUserInitiatedEnrollmentProfilePriority(ctx, id, payload)
+read, err := client.SetAppleUserInitiatedEnrollmentProfilePriority(ctx, id, payload, appleuserinitiatedenrollmentprofile.DefaultSetAppleUserInitiatedEnrollmentProfilePriorityOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -130,14 +130,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := appleuserinitiatedenrollmentprofile.NewDeviceManagementAppleUserInitiatedEnrollmentProfileID("appleUserInitiatedEnrollmentProfileIdValue")
+id := appleuserinitiatedenrollmentprofile.NewDeviceManagementAppleUserInitiatedEnrollmentProfileID("appleUserInitiatedEnrollmentProfileId")
 
 payload := appleuserinitiatedenrollmentprofile.AppleUserInitiatedEnrollmentProfile{
 	// ...
 }
 
 
-read, err := client.UpdateAppleUserInitiatedEnrollmentProfile(ctx, id, payload)
+read, err := client.UpdateAppleUserInitiatedEnrollmentProfile(ctx, id, payload, appleuserinitiatedenrollmentprofile.DefaultUpdateAppleUserInitiatedEnrollmentProfileOperationOptions())
 if err != nil {
 	// handle the error
 }

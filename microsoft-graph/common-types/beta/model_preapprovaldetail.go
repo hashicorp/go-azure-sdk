@@ -23,10 +23,14 @@ type PreApprovalDetail struct {
 var _ json.Unmarshaler = &PreApprovalDetail{}
 
 func (s *PreApprovalDetail) UnmarshalJSON(bytes []byte) error {
-	type alias PreApprovalDetail
-	var decoded alias
+
+	var decoded struct {
+		ODataId   *string            `json:"@odata.id,omitempty"`
+		ODataType *string            `json:"@odata.type,omitempty"`
+		ScopeType *ResourceScopeType `json:"scopeType,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into PreApprovalDetail: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.ODataId = decoded.ODataId
@@ -53,5 +57,6 @@ func (s *PreApprovalDetail) UnmarshalJSON(bytes []byte) error {
 		}
 		s.SensitivityLabels = impl
 	}
+
 	return nil
 }

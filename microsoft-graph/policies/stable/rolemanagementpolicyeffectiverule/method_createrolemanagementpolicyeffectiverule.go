@@ -20,15 +20,44 @@ type CreateRoleManagementPolicyEffectiveRuleOperationResponse struct {
 	Model        stable.UnifiedRoleManagementPolicyRule
 }
 
+type CreateRoleManagementPolicyEffectiveRuleOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateRoleManagementPolicyEffectiveRuleOperationOptions() CreateRoleManagementPolicyEffectiveRuleOperationOptions {
+	return CreateRoleManagementPolicyEffectiveRuleOperationOptions{}
+}
+
+func (o CreateRoleManagementPolicyEffectiveRuleOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateRoleManagementPolicyEffectiveRuleOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateRoleManagementPolicyEffectiveRuleOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateRoleManagementPolicyEffectiveRule - Create new navigation property to effectiveRules for policies
-func (c RoleManagementPolicyEffectiveRuleClient) CreateRoleManagementPolicyEffectiveRule(ctx context.Context, id stable.PolicyRoleManagementPolicyId, input stable.UnifiedRoleManagementPolicyRule) (result CreateRoleManagementPolicyEffectiveRuleOperationResponse, err error) {
+func (c RoleManagementPolicyEffectiveRuleClient) CreateRoleManagementPolicyEffectiveRule(ctx context.Context, id stable.PolicyRoleManagementPolicyId, input stable.UnifiedRoleManagementPolicyRule, options CreateRoleManagementPolicyEffectiveRuleOperationOptions) (result CreateRoleManagementPolicyEffectiveRuleOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/effectiveRules", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/effectiveRules", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

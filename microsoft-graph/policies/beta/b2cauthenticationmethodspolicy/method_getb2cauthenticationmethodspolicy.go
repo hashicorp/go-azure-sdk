@@ -19,8 +19,9 @@ type GetB2cAuthenticationMethodsPolicyOperationResponse struct {
 }
 
 type GetB2cAuthenticationMethodsPolicyOperationOptions struct {
-	Expand *odata.Expand
-	Select *[]string
+	Expand   *odata.Expand
+	Metadata *odata.Metadata
+	Select   *[]string
 }
 
 func DefaultGetB2cAuthenticationMethodsPolicyOperationOptions() GetB2cAuthenticationMethodsPolicyOperationOptions {
@@ -37,6 +38,9 @@ func (o GetB2cAuthenticationMethodsPolicyOperationOptions) ToOData() *odata.Quer
 	out := odata.Query{}
 	if o.Expand != nil {
 		out.Expand = *o.Expand
+	}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
 	}
 	if o.Select != nil {
 		out.Select = *o.Select

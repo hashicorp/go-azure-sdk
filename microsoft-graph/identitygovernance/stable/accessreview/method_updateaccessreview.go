@@ -17,15 +17,44 @@ type UpdateAccessReviewOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateAccessReviewOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateAccessReviewOperationOptions() UpdateAccessReviewOperationOptions {
+	return UpdateAccessReviewOperationOptions{}
+}
+
+func (o UpdateAccessReviewOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateAccessReviewOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateAccessReviewOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateAccessReview - Update the navigation property accessReviews in identityGovernance
-func (c AccessReviewClient) UpdateAccessReview(ctx context.Context, input stable.AccessReviewSet) (result UpdateAccessReviewOperationResponse, err error) {
+func (c AccessReviewClient) UpdateAccessReview(ctx context.Context, input stable.AccessReviewSet, options UpdateAccessReviewOperationOptions) (result UpdateAccessReviewOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       "/identityGovernance/accessReviews",
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          "/identityGovernance/accessReviews",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

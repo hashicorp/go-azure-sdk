@@ -17,15 +17,44 @@ type GetReportsPolicyNonComplianceSummaryReportOperationResponse struct {
 	Model        *[]byte
 }
 
+type GetReportsPolicyNonComplianceSummaryReportOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultGetReportsPolicyNonComplianceSummaryReportOperationOptions() GetReportsPolicyNonComplianceSummaryReportOperationOptions {
+	return GetReportsPolicyNonComplianceSummaryReportOperationOptions{}
+}
+
+func (o GetReportsPolicyNonComplianceSummaryReportOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o GetReportsPolicyNonComplianceSummaryReportOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o GetReportsPolicyNonComplianceSummaryReportOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // GetReportsPolicyNonComplianceSummaryReport - Invoke action getPolicyNonComplianceSummaryReport
-func (c ReportClient) GetReportsPolicyNonComplianceSummaryReport(ctx context.Context, input GetReportsPolicyNonComplianceSummaryReportRequest) (result GetReportsPolicyNonComplianceSummaryReportOperationResponse, err error) {
+func (c ReportClient) GetReportsPolicyNonComplianceSummaryReport(ctx context.Context, input GetReportsPolicyNonComplianceSummaryReportRequest, options GetReportsPolicyNonComplianceSummaryReportOperationOptions) (result GetReportsPolicyNonComplianceSummaryReportOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/octet-stream",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/deviceManagement/reports/getPolicyNonComplianceSummaryReport",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/deviceManagement/reports/getPolicyNonComplianceSummaryReport",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

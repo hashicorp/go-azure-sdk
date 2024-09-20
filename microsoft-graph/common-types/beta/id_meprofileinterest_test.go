@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &MeProfileInterestId{}
 
 func TestNewMeProfileInterestID(t *testing.T) {
-	id := NewMeProfileInterestID("personInterestIdValue")
+	id := NewMeProfileInterestID("personInterestId")
 
-	if id.PersonInterestId != "personInterestIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'PersonInterestId'", id.PersonInterestId, "personInterestIdValue")
+	if id.PersonInterestId != "personInterestId" {
+		t.Fatalf("Expected %q but got %q for Segment 'PersonInterestId'", id.PersonInterestId, "personInterestId")
 	}
 }
 
 func TestFormatMeProfileInterestID(t *testing.T) {
-	actual := NewMeProfileInterestID("personInterestIdValue").ID()
-	expected := "/me/profile/interests/personInterestIdValue"
+	actual := NewMeProfileInterestID("personInterestId").ID()
+	expected := "/me/profile/interests/personInterestId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -55,14 +55,14 @@ func TestParseMeProfileInterestID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/me/profile/interests/personInterestIdValue",
+			Input: "/me/profile/interests/personInterestId",
 			Expected: &MeProfileInterestId{
-				PersonInterestId: "personInterestIdValue",
+				PersonInterestId: "personInterestId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/profile/interests/personInterestIdValue/extra",
+			Input: "/me/profile/interests/personInterestId/extra",
 			Error: true,
 		},
 	}
@@ -131,26 +131,26 @@ func TestParseMeProfileInterestIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/me/profile/interests/personInterestIdValue",
+			Input: "/me/profile/interests/personInterestId",
 			Expected: &MeProfileInterestId{
-				PersonInterestId: "personInterestIdValue",
+				PersonInterestId: "personInterestId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/profile/interests/personInterestIdValue/extra",
+			Input: "/me/profile/interests/personInterestId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/pRoFiLe/iNtErEsTs/pErSoNiNtErEsTiDvAlUe",
+			Input: "/mE/pRoFiLe/iNtErEsTs/pErSoNiNtErEsTiD",
 			Expected: &MeProfileInterestId{
-				PersonInterestId: "pErSoNiNtErEsTiDvAlUe",
+				PersonInterestId: "pErSoNiNtErEsTiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/mE/pRoFiLe/iNtErEsTs/pErSoNiNtErEsTiDvAlUe/extra",
+			Input: "/mE/pRoFiLe/iNtErEsTs/pErSoNiNtErEsTiD/extra",
 			Error: true,
 		},
 	}

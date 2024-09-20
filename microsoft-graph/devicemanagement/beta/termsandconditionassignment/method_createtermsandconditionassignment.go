@@ -19,15 +19,44 @@ type CreateTermsAndConditionAssignmentOperationResponse struct {
 	Model        *beta.TermsAndConditionsAssignment
 }
 
+type CreateTermsAndConditionAssignmentOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateTermsAndConditionAssignmentOperationOptions() CreateTermsAndConditionAssignmentOperationOptions {
+	return CreateTermsAndConditionAssignmentOperationOptions{}
+}
+
+func (o CreateTermsAndConditionAssignmentOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateTermsAndConditionAssignmentOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateTermsAndConditionAssignmentOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateTermsAndConditionAssignment - Create new navigation property to assignments for deviceManagement
-func (c TermsAndConditionAssignmentClient) CreateTermsAndConditionAssignment(ctx context.Context, id beta.DeviceManagementTermsAndConditionId, input beta.TermsAndConditionsAssignment) (result CreateTermsAndConditionAssignmentOperationResponse, err error) {
+func (c TermsAndConditionAssignmentClient) CreateTermsAndConditionAssignment(ctx context.Context, id beta.DeviceManagementTermsAndConditionId, input beta.TermsAndConditionsAssignment, options CreateTermsAndConditionAssignmentOperationOptions) (result CreateTermsAndConditionAssignmentOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/assignments", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/assignments", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

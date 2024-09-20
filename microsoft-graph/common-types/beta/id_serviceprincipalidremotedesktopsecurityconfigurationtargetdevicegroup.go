@@ -98,10 +98,10 @@ func (id ServicePrincipalIdRemoteDesktopSecurityConfigurationTargetDeviceGroupId
 func (id ServicePrincipalIdRemoteDesktopSecurityConfigurationTargetDeviceGroupId) Segments() []resourceids.Segment {
 	return []resourceids.Segment{
 		resourceids.StaticSegment("servicePrincipals", "servicePrincipals", "servicePrincipals"),
-		resourceids.UserSpecifiedSegment("servicePrincipalId", "servicePrincipalIdValue"),
+		resourceids.UserSpecifiedSegment("servicePrincipalId", "servicePrincipalId"),
 		resourceids.StaticSegment("remoteDesktopSecurityConfiguration", "remoteDesktopSecurityConfiguration", "remoteDesktopSecurityConfiguration"),
 		resourceids.StaticSegment("targetDeviceGroups", "targetDeviceGroups", "targetDeviceGroups"),
-		resourceids.UserSpecifiedSegment("targetDeviceGroupId", "targetDeviceGroupIdValue"),
+		resourceids.UserSpecifiedSegment("targetDeviceGroupId", "targetDeviceGroupId"),
 	}
 }
 

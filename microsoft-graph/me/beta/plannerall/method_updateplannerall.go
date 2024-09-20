@@ -17,15 +17,44 @@ type UpdatePlannerAllOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdatePlannerAllOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdatePlannerAllOperationOptions() UpdatePlannerAllOperationOptions {
+	return UpdatePlannerAllOperationOptions{}
+}
+
+func (o UpdatePlannerAllOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdatePlannerAllOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdatePlannerAllOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdatePlannerAll - Update the navigation property all in me
-func (c PlannerAllClient) UpdatePlannerAll(ctx context.Context, id beta.MePlannerAllId, input beta.PlannerDelta) (result UpdatePlannerAllOperationResponse, err error) {
+func (c PlannerAllClient) UpdatePlannerAll(ctx context.Context, id beta.MePlannerAllId, input beta.PlannerDelta, options UpdatePlannerAllOperationOptions) (result UpdatePlannerAllOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

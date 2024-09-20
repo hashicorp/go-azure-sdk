@@ -17,18 +17,47 @@ type UpdateConditionalAccessAuthenticationStrengthPolicyCombinationConfiguration
 	OData        *odata.OData
 }
 
+type UpdateConditionalAccessAuthenticationStrengthPolicyCombinationConfigurationOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateConditionalAccessAuthenticationStrengthPolicyCombinationConfigurationOperationOptions() UpdateConditionalAccessAuthenticationStrengthPolicyCombinationConfigurationOperationOptions {
+	return UpdateConditionalAccessAuthenticationStrengthPolicyCombinationConfigurationOperationOptions{}
+}
+
+func (o UpdateConditionalAccessAuthenticationStrengthPolicyCombinationConfigurationOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateConditionalAccessAuthenticationStrengthPolicyCombinationConfigurationOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateConditionalAccessAuthenticationStrengthPolicyCombinationConfigurationOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateConditionalAccessAuthenticationStrengthPolicyCombinationConfiguration - Update
 // authenticationCombinationConfiguration. Update the properties of an authenticationCombinationConfiguration object.
 // The properties can be for one of the following derived types: * fido2combinationConfigurations *
 // x509certificatecombinationconfiguration
-func (c ConditionalAccessAuthenticationStrengthPolicyCombinationConfigurationClient) UpdateConditionalAccessAuthenticationStrengthPolicyCombinationConfiguration(ctx context.Context, id stable.IdentityConditionalAccessAuthenticationStrengthPolicyIdCombinationConfigurationId, input stable.AuthenticationCombinationConfiguration) (result UpdateConditionalAccessAuthenticationStrengthPolicyCombinationConfigurationOperationResponse, err error) {
+func (c ConditionalAccessAuthenticationStrengthPolicyCombinationConfigurationClient) UpdateConditionalAccessAuthenticationStrengthPolicyCombinationConfiguration(ctx context.Context, id stable.IdentityConditionalAccessAuthenticationStrengthPolicyIdCombinationConfigurationId, input stable.AuthenticationCombinationConfiguration, options UpdateConditionalAccessAuthenticationStrengthPolicyCombinationConfigurationOperationOptions) (result UpdateConditionalAccessAuthenticationStrengthPolicyCombinationConfigurationOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

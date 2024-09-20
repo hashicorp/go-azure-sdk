@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &MeDeviceId{}
 
 func TestNewMeDeviceID(t *testing.T) {
-	id := NewMeDeviceID("deviceIdValue")
+	id := NewMeDeviceID("deviceId")
 
-	if id.DeviceId != "deviceIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DeviceId'", id.DeviceId, "deviceIdValue")
+	if id.DeviceId != "deviceId" {
+		t.Fatalf("Expected %q but got %q for Segment 'DeviceId'", id.DeviceId, "deviceId")
 	}
 }
 
 func TestFormatMeDeviceID(t *testing.T) {
-	actual := NewMeDeviceID("deviceIdValue").ID()
-	expected := "/me/devices/deviceIdValue"
+	actual := NewMeDeviceID("deviceId").ID()
+	expected := "/me/devices/deviceId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -50,14 +50,14 @@ func TestParseMeDeviceID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/me/devices/deviceIdValue",
+			Input: "/me/devices/deviceId",
 			Expected: &MeDeviceId{
-				DeviceId: "deviceIdValue",
+				DeviceId: "deviceId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/devices/deviceIdValue/extra",
+			Input: "/me/devices/deviceId/extra",
 			Error: true,
 		},
 	}
@@ -116,26 +116,26 @@ func TestParseMeDeviceIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/me/devices/deviceIdValue",
+			Input: "/me/devices/deviceId",
 			Expected: &MeDeviceId{
-				DeviceId: "deviceIdValue",
+				DeviceId: "deviceId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/devices/deviceIdValue/extra",
+			Input: "/me/devices/deviceId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/dEvIcEs/dEvIcEiDvAlUe",
+			Input: "/mE/dEvIcEs/dEvIcEiD",
 			Expected: &MeDeviceId{
-				DeviceId: "dEvIcEiDvAlUe",
+				DeviceId: "dEvIcEiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/mE/dEvIcEs/dEvIcEiDvAlUe/extra",
+			Input: "/mE/dEvIcEs/dEvIcEiD/extra",
 			Error: true,
 		},
 	}

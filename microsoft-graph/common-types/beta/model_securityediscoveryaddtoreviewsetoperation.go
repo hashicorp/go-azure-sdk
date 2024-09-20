@@ -109,12 +109,27 @@ func (s SecurityEdiscoveryAddToReviewSetOperation) MarshalJSON() ([]byte, error)
 var _ json.Unmarshaler = &SecurityEdiscoveryAddToReviewSetOperation{}
 
 func (s *SecurityEdiscoveryAddToReviewSetOperation) UnmarshalJSON(bytes []byte) error {
-	type alias SecurityEdiscoveryAddToReviewSetOperation
-	var decoded alias
+
+	var decoded struct {
+		ReviewSet         *SecurityEdiscoveryReviewSet `json:"reviewSet,omitempty"`
+		Search            *SecurityEdiscoverySearch    `json:"search,omitempty"`
+		Action            *SecurityCaseAction          `json:"action,omitempty"`
+		CompletedDateTime nullable.Type[string]        `json:"completedDateTime,omitempty"`
+		CreatedBy         IdentitySet                  `json:"createdBy"`
+		CreatedDateTime   nullable.Type[string]        `json:"createdDateTime,omitempty"`
+		PercentProgress   nullable.Type[int64]         `json:"percentProgress,omitempty"`
+		ResultInfo        *ResultInfo                  `json:"resultInfo,omitempty"`
+		Status            *SecurityCaseOperationStatus `json:"status,omitempty"`
+		Id                *string                      `json:"id,omitempty"`
+		ODataId           *string                      `json:"@odata.id,omitempty"`
+		ODataType         *string                      `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into SecurityEdiscoveryAddToReviewSetOperation: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
+	s.ReviewSet = decoded.ReviewSet
+	s.Search = decoded.Search
 	s.Action = decoded.Action
 	s.CompletedDateTime = decoded.CompletedDateTime
 	s.CreatedDateTime = decoded.CreatedDateTime
@@ -123,8 +138,6 @@ func (s *SecurityEdiscoveryAddToReviewSetOperation) UnmarshalJSON(bytes []byte) 
 	s.ODataType = decoded.ODataType
 	s.PercentProgress = decoded.PercentProgress
 	s.ResultInfo = decoded.ResultInfo
-	s.ReviewSet = decoded.ReviewSet
-	s.Search = decoded.Search
 	s.Status = decoded.Status
 
 	var temp map[string]json.RawMessage
@@ -139,5 +152,6 @@ func (s *SecurityEdiscoveryAddToReviewSetOperation) UnmarshalJSON(bytes []byte) 
 		}
 		s.CreatedBy = impl
 	}
+
 	return nil
 }

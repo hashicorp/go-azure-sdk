@@ -19,7 +19,8 @@ type DeleteAndroidForWorkAppConfigurationSchemaOperationResponse struct {
 }
 
 type DeleteAndroidForWorkAppConfigurationSchemaOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteAndroidForWorkAppConfigurationSchemaOperationOptions() DeleteAndroidForWorkAppConfigurationSchemaOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteAndroidForWorkAppConfigurationSchemaOperationOptions) ToHeaders() 
 
 func (o DeleteAndroidForWorkAppConfigurationSchemaOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &UserIdSettingStorageQuotaServiceId{}
 
 func TestNewUserIdSettingStorageQuotaServiceID(t *testing.T) {
-	id := NewUserIdSettingStorageQuotaServiceID("userIdValue", "serviceStorageQuotaBreakdownIdValue")
+	id := NewUserIdSettingStorageQuotaServiceID("userId", "serviceStorageQuotaBreakdownId")
 
-	if id.UserId != "userIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'UserId'", id.UserId, "userIdValue")
+	if id.UserId != "userId" {
+		t.Fatalf("Expected %q but got %q for Segment 'UserId'", id.UserId, "userId")
 	}
 
-	if id.ServiceStorageQuotaBreakdownId != "serviceStorageQuotaBreakdownIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ServiceStorageQuotaBreakdownId'", id.ServiceStorageQuotaBreakdownId, "serviceStorageQuotaBreakdownIdValue")
+	if id.ServiceStorageQuotaBreakdownId != "serviceStorageQuotaBreakdownId" {
+		t.Fatalf("Expected %q but got %q for Segment 'ServiceStorageQuotaBreakdownId'", id.ServiceStorageQuotaBreakdownId, "serviceStorageQuotaBreakdownId")
 	}
 }
 
 func TestFormatUserIdSettingStorageQuotaServiceID(t *testing.T) {
-	actual := NewUserIdSettingStorageQuotaServiceID("userIdValue", "serviceStorageQuotaBreakdownIdValue").ID()
-	expected := "/users/userIdValue/settings/storage/quota/services/serviceStorageQuotaBreakdownIdValue"
+	actual := NewUserIdSettingStorageQuotaServiceID("userId", "serviceStorageQuotaBreakdownId").ID()
+	expected := "/users/userId/settings/storage/quota/services/serviceStorageQuotaBreakdownId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -49,40 +49,40 @@ func TestParseUserIdSettingStorageQuotaServiceID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue",
+			Input: "/users/userId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/settings",
+			Input: "/users/userId/settings",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/settings/storage",
+			Input: "/users/userId/settings/storage",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/settings/storage/quota",
+			Input: "/users/userId/settings/storage/quota",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/settings/storage/quota/services",
+			Input: "/users/userId/settings/storage/quota/services",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/users/userIdValue/settings/storage/quota/services/serviceStorageQuotaBreakdownIdValue",
+			Input: "/users/userId/settings/storage/quota/services/serviceStorageQuotaBreakdownId",
 			Expected: &UserIdSettingStorageQuotaServiceId{
-				UserId:                         "userIdValue",
-				ServiceStorageQuotaBreakdownId: "serviceStorageQuotaBreakdownIdValue",
+				UserId:                         "userId",
+				ServiceStorageQuotaBreakdownId: "serviceStorageQuotaBreakdownId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/users/userIdValue/settings/storage/quota/services/serviceStorageQuotaBreakdownIdValue/extra",
+			Input: "/users/userId/settings/storage/quota/services/serviceStorageQuotaBreakdownId/extra",
 			Error: true,
 		},
 	}
@@ -135,78 +135,78 @@ func TestParseUserIdSettingStorageQuotaServiceIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue",
+			Input: "/users/userId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe",
+			Input: "/uSeRs/uSeRiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/settings",
+			Input: "/users/userId/settings",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/sEtTiNgS",
+			Input: "/uSeRs/uSeRiD/sEtTiNgS",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/settings/storage",
+			Input: "/users/userId/settings/storage",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/sEtTiNgS/sToRaGe",
+			Input: "/uSeRs/uSeRiD/sEtTiNgS/sToRaGe",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/settings/storage/quota",
+			Input: "/users/userId/settings/storage/quota",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/sEtTiNgS/sToRaGe/qUoTa",
+			Input: "/uSeRs/uSeRiD/sEtTiNgS/sToRaGe/qUoTa",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/settings/storage/quota/services",
+			Input: "/users/userId/settings/storage/quota/services",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/sEtTiNgS/sToRaGe/qUoTa/sErViCeS",
+			Input: "/uSeRs/uSeRiD/sEtTiNgS/sToRaGe/qUoTa/sErViCeS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/users/userIdValue/settings/storage/quota/services/serviceStorageQuotaBreakdownIdValue",
+			Input: "/users/userId/settings/storage/quota/services/serviceStorageQuotaBreakdownId",
 			Expected: &UserIdSettingStorageQuotaServiceId{
-				UserId:                         "userIdValue",
-				ServiceStorageQuotaBreakdownId: "serviceStorageQuotaBreakdownIdValue",
+				UserId:                         "userId",
+				ServiceStorageQuotaBreakdownId: "serviceStorageQuotaBreakdownId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/users/userIdValue/settings/storage/quota/services/serviceStorageQuotaBreakdownIdValue/extra",
+			Input: "/users/userId/settings/storage/quota/services/serviceStorageQuotaBreakdownId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/sEtTiNgS/sToRaGe/qUoTa/sErViCeS/sErViCeStOrAgEqUoTaBrEaKdOwNiDvAlUe",
+			Input: "/uSeRs/uSeRiD/sEtTiNgS/sToRaGe/qUoTa/sErViCeS/sErViCeStOrAgEqUoTaBrEaKdOwNiD",
 			Expected: &UserIdSettingStorageQuotaServiceId{
-				UserId:                         "uSeRiDvAlUe",
-				ServiceStorageQuotaBreakdownId: "sErViCeStOrAgEqUoTaBrEaKdOwNiDvAlUe",
+				UserId:                         "uSeRiD",
+				ServiceStorageQuotaBreakdownId: "sErViCeStOrAgEqUoTaBrEaKdOwNiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/sEtTiNgS/sToRaGe/qUoTa/sErViCeS/sErViCeStOrAgEqUoTaBrEaKdOwNiDvAlUe/extra",
+			Input: "/uSeRs/uSeRiD/sEtTiNgS/sToRaGe/qUoTa/sErViCeS/sErViCeStOrAgEqUoTaBrEaKdOwNiD/extra",
 			Error: true,
 		},
 	}

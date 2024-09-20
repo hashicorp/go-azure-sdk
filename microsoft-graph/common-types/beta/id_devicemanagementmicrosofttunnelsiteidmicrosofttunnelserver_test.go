@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &DeviceManagementMicrosoftTunnelSiteIdMicrosoftTunnelServerId{}
 
 func TestNewDeviceManagementMicrosoftTunnelSiteIdMicrosoftTunnelServerID(t *testing.T) {
-	id := NewDeviceManagementMicrosoftTunnelSiteIdMicrosoftTunnelServerID("microsoftTunnelSiteIdValue", "microsoftTunnelServerIdValue")
+	id := NewDeviceManagementMicrosoftTunnelSiteIdMicrosoftTunnelServerID("microsoftTunnelSiteId", "microsoftTunnelServerId")
 
-	if id.MicrosoftTunnelSiteId != "microsoftTunnelSiteIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'MicrosoftTunnelSiteId'", id.MicrosoftTunnelSiteId, "microsoftTunnelSiteIdValue")
+	if id.MicrosoftTunnelSiteId != "microsoftTunnelSiteId" {
+		t.Fatalf("Expected %q but got %q for Segment 'MicrosoftTunnelSiteId'", id.MicrosoftTunnelSiteId, "microsoftTunnelSiteId")
 	}
 
-	if id.MicrosoftTunnelServerId != "microsoftTunnelServerIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'MicrosoftTunnelServerId'", id.MicrosoftTunnelServerId, "microsoftTunnelServerIdValue")
+	if id.MicrosoftTunnelServerId != "microsoftTunnelServerId" {
+		t.Fatalf("Expected %q but got %q for Segment 'MicrosoftTunnelServerId'", id.MicrosoftTunnelServerId, "microsoftTunnelServerId")
 	}
 }
 
 func TestFormatDeviceManagementMicrosoftTunnelSiteIdMicrosoftTunnelServerID(t *testing.T) {
-	actual := NewDeviceManagementMicrosoftTunnelSiteIdMicrosoftTunnelServerID("microsoftTunnelSiteIdValue", "microsoftTunnelServerIdValue").ID()
-	expected := "/deviceManagement/microsoftTunnelSites/microsoftTunnelSiteIdValue/microsoftTunnelServers/microsoftTunnelServerIdValue"
+	actual := NewDeviceManagementMicrosoftTunnelSiteIdMicrosoftTunnelServerID("microsoftTunnelSiteId", "microsoftTunnelServerId").ID()
+	expected := "/deviceManagement/microsoftTunnelSites/microsoftTunnelSiteId/microsoftTunnelServers/microsoftTunnelServerId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -54,25 +54,25 @@ func TestParseDeviceManagementMicrosoftTunnelSiteIdMicrosoftTunnelServerID(t *te
 		},
 		{
 			// Incomplete URI
-			Input: "/deviceManagement/microsoftTunnelSites/microsoftTunnelSiteIdValue",
+			Input: "/deviceManagement/microsoftTunnelSites/microsoftTunnelSiteId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/deviceManagement/microsoftTunnelSites/microsoftTunnelSiteIdValue/microsoftTunnelServers",
+			Input: "/deviceManagement/microsoftTunnelSites/microsoftTunnelSiteId/microsoftTunnelServers",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/microsoftTunnelSites/microsoftTunnelSiteIdValue/microsoftTunnelServers/microsoftTunnelServerIdValue",
+			Input: "/deviceManagement/microsoftTunnelSites/microsoftTunnelSiteId/microsoftTunnelServers/microsoftTunnelServerId",
 			Expected: &DeviceManagementMicrosoftTunnelSiteIdMicrosoftTunnelServerId{
-				MicrosoftTunnelSiteId:   "microsoftTunnelSiteIdValue",
-				MicrosoftTunnelServerId: "microsoftTunnelServerIdValue",
+				MicrosoftTunnelSiteId:   "microsoftTunnelSiteId",
+				MicrosoftTunnelServerId: "microsoftTunnelServerId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/microsoftTunnelSites/microsoftTunnelSiteIdValue/microsoftTunnelServers/microsoftTunnelServerIdValue/extra",
+			Input: "/deviceManagement/microsoftTunnelSites/microsoftTunnelSiteId/microsoftTunnelServers/microsoftTunnelServerId/extra",
 			Error: true,
 		},
 	}
@@ -135,48 +135,48 @@ func TestParseDeviceManagementMicrosoftTunnelSiteIdMicrosoftTunnelServerIDInsens
 		},
 		{
 			// Incomplete URI
-			Input: "/deviceManagement/microsoftTunnelSites/microsoftTunnelSiteIdValue",
+			Input: "/deviceManagement/microsoftTunnelSites/microsoftTunnelSiteId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/mIcRoSoFtTuNnElSiTeS/mIcRoSoFtTuNnElSiTeIdVaLuE",
+			Input: "/dEvIcEmAnAgEmEnT/mIcRoSoFtTuNnElSiTeS/mIcRoSoFtTuNnElSiTeId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/deviceManagement/microsoftTunnelSites/microsoftTunnelSiteIdValue/microsoftTunnelServers",
+			Input: "/deviceManagement/microsoftTunnelSites/microsoftTunnelSiteId/microsoftTunnelServers",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/mIcRoSoFtTuNnElSiTeS/mIcRoSoFtTuNnElSiTeIdVaLuE/mIcRoSoFtTuNnElSeRvErS",
+			Input: "/dEvIcEmAnAgEmEnT/mIcRoSoFtTuNnElSiTeS/mIcRoSoFtTuNnElSiTeId/mIcRoSoFtTuNnElSeRvErS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/microsoftTunnelSites/microsoftTunnelSiteIdValue/microsoftTunnelServers/microsoftTunnelServerIdValue",
+			Input: "/deviceManagement/microsoftTunnelSites/microsoftTunnelSiteId/microsoftTunnelServers/microsoftTunnelServerId",
 			Expected: &DeviceManagementMicrosoftTunnelSiteIdMicrosoftTunnelServerId{
-				MicrosoftTunnelSiteId:   "microsoftTunnelSiteIdValue",
-				MicrosoftTunnelServerId: "microsoftTunnelServerIdValue",
+				MicrosoftTunnelSiteId:   "microsoftTunnelSiteId",
+				MicrosoftTunnelServerId: "microsoftTunnelServerId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/microsoftTunnelSites/microsoftTunnelSiteIdValue/microsoftTunnelServers/microsoftTunnelServerIdValue/extra",
+			Input: "/deviceManagement/microsoftTunnelSites/microsoftTunnelSiteId/microsoftTunnelServers/microsoftTunnelServerId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/mIcRoSoFtTuNnElSiTeS/mIcRoSoFtTuNnElSiTeIdVaLuE/mIcRoSoFtTuNnElSeRvErS/mIcRoSoFtTuNnElSeRvErIdVaLuE",
+			Input: "/dEvIcEmAnAgEmEnT/mIcRoSoFtTuNnElSiTeS/mIcRoSoFtTuNnElSiTeId/mIcRoSoFtTuNnElSeRvErS/mIcRoSoFtTuNnElSeRvErId",
 			Expected: &DeviceManagementMicrosoftTunnelSiteIdMicrosoftTunnelServerId{
-				MicrosoftTunnelSiteId:   "mIcRoSoFtTuNnElSiTeIdVaLuE",
-				MicrosoftTunnelServerId: "mIcRoSoFtTuNnElSeRvErIdVaLuE",
+				MicrosoftTunnelSiteId:   "mIcRoSoFtTuNnElSiTeId",
+				MicrosoftTunnelServerId: "mIcRoSoFtTuNnElSeRvErId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/mIcRoSoFtTuNnElSiTeS/mIcRoSoFtTuNnElSiTeIdVaLuE/mIcRoSoFtTuNnElSeRvErS/mIcRoSoFtTuNnElSeRvErIdVaLuE/extra",
+			Input: "/dEvIcEmAnAgEmEnT/mIcRoSoFtTuNnElSiTeS/mIcRoSoFtTuNnElSiTeId/mIcRoSoFtTuNnElSeRvErS/mIcRoSoFtTuNnElSeRvErId/extra",
 			Error: true,
 		},
 	}

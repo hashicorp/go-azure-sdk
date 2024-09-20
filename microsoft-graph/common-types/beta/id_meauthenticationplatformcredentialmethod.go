@@ -94,7 +94,7 @@ func (id MeAuthenticationPlatformCredentialMethodId) Segments() []resourceids.Se
 		resourceids.StaticSegment("me", "me", "me"),
 		resourceids.StaticSegment("authentication", "authentication", "authentication"),
 		resourceids.StaticSegment("platformCredentialMethods", "platformCredentialMethods", "platformCredentialMethods"),
-		resourceids.UserSpecifiedSegment("platformCredentialAuthenticationMethodId", "platformCredentialAuthenticationMethodIdValue"),
+		resourceids.UserSpecifiedSegment("platformCredentialAuthenticationMethodId", "platformCredentialAuthenticationMethodId"),
 	}
 }
 

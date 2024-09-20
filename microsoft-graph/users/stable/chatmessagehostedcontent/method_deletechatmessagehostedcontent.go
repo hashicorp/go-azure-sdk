@@ -19,7 +19,8 @@ type DeleteChatMessageHostedContentOperationResponse struct {
 }
 
 type DeleteChatMessageHostedContentOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteChatMessageHostedContentOperationOptions() DeleteChatMessageHostedContentOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteChatMessageHostedContentOperationOptions) ToHeaders() *client.Head
 
 func (o DeleteChatMessageHostedContentOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

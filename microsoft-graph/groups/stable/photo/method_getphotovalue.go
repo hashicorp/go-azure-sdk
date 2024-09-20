@@ -19,15 +19,44 @@ type GetPhotoValueOperationResponse struct {
 	Model        *[]byte
 }
 
-// GetPhotoValue - Get media content for the navigation property photo from groups. The group's profile photo
-func (c PhotoClient) GetPhotoValue(ctx context.Context, id stable.GroupId) (result GetPhotoValueOperationResponse, err error) {
+type GetPhotoValueOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultGetPhotoValueOperationOptions() GetPhotoValueOperationOptions {
+	return GetPhotoValueOperationOptions{}
+}
+
+func (o GetPhotoValueOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o GetPhotoValueOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o GetPhotoValueOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
+// GetPhotoValue - List photos. Retrieve a list of profilePhoto objects.
+func (c PhotoClient) GetPhotoValue(ctx context.Context, id stable.GroupIdPhotoId, options GetPhotoValueOperationOptions) (result GetPhotoValueOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/octet-stream",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/photo/$value", id.ID()),
+		HttpMethod:    http.MethodGet,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/$value", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

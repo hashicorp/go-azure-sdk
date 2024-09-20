@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &IdentityGovernanceEntitlementManagementAccessPackageIdIncompatibleAccessPackageId{}
 
 func TestNewIdentityGovernanceEntitlementManagementAccessPackageIdIncompatibleAccessPackageID(t *testing.T) {
-	id := NewIdentityGovernanceEntitlementManagementAccessPackageIdIncompatibleAccessPackageID("accessPackageIdValue", "accessPackageId1Value")
+	id := NewIdentityGovernanceEntitlementManagementAccessPackageIdIncompatibleAccessPackageID("accessPackageId", "accessPackageId1")
 
-	if id.AccessPackageId != "accessPackageIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'AccessPackageId'", id.AccessPackageId, "accessPackageIdValue")
+	if id.AccessPackageId != "accessPackageId" {
+		t.Fatalf("Expected %q but got %q for Segment 'AccessPackageId'", id.AccessPackageId, "accessPackageId")
 	}
 
-	if id.AccessPackageId1 != "accessPackageId1Value" {
-		t.Fatalf("Expected %q but got %q for Segment 'AccessPackageId1'", id.AccessPackageId1, "accessPackageId1Value")
+	if id.AccessPackageId1 != "accessPackageId1" {
+		t.Fatalf("Expected %q but got %q for Segment 'AccessPackageId1'", id.AccessPackageId1, "accessPackageId1")
 	}
 }
 
 func TestFormatIdentityGovernanceEntitlementManagementAccessPackageIdIncompatibleAccessPackageID(t *testing.T) {
-	actual := NewIdentityGovernanceEntitlementManagementAccessPackageIdIncompatibleAccessPackageID("accessPackageIdValue", "accessPackageId1Value").ID()
-	expected := "/identityGovernance/entitlementManagement/accessPackages/accessPackageIdValue/incompatibleAccessPackages/accessPackageId1Value"
+	actual := NewIdentityGovernanceEntitlementManagementAccessPackageIdIncompatibleAccessPackageID("accessPackageId", "accessPackageId1").ID()
+	expected := "/identityGovernance/entitlementManagement/accessPackages/accessPackageId/incompatibleAccessPackages/accessPackageId1"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -59,25 +59,25 @@ func TestParseIdentityGovernanceEntitlementManagementAccessPackageIdIncompatible
 		},
 		{
 			// Incomplete URI
-			Input: "/identityGovernance/entitlementManagement/accessPackages/accessPackageIdValue",
+			Input: "/identityGovernance/entitlementManagement/accessPackages/accessPackageId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/identityGovernance/entitlementManagement/accessPackages/accessPackageIdValue/incompatibleAccessPackages",
+			Input: "/identityGovernance/entitlementManagement/accessPackages/accessPackageId/incompatibleAccessPackages",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/identityGovernance/entitlementManagement/accessPackages/accessPackageIdValue/incompatibleAccessPackages/accessPackageId1Value",
+			Input: "/identityGovernance/entitlementManagement/accessPackages/accessPackageId/incompatibleAccessPackages/accessPackageId1",
 			Expected: &IdentityGovernanceEntitlementManagementAccessPackageIdIncompatibleAccessPackageId{
-				AccessPackageId:  "accessPackageIdValue",
-				AccessPackageId1: "accessPackageId1Value",
+				AccessPackageId:  "accessPackageId",
+				AccessPackageId1: "accessPackageId1",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/identityGovernance/entitlementManagement/accessPackages/accessPackageIdValue/incompatibleAccessPackages/accessPackageId1Value/extra",
+			Input: "/identityGovernance/entitlementManagement/accessPackages/accessPackageId/incompatibleAccessPackages/accessPackageId1/extra",
 			Error: true,
 		},
 	}
@@ -150,48 +150,48 @@ func TestParseIdentityGovernanceEntitlementManagementAccessPackageIdIncompatible
 		},
 		{
 			// Incomplete URI
-			Input: "/identityGovernance/entitlementManagement/accessPackages/accessPackageIdValue",
+			Input: "/identityGovernance/entitlementManagement/accessPackages/accessPackageId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/iDeNtItYgOvErNaNcE/eNtItLeMeNtMaNaGeMeNt/aCcEsSpAcKaGeS/aCcEsSpAcKaGeIdVaLuE",
+			Input: "/iDeNtItYgOvErNaNcE/eNtItLeMeNtMaNaGeMeNt/aCcEsSpAcKaGeS/aCcEsSpAcKaGeId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/identityGovernance/entitlementManagement/accessPackages/accessPackageIdValue/incompatibleAccessPackages",
+			Input: "/identityGovernance/entitlementManagement/accessPackages/accessPackageId/incompatibleAccessPackages",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/iDeNtItYgOvErNaNcE/eNtItLeMeNtMaNaGeMeNt/aCcEsSpAcKaGeS/aCcEsSpAcKaGeIdVaLuE/iNcOmPaTiBlEaCcEsSpAcKaGeS",
+			Input: "/iDeNtItYgOvErNaNcE/eNtItLeMeNtMaNaGeMeNt/aCcEsSpAcKaGeS/aCcEsSpAcKaGeId/iNcOmPaTiBlEaCcEsSpAcKaGeS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/identityGovernance/entitlementManagement/accessPackages/accessPackageIdValue/incompatibleAccessPackages/accessPackageId1Value",
+			Input: "/identityGovernance/entitlementManagement/accessPackages/accessPackageId/incompatibleAccessPackages/accessPackageId1",
 			Expected: &IdentityGovernanceEntitlementManagementAccessPackageIdIncompatibleAccessPackageId{
-				AccessPackageId:  "accessPackageIdValue",
-				AccessPackageId1: "accessPackageId1Value",
+				AccessPackageId:  "accessPackageId",
+				AccessPackageId1: "accessPackageId1",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/identityGovernance/entitlementManagement/accessPackages/accessPackageIdValue/incompatibleAccessPackages/accessPackageId1Value/extra",
+			Input: "/identityGovernance/entitlementManagement/accessPackages/accessPackageId/incompatibleAccessPackages/accessPackageId1/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/iDeNtItYgOvErNaNcE/eNtItLeMeNtMaNaGeMeNt/aCcEsSpAcKaGeS/aCcEsSpAcKaGeIdVaLuE/iNcOmPaTiBlEaCcEsSpAcKaGeS/aCcEsSpAcKaGeId1vAlUe",
+			Input: "/iDeNtItYgOvErNaNcE/eNtItLeMeNtMaNaGeMeNt/aCcEsSpAcKaGeS/aCcEsSpAcKaGeId/iNcOmPaTiBlEaCcEsSpAcKaGeS/aCcEsSpAcKaGeId1",
 			Expected: &IdentityGovernanceEntitlementManagementAccessPackageIdIncompatibleAccessPackageId{
-				AccessPackageId:  "aCcEsSpAcKaGeIdVaLuE",
-				AccessPackageId1: "aCcEsSpAcKaGeId1vAlUe",
+				AccessPackageId:  "aCcEsSpAcKaGeId",
+				AccessPackageId1: "aCcEsSpAcKaGeId1",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/iDeNtItYgOvErNaNcE/eNtItLeMeNtMaNaGeMeNt/aCcEsSpAcKaGeS/aCcEsSpAcKaGeIdVaLuE/iNcOmPaTiBlEaCcEsSpAcKaGeS/aCcEsSpAcKaGeId1vAlUe/extra",
+			Input: "/iDeNtItYgOvErNaNcE/eNtItLeMeNtMaNaGeMeNt/aCcEsSpAcKaGeS/aCcEsSpAcKaGeId/iNcOmPaTiBlEaCcEsSpAcKaGeS/aCcEsSpAcKaGeId1/extra",
 			Error: true,
 		},
 	}

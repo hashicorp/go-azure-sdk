@@ -106,12 +106,26 @@ func (s UrlAssessmentRequest) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &UrlAssessmentRequest{}
 
 func (s *UrlAssessmentRequest) UnmarshalJSON(bytes []byte) error {
-	type alias UrlAssessmentRequest
-	var decoded alias
+
+	var decoded struct {
+		Url                *string                        `json:"url,omitempty"`
+		Category           *ThreatCategory                `json:"category,omitempty"`
+		ContentType        *ThreatAssessmentContentType   `json:"contentType,omitempty"`
+		CreatedBy          IdentitySet                    `json:"createdBy"`
+		CreatedDateTime    nullable.Type[string]          `json:"createdDateTime,omitempty"`
+		ExpectedAssessment *ThreatExpectedAssessment      `json:"expectedAssessment,omitempty"`
+		RequestSource      *ThreatAssessmentRequestSource `json:"requestSource,omitempty"`
+		Results            *[]ThreatAssessmentResult      `json:"results,omitempty"`
+		Status             *ThreatAssessmentStatus        `json:"status,omitempty"`
+		Id                 *string                        `json:"id,omitempty"`
+		ODataId            *string                        `json:"@odata.id,omitempty"`
+		ODataType          *string                        `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into UrlAssessmentRequest: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
+	s.Url = decoded.Url
 	s.Category = decoded.Category
 	s.ContentType = decoded.ContentType
 	s.CreatedDateTime = decoded.CreatedDateTime
@@ -122,7 +136,6 @@ func (s *UrlAssessmentRequest) UnmarshalJSON(bytes []byte) error {
 	s.RequestSource = decoded.RequestSource
 	s.Results = decoded.Results
 	s.Status = decoded.Status
-	s.Url = decoded.Url
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -136,5 +149,6 @@ func (s *UrlAssessmentRequest) UnmarshalJSON(bytes []byte) error {
 		}
 		s.CreatedBy = impl
 	}
+
 	return nil
 }

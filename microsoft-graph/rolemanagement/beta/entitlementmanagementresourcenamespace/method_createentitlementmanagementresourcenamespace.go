@@ -18,16 +18,45 @@ type CreateEntitlementManagementResourceNamespaceOperationResponse struct {
 	Model        *beta.UnifiedRbacResourceNamespace
 }
 
+type CreateEntitlementManagementResourceNamespaceOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateEntitlementManagementResourceNamespaceOperationOptions() CreateEntitlementManagementResourceNamespaceOperationOptions {
+	return CreateEntitlementManagementResourceNamespaceOperationOptions{}
+}
+
+func (o CreateEntitlementManagementResourceNamespaceOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateEntitlementManagementResourceNamespaceOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateEntitlementManagementResourceNamespaceOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateEntitlementManagementResourceNamespace - Create new navigation property to resourceNamespaces for
 // roleManagement
-func (c EntitlementManagementResourceNamespaceClient) CreateEntitlementManagementResourceNamespace(ctx context.Context, input beta.UnifiedRbacResourceNamespace) (result CreateEntitlementManagementResourceNamespaceOperationResponse, err error) {
+func (c EntitlementManagementResourceNamespaceClient) CreateEntitlementManagementResourceNamespace(ctx context.Context, input beta.UnifiedRbacResourceNamespace, options CreateEntitlementManagementResourceNamespaceOperationOptions) (result CreateEntitlementManagementResourceNamespaceOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/roleManagement/entitlementManagement/resourceNamespaces",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/roleManagement/entitlementManagement/resourceNamespaces",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

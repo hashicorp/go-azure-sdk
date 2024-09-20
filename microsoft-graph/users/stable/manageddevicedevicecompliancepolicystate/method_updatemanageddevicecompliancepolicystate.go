@@ -17,15 +17,44 @@ type UpdateManagedDeviceCompliancePolicyStateOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateManagedDeviceCompliancePolicyStateOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateManagedDeviceCompliancePolicyStateOperationOptions() UpdateManagedDeviceCompliancePolicyStateOperationOptions {
+	return UpdateManagedDeviceCompliancePolicyStateOperationOptions{}
+}
+
+func (o UpdateManagedDeviceCompliancePolicyStateOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateManagedDeviceCompliancePolicyStateOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateManagedDeviceCompliancePolicyStateOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateManagedDeviceCompliancePolicyState - Update the navigation property deviceCompliancePolicyStates in users
-func (c ManagedDeviceDeviceCompliancePolicyStateClient) UpdateManagedDeviceCompliancePolicyState(ctx context.Context, id stable.UserIdManagedDeviceIdDeviceCompliancePolicyStateId, input stable.DeviceCompliancePolicyState) (result UpdateManagedDeviceCompliancePolicyStateOperationResponse, err error) {
+func (c ManagedDeviceDeviceCompliancePolicyStateClient) UpdateManagedDeviceCompliancePolicyState(ctx context.Context, id stable.UserIdManagedDeviceIdDeviceCompliancePolicyStateId, input stable.DeviceCompliancePolicyState, options UpdateManagedDeviceCompliancePolicyStateOperationOptions) (result UpdateManagedDeviceCompliancePolicyStateOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &UserIdProfileAwardId{}
 
 func TestNewUserIdProfileAwardID(t *testing.T) {
-	id := NewUserIdProfileAwardID("userIdValue", "personAwardIdValue")
+	id := NewUserIdProfileAwardID("userId", "personAwardId")
 
-	if id.UserId != "userIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'UserId'", id.UserId, "userIdValue")
+	if id.UserId != "userId" {
+		t.Fatalf("Expected %q but got %q for Segment 'UserId'", id.UserId, "userId")
 	}
 
-	if id.PersonAwardId != "personAwardIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'PersonAwardId'", id.PersonAwardId, "personAwardIdValue")
+	if id.PersonAwardId != "personAwardId" {
+		t.Fatalf("Expected %q but got %q for Segment 'PersonAwardId'", id.PersonAwardId, "personAwardId")
 	}
 }
 
 func TestFormatUserIdProfileAwardID(t *testing.T) {
-	actual := NewUserIdProfileAwardID("userIdValue", "personAwardIdValue").ID()
-	expected := "/users/userIdValue/profile/awards/personAwardIdValue"
+	actual := NewUserIdProfileAwardID("userId", "personAwardId").ID()
+	expected := "/users/userId/profile/awards/personAwardId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -49,30 +49,30 @@ func TestParseUserIdProfileAwardID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue",
+			Input: "/users/userId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/profile",
+			Input: "/users/userId/profile",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/profile/awards",
+			Input: "/users/userId/profile/awards",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/users/userIdValue/profile/awards/personAwardIdValue",
+			Input: "/users/userId/profile/awards/personAwardId",
 			Expected: &UserIdProfileAwardId{
-				UserId:        "userIdValue",
-				PersonAwardId: "personAwardIdValue",
+				UserId:        "userId",
+				PersonAwardId: "personAwardId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/users/userIdValue/profile/awards/personAwardIdValue/extra",
+			Input: "/users/userId/profile/awards/personAwardId/extra",
 			Error: true,
 		},
 	}
@@ -125,58 +125,58 @@ func TestParseUserIdProfileAwardIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue",
+			Input: "/users/userId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe",
+			Input: "/uSeRs/uSeRiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/profile",
+			Input: "/users/userId/profile",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/pRoFiLe",
+			Input: "/uSeRs/uSeRiD/pRoFiLe",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/profile/awards",
+			Input: "/users/userId/profile/awards",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/pRoFiLe/aWaRdS",
+			Input: "/uSeRs/uSeRiD/pRoFiLe/aWaRdS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/users/userIdValue/profile/awards/personAwardIdValue",
+			Input: "/users/userId/profile/awards/personAwardId",
 			Expected: &UserIdProfileAwardId{
-				UserId:        "userIdValue",
-				PersonAwardId: "personAwardIdValue",
+				UserId:        "userId",
+				PersonAwardId: "personAwardId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/users/userIdValue/profile/awards/personAwardIdValue/extra",
+			Input: "/users/userId/profile/awards/personAwardId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/pRoFiLe/aWaRdS/pErSoNaWaRdIdVaLuE",
+			Input: "/uSeRs/uSeRiD/pRoFiLe/aWaRdS/pErSoNaWaRdId",
 			Expected: &UserIdProfileAwardId{
-				UserId:        "uSeRiDvAlUe",
-				PersonAwardId: "pErSoNaWaRdIdVaLuE",
+				UserId:        "uSeRiD",
+				PersonAwardId: "pErSoNaWaRdId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/pRoFiLe/aWaRdS/pErSoNaWaRdIdVaLuE/extra",
+			Input: "/uSeRs/uSeRiD/pRoFiLe/aWaRdS/pErSoNaWaRdId/extra",
 			Error: true,
 		},
 	}

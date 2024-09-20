@@ -104,12 +104,12 @@ func (id UserIdOnlineMeetingIdMeetingAttendanceReportAttendanceRecordId) ID() st
 func (id UserIdOnlineMeetingIdMeetingAttendanceReportAttendanceRecordId) Segments() []resourceids.Segment {
 	return []resourceids.Segment{
 		resourceids.StaticSegment("users", "users", "users"),
-		resourceids.UserSpecifiedSegment("userId", "userIdValue"),
+		resourceids.UserSpecifiedSegment("userId", "userId"),
 		resourceids.StaticSegment("onlineMeetings", "onlineMeetings", "onlineMeetings"),
-		resourceids.UserSpecifiedSegment("onlineMeetingId", "onlineMeetingIdValue"),
+		resourceids.UserSpecifiedSegment("onlineMeetingId", "onlineMeetingId"),
 		resourceids.StaticSegment("meetingAttendanceReport", "meetingAttendanceReport", "meetingAttendanceReport"),
 		resourceids.StaticSegment("attendanceRecords", "attendanceRecords", "attendanceRecords"),
-		resourceids.UserSpecifiedSegment("attendanceRecordId", "attendanceRecordIdValue"),
+		resourceids.UserSpecifiedSegment("attendanceRecordId", "attendanceRecordId"),
 	}
 }
 

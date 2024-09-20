@@ -83,21 +83,31 @@ func (s WindowsUpdatesProductRevision) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &WindowsUpdatesProductRevision{}
 
 func (s *WindowsUpdatesProductRevision) UnmarshalJSON(bytes []byte) error {
-	type alias WindowsUpdatesProductRevision
-	var decoded alias
+
+	var decoded struct {
+		DisplayName          *string                             `json:"displayName,omitempty"`
+		KnowledgeBaseArticle *WindowsUpdatesKnowledgeBaseArticle `json:"knowledgeBaseArticle,omitempty"`
+		OsBuild              *WindowsUpdatesBuildVersionDetails  `json:"osBuild,omitempty"`
+		Product              *string                             `json:"product,omitempty"`
+		ReleaseDateTime      *string                             `json:"releaseDateTime,omitempty"`
+		Version              *string                             `json:"version,omitempty"`
+		Id                   *string                             `json:"id,omitempty"`
+		ODataId              *string                             `json:"@odata.id,omitempty"`
+		ODataType            *string                             `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into WindowsUpdatesProductRevision: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.DisplayName = decoded.DisplayName
-	s.Id = decoded.Id
 	s.KnowledgeBaseArticle = decoded.KnowledgeBaseArticle
-	s.ODataId = decoded.ODataId
-	s.ODataType = decoded.ODataType
 	s.OsBuild = decoded.OsBuild
 	s.Product = decoded.Product
 	s.ReleaseDateTime = decoded.ReleaseDateTime
 	s.Version = decoded.Version
+	s.Id = decoded.Id
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -111,5 +121,6 @@ func (s *WindowsUpdatesProductRevision) UnmarshalJSON(bytes []byte) error {
 		}
 		s.CatalogEntry = &impl
 	}
+
 	return nil
 }

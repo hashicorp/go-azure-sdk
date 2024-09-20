@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &DeviceManagementMicrosoftTunnelServerLogCollectionResponseId{}
 
 func TestNewDeviceManagementMicrosoftTunnelServerLogCollectionResponseID(t *testing.T) {
-	id := NewDeviceManagementMicrosoftTunnelServerLogCollectionResponseID("microsoftTunnelServerLogCollectionResponseIdValue")
+	id := NewDeviceManagementMicrosoftTunnelServerLogCollectionResponseID("microsoftTunnelServerLogCollectionResponseId")
 
-	if id.MicrosoftTunnelServerLogCollectionResponseId != "microsoftTunnelServerLogCollectionResponseIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'MicrosoftTunnelServerLogCollectionResponseId'", id.MicrosoftTunnelServerLogCollectionResponseId, "microsoftTunnelServerLogCollectionResponseIdValue")
+	if id.MicrosoftTunnelServerLogCollectionResponseId != "microsoftTunnelServerLogCollectionResponseId" {
+		t.Fatalf("Expected %q but got %q for Segment 'MicrosoftTunnelServerLogCollectionResponseId'", id.MicrosoftTunnelServerLogCollectionResponseId, "microsoftTunnelServerLogCollectionResponseId")
 	}
 }
 
 func TestFormatDeviceManagementMicrosoftTunnelServerLogCollectionResponseID(t *testing.T) {
-	actual := NewDeviceManagementMicrosoftTunnelServerLogCollectionResponseID("microsoftTunnelServerLogCollectionResponseIdValue").ID()
-	expected := "/deviceManagement/microsoftTunnelServerLogCollectionResponses/microsoftTunnelServerLogCollectionResponseIdValue"
+	actual := NewDeviceManagementMicrosoftTunnelServerLogCollectionResponseID("microsoftTunnelServerLogCollectionResponseId").ID()
+	expected := "/deviceManagement/microsoftTunnelServerLogCollectionResponses/microsoftTunnelServerLogCollectionResponseId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -50,14 +50,14 @@ func TestParseDeviceManagementMicrosoftTunnelServerLogCollectionResponseID(t *te
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/microsoftTunnelServerLogCollectionResponses/microsoftTunnelServerLogCollectionResponseIdValue",
+			Input: "/deviceManagement/microsoftTunnelServerLogCollectionResponses/microsoftTunnelServerLogCollectionResponseId",
 			Expected: &DeviceManagementMicrosoftTunnelServerLogCollectionResponseId{
-				MicrosoftTunnelServerLogCollectionResponseId: "microsoftTunnelServerLogCollectionResponseIdValue",
+				MicrosoftTunnelServerLogCollectionResponseId: "microsoftTunnelServerLogCollectionResponseId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/microsoftTunnelServerLogCollectionResponses/microsoftTunnelServerLogCollectionResponseIdValue/extra",
+			Input: "/deviceManagement/microsoftTunnelServerLogCollectionResponses/microsoftTunnelServerLogCollectionResponseId/extra",
 			Error: true,
 		},
 	}
@@ -116,26 +116,26 @@ func TestParseDeviceManagementMicrosoftTunnelServerLogCollectionResponseIDInsens
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/microsoftTunnelServerLogCollectionResponses/microsoftTunnelServerLogCollectionResponseIdValue",
+			Input: "/deviceManagement/microsoftTunnelServerLogCollectionResponses/microsoftTunnelServerLogCollectionResponseId",
 			Expected: &DeviceManagementMicrosoftTunnelServerLogCollectionResponseId{
-				MicrosoftTunnelServerLogCollectionResponseId: "microsoftTunnelServerLogCollectionResponseIdValue",
+				MicrosoftTunnelServerLogCollectionResponseId: "microsoftTunnelServerLogCollectionResponseId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/microsoftTunnelServerLogCollectionResponses/microsoftTunnelServerLogCollectionResponseIdValue/extra",
+			Input: "/deviceManagement/microsoftTunnelServerLogCollectionResponses/microsoftTunnelServerLogCollectionResponseId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/mIcRoSoFtTuNnElSeRvErLoGcOlLeCtIoNrEsPoNsEs/mIcRoSoFtTuNnElSeRvErLoGcOlLeCtIoNrEsPoNsEiDvAlUe",
+			Input: "/dEvIcEmAnAgEmEnT/mIcRoSoFtTuNnElSeRvErLoGcOlLeCtIoNrEsPoNsEs/mIcRoSoFtTuNnElSeRvErLoGcOlLeCtIoNrEsPoNsEiD",
 			Expected: &DeviceManagementMicrosoftTunnelServerLogCollectionResponseId{
-				MicrosoftTunnelServerLogCollectionResponseId: "mIcRoSoFtTuNnElSeRvErLoGcOlLeCtIoNrEsPoNsEiDvAlUe",
+				MicrosoftTunnelServerLogCollectionResponseId: "mIcRoSoFtTuNnElSeRvErLoGcOlLeCtIoNrEsPoNsEiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/mIcRoSoFtTuNnElSeRvErLoGcOlLeCtIoNrEsPoNsEs/mIcRoSoFtTuNnElSeRvErLoGcOlLeCtIoNrEsPoNsEiDvAlUe/extra",
+			Input: "/dEvIcEmAnAgEmEnT/mIcRoSoFtTuNnElSeRvErLoGcOlLeCtIoNrEsPoNsEs/mIcRoSoFtTuNnElSeRvErLoGcOlLeCtIoNrEsPoNsEiD/extra",
 			Error: true,
 		},
 	}

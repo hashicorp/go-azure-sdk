@@ -17,15 +17,44 @@ type UpdateDirectoryRoleOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateDirectoryRoleOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateDirectoryRoleOperationOptions() UpdateDirectoryRoleOperationOptions {
+	return UpdateDirectoryRoleOperationOptions{}
+}
+
+func (o UpdateDirectoryRoleOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateDirectoryRoleOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateDirectoryRoleOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateDirectoryRole - Update entity in directoryRoles
-func (c DirectoryRoleClient) UpdateDirectoryRole(ctx context.Context, id stable.DirectoryRoleId, input stable.DirectoryRole) (result UpdateDirectoryRoleOperationResponse, err error) {
+func (c DirectoryRoleClient) UpdateDirectoryRole(ctx context.Context, id stable.DirectoryRoleId, input stable.DirectoryRole, options UpdateDirectoryRoleOperationOptions) (result UpdateDirectoryRoleOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

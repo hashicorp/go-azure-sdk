@@ -18,15 +18,44 @@ type CreateActivityBasedTimeoutPolicyOperationResponse struct {
 	Model        *beta.ActivityBasedTimeoutPolicy
 }
 
+type CreateActivityBasedTimeoutPolicyOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateActivityBasedTimeoutPolicyOperationOptions() CreateActivityBasedTimeoutPolicyOperationOptions {
+	return CreateActivityBasedTimeoutPolicyOperationOptions{}
+}
+
+func (o CreateActivityBasedTimeoutPolicyOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateActivityBasedTimeoutPolicyOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateActivityBasedTimeoutPolicyOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateActivityBasedTimeoutPolicy - Create activityBasedTimeoutPolicy. Create a new activityBasedTimeoutPolicy object.
-func (c ActivityBasedTimeoutPolicyClient) CreateActivityBasedTimeoutPolicy(ctx context.Context, input beta.ActivityBasedTimeoutPolicy) (result CreateActivityBasedTimeoutPolicyOperationResponse, err error) {
+func (c ActivityBasedTimeoutPolicyClient) CreateActivityBasedTimeoutPolicy(ctx context.Context, input beta.ActivityBasedTimeoutPolicy, options CreateActivityBasedTimeoutPolicyOperationOptions) (result CreateActivityBasedTimeoutPolicyOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/policies/activityBasedTimeoutPolicies",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/policies/activityBasedTimeoutPolicies",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -17,15 +17,44 @@ type UpdateDirectoryRoleEligibilityScheduleOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateDirectoryRoleEligibilityScheduleOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateDirectoryRoleEligibilityScheduleOperationOptions() UpdateDirectoryRoleEligibilityScheduleOperationOptions {
+	return UpdateDirectoryRoleEligibilityScheduleOperationOptions{}
+}
+
+func (o UpdateDirectoryRoleEligibilityScheduleOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateDirectoryRoleEligibilityScheduleOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateDirectoryRoleEligibilityScheduleOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateDirectoryRoleEligibilitySchedule - Update the navigation property roleEligibilitySchedules in roleManagement
-func (c DirectoryRoleEligibilityScheduleClient) UpdateDirectoryRoleEligibilitySchedule(ctx context.Context, id stable.RoleManagementDirectoryRoleEligibilityScheduleId, input stable.UnifiedRoleEligibilitySchedule) (result UpdateDirectoryRoleEligibilityScheduleOperationResponse, err error) {
+func (c DirectoryRoleEligibilityScheduleClient) UpdateDirectoryRoleEligibilitySchedule(ctx context.Context, id stable.RoleManagementDirectoryRoleEligibilityScheduleId, input stable.UnifiedRoleEligibilitySchedule, options UpdateDirectoryRoleEligibilityScheduleOperationOptions) (result UpdateDirectoryRoleEligibilityScheduleOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

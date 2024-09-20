@@ -125,21 +125,31 @@ func (s BaseIndustryDataInboundFlowImpl) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &BaseIndustryDataInboundFlowImpl{}
 
 func (s *BaseIndustryDataInboundFlowImpl) UnmarshalJSON(bytes []byte) error {
-	type alias BaseIndustryDataInboundFlowImpl
-	var decoded alias
+
+	var decoded struct {
+		DataDomain         *IndustryDataInboundDomain            `json:"dataDomain,omitempty"`
+		EffectiveDateTime  *string                               `json:"effectiveDateTime,omitempty"`
+		ExpirationDateTime nullable.Type[string]                 `json:"expirationDateTime,omitempty"`
+		Year               *IndustryDataYearTimePeriodDefinition `json:"year,omitempty"`
+		DisplayName        *string                               `json:"displayName,omitempty"`
+		ReadinessStatus    *IndustryDataReadinessStatus          `json:"readinessStatus,omitempty"`
+		Id                 *string                               `json:"id,omitempty"`
+		ODataId            *string                               `json:"@odata.id,omitempty"`
+		ODataType          *string                               `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into BaseIndustryDataInboundFlowImpl: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.DataDomain = decoded.DataDomain
-	s.DisplayName = decoded.DisplayName
 	s.EffectiveDateTime = decoded.EffectiveDateTime
 	s.ExpirationDateTime = decoded.ExpirationDateTime
+	s.Year = decoded.Year
+	s.DisplayName = decoded.DisplayName
 	s.Id = decoded.Id
 	s.ODataId = decoded.ODataId
 	s.ODataType = decoded.ODataType
 	s.ReadinessStatus = decoded.ReadinessStatus
-	s.Year = decoded.Year
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -153,6 +163,7 @@ func (s *BaseIndustryDataInboundFlowImpl) UnmarshalJSON(bytes []byte) error {
 		}
 		s.DataConnector = &impl
 	}
+
 	return nil
 }
 
@@ -166,9 +177,9 @@ func UnmarshalIndustryDataInboundFlowImplementation(input []byte) (IndustryDataI
 		return nil, fmt.Errorf("unmarshaling IndustryDataInboundFlow into map[string]interface: %+v", err)
 	}
 
-	value, ok := temp["@odata.type"].(string)
-	if !ok {
-		return nil, nil
+	var value string
+	if v, ok := temp["@odata.type"]; ok {
+		value = fmt.Sprintf("%v", v)
 	}
 
 	if strings.EqualFold(value, "#microsoft.graph.industryData.inboundApiFlow") {

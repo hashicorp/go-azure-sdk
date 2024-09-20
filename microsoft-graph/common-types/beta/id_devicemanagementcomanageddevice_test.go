@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &DeviceManagementComanagedDeviceId{}
 
 func TestNewDeviceManagementComanagedDeviceID(t *testing.T) {
-	id := NewDeviceManagementComanagedDeviceID("managedDeviceIdValue")
+	id := NewDeviceManagementComanagedDeviceID("managedDeviceId")
 
-	if id.ManagedDeviceId != "managedDeviceIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ManagedDeviceId'", id.ManagedDeviceId, "managedDeviceIdValue")
+	if id.ManagedDeviceId != "managedDeviceId" {
+		t.Fatalf("Expected %q but got %q for Segment 'ManagedDeviceId'", id.ManagedDeviceId, "managedDeviceId")
 	}
 }
 
 func TestFormatDeviceManagementComanagedDeviceID(t *testing.T) {
-	actual := NewDeviceManagementComanagedDeviceID("managedDeviceIdValue").ID()
-	expected := "/deviceManagement/comanagedDevices/managedDeviceIdValue"
+	actual := NewDeviceManagementComanagedDeviceID("managedDeviceId").ID()
+	expected := "/deviceManagement/comanagedDevices/managedDeviceId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -50,14 +50,14 @@ func TestParseDeviceManagementComanagedDeviceID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/comanagedDevices/managedDeviceIdValue",
+			Input: "/deviceManagement/comanagedDevices/managedDeviceId",
 			Expected: &DeviceManagementComanagedDeviceId{
-				ManagedDeviceId: "managedDeviceIdValue",
+				ManagedDeviceId: "managedDeviceId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/comanagedDevices/managedDeviceIdValue/extra",
+			Input: "/deviceManagement/comanagedDevices/managedDeviceId/extra",
 			Error: true,
 		},
 	}
@@ -116,26 +116,26 @@ func TestParseDeviceManagementComanagedDeviceIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/comanagedDevices/managedDeviceIdValue",
+			Input: "/deviceManagement/comanagedDevices/managedDeviceId",
 			Expected: &DeviceManagementComanagedDeviceId{
-				ManagedDeviceId: "managedDeviceIdValue",
+				ManagedDeviceId: "managedDeviceId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/comanagedDevices/managedDeviceIdValue/extra",
+			Input: "/deviceManagement/comanagedDevices/managedDeviceId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/cOmAnAgEdDeViCeS/mAnAgEdDeViCeIdVaLuE",
+			Input: "/dEvIcEmAnAgEmEnT/cOmAnAgEdDeViCeS/mAnAgEdDeViCeId",
 			Expected: &DeviceManagementComanagedDeviceId{
-				ManagedDeviceId: "mAnAgEdDeViCeIdVaLuE",
+				ManagedDeviceId: "mAnAgEdDeViCeId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/cOmAnAgEdDeViCeS/mAnAgEdDeViCeIdVaLuE/extra",
+			Input: "/dEvIcEmAnAgEmEnT/cOmAnAgEdDeViCeS/mAnAgEdDeViCeId/extra",
 			Error: true,
 		},
 	}

@@ -99,9 +99,9 @@ func (id DeviceManagementNotificationMessageTemplateIdLocalizedNotificationMessa
 	return []resourceids.Segment{
 		resourceids.StaticSegment("deviceManagement", "deviceManagement", "deviceManagement"),
 		resourceids.StaticSegment("notificationMessageTemplates", "notificationMessageTemplates", "notificationMessageTemplates"),
-		resourceids.UserSpecifiedSegment("notificationMessageTemplateId", "notificationMessageTemplateIdValue"),
+		resourceids.UserSpecifiedSegment("notificationMessageTemplateId", "notificationMessageTemplateId"),
 		resourceids.StaticSegment("localizedNotificationMessages", "localizedNotificationMessages", "localizedNotificationMessages"),
-		resourceids.UserSpecifiedSegment("localizedNotificationMessageId", "localizedNotificationMessageIdValue"),
+		resourceids.UserSpecifiedSegment("localizedNotificationMessageId", "localizedNotificationMessageId"),
 	}
 }
 

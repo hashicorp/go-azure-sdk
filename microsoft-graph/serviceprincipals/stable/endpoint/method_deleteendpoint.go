@@ -19,7 +19,8 @@ type DeleteEndpointOperationResponse struct {
 }
 
 type DeleteEndpointOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteEndpointOperationOptions() DeleteEndpointOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteEndpointOperationOptions) ToHeaders() *client.Headers {
 
 func (o DeleteEndpointOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

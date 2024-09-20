@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &DeviceManagementAndroidForWorkEnrollmentProfileId{}
 
 func TestNewDeviceManagementAndroidForWorkEnrollmentProfileID(t *testing.T) {
-	id := NewDeviceManagementAndroidForWorkEnrollmentProfileID("androidForWorkEnrollmentProfileIdValue")
+	id := NewDeviceManagementAndroidForWorkEnrollmentProfileID("androidForWorkEnrollmentProfileId")
 
-	if id.AndroidForWorkEnrollmentProfileId != "androidForWorkEnrollmentProfileIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'AndroidForWorkEnrollmentProfileId'", id.AndroidForWorkEnrollmentProfileId, "androidForWorkEnrollmentProfileIdValue")
+	if id.AndroidForWorkEnrollmentProfileId != "androidForWorkEnrollmentProfileId" {
+		t.Fatalf("Expected %q but got %q for Segment 'AndroidForWorkEnrollmentProfileId'", id.AndroidForWorkEnrollmentProfileId, "androidForWorkEnrollmentProfileId")
 	}
 }
 
 func TestFormatDeviceManagementAndroidForWorkEnrollmentProfileID(t *testing.T) {
-	actual := NewDeviceManagementAndroidForWorkEnrollmentProfileID("androidForWorkEnrollmentProfileIdValue").ID()
-	expected := "/deviceManagement/androidForWorkEnrollmentProfiles/androidForWorkEnrollmentProfileIdValue"
+	actual := NewDeviceManagementAndroidForWorkEnrollmentProfileID("androidForWorkEnrollmentProfileId").ID()
+	expected := "/deviceManagement/androidForWorkEnrollmentProfiles/androidForWorkEnrollmentProfileId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -50,14 +50,14 @@ func TestParseDeviceManagementAndroidForWorkEnrollmentProfileID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/androidForWorkEnrollmentProfiles/androidForWorkEnrollmentProfileIdValue",
+			Input: "/deviceManagement/androidForWorkEnrollmentProfiles/androidForWorkEnrollmentProfileId",
 			Expected: &DeviceManagementAndroidForWorkEnrollmentProfileId{
-				AndroidForWorkEnrollmentProfileId: "androidForWorkEnrollmentProfileIdValue",
+				AndroidForWorkEnrollmentProfileId: "androidForWorkEnrollmentProfileId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/androidForWorkEnrollmentProfiles/androidForWorkEnrollmentProfileIdValue/extra",
+			Input: "/deviceManagement/androidForWorkEnrollmentProfiles/androidForWorkEnrollmentProfileId/extra",
 			Error: true,
 		},
 	}
@@ -116,26 +116,26 @@ func TestParseDeviceManagementAndroidForWorkEnrollmentProfileIDInsensitively(t *
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/androidForWorkEnrollmentProfiles/androidForWorkEnrollmentProfileIdValue",
+			Input: "/deviceManagement/androidForWorkEnrollmentProfiles/androidForWorkEnrollmentProfileId",
 			Expected: &DeviceManagementAndroidForWorkEnrollmentProfileId{
-				AndroidForWorkEnrollmentProfileId: "androidForWorkEnrollmentProfileIdValue",
+				AndroidForWorkEnrollmentProfileId: "androidForWorkEnrollmentProfileId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/androidForWorkEnrollmentProfiles/androidForWorkEnrollmentProfileIdValue/extra",
+			Input: "/deviceManagement/androidForWorkEnrollmentProfiles/androidForWorkEnrollmentProfileId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/aNdRoIdFoRwOrKeNrOlLmEnTpRoFiLeS/aNdRoIdFoRwOrKeNrOlLmEnTpRoFiLeIdVaLuE",
+			Input: "/dEvIcEmAnAgEmEnT/aNdRoIdFoRwOrKeNrOlLmEnTpRoFiLeS/aNdRoIdFoRwOrKeNrOlLmEnTpRoFiLeId",
 			Expected: &DeviceManagementAndroidForWorkEnrollmentProfileId{
-				AndroidForWorkEnrollmentProfileId: "aNdRoIdFoRwOrKeNrOlLmEnTpRoFiLeIdVaLuE",
+				AndroidForWorkEnrollmentProfileId: "aNdRoIdFoRwOrKeNrOlLmEnTpRoFiLeId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/aNdRoIdFoRwOrKeNrOlLmEnTpRoFiLeS/aNdRoIdFoRwOrKeNrOlLmEnTpRoFiLeIdVaLuE/extra",
+			Input: "/dEvIcEmAnAgEmEnT/aNdRoIdFoRwOrKeNrOlLmEnTpRoFiLeS/aNdRoIdFoRwOrKeNrOlLmEnTpRoFiLeId/extra",
 			Error: true,
 		},
 	}

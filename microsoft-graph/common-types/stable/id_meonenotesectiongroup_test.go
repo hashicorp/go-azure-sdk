@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &MeOnenoteSectionGroupId{}
 
 func TestNewMeOnenoteSectionGroupID(t *testing.T) {
-	id := NewMeOnenoteSectionGroupID("sectionGroupIdValue")
+	id := NewMeOnenoteSectionGroupID("sectionGroupId")
 
-	if id.SectionGroupId != "sectionGroupIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'SectionGroupId'", id.SectionGroupId, "sectionGroupIdValue")
+	if id.SectionGroupId != "sectionGroupId" {
+		t.Fatalf("Expected %q but got %q for Segment 'SectionGroupId'", id.SectionGroupId, "sectionGroupId")
 	}
 }
 
 func TestFormatMeOnenoteSectionGroupID(t *testing.T) {
-	actual := NewMeOnenoteSectionGroupID("sectionGroupIdValue").ID()
-	expected := "/me/onenote/sectionGroups/sectionGroupIdValue"
+	actual := NewMeOnenoteSectionGroupID("sectionGroupId").ID()
+	expected := "/me/onenote/sectionGroups/sectionGroupId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -55,14 +55,14 @@ func TestParseMeOnenoteSectionGroupID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/me/onenote/sectionGroups/sectionGroupIdValue",
+			Input: "/me/onenote/sectionGroups/sectionGroupId",
 			Expected: &MeOnenoteSectionGroupId{
-				SectionGroupId: "sectionGroupIdValue",
+				SectionGroupId: "sectionGroupId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/onenote/sectionGroups/sectionGroupIdValue/extra",
+			Input: "/me/onenote/sectionGroups/sectionGroupId/extra",
 			Error: true,
 		},
 	}
@@ -131,26 +131,26 @@ func TestParseMeOnenoteSectionGroupIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/me/onenote/sectionGroups/sectionGroupIdValue",
+			Input: "/me/onenote/sectionGroups/sectionGroupId",
 			Expected: &MeOnenoteSectionGroupId{
-				SectionGroupId: "sectionGroupIdValue",
+				SectionGroupId: "sectionGroupId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/onenote/sectionGroups/sectionGroupIdValue/extra",
+			Input: "/me/onenote/sectionGroups/sectionGroupId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/oNeNoTe/sEcTiOnGrOuPs/sEcTiOnGrOuPiDvAlUe",
+			Input: "/mE/oNeNoTe/sEcTiOnGrOuPs/sEcTiOnGrOuPiD",
 			Expected: &MeOnenoteSectionGroupId{
-				SectionGroupId: "sEcTiOnGrOuPiDvAlUe",
+				SectionGroupId: "sEcTiOnGrOuPiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/mE/oNeNoTe/sEcTiOnGrOuPs/sEcTiOnGrOuPiDvAlUe/extra",
+			Input: "/mE/oNeNoTe/sEcTiOnGrOuPs/sEcTiOnGrOuPiD/extra",
 			Error: true,
 		},
 	}

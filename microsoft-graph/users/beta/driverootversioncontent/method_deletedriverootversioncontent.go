@@ -19,7 +19,8 @@ type DeleteDriveRootVersionContentOperationResponse struct {
 }
 
 type DeleteDriveRootVersionContentOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteDriveRootVersionContentOperationOptions() DeleteDriveRootVersionContentOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteDriveRootVersionContentOperationOptions) ToHeaders() *client.Heade
 
 func (o DeleteDriveRootVersionContentOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

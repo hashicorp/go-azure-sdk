@@ -17,15 +17,44 @@ type GetReportsDeviceConfigurationPolicyStatusSummaryOperationResponse struct {
 	Model        *[]byte
 }
 
+type GetReportsDeviceConfigurationPolicyStatusSummaryOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultGetReportsDeviceConfigurationPolicyStatusSummaryOperationOptions() GetReportsDeviceConfigurationPolicyStatusSummaryOperationOptions {
+	return GetReportsDeviceConfigurationPolicyStatusSummaryOperationOptions{}
+}
+
+func (o GetReportsDeviceConfigurationPolicyStatusSummaryOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o GetReportsDeviceConfigurationPolicyStatusSummaryOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o GetReportsDeviceConfigurationPolicyStatusSummaryOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // GetReportsDeviceConfigurationPolicyStatusSummary - Invoke action getDeviceConfigurationPolicyStatusSummary
-func (c ReportClient) GetReportsDeviceConfigurationPolicyStatusSummary(ctx context.Context, input GetReportsDeviceConfigurationPolicyStatusSummaryRequest) (result GetReportsDeviceConfigurationPolicyStatusSummaryOperationResponse, err error) {
+func (c ReportClient) GetReportsDeviceConfigurationPolicyStatusSummary(ctx context.Context, input GetReportsDeviceConfigurationPolicyStatusSummaryRequest, options GetReportsDeviceConfigurationPolicyStatusSummaryOperationOptions) (result GetReportsDeviceConfigurationPolicyStatusSummaryOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/octet-stream",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/deviceManagement/reports/getDeviceConfigurationPolicyStatusSummary",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/deviceManagement/reports/getDeviceConfigurationPolicyStatusSummary",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -101,18 +101,25 @@ func (s BaseIndustryDataIndustryDataRunActivityImpl) MarshalJSON() ([]byte, erro
 var _ json.Unmarshaler = &BaseIndustryDataIndustryDataRunActivityImpl{}
 
 func (s *BaseIndustryDataIndustryDataRunActivityImpl) UnmarshalJSON(bytes []byte) error {
-	type alias BaseIndustryDataIndustryDataRunActivityImpl
-	var decoded alias
+
+	var decoded struct {
+		BlockingError *PublicError                            `json:"blockingError,omitempty"`
+		DisplayName   *string                                 `json:"displayName,omitempty"`
+		Status        *IndustryDataIndustryDataActivityStatus `json:"status,omitempty"`
+		Id            *string                                 `json:"id,omitempty"`
+		ODataId       *string                                 `json:"@odata.id,omitempty"`
+		ODataType     *string                                 `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into BaseIndustryDataIndustryDataRunActivityImpl: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.BlockingError = decoded.BlockingError
 	s.DisplayName = decoded.DisplayName
+	s.Status = decoded.Status
 	s.Id = decoded.Id
 	s.ODataId = decoded.ODataId
 	s.ODataType = decoded.ODataType
-	s.Status = decoded.Status
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -126,6 +133,7 @@ func (s *BaseIndustryDataIndustryDataRunActivityImpl) UnmarshalJSON(bytes []byte
 		}
 		s.Activity = &impl
 	}
+
 	return nil
 }
 
@@ -139,9 +147,9 @@ func UnmarshalIndustryDataIndustryDataRunActivityImplementation(input []byte) (I
 		return nil, fmt.Errorf("unmarshaling IndustryDataIndustryDataRunActivity into map[string]interface: %+v", err)
 	}
 
-	value, ok := temp["@odata.type"].(string)
-	if !ok {
-		return nil, nil
+	var value string
+	if v, ok := temp["@odata.type"]; ok {
+		value = fmt.Sprintf("%v", v)
 	}
 
 	if strings.EqualFold(value, "#microsoft.graph.industryData.inboundFlowActivity") {

@@ -93,7 +93,7 @@ func (id DeviceManagementCloudPCConnectivityIssueId) Segments() []resourceids.Se
 	return []resourceids.Segment{
 		resourceids.StaticSegment("deviceManagement", "deviceManagement", "deviceManagement"),
 		resourceids.StaticSegment("cloudPCConnectivityIssues", "cloudPCConnectivityIssues", "cloudPCConnectivityIssues"),
-		resourceids.UserSpecifiedSegment("cloudPCConnectivityIssueId", "cloudPCConnectivityIssueIdValue"),
+		resourceids.UserSpecifiedSegment("cloudPCConnectivityIssueId", "cloudPCConnectivityIssueId"),
 	}
 }
 

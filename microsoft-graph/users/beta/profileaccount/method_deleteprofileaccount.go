@@ -19,7 +19,8 @@ type DeleteProfileAccountOperationResponse struct {
 }
 
 type DeleteProfileAccountOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteProfileAccountOperationOptions() DeleteProfileAccountOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteProfileAccountOperationOptions) ToHeaders() *client.Headers {
 
 func (o DeleteProfileAccountOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

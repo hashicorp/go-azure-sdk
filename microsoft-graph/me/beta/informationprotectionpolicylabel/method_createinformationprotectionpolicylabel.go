@@ -18,15 +18,44 @@ type CreateInformationProtectionPolicyLabelOperationResponse struct {
 	Model        *beta.InformationProtectionLabel
 }
 
+type CreateInformationProtectionPolicyLabelOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateInformationProtectionPolicyLabelOperationOptions() CreateInformationProtectionPolicyLabelOperationOptions {
+	return CreateInformationProtectionPolicyLabelOperationOptions{}
+}
+
+func (o CreateInformationProtectionPolicyLabelOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateInformationProtectionPolicyLabelOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateInformationProtectionPolicyLabelOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateInformationProtectionPolicyLabel - Create new navigation property to labels for me
-func (c InformationProtectionPolicyLabelClient) CreateInformationProtectionPolicyLabel(ctx context.Context, input beta.InformationProtectionLabel) (result CreateInformationProtectionPolicyLabelOperationResponse, err error) {
+func (c InformationProtectionPolicyLabelClient) CreateInformationProtectionPolicyLabel(ctx context.Context, input beta.InformationProtectionLabel, options CreateInformationProtectionPolicyLabelOperationOptions) (result CreateInformationProtectionPolicyLabelOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/me/informationProtection/policy/labels",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/me/informationProtection/policy/labels",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

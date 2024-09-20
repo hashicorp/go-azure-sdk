@@ -18,16 +18,45 @@ type RestoreManagedDeviceCloudPCOperationResponse struct {
 	OData        *odata.OData
 }
 
+type RestoreManagedDeviceCloudPCOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultRestoreManagedDeviceCloudPCOperationOptions() RestoreManagedDeviceCloudPCOperationOptions {
+	return RestoreManagedDeviceCloudPCOperationOptions{}
+}
+
+func (o RestoreManagedDeviceCloudPCOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o RestoreManagedDeviceCloudPCOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o RestoreManagedDeviceCloudPCOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // RestoreManagedDeviceCloudPC - Invoke action restoreCloudPc. Restore a Cloud PC device to a previous state with an
 // Intune managed device ID.
-func (c ManagedDeviceClient) RestoreManagedDeviceCloudPC(ctx context.Context, id beta.MeManagedDeviceId, input RestoreManagedDeviceCloudPCRequest) (result RestoreManagedDeviceCloudPCOperationResponse, err error) {
+func (c ManagedDeviceClient) RestoreManagedDeviceCloudPC(ctx context.Context, id beta.MeManagedDeviceId, input RestoreManagedDeviceCloudPCRequest, options RestoreManagedDeviceCloudPCOperationOptions) (result RestoreManagedDeviceCloudPCOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/restoreCloudPc", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/restoreCloudPc", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

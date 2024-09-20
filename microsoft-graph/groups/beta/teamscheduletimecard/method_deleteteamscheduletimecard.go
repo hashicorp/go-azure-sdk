@@ -19,7 +19,8 @@ type DeleteTeamScheduleTimeCardOperationResponse struct {
 }
 
 type DeleteTeamScheduleTimeCardOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteTeamScheduleTimeCardOperationOptions() DeleteTeamScheduleTimeCardOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteTeamScheduleTimeCardOperationOptions) ToHeaders() *client.Headers 
 
 func (o DeleteTeamScheduleTimeCardOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

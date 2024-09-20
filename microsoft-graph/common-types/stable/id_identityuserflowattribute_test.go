@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &IdentityUserFlowAttributeId{}
 
 func TestNewIdentityUserFlowAttributeID(t *testing.T) {
-	id := NewIdentityUserFlowAttributeID("identityUserFlowAttributeIdValue")
+	id := NewIdentityUserFlowAttributeID("identityUserFlowAttributeId")
 
-	if id.IdentityUserFlowAttributeId != "identityUserFlowAttributeIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'IdentityUserFlowAttributeId'", id.IdentityUserFlowAttributeId, "identityUserFlowAttributeIdValue")
+	if id.IdentityUserFlowAttributeId != "identityUserFlowAttributeId" {
+		t.Fatalf("Expected %q but got %q for Segment 'IdentityUserFlowAttributeId'", id.IdentityUserFlowAttributeId, "identityUserFlowAttributeId")
 	}
 }
 
 func TestFormatIdentityUserFlowAttributeID(t *testing.T) {
-	actual := NewIdentityUserFlowAttributeID("identityUserFlowAttributeIdValue").ID()
-	expected := "/identity/userFlowAttributes/identityUserFlowAttributeIdValue"
+	actual := NewIdentityUserFlowAttributeID("identityUserFlowAttributeId").ID()
+	expected := "/identity/userFlowAttributes/identityUserFlowAttributeId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -50,14 +50,14 @@ func TestParseIdentityUserFlowAttributeID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/identity/userFlowAttributes/identityUserFlowAttributeIdValue",
+			Input: "/identity/userFlowAttributes/identityUserFlowAttributeId",
 			Expected: &IdentityUserFlowAttributeId{
-				IdentityUserFlowAttributeId: "identityUserFlowAttributeIdValue",
+				IdentityUserFlowAttributeId: "identityUserFlowAttributeId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/identity/userFlowAttributes/identityUserFlowAttributeIdValue/extra",
+			Input: "/identity/userFlowAttributes/identityUserFlowAttributeId/extra",
 			Error: true,
 		},
 	}
@@ -116,26 +116,26 @@ func TestParseIdentityUserFlowAttributeIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/identity/userFlowAttributes/identityUserFlowAttributeIdValue",
+			Input: "/identity/userFlowAttributes/identityUserFlowAttributeId",
 			Expected: &IdentityUserFlowAttributeId{
-				IdentityUserFlowAttributeId: "identityUserFlowAttributeIdValue",
+				IdentityUserFlowAttributeId: "identityUserFlowAttributeId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/identity/userFlowAttributes/identityUserFlowAttributeIdValue/extra",
+			Input: "/identity/userFlowAttributes/identityUserFlowAttributeId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/iDeNtItY/uSeRfLoWaTtRiBuTeS/iDeNtItYuSeRfLoWaTtRiBuTeIdVaLuE",
+			Input: "/iDeNtItY/uSeRfLoWaTtRiBuTeS/iDeNtItYuSeRfLoWaTtRiBuTeId",
 			Expected: &IdentityUserFlowAttributeId{
-				IdentityUserFlowAttributeId: "iDeNtItYuSeRfLoWaTtRiBuTeIdVaLuE",
+				IdentityUserFlowAttributeId: "iDeNtItYuSeRfLoWaTtRiBuTeId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/iDeNtItY/uSeRfLoWaTtRiBuTeS/iDeNtItYuSeRfLoWaTtRiBuTeIdVaLuE/extra",
+			Input: "/iDeNtItY/uSeRfLoWaTtRiBuTeS/iDeNtItYuSeRfLoWaTtRiBuTeId/extra",
 			Error: true,
 		},
 	}

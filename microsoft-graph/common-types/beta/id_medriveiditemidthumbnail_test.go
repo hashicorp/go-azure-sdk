@@ -12,24 +12,24 @@ import (
 var _ resourceids.ResourceId = &MeDriveIdItemIdThumbnailId{}
 
 func TestNewMeDriveIdItemIdThumbnailID(t *testing.T) {
-	id := NewMeDriveIdItemIdThumbnailID("driveIdValue", "driveItemIdValue", "thumbnailSetIdValue")
+	id := NewMeDriveIdItemIdThumbnailID("driveId", "driveItemId", "thumbnailSetId")
 
-	if id.DriveId != "driveIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DriveId'", id.DriveId, "driveIdValue")
+	if id.DriveId != "driveId" {
+		t.Fatalf("Expected %q but got %q for Segment 'DriveId'", id.DriveId, "driveId")
 	}
 
-	if id.DriveItemId != "driveItemIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DriveItemId'", id.DriveItemId, "driveItemIdValue")
+	if id.DriveItemId != "driveItemId" {
+		t.Fatalf("Expected %q but got %q for Segment 'DriveItemId'", id.DriveItemId, "driveItemId")
 	}
 
-	if id.ThumbnailSetId != "thumbnailSetIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ThumbnailSetId'", id.ThumbnailSetId, "thumbnailSetIdValue")
+	if id.ThumbnailSetId != "thumbnailSetId" {
+		t.Fatalf("Expected %q but got %q for Segment 'ThumbnailSetId'", id.ThumbnailSetId, "thumbnailSetId")
 	}
 }
 
 func TestFormatMeDriveIdItemIdThumbnailID(t *testing.T) {
-	actual := NewMeDriveIdItemIdThumbnailID("driveIdValue", "driveItemIdValue", "thumbnailSetIdValue").ID()
-	expected := "/me/drives/driveIdValue/items/driveItemIdValue/thumbnails/thumbnailSetIdValue"
+	actual := NewMeDriveIdItemIdThumbnailID("driveId", "driveItemId", "thumbnailSetId").ID()
+	expected := "/me/drives/driveId/items/driveItemId/thumbnails/thumbnailSetId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -58,36 +58,36 @@ func TestParseMeDriveIdItemIdThumbnailID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/me/drives/driveIdValue",
+			Input: "/me/drives/driveId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/me/drives/driveIdValue/items",
+			Input: "/me/drives/driveId/items",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/me/drives/driveIdValue/items/driveItemIdValue",
+			Input: "/me/drives/driveId/items/driveItemId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/me/drives/driveIdValue/items/driveItemIdValue/thumbnails",
+			Input: "/me/drives/driveId/items/driveItemId/thumbnails",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/me/drives/driveIdValue/items/driveItemIdValue/thumbnails/thumbnailSetIdValue",
+			Input: "/me/drives/driveId/items/driveItemId/thumbnails/thumbnailSetId",
 			Expected: &MeDriveIdItemIdThumbnailId{
-				DriveId:        "driveIdValue",
-				DriveItemId:    "driveItemIdValue",
-				ThumbnailSetId: "thumbnailSetIdValue",
+				DriveId:        "driveId",
+				DriveItemId:    "driveItemId",
+				ThumbnailSetId: "thumbnailSetId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/drives/driveIdValue/items/driveItemIdValue/thumbnails/thumbnailSetIdValue/extra",
+			Input: "/me/drives/driveId/items/driveItemId/thumbnails/thumbnailSetId/extra",
 			Error: true,
 		},
 	}
@@ -154,70 +154,70 @@ func TestParseMeDriveIdItemIdThumbnailIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/me/drives/driveIdValue",
+			Input: "/me/drives/driveId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/dRiVeS/dRiVeIdVaLuE",
+			Input: "/mE/dRiVeS/dRiVeId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/me/drives/driveIdValue/items",
+			Input: "/me/drives/driveId/items",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/dRiVeS/dRiVeIdVaLuE/iTeMs",
+			Input: "/mE/dRiVeS/dRiVeId/iTeMs",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/me/drives/driveIdValue/items/driveItemIdValue",
+			Input: "/me/drives/driveId/items/driveItemId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/dRiVeS/dRiVeIdVaLuE/iTeMs/dRiVeItEmIdVaLuE",
+			Input: "/mE/dRiVeS/dRiVeId/iTeMs/dRiVeItEmId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/me/drives/driveIdValue/items/driveItemIdValue/thumbnails",
+			Input: "/me/drives/driveId/items/driveItemId/thumbnails",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/dRiVeS/dRiVeIdVaLuE/iTeMs/dRiVeItEmIdVaLuE/tHuMbNaIlS",
+			Input: "/mE/dRiVeS/dRiVeId/iTeMs/dRiVeItEmId/tHuMbNaIlS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/me/drives/driveIdValue/items/driveItemIdValue/thumbnails/thumbnailSetIdValue",
+			Input: "/me/drives/driveId/items/driveItemId/thumbnails/thumbnailSetId",
 			Expected: &MeDriveIdItemIdThumbnailId{
-				DriveId:        "driveIdValue",
-				DriveItemId:    "driveItemIdValue",
-				ThumbnailSetId: "thumbnailSetIdValue",
+				DriveId:        "driveId",
+				DriveItemId:    "driveItemId",
+				ThumbnailSetId: "thumbnailSetId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/drives/driveIdValue/items/driveItemIdValue/thumbnails/thumbnailSetIdValue/extra",
+			Input: "/me/drives/driveId/items/driveItemId/thumbnails/thumbnailSetId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/dRiVeS/dRiVeIdVaLuE/iTeMs/dRiVeItEmIdVaLuE/tHuMbNaIlS/tHuMbNaIlSeTiDvAlUe",
+			Input: "/mE/dRiVeS/dRiVeId/iTeMs/dRiVeItEmId/tHuMbNaIlS/tHuMbNaIlSeTiD",
 			Expected: &MeDriveIdItemIdThumbnailId{
-				DriveId:        "dRiVeIdVaLuE",
-				DriveItemId:    "dRiVeItEmIdVaLuE",
-				ThumbnailSetId: "tHuMbNaIlSeTiDvAlUe",
+				DriveId:        "dRiVeId",
+				DriveItemId:    "dRiVeItEmId",
+				ThumbnailSetId: "tHuMbNaIlSeTiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/mE/dRiVeS/dRiVeIdVaLuE/iTeMs/dRiVeItEmIdVaLuE/tHuMbNaIlS/tHuMbNaIlSeTiDvAlUe/extra",
+			Input: "/mE/dRiVeS/dRiVeId/iTeMs/dRiVeItEmId/tHuMbNaIlS/tHuMbNaIlSeTiD/extra",
 			Error: true,
 		},
 	}

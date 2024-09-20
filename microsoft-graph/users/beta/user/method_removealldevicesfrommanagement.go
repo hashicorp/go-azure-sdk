@@ -18,16 +18,45 @@ type RemoveAllDevicesFromManagementOperationResponse struct {
 	OData        *odata.OData
 }
 
+type RemoveAllDevicesFromManagementOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultRemoveAllDevicesFromManagementOperationOptions() RemoveAllDevicesFromManagementOperationOptions {
+	return RemoveAllDevicesFromManagementOperationOptions{}
+}
+
+func (o RemoveAllDevicesFromManagementOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o RemoveAllDevicesFromManagementOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o RemoveAllDevicesFromManagementOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // RemoveAllDevicesFromManagement - Invoke action removeAllDevicesFromManagement. Retire all devices from management for
 // this user
-func (c UserClient) RemoveAllDevicesFromManagement(ctx context.Context, id beta.UserId) (result RemoveAllDevicesFromManagementOperationResponse, err error) {
+func (c UserClient) RemoveAllDevicesFromManagement(ctx context.Context, id beta.UserId, options RemoveAllDevicesFromManagementOperationOptions) (result RemoveAllDevicesFromManagementOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/removeAllDevicesFromManagement", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/removeAllDevicesFromManagement", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

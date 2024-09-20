@@ -18,15 +18,44 @@ type RecoverManagedDevicePasscodeOperationResponse struct {
 	OData        *odata.OData
 }
 
+type RecoverManagedDevicePasscodeOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultRecoverManagedDevicePasscodeOperationOptions() RecoverManagedDevicePasscodeOperationOptions {
+	return RecoverManagedDevicePasscodeOperationOptions{}
+}
+
+func (o RecoverManagedDevicePasscodeOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o RecoverManagedDevicePasscodeOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o RecoverManagedDevicePasscodeOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // RecoverManagedDevicePasscode - Invoke action recoverPasscode. Recover passcode
-func (c ManagedDeviceClient) RecoverManagedDevicePasscode(ctx context.Context, id beta.MeManagedDeviceId) (result RecoverManagedDevicePasscodeOperationResponse, err error) {
+func (c ManagedDeviceClient) RecoverManagedDevicePasscode(ctx context.Context, id beta.MeManagedDeviceId, options RecoverManagedDevicePasscodeOperationOptions) (result RecoverManagedDevicePasscodeOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/recoverPasscode", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/recoverPasscode", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

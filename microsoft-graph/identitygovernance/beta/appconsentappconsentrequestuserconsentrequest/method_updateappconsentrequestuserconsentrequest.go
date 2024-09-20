@@ -17,15 +17,44 @@ type UpdateAppConsentRequestUserConsentRequestOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateAppConsentRequestUserConsentRequestOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateAppConsentRequestUserConsentRequestOperationOptions() UpdateAppConsentRequestUserConsentRequestOperationOptions {
+	return UpdateAppConsentRequestUserConsentRequestOperationOptions{}
+}
+
+func (o UpdateAppConsentRequestUserConsentRequestOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateAppConsentRequestUserConsentRequestOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateAppConsentRequestUserConsentRequestOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateAppConsentRequestUserConsentRequest - Update the navigation property userConsentRequests in identityGovernance
-func (c AppConsentAppConsentRequestUserConsentRequestClient) UpdateAppConsentRequestUserConsentRequest(ctx context.Context, id beta.IdentityGovernanceAppConsentAppConsentRequestIdUserConsentRequestId, input beta.UserConsentRequest) (result UpdateAppConsentRequestUserConsentRequestOperationResponse, err error) {
+func (c AppConsentAppConsentRequestUserConsentRequestClient) UpdateAppConsentRequestUserConsentRequest(ctx context.Context, id beta.IdentityGovernanceAppConsentAppConsentRequestIdUserConsentRequestId, input beta.UserConsentRequest, options UpdateAppConsentRequestUserConsentRequestOperationOptions) (result UpdateAppConsentRequestUserConsentRequestOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &DeviceManagementRoleDefinitionIdRoleAssignmentId{}
 
 func TestNewDeviceManagementRoleDefinitionIdRoleAssignmentID(t *testing.T) {
-	id := NewDeviceManagementRoleDefinitionIdRoleAssignmentID("roleDefinitionIdValue", "roleAssignmentIdValue")
+	id := NewDeviceManagementRoleDefinitionIdRoleAssignmentID("roleDefinitionId", "roleAssignmentId")
 
-	if id.RoleDefinitionId != "roleDefinitionIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'RoleDefinitionId'", id.RoleDefinitionId, "roleDefinitionIdValue")
+	if id.RoleDefinitionId != "roleDefinitionId" {
+		t.Fatalf("Expected %q but got %q for Segment 'RoleDefinitionId'", id.RoleDefinitionId, "roleDefinitionId")
 	}
 
-	if id.RoleAssignmentId != "roleAssignmentIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'RoleAssignmentId'", id.RoleAssignmentId, "roleAssignmentIdValue")
+	if id.RoleAssignmentId != "roleAssignmentId" {
+		t.Fatalf("Expected %q but got %q for Segment 'RoleAssignmentId'", id.RoleAssignmentId, "roleAssignmentId")
 	}
 }
 
 func TestFormatDeviceManagementRoleDefinitionIdRoleAssignmentID(t *testing.T) {
-	actual := NewDeviceManagementRoleDefinitionIdRoleAssignmentID("roleDefinitionIdValue", "roleAssignmentIdValue").ID()
-	expected := "/deviceManagement/roleDefinitions/roleDefinitionIdValue/roleAssignments/roleAssignmentIdValue"
+	actual := NewDeviceManagementRoleDefinitionIdRoleAssignmentID("roleDefinitionId", "roleAssignmentId").ID()
+	expected := "/deviceManagement/roleDefinitions/roleDefinitionId/roleAssignments/roleAssignmentId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -54,25 +54,25 @@ func TestParseDeviceManagementRoleDefinitionIdRoleAssignmentID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/deviceManagement/roleDefinitions/roleDefinitionIdValue",
+			Input: "/deviceManagement/roleDefinitions/roleDefinitionId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/deviceManagement/roleDefinitions/roleDefinitionIdValue/roleAssignments",
+			Input: "/deviceManagement/roleDefinitions/roleDefinitionId/roleAssignments",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/roleDefinitions/roleDefinitionIdValue/roleAssignments/roleAssignmentIdValue",
+			Input: "/deviceManagement/roleDefinitions/roleDefinitionId/roleAssignments/roleAssignmentId",
 			Expected: &DeviceManagementRoleDefinitionIdRoleAssignmentId{
-				RoleDefinitionId: "roleDefinitionIdValue",
-				RoleAssignmentId: "roleAssignmentIdValue",
+				RoleDefinitionId: "roleDefinitionId",
+				RoleAssignmentId: "roleAssignmentId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/roleDefinitions/roleDefinitionIdValue/roleAssignments/roleAssignmentIdValue/extra",
+			Input: "/deviceManagement/roleDefinitions/roleDefinitionId/roleAssignments/roleAssignmentId/extra",
 			Error: true,
 		},
 	}
@@ -135,48 +135,48 @@ func TestParseDeviceManagementRoleDefinitionIdRoleAssignmentIDInsensitively(t *t
 		},
 		{
 			// Incomplete URI
-			Input: "/deviceManagement/roleDefinitions/roleDefinitionIdValue",
+			Input: "/deviceManagement/roleDefinitions/roleDefinitionId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/rOlEdEfInItIoNs/rOlEdEfInItIoNiDvAlUe",
+			Input: "/dEvIcEmAnAgEmEnT/rOlEdEfInItIoNs/rOlEdEfInItIoNiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/deviceManagement/roleDefinitions/roleDefinitionIdValue/roleAssignments",
+			Input: "/deviceManagement/roleDefinitions/roleDefinitionId/roleAssignments",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/rOlEdEfInItIoNs/rOlEdEfInItIoNiDvAlUe/rOlEaSsIgNmEnTs",
+			Input: "/dEvIcEmAnAgEmEnT/rOlEdEfInItIoNs/rOlEdEfInItIoNiD/rOlEaSsIgNmEnTs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/roleDefinitions/roleDefinitionIdValue/roleAssignments/roleAssignmentIdValue",
+			Input: "/deviceManagement/roleDefinitions/roleDefinitionId/roleAssignments/roleAssignmentId",
 			Expected: &DeviceManagementRoleDefinitionIdRoleAssignmentId{
-				RoleDefinitionId: "roleDefinitionIdValue",
-				RoleAssignmentId: "roleAssignmentIdValue",
+				RoleDefinitionId: "roleDefinitionId",
+				RoleAssignmentId: "roleAssignmentId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/roleDefinitions/roleDefinitionIdValue/roleAssignments/roleAssignmentIdValue/extra",
+			Input: "/deviceManagement/roleDefinitions/roleDefinitionId/roleAssignments/roleAssignmentId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/rOlEdEfInItIoNs/rOlEdEfInItIoNiDvAlUe/rOlEaSsIgNmEnTs/rOlEaSsIgNmEnTiDvAlUe",
+			Input: "/dEvIcEmAnAgEmEnT/rOlEdEfInItIoNs/rOlEdEfInItIoNiD/rOlEaSsIgNmEnTs/rOlEaSsIgNmEnTiD",
 			Expected: &DeviceManagementRoleDefinitionIdRoleAssignmentId{
-				RoleDefinitionId: "rOlEdEfInItIoNiDvAlUe",
-				RoleAssignmentId: "rOlEaSsIgNmEnTiDvAlUe",
+				RoleDefinitionId: "rOlEdEfInItIoNiD",
+				RoleAssignmentId: "rOlEaSsIgNmEnTiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/rOlEdEfInItIoNs/rOlEdEfInItIoNiDvAlUe/rOlEaSsIgNmEnTs/rOlEaSsIgNmEnTiDvAlUe/extra",
+			Input: "/dEvIcEmAnAgEmEnT/rOlEdEfInItIoNs/rOlEdEfInItIoNiD/rOlEaSsIgNmEnTs/rOlEaSsIgNmEnTiD/extra",
 			Error: true,
 		},
 	}

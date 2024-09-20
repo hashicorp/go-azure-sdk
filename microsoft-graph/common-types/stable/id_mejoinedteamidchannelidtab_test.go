@@ -12,24 +12,24 @@ import (
 var _ resourceids.ResourceId = &MeJoinedTeamIdChannelIdTabId{}
 
 func TestNewMeJoinedTeamIdChannelIdTabID(t *testing.T) {
-	id := NewMeJoinedTeamIdChannelIdTabID("teamIdValue", "channelIdValue", "teamsTabIdValue")
+	id := NewMeJoinedTeamIdChannelIdTabID("teamId", "channelId", "teamsTabId")
 
-	if id.TeamId != "teamIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'TeamId'", id.TeamId, "teamIdValue")
+	if id.TeamId != "teamId" {
+		t.Fatalf("Expected %q but got %q for Segment 'TeamId'", id.TeamId, "teamId")
 	}
 
-	if id.ChannelId != "channelIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ChannelId'", id.ChannelId, "channelIdValue")
+	if id.ChannelId != "channelId" {
+		t.Fatalf("Expected %q but got %q for Segment 'ChannelId'", id.ChannelId, "channelId")
 	}
 
-	if id.TeamsTabId != "teamsTabIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'TeamsTabId'", id.TeamsTabId, "teamsTabIdValue")
+	if id.TeamsTabId != "teamsTabId" {
+		t.Fatalf("Expected %q but got %q for Segment 'TeamsTabId'", id.TeamsTabId, "teamsTabId")
 	}
 }
 
 func TestFormatMeJoinedTeamIdChannelIdTabID(t *testing.T) {
-	actual := NewMeJoinedTeamIdChannelIdTabID("teamIdValue", "channelIdValue", "teamsTabIdValue").ID()
-	expected := "/me/joinedTeams/teamIdValue/channels/channelIdValue/tabs/teamsTabIdValue"
+	actual := NewMeJoinedTeamIdChannelIdTabID("teamId", "channelId", "teamsTabId").ID()
+	expected := "/me/joinedTeams/teamId/channels/channelId/tabs/teamsTabId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -58,36 +58,36 @@ func TestParseMeJoinedTeamIdChannelIdTabID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/me/joinedTeams/teamIdValue",
+			Input: "/me/joinedTeams/teamId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/me/joinedTeams/teamIdValue/channels",
+			Input: "/me/joinedTeams/teamId/channels",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/me/joinedTeams/teamIdValue/channels/channelIdValue",
+			Input: "/me/joinedTeams/teamId/channels/channelId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/me/joinedTeams/teamIdValue/channels/channelIdValue/tabs",
+			Input: "/me/joinedTeams/teamId/channels/channelId/tabs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/me/joinedTeams/teamIdValue/channels/channelIdValue/tabs/teamsTabIdValue",
+			Input: "/me/joinedTeams/teamId/channels/channelId/tabs/teamsTabId",
 			Expected: &MeJoinedTeamIdChannelIdTabId{
-				TeamId:     "teamIdValue",
-				ChannelId:  "channelIdValue",
-				TeamsTabId: "teamsTabIdValue",
+				TeamId:     "teamId",
+				ChannelId:  "channelId",
+				TeamsTabId: "teamsTabId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/joinedTeams/teamIdValue/channels/channelIdValue/tabs/teamsTabIdValue/extra",
+			Input: "/me/joinedTeams/teamId/channels/channelId/tabs/teamsTabId/extra",
 			Error: true,
 		},
 	}
@@ -154,70 +154,70 @@ func TestParseMeJoinedTeamIdChannelIdTabIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/me/joinedTeams/teamIdValue",
+			Input: "/me/joinedTeams/teamId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/jOiNeDtEaMs/tEaMiDvAlUe",
+			Input: "/mE/jOiNeDtEaMs/tEaMiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/me/joinedTeams/teamIdValue/channels",
+			Input: "/me/joinedTeams/teamId/channels",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/jOiNeDtEaMs/tEaMiDvAlUe/cHaNnElS",
+			Input: "/mE/jOiNeDtEaMs/tEaMiD/cHaNnElS",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/me/joinedTeams/teamIdValue/channels/channelIdValue",
+			Input: "/me/joinedTeams/teamId/channels/channelId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/jOiNeDtEaMs/tEaMiDvAlUe/cHaNnElS/cHaNnElIdVaLuE",
+			Input: "/mE/jOiNeDtEaMs/tEaMiD/cHaNnElS/cHaNnElId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/me/joinedTeams/teamIdValue/channels/channelIdValue/tabs",
+			Input: "/me/joinedTeams/teamId/channels/channelId/tabs",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/jOiNeDtEaMs/tEaMiDvAlUe/cHaNnElS/cHaNnElIdVaLuE/tAbS",
+			Input: "/mE/jOiNeDtEaMs/tEaMiD/cHaNnElS/cHaNnElId/tAbS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/me/joinedTeams/teamIdValue/channels/channelIdValue/tabs/teamsTabIdValue",
+			Input: "/me/joinedTeams/teamId/channels/channelId/tabs/teamsTabId",
 			Expected: &MeJoinedTeamIdChannelIdTabId{
-				TeamId:     "teamIdValue",
-				ChannelId:  "channelIdValue",
-				TeamsTabId: "teamsTabIdValue",
+				TeamId:     "teamId",
+				ChannelId:  "channelId",
+				TeamsTabId: "teamsTabId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/joinedTeams/teamIdValue/channels/channelIdValue/tabs/teamsTabIdValue/extra",
+			Input: "/me/joinedTeams/teamId/channels/channelId/tabs/teamsTabId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/jOiNeDtEaMs/tEaMiDvAlUe/cHaNnElS/cHaNnElIdVaLuE/tAbS/tEaMsTaBiDvAlUe",
+			Input: "/mE/jOiNeDtEaMs/tEaMiD/cHaNnElS/cHaNnElId/tAbS/tEaMsTaBiD",
 			Expected: &MeJoinedTeamIdChannelIdTabId{
-				TeamId:     "tEaMiDvAlUe",
-				ChannelId:  "cHaNnElIdVaLuE",
-				TeamsTabId: "tEaMsTaBiDvAlUe",
+				TeamId:     "tEaMiD",
+				ChannelId:  "cHaNnElId",
+				TeamsTabId: "tEaMsTaBiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/mE/jOiNeDtEaMs/tEaMiDvAlUe/cHaNnElS/cHaNnElIdVaLuE/tAbS/tEaMsTaBiDvAlUe/extra",
+			Input: "/mE/jOiNeDtEaMs/tEaMiD/cHaNnElS/cHaNnElId/tAbS/tEaMsTaBiD/extra",
 			Error: true,
 		},
 	}

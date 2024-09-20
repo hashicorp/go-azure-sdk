@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &MeAuthenticationFido2MethodId{}
 
 func TestNewMeAuthenticationFido2MethodID(t *testing.T) {
-	id := NewMeAuthenticationFido2MethodID("fido2AuthenticationMethodIdValue")
+	id := NewMeAuthenticationFido2MethodID("fido2AuthenticationMethodId")
 
-	if id.Fido2AuthenticationMethodId != "fido2AuthenticationMethodIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'Fido2AuthenticationMethodId'", id.Fido2AuthenticationMethodId, "fido2AuthenticationMethodIdValue")
+	if id.Fido2AuthenticationMethodId != "fido2AuthenticationMethodId" {
+		t.Fatalf("Expected %q but got %q for Segment 'Fido2AuthenticationMethodId'", id.Fido2AuthenticationMethodId, "fido2AuthenticationMethodId")
 	}
 }
 
 func TestFormatMeAuthenticationFido2MethodID(t *testing.T) {
-	actual := NewMeAuthenticationFido2MethodID("fido2AuthenticationMethodIdValue").ID()
-	expected := "/me/authentication/fido2Methods/fido2AuthenticationMethodIdValue"
+	actual := NewMeAuthenticationFido2MethodID("fido2AuthenticationMethodId").ID()
+	expected := "/me/authentication/fido2Methods/fido2AuthenticationMethodId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -55,14 +55,14 @@ func TestParseMeAuthenticationFido2MethodID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/me/authentication/fido2Methods/fido2AuthenticationMethodIdValue",
+			Input: "/me/authentication/fido2Methods/fido2AuthenticationMethodId",
 			Expected: &MeAuthenticationFido2MethodId{
-				Fido2AuthenticationMethodId: "fido2AuthenticationMethodIdValue",
+				Fido2AuthenticationMethodId: "fido2AuthenticationMethodId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/authentication/fido2Methods/fido2AuthenticationMethodIdValue/extra",
+			Input: "/me/authentication/fido2Methods/fido2AuthenticationMethodId/extra",
 			Error: true,
 		},
 	}
@@ -131,26 +131,26 @@ func TestParseMeAuthenticationFido2MethodIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/me/authentication/fido2Methods/fido2AuthenticationMethodIdValue",
+			Input: "/me/authentication/fido2Methods/fido2AuthenticationMethodId",
 			Expected: &MeAuthenticationFido2MethodId{
-				Fido2AuthenticationMethodId: "fido2AuthenticationMethodIdValue",
+				Fido2AuthenticationMethodId: "fido2AuthenticationMethodId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/authentication/fido2Methods/fido2AuthenticationMethodIdValue/extra",
+			Input: "/me/authentication/fido2Methods/fido2AuthenticationMethodId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/aUtHeNtIcAtIoN/fIdO2MeThOdS/fIdO2AuThEnTiCaTiOnMeThOdIdVaLuE",
+			Input: "/mE/aUtHeNtIcAtIoN/fIdO2MeThOdS/fIdO2AuThEnTiCaTiOnMeThOdId",
 			Expected: &MeAuthenticationFido2MethodId{
-				Fido2AuthenticationMethodId: "fIdO2AuThEnTiCaTiOnMeThOdIdVaLuE",
+				Fido2AuthenticationMethodId: "fIdO2AuThEnTiCaTiOnMeThOdId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/mE/aUtHeNtIcAtIoN/fIdO2MeThOdS/fIdO2AuThEnTiCaTiOnMeThOdIdVaLuE/extra",
+			Input: "/mE/aUtHeNtIcAtIoN/fIdO2MeThOdS/fIdO2AuThEnTiCaTiOnMeThOdId/extra",
 			Error: true,
 		},
 	}

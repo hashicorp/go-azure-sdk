@@ -18,17 +18,46 @@ type RemoveComanagedDeviceFirmwareConfigurationInterfaceManagementOperationRespo
 	OData        *odata.OData
 }
 
+type RemoveComanagedDeviceFirmwareConfigurationInterfaceManagementOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultRemoveComanagedDeviceFirmwareConfigurationInterfaceManagementOperationOptions() RemoveComanagedDeviceFirmwareConfigurationInterfaceManagementOperationOptions {
+	return RemoveComanagedDeviceFirmwareConfigurationInterfaceManagementOperationOptions{}
+}
+
+func (o RemoveComanagedDeviceFirmwareConfigurationInterfaceManagementOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o RemoveComanagedDeviceFirmwareConfigurationInterfaceManagementOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o RemoveComanagedDeviceFirmwareConfigurationInterfaceManagementOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // RemoveComanagedDeviceFirmwareConfigurationInterfaceManagement - Invoke action
 // removeDeviceFirmwareConfigurationInterfaceManagement. Remove device from Device Firmware Configuration Interface
 // management
-func (c ComanagedDeviceClient) RemoveComanagedDeviceFirmwareConfigurationInterfaceManagement(ctx context.Context, id beta.DeviceManagementComanagedDeviceId) (result RemoveComanagedDeviceFirmwareConfigurationInterfaceManagementOperationResponse, err error) {
+func (c ComanagedDeviceClient) RemoveComanagedDeviceFirmwareConfigurationInterfaceManagement(ctx context.Context, id beta.DeviceManagementComanagedDeviceId, options RemoveComanagedDeviceFirmwareConfigurationInterfaceManagementOperationOptions) (result RemoveComanagedDeviceFirmwareConfigurationInterfaceManagementOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/removeDeviceFirmwareConfigurationInterfaceManagement", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/removeDeviceFirmwareConfigurationInterfaceManagement", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

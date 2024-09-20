@@ -19,7 +19,8 @@ type DeleteEntitlementManagementResourceRequestCatalogResourceScopeResourceRoleR
 }
 
 type DeleteEntitlementManagementResourceRequestCatalogResourceScopeResourceRoleResourceOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteEntitlementManagementResourceRequestCatalogResourceScopeResourceRoleResourceOperationOptions() DeleteEntitlementManagementResourceRequestCatalogResourceScopeResourceRoleResourceOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteEntitlementManagementResourceRequestCatalogResourceScopeResourceRo
 
 func (o DeleteEntitlementManagementResourceRequestCatalogResourceScopeResourceRoleResourceOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 
@@ -48,7 +51,7 @@ func (o DeleteEntitlementManagementResourceRequestCatalogResourceScopeResourceRo
 
 // DeleteEntitlementManagementResourceRequestCatalogResourceScopeResourceRoleResource - Delete navigation property
 // resource for identityGovernance
-func (c EntitlementManagementResourceRequestCatalogResourceScopeResourceRoleResourceClient) DeleteEntitlementManagementResourceRequestCatalogResourceScopeResourceRoleResource(ctx context.Context, id stable.IdentityGovernanceEntitlementManagementResourceRequestIdCatalogResourceScopeIdResourceRoleId, options DeleteEntitlementManagementResourceRequestCatalogResourceScopeResourceRoleResourceOperationOptions) (result DeleteEntitlementManagementResourceRequestCatalogResourceScopeResourceRoleResourceOperationResponse, err error) {
+func (c EntitlementManagementResourceRequestCatalogResourceScopeResourceRoleResourceClient) DeleteEntitlementManagementResourceRequestCatalogResourceScopeResourceRoleResource(ctx context.Context, id stable.IdentityGovernanceEntitlementManagementResourceRequestIdCatalogResourceIdScopeIdResourceRoleId, options DeleteEntitlementManagementResourceRequestCatalogResourceScopeResourceRoleResourceOperationOptions) (result DeleteEntitlementManagementResourceRequestCatalogResourceScopeResourceRoleResourceOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{

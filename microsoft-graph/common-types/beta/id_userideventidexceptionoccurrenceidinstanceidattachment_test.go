@@ -12,32 +12,32 @@ import (
 var _ resourceids.ResourceId = &UserIdEventIdExceptionOccurrenceIdInstanceIdAttachmentId{}
 
 func TestNewUserIdEventIdExceptionOccurrenceIdInstanceIdAttachmentID(t *testing.T) {
-	id := NewUserIdEventIdExceptionOccurrenceIdInstanceIdAttachmentID("userIdValue", "eventIdValue", "eventId1Value", "eventId2Value", "attachmentIdValue")
+	id := NewUserIdEventIdExceptionOccurrenceIdInstanceIdAttachmentID("userId", "eventId", "eventId1", "eventId2", "attachmentId")
 
-	if id.UserId != "userIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'UserId'", id.UserId, "userIdValue")
+	if id.UserId != "userId" {
+		t.Fatalf("Expected %q but got %q for Segment 'UserId'", id.UserId, "userId")
 	}
 
-	if id.EventId != "eventIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'EventId'", id.EventId, "eventIdValue")
+	if id.EventId != "eventId" {
+		t.Fatalf("Expected %q but got %q for Segment 'EventId'", id.EventId, "eventId")
 	}
 
-	if id.EventId1 != "eventId1Value" {
-		t.Fatalf("Expected %q but got %q for Segment 'EventId1'", id.EventId1, "eventId1Value")
+	if id.EventId1 != "eventId1" {
+		t.Fatalf("Expected %q but got %q for Segment 'EventId1'", id.EventId1, "eventId1")
 	}
 
-	if id.EventId2 != "eventId2Value" {
-		t.Fatalf("Expected %q but got %q for Segment 'EventId2'", id.EventId2, "eventId2Value")
+	if id.EventId2 != "eventId2" {
+		t.Fatalf("Expected %q but got %q for Segment 'EventId2'", id.EventId2, "eventId2")
 	}
 
-	if id.AttachmentId != "attachmentIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'AttachmentId'", id.AttachmentId, "attachmentIdValue")
+	if id.AttachmentId != "attachmentId" {
+		t.Fatalf("Expected %q but got %q for Segment 'AttachmentId'", id.AttachmentId, "attachmentId")
 	}
 }
 
 func TestFormatUserIdEventIdExceptionOccurrenceIdInstanceIdAttachmentID(t *testing.T) {
-	actual := NewUserIdEventIdExceptionOccurrenceIdInstanceIdAttachmentID("userIdValue", "eventIdValue", "eventId1Value", "eventId2Value", "attachmentIdValue").ID()
-	expected := "/users/userIdValue/events/eventIdValue/exceptionOccurrences/eventId1Value/instances/eventId2Value/attachments/attachmentIdValue"
+	actual := NewUserIdEventIdExceptionOccurrenceIdInstanceIdAttachmentID("userId", "eventId", "eventId1", "eventId2", "attachmentId").ID()
+	expected := "/users/userId/events/eventId/exceptionOccurrences/eventId1/instances/eventId2/attachments/attachmentId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -61,58 +61,58 @@ func TestParseUserIdEventIdExceptionOccurrenceIdInstanceIdAttachmentID(t *testin
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue",
+			Input: "/users/userId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/events",
+			Input: "/users/userId/events",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/events/eventIdValue",
+			Input: "/users/userId/events/eventId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/events/eventIdValue/exceptionOccurrences",
+			Input: "/users/userId/events/eventId/exceptionOccurrences",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/events/eventIdValue/exceptionOccurrences/eventId1Value",
+			Input: "/users/userId/events/eventId/exceptionOccurrences/eventId1",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/events/eventIdValue/exceptionOccurrences/eventId1Value/instances",
+			Input: "/users/userId/events/eventId/exceptionOccurrences/eventId1/instances",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/events/eventIdValue/exceptionOccurrences/eventId1Value/instances/eventId2Value",
+			Input: "/users/userId/events/eventId/exceptionOccurrences/eventId1/instances/eventId2",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/events/eventIdValue/exceptionOccurrences/eventId1Value/instances/eventId2Value/attachments",
+			Input: "/users/userId/events/eventId/exceptionOccurrences/eventId1/instances/eventId2/attachments",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/users/userIdValue/events/eventIdValue/exceptionOccurrences/eventId1Value/instances/eventId2Value/attachments/attachmentIdValue",
+			Input: "/users/userId/events/eventId/exceptionOccurrences/eventId1/instances/eventId2/attachments/attachmentId",
 			Expected: &UserIdEventIdExceptionOccurrenceIdInstanceIdAttachmentId{
-				UserId:       "userIdValue",
-				EventId:      "eventIdValue",
-				EventId1:     "eventId1Value",
-				EventId2:     "eventId2Value",
-				AttachmentId: "attachmentIdValue",
+				UserId:       "userId",
+				EventId:      "eventId",
+				EventId1:     "eventId1",
+				EventId2:     "eventId2",
+				AttachmentId: "attachmentId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/users/userIdValue/events/eventIdValue/exceptionOccurrences/eventId1Value/instances/eventId2Value/attachments/attachmentIdValue/extra",
+			Input: "/users/userId/events/eventId/exceptionOccurrences/eventId1/instances/eventId2/attachments/attachmentId/extra",
 			Error: true,
 		},
 	}
@@ -177,114 +177,114 @@ func TestParseUserIdEventIdExceptionOccurrenceIdInstanceIdAttachmentIDInsensitiv
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue",
+			Input: "/users/userId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe",
+			Input: "/uSeRs/uSeRiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/events",
+			Input: "/users/userId/events",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/eVeNtS",
+			Input: "/uSeRs/uSeRiD/eVeNtS",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/events/eventIdValue",
+			Input: "/users/userId/events/eventId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/eVeNtS/eVeNtIdVaLuE",
+			Input: "/uSeRs/uSeRiD/eVeNtS/eVeNtId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/events/eventIdValue/exceptionOccurrences",
+			Input: "/users/userId/events/eventId/exceptionOccurrences",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/eVeNtS/eVeNtIdVaLuE/eXcEpTiOnOcCuRrEnCeS",
+			Input: "/uSeRs/uSeRiD/eVeNtS/eVeNtId/eXcEpTiOnOcCuRrEnCeS",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/events/eventIdValue/exceptionOccurrences/eventId1Value",
+			Input: "/users/userId/events/eventId/exceptionOccurrences/eventId1",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/eVeNtS/eVeNtIdVaLuE/eXcEpTiOnOcCuRrEnCeS/eVeNtId1vAlUe",
+			Input: "/uSeRs/uSeRiD/eVeNtS/eVeNtId/eXcEpTiOnOcCuRrEnCeS/eVeNtId1",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/events/eventIdValue/exceptionOccurrences/eventId1Value/instances",
+			Input: "/users/userId/events/eventId/exceptionOccurrences/eventId1/instances",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/eVeNtS/eVeNtIdVaLuE/eXcEpTiOnOcCuRrEnCeS/eVeNtId1vAlUe/iNsTaNcEs",
+			Input: "/uSeRs/uSeRiD/eVeNtS/eVeNtId/eXcEpTiOnOcCuRrEnCeS/eVeNtId1/iNsTaNcEs",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/events/eventIdValue/exceptionOccurrences/eventId1Value/instances/eventId2Value",
+			Input: "/users/userId/events/eventId/exceptionOccurrences/eventId1/instances/eventId2",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/eVeNtS/eVeNtIdVaLuE/eXcEpTiOnOcCuRrEnCeS/eVeNtId1vAlUe/iNsTaNcEs/eVeNtId2vAlUe",
+			Input: "/uSeRs/uSeRiD/eVeNtS/eVeNtId/eXcEpTiOnOcCuRrEnCeS/eVeNtId1/iNsTaNcEs/eVeNtId2",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/events/eventIdValue/exceptionOccurrences/eventId1Value/instances/eventId2Value/attachments",
+			Input: "/users/userId/events/eventId/exceptionOccurrences/eventId1/instances/eventId2/attachments",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/eVeNtS/eVeNtIdVaLuE/eXcEpTiOnOcCuRrEnCeS/eVeNtId1vAlUe/iNsTaNcEs/eVeNtId2vAlUe/aTtAcHmEnTs",
+			Input: "/uSeRs/uSeRiD/eVeNtS/eVeNtId/eXcEpTiOnOcCuRrEnCeS/eVeNtId1/iNsTaNcEs/eVeNtId2/aTtAcHmEnTs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/users/userIdValue/events/eventIdValue/exceptionOccurrences/eventId1Value/instances/eventId2Value/attachments/attachmentIdValue",
+			Input: "/users/userId/events/eventId/exceptionOccurrences/eventId1/instances/eventId2/attachments/attachmentId",
 			Expected: &UserIdEventIdExceptionOccurrenceIdInstanceIdAttachmentId{
-				UserId:       "userIdValue",
-				EventId:      "eventIdValue",
-				EventId1:     "eventId1Value",
-				EventId2:     "eventId2Value",
-				AttachmentId: "attachmentIdValue",
+				UserId:       "userId",
+				EventId:      "eventId",
+				EventId1:     "eventId1",
+				EventId2:     "eventId2",
+				AttachmentId: "attachmentId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/users/userIdValue/events/eventIdValue/exceptionOccurrences/eventId1Value/instances/eventId2Value/attachments/attachmentIdValue/extra",
+			Input: "/users/userId/events/eventId/exceptionOccurrences/eventId1/instances/eventId2/attachments/attachmentId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/eVeNtS/eVeNtIdVaLuE/eXcEpTiOnOcCuRrEnCeS/eVeNtId1vAlUe/iNsTaNcEs/eVeNtId2vAlUe/aTtAcHmEnTs/aTtAcHmEnTiDvAlUe",
+			Input: "/uSeRs/uSeRiD/eVeNtS/eVeNtId/eXcEpTiOnOcCuRrEnCeS/eVeNtId1/iNsTaNcEs/eVeNtId2/aTtAcHmEnTs/aTtAcHmEnTiD",
 			Expected: &UserIdEventIdExceptionOccurrenceIdInstanceIdAttachmentId{
-				UserId:       "uSeRiDvAlUe",
-				EventId:      "eVeNtIdVaLuE",
-				EventId1:     "eVeNtId1vAlUe",
-				EventId2:     "eVeNtId2vAlUe",
-				AttachmentId: "aTtAcHmEnTiDvAlUe",
+				UserId:       "uSeRiD",
+				EventId:      "eVeNtId",
+				EventId1:     "eVeNtId1",
+				EventId2:     "eVeNtId2",
+				AttachmentId: "aTtAcHmEnTiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/eVeNtS/eVeNtIdVaLuE/eXcEpTiOnOcCuRrEnCeS/eVeNtId1vAlUe/iNsTaNcEs/eVeNtId2vAlUe/aTtAcHmEnTs/aTtAcHmEnTiDvAlUe/extra",
+			Input: "/uSeRs/uSeRiD/eVeNtS/eVeNtId/eXcEpTiOnOcCuRrEnCeS/eVeNtId1/iNsTaNcEs/eVeNtId2/aTtAcHmEnTs/aTtAcHmEnTiD/extra",
 			Error: true,
 		},
 	}

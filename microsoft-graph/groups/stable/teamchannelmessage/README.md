@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/stable/teamchannelmessage` Documentation
 
-The `teamchannelmessage` SDK allows for interaction with the Azure Resource Manager Service `groups` (API Version `stable`).
+The `teamchannelmessage` SDK allows for interaction with Microsoft Graph `groups` (API Version `stable`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -15,7 +15,7 @@ import "github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/stable/teamchan
 ### Client Initialization
 
 ```go
-client := teamchannelmessage.NewTeamChannelMessageClientWithBaseURI("https://management.azure.com")
+client := teamchannelmessage.NewTeamChannelMessageClientWithBaseURI("https://graph.microsoft.com")
 client.Client.Authorizer = authorizer
 ```
 
@@ -24,14 +24,14 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := teamchannelmessage.NewGroupIdTeamChannelID("groupIdValue", "channelIdValue")
+id := teamchannelmessage.NewGroupIdTeamChannelID("groupId", "channelId")
 
 payload := teamchannelmessage.ChatMessage{
 	// ...
 }
 
 
-read, err := client.CreateTeamChannelMessage(ctx, id, payload)
+read, err := client.CreateTeamChannelMessage(ctx, id, payload, teamchannelmessage.DefaultCreateTeamChannelMessageOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -45,9 +45,9 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := teamchannelmessage.NewGroupIdTeamChannelIdMessageID("groupIdValue", "channelIdValue", "chatMessageIdValue")
+id := teamchannelmessage.NewGroupIdTeamChannelIdMessageID("groupId", "channelId", "chatMessageId")
 
-read, err := client.CreateTeamChannelMessageSoftDelete(ctx, id)
+read, err := client.CreateTeamChannelMessageSoftDelete(ctx, id, teamchannelmessage.DefaultCreateTeamChannelMessageSoftDeleteOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -61,9 +61,9 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := teamchannelmessage.NewGroupIdTeamChannelIdMessageID("groupIdValue", "channelIdValue", "chatMessageIdValue")
+id := teamchannelmessage.NewGroupIdTeamChannelIdMessageID("groupId", "channelId", "chatMessageId")
 
-read, err := client.CreateTeamChannelMessageUndoSoftDelete(ctx, id)
+read, err := client.CreateTeamChannelMessageUndoSoftDelete(ctx, id, teamchannelmessage.DefaultCreateTeamChannelMessageUndoSoftDeleteOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -77,7 +77,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := teamchannelmessage.NewGroupIdTeamChannelIdMessageID("groupIdValue", "channelIdValue", "chatMessageIdValue")
+id := teamchannelmessage.NewGroupIdTeamChannelIdMessageID("groupId", "channelId", "chatMessageId")
 
 read, err := client.DeleteTeamChannelMessage(ctx, id, teamchannelmessage.DefaultDeleteTeamChannelMessageOperationOptions())
 if err != nil {
@@ -93,7 +93,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := teamchannelmessage.NewGroupIdTeamChannelIdMessageID("groupIdValue", "channelIdValue", "chatMessageIdValue")
+id := teamchannelmessage.NewGroupIdTeamChannelIdMessageID("groupId", "channelId", "chatMessageId")
 
 read, err := client.GetTeamChannelMessage(ctx, id, teamchannelmessage.DefaultGetTeamChannelMessageOperationOptions())
 if err != nil {
@@ -109,7 +109,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := teamchannelmessage.NewGroupIdTeamChannelID("groupIdValue", "channelIdValue")
+id := teamchannelmessage.NewGroupIdTeamChannelID("groupId", "channelId")
 
 read, err := client.GetTeamChannelMessagesCount(ctx, id, teamchannelmessage.DefaultGetTeamChannelMessagesCountOperationOptions())
 if err != nil {
@@ -125,7 +125,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := teamchannelmessage.NewGroupIdTeamChannelID("groupIdValue", "channelIdValue")
+id := teamchannelmessage.NewGroupIdTeamChannelID("groupId", "channelId")
 
 // alternatively `client.ListTeamChannelMessages(ctx, id, teamchannelmessage.DefaultListTeamChannelMessagesOperationOptions())` can be used to do batched pagination
 items, err := client.ListTeamChannelMessagesComplete(ctx, id, teamchannelmessage.DefaultListTeamChannelMessagesOperationOptions())
@@ -142,14 +142,14 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := teamchannelmessage.NewGroupIdTeamChannelIdMessageID("groupIdValue", "channelIdValue", "chatMessageIdValue")
+id := teamchannelmessage.NewGroupIdTeamChannelIdMessageID("groupId", "channelId", "chatMessageId")
 
 payload := teamchannelmessage.SetTeamChannelMessageReactionRequest{
 	// ...
 }
 
 
-read, err := client.SetTeamChannelMessageReaction(ctx, id, payload)
+read, err := client.SetTeamChannelMessageReaction(ctx, id, payload, teamchannelmessage.DefaultSetTeamChannelMessageReactionOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -163,14 +163,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := teamchannelmessage.NewGroupIdTeamChannelIdMessageID("groupIdValue", "channelIdValue", "chatMessageIdValue")
+id := teamchannelmessage.NewGroupIdTeamChannelIdMessageID("groupId", "channelId", "chatMessageId")
 
 payload := teamchannelmessage.UnsetTeamChannelMessageReactionRequest{
 	// ...
 }
 
 
-read, err := client.UnsetTeamChannelMessageReaction(ctx, id, payload)
+read, err := client.UnsetTeamChannelMessageReaction(ctx, id, payload, teamchannelmessage.DefaultUnsetTeamChannelMessageReactionOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -184,14 +184,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := teamchannelmessage.NewGroupIdTeamChannelIdMessageID("groupIdValue", "channelIdValue", "chatMessageIdValue")
+id := teamchannelmessage.NewGroupIdTeamChannelIdMessageID("groupId", "channelId", "chatMessageId")
 
 payload := teamchannelmessage.ChatMessage{
 	// ...
 }
 
 
-read, err := client.UpdateTeamChannelMessage(ctx, id, payload)
+read, err := client.UpdateTeamChannelMessage(ctx, id, payload, teamchannelmessage.DefaultUpdateTeamChannelMessageOperationOptions())
 if err != nil {
 	// handle the error
 }

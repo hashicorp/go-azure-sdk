@@ -18,16 +18,45 @@ type CreateTeamPrimaryChannelMessageReplyUndoSoftDeleteOperationResponse struct 
 	OData        *odata.OData
 }
 
+type CreateTeamPrimaryChannelMessageReplyUndoSoftDeleteOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateTeamPrimaryChannelMessageReplyUndoSoftDeleteOperationOptions() CreateTeamPrimaryChannelMessageReplyUndoSoftDeleteOperationOptions {
+	return CreateTeamPrimaryChannelMessageReplyUndoSoftDeleteOperationOptions{}
+}
+
+func (o CreateTeamPrimaryChannelMessageReplyUndoSoftDeleteOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateTeamPrimaryChannelMessageReplyUndoSoftDeleteOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateTeamPrimaryChannelMessageReplyUndoSoftDeleteOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateTeamPrimaryChannelMessageReplyUndoSoftDelete - Invoke action undoSoftDelete. Undo soft deletion of a single
 // chatMessage or a chat message reply in a channel or a chat.
-func (c TeamPrimaryChannelMessageReplyClient) CreateTeamPrimaryChannelMessageReplyUndoSoftDelete(ctx context.Context, id stable.GroupIdTeamPrimaryChannelMessageIdReplyId) (result CreateTeamPrimaryChannelMessageReplyUndoSoftDeleteOperationResponse, err error) {
+func (c TeamPrimaryChannelMessageReplyClient) CreateTeamPrimaryChannelMessageReplyUndoSoftDelete(ctx context.Context, id stable.GroupIdTeamPrimaryChannelMessageIdReplyId, options CreateTeamPrimaryChannelMessageReplyUndoSoftDeleteOperationOptions) (result CreateTeamPrimaryChannelMessageReplyUndoSoftDeleteOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/undoSoftDelete", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/undoSoftDelete", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

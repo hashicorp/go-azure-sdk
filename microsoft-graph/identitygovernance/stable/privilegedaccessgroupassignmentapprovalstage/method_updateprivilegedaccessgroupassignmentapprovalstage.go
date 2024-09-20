@@ -17,15 +17,44 @@ type UpdatePrivilegedAccessGroupAssignmentApprovalStageOperationResponse struct 
 	OData        *odata.OData
 }
 
+type UpdatePrivilegedAccessGroupAssignmentApprovalStageOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdatePrivilegedAccessGroupAssignmentApprovalStageOperationOptions() UpdatePrivilegedAccessGroupAssignmentApprovalStageOperationOptions {
+	return UpdatePrivilegedAccessGroupAssignmentApprovalStageOperationOptions{}
+}
+
+func (o UpdatePrivilegedAccessGroupAssignmentApprovalStageOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdatePrivilegedAccessGroupAssignmentApprovalStageOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdatePrivilegedAccessGroupAssignmentApprovalStageOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdatePrivilegedAccessGroupAssignmentApprovalStage - Update the navigation property stages in identityGovernance
-func (c PrivilegedAccessGroupAssignmentApprovalStageClient) UpdatePrivilegedAccessGroupAssignmentApprovalStage(ctx context.Context, id stable.IdentityGovernancePrivilegedAccessGroupAssignmentApprovalIdStageId, input stable.ApprovalStage) (result UpdatePrivilegedAccessGroupAssignmentApprovalStageOperationResponse, err error) {
+func (c PrivilegedAccessGroupAssignmentApprovalStageClient) UpdatePrivilegedAccessGroupAssignmentApprovalStage(ctx context.Context, id stable.IdentityGovernancePrivilegedAccessGroupAssignmentApprovalIdStageId, input stable.ApprovalStage, options UpdatePrivilegedAccessGroupAssignmentApprovalStageOperationOptions) (result UpdatePrivilegedAccessGroupAssignmentApprovalStageOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

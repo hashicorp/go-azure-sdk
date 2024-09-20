@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/conversationthreadpost` Documentation
 
-The `conversationthreadpost` SDK allows for interaction with the Azure Resource Manager Service `groups` (API Version `beta`).
+The `conversationthreadpost` SDK allows for interaction with Microsoft Graph `groups` (API Version `beta`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -15,7 +15,7 @@ import "github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/conversati
 ### Client Initialization
 
 ```go
-client := conversationthreadpost.NewConversationThreadPostClientWithBaseURI("https://management.azure.com")
+client := conversationthreadpost.NewConversationThreadPostClientWithBaseURI("https://graph.microsoft.com")
 client.Client.Authorizer = authorizer
 ```
 
@@ -24,14 +24,14 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := conversationthreadpost.NewGroupIdConversationIdThreadIdPostID("groupIdValue", "conversationIdValue", "conversationThreadIdValue", "postIdValue")
+id := conversationthreadpost.NewGroupIdConversationIdThreadIdPostID("groupId", "conversationId", "conversationThreadId", "postId")
 
 payload := conversationthreadpost.ForwardConversationThreadPostRequest{
 	// ...
 }
 
 
-read, err := client.ForwardConversationThreadPost(ctx, id, payload)
+read, err := client.ForwardConversationThreadPost(ctx, id, payload, conversationthreadpost.DefaultForwardConversationThreadPostOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -45,7 +45,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := conversationthreadpost.NewGroupIdConversationIdThreadIdPostID("groupIdValue", "conversationIdValue", "conversationThreadIdValue", "postIdValue")
+id := conversationthreadpost.NewGroupIdConversationIdThreadIdPostID("groupId", "conversationId", "conversationThreadId", "postId")
 
 read, err := client.GetConversationThreadPost(ctx, id, conversationthreadpost.DefaultGetConversationThreadPostOperationOptions())
 if err != nil {
@@ -61,7 +61,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := conversationthreadpost.NewGroupIdConversationIdThreadID("groupIdValue", "conversationIdValue", "conversationThreadIdValue")
+id := conversationthreadpost.NewGroupIdConversationIdThreadID("groupId", "conversationId", "conversationThreadId")
 
 read, err := client.GetConversationThreadPostsCount(ctx, id, conversationthreadpost.DefaultGetConversationThreadPostsCountOperationOptions())
 if err != nil {
@@ -77,7 +77,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := conversationthreadpost.NewGroupIdConversationIdThreadID("groupIdValue", "conversationIdValue", "conversationThreadIdValue")
+id := conversationthreadpost.NewGroupIdConversationIdThreadID("groupId", "conversationId", "conversationThreadId")
 
 // alternatively `client.ListConversationThreadPosts(ctx, id, conversationthreadpost.DefaultListConversationThreadPostsOperationOptions())` can be used to do batched pagination
 items, err := client.ListConversationThreadPostsComplete(ctx, id, conversationthreadpost.DefaultListConversationThreadPostsOperationOptions())
@@ -94,14 +94,14 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := conversationthreadpost.NewGroupIdConversationIdThreadIdPostID("groupIdValue", "conversationIdValue", "conversationThreadIdValue", "postIdValue")
+id := conversationthreadpost.NewGroupIdConversationIdThreadIdPostID("groupId", "conversationId", "conversationThreadId", "postId")
 
 payload := conversationthreadpost.ReplyConversationThreadPostRequest{
 	// ...
 }
 
 
-read, err := client.ReplyConversationThreadPost(ctx, id, payload)
+read, err := client.ReplyConversationThreadPost(ctx, id, payload, conversationthreadpost.DefaultReplyConversationThreadPostOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -115,14 +115,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := conversationthreadpost.NewGroupIdConversationIdThreadIdPostID("groupIdValue", "conversationIdValue", "conversationThreadIdValue", "postIdValue")
+id := conversationthreadpost.NewGroupIdConversationIdThreadIdPostID("groupId", "conversationId", "conversationThreadId", "postId")
 
 payload := conversationthreadpost.Post{
 	// ...
 }
 
 
-read, err := client.UpdateConversationThreadPost(ctx, id, payload)
+read, err := client.UpdateConversationThreadPost(ctx, id, payload, conversationthreadpost.DefaultUpdateConversationThreadPostOperationOptions())
 if err != nil {
 	// handle the error
 }

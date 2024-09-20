@@ -20,15 +20,44 @@ type CreateMessageExtensionOperationResponse struct {
 	Model        stable.Extension
 }
 
+type CreateMessageExtensionOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateMessageExtensionOperationOptions() CreateMessageExtensionOperationOptions {
+	return CreateMessageExtensionOperationOptions{}
+}
+
+func (o CreateMessageExtensionOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateMessageExtensionOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateMessageExtensionOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateMessageExtension - Create new navigation property to extensions for users
-func (c MessageExtensionClient) CreateMessageExtension(ctx context.Context, id stable.UserIdMessageId, input stable.Extension) (result CreateMessageExtensionOperationResponse, err error) {
+func (c MessageExtensionClient) CreateMessageExtension(ctx context.Context, id stable.UserIdMessageId, input stable.Extension, options CreateMessageExtensionOperationOptions) (result CreateMessageExtensionOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/extensions", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/extensions", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

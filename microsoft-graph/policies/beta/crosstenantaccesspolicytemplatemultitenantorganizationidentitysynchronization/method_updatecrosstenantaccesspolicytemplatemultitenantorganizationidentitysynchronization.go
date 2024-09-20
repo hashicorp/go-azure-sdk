@@ -17,17 +17,46 @@ type UpdateCrossTenantAccessPolicyTemplateMultiTenantOrganizationIdentitySynchro
 	OData        *odata.OData
 }
 
+type UpdateCrossTenantAccessPolicyTemplateMultiTenantOrganizationIdentitySynchronizationOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateCrossTenantAccessPolicyTemplateMultiTenantOrganizationIdentitySynchronizationOperationOptions() UpdateCrossTenantAccessPolicyTemplateMultiTenantOrganizationIdentitySynchronizationOperationOptions {
+	return UpdateCrossTenantAccessPolicyTemplateMultiTenantOrganizationIdentitySynchronizationOperationOptions{}
+}
+
+func (o UpdateCrossTenantAccessPolicyTemplateMultiTenantOrganizationIdentitySynchronizationOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateCrossTenantAccessPolicyTemplateMultiTenantOrganizationIdentitySynchronizationOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateCrossTenantAccessPolicyTemplateMultiTenantOrganizationIdentitySynchronizationOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateCrossTenantAccessPolicyTemplateMultiTenantOrganizationIdentitySynchronization - Update
 // multiTenantOrganizationIdentitySyncPolicyTemplate. Update the cross-tenant access policy template with user
 // synchronization settings for a multi-tenant organization.
-func (c CrossTenantAccessPolicyTemplateMultiTenantOrganizationIdentitySynchronizationClient) UpdateCrossTenantAccessPolicyTemplateMultiTenantOrganizationIdentitySynchronization(ctx context.Context, input beta.MultiTenantOrganizationIdentitySyncPolicyTemplate) (result UpdateCrossTenantAccessPolicyTemplateMultiTenantOrganizationIdentitySynchronizationOperationResponse, err error) {
+func (c CrossTenantAccessPolicyTemplateMultiTenantOrganizationIdentitySynchronizationClient) UpdateCrossTenantAccessPolicyTemplateMultiTenantOrganizationIdentitySynchronization(ctx context.Context, input beta.MultiTenantOrganizationIdentitySyncPolicyTemplate, options UpdateCrossTenantAccessPolicyTemplateMultiTenantOrganizationIdentitySynchronizationOperationOptions) (result UpdateCrossTenantAccessPolicyTemplateMultiTenantOrganizationIdentitySynchronizationOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       "/policies/crossTenantAccessPolicy/templates/multiTenantOrganizationIdentitySynchronization",
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          "/policies/crossTenantAccessPolicy/templates/multiTenantOrganizationIdentitySynchronization",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

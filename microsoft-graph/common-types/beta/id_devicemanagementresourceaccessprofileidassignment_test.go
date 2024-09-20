@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &DeviceManagementResourceAccessProfileIdAssignmentId{}
 
 func TestNewDeviceManagementResourceAccessProfileIdAssignmentID(t *testing.T) {
-	id := NewDeviceManagementResourceAccessProfileIdAssignmentID("deviceManagementResourceAccessProfileBaseIdValue", "deviceManagementResourceAccessProfileAssignmentIdValue")
+	id := NewDeviceManagementResourceAccessProfileIdAssignmentID("deviceManagementResourceAccessProfileBaseId", "deviceManagementResourceAccessProfileAssignmentId")
 
-	if id.DeviceManagementResourceAccessProfileBaseId != "deviceManagementResourceAccessProfileBaseIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DeviceManagementResourceAccessProfileBaseId'", id.DeviceManagementResourceAccessProfileBaseId, "deviceManagementResourceAccessProfileBaseIdValue")
+	if id.DeviceManagementResourceAccessProfileBaseId != "deviceManagementResourceAccessProfileBaseId" {
+		t.Fatalf("Expected %q but got %q for Segment 'DeviceManagementResourceAccessProfileBaseId'", id.DeviceManagementResourceAccessProfileBaseId, "deviceManagementResourceAccessProfileBaseId")
 	}
 
-	if id.DeviceManagementResourceAccessProfileAssignmentId != "deviceManagementResourceAccessProfileAssignmentIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DeviceManagementResourceAccessProfileAssignmentId'", id.DeviceManagementResourceAccessProfileAssignmentId, "deviceManagementResourceAccessProfileAssignmentIdValue")
+	if id.DeviceManagementResourceAccessProfileAssignmentId != "deviceManagementResourceAccessProfileAssignmentId" {
+		t.Fatalf("Expected %q but got %q for Segment 'DeviceManagementResourceAccessProfileAssignmentId'", id.DeviceManagementResourceAccessProfileAssignmentId, "deviceManagementResourceAccessProfileAssignmentId")
 	}
 }
 
 func TestFormatDeviceManagementResourceAccessProfileIdAssignmentID(t *testing.T) {
-	actual := NewDeviceManagementResourceAccessProfileIdAssignmentID("deviceManagementResourceAccessProfileBaseIdValue", "deviceManagementResourceAccessProfileAssignmentIdValue").ID()
-	expected := "/deviceManagement/resourceAccessProfiles/deviceManagementResourceAccessProfileBaseIdValue/assignments/deviceManagementResourceAccessProfileAssignmentIdValue"
+	actual := NewDeviceManagementResourceAccessProfileIdAssignmentID("deviceManagementResourceAccessProfileBaseId", "deviceManagementResourceAccessProfileAssignmentId").ID()
+	expected := "/deviceManagement/resourceAccessProfiles/deviceManagementResourceAccessProfileBaseId/assignments/deviceManagementResourceAccessProfileAssignmentId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -54,25 +54,25 @@ func TestParseDeviceManagementResourceAccessProfileIdAssignmentID(t *testing.T) 
 		},
 		{
 			// Incomplete URI
-			Input: "/deviceManagement/resourceAccessProfiles/deviceManagementResourceAccessProfileBaseIdValue",
+			Input: "/deviceManagement/resourceAccessProfiles/deviceManagementResourceAccessProfileBaseId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/deviceManagement/resourceAccessProfiles/deviceManagementResourceAccessProfileBaseIdValue/assignments",
+			Input: "/deviceManagement/resourceAccessProfiles/deviceManagementResourceAccessProfileBaseId/assignments",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/resourceAccessProfiles/deviceManagementResourceAccessProfileBaseIdValue/assignments/deviceManagementResourceAccessProfileAssignmentIdValue",
+			Input: "/deviceManagement/resourceAccessProfiles/deviceManagementResourceAccessProfileBaseId/assignments/deviceManagementResourceAccessProfileAssignmentId",
 			Expected: &DeviceManagementResourceAccessProfileIdAssignmentId{
-				DeviceManagementResourceAccessProfileBaseId:       "deviceManagementResourceAccessProfileBaseIdValue",
-				DeviceManagementResourceAccessProfileAssignmentId: "deviceManagementResourceAccessProfileAssignmentIdValue",
+				DeviceManagementResourceAccessProfileBaseId:       "deviceManagementResourceAccessProfileBaseId",
+				DeviceManagementResourceAccessProfileAssignmentId: "deviceManagementResourceAccessProfileAssignmentId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/resourceAccessProfiles/deviceManagementResourceAccessProfileBaseIdValue/assignments/deviceManagementResourceAccessProfileAssignmentIdValue/extra",
+			Input: "/deviceManagement/resourceAccessProfiles/deviceManagementResourceAccessProfileBaseId/assignments/deviceManagementResourceAccessProfileAssignmentId/extra",
 			Error: true,
 		},
 	}
@@ -135,48 +135,48 @@ func TestParseDeviceManagementResourceAccessProfileIdAssignmentIDInsensitively(t
 		},
 		{
 			// Incomplete URI
-			Input: "/deviceManagement/resourceAccessProfiles/deviceManagementResourceAccessProfileBaseIdValue",
+			Input: "/deviceManagement/resourceAccessProfiles/deviceManagementResourceAccessProfileBaseId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/rEsOuRcEaCcEsSpRoFiLeS/dEvIcEmAnAgEmEnTrEsOuRcEaCcEsSpRoFiLeBaSeIdVaLuE",
+			Input: "/dEvIcEmAnAgEmEnT/rEsOuRcEaCcEsSpRoFiLeS/dEvIcEmAnAgEmEnTrEsOuRcEaCcEsSpRoFiLeBaSeId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/deviceManagement/resourceAccessProfiles/deviceManagementResourceAccessProfileBaseIdValue/assignments",
+			Input: "/deviceManagement/resourceAccessProfiles/deviceManagementResourceAccessProfileBaseId/assignments",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/rEsOuRcEaCcEsSpRoFiLeS/dEvIcEmAnAgEmEnTrEsOuRcEaCcEsSpRoFiLeBaSeIdVaLuE/aSsIgNmEnTs",
+			Input: "/dEvIcEmAnAgEmEnT/rEsOuRcEaCcEsSpRoFiLeS/dEvIcEmAnAgEmEnTrEsOuRcEaCcEsSpRoFiLeBaSeId/aSsIgNmEnTs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/resourceAccessProfiles/deviceManagementResourceAccessProfileBaseIdValue/assignments/deviceManagementResourceAccessProfileAssignmentIdValue",
+			Input: "/deviceManagement/resourceAccessProfiles/deviceManagementResourceAccessProfileBaseId/assignments/deviceManagementResourceAccessProfileAssignmentId",
 			Expected: &DeviceManagementResourceAccessProfileIdAssignmentId{
-				DeviceManagementResourceAccessProfileBaseId:       "deviceManagementResourceAccessProfileBaseIdValue",
-				DeviceManagementResourceAccessProfileAssignmentId: "deviceManagementResourceAccessProfileAssignmentIdValue",
+				DeviceManagementResourceAccessProfileBaseId:       "deviceManagementResourceAccessProfileBaseId",
+				DeviceManagementResourceAccessProfileAssignmentId: "deviceManagementResourceAccessProfileAssignmentId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/resourceAccessProfiles/deviceManagementResourceAccessProfileBaseIdValue/assignments/deviceManagementResourceAccessProfileAssignmentIdValue/extra",
+			Input: "/deviceManagement/resourceAccessProfiles/deviceManagementResourceAccessProfileBaseId/assignments/deviceManagementResourceAccessProfileAssignmentId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/rEsOuRcEaCcEsSpRoFiLeS/dEvIcEmAnAgEmEnTrEsOuRcEaCcEsSpRoFiLeBaSeIdVaLuE/aSsIgNmEnTs/dEvIcEmAnAgEmEnTrEsOuRcEaCcEsSpRoFiLeAsSiGnMeNtIdVaLuE",
+			Input: "/dEvIcEmAnAgEmEnT/rEsOuRcEaCcEsSpRoFiLeS/dEvIcEmAnAgEmEnTrEsOuRcEaCcEsSpRoFiLeBaSeId/aSsIgNmEnTs/dEvIcEmAnAgEmEnTrEsOuRcEaCcEsSpRoFiLeAsSiGnMeNtId",
 			Expected: &DeviceManagementResourceAccessProfileIdAssignmentId{
-				DeviceManagementResourceAccessProfileBaseId:       "dEvIcEmAnAgEmEnTrEsOuRcEaCcEsSpRoFiLeBaSeIdVaLuE",
-				DeviceManagementResourceAccessProfileAssignmentId: "dEvIcEmAnAgEmEnTrEsOuRcEaCcEsSpRoFiLeAsSiGnMeNtIdVaLuE",
+				DeviceManagementResourceAccessProfileBaseId:       "dEvIcEmAnAgEmEnTrEsOuRcEaCcEsSpRoFiLeBaSeId",
+				DeviceManagementResourceAccessProfileAssignmentId: "dEvIcEmAnAgEmEnTrEsOuRcEaCcEsSpRoFiLeAsSiGnMeNtId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/rEsOuRcEaCcEsSpRoFiLeS/dEvIcEmAnAgEmEnTrEsOuRcEaCcEsSpRoFiLeBaSeIdVaLuE/aSsIgNmEnTs/dEvIcEmAnAgEmEnTrEsOuRcEaCcEsSpRoFiLeAsSiGnMeNtIdVaLuE/extra",
+			Input: "/dEvIcEmAnAgEmEnT/rEsOuRcEaCcEsSpRoFiLeS/dEvIcEmAnAgEmEnTrEsOuRcEaCcEsSpRoFiLeBaSeId/aSsIgNmEnTs/dEvIcEmAnAgEmEnTrEsOuRcEaCcEsSpRoFiLeAsSiGnMeNtId/extra",
 			Error: true,
 		},
 	}

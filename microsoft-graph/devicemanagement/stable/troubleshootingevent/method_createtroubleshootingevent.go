@@ -19,15 +19,44 @@ type CreateTroubleshootingEventOperationResponse struct {
 	Model        stable.DeviceManagementTroubleshootingEvent
 }
 
+type CreateTroubleshootingEventOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateTroubleshootingEventOperationOptions() CreateTroubleshootingEventOperationOptions {
+	return CreateTroubleshootingEventOperationOptions{}
+}
+
+func (o CreateTroubleshootingEventOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateTroubleshootingEventOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateTroubleshootingEventOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateTroubleshootingEvent - Create new navigation property to troubleshootingEvents for deviceManagement
-func (c TroubleshootingEventClient) CreateTroubleshootingEvent(ctx context.Context, input stable.DeviceManagementTroubleshootingEvent) (result CreateTroubleshootingEventOperationResponse, err error) {
+func (c TroubleshootingEventClient) CreateTroubleshootingEvent(ctx context.Context, input stable.DeviceManagementTroubleshootingEvent, options CreateTroubleshootingEventOperationOptions) (result CreateTroubleshootingEventOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/deviceManagement/troubleshootingEvents",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/deviceManagement/troubleshootingEvents",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

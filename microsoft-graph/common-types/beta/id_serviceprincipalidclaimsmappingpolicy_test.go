@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &ServicePrincipalIdClaimsMappingPolicyId{}
 
 func TestNewServicePrincipalIdClaimsMappingPolicyID(t *testing.T) {
-	id := NewServicePrincipalIdClaimsMappingPolicyID("servicePrincipalIdValue", "claimsMappingPolicyIdValue")
+	id := NewServicePrincipalIdClaimsMappingPolicyID("servicePrincipalId", "claimsMappingPolicyId")
 
-	if id.ServicePrincipalId != "servicePrincipalIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ServicePrincipalId'", id.ServicePrincipalId, "servicePrincipalIdValue")
+	if id.ServicePrincipalId != "servicePrincipalId" {
+		t.Fatalf("Expected %q but got %q for Segment 'ServicePrincipalId'", id.ServicePrincipalId, "servicePrincipalId")
 	}
 
-	if id.ClaimsMappingPolicyId != "claimsMappingPolicyIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ClaimsMappingPolicyId'", id.ClaimsMappingPolicyId, "claimsMappingPolicyIdValue")
+	if id.ClaimsMappingPolicyId != "claimsMappingPolicyId" {
+		t.Fatalf("Expected %q but got %q for Segment 'ClaimsMappingPolicyId'", id.ClaimsMappingPolicyId, "claimsMappingPolicyId")
 	}
 }
 
 func TestFormatServicePrincipalIdClaimsMappingPolicyID(t *testing.T) {
-	actual := NewServicePrincipalIdClaimsMappingPolicyID("servicePrincipalIdValue", "claimsMappingPolicyIdValue").ID()
-	expected := "/servicePrincipals/servicePrincipalIdValue/claimsMappingPolicies/claimsMappingPolicyIdValue"
+	actual := NewServicePrincipalIdClaimsMappingPolicyID("servicePrincipalId", "claimsMappingPolicyId").ID()
+	expected := "/servicePrincipals/servicePrincipalId/claimsMappingPolicies/claimsMappingPolicyId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -49,25 +49,25 @@ func TestParseServicePrincipalIdClaimsMappingPolicyID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/servicePrincipals/servicePrincipalIdValue",
+			Input: "/servicePrincipals/servicePrincipalId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/servicePrincipals/servicePrincipalIdValue/claimsMappingPolicies",
+			Input: "/servicePrincipals/servicePrincipalId/claimsMappingPolicies",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/servicePrincipals/servicePrincipalIdValue/claimsMappingPolicies/claimsMappingPolicyIdValue",
+			Input: "/servicePrincipals/servicePrincipalId/claimsMappingPolicies/claimsMappingPolicyId",
 			Expected: &ServicePrincipalIdClaimsMappingPolicyId{
-				ServicePrincipalId:    "servicePrincipalIdValue",
-				ClaimsMappingPolicyId: "claimsMappingPolicyIdValue",
+				ServicePrincipalId:    "servicePrincipalId",
+				ClaimsMappingPolicyId: "claimsMappingPolicyId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/servicePrincipals/servicePrincipalIdValue/claimsMappingPolicies/claimsMappingPolicyIdValue/extra",
+			Input: "/servicePrincipals/servicePrincipalId/claimsMappingPolicies/claimsMappingPolicyId/extra",
 			Error: true,
 		},
 	}
@@ -120,48 +120,48 @@ func TestParseServicePrincipalIdClaimsMappingPolicyIDInsensitively(t *testing.T)
 		},
 		{
 			// Incomplete URI
-			Input: "/servicePrincipals/servicePrincipalIdValue",
+			Input: "/servicePrincipals/servicePrincipalId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sErViCePrInCiPaLs/sErViCePrInCiPaLiDvAlUe",
+			Input: "/sErViCePrInCiPaLs/sErViCePrInCiPaLiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/servicePrincipals/servicePrincipalIdValue/claimsMappingPolicies",
+			Input: "/servicePrincipals/servicePrincipalId/claimsMappingPolicies",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sErViCePrInCiPaLs/sErViCePrInCiPaLiDvAlUe/cLaImSmApPiNgPoLiCiEs",
+			Input: "/sErViCePrInCiPaLs/sErViCePrInCiPaLiD/cLaImSmApPiNgPoLiCiEs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/servicePrincipals/servicePrincipalIdValue/claimsMappingPolicies/claimsMappingPolicyIdValue",
+			Input: "/servicePrincipals/servicePrincipalId/claimsMappingPolicies/claimsMappingPolicyId",
 			Expected: &ServicePrincipalIdClaimsMappingPolicyId{
-				ServicePrincipalId:    "servicePrincipalIdValue",
-				ClaimsMappingPolicyId: "claimsMappingPolicyIdValue",
+				ServicePrincipalId:    "servicePrincipalId",
+				ClaimsMappingPolicyId: "claimsMappingPolicyId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/servicePrincipals/servicePrincipalIdValue/claimsMappingPolicies/claimsMappingPolicyIdValue/extra",
+			Input: "/servicePrincipals/servicePrincipalId/claimsMappingPolicies/claimsMappingPolicyId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sErViCePrInCiPaLs/sErViCePrInCiPaLiDvAlUe/cLaImSmApPiNgPoLiCiEs/cLaImSmApPiNgPoLiCyIdVaLuE",
+			Input: "/sErViCePrInCiPaLs/sErViCePrInCiPaLiD/cLaImSmApPiNgPoLiCiEs/cLaImSmApPiNgPoLiCyId",
 			Expected: &ServicePrincipalIdClaimsMappingPolicyId{
-				ServicePrincipalId:    "sErViCePrInCiPaLiDvAlUe",
-				ClaimsMappingPolicyId: "cLaImSmApPiNgPoLiCyIdVaLuE",
+				ServicePrincipalId:    "sErViCePrInCiPaLiD",
+				ClaimsMappingPolicyId: "cLaImSmApPiNgPoLiCyId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sErViCePrInCiPaLs/sErViCePrInCiPaLiDvAlUe/cLaImSmApPiNgPoLiCiEs/cLaImSmApPiNgPoLiCyIdVaLuE/extra",
+			Input: "/sErViCePrInCiPaLs/sErViCePrInCiPaLiD/cLaImSmApPiNgPoLiCiEs/cLaImSmApPiNgPoLiCyId/extra",
 			Error: true,
 		},
 	}

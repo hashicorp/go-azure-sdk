@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/virtualendpointusersetting` Documentation
 
-The `virtualendpointusersetting` SDK allows for interaction with the Azure Resource Manager Service `devicemanagement` (API Version `beta`).
+The `virtualendpointusersetting` SDK allows for interaction with Microsoft Graph `devicemanagement` (API Version `beta`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -15,7 +15,7 @@ import "github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/
 ### Client Initialization
 
 ```go
-client := virtualendpointusersetting.NewVirtualEndpointUserSettingClientWithBaseURI("https://management.azure.com")
+client := virtualendpointusersetting.NewVirtualEndpointUserSettingClientWithBaseURI("https://graph.microsoft.com")
 client.Client.Authorizer = authorizer
 ```
 
@@ -24,14 +24,14 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := virtualendpointusersetting.NewDeviceManagementVirtualEndpointUserSettingID("cloudPCUserSettingIdValue")
+id := virtualendpointusersetting.NewDeviceManagementVirtualEndpointUserSettingID("cloudPCUserSettingId")
 
 payload := virtualendpointusersetting.AssignVirtualEndpointUserSettingRequest{
 	// ...
 }
 
 
-read, err := client.AssignVirtualEndpointUserSetting(ctx, id, payload)
+read, err := client.AssignVirtualEndpointUserSetting(ctx, id, payload, virtualendpointusersetting.DefaultAssignVirtualEndpointUserSettingOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -51,7 +51,7 @@ payload := virtualendpointusersetting.CloudPCUserSetting{
 }
 
 
-read, err := client.CreateVirtualEndpointUserSetting(ctx, payload)
+read, err := client.CreateVirtualEndpointUserSetting(ctx, payload, virtualendpointusersetting.DefaultCreateVirtualEndpointUserSettingOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -65,7 +65,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := virtualendpointusersetting.NewDeviceManagementVirtualEndpointUserSettingID("cloudPCUserSettingIdValue")
+id := virtualendpointusersetting.NewDeviceManagementVirtualEndpointUserSettingID("cloudPCUserSettingId")
 
 read, err := client.DeleteVirtualEndpointUserSetting(ctx, id, virtualendpointusersetting.DefaultDeleteVirtualEndpointUserSettingOperationOptions())
 if err != nil {
@@ -81,7 +81,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := virtualendpointusersetting.NewDeviceManagementVirtualEndpointUserSettingID("cloudPCUserSettingIdValue")
+id := virtualendpointusersetting.NewDeviceManagementVirtualEndpointUserSettingID("cloudPCUserSettingId")
 
 read, err := client.GetVirtualEndpointUserSetting(ctx, id, virtualendpointusersetting.DefaultGetVirtualEndpointUserSettingOperationOptions())
 if err != nil {
@@ -130,14 +130,14 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := virtualendpointusersetting.NewDeviceManagementVirtualEndpointUserSettingID("cloudPCUserSettingIdValue")
+id := virtualendpointusersetting.NewDeviceManagementVirtualEndpointUserSettingID("cloudPCUserSettingId")
 
 payload := virtualendpointusersetting.CloudPCUserSetting{
 	// ...
 }
 
 
-read, err := client.UpdateVirtualEndpointUserSetting(ctx, id, payload)
+read, err := client.UpdateVirtualEndpointUserSetting(ctx, id, payload, virtualendpointusersetting.DefaultUpdateVirtualEndpointUserSettingOperationOptions())
 if err != nil {
 	// handle the error
 }

@@ -18,16 +18,45 @@ type CreateEntitlementManagementAccessPackageCatalogOperationResponse struct {
 	Model        *beta.AccessPackageCatalog
 }
 
+type CreateEntitlementManagementAccessPackageCatalogOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateEntitlementManagementAccessPackageCatalogOperationOptions() CreateEntitlementManagementAccessPackageCatalogOperationOptions {
+	return CreateEntitlementManagementAccessPackageCatalogOperationOptions{}
+}
+
+func (o CreateEntitlementManagementAccessPackageCatalogOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateEntitlementManagementAccessPackageCatalogOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateEntitlementManagementAccessPackageCatalogOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateEntitlementManagementAccessPackageCatalog - Create accessPackageCatalog. Create a new accessPackageCatalog
 // object.
-func (c EntitlementManagementAccessPackageCatalogClient) CreateEntitlementManagementAccessPackageCatalog(ctx context.Context, input beta.AccessPackageCatalog) (result CreateEntitlementManagementAccessPackageCatalogOperationResponse, err error) {
+func (c EntitlementManagementAccessPackageCatalogClient) CreateEntitlementManagementAccessPackageCatalog(ctx context.Context, input beta.AccessPackageCatalog, options CreateEntitlementManagementAccessPackageCatalogOperationOptions) (result CreateEntitlementManagementAccessPackageCatalogOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/identityGovernance/entitlementManagement/accessPackageCatalogs",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/identityGovernance/entitlementManagement/accessPackageCatalogs",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

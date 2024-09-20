@@ -89,21 +89,31 @@ func (s CallRecordsSession) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &CallRecordsSession{}
 
 func (s *CallRecordsSession) UnmarshalJSON(bytes []byte) error {
-	type alias CallRecordsSession
-	var decoded alias
+
+	var decoded struct {
+		EndDateTime   *string                 `json:"endDateTime,omitempty"`
+		FailureInfo   *CallRecordsFailureInfo `json:"failureInfo,omitempty"`
+		IsTest        nullable.Type[bool]     `json:"isTest,omitempty"`
+		Modalities    *[]CallRecordsModality  `json:"modalities,omitempty"`
+		Segments      *[]CallRecordsSegment   `json:"segments,omitempty"`
+		StartDateTime *string                 `json:"startDateTime,omitempty"`
+		Id            *string                 `json:"id,omitempty"`
+		ODataId       *string                 `json:"@odata.id,omitempty"`
+		ODataType     *string                 `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into CallRecordsSession: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.EndDateTime = decoded.EndDateTime
 	s.FailureInfo = decoded.FailureInfo
-	s.Id = decoded.Id
 	s.IsTest = decoded.IsTest
 	s.Modalities = decoded.Modalities
-	s.ODataId = decoded.ODataId
-	s.ODataType = decoded.ODataType
 	s.Segments = decoded.Segments
 	s.StartDateTime = decoded.StartDateTime
+	s.Id = decoded.Id
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -125,5 +135,6 @@ func (s *CallRecordsSession) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Caller = impl
 	}
+
 	return nil
 }

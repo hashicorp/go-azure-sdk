@@ -19,15 +19,44 @@ type CreateSiteInformationProtectionSensitivityLabelOperationResponse struct {
 	Model        *beta.SensitivityLabel
 }
 
+type CreateSiteInformationProtectionSensitivityLabelOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateSiteInformationProtectionSensitivityLabelOperationOptions() CreateSiteInformationProtectionSensitivityLabelOperationOptions {
+	return CreateSiteInformationProtectionSensitivityLabelOperationOptions{}
+}
+
+func (o CreateSiteInformationProtectionSensitivityLabelOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateSiteInformationProtectionSensitivityLabelOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateSiteInformationProtectionSensitivityLabelOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateSiteInformationProtectionSensitivityLabel - Create new navigation property to sensitivityLabels for groups
-func (c SiteInformationProtectionSensitivityLabelClient) CreateSiteInformationProtectionSensitivityLabel(ctx context.Context, id beta.GroupIdSiteId, input beta.SensitivityLabel) (result CreateSiteInformationProtectionSensitivityLabelOperationResponse, err error) {
+func (c SiteInformationProtectionSensitivityLabelClient) CreateSiteInformationProtectionSensitivityLabel(ctx context.Context, id beta.GroupIdSiteId, input beta.SensitivityLabel, options CreateSiteInformationProtectionSensitivityLabelOperationOptions) (result CreateSiteInformationProtectionSensitivityLabelOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/informationProtection/sensitivityLabels", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/informationProtection/sensitivityLabels", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

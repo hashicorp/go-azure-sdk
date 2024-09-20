@@ -61,10 +61,13 @@ func (s IdentityGovernanceTriggerAndScopeBasedConditions) MarshalJSON() ([]byte,
 var _ json.Unmarshaler = &IdentityGovernanceTriggerAndScopeBasedConditions{}
 
 func (s *IdentityGovernanceTriggerAndScopeBasedConditions) UnmarshalJSON(bytes []byte) error {
-	type alias IdentityGovernanceTriggerAndScopeBasedConditions
-	var decoded alias
+
+	var decoded struct {
+		ODataId   *string `json:"@odata.id,omitempty"`
+		ODataType *string `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into IdentityGovernanceTriggerAndScopeBasedConditions: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.ODataId = decoded.ODataId
@@ -90,5 +93,6 @@ func (s *IdentityGovernanceTriggerAndScopeBasedConditions) UnmarshalJSON(bytes [
 		}
 		s.Trigger = impl
 	}
+
 	return nil
 }

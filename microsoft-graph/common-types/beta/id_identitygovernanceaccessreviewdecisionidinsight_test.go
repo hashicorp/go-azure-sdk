@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &IdentityGovernanceAccessReviewDecisionIdInsightId{}
 
 func TestNewIdentityGovernanceAccessReviewDecisionIdInsightID(t *testing.T) {
-	id := NewIdentityGovernanceAccessReviewDecisionIdInsightID("accessReviewInstanceDecisionItemIdValue", "governanceInsightIdValue")
+	id := NewIdentityGovernanceAccessReviewDecisionIdInsightID("accessReviewInstanceDecisionItemId", "governanceInsightId")
 
-	if id.AccessReviewInstanceDecisionItemId != "accessReviewInstanceDecisionItemIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'AccessReviewInstanceDecisionItemId'", id.AccessReviewInstanceDecisionItemId, "accessReviewInstanceDecisionItemIdValue")
+	if id.AccessReviewInstanceDecisionItemId != "accessReviewInstanceDecisionItemId" {
+		t.Fatalf("Expected %q but got %q for Segment 'AccessReviewInstanceDecisionItemId'", id.AccessReviewInstanceDecisionItemId, "accessReviewInstanceDecisionItemId")
 	}
 
-	if id.GovernanceInsightId != "governanceInsightIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'GovernanceInsightId'", id.GovernanceInsightId, "governanceInsightIdValue")
+	if id.GovernanceInsightId != "governanceInsightId" {
+		t.Fatalf("Expected %q but got %q for Segment 'GovernanceInsightId'", id.GovernanceInsightId, "governanceInsightId")
 	}
 }
 
 func TestFormatIdentityGovernanceAccessReviewDecisionIdInsightID(t *testing.T) {
-	actual := NewIdentityGovernanceAccessReviewDecisionIdInsightID("accessReviewInstanceDecisionItemIdValue", "governanceInsightIdValue").ID()
-	expected := "/identityGovernance/accessReviews/decisions/accessReviewInstanceDecisionItemIdValue/insights/governanceInsightIdValue"
+	actual := NewIdentityGovernanceAccessReviewDecisionIdInsightID("accessReviewInstanceDecisionItemId", "governanceInsightId").ID()
+	expected := "/identityGovernance/accessReviews/decisions/accessReviewInstanceDecisionItemId/insights/governanceInsightId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -59,25 +59,25 @@ func TestParseIdentityGovernanceAccessReviewDecisionIdInsightID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/identityGovernance/accessReviews/decisions/accessReviewInstanceDecisionItemIdValue",
+			Input: "/identityGovernance/accessReviews/decisions/accessReviewInstanceDecisionItemId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/identityGovernance/accessReviews/decisions/accessReviewInstanceDecisionItemIdValue/insights",
+			Input: "/identityGovernance/accessReviews/decisions/accessReviewInstanceDecisionItemId/insights",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/identityGovernance/accessReviews/decisions/accessReviewInstanceDecisionItemIdValue/insights/governanceInsightIdValue",
+			Input: "/identityGovernance/accessReviews/decisions/accessReviewInstanceDecisionItemId/insights/governanceInsightId",
 			Expected: &IdentityGovernanceAccessReviewDecisionIdInsightId{
-				AccessReviewInstanceDecisionItemId: "accessReviewInstanceDecisionItemIdValue",
-				GovernanceInsightId:                "governanceInsightIdValue",
+				AccessReviewInstanceDecisionItemId: "accessReviewInstanceDecisionItemId",
+				GovernanceInsightId:                "governanceInsightId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/identityGovernance/accessReviews/decisions/accessReviewInstanceDecisionItemIdValue/insights/governanceInsightIdValue/extra",
+			Input: "/identityGovernance/accessReviews/decisions/accessReviewInstanceDecisionItemId/insights/governanceInsightId/extra",
 			Error: true,
 		},
 	}
@@ -150,48 +150,48 @@ func TestParseIdentityGovernanceAccessReviewDecisionIdInsightIDInsensitively(t *
 		},
 		{
 			// Incomplete URI
-			Input: "/identityGovernance/accessReviews/decisions/accessReviewInstanceDecisionItemIdValue",
+			Input: "/identityGovernance/accessReviews/decisions/accessReviewInstanceDecisionItemId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/iDeNtItYgOvErNaNcE/aCcEsSrEvIeWs/dEcIsIoNs/aCcEsSrEvIeWiNsTaNcEdEcIsIoNiTeMiDvAlUe",
+			Input: "/iDeNtItYgOvErNaNcE/aCcEsSrEvIeWs/dEcIsIoNs/aCcEsSrEvIeWiNsTaNcEdEcIsIoNiTeMiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/identityGovernance/accessReviews/decisions/accessReviewInstanceDecisionItemIdValue/insights",
+			Input: "/identityGovernance/accessReviews/decisions/accessReviewInstanceDecisionItemId/insights",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/iDeNtItYgOvErNaNcE/aCcEsSrEvIeWs/dEcIsIoNs/aCcEsSrEvIeWiNsTaNcEdEcIsIoNiTeMiDvAlUe/iNsIgHtS",
+			Input: "/iDeNtItYgOvErNaNcE/aCcEsSrEvIeWs/dEcIsIoNs/aCcEsSrEvIeWiNsTaNcEdEcIsIoNiTeMiD/iNsIgHtS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/identityGovernance/accessReviews/decisions/accessReviewInstanceDecisionItemIdValue/insights/governanceInsightIdValue",
+			Input: "/identityGovernance/accessReviews/decisions/accessReviewInstanceDecisionItemId/insights/governanceInsightId",
 			Expected: &IdentityGovernanceAccessReviewDecisionIdInsightId{
-				AccessReviewInstanceDecisionItemId: "accessReviewInstanceDecisionItemIdValue",
-				GovernanceInsightId:                "governanceInsightIdValue",
+				AccessReviewInstanceDecisionItemId: "accessReviewInstanceDecisionItemId",
+				GovernanceInsightId:                "governanceInsightId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/identityGovernance/accessReviews/decisions/accessReviewInstanceDecisionItemIdValue/insights/governanceInsightIdValue/extra",
+			Input: "/identityGovernance/accessReviews/decisions/accessReviewInstanceDecisionItemId/insights/governanceInsightId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/iDeNtItYgOvErNaNcE/aCcEsSrEvIeWs/dEcIsIoNs/aCcEsSrEvIeWiNsTaNcEdEcIsIoNiTeMiDvAlUe/iNsIgHtS/gOvErNaNcEiNsIgHtIdVaLuE",
+			Input: "/iDeNtItYgOvErNaNcE/aCcEsSrEvIeWs/dEcIsIoNs/aCcEsSrEvIeWiNsTaNcEdEcIsIoNiTeMiD/iNsIgHtS/gOvErNaNcEiNsIgHtId",
 			Expected: &IdentityGovernanceAccessReviewDecisionIdInsightId{
-				AccessReviewInstanceDecisionItemId: "aCcEsSrEvIeWiNsTaNcEdEcIsIoNiTeMiDvAlUe",
-				GovernanceInsightId:                "gOvErNaNcEiNsIgHtIdVaLuE",
+				AccessReviewInstanceDecisionItemId: "aCcEsSrEvIeWiNsTaNcEdEcIsIoNiTeMiD",
+				GovernanceInsightId:                "gOvErNaNcEiNsIgHtId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/iDeNtItYgOvErNaNcE/aCcEsSrEvIeWs/dEcIsIoNs/aCcEsSrEvIeWiNsTaNcEdEcIsIoNiTeMiDvAlUe/iNsIgHtS/gOvErNaNcEiNsIgHtIdVaLuE/extra",
+			Input: "/iDeNtItYgOvErNaNcE/aCcEsSrEvIeWs/dEcIsIoNs/aCcEsSrEvIeWiNsTaNcEdEcIsIoNiTeMiD/iNsIgHtS/gOvErNaNcEiNsIgHtId/extra",
 			Error: true,
 		},
 	}

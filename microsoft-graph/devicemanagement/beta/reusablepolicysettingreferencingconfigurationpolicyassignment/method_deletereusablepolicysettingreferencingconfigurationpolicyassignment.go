@@ -19,7 +19,8 @@ type DeleteReusablePolicySettingReferencingConfigurationPolicyAssignmentOperatio
 }
 
 type DeleteReusablePolicySettingReferencingConfigurationPolicyAssignmentOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteReusablePolicySettingReferencingConfigurationPolicyAssignmentOperationOptions() DeleteReusablePolicySettingReferencingConfigurationPolicyAssignmentOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteReusablePolicySettingReferencingConfigurationPolicyAssignmentOpera
 
 func (o DeleteReusablePolicySettingReferencingConfigurationPolicyAssignmentOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

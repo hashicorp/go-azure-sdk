@@ -18,15 +18,44 @@ type UpdateSiteLastModifiedByUserMailboxSettingOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateSiteLastModifiedByUserMailboxSettingOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateSiteLastModifiedByUserMailboxSettingOperationOptions() UpdateSiteLastModifiedByUserMailboxSettingOperationOptions {
+	return UpdateSiteLastModifiedByUserMailboxSettingOperationOptions{}
+}
+
+func (o UpdateSiteLastModifiedByUserMailboxSettingOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateSiteLastModifiedByUserMailboxSettingOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateSiteLastModifiedByUserMailboxSettingOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateSiteLastModifiedByUserMailboxSetting - Update property mailboxSettings value.
-func (c SiteLastModifiedByUserMailboxSettingClient) UpdateSiteLastModifiedByUserMailboxSetting(ctx context.Context, id stable.GroupIdSiteId, input stable.MailboxSettings) (result UpdateSiteLastModifiedByUserMailboxSettingOperationResponse, err error) {
+func (c SiteLastModifiedByUserMailboxSettingClient) UpdateSiteLastModifiedByUserMailboxSetting(ctx context.Context, id stable.GroupIdSiteId, input stable.MailboxSettings, options UpdateSiteLastModifiedByUserMailboxSettingOperationOptions) (result UpdateSiteLastModifiedByUserMailboxSettingOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       fmt.Sprintf("%s/lastModifiedByUser/mailboxSettings", id.ID()),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/lastModifiedByUser/mailboxSettings", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

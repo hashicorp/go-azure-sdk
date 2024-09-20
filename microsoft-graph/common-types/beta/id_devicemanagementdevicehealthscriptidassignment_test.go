@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &DeviceManagementDeviceHealthScriptIdAssignmentId{}
 
 func TestNewDeviceManagementDeviceHealthScriptIdAssignmentID(t *testing.T) {
-	id := NewDeviceManagementDeviceHealthScriptIdAssignmentID("deviceHealthScriptIdValue", "deviceHealthScriptAssignmentIdValue")
+	id := NewDeviceManagementDeviceHealthScriptIdAssignmentID("deviceHealthScriptId", "deviceHealthScriptAssignmentId")
 
-	if id.DeviceHealthScriptId != "deviceHealthScriptIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DeviceHealthScriptId'", id.DeviceHealthScriptId, "deviceHealthScriptIdValue")
+	if id.DeviceHealthScriptId != "deviceHealthScriptId" {
+		t.Fatalf("Expected %q but got %q for Segment 'DeviceHealthScriptId'", id.DeviceHealthScriptId, "deviceHealthScriptId")
 	}
 
-	if id.DeviceHealthScriptAssignmentId != "deviceHealthScriptAssignmentIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DeviceHealthScriptAssignmentId'", id.DeviceHealthScriptAssignmentId, "deviceHealthScriptAssignmentIdValue")
+	if id.DeviceHealthScriptAssignmentId != "deviceHealthScriptAssignmentId" {
+		t.Fatalf("Expected %q but got %q for Segment 'DeviceHealthScriptAssignmentId'", id.DeviceHealthScriptAssignmentId, "deviceHealthScriptAssignmentId")
 	}
 }
 
 func TestFormatDeviceManagementDeviceHealthScriptIdAssignmentID(t *testing.T) {
-	actual := NewDeviceManagementDeviceHealthScriptIdAssignmentID("deviceHealthScriptIdValue", "deviceHealthScriptAssignmentIdValue").ID()
-	expected := "/deviceManagement/deviceHealthScripts/deviceHealthScriptIdValue/assignments/deviceHealthScriptAssignmentIdValue"
+	actual := NewDeviceManagementDeviceHealthScriptIdAssignmentID("deviceHealthScriptId", "deviceHealthScriptAssignmentId").ID()
+	expected := "/deviceManagement/deviceHealthScripts/deviceHealthScriptId/assignments/deviceHealthScriptAssignmentId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -54,25 +54,25 @@ func TestParseDeviceManagementDeviceHealthScriptIdAssignmentID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/deviceManagement/deviceHealthScripts/deviceHealthScriptIdValue",
+			Input: "/deviceManagement/deviceHealthScripts/deviceHealthScriptId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/deviceManagement/deviceHealthScripts/deviceHealthScriptIdValue/assignments",
+			Input: "/deviceManagement/deviceHealthScripts/deviceHealthScriptId/assignments",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/deviceHealthScripts/deviceHealthScriptIdValue/assignments/deviceHealthScriptAssignmentIdValue",
+			Input: "/deviceManagement/deviceHealthScripts/deviceHealthScriptId/assignments/deviceHealthScriptAssignmentId",
 			Expected: &DeviceManagementDeviceHealthScriptIdAssignmentId{
-				DeviceHealthScriptId:           "deviceHealthScriptIdValue",
-				DeviceHealthScriptAssignmentId: "deviceHealthScriptAssignmentIdValue",
+				DeviceHealthScriptId:           "deviceHealthScriptId",
+				DeviceHealthScriptAssignmentId: "deviceHealthScriptAssignmentId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/deviceHealthScripts/deviceHealthScriptIdValue/assignments/deviceHealthScriptAssignmentIdValue/extra",
+			Input: "/deviceManagement/deviceHealthScripts/deviceHealthScriptId/assignments/deviceHealthScriptAssignmentId/extra",
 			Error: true,
 		},
 	}
@@ -135,48 +135,48 @@ func TestParseDeviceManagementDeviceHealthScriptIdAssignmentIDInsensitively(t *t
 		},
 		{
 			// Incomplete URI
-			Input: "/deviceManagement/deviceHealthScripts/deviceHealthScriptIdValue",
+			Input: "/deviceManagement/deviceHealthScripts/deviceHealthScriptId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/dEvIcEhEaLtHsCrIpTs/dEvIcEhEaLtHsCrIpTiDvAlUe",
+			Input: "/dEvIcEmAnAgEmEnT/dEvIcEhEaLtHsCrIpTs/dEvIcEhEaLtHsCrIpTiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/deviceManagement/deviceHealthScripts/deviceHealthScriptIdValue/assignments",
+			Input: "/deviceManagement/deviceHealthScripts/deviceHealthScriptId/assignments",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/dEvIcEhEaLtHsCrIpTs/dEvIcEhEaLtHsCrIpTiDvAlUe/aSsIgNmEnTs",
+			Input: "/dEvIcEmAnAgEmEnT/dEvIcEhEaLtHsCrIpTs/dEvIcEhEaLtHsCrIpTiD/aSsIgNmEnTs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/deviceHealthScripts/deviceHealthScriptIdValue/assignments/deviceHealthScriptAssignmentIdValue",
+			Input: "/deviceManagement/deviceHealthScripts/deviceHealthScriptId/assignments/deviceHealthScriptAssignmentId",
 			Expected: &DeviceManagementDeviceHealthScriptIdAssignmentId{
-				DeviceHealthScriptId:           "deviceHealthScriptIdValue",
-				DeviceHealthScriptAssignmentId: "deviceHealthScriptAssignmentIdValue",
+				DeviceHealthScriptId:           "deviceHealthScriptId",
+				DeviceHealthScriptAssignmentId: "deviceHealthScriptAssignmentId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/deviceHealthScripts/deviceHealthScriptIdValue/assignments/deviceHealthScriptAssignmentIdValue/extra",
+			Input: "/deviceManagement/deviceHealthScripts/deviceHealthScriptId/assignments/deviceHealthScriptAssignmentId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/dEvIcEhEaLtHsCrIpTs/dEvIcEhEaLtHsCrIpTiDvAlUe/aSsIgNmEnTs/dEvIcEhEaLtHsCrIpTaSsIgNmEnTiDvAlUe",
+			Input: "/dEvIcEmAnAgEmEnT/dEvIcEhEaLtHsCrIpTs/dEvIcEhEaLtHsCrIpTiD/aSsIgNmEnTs/dEvIcEhEaLtHsCrIpTaSsIgNmEnTiD",
 			Expected: &DeviceManagementDeviceHealthScriptIdAssignmentId{
-				DeviceHealthScriptId:           "dEvIcEhEaLtHsCrIpTiDvAlUe",
-				DeviceHealthScriptAssignmentId: "dEvIcEhEaLtHsCrIpTaSsIgNmEnTiDvAlUe",
+				DeviceHealthScriptId:           "dEvIcEhEaLtHsCrIpTiD",
+				DeviceHealthScriptAssignmentId: "dEvIcEhEaLtHsCrIpTaSsIgNmEnTiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/dEvIcEhEaLtHsCrIpTs/dEvIcEhEaLtHsCrIpTiDvAlUe/aSsIgNmEnTs/dEvIcEhEaLtHsCrIpTaSsIgNmEnTiDvAlUe/extra",
+			Input: "/dEvIcEmAnAgEmEnT/dEvIcEhEaLtHsCrIpTs/dEvIcEhEaLtHsCrIpTiD/aSsIgNmEnTs/dEvIcEhEaLtHsCrIpTaSsIgNmEnTiD/extra",
 			Error: true,
 		},
 	}

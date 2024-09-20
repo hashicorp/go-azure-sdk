@@ -97,21 +97,32 @@ func (s SecurityUserSource) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &SecurityUserSource{}
 
 func (s *SecurityUserSource) UnmarshalJSON(bytes []byte) error {
-	type alias SecurityUserSource
-	var decoded alias
+
+	var decoded struct {
+		Email           *string                       `json:"email,omitempty"`
+		IncludedSources *SecuritySourceType           `json:"includedSources,omitempty"`
+		SiteWebUrl      nullable.Type[string]         `json:"siteWebUrl,omitempty"`
+		CreatedBy       IdentitySet                   `json:"createdBy"`
+		CreatedDateTime nullable.Type[string]         `json:"createdDateTime,omitempty"`
+		DisplayName     nullable.Type[string]         `json:"displayName,omitempty"`
+		HoldStatus      *SecurityDataSourceHoldStatus `json:"holdStatus,omitempty"`
+		Id              *string                       `json:"id,omitempty"`
+		ODataId         *string                       `json:"@odata.id,omitempty"`
+		ODataType       *string                       `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into SecurityUserSource: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
+	s.Email = decoded.Email
+	s.IncludedSources = decoded.IncludedSources
+	s.SiteWebUrl = decoded.SiteWebUrl
 	s.CreatedDateTime = decoded.CreatedDateTime
 	s.DisplayName = decoded.DisplayName
-	s.Email = decoded.Email
 	s.HoldStatus = decoded.HoldStatus
 	s.Id = decoded.Id
-	s.IncludedSources = decoded.IncludedSources
 	s.ODataId = decoded.ODataId
 	s.ODataType = decoded.ODataType
-	s.SiteWebUrl = decoded.SiteWebUrl
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -125,5 +136,6 @@ func (s *SecurityUserSource) UnmarshalJSON(bytes []byte) error {
 		}
 		s.CreatedBy = impl
 	}
+
 	return nil
 }

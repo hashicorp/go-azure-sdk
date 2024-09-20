@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &DeviceManagementNdesConnectorId{}
 
 func TestNewDeviceManagementNdesConnectorID(t *testing.T) {
-	id := NewDeviceManagementNdesConnectorID("ndesConnectorIdValue")
+	id := NewDeviceManagementNdesConnectorID("ndesConnectorId")
 
-	if id.NdesConnectorId != "ndesConnectorIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'NdesConnectorId'", id.NdesConnectorId, "ndesConnectorIdValue")
+	if id.NdesConnectorId != "ndesConnectorId" {
+		t.Fatalf("Expected %q but got %q for Segment 'NdesConnectorId'", id.NdesConnectorId, "ndesConnectorId")
 	}
 }
 
 func TestFormatDeviceManagementNdesConnectorID(t *testing.T) {
-	actual := NewDeviceManagementNdesConnectorID("ndesConnectorIdValue").ID()
-	expected := "/deviceManagement/ndesConnectors/ndesConnectorIdValue"
+	actual := NewDeviceManagementNdesConnectorID("ndesConnectorId").ID()
+	expected := "/deviceManagement/ndesConnectors/ndesConnectorId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -50,14 +50,14 @@ func TestParseDeviceManagementNdesConnectorID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/ndesConnectors/ndesConnectorIdValue",
+			Input: "/deviceManagement/ndesConnectors/ndesConnectorId",
 			Expected: &DeviceManagementNdesConnectorId{
-				NdesConnectorId: "ndesConnectorIdValue",
+				NdesConnectorId: "ndesConnectorId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/ndesConnectors/ndesConnectorIdValue/extra",
+			Input: "/deviceManagement/ndesConnectors/ndesConnectorId/extra",
 			Error: true,
 		},
 	}
@@ -116,26 +116,26 @@ func TestParseDeviceManagementNdesConnectorIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/ndesConnectors/ndesConnectorIdValue",
+			Input: "/deviceManagement/ndesConnectors/ndesConnectorId",
 			Expected: &DeviceManagementNdesConnectorId{
-				NdesConnectorId: "ndesConnectorIdValue",
+				NdesConnectorId: "ndesConnectorId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/ndesConnectors/ndesConnectorIdValue/extra",
+			Input: "/deviceManagement/ndesConnectors/ndesConnectorId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/nDeScOnNeCtOrS/nDeScOnNeCtOrIdVaLuE",
+			Input: "/dEvIcEmAnAgEmEnT/nDeScOnNeCtOrS/nDeScOnNeCtOrId",
 			Expected: &DeviceManagementNdesConnectorId{
-				NdesConnectorId: "nDeScOnNeCtOrIdVaLuE",
+				NdesConnectorId: "nDeScOnNeCtOrId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/nDeScOnNeCtOrS/nDeScOnNeCtOrIdVaLuE/extra",
+			Input: "/dEvIcEmAnAgEmEnT/nDeScOnNeCtOrS/nDeScOnNeCtOrId/extra",
 			Error: true,
 		},
 	}

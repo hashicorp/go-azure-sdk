@@ -17,16 +17,45 @@ type UpdateAndroidManagedStoreAppConfigurationSchemaOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateAndroidManagedStoreAppConfigurationSchemaOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateAndroidManagedStoreAppConfigurationSchemaOperationOptions() UpdateAndroidManagedStoreAppConfigurationSchemaOperationOptions {
+	return UpdateAndroidManagedStoreAppConfigurationSchemaOperationOptions{}
+}
+
+func (o UpdateAndroidManagedStoreAppConfigurationSchemaOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateAndroidManagedStoreAppConfigurationSchemaOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateAndroidManagedStoreAppConfigurationSchemaOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateAndroidManagedStoreAppConfigurationSchema - Update the navigation property
 // androidManagedStoreAppConfigurationSchemas in deviceManagement
-func (c AndroidManagedStoreAppConfigurationSchemaClient) UpdateAndroidManagedStoreAppConfigurationSchema(ctx context.Context, id beta.DeviceManagementAndroidManagedStoreAppConfigurationSchemaId, input beta.AndroidManagedStoreAppConfigurationSchema) (result UpdateAndroidManagedStoreAppConfigurationSchemaOperationResponse, err error) {
+func (c AndroidManagedStoreAppConfigurationSchemaClient) UpdateAndroidManagedStoreAppConfigurationSchema(ctx context.Context, id beta.DeviceManagementAndroidManagedStoreAppConfigurationSchemaId, input beta.AndroidManagedStoreAppConfigurationSchema, options UpdateAndroidManagedStoreAppConfigurationSchemaOperationOptions) (result UpdateAndroidManagedStoreAppConfigurationSchemaOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

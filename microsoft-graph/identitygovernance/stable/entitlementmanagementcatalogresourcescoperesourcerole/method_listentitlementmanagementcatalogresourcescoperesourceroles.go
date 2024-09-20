@@ -25,14 +25,15 @@ type ListEntitlementManagementCatalogResourceScopeResourceRolesCompleteResult st
 }
 
 type ListEntitlementManagementCatalogResourceScopeResourceRolesOperationOptions struct {
-	Count   *bool
-	Expand  *odata.Expand
-	Filter  *string
-	OrderBy *odata.OrderBy
-	Search  *string
-	Select  *[]string
-	Skip    *int64
-	Top     *int64
+	Count    *bool
+	Expand   *odata.Expand
+	Filter   *string
+	Metadata *odata.Metadata
+	OrderBy  *odata.OrderBy
+	Search   *string
+	Select   *[]string
+	Skip     *int64
+	Top      *int64
 }
 
 func DefaultListEntitlementManagementCatalogResourceScopeResourceRolesOperationOptions() ListEntitlementManagementCatalogResourceScopeResourceRolesOperationOptions {
@@ -55,6 +56,9 @@ func (o ListEntitlementManagementCatalogResourceScopeResourceRolesOperationOptio
 	}
 	if o.Filter != nil {
 		out.Filter = *o.Filter
+	}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
 	}
 	if o.OrderBy != nil {
 		out.OrderBy = *o.OrderBy
@@ -94,7 +98,7 @@ func (p *ListEntitlementManagementCatalogResourceScopeResourceRolesCustomPager) 
 
 // ListEntitlementManagementCatalogResourceScopeResourceRoles - Get roles from identityGovernance. Read-only. Nullable.
 // Supports $expand.
-func (c EntitlementManagementCatalogResourceScopeResourceRoleClient) ListEntitlementManagementCatalogResourceScopeResourceRoles(ctx context.Context, id stable.IdentityGovernanceEntitlementManagementCatalogIdResourceScopeId, options ListEntitlementManagementCatalogResourceScopeResourceRolesOperationOptions) (result ListEntitlementManagementCatalogResourceScopeResourceRolesOperationResponse, err error) {
+func (c EntitlementManagementCatalogResourceScopeResourceRoleClient) ListEntitlementManagementCatalogResourceScopeResourceRoles(ctx context.Context, id stable.IdentityGovernanceEntitlementManagementCatalogIdResourceIdScopeId, options ListEntitlementManagementCatalogResourceScopeResourceRolesOperationOptions) (result ListEntitlementManagementCatalogResourceScopeResourceRolesOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
@@ -134,12 +138,12 @@ func (c EntitlementManagementCatalogResourceScopeResourceRoleClient) ListEntitle
 }
 
 // ListEntitlementManagementCatalogResourceScopeResourceRolesComplete retrieves all the results into a single object
-func (c EntitlementManagementCatalogResourceScopeResourceRoleClient) ListEntitlementManagementCatalogResourceScopeResourceRolesComplete(ctx context.Context, id stable.IdentityGovernanceEntitlementManagementCatalogIdResourceScopeId, options ListEntitlementManagementCatalogResourceScopeResourceRolesOperationOptions) (ListEntitlementManagementCatalogResourceScopeResourceRolesCompleteResult, error) {
+func (c EntitlementManagementCatalogResourceScopeResourceRoleClient) ListEntitlementManagementCatalogResourceScopeResourceRolesComplete(ctx context.Context, id stable.IdentityGovernanceEntitlementManagementCatalogIdResourceIdScopeId, options ListEntitlementManagementCatalogResourceScopeResourceRolesOperationOptions) (ListEntitlementManagementCatalogResourceScopeResourceRolesCompleteResult, error) {
 	return c.ListEntitlementManagementCatalogResourceScopeResourceRolesCompleteMatchingPredicate(ctx, id, options, AccessPackageResourceRoleOperationPredicate{})
 }
 
 // ListEntitlementManagementCatalogResourceScopeResourceRolesCompleteMatchingPredicate retrieves all the results and then applies the predicate
-func (c EntitlementManagementCatalogResourceScopeResourceRoleClient) ListEntitlementManagementCatalogResourceScopeResourceRolesCompleteMatchingPredicate(ctx context.Context, id stable.IdentityGovernanceEntitlementManagementCatalogIdResourceScopeId, options ListEntitlementManagementCatalogResourceScopeResourceRolesOperationOptions, predicate AccessPackageResourceRoleOperationPredicate) (result ListEntitlementManagementCatalogResourceScopeResourceRolesCompleteResult, err error) {
+func (c EntitlementManagementCatalogResourceScopeResourceRoleClient) ListEntitlementManagementCatalogResourceScopeResourceRolesCompleteMatchingPredicate(ctx context.Context, id stable.IdentityGovernanceEntitlementManagementCatalogIdResourceIdScopeId, options ListEntitlementManagementCatalogResourceScopeResourceRolesOperationOptions, predicate AccessPackageResourceRoleOperationPredicate) (result ListEntitlementManagementCatalogResourceScopeResourceRolesCompleteResult, err error) {
 	items := make([]stable.AccessPackageResourceRole, 0)
 
 	resp, err := c.ListEntitlementManagementCatalogResourceScopeResourceRoles(ctx, id, options)

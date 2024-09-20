@@ -145,23 +145,50 @@ func (s ListItem) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &ListItem{}
 
 func (s *ListItem) UnmarshalJSON(bytes []byte) error {
-	type alias ListItem
-	var decoded alias
+
+	var decoded struct {
+		Activities           *[]ItemActivityOLD    `json:"activities,omitempty"`
+		Analytics            *ItemAnalytics        `json:"analytics,omitempty"`
+		ContentType          *ContentTypeInfo      `json:"contentType,omitempty"`
+		Deleted              *Deleted              `json:"deleted,omitempty"`
+		DocumentSetVersions  *[]DocumentSetVersion `json:"documentSetVersions,omitempty"`
+		DriveItem            *DriveItem            `json:"driveItem,omitempty"`
+		Fields               *FieldValueSet        `json:"fields,omitempty"`
+		Permissions          *[]Permission         `json:"permissions,omitempty"`
+		SharepointIds        *SharepointIds        `json:"sharepointIds,omitempty"`
+		Versions             *[]ListItemVersion    `json:"versions,omitempty"`
+		CreatedBy            *IdentitySet          `json:"createdBy,omitempty"`
+		CreatedByUser        *User                 `json:"createdByUser,omitempty"`
+		CreatedDateTime      *string               `json:"createdDateTime,omitempty"`
+		Description          nullable.Type[string] `json:"description,omitempty"`
+		ETag                 nullable.Type[string] `json:"eTag,omitempty"`
+		LastModifiedBy       *IdentitySet          `json:"lastModifiedBy,omitempty"`
+		LastModifiedByUser   *User                 `json:"lastModifiedByUser,omitempty"`
+		LastModifiedDateTime *string               `json:"lastModifiedDateTime,omitempty"`
+		Name                 nullable.Type[string] `json:"name,omitempty"`
+		ParentReference      *ItemReference        `json:"parentReference,omitempty"`
+		WebUrl               nullable.Type[string] `json:"webUrl,omitempty"`
+		Id                   *string               `json:"id,omitempty"`
+		ODataId              *string               `json:"@odata.id,omitempty"`
+		ODataType            *string               `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into ListItem: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.Activities = decoded.Activities
 	s.Analytics = decoded.Analytics
 	s.ContentType = decoded.ContentType
-	s.CreatedByUser = decoded.CreatedByUser
-	s.CreatedDateTime = decoded.CreatedDateTime
 	s.Deleted = decoded.Deleted
-	s.Description = decoded.Description
 	s.DocumentSetVersions = decoded.DocumentSetVersions
 	s.DriveItem = decoded.DriveItem
-	s.ETag = decoded.ETag
 	s.Fields = decoded.Fields
+	s.Permissions = decoded.Permissions
+	s.SharepointIds = decoded.SharepointIds
+	s.CreatedByUser = decoded.CreatedByUser
+	s.CreatedDateTime = decoded.CreatedDateTime
+	s.Description = decoded.Description
+	s.ETag = decoded.ETag
 	s.Id = decoded.Id
 	s.LastModifiedByUser = decoded.LastModifiedByUser
 	s.LastModifiedDateTime = decoded.LastModifiedDateTime
@@ -169,8 +196,6 @@ func (s *ListItem) UnmarshalJSON(bytes []byte) error {
 	s.ODataId = decoded.ODataId
 	s.ODataType = decoded.ODataType
 	s.ParentReference = decoded.ParentReference
-	s.Permissions = decoded.Permissions
-	s.SharepointIds = decoded.SharepointIds
 	s.WebUrl = decoded.WebUrl
 
 	var temp map[string]json.RawMessage
@@ -210,5 +235,6 @@ func (s *ListItem) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Versions = &output
 	}
+
 	return nil
 }

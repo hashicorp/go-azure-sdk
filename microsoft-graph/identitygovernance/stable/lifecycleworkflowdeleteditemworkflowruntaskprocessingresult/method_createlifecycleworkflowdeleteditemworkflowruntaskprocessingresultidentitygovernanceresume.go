@@ -18,17 +18,46 @@ type CreateLifecycleWorkflowDeletedItemWorkflowRunTaskProcessingResultIdentityGo
 	OData        *odata.OData
 }
 
+type CreateLifecycleWorkflowDeletedItemWorkflowRunTaskProcessingResultIdentityGovernanceResumeOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateLifecycleWorkflowDeletedItemWorkflowRunTaskProcessingResultIdentityGovernanceResumeOperationOptions() CreateLifecycleWorkflowDeletedItemWorkflowRunTaskProcessingResultIdentityGovernanceResumeOperationOptions {
+	return CreateLifecycleWorkflowDeletedItemWorkflowRunTaskProcessingResultIdentityGovernanceResumeOperationOptions{}
+}
+
+func (o CreateLifecycleWorkflowDeletedItemWorkflowRunTaskProcessingResultIdentityGovernanceResumeOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateLifecycleWorkflowDeletedItemWorkflowRunTaskProcessingResultIdentityGovernanceResumeOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateLifecycleWorkflowDeletedItemWorkflowRunTaskProcessingResultIdentityGovernanceResumeOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateLifecycleWorkflowDeletedItemWorkflowRunTaskProcessingResultIdentityGovernanceResume - Invoke action resume.
 // Resume a task processing result that's inProgress. In the default case an Azure Logic Apps system-assigned managed
 // identity calls this API. For more information, see: Lifecycle Workflows extensibility approach.
-func (c LifecycleWorkflowDeletedItemWorkflowRunTaskProcessingResultClient) CreateLifecycleWorkflowDeletedItemWorkflowRunTaskProcessingResultIdentityGovernanceResume(ctx context.Context, id stable.IdentityGovernanceLifecycleWorkflowDeletedItemWorkflowIdRunIdTaskProcessingResultId, input CreateLifecycleWorkflowDeletedItemWorkflowRunTaskProcessingResultIdentityGovernanceResumeRequest) (result CreateLifecycleWorkflowDeletedItemWorkflowRunTaskProcessingResultIdentityGovernanceResumeOperationResponse, err error) {
+func (c LifecycleWorkflowDeletedItemWorkflowRunTaskProcessingResultClient) CreateLifecycleWorkflowDeletedItemWorkflowRunTaskProcessingResultIdentityGovernanceResume(ctx context.Context, id stable.IdentityGovernanceLifecycleWorkflowDeletedItemWorkflowIdRunIdTaskProcessingResultId, input CreateLifecycleWorkflowDeletedItemWorkflowRunTaskProcessingResultIdentityGovernanceResumeRequest, options CreateLifecycleWorkflowDeletedItemWorkflowRunTaskProcessingResultIdentityGovernanceResumeOperationOptions) (result CreateLifecycleWorkflowDeletedItemWorkflowRunTaskProcessingResultIdentityGovernanceResumeOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/identityGovernance.resume", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/identityGovernance.resume", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

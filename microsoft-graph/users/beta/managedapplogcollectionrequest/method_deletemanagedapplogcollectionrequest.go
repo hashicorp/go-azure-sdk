@@ -19,7 +19,8 @@ type DeleteManagedAppLogCollectionRequestOperationResponse struct {
 }
 
 type DeleteManagedAppLogCollectionRequestOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteManagedAppLogCollectionRequestOperationOptions() DeleteManagedAppLogCollectionRequestOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteManagedAppLogCollectionRequestOperationOptions) ToHeaders() *clien
 
 func (o DeleteManagedAppLogCollectionRequestOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

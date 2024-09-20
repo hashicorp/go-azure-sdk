@@ -19,15 +19,44 @@ type CreateTemplateCategoryOperationResponse struct {
 	Model        *beta.DeviceManagementTemplateSettingCategory
 }
 
+type CreateTemplateCategoryOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateTemplateCategoryOperationOptions() CreateTemplateCategoryOperationOptions {
+	return CreateTemplateCategoryOperationOptions{}
+}
+
+func (o CreateTemplateCategoryOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateTemplateCategoryOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateTemplateCategoryOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateTemplateCategory - Create new navigation property to categories for deviceManagement
-func (c TemplateCategoryClient) CreateTemplateCategory(ctx context.Context, id beta.DeviceManagementTemplateId, input beta.DeviceManagementTemplateSettingCategory) (result CreateTemplateCategoryOperationResponse, err error) {
+func (c TemplateCategoryClient) CreateTemplateCategory(ctx context.Context, id beta.DeviceManagementTemplateId, input beta.DeviceManagementTemplateSettingCategory, options CreateTemplateCategoryOperationOptions) (result CreateTemplateCategoryOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/categories", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/categories", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -18,16 +18,45 @@ type CreateUserExperienceAnalyticsDevicePerformanceOperationResponse struct {
 	Model        *beta.UserExperienceAnalyticsDevicePerformance
 }
 
+type CreateUserExperienceAnalyticsDevicePerformanceOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateUserExperienceAnalyticsDevicePerformanceOperationOptions() CreateUserExperienceAnalyticsDevicePerformanceOperationOptions {
+	return CreateUserExperienceAnalyticsDevicePerformanceOperationOptions{}
+}
+
+func (o CreateUserExperienceAnalyticsDevicePerformanceOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateUserExperienceAnalyticsDevicePerformanceOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateUserExperienceAnalyticsDevicePerformanceOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateUserExperienceAnalyticsDevicePerformance - Create new navigation property to
 // userExperienceAnalyticsDevicePerformance for deviceManagement
-func (c UserExperienceAnalyticsDevicePerformanceClient) CreateUserExperienceAnalyticsDevicePerformance(ctx context.Context, input beta.UserExperienceAnalyticsDevicePerformance) (result CreateUserExperienceAnalyticsDevicePerformanceOperationResponse, err error) {
+func (c UserExperienceAnalyticsDevicePerformanceClient) CreateUserExperienceAnalyticsDevicePerformance(ctx context.Context, input beta.UserExperienceAnalyticsDevicePerformance, options CreateUserExperienceAnalyticsDevicePerformanceOperationOptions) (result CreateUserExperienceAnalyticsDevicePerformanceOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/deviceManagement/userExperienceAnalyticsDevicePerformance",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/deviceManagement/userExperienceAnalyticsDevicePerformance",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

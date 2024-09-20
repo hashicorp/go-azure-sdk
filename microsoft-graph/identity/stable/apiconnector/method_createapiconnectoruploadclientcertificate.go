@@ -19,17 +19,46 @@ type CreateApiConnectorUploadClientCertificateOperationResponse struct {
 	Model        *stable.IdentityApiConnector
 }
 
+type CreateApiConnectorUploadClientCertificateOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateApiConnectorUploadClientCertificateOperationOptions() CreateApiConnectorUploadClientCertificateOperationOptions {
+	return CreateApiConnectorUploadClientCertificateOperationOptions{}
+}
+
+func (o CreateApiConnectorUploadClientCertificateOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateApiConnectorUploadClientCertificateOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateApiConnectorUploadClientCertificateOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateApiConnectorUploadClientCertificate - Invoke action uploadClientCertificate. Upload a PKCS 12 format key (.pfx)
 // to an API connector's authentication configuration. The input is a base-64 encoded value of the PKCS 12 certificate
 // contents. This method returns an apiConnector.
-func (c ApiConnectorClient) CreateApiConnectorUploadClientCertificate(ctx context.Context, id stable.IdentityApiConnectorId, input CreateApiConnectorUploadClientCertificateRequest) (result CreateApiConnectorUploadClientCertificateOperationResponse, err error) {
+func (c ApiConnectorClient) CreateApiConnectorUploadClientCertificate(ctx context.Context, id stable.IdentityApiConnectorId, input CreateApiConnectorUploadClientCertificateRequest, options CreateApiConnectorUploadClientCertificateOperationOptions) (result CreateApiConnectorUploadClientCertificateOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/uploadClientCertificate", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/uploadClientCertificate", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

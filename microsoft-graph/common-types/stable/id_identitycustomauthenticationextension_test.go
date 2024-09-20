@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &IdentityCustomAuthenticationExtensionId{}
 
 func TestNewIdentityCustomAuthenticationExtensionID(t *testing.T) {
-	id := NewIdentityCustomAuthenticationExtensionID("customAuthenticationExtensionIdValue")
+	id := NewIdentityCustomAuthenticationExtensionID("customAuthenticationExtensionId")
 
-	if id.CustomAuthenticationExtensionId != "customAuthenticationExtensionIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'CustomAuthenticationExtensionId'", id.CustomAuthenticationExtensionId, "customAuthenticationExtensionIdValue")
+	if id.CustomAuthenticationExtensionId != "customAuthenticationExtensionId" {
+		t.Fatalf("Expected %q but got %q for Segment 'CustomAuthenticationExtensionId'", id.CustomAuthenticationExtensionId, "customAuthenticationExtensionId")
 	}
 }
 
 func TestFormatIdentityCustomAuthenticationExtensionID(t *testing.T) {
-	actual := NewIdentityCustomAuthenticationExtensionID("customAuthenticationExtensionIdValue").ID()
-	expected := "/identity/customAuthenticationExtensions/customAuthenticationExtensionIdValue"
+	actual := NewIdentityCustomAuthenticationExtensionID("customAuthenticationExtensionId").ID()
+	expected := "/identity/customAuthenticationExtensions/customAuthenticationExtensionId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -50,14 +50,14 @@ func TestParseIdentityCustomAuthenticationExtensionID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/identity/customAuthenticationExtensions/customAuthenticationExtensionIdValue",
+			Input: "/identity/customAuthenticationExtensions/customAuthenticationExtensionId",
 			Expected: &IdentityCustomAuthenticationExtensionId{
-				CustomAuthenticationExtensionId: "customAuthenticationExtensionIdValue",
+				CustomAuthenticationExtensionId: "customAuthenticationExtensionId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/identity/customAuthenticationExtensions/customAuthenticationExtensionIdValue/extra",
+			Input: "/identity/customAuthenticationExtensions/customAuthenticationExtensionId/extra",
 			Error: true,
 		},
 	}
@@ -116,26 +116,26 @@ func TestParseIdentityCustomAuthenticationExtensionIDInsensitively(t *testing.T)
 		},
 		{
 			// Valid URI
-			Input: "/identity/customAuthenticationExtensions/customAuthenticationExtensionIdValue",
+			Input: "/identity/customAuthenticationExtensions/customAuthenticationExtensionId",
 			Expected: &IdentityCustomAuthenticationExtensionId{
-				CustomAuthenticationExtensionId: "customAuthenticationExtensionIdValue",
+				CustomAuthenticationExtensionId: "customAuthenticationExtensionId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/identity/customAuthenticationExtensions/customAuthenticationExtensionIdValue/extra",
+			Input: "/identity/customAuthenticationExtensions/customAuthenticationExtensionId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/iDeNtItY/cUsToMaUtHeNtIcAtIoNeXtEnSiOnS/cUsToMaUtHeNtIcAtIoNeXtEnSiOnIdVaLuE",
+			Input: "/iDeNtItY/cUsToMaUtHeNtIcAtIoNeXtEnSiOnS/cUsToMaUtHeNtIcAtIoNeXtEnSiOnId",
 			Expected: &IdentityCustomAuthenticationExtensionId{
-				CustomAuthenticationExtensionId: "cUsToMaUtHeNtIcAtIoNeXtEnSiOnIdVaLuE",
+				CustomAuthenticationExtensionId: "cUsToMaUtHeNtIcAtIoNeXtEnSiOnId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/iDeNtItY/cUsToMaUtHeNtIcAtIoNeXtEnSiOnS/cUsToMaUtHeNtIcAtIoNeXtEnSiOnIdVaLuE/extra",
+			Input: "/iDeNtItY/cUsToMaUtHeNtIcAtIoNeXtEnSiOnS/cUsToMaUtHeNtIcAtIoNeXtEnSiOnId/extra",
 			Error: true,
 		},
 	}

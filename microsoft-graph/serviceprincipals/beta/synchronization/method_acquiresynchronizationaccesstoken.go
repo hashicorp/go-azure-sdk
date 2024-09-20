@@ -18,16 +18,45 @@ type AcquireSynchronizationAccessTokenOperationResponse struct {
 	OData        *odata.OData
 }
 
+type AcquireSynchronizationAccessTokenOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultAcquireSynchronizationAccessTokenOperationOptions() AcquireSynchronizationAccessTokenOperationOptions {
+	return AcquireSynchronizationAccessTokenOperationOptions{}
+}
+
+func (o AcquireSynchronizationAccessTokenOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o AcquireSynchronizationAccessTokenOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o AcquireSynchronizationAccessTokenOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // AcquireSynchronizationAccessToken - Invoke action acquireAccessToken. Acquire an OAuth Access token to authorize the
 // Microsoft Entra provisioning service to provision users into an application.
-func (c SynchronizationClient) AcquireSynchronizationAccessToken(ctx context.Context, id beta.ServicePrincipalId, input AcquireSynchronizationAccessTokenRequest) (result AcquireSynchronizationAccessTokenOperationResponse, err error) {
+func (c SynchronizationClient) AcquireSynchronizationAccessToken(ctx context.Context, id beta.ServicePrincipalId, input AcquireSynchronizationAccessTokenRequest, options AcquireSynchronizationAccessTokenOperationOptions) (result AcquireSynchronizationAccessTokenOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/synchronization/acquireAccessToken", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/synchronization/acquireAccessToken", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

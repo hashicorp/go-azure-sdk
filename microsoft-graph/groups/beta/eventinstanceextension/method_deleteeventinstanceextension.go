@@ -19,7 +19,8 @@ type DeleteEventInstanceExtensionOperationResponse struct {
 }
 
 type DeleteEventInstanceExtensionOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteEventInstanceExtensionOperationOptions() DeleteEventInstanceExtensionOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteEventInstanceExtensionOperationOptions) ToHeaders() *client.Header
 
 func (o DeleteEventInstanceExtensionOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

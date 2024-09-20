@@ -17,15 +17,44 @@ type CreateGroupPolicyMigrationReportsMigrationReportOperationResponse struct {
 	Model        *CreateGroupPolicyMigrationReportsMigrationReportResult
 }
 
+type CreateGroupPolicyMigrationReportsMigrationReportOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateGroupPolicyMigrationReportsMigrationReportOperationOptions() CreateGroupPolicyMigrationReportsMigrationReportOperationOptions {
+	return CreateGroupPolicyMigrationReportsMigrationReportOperationOptions{}
+}
+
+func (o CreateGroupPolicyMigrationReportsMigrationReportOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateGroupPolicyMigrationReportsMigrationReportOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateGroupPolicyMigrationReportsMigrationReportOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateGroupPolicyMigrationReportsMigrationReport - Invoke action createMigrationReport
-func (c GroupPolicyMigrationReportClient) CreateGroupPolicyMigrationReportsMigrationReport(ctx context.Context, input CreateGroupPolicyMigrationReportsMigrationReportRequest) (result CreateGroupPolicyMigrationReportsMigrationReportOperationResponse, err error) {
+func (c GroupPolicyMigrationReportClient) CreateGroupPolicyMigrationReportsMigrationReport(ctx context.Context, input CreateGroupPolicyMigrationReportsMigrationReportRequest, options CreateGroupPolicyMigrationReportsMigrationReportOperationOptions) (result CreateGroupPolicyMigrationReportsMigrationReportOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/deviceManagement/groupPolicyMigrationReports/createMigrationReport",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/deviceManagement/groupPolicyMigrationReports/createMigrationReport",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

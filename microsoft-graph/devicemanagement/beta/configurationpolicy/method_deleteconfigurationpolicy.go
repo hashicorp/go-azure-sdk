@@ -19,7 +19,8 @@ type DeleteConfigurationPolicyOperationResponse struct {
 }
 
 type DeleteConfigurationPolicyOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteConfigurationPolicyOperationOptions() DeleteConfigurationPolicyOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteConfigurationPolicyOperationOptions) ToHeaders() *client.Headers {
 
 func (o DeleteConfigurationPolicyOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

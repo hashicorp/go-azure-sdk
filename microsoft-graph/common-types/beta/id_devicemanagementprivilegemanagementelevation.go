@@ -93,7 +93,7 @@ func (id DeviceManagementPrivilegeManagementElevationId) Segments() []resourceid
 	return []resourceids.Segment{
 		resourceids.StaticSegment("deviceManagement", "deviceManagement", "deviceManagement"),
 		resourceids.StaticSegment("privilegeManagementElevations", "privilegeManagementElevations", "privilegeManagementElevations"),
-		resourceids.UserSpecifiedSegment("privilegeManagementElevationId", "privilegeManagementElevationIdValue"),
+		resourceids.UserSpecifiedSegment("privilegeManagementElevationId", "privilegeManagementElevationId"),
 	}
 }
 

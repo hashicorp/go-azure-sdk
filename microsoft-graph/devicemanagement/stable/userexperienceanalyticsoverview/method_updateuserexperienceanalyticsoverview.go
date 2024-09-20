@@ -17,16 +17,45 @@ type UpdateUserExperienceAnalyticsOverviewOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateUserExperienceAnalyticsOverviewOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateUserExperienceAnalyticsOverviewOperationOptions() UpdateUserExperienceAnalyticsOverviewOperationOptions {
+	return UpdateUserExperienceAnalyticsOverviewOperationOptions{}
+}
+
+func (o UpdateUserExperienceAnalyticsOverviewOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateUserExperienceAnalyticsOverviewOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateUserExperienceAnalyticsOverviewOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateUserExperienceAnalyticsOverview - Update the navigation property userExperienceAnalyticsOverview in
 // deviceManagement
-func (c UserExperienceAnalyticsOverviewClient) UpdateUserExperienceAnalyticsOverview(ctx context.Context, input stable.UserExperienceAnalyticsOverview) (result UpdateUserExperienceAnalyticsOverviewOperationResponse, err error) {
+func (c UserExperienceAnalyticsOverviewClient) UpdateUserExperienceAnalyticsOverview(ctx context.Context, input stable.UserExperienceAnalyticsOverview, options UpdateUserExperienceAnalyticsOverviewOperationOptions) (result UpdateUserExperienceAnalyticsOverviewOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       "/deviceManagement/userExperienceAnalyticsOverview",
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          "/deviceManagement/userExperienceAnalyticsOverview",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

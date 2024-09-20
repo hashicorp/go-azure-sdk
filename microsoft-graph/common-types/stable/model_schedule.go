@@ -119,16 +119,36 @@ func (s Schedule) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &Schedule{}
 
 func (s *Schedule) UnmarshalJSON(bytes []byte) error {
-	type alias Schedule
-	var decoded alias
+
+	var decoded struct {
+		Enabled                   nullable.Type[bool]        `json:"enabled,omitempty"`
+		OfferShiftRequests        *[]OfferShiftRequest       `json:"offerShiftRequests,omitempty"`
+		OfferShiftRequestsEnabled nullable.Type[bool]        `json:"offerShiftRequestsEnabled,omitempty"`
+		OpenShiftChangeRequests   *[]OpenShiftChangeRequest  `json:"openShiftChangeRequests,omitempty"`
+		OpenShifts                *[]OpenShift               `json:"openShifts,omitempty"`
+		OpenShiftsEnabled         nullable.Type[bool]        `json:"openShiftsEnabled,omitempty"`
+		ProvisionStatus           *OperationStatus           `json:"provisionStatus,omitempty"`
+		ProvisionStatusCode       nullable.Type[string]      `json:"provisionStatusCode,omitempty"`
+		SchedulingGroups          *[]SchedulingGroup         `json:"schedulingGroups,omitempty"`
+		Shifts                    *[]Shift                   `json:"shifts,omitempty"`
+		SwapShiftsChangeRequests  *[]SwapShiftsChangeRequest `json:"swapShiftsChangeRequests,omitempty"`
+		SwapShiftsRequestsEnabled nullable.Type[bool]        `json:"swapShiftsRequestsEnabled,omitempty"`
+		TimeClockEnabled          nullable.Type[bool]        `json:"timeClockEnabled,omitempty"`
+		TimeOffReasons            *[]TimeOffReason           `json:"timeOffReasons,omitempty"`
+		TimeOffRequests           *[]TimeOffRequest          `json:"timeOffRequests,omitempty"`
+		TimeOffRequestsEnabled    nullable.Type[bool]        `json:"timeOffRequestsEnabled,omitempty"`
+		TimeZone                  nullable.Type[string]      `json:"timeZone,omitempty"`
+		TimesOff                  *[]TimeOff                 `json:"timesOff,omitempty"`
+		WorkforceIntegrationIds   *[]string                  `json:"workforceIntegrationIds,omitempty"`
+		Id                        *string                    `json:"id,omitempty"`
+		ODataId                   *string                    `json:"@odata.id,omitempty"`
+		ODataType                 *string                    `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into Schedule: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.Enabled = decoded.Enabled
-	s.Id = decoded.Id
-	s.ODataId = decoded.ODataId
-	s.ODataType = decoded.ODataType
 	s.OfferShiftRequestsEnabled = decoded.OfferShiftRequestsEnabled
 	s.OpenShiftChangeRequests = decoded.OpenShiftChangeRequests
 	s.OpenShifts = decoded.OpenShifts
@@ -146,6 +166,9 @@ func (s *Schedule) UnmarshalJSON(bytes []byte) error {
 	s.TimeZone = decoded.TimeZone
 	s.TimesOff = decoded.TimesOff
 	s.WorkforceIntegrationIds = decoded.WorkforceIntegrationIds
+	s.Id = decoded.Id
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -168,5 +191,6 @@ func (s *Schedule) UnmarshalJSON(bytes []byte) error {
 		}
 		s.OfferShiftRequests = &output
 	}
+
 	return nil
 }

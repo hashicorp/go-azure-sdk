@@ -17,15 +17,44 @@ type UpdateTemplateCategoryRecommendedSettingOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateTemplateCategoryRecommendedSettingOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateTemplateCategoryRecommendedSettingOperationOptions() UpdateTemplateCategoryRecommendedSettingOperationOptions {
+	return UpdateTemplateCategoryRecommendedSettingOperationOptions{}
+}
+
+func (o UpdateTemplateCategoryRecommendedSettingOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateTemplateCategoryRecommendedSettingOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateTemplateCategoryRecommendedSettingOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateTemplateCategoryRecommendedSetting - Update the navigation property recommendedSettings in deviceManagement
-func (c TemplateCategoryRecommendedSettingClient) UpdateTemplateCategoryRecommendedSetting(ctx context.Context, id beta.DeviceManagementTemplateIdCategoryIdRecommendedSettingId, input beta.DeviceManagementSettingInstance) (result UpdateTemplateCategoryRecommendedSettingOperationResponse, err error) {
+func (c TemplateCategoryRecommendedSettingClient) UpdateTemplateCategoryRecommendedSetting(ctx context.Context, id beta.DeviceManagementTemplateIdCategoryIdRecommendedSettingId, input beta.DeviceManagementSettingInstance, options UpdateTemplateCategoryRecommendedSettingOperationOptions) (result UpdateTemplateCategoryRecommendedSettingOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

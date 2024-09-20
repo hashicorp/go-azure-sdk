@@ -19,17 +19,46 @@ type CreateCertificateAuthorityCertificateBasedApplicationConfigurationTrustedCe
 	Model        *beta.CertificateAuthorityAsEntity
 }
 
+type CreateCertificateAuthorityCertificateBasedApplicationConfigurationTrustedCertificateAuthorityOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateCertificateAuthorityCertificateBasedApplicationConfigurationTrustedCertificateAuthorityOperationOptions() CreateCertificateAuthorityCertificateBasedApplicationConfigurationTrustedCertificateAuthorityOperationOptions {
+	return CreateCertificateAuthorityCertificateBasedApplicationConfigurationTrustedCertificateAuthorityOperationOptions{}
+}
+
+func (o CreateCertificateAuthorityCertificateBasedApplicationConfigurationTrustedCertificateAuthorityOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateCertificateAuthorityCertificateBasedApplicationConfigurationTrustedCertificateAuthorityOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateCertificateAuthorityCertificateBasedApplicationConfigurationTrustedCertificateAuthorityOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateCertificateAuthorityCertificateBasedApplicationConfigurationTrustedCertificateAuthority - Create
 // trustedCertificateAuthority. Create a new trusted certificate authority in a certificateBasedApplicationConfiguration
 // object.
-func (c CertificateAuthorityCertificateBasedApplicationConfigurationTrustedCertificateAuthorityClient) CreateCertificateAuthorityCertificateBasedApplicationConfigurationTrustedCertificateAuthority(ctx context.Context, id beta.DirectoryCertificateAuthorityCertificateBasedApplicationConfigurationId, input beta.CertificateAuthorityAsEntity) (result CreateCertificateAuthorityCertificateBasedApplicationConfigurationTrustedCertificateAuthorityOperationResponse, err error) {
+func (c CertificateAuthorityCertificateBasedApplicationConfigurationTrustedCertificateAuthorityClient) CreateCertificateAuthorityCertificateBasedApplicationConfigurationTrustedCertificateAuthority(ctx context.Context, id beta.DirectoryCertificateAuthorityCertificateBasedApplicationConfigurationId, input beta.CertificateAuthorityAsEntity, options CreateCertificateAuthorityCertificateBasedApplicationConfigurationTrustedCertificateAuthorityOperationOptions) (result CreateCertificateAuthorityCertificateBasedApplicationConfigurationTrustedCertificateAuthorityOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/trustedCertificateAuthorities", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/trustedCertificateAuthorities", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

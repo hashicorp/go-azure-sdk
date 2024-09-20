@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &DeviceManagementUserExperienceAnalyticsAppHealthApplicationPerformanceByAppVersionDetailId{}
 
 func TestNewDeviceManagementUserExperienceAnalyticsAppHealthApplicationPerformanceByAppVersionDetailID(t *testing.T) {
-	id := NewDeviceManagementUserExperienceAnalyticsAppHealthApplicationPerformanceByAppVersionDetailID("userExperienceAnalyticsAppHealthAppPerformanceByAppVersionDetailsIdValue")
+	id := NewDeviceManagementUserExperienceAnalyticsAppHealthApplicationPerformanceByAppVersionDetailID("userExperienceAnalyticsAppHealthAppPerformanceByAppVersionDetailsId")
 
-	if id.UserExperienceAnalyticsAppHealthAppPerformanceByAppVersionDetailsId != "userExperienceAnalyticsAppHealthAppPerformanceByAppVersionDetailsIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'UserExperienceAnalyticsAppHealthAppPerformanceByAppVersionDetailsId'", id.UserExperienceAnalyticsAppHealthAppPerformanceByAppVersionDetailsId, "userExperienceAnalyticsAppHealthAppPerformanceByAppVersionDetailsIdValue")
+	if id.UserExperienceAnalyticsAppHealthAppPerformanceByAppVersionDetailsId != "userExperienceAnalyticsAppHealthAppPerformanceByAppVersionDetailsId" {
+		t.Fatalf("Expected %q but got %q for Segment 'UserExperienceAnalyticsAppHealthAppPerformanceByAppVersionDetailsId'", id.UserExperienceAnalyticsAppHealthAppPerformanceByAppVersionDetailsId, "userExperienceAnalyticsAppHealthAppPerformanceByAppVersionDetailsId")
 	}
 }
 
 func TestFormatDeviceManagementUserExperienceAnalyticsAppHealthApplicationPerformanceByAppVersionDetailID(t *testing.T) {
-	actual := NewDeviceManagementUserExperienceAnalyticsAppHealthApplicationPerformanceByAppVersionDetailID("userExperienceAnalyticsAppHealthAppPerformanceByAppVersionDetailsIdValue").ID()
-	expected := "/deviceManagement/userExperienceAnalyticsAppHealthApplicationPerformanceByAppVersionDetails/userExperienceAnalyticsAppHealthAppPerformanceByAppVersionDetailsIdValue"
+	actual := NewDeviceManagementUserExperienceAnalyticsAppHealthApplicationPerformanceByAppVersionDetailID("userExperienceAnalyticsAppHealthAppPerformanceByAppVersionDetailsId").ID()
+	expected := "/deviceManagement/userExperienceAnalyticsAppHealthApplicationPerformanceByAppVersionDetails/userExperienceAnalyticsAppHealthAppPerformanceByAppVersionDetailsId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -50,14 +50,14 @@ func TestParseDeviceManagementUserExperienceAnalyticsAppHealthApplicationPerform
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/userExperienceAnalyticsAppHealthApplicationPerformanceByAppVersionDetails/userExperienceAnalyticsAppHealthAppPerformanceByAppVersionDetailsIdValue",
+			Input: "/deviceManagement/userExperienceAnalyticsAppHealthApplicationPerformanceByAppVersionDetails/userExperienceAnalyticsAppHealthAppPerformanceByAppVersionDetailsId",
 			Expected: &DeviceManagementUserExperienceAnalyticsAppHealthApplicationPerformanceByAppVersionDetailId{
-				UserExperienceAnalyticsAppHealthAppPerformanceByAppVersionDetailsId: "userExperienceAnalyticsAppHealthAppPerformanceByAppVersionDetailsIdValue",
+				UserExperienceAnalyticsAppHealthAppPerformanceByAppVersionDetailsId: "userExperienceAnalyticsAppHealthAppPerformanceByAppVersionDetailsId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/userExperienceAnalyticsAppHealthApplicationPerformanceByAppVersionDetails/userExperienceAnalyticsAppHealthAppPerformanceByAppVersionDetailsIdValue/extra",
+			Input: "/deviceManagement/userExperienceAnalyticsAppHealthApplicationPerformanceByAppVersionDetails/userExperienceAnalyticsAppHealthAppPerformanceByAppVersionDetailsId/extra",
 			Error: true,
 		},
 	}
@@ -116,26 +116,26 @@ func TestParseDeviceManagementUserExperienceAnalyticsAppHealthApplicationPerform
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/userExperienceAnalyticsAppHealthApplicationPerformanceByAppVersionDetails/userExperienceAnalyticsAppHealthAppPerformanceByAppVersionDetailsIdValue",
+			Input: "/deviceManagement/userExperienceAnalyticsAppHealthApplicationPerformanceByAppVersionDetails/userExperienceAnalyticsAppHealthAppPerformanceByAppVersionDetailsId",
 			Expected: &DeviceManagementUserExperienceAnalyticsAppHealthApplicationPerformanceByAppVersionDetailId{
-				UserExperienceAnalyticsAppHealthAppPerformanceByAppVersionDetailsId: "userExperienceAnalyticsAppHealthAppPerformanceByAppVersionDetailsIdValue",
+				UserExperienceAnalyticsAppHealthAppPerformanceByAppVersionDetailsId: "userExperienceAnalyticsAppHealthAppPerformanceByAppVersionDetailsId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/userExperienceAnalyticsAppHealthApplicationPerformanceByAppVersionDetails/userExperienceAnalyticsAppHealthAppPerformanceByAppVersionDetailsIdValue/extra",
+			Input: "/deviceManagement/userExperienceAnalyticsAppHealthApplicationPerformanceByAppVersionDetails/userExperienceAnalyticsAppHealthAppPerformanceByAppVersionDetailsId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/uSeReXpErIeNcEaNaLyTiCsApPhEaLtHaPpLiCaTiOnPeRfOrMaNcEbYaPpVeRsIoNdEtAiLs/uSeReXpErIeNcEaNaLyTiCsApPhEaLtHaPpPeRfOrMaNcEbYaPpVeRsIoNdEtAiLsIdVaLuE",
+			Input: "/dEvIcEmAnAgEmEnT/uSeReXpErIeNcEaNaLyTiCsApPhEaLtHaPpLiCaTiOnPeRfOrMaNcEbYaPpVeRsIoNdEtAiLs/uSeReXpErIeNcEaNaLyTiCsApPhEaLtHaPpPeRfOrMaNcEbYaPpVeRsIoNdEtAiLsId",
 			Expected: &DeviceManagementUserExperienceAnalyticsAppHealthApplicationPerformanceByAppVersionDetailId{
-				UserExperienceAnalyticsAppHealthAppPerformanceByAppVersionDetailsId: "uSeReXpErIeNcEaNaLyTiCsApPhEaLtHaPpPeRfOrMaNcEbYaPpVeRsIoNdEtAiLsIdVaLuE",
+				UserExperienceAnalyticsAppHealthAppPerformanceByAppVersionDetailsId: "uSeReXpErIeNcEaNaLyTiCsApPhEaLtHaPpPeRfOrMaNcEbYaPpVeRsIoNdEtAiLsId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/uSeReXpErIeNcEaNaLyTiCsApPhEaLtHaPpLiCaTiOnPeRfOrMaNcEbYaPpVeRsIoNdEtAiLs/uSeReXpErIeNcEaNaLyTiCsApPhEaLtHaPpPeRfOrMaNcEbYaPpVeRsIoNdEtAiLsIdVaLuE/extra",
+			Input: "/dEvIcEmAnAgEmEnT/uSeReXpErIeNcEaNaLyTiCsApPhEaLtHaPpLiCaTiOnPeRfOrMaNcEbYaPpVeRsIoNdEtAiLs/uSeReXpErIeNcEaNaLyTiCsApPhEaLtHaPpPeRfOrMaNcEbYaPpVeRsIoNdEtAiLsId/extra",
 			Error: true,
 		},
 	}

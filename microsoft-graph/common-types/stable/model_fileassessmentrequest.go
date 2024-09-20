@@ -109,18 +109,32 @@ func (s FileAssessmentRequest) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &FileAssessmentRequest{}
 
 func (s *FileAssessmentRequest) UnmarshalJSON(bytes []byte) error {
-	type alias FileAssessmentRequest
-	var decoded alias
+
+	var decoded struct {
+		ContentData        *string                        `json:"contentData,omitempty"`
+		FileName           *string                        `json:"fileName,omitempty"`
+		Category           *ThreatCategory                `json:"category,omitempty"`
+		ContentType        *ThreatAssessmentContentType   `json:"contentType,omitempty"`
+		CreatedBy          IdentitySet                    `json:"createdBy"`
+		CreatedDateTime    nullable.Type[string]          `json:"createdDateTime,omitempty"`
+		ExpectedAssessment *ThreatExpectedAssessment      `json:"expectedAssessment,omitempty"`
+		RequestSource      *ThreatAssessmentRequestSource `json:"requestSource,omitempty"`
+		Results            *[]ThreatAssessmentResult      `json:"results,omitempty"`
+		Status             *ThreatAssessmentStatus        `json:"status,omitempty"`
+		Id                 *string                        `json:"id,omitempty"`
+		ODataId            *string                        `json:"@odata.id,omitempty"`
+		ODataType          *string                        `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into FileAssessmentRequest: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
-	s.Category = decoded.Category
 	s.ContentData = decoded.ContentData
+	s.FileName = decoded.FileName
+	s.Category = decoded.Category
 	s.ContentType = decoded.ContentType
 	s.CreatedDateTime = decoded.CreatedDateTime
 	s.ExpectedAssessment = decoded.ExpectedAssessment
-	s.FileName = decoded.FileName
 	s.Id = decoded.Id
 	s.ODataId = decoded.ODataId
 	s.ODataType = decoded.ODataType
@@ -140,5 +154,6 @@ func (s *FileAssessmentRequest) UnmarshalJSON(bytes []byte) error {
 		}
 		s.CreatedBy = impl
 	}
+
 	return nil
 }

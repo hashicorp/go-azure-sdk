@@ -19,7 +19,8 @@ type DeleteTemplateMigratableToOperationResponse struct {
 }
 
 type DeleteTemplateMigratableToOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteTemplateMigratableToOperationOptions() DeleteTemplateMigratableToOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteTemplateMigratableToOperationOptions) ToHeaders() *client.Headers 
 
 func (o DeleteTemplateMigratableToOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

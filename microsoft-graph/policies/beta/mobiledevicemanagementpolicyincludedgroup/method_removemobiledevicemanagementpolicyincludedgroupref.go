@@ -19,7 +19,8 @@ type RemoveMobileDeviceManagementPolicyIncludedGroupRefOperationResponse struct 
 }
 
 type RemoveMobileDeviceManagementPolicyIncludedGroupRefOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultRemoveMobileDeviceManagementPolicyIncludedGroupRefOperationOptions() RemoveMobileDeviceManagementPolicyIncludedGroupRefOperationOptions {
@@ -36,7 +37,9 @@ func (o RemoveMobileDeviceManagementPolicyIncludedGroupRefOperationOptions) ToHe
 
 func (o RemoveMobileDeviceManagementPolicyIncludedGroupRefOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

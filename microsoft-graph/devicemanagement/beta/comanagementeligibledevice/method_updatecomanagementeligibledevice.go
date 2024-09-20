@@ -17,15 +17,44 @@ type UpdateComanagementEligibleDeviceOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateComanagementEligibleDeviceOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateComanagementEligibleDeviceOperationOptions() UpdateComanagementEligibleDeviceOperationOptions {
+	return UpdateComanagementEligibleDeviceOperationOptions{}
+}
+
+func (o UpdateComanagementEligibleDeviceOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateComanagementEligibleDeviceOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateComanagementEligibleDeviceOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateComanagementEligibleDevice - Update the navigation property comanagementEligibleDevices in deviceManagement
-func (c ComanagementEligibleDeviceClient) UpdateComanagementEligibleDevice(ctx context.Context, id beta.DeviceManagementComanagementEligibleDeviceId, input beta.ComanagementEligibleDevice) (result UpdateComanagementEligibleDeviceOperationResponse, err error) {
+func (c ComanagementEligibleDeviceClient) UpdateComanagementEligibleDevice(ctx context.Context, id beta.DeviceManagementComanagementEligibleDeviceId, input beta.ComanagementEligibleDevice, options UpdateComanagementEligibleDeviceOperationOptions) (result UpdateComanagementEligibleDeviceOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

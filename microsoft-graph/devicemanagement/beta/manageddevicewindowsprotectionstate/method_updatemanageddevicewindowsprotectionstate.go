@@ -18,15 +18,44 @@ type UpdateManagedDeviceWindowsProtectionStateOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateManagedDeviceWindowsProtectionStateOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateManagedDeviceWindowsProtectionStateOperationOptions() UpdateManagedDeviceWindowsProtectionStateOperationOptions {
+	return UpdateManagedDeviceWindowsProtectionStateOperationOptions{}
+}
+
+func (o UpdateManagedDeviceWindowsProtectionStateOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateManagedDeviceWindowsProtectionStateOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateManagedDeviceWindowsProtectionStateOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateManagedDeviceWindowsProtectionState - Update the navigation property windowsProtectionState in deviceManagement
-func (c ManagedDeviceWindowsProtectionStateClient) UpdateManagedDeviceWindowsProtectionState(ctx context.Context, id beta.DeviceManagementManagedDeviceId, input beta.WindowsProtectionState) (result UpdateManagedDeviceWindowsProtectionStateOperationResponse, err error) {
+func (c ManagedDeviceWindowsProtectionStateClient) UpdateManagedDeviceWindowsProtectionState(ctx context.Context, id beta.DeviceManagementManagedDeviceId, input beta.WindowsProtectionState, options UpdateManagedDeviceWindowsProtectionStateOperationOptions) (result UpdateManagedDeviceWindowsProtectionStateOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       fmt.Sprintf("%s/windowsProtectionState", id.ID()),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/windowsProtectionState", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

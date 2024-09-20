@@ -46,10 +46,20 @@ type BookingSchedulingPolicy struct {
 var _ json.Unmarshaler = &BookingSchedulingPolicy{}
 
 func (s *BookingSchedulingPolicy) UnmarshalJSON(bytes []byte) error {
-	type alias BookingSchedulingPolicy
-	var decoded alias
+
+	var decoded struct {
+		AllowStaffSelection               *bool                         `json:"allowStaffSelection,omitempty"`
+		CustomAvailabilities              *[]BookingsAvailabilityWindow `json:"customAvailabilities,omitempty"`
+		IsMeetingInviteToCustomersEnabled nullable.Type[bool]           `json:"isMeetingInviteToCustomersEnabled,omitempty"`
+		MaximumAdvance                    *string                       `json:"maximumAdvance,omitempty"`
+		MinimumLeadTime                   *string                       `json:"minimumLeadTime,omitempty"`
+		ODataId                           *string                       `json:"@odata.id,omitempty"`
+		ODataType                         *string                       `json:"@odata.type,omitempty"`
+		SendConfirmationsToOwner          *bool                         `json:"sendConfirmationsToOwner,omitempty"`
+		TimeSlotInterval                  *string                       `json:"timeSlotInterval,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into BookingSchedulingPolicy: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.AllowStaffSelection = decoded.AllowStaffSelection
@@ -74,5 +84,6 @@ func (s *BookingSchedulingPolicy) UnmarshalJSON(bytes []byte) error {
 		}
 		s.GeneralAvailability = impl
 	}
+
 	return nil
 }

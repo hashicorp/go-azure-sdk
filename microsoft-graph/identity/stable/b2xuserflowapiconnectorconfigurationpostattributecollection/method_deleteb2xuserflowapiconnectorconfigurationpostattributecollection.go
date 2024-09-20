@@ -19,7 +19,8 @@ type DeleteB2xUserFlowApiConnectorConfigurationPostAttributeCollectionOperationR
 }
 
 type DeleteB2xUserFlowApiConnectorConfigurationPostAttributeCollectionOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteB2xUserFlowApiConnectorConfigurationPostAttributeCollectionOperationOptions() DeleteB2xUserFlowApiConnectorConfigurationPostAttributeCollectionOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteB2xUserFlowApiConnectorConfigurationPostAttributeCollectionOperati
 
 func (o DeleteB2xUserFlowApiConnectorConfigurationPostAttributeCollectionOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

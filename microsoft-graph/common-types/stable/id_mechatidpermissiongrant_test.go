@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &MeChatIdPermissionGrantId{}
 
 func TestNewMeChatIdPermissionGrantID(t *testing.T) {
-	id := NewMeChatIdPermissionGrantID("chatIdValue", "resourceSpecificPermissionGrantIdValue")
+	id := NewMeChatIdPermissionGrantID("chatId", "resourceSpecificPermissionGrantId")
 
-	if id.ChatId != "chatIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ChatId'", id.ChatId, "chatIdValue")
+	if id.ChatId != "chatId" {
+		t.Fatalf("Expected %q but got %q for Segment 'ChatId'", id.ChatId, "chatId")
 	}
 
-	if id.ResourceSpecificPermissionGrantId != "resourceSpecificPermissionGrantIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ResourceSpecificPermissionGrantId'", id.ResourceSpecificPermissionGrantId, "resourceSpecificPermissionGrantIdValue")
+	if id.ResourceSpecificPermissionGrantId != "resourceSpecificPermissionGrantId" {
+		t.Fatalf("Expected %q but got %q for Segment 'ResourceSpecificPermissionGrantId'", id.ResourceSpecificPermissionGrantId, "resourceSpecificPermissionGrantId")
 	}
 }
 
 func TestFormatMeChatIdPermissionGrantID(t *testing.T) {
-	actual := NewMeChatIdPermissionGrantID("chatIdValue", "resourceSpecificPermissionGrantIdValue").ID()
-	expected := "/me/chats/chatIdValue/permissionGrants/resourceSpecificPermissionGrantIdValue"
+	actual := NewMeChatIdPermissionGrantID("chatId", "resourceSpecificPermissionGrantId").ID()
+	expected := "/me/chats/chatId/permissionGrants/resourceSpecificPermissionGrantId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -54,25 +54,25 @@ func TestParseMeChatIdPermissionGrantID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/me/chats/chatIdValue",
+			Input: "/me/chats/chatId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/me/chats/chatIdValue/permissionGrants",
+			Input: "/me/chats/chatId/permissionGrants",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/me/chats/chatIdValue/permissionGrants/resourceSpecificPermissionGrantIdValue",
+			Input: "/me/chats/chatId/permissionGrants/resourceSpecificPermissionGrantId",
 			Expected: &MeChatIdPermissionGrantId{
-				ChatId:                            "chatIdValue",
-				ResourceSpecificPermissionGrantId: "resourceSpecificPermissionGrantIdValue",
+				ChatId:                            "chatId",
+				ResourceSpecificPermissionGrantId: "resourceSpecificPermissionGrantId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/chats/chatIdValue/permissionGrants/resourceSpecificPermissionGrantIdValue/extra",
+			Input: "/me/chats/chatId/permissionGrants/resourceSpecificPermissionGrantId/extra",
 			Error: true,
 		},
 	}
@@ -135,48 +135,48 @@ func TestParseMeChatIdPermissionGrantIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/me/chats/chatIdValue",
+			Input: "/me/chats/chatId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/cHaTs/cHaTiDvAlUe",
+			Input: "/mE/cHaTs/cHaTiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/me/chats/chatIdValue/permissionGrants",
+			Input: "/me/chats/chatId/permissionGrants",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/cHaTs/cHaTiDvAlUe/pErMiSsIoNgRaNtS",
+			Input: "/mE/cHaTs/cHaTiD/pErMiSsIoNgRaNtS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/me/chats/chatIdValue/permissionGrants/resourceSpecificPermissionGrantIdValue",
+			Input: "/me/chats/chatId/permissionGrants/resourceSpecificPermissionGrantId",
 			Expected: &MeChatIdPermissionGrantId{
-				ChatId:                            "chatIdValue",
-				ResourceSpecificPermissionGrantId: "resourceSpecificPermissionGrantIdValue",
+				ChatId:                            "chatId",
+				ResourceSpecificPermissionGrantId: "resourceSpecificPermissionGrantId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/chats/chatIdValue/permissionGrants/resourceSpecificPermissionGrantIdValue/extra",
+			Input: "/me/chats/chatId/permissionGrants/resourceSpecificPermissionGrantId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/cHaTs/cHaTiDvAlUe/pErMiSsIoNgRaNtS/rEsOuRcEsPeCiFiCpErMiSsIoNgRaNtIdVaLuE",
+			Input: "/mE/cHaTs/cHaTiD/pErMiSsIoNgRaNtS/rEsOuRcEsPeCiFiCpErMiSsIoNgRaNtId",
 			Expected: &MeChatIdPermissionGrantId{
-				ChatId:                            "cHaTiDvAlUe",
-				ResourceSpecificPermissionGrantId: "rEsOuRcEsPeCiFiCpErMiSsIoNgRaNtIdVaLuE",
+				ChatId:                            "cHaTiD",
+				ResourceSpecificPermissionGrantId: "rEsOuRcEsPeCiFiCpErMiSsIoNgRaNtId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/mE/cHaTs/cHaTiDvAlUe/pErMiSsIoNgRaNtS/rEsOuRcEsPeCiFiCpErMiSsIoNgRaNtIdVaLuE/extra",
+			Input: "/mE/cHaTs/cHaTiD/pErMiSsIoNgRaNtS/rEsOuRcEsPeCiFiCpErMiSsIoNgRaNtId/extra",
 			Error: true,
 		},
 	}

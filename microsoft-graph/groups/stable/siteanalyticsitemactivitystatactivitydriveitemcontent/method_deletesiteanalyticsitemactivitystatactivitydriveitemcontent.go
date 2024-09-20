@@ -19,7 +19,8 @@ type DeleteSiteAnalyticsItemActivityStatActivityDriveItemContentOperationRespons
 }
 
 type DeleteSiteAnalyticsItemActivityStatActivityDriveItemContentOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteSiteAnalyticsItemActivityStatActivityDriveItemContentOperationOptions() DeleteSiteAnalyticsItemActivityStatActivityDriveItemContentOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteSiteAnalyticsItemActivityStatActivityDriveItemContentOperationOpti
 
 func (o DeleteSiteAnalyticsItemActivityStatActivityDriveItemContentOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

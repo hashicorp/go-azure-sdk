@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &UserIdOnenotePageId{}
 
 func TestNewUserIdOnenotePageID(t *testing.T) {
-	id := NewUserIdOnenotePageID("userIdValue", "onenotePageIdValue")
+	id := NewUserIdOnenotePageID("userId", "onenotePageId")
 
-	if id.UserId != "userIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'UserId'", id.UserId, "userIdValue")
+	if id.UserId != "userId" {
+		t.Fatalf("Expected %q but got %q for Segment 'UserId'", id.UserId, "userId")
 	}
 
-	if id.OnenotePageId != "onenotePageIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'OnenotePageId'", id.OnenotePageId, "onenotePageIdValue")
+	if id.OnenotePageId != "onenotePageId" {
+		t.Fatalf("Expected %q but got %q for Segment 'OnenotePageId'", id.OnenotePageId, "onenotePageId")
 	}
 }
 
 func TestFormatUserIdOnenotePageID(t *testing.T) {
-	actual := NewUserIdOnenotePageID("userIdValue", "onenotePageIdValue").ID()
-	expected := "/users/userIdValue/onenote/pages/onenotePageIdValue"
+	actual := NewUserIdOnenotePageID("userId", "onenotePageId").ID()
+	expected := "/users/userId/onenote/pages/onenotePageId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -49,30 +49,30 @@ func TestParseUserIdOnenotePageID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue",
+			Input: "/users/userId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/onenote",
+			Input: "/users/userId/onenote",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/onenote/pages",
+			Input: "/users/userId/onenote/pages",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/users/userIdValue/onenote/pages/onenotePageIdValue",
+			Input: "/users/userId/onenote/pages/onenotePageId",
 			Expected: &UserIdOnenotePageId{
-				UserId:        "userIdValue",
-				OnenotePageId: "onenotePageIdValue",
+				UserId:        "userId",
+				OnenotePageId: "onenotePageId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/users/userIdValue/onenote/pages/onenotePageIdValue/extra",
+			Input: "/users/userId/onenote/pages/onenotePageId/extra",
 			Error: true,
 		},
 	}
@@ -125,58 +125,58 @@ func TestParseUserIdOnenotePageIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue",
+			Input: "/users/userId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe",
+			Input: "/uSeRs/uSeRiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/onenote",
+			Input: "/users/userId/onenote",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/oNeNoTe",
+			Input: "/uSeRs/uSeRiD/oNeNoTe",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/onenote/pages",
+			Input: "/users/userId/onenote/pages",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/oNeNoTe/pAgEs",
+			Input: "/uSeRs/uSeRiD/oNeNoTe/pAgEs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/users/userIdValue/onenote/pages/onenotePageIdValue",
+			Input: "/users/userId/onenote/pages/onenotePageId",
 			Expected: &UserIdOnenotePageId{
-				UserId:        "userIdValue",
-				OnenotePageId: "onenotePageIdValue",
+				UserId:        "userId",
+				OnenotePageId: "onenotePageId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/users/userIdValue/onenote/pages/onenotePageIdValue/extra",
+			Input: "/users/userId/onenote/pages/onenotePageId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/oNeNoTe/pAgEs/oNeNoTePaGeIdVaLuE",
+			Input: "/uSeRs/uSeRiD/oNeNoTe/pAgEs/oNeNoTePaGeId",
 			Expected: &UserIdOnenotePageId{
-				UserId:        "uSeRiDvAlUe",
-				OnenotePageId: "oNeNoTePaGeIdVaLuE",
+				UserId:        "uSeRiD",
+				OnenotePageId: "oNeNoTePaGeId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/oNeNoTe/pAgEs/oNeNoTePaGeIdVaLuE/extra",
+			Input: "/uSeRs/uSeRiD/oNeNoTe/pAgEs/oNeNoTePaGeId/extra",
 			Error: true,
 		},
 	}

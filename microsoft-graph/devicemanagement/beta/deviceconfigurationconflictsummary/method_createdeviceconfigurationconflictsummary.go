@@ -18,16 +18,45 @@ type CreateDeviceConfigurationConflictSummaryOperationResponse struct {
 	Model        *beta.DeviceConfigurationConflictSummary
 }
 
+type CreateDeviceConfigurationConflictSummaryOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateDeviceConfigurationConflictSummaryOperationOptions() CreateDeviceConfigurationConflictSummaryOperationOptions {
+	return CreateDeviceConfigurationConflictSummaryOperationOptions{}
+}
+
+func (o CreateDeviceConfigurationConflictSummaryOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateDeviceConfigurationConflictSummaryOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateDeviceConfigurationConflictSummaryOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateDeviceConfigurationConflictSummary - Create new navigation property to deviceConfigurationConflictSummary for
 // deviceManagement
-func (c DeviceConfigurationConflictSummaryClient) CreateDeviceConfigurationConflictSummary(ctx context.Context, input beta.DeviceConfigurationConflictSummary) (result CreateDeviceConfigurationConflictSummaryOperationResponse, err error) {
+func (c DeviceConfigurationConflictSummaryClient) CreateDeviceConfigurationConflictSummary(ctx context.Context, input beta.DeviceConfigurationConflictSummary, options CreateDeviceConfigurationConflictSummaryOperationOptions) (result CreateDeviceConfigurationConflictSummaryOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/deviceManagement/deviceConfigurationConflictSummary",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/deviceManagement/deviceConfigurationConflictSummary",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

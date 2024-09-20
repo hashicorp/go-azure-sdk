@@ -17,15 +17,44 @@ type UpdateWindowsAutopilotSettingOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateWindowsAutopilotSettingOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateWindowsAutopilotSettingOperationOptions() UpdateWindowsAutopilotSettingOperationOptions {
+	return UpdateWindowsAutopilotSettingOperationOptions{}
+}
+
+func (o UpdateWindowsAutopilotSettingOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateWindowsAutopilotSettingOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateWindowsAutopilotSettingOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateWindowsAutopilotSetting - Update the navigation property windowsAutopilotSettings in deviceManagement
-func (c WindowsAutopilotSettingClient) UpdateWindowsAutopilotSetting(ctx context.Context, input beta.WindowsAutopilotSettings) (result UpdateWindowsAutopilotSettingOperationResponse, err error) {
+func (c WindowsAutopilotSettingClient) UpdateWindowsAutopilotSetting(ctx context.Context, input beta.WindowsAutopilotSettings, options UpdateWindowsAutopilotSettingOperationOptions) (result UpdateWindowsAutopilotSettingOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       "/deviceManagement/windowsAutopilotSettings",
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          "/deviceManagement/windowsAutopilotSettings",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &MeAgreementAcceptanceId{}
 
 func TestNewMeAgreementAcceptanceID(t *testing.T) {
-	id := NewMeAgreementAcceptanceID("agreementAcceptanceIdValue")
+	id := NewMeAgreementAcceptanceID("agreementAcceptanceId")
 
-	if id.AgreementAcceptanceId != "agreementAcceptanceIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'AgreementAcceptanceId'", id.AgreementAcceptanceId, "agreementAcceptanceIdValue")
+	if id.AgreementAcceptanceId != "agreementAcceptanceId" {
+		t.Fatalf("Expected %q but got %q for Segment 'AgreementAcceptanceId'", id.AgreementAcceptanceId, "agreementAcceptanceId")
 	}
 }
 
 func TestFormatMeAgreementAcceptanceID(t *testing.T) {
-	actual := NewMeAgreementAcceptanceID("agreementAcceptanceIdValue").ID()
-	expected := "/me/agreementAcceptances/agreementAcceptanceIdValue"
+	actual := NewMeAgreementAcceptanceID("agreementAcceptanceId").ID()
+	expected := "/me/agreementAcceptances/agreementAcceptanceId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -50,14 +50,14 @@ func TestParseMeAgreementAcceptanceID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/me/agreementAcceptances/agreementAcceptanceIdValue",
+			Input: "/me/agreementAcceptances/agreementAcceptanceId",
 			Expected: &MeAgreementAcceptanceId{
-				AgreementAcceptanceId: "agreementAcceptanceIdValue",
+				AgreementAcceptanceId: "agreementAcceptanceId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/agreementAcceptances/agreementAcceptanceIdValue/extra",
+			Input: "/me/agreementAcceptances/agreementAcceptanceId/extra",
 			Error: true,
 		},
 	}
@@ -116,26 +116,26 @@ func TestParseMeAgreementAcceptanceIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/me/agreementAcceptances/agreementAcceptanceIdValue",
+			Input: "/me/agreementAcceptances/agreementAcceptanceId",
 			Expected: &MeAgreementAcceptanceId{
-				AgreementAcceptanceId: "agreementAcceptanceIdValue",
+				AgreementAcceptanceId: "agreementAcceptanceId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/agreementAcceptances/agreementAcceptanceIdValue/extra",
+			Input: "/me/agreementAcceptances/agreementAcceptanceId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/aGrEeMeNtAcCePtAnCeS/aGrEeMeNtAcCePtAnCeIdVaLuE",
+			Input: "/mE/aGrEeMeNtAcCePtAnCeS/aGrEeMeNtAcCePtAnCeId",
 			Expected: &MeAgreementAcceptanceId{
-				AgreementAcceptanceId: "aGrEeMeNtAcCePtAnCeIdVaLuE",
+				AgreementAcceptanceId: "aGrEeMeNtAcCePtAnCeId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/mE/aGrEeMeNtAcCePtAnCeS/aGrEeMeNtAcCePtAnCeIdVaLuE/extra",
+			Input: "/mE/aGrEeMeNtAcCePtAnCeS/aGrEeMeNtAcCePtAnCeId/extra",
 			Error: true,
 		},
 	}

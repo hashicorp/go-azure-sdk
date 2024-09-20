@@ -19,15 +19,44 @@ type CreateWindowsUpdateCatalogItemOperationResponse struct {
 	Model        beta.WindowsUpdateCatalogItem
 }
 
+type CreateWindowsUpdateCatalogItemOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateWindowsUpdateCatalogItemOperationOptions() CreateWindowsUpdateCatalogItemOperationOptions {
+	return CreateWindowsUpdateCatalogItemOperationOptions{}
+}
+
+func (o CreateWindowsUpdateCatalogItemOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateWindowsUpdateCatalogItemOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateWindowsUpdateCatalogItemOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateWindowsUpdateCatalogItem - Create new navigation property to windowsUpdateCatalogItems for deviceManagement
-func (c WindowsUpdateCatalogItemClient) CreateWindowsUpdateCatalogItem(ctx context.Context, input beta.WindowsUpdateCatalogItem) (result CreateWindowsUpdateCatalogItemOperationResponse, err error) {
+func (c WindowsUpdateCatalogItemClient) CreateWindowsUpdateCatalogItem(ctx context.Context, input beta.WindowsUpdateCatalogItem, options CreateWindowsUpdateCatalogItemOperationOptions) (result CreateWindowsUpdateCatalogItemOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/deviceManagement/windowsUpdateCatalogItems",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/deviceManagement/windowsUpdateCatalogItems",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

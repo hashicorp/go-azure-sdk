@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &UserIdMessageId{}
 
 func TestNewUserIdMessageID(t *testing.T) {
-	id := NewUserIdMessageID("userIdValue", "messageIdValue")
+	id := NewUserIdMessageID("userId", "messageId")
 
-	if id.UserId != "userIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'UserId'", id.UserId, "userIdValue")
+	if id.UserId != "userId" {
+		t.Fatalf("Expected %q but got %q for Segment 'UserId'", id.UserId, "userId")
 	}
 
-	if id.MessageId != "messageIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'MessageId'", id.MessageId, "messageIdValue")
+	if id.MessageId != "messageId" {
+		t.Fatalf("Expected %q but got %q for Segment 'MessageId'", id.MessageId, "messageId")
 	}
 }
 
 func TestFormatUserIdMessageID(t *testing.T) {
-	actual := NewUserIdMessageID("userIdValue", "messageIdValue").ID()
-	expected := "/users/userIdValue/messages/messageIdValue"
+	actual := NewUserIdMessageID("userId", "messageId").ID()
+	expected := "/users/userId/messages/messageId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -49,25 +49,25 @@ func TestParseUserIdMessageID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue",
+			Input: "/users/userId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/messages",
+			Input: "/users/userId/messages",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/users/userIdValue/messages/messageIdValue",
+			Input: "/users/userId/messages/messageId",
 			Expected: &UserIdMessageId{
-				UserId:    "userIdValue",
-				MessageId: "messageIdValue",
+				UserId:    "userId",
+				MessageId: "messageId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/users/userIdValue/messages/messageIdValue/extra",
+			Input: "/users/userId/messages/messageId/extra",
 			Error: true,
 		},
 	}
@@ -120,48 +120,48 @@ func TestParseUserIdMessageIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue",
+			Input: "/users/userId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe",
+			Input: "/uSeRs/uSeRiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/messages",
+			Input: "/users/userId/messages",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/mEsSaGeS",
+			Input: "/uSeRs/uSeRiD/mEsSaGeS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/users/userIdValue/messages/messageIdValue",
+			Input: "/users/userId/messages/messageId",
 			Expected: &UserIdMessageId{
-				UserId:    "userIdValue",
-				MessageId: "messageIdValue",
+				UserId:    "userId",
+				MessageId: "messageId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/users/userIdValue/messages/messageIdValue/extra",
+			Input: "/users/userId/messages/messageId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/mEsSaGeS/mEsSaGeIdVaLuE",
+			Input: "/uSeRs/uSeRiD/mEsSaGeS/mEsSaGeId",
 			Expected: &UserIdMessageId{
-				UserId:    "uSeRiDvAlUe",
-				MessageId: "mEsSaGeIdVaLuE",
+				UserId:    "uSeRiD",
+				MessageId: "mEsSaGeId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/mEsSaGeS/mEsSaGeIdVaLuE/extra",
+			Input: "/uSeRs/uSeRiD/mEsSaGeS/mEsSaGeId/extra",
 			Error: true,
 		},
 	}

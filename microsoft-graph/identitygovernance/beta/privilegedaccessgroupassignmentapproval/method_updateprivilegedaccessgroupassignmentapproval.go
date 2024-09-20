@@ -17,16 +17,45 @@ type UpdatePrivilegedAccessGroupAssignmentApprovalOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdatePrivilegedAccessGroupAssignmentApprovalOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdatePrivilegedAccessGroupAssignmentApprovalOperationOptions() UpdatePrivilegedAccessGroupAssignmentApprovalOperationOptions {
+	return UpdatePrivilegedAccessGroupAssignmentApprovalOperationOptions{}
+}
+
+func (o UpdatePrivilegedAccessGroupAssignmentApprovalOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdatePrivilegedAccessGroupAssignmentApprovalOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdatePrivilegedAccessGroupAssignmentApprovalOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdatePrivilegedAccessGroupAssignmentApproval - Update the navigation property assignmentApprovals in
 // identityGovernance
-func (c PrivilegedAccessGroupAssignmentApprovalClient) UpdatePrivilegedAccessGroupAssignmentApproval(ctx context.Context, id beta.IdentityGovernancePrivilegedAccessGroupAssignmentApprovalId, input beta.Approval) (result UpdatePrivilegedAccessGroupAssignmentApprovalOperationResponse, err error) {
+func (c PrivilegedAccessGroupAssignmentApprovalClient) UpdatePrivilegedAccessGroupAssignmentApproval(ctx context.Context, id beta.IdentityGovernancePrivilegedAccessGroupAssignmentApprovalId, input beta.Approval, options UpdatePrivilegedAccessGroupAssignmentApprovalOperationOptions) (result UpdatePrivilegedAccessGroupAssignmentApprovalOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

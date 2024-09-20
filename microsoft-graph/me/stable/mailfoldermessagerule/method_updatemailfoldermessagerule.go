@@ -17,15 +17,44 @@ type UpdateMailFolderMessageRuleOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateMailFolderMessageRuleOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateMailFolderMessageRuleOperationOptions() UpdateMailFolderMessageRuleOperationOptions {
+	return UpdateMailFolderMessageRuleOperationOptions{}
+}
+
+func (o UpdateMailFolderMessageRuleOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateMailFolderMessageRuleOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateMailFolderMessageRuleOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateMailFolderMessageRule - Update rule. Change writable properties on a messageRule object and save the changes.
-func (c MailFolderMessageRuleClient) UpdateMailFolderMessageRule(ctx context.Context, id stable.MeMailFolderIdMessageRuleId, input stable.MessageRule) (result UpdateMailFolderMessageRuleOperationResponse, err error) {
+func (c MailFolderMessageRuleClient) UpdateMailFolderMessageRule(ctx context.Context, id stable.MeMailFolderIdMessageRuleId, input stable.MessageRule, options UpdateMailFolderMessageRuleOperationOptions) (result UpdateMailFolderMessageRuleOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

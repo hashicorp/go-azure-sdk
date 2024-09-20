@@ -18,16 +18,45 @@ type AssignWindowsAutopilotDeploymentProfileAssignedDeviceUserToDeviceOperationR
 	OData        *odata.OData
 }
 
+type AssignWindowsAutopilotDeploymentProfileAssignedDeviceUserToDeviceOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultAssignWindowsAutopilotDeploymentProfileAssignedDeviceUserToDeviceOperationOptions() AssignWindowsAutopilotDeploymentProfileAssignedDeviceUserToDeviceOperationOptions {
+	return AssignWindowsAutopilotDeploymentProfileAssignedDeviceUserToDeviceOperationOptions{}
+}
+
+func (o AssignWindowsAutopilotDeploymentProfileAssignedDeviceUserToDeviceOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o AssignWindowsAutopilotDeploymentProfileAssignedDeviceUserToDeviceOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o AssignWindowsAutopilotDeploymentProfileAssignedDeviceUserToDeviceOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // AssignWindowsAutopilotDeploymentProfileAssignedDeviceUserToDevice - Invoke action assignUserToDevice. Assigns user to
 // Autopilot devices.
-func (c WindowsAutopilotDeploymentProfileAssignedDeviceClient) AssignWindowsAutopilotDeploymentProfileAssignedDeviceUserToDevice(ctx context.Context, id beta.DeviceManagementWindowsAutopilotDeploymentProfileIdAssignedDeviceId, input AssignWindowsAutopilotDeploymentProfileAssignedDeviceUserToDeviceRequest) (result AssignWindowsAutopilotDeploymentProfileAssignedDeviceUserToDeviceOperationResponse, err error) {
+func (c WindowsAutopilotDeploymentProfileAssignedDeviceClient) AssignWindowsAutopilotDeploymentProfileAssignedDeviceUserToDevice(ctx context.Context, id beta.DeviceManagementWindowsAutopilotDeploymentProfileIdAssignedDeviceId, input AssignWindowsAutopilotDeploymentProfileAssignedDeviceUserToDeviceRequest, options AssignWindowsAutopilotDeploymentProfileAssignedDeviceUserToDeviceOperationOptions) (result AssignWindowsAutopilotDeploymentProfileAssignedDeviceUserToDeviceOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/assignUserToDevice", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/assignUserToDevice", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

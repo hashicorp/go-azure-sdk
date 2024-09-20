@@ -17,15 +17,44 @@ type UpdateTeamScheduleOfferShiftRequestOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateTeamScheduleOfferShiftRequestOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateTeamScheduleOfferShiftRequestOperationOptions() UpdateTeamScheduleOfferShiftRequestOperationOptions {
+	return UpdateTeamScheduleOfferShiftRequestOperationOptions{}
+}
+
+func (o UpdateTeamScheduleOfferShiftRequestOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateTeamScheduleOfferShiftRequestOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateTeamScheduleOfferShiftRequestOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateTeamScheduleOfferShiftRequest - Update the navigation property offerShiftRequests in groups
-func (c TeamScheduleOfferShiftRequestClient) UpdateTeamScheduleOfferShiftRequest(ctx context.Context, id stable.GroupIdTeamScheduleOfferShiftRequestId, input stable.OfferShiftRequest) (result UpdateTeamScheduleOfferShiftRequestOperationResponse, err error) {
+func (c TeamScheduleOfferShiftRequestClient) UpdateTeamScheduleOfferShiftRequest(ctx context.Context, id stable.GroupIdTeamScheduleOfferShiftRequestId, input stable.OfferShiftRequest, options UpdateTeamScheduleOfferShiftRequestOperationOptions) (result UpdateTeamScheduleOfferShiftRequestOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

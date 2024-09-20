@@ -18,15 +18,44 @@ type CreateMonthlyPrintUsageByUserOperationResponse struct {
 	Model        *beta.PrintUsageByUser
 }
 
+type CreateMonthlyPrintUsageByUserOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateMonthlyPrintUsageByUserOperationOptions() CreateMonthlyPrintUsageByUserOperationOptions {
+	return CreateMonthlyPrintUsageByUserOperationOptions{}
+}
+
+func (o CreateMonthlyPrintUsageByUserOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateMonthlyPrintUsageByUserOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateMonthlyPrintUsageByUserOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateMonthlyPrintUsageByUser - Create new navigation property to monthlyPrintUsageByUser for reports
-func (c MonthlyPrintUsageByUserClient) CreateMonthlyPrintUsageByUser(ctx context.Context, input beta.PrintUsageByUser) (result CreateMonthlyPrintUsageByUserOperationResponse, err error) {
+func (c MonthlyPrintUsageByUserClient) CreateMonthlyPrintUsageByUser(ctx context.Context, input beta.PrintUsageByUser, options CreateMonthlyPrintUsageByUserOperationOptions) (result CreateMonthlyPrintUsageByUserOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/reports/monthlyPrintUsageByUser",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/reports/monthlyPrintUsageByUser",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

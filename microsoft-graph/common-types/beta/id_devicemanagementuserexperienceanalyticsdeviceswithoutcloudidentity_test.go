@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &DeviceManagementUserExperienceAnalyticsDevicesWithoutCloudIdentityId{}
 
 func TestNewDeviceManagementUserExperienceAnalyticsDevicesWithoutCloudIdentityID(t *testing.T) {
-	id := NewDeviceManagementUserExperienceAnalyticsDevicesWithoutCloudIdentityID("userExperienceAnalyticsDeviceWithoutCloudIdentityIdValue")
+	id := NewDeviceManagementUserExperienceAnalyticsDevicesWithoutCloudIdentityID("userExperienceAnalyticsDeviceWithoutCloudIdentityId")
 
-	if id.UserExperienceAnalyticsDeviceWithoutCloudIdentityId != "userExperienceAnalyticsDeviceWithoutCloudIdentityIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'UserExperienceAnalyticsDeviceWithoutCloudIdentityId'", id.UserExperienceAnalyticsDeviceWithoutCloudIdentityId, "userExperienceAnalyticsDeviceWithoutCloudIdentityIdValue")
+	if id.UserExperienceAnalyticsDeviceWithoutCloudIdentityId != "userExperienceAnalyticsDeviceWithoutCloudIdentityId" {
+		t.Fatalf("Expected %q but got %q for Segment 'UserExperienceAnalyticsDeviceWithoutCloudIdentityId'", id.UserExperienceAnalyticsDeviceWithoutCloudIdentityId, "userExperienceAnalyticsDeviceWithoutCloudIdentityId")
 	}
 }
 
 func TestFormatDeviceManagementUserExperienceAnalyticsDevicesWithoutCloudIdentityID(t *testing.T) {
-	actual := NewDeviceManagementUserExperienceAnalyticsDevicesWithoutCloudIdentityID("userExperienceAnalyticsDeviceWithoutCloudIdentityIdValue").ID()
-	expected := "/deviceManagement/userExperienceAnalyticsDevicesWithoutCloudIdentity/userExperienceAnalyticsDeviceWithoutCloudIdentityIdValue"
+	actual := NewDeviceManagementUserExperienceAnalyticsDevicesWithoutCloudIdentityID("userExperienceAnalyticsDeviceWithoutCloudIdentityId").ID()
+	expected := "/deviceManagement/userExperienceAnalyticsDevicesWithoutCloudIdentity/userExperienceAnalyticsDeviceWithoutCloudIdentityId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -50,14 +50,14 @@ func TestParseDeviceManagementUserExperienceAnalyticsDevicesWithoutCloudIdentity
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/userExperienceAnalyticsDevicesWithoutCloudIdentity/userExperienceAnalyticsDeviceWithoutCloudIdentityIdValue",
+			Input: "/deviceManagement/userExperienceAnalyticsDevicesWithoutCloudIdentity/userExperienceAnalyticsDeviceWithoutCloudIdentityId",
 			Expected: &DeviceManagementUserExperienceAnalyticsDevicesWithoutCloudIdentityId{
-				UserExperienceAnalyticsDeviceWithoutCloudIdentityId: "userExperienceAnalyticsDeviceWithoutCloudIdentityIdValue",
+				UserExperienceAnalyticsDeviceWithoutCloudIdentityId: "userExperienceAnalyticsDeviceWithoutCloudIdentityId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/userExperienceAnalyticsDevicesWithoutCloudIdentity/userExperienceAnalyticsDeviceWithoutCloudIdentityIdValue/extra",
+			Input: "/deviceManagement/userExperienceAnalyticsDevicesWithoutCloudIdentity/userExperienceAnalyticsDeviceWithoutCloudIdentityId/extra",
 			Error: true,
 		},
 	}
@@ -116,26 +116,26 @@ func TestParseDeviceManagementUserExperienceAnalyticsDevicesWithoutCloudIdentity
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/userExperienceAnalyticsDevicesWithoutCloudIdentity/userExperienceAnalyticsDeviceWithoutCloudIdentityIdValue",
+			Input: "/deviceManagement/userExperienceAnalyticsDevicesWithoutCloudIdentity/userExperienceAnalyticsDeviceWithoutCloudIdentityId",
 			Expected: &DeviceManagementUserExperienceAnalyticsDevicesWithoutCloudIdentityId{
-				UserExperienceAnalyticsDeviceWithoutCloudIdentityId: "userExperienceAnalyticsDeviceWithoutCloudIdentityIdValue",
+				UserExperienceAnalyticsDeviceWithoutCloudIdentityId: "userExperienceAnalyticsDeviceWithoutCloudIdentityId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/userExperienceAnalyticsDevicesWithoutCloudIdentity/userExperienceAnalyticsDeviceWithoutCloudIdentityIdValue/extra",
+			Input: "/deviceManagement/userExperienceAnalyticsDevicesWithoutCloudIdentity/userExperienceAnalyticsDeviceWithoutCloudIdentityId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/uSeReXpErIeNcEaNaLyTiCsDeViCeSwItHoUtClOuDiDeNtItY/uSeReXpErIeNcEaNaLyTiCsDeViCeWiThOuTcLoUdIdEnTiTyIdVaLuE",
+			Input: "/dEvIcEmAnAgEmEnT/uSeReXpErIeNcEaNaLyTiCsDeViCeSwItHoUtClOuDiDeNtItY/uSeReXpErIeNcEaNaLyTiCsDeViCeWiThOuTcLoUdIdEnTiTyId",
 			Expected: &DeviceManagementUserExperienceAnalyticsDevicesWithoutCloudIdentityId{
-				UserExperienceAnalyticsDeviceWithoutCloudIdentityId: "uSeReXpErIeNcEaNaLyTiCsDeViCeWiThOuTcLoUdIdEnTiTyIdVaLuE",
+				UserExperienceAnalyticsDeviceWithoutCloudIdentityId: "uSeReXpErIeNcEaNaLyTiCsDeViCeWiThOuTcLoUdIdEnTiTyId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/uSeReXpErIeNcEaNaLyTiCsDeViCeSwItHoUtClOuDiDeNtItY/uSeReXpErIeNcEaNaLyTiCsDeViCeWiThOuTcLoUdIdEnTiTyIdVaLuE/extra",
+			Input: "/dEvIcEmAnAgEmEnT/uSeReXpErIeNcEaNaLyTiCsDeViCeSwItHoUtClOuDiDeNtItY/uSeReXpErIeNcEaNaLyTiCsDeViCeWiThOuTcLoUdIdEnTiTyId/extra",
 			Error: true,
 		},
 	}

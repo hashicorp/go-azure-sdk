@@ -19,15 +19,44 @@ type CreateDriveItemOperationResponse struct {
 	Model        *beta.DriveItem
 }
 
+type CreateDriveItemOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateDriveItemOperationOptions() CreateDriveItemOperationOptions {
+	return CreateDriveItemOperationOptions{}
+}
+
+func (o CreateDriveItemOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateDriveItemOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateDriveItemOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateDriveItem - Create new navigation property to items for groups
-func (c DriveItemClient) CreateDriveItem(ctx context.Context, id beta.GroupIdDriveId, input beta.DriveItem) (result CreateDriveItemOperationResponse, err error) {
+func (c DriveItemClient) CreateDriveItem(ctx context.Context, id beta.GroupIdDriveId, input beta.DriveItem, options CreateDriveItemOperationOptions) (result CreateDriveItemOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/items", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/items", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -17,15 +17,44 @@ type UpdateTeamPrimaryChannelTabOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateTeamPrimaryChannelTabOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateTeamPrimaryChannelTabOperationOptions() UpdateTeamPrimaryChannelTabOperationOptions {
+	return UpdateTeamPrimaryChannelTabOperationOptions{}
+}
+
+func (o UpdateTeamPrimaryChannelTabOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateTeamPrimaryChannelTabOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateTeamPrimaryChannelTabOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateTeamPrimaryChannelTab - Update the navigation property tabs in groups
-func (c TeamPrimaryChannelTabClient) UpdateTeamPrimaryChannelTab(ctx context.Context, id stable.GroupIdTeamPrimaryChannelTabId, input stable.TeamsTab) (result UpdateTeamPrimaryChannelTabOperationResponse, err error) {
+func (c TeamPrimaryChannelTabClient) UpdateTeamPrimaryChannelTab(ctx context.Context, id stable.GroupIdTeamPrimaryChannelTabId, input stable.TeamsTab, options UpdateTeamPrimaryChannelTabOperationOptions) (result UpdateTeamPrimaryChannelTabOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

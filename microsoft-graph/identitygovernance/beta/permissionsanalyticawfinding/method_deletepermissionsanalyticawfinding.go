@@ -19,7 +19,8 @@ type DeletePermissionsAnalyticAwFindingOperationResponse struct {
 }
 
 type DeletePermissionsAnalyticAwFindingOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeletePermissionsAnalyticAwFindingOperationOptions() DeletePermissionsAnalyticAwFindingOperationOptions {
@@ -36,7 +37,9 @@ func (o DeletePermissionsAnalyticAwFindingOperationOptions) ToHeaders() *client.
 
 func (o DeletePermissionsAnalyticAwFindingOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

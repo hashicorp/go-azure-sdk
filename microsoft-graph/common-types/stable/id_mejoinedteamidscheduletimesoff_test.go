@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &MeJoinedTeamIdScheduleTimesOffId{}
 
 func TestNewMeJoinedTeamIdScheduleTimesOffID(t *testing.T) {
-	id := NewMeJoinedTeamIdScheduleTimesOffID("teamIdValue", "timeOffIdValue")
+	id := NewMeJoinedTeamIdScheduleTimesOffID("teamId", "timeOffId")
 
-	if id.TeamId != "teamIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'TeamId'", id.TeamId, "teamIdValue")
+	if id.TeamId != "teamId" {
+		t.Fatalf("Expected %q but got %q for Segment 'TeamId'", id.TeamId, "teamId")
 	}
 
-	if id.TimeOffId != "timeOffIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'TimeOffId'", id.TimeOffId, "timeOffIdValue")
+	if id.TimeOffId != "timeOffId" {
+		t.Fatalf("Expected %q but got %q for Segment 'TimeOffId'", id.TimeOffId, "timeOffId")
 	}
 }
 
 func TestFormatMeJoinedTeamIdScheduleTimesOffID(t *testing.T) {
-	actual := NewMeJoinedTeamIdScheduleTimesOffID("teamIdValue", "timeOffIdValue").ID()
-	expected := "/me/joinedTeams/teamIdValue/schedule/timesOff/timeOffIdValue"
+	actual := NewMeJoinedTeamIdScheduleTimesOffID("teamId", "timeOffId").ID()
+	expected := "/me/joinedTeams/teamId/schedule/timesOff/timeOffId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -54,30 +54,30 @@ func TestParseMeJoinedTeamIdScheduleTimesOffID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/me/joinedTeams/teamIdValue",
+			Input: "/me/joinedTeams/teamId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/me/joinedTeams/teamIdValue/schedule",
+			Input: "/me/joinedTeams/teamId/schedule",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/me/joinedTeams/teamIdValue/schedule/timesOff",
+			Input: "/me/joinedTeams/teamId/schedule/timesOff",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/me/joinedTeams/teamIdValue/schedule/timesOff/timeOffIdValue",
+			Input: "/me/joinedTeams/teamId/schedule/timesOff/timeOffId",
 			Expected: &MeJoinedTeamIdScheduleTimesOffId{
-				TeamId:    "teamIdValue",
-				TimeOffId: "timeOffIdValue",
+				TeamId:    "teamId",
+				TimeOffId: "timeOffId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/joinedTeams/teamIdValue/schedule/timesOff/timeOffIdValue/extra",
+			Input: "/me/joinedTeams/teamId/schedule/timesOff/timeOffId/extra",
 			Error: true,
 		},
 	}
@@ -140,58 +140,58 @@ func TestParseMeJoinedTeamIdScheduleTimesOffIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/me/joinedTeams/teamIdValue",
+			Input: "/me/joinedTeams/teamId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/jOiNeDtEaMs/tEaMiDvAlUe",
+			Input: "/mE/jOiNeDtEaMs/tEaMiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/me/joinedTeams/teamIdValue/schedule",
+			Input: "/me/joinedTeams/teamId/schedule",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/jOiNeDtEaMs/tEaMiDvAlUe/sChEdUlE",
+			Input: "/mE/jOiNeDtEaMs/tEaMiD/sChEdUlE",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/me/joinedTeams/teamIdValue/schedule/timesOff",
+			Input: "/me/joinedTeams/teamId/schedule/timesOff",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/jOiNeDtEaMs/tEaMiDvAlUe/sChEdUlE/tImEsOfF",
+			Input: "/mE/jOiNeDtEaMs/tEaMiD/sChEdUlE/tImEsOfF",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/me/joinedTeams/teamIdValue/schedule/timesOff/timeOffIdValue",
+			Input: "/me/joinedTeams/teamId/schedule/timesOff/timeOffId",
 			Expected: &MeJoinedTeamIdScheduleTimesOffId{
-				TeamId:    "teamIdValue",
-				TimeOffId: "timeOffIdValue",
+				TeamId:    "teamId",
+				TimeOffId: "timeOffId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/joinedTeams/teamIdValue/schedule/timesOff/timeOffIdValue/extra",
+			Input: "/me/joinedTeams/teamId/schedule/timesOff/timeOffId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/jOiNeDtEaMs/tEaMiDvAlUe/sChEdUlE/tImEsOfF/tImEoFfIdVaLuE",
+			Input: "/mE/jOiNeDtEaMs/tEaMiD/sChEdUlE/tImEsOfF/tImEoFfId",
 			Expected: &MeJoinedTeamIdScheduleTimesOffId{
-				TeamId:    "tEaMiDvAlUe",
-				TimeOffId: "tImEoFfIdVaLuE",
+				TeamId:    "tEaMiD",
+				TimeOffId: "tImEoFfId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/mE/jOiNeDtEaMs/tEaMiDvAlUe/sChEdUlE/tImEsOfF/tImEoFfIdVaLuE/extra",
+			Input: "/mE/jOiNeDtEaMs/tEaMiD/sChEdUlE/tImEsOfF/tImEoFfId/extra",
 			Error: true,
 		},
 	}

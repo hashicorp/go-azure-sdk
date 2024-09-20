@@ -19,15 +19,44 @@ type CreateGroupLifecyclePolicyOperationResponse struct {
 	Model        *stable.GroupLifecyclePolicy
 }
 
+type CreateGroupLifecyclePolicyOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateGroupLifecyclePolicyOperationOptions() CreateGroupLifecyclePolicyOperationOptions {
+	return CreateGroupLifecyclePolicyOperationOptions{}
+}
+
+func (o CreateGroupLifecyclePolicyOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateGroupLifecyclePolicyOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateGroupLifecyclePolicyOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateGroupLifecyclePolicy - Create new navigation property to groupLifecyclePolicies for groups
-func (c GroupLifecyclePolicyClient) CreateGroupLifecyclePolicy(ctx context.Context, id stable.GroupId, input stable.GroupLifecyclePolicy) (result CreateGroupLifecyclePolicyOperationResponse, err error) {
+func (c GroupLifecyclePolicyClient) CreateGroupLifecyclePolicy(ctx context.Context, id stable.GroupId, input stable.GroupLifecyclePolicy, options CreateGroupLifecyclePolicyOperationOptions) (result CreateGroupLifecyclePolicyOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/groupLifecyclePolicies", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/groupLifecyclePolicies", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

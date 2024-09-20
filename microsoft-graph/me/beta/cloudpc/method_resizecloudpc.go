@@ -18,16 +18,45 @@ type ResizeCloudPCOperationResponse struct {
 	OData        *odata.OData
 }
 
+type ResizeCloudPCOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultResizeCloudPCOperationOptions() ResizeCloudPCOperationOptions {
+	return ResizeCloudPCOperationOptions{}
+}
+
+func (o ResizeCloudPCOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o ResizeCloudPCOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o ResizeCloudPCOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // ResizeCloudPC - Invoke action resize. Upgrade or downgrade an existing Cloud PC to a configuration with a new virtual
 // CPU (vCPU) and storage size.
-func (c CloudPCClient) ResizeCloudPC(ctx context.Context, id beta.MeCloudPCId, input ResizeCloudPCRequest) (result ResizeCloudPCOperationResponse, err error) {
+func (c CloudPCClient) ResizeCloudPC(ctx context.Context, id beta.MeCloudPCId, input ResizeCloudPCRequest, options ResizeCloudPCOperationOptions) (result ResizeCloudPCOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/resize", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/resize", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

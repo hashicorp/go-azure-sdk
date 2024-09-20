@@ -17,15 +17,44 @@ type UpdateManagedDeviceConfigurationStateOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateManagedDeviceConfigurationStateOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateManagedDeviceConfigurationStateOperationOptions() UpdateManagedDeviceConfigurationStateOperationOptions {
+	return UpdateManagedDeviceConfigurationStateOperationOptions{}
+}
+
+func (o UpdateManagedDeviceConfigurationStateOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateManagedDeviceConfigurationStateOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateManagedDeviceConfigurationStateOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateManagedDeviceConfigurationState - Update the navigation property deviceConfigurationStates in me
-func (c ManagedDeviceDeviceConfigurationStateClient) UpdateManagedDeviceConfigurationState(ctx context.Context, id beta.MeManagedDeviceIdDeviceConfigurationStateId, input beta.DeviceConfigurationState) (result UpdateManagedDeviceConfigurationStateOperationResponse, err error) {
+func (c ManagedDeviceDeviceConfigurationStateClient) UpdateManagedDeviceConfigurationState(ctx context.Context, id beta.MeManagedDeviceIdDeviceConfigurationStateId, input beta.DeviceConfigurationState, options UpdateManagedDeviceConfigurationStateOperationOptions) (result UpdateManagedDeviceConfigurationStateOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

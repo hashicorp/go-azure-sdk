@@ -17,17 +17,46 @@ type UpdateEntitlementManagementAccessPackageCatalogCustomWorkflowExtensionOpera
 	OData        *odata.OData
 }
 
+type UpdateEntitlementManagementAccessPackageCatalogCustomWorkflowExtensionOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateEntitlementManagementAccessPackageCatalogCustomWorkflowExtensionOperationOptions() UpdateEntitlementManagementAccessPackageCatalogCustomWorkflowExtensionOperationOptions {
+	return UpdateEntitlementManagementAccessPackageCatalogCustomWorkflowExtensionOperationOptions{}
+}
+
+func (o UpdateEntitlementManagementAccessPackageCatalogCustomWorkflowExtensionOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateEntitlementManagementAccessPackageCatalogCustomWorkflowExtensionOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateEntitlementManagementAccessPackageCatalogCustomWorkflowExtensionOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateEntitlementManagementAccessPackageCatalogCustomWorkflowExtension - Update
 // accessPackageAssignmentRequestWorkflowExtension. Update the properties of an
 // accessPackageAssignmentRequestWorkflowExtension object.
-func (c EntitlementManagementAccessPackageCatalogAccessPackageCustomWorkflowExtensionClient) UpdateEntitlementManagementAccessPackageCatalogCustomWorkflowExtension(ctx context.Context, id beta.IdentityGovernanceEntitlementManagementAccessPackageCatalogIdAccessPackageCustomWorkflowExtensionId, input beta.CustomCalloutExtension) (result UpdateEntitlementManagementAccessPackageCatalogCustomWorkflowExtensionOperationResponse, err error) {
+func (c EntitlementManagementAccessPackageCatalogAccessPackageCustomWorkflowExtensionClient) UpdateEntitlementManagementAccessPackageCatalogCustomWorkflowExtension(ctx context.Context, id beta.IdentityGovernanceEntitlementManagementAccessPackageCatalogIdAccessPackageCustomWorkflowExtensionId, input beta.CustomCalloutExtension, options UpdateEntitlementManagementAccessPackageCatalogCustomWorkflowExtensionOperationOptions) (result UpdateEntitlementManagementAccessPackageCatalogCustomWorkflowExtensionOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -95,7 +95,7 @@ func (id IdentityGovernancePermissionsAnalyticAwFindingId) Segments() []resource
 		resourceids.StaticSegment("permissionsAnalytics", "permissionsAnalytics", "permissionsAnalytics"),
 		resourceids.StaticSegment("aws", "aws", "aws"),
 		resourceids.StaticSegment("findings", "findings", "findings"),
-		resourceids.UserSpecifiedSegment("findingId", "findingIdValue"),
+		resourceids.UserSpecifiedSegment("findingId", "findingId"),
 	}
 }
 

@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &MeJoinedTeamIdInstalledAppId{}
 
 func TestNewMeJoinedTeamIdInstalledAppID(t *testing.T) {
-	id := NewMeJoinedTeamIdInstalledAppID("teamIdValue", "teamsAppInstallationIdValue")
+	id := NewMeJoinedTeamIdInstalledAppID("teamId", "teamsAppInstallationId")
 
-	if id.TeamId != "teamIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'TeamId'", id.TeamId, "teamIdValue")
+	if id.TeamId != "teamId" {
+		t.Fatalf("Expected %q but got %q for Segment 'TeamId'", id.TeamId, "teamId")
 	}
 
-	if id.TeamsAppInstallationId != "teamsAppInstallationIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'TeamsAppInstallationId'", id.TeamsAppInstallationId, "teamsAppInstallationIdValue")
+	if id.TeamsAppInstallationId != "teamsAppInstallationId" {
+		t.Fatalf("Expected %q but got %q for Segment 'TeamsAppInstallationId'", id.TeamsAppInstallationId, "teamsAppInstallationId")
 	}
 }
 
 func TestFormatMeJoinedTeamIdInstalledAppID(t *testing.T) {
-	actual := NewMeJoinedTeamIdInstalledAppID("teamIdValue", "teamsAppInstallationIdValue").ID()
-	expected := "/me/joinedTeams/teamIdValue/installedApps/teamsAppInstallationIdValue"
+	actual := NewMeJoinedTeamIdInstalledAppID("teamId", "teamsAppInstallationId").ID()
+	expected := "/me/joinedTeams/teamId/installedApps/teamsAppInstallationId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -54,25 +54,25 @@ func TestParseMeJoinedTeamIdInstalledAppID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/me/joinedTeams/teamIdValue",
+			Input: "/me/joinedTeams/teamId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/me/joinedTeams/teamIdValue/installedApps",
+			Input: "/me/joinedTeams/teamId/installedApps",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/me/joinedTeams/teamIdValue/installedApps/teamsAppInstallationIdValue",
+			Input: "/me/joinedTeams/teamId/installedApps/teamsAppInstallationId",
 			Expected: &MeJoinedTeamIdInstalledAppId{
-				TeamId:                 "teamIdValue",
-				TeamsAppInstallationId: "teamsAppInstallationIdValue",
+				TeamId:                 "teamId",
+				TeamsAppInstallationId: "teamsAppInstallationId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/joinedTeams/teamIdValue/installedApps/teamsAppInstallationIdValue/extra",
+			Input: "/me/joinedTeams/teamId/installedApps/teamsAppInstallationId/extra",
 			Error: true,
 		},
 	}
@@ -135,48 +135,48 @@ func TestParseMeJoinedTeamIdInstalledAppIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/me/joinedTeams/teamIdValue",
+			Input: "/me/joinedTeams/teamId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/jOiNeDtEaMs/tEaMiDvAlUe",
+			Input: "/mE/jOiNeDtEaMs/tEaMiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/me/joinedTeams/teamIdValue/installedApps",
+			Input: "/me/joinedTeams/teamId/installedApps",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/jOiNeDtEaMs/tEaMiDvAlUe/iNsTaLlEdApPs",
+			Input: "/mE/jOiNeDtEaMs/tEaMiD/iNsTaLlEdApPs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/me/joinedTeams/teamIdValue/installedApps/teamsAppInstallationIdValue",
+			Input: "/me/joinedTeams/teamId/installedApps/teamsAppInstallationId",
 			Expected: &MeJoinedTeamIdInstalledAppId{
-				TeamId:                 "teamIdValue",
-				TeamsAppInstallationId: "teamsAppInstallationIdValue",
+				TeamId:                 "teamId",
+				TeamsAppInstallationId: "teamsAppInstallationId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/joinedTeams/teamIdValue/installedApps/teamsAppInstallationIdValue/extra",
+			Input: "/me/joinedTeams/teamId/installedApps/teamsAppInstallationId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/jOiNeDtEaMs/tEaMiDvAlUe/iNsTaLlEdApPs/tEaMsApPiNsTaLlAtIoNiDvAlUe",
+			Input: "/mE/jOiNeDtEaMs/tEaMiD/iNsTaLlEdApPs/tEaMsApPiNsTaLlAtIoNiD",
 			Expected: &MeJoinedTeamIdInstalledAppId{
-				TeamId:                 "tEaMiDvAlUe",
-				TeamsAppInstallationId: "tEaMsApPiNsTaLlAtIoNiDvAlUe",
+				TeamId:                 "tEaMiD",
+				TeamsAppInstallationId: "tEaMsApPiNsTaLlAtIoNiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/mE/jOiNeDtEaMs/tEaMiDvAlUe/iNsTaLlEdApPs/tEaMsApPiNsTaLlAtIoNiDvAlUe/extra",
+			Input: "/mE/jOiNeDtEaMs/tEaMiD/iNsTaLlEdApPs/tEaMsApPiNsTaLlAtIoNiD/extra",
 			Error: true,
 		},
 	}

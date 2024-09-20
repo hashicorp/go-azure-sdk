@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &UserIdInformationProtectionBitlockerRecoveryKeyId{}
 
 func TestNewUserIdInformationProtectionBitlockerRecoveryKeyID(t *testing.T) {
-	id := NewUserIdInformationProtectionBitlockerRecoveryKeyID("userIdValue", "bitlockerRecoveryKeyIdValue")
+	id := NewUserIdInformationProtectionBitlockerRecoveryKeyID("userId", "bitlockerRecoveryKeyId")
 
-	if id.UserId != "userIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'UserId'", id.UserId, "userIdValue")
+	if id.UserId != "userId" {
+		t.Fatalf("Expected %q but got %q for Segment 'UserId'", id.UserId, "userId")
 	}
 
-	if id.BitlockerRecoveryKeyId != "bitlockerRecoveryKeyIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'BitlockerRecoveryKeyId'", id.BitlockerRecoveryKeyId, "bitlockerRecoveryKeyIdValue")
+	if id.BitlockerRecoveryKeyId != "bitlockerRecoveryKeyId" {
+		t.Fatalf("Expected %q but got %q for Segment 'BitlockerRecoveryKeyId'", id.BitlockerRecoveryKeyId, "bitlockerRecoveryKeyId")
 	}
 }
 
 func TestFormatUserIdInformationProtectionBitlockerRecoveryKeyID(t *testing.T) {
-	actual := NewUserIdInformationProtectionBitlockerRecoveryKeyID("userIdValue", "bitlockerRecoveryKeyIdValue").ID()
-	expected := "/users/userIdValue/informationProtection/bitlocker/recoveryKeys/bitlockerRecoveryKeyIdValue"
+	actual := NewUserIdInformationProtectionBitlockerRecoveryKeyID("userId", "bitlockerRecoveryKeyId").ID()
+	expected := "/users/userId/informationProtection/bitlocker/recoveryKeys/bitlockerRecoveryKeyId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -49,35 +49,35 @@ func TestParseUserIdInformationProtectionBitlockerRecoveryKeyID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue",
+			Input: "/users/userId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/informationProtection",
+			Input: "/users/userId/informationProtection",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/informationProtection/bitlocker",
+			Input: "/users/userId/informationProtection/bitlocker",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/informationProtection/bitlocker/recoveryKeys",
+			Input: "/users/userId/informationProtection/bitlocker/recoveryKeys",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/users/userIdValue/informationProtection/bitlocker/recoveryKeys/bitlockerRecoveryKeyIdValue",
+			Input: "/users/userId/informationProtection/bitlocker/recoveryKeys/bitlockerRecoveryKeyId",
 			Expected: &UserIdInformationProtectionBitlockerRecoveryKeyId{
-				UserId:                 "userIdValue",
-				BitlockerRecoveryKeyId: "bitlockerRecoveryKeyIdValue",
+				UserId:                 "userId",
+				BitlockerRecoveryKeyId: "bitlockerRecoveryKeyId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/users/userIdValue/informationProtection/bitlocker/recoveryKeys/bitlockerRecoveryKeyIdValue/extra",
+			Input: "/users/userId/informationProtection/bitlocker/recoveryKeys/bitlockerRecoveryKeyId/extra",
 			Error: true,
 		},
 	}
@@ -130,68 +130,68 @@ func TestParseUserIdInformationProtectionBitlockerRecoveryKeyIDInsensitively(t *
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue",
+			Input: "/users/userId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe",
+			Input: "/uSeRs/uSeRiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/informationProtection",
+			Input: "/users/userId/informationProtection",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/iNfOrMaTiOnPrOtEcTiOn",
+			Input: "/uSeRs/uSeRiD/iNfOrMaTiOnPrOtEcTiOn",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/informationProtection/bitlocker",
+			Input: "/users/userId/informationProtection/bitlocker",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/iNfOrMaTiOnPrOtEcTiOn/bItLoCkEr",
+			Input: "/uSeRs/uSeRiD/iNfOrMaTiOnPrOtEcTiOn/bItLoCkEr",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/informationProtection/bitlocker/recoveryKeys",
+			Input: "/users/userId/informationProtection/bitlocker/recoveryKeys",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/iNfOrMaTiOnPrOtEcTiOn/bItLoCkEr/rEcOvErYkEyS",
+			Input: "/uSeRs/uSeRiD/iNfOrMaTiOnPrOtEcTiOn/bItLoCkEr/rEcOvErYkEyS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/users/userIdValue/informationProtection/bitlocker/recoveryKeys/bitlockerRecoveryKeyIdValue",
+			Input: "/users/userId/informationProtection/bitlocker/recoveryKeys/bitlockerRecoveryKeyId",
 			Expected: &UserIdInformationProtectionBitlockerRecoveryKeyId{
-				UserId:                 "userIdValue",
-				BitlockerRecoveryKeyId: "bitlockerRecoveryKeyIdValue",
+				UserId:                 "userId",
+				BitlockerRecoveryKeyId: "bitlockerRecoveryKeyId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/users/userIdValue/informationProtection/bitlocker/recoveryKeys/bitlockerRecoveryKeyIdValue/extra",
+			Input: "/users/userId/informationProtection/bitlocker/recoveryKeys/bitlockerRecoveryKeyId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/iNfOrMaTiOnPrOtEcTiOn/bItLoCkEr/rEcOvErYkEyS/bItLoCkErReCoVeRyKeYiDvAlUe",
+			Input: "/uSeRs/uSeRiD/iNfOrMaTiOnPrOtEcTiOn/bItLoCkEr/rEcOvErYkEyS/bItLoCkErReCoVeRyKeYiD",
 			Expected: &UserIdInformationProtectionBitlockerRecoveryKeyId{
-				UserId:                 "uSeRiDvAlUe",
-				BitlockerRecoveryKeyId: "bItLoCkErReCoVeRyKeYiDvAlUe",
+				UserId:                 "uSeRiD",
+				BitlockerRecoveryKeyId: "bItLoCkErReCoVeRyKeYiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/iNfOrMaTiOnPrOtEcTiOn/bItLoCkEr/rEcOvErYkEyS/bItLoCkErReCoVeRyKeYiDvAlUe/extra",
+			Input: "/uSeRs/uSeRiD/iNfOrMaTiOnPrOtEcTiOn/bItLoCkEr/rEcOvErYkEyS/bItLoCkErReCoVeRyKeYiD/extra",
 			Error: true,
 		},
 	}

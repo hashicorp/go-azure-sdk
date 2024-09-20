@@ -100,9 +100,9 @@ func (id MeSettingWindowIdInstanceId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("me", "me", "me"),
 		resourceids.StaticSegment("settings", "settings", "settings"),
 		resourceids.StaticSegment("windows", "windows", "windows"),
-		resourceids.UserSpecifiedSegment("windowsSettingId", "windowsSettingIdValue"),
+		resourceids.UserSpecifiedSegment("windowsSettingId", "windowsSettingId"),
 		resourceids.StaticSegment("instances", "instances", "instances"),
-		resourceids.UserSpecifiedSegment("windowsSettingInstanceId", "windowsSettingInstanceIdValue"),
+		resourceids.UserSpecifiedSegment("windowsSettingInstanceId", "windowsSettingInstanceId"),
 	}
 }
 

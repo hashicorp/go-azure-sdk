@@ -17,16 +17,45 @@ type UpdateUserExperienceAnalyticsBatteryHealthAppImpactOperationResponse struct
 	OData        *odata.OData
 }
 
+type UpdateUserExperienceAnalyticsBatteryHealthAppImpactOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateUserExperienceAnalyticsBatteryHealthAppImpactOperationOptions() UpdateUserExperienceAnalyticsBatteryHealthAppImpactOperationOptions {
+	return UpdateUserExperienceAnalyticsBatteryHealthAppImpactOperationOptions{}
+}
+
+func (o UpdateUserExperienceAnalyticsBatteryHealthAppImpactOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateUserExperienceAnalyticsBatteryHealthAppImpactOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateUserExperienceAnalyticsBatteryHealthAppImpactOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateUserExperienceAnalyticsBatteryHealthAppImpact - Update the navigation property
 // userExperienceAnalyticsBatteryHealthAppImpact in deviceManagement
-func (c UserExperienceAnalyticsBatteryHealthAppImpactClient) UpdateUserExperienceAnalyticsBatteryHealthAppImpact(ctx context.Context, id beta.DeviceManagementUserExperienceAnalyticsBatteryHealthAppImpactId, input beta.UserExperienceAnalyticsBatteryHealthAppImpact) (result UpdateUserExperienceAnalyticsBatteryHealthAppImpactOperationResponse, err error) {
+func (c UserExperienceAnalyticsBatteryHealthAppImpactClient) UpdateUserExperienceAnalyticsBatteryHealthAppImpact(ctx context.Context, id beta.DeviceManagementUserExperienceAnalyticsBatteryHealthAppImpactId, input beta.UserExperienceAnalyticsBatteryHealthAppImpact, options UpdateUserExperienceAnalyticsBatteryHealthAppImpactOperationOptions) (result UpdateUserExperienceAnalyticsBatteryHealthAppImpactOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

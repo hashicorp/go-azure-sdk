@@ -18,19 +18,48 @@ type CreateGroupOperationResponse struct {
 	Model        *beta.Group
 }
 
+type CreateGroupOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateGroupOperationOptions() CreateGroupOperationOptions {
+	return CreateGroupOperationOptions{}
+}
+
+func (o CreateGroupOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateGroupOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateGroupOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateGroup - Upsert group. Create a new group object if it doesn't exist, or update the properties of an existing
 // group object. You can create or update the following types of group: By default, this operation returns only a subset
 // of the properties for each group. For a list of properties that are returned by default, see the Properties section
 // of the group resource. To get properties that are not returned by default, do a GET operation and specify the
 // properties in a $select OData query option.
-func (c GroupClient) CreateGroup(ctx context.Context, input beta.Group) (result CreateGroupOperationResponse, err error) {
+func (c GroupClient) CreateGroup(ctx context.Context, input beta.Group, options CreateGroupOperationOptions) (result CreateGroupOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/groups",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/groups",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

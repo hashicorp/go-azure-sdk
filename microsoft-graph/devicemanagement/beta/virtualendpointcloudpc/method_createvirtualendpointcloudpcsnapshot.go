@@ -18,16 +18,45 @@ type CreateVirtualEndpointCloudPCSnapshotOperationResponse struct {
 	OData        *odata.OData
 }
 
+type CreateVirtualEndpointCloudPCSnapshotOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateVirtualEndpointCloudPCSnapshotOperationOptions() CreateVirtualEndpointCloudPCSnapshotOperationOptions {
+	return CreateVirtualEndpointCloudPCSnapshotOperationOptions{}
+}
+
+func (o CreateVirtualEndpointCloudPCSnapshotOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateVirtualEndpointCloudPCSnapshotOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateVirtualEndpointCloudPCSnapshotOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateVirtualEndpointCloudPCSnapshot - Invoke action createSnapshot. Create a snapshot for a specific Cloud PC
 // device.
-func (c VirtualEndpointCloudPCClient) CreateVirtualEndpointCloudPCSnapshot(ctx context.Context, id beta.DeviceManagementVirtualEndpointCloudPCId) (result CreateVirtualEndpointCloudPCSnapshotOperationResponse, err error) {
+func (c VirtualEndpointCloudPCClient) CreateVirtualEndpointCloudPCSnapshot(ctx context.Context, id beta.DeviceManagementVirtualEndpointCloudPCId, options CreateVirtualEndpointCloudPCSnapshotOperationOptions) (result CreateVirtualEndpointCloudPCSnapshotOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/createSnapshot", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/createSnapshot", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

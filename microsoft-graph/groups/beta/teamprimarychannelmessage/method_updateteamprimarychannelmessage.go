@@ -17,15 +17,44 @@ type UpdateTeamPrimaryChannelMessageOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateTeamPrimaryChannelMessageOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateTeamPrimaryChannelMessageOperationOptions() UpdateTeamPrimaryChannelMessageOperationOptions {
+	return UpdateTeamPrimaryChannelMessageOperationOptions{}
+}
+
+func (o UpdateTeamPrimaryChannelMessageOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateTeamPrimaryChannelMessageOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateTeamPrimaryChannelMessageOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateTeamPrimaryChannelMessage - Update the navigation property messages in groups
-func (c TeamPrimaryChannelMessageClient) UpdateTeamPrimaryChannelMessage(ctx context.Context, id beta.GroupIdTeamPrimaryChannelMessageId, input beta.ChatMessage) (result UpdateTeamPrimaryChannelMessageOperationResponse, err error) {
+func (c TeamPrimaryChannelMessageClient) UpdateTeamPrimaryChannelMessage(ctx context.Context, id beta.GroupIdTeamPrimaryChannelMessageId, input beta.ChatMessage, options UpdateTeamPrimaryChannelMessageOperationOptions) (result UpdateTeamPrimaryChannelMessageOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

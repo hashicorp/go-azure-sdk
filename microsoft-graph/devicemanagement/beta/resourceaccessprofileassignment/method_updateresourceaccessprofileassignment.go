@@ -17,15 +17,44 @@ type UpdateResourceAccessProfileAssignmentOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateResourceAccessProfileAssignmentOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateResourceAccessProfileAssignmentOperationOptions() UpdateResourceAccessProfileAssignmentOperationOptions {
+	return UpdateResourceAccessProfileAssignmentOperationOptions{}
+}
+
+func (o UpdateResourceAccessProfileAssignmentOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateResourceAccessProfileAssignmentOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateResourceAccessProfileAssignmentOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateResourceAccessProfileAssignment - Update the navigation property assignments in deviceManagement
-func (c ResourceAccessProfileAssignmentClient) UpdateResourceAccessProfileAssignment(ctx context.Context, id beta.DeviceManagementResourceAccessProfileIdAssignmentId, input beta.DeviceManagementResourceAccessProfileAssignment) (result UpdateResourceAccessProfileAssignmentOperationResponse, err error) {
+func (c ResourceAccessProfileAssignmentClient) UpdateResourceAccessProfileAssignment(ctx context.Context, id beta.DeviceManagementResourceAccessProfileIdAssignmentId, input beta.DeviceManagementResourceAccessProfileAssignment, options UpdateResourceAccessProfileAssignmentOperationOptions) (result UpdateResourceAccessProfileAssignmentOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

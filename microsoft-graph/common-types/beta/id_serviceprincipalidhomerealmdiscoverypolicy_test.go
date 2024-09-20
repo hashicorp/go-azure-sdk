@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &ServicePrincipalIdHomeRealmDiscoveryPolicyId{}
 
 func TestNewServicePrincipalIdHomeRealmDiscoveryPolicyID(t *testing.T) {
-	id := NewServicePrincipalIdHomeRealmDiscoveryPolicyID("servicePrincipalIdValue", "homeRealmDiscoveryPolicyIdValue")
+	id := NewServicePrincipalIdHomeRealmDiscoveryPolicyID("servicePrincipalId", "homeRealmDiscoveryPolicyId")
 
-	if id.ServicePrincipalId != "servicePrincipalIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ServicePrincipalId'", id.ServicePrincipalId, "servicePrincipalIdValue")
+	if id.ServicePrincipalId != "servicePrincipalId" {
+		t.Fatalf("Expected %q but got %q for Segment 'ServicePrincipalId'", id.ServicePrincipalId, "servicePrincipalId")
 	}
 
-	if id.HomeRealmDiscoveryPolicyId != "homeRealmDiscoveryPolicyIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'HomeRealmDiscoveryPolicyId'", id.HomeRealmDiscoveryPolicyId, "homeRealmDiscoveryPolicyIdValue")
+	if id.HomeRealmDiscoveryPolicyId != "homeRealmDiscoveryPolicyId" {
+		t.Fatalf("Expected %q but got %q for Segment 'HomeRealmDiscoveryPolicyId'", id.HomeRealmDiscoveryPolicyId, "homeRealmDiscoveryPolicyId")
 	}
 }
 
 func TestFormatServicePrincipalIdHomeRealmDiscoveryPolicyID(t *testing.T) {
-	actual := NewServicePrincipalIdHomeRealmDiscoveryPolicyID("servicePrincipalIdValue", "homeRealmDiscoveryPolicyIdValue").ID()
-	expected := "/servicePrincipals/servicePrincipalIdValue/homeRealmDiscoveryPolicies/homeRealmDiscoveryPolicyIdValue"
+	actual := NewServicePrincipalIdHomeRealmDiscoveryPolicyID("servicePrincipalId", "homeRealmDiscoveryPolicyId").ID()
+	expected := "/servicePrincipals/servicePrincipalId/homeRealmDiscoveryPolicies/homeRealmDiscoveryPolicyId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -49,25 +49,25 @@ func TestParseServicePrincipalIdHomeRealmDiscoveryPolicyID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/servicePrincipals/servicePrincipalIdValue",
+			Input: "/servicePrincipals/servicePrincipalId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/servicePrincipals/servicePrincipalIdValue/homeRealmDiscoveryPolicies",
+			Input: "/servicePrincipals/servicePrincipalId/homeRealmDiscoveryPolicies",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/servicePrincipals/servicePrincipalIdValue/homeRealmDiscoveryPolicies/homeRealmDiscoveryPolicyIdValue",
+			Input: "/servicePrincipals/servicePrincipalId/homeRealmDiscoveryPolicies/homeRealmDiscoveryPolicyId",
 			Expected: &ServicePrincipalIdHomeRealmDiscoveryPolicyId{
-				ServicePrincipalId:         "servicePrincipalIdValue",
-				HomeRealmDiscoveryPolicyId: "homeRealmDiscoveryPolicyIdValue",
+				ServicePrincipalId:         "servicePrincipalId",
+				HomeRealmDiscoveryPolicyId: "homeRealmDiscoveryPolicyId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/servicePrincipals/servicePrincipalIdValue/homeRealmDiscoveryPolicies/homeRealmDiscoveryPolicyIdValue/extra",
+			Input: "/servicePrincipals/servicePrincipalId/homeRealmDiscoveryPolicies/homeRealmDiscoveryPolicyId/extra",
 			Error: true,
 		},
 	}
@@ -120,48 +120,48 @@ func TestParseServicePrincipalIdHomeRealmDiscoveryPolicyIDInsensitively(t *testi
 		},
 		{
 			// Incomplete URI
-			Input: "/servicePrincipals/servicePrincipalIdValue",
+			Input: "/servicePrincipals/servicePrincipalId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sErViCePrInCiPaLs/sErViCePrInCiPaLiDvAlUe",
+			Input: "/sErViCePrInCiPaLs/sErViCePrInCiPaLiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/servicePrincipals/servicePrincipalIdValue/homeRealmDiscoveryPolicies",
+			Input: "/servicePrincipals/servicePrincipalId/homeRealmDiscoveryPolicies",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sErViCePrInCiPaLs/sErViCePrInCiPaLiDvAlUe/hOmErEaLmDiScOvErYpOlIcIeS",
+			Input: "/sErViCePrInCiPaLs/sErViCePrInCiPaLiD/hOmErEaLmDiScOvErYpOlIcIeS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/servicePrincipals/servicePrincipalIdValue/homeRealmDiscoveryPolicies/homeRealmDiscoveryPolicyIdValue",
+			Input: "/servicePrincipals/servicePrincipalId/homeRealmDiscoveryPolicies/homeRealmDiscoveryPolicyId",
 			Expected: &ServicePrincipalIdHomeRealmDiscoveryPolicyId{
-				ServicePrincipalId:         "servicePrincipalIdValue",
-				HomeRealmDiscoveryPolicyId: "homeRealmDiscoveryPolicyIdValue",
+				ServicePrincipalId:         "servicePrincipalId",
+				HomeRealmDiscoveryPolicyId: "homeRealmDiscoveryPolicyId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/servicePrincipals/servicePrincipalIdValue/homeRealmDiscoveryPolicies/homeRealmDiscoveryPolicyIdValue/extra",
+			Input: "/servicePrincipals/servicePrincipalId/homeRealmDiscoveryPolicies/homeRealmDiscoveryPolicyId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sErViCePrInCiPaLs/sErViCePrInCiPaLiDvAlUe/hOmErEaLmDiScOvErYpOlIcIeS/hOmErEaLmDiScOvErYpOlIcYiDvAlUe",
+			Input: "/sErViCePrInCiPaLs/sErViCePrInCiPaLiD/hOmErEaLmDiScOvErYpOlIcIeS/hOmErEaLmDiScOvErYpOlIcYiD",
 			Expected: &ServicePrincipalIdHomeRealmDiscoveryPolicyId{
-				ServicePrincipalId:         "sErViCePrInCiPaLiDvAlUe",
-				HomeRealmDiscoveryPolicyId: "hOmErEaLmDiScOvErYpOlIcYiDvAlUe",
+				ServicePrincipalId:         "sErViCePrInCiPaLiD",
+				HomeRealmDiscoveryPolicyId: "hOmErEaLmDiScOvErYpOlIcYiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sErViCePrInCiPaLs/sErViCePrInCiPaLiDvAlUe/hOmErEaLmDiScOvErYpOlIcIeS/hOmErEaLmDiScOvErYpOlIcYiDvAlUe/extra",
+			Input: "/sErViCePrInCiPaLs/sErViCePrInCiPaLiD/hOmErEaLmDiScOvErYpOlIcIeS/hOmErEaLmDiScOvErYpOlIcYiD/extra",
 			Error: true,
 		},
 	}

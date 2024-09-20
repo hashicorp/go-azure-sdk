@@ -18,16 +18,45 @@ type CreateReportCachedReportConfigurationOperationResponse struct {
 	Model        *beta.DeviceManagementCachedReportConfiguration
 }
 
+type CreateReportCachedReportConfigurationOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateReportCachedReportConfigurationOperationOptions() CreateReportCachedReportConfigurationOperationOptions {
+	return CreateReportCachedReportConfigurationOperationOptions{}
+}
+
+func (o CreateReportCachedReportConfigurationOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateReportCachedReportConfigurationOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateReportCachedReportConfigurationOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateReportCachedReportConfiguration - Create new navigation property to cachedReportConfigurations for
 // deviceManagement
-func (c ReportCachedReportConfigurationClient) CreateReportCachedReportConfiguration(ctx context.Context, input beta.DeviceManagementCachedReportConfiguration) (result CreateReportCachedReportConfigurationOperationResponse, err error) {
+func (c ReportCachedReportConfigurationClient) CreateReportCachedReportConfiguration(ctx context.Context, input beta.DeviceManagementCachedReportConfiguration, options CreateReportCachedReportConfigurationOperationOptions) (result CreateReportCachedReportConfigurationOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/deviceManagement/reports/cachedReportConfigurations",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/deviceManagement/reports/cachedReportConfigurations",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -115,10 +115,29 @@ func (s AccessPackageAssignmentPolicy) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &AccessPackageAssignmentPolicy{}
 
 func (s *AccessPackageAssignmentPolicy) UnmarshalJSON(bytes []byte) error {
-	type alias AccessPackageAssignmentPolicy
-	var decoded alias
+
+	var decoded struct {
+		AccessPackage                *AccessPackage                            `json:"accessPackage,omitempty"`
+		AllowedTargetScope           *AllowedTargetScope                       `json:"allowedTargetScope,omitempty"`
+		AutomaticRequestSettings     *AccessPackageAutomaticRequestSettings    `json:"automaticRequestSettings,omitempty"`
+		Catalog                      *AccessPackageCatalog                     `json:"catalog,omitempty"`
+		CreatedDateTime              nullable.Type[string]                     `json:"createdDateTime,omitempty"`
+		CustomExtensionStageSettings *[]CustomExtensionStageSetting            `json:"customExtensionStageSettings,omitempty"`
+		Description                  nullable.Type[string]                     `json:"description,omitempty"`
+		DisplayName                  nullable.Type[string]                     `json:"displayName,omitempty"`
+		Expiration                   *ExpirationPattern                        `json:"expiration,omitempty"`
+		ModifiedDateTime             nullable.Type[string]                     `json:"modifiedDateTime,omitempty"`
+		Questions                    *[]AccessPackageQuestion                  `json:"questions,omitempty"`
+		RequestApprovalSettings      *AccessPackageAssignmentApprovalSettings  `json:"requestApprovalSettings,omitempty"`
+		RequestorSettings            *AccessPackageAssignmentRequestorSettings `json:"requestorSettings,omitempty"`
+		ReviewSettings               *AccessPackageAssignmentReviewSettings    `json:"reviewSettings,omitempty"`
+		SpecificAllowedTargets       *[]SubjectSet                             `json:"specificAllowedTargets,omitempty"`
+		Id                           *string                                   `json:"id,omitempty"`
+		ODataId                      *string                                   `json:"@odata.id,omitempty"`
+		ODataType                    *string                                   `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into AccessPackageAssignmentPolicy: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.AccessPackage = decoded.AccessPackage
@@ -130,13 +149,13 @@ func (s *AccessPackageAssignmentPolicy) UnmarshalJSON(bytes []byte) error {
 	s.Description = decoded.Description
 	s.DisplayName = decoded.DisplayName
 	s.Expiration = decoded.Expiration
-	s.Id = decoded.Id
 	s.ModifiedDateTime = decoded.ModifiedDateTime
-	s.ODataId = decoded.ODataId
-	s.ODataType = decoded.ODataType
 	s.RequestApprovalSettings = decoded.RequestApprovalSettings
 	s.RequestorSettings = decoded.RequestorSettings
 	s.ReviewSettings = decoded.ReviewSettings
+	s.Id = decoded.Id
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -176,5 +195,6 @@ func (s *AccessPackageAssignmentPolicy) UnmarshalJSON(bytes []byte) error {
 		}
 		s.SpecificAllowedTargets = &output
 	}
+
 	return nil
 }

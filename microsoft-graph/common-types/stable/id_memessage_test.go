@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &MeMessageId{}
 
 func TestNewMeMessageID(t *testing.T) {
-	id := NewMeMessageID("messageIdValue")
+	id := NewMeMessageID("messageId")
 
-	if id.MessageId != "messageIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'MessageId'", id.MessageId, "messageIdValue")
+	if id.MessageId != "messageId" {
+		t.Fatalf("Expected %q but got %q for Segment 'MessageId'", id.MessageId, "messageId")
 	}
 }
 
 func TestFormatMeMessageID(t *testing.T) {
-	actual := NewMeMessageID("messageIdValue").ID()
-	expected := "/me/messages/messageIdValue"
+	actual := NewMeMessageID("messageId").ID()
+	expected := "/me/messages/messageId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -50,14 +50,14 @@ func TestParseMeMessageID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/me/messages/messageIdValue",
+			Input: "/me/messages/messageId",
 			Expected: &MeMessageId{
-				MessageId: "messageIdValue",
+				MessageId: "messageId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/messages/messageIdValue/extra",
+			Input: "/me/messages/messageId/extra",
 			Error: true,
 		},
 	}
@@ -116,26 +116,26 @@ func TestParseMeMessageIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/me/messages/messageIdValue",
+			Input: "/me/messages/messageId",
 			Expected: &MeMessageId{
-				MessageId: "messageIdValue",
+				MessageId: "messageId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/messages/messageIdValue/extra",
+			Input: "/me/messages/messageId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/mEsSaGeS/mEsSaGeIdVaLuE",
+			Input: "/mE/mEsSaGeS/mEsSaGeId",
 			Expected: &MeMessageId{
-				MessageId: "mEsSaGeIdVaLuE",
+				MessageId: "mEsSaGeId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/mE/mEsSaGeS/mEsSaGeIdVaLuE/extra",
+			Input: "/mE/mEsSaGeS/mEsSaGeId/extra",
 			Error: true,
 		},
 	}

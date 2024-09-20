@@ -63,15 +63,19 @@ func (s TabUpdatedEventMessageDetail) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &TabUpdatedEventMessageDetail{}
 
 func (s *TabUpdatedEventMessageDetail) UnmarshalJSON(bytes []byte) error {
-	type alias TabUpdatedEventMessageDetail
-	var decoded alias
+
+	var decoded struct {
+		TabId     nullable.Type[string] `json:"tabId,omitempty"`
+		ODataId   *string               `json:"@odata.id,omitempty"`
+		ODataType *string               `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into TabUpdatedEventMessageDetail: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
+	s.TabId = decoded.TabId
 	s.ODataId = decoded.ODataId
 	s.ODataType = decoded.ODataType
-	s.TabId = decoded.TabId
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -85,5 +89,6 @@ func (s *TabUpdatedEventMessageDetail) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Initiator = impl
 	}
+
 	return nil
 }

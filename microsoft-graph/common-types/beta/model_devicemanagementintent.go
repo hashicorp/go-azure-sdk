@@ -109,10 +109,29 @@ func (s DeviceManagementIntent) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &DeviceManagementIntent{}
 
 func (s *DeviceManagementIntent) UnmarshalJSON(bytes []byte) error {
-	type alias DeviceManagementIntent
-	var decoded alias
+
+	var decoded struct {
+		Assignments                      *[]DeviceManagementIntentAssignment                `json:"assignments,omitempty"`
+		Categories                       *[]DeviceManagementIntentSettingCategory           `json:"categories,omitempty"`
+		Description                      nullable.Type[string]                              `json:"description,omitempty"`
+		DeviceSettingStateSummaries      *[]DeviceManagementIntentDeviceSettingStateSummary `json:"deviceSettingStateSummaries,omitempty"`
+		DeviceStateSummary               *DeviceManagementIntentDeviceStateSummary          `json:"deviceStateSummary,omitempty"`
+		DeviceStates                     *[]DeviceManagementIntentDeviceState               `json:"deviceStates,omitempty"`
+		DisplayName                      *string                                            `json:"displayName,omitempty"`
+		IsAssigned                       *bool                                              `json:"isAssigned,omitempty"`
+		IsMigratingToConfigurationPolicy nullable.Type[bool]                                `json:"isMigratingToConfigurationPolicy,omitempty"`
+		LastModifiedDateTime             *string                                            `json:"lastModifiedDateTime,omitempty"`
+		RoleScopeTagIds                  *[]string                                          `json:"roleScopeTagIds,omitempty"`
+		Settings                         *[]DeviceManagementSettingInstance                 `json:"settings,omitempty"`
+		TemplateId                       nullable.Type[string]                              `json:"templateId,omitempty"`
+		UserStateSummary                 *DeviceManagementIntentUserStateSummary            `json:"userStateSummary,omitempty"`
+		UserStates                       *[]DeviceManagementIntentUserState                 `json:"userStates,omitempty"`
+		Id                               *string                                            `json:"id,omitempty"`
+		ODataId                          *string                                            `json:"@odata.id,omitempty"`
+		ODataType                        *string                                            `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into DeviceManagementIntent: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.Assignments = decoded.Assignments
@@ -122,16 +141,16 @@ func (s *DeviceManagementIntent) UnmarshalJSON(bytes []byte) error {
 	s.DeviceStateSummary = decoded.DeviceStateSummary
 	s.DeviceStates = decoded.DeviceStates
 	s.DisplayName = decoded.DisplayName
-	s.Id = decoded.Id
 	s.IsAssigned = decoded.IsAssigned
 	s.IsMigratingToConfigurationPolicy = decoded.IsMigratingToConfigurationPolicy
 	s.LastModifiedDateTime = decoded.LastModifiedDateTime
-	s.ODataId = decoded.ODataId
-	s.ODataType = decoded.ODataType
 	s.RoleScopeTagIds = decoded.RoleScopeTagIds
 	s.TemplateId = decoded.TemplateId
 	s.UserStateSummary = decoded.UserStateSummary
 	s.UserStates = decoded.UserStates
+	s.Id = decoded.Id
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -154,5 +173,6 @@ func (s *DeviceManagementIntent) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Settings = &output
 	}
+
 	return nil
 }

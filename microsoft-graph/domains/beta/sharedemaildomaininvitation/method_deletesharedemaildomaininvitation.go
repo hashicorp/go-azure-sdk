@@ -19,7 +19,8 @@ type DeleteSharedEmailDomainInvitationOperationResponse struct {
 }
 
 type DeleteSharedEmailDomainInvitationOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteSharedEmailDomainInvitationOperationOptions() DeleteSharedEmailDomainInvitationOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteSharedEmailDomainInvitationOperationOptions) ToHeaders() *client.H
 
 func (o DeleteSharedEmailDomainInvitationOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

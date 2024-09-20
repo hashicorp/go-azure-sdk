@@ -19,15 +19,44 @@ type CreateDriveItemAnalyticsItemActivityStatActivityOperationResponse struct {
 	Model        *stable.ItemActivity
 }
 
+type CreateDriveItemAnalyticsItemActivityStatActivityOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateDriveItemAnalyticsItemActivityStatActivityOperationOptions() CreateDriveItemAnalyticsItemActivityStatActivityOperationOptions {
+	return CreateDriveItemAnalyticsItemActivityStatActivityOperationOptions{}
+}
+
+func (o CreateDriveItemAnalyticsItemActivityStatActivityOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateDriveItemAnalyticsItemActivityStatActivityOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateDriveItemAnalyticsItemActivityStatActivityOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateDriveItemAnalyticsItemActivityStatActivity - Create new navigation property to activities for me
-func (c DriveItemAnalyticsItemActivityStatActivityClient) CreateDriveItemAnalyticsItemActivityStatActivity(ctx context.Context, id stable.MeDriveIdItemIdAnalyticsItemActivityStatId, input stable.ItemActivity) (result CreateDriveItemAnalyticsItemActivityStatActivityOperationResponse, err error) {
+func (c DriveItemAnalyticsItemActivityStatActivityClient) CreateDriveItemAnalyticsItemActivityStatActivity(ctx context.Context, id stable.MeDriveIdItemIdAnalyticsItemActivityStatId, input stable.ItemActivity, options CreateDriveItemAnalyticsItemActivityStatActivityOperationOptions) (result CreateDriveItemAnalyticsItemActivityStatActivityOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/activities", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/activities", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

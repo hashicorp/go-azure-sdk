@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &DeviceManagementComanagedDeviceIdSecurityBaselineStateId{}
 
 func TestNewDeviceManagementComanagedDeviceIdSecurityBaselineStateID(t *testing.T) {
-	id := NewDeviceManagementComanagedDeviceIdSecurityBaselineStateID("managedDeviceIdValue", "securityBaselineStateIdValue")
+	id := NewDeviceManagementComanagedDeviceIdSecurityBaselineStateID("managedDeviceId", "securityBaselineStateId")
 
-	if id.ManagedDeviceId != "managedDeviceIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ManagedDeviceId'", id.ManagedDeviceId, "managedDeviceIdValue")
+	if id.ManagedDeviceId != "managedDeviceId" {
+		t.Fatalf("Expected %q but got %q for Segment 'ManagedDeviceId'", id.ManagedDeviceId, "managedDeviceId")
 	}
 
-	if id.SecurityBaselineStateId != "securityBaselineStateIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'SecurityBaselineStateId'", id.SecurityBaselineStateId, "securityBaselineStateIdValue")
+	if id.SecurityBaselineStateId != "securityBaselineStateId" {
+		t.Fatalf("Expected %q but got %q for Segment 'SecurityBaselineStateId'", id.SecurityBaselineStateId, "securityBaselineStateId")
 	}
 }
 
 func TestFormatDeviceManagementComanagedDeviceIdSecurityBaselineStateID(t *testing.T) {
-	actual := NewDeviceManagementComanagedDeviceIdSecurityBaselineStateID("managedDeviceIdValue", "securityBaselineStateIdValue").ID()
-	expected := "/deviceManagement/comanagedDevices/managedDeviceIdValue/securityBaselineStates/securityBaselineStateIdValue"
+	actual := NewDeviceManagementComanagedDeviceIdSecurityBaselineStateID("managedDeviceId", "securityBaselineStateId").ID()
+	expected := "/deviceManagement/comanagedDevices/managedDeviceId/securityBaselineStates/securityBaselineStateId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -54,25 +54,25 @@ func TestParseDeviceManagementComanagedDeviceIdSecurityBaselineStateID(t *testin
 		},
 		{
 			// Incomplete URI
-			Input: "/deviceManagement/comanagedDevices/managedDeviceIdValue",
+			Input: "/deviceManagement/comanagedDevices/managedDeviceId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/deviceManagement/comanagedDevices/managedDeviceIdValue/securityBaselineStates",
+			Input: "/deviceManagement/comanagedDevices/managedDeviceId/securityBaselineStates",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/comanagedDevices/managedDeviceIdValue/securityBaselineStates/securityBaselineStateIdValue",
+			Input: "/deviceManagement/comanagedDevices/managedDeviceId/securityBaselineStates/securityBaselineStateId",
 			Expected: &DeviceManagementComanagedDeviceIdSecurityBaselineStateId{
-				ManagedDeviceId:         "managedDeviceIdValue",
-				SecurityBaselineStateId: "securityBaselineStateIdValue",
+				ManagedDeviceId:         "managedDeviceId",
+				SecurityBaselineStateId: "securityBaselineStateId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/comanagedDevices/managedDeviceIdValue/securityBaselineStates/securityBaselineStateIdValue/extra",
+			Input: "/deviceManagement/comanagedDevices/managedDeviceId/securityBaselineStates/securityBaselineStateId/extra",
 			Error: true,
 		},
 	}
@@ -135,48 +135,48 @@ func TestParseDeviceManagementComanagedDeviceIdSecurityBaselineStateIDInsensitiv
 		},
 		{
 			// Incomplete URI
-			Input: "/deviceManagement/comanagedDevices/managedDeviceIdValue",
+			Input: "/deviceManagement/comanagedDevices/managedDeviceId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/cOmAnAgEdDeViCeS/mAnAgEdDeViCeIdVaLuE",
+			Input: "/dEvIcEmAnAgEmEnT/cOmAnAgEdDeViCeS/mAnAgEdDeViCeId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/deviceManagement/comanagedDevices/managedDeviceIdValue/securityBaselineStates",
+			Input: "/deviceManagement/comanagedDevices/managedDeviceId/securityBaselineStates",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/cOmAnAgEdDeViCeS/mAnAgEdDeViCeIdVaLuE/sEcUrItYbAsElInEsTaTeS",
+			Input: "/dEvIcEmAnAgEmEnT/cOmAnAgEdDeViCeS/mAnAgEdDeViCeId/sEcUrItYbAsElInEsTaTeS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/comanagedDevices/managedDeviceIdValue/securityBaselineStates/securityBaselineStateIdValue",
+			Input: "/deviceManagement/comanagedDevices/managedDeviceId/securityBaselineStates/securityBaselineStateId",
 			Expected: &DeviceManagementComanagedDeviceIdSecurityBaselineStateId{
-				ManagedDeviceId:         "managedDeviceIdValue",
-				SecurityBaselineStateId: "securityBaselineStateIdValue",
+				ManagedDeviceId:         "managedDeviceId",
+				SecurityBaselineStateId: "securityBaselineStateId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/comanagedDevices/managedDeviceIdValue/securityBaselineStates/securityBaselineStateIdValue/extra",
+			Input: "/deviceManagement/comanagedDevices/managedDeviceId/securityBaselineStates/securityBaselineStateId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/cOmAnAgEdDeViCeS/mAnAgEdDeViCeIdVaLuE/sEcUrItYbAsElInEsTaTeS/sEcUrItYbAsElInEsTaTeIdVaLuE",
+			Input: "/dEvIcEmAnAgEmEnT/cOmAnAgEdDeViCeS/mAnAgEdDeViCeId/sEcUrItYbAsElInEsTaTeS/sEcUrItYbAsElInEsTaTeId",
 			Expected: &DeviceManagementComanagedDeviceIdSecurityBaselineStateId{
-				ManagedDeviceId:         "mAnAgEdDeViCeIdVaLuE",
-				SecurityBaselineStateId: "sEcUrItYbAsElInEsTaTeIdVaLuE",
+				ManagedDeviceId:         "mAnAgEdDeViCeId",
+				SecurityBaselineStateId: "sEcUrItYbAsElInEsTaTeId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/cOmAnAgEdDeViCeS/mAnAgEdDeViCeIdVaLuE/sEcUrItYbAsElInEsTaTeS/sEcUrItYbAsElInEsTaTeIdVaLuE/extra",
+			Input: "/dEvIcEmAnAgEmEnT/cOmAnAgEdDeViCeS/mAnAgEdDeViCeId/sEcUrItYbAsElInEsTaTeS/sEcUrItYbAsElInEsTaTeId/extra",
 			Error: true,
 		},
 	}

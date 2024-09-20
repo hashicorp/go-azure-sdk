@@ -20,15 +20,44 @@ type CreateMailFolderChildFolderMessageAttachmentOperationResponse struct {
 	Model        beta.Attachment
 }
 
+type CreateMailFolderChildFolderMessageAttachmentOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateMailFolderChildFolderMessageAttachmentOperationOptions() CreateMailFolderChildFolderMessageAttachmentOperationOptions {
+	return CreateMailFolderChildFolderMessageAttachmentOperationOptions{}
+}
+
+func (o CreateMailFolderChildFolderMessageAttachmentOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateMailFolderChildFolderMessageAttachmentOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateMailFolderChildFolderMessageAttachmentOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateMailFolderChildFolderMessageAttachment - Create new navigation property to attachments for me
-func (c MailFolderChildFolderMessageAttachmentClient) CreateMailFolderChildFolderMessageAttachment(ctx context.Context, id beta.MeMailFolderIdChildFolderIdMessageId, input beta.Attachment) (result CreateMailFolderChildFolderMessageAttachmentOperationResponse, err error) {
+func (c MailFolderChildFolderMessageAttachmentClient) CreateMailFolderChildFolderMessageAttachment(ctx context.Context, id beta.MeMailFolderIdChildFolderIdMessageId, input beta.Attachment, options CreateMailFolderChildFolderMessageAttachmentOperationOptions) (result CreateMailFolderChildFolderMessageAttachmentOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/attachments", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/attachments", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

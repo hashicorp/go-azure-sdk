@@ -33,10 +33,16 @@ type RubricLevel struct {
 var _ json.Unmarshaler = &RubricLevel{}
 
 func (s *RubricLevel) UnmarshalJSON(bytes []byte) error {
-	type alias RubricLevel
-	var decoded alias
+
+	var decoded struct {
+		Description *EducationItemBody    `json:"description,omitempty"`
+		DisplayName nullable.Type[string] `json:"displayName,omitempty"`
+		LevelId     nullable.Type[string] `json:"levelId,omitempty"`
+		ODataId     *string               `json:"@odata.id,omitempty"`
+		ODataType   *string               `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into RubricLevel: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.Description = decoded.Description
@@ -57,5 +63,6 @@ func (s *RubricLevel) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Grading = impl
 	}
+
 	return nil
 }

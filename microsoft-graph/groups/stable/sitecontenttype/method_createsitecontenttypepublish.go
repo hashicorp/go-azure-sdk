@@ -18,15 +18,44 @@ type CreateSiteContentTypePublishOperationResponse struct {
 	OData        *odata.OData
 }
 
+type CreateSiteContentTypePublishOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateSiteContentTypePublishOperationOptions() CreateSiteContentTypePublishOperationOptions {
+	return CreateSiteContentTypePublishOperationOptions{}
+}
+
+func (o CreateSiteContentTypePublishOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateSiteContentTypePublishOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateSiteContentTypePublishOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateSiteContentTypePublish - Invoke action publish. Publishes a contentType present in the content type hub site.
-func (c SiteContentTypeClient) CreateSiteContentTypePublish(ctx context.Context, id stable.GroupIdSiteIdContentTypeId) (result CreateSiteContentTypePublishOperationResponse, err error) {
+func (c SiteContentTypeClient) CreateSiteContentTypePublish(ctx context.Context, id stable.GroupIdSiteIdContentTypeId, options CreateSiteContentTypePublishOperationOptions) (result CreateSiteContentTypePublishOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/publish", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/publish", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

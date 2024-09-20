@@ -18,16 +18,45 @@ type CreateConditionalAccessAuthenticationStrengthAuthenticationMethodModeOperat
 	Model        *stable.AuthenticationMethodModeDetail
 }
 
+type CreateConditionalAccessAuthenticationStrengthAuthenticationMethodModeOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateConditionalAccessAuthenticationStrengthAuthenticationMethodModeOperationOptions() CreateConditionalAccessAuthenticationStrengthAuthenticationMethodModeOperationOptions {
+	return CreateConditionalAccessAuthenticationStrengthAuthenticationMethodModeOperationOptions{}
+}
+
+func (o CreateConditionalAccessAuthenticationStrengthAuthenticationMethodModeOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateConditionalAccessAuthenticationStrengthAuthenticationMethodModeOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateConditionalAccessAuthenticationStrengthAuthenticationMethodModeOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateConditionalAccessAuthenticationStrengthAuthenticationMethodMode - Create new navigation property to
 // authenticationMethodModes for identity
-func (c ConditionalAccessAuthenticationStrengthAuthenticationMethodModeClient) CreateConditionalAccessAuthenticationStrengthAuthenticationMethodMode(ctx context.Context, input stable.AuthenticationMethodModeDetail) (result CreateConditionalAccessAuthenticationStrengthAuthenticationMethodModeOperationResponse, err error) {
+func (c ConditionalAccessAuthenticationStrengthAuthenticationMethodModeClient) CreateConditionalAccessAuthenticationStrengthAuthenticationMethodMode(ctx context.Context, input stable.AuthenticationMethodModeDetail, options CreateConditionalAccessAuthenticationStrengthAuthenticationMethodModeOperationOptions) (result CreateConditionalAccessAuthenticationStrengthAuthenticationMethodModeOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/identity/conditionalAccess/authenticationStrength/authenticationMethodModes",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/identity/conditionalAccess/authenticationStrength/authenticationMethodModes",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

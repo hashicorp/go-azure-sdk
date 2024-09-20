@@ -19,7 +19,8 @@ type DeleteConfigurationCategoryOperationResponse struct {
 }
 
 type DeleteConfigurationCategoryOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteConfigurationCategoryOperationOptions() DeleteConfigurationCategoryOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteConfigurationCategoryOperationOptions) ToHeaders() *client.Headers
 
 func (o DeleteConfigurationCategoryOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

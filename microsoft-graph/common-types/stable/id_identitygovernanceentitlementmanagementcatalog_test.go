@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &IdentityGovernanceEntitlementManagementCatalogId{}
 
 func TestNewIdentityGovernanceEntitlementManagementCatalogID(t *testing.T) {
-	id := NewIdentityGovernanceEntitlementManagementCatalogID("accessPackageCatalogIdValue")
+	id := NewIdentityGovernanceEntitlementManagementCatalogID("accessPackageCatalogId")
 
-	if id.AccessPackageCatalogId != "accessPackageCatalogIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'AccessPackageCatalogId'", id.AccessPackageCatalogId, "accessPackageCatalogIdValue")
+	if id.AccessPackageCatalogId != "accessPackageCatalogId" {
+		t.Fatalf("Expected %q but got %q for Segment 'AccessPackageCatalogId'", id.AccessPackageCatalogId, "accessPackageCatalogId")
 	}
 }
 
 func TestFormatIdentityGovernanceEntitlementManagementCatalogID(t *testing.T) {
-	actual := NewIdentityGovernanceEntitlementManagementCatalogID("accessPackageCatalogIdValue").ID()
-	expected := "/identityGovernance/entitlementManagement/catalogs/accessPackageCatalogIdValue"
+	actual := NewIdentityGovernanceEntitlementManagementCatalogID("accessPackageCatalogId").ID()
+	expected := "/identityGovernance/entitlementManagement/catalogs/accessPackageCatalogId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -55,14 +55,14 @@ func TestParseIdentityGovernanceEntitlementManagementCatalogID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/identityGovernance/entitlementManagement/catalogs/accessPackageCatalogIdValue",
+			Input: "/identityGovernance/entitlementManagement/catalogs/accessPackageCatalogId",
 			Expected: &IdentityGovernanceEntitlementManagementCatalogId{
-				AccessPackageCatalogId: "accessPackageCatalogIdValue",
+				AccessPackageCatalogId: "accessPackageCatalogId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/identityGovernance/entitlementManagement/catalogs/accessPackageCatalogIdValue/extra",
+			Input: "/identityGovernance/entitlementManagement/catalogs/accessPackageCatalogId/extra",
 			Error: true,
 		},
 	}
@@ -131,26 +131,26 @@ func TestParseIdentityGovernanceEntitlementManagementCatalogIDInsensitively(t *t
 		},
 		{
 			// Valid URI
-			Input: "/identityGovernance/entitlementManagement/catalogs/accessPackageCatalogIdValue",
+			Input: "/identityGovernance/entitlementManagement/catalogs/accessPackageCatalogId",
 			Expected: &IdentityGovernanceEntitlementManagementCatalogId{
-				AccessPackageCatalogId: "accessPackageCatalogIdValue",
+				AccessPackageCatalogId: "accessPackageCatalogId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/identityGovernance/entitlementManagement/catalogs/accessPackageCatalogIdValue/extra",
+			Input: "/identityGovernance/entitlementManagement/catalogs/accessPackageCatalogId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/iDeNtItYgOvErNaNcE/eNtItLeMeNtMaNaGeMeNt/cAtAlOgS/aCcEsSpAcKaGeCaTaLoGiDvAlUe",
+			Input: "/iDeNtItYgOvErNaNcE/eNtItLeMeNtMaNaGeMeNt/cAtAlOgS/aCcEsSpAcKaGeCaTaLoGiD",
 			Expected: &IdentityGovernanceEntitlementManagementCatalogId{
-				AccessPackageCatalogId: "aCcEsSpAcKaGeCaTaLoGiDvAlUe",
+				AccessPackageCatalogId: "aCcEsSpAcKaGeCaTaLoGiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/iDeNtItYgOvErNaNcE/eNtItLeMeNtMaNaGeMeNt/cAtAlOgS/aCcEsSpAcKaGeCaTaLoGiDvAlUe/extra",
+			Input: "/iDeNtItYgOvErNaNcE/eNtItLeMeNtMaNaGeMeNt/cAtAlOgS/aCcEsSpAcKaGeCaTaLoGiD/extra",
 			Error: true,
 		},
 	}

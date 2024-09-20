@@ -18,15 +18,44 @@ type CreateOperationApprovalRequestRetrieveRequestStatusOperationResponse struct
 	Model        *beta.OperationApprovalRequestEntityStatus
 }
 
+type CreateOperationApprovalRequestRetrieveRequestStatusOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateOperationApprovalRequestRetrieveRequestStatusOperationOptions() CreateOperationApprovalRequestRetrieveRequestStatusOperationOptions {
+	return CreateOperationApprovalRequestRetrieveRequestStatusOperationOptions{}
+}
+
+func (o CreateOperationApprovalRequestRetrieveRequestStatusOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateOperationApprovalRequestRetrieveRequestStatusOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateOperationApprovalRequestRetrieveRequestStatusOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateOperationApprovalRequestRetrieveRequestStatus - Invoke action retrieveRequestStatus
-func (c OperationApprovalRequestClient) CreateOperationApprovalRequestRetrieveRequestStatus(ctx context.Context, input CreateOperationApprovalRequestRetrieveRequestStatusRequest) (result CreateOperationApprovalRequestRetrieveRequestStatusOperationResponse, err error) {
+func (c OperationApprovalRequestClient) CreateOperationApprovalRequestRetrieveRequestStatus(ctx context.Context, input CreateOperationApprovalRequestRetrieveRequestStatusRequest, options CreateOperationApprovalRequestRetrieveRequestStatusOperationOptions) (result CreateOperationApprovalRequestRetrieveRequestStatusOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/deviceManagement/operationApprovalRequests/retrieveRequestStatus",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/deviceManagement/operationApprovalRequests/retrieveRequestStatus",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

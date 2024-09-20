@@ -20,16 +20,45 @@ type CreateSiteInformationProtectionThreatAssessmentRequestOperationResponse str
 	Model        beta.ThreatAssessmentRequest
 }
 
+type CreateSiteInformationProtectionThreatAssessmentRequestOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateSiteInformationProtectionThreatAssessmentRequestOperationOptions() CreateSiteInformationProtectionThreatAssessmentRequestOperationOptions {
+	return CreateSiteInformationProtectionThreatAssessmentRequestOperationOptions{}
+}
+
+func (o CreateSiteInformationProtectionThreatAssessmentRequestOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateSiteInformationProtectionThreatAssessmentRequestOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateSiteInformationProtectionThreatAssessmentRequestOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateSiteInformationProtectionThreatAssessmentRequest - Create new navigation property to threatAssessmentRequests
 // for groups
-func (c SiteInformationProtectionThreatAssessmentRequestClient) CreateSiteInformationProtectionThreatAssessmentRequest(ctx context.Context, id beta.GroupIdSiteId, input beta.ThreatAssessmentRequest) (result CreateSiteInformationProtectionThreatAssessmentRequestOperationResponse, err error) {
+func (c SiteInformationProtectionThreatAssessmentRequestClient) CreateSiteInformationProtectionThreatAssessmentRequest(ctx context.Context, id beta.GroupIdSiteId, input beta.ThreatAssessmentRequest, options CreateSiteInformationProtectionThreatAssessmentRequestOperationOptions) (result CreateSiteInformationProtectionThreatAssessmentRequestOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/informationProtection/threatAssessmentRequests", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/informationProtection/threatAssessmentRequests", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

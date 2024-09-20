@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &DeviceManagementDerivedCredentialId{}
 
 func TestNewDeviceManagementDerivedCredentialID(t *testing.T) {
-	id := NewDeviceManagementDerivedCredentialID("deviceManagementDerivedCredentialSettingsIdValue")
+	id := NewDeviceManagementDerivedCredentialID("deviceManagementDerivedCredentialSettingsId")
 
-	if id.DeviceManagementDerivedCredentialSettingsId != "deviceManagementDerivedCredentialSettingsIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DeviceManagementDerivedCredentialSettingsId'", id.DeviceManagementDerivedCredentialSettingsId, "deviceManagementDerivedCredentialSettingsIdValue")
+	if id.DeviceManagementDerivedCredentialSettingsId != "deviceManagementDerivedCredentialSettingsId" {
+		t.Fatalf("Expected %q but got %q for Segment 'DeviceManagementDerivedCredentialSettingsId'", id.DeviceManagementDerivedCredentialSettingsId, "deviceManagementDerivedCredentialSettingsId")
 	}
 }
 
 func TestFormatDeviceManagementDerivedCredentialID(t *testing.T) {
-	actual := NewDeviceManagementDerivedCredentialID("deviceManagementDerivedCredentialSettingsIdValue").ID()
-	expected := "/deviceManagement/derivedCredentials/deviceManagementDerivedCredentialSettingsIdValue"
+	actual := NewDeviceManagementDerivedCredentialID("deviceManagementDerivedCredentialSettingsId").ID()
+	expected := "/deviceManagement/derivedCredentials/deviceManagementDerivedCredentialSettingsId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -50,14 +50,14 @@ func TestParseDeviceManagementDerivedCredentialID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/derivedCredentials/deviceManagementDerivedCredentialSettingsIdValue",
+			Input: "/deviceManagement/derivedCredentials/deviceManagementDerivedCredentialSettingsId",
 			Expected: &DeviceManagementDerivedCredentialId{
-				DeviceManagementDerivedCredentialSettingsId: "deviceManagementDerivedCredentialSettingsIdValue",
+				DeviceManagementDerivedCredentialSettingsId: "deviceManagementDerivedCredentialSettingsId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/derivedCredentials/deviceManagementDerivedCredentialSettingsIdValue/extra",
+			Input: "/deviceManagement/derivedCredentials/deviceManagementDerivedCredentialSettingsId/extra",
 			Error: true,
 		},
 	}
@@ -116,26 +116,26 @@ func TestParseDeviceManagementDerivedCredentialIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/derivedCredentials/deviceManagementDerivedCredentialSettingsIdValue",
+			Input: "/deviceManagement/derivedCredentials/deviceManagementDerivedCredentialSettingsId",
 			Expected: &DeviceManagementDerivedCredentialId{
-				DeviceManagementDerivedCredentialSettingsId: "deviceManagementDerivedCredentialSettingsIdValue",
+				DeviceManagementDerivedCredentialSettingsId: "deviceManagementDerivedCredentialSettingsId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/derivedCredentials/deviceManagementDerivedCredentialSettingsIdValue/extra",
+			Input: "/deviceManagement/derivedCredentials/deviceManagementDerivedCredentialSettingsId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/dErIvEdCrEdEnTiAlS/dEvIcEmAnAgEmEnTdErIvEdCrEdEnTiAlSeTtInGsIdVaLuE",
+			Input: "/dEvIcEmAnAgEmEnT/dErIvEdCrEdEnTiAlS/dEvIcEmAnAgEmEnTdErIvEdCrEdEnTiAlSeTtInGsId",
 			Expected: &DeviceManagementDerivedCredentialId{
-				DeviceManagementDerivedCredentialSettingsId: "dEvIcEmAnAgEmEnTdErIvEdCrEdEnTiAlSeTtInGsIdVaLuE",
+				DeviceManagementDerivedCredentialSettingsId: "dEvIcEmAnAgEmEnTdErIvEdCrEdEnTiAlSeTtInGsId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/dErIvEdCrEdEnTiAlS/dEvIcEmAnAgEmEnTdErIvEdCrEdEnTiAlSeTtInGsIdVaLuE/extra",
+			Input: "/dEvIcEmAnAgEmEnT/dErIvEdCrEdEnTiAlS/dEvIcEmAnAgEmEnTdErIvEdCrEdEnTiAlSeTtInGsId/extra",
 			Error: true,
 		},
 	}

@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &ServicePrincipalIdRemoteDesktopSecurityConfigurationTargetDeviceGroupId{}
 
 func TestNewServicePrincipalIdRemoteDesktopSecurityConfigurationTargetDeviceGroupID(t *testing.T) {
-	id := NewServicePrincipalIdRemoteDesktopSecurityConfigurationTargetDeviceGroupID("servicePrincipalIdValue", "targetDeviceGroupIdValue")
+	id := NewServicePrincipalIdRemoteDesktopSecurityConfigurationTargetDeviceGroupID("servicePrincipalId", "targetDeviceGroupId")
 
-	if id.ServicePrincipalId != "servicePrincipalIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ServicePrincipalId'", id.ServicePrincipalId, "servicePrincipalIdValue")
+	if id.ServicePrincipalId != "servicePrincipalId" {
+		t.Fatalf("Expected %q but got %q for Segment 'ServicePrincipalId'", id.ServicePrincipalId, "servicePrincipalId")
 	}
 
-	if id.TargetDeviceGroupId != "targetDeviceGroupIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'TargetDeviceGroupId'", id.TargetDeviceGroupId, "targetDeviceGroupIdValue")
+	if id.TargetDeviceGroupId != "targetDeviceGroupId" {
+		t.Fatalf("Expected %q but got %q for Segment 'TargetDeviceGroupId'", id.TargetDeviceGroupId, "targetDeviceGroupId")
 	}
 }
 
 func TestFormatServicePrincipalIdRemoteDesktopSecurityConfigurationTargetDeviceGroupID(t *testing.T) {
-	actual := NewServicePrincipalIdRemoteDesktopSecurityConfigurationTargetDeviceGroupID("servicePrincipalIdValue", "targetDeviceGroupIdValue").ID()
-	expected := "/servicePrincipals/servicePrincipalIdValue/remoteDesktopSecurityConfiguration/targetDeviceGroups/targetDeviceGroupIdValue"
+	actual := NewServicePrincipalIdRemoteDesktopSecurityConfigurationTargetDeviceGroupID("servicePrincipalId", "targetDeviceGroupId").ID()
+	expected := "/servicePrincipals/servicePrincipalId/remoteDesktopSecurityConfiguration/targetDeviceGroups/targetDeviceGroupId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -49,30 +49,30 @@ func TestParseServicePrincipalIdRemoteDesktopSecurityConfigurationTargetDeviceGr
 		},
 		{
 			// Incomplete URI
-			Input: "/servicePrincipals/servicePrincipalIdValue",
+			Input: "/servicePrincipals/servicePrincipalId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/servicePrincipals/servicePrincipalIdValue/remoteDesktopSecurityConfiguration",
+			Input: "/servicePrincipals/servicePrincipalId/remoteDesktopSecurityConfiguration",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/servicePrincipals/servicePrincipalIdValue/remoteDesktopSecurityConfiguration/targetDeviceGroups",
+			Input: "/servicePrincipals/servicePrincipalId/remoteDesktopSecurityConfiguration/targetDeviceGroups",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/servicePrincipals/servicePrincipalIdValue/remoteDesktopSecurityConfiguration/targetDeviceGroups/targetDeviceGroupIdValue",
+			Input: "/servicePrincipals/servicePrincipalId/remoteDesktopSecurityConfiguration/targetDeviceGroups/targetDeviceGroupId",
 			Expected: &ServicePrincipalIdRemoteDesktopSecurityConfigurationTargetDeviceGroupId{
-				ServicePrincipalId:  "servicePrincipalIdValue",
-				TargetDeviceGroupId: "targetDeviceGroupIdValue",
+				ServicePrincipalId:  "servicePrincipalId",
+				TargetDeviceGroupId: "targetDeviceGroupId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/servicePrincipals/servicePrincipalIdValue/remoteDesktopSecurityConfiguration/targetDeviceGroups/targetDeviceGroupIdValue/extra",
+			Input: "/servicePrincipals/servicePrincipalId/remoteDesktopSecurityConfiguration/targetDeviceGroups/targetDeviceGroupId/extra",
 			Error: true,
 		},
 	}
@@ -125,58 +125,58 @@ func TestParseServicePrincipalIdRemoteDesktopSecurityConfigurationTargetDeviceGr
 		},
 		{
 			// Incomplete URI
-			Input: "/servicePrincipals/servicePrincipalIdValue",
+			Input: "/servicePrincipals/servicePrincipalId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sErViCePrInCiPaLs/sErViCePrInCiPaLiDvAlUe",
+			Input: "/sErViCePrInCiPaLs/sErViCePrInCiPaLiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/servicePrincipals/servicePrincipalIdValue/remoteDesktopSecurityConfiguration",
+			Input: "/servicePrincipals/servicePrincipalId/remoteDesktopSecurityConfiguration",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sErViCePrInCiPaLs/sErViCePrInCiPaLiDvAlUe/rEmOtEdEsKtOpSeCuRiTyCoNfIgUrAtIoN",
+			Input: "/sErViCePrInCiPaLs/sErViCePrInCiPaLiD/rEmOtEdEsKtOpSeCuRiTyCoNfIgUrAtIoN",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/servicePrincipals/servicePrincipalIdValue/remoteDesktopSecurityConfiguration/targetDeviceGroups",
+			Input: "/servicePrincipals/servicePrincipalId/remoteDesktopSecurityConfiguration/targetDeviceGroups",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sErViCePrInCiPaLs/sErViCePrInCiPaLiDvAlUe/rEmOtEdEsKtOpSeCuRiTyCoNfIgUrAtIoN/tArGeTdEvIcEgRoUpS",
+			Input: "/sErViCePrInCiPaLs/sErViCePrInCiPaLiD/rEmOtEdEsKtOpSeCuRiTyCoNfIgUrAtIoN/tArGeTdEvIcEgRoUpS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/servicePrincipals/servicePrincipalIdValue/remoteDesktopSecurityConfiguration/targetDeviceGroups/targetDeviceGroupIdValue",
+			Input: "/servicePrincipals/servicePrincipalId/remoteDesktopSecurityConfiguration/targetDeviceGroups/targetDeviceGroupId",
 			Expected: &ServicePrincipalIdRemoteDesktopSecurityConfigurationTargetDeviceGroupId{
-				ServicePrincipalId:  "servicePrincipalIdValue",
-				TargetDeviceGroupId: "targetDeviceGroupIdValue",
+				ServicePrincipalId:  "servicePrincipalId",
+				TargetDeviceGroupId: "targetDeviceGroupId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/servicePrincipals/servicePrincipalIdValue/remoteDesktopSecurityConfiguration/targetDeviceGroups/targetDeviceGroupIdValue/extra",
+			Input: "/servicePrincipals/servicePrincipalId/remoteDesktopSecurityConfiguration/targetDeviceGroups/targetDeviceGroupId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sErViCePrInCiPaLs/sErViCePrInCiPaLiDvAlUe/rEmOtEdEsKtOpSeCuRiTyCoNfIgUrAtIoN/tArGeTdEvIcEgRoUpS/tArGeTdEvIcEgRoUpIdVaLuE",
+			Input: "/sErViCePrInCiPaLs/sErViCePrInCiPaLiD/rEmOtEdEsKtOpSeCuRiTyCoNfIgUrAtIoN/tArGeTdEvIcEgRoUpS/tArGeTdEvIcEgRoUpId",
 			Expected: &ServicePrincipalIdRemoteDesktopSecurityConfigurationTargetDeviceGroupId{
-				ServicePrincipalId:  "sErViCePrInCiPaLiDvAlUe",
-				TargetDeviceGroupId: "tArGeTdEvIcEgRoUpIdVaLuE",
+				ServicePrincipalId:  "sErViCePrInCiPaLiD",
+				TargetDeviceGroupId: "tArGeTdEvIcEgRoUpId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sErViCePrInCiPaLs/sErViCePrInCiPaLiDvAlUe/rEmOtEdEsKtOpSeCuRiTyCoNfIgUrAtIoN/tArGeTdEvIcEgRoUpS/tArGeTdEvIcEgRoUpIdVaLuE/extra",
+			Input: "/sErViCePrInCiPaLs/sErViCePrInCiPaLiD/rEmOtEdEsKtOpSeCuRiTyCoNfIgUrAtIoN/tArGeTdEvIcEgRoUpS/tArGeTdEvIcEgRoUpId/extra",
 			Error: true,
 		},
 	}

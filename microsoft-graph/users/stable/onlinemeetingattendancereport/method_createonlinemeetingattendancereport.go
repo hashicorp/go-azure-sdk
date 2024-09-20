@@ -19,15 +19,44 @@ type CreateOnlineMeetingAttendanceReportOperationResponse struct {
 	Model        *stable.MeetingAttendanceReport
 }
 
+type CreateOnlineMeetingAttendanceReportOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateOnlineMeetingAttendanceReportOperationOptions() CreateOnlineMeetingAttendanceReportOperationOptions {
+	return CreateOnlineMeetingAttendanceReportOperationOptions{}
+}
+
+func (o CreateOnlineMeetingAttendanceReportOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateOnlineMeetingAttendanceReportOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateOnlineMeetingAttendanceReportOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateOnlineMeetingAttendanceReport - Create new navigation property to attendanceReports for users
-func (c OnlineMeetingAttendanceReportClient) CreateOnlineMeetingAttendanceReport(ctx context.Context, id stable.UserIdOnlineMeetingId, input stable.MeetingAttendanceReport) (result CreateOnlineMeetingAttendanceReportOperationResponse, err error) {
+func (c OnlineMeetingAttendanceReportClient) CreateOnlineMeetingAttendanceReport(ctx context.Context, id stable.UserIdOnlineMeetingId, input stable.MeetingAttendanceReport, options CreateOnlineMeetingAttendanceReportOperationOptions) (result CreateOnlineMeetingAttendanceReportOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/attendanceReports", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/attendanceReports", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

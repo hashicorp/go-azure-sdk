@@ -19,7 +19,8 @@ type DeleteDeviceCustomAttributeShellScriptUserRunStateOperationResponse struct 
 }
 
 type DeleteDeviceCustomAttributeShellScriptUserRunStateOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteDeviceCustomAttributeShellScriptUserRunStateOperationOptions() DeleteDeviceCustomAttributeShellScriptUserRunStateOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteDeviceCustomAttributeShellScriptUserRunStateOperationOptions) ToHe
 
 func (o DeleteDeviceCustomAttributeShellScriptUserRunStateOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

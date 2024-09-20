@@ -121,10 +121,30 @@ func (s RemoteItem) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &RemoteItem{}
 
 func (s *RemoteItem) UnmarshalJSON(bytes []byte) error {
-	type alias RemoteItem
-	var decoded alias
+
+	var decoded struct {
+		CreatedDateTime      nullable.Type[string] `json:"createdDateTime,omitempty"`
+		File                 *File                 `json:"file,omitempty"`
+		FileSystemInfo       *FileSystemInfo       `json:"fileSystemInfo,omitempty"`
+		Folder               *Folder               `json:"folder,omitempty"`
+		Id                   nullable.Type[string] `json:"id,omitempty"`
+		Image                *Image                `json:"image,omitempty"`
+		LastModifiedDateTime nullable.Type[string] `json:"lastModifiedDateTime,omitempty"`
+		Name                 nullable.Type[string] `json:"name,omitempty"`
+		ODataId              *string               `json:"@odata.id,omitempty"`
+		ODataType            *string               `json:"@odata.type,omitempty"`
+		Package              *Package              `json:"package,omitempty"`
+		ParentReference      *ItemReference        `json:"parentReference,omitempty"`
+		Shared               *Shared               `json:"shared,omitempty"`
+		SharepointIds        *SharepointIds        `json:"sharepointIds,omitempty"`
+		Size                 nullable.Type[int64]  `json:"size,omitempty"`
+		SpecialFolder        *SpecialFolder        `json:"specialFolder,omitempty"`
+		Video                *Video                `json:"video,omitempty"`
+		WebDavUrl            nullable.Type[string] `json:"webDavUrl,omitempty"`
+		WebUrl               nullable.Type[string] `json:"webUrl,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into RemoteItem: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.CreatedDateTime = decoded.CreatedDateTime
@@ -167,5 +187,6 @@ func (s *RemoteItem) UnmarshalJSON(bytes []byte) error {
 		}
 		s.LastModifiedBy = &impl
 	}
+
 	return nil
 }

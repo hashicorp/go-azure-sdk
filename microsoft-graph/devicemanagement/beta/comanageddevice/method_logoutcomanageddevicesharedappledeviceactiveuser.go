@@ -18,16 +18,45 @@ type LogoutComanagedDeviceSharedAppleDeviceActiveUserOperationResponse struct {
 	OData        *odata.OData
 }
 
+type LogoutComanagedDeviceSharedAppleDeviceActiveUserOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultLogoutComanagedDeviceSharedAppleDeviceActiveUserOperationOptions() LogoutComanagedDeviceSharedAppleDeviceActiveUserOperationOptions {
+	return LogoutComanagedDeviceSharedAppleDeviceActiveUserOperationOptions{}
+}
+
+func (o LogoutComanagedDeviceSharedAppleDeviceActiveUserOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o LogoutComanagedDeviceSharedAppleDeviceActiveUserOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o LogoutComanagedDeviceSharedAppleDeviceActiveUserOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // LogoutComanagedDeviceSharedAppleDeviceActiveUser - Invoke action logoutSharedAppleDeviceActiveUser. Logout shared
 // Apple device active user
-func (c ComanagedDeviceClient) LogoutComanagedDeviceSharedAppleDeviceActiveUser(ctx context.Context, id beta.DeviceManagementComanagedDeviceId) (result LogoutComanagedDeviceSharedAppleDeviceActiveUserOperationResponse, err error) {
+func (c ComanagedDeviceClient) LogoutComanagedDeviceSharedAppleDeviceActiveUser(ctx context.Context, id beta.DeviceManagementComanagedDeviceId, options LogoutComanagedDeviceSharedAppleDeviceActiveUserOperationOptions) (result LogoutComanagedDeviceSharedAppleDeviceActiveUserOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/logoutSharedAppleDeviceActiveUser", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/logoutSharedAppleDeviceActiveUser", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

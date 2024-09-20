@@ -17,16 +17,45 @@ type UpdateUserExperienceAnalyticsAnomalyCorrelationGroupOverviewOperationRespon
 	OData        *odata.OData
 }
 
+type UpdateUserExperienceAnalyticsAnomalyCorrelationGroupOverviewOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateUserExperienceAnalyticsAnomalyCorrelationGroupOverviewOperationOptions() UpdateUserExperienceAnalyticsAnomalyCorrelationGroupOverviewOperationOptions {
+	return UpdateUserExperienceAnalyticsAnomalyCorrelationGroupOverviewOperationOptions{}
+}
+
+func (o UpdateUserExperienceAnalyticsAnomalyCorrelationGroupOverviewOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateUserExperienceAnalyticsAnomalyCorrelationGroupOverviewOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateUserExperienceAnalyticsAnomalyCorrelationGroupOverviewOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateUserExperienceAnalyticsAnomalyCorrelationGroupOverview - Update the navigation property
 // userExperienceAnalyticsAnomalyCorrelationGroupOverview in deviceManagement
-func (c UserExperienceAnalyticsAnomalyCorrelationGroupOverviewClient) UpdateUserExperienceAnalyticsAnomalyCorrelationGroupOverview(ctx context.Context, id beta.DeviceManagementUserExperienceAnalyticsAnomalyCorrelationGroupOverviewId, input beta.UserExperienceAnalyticsAnomalyCorrelationGroupOverview) (result UpdateUserExperienceAnalyticsAnomalyCorrelationGroupOverviewOperationResponse, err error) {
+func (c UserExperienceAnalyticsAnomalyCorrelationGroupOverviewClient) UpdateUserExperienceAnalyticsAnomalyCorrelationGroupOverview(ctx context.Context, id beta.DeviceManagementUserExperienceAnalyticsAnomalyCorrelationGroupOverviewId, input beta.UserExperienceAnalyticsAnomalyCorrelationGroupOverview, options UpdateUserExperienceAnalyticsAnomalyCorrelationGroupOverviewOperationOptions) (result UpdateUserExperienceAnalyticsAnomalyCorrelationGroupOverviewOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

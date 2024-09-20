@@ -19,7 +19,8 @@ type DeleteIntuneBrandingProfileAssignmentOperationResponse struct {
 }
 
 type DeleteIntuneBrandingProfileAssignmentOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteIntuneBrandingProfileAssignmentOperationOptions() DeleteIntuneBrandingProfileAssignmentOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteIntuneBrandingProfileAssignmentOperationOptions) ToHeaders() *clie
 
 func (o DeleteIntuneBrandingProfileAssignmentOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

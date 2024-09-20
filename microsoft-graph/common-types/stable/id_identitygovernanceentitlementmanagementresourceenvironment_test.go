@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &IdentityGovernanceEntitlementManagementResourceEnvironmentId{}
 
 func TestNewIdentityGovernanceEntitlementManagementResourceEnvironmentID(t *testing.T) {
-	id := NewIdentityGovernanceEntitlementManagementResourceEnvironmentID("accessPackageResourceEnvironmentIdValue")
+	id := NewIdentityGovernanceEntitlementManagementResourceEnvironmentID("accessPackageResourceEnvironmentId")
 
-	if id.AccessPackageResourceEnvironmentId != "accessPackageResourceEnvironmentIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'AccessPackageResourceEnvironmentId'", id.AccessPackageResourceEnvironmentId, "accessPackageResourceEnvironmentIdValue")
+	if id.AccessPackageResourceEnvironmentId != "accessPackageResourceEnvironmentId" {
+		t.Fatalf("Expected %q but got %q for Segment 'AccessPackageResourceEnvironmentId'", id.AccessPackageResourceEnvironmentId, "accessPackageResourceEnvironmentId")
 	}
 }
 
 func TestFormatIdentityGovernanceEntitlementManagementResourceEnvironmentID(t *testing.T) {
-	actual := NewIdentityGovernanceEntitlementManagementResourceEnvironmentID("accessPackageResourceEnvironmentIdValue").ID()
-	expected := "/identityGovernance/entitlementManagement/resourceEnvironments/accessPackageResourceEnvironmentIdValue"
+	actual := NewIdentityGovernanceEntitlementManagementResourceEnvironmentID("accessPackageResourceEnvironmentId").ID()
+	expected := "/identityGovernance/entitlementManagement/resourceEnvironments/accessPackageResourceEnvironmentId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -55,14 +55,14 @@ func TestParseIdentityGovernanceEntitlementManagementResourceEnvironmentID(t *te
 		},
 		{
 			// Valid URI
-			Input: "/identityGovernance/entitlementManagement/resourceEnvironments/accessPackageResourceEnvironmentIdValue",
+			Input: "/identityGovernance/entitlementManagement/resourceEnvironments/accessPackageResourceEnvironmentId",
 			Expected: &IdentityGovernanceEntitlementManagementResourceEnvironmentId{
-				AccessPackageResourceEnvironmentId: "accessPackageResourceEnvironmentIdValue",
+				AccessPackageResourceEnvironmentId: "accessPackageResourceEnvironmentId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/identityGovernance/entitlementManagement/resourceEnvironments/accessPackageResourceEnvironmentIdValue/extra",
+			Input: "/identityGovernance/entitlementManagement/resourceEnvironments/accessPackageResourceEnvironmentId/extra",
 			Error: true,
 		},
 	}
@@ -131,26 +131,26 @@ func TestParseIdentityGovernanceEntitlementManagementResourceEnvironmentIDInsens
 		},
 		{
 			// Valid URI
-			Input: "/identityGovernance/entitlementManagement/resourceEnvironments/accessPackageResourceEnvironmentIdValue",
+			Input: "/identityGovernance/entitlementManagement/resourceEnvironments/accessPackageResourceEnvironmentId",
 			Expected: &IdentityGovernanceEntitlementManagementResourceEnvironmentId{
-				AccessPackageResourceEnvironmentId: "accessPackageResourceEnvironmentIdValue",
+				AccessPackageResourceEnvironmentId: "accessPackageResourceEnvironmentId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/identityGovernance/entitlementManagement/resourceEnvironments/accessPackageResourceEnvironmentIdValue/extra",
+			Input: "/identityGovernance/entitlementManagement/resourceEnvironments/accessPackageResourceEnvironmentId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/iDeNtItYgOvErNaNcE/eNtItLeMeNtMaNaGeMeNt/rEsOuRcEeNvIrOnMeNtS/aCcEsSpAcKaGeReSoUrCeEnViRoNmEnTiDvAlUe",
+			Input: "/iDeNtItYgOvErNaNcE/eNtItLeMeNtMaNaGeMeNt/rEsOuRcEeNvIrOnMeNtS/aCcEsSpAcKaGeReSoUrCeEnViRoNmEnTiD",
 			Expected: &IdentityGovernanceEntitlementManagementResourceEnvironmentId{
-				AccessPackageResourceEnvironmentId: "aCcEsSpAcKaGeReSoUrCeEnViRoNmEnTiDvAlUe",
+				AccessPackageResourceEnvironmentId: "aCcEsSpAcKaGeReSoUrCeEnViRoNmEnTiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/iDeNtItYgOvErNaNcE/eNtItLeMeNtMaNaGeMeNt/rEsOuRcEeNvIrOnMeNtS/aCcEsSpAcKaGeReSoUrCeEnViRoNmEnTiDvAlUe/extra",
+			Input: "/iDeNtItYgOvErNaNcE/eNtItLeMeNtMaNaGeMeNt/rEsOuRcEeNvIrOnMeNtS/aCcEsSpAcKaGeReSoUrCeEnViRoNmEnTiD/extra",
 			Error: true,
 		},
 	}

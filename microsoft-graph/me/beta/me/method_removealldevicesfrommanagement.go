@@ -16,16 +16,45 @@ type RemoveAllDevicesFromManagementOperationResponse struct {
 	OData        *odata.OData
 }
 
+type RemoveAllDevicesFromManagementOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultRemoveAllDevicesFromManagementOperationOptions() RemoveAllDevicesFromManagementOperationOptions {
+	return RemoveAllDevicesFromManagementOperationOptions{}
+}
+
+func (o RemoveAllDevicesFromManagementOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o RemoveAllDevicesFromManagementOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o RemoveAllDevicesFromManagementOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // RemoveAllDevicesFromManagement - Invoke action removeAllDevicesFromManagement. Retire all devices from management for
 // this user
-func (c MeClient) RemoveAllDevicesFromManagement(ctx context.Context) (result RemoveAllDevicesFromManagementOperationResponse, err error) {
+func (c MeClient) RemoveAllDevicesFromManagement(ctx context.Context, options RemoveAllDevicesFromManagementOperationOptions) (result RemoveAllDevicesFromManagementOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/me/removeAllDevicesFromManagement",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/me/removeAllDevicesFromManagement",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &MeAuthenticationPasswordMethodId{}
 
 func TestNewMeAuthenticationPasswordMethodID(t *testing.T) {
-	id := NewMeAuthenticationPasswordMethodID("passwordAuthenticationMethodIdValue")
+	id := NewMeAuthenticationPasswordMethodID("passwordAuthenticationMethodId")
 
-	if id.PasswordAuthenticationMethodId != "passwordAuthenticationMethodIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'PasswordAuthenticationMethodId'", id.PasswordAuthenticationMethodId, "passwordAuthenticationMethodIdValue")
+	if id.PasswordAuthenticationMethodId != "passwordAuthenticationMethodId" {
+		t.Fatalf("Expected %q but got %q for Segment 'PasswordAuthenticationMethodId'", id.PasswordAuthenticationMethodId, "passwordAuthenticationMethodId")
 	}
 }
 
 func TestFormatMeAuthenticationPasswordMethodID(t *testing.T) {
-	actual := NewMeAuthenticationPasswordMethodID("passwordAuthenticationMethodIdValue").ID()
-	expected := "/me/authentication/passwordMethods/passwordAuthenticationMethodIdValue"
+	actual := NewMeAuthenticationPasswordMethodID("passwordAuthenticationMethodId").ID()
+	expected := "/me/authentication/passwordMethods/passwordAuthenticationMethodId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -55,14 +55,14 @@ func TestParseMeAuthenticationPasswordMethodID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/me/authentication/passwordMethods/passwordAuthenticationMethodIdValue",
+			Input: "/me/authentication/passwordMethods/passwordAuthenticationMethodId",
 			Expected: &MeAuthenticationPasswordMethodId{
-				PasswordAuthenticationMethodId: "passwordAuthenticationMethodIdValue",
+				PasswordAuthenticationMethodId: "passwordAuthenticationMethodId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/authentication/passwordMethods/passwordAuthenticationMethodIdValue/extra",
+			Input: "/me/authentication/passwordMethods/passwordAuthenticationMethodId/extra",
 			Error: true,
 		},
 	}
@@ -131,26 +131,26 @@ func TestParseMeAuthenticationPasswordMethodIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/me/authentication/passwordMethods/passwordAuthenticationMethodIdValue",
+			Input: "/me/authentication/passwordMethods/passwordAuthenticationMethodId",
 			Expected: &MeAuthenticationPasswordMethodId{
-				PasswordAuthenticationMethodId: "passwordAuthenticationMethodIdValue",
+				PasswordAuthenticationMethodId: "passwordAuthenticationMethodId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/authentication/passwordMethods/passwordAuthenticationMethodIdValue/extra",
+			Input: "/me/authentication/passwordMethods/passwordAuthenticationMethodId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/aUtHeNtIcAtIoN/pAsSwOrDmEtHoDs/pAsSwOrDaUtHeNtIcAtIoNmEtHoDiDvAlUe",
+			Input: "/mE/aUtHeNtIcAtIoN/pAsSwOrDmEtHoDs/pAsSwOrDaUtHeNtIcAtIoNmEtHoDiD",
 			Expected: &MeAuthenticationPasswordMethodId{
-				PasswordAuthenticationMethodId: "pAsSwOrDaUtHeNtIcAtIoNmEtHoDiDvAlUe",
+				PasswordAuthenticationMethodId: "pAsSwOrDaUtHeNtIcAtIoNmEtHoDiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/mE/aUtHeNtIcAtIoN/pAsSwOrDmEtHoDs/pAsSwOrDaUtHeNtIcAtIoNmEtHoDiDvAlUe/extra",
+			Input: "/mE/aUtHeNtIcAtIoN/pAsSwOrDmEtHoDs/pAsSwOrDaUtHeNtIcAtIoNmEtHoDiD/extra",
 			Error: true,
 		},
 	}

@@ -19,15 +19,44 @@ type CreateVerifyOperationResponse struct {
 	Model        *stable.Domain
 }
 
+type CreateVerifyOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateVerifyOperationOptions() CreateVerifyOperationOptions {
+	return CreateVerifyOperationOptions{}
+}
+
+func (o CreateVerifyOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateVerifyOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateVerifyOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateVerify - Invoke action verify. Validates the ownership of the domain.
-func (c DomainClient) CreateVerify(ctx context.Context, id stable.DomainId) (result CreateVerifyOperationResponse, err error) {
+func (c DomainClient) CreateVerify(ctx context.Context, id stable.DomainId, options CreateVerifyOperationOptions) (result CreateVerifyOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/verify", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/verify", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -36,10 +36,17 @@ type InvitationParticipantInfo struct {
 var _ json.Unmarshaler = &InvitationParticipantInfo{}
 
 func (s *InvitationParticipantInfo) UnmarshalJSON(bytes []byte) error {
-	type alias InvitationParticipantInfo
-	var decoded alias
+
+	var decoded struct {
+		Hidden                             nullable.Type[bool]   `json:"hidden,omitempty"`
+		ODataId                            *string               `json:"@odata.id,omitempty"`
+		ODataType                          *string               `json:"@odata.type,omitempty"`
+		ParticipantId                      nullable.Type[string] `json:"participantId,omitempty"`
+		RemoveFromDefaultAudioRoutingGroup nullable.Type[bool]   `json:"removeFromDefaultAudioRoutingGroup,omitempty"`
+		ReplacesCallId                     nullable.Type[string] `json:"replacesCallId,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into InvitationParticipantInfo: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.Hidden = decoded.Hidden
@@ -61,5 +68,6 @@ func (s *InvitationParticipantInfo) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Identity = impl
 	}
+
 	return nil
 }

@@ -18,15 +18,44 @@ type UpdateEntitlementManagementResourceRoleScopeRoleOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateEntitlementManagementResourceRoleScopeRoleOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateEntitlementManagementResourceRoleScopeRoleOperationOptions() UpdateEntitlementManagementResourceRoleScopeRoleOperationOptions {
+	return UpdateEntitlementManagementResourceRoleScopeRoleOperationOptions{}
+}
+
+func (o UpdateEntitlementManagementResourceRoleScopeRoleOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateEntitlementManagementResourceRoleScopeRoleOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateEntitlementManagementResourceRoleScopeRoleOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateEntitlementManagementResourceRoleScopeRole - Update the navigation property role in identityGovernance
-func (c EntitlementManagementResourceRoleScopeRoleClient) UpdateEntitlementManagementResourceRoleScopeRole(ctx context.Context, id stable.IdentityGovernanceEntitlementManagementResourceRoleScopeId, input stable.AccessPackageResourceRole) (result UpdateEntitlementManagementResourceRoleScopeRoleOperationResponse, err error) {
+func (c EntitlementManagementResourceRoleScopeRoleClient) UpdateEntitlementManagementResourceRoleScopeRole(ctx context.Context, id stable.IdentityGovernanceEntitlementManagementResourceRoleScopeId, input stable.AccessPackageResourceRole, options UpdateEntitlementManagementResourceRoleScopeRoleOperationOptions) (result UpdateEntitlementManagementResourceRoleScopeRoleOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       fmt.Sprintf("%s/role", id.ID()),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/role", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

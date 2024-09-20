@@ -18,15 +18,44 @@ type CreateSubscriptionOperationResponse struct {
 	Model        *beta.CompanySubscription
 }
 
+type CreateSubscriptionOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateSubscriptionOperationOptions() CreateSubscriptionOperationOptions {
+	return CreateSubscriptionOperationOptions{}
+}
+
+func (o CreateSubscriptionOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateSubscriptionOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateSubscriptionOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateSubscription - Create new navigation property to subscriptions for directory
-func (c SubscriptionClient) CreateSubscription(ctx context.Context, input beta.CompanySubscription) (result CreateSubscriptionOperationResponse, err error) {
+func (c SubscriptionClient) CreateSubscription(ctx context.Context, input beta.CompanySubscription, options CreateSubscriptionOperationOptions) (result CreateSubscriptionOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/directory/subscriptions",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/directory/subscriptions",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

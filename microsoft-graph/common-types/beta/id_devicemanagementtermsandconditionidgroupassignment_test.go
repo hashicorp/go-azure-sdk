@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &DeviceManagementTermsAndConditionIdGroupAssignmentId{}
 
 func TestNewDeviceManagementTermsAndConditionIdGroupAssignmentID(t *testing.T) {
-	id := NewDeviceManagementTermsAndConditionIdGroupAssignmentID("termsAndConditionsIdValue", "termsAndConditionsGroupAssignmentIdValue")
+	id := NewDeviceManagementTermsAndConditionIdGroupAssignmentID("termsAndConditionsId", "termsAndConditionsGroupAssignmentId")
 
-	if id.TermsAndConditionsId != "termsAndConditionsIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'TermsAndConditionsId'", id.TermsAndConditionsId, "termsAndConditionsIdValue")
+	if id.TermsAndConditionsId != "termsAndConditionsId" {
+		t.Fatalf("Expected %q but got %q for Segment 'TermsAndConditionsId'", id.TermsAndConditionsId, "termsAndConditionsId")
 	}
 
-	if id.TermsAndConditionsGroupAssignmentId != "termsAndConditionsGroupAssignmentIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'TermsAndConditionsGroupAssignmentId'", id.TermsAndConditionsGroupAssignmentId, "termsAndConditionsGroupAssignmentIdValue")
+	if id.TermsAndConditionsGroupAssignmentId != "termsAndConditionsGroupAssignmentId" {
+		t.Fatalf("Expected %q but got %q for Segment 'TermsAndConditionsGroupAssignmentId'", id.TermsAndConditionsGroupAssignmentId, "termsAndConditionsGroupAssignmentId")
 	}
 }
 
 func TestFormatDeviceManagementTermsAndConditionIdGroupAssignmentID(t *testing.T) {
-	actual := NewDeviceManagementTermsAndConditionIdGroupAssignmentID("termsAndConditionsIdValue", "termsAndConditionsGroupAssignmentIdValue").ID()
-	expected := "/deviceManagement/termsAndConditions/termsAndConditionsIdValue/groupAssignments/termsAndConditionsGroupAssignmentIdValue"
+	actual := NewDeviceManagementTermsAndConditionIdGroupAssignmentID("termsAndConditionsId", "termsAndConditionsGroupAssignmentId").ID()
+	expected := "/deviceManagement/termsAndConditions/termsAndConditionsId/groupAssignments/termsAndConditionsGroupAssignmentId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -54,25 +54,25 @@ func TestParseDeviceManagementTermsAndConditionIdGroupAssignmentID(t *testing.T)
 		},
 		{
 			// Incomplete URI
-			Input: "/deviceManagement/termsAndConditions/termsAndConditionsIdValue",
+			Input: "/deviceManagement/termsAndConditions/termsAndConditionsId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/deviceManagement/termsAndConditions/termsAndConditionsIdValue/groupAssignments",
+			Input: "/deviceManagement/termsAndConditions/termsAndConditionsId/groupAssignments",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/termsAndConditions/termsAndConditionsIdValue/groupAssignments/termsAndConditionsGroupAssignmentIdValue",
+			Input: "/deviceManagement/termsAndConditions/termsAndConditionsId/groupAssignments/termsAndConditionsGroupAssignmentId",
 			Expected: &DeviceManagementTermsAndConditionIdGroupAssignmentId{
-				TermsAndConditionsId:                "termsAndConditionsIdValue",
-				TermsAndConditionsGroupAssignmentId: "termsAndConditionsGroupAssignmentIdValue",
+				TermsAndConditionsId:                "termsAndConditionsId",
+				TermsAndConditionsGroupAssignmentId: "termsAndConditionsGroupAssignmentId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/termsAndConditions/termsAndConditionsIdValue/groupAssignments/termsAndConditionsGroupAssignmentIdValue/extra",
+			Input: "/deviceManagement/termsAndConditions/termsAndConditionsId/groupAssignments/termsAndConditionsGroupAssignmentId/extra",
 			Error: true,
 		},
 	}
@@ -135,48 +135,48 @@ func TestParseDeviceManagementTermsAndConditionIdGroupAssignmentIDInsensitively(
 		},
 		{
 			// Incomplete URI
-			Input: "/deviceManagement/termsAndConditions/termsAndConditionsIdValue",
+			Input: "/deviceManagement/termsAndConditions/termsAndConditionsId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/tErMsAnDcOnDiTiOnS/tErMsAnDcOnDiTiOnSiDvAlUe",
+			Input: "/dEvIcEmAnAgEmEnT/tErMsAnDcOnDiTiOnS/tErMsAnDcOnDiTiOnSiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/deviceManagement/termsAndConditions/termsAndConditionsIdValue/groupAssignments",
+			Input: "/deviceManagement/termsAndConditions/termsAndConditionsId/groupAssignments",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/tErMsAnDcOnDiTiOnS/tErMsAnDcOnDiTiOnSiDvAlUe/gRoUpAsSiGnMeNtS",
+			Input: "/dEvIcEmAnAgEmEnT/tErMsAnDcOnDiTiOnS/tErMsAnDcOnDiTiOnSiD/gRoUpAsSiGnMeNtS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/termsAndConditions/termsAndConditionsIdValue/groupAssignments/termsAndConditionsGroupAssignmentIdValue",
+			Input: "/deviceManagement/termsAndConditions/termsAndConditionsId/groupAssignments/termsAndConditionsGroupAssignmentId",
 			Expected: &DeviceManagementTermsAndConditionIdGroupAssignmentId{
-				TermsAndConditionsId:                "termsAndConditionsIdValue",
-				TermsAndConditionsGroupAssignmentId: "termsAndConditionsGroupAssignmentIdValue",
+				TermsAndConditionsId:                "termsAndConditionsId",
+				TermsAndConditionsGroupAssignmentId: "termsAndConditionsGroupAssignmentId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/termsAndConditions/termsAndConditionsIdValue/groupAssignments/termsAndConditionsGroupAssignmentIdValue/extra",
+			Input: "/deviceManagement/termsAndConditions/termsAndConditionsId/groupAssignments/termsAndConditionsGroupAssignmentId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/tErMsAnDcOnDiTiOnS/tErMsAnDcOnDiTiOnSiDvAlUe/gRoUpAsSiGnMeNtS/tErMsAnDcOnDiTiOnSgRoUpAsSiGnMeNtIdVaLuE",
+			Input: "/dEvIcEmAnAgEmEnT/tErMsAnDcOnDiTiOnS/tErMsAnDcOnDiTiOnSiD/gRoUpAsSiGnMeNtS/tErMsAnDcOnDiTiOnSgRoUpAsSiGnMeNtId",
 			Expected: &DeviceManagementTermsAndConditionIdGroupAssignmentId{
-				TermsAndConditionsId:                "tErMsAnDcOnDiTiOnSiDvAlUe",
-				TermsAndConditionsGroupAssignmentId: "tErMsAnDcOnDiTiOnSgRoUpAsSiGnMeNtIdVaLuE",
+				TermsAndConditionsId:                "tErMsAnDcOnDiTiOnSiD",
+				TermsAndConditionsGroupAssignmentId: "tErMsAnDcOnDiTiOnSgRoUpAsSiGnMeNtId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/tErMsAnDcOnDiTiOnS/tErMsAnDcOnDiTiOnSiDvAlUe/gRoUpAsSiGnMeNtS/tErMsAnDcOnDiTiOnSgRoUpAsSiGnMeNtIdVaLuE/extra",
+			Input: "/dEvIcEmAnAgEmEnT/tErMsAnDcOnDiTiOnS/tErMsAnDcOnDiTiOnSiD/gRoUpAsSiGnMeNtS/tErMsAnDcOnDiTiOnSgRoUpAsSiGnMeNtId/extra",
 			Error: true,
 		},
 	}

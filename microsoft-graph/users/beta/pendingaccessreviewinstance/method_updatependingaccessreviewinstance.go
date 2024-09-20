@@ -17,15 +17,44 @@ type UpdatePendingAccessReviewInstanceOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdatePendingAccessReviewInstanceOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdatePendingAccessReviewInstanceOperationOptions() UpdatePendingAccessReviewInstanceOperationOptions {
+	return UpdatePendingAccessReviewInstanceOperationOptions{}
+}
+
+func (o UpdatePendingAccessReviewInstanceOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdatePendingAccessReviewInstanceOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdatePendingAccessReviewInstanceOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdatePendingAccessReviewInstance - Update the navigation property pendingAccessReviewInstances in users
-func (c PendingAccessReviewInstanceClient) UpdatePendingAccessReviewInstance(ctx context.Context, id beta.UserIdPendingAccessReviewInstanceId, input beta.AccessReviewInstance) (result UpdatePendingAccessReviewInstanceOperationResponse, err error) {
+func (c PendingAccessReviewInstanceClient) UpdatePendingAccessReviewInstance(ctx context.Context, id beta.UserIdPendingAccessReviewInstanceId, input beta.AccessReviewInstance, options UpdatePendingAccessReviewInstanceOperationOptions) (result UpdatePendingAccessReviewInstanceOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

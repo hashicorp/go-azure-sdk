@@ -72,10 +72,18 @@ func (s RoleManagementAlert) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &RoleManagementAlert{}
 
 func (s *RoleManagementAlert) UnmarshalJSON(bytes []byte) error {
-	type alias RoleManagementAlert
-	var decoded alias
+
+	var decoded struct {
+		AlertConfigurations *[]UnifiedRoleManagementAlertConfiguration `json:"alertConfigurations,omitempty"`
+		AlertDefinitions    *[]UnifiedRoleManagementAlertDefinition    `json:"alertDefinitions,omitempty"`
+		Alerts              *[]UnifiedRoleManagementAlert              `json:"alerts,omitempty"`
+		Operations          *[]LongRunningOperation                    `json:"operations,omitempty"`
+		Id                  *string                                    `json:"id,omitempty"`
+		ODataId             *string                                    `json:"@odata.id,omitempty"`
+		ODataType           *string                                    `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into RoleManagementAlert: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.AlertDefinitions = decoded.AlertDefinitions
@@ -122,5 +130,6 @@ func (s *RoleManagementAlert) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Operations = &output
 	}
+
 	return nil
 }

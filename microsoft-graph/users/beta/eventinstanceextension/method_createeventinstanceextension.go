@@ -20,15 +20,44 @@ type CreateEventInstanceExtensionOperationResponse struct {
 	Model        beta.Extension
 }
 
+type CreateEventInstanceExtensionOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateEventInstanceExtensionOperationOptions() CreateEventInstanceExtensionOperationOptions {
+	return CreateEventInstanceExtensionOperationOptions{}
+}
+
+func (o CreateEventInstanceExtensionOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateEventInstanceExtensionOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateEventInstanceExtensionOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateEventInstanceExtension - Create new navigation property to extensions for users
-func (c EventInstanceExtensionClient) CreateEventInstanceExtension(ctx context.Context, id beta.UserIdEventIdInstanceId, input beta.Extension) (result CreateEventInstanceExtensionOperationResponse, err error) {
+func (c EventInstanceExtensionClient) CreateEventInstanceExtension(ctx context.Context, id beta.UserIdEventIdInstanceId, input beta.Extension, options CreateEventInstanceExtensionOperationOptions) (result CreateEventInstanceExtensionOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/extensions", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/extensions", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -12,24 +12,24 @@ import (
 var _ resourceids.ResourceId = &MeEventIdInstanceIdExceptionOccurrenceId{}
 
 func TestNewMeEventIdInstanceIdExceptionOccurrenceID(t *testing.T) {
-	id := NewMeEventIdInstanceIdExceptionOccurrenceID("eventIdValue", "eventId1Value", "eventId2Value")
+	id := NewMeEventIdInstanceIdExceptionOccurrenceID("eventId", "eventId1", "eventId2")
 
-	if id.EventId != "eventIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'EventId'", id.EventId, "eventIdValue")
+	if id.EventId != "eventId" {
+		t.Fatalf("Expected %q but got %q for Segment 'EventId'", id.EventId, "eventId")
 	}
 
-	if id.EventId1 != "eventId1Value" {
-		t.Fatalf("Expected %q but got %q for Segment 'EventId1'", id.EventId1, "eventId1Value")
+	if id.EventId1 != "eventId1" {
+		t.Fatalf("Expected %q but got %q for Segment 'EventId1'", id.EventId1, "eventId1")
 	}
 
-	if id.EventId2 != "eventId2Value" {
-		t.Fatalf("Expected %q but got %q for Segment 'EventId2'", id.EventId2, "eventId2Value")
+	if id.EventId2 != "eventId2" {
+		t.Fatalf("Expected %q but got %q for Segment 'EventId2'", id.EventId2, "eventId2")
 	}
 }
 
 func TestFormatMeEventIdInstanceIdExceptionOccurrenceID(t *testing.T) {
-	actual := NewMeEventIdInstanceIdExceptionOccurrenceID("eventIdValue", "eventId1Value", "eventId2Value").ID()
-	expected := "/me/events/eventIdValue/instances/eventId1Value/exceptionOccurrences/eventId2Value"
+	actual := NewMeEventIdInstanceIdExceptionOccurrenceID("eventId", "eventId1", "eventId2").ID()
+	expected := "/me/events/eventId/instances/eventId1/exceptionOccurrences/eventId2"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -58,36 +58,36 @@ func TestParseMeEventIdInstanceIdExceptionOccurrenceID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/me/events/eventIdValue",
+			Input: "/me/events/eventId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/me/events/eventIdValue/instances",
+			Input: "/me/events/eventId/instances",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/me/events/eventIdValue/instances/eventId1Value",
+			Input: "/me/events/eventId/instances/eventId1",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/me/events/eventIdValue/instances/eventId1Value/exceptionOccurrences",
+			Input: "/me/events/eventId/instances/eventId1/exceptionOccurrences",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/me/events/eventIdValue/instances/eventId1Value/exceptionOccurrences/eventId2Value",
+			Input: "/me/events/eventId/instances/eventId1/exceptionOccurrences/eventId2",
 			Expected: &MeEventIdInstanceIdExceptionOccurrenceId{
-				EventId:  "eventIdValue",
-				EventId1: "eventId1Value",
-				EventId2: "eventId2Value",
+				EventId:  "eventId",
+				EventId1: "eventId1",
+				EventId2: "eventId2",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/events/eventIdValue/instances/eventId1Value/exceptionOccurrences/eventId2Value/extra",
+			Input: "/me/events/eventId/instances/eventId1/exceptionOccurrences/eventId2/extra",
 			Error: true,
 		},
 	}
@@ -154,70 +154,70 @@ func TestParseMeEventIdInstanceIdExceptionOccurrenceIDInsensitively(t *testing.T
 		},
 		{
 			// Incomplete URI
-			Input: "/me/events/eventIdValue",
+			Input: "/me/events/eventId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/eVeNtS/eVeNtIdVaLuE",
+			Input: "/mE/eVeNtS/eVeNtId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/me/events/eventIdValue/instances",
+			Input: "/me/events/eventId/instances",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/eVeNtS/eVeNtIdVaLuE/iNsTaNcEs",
+			Input: "/mE/eVeNtS/eVeNtId/iNsTaNcEs",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/me/events/eventIdValue/instances/eventId1Value",
+			Input: "/me/events/eventId/instances/eventId1",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/eVeNtS/eVeNtIdVaLuE/iNsTaNcEs/eVeNtId1vAlUe",
+			Input: "/mE/eVeNtS/eVeNtId/iNsTaNcEs/eVeNtId1",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/me/events/eventIdValue/instances/eventId1Value/exceptionOccurrences",
+			Input: "/me/events/eventId/instances/eventId1/exceptionOccurrences",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/eVeNtS/eVeNtIdVaLuE/iNsTaNcEs/eVeNtId1vAlUe/eXcEpTiOnOcCuRrEnCeS",
+			Input: "/mE/eVeNtS/eVeNtId/iNsTaNcEs/eVeNtId1/eXcEpTiOnOcCuRrEnCeS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/me/events/eventIdValue/instances/eventId1Value/exceptionOccurrences/eventId2Value",
+			Input: "/me/events/eventId/instances/eventId1/exceptionOccurrences/eventId2",
 			Expected: &MeEventIdInstanceIdExceptionOccurrenceId{
-				EventId:  "eventIdValue",
-				EventId1: "eventId1Value",
-				EventId2: "eventId2Value",
+				EventId:  "eventId",
+				EventId1: "eventId1",
+				EventId2: "eventId2",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/events/eventIdValue/instances/eventId1Value/exceptionOccurrences/eventId2Value/extra",
+			Input: "/me/events/eventId/instances/eventId1/exceptionOccurrences/eventId2/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/eVeNtS/eVeNtIdVaLuE/iNsTaNcEs/eVeNtId1vAlUe/eXcEpTiOnOcCuRrEnCeS/eVeNtId2vAlUe",
+			Input: "/mE/eVeNtS/eVeNtId/iNsTaNcEs/eVeNtId1/eXcEpTiOnOcCuRrEnCeS/eVeNtId2",
 			Expected: &MeEventIdInstanceIdExceptionOccurrenceId{
-				EventId:  "eVeNtIdVaLuE",
-				EventId1: "eVeNtId1vAlUe",
-				EventId2: "eVeNtId2vAlUe",
+				EventId:  "eVeNtId",
+				EventId1: "eVeNtId1",
+				EventId2: "eVeNtId2",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/mE/eVeNtS/eVeNtIdVaLuE/iNsTaNcEs/eVeNtId1vAlUe/eXcEpTiOnOcCuRrEnCeS/eVeNtId2vAlUe/extra",
+			Input: "/mE/eVeNtS/eVeNtId/iNsTaNcEs/eVeNtId1/eXcEpTiOnOcCuRrEnCeS/eVeNtId2/extra",
 			Error: true,
 		},
 	}

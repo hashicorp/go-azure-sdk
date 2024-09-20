@@ -19,7 +19,8 @@ type DeleteResourceAccessProfileAssignmentOperationResponse struct {
 }
 
 type DeleteResourceAccessProfileAssignmentOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteResourceAccessProfileAssignmentOperationOptions() DeleteResourceAccessProfileAssignmentOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteResourceAccessProfileAssignmentOperationOptions) ToHeaders() *clie
 
 func (o DeleteResourceAccessProfileAssignmentOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

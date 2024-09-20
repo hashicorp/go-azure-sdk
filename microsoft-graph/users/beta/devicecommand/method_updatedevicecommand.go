@@ -17,15 +17,44 @@ type UpdateDeviceCommandOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateDeviceCommandOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateDeviceCommandOperationOptions() UpdateDeviceCommandOperationOptions {
+	return UpdateDeviceCommandOperationOptions{}
+}
+
+func (o UpdateDeviceCommandOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateDeviceCommandOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateDeviceCommandOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateDeviceCommand - Update the navigation property commands in users
-func (c DeviceCommandClient) UpdateDeviceCommand(ctx context.Context, id beta.UserIdDeviceIdCommandId, input beta.Command) (result UpdateDeviceCommandOperationResponse, err error) {
+func (c DeviceCommandClient) UpdateDeviceCommand(ctx context.Context, id beta.UserIdDeviceIdCommandId, input beta.Command, options UpdateDeviceCommandOperationOptions) (result UpdateDeviceCommandOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

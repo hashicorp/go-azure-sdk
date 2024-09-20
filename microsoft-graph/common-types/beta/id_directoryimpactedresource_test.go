@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &DirectoryImpactedResourceId{}
 
 func TestNewDirectoryImpactedResourceID(t *testing.T) {
-	id := NewDirectoryImpactedResourceID("impactedResourceIdValue")
+	id := NewDirectoryImpactedResourceID("impactedResourceId")
 
-	if id.ImpactedResourceId != "impactedResourceIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ImpactedResourceId'", id.ImpactedResourceId, "impactedResourceIdValue")
+	if id.ImpactedResourceId != "impactedResourceId" {
+		t.Fatalf("Expected %q but got %q for Segment 'ImpactedResourceId'", id.ImpactedResourceId, "impactedResourceId")
 	}
 }
 
 func TestFormatDirectoryImpactedResourceID(t *testing.T) {
-	actual := NewDirectoryImpactedResourceID("impactedResourceIdValue").ID()
-	expected := "/directory/impactedResources/impactedResourceIdValue"
+	actual := NewDirectoryImpactedResourceID("impactedResourceId").ID()
+	expected := "/directory/impactedResources/impactedResourceId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -50,14 +50,14 @@ func TestParseDirectoryImpactedResourceID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/directory/impactedResources/impactedResourceIdValue",
+			Input: "/directory/impactedResources/impactedResourceId",
 			Expected: &DirectoryImpactedResourceId{
-				ImpactedResourceId: "impactedResourceIdValue",
+				ImpactedResourceId: "impactedResourceId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/directory/impactedResources/impactedResourceIdValue/extra",
+			Input: "/directory/impactedResources/impactedResourceId/extra",
 			Error: true,
 		},
 	}
@@ -116,26 +116,26 @@ func TestParseDirectoryImpactedResourceIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/directory/impactedResources/impactedResourceIdValue",
+			Input: "/directory/impactedResources/impactedResourceId",
 			Expected: &DirectoryImpactedResourceId{
-				ImpactedResourceId: "impactedResourceIdValue",
+				ImpactedResourceId: "impactedResourceId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/directory/impactedResources/impactedResourceIdValue/extra",
+			Input: "/directory/impactedResources/impactedResourceId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/dIrEcToRy/iMpAcTeDrEsOuRcEs/iMpAcTeDrEsOuRcEiDvAlUe",
+			Input: "/dIrEcToRy/iMpAcTeDrEsOuRcEs/iMpAcTeDrEsOuRcEiD",
 			Expected: &DirectoryImpactedResourceId{
-				ImpactedResourceId: "iMpAcTeDrEsOuRcEiDvAlUe",
+				ImpactedResourceId: "iMpAcTeDrEsOuRcEiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/dIrEcToRy/iMpAcTeDrEsOuRcEs/iMpAcTeDrEsOuRcEiDvAlUe/extra",
+			Input: "/dIrEcToRy/iMpAcTeDrEsOuRcEs/iMpAcTeDrEsOuRcEiD/extra",
 			Error: true,
 		},
 	}

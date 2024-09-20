@@ -98,9 +98,9 @@ func (id UserIdCloudPCId) ID() string {
 func (id UserIdCloudPCId) Segments() []resourceids.Segment {
 	return []resourceids.Segment{
 		resourceids.StaticSegment("users", "users", "users"),
-		resourceids.UserSpecifiedSegment("userId", "userIdValue"),
+		resourceids.UserSpecifiedSegment("userId", "userId"),
 		resourceids.StaticSegment("cloudPCs", "cloudPCs", "cloudPCs"),
-		resourceids.UserSpecifiedSegment("cloudPCId", "cloudPCIdValue"),
+		resourceids.UserSpecifiedSegment("cloudPCId", "cloudPCId"),
 	}
 }
 

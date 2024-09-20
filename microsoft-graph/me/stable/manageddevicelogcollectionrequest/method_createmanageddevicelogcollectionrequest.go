@@ -19,15 +19,44 @@ type CreateManagedDeviceLogCollectionRequestOperationResponse struct {
 	Model        *stable.DeviceLogCollectionResponse
 }
 
+type CreateManagedDeviceLogCollectionRequestOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateManagedDeviceLogCollectionRequestOperationOptions() CreateManagedDeviceLogCollectionRequestOperationOptions {
+	return CreateManagedDeviceLogCollectionRequestOperationOptions{}
+}
+
+func (o CreateManagedDeviceLogCollectionRequestOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateManagedDeviceLogCollectionRequestOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateManagedDeviceLogCollectionRequestOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateManagedDeviceLogCollectionRequest - Create new navigation property to logCollectionRequests for me
-func (c ManagedDeviceLogCollectionRequestClient) CreateManagedDeviceLogCollectionRequest(ctx context.Context, id stable.MeManagedDeviceId, input stable.DeviceLogCollectionResponse) (result CreateManagedDeviceLogCollectionRequestOperationResponse, err error) {
+func (c ManagedDeviceLogCollectionRequestClient) CreateManagedDeviceLogCollectionRequest(ctx context.Context, id stable.MeManagedDeviceId, input stable.DeviceLogCollectionResponse, options CreateManagedDeviceLogCollectionRequestOperationOptions) (result CreateManagedDeviceLogCollectionRequestOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/logCollectionRequests", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/logCollectionRequests", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

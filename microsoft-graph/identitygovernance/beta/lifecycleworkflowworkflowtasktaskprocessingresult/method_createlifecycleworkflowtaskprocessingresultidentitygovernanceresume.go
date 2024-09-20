@@ -18,17 +18,46 @@ type CreateLifecycleWorkflowTaskProcessingResultIdentityGovernanceResumeOperatio
 	OData        *odata.OData
 }
 
+type CreateLifecycleWorkflowTaskProcessingResultIdentityGovernanceResumeOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateLifecycleWorkflowTaskProcessingResultIdentityGovernanceResumeOperationOptions() CreateLifecycleWorkflowTaskProcessingResultIdentityGovernanceResumeOperationOptions {
+	return CreateLifecycleWorkflowTaskProcessingResultIdentityGovernanceResumeOperationOptions{}
+}
+
+func (o CreateLifecycleWorkflowTaskProcessingResultIdentityGovernanceResumeOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateLifecycleWorkflowTaskProcessingResultIdentityGovernanceResumeOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateLifecycleWorkflowTaskProcessingResultIdentityGovernanceResumeOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateLifecycleWorkflowTaskProcessingResultIdentityGovernanceResume - Invoke action resume. Resume a task processing
 // result that's inProgress. In the default case an Azure Logic Apps system-assigned managed identity calls this API.
 // For more information, see: Lifecycle Workflows extensibility approach.
-func (c LifecycleWorkflowWorkflowTaskTaskProcessingResultClient) CreateLifecycleWorkflowTaskProcessingResultIdentityGovernanceResume(ctx context.Context, id beta.IdentityGovernanceLifecycleWorkflowWorkflowIdTaskIdTaskProcessingResultId, input CreateLifecycleWorkflowTaskProcessingResultIdentityGovernanceResumeRequest) (result CreateLifecycleWorkflowTaskProcessingResultIdentityGovernanceResumeOperationResponse, err error) {
+func (c LifecycleWorkflowWorkflowTaskTaskProcessingResultClient) CreateLifecycleWorkflowTaskProcessingResultIdentityGovernanceResume(ctx context.Context, id beta.IdentityGovernanceLifecycleWorkflowWorkflowIdTaskIdTaskProcessingResultId, input CreateLifecycleWorkflowTaskProcessingResultIdentityGovernanceResumeRequest, options CreateLifecycleWorkflowTaskProcessingResultIdentityGovernanceResumeOperationOptions) (result CreateLifecycleWorkflowTaskProcessingResultIdentityGovernanceResumeOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/identityGovernance.resume", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/identityGovernance.resume", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

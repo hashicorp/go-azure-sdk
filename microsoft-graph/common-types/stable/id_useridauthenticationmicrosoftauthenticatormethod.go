@@ -98,10 +98,10 @@ func (id UserIdAuthenticationMicrosoftAuthenticatorMethodId) ID() string {
 func (id UserIdAuthenticationMicrosoftAuthenticatorMethodId) Segments() []resourceids.Segment {
 	return []resourceids.Segment{
 		resourceids.StaticSegment("users", "users", "users"),
-		resourceids.UserSpecifiedSegment("userId", "userIdValue"),
+		resourceids.UserSpecifiedSegment("userId", "userId"),
 		resourceids.StaticSegment("authentication", "authentication", "authentication"),
 		resourceids.StaticSegment("microsoftAuthenticatorMethods", "microsoftAuthenticatorMethods", "microsoftAuthenticatorMethods"),
-		resourceids.UserSpecifiedSegment("microsoftAuthenticatorAuthenticationMethodId", "microsoftAuthenticatorAuthenticationMethodIdValue"),
+		resourceids.UserSpecifiedSegment("microsoftAuthenticatorAuthenticationMethodId", "microsoftAuthenticatorAuthenticationMethodId"),
 	}
 }
 

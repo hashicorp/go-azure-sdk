@@ -99,9 +99,9 @@ func (id PolicyAuthorizationPolicyIdDefaultUserRoleOverrideId) Segments() []reso
 	return []resourceids.Segment{
 		resourceids.StaticSegment("policies", "policies", "policies"),
 		resourceids.StaticSegment("authorizationPolicy", "authorizationPolicy", "authorizationPolicy"),
-		resourceids.UserSpecifiedSegment("authorizationPolicyId", "authorizationPolicyIdValue"),
+		resourceids.UserSpecifiedSegment("authorizationPolicyId", "authorizationPolicyId"),
 		resourceids.StaticSegment("defaultUserRoleOverrides", "defaultUserRoleOverrides", "defaultUserRoleOverrides"),
-		resourceids.UserSpecifiedSegment("defaultUserRoleOverrideId", "defaultUserRoleOverrideIdValue"),
+		resourceids.UserSpecifiedSegment("defaultUserRoleOverrideId", "defaultUserRoleOverrideId"),
 	}
 }
 

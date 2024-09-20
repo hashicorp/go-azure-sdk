@@ -17,15 +17,44 @@ type UpdateDeviceComplianceScriptAssignmentOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateDeviceComplianceScriptAssignmentOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateDeviceComplianceScriptAssignmentOperationOptions() UpdateDeviceComplianceScriptAssignmentOperationOptions {
+	return UpdateDeviceComplianceScriptAssignmentOperationOptions{}
+}
+
+func (o UpdateDeviceComplianceScriptAssignmentOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateDeviceComplianceScriptAssignmentOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateDeviceComplianceScriptAssignmentOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateDeviceComplianceScriptAssignment - Update the navigation property assignments in deviceManagement
-func (c DeviceComplianceScriptAssignmentClient) UpdateDeviceComplianceScriptAssignment(ctx context.Context, id beta.DeviceManagementDeviceComplianceScriptIdAssignmentId, input beta.DeviceHealthScriptAssignment) (result UpdateDeviceComplianceScriptAssignmentOperationResponse, err error) {
+func (c DeviceComplianceScriptAssignmentClient) UpdateDeviceComplianceScriptAssignment(ctx context.Context, id beta.DeviceManagementDeviceComplianceScriptIdAssignmentId, input beta.DeviceHealthScriptAssignment, options UpdateDeviceComplianceScriptAssignmentOperationOptions) (result UpdateDeviceComplianceScriptAssignmentOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &DeviceManagementWindowsDriverUpdateProfileId{}
 
 func TestNewDeviceManagementWindowsDriverUpdateProfileID(t *testing.T) {
-	id := NewDeviceManagementWindowsDriverUpdateProfileID("windowsDriverUpdateProfileIdValue")
+	id := NewDeviceManagementWindowsDriverUpdateProfileID("windowsDriverUpdateProfileId")
 
-	if id.WindowsDriverUpdateProfileId != "windowsDriverUpdateProfileIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'WindowsDriverUpdateProfileId'", id.WindowsDriverUpdateProfileId, "windowsDriverUpdateProfileIdValue")
+	if id.WindowsDriverUpdateProfileId != "windowsDriverUpdateProfileId" {
+		t.Fatalf("Expected %q but got %q for Segment 'WindowsDriverUpdateProfileId'", id.WindowsDriverUpdateProfileId, "windowsDriverUpdateProfileId")
 	}
 }
 
 func TestFormatDeviceManagementWindowsDriverUpdateProfileID(t *testing.T) {
-	actual := NewDeviceManagementWindowsDriverUpdateProfileID("windowsDriverUpdateProfileIdValue").ID()
-	expected := "/deviceManagement/windowsDriverUpdateProfiles/windowsDriverUpdateProfileIdValue"
+	actual := NewDeviceManagementWindowsDriverUpdateProfileID("windowsDriverUpdateProfileId").ID()
+	expected := "/deviceManagement/windowsDriverUpdateProfiles/windowsDriverUpdateProfileId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -50,14 +50,14 @@ func TestParseDeviceManagementWindowsDriverUpdateProfileID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/windowsDriverUpdateProfiles/windowsDriverUpdateProfileIdValue",
+			Input: "/deviceManagement/windowsDriverUpdateProfiles/windowsDriverUpdateProfileId",
 			Expected: &DeviceManagementWindowsDriverUpdateProfileId{
-				WindowsDriverUpdateProfileId: "windowsDriverUpdateProfileIdValue",
+				WindowsDriverUpdateProfileId: "windowsDriverUpdateProfileId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/windowsDriverUpdateProfiles/windowsDriverUpdateProfileIdValue/extra",
+			Input: "/deviceManagement/windowsDriverUpdateProfiles/windowsDriverUpdateProfileId/extra",
 			Error: true,
 		},
 	}
@@ -116,26 +116,26 @@ func TestParseDeviceManagementWindowsDriverUpdateProfileIDInsensitively(t *testi
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/windowsDriverUpdateProfiles/windowsDriverUpdateProfileIdValue",
+			Input: "/deviceManagement/windowsDriverUpdateProfiles/windowsDriverUpdateProfileId",
 			Expected: &DeviceManagementWindowsDriverUpdateProfileId{
-				WindowsDriverUpdateProfileId: "windowsDriverUpdateProfileIdValue",
+				WindowsDriverUpdateProfileId: "windowsDriverUpdateProfileId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/windowsDriverUpdateProfiles/windowsDriverUpdateProfileIdValue/extra",
+			Input: "/deviceManagement/windowsDriverUpdateProfiles/windowsDriverUpdateProfileId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/wInDoWsDrIvErUpDaTePrOfIlEs/wInDoWsDrIvErUpDaTePrOfIlEiDvAlUe",
+			Input: "/dEvIcEmAnAgEmEnT/wInDoWsDrIvErUpDaTePrOfIlEs/wInDoWsDrIvErUpDaTePrOfIlEiD",
 			Expected: &DeviceManagementWindowsDriverUpdateProfileId{
-				WindowsDriverUpdateProfileId: "wInDoWsDrIvErUpDaTePrOfIlEiDvAlUe",
+				WindowsDriverUpdateProfileId: "wInDoWsDrIvErUpDaTePrOfIlEiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/wInDoWsDrIvErUpDaTePrOfIlEs/wInDoWsDrIvErUpDaTePrOfIlEiDvAlUe/extra",
+			Input: "/dEvIcEmAnAgEmEnT/wInDoWsDrIvErUpDaTePrOfIlEs/wInDoWsDrIvErUpDaTePrOfIlEiD/extra",
 			Error: true,
 		},
 	}

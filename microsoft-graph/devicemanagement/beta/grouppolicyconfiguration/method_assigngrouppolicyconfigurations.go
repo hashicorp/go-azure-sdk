@@ -25,8 +25,9 @@ type AssignGroupPolicyConfigurationsCompleteResult struct {
 }
 
 type AssignGroupPolicyConfigurationsOperationOptions struct {
-	Skip *int64
-	Top  *int64
+	Metadata *odata.Metadata
+	Skip     *int64
+	Top      *int64
 }
 
 func DefaultAssignGroupPolicyConfigurationsOperationOptions() AssignGroupPolicyConfigurationsOperationOptions {
@@ -41,6 +42,9 @@ func (o AssignGroupPolicyConfigurationsOperationOptions) ToHeaders() *client.Hea
 
 func (o AssignGroupPolicyConfigurationsOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	if o.Skip != nil {
 		out.Skip = int(*o.Skip)
 	}

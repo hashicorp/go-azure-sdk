@@ -20,15 +20,44 @@ type CreateTemplateCategoryRecommendedSettingOperationResponse struct {
 	Model        beta.DeviceManagementSettingInstance
 }
 
+type CreateTemplateCategoryRecommendedSettingOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateTemplateCategoryRecommendedSettingOperationOptions() CreateTemplateCategoryRecommendedSettingOperationOptions {
+	return CreateTemplateCategoryRecommendedSettingOperationOptions{}
+}
+
+func (o CreateTemplateCategoryRecommendedSettingOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateTemplateCategoryRecommendedSettingOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateTemplateCategoryRecommendedSettingOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateTemplateCategoryRecommendedSetting - Create new navigation property to recommendedSettings for deviceManagement
-func (c TemplateCategoryRecommendedSettingClient) CreateTemplateCategoryRecommendedSetting(ctx context.Context, id beta.DeviceManagementTemplateIdCategoryId, input beta.DeviceManagementSettingInstance) (result CreateTemplateCategoryRecommendedSettingOperationResponse, err error) {
+func (c TemplateCategoryRecommendedSettingClient) CreateTemplateCategoryRecommendedSetting(ctx context.Context, id beta.DeviceManagementTemplateIdCategoryId, input beta.DeviceManagementSettingInstance, options CreateTemplateCategoryRecommendedSettingOperationOptions) (result CreateTemplateCategoryRecommendedSettingOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/recommendedSettings", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/recommendedSettings", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

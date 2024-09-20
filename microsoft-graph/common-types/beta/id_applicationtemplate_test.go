@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &ApplicationTemplateId{}
 
 func TestNewApplicationTemplateID(t *testing.T) {
-	id := NewApplicationTemplateID("applicationTemplateIdValue")
+	id := NewApplicationTemplateID("applicationTemplateId")
 
-	if id.ApplicationTemplateId != "applicationTemplateIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ApplicationTemplateId'", id.ApplicationTemplateId, "applicationTemplateIdValue")
+	if id.ApplicationTemplateId != "applicationTemplateId" {
+		t.Fatalf("Expected %q but got %q for Segment 'ApplicationTemplateId'", id.ApplicationTemplateId, "applicationTemplateId")
 	}
 }
 
 func TestFormatApplicationTemplateID(t *testing.T) {
-	actual := NewApplicationTemplateID("applicationTemplateIdValue").ID()
-	expected := "/applicationTemplates/applicationTemplateIdValue"
+	actual := NewApplicationTemplateID("applicationTemplateId").ID()
+	expected := "/applicationTemplates/applicationTemplateId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -45,14 +45,14 @@ func TestParseApplicationTemplateID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/applicationTemplates/applicationTemplateIdValue",
+			Input: "/applicationTemplates/applicationTemplateId",
 			Expected: &ApplicationTemplateId{
-				ApplicationTemplateId: "applicationTemplateIdValue",
+				ApplicationTemplateId: "applicationTemplateId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/applicationTemplates/applicationTemplateIdValue/extra",
+			Input: "/applicationTemplates/applicationTemplateId/extra",
 			Error: true,
 		},
 	}
@@ -101,26 +101,26 @@ func TestParseApplicationTemplateIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/applicationTemplates/applicationTemplateIdValue",
+			Input: "/applicationTemplates/applicationTemplateId",
 			Expected: &ApplicationTemplateId{
-				ApplicationTemplateId: "applicationTemplateIdValue",
+				ApplicationTemplateId: "applicationTemplateId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/applicationTemplates/applicationTemplateIdValue/extra",
+			Input: "/applicationTemplates/applicationTemplateId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/aPpLiCaTiOnTeMpLaTeS/aPpLiCaTiOnTeMpLaTeIdVaLuE",
+			Input: "/aPpLiCaTiOnTeMpLaTeS/aPpLiCaTiOnTeMpLaTeId",
 			Expected: &ApplicationTemplateId{
-				ApplicationTemplateId: "aPpLiCaTiOnTeMpLaTeIdVaLuE",
+				ApplicationTemplateId: "aPpLiCaTiOnTeMpLaTeId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/aPpLiCaTiOnTeMpLaTeS/aPpLiCaTiOnTeMpLaTeIdVaLuE/extra",
+			Input: "/aPpLiCaTiOnTeMpLaTeS/aPpLiCaTiOnTeMpLaTeId/extra",
 			Error: true,
 		},
 	}

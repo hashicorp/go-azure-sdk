@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &DeviceManagementCartToClassAssociationId{}
 
 func TestNewDeviceManagementCartToClassAssociationID(t *testing.T) {
-	id := NewDeviceManagementCartToClassAssociationID("cartToClassAssociationIdValue")
+	id := NewDeviceManagementCartToClassAssociationID("cartToClassAssociationId")
 
-	if id.CartToClassAssociationId != "cartToClassAssociationIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'CartToClassAssociationId'", id.CartToClassAssociationId, "cartToClassAssociationIdValue")
+	if id.CartToClassAssociationId != "cartToClassAssociationId" {
+		t.Fatalf("Expected %q but got %q for Segment 'CartToClassAssociationId'", id.CartToClassAssociationId, "cartToClassAssociationId")
 	}
 }
 
 func TestFormatDeviceManagementCartToClassAssociationID(t *testing.T) {
-	actual := NewDeviceManagementCartToClassAssociationID("cartToClassAssociationIdValue").ID()
-	expected := "/deviceManagement/cartToClassAssociations/cartToClassAssociationIdValue"
+	actual := NewDeviceManagementCartToClassAssociationID("cartToClassAssociationId").ID()
+	expected := "/deviceManagement/cartToClassAssociations/cartToClassAssociationId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -50,14 +50,14 @@ func TestParseDeviceManagementCartToClassAssociationID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/cartToClassAssociations/cartToClassAssociationIdValue",
+			Input: "/deviceManagement/cartToClassAssociations/cartToClassAssociationId",
 			Expected: &DeviceManagementCartToClassAssociationId{
-				CartToClassAssociationId: "cartToClassAssociationIdValue",
+				CartToClassAssociationId: "cartToClassAssociationId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/cartToClassAssociations/cartToClassAssociationIdValue/extra",
+			Input: "/deviceManagement/cartToClassAssociations/cartToClassAssociationId/extra",
 			Error: true,
 		},
 	}
@@ -116,26 +116,26 @@ func TestParseDeviceManagementCartToClassAssociationIDInsensitively(t *testing.T
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/cartToClassAssociations/cartToClassAssociationIdValue",
+			Input: "/deviceManagement/cartToClassAssociations/cartToClassAssociationId",
 			Expected: &DeviceManagementCartToClassAssociationId{
-				CartToClassAssociationId: "cartToClassAssociationIdValue",
+				CartToClassAssociationId: "cartToClassAssociationId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/cartToClassAssociations/cartToClassAssociationIdValue/extra",
+			Input: "/deviceManagement/cartToClassAssociations/cartToClassAssociationId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/cArTtOcLaSsAsSoCiAtIoNs/cArTtOcLaSsAsSoCiAtIoNiDvAlUe",
+			Input: "/dEvIcEmAnAgEmEnT/cArTtOcLaSsAsSoCiAtIoNs/cArTtOcLaSsAsSoCiAtIoNiD",
 			Expected: &DeviceManagementCartToClassAssociationId{
-				CartToClassAssociationId: "cArTtOcLaSsAsSoCiAtIoNiDvAlUe",
+				CartToClassAssociationId: "cArTtOcLaSsAsSoCiAtIoNiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/cArTtOcLaSsAsSoCiAtIoNs/cArTtOcLaSsAsSoCiAtIoNiDvAlUe/extra",
+			Input: "/dEvIcEmAnAgEmEnT/cArTtOcLaSsAsSoCiAtIoNs/cArTtOcLaSsAsSoCiAtIoNiD/extra",
 			Error: true,
 		},
 	}

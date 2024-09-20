@@ -18,16 +18,45 @@ type SetChatMessageHostedContentValueOperationResponse struct {
 	OData        *odata.OData
 }
 
+type SetChatMessageHostedContentValueOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultSetChatMessageHostedContentValueOperationOptions() SetChatMessageHostedContentValueOperationOptions {
+	return SetChatMessageHostedContentValueOperationOptions{}
+}
+
+func (o SetChatMessageHostedContentValueOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o SetChatMessageHostedContentValueOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o SetChatMessageHostedContentValueOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // SetChatMessageHostedContentValue - Update media content for the navigation property hostedContents in users. The
 // unique identifier for an entity. Read-only.
-func (c ChatMessageHostedContentClient) SetChatMessageHostedContentValue(ctx context.Context, id beta.UserIdChatIdMessageIdHostedContentId, input []byte) (result SetChatMessageHostedContentValueOperationResponse, err error) {
+func (c ChatMessageHostedContentClient) SetChatMessageHostedContentValue(ctx context.Context, id beta.UserIdChatIdMessageIdHostedContentId, input []byte, options SetChatMessageHostedContentValueOperationOptions) (result SetChatMessageHostedContentValueOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPut,
-		Path:       fmt.Sprintf("%s/$value", id.ID()),
+		HttpMethod:    http.MethodPut,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/$value", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

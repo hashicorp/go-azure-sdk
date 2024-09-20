@@ -20,20 +20,49 @@ type RestoreDeletedItemOperationResponse struct {
 	Model        beta.DirectoryObject
 }
 
+type RestoreDeletedItemOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultRestoreDeletedItemOperationOptions() RestoreDeletedItemOperationOptions {
+	return RestoreDeletedItemOperationOptions{}
+}
+
+func (o RestoreDeletedItemOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o RestoreDeletedItemOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o RestoreDeletedItemOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // RestoreDeletedItem - Invoke action restore. Restore a recently deleted application, externalUserProfile, group,
 // pendingExternalUserProfile, servicePrincipal, administrative unit, or user object from deleted items. If an item was
 // accidentally deleted, you can fully restore the item. This isn't applicable to security groups, which are deleted
 // permanently. Also, restoring an application doesn't restore the associated service principal automatically. You must
 // call this API to explicitly restore the deleted service principal. A recently deleted item remains available for up
 // to 30 days. After 30 days, the item is permanently deleted.
-func (c DeletedItemClient) RestoreDeletedItem(ctx context.Context, id beta.DirectoryDeletedItemId, input RestoreDeletedItemRequest) (result RestoreDeletedItemOperationResponse, err error) {
+func (c DeletedItemClient) RestoreDeletedItem(ctx context.Context, id beta.DirectoryDeletedItemId, input RestoreDeletedItemRequest, options RestoreDeletedItemOperationOptions) (result RestoreDeletedItemOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/restore", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/restore", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -18,16 +18,45 @@ type CreateProfileSkillOperationResponse struct {
 	Model        *beta.SkillProficiency
 }
 
+type CreateProfileSkillOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateProfileSkillOperationOptions() CreateProfileSkillOperationOptions {
+	return CreateProfileSkillOperationOptions{}
+}
+
+func (o CreateProfileSkillOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateProfileSkillOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateProfileSkillOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateProfileSkill - Create skillProficiency. Use this API to create a new skillProficiency object in a user's
 // profile.
-func (c ProfileSkillClient) CreateProfileSkill(ctx context.Context, input beta.SkillProficiency) (result CreateProfileSkillOperationResponse, err error) {
+func (c ProfileSkillClient) CreateProfileSkill(ctx context.Context, input beta.SkillProficiency, options CreateProfileSkillOperationOptions) (result CreateProfileSkillOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/me/profile/skills",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/me/profile/skills",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

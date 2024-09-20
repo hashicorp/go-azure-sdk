@@ -131,10 +131,35 @@ func (s Call) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &Call{}
 
 func (s *Call) UnmarshalJSON(bytes []byte) error {
-	type alias Call
-	var decoded alias
+
+	var decoded struct {
+		AudioRoutingGroups     *[]AudioRoutingGroup         `json:"audioRoutingGroups,omitempty"`
+		CallChainId            nullable.Type[string]        `json:"callChainId,omitempty"`
+		CallRoutes             *[]CallRoute                 `json:"callRoutes,omitempty"`
+		CallbackUri            *string                      `json:"callbackUri,omitempty"`
+		ChatInfo               *ChatInfo                    `json:"chatInfo,omitempty"`
+		ContentSharingSessions *[]ContentSharingSession     `json:"contentSharingSessions,omitempty"`
+		Direction              *CallDirection               `json:"direction,omitempty"`
+		IncomingContext        *IncomingContext             `json:"incomingContext,omitempty"`
+		MediaState             *CallMediaState              `json:"mediaState,omitempty"`
+		MyParticipantId        nullable.Type[string]        `json:"myParticipantId,omitempty"`
+		Operations             *[]CommsOperation            `json:"operations,omitempty"`
+		Participants           *[]Participant               `json:"participants,omitempty"`
+		RequestedModalities    *[]Modality                  `json:"requestedModalities,omitempty"`
+		ResultInfo             *ResultInfo                  `json:"resultInfo,omitempty"`
+		Source                 *ParticipantInfo             `json:"source,omitempty"`
+		State                  *CallState                   `json:"state,omitempty"`
+		Subject                nullable.Type[string]        `json:"subject,omitempty"`
+		Targets                *[]InvitationParticipantInfo `json:"targets,omitempty"`
+		TenantId               nullable.Type[string]        `json:"tenantId,omitempty"`
+		ToneInfo               *ToneInfo                    `json:"toneInfo,omitempty"`
+		Transcription          *CallTranscriptionInfo       `json:"transcription,omitempty"`
+		Id                     *string                      `json:"id,omitempty"`
+		ODataId                *string                      `json:"@odata.id,omitempty"`
+		ODataType              *string                      `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into Call: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.AudioRoutingGroups = decoded.AudioRoutingGroups
@@ -144,12 +169,9 @@ func (s *Call) UnmarshalJSON(bytes []byte) error {
 	s.ChatInfo = decoded.ChatInfo
 	s.ContentSharingSessions = decoded.ContentSharingSessions
 	s.Direction = decoded.Direction
-	s.Id = decoded.Id
 	s.IncomingContext = decoded.IncomingContext
 	s.MediaState = decoded.MediaState
 	s.MyParticipantId = decoded.MyParticipantId
-	s.ODataId = decoded.ODataId
-	s.ODataType = decoded.ODataType
 	s.Participants = decoded.Participants
 	s.RequestedModalities = decoded.RequestedModalities
 	s.ResultInfo = decoded.ResultInfo
@@ -160,6 +182,9 @@ func (s *Call) UnmarshalJSON(bytes []byte) error {
 	s.TenantId = decoded.TenantId
 	s.ToneInfo = decoded.ToneInfo
 	s.Transcription = decoded.Transcription
+	s.Id = decoded.Id
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -206,5 +231,6 @@ func (s *Call) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Operations = &output
 	}
+
 	return nil
 }

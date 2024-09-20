@@ -19,15 +19,44 @@ type CreateJoinedTeamScheduleOpenShiftOperationResponse struct {
 	Model        *stable.OpenShift
 }
 
+type CreateJoinedTeamScheduleOpenShiftOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateJoinedTeamScheduleOpenShiftOperationOptions() CreateJoinedTeamScheduleOpenShiftOperationOptions {
+	return CreateJoinedTeamScheduleOpenShiftOperationOptions{}
+}
+
+func (o CreateJoinedTeamScheduleOpenShiftOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateJoinedTeamScheduleOpenShiftOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateJoinedTeamScheduleOpenShiftOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateJoinedTeamScheduleOpenShift - Create new navigation property to openShifts for me
-func (c JoinedTeamScheduleOpenShiftClient) CreateJoinedTeamScheduleOpenShift(ctx context.Context, id stable.MeJoinedTeamId, input stable.OpenShift) (result CreateJoinedTeamScheduleOpenShiftOperationResponse, err error) {
+func (c JoinedTeamScheduleOpenShiftClient) CreateJoinedTeamScheduleOpenShift(ctx context.Context, id stable.MeJoinedTeamId, input stable.OpenShift, options CreateJoinedTeamScheduleOpenShiftOperationOptions) (result CreateJoinedTeamScheduleOpenShiftOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/schedule/openShifts", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/schedule/openShifts", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

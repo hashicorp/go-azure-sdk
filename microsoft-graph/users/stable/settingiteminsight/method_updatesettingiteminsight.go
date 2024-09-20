@@ -18,15 +18,44 @@ type UpdateSettingItemInsightOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateSettingItemInsightOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateSettingItemInsightOperationOptions() UpdateSettingItemInsightOperationOptions {
+	return UpdateSettingItemInsightOperationOptions{}
+}
+
+func (o UpdateSettingItemInsightOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateSettingItemInsightOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateSettingItemInsightOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateSettingItemInsight - Update the navigation property itemInsights in users
-func (c SettingItemInsightClient) UpdateSettingItemInsight(ctx context.Context, id stable.UserId, input stable.UserInsightsSettings) (result UpdateSettingItemInsightOperationResponse, err error) {
+func (c SettingItemInsightClient) UpdateSettingItemInsight(ctx context.Context, id stable.UserId, input stable.UserInsightsSettings, options UpdateSettingItemInsightOperationOptions) (result UpdateSettingItemInsightOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       fmt.Sprintf("%s/settings/itemInsights", id.ID()),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/settings/itemInsights", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &DeviceManagementWindowsDriverUpdateProfileIdDriverInventoryId{}
 
 func TestNewDeviceManagementWindowsDriverUpdateProfileIdDriverInventoryID(t *testing.T) {
-	id := NewDeviceManagementWindowsDriverUpdateProfileIdDriverInventoryID("windowsDriverUpdateProfileIdValue", "windowsDriverUpdateInventoryIdValue")
+	id := NewDeviceManagementWindowsDriverUpdateProfileIdDriverInventoryID("windowsDriverUpdateProfileId", "windowsDriverUpdateInventoryId")
 
-	if id.WindowsDriverUpdateProfileId != "windowsDriverUpdateProfileIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'WindowsDriverUpdateProfileId'", id.WindowsDriverUpdateProfileId, "windowsDriverUpdateProfileIdValue")
+	if id.WindowsDriverUpdateProfileId != "windowsDriverUpdateProfileId" {
+		t.Fatalf("Expected %q but got %q for Segment 'WindowsDriverUpdateProfileId'", id.WindowsDriverUpdateProfileId, "windowsDriverUpdateProfileId")
 	}
 
-	if id.WindowsDriverUpdateInventoryId != "windowsDriverUpdateInventoryIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'WindowsDriverUpdateInventoryId'", id.WindowsDriverUpdateInventoryId, "windowsDriverUpdateInventoryIdValue")
+	if id.WindowsDriverUpdateInventoryId != "windowsDriverUpdateInventoryId" {
+		t.Fatalf("Expected %q but got %q for Segment 'WindowsDriverUpdateInventoryId'", id.WindowsDriverUpdateInventoryId, "windowsDriverUpdateInventoryId")
 	}
 }
 
 func TestFormatDeviceManagementWindowsDriverUpdateProfileIdDriverInventoryID(t *testing.T) {
-	actual := NewDeviceManagementWindowsDriverUpdateProfileIdDriverInventoryID("windowsDriverUpdateProfileIdValue", "windowsDriverUpdateInventoryIdValue").ID()
-	expected := "/deviceManagement/windowsDriverUpdateProfiles/windowsDriverUpdateProfileIdValue/driverInventories/windowsDriverUpdateInventoryIdValue"
+	actual := NewDeviceManagementWindowsDriverUpdateProfileIdDriverInventoryID("windowsDriverUpdateProfileId", "windowsDriverUpdateInventoryId").ID()
+	expected := "/deviceManagement/windowsDriverUpdateProfiles/windowsDriverUpdateProfileId/driverInventories/windowsDriverUpdateInventoryId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -54,25 +54,25 @@ func TestParseDeviceManagementWindowsDriverUpdateProfileIdDriverInventoryID(t *t
 		},
 		{
 			// Incomplete URI
-			Input: "/deviceManagement/windowsDriverUpdateProfiles/windowsDriverUpdateProfileIdValue",
+			Input: "/deviceManagement/windowsDriverUpdateProfiles/windowsDriverUpdateProfileId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/deviceManagement/windowsDriverUpdateProfiles/windowsDriverUpdateProfileIdValue/driverInventories",
+			Input: "/deviceManagement/windowsDriverUpdateProfiles/windowsDriverUpdateProfileId/driverInventories",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/windowsDriverUpdateProfiles/windowsDriverUpdateProfileIdValue/driverInventories/windowsDriverUpdateInventoryIdValue",
+			Input: "/deviceManagement/windowsDriverUpdateProfiles/windowsDriverUpdateProfileId/driverInventories/windowsDriverUpdateInventoryId",
 			Expected: &DeviceManagementWindowsDriverUpdateProfileIdDriverInventoryId{
-				WindowsDriverUpdateProfileId:   "windowsDriverUpdateProfileIdValue",
-				WindowsDriverUpdateInventoryId: "windowsDriverUpdateInventoryIdValue",
+				WindowsDriverUpdateProfileId:   "windowsDriverUpdateProfileId",
+				WindowsDriverUpdateInventoryId: "windowsDriverUpdateInventoryId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/windowsDriverUpdateProfiles/windowsDriverUpdateProfileIdValue/driverInventories/windowsDriverUpdateInventoryIdValue/extra",
+			Input: "/deviceManagement/windowsDriverUpdateProfiles/windowsDriverUpdateProfileId/driverInventories/windowsDriverUpdateInventoryId/extra",
 			Error: true,
 		},
 	}
@@ -135,48 +135,48 @@ func TestParseDeviceManagementWindowsDriverUpdateProfileIdDriverInventoryIDInsen
 		},
 		{
 			// Incomplete URI
-			Input: "/deviceManagement/windowsDriverUpdateProfiles/windowsDriverUpdateProfileIdValue",
+			Input: "/deviceManagement/windowsDriverUpdateProfiles/windowsDriverUpdateProfileId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/wInDoWsDrIvErUpDaTePrOfIlEs/wInDoWsDrIvErUpDaTePrOfIlEiDvAlUe",
+			Input: "/dEvIcEmAnAgEmEnT/wInDoWsDrIvErUpDaTePrOfIlEs/wInDoWsDrIvErUpDaTePrOfIlEiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/deviceManagement/windowsDriverUpdateProfiles/windowsDriverUpdateProfileIdValue/driverInventories",
+			Input: "/deviceManagement/windowsDriverUpdateProfiles/windowsDriverUpdateProfileId/driverInventories",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/wInDoWsDrIvErUpDaTePrOfIlEs/wInDoWsDrIvErUpDaTePrOfIlEiDvAlUe/dRiVeRiNvEnToRiEs",
+			Input: "/dEvIcEmAnAgEmEnT/wInDoWsDrIvErUpDaTePrOfIlEs/wInDoWsDrIvErUpDaTePrOfIlEiD/dRiVeRiNvEnToRiEs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/windowsDriverUpdateProfiles/windowsDriverUpdateProfileIdValue/driverInventories/windowsDriverUpdateInventoryIdValue",
+			Input: "/deviceManagement/windowsDriverUpdateProfiles/windowsDriverUpdateProfileId/driverInventories/windowsDriverUpdateInventoryId",
 			Expected: &DeviceManagementWindowsDriverUpdateProfileIdDriverInventoryId{
-				WindowsDriverUpdateProfileId:   "windowsDriverUpdateProfileIdValue",
-				WindowsDriverUpdateInventoryId: "windowsDriverUpdateInventoryIdValue",
+				WindowsDriverUpdateProfileId:   "windowsDriverUpdateProfileId",
+				WindowsDriverUpdateInventoryId: "windowsDriverUpdateInventoryId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/windowsDriverUpdateProfiles/windowsDriverUpdateProfileIdValue/driverInventories/windowsDriverUpdateInventoryIdValue/extra",
+			Input: "/deviceManagement/windowsDriverUpdateProfiles/windowsDriverUpdateProfileId/driverInventories/windowsDriverUpdateInventoryId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/wInDoWsDrIvErUpDaTePrOfIlEs/wInDoWsDrIvErUpDaTePrOfIlEiDvAlUe/dRiVeRiNvEnToRiEs/wInDoWsDrIvErUpDaTeInVeNtOrYiDvAlUe",
+			Input: "/dEvIcEmAnAgEmEnT/wInDoWsDrIvErUpDaTePrOfIlEs/wInDoWsDrIvErUpDaTePrOfIlEiD/dRiVeRiNvEnToRiEs/wInDoWsDrIvErUpDaTeInVeNtOrYiD",
 			Expected: &DeviceManagementWindowsDriverUpdateProfileIdDriverInventoryId{
-				WindowsDriverUpdateProfileId:   "wInDoWsDrIvErUpDaTePrOfIlEiDvAlUe",
-				WindowsDriverUpdateInventoryId: "wInDoWsDrIvErUpDaTeInVeNtOrYiDvAlUe",
+				WindowsDriverUpdateProfileId:   "wInDoWsDrIvErUpDaTePrOfIlEiD",
+				WindowsDriverUpdateInventoryId: "wInDoWsDrIvErUpDaTeInVeNtOrYiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/wInDoWsDrIvErUpDaTePrOfIlEs/wInDoWsDrIvErUpDaTePrOfIlEiDvAlUe/dRiVeRiNvEnToRiEs/wInDoWsDrIvErUpDaTeInVeNtOrYiDvAlUe/extra",
+			Input: "/dEvIcEmAnAgEmEnT/wInDoWsDrIvErUpDaTePrOfIlEs/wInDoWsDrIvErUpDaTePrOfIlEiD/dRiVeRiNvEnToRiEs/wInDoWsDrIvErUpDaTeInVeNtOrYiD/extra",
 			Error: true,
 		},
 	}

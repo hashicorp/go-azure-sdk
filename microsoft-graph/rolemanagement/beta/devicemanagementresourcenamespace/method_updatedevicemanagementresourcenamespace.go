@@ -17,15 +17,44 @@ type UpdateDeviceManagementResourceNamespaceOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateDeviceManagementResourceNamespaceOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateDeviceManagementResourceNamespaceOperationOptions() UpdateDeviceManagementResourceNamespaceOperationOptions {
+	return UpdateDeviceManagementResourceNamespaceOperationOptions{}
+}
+
+func (o UpdateDeviceManagementResourceNamespaceOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateDeviceManagementResourceNamespaceOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateDeviceManagementResourceNamespaceOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateDeviceManagementResourceNamespace - Update the navigation property resourceNamespaces in roleManagement
-func (c DeviceManagementResourceNamespaceClient) UpdateDeviceManagementResourceNamespace(ctx context.Context, id beta.RoleManagementDeviceManagementResourceNamespaceId, input beta.UnifiedRbacResourceNamespace) (result UpdateDeviceManagementResourceNamespaceOperationResponse, err error) {
+func (c DeviceManagementResourceNamespaceClient) UpdateDeviceManagementResourceNamespace(ctx context.Context, id beta.RoleManagementDeviceManagementResourceNamespaceId, input beta.UnifiedRbacResourceNamespace, options UpdateDeviceManagementResourceNamespaceOperationOptions) (result UpdateDeviceManagementResourceNamespaceOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

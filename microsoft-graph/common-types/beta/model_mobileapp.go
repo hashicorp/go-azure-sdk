@@ -163,10 +163,36 @@ func (s BaseMobileAppImpl) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &BaseMobileAppImpl{}
 
 func (s *BaseMobileAppImpl) UnmarshalJSON(bytes []byte) error {
-	type alias BaseMobileAppImpl
-	var decoded alias
+
+	var decoded struct {
+		Assignments           *[]MobileAppAssignment    `json:"assignments,omitempty"`
+		Categories            *[]MobileAppCategory      `json:"categories,omitempty"`
+		CreatedDateTime       *string                   `json:"createdDateTime,omitempty"`
+		DependentAppCount     *int64                    `json:"dependentAppCount,omitempty"`
+		Description           nullable.Type[string]     `json:"description,omitempty"`
+		Developer             nullable.Type[string]     `json:"developer,omitempty"`
+		DisplayName           nullable.Type[string]     `json:"displayName,omitempty"`
+		InformationUrl        nullable.Type[string]     `json:"informationUrl,omitempty"`
+		IsAssigned            *bool                     `json:"isAssigned,omitempty"`
+		IsFeatured            *bool                     `json:"isFeatured,omitempty"`
+		LargeIcon             *MimeContent              `json:"largeIcon,omitempty"`
+		LastModifiedDateTime  *string                   `json:"lastModifiedDateTime,omitempty"`
+		Notes                 nullable.Type[string]     `json:"notes,omitempty"`
+		Owner                 nullable.Type[string]     `json:"owner,omitempty"`
+		PrivacyInformationUrl nullable.Type[string]     `json:"privacyInformationUrl,omitempty"`
+		Publisher             nullable.Type[string]     `json:"publisher,omitempty"`
+		PublishingState       *MobileAppPublishingState `json:"publishingState,omitempty"`
+		Relationships         *[]MobileAppRelationship  `json:"relationships,omitempty"`
+		RoleScopeTagIds       *[]string                 `json:"roleScopeTagIds,omitempty"`
+		SupersededAppCount    *int64                    `json:"supersededAppCount,omitempty"`
+		SupersedingAppCount   *int64                    `json:"supersedingAppCount,omitempty"`
+		UploadState           *int64                    `json:"uploadState,omitempty"`
+		Id                    *string                   `json:"id,omitempty"`
+		ODataId               *string                   `json:"@odata.id,omitempty"`
+		ODataType             *string                   `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into BaseMobileAppImpl: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.Assignments = decoded.Assignments
@@ -176,15 +202,12 @@ func (s *BaseMobileAppImpl) UnmarshalJSON(bytes []byte) error {
 	s.Description = decoded.Description
 	s.Developer = decoded.Developer
 	s.DisplayName = decoded.DisplayName
-	s.Id = decoded.Id
 	s.InformationUrl = decoded.InformationUrl
 	s.IsAssigned = decoded.IsAssigned
 	s.IsFeatured = decoded.IsFeatured
 	s.LargeIcon = decoded.LargeIcon
 	s.LastModifiedDateTime = decoded.LastModifiedDateTime
 	s.Notes = decoded.Notes
-	s.ODataId = decoded.ODataId
-	s.ODataType = decoded.ODataType
 	s.Owner = decoded.Owner
 	s.PrivacyInformationUrl = decoded.PrivacyInformationUrl
 	s.Publisher = decoded.Publisher
@@ -193,6 +216,9 @@ func (s *BaseMobileAppImpl) UnmarshalJSON(bytes []byte) error {
 	s.SupersededAppCount = decoded.SupersededAppCount
 	s.SupersedingAppCount = decoded.SupersedingAppCount
 	s.UploadState = decoded.UploadState
+	s.Id = decoded.Id
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -215,6 +241,7 @@ func (s *BaseMobileAppImpl) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Relationships = &output
 	}
+
 	return nil
 }
 
@@ -228,9 +255,9 @@ func UnmarshalMobileAppImplementation(input []byte) (MobileApp, error) {
 		return nil, fmt.Errorf("unmarshaling MobileApp into map[string]interface: %+v", err)
 	}
 
-	value, ok := temp["@odata.type"].(string)
-	if !ok {
-		return nil, nil
+	var value string
+	if v, ok := temp["@odata.type"]; ok {
+		value = fmt.Sprintf("%v", v)
 	}
 
 	if strings.EqualFold(value, "#microsoft.graph.androidForWorkApp") {

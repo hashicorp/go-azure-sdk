@@ -106,10 +106,19 @@ func (s OnAttributeCollectionSubmitCustomExtension) MarshalJSON() ([]byte, error
 var _ json.Unmarshaler = &OnAttributeCollectionSubmitCustomExtension{}
 
 func (s *OnAttributeCollectionSubmitCustomExtension) UnmarshalJSON(bytes []byte) error {
-	type alias OnAttributeCollectionSubmitCustomExtension
-	var decoded alias
+
+	var decoded struct {
+		AuthenticationConfiguration CustomExtensionAuthenticationConfiguration `json:"authenticationConfiguration"`
+		ClientConfiguration         *CustomExtensionClientConfiguration        `json:"clientConfiguration,omitempty"`
+		Description                 nullable.Type[string]                      `json:"description,omitempty"`
+		DisplayName                 nullable.Type[string]                      `json:"displayName,omitempty"`
+		EndpointConfiguration       CustomExtensionEndpointConfiguration       `json:"endpointConfiguration"`
+		Id                          *string                                    `json:"id,omitempty"`
+		ODataId                     *string                                    `json:"@odata.id,omitempty"`
+		ODataType                   *string                                    `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into OnAttributeCollectionSubmitCustomExtension: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.ClientConfiguration = decoded.ClientConfiguration
@@ -139,5 +148,6 @@ func (s *OnAttributeCollectionSubmitCustomExtension) UnmarshalJSON(bytes []byte)
 		}
 		s.EndpointConfiguration = impl
 	}
+
 	return nil
 }

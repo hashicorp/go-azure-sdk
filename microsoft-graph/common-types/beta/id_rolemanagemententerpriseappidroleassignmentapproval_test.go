@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &RoleManagementEnterpriseAppIdRoleAssignmentApprovalId{}
 
 func TestNewRoleManagementEnterpriseAppIdRoleAssignmentApprovalID(t *testing.T) {
-	id := NewRoleManagementEnterpriseAppIdRoleAssignmentApprovalID("rbacApplicationIdValue", "approvalIdValue")
+	id := NewRoleManagementEnterpriseAppIdRoleAssignmentApprovalID("rbacApplicationId", "approvalId")
 
-	if id.RbacApplicationId != "rbacApplicationIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'RbacApplicationId'", id.RbacApplicationId, "rbacApplicationIdValue")
+	if id.RbacApplicationId != "rbacApplicationId" {
+		t.Fatalf("Expected %q but got %q for Segment 'RbacApplicationId'", id.RbacApplicationId, "rbacApplicationId")
 	}
 
-	if id.ApprovalId != "approvalIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ApprovalId'", id.ApprovalId, "approvalIdValue")
+	if id.ApprovalId != "approvalId" {
+		t.Fatalf("Expected %q but got %q for Segment 'ApprovalId'", id.ApprovalId, "approvalId")
 	}
 }
 
 func TestFormatRoleManagementEnterpriseAppIdRoleAssignmentApprovalID(t *testing.T) {
-	actual := NewRoleManagementEnterpriseAppIdRoleAssignmentApprovalID("rbacApplicationIdValue", "approvalIdValue").ID()
-	expected := "/roleManagement/enterpriseApps/rbacApplicationIdValue/roleAssignmentApprovals/approvalIdValue"
+	actual := NewRoleManagementEnterpriseAppIdRoleAssignmentApprovalID("rbacApplicationId", "approvalId").ID()
+	expected := "/roleManagement/enterpriseApps/rbacApplicationId/roleAssignmentApprovals/approvalId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -54,25 +54,25 @@ func TestParseRoleManagementEnterpriseAppIdRoleAssignmentApprovalID(t *testing.T
 		},
 		{
 			// Incomplete URI
-			Input: "/roleManagement/enterpriseApps/rbacApplicationIdValue",
+			Input: "/roleManagement/enterpriseApps/rbacApplicationId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/roleManagement/enterpriseApps/rbacApplicationIdValue/roleAssignmentApprovals",
+			Input: "/roleManagement/enterpriseApps/rbacApplicationId/roleAssignmentApprovals",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/roleManagement/enterpriseApps/rbacApplicationIdValue/roleAssignmentApprovals/approvalIdValue",
+			Input: "/roleManagement/enterpriseApps/rbacApplicationId/roleAssignmentApprovals/approvalId",
 			Expected: &RoleManagementEnterpriseAppIdRoleAssignmentApprovalId{
-				RbacApplicationId: "rbacApplicationIdValue",
-				ApprovalId:        "approvalIdValue",
+				RbacApplicationId: "rbacApplicationId",
+				ApprovalId:        "approvalId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/roleManagement/enterpriseApps/rbacApplicationIdValue/roleAssignmentApprovals/approvalIdValue/extra",
+			Input: "/roleManagement/enterpriseApps/rbacApplicationId/roleAssignmentApprovals/approvalId/extra",
 			Error: true,
 		},
 	}
@@ -135,48 +135,48 @@ func TestParseRoleManagementEnterpriseAppIdRoleAssignmentApprovalIDInsensitively
 		},
 		{
 			// Incomplete URI
-			Input: "/roleManagement/enterpriseApps/rbacApplicationIdValue",
+			Input: "/roleManagement/enterpriseApps/rbacApplicationId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/rOlEmAnAgEmEnT/eNtErPrIsEaPpS/rBaCaPpLiCaTiOnIdVaLuE",
+			Input: "/rOlEmAnAgEmEnT/eNtErPrIsEaPpS/rBaCaPpLiCaTiOnId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/roleManagement/enterpriseApps/rbacApplicationIdValue/roleAssignmentApprovals",
+			Input: "/roleManagement/enterpriseApps/rbacApplicationId/roleAssignmentApprovals",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/rOlEmAnAgEmEnT/eNtErPrIsEaPpS/rBaCaPpLiCaTiOnIdVaLuE/rOlEaSsIgNmEnTaPpRoVaLs",
+			Input: "/rOlEmAnAgEmEnT/eNtErPrIsEaPpS/rBaCaPpLiCaTiOnId/rOlEaSsIgNmEnTaPpRoVaLs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/roleManagement/enterpriseApps/rbacApplicationIdValue/roleAssignmentApprovals/approvalIdValue",
+			Input: "/roleManagement/enterpriseApps/rbacApplicationId/roleAssignmentApprovals/approvalId",
 			Expected: &RoleManagementEnterpriseAppIdRoleAssignmentApprovalId{
-				RbacApplicationId: "rbacApplicationIdValue",
-				ApprovalId:        "approvalIdValue",
+				RbacApplicationId: "rbacApplicationId",
+				ApprovalId:        "approvalId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/roleManagement/enterpriseApps/rbacApplicationIdValue/roleAssignmentApprovals/approvalIdValue/extra",
+			Input: "/roleManagement/enterpriseApps/rbacApplicationId/roleAssignmentApprovals/approvalId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/rOlEmAnAgEmEnT/eNtErPrIsEaPpS/rBaCaPpLiCaTiOnIdVaLuE/rOlEaSsIgNmEnTaPpRoVaLs/aPpRoVaLiDvAlUe",
+			Input: "/rOlEmAnAgEmEnT/eNtErPrIsEaPpS/rBaCaPpLiCaTiOnId/rOlEaSsIgNmEnTaPpRoVaLs/aPpRoVaLiD",
 			Expected: &RoleManagementEnterpriseAppIdRoleAssignmentApprovalId{
-				RbacApplicationId: "rBaCaPpLiCaTiOnIdVaLuE",
-				ApprovalId:        "aPpRoVaLiDvAlUe",
+				RbacApplicationId: "rBaCaPpLiCaTiOnId",
+				ApprovalId:        "aPpRoVaLiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/rOlEmAnAgEmEnT/eNtErPrIsEaPpS/rBaCaPpLiCaTiOnIdVaLuE/rOlEaSsIgNmEnTaPpRoVaLs/aPpRoVaLiDvAlUe/extra",
+			Input: "/rOlEmAnAgEmEnT/eNtErPrIsEaPpS/rBaCaPpLiCaTiOnId/rOlEaSsIgNmEnTaPpRoVaLs/aPpRoVaLiD/extra",
 			Error: true,
 		},
 	}

@@ -18,16 +18,45 @@ type RestoreCloudPCOperationResponse struct {
 	OData        *odata.OData
 }
 
+type RestoreCloudPCOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultRestoreCloudPCOperationOptions() RestoreCloudPCOperationOptions {
+	return RestoreCloudPCOperationOptions{}
+}
+
+func (o RestoreCloudPCOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o RestoreCloudPCOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o RestoreCloudPCOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // RestoreCloudPC - Invoke action restore. Restore a specific Cloud PC. Use this API to trigger a remote action that
 // restores a Cloud PC device to a previous state.
-func (c CloudPCClient) RestoreCloudPC(ctx context.Context, id beta.UserIdCloudPCId, input RestoreCloudPCRequest) (result RestoreCloudPCOperationResponse, err error) {
+func (c CloudPCClient) RestoreCloudPC(ctx context.Context, id beta.UserIdCloudPCId, input RestoreCloudPCRequest, options RestoreCloudPCOperationOptions) (result RestoreCloudPCOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/restore", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/restore", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

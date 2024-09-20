@@ -39,10 +39,17 @@ type SubjectRightsRequestHistory struct {
 var _ json.Unmarshaler = &SubjectRightsRequestHistory{}
 
 func (s *SubjectRightsRequestHistory) UnmarshalJSON(bytes []byte) error {
-	type alias SubjectRightsRequestHistory
-	var decoded alias
+
+	var decoded struct {
+		EventDateTime nullable.Type[string]            `json:"eventDateTime,omitempty"`
+		ODataId       *string                          `json:"@odata.id,omitempty"`
+		ODataType     *string                          `json:"@odata.type,omitempty"`
+		Stage         *SubjectRightsRequestStage       `json:"stage,omitempty"`
+		StageStatus   *SubjectRightsRequestStageStatus `json:"stageStatus,omitempty"`
+		Type          nullable.Type[string]            `json:"type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into SubjectRightsRequestHistory: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.EventDateTime = decoded.EventDateTime
@@ -64,5 +71,6 @@ func (s *SubjectRightsRequestHistory) UnmarshalJSON(bytes []byte) error {
 		}
 		s.ChangedBy = impl
 	}
+
 	return nil
 }

@@ -19,7 +19,8 @@ type DeleteExchangeCustomAppScopeOperationResponse struct {
 }
 
 type DeleteExchangeCustomAppScopeOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteExchangeCustomAppScopeOperationOptions() DeleteExchangeCustomAppScopeOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteExchangeCustomAppScopeOperationOptions) ToHeaders() *client.Header
 
 func (o DeleteExchangeCustomAppScopeOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

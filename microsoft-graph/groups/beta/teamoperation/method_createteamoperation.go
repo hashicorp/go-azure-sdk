@@ -19,15 +19,44 @@ type CreateTeamOperationOperationResponse struct {
 	Model        *beta.TeamsAsyncOperation
 }
 
+type CreateTeamOperationOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateTeamOperationOperationOptions() CreateTeamOperationOperationOptions {
+	return CreateTeamOperationOperationOptions{}
+}
+
+func (o CreateTeamOperationOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateTeamOperationOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateTeamOperationOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateTeamOperation - Create new navigation property to operations for groups
-func (c TeamOperationClient) CreateTeamOperation(ctx context.Context, id beta.GroupId, input beta.TeamsAsyncOperation) (result CreateTeamOperationOperationResponse, err error) {
+func (c TeamOperationClient) CreateTeamOperation(ctx context.Context, id beta.GroupId, input beta.TeamsAsyncOperation, options CreateTeamOperationOperationOptions) (result CreateTeamOperationOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/team/operations", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/team/operations", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

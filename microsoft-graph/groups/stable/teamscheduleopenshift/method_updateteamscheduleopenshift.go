@@ -17,15 +17,44 @@ type UpdateTeamScheduleOpenShiftOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateTeamScheduleOpenShiftOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateTeamScheduleOpenShiftOperationOptions() UpdateTeamScheduleOpenShiftOperationOptions {
+	return UpdateTeamScheduleOpenShiftOperationOptions{}
+}
+
+func (o UpdateTeamScheduleOpenShiftOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateTeamScheduleOpenShiftOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateTeamScheduleOpenShiftOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateTeamScheduleOpenShift - Update the navigation property openShifts in groups
-func (c TeamScheduleOpenShiftClient) UpdateTeamScheduleOpenShift(ctx context.Context, id stable.GroupIdTeamScheduleOpenShiftId, input stable.OpenShift) (result UpdateTeamScheduleOpenShiftOperationResponse, err error) {
+func (c TeamScheduleOpenShiftClient) UpdateTeamScheduleOpenShift(ctx context.Context, id stable.GroupIdTeamScheduleOpenShiftId, input stable.OpenShift, options UpdateTeamScheduleOpenShiftOperationOptions) (result UpdateTeamScheduleOpenShiftOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

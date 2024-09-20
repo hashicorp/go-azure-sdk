@@ -19,15 +19,44 @@ type CreateTemplateMigratableToInstanceOperationResponse struct {
 	Model        *beta.DeviceManagementIntent
 }
 
+type CreateTemplateMigratableToInstanceOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateTemplateMigratableToInstanceOperationOptions() CreateTemplateMigratableToInstanceOperationOptions {
+	return CreateTemplateMigratableToInstanceOperationOptions{}
+}
+
+func (o CreateTemplateMigratableToInstanceOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateTemplateMigratableToInstanceOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateTemplateMigratableToInstanceOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateTemplateMigratableToInstance - Invoke action createInstance
-func (c TemplateMigratableToClient) CreateTemplateMigratableToInstance(ctx context.Context, id beta.DeviceManagementTemplateIdMigratableToId, input CreateTemplateMigratableToInstanceRequest) (result CreateTemplateMigratableToInstanceOperationResponse, err error) {
+func (c TemplateMigratableToClient) CreateTemplateMigratableToInstance(ctx context.Context, id beta.DeviceManagementTemplateIdMigratableToId, input CreateTemplateMigratableToInstanceRequest, options CreateTemplateMigratableToInstanceOperationOptions) (result CreateTemplateMigratableToInstanceOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/createInstance", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/createInstance", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

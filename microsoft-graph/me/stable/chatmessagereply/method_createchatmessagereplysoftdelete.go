@@ -18,16 +18,45 @@ type CreateChatMessageReplySoftDeleteOperationResponse struct {
 	OData        *odata.OData
 }
 
+type CreateChatMessageReplySoftDeleteOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateChatMessageReplySoftDeleteOperationOptions() CreateChatMessageReplySoftDeleteOperationOptions {
+	return CreateChatMessageReplySoftDeleteOperationOptions{}
+}
+
+func (o CreateChatMessageReplySoftDeleteOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateChatMessageReplySoftDeleteOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateChatMessageReplySoftDeleteOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateChatMessageReplySoftDelete - Invoke action softDelete. Delete a single chatMessage or a chat message reply in a
 // channel or a chat.
-func (c ChatMessageReplyClient) CreateChatMessageReplySoftDelete(ctx context.Context, id stable.MeChatIdMessageIdReplyId) (result CreateChatMessageReplySoftDeleteOperationResponse, err error) {
+func (c ChatMessageReplyClient) CreateChatMessageReplySoftDelete(ctx context.Context, id stable.MeChatIdMessageIdReplyId, options CreateChatMessageReplySoftDeleteOperationOptions) (result CreateChatMessageReplySoftDeleteOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/softDelete", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/softDelete", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

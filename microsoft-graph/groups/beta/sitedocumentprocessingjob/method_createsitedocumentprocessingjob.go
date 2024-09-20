@@ -19,15 +19,44 @@ type CreateSiteDocumentProcessingJobOperationResponse struct {
 	Model        *beta.DocumentProcessingJob
 }
 
+type CreateSiteDocumentProcessingJobOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateSiteDocumentProcessingJobOperationOptions() CreateSiteDocumentProcessingJobOperationOptions {
+	return CreateSiteDocumentProcessingJobOperationOptions{}
+}
+
+func (o CreateSiteDocumentProcessingJobOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateSiteDocumentProcessingJobOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateSiteDocumentProcessingJobOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateSiteDocumentProcessingJob - Create new navigation property to documentProcessingJobs for groups
-func (c SiteDocumentProcessingJobClient) CreateSiteDocumentProcessingJob(ctx context.Context, id beta.GroupIdSiteId, input beta.DocumentProcessingJob) (result CreateSiteDocumentProcessingJobOperationResponse, err error) {
+func (c SiteDocumentProcessingJobClient) CreateSiteDocumentProcessingJob(ctx context.Context, id beta.GroupIdSiteId, input beta.DocumentProcessingJob, options CreateSiteDocumentProcessingJobOperationOptions) (result CreateSiteDocumentProcessingJobOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/documentProcessingJobs", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/documentProcessingJobs", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

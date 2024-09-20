@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &MeAuthenticationOperationId{}
 
 func TestNewMeAuthenticationOperationID(t *testing.T) {
-	id := NewMeAuthenticationOperationID("longRunningOperationIdValue")
+	id := NewMeAuthenticationOperationID("longRunningOperationId")
 
-	if id.LongRunningOperationId != "longRunningOperationIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'LongRunningOperationId'", id.LongRunningOperationId, "longRunningOperationIdValue")
+	if id.LongRunningOperationId != "longRunningOperationId" {
+		t.Fatalf("Expected %q but got %q for Segment 'LongRunningOperationId'", id.LongRunningOperationId, "longRunningOperationId")
 	}
 }
 
 func TestFormatMeAuthenticationOperationID(t *testing.T) {
-	actual := NewMeAuthenticationOperationID("longRunningOperationIdValue").ID()
-	expected := "/me/authentication/operations/longRunningOperationIdValue"
+	actual := NewMeAuthenticationOperationID("longRunningOperationId").ID()
+	expected := "/me/authentication/operations/longRunningOperationId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -55,14 +55,14 @@ func TestParseMeAuthenticationOperationID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/me/authentication/operations/longRunningOperationIdValue",
+			Input: "/me/authentication/operations/longRunningOperationId",
 			Expected: &MeAuthenticationOperationId{
-				LongRunningOperationId: "longRunningOperationIdValue",
+				LongRunningOperationId: "longRunningOperationId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/authentication/operations/longRunningOperationIdValue/extra",
+			Input: "/me/authentication/operations/longRunningOperationId/extra",
 			Error: true,
 		},
 	}
@@ -131,26 +131,26 @@ func TestParseMeAuthenticationOperationIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/me/authentication/operations/longRunningOperationIdValue",
+			Input: "/me/authentication/operations/longRunningOperationId",
 			Expected: &MeAuthenticationOperationId{
-				LongRunningOperationId: "longRunningOperationIdValue",
+				LongRunningOperationId: "longRunningOperationId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/authentication/operations/longRunningOperationIdValue/extra",
+			Input: "/me/authentication/operations/longRunningOperationId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/aUtHeNtIcAtIoN/oPeRaTiOnS/lOnGrUnNiNgOpErAtIoNiDvAlUe",
+			Input: "/mE/aUtHeNtIcAtIoN/oPeRaTiOnS/lOnGrUnNiNgOpErAtIoNiD",
 			Expected: &MeAuthenticationOperationId{
-				LongRunningOperationId: "lOnGrUnNiNgOpErAtIoNiDvAlUe",
+				LongRunningOperationId: "lOnGrUnNiNgOpErAtIoNiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/mE/aUtHeNtIcAtIoN/oPeRaTiOnS/lOnGrUnNiNgOpErAtIoNiDvAlUe/extra",
+			Input: "/mE/aUtHeNtIcAtIoN/oPeRaTiOnS/lOnGrUnNiNgOpErAtIoNiD/extra",
 			Error: true,
 		},
 	}

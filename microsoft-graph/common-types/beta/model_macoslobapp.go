@@ -239,17 +239,62 @@ func (s MacOSLobApp) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &MacOSLobApp{}
 
 func (s *MacOSLobApp) UnmarshalJSON(bytes []byte) error {
-	type alias MacOSLobApp
-	var decoded alias
+
+	var decoded struct {
+		BuildNumber                     nullable.Type[string]        `json:"buildNumber,omitempty"`
+		BundleId                        nullable.Type[string]        `json:"bundleId,omitempty"`
+		ChildApps                       *[]MacOSLobChildApp          `json:"childApps,omitempty"`
+		IgnoreVersionDetection          *bool                        `json:"ignoreVersionDetection,omitempty"`
+		InstallAsManaged                *bool                        `json:"installAsManaged,omitempty"`
+		Md5Hash                         *[]string                    `json:"md5Hash,omitempty"`
+		Md5HashChunkSize                *int64                       `json:"md5HashChunkSize,omitempty"`
+		MinimumSupportedOperatingSystem *MacOSMinimumOperatingSystem `json:"minimumSupportedOperatingSystem,omitempty"`
+		VersionNumber                   nullable.Type[string]        `json:"versionNumber,omitempty"`
+		CommittedContentVersion         nullable.Type[string]        `json:"committedContentVersion,omitempty"`
+		ContentVersions                 *[]MobileAppContent          `json:"contentVersions,omitempty"`
+		FileName                        nullable.Type[string]        `json:"fileName,omitempty"`
+		Size                            *int64                       `json:"size,omitempty"`
+		Assignments                     *[]MobileAppAssignment       `json:"assignments,omitempty"`
+		Categories                      *[]MobileAppCategory         `json:"categories,omitempty"`
+		CreatedDateTime                 *string                      `json:"createdDateTime,omitempty"`
+		DependentAppCount               *int64                       `json:"dependentAppCount,omitempty"`
+		Description                     nullable.Type[string]        `json:"description,omitempty"`
+		Developer                       nullable.Type[string]        `json:"developer,omitempty"`
+		DisplayName                     nullable.Type[string]        `json:"displayName,omitempty"`
+		InformationUrl                  nullable.Type[string]        `json:"informationUrl,omitempty"`
+		IsAssigned                      *bool                        `json:"isAssigned,omitempty"`
+		IsFeatured                      *bool                        `json:"isFeatured,omitempty"`
+		LargeIcon                       *MimeContent                 `json:"largeIcon,omitempty"`
+		LastModifiedDateTime            *string                      `json:"lastModifiedDateTime,omitempty"`
+		Notes                           nullable.Type[string]        `json:"notes,omitempty"`
+		Owner                           nullable.Type[string]        `json:"owner,omitempty"`
+		PrivacyInformationUrl           nullable.Type[string]        `json:"privacyInformationUrl,omitempty"`
+		Publisher                       nullable.Type[string]        `json:"publisher,omitempty"`
+		PublishingState                 *MobileAppPublishingState    `json:"publishingState,omitempty"`
+		Relationships                   *[]MobileAppRelationship     `json:"relationships,omitempty"`
+		RoleScopeTagIds                 *[]string                    `json:"roleScopeTagIds,omitempty"`
+		SupersededAppCount              *int64                       `json:"supersededAppCount,omitempty"`
+		SupersedingAppCount             *int64                       `json:"supersedingAppCount,omitempty"`
+		UploadState                     *int64                       `json:"uploadState,omitempty"`
+		Id                              *string                      `json:"id,omitempty"`
+		ODataId                         *string                      `json:"@odata.id,omitempty"`
+		ODataType                       *string                      `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into MacOSLobApp: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
-	s.Assignments = decoded.Assignments
 	s.BuildNumber = decoded.BuildNumber
 	s.BundleId = decoded.BundleId
-	s.Categories = decoded.Categories
 	s.ChildApps = decoded.ChildApps
+	s.IgnoreVersionDetection = decoded.IgnoreVersionDetection
+	s.InstallAsManaged = decoded.InstallAsManaged
+	s.Md5Hash = decoded.Md5Hash
+	s.Md5HashChunkSize = decoded.Md5HashChunkSize
+	s.MinimumSupportedOperatingSystem = decoded.MinimumSupportedOperatingSystem
+	s.VersionNumber = decoded.VersionNumber
+	s.Assignments = decoded.Assignments
+	s.Categories = decoded.Categories
 	s.CommittedContentVersion = decoded.CommittedContentVersion
 	s.ContentVersions = decoded.ContentVersions
 	s.CreatedDateTime = decoded.CreatedDateTime
@@ -259,16 +304,11 @@ func (s *MacOSLobApp) UnmarshalJSON(bytes []byte) error {
 	s.DisplayName = decoded.DisplayName
 	s.FileName = decoded.FileName
 	s.Id = decoded.Id
-	s.IgnoreVersionDetection = decoded.IgnoreVersionDetection
 	s.InformationUrl = decoded.InformationUrl
-	s.InstallAsManaged = decoded.InstallAsManaged
 	s.IsAssigned = decoded.IsAssigned
 	s.IsFeatured = decoded.IsFeatured
 	s.LargeIcon = decoded.LargeIcon
 	s.LastModifiedDateTime = decoded.LastModifiedDateTime
-	s.Md5Hash = decoded.Md5Hash
-	s.Md5HashChunkSize = decoded.Md5HashChunkSize
-	s.MinimumSupportedOperatingSystem = decoded.MinimumSupportedOperatingSystem
 	s.Notes = decoded.Notes
 	s.ODataId = decoded.ODataId
 	s.ODataType = decoded.ODataType
@@ -281,7 +321,6 @@ func (s *MacOSLobApp) UnmarshalJSON(bytes []byte) error {
 	s.SupersededAppCount = decoded.SupersededAppCount
 	s.SupersedingAppCount = decoded.SupersedingAppCount
 	s.UploadState = decoded.UploadState
-	s.VersionNumber = decoded.VersionNumber
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -304,5 +343,6 @@ func (s *MacOSLobApp) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Relationships = &output
 	}
+
 	return nil
 }

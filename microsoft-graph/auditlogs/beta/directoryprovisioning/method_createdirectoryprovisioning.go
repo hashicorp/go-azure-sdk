@@ -18,15 +18,44 @@ type CreateDirectoryProvisioningOperationResponse struct {
 	Model        *beta.ProvisioningObjectSummary
 }
 
+type CreateDirectoryProvisioningOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateDirectoryProvisioningOperationOptions() CreateDirectoryProvisioningOperationOptions {
+	return CreateDirectoryProvisioningOperationOptions{}
+}
+
+func (o CreateDirectoryProvisioningOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateDirectoryProvisioningOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateDirectoryProvisioningOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateDirectoryProvisioning - Create new navigation property to directoryProvisioning for auditLogs
-func (c DirectoryProvisioningClient) CreateDirectoryProvisioning(ctx context.Context, input beta.ProvisioningObjectSummary) (result CreateDirectoryProvisioningOperationResponse, err error) {
+func (c DirectoryProvisioningClient) CreateDirectoryProvisioning(ctx context.Context, input beta.ProvisioningObjectSummary, options CreateDirectoryProvisioningOperationOptions) (result CreateDirectoryProvisioningOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/auditLogs/directoryProvisioning",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/auditLogs/directoryProvisioning",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

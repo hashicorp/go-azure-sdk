@@ -18,15 +18,44 @@ type UpdateSiteInformationProtectionPolicyOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateSiteInformationProtectionPolicyOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateSiteInformationProtectionPolicyOperationOptions() UpdateSiteInformationProtectionPolicyOperationOptions {
+	return UpdateSiteInformationProtectionPolicyOperationOptions{}
+}
+
+func (o UpdateSiteInformationProtectionPolicyOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateSiteInformationProtectionPolicyOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateSiteInformationProtectionPolicyOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateSiteInformationProtectionPolicy - Update the navigation property policy in groups
-func (c SiteInformationProtectionPolicyClient) UpdateSiteInformationProtectionPolicy(ctx context.Context, id beta.GroupIdSiteId, input beta.InformationProtectionPolicy) (result UpdateSiteInformationProtectionPolicyOperationResponse, err error) {
+func (c SiteInformationProtectionPolicyClient) UpdateSiteInformationProtectionPolicy(ctx context.Context, id beta.GroupIdSiteId, input beta.InformationProtectionPolicy, options UpdateSiteInformationProtectionPolicyOperationOptions) (result UpdateSiteInformationProtectionPolicyOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       fmt.Sprintf("%s/informationProtection/policy", id.ID()),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/informationProtection/policy", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

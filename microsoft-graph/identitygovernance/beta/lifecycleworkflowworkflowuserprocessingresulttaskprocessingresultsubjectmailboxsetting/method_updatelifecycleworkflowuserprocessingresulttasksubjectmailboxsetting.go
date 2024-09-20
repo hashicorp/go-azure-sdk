@@ -18,15 +18,44 @@ type UpdateLifecycleWorkflowUserProcessingResultTaskSubjectMailboxSettingOperati
 	OData        *odata.OData
 }
 
+type UpdateLifecycleWorkflowUserProcessingResultTaskSubjectMailboxSettingOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateLifecycleWorkflowUserProcessingResultTaskSubjectMailboxSettingOperationOptions() UpdateLifecycleWorkflowUserProcessingResultTaskSubjectMailboxSettingOperationOptions {
+	return UpdateLifecycleWorkflowUserProcessingResultTaskSubjectMailboxSettingOperationOptions{}
+}
+
+func (o UpdateLifecycleWorkflowUserProcessingResultTaskSubjectMailboxSettingOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateLifecycleWorkflowUserProcessingResultTaskSubjectMailboxSettingOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateLifecycleWorkflowUserProcessingResultTaskSubjectMailboxSettingOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateLifecycleWorkflowUserProcessingResultTaskSubjectMailboxSetting - Update property mailboxSettings value.
-func (c LifecycleWorkflowWorkflowUserProcessingResultTaskProcessingResultSubjectMailboxSettingClient) UpdateLifecycleWorkflowUserProcessingResultTaskSubjectMailboxSetting(ctx context.Context, id beta.IdentityGovernanceLifecycleWorkflowWorkflowIdUserProcessingResultIdTaskProcessingResultId, input beta.MailboxSettings) (result UpdateLifecycleWorkflowUserProcessingResultTaskSubjectMailboxSettingOperationResponse, err error) {
+func (c LifecycleWorkflowWorkflowUserProcessingResultTaskProcessingResultSubjectMailboxSettingClient) UpdateLifecycleWorkflowUserProcessingResultTaskSubjectMailboxSetting(ctx context.Context, id beta.IdentityGovernanceLifecycleWorkflowWorkflowIdUserProcessingResultIdTaskProcessingResultId, input beta.MailboxSettings, options UpdateLifecycleWorkflowUserProcessingResultTaskSubjectMailboxSettingOperationOptions) (result UpdateLifecycleWorkflowUserProcessingResultTaskSubjectMailboxSettingOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       fmt.Sprintf("%s/subject/mailboxSettings", id.ID()),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/subject/mailboxSettings", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

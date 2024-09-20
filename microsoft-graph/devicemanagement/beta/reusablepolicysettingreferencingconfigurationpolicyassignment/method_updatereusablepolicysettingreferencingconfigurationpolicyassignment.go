@@ -17,16 +17,45 @@ type UpdateReusablePolicySettingReferencingConfigurationPolicyAssignmentOperatio
 	OData        *odata.OData
 }
 
+type UpdateReusablePolicySettingReferencingConfigurationPolicyAssignmentOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateReusablePolicySettingReferencingConfigurationPolicyAssignmentOperationOptions() UpdateReusablePolicySettingReferencingConfigurationPolicyAssignmentOperationOptions {
+	return UpdateReusablePolicySettingReferencingConfigurationPolicyAssignmentOperationOptions{}
+}
+
+func (o UpdateReusablePolicySettingReferencingConfigurationPolicyAssignmentOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateReusablePolicySettingReferencingConfigurationPolicyAssignmentOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateReusablePolicySettingReferencingConfigurationPolicyAssignmentOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateReusablePolicySettingReferencingConfigurationPolicyAssignment - Update the navigation property assignments in
 // deviceManagement
-func (c ReusablePolicySettingReferencingConfigurationPolicyAssignmentClient) UpdateReusablePolicySettingReferencingConfigurationPolicyAssignment(ctx context.Context, id beta.DeviceManagementReusablePolicySettingIdReferencingConfigurationPolicyIdAssignmentId, input beta.DeviceManagementConfigurationPolicyAssignment) (result UpdateReusablePolicySettingReferencingConfigurationPolicyAssignmentOperationResponse, err error) {
+func (c ReusablePolicySettingReferencingConfigurationPolicyAssignmentClient) UpdateReusablePolicySettingReferencingConfigurationPolicyAssignment(ctx context.Context, id beta.DeviceManagementReusablePolicySettingIdReferencingConfigurationPolicyIdAssignmentId, input beta.DeviceManagementConfigurationPolicyAssignment, options UpdateReusablePolicySettingReferencingConfigurationPolicyAssignmentOperationOptions) (result UpdateReusablePolicySettingReferencingConfigurationPolicyAssignmentOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

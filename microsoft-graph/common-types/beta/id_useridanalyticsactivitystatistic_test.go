@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &UserIdAnalyticsActivityStatisticId{}
 
 func TestNewUserIdAnalyticsActivityStatisticID(t *testing.T) {
-	id := NewUserIdAnalyticsActivityStatisticID("userIdValue", "activityStatisticsIdValue")
+	id := NewUserIdAnalyticsActivityStatisticID("userId", "activityStatisticsId")
 
-	if id.UserId != "userIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'UserId'", id.UserId, "userIdValue")
+	if id.UserId != "userId" {
+		t.Fatalf("Expected %q but got %q for Segment 'UserId'", id.UserId, "userId")
 	}
 
-	if id.ActivityStatisticsId != "activityStatisticsIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ActivityStatisticsId'", id.ActivityStatisticsId, "activityStatisticsIdValue")
+	if id.ActivityStatisticsId != "activityStatisticsId" {
+		t.Fatalf("Expected %q but got %q for Segment 'ActivityStatisticsId'", id.ActivityStatisticsId, "activityStatisticsId")
 	}
 }
 
 func TestFormatUserIdAnalyticsActivityStatisticID(t *testing.T) {
-	actual := NewUserIdAnalyticsActivityStatisticID("userIdValue", "activityStatisticsIdValue").ID()
-	expected := "/users/userIdValue/analytics/activityStatistics/activityStatisticsIdValue"
+	actual := NewUserIdAnalyticsActivityStatisticID("userId", "activityStatisticsId").ID()
+	expected := "/users/userId/analytics/activityStatistics/activityStatisticsId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -49,30 +49,30 @@ func TestParseUserIdAnalyticsActivityStatisticID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue",
+			Input: "/users/userId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/analytics",
+			Input: "/users/userId/analytics",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/analytics/activityStatistics",
+			Input: "/users/userId/analytics/activityStatistics",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/users/userIdValue/analytics/activityStatistics/activityStatisticsIdValue",
+			Input: "/users/userId/analytics/activityStatistics/activityStatisticsId",
 			Expected: &UserIdAnalyticsActivityStatisticId{
-				UserId:               "userIdValue",
-				ActivityStatisticsId: "activityStatisticsIdValue",
+				UserId:               "userId",
+				ActivityStatisticsId: "activityStatisticsId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/users/userIdValue/analytics/activityStatistics/activityStatisticsIdValue/extra",
+			Input: "/users/userId/analytics/activityStatistics/activityStatisticsId/extra",
 			Error: true,
 		},
 	}
@@ -125,58 +125,58 @@ func TestParseUserIdAnalyticsActivityStatisticIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue",
+			Input: "/users/userId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe",
+			Input: "/uSeRs/uSeRiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/analytics",
+			Input: "/users/userId/analytics",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/aNaLyTiCs",
+			Input: "/uSeRs/uSeRiD/aNaLyTiCs",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/analytics/activityStatistics",
+			Input: "/users/userId/analytics/activityStatistics",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/aNaLyTiCs/aCtIvItYsTaTiStIcS",
+			Input: "/uSeRs/uSeRiD/aNaLyTiCs/aCtIvItYsTaTiStIcS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/users/userIdValue/analytics/activityStatistics/activityStatisticsIdValue",
+			Input: "/users/userId/analytics/activityStatistics/activityStatisticsId",
 			Expected: &UserIdAnalyticsActivityStatisticId{
-				UserId:               "userIdValue",
-				ActivityStatisticsId: "activityStatisticsIdValue",
+				UserId:               "userId",
+				ActivityStatisticsId: "activityStatisticsId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/users/userIdValue/analytics/activityStatistics/activityStatisticsIdValue/extra",
+			Input: "/users/userId/analytics/activityStatistics/activityStatisticsId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/aNaLyTiCs/aCtIvItYsTaTiStIcS/aCtIvItYsTaTiStIcSiDvAlUe",
+			Input: "/uSeRs/uSeRiD/aNaLyTiCs/aCtIvItYsTaTiStIcS/aCtIvItYsTaTiStIcSiD",
 			Expected: &UserIdAnalyticsActivityStatisticId{
-				UserId:               "uSeRiDvAlUe",
-				ActivityStatisticsId: "aCtIvItYsTaTiStIcSiDvAlUe",
+				UserId:               "uSeRiD",
+				ActivityStatisticsId: "aCtIvItYsTaTiStIcSiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/aNaLyTiCs/aCtIvItYsTaTiStIcS/aCtIvItYsTaTiStIcSiDvAlUe/extra",
+			Input: "/uSeRs/uSeRiD/aNaLyTiCs/aCtIvItYsTaTiStIcS/aCtIvItYsTaTiStIcSiD/extra",
 			Error: true,
 		},
 	}

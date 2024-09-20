@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &UserIdActivityId{}
 
 func TestNewUserIdActivityID(t *testing.T) {
-	id := NewUserIdActivityID("userIdValue", "userActivityIdValue")
+	id := NewUserIdActivityID("userId", "userActivityId")
 
-	if id.UserId != "userIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'UserId'", id.UserId, "userIdValue")
+	if id.UserId != "userId" {
+		t.Fatalf("Expected %q but got %q for Segment 'UserId'", id.UserId, "userId")
 	}
 
-	if id.UserActivityId != "userActivityIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'UserActivityId'", id.UserActivityId, "userActivityIdValue")
+	if id.UserActivityId != "userActivityId" {
+		t.Fatalf("Expected %q but got %q for Segment 'UserActivityId'", id.UserActivityId, "userActivityId")
 	}
 }
 
 func TestFormatUserIdActivityID(t *testing.T) {
-	actual := NewUserIdActivityID("userIdValue", "userActivityIdValue").ID()
-	expected := "/users/userIdValue/activities/userActivityIdValue"
+	actual := NewUserIdActivityID("userId", "userActivityId").ID()
+	expected := "/users/userId/activities/userActivityId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -49,25 +49,25 @@ func TestParseUserIdActivityID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue",
+			Input: "/users/userId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/activities",
+			Input: "/users/userId/activities",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/users/userIdValue/activities/userActivityIdValue",
+			Input: "/users/userId/activities/userActivityId",
 			Expected: &UserIdActivityId{
-				UserId:         "userIdValue",
-				UserActivityId: "userActivityIdValue",
+				UserId:         "userId",
+				UserActivityId: "userActivityId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/users/userIdValue/activities/userActivityIdValue/extra",
+			Input: "/users/userId/activities/userActivityId/extra",
 			Error: true,
 		},
 	}
@@ -120,48 +120,48 @@ func TestParseUserIdActivityIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue",
+			Input: "/users/userId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe",
+			Input: "/uSeRs/uSeRiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/activities",
+			Input: "/users/userId/activities",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/aCtIvItIeS",
+			Input: "/uSeRs/uSeRiD/aCtIvItIeS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/users/userIdValue/activities/userActivityIdValue",
+			Input: "/users/userId/activities/userActivityId",
 			Expected: &UserIdActivityId{
-				UserId:         "userIdValue",
-				UserActivityId: "userActivityIdValue",
+				UserId:         "userId",
+				UserActivityId: "userActivityId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/users/userIdValue/activities/userActivityIdValue/extra",
+			Input: "/users/userId/activities/userActivityId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/aCtIvItIeS/uSeRaCtIvItYiDvAlUe",
+			Input: "/uSeRs/uSeRiD/aCtIvItIeS/uSeRaCtIvItYiD",
 			Expected: &UserIdActivityId{
-				UserId:         "uSeRiDvAlUe",
-				UserActivityId: "uSeRaCtIvItYiDvAlUe",
+				UserId:         "uSeRiD",
+				UserActivityId: "uSeRaCtIvItYiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/aCtIvItIeS/uSeRaCtIvItYiDvAlUe/extra",
+			Input: "/uSeRs/uSeRiD/aCtIvItIeS/uSeRaCtIvItYiD/extra",
 			Error: true,
 		},
 	}

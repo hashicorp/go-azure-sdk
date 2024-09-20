@@ -136,10 +136,35 @@ func (s OnPremisesPublishing) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &OnPremisesPublishing{}
 
 func (s *OnPremisesPublishing) UnmarshalJSON(bytes []byte) error {
-	type alias OnPremisesPublishing
-	var decoded alias
+
+	var decoded struct {
+		AlternateUrl                             nullable.Type[string]                     `json:"alternateUrl,omitempty"`
+		ApplicationServerTimeout                 nullable.Type[string]                     `json:"applicationServerTimeout,omitempty"`
+		ApplicationType                          nullable.Type[string]                     `json:"applicationType,omitempty"`
+		ExternalAuthenticationType               *ExternalAuthenticationType               `json:"externalAuthenticationType,omitempty"`
+		ExternalUrl                              nullable.Type[string]                     `json:"externalUrl,omitempty"`
+		InternalUrl                              nullable.Type[string]                     `json:"internalUrl,omitempty"`
+		IsAccessibleViaZTNAClient                nullable.Type[bool]                       `json:"isAccessibleViaZTNAClient,omitempty"`
+		IsBackendCertificateValidationEnabled    nullable.Type[bool]                       `json:"isBackendCertificateValidationEnabled,omitempty"`
+		IsDnsResolutionEnabled                   nullable.Type[bool]                       `json:"isDnsResolutionEnabled,omitempty"`
+		IsHttpOnlyCookieEnabled                  nullable.Type[bool]                       `json:"isHttpOnlyCookieEnabled,omitempty"`
+		IsOnPremPublishingEnabled                nullable.Type[bool]                       `json:"isOnPremPublishingEnabled,omitempty"`
+		IsPersistentCookieEnabled                nullable.Type[bool]                       `json:"isPersistentCookieEnabled,omitempty"`
+		IsSecureCookieEnabled                    nullable.Type[bool]                       `json:"isSecureCookieEnabled,omitempty"`
+		IsStateSessionEnabled                    nullable.Type[bool]                       `json:"isStateSessionEnabled,omitempty"`
+		IsTranslateHostHeaderEnabled             nullable.Type[bool]                       `json:"isTranslateHostHeaderEnabled,omitempty"`
+		IsTranslateLinksInBodyEnabled            nullable.Type[bool]                       `json:"isTranslateLinksInBodyEnabled,omitempty"`
+		ODataId                                  *string                                   `json:"@odata.id,omitempty"`
+		ODataType                                *string                                   `json:"@odata.type,omitempty"`
+		OnPremisesApplicationSegments            *[]OnPremisesApplicationSegment           `json:"onPremisesApplicationSegments,omitempty"`
+		SingleSignOnSettings                     *OnPremisesPublishingSingleSignOn         `json:"singleSignOnSettings,omitempty"`
+		UseAlternateUrlForTranslationAndRedirect nullable.Type[bool]                       `json:"useAlternateUrlForTranslationAndRedirect,omitempty"`
+		VerifiedCustomDomainCertificatesMetadata *VerifiedCustomDomainCertificatesMetadata `json:"verifiedCustomDomainCertificatesMetadata,omitempty"`
+		VerifiedCustomDomainKeyCredential        *KeyCredential                            `json:"verifiedCustomDomainKeyCredential,omitempty"`
+		VerifiedCustomDomainPasswordCredential   *PasswordCredential                       `json:"verifiedCustomDomainPasswordCredential,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into OnPremisesPublishing: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.AlternateUrl = decoded.AlternateUrl
@@ -179,5 +204,6 @@ func (s *OnPremisesPublishing) UnmarshalJSON(bytes []byte) error {
 		}
 		s.SegmentsConfiguration = impl
 	}
+
 	return nil
 }

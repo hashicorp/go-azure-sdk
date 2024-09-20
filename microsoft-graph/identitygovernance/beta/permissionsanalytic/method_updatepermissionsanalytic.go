@@ -17,15 +17,44 @@ type UpdatePermissionsAnalyticOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdatePermissionsAnalyticOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdatePermissionsAnalyticOperationOptions() UpdatePermissionsAnalyticOperationOptions {
+	return UpdatePermissionsAnalyticOperationOptions{}
+}
+
+func (o UpdatePermissionsAnalyticOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdatePermissionsAnalyticOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdatePermissionsAnalyticOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdatePermissionsAnalytic - Update the navigation property permissionsAnalytics in identityGovernance
-func (c PermissionsAnalyticClient) UpdatePermissionsAnalytic(ctx context.Context, input beta.PermissionsAnalyticsAggregation) (result UpdatePermissionsAnalyticOperationResponse, err error) {
+func (c PermissionsAnalyticClient) UpdatePermissionsAnalytic(ctx context.Context, input beta.PermissionsAnalyticsAggregation, options UpdatePermissionsAnalyticOperationOptions) (result UpdatePermissionsAnalyticOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       "/identityGovernance/permissionsAnalytics",
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          "/identityGovernance/permissionsAnalytics",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -198,10 +198,38 @@ func (s AndroidForWorkGmailEasConfiguration) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &AndroidForWorkGmailEasConfiguration{}
 
 func (s *AndroidForWorkGmailEasConfiguration) UnmarshalJSON(bytes []byte) error {
-	type alias AndroidForWorkGmailEasConfiguration
-	var decoded alias
+
+	var decoded struct {
+		AuthenticationMethod                        *EasAuthenticationMethod                     `json:"authenticationMethod,omitempty"`
+		DurationOfEmailToSync                       *EmailSyncDuration                           `json:"durationOfEmailToSync,omitempty"`
+		EmailAddressSource                          *UserEmailSource                             `json:"emailAddressSource,omitempty"`
+		HostName                                    *string                                      `json:"hostName,omitempty"`
+		IdentityCertificate                         *AndroidForWorkCertificateProfileBase        `json:"identityCertificate,omitempty"`
+		RequireSsl                                  *bool                                        `json:"requireSsl,omitempty"`
+		UsernameSource                              *AndroidUsernameSource                       `json:"usernameSource,omitempty"`
+		Assignments                                 *[]DeviceConfigurationAssignment             `json:"assignments,omitempty"`
+		CreatedDateTime                             *string                                      `json:"createdDateTime,omitempty"`
+		Description                                 nullable.Type[string]                        `json:"description,omitempty"`
+		DeviceManagementApplicabilityRuleDeviceMode *DeviceManagementApplicabilityRuleDeviceMode `json:"deviceManagementApplicabilityRuleDeviceMode,omitempty"`
+		DeviceManagementApplicabilityRuleOsEdition  *DeviceManagementApplicabilityRuleOsEdition  `json:"deviceManagementApplicabilityRuleOsEdition,omitempty"`
+		DeviceManagementApplicabilityRuleOsVersion  *DeviceManagementApplicabilityRuleOsVersion  `json:"deviceManagementApplicabilityRuleOsVersion,omitempty"`
+		DeviceSettingStateSummaries                 *[]SettingStateDeviceSummary                 `json:"deviceSettingStateSummaries,omitempty"`
+		DeviceStatusOverview                        *DeviceConfigurationDeviceOverview           `json:"deviceStatusOverview,omitempty"`
+		DeviceStatuses                              *[]DeviceConfigurationDeviceStatus           `json:"deviceStatuses,omitempty"`
+		DisplayName                                 *string                                      `json:"displayName,omitempty"`
+		GroupAssignments                            *[]DeviceConfigurationGroupAssignment        `json:"groupAssignments,omitempty"`
+		LastModifiedDateTime                        *string                                      `json:"lastModifiedDateTime,omitempty"`
+		RoleScopeTagIds                             *[]string                                    `json:"roleScopeTagIds,omitempty"`
+		SupportsScopeTags                           *bool                                        `json:"supportsScopeTags,omitempty"`
+		UserStatusOverview                          *DeviceConfigurationUserOverview             `json:"userStatusOverview,omitempty"`
+		UserStatuses                                *[]DeviceConfigurationUserStatus             `json:"userStatuses,omitempty"`
+		Version                                     *int64                                       `json:"version,omitempty"`
+		Id                                          *string                                      `json:"id,omitempty"`
+		ODataId                                     *string                                      `json:"@odata.id,omitempty"`
+		ODataType                                   *string                                      `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into AndroidForWorkGmailEasConfiguration: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.Assignments = decoded.Assignments
@@ -243,5 +271,6 @@ func (s *AndroidForWorkGmailEasConfiguration) UnmarshalJSON(bytes []byte) error 
 		}
 		s.IdentityCertificate = &impl
 	}
+
 	return nil
 }

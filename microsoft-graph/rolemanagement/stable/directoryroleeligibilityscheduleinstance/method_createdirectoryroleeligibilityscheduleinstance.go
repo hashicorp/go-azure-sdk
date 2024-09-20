@@ -18,16 +18,45 @@ type CreateDirectoryRoleEligibilityScheduleInstanceOperationResponse struct {
 	Model        *stable.UnifiedRoleEligibilityScheduleInstance
 }
 
+type CreateDirectoryRoleEligibilityScheduleInstanceOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateDirectoryRoleEligibilityScheduleInstanceOperationOptions() CreateDirectoryRoleEligibilityScheduleInstanceOperationOptions {
+	return CreateDirectoryRoleEligibilityScheduleInstanceOperationOptions{}
+}
+
+func (o CreateDirectoryRoleEligibilityScheduleInstanceOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateDirectoryRoleEligibilityScheduleInstanceOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateDirectoryRoleEligibilityScheduleInstanceOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateDirectoryRoleEligibilityScheduleInstance - Create new navigation property to roleEligibilityScheduleInstances
 // for roleManagement
-func (c DirectoryRoleEligibilityScheduleInstanceClient) CreateDirectoryRoleEligibilityScheduleInstance(ctx context.Context, input stable.UnifiedRoleEligibilityScheduleInstance) (result CreateDirectoryRoleEligibilityScheduleInstanceOperationResponse, err error) {
+func (c DirectoryRoleEligibilityScheduleInstanceClient) CreateDirectoryRoleEligibilityScheduleInstance(ctx context.Context, input stable.UnifiedRoleEligibilityScheduleInstance, options CreateDirectoryRoleEligibilityScheduleInstanceOperationOptions) (result CreateDirectoryRoleEligibilityScheduleInstanceOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/roleManagement/directory/roleEligibilityScheduleInstances",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/roleManagement/directory/roleEligibilityScheduleInstances",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

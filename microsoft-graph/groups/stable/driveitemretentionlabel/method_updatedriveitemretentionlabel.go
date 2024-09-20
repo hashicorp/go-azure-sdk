@@ -18,15 +18,44 @@ type UpdateDriveItemRetentionLabelOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateDriveItemRetentionLabelOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateDriveItemRetentionLabelOperationOptions() UpdateDriveItemRetentionLabelOperationOptions {
+	return UpdateDriveItemRetentionLabelOperationOptions{}
+}
+
+func (o UpdateDriveItemRetentionLabelOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateDriveItemRetentionLabelOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateDriveItemRetentionLabelOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateDriveItemRetentionLabel - Update the navigation property retentionLabel in groups
-func (c DriveItemRetentionLabelClient) UpdateDriveItemRetentionLabel(ctx context.Context, id stable.GroupIdDriveIdItemId, input stable.ItemRetentionLabel) (result UpdateDriveItemRetentionLabelOperationResponse, err error) {
+func (c DriveItemRetentionLabelClient) UpdateDriveItemRetentionLabel(ctx context.Context, id stable.GroupIdDriveIdItemId, input stable.ItemRetentionLabel, options UpdateDriveItemRetentionLabelOperationOptions) (result UpdateDriveItemRetentionLabelOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       fmt.Sprintf("%s/retentionLabel", id.ID()),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/retentionLabel", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

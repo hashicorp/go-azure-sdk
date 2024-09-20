@@ -93,7 +93,7 @@ func (id DeviceManagementRoleScopeTagId) Segments() []resourceids.Segment {
 	return []resourceids.Segment{
 		resourceids.StaticSegment("deviceManagement", "deviceManagement", "deviceManagement"),
 		resourceids.StaticSegment("roleScopeTags", "roleScopeTags", "roleScopeTags"),
-		resourceids.UserSpecifiedSegment("roleScopeTagId", "roleScopeTagIdValue"),
+		resourceids.UserSpecifiedSegment("roleScopeTagId", "roleScopeTagId"),
 	}
 }
 

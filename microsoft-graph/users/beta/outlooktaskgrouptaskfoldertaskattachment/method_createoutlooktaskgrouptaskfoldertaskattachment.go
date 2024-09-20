@@ -20,15 +20,44 @@ type CreateOutlookTaskGroupTaskFolderTaskAttachmentOperationResponse struct {
 	Model        beta.Attachment
 }
 
+type CreateOutlookTaskGroupTaskFolderTaskAttachmentOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateOutlookTaskGroupTaskFolderTaskAttachmentOperationOptions() CreateOutlookTaskGroupTaskFolderTaskAttachmentOperationOptions {
+	return CreateOutlookTaskGroupTaskFolderTaskAttachmentOperationOptions{}
+}
+
+func (o CreateOutlookTaskGroupTaskFolderTaskAttachmentOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateOutlookTaskGroupTaskFolderTaskAttachmentOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateOutlookTaskGroupTaskFolderTaskAttachmentOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateOutlookTaskGroupTaskFolderTaskAttachment - Create new navigation property to attachments for users
-func (c OutlookTaskGroupTaskFolderTaskAttachmentClient) CreateOutlookTaskGroupTaskFolderTaskAttachment(ctx context.Context, id beta.UserIdOutlookTaskGroupIdTaskFolderIdTaskId, input beta.Attachment) (result CreateOutlookTaskGroupTaskFolderTaskAttachmentOperationResponse, err error) {
+func (c OutlookTaskGroupTaskFolderTaskAttachmentClient) CreateOutlookTaskGroupTaskFolderTaskAttachment(ctx context.Context, id beta.UserIdOutlookTaskGroupIdTaskFolderIdTaskId, input beta.Attachment, options CreateOutlookTaskGroupTaskFolderTaskAttachmentOperationOptions) (result CreateOutlookTaskGroupTaskFolderTaskAttachmentOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/attachments", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/attachments", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

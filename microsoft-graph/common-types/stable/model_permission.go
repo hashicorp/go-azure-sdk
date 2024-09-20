@@ -106,24 +106,38 @@ func (s Permission) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &Permission{}
 
 func (s *Permission) UnmarshalJSON(bytes []byte) error {
-	type alias Permission
-	var decoded alias
+
+	var decoded struct {
+		ExpirationDateTime    nullable.Type[string]    `json:"expirationDateTime,omitempty"`
+		GrantedToIdentities   *[]IdentitySet           `json:"grantedToIdentities,omitempty"`
+		GrantedToIdentitiesV2 *[]SharePointIdentitySet `json:"grantedToIdentitiesV2,omitempty"`
+		GrantedToV2           *SharePointIdentitySet   `json:"grantedToV2,omitempty"`
+		HasPassword           nullable.Type[bool]      `json:"hasPassword,omitempty"`
+		InheritedFrom         *ItemReference           `json:"inheritedFrom,omitempty"`
+		Invitation            *SharingInvitation       `json:"invitation,omitempty"`
+		Link                  *SharingLink             `json:"link,omitempty"`
+		Roles                 *[]string                `json:"roles,omitempty"`
+		ShareId               nullable.Type[string]    `json:"shareId,omitempty"`
+		Id                    *string                  `json:"id,omitempty"`
+		ODataId               *string                  `json:"@odata.id,omitempty"`
+		ODataType             *string                  `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into Permission: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.ExpirationDateTime = decoded.ExpirationDateTime
 	s.GrantedToIdentitiesV2 = decoded.GrantedToIdentitiesV2
 	s.GrantedToV2 = decoded.GrantedToV2
 	s.HasPassword = decoded.HasPassword
-	s.Id = decoded.Id
 	s.InheritedFrom = decoded.InheritedFrom
 	s.Invitation = decoded.Invitation
 	s.Link = decoded.Link
-	s.ODataId = decoded.ODataId
-	s.ODataType = decoded.ODataType
 	s.Roles = decoded.Roles
 	s.ShareId = decoded.ShareId
+	s.Id = decoded.Id
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -154,5 +168,6 @@ func (s *Permission) UnmarshalJSON(bytes []byte) error {
 		}
 		s.GrantedToIdentities = &output
 	}
+
 	return nil
 }

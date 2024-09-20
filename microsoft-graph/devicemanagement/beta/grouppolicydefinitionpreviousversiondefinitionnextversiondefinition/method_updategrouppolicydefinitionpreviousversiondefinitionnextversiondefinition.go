@@ -18,16 +18,45 @@ type UpdateGroupPolicyDefinitionPreviousVersionDefinitionNextVersionDefinitionOp
 	OData        *odata.OData
 }
 
+type UpdateGroupPolicyDefinitionPreviousVersionDefinitionNextVersionDefinitionOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateGroupPolicyDefinitionPreviousVersionDefinitionNextVersionDefinitionOperationOptions() UpdateGroupPolicyDefinitionPreviousVersionDefinitionNextVersionDefinitionOperationOptions {
+	return UpdateGroupPolicyDefinitionPreviousVersionDefinitionNextVersionDefinitionOperationOptions{}
+}
+
+func (o UpdateGroupPolicyDefinitionPreviousVersionDefinitionNextVersionDefinitionOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateGroupPolicyDefinitionPreviousVersionDefinitionNextVersionDefinitionOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateGroupPolicyDefinitionPreviousVersionDefinitionNextVersionDefinitionOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateGroupPolicyDefinitionPreviousVersionDefinitionNextVersionDefinition - Update the navigation property
 // nextVersionDefinition in deviceManagement
-func (c GroupPolicyDefinitionPreviousVersionDefinitionNextVersionDefinitionClient) UpdateGroupPolicyDefinitionPreviousVersionDefinitionNextVersionDefinition(ctx context.Context, id beta.DeviceManagementGroupPolicyDefinitionId, input beta.GroupPolicyDefinition) (result UpdateGroupPolicyDefinitionPreviousVersionDefinitionNextVersionDefinitionOperationResponse, err error) {
+func (c GroupPolicyDefinitionPreviousVersionDefinitionNextVersionDefinitionClient) UpdateGroupPolicyDefinitionPreviousVersionDefinitionNextVersionDefinition(ctx context.Context, id beta.DeviceManagementGroupPolicyDefinitionId, input beta.GroupPolicyDefinition, options UpdateGroupPolicyDefinitionPreviousVersionDefinitionNextVersionDefinitionOperationOptions) (result UpdateGroupPolicyDefinitionPreviousVersionDefinitionNextVersionDefinitionOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       fmt.Sprintf("%s/previousVersionDefinition/nextVersionDefinition", id.ID()),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/previousVersionDefinition/nextVersionDefinition", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

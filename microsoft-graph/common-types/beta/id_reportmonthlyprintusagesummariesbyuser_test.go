@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &ReportMonthlyPrintUsageSummariesByUserId{}
 
 func TestNewReportMonthlyPrintUsageSummariesByUserID(t *testing.T) {
-	id := NewReportMonthlyPrintUsageSummariesByUserID("printUsageByUserIdValue")
+	id := NewReportMonthlyPrintUsageSummariesByUserID("printUsageByUserId")
 
-	if id.PrintUsageByUserId != "printUsageByUserIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'PrintUsageByUserId'", id.PrintUsageByUserId, "printUsageByUserIdValue")
+	if id.PrintUsageByUserId != "printUsageByUserId" {
+		t.Fatalf("Expected %q but got %q for Segment 'PrintUsageByUserId'", id.PrintUsageByUserId, "printUsageByUserId")
 	}
 }
 
 func TestFormatReportMonthlyPrintUsageSummariesByUserID(t *testing.T) {
-	actual := NewReportMonthlyPrintUsageSummariesByUserID("printUsageByUserIdValue").ID()
-	expected := "/reports/monthlyPrintUsageSummariesByUser/printUsageByUserIdValue"
+	actual := NewReportMonthlyPrintUsageSummariesByUserID("printUsageByUserId").ID()
+	expected := "/reports/monthlyPrintUsageSummariesByUser/printUsageByUserId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -50,14 +50,14 @@ func TestParseReportMonthlyPrintUsageSummariesByUserID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/reports/monthlyPrintUsageSummariesByUser/printUsageByUserIdValue",
+			Input: "/reports/monthlyPrintUsageSummariesByUser/printUsageByUserId",
 			Expected: &ReportMonthlyPrintUsageSummariesByUserId{
-				PrintUsageByUserId: "printUsageByUserIdValue",
+				PrintUsageByUserId: "printUsageByUserId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/reports/monthlyPrintUsageSummariesByUser/printUsageByUserIdValue/extra",
+			Input: "/reports/monthlyPrintUsageSummariesByUser/printUsageByUserId/extra",
 			Error: true,
 		},
 	}
@@ -116,26 +116,26 @@ func TestParseReportMonthlyPrintUsageSummariesByUserIDInsensitively(t *testing.T
 		},
 		{
 			// Valid URI
-			Input: "/reports/monthlyPrintUsageSummariesByUser/printUsageByUserIdValue",
+			Input: "/reports/monthlyPrintUsageSummariesByUser/printUsageByUserId",
 			Expected: &ReportMonthlyPrintUsageSummariesByUserId{
-				PrintUsageByUserId: "printUsageByUserIdValue",
+				PrintUsageByUserId: "printUsageByUserId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/reports/monthlyPrintUsageSummariesByUser/printUsageByUserIdValue/extra",
+			Input: "/reports/monthlyPrintUsageSummariesByUser/printUsageByUserId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/rEpOrTs/mOnThLyPrInTuSaGeSuMmArIeSbYuSeR/pRiNtUsAgEbYuSeRiDvAlUe",
+			Input: "/rEpOrTs/mOnThLyPrInTuSaGeSuMmArIeSbYuSeR/pRiNtUsAgEbYuSeRiD",
 			Expected: &ReportMonthlyPrintUsageSummariesByUserId{
-				PrintUsageByUserId: "pRiNtUsAgEbYuSeRiDvAlUe",
+				PrintUsageByUserId: "pRiNtUsAgEbYuSeRiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/rEpOrTs/mOnThLyPrInTuSaGeSuMmArIeSbYuSeR/pRiNtUsAgEbYuSeRiDvAlUe/extra",
+			Input: "/rEpOrTs/mOnThLyPrInTuSaGeSuMmArIeSbYuSeR/pRiNtUsAgEbYuSeRiD/extra",
 			Error: true,
 		},
 	}

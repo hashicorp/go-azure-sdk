@@ -72,18 +72,26 @@ func (s ExternalConnectorsExternalItem) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &ExternalConnectorsExternalItem{}
 
 func (s *ExternalConnectorsExternalItem) UnmarshalJSON(bytes []byte) error {
-	type alias ExternalConnectorsExternalItem
-	var decoded alias
+
+	var decoded struct {
+		Acl        []ExternalConnectorsAcl                `json:"acl"`
+		Activities *[]ExternalConnectorsExternalActivity  `json:"activities,omitempty"`
+		Content    *ExternalConnectorsExternalItemContent `json:"content,omitempty"`
+		Properties ExternalConnectorsProperties           `json:"properties"`
+		Id         *string                                `json:"id,omitempty"`
+		ODataId    *string                                `json:"@odata.id,omitempty"`
+		ODataType  *string                                `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into ExternalConnectorsExternalItem: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.Acl = decoded.Acl
 	s.Content = decoded.Content
+	s.Properties = decoded.Properties
 	s.Id = decoded.Id
 	s.ODataId = decoded.ODataId
 	s.ODataType = decoded.ODataType
-	s.Properties = decoded.Properties
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -106,5 +114,6 @@ func (s *ExternalConnectorsExternalItem) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Activities = &output
 	}
+
 	return nil
 }

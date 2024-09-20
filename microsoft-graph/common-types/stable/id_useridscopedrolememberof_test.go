@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &UserIdScopedRoleMemberOfId{}
 
 func TestNewUserIdScopedRoleMemberOfID(t *testing.T) {
-	id := NewUserIdScopedRoleMemberOfID("userIdValue", "scopedRoleMembershipIdValue")
+	id := NewUserIdScopedRoleMemberOfID("userId", "scopedRoleMembershipId")
 
-	if id.UserId != "userIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'UserId'", id.UserId, "userIdValue")
+	if id.UserId != "userId" {
+		t.Fatalf("Expected %q but got %q for Segment 'UserId'", id.UserId, "userId")
 	}
 
-	if id.ScopedRoleMembershipId != "scopedRoleMembershipIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ScopedRoleMembershipId'", id.ScopedRoleMembershipId, "scopedRoleMembershipIdValue")
+	if id.ScopedRoleMembershipId != "scopedRoleMembershipId" {
+		t.Fatalf("Expected %q but got %q for Segment 'ScopedRoleMembershipId'", id.ScopedRoleMembershipId, "scopedRoleMembershipId")
 	}
 }
 
 func TestFormatUserIdScopedRoleMemberOfID(t *testing.T) {
-	actual := NewUserIdScopedRoleMemberOfID("userIdValue", "scopedRoleMembershipIdValue").ID()
-	expected := "/users/userIdValue/scopedRoleMemberOf/scopedRoleMembershipIdValue"
+	actual := NewUserIdScopedRoleMemberOfID("userId", "scopedRoleMembershipId").ID()
+	expected := "/users/userId/scopedRoleMemberOf/scopedRoleMembershipId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -49,25 +49,25 @@ func TestParseUserIdScopedRoleMemberOfID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue",
+			Input: "/users/userId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/scopedRoleMemberOf",
+			Input: "/users/userId/scopedRoleMemberOf",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/users/userIdValue/scopedRoleMemberOf/scopedRoleMembershipIdValue",
+			Input: "/users/userId/scopedRoleMemberOf/scopedRoleMembershipId",
 			Expected: &UserIdScopedRoleMemberOfId{
-				UserId:                 "userIdValue",
-				ScopedRoleMembershipId: "scopedRoleMembershipIdValue",
+				UserId:                 "userId",
+				ScopedRoleMembershipId: "scopedRoleMembershipId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/users/userIdValue/scopedRoleMemberOf/scopedRoleMembershipIdValue/extra",
+			Input: "/users/userId/scopedRoleMemberOf/scopedRoleMembershipId/extra",
 			Error: true,
 		},
 	}
@@ -120,48 +120,48 @@ func TestParseUserIdScopedRoleMemberOfIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue",
+			Input: "/users/userId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe",
+			Input: "/uSeRs/uSeRiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/scopedRoleMemberOf",
+			Input: "/users/userId/scopedRoleMemberOf",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/sCoPeDrOlEmEmBeRoF",
+			Input: "/uSeRs/uSeRiD/sCoPeDrOlEmEmBeRoF",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/users/userIdValue/scopedRoleMemberOf/scopedRoleMembershipIdValue",
+			Input: "/users/userId/scopedRoleMemberOf/scopedRoleMembershipId",
 			Expected: &UserIdScopedRoleMemberOfId{
-				UserId:                 "userIdValue",
-				ScopedRoleMembershipId: "scopedRoleMembershipIdValue",
+				UserId:                 "userId",
+				ScopedRoleMembershipId: "scopedRoleMembershipId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/users/userIdValue/scopedRoleMemberOf/scopedRoleMembershipIdValue/extra",
+			Input: "/users/userId/scopedRoleMemberOf/scopedRoleMembershipId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/sCoPeDrOlEmEmBeRoF/sCoPeDrOlEmEmBeRsHiPiDvAlUe",
+			Input: "/uSeRs/uSeRiD/sCoPeDrOlEmEmBeRoF/sCoPeDrOlEmEmBeRsHiPiD",
 			Expected: &UserIdScopedRoleMemberOfId{
-				UserId:                 "uSeRiDvAlUe",
-				ScopedRoleMembershipId: "sCoPeDrOlEmEmBeRsHiPiDvAlUe",
+				UserId:                 "uSeRiD",
+				ScopedRoleMembershipId: "sCoPeDrOlEmEmBeRsHiPiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/sCoPeDrOlEmEmBeRoF/sCoPeDrOlEmEmBeRsHiPiDvAlUe/extra",
+			Input: "/uSeRs/uSeRiD/sCoPeDrOlEmEmBeRoF/sCoPeDrOlEmEmBeRsHiPiD/extra",
 			Error: true,
 		},
 	}

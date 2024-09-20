@@ -17,15 +17,44 @@ type UpdateMailFolderChildFolderOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateMailFolderChildFolderOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateMailFolderChildFolderOperationOptions() UpdateMailFolderChildFolderOperationOptions {
+	return UpdateMailFolderChildFolderOperationOptions{}
+}
+
+func (o UpdateMailFolderChildFolderOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateMailFolderChildFolderOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateMailFolderChildFolderOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateMailFolderChildFolder - Update the navigation property childFolders in users
-func (c MailFolderChildFolderClient) UpdateMailFolderChildFolder(ctx context.Context, id stable.UserIdMailFolderIdChildFolderId, input stable.MailFolder) (result UpdateMailFolderChildFolderOperationResponse, err error) {
+func (c MailFolderChildFolderClient) UpdateMailFolderChildFolder(ctx context.Context, id stable.UserIdMailFolderIdChildFolderId, input stable.MailFolder, options UpdateMailFolderChildFolderOperationOptions) (result UpdateMailFolderChildFolderOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

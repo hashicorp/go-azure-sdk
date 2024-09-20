@@ -18,15 +18,44 @@ type RebootVirtualEndpointCloudPCOperationResponse struct {
 	OData        *odata.OData
 }
 
+type RebootVirtualEndpointCloudPCOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultRebootVirtualEndpointCloudPCOperationOptions() RebootVirtualEndpointCloudPCOperationOptions {
+	return RebootVirtualEndpointCloudPCOperationOptions{}
+}
+
+func (o RebootVirtualEndpointCloudPCOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o RebootVirtualEndpointCloudPCOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o RebootVirtualEndpointCloudPCOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // RebootVirtualEndpointCloudPC - Invoke action reboot. Reboot a specific Cloud PC.
-func (c VirtualEndpointCloudPCClient) RebootVirtualEndpointCloudPC(ctx context.Context, id beta.DeviceManagementVirtualEndpointCloudPCId) (result RebootVirtualEndpointCloudPCOperationResponse, err error) {
+func (c VirtualEndpointCloudPCClient) RebootVirtualEndpointCloudPC(ctx context.Context, id beta.DeviceManagementVirtualEndpointCloudPCId, options RebootVirtualEndpointCloudPCOperationOptions) (result RebootVirtualEndpointCloudPCOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/reboot", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/reboot", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

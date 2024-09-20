@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/microsoft-graph/directoryobjects/beta/directoryobject` Documentation
 
-The `directoryobject` SDK allows for interaction with the Azure Resource Manager Service `directoryobjects` (API Version `beta`).
+The `directoryobject` SDK allows for interaction with Microsoft Graph `directoryobjects` (API Version `beta`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -15,7 +15,7 @@ import "github.com/hashicorp/go-azure-sdk/microsoft-graph/directoryobjects/beta/
 ### Client Initialization
 
 ```go
-client := directoryobject.NewDirectoryObjectClientWithBaseURI("https://management.azure.com")
+client := directoryobject.NewDirectoryObjectClientWithBaseURI("https://graph.microsoft.com")
 client.Client.Authorizer = authorizer
 ```
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := directoryobject.NewDirectoryObjectID("directoryObjectIdValue")
+id := directoryobject.NewDirectoryObjectID("directoryObjectId")
 
 payload := directoryobject.CheckMemberGroupsRequest{
 	// ...
@@ -46,7 +46,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := directoryobject.NewDirectoryObjectID("directoryObjectIdValue")
+id := directoryobject.NewDirectoryObjectID("directoryObjectId")
 
 payload := directoryobject.CheckMemberObjectsRequest{
 	// ...
@@ -74,7 +74,47 @@ payload := directoryobject.DirectoryObject{
 }
 
 
-read, err := client.CreateDirectoryObject(ctx, payload)
+read, err := client.CreateDirectoryObject(ctx, payload, directoryobject.DefaultCreateDirectoryObjectOperationOptions())
+if err != nil {
+	// handle the error
+}
+if model := read.Model; model != nil {
+	// do something with the model/response object
+}
+```
+
+
+### Example Usage: `DirectoryObjectClient.CreateGetsUserOwnedObject`
+
+```go
+ctx := context.TODO()
+
+payload := directoryobject.CreateGetsUserOwnedObjectRequest{
+	// ...
+}
+
+
+read, err := client.CreateGetsUserOwnedObject(ctx, payload, directoryobject.DefaultCreateGetsUserOwnedObjectOperationOptions())
+if err != nil {
+	// handle the error
+}
+if model := read.Model; model != nil {
+	// do something with the model/response object
+}
+```
+
+
+### Example Usage: `DirectoryObjectClient.CreateValidatesProperty`
+
+```go
+ctx := context.TODO()
+
+payload := directoryobject.CreateValidatesPropertyRequest{
+	// ...
+}
+
+
+read, err := client.CreateValidatesProperty(ctx, payload, directoryobject.DefaultCreateValidatesPropertyOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -88,46 +128,9 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := directoryobject.NewDirectoryObjectID("directoryObjectIdValue")
+id := directoryobject.NewDirectoryObjectID("directoryObjectId")
 
 read, err := client.DeleteDirectoryObject(ctx, id, directoryobject.DefaultDeleteDirectoryObjectOperationOptions())
-if err != nil {
-	// handle the error
-}
-if model := read.Model; model != nil {
-	// do something with the model/response object
-}
-```
-
-
-### Example Usage: `DirectoryObjectClient.GetByIds`
-
-```go
-ctx := context.TODO()
-
-payload := directoryobject.GetByIdsRequest{
-	// ...
-}
-
-
-// alternatively `client.GetByIds(ctx, payload, directoryobject.DefaultGetByIdsOperationOptions())` can be used to do batched pagination
-items, err := client.GetByIdsComplete(ctx, payload, directoryobject.DefaultGetByIdsOperationOptions())
-if err != nil {
-	// handle the error
-}
-for _, item := range items {
-	// do something
-}
-```
-
-
-### Example Usage: `DirectoryObjectClient.GetCount`
-
-```go
-ctx := context.TODO()
-
-
-read, err := client.GetCount(ctx, directoryobject.DefaultGetCountOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -141,7 +144,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := directoryobject.NewDirectoryObjectID("directoryObjectIdValue")
+id := directoryobject.NewDirectoryObjectID("directoryObjectId")
 
 read, err := client.GetDirectoryObject(ctx, id, directoryobject.DefaultGetDirectoryObjectOperationOptions())
 if err != nil {
@@ -157,7 +160,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := directoryobject.NewDirectoryObjectID("directoryObjectIdValue")
+id := directoryobject.NewDirectoryObjectID("directoryObjectId")
 
 payload := directoryobject.GetMemberGroupsRequest{
 	// ...
@@ -179,7 +182,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := directoryobject.NewDirectoryObjectID("directoryObjectIdValue")
+id := directoryobject.NewDirectoryObjectID("directoryObjectId")
 
 payload := directoryobject.GetMemberObjectsRequest{
 	// ...
@@ -197,17 +200,13 @@ for _, item := range items {
 ```
 
 
-### Example Usage: `DirectoryObjectClient.GetUserOwnedObject`
+### Example Usage: `DirectoryObjectClient.GetsCount`
 
 ```go
 ctx := context.TODO()
 
-payload := directoryobject.GetUserOwnedObjectRequest{
-	// ...
-}
 
-
-read, err := client.GetUserOwnedObject(ctx, payload)
+read, err := client.GetsCount(ctx, directoryobject.DefaultGetsCountOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -234,18 +233,39 @@ for _, item := range items {
 ```
 
 
+### Example Usage: `DirectoryObjectClient.ListGetsByIds`
+
+```go
+ctx := context.TODO()
+
+payload := directoryobject.ListGetsByIdsRequest{
+	// ...
+}
+
+
+// alternatively `client.ListGetsByIds(ctx, payload, directoryobject.DefaultListGetsByIdsOperationOptions())` can be used to do batched pagination
+items, err := client.ListGetsByIdsComplete(ctx, payload, directoryobject.DefaultListGetsByIdsOperationOptions())
+if err != nil {
+	// handle the error
+}
+for _, item := range items {
+	// do something
+}
+```
+
+
 ### Example Usage: `DirectoryObjectClient.Restore`
 
 ```go
 ctx := context.TODO()
-id := directoryobject.NewDirectoryObjectID("directoryObjectIdValue")
+id := directoryobject.NewDirectoryObjectID("directoryObjectId")
 
 payload := directoryobject.RestoreRequest{
 	// ...
 }
 
 
-read, err := client.Restore(ctx, id, payload)
+read, err := client.Restore(ctx, id, payload, directoryobject.DefaultRestoreOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -259,34 +279,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := directoryobject.NewDirectoryObjectID("directoryObjectIdValue")
+id := directoryobject.NewDirectoryObjectID("directoryObjectId")
 
 payload := directoryobject.DirectoryObject{
 	// ...
 }
 
 
-read, err := client.UpdateDirectoryObject(ctx, id, payload)
-if err != nil {
-	// handle the error
-}
-if model := read.Model; model != nil {
-	// do something with the model/response object
-}
-```
-
-
-### Example Usage: `DirectoryObjectClient.ValidateProperty`
-
-```go
-ctx := context.TODO()
-
-payload := directoryobject.ValidatePropertyRequest{
-	// ...
-}
-
-
-read, err := client.ValidateProperty(ctx, payload)
+read, err := client.UpdateDirectoryObject(ctx, id, payload, directoryobject.DefaultUpdateDirectoryObjectOperationOptions())
 if err != nil {
 	// handle the error
 }

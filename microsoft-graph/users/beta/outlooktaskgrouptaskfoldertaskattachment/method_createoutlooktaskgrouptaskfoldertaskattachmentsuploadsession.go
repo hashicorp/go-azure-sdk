@@ -19,6 +19,34 @@ type CreateOutlookTaskGroupTaskFolderTaskAttachmentsUploadSessionOperationRespon
 	Model        *beta.UploadSession
 }
 
+type CreateOutlookTaskGroupTaskFolderTaskAttachmentsUploadSessionOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateOutlookTaskGroupTaskFolderTaskAttachmentsUploadSessionOperationOptions() CreateOutlookTaskGroupTaskFolderTaskAttachmentsUploadSessionOperationOptions {
+	return CreateOutlookTaskGroupTaskFolderTaskAttachmentsUploadSessionOperationOptions{}
+}
+
+func (o CreateOutlookTaskGroupTaskFolderTaskAttachmentsUploadSessionOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateOutlookTaskGroupTaskFolderTaskAttachmentsUploadSessionOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateOutlookTaskGroupTaskFolderTaskAttachmentsUploadSessionOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateOutlookTaskGroupTaskFolderTaskAttachmentsUploadSession - Invoke action createUploadSession. Create an upload
 // session that allows an app to iteratively upload ranges of a file, so as to attach the file to an Outlook item. The
 // item can be a message or event. Use this approach to attach a file if the file size is between 3 MB and 150 MB. To
@@ -28,14 +56,15 @@ type CreateOutlookTaskGroupTaskFolderTaskAttachmentsUploadSessionOperationRespon
 // exact range of bytes to be uploaded. This allows transfer to be resumed, in case the network connection is dropped
 // during upload. The following are the steps to attach a file to an Outlook item using an upload session: See attach
 // large files to Outlook messages or events for an example.
-func (c OutlookTaskGroupTaskFolderTaskAttachmentClient) CreateOutlookTaskGroupTaskFolderTaskAttachmentsUploadSession(ctx context.Context, id beta.UserIdOutlookTaskGroupIdTaskFolderIdTaskId, input CreateOutlookTaskGroupTaskFolderTaskAttachmentsUploadSessionRequest) (result CreateOutlookTaskGroupTaskFolderTaskAttachmentsUploadSessionOperationResponse, err error) {
+func (c OutlookTaskGroupTaskFolderTaskAttachmentClient) CreateOutlookTaskGroupTaskFolderTaskAttachmentsUploadSession(ctx context.Context, id beta.UserIdOutlookTaskGroupIdTaskFolderIdTaskId, input CreateOutlookTaskGroupTaskFolderTaskAttachmentsUploadSessionRequest, options CreateOutlookTaskGroupTaskFolderTaskAttachmentsUploadSessionOperationOptions) (result CreateOutlookTaskGroupTaskFolderTaskAttachmentsUploadSessionOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/attachments/createUploadSession", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/attachments/createUploadSession", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

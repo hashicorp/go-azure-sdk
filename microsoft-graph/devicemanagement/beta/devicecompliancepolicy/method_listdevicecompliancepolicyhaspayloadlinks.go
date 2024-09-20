@@ -25,8 +25,9 @@ type ListDeviceCompliancePolicyHasPayloadLinksCompleteResult struct {
 }
 
 type ListDeviceCompliancePolicyHasPayloadLinksOperationOptions struct {
-	Skip *int64
-	Top  *int64
+	Metadata *odata.Metadata
+	Skip     *int64
+	Top      *int64
 }
 
 func DefaultListDeviceCompliancePolicyHasPayloadLinksOperationOptions() ListDeviceCompliancePolicyHasPayloadLinksOperationOptions {
@@ -41,6 +42,9 @@ func (o ListDeviceCompliancePolicyHasPayloadLinksOperationOptions) ToHeaders() *
 
 func (o ListDeviceCompliancePolicyHasPayloadLinksOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	if o.Skip != nil {
 		out.Skip = int(*o.Skip)
 	}

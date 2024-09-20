@@ -17,15 +17,44 @@ type UpdateMailFolderMessageExtensionOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateMailFolderMessageExtensionOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateMailFolderMessageExtensionOperationOptions() UpdateMailFolderMessageExtensionOperationOptions {
+	return UpdateMailFolderMessageExtensionOperationOptions{}
+}
+
+func (o UpdateMailFolderMessageExtensionOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateMailFolderMessageExtensionOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateMailFolderMessageExtensionOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateMailFolderMessageExtension - Update the navigation property extensions in users
-func (c MailFolderMessageExtensionClient) UpdateMailFolderMessageExtension(ctx context.Context, id stable.UserIdMailFolderIdMessageIdExtensionId, input stable.Extension) (result UpdateMailFolderMessageExtensionOperationResponse, err error) {
+func (c MailFolderMessageExtensionClient) UpdateMailFolderMessageExtension(ctx context.Context, id stable.UserIdMailFolderIdMessageIdExtensionId, input stable.Extension, options UpdateMailFolderMessageExtensionOperationOptions) (result UpdateMailFolderMessageExtensionOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

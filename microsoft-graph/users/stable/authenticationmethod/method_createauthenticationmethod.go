@@ -20,15 +20,44 @@ type CreateAuthenticationMethodOperationResponse struct {
 	Model        stable.AuthenticationMethod
 }
 
+type CreateAuthenticationMethodOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateAuthenticationMethodOperationOptions() CreateAuthenticationMethodOperationOptions {
+	return CreateAuthenticationMethodOperationOptions{}
+}
+
+func (o CreateAuthenticationMethodOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateAuthenticationMethodOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateAuthenticationMethodOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateAuthenticationMethod - Create new navigation property to methods for users
-func (c AuthenticationMethodClient) CreateAuthenticationMethod(ctx context.Context, id stable.UserId, input stable.AuthenticationMethod) (result CreateAuthenticationMethodOperationResponse, err error) {
+func (c AuthenticationMethodClient) CreateAuthenticationMethod(ctx context.Context, id stable.UserId, input stable.AuthenticationMethod, options CreateAuthenticationMethodOperationOptions) (result CreateAuthenticationMethodOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/authentication/methods", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/authentication/methods", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

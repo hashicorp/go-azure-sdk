@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &DeviceManagementWindowsUpdateCatalogItemId{}
 
 func TestNewDeviceManagementWindowsUpdateCatalogItemID(t *testing.T) {
-	id := NewDeviceManagementWindowsUpdateCatalogItemID("windowsUpdateCatalogItemIdValue")
+	id := NewDeviceManagementWindowsUpdateCatalogItemID("windowsUpdateCatalogItemId")
 
-	if id.WindowsUpdateCatalogItemId != "windowsUpdateCatalogItemIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'WindowsUpdateCatalogItemId'", id.WindowsUpdateCatalogItemId, "windowsUpdateCatalogItemIdValue")
+	if id.WindowsUpdateCatalogItemId != "windowsUpdateCatalogItemId" {
+		t.Fatalf("Expected %q but got %q for Segment 'WindowsUpdateCatalogItemId'", id.WindowsUpdateCatalogItemId, "windowsUpdateCatalogItemId")
 	}
 }
 
 func TestFormatDeviceManagementWindowsUpdateCatalogItemID(t *testing.T) {
-	actual := NewDeviceManagementWindowsUpdateCatalogItemID("windowsUpdateCatalogItemIdValue").ID()
-	expected := "/deviceManagement/windowsUpdateCatalogItems/windowsUpdateCatalogItemIdValue"
+	actual := NewDeviceManagementWindowsUpdateCatalogItemID("windowsUpdateCatalogItemId").ID()
+	expected := "/deviceManagement/windowsUpdateCatalogItems/windowsUpdateCatalogItemId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -50,14 +50,14 @@ func TestParseDeviceManagementWindowsUpdateCatalogItemID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/windowsUpdateCatalogItems/windowsUpdateCatalogItemIdValue",
+			Input: "/deviceManagement/windowsUpdateCatalogItems/windowsUpdateCatalogItemId",
 			Expected: &DeviceManagementWindowsUpdateCatalogItemId{
-				WindowsUpdateCatalogItemId: "windowsUpdateCatalogItemIdValue",
+				WindowsUpdateCatalogItemId: "windowsUpdateCatalogItemId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/windowsUpdateCatalogItems/windowsUpdateCatalogItemIdValue/extra",
+			Input: "/deviceManagement/windowsUpdateCatalogItems/windowsUpdateCatalogItemId/extra",
 			Error: true,
 		},
 	}
@@ -116,26 +116,26 @@ func TestParseDeviceManagementWindowsUpdateCatalogItemIDInsensitively(t *testing
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/windowsUpdateCatalogItems/windowsUpdateCatalogItemIdValue",
+			Input: "/deviceManagement/windowsUpdateCatalogItems/windowsUpdateCatalogItemId",
 			Expected: &DeviceManagementWindowsUpdateCatalogItemId{
-				WindowsUpdateCatalogItemId: "windowsUpdateCatalogItemIdValue",
+				WindowsUpdateCatalogItemId: "windowsUpdateCatalogItemId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/windowsUpdateCatalogItems/windowsUpdateCatalogItemIdValue/extra",
+			Input: "/deviceManagement/windowsUpdateCatalogItems/windowsUpdateCatalogItemId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/wInDoWsUpDaTeCaTaLoGiTeMs/wInDoWsUpDaTeCaTaLoGiTeMiDvAlUe",
+			Input: "/dEvIcEmAnAgEmEnT/wInDoWsUpDaTeCaTaLoGiTeMs/wInDoWsUpDaTeCaTaLoGiTeMiD",
 			Expected: &DeviceManagementWindowsUpdateCatalogItemId{
-				WindowsUpdateCatalogItemId: "wInDoWsUpDaTeCaTaLoGiTeMiDvAlUe",
+				WindowsUpdateCatalogItemId: "wInDoWsUpDaTeCaTaLoGiTeMiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/wInDoWsUpDaTeCaTaLoGiTeMs/wInDoWsUpDaTeCaTaLoGiTeMiDvAlUe/extra",
+			Input: "/dEvIcEmAnAgEmEnT/wInDoWsUpDaTeCaTaLoGiTeMs/wInDoWsUpDaTeCaTaLoGiTeMiD/extra",
 			Error: true,
 		},
 	}

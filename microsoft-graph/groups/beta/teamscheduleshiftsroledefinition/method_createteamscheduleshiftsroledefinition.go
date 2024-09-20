@@ -19,15 +19,44 @@ type CreateTeamScheduleShiftsRoleDefinitionOperationResponse struct {
 	Model        *beta.ShiftsRoleDefinition
 }
 
+type CreateTeamScheduleShiftsRoleDefinitionOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateTeamScheduleShiftsRoleDefinitionOperationOptions() CreateTeamScheduleShiftsRoleDefinitionOperationOptions {
+	return CreateTeamScheduleShiftsRoleDefinitionOperationOptions{}
+}
+
+func (o CreateTeamScheduleShiftsRoleDefinitionOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateTeamScheduleShiftsRoleDefinitionOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateTeamScheduleShiftsRoleDefinitionOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateTeamScheduleShiftsRoleDefinition - Create new navigation property to shiftsRoleDefinitions for groups
-func (c TeamScheduleShiftsRoleDefinitionClient) CreateTeamScheduleShiftsRoleDefinition(ctx context.Context, id beta.GroupId, input beta.ShiftsRoleDefinition) (result CreateTeamScheduleShiftsRoleDefinitionOperationResponse, err error) {
+func (c TeamScheduleShiftsRoleDefinitionClient) CreateTeamScheduleShiftsRoleDefinition(ctx context.Context, id beta.GroupId, input beta.ShiftsRoleDefinition, options CreateTeamScheduleShiftsRoleDefinitionOperationOptions) (result CreateTeamScheduleShiftsRoleDefinitionOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/team/schedule/shiftsRoleDefinitions", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/team/schedule/shiftsRoleDefinitions", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

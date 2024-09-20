@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &MeProfileAnniversaryId{}
 
 func TestNewMeProfileAnniversaryID(t *testing.T) {
-	id := NewMeProfileAnniversaryID("personAnnualEventIdValue")
+	id := NewMeProfileAnniversaryID("personAnnualEventId")
 
-	if id.PersonAnnualEventId != "personAnnualEventIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'PersonAnnualEventId'", id.PersonAnnualEventId, "personAnnualEventIdValue")
+	if id.PersonAnnualEventId != "personAnnualEventId" {
+		t.Fatalf("Expected %q but got %q for Segment 'PersonAnnualEventId'", id.PersonAnnualEventId, "personAnnualEventId")
 	}
 }
 
 func TestFormatMeProfileAnniversaryID(t *testing.T) {
-	actual := NewMeProfileAnniversaryID("personAnnualEventIdValue").ID()
-	expected := "/me/profile/anniversaries/personAnnualEventIdValue"
+	actual := NewMeProfileAnniversaryID("personAnnualEventId").ID()
+	expected := "/me/profile/anniversaries/personAnnualEventId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -55,14 +55,14 @@ func TestParseMeProfileAnniversaryID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/me/profile/anniversaries/personAnnualEventIdValue",
+			Input: "/me/profile/anniversaries/personAnnualEventId",
 			Expected: &MeProfileAnniversaryId{
-				PersonAnnualEventId: "personAnnualEventIdValue",
+				PersonAnnualEventId: "personAnnualEventId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/profile/anniversaries/personAnnualEventIdValue/extra",
+			Input: "/me/profile/anniversaries/personAnnualEventId/extra",
 			Error: true,
 		},
 	}
@@ -131,26 +131,26 @@ func TestParseMeProfileAnniversaryIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/me/profile/anniversaries/personAnnualEventIdValue",
+			Input: "/me/profile/anniversaries/personAnnualEventId",
 			Expected: &MeProfileAnniversaryId{
-				PersonAnnualEventId: "personAnnualEventIdValue",
+				PersonAnnualEventId: "personAnnualEventId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/profile/anniversaries/personAnnualEventIdValue/extra",
+			Input: "/me/profile/anniversaries/personAnnualEventId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/pRoFiLe/aNnIvErSaRiEs/pErSoNaNnUaLeVeNtIdVaLuE",
+			Input: "/mE/pRoFiLe/aNnIvErSaRiEs/pErSoNaNnUaLeVeNtId",
 			Expected: &MeProfileAnniversaryId{
-				PersonAnnualEventId: "pErSoNaNnUaLeVeNtIdVaLuE",
+				PersonAnnualEventId: "pErSoNaNnUaLeVeNtId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/mE/pRoFiLe/aNnIvErSaRiEs/pErSoNaNnUaLeVeNtIdVaLuE/extra",
+			Input: "/mE/pRoFiLe/aNnIvErSaRiEs/pErSoNaNnUaLeVeNtId/extra",
 			Error: true,
 		},
 	}

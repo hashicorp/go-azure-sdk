@@ -133,16 +133,33 @@ func (s SecurityEdiscoverySearchExportOperation) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &SecurityEdiscoverySearchExportOperation{}
 
 func (s *SecurityEdiscoverySearchExportOperation) UnmarshalJSON(bytes []byte) error {
-	type alias SecurityEdiscoverySearchExportOperation
-	var decoded alias
+
+	var decoded struct {
+		AdditionalOptions  *SecurityAdditionalOptions    `json:"additionalOptions,omitempty"`
+		Description        nullable.Type[string]         `json:"description,omitempty"`
+		DisplayName        nullable.Type[string]         `json:"displayName,omitempty"`
+		ExportCriteria     *SecurityExportCriteria       `json:"exportCriteria,omitempty"`
+		ExportFileMetadata *[]SecurityExportFileMetadata `json:"exportFileMetadata,omitempty"`
+		ExportFormat       *SecurityExportFormat         `json:"exportFormat,omitempty"`
+		ExportLocation     *SecurityExportLocation       `json:"exportLocation,omitempty"`
+		ExportSingleItems  nullable.Type[bool]           `json:"exportSingleItems,omitempty"`
+		Search             *SecurityEdiscoverySearch     `json:"search,omitempty"`
+		Action             *SecurityCaseAction           `json:"action,omitempty"`
+		CompletedDateTime  nullable.Type[string]         `json:"completedDateTime,omitempty"`
+		CreatedBy          IdentitySet                   `json:"createdBy"`
+		CreatedDateTime    nullable.Type[string]         `json:"createdDateTime,omitempty"`
+		PercentProgress    nullable.Type[int64]          `json:"percentProgress,omitempty"`
+		ResultInfo         *ResultInfo                   `json:"resultInfo,omitempty"`
+		Status             *SecurityCaseOperationStatus  `json:"status,omitempty"`
+		Id                 *string                       `json:"id,omitempty"`
+		ODataId            *string                       `json:"@odata.id,omitempty"`
+		ODataType          *string                       `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into SecurityEdiscoverySearchExportOperation: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
-	s.Action = decoded.Action
 	s.AdditionalOptions = decoded.AdditionalOptions
-	s.CompletedDateTime = decoded.CompletedDateTime
-	s.CreatedDateTime = decoded.CreatedDateTime
 	s.Description = decoded.Description
 	s.DisplayName = decoded.DisplayName
 	s.ExportCriteria = decoded.ExportCriteria
@@ -150,12 +167,15 @@ func (s *SecurityEdiscoverySearchExportOperation) UnmarshalJSON(bytes []byte) er
 	s.ExportFormat = decoded.ExportFormat
 	s.ExportLocation = decoded.ExportLocation
 	s.ExportSingleItems = decoded.ExportSingleItems
+	s.Search = decoded.Search
+	s.Action = decoded.Action
+	s.CompletedDateTime = decoded.CompletedDateTime
+	s.CreatedDateTime = decoded.CreatedDateTime
 	s.Id = decoded.Id
 	s.ODataId = decoded.ODataId
 	s.ODataType = decoded.ODataType
 	s.PercentProgress = decoded.PercentProgress
 	s.ResultInfo = decoded.ResultInfo
-	s.Search = decoded.Search
 	s.Status = decoded.Status
 
 	var temp map[string]json.RawMessage
@@ -170,5 +190,6 @@ func (s *SecurityEdiscoverySearchExportOperation) UnmarshalJSON(bytes []byte) er
 		}
 		s.CreatedBy = impl
 	}
+
 	return nil
 }

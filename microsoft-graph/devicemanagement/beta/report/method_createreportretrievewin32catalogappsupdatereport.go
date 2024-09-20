@@ -17,15 +17,44 @@ type CreateReportRetrieveWin32CatalogAppsUpdateReportOperationResponse struct {
 	Model        *[]byte
 }
 
+type CreateReportRetrieveWin32CatalogAppsUpdateReportOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateReportRetrieveWin32CatalogAppsUpdateReportOperationOptions() CreateReportRetrieveWin32CatalogAppsUpdateReportOperationOptions {
+	return CreateReportRetrieveWin32CatalogAppsUpdateReportOperationOptions{}
+}
+
+func (o CreateReportRetrieveWin32CatalogAppsUpdateReportOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateReportRetrieveWin32CatalogAppsUpdateReportOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateReportRetrieveWin32CatalogAppsUpdateReportOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateReportRetrieveWin32CatalogAppsUpdateReport - Invoke action retrieveWin32CatalogAppsUpdateReport
-func (c ReportClient) CreateReportRetrieveWin32CatalogAppsUpdateReport(ctx context.Context, input CreateReportRetrieveWin32CatalogAppsUpdateReportRequest) (result CreateReportRetrieveWin32CatalogAppsUpdateReportOperationResponse, err error) {
+func (c ReportClient) CreateReportRetrieveWin32CatalogAppsUpdateReport(ctx context.Context, input CreateReportRetrieveWin32CatalogAppsUpdateReportRequest, options CreateReportRetrieveWin32CatalogAppsUpdateReportOperationOptions) (result CreateReportRetrieveWin32CatalogAppsUpdateReportOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/octet-stream",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/deviceManagement/reports/retrieveWin32CatalogAppsUpdateReport",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/deviceManagement/reports/retrieveWin32CatalogAppsUpdateReport",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

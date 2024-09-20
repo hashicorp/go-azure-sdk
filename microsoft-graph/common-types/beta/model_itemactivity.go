@@ -73,10 +73,17 @@ func (s ItemActivity) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &ItemActivity{}
 
 func (s *ItemActivity) UnmarshalJSON(bytes []byte) error {
-	type alias ItemActivity
-	var decoded alias
+
+	var decoded struct {
+		Access           *AccessAction         `json:"access,omitempty"`
+		ActivityDateTime nullable.Type[string] `json:"activityDateTime,omitempty"`
+		DriveItem        *DriveItem            `json:"driveItem,omitempty"`
+		Id               *string               `json:"id,omitempty"`
+		ODataId          *string               `json:"@odata.id,omitempty"`
+		ODataType        *string               `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into ItemActivity: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.Access = decoded.Access
@@ -98,5 +105,6 @@ func (s *ItemActivity) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Actor = &impl
 	}
+
 	return nil
 }

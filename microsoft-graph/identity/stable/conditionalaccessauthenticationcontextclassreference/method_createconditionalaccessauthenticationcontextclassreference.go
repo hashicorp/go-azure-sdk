@@ -18,16 +18,45 @@ type CreateConditionalAccessAuthenticationContextClassReferenceOperationResponse
 	Model        *stable.AuthenticationContextClassReference
 }
 
+type CreateConditionalAccessAuthenticationContextClassReferenceOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateConditionalAccessAuthenticationContextClassReferenceOperationOptions() CreateConditionalAccessAuthenticationContextClassReferenceOperationOptions {
+	return CreateConditionalAccessAuthenticationContextClassReferenceOperationOptions{}
+}
+
+func (o CreateConditionalAccessAuthenticationContextClassReferenceOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateConditionalAccessAuthenticationContextClassReferenceOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateConditionalAccessAuthenticationContextClassReferenceOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateConditionalAccessAuthenticationContextClassReference - Create new navigation property to
 // authenticationContextClassReferences for identity
-func (c ConditionalAccessAuthenticationContextClassReferenceClient) CreateConditionalAccessAuthenticationContextClassReference(ctx context.Context, input stable.AuthenticationContextClassReference) (result CreateConditionalAccessAuthenticationContextClassReferenceOperationResponse, err error) {
+func (c ConditionalAccessAuthenticationContextClassReferenceClient) CreateConditionalAccessAuthenticationContextClassReference(ctx context.Context, input stable.AuthenticationContextClassReference, options CreateConditionalAccessAuthenticationContextClassReferenceOperationOptions) (result CreateConditionalAccessAuthenticationContextClassReferenceOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/identity/conditionalAccess/authenticationContextClassReferences",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/identity/conditionalAccess/authenticationContextClassReferences",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

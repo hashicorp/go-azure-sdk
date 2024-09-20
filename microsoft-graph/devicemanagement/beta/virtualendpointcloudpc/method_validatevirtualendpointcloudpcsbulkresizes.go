@@ -25,8 +25,9 @@ type ValidateVirtualEndpointCloudPCsBulkResizesCompleteResult struct {
 }
 
 type ValidateVirtualEndpointCloudPCsBulkResizesOperationOptions struct {
-	Skip *int64
-	Top  *int64
+	Metadata *odata.Metadata
+	Skip     *int64
+	Top      *int64
 }
 
 func DefaultValidateVirtualEndpointCloudPCsBulkResizesOperationOptions() ValidateVirtualEndpointCloudPCsBulkResizesOperationOptions {
@@ -41,6 +42,9 @@ func (o ValidateVirtualEndpointCloudPCsBulkResizesOperationOptions) ToHeaders() 
 
 func (o ValidateVirtualEndpointCloudPCsBulkResizesOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	if o.Skip != nil {
 		out.Skip = int(*o.Skip)
 	}

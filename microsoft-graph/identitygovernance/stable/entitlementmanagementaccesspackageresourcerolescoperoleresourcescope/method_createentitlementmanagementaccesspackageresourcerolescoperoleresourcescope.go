@@ -19,16 +19,45 @@ type CreateEntitlementManagementAccessPackageResourceRoleScopeRoleResourceScopeO
 	Model        *stable.AccessPackageResourceScope
 }
 
+type CreateEntitlementManagementAccessPackageResourceRoleScopeRoleResourceScopeOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateEntitlementManagementAccessPackageResourceRoleScopeRoleResourceScopeOperationOptions() CreateEntitlementManagementAccessPackageResourceRoleScopeRoleResourceScopeOperationOptions {
+	return CreateEntitlementManagementAccessPackageResourceRoleScopeRoleResourceScopeOperationOptions{}
+}
+
+func (o CreateEntitlementManagementAccessPackageResourceRoleScopeRoleResourceScopeOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateEntitlementManagementAccessPackageResourceRoleScopeRoleResourceScopeOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateEntitlementManagementAccessPackageResourceRoleScopeRoleResourceScopeOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateEntitlementManagementAccessPackageResourceRoleScopeRoleResourceScope - Create new navigation property to scopes
 // for identityGovernance
-func (c EntitlementManagementAccessPackageResourceRoleScopeRoleResourceScopeClient) CreateEntitlementManagementAccessPackageResourceRoleScopeRoleResourceScope(ctx context.Context, id stable.IdentityGovernanceEntitlementManagementAccessPackageIdResourceRoleScopeId, input stable.AccessPackageResourceScope) (result CreateEntitlementManagementAccessPackageResourceRoleScopeRoleResourceScopeOperationResponse, err error) {
+func (c EntitlementManagementAccessPackageResourceRoleScopeRoleResourceScopeClient) CreateEntitlementManagementAccessPackageResourceRoleScopeRoleResourceScope(ctx context.Context, id stable.IdentityGovernanceEntitlementManagementAccessPackageIdResourceRoleScopeId, input stable.AccessPackageResourceScope, options CreateEntitlementManagementAccessPackageResourceRoleScopeRoleResourceScopeOperationOptions) (result CreateEntitlementManagementAccessPackageResourceRoleScopeRoleResourceScopeOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/role/resource/scopes", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/role/resource/scopes", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

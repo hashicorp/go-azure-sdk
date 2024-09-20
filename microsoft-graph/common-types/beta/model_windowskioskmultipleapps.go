@@ -74,18 +74,26 @@ func (s WindowsKioskMultipleApps) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &WindowsKioskMultipleApps{}
 
 func (s *WindowsKioskMultipleApps) UnmarshalJSON(bytes []byte) error {
-	type alias WindowsKioskMultipleApps
-	var decoded alias
+
+	var decoded struct {
+		AllowAccessToDownloadsFolder *bool                  `json:"allowAccessToDownloadsFolder,omitempty"`
+		Apps                         *[]WindowsKioskAppBase `json:"apps,omitempty"`
+		DisallowDesktopApps          *bool                  `json:"disallowDesktopApps,omitempty"`
+		ShowTaskBar                  *bool                  `json:"showTaskBar,omitempty"`
+		StartMenuLayoutXml           nullable.Type[string]  `json:"startMenuLayoutXml,omitempty"`
+		ODataId                      *string                `json:"@odata.id,omitempty"`
+		ODataType                    *string                `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into WindowsKioskMultipleApps: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.AllowAccessToDownloadsFolder = decoded.AllowAccessToDownloadsFolder
 	s.DisallowDesktopApps = decoded.DisallowDesktopApps
-	s.ODataId = decoded.ODataId
-	s.ODataType = decoded.ODataType
 	s.ShowTaskBar = decoded.ShowTaskBar
 	s.StartMenuLayoutXml = decoded.StartMenuLayoutXml
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -108,5 +116,6 @@ func (s *WindowsKioskMultipleApps) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Apps = &output
 	}
+
 	return nil
 }

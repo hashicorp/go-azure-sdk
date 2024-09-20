@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &DeviceManagementGroupPolicyMigrationReportId{}
 
 func TestNewDeviceManagementGroupPolicyMigrationReportID(t *testing.T) {
-	id := NewDeviceManagementGroupPolicyMigrationReportID("groupPolicyMigrationReportIdValue")
+	id := NewDeviceManagementGroupPolicyMigrationReportID("groupPolicyMigrationReportId")
 
-	if id.GroupPolicyMigrationReportId != "groupPolicyMigrationReportIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'GroupPolicyMigrationReportId'", id.GroupPolicyMigrationReportId, "groupPolicyMigrationReportIdValue")
+	if id.GroupPolicyMigrationReportId != "groupPolicyMigrationReportId" {
+		t.Fatalf("Expected %q but got %q for Segment 'GroupPolicyMigrationReportId'", id.GroupPolicyMigrationReportId, "groupPolicyMigrationReportId")
 	}
 }
 
 func TestFormatDeviceManagementGroupPolicyMigrationReportID(t *testing.T) {
-	actual := NewDeviceManagementGroupPolicyMigrationReportID("groupPolicyMigrationReportIdValue").ID()
-	expected := "/deviceManagement/groupPolicyMigrationReports/groupPolicyMigrationReportIdValue"
+	actual := NewDeviceManagementGroupPolicyMigrationReportID("groupPolicyMigrationReportId").ID()
+	expected := "/deviceManagement/groupPolicyMigrationReports/groupPolicyMigrationReportId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -50,14 +50,14 @@ func TestParseDeviceManagementGroupPolicyMigrationReportID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/groupPolicyMigrationReports/groupPolicyMigrationReportIdValue",
+			Input: "/deviceManagement/groupPolicyMigrationReports/groupPolicyMigrationReportId",
 			Expected: &DeviceManagementGroupPolicyMigrationReportId{
-				GroupPolicyMigrationReportId: "groupPolicyMigrationReportIdValue",
+				GroupPolicyMigrationReportId: "groupPolicyMigrationReportId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/groupPolicyMigrationReports/groupPolicyMigrationReportIdValue/extra",
+			Input: "/deviceManagement/groupPolicyMigrationReports/groupPolicyMigrationReportId/extra",
 			Error: true,
 		},
 	}
@@ -116,26 +116,26 @@ func TestParseDeviceManagementGroupPolicyMigrationReportIDInsensitively(t *testi
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/groupPolicyMigrationReports/groupPolicyMigrationReportIdValue",
+			Input: "/deviceManagement/groupPolicyMigrationReports/groupPolicyMigrationReportId",
 			Expected: &DeviceManagementGroupPolicyMigrationReportId{
-				GroupPolicyMigrationReportId: "groupPolicyMigrationReportIdValue",
+				GroupPolicyMigrationReportId: "groupPolicyMigrationReportId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/groupPolicyMigrationReports/groupPolicyMigrationReportIdValue/extra",
+			Input: "/deviceManagement/groupPolicyMigrationReports/groupPolicyMigrationReportId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/gRoUpPoLiCyMiGrAtIoNrEpOrTs/gRoUpPoLiCyMiGrAtIoNrEpOrTiDvAlUe",
+			Input: "/dEvIcEmAnAgEmEnT/gRoUpPoLiCyMiGrAtIoNrEpOrTs/gRoUpPoLiCyMiGrAtIoNrEpOrTiD",
 			Expected: &DeviceManagementGroupPolicyMigrationReportId{
-				GroupPolicyMigrationReportId: "gRoUpPoLiCyMiGrAtIoNrEpOrTiDvAlUe",
+				GroupPolicyMigrationReportId: "gRoUpPoLiCyMiGrAtIoNrEpOrTiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/gRoUpPoLiCyMiGrAtIoNrEpOrTs/gRoUpPoLiCyMiGrAtIoNrEpOrTiDvAlUe/extra",
+			Input: "/dEvIcEmAnAgEmEnT/gRoUpPoLiCyMiGrAtIoNrEpOrTs/gRoUpPoLiCyMiGrAtIoNrEpOrTiD/extra",
 			Error: true,
 		},
 	}

@@ -106,12 +106,12 @@ func (id IdentityGovernanceAppConsentAppConsentRequestIdUserConsentRequestIdAppr
 		resourceids.StaticSegment("identityGovernance", "identityGovernance", "identityGovernance"),
 		resourceids.StaticSegment("appConsent", "appConsent", "appConsent"),
 		resourceids.StaticSegment("appConsentRequests", "appConsentRequests", "appConsentRequests"),
-		resourceids.UserSpecifiedSegment("appConsentRequestId", "appConsentRequestIdValue"),
+		resourceids.UserSpecifiedSegment("appConsentRequestId", "appConsentRequestId"),
 		resourceids.StaticSegment("userConsentRequests", "userConsentRequests", "userConsentRequests"),
-		resourceids.UserSpecifiedSegment("userConsentRequestId", "userConsentRequestIdValue"),
+		resourceids.UserSpecifiedSegment("userConsentRequestId", "userConsentRequestId"),
 		resourceids.StaticSegment("approval", "approval", "approval"),
 		resourceids.StaticSegment("stages", "stages", "stages"),
-		resourceids.UserSpecifiedSegment("approvalStageId", "approvalStageIdValue"),
+		resourceids.UserSpecifiedSegment("approvalStageId", "approvalStageId"),
 	}
 }
 

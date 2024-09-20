@@ -18,16 +18,45 @@ type SetCrossTenantAccessPolicyPartnerIdentitySynchronizationOperationResponse s
 	OData        *odata.OData
 }
 
+type SetCrossTenantAccessPolicyPartnerIdentitySynchronizationOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultSetCrossTenantAccessPolicyPartnerIdentitySynchronizationOperationOptions() SetCrossTenantAccessPolicyPartnerIdentitySynchronizationOperationOptions {
+	return SetCrossTenantAccessPolicyPartnerIdentitySynchronizationOperationOptions{}
+}
+
+func (o SetCrossTenantAccessPolicyPartnerIdentitySynchronizationOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o SetCrossTenantAccessPolicyPartnerIdentitySynchronizationOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o SetCrossTenantAccessPolicyPartnerIdentitySynchronizationOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // SetCrossTenantAccessPolicyPartnerIdentitySynchronization - Update crossTenantIdentitySyncPolicyPartner. Update the
 // user synchronization policy of a partner-specific configuration.
-func (c CrossTenantAccessPolicyPartnerIdentitySynchronizationClient) SetCrossTenantAccessPolicyPartnerIdentitySynchronization(ctx context.Context, id beta.PolicyCrossTenantAccessPolicyPartnerId, input beta.CrossTenantIdentitySyncPolicyPartner) (result SetCrossTenantAccessPolicyPartnerIdentitySynchronizationOperationResponse, err error) {
+func (c CrossTenantAccessPolicyPartnerIdentitySynchronizationClient) SetCrossTenantAccessPolicyPartnerIdentitySynchronization(ctx context.Context, id beta.PolicyCrossTenantAccessPolicyPartnerId, input beta.CrossTenantIdentitySyncPolicyPartner, options SetCrossTenantAccessPolicyPartnerIdentitySynchronizationOperationOptions) (result SetCrossTenantAccessPolicyPartnerIdentitySynchronizationOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPut,
-		Path:       fmt.Sprintf("%s/identitySynchronization", id.ID()),
+		HttpMethod:    http.MethodPut,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/identitySynchronization", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

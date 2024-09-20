@@ -18,7 +18,8 @@ type DeleteAccessReviewPolicyOperationResponse struct {
 }
 
 type DeleteAccessReviewPolicyOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteAccessReviewPolicyOperationOptions() DeleteAccessReviewPolicyOperationOptions {
@@ -35,7 +36,9 @@ func (o DeleteAccessReviewPolicyOperationOptions) ToHeaders() *client.Headers {
 
 func (o DeleteAccessReviewPolicyOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

@@ -19,15 +19,44 @@ type CreateDeviceCompliancePolicyUserStatusOperationResponse struct {
 	Model        *beta.DeviceComplianceUserStatus
 }
 
+type CreateDeviceCompliancePolicyUserStatusOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateDeviceCompliancePolicyUserStatusOperationOptions() CreateDeviceCompliancePolicyUserStatusOperationOptions {
+	return CreateDeviceCompliancePolicyUserStatusOperationOptions{}
+}
+
+func (o CreateDeviceCompliancePolicyUserStatusOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateDeviceCompliancePolicyUserStatusOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateDeviceCompliancePolicyUserStatusOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateDeviceCompliancePolicyUserStatus - Create new navigation property to userStatuses for deviceManagement
-func (c DeviceCompliancePolicyUserStatusClient) CreateDeviceCompliancePolicyUserStatus(ctx context.Context, id beta.DeviceManagementDeviceCompliancePolicyId, input beta.DeviceComplianceUserStatus) (result CreateDeviceCompliancePolicyUserStatusOperationResponse, err error) {
+func (c DeviceCompliancePolicyUserStatusClient) CreateDeviceCompliancePolicyUserStatus(ctx context.Context, id beta.DeviceManagementDeviceCompliancePolicyId, input beta.DeviceComplianceUserStatus, options CreateDeviceCompliancePolicyUserStatusOperationOptions) (result CreateDeviceCompliancePolicyUserStatusOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/userStatuses", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/userStatuses", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

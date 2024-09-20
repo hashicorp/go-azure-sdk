@@ -20,16 +20,45 @@ type CreateEntitlementManagementAccessPackageAssignmentPolicyQuestionOperationRe
 	Model        stable.AccessPackageQuestion
 }
 
+type CreateEntitlementManagementAccessPackageAssignmentPolicyQuestionOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateEntitlementManagementAccessPackageAssignmentPolicyQuestionOperationOptions() CreateEntitlementManagementAccessPackageAssignmentPolicyQuestionOperationOptions {
+	return CreateEntitlementManagementAccessPackageAssignmentPolicyQuestionOperationOptions{}
+}
+
+func (o CreateEntitlementManagementAccessPackageAssignmentPolicyQuestionOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateEntitlementManagementAccessPackageAssignmentPolicyQuestionOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateEntitlementManagementAccessPackageAssignmentPolicyQuestionOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateEntitlementManagementAccessPackageAssignmentPolicyQuestion - Create new navigation property to questions for
 // identityGovernance
-func (c EntitlementManagementAccessPackageAssignmentPolicyQuestionClient) CreateEntitlementManagementAccessPackageAssignmentPolicyQuestion(ctx context.Context, id stable.IdentityGovernanceEntitlementManagementAccessPackageIdAssignmentPolicyId, input stable.AccessPackageQuestion) (result CreateEntitlementManagementAccessPackageAssignmentPolicyQuestionOperationResponse, err error) {
+func (c EntitlementManagementAccessPackageAssignmentPolicyQuestionClient) CreateEntitlementManagementAccessPackageAssignmentPolicyQuestion(ctx context.Context, id stable.IdentityGovernanceEntitlementManagementAccessPackageIdAssignmentPolicyId, input stable.AccessPackageQuestion, options CreateEntitlementManagementAccessPackageAssignmentPolicyQuestionOperationOptions) (result CreateEntitlementManagementAccessPackageAssignmentPolicyQuestionOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/questions", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/questions", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

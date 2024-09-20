@@ -17,17 +17,46 @@ type UpdateRemoteDesktopSecurityConfigurationTargetDeviceGroupOperationResponse 
 	OData        *odata.OData
 }
 
+type UpdateRemoteDesktopSecurityConfigurationTargetDeviceGroupOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateRemoteDesktopSecurityConfigurationTargetDeviceGroupOperationOptions() UpdateRemoteDesktopSecurityConfigurationTargetDeviceGroupOperationOptions {
+	return UpdateRemoteDesktopSecurityConfigurationTargetDeviceGroupOperationOptions{}
+}
+
+func (o UpdateRemoteDesktopSecurityConfigurationTargetDeviceGroupOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateRemoteDesktopSecurityConfigurationTargetDeviceGroupOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateRemoteDesktopSecurityConfigurationTargetDeviceGroupOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateRemoteDesktopSecurityConfigurationTargetDeviceGroup - Update targetDeviceGroup. Update the properties of a
 // targetDeviceGroup object for remoteDesktopSecurityConfiguration object on the servicePrincipal. You can configure a
 // maximum of 10 target device groups for the remoteDesktopSecurityConfiguraiton object on the servicePrincipal.
-func (c RemoteDesktopSecurityConfigurationTargetDeviceGroupClient) UpdateRemoteDesktopSecurityConfigurationTargetDeviceGroup(ctx context.Context, id beta.ServicePrincipalIdRemoteDesktopSecurityConfigurationTargetDeviceGroupId, input beta.TargetDeviceGroup) (result UpdateRemoteDesktopSecurityConfigurationTargetDeviceGroupOperationResponse, err error) {
+func (c RemoteDesktopSecurityConfigurationTargetDeviceGroupClient) UpdateRemoteDesktopSecurityConfigurationTargetDeviceGroup(ctx context.Context, id beta.ServicePrincipalIdRemoteDesktopSecurityConfigurationTargetDeviceGroupId, input beta.TargetDeviceGroup, options UpdateRemoteDesktopSecurityConfigurationTargetDeviceGroupOperationOptions) (result UpdateRemoteDesktopSecurityConfigurationTargetDeviceGroupOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

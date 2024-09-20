@@ -93,7 +93,7 @@ func (id PolicyConditionalAccessPolicyId) Segments() []resourceids.Segment {
 	return []resourceids.Segment{
 		resourceids.StaticSegment("policies", "policies", "policies"),
 		resourceids.StaticSegment("conditionalAccessPolicies", "conditionalAccessPolicies", "conditionalAccessPolicies"),
-		resourceids.UserSpecifiedSegment("conditionalAccessPolicyId", "conditionalAccessPolicyIdValue"),
+		resourceids.UserSpecifiedSegment("conditionalAccessPolicyId", "conditionalAccessPolicyId"),
 	}
 }
 

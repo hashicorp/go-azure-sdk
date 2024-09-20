@@ -117,18 +117,34 @@ func (s RecycleBin) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &RecycleBin{}
 
 func (s *RecycleBin) UnmarshalJSON(bytes []byte) error {
-	type alias RecycleBin
-	var decoded alias
+
+	var decoded struct {
+		Items                *[]RecycleBinItem     `json:"items,omitempty"`
+		CreatedBy            *IdentitySet          `json:"createdBy,omitempty"`
+		CreatedByUser        *User                 `json:"createdByUser,omitempty"`
+		CreatedDateTime      *string               `json:"createdDateTime,omitempty"`
+		Description          nullable.Type[string] `json:"description,omitempty"`
+		ETag                 nullable.Type[string] `json:"eTag,omitempty"`
+		LastModifiedBy       *IdentitySet          `json:"lastModifiedBy,omitempty"`
+		LastModifiedByUser   *User                 `json:"lastModifiedByUser,omitempty"`
+		LastModifiedDateTime *string               `json:"lastModifiedDateTime,omitempty"`
+		Name                 nullable.Type[string] `json:"name,omitempty"`
+		ParentReference      *ItemReference        `json:"parentReference,omitempty"`
+		WebUrl               nullable.Type[string] `json:"webUrl,omitempty"`
+		Id                   *string               `json:"id,omitempty"`
+		ODataId              *string               `json:"@odata.id,omitempty"`
+		ODataType            *string               `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into RecycleBin: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
+	s.Items = decoded.Items
 	s.CreatedByUser = decoded.CreatedByUser
 	s.CreatedDateTime = decoded.CreatedDateTime
 	s.Description = decoded.Description
 	s.ETag = decoded.ETag
 	s.Id = decoded.Id
-	s.Items = decoded.Items
 	s.LastModifiedByUser = decoded.LastModifiedByUser
 	s.LastModifiedDateTime = decoded.LastModifiedDateTime
 	s.Name = decoded.Name
@@ -157,5 +173,6 @@ func (s *RecycleBin) UnmarshalJSON(bytes []byte) error {
 		}
 		s.LastModifiedBy = &impl
 	}
+
 	return nil
 }

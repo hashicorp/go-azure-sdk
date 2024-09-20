@@ -18,15 +18,44 @@ type CreateRemoteAssistancePartnerOperationResponse struct {
 	Model        *beta.RemoteAssistancePartner
 }
 
+type CreateRemoteAssistancePartnerOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateRemoteAssistancePartnerOperationOptions() CreateRemoteAssistancePartnerOperationOptions {
+	return CreateRemoteAssistancePartnerOperationOptions{}
+}
+
+func (o CreateRemoteAssistancePartnerOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateRemoteAssistancePartnerOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateRemoteAssistancePartnerOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateRemoteAssistancePartner - Create new navigation property to remoteAssistancePartners for deviceManagement
-func (c RemoteAssistancePartnerClient) CreateRemoteAssistancePartner(ctx context.Context, input beta.RemoteAssistancePartner) (result CreateRemoteAssistancePartnerOperationResponse, err error) {
+func (c RemoteAssistancePartnerClient) CreateRemoteAssistancePartner(ctx context.Context, input beta.RemoteAssistancePartner, options CreateRemoteAssistancePartnerOperationOptions) (result CreateRemoteAssistancePartnerOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/deviceManagement/remoteAssistancePartners",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/deviceManagement/remoteAssistancePartners",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

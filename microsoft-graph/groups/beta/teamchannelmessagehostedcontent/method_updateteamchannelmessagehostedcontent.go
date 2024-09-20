@@ -17,15 +17,44 @@ type UpdateTeamChannelMessageHostedContentOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateTeamChannelMessageHostedContentOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateTeamChannelMessageHostedContentOperationOptions() UpdateTeamChannelMessageHostedContentOperationOptions {
+	return UpdateTeamChannelMessageHostedContentOperationOptions{}
+}
+
+func (o UpdateTeamChannelMessageHostedContentOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateTeamChannelMessageHostedContentOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateTeamChannelMessageHostedContentOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateTeamChannelMessageHostedContent - Update the navigation property hostedContents in groups
-func (c TeamChannelMessageHostedContentClient) UpdateTeamChannelMessageHostedContent(ctx context.Context, id beta.GroupIdTeamChannelIdMessageIdHostedContentId, input beta.ChatMessageHostedContent) (result UpdateTeamChannelMessageHostedContentOperationResponse, err error) {
+func (c TeamChannelMessageHostedContentClient) UpdateTeamChannelMessageHostedContent(ctx context.Context, id beta.GroupIdTeamChannelIdMessageIdHostedContentId, input beta.ChatMessageHostedContent, options UpdateTeamChannelMessageHostedContentOperationOptions) (result UpdateTeamChannelMessageHostedContentOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -19,15 +19,44 @@ type CreateEmbeddedSIMActivationCodePoolDeviceStateOperationResponse struct {
 	Model        *beta.EmbeddedSIMDeviceState
 }
 
+type CreateEmbeddedSIMActivationCodePoolDeviceStateOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateEmbeddedSIMActivationCodePoolDeviceStateOperationOptions() CreateEmbeddedSIMActivationCodePoolDeviceStateOperationOptions {
+	return CreateEmbeddedSIMActivationCodePoolDeviceStateOperationOptions{}
+}
+
+func (o CreateEmbeddedSIMActivationCodePoolDeviceStateOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateEmbeddedSIMActivationCodePoolDeviceStateOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateEmbeddedSIMActivationCodePoolDeviceStateOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateEmbeddedSIMActivationCodePoolDeviceState - Create new navigation property to deviceStates for deviceManagement
-func (c EmbeddedSIMActivationCodePoolDeviceStateClient) CreateEmbeddedSIMActivationCodePoolDeviceState(ctx context.Context, id beta.DeviceManagementEmbeddedSIMActivationCodePoolId, input beta.EmbeddedSIMDeviceState) (result CreateEmbeddedSIMActivationCodePoolDeviceStateOperationResponse, err error) {
+func (c EmbeddedSIMActivationCodePoolDeviceStateClient) CreateEmbeddedSIMActivationCodePoolDeviceState(ctx context.Context, id beta.DeviceManagementEmbeddedSIMActivationCodePoolId, input beta.EmbeddedSIMDeviceState, options CreateEmbeddedSIMActivationCodePoolDeviceStateOperationOptions) (result CreateEmbeddedSIMActivationCodePoolDeviceStateOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/deviceStates", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/deviceStates", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

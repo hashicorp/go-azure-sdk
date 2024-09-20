@@ -18,16 +18,45 @@ type CreateDirectoryRoleEligibilityScheduleOperationResponse struct {
 	Model        *beta.UnifiedRoleEligibilitySchedule
 }
 
+type CreateDirectoryRoleEligibilityScheduleOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateDirectoryRoleEligibilityScheduleOperationOptions() CreateDirectoryRoleEligibilityScheduleOperationOptions {
+	return CreateDirectoryRoleEligibilityScheduleOperationOptions{}
+}
+
+func (o CreateDirectoryRoleEligibilityScheduleOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateDirectoryRoleEligibilityScheduleOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateDirectoryRoleEligibilityScheduleOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateDirectoryRoleEligibilitySchedule - Create new navigation property to roleEligibilitySchedules for
 // roleManagement
-func (c DirectoryRoleEligibilityScheduleClient) CreateDirectoryRoleEligibilitySchedule(ctx context.Context, input beta.UnifiedRoleEligibilitySchedule) (result CreateDirectoryRoleEligibilityScheduleOperationResponse, err error) {
+func (c DirectoryRoleEligibilityScheduleClient) CreateDirectoryRoleEligibilitySchedule(ctx context.Context, input beta.UnifiedRoleEligibilitySchedule, options CreateDirectoryRoleEligibilityScheduleOperationOptions) (result CreateDirectoryRoleEligibilityScheduleOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/roleManagement/directory/roleEligibilitySchedules",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/roleManagement/directory/roleEligibilitySchedules",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

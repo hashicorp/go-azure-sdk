@@ -18,15 +18,44 @@ type UpdatePendingAccessReviewInstanceDecisionInstanceOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdatePendingAccessReviewInstanceDecisionInstanceOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdatePendingAccessReviewInstanceDecisionInstanceOperationOptions() UpdatePendingAccessReviewInstanceDecisionInstanceOperationOptions {
+	return UpdatePendingAccessReviewInstanceDecisionInstanceOperationOptions{}
+}
+
+func (o UpdatePendingAccessReviewInstanceDecisionInstanceOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdatePendingAccessReviewInstanceDecisionInstanceOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdatePendingAccessReviewInstanceDecisionInstanceOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdatePendingAccessReviewInstanceDecisionInstance - Update the navigation property instance in me
-func (c PendingAccessReviewInstanceDecisionInstanceClient) UpdatePendingAccessReviewInstanceDecisionInstance(ctx context.Context, id beta.MePendingAccessReviewInstanceIdDecisionId, input beta.AccessReviewInstance) (result UpdatePendingAccessReviewInstanceDecisionInstanceOperationResponse, err error) {
+func (c PendingAccessReviewInstanceDecisionInstanceClient) UpdatePendingAccessReviewInstanceDecisionInstance(ctx context.Context, id beta.MePendingAccessReviewInstanceIdDecisionId, input beta.AccessReviewInstance, options UpdatePendingAccessReviewInstanceDecisionInstanceOperationOptions) (result UpdatePendingAccessReviewInstanceDecisionInstanceOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       fmt.Sprintf("%s/instance", id.ID()),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/instance", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/resourceaccessprofile` Documentation
 
-The `resourceaccessprofile` SDK allows for interaction with the Azure Resource Manager Service `devicemanagement` (API Version `beta`).
+The `resourceaccessprofile` SDK allows for interaction with Microsoft Graph `devicemanagement` (API Version `beta`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -15,7 +15,7 @@ import "github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/
 ### Client Initialization
 
 ```go
-client := resourceaccessprofile.NewResourceAccessProfileClientWithBaseURI("https://management.azure.com")
+client := resourceaccessprofile.NewResourceAccessProfileClientWithBaseURI("https://graph.microsoft.com")
 client.Client.Authorizer = authorizer
 ```
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := resourceaccessprofile.NewDeviceManagementResourceAccessProfileID("deviceManagementResourceAccessProfileBaseIdValue")
+id := resourceaccessprofile.NewDeviceManagementResourceAccessProfileID("deviceManagementResourceAccessProfileBaseId")
 
 payload := resourceaccessprofile.AssignResourceAccessProfilesRequest{
 	// ...
@@ -52,7 +52,7 @@ payload := resourceaccessprofile.DeviceManagementResourceAccessProfileBase{
 }
 
 
-read, err := client.CreateResourceAccessProfile(ctx, payload)
+read, err := client.CreateResourceAccessProfile(ctx, payload, resourceaccessprofile.DefaultCreateResourceAccessProfileOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -66,7 +66,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := resourceaccessprofile.NewDeviceManagementResourceAccessProfileID("deviceManagementResourceAccessProfileBaseIdValue")
+id := resourceaccessprofile.NewDeviceManagementResourceAccessProfileID("deviceManagementResourceAccessProfileBaseId")
 
 read, err := client.DeleteResourceAccessProfile(ctx, id, resourceaccessprofile.DefaultDeleteResourceAccessProfileOperationOptions())
 if err != nil {
@@ -82,7 +82,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := resourceaccessprofile.NewDeviceManagementResourceAccessProfileID("deviceManagementResourceAccessProfileBaseIdValue")
+id := resourceaccessprofile.NewDeviceManagementResourceAccessProfileID("deviceManagementResourceAccessProfileBaseId")
 
 read, err := client.GetResourceAccessProfile(ctx, id, resourceaccessprofile.DefaultGetResourceAccessProfileOperationOptions())
 if err != nil {
@@ -152,14 +152,14 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := resourceaccessprofile.NewDeviceManagementResourceAccessProfileID("deviceManagementResourceAccessProfileBaseIdValue")
+id := resourceaccessprofile.NewDeviceManagementResourceAccessProfileID("deviceManagementResourceAccessProfileBaseId")
 
 payload := resourceaccessprofile.DeviceManagementResourceAccessProfileBase{
 	// ...
 }
 
 
-read, err := client.UpdateResourceAccessProfile(ctx, id, payload)
+read, err := client.UpdateResourceAccessProfile(ctx, id, payload, resourceaccessprofile.DefaultUpdateResourceAccessProfileOperationOptions())
 if err != nil {
 	// handle the error
 }

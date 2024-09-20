@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &DeviceManagementRemoteAssistancePartnerId{}
 
 func TestNewDeviceManagementRemoteAssistancePartnerID(t *testing.T) {
-	id := NewDeviceManagementRemoteAssistancePartnerID("remoteAssistancePartnerIdValue")
+	id := NewDeviceManagementRemoteAssistancePartnerID("remoteAssistancePartnerId")
 
-	if id.RemoteAssistancePartnerId != "remoteAssistancePartnerIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'RemoteAssistancePartnerId'", id.RemoteAssistancePartnerId, "remoteAssistancePartnerIdValue")
+	if id.RemoteAssistancePartnerId != "remoteAssistancePartnerId" {
+		t.Fatalf("Expected %q but got %q for Segment 'RemoteAssistancePartnerId'", id.RemoteAssistancePartnerId, "remoteAssistancePartnerId")
 	}
 }
 
 func TestFormatDeviceManagementRemoteAssistancePartnerID(t *testing.T) {
-	actual := NewDeviceManagementRemoteAssistancePartnerID("remoteAssistancePartnerIdValue").ID()
-	expected := "/deviceManagement/remoteAssistancePartners/remoteAssistancePartnerIdValue"
+	actual := NewDeviceManagementRemoteAssistancePartnerID("remoteAssistancePartnerId").ID()
+	expected := "/deviceManagement/remoteAssistancePartners/remoteAssistancePartnerId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -50,14 +50,14 @@ func TestParseDeviceManagementRemoteAssistancePartnerID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/remoteAssistancePartners/remoteAssistancePartnerIdValue",
+			Input: "/deviceManagement/remoteAssistancePartners/remoteAssistancePartnerId",
 			Expected: &DeviceManagementRemoteAssistancePartnerId{
-				RemoteAssistancePartnerId: "remoteAssistancePartnerIdValue",
+				RemoteAssistancePartnerId: "remoteAssistancePartnerId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/remoteAssistancePartners/remoteAssistancePartnerIdValue/extra",
+			Input: "/deviceManagement/remoteAssistancePartners/remoteAssistancePartnerId/extra",
 			Error: true,
 		},
 	}
@@ -116,26 +116,26 @@ func TestParseDeviceManagementRemoteAssistancePartnerIDInsensitively(t *testing.
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/remoteAssistancePartners/remoteAssistancePartnerIdValue",
+			Input: "/deviceManagement/remoteAssistancePartners/remoteAssistancePartnerId",
 			Expected: &DeviceManagementRemoteAssistancePartnerId{
-				RemoteAssistancePartnerId: "remoteAssistancePartnerIdValue",
+				RemoteAssistancePartnerId: "remoteAssistancePartnerId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/remoteAssistancePartners/remoteAssistancePartnerIdValue/extra",
+			Input: "/deviceManagement/remoteAssistancePartners/remoteAssistancePartnerId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/rEmOtEaSsIsTaNcEpArTnErS/rEmOtEaSsIsTaNcEpArTnErIdVaLuE",
+			Input: "/dEvIcEmAnAgEmEnT/rEmOtEaSsIsTaNcEpArTnErS/rEmOtEaSsIsTaNcEpArTnErId",
 			Expected: &DeviceManagementRemoteAssistancePartnerId{
-				RemoteAssistancePartnerId: "rEmOtEaSsIsTaNcEpArTnErIdVaLuE",
+				RemoteAssistancePartnerId: "rEmOtEaSsIsTaNcEpArTnErId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/rEmOtEaSsIsTaNcEpArTnErS/rEmOtEaSsIsTaNcEpArTnErIdVaLuE/extra",
+			Input: "/dEvIcEmAnAgEmEnT/rEmOtEaSsIsTaNcEpArTnErS/rEmOtEaSsIsTaNcEpArTnErId/extra",
 			Error: true,
 		},
 	}

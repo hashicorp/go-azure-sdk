@@ -17,16 +17,45 @@ type UpdateEntitlementManagementCatalogCustomWorkflowExtensionOperationResponse 
 	OData        *odata.OData
 }
 
+type UpdateEntitlementManagementCatalogCustomWorkflowExtensionOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateEntitlementManagementCatalogCustomWorkflowExtensionOperationOptions() UpdateEntitlementManagementCatalogCustomWorkflowExtensionOperationOptions {
+	return UpdateEntitlementManagementCatalogCustomWorkflowExtensionOperationOptions{}
+}
+
+func (o UpdateEntitlementManagementCatalogCustomWorkflowExtensionOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateEntitlementManagementCatalogCustomWorkflowExtensionOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateEntitlementManagementCatalogCustomWorkflowExtensionOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateEntitlementManagementCatalogCustomWorkflowExtension - Update accessPackageAssignmentRequestWorkflowExtension.
 // Update the properties of an accessPackageAssignmentRequestWorkflowExtension object.
-func (c EntitlementManagementCatalogCustomWorkflowExtensionClient) UpdateEntitlementManagementCatalogCustomWorkflowExtension(ctx context.Context, id stable.IdentityGovernanceEntitlementManagementCatalogIdCustomWorkflowExtensionId, input stable.CustomCalloutExtension) (result UpdateEntitlementManagementCatalogCustomWorkflowExtensionOperationResponse, err error) {
+func (c EntitlementManagementCatalogCustomWorkflowExtensionClient) UpdateEntitlementManagementCatalogCustomWorkflowExtension(ctx context.Context, id stable.IdentityGovernanceEntitlementManagementCatalogIdCustomWorkflowExtensionId, input stable.CustomCalloutExtension, options UpdateEntitlementManagementCatalogCustomWorkflowExtensionOperationOptions) (result UpdateEntitlementManagementCatalogCustomWorkflowExtensionOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

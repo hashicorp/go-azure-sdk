@@ -17,17 +17,46 @@ type UpdateCloudPCRoleAssignmentOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateCloudPCRoleAssignmentOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateCloudPCRoleAssignmentOperationOptions() UpdateCloudPCRoleAssignmentOperationOptions {
+	return UpdateCloudPCRoleAssignmentOperationOptions{}
+}
+
+func (o UpdateCloudPCRoleAssignmentOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateCloudPCRoleAssignmentOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateCloudPCRoleAssignmentOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateCloudPCRoleAssignment - Update unifiedRoleAssignmentMultiple. Update an existing unifiedRoleAssignmentMultiple
 // object of an RBAC provider. The following RBAC providers are currently supported: - Cloud PC - device management
 // (Intune) In contrast, unifiedRoleAssignment does not support update.
-func (c CloudPCRoleAssignmentClient) UpdateCloudPCRoleAssignment(ctx context.Context, id beta.RoleManagementCloudPCRoleAssignmentId, input beta.UnifiedRoleAssignmentMultiple) (result UpdateCloudPCRoleAssignmentOperationResponse, err error) {
+func (c CloudPCRoleAssignmentClient) UpdateCloudPCRoleAssignment(ctx context.Context, id beta.RoleManagementCloudPCRoleAssignmentId, input beta.UnifiedRoleAssignmentMultiple, options UpdateCloudPCRoleAssignmentOperationOptions) (result UpdateCloudPCRoleAssignmentOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

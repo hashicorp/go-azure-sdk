@@ -135,10 +135,35 @@ func (s BookingBusiness) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &BookingBusiness{}
 
 func (s *BookingBusiness) UnmarshalJSON(bytes []byte) error {
-	type alias BookingBusiness
-	var decoded alias
+
+	var decoded struct {
+		Address             *PhysicalAddress          `json:"address,omitempty"`
+		Appointments        *[]BookingAppointment     `json:"appointments,omitempty"`
+		BookingPageSettings *BookingPageSettings      `json:"bookingPageSettings,omitempty"`
+		BusinessHours       *[]BookingWorkHours       `json:"businessHours,omitempty"`
+		BusinessType        nullable.Type[string]     `json:"businessType,omitempty"`
+		CalendarView        *[]BookingAppointment     `json:"calendarView,omitempty"`
+		CreatedDateTime     nullable.Type[string]     `json:"createdDateTime,omitempty"`
+		CustomQuestions     *[]BookingCustomQuestion  `json:"customQuestions,omitempty"`
+		Customers           *[]BookingCustomerBase    `json:"customers,omitempty"`
+		DefaultCurrencyIso  nullable.Type[string]     `json:"defaultCurrencyIso,omitempty"`
+		DisplayName         *string                   `json:"displayName,omitempty"`
+		Email               nullable.Type[string]     `json:"email,omitempty"`
+		IsPublished         nullable.Type[bool]       `json:"isPublished,omitempty"`
+		LanguageTag         nullable.Type[string]     `json:"languageTag,omitempty"`
+		LastUpdatedDateTime nullable.Type[string]     `json:"lastUpdatedDateTime,omitempty"`
+		Phone               nullable.Type[string]     `json:"phone,omitempty"`
+		PublicUrl           nullable.Type[string]     `json:"publicUrl,omitempty"`
+		SchedulingPolicy    *BookingSchedulingPolicy  `json:"schedulingPolicy,omitempty"`
+		Services            *[]BookingService         `json:"services,omitempty"`
+		StaffMembers        *[]BookingStaffMemberBase `json:"staffMembers,omitempty"`
+		WebSiteUrl          nullable.Type[string]     `json:"webSiteUrl,omitempty"`
+		Id                  *string                   `json:"id,omitempty"`
+		ODataId             *string                   `json:"@odata.id,omitempty"`
+		ODataType           *string                   `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into BookingBusiness: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.Address = decoded.Address
@@ -152,17 +177,17 @@ func (s *BookingBusiness) UnmarshalJSON(bytes []byte) error {
 	s.DefaultCurrencyIso = decoded.DefaultCurrencyIso
 	s.DisplayName = decoded.DisplayName
 	s.Email = decoded.Email
-	s.Id = decoded.Id
 	s.IsPublished = decoded.IsPublished
 	s.LanguageTag = decoded.LanguageTag
 	s.LastUpdatedDateTime = decoded.LastUpdatedDateTime
-	s.ODataId = decoded.ODataId
-	s.ODataType = decoded.ODataType
 	s.Phone = decoded.Phone
 	s.PublicUrl = decoded.PublicUrl
 	s.SchedulingPolicy = decoded.SchedulingPolicy
 	s.Services = decoded.Services
 	s.WebSiteUrl = decoded.WebSiteUrl
+	s.Id = decoded.Id
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -202,5 +227,6 @@ func (s *BookingBusiness) UnmarshalJSON(bytes []byte) error {
 		}
 		s.StaffMembers = &output
 	}
+
 	return nil
 }

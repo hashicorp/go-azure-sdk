@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &DeviceManagementTemplateId{}
 
 func TestNewDeviceManagementTemplateID(t *testing.T) {
-	id := NewDeviceManagementTemplateID("deviceManagementTemplateIdValue")
+	id := NewDeviceManagementTemplateID("deviceManagementTemplateId")
 
-	if id.DeviceManagementTemplateId != "deviceManagementTemplateIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DeviceManagementTemplateId'", id.DeviceManagementTemplateId, "deviceManagementTemplateIdValue")
+	if id.DeviceManagementTemplateId != "deviceManagementTemplateId" {
+		t.Fatalf("Expected %q but got %q for Segment 'DeviceManagementTemplateId'", id.DeviceManagementTemplateId, "deviceManagementTemplateId")
 	}
 }
 
 func TestFormatDeviceManagementTemplateID(t *testing.T) {
-	actual := NewDeviceManagementTemplateID("deviceManagementTemplateIdValue").ID()
-	expected := "/deviceManagement/templates/deviceManagementTemplateIdValue"
+	actual := NewDeviceManagementTemplateID("deviceManagementTemplateId").ID()
+	expected := "/deviceManagement/templates/deviceManagementTemplateId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -50,14 +50,14 @@ func TestParseDeviceManagementTemplateID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/templates/deviceManagementTemplateIdValue",
+			Input: "/deviceManagement/templates/deviceManagementTemplateId",
 			Expected: &DeviceManagementTemplateId{
-				DeviceManagementTemplateId: "deviceManagementTemplateIdValue",
+				DeviceManagementTemplateId: "deviceManagementTemplateId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/templates/deviceManagementTemplateIdValue/extra",
+			Input: "/deviceManagement/templates/deviceManagementTemplateId/extra",
 			Error: true,
 		},
 	}
@@ -116,26 +116,26 @@ func TestParseDeviceManagementTemplateIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/templates/deviceManagementTemplateIdValue",
+			Input: "/deviceManagement/templates/deviceManagementTemplateId",
 			Expected: &DeviceManagementTemplateId{
-				DeviceManagementTemplateId: "deviceManagementTemplateIdValue",
+				DeviceManagementTemplateId: "deviceManagementTemplateId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/templates/deviceManagementTemplateIdValue/extra",
+			Input: "/deviceManagement/templates/deviceManagementTemplateId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/tEmPlAtEs/dEvIcEmAnAgEmEnTtEmPlAtEiDvAlUe",
+			Input: "/dEvIcEmAnAgEmEnT/tEmPlAtEs/dEvIcEmAnAgEmEnTtEmPlAtEiD",
 			Expected: &DeviceManagementTemplateId{
-				DeviceManagementTemplateId: "dEvIcEmAnAgEmEnTtEmPlAtEiDvAlUe",
+				DeviceManagementTemplateId: "dEvIcEmAnAgEmEnTtEmPlAtEiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/tEmPlAtEs/dEvIcEmAnAgEmEnTtEmPlAtEiDvAlUe/extra",
+			Input: "/dEvIcEmAnAgEmEnT/tEmPlAtEs/dEvIcEmAnAgEmEnTtEmPlAtEiD/extra",
 			Error: true,
 		},
 	}

@@ -18,17 +18,46 @@ type PowerOffCloudPCOperationResponse struct {
 	OData        *odata.OData
 }
 
+type PowerOffCloudPCOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultPowerOffCloudPCOperationOptions() PowerOffCloudPCOperationOptions {
+	return PowerOffCloudPCOperationOptions{}
+}
+
+func (o PowerOffCloudPCOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o PowerOffCloudPCOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o PowerOffCloudPCOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // PowerOffCloudPC - Invoke action powerOff. Power off a Windows 365 Frontline Cloud PC. This action supports Microsoft
 // Endpoint Manager (MEM) admin scenarios. After a Windows 365 Frontline Cloud PC is powered off, it's deallocated, and
 // licenses are revoked immediately. Only IT admin users can perform this action.
-func (c CloudPCClient) PowerOffCloudPC(ctx context.Context, id beta.MeCloudPCId) (result PowerOffCloudPCOperationResponse, err error) {
+func (c CloudPCClient) PowerOffCloudPC(ctx context.Context, id beta.MeCloudPCId, options PowerOffCloudPCOperationOptions) (result PowerOffCloudPCOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/powerOff", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/powerOff", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

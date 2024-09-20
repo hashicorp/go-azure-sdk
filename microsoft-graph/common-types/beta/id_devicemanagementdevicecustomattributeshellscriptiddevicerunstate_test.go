@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &DeviceManagementDeviceCustomAttributeShellScriptIdDeviceRunStateId{}
 
 func TestNewDeviceManagementDeviceCustomAttributeShellScriptIdDeviceRunStateID(t *testing.T) {
-	id := NewDeviceManagementDeviceCustomAttributeShellScriptIdDeviceRunStateID("deviceCustomAttributeShellScriptIdValue", "deviceManagementScriptDeviceStateIdValue")
+	id := NewDeviceManagementDeviceCustomAttributeShellScriptIdDeviceRunStateID("deviceCustomAttributeShellScriptId", "deviceManagementScriptDeviceStateId")
 
-	if id.DeviceCustomAttributeShellScriptId != "deviceCustomAttributeShellScriptIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DeviceCustomAttributeShellScriptId'", id.DeviceCustomAttributeShellScriptId, "deviceCustomAttributeShellScriptIdValue")
+	if id.DeviceCustomAttributeShellScriptId != "deviceCustomAttributeShellScriptId" {
+		t.Fatalf("Expected %q but got %q for Segment 'DeviceCustomAttributeShellScriptId'", id.DeviceCustomAttributeShellScriptId, "deviceCustomAttributeShellScriptId")
 	}
 
-	if id.DeviceManagementScriptDeviceStateId != "deviceManagementScriptDeviceStateIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DeviceManagementScriptDeviceStateId'", id.DeviceManagementScriptDeviceStateId, "deviceManagementScriptDeviceStateIdValue")
+	if id.DeviceManagementScriptDeviceStateId != "deviceManagementScriptDeviceStateId" {
+		t.Fatalf("Expected %q but got %q for Segment 'DeviceManagementScriptDeviceStateId'", id.DeviceManagementScriptDeviceStateId, "deviceManagementScriptDeviceStateId")
 	}
 }
 
 func TestFormatDeviceManagementDeviceCustomAttributeShellScriptIdDeviceRunStateID(t *testing.T) {
-	actual := NewDeviceManagementDeviceCustomAttributeShellScriptIdDeviceRunStateID("deviceCustomAttributeShellScriptIdValue", "deviceManagementScriptDeviceStateIdValue").ID()
-	expected := "/deviceManagement/deviceCustomAttributeShellScripts/deviceCustomAttributeShellScriptIdValue/deviceRunStates/deviceManagementScriptDeviceStateIdValue"
+	actual := NewDeviceManagementDeviceCustomAttributeShellScriptIdDeviceRunStateID("deviceCustomAttributeShellScriptId", "deviceManagementScriptDeviceStateId").ID()
+	expected := "/deviceManagement/deviceCustomAttributeShellScripts/deviceCustomAttributeShellScriptId/deviceRunStates/deviceManagementScriptDeviceStateId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -54,25 +54,25 @@ func TestParseDeviceManagementDeviceCustomAttributeShellScriptIdDeviceRunStateID
 		},
 		{
 			// Incomplete URI
-			Input: "/deviceManagement/deviceCustomAttributeShellScripts/deviceCustomAttributeShellScriptIdValue",
+			Input: "/deviceManagement/deviceCustomAttributeShellScripts/deviceCustomAttributeShellScriptId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/deviceManagement/deviceCustomAttributeShellScripts/deviceCustomAttributeShellScriptIdValue/deviceRunStates",
+			Input: "/deviceManagement/deviceCustomAttributeShellScripts/deviceCustomAttributeShellScriptId/deviceRunStates",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/deviceCustomAttributeShellScripts/deviceCustomAttributeShellScriptIdValue/deviceRunStates/deviceManagementScriptDeviceStateIdValue",
+			Input: "/deviceManagement/deviceCustomAttributeShellScripts/deviceCustomAttributeShellScriptId/deviceRunStates/deviceManagementScriptDeviceStateId",
 			Expected: &DeviceManagementDeviceCustomAttributeShellScriptIdDeviceRunStateId{
-				DeviceCustomAttributeShellScriptId:  "deviceCustomAttributeShellScriptIdValue",
-				DeviceManagementScriptDeviceStateId: "deviceManagementScriptDeviceStateIdValue",
+				DeviceCustomAttributeShellScriptId:  "deviceCustomAttributeShellScriptId",
+				DeviceManagementScriptDeviceStateId: "deviceManagementScriptDeviceStateId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/deviceCustomAttributeShellScripts/deviceCustomAttributeShellScriptIdValue/deviceRunStates/deviceManagementScriptDeviceStateIdValue/extra",
+			Input: "/deviceManagement/deviceCustomAttributeShellScripts/deviceCustomAttributeShellScriptId/deviceRunStates/deviceManagementScriptDeviceStateId/extra",
 			Error: true,
 		},
 	}
@@ -135,48 +135,48 @@ func TestParseDeviceManagementDeviceCustomAttributeShellScriptIdDeviceRunStateID
 		},
 		{
 			// Incomplete URI
-			Input: "/deviceManagement/deviceCustomAttributeShellScripts/deviceCustomAttributeShellScriptIdValue",
+			Input: "/deviceManagement/deviceCustomAttributeShellScripts/deviceCustomAttributeShellScriptId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/dEvIcEcUsToMaTtRiBuTeShElLsCrIpTs/dEvIcEcUsToMaTtRiBuTeShElLsCrIpTiDvAlUe",
+			Input: "/dEvIcEmAnAgEmEnT/dEvIcEcUsToMaTtRiBuTeShElLsCrIpTs/dEvIcEcUsToMaTtRiBuTeShElLsCrIpTiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/deviceManagement/deviceCustomAttributeShellScripts/deviceCustomAttributeShellScriptIdValue/deviceRunStates",
+			Input: "/deviceManagement/deviceCustomAttributeShellScripts/deviceCustomAttributeShellScriptId/deviceRunStates",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/dEvIcEcUsToMaTtRiBuTeShElLsCrIpTs/dEvIcEcUsToMaTtRiBuTeShElLsCrIpTiDvAlUe/dEvIcErUnStAtEs",
+			Input: "/dEvIcEmAnAgEmEnT/dEvIcEcUsToMaTtRiBuTeShElLsCrIpTs/dEvIcEcUsToMaTtRiBuTeShElLsCrIpTiD/dEvIcErUnStAtEs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/deviceCustomAttributeShellScripts/deviceCustomAttributeShellScriptIdValue/deviceRunStates/deviceManagementScriptDeviceStateIdValue",
+			Input: "/deviceManagement/deviceCustomAttributeShellScripts/deviceCustomAttributeShellScriptId/deviceRunStates/deviceManagementScriptDeviceStateId",
 			Expected: &DeviceManagementDeviceCustomAttributeShellScriptIdDeviceRunStateId{
-				DeviceCustomAttributeShellScriptId:  "deviceCustomAttributeShellScriptIdValue",
-				DeviceManagementScriptDeviceStateId: "deviceManagementScriptDeviceStateIdValue",
+				DeviceCustomAttributeShellScriptId:  "deviceCustomAttributeShellScriptId",
+				DeviceManagementScriptDeviceStateId: "deviceManagementScriptDeviceStateId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/deviceCustomAttributeShellScripts/deviceCustomAttributeShellScriptIdValue/deviceRunStates/deviceManagementScriptDeviceStateIdValue/extra",
+			Input: "/deviceManagement/deviceCustomAttributeShellScripts/deviceCustomAttributeShellScriptId/deviceRunStates/deviceManagementScriptDeviceStateId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/dEvIcEcUsToMaTtRiBuTeShElLsCrIpTs/dEvIcEcUsToMaTtRiBuTeShElLsCrIpTiDvAlUe/dEvIcErUnStAtEs/dEvIcEmAnAgEmEnTsCrIpTdEvIcEsTaTeIdVaLuE",
+			Input: "/dEvIcEmAnAgEmEnT/dEvIcEcUsToMaTtRiBuTeShElLsCrIpTs/dEvIcEcUsToMaTtRiBuTeShElLsCrIpTiD/dEvIcErUnStAtEs/dEvIcEmAnAgEmEnTsCrIpTdEvIcEsTaTeId",
 			Expected: &DeviceManagementDeviceCustomAttributeShellScriptIdDeviceRunStateId{
-				DeviceCustomAttributeShellScriptId:  "dEvIcEcUsToMaTtRiBuTeShElLsCrIpTiDvAlUe",
-				DeviceManagementScriptDeviceStateId: "dEvIcEmAnAgEmEnTsCrIpTdEvIcEsTaTeIdVaLuE",
+				DeviceCustomAttributeShellScriptId:  "dEvIcEcUsToMaTtRiBuTeShElLsCrIpTiD",
+				DeviceManagementScriptDeviceStateId: "dEvIcEmAnAgEmEnTsCrIpTdEvIcEsTaTeId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/dEvIcEcUsToMaTtRiBuTeShElLsCrIpTs/dEvIcEcUsToMaTtRiBuTeShElLsCrIpTiDvAlUe/dEvIcErUnStAtEs/dEvIcEmAnAgEmEnTsCrIpTdEvIcEsTaTeIdVaLuE/extra",
+			Input: "/dEvIcEmAnAgEmEnT/dEvIcEcUsToMaTtRiBuTeShElLsCrIpTs/dEvIcEcUsToMaTtRiBuTeShElLsCrIpTiD/dEvIcErUnStAtEs/dEvIcEmAnAgEmEnTsCrIpTdEvIcEsTaTeId/extra",
 			Error: true,
 		},
 	}

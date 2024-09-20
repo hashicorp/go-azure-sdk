@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &UserIdNotificationId{}
 
 func TestNewUserIdNotificationID(t *testing.T) {
-	id := NewUserIdNotificationID("userIdValue", "notificationIdValue")
+	id := NewUserIdNotificationID("userId", "notificationId")
 
-	if id.UserId != "userIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'UserId'", id.UserId, "userIdValue")
+	if id.UserId != "userId" {
+		t.Fatalf("Expected %q but got %q for Segment 'UserId'", id.UserId, "userId")
 	}
 
-	if id.NotificationId != "notificationIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'NotificationId'", id.NotificationId, "notificationIdValue")
+	if id.NotificationId != "notificationId" {
+		t.Fatalf("Expected %q but got %q for Segment 'NotificationId'", id.NotificationId, "notificationId")
 	}
 }
 
 func TestFormatUserIdNotificationID(t *testing.T) {
-	actual := NewUserIdNotificationID("userIdValue", "notificationIdValue").ID()
-	expected := "/users/userIdValue/notifications/notificationIdValue"
+	actual := NewUserIdNotificationID("userId", "notificationId").ID()
+	expected := "/users/userId/notifications/notificationId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -49,25 +49,25 @@ func TestParseUserIdNotificationID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue",
+			Input: "/users/userId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/notifications",
+			Input: "/users/userId/notifications",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/users/userIdValue/notifications/notificationIdValue",
+			Input: "/users/userId/notifications/notificationId",
 			Expected: &UserIdNotificationId{
-				UserId:         "userIdValue",
-				NotificationId: "notificationIdValue",
+				UserId:         "userId",
+				NotificationId: "notificationId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/users/userIdValue/notifications/notificationIdValue/extra",
+			Input: "/users/userId/notifications/notificationId/extra",
 			Error: true,
 		},
 	}
@@ -120,48 +120,48 @@ func TestParseUserIdNotificationIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue",
+			Input: "/users/userId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe",
+			Input: "/uSeRs/uSeRiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/notifications",
+			Input: "/users/userId/notifications",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/nOtIfIcAtIoNs",
+			Input: "/uSeRs/uSeRiD/nOtIfIcAtIoNs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/users/userIdValue/notifications/notificationIdValue",
+			Input: "/users/userId/notifications/notificationId",
 			Expected: &UserIdNotificationId{
-				UserId:         "userIdValue",
-				NotificationId: "notificationIdValue",
+				UserId:         "userId",
+				NotificationId: "notificationId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/users/userIdValue/notifications/notificationIdValue/extra",
+			Input: "/users/userId/notifications/notificationId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/nOtIfIcAtIoNs/nOtIfIcAtIoNiDvAlUe",
+			Input: "/uSeRs/uSeRiD/nOtIfIcAtIoNs/nOtIfIcAtIoNiD",
 			Expected: &UserIdNotificationId{
-				UserId:         "uSeRiDvAlUe",
-				NotificationId: "nOtIfIcAtIoNiDvAlUe",
+				UserId:         "uSeRiD",
+				NotificationId: "nOtIfIcAtIoNiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/nOtIfIcAtIoNs/nOtIfIcAtIoNiDvAlUe/extra",
+			Input: "/uSeRs/uSeRiD/nOtIfIcAtIoNs/nOtIfIcAtIoNiD/extra",
 			Error: true,
 		},
 	}

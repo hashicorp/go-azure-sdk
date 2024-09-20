@@ -18,16 +18,45 @@ type SetOnlineMeetingAlternativeRecordingOperationResponse struct {
 	OData        *odata.OData
 }
 
+type SetOnlineMeetingAlternativeRecordingOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultSetOnlineMeetingAlternativeRecordingOperationOptions() SetOnlineMeetingAlternativeRecordingOperationOptions {
+	return SetOnlineMeetingAlternativeRecordingOperationOptions{}
+}
+
+func (o SetOnlineMeetingAlternativeRecordingOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o SetOnlineMeetingAlternativeRecordingOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o SetOnlineMeetingAlternativeRecordingOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // SetOnlineMeetingAlternativeRecording - Update alternativeRecording for the navigation property onlineMeetings in
 // users. The content stream of the alternative recording of a Microsoft Teams live event. Read-only.
-func (c OnlineMeetingAlternativeRecordingClient) SetOnlineMeetingAlternativeRecording(ctx context.Context, id beta.UserIdOnlineMeetingId, input []byte) (result SetOnlineMeetingAlternativeRecordingOperationResponse, err error) {
+func (c OnlineMeetingAlternativeRecordingClient) SetOnlineMeetingAlternativeRecording(ctx context.Context, id beta.UserIdOnlineMeetingId, input []byte, options SetOnlineMeetingAlternativeRecordingOperationOptions) (result SetOnlineMeetingAlternativeRecordingOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPut,
-		Path:       fmt.Sprintf("%s/alternativeRecording", id.ID()),
+		HttpMethod:    http.MethodPut,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/alternativeRecording", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

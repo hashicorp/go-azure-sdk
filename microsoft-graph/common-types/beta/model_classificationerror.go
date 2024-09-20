@@ -69,10 +69,18 @@ func (s ClassificationError) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &ClassificationError{}
 
 func (s *ClassificationError) UnmarshalJSON(bytes []byte) error {
-	type alias ClassificationError
-	var decoded alias
+
+	var decoded struct {
+		Details    *[]ClassifcationErrorBase `json:"details,omitempty"`
+		Code       nullable.Type[string]     `json:"code,omitempty"`
+		InnerError *ClassificationInnerError `json:"innerError,omitempty"`
+		Message    nullable.Type[string]     `json:"message,omitempty"`
+		ODataId    *string                   `json:"@odata.id,omitempty"`
+		ODataType  *string                   `json:"@odata.type,omitempty"`
+		Target     nullable.Type[string]     `json:"target,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into ClassificationError: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.Code = decoded.Code
@@ -103,5 +111,6 @@ func (s *ClassificationError) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Details = &output
 	}
+
 	return nil
 }

@@ -19,15 +19,44 @@ type CreateDriveItemAnalyticsItemActivityStatOperationResponse struct {
 	Model        *beta.ItemActivityStat
 }
 
+type CreateDriveItemAnalyticsItemActivityStatOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateDriveItemAnalyticsItemActivityStatOperationOptions() CreateDriveItemAnalyticsItemActivityStatOperationOptions {
+	return CreateDriveItemAnalyticsItemActivityStatOperationOptions{}
+}
+
+func (o CreateDriveItemAnalyticsItemActivityStatOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateDriveItemAnalyticsItemActivityStatOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateDriveItemAnalyticsItemActivityStatOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateDriveItemAnalyticsItemActivityStat - Create new navigation property to itemActivityStats for me
-func (c DriveItemAnalyticsItemActivityStatClient) CreateDriveItemAnalyticsItemActivityStat(ctx context.Context, id beta.MeDriveIdItemId, input beta.ItemActivityStat) (result CreateDriveItemAnalyticsItemActivityStatOperationResponse, err error) {
+func (c DriveItemAnalyticsItemActivityStatClient) CreateDriveItemAnalyticsItemActivityStat(ctx context.Context, id beta.MeDriveIdItemId, input beta.ItemActivityStat, options CreateDriveItemAnalyticsItemActivityStatOperationOptions) (result CreateDriveItemAnalyticsItemActivityStatOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/analytics/itemActivityStats", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/analytics/itemActivityStats", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -81,10 +81,26 @@ type AccessReviewScheduleSettings struct {
 var _ json.Unmarshaler = &AccessReviewScheduleSettings{}
 
 func (s *AccessReviewScheduleSettings) UnmarshalJSON(bytes []byte) error {
-	type alias AccessReviewScheduleSettings
-	var decoded alias
+
+	var decoded struct {
+		ApplyActions                         *[]AccessReviewApplyAction                  `json:"applyActions,omitempty"`
+		AutoApplyDecisionsEnabled            *bool                                       `json:"autoApplyDecisionsEnabled,omitempty"`
+		DecisionHistoriesForReviewersEnabled nullable.Type[bool]                         `json:"decisionHistoriesForReviewersEnabled,omitempty"`
+		DefaultDecision                      nullable.Type[string]                       `json:"defaultDecision,omitempty"`
+		DefaultDecisionEnabled               *bool                                       `json:"defaultDecisionEnabled,omitempty"`
+		InstanceDurationInDays               *int64                                      `json:"instanceDurationInDays,omitempty"`
+		JustificationRequiredOnApproval      *bool                                       `json:"justificationRequiredOnApproval,omitempty"`
+		MailNotificationsEnabled             *bool                                       `json:"mailNotificationsEnabled,omitempty"`
+		ODataId                              *string                                     `json:"@odata.id,omitempty"`
+		ODataType                            *string                                     `json:"@odata.type,omitempty"`
+		RecommendationInsightSettings        *[]AccessReviewRecommendationInsightSetting `json:"recommendationInsightSettings,omitempty"`
+		RecommendationLookBackDuration       nullable.Type[string]                       `json:"recommendationLookBackDuration,omitempty"`
+		RecommendationsEnabled               *bool                                       `json:"recommendationsEnabled,omitempty"`
+		Recurrence                           *PatternedRecurrence                        `json:"recurrence,omitempty"`
+		ReminderNotificationsEnabled         *bool                                       `json:"reminderNotificationsEnabled,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into AccessReviewScheduleSettings: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.AutoApplyDecisionsEnabled = decoded.AutoApplyDecisionsEnabled
@@ -139,5 +155,6 @@ func (s *AccessReviewScheduleSettings) UnmarshalJSON(bytes []byte) error {
 		}
 		s.RecommendationInsightSettings = &output
 	}
+
 	return nil
 }

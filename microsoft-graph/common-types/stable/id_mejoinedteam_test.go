@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &MeJoinedTeamId{}
 
 func TestNewMeJoinedTeamID(t *testing.T) {
-	id := NewMeJoinedTeamID("teamIdValue")
+	id := NewMeJoinedTeamID("teamId")
 
-	if id.TeamId != "teamIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'TeamId'", id.TeamId, "teamIdValue")
+	if id.TeamId != "teamId" {
+		t.Fatalf("Expected %q but got %q for Segment 'TeamId'", id.TeamId, "teamId")
 	}
 }
 
 func TestFormatMeJoinedTeamID(t *testing.T) {
-	actual := NewMeJoinedTeamID("teamIdValue").ID()
-	expected := "/me/joinedTeams/teamIdValue"
+	actual := NewMeJoinedTeamID("teamId").ID()
+	expected := "/me/joinedTeams/teamId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -50,14 +50,14 @@ func TestParseMeJoinedTeamID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/me/joinedTeams/teamIdValue",
+			Input: "/me/joinedTeams/teamId",
 			Expected: &MeJoinedTeamId{
-				TeamId: "teamIdValue",
+				TeamId: "teamId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/joinedTeams/teamIdValue/extra",
+			Input: "/me/joinedTeams/teamId/extra",
 			Error: true,
 		},
 	}
@@ -116,26 +116,26 @@ func TestParseMeJoinedTeamIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/me/joinedTeams/teamIdValue",
+			Input: "/me/joinedTeams/teamId",
 			Expected: &MeJoinedTeamId{
-				TeamId: "teamIdValue",
+				TeamId: "teamId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/joinedTeams/teamIdValue/extra",
+			Input: "/me/joinedTeams/teamId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/jOiNeDtEaMs/tEaMiDvAlUe",
+			Input: "/mE/jOiNeDtEaMs/tEaMiD",
 			Expected: &MeJoinedTeamId{
-				TeamId: "tEaMiDvAlUe",
+				TeamId: "tEaMiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/mE/jOiNeDtEaMs/tEaMiDvAlUe/extra",
+			Input: "/mE/jOiNeDtEaMs/tEaMiD/extra",
 			Error: true,
 		},
 	}

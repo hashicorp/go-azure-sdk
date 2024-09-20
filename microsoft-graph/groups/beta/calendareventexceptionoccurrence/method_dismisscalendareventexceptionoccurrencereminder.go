@@ -18,16 +18,45 @@ type DismissCalendarEventExceptionOccurrenceReminderOperationResponse struct {
 	OData        *odata.OData
 }
 
+type DismissCalendarEventExceptionOccurrenceReminderOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultDismissCalendarEventExceptionOccurrenceReminderOperationOptions() DismissCalendarEventExceptionOccurrenceReminderOperationOptions {
+	return DismissCalendarEventExceptionOccurrenceReminderOperationOptions{}
+}
+
+func (o DismissCalendarEventExceptionOccurrenceReminderOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o DismissCalendarEventExceptionOccurrenceReminderOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o DismissCalendarEventExceptionOccurrenceReminderOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // DismissCalendarEventExceptionOccurrenceReminder - Invoke action dismissReminder. Dismiss a reminder that has been
 // triggered for an event in a user calendar.
-func (c CalendarEventExceptionOccurrenceClient) DismissCalendarEventExceptionOccurrenceReminder(ctx context.Context, id beta.GroupIdCalendarEventIdExceptionOccurrenceId) (result DismissCalendarEventExceptionOccurrenceReminderOperationResponse, err error) {
+func (c CalendarEventExceptionOccurrenceClient) DismissCalendarEventExceptionOccurrenceReminder(ctx context.Context, id beta.GroupIdCalendarEventIdExceptionOccurrenceId, options DismissCalendarEventExceptionOccurrenceReminderOperationOptions) (result DismissCalendarEventExceptionOccurrenceReminderOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/dismissReminder", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/dismissReminder", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

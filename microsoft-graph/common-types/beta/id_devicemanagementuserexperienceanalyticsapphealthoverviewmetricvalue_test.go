@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &DeviceManagementUserExperienceAnalyticsAppHealthOverviewMetricValueId{}
 
 func TestNewDeviceManagementUserExperienceAnalyticsAppHealthOverviewMetricValueID(t *testing.T) {
-	id := NewDeviceManagementUserExperienceAnalyticsAppHealthOverviewMetricValueID("userExperienceAnalyticsMetricIdValue")
+	id := NewDeviceManagementUserExperienceAnalyticsAppHealthOverviewMetricValueID("userExperienceAnalyticsMetricId")
 
-	if id.UserExperienceAnalyticsMetricId != "userExperienceAnalyticsMetricIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'UserExperienceAnalyticsMetricId'", id.UserExperienceAnalyticsMetricId, "userExperienceAnalyticsMetricIdValue")
+	if id.UserExperienceAnalyticsMetricId != "userExperienceAnalyticsMetricId" {
+		t.Fatalf("Expected %q but got %q for Segment 'UserExperienceAnalyticsMetricId'", id.UserExperienceAnalyticsMetricId, "userExperienceAnalyticsMetricId")
 	}
 }
 
 func TestFormatDeviceManagementUserExperienceAnalyticsAppHealthOverviewMetricValueID(t *testing.T) {
-	actual := NewDeviceManagementUserExperienceAnalyticsAppHealthOverviewMetricValueID("userExperienceAnalyticsMetricIdValue").ID()
-	expected := "/deviceManagement/userExperienceAnalyticsAppHealthOverview/metricValues/userExperienceAnalyticsMetricIdValue"
+	actual := NewDeviceManagementUserExperienceAnalyticsAppHealthOverviewMetricValueID("userExperienceAnalyticsMetricId").ID()
+	expected := "/deviceManagement/userExperienceAnalyticsAppHealthOverview/metricValues/userExperienceAnalyticsMetricId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -55,14 +55,14 @@ func TestParseDeviceManagementUserExperienceAnalyticsAppHealthOverviewMetricValu
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/userExperienceAnalyticsAppHealthOverview/metricValues/userExperienceAnalyticsMetricIdValue",
+			Input: "/deviceManagement/userExperienceAnalyticsAppHealthOverview/metricValues/userExperienceAnalyticsMetricId",
 			Expected: &DeviceManagementUserExperienceAnalyticsAppHealthOverviewMetricValueId{
-				UserExperienceAnalyticsMetricId: "userExperienceAnalyticsMetricIdValue",
+				UserExperienceAnalyticsMetricId: "userExperienceAnalyticsMetricId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/userExperienceAnalyticsAppHealthOverview/metricValues/userExperienceAnalyticsMetricIdValue/extra",
+			Input: "/deviceManagement/userExperienceAnalyticsAppHealthOverview/metricValues/userExperienceAnalyticsMetricId/extra",
 			Error: true,
 		},
 	}
@@ -131,26 +131,26 @@ func TestParseDeviceManagementUserExperienceAnalyticsAppHealthOverviewMetricValu
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/userExperienceAnalyticsAppHealthOverview/metricValues/userExperienceAnalyticsMetricIdValue",
+			Input: "/deviceManagement/userExperienceAnalyticsAppHealthOverview/metricValues/userExperienceAnalyticsMetricId",
 			Expected: &DeviceManagementUserExperienceAnalyticsAppHealthOverviewMetricValueId{
-				UserExperienceAnalyticsMetricId: "userExperienceAnalyticsMetricIdValue",
+				UserExperienceAnalyticsMetricId: "userExperienceAnalyticsMetricId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/userExperienceAnalyticsAppHealthOverview/metricValues/userExperienceAnalyticsMetricIdValue/extra",
+			Input: "/deviceManagement/userExperienceAnalyticsAppHealthOverview/metricValues/userExperienceAnalyticsMetricId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/uSeReXpErIeNcEaNaLyTiCsApPhEaLtHoVeRvIeW/mEtRiCvAlUeS/uSeReXpErIeNcEaNaLyTiCsMeTrIcIdVaLuE",
+			Input: "/dEvIcEmAnAgEmEnT/uSeReXpErIeNcEaNaLyTiCsApPhEaLtHoVeRvIeW/mEtRiCvAlUeS/uSeReXpErIeNcEaNaLyTiCsMeTrIcId",
 			Expected: &DeviceManagementUserExperienceAnalyticsAppHealthOverviewMetricValueId{
-				UserExperienceAnalyticsMetricId: "uSeReXpErIeNcEaNaLyTiCsMeTrIcIdVaLuE",
+				UserExperienceAnalyticsMetricId: "uSeReXpErIeNcEaNaLyTiCsMeTrIcId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/uSeReXpErIeNcEaNaLyTiCsApPhEaLtHoVeRvIeW/mEtRiCvAlUeS/uSeReXpErIeNcEaNaLyTiCsMeTrIcIdVaLuE/extra",
+			Input: "/dEvIcEmAnAgEmEnT/uSeReXpErIeNcEaNaLyTiCsApPhEaLtHoVeRvIeW/mEtRiCvAlUeS/uSeReXpErIeNcEaNaLyTiCsMeTrIcId/extra",
 			Error: true,
 		},
 	}

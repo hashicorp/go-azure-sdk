@@ -12,24 +12,24 @@ import (
 var _ resourceids.ResourceId = &GroupIdPlannerPlanIdTaskId{}
 
 func TestNewGroupIdPlannerPlanIdTaskID(t *testing.T) {
-	id := NewGroupIdPlannerPlanIdTaskID("groupIdValue", "plannerPlanIdValue", "plannerTaskIdValue")
+	id := NewGroupIdPlannerPlanIdTaskID("groupId", "plannerPlanId", "plannerTaskId")
 
-	if id.GroupId != "groupIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'GroupId'", id.GroupId, "groupIdValue")
+	if id.GroupId != "groupId" {
+		t.Fatalf("Expected %q but got %q for Segment 'GroupId'", id.GroupId, "groupId")
 	}
 
-	if id.PlannerPlanId != "plannerPlanIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'PlannerPlanId'", id.PlannerPlanId, "plannerPlanIdValue")
+	if id.PlannerPlanId != "plannerPlanId" {
+		t.Fatalf("Expected %q but got %q for Segment 'PlannerPlanId'", id.PlannerPlanId, "plannerPlanId")
 	}
 
-	if id.PlannerTaskId != "plannerTaskIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'PlannerTaskId'", id.PlannerTaskId, "plannerTaskIdValue")
+	if id.PlannerTaskId != "plannerTaskId" {
+		t.Fatalf("Expected %q but got %q for Segment 'PlannerTaskId'", id.PlannerTaskId, "plannerTaskId")
 	}
 }
 
 func TestFormatGroupIdPlannerPlanIdTaskID(t *testing.T) {
-	actual := NewGroupIdPlannerPlanIdTaskID("groupIdValue", "plannerPlanIdValue", "plannerTaskIdValue").ID()
-	expected := "/groups/groupIdValue/planner/plans/plannerPlanIdValue/tasks/plannerTaskIdValue"
+	actual := NewGroupIdPlannerPlanIdTaskID("groupId", "plannerPlanId", "plannerTaskId").ID()
+	expected := "/groups/groupId/planner/plans/plannerPlanId/tasks/plannerTaskId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -53,41 +53,41 @@ func TestParseGroupIdPlannerPlanIdTaskID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue",
+			Input: "/groups/groupId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/planner",
+			Input: "/groups/groupId/planner",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/planner/plans",
+			Input: "/groups/groupId/planner/plans",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/planner/plans/plannerPlanIdValue",
+			Input: "/groups/groupId/planner/plans/plannerPlanId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/planner/plans/plannerPlanIdValue/tasks",
+			Input: "/groups/groupId/planner/plans/plannerPlanId/tasks",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/groups/groupIdValue/planner/plans/plannerPlanIdValue/tasks/plannerTaskIdValue",
+			Input: "/groups/groupId/planner/plans/plannerPlanId/tasks/plannerTaskId",
 			Expected: &GroupIdPlannerPlanIdTaskId{
-				GroupId:       "groupIdValue",
-				PlannerPlanId: "plannerPlanIdValue",
-				PlannerTaskId: "plannerTaskIdValue",
+				GroupId:       "groupId",
+				PlannerPlanId: "plannerPlanId",
+				PlannerTaskId: "plannerTaskId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/groups/groupIdValue/planner/plans/plannerPlanIdValue/tasks/plannerTaskIdValue/extra",
+			Input: "/groups/groupId/planner/plans/plannerPlanId/tasks/plannerTaskId/extra",
 			Error: true,
 		},
 	}
@@ -144,80 +144,80 @@ func TestParseGroupIdPlannerPlanIdTaskIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue",
+			Input: "/groups/groupId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE",
+			Input: "/gRoUpS/gRoUpId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/planner",
+			Input: "/groups/groupId/planner",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/pLaNnEr",
+			Input: "/gRoUpS/gRoUpId/pLaNnEr",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/planner/plans",
+			Input: "/groups/groupId/planner/plans",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/pLaNnEr/pLaNs",
+			Input: "/gRoUpS/gRoUpId/pLaNnEr/pLaNs",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/planner/plans/plannerPlanIdValue",
+			Input: "/groups/groupId/planner/plans/plannerPlanId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/pLaNnEr/pLaNs/pLaNnErPlAnIdVaLuE",
+			Input: "/gRoUpS/gRoUpId/pLaNnEr/pLaNs/pLaNnErPlAnId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/planner/plans/plannerPlanIdValue/tasks",
+			Input: "/groups/groupId/planner/plans/plannerPlanId/tasks",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/pLaNnEr/pLaNs/pLaNnErPlAnIdVaLuE/tAsKs",
+			Input: "/gRoUpS/gRoUpId/pLaNnEr/pLaNs/pLaNnErPlAnId/tAsKs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/groups/groupIdValue/planner/plans/plannerPlanIdValue/tasks/plannerTaskIdValue",
+			Input: "/groups/groupId/planner/plans/plannerPlanId/tasks/plannerTaskId",
 			Expected: &GroupIdPlannerPlanIdTaskId{
-				GroupId:       "groupIdValue",
-				PlannerPlanId: "plannerPlanIdValue",
-				PlannerTaskId: "plannerTaskIdValue",
+				GroupId:       "groupId",
+				PlannerPlanId: "plannerPlanId",
+				PlannerTaskId: "plannerTaskId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/groups/groupIdValue/planner/plans/plannerPlanIdValue/tasks/plannerTaskIdValue/extra",
+			Input: "/groups/groupId/planner/plans/plannerPlanId/tasks/plannerTaskId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/pLaNnEr/pLaNs/pLaNnErPlAnIdVaLuE/tAsKs/pLaNnErTaSkIdVaLuE",
+			Input: "/gRoUpS/gRoUpId/pLaNnEr/pLaNs/pLaNnErPlAnId/tAsKs/pLaNnErTaSkId",
 			Expected: &GroupIdPlannerPlanIdTaskId{
-				GroupId:       "gRoUpIdVaLuE",
-				PlannerPlanId: "pLaNnErPlAnIdVaLuE",
-				PlannerTaskId: "pLaNnErTaSkIdVaLuE",
+				GroupId:       "gRoUpId",
+				PlannerPlanId: "pLaNnErPlAnId",
+				PlannerTaskId: "pLaNnErTaSkId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/pLaNnEr/pLaNs/pLaNnErPlAnIdVaLuE/tAsKs/pLaNnErTaSkIdVaLuE/extra",
+			Input: "/gRoUpS/gRoUpId/pLaNnEr/pLaNs/pLaNnErPlAnId/tAsKs/pLaNnErTaSkId/extra",
 			Error: true,
 		},
 	}

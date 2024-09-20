@@ -18,16 +18,45 @@ type CreateRemoteAssistancePartnerDisconnectOperationResponse struct {
 	OData        *odata.OData
 }
 
+type CreateRemoteAssistancePartnerDisconnectOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateRemoteAssistancePartnerDisconnectOperationOptions() CreateRemoteAssistancePartnerDisconnectOperationOptions {
+	return CreateRemoteAssistancePartnerDisconnectOperationOptions{}
+}
+
+func (o CreateRemoteAssistancePartnerDisconnectOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateRemoteAssistancePartnerDisconnectOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateRemoteAssistancePartnerDisconnectOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateRemoteAssistancePartnerDisconnect - Invoke action disconnect. A request to remove the active TeamViewer
 // connector
-func (c RemoteAssistancePartnerClient) CreateRemoteAssistancePartnerDisconnect(ctx context.Context, id beta.DeviceManagementRemoteAssistancePartnerId) (result CreateRemoteAssistancePartnerDisconnectOperationResponse, err error) {
+func (c RemoteAssistancePartnerClient) CreateRemoteAssistancePartnerDisconnect(ctx context.Context, id beta.DeviceManagementRemoteAssistancePartnerId, options CreateRemoteAssistancePartnerDisconnectOperationOptions) (result CreateRemoteAssistancePartnerDisconnectOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/disconnect", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/disconnect", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

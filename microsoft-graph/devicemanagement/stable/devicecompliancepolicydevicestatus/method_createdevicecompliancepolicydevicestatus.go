@@ -19,16 +19,45 @@ type CreateDeviceCompliancePolicyDeviceStatusOperationResponse struct {
 	Model        *stable.DeviceComplianceDeviceStatus
 }
 
+type CreateDeviceCompliancePolicyDeviceStatusOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateDeviceCompliancePolicyDeviceStatusOperationOptions() CreateDeviceCompliancePolicyDeviceStatusOperationOptions {
+	return CreateDeviceCompliancePolicyDeviceStatusOperationOptions{}
+}
+
+func (o CreateDeviceCompliancePolicyDeviceStatusOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateDeviceCompliancePolicyDeviceStatusOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateDeviceCompliancePolicyDeviceStatusOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateDeviceCompliancePolicyDeviceStatus - Create deviceComplianceDeviceStatus. Create a new
 // deviceComplianceDeviceStatus object.
-func (c DeviceCompliancePolicyDeviceStatusClient) CreateDeviceCompliancePolicyDeviceStatus(ctx context.Context, id stable.DeviceManagementDeviceCompliancePolicyId, input stable.DeviceComplianceDeviceStatus) (result CreateDeviceCompliancePolicyDeviceStatusOperationResponse, err error) {
+func (c DeviceCompliancePolicyDeviceStatusClient) CreateDeviceCompliancePolicyDeviceStatus(ctx context.Context, id stable.DeviceManagementDeviceCompliancePolicyId, input stable.DeviceComplianceDeviceStatus, options CreateDeviceCompliancePolicyDeviceStatusOperationOptions) (result CreateDeviceCompliancePolicyDeviceStatusOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/deviceStatuses", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/deviceStatuses", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

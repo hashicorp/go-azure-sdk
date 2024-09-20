@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &DeviceManagementManagedDeviceCleanupRuleId{}
 
 func TestNewDeviceManagementManagedDeviceCleanupRuleID(t *testing.T) {
-	id := NewDeviceManagementManagedDeviceCleanupRuleID("managedDeviceCleanupRuleIdValue")
+	id := NewDeviceManagementManagedDeviceCleanupRuleID("managedDeviceCleanupRuleId")
 
-	if id.ManagedDeviceCleanupRuleId != "managedDeviceCleanupRuleIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ManagedDeviceCleanupRuleId'", id.ManagedDeviceCleanupRuleId, "managedDeviceCleanupRuleIdValue")
+	if id.ManagedDeviceCleanupRuleId != "managedDeviceCleanupRuleId" {
+		t.Fatalf("Expected %q but got %q for Segment 'ManagedDeviceCleanupRuleId'", id.ManagedDeviceCleanupRuleId, "managedDeviceCleanupRuleId")
 	}
 }
 
 func TestFormatDeviceManagementManagedDeviceCleanupRuleID(t *testing.T) {
-	actual := NewDeviceManagementManagedDeviceCleanupRuleID("managedDeviceCleanupRuleIdValue").ID()
-	expected := "/deviceManagement/managedDeviceCleanupRules/managedDeviceCleanupRuleIdValue"
+	actual := NewDeviceManagementManagedDeviceCleanupRuleID("managedDeviceCleanupRuleId").ID()
+	expected := "/deviceManagement/managedDeviceCleanupRules/managedDeviceCleanupRuleId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -50,14 +50,14 @@ func TestParseDeviceManagementManagedDeviceCleanupRuleID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/managedDeviceCleanupRules/managedDeviceCleanupRuleIdValue",
+			Input: "/deviceManagement/managedDeviceCleanupRules/managedDeviceCleanupRuleId",
 			Expected: &DeviceManagementManagedDeviceCleanupRuleId{
-				ManagedDeviceCleanupRuleId: "managedDeviceCleanupRuleIdValue",
+				ManagedDeviceCleanupRuleId: "managedDeviceCleanupRuleId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/managedDeviceCleanupRules/managedDeviceCleanupRuleIdValue/extra",
+			Input: "/deviceManagement/managedDeviceCleanupRules/managedDeviceCleanupRuleId/extra",
 			Error: true,
 		},
 	}
@@ -116,26 +116,26 @@ func TestParseDeviceManagementManagedDeviceCleanupRuleIDInsensitively(t *testing
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/managedDeviceCleanupRules/managedDeviceCleanupRuleIdValue",
+			Input: "/deviceManagement/managedDeviceCleanupRules/managedDeviceCleanupRuleId",
 			Expected: &DeviceManagementManagedDeviceCleanupRuleId{
-				ManagedDeviceCleanupRuleId: "managedDeviceCleanupRuleIdValue",
+				ManagedDeviceCleanupRuleId: "managedDeviceCleanupRuleId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/managedDeviceCleanupRules/managedDeviceCleanupRuleIdValue/extra",
+			Input: "/deviceManagement/managedDeviceCleanupRules/managedDeviceCleanupRuleId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/mAnAgEdDeViCeClEaNuPrUlEs/mAnAgEdDeViCeClEaNuPrUlEiDvAlUe",
+			Input: "/dEvIcEmAnAgEmEnT/mAnAgEdDeViCeClEaNuPrUlEs/mAnAgEdDeViCeClEaNuPrUlEiD",
 			Expected: &DeviceManagementManagedDeviceCleanupRuleId{
-				ManagedDeviceCleanupRuleId: "mAnAgEdDeViCeClEaNuPrUlEiDvAlUe",
+				ManagedDeviceCleanupRuleId: "mAnAgEdDeViCeClEaNuPrUlEiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/mAnAgEdDeViCeClEaNuPrUlEs/mAnAgEdDeViCeClEaNuPrUlEiDvAlUe/extra",
+			Input: "/dEvIcEmAnAgEmEnT/mAnAgEdDeViCeClEaNuPrUlEs/mAnAgEdDeViCeClEaNuPrUlEiD/extra",
 			Error: true,
 		},
 	}

@@ -33,10 +33,23 @@ type MatchingLabel struct {
 var _ json.Unmarshaler = &MatchingLabel{}
 
 func (s *MatchingLabel) UnmarshalJSON(bytes []byte) error {
-	type alias MatchingLabel
-	var decoded alias
+
+	var decoded struct {
+		ApplicationMode             *ApplicationMode      `json:"applicationMode,omitempty"`
+		Description                 nullable.Type[string] `json:"description,omitempty"`
+		DisplayName                 nullable.Type[string] `json:"displayName,omitempty"`
+		Id                          nullable.Type[string] `json:"id,omitempty"`
+		IsEndpointProtectionEnabled nullable.Type[bool]   `json:"isEndpointProtectionEnabled,omitempty"`
+		LabelActions                *[]LabelActionBase    `json:"labelActions,omitempty"`
+		Name                        nullable.Type[string] `json:"name,omitempty"`
+		ODataId                     *string               `json:"@odata.id,omitempty"`
+		ODataType                   *string               `json:"@odata.type,omitempty"`
+		PolicyTip                   nullable.Type[string] `json:"policyTip,omitempty"`
+		Priority                    nullable.Type[int64]  `json:"priority,omitempty"`
+		ToolTip                     nullable.Type[string] `json:"toolTip,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into MatchingLabel: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.ApplicationMode = decoded.ApplicationMode
@@ -72,5 +85,6 @@ func (s *MatchingLabel) UnmarshalJSON(bytes []byte) error {
 		}
 		s.LabelActions = &output
 	}
+
 	return nil
 }

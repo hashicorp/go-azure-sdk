@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &GroupIdMembersWithLicenseErrorId{}
 
 func TestNewGroupIdMembersWithLicenseErrorID(t *testing.T) {
-	id := NewGroupIdMembersWithLicenseErrorID("groupIdValue", "directoryObjectIdValue")
+	id := NewGroupIdMembersWithLicenseErrorID("groupId", "directoryObjectId")
 
-	if id.GroupId != "groupIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'GroupId'", id.GroupId, "groupIdValue")
+	if id.GroupId != "groupId" {
+		t.Fatalf("Expected %q but got %q for Segment 'GroupId'", id.GroupId, "groupId")
 	}
 
-	if id.DirectoryObjectId != "directoryObjectIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DirectoryObjectId'", id.DirectoryObjectId, "directoryObjectIdValue")
+	if id.DirectoryObjectId != "directoryObjectId" {
+		t.Fatalf("Expected %q but got %q for Segment 'DirectoryObjectId'", id.DirectoryObjectId, "directoryObjectId")
 	}
 }
 
 func TestFormatGroupIdMembersWithLicenseErrorID(t *testing.T) {
-	actual := NewGroupIdMembersWithLicenseErrorID("groupIdValue", "directoryObjectIdValue").ID()
-	expected := "/groups/groupIdValue/membersWithLicenseErrors/directoryObjectIdValue"
+	actual := NewGroupIdMembersWithLicenseErrorID("groupId", "directoryObjectId").ID()
+	expected := "/groups/groupId/membersWithLicenseErrors/directoryObjectId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -49,25 +49,25 @@ func TestParseGroupIdMembersWithLicenseErrorID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue",
+			Input: "/groups/groupId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/membersWithLicenseErrors",
+			Input: "/groups/groupId/membersWithLicenseErrors",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/groups/groupIdValue/membersWithLicenseErrors/directoryObjectIdValue",
+			Input: "/groups/groupId/membersWithLicenseErrors/directoryObjectId",
 			Expected: &GroupIdMembersWithLicenseErrorId{
-				GroupId:           "groupIdValue",
-				DirectoryObjectId: "directoryObjectIdValue",
+				GroupId:           "groupId",
+				DirectoryObjectId: "directoryObjectId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/groups/groupIdValue/membersWithLicenseErrors/directoryObjectIdValue/extra",
+			Input: "/groups/groupId/membersWithLicenseErrors/directoryObjectId/extra",
 			Error: true,
 		},
 	}
@@ -120,48 +120,48 @@ func TestParseGroupIdMembersWithLicenseErrorIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue",
+			Input: "/groups/groupId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE",
+			Input: "/gRoUpS/gRoUpId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/membersWithLicenseErrors",
+			Input: "/groups/groupId/membersWithLicenseErrors",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/mEmBeRsWiThLiCeNsEeRrOrS",
+			Input: "/gRoUpS/gRoUpId/mEmBeRsWiThLiCeNsEeRrOrS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/groups/groupIdValue/membersWithLicenseErrors/directoryObjectIdValue",
+			Input: "/groups/groupId/membersWithLicenseErrors/directoryObjectId",
 			Expected: &GroupIdMembersWithLicenseErrorId{
-				GroupId:           "groupIdValue",
-				DirectoryObjectId: "directoryObjectIdValue",
+				GroupId:           "groupId",
+				DirectoryObjectId: "directoryObjectId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/groups/groupIdValue/membersWithLicenseErrors/directoryObjectIdValue/extra",
+			Input: "/groups/groupId/membersWithLicenseErrors/directoryObjectId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/mEmBeRsWiThLiCeNsEeRrOrS/dIrEcToRyObJeCtIdVaLuE",
+			Input: "/gRoUpS/gRoUpId/mEmBeRsWiThLiCeNsEeRrOrS/dIrEcToRyObJeCtId",
 			Expected: &GroupIdMembersWithLicenseErrorId{
-				GroupId:           "gRoUpIdVaLuE",
-				DirectoryObjectId: "dIrEcToRyObJeCtIdVaLuE",
+				GroupId:           "gRoUpId",
+				DirectoryObjectId: "dIrEcToRyObJeCtId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/mEmBeRsWiThLiCeNsEeRrOrS/dIrEcToRyObJeCtIdVaLuE/extra",
+			Input: "/gRoUpS/gRoUpId/mEmBeRsWiThLiCeNsEeRrOrS/dIrEcToRyObJeCtId/extra",
 			Error: true,
 		},
 	}

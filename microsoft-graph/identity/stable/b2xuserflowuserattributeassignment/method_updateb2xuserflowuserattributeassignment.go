@@ -17,16 +17,45 @@ type UpdateB2xUserFlowUserAttributeAssignmentOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateB2xUserFlowUserAttributeAssignmentOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateB2xUserFlowUserAttributeAssignmentOperationOptions() UpdateB2xUserFlowUserAttributeAssignmentOperationOptions {
+	return UpdateB2xUserFlowUserAttributeAssignmentOperationOptions{}
+}
+
+func (o UpdateB2xUserFlowUserAttributeAssignmentOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateB2xUserFlowUserAttributeAssignmentOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateB2xUserFlowUserAttributeAssignmentOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateB2xUserFlowUserAttributeAssignment - Update identityUserFlowAttributeAssignment. Update the properties of a
 // identityUserFlowAttributeAssignment object.
-func (c B2xUserFlowUserAttributeAssignmentClient) UpdateB2xUserFlowUserAttributeAssignment(ctx context.Context, id stable.IdentityB2xUserFlowIdUserAttributeAssignmentId, input stable.IdentityUserFlowAttributeAssignment) (result UpdateB2xUserFlowUserAttributeAssignmentOperationResponse, err error) {
+func (c B2xUserFlowUserAttributeAssignmentClient) UpdateB2xUserFlowUserAttributeAssignment(ctx context.Context, id stable.IdentityB2xUserFlowIdUserAttributeAssignmentId, input stable.IdentityUserFlowAttributeAssignment, options UpdateB2xUserFlowUserAttributeAssignmentOperationOptions) (result UpdateB2xUserFlowUserAttributeAssignmentOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -18,15 +18,44 @@ type CreateTermsAndConditionOperationResponse struct {
 	Model        *stable.TermsAndConditions
 }
 
+type CreateTermsAndConditionOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateTermsAndConditionOperationOptions() CreateTermsAndConditionOperationOptions {
+	return CreateTermsAndConditionOperationOptions{}
+}
+
+func (o CreateTermsAndConditionOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateTermsAndConditionOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateTermsAndConditionOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateTermsAndCondition - Create termsAndConditions. Create a new termsAndConditions object.
-func (c TermsAndConditionClient) CreateTermsAndCondition(ctx context.Context, input stable.TermsAndConditions) (result CreateTermsAndConditionOperationResponse, err error) {
+func (c TermsAndConditionClient) CreateTermsAndCondition(ctx context.Context, input stable.TermsAndConditions, options CreateTermsAndConditionOperationOptions) (result CreateTermsAndConditionOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/deviceManagement/termsAndConditions",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/deviceManagement/termsAndConditions",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

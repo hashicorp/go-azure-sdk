@@ -284,30 +284,76 @@ func (s WindowsUpdateForBusinessConfiguration) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &WindowsUpdateForBusinessConfiguration{}
 
 func (s *WindowsUpdateForBusinessConfiguration) UnmarshalJSON(bytes []byte) error {
-	type alias WindowsUpdateForBusinessConfiguration
-	var decoded alias
+
+	var decoded struct {
+		AllowWindows11Upgrade                       *bool                                        `json:"allowWindows11Upgrade,omitempty"`
+		AutoRestartNotificationDismissal            *AutoRestartNotificationDismissalMethod      `json:"autoRestartNotificationDismissal,omitempty"`
+		AutomaticUpdateMode                         *AutomaticUpdateMode                         `json:"automaticUpdateMode,omitempty"`
+		BusinessReadyUpdatesOnly                    *WindowsUpdateType                           `json:"businessReadyUpdatesOnly,omitempty"`
+		DeadlineForFeatureUpdatesInDays             nullable.Type[int64]                         `json:"deadlineForFeatureUpdatesInDays,omitempty"`
+		DeadlineForQualityUpdatesInDays             nullable.Type[int64]                         `json:"deadlineForQualityUpdatesInDays,omitempty"`
+		DeadlineGracePeriodInDays                   nullable.Type[int64]                         `json:"deadlineGracePeriodInDays,omitempty"`
+		DeliveryOptimizationMode                    *WindowsDeliveryOptimizationMode             `json:"deliveryOptimizationMode,omitempty"`
+		DriversExcluded                             *bool                                        `json:"driversExcluded,omitempty"`
+		EngagedRestartDeadlineInDays                nullable.Type[int64]                         `json:"engagedRestartDeadlineInDays,omitempty"`
+		EngagedRestartSnoozeScheduleInDays          nullable.Type[int64]                         `json:"engagedRestartSnoozeScheduleInDays,omitempty"`
+		EngagedRestartTransitionScheduleInDays      nullable.Type[int64]                         `json:"engagedRestartTransitionScheduleInDays,omitempty"`
+		FeatureUpdatesDeferralPeriodInDays          *int64                                       `json:"featureUpdatesDeferralPeriodInDays,omitempty"`
+		FeatureUpdatesPauseExpiryDateTime           *string                                      `json:"featureUpdatesPauseExpiryDateTime,omitempty"`
+		FeatureUpdatesPauseStartDate                nullable.Type[string]                        `json:"featureUpdatesPauseStartDate,omitempty"`
+		FeatureUpdatesPaused                        *bool                                        `json:"featureUpdatesPaused,omitempty"`
+		FeatureUpdatesRollbackStartDateTime         *string                                      `json:"featureUpdatesRollbackStartDateTime,omitempty"`
+		FeatureUpdatesRollbackWindowInDays          nullable.Type[int64]                         `json:"featureUpdatesRollbackWindowInDays,omitempty"`
+		FeatureUpdatesWillBeRolledBack              nullable.Type[bool]                          `json:"featureUpdatesWillBeRolledBack,omitempty"`
+		MicrosoftUpdateServiceAllowed               *bool                                        `json:"microsoftUpdateServiceAllowed,omitempty"`
+		PostponeRebootUntilAfterDeadline            nullable.Type[bool]                          `json:"postponeRebootUntilAfterDeadline,omitempty"`
+		PrereleaseFeatures                          *PrereleaseFeatures                          `json:"prereleaseFeatures,omitempty"`
+		QualityUpdatesDeferralPeriodInDays          *int64                                       `json:"qualityUpdatesDeferralPeriodInDays,omitempty"`
+		QualityUpdatesPauseExpiryDateTime           *string                                      `json:"qualityUpdatesPauseExpiryDateTime,omitempty"`
+		QualityUpdatesPauseStartDate                nullable.Type[string]                        `json:"qualityUpdatesPauseStartDate,omitempty"`
+		QualityUpdatesPaused                        *bool                                        `json:"qualityUpdatesPaused,omitempty"`
+		QualityUpdatesRollbackStartDateTime         *string                                      `json:"qualityUpdatesRollbackStartDateTime,omitempty"`
+		QualityUpdatesWillBeRolledBack              nullable.Type[bool]                          `json:"qualityUpdatesWillBeRolledBack,omitempty"`
+		ScheduleImminentRestartWarningInMinutes     nullable.Type[int64]                         `json:"scheduleImminentRestartWarningInMinutes,omitempty"`
+		ScheduleRestartWarningInHours               nullable.Type[int64]                         `json:"scheduleRestartWarningInHours,omitempty"`
+		SkipChecksBeforeRestart                     *bool                                        `json:"skipChecksBeforeRestart,omitempty"`
+		UpdateNotificationLevel                     *WindowsUpdateNotificationDisplayOption      `json:"updateNotificationLevel,omitempty"`
+		UpdateWeeks                                 *WindowsUpdateForBusinessUpdateWeeks         `json:"updateWeeks,omitempty"`
+		UserPauseAccess                             *Enablement                                  `json:"userPauseAccess,omitempty"`
+		UserWindowsUpdateScanAccess                 *Enablement                                  `json:"userWindowsUpdateScanAccess,omitempty"`
+		Assignments                                 *[]DeviceConfigurationAssignment             `json:"assignments,omitempty"`
+		CreatedDateTime                             *string                                      `json:"createdDateTime,omitempty"`
+		Description                                 nullable.Type[string]                        `json:"description,omitempty"`
+		DeviceManagementApplicabilityRuleDeviceMode *DeviceManagementApplicabilityRuleDeviceMode `json:"deviceManagementApplicabilityRuleDeviceMode,omitempty"`
+		DeviceManagementApplicabilityRuleOsEdition  *DeviceManagementApplicabilityRuleOsEdition  `json:"deviceManagementApplicabilityRuleOsEdition,omitempty"`
+		DeviceManagementApplicabilityRuleOsVersion  *DeviceManagementApplicabilityRuleOsVersion  `json:"deviceManagementApplicabilityRuleOsVersion,omitempty"`
+		DeviceSettingStateSummaries                 *[]SettingStateDeviceSummary                 `json:"deviceSettingStateSummaries,omitempty"`
+		DeviceStatusOverview                        *DeviceConfigurationDeviceOverview           `json:"deviceStatusOverview,omitempty"`
+		DeviceStatuses                              *[]DeviceConfigurationDeviceStatus           `json:"deviceStatuses,omitempty"`
+		DisplayName                                 *string                                      `json:"displayName,omitempty"`
+		GroupAssignments                            *[]DeviceConfigurationGroupAssignment        `json:"groupAssignments,omitempty"`
+		LastModifiedDateTime                        *string                                      `json:"lastModifiedDateTime,omitempty"`
+		RoleScopeTagIds                             *[]string                                    `json:"roleScopeTagIds,omitempty"`
+		SupportsScopeTags                           *bool                                        `json:"supportsScopeTags,omitempty"`
+		UserStatusOverview                          *DeviceConfigurationUserOverview             `json:"userStatusOverview,omitempty"`
+		UserStatuses                                *[]DeviceConfigurationUserStatus             `json:"userStatuses,omitempty"`
+		Version                                     *int64                                       `json:"version,omitempty"`
+		Id                                          *string                                      `json:"id,omitempty"`
+		ODataId                                     *string                                      `json:"@odata.id,omitempty"`
+		ODataType                                   *string                                      `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into WindowsUpdateForBusinessConfiguration: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.AllowWindows11Upgrade = decoded.AllowWindows11Upgrade
-	s.Assignments = decoded.Assignments
 	s.AutoRestartNotificationDismissal = decoded.AutoRestartNotificationDismissal
 	s.AutomaticUpdateMode = decoded.AutomaticUpdateMode
 	s.BusinessReadyUpdatesOnly = decoded.BusinessReadyUpdatesOnly
-	s.CreatedDateTime = decoded.CreatedDateTime
 	s.DeadlineForFeatureUpdatesInDays = decoded.DeadlineForFeatureUpdatesInDays
 	s.DeadlineForQualityUpdatesInDays = decoded.DeadlineForQualityUpdatesInDays
 	s.DeadlineGracePeriodInDays = decoded.DeadlineGracePeriodInDays
 	s.DeliveryOptimizationMode = decoded.DeliveryOptimizationMode
-	s.Description = decoded.Description
-	s.DeviceManagementApplicabilityRuleDeviceMode = decoded.DeviceManagementApplicabilityRuleDeviceMode
-	s.DeviceManagementApplicabilityRuleOsEdition = decoded.DeviceManagementApplicabilityRuleOsEdition
-	s.DeviceManagementApplicabilityRuleOsVersion = decoded.DeviceManagementApplicabilityRuleOsVersion
-	s.DeviceSettingStateSummaries = decoded.DeviceSettingStateSummaries
-	s.DeviceStatusOverview = decoded.DeviceStatusOverview
-	s.DeviceStatuses = decoded.DeviceStatuses
-	s.DisplayName = decoded.DisplayName
 	s.DriversExcluded = decoded.DriversExcluded
 	s.EngagedRestartDeadlineInDays = decoded.EngagedRestartDeadlineInDays
 	s.EngagedRestartSnoozeScheduleInDays = decoded.EngagedRestartSnoozeScheduleInDays
@@ -319,12 +365,7 @@ func (s *WindowsUpdateForBusinessConfiguration) UnmarshalJSON(bytes []byte) erro
 	s.FeatureUpdatesRollbackStartDateTime = decoded.FeatureUpdatesRollbackStartDateTime
 	s.FeatureUpdatesRollbackWindowInDays = decoded.FeatureUpdatesRollbackWindowInDays
 	s.FeatureUpdatesWillBeRolledBack = decoded.FeatureUpdatesWillBeRolledBack
-	s.GroupAssignments = decoded.GroupAssignments
-	s.Id = decoded.Id
-	s.LastModifiedDateTime = decoded.LastModifiedDateTime
 	s.MicrosoftUpdateServiceAllowed = decoded.MicrosoftUpdateServiceAllowed
-	s.ODataId = decoded.ODataId
-	s.ODataType = decoded.ODataType
 	s.PostponeRebootUntilAfterDeadline = decoded.PostponeRebootUntilAfterDeadline
 	s.PrereleaseFeatures = decoded.PrereleaseFeatures
 	s.QualityUpdatesDeferralPeriodInDays = decoded.QualityUpdatesDeferralPeriodInDays
@@ -333,17 +374,32 @@ func (s *WindowsUpdateForBusinessConfiguration) UnmarshalJSON(bytes []byte) erro
 	s.QualityUpdatesPaused = decoded.QualityUpdatesPaused
 	s.QualityUpdatesRollbackStartDateTime = decoded.QualityUpdatesRollbackStartDateTime
 	s.QualityUpdatesWillBeRolledBack = decoded.QualityUpdatesWillBeRolledBack
-	s.RoleScopeTagIds = decoded.RoleScopeTagIds
 	s.ScheduleImminentRestartWarningInMinutes = decoded.ScheduleImminentRestartWarningInMinutes
 	s.ScheduleRestartWarningInHours = decoded.ScheduleRestartWarningInHours
 	s.SkipChecksBeforeRestart = decoded.SkipChecksBeforeRestart
-	s.SupportsScopeTags = decoded.SupportsScopeTags
 	s.UpdateNotificationLevel = decoded.UpdateNotificationLevel
 	s.UpdateWeeks = decoded.UpdateWeeks
 	s.UserPauseAccess = decoded.UserPauseAccess
+	s.UserWindowsUpdateScanAccess = decoded.UserWindowsUpdateScanAccess
+	s.Assignments = decoded.Assignments
+	s.CreatedDateTime = decoded.CreatedDateTime
+	s.Description = decoded.Description
+	s.DeviceManagementApplicabilityRuleDeviceMode = decoded.DeviceManagementApplicabilityRuleDeviceMode
+	s.DeviceManagementApplicabilityRuleOsEdition = decoded.DeviceManagementApplicabilityRuleOsEdition
+	s.DeviceManagementApplicabilityRuleOsVersion = decoded.DeviceManagementApplicabilityRuleOsVersion
+	s.DeviceSettingStateSummaries = decoded.DeviceSettingStateSummaries
+	s.DeviceStatusOverview = decoded.DeviceStatusOverview
+	s.DeviceStatuses = decoded.DeviceStatuses
+	s.DisplayName = decoded.DisplayName
+	s.GroupAssignments = decoded.GroupAssignments
+	s.Id = decoded.Id
+	s.LastModifiedDateTime = decoded.LastModifiedDateTime
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
+	s.RoleScopeTagIds = decoded.RoleScopeTagIds
+	s.SupportsScopeTags = decoded.SupportsScopeTags
 	s.UserStatusOverview = decoded.UserStatusOverview
 	s.UserStatuses = decoded.UserStatuses
-	s.UserWindowsUpdateScanAccess = decoded.UserWindowsUpdateScanAccess
 	s.Version = decoded.Version
 
 	var temp map[string]json.RawMessage
@@ -358,5 +414,6 @@ func (s *WindowsUpdateForBusinessConfiguration) UnmarshalJSON(bytes []byte) erro
 		}
 		s.InstallationSchedule = impl
 	}
+
 	return nil
 }

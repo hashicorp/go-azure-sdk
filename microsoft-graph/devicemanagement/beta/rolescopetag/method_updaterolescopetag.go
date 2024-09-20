@@ -17,15 +17,44 @@ type UpdateRoleScopeTagOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateRoleScopeTagOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateRoleScopeTagOperationOptions() UpdateRoleScopeTagOperationOptions {
+	return UpdateRoleScopeTagOperationOptions{}
+}
+
+func (o UpdateRoleScopeTagOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateRoleScopeTagOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateRoleScopeTagOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateRoleScopeTag - Update the navigation property roleScopeTags in deviceManagement
-func (c RoleScopeTagClient) UpdateRoleScopeTag(ctx context.Context, id beta.DeviceManagementRoleScopeTagId, input beta.RoleScopeTag) (result UpdateRoleScopeTagOperationResponse, err error) {
+func (c RoleScopeTagClient) UpdateRoleScopeTag(ctx context.Context, id beta.DeviceManagementRoleScopeTagId, input beta.RoleScopeTag, options UpdateRoleScopeTagOperationOptions) (result UpdateRoleScopeTagOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

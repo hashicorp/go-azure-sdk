@@ -19,7 +19,8 @@ type DeleteCalendarPermissionOperationResponse struct {
 }
 
 type DeleteCalendarPermissionOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteCalendarPermissionOperationOptions() DeleteCalendarPermissionOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteCalendarPermissionOperationOptions) ToHeaders() *client.Headers {
 
 func (o DeleteCalendarPermissionOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

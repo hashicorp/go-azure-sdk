@@ -17,15 +17,44 @@ type UpdateExchangeConnectorOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateExchangeConnectorOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateExchangeConnectorOperationOptions() UpdateExchangeConnectorOperationOptions {
+	return UpdateExchangeConnectorOperationOptions{}
+}
+
+func (o UpdateExchangeConnectorOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateExchangeConnectorOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateExchangeConnectorOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateExchangeConnector - Update the navigation property exchangeConnectors in deviceManagement
-func (c ExchangeConnectorClient) UpdateExchangeConnector(ctx context.Context, id beta.DeviceManagementExchangeConnectorId, input beta.DeviceManagementExchangeConnector) (result UpdateExchangeConnectorOperationResponse, err error) {
+func (c ExchangeConnectorClient) UpdateExchangeConnector(ctx context.Context, id beta.DeviceManagementExchangeConnectorId, input beta.DeviceManagementExchangeConnector, options UpdateExchangeConnectorOperationOptions) (result UpdateExchangeConnectorOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -19,7 +19,8 @@ type DeleteSynchronizationJobBulkUploadOperationResponse struct {
 }
 
 type DeleteSynchronizationJobBulkUploadOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteSynchronizationJobBulkUploadOperationOptions() DeleteSynchronizationJobBulkUploadOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteSynchronizationJobBulkUploadOperationOptions) ToHeaders() *client.
 
 func (o DeleteSynchronizationJobBulkUploadOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

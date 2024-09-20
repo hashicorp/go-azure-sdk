@@ -257,10 +257,58 @@ func (s Event) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &Event{}
 
 func (s *Event) UnmarshalJSON(bytes []byte) error {
-	type alias Event
-	var decoded alias
+
+	var decoded struct {
+		AllowNewTimeProposals         nullable.Type[bool]                  `json:"allowNewTimeProposals,omitempty"`
+		Attachments                   *[]Attachment                        `json:"attachments,omitempty"`
+		Attendees                     *[]Attendee                          `json:"attendees,omitempty"`
+		Body                          *ItemBody                            `json:"body,omitempty"`
+		BodyPreview                   nullable.Type[string]                `json:"bodyPreview,omitempty"`
+		Calendar                      *Calendar                            `json:"calendar,omitempty"`
+		End                           *DateTimeTimeZone                    `json:"end,omitempty"`
+		Extensions                    *[]Extension                         `json:"extensions,omitempty"`
+		HasAttachments                nullable.Type[bool]                  `json:"hasAttachments,omitempty"`
+		HideAttendees                 nullable.Type[bool]                  `json:"hideAttendees,omitempty"`
+		ICalUId                       nullable.Type[string]                `json:"iCalUId,omitempty"`
+		Importance                    *Importance                          `json:"importance,omitempty"`
+		Instances                     *[]Event                             `json:"instances,omitempty"`
+		IsAllDay                      nullable.Type[bool]                  `json:"isAllDay,omitempty"`
+		IsCancelled                   nullable.Type[bool]                  `json:"isCancelled,omitempty"`
+		IsDraft                       nullable.Type[bool]                  `json:"isDraft,omitempty"`
+		IsOnlineMeeting               nullable.Type[bool]                  `json:"isOnlineMeeting,omitempty"`
+		IsOrganizer                   nullable.Type[bool]                  `json:"isOrganizer,omitempty"`
+		IsReminderOn                  nullable.Type[bool]                  `json:"isReminderOn,omitempty"`
+		Locations                     *[]Location                          `json:"locations,omitempty"`
+		MultiValueExtendedProperties  *[]MultiValueLegacyExtendedProperty  `json:"multiValueExtendedProperties,omitempty"`
+		OnlineMeeting                 *OnlineMeetingInfo                   `json:"onlineMeeting,omitempty"`
+		OnlineMeetingProvider         *OnlineMeetingProviderType           `json:"onlineMeetingProvider,omitempty"`
+		OnlineMeetingUrl              nullable.Type[string]                `json:"onlineMeetingUrl,omitempty"`
+		OriginalEndTimeZone           nullable.Type[string]                `json:"originalEndTimeZone,omitempty"`
+		OriginalStart                 nullable.Type[string]                `json:"originalStart,omitempty"`
+		OriginalStartTimeZone         nullable.Type[string]                `json:"originalStartTimeZone,omitempty"`
+		Recurrence                    *PatternedRecurrence                 `json:"recurrence,omitempty"`
+		ReminderMinutesBeforeStart    nullable.Type[int64]                 `json:"reminderMinutesBeforeStart,omitempty"`
+		ResponseRequested             nullable.Type[bool]                  `json:"responseRequested,omitempty"`
+		ResponseStatus                *ResponseStatus                      `json:"responseStatus,omitempty"`
+		Sensitivity                   *Sensitivity                         `json:"sensitivity,omitempty"`
+		SeriesMasterId                nullable.Type[string]                `json:"seriesMasterId,omitempty"`
+		ShowAs                        *FreeBusyStatus                      `json:"showAs,omitempty"`
+		SingleValueExtendedProperties *[]SingleValueLegacyExtendedProperty `json:"singleValueExtendedProperties,omitempty"`
+		Start                         *DateTimeTimeZone                    `json:"start,omitempty"`
+		Subject                       nullable.Type[string]                `json:"subject,omitempty"`
+		TransactionId                 nullable.Type[string]                `json:"transactionId,omitempty"`
+		Type                          *EventType                           `json:"type,omitempty"`
+		WebLink                       nullable.Type[string]                `json:"webLink,omitempty"`
+		Categories                    *[]string                            `json:"categories,omitempty"`
+		ChangeKey                     nullable.Type[string]                `json:"changeKey,omitempty"`
+		CreatedDateTime               nullable.Type[string]                `json:"createdDateTime,omitempty"`
+		LastModifiedDateTime          nullable.Type[string]                `json:"lastModifiedDateTime,omitempty"`
+		Id                            *string                              `json:"id,omitempty"`
+		ODataId                       *string                              `json:"@odata.id,omitempty"`
+		ODataType                     *string                              `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into Event: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.AllowNewTimeProposals = decoded.AllowNewTimeProposals
@@ -268,14 +316,10 @@ func (s *Event) UnmarshalJSON(bytes []byte) error {
 	s.Body = decoded.Body
 	s.BodyPreview = decoded.BodyPreview
 	s.Calendar = decoded.Calendar
-	s.Categories = decoded.Categories
-	s.ChangeKey = decoded.ChangeKey
-	s.CreatedDateTime = decoded.CreatedDateTime
 	s.End = decoded.End
 	s.HasAttachments = decoded.HasAttachments
 	s.HideAttendees = decoded.HideAttendees
 	s.ICalUId = decoded.ICalUId
-	s.Id = decoded.Id
 	s.Importance = decoded.Importance
 	s.Instances = decoded.Instances
 	s.IsAllDay = decoded.IsAllDay
@@ -284,10 +328,7 @@ func (s *Event) UnmarshalJSON(bytes []byte) error {
 	s.IsOnlineMeeting = decoded.IsOnlineMeeting
 	s.IsOrganizer = decoded.IsOrganizer
 	s.IsReminderOn = decoded.IsReminderOn
-	s.LastModifiedDateTime = decoded.LastModifiedDateTime
 	s.MultiValueExtendedProperties = decoded.MultiValueExtendedProperties
-	s.ODataId = decoded.ODataId
-	s.ODataType = decoded.ODataType
 	s.OnlineMeeting = decoded.OnlineMeeting
 	s.OnlineMeetingProvider = decoded.OnlineMeetingProvider
 	s.OnlineMeetingUrl = decoded.OnlineMeetingUrl
@@ -307,6 +348,13 @@ func (s *Event) UnmarshalJSON(bytes []byte) error {
 	s.TransactionId = decoded.TransactionId
 	s.Type = decoded.Type
 	s.WebLink = decoded.WebLink
+	s.Categories = decoded.Categories
+	s.ChangeKey = decoded.ChangeKey
+	s.CreatedDateTime = decoded.CreatedDateTime
+	s.Id = decoded.Id
+	s.LastModifiedDateTime = decoded.LastModifiedDateTime
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -379,5 +427,6 @@ func (s *Event) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Organizer = impl
 	}
+
 	return nil
 }

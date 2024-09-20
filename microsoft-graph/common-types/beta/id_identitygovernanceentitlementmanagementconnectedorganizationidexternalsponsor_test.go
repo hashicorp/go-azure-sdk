@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &IdentityGovernanceEntitlementManagementConnectedOrganizationIdExternalSponsorId{}
 
 func TestNewIdentityGovernanceEntitlementManagementConnectedOrganizationIdExternalSponsorID(t *testing.T) {
-	id := NewIdentityGovernanceEntitlementManagementConnectedOrganizationIdExternalSponsorID("connectedOrganizationIdValue", "directoryObjectIdValue")
+	id := NewIdentityGovernanceEntitlementManagementConnectedOrganizationIdExternalSponsorID("connectedOrganizationId", "directoryObjectId")
 
-	if id.ConnectedOrganizationId != "connectedOrganizationIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ConnectedOrganizationId'", id.ConnectedOrganizationId, "connectedOrganizationIdValue")
+	if id.ConnectedOrganizationId != "connectedOrganizationId" {
+		t.Fatalf("Expected %q but got %q for Segment 'ConnectedOrganizationId'", id.ConnectedOrganizationId, "connectedOrganizationId")
 	}
 
-	if id.DirectoryObjectId != "directoryObjectIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DirectoryObjectId'", id.DirectoryObjectId, "directoryObjectIdValue")
+	if id.DirectoryObjectId != "directoryObjectId" {
+		t.Fatalf("Expected %q but got %q for Segment 'DirectoryObjectId'", id.DirectoryObjectId, "directoryObjectId")
 	}
 }
 
 func TestFormatIdentityGovernanceEntitlementManagementConnectedOrganizationIdExternalSponsorID(t *testing.T) {
-	actual := NewIdentityGovernanceEntitlementManagementConnectedOrganizationIdExternalSponsorID("connectedOrganizationIdValue", "directoryObjectIdValue").ID()
-	expected := "/identityGovernance/entitlementManagement/connectedOrganizations/connectedOrganizationIdValue/externalSponsors/directoryObjectIdValue"
+	actual := NewIdentityGovernanceEntitlementManagementConnectedOrganizationIdExternalSponsorID("connectedOrganizationId", "directoryObjectId").ID()
+	expected := "/identityGovernance/entitlementManagement/connectedOrganizations/connectedOrganizationId/externalSponsors/directoryObjectId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -59,25 +59,25 @@ func TestParseIdentityGovernanceEntitlementManagementConnectedOrganizationIdExte
 		},
 		{
 			// Incomplete URI
-			Input: "/identityGovernance/entitlementManagement/connectedOrganizations/connectedOrganizationIdValue",
+			Input: "/identityGovernance/entitlementManagement/connectedOrganizations/connectedOrganizationId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/identityGovernance/entitlementManagement/connectedOrganizations/connectedOrganizationIdValue/externalSponsors",
+			Input: "/identityGovernance/entitlementManagement/connectedOrganizations/connectedOrganizationId/externalSponsors",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/identityGovernance/entitlementManagement/connectedOrganizations/connectedOrganizationIdValue/externalSponsors/directoryObjectIdValue",
+			Input: "/identityGovernance/entitlementManagement/connectedOrganizations/connectedOrganizationId/externalSponsors/directoryObjectId",
 			Expected: &IdentityGovernanceEntitlementManagementConnectedOrganizationIdExternalSponsorId{
-				ConnectedOrganizationId: "connectedOrganizationIdValue",
-				DirectoryObjectId:       "directoryObjectIdValue",
+				ConnectedOrganizationId: "connectedOrganizationId",
+				DirectoryObjectId:       "directoryObjectId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/identityGovernance/entitlementManagement/connectedOrganizations/connectedOrganizationIdValue/externalSponsors/directoryObjectIdValue/extra",
+			Input: "/identityGovernance/entitlementManagement/connectedOrganizations/connectedOrganizationId/externalSponsors/directoryObjectId/extra",
 			Error: true,
 		},
 	}
@@ -150,48 +150,48 @@ func TestParseIdentityGovernanceEntitlementManagementConnectedOrganizationIdExte
 		},
 		{
 			// Incomplete URI
-			Input: "/identityGovernance/entitlementManagement/connectedOrganizations/connectedOrganizationIdValue",
+			Input: "/identityGovernance/entitlementManagement/connectedOrganizations/connectedOrganizationId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/iDeNtItYgOvErNaNcE/eNtItLeMeNtMaNaGeMeNt/cOnNeCtEdOrGaNiZaTiOnS/cOnNeCtEdOrGaNiZaTiOnIdVaLuE",
+			Input: "/iDeNtItYgOvErNaNcE/eNtItLeMeNtMaNaGeMeNt/cOnNeCtEdOrGaNiZaTiOnS/cOnNeCtEdOrGaNiZaTiOnId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/identityGovernance/entitlementManagement/connectedOrganizations/connectedOrganizationIdValue/externalSponsors",
+			Input: "/identityGovernance/entitlementManagement/connectedOrganizations/connectedOrganizationId/externalSponsors",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/iDeNtItYgOvErNaNcE/eNtItLeMeNtMaNaGeMeNt/cOnNeCtEdOrGaNiZaTiOnS/cOnNeCtEdOrGaNiZaTiOnIdVaLuE/eXtErNaLsPoNsOrS",
+			Input: "/iDeNtItYgOvErNaNcE/eNtItLeMeNtMaNaGeMeNt/cOnNeCtEdOrGaNiZaTiOnS/cOnNeCtEdOrGaNiZaTiOnId/eXtErNaLsPoNsOrS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/identityGovernance/entitlementManagement/connectedOrganizations/connectedOrganizationIdValue/externalSponsors/directoryObjectIdValue",
+			Input: "/identityGovernance/entitlementManagement/connectedOrganizations/connectedOrganizationId/externalSponsors/directoryObjectId",
 			Expected: &IdentityGovernanceEntitlementManagementConnectedOrganizationIdExternalSponsorId{
-				ConnectedOrganizationId: "connectedOrganizationIdValue",
-				DirectoryObjectId:       "directoryObjectIdValue",
+				ConnectedOrganizationId: "connectedOrganizationId",
+				DirectoryObjectId:       "directoryObjectId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/identityGovernance/entitlementManagement/connectedOrganizations/connectedOrganizationIdValue/externalSponsors/directoryObjectIdValue/extra",
+			Input: "/identityGovernance/entitlementManagement/connectedOrganizations/connectedOrganizationId/externalSponsors/directoryObjectId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/iDeNtItYgOvErNaNcE/eNtItLeMeNtMaNaGeMeNt/cOnNeCtEdOrGaNiZaTiOnS/cOnNeCtEdOrGaNiZaTiOnIdVaLuE/eXtErNaLsPoNsOrS/dIrEcToRyObJeCtIdVaLuE",
+			Input: "/iDeNtItYgOvErNaNcE/eNtItLeMeNtMaNaGeMeNt/cOnNeCtEdOrGaNiZaTiOnS/cOnNeCtEdOrGaNiZaTiOnId/eXtErNaLsPoNsOrS/dIrEcToRyObJeCtId",
 			Expected: &IdentityGovernanceEntitlementManagementConnectedOrganizationIdExternalSponsorId{
-				ConnectedOrganizationId: "cOnNeCtEdOrGaNiZaTiOnIdVaLuE",
-				DirectoryObjectId:       "dIrEcToRyObJeCtIdVaLuE",
+				ConnectedOrganizationId: "cOnNeCtEdOrGaNiZaTiOnId",
+				DirectoryObjectId:       "dIrEcToRyObJeCtId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/iDeNtItYgOvErNaNcE/eNtItLeMeNtMaNaGeMeNt/cOnNeCtEdOrGaNiZaTiOnS/cOnNeCtEdOrGaNiZaTiOnIdVaLuE/eXtErNaLsPoNsOrS/dIrEcToRyObJeCtIdVaLuE/extra",
+			Input: "/iDeNtItYgOvErNaNcE/eNtItLeMeNtMaNaGeMeNt/cOnNeCtEdOrGaNiZaTiOnS/cOnNeCtEdOrGaNiZaTiOnId/eXtErNaLsPoNsOrS/dIrEcToRyObJeCtId/extra",
 			Error: true,
 		},
 	}

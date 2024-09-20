@@ -108,10 +108,28 @@ func (s TeamsAppDefinition) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &TeamsAppDefinition{}
 
 func (s *TeamsAppDefinition) UnmarshalJSON(bytes []byte) error {
-	type alias TeamsAppDefinition
-	var decoded alias
+
+	var decoded struct {
+		AllowedInstallationScopes *TeamsAppInstallationScopes        `json:"allowedInstallationScopes,omitempty"`
+		Authorization             *TeamsAppAuthorization             `json:"authorization,omitempty"`
+		AzureADAppId              nullable.Type[string]              `json:"azureADAppId,omitempty"`
+		Bot                       *TeamworkBot                       `json:"bot,omitempty"`
+		ColorIcon                 *TeamsAppIcon                      `json:"colorIcon,omitempty"`
+		DashboardCards            *[]TeamsAppDashboardCardDefinition `json:"dashboardCards,omitempty"`
+		Description               nullable.Type[string]              `json:"description,omitempty"`
+		DisplayName               nullable.Type[string]              `json:"displayName,omitempty"`
+		LastModifiedDateTime      nullable.Type[string]              `json:"lastModifiedDateTime,omitempty"`
+		OutlineIcon               *TeamsAppIcon                      `json:"outlineIcon,omitempty"`
+		PublishingState           *TeamsAppPublishingState           `json:"publishingState,omitempty"`
+		Shortdescription          nullable.Type[string]              `json:"shortdescription,omitempty"`
+		TeamsAppId                nullable.Type[string]              `json:"teamsAppId,omitempty"`
+		Version                   nullable.Type[string]              `json:"version,omitempty"`
+		Id                        *string                            `json:"id,omitempty"`
+		ODataId                   *string                            `json:"@odata.id,omitempty"`
+		ODataType                 *string                            `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into TeamsAppDefinition: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.AllowedInstallationScopes = decoded.AllowedInstallationScopes
@@ -122,15 +140,15 @@ func (s *TeamsAppDefinition) UnmarshalJSON(bytes []byte) error {
 	s.DashboardCards = decoded.DashboardCards
 	s.Description = decoded.Description
 	s.DisplayName = decoded.DisplayName
-	s.Id = decoded.Id
 	s.LastModifiedDateTime = decoded.LastModifiedDateTime
-	s.ODataId = decoded.ODataId
-	s.ODataType = decoded.ODataType
 	s.OutlineIcon = decoded.OutlineIcon
 	s.PublishingState = decoded.PublishingState
 	s.Shortdescription = decoded.Shortdescription
 	s.TeamsAppId = decoded.TeamsAppId
 	s.Version = decoded.Version
+	s.Id = decoded.Id
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -144,5 +162,6 @@ func (s *TeamsAppDefinition) UnmarshalJSON(bytes []byte) error {
 		}
 		s.CreatedBy = impl
 	}
+
 	return nil
 }

@@ -17,15 +17,44 @@ type UpdateManagedDeviceEncryptionStateOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateManagedDeviceEncryptionStateOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateManagedDeviceEncryptionStateOperationOptions() UpdateManagedDeviceEncryptionStateOperationOptions {
+	return UpdateManagedDeviceEncryptionStateOperationOptions{}
+}
+
+func (o UpdateManagedDeviceEncryptionStateOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateManagedDeviceEncryptionStateOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateManagedDeviceEncryptionStateOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateManagedDeviceEncryptionState - Update the navigation property managedDeviceEncryptionStates in deviceManagement
-func (c ManagedDeviceEncryptionStateClient) UpdateManagedDeviceEncryptionState(ctx context.Context, id beta.DeviceManagementManagedDeviceEncryptionStateId, input beta.ManagedDeviceEncryptionState) (result UpdateManagedDeviceEncryptionStateOperationResponse, err error) {
+func (c ManagedDeviceEncryptionStateClient) UpdateManagedDeviceEncryptionState(ctx context.Context, id beta.DeviceManagementManagedDeviceEncryptionStateId, input beta.ManagedDeviceEncryptionState, options UpdateManagedDeviceEncryptionStateOperationOptions) (result UpdateManagedDeviceEncryptionStateOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

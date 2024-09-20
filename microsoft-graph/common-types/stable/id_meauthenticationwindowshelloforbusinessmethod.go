@@ -94,7 +94,7 @@ func (id MeAuthenticationWindowsHelloForBusinessMethodId) Segments() []resourcei
 		resourceids.StaticSegment("me", "me", "me"),
 		resourceids.StaticSegment("authentication", "authentication", "authentication"),
 		resourceids.StaticSegment("windowsHelloForBusinessMethods", "windowsHelloForBusinessMethods", "windowsHelloForBusinessMethods"),
-		resourceids.UserSpecifiedSegment("windowsHelloForBusinessAuthenticationMethodId", "windowsHelloForBusinessAuthenticationMethodIdValue"),
+		resourceids.UserSpecifiedSegment("windowsHelloForBusinessAuthenticationMethodId", "windowsHelloForBusinessAuthenticationMethodId"),
 	}
 }
 

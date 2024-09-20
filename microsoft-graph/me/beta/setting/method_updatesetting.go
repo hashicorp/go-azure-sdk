@@ -17,15 +17,44 @@ type UpdateSettingOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateSettingOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateSettingOperationOptions() UpdateSettingOperationOptions {
+	return UpdateSettingOperationOptions{}
+}
+
+func (o UpdateSettingOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateSettingOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateSettingOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateSetting - Update the navigation property settings in me
-func (c SettingClient) UpdateSetting(ctx context.Context, input beta.UserSettings) (result UpdateSettingOperationResponse, err error) {
+func (c SettingClient) UpdateSetting(ctx context.Context, input beta.UserSettings, options UpdateSettingOperationOptions) (result UpdateSettingOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       "/me/settings",
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          "/me/settings",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

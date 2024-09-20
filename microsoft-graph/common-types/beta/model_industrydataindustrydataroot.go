@@ -88,21 +88,34 @@ func (s IndustryDataIndustryDataRoot) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &IndustryDataIndustryDataRoot{}
 
 func (s *IndustryDataIndustryDataRoot) UnmarshalJSON(bytes []byte) error {
-	type alias IndustryDataIndustryDataRoot
-	var decoded alias
+
+	var decoded struct {
+		DataConnectors               *[]IndustryDataIndustryDataConnector       `json:"dataConnectors,omitempty"`
+		InboundFlows                 *[]IndustryDataInboundFlow                 `json:"inboundFlows,omitempty"`
+		Operations                   *[]LongRunningOperation                    `json:"operations,omitempty"`
+		OutboundProvisioningFlowSets *[]IndustryDataOutboundProvisioningFlowSet `json:"outboundProvisioningFlowSets,omitempty"`
+		ReferenceDefinitions         *[]IndustryDataReferenceDefinition         `json:"referenceDefinitions,omitempty"`
+		RoleGroups                   *[]IndustryDataRoleGroup                   `json:"roleGroups,omitempty"`
+		Runs                         *[]IndustryDataIndustryDataRun             `json:"runs,omitempty"`
+		SourceSystems                *[]IndustryDataSourceSystemDefinition      `json:"sourceSystems,omitempty"`
+		Years                        *[]IndustryDataYearTimePeriodDefinition    `json:"years,omitempty"`
+		Id                           *string                                    `json:"id,omitempty"`
+		ODataId                      *string                                    `json:"@odata.id,omitempty"`
+		ODataType                    *string                                    `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into IndustryDataIndustryDataRoot: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
-	s.Id = decoded.Id
-	s.ODataId = decoded.ODataId
-	s.ODataType = decoded.ODataType
 	s.OutboundProvisioningFlowSets = decoded.OutboundProvisioningFlowSets
 	s.ReferenceDefinitions = decoded.ReferenceDefinitions
 	s.RoleGroups = decoded.RoleGroups
 	s.Runs = decoded.Runs
 	s.SourceSystems = decoded.SourceSystems
 	s.Years = decoded.Years
+	s.Id = decoded.Id
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -159,5 +172,6 @@ func (s *IndustryDataIndustryDataRoot) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Operations = &output
 	}
+
 	return nil
 }

@@ -20,8 +20,9 @@ type GetEntitlementManagementResourceRequestCatalogResourceScopeResourceEnvironm
 }
 
 type GetEntitlementManagementResourceRequestCatalogResourceScopeResourceEnvironmentOperationOptions struct {
-	Expand *odata.Expand
-	Select *[]string
+	Expand   *odata.Expand
+	Metadata *odata.Metadata
+	Select   *[]string
 }
 
 func DefaultGetEntitlementManagementResourceRequestCatalogResourceScopeResourceEnvironmentOperationOptions() GetEntitlementManagementResourceRequestCatalogResourceScopeResourceEnvironmentOperationOptions {
@@ -39,6 +40,9 @@ func (o GetEntitlementManagementResourceRequestCatalogResourceScopeResourceEnvir
 	if o.Expand != nil {
 		out.Expand = *o.Expand
 	}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	if o.Select != nil {
 		out.Select = *o.Select
 	}
@@ -54,7 +58,7 @@ func (o GetEntitlementManagementResourceRequestCatalogResourceScopeResourceEnvir
 // GetEntitlementManagementResourceRequestCatalogResourceScopeResourceEnvironment - Get environment from
 // identityGovernance. Contains the environment information for the resource. This can be set using either the
 // @odata.bind annotation or the environment's originId.Supports $expand.
-func (c EntitlementManagementResourceRequestCatalogResourceScopeResourceEnvironmentClient) GetEntitlementManagementResourceRequestCatalogResourceScopeResourceEnvironment(ctx context.Context, id stable.IdentityGovernanceEntitlementManagementResourceRequestIdCatalogResourceScopeId, options GetEntitlementManagementResourceRequestCatalogResourceScopeResourceEnvironmentOperationOptions) (result GetEntitlementManagementResourceRequestCatalogResourceScopeResourceEnvironmentOperationResponse, err error) {
+func (c EntitlementManagementResourceRequestCatalogResourceScopeResourceEnvironmentClient) GetEntitlementManagementResourceRequestCatalogResourceScopeResourceEnvironment(ctx context.Context, id stable.IdentityGovernanceEntitlementManagementResourceRequestIdCatalogResourceIdScopeId, options GetEntitlementManagementResourceRequestCatalogResourceScopeResourceEnvironmentOperationOptions) (result GetEntitlementManagementResourceRequestCatalogResourceScopeResourceEnvironmentOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{

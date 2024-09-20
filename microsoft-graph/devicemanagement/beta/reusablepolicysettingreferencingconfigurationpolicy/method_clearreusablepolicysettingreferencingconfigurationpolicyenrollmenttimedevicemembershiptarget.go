@@ -19,16 +19,45 @@ type ClearReusablePolicySettingReferencingConfigurationPolicyEnrollmentTimeDevic
 	Model        *ClearReusablePolicySettingReferencingConfigurationPolicyEnrollmentTimeDeviceMembershipTargetResult
 }
 
+type ClearReusablePolicySettingReferencingConfigurationPolicyEnrollmentTimeDeviceMembershipTargetOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultClearReusablePolicySettingReferencingConfigurationPolicyEnrollmentTimeDeviceMembershipTargetOperationOptions() ClearReusablePolicySettingReferencingConfigurationPolicyEnrollmentTimeDeviceMembershipTargetOperationOptions {
+	return ClearReusablePolicySettingReferencingConfigurationPolicyEnrollmentTimeDeviceMembershipTargetOperationOptions{}
+}
+
+func (o ClearReusablePolicySettingReferencingConfigurationPolicyEnrollmentTimeDeviceMembershipTargetOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o ClearReusablePolicySettingReferencingConfigurationPolicyEnrollmentTimeDeviceMembershipTargetOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o ClearReusablePolicySettingReferencingConfigurationPolicyEnrollmentTimeDeviceMembershipTargetOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // ClearReusablePolicySettingReferencingConfigurationPolicyEnrollmentTimeDeviceMembershipTarget - Invoke action
 // clearEnrollmentTimeDeviceMembershipTarget
-func (c ReusablePolicySettingReferencingConfigurationPolicyClient) ClearReusablePolicySettingReferencingConfigurationPolicyEnrollmentTimeDeviceMembershipTarget(ctx context.Context, id beta.DeviceManagementReusablePolicySettingIdReferencingConfigurationPolicyId) (result ClearReusablePolicySettingReferencingConfigurationPolicyEnrollmentTimeDeviceMembershipTargetOperationResponse, err error) {
+func (c ReusablePolicySettingReferencingConfigurationPolicyClient) ClearReusablePolicySettingReferencingConfigurationPolicyEnrollmentTimeDeviceMembershipTarget(ctx context.Context, id beta.DeviceManagementReusablePolicySettingIdReferencingConfigurationPolicyId, options ClearReusablePolicySettingReferencingConfigurationPolicyEnrollmentTimeDeviceMembershipTargetOperationOptions) (result ClearReusablePolicySettingReferencingConfigurationPolicyEnrollmentTimeDeviceMembershipTargetOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/clearEnrollmentTimeDeviceMembershipTarget", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/clearEnrollmentTimeDeviceMembershipTarget", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

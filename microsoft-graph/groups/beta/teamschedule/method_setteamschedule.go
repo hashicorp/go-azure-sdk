@@ -18,15 +18,44 @@ type SetTeamScheduleOperationResponse struct {
 	OData        *odata.OData
 }
 
+type SetTeamScheduleOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultSetTeamScheduleOperationOptions() SetTeamScheduleOperationOptions {
+	return SetTeamScheduleOperationOptions{}
+}
+
+func (o SetTeamScheduleOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o SetTeamScheduleOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o SetTeamScheduleOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // SetTeamSchedule - Update the navigation property schedule in groups
-func (c TeamScheduleClient) SetTeamSchedule(ctx context.Context, id beta.GroupId, input beta.Schedule) (result SetTeamScheduleOperationResponse, err error) {
+func (c TeamScheduleClient) SetTeamSchedule(ctx context.Context, id beta.GroupId, input beta.Schedule, options SetTeamScheduleOperationOptions) (result SetTeamScheduleOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPut,
-		Path:       fmt.Sprintf("%s/team/schedule", id.ID()),
+		HttpMethod:    http.MethodPut,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/team/schedule", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

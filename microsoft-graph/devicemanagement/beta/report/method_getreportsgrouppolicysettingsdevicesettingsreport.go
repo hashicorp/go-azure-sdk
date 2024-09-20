@@ -17,15 +17,44 @@ type GetReportsGroupPolicySettingsDeviceSettingsReportOperationResponse struct {
 	Model        *[]byte
 }
 
+type GetReportsGroupPolicySettingsDeviceSettingsReportOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultGetReportsGroupPolicySettingsDeviceSettingsReportOperationOptions() GetReportsGroupPolicySettingsDeviceSettingsReportOperationOptions {
+	return GetReportsGroupPolicySettingsDeviceSettingsReportOperationOptions{}
+}
+
+func (o GetReportsGroupPolicySettingsDeviceSettingsReportOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o GetReportsGroupPolicySettingsDeviceSettingsReportOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o GetReportsGroupPolicySettingsDeviceSettingsReportOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // GetReportsGroupPolicySettingsDeviceSettingsReport - Invoke action getGroupPolicySettingsDeviceSettingsReport
-func (c ReportClient) GetReportsGroupPolicySettingsDeviceSettingsReport(ctx context.Context, input GetReportsGroupPolicySettingsDeviceSettingsReportRequest) (result GetReportsGroupPolicySettingsDeviceSettingsReportOperationResponse, err error) {
+func (c ReportClient) GetReportsGroupPolicySettingsDeviceSettingsReport(ctx context.Context, input GetReportsGroupPolicySettingsDeviceSettingsReportRequest, options GetReportsGroupPolicySettingsDeviceSettingsReportOperationOptions) (result GetReportsGroupPolicySettingsDeviceSettingsReportOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/octet-stream",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/deviceManagement/reports/getGroupPolicySettingsDeviceSettingsReport",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/deviceManagement/reports/getGroupPolicySettingsDeviceSettingsReport",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -19,7 +19,8 @@ type RemoveB2xUserFlowLanguageDefaultPageValueOperationResponse struct {
 }
 
 type RemoveB2xUserFlowLanguageDefaultPageValueOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultRemoveB2xUserFlowLanguageDefaultPageValueOperationOptions() RemoveB2xUserFlowLanguageDefaultPageValueOperationOptions {
@@ -36,7 +37,9 @@ func (o RemoveB2xUserFlowLanguageDefaultPageValueOperationOptions) ToHeaders() *
 
 func (o RemoveB2xUserFlowLanguageDefaultPageValueOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

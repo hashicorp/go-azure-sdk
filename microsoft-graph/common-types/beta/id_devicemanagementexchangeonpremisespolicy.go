@@ -93,7 +93,7 @@ func (id DeviceManagementExchangeOnPremisesPolicyId) Segments() []resourceids.Se
 	return []resourceids.Segment{
 		resourceids.StaticSegment("deviceManagement", "deviceManagement", "deviceManagement"),
 		resourceids.StaticSegment("exchangeOnPremisesPolicies", "exchangeOnPremisesPolicies", "exchangeOnPremisesPolicies"),
-		resourceids.UserSpecifiedSegment("deviceManagementExchangeOnPremisesPolicyId", "deviceManagementExchangeOnPremisesPolicyIdValue"),
+		resourceids.UserSpecifiedSegment("deviceManagementExchangeOnPremisesPolicyId", "deviceManagementExchangeOnPremisesPolicyId"),
 	}
 }
 

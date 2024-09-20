@@ -19,7 +19,8 @@ type DeleteEventInstanceAttachmentOperationResponse struct {
 }
 
 type DeleteEventInstanceAttachmentOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteEventInstanceAttachmentOperationOptions() DeleteEventInstanceAttachmentOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteEventInstanceAttachmentOperationOptions) ToHeaders() *client.Heade
 
 func (o DeleteEventInstanceAttachmentOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

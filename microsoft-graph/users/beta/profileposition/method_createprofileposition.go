@@ -19,15 +19,44 @@ type CreateProfilePositionOperationResponse struct {
 	Model        *beta.WorkPosition
 }
 
+type CreateProfilePositionOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateProfilePositionOperationOptions() CreateProfilePositionOperationOptions {
+	return CreateProfilePositionOperationOptions{}
+}
+
+func (o CreateProfilePositionOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateProfilePositionOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateProfilePositionOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateProfilePosition - Create new navigation property to positions for users
-func (c ProfilePositionClient) CreateProfilePosition(ctx context.Context, id beta.UserId, input beta.WorkPosition) (result CreateProfilePositionOperationResponse, err error) {
+func (c ProfilePositionClient) CreateProfilePosition(ctx context.Context, id beta.UserId, input beta.WorkPosition, options CreateProfilePositionOperationOptions) (result CreateProfilePositionOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/profile/positions", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/profile/positions", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

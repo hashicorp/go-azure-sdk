@@ -19,7 +19,8 @@ type DeleteHardwarePasswordDetailOperationResponse struct {
 }
 
 type DeleteHardwarePasswordDetailOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteHardwarePasswordDetailOperationOptions() DeleteHardwarePasswordDetailOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteHardwarePasswordDetailOperationOptions) ToHeaders() *client.Header
 
 func (o DeleteHardwarePasswordDetailOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

@@ -116,22 +116,34 @@ func (s DocumentSetVersion) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &DocumentSetVersion{}
 
 func (s *DocumentSetVersion) UnmarshalJSON(bytes []byte) error {
-	type alias DocumentSetVersion
-	var decoded alias
+
+	var decoded struct {
+		Comment                   nullable.Type[string]     `json:"comment,omitempty"`
+		CreatedDateTime           nullable.Type[string]     `json:"createdDateTime,omitempty"`
+		Items                     *[]DocumentSetVersionItem `json:"items,omitempty"`
+		ShouldCaptureMinorVersion nullable.Type[bool]       `json:"shouldCaptureMinorVersion,omitempty"`
+		Fields                    *FieldValueSet            `json:"fields,omitempty"`
+		LastModifiedBy            *IdentitySet              `json:"lastModifiedBy,omitempty"`
+		LastModifiedDateTime      nullable.Type[string]     `json:"lastModifiedDateTime,omitempty"`
+		Publication               *PublicationFacet         `json:"publication,omitempty"`
+		Id                        *string                   `json:"id,omitempty"`
+		ODataId                   *string                   `json:"@odata.id,omitempty"`
+		ODataType                 *string                   `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into DocumentSetVersion: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.Comment = decoded.Comment
 	s.CreatedDateTime = decoded.CreatedDateTime
+	s.Items = decoded.Items
+	s.ShouldCaptureMinorVersion = decoded.ShouldCaptureMinorVersion
 	s.Fields = decoded.Fields
 	s.Id = decoded.Id
-	s.Items = decoded.Items
 	s.LastModifiedDateTime = decoded.LastModifiedDateTime
 	s.ODataId = decoded.ODataId
 	s.ODataType = decoded.ODataType
 	s.Publication = decoded.Publication
-	s.ShouldCaptureMinorVersion = decoded.ShouldCaptureMinorVersion
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -153,5 +165,6 @@ func (s *DocumentSetVersion) UnmarshalJSON(bytes []byte) error {
 		}
 		s.LastModifiedBy = &impl
 	}
+
 	return nil
 }

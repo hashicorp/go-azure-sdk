@@ -19,8 +19,9 @@ type GetB2xUserFlowOperationResponse struct {
 }
 
 type GetB2xUserFlowOperationOptions struct {
-	Expand *odata.Expand
-	Select *[]string
+	Expand   *odata.Expand
+	Metadata *odata.Metadata
+	Select   *[]string
 }
 
 func DefaultGetB2xUserFlowOperationOptions() GetB2xUserFlowOperationOptions {
@@ -37,6 +38,9 @@ func (o GetB2xUserFlowOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
 	if o.Expand != nil {
 		out.Expand = *o.Expand
+	}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
 	}
 	if o.Select != nil {
 		out.Select = *o.Select

@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &IdentityGovernancePrivilegedAccessGroupAssignmentScheduleInstanceId{}
 
 func TestNewIdentityGovernancePrivilegedAccessGroupAssignmentScheduleInstanceID(t *testing.T) {
-	id := NewIdentityGovernancePrivilegedAccessGroupAssignmentScheduleInstanceID("privilegedAccessGroupAssignmentScheduleInstanceIdValue")
+	id := NewIdentityGovernancePrivilegedAccessGroupAssignmentScheduleInstanceID("privilegedAccessGroupAssignmentScheduleInstanceId")
 
-	if id.PrivilegedAccessGroupAssignmentScheduleInstanceId != "privilegedAccessGroupAssignmentScheduleInstanceIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'PrivilegedAccessGroupAssignmentScheduleInstanceId'", id.PrivilegedAccessGroupAssignmentScheduleInstanceId, "privilegedAccessGroupAssignmentScheduleInstanceIdValue")
+	if id.PrivilegedAccessGroupAssignmentScheduleInstanceId != "privilegedAccessGroupAssignmentScheduleInstanceId" {
+		t.Fatalf("Expected %q but got %q for Segment 'PrivilegedAccessGroupAssignmentScheduleInstanceId'", id.PrivilegedAccessGroupAssignmentScheduleInstanceId, "privilegedAccessGroupAssignmentScheduleInstanceId")
 	}
 }
 
 func TestFormatIdentityGovernancePrivilegedAccessGroupAssignmentScheduleInstanceID(t *testing.T) {
-	actual := NewIdentityGovernancePrivilegedAccessGroupAssignmentScheduleInstanceID("privilegedAccessGroupAssignmentScheduleInstanceIdValue").ID()
-	expected := "/identityGovernance/privilegedAccess/group/assignmentScheduleInstances/privilegedAccessGroupAssignmentScheduleInstanceIdValue"
+	actual := NewIdentityGovernancePrivilegedAccessGroupAssignmentScheduleInstanceID("privilegedAccessGroupAssignmentScheduleInstanceId").ID()
+	expected := "/identityGovernance/privilegedAccess/group/assignmentScheduleInstances/privilegedAccessGroupAssignmentScheduleInstanceId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -60,14 +60,14 @@ func TestParseIdentityGovernancePrivilegedAccessGroupAssignmentScheduleInstanceI
 		},
 		{
 			// Valid URI
-			Input: "/identityGovernance/privilegedAccess/group/assignmentScheduleInstances/privilegedAccessGroupAssignmentScheduleInstanceIdValue",
+			Input: "/identityGovernance/privilegedAccess/group/assignmentScheduleInstances/privilegedAccessGroupAssignmentScheduleInstanceId",
 			Expected: &IdentityGovernancePrivilegedAccessGroupAssignmentScheduleInstanceId{
-				PrivilegedAccessGroupAssignmentScheduleInstanceId: "privilegedAccessGroupAssignmentScheduleInstanceIdValue",
+				PrivilegedAccessGroupAssignmentScheduleInstanceId: "privilegedAccessGroupAssignmentScheduleInstanceId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/identityGovernance/privilegedAccess/group/assignmentScheduleInstances/privilegedAccessGroupAssignmentScheduleInstanceIdValue/extra",
+			Input: "/identityGovernance/privilegedAccess/group/assignmentScheduleInstances/privilegedAccessGroupAssignmentScheduleInstanceId/extra",
 			Error: true,
 		},
 	}
@@ -146,26 +146,26 @@ func TestParseIdentityGovernancePrivilegedAccessGroupAssignmentScheduleInstanceI
 		},
 		{
 			// Valid URI
-			Input: "/identityGovernance/privilegedAccess/group/assignmentScheduleInstances/privilegedAccessGroupAssignmentScheduleInstanceIdValue",
+			Input: "/identityGovernance/privilegedAccess/group/assignmentScheduleInstances/privilegedAccessGroupAssignmentScheduleInstanceId",
 			Expected: &IdentityGovernancePrivilegedAccessGroupAssignmentScheduleInstanceId{
-				PrivilegedAccessGroupAssignmentScheduleInstanceId: "privilegedAccessGroupAssignmentScheduleInstanceIdValue",
+				PrivilegedAccessGroupAssignmentScheduleInstanceId: "privilegedAccessGroupAssignmentScheduleInstanceId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/identityGovernance/privilegedAccess/group/assignmentScheduleInstances/privilegedAccessGroupAssignmentScheduleInstanceIdValue/extra",
+			Input: "/identityGovernance/privilegedAccess/group/assignmentScheduleInstances/privilegedAccessGroupAssignmentScheduleInstanceId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/iDeNtItYgOvErNaNcE/pRiViLeGeDaCcEsS/gRoUp/aSsIgNmEnTsChEdUlEiNsTaNcEs/pRiViLeGeDaCcEsSgRoUpAsSiGnMeNtScHeDuLeInStAnCeIdVaLuE",
+			Input: "/iDeNtItYgOvErNaNcE/pRiViLeGeDaCcEsS/gRoUp/aSsIgNmEnTsChEdUlEiNsTaNcEs/pRiViLeGeDaCcEsSgRoUpAsSiGnMeNtScHeDuLeInStAnCeId",
 			Expected: &IdentityGovernancePrivilegedAccessGroupAssignmentScheduleInstanceId{
-				PrivilegedAccessGroupAssignmentScheduleInstanceId: "pRiViLeGeDaCcEsSgRoUpAsSiGnMeNtScHeDuLeInStAnCeIdVaLuE",
+				PrivilegedAccessGroupAssignmentScheduleInstanceId: "pRiViLeGeDaCcEsSgRoUpAsSiGnMeNtScHeDuLeInStAnCeId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/iDeNtItYgOvErNaNcE/pRiViLeGeDaCcEsS/gRoUp/aSsIgNmEnTsChEdUlEiNsTaNcEs/pRiViLeGeDaCcEsSgRoUpAsSiGnMeNtScHeDuLeInStAnCeIdVaLuE/extra",
+			Input: "/iDeNtItYgOvErNaNcE/pRiViLeGeDaCcEsS/gRoUp/aSsIgNmEnTsChEdUlEiNsTaNcEs/pRiViLeGeDaCcEsSgRoUpAsSiGnMeNtScHeDuLeInStAnCeId/extra",
 			Error: true,
 		},
 	}

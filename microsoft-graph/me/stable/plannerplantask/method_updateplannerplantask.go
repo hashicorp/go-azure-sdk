@@ -17,15 +17,44 @@ type UpdatePlannerPlanTaskOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdatePlannerPlanTaskOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdatePlannerPlanTaskOperationOptions() UpdatePlannerPlanTaskOperationOptions {
+	return UpdatePlannerPlanTaskOperationOptions{}
+}
+
+func (o UpdatePlannerPlanTaskOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdatePlannerPlanTaskOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdatePlannerPlanTaskOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdatePlannerPlanTask - Update the navigation property tasks in me
-func (c PlannerPlanTaskClient) UpdatePlannerPlanTask(ctx context.Context, id stable.MePlannerPlanIdTaskId, input stable.PlannerTask) (result UpdatePlannerPlanTaskOperationResponse, err error) {
+func (c PlannerPlanTaskClient) UpdatePlannerPlanTask(ctx context.Context, id stable.MePlannerPlanIdTaskId, input stable.PlannerTask, options UpdatePlannerPlanTaskOperationOptions) (result UpdatePlannerPlanTaskOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

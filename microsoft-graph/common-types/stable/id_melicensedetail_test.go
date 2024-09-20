@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &MeLicenseDetailId{}
 
 func TestNewMeLicenseDetailID(t *testing.T) {
-	id := NewMeLicenseDetailID("licenseDetailsIdValue")
+	id := NewMeLicenseDetailID("licenseDetailsId")
 
-	if id.LicenseDetailsId != "licenseDetailsIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'LicenseDetailsId'", id.LicenseDetailsId, "licenseDetailsIdValue")
+	if id.LicenseDetailsId != "licenseDetailsId" {
+		t.Fatalf("Expected %q but got %q for Segment 'LicenseDetailsId'", id.LicenseDetailsId, "licenseDetailsId")
 	}
 }
 
 func TestFormatMeLicenseDetailID(t *testing.T) {
-	actual := NewMeLicenseDetailID("licenseDetailsIdValue").ID()
-	expected := "/me/licenseDetails/licenseDetailsIdValue"
+	actual := NewMeLicenseDetailID("licenseDetailsId").ID()
+	expected := "/me/licenseDetails/licenseDetailsId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -50,14 +50,14 @@ func TestParseMeLicenseDetailID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/me/licenseDetails/licenseDetailsIdValue",
+			Input: "/me/licenseDetails/licenseDetailsId",
 			Expected: &MeLicenseDetailId{
-				LicenseDetailsId: "licenseDetailsIdValue",
+				LicenseDetailsId: "licenseDetailsId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/licenseDetails/licenseDetailsIdValue/extra",
+			Input: "/me/licenseDetails/licenseDetailsId/extra",
 			Error: true,
 		},
 	}
@@ -116,26 +116,26 @@ func TestParseMeLicenseDetailIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/me/licenseDetails/licenseDetailsIdValue",
+			Input: "/me/licenseDetails/licenseDetailsId",
 			Expected: &MeLicenseDetailId{
-				LicenseDetailsId: "licenseDetailsIdValue",
+				LicenseDetailsId: "licenseDetailsId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/licenseDetails/licenseDetailsIdValue/extra",
+			Input: "/me/licenseDetails/licenseDetailsId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/lIcEnSeDeTaIlS/lIcEnSeDeTaIlSiDvAlUe",
+			Input: "/mE/lIcEnSeDeTaIlS/lIcEnSeDeTaIlSiD",
 			Expected: &MeLicenseDetailId{
-				LicenseDetailsId: "lIcEnSeDeTaIlSiDvAlUe",
+				LicenseDetailsId: "lIcEnSeDeTaIlSiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/mE/lIcEnSeDeTaIlS/lIcEnSeDeTaIlSiDvAlUe/extra",
+			Input: "/mE/lIcEnSeDeTaIlS/lIcEnSeDeTaIlSiD/extra",
 			Error: true,
 		},
 	}

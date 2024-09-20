@@ -18,15 +18,44 @@ type UnsetTeamPrimaryChannelMessageReactionOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UnsetTeamPrimaryChannelMessageReactionOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUnsetTeamPrimaryChannelMessageReactionOperationOptions() UnsetTeamPrimaryChannelMessageReactionOperationOptions {
+	return UnsetTeamPrimaryChannelMessageReactionOperationOptions{}
+}
+
+func (o UnsetTeamPrimaryChannelMessageReactionOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UnsetTeamPrimaryChannelMessageReactionOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UnsetTeamPrimaryChannelMessageReactionOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UnsetTeamPrimaryChannelMessageReaction - Invoke action unsetReaction
-func (c TeamPrimaryChannelMessageClient) UnsetTeamPrimaryChannelMessageReaction(ctx context.Context, id stable.GroupIdTeamPrimaryChannelMessageId, input UnsetTeamPrimaryChannelMessageReactionRequest) (result UnsetTeamPrimaryChannelMessageReactionOperationResponse, err error) {
+func (c TeamPrimaryChannelMessageClient) UnsetTeamPrimaryChannelMessageReaction(ctx context.Context, id stable.GroupIdTeamPrimaryChannelMessageId, input UnsetTeamPrimaryChannelMessageReactionRequest, options UnsetTeamPrimaryChannelMessageReactionOperationOptions) (result UnsetTeamPrimaryChannelMessageReactionOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/unsetReaction", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/unsetReaction", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

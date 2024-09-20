@@ -18,15 +18,44 @@ type CreateChromeOSOnboardingSettingDisconnectOperationResponse struct {
 	Model        *beta.ChromeOSOnboardingStatus
 }
 
+type CreateChromeOSOnboardingSettingDisconnectOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateChromeOSOnboardingSettingDisconnectOperationOptions() CreateChromeOSOnboardingSettingDisconnectOperationOptions {
+	return CreateChromeOSOnboardingSettingDisconnectOperationOptions{}
+}
+
+func (o CreateChromeOSOnboardingSettingDisconnectOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateChromeOSOnboardingSettingDisconnectOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateChromeOSOnboardingSettingDisconnectOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateChromeOSOnboardingSettingDisconnect - Invoke action disconnect
-func (c ChromeOSOnboardingSettingClient) CreateChromeOSOnboardingSettingDisconnect(ctx context.Context) (result CreateChromeOSOnboardingSettingDisconnectOperationResponse, err error) {
+func (c ChromeOSOnboardingSettingClient) CreateChromeOSOnboardingSettingDisconnect(ctx context.Context, options CreateChromeOSOnboardingSettingDisconnectOperationOptions) (result CreateChromeOSOnboardingSettingDisconnectOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/deviceManagement/chromeOSOnboardingSettings/disconnect",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/deviceManagement/chromeOSOnboardingSettings/disconnect",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

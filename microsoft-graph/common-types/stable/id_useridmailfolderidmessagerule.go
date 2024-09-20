@@ -104,11 +104,11 @@ func (id UserIdMailFolderIdMessageRuleId) ID() string {
 func (id UserIdMailFolderIdMessageRuleId) Segments() []resourceids.Segment {
 	return []resourceids.Segment{
 		resourceids.StaticSegment("users", "users", "users"),
-		resourceids.UserSpecifiedSegment("userId", "userIdValue"),
+		resourceids.UserSpecifiedSegment("userId", "userId"),
 		resourceids.StaticSegment("mailFolders", "mailFolders", "mailFolders"),
-		resourceids.UserSpecifiedSegment("mailFolderId", "mailFolderIdValue"),
+		resourceids.UserSpecifiedSegment("mailFolderId", "mailFolderId"),
 		resourceids.StaticSegment("messageRules", "messageRules", "messageRules"),
-		resourceids.UserSpecifiedSegment("messageRuleId", "messageRuleIdValue"),
+		resourceids.UserSpecifiedSegment("messageRuleId", "messageRuleId"),
 	}
 }
 

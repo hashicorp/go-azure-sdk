@@ -19,16 +19,45 @@ type CreateEntitlementManagementAccessPackageAssignmentPolicyOperationResponse s
 	Model        *beta.AccessPackageAssignmentPolicy
 }
 
+type CreateEntitlementManagementAccessPackageAssignmentPolicyOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateEntitlementManagementAccessPackageAssignmentPolicyOperationOptions() CreateEntitlementManagementAccessPackageAssignmentPolicyOperationOptions {
+	return CreateEntitlementManagementAccessPackageAssignmentPolicyOperationOptions{}
+}
+
+func (o CreateEntitlementManagementAccessPackageAssignmentPolicyOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateEntitlementManagementAccessPackageAssignmentPolicyOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateEntitlementManagementAccessPackageAssignmentPolicyOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateEntitlementManagementAccessPackageAssignmentPolicy - Create new navigation property to
 // accessPackageAssignmentPolicies for identityGovernance
-func (c EntitlementManagementAccessPackageAccessPackageAssignmentPolicyClient) CreateEntitlementManagementAccessPackageAssignmentPolicy(ctx context.Context, id beta.IdentityGovernanceEntitlementManagementAccessPackageId, input beta.AccessPackageAssignmentPolicy) (result CreateEntitlementManagementAccessPackageAssignmentPolicyOperationResponse, err error) {
+func (c EntitlementManagementAccessPackageAccessPackageAssignmentPolicyClient) CreateEntitlementManagementAccessPackageAssignmentPolicy(ctx context.Context, id beta.IdentityGovernanceEntitlementManagementAccessPackageId, input beta.AccessPackageAssignmentPolicy, options CreateEntitlementManagementAccessPackageAssignmentPolicyOperationOptions) (result CreateEntitlementManagementAccessPackageAssignmentPolicyOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/accessPackageAssignmentPolicies", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/accessPackageAssignmentPolicies", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -22,6 +22,7 @@ type GetAdministrativeUnitMembersCountOperationResponse struct {
 type GetAdministrativeUnitMembersCountOperationOptions struct {
 	ConsistencyLevel *odata.ConsistencyLevel
 	Filter           *string
+	Metadata         *odata.Metadata
 	Search           *string
 }
 
@@ -42,6 +43,9 @@ func (o GetAdministrativeUnitMembersCountOperationOptions) ToOData() *odata.Quer
 	}
 	if o.Filter != nil {
 		out.Filter = *o.Filter
+	}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
 	}
 	if o.Search != nil {
 		out.Search = *o.Search

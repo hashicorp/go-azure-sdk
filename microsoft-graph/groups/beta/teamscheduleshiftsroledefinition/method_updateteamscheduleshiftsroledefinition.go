@@ -17,15 +17,44 @@ type UpdateTeamScheduleShiftsRoleDefinitionOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateTeamScheduleShiftsRoleDefinitionOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateTeamScheduleShiftsRoleDefinitionOperationOptions() UpdateTeamScheduleShiftsRoleDefinitionOperationOptions {
+	return UpdateTeamScheduleShiftsRoleDefinitionOperationOptions{}
+}
+
+func (o UpdateTeamScheduleShiftsRoleDefinitionOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateTeamScheduleShiftsRoleDefinitionOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateTeamScheduleShiftsRoleDefinitionOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateTeamScheduleShiftsRoleDefinition - Update the navigation property shiftsRoleDefinitions in groups
-func (c TeamScheduleShiftsRoleDefinitionClient) UpdateTeamScheduleShiftsRoleDefinition(ctx context.Context, id beta.GroupIdTeamScheduleShiftsRoleDefinitionId, input beta.ShiftsRoleDefinition) (result UpdateTeamScheduleShiftsRoleDefinitionOperationResponse, err error) {
+func (c TeamScheduleShiftsRoleDefinitionClient) UpdateTeamScheduleShiftsRoleDefinition(ctx context.Context, id beta.GroupIdTeamScheduleShiftsRoleDefinitionId, input beta.ShiftsRoleDefinition, options UpdateTeamScheduleShiftsRoleDefinitionOperationOptions) (result UpdateTeamScheduleShiftsRoleDefinitionOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

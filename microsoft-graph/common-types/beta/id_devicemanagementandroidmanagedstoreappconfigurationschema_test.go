@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &DeviceManagementAndroidManagedStoreAppConfigurationSchemaId{}
 
 func TestNewDeviceManagementAndroidManagedStoreAppConfigurationSchemaID(t *testing.T) {
-	id := NewDeviceManagementAndroidManagedStoreAppConfigurationSchemaID("androidManagedStoreAppConfigurationSchemaIdValue")
+	id := NewDeviceManagementAndroidManagedStoreAppConfigurationSchemaID("androidManagedStoreAppConfigurationSchemaId")
 
-	if id.AndroidManagedStoreAppConfigurationSchemaId != "androidManagedStoreAppConfigurationSchemaIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'AndroidManagedStoreAppConfigurationSchemaId'", id.AndroidManagedStoreAppConfigurationSchemaId, "androidManagedStoreAppConfigurationSchemaIdValue")
+	if id.AndroidManagedStoreAppConfigurationSchemaId != "androidManagedStoreAppConfigurationSchemaId" {
+		t.Fatalf("Expected %q but got %q for Segment 'AndroidManagedStoreAppConfigurationSchemaId'", id.AndroidManagedStoreAppConfigurationSchemaId, "androidManagedStoreAppConfigurationSchemaId")
 	}
 }
 
 func TestFormatDeviceManagementAndroidManagedStoreAppConfigurationSchemaID(t *testing.T) {
-	actual := NewDeviceManagementAndroidManagedStoreAppConfigurationSchemaID("androidManagedStoreAppConfigurationSchemaIdValue").ID()
-	expected := "/deviceManagement/androidManagedStoreAppConfigurationSchemas/androidManagedStoreAppConfigurationSchemaIdValue"
+	actual := NewDeviceManagementAndroidManagedStoreAppConfigurationSchemaID("androidManagedStoreAppConfigurationSchemaId").ID()
+	expected := "/deviceManagement/androidManagedStoreAppConfigurationSchemas/androidManagedStoreAppConfigurationSchemaId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -50,14 +50,14 @@ func TestParseDeviceManagementAndroidManagedStoreAppConfigurationSchemaID(t *tes
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/androidManagedStoreAppConfigurationSchemas/androidManagedStoreAppConfigurationSchemaIdValue",
+			Input: "/deviceManagement/androidManagedStoreAppConfigurationSchemas/androidManagedStoreAppConfigurationSchemaId",
 			Expected: &DeviceManagementAndroidManagedStoreAppConfigurationSchemaId{
-				AndroidManagedStoreAppConfigurationSchemaId: "androidManagedStoreAppConfigurationSchemaIdValue",
+				AndroidManagedStoreAppConfigurationSchemaId: "androidManagedStoreAppConfigurationSchemaId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/androidManagedStoreAppConfigurationSchemas/androidManagedStoreAppConfigurationSchemaIdValue/extra",
+			Input: "/deviceManagement/androidManagedStoreAppConfigurationSchemas/androidManagedStoreAppConfigurationSchemaId/extra",
 			Error: true,
 		},
 	}
@@ -116,26 +116,26 @@ func TestParseDeviceManagementAndroidManagedStoreAppConfigurationSchemaIDInsensi
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/androidManagedStoreAppConfigurationSchemas/androidManagedStoreAppConfigurationSchemaIdValue",
+			Input: "/deviceManagement/androidManagedStoreAppConfigurationSchemas/androidManagedStoreAppConfigurationSchemaId",
 			Expected: &DeviceManagementAndroidManagedStoreAppConfigurationSchemaId{
-				AndroidManagedStoreAppConfigurationSchemaId: "androidManagedStoreAppConfigurationSchemaIdValue",
+				AndroidManagedStoreAppConfigurationSchemaId: "androidManagedStoreAppConfigurationSchemaId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/androidManagedStoreAppConfigurationSchemas/androidManagedStoreAppConfigurationSchemaIdValue/extra",
+			Input: "/deviceManagement/androidManagedStoreAppConfigurationSchemas/androidManagedStoreAppConfigurationSchemaId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/aNdRoIdMaNaGeDsToReApPcOnFiGuRaTiOnScHeMaS/aNdRoIdMaNaGeDsToReApPcOnFiGuRaTiOnScHeMaIdVaLuE",
+			Input: "/dEvIcEmAnAgEmEnT/aNdRoIdMaNaGeDsToReApPcOnFiGuRaTiOnScHeMaS/aNdRoIdMaNaGeDsToReApPcOnFiGuRaTiOnScHeMaId",
 			Expected: &DeviceManagementAndroidManagedStoreAppConfigurationSchemaId{
-				AndroidManagedStoreAppConfigurationSchemaId: "aNdRoIdMaNaGeDsToReApPcOnFiGuRaTiOnScHeMaIdVaLuE",
+				AndroidManagedStoreAppConfigurationSchemaId: "aNdRoIdMaNaGeDsToReApPcOnFiGuRaTiOnScHeMaId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/aNdRoIdMaNaGeDsToReApPcOnFiGuRaTiOnScHeMaS/aNdRoIdMaNaGeDsToReApPcOnFiGuRaTiOnScHeMaIdVaLuE/extra",
+			Input: "/dEvIcEmAnAgEmEnT/aNdRoIdMaNaGeDsToReApPcOnFiGuRaTiOnScHeMaS/aNdRoIdMaNaGeDsToReApPcOnFiGuRaTiOnScHeMaId/extra",
 			Error: true,
 		},
 	}

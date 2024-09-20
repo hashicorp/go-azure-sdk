@@ -18,15 +18,44 @@ type AssignWindowsAutopilotDeploymentProfileOperationResponse struct {
 	OData        *odata.OData
 }
 
+type AssignWindowsAutopilotDeploymentProfileOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultAssignWindowsAutopilotDeploymentProfileOperationOptions() AssignWindowsAutopilotDeploymentProfileOperationOptions {
+	return AssignWindowsAutopilotDeploymentProfileOperationOptions{}
+}
+
+func (o AssignWindowsAutopilotDeploymentProfileOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o AssignWindowsAutopilotDeploymentProfileOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o AssignWindowsAutopilotDeploymentProfileOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // AssignWindowsAutopilotDeploymentProfile - Invoke action assign
-func (c WindowsAutopilotDeploymentProfileClient) AssignWindowsAutopilotDeploymentProfile(ctx context.Context, id beta.DeviceManagementWindowsAutopilotDeploymentProfileId, input AssignWindowsAutopilotDeploymentProfileRequest) (result AssignWindowsAutopilotDeploymentProfileOperationResponse, err error) {
+func (c WindowsAutopilotDeploymentProfileClient) AssignWindowsAutopilotDeploymentProfile(ctx context.Context, id beta.DeviceManagementWindowsAutopilotDeploymentProfileId, input AssignWindowsAutopilotDeploymentProfileRequest, options AssignWindowsAutopilotDeploymentProfileOperationOptions) (result AssignWindowsAutopilotDeploymentProfileOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/assign", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/assign", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -17,15 +17,44 @@ type UpdateComplianceCategoryOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateComplianceCategoryOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateComplianceCategoryOperationOptions() UpdateComplianceCategoryOperationOptions {
+	return UpdateComplianceCategoryOperationOptions{}
+}
+
+func (o UpdateComplianceCategoryOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateComplianceCategoryOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateComplianceCategoryOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateComplianceCategory - Update the navigation property complianceCategories in deviceManagement
-func (c ComplianceCategoryClient) UpdateComplianceCategory(ctx context.Context, id beta.DeviceManagementComplianceCategoryId, input beta.DeviceManagementConfigurationCategory) (result UpdateComplianceCategoryOperationResponse, err error) {
+func (c ComplianceCategoryClient) UpdateComplianceCategory(ctx context.Context, id beta.DeviceManagementComplianceCategoryId, input beta.DeviceManagementConfigurationCategory, options UpdateComplianceCategoryOperationOptions) (result UpdateComplianceCategoryOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

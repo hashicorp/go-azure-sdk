@@ -296,16 +296,86 @@ func (s AndroidGeneralDeviceConfiguration) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &AndroidGeneralDeviceConfiguration{}
 
 func (s *AndroidGeneralDeviceConfiguration) UnmarshalJSON(bytes []byte) error {
-	type alias AndroidGeneralDeviceConfiguration
-	var decoded alias
+
+	var decoded struct {
+		AppsBlockClipboardSharing                      *bool                                        `json:"appsBlockClipboardSharing,omitempty"`
+		AppsBlockCopyPaste                             *bool                                        `json:"appsBlockCopyPaste,omitempty"`
+		AppsBlockYouTube                               *bool                                        `json:"appsBlockYouTube,omitempty"`
+		AppsHideList                                   *[]AppListItem                               `json:"appsHideList,omitempty"`
+		AppsInstallAllowList                           *[]AppListItem                               `json:"appsInstallAllowList,omitempty"`
+		AppsLaunchBlockList                            *[]AppListItem                               `json:"appsLaunchBlockList,omitempty"`
+		BluetoothBlocked                               *bool                                        `json:"bluetoothBlocked,omitempty"`
+		CameraBlocked                                  *bool                                        `json:"cameraBlocked,omitempty"`
+		CellularBlockDataRoaming                       *bool                                        `json:"cellularBlockDataRoaming,omitempty"`
+		CellularBlockMessaging                         *bool                                        `json:"cellularBlockMessaging,omitempty"`
+		CellularBlockVoiceRoaming                      *bool                                        `json:"cellularBlockVoiceRoaming,omitempty"`
+		CellularBlockWiFiTethering                     *bool                                        `json:"cellularBlockWiFiTethering,omitempty"`
+		CompliantAppListType                           *AppListType                                 `json:"compliantAppListType,omitempty"`
+		CompliantAppsList                              *[]AppListItem                               `json:"compliantAppsList,omitempty"`
+		DateAndTimeBlockChanges                        *bool                                        `json:"dateAndTimeBlockChanges,omitempty"`
+		DeviceSharingAllowed                           *bool                                        `json:"deviceSharingAllowed,omitempty"`
+		DiagnosticDataBlockSubmission                  *bool                                        `json:"diagnosticDataBlockSubmission,omitempty"`
+		FactoryResetBlocked                            *bool                                        `json:"factoryResetBlocked,omitempty"`
+		GoogleAccountBlockAutoSync                     *bool                                        `json:"googleAccountBlockAutoSync,omitempty"`
+		GooglePlayStoreBlocked                         *bool                                        `json:"googlePlayStoreBlocked,omitempty"`
+		KioskModeApps                                  *[]AppListItem                               `json:"kioskModeApps,omitempty"`
+		KioskModeBlockSleepButton                      *bool                                        `json:"kioskModeBlockSleepButton,omitempty"`
+		KioskModeBlockVolumeButtons                    *bool                                        `json:"kioskModeBlockVolumeButtons,omitempty"`
+		LocationServicesBlocked                        *bool                                        `json:"locationServicesBlocked,omitempty"`
+		NfcBlocked                                     *bool                                        `json:"nfcBlocked,omitempty"`
+		PasswordBlockFingerprintUnlock                 *bool                                        `json:"passwordBlockFingerprintUnlock,omitempty"`
+		PasswordBlockTrustAgents                       *bool                                        `json:"passwordBlockTrustAgents,omitempty"`
+		PasswordExpirationDays                         nullable.Type[int64]                         `json:"passwordExpirationDays,omitempty"`
+		PasswordMinimumLength                          nullable.Type[int64]                         `json:"passwordMinimumLength,omitempty"`
+		PasswordMinutesOfInactivityBeforeScreenTimeout nullable.Type[int64]                         `json:"passwordMinutesOfInactivityBeforeScreenTimeout,omitempty"`
+		PasswordPreviousPasswordBlockCount             nullable.Type[int64]                         `json:"passwordPreviousPasswordBlockCount,omitempty"`
+		PasswordRequired                               *bool                                        `json:"passwordRequired,omitempty"`
+		PasswordRequiredType                           *AndroidRequiredPasswordType                 `json:"passwordRequiredType,omitempty"`
+		PasswordSignInFailureCountBeforeFactoryReset   nullable.Type[int64]                         `json:"passwordSignInFailureCountBeforeFactoryReset,omitempty"`
+		PowerOffBlocked                                *bool                                        `json:"powerOffBlocked,omitempty"`
+		RequiredPasswordComplexity                     *AndroidRequiredPasswordComplexity           `json:"requiredPasswordComplexity,omitempty"`
+		ScreenCaptureBlocked                           *bool                                        `json:"screenCaptureBlocked,omitempty"`
+		SecurityRequireVerifyApps                      *bool                                        `json:"securityRequireVerifyApps,omitempty"`
+		StorageBlockGoogleBackup                       *bool                                        `json:"storageBlockGoogleBackup,omitempty"`
+		StorageBlockRemovableStorage                   *bool                                        `json:"storageBlockRemovableStorage,omitempty"`
+		StorageRequireDeviceEncryption                 *bool                                        `json:"storageRequireDeviceEncryption,omitempty"`
+		StorageRequireRemovableStorageEncryption       *bool                                        `json:"storageRequireRemovableStorageEncryption,omitempty"`
+		VoiceAssistantBlocked                          *bool                                        `json:"voiceAssistantBlocked,omitempty"`
+		VoiceDialingBlocked                            *bool                                        `json:"voiceDialingBlocked,omitempty"`
+		WebBrowserBlockAutofill                        *bool                                        `json:"webBrowserBlockAutofill,omitempty"`
+		WebBrowserBlockJavaScript                      *bool                                        `json:"webBrowserBlockJavaScript,omitempty"`
+		WebBrowserBlockPopups                          *bool                                        `json:"webBrowserBlockPopups,omitempty"`
+		WebBrowserBlocked                              *bool                                        `json:"webBrowserBlocked,omitempty"`
+		WebBrowserCookieSettings                       *WebBrowserCookieSettings                    `json:"webBrowserCookieSettings,omitempty"`
+		WiFiBlocked                                    *bool                                        `json:"wiFiBlocked,omitempty"`
+		Assignments                                    *[]DeviceConfigurationAssignment             `json:"assignments,omitempty"`
+		CreatedDateTime                                *string                                      `json:"createdDateTime,omitempty"`
+		Description                                    nullable.Type[string]                        `json:"description,omitempty"`
+		DeviceManagementApplicabilityRuleDeviceMode    *DeviceManagementApplicabilityRuleDeviceMode `json:"deviceManagementApplicabilityRuleDeviceMode,omitempty"`
+		DeviceManagementApplicabilityRuleOsEdition     *DeviceManagementApplicabilityRuleOsEdition  `json:"deviceManagementApplicabilityRuleOsEdition,omitempty"`
+		DeviceManagementApplicabilityRuleOsVersion     *DeviceManagementApplicabilityRuleOsVersion  `json:"deviceManagementApplicabilityRuleOsVersion,omitempty"`
+		DeviceSettingStateSummaries                    *[]SettingStateDeviceSummary                 `json:"deviceSettingStateSummaries,omitempty"`
+		DeviceStatusOverview                           *DeviceConfigurationDeviceOverview           `json:"deviceStatusOverview,omitempty"`
+		DeviceStatuses                                 *[]DeviceConfigurationDeviceStatus           `json:"deviceStatuses,omitempty"`
+		DisplayName                                    *string                                      `json:"displayName,omitempty"`
+		GroupAssignments                               *[]DeviceConfigurationGroupAssignment        `json:"groupAssignments,omitempty"`
+		LastModifiedDateTime                           *string                                      `json:"lastModifiedDateTime,omitempty"`
+		RoleScopeTagIds                                *[]string                                    `json:"roleScopeTagIds,omitempty"`
+		SupportsScopeTags                              *bool                                        `json:"supportsScopeTags,omitempty"`
+		UserStatusOverview                             *DeviceConfigurationUserOverview             `json:"userStatusOverview,omitempty"`
+		UserStatuses                                   *[]DeviceConfigurationUserStatus             `json:"userStatuses,omitempty"`
+		Version                                        *int64                                       `json:"version,omitempty"`
+		Id                                             *string                                      `json:"id,omitempty"`
+		ODataId                                        *string                                      `json:"@odata.id,omitempty"`
+		ODataType                                      *string                                      `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into AndroidGeneralDeviceConfiguration: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.AppsBlockClipboardSharing = decoded.AppsBlockClipboardSharing
 	s.AppsBlockCopyPaste = decoded.AppsBlockCopyPaste
 	s.AppsBlockYouTube = decoded.AppsBlockYouTube
-	s.Assignments = decoded.Assignments
 	s.BluetoothBlocked = decoded.BluetoothBlocked
 	s.CameraBlocked = decoded.CameraBlocked
 	s.CellularBlockDataRoaming = decoded.CellularBlockDataRoaming
@@ -313,30 +383,16 @@ func (s *AndroidGeneralDeviceConfiguration) UnmarshalJSON(bytes []byte) error {
 	s.CellularBlockVoiceRoaming = decoded.CellularBlockVoiceRoaming
 	s.CellularBlockWiFiTethering = decoded.CellularBlockWiFiTethering
 	s.CompliantAppListType = decoded.CompliantAppListType
-	s.CreatedDateTime = decoded.CreatedDateTime
 	s.DateAndTimeBlockChanges = decoded.DateAndTimeBlockChanges
-	s.Description = decoded.Description
-	s.DeviceManagementApplicabilityRuleDeviceMode = decoded.DeviceManagementApplicabilityRuleDeviceMode
-	s.DeviceManagementApplicabilityRuleOsEdition = decoded.DeviceManagementApplicabilityRuleOsEdition
-	s.DeviceManagementApplicabilityRuleOsVersion = decoded.DeviceManagementApplicabilityRuleOsVersion
-	s.DeviceSettingStateSummaries = decoded.DeviceSettingStateSummaries
 	s.DeviceSharingAllowed = decoded.DeviceSharingAllowed
-	s.DeviceStatusOverview = decoded.DeviceStatusOverview
-	s.DeviceStatuses = decoded.DeviceStatuses
 	s.DiagnosticDataBlockSubmission = decoded.DiagnosticDataBlockSubmission
-	s.DisplayName = decoded.DisplayName
 	s.FactoryResetBlocked = decoded.FactoryResetBlocked
 	s.GoogleAccountBlockAutoSync = decoded.GoogleAccountBlockAutoSync
 	s.GooglePlayStoreBlocked = decoded.GooglePlayStoreBlocked
-	s.GroupAssignments = decoded.GroupAssignments
-	s.Id = decoded.Id
 	s.KioskModeBlockSleepButton = decoded.KioskModeBlockSleepButton
 	s.KioskModeBlockVolumeButtons = decoded.KioskModeBlockVolumeButtons
-	s.LastModifiedDateTime = decoded.LastModifiedDateTime
 	s.LocationServicesBlocked = decoded.LocationServicesBlocked
 	s.NfcBlocked = decoded.NfcBlocked
-	s.ODataId = decoded.ODataId
-	s.ODataType = decoded.ODataType
 	s.PasswordBlockFingerprintUnlock = decoded.PasswordBlockFingerprintUnlock
 	s.PasswordBlockTrustAgents = decoded.PasswordBlockTrustAgents
 	s.PasswordExpirationDays = decoded.PasswordExpirationDays
@@ -348,17 +404,12 @@ func (s *AndroidGeneralDeviceConfiguration) UnmarshalJSON(bytes []byte) error {
 	s.PasswordSignInFailureCountBeforeFactoryReset = decoded.PasswordSignInFailureCountBeforeFactoryReset
 	s.PowerOffBlocked = decoded.PowerOffBlocked
 	s.RequiredPasswordComplexity = decoded.RequiredPasswordComplexity
-	s.RoleScopeTagIds = decoded.RoleScopeTagIds
 	s.ScreenCaptureBlocked = decoded.ScreenCaptureBlocked
 	s.SecurityRequireVerifyApps = decoded.SecurityRequireVerifyApps
 	s.StorageBlockGoogleBackup = decoded.StorageBlockGoogleBackup
 	s.StorageBlockRemovableStorage = decoded.StorageBlockRemovableStorage
 	s.StorageRequireDeviceEncryption = decoded.StorageRequireDeviceEncryption
 	s.StorageRequireRemovableStorageEncryption = decoded.StorageRequireRemovableStorageEncryption
-	s.SupportsScopeTags = decoded.SupportsScopeTags
-	s.UserStatusOverview = decoded.UserStatusOverview
-	s.UserStatuses = decoded.UserStatuses
-	s.Version = decoded.Version
 	s.VoiceAssistantBlocked = decoded.VoiceAssistantBlocked
 	s.VoiceDialingBlocked = decoded.VoiceDialingBlocked
 	s.WebBrowserBlockAutofill = decoded.WebBrowserBlockAutofill
@@ -367,6 +418,26 @@ func (s *AndroidGeneralDeviceConfiguration) UnmarshalJSON(bytes []byte) error {
 	s.WebBrowserBlocked = decoded.WebBrowserBlocked
 	s.WebBrowserCookieSettings = decoded.WebBrowserCookieSettings
 	s.WiFiBlocked = decoded.WiFiBlocked
+	s.Assignments = decoded.Assignments
+	s.CreatedDateTime = decoded.CreatedDateTime
+	s.Description = decoded.Description
+	s.DeviceManagementApplicabilityRuleDeviceMode = decoded.DeviceManagementApplicabilityRuleDeviceMode
+	s.DeviceManagementApplicabilityRuleOsEdition = decoded.DeviceManagementApplicabilityRuleOsEdition
+	s.DeviceManagementApplicabilityRuleOsVersion = decoded.DeviceManagementApplicabilityRuleOsVersion
+	s.DeviceSettingStateSummaries = decoded.DeviceSettingStateSummaries
+	s.DeviceStatusOverview = decoded.DeviceStatusOverview
+	s.DeviceStatuses = decoded.DeviceStatuses
+	s.DisplayName = decoded.DisplayName
+	s.GroupAssignments = decoded.GroupAssignments
+	s.Id = decoded.Id
+	s.LastModifiedDateTime = decoded.LastModifiedDateTime
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
+	s.RoleScopeTagIds = decoded.RoleScopeTagIds
+	s.SupportsScopeTags = decoded.SupportsScopeTags
+	s.UserStatusOverview = decoded.UserStatusOverview
+	s.UserStatuses = decoded.UserStatuses
+	s.Version = decoded.Version
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -457,5 +528,6 @@ func (s *AndroidGeneralDeviceConfiguration) UnmarshalJSON(bytes []byte) error {
 		}
 		s.KioskModeApps = &output
 	}
+
 	return nil
 }

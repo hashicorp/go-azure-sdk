@@ -18,15 +18,44 @@ type CreateDriveItemPermanentDeleteOperationResponse struct {
 	OData        *odata.OData
 }
 
+type CreateDriveItemPermanentDeleteOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateDriveItemPermanentDeleteOperationOptions() CreateDriveItemPermanentDeleteOperationOptions {
+	return CreateDriveItemPermanentDeleteOperationOptions{}
+}
+
+func (o CreateDriveItemPermanentDeleteOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateDriveItemPermanentDeleteOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateDriveItemPermanentDeleteOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateDriveItemPermanentDelete - Invoke action permanentDelete
-func (c DriveItemClient) CreateDriveItemPermanentDelete(ctx context.Context, id stable.MeDriveIdItemId) (result CreateDriveItemPermanentDeleteOperationResponse, err error) {
+func (c DriveItemClient) CreateDriveItemPermanentDelete(ctx context.Context, id stable.MeDriveIdItemId, options CreateDriveItemPermanentDeleteOperationOptions) (result CreateDriveItemPermanentDeleteOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/permanentDelete", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/permanentDelete", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

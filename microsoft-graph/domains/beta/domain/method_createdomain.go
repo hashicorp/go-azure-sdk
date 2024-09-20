@@ -18,19 +18,48 @@ type CreateDomainOperationResponse struct {
 	Model        *beta.Domain
 }
 
+type CreateDomainOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateDomainOperationOptions() CreateDomainOperationOptions {
+	return CreateDomainOperationOptions{}
+}
+
+func (o CreateDomainOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateDomainOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateDomainOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateDomain - Create domain. Adds a domain to the tenant. Important: You cannot use an associated domain with your
 // Microsoft Entra tenant until ownership is verified. See List verificationDnsRecords for details. Root domains require
 // verification. For example, contoso.com requires verification. If a root domain is verified, subdomains of the root
 // domain are automatically verified. For example, subdomain.contoso.com is automatically be verified if contoso.com has
 // been verified.
-func (c DomainClient) CreateDomain(ctx context.Context, input beta.Domain) (result CreateDomainOperationResponse, err error) {
+func (c DomainClient) CreateDomain(ctx context.Context, input beta.Domain, options CreateDomainOperationOptions) (result CreateDomainOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/domains",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/domains",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/messageattachment` Documentation
 
-The `messageattachment` SDK allows for interaction with the Azure Resource Manager Service `users` (API Version `beta`).
+The `messageattachment` SDK allows for interaction with Microsoft Graph `users` (API Version `beta`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -15,7 +15,7 @@ import "github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/messageatta
 ### Client Initialization
 
 ```go
-client := messageattachment.NewMessageAttachmentClientWithBaseURI("https://management.azure.com")
+client := messageattachment.NewMessageAttachmentClientWithBaseURI("https://graph.microsoft.com")
 client.Client.Authorizer = authorizer
 ```
 
@@ -24,14 +24,14 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := messageattachment.NewUserIdMessageID("userIdValue", "messageIdValue")
+id := messageattachment.NewUserIdMessageID("userId", "messageId")
 
 payload := messageattachment.Attachment{
 	// ...
 }
 
 
-read, err := client.CreateMessageAttachment(ctx, id, payload)
+read, err := client.CreateMessageAttachment(ctx, id, payload, messageattachment.DefaultCreateMessageAttachmentOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -45,14 +45,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := messageattachment.NewUserIdMessageID("userIdValue", "messageIdValue")
+id := messageattachment.NewUserIdMessageID("userId", "messageId")
 
 payload := messageattachment.CreateMessageAttachmentsUploadSessionRequest{
 	// ...
 }
 
 
-read, err := client.CreateMessageAttachmentsUploadSession(ctx, id, payload)
+read, err := client.CreateMessageAttachmentsUploadSession(ctx, id, payload, messageattachment.DefaultCreateMessageAttachmentsUploadSessionOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -66,7 +66,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := messageattachment.NewUserIdMessageIdAttachmentID("userIdValue", "messageIdValue", "attachmentIdValue")
+id := messageattachment.NewUserIdMessageIdAttachmentID("userId", "messageId", "attachmentId")
 
 read, err := client.DeleteMessageAttachment(ctx, id, messageattachment.DefaultDeleteMessageAttachmentOperationOptions())
 if err != nil {
@@ -82,7 +82,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := messageattachment.NewUserIdMessageIdAttachmentID("userIdValue", "messageIdValue", "attachmentIdValue")
+id := messageattachment.NewUserIdMessageIdAttachmentID("userId", "messageId", "attachmentId")
 
 read, err := client.GetMessageAttachment(ctx, id, messageattachment.DefaultGetMessageAttachmentOperationOptions())
 if err != nil {
@@ -98,7 +98,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := messageattachment.NewUserIdMessageID("userIdValue", "messageIdValue")
+id := messageattachment.NewUserIdMessageID("userId", "messageId")
 
 read, err := client.GetMessageAttachmentsCount(ctx, id, messageattachment.DefaultGetMessageAttachmentsCountOperationOptions())
 if err != nil {
@@ -114,7 +114,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := messageattachment.NewUserIdMessageID("userIdValue", "messageIdValue")
+id := messageattachment.NewUserIdMessageID("userId", "messageId")
 
 // alternatively `client.ListMessageAttachments(ctx, id, messageattachment.DefaultListMessageAttachmentsOperationOptions())` can be used to do batched pagination
 items, err := client.ListMessageAttachmentsComplete(ctx, id, messageattachment.DefaultListMessageAttachmentsOperationOptions())

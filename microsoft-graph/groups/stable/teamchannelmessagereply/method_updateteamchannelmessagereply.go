@@ -17,15 +17,44 @@ type UpdateTeamChannelMessageReplyOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateTeamChannelMessageReplyOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateTeamChannelMessageReplyOperationOptions() UpdateTeamChannelMessageReplyOperationOptions {
+	return UpdateTeamChannelMessageReplyOperationOptions{}
+}
+
+func (o UpdateTeamChannelMessageReplyOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateTeamChannelMessageReplyOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateTeamChannelMessageReplyOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateTeamChannelMessageReply - Update the navigation property replies in groups
-func (c TeamChannelMessageReplyClient) UpdateTeamChannelMessageReply(ctx context.Context, id stable.GroupIdTeamChannelIdMessageIdReplyId, input stable.ChatMessage) (result UpdateTeamChannelMessageReplyOperationResponse, err error) {
+func (c TeamChannelMessageReplyClient) UpdateTeamChannelMessageReply(ctx context.Context, id stable.GroupIdTeamChannelIdMessageIdReplyId, input stable.ChatMessage, options UpdateTeamChannelMessageReplyOperationOptions) (result UpdateTeamChannelMessageReplyOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

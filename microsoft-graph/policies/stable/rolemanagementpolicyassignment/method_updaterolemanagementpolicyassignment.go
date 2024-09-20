@@ -17,15 +17,44 @@ type UpdateRoleManagementPolicyAssignmentOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateRoleManagementPolicyAssignmentOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateRoleManagementPolicyAssignmentOperationOptions() UpdateRoleManagementPolicyAssignmentOperationOptions {
+	return UpdateRoleManagementPolicyAssignmentOperationOptions{}
+}
+
+func (o UpdateRoleManagementPolicyAssignmentOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateRoleManagementPolicyAssignmentOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateRoleManagementPolicyAssignmentOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateRoleManagementPolicyAssignment - Update the navigation property roleManagementPolicyAssignments in policies
-func (c RoleManagementPolicyAssignmentClient) UpdateRoleManagementPolicyAssignment(ctx context.Context, id stable.PolicyRoleManagementPolicyAssignmentId, input stable.UnifiedRoleManagementPolicyAssignment) (result UpdateRoleManagementPolicyAssignmentOperationResponse, err error) {
+func (c RoleManagementPolicyAssignmentClient) UpdateRoleManagementPolicyAssignment(ctx context.Context, id stable.PolicyRoleManagementPolicyAssignmentId, input stable.UnifiedRoleManagementPolicyAssignment, options UpdateRoleManagementPolicyAssignmentOperationOptions) (result UpdateRoleManagementPolicyAssignmentOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

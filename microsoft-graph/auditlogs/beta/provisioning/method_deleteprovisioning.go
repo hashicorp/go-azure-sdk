@@ -19,7 +19,8 @@ type DeleteProvisioningOperationResponse struct {
 }
 
 type DeleteProvisioningOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteProvisioningOperationOptions() DeleteProvisioningOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteProvisioningOperationOptions) ToHeaders() *client.Headers {
 
 func (o DeleteProvisioningOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

@@ -168,12 +168,35 @@ func (s BaseOfferShiftRequestImpl) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &BaseOfferShiftRequestImpl{}
 
 func (s *BaseOfferShiftRequestImpl) UnmarshalJSON(bytes []byte) error {
-	type alias BaseOfferShiftRequestImpl
-	var decoded alias
+
+	var decoded struct {
+		RecipientActionDateTime nullable.Type[string]       `json:"recipientActionDateTime,omitempty"`
+		RecipientActionMessage  nullable.Type[string]       `json:"recipientActionMessage,omitempty"`
+		RecipientUserId         nullable.Type[string]       `json:"recipientUserId,omitempty"`
+		SenderShiftId           nullable.Type[string]       `json:"senderShiftId,omitempty"`
+		AssignedTo              *ScheduleChangeRequestActor `json:"assignedTo,omitempty"`
+		ManagerActionDateTime   nullable.Type[string]       `json:"managerActionDateTime,omitempty"`
+		ManagerActionMessage    nullable.Type[string]       `json:"managerActionMessage,omitempty"`
+		ManagerUserId           nullable.Type[string]       `json:"managerUserId,omitempty"`
+		SenderDateTime          nullable.Type[string]       `json:"senderDateTime,omitempty"`
+		SenderMessage           nullable.Type[string]       `json:"senderMessage,omitempty"`
+		SenderUserId            nullable.Type[string]       `json:"senderUserId,omitempty"`
+		State                   *ScheduleChangeState        `json:"state,omitempty"`
+		CreatedDateTime         nullable.Type[string]       `json:"createdDateTime,omitempty"`
+		LastModifiedBy          *IdentitySet                `json:"lastModifiedBy,omitempty"`
+		LastModifiedDateTime    nullable.Type[string]       `json:"lastModifiedDateTime,omitempty"`
+		Id                      *string                     `json:"id,omitempty"`
+		ODataId                 *string                     `json:"@odata.id,omitempty"`
+		ODataType               *string                     `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into BaseOfferShiftRequestImpl: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
+	s.RecipientActionDateTime = decoded.RecipientActionDateTime
+	s.RecipientActionMessage = decoded.RecipientActionMessage
+	s.RecipientUserId = decoded.RecipientUserId
+	s.SenderShiftId = decoded.SenderShiftId
 	s.AssignedTo = decoded.AssignedTo
 	s.CreatedDateTime = decoded.CreatedDateTime
 	s.Id = decoded.Id
@@ -183,12 +206,8 @@ func (s *BaseOfferShiftRequestImpl) UnmarshalJSON(bytes []byte) error {
 	s.ManagerUserId = decoded.ManagerUserId
 	s.ODataId = decoded.ODataId
 	s.ODataType = decoded.ODataType
-	s.RecipientActionDateTime = decoded.RecipientActionDateTime
-	s.RecipientActionMessage = decoded.RecipientActionMessage
-	s.RecipientUserId = decoded.RecipientUserId
 	s.SenderDateTime = decoded.SenderDateTime
 	s.SenderMessage = decoded.SenderMessage
-	s.SenderShiftId = decoded.SenderShiftId
 	s.SenderUserId = decoded.SenderUserId
 	s.State = decoded.State
 
@@ -204,6 +223,7 @@ func (s *BaseOfferShiftRequestImpl) UnmarshalJSON(bytes []byte) error {
 		}
 		s.LastModifiedBy = &impl
 	}
+
 	return nil
 }
 
@@ -217,9 +237,9 @@ func UnmarshalOfferShiftRequestImplementation(input []byte) (OfferShiftRequest, 
 		return nil, fmt.Errorf("unmarshaling OfferShiftRequest into map[string]interface: %+v", err)
 	}
 
-	value, ok := temp["@odata.type"].(string)
-	if !ok {
-		return nil, nil
+	var value string
+	if v, ok := temp["@odata.type"]; ok {
+		value = fmt.Sprintf("%v", v)
 	}
 
 	if strings.EqualFold(value, "#microsoft.graph.swapShiftsChangeRequest") {

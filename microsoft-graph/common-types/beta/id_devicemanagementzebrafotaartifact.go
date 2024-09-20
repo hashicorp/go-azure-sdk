@@ -93,7 +93,7 @@ func (id DeviceManagementZebraFotaArtifactId) Segments() []resourceids.Segment {
 	return []resourceids.Segment{
 		resourceids.StaticSegment("deviceManagement", "deviceManagement", "deviceManagement"),
 		resourceids.StaticSegment("zebraFotaArtifacts", "zebraFotaArtifacts", "zebraFotaArtifacts"),
-		resourceids.UserSpecifiedSegment("zebraFotaArtifactId", "zebraFotaArtifactIdValue"),
+		resourceids.UserSpecifiedSegment("zebraFotaArtifactId", "zebraFotaArtifactId"),
 	}
 }
 

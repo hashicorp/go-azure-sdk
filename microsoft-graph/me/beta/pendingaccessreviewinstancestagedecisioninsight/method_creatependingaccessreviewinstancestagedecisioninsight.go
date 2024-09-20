@@ -20,15 +20,44 @@ type CreatePendingAccessReviewInstanceStageDecisionInsightOperationResponse stru
 	Model        beta.GovernanceInsight
 }
 
+type CreatePendingAccessReviewInstanceStageDecisionInsightOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreatePendingAccessReviewInstanceStageDecisionInsightOperationOptions() CreatePendingAccessReviewInstanceStageDecisionInsightOperationOptions {
+	return CreatePendingAccessReviewInstanceStageDecisionInsightOperationOptions{}
+}
+
+func (o CreatePendingAccessReviewInstanceStageDecisionInsightOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreatePendingAccessReviewInstanceStageDecisionInsightOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreatePendingAccessReviewInstanceStageDecisionInsightOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreatePendingAccessReviewInstanceStageDecisionInsight - Create new navigation property to insights for me
-func (c PendingAccessReviewInstanceStageDecisionInsightClient) CreatePendingAccessReviewInstanceStageDecisionInsight(ctx context.Context, id beta.MePendingAccessReviewInstanceIdStageIdDecisionId, input beta.GovernanceInsight) (result CreatePendingAccessReviewInstanceStageDecisionInsightOperationResponse, err error) {
+func (c PendingAccessReviewInstanceStageDecisionInsightClient) CreatePendingAccessReviewInstanceStageDecisionInsight(ctx context.Context, id beta.MePendingAccessReviewInstanceIdStageIdDecisionId, input beta.GovernanceInsight, options CreatePendingAccessReviewInstanceStageDecisionInsightOperationOptions) (result CreatePendingAccessReviewInstanceStageDecisionInsightOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/insights", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/insights", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -99,9 +99,9 @@ func (id DeviceManagementConfigurationPolicyTemplateIdSettingTemplateId) Segment
 	return []resourceids.Segment{
 		resourceids.StaticSegment("deviceManagement", "deviceManagement", "deviceManagement"),
 		resourceids.StaticSegment("configurationPolicyTemplates", "configurationPolicyTemplates", "configurationPolicyTemplates"),
-		resourceids.UserSpecifiedSegment("deviceManagementConfigurationPolicyTemplateId", "deviceManagementConfigurationPolicyTemplateIdValue"),
+		resourceids.UserSpecifiedSegment("deviceManagementConfigurationPolicyTemplateId", "deviceManagementConfigurationPolicyTemplateId"),
 		resourceids.StaticSegment("settingTemplates", "settingTemplates", "settingTemplates"),
-		resourceids.UserSpecifiedSegment("deviceManagementConfigurationSettingTemplateId", "deviceManagementConfigurationSettingTemplateIdValue"),
+		resourceids.UserSpecifiedSegment("deviceManagementConfigurationSettingTemplateId", "deviceManagementConfigurationSettingTemplateId"),
 	}
 }
 

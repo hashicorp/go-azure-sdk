@@ -19,15 +19,44 @@ type CreateInformationProtectionEncryptBufferOperationResponse struct {
 	Model        *beta.BufferEncryptionResult
 }
 
+type CreateInformationProtectionEncryptBufferOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateInformationProtectionEncryptBufferOperationOptions() CreateInformationProtectionEncryptBufferOperationOptions {
+	return CreateInformationProtectionEncryptBufferOperationOptions{}
+}
+
+func (o CreateInformationProtectionEncryptBufferOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateInformationProtectionEncryptBufferOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateInformationProtectionEncryptBufferOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateInformationProtectionEncryptBuffer - Invoke action encryptBuffer
-func (c InformationProtectionClient) CreateInformationProtectionEncryptBuffer(ctx context.Context, id beta.UserId, input CreateInformationProtectionEncryptBufferRequest) (result CreateInformationProtectionEncryptBufferOperationResponse, err error) {
+func (c InformationProtectionClient) CreateInformationProtectionEncryptBuffer(ctx context.Context, id beta.UserId, input CreateInformationProtectionEncryptBufferRequest, options CreateInformationProtectionEncryptBufferOperationOptions) (result CreateInformationProtectionEncryptBufferOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/informationProtection/encryptBuffer", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/informationProtection/encryptBuffer", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

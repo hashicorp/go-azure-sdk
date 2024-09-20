@@ -19,15 +19,44 @@ type CreateOutboundSharedUserProfileTenantOperationResponse struct {
 	Model        *beta.TenantReference
 }
 
+type CreateOutboundSharedUserProfileTenantOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateOutboundSharedUserProfileTenantOperationOptions() CreateOutboundSharedUserProfileTenantOperationOptions {
+	return CreateOutboundSharedUserProfileTenantOperationOptions{}
+}
+
+func (o CreateOutboundSharedUserProfileTenantOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateOutboundSharedUserProfileTenantOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateOutboundSharedUserProfileTenantOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateOutboundSharedUserProfileTenant - Create new navigation property to tenants for directory
-func (c OutboundSharedUserProfileTenantClient) CreateOutboundSharedUserProfileTenant(ctx context.Context, id beta.DirectoryOutboundSharedUserProfileId, input beta.TenantReference) (result CreateOutboundSharedUserProfileTenantOperationResponse, err error) {
+func (c OutboundSharedUserProfileTenantClient) CreateOutboundSharedUserProfileTenant(ctx context.Context, id beta.DirectoryOutboundSharedUserProfileId, input beta.TenantReference, options CreateOutboundSharedUserProfileTenantOperationOptions) (result CreateOutboundSharedUserProfileTenantOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/tenants", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/tenants", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

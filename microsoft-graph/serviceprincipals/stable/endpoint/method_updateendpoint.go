@@ -17,15 +17,44 @@ type UpdateEndpointOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateEndpointOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateEndpointOperationOptions() UpdateEndpointOperationOptions {
+	return UpdateEndpointOperationOptions{}
+}
+
+func (o UpdateEndpointOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateEndpointOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateEndpointOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateEndpoint - Update the navigation property endpoints in servicePrincipals
-func (c EndpointClient) UpdateEndpoint(ctx context.Context, id stable.ServicePrincipalIdEndpointId, input stable.Endpoint) (result UpdateEndpointOperationResponse, err error) {
+func (c EndpointClient) UpdateEndpoint(ctx context.Context, id stable.ServicePrincipalIdEndpointId, input stable.Endpoint, options UpdateEndpointOperationOptions) (result UpdateEndpointOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

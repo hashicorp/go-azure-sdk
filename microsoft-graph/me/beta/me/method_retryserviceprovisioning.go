@@ -16,15 +16,44 @@ type RetryServiceProvisioningOperationResponse struct {
 	OData        *odata.OData
 }
 
+type RetryServiceProvisioningOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultRetryServiceProvisioningOperationOptions() RetryServiceProvisioningOperationOptions {
+	return RetryServiceProvisioningOperationOptions{}
+}
+
+func (o RetryServiceProvisioningOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o RetryServiceProvisioningOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o RetryServiceProvisioningOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // RetryServiceProvisioning - Invoke action retryServiceProvisioning. Retry the user service provisioning.
-func (c MeClient) RetryServiceProvisioning(ctx context.Context) (result RetryServiceProvisioningOperationResponse, err error) {
+func (c MeClient) RetryServiceProvisioning(ctx context.Context, options RetryServiceProvisioningOperationOptions) (result RetryServiceProvisioningOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/me/retryServiceProvisioning",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/me/retryServiceProvisioning",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

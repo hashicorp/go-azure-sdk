@@ -17,16 +17,45 @@ type GetReportsNoncompliantDevicesAndSettingsReportOperationResponse struct {
 	Model        *[]byte
 }
 
+type GetReportsNoncompliantDevicesAndSettingsReportOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultGetReportsNoncompliantDevicesAndSettingsReportOperationOptions() GetReportsNoncompliantDevicesAndSettingsReportOperationOptions {
+	return GetReportsNoncompliantDevicesAndSettingsReportOperationOptions{}
+}
+
+func (o GetReportsNoncompliantDevicesAndSettingsReportOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o GetReportsNoncompliantDevicesAndSettingsReportOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o GetReportsNoncompliantDevicesAndSettingsReportOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // GetReportsNoncompliantDevicesAndSettingsReport - Invoke action getNoncompliantDevicesAndSettingsReport. Not yet
 // documented
-func (c ReportClient) GetReportsNoncompliantDevicesAndSettingsReport(ctx context.Context, input GetReportsNoncompliantDevicesAndSettingsReportRequest) (result GetReportsNoncompliantDevicesAndSettingsReportOperationResponse, err error) {
+func (c ReportClient) GetReportsNoncompliantDevicesAndSettingsReport(ctx context.Context, input GetReportsNoncompliantDevicesAndSettingsReportRequest, options GetReportsNoncompliantDevicesAndSettingsReportOperationOptions) (result GetReportsNoncompliantDevicesAndSettingsReportOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/octet-stream",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/deviceManagement/reports/getNoncompliantDevicesAndSettingsReport",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/deviceManagement/reports/getNoncompliantDevicesAndSettingsReport",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &MeOwnedDeviceId{}
 
 func TestNewMeOwnedDeviceID(t *testing.T) {
-	id := NewMeOwnedDeviceID("directoryObjectIdValue")
+	id := NewMeOwnedDeviceID("directoryObjectId")
 
-	if id.DirectoryObjectId != "directoryObjectIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DirectoryObjectId'", id.DirectoryObjectId, "directoryObjectIdValue")
+	if id.DirectoryObjectId != "directoryObjectId" {
+		t.Fatalf("Expected %q but got %q for Segment 'DirectoryObjectId'", id.DirectoryObjectId, "directoryObjectId")
 	}
 }
 
 func TestFormatMeOwnedDeviceID(t *testing.T) {
-	actual := NewMeOwnedDeviceID("directoryObjectIdValue").ID()
-	expected := "/me/ownedDevices/directoryObjectIdValue"
+	actual := NewMeOwnedDeviceID("directoryObjectId").ID()
+	expected := "/me/ownedDevices/directoryObjectId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -50,14 +50,14 @@ func TestParseMeOwnedDeviceID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/me/ownedDevices/directoryObjectIdValue",
+			Input: "/me/ownedDevices/directoryObjectId",
 			Expected: &MeOwnedDeviceId{
-				DirectoryObjectId: "directoryObjectIdValue",
+				DirectoryObjectId: "directoryObjectId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/ownedDevices/directoryObjectIdValue/extra",
+			Input: "/me/ownedDevices/directoryObjectId/extra",
 			Error: true,
 		},
 	}
@@ -116,26 +116,26 @@ func TestParseMeOwnedDeviceIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/me/ownedDevices/directoryObjectIdValue",
+			Input: "/me/ownedDevices/directoryObjectId",
 			Expected: &MeOwnedDeviceId{
-				DirectoryObjectId: "directoryObjectIdValue",
+				DirectoryObjectId: "directoryObjectId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/ownedDevices/directoryObjectIdValue/extra",
+			Input: "/me/ownedDevices/directoryObjectId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/oWnEdDeViCeS/dIrEcToRyObJeCtIdVaLuE",
+			Input: "/mE/oWnEdDeViCeS/dIrEcToRyObJeCtId",
 			Expected: &MeOwnedDeviceId{
-				DirectoryObjectId: "dIrEcToRyObJeCtIdVaLuE",
+				DirectoryObjectId: "dIrEcToRyObJeCtId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/mE/oWnEdDeViCeS/dIrEcToRyObJeCtIdVaLuE/extra",
+			Input: "/mE/oWnEdDeViCeS/dIrEcToRyObJeCtId/extra",
 			Error: true,
 		},
 	}

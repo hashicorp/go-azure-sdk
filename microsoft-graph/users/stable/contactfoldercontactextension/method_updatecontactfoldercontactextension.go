@@ -17,15 +17,44 @@ type UpdateContactFolderContactExtensionOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateContactFolderContactExtensionOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateContactFolderContactExtensionOperationOptions() UpdateContactFolderContactExtensionOperationOptions {
+	return UpdateContactFolderContactExtensionOperationOptions{}
+}
+
+func (o UpdateContactFolderContactExtensionOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateContactFolderContactExtensionOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateContactFolderContactExtensionOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateContactFolderContactExtension - Update the navigation property extensions in users
-func (c ContactFolderContactExtensionClient) UpdateContactFolderContactExtension(ctx context.Context, id stable.UserIdContactFolderIdContactIdExtensionId, input stable.Extension) (result UpdateContactFolderContactExtensionOperationResponse, err error) {
+func (c ContactFolderContactExtensionClient) UpdateContactFolderContactExtension(ctx context.Context, id stable.UserIdContactFolderIdContactIdExtensionId, input stable.Extension, options UpdateContactFolderContactExtensionOperationOptions) (result UpdateContactFolderContactExtensionOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

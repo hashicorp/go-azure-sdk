@@ -17,16 +17,45 @@ type UpdateGroupPolicyUploadedDefinitionFileOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateGroupPolicyUploadedDefinitionFileOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateGroupPolicyUploadedDefinitionFileOperationOptions() UpdateGroupPolicyUploadedDefinitionFileOperationOptions {
+	return UpdateGroupPolicyUploadedDefinitionFileOperationOptions{}
+}
+
+func (o UpdateGroupPolicyUploadedDefinitionFileOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateGroupPolicyUploadedDefinitionFileOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateGroupPolicyUploadedDefinitionFileOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateGroupPolicyUploadedDefinitionFile - Update the navigation property groupPolicyUploadedDefinitionFiles in
 // deviceManagement
-func (c GroupPolicyUploadedDefinitionFileClient) UpdateGroupPolicyUploadedDefinitionFile(ctx context.Context, id beta.DeviceManagementGroupPolicyUploadedDefinitionFileId, input beta.GroupPolicyUploadedDefinitionFile) (result UpdateGroupPolicyUploadedDefinitionFileOperationResponse, err error) {
+func (c GroupPolicyUploadedDefinitionFileClient) UpdateGroupPolicyUploadedDefinitionFile(ctx context.Context, id beta.DeviceManagementGroupPolicyUploadedDefinitionFileId, input beta.GroupPolicyUploadedDefinitionFile, options UpdateGroupPolicyUploadedDefinitionFileOperationOptions) (result UpdateGroupPolicyUploadedDefinitionFileOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

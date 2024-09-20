@@ -12,24 +12,24 @@ import (
 var _ resourceids.ResourceId = &DeviceManagementCompliancePolicyIdScheduledActionsForRuleIdScheduledActionConfigurationId{}
 
 func TestNewDeviceManagementCompliancePolicyIdScheduledActionsForRuleIdScheduledActionConfigurationID(t *testing.T) {
-	id := NewDeviceManagementCompliancePolicyIdScheduledActionsForRuleIdScheduledActionConfigurationID("deviceManagementCompliancePolicyIdValue", "deviceManagementComplianceScheduledActionForRuleIdValue", "deviceManagementComplianceActionItemIdValue")
+	id := NewDeviceManagementCompliancePolicyIdScheduledActionsForRuleIdScheduledActionConfigurationID("deviceManagementCompliancePolicyId", "deviceManagementComplianceScheduledActionForRuleId", "deviceManagementComplianceActionItemId")
 
-	if id.DeviceManagementCompliancePolicyId != "deviceManagementCompliancePolicyIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DeviceManagementCompliancePolicyId'", id.DeviceManagementCompliancePolicyId, "deviceManagementCompliancePolicyIdValue")
+	if id.DeviceManagementCompliancePolicyId != "deviceManagementCompliancePolicyId" {
+		t.Fatalf("Expected %q but got %q for Segment 'DeviceManagementCompliancePolicyId'", id.DeviceManagementCompliancePolicyId, "deviceManagementCompliancePolicyId")
 	}
 
-	if id.DeviceManagementComplianceScheduledActionForRuleId != "deviceManagementComplianceScheduledActionForRuleIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DeviceManagementComplianceScheduledActionForRuleId'", id.DeviceManagementComplianceScheduledActionForRuleId, "deviceManagementComplianceScheduledActionForRuleIdValue")
+	if id.DeviceManagementComplianceScheduledActionForRuleId != "deviceManagementComplianceScheduledActionForRuleId" {
+		t.Fatalf("Expected %q but got %q for Segment 'DeviceManagementComplianceScheduledActionForRuleId'", id.DeviceManagementComplianceScheduledActionForRuleId, "deviceManagementComplianceScheduledActionForRuleId")
 	}
 
-	if id.DeviceManagementComplianceActionItemId != "deviceManagementComplianceActionItemIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DeviceManagementComplianceActionItemId'", id.DeviceManagementComplianceActionItemId, "deviceManagementComplianceActionItemIdValue")
+	if id.DeviceManagementComplianceActionItemId != "deviceManagementComplianceActionItemId" {
+		t.Fatalf("Expected %q but got %q for Segment 'DeviceManagementComplianceActionItemId'", id.DeviceManagementComplianceActionItemId, "deviceManagementComplianceActionItemId")
 	}
 }
 
 func TestFormatDeviceManagementCompliancePolicyIdScheduledActionsForRuleIdScheduledActionConfigurationID(t *testing.T) {
-	actual := NewDeviceManagementCompliancePolicyIdScheduledActionsForRuleIdScheduledActionConfigurationID("deviceManagementCompliancePolicyIdValue", "deviceManagementComplianceScheduledActionForRuleIdValue", "deviceManagementComplianceActionItemIdValue").ID()
-	expected := "/deviceManagement/compliancePolicies/deviceManagementCompliancePolicyIdValue/scheduledActionsForRule/deviceManagementComplianceScheduledActionForRuleIdValue/scheduledActionConfigurations/deviceManagementComplianceActionItemIdValue"
+	actual := NewDeviceManagementCompliancePolicyIdScheduledActionsForRuleIdScheduledActionConfigurationID("deviceManagementCompliancePolicyId", "deviceManagementComplianceScheduledActionForRuleId", "deviceManagementComplianceActionItemId").ID()
+	expected := "/deviceManagement/compliancePolicies/deviceManagementCompliancePolicyId/scheduledActionsForRule/deviceManagementComplianceScheduledActionForRuleId/scheduledActionConfigurations/deviceManagementComplianceActionItemId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -58,36 +58,36 @@ func TestParseDeviceManagementCompliancePolicyIdScheduledActionsForRuleIdSchedul
 		},
 		{
 			// Incomplete URI
-			Input: "/deviceManagement/compliancePolicies/deviceManagementCompliancePolicyIdValue",
+			Input: "/deviceManagement/compliancePolicies/deviceManagementCompliancePolicyId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/deviceManagement/compliancePolicies/deviceManagementCompliancePolicyIdValue/scheduledActionsForRule",
+			Input: "/deviceManagement/compliancePolicies/deviceManagementCompliancePolicyId/scheduledActionsForRule",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/deviceManagement/compliancePolicies/deviceManagementCompliancePolicyIdValue/scheduledActionsForRule/deviceManagementComplianceScheduledActionForRuleIdValue",
+			Input: "/deviceManagement/compliancePolicies/deviceManagementCompliancePolicyId/scheduledActionsForRule/deviceManagementComplianceScheduledActionForRuleId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/deviceManagement/compliancePolicies/deviceManagementCompliancePolicyIdValue/scheduledActionsForRule/deviceManagementComplianceScheduledActionForRuleIdValue/scheduledActionConfigurations",
+			Input: "/deviceManagement/compliancePolicies/deviceManagementCompliancePolicyId/scheduledActionsForRule/deviceManagementComplianceScheduledActionForRuleId/scheduledActionConfigurations",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/compliancePolicies/deviceManagementCompliancePolicyIdValue/scheduledActionsForRule/deviceManagementComplianceScheduledActionForRuleIdValue/scheduledActionConfigurations/deviceManagementComplianceActionItemIdValue",
+			Input: "/deviceManagement/compliancePolicies/deviceManagementCompliancePolicyId/scheduledActionsForRule/deviceManagementComplianceScheduledActionForRuleId/scheduledActionConfigurations/deviceManagementComplianceActionItemId",
 			Expected: &DeviceManagementCompliancePolicyIdScheduledActionsForRuleIdScheduledActionConfigurationId{
-				DeviceManagementCompliancePolicyId:                 "deviceManagementCompliancePolicyIdValue",
-				DeviceManagementComplianceScheduledActionForRuleId: "deviceManagementComplianceScheduledActionForRuleIdValue",
-				DeviceManagementComplianceActionItemId:             "deviceManagementComplianceActionItemIdValue",
+				DeviceManagementCompliancePolicyId:                 "deviceManagementCompliancePolicyId",
+				DeviceManagementComplianceScheduledActionForRuleId: "deviceManagementComplianceScheduledActionForRuleId",
+				DeviceManagementComplianceActionItemId:             "deviceManagementComplianceActionItemId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/compliancePolicies/deviceManagementCompliancePolicyIdValue/scheduledActionsForRule/deviceManagementComplianceScheduledActionForRuleIdValue/scheduledActionConfigurations/deviceManagementComplianceActionItemIdValue/extra",
+			Input: "/deviceManagement/compliancePolicies/deviceManagementCompliancePolicyId/scheduledActionsForRule/deviceManagementComplianceScheduledActionForRuleId/scheduledActionConfigurations/deviceManagementComplianceActionItemId/extra",
 			Error: true,
 		},
 	}
@@ -154,70 +154,70 @@ func TestParseDeviceManagementCompliancePolicyIdScheduledActionsForRuleIdSchedul
 		},
 		{
 			// Incomplete URI
-			Input: "/deviceManagement/compliancePolicies/deviceManagementCompliancePolicyIdValue",
+			Input: "/deviceManagement/compliancePolicies/deviceManagementCompliancePolicyId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/cOmPlIaNcEpOlIcIeS/dEvIcEmAnAgEmEnTcOmPlIaNcEpOlIcYiDvAlUe",
+			Input: "/dEvIcEmAnAgEmEnT/cOmPlIaNcEpOlIcIeS/dEvIcEmAnAgEmEnTcOmPlIaNcEpOlIcYiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/deviceManagement/compliancePolicies/deviceManagementCompliancePolicyIdValue/scheduledActionsForRule",
+			Input: "/deviceManagement/compliancePolicies/deviceManagementCompliancePolicyId/scheduledActionsForRule",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/cOmPlIaNcEpOlIcIeS/dEvIcEmAnAgEmEnTcOmPlIaNcEpOlIcYiDvAlUe/sChEdUlEdAcTiOnSfOrRuLe",
+			Input: "/dEvIcEmAnAgEmEnT/cOmPlIaNcEpOlIcIeS/dEvIcEmAnAgEmEnTcOmPlIaNcEpOlIcYiD/sChEdUlEdAcTiOnSfOrRuLe",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/deviceManagement/compliancePolicies/deviceManagementCompliancePolicyIdValue/scheduledActionsForRule/deviceManagementComplianceScheduledActionForRuleIdValue",
+			Input: "/deviceManagement/compliancePolicies/deviceManagementCompliancePolicyId/scheduledActionsForRule/deviceManagementComplianceScheduledActionForRuleId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/cOmPlIaNcEpOlIcIeS/dEvIcEmAnAgEmEnTcOmPlIaNcEpOlIcYiDvAlUe/sChEdUlEdAcTiOnSfOrRuLe/dEvIcEmAnAgEmEnTcOmPlIaNcEsChEdUlEdAcTiOnFoRrUlEiDvAlUe",
+			Input: "/dEvIcEmAnAgEmEnT/cOmPlIaNcEpOlIcIeS/dEvIcEmAnAgEmEnTcOmPlIaNcEpOlIcYiD/sChEdUlEdAcTiOnSfOrRuLe/dEvIcEmAnAgEmEnTcOmPlIaNcEsChEdUlEdAcTiOnFoRrUlEiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/deviceManagement/compliancePolicies/deviceManagementCompliancePolicyIdValue/scheduledActionsForRule/deviceManagementComplianceScheduledActionForRuleIdValue/scheduledActionConfigurations",
+			Input: "/deviceManagement/compliancePolicies/deviceManagementCompliancePolicyId/scheduledActionsForRule/deviceManagementComplianceScheduledActionForRuleId/scheduledActionConfigurations",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/cOmPlIaNcEpOlIcIeS/dEvIcEmAnAgEmEnTcOmPlIaNcEpOlIcYiDvAlUe/sChEdUlEdAcTiOnSfOrRuLe/dEvIcEmAnAgEmEnTcOmPlIaNcEsChEdUlEdAcTiOnFoRrUlEiDvAlUe/sChEdUlEdAcTiOnCoNfIgUrAtIoNs",
+			Input: "/dEvIcEmAnAgEmEnT/cOmPlIaNcEpOlIcIeS/dEvIcEmAnAgEmEnTcOmPlIaNcEpOlIcYiD/sChEdUlEdAcTiOnSfOrRuLe/dEvIcEmAnAgEmEnTcOmPlIaNcEsChEdUlEdAcTiOnFoRrUlEiD/sChEdUlEdAcTiOnCoNfIgUrAtIoNs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/compliancePolicies/deviceManagementCompliancePolicyIdValue/scheduledActionsForRule/deviceManagementComplianceScheduledActionForRuleIdValue/scheduledActionConfigurations/deviceManagementComplianceActionItemIdValue",
+			Input: "/deviceManagement/compliancePolicies/deviceManagementCompliancePolicyId/scheduledActionsForRule/deviceManagementComplianceScheduledActionForRuleId/scheduledActionConfigurations/deviceManagementComplianceActionItemId",
 			Expected: &DeviceManagementCompliancePolicyIdScheduledActionsForRuleIdScheduledActionConfigurationId{
-				DeviceManagementCompliancePolicyId:                 "deviceManagementCompliancePolicyIdValue",
-				DeviceManagementComplianceScheduledActionForRuleId: "deviceManagementComplianceScheduledActionForRuleIdValue",
-				DeviceManagementComplianceActionItemId:             "deviceManagementComplianceActionItemIdValue",
+				DeviceManagementCompliancePolicyId:                 "deviceManagementCompliancePolicyId",
+				DeviceManagementComplianceScheduledActionForRuleId: "deviceManagementComplianceScheduledActionForRuleId",
+				DeviceManagementComplianceActionItemId:             "deviceManagementComplianceActionItemId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/compliancePolicies/deviceManagementCompliancePolicyIdValue/scheduledActionsForRule/deviceManagementComplianceScheduledActionForRuleIdValue/scheduledActionConfigurations/deviceManagementComplianceActionItemIdValue/extra",
+			Input: "/deviceManagement/compliancePolicies/deviceManagementCompliancePolicyId/scheduledActionsForRule/deviceManagementComplianceScheduledActionForRuleId/scheduledActionConfigurations/deviceManagementComplianceActionItemId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/cOmPlIaNcEpOlIcIeS/dEvIcEmAnAgEmEnTcOmPlIaNcEpOlIcYiDvAlUe/sChEdUlEdAcTiOnSfOrRuLe/dEvIcEmAnAgEmEnTcOmPlIaNcEsChEdUlEdAcTiOnFoRrUlEiDvAlUe/sChEdUlEdAcTiOnCoNfIgUrAtIoNs/dEvIcEmAnAgEmEnTcOmPlIaNcEaCtIoNiTeMiDvAlUe",
+			Input: "/dEvIcEmAnAgEmEnT/cOmPlIaNcEpOlIcIeS/dEvIcEmAnAgEmEnTcOmPlIaNcEpOlIcYiD/sChEdUlEdAcTiOnSfOrRuLe/dEvIcEmAnAgEmEnTcOmPlIaNcEsChEdUlEdAcTiOnFoRrUlEiD/sChEdUlEdAcTiOnCoNfIgUrAtIoNs/dEvIcEmAnAgEmEnTcOmPlIaNcEaCtIoNiTeMiD",
 			Expected: &DeviceManagementCompliancePolicyIdScheduledActionsForRuleIdScheduledActionConfigurationId{
-				DeviceManagementCompliancePolicyId:                 "dEvIcEmAnAgEmEnTcOmPlIaNcEpOlIcYiDvAlUe",
-				DeviceManagementComplianceScheduledActionForRuleId: "dEvIcEmAnAgEmEnTcOmPlIaNcEsChEdUlEdAcTiOnFoRrUlEiDvAlUe",
-				DeviceManagementComplianceActionItemId:             "dEvIcEmAnAgEmEnTcOmPlIaNcEaCtIoNiTeMiDvAlUe",
+				DeviceManagementCompliancePolicyId:                 "dEvIcEmAnAgEmEnTcOmPlIaNcEpOlIcYiD",
+				DeviceManagementComplianceScheduledActionForRuleId: "dEvIcEmAnAgEmEnTcOmPlIaNcEsChEdUlEdAcTiOnFoRrUlEiD",
+				DeviceManagementComplianceActionItemId:             "dEvIcEmAnAgEmEnTcOmPlIaNcEaCtIoNiTeMiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/cOmPlIaNcEpOlIcIeS/dEvIcEmAnAgEmEnTcOmPlIaNcEpOlIcYiDvAlUe/sChEdUlEdAcTiOnSfOrRuLe/dEvIcEmAnAgEmEnTcOmPlIaNcEsChEdUlEdAcTiOnFoRrUlEiDvAlUe/sChEdUlEdAcTiOnCoNfIgUrAtIoNs/dEvIcEmAnAgEmEnTcOmPlIaNcEaCtIoNiTeMiDvAlUe/extra",
+			Input: "/dEvIcEmAnAgEmEnT/cOmPlIaNcEpOlIcIeS/dEvIcEmAnAgEmEnTcOmPlIaNcEpOlIcYiD/sChEdUlEdAcTiOnSfOrRuLe/dEvIcEmAnAgEmEnTcOmPlIaNcEsChEdUlEdAcTiOnFoRrUlEiD/sChEdUlEdAcTiOnCoNfIgUrAtIoNs/dEvIcEmAnAgEmEnTcOmPlIaNcEaCtIoNiTeMiD/extra",
 			Error: true,
 		},
 	}

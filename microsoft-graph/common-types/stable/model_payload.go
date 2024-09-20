@@ -142,10 +142,34 @@ func (s Payload) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &Payload{}
 
 func (s *Payload) UnmarshalJSON(bytes []byte) error {
-	type alias Payload
-	var decoded alias
+
+	var decoded struct {
+		Brand                *PayloadBrand              `json:"brand,omitempty"`
+		Complexity           *PayloadComplexity         `json:"complexity,omitempty"`
+		CreatedBy            *EmailIdentity             `json:"createdBy,omitempty"`
+		CreatedDateTime      nullable.Type[string]      `json:"createdDateTime,omitempty"`
+		Description          nullable.Type[string]      `json:"description,omitempty"`
+		DisplayName          nullable.Type[string]      `json:"displayName,omitempty"`
+		Industry             *PayloadIndustry           `json:"industry,omitempty"`
+		IsAutomated          nullable.Type[bool]        `json:"isAutomated,omitempty"`
+		IsControversial      nullable.Type[bool]        `json:"isControversial,omitempty"`
+		IsCurrentEvent       nullable.Type[bool]        `json:"isCurrentEvent,omitempty"`
+		Language             nullable.Type[string]      `json:"language,omitempty"`
+		LastModifiedBy       *EmailIdentity             `json:"lastModifiedBy,omitempty"`
+		LastModifiedDateTime nullable.Type[string]      `json:"lastModifiedDateTime,omitempty"`
+		PayloadTags          *[]string                  `json:"payloadTags,omitempty"`
+		Platform             *PayloadDeliveryPlatform   `json:"platform,omitempty"`
+		SimulationAttackType *SimulationAttackType      `json:"simulationAttackType,omitempty"`
+		Source               *SimulationContentSource   `json:"source,omitempty"`
+		Status               *SimulationContentStatus   `json:"status,omitempty"`
+		Technique            *SimulationAttackTechnique `json:"technique,omitempty"`
+		Theme                *PayloadTheme              `json:"theme,omitempty"`
+		Id                   *string                    `json:"id,omitempty"`
+		ODataId              *string                    `json:"@odata.id,omitempty"`
+		ODataType            *string                    `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into Payload: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.Brand = decoded.Brand
@@ -154,7 +178,6 @@ func (s *Payload) UnmarshalJSON(bytes []byte) error {
 	s.CreatedDateTime = decoded.CreatedDateTime
 	s.Description = decoded.Description
 	s.DisplayName = decoded.DisplayName
-	s.Id = decoded.Id
 	s.Industry = decoded.Industry
 	s.IsAutomated = decoded.IsAutomated
 	s.IsControversial = decoded.IsControversial
@@ -162,8 +185,6 @@ func (s *Payload) UnmarshalJSON(bytes []byte) error {
 	s.Language = decoded.Language
 	s.LastModifiedBy = decoded.LastModifiedBy
 	s.LastModifiedDateTime = decoded.LastModifiedDateTime
-	s.ODataId = decoded.ODataId
-	s.ODataType = decoded.ODataType
 	s.PayloadTags = decoded.PayloadTags
 	s.Platform = decoded.Platform
 	s.SimulationAttackType = decoded.SimulationAttackType
@@ -171,6 +192,9 @@ func (s *Payload) UnmarshalJSON(bytes []byte) error {
 	s.Status = decoded.Status
 	s.Technique = decoded.Technique
 	s.Theme = decoded.Theme
+	s.Id = decoded.Id
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -184,5 +208,6 @@ func (s *Payload) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Detail = impl
 	}
+
 	return nil
 }

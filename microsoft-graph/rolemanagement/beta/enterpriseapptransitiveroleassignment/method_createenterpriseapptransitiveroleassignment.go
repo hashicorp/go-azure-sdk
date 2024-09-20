@@ -19,16 +19,45 @@ type CreateEnterpriseAppTransitiveRoleAssignmentOperationResponse struct {
 	Model        *beta.UnifiedRoleAssignment
 }
 
+type CreateEnterpriseAppTransitiveRoleAssignmentOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateEnterpriseAppTransitiveRoleAssignmentOperationOptions() CreateEnterpriseAppTransitiveRoleAssignmentOperationOptions {
+	return CreateEnterpriseAppTransitiveRoleAssignmentOperationOptions{}
+}
+
+func (o CreateEnterpriseAppTransitiveRoleAssignmentOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateEnterpriseAppTransitiveRoleAssignmentOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateEnterpriseAppTransitiveRoleAssignmentOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateEnterpriseAppTransitiveRoleAssignment - Create new navigation property to transitiveRoleAssignments for
 // roleManagement
-func (c EnterpriseAppTransitiveRoleAssignmentClient) CreateEnterpriseAppTransitiveRoleAssignment(ctx context.Context, id beta.RoleManagementEnterpriseAppId, input beta.UnifiedRoleAssignment) (result CreateEnterpriseAppTransitiveRoleAssignmentOperationResponse, err error) {
+func (c EnterpriseAppTransitiveRoleAssignmentClient) CreateEnterpriseAppTransitiveRoleAssignment(ctx context.Context, id beta.RoleManagementEnterpriseAppId, input beta.UnifiedRoleAssignment, options CreateEnterpriseAppTransitiveRoleAssignmentOperationOptions) (result CreateEnterpriseAppTransitiveRoleAssignmentOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/transitiveRoleAssignments", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/transitiveRoleAssignments", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

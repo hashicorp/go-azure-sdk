@@ -18,16 +18,45 @@ type SyncWindowsDriverUpdateProfileInventoryOperationResponse struct {
 	OData        *odata.OData
 }
 
+type SyncWindowsDriverUpdateProfileInventoryOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultSyncWindowsDriverUpdateProfileInventoryOperationOptions() SyncWindowsDriverUpdateProfileInventoryOperationOptions {
+	return SyncWindowsDriverUpdateProfileInventoryOperationOptions{}
+}
+
+func (o SyncWindowsDriverUpdateProfileInventoryOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o SyncWindowsDriverUpdateProfileInventoryOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o SyncWindowsDriverUpdateProfileInventoryOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // SyncWindowsDriverUpdateProfileInventory - Invoke action syncInventory. Sync the driver inventory of a
 // WindowsDriverUpdateProfile.
-func (c WindowsDriverUpdateProfileClient) SyncWindowsDriverUpdateProfileInventory(ctx context.Context, id beta.DeviceManagementWindowsDriverUpdateProfileId) (result SyncWindowsDriverUpdateProfileInventoryOperationResponse, err error) {
+func (c WindowsDriverUpdateProfileClient) SyncWindowsDriverUpdateProfileInventory(ctx context.Context, id beta.DeviceManagementWindowsDriverUpdateProfileId, options SyncWindowsDriverUpdateProfileInventoryOperationOptions) (result SyncWindowsDriverUpdateProfileInventoryOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/syncInventory", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/syncInventory", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

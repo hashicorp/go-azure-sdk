@@ -98,10 +98,10 @@ func (id UserIdInsightUsedId) ID() string {
 func (id UserIdInsightUsedId) Segments() []resourceids.Segment {
 	return []resourceids.Segment{
 		resourceids.StaticSegment("users", "users", "users"),
-		resourceids.UserSpecifiedSegment("userId", "userIdValue"),
+		resourceids.UserSpecifiedSegment("userId", "userId"),
 		resourceids.StaticSegment("insights", "insights", "insights"),
 		resourceids.StaticSegment("used", "used", "used"),
-		resourceids.UserSpecifiedSegment("usedInsightId", "usedInsightIdValue"),
+		resourceids.UserSpecifiedSegment("usedInsightId", "usedInsightId"),
 	}
 }
 

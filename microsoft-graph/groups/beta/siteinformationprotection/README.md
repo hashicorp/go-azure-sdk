@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/siteinformationprotection` Documentation
 
-The `siteinformationprotection` SDK allows for interaction with the Azure Resource Manager Service `groups` (API Version `beta`).
+The `siteinformationprotection` SDK allows for interaction with Microsoft Graph `groups` (API Version `beta`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -15,7 +15,7 @@ import "github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/siteinform
 ### Client Initialization
 
 ```go
-client := siteinformationprotection.NewSiteInformationProtectionClientWithBaseURI("https://management.azure.com")
+client := siteinformationprotection.NewSiteInformationProtectionClientWithBaseURI("https://graph.microsoft.com")
 client.Client.Authorizer = authorizer
 ```
 
@@ -24,14 +24,14 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := siteinformationprotection.NewGroupIdSiteID("groupIdValue", "siteIdValue")
+id := siteinformationprotection.NewGroupIdSiteID("groupId", "siteId")
 
 payload := siteinformationprotection.CreateSiteInformationProtectionDecryptBufferRequest{
 	// ...
 }
 
 
-read, err := client.CreateSiteInformationProtectionDecryptBuffer(ctx, id, payload)
+read, err := client.CreateSiteInformationProtectionDecryptBuffer(ctx, id, payload, siteinformationprotection.DefaultCreateSiteInformationProtectionDecryptBufferOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -45,14 +45,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := siteinformationprotection.NewGroupIdSiteID("groupIdValue", "siteIdValue")
+id := siteinformationprotection.NewGroupIdSiteID("groupId", "siteId")
 
 payload := siteinformationprotection.CreateSiteInformationProtectionEncryptBufferRequest{
 	// ...
 }
 
 
-read, err := client.CreateSiteInformationProtectionEncryptBuffer(ctx, id, payload)
+read, err := client.CreateSiteInformationProtectionEncryptBuffer(ctx, id, payload, siteinformationprotection.DefaultCreateSiteInformationProtectionEncryptBufferOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -66,14 +66,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := siteinformationprotection.NewGroupIdSiteID("groupIdValue", "siteIdValue")
+id := siteinformationprotection.NewGroupIdSiteID("groupId", "siteId")
 
 payload := siteinformationprotection.CreateSiteInformationProtectionSignDigestRequest{
 	// ...
 }
 
 
-read, err := client.CreateSiteInformationProtectionSignDigest(ctx, id, payload)
+read, err := client.CreateSiteInformationProtectionSignDigest(ctx, id, payload, siteinformationprotection.DefaultCreateSiteInformationProtectionSignDigestOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -87,14 +87,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := siteinformationprotection.NewGroupIdSiteID("groupIdValue", "siteIdValue")
+id := siteinformationprotection.NewGroupIdSiteID("groupId", "siteId")
 
 payload := siteinformationprotection.CreateSiteInformationProtectionVerifySignatureRequest{
 	// ...
 }
 
 
-read, err := client.CreateSiteInformationProtectionVerifySignature(ctx, id, payload)
+read, err := client.CreateSiteInformationProtectionVerifySignature(ctx, id, payload, siteinformationprotection.DefaultCreateSiteInformationProtectionVerifySignatureOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -108,7 +108,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := siteinformationprotection.NewGroupIdSiteID("groupIdValue", "siteIdValue")
+id := siteinformationprotection.NewGroupIdSiteID("groupId", "siteId")
 
 read, err := client.DeleteSiteInformationProtection(ctx, id, siteinformationprotection.DefaultDeleteSiteInformationProtectionOperationOptions())
 if err != nil {
@@ -124,7 +124,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := siteinformationprotection.NewGroupIdSiteID("groupIdValue", "siteIdValue")
+id := siteinformationprotection.NewGroupIdSiteID("groupId", "siteId")
 
 read, err := client.GetSiteInformationProtection(ctx, id, siteinformationprotection.DefaultGetSiteInformationProtectionOperationOptions())
 if err != nil {
@@ -140,14 +140,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := siteinformationprotection.NewGroupIdSiteID("groupIdValue", "siteIdValue")
+id := siteinformationprotection.NewGroupIdSiteID("groupId", "siteId")
 
 payload := siteinformationprotection.InformationProtection{
 	// ...
 }
 
 
-read, err := client.UpdateSiteInformationProtection(ctx, id, payload)
+read, err := client.UpdateSiteInformationProtection(ctx, id, payload, siteinformationprotection.DefaultUpdateSiteInformationProtectionOperationOptions())
 if err != nil {
 	// handle the error
 }

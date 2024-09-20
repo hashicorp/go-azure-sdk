@@ -17,15 +17,44 @@ type UpdateEmbeddedSIMActivationCodePoolDeviceStateOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateEmbeddedSIMActivationCodePoolDeviceStateOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateEmbeddedSIMActivationCodePoolDeviceStateOperationOptions() UpdateEmbeddedSIMActivationCodePoolDeviceStateOperationOptions {
+	return UpdateEmbeddedSIMActivationCodePoolDeviceStateOperationOptions{}
+}
+
+func (o UpdateEmbeddedSIMActivationCodePoolDeviceStateOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateEmbeddedSIMActivationCodePoolDeviceStateOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateEmbeddedSIMActivationCodePoolDeviceStateOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateEmbeddedSIMActivationCodePoolDeviceState - Update the navigation property deviceStates in deviceManagement
-func (c EmbeddedSIMActivationCodePoolDeviceStateClient) UpdateEmbeddedSIMActivationCodePoolDeviceState(ctx context.Context, id beta.DeviceManagementEmbeddedSIMActivationCodePoolIdDeviceStateId, input beta.EmbeddedSIMDeviceState) (result UpdateEmbeddedSIMActivationCodePoolDeviceStateOperationResponse, err error) {
+func (c EmbeddedSIMActivationCodePoolDeviceStateClient) UpdateEmbeddedSIMActivationCodePoolDeviceState(ctx context.Context, id beta.DeviceManagementEmbeddedSIMActivationCodePoolIdDeviceStateId, input beta.EmbeddedSIMDeviceState, options UpdateEmbeddedSIMActivationCodePoolDeviceStateOperationOptions) (result UpdateEmbeddedSIMActivationCodePoolDeviceStateOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

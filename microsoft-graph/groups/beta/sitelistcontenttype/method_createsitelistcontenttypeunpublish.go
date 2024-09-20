@@ -18,15 +18,44 @@ type CreateSiteListContentTypeUnpublishOperationResponse struct {
 	OData        *odata.OData
 }
 
+type CreateSiteListContentTypeUnpublishOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateSiteListContentTypeUnpublishOperationOptions() CreateSiteListContentTypeUnpublishOperationOptions {
+	return CreateSiteListContentTypeUnpublishOperationOptions{}
+}
+
+func (o CreateSiteListContentTypeUnpublishOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateSiteListContentTypeUnpublishOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateSiteListContentTypeUnpublishOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateSiteListContentTypeUnpublish - Invoke action unpublish
-func (c SiteListContentTypeClient) CreateSiteListContentTypeUnpublish(ctx context.Context, id beta.GroupIdSiteIdListIdContentTypeId) (result CreateSiteListContentTypeUnpublishOperationResponse, err error) {
+func (c SiteListContentTypeClient) CreateSiteListContentTypeUnpublish(ctx context.Context, id beta.GroupIdSiteIdListIdContentTypeId, options CreateSiteListContentTypeUnpublishOperationOptions) (result CreateSiteListContentTypeUnpublishOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/unpublish", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/unpublish", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

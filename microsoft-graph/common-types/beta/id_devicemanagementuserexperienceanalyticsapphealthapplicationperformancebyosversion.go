@@ -93,7 +93,7 @@ func (id DeviceManagementUserExperienceAnalyticsAppHealthApplicationPerformanceB
 	return []resourceids.Segment{
 		resourceids.StaticSegment("deviceManagement", "deviceManagement", "deviceManagement"),
 		resourceids.StaticSegment("userExperienceAnalyticsAppHealthApplicationPerformanceByOSVersion", "userExperienceAnalyticsAppHealthApplicationPerformanceByOSVersion", "userExperienceAnalyticsAppHealthApplicationPerformanceByOSVersion"),
-		resourceids.UserSpecifiedSegment("userExperienceAnalyticsAppHealthAppPerformanceByOSVersionId", "userExperienceAnalyticsAppHealthAppPerformanceByOSVersionIdValue"),
+		resourceids.UserSpecifiedSegment("userExperienceAnalyticsAppHealthAppPerformanceByOSVersionId", "userExperienceAnalyticsAppHealthAppPerformanceByOSVersionId"),
 	}
 }
 

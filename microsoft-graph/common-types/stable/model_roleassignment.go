@@ -102,18 +102,25 @@ func (s BaseRoleAssignmentImpl) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &BaseRoleAssignmentImpl{}
 
 func (s *BaseRoleAssignmentImpl) UnmarshalJSON(bytes []byte) error {
-	type alias BaseRoleAssignmentImpl
-	var decoded alias
+
+	var decoded struct {
+		Description    nullable.Type[string] `json:"description,omitempty"`
+		DisplayName    nullable.Type[string] `json:"displayName,omitempty"`
+		ResourceScopes *[]string             `json:"resourceScopes,omitempty"`
+		Id             *string               `json:"id,omitempty"`
+		ODataId        *string               `json:"@odata.id,omitempty"`
+		ODataType      *string               `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into BaseRoleAssignmentImpl: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.Description = decoded.Description
 	s.DisplayName = decoded.DisplayName
+	s.ResourceScopes = decoded.ResourceScopes
 	s.Id = decoded.Id
 	s.ODataId = decoded.ODataId
 	s.ODataType = decoded.ODataType
-	s.ResourceScopes = decoded.ResourceScopes
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -127,6 +134,7 @@ func (s *BaseRoleAssignmentImpl) UnmarshalJSON(bytes []byte) error {
 		}
 		s.RoleDefinition = &impl
 	}
+
 	return nil
 }
 
@@ -140,9 +148,9 @@ func UnmarshalRoleAssignmentImplementation(input []byte) (RoleAssignment, error)
 		return nil, fmt.Errorf("unmarshaling RoleAssignment into map[string]interface: %+v", err)
 	}
 
-	value, ok := temp["@odata.type"].(string)
-	if !ok {
-		return nil, nil
+	var value string
+	if v, ok := temp["@odata.type"]; ok {
+		value = fmt.Sprintf("%v", v)
 	}
 
 	if strings.EqualFold(value, "#microsoft.graph.deviceAndAppManagementRoleAssignment") {

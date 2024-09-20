@@ -17,16 +17,45 @@ type UpdateMobileAppTroubleshootingEventAppLogCollectionRequestOperationResponse
 	OData        *odata.OData
 }
 
+type UpdateMobileAppTroubleshootingEventAppLogCollectionRequestOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateMobileAppTroubleshootingEventAppLogCollectionRequestOperationOptions() UpdateMobileAppTroubleshootingEventAppLogCollectionRequestOperationOptions {
+	return UpdateMobileAppTroubleshootingEventAppLogCollectionRequestOperationOptions{}
+}
+
+func (o UpdateMobileAppTroubleshootingEventAppLogCollectionRequestOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateMobileAppTroubleshootingEventAppLogCollectionRequestOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateMobileAppTroubleshootingEventAppLogCollectionRequestOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateMobileAppTroubleshootingEventAppLogCollectionRequest - Update the navigation property appLogCollectionRequests
 // in me
-func (c MobileAppTroubleshootingEventAppLogCollectionRequestClient) UpdateMobileAppTroubleshootingEventAppLogCollectionRequest(ctx context.Context, id beta.MeMobileAppTroubleshootingEventIdAppLogCollectionRequestId, input beta.AppLogCollectionRequest) (result UpdateMobileAppTroubleshootingEventAppLogCollectionRequestOperationResponse, err error) {
+func (c MobileAppTroubleshootingEventAppLogCollectionRequestClient) UpdateMobileAppTroubleshootingEventAppLogCollectionRequest(ctx context.Context, id beta.MeMobileAppTroubleshootingEventIdAppLogCollectionRequestId, input beta.AppLogCollectionRequest, options UpdateMobileAppTroubleshootingEventAppLogCollectionRequestOperationOptions) (result UpdateMobileAppTroubleshootingEventAppLogCollectionRequestOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

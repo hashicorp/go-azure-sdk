@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/importeddeviceidentity` Documentation
 
-The `importeddeviceidentity` SDK allows for interaction with the Azure Resource Manager Service `devicemanagement` (API Version `beta`).
+The `importeddeviceidentity` SDK allows for interaction with Microsoft Graph `devicemanagement` (API Version `beta`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -15,7 +15,7 @@ import "github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/
 ### Client Initialization
 
 ```go
-client := importeddeviceidentity.NewImportedDeviceIdentityClientWithBaseURI("https://management.azure.com")
+client := importeddeviceidentity.NewImportedDeviceIdentityClientWithBaseURI("https://graph.microsoft.com")
 client.Client.Authorizer = authorizer
 ```
 
@@ -30,7 +30,7 @@ payload := importeddeviceidentity.ImportedDeviceIdentity{
 }
 
 
-read, err := client.CreateImportedDeviceIdentity(ctx, payload)
+read, err := client.CreateImportedDeviceIdentity(ctx, payload, importeddeviceidentity.DefaultCreateImportedDeviceIdentityOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -44,7 +44,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := importeddeviceidentity.NewDeviceManagementImportedDeviceIdentityID("importedDeviceIdentityIdValue")
+id := importeddeviceidentity.NewDeviceManagementImportedDeviceIdentityID("importedDeviceIdentityId")
 
 read, err := client.DeleteImportedDeviceIdentity(ctx, id, importeddeviceidentity.DefaultDeleteImportedDeviceIdentityOperationOptions())
 if err != nil {
@@ -76,7 +76,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := importeddeviceidentity.NewDeviceManagementImportedDeviceIdentityID("importedDeviceIdentityIdValue")
+id := importeddeviceidentity.NewDeviceManagementImportedDeviceIdentityID("importedDeviceIdentityId")
 
 read, err := client.GetImportedDeviceIdentity(ctx, id, importeddeviceidentity.DefaultGetImportedDeviceIdentityOperationOptions())
 if err != nil {
@@ -151,14 +151,14 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := importeddeviceidentity.NewDeviceManagementImportedDeviceIdentityID("importedDeviceIdentityIdValue")
+id := importeddeviceidentity.NewDeviceManagementImportedDeviceIdentityID("importedDeviceIdentityId")
 
 payload := importeddeviceidentity.ImportedDeviceIdentity{
 	// ...
 }
 
 
-read, err := client.UpdateImportedDeviceIdentity(ctx, id, payload)
+read, err := client.UpdateImportedDeviceIdentity(ctx, id, payload, importeddeviceidentity.DefaultUpdateImportedDeviceIdentityOperationOptions())
 if err != nil {
 	// handle the error
 }

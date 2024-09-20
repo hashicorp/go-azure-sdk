@@ -19,7 +19,8 @@ type DeleteOnlineMeetingAttendanceReportOperationResponse struct {
 }
 
 type DeleteOnlineMeetingAttendanceReportOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteOnlineMeetingAttendanceReportOperationOptions() DeleteOnlineMeetingAttendanceReportOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteOnlineMeetingAttendanceReportOperationOptions) ToHeaders() *client
 
 func (o DeleteOnlineMeetingAttendanceReportOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

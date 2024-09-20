@@ -18,15 +18,44 @@ type AcceptCalendarViewExceptionOccurrenceOperationResponse struct {
 	OData        *odata.OData
 }
 
+type AcceptCalendarViewExceptionOccurrenceOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultAcceptCalendarViewExceptionOccurrenceOperationOptions() AcceptCalendarViewExceptionOccurrenceOperationOptions {
+	return AcceptCalendarViewExceptionOccurrenceOperationOptions{}
+}
+
+func (o AcceptCalendarViewExceptionOccurrenceOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o AcceptCalendarViewExceptionOccurrenceOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o AcceptCalendarViewExceptionOccurrenceOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // AcceptCalendarViewExceptionOccurrence - Invoke action accept. Accept the specified event in a user calendar.
-func (c CalendarCalendarViewExceptionOccurrenceClient) AcceptCalendarViewExceptionOccurrence(ctx context.Context, id beta.GroupIdCalendarCalendarViewIdExceptionOccurrenceId, input AcceptCalendarViewExceptionOccurrenceRequest) (result AcceptCalendarViewExceptionOccurrenceOperationResponse, err error) {
+func (c CalendarCalendarViewExceptionOccurrenceClient) AcceptCalendarViewExceptionOccurrence(ctx context.Context, id beta.GroupIdCalendarCalendarViewIdExceptionOccurrenceId, input AcceptCalendarViewExceptionOccurrenceRequest, options AcceptCalendarViewExceptionOccurrenceOperationOptions) (result AcceptCalendarViewExceptionOccurrenceOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/accept", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/accept", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

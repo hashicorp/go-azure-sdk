@@ -17,15 +17,44 @@ type UpdateFeatureRolloutPolicyOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateFeatureRolloutPolicyOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateFeatureRolloutPolicyOperationOptions() UpdateFeatureRolloutPolicyOperationOptions {
+	return UpdateFeatureRolloutPolicyOperationOptions{}
+}
+
+func (o UpdateFeatureRolloutPolicyOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateFeatureRolloutPolicyOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateFeatureRolloutPolicyOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateFeatureRolloutPolicy - Update featurerolloutpolicy. Update the properties of featureRolloutPolicy object.
-func (c FeatureRolloutPolicyClient) UpdateFeatureRolloutPolicy(ctx context.Context, id beta.PolicyFeatureRolloutPolicyId, input beta.FeatureRolloutPolicy) (result UpdateFeatureRolloutPolicyOperationResponse, err error) {
+func (c FeatureRolloutPolicyClient) UpdateFeatureRolloutPolicy(ctx context.Context, id beta.PolicyFeatureRolloutPolicyId, input beta.FeatureRolloutPolicy, options UpdateFeatureRolloutPolicyOperationOptions) (result UpdateFeatureRolloutPolicyOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

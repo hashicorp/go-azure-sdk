@@ -25,8 +25,9 @@ type ListTemplateMigratableToImportOffice365DeviceConfigurationPoliciesCompleteR
 }
 
 type ListTemplateMigratableToImportOffice365DeviceConfigurationPoliciesOperationOptions struct {
-	Skip *int64
-	Top  *int64
+	Metadata *odata.Metadata
+	Skip     *int64
+	Top      *int64
 }
 
 func DefaultListTemplateMigratableToImportOffice365DeviceConfigurationPoliciesOperationOptions() ListTemplateMigratableToImportOffice365DeviceConfigurationPoliciesOperationOptions {
@@ -41,6 +42,9 @@ func (o ListTemplateMigratableToImportOffice365DeviceConfigurationPoliciesOperat
 
 func (o ListTemplateMigratableToImportOffice365DeviceConfigurationPoliciesOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	if o.Skip != nil {
 		out.Skip = int(*o.Skip)
 	}

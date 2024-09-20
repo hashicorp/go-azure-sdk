@@ -17,16 +17,45 @@ type UpdateOnlineMeetingOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateOnlineMeetingOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateOnlineMeetingOperationOptions() UpdateOnlineMeetingOperationOptions {
+	return UpdateOnlineMeetingOperationOptions{}
+}
+
+func (o UpdateOnlineMeetingOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateOnlineMeetingOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateOnlineMeetingOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateOnlineMeeting - Update onlineMeeting. Update the properties of the specified onlineMeeting object. Please see
 // Request body section for the list of properties that support updating.
-func (c OnlineMeetingClient) UpdateOnlineMeeting(ctx context.Context, id stable.MeOnlineMeetingId, input stable.OnlineMeeting) (result UpdateOnlineMeetingOperationResponse, err error) {
+func (c OnlineMeetingClient) UpdateOnlineMeeting(ctx context.Context, id stable.MeOnlineMeetingId, input stable.OnlineMeeting, options UpdateOnlineMeetingOperationOptions) (result UpdateOnlineMeetingOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

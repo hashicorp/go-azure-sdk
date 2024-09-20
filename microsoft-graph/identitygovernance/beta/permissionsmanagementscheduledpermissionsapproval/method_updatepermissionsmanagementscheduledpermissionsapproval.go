@@ -17,16 +17,45 @@ type UpdatePermissionsManagementScheduledPermissionsApprovalOperationResponse st
 	OData        *odata.OData
 }
 
+type UpdatePermissionsManagementScheduledPermissionsApprovalOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdatePermissionsManagementScheduledPermissionsApprovalOperationOptions() UpdatePermissionsManagementScheduledPermissionsApprovalOperationOptions {
+	return UpdatePermissionsManagementScheduledPermissionsApprovalOperationOptions{}
+}
+
+func (o UpdatePermissionsManagementScheduledPermissionsApprovalOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdatePermissionsManagementScheduledPermissionsApprovalOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdatePermissionsManagementScheduledPermissionsApprovalOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdatePermissionsManagementScheduledPermissionsApproval - Update the navigation property
 // scheduledPermissionsApprovals in identityGovernance
-func (c PermissionsManagementScheduledPermissionsApprovalClient) UpdatePermissionsManagementScheduledPermissionsApproval(ctx context.Context, id beta.IdentityGovernancePermissionsManagementScheduledPermissionsApprovalId, input beta.Approval) (result UpdatePermissionsManagementScheduledPermissionsApprovalOperationResponse, err error) {
+func (c PermissionsManagementScheduledPermissionsApprovalClient) UpdatePermissionsManagementScheduledPermissionsApproval(ctx context.Context, id beta.IdentityGovernancePermissionsManagementScheduledPermissionsApprovalId, input beta.Approval, options UpdatePermissionsManagementScheduledPermissionsApprovalOperationOptions) (result UpdatePermissionsManagementScheduledPermissionsApprovalOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

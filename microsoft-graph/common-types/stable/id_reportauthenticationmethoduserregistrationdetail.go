@@ -94,7 +94,7 @@ func (id ReportAuthenticationMethodUserRegistrationDetailId) Segments() []resour
 		resourceids.StaticSegment("reports", "reports", "reports"),
 		resourceids.StaticSegment("authenticationMethods", "authenticationMethods", "authenticationMethods"),
 		resourceids.StaticSegment("userRegistrationDetails", "userRegistrationDetails", "userRegistrationDetails"),
-		resourceids.UserSpecifiedSegment("userRegistrationDetailsId", "userRegistrationDetailsIdValue"),
+		resourceids.UserSpecifiedSegment("userRegistrationDetailsId", "userRegistrationDetailsId"),
 	}
 }
 

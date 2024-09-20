@@ -19,7 +19,8 @@ type DeleteDriveRootAnalyticsItemActivityStatOperationResponse struct {
 }
 
 type DeleteDriveRootAnalyticsItemActivityStatOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteDriveRootAnalyticsItemActivityStatOperationOptions() DeleteDriveRootAnalyticsItemActivityStatOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteDriveRootAnalyticsItemActivityStatOperationOptions) ToHeaders() *c
 
 func (o DeleteDriveRootAnalyticsItemActivityStatOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

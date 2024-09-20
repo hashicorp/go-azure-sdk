@@ -19,15 +19,44 @@ type CreatePartnerBillingReconciliationBilledExportOperationResponse struct {
 	Model        beta.PartnersBillingOperation
 }
 
+type CreatePartnerBillingReconciliationBilledExportOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreatePartnerBillingReconciliationBilledExportOperationOptions() CreatePartnerBillingReconciliationBilledExportOperationOptions {
+	return CreatePartnerBillingReconciliationBilledExportOperationOptions{}
+}
+
+func (o CreatePartnerBillingReconciliationBilledExportOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreatePartnerBillingReconciliationBilledExportOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreatePartnerBillingReconciliationBilledExportOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreatePartnerBillingReconciliationBilledExport - Invoke action export. Export the billed invoice reconciliation data.
-func (c PartnerBillingReconciliationBilledClient) CreatePartnerBillingReconciliationBilledExport(ctx context.Context, input CreatePartnerBillingReconciliationBilledExportRequest) (result CreatePartnerBillingReconciliationBilledExportOperationResponse, err error) {
+func (c PartnerBillingReconciliationBilledClient) CreatePartnerBillingReconciliationBilledExport(ctx context.Context, input CreatePartnerBillingReconciliationBilledExportRequest, options CreatePartnerBillingReconciliationBilledExportOperationOptions) (result CreatePartnerBillingReconciliationBilledExportOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/reports/partners/billing/reconciliation/billed/partners.billing.export",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/reports/partners/billing/reconciliation/billed/partners.billing.export",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

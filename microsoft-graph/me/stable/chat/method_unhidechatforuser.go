@@ -18,15 +18,44 @@ type UnhideChatForUserOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UnhideChatForUserOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUnhideChatForUserOperationOptions() UnhideChatForUserOperationOptions {
+	return UnhideChatForUserOperationOptions{}
+}
+
+func (o UnhideChatForUserOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UnhideChatForUserOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UnhideChatForUserOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UnhideChatForUser - Invoke action unhideForUser. Unhide a chat for a user.
-func (c ChatClient) UnhideChatForUser(ctx context.Context, id stable.MeChatId, input UnhideChatForUserRequest) (result UnhideChatForUserOperationResponse, err error) {
+func (c ChatClient) UnhideChatForUser(ctx context.Context, id stable.MeChatId, input UnhideChatForUserRequest, options UnhideChatForUserOperationOptions) (result UnhideChatForUserOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/unhideForUser", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/unhideForUser", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

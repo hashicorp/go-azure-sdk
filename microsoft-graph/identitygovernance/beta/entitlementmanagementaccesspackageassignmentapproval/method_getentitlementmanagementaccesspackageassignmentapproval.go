@@ -19,8 +19,9 @@ type GetEntitlementManagementAccessPackageAssignmentApprovalOperationResponse st
 }
 
 type GetEntitlementManagementAccessPackageAssignmentApprovalOperationOptions struct {
-	Expand *odata.Expand
-	Select *[]string
+	Expand   *odata.Expand
+	Metadata *odata.Metadata
+	Select   *[]string
 }
 
 func DefaultGetEntitlementManagementAccessPackageAssignmentApprovalOperationOptions() GetEntitlementManagementAccessPackageAssignmentApprovalOperationOptions {
@@ -38,6 +39,9 @@ func (o GetEntitlementManagementAccessPackageAssignmentApprovalOperationOptions)
 	if o.Expand != nil {
 		out.Expand = *o.Expand
 	}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	if o.Select != nil {
 		out.Select = *o.Select
 	}
@@ -51,7 +55,7 @@ func (o GetEntitlementManagementAccessPackageAssignmentApprovalOperationOptions)
 }
 
 // GetEntitlementManagementAccessPackageAssignmentApproval - Get approval. Retrieve the properties of an approval
-// object. This API request is made by an approver in the following scenarios:
+// object. This API request is made by an approver in the following scenarios
 func (c EntitlementManagementAccessPackageAssignmentApprovalClient) GetEntitlementManagementAccessPackageAssignmentApproval(ctx context.Context, id beta.IdentityGovernanceEntitlementManagementAccessPackageAssignmentApprovalId, options GetEntitlementManagementAccessPackageAssignmentApprovalOperationOptions) (result GetEntitlementManagementAccessPackageAssignmentApprovalOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",

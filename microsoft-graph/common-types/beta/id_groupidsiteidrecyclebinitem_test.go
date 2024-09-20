@@ -12,24 +12,24 @@ import (
 var _ resourceids.ResourceId = &GroupIdSiteIdRecycleBinItemId{}
 
 func TestNewGroupIdSiteIdRecycleBinItemID(t *testing.T) {
-	id := NewGroupIdSiteIdRecycleBinItemID("groupIdValue", "siteIdValue", "recycleBinItemIdValue")
+	id := NewGroupIdSiteIdRecycleBinItemID("groupId", "siteId", "recycleBinItemId")
 
-	if id.GroupId != "groupIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'GroupId'", id.GroupId, "groupIdValue")
+	if id.GroupId != "groupId" {
+		t.Fatalf("Expected %q but got %q for Segment 'GroupId'", id.GroupId, "groupId")
 	}
 
-	if id.SiteId != "siteIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'SiteId'", id.SiteId, "siteIdValue")
+	if id.SiteId != "siteId" {
+		t.Fatalf("Expected %q but got %q for Segment 'SiteId'", id.SiteId, "siteId")
 	}
 
-	if id.RecycleBinItemId != "recycleBinItemIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'RecycleBinItemId'", id.RecycleBinItemId, "recycleBinItemIdValue")
+	if id.RecycleBinItemId != "recycleBinItemId" {
+		t.Fatalf("Expected %q but got %q for Segment 'RecycleBinItemId'", id.RecycleBinItemId, "recycleBinItemId")
 	}
 }
 
 func TestFormatGroupIdSiteIdRecycleBinItemID(t *testing.T) {
-	actual := NewGroupIdSiteIdRecycleBinItemID("groupIdValue", "siteIdValue", "recycleBinItemIdValue").ID()
-	expected := "/groups/groupIdValue/sites/siteIdValue/recycleBin/items/recycleBinItemIdValue"
+	actual := NewGroupIdSiteIdRecycleBinItemID("groupId", "siteId", "recycleBinItemId").ID()
+	expected := "/groups/groupId/sites/siteId/recycleBin/items/recycleBinItemId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -53,41 +53,41 @@ func TestParseGroupIdSiteIdRecycleBinItemID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue",
+			Input: "/groups/groupId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/sites",
+			Input: "/groups/groupId/sites",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/sites/siteIdValue",
+			Input: "/groups/groupId/sites/siteId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/sites/siteIdValue/recycleBin",
+			Input: "/groups/groupId/sites/siteId/recycleBin",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/sites/siteIdValue/recycleBin/items",
+			Input: "/groups/groupId/sites/siteId/recycleBin/items",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/groups/groupIdValue/sites/siteIdValue/recycleBin/items/recycleBinItemIdValue",
+			Input: "/groups/groupId/sites/siteId/recycleBin/items/recycleBinItemId",
 			Expected: &GroupIdSiteIdRecycleBinItemId{
-				GroupId:          "groupIdValue",
-				SiteId:           "siteIdValue",
-				RecycleBinItemId: "recycleBinItemIdValue",
+				GroupId:          "groupId",
+				SiteId:           "siteId",
+				RecycleBinItemId: "recycleBinItemId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/groups/groupIdValue/sites/siteIdValue/recycleBin/items/recycleBinItemIdValue/extra",
+			Input: "/groups/groupId/sites/siteId/recycleBin/items/recycleBinItemId/extra",
 			Error: true,
 		},
 	}
@@ -144,80 +144,80 @@ func TestParseGroupIdSiteIdRecycleBinItemIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue",
+			Input: "/groups/groupId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE",
+			Input: "/gRoUpS/gRoUpId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/sites",
+			Input: "/groups/groupId/sites",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/sItEs",
+			Input: "/gRoUpS/gRoUpId/sItEs",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/sites/siteIdValue",
+			Input: "/groups/groupId/sites/siteId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/sItEs/sItEiDvAlUe",
+			Input: "/gRoUpS/gRoUpId/sItEs/sItEiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/sites/siteIdValue/recycleBin",
+			Input: "/groups/groupId/sites/siteId/recycleBin",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/sItEs/sItEiDvAlUe/rEcYcLeBiN",
+			Input: "/gRoUpS/gRoUpId/sItEs/sItEiD/rEcYcLeBiN",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/sites/siteIdValue/recycleBin/items",
+			Input: "/groups/groupId/sites/siteId/recycleBin/items",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/sItEs/sItEiDvAlUe/rEcYcLeBiN/iTeMs",
+			Input: "/gRoUpS/gRoUpId/sItEs/sItEiD/rEcYcLeBiN/iTeMs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/groups/groupIdValue/sites/siteIdValue/recycleBin/items/recycleBinItemIdValue",
+			Input: "/groups/groupId/sites/siteId/recycleBin/items/recycleBinItemId",
 			Expected: &GroupIdSiteIdRecycleBinItemId{
-				GroupId:          "groupIdValue",
-				SiteId:           "siteIdValue",
-				RecycleBinItemId: "recycleBinItemIdValue",
+				GroupId:          "groupId",
+				SiteId:           "siteId",
+				RecycleBinItemId: "recycleBinItemId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/groups/groupIdValue/sites/siteIdValue/recycleBin/items/recycleBinItemIdValue/extra",
+			Input: "/groups/groupId/sites/siteId/recycleBin/items/recycleBinItemId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/sItEs/sItEiDvAlUe/rEcYcLeBiN/iTeMs/rEcYcLeBiNiTeMiDvAlUe",
+			Input: "/gRoUpS/gRoUpId/sItEs/sItEiD/rEcYcLeBiN/iTeMs/rEcYcLeBiNiTeMiD",
 			Expected: &GroupIdSiteIdRecycleBinItemId{
-				GroupId:          "gRoUpIdVaLuE",
-				SiteId:           "sItEiDvAlUe",
-				RecycleBinItemId: "rEcYcLeBiNiTeMiDvAlUe",
+				GroupId:          "gRoUpId",
+				SiteId:           "sItEiD",
+				RecycleBinItemId: "rEcYcLeBiNiTeMiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/sItEs/sItEiDvAlUe/rEcYcLeBiN/iTeMs/rEcYcLeBiNiTeMiDvAlUe/extra",
+			Input: "/gRoUpS/gRoUpId/sItEs/sItEiD/rEcYcLeBiN/iTeMs/rEcYcLeBiNiTeMiD/extra",
 			Error: true,
 		},
 	}

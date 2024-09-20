@@ -20,8 +20,9 @@ type GetEntitlementManagementResourceRequestCatalogResourceScopeResourceOperatio
 }
 
 type GetEntitlementManagementResourceRequestCatalogResourceScopeResourceOperationOptions struct {
-	Expand *odata.Expand
-	Select *[]string
+	Expand   *odata.Expand
+	Metadata *odata.Metadata
+	Select   *[]string
 }
 
 func DefaultGetEntitlementManagementResourceRequestCatalogResourceScopeResourceOperationOptions() GetEntitlementManagementResourceRequestCatalogResourceScopeResourceOperationOptions {
@@ -39,6 +40,9 @@ func (o GetEntitlementManagementResourceRequestCatalogResourceScopeResourceOpera
 	if o.Expand != nil {
 		out.Expand = *o.Expand
 	}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	if o.Select != nil {
 		out.Select = *o.Select
 	}
@@ -52,7 +56,7 @@ func (o GetEntitlementManagementResourceRequestCatalogResourceScopeResourceOpera
 }
 
 // GetEntitlementManagementResourceRequestCatalogResourceScopeResource - Get resource from identityGovernance
-func (c EntitlementManagementResourceRequestCatalogResourceScopeResourceClient) GetEntitlementManagementResourceRequestCatalogResourceScopeResource(ctx context.Context, id stable.IdentityGovernanceEntitlementManagementResourceRequestIdCatalogResourceScopeId, options GetEntitlementManagementResourceRequestCatalogResourceScopeResourceOperationOptions) (result GetEntitlementManagementResourceRequestCatalogResourceScopeResourceOperationResponse, err error) {
+func (c EntitlementManagementResourceRequestCatalogResourceScopeResourceClient) GetEntitlementManagementResourceRequestCatalogResourceScopeResource(ctx context.Context, id stable.IdentityGovernanceEntitlementManagementResourceRequestIdCatalogResourceIdScopeId, options GetEntitlementManagementResourceRequestCatalogResourceScopeResourceOperationOptions) (result GetEntitlementManagementResourceRequestCatalogResourceScopeResourceOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{

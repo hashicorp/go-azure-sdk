@@ -18,15 +18,44 @@ type CreateRoleManagementPolicyOperationResponse struct {
 	Model        *beta.UnifiedRoleManagementPolicy
 }
 
+type CreateRoleManagementPolicyOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateRoleManagementPolicyOperationOptions() CreateRoleManagementPolicyOperationOptions {
+	return CreateRoleManagementPolicyOperationOptions{}
+}
+
+func (o CreateRoleManagementPolicyOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateRoleManagementPolicyOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateRoleManagementPolicyOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateRoleManagementPolicy - Create new navigation property to roleManagementPolicies for policies
-func (c RoleManagementPolicyClient) CreateRoleManagementPolicy(ctx context.Context, input beta.UnifiedRoleManagementPolicy) (result CreateRoleManagementPolicyOperationResponse, err error) {
+func (c RoleManagementPolicyClient) CreateRoleManagementPolicy(ctx context.Context, input beta.UnifiedRoleManagementPolicy, options CreateRoleManagementPolicyOperationOptions) (result CreateRoleManagementPolicyOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/policies/roleManagementPolicies",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/policies/roleManagementPolicies",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -95,16 +95,23 @@ func (s BaseSecurityTagImpl) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &BaseSecurityTagImpl{}
 
 func (s *BaseSecurityTagImpl) UnmarshalJSON(bytes []byte) error {
-	type alias BaseSecurityTagImpl
-	var decoded alias
+
+	var decoded struct {
+		Description          nullable.Type[string] `json:"description,omitempty"`
+		DisplayName          nullable.Type[string] `json:"displayName,omitempty"`
+		LastModifiedDateTime nullable.Type[string] `json:"lastModifiedDateTime,omitempty"`
+		Id                   *string               `json:"id,omitempty"`
+		ODataId              *string               `json:"@odata.id,omitempty"`
+		ODataType            *string               `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into BaseSecurityTagImpl: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.Description = decoded.Description
 	s.DisplayName = decoded.DisplayName
-	s.Id = decoded.Id
 	s.LastModifiedDateTime = decoded.LastModifiedDateTime
+	s.Id = decoded.Id
 	s.ODataId = decoded.ODataId
 	s.ODataType = decoded.ODataType
 
@@ -120,6 +127,7 @@ func (s *BaseSecurityTagImpl) UnmarshalJSON(bytes []byte) error {
 		}
 		s.CreatedBy = impl
 	}
+
 	return nil
 }
 
@@ -133,9 +141,9 @@ func UnmarshalSecurityTagImplementation(input []byte) (SecurityTag, error) {
 		return nil, fmt.Errorf("unmarshaling SecurityTag into map[string]interface: %+v", err)
 	}
 
-	value, ok := temp["@odata.type"].(string)
-	if !ok {
-		return nil, nil
+	var value string
+	if v, ok := temp["@odata.type"]; ok {
+		value = fmt.Sprintf("%v", v)
 	}
 
 	if strings.EqualFold(value, "#microsoft.graph.security.ediscoveryReviewTag") {

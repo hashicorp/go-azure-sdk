@@ -18,15 +18,44 @@ type UpdateJoinedTeamPhotoOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateJoinedTeamPhotoOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateJoinedTeamPhotoOperationOptions() UpdateJoinedTeamPhotoOperationOptions {
+	return UpdateJoinedTeamPhotoOperationOptions{}
+}
+
+func (o UpdateJoinedTeamPhotoOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateJoinedTeamPhotoOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateJoinedTeamPhotoOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateJoinedTeamPhoto - Update the navigation property photo in users
-func (c JoinedTeamPhotoClient) UpdateJoinedTeamPhoto(ctx context.Context, id stable.UserIdJoinedTeamId, input stable.ProfilePhoto) (result UpdateJoinedTeamPhotoOperationResponse, err error) {
+func (c JoinedTeamPhotoClient) UpdateJoinedTeamPhoto(ctx context.Context, id stable.UserIdJoinedTeamId, input stable.ProfilePhoto, options UpdateJoinedTeamPhotoOperationOptions) (result UpdateJoinedTeamPhotoOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       fmt.Sprintf("%s/photo", id.ID()),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/photo", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

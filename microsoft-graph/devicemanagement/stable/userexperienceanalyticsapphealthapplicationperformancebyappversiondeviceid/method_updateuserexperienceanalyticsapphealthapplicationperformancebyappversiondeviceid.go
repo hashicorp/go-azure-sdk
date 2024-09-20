@@ -17,16 +17,45 @@ type UpdateUserExperienceAnalyticsAppHealthApplicationPerformanceByAppVersionDev
 	OData        *odata.OData
 }
 
+type UpdateUserExperienceAnalyticsAppHealthApplicationPerformanceByAppVersionDeviceIdOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateUserExperienceAnalyticsAppHealthApplicationPerformanceByAppVersionDeviceIdOperationOptions() UpdateUserExperienceAnalyticsAppHealthApplicationPerformanceByAppVersionDeviceIdOperationOptions {
+	return UpdateUserExperienceAnalyticsAppHealthApplicationPerformanceByAppVersionDeviceIdOperationOptions{}
+}
+
+func (o UpdateUserExperienceAnalyticsAppHealthApplicationPerformanceByAppVersionDeviceIdOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateUserExperienceAnalyticsAppHealthApplicationPerformanceByAppVersionDeviceIdOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateUserExperienceAnalyticsAppHealthApplicationPerformanceByAppVersionDeviceIdOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateUserExperienceAnalyticsAppHealthApplicationPerformanceByAppVersionDeviceId - Update the navigation property
 // userExperienceAnalyticsAppHealthApplicationPerformanceByAppVersionDeviceId in deviceManagement
-func (c UserExperienceAnalyticsAppHealthApplicationPerformanceByAppVersionDeviceIdClient) UpdateUserExperienceAnalyticsAppHealthApplicationPerformanceByAppVersionDeviceId(ctx context.Context, id stable.DeviceManagementUserExperienceAnalyticsAppHealthApplicationPerformanceByAppVersionDeviceIdId, input stable.UserExperienceAnalyticsAppHealthAppPerformanceByAppVersionDeviceId) (result UpdateUserExperienceAnalyticsAppHealthApplicationPerformanceByAppVersionDeviceIdOperationResponse, err error) {
+func (c UserExperienceAnalyticsAppHealthApplicationPerformanceByAppVersionDeviceIdClient) UpdateUserExperienceAnalyticsAppHealthApplicationPerformanceByAppVersionDeviceId(ctx context.Context, id stable.DeviceManagementUserExperienceAnalyticsAppHealthApplicationPerformanceByAppVersionDeviceIdId, input stable.UserExperienceAnalyticsAppHealthAppPerformanceByAppVersionDeviceId, options UpdateUserExperienceAnalyticsAppHealthApplicationPerformanceByAppVersionDeviceIdOperationOptions) (result UpdateUserExperienceAnalyticsAppHealthApplicationPerformanceByAppVersionDeviceIdOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &RoleManagementDirectoryRoleAssignmentScheduleInstanceId{}
 
 func TestNewRoleManagementDirectoryRoleAssignmentScheduleInstanceID(t *testing.T) {
-	id := NewRoleManagementDirectoryRoleAssignmentScheduleInstanceID("unifiedRoleAssignmentScheduleInstanceIdValue")
+	id := NewRoleManagementDirectoryRoleAssignmentScheduleInstanceID("unifiedRoleAssignmentScheduleInstanceId")
 
-	if id.UnifiedRoleAssignmentScheduleInstanceId != "unifiedRoleAssignmentScheduleInstanceIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'UnifiedRoleAssignmentScheduleInstanceId'", id.UnifiedRoleAssignmentScheduleInstanceId, "unifiedRoleAssignmentScheduleInstanceIdValue")
+	if id.UnifiedRoleAssignmentScheduleInstanceId != "unifiedRoleAssignmentScheduleInstanceId" {
+		t.Fatalf("Expected %q but got %q for Segment 'UnifiedRoleAssignmentScheduleInstanceId'", id.UnifiedRoleAssignmentScheduleInstanceId, "unifiedRoleAssignmentScheduleInstanceId")
 	}
 }
 
 func TestFormatRoleManagementDirectoryRoleAssignmentScheduleInstanceID(t *testing.T) {
-	actual := NewRoleManagementDirectoryRoleAssignmentScheduleInstanceID("unifiedRoleAssignmentScheduleInstanceIdValue").ID()
-	expected := "/roleManagement/directory/roleAssignmentScheduleInstances/unifiedRoleAssignmentScheduleInstanceIdValue"
+	actual := NewRoleManagementDirectoryRoleAssignmentScheduleInstanceID("unifiedRoleAssignmentScheduleInstanceId").ID()
+	expected := "/roleManagement/directory/roleAssignmentScheduleInstances/unifiedRoleAssignmentScheduleInstanceId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -55,14 +55,14 @@ func TestParseRoleManagementDirectoryRoleAssignmentScheduleInstanceID(t *testing
 		},
 		{
 			// Valid URI
-			Input: "/roleManagement/directory/roleAssignmentScheduleInstances/unifiedRoleAssignmentScheduleInstanceIdValue",
+			Input: "/roleManagement/directory/roleAssignmentScheduleInstances/unifiedRoleAssignmentScheduleInstanceId",
 			Expected: &RoleManagementDirectoryRoleAssignmentScheduleInstanceId{
-				UnifiedRoleAssignmentScheduleInstanceId: "unifiedRoleAssignmentScheduleInstanceIdValue",
+				UnifiedRoleAssignmentScheduleInstanceId: "unifiedRoleAssignmentScheduleInstanceId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/roleManagement/directory/roleAssignmentScheduleInstances/unifiedRoleAssignmentScheduleInstanceIdValue/extra",
+			Input: "/roleManagement/directory/roleAssignmentScheduleInstances/unifiedRoleAssignmentScheduleInstanceId/extra",
 			Error: true,
 		},
 	}
@@ -131,26 +131,26 @@ func TestParseRoleManagementDirectoryRoleAssignmentScheduleInstanceIDInsensitive
 		},
 		{
 			// Valid URI
-			Input: "/roleManagement/directory/roleAssignmentScheduleInstances/unifiedRoleAssignmentScheduleInstanceIdValue",
+			Input: "/roleManagement/directory/roleAssignmentScheduleInstances/unifiedRoleAssignmentScheduleInstanceId",
 			Expected: &RoleManagementDirectoryRoleAssignmentScheduleInstanceId{
-				UnifiedRoleAssignmentScheduleInstanceId: "unifiedRoleAssignmentScheduleInstanceIdValue",
+				UnifiedRoleAssignmentScheduleInstanceId: "unifiedRoleAssignmentScheduleInstanceId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/roleManagement/directory/roleAssignmentScheduleInstances/unifiedRoleAssignmentScheduleInstanceIdValue/extra",
+			Input: "/roleManagement/directory/roleAssignmentScheduleInstances/unifiedRoleAssignmentScheduleInstanceId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/rOlEmAnAgEmEnT/dIrEcToRy/rOlEaSsIgNmEnTsChEdUlEiNsTaNcEs/uNiFiEdRoLeAsSiGnMeNtScHeDuLeInStAnCeIdVaLuE",
+			Input: "/rOlEmAnAgEmEnT/dIrEcToRy/rOlEaSsIgNmEnTsChEdUlEiNsTaNcEs/uNiFiEdRoLeAsSiGnMeNtScHeDuLeInStAnCeId",
 			Expected: &RoleManagementDirectoryRoleAssignmentScheduleInstanceId{
-				UnifiedRoleAssignmentScheduleInstanceId: "uNiFiEdRoLeAsSiGnMeNtScHeDuLeInStAnCeIdVaLuE",
+				UnifiedRoleAssignmentScheduleInstanceId: "uNiFiEdRoLeAsSiGnMeNtScHeDuLeInStAnCeId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/rOlEmAnAgEmEnT/dIrEcToRy/rOlEaSsIgNmEnTsChEdUlEiNsTaNcEs/uNiFiEdRoLeAsSiGnMeNtScHeDuLeInStAnCeIdVaLuE/extra",
+			Input: "/rOlEmAnAgEmEnT/dIrEcToRy/rOlEaSsIgNmEnTsChEdUlEiNsTaNcEs/uNiFiEdRoLeAsSiGnMeNtScHeDuLeInStAnCeId/extra",
 			Error: true,
 		},
 	}

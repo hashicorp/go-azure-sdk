@@ -18,16 +18,45 @@ type CheckoutDriveItemOperationResponse struct {
 	OData        *odata.OData
 }
 
+type CheckoutDriveItemOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCheckoutDriveItemOperationOptions() CheckoutDriveItemOperationOptions {
+	return CheckoutDriveItemOperationOptions{}
+}
+
+func (o CheckoutDriveItemOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CheckoutDriveItemOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CheckoutDriveItemOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CheckoutDriveItem - Invoke action checkout. Check out a driveItem resource to prevent others from editing the
 // document, and prevent your changes from being visible until the documented is checked in.
-func (c DriveItemClient) CheckoutDriveItem(ctx context.Context, id beta.MeDriveIdItemId) (result CheckoutDriveItemOperationResponse, err error) {
+func (c DriveItemClient) CheckoutDriveItem(ctx context.Context, id beta.MeDriveIdItemId, options CheckoutDriveItemOperationOptions) (result CheckoutDriveItemOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/checkout", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/checkout", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

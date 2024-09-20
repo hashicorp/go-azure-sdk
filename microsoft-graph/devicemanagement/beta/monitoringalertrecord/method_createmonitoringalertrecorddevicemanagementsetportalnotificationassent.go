@@ -18,17 +18,46 @@ type CreateMonitoringAlertRecordDeviceManagementSetPortalNotificationAsSentOpera
 	OData        *odata.OData
 }
 
+type CreateMonitoringAlertRecordDeviceManagementSetPortalNotificationAsSentOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateMonitoringAlertRecordDeviceManagementSetPortalNotificationAsSentOperationOptions() CreateMonitoringAlertRecordDeviceManagementSetPortalNotificationAsSentOperationOptions {
+	return CreateMonitoringAlertRecordDeviceManagementSetPortalNotificationAsSentOperationOptions{}
+}
+
+func (o CreateMonitoringAlertRecordDeviceManagementSetPortalNotificationAsSentOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateMonitoringAlertRecordDeviceManagementSetPortalNotificationAsSentOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateMonitoringAlertRecordDeviceManagementSetPortalNotificationAsSentOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateMonitoringAlertRecordDeviceManagementSetPortalNotificationAsSent - Invoke action setPortalNotificationAsSent.
 // Set the status of the notification associated with the specified alertRecord on the Microsoft EndPoint Manager admin
 // center as sent, by setting the isPortalNotificationSent property of the portal notification to true.
-func (c MonitoringAlertRecordClient) CreateMonitoringAlertRecordDeviceManagementSetPortalNotificationAsSent(ctx context.Context, id beta.DeviceManagementMonitoringAlertRecordId) (result CreateMonitoringAlertRecordDeviceManagementSetPortalNotificationAsSentOperationResponse, err error) {
+func (c MonitoringAlertRecordClient) CreateMonitoringAlertRecordDeviceManagementSetPortalNotificationAsSent(ctx context.Context, id beta.DeviceManagementMonitoringAlertRecordId, options CreateMonitoringAlertRecordDeviceManagementSetPortalNotificationAsSentOperationOptions) (result CreateMonitoringAlertRecordDeviceManagementSetPortalNotificationAsSentOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/deviceManagement.setPortalNotificationAsSent", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/deviceManagement.setPortalNotificationAsSent", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

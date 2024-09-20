@@ -19,7 +19,8 @@ type DeleteOutlookTaskFolderTaskOperationResponse struct {
 }
 
 type DeleteOutlookTaskFolderTaskOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteOutlookTaskFolderTaskOperationOptions() DeleteOutlookTaskFolderTaskOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteOutlookTaskFolderTaskOperationOptions) ToHeaders() *client.Headers
 
 func (o DeleteOutlookTaskFolderTaskOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

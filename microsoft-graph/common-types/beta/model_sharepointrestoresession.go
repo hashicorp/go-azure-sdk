@@ -104,12 +104,25 @@ func (s SharePointRestoreSession) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &SharePointRestoreSession{}
 
 func (s *SharePointRestoreSession) UnmarshalJSON(bytes []byte) error {
-	type alias SharePointRestoreSession
-	var decoded alias
+
+	var decoded struct {
+		SiteRestoreArtifacts *[]SiteRestoreArtifact `json:"siteRestoreArtifacts,omitempty"`
+		CompletedDateTime    nullable.Type[string]  `json:"completedDateTime,omitempty"`
+		CreatedBy            IdentitySet            `json:"createdBy"`
+		CreatedDateTime      nullable.Type[string]  `json:"createdDateTime,omitempty"`
+		Error                *PublicError           `json:"error,omitempty"`
+		LastModifiedBy       IdentitySet            `json:"lastModifiedBy"`
+		LastModifiedDateTime nullable.Type[string]  `json:"lastModifiedDateTime,omitempty"`
+		Status               *RestoreSessionStatus  `json:"status,omitempty"`
+		Id                   *string                `json:"id,omitempty"`
+		ODataId              *string                `json:"@odata.id,omitempty"`
+		ODataType            *string                `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into SharePointRestoreSession: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
+	s.SiteRestoreArtifacts = decoded.SiteRestoreArtifacts
 	s.CompletedDateTime = decoded.CompletedDateTime
 	s.CreatedDateTime = decoded.CreatedDateTime
 	s.Error = decoded.Error
@@ -117,7 +130,6 @@ func (s *SharePointRestoreSession) UnmarshalJSON(bytes []byte) error {
 	s.LastModifiedDateTime = decoded.LastModifiedDateTime
 	s.ODataId = decoded.ODataId
 	s.ODataType = decoded.ODataType
-	s.SiteRestoreArtifacts = decoded.SiteRestoreArtifacts
 	s.Status = decoded.Status
 
 	var temp map[string]json.RawMessage
@@ -140,5 +152,6 @@ func (s *SharePointRestoreSession) UnmarshalJSON(bytes []byte) error {
 		}
 		s.LastModifiedBy = impl
 	}
+
 	return nil
 }

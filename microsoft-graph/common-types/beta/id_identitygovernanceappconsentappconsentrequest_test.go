@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &IdentityGovernanceAppConsentAppConsentRequestId{}
 
 func TestNewIdentityGovernanceAppConsentAppConsentRequestID(t *testing.T) {
-	id := NewIdentityGovernanceAppConsentAppConsentRequestID("appConsentRequestIdValue")
+	id := NewIdentityGovernanceAppConsentAppConsentRequestID("appConsentRequestId")
 
-	if id.AppConsentRequestId != "appConsentRequestIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'AppConsentRequestId'", id.AppConsentRequestId, "appConsentRequestIdValue")
+	if id.AppConsentRequestId != "appConsentRequestId" {
+		t.Fatalf("Expected %q but got %q for Segment 'AppConsentRequestId'", id.AppConsentRequestId, "appConsentRequestId")
 	}
 }
 
 func TestFormatIdentityGovernanceAppConsentAppConsentRequestID(t *testing.T) {
-	actual := NewIdentityGovernanceAppConsentAppConsentRequestID("appConsentRequestIdValue").ID()
-	expected := "/identityGovernance/appConsent/appConsentRequests/appConsentRequestIdValue"
+	actual := NewIdentityGovernanceAppConsentAppConsentRequestID("appConsentRequestId").ID()
+	expected := "/identityGovernance/appConsent/appConsentRequests/appConsentRequestId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -55,14 +55,14 @@ func TestParseIdentityGovernanceAppConsentAppConsentRequestID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/identityGovernance/appConsent/appConsentRequests/appConsentRequestIdValue",
+			Input: "/identityGovernance/appConsent/appConsentRequests/appConsentRequestId",
 			Expected: &IdentityGovernanceAppConsentAppConsentRequestId{
-				AppConsentRequestId: "appConsentRequestIdValue",
+				AppConsentRequestId: "appConsentRequestId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/identityGovernance/appConsent/appConsentRequests/appConsentRequestIdValue/extra",
+			Input: "/identityGovernance/appConsent/appConsentRequests/appConsentRequestId/extra",
 			Error: true,
 		},
 	}
@@ -131,26 +131,26 @@ func TestParseIdentityGovernanceAppConsentAppConsentRequestIDInsensitively(t *te
 		},
 		{
 			// Valid URI
-			Input: "/identityGovernance/appConsent/appConsentRequests/appConsentRequestIdValue",
+			Input: "/identityGovernance/appConsent/appConsentRequests/appConsentRequestId",
 			Expected: &IdentityGovernanceAppConsentAppConsentRequestId{
-				AppConsentRequestId: "appConsentRequestIdValue",
+				AppConsentRequestId: "appConsentRequestId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/identityGovernance/appConsent/appConsentRequests/appConsentRequestIdValue/extra",
+			Input: "/identityGovernance/appConsent/appConsentRequests/appConsentRequestId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/iDeNtItYgOvErNaNcE/aPpCoNsEnT/aPpCoNsEnTrEqUeStS/aPpCoNsEnTrEqUeStIdVaLuE",
+			Input: "/iDeNtItYgOvErNaNcE/aPpCoNsEnT/aPpCoNsEnTrEqUeStS/aPpCoNsEnTrEqUeStId",
 			Expected: &IdentityGovernanceAppConsentAppConsentRequestId{
-				AppConsentRequestId: "aPpCoNsEnTrEqUeStIdVaLuE",
+				AppConsentRequestId: "aPpCoNsEnTrEqUeStId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/iDeNtItYgOvErNaNcE/aPpCoNsEnT/aPpCoNsEnTrEqUeStS/aPpCoNsEnTrEqUeStIdVaLuE/extra",
+			Input: "/iDeNtItYgOvErNaNcE/aPpCoNsEnT/aPpCoNsEnTrEqUeStS/aPpCoNsEnTrEqUeStId/extra",
 			Error: true,
 		},
 	}

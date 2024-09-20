@@ -132,10 +132,34 @@ func (s FileStorageContainer) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &FileStorageContainer{}
 
 func (s *FileStorageContainer) UnmarshalJSON(bytes []byte) error {
-	type alias FileStorageContainer
-	var decoded alias
+
+	var decoded struct {
+		AssignedSensitivityLabel *AssignedLabel                                `json:"assignedSensitivityLabel,omitempty"`
+		Columns                  *[]ColumnDefinition                           `json:"columns,omitempty"`
+		ContainerTypeId          *string                                       `json:"containerTypeId,omitempty"`
+		CreatedDateTime          *string                                       `json:"createdDateTime,omitempty"`
+		CustomProperties         *FileStorageContainerCustomPropertyDictionary `json:"customProperties,omitempty"`
+		Description              nullable.Type[string]                         `json:"description,omitempty"`
+		DisplayName              *string                                       `json:"displayName,omitempty"`
+		Drive                    *Drive                                        `json:"drive,omitempty"`
+		ExternalGroupId          nullable.Type[string]                         `json:"externalGroupId,omitempty"`
+		IsItemVersioningEnabled  nullable.Type[bool]                           `json:"isItemVersioningEnabled,omitempty"`
+		ItemMajorVersionLimit    nullable.Type[int64]                          `json:"itemMajorVersionLimit,omitempty"`
+		LockState                *SiteLockState                                `json:"lockState,omitempty"`
+		Owners                   *[]UserIdentity                               `json:"owners,omitempty"`
+		OwnershipType            *FileStorageContainerOwnershipType            `json:"ownershipType,omitempty"`
+		Permissions              *[]Permission                                 `json:"permissions,omitempty"`
+		RecycleBin               *RecycleBin                                   `json:"recycleBin,omitempty"`
+		Settings                 *FileStorageContainerSettings                 `json:"settings,omitempty"`
+		Status                   *FileStorageContainerStatus                   `json:"status,omitempty"`
+		StorageUsedInBytes       nullable.Type[int64]                          `json:"storageUsedInBytes,omitempty"`
+		Viewpoint                *FileStorageContainerViewpoint                `json:"viewpoint,omitempty"`
+		Id                       *string                                       `json:"id,omitempty"`
+		ODataId                  *string                                       `json:"@odata.id,omitempty"`
+		ODataType                *string                                       `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into FileStorageContainer: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.AssignedSensitivityLabel = decoded.AssignedSensitivityLabel
@@ -147,12 +171,9 @@ func (s *FileStorageContainer) UnmarshalJSON(bytes []byte) error {
 	s.DisplayName = decoded.DisplayName
 	s.Drive = decoded.Drive
 	s.ExternalGroupId = decoded.ExternalGroupId
-	s.Id = decoded.Id
 	s.IsItemVersioningEnabled = decoded.IsItemVersioningEnabled
 	s.ItemMajorVersionLimit = decoded.ItemMajorVersionLimit
 	s.LockState = decoded.LockState
-	s.ODataId = decoded.ODataId
-	s.ODataType = decoded.ODataType
 	s.OwnershipType = decoded.OwnershipType
 	s.Permissions = decoded.Permissions
 	s.RecycleBin = decoded.RecycleBin
@@ -160,6 +181,9 @@ func (s *FileStorageContainer) UnmarshalJSON(bytes []byte) error {
 	s.Status = decoded.Status
 	s.StorageUsedInBytes = decoded.StorageUsedInBytes
 	s.Viewpoint = decoded.Viewpoint
+	s.Id = decoded.Id
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -182,5 +206,6 @@ func (s *FileStorageContainer) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Owners = &output
 	}
+
 	return nil
 }

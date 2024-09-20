@@ -17,15 +17,44 @@ type UpdateTermsOfUseAgreementFileOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateTermsOfUseAgreementFileOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateTermsOfUseAgreementFileOperationOptions() UpdateTermsOfUseAgreementFileOperationOptions {
+	return UpdateTermsOfUseAgreementFileOperationOptions{}
+}
+
+func (o UpdateTermsOfUseAgreementFileOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateTermsOfUseAgreementFileOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateTermsOfUseAgreementFileOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateTermsOfUseAgreementFile - Update the navigation property files in identityGovernance
-func (c TermsOfUseAgreementFileClient) UpdateTermsOfUseAgreementFile(ctx context.Context, id stable.IdentityGovernanceTermsOfUseAgreementIdFileId, input stable.AgreementFileLocalization) (result UpdateTermsOfUseAgreementFileOperationResponse, err error) {
+func (c TermsOfUseAgreementFileClient) UpdateTermsOfUseAgreementFile(ctx context.Context, id stable.IdentityGovernanceTermsOfUseAgreementIdFileId, input stable.AgreementFileLocalization, options UpdateTermsOfUseAgreementFileOperationOptions) (result UpdateTermsOfUseAgreementFileOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

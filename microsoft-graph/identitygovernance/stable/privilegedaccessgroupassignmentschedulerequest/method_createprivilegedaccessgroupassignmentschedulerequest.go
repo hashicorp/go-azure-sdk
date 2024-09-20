@@ -18,16 +18,45 @@ type CreatePrivilegedAccessGroupAssignmentScheduleRequestOperationResponse struc
 	Model        *stable.PrivilegedAccessGroupAssignmentScheduleRequest
 }
 
+type CreatePrivilegedAccessGroupAssignmentScheduleRequestOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreatePrivilegedAccessGroupAssignmentScheduleRequestOperationOptions() CreatePrivilegedAccessGroupAssignmentScheduleRequestOperationOptions {
+	return CreatePrivilegedAccessGroupAssignmentScheduleRequestOperationOptions{}
+}
+
+func (o CreatePrivilegedAccessGroupAssignmentScheduleRequestOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreatePrivilegedAccessGroupAssignmentScheduleRequestOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreatePrivilegedAccessGroupAssignmentScheduleRequestOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreatePrivilegedAccessGroupAssignmentScheduleRequest - Create assignmentScheduleRequest. Create a new
 // privilegedAccessGroupAssignmentScheduleRequest object.
-func (c PrivilegedAccessGroupAssignmentScheduleRequestClient) CreatePrivilegedAccessGroupAssignmentScheduleRequest(ctx context.Context, input stable.PrivilegedAccessGroupAssignmentScheduleRequest) (result CreatePrivilegedAccessGroupAssignmentScheduleRequestOperationResponse, err error) {
+func (c PrivilegedAccessGroupAssignmentScheduleRequestClient) CreatePrivilegedAccessGroupAssignmentScheduleRequest(ctx context.Context, input stable.PrivilegedAccessGroupAssignmentScheduleRequest, options CreatePrivilegedAccessGroupAssignmentScheduleRequestOperationOptions) (result CreatePrivilegedAccessGroupAssignmentScheduleRequestOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/identityGovernance/privilegedAccess/group/assignmentScheduleRequests",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/identityGovernance/privilegedAccess/group/assignmentScheduleRequests",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

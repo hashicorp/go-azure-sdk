@@ -18,16 +18,45 @@ type CreateUserExperienceAnalyticsMetricHistoryOperationResponse struct {
 	Model        *stable.UserExperienceAnalyticsMetricHistory
 }
 
+type CreateUserExperienceAnalyticsMetricHistoryOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateUserExperienceAnalyticsMetricHistoryOperationOptions() CreateUserExperienceAnalyticsMetricHistoryOperationOptions {
+	return CreateUserExperienceAnalyticsMetricHistoryOperationOptions{}
+}
+
+func (o CreateUserExperienceAnalyticsMetricHistoryOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateUserExperienceAnalyticsMetricHistoryOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateUserExperienceAnalyticsMetricHistoryOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateUserExperienceAnalyticsMetricHistory - Create new navigation property to userExperienceAnalyticsMetricHistory
 // for deviceManagement
-func (c UserExperienceAnalyticsMetricHistoryClient) CreateUserExperienceAnalyticsMetricHistory(ctx context.Context, input stable.UserExperienceAnalyticsMetricHistory) (result CreateUserExperienceAnalyticsMetricHistoryOperationResponse, err error) {
+func (c UserExperienceAnalyticsMetricHistoryClient) CreateUserExperienceAnalyticsMetricHistory(ctx context.Context, input stable.UserExperienceAnalyticsMetricHistory, options CreateUserExperienceAnalyticsMetricHistoryOperationOptions) (result CreateUserExperienceAnalyticsMetricHistoryOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/deviceManagement/userExperienceAnalyticsMetricHistory",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/deviceManagement/userExperienceAnalyticsMetricHistory",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -17,16 +17,45 @@ type UpdateUserExperienceAnalyticsWorkFromAnywhereHardwareReadinessMetricOperati
 	OData        *odata.OData
 }
 
+type UpdateUserExperienceAnalyticsWorkFromAnywhereHardwareReadinessMetricOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateUserExperienceAnalyticsWorkFromAnywhereHardwareReadinessMetricOperationOptions() UpdateUserExperienceAnalyticsWorkFromAnywhereHardwareReadinessMetricOperationOptions {
+	return UpdateUserExperienceAnalyticsWorkFromAnywhereHardwareReadinessMetricOperationOptions{}
+}
+
+func (o UpdateUserExperienceAnalyticsWorkFromAnywhereHardwareReadinessMetricOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateUserExperienceAnalyticsWorkFromAnywhereHardwareReadinessMetricOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateUserExperienceAnalyticsWorkFromAnywhereHardwareReadinessMetricOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateUserExperienceAnalyticsWorkFromAnywhereHardwareReadinessMetric - Update the navigation property
 // userExperienceAnalyticsWorkFromAnywhereHardwareReadinessMetric in deviceManagement
-func (c UserExperienceAnalyticsWorkFromAnywhereHardwareReadinessMetricClient) UpdateUserExperienceAnalyticsWorkFromAnywhereHardwareReadinessMetric(ctx context.Context, input stable.UserExperienceAnalyticsWorkFromAnywhereHardwareReadinessMetric) (result UpdateUserExperienceAnalyticsWorkFromAnywhereHardwareReadinessMetricOperationResponse, err error) {
+func (c UserExperienceAnalyticsWorkFromAnywhereHardwareReadinessMetricClient) UpdateUserExperienceAnalyticsWorkFromAnywhereHardwareReadinessMetric(ctx context.Context, input stable.UserExperienceAnalyticsWorkFromAnywhereHardwareReadinessMetric, options UpdateUserExperienceAnalyticsWorkFromAnywhereHardwareReadinessMetricOperationOptions) (result UpdateUserExperienceAnalyticsWorkFromAnywhereHardwareReadinessMetricOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       "/deviceManagement/userExperienceAnalyticsWorkFromAnywhereHardwareReadinessMetric",
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          "/deviceManagement/userExperienceAnalyticsWorkFromAnywhereHardwareReadinessMetric",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

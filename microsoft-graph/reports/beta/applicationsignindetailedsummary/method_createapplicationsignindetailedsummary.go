@@ -18,16 +18,45 @@ type CreateApplicationSignInDetailedSummaryOperationResponse struct {
 	Model        *beta.ApplicationSignInDetailedSummary
 }
 
+type CreateApplicationSignInDetailedSummaryOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateApplicationSignInDetailedSummaryOperationOptions() CreateApplicationSignInDetailedSummaryOperationOptions {
+	return CreateApplicationSignInDetailedSummaryOperationOptions{}
+}
+
+func (o CreateApplicationSignInDetailedSummaryOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateApplicationSignInDetailedSummaryOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateApplicationSignInDetailedSummaryOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateApplicationSignInDetailedSummary - Create new navigation property to applicationSignInDetailedSummary for
 // reports
-func (c ApplicationSignInDetailedSummaryClient) CreateApplicationSignInDetailedSummary(ctx context.Context, input beta.ApplicationSignInDetailedSummary) (result CreateApplicationSignInDetailedSummaryOperationResponse, err error) {
+func (c ApplicationSignInDetailedSummaryClient) CreateApplicationSignInDetailedSummary(ctx context.Context, input beta.ApplicationSignInDetailedSummary, options CreateApplicationSignInDetailedSummaryOperationOptions) (result CreateApplicationSignInDetailedSummaryOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/reports/applicationSignInDetailedSummary",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/reports/applicationSignInDetailedSummary",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

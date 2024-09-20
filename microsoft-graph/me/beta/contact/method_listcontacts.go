@@ -25,14 +25,15 @@ type ListContactsCompleteResult struct {
 }
 
 type ListContactsOperationOptions struct {
-	Count   *bool
-	Expand  *odata.Expand
-	Filter  *string
-	OrderBy *odata.OrderBy
-	Search  *string
-	Select  *[]string
-	Skip    *int64
-	Top     *int64
+	Count    *bool
+	Expand   *odata.Expand
+	Filter   *string
+	Metadata *odata.Metadata
+	OrderBy  *odata.OrderBy
+	Search   *string
+	Select   *[]string
+	Skip     *int64
+	Top      *int64
 }
 
 func DefaultListContactsOperationOptions() ListContactsOperationOptions {
@@ -55,6 +56,9 @@ func (o ListContactsOperationOptions) ToOData() *odata.Query {
 	}
 	if o.Filter != nil {
 		out.Filter = *o.Filter
+	}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
 	}
 	if o.OrderBy != nil {
 		out.OrderBy = *o.OrderBy
@@ -93,7 +97,7 @@ func (p *ListContactsCustomPager) NextPageLink() *odata.Link {
 }
 
 // ListContacts - List contacts. Get contacts in the user's mailbox. There are two scenarios where an app can get
-// contacts in another user's contact folder:
+// contacts in another user's contact folder
 func (c ContactClient) ListContacts(ctx context.Context, options ListContactsOperationOptions) (result ListContactsOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",

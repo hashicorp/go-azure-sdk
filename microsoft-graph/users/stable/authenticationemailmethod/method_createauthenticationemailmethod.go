@@ -19,16 +19,45 @@ type CreateAuthenticationEmailMethodOperationResponse struct {
 	Model        *stable.EmailAuthenticationMethod
 }
 
+type CreateAuthenticationEmailMethodOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateAuthenticationEmailMethodOperationOptions() CreateAuthenticationEmailMethodOperationOptions {
+	return CreateAuthenticationEmailMethodOperationOptions{}
+}
+
+func (o CreateAuthenticationEmailMethodOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateAuthenticationEmailMethodOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateAuthenticationEmailMethodOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateAuthenticationEmailMethod - Create emailMethod. Set a user's emailAuthenticationMethod object. Email
 // authentication is a self-service password reset method. A user may only have one email authentication method.
-func (c AuthenticationEmailMethodClient) CreateAuthenticationEmailMethod(ctx context.Context, id stable.UserId, input stable.EmailAuthenticationMethod) (result CreateAuthenticationEmailMethodOperationResponse, err error) {
+func (c AuthenticationEmailMethodClient) CreateAuthenticationEmailMethod(ctx context.Context, id stable.UserId, input stable.EmailAuthenticationMethod, options CreateAuthenticationEmailMethodOperationOptions) (result CreateAuthenticationEmailMethodOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/authentication/emailMethods", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/authentication/emailMethods", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

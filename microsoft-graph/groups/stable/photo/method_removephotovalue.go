@@ -19,7 +19,8 @@ type RemovePhotoValueOperationResponse struct {
 }
 
 type RemovePhotoValueOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultRemovePhotoValueOperationOptions() RemovePhotoValueOperationOptions {
@@ -36,7 +37,9 @@ func (o RemovePhotoValueOperationOptions) ToHeaders() *client.Headers {
 
 func (o RemovePhotoValueOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 
@@ -46,8 +49,9 @@ func (o RemovePhotoValueOperationOptions) ToQuery() *client.QueryParams {
 	return &out
 }
 
-// RemovePhotoValue - Delete media content for the navigation property photo in groups. The group's profile photo
-func (c PhotoClient) RemovePhotoValue(ctx context.Context, id stable.GroupId, options RemovePhotoValueOperationOptions) (result RemovePhotoValueOperationResponse, err error) {
+// RemovePhotoValue - Delete media content for the navigation property photos in groups. The unique identifier for an
+// entity. Read-only.
+func (c PhotoClient) RemovePhotoValue(ctx context.Context, id stable.GroupIdPhotoId, options RemovePhotoValueOperationOptions) (result RemovePhotoValueOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
@@ -55,7 +59,7 @@ func (c PhotoClient) RemovePhotoValue(ctx context.Context, id stable.GroupId, op
 		},
 		HttpMethod:    http.MethodDelete,
 		OptionsObject: options,
-		Path:          fmt.Sprintf("%s/photo/$value", id.ID()),
+		Path:          fmt.Sprintf("%s/$value", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -85,10 +85,18 @@ func (s EmailAuthenticationMethodConfiguration) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &EmailAuthenticationMethodConfiguration{}
 
 func (s *EmailAuthenticationMethodConfiguration) UnmarshalJSON(bytes []byte) error {
-	type alias EmailAuthenticationMethodConfiguration
-	var decoded alias
+
+	var decoded struct {
+		AllowExternalIdToUseEmailOtp *ExternalEmailOtpState        `json:"allowExternalIdToUseEmailOtp,omitempty"`
+		IncludeTargets               *[]AuthenticationMethodTarget `json:"includeTargets,omitempty"`
+		ExcludeTargets               *[]ExcludeTarget              `json:"excludeTargets,omitempty"`
+		State                        *AuthenticationMethodState    `json:"state,omitempty"`
+		Id                           *string                       `json:"id,omitempty"`
+		ODataId                      *string                       `json:"@odata.id,omitempty"`
+		ODataType                    *string                       `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into EmailAuthenticationMethodConfiguration: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.AllowExternalIdToUseEmailOtp = decoded.AllowExternalIdToUseEmailOtp
@@ -119,5 +127,6 @@ func (s *EmailAuthenticationMethodConfiguration) UnmarshalJSON(bytes []byte) err
 		}
 		s.IncludeTargets = &output
 	}
+
 	return nil
 }

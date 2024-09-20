@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/microsoft-graph/directoryroles/stable/directoryrole` Documentation
 
-The `directoryrole` SDK allows for interaction with the Azure Resource Manager Service `directoryroles` (API Version `stable`).
+The `directoryrole` SDK allows for interaction with Microsoft Graph `directoryroles` (API Version `stable`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -15,7 +15,7 @@ import "github.com/hashicorp/go-azure-sdk/microsoft-graph/directoryroles/stable/
 ### Client Initialization
 
 ```go
-client := directoryrole.NewDirectoryRoleClientWithBaseURI("https://management.azure.com")
+client := directoryrole.NewDirectoryRoleClientWithBaseURI("https://graph.microsoft.com")
 client.Client.Authorizer = authorizer
 ```
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := directoryrole.NewDirectoryRoleID("directoryRoleIdValue")
+id := directoryrole.NewDirectoryRoleID("directoryRoleId")
 
 payload := directoryrole.CheckMemberGroupsRequest{
 	// ...
@@ -46,7 +46,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := directoryrole.NewDirectoryRoleID("directoryRoleIdValue")
+id := directoryrole.NewDirectoryRoleID("directoryRoleId")
 
 payload := directoryrole.CheckMemberObjectsRequest{
 	// ...
@@ -74,7 +74,27 @@ payload := directoryrole.DirectoryRole{
 }
 
 
-read, err := client.CreateDirectoryRole(ctx, payload)
+read, err := client.CreateDirectoryRole(ctx, payload, directoryrole.DefaultCreateDirectoryRoleOperationOptions())
+if err != nil {
+	// handle the error
+}
+if model := read.Model; model != nil {
+	// do something with the model/response object
+}
+```
+
+
+### Example Usage: `DirectoryRoleClient.CreateValidatesProperty`
+
+```go
+ctx := context.TODO()
+
+payload := directoryrole.CreateValidatesPropertyRequest{
+	// ...
+}
+
+
+read, err := client.CreateValidatesProperty(ctx, payload, directoryrole.DefaultCreateValidatesPropertyOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -88,67 +108,9 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := directoryrole.NewDirectoryRoleID("directoryRoleIdValue")
+id := directoryrole.NewDirectoryRoleID("directoryRoleId")
 
 read, err := client.DeleteDirectoryRole(ctx, id, directoryrole.DefaultDeleteDirectoryRoleOperationOptions())
-if err != nil {
-	// handle the error
-}
-if model := read.Model; model != nil {
-	// do something with the model/response object
-}
-```
-
-
-### Example Usage: `DirectoryRoleClient.GetAvailableExtensionProperties`
-
-```go
-ctx := context.TODO()
-
-payload := directoryrole.GetAvailableExtensionPropertiesRequest{
-	// ...
-}
-
-
-// alternatively `client.GetAvailableExtensionProperties(ctx, payload, directoryrole.DefaultGetAvailableExtensionPropertiesOperationOptions())` can be used to do batched pagination
-items, err := client.GetAvailableExtensionPropertiesComplete(ctx, payload, directoryrole.DefaultGetAvailableExtensionPropertiesOperationOptions())
-if err != nil {
-	// handle the error
-}
-for _, item := range items {
-	// do something
-}
-```
-
-
-### Example Usage: `DirectoryRoleClient.GetByIds`
-
-```go
-ctx := context.TODO()
-
-payload := directoryrole.GetByIdsRequest{
-	// ...
-}
-
-
-// alternatively `client.GetByIds(ctx, payload, directoryrole.DefaultGetByIdsOperationOptions())` can be used to do batched pagination
-items, err := client.GetByIdsComplete(ctx, payload, directoryrole.DefaultGetByIdsOperationOptions())
-if err != nil {
-	// handle the error
-}
-for _, item := range items {
-	// do something
-}
-```
-
-
-### Example Usage: `DirectoryRoleClient.GetCount`
-
-```go
-ctx := context.TODO()
-
-
-read, err := client.GetCount(ctx, directoryrole.DefaultGetCountOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -162,7 +124,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := directoryrole.NewDirectoryRoleID("directoryRoleIdValue")
+id := directoryrole.NewDirectoryRoleID("directoryRoleId")
 
 read, err := client.GetDirectoryRole(ctx, id, directoryrole.DefaultGetDirectoryRoleOperationOptions())
 if err != nil {
@@ -178,7 +140,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := directoryrole.NewDirectoryRoleID("directoryRoleIdValue")
+id := directoryrole.NewDirectoryRoleID("directoryRoleId")
 
 payload := directoryrole.GetMemberGroupsRequest{
 	// ...
@@ -200,7 +162,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := directoryrole.NewDirectoryRoleID("directoryRoleIdValue")
+id := directoryrole.NewDirectoryRoleID("directoryRoleId")
 
 payload := directoryrole.GetMemberObjectsRequest{
 	// ...
@@ -214,6 +176,22 @@ if err != nil {
 }
 for _, item := range items {
 	// do something
+}
+```
+
+
+### Example Usage: `DirectoryRoleClient.GetsCount`
+
+```go
+ctx := context.TODO()
+
+
+read, err := client.GetsCount(ctx, directoryrole.DefaultGetsCountOperationOptions())
+if err != nil {
+	// handle the error
+}
+if model := read.Model; model != nil {
+	// do something with the model/response object
 }
 ```
 
@@ -235,13 +213,55 @@ for _, item := range items {
 ```
 
 
+### Example Usage: `DirectoryRoleClient.ListGetsAvailableExtensionProperties`
+
+```go
+ctx := context.TODO()
+
+payload := directoryrole.ListGetsAvailableExtensionPropertiesRequest{
+	// ...
+}
+
+
+// alternatively `client.ListGetsAvailableExtensionProperties(ctx, payload, directoryrole.DefaultListGetsAvailableExtensionPropertiesOperationOptions())` can be used to do batched pagination
+items, err := client.ListGetsAvailableExtensionPropertiesComplete(ctx, payload, directoryrole.DefaultListGetsAvailableExtensionPropertiesOperationOptions())
+if err != nil {
+	// handle the error
+}
+for _, item := range items {
+	// do something
+}
+```
+
+
+### Example Usage: `DirectoryRoleClient.ListGetsByIds`
+
+```go
+ctx := context.TODO()
+
+payload := directoryrole.ListGetsByIdsRequest{
+	// ...
+}
+
+
+// alternatively `client.ListGetsByIds(ctx, payload, directoryrole.DefaultListGetsByIdsOperationOptions())` can be used to do batched pagination
+items, err := client.ListGetsByIdsComplete(ctx, payload, directoryrole.DefaultListGetsByIdsOperationOptions())
+if err != nil {
+	// handle the error
+}
+for _, item := range items {
+	// do something
+}
+```
+
+
 ### Example Usage: `DirectoryRoleClient.Restore`
 
 ```go
 ctx := context.TODO()
-id := directoryrole.NewDirectoryRoleID("directoryRoleIdValue")
+id := directoryrole.NewDirectoryRoleID("directoryRoleId")
 
-read, err := client.Restore(ctx, id)
+read, err := client.Restore(ctx, id, directoryrole.DefaultRestoreOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -255,34 +275,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := directoryrole.NewDirectoryRoleID("directoryRoleIdValue")
+id := directoryrole.NewDirectoryRoleID("directoryRoleId")
 
 payload := directoryrole.DirectoryRole{
 	// ...
 }
 
 
-read, err := client.UpdateDirectoryRole(ctx, id, payload)
-if err != nil {
-	// handle the error
-}
-if model := read.Model; model != nil {
-	// do something with the model/response object
-}
-```
-
-
-### Example Usage: `DirectoryRoleClient.ValidateProperty`
-
-```go
-ctx := context.TODO()
-
-payload := directoryrole.ValidatePropertyRequest{
-	// ...
-}
-
-
-read, err := client.ValidateProperty(ctx, payload)
+read, err := client.UpdateDirectoryRole(ctx, id, payload, directoryrole.DefaultUpdateDirectoryRoleOperationOptions())
 if err != nil {
 	// handle the error
 }

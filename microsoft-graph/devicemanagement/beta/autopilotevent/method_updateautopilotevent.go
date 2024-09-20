@@ -17,15 +17,44 @@ type UpdateAutopilotEventOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateAutopilotEventOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateAutopilotEventOperationOptions() UpdateAutopilotEventOperationOptions {
+	return UpdateAutopilotEventOperationOptions{}
+}
+
+func (o UpdateAutopilotEventOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateAutopilotEventOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateAutopilotEventOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateAutopilotEvent - Update the navigation property autopilotEvents in deviceManagement
-func (c AutopilotEventClient) UpdateAutopilotEvent(ctx context.Context, id beta.DeviceManagementAutopilotEventId, input beta.DeviceManagementAutopilotEvent) (result UpdateAutopilotEventOperationResponse, err error) {
+func (c AutopilotEventClient) UpdateAutopilotEvent(ctx context.Context, id beta.DeviceManagementAutopilotEventId, input beta.DeviceManagementAutopilotEvent, options UpdateAutopilotEventOperationOptions) (result UpdateAutopilotEventOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

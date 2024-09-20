@@ -86,18 +86,26 @@ func (s EducationPointsOutcome) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &EducationPointsOutcome{}
 
 func (s *EducationPointsOutcome) UnmarshalJSON(bytes []byte) error {
-	type alias EducationPointsOutcome
-	var decoded alias
+
+	var decoded struct {
+		Points               *EducationAssignmentPointsGrade `json:"points,omitempty"`
+		PublishedPoints      *EducationAssignmentPointsGrade `json:"publishedPoints,omitempty"`
+		LastModifiedBy       IdentitySet                     `json:"lastModifiedBy"`
+		LastModifiedDateTime nullable.Type[string]           `json:"lastModifiedDateTime,omitempty"`
+		Id                   *string                         `json:"id,omitempty"`
+		ODataId              *string                         `json:"@odata.id,omitempty"`
+		ODataType            *string                         `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into EducationPointsOutcome: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
+	s.Points = decoded.Points
+	s.PublishedPoints = decoded.PublishedPoints
 	s.Id = decoded.Id
 	s.LastModifiedDateTime = decoded.LastModifiedDateTime
 	s.ODataId = decoded.ODataId
 	s.ODataType = decoded.ODataType
-	s.Points = decoded.Points
-	s.PublishedPoints = decoded.PublishedPoints
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -111,5 +119,6 @@ func (s *EducationPointsOutcome) UnmarshalJSON(bytes []byte) error {
 		}
 		s.LastModifiedBy = impl
 	}
+
 	return nil
 }

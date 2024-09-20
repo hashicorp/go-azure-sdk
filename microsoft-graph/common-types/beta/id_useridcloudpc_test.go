@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &UserIdCloudPCId{}
 
 func TestNewUserIdCloudPCID(t *testing.T) {
-	id := NewUserIdCloudPCID("userIdValue", "cloudPCIdValue")
+	id := NewUserIdCloudPCID("userId", "cloudPCId")
 
-	if id.UserId != "userIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'UserId'", id.UserId, "userIdValue")
+	if id.UserId != "userId" {
+		t.Fatalf("Expected %q but got %q for Segment 'UserId'", id.UserId, "userId")
 	}
 
-	if id.CloudPCId != "cloudPCIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'CloudPCId'", id.CloudPCId, "cloudPCIdValue")
+	if id.CloudPCId != "cloudPCId" {
+		t.Fatalf("Expected %q but got %q for Segment 'CloudPCId'", id.CloudPCId, "cloudPCId")
 	}
 }
 
 func TestFormatUserIdCloudPCID(t *testing.T) {
-	actual := NewUserIdCloudPCID("userIdValue", "cloudPCIdValue").ID()
-	expected := "/users/userIdValue/cloudPCs/cloudPCIdValue"
+	actual := NewUserIdCloudPCID("userId", "cloudPCId").ID()
+	expected := "/users/userId/cloudPCs/cloudPCId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -49,25 +49,25 @@ func TestParseUserIdCloudPCID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue",
+			Input: "/users/userId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/cloudPCs",
+			Input: "/users/userId/cloudPCs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/users/userIdValue/cloudPCs/cloudPCIdValue",
+			Input: "/users/userId/cloudPCs/cloudPCId",
 			Expected: &UserIdCloudPCId{
-				UserId:    "userIdValue",
-				CloudPCId: "cloudPCIdValue",
+				UserId:    "userId",
+				CloudPCId: "cloudPCId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/users/userIdValue/cloudPCs/cloudPCIdValue/extra",
+			Input: "/users/userId/cloudPCs/cloudPCId/extra",
 			Error: true,
 		},
 	}
@@ -120,48 +120,48 @@ func TestParseUserIdCloudPCIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue",
+			Input: "/users/userId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe",
+			Input: "/uSeRs/uSeRiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/cloudPCs",
+			Input: "/users/userId/cloudPCs",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/cLoUdPcS",
+			Input: "/uSeRs/uSeRiD/cLoUdPcS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/users/userIdValue/cloudPCs/cloudPCIdValue",
+			Input: "/users/userId/cloudPCs/cloudPCId",
 			Expected: &UserIdCloudPCId{
-				UserId:    "userIdValue",
-				CloudPCId: "cloudPCIdValue",
+				UserId:    "userId",
+				CloudPCId: "cloudPCId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/users/userIdValue/cloudPCs/cloudPCIdValue/extra",
+			Input: "/users/userId/cloudPCs/cloudPCId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/cLoUdPcS/cLoUdPcIdVaLuE",
+			Input: "/uSeRs/uSeRiD/cLoUdPcS/cLoUdPcId",
 			Expected: &UserIdCloudPCId{
-				UserId:    "uSeRiDvAlUe",
-				CloudPCId: "cLoUdPcIdVaLuE",
+				UserId:    "uSeRiD",
+				CloudPCId: "cLoUdPcId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/cLoUdPcS/cLoUdPcIdVaLuE/extra",
+			Input: "/uSeRs/uSeRiD/cLoUdPcS/cLoUdPcId/extra",
 			Error: true,
 		},
 	}

@@ -69,17 +69,23 @@ func (s ChannelSharingUpdatedEventMessageDetail) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &ChannelSharingUpdatedEventMessageDetail{}
 
 func (s *ChannelSharingUpdatedEventMessageDetail) UnmarshalJSON(bytes []byte) error {
-	type alias ChannelSharingUpdatedEventMessageDetail
-	var decoded alias
+
+	var decoded struct {
+		OwnerTeamId     nullable.Type[string] `json:"ownerTeamId,omitempty"`
+		OwnerTenantId   nullable.Type[string] `json:"ownerTenantId,omitempty"`
+		SharedChannelId nullable.Type[string] `json:"sharedChannelId,omitempty"`
+		ODataId         *string               `json:"@odata.id,omitempty"`
+		ODataType       *string               `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into ChannelSharingUpdatedEventMessageDetail: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
-	s.ODataId = decoded.ODataId
-	s.ODataType = decoded.ODataType
 	s.OwnerTeamId = decoded.OwnerTeamId
 	s.OwnerTenantId = decoded.OwnerTenantId
 	s.SharedChannelId = decoded.SharedChannelId
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -93,5 +99,6 @@ func (s *ChannelSharingUpdatedEventMessageDetail) UnmarshalJSON(bytes []byte) er
 		}
 		s.Initiator = impl
 	}
+
 	return nil
 }

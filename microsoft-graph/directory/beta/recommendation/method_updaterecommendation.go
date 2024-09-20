@@ -17,15 +17,44 @@ type UpdateRecommendationOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateRecommendationOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateRecommendationOperationOptions() UpdateRecommendationOperationOptions {
+	return UpdateRecommendationOperationOptions{}
+}
+
+func (o UpdateRecommendationOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateRecommendationOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateRecommendationOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateRecommendation - Update the navigation property recommendations in directory
-func (c RecommendationClient) UpdateRecommendation(ctx context.Context, id beta.DirectoryRecommendationId, input beta.Recommendation) (result UpdateRecommendationOperationResponse, err error) {
+func (c RecommendationClient) UpdateRecommendation(ctx context.Context, id beta.DirectoryRecommendationId, input beta.Recommendation, options UpdateRecommendationOperationOptions) (result UpdateRecommendationOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

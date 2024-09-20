@@ -18,15 +18,44 @@ type UpdateSiteListItemFieldOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateSiteListItemFieldOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateSiteListItemFieldOperationOptions() UpdateSiteListItemFieldOperationOptions {
+	return UpdateSiteListItemFieldOperationOptions{}
+}
+
+func (o UpdateSiteListItemFieldOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateSiteListItemFieldOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateSiteListItemFieldOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateSiteListItemField - Update the navigation property fields in groups
-func (c SiteListItemFieldClient) UpdateSiteListItemField(ctx context.Context, id stable.GroupIdSiteIdListIdItemId, input stable.FieldValueSet) (result UpdateSiteListItemFieldOperationResponse, err error) {
+func (c SiteListItemFieldClient) UpdateSiteListItemField(ctx context.Context, id stable.GroupIdSiteIdListIdItemId, input stable.FieldValueSet, options UpdateSiteListItemFieldOperationOptions) (result UpdateSiteListItemFieldOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       fmt.Sprintf("%s/fields", id.ID()),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/fields", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

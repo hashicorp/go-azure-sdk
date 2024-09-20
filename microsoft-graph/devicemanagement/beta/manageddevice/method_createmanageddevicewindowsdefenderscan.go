@@ -18,15 +18,44 @@ type CreateManagedDeviceWindowsDefenderScanOperationResponse struct {
 	OData        *odata.OData
 }
 
+type CreateManagedDeviceWindowsDefenderScanOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateManagedDeviceWindowsDefenderScanOperationOptions() CreateManagedDeviceWindowsDefenderScanOperationOptions {
+	return CreateManagedDeviceWindowsDefenderScanOperationOptions{}
+}
+
+func (o CreateManagedDeviceWindowsDefenderScanOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateManagedDeviceWindowsDefenderScanOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateManagedDeviceWindowsDefenderScanOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateManagedDeviceWindowsDefenderScan - Invoke action windowsDefenderScan
-func (c ManagedDeviceClient) CreateManagedDeviceWindowsDefenderScan(ctx context.Context, id beta.DeviceManagementManagedDeviceId, input CreateManagedDeviceWindowsDefenderScanRequest) (result CreateManagedDeviceWindowsDefenderScanOperationResponse, err error) {
+func (c ManagedDeviceClient) CreateManagedDeviceWindowsDefenderScan(ctx context.Context, id beta.DeviceManagementManagedDeviceId, input CreateManagedDeviceWindowsDefenderScanRequest, options CreateManagedDeviceWindowsDefenderScanOperationOptions) (result CreateManagedDeviceWindowsDefenderScanOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/windowsDefenderScan", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/windowsDefenderScan", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

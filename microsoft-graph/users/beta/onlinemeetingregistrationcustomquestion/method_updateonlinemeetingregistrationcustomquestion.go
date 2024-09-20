@@ -17,15 +17,44 @@ type UpdateOnlineMeetingRegistrationCustomQuestionOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateOnlineMeetingRegistrationCustomQuestionOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateOnlineMeetingRegistrationCustomQuestionOperationOptions() UpdateOnlineMeetingRegistrationCustomQuestionOperationOptions {
+	return UpdateOnlineMeetingRegistrationCustomQuestionOperationOptions{}
+}
+
+func (o UpdateOnlineMeetingRegistrationCustomQuestionOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateOnlineMeetingRegistrationCustomQuestionOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateOnlineMeetingRegistrationCustomQuestionOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateOnlineMeetingRegistrationCustomQuestion - Update the navigation property customQuestions in users
-func (c OnlineMeetingRegistrationCustomQuestionClient) UpdateOnlineMeetingRegistrationCustomQuestion(ctx context.Context, id beta.UserIdOnlineMeetingIdRegistrationCustomQuestionId, input beta.MeetingRegistrationQuestion) (result UpdateOnlineMeetingRegistrationCustomQuestionOperationResponse, err error) {
+func (c OnlineMeetingRegistrationCustomQuestionClient) UpdateOnlineMeetingRegistrationCustomQuestion(ctx context.Context, id beta.UserIdOnlineMeetingIdRegistrationCustomQuestionId, input beta.MeetingRegistrationQuestion, options UpdateOnlineMeetingRegistrationCustomQuestionOperationOptions) (result UpdateOnlineMeetingRegistrationCustomQuestionOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

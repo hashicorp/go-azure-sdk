@@ -17,15 +17,44 @@ type UpdateDirectoryAuditOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateDirectoryAuditOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateDirectoryAuditOperationOptions() UpdateDirectoryAuditOperationOptions {
+	return UpdateDirectoryAuditOperationOptions{}
+}
+
+func (o UpdateDirectoryAuditOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateDirectoryAuditOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateDirectoryAuditOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateDirectoryAudit - Update the navigation property directoryAudits in auditLogs
-func (c DirectoryAuditClient) UpdateDirectoryAudit(ctx context.Context, id beta.AuditLogDirectoryAuditId, input beta.DirectoryAudit) (result UpdateDirectoryAuditOperationResponse, err error) {
+func (c DirectoryAuditClient) UpdateDirectoryAudit(ctx context.Context, id beta.AuditLogDirectoryAuditId, input beta.DirectoryAudit, options UpdateDirectoryAuditOperationOptions) (result UpdateDirectoryAuditOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

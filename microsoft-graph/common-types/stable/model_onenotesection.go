@@ -144,24 +144,40 @@ func (s OnenoteSection) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &OnenoteSection{}
 
 func (s *OnenoteSection) UnmarshalJSON(bytes []byte) error {
-	type alias OnenoteSection
-	var decoded alias
+
+	var decoded struct {
+		IsDefault            nullable.Type[bool]   `json:"isDefault,omitempty"`
+		Links                *SectionLinks         `json:"links,omitempty"`
+		Pages                *[]OnenotePage        `json:"pages,omitempty"`
+		PagesUrl             nullable.Type[string] `json:"pagesUrl,omitempty"`
+		ParentNotebook       *Notebook             `json:"parentNotebook,omitempty"`
+		ParentSectionGroup   *SectionGroup         `json:"parentSectionGroup,omitempty"`
+		CreatedBy            *IdentitySet          `json:"createdBy,omitempty"`
+		DisplayName          nullable.Type[string] `json:"displayName,omitempty"`
+		LastModifiedBy       *IdentitySet          `json:"lastModifiedBy,omitempty"`
+		LastModifiedDateTime nullable.Type[string] `json:"lastModifiedDateTime,omitempty"`
+		CreatedDateTime      nullable.Type[string] `json:"createdDateTime,omitempty"`
+		Self                 nullable.Type[string] `json:"self,omitempty"`
+		Id                   *string               `json:"id,omitempty"`
+		ODataId              *string               `json:"@odata.id,omitempty"`
+		ODataType            *string               `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into OnenoteSection: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
-	s.CreatedDateTime = decoded.CreatedDateTime
-	s.DisplayName = decoded.DisplayName
-	s.Id = decoded.Id
 	s.IsDefault = decoded.IsDefault
-	s.LastModifiedDateTime = decoded.LastModifiedDateTime
 	s.Links = decoded.Links
-	s.ODataId = decoded.ODataId
-	s.ODataType = decoded.ODataType
 	s.Pages = decoded.Pages
 	s.PagesUrl = decoded.PagesUrl
 	s.ParentNotebook = decoded.ParentNotebook
 	s.ParentSectionGroup = decoded.ParentSectionGroup
+	s.CreatedDateTime = decoded.CreatedDateTime
+	s.DisplayName = decoded.DisplayName
+	s.Id = decoded.Id
+	s.LastModifiedDateTime = decoded.LastModifiedDateTime
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
 	s.Self = decoded.Self
 
 	var temp map[string]json.RawMessage
@@ -184,5 +200,6 @@ func (s *OnenoteSection) UnmarshalJSON(bytes []byte) error {
 		}
 		s.LastModifiedBy = &impl
 	}
+
 	return nil
 }

@@ -17,15 +17,44 @@ type UpdateSiteListPermissionOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateSiteListPermissionOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateSiteListPermissionOperationOptions() UpdateSiteListPermissionOperationOptions {
+	return UpdateSiteListPermissionOperationOptions{}
+}
+
+func (o UpdateSiteListPermissionOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateSiteListPermissionOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateSiteListPermissionOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateSiteListPermission - Update the navigation property permissions in groups
-func (c SiteListPermissionClient) UpdateSiteListPermission(ctx context.Context, id beta.GroupIdSiteIdListIdPermissionId, input beta.Permission) (result UpdateSiteListPermissionOperationResponse, err error) {
+func (c SiteListPermissionClient) UpdateSiteListPermission(ctx context.Context, id beta.GroupIdSiteIdListIdPermissionId, input beta.Permission, options UpdateSiteListPermissionOperationOptions) (result UpdateSiteListPermissionOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -19,7 +19,8 @@ type DeleteSignInOperationResponse struct {
 }
 
 type DeleteSignInOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteSignInOperationOptions() DeleteSignInOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteSignInOperationOptions) ToHeaders() *client.Headers {
 
 func (o DeleteSignInOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

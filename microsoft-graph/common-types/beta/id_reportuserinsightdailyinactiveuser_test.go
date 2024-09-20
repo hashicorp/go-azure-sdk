@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &ReportUserInsightDailyInactiveUserId{}
 
 func TestNewReportUserInsightDailyInactiveUserID(t *testing.T) {
-	id := NewReportUserInsightDailyInactiveUserID("dailyInactiveUsersMetricIdValue")
+	id := NewReportUserInsightDailyInactiveUserID("dailyInactiveUsersMetricId")
 
-	if id.DailyInactiveUsersMetricId != "dailyInactiveUsersMetricIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DailyInactiveUsersMetricId'", id.DailyInactiveUsersMetricId, "dailyInactiveUsersMetricIdValue")
+	if id.DailyInactiveUsersMetricId != "dailyInactiveUsersMetricId" {
+		t.Fatalf("Expected %q but got %q for Segment 'DailyInactiveUsersMetricId'", id.DailyInactiveUsersMetricId, "dailyInactiveUsersMetricId")
 	}
 }
 
 func TestFormatReportUserInsightDailyInactiveUserID(t *testing.T) {
-	actual := NewReportUserInsightDailyInactiveUserID("dailyInactiveUsersMetricIdValue").ID()
-	expected := "/reports/userInsights/daily/inactiveUsers/dailyInactiveUsersMetricIdValue"
+	actual := NewReportUserInsightDailyInactiveUserID("dailyInactiveUsersMetricId").ID()
+	expected := "/reports/userInsights/daily/inactiveUsers/dailyInactiveUsersMetricId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -60,14 +60,14 @@ func TestParseReportUserInsightDailyInactiveUserID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/reports/userInsights/daily/inactiveUsers/dailyInactiveUsersMetricIdValue",
+			Input: "/reports/userInsights/daily/inactiveUsers/dailyInactiveUsersMetricId",
 			Expected: &ReportUserInsightDailyInactiveUserId{
-				DailyInactiveUsersMetricId: "dailyInactiveUsersMetricIdValue",
+				DailyInactiveUsersMetricId: "dailyInactiveUsersMetricId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/reports/userInsights/daily/inactiveUsers/dailyInactiveUsersMetricIdValue/extra",
+			Input: "/reports/userInsights/daily/inactiveUsers/dailyInactiveUsersMetricId/extra",
 			Error: true,
 		},
 	}
@@ -146,26 +146,26 @@ func TestParseReportUserInsightDailyInactiveUserIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/reports/userInsights/daily/inactiveUsers/dailyInactiveUsersMetricIdValue",
+			Input: "/reports/userInsights/daily/inactiveUsers/dailyInactiveUsersMetricId",
 			Expected: &ReportUserInsightDailyInactiveUserId{
-				DailyInactiveUsersMetricId: "dailyInactiveUsersMetricIdValue",
+				DailyInactiveUsersMetricId: "dailyInactiveUsersMetricId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/reports/userInsights/daily/inactiveUsers/dailyInactiveUsersMetricIdValue/extra",
+			Input: "/reports/userInsights/daily/inactiveUsers/dailyInactiveUsersMetricId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/rEpOrTs/uSeRiNsIgHtS/dAiLy/iNaCtIvEuSeRs/dAiLyInAcTiVeUsErSmEtRiCiDvAlUe",
+			Input: "/rEpOrTs/uSeRiNsIgHtS/dAiLy/iNaCtIvEuSeRs/dAiLyInAcTiVeUsErSmEtRiCiD",
 			Expected: &ReportUserInsightDailyInactiveUserId{
-				DailyInactiveUsersMetricId: "dAiLyInAcTiVeUsErSmEtRiCiDvAlUe",
+				DailyInactiveUsersMetricId: "dAiLyInAcTiVeUsErSmEtRiCiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/rEpOrTs/uSeRiNsIgHtS/dAiLy/iNaCtIvEuSeRs/dAiLyInAcTiVeUsErSmEtRiCiDvAlUe/extra",
+			Input: "/rEpOrTs/uSeRiNsIgHtS/dAiLy/iNaCtIvEuSeRs/dAiLyInAcTiVeUsErSmEtRiCiD/extra",
 			Error: true,
 		},
 	}

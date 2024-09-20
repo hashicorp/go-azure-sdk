@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &MeAuthenticationMicrosoftAuthenticatorMethodId{}
 
 func TestNewMeAuthenticationMicrosoftAuthenticatorMethodID(t *testing.T) {
-	id := NewMeAuthenticationMicrosoftAuthenticatorMethodID("microsoftAuthenticatorAuthenticationMethodIdValue")
+	id := NewMeAuthenticationMicrosoftAuthenticatorMethodID("microsoftAuthenticatorAuthenticationMethodId")
 
-	if id.MicrosoftAuthenticatorAuthenticationMethodId != "microsoftAuthenticatorAuthenticationMethodIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'MicrosoftAuthenticatorAuthenticationMethodId'", id.MicrosoftAuthenticatorAuthenticationMethodId, "microsoftAuthenticatorAuthenticationMethodIdValue")
+	if id.MicrosoftAuthenticatorAuthenticationMethodId != "microsoftAuthenticatorAuthenticationMethodId" {
+		t.Fatalf("Expected %q but got %q for Segment 'MicrosoftAuthenticatorAuthenticationMethodId'", id.MicrosoftAuthenticatorAuthenticationMethodId, "microsoftAuthenticatorAuthenticationMethodId")
 	}
 }
 
 func TestFormatMeAuthenticationMicrosoftAuthenticatorMethodID(t *testing.T) {
-	actual := NewMeAuthenticationMicrosoftAuthenticatorMethodID("microsoftAuthenticatorAuthenticationMethodIdValue").ID()
-	expected := "/me/authentication/microsoftAuthenticatorMethods/microsoftAuthenticatorAuthenticationMethodIdValue"
+	actual := NewMeAuthenticationMicrosoftAuthenticatorMethodID("microsoftAuthenticatorAuthenticationMethodId").ID()
+	expected := "/me/authentication/microsoftAuthenticatorMethods/microsoftAuthenticatorAuthenticationMethodId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -55,14 +55,14 @@ func TestParseMeAuthenticationMicrosoftAuthenticatorMethodID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/me/authentication/microsoftAuthenticatorMethods/microsoftAuthenticatorAuthenticationMethodIdValue",
+			Input: "/me/authentication/microsoftAuthenticatorMethods/microsoftAuthenticatorAuthenticationMethodId",
 			Expected: &MeAuthenticationMicrosoftAuthenticatorMethodId{
-				MicrosoftAuthenticatorAuthenticationMethodId: "microsoftAuthenticatorAuthenticationMethodIdValue",
+				MicrosoftAuthenticatorAuthenticationMethodId: "microsoftAuthenticatorAuthenticationMethodId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/authentication/microsoftAuthenticatorMethods/microsoftAuthenticatorAuthenticationMethodIdValue/extra",
+			Input: "/me/authentication/microsoftAuthenticatorMethods/microsoftAuthenticatorAuthenticationMethodId/extra",
 			Error: true,
 		},
 	}
@@ -131,26 +131,26 @@ func TestParseMeAuthenticationMicrosoftAuthenticatorMethodIDInsensitively(t *tes
 		},
 		{
 			// Valid URI
-			Input: "/me/authentication/microsoftAuthenticatorMethods/microsoftAuthenticatorAuthenticationMethodIdValue",
+			Input: "/me/authentication/microsoftAuthenticatorMethods/microsoftAuthenticatorAuthenticationMethodId",
 			Expected: &MeAuthenticationMicrosoftAuthenticatorMethodId{
-				MicrosoftAuthenticatorAuthenticationMethodId: "microsoftAuthenticatorAuthenticationMethodIdValue",
+				MicrosoftAuthenticatorAuthenticationMethodId: "microsoftAuthenticatorAuthenticationMethodId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/authentication/microsoftAuthenticatorMethods/microsoftAuthenticatorAuthenticationMethodIdValue/extra",
+			Input: "/me/authentication/microsoftAuthenticatorMethods/microsoftAuthenticatorAuthenticationMethodId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/aUtHeNtIcAtIoN/mIcRoSoFtAuThEnTiCaToRmEtHoDs/mIcRoSoFtAuThEnTiCaToRaUtHeNtIcAtIoNmEtHoDiDvAlUe",
+			Input: "/mE/aUtHeNtIcAtIoN/mIcRoSoFtAuThEnTiCaToRmEtHoDs/mIcRoSoFtAuThEnTiCaToRaUtHeNtIcAtIoNmEtHoDiD",
 			Expected: &MeAuthenticationMicrosoftAuthenticatorMethodId{
-				MicrosoftAuthenticatorAuthenticationMethodId: "mIcRoSoFtAuThEnTiCaToRaUtHeNtIcAtIoNmEtHoDiDvAlUe",
+				MicrosoftAuthenticatorAuthenticationMethodId: "mIcRoSoFtAuThEnTiCaToRaUtHeNtIcAtIoNmEtHoDiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/mE/aUtHeNtIcAtIoN/mIcRoSoFtAuThEnTiCaToRmEtHoDs/mIcRoSoFtAuThEnTiCaToRaUtHeNtIcAtIoNmEtHoDiDvAlUe/extra",
+			Input: "/mE/aUtHeNtIcAtIoN/mIcRoSoFtAuThEnTiCaToRmEtHoDs/mIcRoSoFtAuThEnTiCaToRaUtHeNtIcAtIoNmEtHoDiD/extra",
 			Error: true,
 		},
 	}

@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/microsoft-graph/users/stable/joinedteaminstalledapp` Documentation
 
-The `joinedteaminstalledapp` SDK allows for interaction with the Azure Resource Manager Service `users` (API Version `stable`).
+The `joinedteaminstalledapp` SDK allows for interaction with Microsoft Graph `users` (API Version `stable`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -15,7 +15,7 @@ import "github.com/hashicorp/go-azure-sdk/microsoft-graph/users/stable/joinedtea
 ### Client Initialization
 
 ```go
-client := joinedteaminstalledapp.NewJoinedTeamInstalledAppClientWithBaseURI("https://management.azure.com")
+client := joinedteaminstalledapp.NewJoinedTeamInstalledAppClientWithBaseURI("https://graph.microsoft.com")
 client.Client.Authorizer = authorizer
 ```
 
@@ -24,14 +24,14 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := joinedteaminstalledapp.NewUserIdJoinedTeamID("userIdValue", "teamIdValue")
+id := joinedteaminstalledapp.NewUserIdJoinedTeamID("userId", "teamId")
 
 payload := joinedteaminstalledapp.TeamsAppInstallation{
 	// ...
 }
 
 
-read, err := client.CreateJoinedTeamInstalledApp(ctx, id, payload)
+read, err := client.CreateJoinedTeamInstalledApp(ctx, id, payload, joinedteaminstalledapp.DefaultCreateJoinedTeamInstalledAppOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -45,14 +45,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := joinedteaminstalledapp.NewUserIdJoinedTeamIdInstalledAppID("userIdValue", "teamIdValue", "teamsAppInstallationIdValue")
+id := joinedteaminstalledapp.NewUserIdJoinedTeamIdInstalledAppID("userId", "teamId", "teamsAppInstallationId")
 
 payload := joinedteaminstalledapp.CreateJoinedTeamInstalledAppUpgradeRequest{
 	// ...
 }
 
 
-read, err := client.CreateJoinedTeamInstalledAppUpgrade(ctx, id, payload)
+read, err := client.CreateJoinedTeamInstalledAppUpgrade(ctx, id, payload, joinedteaminstalledapp.DefaultCreateJoinedTeamInstalledAppUpgradeOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -66,7 +66,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := joinedteaminstalledapp.NewUserIdJoinedTeamIdInstalledAppID("userIdValue", "teamIdValue", "teamsAppInstallationIdValue")
+id := joinedteaminstalledapp.NewUserIdJoinedTeamIdInstalledAppID("userId", "teamId", "teamsAppInstallationId")
 
 read, err := client.DeleteJoinedTeamInstalledApp(ctx, id, joinedteaminstalledapp.DefaultDeleteJoinedTeamInstalledAppOperationOptions())
 if err != nil {
@@ -82,7 +82,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := joinedteaminstalledapp.NewUserIdJoinedTeamIdInstalledAppID("userIdValue", "teamIdValue", "teamsAppInstallationIdValue")
+id := joinedteaminstalledapp.NewUserIdJoinedTeamIdInstalledAppID("userId", "teamId", "teamsAppInstallationId")
 
 read, err := client.GetJoinedTeamInstalledApp(ctx, id, joinedteaminstalledapp.DefaultGetJoinedTeamInstalledAppOperationOptions())
 if err != nil {
@@ -98,7 +98,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := joinedteaminstalledapp.NewUserIdJoinedTeamID("userIdValue", "teamIdValue")
+id := joinedteaminstalledapp.NewUserIdJoinedTeamID("userId", "teamId")
 
 read, err := client.GetJoinedTeamInstalledAppsCount(ctx, id, joinedteaminstalledapp.DefaultGetJoinedTeamInstalledAppsCountOperationOptions())
 if err != nil {
@@ -114,7 +114,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := joinedteaminstalledapp.NewUserIdJoinedTeamID("userIdValue", "teamIdValue")
+id := joinedteaminstalledapp.NewUserIdJoinedTeamID("userId", "teamId")
 
 // alternatively `client.ListJoinedTeamInstalledApps(ctx, id, joinedteaminstalledapp.DefaultListJoinedTeamInstalledAppsOperationOptions())` can be used to do batched pagination
 items, err := client.ListJoinedTeamInstalledAppsComplete(ctx, id, joinedteaminstalledapp.DefaultListJoinedTeamInstalledAppsOperationOptions())
@@ -131,14 +131,14 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := joinedteaminstalledapp.NewUserIdJoinedTeamIdInstalledAppID("userIdValue", "teamIdValue", "teamsAppInstallationIdValue")
+id := joinedteaminstalledapp.NewUserIdJoinedTeamIdInstalledAppID("userId", "teamId", "teamsAppInstallationId")
 
 payload := joinedteaminstalledapp.TeamsAppInstallation{
 	// ...
 }
 
 
-read, err := client.UpdateJoinedTeamInstalledApp(ctx, id, payload)
+read, err := client.UpdateJoinedTeamInstalledApp(ctx, id, payload, joinedteaminstalledapp.DefaultUpdateJoinedTeamInstalledAppOperationOptions())
 if err != nil {
 	// handle the error
 }

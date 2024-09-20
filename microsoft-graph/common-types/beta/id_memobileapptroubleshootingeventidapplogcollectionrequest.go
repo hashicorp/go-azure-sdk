@@ -99,9 +99,9 @@ func (id MeMobileAppTroubleshootingEventIdAppLogCollectionRequestId) Segments() 
 	return []resourceids.Segment{
 		resourceids.StaticSegment("me", "me", "me"),
 		resourceids.StaticSegment("mobileAppTroubleshootingEvents", "mobileAppTroubleshootingEvents", "mobileAppTroubleshootingEvents"),
-		resourceids.UserSpecifiedSegment("mobileAppTroubleshootingEventId", "mobileAppTroubleshootingEventIdValue"),
+		resourceids.UserSpecifiedSegment("mobileAppTroubleshootingEventId", "mobileAppTroubleshootingEventId"),
 		resourceids.StaticSegment("appLogCollectionRequests", "appLogCollectionRequests", "appLogCollectionRequests"),
-		resourceids.UserSpecifiedSegment("appLogCollectionRequestId", "appLogCollectionRequestIdValue"),
+		resourceids.UserSpecifiedSegment("appLogCollectionRequestId", "appLogCollectionRequestId"),
 	}
 }
 

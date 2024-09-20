@@ -17,15 +17,44 @@ type UpdateProfileLanguageOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateProfileLanguageOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateProfileLanguageOperationOptions() UpdateProfileLanguageOperationOptions {
+	return UpdateProfileLanguageOperationOptions{}
+}
+
+func (o UpdateProfileLanguageOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateProfileLanguageOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateProfileLanguageOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateProfileLanguage - Update the navigation property languages in users
-func (c ProfileLanguageClient) UpdateProfileLanguage(ctx context.Context, id beta.UserIdProfileLanguageId, input beta.LanguageProficiency) (result UpdateProfileLanguageOperationResponse, err error) {
+func (c ProfileLanguageClient) UpdateProfileLanguage(ctx context.Context, id beta.UserIdProfileLanguageId, input beta.LanguageProficiency, options UpdateProfileLanguageOperationOptions) (result UpdateProfileLanguageOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

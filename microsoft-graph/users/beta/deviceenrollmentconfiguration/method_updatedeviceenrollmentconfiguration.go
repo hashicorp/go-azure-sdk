@@ -17,15 +17,44 @@ type UpdateDeviceEnrollmentConfigurationOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateDeviceEnrollmentConfigurationOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateDeviceEnrollmentConfigurationOperationOptions() UpdateDeviceEnrollmentConfigurationOperationOptions {
+	return UpdateDeviceEnrollmentConfigurationOperationOptions{}
+}
+
+func (o UpdateDeviceEnrollmentConfigurationOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateDeviceEnrollmentConfigurationOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateDeviceEnrollmentConfigurationOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateDeviceEnrollmentConfiguration - Update the navigation property deviceEnrollmentConfigurations in users
-func (c DeviceEnrollmentConfigurationClient) UpdateDeviceEnrollmentConfiguration(ctx context.Context, id beta.UserIdDeviceEnrollmentConfigurationId, input beta.DeviceEnrollmentConfiguration) (result UpdateDeviceEnrollmentConfigurationOperationResponse, err error) {
+func (c DeviceEnrollmentConfigurationClient) UpdateDeviceEnrollmentConfiguration(ctx context.Context, id beta.UserIdDeviceEnrollmentConfigurationId, input beta.DeviceEnrollmentConfiguration, options UpdateDeviceEnrollmentConfigurationOperationOptions) (result UpdateDeviceEnrollmentConfigurationOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

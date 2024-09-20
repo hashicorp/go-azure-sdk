@@ -18,18 +18,47 @@ type CreateEntitlementManagementResourceRequestOperationResponse struct {
 	Model        *stable.AccessPackageResourceRequest
 }
 
+type CreateEntitlementManagementResourceRequestOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateEntitlementManagementResourceRequestOperationOptions() CreateEntitlementManagementResourceRequestOperationOptions {
+	return CreateEntitlementManagementResourceRequestOperationOptions{}
+}
+
+func (o CreateEntitlementManagementResourceRequestOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateEntitlementManagementResourceRequestOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateEntitlementManagementResourceRequestOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateEntitlementManagementResourceRequest - Create accessPackageResourceRequest. Create a new
 // accessPackageResourceRequest object to request the addition of a resource to an access package catalog, update of a
 // resource, or the removal of a resource from a catalog. A resource must be included in an access package catalog
 // before a role of that resource can be added to an access package.
-func (c EntitlementManagementResourceRequestClient) CreateEntitlementManagementResourceRequest(ctx context.Context, input stable.AccessPackageResourceRequest) (result CreateEntitlementManagementResourceRequestOperationResponse, err error) {
+func (c EntitlementManagementResourceRequestClient) CreateEntitlementManagementResourceRequest(ctx context.Context, input stable.AccessPackageResourceRequest, options CreateEntitlementManagementResourceRequestOperationOptions) (result CreateEntitlementManagementResourceRequestOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/identityGovernance/entitlementManagement/resourceRequests",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/identityGovernance/entitlementManagement/resourceRequests",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

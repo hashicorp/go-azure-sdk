@@ -18,15 +18,44 @@ type ReplyConversationThreadPostOperationResponse struct {
 	OData        *odata.OData
 }
 
+type ReplyConversationThreadPostOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultReplyConversationThreadPostOperationOptions() ReplyConversationThreadPostOperationOptions {
+	return ReplyConversationThreadPostOperationOptions{}
+}
+
+func (o ReplyConversationThreadPostOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o ReplyConversationThreadPostOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o ReplyConversationThreadPostOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // ReplyConversationThreadPost - Invoke action reply
-func (c ConversationThreadPostClient) ReplyConversationThreadPost(ctx context.Context, id beta.GroupIdConversationIdThreadIdPostId, input ReplyConversationThreadPostRequest) (result ReplyConversationThreadPostOperationResponse, err error) {
+func (c ConversationThreadPostClient) ReplyConversationThreadPost(ctx context.Context, id beta.GroupIdConversationIdThreadIdPostId, input ReplyConversationThreadPostRequest, options ReplyConversationThreadPostOperationOptions) (result ReplyConversationThreadPostOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/reply", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/reply", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

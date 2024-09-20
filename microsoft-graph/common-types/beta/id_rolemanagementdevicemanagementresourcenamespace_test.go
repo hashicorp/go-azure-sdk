@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &RoleManagementDeviceManagementResourceNamespaceId{}
 
 func TestNewRoleManagementDeviceManagementResourceNamespaceID(t *testing.T) {
-	id := NewRoleManagementDeviceManagementResourceNamespaceID("unifiedRbacResourceNamespaceIdValue")
+	id := NewRoleManagementDeviceManagementResourceNamespaceID("unifiedRbacResourceNamespaceId")
 
-	if id.UnifiedRbacResourceNamespaceId != "unifiedRbacResourceNamespaceIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'UnifiedRbacResourceNamespaceId'", id.UnifiedRbacResourceNamespaceId, "unifiedRbacResourceNamespaceIdValue")
+	if id.UnifiedRbacResourceNamespaceId != "unifiedRbacResourceNamespaceId" {
+		t.Fatalf("Expected %q but got %q for Segment 'UnifiedRbacResourceNamespaceId'", id.UnifiedRbacResourceNamespaceId, "unifiedRbacResourceNamespaceId")
 	}
 }
 
 func TestFormatRoleManagementDeviceManagementResourceNamespaceID(t *testing.T) {
-	actual := NewRoleManagementDeviceManagementResourceNamespaceID("unifiedRbacResourceNamespaceIdValue").ID()
-	expected := "/roleManagement/deviceManagement/resourceNamespaces/unifiedRbacResourceNamespaceIdValue"
+	actual := NewRoleManagementDeviceManagementResourceNamespaceID("unifiedRbacResourceNamespaceId").ID()
+	expected := "/roleManagement/deviceManagement/resourceNamespaces/unifiedRbacResourceNamespaceId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -55,14 +55,14 @@ func TestParseRoleManagementDeviceManagementResourceNamespaceID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/roleManagement/deviceManagement/resourceNamespaces/unifiedRbacResourceNamespaceIdValue",
+			Input: "/roleManagement/deviceManagement/resourceNamespaces/unifiedRbacResourceNamespaceId",
 			Expected: &RoleManagementDeviceManagementResourceNamespaceId{
-				UnifiedRbacResourceNamespaceId: "unifiedRbacResourceNamespaceIdValue",
+				UnifiedRbacResourceNamespaceId: "unifiedRbacResourceNamespaceId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/roleManagement/deviceManagement/resourceNamespaces/unifiedRbacResourceNamespaceIdValue/extra",
+			Input: "/roleManagement/deviceManagement/resourceNamespaces/unifiedRbacResourceNamespaceId/extra",
 			Error: true,
 		},
 	}
@@ -131,26 +131,26 @@ func TestParseRoleManagementDeviceManagementResourceNamespaceIDInsensitively(t *
 		},
 		{
 			// Valid URI
-			Input: "/roleManagement/deviceManagement/resourceNamespaces/unifiedRbacResourceNamespaceIdValue",
+			Input: "/roleManagement/deviceManagement/resourceNamespaces/unifiedRbacResourceNamespaceId",
 			Expected: &RoleManagementDeviceManagementResourceNamespaceId{
-				UnifiedRbacResourceNamespaceId: "unifiedRbacResourceNamespaceIdValue",
+				UnifiedRbacResourceNamespaceId: "unifiedRbacResourceNamespaceId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/roleManagement/deviceManagement/resourceNamespaces/unifiedRbacResourceNamespaceIdValue/extra",
+			Input: "/roleManagement/deviceManagement/resourceNamespaces/unifiedRbacResourceNamespaceId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/rOlEmAnAgEmEnT/dEvIcEmAnAgEmEnT/rEsOuRcEnAmEsPaCeS/uNiFiEdRbAcReSoUrCeNaMeSpAcEiDvAlUe",
+			Input: "/rOlEmAnAgEmEnT/dEvIcEmAnAgEmEnT/rEsOuRcEnAmEsPaCeS/uNiFiEdRbAcReSoUrCeNaMeSpAcEiD",
 			Expected: &RoleManagementDeviceManagementResourceNamespaceId{
-				UnifiedRbacResourceNamespaceId: "uNiFiEdRbAcReSoUrCeNaMeSpAcEiDvAlUe",
+				UnifiedRbacResourceNamespaceId: "uNiFiEdRbAcReSoUrCeNaMeSpAcEiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/rOlEmAnAgEmEnT/dEvIcEmAnAgEmEnT/rEsOuRcEnAmEsPaCeS/uNiFiEdRbAcReSoUrCeNaMeSpAcEiDvAlUe/extra",
+			Input: "/rOlEmAnAgEmEnT/dEvIcEmAnAgEmEnT/rEsOuRcEnAmEsPaCeS/uNiFiEdRbAcReSoUrCeNaMeSpAcEiD/extra",
 			Error: true,
 		},
 	}

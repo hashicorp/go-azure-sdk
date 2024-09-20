@@ -68,16 +68,22 @@ func (s DeviceManagementConfigurationIntegerSettingValueTemplate) MarshalJSON() 
 var _ json.Unmarshaler = &DeviceManagementConfigurationIntegerSettingValueTemplate{}
 
 func (s *DeviceManagementConfigurationIntegerSettingValueTemplate) UnmarshalJSON(bytes []byte) error {
-	type alias DeviceManagementConfigurationIntegerSettingValueTemplate
-	var decoded alias
+
+	var decoded struct {
+		RecommendedValueDefinition *DeviceManagementConfigurationIntegerSettingValueDefinitionTemplate `json:"recommendedValueDefinition,omitempty"`
+		RequiredValueDefinition    *DeviceManagementConfigurationIntegerSettingValueDefinitionTemplate `json:"requiredValueDefinition,omitempty"`
+		ODataId                    *string                                                             `json:"@odata.id,omitempty"`
+		ODataType                  *string                                                             `json:"@odata.type,omitempty"`
+		SettingValueTemplateId     *string                                                             `json:"settingValueTemplateId,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into DeviceManagementConfigurationIntegerSettingValueTemplate: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
-	s.ODataId = decoded.ODataId
-	s.ODataType = decoded.ODataType
 	s.RecommendedValueDefinition = decoded.RecommendedValueDefinition
 	s.RequiredValueDefinition = decoded.RequiredValueDefinition
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
 	s.SettingValueTemplateId = decoded.SettingValueTemplateId
 
 	var temp map[string]json.RawMessage
@@ -92,5 +98,6 @@ func (s *DeviceManagementConfigurationIntegerSettingValueTemplate) UnmarshalJSON
 		}
 		s.DefaultValue = impl
 	}
+
 	return nil
 }

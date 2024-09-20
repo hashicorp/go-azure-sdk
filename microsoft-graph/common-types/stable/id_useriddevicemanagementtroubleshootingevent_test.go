@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &UserIdDeviceManagementTroubleshootingEventId{}
 
 func TestNewUserIdDeviceManagementTroubleshootingEventID(t *testing.T) {
-	id := NewUserIdDeviceManagementTroubleshootingEventID("userIdValue", "deviceManagementTroubleshootingEventIdValue")
+	id := NewUserIdDeviceManagementTroubleshootingEventID("userId", "deviceManagementTroubleshootingEventId")
 
-	if id.UserId != "userIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'UserId'", id.UserId, "userIdValue")
+	if id.UserId != "userId" {
+		t.Fatalf("Expected %q but got %q for Segment 'UserId'", id.UserId, "userId")
 	}
 
-	if id.DeviceManagementTroubleshootingEventId != "deviceManagementTroubleshootingEventIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DeviceManagementTroubleshootingEventId'", id.DeviceManagementTroubleshootingEventId, "deviceManagementTroubleshootingEventIdValue")
+	if id.DeviceManagementTroubleshootingEventId != "deviceManagementTroubleshootingEventId" {
+		t.Fatalf("Expected %q but got %q for Segment 'DeviceManagementTroubleshootingEventId'", id.DeviceManagementTroubleshootingEventId, "deviceManagementTroubleshootingEventId")
 	}
 }
 
 func TestFormatUserIdDeviceManagementTroubleshootingEventID(t *testing.T) {
-	actual := NewUserIdDeviceManagementTroubleshootingEventID("userIdValue", "deviceManagementTroubleshootingEventIdValue").ID()
-	expected := "/users/userIdValue/deviceManagementTroubleshootingEvents/deviceManagementTroubleshootingEventIdValue"
+	actual := NewUserIdDeviceManagementTroubleshootingEventID("userId", "deviceManagementTroubleshootingEventId").ID()
+	expected := "/users/userId/deviceManagementTroubleshootingEvents/deviceManagementTroubleshootingEventId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -49,25 +49,25 @@ func TestParseUserIdDeviceManagementTroubleshootingEventID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue",
+			Input: "/users/userId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/deviceManagementTroubleshootingEvents",
+			Input: "/users/userId/deviceManagementTroubleshootingEvents",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/users/userIdValue/deviceManagementTroubleshootingEvents/deviceManagementTroubleshootingEventIdValue",
+			Input: "/users/userId/deviceManagementTroubleshootingEvents/deviceManagementTroubleshootingEventId",
 			Expected: &UserIdDeviceManagementTroubleshootingEventId{
-				UserId:                                 "userIdValue",
-				DeviceManagementTroubleshootingEventId: "deviceManagementTroubleshootingEventIdValue",
+				UserId:                                 "userId",
+				DeviceManagementTroubleshootingEventId: "deviceManagementTroubleshootingEventId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/users/userIdValue/deviceManagementTroubleshootingEvents/deviceManagementTroubleshootingEventIdValue/extra",
+			Input: "/users/userId/deviceManagementTroubleshootingEvents/deviceManagementTroubleshootingEventId/extra",
 			Error: true,
 		},
 	}
@@ -120,48 +120,48 @@ func TestParseUserIdDeviceManagementTroubleshootingEventIDInsensitively(t *testi
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue",
+			Input: "/users/userId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe",
+			Input: "/uSeRs/uSeRiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/deviceManagementTroubleshootingEvents",
+			Input: "/users/userId/deviceManagementTroubleshootingEvents",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/dEvIcEmAnAgEmEnTtRoUbLeShOoTiNgEvEnTs",
+			Input: "/uSeRs/uSeRiD/dEvIcEmAnAgEmEnTtRoUbLeShOoTiNgEvEnTs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/users/userIdValue/deviceManagementTroubleshootingEvents/deviceManagementTroubleshootingEventIdValue",
+			Input: "/users/userId/deviceManagementTroubleshootingEvents/deviceManagementTroubleshootingEventId",
 			Expected: &UserIdDeviceManagementTroubleshootingEventId{
-				UserId:                                 "userIdValue",
-				DeviceManagementTroubleshootingEventId: "deviceManagementTroubleshootingEventIdValue",
+				UserId:                                 "userId",
+				DeviceManagementTroubleshootingEventId: "deviceManagementTroubleshootingEventId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/users/userIdValue/deviceManagementTroubleshootingEvents/deviceManagementTroubleshootingEventIdValue/extra",
+			Input: "/users/userId/deviceManagementTroubleshootingEvents/deviceManagementTroubleshootingEventId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/dEvIcEmAnAgEmEnTtRoUbLeShOoTiNgEvEnTs/dEvIcEmAnAgEmEnTtRoUbLeShOoTiNgEvEnTiDvAlUe",
+			Input: "/uSeRs/uSeRiD/dEvIcEmAnAgEmEnTtRoUbLeShOoTiNgEvEnTs/dEvIcEmAnAgEmEnTtRoUbLeShOoTiNgEvEnTiD",
 			Expected: &UserIdDeviceManagementTroubleshootingEventId{
-				UserId:                                 "uSeRiDvAlUe",
-				DeviceManagementTroubleshootingEventId: "dEvIcEmAnAgEmEnTtRoUbLeShOoTiNgEvEnTiDvAlUe",
+				UserId:                                 "uSeRiD",
+				DeviceManagementTroubleshootingEventId: "dEvIcEmAnAgEmEnTtRoUbLeShOoTiNgEvEnTiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/dEvIcEmAnAgEmEnTtRoUbLeShOoTiNgEvEnTs/dEvIcEmAnAgEmEnTtRoUbLeShOoTiNgEvEnTiDvAlUe/extra",
+			Input: "/uSeRs/uSeRiD/dEvIcEmAnAgEmEnTtRoUbLeShOoTiNgEvEnTs/dEvIcEmAnAgEmEnTtRoUbLeShOoTiNgEvEnTiD/extra",
 			Error: true,
 		},
 	}

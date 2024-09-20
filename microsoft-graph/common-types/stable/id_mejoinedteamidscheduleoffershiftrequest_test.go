@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &MeJoinedTeamIdScheduleOfferShiftRequestId{}
 
 func TestNewMeJoinedTeamIdScheduleOfferShiftRequestID(t *testing.T) {
-	id := NewMeJoinedTeamIdScheduleOfferShiftRequestID("teamIdValue", "offerShiftRequestIdValue")
+	id := NewMeJoinedTeamIdScheduleOfferShiftRequestID("teamId", "offerShiftRequestId")
 
-	if id.TeamId != "teamIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'TeamId'", id.TeamId, "teamIdValue")
+	if id.TeamId != "teamId" {
+		t.Fatalf("Expected %q but got %q for Segment 'TeamId'", id.TeamId, "teamId")
 	}
 
-	if id.OfferShiftRequestId != "offerShiftRequestIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'OfferShiftRequestId'", id.OfferShiftRequestId, "offerShiftRequestIdValue")
+	if id.OfferShiftRequestId != "offerShiftRequestId" {
+		t.Fatalf("Expected %q but got %q for Segment 'OfferShiftRequestId'", id.OfferShiftRequestId, "offerShiftRequestId")
 	}
 }
 
 func TestFormatMeJoinedTeamIdScheduleOfferShiftRequestID(t *testing.T) {
-	actual := NewMeJoinedTeamIdScheduleOfferShiftRequestID("teamIdValue", "offerShiftRequestIdValue").ID()
-	expected := "/me/joinedTeams/teamIdValue/schedule/offerShiftRequests/offerShiftRequestIdValue"
+	actual := NewMeJoinedTeamIdScheduleOfferShiftRequestID("teamId", "offerShiftRequestId").ID()
+	expected := "/me/joinedTeams/teamId/schedule/offerShiftRequests/offerShiftRequestId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -54,30 +54,30 @@ func TestParseMeJoinedTeamIdScheduleOfferShiftRequestID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/me/joinedTeams/teamIdValue",
+			Input: "/me/joinedTeams/teamId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/me/joinedTeams/teamIdValue/schedule",
+			Input: "/me/joinedTeams/teamId/schedule",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/me/joinedTeams/teamIdValue/schedule/offerShiftRequests",
+			Input: "/me/joinedTeams/teamId/schedule/offerShiftRequests",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/me/joinedTeams/teamIdValue/schedule/offerShiftRequests/offerShiftRequestIdValue",
+			Input: "/me/joinedTeams/teamId/schedule/offerShiftRequests/offerShiftRequestId",
 			Expected: &MeJoinedTeamIdScheduleOfferShiftRequestId{
-				TeamId:              "teamIdValue",
-				OfferShiftRequestId: "offerShiftRequestIdValue",
+				TeamId:              "teamId",
+				OfferShiftRequestId: "offerShiftRequestId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/joinedTeams/teamIdValue/schedule/offerShiftRequests/offerShiftRequestIdValue/extra",
+			Input: "/me/joinedTeams/teamId/schedule/offerShiftRequests/offerShiftRequestId/extra",
 			Error: true,
 		},
 	}
@@ -140,58 +140,58 @@ func TestParseMeJoinedTeamIdScheduleOfferShiftRequestIDInsensitively(t *testing.
 		},
 		{
 			// Incomplete URI
-			Input: "/me/joinedTeams/teamIdValue",
+			Input: "/me/joinedTeams/teamId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/jOiNeDtEaMs/tEaMiDvAlUe",
+			Input: "/mE/jOiNeDtEaMs/tEaMiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/me/joinedTeams/teamIdValue/schedule",
+			Input: "/me/joinedTeams/teamId/schedule",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/jOiNeDtEaMs/tEaMiDvAlUe/sChEdUlE",
+			Input: "/mE/jOiNeDtEaMs/tEaMiD/sChEdUlE",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/me/joinedTeams/teamIdValue/schedule/offerShiftRequests",
+			Input: "/me/joinedTeams/teamId/schedule/offerShiftRequests",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/jOiNeDtEaMs/tEaMiDvAlUe/sChEdUlE/oFfErShIfTrEqUeStS",
+			Input: "/mE/jOiNeDtEaMs/tEaMiD/sChEdUlE/oFfErShIfTrEqUeStS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/me/joinedTeams/teamIdValue/schedule/offerShiftRequests/offerShiftRequestIdValue",
+			Input: "/me/joinedTeams/teamId/schedule/offerShiftRequests/offerShiftRequestId",
 			Expected: &MeJoinedTeamIdScheduleOfferShiftRequestId{
-				TeamId:              "teamIdValue",
-				OfferShiftRequestId: "offerShiftRequestIdValue",
+				TeamId:              "teamId",
+				OfferShiftRequestId: "offerShiftRequestId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/joinedTeams/teamIdValue/schedule/offerShiftRequests/offerShiftRequestIdValue/extra",
+			Input: "/me/joinedTeams/teamId/schedule/offerShiftRequests/offerShiftRequestId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/jOiNeDtEaMs/tEaMiDvAlUe/sChEdUlE/oFfErShIfTrEqUeStS/oFfErShIfTrEqUeStIdVaLuE",
+			Input: "/mE/jOiNeDtEaMs/tEaMiD/sChEdUlE/oFfErShIfTrEqUeStS/oFfErShIfTrEqUeStId",
 			Expected: &MeJoinedTeamIdScheduleOfferShiftRequestId{
-				TeamId:              "tEaMiDvAlUe",
-				OfferShiftRequestId: "oFfErShIfTrEqUeStIdVaLuE",
+				TeamId:              "tEaMiD",
+				OfferShiftRequestId: "oFfErShIfTrEqUeStId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/mE/jOiNeDtEaMs/tEaMiDvAlUe/sChEdUlE/oFfErShIfTrEqUeStS/oFfErShIfTrEqUeStIdVaLuE/extra",
+			Input: "/mE/jOiNeDtEaMs/tEaMiD/sChEdUlE/oFfErShIfTrEqUeStS/oFfErShIfTrEqUeStId/extra",
 			Error: true,
 		},
 	}

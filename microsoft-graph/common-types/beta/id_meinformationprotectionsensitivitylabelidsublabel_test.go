@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &MeInformationProtectionSensitivityLabelIdSublabelId{}
 
 func TestNewMeInformationProtectionSensitivityLabelIdSublabelID(t *testing.T) {
-	id := NewMeInformationProtectionSensitivityLabelIdSublabelID("sensitivityLabelIdValue", "sensitivityLabelId1Value")
+	id := NewMeInformationProtectionSensitivityLabelIdSublabelID("sensitivityLabelId", "sensitivityLabelId1")
 
-	if id.SensitivityLabelId != "sensitivityLabelIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'SensitivityLabelId'", id.SensitivityLabelId, "sensitivityLabelIdValue")
+	if id.SensitivityLabelId != "sensitivityLabelId" {
+		t.Fatalf("Expected %q but got %q for Segment 'SensitivityLabelId'", id.SensitivityLabelId, "sensitivityLabelId")
 	}
 
-	if id.SensitivityLabelId1 != "sensitivityLabelId1Value" {
-		t.Fatalf("Expected %q but got %q for Segment 'SensitivityLabelId1'", id.SensitivityLabelId1, "sensitivityLabelId1Value")
+	if id.SensitivityLabelId1 != "sensitivityLabelId1" {
+		t.Fatalf("Expected %q but got %q for Segment 'SensitivityLabelId1'", id.SensitivityLabelId1, "sensitivityLabelId1")
 	}
 }
 
 func TestFormatMeInformationProtectionSensitivityLabelIdSublabelID(t *testing.T) {
-	actual := NewMeInformationProtectionSensitivityLabelIdSublabelID("sensitivityLabelIdValue", "sensitivityLabelId1Value").ID()
-	expected := "/me/informationProtection/sensitivityLabels/sensitivityLabelIdValue/sublabels/sensitivityLabelId1Value"
+	actual := NewMeInformationProtectionSensitivityLabelIdSublabelID("sensitivityLabelId", "sensitivityLabelId1").ID()
+	expected := "/me/informationProtection/sensitivityLabels/sensitivityLabelId/sublabels/sensitivityLabelId1"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -59,25 +59,25 @@ func TestParseMeInformationProtectionSensitivityLabelIdSublabelID(t *testing.T) 
 		},
 		{
 			// Incomplete URI
-			Input: "/me/informationProtection/sensitivityLabels/sensitivityLabelIdValue",
+			Input: "/me/informationProtection/sensitivityLabels/sensitivityLabelId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/me/informationProtection/sensitivityLabels/sensitivityLabelIdValue/sublabels",
+			Input: "/me/informationProtection/sensitivityLabels/sensitivityLabelId/sublabels",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/me/informationProtection/sensitivityLabels/sensitivityLabelIdValue/sublabels/sensitivityLabelId1Value",
+			Input: "/me/informationProtection/sensitivityLabels/sensitivityLabelId/sublabels/sensitivityLabelId1",
 			Expected: &MeInformationProtectionSensitivityLabelIdSublabelId{
-				SensitivityLabelId:  "sensitivityLabelIdValue",
-				SensitivityLabelId1: "sensitivityLabelId1Value",
+				SensitivityLabelId:  "sensitivityLabelId",
+				SensitivityLabelId1: "sensitivityLabelId1",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/informationProtection/sensitivityLabels/sensitivityLabelIdValue/sublabels/sensitivityLabelId1Value/extra",
+			Input: "/me/informationProtection/sensitivityLabels/sensitivityLabelId/sublabels/sensitivityLabelId1/extra",
 			Error: true,
 		},
 	}
@@ -150,48 +150,48 @@ func TestParseMeInformationProtectionSensitivityLabelIdSublabelIDInsensitively(t
 		},
 		{
 			// Incomplete URI
-			Input: "/me/informationProtection/sensitivityLabels/sensitivityLabelIdValue",
+			Input: "/me/informationProtection/sensitivityLabels/sensitivityLabelId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/iNfOrMaTiOnPrOtEcTiOn/sEnSiTiViTyLaBeLs/sEnSiTiViTyLaBeLiDvAlUe",
+			Input: "/mE/iNfOrMaTiOnPrOtEcTiOn/sEnSiTiViTyLaBeLs/sEnSiTiViTyLaBeLiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/me/informationProtection/sensitivityLabels/sensitivityLabelIdValue/sublabels",
+			Input: "/me/informationProtection/sensitivityLabels/sensitivityLabelId/sublabels",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/iNfOrMaTiOnPrOtEcTiOn/sEnSiTiViTyLaBeLs/sEnSiTiViTyLaBeLiDvAlUe/sUbLaBeLs",
+			Input: "/mE/iNfOrMaTiOnPrOtEcTiOn/sEnSiTiViTyLaBeLs/sEnSiTiViTyLaBeLiD/sUbLaBeLs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/me/informationProtection/sensitivityLabels/sensitivityLabelIdValue/sublabels/sensitivityLabelId1Value",
+			Input: "/me/informationProtection/sensitivityLabels/sensitivityLabelId/sublabels/sensitivityLabelId1",
 			Expected: &MeInformationProtectionSensitivityLabelIdSublabelId{
-				SensitivityLabelId:  "sensitivityLabelIdValue",
-				SensitivityLabelId1: "sensitivityLabelId1Value",
+				SensitivityLabelId:  "sensitivityLabelId",
+				SensitivityLabelId1: "sensitivityLabelId1",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/informationProtection/sensitivityLabels/sensitivityLabelIdValue/sublabels/sensitivityLabelId1Value/extra",
+			Input: "/me/informationProtection/sensitivityLabels/sensitivityLabelId/sublabels/sensitivityLabelId1/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/iNfOrMaTiOnPrOtEcTiOn/sEnSiTiViTyLaBeLs/sEnSiTiViTyLaBeLiDvAlUe/sUbLaBeLs/sEnSiTiViTyLaBeLiD1VaLuE",
+			Input: "/mE/iNfOrMaTiOnPrOtEcTiOn/sEnSiTiViTyLaBeLs/sEnSiTiViTyLaBeLiD/sUbLaBeLs/sEnSiTiViTyLaBeLiD1",
 			Expected: &MeInformationProtectionSensitivityLabelIdSublabelId{
-				SensitivityLabelId:  "sEnSiTiViTyLaBeLiDvAlUe",
-				SensitivityLabelId1: "sEnSiTiViTyLaBeLiD1VaLuE",
+				SensitivityLabelId:  "sEnSiTiViTyLaBeLiD",
+				SensitivityLabelId1: "sEnSiTiViTyLaBeLiD1",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/mE/iNfOrMaTiOnPrOtEcTiOn/sEnSiTiViTyLaBeLs/sEnSiTiViTyLaBeLiDvAlUe/sUbLaBeLs/sEnSiTiViTyLaBeLiD1VaLuE/extra",
+			Input: "/mE/iNfOrMaTiOnPrOtEcTiOn/sEnSiTiViTyLaBeLs/sEnSiTiViTyLaBeLiD/sUbLaBeLs/sEnSiTiViTyLaBeLiD1/extra",
 			Error: true,
 		},
 	}

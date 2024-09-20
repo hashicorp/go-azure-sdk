@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &UserIdProfileCertificationId{}
 
 func TestNewUserIdProfileCertificationID(t *testing.T) {
-	id := NewUserIdProfileCertificationID("userIdValue", "personCertificationIdValue")
+	id := NewUserIdProfileCertificationID("userId", "personCertificationId")
 
-	if id.UserId != "userIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'UserId'", id.UserId, "userIdValue")
+	if id.UserId != "userId" {
+		t.Fatalf("Expected %q but got %q for Segment 'UserId'", id.UserId, "userId")
 	}
 
-	if id.PersonCertificationId != "personCertificationIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'PersonCertificationId'", id.PersonCertificationId, "personCertificationIdValue")
+	if id.PersonCertificationId != "personCertificationId" {
+		t.Fatalf("Expected %q but got %q for Segment 'PersonCertificationId'", id.PersonCertificationId, "personCertificationId")
 	}
 }
 
 func TestFormatUserIdProfileCertificationID(t *testing.T) {
-	actual := NewUserIdProfileCertificationID("userIdValue", "personCertificationIdValue").ID()
-	expected := "/users/userIdValue/profile/certifications/personCertificationIdValue"
+	actual := NewUserIdProfileCertificationID("userId", "personCertificationId").ID()
+	expected := "/users/userId/profile/certifications/personCertificationId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -49,30 +49,30 @@ func TestParseUserIdProfileCertificationID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue",
+			Input: "/users/userId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/profile",
+			Input: "/users/userId/profile",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/profile/certifications",
+			Input: "/users/userId/profile/certifications",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/users/userIdValue/profile/certifications/personCertificationIdValue",
+			Input: "/users/userId/profile/certifications/personCertificationId",
 			Expected: &UserIdProfileCertificationId{
-				UserId:                "userIdValue",
-				PersonCertificationId: "personCertificationIdValue",
+				UserId:                "userId",
+				PersonCertificationId: "personCertificationId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/users/userIdValue/profile/certifications/personCertificationIdValue/extra",
+			Input: "/users/userId/profile/certifications/personCertificationId/extra",
 			Error: true,
 		},
 	}
@@ -125,58 +125,58 @@ func TestParseUserIdProfileCertificationIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue",
+			Input: "/users/userId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe",
+			Input: "/uSeRs/uSeRiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/profile",
+			Input: "/users/userId/profile",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/pRoFiLe",
+			Input: "/uSeRs/uSeRiD/pRoFiLe",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/profile/certifications",
+			Input: "/users/userId/profile/certifications",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/pRoFiLe/cErTiFiCaTiOnS",
+			Input: "/uSeRs/uSeRiD/pRoFiLe/cErTiFiCaTiOnS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/users/userIdValue/profile/certifications/personCertificationIdValue",
+			Input: "/users/userId/profile/certifications/personCertificationId",
 			Expected: &UserIdProfileCertificationId{
-				UserId:                "userIdValue",
-				PersonCertificationId: "personCertificationIdValue",
+				UserId:                "userId",
+				PersonCertificationId: "personCertificationId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/users/userIdValue/profile/certifications/personCertificationIdValue/extra",
+			Input: "/users/userId/profile/certifications/personCertificationId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/pRoFiLe/cErTiFiCaTiOnS/pErSoNcErTiFiCaTiOnIdVaLuE",
+			Input: "/uSeRs/uSeRiD/pRoFiLe/cErTiFiCaTiOnS/pErSoNcErTiFiCaTiOnId",
 			Expected: &UserIdProfileCertificationId{
-				UserId:                "uSeRiDvAlUe",
-				PersonCertificationId: "pErSoNcErTiFiCaTiOnIdVaLuE",
+				UserId:                "uSeRiD",
+				PersonCertificationId: "pErSoNcErTiFiCaTiOnId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/pRoFiLe/cErTiFiCaTiOnS/pErSoNcErTiFiCaTiOnIdVaLuE/extra",
+			Input: "/uSeRs/uSeRiD/pRoFiLe/cErTiFiCaTiOnS/pErSoNcErTiFiCaTiOnId/extra",
 			Error: true,
 		},
 	}

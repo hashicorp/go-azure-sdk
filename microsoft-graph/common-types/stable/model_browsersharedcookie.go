@@ -94,10 +94,25 @@ func (s BrowserSharedCookie) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &BrowserSharedCookie{}
 
 func (s *BrowserSharedCookie) UnmarshalJSON(bytes []byte) error {
-	type alias BrowserSharedCookie
-	var decoded alias
+
+	var decoded struct {
+		Comment              *string                               `json:"comment,omitempty"`
+		CreatedDateTime      *string                               `json:"createdDateTime,omitempty"`
+		DeletedDateTime      nullable.Type[string]                 `json:"deletedDateTime,omitempty"`
+		DisplayName          *string                               `json:"displayName,omitempty"`
+		History              *[]BrowserSharedCookieHistory         `json:"history,omitempty"`
+		HostOnly             *bool                                 `json:"hostOnly,omitempty"`
+		HostOrDomain         *string                               `json:"hostOrDomain,omitempty"`
+		LastModifiedDateTime *string                               `json:"lastModifiedDateTime,omitempty"`
+		Path                 *string                               `json:"path,omitempty"`
+		SourceEnvironment    *BrowserSharedCookieSourceEnvironment `json:"sourceEnvironment,omitempty"`
+		Status               *BrowserSharedCookieStatus            `json:"status,omitempty"`
+		Id                   *string                               `json:"id,omitempty"`
+		ODataId              *string                               `json:"@odata.id,omitempty"`
+		ODataType            *string                               `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into BrowserSharedCookie: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.Comment = decoded.Comment
@@ -107,13 +122,13 @@ func (s *BrowserSharedCookie) UnmarshalJSON(bytes []byte) error {
 	s.History = decoded.History
 	s.HostOnly = decoded.HostOnly
 	s.HostOrDomain = decoded.HostOrDomain
-	s.Id = decoded.Id
 	s.LastModifiedDateTime = decoded.LastModifiedDateTime
-	s.ODataId = decoded.ODataId
-	s.ODataType = decoded.ODataType
 	s.Path = decoded.Path
 	s.SourceEnvironment = decoded.SourceEnvironment
 	s.Status = decoded.Status
+	s.Id = decoded.Id
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -127,5 +142,6 @@ func (s *BrowserSharedCookie) UnmarshalJSON(bytes []byte) error {
 		}
 		s.LastModifiedBy = impl
 	}
+
 	return nil
 }

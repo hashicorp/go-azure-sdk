@@ -114,22 +114,37 @@ func (s EmailFileAssessmentRequest) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &EmailFileAssessmentRequest{}
 
 func (s *EmailFileAssessmentRequest) UnmarshalJSON(bytes []byte) error {
-	type alias EmailFileAssessmentRequest
-	var decoded alias
+
+	var decoded struct {
+		ContentData              *string                        `json:"contentData,omitempty"`
+		DestinationRoutingReason *MailDestinationRoutingReason  `json:"destinationRoutingReason,omitempty"`
+		RecipientEmail           *string                        `json:"recipientEmail,omitempty"`
+		Category                 *ThreatCategory                `json:"category,omitempty"`
+		ContentType              *ThreatAssessmentContentType   `json:"contentType,omitempty"`
+		CreatedBy                IdentitySet                    `json:"createdBy"`
+		CreatedDateTime          nullable.Type[string]          `json:"createdDateTime,omitempty"`
+		ExpectedAssessment       *ThreatExpectedAssessment      `json:"expectedAssessment,omitempty"`
+		RequestSource            *ThreatAssessmentRequestSource `json:"requestSource,omitempty"`
+		Results                  *[]ThreatAssessmentResult      `json:"results,omitempty"`
+		Status                   *ThreatAssessmentStatus        `json:"status,omitempty"`
+		Id                       *string                        `json:"id,omitempty"`
+		ODataId                  *string                        `json:"@odata.id,omitempty"`
+		ODataType                *string                        `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into EmailFileAssessmentRequest: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
-	s.Category = decoded.Category
 	s.ContentData = decoded.ContentData
+	s.DestinationRoutingReason = decoded.DestinationRoutingReason
+	s.RecipientEmail = decoded.RecipientEmail
+	s.Category = decoded.Category
 	s.ContentType = decoded.ContentType
 	s.CreatedDateTime = decoded.CreatedDateTime
-	s.DestinationRoutingReason = decoded.DestinationRoutingReason
 	s.ExpectedAssessment = decoded.ExpectedAssessment
 	s.Id = decoded.Id
 	s.ODataId = decoded.ODataId
 	s.ODataType = decoded.ODataType
-	s.RecipientEmail = decoded.RecipientEmail
 	s.RequestSource = decoded.RequestSource
 	s.Results = decoded.Results
 	s.Status = decoded.Status
@@ -146,5 +161,6 @@ func (s *EmailFileAssessmentRequest) UnmarshalJSON(bytes []byte) error {
 		}
 		s.CreatedBy = impl
 	}
+
 	return nil
 }

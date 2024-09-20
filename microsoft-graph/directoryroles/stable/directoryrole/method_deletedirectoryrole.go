@@ -19,7 +19,8 @@ type DeleteDirectoryRoleOperationResponse struct {
 }
 
 type DeleteDirectoryRoleOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteDirectoryRoleOperationOptions() DeleteDirectoryRoleOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteDirectoryRoleOperationOptions) ToHeaders() *client.Headers {
 
 func (o DeleteDirectoryRoleOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

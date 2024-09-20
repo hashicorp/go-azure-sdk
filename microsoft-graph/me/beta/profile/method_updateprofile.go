@@ -17,15 +17,44 @@ type UpdateProfileOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateProfileOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateProfileOperationOptions() UpdateProfileOperationOptions {
+	return UpdateProfileOperationOptions{}
+}
+
+func (o UpdateProfileOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateProfileOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateProfileOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateProfile - Update the navigation property profile in me
-func (c ProfileClient) UpdateProfile(ctx context.Context, input beta.Profile) (result UpdateProfileOperationResponse, err error) {
+func (c ProfileClient) UpdateProfile(ctx context.Context, input beta.Profile, options UpdateProfileOperationOptions) (result UpdateProfileOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       "/me/profile",
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          "/me/profile",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -18,16 +18,45 @@ type CreateGroupPolicyUploadedDefinitionFileOperationResponse struct {
 	Model        *beta.GroupPolicyUploadedDefinitionFile
 }
 
+type CreateGroupPolicyUploadedDefinitionFileOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateGroupPolicyUploadedDefinitionFileOperationOptions() CreateGroupPolicyUploadedDefinitionFileOperationOptions {
+	return CreateGroupPolicyUploadedDefinitionFileOperationOptions{}
+}
+
+func (o CreateGroupPolicyUploadedDefinitionFileOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateGroupPolicyUploadedDefinitionFileOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateGroupPolicyUploadedDefinitionFileOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateGroupPolicyUploadedDefinitionFile - Create new navigation property to groupPolicyUploadedDefinitionFiles for
 // deviceManagement
-func (c GroupPolicyUploadedDefinitionFileClient) CreateGroupPolicyUploadedDefinitionFile(ctx context.Context, input beta.GroupPolicyUploadedDefinitionFile) (result CreateGroupPolicyUploadedDefinitionFileOperationResponse, err error) {
+func (c GroupPolicyUploadedDefinitionFileClient) CreateGroupPolicyUploadedDefinitionFile(ctx context.Context, input beta.GroupPolicyUploadedDefinitionFile, options CreateGroupPolicyUploadedDefinitionFileOperationOptions) (result CreateGroupPolicyUploadedDefinitionFileOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/deviceManagement/groupPolicyUploadedDefinitionFiles",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/deviceManagement/groupPolicyUploadedDefinitionFiles",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

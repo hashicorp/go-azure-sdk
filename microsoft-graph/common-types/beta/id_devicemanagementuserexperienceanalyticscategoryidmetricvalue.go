@@ -99,9 +99,9 @@ func (id DeviceManagementUserExperienceAnalyticsCategoryIdMetricValueId) Segment
 	return []resourceids.Segment{
 		resourceids.StaticSegment("deviceManagement", "deviceManagement", "deviceManagement"),
 		resourceids.StaticSegment("userExperienceAnalyticsCategories", "userExperienceAnalyticsCategories", "userExperienceAnalyticsCategories"),
-		resourceids.UserSpecifiedSegment("userExperienceAnalyticsCategoryId", "userExperienceAnalyticsCategoryIdValue"),
+		resourceids.UserSpecifiedSegment("userExperienceAnalyticsCategoryId", "userExperienceAnalyticsCategoryId"),
 		resourceids.StaticSegment("metricValues", "metricValues", "metricValues"),
-		resourceids.UserSpecifiedSegment("userExperienceAnalyticsMetricId", "userExperienceAnalyticsMetricIdValue"),
+		resourceids.UserSpecifiedSegment("userExperienceAnalyticsMetricId", "userExperienceAnalyticsMetricId"),
 	}
 }
 

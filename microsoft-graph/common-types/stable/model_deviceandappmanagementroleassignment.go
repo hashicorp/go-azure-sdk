@@ -90,16 +90,25 @@ func (s DeviceAndAppManagementRoleAssignment) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &DeviceAndAppManagementRoleAssignment{}
 
 func (s *DeviceAndAppManagementRoleAssignment) UnmarshalJSON(bytes []byte) error {
-	type alias DeviceAndAppManagementRoleAssignment
-	var decoded alias
+
+	var decoded struct {
+		Members        *[]string             `json:"members,omitempty"`
+		Description    nullable.Type[string] `json:"description,omitempty"`
+		DisplayName    nullable.Type[string] `json:"displayName,omitempty"`
+		ResourceScopes *[]string             `json:"resourceScopes,omitempty"`
+		RoleDefinition *RoleDefinition       `json:"roleDefinition,omitempty"`
+		Id             *string               `json:"id,omitempty"`
+		ODataId        *string               `json:"@odata.id,omitempty"`
+		ODataType      *string               `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into DeviceAndAppManagementRoleAssignment: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
+	s.Members = decoded.Members
 	s.Description = decoded.Description
 	s.DisplayName = decoded.DisplayName
 	s.Id = decoded.Id
-	s.Members = decoded.Members
 	s.ODataId = decoded.ODataId
 	s.ODataType = decoded.ODataType
 	s.ResourceScopes = decoded.ResourceScopes
@@ -116,5 +125,6 @@ func (s *DeviceAndAppManagementRoleAssignment) UnmarshalJSON(bytes []byte) error
 		}
 		s.RoleDefinition = &impl
 	}
+
 	return nil
 }

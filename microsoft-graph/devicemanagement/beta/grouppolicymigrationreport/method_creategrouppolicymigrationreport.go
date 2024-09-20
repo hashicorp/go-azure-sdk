@@ -18,15 +18,44 @@ type CreateGroupPolicyMigrationReportOperationResponse struct {
 	Model        *beta.GroupPolicyMigrationReport
 }
 
+type CreateGroupPolicyMigrationReportOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateGroupPolicyMigrationReportOperationOptions() CreateGroupPolicyMigrationReportOperationOptions {
+	return CreateGroupPolicyMigrationReportOperationOptions{}
+}
+
+func (o CreateGroupPolicyMigrationReportOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateGroupPolicyMigrationReportOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateGroupPolicyMigrationReportOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateGroupPolicyMigrationReport - Create new navigation property to groupPolicyMigrationReports for deviceManagement
-func (c GroupPolicyMigrationReportClient) CreateGroupPolicyMigrationReport(ctx context.Context, input beta.GroupPolicyMigrationReport) (result CreateGroupPolicyMigrationReportOperationResponse, err error) {
+func (c GroupPolicyMigrationReportClient) CreateGroupPolicyMigrationReport(ctx context.Context, input beta.GroupPolicyMigrationReport, options CreateGroupPolicyMigrationReportOperationOptions) (result CreateGroupPolicyMigrationReportOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/deviceManagement/groupPolicyMigrationReports",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/deviceManagement/groupPolicyMigrationReports",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

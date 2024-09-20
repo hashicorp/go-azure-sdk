@@ -141,10 +141,40 @@ func (s WindowsAutopilotDeviceIdentity) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &WindowsAutopilotDeviceIdentity{}
 
 func (s *WindowsAutopilotDeviceIdentity) UnmarshalJSON(bytes []byte) error {
-	type alias WindowsAutopilotDeviceIdentity
-	var decoded alias
+
+	var decoded struct {
+		AddressableUserName                       nullable.Type[string]                            `json:"addressableUserName,omitempty"`
+		AzureActiveDirectoryDeviceId              nullable.Type[string]                            `json:"azureActiveDirectoryDeviceId,omitempty"`
+		AzureAdDeviceId                           nullable.Type[string]                            `json:"azureAdDeviceId,omitempty"`
+		DeploymentProfileAssignedDateTime         *string                                          `json:"deploymentProfileAssignedDateTime,omitempty"`
+		DeploymentProfileAssignmentDetailedStatus *WindowsAutopilotProfileAssignmentDetailedStatus `json:"deploymentProfileAssignmentDetailedStatus,omitempty"`
+		DeploymentProfileAssignmentStatus         *WindowsAutopilotProfileAssignmentStatus         `json:"deploymentProfileAssignmentStatus,omitempty"`
+		DeviceAccountPassword                     nullable.Type[string]                            `json:"deviceAccountPassword,omitempty"`
+		DeviceAccountUpn                          nullable.Type[string]                            `json:"deviceAccountUpn,omitempty"`
+		DeviceFriendlyName                        nullable.Type[string]                            `json:"deviceFriendlyName,omitempty"`
+		DisplayName                               nullable.Type[string]                            `json:"displayName,omitempty"`
+		EnrollmentState                           *EnrollmentState                                 `json:"enrollmentState,omitempty"`
+		GroupTag                                  nullable.Type[string]                            `json:"groupTag,omitempty"`
+		LastContactedDateTime                     *string                                          `json:"lastContactedDateTime,omitempty"`
+		ManagedDeviceId                           nullable.Type[string]                            `json:"managedDeviceId,omitempty"`
+		Manufacturer                              nullable.Type[string]                            `json:"manufacturer,omitempty"`
+		Model                                     nullable.Type[string]                            `json:"model,omitempty"`
+		ProductKey                                nullable.Type[string]                            `json:"productKey,omitempty"`
+		PurchaseOrderIdentifier                   nullable.Type[string]                            `json:"purchaseOrderIdentifier,omitempty"`
+		RemediationState                          *WindowsAutopilotDeviceRemediationState          `json:"remediationState,omitempty"`
+		RemediationStateLastModifiedDateTime      *string                                          `json:"remediationStateLastModifiedDateTime,omitempty"`
+		ResourceName                              nullable.Type[string]                            `json:"resourceName,omitempty"`
+		SerialNumber                              nullable.Type[string]                            `json:"serialNumber,omitempty"`
+		SkuNumber                                 nullable.Type[string]                            `json:"skuNumber,omitempty"`
+		SystemFamily                              nullable.Type[string]                            `json:"systemFamily,omitempty"`
+		UserPrincipalName                         nullable.Type[string]                            `json:"userPrincipalName,omitempty"`
+		UserlessEnrollmentStatus                  *WindowsAutopilotUserlessEnrollmentStatus        `json:"userlessEnrollmentStatus,omitempty"`
+		Id                                        *string                                          `json:"id,omitempty"`
+		ODataId                                   *string                                          `json:"@odata.id,omitempty"`
+		ODataType                                 *string                                          `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into WindowsAutopilotDeviceIdentity: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.AddressableUserName = decoded.AddressableUserName
@@ -159,13 +189,10 @@ func (s *WindowsAutopilotDeviceIdentity) UnmarshalJSON(bytes []byte) error {
 	s.DisplayName = decoded.DisplayName
 	s.EnrollmentState = decoded.EnrollmentState
 	s.GroupTag = decoded.GroupTag
-	s.Id = decoded.Id
 	s.LastContactedDateTime = decoded.LastContactedDateTime
 	s.ManagedDeviceId = decoded.ManagedDeviceId
 	s.Manufacturer = decoded.Manufacturer
 	s.Model = decoded.Model
-	s.ODataId = decoded.ODataId
-	s.ODataType = decoded.ODataType
 	s.ProductKey = decoded.ProductKey
 	s.PurchaseOrderIdentifier = decoded.PurchaseOrderIdentifier
 	s.RemediationState = decoded.RemediationState
@@ -176,6 +203,9 @@ func (s *WindowsAutopilotDeviceIdentity) UnmarshalJSON(bytes []byte) error {
 	s.SystemFamily = decoded.SystemFamily
 	s.UserPrincipalName = decoded.UserPrincipalName
 	s.UserlessEnrollmentStatus = decoded.UserlessEnrollmentStatus
+	s.Id = decoded.Id
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -197,5 +227,6 @@ func (s *WindowsAutopilotDeviceIdentity) UnmarshalJSON(bytes []byte) error {
 		}
 		s.IntendedDeploymentProfile = &impl
 	}
+
 	return nil
 }

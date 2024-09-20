@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &MeOnenoteSectionGroupIdSectionId{}
 
 func TestNewMeOnenoteSectionGroupIdSectionID(t *testing.T) {
-	id := NewMeOnenoteSectionGroupIdSectionID("sectionGroupIdValue", "onenoteSectionIdValue")
+	id := NewMeOnenoteSectionGroupIdSectionID("sectionGroupId", "onenoteSectionId")
 
-	if id.SectionGroupId != "sectionGroupIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'SectionGroupId'", id.SectionGroupId, "sectionGroupIdValue")
+	if id.SectionGroupId != "sectionGroupId" {
+		t.Fatalf("Expected %q but got %q for Segment 'SectionGroupId'", id.SectionGroupId, "sectionGroupId")
 	}
 
-	if id.OnenoteSectionId != "onenoteSectionIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'OnenoteSectionId'", id.OnenoteSectionId, "onenoteSectionIdValue")
+	if id.OnenoteSectionId != "onenoteSectionId" {
+		t.Fatalf("Expected %q but got %q for Segment 'OnenoteSectionId'", id.OnenoteSectionId, "onenoteSectionId")
 	}
 }
 
 func TestFormatMeOnenoteSectionGroupIdSectionID(t *testing.T) {
-	actual := NewMeOnenoteSectionGroupIdSectionID("sectionGroupIdValue", "onenoteSectionIdValue").ID()
-	expected := "/me/onenote/sectionGroups/sectionGroupIdValue/sections/onenoteSectionIdValue"
+	actual := NewMeOnenoteSectionGroupIdSectionID("sectionGroupId", "onenoteSectionId").ID()
+	expected := "/me/onenote/sectionGroups/sectionGroupId/sections/onenoteSectionId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -59,25 +59,25 @@ func TestParseMeOnenoteSectionGroupIdSectionID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/me/onenote/sectionGroups/sectionGroupIdValue",
+			Input: "/me/onenote/sectionGroups/sectionGroupId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/me/onenote/sectionGroups/sectionGroupIdValue/sections",
+			Input: "/me/onenote/sectionGroups/sectionGroupId/sections",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/me/onenote/sectionGroups/sectionGroupIdValue/sections/onenoteSectionIdValue",
+			Input: "/me/onenote/sectionGroups/sectionGroupId/sections/onenoteSectionId",
 			Expected: &MeOnenoteSectionGroupIdSectionId{
-				SectionGroupId:   "sectionGroupIdValue",
-				OnenoteSectionId: "onenoteSectionIdValue",
+				SectionGroupId:   "sectionGroupId",
+				OnenoteSectionId: "onenoteSectionId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/onenote/sectionGroups/sectionGroupIdValue/sections/onenoteSectionIdValue/extra",
+			Input: "/me/onenote/sectionGroups/sectionGroupId/sections/onenoteSectionId/extra",
 			Error: true,
 		},
 	}
@@ -150,48 +150,48 @@ func TestParseMeOnenoteSectionGroupIdSectionIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/me/onenote/sectionGroups/sectionGroupIdValue",
+			Input: "/me/onenote/sectionGroups/sectionGroupId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/oNeNoTe/sEcTiOnGrOuPs/sEcTiOnGrOuPiDvAlUe",
+			Input: "/mE/oNeNoTe/sEcTiOnGrOuPs/sEcTiOnGrOuPiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/me/onenote/sectionGroups/sectionGroupIdValue/sections",
+			Input: "/me/onenote/sectionGroups/sectionGroupId/sections",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/oNeNoTe/sEcTiOnGrOuPs/sEcTiOnGrOuPiDvAlUe/sEcTiOnS",
+			Input: "/mE/oNeNoTe/sEcTiOnGrOuPs/sEcTiOnGrOuPiD/sEcTiOnS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/me/onenote/sectionGroups/sectionGroupIdValue/sections/onenoteSectionIdValue",
+			Input: "/me/onenote/sectionGroups/sectionGroupId/sections/onenoteSectionId",
 			Expected: &MeOnenoteSectionGroupIdSectionId{
-				SectionGroupId:   "sectionGroupIdValue",
-				OnenoteSectionId: "onenoteSectionIdValue",
+				SectionGroupId:   "sectionGroupId",
+				OnenoteSectionId: "onenoteSectionId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/onenote/sectionGroups/sectionGroupIdValue/sections/onenoteSectionIdValue/extra",
+			Input: "/me/onenote/sectionGroups/sectionGroupId/sections/onenoteSectionId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/oNeNoTe/sEcTiOnGrOuPs/sEcTiOnGrOuPiDvAlUe/sEcTiOnS/oNeNoTeSeCtIoNiDvAlUe",
+			Input: "/mE/oNeNoTe/sEcTiOnGrOuPs/sEcTiOnGrOuPiD/sEcTiOnS/oNeNoTeSeCtIoNiD",
 			Expected: &MeOnenoteSectionGroupIdSectionId{
-				SectionGroupId:   "sEcTiOnGrOuPiDvAlUe",
-				OnenoteSectionId: "oNeNoTeSeCtIoNiDvAlUe",
+				SectionGroupId:   "sEcTiOnGrOuPiD",
+				OnenoteSectionId: "oNeNoTeSeCtIoNiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/mE/oNeNoTe/sEcTiOnGrOuPs/sEcTiOnGrOuPiDvAlUe/sEcTiOnS/oNeNoTeSeCtIoNiDvAlUe/extra",
+			Input: "/mE/oNeNoTe/sEcTiOnGrOuPs/sEcTiOnGrOuPiD/sEcTiOnS/oNeNoTeSeCtIoNiD/extra",
 			Error: true,
 		},
 	}

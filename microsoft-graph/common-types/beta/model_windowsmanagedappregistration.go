@@ -154,10 +154,34 @@ func (s WindowsManagedAppRegistration) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &WindowsManagedAppRegistration{}
 
 func (s *WindowsManagedAppRegistration) UnmarshalJSON(bytes []byte) error {
-	type alias WindowsManagedAppRegistration
-	var decoded alias
+
+	var decoded struct {
+		AppIdentifier                   MobileAppIdentifier               `json:"appIdentifier"`
+		ApplicationVersion              nullable.Type[string]             `json:"applicationVersion,omitempty"`
+		AppliedPolicies                 *[]ManagedAppPolicy               `json:"appliedPolicies,omitempty"`
+		AzureADDeviceId                 nullable.Type[string]             `json:"azureADDeviceId,omitempty"`
+		CreatedDateTime                 *string                           `json:"createdDateTime,omitempty"`
+		DeviceManufacturer              nullable.Type[string]             `json:"deviceManufacturer,omitempty"`
+		DeviceModel                     nullable.Type[string]             `json:"deviceModel,omitempty"`
+		DeviceName                      nullable.Type[string]             `json:"deviceName,omitempty"`
+		DeviceTag                       nullable.Type[string]             `json:"deviceTag,omitempty"`
+		DeviceType                      nullable.Type[string]             `json:"deviceType,omitempty"`
+		FlaggedReasons                  *[]ManagedAppFlaggedReason        `json:"flaggedReasons,omitempty"`
+		IntendedPolicies                *[]ManagedAppPolicy               `json:"intendedPolicies,omitempty"`
+		LastSyncDateTime                *string                           `json:"lastSyncDateTime,omitempty"`
+		ManagedAppLogCollectionRequests *[]ManagedAppLogCollectionRequest `json:"managedAppLogCollectionRequests,omitempty"`
+		ManagedDeviceId                 nullable.Type[string]             `json:"managedDeviceId,omitempty"`
+		ManagementSdkVersion            nullable.Type[string]             `json:"managementSdkVersion,omitempty"`
+		Operations                      *[]ManagedAppOperation            `json:"operations,omitempty"`
+		PlatformVersion                 nullable.Type[string]             `json:"platformVersion,omitempty"`
+		UserId                          nullable.Type[string]             `json:"userId,omitempty"`
+		Version                         nullable.Type[string]             `json:"version,omitempty"`
+		Id                              *string                           `json:"id,omitempty"`
+		ODataId                         *string                           `json:"@odata.id,omitempty"`
+		ODataType                       *string                           `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into WindowsManagedAppRegistration: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.ApplicationVersion = decoded.ApplicationVersion
@@ -227,5 +251,6 @@ func (s *WindowsManagedAppRegistration) UnmarshalJSON(bytes []byte) error {
 		}
 		s.IntendedPolicies = &output
 	}
+
 	return nil
 }

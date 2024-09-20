@@ -25,8 +25,9 @@ type ListDriveListItemPermissionGrantsCompleteResult struct {
 }
 
 type ListDriveListItemPermissionGrantsOperationOptions struct {
-	Skip *int64
-	Top  *int64
+	Metadata *odata.Metadata
+	Skip     *int64
+	Top      *int64
 }
 
 func DefaultListDriveListItemPermissionGrantsOperationOptions() ListDriveListItemPermissionGrantsOperationOptions {
@@ -41,6 +42,9 @@ func (o ListDriveListItemPermissionGrantsOperationOptions) ToHeaders() *client.H
 
 func (o ListDriveListItemPermissionGrantsOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	if o.Skip != nil {
 		out.Skip = int(*o.Skip)
 	}

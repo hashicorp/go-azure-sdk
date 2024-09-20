@@ -19,7 +19,8 @@ type DeletePendingExternalUserProfileOperationResponse struct {
 }
 
 type DeletePendingExternalUserProfileOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeletePendingExternalUserProfileOperationOptions() DeletePendingExternalUserProfileOperationOptions {
@@ -36,7 +37,9 @@ func (o DeletePendingExternalUserProfileOperationOptions) ToHeaders() *client.He
 
 func (o DeletePendingExternalUserProfileOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

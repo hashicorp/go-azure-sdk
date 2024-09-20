@@ -94,10 +94,19 @@ func (s SecretInformationAccessAwsUserFinding) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &SecretInformationAccessAwsUserFinding{}
 
 func (s *SecretInformationAccessAwsUserFinding) UnmarshalJSON(bytes []byte) error {
-	type alias SecretInformationAccessAwsUserFinding
-	var decoded alias
+
+	var decoded struct {
+		Identity                     *AuthorizationSystemIdentity     `json:"identity,omitempty"`
+		IdentityDetails              *IdentityDetails                 `json:"identityDetails,omitempty"`
+		PermissionsCreepIndex        *PermissionsCreepIndex           `json:"permissionsCreepIndex,omitempty"`
+		SecretInformationWebServices *AwsSecretInformationWebServices `json:"secretInformationWebServices,omitempty"`
+		CreatedDateTime              *string                          `json:"createdDateTime,omitempty"`
+		Id                           *string                          `json:"id,omitempty"`
+		ODataId                      *string                          `json:"@odata.id,omitempty"`
+		ODataType                    *string                          `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into SecretInformationAccessAwsUserFinding: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.CreatedDateTime = decoded.CreatedDateTime
@@ -120,5 +129,6 @@ func (s *SecretInformationAccessAwsUserFinding) UnmarshalJSON(bytes []byte) erro
 		}
 		s.Identity = &impl
 	}
+
 	return nil
 }

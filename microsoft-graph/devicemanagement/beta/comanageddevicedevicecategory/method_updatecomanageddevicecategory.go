@@ -18,15 +18,44 @@ type UpdateComanagedDeviceCategoryOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateComanagedDeviceCategoryOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateComanagedDeviceCategoryOperationOptions() UpdateComanagedDeviceCategoryOperationOptions {
+	return UpdateComanagedDeviceCategoryOperationOptions{}
+}
+
+func (o UpdateComanagedDeviceCategoryOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateComanagedDeviceCategoryOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateComanagedDeviceCategoryOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateComanagedDeviceCategory - Update the navigation property deviceCategory in deviceManagement
-func (c ComanagedDeviceDeviceCategoryClient) UpdateComanagedDeviceCategory(ctx context.Context, id beta.DeviceManagementComanagedDeviceId, input beta.DeviceCategory) (result UpdateComanagedDeviceCategoryOperationResponse, err error) {
+func (c ComanagedDeviceDeviceCategoryClient) UpdateComanagedDeviceCategory(ctx context.Context, id beta.DeviceManagementComanagedDeviceId, input beta.DeviceCategory, options UpdateComanagedDeviceCategoryOperationOptions) (result UpdateComanagedDeviceCategoryOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       fmt.Sprintf("%s/deviceCategory", id.ID()),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/deviceCategory", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

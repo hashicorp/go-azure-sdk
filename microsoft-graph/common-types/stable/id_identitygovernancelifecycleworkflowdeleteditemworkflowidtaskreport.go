@@ -101,9 +101,9 @@ func (id IdentityGovernanceLifecycleWorkflowDeletedItemWorkflowIdTaskReportId) S
 		resourceids.StaticSegment("lifecycleWorkflows", "lifecycleWorkflows", "lifecycleWorkflows"),
 		resourceids.StaticSegment("deletedItems", "deletedItems", "deletedItems"),
 		resourceids.StaticSegment("workflows", "workflows", "workflows"),
-		resourceids.UserSpecifiedSegment("workflowId", "workflowIdValue"),
+		resourceids.UserSpecifiedSegment("workflowId", "workflowId"),
 		resourceids.StaticSegment("taskReports", "taskReports", "taskReports"),
-		resourceids.UserSpecifiedSegment("taskReportId", "taskReportIdValue"),
+		resourceids.UserSpecifiedSegment("taskReportId", "taskReportId"),
 	}
 }
 

@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/microsoft-graph/directory/beta/recommendation` Documentation
 
-The `recommendation` SDK allows for interaction with the Azure Resource Manager Service `directory` (API Version `beta`).
+The `recommendation` SDK allows for interaction with Microsoft Graph `directory` (API Version `beta`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -15,7 +15,7 @@ import "github.com/hashicorp/go-azure-sdk/microsoft-graph/directory/beta/recomme
 ### Client Initialization
 
 ```go
-client := recommendation.NewRecommendationClientWithBaseURI("https://management.azure.com")
+client := recommendation.NewRecommendationClientWithBaseURI("https://graph.microsoft.com")
 client.Client.Authorizer = authorizer
 ```
 
@@ -30,7 +30,7 @@ payload := recommendation.Recommendation{
 }
 
 
-read, err := client.CreateRecommendation(ctx, payload)
+read, err := client.CreateRecommendation(ctx, payload, recommendation.DefaultCreateRecommendationOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -44,9 +44,9 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := recommendation.NewDirectoryRecommendationID("recommendationIdValue")
+id := recommendation.NewDirectoryRecommendationID("recommendationId")
 
-read, err := client.CreateRecommendationComplete(ctx, id)
+read, err := client.CreateRecommendationComplete(ctx, id, recommendation.DefaultCreateRecommendationCompleteOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -60,14 +60,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := recommendation.NewDirectoryRecommendationID("recommendationIdValue")
+id := recommendation.NewDirectoryRecommendationID("recommendationId")
 
 payload := recommendation.CreateRecommendationPostponeRequest{
 	// ...
 }
 
 
-read, err := client.CreateRecommendationPostpone(ctx, id, payload)
+read, err := client.CreateRecommendationPostpone(ctx, id, payload, recommendation.DefaultCreateRecommendationPostponeOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -81,9 +81,9 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := recommendation.NewDirectoryRecommendationID("recommendationIdValue")
+id := recommendation.NewDirectoryRecommendationID("recommendationId")
 
-read, err := client.CreateRecommendationReactivate(ctx, id)
+read, err := client.CreateRecommendationReactivate(ctx, id, recommendation.DefaultCreateRecommendationReactivateOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -97,7 +97,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := recommendation.NewDirectoryRecommendationID("recommendationIdValue")
+id := recommendation.NewDirectoryRecommendationID("recommendationId")
 
 read, err := client.DeleteRecommendation(ctx, id, recommendation.DefaultDeleteRecommendationOperationOptions())
 if err != nil {
@@ -113,14 +113,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := recommendation.NewDirectoryRecommendationID("recommendationIdValue")
+id := recommendation.NewDirectoryRecommendationID("recommendationId")
 
 payload := recommendation.DismissRecommendationRequest{
 	// ...
 }
 
 
-read, err := client.DismissRecommendation(ctx, id, payload)
+read, err := client.DismissRecommendation(ctx, id, payload, recommendation.DefaultDismissRecommendationOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -134,7 +134,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := recommendation.NewDirectoryRecommendationID("recommendationIdValue")
+id := recommendation.NewDirectoryRecommendationID("recommendationId")
 
 read, err := client.GetRecommendation(ctx, id, recommendation.DefaultGetRecommendationOperationOptions())
 if err != nil {
@@ -183,14 +183,14 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := recommendation.NewDirectoryRecommendationID("recommendationIdValue")
+id := recommendation.NewDirectoryRecommendationID("recommendationId")
 
 payload := recommendation.Recommendation{
 	// ...
 }
 
 
-read, err := client.UpdateRecommendation(ctx, id, payload)
+read, err := client.UpdateRecommendation(ctx, id, payload, recommendation.DefaultUpdateRecommendationOperationOptions())
 if err != nil {
 	// handle the error
 }

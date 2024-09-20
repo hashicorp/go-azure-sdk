@@ -17,15 +17,44 @@ type UpdateUserOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateUserOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateUserOperationOptions() UpdateUserOperationOptions {
+	return UpdateUserOperationOptions{}
+}
+
+func (o UpdateUserOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateUserOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateUserOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateUser - Update user. Update the properties of a user object.
-func (c UserClient) UpdateUser(ctx context.Context, id beta.UserId, input beta.User) (result UpdateUserOperationResponse, err error) {
+func (c UserClient) UpdateUser(ctx context.Context, id beta.UserId, input beta.User, options UpdateUserOperationOptions) (result UpdateUserOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

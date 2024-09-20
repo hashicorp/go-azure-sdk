@@ -19,7 +19,8 @@ type DeleteOnPremisesSynchronizationOperationResponse struct {
 }
 
 type DeleteOnPremisesSynchronizationOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteOnPremisesSynchronizationOperationOptions() DeleteOnPremisesSynchronizationOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteOnPremisesSynchronizationOperationOptions) ToHeaders() *client.Hea
 
 func (o DeleteOnPremisesSynchronizationOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

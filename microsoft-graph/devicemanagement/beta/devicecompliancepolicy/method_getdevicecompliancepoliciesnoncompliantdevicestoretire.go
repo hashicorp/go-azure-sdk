@@ -17,15 +17,44 @@ type GetDeviceCompliancePoliciesNoncompliantDevicesToRetireOperationResponse str
 	Model        *[]byte
 }
 
+type GetDeviceCompliancePoliciesNoncompliantDevicesToRetireOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultGetDeviceCompliancePoliciesNoncompliantDevicesToRetireOperationOptions() GetDeviceCompliancePoliciesNoncompliantDevicesToRetireOperationOptions {
+	return GetDeviceCompliancePoliciesNoncompliantDevicesToRetireOperationOptions{}
+}
+
+func (o GetDeviceCompliancePoliciesNoncompliantDevicesToRetireOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o GetDeviceCompliancePoliciesNoncompliantDevicesToRetireOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o GetDeviceCompliancePoliciesNoncompliantDevicesToRetireOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // GetDeviceCompliancePoliciesNoncompliantDevicesToRetire - Invoke action getNoncompliantDevicesToRetire
-func (c DeviceCompliancePolicyClient) GetDeviceCompliancePoliciesNoncompliantDevicesToRetire(ctx context.Context, input GetDeviceCompliancePoliciesNoncompliantDevicesToRetireRequest) (result GetDeviceCompliancePoliciesNoncompliantDevicesToRetireOperationResponse, err error) {
+func (c DeviceCompliancePolicyClient) GetDeviceCompliancePoliciesNoncompliantDevicesToRetire(ctx context.Context, input GetDeviceCompliancePoliciesNoncompliantDevicesToRetireRequest, options GetDeviceCompliancePoliciesNoncompliantDevicesToRetireOperationOptions) (result GetDeviceCompliancePoliciesNoncompliantDevicesToRetireOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/octet-stream",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/deviceManagement/deviceCompliancePolicies/getNoncompliantDevicesToRetire",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/deviceManagement/deviceCompliancePolicies/getNoncompliantDevicesToRetire",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

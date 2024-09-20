@@ -17,15 +17,44 @@ type UpdateRoleManagementPolicyEffectiveRuleOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateRoleManagementPolicyEffectiveRuleOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateRoleManagementPolicyEffectiveRuleOperationOptions() UpdateRoleManagementPolicyEffectiveRuleOperationOptions {
+	return UpdateRoleManagementPolicyEffectiveRuleOperationOptions{}
+}
+
+func (o UpdateRoleManagementPolicyEffectiveRuleOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateRoleManagementPolicyEffectiveRuleOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateRoleManagementPolicyEffectiveRuleOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateRoleManagementPolicyEffectiveRule - Update the navigation property effectiveRules in policies
-func (c RoleManagementPolicyEffectiveRuleClient) UpdateRoleManagementPolicyEffectiveRule(ctx context.Context, id stable.PolicyRoleManagementPolicyIdEffectiveRuleId, input stable.UnifiedRoleManagementPolicyRule) (result UpdateRoleManagementPolicyEffectiveRuleOperationResponse, err error) {
+func (c RoleManagementPolicyEffectiveRuleClient) UpdateRoleManagementPolicyEffectiveRule(ctx context.Context, id stable.PolicyRoleManagementPolicyIdEffectiveRuleId, input stable.UnifiedRoleManagementPolicyRule, options UpdateRoleManagementPolicyEffectiveRuleOperationOptions) (result UpdateRoleManagementPolicyEffectiveRuleOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

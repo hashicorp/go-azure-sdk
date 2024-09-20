@@ -18,15 +18,44 @@ type CreateReusablePolicySettingReferencingConfigurationPolicyReorderOperationRe
 	OData        *odata.OData
 }
 
+type CreateReusablePolicySettingReferencingConfigurationPolicyReorderOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateReusablePolicySettingReferencingConfigurationPolicyReorderOperationOptions() CreateReusablePolicySettingReferencingConfigurationPolicyReorderOperationOptions {
+	return CreateReusablePolicySettingReferencingConfigurationPolicyReorderOperationOptions{}
+}
+
+func (o CreateReusablePolicySettingReferencingConfigurationPolicyReorderOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateReusablePolicySettingReferencingConfigurationPolicyReorderOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateReusablePolicySettingReferencingConfigurationPolicyReorderOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateReusablePolicySettingReferencingConfigurationPolicyReorder - Invoke action reorder
-func (c ReusablePolicySettingReferencingConfigurationPolicyClient) CreateReusablePolicySettingReferencingConfigurationPolicyReorder(ctx context.Context, id beta.DeviceManagementReusablePolicySettingIdReferencingConfigurationPolicyId, input CreateReusablePolicySettingReferencingConfigurationPolicyReorderRequest) (result CreateReusablePolicySettingReferencingConfigurationPolicyReorderOperationResponse, err error) {
+func (c ReusablePolicySettingReferencingConfigurationPolicyClient) CreateReusablePolicySettingReferencingConfigurationPolicyReorder(ctx context.Context, id beta.DeviceManagementReusablePolicySettingIdReferencingConfigurationPolicyId, input CreateReusablePolicySettingReferencingConfigurationPolicyReorderRequest, options CreateReusablePolicySettingReferencingConfigurationPolicyReorderOperationOptions) (result CreateReusablePolicySettingReferencingConfigurationPolicyReorderOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/reorder", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/reorder", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

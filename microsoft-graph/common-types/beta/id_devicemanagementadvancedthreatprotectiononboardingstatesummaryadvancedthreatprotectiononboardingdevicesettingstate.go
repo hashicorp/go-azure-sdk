@@ -94,7 +94,7 @@ func (id DeviceManagementAdvancedThreatProtectionOnboardingStateSummaryAdvancedT
 		resourceids.StaticSegment("deviceManagement", "deviceManagement", "deviceManagement"),
 		resourceids.StaticSegment("advancedThreatProtectionOnboardingStateSummary", "advancedThreatProtectionOnboardingStateSummary", "advancedThreatProtectionOnboardingStateSummary"),
 		resourceids.StaticSegment("advancedThreatProtectionOnboardingDeviceSettingStates", "advancedThreatProtectionOnboardingDeviceSettingStates", "advancedThreatProtectionOnboardingDeviceSettingStates"),
-		resourceids.UserSpecifiedSegment("advancedThreatProtectionOnboardingDeviceSettingStateId", "advancedThreatProtectionOnboardingDeviceSettingStateIdValue"),
+		resourceids.UserSpecifiedSegment("advancedThreatProtectionOnboardingDeviceSettingStateId", "advancedThreatProtectionOnboardingDeviceSettingStateId"),
 	}
 }
 

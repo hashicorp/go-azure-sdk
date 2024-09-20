@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/chatmessage` Documentation
 
-The `chatmessage` SDK allows for interaction with the Azure Resource Manager Service `me` (API Version `stable`).
+The `chatmessage` SDK allows for interaction with Microsoft Graph `me` (API Version `stable`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -15,7 +15,7 @@ import "github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/chatmessage"
 ### Client Initialization
 
 ```go
-client := chatmessage.NewChatMessageClientWithBaseURI("https://management.azure.com")
+client := chatmessage.NewChatMessageClientWithBaseURI("https://graph.microsoft.com")
 client.Client.Authorizer = authorizer
 ```
 
@@ -24,14 +24,14 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := chatmessage.NewMeChatID("chatIdValue")
+id := chatmessage.NewMeChatID("chatId")
 
 payload := chatmessage.ChatMessage{
 	// ...
 }
 
 
-read, err := client.CreateChatMessage(ctx, id, payload)
+read, err := client.CreateChatMessage(ctx, id, payload, chatmessage.DefaultCreateChatMessageOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -45,9 +45,9 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := chatmessage.NewMeChatIdMessageID("chatIdValue", "chatMessageIdValue")
+id := chatmessage.NewMeChatIdMessageID("chatId", "chatMessageId")
 
-read, err := client.CreateChatMessageSoftDelete(ctx, id)
+read, err := client.CreateChatMessageSoftDelete(ctx, id, chatmessage.DefaultCreateChatMessageSoftDeleteOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -61,9 +61,9 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := chatmessage.NewMeChatIdMessageID("chatIdValue", "chatMessageIdValue")
+id := chatmessage.NewMeChatIdMessageID("chatId", "chatMessageId")
 
-read, err := client.CreateChatMessageUndoSoftDelete(ctx, id)
+read, err := client.CreateChatMessageUndoSoftDelete(ctx, id, chatmessage.DefaultCreateChatMessageUndoSoftDeleteOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -77,7 +77,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := chatmessage.NewMeChatIdMessageID("chatIdValue", "chatMessageIdValue")
+id := chatmessage.NewMeChatIdMessageID("chatId", "chatMessageId")
 
 read, err := client.DeleteChatMessage(ctx, id, chatmessage.DefaultDeleteChatMessageOperationOptions())
 if err != nil {
@@ -93,7 +93,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := chatmessage.NewMeChatIdMessageID("chatIdValue", "chatMessageIdValue")
+id := chatmessage.NewMeChatIdMessageID("chatId", "chatMessageId")
 
 read, err := client.GetChatMessage(ctx, id, chatmessage.DefaultGetChatMessageOperationOptions())
 if err != nil {
@@ -109,7 +109,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := chatmessage.NewMeChatID("chatIdValue")
+id := chatmessage.NewMeChatID("chatId")
 
 read, err := client.GetChatMessagesCount(ctx, id, chatmessage.DefaultGetChatMessagesCountOperationOptions())
 if err != nil {
@@ -125,7 +125,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := chatmessage.NewMeChatID("chatIdValue")
+id := chatmessage.NewMeChatID("chatId")
 
 // alternatively `client.ListChatMessages(ctx, id, chatmessage.DefaultListChatMessagesOperationOptions())` can be used to do batched pagination
 items, err := client.ListChatMessagesComplete(ctx, id, chatmessage.DefaultListChatMessagesOperationOptions())
@@ -142,14 +142,14 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := chatmessage.NewMeChatIdMessageID("chatIdValue", "chatMessageIdValue")
+id := chatmessage.NewMeChatIdMessageID("chatId", "chatMessageId")
 
 payload := chatmessage.SetChatMessageReactionRequest{
 	// ...
 }
 
 
-read, err := client.SetChatMessageReaction(ctx, id, payload)
+read, err := client.SetChatMessageReaction(ctx, id, payload, chatmessage.DefaultSetChatMessageReactionOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -163,14 +163,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := chatmessage.NewMeChatIdMessageID("chatIdValue", "chatMessageIdValue")
+id := chatmessage.NewMeChatIdMessageID("chatId", "chatMessageId")
 
 payload := chatmessage.UnsetChatMessageReactionRequest{
 	// ...
 }
 
 
-read, err := client.UnsetChatMessageReaction(ctx, id, payload)
+read, err := client.UnsetChatMessageReaction(ctx, id, payload, chatmessage.DefaultUnsetChatMessageReactionOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -184,14 +184,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := chatmessage.NewMeChatIdMessageID("chatIdValue", "chatMessageIdValue")
+id := chatmessage.NewMeChatIdMessageID("chatId", "chatMessageId")
 
 payload := chatmessage.ChatMessage{
 	// ...
 }
 
 
-read, err := client.UpdateChatMessage(ctx, id, payload)
+read, err := client.UpdateChatMessage(ctx, id, payload, chatmessage.DefaultUpdateChatMessageOperationOptions())
 if err != nil {
 	// handle the error
 }

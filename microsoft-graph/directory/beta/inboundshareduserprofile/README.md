@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/microsoft-graph/directory/beta/inboundshareduserprofile` Documentation
 
-The `inboundshareduserprofile` SDK allows for interaction with the Azure Resource Manager Service `directory` (API Version `beta`).
+The `inboundshareduserprofile` SDK allows for interaction with Microsoft Graph `directory` (API Version `beta`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -15,7 +15,7 @@ import "github.com/hashicorp/go-azure-sdk/microsoft-graph/directory/beta/inbound
 ### Client Initialization
 
 ```go
-client := inboundshareduserprofile.NewInboundSharedUserProfileClientWithBaseURI("https://management.azure.com")
+client := inboundshareduserprofile.NewInboundSharedUserProfileClientWithBaseURI("https://graph.microsoft.com")
 client.Client.Authorizer = authorizer
 ```
 
@@ -30,7 +30,28 @@ payload := inboundshareduserprofile.InboundSharedUserProfile{
 }
 
 
-read, err := client.CreateInboundSharedUserProfile(ctx, payload)
+read, err := client.CreateInboundSharedUserProfile(ctx, payload, inboundshareduserprofile.DefaultCreateInboundSharedUserProfileOperationOptions())
+if err != nil {
+	// handle the error
+}
+if model := read.Model; model != nil {
+	// do something with the model/response object
+}
+```
+
+
+### Example Usage: `InboundSharedUserProfileClient.CreateInboundSharedUserProfileExportPersonalData`
+
+```go
+ctx := context.TODO()
+id := inboundshareduserprofile.NewDirectoryInboundSharedUserProfileID("inboundSharedUserProfileUserId")
+
+payload := inboundshareduserprofile.CreateInboundSharedUserProfileExportPersonalDataRequest{
+	// ...
+}
+
+
+read, err := client.CreateInboundSharedUserProfileExportPersonalData(ctx, id, payload, inboundshareduserprofile.DefaultCreateInboundSharedUserProfileExportPersonalDataOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -44,30 +65,9 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := inboundshareduserprofile.NewDirectoryInboundSharedUserProfileID("inboundSharedUserProfileUserIdValue")
+id := inboundshareduserprofile.NewDirectoryInboundSharedUserProfileID("inboundSharedUserProfileUserId")
 
 read, err := client.DeleteInboundSharedUserProfile(ctx, id, inboundshareduserprofile.DefaultDeleteInboundSharedUserProfileOperationOptions())
-if err != nil {
-	// handle the error
-}
-if model := read.Model; model != nil {
-	// do something with the model/response object
-}
-```
-
-
-### Example Usage: `InboundSharedUserProfileClient.ExportInboundSharedUserProfilePersonalData`
-
-```go
-ctx := context.TODO()
-id := inboundshareduserprofile.NewDirectoryInboundSharedUserProfileID("inboundSharedUserProfileUserIdValue")
-
-payload := inboundshareduserprofile.ExportInboundSharedUserProfilePersonalDataRequest{
-	// ...
-}
-
-
-read, err := client.ExportInboundSharedUserProfilePersonalData(ctx, id, payload)
 if err != nil {
 	// handle the error
 }
@@ -81,7 +81,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := inboundshareduserprofile.NewDirectoryInboundSharedUserProfileID("inboundSharedUserProfileUserIdValue")
+id := inboundshareduserprofile.NewDirectoryInboundSharedUserProfileID("inboundSharedUserProfileUserId")
 
 read, err := client.GetInboundSharedUserProfile(ctx, id, inboundshareduserprofile.DefaultGetInboundSharedUserProfileOperationOptions())
 if err != nil {
@@ -130,9 +130,9 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := inboundshareduserprofile.NewDirectoryInboundSharedUserProfileID("inboundSharedUserProfileUserIdValue")
+id := inboundshareduserprofile.NewDirectoryInboundSharedUserProfileID("inboundSharedUserProfileUserId")
 
-read, err := client.RemoveInboundSharedUserProfilePersonalData(ctx, id)
+read, err := client.RemoveInboundSharedUserProfilePersonalData(ctx, id, inboundshareduserprofile.DefaultRemoveInboundSharedUserProfilePersonalDataOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -146,14 +146,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := inboundshareduserprofile.NewDirectoryInboundSharedUserProfileID("inboundSharedUserProfileUserIdValue")
+id := inboundshareduserprofile.NewDirectoryInboundSharedUserProfileID("inboundSharedUserProfileUserId")
 
 payload := inboundshareduserprofile.InboundSharedUserProfile{
 	// ...
 }
 
 
-read, err := client.UpdateInboundSharedUserProfile(ctx, id, payload)
+read, err := client.UpdateInboundSharedUserProfile(ctx, id, payload, inboundshareduserprofile.DefaultUpdateInboundSharedUserProfileOperationOptions())
 if err != nil {
 	// handle the error
 }

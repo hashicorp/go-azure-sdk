@@ -18,7 +18,8 @@ type DeletePermissionsAnalyticAzureOperationResponse struct {
 }
 
 type DeletePermissionsAnalyticAzureOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeletePermissionsAnalyticAzureOperationOptions() DeletePermissionsAnalyticAzureOperationOptions {
@@ -35,7 +36,9 @@ func (o DeletePermissionsAnalyticAzureOperationOptions) ToHeaders() *client.Head
 
 func (o DeletePermissionsAnalyticAzureOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

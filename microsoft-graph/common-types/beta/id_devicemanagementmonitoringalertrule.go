@@ -94,7 +94,7 @@ func (id DeviceManagementMonitoringAlertRuleId) Segments() []resourceids.Segment
 		resourceids.StaticSegment("deviceManagement", "deviceManagement", "deviceManagement"),
 		resourceids.StaticSegment("monitoring", "monitoring", "monitoring"),
 		resourceids.StaticSegment("alertRules", "alertRules", "alertRules"),
-		resourceids.UserSpecifiedSegment("alertRuleId", "alertRuleIdValue"),
+		resourceids.UserSpecifiedSegment("alertRuleId", "alertRuleId"),
 	}
 }
 

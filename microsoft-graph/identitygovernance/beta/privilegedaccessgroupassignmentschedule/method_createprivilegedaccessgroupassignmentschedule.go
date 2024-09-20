@@ -18,16 +18,45 @@ type CreatePrivilegedAccessGroupAssignmentScheduleOperationResponse struct {
 	Model        *beta.PrivilegedAccessGroupAssignmentSchedule
 }
 
+type CreatePrivilegedAccessGroupAssignmentScheduleOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreatePrivilegedAccessGroupAssignmentScheduleOperationOptions() CreatePrivilegedAccessGroupAssignmentScheduleOperationOptions {
+	return CreatePrivilegedAccessGroupAssignmentScheduleOperationOptions{}
+}
+
+func (o CreatePrivilegedAccessGroupAssignmentScheduleOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreatePrivilegedAccessGroupAssignmentScheduleOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreatePrivilegedAccessGroupAssignmentScheduleOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreatePrivilegedAccessGroupAssignmentSchedule - Create new navigation property to assignmentSchedules for
 // identityGovernance
-func (c PrivilegedAccessGroupAssignmentScheduleClient) CreatePrivilegedAccessGroupAssignmentSchedule(ctx context.Context, input beta.PrivilegedAccessGroupAssignmentSchedule) (result CreatePrivilegedAccessGroupAssignmentScheduleOperationResponse, err error) {
+func (c PrivilegedAccessGroupAssignmentScheduleClient) CreatePrivilegedAccessGroupAssignmentSchedule(ctx context.Context, input beta.PrivilegedAccessGroupAssignmentSchedule, options CreatePrivilegedAccessGroupAssignmentScheduleOperationOptions) (result CreatePrivilegedAccessGroupAssignmentScheduleOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/identityGovernance/privilegedAccess/group/assignmentSchedules",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/identityGovernance/privilegedAccess/group/assignmentSchedules",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

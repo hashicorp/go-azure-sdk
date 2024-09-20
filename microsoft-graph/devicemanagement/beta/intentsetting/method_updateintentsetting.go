@@ -17,15 +17,44 @@ type UpdateIntentSettingOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateIntentSettingOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateIntentSettingOperationOptions() UpdateIntentSettingOperationOptions {
+	return UpdateIntentSettingOperationOptions{}
+}
+
+func (o UpdateIntentSettingOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateIntentSettingOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateIntentSettingOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateIntentSetting - Update the navigation property settings in deviceManagement
-func (c IntentSettingClient) UpdateIntentSetting(ctx context.Context, id beta.DeviceManagementIntentIdSettingId, input beta.DeviceManagementSettingInstance) (result UpdateIntentSettingOperationResponse, err error) {
+func (c IntentSettingClient) UpdateIntentSetting(ctx context.Context, id beta.DeviceManagementIntentIdSettingId, input beta.DeviceManagementSettingInstance, options UpdateIntentSettingOperationOptions) (result UpdateIntentSettingOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

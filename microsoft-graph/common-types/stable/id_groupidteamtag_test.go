@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &GroupIdTeamTagId{}
 
 func TestNewGroupIdTeamTagID(t *testing.T) {
-	id := NewGroupIdTeamTagID("groupIdValue", "teamworkTagIdValue")
+	id := NewGroupIdTeamTagID("groupId", "teamworkTagId")
 
-	if id.GroupId != "groupIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'GroupId'", id.GroupId, "groupIdValue")
+	if id.GroupId != "groupId" {
+		t.Fatalf("Expected %q but got %q for Segment 'GroupId'", id.GroupId, "groupId")
 	}
 
-	if id.TeamworkTagId != "teamworkTagIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'TeamworkTagId'", id.TeamworkTagId, "teamworkTagIdValue")
+	if id.TeamworkTagId != "teamworkTagId" {
+		t.Fatalf("Expected %q but got %q for Segment 'TeamworkTagId'", id.TeamworkTagId, "teamworkTagId")
 	}
 }
 
 func TestFormatGroupIdTeamTagID(t *testing.T) {
-	actual := NewGroupIdTeamTagID("groupIdValue", "teamworkTagIdValue").ID()
-	expected := "/groups/groupIdValue/team/tags/teamworkTagIdValue"
+	actual := NewGroupIdTeamTagID("groupId", "teamworkTagId").ID()
+	expected := "/groups/groupId/team/tags/teamworkTagId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -49,30 +49,30 @@ func TestParseGroupIdTeamTagID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue",
+			Input: "/groups/groupId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/team",
+			Input: "/groups/groupId/team",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/team/tags",
+			Input: "/groups/groupId/team/tags",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/groups/groupIdValue/team/tags/teamworkTagIdValue",
+			Input: "/groups/groupId/team/tags/teamworkTagId",
 			Expected: &GroupIdTeamTagId{
-				GroupId:       "groupIdValue",
-				TeamworkTagId: "teamworkTagIdValue",
+				GroupId:       "groupId",
+				TeamworkTagId: "teamworkTagId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/groups/groupIdValue/team/tags/teamworkTagIdValue/extra",
+			Input: "/groups/groupId/team/tags/teamworkTagId/extra",
 			Error: true,
 		},
 	}
@@ -125,58 +125,58 @@ func TestParseGroupIdTeamTagIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue",
+			Input: "/groups/groupId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE",
+			Input: "/gRoUpS/gRoUpId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/team",
+			Input: "/groups/groupId/team",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/tEaM",
+			Input: "/gRoUpS/gRoUpId/tEaM",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/team/tags",
+			Input: "/groups/groupId/team/tags",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/tEaM/tAgS",
+			Input: "/gRoUpS/gRoUpId/tEaM/tAgS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/groups/groupIdValue/team/tags/teamworkTagIdValue",
+			Input: "/groups/groupId/team/tags/teamworkTagId",
 			Expected: &GroupIdTeamTagId{
-				GroupId:       "groupIdValue",
-				TeamworkTagId: "teamworkTagIdValue",
+				GroupId:       "groupId",
+				TeamworkTagId: "teamworkTagId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/groups/groupIdValue/team/tags/teamworkTagIdValue/extra",
+			Input: "/groups/groupId/team/tags/teamworkTagId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/tEaM/tAgS/tEaMwOrKtAgIdVaLuE",
+			Input: "/gRoUpS/gRoUpId/tEaM/tAgS/tEaMwOrKtAgId",
 			Expected: &GroupIdTeamTagId{
-				GroupId:       "gRoUpIdVaLuE",
-				TeamworkTagId: "tEaMwOrKtAgIdVaLuE",
+				GroupId:       "gRoUpId",
+				TeamworkTagId: "tEaMwOrKtAgId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/tEaM/tAgS/tEaMwOrKtAgIdVaLuE/extra",
+			Input: "/gRoUpS/gRoUpId/tEaM/tAgS/tEaMwOrKtAgId/extra",
 			Error: true,
 		},
 	}

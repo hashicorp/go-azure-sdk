@@ -82,15 +82,24 @@ func (s EducationWordResource) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &EducationWordResource{}
 
 func (s *EducationWordResource) UnmarshalJSON(bytes []byte) error {
-	type alias EducationWordResource
-	var decoded alias
+
+	var decoded struct {
+		FileUrl              nullable.Type[string] `json:"fileUrl,omitempty"`
+		CreatedBy            *IdentitySet          `json:"createdBy,omitempty"`
+		CreatedDateTime      nullable.Type[string] `json:"createdDateTime,omitempty"`
+		DisplayName          nullable.Type[string] `json:"displayName,omitempty"`
+		LastModifiedBy       *IdentitySet          `json:"lastModifiedBy,omitempty"`
+		LastModifiedDateTime nullable.Type[string] `json:"lastModifiedDateTime,omitempty"`
+		ODataId              *string               `json:"@odata.id,omitempty"`
+		ODataType            *string               `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into EducationWordResource: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
+	s.FileUrl = decoded.FileUrl
 	s.CreatedDateTime = decoded.CreatedDateTime
 	s.DisplayName = decoded.DisplayName
-	s.FileUrl = decoded.FileUrl
 	s.LastModifiedDateTime = decoded.LastModifiedDateTime
 	s.ODataId = decoded.ODataId
 	s.ODataType = decoded.ODataType
@@ -115,5 +124,6 @@ func (s *EducationWordResource) UnmarshalJSON(bytes []byte) error {
 		}
 		s.LastModifiedBy = &impl
 	}
+
 	return nil
 }

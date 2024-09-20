@@ -12,24 +12,24 @@ import (
 var _ resourceids.ResourceId = &UserIdJoinedTeamIdPermissionGrantId{}
 
 func TestNewUserIdJoinedTeamIdPermissionGrantID(t *testing.T) {
-	id := NewUserIdJoinedTeamIdPermissionGrantID("userIdValue", "teamIdValue", "resourceSpecificPermissionGrantIdValue")
+	id := NewUserIdJoinedTeamIdPermissionGrantID("userId", "teamId", "resourceSpecificPermissionGrantId")
 
-	if id.UserId != "userIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'UserId'", id.UserId, "userIdValue")
+	if id.UserId != "userId" {
+		t.Fatalf("Expected %q but got %q for Segment 'UserId'", id.UserId, "userId")
 	}
 
-	if id.TeamId != "teamIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'TeamId'", id.TeamId, "teamIdValue")
+	if id.TeamId != "teamId" {
+		t.Fatalf("Expected %q but got %q for Segment 'TeamId'", id.TeamId, "teamId")
 	}
 
-	if id.ResourceSpecificPermissionGrantId != "resourceSpecificPermissionGrantIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ResourceSpecificPermissionGrantId'", id.ResourceSpecificPermissionGrantId, "resourceSpecificPermissionGrantIdValue")
+	if id.ResourceSpecificPermissionGrantId != "resourceSpecificPermissionGrantId" {
+		t.Fatalf("Expected %q but got %q for Segment 'ResourceSpecificPermissionGrantId'", id.ResourceSpecificPermissionGrantId, "resourceSpecificPermissionGrantId")
 	}
 }
 
 func TestFormatUserIdJoinedTeamIdPermissionGrantID(t *testing.T) {
-	actual := NewUserIdJoinedTeamIdPermissionGrantID("userIdValue", "teamIdValue", "resourceSpecificPermissionGrantIdValue").ID()
-	expected := "/users/userIdValue/joinedTeams/teamIdValue/permissionGrants/resourceSpecificPermissionGrantIdValue"
+	actual := NewUserIdJoinedTeamIdPermissionGrantID("userId", "teamId", "resourceSpecificPermissionGrantId").ID()
+	expected := "/users/userId/joinedTeams/teamId/permissionGrants/resourceSpecificPermissionGrantId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -53,36 +53,36 @@ func TestParseUserIdJoinedTeamIdPermissionGrantID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue",
+			Input: "/users/userId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/joinedTeams",
+			Input: "/users/userId/joinedTeams",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/joinedTeams/teamIdValue",
+			Input: "/users/userId/joinedTeams/teamId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/joinedTeams/teamIdValue/permissionGrants",
+			Input: "/users/userId/joinedTeams/teamId/permissionGrants",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/users/userIdValue/joinedTeams/teamIdValue/permissionGrants/resourceSpecificPermissionGrantIdValue",
+			Input: "/users/userId/joinedTeams/teamId/permissionGrants/resourceSpecificPermissionGrantId",
 			Expected: &UserIdJoinedTeamIdPermissionGrantId{
-				UserId:                            "userIdValue",
-				TeamId:                            "teamIdValue",
-				ResourceSpecificPermissionGrantId: "resourceSpecificPermissionGrantIdValue",
+				UserId:                            "userId",
+				TeamId:                            "teamId",
+				ResourceSpecificPermissionGrantId: "resourceSpecificPermissionGrantId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/users/userIdValue/joinedTeams/teamIdValue/permissionGrants/resourceSpecificPermissionGrantIdValue/extra",
+			Input: "/users/userId/joinedTeams/teamId/permissionGrants/resourceSpecificPermissionGrantId/extra",
 			Error: true,
 		},
 	}
@@ -139,70 +139,70 @@ func TestParseUserIdJoinedTeamIdPermissionGrantIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue",
+			Input: "/users/userId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe",
+			Input: "/uSeRs/uSeRiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/joinedTeams",
+			Input: "/users/userId/joinedTeams",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/jOiNeDtEaMs",
+			Input: "/uSeRs/uSeRiD/jOiNeDtEaMs",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/joinedTeams/teamIdValue",
+			Input: "/users/userId/joinedTeams/teamId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/jOiNeDtEaMs/tEaMiDvAlUe",
+			Input: "/uSeRs/uSeRiD/jOiNeDtEaMs/tEaMiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/joinedTeams/teamIdValue/permissionGrants",
+			Input: "/users/userId/joinedTeams/teamId/permissionGrants",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/jOiNeDtEaMs/tEaMiDvAlUe/pErMiSsIoNgRaNtS",
+			Input: "/uSeRs/uSeRiD/jOiNeDtEaMs/tEaMiD/pErMiSsIoNgRaNtS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/users/userIdValue/joinedTeams/teamIdValue/permissionGrants/resourceSpecificPermissionGrantIdValue",
+			Input: "/users/userId/joinedTeams/teamId/permissionGrants/resourceSpecificPermissionGrantId",
 			Expected: &UserIdJoinedTeamIdPermissionGrantId{
-				UserId:                            "userIdValue",
-				TeamId:                            "teamIdValue",
-				ResourceSpecificPermissionGrantId: "resourceSpecificPermissionGrantIdValue",
+				UserId:                            "userId",
+				TeamId:                            "teamId",
+				ResourceSpecificPermissionGrantId: "resourceSpecificPermissionGrantId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/users/userIdValue/joinedTeams/teamIdValue/permissionGrants/resourceSpecificPermissionGrantIdValue/extra",
+			Input: "/users/userId/joinedTeams/teamId/permissionGrants/resourceSpecificPermissionGrantId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/jOiNeDtEaMs/tEaMiDvAlUe/pErMiSsIoNgRaNtS/rEsOuRcEsPeCiFiCpErMiSsIoNgRaNtIdVaLuE",
+			Input: "/uSeRs/uSeRiD/jOiNeDtEaMs/tEaMiD/pErMiSsIoNgRaNtS/rEsOuRcEsPeCiFiCpErMiSsIoNgRaNtId",
 			Expected: &UserIdJoinedTeamIdPermissionGrantId{
-				UserId:                            "uSeRiDvAlUe",
-				TeamId:                            "tEaMiDvAlUe",
-				ResourceSpecificPermissionGrantId: "rEsOuRcEsPeCiFiCpErMiSsIoNgRaNtIdVaLuE",
+				UserId:                            "uSeRiD",
+				TeamId:                            "tEaMiD",
+				ResourceSpecificPermissionGrantId: "rEsOuRcEsPeCiFiCpErMiSsIoNgRaNtId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/jOiNeDtEaMs/tEaMiDvAlUe/pErMiSsIoNgRaNtS/rEsOuRcEsPeCiFiCpErMiSsIoNgRaNtIdVaLuE/extra",
+			Input: "/uSeRs/uSeRiD/jOiNeDtEaMs/tEaMiD/pErMiSsIoNgRaNtS/rEsOuRcEsPeCiFiCpErMiSsIoNgRaNtId/extra",
 			Error: true,
 		},
 	}

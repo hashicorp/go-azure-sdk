@@ -19,7 +19,8 @@ type DeleteExchangeConnectorOperationResponse struct {
 }
 
 type DeleteExchangeConnectorOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteExchangeConnectorOperationOptions() DeleteExchangeConnectorOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteExchangeConnectorOperationOptions) ToHeaders() *client.Headers {
 
 func (o DeleteExchangeConnectorOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

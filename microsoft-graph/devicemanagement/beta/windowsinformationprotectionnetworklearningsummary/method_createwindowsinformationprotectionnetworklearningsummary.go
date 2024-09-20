@@ -18,16 +18,45 @@ type CreateWindowsInformationProtectionNetworkLearningSummaryOperationResponse s
 	Model        *beta.WindowsInformationProtectionNetworkLearningSummary
 }
 
+type CreateWindowsInformationProtectionNetworkLearningSummaryOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateWindowsInformationProtectionNetworkLearningSummaryOperationOptions() CreateWindowsInformationProtectionNetworkLearningSummaryOperationOptions {
+	return CreateWindowsInformationProtectionNetworkLearningSummaryOperationOptions{}
+}
+
+func (o CreateWindowsInformationProtectionNetworkLearningSummaryOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateWindowsInformationProtectionNetworkLearningSummaryOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateWindowsInformationProtectionNetworkLearningSummaryOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateWindowsInformationProtectionNetworkLearningSummary - Create new navigation property to
 // windowsInformationProtectionNetworkLearningSummaries for deviceManagement
-func (c WindowsInformationProtectionNetworkLearningSummaryClient) CreateWindowsInformationProtectionNetworkLearningSummary(ctx context.Context, input beta.WindowsInformationProtectionNetworkLearningSummary) (result CreateWindowsInformationProtectionNetworkLearningSummaryOperationResponse, err error) {
+func (c WindowsInformationProtectionNetworkLearningSummaryClient) CreateWindowsInformationProtectionNetworkLearningSummary(ctx context.Context, input beta.WindowsInformationProtectionNetworkLearningSummary, options CreateWindowsInformationProtectionNetworkLearningSummaryOperationOptions) (result CreateWindowsInformationProtectionNetworkLearningSummaryOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/deviceManagement/windowsInformationProtectionNetworkLearningSummaries",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/deviceManagement/windowsInformationProtectionNetworkLearningSummaries",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

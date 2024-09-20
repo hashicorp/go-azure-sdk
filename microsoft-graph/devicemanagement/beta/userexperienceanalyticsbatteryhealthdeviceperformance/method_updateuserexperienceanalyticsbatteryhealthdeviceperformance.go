@@ -17,16 +17,45 @@ type UpdateUserExperienceAnalyticsBatteryHealthDevicePerformanceOperationRespons
 	OData        *odata.OData
 }
 
+type UpdateUserExperienceAnalyticsBatteryHealthDevicePerformanceOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateUserExperienceAnalyticsBatteryHealthDevicePerformanceOperationOptions() UpdateUserExperienceAnalyticsBatteryHealthDevicePerformanceOperationOptions {
+	return UpdateUserExperienceAnalyticsBatteryHealthDevicePerformanceOperationOptions{}
+}
+
+func (o UpdateUserExperienceAnalyticsBatteryHealthDevicePerformanceOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateUserExperienceAnalyticsBatteryHealthDevicePerformanceOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateUserExperienceAnalyticsBatteryHealthDevicePerformanceOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateUserExperienceAnalyticsBatteryHealthDevicePerformance - Update the navigation property
 // userExperienceAnalyticsBatteryHealthDevicePerformance in deviceManagement
-func (c UserExperienceAnalyticsBatteryHealthDevicePerformanceClient) UpdateUserExperienceAnalyticsBatteryHealthDevicePerformance(ctx context.Context, id beta.DeviceManagementUserExperienceAnalyticsBatteryHealthDevicePerformanceId, input beta.UserExperienceAnalyticsBatteryHealthDevicePerformance) (result UpdateUserExperienceAnalyticsBatteryHealthDevicePerformanceOperationResponse, err error) {
+func (c UserExperienceAnalyticsBatteryHealthDevicePerformanceClient) UpdateUserExperienceAnalyticsBatteryHealthDevicePerformance(ctx context.Context, id beta.DeviceManagementUserExperienceAnalyticsBatteryHealthDevicePerformanceId, input beta.UserExperienceAnalyticsBatteryHealthDevicePerformance, options UpdateUserExperienceAnalyticsBatteryHealthDevicePerformanceOperationOptions) (result UpdateUserExperienceAnalyticsBatteryHealthDevicePerformanceOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

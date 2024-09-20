@@ -18,7 +18,8 @@ type DeleteUserExperienceAnalyticsWorkFromAnywhereHardwareReadinessMetricOperati
 }
 
 type DeleteUserExperienceAnalyticsWorkFromAnywhereHardwareReadinessMetricOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteUserExperienceAnalyticsWorkFromAnywhereHardwareReadinessMetricOperationOptions() DeleteUserExperienceAnalyticsWorkFromAnywhereHardwareReadinessMetricOperationOptions {
@@ -35,7 +36,9 @@ func (o DeleteUserExperienceAnalyticsWorkFromAnywhereHardwareReadinessMetricOper
 
 func (o DeleteUserExperienceAnalyticsWorkFromAnywhereHardwareReadinessMetricOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

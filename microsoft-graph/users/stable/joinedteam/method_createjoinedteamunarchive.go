@@ -18,18 +18,47 @@ type CreateJoinedTeamUnarchiveOperationResponse struct {
 	OData        *odata.OData
 }
 
+type CreateJoinedTeamUnarchiveOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateJoinedTeamUnarchiveOperationOptions() CreateJoinedTeamUnarchiveOperationOptions {
+	return CreateJoinedTeamUnarchiveOperationOptions{}
+}
+
+func (o CreateJoinedTeamUnarchiveOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateJoinedTeamUnarchiveOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateJoinedTeamUnarchiveOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateJoinedTeamUnarchive - Invoke action unarchive. Restore an archived team. This API restores users' ability to
 // send messages and edit the team, abiding by tenant and team settings. A Team is archived using the archive API.
 // Unarchiving is an async operation. A team is unarchived once the async operation completes successfully, which might
 // occur subsequent to a response from this API.
-func (c JoinedTeamClient) CreateJoinedTeamUnarchive(ctx context.Context, id stable.UserIdJoinedTeamId) (result CreateJoinedTeamUnarchiveOperationResponse, err error) {
+func (c JoinedTeamClient) CreateJoinedTeamUnarchive(ctx context.Context, id stable.UserIdJoinedTeamId, options CreateJoinedTeamUnarchiveOperationOptions) (result CreateJoinedTeamUnarchiveOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/unarchive", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/unarchive", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

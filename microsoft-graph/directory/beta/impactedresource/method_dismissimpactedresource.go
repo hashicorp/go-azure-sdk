@@ -19,16 +19,45 @@ type DismissImpactedResourceOperationResponse struct {
 	Model        *beta.ImpactedResource
 }
 
+type DismissImpactedResourceOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultDismissImpactedResourceOperationOptions() DismissImpactedResourceOperationOptions {
+	return DismissImpactedResourceOperationOptions{}
+}
+
+func (o DismissImpactedResourceOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o DismissImpactedResourceOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o DismissImpactedResourceOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // DismissImpactedResource - Invoke action dismiss. Dismiss an impactedResources object and update its status to
 // dismissed.
-func (c ImpactedResourceClient) DismissImpactedResource(ctx context.Context, id beta.DirectoryImpactedResourceId, input DismissImpactedResourceRequest) (result DismissImpactedResourceOperationResponse, err error) {
+func (c ImpactedResourceClient) DismissImpactedResource(ctx context.Context, id beta.DirectoryImpactedResourceId, input DismissImpactedResourceRequest, options DismissImpactedResourceOperationOptions) (result DismissImpactedResourceOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/dismiss", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/dismiss", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

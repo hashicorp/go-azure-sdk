@@ -17,15 +17,44 @@ type UpdatePrivilegeManagementElevationOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdatePrivilegeManagementElevationOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdatePrivilegeManagementElevationOperationOptions() UpdatePrivilegeManagementElevationOperationOptions {
+	return UpdatePrivilegeManagementElevationOperationOptions{}
+}
+
+func (o UpdatePrivilegeManagementElevationOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdatePrivilegeManagementElevationOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdatePrivilegeManagementElevationOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdatePrivilegeManagementElevation - Update the navigation property privilegeManagementElevations in deviceManagement
-func (c PrivilegeManagementElevationClient) UpdatePrivilegeManagementElevation(ctx context.Context, id beta.DeviceManagementPrivilegeManagementElevationId, input beta.PrivilegeManagementElevation) (result UpdatePrivilegeManagementElevationOperationResponse, err error) {
+func (c PrivilegeManagementElevationClient) UpdatePrivilegeManagementElevation(ctx context.Context, id beta.DeviceManagementPrivilegeManagementElevationId, input beta.PrivilegeManagementElevation, options UpdatePrivilegeManagementElevationOperationOptions) (result UpdatePrivilegeManagementElevationOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

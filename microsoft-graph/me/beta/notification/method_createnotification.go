@@ -18,15 +18,44 @@ type CreateNotificationOperationResponse struct {
 	Model        *beta.Notification
 }
 
+type CreateNotificationOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateNotificationOperationOptions() CreateNotificationOperationOptions {
+	return CreateNotificationOperationOptions{}
+}
+
+func (o CreateNotificationOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateNotificationOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateNotificationOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateNotification - Create new navigation property to notifications for me
-func (c NotificationClient) CreateNotification(ctx context.Context, input beta.Notification) (result CreateNotificationOperationResponse, err error) {
+func (c NotificationClient) CreateNotification(ctx context.Context, input beta.Notification, options CreateNotificationOperationOptions) (result CreateNotificationOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/me/notifications",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/me/notifications",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

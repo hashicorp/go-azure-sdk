@@ -19,15 +19,44 @@ type CreateTemplateInstanceOperationResponse struct {
 	Model        *beta.DeviceManagementIntent
 }
 
+type CreateTemplateInstanceOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateTemplateInstanceOperationOptions() CreateTemplateInstanceOperationOptions {
+	return CreateTemplateInstanceOperationOptions{}
+}
+
+func (o CreateTemplateInstanceOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateTemplateInstanceOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateTemplateInstanceOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateTemplateInstance - Invoke action createInstance
-func (c TemplateClient) CreateTemplateInstance(ctx context.Context, id beta.DeviceManagementTemplateId, input CreateTemplateInstanceRequest) (result CreateTemplateInstanceOperationResponse, err error) {
+func (c TemplateClient) CreateTemplateInstance(ctx context.Context, id beta.DeviceManagementTemplateId, input CreateTemplateInstanceRequest, options CreateTemplateInstanceOperationOptions) (result CreateTemplateInstanceOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/createInstance", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/createInstance", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

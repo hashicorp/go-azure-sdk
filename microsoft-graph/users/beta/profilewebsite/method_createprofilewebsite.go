@@ -19,15 +19,44 @@ type CreateProfileWebsiteOperationResponse struct {
 	Model        *beta.PersonWebsite
 }
 
+type CreateProfileWebsiteOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateProfileWebsiteOperationOptions() CreateProfileWebsiteOperationOptions {
+	return CreateProfileWebsiteOperationOptions{}
+}
+
+func (o CreateProfileWebsiteOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateProfileWebsiteOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateProfileWebsiteOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateProfileWebsite - Create new navigation property to websites for users
-func (c ProfileWebsiteClient) CreateProfileWebsite(ctx context.Context, id beta.UserId, input beta.PersonWebsite) (result CreateProfileWebsiteOperationResponse, err error) {
+func (c ProfileWebsiteClient) CreateProfileWebsite(ctx context.Context, id beta.UserId, input beta.PersonWebsite, options CreateProfileWebsiteOperationOptions) (result CreateProfileWebsiteOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/profile/websites", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/profile/websites", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

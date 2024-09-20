@@ -29,6 +29,7 @@ type ListOwnerRefsOperationOptions struct {
 	ConsistencyLevel *odata.ConsistencyLevel
 	Count            *bool
 	Filter           *string
+	Metadata         *odata.Metadata
 	OrderBy          *odata.OrderBy
 	Search           *string
 	Skip             *int64
@@ -55,6 +56,9 @@ func (o ListOwnerRefsOperationOptions) ToOData() *odata.Query {
 	}
 	if o.Filter != nil {
 		out.Filter = *o.Filter
+	}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
 	}
 	if o.OrderBy != nil {
 		out.OrderBy = *o.OrderBy

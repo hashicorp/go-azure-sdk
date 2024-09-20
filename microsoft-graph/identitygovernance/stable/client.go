@@ -45,12 +45,14 @@ import (
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/identitygovernance/stable/entitlementmanagementaccesspackageresourcerolescoperoleresourcescope"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/identitygovernance/stable/entitlementmanagementaccesspackageresourcerolescoperoleresourcescoperesource"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/identitygovernance/stable/entitlementmanagementaccesspackageresourcerolescoperoleresourcescoperesourceenvironment"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/identitygovernance/stable/entitlementmanagementaccesspackageresourcerolescoperoleresourcescoperesourcerole"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/identitygovernance/stable/entitlementmanagementaccesspackageresourcerolescopescope"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/identitygovernance/stable/entitlementmanagementaccesspackageresourcerolescopescoperesource"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/identitygovernance/stable/entitlementmanagementaccesspackageresourcerolescopescoperesourceenvironment"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/identitygovernance/stable/entitlementmanagementaccesspackageresourcerolescopescoperesourcerole"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/identitygovernance/stable/entitlementmanagementaccesspackageresourcerolescopescoperesourceroleresource"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/identitygovernance/stable/entitlementmanagementaccesspackageresourcerolescopescoperesourceroleresourceenvironment"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/identitygovernance/stable/entitlementmanagementaccesspackageresourcerolescopescoperesourceroleresourcescope"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/identitygovernance/stable/entitlementmanagementaccesspackageresourcerolescopescoperesourcescope"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/identitygovernance/stable/entitlementmanagementassignment"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/identitygovernance/stable/entitlementmanagementassignmentaccesspackage"
@@ -78,12 +80,14 @@ import (
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/identitygovernance/stable/entitlementmanagementcatalogresourceroleresourcescope"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/identitygovernance/stable/entitlementmanagementcatalogresourceroleresourcescoperesource"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/identitygovernance/stable/entitlementmanagementcatalogresourceroleresourcescoperesourceenvironment"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/identitygovernance/stable/entitlementmanagementcatalogresourceroleresourcescoperesourcerole"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/identitygovernance/stable/entitlementmanagementcatalogresourcescope"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/identitygovernance/stable/entitlementmanagementcatalogresourcescoperesource"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/identitygovernance/stable/entitlementmanagementcatalogresourcescoperesourceenvironment"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/identitygovernance/stable/entitlementmanagementcatalogresourcescoperesourcerole"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/identitygovernance/stable/entitlementmanagementcatalogresourcescoperesourceroleresource"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/identitygovernance/stable/entitlementmanagementcatalogresourcescoperesourceroleresourceenvironment"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/identitygovernance/stable/entitlementmanagementcatalogresourcescoperesourceroleresourcescope"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/identitygovernance/stable/entitlementmanagementcatalogresourcescoperesourcescope"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/identitygovernance/stable/entitlementmanagementconnectedorganization"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/identitygovernance/stable/entitlementmanagementconnectedorganizationexternalsponsor"
@@ -115,21 +119,27 @@ import (
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/identitygovernance/stable/entitlementmanagementresourcerequestcatalogresourceroleresourceenvironment"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/identitygovernance/stable/entitlementmanagementresourcerequestcatalogresourceroleresourcerole"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/identitygovernance/stable/entitlementmanagementresourcerequestcatalogresourceroleresourcescope"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/identitygovernance/stable/entitlementmanagementresourcerequestcatalogresourceroleresourcescoperesource"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/identitygovernance/stable/entitlementmanagementresourcerequestcatalogresourceroleresourcescoperesourceenvironment"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/identitygovernance/stable/entitlementmanagementresourcerequestcatalogresourceroleresourcescoperesourcerole"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/identitygovernance/stable/entitlementmanagementresourcerequestcatalogresourcescope"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/identitygovernance/stable/entitlementmanagementresourcerequestcatalogresourcescoperesource"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/identitygovernance/stable/entitlementmanagementresourcerequestcatalogresourcescoperesourceenvironment"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/identitygovernance/stable/entitlementmanagementresourcerequestcatalogresourcescoperesourcerole"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/identitygovernance/stable/entitlementmanagementresourcerequestcatalogresourcescoperesourceroleresource"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/identitygovernance/stable/entitlementmanagementresourcerequestcatalogresourcescoperesourceroleresourceenvironment"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/identitygovernance/stable/entitlementmanagementresourcerequestcatalogresourcescoperesourceroleresourcescope"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/identitygovernance/stable/entitlementmanagementresourcerequestcatalogresourcescoperesourcescope"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/identitygovernance/stable/entitlementmanagementresourcerequestresource"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/identitygovernance/stable/entitlementmanagementresourcerequestresourceenvironment"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/identitygovernance/stable/entitlementmanagementresourcerequestresourcerole"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/identitygovernance/stable/entitlementmanagementresourcerequestresourceroleresource"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/identitygovernance/stable/entitlementmanagementresourcerequestresourceroleresourceenvironment"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/identitygovernance/stable/entitlementmanagementresourcerequestresourceroleresourcescope"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/identitygovernance/stable/entitlementmanagementresourcerequestresourcescope"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/identitygovernance/stable/entitlementmanagementresourcerequestresourcescoperesource"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/identitygovernance/stable/entitlementmanagementresourcerequestresourcescoperesourceenvironment"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/identitygovernance/stable/entitlementmanagementresourcerequestresourcescoperesourcerole"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/identitygovernance/stable/entitlementmanagementresourcerole"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/identitygovernance/stable/entitlementmanagementresourceroleresource"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/identitygovernance/stable/entitlementmanagementresourceroleresourceenvironment"
@@ -144,12 +154,14 @@ import (
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/identitygovernance/stable/entitlementmanagementresourcerolescoperoleresourcescope"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/identitygovernance/stable/entitlementmanagementresourcerolescoperoleresourcescoperesource"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/identitygovernance/stable/entitlementmanagementresourcerolescoperoleresourcescoperesourceenvironment"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/identitygovernance/stable/entitlementmanagementresourcerolescoperoleresourcescoperesourcerole"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/identitygovernance/stable/entitlementmanagementresourcerolescopescope"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/identitygovernance/stable/entitlementmanagementresourcerolescopescoperesource"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/identitygovernance/stable/entitlementmanagementresourcerolescopescoperesourceenvironment"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/identitygovernance/stable/entitlementmanagementresourcerolescopescoperesourcerole"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/identitygovernance/stable/entitlementmanagementresourcerolescopescoperesourceroleresource"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/identitygovernance/stable/entitlementmanagementresourcerolescopescoperesourceroleresourceenvironment"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/identitygovernance/stable/entitlementmanagementresourcerolescopescoperesourceroleresourcescope"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/identitygovernance/stable/entitlementmanagementresourcerolescopescoperesourcescope"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/identitygovernance/stable/entitlementmanagementresourcescope"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/identitygovernance/stable/entitlementmanagementresourcescoperesource"
@@ -379,12 +391,14 @@ type Client struct {
 	EntitlementManagementAccessPackageResourceRoleScopeRoleResourceScope                                           *entitlementmanagementaccesspackageresourcerolescoperoleresourcescope.EntitlementManagementAccessPackageResourceRoleScopeRoleResourceScopeClient
 	EntitlementManagementAccessPackageResourceRoleScopeRoleResourceScopeResource                                   *entitlementmanagementaccesspackageresourcerolescoperoleresourcescoperesource.EntitlementManagementAccessPackageResourceRoleScopeRoleResourceScopeResourceClient
 	EntitlementManagementAccessPackageResourceRoleScopeRoleResourceScopeResourceEnvironment                        *entitlementmanagementaccesspackageresourcerolescoperoleresourcescoperesourceenvironment.EntitlementManagementAccessPackageResourceRoleScopeRoleResourceScopeResourceEnvironmentClient
+	EntitlementManagementAccessPackageResourceRoleScopeRoleResourceScopeResourceRole                               *entitlementmanagementaccesspackageresourcerolescoperoleresourcescoperesourcerole.EntitlementManagementAccessPackageResourceRoleScopeRoleResourceScopeResourceRoleClient
 	EntitlementManagementAccessPackageResourceRoleScopeScope                                                       *entitlementmanagementaccesspackageresourcerolescopescope.EntitlementManagementAccessPackageResourceRoleScopeScopeClient
 	EntitlementManagementAccessPackageResourceRoleScopeScopeResource                                               *entitlementmanagementaccesspackageresourcerolescopescoperesource.EntitlementManagementAccessPackageResourceRoleScopeScopeResourceClient
 	EntitlementManagementAccessPackageResourceRoleScopeScopeResourceEnvironment                                    *entitlementmanagementaccesspackageresourcerolescopescoperesourceenvironment.EntitlementManagementAccessPackageResourceRoleScopeScopeResourceEnvironmentClient
 	EntitlementManagementAccessPackageResourceRoleScopeScopeResourceRole                                           *entitlementmanagementaccesspackageresourcerolescopescoperesourcerole.EntitlementManagementAccessPackageResourceRoleScopeScopeResourceRoleClient
 	EntitlementManagementAccessPackageResourceRoleScopeScopeResourceRoleResource                                   *entitlementmanagementaccesspackageresourcerolescopescoperesourceroleresource.EntitlementManagementAccessPackageResourceRoleScopeScopeResourceRoleResourceClient
 	EntitlementManagementAccessPackageResourceRoleScopeScopeResourceRoleResourceEnvironment                        *entitlementmanagementaccesspackageresourcerolescopescoperesourceroleresourceenvironment.EntitlementManagementAccessPackageResourceRoleScopeScopeResourceRoleResourceEnvironmentClient
+	EntitlementManagementAccessPackageResourceRoleScopeScopeResourceRoleResourceScope                              *entitlementmanagementaccesspackageresourcerolescopescoperesourceroleresourcescope.EntitlementManagementAccessPackageResourceRoleScopeScopeResourceRoleResourceScopeClient
 	EntitlementManagementAccessPackageResourceRoleScopeScopeResourceScope                                          *entitlementmanagementaccesspackageresourcerolescopescoperesourcescope.EntitlementManagementAccessPackageResourceRoleScopeScopeResourceScopeClient
 	EntitlementManagementAssignment                                                                                *entitlementmanagementassignment.EntitlementManagementAssignmentClient
 	EntitlementManagementAssignmentAccessPackage                                                                   *entitlementmanagementassignmentaccesspackage.EntitlementManagementAssignmentAccessPackageClient
@@ -412,12 +426,14 @@ type Client struct {
 	EntitlementManagementCatalogResourceRoleResourceScope                                                          *entitlementmanagementcatalogresourceroleresourcescope.EntitlementManagementCatalogResourceRoleResourceScopeClient
 	EntitlementManagementCatalogResourceRoleResourceScopeResource                                                  *entitlementmanagementcatalogresourceroleresourcescoperesource.EntitlementManagementCatalogResourceRoleResourceScopeResourceClient
 	EntitlementManagementCatalogResourceRoleResourceScopeResourceEnvironment                                       *entitlementmanagementcatalogresourceroleresourcescoperesourceenvironment.EntitlementManagementCatalogResourceRoleResourceScopeResourceEnvironmentClient
+	EntitlementManagementCatalogResourceRoleResourceScopeResourceRole                                              *entitlementmanagementcatalogresourceroleresourcescoperesourcerole.EntitlementManagementCatalogResourceRoleResourceScopeResourceRoleClient
 	EntitlementManagementCatalogResourceScope                                                                      *entitlementmanagementcatalogresourcescope.EntitlementManagementCatalogResourceScopeClient
 	EntitlementManagementCatalogResourceScopeResource                                                              *entitlementmanagementcatalogresourcescoperesource.EntitlementManagementCatalogResourceScopeResourceClient
 	EntitlementManagementCatalogResourceScopeResourceEnvironment                                                   *entitlementmanagementcatalogresourcescoperesourceenvironment.EntitlementManagementCatalogResourceScopeResourceEnvironmentClient
 	EntitlementManagementCatalogResourceScopeResourceRole                                                          *entitlementmanagementcatalogresourcescoperesourcerole.EntitlementManagementCatalogResourceScopeResourceRoleClient
 	EntitlementManagementCatalogResourceScopeResourceRoleResource                                                  *entitlementmanagementcatalogresourcescoperesourceroleresource.EntitlementManagementCatalogResourceScopeResourceRoleResourceClient
 	EntitlementManagementCatalogResourceScopeResourceRoleResourceEnvironment                                       *entitlementmanagementcatalogresourcescoperesourceroleresourceenvironment.EntitlementManagementCatalogResourceScopeResourceRoleResourceEnvironmentClient
+	EntitlementManagementCatalogResourceScopeResourceRoleResourceScope                                             *entitlementmanagementcatalogresourcescoperesourceroleresourcescope.EntitlementManagementCatalogResourceScopeResourceRoleResourceScopeClient
 	EntitlementManagementCatalogResourceScopeResourceScope                                                         *entitlementmanagementcatalogresourcescoperesourcescope.EntitlementManagementCatalogResourceScopeResourceScopeClient
 	EntitlementManagementConnectedOrganization                                                                     *entitlementmanagementconnectedorganization.EntitlementManagementConnectedOrganizationClient
 	EntitlementManagementConnectedOrganizationExternalSponsor                                                      *entitlementmanagementconnectedorganizationexternalsponsor.EntitlementManagementConnectedOrganizationExternalSponsorClient
@@ -449,21 +465,27 @@ type Client struct {
 	EntitlementManagementResourceRequestCatalogResourceRoleResourceEnvironment                                     *entitlementmanagementresourcerequestcatalogresourceroleresourceenvironment.EntitlementManagementResourceRequestCatalogResourceRoleResourceEnvironmentClient
 	EntitlementManagementResourceRequestCatalogResourceRoleResourceRole                                            *entitlementmanagementresourcerequestcatalogresourceroleresourcerole.EntitlementManagementResourceRequestCatalogResourceRoleResourceRoleClient
 	EntitlementManagementResourceRequestCatalogResourceRoleResourceScope                                           *entitlementmanagementresourcerequestcatalogresourceroleresourcescope.EntitlementManagementResourceRequestCatalogResourceRoleResourceScopeClient
+	EntitlementManagementResourceRequestCatalogResourceRoleResourceScopeResource                                   *entitlementmanagementresourcerequestcatalogresourceroleresourcescoperesource.EntitlementManagementResourceRequestCatalogResourceRoleResourceScopeResourceClient
+	EntitlementManagementResourceRequestCatalogResourceRoleResourceScopeResourceEnvironment                        *entitlementmanagementresourcerequestcatalogresourceroleresourcescoperesourceenvironment.EntitlementManagementResourceRequestCatalogResourceRoleResourceScopeResourceEnvironmentClient
+	EntitlementManagementResourceRequestCatalogResourceRoleResourceScopeResourceRole                               *entitlementmanagementresourcerequestcatalogresourceroleresourcescoperesourcerole.EntitlementManagementResourceRequestCatalogResourceRoleResourceScopeResourceRoleClient
 	EntitlementManagementResourceRequestCatalogResourceScope                                                       *entitlementmanagementresourcerequestcatalogresourcescope.EntitlementManagementResourceRequestCatalogResourceScopeClient
 	EntitlementManagementResourceRequestCatalogResourceScopeResource                                               *entitlementmanagementresourcerequestcatalogresourcescoperesource.EntitlementManagementResourceRequestCatalogResourceScopeResourceClient
 	EntitlementManagementResourceRequestCatalogResourceScopeResourceEnvironment                                    *entitlementmanagementresourcerequestcatalogresourcescoperesourceenvironment.EntitlementManagementResourceRequestCatalogResourceScopeResourceEnvironmentClient
 	EntitlementManagementResourceRequestCatalogResourceScopeResourceRole                                           *entitlementmanagementresourcerequestcatalogresourcescoperesourcerole.EntitlementManagementResourceRequestCatalogResourceScopeResourceRoleClient
 	EntitlementManagementResourceRequestCatalogResourceScopeResourceRoleResource                                   *entitlementmanagementresourcerequestcatalogresourcescoperesourceroleresource.EntitlementManagementResourceRequestCatalogResourceScopeResourceRoleResourceClient
 	EntitlementManagementResourceRequestCatalogResourceScopeResourceRoleResourceEnvironment                        *entitlementmanagementresourcerequestcatalogresourcescoperesourceroleresourceenvironment.EntitlementManagementResourceRequestCatalogResourceScopeResourceRoleResourceEnvironmentClient
+	EntitlementManagementResourceRequestCatalogResourceScopeResourceRoleResourceScope                              *entitlementmanagementresourcerequestcatalogresourcescoperesourceroleresourcescope.EntitlementManagementResourceRequestCatalogResourceScopeResourceRoleResourceScopeClient
 	EntitlementManagementResourceRequestCatalogResourceScopeResourceScope                                          *entitlementmanagementresourcerequestcatalogresourcescoperesourcescope.EntitlementManagementResourceRequestCatalogResourceScopeResourceScopeClient
 	EntitlementManagementResourceRequestResource                                                                   *entitlementmanagementresourcerequestresource.EntitlementManagementResourceRequestResourceClient
 	EntitlementManagementResourceRequestResourceEnvironment                                                        *entitlementmanagementresourcerequestresourceenvironment.EntitlementManagementResourceRequestResourceEnvironmentClient
 	EntitlementManagementResourceRequestResourceRole                                                               *entitlementmanagementresourcerequestresourcerole.EntitlementManagementResourceRequestResourceRoleClient
 	EntitlementManagementResourceRequestResourceRoleResource                                                       *entitlementmanagementresourcerequestresourceroleresource.EntitlementManagementResourceRequestResourceRoleResourceClient
 	EntitlementManagementResourceRequestResourceRoleResourceEnvironment                                            *entitlementmanagementresourcerequestresourceroleresourceenvironment.EntitlementManagementResourceRequestResourceRoleResourceEnvironmentClient
+	EntitlementManagementResourceRequestResourceRoleResourceScope                                                  *entitlementmanagementresourcerequestresourceroleresourcescope.EntitlementManagementResourceRequestResourceRoleResourceScopeClient
 	EntitlementManagementResourceRequestResourceScope                                                              *entitlementmanagementresourcerequestresourcescope.EntitlementManagementResourceRequestResourceScopeClient
 	EntitlementManagementResourceRequestResourceScopeResource                                                      *entitlementmanagementresourcerequestresourcescoperesource.EntitlementManagementResourceRequestResourceScopeResourceClient
 	EntitlementManagementResourceRequestResourceScopeResourceEnvironment                                           *entitlementmanagementresourcerequestresourcescoperesourceenvironment.EntitlementManagementResourceRequestResourceScopeResourceEnvironmentClient
+	EntitlementManagementResourceRequestResourceScopeResourceRole                                                  *entitlementmanagementresourcerequestresourcescoperesourcerole.EntitlementManagementResourceRequestResourceScopeResourceRoleClient
 	EntitlementManagementResourceRole                                                                              *entitlementmanagementresourcerole.EntitlementManagementResourceRoleClient
 	EntitlementManagementResourceRoleResource                                                                      *entitlementmanagementresourceroleresource.EntitlementManagementResourceRoleResourceClient
 	EntitlementManagementResourceRoleResourceEnvironment                                                           *entitlementmanagementresourceroleresourceenvironment.EntitlementManagementResourceRoleResourceEnvironmentClient
@@ -478,12 +500,14 @@ type Client struct {
 	EntitlementManagementResourceRoleScopeRoleResourceScope                                                        *entitlementmanagementresourcerolescoperoleresourcescope.EntitlementManagementResourceRoleScopeRoleResourceScopeClient
 	EntitlementManagementResourceRoleScopeRoleResourceScopeResource                                                *entitlementmanagementresourcerolescoperoleresourcescoperesource.EntitlementManagementResourceRoleScopeRoleResourceScopeResourceClient
 	EntitlementManagementResourceRoleScopeRoleResourceScopeResourceEnvironment                                     *entitlementmanagementresourcerolescoperoleresourcescoperesourceenvironment.EntitlementManagementResourceRoleScopeRoleResourceScopeResourceEnvironmentClient
+	EntitlementManagementResourceRoleScopeRoleResourceScopeResourceRole                                            *entitlementmanagementresourcerolescoperoleresourcescoperesourcerole.EntitlementManagementResourceRoleScopeRoleResourceScopeResourceRoleClient
 	EntitlementManagementResourceRoleScopeScope                                                                    *entitlementmanagementresourcerolescopescope.EntitlementManagementResourceRoleScopeScopeClient
 	EntitlementManagementResourceRoleScopeScopeResource                                                            *entitlementmanagementresourcerolescopescoperesource.EntitlementManagementResourceRoleScopeScopeResourceClient
 	EntitlementManagementResourceRoleScopeScopeResourceEnvironment                                                 *entitlementmanagementresourcerolescopescoperesourceenvironment.EntitlementManagementResourceRoleScopeScopeResourceEnvironmentClient
 	EntitlementManagementResourceRoleScopeScopeResourceRole                                                        *entitlementmanagementresourcerolescopescoperesourcerole.EntitlementManagementResourceRoleScopeScopeResourceRoleClient
 	EntitlementManagementResourceRoleScopeScopeResourceRoleResource                                                *entitlementmanagementresourcerolescopescoperesourceroleresource.EntitlementManagementResourceRoleScopeScopeResourceRoleResourceClient
 	EntitlementManagementResourceRoleScopeScopeResourceRoleResourceEnvironment                                     *entitlementmanagementresourcerolescopescoperesourceroleresourceenvironment.EntitlementManagementResourceRoleScopeScopeResourceRoleResourceEnvironmentClient
+	EntitlementManagementResourceRoleScopeScopeResourceRoleResourceScope                                           *entitlementmanagementresourcerolescopescoperesourceroleresourcescope.EntitlementManagementResourceRoleScopeScopeResourceRoleResourceScopeClient
 	EntitlementManagementResourceRoleScopeScopeResourceScope                                                       *entitlementmanagementresourcerolescopescoperesourcescope.EntitlementManagementResourceRoleScopeScopeResourceScopeClient
 	EntitlementManagementResourceScope                                                                             *entitlementmanagementresourcescope.EntitlementManagementResourceScopeClient
 	EntitlementManagementResourceScopeResource                                                                     *entitlementmanagementresourcescoperesource.EntitlementManagementResourceScopeResourceClient
@@ -900,6 +924,12 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *msgraph.Clien
 	}
 	configureFunc(entitlementManagementAccessPackageResourceRoleScopeRoleResourceScopeResourceEnvironmentClient.Client)
 
+	entitlementManagementAccessPackageResourceRoleScopeRoleResourceScopeResourceRoleClient, err := entitlementmanagementaccesspackageresourcerolescoperoleresourcescoperesourcerole.NewEntitlementManagementAccessPackageResourceRoleScopeRoleResourceScopeResourceRoleClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building EntitlementManagementAccessPackageResourceRoleScopeRoleResourceScopeResourceRole client: %+v", err)
+	}
+	configureFunc(entitlementManagementAccessPackageResourceRoleScopeRoleResourceScopeResourceRoleClient.Client)
+
 	entitlementManagementAccessPackageResourceRoleScopeScopeClient, err := entitlementmanagementaccesspackageresourcerolescopescope.NewEntitlementManagementAccessPackageResourceRoleScopeScopeClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building EntitlementManagementAccessPackageResourceRoleScopeScope client: %+v", err)
@@ -935,6 +965,12 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *msgraph.Clien
 		return nil, fmt.Errorf("building EntitlementManagementAccessPackageResourceRoleScopeScopeResourceRoleResourceEnvironment client: %+v", err)
 	}
 	configureFunc(entitlementManagementAccessPackageResourceRoleScopeScopeResourceRoleResourceEnvironmentClient.Client)
+
+	entitlementManagementAccessPackageResourceRoleScopeScopeResourceRoleResourceScopeClient, err := entitlementmanagementaccesspackageresourcerolescopescoperesourceroleresourcescope.NewEntitlementManagementAccessPackageResourceRoleScopeScopeResourceRoleResourceScopeClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building EntitlementManagementAccessPackageResourceRoleScopeScopeResourceRoleResourceScope client: %+v", err)
+	}
+	configureFunc(entitlementManagementAccessPackageResourceRoleScopeScopeResourceRoleResourceScopeClient.Client)
 
 	entitlementManagementAccessPackageResourceRoleScopeScopeResourceScopeClient, err := entitlementmanagementaccesspackageresourcerolescopescoperesourcescope.NewEntitlementManagementAccessPackageResourceRoleScopeScopeResourceScopeClientWithBaseURI(sdkApi)
 	if err != nil {
@@ -1098,6 +1134,12 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *msgraph.Clien
 	}
 	configureFunc(entitlementManagementCatalogResourceRoleResourceScopeResourceEnvironmentClient.Client)
 
+	entitlementManagementCatalogResourceRoleResourceScopeResourceRoleClient, err := entitlementmanagementcatalogresourceroleresourcescoperesourcerole.NewEntitlementManagementCatalogResourceRoleResourceScopeResourceRoleClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building EntitlementManagementCatalogResourceRoleResourceScopeResourceRole client: %+v", err)
+	}
+	configureFunc(entitlementManagementCatalogResourceRoleResourceScopeResourceRoleClient.Client)
+
 	entitlementManagementCatalogResourceScopeClient, err := entitlementmanagementcatalogresourcescope.NewEntitlementManagementCatalogResourceScopeClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building EntitlementManagementCatalogResourceScope client: %+v", err)
@@ -1133,6 +1175,12 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *msgraph.Clien
 		return nil, fmt.Errorf("building EntitlementManagementCatalogResourceScopeResourceRoleResourceEnvironment client: %+v", err)
 	}
 	configureFunc(entitlementManagementCatalogResourceScopeResourceRoleResourceEnvironmentClient.Client)
+
+	entitlementManagementCatalogResourceScopeResourceRoleResourceScopeClient, err := entitlementmanagementcatalogresourcescoperesourceroleresourcescope.NewEntitlementManagementCatalogResourceScopeResourceRoleResourceScopeClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building EntitlementManagementCatalogResourceScopeResourceRoleResourceScope client: %+v", err)
+	}
+	configureFunc(entitlementManagementCatalogResourceScopeResourceRoleResourceScopeClient.Client)
 
 	entitlementManagementCatalogResourceScopeResourceScopeClient, err := entitlementmanagementcatalogresourcescoperesourcescope.NewEntitlementManagementCatalogResourceScopeResourceScopeClientWithBaseURI(sdkApi)
 	if err != nil {
@@ -1320,6 +1368,24 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *msgraph.Clien
 	}
 	configureFunc(entitlementManagementResourceRequestCatalogResourceRoleResourceScopeClient.Client)
 
+	entitlementManagementResourceRequestCatalogResourceRoleResourceScopeResourceClient, err := entitlementmanagementresourcerequestcatalogresourceroleresourcescoperesource.NewEntitlementManagementResourceRequestCatalogResourceRoleResourceScopeResourceClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building EntitlementManagementResourceRequestCatalogResourceRoleResourceScopeResource client: %+v", err)
+	}
+	configureFunc(entitlementManagementResourceRequestCatalogResourceRoleResourceScopeResourceClient.Client)
+
+	entitlementManagementResourceRequestCatalogResourceRoleResourceScopeResourceEnvironmentClient, err := entitlementmanagementresourcerequestcatalogresourceroleresourcescoperesourceenvironment.NewEntitlementManagementResourceRequestCatalogResourceRoleResourceScopeResourceEnvironmentClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building EntitlementManagementResourceRequestCatalogResourceRoleResourceScopeResourceEnvironment client: %+v", err)
+	}
+	configureFunc(entitlementManagementResourceRequestCatalogResourceRoleResourceScopeResourceEnvironmentClient.Client)
+
+	entitlementManagementResourceRequestCatalogResourceRoleResourceScopeResourceRoleClient, err := entitlementmanagementresourcerequestcatalogresourceroleresourcescoperesourcerole.NewEntitlementManagementResourceRequestCatalogResourceRoleResourceScopeResourceRoleClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building EntitlementManagementResourceRequestCatalogResourceRoleResourceScopeResourceRole client: %+v", err)
+	}
+	configureFunc(entitlementManagementResourceRequestCatalogResourceRoleResourceScopeResourceRoleClient.Client)
+
 	entitlementManagementResourceRequestCatalogResourceScopeClient, err := entitlementmanagementresourcerequestcatalogresourcescope.NewEntitlementManagementResourceRequestCatalogResourceScopeClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building EntitlementManagementResourceRequestCatalogResourceScope client: %+v", err)
@@ -1355,6 +1421,12 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *msgraph.Clien
 		return nil, fmt.Errorf("building EntitlementManagementResourceRequestCatalogResourceScopeResourceRoleResourceEnvironment client: %+v", err)
 	}
 	configureFunc(entitlementManagementResourceRequestCatalogResourceScopeResourceRoleResourceEnvironmentClient.Client)
+
+	entitlementManagementResourceRequestCatalogResourceScopeResourceRoleResourceScopeClient, err := entitlementmanagementresourcerequestcatalogresourcescoperesourceroleresourcescope.NewEntitlementManagementResourceRequestCatalogResourceScopeResourceRoleResourceScopeClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building EntitlementManagementResourceRequestCatalogResourceScopeResourceRoleResourceScope client: %+v", err)
+	}
+	configureFunc(entitlementManagementResourceRequestCatalogResourceScopeResourceRoleResourceScopeClient.Client)
 
 	entitlementManagementResourceRequestCatalogResourceScopeResourceScopeClient, err := entitlementmanagementresourcerequestcatalogresourcescoperesourcescope.NewEntitlementManagementResourceRequestCatalogResourceScopeResourceScopeClientWithBaseURI(sdkApi)
 	if err != nil {
@@ -1398,6 +1470,12 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *msgraph.Clien
 	}
 	configureFunc(entitlementManagementResourceRequestResourceRoleResourceEnvironmentClient.Client)
 
+	entitlementManagementResourceRequestResourceRoleResourceScopeClient, err := entitlementmanagementresourcerequestresourceroleresourcescope.NewEntitlementManagementResourceRequestResourceRoleResourceScopeClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building EntitlementManagementResourceRequestResourceRoleResourceScope client: %+v", err)
+	}
+	configureFunc(entitlementManagementResourceRequestResourceRoleResourceScopeClient.Client)
+
 	entitlementManagementResourceRequestResourceScopeClient, err := entitlementmanagementresourcerequestresourcescope.NewEntitlementManagementResourceRequestResourceScopeClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building EntitlementManagementResourceRequestResourceScope client: %+v", err)
@@ -1415,6 +1493,12 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *msgraph.Clien
 		return nil, fmt.Errorf("building EntitlementManagementResourceRequestResourceScopeResourceEnvironment client: %+v", err)
 	}
 	configureFunc(entitlementManagementResourceRequestResourceScopeResourceEnvironmentClient.Client)
+
+	entitlementManagementResourceRequestResourceScopeResourceRoleClient, err := entitlementmanagementresourcerequestresourcescoperesourcerole.NewEntitlementManagementResourceRequestResourceScopeResourceRoleClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building EntitlementManagementResourceRequestResourceScopeResourceRole client: %+v", err)
+	}
+	configureFunc(entitlementManagementResourceRequestResourceScopeResourceRoleClient.Client)
 
 	entitlementManagementResourceRoleClient, err := entitlementmanagementresourcerole.NewEntitlementManagementResourceRoleClientWithBaseURI(sdkApi)
 	if err != nil {
@@ -1500,6 +1584,12 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *msgraph.Clien
 	}
 	configureFunc(entitlementManagementResourceRoleScopeRoleResourceScopeResourceEnvironmentClient.Client)
 
+	entitlementManagementResourceRoleScopeRoleResourceScopeResourceRoleClient, err := entitlementmanagementresourcerolescoperoleresourcescoperesourcerole.NewEntitlementManagementResourceRoleScopeRoleResourceScopeResourceRoleClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building EntitlementManagementResourceRoleScopeRoleResourceScopeResourceRole client: %+v", err)
+	}
+	configureFunc(entitlementManagementResourceRoleScopeRoleResourceScopeResourceRoleClient.Client)
+
 	entitlementManagementResourceRoleScopeScopeClient, err := entitlementmanagementresourcerolescopescope.NewEntitlementManagementResourceRoleScopeScopeClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building EntitlementManagementResourceRoleScopeScope client: %+v", err)
@@ -1535,6 +1625,12 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *msgraph.Clien
 		return nil, fmt.Errorf("building EntitlementManagementResourceRoleScopeScopeResourceRoleResourceEnvironment client: %+v", err)
 	}
 	configureFunc(entitlementManagementResourceRoleScopeScopeResourceRoleResourceEnvironmentClient.Client)
+
+	entitlementManagementResourceRoleScopeScopeResourceRoleResourceScopeClient, err := entitlementmanagementresourcerolescopescoperesourceroleresourcescope.NewEntitlementManagementResourceRoleScopeScopeResourceRoleResourceScopeClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building EntitlementManagementResourceRoleScopeScopeResourceRoleResourceScope client: %+v", err)
+	}
+	configureFunc(entitlementManagementResourceRoleScopeScopeResourceRoleResourceScopeClient.Client)
 
 	entitlementManagementResourceRoleScopeScopeResourceScopeClient, err := entitlementmanagementresourcerolescopescoperesourcescope.NewEntitlementManagementResourceRoleScopeScopeResourceScopeClientWithBaseURI(sdkApi)
 	if err != nil {
@@ -2686,12 +2782,14 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *msgraph.Clien
 		EntitlementManagementAccessPackageResourceRoleScopeRoleResourceScope:                                           entitlementManagementAccessPackageResourceRoleScopeRoleResourceScopeClient,
 		EntitlementManagementAccessPackageResourceRoleScopeRoleResourceScopeResource:                                   entitlementManagementAccessPackageResourceRoleScopeRoleResourceScopeResourceClient,
 		EntitlementManagementAccessPackageResourceRoleScopeRoleResourceScopeResourceEnvironment:                        entitlementManagementAccessPackageResourceRoleScopeRoleResourceScopeResourceEnvironmentClient,
+		EntitlementManagementAccessPackageResourceRoleScopeRoleResourceScopeResourceRole:                               entitlementManagementAccessPackageResourceRoleScopeRoleResourceScopeResourceRoleClient,
 		EntitlementManagementAccessPackageResourceRoleScopeScope:                                                       entitlementManagementAccessPackageResourceRoleScopeScopeClient,
 		EntitlementManagementAccessPackageResourceRoleScopeScopeResource:                                               entitlementManagementAccessPackageResourceRoleScopeScopeResourceClient,
 		EntitlementManagementAccessPackageResourceRoleScopeScopeResourceEnvironment:                                    entitlementManagementAccessPackageResourceRoleScopeScopeResourceEnvironmentClient,
 		EntitlementManagementAccessPackageResourceRoleScopeScopeResourceRole:                                           entitlementManagementAccessPackageResourceRoleScopeScopeResourceRoleClient,
 		EntitlementManagementAccessPackageResourceRoleScopeScopeResourceRoleResource:                                   entitlementManagementAccessPackageResourceRoleScopeScopeResourceRoleResourceClient,
 		EntitlementManagementAccessPackageResourceRoleScopeScopeResourceRoleResourceEnvironment:                        entitlementManagementAccessPackageResourceRoleScopeScopeResourceRoleResourceEnvironmentClient,
+		EntitlementManagementAccessPackageResourceRoleScopeScopeResourceRoleResourceScope:                              entitlementManagementAccessPackageResourceRoleScopeScopeResourceRoleResourceScopeClient,
 		EntitlementManagementAccessPackageResourceRoleScopeScopeResourceScope:                                          entitlementManagementAccessPackageResourceRoleScopeScopeResourceScopeClient,
 		EntitlementManagementAssignment:                                                                                entitlementManagementAssignmentClient,
 		EntitlementManagementAssignmentAccessPackage:                                                                   entitlementManagementAssignmentAccessPackageClient,
@@ -2719,12 +2817,14 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *msgraph.Clien
 		EntitlementManagementCatalogResourceRoleResourceScope:                                                          entitlementManagementCatalogResourceRoleResourceScopeClient,
 		EntitlementManagementCatalogResourceRoleResourceScopeResource:                                                  entitlementManagementCatalogResourceRoleResourceScopeResourceClient,
 		EntitlementManagementCatalogResourceRoleResourceScopeResourceEnvironment:                                       entitlementManagementCatalogResourceRoleResourceScopeResourceEnvironmentClient,
+		EntitlementManagementCatalogResourceRoleResourceScopeResourceRole:                                              entitlementManagementCatalogResourceRoleResourceScopeResourceRoleClient,
 		EntitlementManagementCatalogResourceScope:                                                                      entitlementManagementCatalogResourceScopeClient,
 		EntitlementManagementCatalogResourceScopeResource:                                                              entitlementManagementCatalogResourceScopeResourceClient,
 		EntitlementManagementCatalogResourceScopeResourceEnvironment:                                                   entitlementManagementCatalogResourceScopeResourceEnvironmentClient,
 		EntitlementManagementCatalogResourceScopeResourceRole:                                                          entitlementManagementCatalogResourceScopeResourceRoleClient,
 		EntitlementManagementCatalogResourceScopeResourceRoleResource:                                                  entitlementManagementCatalogResourceScopeResourceRoleResourceClient,
 		EntitlementManagementCatalogResourceScopeResourceRoleResourceEnvironment:                                       entitlementManagementCatalogResourceScopeResourceRoleResourceEnvironmentClient,
+		EntitlementManagementCatalogResourceScopeResourceRoleResourceScope:                                             entitlementManagementCatalogResourceScopeResourceRoleResourceScopeClient,
 		EntitlementManagementCatalogResourceScopeResourceScope:                                                         entitlementManagementCatalogResourceScopeResourceScopeClient,
 		EntitlementManagementConnectedOrganization:                                                                     entitlementManagementConnectedOrganizationClient,
 		EntitlementManagementConnectedOrganizationExternalSponsor:                                                      entitlementManagementConnectedOrganizationExternalSponsorClient,
@@ -2756,21 +2856,27 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *msgraph.Clien
 		EntitlementManagementResourceRequestCatalogResourceRoleResourceEnvironment:                                     entitlementManagementResourceRequestCatalogResourceRoleResourceEnvironmentClient,
 		EntitlementManagementResourceRequestCatalogResourceRoleResourceRole:                                            entitlementManagementResourceRequestCatalogResourceRoleResourceRoleClient,
 		EntitlementManagementResourceRequestCatalogResourceRoleResourceScope:                                           entitlementManagementResourceRequestCatalogResourceRoleResourceScopeClient,
+		EntitlementManagementResourceRequestCatalogResourceRoleResourceScopeResource:                                   entitlementManagementResourceRequestCatalogResourceRoleResourceScopeResourceClient,
+		EntitlementManagementResourceRequestCatalogResourceRoleResourceScopeResourceEnvironment:                        entitlementManagementResourceRequestCatalogResourceRoleResourceScopeResourceEnvironmentClient,
+		EntitlementManagementResourceRequestCatalogResourceRoleResourceScopeResourceRole:                               entitlementManagementResourceRequestCatalogResourceRoleResourceScopeResourceRoleClient,
 		EntitlementManagementResourceRequestCatalogResourceScope:                                                       entitlementManagementResourceRequestCatalogResourceScopeClient,
 		EntitlementManagementResourceRequestCatalogResourceScopeResource:                                               entitlementManagementResourceRequestCatalogResourceScopeResourceClient,
 		EntitlementManagementResourceRequestCatalogResourceScopeResourceEnvironment:                                    entitlementManagementResourceRequestCatalogResourceScopeResourceEnvironmentClient,
 		EntitlementManagementResourceRequestCatalogResourceScopeResourceRole:                                           entitlementManagementResourceRequestCatalogResourceScopeResourceRoleClient,
 		EntitlementManagementResourceRequestCatalogResourceScopeResourceRoleResource:                                   entitlementManagementResourceRequestCatalogResourceScopeResourceRoleResourceClient,
 		EntitlementManagementResourceRequestCatalogResourceScopeResourceRoleResourceEnvironment:                        entitlementManagementResourceRequestCatalogResourceScopeResourceRoleResourceEnvironmentClient,
+		EntitlementManagementResourceRequestCatalogResourceScopeResourceRoleResourceScope:                              entitlementManagementResourceRequestCatalogResourceScopeResourceRoleResourceScopeClient,
 		EntitlementManagementResourceRequestCatalogResourceScopeResourceScope:                                          entitlementManagementResourceRequestCatalogResourceScopeResourceScopeClient,
 		EntitlementManagementResourceRequestResource:                                                                   entitlementManagementResourceRequestResourceClient,
 		EntitlementManagementResourceRequestResourceEnvironment:                                                        entitlementManagementResourceRequestResourceEnvironmentClient,
 		EntitlementManagementResourceRequestResourceRole:                                                               entitlementManagementResourceRequestResourceRoleClient,
 		EntitlementManagementResourceRequestResourceRoleResource:                                                       entitlementManagementResourceRequestResourceRoleResourceClient,
 		EntitlementManagementResourceRequestResourceRoleResourceEnvironment:                                            entitlementManagementResourceRequestResourceRoleResourceEnvironmentClient,
+		EntitlementManagementResourceRequestResourceRoleResourceScope:                                                  entitlementManagementResourceRequestResourceRoleResourceScopeClient,
 		EntitlementManagementResourceRequestResourceScope:                                                              entitlementManagementResourceRequestResourceScopeClient,
 		EntitlementManagementResourceRequestResourceScopeResource:                                                      entitlementManagementResourceRequestResourceScopeResourceClient,
 		EntitlementManagementResourceRequestResourceScopeResourceEnvironment:                                           entitlementManagementResourceRequestResourceScopeResourceEnvironmentClient,
+		EntitlementManagementResourceRequestResourceScopeResourceRole:                                                  entitlementManagementResourceRequestResourceScopeResourceRoleClient,
 		EntitlementManagementResourceRole:                                                                              entitlementManagementResourceRoleClient,
 		EntitlementManagementResourceRoleResource:                                                                      entitlementManagementResourceRoleResourceClient,
 		EntitlementManagementResourceRoleResourceEnvironment:                                                           entitlementManagementResourceRoleResourceEnvironmentClient,
@@ -2785,12 +2891,14 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *msgraph.Clien
 		EntitlementManagementResourceRoleScopeRoleResourceScope:                                                        entitlementManagementResourceRoleScopeRoleResourceScopeClient,
 		EntitlementManagementResourceRoleScopeRoleResourceScopeResource:                                                entitlementManagementResourceRoleScopeRoleResourceScopeResourceClient,
 		EntitlementManagementResourceRoleScopeRoleResourceScopeResourceEnvironment:                                     entitlementManagementResourceRoleScopeRoleResourceScopeResourceEnvironmentClient,
+		EntitlementManagementResourceRoleScopeRoleResourceScopeResourceRole:                                            entitlementManagementResourceRoleScopeRoleResourceScopeResourceRoleClient,
 		EntitlementManagementResourceRoleScopeScope:                                                                    entitlementManagementResourceRoleScopeScopeClient,
 		EntitlementManagementResourceRoleScopeScopeResource:                                                            entitlementManagementResourceRoleScopeScopeResourceClient,
 		EntitlementManagementResourceRoleScopeScopeResourceEnvironment:                                                 entitlementManagementResourceRoleScopeScopeResourceEnvironmentClient,
 		EntitlementManagementResourceRoleScopeScopeResourceRole:                                                        entitlementManagementResourceRoleScopeScopeResourceRoleClient,
 		EntitlementManagementResourceRoleScopeScopeResourceRoleResource:                                                entitlementManagementResourceRoleScopeScopeResourceRoleResourceClient,
 		EntitlementManagementResourceRoleScopeScopeResourceRoleResourceEnvironment:                                     entitlementManagementResourceRoleScopeScopeResourceRoleResourceEnvironmentClient,
+		EntitlementManagementResourceRoleScopeScopeResourceRoleResourceScope:                                           entitlementManagementResourceRoleScopeScopeResourceRoleResourceScopeClient,
 		EntitlementManagementResourceRoleScopeScopeResourceScope:                                                       entitlementManagementResourceRoleScopeScopeResourceScopeClient,
 		EntitlementManagementResourceScope:                                                                             entitlementManagementResourceScopeClient,
 		EntitlementManagementResourceScopeResource:                                                                     entitlementManagementResourceScopeResourceClient,

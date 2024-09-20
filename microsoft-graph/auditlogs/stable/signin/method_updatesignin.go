@@ -17,15 +17,44 @@ type UpdateSignInOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateSignInOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateSignInOperationOptions() UpdateSignInOperationOptions {
+	return UpdateSignInOperationOptions{}
+}
+
+func (o UpdateSignInOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateSignInOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateSignInOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateSignIn - Update the navigation property signIns in auditLogs
-func (c SignInClient) UpdateSignIn(ctx context.Context, id stable.AuditLogSignInId, input stable.SignIn) (result UpdateSignInOperationResponse, err error) {
+func (c SignInClient) UpdateSignIn(ctx context.Context, id stable.AuditLogSignInId, input stable.SignIn, options UpdateSignInOperationOptions) (result UpdateSignInOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -18,17 +18,46 @@ type CreateAccessReviewDefinitionInstanceStageDecisionInstanceBatchRecordDecisio
 	OData        *odata.OData
 }
 
+type CreateAccessReviewDefinitionInstanceStageDecisionInstanceBatchRecordDecisionOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateAccessReviewDefinitionInstanceStageDecisionInstanceBatchRecordDecisionOperationOptions() CreateAccessReviewDefinitionInstanceStageDecisionInstanceBatchRecordDecisionOperationOptions {
+	return CreateAccessReviewDefinitionInstanceStageDecisionInstanceBatchRecordDecisionOperationOptions{}
+}
+
+func (o CreateAccessReviewDefinitionInstanceStageDecisionInstanceBatchRecordDecisionOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateAccessReviewDefinitionInstanceStageDecisionInstanceBatchRecordDecisionOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateAccessReviewDefinitionInstanceStageDecisionInstanceBatchRecordDecisionOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateAccessReviewDefinitionInstanceStageDecisionInstanceBatchRecordDecision - Invoke action batchRecordDecisions.
 // Enables reviewers to review all accessReviewInstanceDecisionItem objects in batches by using principalId, resourceId,
 // or neither.
-func (c AccessReviewDefinitionInstanceStageDecisionInstanceClient) CreateAccessReviewDefinitionInstanceStageDecisionInstanceBatchRecordDecision(ctx context.Context, id beta.IdentityGovernanceAccessReviewDefinitionIdInstanceIdStageIdDecisionId, input CreateAccessReviewDefinitionInstanceStageDecisionInstanceBatchRecordDecisionRequest) (result CreateAccessReviewDefinitionInstanceStageDecisionInstanceBatchRecordDecisionOperationResponse, err error) {
+func (c AccessReviewDefinitionInstanceStageDecisionInstanceClient) CreateAccessReviewDefinitionInstanceStageDecisionInstanceBatchRecordDecision(ctx context.Context, id beta.IdentityGovernanceAccessReviewDefinitionIdInstanceIdStageIdDecisionId, input CreateAccessReviewDefinitionInstanceStageDecisionInstanceBatchRecordDecisionRequest, options CreateAccessReviewDefinitionInstanceStageDecisionInstanceBatchRecordDecisionOperationOptions) (result CreateAccessReviewDefinitionInstanceStageDecisionInstanceBatchRecordDecisionOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/instance/batchRecordDecisions", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/instance/batchRecordDecisions", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

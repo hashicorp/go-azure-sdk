@@ -18,15 +18,44 @@ type UnsetJoinedTeamPrimaryChannelMessageReactionOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UnsetJoinedTeamPrimaryChannelMessageReactionOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUnsetJoinedTeamPrimaryChannelMessageReactionOperationOptions() UnsetJoinedTeamPrimaryChannelMessageReactionOperationOptions {
+	return UnsetJoinedTeamPrimaryChannelMessageReactionOperationOptions{}
+}
+
+func (o UnsetJoinedTeamPrimaryChannelMessageReactionOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UnsetJoinedTeamPrimaryChannelMessageReactionOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UnsetJoinedTeamPrimaryChannelMessageReactionOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UnsetJoinedTeamPrimaryChannelMessageReaction - Invoke action unsetReaction
-func (c JoinedTeamPrimaryChannelMessageClient) UnsetJoinedTeamPrimaryChannelMessageReaction(ctx context.Context, id stable.UserIdJoinedTeamIdPrimaryChannelMessageId, input UnsetJoinedTeamPrimaryChannelMessageReactionRequest) (result UnsetJoinedTeamPrimaryChannelMessageReactionOperationResponse, err error) {
+func (c JoinedTeamPrimaryChannelMessageClient) UnsetJoinedTeamPrimaryChannelMessageReaction(ctx context.Context, id stable.UserIdJoinedTeamIdPrimaryChannelMessageId, input UnsetJoinedTeamPrimaryChannelMessageReactionRequest, options UnsetJoinedTeamPrimaryChannelMessageReactionOperationOptions) (result UnsetJoinedTeamPrimaryChannelMessageReactionOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/unsetReaction", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/unsetReaction", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

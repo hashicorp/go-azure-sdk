@@ -17,15 +17,44 @@ type UpdateGroupLifecyclePolicyOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateGroupLifecyclePolicyOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateGroupLifecyclePolicyOperationOptions() UpdateGroupLifecyclePolicyOperationOptions {
+	return UpdateGroupLifecyclePolicyOperationOptions{}
+}
+
+func (o UpdateGroupLifecyclePolicyOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateGroupLifecyclePolicyOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateGroupLifecyclePolicyOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateGroupLifecyclePolicy - Update the navigation property groupLifecyclePolicies in groups
-func (c GroupLifecyclePolicyClient) UpdateGroupLifecyclePolicy(ctx context.Context, id beta.GroupIdGroupLifecyclePolicyId, input beta.GroupLifecyclePolicy) (result UpdateGroupLifecyclePolicyOperationResponse, err error) {
+func (c GroupLifecyclePolicyClient) UpdateGroupLifecyclePolicy(ctx context.Context, id beta.GroupIdGroupLifecyclePolicyId, input beta.GroupLifecyclePolicy, options UpdateGroupLifecyclePolicyOperationOptions) (result UpdateGroupLifecyclePolicyOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

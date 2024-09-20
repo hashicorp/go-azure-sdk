@@ -18,15 +18,44 @@ type CreateCompliancePolicyOperationResponse struct {
 	Model        *beta.DeviceManagementCompliancePolicy
 }
 
+type CreateCompliancePolicyOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateCompliancePolicyOperationOptions() CreateCompliancePolicyOperationOptions {
+	return CreateCompliancePolicyOperationOptions{}
+}
+
+func (o CreateCompliancePolicyOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateCompliancePolicyOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateCompliancePolicyOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateCompliancePolicy - Create new navigation property to compliancePolicies for deviceManagement
-func (c CompliancePolicyClient) CreateCompliancePolicy(ctx context.Context, input beta.DeviceManagementCompliancePolicy) (result CreateCompliancePolicyOperationResponse, err error) {
+func (c CompliancePolicyClient) CreateCompliancePolicy(ctx context.Context, input beta.DeviceManagementCompliancePolicy, options CreateCompliancePolicyOperationOptions) (result CreateCompliancePolicyOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/deviceManagement/compliancePolicies",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/deviceManagement/compliancePolicies",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

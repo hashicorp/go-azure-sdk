@@ -17,15 +17,44 @@ type UpdateRoleManagementOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateRoleManagementOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateRoleManagementOperationOptions() UpdateRoleManagementOperationOptions {
+	return UpdateRoleManagementOperationOptions{}
+}
+
+func (o UpdateRoleManagementOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateRoleManagementOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateRoleManagementOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateRoleManagement - Update roleManagement
-func (c RoleManagementClient) UpdateRoleManagement(ctx context.Context, input stable.RoleManagement) (result UpdateRoleManagementOperationResponse, err error) {
+func (c RoleManagementClient) UpdateRoleManagement(ctx context.Context, input stable.RoleManagement, options UpdateRoleManagementOperationOptions) (result UpdateRoleManagementOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       "/roleManagement",
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          "/roleManagement",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

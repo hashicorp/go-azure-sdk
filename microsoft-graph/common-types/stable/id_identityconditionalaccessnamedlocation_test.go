@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &IdentityConditionalAccessNamedLocationId{}
 
 func TestNewIdentityConditionalAccessNamedLocationID(t *testing.T) {
-	id := NewIdentityConditionalAccessNamedLocationID("namedLocationIdValue")
+	id := NewIdentityConditionalAccessNamedLocationID("namedLocationId")
 
-	if id.NamedLocationId != "namedLocationIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'NamedLocationId'", id.NamedLocationId, "namedLocationIdValue")
+	if id.NamedLocationId != "namedLocationId" {
+		t.Fatalf("Expected %q but got %q for Segment 'NamedLocationId'", id.NamedLocationId, "namedLocationId")
 	}
 }
 
 func TestFormatIdentityConditionalAccessNamedLocationID(t *testing.T) {
-	actual := NewIdentityConditionalAccessNamedLocationID("namedLocationIdValue").ID()
-	expected := "/identity/conditionalAccess/namedLocations/namedLocationIdValue"
+	actual := NewIdentityConditionalAccessNamedLocationID("namedLocationId").ID()
+	expected := "/identity/conditionalAccess/namedLocations/namedLocationId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -55,14 +55,14 @@ func TestParseIdentityConditionalAccessNamedLocationID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/identity/conditionalAccess/namedLocations/namedLocationIdValue",
+			Input: "/identity/conditionalAccess/namedLocations/namedLocationId",
 			Expected: &IdentityConditionalAccessNamedLocationId{
-				NamedLocationId: "namedLocationIdValue",
+				NamedLocationId: "namedLocationId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/identity/conditionalAccess/namedLocations/namedLocationIdValue/extra",
+			Input: "/identity/conditionalAccess/namedLocations/namedLocationId/extra",
 			Error: true,
 		},
 	}
@@ -131,26 +131,26 @@ func TestParseIdentityConditionalAccessNamedLocationIDInsensitively(t *testing.T
 		},
 		{
 			// Valid URI
-			Input: "/identity/conditionalAccess/namedLocations/namedLocationIdValue",
+			Input: "/identity/conditionalAccess/namedLocations/namedLocationId",
 			Expected: &IdentityConditionalAccessNamedLocationId{
-				NamedLocationId: "namedLocationIdValue",
+				NamedLocationId: "namedLocationId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/identity/conditionalAccess/namedLocations/namedLocationIdValue/extra",
+			Input: "/identity/conditionalAccess/namedLocations/namedLocationId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/iDeNtItY/cOnDiTiOnAlAcCeSs/nAmEdLoCaTiOnS/nAmEdLoCaTiOnIdVaLuE",
+			Input: "/iDeNtItY/cOnDiTiOnAlAcCeSs/nAmEdLoCaTiOnS/nAmEdLoCaTiOnId",
 			Expected: &IdentityConditionalAccessNamedLocationId{
-				NamedLocationId: "nAmEdLoCaTiOnIdVaLuE",
+				NamedLocationId: "nAmEdLoCaTiOnId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/iDeNtItY/cOnDiTiOnAlAcCeSs/nAmEdLoCaTiOnS/nAmEdLoCaTiOnIdVaLuE/extra",
+			Input: "/iDeNtItY/cOnDiTiOnAlAcCeSs/nAmEdLoCaTiOnS/nAmEdLoCaTiOnId/extra",
 			Error: true,
 		},
 	}

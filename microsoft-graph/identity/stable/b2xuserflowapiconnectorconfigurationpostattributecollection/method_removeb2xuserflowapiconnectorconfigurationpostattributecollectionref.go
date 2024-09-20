@@ -19,7 +19,8 @@ type RemoveB2xUserFlowApiConnectorConfigurationPostAttributeCollectionRefOperati
 }
 
 type RemoveB2xUserFlowApiConnectorConfigurationPostAttributeCollectionRefOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultRemoveB2xUserFlowApiConnectorConfigurationPostAttributeCollectionRefOperationOptions() RemoveB2xUserFlowApiConnectorConfigurationPostAttributeCollectionRefOperationOptions {
@@ -36,7 +37,9 @@ func (o RemoveB2xUserFlowApiConnectorConfigurationPostAttributeCollectionRefOper
 
 func (o RemoveB2xUserFlowApiConnectorConfigurationPostAttributeCollectionRefOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

@@ -19,16 +19,45 @@ type GetTeamPrimaryChannelMessageHostedContentValueOperationResponse struct {
 	Model        *[]byte
 }
 
+type GetTeamPrimaryChannelMessageHostedContentValueOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultGetTeamPrimaryChannelMessageHostedContentValueOperationOptions() GetTeamPrimaryChannelMessageHostedContentValueOperationOptions {
+	return GetTeamPrimaryChannelMessageHostedContentValueOperationOptions{}
+}
+
+func (o GetTeamPrimaryChannelMessageHostedContentValueOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o GetTeamPrimaryChannelMessageHostedContentValueOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o GetTeamPrimaryChannelMessageHostedContentValueOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // GetTeamPrimaryChannelMessageHostedContentValue - Get media content for the navigation property hostedContents from
 // groups. The unique identifier for an entity. Read-only.
-func (c TeamPrimaryChannelMessageHostedContentClient) GetTeamPrimaryChannelMessageHostedContentValue(ctx context.Context, id stable.GroupIdTeamPrimaryChannelMessageIdHostedContentId) (result GetTeamPrimaryChannelMessageHostedContentValueOperationResponse, err error) {
+func (c TeamPrimaryChannelMessageHostedContentClient) GetTeamPrimaryChannelMessageHostedContentValue(ctx context.Context, id stable.GroupIdTeamPrimaryChannelMessageIdHostedContentId, options GetTeamPrimaryChannelMessageHostedContentValueOperationOptions) (result GetTeamPrimaryChannelMessageHostedContentValueOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/octet-stream",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/$value", id.ID()),
+		HttpMethod:    http.MethodGet,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/$value", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

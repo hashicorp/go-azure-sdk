@@ -18,15 +18,44 @@ type CreateOperationApprovalRequestOperationResponse struct {
 	Model        *beta.OperationApprovalRequest
 }
 
+type CreateOperationApprovalRequestOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateOperationApprovalRequestOperationOptions() CreateOperationApprovalRequestOperationOptions {
+	return CreateOperationApprovalRequestOperationOptions{}
+}
+
+func (o CreateOperationApprovalRequestOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateOperationApprovalRequestOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateOperationApprovalRequestOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateOperationApprovalRequest - Create new navigation property to operationApprovalRequests for deviceManagement
-func (c OperationApprovalRequestClient) CreateOperationApprovalRequest(ctx context.Context, input beta.OperationApprovalRequest) (result CreateOperationApprovalRequestOperationResponse, err error) {
+func (c OperationApprovalRequestClient) CreateOperationApprovalRequest(ctx context.Context, input beta.OperationApprovalRequest, options CreateOperationApprovalRequestOperationOptions) (result CreateOperationApprovalRequestOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/deviceManagement/operationApprovalRequests",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/deviceManagement/operationApprovalRequests",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

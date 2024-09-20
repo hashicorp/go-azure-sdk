@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &DeviceManagementMacOSSoftwareUpdateAccountSummaryId{}
 
 func TestNewDeviceManagementMacOSSoftwareUpdateAccountSummaryID(t *testing.T) {
-	id := NewDeviceManagementMacOSSoftwareUpdateAccountSummaryID("macOSSoftwareUpdateAccountSummaryIdValue")
+	id := NewDeviceManagementMacOSSoftwareUpdateAccountSummaryID("macOSSoftwareUpdateAccountSummaryId")
 
-	if id.MacOSSoftwareUpdateAccountSummaryId != "macOSSoftwareUpdateAccountSummaryIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'MacOSSoftwareUpdateAccountSummaryId'", id.MacOSSoftwareUpdateAccountSummaryId, "macOSSoftwareUpdateAccountSummaryIdValue")
+	if id.MacOSSoftwareUpdateAccountSummaryId != "macOSSoftwareUpdateAccountSummaryId" {
+		t.Fatalf("Expected %q but got %q for Segment 'MacOSSoftwareUpdateAccountSummaryId'", id.MacOSSoftwareUpdateAccountSummaryId, "macOSSoftwareUpdateAccountSummaryId")
 	}
 }
 
 func TestFormatDeviceManagementMacOSSoftwareUpdateAccountSummaryID(t *testing.T) {
-	actual := NewDeviceManagementMacOSSoftwareUpdateAccountSummaryID("macOSSoftwareUpdateAccountSummaryIdValue").ID()
-	expected := "/deviceManagement/macOSSoftwareUpdateAccountSummaries/macOSSoftwareUpdateAccountSummaryIdValue"
+	actual := NewDeviceManagementMacOSSoftwareUpdateAccountSummaryID("macOSSoftwareUpdateAccountSummaryId").ID()
+	expected := "/deviceManagement/macOSSoftwareUpdateAccountSummaries/macOSSoftwareUpdateAccountSummaryId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -50,14 +50,14 @@ func TestParseDeviceManagementMacOSSoftwareUpdateAccountSummaryID(t *testing.T) 
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/macOSSoftwareUpdateAccountSummaries/macOSSoftwareUpdateAccountSummaryIdValue",
+			Input: "/deviceManagement/macOSSoftwareUpdateAccountSummaries/macOSSoftwareUpdateAccountSummaryId",
 			Expected: &DeviceManagementMacOSSoftwareUpdateAccountSummaryId{
-				MacOSSoftwareUpdateAccountSummaryId: "macOSSoftwareUpdateAccountSummaryIdValue",
+				MacOSSoftwareUpdateAccountSummaryId: "macOSSoftwareUpdateAccountSummaryId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/macOSSoftwareUpdateAccountSummaries/macOSSoftwareUpdateAccountSummaryIdValue/extra",
+			Input: "/deviceManagement/macOSSoftwareUpdateAccountSummaries/macOSSoftwareUpdateAccountSummaryId/extra",
 			Error: true,
 		},
 	}
@@ -116,26 +116,26 @@ func TestParseDeviceManagementMacOSSoftwareUpdateAccountSummaryIDInsensitively(t
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/macOSSoftwareUpdateAccountSummaries/macOSSoftwareUpdateAccountSummaryIdValue",
+			Input: "/deviceManagement/macOSSoftwareUpdateAccountSummaries/macOSSoftwareUpdateAccountSummaryId",
 			Expected: &DeviceManagementMacOSSoftwareUpdateAccountSummaryId{
-				MacOSSoftwareUpdateAccountSummaryId: "macOSSoftwareUpdateAccountSummaryIdValue",
+				MacOSSoftwareUpdateAccountSummaryId: "macOSSoftwareUpdateAccountSummaryId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/macOSSoftwareUpdateAccountSummaries/macOSSoftwareUpdateAccountSummaryIdValue/extra",
+			Input: "/deviceManagement/macOSSoftwareUpdateAccountSummaries/macOSSoftwareUpdateAccountSummaryId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/mAcOsSoFtWaReUpDaTeAcCoUnTsUmMaRiEs/mAcOsSoFtWaReUpDaTeAcCoUnTsUmMaRyIdVaLuE",
+			Input: "/dEvIcEmAnAgEmEnT/mAcOsSoFtWaReUpDaTeAcCoUnTsUmMaRiEs/mAcOsSoFtWaReUpDaTeAcCoUnTsUmMaRyId",
 			Expected: &DeviceManagementMacOSSoftwareUpdateAccountSummaryId{
-				MacOSSoftwareUpdateAccountSummaryId: "mAcOsSoFtWaReUpDaTeAcCoUnTsUmMaRyIdVaLuE",
+				MacOSSoftwareUpdateAccountSummaryId: "mAcOsSoFtWaReUpDaTeAcCoUnTsUmMaRyId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/mAcOsSoFtWaReUpDaTeAcCoUnTsUmMaRiEs/mAcOsSoFtWaReUpDaTeAcCoUnTsUmMaRyIdVaLuE/extra",
+			Input: "/dEvIcEmAnAgEmEnT/mAcOsSoFtWaReUpDaTeAcCoUnTsUmMaRiEs/mAcOsSoFtWaReUpDaTeAcCoUnTsUmMaRyId/extra",
 			Error: true,
 		},
 	}

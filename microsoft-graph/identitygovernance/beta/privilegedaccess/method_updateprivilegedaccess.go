@@ -17,15 +17,44 @@ type UpdatePrivilegedAccessOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdatePrivilegedAccessOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdatePrivilegedAccessOperationOptions() UpdatePrivilegedAccessOperationOptions {
+	return UpdatePrivilegedAccessOperationOptions{}
+}
+
+func (o UpdatePrivilegedAccessOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdatePrivilegedAccessOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdatePrivilegedAccessOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdatePrivilegedAccess - Update the navigation property privilegedAccess in identityGovernance
-func (c PrivilegedAccessClient) UpdatePrivilegedAccess(ctx context.Context, input beta.PrivilegedAccessRoot) (result UpdatePrivilegedAccessOperationResponse, err error) {
+func (c PrivilegedAccessClient) UpdatePrivilegedAccess(ctx context.Context, input beta.PrivilegedAccessRoot, options UpdatePrivilegedAccessOperationOptions) (result UpdatePrivilegedAccessOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       "/identityGovernance/privilegedAccess",
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          "/identityGovernance/privilegedAccess",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

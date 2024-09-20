@@ -17,15 +17,44 @@ type UpdateDirectoryRoleAssignmentScheduleOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateDirectoryRoleAssignmentScheduleOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateDirectoryRoleAssignmentScheduleOperationOptions() UpdateDirectoryRoleAssignmentScheduleOperationOptions {
+	return UpdateDirectoryRoleAssignmentScheduleOperationOptions{}
+}
+
+func (o UpdateDirectoryRoleAssignmentScheduleOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateDirectoryRoleAssignmentScheduleOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateDirectoryRoleAssignmentScheduleOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateDirectoryRoleAssignmentSchedule - Update the navigation property roleAssignmentSchedules in roleManagement
-func (c DirectoryRoleAssignmentScheduleClient) UpdateDirectoryRoleAssignmentSchedule(ctx context.Context, id stable.RoleManagementDirectoryRoleAssignmentScheduleId, input stable.UnifiedRoleAssignmentSchedule) (result UpdateDirectoryRoleAssignmentScheduleOperationResponse, err error) {
+func (c DirectoryRoleAssignmentScheduleClient) UpdateDirectoryRoleAssignmentSchedule(ctx context.Context, id stable.RoleManagementDirectoryRoleAssignmentScheduleId, input stable.UnifiedRoleAssignmentSchedule, options UpdateDirectoryRoleAssignmentScheduleOperationOptions) (result UpdateDirectoryRoleAssignmentScheduleOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

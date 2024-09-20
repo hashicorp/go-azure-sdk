@@ -17,15 +17,44 @@ type UpdateAppRoleAssignedToOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateAppRoleAssignedToOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateAppRoleAssignedToOperationOptions() UpdateAppRoleAssignedToOperationOptions {
+	return UpdateAppRoleAssignedToOperationOptions{}
+}
+
+func (o UpdateAppRoleAssignedToOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateAppRoleAssignedToOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateAppRoleAssignedToOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateAppRoleAssignedTo - Update the navigation property appRoleAssignedTo in servicePrincipals
-func (c AppRoleAssignedToClient) UpdateAppRoleAssignedTo(ctx context.Context, id beta.ServicePrincipalIdAppRoleAssignedToId, input beta.AppRoleAssignment) (result UpdateAppRoleAssignedToOperationResponse, err error) {
+func (c AppRoleAssignedToClient) UpdateAppRoleAssignedTo(ctx context.Context, id beta.ServicePrincipalIdAppRoleAssignedToId, input beta.AppRoleAssignment, options UpdateAppRoleAssignedToOperationOptions) (result UpdateAppRoleAssignedToOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

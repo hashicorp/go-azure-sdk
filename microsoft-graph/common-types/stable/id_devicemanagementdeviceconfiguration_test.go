@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &DeviceManagementDeviceConfigurationId{}
 
 func TestNewDeviceManagementDeviceConfigurationID(t *testing.T) {
-	id := NewDeviceManagementDeviceConfigurationID("deviceConfigurationIdValue")
+	id := NewDeviceManagementDeviceConfigurationID("deviceConfigurationId")
 
-	if id.DeviceConfigurationId != "deviceConfigurationIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DeviceConfigurationId'", id.DeviceConfigurationId, "deviceConfigurationIdValue")
+	if id.DeviceConfigurationId != "deviceConfigurationId" {
+		t.Fatalf("Expected %q but got %q for Segment 'DeviceConfigurationId'", id.DeviceConfigurationId, "deviceConfigurationId")
 	}
 }
 
 func TestFormatDeviceManagementDeviceConfigurationID(t *testing.T) {
-	actual := NewDeviceManagementDeviceConfigurationID("deviceConfigurationIdValue").ID()
-	expected := "/deviceManagement/deviceConfigurations/deviceConfigurationIdValue"
+	actual := NewDeviceManagementDeviceConfigurationID("deviceConfigurationId").ID()
+	expected := "/deviceManagement/deviceConfigurations/deviceConfigurationId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -50,14 +50,14 @@ func TestParseDeviceManagementDeviceConfigurationID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/deviceConfigurations/deviceConfigurationIdValue",
+			Input: "/deviceManagement/deviceConfigurations/deviceConfigurationId",
 			Expected: &DeviceManagementDeviceConfigurationId{
-				DeviceConfigurationId: "deviceConfigurationIdValue",
+				DeviceConfigurationId: "deviceConfigurationId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/deviceConfigurations/deviceConfigurationIdValue/extra",
+			Input: "/deviceManagement/deviceConfigurations/deviceConfigurationId/extra",
 			Error: true,
 		},
 	}
@@ -116,26 +116,26 @@ func TestParseDeviceManagementDeviceConfigurationIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/deviceConfigurations/deviceConfigurationIdValue",
+			Input: "/deviceManagement/deviceConfigurations/deviceConfigurationId",
 			Expected: &DeviceManagementDeviceConfigurationId{
-				DeviceConfigurationId: "deviceConfigurationIdValue",
+				DeviceConfigurationId: "deviceConfigurationId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/deviceConfigurations/deviceConfigurationIdValue/extra",
+			Input: "/deviceManagement/deviceConfigurations/deviceConfigurationId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/dEvIcEcOnFiGuRaTiOnS/dEvIcEcOnFiGuRaTiOnIdVaLuE",
+			Input: "/dEvIcEmAnAgEmEnT/dEvIcEcOnFiGuRaTiOnS/dEvIcEcOnFiGuRaTiOnId",
 			Expected: &DeviceManagementDeviceConfigurationId{
-				DeviceConfigurationId: "dEvIcEcOnFiGuRaTiOnIdVaLuE",
+				DeviceConfigurationId: "dEvIcEcOnFiGuRaTiOnId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/dEvIcEcOnFiGuRaTiOnS/dEvIcEcOnFiGuRaTiOnIdVaLuE/extra",
+			Input: "/dEvIcEmAnAgEmEnT/dEvIcEcOnFiGuRaTiOnS/dEvIcEcOnFiGuRaTiOnId/extra",
 			Error: true,
 		},
 	}

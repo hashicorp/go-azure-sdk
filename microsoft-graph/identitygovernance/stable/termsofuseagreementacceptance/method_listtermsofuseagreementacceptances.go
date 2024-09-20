@@ -25,14 +25,15 @@ type ListTermsOfUseAgreementAcceptancesCompleteResult struct {
 }
 
 type ListTermsOfUseAgreementAcceptancesOperationOptions struct {
-	Count   *bool
-	Expand  *odata.Expand
-	Filter  *string
-	OrderBy *odata.OrderBy
-	Search  *string
-	Select  *[]string
-	Skip    *int64
-	Top     *int64
+	Count    *bool
+	Expand   *odata.Expand
+	Filter   *string
+	Metadata *odata.Metadata
+	OrderBy  *odata.OrderBy
+	Search   *string
+	Select   *[]string
+	Skip     *int64
+	Top      *int64
 }
 
 func DefaultListTermsOfUseAgreementAcceptancesOperationOptions() ListTermsOfUseAgreementAcceptancesOperationOptions {
@@ -55,6 +56,9 @@ func (o ListTermsOfUseAgreementAcceptancesOperationOptions) ToOData() *odata.Que
 	}
 	if o.Filter != nil {
 		out.Filter = *o.Filter
+	}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
 	}
 	if o.OrderBy != nil {
 		out.OrderBy = *o.OrderBy
@@ -92,9 +96,9 @@ func (p *ListTermsOfUseAgreementAcceptancesCustomPager) NextPageLink() *odata.Li
 	return p.NextLink
 }
 
-// ListTermsOfUseAgreementAcceptances - Get agreementAcceptances from identityGovernance. Represents the current status
-// of a user's response to a company's customizable terms of use agreement.
-func (c TermsOfUseAgreementAcceptanceClient) ListTermsOfUseAgreementAcceptances(ctx context.Context, options ListTermsOfUseAgreementAcceptancesOperationOptions) (result ListTermsOfUseAgreementAcceptancesOperationResponse, err error) {
+// ListTermsOfUseAgreementAcceptances - List acceptances. Get the details about the acceptance records for a specific
+// agreement.
+func (c TermsOfUseAgreementAcceptanceClient) ListTermsOfUseAgreementAcceptances(ctx context.Context, id stable.IdentityGovernanceTermsOfUseAgreementId, options ListTermsOfUseAgreementAcceptancesOperationOptions) (result ListTermsOfUseAgreementAcceptancesOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
@@ -103,7 +107,7 @@ func (c TermsOfUseAgreementAcceptanceClient) ListTermsOfUseAgreementAcceptances(
 		HttpMethod:    http.MethodGet,
 		OptionsObject: options,
 		Pager:         &ListTermsOfUseAgreementAcceptancesCustomPager{},
-		Path:          "/identityGovernance/termsOfUse/agreementAcceptances",
+		Path:          fmt.Sprintf("%s/acceptances", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)
@@ -134,15 +138,15 @@ func (c TermsOfUseAgreementAcceptanceClient) ListTermsOfUseAgreementAcceptances(
 }
 
 // ListTermsOfUseAgreementAcceptancesComplete retrieves all the results into a single object
-func (c TermsOfUseAgreementAcceptanceClient) ListTermsOfUseAgreementAcceptancesComplete(ctx context.Context, options ListTermsOfUseAgreementAcceptancesOperationOptions) (ListTermsOfUseAgreementAcceptancesCompleteResult, error) {
-	return c.ListTermsOfUseAgreementAcceptancesCompleteMatchingPredicate(ctx, options, AgreementAcceptanceOperationPredicate{})
+func (c TermsOfUseAgreementAcceptanceClient) ListTermsOfUseAgreementAcceptancesComplete(ctx context.Context, id stable.IdentityGovernanceTermsOfUseAgreementId, options ListTermsOfUseAgreementAcceptancesOperationOptions) (ListTermsOfUseAgreementAcceptancesCompleteResult, error) {
+	return c.ListTermsOfUseAgreementAcceptancesCompleteMatchingPredicate(ctx, id, options, AgreementAcceptanceOperationPredicate{})
 }
 
 // ListTermsOfUseAgreementAcceptancesCompleteMatchingPredicate retrieves all the results and then applies the predicate
-func (c TermsOfUseAgreementAcceptanceClient) ListTermsOfUseAgreementAcceptancesCompleteMatchingPredicate(ctx context.Context, options ListTermsOfUseAgreementAcceptancesOperationOptions, predicate AgreementAcceptanceOperationPredicate) (result ListTermsOfUseAgreementAcceptancesCompleteResult, err error) {
+func (c TermsOfUseAgreementAcceptanceClient) ListTermsOfUseAgreementAcceptancesCompleteMatchingPredicate(ctx context.Context, id stable.IdentityGovernanceTermsOfUseAgreementId, options ListTermsOfUseAgreementAcceptancesOperationOptions, predicate AgreementAcceptanceOperationPredicate) (result ListTermsOfUseAgreementAcceptancesCompleteResult, err error) {
 	items := make([]stable.AgreementAcceptance, 0)
 
-	resp, err := c.ListTermsOfUseAgreementAcceptances(ctx, options)
+	resp, err := c.ListTermsOfUseAgreementAcceptances(ctx, id, options)
 	if err != nil {
 		result.LatestHttpResponse = resp.HttpResponse
 		err = fmt.Errorf("loading results: %+v", err)

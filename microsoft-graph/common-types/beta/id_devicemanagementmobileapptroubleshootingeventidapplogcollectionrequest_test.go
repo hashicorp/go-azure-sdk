@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &DeviceManagementMobileAppTroubleshootingEventIdAppLogCollectionRequestId{}
 
 func TestNewDeviceManagementMobileAppTroubleshootingEventIdAppLogCollectionRequestID(t *testing.T) {
-	id := NewDeviceManagementMobileAppTroubleshootingEventIdAppLogCollectionRequestID("mobileAppTroubleshootingEventIdValue", "appLogCollectionRequestIdValue")
+	id := NewDeviceManagementMobileAppTroubleshootingEventIdAppLogCollectionRequestID("mobileAppTroubleshootingEventId", "appLogCollectionRequestId")
 
-	if id.MobileAppTroubleshootingEventId != "mobileAppTroubleshootingEventIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'MobileAppTroubleshootingEventId'", id.MobileAppTroubleshootingEventId, "mobileAppTroubleshootingEventIdValue")
+	if id.MobileAppTroubleshootingEventId != "mobileAppTroubleshootingEventId" {
+		t.Fatalf("Expected %q but got %q for Segment 'MobileAppTroubleshootingEventId'", id.MobileAppTroubleshootingEventId, "mobileAppTroubleshootingEventId")
 	}
 
-	if id.AppLogCollectionRequestId != "appLogCollectionRequestIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'AppLogCollectionRequestId'", id.AppLogCollectionRequestId, "appLogCollectionRequestIdValue")
+	if id.AppLogCollectionRequestId != "appLogCollectionRequestId" {
+		t.Fatalf("Expected %q but got %q for Segment 'AppLogCollectionRequestId'", id.AppLogCollectionRequestId, "appLogCollectionRequestId")
 	}
 }
 
 func TestFormatDeviceManagementMobileAppTroubleshootingEventIdAppLogCollectionRequestID(t *testing.T) {
-	actual := NewDeviceManagementMobileAppTroubleshootingEventIdAppLogCollectionRequestID("mobileAppTroubleshootingEventIdValue", "appLogCollectionRequestIdValue").ID()
-	expected := "/deviceManagement/mobileAppTroubleshootingEvents/mobileAppTroubleshootingEventIdValue/appLogCollectionRequests/appLogCollectionRequestIdValue"
+	actual := NewDeviceManagementMobileAppTroubleshootingEventIdAppLogCollectionRequestID("mobileAppTroubleshootingEventId", "appLogCollectionRequestId").ID()
+	expected := "/deviceManagement/mobileAppTroubleshootingEvents/mobileAppTroubleshootingEventId/appLogCollectionRequests/appLogCollectionRequestId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -54,25 +54,25 @@ func TestParseDeviceManagementMobileAppTroubleshootingEventIdAppLogCollectionReq
 		},
 		{
 			// Incomplete URI
-			Input: "/deviceManagement/mobileAppTroubleshootingEvents/mobileAppTroubleshootingEventIdValue",
+			Input: "/deviceManagement/mobileAppTroubleshootingEvents/mobileAppTroubleshootingEventId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/deviceManagement/mobileAppTroubleshootingEvents/mobileAppTroubleshootingEventIdValue/appLogCollectionRequests",
+			Input: "/deviceManagement/mobileAppTroubleshootingEvents/mobileAppTroubleshootingEventId/appLogCollectionRequests",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/mobileAppTroubleshootingEvents/mobileAppTroubleshootingEventIdValue/appLogCollectionRequests/appLogCollectionRequestIdValue",
+			Input: "/deviceManagement/mobileAppTroubleshootingEvents/mobileAppTroubleshootingEventId/appLogCollectionRequests/appLogCollectionRequestId",
 			Expected: &DeviceManagementMobileAppTroubleshootingEventIdAppLogCollectionRequestId{
-				MobileAppTroubleshootingEventId: "mobileAppTroubleshootingEventIdValue",
-				AppLogCollectionRequestId:       "appLogCollectionRequestIdValue",
+				MobileAppTroubleshootingEventId: "mobileAppTroubleshootingEventId",
+				AppLogCollectionRequestId:       "appLogCollectionRequestId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/mobileAppTroubleshootingEvents/mobileAppTroubleshootingEventIdValue/appLogCollectionRequests/appLogCollectionRequestIdValue/extra",
+			Input: "/deviceManagement/mobileAppTroubleshootingEvents/mobileAppTroubleshootingEventId/appLogCollectionRequests/appLogCollectionRequestId/extra",
 			Error: true,
 		},
 	}
@@ -135,48 +135,48 @@ func TestParseDeviceManagementMobileAppTroubleshootingEventIdAppLogCollectionReq
 		},
 		{
 			// Incomplete URI
-			Input: "/deviceManagement/mobileAppTroubleshootingEvents/mobileAppTroubleshootingEventIdValue",
+			Input: "/deviceManagement/mobileAppTroubleshootingEvents/mobileAppTroubleshootingEventId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/mObIlEaPpTrOuBlEsHoOtInGeVeNtS/mObIlEaPpTrOuBlEsHoOtInGeVeNtIdVaLuE",
+			Input: "/dEvIcEmAnAgEmEnT/mObIlEaPpTrOuBlEsHoOtInGeVeNtS/mObIlEaPpTrOuBlEsHoOtInGeVeNtId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/deviceManagement/mobileAppTroubleshootingEvents/mobileAppTroubleshootingEventIdValue/appLogCollectionRequests",
+			Input: "/deviceManagement/mobileAppTroubleshootingEvents/mobileAppTroubleshootingEventId/appLogCollectionRequests",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/mObIlEaPpTrOuBlEsHoOtInGeVeNtS/mObIlEaPpTrOuBlEsHoOtInGeVeNtIdVaLuE/aPpLoGcOlLeCtIoNrEqUeStS",
+			Input: "/dEvIcEmAnAgEmEnT/mObIlEaPpTrOuBlEsHoOtInGeVeNtS/mObIlEaPpTrOuBlEsHoOtInGeVeNtId/aPpLoGcOlLeCtIoNrEqUeStS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/mobileAppTroubleshootingEvents/mobileAppTroubleshootingEventIdValue/appLogCollectionRequests/appLogCollectionRequestIdValue",
+			Input: "/deviceManagement/mobileAppTroubleshootingEvents/mobileAppTroubleshootingEventId/appLogCollectionRequests/appLogCollectionRequestId",
 			Expected: &DeviceManagementMobileAppTroubleshootingEventIdAppLogCollectionRequestId{
-				MobileAppTroubleshootingEventId: "mobileAppTroubleshootingEventIdValue",
-				AppLogCollectionRequestId:       "appLogCollectionRequestIdValue",
+				MobileAppTroubleshootingEventId: "mobileAppTroubleshootingEventId",
+				AppLogCollectionRequestId:       "appLogCollectionRequestId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/mobileAppTroubleshootingEvents/mobileAppTroubleshootingEventIdValue/appLogCollectionRequests/appLogCollectionRequestIdValue/extra",
+			Input: "/deviceManagement/mobileAppTroubleshootingEvents/mobileAppTroubleshootingEventId/appLogCollectionRequests/appLogCollectionRequestId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/mObIlEaPpTrOuBlEsHoOtInGeVeNtS/mObIlEaPpTrOuBlEsHoOtInGeVeNtIdVaLuE/aPpLoGcOlLeCtIoNrEqUeStS/aPpLoGcOlLeCtIoNrEqUeStIdVaLuE",
+			Input: "/dEvIcEmAnAgEmEnT/mObIlEaPpTrOuBlEsHoOtInGeVeNtS/mObIlEaPpTrOuBlEsHoOtInGeVeNtId/aPpLoGcOlLeCtIoNrEqUeStS/aPpLoGcOlLeCtIoNrEqUeStId",
 			Expected: &DeviceManagementMobileAppTroubleshootingEventIdAppLogCollectionRequestId{
-				MobileAppTroubleshootingEventId: "mObIlEaPpTrOuBlEsHoOtInGeVeNtIdVaLuE",
-				AppLogCollectionRequestId:       "aPpLoGcOlLeCtIoNrEqUeStIdVaLuE",
+				MobileAppTroubleshootingEventId: "mObIlEaPpTrOuBlEsHoOtInGeVeNtId",
+				AppLogCollectionRequestId:       "aPpLoGcOlLeCtIoNrEqUeStId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/mObIlEaPpTrOuBlEsHoOtInGeVeNtS/mObIlEaPpTrOuBlEsHoOtInGeVeNtIdVaLuE/aPpLoGcOlLeCtIoNrEqUeStS/aPpLoGcOlLeCtIoNrEqUeStIdVaLuE/extra",
+			Input: "/dEvIcEmAnAgEmEnT/mObIlEaPpTrOuBlEsHoOtInGeVeNtS/mObIlEaPpTrOuBlEsHoOtInGeVeNtId/aPpLoGcOlLeCtIoNrEqUeStS/aPpLoGcOlLeCtIoNrEqUeStId/extra",
 			Error: true,
 		},
 	}

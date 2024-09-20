@@ -17,15 +17,44 @@ type UpdateIntuneBrandingProfileOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateIntuneBrandingProfileOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateIntuneBrandingProfileOperationOptions() UpdateIntuneBrandingProfileOperationOptions {
+	return UpdateIntuneBrandingProfileOperationOptions{}
+}
+
+func (o UpdateIntuneBrandingProfileOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateIntuneBrandingProfileOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateIntuneBrandingProfileOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateIntuneBrandingProfile - Update the navigation property intuneBrandingProfiles in deviceManagement
-func (c IntuneBrandingProfileClient) UpdateIntuneBrandingProfile(ctx context.Context, id beta.DeviceManagementIntuneBrandingProfileId, input beta.IntuneBrandingProfile) (result UpdateIntuneBrandingProfileOperationResponse, err error) {
+func (c IntuneBrandingProfileClient) UpdateIntuneBrandingProfile(ctx context.Context, id beta.DeviceManagementIntuneBrandingProfileId, input beta.IntuneBrandingProfile, options UpdateIntuneBrandingProfileOperationOptions) (result UpdateIntuneBrandingProfileOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

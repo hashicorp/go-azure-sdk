@@ -17,16 +17,45 @@ type UpdateInformationProtectionDataLossPreventionPolicyOperationResponse struct
 	OData        *odata.OData
 }
 
+type UpdateInformationProtectionDataLossPreventionPolicyOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateInformationProtectionDataLossPreventionPolicyOperationOptions() UpdateInformationProtectionDataLossPreventionPolicyOperationOptions {
+	return UpdateInformationProtectionDataLossPreventionPolicyOperationOptions{}
+}
+
+func (o UpdateInformationProtectionDataLossPreventionPolicyOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateInformationProtectionDataLossPreventionPolicyOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateInformationProtectionDataLossPreventionPolicyOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateInformationProtectionDataLossPreventionPolicy - Update the navigation property dataLossPreventionPolicies in
 // users
-func (c InformationProtectionDataLossPreventionPolicyClient) UpdateInformationProtectionDataLossPreventionPolicy(ctx context.Context, id beta.UserIdInformationProtectionDataLossPreventionPolicyId, input beta.DataLossPreventionPolicy) (result UpdateInformationProtectionDataLossPreventionPolicyOperationResponse, err error) {
+func (c InformationProtectionDataLossPreventionPolicyClient) UpdateInformationProtectionDataLossPreventionPolicy(ctx context.Context, id beta.UserIdInformationProtectionDataLossPreventionPolicyId, input beta.DataLossPreventionPolicy, options UpdateInformationProtectionDataLossPreventionPolicyOperationOptions) (result UpdateInformationProtectionDataLossPreventionPolicyOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

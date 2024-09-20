@@ -97,26 +97,41 @@ func (s DeviceHealthScriptDeviceState) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &DeviceHealthScriptDeviceState{}
 
 func (s *DeviceHealthScriptDeviceState) UnmarshalJSON(bytes []byte) error {
-	type alias DeviceHealthScriptDeviceState
-	var decoded alias
+
+	var decoded struct {
+		AssignmentFilterIds                  *[]string             `json:"assignmentFilterIds,omitempty"`
+		DetectionState                       *RunState             `json:"detectionState,omitempty"`
+		ExpectedStateUpdateDateTime          nullable.Type[string] `json:"expectedStateUpdateDateTime,omitempty"`
+		LastStateUpdateDateTime              *string               `json:"lastStateUpdateDateTime,omitempty"`
+		LastSyncDateTime                     *string               `json:"lastSyncDateTime,omitempty"`
+		PostRemediationDetectionScriptError  nullable.Type[string] `json:"postRemediationDetectionScriptError,omitempty"`
+		PostRemediationDetectionScriptOutput nullable.Type[string] `json:"postRemediationDetectionScriptOutput,omitempty"`
+		PreRemediationDetectionScriptError   nullable.Type[string] `json:"preRemediationDetectionScriptError,omitempty"`
+		PreRemediationDetectionScriptOutput  nullable.Type[string] `json:"preRemediationDetectionScriptOutput,omitempty"`
+		RemediationScriptError               nullable.Type[string] `json:"remediationScriptError,omitempty"`
+		RemediationState                     *RemediationState     `json:"remediationState,omitempty"`
+		Id                                   *string               `json:"id,omitempty"`
+		ODataId                              *string               `json:"@odata.id,omitempty"`
+		ODataType                            *string               `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into DeviceHealthScriptDeviceState: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.AssignmentFilterIds = decoded.AssignmentFilterIds
 	s.DetectionState = decoded.DetectionState
 	s.ExpectedStateUpdateDateTime = decoded.ExpectedStateUpdateDateTime
-	s.Id = decoded.Id
 	s.LastStateUpdateDateTime = decoded.LastStateUpdateDateTime
 	s.LastSyncDateTime = decoded.LastSyncDateTime
-	s.ODataId = decoded.ODataId
-	s.ODataType = decoded.ODataType
 	s.PostRemediationDetectionScriptError = decoded.PostRemediationDetectionScriptError
 	s.PostRemediationDetectionScriptOutput = decoded.PostRemediationDetectionScriptOutput
 	s.PreRemediationDetectionScriptError = decoded.PreRemediationDetectionScriptError
 	s.PreRemediationDetectionScriptOutput = decoded.PreRemediationDetectionScriptOutput
 	s.RemediationScriptError = decoded.RemediationScriptError
 	s.RemediationState = decoded.RemediationState
+	s.Id = decoded.Id
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -130,5 +145,6 @@ func (s *DeviceHealthScriptDeviceState) UnmarshalJSON(bytes []byte) error {
 		}
 		s.ManagedDevice = &impl
 	}
+
 	return nil
 }

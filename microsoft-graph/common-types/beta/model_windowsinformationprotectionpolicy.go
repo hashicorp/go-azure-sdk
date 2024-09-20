@@ -278,17 +278,75 @@ func (s WindowsInformationProtectionPolicy) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &WindowsInformationProtectionPolicy{}
 
 func (s *WindowsInformationProtectionPolicy) UnmarshalJSON(bytes []byte) error {
-	type alias WindowsInformationProtectionPolicy
-	var decoded alias
+
+	var decoded struct {
+		DaysWithoutContactBeforeUnenroll       *int64                                                 `json:"daysWithoutContactBeforeUnenroll,omitempty"`
+		MdmEnrollmentUrl                       nullable.Type[string]                                  `json:"mdmEnrollmentUrl,omitempty"`
+		MinutesOfInactivityBeforeDeviceLock    *int64                                                 `json:"minutesOfInactivityBeforeDeviceLock,omitempty"`
+		NumberOfPastPinsRemembered             *int64                                                 `json:"numberOfPastPinsRemembered,omitempty"`
+		PasswordMaximumAttemptCount            *int64                                                 `json:"passwordMaximumAttemptCount,omitempty"`
+		PinExpirationDays                      *int64                                                 `json:"pinExpirationDays,omitempty"`
+		PinLowercaseLetters                    *WindowsInformationProtectionPinCharacterRequirements  `json:"pinLowercaseLetters,omitempty"`
+		PinMinimumLength                       *int64                                                 `json:"pinMinimumLength,omitempty"`
+		PinSpecialCharacters                   *WindowsInformationProtectionPinCharacterRequirements  `json:"pinSpecialCharacters,omitempty"`
+		PinUppercaseLetters                    *WindowsInformationProtectionPinCharacterRequirements  `json:"pinUppercaseLetters,omitempty"`
+		RevokeOnMdmHandoffDisabled             *bool                                                  `json:"revokeOnMdmHandoffDisabled,omitempty"`
+		WindowsHelloForBusinessBlocked         *bool                                                  `json:"windowsHelloForBusinessBlocked,omitempty"`
+		Assignments                            *[]TargetedManagedAppPolicyAssignment                  `json:"assignments,omitempty"`
+		AzureRightsManagementServicesAllowed   *bool                                                  `json:"azureRightsManagementServicesAllowed,omitempty"`
+		DataRecoveryCertificate                *WindowsInformationProtectionDataRecoveryCertificate   `json:"dataRecoveryCertificate,omitempty"`
+		EnforcementLevel                       *WindowsInformationProtectionEnforcementLevel          `json:"enforcementLevel,omitempty"`
+		EnterpriseDomain                       nullable.Type[string]                                  `json:"enterpriseDomain,omitempty"`
+		EnterpriseIPRanges                     *[]WindowsInformationProtectionIPRangeCollection       `json:"enterpriseIPRanges,omitempty"`
+		EnterpriseIPRangesAreAuthoritative     *bool                                                  `json:"enterpriseIPRangesAreAuthoritative,omitempty"`
+		EnterpriseInternalProxyServers         *[]WindowsInformationProtectionResourceCollection      `json:"enterpriseInternalProxyServers,omitempty"`
+		EnterpriseNetworkDomainNames           *[]WindowsInformationProtectionResourceCollection      `json:"enterpriseNetworkDomainNames,omitempty"`
+		EnterpriseProtectedDomainNames         *[]WindowsInformationProtectionResourceCollection      `json:"enterpriseProtectedDomainNames,omitempty"`
+		EnterpriseProxiedDomains               *[]WindowsInformationProtectionProxiedDomainCollection `json:"enterpriseProxiedDomains,omitempty"`
+		EnterpriseProxyServers                 *[]WindowsInformationProtectionResourceCollection      `json:"enterpriseProxyServers,omitempty"`
+		EnterpriseProxyServersAreAuthoritative *bool                                                  `json:"enterpriseProxyServersAreAuthoritative,omitempty"`
+		ExemptAppLockerFiles                   *[]WindowsInformationProtectionAppLockerFile           `json:"exemptAppLockerFiles,omitempty"`
+		ExemptApps                             *[]WindowsInformationProtectionApp                     `json:"exemptApps,omitempty"`
+		IconsVisible                           *bool                                                  `json:"iconsVisible,omitempty"`
+		IndexingEncryptedStoresOrItemsBlocked  *bool                                                  `json:"indexingEncryptedStoresOrItemsBlocked,omitempty"`
+		IsAssigned                             *bool                                                  `json:"isAssigned,omitempty"`
+		NeutralDomainResources                 *[]WindowsInformationProtectionResourceCollection      `json:"neutralDomainResources,omitempty"`
+		ProtectedAppLockerFiles                *[]WindowsInformationProtectionAppLockerFile           `json:"protectedAppLockerFiles,omitempty"`
+		ProtectedApps                          *[]WindowsInformationProtectionApp                     `json:"protectedApps,omitempty"`
+		ProtectionUnderLockConfigRequired      *bool                                                  `json:"protectionUnderLockConfigRequired,omitempty"`
+		RevokeOnUnenrollDisabled               *bool                                                  `json:"revokeOnUnenrollDisabled,omitempty"`
+		RightsManagementServicesTemplateId     nullable.Type[string]                                  `json:"rightsManagementServicesTemplateId,omitempty"`
+		SmbAutoEncryptedFileExtensions         *[]WindowsInformationProtectionResourceCollection      `json:"smbAutoEncryptedFileExtensions,omitempty"`
+		CreatedDateTime                        *string                                                `json:"createdDateTime,omitempty"`
+		Description                            nullable.Type[string]                                  `json:"description,omitempty"`
+		DisplayName                            *string                                                `json:"displayName,omitempty"`
+		LastModifiedDateTime                   *string                                                `json:"lastModifiedDateTime,omitempty"`
+		RoleScopeTagIds                        *[]string                                              `json:"roleScopeTagIds,omitempty"`
+		Version                                nullable.Type[string]                                  `json:"version,omitempty"`
+		Id                                     *string                                                `json:"id,omitempty"`
+		ODataId                                *string                                                `json:"@odata.id,omitempty"`
+		ODataType                              *string                                                `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into WindowsInformationProtectionPolicy: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
+	s.DaysWithoutContactBeforeUnenroll = decoded.DaysWithoutContactBeforeUnenroll
+	s.MdmEnrollmentUrl = decoded.MdmEnrollmentUrl
+	s.MinutesOfInactivityBeforeDeviceLock = decoded.MinutesOfInactivityBeforeDeviceLock
+	s.NumberOfPastPinsRemembered = decoded.NumberOfPastPinsRemembered
+	s.PasswordMaximumAttemptCount = decoded.PasswordMaximumAttemptCount
+	s.PinExpirationDays = decoded.PinExpirationDays
+	s.PinLowercaseLetters = decoded.PinLowercaseLetters
+	s.PinMinimumLength = decoded.PinMinimumLength
+	s.PinSpecialCharacters = decoded.PinSpecialCharacters
+	s.PinUppercaseLetters = decoded.PinUppercaseLetters
+	s.RevokeOnMdmHandoffDisabled = decoded.RevokeOnMdmHandoffDisabled
+	s.WindowsHelloForBusinessBlocked = decoded.WindowsHelloForBusinessBlocked
 	s.Assignments = decoded.Assignments
 	s.AzureRightsManagementServicesAllowed = decoded.AzureRightsManagementServicesAllowed
 	s.CreatedDateTime = decoded.CreatedDateTime
 	s.DataRecoveryCertificate = decoded.DataRecoveryCertificate
-	s.DaysWithoutContactBeforeUnenroll = decoded.DaysWithoutContactBeforeUnenroll
 	s.Description = decoded.Description
 	s.DisplayName = decoded.DisplayName
 	s.EnforcementLevel = decoded.EnforcementLevel
@@ -307,27 +365,16 @@ func (s *WindowsInformationProtectionPolicy) UnmarshalJSON(bytes []byte) error {
 	s.IndexingEncryptedStoresOrItemsBlocked = decoded.IndexingEncryptedStoresOrItemsBlocked
 	s.IsAssigned = decoded.IsAssigned
 	s.LastModifiedDateTime = decoded.LastModifiedDateTime
-	s.MdmEnrollmentUrl = decoded.MdmEnrollmentUrl
-	s.MinutesOfInactivityBeforeDeviceLock = decoded.MinutesOfInactivityBeforeDeviceLock
 	s.NeutralDomainResources = decoded.NeutralDomainResources
-	s.NumberOfPastPinsRemembered = decoded.NumberOfPastPinsRemembered
 	s.ODataId = decoded.ODataId
 	s.ODataType = decoded.ODataType
-	s.PasswordMaximumAttemptCount = decoded.PasswordMaximumAttemptCount
-	s.PinExpirationDays = decoded.PinExpirationDays
-	s.PinLowercaseLetters = decoded.PinLowercaseLetters
-	s.PinMinimumLength = decoded.PinMinimumLength
-	s.PinSpecialCharacters = decoded.PinSpecialCharacters
-	s.PinUppercaseLetters = decoded.PinUppercaseLetters
 	s.ProtectedAppLockerFiles = decoded.ProtectedAppLockerFiles
 	s.ProtectionUnderLockConfigRequired = decoded.ProtectionUnderLockConfigRequired
-	s.RevokeOnMdmHandoffDisabled = decoded.RevokeOnMdmHandoffDisabled
 	s.RevokeOnUnenrollDisabled = decoded.RevokeOnUnenrollDisabled
 	s.RightsManagementServicesTemplateId = decoded.RightsManagementServicesTemplateId
 	s.RoleScopeTagIds = decoded.RoleScopeTagIds
 	s.SmbAutoEncryptedFileExtensions = decoded.SmbAutoEncryptedFileExtensions
 	s.Version = decoded.Version
-	s.WindowsHelloForBusinessBlocked = decoded.WindowsHelloForBusinessBlocked
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -367,5 +414,6 @@ func (s *WindowsInformationProtectionPolicy) UnmarshalJSON(bytes []byte) error {
 		}
 		s.ProtectedApps = &output
 	}
+
 	return nil
 }

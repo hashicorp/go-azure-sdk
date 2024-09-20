@@ -19,16 +19,45 @@ type CreateImpactedResourceCompleteOperationResponse struct {
 	Model        *beta.ImpactedResource
 }
 
+type CreateImpactedResourceCompleteOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateImpactedResourceCompleteOperationOptions() CreateImpactedResourceCompleteOperationOptions {
+	return CreateImpactedResourceCompleteOperationOptions{}
+}
+
+func (o CreateImpactedResourceCompleteOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateImpactedResourceCompleteOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateImpactedResourceCompleteOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateImpactedResourceComplete - Invoke action complete. Complete an impactedResource object and update its status to
 // completedByUser.
-func (c ImpactedResourceClient) CreateImpactedResourceComplete(ctx context.Context, id beta.DirectoryImpactedResourceId) (result CreateImpactedResourceCompleteOperationResponse, err error) {
+func (c ImpactedResourceClient) CreateImpactedResourceComplete(ctx context.Context, id beta.DirectoryImpactedResourceId, options CreateImpactedResourceCompleteOperationOptions) (result CreateImpactedResourceCompleteOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/complete", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/complete", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -44,10 +44,19 @@ type ServiceStatus struct {
 var _ json.Unmarshaler = &ServiceStatus{}
 
 func (s *ServiceStatus) UnmarshalJSON(bytes []byte) error {
-	type alias ServiceStatus
-	var decoded alias
+
+	var decoded struct {
+		BackupServiceConsumer      *BackupServiceConsumer `json:"backupServiceConsumer,omitempty"`
+		DisableReason              *DisableReason         `json:"disableReason,omitempty"`
+		GracePeriodDateTime        nullable.Type[string]  `json:"gracePeriodDateTime,omitempty"`
+		LastModifiedDateTime       nullable.Type[string]  `json:"lastModifiedDateTime,omitempty"`
+		ODataId                    *string                `json:"@odata.id,omitempty"`
+		ODataType                  *string                `json:"@odata.type,omitempty"`
+		RestoreAllowedTillDateTime nullable.Type[string]  `json:"restoreAllowedTillDateTime,omitempty"`
+		Status                     *BackupServiceStatus   `json:"status,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into ServiceStatus: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.BackupServiceConsumer = decoded.BackupServiceConsumer
@@ -71,5 +80,6 @@ func (s *ServiceStatus) UnmarshalJSON(bytes []byte) error {
 		}
 		s.LastModifiedBy = impl
 	}
+
 	return nil
 }

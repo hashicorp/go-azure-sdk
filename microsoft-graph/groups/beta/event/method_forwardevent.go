@@ -18,19 +18,48 @@ type ForwardEventOperationResponse struct {
 	OData        *odata.OData
 }
 
+type ForwardEventOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultForwardEventOperationOptions() ForwardEventOperationOptions {
+	return ForwardEventOperationOptions{}
+}
+
+func (o ForwardEventOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o ForwardEventOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o ForwardEventOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // ForwardEvent - Invoke action forward. This action allows the organizer or attendee of a meeting event to forward the
 // meeting request to a new recipient. If the meeting event is forwarded from an attendee's Microsoft 365 mailbox to
 // another recipient, this action also sends a message to notify the organizer of the forwarding, and adds the recipient
 // to the organizer's copy of the meeting event. This convenience is not available when forwarding from an Outlook.com
 // account.
-func (c EventClient) ForwardEvent(ctx context.Context, id beta.GroupIdEventId, input ForwardEventRequest) (result ForwardEventOperationResponse, err error) {
+func (c EventClient) ForwardEvent(ctx context.Context, id beta.GroupIdEventId, input ForwardEventRequest, options ForwardEventOperationOptions) (result ForwardEventOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/forward", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/forward", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

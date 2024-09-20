@@ -17,16 +17,45 @@ type UpdatePermissionsManagementScheduledPermissionsApprovalStepOperationRespons
 	OData        *odata.OData
 }
 
+type UpdatePermissionsManagementScheduledPermissionsApprovalStepOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdatePermissionsManagementScheduledPermissionsApprovalStepOperationOptions() UpdatePermissionsManagementScheduledPermissionsApprovalStepOperationOptions {
+	return UpdatePermissionsManagementScheduledPermissionsApprovalStepOperationOptions{}
+}
+
+func (o UpdatePermissionsManagementScheduledPermissionsApprovalStepOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdatePermissionsManagementScheduledPermissionsApprovalStepOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdatePermissionsManagementScheduledPermissionsApprovalStepOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdatePermissionsManagementScheduledPermissionsApprovalStep - Update the navigation property steps in
 // identityGovernance
-func (c PermissionsManagementScheduledPermissionsApprovalStepClient) UpdatePermissionsManagementScheduledPermissionsApprovalStep(ctx context.Context, id beta.IdentityGovernancePermissionsManagementScheduledPermissionsApprovalIdStepId, input beta.ApprovalStep) (result UpdatePermissionsManagementScheduledPermissionsApprovalStepOperationResponse, err error) {
+func (c PermissionsManagementScheduledPermissionsApprovalStepClient) UpdatePermissionsManagementScheduledPermissionsApprovalStep(ctx context.Context, id beta.IdentityGovernancePermissionsManagementScheduledPermissionsApprovalIdStepId, input beta.ApprovalStep, options UpdatePermissionsManagementScheduledPermissionsApprovalStepOperationOptions) (result UpdatePermissionsManagementScheduledPermissionsApprovalStepOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

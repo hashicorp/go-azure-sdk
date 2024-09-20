@@ -197,14 +197,46 @@ func (s BaseAndroidForWorkEasEmailProfileBaseImpl) MarshalJSON() ([]byte, error)
 var _ json.Unmarshaler = &BaseAndroidForWorkEasEmailProfileBaseImpl{}
 
 func (s *BaseAndroidForWorkEasEmailProfileBaseImpl) UnmarshalJSON(bytes []byte) error {
-	type alias BaseAndroidForWorkEasEmailProfileBaseImpl
-	var decoded alias
+
+	var decoded struct {
+		AuthenticationMethod                        *EasAuthenticationMethod                     `json:"authenticationMethod,omitempty"`
+		DurationOfEmailToSync                       *EmailSyncDuration                           `json:"durationOfEmailToSync,omitempty"`
+		EmailAddressSource                          *UserEmailSource                             `json:"emailAddressSource,omitempty"`
+		HostName                                    *string                                      `json:"hostName,omitempty"`
+		RequireSsl                                  *bool                                        `json:"requireSsl,omitempty"`
+		UsernameSource                              *AndroidUsernameSource                       `json:"usernameSource,omitempty"`
+		Assignments                                 *[]DeviceConfigurationAssignment             `json:"assignments,omitempty"`
+		CreatedDateTime                             *string                                      `json:"createdDateTime,omitempty"`
+		Description                                 nullable.Type[string]                        `json:"description,omitempty"`
+		DeviceManagementApplicabilityRuleDeviceMode *DeviceManagementApplicabilityRuleDeviceMode `json:"deviceManagementApplicabilityRuleDeviceMode,omitempty"`
+		DeviceManagementApplicabilityRuleOsEdition  *DeviceManagementApplicabilityRuleOsEdition  `json:"deviceManagementApplicabilityRuleOsEdition,omitempty"`
+		DeviceManagementApplicabilityRuleOsVersion  *DeviceManagementApplicabilityRuleOsVersion  `json:"deviceManagementApplicabilityRuleOsVersion,omitempty"`
+		DeviceSettingStateSummaries                 *[]SettingStateDeviceSummary                 `json:"deviceSettingStateSummaries,omitempty"`
+		DeviceStatusOverview                        *DeviceConfigurationDeviceOverview           `json:"deviceStatusOverview,omitempty"`
+		DeviceStatuses                              *[]DeviceConfigurationDeviceStatus           `json:"deviceStatuses,omitempty"`
+		DisplayName                                 *string                                      `json:"displayName,omitempty"`
+		GroupAssignments                            *[]DeviceConfigurationGroupAssignment        `json:"groupAssignments,omitempty"`
+		LastModifiedDateTime                        *string                                      `json:"lastModifiedDateTime,omitempty"`
+		RoleScopeTagIds                             *[]string                                    `json:"roleScopeTagIds,omitempty"`
+		SupportsScopeTags                           *bool                                        `json:"supportsScopeTags,omitempty"`
+		UserStatusOverview                          *DeviceConfigurationUserOverview             `json:"userStatusOverview,omitempty"`
+		UserStatuses                                *[]DeviceConfigurationUserStatus             `json:"userStatuses,omitempty"`
+		Version                                     *int64                                       `json:"version,omitempty"`
+		Id                                          *string                                      `json:"id,omitempty"`
+		ODataId                                     *string                                      `json:"@odata.id,omitempty"`
+		ODataType                                   *string                                      `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into BaseAndroidForWorkEasEmailProfileBaseImpl: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
-	s.Assignments = decoded.Assignments
 	s.AuthenticationMethod = decoded.AuthenticationMethod
+	s.DurationOfEmailToSync = decoded.DurationOfEmailToSync
+	s.EmailAddressSource = decoded.EmailAddressSource
+	s.HostName = decoded.HostName
+	s.RequireSsl = decoded.RequireSsl
+	s.UsernameSource = decoded.UsernameSource
+	s.Assignments = decoded.Assignments
 	s.CreatedDateTime = decoded.CreatedDateTime
 	s.Description = decoded.Description
 	s.DeviceManagementApplicabilityRuleDeviceMode = decoded.DeviceManagementApplicabilityRuleDeviceMode
@@ -214,20 +246,15 @@ func (s *BaseAndroidForWorkEasEmailProfileBaseImpl) UnmarshalJSON(bytes []byte) 
 	s.DeviceStatusOverview = decoded.DeviceStatusOverview
 	s.DeviceStatuses = decoded.DeviceStatuses
 	s.DisplayName = decoded.DisplayName
-	s.DurationOfEmailToSync = decoded.DurationOfEmailToSync
-	s.EmailAddressSource = decoded.EmailAddressSource
 	s.GroupAssignments = decoded.GroupAssignments
-	s.HostName = decoded.HostName
 	s.Id = decoded.Id
 	s.LastModifiedDateTime = decoded.LastModifiedDateTime
 	s.ODataId = decoded.ODataId
 	s.ODataType = decoded.ODataType
-	s.RequireSsl = decoded.RequireSsl
 	s.RoleScopeTagIds = decoded.RoleScopeTagIds
 	s.SupportsScopeTags = decoded.SupportsScopeTags
 	s.UserStatusOverview = decoded.UserStatusOverview
 	s.UserStatuses = decoded.UserStatuses
-	s.UsernameSource = decoded.UsernameSource
 	s.Version = decoded.Version
 
 	var temp map[string]json.RawMessage
@@ -242,6 +269,7 @@ func (s *BaseAndroidForWorkEasEmailProfileBaseImpl) UnmarshalJSON(bytes []byte) 
 		}
 		s.IdentityCertificate = &impl
 	}
+
 	return nil
 }
 
@@ -255,9 +283,9 @@ func UnmarshalAndroidForWorkEasEmailProfileBaseImplementation(input []byte) (And
 		return nil, fmt.Errorf("unmarshaling AndroidForWorkEasEmailProfileBase into map[string]interface: %+v", err)
 	}
 
-	value, ok := temp["@odata.type"].(string)
-	if !ok {
-		return nil, nil
+	var value string
+	if v, ok := temp["@odata.type"]; ok {
+		value = fmt.Sprintf("%v", v)
 	}
 
 	if strings.EqualFold(value, "#microsoft.graph.androidForWorkGmailEasConfiguration") {

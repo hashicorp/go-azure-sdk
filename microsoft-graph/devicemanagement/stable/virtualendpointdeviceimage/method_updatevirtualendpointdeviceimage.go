@@ -17,15 +17,44 @@ type UpdateVirtualEndpointDeviceImageOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateVirtualEndpointDeviceImageOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateVirtualEndpointDeviceImageOperationOptions() UpdateVirtualEndpointDeviceImageOperationOptions {
+	return UpdateVirtualEndpointDeviceImageOperationOptions{}
+}
+
+func (o UpdateVirtualEndpointDeviceImageOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateVirtualEndpointDeviceImageOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateVirtualEndpointDeviceImageOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateVirtualEndpointDeviceImage - Update the navigation property deviceImages in deviceManagement
-func (c VirtualEndpointDeviceImageClient) UpdateVirtualEndpointDeviceImage(ctx context.Context, id stable.DeviceManagementVirtualEndpointDeviceImageId, input stable.CloudPCDeviceImage) (result UpdateVirtualEndpointDeviceImageOperationResponse, err error) {
+func (c VirtualEndpointDeviceImageClient) UpdateVirtualEndpointDeviceImage(ctx context.Context, id stable.DeviceManagementVirtualEndpointDeviceImageId, input stable.CloudPCDeviceImage, options UpdateVirtualEndpointDeviceImageOperationOptions) (result UpdateVirtualEndpointDeviceImageOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

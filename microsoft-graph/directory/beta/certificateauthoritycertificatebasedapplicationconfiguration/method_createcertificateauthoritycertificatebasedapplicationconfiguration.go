@@ -18,16 +18,45 @@ type CreateCertificateAuthorityCertificateBasedApplicationConfigurationOperation
 	Model        *beta.CertificateBasedApplicationConfiguration
 }
 
+type CreateCertificateAuthorityCertificateBasedApplicationConfigurationOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateCertificateAuthorityCertificateBasedApplicationConfigurationOperationOptions() CreateCertificateAuthorityCertificateBasedApplicationConfigurationOperationOptions {
+	return CreateCertificateAuthorityCertificateBasedApplicationConfigurationOperationOptions{}
+}
+
+func (o CreateCertificateAuthorityCertificateBasedApplicationConfigurationOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateCertificateAuthorityCertificateBasedApplicationConfigurationOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateCertificateAuthorityCertificateBasedApplicationConfigurationOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateCertificateAuthorityCertificateBasedApplicationConfiguration - Create new navigation property to
 // certificateBasedApplicationConfigurations for directory
-func (c CertificateAuthorityCertificateBasedApplicationConfigurationClient) CreateCertificateAuthorityCertificateBasedApplicationConfiguration(ctx context.Context, input beta.CertificateBasedApplicationConfiguration) (result CreateCertificateAuthorityCertificateBasedApplicationConfigurationOperationResponse, err error) {
+func (c CertificateAuthorityCertificateBasedApplicationConfigurationClient) CreateCertificateAuthorityCertificateBasedApplicationConfiguration(ctx context.Context, input beta.CertificateBasedApplicationConfiguration, options CreateCertificateAuthorityCertificateBasedApplicationConfigurationOperationOptions) (result CreateCertificateAuthorityCertificateBasedApplicationConfigurationOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/directory/certificateAuthorities/certificateBasedApplicationConfigurations",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/directory/certificateAuthorities/certificateBasedApplicationConfigurations",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

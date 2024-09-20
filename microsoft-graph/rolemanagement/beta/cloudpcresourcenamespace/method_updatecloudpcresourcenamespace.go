@@ -17,15 +17,44 @@ type UpdateCloudPCResourceNamespaceOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateCloudPCResourceNamespaceOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateCloudPCResourceNamespaceOperationOptions() UpdateCloudPCResourceNamespaceOperationOptions {
+	return UpdateCloudPCResourceNamespaceOperationOptions{}
+}
+
+func (o UpdateCloudPCResourceNamespaceOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateCloudPCResourceNamespaceOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateCloudPCResourceNamespaceOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateCloudPCResourceNamespace - Update the navigation property resourceNamespaces in roleManagement
-func (c CloudPCResourceNamespaceClient) UpdateCloudPCResourceNamespace(ctx context.Context, id beta.RoleManagementCloudPCResourceNamespaceId, input beta.UnifiedRbacResourceNamespace) (result UpdateCloudPCResourceNamespaceOperationResponse, err error) {
+func (c CloudPCResourceNamespaceClient) UpdateCloudPCResourceNamespace(ctx context.Context, id beta.RoleManagementCloudPCResourceNamespaceId, input beta.UnifiedRbacResourceNamespace, options UpdateCloudPCResourceNamespaceOperationOptions) (result UpdateCloudPCResourceNamespaceOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

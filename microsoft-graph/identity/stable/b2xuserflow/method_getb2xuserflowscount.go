@@ -18,8 +18,9 @@ type GetB2xUserFlowsCountOperationResponse struct {
 }
 
 type GetB2xUserFlowsCountOperationOptions struct {
-	Filter *string
-	Search *string
+	Filter   *string
+	Metadata *odata.Metadata
+	Search   *string
 }
 
 func DefaultGetB2xUserFlowsCountOperationOptions() GetB2xUserFlowsCountOperationOptions {
@@ -36,6 +37,9 @@ func (o GetB2xUserFlowsCountOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
 	if o.Filter != nil {
 		out.Filter = *o.Filter
+	}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
 	}
 	if o.Search != nil {
 		out.Search = *o.Search

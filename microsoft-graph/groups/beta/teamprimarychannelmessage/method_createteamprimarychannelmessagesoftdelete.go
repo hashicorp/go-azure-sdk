@@ -18,16 +18,45 @@ type CreateTeamPrimaryChannelMessageSoftDeleteOperationResponse struct {
 	OData        *odata.OData
 }
 
+type CreateTeamPrimaryChannelMessageSoftDeleteOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateTeamPrimaryChannelMessageSoftDeleteOperationOptions() CreateTeamPrimaryChannelMessageSoftDeleteOperationOptions {
+	return CreateTeamPrimaryChannelMessageSoftDeleteOperationOptions{}
+}
+
+func (o CreateTeamPrimaryChannelMessageSoftDeleteOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateTeamPrimaryChannelMessageSoftDeleteOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateTeamPrimaryChannelMessageSoftDeleteOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateTeamPrimaryChannelMessageSoftDelete - Invoke action softDelete. Delete a single chatMessage or a chat message
 // reply in a channel or a chat.
-func (c TeamPrimaryChannelMessageClient) CreateTeamPrimaryChannelMessageSoftDelete(ctx context.Context, id beta.GroupIdTeamPrimaryChannelMessageId) (result CreateTeamPrimaryChannelMessageSoftDeleteOperationResponse, err error) {
+func (c TeamPrimaryChannelMessageClient) CreateTeamPrimaryChannelMessageSoftDelete(ctx context.Context, id beta.GroupIdTeamPrimaryChannelMessageId, options CreateTeamPrimaryChannelMessageSoftDeleteOperationOptions) (result CreateTeamPrimaryChannelMessageSoftDeleteOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/softDelete", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/softDelete", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -18,17 +18,46 @@ type CreateUnsubscribeByMailOperationResponse struct {
 	OData        *odata.OData
 }
 
+type CreateUnsubscribeByMailOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateUnsubscribeByMailOperationOptions() CreateUnsubscribeByMailOperationOptions {
+	return CreateUnsubscribeByMailOperationOptions{}
+}
+
+func (o CreateUnsubscribeByMailOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateUnsubscribeByMailOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateUnsubscribeByMailOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateUnsubscribeByMail - Invoke action unsubscribeByMail. Calling this method prevents the current user from
 // receiving email notifications for this group about new posts, events, and files in that group. Supported for
 // Microsoft 365 groups only.
-func (c GroupClient) CreateUnsubscribeByMail(ctx context.Context, id stable.GroupId) (result CreateUnsubscribeByMailOperationResponse, err error) {
+func (c GroupClient) CreateUnsubscribeByMail(ctx context.Context, id stable.GroupId, options CreateUnsubscribeByMailOperationOptions) (result CreateUnsubscribeByMailOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/unsubscribeByMail", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/unsubscribeByMail", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

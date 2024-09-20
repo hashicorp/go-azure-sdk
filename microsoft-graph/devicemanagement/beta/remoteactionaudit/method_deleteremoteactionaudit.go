@@ -19,7 +19,8 @@ type DeleteRemoteActionAuditOperationResponse struct {
 }
 
 type DeleteRemoteActionAuditOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteRemoteActionAuditOperationOptions() DeleteRemoteActionAuditOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteRemoteActionAuditOperationOptions) ToHeaders() *client.Headers {
 
 func (o DeleteRemoteActionAuditOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

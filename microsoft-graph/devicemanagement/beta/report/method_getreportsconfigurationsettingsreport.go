@@ -17,15 +17,44 @@ type GetReportsConfigurationSettingsReportOperationResponse struct {
 	Model        *[]byte
 }
 
+type GetReportsConfigurationSettingsReportOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultGetReportsConfigurationSettingsReportOperationOptions() GetReportsConfigurationSettingsReportOperationOptions {
+	return GetReportsConfigurationSettingsReportOperationOptions{}
+}
+
+func (o GetReportsConfigurationSettingsReportOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o GetReportsConfigurationSettingsReportOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o GetReportsConfigurationSettingsReportOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // GetReportsConfigurationSettingsReport - Invoke action getConfigurationSettingsReport
-func (c ReportClient) GetReportsConfigurationSettingsReport(ctx context.Context, input GetReportsConfigurationSettingsReportRequest) (result GetReportsConfigurationSettingsReportOperationResponse, err error) {
+func (c ReportClient) GetReportsConfigurationSettingsReport(ctx context.Context, input GetReportsConfigurationSettingsReportRequest, options GetReportsConfigurationSettingsReportOperationOptions) (result GetReportsConfigurationSettingsReportOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/octet-stream",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/deviceManagement/reports/getConfigurationSettingsReport",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/deviceManagement/reports/getConfigurationSettingsReport",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

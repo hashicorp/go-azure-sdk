@@ -19,7 +19,8 @@ type RemoveJoinedTeamPrimaryChannelMessageHostedContentValueOperationResponse st
 }
 
 type RemoveJoinedTeamPrimaryChannelMessageHostedContentValueOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultRemoveJoinedTeamPrimaryChannelMessageHostedContentValueOperationOptions() RemoveJoinedTeamPrimaryChannelMessageHostedContentValueOperationOptions {
@@ -36,7 +37,9 @@ func (o RemoveJoinedTeamPrimaryChannelMessageHostedContentValueOperationOptions)
 
 func (o RemoveJoinedTeamPrimaryChannelMessageHostedContentValueOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

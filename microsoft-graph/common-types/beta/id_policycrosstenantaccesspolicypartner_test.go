@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &PolicyCrossTenantAccessPolicyPartnerId{}
 
 func TestNewPolicyCrossTenantAccessPolicyPartnerID(t *testing.T) {
-	id := NewPolicyCrossTenantAccessPolicyPartnerID("crossTenantAccessPolicyConfigurationPartnerTenantIdValue")
+	id := NewPolicyCrossTenantAccessPolicyPartnerID("crossTenantAccessPolicyConfigurationPartnerTenantId")
 
-	if id.CrossTenantAccessPolicyConfigurationPartnerTenantId != "crossTenantAccessPolicyConfigurationPartnerTenantIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'CrossTenantAccessPolicyConfigurationPartnerTenantId'", id.CrossTenantAccessPolicyConfigurationPartnerTenantId, "crossTenantAccessPolicyConfigurationPartnerTenantIdValue")
+	if id.CrossTenantAccessPolicyConfigurationPartnerTenantId != "crossTenantAccessPolicyConfigurationPartnerTenantId" {
+		t.Fatalf("Expected %q but got %q for Segment 'CrossTenantAccessPolicyConfigurationPartnerTenantId'", id.CrossTenantAccessPolicyConfigurationPartnerTenantId, "crossTenantAccessPolicyConfigurationPartnerTenantId")
 	}
 }
 
 func TestFormatPolicyCrossTenantAccessPolicyPartnerID(t *testing.T) {
-	actual := NewPolicyCrossTenantAccessPolicyPartnerID("crossTenantAccessPolicyConfigurationPartnerTenantIdValue").ID()
-	expected := "/policies/crossTenantAccessPolicy/partners/crossTenantAccessPolicyConfigurationPartnerTenantIdValue"
+	actual := NewPolicyCrossTenantAccessPolicyPartnerID("crossTenantAccessPolicyConfigurationPartnerTenantId").ID()
+	expected := "/policies/crossTenantAccessPolicy/partners/crossTenantAccessPolicyConfigurationPartnerTenantId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -55,14 +55,14 @@ func TestParsePolicyCrossTenantAccessPolicyPartnerID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/policies/crossTenantAccessPolicy/partners/crossTenantAccessPolicyConfigurationPartnerTenantIdValue",
+			Input: "/policies/crossTenantAccessPolicy/partners/crossTenantAccessPolicyConfigurationPartnerTenantId",
 			Expected: &PolicyCrossTenantAccessPolicyPartnerId{
-				CrossTenantAccessPolicyConfigurationPartnerTenantId: "crossTenantAccessPolicyConfigurationPartnerTenantIdValue",
+				CrossTenantAccessPolicyConfigurationPartnerTenantId: "crossTenantAccessPolicyConfigurationPartnerTenantId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/policies/crossTenantAccessPolicy/partners/crossTenantAccessPolicyConfigurationPartnerTenantIdValue/extra",
+			Input: "/policies/crossTenantAccessPolicy/partners/crossTenantAccessPolicyConfigurationPartnerTenantId/extra",
 			Error: true,
 		},
 	}
@@ -131,26 +131,26 @@ func TestParsePolicyCrossTenantAccessPolicyPartnerIDInsensitively(t *testing.T) 
 		},
 		{
 			// Valid URI
-			Input: "/policies/crossTenantAccessPolicy/partners/crossTenantAccessPolicyConfigurationPartnerTenantIdValue",
+			Input: "/policies/crossTenantAccessPolicy/partners/crossTenantAccessPolicyConfigurationPartnerTenantId",
 			Expected: &PolicyCrossTenantAccessPolicyPartnerId{
-				CrossTenantAccessPolicyConfigurationPartnerTenantId: "crossTenantAccessPolicyConfigurationPartnerTenantIdValue",
+				CrossTenantAccessPolicyConfigurationPartnerTenantId: "crossTenantAccessPolicyConfigurationPartnerTenantId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/policies/crossTenantAccessPolicy/partners/crossTenantAccessPolicyConfigurationPartnerTenantIdValue/extra",
+			Input: "/policies/crossTenantAccessPolicy/partners/crossTenantAccessPolicyConfigurationPartnerTenantId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/pOlIcIeS/cRoSsTeNaNtAcCeSsPoLiCy/pArTnErS/cRoSsTeNaNtAcCeSsPoLiCyCoNfIgUrAtIoNpArTnErTeNaNtIdVaLuE",
+			Input: "/pOlIcIeS/cRoSsTeNaNtAcCeSsPoLiCy/pArTnErS/cRoSsTeNaNtAcCeSsPoLiCyCoNfIgUrAtIoNpArTnErTeNaNtId",
 			Expected: &PolicyCrossTenantAccessPolicyPartnerId{
-				CrossTenantAccessPolicyConfigurationPartnerTenantId: "cRoSsTeNaNtAcCeSsPoLiCyCoNfIgUrAtIoNpArTnErTeNaNtIdVaLuE",
+				CrossTenantAccessPolicyConfigurationPartnerTenantId: "cRoSsTeNaNtAcCeSsPoLiCyCoNfIgUrAtIoNpArTnErTeNaNtId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/pOlIcIeS/cRoSsTeNaNtAcCeSsPoLiCy/pArTnErS/cRoSsTeNaNtAcCeSsPoLiCyCoNfIgUrAtIoNpArTnErTeNaNtIdVaLuE/extra",
+			Input: "/pOlIcIeS/cRoSsTeNaNtAcCeSsPoLiCy/pArTnErS/cRoSsTeNaNtAcCeSsPoLiCyCoNfIgUrAtIoNpArTnErTeNaNtId/extra",
 			Error: true,
 		},
 	}

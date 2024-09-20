@@ -100,9 +100,9 @@ func (id MeOnenoteSectionGroupIdSectionId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("me", "me", "me"),
 		resourceids.StaticSegment("onenote", "onenote", "onenote"),
 		resourceids.StaticSegment("sectionGroups", "sectionGroups", "sectionGroups"),
-		resourceids.UserSpecifiedSegment("sectionGroupId", "sectionGroupIdValue"),
+		resourceids.UserSpecifiedSegment("sectionGroupId", "sectionGroupId"),
 		resourceids.StaticSegment("sections", "sections", "sections"),
-		resourceids.UserSpecifiedSegment("onenoteSectionId", "onenoteSectionIdValue"),
+		resourceids.UserSpecifiedSegment("onenoteSectionId", "onenoteSectionId"),
 	}
 }
 

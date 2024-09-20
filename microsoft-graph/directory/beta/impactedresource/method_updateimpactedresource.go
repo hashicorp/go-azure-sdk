@@ -17,15 +17,44 @@ type UpdateImpactedResourceOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateImpactedResourceOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateImpactedResourceOperationOptions() UpdateImpactedResourceOperationOptions {
+	return UpdateImpactedResourceOperationOptions{}
+}
+
+func (o UpdateImpactedResourceOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateImpactedResourceOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateImpactedResourceOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateImpactedResource - Update the navigation property impactedResources in directory
-func (c ImpactedResourceClient) UpdateImpactedResource(ctx context.Context, id beta.DirectoryImpactedResourceId, input beta.ImpactedResource) (result UpdateImpactedResourceOperationResponse, err error) {
+func (c ImpactedResourceClient) UpdateImpactedResource(ctx context.Context, id beta.DirectoryImpactedResourceId, input beta.ImpactedResource, options UpdateImpactedResourceOperationOptions) (result UpdateImpactedResourceOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

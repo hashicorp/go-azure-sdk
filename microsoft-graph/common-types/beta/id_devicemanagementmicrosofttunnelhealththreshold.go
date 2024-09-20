@@ -93,7 +93,7 @@ func (id DeviceManagementMicrosoftTunnelHealthThresholdId) Segments() []resource
 	return []resourceids.Segment{
 		resourceids.StaticSegment("deviceManagement", "deviceManagement", "deviceManagement"),
 		resourceids.StaticSegment("microsoftTunnelHealthThresholds", "microsoftTunnelHealthThresholds", "microsoftTunnelHealthThresholds"),
-		resourceids.UserSpecifiedSegment("microsoftTunnelHealthThresholdId", "microsoftTunnelHealthThresholdIdValue"),
+		resourceids.UserSpecifiedSegment("microsoftTunnelHealthThresholdId", "microsoftTunnelHealthThresholdId"),
 	}
 }
 

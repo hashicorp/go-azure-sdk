@@ -19,8 +19,9 @@ type RemoveEntitlementManagementConnectedOrganizationInternalSponsorRefsOperatio
 }
 
 type RemoveEntitlementManagementConnectedOrganizationInternalSponsorRefsOperationOptions struct {
-	Id      *string
-	IfMatch *string
+	Id       *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultRemoveEntitlementManagementConnectedOrganizationInternalSponsorRefsOperationOptions() RemoveEntitlementManagementConnectedOrganizationInternalSponsorRefsOperationOptions {
@@ -37,7 +38,9 @@ func (o RemoveEntitlementManagementConnectedOrganizationInternalSponsorRefsOpera
 
 func (o RemoveEntitlementManagementConnectedOrganizationInternalSponsorRefsOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

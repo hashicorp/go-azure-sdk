@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &PolicyTokenLifetimePolicyId{}
 
 func TestNewPolicyTokenLifetimePolicyID(t *testing.T) {
-	id := NewPolicyTokenLifetimePolicyID("tokenLifetimePolicyIdValue")
+	id := NewPolicyTokenLifetimePolicyID("tokenLifetimePolicyId")
 
-	if id.TokenLifetimePolicyId != "tokenLifetimePolicyIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'TokenLifetimePolicyId'", id.TokenLifetimePolicyId, "tokenLifetimePolicyIdValue")
+	if id.TokenLifetimePolicyId != "tokenLifetimePolicyId" {
+		t.Fatalf("Expected %q but got %q for Segment 'TokenLifetimePolicyId'", id.TokenLifetimePolicyId, "tokenLifetimePolicyId")
 	}
 }
 
 func TestFormatPolicyTokenLifetimePolicyID(t *testing.T) {
-	actual := NewPolicyTokenLifetimePolicyID("tokenLifetimePolicyIdValue").ID()
-	expected := "/policies/tokenLifetimePolicies/tokenLifetimePolicyIdValue"
+	actual := NewPolicyTokenLifetimePolicyID("tokenLifetimePolicyId").ID()
+	expected := "/policies/tokenLifetimePolicies/tokenLifetimePolicyId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -50,14 +50,14 @@ func TestParsePolicyTokenLifetimePolicyID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/policies/tokenLifetimePolicies/tokenLifetimePolicyIdValue",
+			Input: "/policies/tokenLifetimePolicies/tokenLifetimePolicyId",
 			Expected: &PolicyTokenLifetimePolicyId{
-				TokenLifetimePolicyId: "tokenLifetimePolicyIdValue",
+				TokenLifetimePolicyId: "tokenLifetimePolicyId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/policies/tokenLifetimePolicies/tokenLifetimePolicyIdValue/extra",
+			Input: "/policies/tokenLifetimePolicies/tokenLifetimePolicyId/extra",
 			Error: true,
 		},
 	}
@@ -116,26 +116,26 @@ func TestParsePolicyTokenLifetimePolicyIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/policies/tokenLifetimePolicies/tokenLifetimePolicyIdValue",
+			Input: "/policies/tokenLifetimePolicies/tokenLifetimePolicyId",
 			Expected: &PolicyTokenLifetimePolicyId{
-				TokenLifetimePolicyId: "tokenLifetimePolicyIdValue",
+				TokenLifetimePolicyId: "tokenLifetimePolicyId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/policies/tokenLifetimePolicies/tokenLifetimePolicyIdValue/extra",
+			Input: "/policies/tokenLifetimePolicies/tokenLifetimePolicyId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/pOlIcIeS/tOkEnLiFeTiMePoLiCiEs/tOkEnLiFeTiMePoLiCyIdVaLuE",
+			Input: "/pOlIcIeS/tOkEnLiFeTiMePoLiCiEs/tOkEnLiFeTiMePoLiCyId",
 			Expected: &PolicyTokenLifetimePolicyId{
-				TokenLifetimePolicyId: "tOkEnLiFeTiMePoLiCyIdVaLuE",
+				TokenLifetimePolicyId: "tOkEnLiFeTiMePoLiCyId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/pOlIcIeS/tOkEnLiFeTiMePoLiCiEs/tOkEnLiFeTiMePoLiCyIdVaLuE/extra",
+			Input: "/pOlIcIeS/tOkEnLiFeTiMePoLiCiEs/tOkEnLiFeTiMePoLiCyId/extra",
 			Error: true,
 		},
 	}

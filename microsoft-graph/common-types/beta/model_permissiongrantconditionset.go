@@ -105,10 +105,23 @@ func (s PermissionGrantConditionSet) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &PermissionGrantConditionSet{}
 
 func (s *PermissionGrantConditionSet) UnmarshalJSON(bytes []byte) error {
-	type alias PermissionGrantConditionSet
-	var decoded alias
+
+	var decoded struct {
+		CertifiedClientApplicationsOnly             nullable.Type[bool]   `json:"certifiedClientApplicationsOnly,omitempty"`
+		ClientApplicationIds                        *[]string             `json:"clientApplicationIds,omitempty"`
+		ClientApplicationPublisherIds               *[]string             `json:"clientApplicationPublisherIds,omitempty"`
+		ClientApplicationTenantIds                  *[]string             `json:"clientApplicationTenantIds,omitempty"`
+		ClientApplicationsFromVerifiedPublisherOnly nullable.Type[bool]   `json:"clientApplicationsFromVerifiedPublisherOnly,omitempty"`
+		PermissionClassification                    nullable.Type[string] `json:"permissionClassification,omitempty"`
+		PermissionType                              PermissionType        `json:"permissionType"`
+		Permissions                                 *[]string             `json:"permissions,omitempty"`
+		ResourceApplication                         nullable.Type[string] `json:"resourceApplication,omitempty"`
+		Id                                          *string               `json:"id,omitempty"`
+		ODataId                                     *string               `json:"@odata.id,omitempty"`
+		ODataType                                   *string               `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into PermissionGrantConditionSet: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.CertifiedClientApplicationsOnly = decoded.CertifiedClientApplicationsOnly
@@ -116,13 +129,13 @@ func (s *PermissionGrantConditionSet) UnmarshalJSON(bytes []byte) error {
 	s.ClientApplicationPublisherIds = decoded.ClientApplicationPublisherIds
 	s.ClientApplicationTenantIds = decoded.ClientApplicationTenantIds
 	s.ClientApplicationsFromVerifiedPublisherOnly = decoded.ClientApplicationsFromVerifiedPublisherOnly
-	s.Id = decoded.Id
-	s.ODataId = decoded.ODataId
-	s.ODataType = decoded.ODataType
 	s.PermissionClassification = decoded.PermissionClassification
 	s.PermissionType = decoded.PermissionType
 	s.Permissions = decoded.Permissions
 	s.ResourceApplication = decoded.ResourceApplication
+	s.Id = decoded.Id
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -136,5 +149,6 @@ func (s *PermissionGrantConditionSet) UnmarshalJSON(bytes []byte) error {
 		}
 		s.ScopeSensitivityLabels = impl
 	}
+
 	return nil
 }

@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/microsoft-graph/me/beta/outlooktaskattachment` Documentation
 
-The `outlooktaskattachment` SDK allows for interaction with the Azure Resource Manager Service `me` (API Version `beta`).
+The `outlooktaskattachment` SDK allows for interaction with Microsoft Graph `me` (API Version `beta`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -15,7 +15,7 @@ import "github.com/hashicorp/go-azure-sdk/microsoft-graph/me/beta/outlooktaskatt
 ### Client Initialization
 
 ```go
-client := outlooktaskattachment.NewOutlookTaskAttachmentClientWithBaseURI("https://management.azure.com")
+client := outlooktaskattachment.NewOutlookTaskAttachmentClientWithBaseURI("https://graph.microsoft.com")
 client.Client.Authorizer = authorizer
 ```
 
@@ -24,14 +24,14 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := outlooktaskattachment.NewMeOutlookTaskID("outlookTaskIdValue")
+id := outlooktaskattachment.NewMeOutlookTaskID("outlookTaskId")
 
 payload := outlooktaskattachment.Attachment{
 	// ...
 }
 
 
-read, err := client.CreateOutlookTaskAttachment(ctx, id, payload)
+read, err := client.CreateOutlookTaskAttachment(ctx, id, payload, outlooktaskattachment.DefaultCreateOutlookTaskAttachmentOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -45,14 +45,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := outlooktaskattachment.NewMeOutlookTaskID("outlookTaskIdValue")
+id := outlooktaskattachment.NewMeOutlookTaskID("outlookTaskId")
 
 payload := outlooktaskattachment.CreateOutlookTaskAttachmentsUploadSessionRequest{
 	// ...
 }
 
 
-read, err := client.CreateOutlookTaskAttachmentsUploadSession(ctx, id, payload)
+read, err := client.CreateOutlookTaskAttachmentsUploadSession(ctx, id, payload, outlooktaskattachment.DefaultCreateOutlookTaskAttachmentsUploadSessionOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -66,7 +66,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := outlooktaskattachment.NewMeOutlookTaskIdAttachmentID("outlookTaskIdValue", "attachmentIdValue")
+id := outlooktaskattachment.NewMeOutlookTaskIdAttachmentID("outlookTaskId", "attachmentId")
 
 read, err := client.DeleteOutlookTaskAttachment(ctx, id, outlooktaskattachment.DefaultDeleteOutlookTaskAttachmentOperationOptions())
 if err != nil {
@@ -82,7 +82,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := outlooktaskattachment.NewMeOutlookTaskIdAttachmentID("outlookTaskIdValue", "attachmentIdValue")
+id := outlooktaskattachment.NewMeOutlookTaskIdAttachmentID("outlookTaskId", "attachmentId")
 
 read, err := client.GetOutlookTaskAttachment(ctx, id, outlooktaskattachment.DefaultGetOutlookTaskAttachmentOperationOptions())
 if err != nil {
@@ -98,7 +98,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := outlooktaskattachment.NewMeOutlookTaskID("outlookTaskIdValue")
+id := outlooktaskattachment.NewMeOutlookTaskID("outlookTaskId")
 
 read, err := client.GetOutlookTaskAttachmentsCount(ctx, id, outlooktaskattachment.DefaultGetOutlookTaskAttachmentsCountOperationOptions())
 if err != nil {
@@ -114,7 +114,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := outlooktaskattachment.NewMeOutlookTaskID("outlookTaskIdValue")
+id := outlooktaskattachment.NewMeOutlookTaskID("outlookTaskId")
 
 // alternatively `client.ListOutlookTaskAttachments(ctx, id, outlooktaskattachment.DefaultListOutlookTaskAttachmentsOperationOptions())` can be used to do batched pagination
 items, err := client.ListOutlookTaskAttachmentsComplete(ctx, id, outlooktaskattachment.DefaultListOutlookTaskAttachmentsOperationOptions())

@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &RoleManagementCloudPCRoleDefinitionId{}
 
 func TestNewRoleManagementCloudPCRoleDefinitionID(t *testing.T) {
-	id := NewRoleManagementCloudPCRoleDefinitionID("unifiedRoleDefinitionIdValue")
+	id := NewRoleManagementCloudPCRoleDefinitionID("unifiedRoleDefinitionId")
 
-	if id.UnifiedRoleDefinitionId != "unifiedRoleDefinitionIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'UnifiedRoleDefinitionId'", id.UnifiedRoleDefinitionId, "unifiedRoleDefinitionIdValue")
+	if id.UnifiedRoleDefinitionId != "unifiedRoleDefinitionId" {
+		t.Fatalf("Expected %q but got %q for Segment 'UnifiedRoleDefinitionId'", id.UnifiedRoleDefinitionId, "unifiedRoleDefinitionId")
 	}
 }
 
 func TestFormatRoleManagementCloudPCRoleDefinitionID(t *testing.T) {
-	actual := NewRoleManagementCloudPCRoleDefinitionID("unifiedRoleDefinitionIdValue").ID()
-	expected := "/roleManagement/cloudPC/roleDefinitions/unifiedRoleDefinitionIdValue"
+	actual := NewRoleManagementCloudPCRoleDefinitionID("unifiedRoleDefinitionId").ID()
+	expected := "/roleManagement/cloudPC/roleDefinitions/unifiedRoleDefinitionId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -55,14 +55,14 @@ func TestParseRoleManagementCloudPCRoleDefinitionID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/roleManagement/cloudPC/roleDefinitions/unifiedRoleDefinitionIdValue",
+			Input: "/roleManagement/cloudPC/roleDefinitions/unifiedRoleDefinitionId",
 			Expected: &RoleManagementCloudPCRoleDefinitionId{
-				UnifiedRoleDefinitionId: "unifiedRoleDefinitionIdValue",
+				UnifiedRoleDefinitionId: "unifiedRoleDefinitionId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/roleManagement/cloudPC/roleDefinitions/unifiedRoleDefinitionIdValue/extra",
+			Input: "/roleManagement/cloudPC/roleDefinitions/unifiedRoleDefinitionId/extra",
 			Error: true,
 		},
 	}
@@ -131,26 +131,26 @@ func TestParseRoleManagementCloudPCRoleDefinitionIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/roleManagement/cloudPC/roleDefinitions/unifiedRoleDefinitionIdValue",
+			Input: "/roleManagement/cloudPC/roleDefinitions/unifiedRoleDefinitionId",
 			Expected: &RoleManagementCloudPCRoleDefinitionId{
-				UnifiedRoleDefinitionId: "unifiedRoleDefinitionIdValue",
+				UnifiedRoleDefinitionId: "unifiedRoleDefinitionId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/roleManagement/cloudPC/roleDefinitions/unifiedRoleDefinitionIdValue/extra",
+			Input: "/roleManagement/cloudPC/roleDefinitions/unifiedRoleDefinitionId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/rOlEmAnAgEmEnT/cLoUdPc/rOlEdEfInItIoNs/uNiFiEdRoLeDeFiNiTiOnIdVaLuE",
+			Input: "/rOlEmAnAgEmEnT/cLoUdPc/rOlEdEfInItIoNs/uNiFiEdRoLeDeFiNiTiOnId",
 			Expected: &RoleManagementCloudPCRoleDefinitionId{
-				UnifiedRoleDefinitionId: "uNiFiEdRoLeDeFiNiTiOnIdVaLuE",
+				UnifiedRoleDefinitionId: "uNiFiEdRoLeDeFiNiTiOnId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/rOlEmAnAgEmEnT/cLoUdPc/rOlEdEfInItIoNs/uNiFiEdRoLeDeFiNiTiOnIdVaLuE/extra",
+			Input: "/rOlEmAnAgEmEnT/cLoUdPc/rOlEdEfInItIoNs/uNiFiEdRoLeDeFiNiTiOnId/extra",
 			Error: true,
 		},
 	}

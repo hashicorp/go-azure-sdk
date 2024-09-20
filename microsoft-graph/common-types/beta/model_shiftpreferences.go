@@ -92,10 +92,19 @@ func (s ShiftPreferences) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &ShiftPreferences{}
 
 func (s *ShiftPreferences) UnmarshalJSON(bytes []byte) error {
-	type alias ShiftPreferences
-	var decoded alias
+
+	var decoded struct {
+		Availability         *[]ShiftAvailability  `json:"availability,omitempty"`
+		CreatedBy            IdentitySet           `json:"createdBy"`
+		CreatedDateTime      nullable.Type[string] `json:"createdDateTime,omitempty"`
+		LastModifiedBy       *IdentitySet          `json:"lastModifiedBy,omitempty"`
+		LastModifiedDateTime nullable.Type[string] `json:"lastModifiedDateTime,omitempty"`
+		Id                   *string               `json:"id,omitempty"`
+		ODataId              *string               `json:"@odata.id,omitempty"`
+		ODataType            *string               `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into ShiftPreferences: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.Availability = decoded.Availability
@@ -125,5 +134,6 @@ func (s *ShiftPreferences) UnmarshalJSON(bytes []byte) error {
 		}
 		s.LastModifiedBy = &impl
 	}
+
 	return nil
 }

@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &PolicyAppManagementPolicyId{}
 
 func TestNewPolicyAppManagementPolicyID(t *testing.T) {
-	id := NewPolicyAppManagementPolicyID("appManagementPolicyIdValue")
+	id := NewPolicyAppManagementPolicyID("appManagementPolicyId")
 
-	if id.AppManagementPolicyId != "appManagementPolicyIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'AppManagementPolicyId'", id.AppManagementPolicyId, "appManagementPolicyIdValue")
+	if id.AppManagementPolicyId != "appManagementPolicyId" {
+		t.Fatalf("Expected %q but got %q for Segment 'AppManagementPolicyId'", id.AppManagementPolicyId, "appManagementPolicyId")
 	}
 }
 
 func TestFormatPolicyAppManagementPolicyID(t *testing.T) {
-	actual := NewPolicyAppManagementPolicyID("appManagementPolicyIdValue").ID()
-	expected := "/policies/appManagementPolicies/appManagementPolicyIdValue"
+	actual := NewPolicyAppManagementPolicyID("appManagementPolicyId").ID()
+	expected := "/policies/appManagementPolicies/appManagementPolicyId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -50,14 +50,14 @@ func TestParsePolicyAppManagementPolicyID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/policies/appManagementPolicies/appManagementPolicyIdValue",
+			Input: "/policies/appManagementPolicies/appManagementPolicyId",
 			Expected: &PolicyAppManagementPolicyId{
-				AppManagementPolicyId: "appManagementPolicyIdValue",
+				AppManagementPolicyId: "appManagementPolicyId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/policies/appManagementPolicies/appManagementPolicyIdValue/extra",
+			Input: "/policies/appManagementPolicies/appManagementPolicyId/extra",
 			Error: true,
 		},
 	}
@@ -116,26 +116,26 @@ func TestParsePolicyAppManagementPolicyIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/policies/appManagementPolicies/appManagementPolicyIdValue",
+			Input: "/policies/appManagementPolicies/appManagementPolicyId",
 			Expected: &PolicyAppManagementPolicyId{
-				AppManagementPolicyId: "appManagementPolicyIdValue",
+				AppManagementPolicyId: "appManagementPolicyId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/policies/appManagementPolicies/appManagementPolicyIdValue/extra",
+			Input: "/policies/appManagementPolicies/appManagementPolicyId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/pOlIcIeS/aPpMaNaGeMeNtPoLiCiEs/aPpMaNaGeMeNtPoLiCyIdVaLuE",
+			Input: "/pOlIcIeS/aPpMaNaGeMeNtPoLiCiEs/aPpMaNaGeMeNtPoLiCyId",
 			Expected: &PolicyAppManagementPolicyId{
-				AppManagementPolicyId: "aPpMaNaGeMeNtPoLiCyIdVaLuE",
+				AppManagementPolicyId: "aPpMaNaGeMeNtPoLiCyId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/pOlIcIeS/aPpMaNaGeMeNtPoLiCiEs/aPpMaNaGeMeNtPoLiCyIdVaLuE/extra",
+			Input: "/pOlIcIeS/aPpMaNaGeMeNtPoLiCiEs/aPpMaNaGeMeNtPoLiCyId/extra",
 			Error: true,
 		},
 	}

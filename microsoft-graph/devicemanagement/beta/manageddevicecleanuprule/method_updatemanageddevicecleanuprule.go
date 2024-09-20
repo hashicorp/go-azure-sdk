@@ -17,15 +17,44 @@ type UpdateManagedDeviceCleanupRuleOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateManagedDeviceCleanupRuleOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateManagedDeviceCleanupRuleOperationOptions() UpdateManagedDeviceCleanupRuleOperationOptions {
+	return UpdateManagedDeviceCleanupRuleOperationOptions{}
+}
+
+func (o UpdateManagedDeviceCleanupRuleOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateManagedDeviceCleanupRuleOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateManagedDeviceCleanupRuleOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateManagedDeviceCleanupRule - Update the navigation property managedDeviceCleanupRules in deviceManagement
-func (c ManagedDeviceCleanupRuleClient) UpdateManagedDeviceCleanupRule(ctx context.Context, id beta.DeviceManagementManagedDeviceCleanupRuleId, input beta.ManagedDeviceCleanupRule) (result UpdateManagedDeviceCleanupRuleOperationResponse, err error) {
+func (c ManagedDeviceCleanupRuleClient) UpdateManagedDeviceCleanupRule(ctx context.Context, id beta.DeviceManagementManagedDeviceCleanupRuleId, input beta.ManagedDeviceCleanupRule, options UpdateManagedDeviceCleanupRuleOperationOptions) (result UpdateManagedDeviceCleanupRuleOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

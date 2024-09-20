@@ -17,15 +17,44 @@ type UpdateOperationApprovalRequestOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateOperationApprovalRequestOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateOperationApprovalRequestOperationOptions() UpdateOperationApprovalRequestOperationOptions {
+	return UpdateOperationApprovalRequestOperationOptions{}
+}
+
+func (o UpdateOperationApprovalRequestOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateOperationApprovalRequestOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateOperationApprovalRequestOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateOperationApprovalRequest - Update the navigation property operationApprovalRequests in deviceManagement
-func (c OperationApprovalRequestClient) UpdateOperationApprovalRequest(ctx context.Context, id beta.DeviceManagementOperationApprovalRequestId, input beta.OperationApprovalRequest) (result UpdateOperationApprovalRequestOperationResponse, err error) {
+func (c OperationApprovalRequestClient) UpdateOperationApprovalRequest(ctx context.Context, id beta.DeviceManagementOperationApprovalRequestId, input beta.OperationApprovalRequest, options UpdateOperationApprovalRequestOperationOptions) (result UpdateOperationApprovalRequestOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

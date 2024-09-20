@@ -93,7 +93,7 @@ func (id DeviceManagementDeviceConfigurationConflictSummaryId) Segments() []reso
 	return []resourceids.Segment{
 		resourceids.StaticSegment("deviceManagement", "deviceManagement", "deviceManagement"),
 		resourceids.StaticSegment("deviceConfigurationConflictSummary", "deviceConfigurationConflictSummary", "deviceConfigurationConflictSummary"),
-		resourceids.UserSpecifiedSegment("deviceConfigurationConflictSummaryId", "deviceConfigurationConflictSummaryIdValue"),
+		resourceids.UserSpecifiedSegment("deviceConfigurationConflictSummaryId", "deviceConfigurationConflictSummaryId"),
 	}
 }
 

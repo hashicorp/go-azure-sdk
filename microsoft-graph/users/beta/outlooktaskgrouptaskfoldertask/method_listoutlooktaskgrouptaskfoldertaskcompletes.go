@@ -25,8 +25,9 @@ type ListOutlookTaskGroupTaskFolderTaskCompletesCompleteResult struct {
 }
 
 type ListOutlookTaskGroupTaskFolderTaskCompletesOperationOptions struct {
-	Skip *int64
-	Top  *int64
+	Metadata *odata.Metadata
+	Skip     *int64
+	Top      *int64
 }
 
 func DefaultListOutlookTaskGroupTaskFolderTaskCompletesOperationOptions() ListOutlookTaskGroupTaskFolderTaskCompletesOperationOptions {
@@ -41,6 +42,9 @@ func (o ListOutlookTaskGroupTaskFolderTaskCompletesOperationOptions) ToHeaders()
 
 func (o ListOutlookTaskGroupTaskFolderTaskCompletesOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	if o.Skip != nil {
 		out.Skip = int(*o.Skip)
 	}

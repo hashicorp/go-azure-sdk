@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/joinedteamschedule` Documentation
 
-The `joinedteamschedule` SDK allows for interaction with the Azure Resource Manager Service `me` (API Version `stable`).
+The `joinedteamschedule` SDK allows for interaction with Microsoft Graph `me` (API Version `stable`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -15,7 +15,7 @@ import "github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/joinedteamsc
 ### Client Initialization
 
 ```go
-client := joinedteamschedule.NewJoinedTeamScheduleClientWithBaseURI("https://management.azure.com")
+client := joinedteamschedule.NewJoinedTeamScheduleClientWithBaseURI("https://graph.microsoft.com")
 client.Client.Authorizer = authorizer
 ```
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := joinedteamschedule.NewMeJoinedTeamID("teamIdValue")
+id := joinedteamschedule.NewMeJoinedTeamID("teamId")
 
 read, err := client.DeleteJoinedTeamSchedule(ctx, id, joinedteamschedule.DefaultDeleteJoinedTeamScheduleOperationOptions())
 if err != nil {
@@ -40,7 +40,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := joinedteamschedule.NewMeJoinedTeamID("teamIdValue")
+id := joinedteamschedule.NewMeJoinedTeamID("teamId")
 
 read, err := client.GetJoinedTeamSchedule(ctx, id, joinedteamschedule.DefaultGetJoinedTeamScheduleOperationOptions())
 if err != nil {
@@ -56,14 +56,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := joinedteamschedule.NewMeJoinedTeamID("teamIdValue")
+id := joinedteamschedule.NewMeJoinedTeamID("teamId")
 
 payload := joinedteamschedule.Schedule{
 	// ...
 }
 
 
-read, err := client.SetJoinedTeamSchedule(ctx, id, payload)
+read, err := client.SetJoinedTeamSchedule(ctx, id, payload, joinedteamschedule.DefaultSetJoinedTeamScheduleOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -77,14 +77,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := joinedteamschedule.NewMeJoinedTeamID("teamIdValue")
+id := joinedteamschedule.NewMeJoinedTeamID("teamId")
 
 payload := joinedteamschedule.ShareJoinedTeamScheduleRequest{
 	// ...
 }
 
 
-read, err := client.ShareJoinedTeamSchedule(ctx, id, payload)
+read, err := client.ShareJoinedTeamSchedule(ctx, id, payload, joinedteamschedule.DefaultShareJoinedTeamScheduleOperationOptions())
 if err != nil {
 	// handle the error
 }

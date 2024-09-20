@@ -47,10 +47,21 @@ type AccessPackageApprovalStage struct {
 var _ json.Unmarshaler = &AccessPackageApprovalStage{}
 
 func (s *AccessPackageApprovalStage) UnmarshalJSON(bytes []byte) error {
-	type alias AccessPackageApprovalStage
-	var decoded alias
+
+	var decoded struct {
+		DurationBeforeAutomaticDenial   nullable.Type[string] `json:"durationBeforeAutomaticDenial,omitempty"`
+		DurationBeforeEscalation        nullable.Type[string] `json:"durationBeforeEscalation,omitempty"`
+		EscalationApprovers             *[]SubjectSet         `json:"escalationApprovers,omitempty"`
+		FallbackEscalationApprovers     *[]SubjectSet         `json:"fallbackEscalationApprovers,omitempty"`
+		FallbackPrimaryApprovers        *[]SubjectSet         `json:"fallbackPrimaryApprovers,omitempty"`
+		IsApproverJustificationRequired nullable.Type[bool]   `json:"isApproverJustificationRequired,omitempty"`
+		IsEscalationEnabled             nullable.Type[bool]   `json:"isEscalationEnabled,omitempty"`
+		ODataId                         *string               `json:"@odata.id,omitempty"`
+		ODataType                       *string               `json:"@odata.type,omitempty"`
+		PrimaryApprovers                *[]SubjectSet         `json:"primaryApprovers,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into AccessPackageApprovalStage: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.DurationBeforeAutomaticDenial = decoded.DurationBeforeAutomaticDenial
@@ -132,5 +143,6 @@ func (s *AccessPackageApprovalStage) UnmarshalJSON(bytes []byte) error {
 		}
 		s.PrimaryApprovers = &output
 	}
+
 	return nil
 }

@@ -12,28 +12,28 @@ import (
 var _ resourceids.ResourceId = &GroupIdEventIdExceptionOccurrenceIdExtensionId{}
 
 func TestNewGroupIdEventIdExceptionOccurrenceIdExtensionID(t *testing.T) {
-	id := NewGroupIdEventIdExceptionOccurrenceIdExtensionID("groupIdValue", "eventIdValue", "eventId1Value", "extensionIdValue")
+	id := NewGroupIdEventIdExceptionOccurrenceIdExtensionID("groupId", "eventId", "eventId1", "extensionId")
 
-	if id.GroupId != "groupIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'GroupId'", id.GroupId, "groupIdValue")
+	if id.GroupId != "groupId" {
+		t.Fatalf("Expected %q but got %q for Segment 'GroupId'", id.GroupId, "groupId")
 	}
 
-	if id.EventId != "eventIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'EventId'", id.EventId, "eventIdValue")
+	if id.EventId != "eventId" {
+		t.Fatalf("Expected %q but got %q for Segment 'EventId'", id.EventId, "eventId")
 	}
 
-	if id.EventId1 != "eventId1Value" {
-		t.Fatalf("Expected %q but got %q for Segment 'EventId1'", id.EventId1, "eventId1Value")
+	if id.EventId1 != "eventId1" {
+		t.Fatalf("Expected %q but got %q for Segment 'EventId1'", id.EventId1, "eventId1")
 	}
 
-	if id.ExtensionId != "extensionIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ExtensionId'", id.ExtensionId, "extensionIdValue")
+	if id.ExtensionId != "extensionId" {
+		t.Fatalf("Expected %q but got %q for Segment 'ExtensionId'", id.ExtensionId, "extensionId")
 	}
 }
 
 func TestFormatGroupIdEventIdExceptionOccurrenceIdExtensionID(t *testing.T) {
-	actual := NewGroupIdEventIdExceptionOccurrenceIdExtensionID("groupIdValue", "eventIdValue", "eventId1Value", "extensionIdValue").ID()
-	expected := "/groups/groupIdValue/events/eventIdValue/exceptionOccurrences/eventId1Value/extensions/extensionIdValue"
+	actual := NewGroupIdEventIdExceptionOccurrenceIdExtensionID("groupId", "eventId", "eventId1", "extensionId").ID()
+	expected := "/groups/groupId/events/eventId/exceptionOccurrences/eventId1/extensions/extensionId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -57,47 +57,47 @@ func TestParseGroupIdEventIdExceptionOccurrenceIdExtensionID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue",
+			Input: "/groups/groupId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/events",
+			Input: "/groups/groupId/events",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/events/eventIdValue",
+			Input: "/groups/groupId/events/eventId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/events/eventIdValue/exceptionOccurrences",
+			Input: "/groups/groupId/events/eventId/exceptionOccurrences",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/events/eventIdValue/exceptionOccurrences/eventId1Value",
+			Input: "/groups/groupId/events/eventId/exceptionOccurrences/eventId1",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/events/eventIdValue/exceptionOccurrences/eventId1Value/extensions",
+			Input: "/groups/groupId/events/eventId/exceptionOccurrences/eventId1/extensions",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/groups/groupIdValue/events/eventIdValue/exceptionOccurrences/eventId1Value/extensions/extensionIdValue",
+			Input: "/groups/groupId/events/eventId/exceptionOccurrences/eventId1/extensions/extensionId",
 			Expected: &GroupIdEventIdExceptionOccurrenceIdExtensionId{
-				GroupId:     "groupIdValue",
-				EventId:     "eventIdValue",
-				EventId1:    "eventId1Value",
-				ExtensionId: "extensionIdValue",
+				GroupId:     "groupId",
+				EventId:     "eventId",
+				EventId1:    "eventId1",
+				ExtensionId: "extensionId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/groups/groupIdValue/events/eventIdValue/exceptionOccurrences/eventId1Value/extensions/extensionIdValue/extra",
+			Input: "/groups/groupId/events/eventId/exceptionOccurrences/eventId1/extensions/extensionId/extra",
 			Error: true,
 		},
 	}
@@ -158,92 +158,92 @@ func TestParseGroupIdEventIdExceptionOccurrenceIdExtensionIDInsensitively(t *tes
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue",
+			Input: "/groups/groupId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE",
+			Input: "/gRoUpS/gRoUpId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/events",
+			Input: "/groups/groupId/events",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/eVeNtS",
+			Input: "/gRoUpS/gRoUpId/eVeNtS",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/events/eventIdValue",
+			Input: "/groups/groupId/events/eventId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/eVeNtS/eVeNtIdVaLuE",
+			Input: "/gRoUpS/gRoUpId/eVeNtS/eVeNtId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/events/eventIdValue/exceptionOccurrences",
+			Input: "/groups/groupId/events/eventId/exceptionOccurrences",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/eVeNtS/eVeNtIdVaLuE/eXcEpTiOnOcCuRrEnCeS",
+			Input: "/gRoUpS/gRoUpId/eVeNtS/eVeNtId/eXcEpTiOnOcCuRrEnCeS",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/events/eventIdValue/exceptionOccurrences/eventId1Value",
+			Input: "/groups/groupId/events/eventId/exceptionOccurrences/eventId1",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/eVeNtS/eVeNtIdVaLuE/eXcEpTiOnOcCuRrEnCeS/eVeNtId1vAlUe",
+			Input: "/gRoUpS/gRoUpId/eVeNtS/eVeNtId/eXcEpTiOnOcCuRrEnCeS/eVeNtId1",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/events/eventIdValue/exceptionOccurrences/eventId1Value/extensions",
+			Input: "/groups/groupId/events/eventId/exceptionOccurrences/eventId1/extensions",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/eVeNtS/eVeNtIdVaLuE/eXcEpTiOnOcCuRrEnCeS/eVeNtId1vAlUe/eXtEnSiOnS",
+			Input: "/gRoUpS/gRoUpId/eVeNtS/eVeNtId/eXcEpTiOnOcCuRrEnCeS/eVeNtId1/eXtEnSiOnS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/groups/groupIdValue/events/eventIdValue/exceptionOccurrences/eventId1Value/extensions/extensionIdValue",
+			Input: "/groups/groupId/events/eventId/exceptionOccurrences/eventId1/extensions/extensionId",
 			Expected: &GroupIdEventIdExceptionOccurrenceIdExtensionId{
-				GroupId:     "groupIdValue",
-				EventId:     "eventIdValue",
-				EventId1:    "eventId1Value",
-				ExtensionId: "extensionIdValue",
+				GroupId:     "groupId",
+				EventId:     "eventId",
+				EventId1:    "eventId1",
+				ExtensionId: "extensionId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/groups/groupIdValue/events/eventIdValue/exceptionOccurrences/eventId1Value/extensions/extensionIdValue/extra",
+			Input: "/groups/groupId/events/eventId/exceptionOccurrences/eventId1/extensions/extensionId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/eVeNtS/eVeNtIdVaLuE/eXcEpTiOnOcCuRrEnCeS/eVeNtId1vAlUe/eXtEnSiOnS/eXtEnSiOnIdVaLuE",
+			Input: "/gRoUpS/gRoUpId/eVeNtS/eVeNtId/eXcEpTiOnOcCuRrEnCeS/eVeNtId1/eXtEnSiOnS/eXtEnSiOnId",
 			Expected: &GroupIdEventIdExceptionOccurrenceIdExtensionId{
-				GroupId:     "gRoUpIdVaLuE",
-				EventId:     "eVeNtIdVaLuE",
-				EventId1:    "eVeNtId1vAlUe",
-				ExtensionId: "eXtEnSiOnIdVaLuE",
+				GroupId:     "gRoUpId",
+				EventId:     "eVeNtId",
+				EventId1:    "eVeNtId1",
+				ExtensionId: "eXtEnSiOnId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/eVeNtS/eVeNtIdVaLuE/eXcEpTiOnOcCuRrEnCeS/eVeNtId1vAlUe/eXtEnSiOnS/eXtEnSiOnIdVaLuE/extra",
+			Input: "/gRoUpS/gRoUpId/eVeNtS/eVeNtId/eXcEpTiOnOcCuRrEnCeS/eVeNtId1/eXtEnSiOnS/eXtEnSiOnId/extra",
 			Error: true,
 		},
 	}

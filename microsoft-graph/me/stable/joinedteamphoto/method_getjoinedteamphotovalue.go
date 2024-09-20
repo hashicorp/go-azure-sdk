@@ -19,16 +19,45 @@ type GetJoinedTeamPhotoValueOperationResponse struct {
 	Model        *[]byte
 }
 
+type GetJoinedTeamPhotoValueOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultGetJoinedTeamPhotoValueOperationOptions() GetJoinedTeamPhotoValueOperationOptions {
+	return GetJoinedTeamPhotoValueOperationOptions{}
+}
+
+func (o GetJoinedTeamPhotoValueOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o GetJoinedTeamPhotoValueOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o GetJoinedTeamPhotoValueOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // GetJoinedTeamPhotoValue - Get media content for the navigation property photo from me. The profile photo for the
 // team.
-func (c JoinedTeamPhotoClient) GetJoinedTeamPhotoValue(ctx context.Context, id stable.MeJoinedTeamId) (result GetJoinedTeamPhotoValueOperationResponse, err error) {
+func (c JoinedTeamPhotoClient) GetJoinedTeamPhotoValue(ctx context.Context, id stable.MeJoinedTeamId, options GetJoinedTeamPhotoValueOperationOptions) (result GetJoinedTeamPhotoValueOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/octet-stream",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/photo/$value", id.ID()),
+		HttpMethod:    http.MethodGet,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/photo/$value", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

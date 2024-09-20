@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/teamscheduletimecard` Documentation
 
-The `teamscheduletimecard` SDK allows for interaction with the Azure Resource Manager Service `groups` (API Version `beta`).
+The `teamscheduletimecard` SDK allows for interaction with Microsoft Graph `groups` (API Version `beta`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -15,7 +15,7 @@ import "github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/teamschedu
 ### Client Initialization
 
 ```go
-client := teamscheduletimecard.NewTeamScheduleTimeCardClientWithBaseURI("https://management.azure.com")
+client := teamscheduletimecard.NewTeamScheduleTimeCardClientWithBaseURI("https://graph.microsoft.com")
 client.Client.Authorizer = authorizer
 ```
 
@@ -24,14 +24,14 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := teamscheduletimecard.NewGroupID("groupIdValue")
+id := teamscheduletimecard.NewGroupID("groupId")
 
 payload := teamscheduletimecard.TimeCard{
 	// ...
 }
 
 
-read, err := client.CreateTeamScheduleTimeCard(ctx, id, payload)
+read, err := client.CreateTeamScheduleTimeCard(ctx, id, payload, teamscheduletimecard.DefaultCreateTeamScheduleTimeCardOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -45,14 +45,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := teamscheduletimecard.NewGroupID("groupIdValue")
+id := teamscheduletimecard.NewGroupID("groupId")
 
 payload := teamscheduletimecard.CreateTeamScheduleTimeCardClockInRequest{
 	// ...
 }
 
 
-read, err := client.CreateTeamScheduleTimeCardClockIn(ctx, id, payload)
+read, err := client.CreateTeamScheduleTimeCardClockIn(ctx, id, payload, teamscheduletimecard.DefaultCreateTeamScheduleTimeCardClockInOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -66,14 +66,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := teamscheduletimecard.NewGroupIdTeamScheduleTimeCardID("groupIdValue", "timeCardIdValue")
+id := teamscheduletimecard.NewGroupIdTeamScheduleTimeCardID("groupId", "timeCardId")
 
 payload := teamscheduletimecard.CreateTeamScheduleTimeCardClockOutRequest{
 	// ...
 }
 
 
-read, err := client.CreateTeamScheduleTimeCardClockOut(ctx, id, payload)
+read, err := client.CreateTeamScheduleTimeCardClockOut(ctx, id, payload, teamscheduletimecard.DefaultCreateTeamScheduleTimeCardClockOutOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -87,9 +87,9 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := teamscheduletimecard.NewGroupIdTeamScheduleTimeCardID("groupIdValue", "timeCardIdValue")
+id := teamscheduletimecard.NewGroupIdTeamScheduleTimeCardID("groupId", "timeCardId")
 
-read, err := client.CreateTeamScheduleTimeCardConfirm(ctx, id)
+read, err := client.CreateTeamScheduleTimeCardConfirm(ctx, id, teamscheduletimecard.DefaultCreateTeamScheduleTimeCardConfirmOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -103,7 +103,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := teamscheduletimecard.NewGroupIdTeamScheduleTimeCardID("groupIdValue", "timeCardIdValue")
+id := teamscheduletimecard.NewGroupIdTeamScheduleTimeCardID("groupId", "timeCardId")
 
 read, err := client.DeleteTeamScheduleTimeCard(ctx, id, teamscheduletimecard.DefaultDeleteTeamScheduleTimeCardOperationOptions())
 if err != nil {
@@ -119,14 +119,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := teamscheduletimecard.NewGroupIdTeamScheduleTimeCardID("groupIdValue", "timeCardIdValue")
+id := teamscheduletimecard.NewGroupIdTeamScheduleTimeCardID("groupId", "timeCardId")
 
 payload := teamscheduletimecard.EndTeamScheduleTimeCardBreakRequest{
 	// ...
 }
 
 
-read, err := client.EndTeamScheduleTimeCardBreak(ctx, id, payload)
+read, err := client.EndTeamScheduleTimeCardBreak(ctx, id, payload, teamscheduletimecard.DefaultEndTeamScheduleTimeCardBreakOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -140,7 +140,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := teamscheduletimecard.NewGroupIdTeamScheduleTimeCardID("groupIdValue", "timeCardIdValue")
+id := teamscheduletimecard.NewGroupIdTeamScheduleTimeCardID("groupId", "timeCardId")
 
 read, err := client.GetTeamScheduleTimeCard(ctx, id, teamscheduletimecard.DefaultGetTeamScheduleTimeCardOperationOptions())
 if err != nil {
@@ -156,7 +156,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := teamscheduletimecard.NewGroupID("groupIdValue")
+id := teamscheduletimecard.NewGroupID("groupId")
 
 read, err := client.GetTeamScheduleTimeCardsCount(ctx, id, teamscheduletimecard.DefaultGetTeamScheduleTimeCardsCountOperationOptions())
 if err != nil {
@@ -172,7 +172,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := teamscheduletimecard.NewGroupID("groupIdValue")
+id := teamscheduletimecard.NewGroupID("groupId")
 
 // alternatively `client.ListTeamScheduleTimeCards(ctx, id, teamscheduletimecard.DefaultListTeamScheduleTimeCardsOperationOptions())` can be used to do batched pagination
 items, err := client.ListTeamScheduleTimeCardsComplete(ctx, id, teamscheduletimecard.DefaultListTeamScheduleTimeCardsOperationOptions())
@@ -189,14 +189,14 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := teamscheduletimecard.NewGroupIdTeamScheduleTimeCardID("groupIdValue", "timeCardIdValue")
+id := teamscheduletimecard.NewGroupIdTeamScheduleTimeCardID("groupId", "timeCardId")
 
 payload := teamscheduletimecard.StartTeamScheduleTimeCardBreakRequest{
 	// ...
 }
 
 
-read, err := client.StartTeamScheduleTimeCardBreak(ctx, id, payload)
+read, err := client.StartTeamScheduleTimeCardBreak(ctx, id, payload, teamscheduletimecard.DefaultStartTeamScheduleTimeCardBreakOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -210,14 +210,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := teamscheduletimecard.NewGroupIdTeamScheduleTimeCardID("groupIdValue", "timeCardIdValue")
+id := teamscheduletimecard.NewGroupIdTeamScheduleTimeCardID("groupId", "timeCardId")
 
 payload := teamscheduletimecard.TimeCard{
 	// ...
 }
 
 
-read, err := client.UpdateTeamScheduleTimeCard(ctx, id, payload)
+read, err := client.UpdateTeamScheduleTimeCard(ctx, id, payload, teamscheduletimecard.DefaultUpdateTeamScheduleTimeCardOperationOptions())
 if err != nil {
 	// handle the error
 }

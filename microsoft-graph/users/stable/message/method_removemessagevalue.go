@@ -19,7 +19,8 @@ type RemoveMessageValueOperationResponse struct {
 }
 
 type RemoveMessageValueOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultRemoveMessageValueOperationOptions() RemoveMessageValueOperationOptions {
@@ -36,7 +37,9 @@ func (o RemoveMessageValueOperationOptions) ToHeaders() *client.Headers {
 
 func (o RemoveMessageValueOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

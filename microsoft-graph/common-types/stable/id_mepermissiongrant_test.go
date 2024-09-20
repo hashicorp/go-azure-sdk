@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &MePermissionGrantId{}
 
 func TestNewMePermissionGrantID(t *testing.T) {
-	id := NewMePermissionGrantID("resourceSpecificPermissionGrantIdValue")
+	id := NewMePermissionGrantID("resourceSpecificPermissionGrantId")
 
-	if id.ResourceSpecificPermissionGrantId != "resourceSpecificPermissionGrantIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ResourceSpecificPermissionGrantId'", id.ResourceSpecificPermissionGrantId, "resourceSpecificPermissionGrantIdValue")
+	if id.ResourceSpecificPermissionGrantId != "resourceSpecificPermissionGrantId" {
+		t.Fatalf("Expected %q but got %q for Segment 'ResourceSpecificPermissionGrantId'", id.ResourceSpecificPermissionGrantId, "resourceSpecificPermissionGrantId")
 	}
 }
 
 func TestFormatMePermissionGrantID(t *testing.T) {
-	actual := NewMePermissionGrantID("resourceSpecificPermissionGrantIdValue").ID()
-	expected := "/me/permissionGrants/resourceSpecificPermissionGrantIdValue"
+	actual := NewMePermissionGrantID("resourceSpecificPermissionGrantId").ID()
+	expected := "/me/permissionGrants/resourceSpecificPermissionGrantId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -50,14 +50,14 @@ func TestParseMePermissionGrantID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/me/permissionGrants/resourceSpecificPermissionGrantIdValue",
+			Input: "/me/permissionGrants/resourceSpecificPermissionGrantId",
 			Expected: &MePermissionGrantId{
-				ResourceSpecificPermissionGrantId: "resourceSpecificPermissionGrantIdValue",
+				ResourceSpecificPermissionGrantId: "resourceSpecificPermissionGrantId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/permissionGrants/resourceSpecificPermissionGrantIdValue/extra",
+			Input: "/me/permissionGrants/resourceSpecificPermissionGrantId/extra",
 			Error: true,
 		},
 	}
@@ -116,26 +116,26 @@ func TestParseMePermissionGrantIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/me/permissionGrants/resourceSpecificPermissionGrantIdValue",
+			Input: "/me/permissionGrants/resourceSpecificPermissionGrantId",
 			Expected: &MePermissionGrantId{
-				ResourceSpecificPermissionGrantId: "resourceSpecificPermissionGrantIdValue",
+				ResourceSpecificPermissionGrantId: "resourceSpecificPermissionGrantId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/permissionGrants/resourceSpecificPermissionGrantIdValue/extra",
+			Input: "/me/permissionGrants/resourceSpecificPermissionGrantId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/pErMiSsIoNgRaNtS/rEsOuRcEsPeCiFiCpErMiSsIoNgRaNtIdVaLuE",
+			Input: "/mE/pErMiSsIoNgRaNtS/rEsOuRcEsPeCiFiCpErMiSsIoNgRaNtId",
 			Expected: &MePermissionGrantId{
-				ResourceSpecificPermissionGrantId: "rEsOuRcEsPeCiFiCpErMiSsIoNgRaNtIdVaLuE",
+				ResourceSpecificPermissionGrantId: "rEsOuRcEsPeCiFiCpErMiSsIoNgRaNtId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/mE/pErMiSsIoNgRaNtS/rEsOuRcEsPeCiFiCpErMiSsIoNgRaNtIdVaLuE/extra",
+			Input: "/mE/pErMiSsIoNgRaNtS/rEsOuRcEsPeCiFiCpErMiSsIoNgRaNtId/extra",
 			Error: true,
 		},
 	}

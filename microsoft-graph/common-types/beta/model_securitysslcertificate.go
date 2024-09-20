@@ -105,24 +105,38 @@ func (s SecuritySslCertificate) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &SecuritySslCertificate{}
 
 func (s *SecuritySslCertificate) UnmarshalJSON(bytes []byte) error {
-	type alias SecuritySslCertificate
-	var decoded alias
+
+	var decoded struct {
+		ExpirationDateTime nullable.Type[string]         `json:"expirationDateTime,omitempty"`
+		Fingerprint        nullable.Type[string]         `json:"fingerprint,omitempty"`
+		FirstSeenDateTime  nullable.Type[string]         `json:"firstSeenDateTime,omitempty"`
+		IssueDateTime      nullable.Type[string]         `json:"issueDateTime,omitempty"`
+		Issuer             *SecuritySslCertificateEntity `json:"issuer,omitempty"`
+		LastSeenDateTime   nullable.Type[string]         `json:"lastSeenDateTime,omitempty"`
+		RelatedHosts       *[]SecurityHost               `json:"relatedHosts,omitempty"`
+		SerialNumber       nullable.Type[string]         `json:"serialNumber,omitempty"`
+		Sha1               nullable.Type[string]         `json:"sha1,omitempty"`
+		Subject            *SecuritySslCertificateEntity `json:"subject,omitempty"`
+		Id                 *string                       `json:"id,omitempty"`
+		ODataId            *string                       `json:"@odata.id,omitempty"`
+		ODataType          *string                       `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into SecuritySslCertificate: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.ExpirationDateTime = decoded.ExpirationDateTime
 	s.Fingerprint = decoded.Fingerprint
 	s.FirstSeenDateTime = decoded.FirstSeenDateTime
-	s.Id = decoded.Id
 	s.IssueDateTime = decoded.IssueDateTime
 	s.Issuer = decoded.Issuer
 	s.LastSeenDateTime = decoded.LastSeenDateTime
-	s.ODataId = decoded.ODataId
-	s.ODataType = decoded.ODataType
 	s.SerialNumber = decoded.SerialNumber
 	s.Sha1 = decoded.Sha1
 	s.Subject = decoded.Subject
+	s.Id = decoded.Id
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -145,5 +159,6 @@ func (s *SecuritySslCertificate) UnmarshalJSON(bytes []byte) error {
 		}
 		s.RelatedHosts = &output
 	}
+
 	return nil
 }

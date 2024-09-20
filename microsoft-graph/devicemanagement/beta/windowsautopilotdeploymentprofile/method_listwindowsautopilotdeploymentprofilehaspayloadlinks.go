@@ -25,8 +25,9 @@ type ListWindowsAutopilotDeploymentProfileHasPayloadLinksCompleteResult struct {
 }
 
 type ListWindowsAutopilotDeploymentProfileHasPayloadLinksOperationOptions struct {
-	Skip *int64
-	Top  *int64
+	Metadata *odata.Metadata
+	Skip     *int64
+	Top      *int64
 }
 
 func DefaultListWindowsAutopilotDeploymentProfileHasPayloadLinksOperationOptions() ListWindowsAutopilotDeploymentProfileHasPayloadLinksOperationOptions {
@@ -41,6 +42,9 @@ func (o ListWindowsAutopilotDeploymentProfileHasPayloadLinksOperationOptions) To
 
 func (o ListWindowsAutopilotDeploymentProfileHasPayloadLinksOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	if o.Skip != nil {
 		out.Skip = int(*o.Skip)
 	}

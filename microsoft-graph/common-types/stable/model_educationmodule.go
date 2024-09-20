@@ -99,23 +99,35 @@ func (s EducationModule) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &EducationModule{}
 
 func (s *EducationModule) UnmarshalJSON(bytes []byte) error {
-	type alias EducationModule
-	var decoded alias
+
+	var decoded struct {
+		CreatedDateTime      nullable.Type[string]      `json:"createdDateTime,omitempty"`
+		Description          nullable.Type[string]      `json:"description,omitempty"`
+		DisplayName          nullable.Type[string]      `json:"displayName,omitempty"`
+		IsPinned             nullable.Type[bool]        `json:"isPinned,omitempty"`
+		LastModifiedDateTime nullable.Type[string]      `json:"lastModifiedDateTime,omitempty"`
+		Resources            *[]EducationModuleResource `json:"resources,omitempty"`
+		ResourcesFolderUrl   nullable.Type[string]      `json:"resourcesFolderUrl,omitempty"`
+		Status               *EducationModuleStatus     `json:"status,omitempty"`
+		Id                   *string                    `json:"id,omitempty"`
+		ODataId              *string                    `json:"@odata.id,omitempty"`
+		ODataType            *string                    `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into EducationModule: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.CreatedDateTime = decoded.CreatedDateTime
 	s.Description = decoded.Description
 	s.DisplayName = decoded.DisplayName
-	s.Id = decoded.Id
 	s.IsPinned = decoded.IsPinned
 	s.LastModifiedDateTime = decoded.LastModifiedDateTime
-	s.ODataId = decoded.ODataId
-	s.ODataType = decoded.ODataType
 	s.Resources = decoded.Resources
 	s.ResourcesFolderUrl = decoded.ResourcesFolderUrl
 	s.Status = decoded.Status
+	s.Id = decoded.Id
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -137,5 +149,6 @@ func (s *EducationModule) UnmarshalJSON(bytes []byte) error {
 		}
 		s.LastModifiedBy = &impl
 	}
+
 	return nil
 }

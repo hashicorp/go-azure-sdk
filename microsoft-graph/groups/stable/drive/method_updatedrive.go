@@ -17,15 +17,44 @@ type UpdateDriveOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateDriveOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateDriveOperationOptions() UpdateDriveOperationOptions {
+	return UpdateDriveOperationOptions{}
+}
+
+func (o UpdateDriveOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateDriveOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateDriveOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateDrive - Update the navigation property drives in groups
-func (c DriveClient) UpdateDrive(ctx context.Context, id stable.GroupIdDriveId, input stable.Drive) (result UpdateDriveOperationResponse, err error) {
+func (c DriveClient) UpdateDrive(ctx context.Context, id stable.GroupIdDriveId, input stable.Drive, options UpdateDriveOperationOptions) (result UpdateDriveOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

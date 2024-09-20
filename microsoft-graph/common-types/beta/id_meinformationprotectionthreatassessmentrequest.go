@@ -94,7 +94,7 @@ func (id MeInformationProtectionThreatAssessmentRequestId) Segments() []resource
 		resourceids.StaticSegment("me", "me", "me"),
 		resourceids.StaticSegment("informationProtection", "informationProtection", "informationProtection"),
 		resourceids.StaticSegment("threatAssessmentRequests", "threatAssessmentRequests", "threatAssessmentRequests"),
-		resourceids.UserSpecifiedSegment("threatAssessmentRequestId", "threatAssessmentRequestIdValue"),
+		resourceids.UserSpecifiedSegment("threatAssessmentRequestId", "threatAssessmentRequestId"),
 	}
 }
 

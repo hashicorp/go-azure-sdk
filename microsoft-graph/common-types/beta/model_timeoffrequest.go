@@ -131,15 +131,36 @@ func (s TimeOffRequest) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &TimeOffRequest{}
 
 func (s *TimeOffRequest) UnmarshalJSON(bytes []byte) error {
-	type alias TimeOffRequest
-	var decoded alias
+
+	var decoded struct {
+		EndDateTime           nullable.Type[string]       `json:"endDateTime,omitempty"`
+		StartDateTime         nullable.Type[string]       `json:"startDateTime,omitempty"`
+		TimeOffReasonId       nullable.Type[string]       `json:"timeOffReasonId,omitempty"`
+		AssignedTo            *ScheduleChangeRequestActor `json:"assignedTo,omitempty"`
+		ManagerActionDateTime nullable.Type[string]       `json:"managerActionDateTime,omitempty"`
+		ManagerActionMessage  nullable.Type[string]       `json:"managerActionMessage,omitempty"`
+		ManagerUserId         nullable.Type[string]       `json:"managerUserId,omitempty"`
+		SenderDateTime        nullable.Type[string]       `json:"senderDateTime,omitempty"`
+		SenderMessage         nullable.Type[string]       `json:"senderMessage,omitempty"`
+		SenderUserId          nullable.Type[string]       `json:"senderUserId,omitempty"`
+		State                 *ScheduleChangeState        `json:"state,omitempty"`
+		CreatedBy             IdentitySet                 `json:"createdBy"`
+		CreatedDateTime       nullable.Type[string]       `json:"createdDateTime,omitempty"`
+		LastModifiedBy        *IdentitySet                `json:"lastModifiedBy,omitempty"`
+		LastModifiedDateTime  nullable.Type[string]       `json:"lastModifiedDateTime,omitempty"`
+		Id                    *string                     `json:"id,omitempty"`
+		ODataId               *string                     `json:"@odata.id,omitempty"`
+		ODataType             *string                     `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into TimeOffRequest: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
+	s.EndDateTime = decoded.EndDateTime
+	s.StartDateTime = decoded.StartDateTime
+	s.TimeOffReasonId = decoded.TimeOffReasonId
 	s.AssignedTo = decoded.AssignedTo
 	s.CreatedDateTime = decoded.CreatedDateTime
-	s.EndDateTime = decoded.EndDateTime
 	s.Id = decoded.Id
 	s.LastModifiedDateTime = decoded.LastModifiedDateTime
 	s.ManagerActionDateTime = decoded.ManagerActionDateTime
@@ -150,9 +171,7 @@ func (s *TimeOffRequest) UnmarshalJSON(bytes []byte) error {
 	s.SenderDateTime = decoded.SenderDateTime
 	s.SenderMessage = decoded.SenderMessage
 	s.SenderUserId = decoded.SenderUserId
-	s.StartDateTime = decoded.StartDateTime
 	s.State = decoded.State
-	s.TimeOffReasonId = decoded.TimeOffReasonId
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -174,5 +193,6 @@ func (s *TimeOffRequest) UnmarshalJSON(bytes []byte) error {
 		}
 		s.LastModifiedBy = &impl
 	}
+
 	return nil
 }

@@ -18,16 +18,45 @@ type AddFeatureRolloutPolicyAppliesToRefOperationResponse struct {
 	OData        *odata.OData
 }
 
+type AddFeatureRolloutPolicyAppliesToRefOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultAddFeatureRolloutPolicyAppliesToRefOperationOptions() AddFeatureRolloutPolicyAppliesToRefOperationOptions {
+	return AddFeatureRolloutPolicyAppliesToRefOperationOptions{}
+}
+
+func (o AddFeatureRolloutPolicyAppliesToRefOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o AddFeatureRolloutPolicyAppliesToRefOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o AddFeatureRolloutPolicyAppliesToRefOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // AddFeatureRolloutPolicyAppliesToRef - Assign appliesTo. Add an appliesTo on a featureRolloutPolicy object to specify
 // the directoryObject to which the featureRolloutPolicy should be applied.
-func (c FeatureRolloutPolicyAppliesToClient) AddFeatureRolloutPolicyAppliesToRef(ctx context.Context, id beta.PolicyFeatureRolloutPolicyId, input beta.ReferenceCreate) (result AddFeatureRolloutPolicyAppliesToRefOperationResponse, err error) {
+func (c FeatureRolloutPolicyAppliesToClient) AddFeatureRolloutPolicyAppliesToRef(ctx context.Context, id beta.PolicyFeatureRolloutPolicyId, input beta.ReferenceCreate, options AddFeatureRolloutPolicyAppliesToRefOperationOptions) (result AddFeatureRolloutPolicyAppliesToRefOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/appliesTo/$ref", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/appliesTo/$ref", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

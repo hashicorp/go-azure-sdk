@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/stable/teaminstalledapp` Documentation
 
-The `teaminstalledapp` SDK allows for interaction with the Azure Resource Manager Service `groups` (API Version `stable`).
+The `teaminstalledapp` SDK allows for interaction with Microsoft Graph `groups` (API Version `stable`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -15,7 +15,7 @@ import "github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/stable/teaminst
 ### Client Initialization
 
 ```go
-client := teaminstalledapp.NewTeamInstalledAppClientWithBaseURI("https://management.azure.com")
+client := teaminstalledapp.NewTeamInstalledAppClientWithBaseURI("https://graph.microsoft.com")
 client.Client.Authorizer = authorizer
 ```
 
@@ -24,14 +24,14 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := teaminstalledapp.NewGroupID("groupIdValue")
+id := teaminstalledapp.NewGroupID("groupId")
 
 payload := teaminstalledapp.TeamsAppInstallation{
 	// ...
 }
 
 
-read, err := client.CreateTeamInstalledApp(ctx, id, payload)
+read, err := client.CreateTeamInstalledApp(ctx, id, payload, teaminstalledapp.DefaultCreateTeamInstalledAppOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -45,14 +45,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := teaminstalledapp.NewGroupIdTeamInstalledAppID("groupIdValue", "teamsAppInstallationIdValue")
+id := teaminstalledapp.NewGroupIdTeamInstalledAppID("groupId", "teamsAppInstallationId")
 
 payload := teaminstalledapp.CreateTeamInstalledAppUpgradeRequest{
 	// ...
 }
 
 
-read, err := client.CreateTeamInstalledAppUpgrade(ctx, id, payload)
+read, err := client.CreateTeamInstalledAppUpgrade(ctx, id, payload, teaminstalledapp.DefaultCreateTeamInstalledAppUpgradeOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -66,7 +66,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := teaminstalledapp.NewGroupIdTeamInstalledAppID("groupIdValue", "teamsAppInstallationIdValue")
+id := teaminstalledapp.NewGroupIdTeamInstalledAppID("groupId", "teamsAppInstallationId")
 
 read, err := client.DeleteTeamInstalledApp(ctx, id, teaminstalledapp.DefaultDeleteTeamInstalledAppOperationOptions())
 if err != nil {
@@ -82,7 +82,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := teaminstalledapp.NewGroupIdTeamInstalledAppID("groupIdValue", "teamsAppInstallationIdValue")
+id := teaminstalledapp.NewGroupIdTeamInstalledAppID("groupId", "teamsAppInstallationId")
 
 read, err := client.GetTeamInstalledApp(ctx, id, teaminstalledapp.DefaultGetTeamInstalledAppOperationOptions())
 if err != nil {
@@ -98,7 +98,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := teaminstalledapp.NewGroupID("groupIdValue")
+id := teaminstalledapp.NewGroupID("groupId")
 
 read, err := client.GetTeamInstalledAppsCount(ctx, id, teaminstalledapp.DefaultGetTeamInstalledAppsCountOperationOptions())
 if err != nil {
@@ -114,7 +114,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := teaminstalledapp.NewGroupID("groupIdValue")
+id := teaminstalledapp.NewGroupID("groupId")
 
 // alternatively `client.ListTeamInstalledApps(ctx, id, teaminstalledapp.DefaultListTeamInstalledAppsOperationOptions())` can be used to do batched pagination
 items, err := client.ListTeamInstalledAppsComplete(ctx, id, teaminstalledapp.DefaultListTeamInstalledAppsOperationOptions())
@@ -131,14 +131,14 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := teaminstalledapp.NewGroupIdTeamInstalledAppID("groupIdValue", "teamsAppInstallationIdValue")
+id := teaminstalledapp.NewGroupIdTeamInstalledAppID("groupId", "teamsAppInstallationId")
 
 payload := teaminstalledapp.TeamsAppInstallation{
 	// ...
 }
 
 
-read, err := client.UpdateTeamInstalledApp(ctx, id, payload)
+read, err := client.UpdateTeamInstalledApp(ctx, id, payload, teaminstalledapp.DefaultUpdateTeamInstalledAppOperationOptions())
 if err != nil {
 	// handle the error
 }

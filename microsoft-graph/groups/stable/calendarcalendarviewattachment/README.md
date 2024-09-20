@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/stable/calendarcalendarviewattachment` Documentation
 
-The `calendarcalendarviewattachment` SDK allows for interaction with the Azure Resource Manager Service `groups` (API Version `stable`).
+The `calendarcalendarviewattachment` SDK allows for interaction with Microsoft Graph `groups` (API Version `stable`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -15,7 +15,7 @@ import "github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/stable/calendar
 ### Client Initialization
 
 ```go
-client := calendarcalendarviewattachment.NewCalendarCalendarViewAttachmentClientWithBaseURI("https://management.azure.com")
+client := calendarcalendarviewattachment.NewCalendarCalendarViewAttachmentClientWithBaseURI("https://graph.microsoft.com")
 client.Client.Authorizer = authorizer
 ```
 
@@ -24,14 +24,14 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := calendarcalendarviewattachment.NewGroupIdCalendarCalendarViewID("groupIdValue", "eventIdValue")
+id := calendarcalendarviewattachment.NewGroupIdCalendarCalendarViewID("groupId", "eventId")
 
 payload := calendarcalendarviewattachment.Attachment{
 	// ...
 }
 
 
-read, err := client.CreateCalendarViewAttachment(ctx, id, payload)
+read, err := client.CreateCalendarViewAttachment(ctx, id, payload, calendarcalendarviewattachment.DefaultCreateCalendarViewAttachmentOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -45,14 +45,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := calendarcalendarviewattachment.NewGroupIdCalendarCalendarViewID("groupIdValue", "eventIdValue")
+id := calendarcalendarviewattachment.NewGroupIdCalendarCalendarViewID("groupId", "eventId")
 
 payload := calendarcalendarviewattachment.CreateCalendarViewAttachmentsUploadSessionRequest{
 	// ...
 }
 
 
-read, err := client.CreateCalendarViewAttachmentsUploadSession(ctx, id, payload)
+read, err := client.CreateCalendarViewAttachmentsUploadSession(ctx, id, payload, calendarcalendarviewattachment.DefaultCreateCalendarViewAttachmentsUploadSessionOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -66,7 +66,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := calendarcalendarviewattachment.NewGroupIdCalendarCalendarViewIdAttachmentID("groupIdValue", "eventIdValue", "attachmentIdValue")
+id := calendarcalendarviewattachment.NewGroupIdCalendarCalendarViewIdAttachmentID("groupId", "eventId", "attachmentId")
 
 read, err := client.DeleteCalendarViewAttachment(ctx, id, calendarcalendarviewattachment.DefaultDeleteCalendarViewAttachmentOperationOptions())
 if err != nil {
@@ -82,7 +82,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := calendarcalendarviewattachment.NewGroupIdCalendarCalendarViewIdAttachmentID("groupIdValue", "eventIdValue", "attachmentIdValue")
+id := calendarcalendarviewattachment.NewGroupIdCalendarCalendarViewIdAttachmentID("groupId", "eventId", "attachmentId")
 
 read, err := client.GetCalendarViewAttachment(ctx, id, calendarcalendarviewattachment.DefaultGetCalendarViewAttachmentOperationOptions())
 if err != nil {
@@ -98,7 +98,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := calendarcalendarviewattachment.NewGroupIdCalendarCalendarViewID("groupIdValue", "eventIdValue")
+id := calendarcalendarviewattachment.NewGroupIdCalendarCalendarViewID("groupId", "eventId")
 
 read, err := client.GetCalendarViewAttachmentsCount(ctx, id, calendarcalendarviewattachment.DefaultGetCalendarViewAttachmentsCountOperationOptions())
 if err != nil {
@@ -114,7 +114,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := calendarcalendarviewattachment.NewGroupIdCalendarCalendarViewID("groupIdValue", "eventIdValue")
+id := calendarcalendarviewattachment.NewGroupIdCalendarCalendarViewID("groupId", "eventId")
 
 // alternatively `client.ListCalendarViewAttachments(ctx, id, calendarcalendarviewattachment.DefaultListCalendarViewAttachmentsOperationOptions())` can be used to do batched pagination
 items, err := client.ListCalendarViewAttachmentsComplete(ctx, id, calendarcalendarviewattachment.DefaultListCalendarViewAttachmentsOperationOptions())

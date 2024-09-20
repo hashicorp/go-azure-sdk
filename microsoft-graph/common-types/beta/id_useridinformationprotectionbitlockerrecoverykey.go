@@ -98,11 +98,11 @@ func (id UserIdInformationProtectionBitlockerRecoveryKeyId) ID() string {
 func (id UserIdInformationProtectionBitlockerRecoveryKeyId) Segments() []resourceids.Segment {
 	return []resourceids.Segment{
 		resourceids.StaticSegment("users", "users", "users"),
-		resourceids.UserSpecifiedSegment("userId", "userIdValue"),
+		resourceids.UserSpecifiedSegment("userId", "userId"),
 		resourceids.StaticSegment("informationProtection", "informationProtection", "informationProtection"),
 		resourceids.StaticSegment("bitlocker", "bitlocker", "bitlocker"),
 		resourceids.StaticSegment("recoveryKeys", "recoveryKeys", "recoveryKeys"),
-		resourceids.UserSpecifiedSegment("bitlockerRecoveryKeyId", "bitlockerRecoveryKeyIdValue"),
+		resourceids.UserSpecifiedSegment("bitlockerRecoveryKeyId", "bitlockerRecoveryKeyId"),
 	}
 }
 

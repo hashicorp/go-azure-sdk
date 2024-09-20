@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &DirectoryRoleIdScopedMemberId{}
 
 func TestNewDirectoryRoleIdScopedMemberID(t *testing.T) {
-	id := NewDirectoryRoleIdScopedMemberID("directoryRoleIdValue", "scopedRoleMembershipIdValue")
+	id := NewDirectoryRoleIdScopedMemberID("directoryRoleId", "scopedRoleMembershipId")
 
-	if id.DirectoryRoleId != "directoryRoleIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DirectoryRoleId'", id.DirectoryRoleId, "directoryRoleIdValue")
+	if id.DirectoryRoleId != "directoryRoleId" {
+		t.Fatalf("Expected %q but got %q for Segment 'DirectoryRoleId'", id.DirectoryRoleId, "directoryRoleId")
 	}
 
-	if id.ScopedRoleMembershipId != "scopedRoleMembershipIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ScopedRoleMembershipId'", id.ScopedRoleMembershipId, "scopedRoleMembershipIdValue")
+	if id.ScopedRoleMembershipId != "scopedRoleMembershipId" {
+		t.Fatalf("Expected %q but got %q for Segment 'ScopedRoleMembershipId'", id.ScopedRoleMembershipId, "scopedRoleMembershipId")
 	}
 }
 
 func TestFormatDirectoryRoleIdScopedMemberID(t *testing.T) {
-	actual := NewDirectoryRoleIdScopedMemberID("directoryRoleIdValue", "scopedRoleMembershipIdValue").ID()
-	expected := "/directoryRoles/directoryRoleIdValue/scopedMembers/scopedRoleMembershipIdValue"
+	actual := NewDirectoryRoleIdScopedMemberID("directoryRoleId", "scopedRoleMembershipId").ID()
+	expected := "/directoryRoles/directoryRoleId/scopedMembers/scopedRoleMembershipId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -49,25 +49,25 @@ func TestParseDirectoryRoleIdScopedMemberID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/directoryRoles/directoryRoleIdValue",
+			Input: "/directoryRoles/directoryRoleId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/directoryRoles/directoryRoleIdValue/scopedMembers",
+			Input: "/directoryRoles/directoryRoleId/scopedMembers",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/directoryRoles/directoryRoleIdValue/scopedMembers/scopedRoleMembershipIdValue",
+			Input: "/directoryRoles/directoryRoleId/scopedMembers/scopedRoleMembershipId",
 			Expected: &DirectoryRoleIdScopedMemberId{
-				DirectoryRoleId:        "directoryRoleIdValue",
-				ScopedRoleMembershipId: "scopedRoleMembershipIdValue",
+				DirectoryRoleId:        "directoryRoleId",
+				ScopedRoleMembershipId: "scopedRoleMembershipId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/directoryRoles/directoryRoleIdValue/scopedMembers/scopedRoleMembershipIdValue/extra",
+			Input: "/directoryRoles/directoryRoleId/scopedMembers/scopedRoleMembershipId/extra",
 			Error: true,
 		},
 	}
@@ -120,48 +120,48 @@ func TestParseDirectoryRoleIdScopedMemberIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/directoryRoles/directoryRoleIdValue",
+			Input: "/directoryRoles/directoryRoleId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/dIrEcToRyRoLeS/dIrEcToRyRoLeIdVaLuE",
+			Input: "/dIrEcToRyRoLeS/dIrEcToRyRoLeId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/directoryRoles/directoryRoleIdValue/scopedMembers",
+			Input: "/directoryRoles/directoryRoleId/scopedMembers",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/dIrEcToRyRoLeS/dIrEcToRyRoLeIdVaLuE/sCoPeDmEmBeRs",
+			Input: "/dIrEcToRyRoLeS/dIrEcToRyRoLeId/sCoPeDmEmBeRs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/directoryRoles/directoryRoleIdValue/scopedMembers/scopedRoleMembershipIdValue",
+			Input: "/directoryRoles/directoryRoleId/scopedMembers/scopedRoleMembershipId",
 			Expected: &DirectoryRoleIdScopedMemberId{
-				DirectoryRoleId:        "directoryRoleIdValue",
-				ScopedRoleMembershipId: "scopedRoleMembershipIdValue",
+				DirectoryRoleId:        "directoryRoleId",
+				ScopedRoleMembershipId: "scopedRoleMembershipId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/directoryRoles/directoryRoleIdValue/scopedMembers/scopedRoleMembershipIdValue/extra",
+			Input: "/directoryRoles/directoryRoleId/scopedMembers/scopedRoleMembershipId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/dIrEcToRyRoLeS/dIrEcToRyRoLeIdVaLuE/sCoPeDmEmBeRs/sCoPeDrOlEmEmBeRsHiPiDvAlUe",
+			Input: "/dIrEcToRyRoLeS/dIrEcToRyRoLeId/sCoPeDmEmBeRs/sCoPeDrOlEmEmBeRsHiPiD",
 			Expected: &DirectoryRoleIdScopedMemberId{
-				DirectoryRoleId:        "dIrEcToRyRoLeIdVaLuE",
-				ScopedRoleMembershipId: "sCoPeDrOlEmEmBeRsHiPiDvAlUe",
+				DirectoryRoleId:        "dIrEcToRyRoLeId",
+				ScopedRoleMembershipId: "sCoPeDrOlEmEmBeRsHiPiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/dIrEcToRyRoLeS/dIrEcToRyRoLeIdVaLuE/sCoPeDmEmBeRs/sCoPeDrOlEmEmBeRsHiPiDvAlUe/extra",
+			Input: "/dIrEcToRyRoLeS/dIrEcToRyRoLeId/sCoPeDmEmBeRs/sCoPeDrOlEmEmBeRsHiPiD/extra",
 			Error: true,
 		},
 	}

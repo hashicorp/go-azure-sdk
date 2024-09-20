@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &DeviceManagementAssignmentFilterId{}
 
 func TestNewDeviceManagementAssignmentFilterID(t *testing.T) {
-	id := NewDeviceManagementAssignmentFilterID("deviceAndAppManagementAssignmentFilterIdValue")
+	id := NewDeviceManagementAssignmentFilterID("deviceAndAppManagementAssignmentFilterId")
 
-	if id.DeviceAndAppManagementAssignmentFilterId != "deviceAndAppManagementAssignmentFilterIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DeviceAndAppManagementAssignmentFilterId'", id.DeviceAndAppManagementAssignmentFilterId, "deviceAndAppManagementAssignmentFilterIdValue")
+	if id.DeviceAndAppManagementAssignmentFilterId != "deviceAndAppManagementAssignmentFilterId" {
+		t.Fatalf("Expected %q but got %q for Segment 'DeviceAndAppManagementAssignmentFilterId'", id.DeviceAndAppManagementAssignmentFilterId, "deviceAndAppManagementAssignmentFilterId")
 	}
 }
 
 func TestFormatDeviceManagementAssignmentFilterID(t *testing.T) {
-	actual := NewDeviceManagementAssignmentFilterID("deviceAndAppManagementAssignmentFilterIdValue").ID()
-	expected := "/deviceManagement/assignmentFilters/deviceAndAppManagementAssignmentFilterIdValue"
+	actual := NewDeviceManagementAssignmentFilterID("deviceAndAppManagementAssignmentFilterId").ID()
+	expected := "/deviceManagement/assignmentFilters/deviceAndAppManagementAssignmentFilterId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -50,14 +50,14 @@ func TestParseDeviceManagementAssignmentFilterID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/assignmentFilters/deviceAndAppManagementAssignmentFilterIdValue",
+			Input: "/deviceManagement/assignmentFilters/deviceAndAppManagementAssignmentFilterId",
 			Expected: &DeviceManagementAssignmentFilterId{
-				DeviceAndAppManagementAssignmentFilterId: "deviceAndAppManagementAssignmentFilterIdValue",
+				DeviceAndAppManagementAssignmentFilterId: "deviceAndAppManagementAssignmentFilterId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/assignmentFilters/deviceAndAppManagementAssignmentFilterIdValue/extra",
+			Input: "/deviceManagement/assignmentFilters/deviceAndAppManagementAssignmentFilterId/extra",
 			Error: true,
 		},
 	}
@@ -116,26 +116,26 @@ func TestParseDeviceManagementAssignmentFilterIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/assignmentFilters/deviceAndAppManagementAssignmentFilterIdValue",
+			Input: "/deviceManagement/assignmentFilters/deviceAndAppManagementAssignmentFilterId",
 			Expected: &DeviceManagementAssignmentFilterId{
-				DeviceAndAppManagementAssignmentFilterId: "deviceAndAppManagementAssignmentFilterIdValue",
+				DeviceAndAppManagementAssignmentFilterId: "deviceAndAppManagementAssignmentFilterId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/assignmentFilters/deviceAndAppManagementAssignmentFilterIdValue/extra",
+			Input: "/deviceManagement/assignmentFilters/deviceAndAppManagementAssignmentFilterId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/aSsIgNmEnTfIlTeRs/dEvIcEaNdApPmAnAgEmEnTaSsIgNmEnTfIlTeRiDvAlUe",
+			Input: "/dEvIcEmAnAgEmEnT/aSsIgNmEnTfIlTeRs/dEvIcEaNdApPmAnAgEmEnTaSsIgNmEnTfIlTeRiD",
 			Expected: &DeviceManagementAssignmentFilterId{
-				DeviceAndAppManagementAssignmentFilterId: "dEvIcEaNdApPmAnAgEmEnTaSsIgNmEnTfIlTeRiDvAlUe",
+				DeviceAndAppManagementAssignmentFilterId: "dEvIcEaNdApPmAnAgEmEnTaSsIgNmEnTfIlTeRiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/aSsIgNmEnTfIlTeRs/dEvIcEaNdApPmAnAgEmEnTaSsIgNmEnTfIlTeRiDvAlUe/extra",
+			Input: "/dEvIcEmAnAgEmEnT/aSsIgNmEnTfIlTeRs/dEvIcEaNdApPmAnAgEmEnTaSsIgNmEnTfIlTeRiD/extra",
 			Error: true,
 		},
 	}

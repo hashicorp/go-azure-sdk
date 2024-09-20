@@ -70,10 +70,18 @@ func (s ParticipantInfo) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &ParticipantInfo{}
 
 func (s *ParticipantInfo) UnmarshalJSON(bytes []byte) error {
-	type alias ParticipantInfo
-	var decoded alias
+
+	var decoded struct {
+		CountryCode   nullable.Type[string] `json:"countryCode,omitempty"`
+		EndpointType  *EndpointType         `json:"endpointType,omitempty"`
+		LanguageId    nullable.Type[string] `json:"languageId,omitempty"`
+		ODataId       *string               `json:"@odata.id,omitempty"`
+		ODataType     *string               `json:"@odata.type,omitempty"`
+		ParticipantId nullable.Type[string] `json:"participantId,omitempty"`
+		Region        nullable.Type[string] `json:"region,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into ParticipantInfo: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.CountryCode = decoded.CountryCode
@@ -96,5 +104,6 @@ func (s *ParticipantInfo) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Identity = impl
 	}
+
 	return nil
 }

@@ -112,13 +112,13 @@ func (id IdentityGovernanceLifecycleWorkflowWorkflowIdRunIdUserProcessingResultI
 		resourceids.StaticSegment("identityGovernance", "identityGovernance", "identityGovernance"),
 		resourceids.StaticSegment("lifecycleWorkflows", "lifecycleWorkflows", "lifecycleWorkflows"),
 		resourceids.StaticSegment("workflows", "workflows", "workflows"),
-		resourceids.UserSpecifiedSegment("workflowId", "workflowIdValue"),
+		resourceids.UserSpecifiedSegment("workflowId", "workflowId"),
 		resourceids.StaticSegment("runs", "runs", "runs"),
-		resourceids.UserSpecifiedSegment("runId", "runIdValue"),
+		resourceids.UserSpecifiedSegment("runId", "runId"),
 		resourceids.StaticSegment("userProcessingResults", "userProcessingResults", "userProcessingResults"),
-		resourceids.UserSpecifiedSegment("userProcessingResultId", "userProcessingResultIdValue"),
+		resourceids.UserSpecifiedSegment("userProcessingResultId", "userProcessingResultId"),
 		resourceids.StaticSegment("taskProcessingResults", "taskProcessingResults", "taskProcessingResults"),
-		resourceids.UserSpecifiedSegment("taskProcessingResultId", "taskProcessingResultIdValue"),
+		resourceids.UserSpecifiedSegment("taskProcessingResultId", "taskProcessingResultId"),
 	}
 }
 

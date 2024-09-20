@@ -103,13 +103,26 @@ func (s UserConsentRequest) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &UserConsentRequest{}
 
 func (s *UserConsentRequest) UnmarshalJSON(bytes []byte) error {
-	type alias UserConsentRequest
-	var decoded alias
+
+	var decoded struct {
+		Approval          *Approval             `json:"approval,omitempty"`
+		Reason            nullable.Type[string] `json:"reason,omitempty"`
+		ApprovalId        nullable.Type[string] `json:"approvalId,omitempty"`
+		CompletedDateTime nullable.Type[string] `json:"completedDateTime,omitempty"`
+		CreatedBy         IdentitySet           `json:"createdBy"`
+		CreatedDateTime   nullable.Type[string] `json:"createdDateTime,omitempty"`
+		CustomData        nullable.Type[string] `json:"customData,omitempty"`
+		Status            *string               `json:"status,omitempty"`
+		Id                *string               `json:"id,omitempty"`
+		ODataId           *string               `json:"@odata.id,omitempty"`
+		ODataType         *string               `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into UserConsentRequest: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.Approval = decoded.Approval
+	s.Reason = decoded.Reason
 	s.ApprovalId = decoded.ApprovalId
 	s.CompletedDateTime = decoded.CompletedDateTime
 	s.CreatedDateTime = decoded.CreatedDateTime
@@ -117,7 +130,6 @@ func (s *UserConsentRequest) UnmarshalJSON(bytes []byte) error {
 	s.Id = decoded.Id
 	s.ODataId = decoded.ODataId
 	s.ODataType = decoded.ODataType
-	s.Reason = decoded.Reason
 	s.Status = decoded.Status
 
 	var temp map[string]json.RawMessage
@@ -132,5 +144,6 @@ func (s *UserConsentRequest) UnmarshalJSON(bytes []byte) error {
 		}
 		s.CreatedBy = impl
 	}
+
 	return nil
 }

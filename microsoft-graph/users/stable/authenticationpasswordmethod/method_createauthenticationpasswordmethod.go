@@ -19,15 +19,44 @@ type CreateAuthenticationPasswordMethodOperationResponse struct {
 	Model        *stable.PasswordAuthenticationMethod
 }
 
+type CreateAuthenticationPasswordMethodOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateAuthenticationPasswordMethodOperationOptions() CreateAuthenticationPasswordMethodOperationOptions {
+	return CreateAuthenticationPasswordMethodOperationOptions{}
+}
+
+func (o CreateAuthenticationPasswordMethodOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateAuthenticationPasswordMethodOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateAuthenticationPasswordMethodOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateAuthenticationPasswordMethod - Create new navigation property to passwordMethods for users
-func (c AuthenticationPasswordMethodClient) CreateAuthenticationPasswordMethod(ctx context.Context, id stable.UserId, input stable.PasswordAuthenticationMethod) (result CreateAuthenticationPasswordMethodOperationResponse, err error) {
+func (c AuthenticationPasswordMethodClient) CreateAuthenticationPasswordMethod(ctx context.Context, id stable.UserId, input stable.PasswordAuthenticationMethod, options CreateAuthenticationPasswordMethodOperationOptions) (result CreateAuthenticationPasswordMethodOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/authentication/passwordMethods", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/authentication/passwordMethods", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

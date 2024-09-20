@@ -17,15 +17,44 @@ type UpdateEnterpriseAppRoleAssignmentOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateEnterpriseAppRoleAssignmentOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateEnterpriseAppRoleAssignmentOperationOptions() UpdateEnterpriseAppRoleAssignmentOperationOptions {
+	return UpdateEnterpriseAppRoleAssignmentOperationOptions{}
+}
+
+func (o UpdateEnterpriseAppRoleAssignmentOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateEnterpriseAppRoleAssignmentOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateEnterpriseAppRoleAssignmentOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateEnterpriseAppRoleAssignment - Update the navigation property roleAssignments in roleManagement
-func (c EnterpriseAppRoleAssignmentClient) UpdateEnterpriseAppRoleAssignment(ctx context.Context, id beta.RoleManagementEnterpriseAppIdRoleAssignmentId, input beta.UnifiedRoleAssignment) (result UpdateEnterpriseAppRoleAssignmentOperationResponse, err error) {
+func (c EnterpriseAppRoleAssignmentClient) UpdateEnterpriseAppRoleAssignment(ctx context.Context, id beta.RoleManagementEnterpriseAppIdRoleAssignmentId, input beta.UnifiedRoleAssignment, options UpdateEnterpriseAppRoleAssignmentOperationOptions) (result UpdateEnterpriseAppRoleAssignmentOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

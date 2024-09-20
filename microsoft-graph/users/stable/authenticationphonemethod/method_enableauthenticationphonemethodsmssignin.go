@@ -18,16 +18,45 @@ type EnableAuthenticationPhoneMethodSmsSignInOperationResponse struct {
 	OData        *odata.OData
 }
 
+type EnableAuthenticationPhoneMethodSmsSignInOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultEnableAuthenticationPhoneMethodSmsSignInOperationOptions() EnableAuthenticationPhoneMethodSmsSignInOperationOptions {
+	return EnableAuthenticationPhoneMethodSmsSignInOperationOptions{}
+}
+
+func (o EnableAuthenticationPhoneMethodSmsSignInOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o EnableAuthenticationPhoneMethodSmsSignInOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o EnableAuthenticationPhoneMethodSmsSignInOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // EnableAuthenticationPhoneMethodSmsSignIn - Invoke action enableSmsSignIn. Enable SMS sign-in for an existing mobile
-// phone number registered to a user. To be successfully enabled:
-func (c AuthenticationPhoneMethodClient) EnableAuthenticationPhoneMethodSmsSignIn(ctx context.Context, id stable.UserIdAuthenticationPhoneMethodId) (result EnableAuthenticationPhoneMethodSmsSignInOperationResponse, err error) {
+// phone number registered to a user. To be successfully enabled
+func (c AuthenticationPhoneMethodClient) EnableAuthenticationPhoneMethodSmsSignIn(ctx context.Context, id stable.UserIdAuthenticationPhoneMethodId, options EnableAuthenticationPhoneMethodSmsSignInOperationOptions) (result EnableAuthenticationPhoneMethodSmsSignInOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/enableSmsSignIn", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/enableSmsSignIn", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

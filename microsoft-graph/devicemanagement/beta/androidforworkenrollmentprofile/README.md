@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/androidforworkenrollmentprofile` Documentation
 
-The `androidforworkenrollmentprofile` SDK allows for interaction with the Azure Resource Manager Service `devicemanagement` (API Version `beta`).
+The `androidforworkenrollmentprofile` SDK allows for interaction with Microsoft Graph `devicemanagement` (API Version `beta`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -15,7 +15,7 @@ import "github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/
 ### Client Initialization
 
 ```go
-client := androidforworkenrollmentprofile.NewAndroidForWorkEnrollmentProfileClientWithBaseURI("https://management.azure.com")
+client := androidforworkenrollmentprofile.NewAndroidForWorkEnrollmentProfileClientWithBaseURI("https://graph.microsoft.com")
 client.Client.Authorizer = authorizer
 ```
 
@@ -30,7 +30,7 @@ payload := androidforworkenrollmentprofile.AndroidForWorkEnrollmentProfile{
 }
 
 
-read, err := client.CreateAndroidForWorkEnrollmentProfile(ctx, payload)
+read, err := client.CreateAndroidForWorkEnrollmentProfile(ctx, payload, androidforworkenrollmentprofile.DefaultCreateAndroidForWorkEnrollmentProfileOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -44,14 +44,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := androidforworkenrollmentprofile.NewDeviceManagementAndroidForWorkEnrollmentProfileID("androidForWorkEnrollmentProfileIdValue")
+id := androidforworkenrollmentprofile.NewDeviceManagementAndroidForWorkEnrollmentProfileID("androidForWorkEnrollmentProfileId")
 
 payload := androidforworkenrollmentprofile.CreateAndroidForWorkEnrollmentProfileTokenRequest{
 	// ...
 }
 
 
-read, err := client.CreateAndroidForWorkEnrollmentProfileToken(ctx, id, payload)
+read, err := client.CreateAndroidForWorkEnrollmentProfileToken(ctx, id, payload, androidforworkenrollmentprofile.DefaultCreateAndroidForWorkEnrollmentProfileTokenOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -65,7 +65,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := androidforworkenrollmentprofile.NewDeviceManagementAndroidForWorkEnrollmentProfileID("androidForWorkEnrollmentProfileIdValue")
+id := androidforworkenrollmentprofile.NewDeviceManagementAndroidForWorkEnrollmentProfileID("androidForWorkEnrollmentProfileId")
 
 read, err := client.DeleteAndroidForWorkEnrollmentProfile(ctx, id, androidforworkenrollmentprofile.DefaultDeleteAndroidForWorkEnrollmentProfileOperationOptions())
 if err != nil {
@@ -81,7 +81,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := androidforworkenrollmentprofile.NewDeviceManagementAndroidForWorkEnrollmentProfileID("androidForWorkEnrollmentProfileIdValue")
+id := androidforworkenrollmentprofile.NewDeviceManagementAndroidForWorkEnrollmentProfileID("androidForWorkEnrollmentProfileId")
 
 read, err := client.GetAndroidForWorkEnrollmentProfile(ctx, id, androidforworkenrollmentprofile.DefaultGetAndroidForWorkEnrollmentProfileOperationOptions())
 if err != nil {
@@ -130,9 +130,9 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := androidforworkenrollmentprofile.NewDeviceManagementAndroidForWorkEnrollmentProfileID("androidForWorkEnrollmentProfileIdValue")
+id := androidforworkenrollmentprofile.NewDeviceManagementAndroidForWorkEnrollmentProfileID("androidForWorkEnrollmentProfileId")
 
-read, err := client.RevokeAndroidForWorkEnrollmentProfileToken(ctx, id)
+read, err := client.RevokeAndroidForWorkEnrollmentProfileToken(ctx, id, androidforworkenrollmentprofile.DefaultRevokeAndroidForWorkEnrollmentProfileTokenOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -146,14 +146,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := androidforworkenrollmentprofile.NewDeviceManagementAndroidForWorkEnrollmentProfileID("androidForWorkEnrollmentProfileIdValue")
+id := androidforworkenrollmentprofile.NewDeviceManagementAndroidForWorkEnrollmentProfileID("androidForWorkEnrollmentProfileId")
 
 payload := androidforworkenrollmentprofile.AndroidForWorkEnrollmentProfile{
 	// ...
 }
 
 
-read, err := client.UpdateAndroidForWorkEnrollmentProfile(ctx, id, payload)
+read, err := client.UpdateAndroidForWorkEnrollmentProfile(ctx, id, payload, androidforworkenrollmentprofile.DefaultUpdateAndroidForWorkEnrollmentProfileOperationOptions())
 if err != nil {
 	// handle the error
 }

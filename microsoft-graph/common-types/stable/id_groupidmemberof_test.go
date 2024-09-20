@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &GroupIdMemberOfId{}
 
 func TestNewGroupIdMemberOfID(t *testing.T) {
-	id := NewGroupIdMemberOfID("groupIdValue", "directoryObjectIdValue")
+	id := NewGroupIdMemberOfID("groupId", "directoryObjectId")
 
-	if id.GroupId != "groupIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'GroupId'", id.GroupId, "groupIdValue")
+	if id.GroupId != "groupId" {
+		t.Fatalf("Expected %q but got %q for Segment 'GroupId'", id.GroupId, "groupId")
 	}
 
-	if id.DirectoryObjectId != "directoryObjectIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DirectoryObjectId'", id.DirectoryObjectId, "directoryObjectIdValue")
+	if id.DirectoryObjectId != "directoryObjectId" {
+		t.Fatalf("Expected %q but got %q for Segment 'DirectoryObjectId'", id.DirectoryObjectId, "directoryObjectId")
 	}
 }
 
 func TestFormatGroupIdMemberOfID(t *testing.T) {
-	actual := NewGroupIdMemberOfID("groupIdValue", "directoryObjectIdValue").ID()
-	expected := "/groups/groupIdValue/memberOf/directoryObjectIdValue"
+	actual := NewGroupIdMemberOfID("groupId", "directoryObjectId").ID()
+	expected := "/groups/groupId/memberOf/directoryObjectId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -49,25 +49,25 @@ func TestParseGroupIdMemberOfID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue",
+			Input: "/groups/groupId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/memberOf",
+			Input: "/groups/groupId/memberOf",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/groups/groupIdValue/memberOf/directoryObjectIdValue",
+			Input: "/groups/groupId/memberOf/directoryObjectId",
 			Expected: &GroupIdMemberOfId{
-				GroupId:           "groupIdValue",
-				DirectoryObjectId: "directoryObjectIdValue",
+				GroupId:           "groupId",
+				DirectoryObjectId: "directoryObjectId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/groups/groupIdValue/memberOf/directoryObjectIdValue/extra",
+			Input: "/groups/groupId/memberOf/directoryObjectId/extra",
 			Error: true,
 		},
 	}
@@ -120,48 +120,48 @@ func TestParseGroupIdMemberOfIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue",
+			Input: "/groups/groupId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE",
+			Input: "/gRoUpS/gRoUpId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/memberOf",
+			Input: "/groups/groupId/memberOf",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/mEmBeRoF",
+			Input: "/gRoUpS/gRoUpId/mEmBeRoF",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/groups/groupIdValue/memberOf/directoryObjectIdValue",
+			Input: "/groups/groupId/memberOf/directoryObjectId",
 			Expected: &GroupIdMemberOfId{
-				GroupId:           "groupIdValue",
-				DirectoryObjectId: "directoryObjectIdValue",
+				GroupId:           "groupId",
+				DirectoryObjectId: "directoryObjectId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/groups/groupIdValue/memberOf/directoryObjectIdValue/extra",
+			Input: "/groups/groupId/memberOf/directoryObjectId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/mEmBeRoF/dIrEcToRyObJeCtIdVaLuE",
+			Input: "/gRoUpS/gRoUpId/mEmBeRoF/dIrEcToRyObJeCtId",
 			Expected: &GroupIdMemberOfId{
-				GroupId:           "gRoUpIdVaLuE",
-				DirectoryObjectId: "dIrEcToRyObJeCtIdVaLuE",
+				GroupId:           "gRoUpId",
+				DirectoryObjectId: "dIrEcToRyObJeCtId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/mEmBeRoF/dIrEcToRyObJeCtIdVaLuE/extra",
+			Input: "/gRoUpS/gRoUpId/mEmBeRoF/dIrEcToRyObJeCtId/extra",
 			Error: true,
 		},
 	}

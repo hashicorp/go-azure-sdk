@@ -18,18 +18,47 @@ type StopAccessReviewDefinitionInstanceOperationResponse struct {
 	OData        *odata.OData
 }
 
+type StopAccessReviewDefinitionInstanceOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultStopAccessReviewDefinitionInstanceOperationOptions() StopAccessReviewDefinitionInstanceOperationOptions {
+	return StopAccessReviewDefinitionInstanceOperationOptions{}
+}
+
+func (o StopAccessReviewDefinitionInstanceOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o StopAccessReviewDefinitionInstanceOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o StopAccessReviewDefinitionInstanceOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // StopAccessReviewDefinitionInstance - Invoke action stop. Stop a currently active accessReviewInstance. After the
 // access review instance stops, the instance status will be Completed, the reviewers can no longer give input, and the
 // access review decisions can be applied. Stopping an instance will not effect future instances. To prevent a recurring
 // access review from starting future instances, update the schedule definition to change its scheduled end date.
-func (c AccessReviewDefinitionInstanceClient) StopAccessReviewDefinitionInstance(ctx context.Context, id beta.IdentityGovernanceAccessReviewDefinitionIdInstanceId) (result StopAccessReviewDefinitionInstanceOperationResponse, err error) {
+func (c AccessReviewDefinitionInstanceClient) StopAccessReviewDefinitionInstance(ctx context.Context, id beta.IdentityGovernanceAccessReviewDefinitionIdInstanceId, options StopAccessReviewDefinitionInstanceOperationOptions) (result StopAccessReviewDefinitionInstanceOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/stop", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/stop", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

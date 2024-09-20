@@ -17,15 +17,44 @@ type GetReportsCertificatesReportOperationResponse struct {
 	Model        *[]byte
 }
 
+type GetReportsCertificatesReportOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultGetReportsCertificatesReportOperationOptions() GetReportsCertificatesReportOperationOptions {
+	return GetReportsCertificatesReportOperationOptions{}
+}
+
+func (o GetReportsCertificatesReportOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o GetReportsCertificatesReportOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o GetReportsCertificatesReportOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // GetReportsCertificatesReport - Invoke action getCertificatesReport
-func (c ReportClient) GetReportsCertificatesReport(ctx context.Context, input GetReportsCertificatesReportRequest) (result GetReportsCertificatesReportOperationResponse, err error) {
+func (c ReportClient) GetReportsCertificatesReport(ctx context.Context, input GetReportsCertificatesReportRequest, options GetReportsCertificatesReportOperationOptions) (result GetReportsCertificatesReportOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/octet-stream",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/deviceManagement/reports/getCertificatesReport",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/deviceManagement/reports/getCertificatesReport",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

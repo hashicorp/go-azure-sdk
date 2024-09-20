@@ -19,16 +19,45 @@ type GetDriveBundleContentStreamOperationResponse struct {
 	Model        *[]byte
 }
 
+type GetDriveBundleContentStreamOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultGetDriveBundleContentStreamOperationOptions() GetDriveBundleContentStreamOperationOptions {
+	return GetDriveBundleContentStreamOperationOptions{}
+}
+
+func (o GetDriveBundleContentStreamOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o GetDriveBundleContentStreamOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o GetDriveBundleContentStreamOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // GetDriveBundleContentStream - Get contentStream for the navigation property bundles from groups. The content stream,
 // if the item represents a file.
-func (c DriveBundleContentStreamClient) GetDriveBundleContentStream(ctx context.Context, id beta.GroupIdDriveIdBundleId) (result GetDriveBundleContentStreamOperationResponse, err error) {
+func (c DriveBundleContentStreamClient) GetDriveBundleContentStream(ctx context.Context, id beta.GroupIdDriveIdBundleId, options GetDriveBundleContentStreamOperationOptions) (result GetDriveBundleContentStreamOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/octet-stream",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/contentStream", id.ID()),
+		HttpMethod:    http.MethodGet,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/contentStream", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -20,15 +20,44 @@ type CreateThreadPostInReplyToExtensionOperationResponse struct {
 	Model        stable.Extension
 }
 
+type CreateThreadPostInReplyToExtensionOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateThreadPostInReplyToExtensionOperationOptions() CreateThreadPostInReplyToExtensionOperationOptions {
+	return CreateThreadPostInReplyToExtensionOperationOptions{}
+}
+
+func (o CreateThreadPostInReplyToExtensionOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateThreadPostInReplyToExtensionOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateThreadPostInReplyToExtensionOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateThreadPostInReplyToExtension - Create new navigation property to extensions for groups
-func (c ThreadPostInReplyToExtensionClient) CreateThreadPostInReplyToExtension(ctx context.Context, id stable.GroupIdThreadIdPostId, input stable.Extension) (result CreateThreadPostInReplyToExtensionOperationResponse, err error) {
+func (c ThreadPostInReplyToExtensionClient) CreateThreadPostInReplyToExtension(ctx context.Context, id stable.GroupIdThreadIdPostId, input stable.Extension, options CreateThreadPostInReplyToExtensionOperationOptions) (result CreateThreadPostInReplyToExtensionOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/inReplyTo/extensions", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/inReplyTo/extensions", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

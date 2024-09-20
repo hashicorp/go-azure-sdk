@@ -122,10 +122,18 @@ func (s BaseAzureIdentityImpl) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &BaseAzureIdentityImpl{}
 
 func (s *BaseAzureIdentityImpl) UnmarshalJSON(bytes []byte) error {
-	type alias BaseAzureIdentityImpl
-	var decoded alias
+
+	var decoded struct {
+		AuthorizationSystem *AuthorizationSystem              `json:"authorizationSystem,omitempty"`
+		DisplayName         nullable.Type[string]             `json:"displayName,omitempty"`
+		ExternalId          *string                           `json:"externalId,omitempty"`
+		Source              AuthorizationSystemIdentitySource `json:"source"`
+		Id                  *string                           `json:"id,omitempty"`
+		ODataId             *string                           `json:"@odata.id,omitempty"`
+		ODataType           *string                           `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into BaseAzureIdentityImpl: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.DisplayName = decoded.DisplayName
@@ -154,6 +162,7 @@ func (s *BaseAzureIdentityImpl) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Source = impl
 	}
+
 	return nil
 }
 
@@ -167,9 +176,9 @@ func UnmarshalAzureIdentityImplementation(input []byte) (AzureIdentity, error) {
 		return nil, fmt.Errorf("unmarshaling AzureIdentity into map[string]interface: %+v", err)
 	}
 
-	value, ok := temp["@odata.type"].(string)
-	if !ok {
-		return nil, nil
+	var value string
+	if v, ok := temp["@odata.type"]; ok {
+		value = fmt.Sprintf("%v", v)
 	}
 
 	if strings.EqualFold(value, "#microsoft.graph.azureGroup") {

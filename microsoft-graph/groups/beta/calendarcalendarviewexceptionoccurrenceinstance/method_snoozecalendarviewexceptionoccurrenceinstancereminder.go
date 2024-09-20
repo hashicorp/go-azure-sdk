@@ -18,16 +18,45 @@ type SnoozeCalendarViewExceptionOccurrenceInstanceReminderOperationResponse stru
 	OData        *odata.OData
 }
 
+type SnoozeCalendarViewExceptionOccurrenceInstanceReminderOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultSnoozeCalendarViewExceptionOccurrenceInstanceReminderOperationOptions() SnoozeCalendarViewExceptionOccurrenceInstanceReminderOperationOptions {
+	return SnoozeCalendarViewExceptionOccurrenceInstanceReminderOperationOptions{}
+}
+
+func (o SnoozeCalendarViewExceptionOccurrenceInstanceReminderOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o SnoozeCalendarViewExceptionOccurrenceInstanceReminderOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o SnoozeCalendarViewExceptionOccurrenceInstanceReminderOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // SnoozeCalendarViewExceptionOccurrenceInstanceReminder - Invoke action snoozeReminder. Postpone a reminder for an
 // event in a user calendar until a new time.
-func (c CalendarCalendarViewExceptionOccurrenceInstanceClient) SnoozeCalendarViewExceptionOccurrenceInstanceReminder(ctx context.Context, id beta.GroupIdCalendarCalendarViewIdExceptionOccurrenceIdInstanceId, input SnoozeCalendarViewExceptionOccurrenceInstanceReminderRequest) (result SnoozeCalendarViewExceptionOccurrenceInstanceReminderOperationResponse, err error) {
+func (c CalendarCalendarViewExceptionOccurrenceInstanceClient) SnoozeCalendarViewExceptionOccurrenceInstanceReminder(ctx context.Context, id beta.GroupIdCalendarCalendarViewIdExceptionOccurrenceIdInstanceId, input SnoozeCalendarViewExceptionOccurrenceInstanceReminderRequest, options SnoozeCalendarViewExceptionOccurrenceInstanceReminderOperationOptions) (result SnoozeCalendarViewExceptionOccurrenceInstanceReminderOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/snoozeReminder", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/snoozeReminder", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

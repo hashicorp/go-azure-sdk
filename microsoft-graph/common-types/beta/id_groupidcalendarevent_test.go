@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &GroupIdCalendarEventId{}
 
 func TestNewGroupIdCalendarEventID(t *testing.T) {
-	id := NewGroupIdCalendarEventID("groupIdValue", "eventIdValue")
+	id := NewGroupIdCalendarEventID("groupId", "eventId")
 
-	if id.GroupId != "groupIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'GroupId'", id.GroupId, "groupIdValue")
+	if id.GroupId != "groupId" {
+		t.Fatalf("Expected %q but got %q for Segment 'GroupId'", id.GroupId, "groupId")
 	}
 
-	if id.EventId != "eventIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'EventId'", id.EventId, "eventIdValue")
+	if id.EventId != "eventId" {
+		t.Fatalf("Expected %q but got %q for Segment 'EventId'", id.EventId, "eventId")
 	}
 }
 
 func TestFormatGroupIdCalendarEventID(t *testing.T) {
-	actual := NewGroupIdCalendarEventID("groupIdValue", "eventIdValue").ID()
-	expected := "/groups/groupIdValue/calendar/events/eventIdValue"
+	actual := NewGroupIdCalendarEventID("groupId", "eventId").ID()
+	expected := "/groups/groupId/calendar/events/eventId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -49,30 +49,30 @@ func TestParseGroupIdCalendarEventID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue",
+			Input: "/groups/groupId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/calendar",
+			Input: "/groups/groupId/calendar",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/calendar/events",
+			Input: "/groups/groupId/calendar/events",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/groups/groupIdValue/calendar/events/eventIdValue",
+			Input: "/groups/groupId/calendar/events/eventId",
 			Expected: &GroupIdCalendarEventId{
-				GroupId: "groupIdValue",
-				EventId: "eventIdValue",
+				GroupId: "groupId",
+				EventId: "eventId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/groups/groupIdValue/calendar/events/eventIdValue/extra",
+			Input: "/groups/groupId/calendar/events/eventId/extra",
 			Error: true,
 		},
 	}
@@ -125,58 +125,58 @@ func TestParseGroupIdCalendarEventIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue",
+			Input: "/groups/groupId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE",
+			Input: "/gRoUpS/gRoUpId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/calendar",
+			Input: "/groups/groupId/calendar",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/cAlEnDaR",
+			Input: "/gRoUpS/gRoUpId/cAlEnDaR",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/calendar/events",
+			Input: "/groups/groupId/calendar/events",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/cAlEnDaR/eVeNtS",
+			Input: "/gRoUpS/gRoUpId/cAlEnDaR/eVeNtS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/groups/groupIdValue/calendar/events/eventIdValue",
+			Input: "/groups/groupId/calendar/events/eventId",
 			Expected: &GroupIdCalendarEventId{
-				GroupId: "groupIdValue",
-				EventId: "eventIdValue",
+				GroupId: "groupId",
+				EventId: "eventId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/groups/groupIdValue/calendar/events/eventIdValue/extra",
+			Input: "/groups/groupId/calendar/events/eventId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/cAlEnDaR/eVeNtS/eVeNtIdVaLuE",
+			Input: "/gRoUpS/gRoUpId/cAlEnDaR/eVeNtS/eVeNtId",
 			Expected: &GroupIdCalendarEventId{
-				GroupId: "gRoUpIdVaLuE",
-				EventId: "eVeNtIdVaLuE",
+				GroupId: "gRoUpId",
+				EventId: "eVeNtId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/cAlEnDaR/eVeNtS/eVeNtIdVaLuE/extra",
+			Input: "/gRoUpS/gRoUpId/cAlEnDaR/eVeNtS/eVeNtId/extra",
 			Error: true,
 		},
 	}

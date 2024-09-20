@@ -69,17 +69,23 @@ func (s TeamCreatedEventMessageDetail) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &TeamCreatedEventMessageDetail{}
 
 func (s *TeamCreatedEventMessageDetail) UnmarshalJSON(bytes []byte) error {
-	type alias TeamCreatedEventMessageDetail
-	var decoded alias
+
+	var decoded struct {
+		TeamDescription nullable.Type[string] `json:"teamDescription,omitempty"`
+		TeamDisplayName nullable.Type[string] `json:"teamDisplayName,omitempty"`
+		TeamId          nullable.Type[string] `json:"teamId,omitempty"`
+		ODataId         *string               `json:"@odata.id,omitempty"`
+		ODataType       *string               `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into TeamCreatedEventMessageDetail: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
-	s.ODataId = decoded.ODataId
-	s.ODataType = decoded.ODataType
 	s.TeamDescription = decoded.TeamDescription
 	s.TeamDisplayName = decoded.TeamDisplayName
 	s.TeamId = decoded.TeamId
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -93,5 +99,6 @@ func (s *TeamCreatedEventMessageDetail) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Initiator = impl
 	}
+
 	return nil
 }

@@ -68,17 +68,25 @@ func (s PermissionsCreepIndexDistribution) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &PermissionsCreepIndexDistribution{}
 
 func (s *PermissionsCreepIndexDistribution) UnmarshalJSON(bytes []byte) error {
-	type alias PermissionsCreepIndexDistribution
-	var decoded alias
+
+	var decoded struct {
+		CreatedDateTime   *string      `json:"createdDateTime,omitempty"`
+		HighRiskProfile   *RiskProfile `json:"highRiskProfile,omitempty"`
+		LowRiskProfile    *RiskProfile `json:"lowRiskProfile,omitempty"`
+		MediumRiskProfile *RiskProfile `json:"mediumRiskProfile,omitempty"`
+		Id                *string      `json:"id,omitempty"`
+		ODataId           *string      `json:"@odata.id,omitempty"`
+		ODataType         *string      `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into PermissionsCreepIndexDistribution: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.CreatedDateTime = decoded.CreatedDateTime
 	s.HighRiskProfile = decoded.HighRiskProfile
-	s.Id = decoded.Id
 	s.LowRiskProfile = decoded.LowRiskProfile
 	s.MediumRiskProfile = decoded.MediumRiskProfile
+	s.Id = decoded.Id
 	s.ODataId = decoded.ODataId
 	s.ODataType = decoded.ODataType
 
@@ -94,5 +102,6 @@ func (s *PermissionsCreepIndexDistribution) UnmarshalJSON(bytes []byte) error {
 		}
 		s.AuthorizationSystem = &impl
 	}
+
 	return nil
 }

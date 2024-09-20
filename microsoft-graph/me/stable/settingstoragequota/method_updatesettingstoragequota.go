@@ -17,15 +17,44 @@ type UpdateSettingStorageQuotaOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateSettingStorageQuotaOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateSettingStorageQuotaOperationOptions() UpdateSettingStorageQuotaOperationOptions {
+	return UpdateSettingStorageQuotaOperationOptions{}
+}
+
+func (o UpdateSettingStorageQuotaOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateSettingStorageQuotaOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateSettingStorageQuotaOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateSettingStorageQuota - Update the navigation property quota in me
-func (c SettingStorageQuotaClient) UpdateSettingStorageQuota(ctx context.Context, input stable.UnifiedStorageQuota) (result UpdateSettingStorageQuotaOperationResponse, err error) {
+func (c SettingStorageQuotaClient) UpdateSettingStorageQuota(ctx context.Context, input stable.UnifiedStorageQuota, options UpdateSettingStorageQuotaOperationOptions) (result UpdateSettingStorageQuotaOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       "/me/settings/storage/quota",
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          "/me/settings/storage/quota",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

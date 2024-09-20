@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/microsoft-graph/rolemanagement/beta/enterpriseappresourcenamespace` Documentation
 
-The `enterpriseappresourcenamespace` SDK allows for interaction with the Azure Resource Manager Service `rolemanagement` (API Version `beta`).
+The `enterpriseappresourcenamespace` SDK allows for interaction with Microsoft Graph `rolemanagement` (API Version `beta`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -15,7 +15,7 @@ import "github.com/hashicorp/go-azure-sdk/microsoft-graph/rolemanagement/beta/en
 ### Client Initialization
 
 ```go
-client := enterpriseappresourcenamespace.NewEnterpriseAppResourceNamespaceClientWithBaseURI("https://management.azure.com")
+client := enterpriseappresourcenamespace.NewEnterpriseAppResourceNamespaceClientWithBaseURI("https://graph.microsoft.com")
 client.Client.Authorizer = authorizer
 ```
 
@@ -24,14 +24,14 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := enterpriseappresourcenamespace.NewRoleManagementEnterpriseAppID("rbacApplicationIdValue")
+id := enterpriseappresourcenamespace.NewRoleManagementEnterpriseAppID("rbacApplicationId")
 
 payload := enterpriseappresourcenamespace.UnifiedRbacResourceNamespace{
 	// ...
 }
 
 
-read, err := client.CreateEnterpriseAppResourceNamespace(ctx, id, payload)
+read, err := client.CreateEnterpriseAppResourceNamespace(ctx, id, payload, enterpriseappresourcenamespace.DefaultCreateEnterpriseAppResourceNamespaceOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -45,14 +45,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := enterpriseappresourcenamespace.NewRoleManagementEnterpriseAppIdResourceNamespaceID("rbacApplicationIdValue", "unifiedRbacResourceNamespaceIdValue")
+id := enterpriseappresourcenamespace.NewRoleManagementEnterpriseAppIdResourceNamespaceID("rbacApplicationId", "unifiedRbacResourceNamespaceId")
 
 payload := enterpriseappresourcenamespace.CreateEnterpriseAppResourceNamespaceImportResourceActionRequest{
 	// ...
 }
 
 
-read, err := client.CreateEnterpriseAppResourceNamespaceImportResourceAction(ctx, id, payload)
+read, err := client.CreateEnterpriseAppResourceNamespaceImportResourceAction(ctx, id, payload, enterpriseappresourcenamespace.DefaultCreateEnterpriseAppResourceNamespaceImportResourceActionOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -66,7 +66,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := enterpriseappresourcenamespace.NewRoleManagementEnterpriseAppIdResourceNamespaceID("rbacApplicationIdValue", "unifiedRbacResourceNamespaceIdValue")
+id := enterpriseappresourcenamespace.NewRoleManagementEnterpriseAppIdResourceNamespaceID("rbacApplicationId", "unifiedRbacResourceNamespaceId")
 
 read, err := client.DeleteEnterpriseAppResourceNamespace(ctx, id, enterpriseappresourcenamespace.DefaultDeleteEnterpriseAppResourceNamespaceOperationOptions())
 if err != nil {
@@ -82,7 +82,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := enterpriseappresourcenamespace.NewRoleManagementEnterpriseAppIdResourceNamespaceID("rbacApplicationIdValue", "unifiedRbacResourceNamespaceIdValue")
+id := enterpriseappresourcenamespace.NewRoleManagementEnterpriseAppIdResourceNamespaceID("rbacApplicationId", "unifiedRbacResourceNamespaceId")
 
 read, err := client.GetEnterpriseAppResourceNamespace(ctx, id, enterpriseappresourcenamespace.DefaultGetEnterpriseAppResourceNamespaceOperationOptions())
 if err != nil {
@@ -98,7 +98,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := enterpriseappresourcenamespace.NewRoleManagementEnterpriseAppID("rbacApplicationIdValue")
+id := enterpriseappresourcenamespace.NewRoleManagementEnterpriseAppID("rbacApplicationId")
 
 read, err := client.GetEnterpriseAppResourceNamespacesCount(ctx, id, enterpriseappresourcenamespace.DefaultGetEnterpriseAppResourceNamespacesCountOperationOptions())
 if err != nil {
@@ -114,7 +114,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := enterpriseappresourcenamespace.NewRoleManagementEnterpriseAppID("rbacApplicationIdValue")
+id := enterpriseappresourcenamespace.NewRoleManagementEnterpriseAppID("rbacApplicationId")
 
 // alternatively `client.ListEnterpriseAppResourceNamespaces(ctx, id, enterpriseappresourcenamespace.DefaultListEnterpriseAppResourceNamespacesOperationOptions())` can be used to do batched pagination
 items, err := client.ListEnterpriseAppResourceNamespacesComplete(ctx, id, enterpriseappresourcenamespace.DefaultListEnterpriseAppResourceNamespacesOperationOptions())
@@ -131,14 +131,14 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := enterpriseappresourcenamespace.NewRoleManagementEnterpriseAppIdResourceNamespaceID("rbacApplicationIdValue", "unifiedRbacResourceNamespaceIdValue")
+id := enterpriseappresourcenamespace.NewRoleManagementEnterpriseAppIdResourceNamespaceID("rbacApplicationId", "unifiedRbacResourceNamespaceId")
 
 payload := enterpriseappresourcenamespace.UnifiedRbacResourceNamespace{
 	// ...
 }
 
 
-read, err := client.UpdateEnterpriseAppResourceNamespace(ctx, id, payload)
+read, err := client.UpdateEnterpriseAppResourceNamespace(ctx, id, payload, enterpriseappresourcenamespace.DefaultUpdateEnterpriseAppResourceNamespaceOperationOptions())
 if err != nil {
 	// handle the error
 }

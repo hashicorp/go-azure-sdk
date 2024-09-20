@@ -479,10 +479,108 @@ func (s WindowsManagedDevice) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &WindowsManagedDevice{}
 
 func (s *WindowsManagedDevice) UnmarshalJSON(bytes []byte) error {
-	type alias WindowsManagedDevice
-	var decoded alias
+
+	var decoded struct {
+		AadRegistered                               nullable.Type[bool]                         `json:"aadRegistered,omitempty"`
+		ActivationLockBypassCode                    nullable.Type[string]                       `json:"activationLockBypassCode,omitempty"`
+		AndroidSecurityPatchLevel                   nullable.Type[string]                       `json:"androidSecurityPatchLevel,omitempty"`
+		AssignmentFilterEvaluationStatusDetails     *[]AssignmentFilterEvaluationStatusDetails  `json:"assignmentFilterEvaluationStatusDetails,omitempty"`
+		AutopilotEnrolled                           *bool                                       `json:"autopilotEnrolled,omitempty"`
+		AzureADDeviceId                             nullable.Type[string]                       `json:"azureADDeviceId,omitempty"`
+		AzureADRegistered                           nullable.Type[bool]                         `json:"azureADRegistered,omitempty"`
+		AzureActiveDirectoryDeviceId                nullable.Type[string]                       `json:"azureActiveDirectoryDeviceId,omitempty"`
+		BootstrapTokenEscrowed                      *bool                                       `json:"bootstrapTokenEscrowed,omitempty"`
+		ChassisType                                 *ChassisType                                `json:"chassisType,omitempty"`
+		ChromeOSDeviceInfo                          *[]ChromeOSDeviceProperty                   `json:"chromeOSDeviceInfo,omitempty"`
+		CloudPCRemoteActionResults                  *[]CloudPCRemoteActionResult                `json:"cloudPcRemoteActionResults,omitempty"`
+		ComplianceGracePeriodExpirationDateTime     *string                                     `json:"complianceGracePeriodExpirationDateTime,omitempty"`
+		ComplianceState                             *ComplianceState                            `json:"complianceState,omitempty"`
+		ConfigurationManagerClientEnabledFeatures   *ConfigurationManagerClientEnabledFeatures  `json:"configurationManagerClientEnabledFeatures,omitempty"`
+		ConfigurationManagerClientHealthState       *ConfigurationManagerClientHealthState      `json:"configurationManagerClientHealthState,omitempty"`
+		ConfigurationManagerClientInformation       *ConfigurationManagerClientInformation      `json:"configurationManagerClientInformation,omitempty"`
+		DetectedApps                                *[]DetectedApp                              `json:"detectedApps,omitempty"`
+		DeviceActionResults                         *[]DeviceActionResult                       `json:"deviceActionResults,omitempty"`
+		DeviceCategory                              *DeviceCategory                             `json:"deviceCategory,omitempty"`
+		DeviceCategoryDisplayName                   nullable.Type[string]                       `json:"deviceCategoryDisplayName,omitempty"`
+		DeviceCompliancePolicyStates                *[]DeviceCompliancePolicyState              `json:"deviceCompliancePolicyStates,omitempty"`
+		DeviceConfigurationStates                   *[]DeviceConfigurationState                 `json:"deviceConfigurationStates,omitempty"`
+		DeviceEnrollmentType                        *DeviceEnrollmentType                       `json:"deviceEnrollmentType,omitempty"`
+		DeviceFirmwareConfigurationInterfaceManaged *bool                                       `json:"deviceFirmwareConfigurationInterfaceManaged,omitempty"`
+		DeviceHealthAttestationState                *DeviceHealthAttestationState               `json:"deviceHealthAttestationState,omitempty"`
+		DeviceHealthScriptStates                    *[]DeviceHealthScriptPolicyState            `json:"deviceHealthScriptStates,omitempty"`
+		DeviceName                                  nullable.Type[string]                       `json:"deviceName,omitempty"`
+		DeviceRegistrationState                     *DeviceRegistrationState                    `json:"deviceRegistrationState,omitempty"`
+		DeviceType                                  *DeviceType                                 `json:"deviceType,omitempty"`
+		EasActivated                                *bool                                       `json:"easActivated,omitempty"`
+		EasActivationDateTime                       *string                                     `json:"easActivationDateTime,omitempty"`
+		EasDeviceId                                 nullable.Type[string]                       `json:"easDeviceId,omitempty"`
+		EmailAddress                                nullable.Type[string]                       `json:"emailAddress,omitempty"`
+		EnrolledByUserPrincipalName                 nullable.Type[string]                       `json:"enrolledByUserPrincipalName,omitempty"`
+		EnrolledDateTime                            *string                                     `json:"enrolledDateTime,omitempty"`
+		EnrollmentProfileName                       nullable.Type[string]                       `json:"enrollmentProfileName,omitempty"`
+		EthernetMacAddress                          nullable.Type[string]                       `json:"ethernetMacAddress,omitempty"`
+		ExchangeAccessState                         *DeviceManagementExchangeAccessState        `json:"exchangeAccessState,omitempty"`
+		ExchangeAccessStateReason                   *DeviceManagementExchangeAccessStateReason  `json:"exchangeAccessStateReason,omitempty"`
+		ExchangeLastSuccessfulSyncDateTime          *string                                     `json:"exchangeLastSuccessfulSyncDateTime,omitempty"`
+		FreeStorageSpaceInBytes                     *int64                                      `json:"freeStorageSpaceInBytes,omitempty"`
+		HardwareInformation                         *HardwareInformation                        `json:"hardwareInformation,omitempty"`
+		Iccid                                       nullable.Type[string]                       `json:"iccid,omitempty"`
+		Imei                                        nullable.Type[string]                       `json:"imei,omitempty"`
+		IsEncrypted                                 *bool                                       `json:"isEncrypted,omitempty"`
+		IsSupervised                                *bool                                       `json:"isSupervised,omitempty"`
+		JailBroken                                  nullable.Type[string]                       `json:"jailBroken,omitempty"`
+		JoinType                                    *JoinType                                   `json:"joinType,omitempty"`
+		LastSyncDateTime                            *string                                     `json:"lastSyncDateTime,omitempty"`
+		LogCollectionRequests                       *[]DeviceLogCollectionResponse              `json:"logCollectionRequests,omitempty"`
+		LostModeState                               *LostModeState                              `json:"lostModeState,omitempty"`
+		ManagedDeviceMobileAppConfigurationStates   *[]ManagedDeviceMobileAppConfigurationState `json:"managedDeviceMobileAppConfigurationStates,omitempty"`
+		ManagedDeviceName                           nullable.Type[string]                       `json:"managedDeviceName,omitempty"`
+		ManagedDeviceOwnerType                      *ManagedDeviceOwnerType                     `json:"managedDeviceOwnerType,omitempty"`
+		ManagementAgent                             *ManagementAgentType                        `json:"managementAgent,omitempty"`
+		ManagementCertificateExpirationDate         *string                                     `json:"managementCertificateExpirationDate,omitempty"`
+		ManagementFeatures                          *ManagedDeviceManagementFeatures            `json:"managementFeatures,omitempty"`
+		ManagementState                             *ManagementState                            `json:"managementState,omitempty"`
+		Manufacturer                                nullable.Type[string]                       `json:"manufacturer,omitempty"`
+		Meid                                        nullable.Type[string]                       `json:"meid,omitempty"`
+		Model                                       nullable.Type[string]                       `json:"model,omitempty"`
+		Notes                                       nullable.Type[string]                       `json:"notes,omitempty"`
+		OperatingSystem                             nullable.Type[string]                       `json:"operatingSystem,omitempty"`
+		OsVersion                                   nullable.Type[string]                       `json:"osVersion,omitempty"`
+		OwnerType                                   *OwnerType                                  `json:"ownerType,omitempty"`
+		PartnerReportedThreatState                  *ManagedDevicePartnerReportedHealthState    `json:"partnerReportedThreatState,omitempty"`
+		PhoneNumber                                 nullable.Type[string]                       `json:"phoneNumber,omitempty"`
+		PhysicalMemoryInBytes                       *int64                                      `json:"physicalMemoryInBytes,omitempty"`
+		PreferMdmOverGroupPolicyAppliedDateTime     *string                                     `json:"preferMdmOverGroupPolicyAppliedDateTime,omitempty"`
+		ProcessorArchitecture                       *ManagedDeviceArchitecture                  `json:"processorArchitecture,omitempty"`
+		RemoteAssistanceSessionErrorDetails         nullable.Type[string]                       `json:"remoteAssistanceSessionErrorDetails,omitempty"`
+		RemoteAssistanceSessionUrl                  nullable.Type[string]                       `json:"remoteAssistanceSessionUrl,omitempty"`
+		RequireUserEnrollmentApproval               nullable.Type[bool]                         `json:"requireUserEnrollmentApproval,omitempty"`
+		RetireAfterDateTime                         *string                                     `json:"retireAfterDateTime,omitempty"`
+		RoleScopeTagIds                             *[]string                                   `json:"roleScopeTagIds,omitempty"`
+		SecurityBaselineStates                      *[]SecurityBaselineState                    `json:"securityBaselineStates,omitempty"`
+		SecurityPatchLevel                          nullable.Type[string]                       `json:"securityPatchLevel,omitempty"`
+		SerialNumber                                nullable.Type[string]                       `json:"serialNumber,omitempty"`
+		SkuFamily                                   nullable.Type[string]                       `json:"skuFamily,omitempty"`
+		SkuNumber                                   *int64                                      `json:"skuNumber,omitempty"`
+		SpecificationVersion                        nullable.Type[string]                       `json:"specificationVersion,omitempty"`
+		SubscriberCarrier                           nullable.Type[string]                       `json:"subscriberCarrier,omitempty"`
+		TotalStorageSpaceInBytes                    *int64                                      `json:"totalStorageSpaceInBytes,omitempty"`
+		Udid                                        nullable.Type[string]                       `json:"udid,omitempty"`
+		UserDisplayName                             nullable.Type[string]                       `json:"userDisplayName,omitempty"`
+		UserId                                      nullable.Type[string]                       `json:"userId,omitempty"`
+		UserPrincipalName                           nullable.Type[string]                       `json:"userPrincipalName,omitempty"`
+		Users                                       *[]User                                     `json:"users,omitempty"`
+		UsersLoggedOn                               *[]LoggedOnUser                             `json:"usersLoggedOn,omitempty"`
+		WiFiMacAddress                              nullable.Type[string]                       `json:"wiFiMacAddress,omitempty"`
+		WindowsActiveMalwareCount                   *int64                                      `json:"windowsActiveMalwareCount,omitempty"`
+		WindowsProtectionState                      *WindowsProtectionState                     `json:"windowsProtectionState,omitempty"`
+		WindowsRemediatedMalwareCount               *int64                                      `json:"windowsRemediatedMalwareCount,omitempty"`
+		Id                                          *string                                     `json:"id,omitempty"`
+		ODataId                                     *string                                     `json:"@odata.id,omitempty"`
+		ODataType                                   *string                                     `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into WindowsManagedDevice: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.AadRegistered = decoded.AadRegistered
@@ -603,5 +701,6 @@ func (s *WindowsManagedDevice) UnmarshalJSON(bytes []byte) error {
 		}
 		s.DeviceActionResults = &output
 	}
+
 	return nil
 }

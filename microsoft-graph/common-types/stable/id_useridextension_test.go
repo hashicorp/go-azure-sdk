@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &UserIdExtensionId{}
 
 func TestNewUserIdExtensionID(t *testing.T) {
-	id := NewUserIdExtensionID("userIdValue", "extensionIdValue")
+	id := NewUserIdExtensionID("userId", "extensionId")
 
-	if id.UserId != "userIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'UserId'", id.UserId, "userIdValue")
+	if id.UserId != "userId" {
+		t.Fatalf("Expected %q but got %q for Segment 'UserId'", id.UserId, "userId")
 	}
 
-	if id.ExtensionId != "extensionIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ExtensionId'", id.ExtensionId, "extensionIdValue")
+	if id.ExtensionId != "extensionId" {
+		t.Fatalf("Expected %q but got %q for Segment 'ExtensionId'", id.ExtensionId, "extensionId")
 	}
 }
 
 func TestFormatUserIdExtensionID(t *testing.T) {
-	actual := NewUserIdExtensionID("userIdValue", "extensionIdValue").ID()
-	expected := "/users/userIdValue/extensions/extensionIdValue"
+	actual := NewUserIdExtensionID("userId", "extensionId").ID()
+	expected := "/users/userId/extensions/extensionId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -49,25 +49,25 @@ func TestParseUserIdExtensionID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue",
+			Input: "/users/userId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/extensions",
+			Input: "/users/userId/extensions",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/users/userIdValue/extensions/extensionIdValue",
+			Input: "/users/userId/extensions/extensionId",
 			Expected: &UserIdExtensionId{
-				UserId:      "userIdValue",
-				ExtensionId: "extensionIdValue",
+				UserId:      "userId",
+				ExtensionId: "extensionId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/users/userIdValue/extensions/extensionIdValue/extra",
+			Input: "/users/userId/extensions/extensionId/extra",
 			Error: true,
 		},
 	}
@@ -120,48 +120,48 @@ func TestParseUserIdExtensionIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue",
+			Input: "/users/userId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe",
+			Input: "/uSeRs/uSeRiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/extensions",
+			Input: "/users/userId/extensions",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/eXtEnSiOnS",
+			Input: "/uSeRs/uSeRiD/eXtEnSiOnS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/users/userIdValue/extensions/extensionIdValue",
+			Input: "/users/userId/extensions/extensionId",
 			Expected: &UserIdExtensionId{
-				UserId:      "userIdValue",
-				ExtensionId: "extensionIdValue",
+				UserId:      "userId",
+				ExtensionId: "extensionId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/users/userIdValue/extensions/extensionIdValue/extra",
+			Input: "/users/userId/extensions/extensionId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/eXtEnSiOnS/eXtEnSiOnIdVaLuE",
+			Input: "/uSeRs/uSeRiD/eXtEnSiOnS/eXtEnSiOnId",
 			Expected: &UserIdExtensionId{
-				UserId:      "uSeRiDvAlUe",
-				ExtensionId: "eXtEnSiOnIdVaLuE",
+				UserId:      "uSeRiD",
+				ExtensionId: "eXtEnSiOnId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/eXtEnSiOnS/eXtEnSiOnIdVaLuE/extra",
+			Input: "/uSeRs/uSeRiD/eXtEnSiOnS/eXtEnSiOnId/extra",
 			Error: true,
 		},
 	}

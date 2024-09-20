@@ -19,15 +19,44 @@ type CreateTeamChannelSharedWithTeamOperationResponse struct {
 	Model        *stable.SharedWithChannelTeamInfo
 }
 
+type CreateTeamChannelSharedWithTeamOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateTeamChannelSharedWithTeamOperationOptions() CreateTeamChannelSharedWithTeamOperationOptions {
+	return CreateTeamChannelSharedWithTeamOperationOptions{}
+}
+
+func (o CreateTeamChannelSharedWithTeamOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateTeamChannelSharedWithTeamOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateTeamChannelSharedWithTeamOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateTeamChannelSharedWithTeam - Create new navigation property to sharedWithTeams for groups
-func (c TeamChannelSharedWithTeamClient) CreateTeamChannelSharedWithTeam(ctx context.Context, id stable.GroupIdTeamChannelId, input stable.SharedWithChannelTeamInfo) (result CreateTeamChannelSharedWithTeamOperationResponse, err error) {
+func (c TeamChannelSharedWithTeamClient) CreateTeamChannelSharedWithTeam(ctx context.Context, id stable.GroupIdTeamChannelId, input stable.SharedWithChannelTeamInfo, options CreateTeamChannelSharedWithTeamOperationOptions) (result CreateTeamChannelSharedWithTeamOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/sharedWithTeams", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/sharedWithTeams", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

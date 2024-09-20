@@ -111,12 +111,29 @@ func (s SiteProtectionUnit) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &SiteProtectionUnit{}
 
 func (s *SiteProtectionUnit) UnmarshalJSON(bytes []byte) error {
-	type alias SiteProtectionUnit
-	var decoded alias
+
+	var decoded struct {
+		SiteId               nullable.Type[string] `json:"siteId,omitempty"`
+		SiteName             nullable.Type[string] `json:"siteName,omitempty"`
+		SiteWebUrl           nullable.Type[string] `json:"siteWebUrl,omitempty"`
+		CreatedBy            IdentitySet           `json:"createdBy"`
+		CreatedDateTime      nullable.Type[string] `json:"createdDateTime,omitempty"`
+		Error                *PublicError          `json:"error,omitempty"`
+		LastModifiedBy       IdentitySet           `json:"lastModifiedBy"`
+		LastModifiedDateTime nullable.Type[string] `json:"lastModifiedDateTime,omitempty"`
+		PolicyId             nullable.Type[string] `json:"policyId,omitempty"`
+		Status               *ProtectionUnitStatus `json:"status,omitempty"`
+		Id                   *string               `json:"id,omitempty"`
+		ODataId              *string               `json:"@odata.id,omitempty"`
+		ODataType            *string               `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into SiteProtectionUnit: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
+	s.SiteId = decoded.SiteId
+	s.SiteName = decoded.SiteName
+	s.SiteWebUrl = decoded.SiteWebUrl
 	s.CreatedDateTime = decoded.CreatedDateTime
 	s.Error = decoded.Error
 	s.Id = decoded.Id
@@ -124,9 +141,6 @@ func (s *SiteProtectionUnit) UnmarshalJSON(bytes []byte) error {
 	s.ODataId = decoded.ODataId
 	s.ODataType = decoded.ODataType
 	s.PolicyId = decoded.PolicyId
-	s.SiteId = decoded.SiteId
-	s.SiteName = decoded.SiteName
-	s.SiteWebUrl = decoded.SiteWebUrl
 	s.Status = decoded.Status
 
 	var temp map[string]json.RawMessage
@@ -149,5 +163,6 @@ func (s *SiteProtectionUnit) UnmarshalJSON(bytes []byte) error {
 		}
 		s.LastModifiedBy = impl
 	}
+
 	return nil
 }

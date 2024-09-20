@@ -19,8 +19,9 @@ type GetTermsOfUseAgreementAcceptanceOperationResponse struct {
 }
 
 type GetTermsOfUseAgreementAcceptanceOperationOptions struct {
-	Expand *odata.Expand
-	Select *[]string
+	Expand   *odata.Expand
+	Metadata *odata.Metadata
+	Select   *[]string
 }
 
 func DefaultGetTermsOfUseAgreementAcceptanceOperationOptions() GetTermsOfUseAgreementAcceptanceOperationOptions {
@@ -38,6 +39,9 @@ func (o GetTermsOfUseAgreementAcceptanceOperationOptions) ToOData() *odata.Query
 	if o.Expand != nil {
 		out.Expand = *o.Expand
 	}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	if o.Select != nil {
 		out.Select = *o.Select
 	}
@@ -50,9 +54,9 @@ func (o GetTermsOfUseAgreementAcceptanceOperationOptions) ToQuery() *client.Quer
 	return &out
 }
 
-// GetTermsOfUseAgreementAcceptance - Get agreementAcceptances from identityGovernance. Represents the current status of
-// a user's response to a company's customizable terms of use agreement.
-func (c TermsOfUseAgreementAcceptanceClient) GetTermsOfUseAgreementAcceptance(ctx context.Context, id beta.IdentityGovernanceTermsOfUseAgreementAcceptanceId, options GetTermsOfUseAgreementAcceptanceOperationOptions) (result GetTermsOfUseAgreementAcceptanceOperationResponse, err error) {
+// GetTermsOfUseAgreementAcceptance - Get acceptances from identityGovernance. Read-only. Information about acceptances
+// of this agreement.
+func (c TermsOfUseAgreementAcceptanceClient) GetTermsOfUseAgreementAcceptance(ctx context.Context, id beta.IdentityGovernanceTermsOfUseAgreementIdAcceptanceId, options GetTermsOfUseAgreementAcceptanceOperationOptions) (result GetTermsOfUseAgreementAcceptanceOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{

@@ -19,7 +19,8 @@ type DeleteTeamPermissionGrantOperationResponse struct {
 }
 
 type DeleteTeamPermissionGrantOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteTeamPermissionGrantOperationOptions() DeleteTeamPermissionGrantOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteTeamPermissionGrantOperationOptions) ToHeaders() *client.Headers {
 
 func (o DeleteTeamPermissionGrantOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

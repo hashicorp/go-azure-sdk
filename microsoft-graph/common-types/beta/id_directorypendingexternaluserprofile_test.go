@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &DirectoryPendingExternalUserProfileId{}
 
 func TestNewDirectoryPendingExternalUserProfileID(t *testing.T) {
-	id := NewDirectoryPendingExternalUserProfileID("pendingExternalUserProfileIdValue")
+	id := NewDirectoryPendingExternalUserProfileID("pendingExternalUserProfileId")
 
-	if id.PendingExternalUserProfileId != "pendingExternalUserProfileIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'PendingExternalUserProfileId'", id.PendingExternalUserProfileId, "pendingExternalUserProfileIdValue")
+	if id.PendingExternalUserProfileId != "pendingExternalUserProfileId" {
+		t.Fatalf("Expected %q but got %q for Segment 'PendingExternalUserProfileId'", id.PendingExternalUserProfileId, "pendingExternalUserProfileId")
 	}
 }
 
 func TestFormatDirectoryPendingExternalUserProfileID(t *testing.T) {
-	actual := NewDirectoryPendingExternalUserProfileID("pendingExternalUserProfileIdValue").ID()
-	expected := "/directory/pendingExternalUserProfiles/pendingExternalUserProfileIdValue"
+	actual := NewDirectoryPendingExternalUserProfileID("pendingExternalUserProfileId").ID()
+	expected := "/directory/pendingExternalUserProfiles/pendingExternalUserProfileId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -50,14 +50,14 @@ func TestParseDirectoryPendingExternalUserProfileID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/directory/pendingExternalUserProfiles/pendingExternalUserProfileIdValue",
+			Input: "/directory/pendingExternalUserProfiles/pendingExternalUserProfileId",
 			Expected: &DirectoryPendingExternalUserProfileId{
-				PendingExternalUserProfileId: "pendingExternalUserProfileIdValue",
+				PendingExternalUserProfileId: "pendingExternalUserProfileId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/directory/pendingExternalUserProfiles/pendingExternalUserProfileIdValue/extra",
+			Input: "/directory/pendingExternalUserProfiles/pendingExternalUserProfileId/extra",
 			Error: true,
 		},
 	}
@@ -116,26 +116,26 @@ func TestParseDirectoryPendingExternalUserProfileIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/directory/pendingExternalUserProfiles/pendingExternalUserProfileIdValue",
+			Input: "/directory/pendingExternalUserProfiles/pendingExternalUserProfileId",
 			Expected: &DirectoryPendingExternalUserProfileId{
-				PendingExternalUserProfileId: "pendingExternalUserProfileIdValue",
+				PendingExternalUserProfileId: "pendingExternalUserProfileId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/directory/pendingExternalUserProfiles/pendingExternalUserProfileIdValue/extra",
+			Input: "/directory/pendingExternalUserProfiles/pendingExternalUserProfileId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/dIrEcToRy/pEnDiNgExTeRnAlUsErPrOfIlEs/pEnDiNgExTeRnAlUsErPrOfIlEiDvAlUe",
+			Input: "/dIrEcToRy/pEnDiNgExTeRnAlUsErPrOfIlEs/pEnDiNgExTeRnAlUsErPrOfIlEiD",
 			Expected: &DirectoryPendingExternalUserProfileId{
-				PendingExternalUserProfileId: "pEnDiNgExTeRnAlUsErPrOfIlEiDvAlUe",
+				PendingExternalUserProfileId: "pEnDiNgExTeRnAlUsErPrOfIlEiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/dIrEcToRy/pEnDiNgExTeRnAlUsErPrOfIlEs/pEnDiNgExTeRnAlUsErPrOfIlEiDvAlUe/extra",
+			Input: "/dIrEcToRy/pEnDiNgExTeRnAlUsErPrOfIlEs/pEnDiNgExTeRnAlUsErPrOfIlEiD/extra",
 			Error: true,
 		},
 	}

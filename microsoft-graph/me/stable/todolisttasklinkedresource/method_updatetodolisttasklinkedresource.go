@@ -17,15 +17,44 @@ type UpdateTodoListTaskLinkedResourceOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateTodoListTaskLinkedResourceOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateTodoListTaskLinkedResourceOperationOptions() UpdateTodoListTaskLinkedResourceOperationOptions {
+	return UpdateTodoListTaskLinkedResourceOperationOptions{}
+}
+
+func (o UpdateTodoListTaskLinkedResourceOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateTodoListTaskLinkedResourceOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateTodoListTaskLinkedResourceOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateTodoListTaskLinkedResource - Update linkedResource. Update the properties of a linkedResource object.
-func (c TodoListTaskLinkedResourceClient) UpdateTodoListTaskLinkedResource(ctx context.Context, id stable.MeTodoListIdTaskIdLinkedResourceId, input stable.LinkedResource) (result UpdateTodoListTaskLinkedResourceOperationResponse, err error) {
+func (c TodoListTaskLinkedResourceClient) UpdateTodoListTaskLinkedResource(ctx context.Context, id stable.MeTodoListIdTaskIdLinkedResourceId, input stable.LinkedResource, options UpdateTodoListTaskLinkedResourceOperationOptions) (result UpdateTodoListTaskLinkedResourceOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -17,15 +17,44 @@ type UpdateB2xUserFlowLanguageDefaultPageOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateB2xUserFlowLanguageDefaultPageOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateB2xUserFlowLanguageDefaultPageOperationOptions() UpdateB2xUserFlowLanguageDefaultPageOperationOptions {
+	return UpdateB2xUserFlowLanguageDefaultPageOperationOptions{}
+}
+
+func (o UpdateB2xUserFlowLanguageDefaultPageOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateB2xUserFlowLanguageDefaultPageOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateB2xUserFlowLanguageDefaultPageOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateB2xUserFlowLanguageDefaultPage - Update the navigation property defaultPages in identity
-func (c B2xUserFlowLanguageDefaultPageClient) UpdateB2xUserFlowLanguageDefaultPage(ctx context.Context, id stable.IdentityB2xUserFlowIdLanguageIdDefaultPageId, input stable.UserFlowLanguagePage) (result UpdateB2xUserFlowLanguageDefaultPageOperationResponse, err error) {
+func (c B2xUserFlowLanguageDefaultPageClient) UpdateB2xUserFlowLanguageDefaultPage(ctx context.Context, id stable.IdentityB2xUserFlowIdLanguageIdDefaultPageId, input stable.UserFlowLanguagePage, options UpdateB2xUserFlowLanguageDefaultPageOperationOptions) (result UpdateB2xUserFlowLanguageDefaultPageOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

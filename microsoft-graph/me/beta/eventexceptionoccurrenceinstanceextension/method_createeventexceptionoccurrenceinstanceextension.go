@@ -20,15 +20,44 @@ type CreateEventExceptionOccurrenceInstanceExtensionOperationResponse struct {
 	Model        beta.Extension
 }
 
+type CreateEventExceptionOccurrenceInstanceExtensionOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateEventExceptionOccurrenceInstanceExtensionOperationOptions() CreateEventExceptionOccurrenceInstanceExtensionOperationOptions {
+	return CreateEventExceptionOccurrenceInstanceExtensionOperationOptions{}
+}
+
+func (o CreateEventExceptionOccurrenceInstanceExtensionOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateEventExceptionOccurrenceInstanceExtensionOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateEventExceptionOccurrenceInstanceExtensionOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateEventExceptionOccurrenceInstanceExtension - Create new navigation property to extensions for me
-func (c EventExceptionOccurrenceInstanceExtensionClient) CreateEventExceptionOccurrenceInstanceExtension(ctx context.Context, id beta.MeEventIdExceptionOccurrenceIdInstanceId, input beta.Extension) (result CreateEventExceptionOccurrenceInstanceExtensionOperationResponse, err error) {
+func (c EventExceptionOccurrenceInstanceExtensionClient) CreateEventExceptionOccurrenceInstanceExtension(ctx context.Context, id beta.MeEventIdExceptionOccurrenceIdInstanceId, input beta.Extension, options CreateEventExceptionOccurrenceInstanceExtensionOperationOptions) (result CreateEventExceptionOccurrenceInstanceExtensionOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/extensions", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/extensions", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

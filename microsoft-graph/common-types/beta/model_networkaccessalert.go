@@ -72,10 +72,24 @@ func (s NetworkaccessAlert) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &NetworkaccessAlert{}
 
 func (s *NetworkaccessAlert) UnmarshalJSON(bytes []byte) error {
-	type alias NetworkaccessAlert
-	var decoded alias
+
+	var decoded struct {
+		Actions             *[]NetworkaccessAlertAction     `json:"actions,omitempty"`
+		AlertType           *NetworkaccessAlertType         `json:"alertType,omitempty"`
+		CreationDateTime    *string                         `json:"creationDateTime,omitempty"`
+		Description         *string                         `json:"description,omitempty"`
+		DetectionTechnology nullable.Type[string]           `json:"detectionTechnology,omitempty"`
+		DisplayName         *string                         `json:"displayName,omitempty"`
+		Policy              *NetworkaccessFilteringPolicy   `json:"policy,omitempty"`
+		RelatedResources    *[]NetworkaccessRelatedResource `json:"relatedResources,omitempty"`
+		Severity            *NetworkaccessThreatSeverity    `json:"severity,omitempty"`
+		VendorName          *string                         `json:"vendorName,omitempty"`
+		Id                  *string                         `json:"id,omitempty"`
+		ODataId             *string                         `json:"@odata.id,omitempty"`
+		ODataType           *string                         `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into NetworkaccessAlert: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.Actions = decoded.Actions
@@ -84,12 +98,12 @@ func (s *NetworkaccessAlert) UnmarshalJSON(bytes []byte) error {
 	s.Description = decoded.Description
 	s.DetectionTechnology = decoded.DetectionTechnology
 	s.DisplayName = decoded.DisplayName
-	s.Id = decoded.Id
-	s.ODataId = decoded.ODataId
-	s.ODataType = decoded.ODataType
 	s.Policy = decoded.Policy
 	s.Severity = decoded.Severity
 	s.VendorName = decoded.VendorName
+	s.Id = decoded.Id
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -112,5 +126,6 @@ func (s *NetworkaccessAlert) UnmarshalJSON(bytes []byte) error {
 		}
 		s.RelatedResources = &output
 	}
+
 	return nil
 }

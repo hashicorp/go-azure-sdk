@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/microsoft-graph/identity/stable/b2xuserflowapiconnectorconfigurationpostfederationsignup` Documentation
 
-The `b2xuserflowapiconnectorconfigurationpostfederationsignup` SDK allows for interaction with the Azure Resource Manager Service `identity` (API Version `stable`).
+The `b2xuserflowapiconnectorconfigurationpostfederationsignup` SDK allows for interaction with Microsoft Graph `identity` (API Version `stable`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -15,7 +15,7 @@ import "github.com/hashicorp/go-azure-sdk/microsoft-graph/identity/stable/b2xuse
 ### Client Initialization
 
 ```go
-client := b2xuserflowapiconnectorconfigurationpostfederationsignup.NewB2xUserFlowApiConnectorConfigurationPostFederationSignupClientWithBaseURI("https://management.azure.com")
+client := b2xuserflowapiconnectorconfigurationpostfederationsignup.NewB2xUserFlowApiConnectorConfigurationPostFederationSignupClientWithBaseURI("https://graph.microsoft.com")
 client.Client.Authorizer = authorizer
 ```
 
@@ -24,14 +24,14 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := b2xuserflowapiconnectorconfigurationpostfederationsignup.NewIdentityB2xUserFlowID("b2xIdentityUserFlowIdValue")
+id := b2xuserflowapiconnectorconfigurationpostfederationsignup.NewIdentityB2xUserFlowID("b2xIdentityUserFlowId")
 
 payload := b2xuserflowapiconnectorconfigurationpostfederationsignup.CreateB2xUserFlowApiConnectorConfigurationPostFederationSignupUploadClientCertificateRequest{
 	// ...
 }
 
 
-read, err := client.CreateB2xUserFlowApiConnectorConfigurationPostFederationSignupUploadClientCertificate(ctx, id, payload)
+read, err := client.CreateB2xUserFlowApiConnectorConfigurationPostFederationSignupUploadClientCertificate(ctx, id, payload, b2xuserflowapiconnectorconfigurationpostfederationsignup.DefaultCreateB2xUserFlowApiConnectorConfigurationPostFederationSignupUploadClientCertificateOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -45,7 +45,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := b2xuserflowapiconnectorconfigurationpostfederationsignup.NewIdentityB2xUserFlowID("b2xIdentityUserFlowIdValue")
+id := b2xuserflowapiconnectorconfigurationpostfederationsignup.NewIdentityB2xUserFlowID("b2xIdentityUserFlowId")
 
 read, err := client.DeleteB2xUserFlowApiConnectorConfigurationPostFederationSignup(ctx, id, b2xuserflowapiconnectorconfigurationpostfederationsignup.DefaultDeleteB2xUserFlowApiConnectorConfigurationPostFederationSignupOperationOptions())
 if err != nil {
@@ -61,7 +61,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := b2xuserflowapiconnectorconfigurationpostfederationsignup.NewIdentityB2xUserFlowID("b2xIdentityUserFlowIdValue")
+id := b2xuserflowapiconnectorconfigurationpostfederationsignup.NewIdentityB2xUserFlowID("b2xIdentityUserFlowId")
 
 read, err := client.GetB2xUserFlowApiConnectorConfigurationPostFederationSignup(ctx, id, b2xuserflowapiconnectorconfigurationpostfederationsignup.DefaultGetB2xUserFlowApiConnectorConfigurationPostFederationSignupOperationOptions())
 if err != nil {
@@ -77,9 +77,9 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := b2xuserflowapiconnectorconfigurationpostfederationsignup.NewIdentityB2xUserFlowID("b2xIdentityUserFlowIdValue")
+id := b2xuserflowapiconnectorconfigurationpostfederationsignup.NewIdentityB2xUserFlowID("b2xIdentityUserFlowId")
 
-read, err := client.GetB2xUserFlowApiConnectorConfigurationPostFederationSignupRef(ctx, id)
+read, err := client.GetB2xUserFlowApiConnectorConfigurationPostFederationSignupRef(ctx, id, b2xuserflowapiconnectorconfigurationpostfederationsignup.DefaultGetB2xUserFlowApiConnectorConfigurationPostFederationSignupRefOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -93,7 +93,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := b2xuserflowapiconnectorconfigurationpostfederationsignup.NewIdentityB2xUserFlowID("b2xIdentityUserFlowIdValue")
+id := b2xuserflowapiconnectorconfigurationpostfederationsignup.NewIdentityB2xUserFlowID("b2xIdentityUserFlowId")
 
 read, err := client.RemoveB2xUserFlowApiConnectorConfigurationPostFederationSignupRef(ctx, id, b2xuserflowapiconnectorconfigurationpostfederationsignup.DefaultRemoveB2xUserFlowApiConnectorConfigurationPostFederationSignupRefOperationOptions())
 if err != nil {
@@ -109,14 +109,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := b2xuserflowapiconnectorconfigurationpostfederationsignup.NewIdentityB2xUserFlowID("b2xIdentityUserFlowIdValue")
+id := b2xuserflowapiconnectorconfigurationpostfederationsignup.NewIdentityB2xUserFlowID("b2xIdentityUserFlowId")
 
 payload := b2xuserflowapiconnectorconfigurationpostfederationsignup.ReferenceUpdate{
 	// ...
 }
 
 
-read, err := client.SetB2xUserFlowApiConnectorConfigurationPostFederationSignupRef(ctx, id, payload)
+read, err := client.SetB2xUserFlowApiConnectorConfigurationPostFederationSignupRef(ctx, id, payload, b2xuserflowapiconnectorconfigurationpostfederationsignup.DefaultSetB2xUserFlowApiConnectorConfigurationPostFederationSignupRefOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -130,14 +130,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := b2xuserflowapiconnectorconfigurationpostfederationsignup.NewIdentityB2xUserFlowID("b2xIdentityUserFlowIdValue")
+id := b2xuserflowapiconnectorconfigurationpostfederationsignup.NewIdentityB2xUserFlowID("b2xIdentityUserFlowId")
 
 payload := b2xuserflowapiconnectorconfigurationpostfederationsignup.IdentityApiConnector{
 	// ...
 }
 
 
-read, err := client.UpdateB2xUserFlowApiConnectorConfigurationPostFederationSignup(ctx, id, payload)
+read, err := client.UpdateB2xUserFlowApiConnectorConfigurationPostFederationSignup(ctx, id, payload, b2xuserflowapiconnectorconfigurationpostfederationsignup.DefaultUpdateB2xUserFlowApiConnectorConfigurationPostFederationSignupOperationOptions())
 if err != nil {
 	// handle the error
 }

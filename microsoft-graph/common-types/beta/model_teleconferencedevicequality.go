@@ -55,10 +55,23 @@ type TeleconferenceDeviceQuality struct {
 var _ json.Unmarshaler = &TeleconferenceDeviceQuality{}
 
 func (s *TeleconferenceDeviceQuality) UnmarshalJSON(bytes []byte) error {
-	type alias TeleconferenceDeviceQuality
-	var decoded alias
+
+	var decoded struct {
+		CallChainId                       *string                             `json:"callChainId,omitempty"`
+		CloudServiceDeploymentEnvironment nullable.Type[string]               `json:"cloudServiceDeploymentEnvironment,omitempty"`
+		CloudServiceDeploymentId          nullable.Type[string]               `json:"cloudServiceDeploymentId,omitempty"`
+		CloudServiceInstanceName          nullable.Type[string]               `json:"cloudServiceInstanceName,omitempty"`
+		CloudServiceName                  nullable.Type[string]               `json:"cloudServiceName,omitempty"`
+		DeviceDescription                 *string                             `json:"deviceDescription,omitempty"`
+		DeviceName                        *string                             `json:"deviceName,omitempty"`
+		MediaLegId                        *string                             `json:"mediaLegId,omitempty"`
+		MediaQualityList                  *[]TeleconferenceDeviceMediaQuality `json:"mediaQualityList,omitempty"`
+		ODataId                           *string                             `json:"@odata.id,omitempty"`
+		ODataType                         *string                             `json:"@odata.type,omitempty"`
+		ParticipantId                     *string                             `json:"participantId,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into TeleconferenceDeviceQuality: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.CallChainId = decoded.CallChainId
@@ -94,5 +107,6 @@ func (s *TeleconferenceDeviceQuality) UnmarshalJSON(bytes []byte) error {
 		}
 		s.MediaQualityList = &output
 	}
+
 	return nil
 }

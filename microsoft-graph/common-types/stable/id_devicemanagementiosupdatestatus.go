@@ -93,7 +93,7 @@ func (id DeviceManagementIosUpdateStatusId) Segments() []resourceids.Segment {
 	return []resourceids.Segment{
 		resourceids.StaticSegment("deviceManagement", "deviceManagement", "deviceManagement"),
 		resourceids.StaticSegment("iosUpdateStatuses", "iosUpdateStatuses", "iosUpdateStatuses"),
-		resourceids.UserSpecifiedSegment("iosUpdateDeviceStatusId", "iosUpdateDeviceStatusIdValue"),
+		resourceids.UserSpecifiedSegment("iosUpdateDeviceStatusId", "iosUpdateDeviceStatusId"),
 	}
 }
 

@@ -20,15 +20,44 @@ type CreateIntentCategorySettingDefinitionOperationResponse struct {
 	Model        beta.DeviceManagementSettingDefinition
 }
 
+type CreateIntentCategorySettingDefinitionOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateIntentCategorySettingDefinitionOperationOptions() CreateIntentCategorySettingDefinitionOperationOptions {
+	return CreateIntentCategorySettingDefinitionOperationOptions{}
+}
+
+func (o CreateIntentCategorySettingDefinitionOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateIntentCategorySettingDefinitionOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateIntentCategorySettingDefinitionOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateIntentCategorySettingDefinition - Create new navigation property to settingDefinitions for deviceManagement
-func (c IntentCategorySettingDefinitionClient) CreateIntentCategorySettingDefinition(ctx context.Context, id beta.DeviceManagementIntentIdCategoryId, input beta.DeviceManagementSettingDefinition) (result CreateIntentCategorySettingDefinitionOperationResponse, err error) {
+func (c IntentCategorySettingDefinitionClient) CreateIntentCategorySettingDefinition(ctx context.Context, id beta.DeviceManagementIntentIdCategoryId, input beta.DeviceManagementSettingDefinition, options CreateIntentCategorySettingDefinitionOperationOptions) (result CreateIntentCategorySettingDefinitionOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/settingDefinitions", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/settingDefinitions", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -18,15 +18,44 @@ type AssignIntentOperationResponse struct {
 	OData        *odata.OData
 }
 
+type AssignIntentOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultAssignIntentOperationOptions() AssignIntentOperationOptions {
+	return AssignIntentOperationOptions{}
+}
+
+func (o AssignIntentOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o AssignIntentOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o AssignIntentOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // AssignIntent - Invoke action assign
-func (c IntentClient) AssignIntent(ctx context.Context, id beta.DeviceManagementIntentId, input AssignIntentRequest) (result AssignIntentOperationResponse, err error) {
+func (c IntentClient) AssignIntent(ctx context.Context, id beta.DeviceManagementIntentId, input AssignIntentRequest, options AssignIntentOperationOptions) (result AssignIntentOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/assign", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/assign", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

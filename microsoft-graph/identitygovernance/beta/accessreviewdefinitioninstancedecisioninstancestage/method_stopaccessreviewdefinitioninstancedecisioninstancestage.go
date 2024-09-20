@@ -18,19 +18,48 @@ type StopAccessReviewDefinitionInstanceDecisionInstanceStageOperationResponse st
 	OData        *odata.OData
 }
 
+type StopAccessReviewDefinitionInstanceDecisionInstanceStageOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultStopAccessReviewDefinitionInstanceDecisionInstanceStageOperationOptions() StopAccessReviewDefinitionInstanceDecisionInstanceStageOperationOptions {
+	return StopAccessReviewDefinitionInstanceDecisionInstanceStageOperationOptions{}
+}
+
+func (o StopAccessReviewDefinitionInstanceDecisionInstanceStageOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o StopAccessReviewDefinitionInstanceDecisionInstanceStageOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o StopAccessReviewDefinitionInstanceDecisionInstanceStageOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // StopAccessReviewDefinitionInstanceDecisionInstanceStage - Invoke action stop. Stop an access review stage that is
 // inProgress. After the access review stage stops, the stage status will be Completed and the reviewers can no longer
 // give input. If there are subsequent stages that depend on the completed stage, the next stage will be created. The
 // accessReviewInstanceDecisionItem objects will always reflect the last decisions recorded across all stages at that
 // given time, regardless of the status of the stages.
-func (c AccessReviewDefinitionInstanceDecisionInstanceStageClient) StopAccessReviewDefinitionInstanceDecisionInstanceStage(ctx context.Context, id beta.IdentityGovernanceAccessReviewDefinitionIdInstanceIdDecisionIdInstanceStageId) (result StopAccessReviewDefinitionInstanceDecisionInstanceStageOperationResponse, err error) {
+func (c AccessReviewDefinitionInstanceDecisionInstanceStageClient) StopAccessReviewDefinitionInstanceDecisionInstanceStage(ctx context.Context, id beta.IdentityGovernanceAccessReviewDefinitionIdInstanceIdDecisionIdInstanceStageId, options StopAccessReviewDefinitionInstanceDecisionInstanceStageOperationOptions) (result StopAccessReviewDefinitionInstanceDecisionInstanceStageOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/stop", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/stop", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

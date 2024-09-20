@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/microsoft-graph/me/beta/pendingaccessreviewinstance` Documentation
 
-The `pendingaccessreviewinstance` SDK allows for interaction with the Azure Resource Manager Service `me` (API Version `beta`).
+The `pendingaccessreviewinstance` SDK allows for interaction with Microsoft Graph `me` (API Version `beta`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -15,18 +15,18 @@ import "github.com/hashicorp/go-azure-sdk/microsoft-graph/me/beta/pendingaccessr
 ### Client Initialization
 
 ```go
-client := pendingaccessreviewinstance.NewPendingAccessReviewInstanceClientWithBaseURI("https://management.azure.com")
+client := pendingaccessreviewinstance.NewPendingAccessReviewInstanceClientWithBaseURI("https://graph.microsoft.com")
 client.Client.Authorizer = authorizer
 ```
 
 
-### Example Usage: `PendingAccessReviewInstanceClient.AcceptPendingAccessReviewInstanceRecommendation`
+### Example Usage: `PendingAccessReviewInstanceClient.AcceptPendingAccessReviewInstanceRecommendations`
 
 ```go
 ctx := context.TODO()
-id := pendingaccessreviewinstance.NewMePendingAccessReviewInstanceID("accessReviewInstanceIdValue")
+id := pendingaccessreviewinstance.NewMePendingAccessReviewInstanceID("accessReviewInstanceId")
 
-read, err := client.AcceptPendingAccessReviewInstanceRecommendation(ctx, id)
+read, err := client.AcceptPendingAccessReviewInstanceRecommendations(ctx, id, pendingaccessreviewinstance.DefaultAcceptPendingAccessReviewInstanceRecommendationsOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -46,7 +46,7 @@ payload := pendingaccessreviewinstance.AccessReviewInstance{
 }
 
 
-read, err := client.CreatePendingAccessReviewInstance(ctx, payload)
+read, err := client.CreatePendingAccessReviewInstance(ctx, payload, pendingaccessreviewinstance.DefaultCreatePendingAccessReviewInstanceOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -60,9 +60,9 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := pendingaccessreviewinstance.NewMePendingAccessReviewInstanceID("accessReviewInstanceIdValue")
+id := pendingaccessreviewinstance.NewMePendingAccessReviewInstanceID("accessReviewInstanceId")
 
-read, err := client.CreatePendingAccessReviewInstanceApplyDecision(ctx, id)
+read, err := client.CreatePendingAccessReviewInstanceApplyDecision(ctx, id, pendingaccessreviewinstance.DefaultCreatePendingAccessReviewInstanceApplyDecisionOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -76,14 +76,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := pendingaccessreviewinstance.NewMePendingAccessReviewInstanceID("accessReviewInstanceIdValue")
+id := pendingaccessreviewinstance.NewMePendingAccessReviewInstanceID("accessReviewInstanceId")
 
 payload := pendingaccessreviewinstance.CreatePendingAccessReviewInstanceBatchRecordDecisionRequest{
 	// ...
 }
 
 
-read, err := client.CreatePendingAccessReviewInstanceBatchRecordDecision(ctx, id, payload)
+read, err := client.CreatePendingAccessReviewInstanceBatchRecordDecision(ctx, id, payload, pendingaccessreviewinstance.DefaultCreatePendingAccessReviewInstanceBatchRecordDecisionOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -97,7 +97,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := pendingaccessreviewinstance.NewMePendingAccessReviewInstanceID("accessReviewInstanceIdValue")
+id := pendingaccessreviewinstance.NewMePendingAccessReviewInstanceID("accessReviewInstanceId")
 
 read, err := client.DeletePendingAccessReviewInstance(ctx, id, pendingaccessreviewinstance.DefaultDeletePendingAccessReviewInstanceOperationOptions())
 if err != nil {
@@ -113,7 +113,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := pendingaccessreviewinstance.NewMePendingAccessReviewInstanceID("accessReviewInstanceIdValue")
+id := pendingaccessreviewinstance.NewMePendingAccessReviewInstanceID("accessReviewInstanceId")
 
 read, err := client.GetPendingAccessReviewInstance(ctx, id, pendingaccessreviewinstance.DefaultGetPendingAccessReviewInstanceOperationOptions())
 if err != nil {
@@ -158,13 +158,13 @@ for _, item := range items {
 ```
 
 
-### Example Usage: `PendingAccessReviewInstanceClient.ResetPendingAccessReviewInstanceDecision`
+### Example Usage: `PendingAccessReviewInstanceClient.ResetPendingAccessReviewInstanceDecisions`
 
 ```go
 ctx := context.TODO()
-id := pendingaccessreviewinstance.NewMePendingAccessReviewInstanceID("accessReviewInstanceIdValue")
+id := pendingaccessreviewinstance.NewMePendingAccessReviewInstanceID("accessReviewInstanceId")
 
-read, err := client.ResetPendingAccessReviewInstanceDecision(ctx, id)
+read, err := client.ResetPendingAccessReviewInstanceDecisions(ctx, id, pendingaccessreviewinstance.DefaultResetPendingAccessReviewInstanceDecisionsOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -178,9 +178,9 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := pendingaccessreviewinstance.NewMePendingAccessReviewInstanceID("accessReviewInstanceIdValue")
+id := pendingaccessreviewinstance.NewMePendingAccessReviewInstanceID("accessReviewInstanceId")
 
-read, err := client.SendPendingAccessReviewInstanceReminder(ctx, id)
+read, err := client.SendPendingAccessReviewInstanceReminder(ctx, id, pendingaccessreviewinstance.DefaultSendPendingAccessReviewInstanceReminderOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -194,9 +194,9 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := pendingaccessreviewinstance.NewMePendingAccessReviewInstanceID("accessReviewInstanceIdValue")
+id := pendingaccessreviewinstance.NewMePendingAccessReviewInstanceID("accessReviewInstanceId")
 
-read, err := client.StopPendingAccessReviewInstance(ctx, id)
+read, err := client.StopPendingAccessReviewInstance(ctx, id, pendingaccessreviewinstance.DefaultStopPendingAccessReviewInstanceOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -206,13 +206,13 @@ if model := read.Model; model != nil {
 ```
 
 
-### Example Usage: `PendingAccessReviewInstanceClient.StopPendingAccessReviewInstanceApplyDecision`
+### Example Usage: `PendingAccessReviewInstanceClient.StopPendingAccessReviewInstanceApplyDecisions`
 
 ```go
 ctx := context.TODO()
-id := pendingaccessreviewinstance.NewMePendingAccessReviewInstanceID("accessReviewInstanceIdValue")
+id := pendingaccessreviewinstance.NewMePendingAccessReviewInstanceID("accessReviewInstanceId")
 
-read, err := client.StopPendingAccessReviewInstanceApplyDecision(ctx, id)
+read, err := client.StopPendingAccessReviewInstanceApplyDecisions(ctx, id, pendingaccessreviewinstance.DefaultStopPendingAccessReviewInstanceApplyDecisionsOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -226,14 +226,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := pendingaccessreviewinstance.NewMePendingAccessReviewInstanceID("accessReviewInstanceIdValue")
+id := pendingaccessreviewinstance.NewMePendingAccessReviewInstanceID("accessReviewInstanceId")
 
 payload := pendingaccessreviewinstance.AccessReviewInstance{
 	// ...
 }
 
 
-read, err := client.UpdatePendingAccessReviewInstance(ctx, id, payload)
+read, err := client.UpdatePendingAccessReviewInstance(ctx, id, payload, pendingaccessreviewinstance.DefaultUpdatePendingAccessReviewInstanceOperationOptions())
 if err != nil {
 	// handle the error
 }

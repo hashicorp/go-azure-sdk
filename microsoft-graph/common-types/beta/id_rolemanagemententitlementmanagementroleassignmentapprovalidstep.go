@@ -100,9 +100,9 @@ func (id RoleManagementEntitlementManagementRoleAssignmentApprovalIdStepId) Segm
 		resourceids.StaticSegment("roleManagement", "roleManagement", "roleManagement"),
 		resourceids.StaticSegment("entitlementManagement", "entitlementManagement", "entitlementManagement"),
 		resourceids.StaticSegment("roleAssignmentApprovals", "roleAssignmentApprovals", "roleAssignmentApprovals"),
-		resourceids.UserSpecifiedSegment("approvalId", "approvalIdValue"),
+		resourceids.UserSpecifiedSegment("approvalId", "approvalId"),
 		resourceids.StaticSegment("steps", "steps", "steps"),
-		resourceids.UserSpecifiedSegment("approvalStepId", "approvalStepIdValue"),
+		resourceids.UserSpecifiedSegment("approvalStepId", "approvalStepId"),
 	}
 }
 

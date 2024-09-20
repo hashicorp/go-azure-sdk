@@ -18,15 +18,44 @@ type CreateDomainJoinConnectorOperationResponse struct {
 	Model        *beta.DeviceManagementDomainJoinConnector
 }
 
+type CreateDomainJoinConnectorOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateDomainJoinConnectorOperationOptions() CreateDomainJoinConnectorOperationOptions {
+	return CreateDomainJoinConnectorOperationOptions{}
+}
+
+func (o CreateDomainJoinConnectorOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateDomainJoinConnectorOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateDomainJoinConnectorOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateDomainJoinConnector - Create new navigation property to domainJoinConnectors for deviceManagement
-func (c DomainJoinConnectorClient) CreateDomainJoinConnector(ctx context.Context, input beta.DeviceManagementDomainJoinConnector) (result CreateDomainJoinConnectorOperationResponse, err error) {
+func (c DomainJoinConnectorClient) CreateDomainJoinConnector(ctx context.Context, input beta.DeviceManagementDomainJoinConnector, options CreateDomainJoinConnectorOperationOptions) (result CreateDomainJoinConnectorOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/deviceManagement/domainJoinConnectors",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/deviceManagement/domainJoinConnectors",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

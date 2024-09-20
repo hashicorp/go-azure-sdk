@@ -94,7 +94,7 @@ func (id MeProfileAccountId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("me", "me", "me"),
 		resourceids.StaticSegment("profile", "profile", "profile"),
 		resourceids.StaticSegment("account", "account", "account"),
-		resourceids.UserSpecifiedSegment("userAccountInformationId", "userAccountInformationIdValue"),
+		resourceids.UserSpecifiedSegment("userAccountInformationId", "userAccountInformationId"),
 	}
 }
 

@@ -19,16 +19,45 @@ type GetTodoListTaskAttachmentSessionContentOperationResponse struct {
 	Model        *[]byte
 }
 
+type GetTodoListTaskAttachmentSessionContentOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultGetTodoListTaskAttachmentSessionContentOperationOptions() GetTodoListTaskAttachmentSessionContentOperationOptions {
+	return GetTodoListTaskAttachmentSessionContentOperationOptions{}
+}
+
+func (o GetTodoListTaskAttachmentSessionContentOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o GetTodoListTaskAttachmentSessionContentOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o GetTodoListTaskAttachmentSessionContentOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // GetTodoListTaskAttachmentSessionContent - Get content for the navigation property attachmentSessions from users. The
 // content streams that are uploaded.
-func (c TodoListTaskAttachmentSessionContentClient) GetTodoListTaskAttachmentSessionContent(ctx context.Context, id stable.UserIdTodoListIdTaskIdAttachmentSessionId) (result GetTodoListTaskAttachmentSessionContentOperationResponse, err error) {
+func (c TodoListTaskAttachmentSessionContentClient) GetTodoListTaskAttachmentSessionContent(ctx context.Context, id stable.UserIdTodoListIdTaskIdAttachmentSessionId, options GetTodoListTaskAttachmentSessionContentOperationOptions) (result GetTodoListTaskAttachmentSessionContentOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/octet-stream",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/content", id.ID()),
+		HttpMethod:    http.MethodGet,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/content", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

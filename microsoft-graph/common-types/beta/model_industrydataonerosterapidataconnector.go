@@ -111,20 +111,33 @@ func (s IndustryDataOneRosterApiDataConnector) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &IndustryDataOneRosterApiDataConnector{}
 
 func (s *IndustryDataOneRosterApiDataConnector) UnmarshalJSON(bytes []byte) error {
-	type alias IndustryDataOneRosterApiDataConnector
-	var decoded alias
+
+	var decoded struct {
+		ApiVersion            *string                             `json:"apiVersion,omitempty"`
+		IsContactsEnabled     *bool                               `json:"isContactsEnabled,omitempty"`
+		IsDemographicsEnabled *bool                               `json:"isDemographicsEnabled,omitempty"`
+		IsFlagsEnabled        *bool                               `json:"isFlagsEnabled,omitempty"`
+		ApiFormat             *IndustryDataApiFormat              `json:"apiFormat,omitempty"`
+		BaseUrl               *string                             `json:"baseUrl,omitempty"`
+		Credential            IndustryDataCredential              `json:"credential"`
+		DisplayName           *string                             `json:"displayName,omitempty"`
+		SourceSystem          *IndustryDataSourceSystemDefinition `json:"sourceSystem,omitempty"`
+		Id                    *string                             `json:"id,omitempty"`
+		ODataId               *string                             `json:"@odata.id,omitempty"`
+		ODataType             *string                             `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into IndustryDataOneRosterApiDataConnector: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
-	s.ApiFormat = decoded.ApiFormat
 	s.ApiVersion = decoded.ApiVersion
-	s.BaseUrl = decoded.BaseUrl
-	s.DisplayName = decoded.DisplayName
-	s.Id = decoded.Id
 	s.IsContactsEnabled = decoded.IsContactsEnabled
 	s.IsDemographicsEnabled = decoded.IsDemographicsEnabled
 	s.IsFlagsEnabled = decoded.IsFlagsEnabled
+	s.ApiFormat = decoded.ApiFormat
+	s.BaseUrl = decoded.BaseUrl
+	s.DisplayName = decoded.DisplayName
+	s.Id = decoded.Id
 	s.ODataId = decoded.ODataId
 	s.ODataType = decoded.ODataType
 	s.SourceSystem = decoded.SourceSystem
@@ -141,5 +154,6 @@ func (s *IndustryDataOneRosterApiDataConnector) UnmarshalJSON(bytes []byte) erro
 		}
 		s.Credential = impl
 	}
+
 	return nil
 }

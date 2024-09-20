@@ -18,15 +18,44 @@ type CreateRecommendationOperationResponse struct {
 	Model        *beta.Recommendation
 }
 
+type CreateRecommendationOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateRecommendationOperationOptions() CreateRecommendationOperationOptions {
+	return CreateRecommendationOperationOptions{}
+}
+
+func (o CreateRecommendationOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateRecommendationOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateRecommendationOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateRecommendation - Create new navigation property to recommendations for directory
-func (c RecommendationClient) CreateRecommendation(ctx context.Context, input beta.Recommendation) (result CreateRecommendationOperationResponse, err error) {
+func (c RecommendationClient) CreateRecommendation(ctx context.Context, input beta.Recommendation, options CreateRecommendationOperationOptions) (result CreateRecommendationOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/directory/recommendations",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/directory/recommendations",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

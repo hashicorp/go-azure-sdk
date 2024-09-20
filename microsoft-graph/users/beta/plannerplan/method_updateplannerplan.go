@@ -17,15 +17,44 @@ type UpdatePlannerPlanOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdatePlannerPlanOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdatePlannerPlanOperationOptions() UpdatePlannerPlanOperationOptions {
+	return UpdatePlannerPlanOperationOptions{}
+}
+
+func (o UpdatePlannerPlanOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdatePlannerPlanOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdatePlannerPlanOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdatePlannerPlan - Update the navigation property plans in users
-func (c PlannerPlanClient) UpdatePlannerPlan(ctx context.Context, id beta.UserIdPlannerPlanId, input beta.PlannerPlan) (result UpdatePlannerPlanOperationResponse, err error) {
+func (c PlannerPlanClient) UpdatePlannerPlan(ctx context.Context, id beta.UserIdPlannerPlanId, input beta.PlannerPlan, options UpdatePlannerPlanOperationOptions) (result UpdatePlannerPlanOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

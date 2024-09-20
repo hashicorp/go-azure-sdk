@@ -19,7 +19,8 @@ type DeleteEnterpriseAppRoleAssignmentAppScopeOperationResponse struct {
 }
 
 type DeleteEnterpriseAppRoleAssignmentAppScopeOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteEnterpriseAppRoleAssignmentAppScopeOperationOptions() DeleteEnterpriseAppRoleAssignmentAppScopeOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteEnterpriseAppRoleAssignmentAppScopeOperationOptions) ToHeaders() *
 
 func (o DeleteEnterpriseAppRoleAssignmentAppScopeOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

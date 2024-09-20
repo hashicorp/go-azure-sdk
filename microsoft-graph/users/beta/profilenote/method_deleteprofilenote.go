@@ -19,7 +19,8 @@ type DeleteProfileNoteOperationResponse struct {
 }
 
 type DeleteProfileNoteOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteProfileNoteOperationOptions() DeleteProfileNoteOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteProfileNoteOperationOptions) ToHeaders() *client.Headers {
 
 func (o DeleteProfileNoteOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

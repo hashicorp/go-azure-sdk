@@ -17,15 +17,44 @@ type UpdateScopedRoleMemberOfOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateScopedRoleMemberOfOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateScopedRoleMemberOfOperationOptions() UpdateScopedRoleMemberOfOperationOptions {
+	return UpdateScopedRoleMemberOfOperationOptions{}
+}
+
+func (o UpdateScopedRoleMemberOfOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateScopedRoleMemberOfOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateScopedRoleMemberOfOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateScopedRoleMemberOf - Update the navigation property scopedRoleMemberOf in users
-func (c ScopedRoleMemberOfClient) UpdateScopedRoleMemberOf(ctx context.Context, id beta.UserIdScopedRoleMemberOfId, input beta.ScopedRoleMembership) (result UpdateScopedRoleMemberOfOperationResponse, err error) {
+func (c ScopedRoleMemberOfClient) UpdateScopedRoleMemberOf(ctx context.Context, id beta.UserIdScopedRoleMemberOfId, input beta.ScopedRoleMembership, options UpdateScopedRoleMemberOfOperationOptions) (result UpdateScopedRoleMemberOfOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

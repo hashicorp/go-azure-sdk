@@ -18,15 +18,44 @@ type UpdateEntitlementManagementResourceRequestCatalogOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateEntitlementManagementResourceRequestCatalogOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateEntitlementManagementResourceRequestCatalogOperationOptions() UpdateEntitlementManagementResourceRequestCatalogOperationOptions {
+	return UpdateEntitlementManagementResourceRequestCatalogOperationOptions{}
+}
+
+func (o UpdateEntitlementManagementResourceRequestCatalogOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateEntitlementManagementResourceRequestCatalogOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateEntitlementManagementResourceRequestCatalogOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateEntitlementManagementResourceRequestCatalog - Update the navigation property catalog in identityGovernance
-func (c EntitlementManagementResourceRequestCatalogClient) UpdateEntitlementManagementResourceRequestCatalog(ctx context.Context, id stable.IdentityGovernanceEntitlementManagementResourceRequestId, input stable.AccessPackageCatalog) (result UpdateEntitlementManagementResourceRequestCatalogOperationResponse, err error) {
+func (c EntitlementManagementResourceRequestCatalogClient) UpdateEntitlementManagementResourceRequestCatalog(ctx context.Context, id stable.IdentityGovernanceEntitlementManagementResourceRequestId, input stable.AccessPackageCatalog, options UpdateEntitlementManagementResourceRequestCatalogOperationOptions) (result UpdateEntitlementManagementResourceRequestCatalogOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       fmt.Sprintf("%s/catalog", id.ID()),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/catalog", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

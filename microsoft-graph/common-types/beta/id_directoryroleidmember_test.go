@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &DirectoryRoleIdMemberId{}
 
 func TestNewDirectoryRoleIdMemberID(t *testing.T) {
-	id := NewDirectoryRoleIdMemberID("directoryRoleIdValue", "directoryObjectIdValue")
+	id := NewDirectoryRoleIdMemberID("directoryRoleId", "directoryObjectId")
 
-	if id.DirectoryRoleId != "directoryRoleIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DirectoryRoleId'", id.DirectoryRoleId, "directoryRoleIdValue")
+	if id.DirectoryRoleId != "directoryRoleId" {
+		t.Fatalf("Expected %q but got %q for Segment 'DirectoryRoleId'", id.DirectoryRoleId, "directoryRoleId")
 	}
 
-	if id.DirectoryObjectId != "directoryObjectIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DirectoryObjectId'", id.DirectoryObjectId, "directoryObjectIdValue")
+	if id.DirectoryObjectId != "directoryObjectId" {
+		t.Fatalf("Expected %q but got %q for Segment 'DirectoryObjectId'", id.DirectoryObjectId, "directoryObjectId")
 	}
 }
 
 func TestFormatDirectoryRoleIdMemberID(t *testing.T) {
-	actual := NewDirectoryRoleIdMemberID("directoryRoleIdValue", "directoryObjectIdValue").ID()
-	expected := "/directoryRoles/directoryRoleIdValue/members/directoryObjectIdValue"
+	actual := NewDirectoryRoleIdMemberID("directoryRoleId", "directoryObjectId").ID()
+	expected := "/directoryRoles/directoryRoleId/members/directoryObjectId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -49,25 +49,25 @@ func TestParseDirectoryRoleIdMemberID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/directoryRoles/directoryRoleIdValue",
+			Input: "/directoryRoles/directoryRoleId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/directoryRoles/directoryRoleIdValue/members",
+			Input: "/directoryRoles/directoryRoleId/members",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/directoryRoles/directoryRoleIdValue/members/directoryObjectIdValue",
+			Input: "/directoryRoles/directoryRoleId/members/directoryObjectId",
 			Expected: &DirectoryRoleIdMemberId{
-				DirectoryRoleId:   "directoryRoleIdValue",
-				DirectoryObjectId: "directoryObjectIdValue",
+				DirectoryRoleId:   "directoryRoleId",
+				DirectoryObjectId: "directoryObjectId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/directoryRoles/directoryRoleIdValue/members/directoryObjectIdValue/extra",
+			Input: "/directoryRoles/directoryRoleId/members/directoryObjectId/extra",
 			Error: true,
 		},
 	}
@@ -120,48 +120,48 @@ func TestParseDirectoryRoleIdMemberIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/directoryRoles/directoryRoleIdValue",
+			Input: "/directoryRoles/directoryRoleId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/dIrEcToRyRoLeS/dIrEcToRyRoLeIdVaLuE",
+			Input: "/dIrEcToRyRoLeS/dIrEcToRyRoLeId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/directoryRoles/directoryRoleIdValue/members",
+			Input: "/directoryRoles/directoryRoleId/members",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/dIrEcToRyRoLeS/dIrEcToRyRoLeIdVaLuE/mEmBeRs",
+			Input: "/dIrEcToRyRoLeS/dIrEcToRyRoLeId/mEmBeRs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/directoryRoles/directoryRoleIdValue/members/directoryObjectIdValue",
+			Input: "/directoryRoles/directoryRoleId/members/directoryObjectId",
 			Expected: &DirectoryRoleIdMemberId{
-				DirectoryRoleId:   "directoryRoleIdValue",
-				DirectoryObjectId: "directoryObjectIdValue",
+				DirectoryRoleId:   "directoryRoleId",
+				DirectoryObjectId: "directoryObjectId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/directoryRoles/directoryRoleIdValue/members/directoryObjectIdValue/extra",
+			Input: "/directoryRoles/directoryRoleId/members/directoryObjectId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/dIrEcToRyRoLeS/dIrEcToRyRoLeIdVaLuE/mEmBeRs/dIrEcToRyObJeCtIdVaLuE",
+			Input: "/dIrEcToRyRoLeS/dIrEcToRyRoLeId/mEmBeRs/dIrEcToRyObJeCtId",
 			Expected: &DirectoryRoleIdMemberId{
-				DirectoryRoleId:   "dIrEcToRyRoLeIdVaLuE",
-				DirectoryObjectId: "dIrEcToRyObJeCtIdVaLuE",
+				DirectoryRoleId:   "dIrEcToRyRoLeId",
+				DirectoryObjectId: "dIrEcToRyObJeCtId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/dIrEcToRyRoLeS/dIrEcToRyRoLeIdVaLuE/mEmBeRs/dIrEcToRyObJeCtIdVaLuE/extra",
+			Input: "/dIrEcToRyRoLeS/dIrEcToRyRoLeId/mEmBeRs/dIrEcToRyObJeCtId/extra",
 			Error: true,
 		},
 	}

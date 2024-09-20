@@ -26,14 +26,15 @@ type ListAuthenticationEventListenersCompleteResult struct {
 }
 
 type ListAuthenticationEventListenersOperationOptions struct {
-	Count   *bool
-	Expand  *odata.Expand
-	Filter  *string
-	OrderBy *odata.OrderBy
-	Search  *string
-	Select  *[]string
-	Skip    *int64
-	Top     *int64
+	Count    *bool
+	Expand   *odata.Expand
+	Filter   *string
+	Metadata *odata.Metadata
+	OrderBy  *odata.OrderBy
+	Search   *string
+	Select   *[]string
+	Skip     *int64
+	Top      *int64
 }
 
 func DefaultListAuthenticationEventListenersOperationOptions() ListAuthenticationEventListenersOperationOptions {
@@ -56,6 +57,9 @@ func (o ListAuthenticationEventListenersOperationOptions) ToOData() *odata.Query
 	}
 	if o.Filter != nil {
 		out.Filter = *o.Filter
+	}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
 	}
 	if o.OrderBy != nil {
 		out.OrderBy = *o.OrderBy
@@ -94,7 +98,7 @@ func (p *ListAuthenticationEventListenersCustomPager) NextPageLink() *odata.Link
 }
 
 // ListAuthenticationEventListeners - List authenticationEventListeners. Get a list of the authenticationEventListener
-// objects and their properties. The following derived types are supported:
+// objects and their properties. The following derived types are supported
 func (c AuthenticationEventListenerClient) ListAuthenticationEventListeners(ctx context.Context, options ListAuthenticationEventListenersOperationOptions) (result ListAuthenticationEventListenersOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",

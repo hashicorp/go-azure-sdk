@@ -17,15 +17,44 @@ type UpdateExtensionPropertyOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateExtensionPropertyOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateExtensionPropertyOperationOptions() UpdateExtensionPropertyOperationOptions {
+	return UpdateExtensionPropertyOperationOptions{}
+}
+
+func (o UpdateExtensionPropertyOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateExtensionPropertyOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateExtensionPropertyOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateExtensionProperty - Update the navigation property extensionProperties in applications
-func (c ExtensionPropertyClient) UpdateExtensionProperty(ctx context.Context, id beta.ApplicationIdExtensionPropertyId, input beta.ExtensionProperty) (result UpdateExtensionPropertyOperationResponse, err error) {
+func (c ExtensionPropertyClient) UpdateExtensionProperty(ctx context.Context, id beta.ApplicationIdExtensionPropertyId, input beta.ExtensionProperty, options UpdateExtensionPropertyOperationOptions) (result UpdateExtensionPropertyOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

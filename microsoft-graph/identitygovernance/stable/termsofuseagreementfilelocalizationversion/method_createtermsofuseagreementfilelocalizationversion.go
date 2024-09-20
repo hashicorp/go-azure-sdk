@@ -19,15 +19,44 @@ type CreateTermsOfUseAgreementFileLocalizationVersionOperationResponse struct {
 	Model        *stable.AgreementFileVersion
 }
 
+type CreateTermsOfUseAgreementFileLocalizationVersionOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateTermsOfUseAgreementFileLocalizationVersionOperationOptions() CreateTermsOfUseAgreementFileLocalizationVersionOperationOptions {
+	return CreateTermsOfUseAgreementFileLocalizationVersionOperationOptions{}
+}
+
+func (o CreateTermsOfUseAgreementFileLocalizationVersionOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateTermsOfUseAgreementFileLocalizationVersionOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateTermsOfUseAgreementFileLocalizationVersionOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateTermsOfUseAgreementFileLocalizationVersion - Create new navigation property to versions for identityGovernance
-func (c TermsOfUseAgreementFileLocalizationVersionClient) CreateTermsOfUseAgreementFileLocalizationVersion(ctx context.Context, id stable.IdentityGovernanceTermsOfUseAgreementIdFileLocalizationId, input stable.AgreementFileVersion) (result CreateTermsOfUseAgreementFileLocalizationVersionOperationResponse, err error) {
+func (c TermsOfUseAgreementFileLocalizationVersionClient) CreateTermsOfUseAgreementFileLocalizationVersion(ctx context.Context, id stable.IdentityGovernanceTermsOfUseAgreementIdFileLocalizationId, input stable.AgreementFileVersion, options CreateTermsOfUseAgreementFileLocalizationVersionOperationOptions) (result CreateTermsOfUseAgreementFileLocalizationVersionOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/versions", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/versions", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

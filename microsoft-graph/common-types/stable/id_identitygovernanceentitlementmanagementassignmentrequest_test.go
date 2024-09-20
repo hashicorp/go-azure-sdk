@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &IdentityGovernanceEntitlementManagementAssignmentRequestId{}
 
 func TestNewIdentityGovernanceEntitlementManagementAssignmentRequestID(t *testing.T) {
-	id := NewIdentityGovernanceEntitlementManagementAssignmentRequestID("accessPackageAssignmentRequestIdValue")
+	id := NewIdentityGovernanceEntitlementManagementAssignmentRequestID("accessPackageAssignmentRequestId")
 
-	if id.AccessPackageAssignmentRequestId != "accessPackageAssignmentRequestIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'AccessPackageAssignmentRequestId'", id.AccessPackageAssignmentRequestId, "accessPackageAssignmentRequestIdValue")
+	if id.AccessPackageAssignmentRequestId != "accessPackageAssignmentRequestId" {
+		t.Fatalf("Expected %q but got %q for Segment 'AccessPackageAssignmentRequestId'", id.AccessPackageAssignmentRequestId, "accessPackageAssignmentRequestId")
 	}
 }
 
 func TestFormatIdentityGovernanceEntitlementManagementAssignmentRequestID(t *testing.T) {
-	actual := NewIdentityGovernanceEntitlementManagementAssignmentRequestID("accessPackageAssignmentRequestIdValue").ID()
-	expected := "/identityGovernance/entitlementManagement/assignmentRequests/accessPackageAssignmentRequestIdValue"
+	actual := NewIdentityGovernanceEntitlementManagementAssignmentRequestID("accessPackageAssignmentRequestId").ID()
+	expected := "/identityGovernance/entitlementManagement/assignmentRequests/accessPackageAssignmentRequestId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -55,14 +55,14 @@ func TestParseIdentityGovernanceEntitlementManagementAssignmentRequestID(t *test
 		},
 		{
 			// Valid URI
-			Input: "/identityGovernance/entitlementManagement/assignmentRequests/accessPackageAssignmentRequestIdValue",
+			Input: "/identityGovernance/entitlementManagement/assignmentRequests/accessPackageAssignmentRequestId",
 			Expected: &IdentityGovernanceEntitlementManagementAssignmentRequestId{
-				AccessPackageAssignmentRequestId: "accessPackageAssignmentRequestIdValue",
+				AccessPackageAssignmentRequestId: "accessPackageAssignmentRequestId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/identityGovernance/entitlementManagement/assignmentRequests/accessPackageAssignmentRequestIdValue/extra",
+			Input: "/identityGovernance/entitlementManagement/assignmentRequests/accessPackageAssignmentRequestId/extra",
 			Error: true,
 		},
 	}
@@ -131,26 +131,26 @@ func TestParseIdentityGovernanceEntitlementManagementAssignmentRequestIDInsensit
 		},
 		{
 			// Valid URI
-			Input: "/identityGovernance/entitlementManagement/assignmentRequests/accessPackageAssignmentRequestIdValue",
+			Input: "/identityGovernance/entitlementManagement/assignmentRequests/accessPackageAssignmentRequestId",
 			Expected: &IdentityGovernanceEntitlementManagementAssignmentRequestId{
-				AccessPackageAssignmentRequestId: "accessPackageAssignmentRequestIdValue",
+				AccessPackageAssignmentRequestId: "accessPackageAssignmentRequestId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/identityGovernance/entitlementManagement/assignmentRequests/accessPackageAssignmentRequestIdValue/extra",
+			Input: "/identityGovernance/entitlementManagement/assignmentRequests/accessPackageAssignmentRequestId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/iDeNtItYgOvErNaNcE/eNtItLeMeNtMaNaGeMeNt/aSsIgNmEnTrEqUeStS/aCcEsSpAcKaGeAsSiGnMeNtReQuEsTiDvAlUe",
+			Input: "/iDeNtItYgOvErNaNcE/eNtItLeMeNtMaNaGeMeNt/aSsIgNmEnTrEqUeStS/aCcEsSpAcKaGeAsSiGnMeNtReQuEsTiD",
 			Expected: &IdentityGovernanceEntitlementManagementAssignmentRequestId{
-				AccessPackageAssignmentRequestId: "aCcEsSpAcKaGeAsSiGnMeNtReQuEsTiDvAlUe",
+				AccessPackageAssignmentRequestId: "aCcEsSpAcKaGeAsSiGnMeNtReQuEsTiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/iDeNtItYgOvErNaNcE/eNtItLeMeNtMaNaGeMeNt/aSsIgNmEnTrEqUeStS/aCcEsSpAcKaGeAsSiGnMeNtReQuEsTiDvAlUe/extra",
+			Input: "/iDeNtItYgOvErNaNcE/eNtItLeMeNtMaNaGeMeNt/aSsIgNmEnTrEqUeStS/aCcEsSpAcKaGeAsSiGnMeNtReQuEsTiD/extra",
 			Error: true,
 		},
 	}

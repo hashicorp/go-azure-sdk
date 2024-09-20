@@ -19,7 +19,8 @@ type DeleteAuthenticationEventListenerOperationResponse struct {
 }
 
 type DeleteAuthenticationEventListenerOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteAuthenticationEventListenerOperationOptions() DeleteAuthenticationEventListenerOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteAuthenticationEventListenerOperationOptions) ToHeaders() *client.H
 
 func (o DeleteAuthenticationEventListenerOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

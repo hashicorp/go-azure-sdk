@@ -17,15 +17,44 @@ type UpdateDirectoryRoleAssignmentOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateDirectoryRoleAssignmentOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateDirectoryRoleAssignmentOperationOptions() UpdateDirectoryRoleAssignmentOperationOptions {
+	return UpdateDirectoryRoleAssignmentOperationOptions{}
+}
+
+func (o UpdateDirectoryRoleAssignmentOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateDirectoryRoleAssignmentOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateDirectoryRoleAssignmentOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateDirectoryRoleAssignment - Update the navigation property roleAssignments in roleManagement
-func (c DirectoryRoleAssignmentClient) UpdateDirectoryRoleAssignment(ctx context.Context, id stable.RoleManagementDirectoryRoleAssignmentId, input stable.UnifiedRoleAssignment) (result UpdateDirectoryRoleAssignmentOperationResponse, err error) {
+func (c DirectoryRoleAssignmentClient) UpdateDirectoryRoleAssignment(ctx context.Context, id stable.RoleManagementDirectoryRoleAssignmentId, input stable.UnifiedRoleAssignment, options UpdateDirectoryRoleAssignmentOperationOptions) (result UpdateDirectoryRoleAssignmentOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

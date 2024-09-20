@@ -20,16 +20,45 @@ type CreateEventAttachmentOperationResponse struct {
 	Model        stable.Attachment
 }
 
+type CreateEventAttachmentOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateEventAttachmentOperationOptions() CreateEventAttachmentOperationOptions {
+	return CreateEventAttachmentOperationOptions{}
+}
+
+func (o CreateEventAttachmentOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateEventAttachmentOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateEventAttachmentOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateEventAttachment - Add attachment. Use this API to create a new Attachment. An attachment can be one of the
 // following types: All these types of attachment resources are derived from the attachment resource.
-func (c EventAttachmentClient) CreateEventAttachment(ctx context.Context, id stable.MeEventId, input stable.Attachment) (result CreateEventAttachmentOperationResponse, err error) {
+func (c EventAttachmentClient) CreateEventAttachment(ctx context.Context, id stable.MeEventId, input stable.Attachment, options CreateEventAttachmentOperationOptions) (result CreateEventAttachmentOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/attachments", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/attachments", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

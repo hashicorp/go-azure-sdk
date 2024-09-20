@@ -18,15 +18,44 @@ type CreateElevationRequestOperationResponse struct {
 	Model        *beta.PrivilegeManagementElevationRequest
 }
 
+type CreateElevationRequestOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateElevationRequestOperationOptions() CreateElevationRequestOperationOptions {
+	return CreateElevationRequestOperationOptions{}
+}
+
+func (o CreateElevationRequestOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateElevationRequestOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateElevationRequestOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateElevationRequest - Create new navigation property to elevationRequests for deviceManagement
-func (c ElevationRequestClient) CreateElevationRequest(ctx context.Context, input beta.PrivilegeManagementElevationRequest) (result CreateElevationRequestOperationResponse, err error) {
+func (c ElevationRequestClient) CreateElevationRequest(ctx context.Context, input beta.PrivilegeManagementElevationRequest, options CreateElevationRequestOperationOptions) (result CreateElevationRequestOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/deviceManagement/elevationRequests",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/deviceManagement/elevationRequests",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &MeChatIdOperationId{}
 
 func TestNewMeChatIdOperationID(t *testing.T) {
-	id := NewMeChatIdOperationID("chatIdValue", "teamsAsyncOperationIdValue")
+	id := NewMeChatIdOperationID("chatId", "teamsAsyncOperationId")
 
-	if id.ChatId != "chatIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ChatId'", id.ChatId, "chatIdValue")
+	if id.ChatId != "chatId" {
+		t.Fatalf("Expected %q but got %q for Segment 'ChatId'", id.ChatId, "chatId")
 	}
 
-	if id.TeamsAsyncOperationId != "teamsAsyncOperationIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'TeamsAsyncOperationId'", id.TeamsAsyncOperationId, "teamsAsyncOperationIdValue")
+	if id.TeamsAsyncOperationId != "teamsAsyncOperationId" {
+		t.Fatalf("Expected %q but got %q for Segment 'TeamsAsyncOperationId'", id.TeamsAsyncOperationId, "teamsAsyncOperationId")
 	}
 }
 
 func TestFormatMeChatIdOperationID(t *testing.T) {
-	actual := NewMeChatIdOperationID("chatIdValue", "teamsAsyncOperationIdValue").ID()
-	expected := "/me/chats/chatIdValue/operations/teamsAsyncOperationIdValue"
+	actual := NewMeChatIdOperationID("chatId", "teamsAsyncOperationId").ID()
+	expected := "/me/chats/chatId/operations/teamsAsyncOperationId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -54,25 +54,25 @@ func TestParseMeChatIdOperationID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/me/chats/chatIdValue",
+			Input: "/me/chats/chatId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/me/chats/chatIdValue/operations",
+			Input: "/me/chats/chatId/operations",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/me/chats/chatIdValue/operations/teamsAsyncOperationIdValue",
+			Input: "/me/chats/chatId/operations/teamsAsyncOperationId",
 			Expected: &MeChatIdOperationId{
-				ChatId:                "chatIdValue",
-				TeamsAsyncOperationId: "teamsAsyncOperationIdValue",
+				ChatId:                "chatId",
+				TeamsAsyncOperationId: "teamsAsyncOperationId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/chats/chatIdValue/operations/teamsAsyncOperationIdValue/extra",
+			Input: "/me/chats/chatId/operations/teamsAsyncOperationId/extra",
 			Error: true,
 		},
 	}
@@ -135,48 +135,48 @@ func TestParseMeChatIdOperationIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/me/chats/chatIdValue",
+			Input: "/me/chats/chatId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/cHaTs/cHaTiDvAlUe",
+			Input: "/mE/cHaTs/cHaTiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/me/chats/chatIdValue/operations",
+			Input: "/me/chats/chatId/operations",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/cHaTs/cHaTiDvAlUe/oPeRaTiOnS",
+			Input: "/mE/cHaTs/cHaTiD/oPeRaTiOnS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/me/chats/chatIdValue/operations/teamsAsyncOperationIdValue",
+			Input: "/me/chats/chatId/operations/teamsAsyncOperationId",
 			Expected: &MeChatIdOperationId{
-				ChatId:                "chatIdValue",
-				TeamsAsyncOperationId: "teamsAsyncOperationIdValue",
+				ChatId:                "chatId",
+				TeamsAsyncOperationId: "teamsAsyncOperationId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/chats/chatIdValue/operations/teamsAsyncOperationIdValue/extra",
+			Input: "/me/chats/chatId/operations/teamsAsyncOperationId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/cHaTs/cHaTiDvAlUe/oPeRaTiOnS/tEaMsAsYnCoPeRaTiOnIdVaLuE",
+			Input: "/mE/cHaTs/cHaTiD/oPeRaTiOnS/tEaMsAsYnCoPeRaTiOnId",
 			Expected: &MeChatIdOperationId{
-				ChatId:                "cHaTiDvAlUe",
-				TeamsAsyncOperationId: "tEaMsAsYnCoPeRaTiOnIdVaLuE",
+				ChatId:                "cHaTiD",
+				TeamsAsyncOperationId: "tEaMsAsYnCoPeRaTiOnId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/mE/cHaTs/cHaTiDvAlUe/oPeRaTiOnS/tEaMsAsYnCoPeRaTiOnIdVaLuE/extra",
+			Input: "/mE/cHaTs/cHaTiD/oPeRaTiOnS/tEaMsAsYnCoPeRaTiOnId/extra",
 			Error: true,
 		},
 	}

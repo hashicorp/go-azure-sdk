@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/teamprimarychannelmessage` Documentation
 
-The `teamprimarychannelmessage` SDK allows for interaction with the Azure Resource Manager Service `groups` (API Version `beta`).
+The `teamprimarychannelmessage` SDK allows for interaction with Microsoft Graph `groups` (API Version `beta`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -15,7 +15,7 @@ import "github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/teamprimar
 ### Client Initialization
 
 ```go
-client := teamprimarychannelmessage.NewTeamPrimaryChannelMessageClientWithBaseURI("https://management.azure.com")
+client := teamprimarychannelmessage.NewTeamPrimaryChannelMessageClientWithBaseURI("https://graph.microsoft.com")
 client.Client.Authorizer = authorizer
 ```
 
@@ -24,14 +24,14 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := teamprimarychannelmessage.NewGroupID("groupIdValue")
+id := teamprimarychannelmessage.NewGroupID("groupId")
 
 payload := teamprimarychannelmessage.ChatMessage{
 	// ...
 }
 
 
-read, err := client.CreateTeamPrimaryChannelMessage(ctx, id, payload)
+read, err := client.CreateTeamPrimaryChannelMessage(ctx, id, payload, teamprimarychannelmessage.DefaultCreateTeamPrimaryChannelMessageOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -45,9 +45,9 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := teamprimarychannelmessage.NewGroupIdTeamPrimaryChannelMessageID("groupIdValue", "chatMessageIdValue")
+id := teamprimarychannelmessage.NewGroupIdTeamPrimaryChannelMessageID("groupId", "chatMessageId")
 
-read, err := client.CreateTeamPrimaryChannelMessageSoftDelete(ctx, id)
+read, err := client.CreateTeamPrimaryChannelMessageSoftDelete(ctx, id, teamprimarychannelmessage.DefaultCreateTeamPrimaryChannelMessageSoftDeleteOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -61,9 +61,9 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := teamprimarychannelmessage.NewGroupIdTeamPrimaryChannelMessageID("groupIdValue", "chatMessageIdValue")
+id := teamprimarychannelmessage.NewGroupIdTeamPrimaryChannelMessageID("groupId", "chatMessageId")
 
-read, err := client.CreateTeamPrimaryChannelMessageUndoSoftDelete(ctx, id)
+read, err := client.CreateTeamPrimaryChannelMessageUndoSoftDelete(ctx, id, teamprimarychannelmessage.DefaultCreateTeamPrimaryChannelMessageUndoSoftDeleteOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -77,7 +77,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := teamprimarychannelmessage.NewGroupIdTeamPrimaryChannelMessageID("groupIdValue", "chatMessageIdValue")
+id := teamprimarychannelmessage.NewGroupIdTeamPrimaryChannelMessageID("groupId", "chatMessageId")
 
 read, err := client.DeleteTeamPrimaryChannelMessage(ctx, id, teamprimarychannelmessage.DefaultDeleteTeamPrimaryChannelMessageOperationOptions())
 if err != nil {
@@ -93,7 +93,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := teamprimarychannelmessage.NewGroupIdTeamPrimaryChannelMessageID("groupIdValue", "chatMessageIdValue")
+id := teamprimarychannelmessage.NewGroupIdTeamPrimaryChannelMessageID("groupId", "chatMessageId")
 
 read, err := client.GetTeamPrimaryChannelMessage(ctx, id, teamprimarychannelmessage.DefaultGetTeamPrimaryChannelMessageOperationOptions())
 if err != nil {
@@ -109,7 +109,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := teamprimarychannelmessage.NewGroupID("groupIdValue")
+id := teamprimarychannelmessage.NewGroupID("groupId")
 
 read, err := client.GetTeamPrimaryChannelMessagesCount(ctx, id, teamprimarychannelmessage.DefaultGetTeamPrimaryChannelMessagesCountOperationOptions())
 if err != nil {
@@ -125,7 +125,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := teamprimarychannelmessage.NewGroupID("groupIdValue")
+id := teamprimarychannelmessage.NewGroupID("groupId")
 
 // alternatively `client.ListTeamPrimaryChannelMessages(ctx, id, teamprimarychannelmessage.DefaultListTeamPrimaryChannelMessagesOperationOptions())` can be used to do batched pagination
 items, err := client.ListTeamPrimaryChannelMessagesComplete(ctx, id, teamprimarychannelmessage.DefaultListTeamPrimaryChannelMessagesOperationOptions())
@@ -142,14 +142,14 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := teamprimarychannelmessage.NewGroupIdTeamPrimaryChannelMessageID("groupIdValue", "chatMessageIdValue")
+id := teamprimarychannelmessage.NewGroupIdTeamPrimaryChannelMessageID("groupId", "chatMessageId")
 
 payload := teamprimarychannelmessage.SetTeamPrimaryChannelMessageReactionRequest{
 	// ...
 }
 
 
-read, err := client.SetTeamPrimaryChannelMessageReaction(ctx, id, payload)
+read, err := client.SetTeamPrimaryChannelMessageReaction(ctx, id, payload, teamprimarychannelmessage.DefaultSetTeamPrimaryChannelMessageReactionOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -163,14 +163,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := teamprimarychannelmessage.NewGroupIdTeamPrimaryChannelMessageID("groupIdValue", "chatMessageIdValue")
+id := teamprimarychannelmessage.NewGroupIdTeamPrimaryChannelMessageID("groupId", "chatMessageId")
 
 payload := teamprimarychannelmessage.UnsetTeamPrimaryChannelMessageReactionRequest{
 	// ...
 }
 
 
-read, err := client.UnsetTeamPrimaryChannelMessageReaction(ctx, id, payload)
+read, err := client.UnsetTeamPrimaryChannelMessageReaction(ctx, id, payload, teamprimarychannelmessage.DefaultUnsetTeamPrimaryChannelMessageReactionOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -184,14 +184,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := teamprimarychannelmessage.NewGroupIdTeamPrimaryChannelMessageID("groupIdValue", "chatMessageIdValue")
+id := teamprimarychannelmessage.NewGroupIdTeamPrimaryChannelMessageID("groupId", "chatMessageId")
 
 payload := teamprimarychannelmessage.ChatMessage{
 	// ...
 }
 
 
-read, err := client.UpdateTeamPrimaryChannelMessage(ctx, id, payload)
+read, err := client.UpdateTeamPrimaryChannelMessage(ctx, id, payload, teamprimarychannelmessage.DefaultUpdateTeamPrimaryChannelMessageOperationOptions())
 if err != nil {
 	// handle the error
 }

@@ -75,10 +75,27 @@ func (s SensitivityLabel) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &SensitivityLabel{}
 
 func (s *SensitivityLabel) UnmarshalJSON(bytes []byte) error {
-	type alias SensitivityLabel
-	var decoded alias
+
+	var decoded struct {
+		ApplicableTo                *SensitivityLabelTarget `json:"applicableTo,omitempty"`
+		ApplicationMode             *ApplicationMode        `json:"applicationMode,omitempty"`
+		AssignedPolicies            *[]LabelPolicy          `json:"assignedPolicies,omitempty"`
+		AutoLabeling                *AutoLabeling           `json:"autoLabeling,omitempty"`
+		Description                 nullable.Type[string]   `json:"description,omitempty"`
+		DisplayName                 nullable.Type[string]   `json:"displayName,omitempty"`
+		IsDefault                   nullable.Type[bool]     `json:"isDefault,omitempty"`
+		IsEndpointProtectionEnabled nullable.Type[bool]     `json:"isEndpointProtectionEnabled,omitempty"`
+		LabelActions                *[]LabelActionBase      `json:"labelActions,omitempty"`
+		Name                        nullable.Type[string]   `json:"name,omitempty"`
+		Priority                    nullable.Type[int64]    `json:"priority,omitempty"`
+		Sublabels                   *[]SensitivityLabel     `json:"sublabels,omitempty"`
+		ToolTip                     nullable.Type[string]   `json:"toolTip,omitempty"`
+		Id                          *string                 `json:"id,omitempty"`
+		ODataId                     *string                 `json:"@odata.id,omitempty"`
+		ODataType                   *string                 `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into SensitivityLabel: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.ApplicableTo = decoded.ApplicableTo
@@ -87,15 +104,15 @@ func (s *SensitivityLabel) UnmarshalJSON(bytes []byte) error {
 	s.AutoLabeling = decoded.AutoLabeling
 	s.Description = decoded.Description
 	s.DisplayName = decoded.DisplayName
-	s.Id = decoded.Id
 	s.IsDefault = decoded.IsDefault
 	s.IsEndpointProtectionEnabled = decoded.IsEndpointProtectionEnabled
 	s.Name = decoded.Name
-	s.ODataId = decoded.ODataId
-	s.ODataType = decoded.ODataType
 	s.Priority = decoded.Priority
 	s.Sublabels = decoded.Sublabels
 	s.ToolTip = decoded.ToolTip
+	s.Id = decoded.Id
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -118,5 +135,6 @@ func (s *SensitivityLabel) UnmarshalJSON(bytes []byte) error {
 		}
 		s.LabelActions = &output
 	}
+
 	return nil
 }

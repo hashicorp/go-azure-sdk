@@ -18,15 +18,44 @@ type RestoreSiteListItemDocumentSetVersionOperationResponse struct {
 	OData        *odata.OData
 }
 
+type RestoreSiteListItemDocumentSetVersionOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultRestoreSiteListItemDocumentSetVersionOperationOptions() RestoreSiteListItemDocumentSetVersionOperationOptions {
+	return RestoreSiteListItemDocumentSetVersionOperationOptions{}
+}
+
+func (o RestoreSiteListItemDocumentSetVersionOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o RestoreSiteListItemDocumentSetVersionOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o RestoreSiteListItemDocumentSetVersionOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // RestoreSiteListItemDocumentSetVersion - Invoke action restore. Restore a document set version.
-func (c SiteListItemDocumentSetVersionClient) RestoreSiteListItemDocumentSetVersion(ctx context.Context, id stable.GroupIdSiteIdListIdItemIdDocumentSetVersionId) (result RestoreSiteListItemDocumentSetVersionOperationResponse, err error) {
+func (c SiteListItemDocumentSetVersionClient) RestoreSiteListItemDocumentSetVersion(ctx context.Context, id stable.GroupIdSiteIdListIdItemIdDocumentSetVersionId, options RestoreSiteListItemDocumentSetVersionOperationOptions) (result RestoreSiteListItemDocumentSetVersionOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/restore", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/restore", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

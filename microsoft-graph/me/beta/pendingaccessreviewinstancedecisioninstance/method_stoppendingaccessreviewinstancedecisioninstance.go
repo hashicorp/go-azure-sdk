@@ -18,19 +18,48 @@ type StopPendingAccessReviewInstanceDecisionInstanceOperationResponse struct {
 	OData        *odata.OData
 }
 
+type StopPendingAccessReviewInstanceDecisionInstanceOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultStopPendingAccessReviewInstanceDecisionInstanceOperationOptions() StopPendingAccessReviewInstanceDecisionInstanceOperationOptions {
+	return StopPendingAccessReviewInstanceDecisionInstanceOperationOptions{}
+}
+
+func (o StopPendingAccessReviewInstanceDecisionInstanceOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o StopPendingAccessReviewInstanceDecisionInstanceOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o StopPendingAccessReviewInstanceDecisionInstanceOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // StopPendingAccessReviewInstanceDecisionInstance - Invoke action stop. Stop a currently active accessReviewInstance.
 // After the access review instance stops, the instance status will be Completed, the reviewers can no longer give
 // input, and the access review decisions can be applied. Stopping an instance will not effect future instances. To
 // prevent a recurring access review from starting future instances, update the schedule definition to change its
 // scheduled end date.
-func (c PendingAccessReviewInstanceDecisionInstanceClient) StopPendingAccessReviewInstanceDecisionInstance(ctx context.Context, id beta.MePendingAccessReviewInstanceIdDecisionId) (result StopPendingAccessReviewInstanceDecisionInstanceOperationResponse, err error) {
+func (c PendingAccessReviewInstanceDecisionInstanceClient) StopPendingAccessReviewInstanceDecisionInstance(ctx context.Context, id beta.MePendingAccessReviewInstanceIdDecisionId, options StopPendingAccessReviewInstanceDecisionInstanceOperationOptions) (result StopPendingAccessReviewInstanceDecisionInstanceOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/instance/stop", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/instance/stop", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

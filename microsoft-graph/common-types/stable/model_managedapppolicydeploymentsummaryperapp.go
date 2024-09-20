@@ -25,10 +25,14 @@ type ManagedAppPolicyDeploymentSummaryPerApp struct {
 var _ json.Unmarshaler = &ManagedAppPolicyDeploymentSummaryPerApp{}
 
 func (s *ManagedAppPolicyDeploymentSummaryPerApp) UnmarshalJSON(bytes []byte) error {
-	type alias ManagedAppPolicyDeploymentSummaryPerApp
-	var decoded alias
+
+	var decoded struct {
+		ConfigurationAppliedUserCount *int64  `json:"configurationAppliedUserCount,omitempty"`
+		ODataId                       *string `json:"@odata.id,omitempty"`
+		ODataType                     *string `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into ManagedAppPolicyDeploymentSummaryPerApp: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.ConfigurationAppliedUserCount = decoded.ConfigurationAppliedUserCount
@@ -47,5 +51,6 @@ func (s *ManagedAppPolicyDeploymentSummaryPerApp) UnmarshalJSON(bytes []byte) er
 		}
 		s.MobileAppIdentifier = impl
 	}
+
 	return nil
 }

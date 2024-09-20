@@ -20,15 +20,44 @@ type CreateMailFolderMessageAttachmentOperationResponse struct {
 	Model        stable.Attachment
 }
 
+type CreateMailFolderMessageAttachmentOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateMailFolderMessageAttachmentOperationOptions() CreateMailFolderMessageAttachmentOperationOptions {
+	return CreateMailFolderMessageAttachmentOperationOptions{}
+}
+
+func (o CreateMailFolderMessageAttachmentOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateMailFolderMessageAttachmentOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateMailFolderMessageAttachmentOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateMailFolderMessageAttachment - Create new navigation property to attachments for me
-func (c MailFolderMessageAttachmentClient) CreateMailFolderMessageAttachment(ctx context.Context, id stable.MeMailFolderIdMessageId, input stable.Attachment) (result CreateMailFolderMessageAttachmentOperationResponse, err error) {
+func (c MailFolderMessageAttachmentClient) CreateMailFolderMessageAttachment(ctx context.Context, id stable.MeMailFolderIdMessageId, input stable.Attachment, options CreateMailFolderMessageAttachmentOperationOptions) (result CreateMailFolderMessageAttachmentOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/attachments", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/attachments", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

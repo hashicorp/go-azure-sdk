@@ -19,7 +19,8 @@ type DeleteInformationProtectionDataLossPreventionPolicyOperationResponse struct
 }
 
 type DeleteInformationProtectionDataLossPreventionPolicyOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteInformationProtectionDataLossPreventionPolicyOperationOptions() DeleteInformationProtectionDataLossPreventionPolicyOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteInformationProtectionDataLossPreventionPolicyOperationOptions) ToH
 
 func (o DeleteInformationProtectionDataLossPreventionPolicyOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

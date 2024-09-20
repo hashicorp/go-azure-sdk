@@ -99,23 +99,35 @@ func (s MembershipOutlierInsight) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &MembershipOutlierInsight{}
 
 func (s *MembershipOutlierInsight) UnmarshalJSON(bytes []byte) error {
-	type alias MembershipOutlierInsight
-	var decoded alias
+
+	var decoded struct {
+		ContainerId            *string               `json:"containerId,omitempty"`
+		Container_ODataBind    *string               `json:"container@odata.bind,omitempty"`
+		LastModifiedBy         *User                 `json:"lastModifiedBy,omitempty"`
+		MemberId               *string               `json:"memberId,omitempty"`
+		Member_ODataBind       *string               `json:"member@odata.bind,omitempty"`
+		OutlierContainerType   *OutlierContainerType `json:"outlierContainerType,omitempty"`
+		OutlierMemberType      *OutlierMemberType    `json:"outlierMemberType,omitempty"`
+		InsightCreatedDateTime nullable.Type[string] `json:"insightCreatedDateTime,omitempty"`
+		Id                     *string               `json:"id,omitempty"`
+		ODataId                *string               `json:"@odata.id,omitempty"`
+		ODataType              *string               `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into MembershipOutlierInsight: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.ContainerId = decoded.ContainerId
 	s.Container_ODataBind = decoded.Container_ODataBind
-	s.Id = decoded.Id
-	s.InsightCreatedDateTime = decoded.InsightCreatedDateTime
 	s.LastModifiedBy = decoded.LastModifiedBy
 	s.MemberId = decoded.MemberId
 	s.Member_ODataBind = decoded.Member_ODataBind
-	s.ODataId = decoded.ODataId
-	s.ODataType = decoded.ODataType
 	s.OutlierContainerType = decoded.OutlierContainerType
 	s.OutlierMemberType = decoded.OutlierMemberType
+	s.Id = decoded.Id
+	s.InsightCreatedDateTime = decoded.InsightCreatedDateTime
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -137,5 +149,6 @@ func (s *MembershipOutlierInsight) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Member = &impl
 	}
+
 	return nil
 }

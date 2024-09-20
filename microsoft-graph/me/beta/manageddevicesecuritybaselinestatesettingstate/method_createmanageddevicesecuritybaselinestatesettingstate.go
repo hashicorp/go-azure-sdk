@@ -19,15 +19,44 @@ type CreateManagedDeviceSecurityBaselineStateSettingStateOperationResponse struc
 	Model        *beta.SecurityBaselineSettingState
 }
 
+type CreateManagedDeviceSecurityBaselineStateSettingStateOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateManagedDeviceSecurityBaselineStateSettingStateOperationOptions() CreateManagedDeviceSecurityBaselineStateSettingStateOperationOptions {
+	return CreateManagedDeviceSecurityBaselineStateSettingStateOperationOptions{}
+}
+
+func (o CreateManagedDeviceSecurityBaselineStateSettingStateOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateManagedDeviceSecurityBaselineStateSettingStateOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateManagedDeviceSecurityBaselineStateSettingStateOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateManagedDeviceSecurityBaselineStateSettingState - Create new navigation property to settingStates for me
-func (c ManagedDeviceSecurityBaselineStateSettingStateClient) CreateManagedDeviceSecurityBaselineStateSettingState(ctx context.Context, id beta.MeManagedDeviceIdSecurityBaselineStateId, input beta.SecurityBaselineSettingState) (result CreateManagedDeviceSecurityBaselineStateSettingStateOperationResponse, err error) {
+func (c ManagedDeviceSecurityBaselineStateSettingStateClient) CreateManagedDeviceSecurityBaselineStateSettingState(ctx context.Context, id beta.MeManagedDeviceIdSecurityBaselineStateId, input beta.SecurityBaselineSettingState, options CreateManagedDeviceSecurityBaselineStateSettingStateOperationOptions) (result CreateManagedDeviceSecurityBaselineStateSettingStateOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/settingStates", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/settingStates", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -105,18 +105,25 @@ func (s BaseAuthorizationSystemResourceImpl) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &BaseAuthorizationSystemResourceImpl{}
 
 func (s *BaseAuthorizationSystemResourceImpl) UnmarshalJSON(bytes []byte) error {
-	type alias BaseAuthorizationSystemResourceImpl
-	var decoded alias
+
+	var decoded struct {
+		DisplayName  nullable.Type[string] `json:"displayName,omitempty"`
+		ExternalId   *string               `json:"externalId,omitempty"`
+		ResourceType nullable.Type[string] `json:"resourceType,omitempty"`
+		Id           *string               `json:"id,omitempty"`
+		ODataId      *string               `json:"@odata.id,omitempty"`
+		ODataType    *string               `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into BaseAuthorizationSystemResourceImpl: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.DisplayName = decoded.DisplayName
 	s.ExternalId = decoded.ExternalId
+	s.ResourceType = decoded.ResourceType
 	s.Id = decoded.Id
 	s.ODataId = decoded.ODataId
 	s.ODataType = decoded.ODataType
-	s.ResourceType = decoded.ResourceType
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -130,6 +137,7 @@ func (s *BaseAuthorizationSystemResourceImpl) UnmarshalJSON(bytes []byte) error 
 		}
 		s.AuthorizationSystem = &impl
 	}
+
 	return nil
 }
 
@@ -143,9 +151,9 @@ func UnmarshalAuthorizationSystemResourceImplementation(input []byte) (Authoriza
 		return nil, fmt.Errorf("unmarshaling AuthorizationSystemResource into map[string]interface: %+v", err)
 	}
 
-	value, ok := temp["@odata.type"].(string)
-	if !ok {
-		return nil, nil
+	var value string
+	if v, ok := temp["@odata.type"]; ok {
+		value = fmt.Sprintf("%v", v)
 	}
 
 	if strings.EqualFold(value, "#microsoft.graph.awsAuthorizationSystemResource") {

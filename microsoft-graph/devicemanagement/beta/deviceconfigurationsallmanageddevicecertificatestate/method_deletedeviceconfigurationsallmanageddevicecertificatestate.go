@@ -19,7 +19,8 @@ type DeleteDeviceConfigurationsAllManagedDeviceCertificateStateOperationResponse
 }
 
 type DeleteDeviceConfigurationsAllManagedDeviceCertificateStateOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteDeviceConfigurationsAllManagedDeviceCertificateStateOperationOptions() DeleteDeviceConfigurationsAllManagedDeviceCertificateStateOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteDeviceConfigurationsAllManagedDeviceCertificateStateOperationOptio
 
 func (o DeleteDeviceConfigurationsAllManagedDeviceCertificateStateOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

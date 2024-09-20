@@ -57,10 +57,17 @@ func (s IndustryDataIndustryDataRunStatistics) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &IndustryDataIndustryDataRunStatistics{}
 
 func (s *IndustryDataIndustryDataRunStatistics) UnmarshalJSON(bytes []byte) error {
-	type alias IndustryDataIndustryDataRunStatistics
-	var decoded alias
+
+	var decoded struct {
+		ActivityStatistics *[]IndustryDataIndustryDataActivityStatistics `json:"activityStatistics,omitempty"`
+		InboundTotals      *IndustryDataAggregatedInboundStatistics      `json:"inboundTotals,omitempty"`
+		ODataId            *string                                       `json:"@odata.id,omitempty"`
+		ODataType          *string                                       `json:"@odata.type,omitempty"`
+		RunId              *string                                       `json:"runId,omitempty"`
+		Status             *IndustryDataIndustryDataRunStatus            `json:"status,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into IndustryDataIndustryDataRunStatistics: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.InboundTotals = decoded.InboundTotals
@@ -90,5 +97,6 @@ func (s *IndustryDataIndustryDataRunStatistics) UnmarshalJSON(bytes []byte) erro
 		}
 		s.ActivityStatistics = &output
 	}
+
 	return nil
 }

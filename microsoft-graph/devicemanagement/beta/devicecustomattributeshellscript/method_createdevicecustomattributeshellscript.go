@@ -18,16 +18,45 @@ type CreateDeviceCustomAttributeShellScriptOperationResponse struct {
 	Model        *beta.DeviceCustomAttributeShellScript
 }
 
+type CreateDeviceCustomAttributeShellScriptOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateDeviceCustomAttributeShellScriptOperationOptions() CreateDeviceCustomAttributeShellScriptOperationOptions {
+	return CreateDeviceCustomAttributeShellScriptOperationOptions{}
+}
+
+func (o CreateDeviceCustomAttributeShellScriptOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateDeviceCustomAttributeShellScriptOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateDeviceCustomAttributeShellScriptOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateDeviceCustomAttributeShellScript - Create new navigation property to deviceCustomAttributeShellScripts for
 // deviceManagement
-func (c DeviceCustomAttributeShellScriptClient) CreateDeviceCustomAttributeShellScript(ctx context.Context, input beta.DeviceCustomAttributeShellScript) (result CreateDeviceCustomAttributeShellScriptOperationResponse, err error) {
+func (c DeviceCustomAttributeShellScriptClient) CreateDeviceCustomAttributeShellScript(ctx context.Context, input beta.DeviceCustomAttributeShellScript, options CreateDeviceCustomAttributeShellScriptOperationOptions) (result CreateDeviceCustomAttributeShellScriptOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/deviceManagement/deviceCustomAttributeShellScripts",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/deviceManagement/deviceCustomAttributeShellScripts",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

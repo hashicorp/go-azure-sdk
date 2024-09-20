@@ -17,15 +17,44 @@ type UpdateTemplateOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateTemplateOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateTemplateOperationOptions() UpdateTemplateOperationOptions {
+	return UpdateTemplateOperationOptions{}
+}
+
+func (o UpdateTemplateOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateTemplateOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateTemplateOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateTemplate - Update the navigation property templates in deviceManagement
-func (c TemplateClient) UpdateTemplate(ctx context.Context, id beta.DeviceManagementTemplateId, input beta.DeviceManagementTemplate) (result UpdateTemplateOperationResponse, err error) {
+func (c TemplateClient) UpdateTemplate(ctx context.Context, id beta.DeviceManagementTemplateId, input beta.DeviceManagementTemplate, options UpdateTemplateOperationOptions) (result UpdateTemplateOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

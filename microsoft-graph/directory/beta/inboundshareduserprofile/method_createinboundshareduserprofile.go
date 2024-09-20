@@ -18,15 +18,44 @@ type CreateInboundSharedUserProfileOperationResponse struct {
 	Model        *beta.InboundSharedUserProfile
 }
 
+type CreateInboundSharedUserProfileOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateInboundSharedUserProfileOperationOptions() CreateInboundSharedUserProfileOperationOptions {
+	return CreateInboundSharedUserProfileOperationOptions{}
+}
+
+func (o CreateInboundSharedUserProfileOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateInboundSharedUserProfileOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateInboundSharedUserProfileOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateInboundSharedUserProfile - Create new navigation property to inboundSharedUserProfiles for directory
-func (c InboundSharedUserProfileClient) CreateInboundSharedUserProfile(ctx context.Context, input beta.InboundSharedUserProfile) (result CreateInboundSharedUserProfileOperationResponse, err error) {
+func (c InboundSharedUserProfileClient) CreateInboundSharedUserProfile(ctx context.Context, input beta.InboundSharedUserProfile, options CreateInboundSharedUserProfileOperationOptions) (result CreateInboundSharedUserProfileOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/directory/inboundSharedUserProfiles",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/directory/inboundSharedUserProfiles",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

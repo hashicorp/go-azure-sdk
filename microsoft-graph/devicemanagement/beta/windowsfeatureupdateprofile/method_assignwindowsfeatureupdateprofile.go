@@ -18,15 +18,44 @@ type AssignWindowsFeatureUpdateProfileOperationResponse struct {
 	OData        *odata.OData
 }
 
+type AssignWindowsFeatureUpdateProfileOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultAssignWindowsFeatureUpdateProfileOperationOptions() AssignWindowsFeatureUpdateProfileOperationOptions {
+	return AssignWindowsFeatureUpdateProfileOperationOptions{}
+}
+
+func (o AssignWindowsFeatureUpdateProfileOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o AssignWindowsFeatureUpdateProfileOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o AssignWindowsFeatureUpdateProfileOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // AssignWindowsFeatureUpdateProfile - Invoke action assign
-func (c WindowsFeatureUpdateProfileClient) AssignWindowsFeatureUpdateProfile(ctx context.Context, id beta.DeviceManagementWindowsFeatureUpdateProfileId, input AssignWindowsFeatureUpdateProfileRequest) (result AssignWindowsFeatureUpdateProfileOperationResponse, err error) {
+func (c WindowsFeatureUpdateProfileClient) AssignWindowsFeatureUpdateProfile(ctx context.Context, id beta.DeviceManagementWindowsFeatureUpdateProfileId, input AssignWindowsFeatureUpdateProfileRequest, options AssignWindowsFeatureUpdateProfileOperationOptions) (result AssignWindowsFeatureUpdateProfileOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/assign", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/assign", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

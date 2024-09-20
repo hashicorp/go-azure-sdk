@@ -17,15 +17,44 @@ type UpdateThreadOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateThreadOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateThreadOperationOptions() UpdateThreadOperationOptions {
+	return UpdateThreadOperationOptions{}
+}
+
+func (o UpdateThreadOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateThreadOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateThreadOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateThread - Update conversation thread. Update a thread object.
-func (c ThreadClient) UpdateThread(ctx context.Context, id beta.GroupIdThreadId, input beta.ConversationThread) (result UpdateThreadOperationResponse, err error) {
+func (c ThreadClient) UpdateThread(ctx context.Context, id beta.GroupIdThreadId, input beta.ConversationThread, options UpdateThreadOperationOptions) (result UpdateThreadOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

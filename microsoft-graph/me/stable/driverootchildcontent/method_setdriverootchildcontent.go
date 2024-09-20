@@ -18,16 +18,45 @@ type SetDriveRootChildContentOperationResponse struct {
 	OData        *odata.OData
 }
 
+type SetDriveRootChildContentOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultSetDriveRootChildContentOperationOptions() SetDriveRootChildContentOperationOptions {
+	return SetDriveRootChildContentOperationOptions{}
+}
+
+func (o SetDriveRootChildContentOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o SetDriveRootChildContentOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o SetDriveRootChildContentOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // SetDriveRootChildContent - Update content for the navigation property children in me. The content stream, if the item
 // represents a file.
-func (c DriveRootChildContentClient) SetDriveRootChildContent(ctx context.Context, id stable.MeDriveIdRootChildId, input []byte) (result SetDriveRootChildContentOperationResponse, err error) {
+func (c DriveRootChildContentClient) SetDriveRootChildContent(ctx context.Context, id stable.MeDriveIdRootChildId, input []byte, options SetDriveRootChildContentOperationOptions) (result SetDriveRootChildContentOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPut,
-		Path:       fmt.Sprintf("%s/content", id.ID()),
+		HttpMethod:    http.MethodPut,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/content", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

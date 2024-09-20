@@ -18,18 +18,47 @@ type CreateAccessReviewDefinitionInstanceDecisionInstanceStageDecisionRecordAllD
 	OData        *odata.OData
 }
 
+type CreateAccessReviewDefinitionInstanceDecisionInstanceStageDecisionRecordAllDecisionOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateAccessReviewDefinitionInstanceDecisionInstanceStageDecisionRecordAllDecisionOperationOptions() CreateAccessReviewDefinitionInstanceDecisionInstanceStageDecisionRecordAllDecisionOperationOptions {
+	return CreateAccessReviewDefinitionInstanceDecisionInstanceStageDecisionRecordAllDecisionOperationOptions{}
+}
+
+func (o CreateAccessReviewDefinitionInstanceDecisionInstanceStageDecisionRecordAllDecisionOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateAccessReviewDefinitionInstanceDecisionInstanceStageDecisionRecordAllDecisionOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateAccessReviewDefinitionInstanceDecisionInstanceStageDecisionRecordAllDecisionOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateAccessReviewDefinitionInstanceDecisionInstanceStageDecisionRecordAllDecision - Invoke action
 // recordAllDecisions. As a reviewer of an access review, record a decision for an accessReviewInstanceDecisionItem that
 // is assigned to you and that matches the principal or resource IDs specified. If no IDs are specified, the decisions
 // will apply to every accessReviewInstanceDecisionItem for which you are the reviewer.
-func (c AccessReviewDefinitionInstanceDecisionInstanceStageDecisionClient) CreateAccessReviewDefinitionInstanceDecisionInstanceStageDecisionRecordAllDecision(ctx context.Context, id beta.IdentityGovernanceAccessReviewDefinitionIdInstanceIdDecisionIdInstanceStageId, input CreateAccessReviewDefinitionInstanceDecisionInstanceStageDecisionRecordAllDecisionRequest) (result CreateAccessReviewDefinitionInstanceDecisionInstanceStageDecisionRecordAllDecisionOperationResponse, err error) {
+func (c AccessReviewDefinitionInstanceDecisionInstanceStageDecisionClient) CreateAccessReviewDefinitionInstanceDecisionInstanceStageDecisionRecordAllDecision(ctx context.Context, id beta.IdentityGovernanceAccessReviewDefinitionIdInstanceIdDecisionIdInstanceStageId, input CreateAccessReviewDefinitionInstanceDecisionInstanceStageDecisionRecordAllDecisionRequest, options CreateAccessReviewDefinitionInstanceDecisionInstanceStageDecisionRecordAllDecisionOperationOptions) (result CreateAccessReviewDefinitionInstanceDecisionInstanceStageDecisionRecordAllDecisionOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/decisions/recordAllDecisions", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/decisions/recordAllDecisions", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

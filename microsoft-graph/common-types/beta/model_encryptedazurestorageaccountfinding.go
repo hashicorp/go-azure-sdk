@@ -76,14 +76,20 @@ func (s EncryptedAzureStorageAccountFinding) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &EncryptedAzureStorageAccountFinding{}
 
 func (s *EncryptedAzureStorageAccountFinding) UnmarshalJSON(bytes []byte) error {
-	type alias EncryptedAzureStorageAccountFinding
-	var decoded alias
+
+	var decoded struct {
+		EncryptionManagedBy *AzureEncryption `json:"encryptionManagedBy,omitempty"`
+		CreatedDateTime     *string          `json:"createdDateTime,omitempty"`
+		Id                  *string          `json:"id,omitempty"`
+		ODataId             *string          `json:"@odata.id,omitempty"`
+		ODataType           *string          `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into EncryptedAzureStorageAccountFinding: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
-	s.CreatedDateTime = decoded.CreatedDateTime
 	s.EncryptionManagedBy = decoded.EncryptionManagedBy
+	s.CreatedDateTime = decoded.CreatedDateTime
 	s.Id = decoded.Id
 	s.ODataId = decoded.ODataId
 	s.ODataType = decoded.ODataType
@@ -100,5 +106,6 @@ func (s *EncryptedAzureStorageAccountFinding) UnmarshalJSON(bytes []byte) error 
 		}
 		s.StorageAccount = &impl
 	}
+
 	return nil
 }

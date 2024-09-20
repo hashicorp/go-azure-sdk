@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &DirectoryRoleId{}
 
 func TestNewDirectoryRoleID(t *testing.T) {
-	id := NewDirectoryRoleID("directoryRoleIdValue")
+	id := NewDirectoryRoleID("directoryRoleId")
 
-	if id.DirectoryRoleId != "directoryRoleIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DirectoryRoleId'", id.DirectoryRoleId, "directoryRoleIdValue")
+	if id.DirectoryRoleId != "directoryRoleId" {
+		t.Fatalf("Expected %q but got %q for Segment 'DirectoryRoleId'", id.DirectoryRoleId, "directoryRoleId")
 	}
 }
 
 func TestFormatDirectoryRoleID(t *testing.T) {
-	actual := NewDirectoryRoleID("directoryRoleIdValue").ID()
-	expected := "/directoryRoles/directoryRoleIdValue"
+	actual := NewDirectoryRoleID("directoryRoleId").ID()
+	expected := "/directoryRoles/directoryRoleId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -45,14 +45,14 @@ func TestParseDirectoryRoleID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/directoryRoles/directoryRoleIdValue",
+			Input: "/directoryRoles/directoryRoleId",
 			Expected: &DirectoryRoleId{
-				DirectoryRoleId: "directoryRoleIdValue",
+				DirectoryRoleId: "directoryRoleId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/directoryRoles/directoryRoleIdValue/extra",
+			Input: "/directoryRoles/directoryRoleId/extra",
 			Error: true,
 		},
 	}
@@ -101,26 +101,26 @@ func TestParseDirectoryRoleIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/directoryRoles/directoryRoleIdValue",
+			Input: "/directoryRoles/directoryRoleId",
 			Expected: &DirectoryRoleId{
-				DirectoryRoleId: "directoryRoleIdValue",
+				DirectoryRoleId: "directoryRoleId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/directoryRoles/directoryRoleIdValue/extra",
+			Input: "/directoryRoles/directoryRoleId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/dIrEcToRyRoLeS/dIrEcToRyRoLeIdVaLuE",
+			Input: "/dIrEcToRyRoLeS/dIrEcToRyRoLeId",
 			Expected: &DirectoryRoleId{
-				DirectoryRoleId: "dIrEcToRyRoLeIdVaLuE",
+				DirectoryRoleId: "dIrEcToRyRoLeId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/dIrEcToRyRoLeS/dIrEcToRyRoLeIdVaLuE/extra",
+			Input: "/dIrEcToRyRoLeS/dIrEcToRyRoLeId/extra",
 			Error: true,
 		},
 	}

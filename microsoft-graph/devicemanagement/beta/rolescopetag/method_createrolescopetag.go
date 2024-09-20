@@ -18,15 +18,44 @@ type CreateRoleScopeTagOperationResponse struct {
 	Model        *beta.RoleScopeTag
 }
 
+type CreateRoleScopeTagOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateRoleScopeTagOperationOptions() CreateRoleScopeTagOperationOptions {
+	return CreateRoleScopeTagOperationOptions{}
+}
+
+func (o CreateRoleScopeTagOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateRoleScopeTagOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateRoleScopeTagOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateRoleScopeTag - Create new navigation property to roleScopeTags for deviceManagement
-func (c RoleScopeTagClient) CreateRoleScopeTag(ctx context.Context, input beta.RoleScopeTag) (result CreateRoleScopeTagOperationResponse, err error) {
+func (c RoleScopeTagClient) CreateRoleScopeTag(ctx context.Context, input beta.RoleScopeTag, options CreateRoleScopeTagOperationOptions) (result CreateRoleScopeTagOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/deviceManagement/roleScopeTags",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/deviceManagement/roleScopeTags",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

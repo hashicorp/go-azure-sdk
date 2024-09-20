@@ -12,28 +12,28 @@ import (
 var _ resourceids.ResourceId = &UserIdOnlineMeetingIdAttendanceReportIdAttendanceRecordId{}
 
 func TestNewUserIdOnlineMeetingIdAttendanceReportIdAttendanceRecordID(t *testing.T) {
-	id := NewUserIdOnlineMeetingIdAttendanceReportIdAttendanceRecordID("userIdValue", "onlineMeetingIdValue", "meetingAttendanceReportIdValue", "attendanceRecordIdValue")
+	id := NewUserIdOnlineMeetingIdAttendanceReportIdAttendanceRecordID("userId", "onlineMeetingId", "meetingAttendanceReportId", "attendanceRecordId")
 
-	if id.UserId != "userIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'UserId'", id.UserId, "userIdValue")
+	if id.UserId != "userId" {
+		t.Fatalf("Expected %q but got %q for Segment 'UserId'", id.UserId, "userId")
 	}
 
-	if id.OnlineMeetingId != "onlineMeetingIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'OnlineMeetingId'", id.OnlineMeetingId, "onlineMeetingIdValue")
+	if id.OnlineMeetingId != "onlineMeetingId" {
+		t.Fatalf("Expected %q but got %q for Segment 'OnlineMeetingId'", id.OnlineMeetingId, "onlineMeetingId")
 	}
 
-	if id.MeetingAttendanceReportId != "meetingAttendanceReportIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'MeetingAttendanceReportId'", id.MeetingAttendanceReportId, "meetingAttendanceReportIdValue")
+	if id.MeetingAttendanceReportId != "meetingAttendanceReportId" {
+		t.Fatalf("Expected %q but got %q for Segment 'MeetingAttendanceReportId'", id.MeetingAttendanceReportId, "meetingAttendanceReportId")
 	}
 
-	if id.AttendanceRecordId != "attendanceRecordIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'AttendanceRecordId'", id.AttendanceRecordId, "attendanceRecordIdValue")
+	if id.AttendanceRecordId != "attendanceRecordId" {
+		t.Fatalf("Expected %q but got %q for Segment 'AttendanceRecordId'", id.AttendanceRecordId, "attendanceRecordId")
 	}
 }
 
 func TestFormatUserIdOnlineMeetingIdAttendanceReportIdAttendanceRecordID(t *testing.T) {
-	actual := NewUserIdOnlineMeetingIdAttendanceReportIdAttendanceRecordID("userIdValue", "onlineMeetingIdValue", "meetingAttendanceReportIdValue", "attendanceRecordIdValue").ID()
-	expected := "/users/userIdValue/onlineMeetings/onlineMeetingIdValue/attendanceReports/meetingAttendanceReportIdValue/attendanceRecords/attendanceRecordIdValue"
+	actual := NewUserIdOnlineMeetingIdAttendanceReportIdAttendanceRecordID("userId", "onlineMeetingId", "meetingAttendanceReportId", "attendanceRecordId").ID()
+	expected := "/users/userId/onlineMeetings/onlineMeetingId/attendanceReports/meetingAttendanceReportId/attendanceRecords/attendanceRecordId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -57,47 +57,47 @@ func TestParseUserIdOnlineMeetingIdAttendanceReportIdAttendanceRecordID(t *testi
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue",
+			Input: "/users/userId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/onlineMeetings",
+			Input: "/users/userId/onlineMeetings",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/onlineMeetings/onlineMeetingIdValue",
+			Input: "/users/userId/onlineMeetings/onlineMeetingId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/onlineMeetings/onlineMeetingIdValue/attendanceReports",
+			Input: "/users/userId/onlineMeetings/onlineMeetingId/attendanceReports",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/onlineMeetings/onlineMeetingIdValue/attendanceReports/meetingAttendanceReportIdValue",
+			Input: "/users/userId/onlineMeetings/onlineMeetingId/attendanceReports/meetingAttendanceReportId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/onlineMeetings/onlineMeetingIdValue/attendanceReports/meetingAttendanceReportIdValue/attendanceRecords",
+			Input: "/users/userId/onlineMeetings/onlineMeetingId/attendanceReports/meetingAttendanceReportId/attendanceRecords",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/users/userIdValue/onlineMeetings/onlineMeetingIdValue/attendanceReports/meetingAttendanceReportIdValue/attendanceRecords/attendanceRecordIdValue",
+			Input: "/users/userId/onlineMeetings/onlineMeetingId/attendanceReports/meetingAttendanceReportId/attendanceRecords/attendanceRecordId",
 			Expected: &UserIdOnlineMeetingIdAttendanceReportIdAttendanceRecordId{
-				UserId:                    "userIdValue",
-				OnlineMeetingId:           "onlineMeetingIdValue",
-				MeetingAttendanceReportId: "meetingAttendanceReportIdValue",
-				AttendanceRecordId:        "attendanceRecordIdValue",
+				UserId:                    "userId",
+				OnlineMeetingId:           "onlineMeetingId",
+				MeetingAttendanceReportId: "meetingAttendanceReportId",
+				AttendanceRecordId:        "attendanceRecordId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/users/userIdValue/onlineMeetings/onlineMeetingIdValue/attendanceReports/meetingAttendanceReportIdValue/attendanceRecords/attendanceRecordIdValue/extra",
+			Input: "/users/userId/onlineMeetings/onlineMeetingId/attendanceReports/meetingAttendanceReportId/attendanceRecords/attendanceRecordId/extra",
 			Error: true,
 		},
 	}
@@ -158,92 +158,92 @@ func TestParseUserIdOnlineMeetingIdAttendanceReportIdAttendanceRecordIDInsensiti
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue",
+			Input: "/users/userId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe",
+			Input: "/uSeRs/uSeRiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/onlineMeetings",
+			Input: "/users/userId/onlineMeetings",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/oNlInEmEeTiNgS",
+			Input: "/uSeRs/uSeRiD/oNlInEmEeTiNgS",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/onlineMeetings/onlineMeetingIdValue",
+			Input: "/users/userId/onlineMeetings/onlineMeetingId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/oNlInEmEeTiNgS/oNlInEmEeTiNgIdVaLuE",
+			Input: "/uSeRs/uSeRiD/oNlInEmEeTiNgS/oNlInEmEeTiNgId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/onlineMeetings/onlineMeetingIdValue/attendanceReports",
+			Input: "/users/userId/onlineMeetings/onlineMeetingId/attendanceReports",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/oNlInEmEeTiNgS/oNlInEmEeTiNgIdVaLuE/aTtEnDaNcErEpOrTs",
+			Input: "/uSeRs/uSeRiD/oNlInEmEeTiNgS/oNlInEmEeTiNgId/aTtEnDaNcErEpOrTs",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/onlineMeetings/onlineMeetingIdValue/attendanceReports/meetingAttendanceReportIdValue",
+			Input: "/users/userId/onlineMeetings/onlineMeetingId/attendanceReports/meetingAttendanceReportId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/oNlInEmEeTiNgS/oNlInEmEeTiNgIdVaLuE/aTtEnDaNcErEpOrTs/mEeTiNgAtTeNdAnCeRePoRtIdVaLuE",
+			Input: "/uSeRs/uSeRiD/oNlInEmEeTiNgS/oNlInEmEeTiNgId/aTtEnDaNcErEpOrTs/mEeTiNgAtTeNdAnCeRePoRtId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/onlineMeetings/onlineMeetingIdValue/attendanceReports/meetingAttendanceReportIdValue/attendanceRecords",
+			Input: "/users/userId/onlineMeetings/onlineMeetingId/attendanceReports/meetingAttendanceReportId/attendanceRecords",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/oNlInEmEeTiNgS/oNlInEmEeTiNgIdVaLuE/aTtEnDaNcErEpOrTs/mEeTiNgAtTeNdAnCeRePoRtIdVaLuE/aTtEnDaNcErEcOrDs",
+			Input: "/uSeRs/uSeRiD/oNlInEmEeTiNgS/oNlInEmEeTiNgId/aTtEnDaNcErEpOrTs/mEeTiNgAtTeNdAnCeRePoRtId/aTtEnDaNcErEcOrDs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/users/userIdValue/onlineMeetings/onlineMeetingIdValue/attendanceReports/meetingAttendanceReportIdValue/attendanceRecords/attendanceRecordIdValue",
+			Input: "/users/userId/onlineMeetings/onlineMeetingId/attendanceReports/meetingAttendanceReportId/attendanceRecords/attendanceRecordId",
 			Expected: &UserIdOnlineMeetingIdAttendanceReportIdAttendanceRecordId{
-				UserId:                    "userIdValue",
-				OnlineMeetingId:           "onlineMeetingIdValue",
-				MeetingAttendanceReportId: "meetingAttendanceReportIdValue",
-				AttendanceRecordId:        "attendanceRecordIdValue",
+				UserId:                    "userId",
+				OnlineMeetingId:           "onlineMeetingId",
+				MeetingAttendanceReportId: "meetingAttendanceReportId",
+				AttendanceRecordId:        "attendanceRecordId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/users/userIdValue/onlineMeetings/onlineMeetingIdValue/attendanceReports/meetingAttendanceReportIdValue/attendanceRecords/attendanceRecordIdValue/extra",
+			Input: "/users/userId/onlineMeetings/onlineMeetingId/attendanceReports/meetingAttendanceReportId/attendanceRecords/attendanceRecordId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/oNlInEmEeTiNgS/oNlInEmEeTiNgIdVaLuE/aTtEnDaNcErEpOrTs/mEeTiNgAtTeNdAnCeRePoRtIdVaLuE/aTtEnDaNcErEcOrDs/aTtEnDaNcErEcOrDiDvAlUe",
+			Input: "/uSeRs/uSeRiD/oNlInEmEeTiNgS/oNlInEmEeTiNgId/aTtEnDaNcErEpOrTs/mEeTiNgAtTeNdAnCeRePoRtId/aTtEnDaNcErEcOrDs/aTtEnDaNcErEcOrDiD",
 			Expected: &UserIdOnlineMeetingIdAttendanceReportIdAttendanceRecordId{
-				UserId:                    "uSeRiDvAlUe",
-				OnlineMeetingId:           "oNlInEmEeTiNgIdVaLuE",
-				MeetingAttendanceReportId: "mEeTiNgAtTeNdAnCeRePoRtIdVaLuE",
-				AttendanceRecordId:        "aTtEnDaNcErEcOrDiDvAlUe",
+				UserId:                    "uSeRiD",
+				OnlineMeetingId:           "oNlInEmEeTiNgId",
+				MeetingAttendanceReportId: "mEeTiNgAtTeNdAnCeRePoRtId",
+				AttendanceRecordId:        "aTtEnDaNcErEcOrDiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/oNlInEmEeTiNgS/oNlInEmEeTiNgIdVaLuE/aTtEnDaNcErEpOrTs/mEeTiNgAtTeNdAnCeRePoRtIdVaLuE/aTtEnDaNcErEcOrDs/aTtEnDaNcErEcOrDiDvAlUe/extra",
+			Input: "/uSeRs/uSeRiD/oNlInEmEeTiNgS/oNlInEmEeTiNgId/aTtEnDaNcErEpOrTs/mEeTiNgAtTeNdAnCeRePoRtId/aTtEnDaNcErEcOrDs/aTtEnDaNcErEcOrDiD/extra",
 			Error: true,
 		},
 	}

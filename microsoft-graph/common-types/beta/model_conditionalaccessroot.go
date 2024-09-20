@@ -82,19 +82,29 @@ func (s ConditionalAccessRoot) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &ConditionalAccessRoot{}
 
 func (s *ConditionalAccessRoot) UnmarshalJSON(bytes []byte) error {
-	type alias ConditionalAccessRoot
-	var decoded alias
+
+	var decoded struct {
+		AuthenticationContextClassReferences *[]AuthenticationContextClassReference `json:"authenticationContextClassReferences,omitempty"`
+		AuthenticationStrength               *AuthenticationStrengthRoot            `json:"authenticationStrength,omitempty"`
+		AuthenticationStrengths              *AuthenticationStrengthRoot            `json:"authenticationStrengths,omitempty"`
+		NamedLocations                       *[]NamedLocation                       `json:"namedLocations,omitempty"`
+		Policies                             *[]ConditionalAccessPolicy             `json:"policies,omitempty"`
+		Templates                            *[]ConditionalAccessTemplate           `json:"templates,omitempty"`
+		Id                                   *string                                `json:"id,omitempty"`
+		ODataId                              *string                                `json:"@odata.id,omitempty"`
+		ODataType                            *string                                `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into ConditionalAccessRoot: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.AuthenticationContextClassReferences = decoded.AuthenticationContextClassReferences
 	s.AuthenticationStrength = decoded.AuthenticationStrength
 	s.AuthenticationStrengths = decoded.AuthenticationStrengths
+	s.Templates = decoded.Templates
 	s.Id = decoded.Id
 	s.ODataId = decoded.ODataId
 	s.ODataType = decoded.ODataType
-	s.Templates = decoded.Templates
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -134,5 +144,6 @@ func (s *ConditionalAccessRoot) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Policies = &output
 	}
+
 	return nil
 }

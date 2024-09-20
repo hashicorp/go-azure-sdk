@@ -229,15 +229,56 @@ func (s WindowsMobileMSI) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &WindowsMobileMSI{}
 
 func (s *WindowsMobileMSI) UnmarshalJSON(bytes []byte) error {
-	type alias WindowsMobileMSI
-	var decoded alias
+
+	var decoded struct {
+		CommandLine             nullable.Type[string]     `json:"commandLine,omitempty"`
+		IdentityVersion         nullable.Type[string]     `json:"identityVersion,omitempty"`
+		IgnoreVersionDetection  *bool                     `json:"ignoreVersionDetection,omitempty"`
+		ProductCode             nullable.Type[string]     `json:"productCode,omitempty"`
+		ProductVersion          nullable.Type[string]     `json:"productVersion,omitempty"`
+		UseDeviceContext        nullable.Type[bool]       `json:"useDeviceContext,omitempty"`
+		CommittedContentVersion nullable.Type[string]     `json:"committedContentVersion,omitempty"`
+		ContentVersions         *[]MobileAppContent       `json:"contentVersions,omitempty"`
+		FileName                nullable.Type[string]     `json:"fileName,omitempty"`
+		Size                    *int64                    `json:"size,omitempty"`
+		Assignments             *[]MobileAppAssignment    `json:"assignments,omitempty"`
+		Categories              *[]MobileAppCategory      `json:"categories,omitempty"`
+		CreatedDateTime         *string                   `json:"createdDateTime,omitempty"`
+		DependentAppCount       *int64                    `json:"dependentAppCount,omitempty"`
+		Description             nullable.Type[string]     `json:"description,omitempty"`
+		Developer               nullable.Type[string]     `json:"developer,omitempty"`
+		DisplayName             nullable.Type[string]     `json:"displayName,omitempty"`
+		InformationUrl          nullable.Type[string]     `json:"informationUrl,omitempty"`
+		IsAssigned              *bool                     `json:"isAssigned,omitempty"`
+		IsFeatured              *bool                     `json:"isFeatured,omitempty"`
+		LargeIcon               *MimeContent              `json:"largeIcon,omitempty"`
+		LastModifiedDateTime    *string                   `json:"lastModifiedDateTime,omitempty"`
+		Notes                   nullable.Type[string]     `json:"notes,omitempty"`
+		Owner                   nullable.Type[string]     `json:"owner,omitempty"`
+		PrivacyInformationUrl   nullable.Type[string]     `json:"privacyInformationUrl,omitempty"`
+		Publisher               nullable.Type[string]     `json:"publisher,omitempty"`
+		PublishingState         *MobileAppPublishingState `json:"publishingState,omitempty"`
+		Relationships           *[]MobileAppRelationship  `json:"relationships,omitempty"`
+		RoleScopeTagIds         *[]string                 `json:"roleScopeTagIds,omitempty"`
+		SupersededAppCount      *int64                    `json:"supersededAppCount,omitempty"`
+		SupersedingAppCount     *int64                    `json:"supersedingAppCount,omitempty"`
+		UploadState             *int64                    `json:"uploadState,omitempty"`
+		Id                      *string                   `json:"id,omitempty"`
+		ODataId                 *string                   `json:"@odata.id,omitempty"`
+		ODataType               *string                   `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into WindowsMobileMSI: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
+	s.CommandLine = decoded.CommandLine
+	s.IdentityVersion = decoded.IdentityVersion
+	s.IgnoreVersionDetection = decoded.IgnoreVersionDetection
+	s.ProductCode = decoded.ProductCode
+	s.ProductVersion = decoded.ProductVersion
+	s.UseDeviceContext = decoded.UseDeviceContext
 	s.Assignments = decoded.Assignments
 	s.Categories = decoded.Categories
-	s.CommandLine = decoded.CommandLine
 	s.CommittedContentVersion = decoded.CommittedContentVersion
 	s.ContentVersions = decoded.ContentVersions
 	s.CreatedDateTime = decoded.CreatedDateTime
@@ -247,8 +288,6 @@ func (s *WindowsMobileMSI) UnmarshalJSON(bytes []byte) error {
 	s.DisplayName = decoded.DisplayName
 	s.FileName = decoded.FileName
 	s.Id = decoded.Id
-	s.IdentityVersion = decoded.IdentityVersion
-	s.IgnoreVersionDetection = decoded.IgnoreVersionDetection
 	s.InformationUrl = decoded.InformationUrl
 	s.IsAssigned = decoded.IsAssigned
 	s.IsFeatured = decoded.IsFeatured
@@ -259,8 +298,6 @@ func (s *WindowsMobileMSI) UnmarshalJSON(bytes []byte) error {
 	s.ODataType = decoded.ODataType
 	s.Owner = decoded.Owner
 	s.PrivacyInformationUrl = decoded.PrivacyInformationUrl
-	s.ProductCode = decoded.ProductCode
-	s.ProductVersion = decoded.ProductVersion
 	s.Publisher = decoded.Publisher
 	s.PublishingState = decoded.PublishingState
 	s.RoleScopeTagIds = decoded.RoleScopeTagIds
@@ -268,7 +305,6 @@ func (s *WindowsMobileMSI) UnmarshalJSON(bytes []byte) error {
 	s.SupersededAppCount = decoded.SupersededAppCount
 	s.SupersedingAppCount = decoded.SupersedingAppCount
 	s.UploadState = decoded.UploadState
-	s.UseDeviceContext = decoded.UseDeviceContext
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -291,5 +327,6 @@ func (s *WindowsMobileMSI) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Relationships = &output
 	}
+
 	return nil
 }

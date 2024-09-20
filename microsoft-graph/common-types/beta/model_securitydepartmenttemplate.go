@@ -84,10 +84,17 @@ func (s SecurityDepartmentTemplate) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &SecurityDepartmentTemplate{}
 
 func (s *SecurityDepartmentTemplate) UnmarshalJSON(bytes []byte) error {
-	type alias SecurityDepartmentTemplate
-	var decoded alias
+
+	var decoded struct {
+		CreatedBy       *IdentitySet          `json:"createdBy,omitempty"`
+		CreatedDateTime nullable.Type[string] `json:"createdDateTime,omitempty"`
+		DisplayName     nullable.Type[string] `json:"displayName,omitempty"`
+		Id              *string               `json:"id,omitempty"`
+		ODataId         *string               `json:"@odata.id,omitempty"`
+		ODataType       *string               `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into SecurityDepartmentTemplate: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.CreatedDateTime = decoded.CreatedDateTime
@@ -108,5 +115,6 @@ func (s *SecurityDepartmentTemplate) UnmarshalJSON(bytes []byte) error {
 		}
 		s.CreatedBy = &impl
 	}
+
 	return nil
 }

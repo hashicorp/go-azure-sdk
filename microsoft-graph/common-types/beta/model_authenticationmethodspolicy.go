@@ -99,24 +99,38 @@ func (s AuthenticationMethodsPolicy) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &AuthenticationMethodsPolicy{}
 
 func (s *AuthenticationMethodsPolicy) UnmarshalJSON(bytes []byte) error {
-	type alias AuthenticationMethodsPolicy
-	var decoded alias
+
+	var decoded struct {
+		AuthenticationMethodConfigurations *[]AuthenticationMethodConfiguration       `json:"authenticationMethodConfigurations,omitempty"`
+		Description                        nullable.Type[string]                      `json:"description,omitempty"`
+		DisplayName                        nullable.Type[string]                      `json:"displayName,omitempty"`
+		LastModifiedDateTime               nullable.Type[string]                      `json:"lastModifiedDateTime,omitempty"`
+		PolicyMigrationState               *AuthenticationMethodsPolicyMigrationState `json:"policyMigrationState,omitempty"`
+		PolicyVersion                      nullable.Type[string]                      `json:"policyVersion,omitempty"`
+		ReconfirmationInDays               nullable.Type[int64]                       `json:"reconfirmationInDays,omitempty"`
+		RegistrationEnforcement            *RegistrationEnforcement                   `json:"registrationEnforcement,omitempty"`
+		ReportSuspiciousActivitySettings   *ReportSuspiciousActivitySettings          `json:"reportSuspiciousActivitySettings,omitempty"`
+		SystemCredentialPreferences        *SystemCredentialPreferences               `json:"systemCredentialPreferences,omitempty"`
+		Id                                 *string                                    `json:"id,omitempty"`
+		ODataId                            *string                                    `json:"@odata.id,omitempty"`
+		ODataType                          *string                                    `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into AuthenticationMethodsPolicy: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.Description = decoded.Description
 	s.DisplayName = decoded.DisplayName
-	s.Id = decoded.Id
 	s.LastModifiedDateTime = decoded.LastModifiedDateTime
-	s.ODataId = decoded.ODataId
-	s.ODataType = decoded.ODataType
 	s.PolicyMigrationState = decoded.PolicyMigrationState
 	s.PolicyVersion = decoded.PolicyVersion
 	s.ReconfirmationInDays = decoded.ReconfirmationInDays
 	s.RegistrationEnforcement = decoded.RegistrationEnforcement
 	s.ReportSuspiciousActivitySettings = decoded.ReportSuspiciousActivitySettings
 	s.SystemCredentialPreferences = decoded.SystemCredentialPreferences
+	s.Id = decoded.Id
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -139,5 +153,6 @@ func (s *AuthenticationMethodsPolicy) UnmarshalJSON(bytes []byte) error {
 		}
 		s.AuthenticationMethodConfigurations = &output
 	}
+
 	return nil
 }

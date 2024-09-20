@@ -19,16 +19,45 @@ type CreateInformationProtectionDataLossPreventionPolicyOperationResponse struct
 	Model        *beta.DataLossPreventionPolicy
 }
 
+type CreateInformationProtectionDataLossPreventionPolicyOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateInformationProtectionDataLossPreventionPolicyOperationOptions() CreateInformationProtectionDataLossPreventionPolicyOperationOptions {
+	return CreateInformationProtectionDataLossPreventionPolicyOperationOptions{}
+}
+
+func (o CreateInformationProtectionDataLossPreventionPolicyOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateInformationProtectionDataLossPreventionPolicyOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateInformationProtectionDataLossPreventionPolicyOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateInformationProtectionDataLossPreventionPolicy - Create new navigation property to dataLossPreventionPolicies
 // for users
-func (c InformationProtectionDataLossPreventionPolicyClient) CreateInformationProtectionDataLossPreventionPolicy(ctx context.Context, id beta.UserId, input beta.DataLossPreventionPolicy) (result CreateInformationProtectionDataLossPreventionPolicyOperationResponse, err error) {
+func (c InformationProtectionDataLossPreventionPolicyClient) CreateInformationProtectionDataLossPreventionPolicy(ctx context.Context, id beta.UserId, input beta.DataLossPreventionPolicy, options CreateInformationProtectionDataLossPreventionPolicyOperationOptions) (result CreateInformationProtectionDataLossPreventionPolicyOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/informationProtection/dataLossPreventionPolicies", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/informationProtection/dataLossPreventionPolicies", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

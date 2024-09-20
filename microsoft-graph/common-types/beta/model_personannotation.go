@@ -112,16 +112,33 @@ func (s PersonAnnotation) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &PersonAnnotation{}
 
 func (s *PersonAnnotation) UnmarshalJSON(bytes []byte) error {
-	type alias PersonAnnotation
-	var decoded alias
+
+	var decoded struct {
+		Detail               *ItemBody                  `json:"detail,omitempty"`
+		DisplayName          nullable.Type[string]      `json:"displayName,omitempty"`
+		ThumbnailUrl         nullable.Type[string]      `json:"thumbnailUrl,omitempty"`
+		AllowedAudiences     *AllowedAudiences          `json:"allowedAudiences,omitempty"`
+		CreatedBy            IdentitySet                `json:"createdBy"`
+		CreatedDateTime      *string                    `json:"createdDateTime,omitempty"`
+		Inference            *InferenceData             `json:"inference,omitempty"`
+		IsSearchable         nullable.Type[bool]        `json:"isSearchable,omitempty"`
+		LastModifiedBy       IdentitySet                `json:"lastModifiedBy"`
+		LastModifiedDateTime *string                    `json:"lastModifiedDateTime,omitempty"`
+		Source               *PersonDataSources         `json:"source,omitempty"`
+		Sources              *[]ProfileSourceAnnotation `json:"sources,omitempty"`
+		Id                   *string                    `json:"id,omitempty"`
+		ODataId              *string                    `json:"@odata.id,omitempty"`
+		ODataType            *string                    `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into PersonAnnotation: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
-	s.AllowedAudiences = decoded.AllowedAudiences
-	s.CreatedDateTime = decoded.CreatedDateTime
 	s.Detail = decoded.Detail
 	s.DisplayName = decoded.DisplayName
+	s.ThumbnailUrl = decoded.ThumbnailUrl
+	s.AllowedAudiences = decoded.AllowedAudiences
+	s.CreatedDateTime = decoded.CreatedDateTime
 	s.Id = decoded.Id
 	s.Inference = decoded.Inference
 	s.IsSearchable = decoded.IsSearchable
@@ -130,7 +147,6 @@ func (s *PersonAnnotation) UnmarshalJSON(bytes []byte) error {
 	s.ODataType = decoded.ODataType
 	s.Source = decoded.Source
 	s.Sources = decoded.Sources
-	s.ThumbnailUrl = decoded.ThumbnailUrl
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -152,5 +168,6 @@ func (s *PersonAnnotation) UnmarshalJSON(bytes []byte) error {
 		}
 		s.LastModifiedBy = impl
 	}
+
 	return nil
 }

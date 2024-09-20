@@ -19,18 +19,47 @@ type GetOnlineMeetingTranscriptMetadataContentOperationResponse struct {
 	Model        *[]byte
 }
 
+type GetOnlineMeetingTranscriptMetadataContentOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultGetOnlineMeetingTranscriptMetadataContentOperationOptions() GetOnlineMeetingTranscriptMetadataContentOperationOptions {
+	return GetOnlineMeetingTranscriptMetadataContentOperationOptions{}
+}
+
+func (o GetOnlineMeetingTranscriptMetadataContentOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o GetOnlineMeetingTranscriptMetadataContentOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o GetOnlineMeetingTranscriptMetadataContentOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // GetOnlineMeetingTranscriptMetadataContent - Get callTranscript. Retrieve a callTranscript object associated with a
 // scheduled onlineMeeting. This API doesn't support getting call transcripts from channel meetings. Retrieving the
 // transcript returns the metadata of the single transcript associated with the online meeting. Retrieving the content
 // of the transcript returns the stream of text associated with the transcript.
-func (c OnlineMeetingTranscriptMetadataContentClient) GetOnlineMeetingTranscriptMetadataContent(ctx context.Context, id stable.UserIdOnlineMeetingIdTranscriptId) (result GetOnlineMeetingTranscriptMetadataContentOperationResponse, err error) {
+func (c OnlineMeetingTranscriptMetadataContentClient) GetOnlineMeetingTranscriptMetadataContent(ctx context.Context, id stable.UserIdOnlineMeetingIdTranscriptId, options GetOnlineMeetingTranscriptMetadataContentOperationOptions) (result GetOnlineMeetingTranscriptMetadataContentOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/octet-stream",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/metadataContent", id.ID()),
+		HttpMethod:    http.MethodGet,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/metadataContent", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

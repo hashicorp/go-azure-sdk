@@ -16,16 +16,45 @@ type SetPresenceStatusMessageOperationResponse struct {
 	OData        *odata.OData
 }
 
+type SetPresenceStatusMessageOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultSetPresenceStatusMessageOperationOptions() SetPresenceStatusMessageOperationOptions {
+	return SetPresenceStatusMessageOperationOptions{}
+}
+
+func (o SetPresenceStatusMessageOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o SetPresenceStatusMessageOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o SetPresenceStatusMessageOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // SetPresenceStatusMessage - Invoke action setStatusMessage. Set a presence status message for a user. An optional
 // expiration date and time can be supplied.
-func (c PresenceClient) SetPresenceStatusMessage(ctx context.Context, input SetPresenceStatusMessageRequest) (result SetPresenceStatusMessageOperationResponse, err error) {
+func (c PresenceClient) SetPresenceStatusMessage(ctx context.Context, input SetPresenceStatusMessageRequest, options SetPresenceStatusMessageOperationOptions) (result SetPresenceStatusMessageOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/me/presence/setStatusMessage",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/me/presence/setStatusMessage",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

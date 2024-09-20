@@ -109,23 +109,37 @@ func (s OpenShift) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &OpenShift{}
 
 func (s *OpenShift) UnmarshalJSON(bytes []byte) error {
-	type alias OpenShift
-	var decoded alias
+
+	var decoded struct {
+		DraftOpenShift       *OpenShiftItem        `json:"draftOpenShift,omitempty"`
+		IsStagedForDeletion  nullable.Type[bool]   `json:"isStagedForDeletion,omitempty"`
+		SchedulingGroupId    nullable.Type[string] `json:"schedulingGroupId,omitempty"`
+		SchedulingGroupInfo  *SchedulingGroupInfo  `json:"schedulingGroupInfo,omitempty"`
+		SharedOpenShift      *OpenShiftItem        `json:"sharedOpenShift,omitempty"`
+		TeamInfo             *ShiftsTeamInfo       `json:"teamInfo,omitempty"`
+		CreatedBy            IdentitySet           `json:"createdBy"`
+		CreatedDateTime      nullable.Type[string] `json:"createdDateTime,omitempty"`
+		LastModifiedBy       *IdentitySet          `json:"lastModifiedBy,omitempty"`
+		LastModifiedDateTime nullable.Type[string] `json:"lastModifiedDateTime,omitempty"`
+		Id                   *string               `json:"id,omitempty"`
+		ODataId              *string               `json:"@odata.id,omitempty"`
+		ODataType            *string               `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into OpenShift: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
-	s.CreatedDateTime = decoded.CreatedDateTime
 	s.DraftOpenShift = decoded.DraftOpenShift
-	s.Id = decoded.Id
 	s.IsStagedForDeletion = decoded.IsStagedForDeletion
-	s.LastModifiedDateTime = decoded.LastModifiedDateTime
-	s.ODataId = decoded.ODataId
-	s.ODataType = decoded.ODataType
 	s.SchedulingGroupId = decoded.SchedulingGroupId
 	s.SchedulingGroupInfo = decoded.SchedulingGroupInfo
 	s.SharedOpenShift = decoded.SharedOpenShift
 	s.TeamInfo = decoded.TeamInfo
+	s.CreatedDateTime = decoded.CreatedDateTime
+	s.Id = decoded.Id
+	s.LastModifiedDateTime = decoded.LastModifiedDateTime
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -147,5 +161,6 @@ func (s *OpenShift) UnmarshalJSON(bytes []byte) error {
 		}
 		s.LastModifiedBy = &impl
 	}
+
 	return nil
 }

@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/manageddevice` Documentation
 
-The `manageddevice` SDK allows for interaction with the Azure Resource Manager Service `me` (API Version `stable`).
+The `manageddevice` SDK allows for interaction with Microsoft Graph `me` (API Version `stable`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -15,7 +15,7 @@ import "github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/manageddevic
 ### Client Initialization
 
 ```go
-client := manageddevice.NewManagedDeviceClientWithBaseURI("https://management.azure.com")
+client := manageddevice.NewManagedDeviceClientWithBaseURI("https://graph.microsoft.com")
 client.Client.Authorizer = authorizer
 ```
 
@@ -24,9 +24,9 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := manageddevice.NewMeManagedDeviceID("managedDeviceIdValue")
+id := manageddevice.NewMeManagedDeviceID("managedDeviceId")
 
-read, err := client.BypassManagedDeviceActivationLock(ctx, id)
+read, err := client.BypassManagedDeviceActivationLock(ctx, id, manageddevice.DefaultBypassManagedDeviceActivationLockOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -40,14 +40,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := manageddevice.NewMeManagedDeviceID("managedDeviceIdValue")
+id := manageddevice.NewMeManagedDeviceID("managedDeviceId")
 
 payload := manageddevice.CleanManagedDeviceWindowsDeviceRequest{
 	// ...
 }
 
 
-read, err := client.CleanManagedDeviceWindowsDevice(ctx, id, payload)
+read, err := client.CleanManagedDeviceWindowsDevice(ctx, id, payload, manageddevice.DefaultCleanManagedDeviceWindowsDeviceOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -67,7 +67,7 @@ payload := manageddevice.ManagedDevice{
 }
 
 
-read, err := client.CreateManagedDevice(ctx, payload)
+read, err := client.CreateManagedDevice(ctx, payload, manageddevice.DefaultCreateManagedDeviceOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -81,14 +81,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := manageddevice.NewMeManagedDeviceID("managedDeviceIdValue")
+id := manageddevice.NewMeManagedDeviceID("managedDeviceId")
 
 payload := manageddevice.CreateManagedDeviceWindowsDefenderScanRequest{
 	// ...
 }
 
 
-read, err := client.CreateManagedDeviceWindowsDefenderScan(ctx, id, payload)
+read, err := client.CreateManagedDeviceWindowsDefenderScan(ctx, id, payload, manageddevice.DefaultCreateManagedDeviceWindowsDefenderScanOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -102,9 +102,9 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := manageddevice.NewMeManagedDeviceID("managedDeviceIdValue")
+id := manageddevice.NewMeManagedDeviceID("managedDeviceId")
 
-read, err := client.CreateManagedDeviceWindowsDefenderUpdateSignature(ctx, id)
+read, err := client.CreateManagedDeviceWindowsDefenderUpdateSignature(ctx, id, manageddevice.DefaultCreateManagedDeviceWindowsDefenderUpdateSignatureOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -118,7 +118,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := manageddevice.NewMeManagedDeviceID("managedDeviceIdValue")
+id := manageddevice.NewMeManagedDeviceID("managedDeviceId")
 
 read, err := client.DeleteManagedDevice(ctx, id, manageddevice.DefaultDeleteManagedDeviceOperationOptions())
 if err != nil {
@@ -134,14 +134,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := manageddevice.NewMeManagedDeviceID("managedDeviceIdValue")
+id := manageddevice.NewMeManagedDeviceID("managedDeviceId")
 
 payload := manageddevice.DeleteManagedDeviceUserFromSharedAppleDeviceRequest{
 	// ...
 }
 
 
-read, err := client.DeleteManagedDeviceUserFromSharedAppleDevice(ctx, id, payload)
+read, err := client.DeleteManagedDeviceUserFromSharedAppleDevice(ctx, id, payload, manageddevice.DefaultDeleteManagedDeviceUserFromSharedAppleDeviceOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -155,9 +155,9 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := manageddevice.NewMeManagedDeviceID("managedDeviceIdValue")
+id := manageddevice.NewMeManagedDeviceID("managedDeviceId")
 
-read, err := client.DisableManagedDeviceLostMode(ctx, id)
+read, err := client.DisableManagedDeviceLostMode(ctx, id, manageddevice.DefaultDisableManagedDeviceLostModeOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -171,7 +171,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := manageddevice.NewMeManagedDeviceID("managedDeviceIdValue")
+id := manageddevice.NewMeManagedDeviceID("managedDeviceId")
 
 read, err := client.GetManagedDevice(ctx, id, manageddevice.DefaultGetManagedDeviceOperationOptions())
 if err != nil {
@@ -216,13 +216,13 @@ for _, item := range items {
 ```
 
 
-### Example Usage: `ManagedDeviceClient.LocateManagedDevice`
+### Example Usage: `ManagedDeviceClient.LocateManagedDeviceDevice`
 
 ```go
 ctx := context.TODO()
-id := manageddevice.NewMeManagedDeviceID("managedDeviceIdValue")
+id := manageddevice.NewMeManagedDeviceID("managedDeviceId")
 
-read, err := client.LocateManagedDevice(ctx, id)
+read, err := client.LocateManagedDeviceDevice(ctx, id, manageddevice.DefaultLocateManagedDeviceDeviceOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -236,9 +236,9 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := manageddevice.NewMeManagedDeviceID("managedDeviceIdValue")
+id := manageddevice.NewMeManagedDeviceID("managedDeviceId")
 
-read, err := client.LogoutManagedDeviceSharedAppleDeviceActiveUser(ctx, id)
+read, err := client.LogoutManagedDeviceSharedAppleDeviceActiveUser(ctx, id, manageddevice.DefaultLogoutManagedDeviceSharedAppleDeviceActiveUserOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -252,9 +252,9 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := manageddevice.NewMeManagedDeviceID("managedDeviceIdValue")
+id := manageddevice.NewMeManagedDeviceID("managedDeviceId")
 
-read, err := client.RebootManagedDeviceNow(ctx, id)
+read, err := client.RebootManagedDeviceNow(ctx, id, manageddevice.DefaultRebootManagedDeviceNowOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -268,9 +268,9 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := manageddevice.NewMeManagedDeviceID("managedDeviceIdValue")
+id := manageddevice.NewMeManagedDeviceID("managedDeviceId")
 
-read, err := client.RecoverManagedDevicePasscode(ctx, id)
+read, err := client.RecoverManagedDevicePasscode(ctx, id, manageddevice.DefaultRecoverManagedDevicePasscodeOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -284,9 +284,9 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := manageddevice.NewMeManagedDeviceID("managedDeviceIdValue")
+id := manageddevice.NewMeManagedDeviceID("managedDeviceId")
 
-read, err := client.RemoteLockManagedDevice(ctx, id)
+read, err := client.RemoteLockManagedDevice(ctx, id, manageddevice.DefaultRemoteLockManagedDeviceOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -300,9 +300,9 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := manageddevice.NewMeManagedDeviceID("managedDeviceIdValue")
+id := manageddevice.NewMeManagedDeviceID("managedDeviceId")
 
-read, err := client.RequestManagedDeviceRemoteAssistance(ctx, id)
+read, err := client.RequestManagedDeviceRemoteAssistance(ctx, id, manageddevice.DefaultRequestManagedDeviceRemoteAssistanceOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -316,9 +316,9 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := manageddevice.NewMeManagedDeviceID("managedDeviceIdValue")
+id := manageddevice.NewMeManagedDeviceID("managedDeviceId")
 
-read, err := client.ResetManagedDevicePasscode(ctx, id)
+read, err := client.ResetManagedDevicePasscode(ctx, id, manageddevice.DefaultResetManagedDevicePasscodeOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -332,9 +332,9 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := manageddevice.NewMeManagedDeviceID("managedDeviceIdValue")
+id := manageddevice.NewMeManagedDeviceID("managedDeviceId")
 
-read, err := client.RetireManagedDevice(ctx, id)
+read, err := client.RetireManagedDevice(ctx, id, manageddevice.DefaultRetireManagedDeviceOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -348,9 +348,9 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := manageddevice.NewMeManagedDeviceID("managedDeviceIdValue")
+id := manageddevice.NewMeManagedDeviceID("managedDeviceId")
 
-read, err := client.ShutDownManagedDevice(ctx, id)
+read, err := client.ShutDownManagedDevice(ctx, id, manageddevice.DefaultShutDownManagedDeviceOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -360,13 +360,13 @@ if model := read.Model; model != nil {
 ```
 
 
-### Example Usage: `ManagedDeviceClient.SyncManagedDevice`
+### Example Usage: `ManagedDeviceClient.SyncManagedDeviceDevice`
 
 ```go
 ctx := context.TODO()
-id := manageddevice.NewMeManagedDeviceID("managedDeviceIdValue")
+id := manageddevice.NewMeManagedDeviceID("managedDeviceId")
 
-read, err := client.SyncManagedDevice(ctx, id)
+read, err := client.SyncManagedDeviceDevice(ctx, id, manageddevice.DefaultSyncManagedDeviceDeviceOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -380,14 +380,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := manageddevice.NewMeManagedDeviceID("managedDeviceIdValue")
+id := manageddevice.NewMeManagedDeviceID("managedDeviceId")
 
 payload := manageddevice.ManagedDevice{
 	// ...
 }
 
 
-read, err := client.UpdateManagedDevice(ctx, id, payload)
+read, err := client.UpdateManagedDevice(ctx, id, payload, manageddevice.DefaultUpdateManagedDeviceOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -401,14 +401,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := manageddevice.NewMeManagedDeviceID("managedDeviceIdValue")
+id := manageddevice.NewMeManagedDeviceID("managedDeviceId")
 
 payload := manageddevice.UpdateManagedDeviceWindowsDeviceAccountRequest{
 	// ...
 }
 
 
-read, err := client.UpdateManagedDeviceWindowsDeviceAccount(ctx, id, payload)
+read, err := client.UpdateManagedDeviceWindowsDeviceAccount(ctx, id, payload, manageddevice.DefaultUpdateManagedDeviceWindowsDeviceAccountOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -422,14 +422,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := manageddevice.NewMeManagedDeviceID("managedDeviceIdValue")
+id := manageddevice.NewMeManagedDeviceID("managedDeviceId")
 
 payload := manageddevice.WipeManagedDeviceRequest{
 	// ...
 }
 
 
-read, err := client.WipeManagedDevice(ctx, id, payload)
+read, err := client.WipeManagedDevice(ctx, id, payload, manageddevice.DefaultWipeManagedDeviceOperationOptions())
 if err != nil {
 	// handle the error
 }

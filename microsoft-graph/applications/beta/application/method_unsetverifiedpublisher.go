@@ -18,16 +18,45 @@ type UnsetVerifiedPublisherOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UnsetVerifiedPublisherOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUnsetVerifiedPublisherOperationOptions() UnsetVerifiedPublisherOperationOptions {
+	return UnsetVerifiedPublisherOperationOptions{}
+}
+
+func (o UnsetVerifiedPublisherOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UnsetVerifiedPublisherOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UnsetVerifiedPublisherOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UnsetVerifiedPublisher - Invoke action unsetVerifiedPublisher. Unset the verifiedPublisher previously set on an
 // application, removing all verified publisher properties. For more information, see Publisher verification.
-func (c ApplicationClient) UnsetVerifiedPublisher(ctx context.Context, id beta.ApplicationId) (result UnsetVerifiedPublisherOperationResponse, err error) {
+func (c ApplicationClient) UnsetVerifiedPublisher(ctx context.Context, id beta.ApplicationId, options UnsetVerifiedPublisherOperationOptions) (result UnsetVerifiedPublisherOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/unsetVerifiedPublisher", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/unsetVerifiedPublisher", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

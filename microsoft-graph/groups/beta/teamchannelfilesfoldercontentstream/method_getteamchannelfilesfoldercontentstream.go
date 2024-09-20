@@ -19,16 +19,45 @@ type GetTeamChannelFilesFolderContentStreamOperationResponse struct {
 	Model        *[]byte
 }
 
+type GetTeamChannelFilesFolderContentStreamOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultGetTeamChannelFilesFolderContentStreamOperationOptions() GetTeamChannelFilesFolderContentStreamOperationOptions {
+	return GetTeamChannelFilesFolderContentStreamOperationOptions{}
+}
+
+func (o GetTeamChannelFilesFolderContentStreamOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o GetTeamChannelFilesFolderContentStreamOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o GetTeamChannelFilesFolderContentStreamOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // GetTeamChannelFilesFolderContentStream - Get contentStream for the navigation property filesFolder from groups. The
 // content stream, if the item represents a file.
-func (c TeamChannelFilesFolderContentStreamClient) GetTeamChannelFilesFolderContentStream(ctx context.Context, id beta.GroupIdTeamChannelId) (result GetTeamChannelFilesFolderContentStreamOperationResponse, err error) {
+func (c TeamChannelFilesFolderContentStreamClient) GetTeamChannelFilesFolderContentStream(ctx context.Context, id beta.GroupIdTeamChannelId, options GetTeamChannelFilesFolderContentStreamOperationOptions) (result GetTeamChannelFilesFolderContentStreamOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/octet-stream",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/filesFolder/contentStream", id.ID()),
+		HttpMethod:    http.MethodGet,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/filesFolder/contentStream", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

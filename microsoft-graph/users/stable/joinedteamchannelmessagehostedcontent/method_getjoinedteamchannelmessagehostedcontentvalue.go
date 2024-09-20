@@ -19,16 +19,45 @@ type GetJoinedTeamChannelMessageHostedContentValueOperationResponse struct {
 	Model        *[]byte
 }
 
+type GetJoinedTeamChannelMessageHostedContentValueOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultGetJoinedTeamChannelMessageHostedContentValueOperationOptions() GetJoinedTeamChannelMessageHostedContentValueOperationOptions {
+	return GetJoinedTeamChannelMessageHostedContentValueOperationOptions{}
+}
+
+func (o GetJoinedTeamChannelMessageHostedContentValueOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o GetJoinedTeamChannelMessageHostedContentValueOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o GetJoinedTeamChannelMessageHostedContentValueOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // GetJoinedTeamChannelMessageHostedContentValue - Get media content for the navigation property hostedContents from
 // users. The unique identifier for an entity. Read-only.
-func (c JoinedTeamChannelMessageHostedContentClient) GetJoinedTeamChannelMessageHostedContentValue(ctx context.Context, id stable.UserIdJoinedTeamIdChannelIdMessageIdHostedContentId) (result GetJoinedTeamChannelMessageHostedContentValueOperationResponse, err error) {
+func (c JoinedTeamChannelMessageHostedContentClient) GetJoinedTeamChannelMessageHostedContentValue(ctx context.Context, id stable.UserIdJoinedTeamIdChannelIdMessageIdHostedContentId, options GetJoinedTeamChannelMessageHostedContentValueOperationOptions) (result GetJoinedTeamChannelMessageHostedContentValueOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/octet-stream",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/$value", id.ID()),
+		HttpMethod:    http.MethodGet,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/$value", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

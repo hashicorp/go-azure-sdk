@@ -18,16 +18,45 @@ type CreateUserExperienceAnalyticsResourcePerformanceOperationResponse struct {
 	Model        *beta.UserExperienceAnalyticsResourcePerformance
 }
 
+type CreateUserExperienceAnalyticsResourcePerformanceOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateUserExperienceAnalyticsResourcePerformanceOperationOptions() CreateUserExperienceAnalyticsResourcePerformanceOperationOptions {
+	return CreateUserExperienceAnalyticsResourcePerformanceOperationOptions{}
+}
+
+func (o CreateUserExperienceAnalyticsResourcePerformanceOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateUserExperienceAnalyticsResourcePerformanceOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateUserExperienceAnalyticsResourcePerformanceOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateUserExperienceAnalyticsResourcePerformance - Create new navigation property to
 // userExperienceAnalyticsResourcePerformance for deviceManagement
-func (c UserExperienceAnalyticsResourcePerformanceClient) CreateUserExperienceAnalyticsResourcePerformance(ctx context.Context, input beta.UserExperienceAnalyticsResourcePerformance) (result CreateUserExperienceAnalyticsResourcePerformanceOperationResponse, err error) {
+func (c UserExperienceAnalyticsResourcePerformanceClient) CreateUserExperienceAnalyticsResourcePerformance(ctx context.Context, input beta.UserExperienceAnalyticsResourcePerformance, options CreateUserExperienceAnalyticsResourcePerformanceOperationOptions) (result CreateUserExperienceAnalyticsResourcePerformanceOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/deviceManagement/userExperienceAnalyticsResourcePerformance",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/deviceManagement/userExperienceAnalyticsResourcePerformance",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

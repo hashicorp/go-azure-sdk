@@ -104,12 +104,12 @@ func (id UserIdOnenoteSectionGroupIdSectionId) ID() string {
 func (id UserIdOnenoteSectionGroupIdSectionId) Segments() []resourceids.Segment {
 	return []resourceids.Segment{
 		resourceids.StaticSegment("users", "users", "users"),
-		resourceids.UserSpecifiedSegment("userId", "userIdValue"),
+		resourceids.UserSpecifiedSegment("userId", "userId"),
 		resourceids.StaticSegment("onenote", "onenote", "onenote"),
 		resourceids.StaticSegment("sectionGroups", "sectionGroups", "sectionGroups"),
-		resourceids.UserSpecifiedSegment("sectionGroupId", "sectionGroupIdValue"),
+		resourceids.UserSpecifiedSegment("sectionGroupId", "sectionGroupId"),
 		resourceids.StaticSegment("sections", "sections", "sections"),
-		resourceids.UserSpecifiedSegment("onenoteSectionId", "onenoteSectionIdValue"),
+		resourceids.UserSpecifiedSegment("onenoteSectionId", "onenoteSectionId"),
 	}
 }
 

@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &DeviceManagementCloudPCConnectivityIssueId{}
 
 func TestNewDeviceManagementCloudPCConnectivityIssueID(t *testing.T) {
-	id := NewDeviceManagementCloudPCConnectivityIssueID("cloudPCConnectivityIssueIdValue")
+	id := NewDeviceManagementCloudPCConnectivityIssueID("cloudPCConnectivityIssueId")
 
-	if id.CloudPCConnectivityIssueId != "cloudPCConnectivityIssueIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'CloudPCConnectivityIssueId'", id.CloudPCConnectivityIssueId, "cloudPCConnectivityIssueIdValue")
+	if id.CloudPCConnectivityIssueId != "cloudPCConnectivityIssueId" {
+		t.Fatalf("Expected %q but got %q for Segment 'CloudPCConnectivityIssueId'", id.CloudPCConnectivityIssueId, "cloudPCConnectivityIssueId")
 	}
 }
 
 func TestFormatDeviceManagementCloudPCConnectivityIssueID(t *testing.T) {
-	actual := NewDeviceManagementCloudPCConnectivityIssueID("cloudPCConnectivityIssueIdValue").ID()
-	expected := "/deviceManagement/cloudPCConnectivityIssues/cloudPCConnectivityIssueIdValue"
+	actual := NewDeviceManagementCloudPCConnectivityIssueID("cloudPCConnectivityIssueId").ID()
+	expected := "/deviceManagement/cloudPCConnectivityIssues/cloudPCConnectivityIssueId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -50,14 +50,14 @@ func TestParseDeviceManagementCloudPCConnectivityIssueID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/cloudPCConnectivityIssues/cloudPCConnectivityIssueIdValue",
+			Input: "/deviceManagement/cloudPCConnectivityIssues/cloudPCConnectivityIssueId",
 			Expected: &DeviceManagementCloudPCConnectivityIssueId{
-				CloudPCConnectivityIssueId: "cloudPCConnectivityIssueIdValue",
+				CloudPCConnectivityIssueId: "cloudPCConnectivityIssueId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/cloudPCConnectivityIssues/cloudPCConnectivityIssueIdValue/extra",
+			Input: "/deviceManagement/cloudPCConnectivityIssues/cloudPCConnectivityIssueId/extra",
 			Error: true,
 		},
 	}
@@ -116,26 +116,26 @@ func TestParseDeviceManagementCloudPCConnectivityIssueIDInsensitively(t *testing
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/cloudPCConnectivityIssues/cloudPCConnectivityIssueIdValue",
+			Input: "/deviceManagement/cloudPCConnectivityIssues/cloudPCConnectivityIssueId",
 			Expected: &DeviceManagementCloudPCConnectivityIssueId{
-				CloudPCConnectivityIssueId: "cloudPCConnectivityIssueIdValue",
+				CloudPCConnectivityIssueId: "cloudPCConnectivityIssueId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/cloudPCConnectivityIssues/cloudPCConnectivityIssueIdValue/extra",
+			Input: "/deviceManagement/cloudPCConnectivityIssues/cloudPCConnectivityIssueId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/cLoUdPcCoNnEcTiViTyIsSuEs/cLoUdPcCoNnEcTiViTyIsSuEiDvAlUe",
+			Input: "/dEvIcEmAnAgEmEnT/cLoUdPcCoNnEcTiViTyIsSuEs/cLoUdPcCoNnEcTiViTyIsSuEiD",
 			Expected: &DeviceManagementCloudPCConnectivityIssueId{
-				CloudPCConnectivityIssueId: "cLoUdPcCoNnEcTiViTyIsSuEiDvAlUe",
+				CloudPCConnectivityIssueId: "cLoUdPcCoNnEcTiViTyIsSuEiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/cLoUdPcCoNnEcTiViTyIsSuEs/cLoUdPcCoNnEcTiViTyIsSuEiDvAlUe/extra",
+			Input: "/dEvIcEmAnAgEmEnT/cLoUdPcCoNnEcTiViTyIsSuEs/cLoUdPcCoNnEcTiViTyIsSuEiD/extra",
 			Error: true,
 		},
 	}

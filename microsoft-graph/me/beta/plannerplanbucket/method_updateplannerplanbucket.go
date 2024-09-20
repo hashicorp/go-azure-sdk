@@ -17,15 +17,44 @@ type UpdatePlannerPlanBucketOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdatePlannerPlanBucketOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdatePlannerPlanBucketOperationOptions() UpdatePlannerPlanBucketOperationOptions {
+	return UpdatePlannerPlanBucketOperationOptions{}
+}
+
+func (o UpdatePlannerPlanBucketOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdatePlannerPlanBucketOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdatePlannerPlanBucketOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdatePlannerPlanBucket - Update the navigation property buckets in me
-func (c PlannerPlanBucketClient) UpdatePlannerPlanBucket(ctx context.Context, id beta.MePlannerPlanIdBucketId, input beta.PlannerBucket) (result UpdatePlannerPlanBucketOperationResponse, err error) {
+func (c PlannerPlanBucketClient) UpdatePlannerPlanBucket(ctx context.Context, id beta.MePlannerPlanIdBucketId, input beta.PlannerBucket, options UpdatePlannerPlanBucketOperationOptions) (result UpdatePlannerPlanBucketOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

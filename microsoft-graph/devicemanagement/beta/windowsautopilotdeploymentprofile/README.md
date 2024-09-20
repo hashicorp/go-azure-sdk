@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/windowsautopilotdeploymentprofile` Documentation
 
-The `windowsautopilotdeploymentprofile` SDK allows for interaction with the Azure Resource Manager Service `devicemanagement` (API Version `beta`).
+The `windowsautopilotdeploymentprofile` SDK allows for interaction with Microsoft Graph `devicemanagement` (API Version `beta`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -15,7 +15,7 @@ import "github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/
 ### Client Initialization
 
 ```go
-client := windowsautopilotdeploymentprofile.NewWindowsAutopilotDeploymentProfileClientWithBaseURI("https://management.azure.com")
+client := windowsautopilotdeploymentprofile.NewWindowsAutopilotDeploymentProfileClientWithBaseURI("https://graph.microsoft.com")
 client.Client.Authorizer = authorizer
 ```
 
@@ -24,14 +24,14 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := windowsautopilotdeploymentprofile.NewDeviceManagementWindowsAutopilotDeploymentProfileID("windowsAutopilotDeploymentProfileIdValue")
+id := windowsautopilotdeploymentprofile.NewDeviceManagementWindowsAutopilotDeploymentProfileID("windowsAutopilotDeploymentProfileId")
 
 payload := windowsautopilotdeploymentprofile.AssignWindowsAutopilotDeploymentProfileRequest{
 	// ...
 }
 
 
-read, err := client.AssignWindowsAutopilotDeploymentProfile(ctx, id, payload)
+read, err := client.AssignWindowsAutopilotDeploymentProfile(ctx, id, payload, windowsautopilotdeploymentprofile.DefaultAssignWindowsAutopilotDeploymentProfileOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -51,7 +51,7 @@ payload := windowsautopilotdeploymentprofile.WindowsAutopilotDeploymentProfile{
 }
 
 
-read, err := client.CreateWindowsAutopilotDeploymentProfile(ctx, payload)
+read, err := client.CreateWindowsAutopilotDeploymentProfile(ctx, payload, windowsautopilotdeploymentprofile.DefaultCreateWindowsAutopilotDeploymentProfileOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -65,7 +65,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := windowsautopilotdeploymentprofile.NewDeviceManagementWindowsAutopilotDeploymentProfileID("windowsAutopilotDeploymentProfileIdValue")
+id := windowsautopilotdeploymentprofile.NewDeviceManagementWindowsAutopilotDeploymentProfileID("windowsAutopilotDeploymentProfileId")
 
 read, err := client.DeleteWindowsAutopilotDeploymentProfile(ctx, id, windowsautopilotdeploymentprofile.DefaultDeleteWindowsAutopilotDeploymentProfileOperationOptions())
 if err != nil {
@@ -81,7 +81,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := windowsautopilotdeploymentprofile.NewDeviceManagementWindowsAutopilotDeploymentProfileID("windowsAutopilotDeploymentProfileIdValue")
+id := windowsautopilotdeploymentprofile.NewDeviceManagementWindowsAutopilotDeploymentProfileID("windowsAutopilotDeploymentProfileId")
 
 read, err := client.GetWindowsAutopilotDeploymentProfile(ctx, id, windowsautopilotdeploymentprofile.DefaultGetWindowsAutopilotDeploymentProfileOperationOptions())
 if err != nil {
@@ -151,14 +151,14 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := windowsautopilotdeploymentprofile.NewDeviceManagementWindowsAutopilotDeploymentProfileID("windowsAutopilotDeploymentProfileIdValue")
+id := windowsautopilotdeploymentprofile.NewDeviceManagementWindowsAutopilotDeploymentProfileID("windowsAutopilotDeploymentProfileId")
 
 payload := windowsautopilotdeploymentprofile.WindowsAutopilotDeploymentProfile{
 	// ...
 }
 
 
-read, err := client.UpdateWindowsAutopilotDeploymentProfile(ctx, id, payload)
+read, err := client.UpdateWindowsAutopilotDeploymentProfile(ctx, id, payload, windowsautopilotdeploymentprofile.DefaultUpdateWindowsAutopilotDeploymentProfileOperationOptions())
 if err != nil {
 	// handle the error
 }

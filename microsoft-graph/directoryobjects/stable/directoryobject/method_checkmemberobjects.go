@@ -25,8 +25,9 @@ type CheckMemberObjectsCompleteResult struct {
 }
 
 type CheckMemberObjectsOperationOptions struct {
-	Skip *int64
-	Top  *int64
+	Metadata *odata.Metadata
+	Skip     *int64
+	Top      *int64
 }
 
 func DefaultCheckMemberObjectsOperationOptions() CheckMemberObjectsOperationOptions {
@@ -41,6 +42,9 @@ func (o CheckMemberObjectsOperationOptions) ToHeaders() *client.Headers {
 
 func (o CheckMemberObjectsOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	if o.Skip != nil {
 		out.Skip = int(*o.Skip)
 	}

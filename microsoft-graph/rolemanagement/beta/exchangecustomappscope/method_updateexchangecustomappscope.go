@@ -17,16 +17,45 @@ type UpdateExchangeCustomAppScopeOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateExchangeCustomAppScopeOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateExchangeCustomAppScopeOperationOptions() UpdateExchangeCustomAppScopeOperationOptions {
+	return UpdateExchangeCustomAppScopeOperationOptions{}
+}
+
+func (o UpdateExchangeCustomAppScopeOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateExchangeCustomAppScopeOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateExchangeCustomAppScopeOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateExchangeCustomAppScope - Update customAppScope. Update an existing customAppScope object of an RBAC provider.
 // Currently only the Exchange Online RBAC provider is supported.
-func (c ExchangeCustomAppScopeClient) UpdateExchangeCustomAppScope(ctx context.Context, id beta.RoleManagementExchangeCustomAppScopeId, input beta.CustomAppScope) (result UpdateExchangeCustomAppScopeOperationResponse, err error) {
+func (c ExchangeCustomAppScopeClient) UpdateExchangeCustomAppScope(ctx context.Context, id beta.RoleManagementExchangeCustomAppScopeId, input beta.CustomAppScope, options UpdateExchangeCustomAppScopeOperationOptions) (result UpdateExchangeCustomAppScopeOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

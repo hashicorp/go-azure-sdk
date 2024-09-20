@@ -18,15 +18,44 @@ type CreateProfileAccountOperationResponse struct {
 	Model        *beta.UserAccountInformation
 }
 
+type CreateProfileAccountOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateProfileAccountOperationOptions() CreateProfileAccountOperationOptions {
+	return CreateProfileAccountOperationOptions{}
+}
+
+func (o CreateProfileAccountOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateProfileAccountOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateProfileAccountOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateProfileAccount - Create account. Create a new userAccountInformation object in a user's profile.
-func (c ProfileAccountClient) CreateProfileAccount(ctx context.Context, input beta.UserAccountInformation) (result CreateProfileAccountOperationResponse, err error) {
+func (c ProfileAccountClient) CreateProfileAccount(ctx context.Context, input beta.UserAccountInformation, options CreateProfileAccountOperationOptions) (result CreateProfileAccountOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/me/profile/account",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/me/profile/account",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

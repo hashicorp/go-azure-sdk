@@ -418,27 +418,118 @@ func (s IosikEv2VpnConfiguration) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &IosikEv2VpnConfiguration{}
 
 func (s *IosikEv2VpnConfiguration) UnmarshalJSON(bytes []byte) error {
-	type alias IosikEv2VpnConfiguration
-	var decoded alias
+
+	var decoded struct {
+		AllowDefaultChildSecurityAssociationParameters nullable.Type[bool]                          `json:"allowDefaultChildSecurityAssociationParameters,omitempty"`
+		AllowDefaultSecurityAssociationParameters      nullable.Type[bool]                          `json:"allowDefaultSecurityAssociationParameters,omitempty"`
+		AlwaysOnConfiguration                          *AppleVpnAlwaysOnConfiguration               `json:"alwaysOnConfiguration,omitempty"`
+		ChildSecurityAssociationParameters             *IosVpnSecurityAssociationParameters         `json:"childSecurityAssociationParameters,omitempty"`
+		ClientAuthenticationType                       *VpnClientAuthenticationType                 `json:"clientAuthenticationType,omitempty"`
+		DeadPeerDetectionRate                          *VpnDeadPeerDetectionRate                    `json:"deadPeerDetectionRate,omitempty"`
+		DisableMobilityAndMultihoming                  nullable.Type[bool]                          `json:"disableMobilityAndMultihoming,omitempty"`
+		DisableRedirect                                nullable.Type[bool]                          `json:"disableRedirect,omitempty"`
+		EnableAlwaysOnConfiguration                    nullable.Type[bool]                          `json:"enableAlwaysOnConfiguration,omitempty"`
+		EnableCertificateRevocationCheck               nullable.Type[bool]                          `json:"enableCertificateRevocationCheck,omitempty"`
+		EnableEAP                                      nullable.Type[bool]                          `json:"enableEAP,omitempty"`
+		EnablePerfectForwardSecrecy                    nullable.Type[bool]                          `json:"enablePerfectForwardSecrecy,omitempty"`
+		EnableUseInternalSubnetAttributes              nullable.Type[bool]                          `json:"enableUseInternalSubnetAttributes,omitempty"`
+		LocalIdentifier                                *VpnLocalIdentifier                          `json:"localIdentifier,omitempty"`
+		MtuSizeInBytes                                 nullable.Type[int64]                         `json:"mtuSizeInBytes,omitempty"`
+		RemoteIdentifier                               *string                                      `json:"remoteIdentifier,omitempty"`
+		SecurityAssociationParameters                  *IosVpnSecurityAssociationParameters         `json:"securityAssociationParameters,omitempty"`
+		ServerCertificateCommonName                    nullable.Type[string]                        `json:"serverCertificateCommonName,omitempty"`
+		ServerCertificateIssuerCommonName              nullable.Type[string]                        `json:"serverCertificateIssuerCommonName,omitempty"`
+		ServerCertificateType                          *VpnServerCertificateType                    `json:"serverCertificateType,omitempty"`
+		SharedSecret                                   nullable.Type[string]                        `json:"sharedSecret,omitempty"`
+		TlsMaximumVersion                              nullable.Type[string]                        `json:"tlsMaximumVersion,omitempty"`
+		TlsMinimumVersion                              nullable.Type[string]                        `json:"tlsMinimumVersion,omitempty"`
+		CloudName                                      nullable.Type[string]                        `json:"cloudName,omitempty"`
+		DerivedCredentialSettings                      *DeviceManagementDerivedCredentialSettings   `json:"derivedCredentialSettings,omitempty"`
+		ExcludeList                                    *[]string                                    `json:"excludeList,omitempty"`
+		IdentityCertificate                            *IosCertificateProfileBase                   `json:"identityCertificate,omitempty"`
+		MicrosoftTunnelSiteId                          nullable.Type[string]                        `json:"microsoftTunnelSiteId,omitempty"`
+		StrictEnforcement                              nullable.Type[bool]                          `json:"strictEnforcement,omitempty"`
+		TargetedMobileApps                             *[]AppListItem                               `json:"targetedMobileApps,omitempty"`
+		UserDomain                                     nullable.Type[string]                        `json:"userDomain,omitempty"`
+		AssociatedDomains                              *[]string                                    `json:"associatedDomains,omitempty"`
+		AuthenticationMethod                           *VpnAuthenticationMethod                     `json:"authenticationMethod,omitempty"`
+		ConnectionName                                 *string                                      `json:"connectionName,omitempty"`
+		ConnectionType                                 *AppleVpnConnectionType                      `json:"connectionType,omitempty"`
+		CustomData                                     *[]KeyValue                                  `json:"customData,omitempty"`
+		CustomKeyValueData                             *[]KeyValuePair                              `json:"customKeyValueData,omitempty"`
+		DisableOnDemandUserOverride                    nullable.Type[bool]                          `json:"disableOnDemandUserOverride,omitempty"`
+		DisconnectOnIdle                               nullable.Type[bool]                          `json:"disconnectOnIdle,omitempty"`
+		DisconnectOnIdleTimerInSeconds                 nullable.Type[int64]                         `json:"disconnectOnIdleTimerInSeconds,omitempty"`
+		EnablePerApp                                   nullable.Type[bool]                          `json:"enablePerApp,omitempty"`
+		EnableSplitTunneling                           *bool                                        `json:"enableSplitTunneling,omitempty"`
+		ExcludedDomains                                *[]string                                    `json:"excludedDomains,omitempty"`
+		Identifier                                     nullable.Type[string]                        `json:"identifier,omitempty"`
+		LoginGroupOrDomain                             nullable.Type[string]                        `json:"loginGroupOrDomain,omitempty"`
+		OnDemandRules                                  *[]VpnOnDemandRule                           `json:"onDemandRules,omitempty"`
+		OptInToDeviceIdSharing                         nullable.Type[bool]                          `json:"optInToDeviceIdSharing,omitempty"`
+		ProviderType                                   *VpnProviderType                             `json:"providerType,omitempty"`
+		ProxyServer                                    VpnProxyServer                               `json:"proxyServer"`
+		Realm                                          nullable.Type[string]                        `json:"realm,omitempty"`
+		Role                                           nullable.Type[string]                        `json:"role,omitempty"`
+		SafariDomains                                  *[]string                                    `json:"safariDomains,omitempty"`
+		Server                                         *VpnServer                                   `json:"server,omitempty"`
+		Assignments                                    *[]DeviceConfigurationAssignment             `json:"assignments,omitempty"`
+		CreatedDateTime                                *string                                      `json:"createdDateTime,omitempty"`
+		Description                                    nullable.Type[string]                        `json:"description,omitempty"`
+		DeviceManagementApplicabilityRuleDeviceMode    *DeviceManagementApplicabilityRuleDeviceMode `json:"deviceManagementApplicabilityRuleDeviceMode,omitempty"`
+		DeviceManagementApplicabilityRuleOsEdition     *DeviceManagementApplicabilityRuleOsEdition  `json:"deviceManagementApplicabilityRuleOsEdition,omitempty"`
+		DeviceManagementApplicabilityRuleOsVersion     *DeviceManagementApplicabilityRuleOsVersion  `json:"deviceManagementApplicabilityRuleOsVersion,omitempty"`
+		DeviceSettingStateSummaries                    *[]SettingStateDeviceSummary                 `json:"deviceSettingStateSummaries,omitempty"`
+		DeviceStatusOverview                           *DeviceConfigurationDeviceOverview           `json:"deviceStatusOverview,omitempty"`
+		DeviceStatuses                                 *[]DeviceConfigurationDeviceStatus           `json:"deviceStatuses,omitempty"`
+		DisplayName                                    *string                                      `json:"displayName,omitempty"`
+		GroupAssignments                               *[]DeviceConfigurationGroupAssignment        `json:"groupAssignments,omitempty"`
+		LastModifiedDateTime                           *string                                      `json:"lastModifiedDateTime,omitempty"`
+		RoleScopeTagIds                                *[]string                                    `json:"roleScopeTagIds,omitempty"`
+		SupportsScopeTags                              *bool                                        `json:"supportsScopeTags,omitempty"`
+		UserStatusOverview                             *DeviceConfigurationUserOverview             `json:"userStatusOverview,omitempty"`
+		UserStatuses                                   *[]DeviceConfigurationUserStatus             `json:"userStatuses,omitempty"`
+		Version                                        *int64                                       `json:"version,omitempty"`
+		Id                                             *string                                      `json:"id,omitempty"`
+		ODataId                                        *string                                      `json:"@odata.id,omitempty"`
+		ODataType                                      *string                                      `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into IosikEv2VpnConfiguration: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.AllowDefaultChildSecurityAssociationParameters = decoded.AllowDefaultChildSecurityAssociationParameters
 	s.AllowDefaultSecurityAssociationParameters = decoded.AllowDefaultSecurityAssociationParameters
 	s.AlwaysOnConfiguration = decoded.AlwaysOnConfiguration
+	s.ChildSecurityAssociationParameters = decoded.ChildSecurityAssociationParameters
+	s.ClientAuthenticationType = decoded.ClientAuthenticationType
+	s.DeadPeerDetectionRate = decoded.DeadPeerDetectionRate
+	s.DisableMobilityAndMultihoming = decoded.DisableMobilityAndMultihoming
+	s.DisableRedirect = decoded.DisableRedirect
+	s.EnableAlwaysOnConfiguration = decoded.EnableAlwaysOnConfiguration
+	s.EnableCertificateRevocationCheck = decoded.EnableCertificateRevocationCheck
+	s.EnableEAP = decoded.EnableEAP
+	s.EnablePerfectForwardSecrecy = decoded.EnablePerfectForwardSecrecy
+	s.EnableUseInternalSubnetAttributes = decoded.EnableUseInternalSubnetAttributes
+	s.LocalIdentifier = decoded.LocalIdentifier
+	s.MtuSizeInBytes = decoded.MtuSizeInBytes
+	s.RemoteIdentifier = decoded.RemoteIdentifier
+	s.SecurityAssociationParameters = decoded.SecurityAssociationParameters
+	s.ServerCertificateCommonName = decoded.ServerCertificateCommonName
+	s.ServerCertificateIssuerCommonName = decoded.ServerCertificateIssuerCommonName
+	s.ServerCertificateType = decoded.ServerCertificateType
+	s.SharedSecret = decoded.SharedSecret
+	s.TlsMaximumVersion = decoded.TlsMaximumVersion
+	s.TlsMinimumVersion = decoded.TlsMinimumVersion
 	s.Assignments = decoded.Assignments
 	s.AssociatedDomains = decoded.AssociatedDomains
 	s.AuthenticationMethod = decoded.AuthenticationMethod
-	s.ChildSecurityAssociationParameters = decoded.ChildSecurityAssociationParameters
-	s.ClientAuthenticationType = decoded.ClientAuthenticationType
 	s.CloudName = decoded.CloudName
 	s.ConnectionName = decoded.ConnectionName
 	s.ConnectionType = decoded.ConnectionType
 	s.CreatedDateTime = decoded.CreatedDateTime
 	s.CustomData = decoded.CustomData
 	s.CustomKeyValueData = decoded.CustomKeyValueData
-	s.DeadPeerDetectionRate = decoded.DeadPeerDetectionRate
 	s.DerivedCredentialSettings = decoded.DerivedCredentialSettings
 	s.Description = decoded.Description
 	s.DeviceManagementApplicabilityRuleDeviceMode = decoded.DeviceManagementApplicabilityRuleDeviceMode
@@ -447,49 +538,32 @@ func (s *IosikEv2VpnConfiguration) UnmarshalJSON(bytes []byte) error {
 	s.DeviceSettingStateSummaries = decoded.DeviceSettingStateSummaries
 	s.DeviceStatusOverview = decoded.DeviceStatusOverview
 	s.DeviceStatuses = decoded.DeviceStatuses
-	s.DisableMobilityAndMultihoming = decoded.DisableMobilityAndMultihoming
 	s.DisableOnDemandUserOverride = decoded.DisableOnDemandUserOverride
-	s.DisableRedirect = decoded.DisableRedirect
 	s.DisconnectOnIdle = decoded.DisconnectOnIdle
 	s.DisconnectOnIdleTimerInSeconds = decoded.DisconnectOnIdleTimerInSeconds
 	s.DisplayName = decoded.DisplayName
-	s.EnableAlwaysOnConfiguration = decoded.EnableAlwaysOnConfiguration
-	s.EnableCertificateRevocationCheck = decoded.EnableCertificateRevocationCheck
-	s.EnableEAP = decoded.EnableEAP
 	s.EnablePerApp = decoded.EnablePerApp
-	s.EnablePerfectForwardSecrecy = decoded.EnablePerfectForwardSecrecy
 	s.EnableSplitTunneling = decoded.EnableSplitTunneling
-	s.EnableUseInternalSubnetAttributes = decoded.EnableUseInternalSubnetAttributes
 	s.ExcludeList = decoded.ExcludeList
 	s.ExcludedDomains = decoded.ExcludedDomains
 	s.GroupAssignments = decoded.GroupAssignments
 	s.Id = decoded.Id
 	s.Identifier = decoded.Identifier
 	s.LastModifiedDateTime = decoded.LastModifiedDateTime
-	s.LocalIdentifier = decoded.LocalIdentifier
 	s.LoginGroupOrDomain = decoded.LoginGroupOrDomain
 	s.MicrosoftTunnelSiteId = decoded.MicrosoftTunnelSiteId
-	s.MtuSizeInBytes = decoded.MtuSizeInBytes
 	s.ODataId = decoded.ODataId
 	s.ODataType = decoded.ODataType
 	s.OnDemandRules = decoded.OnDemandRules
 	s.OptInToDeviceIdSharing = decoded.OptInToDeviceIdSharing
 	s.ProviderType = decoded.ProviderType
 	s.Realm = decoded.Realm
-	s.RemoteIdentifier = decoded.RemoteIdentifier
 	s.Role = decoded.Role
 	s.RoleScopeTagIds = decoded.RoleScopeTagIds
 	s.SafariDomains = decoded.SafariDomains
-	s.SecurityAssociationParameters = decoded.SecurityAssociationParameters
 	s.Server = decoded.Server
-	s.ServerCertificateCommonName = decoded.ServerCertificateCommonName
-	s.ServerCertificateIssuerCommonName = decoded.ServerCertificateIssuerCommonName
-	s.ServerCertificateType = decoded.ServerCertificateType
-	s.SharedSecret = decoded.SharedSecret
 	s.StrictEnforcement = decoded.StrictEnforcement
 	s.SupportsScopeTags = decoded.SupportsScopeTags
-	s.TlsMaximumVersion = decoded.TlsMaximumVersion
-	s.TlsMinimumVersion = decoded.TlsMinimumVersion
 	s.UserDomain = decoded.UserDomain
 	s.UserStatusOverview = decoded.UserStatusOverview
 	s.UserStatuses = decoded.UserStatuses
@@ -532,5 +606,6 @@ func (s *IosikEv2VpnConfiguration) UnmarshalJSON(bytes []byte) error {
 		}
 		s.TargetedMobileApps = &output
 	}
+
 	return nil
 }

@@ -17,16 +17,45 @@ type UpdateEntitlementManagementRoleAssignmentScheduleInstanceOperationResponse 
 	OData        *odata.OData
 }
 
+type UpdateEntitlementManagementRoleAssignmentScheduleInstanceOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateEntitlementManagementRoleAssignmentScheduleInstanceOperationOptions() UpdateEntitlementManagementRoleAssignmentScheduleInstanceOperationOptions {
+	return UpdateEntitlementManagementRoleAssignmentScheduleInstanceOperationOptions{}
+}
+
+func (o UpdateEntitlementManagementRoleAssignmentScheduleInstanceOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateEntitlementManagementRoleAssignmentScheduleInstanceOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateEntitlementManagementRoleAssignmentScheduleInstanceOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateEntitlementManagementRoleAssignmentScheduleInstance - Update the navigation property
 // roleAssignmentScheduleInstances in roleManagement
-func (c EntitlementManagementRoleAssignmentScheduleInstanceClient) UpdateEntitlementManagementRoleAssignmentScheduleInstance(ctx context.Context, id stable.RoleManagementEntitlementManagementRoleAssignmentScheduleInstanceId, input stable.UnifiedRoleAssignmentScheduleInstance) (result UpdateEntitlementManagementRoleAssignmentScheduleInstanceOperationResponse, err error) {
+func (c EntitlementManagementRoleAssignmentScheduleInstanceClient) UpdateEntitlementManagementRoleAssignmentScheduleInstance(ctx context.Context, id stable.RoleManagementEntitlementManagementRoleAssignmentScheduleInstanceId, input stable.UnifiedRoleAssignmentScheduleInstance, options UpdateEntitlementManagementRoleAssignmentScheduleInstanceOperationOptions) (result UpdateEntitlementManagementRoleAssignmentScheduleInstanceOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

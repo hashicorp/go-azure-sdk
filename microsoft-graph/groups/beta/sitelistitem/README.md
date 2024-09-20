@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/sitelistitem` Documentation
 
-The `sitelistitem` SDK allows for interaction with the Azure Resource Manager Service `groups` (API Version `beta`).
+The `sitelistitem` SDK allows for interaction with Microsoft Graph `groups` (API Version `beta`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -15,7 +15,7 @@ import "github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/sitelistit
 ### Client Initialization
 
 ```go
-client := sitelistitem.NewSiteListItemClientWithBaseURI("https://management.azure.com")
+client := sitelistitem.NewSiteListItemClientWithBaseURI("https://graph.microsoft.com")
 client.Client.Authorizer = authorizer
 ```
 
@@ -24,14 +24,14 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := sitelistitem.NewGroupIdSiteIdListID("groupIdValue", "siteIdValue", "listIdValue")
+id := sitelistitem.NewGroupIdSiteIdListID("groupId", "siteId", "listId")
 
 payload := sitelistitem.ListItem{
 	// ...
 }
 
 
-read, err := client.CreateSiteListItem(ctx, id, payload)
+read, err := client.CreateSiteListItem(ctx, id, payload, sitelistitem.DefaultCreateSiteListItemOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -45,14 +45,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := sitelistitem.NewGroupIdSiteIdListIdItemID("groupIdValue", "siteIdValue", "listIdValue", "listItemIdValue")
+id := sitelistitem.NewGroupIdSiteIdListIdItemID("groupId", "siteId", "listId", "listItemId")
 
 payload := sitelistitem.CreateSiteListItemLinkRequest{
 	// ...
 }
 
 
-read, err := client.CreateSiteListItemLink(ctx, id, payload)
+read, err := client.CreateSiteListItemLink(ctx, id, payload, sitelistitem.DefaultCreateSiteListItemLinkOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -66,7 +66,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := sitelistitem.NewGroupIdSiteIdListIdItemID("groupIdValue", "siteIdValue", "listIdValue", "listItemIdValue")
+id := sitelistitem.NewGroupIdSiteIdListIdItemID("groupId", "siteId", "listId", "listItemId")
 
 read, err := client.DeleteSiteListItem(ctx, id, sitelistitem.DefaultDeleteSiteListItemOperationOptions())
 if err != nil {
@@ -82,7 +82,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := sitelistitem.NewGroupIdSiteIdListIdItemID("groupIdValue", "siteIdValue", "listIdValue", "listItemIdValue")
+id := sitelistitem.NewGroupIdSiteIdListIdItemID("groupId", "siteId", "listId", "listItemId")
 
 read, err := client.GetSiteListItem(ctx, id, sitelistitem.DefaultGetSiteListItemOperationOptions())
 if err != nil {
@@ -98,7 +98,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := sitelistitem.NewGroupIdSiteIdListID("groupIdValue", "siteIdValue", "listIdValue")
+id := sitelistitem.NewGroupIdSiteIdListID("groupId", "siteId", "listId")
 
 // alternatively `client.ListSiteListItems(ctx, id, sitelistitem.DefaultListSiteListItemsOperationOptions())` can be used to do batched pagination
 items, err := client.ListSiteListItemsComplete(ctx, id, sitelistitem.DefaultListSiteListItemsOperationOptions())
@@ -115,14 +115,14 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := sitelistitem.NewGroupIdSiteIdListIdItemID("groupIdValue", "siteIdValue", "listIdValue", "listItemIdValue")
+id := sitelistitem.NewGroupIdSiteIdListIdItemID("groupId", "siteId", "listId", "listItemId")
 
 payload := sitelistitem.ListItem{
 	// ...
 }
 
 
-read, err := client.UpdateSiteListItem(ctx, id, payload)
+read, err := client.UpdateSiteListItem(ctx, id, payload, sitelistitem.DefaultUpdateSiteListItemOperationOptions())
 if err != nil {
 	// handle the error
 }

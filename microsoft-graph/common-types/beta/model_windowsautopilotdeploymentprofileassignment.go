@@ -70,17 +70,23 @@ func (s WindowsAutopilotDeploymentProfileAssignment) MarshalJSON() ([]byte, erro
 var _ json.Unmarshaler = &WindowsAutopilotDeploymentProfileAssignment{}
 
 func (s *WindowsAutopilotDeploymentProfileAssignment) UnmarshalJSON(bytes []byte) error {
-	type alias WindowsAutopilotDeploymentProfileAssignment
-	var decoded alias
+
+	var decoded struct {
+		Source    *DeviceAndAppManagementAssignmentSource `json:"source,omitempty"`
+		SourceId  nullable.Type[string]                   `json:"sourceId,omitempty"`
+		Id        *string                                 `json:"id,omitempty"`
+		ODataId   *string                                 `json:"@odata.id,omitempty"`
+		ODataType *string                                 `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into WindowsAutopilotDeploymentProfileAssignment: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
+	s.Source = decoded.Source
+	s.SourceId = decoded.SourceId
 	s.Id = decoded.Id
 	s.ODataId = decoded.ODataId
 	s.ODataType = decoded.ODataType
-	s.Source = decoded.Source
-	s.SourceId = decoded.SourceId
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -94,5 +100,6 @@ func (s *WindowsAutopilotDeploymentProfileAssignment) UnmarshalJSON(bytes []byte
 		}
 		s.Target = impl
 	}
+
 	return nil
 }

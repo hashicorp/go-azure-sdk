@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &MeInsightSharedId{}
 
 func TestNewMeInsightSharedID(t *testing.T) {
-	id := NewMeInsightSharedID("sharedInsightIdValue")
+	id := NewMeInsightSharedID("sharedInsightId")
 
-	if id.SharedInsightId != "sharedInsightIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'SharedInsightId'", id.SharedInsightId, "sharedInsightIdValue")
+	if id.SharedInsightId != "sharedInsightId" {
+		t.Fatalf("Expected %q but got %q for Segment 'SharedInsightId'", id.SharedInsightId, "sharedInsightId")
 	}
 }
 
 func TestFormatMeInsightSharedID(t *testing.T) {
-	actual := NewMeInsightSharedID("sharedInsightIdValue").ID()
-	expected := "/me/insights/shared/sharedInsightIdValue"
+	actual := NewMeInsightSharedID("sharedInsightId").ID()
+	expected := "/me/insights/shared/sharedInsightId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -55,14 +55,14 @@ func TestParseMeInsightSharedID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/me/insights/shared/sharedInsightIdValue",
+			Input: "/me/insights/shared/sharedInsightId",
 			Expected: &MeInsightSharedId{
-				SharedInsightId: "sharedInsightIdValue",
+				SharedInsightId: "sharedInsightId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/insights/shared/sharedInsightIdValue/extra",
+			Input: "/me/insights/shared/sharedInsightId/extra",
 			Error: true,
 		},
 	}
@@ -131,26 +131,26 @@ func TestParseMeInsightSharedIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/me/insights/shared/sharedInsightIdValue",
+			Input: "/me/insights/shared/sharedInsightId",
 			Expected: &MeInsightSharedId{
-				SharedInsightId: "sharedInsightIdValue",
+				SharedInsightId: "sharedInsightId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/insights/shared/sharedInsightIdValue/extra",
+			Input: "/me/insights/shared/sharedInsightId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/iNsIgHtS/sHaReD/sHaReDiNsIgHtIdVaLuE",
+			Input: "/mE/iNsIgHtS/sHaReD/sHaReDiNsIgHtId",
 			Expected: &MeInsightSharedId{
-				SharedInsightId: "sHaReDiNsIgHtIdVaLuE",
+				SharedInsightId: "sHaReDiNsIgHtId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/mE/iNsIgHtS/sHaReD/sHaReDiNsIgHtIdVaLuE/extra",
+			Input: "/mE/iNsIgHtS/sHaReD/sHaReDiNsIgHtId/extra",
 			Error: true,
 		},
 	}

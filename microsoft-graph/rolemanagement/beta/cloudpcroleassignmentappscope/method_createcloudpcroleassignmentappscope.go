@@ -20,15 +20,44 @@ type CreateCloudPCRoleAssignmentAppScopeOperationResponse struct {
 	Model        beta.AppScope
 }
 
+type CreateCloudPCRoleAssignmentAppScopeOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateCloudPCRoleAssignmentAppScopeOperationOptions() CreateCloudPCRoleAssignmentAppScopeOperationOptions {
+	return CreateCloudPCRoleAssignmentAppScopeOperationOptions{}
+}
+
+func (o CreateCloudPCRoleAssignmentAppScopeOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateCloudPCRoleAssignmentAppScopeOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateCloudPCRoleAssignmentAppScopeOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateCloudPCRoleAssignmentAppScope - Create new navigation property to appScopes for roleManagement
-func (c CloudPCRoleAssignmentAppScopeClient) CreateCloudPCRoleAssignmentAppScope(ctx context.Context, id beta.RoleManagementCloudPCRoleAssignmentId, input beta.AppScope) (result CreateCloudPCRoleAssignmentAppScopeOperationResponse, err error) {
+func (c CloudPCRoleAssignmentAppScopeClient) CreateCloudPCRoleAssignmentAppScope(ctx context.Context, id beta.RoleManagementCloudPCRoleAssignmentId, input beta.AppScope, options CreateCloudPCRoleAssignmentAppScopeOperationOptions) (result CreateCloudPCRoleAssignmentAppScopeOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/appScopes", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/appScopes", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

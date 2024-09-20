@@ -62,10 +62,15 @@ func (s WindowsVpnConfigurationCollectionResponse) MarshalJSON() ([]byte, error)
 var _ json.Unmarshaler = &WindowsVpnConfigurationCollectionResponse{}
 
 func (s *WindowsVpnConfigurationCollectionResponse) UnmarshalJSON(bytes []byte) error {
-	type alias WindowsVpnConfigurationCollectionResponse
-	var decoded alias
+
+	var decoded struct {
+		Value         *[]WindowsVpnConfiguration `json:"value,omitempty"`
+		ODataId       *string                    `json:"@odata.id,omitempty"`
+		ODataNextLink nullable.Type[string]      `json:"@odata.nextLink,omitempty"`
+		ODataType     *string                    `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into WindowsVpnConfigurationCollectionResponse: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.ODataId = decoded.ODataId
@@ -93,5 +98,6 @@ func (s *WindowsVpnConfigurationCollectionResponse) UnmarshalJSON(bytes []byte) 
 		}
 		s.Value = &output
 	}
+
 	return nil
 }

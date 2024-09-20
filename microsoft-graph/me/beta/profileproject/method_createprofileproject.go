@@ -18,16 +18,45 @@ type CreateProfileProjectOperationResponse struct {
 	Model        *beta.ProjectParticipation
 }
 
+type CreateProfileProjectOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateProfileProjectOperationOptions() CreateProfileProjectOperationOptions {
+	return CreateProfileProjectOperationOptions{}
+}
+
+func (o CreateProfileProjectOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateProfileProjectOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateProfileProjectOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateProfileProject - Create projectParticipation. Use this API to create a new projectParticipation object in a
 // user's profile.
-func (c ProfileProjectClient) CreateProfileProject(ctx context.Context, input beta.ProjectParticipation) (result CreateProfileProjectOperationResponse, err error) {
+func (c ProfileProjectClient) CreateProfileProject(ctx context.Context, input beta.ProjectParticipation, options CreateProfileProjectOperationOptions) (result CreateProfileProjectOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/me/profile/projects",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/me/profile/projects",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

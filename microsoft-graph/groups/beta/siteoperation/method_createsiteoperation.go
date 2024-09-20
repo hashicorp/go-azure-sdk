@@ -19,15 +19,44 @@ type CreateSiteOperationOperationResponse struct {
 	Model        *beta.RichLongRunningOperation
 }
 
+type CreateSiteOperationOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateSiteOperationOperationOptions() CreateSiteOperationOperationOptions {
+	return CreateSiteOperationOperationOptions{}
+}
+
+func (o CreateSiteOperationOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateSiteOperationOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateSiteOperationOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateSiteOperation - Create new navigation property to operations for groups
-func (c SiteOperationClient) CreateSiteOperation(ctx context.Context, id beta.GroupIdSiteId, input beta.RichLongRunningOperation) (result CreateSiteOperationOperationResponse, err error) {
+func (c SiteOperationClient) CreateSiteOperation(ctx context.Context, id beta.GroupIdSiteId, input beta.RichLongRunningOperation, options CreateSiteOperationOperationOptions) (result CreateSiteOperationOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/operations", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/operations", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

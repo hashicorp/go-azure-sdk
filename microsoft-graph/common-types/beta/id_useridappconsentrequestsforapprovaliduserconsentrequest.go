@@ -104,11 +104,11 @@ func (id UserIdAppConsentRequestsForApprovalIdUserConsentRequestId) ID() string 
 func (id UserIdAppConsentRequestsForApprovalIdUserConsentRequestId) Segments() []resourceids.Segment {
 	return []resourceids.Segment{
 		resourceids.StaticSegment("users", "users", "users"),
-		resourceids.UserSpecifiedSegment("userId", "userIdValue"),
+		resourceids.UserSpecifiedSegment("userId", "userId"),
 		resourceids.StaticSegment("appConsentRequestsForApproval", "appConsentRequestsForApproval", "appConsentRequestsForApproval"),
-		resourceids.UserSpecifiedSegment("appConsentRequestId", "appConsentRequestIdValue"),
+		resourceids.UserSpecifiedSegment("appConsentRequestId", "appConsentRequestId"),
 		resourceids.StaticSegment("userConsentRequests", "userConsentRequests", "userConsentRequests"),
-		resourceids.UserSpecifiedSegment("userConsentRequestId", "userConsentRequestIdValue"),
+		resourceids.UserSpecifiedSegment("userConsentRequestId", "userConsentRequestId"),
 	}
 }
 

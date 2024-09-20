@@ -20,15 +20,44 @@ type CreateManagedDeviceOperationResponse struct {
 	Model        beta.ManagedDevice
 }
 
+type CreateManagedDeviceOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateManagedDeviceOperationOptions() CreateManagedDeviceOperationOptions {
+	return CreateManagedDeviceOperationOptions{}
+}
+
+func (o CreateManagedDeviceOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateManagedDeviceOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateManagedDeviceOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateManagedDevice - Create new navigation property to managedDevices for users
-func (c ManagedDeviceClient) CreateManagedDevice(ctx context.Context, id beta.UserId, input beta.ManagedDevice) (result CreateManagedDeviceOperationResponse, err error) {
+func (c ManagedDeviceClient) CreateManagedDevice(ctx context.Context, id beta.UserId, input beta.ManagedDevice, options CreateManagedDeviceOperationOptions) (result CreateManagedDeviceOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/managedDevices", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/managedDevices", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

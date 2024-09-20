@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &IdentityB2xUserFlowId{}
 
 func TestNewIdentityB2xUserFlowID(t *testing.T) {
-	id := NewIdentityB2xUserFlowID("b2xIdentityUserFlowIdValue")
+	id := NewIdentityB2xUserFlowID("b2xIdentityUserFlowId")
 
-	if id.B2xIdentityUserFlowId != "b2xIdentityUserFlowIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'B2xIdentityUserFlowId'", id.B2xIdentityUserFlowId, "b2xIdentityUserFlowIdValue")
+	if id.B2xIdentityUserFlowId != "b2xIdentityUserFlowId" {
+		t.Fatalf("Expected %q but got %q for Segment 'B2xIdentityUserFlowId'", id.B2xIdentityUserFlowId, "b2xIdentityUserFlowId")
 	}
 }
 
 func TestFormatIdentityB2xUserFlowID(t *testing.T) {
-	actual := NewIdentityB2xUserFlowID("b2xIdentityUserFlowIdValue").ID()
-	expected := "/identity/b2xUserFlows/b2xIdentityUserFlowIdValue"
+	actual := NewIdentityB2xUserFlowID("b2xIdentityUserFlowId").ID()
+	expected := "/identity/b2xUserFlows/b2xIdentityUserFlowId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -50,14 +50,14 @@ func TestParseIdentityB2xUserFlowID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/identity/b2xUserFlows/b2xIdentityUserFlowIdValue",
+			Input: "/identity/b2xUserFlows/b2xIdentityUserFlowId",
 			Expected: &IdentityB2xUserFlowId{
-				B2xIdentityUserFlowId: "b2xIdentityUserFlowIdValue",
+				B2xIdentityUserFlowId: "b2xIdentityUserFlowId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/identity/b2xUserFlows/b2xIdentityUserFlowIdValue/extra",
+			Input: "/identity/b2xUserFlows/b2xIdentityUserFlowId/extra",
 			Error: true,
 		},
 	}
@@ -116,26 +116,26 @@ func TestParseIdentityB2xUserFlowIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/identity/b2xUserFlows/b2xIdentityUserFlowIdValue",
+			Input: "/identity/b2xUserFlows/b2xIdentityUserFlowId",
 			Expected: &IdentityB2xUserFlowId{
-				B2xIdentityUserFlowId: "b2xIdentityUserFlowIdValue",
+				B2xIdentityUserFlowId: "b2xIdentityUserFlowId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/identity/b2xUserFlows/b2xIdentityUserFlowIdValue/extra",
+			Input: "/identity/b2xUserFlows/b2xIdentityUserFlowId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/iDeNtItY/b2xUsErFlOwS/b2xIdEnTiTyUsErFlOwIdVaLuE",
+			Input: "/iDeNtItY/b2xUsErFlOwS/b2xIdEnTiTyUsErFlOwId",
 			Expected: &IdentityB2xUserFlowId{
-				B2xIdentityUserFlowId: "b2xIdEnTiTyUsErFlOwIdVaLuE",
+				B2xIdentityUserFlowId: "b2xIdEnTiTyUsErFlOwId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/iDeNtItY/b2xUsErFlOwS/b2xIdEnTiTyUsErFlOwIdVaLuE/extra",
+			Input: "/iDeNtItY/b2xUsErFlOwS/b2xIdEnTiTyUsErFlOwId/extra",
 			Error: true,
 		},
 	}

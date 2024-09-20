@@ -19,18 +19,47 @@ type CreateDriveItemListItemLinkOperationResponse struct {
 	Model        *beta.Permission
 }
 
+type CreateDriveItemListItemLinkOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateDriveItemListItemLinkOperationOptions() CreateDriveItemListItemLinkOperationOptions {
+	return CreateDriveItemListItemLinkOperationOptions{}
+}
+
+func (o CreateDriveItemListItemLinkOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateDriveItemListItemLinkOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateDriveItemListItemLinkOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateDriveItemListItemLink - Invoke action createLink. Create a sharing link for a listItem. The createLink action
 // creates a new sharing link if the specified link type doesn't already exist for the calling application. If a sharing
 // link of the specified type already exists for the app, this action returns the existing sharing link. listItem
 // resources inherit sharing permissions from the list the item resides in.
-func (c DriveItemListItemClient) CreateDriveItemListItemLink(ctx context.Context, id beta.MeDriveIdItemId, input CreateDriveItemListItemLinkRequest) (result CreateDriveItemListItemLinkOperationResponse, err error) {
+func (c DriveItemListItemClient) CreateDriveItemListItemLink(ctx context.Context, id beta.MeDriveIdItemId, input CreateDriveItemListItemLinkRequest, options CreateDriveItemListItemLinkOperationOptions) (result CreateDriveItemListItemLinkOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/listItem/createLink", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/listItem/createLink", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

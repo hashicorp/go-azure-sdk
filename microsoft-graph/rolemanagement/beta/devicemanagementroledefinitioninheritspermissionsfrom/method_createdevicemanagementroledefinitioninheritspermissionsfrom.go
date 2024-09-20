@@ -19,16 +19,45 @@ type CreateDeviceManagementRoleDefinitionInheritsPermissionsFromOperationRespons
 	Model        *beta.UnifiedRoleDefinition
 }
 
+type CreateDeviceManagementRoleDefinitionInheritsPermissionsFromOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateDeviceManagementRoleDefinitionInheritsPermissionsFromOperationOptions() CreateDeviceManagementRoleDefinitionInheritsPermissionsFromOperationOptions {
+	return CreateDeviceManagementRoleDefinitionInheritsPermissionsFromOperationOptions{}
+}
+
+func (o CreateDeviceManagementRoleDefinitionInheritsPermissionsFromOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateDeviceManagementRoleDefinitionInheritsPermissionsFromOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateDeviceManagementRoleDefinitionInheritsPermissionsFromOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateDeviceManagementRoleDefinitionInheritsPermissionsFrom - Create new navigation property to
 // inheritsPermissionsFrom for roleManagement
-func (c DeviceManagementRoleDefinitionInheritsPermissionsFromClient) CreateDeviceManagementRoleDefinitionInheritsPermissionsFrom(ctx context.Context, id beta.RoleManagementDeviceManagementRoleDefinitionId, input beta.UnifiedRoleDefinition) (result CreateDeviceManagementRoleDefinitionInheritsPermissionsFromOperationResponse, err error) {
+func (c DeviceManagementRoleDefinitionInheritsPermissionsFromClient) CreateDeviceManagementRoleDefinitionInheritsPermissionsFrom(ctx context.Context, id beta.RoleManagementDeviceManagementRoleDefinitionId, input beta.UnifiedRoleDefinition, options CreateDeviceManagementRoleDefinitionInheritsPermissionsFromOperationOptions) (result CreateDeviceManagementRoleDefinitionInheritsPermissionsFromOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/inheritsPermissionsFrom", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/inheritsPermissionsFrom", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

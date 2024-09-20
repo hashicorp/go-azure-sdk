@@ -113,10 +113,31 @@ func (s VppToken) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &VppToken{}
 
 func (s *VppToken) UnmarshalJSON(bytes []byte) error {
-	type alias VppToken
-	var decoded alias
+
+	var decoded struct {
+		AppleId                             nullable.Type[string]   `json:"appleId,omitempty"`
+		AutomaticallyUpdateApps             *bool                   `json:"automaticallyUpdateApps,omitempty"`
+		ClaimTokenManagementFromExternalMdm *bool                   `json:"claimTokenManagementFromExternalMdm,omitempty"`
+		CountryOrRegion                     nullable.Type[string]   `json:"countryOrRegion,omitempty"`
+		DataSharingConsentGranted           *bool                   `json:"dataSharingConsentGranted,omitempty"`
+		DisplayName                         nullable.Type[string]   `json:"displayName,omitempty"`
+		ExpirationDateTime                  *string                 `json:"expirationDateTime,omitempty"`
+		LastModifiedDateTime                *string                 `json:"lastModifiedDateTime,omitempty"`
+		LastSyncDateTime                    *string                 `json:"lastSyncDateTime,omitempty"`
+		LastSyncStatus                      *VppTokenSyncStatus     `json:"lastSyncStatus,omitempty"`
+		LocationName                        nullable.Type[string]   `json:"locationName,omitempty"`
+		OrganizationName                    nullable.Type[string]   `json:"organizationName,omitempty"`
+		RoleScopeTagIds                     *[]string               `json:"roleScopeTagIds,omitempty"`
+		State                               *VppTokenState          `json:"state,omitempty"`
+		Token                               nullable.Type[string]   `json:"token,omitempty"`
+		TokenActionResults                  *[]VppTokenActionResult `json:"tokenActionResults,omitempty"`
+		VppTokenAccountType                 *VppTokenAccountType    `json:"vppTokenAccountType,omitempty"`
+		Id                                  *string                 `json:"id,omitempty"`
+		ODataId                             *string                 `json:"@odata.id,omitempty"`
+		ODataType                           *string                 `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into VppToken: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.AppleId = decoded.AppleId
@@ -126,18 +147,18 @@ func (s *VppToken) UnmarshalJSON(bytes []byte) error {
 	s.DataSharingConsentGranted = decoded.DataSharingConsentGranted
 	s.DisplayName = decoded.DisplayName
 	s.ExpirationDateTime = decoded.ExpirationDateTime
-	s.Id = decoded.Id
 	s.LastModifiedDateTime = decoded.LastModifiedDateTime
 	s.LastSyncDateTime = decoded.LastSyncDateTime
 	s.LastSyncStatus = decoded.LastSyncStatus
 	s.LocationName = decoded.LocationName
-	s.ODataId = decoded.ODataId
-	s.ODataType = decoded.ODataType
 	s.OrganizationName = decoded.OrganizationName
 	s.RoleScopeTagIds = decoded.RoleScopeTagIds
 	s.State = decoded.State
 	s.Token = decoded.Token
 	s.VppTokenAccountType = decoded.VppTokenAccountType
+	s.Id = decoded.Id
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -160,5 +181,6 @@ func (s *VppToken) UnmarshalJSON(bytes []byte) error {
 		}
 		s.TokenActionResults = &output
 	}
+
 	return nil
 }

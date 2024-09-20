@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &DeviceManagementUserExperienceAnalyticsImpactingProcessId{}
 
 func TestNewDeviceManagementUserExperienceAnalyticsImpactingProcessID(t *testing.T) {
-	id := NewDeviceManagementUserExperienceAnalyticsImpactingProcessID("userExperienceAnalyticsImpactingProcessIdValue")
+	id := NewDeviceManagementUserExperienceAnalyticsImpactingProcessID("userExperienceAnalyticsImpactingProcessId")
 
-	if id.UserExperienceAnalyticsImpactingProcessId != "userExperienceAnalyticsImpactingProcessIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'UserExperienceAnalyticsImpactingProcessId'", id.UserExperienceAnalyticsImpactingProcessId, "userExperienceAnalyticsImpactingProcessIdValue")
+	if id.UserExperienceAnalyticsImpactingProcessId != "userExperienceAnalyticsImpactingProcessId" {
+		t.Fatalf("Expected %q but got %q for Segment 'UserExperienceAnalyticsImpactingProcessId'", id.UserExperienceAnalyticsImpactingProcessId, "userExperienceAnalyticsImpactingProcessId")
 	}
 }
 
 func TestFormatDeviceManagementUserExperienceAnalyticsImpactingProcessID(t *testing.T) {
-	actual := NewDeviceManagementUserExperienceAnalyticsImpactingProcessID("userExperienceAnalyticsImpactingProcessIdValue").ID()
-	expected := "/deviceManagement/userExperienceAnalyticsImpactingProcess/userExperienceAnalyticsImpactingProcessIdValue"
+	actual := NewDeviceManagementUserExperienceAnalyticsImpactingProcessID("userExperienceAnalyticsImpactingProcessId").ID()
+	expected := "/deviceManagement/userExperienceAnalyticsImpactingProcess/userExperienceAnalyticsImpactingProcessId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -50,14 +50,14 @@ func TestParseDeviceManagementUserExperienceAnalyticsImpactingProcessID(t *testi
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/userExperienceAnalyticsImpactingProcess/userExperienceAnalyticsImpactingProcessIdValue",
+			Input: "/deviceManagement/userExperienceAnalyticsImpactingProcess/userExperienceAnalyticsImpactingProcessId",
 			Expected: &DeviceManagementUserExperienceAnalyticsImpactingProcessId{
-				UserExperienceAnalyticsImpactingProcessId: "userExperienceAnalyticsImpactingProcessIdValue",
+				UserExperienceAnalyticsImpactingProcessId: "userExperienceAnalyticsImpactingProcessId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/userExperienceAnalyticsImpactingProcess/userExperienceAnalyticsImpactingProcessIdValue/extra",
+			Input: "/deviceManagement/userExperienceAnalyticsImpactingProcess/userExperienceAnalyticsImpactingProcessId/extra",
 			Error: true,
 		},
 	}
@@ -116,26 +116,26 @@ func TestParseDeviceManagementUserExperienceAnalyticsImpactingProcessIDInsensiti
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/userExperienceAnalyticsImpactingProcess/userExperienceAnalyticsImpactingProcessIdValue",
+			Input: "/deviceManagement/userExperienceAnalyticsImpactingProcess/userExperienceAnalyticsImpactingProcessId",
 			Expected: &DeviceManagementUserExperienceAnalyticsImpactingProcessId{
-				UserExperienceAnalyticsImpactingProcessId: "userExperienceAnalyticsImpactingProcessIdValue",
+				UserExperienceAnalyticsImpactingProcessId: "userExperienceAnalyticsImpactingProcessId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/userExperienceAnalyticsImpactingProcess/userExperienceAnalyticsImpactingProcessIdValue/extra",
+			Input: "/deviceManagement/userExperienceAnalyticsImpactingProcess/userExperienceAnalyticsImpactingProcessId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/uSeReXpErIeNcEaNaLyTiCsImPaCtInGpRoCeSs/uSeReXpErIeNcEaNaLyTiCsImPaCtInGpRoCeSsIdVaLuE",
+			Input: "/dEvIcEmAnAgEmEnT/uSeReXpErIeNcEaNaLyTiCsImPaCtInGpRoCeSs/uSeReXpErIeNcEaNaLyTiCsImPaCtInGpRoCeSsId",
 			Expected: &DeviceManagementUserExperienceAnalyticsImpactingProcessId{
-				UserExperienceAnalyticsImpactingProcessId: "uSeReXpErIeNcEaNaLyTiCsImPaCtInGpRoCeSsIdVaLuE",
+				UserExperienceAnalyticsImpactingProcessId: "uSeReXpErIeNcEaNaLyTiCsImPaCtInGpRoCeSsId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/uSeReXpErIeNcEaNaLyTiCsImPaCtInGpRoCeSs/uSeReXpErIeNcEaNaLyTiCsImPaCtInGpRoCeSsIdVaLuE/extra",
+			Input: "/dEvIcEmAnAgEmEnT/uSeReXpErIeNcEaNaLyTiCsImPaCtInGpRoCeSs/uSeReXpErIeNcEaNaLyTiCsImPaCtInGpRoCeSsId/extra",
 			Error: true,
 		},
 	}

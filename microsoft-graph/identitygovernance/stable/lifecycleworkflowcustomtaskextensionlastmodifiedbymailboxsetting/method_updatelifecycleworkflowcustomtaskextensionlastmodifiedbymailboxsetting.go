@@ -18,15 +18,44 @@ type UpdateLifecycleWorkflowCustomTaskExtensionLastModifiedByMailboxSettingOpera
 	OData        *odata.OData
 }
 
+type UpdateLifecycleWorkflowCustomTaskExtensionLastModifiedByMailboxSettingOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateLifecycleWorkflowCustomTaskExtensionLastModifiedByMailboxSettingOperationOptions() UpdateLifecycleWorkflowCustomTaskExtensionLastModifiedByMailboxSettingOperationOptions {
+	return UpdateLifecycleWorkflowCustomTaskExtensionLastModifiedByMailboxSettingOperationOptions{}
+}
+
+func (o UpdateLifecycleWorkflowCustomTaskExtensionLastModifiedByMailboxSettingOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateLifecycleWorkflowCustomTaskExtensionLastModifiedByMailboxSettingOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateLifecycleWorkflowCustomTaskExtensionLastModifiedByMailboxSettingOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateLifecycleWorkflowCustomTaskExtensionLastModifiedByMailboxSetting - Update property mailboxSettings value.
-func (c LifecycleWorkflowCustomTaskExtensionLastModifiedByMailboxSettingClient) UpdateLifecycleWorkflowCustomTaskExtensionLastModifiedByMailboxSetting(ctx context.Context, id stable.IdentityGovernanceLifecycleWorkflowCustomTaskExtensionId, input stable.MailboxSettings) (result UpdateLifecycleWorkflowCustomTaskExtensionLastModifiedByMailboxSettingOperationResponse, err error) {
+func (c LifecycleWorkflowCustomTaskExtensionLastModifiedByMailboxSettingClient) UpdateLifecycleWorkflowCustomTaskExtensionLastModifiedByMailboxSetting(ctx context.Context, id stable.IdentityGovernanceLifecycleWorkflowCustomTaskExtensionId, input stable.MailboxSettings, options UpdateLifecycleWorkflowCustomTaskExtensionLastModifiedByMailboxSettingOperationOptions) (result UpdateLifecycleWorkflowCustomTaskExtensionLastModifiedByMailboxSettingOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       fmt.Sprintf("%s/lastModifiedBy/mailboxSettings", id.ID()),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/lastModifiedBy/mailboxSettings", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

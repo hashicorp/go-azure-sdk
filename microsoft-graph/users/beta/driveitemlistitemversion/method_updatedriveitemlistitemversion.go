@@ -17,15 +17,44 @@ type UpdateDriveItemListItemVersionOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateDriveItemListItemVersionOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateDriveItemListItemVersionOperationOptions() UpdateDriveItemListItemVersionOperationOptions {
+	return UpdateDriveItemListItemVersionOperationOptions{}
+}
+
+func (o UpdateDriveItemListItemVersionOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateDriveItemListItemVersionOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateDriveItemListItemVersionOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateDriveItemListItemVersion - Update the navigation property versions in users
-func (c DriveItemListItemVersionClient) UpdateDriveItemListItemVersion(ctx context.Context, id beta.UserIdDriveIdItemIdListItemVersionId, input beta.ListItemVersion) (result UpdateDriveItemListItemVersionOperationResponse, err error) {
+func (c DriveItemListItemVersionClient) UpdateDriveItemListItemVersion(ctx context.Context, id beta.UserIdDriveIdItemIdListItemVersionId, input beta.ListItemVersion, options UpdateDriveItemListItemVersionOperationOptions) (result UpdateDriveItemListItemVersionOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

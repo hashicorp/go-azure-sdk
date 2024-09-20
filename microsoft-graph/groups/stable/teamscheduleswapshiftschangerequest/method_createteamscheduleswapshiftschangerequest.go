@@ -19,15 +19,44 @@ type CreateTeamScheduleSwapShiftsChangeRequestOperationResponse struct {
 	Model        *stable.SwapShiftsChangeRequest
 }
 
+type CreateTeamScheduleSwapShiftsChangeRequestOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateTeamScheduleSwapShiftsChangeRequestOperationOptions() CreateTeamScheduleSwapShiftsChangeRequestOperationOptions {
+	return CreateTeamScheduleSwapShiftsChangeRequestOperationOptions{}
+}
+
+func (o CreateTeamScheduleSwapShiftsChangeRequestOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateTeamScheduleSwapShiftsChangeRequestOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateTeamScheduleSwapShiftsChangeRequestOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateTeamScheduleSwapShiftsChangeRequest - Create new navigation property to swapShiftsChangeRequests for groups
-func (c TeamScheduleSwapShiftsChangeRequestClient) CreateTeamScheduleSwapShiftsChangeRequest(ctx context.Context, id stable.GroupId, input stable.SwapShiftsChangeRequest) (result CreateTeamScheduleSwapShiftsChangeRequestOperationResponse, err error) {
+func (c TeamScheduleSwapShiftsChangeRequestClient) CreateTeamScheduleSwapShiftsChangeRequest(ctx context.Context, id stable.GroupId, input stable.SwapShiftsChangeRequest, options CreateTeamScheduleSwapShiftsChangeRequestOperationOptions) (result CreateTeamScheduleSwapShiftsChangeRequestOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/team/schedule/swapShiftsChangeRequests", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/team/schedule/swapShiftsChangeRequests", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

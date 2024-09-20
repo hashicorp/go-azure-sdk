@@ -18,15 +18,44 @@ type CreateRoleManagementAlertDefinitionOperationResponse struct {
 	Model        *beta.UnifiedRoleManagementAlertDefinition
 }
 
+type CreateRoleManagementAlertDefinitionOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateRoleManagementAlertDefinitionOperationOptions() CreateRoleManagementAlertDefinitionOperationOptions {
+	return CreateRoleManagementAlertDefinitionOperationOptions{}
+}
+
+func (o CreateRoleManagementAlertDefinitionOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateRoleManagementAlertDefinitionOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateRoleManagementAlertDefinitionOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateRoleManagementAlertDefinition - Create new navigation property to alertDefinitions for identityGovernance
-func (c RoleManagementAlertAlertDefinitionClient) CreateRoleManagementAlertDefinition(ctx context.Context, input beta.UnifiedRoleManagementAlertDefinition) (result CreateRoleManagementAlertDefinitionOperationResponse, err error) {
+func (c RoleManagementAlertAlertDefinitionClient) CreateRoleManagementAlertDefinition(ctx context.Context, input beta.UnifiedRoleManagementAlertDefinition, options CreateRoleManagementAlertDefinitionOperationOptions) (result CreateRoleManagementAlertDefinitionOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/identityGovernance/roleManagementAlerts/alertDefinitions",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/identityGovernance/roleManagementAlerts/alertDefinitions",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

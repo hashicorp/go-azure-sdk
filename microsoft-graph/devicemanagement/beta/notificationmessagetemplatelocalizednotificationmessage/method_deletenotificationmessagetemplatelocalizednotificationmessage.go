@@ -19,7 +19,8 @@ type DeleteNotificationMessageTemplateLocalizedNotificationMessageOperationRespo
 }
 
 type DeleteNotificationMessageTemplateLocalizedNotificationMessageOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteNotificationMessageTemplateLocalizedNotificationMessageOperationOptions() DeleteNotificationMessageTemplateLocalizedNotificationMessageOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteNotificationMessageTemplateLocalizedNotificationMessageOperationOp
 
 func (o DeleteNotificationMessageTemplateLocalizedNotificationMessageOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

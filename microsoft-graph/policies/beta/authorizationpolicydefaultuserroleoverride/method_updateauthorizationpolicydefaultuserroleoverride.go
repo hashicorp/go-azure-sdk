@@ -17,16 +17,45 @@ type UpdateAuthorizationPolicyDefaultUserRoleOverrideOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateAuthorizationPolicyDefaultUserRoleOverrideOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateAuthorizationPolicyDefaultUserRoleOverrideOperationOptions() UpdateAuthorizationPolicyDefaultUserRoleOverrideOperationOptions {
+	return UpdateAuthorizationPolicyDefaultUserRoleOverrideOperationOptions{}
+}
+
+func (o UpdateAuthorizationPolicyDefaultUserRoleOverrideOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateAuthorizationPolicyDefaultUserRoleOverrideOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateAuthorizationPolicyDefaultUserRoleOverrideOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateAuthorizationPolicyDefaultUserRoleOverride - Update the navigation property defaultUserRoleOverrides in
 // policies
-func (c AuthorizationPolicyDefaultUserRoleOverrideClient) UpdateAuthorizationPolicyDefaultUserRoleOverride(ctx context.Context, id beta.PolicyAuthorizationPolicyIdDefaultUserRoleOverrideId, input beta.DefaultUserRoleOverride) (result UpdateAuthorizationPolicyDefaultUserRoleOverrideOperationResponse, err error) {
+func (c AuthorizationPolicyDefaultUserRoleOverrideClient) UpdateAuthorizationPolicyDefaultUserRoleOverride(ctx context.Context, id beta.PolicyAuthorizationPolicyIdDefaultUserRoleOverrideId, input beta.DefaultUserRoleOverride, options UpdateAuthorizationPolicyDefaultUserRoleOverrideOperationOptions) (result UpdateAuthorizationPolicyDefaultUserRoleOverrideOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

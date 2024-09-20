@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &MeJoinedTeamIdOperationId{}
 
 func TestNewMeJoinedTeamIdOperationID(t *testing.T) {
-	id := NewMeJoinedTeamIdOperationID("teamIdValue", "teamsAsyncOperationIdValue")
+	id := NewMeJoinedTeamIdOperationID("teamId", "teamsAsyncOperationId")
 
-	if id.TeamId != "teamIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'TeamId'", id.TeamId, "teamIdValue")
+	if id.TeamId != "teamId" {
+		t.Fatalf("Expected %q but got %q for Segment 'TeamId'", id.TeamId, "teamId")
 	}
 
-	if id.TeamsAsyncOperationId != "teamsAsyncOperationIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'TeamsAsyncOperationId'", id.TeamsAsyncOperationId, "teamsAsyncOperationIdValue")
+	if id.TeamsAsyncOperationId != "teamsAsyncOperationId" {
+		t.Fatalf("Expected %q but got %q for Segment 'TeamsAsyncOperationId'", id.TeamsAsyncOperationId, "teamsAsyncOperationId")
 	}
 }
 
 func TestFormatMeJoinedTeamIdOperationID(t *testing.T) {
-	actual := NewMeJoinedTeamIdOperationID("teamIdValue", "teamsAsyncOperationIdValue").ID()
-	expected := "/me/joinedTeams/teamIdValue/operations/teamsAsyncOperationIdValue"
+	actual := NewMeJoinedTeamIdOperationID("teamId", "teamsAsyncOperationId").ID()
+	expected := "/me/joinedTeams/teamId/operations/teamsAsyncOperationId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -54,25 +54,25 @@ func TestParseMeJoinedTeamIdOperationID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/me/joinedTeams/teamIdValue",
+			Input: "/me/joinedTeams/teamId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/me/joinedTeams/teamIdValue/operations",
+			Input: "/me/joinedTeams/teamId/operations",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/me/joinedTeams/teamIdValue/operations/teamsAsyncOperationIdValue",
+			Input: "/me/joinedTeams/teamId/operations/teamsAsyncOperationId",
 			Expected: &MeJoinedTeamIdOperationId{
-				TeamId:                "teamIdValue",
-				TeamsAsyncOperationId: "teamsAsyncOperationIdValue",
+				TeamId:                "teamId",
+				TeamsAsyncOperationId: "teamsAsyncOperationId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/joinedTeams/teamIdValue/operations/teamsAsyncOperationIdValue/extra",
+			Input: "/me/joinedTeams/teamId/operations/teamsAsyncOperationId/extra",
 			Error: true,
 		},
 	}
@@ -135,48 +135,48 @@ func TestParseMeJoinedTeamIdOperationIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/me/joinedTeams/teamIdValue",
+			Input: "/me/joinedTeams/teamId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/jOiNeDtEaMs/tEaMiDvAlUe",
+			Input: "/mE/jOiNeDtEaMs/tEaMiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/me/joinedTeams/teamIdValue/operations",
+			Input: "/me/joinedTeams/teamId/operations",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/jOiNeDtEaMs/tEaMiDvAlUe/oPeRaTiOnS",
+			Input: "/mE/jOiNeDtEaMs/tEaMiD/oPeRaTiOnS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/me/joinedTeams/teamIdValue/operations/teamsAsyncOperationIdValue",
+			Input: "/me/joinedTeams/teamId/operations/teamsAsyncOperationId",
 			Expected: &MeJoinedTeamIdOperationId{
-				TeamId:                "teamIdValue",
-				TeamsAsyncOperationId: "teamsAsyncOperationIdValue",
+				TeamId:                "teamId",
+				TeamsAsyncOperationId: "teamsAsyncOperationId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/joinedTeams/teamIdValue/operations/teamsAsyncOperationIdValue/extra",
+			Input: "/me/joinedTeams/teamId/operations/teamsAsyncOperationId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/jOiNeDtEaMs/tEaMiDvAlUe/oPeRaTiOnS/tEaMsAsYnCoPeRaTiOnIdVaLuE",
+			Input: "/mE/jOiNeDtEaMs/tEaMiD/oPeRaTiOnS/tEaMsAsYnCoPeRaTiOnId",
 			Expected: &MeJoinedTeamIdOperationId{
-				TeamId:                "tEaMiDvAlUe",
-				TeamsAsyncOperationId: "tEaMsAsYnCoPeRaTiOnIdVaLuE",
+				TeamId:                "tEaMiD",
+				TeamsAsyncOperationId: "tEaMsAsYnCoPeRaTiOnId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/mE/jOiNeDtEaMs/tEaMiDvAlUe/oPeRaTiOnS/tEaMsAsYnCoPeRaTiOnIdVaLuE/extra",
+			Input: "/mE/jOiNeDtEaMs/tEaMiD/oPeRaTiOnS/tEaMsAsYnCoPeRaTiOnId/extra",
 			Error: true,
 		},
 	}

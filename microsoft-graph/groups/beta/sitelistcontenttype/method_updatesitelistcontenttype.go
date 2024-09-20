@@ -17,15 +17,44 @@ type UpdateSiteListContentTypeOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateSiteListContentTypeOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateSiteListContentTypeOperationOptions() UpdateSiteListContentTypeOperationOptions {
+	return UpdateSiteListContentTypeOperationOptions{}
+}
+
+func (o UpdateSiteListContentTypeOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateSiteListContentTypeOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateSiteListContentTypeOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateSiteListContentType - Update the navigation property contentTypes in groups
-func (c SiteListContentTypeClient) UpdateSiteListContentType(ctx context.Context, id beta.GroupIdSiteIdListIdContentTypeId, input beta.ContentType) (result UpdateSiteListContentTypeOperationResponse, err error) {
+func (c SiteListContentTypeClient) UpdateSiteListContentType(ctx context.Context, id beta.GroupIdSiteIdListIdContentTypeId, input beta.ContentType, options UpdateSiteListContentTypeOperationOptions) (result UpdateSiteListContentTypeOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

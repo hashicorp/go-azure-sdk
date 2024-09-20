@@ -18,15 +18,44 @@ type CreateEntitlementManagementRoleDefinitionOperationResponse struct {
 	Model        *stable.UnifiedRoleDefinition
 }
 
+type CreateEntitlementManagementRoleDefinitionOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateEntitlementManagementRoleDefinitionOperationOptions() CreateEntitlementManagementRoleDefinitionOperationOptions {
+	return CreateEntitlementManagementRoleDefinitionOperationOptions{}
+}
+
+func (o CreateEntitlementManagementRoleDefinitionOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateEntitlementManagementRoleDefinitionOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateEntitlementManagementRoleDefinitionOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateEntitlementManagementRoleDefinition - Create new navigation property to roleDefinitions for roleManagement
-func (c EntitlementManagementRoleDefinitionClient) CreateEntitlementManagementRoleDefinition(ctx context.Context, input stable.UnifiedRoleDefinition) (result CreateEntitlementManagementRoleDefinitionOperationResponse, err error) {
+func (c EntitlementManagementRoleDefinitionClient) CreateEntitlementManagementRoleDefinition(ctx context.Context, input stable.UnifiedRoleDefinition, options CreateEntitlementManagementRoleDefinitionOperationOptions) (result CreateEntitlementManagementRoleDefinitionOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/roleManagement/entitlementManagement/roleDefinitions",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/roleManagement/entitlementManagement/roleDefinitions",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

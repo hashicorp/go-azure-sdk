@@ -95,7 +95,7 @@ func (id MeInformationProtectionBitlockerRecoveryKeyId) Segments() []resourceids
 		resourceids.StaticSegment("informationProtection", "informationProtection", "informationProtection"),
 		resourceids.StaticSegment("bitlocker", "bitlocker", "bitlocker"),
 		resourceids.StaticSegment("recoveryKeys", "recoveryKeys", "recoveryKeys"),
-		resourceids.UserSpecifiedSegment("bitlockerRecoveryKeyId", "bitlockerRecoveryKeyIdValue"),
+		resourceids.UserSpecifiedSegment("bitlockerRecoveryKeyId", "bitlockerRecoveryKeyId"),
 	}
 }
 

@@ -17,15 +17,44 @@ type UpdatePermissionGrantOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdatePermissionGrantOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdatePermissionGrantOperationOptions() UpdatePermissionGrantOperationOptions {
+	return UpdatePermissionGrantOperationOptions{}
+}
+
+func (o UpdatePermissionGrantOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdatePermissionGrantOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdatePermissionGrantOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdatePermissionGrant - Update the navigation property permissionGrants in me
-func (c PermissionGrantClient) UpdatePermissionGrant(ctx context.Context, id beta.MePermissionGrantId, input beta.ResourceSpecificPermissionGrant) (result UpdatePermissionGrantOperationResponse, err error) {
+func (c PermissionGrantClient) UpdatePermissionGrant(ctx context.Context, id beta.MePermissionGrantId, input beta.ResourceSpecificPermissionGrant, options UpdatePermissionGrantOperationOptions) (result UpdatePermissionGrantOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

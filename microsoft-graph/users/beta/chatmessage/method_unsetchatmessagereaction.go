@@ -18,15 +18,44 @@ type UnsetChatMessageReactionOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UnsetChatMessageReactionOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUnsetChatMessageReactionOperationOptions() UnsetChatMessageReactionOperationOptions {
+	return UnsetChatMessageReactionOperationOptions{}
+}
+
+func (o UnsetChatMessageReactionOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UnsetChatMessageReactionOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UnsetChatMessageReactionOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UnsetChatMessageReaction - Invoke action unsetReaction
-func (c ChatMessageClient) UnsetChatMessageReaction(ctx context.Context, id beta.UserIdChatIdMessageId, input UnsetChatMessageReactionRequest) (result UnsetChatMessageReactionOperationResponse, err error) {
+func (c ChatMessageClient) UnsetChatMessageReaction(ctx context.Context, id beta.UserIdChatIdMessageId, input UnsetChatMessageReactionRequest, options UnsetChatMessageReactionOperationOptions) (result UnsetChatMessageReactionOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/unsetReaction", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/unsetReaction", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

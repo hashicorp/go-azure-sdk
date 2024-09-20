@@ -18,15 +18,44 @@ type CreateInsightUsedOperationResponse struct {
 	Model        *stable.UsedInsight
 }
 
+type CreateInsightUsedOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateInsightUsedOperationOptions() CreateInsightUsedOperationOptions {
+	return CreateInsightUsedOperationOptions{}
+}
+
+func (o CreateInsightUsedOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateInsightUsedOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateInsightUsedOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateInsightUsed - Create new navigation property to used for me
-func (c InsightUsedClient) CreateInsightUsed(ctx context.Context, input stable.UsedInsight) (result CreateInsightUsedOperationResponse, err error) {
+func (c InsightUsedClient) CreateInsightUsed(ctx context.Context, input stable.UsedInsight, options CreateInsightUsedOperationOptions) (result CreateInsightUsedOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/me/insights/used",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/me/insights/used",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

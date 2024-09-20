@@ -19,16 +19,45 @@ type CreatePartnerBillingUsageUnbilledExportOperationResponse struct {
 	Model        stable.PartnersBillingOperation
 }
 
+type CreatePartnerBillingUsageUnbilledExportOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreatePartnerBillingUsageUnbilledExportOperationOptions() CreatePartnerBillingUsageUnbilledExportOperationOptions {
+	return CreatePartnerBillingUsageUnbilledExportOperationOptions{}
+}
+
+func (o CreatePartnerBillingUsageUnbilledExportOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreatePartnerBillingUsageUnbilledExportOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreatePartnerBillingUsageUnbilledExportOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreatePartnerBillingUsageUnbilledExport - Invoke action export. Export unbilled Azure usage data for a specific
 // billing period and currency.
-func (c PartnerBillingUsageUnbilledClient) CreatePartnerBillingUsageUnbilledExport(ctx context.Context, input CreatePartnerBillingUsageUnbilledExportRequest) (result CreatePartnerBillingUsageUnbilledExportOperationResponse, err error) {
+func (c PartnerBillingUsageUnbilledClient) CreatePartnerBillingUsageUnbilledExport(ctx context.Context, input CreatePartnerBillingUsageUnbilledExportRequest, options CreatePartnerBillingUsageUnbilledExportOperationOptions) (result CreatePartnerBillingUsageUnbilledExportOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/reports/partners/billing/usage/unbilled/partners.billing.export",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/reports/partners/billing/usage/unbilled/partners.billing.export",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

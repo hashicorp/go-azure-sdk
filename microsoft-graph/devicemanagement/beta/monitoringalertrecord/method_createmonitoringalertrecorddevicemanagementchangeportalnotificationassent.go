@@ -16,19 +16,48 @@ type CreateMonitoringAlertRecordDeviceManagementChangePortalNotificationAsSentOp
 	OData        *odata.OData
 }
 
+type CreateMonitoringAlertRecordDeviceManagementChangePortalNotificationAsSentOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateMonitoringAlertRecordDeviceManagementChangePortalNotificationAsSentOperationOptions() CreateMonitoringAlertRecordDeviceManagementChangePortalNotificationAsSentOperationOptions {
+	return CreateMonitoringAlertRecordDeviceManagementChangePortalNotificationAsSentOperationOptions{}
+}
+
+func (o CreateMonitoringAlertRecordDeviceManagementChangePortalNotificationAsSentOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateMonitoringAlertRecordDeviceManagementChangePortalNotificationAsSentOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateMonitoringAlertRecordDeviceManagementChangePortalNotificationAsSentOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateMonitoringAlertRecordDeviceManagementChangePortalNotificationAsSent - Invoke action
 // changeAlertRecordsPortalNotificationAsSent. Set the isPortalNotificationSent property of all portal notification
 // resources associated with the specified alertRecord to true, marking them as sent. A maximum of 100 alertRecord IDs
 // can be received at one time, and a maximum of 100 portal notification resources can be changed in the
 // isPortalNotificationSent property status.
-func (c MonitoringAlertRecordClient) CreateMonitoringAlertRecordDeviceManagementChangePortalNotificationAsSent(ctx context.Context, input CreateMonitoringAlertRecordDeviceManagementChangePortalNotificationAsSentRequest) (result CreateMonitoringAlertRecordDeviceManagementChangePortalNotificationAsSentOperationResponse, err error) {
+func (c MonitoringAlertRecordClient) CreateMonitoringAlertRecordDeviceManagementChangePortalNotificationAsSent(ctx context.Context, input CreateMonitoringAlertRecordDeviceManagementChangePortalNotificationAsSentRequest, options CreateMonitoringAlertRecordDeviceManagementChangePortalNotificationAsSentOperationOptions) (result CreateMonitoringAlertRecordDeviceManagementChangePortalNotificationAsSentOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/deviceManagement/monitoring/alertRecords/deviceManagement.changeAlertRecordsPortalNotificationAsSent",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/deviceManagement/monitoring/alertRecords/deviceManagement.changeAlertRecordsPortalNotificationAsSent",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

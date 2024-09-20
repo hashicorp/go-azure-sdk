@@ -19,15 +19,44 @@ type CreateSiteListSubscriptionOperationResponse struct {
 	Model        *beta.Subscription
 }
 
+type CreateSiteListSubscriptionOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateSiteListSubscriptionOperationOptions() CreateSiteListSubscriptionOperationOptions {
+	return CreateSiteListSubscriptionOperationOptions{}
+}
+
+func (o CreateSiteListSubscriptionOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateSiteListSubscriptionOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateSiteListSubscriptionOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateSiteListSubscription - Create new navigation property to subscriptions for groups
-func (c SiteListSubscriptionClient) CreateSiteListSubscription(ctx context.Context, id beta.GroupIdSiteIdListId, input beta.Subscription) (result CreateSiteListSubscriptionOperationResponse, err error) {
+func (c SiteListSubscriptionClient) CreateSiteListSubscription(ctx context.Context, id beta.GroupIdSiteIdListId, input beta.Subscription, options CreateSiteListSubscriptionOperationOptions) (result CreateSiteListSubscriptionOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/subscriptions", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/subscriptions", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -17,15 +17,44 @@ type UpdateIntentOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateIntentOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateIntentOperationOptions() UpdateIntentOperationOptions {
+	return UpdateIntentOperationOptions{}
+}
+
+func (o UpdateIntentOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateIntentOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateIntentOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateIntent - Update the navigation property intents in deviceManagement
-func (c IntentClient) UpdateIntent(ctx context.Context, id beta.DeviceManagementIntentId, input beta.DeviceManagementIntent) (result UpdateIntentOperationResponse, err error) {
+func (c IntentClient) UpdateIntent(ctx context.Context, id beta.DeviceManagementIntentId, input beta.DeviceManagementIntent, options UpdateIntentOperationOptions) (result UpdateIntentOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

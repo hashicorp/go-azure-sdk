@@ -62,10 +62,15 @@ func (s IndustryDataProvisioningFlowCollectionResponse) MarshalJSON() ([]byte, e
 var _ json.Unmarshaler = &IndustryDataProvisioningFlowCollectionResponse{}
 
 func (s *IndustryDataProvisioningFlowCollectionResponse) UnmarshalJSON(bytes []byte) error {
-	type alias IndustryDataProvisioningFlowCollectionResponse
-	var decoded alias
+
+	var decoded struct {
+		Value         *[]IndustryDataProvisioningFlow `json:"value,omitempty"`
+		ODataId       *string                         `json:"@odata.id,omitempty"`
+		ODataNextLink nullable.Type[string]           `json:"@odata.nextLink,omitempty"`
+		ODataType     *string                         `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into IndustryDataProvisioningFlowCollectionResponse: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.ODataId = decoded.ODataId
@@ -93,5 +98,6 @@ func (s *IndustryDataProvisioningFlowCollectionResponse) UnmarshalJSON(bytes []b
 		}
 		s.Value = &output
 	}
+
 	return nil
 }

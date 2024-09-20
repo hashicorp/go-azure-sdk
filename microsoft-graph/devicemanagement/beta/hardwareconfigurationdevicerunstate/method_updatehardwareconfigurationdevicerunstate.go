@@ -17,15 +17,44 @@ type UpdateHardwareConfigurationDeviceRunStateOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateHardwareConfigurationDeviceRunStateOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateHardwareConfigurationDeviceRunStateOperationOptions() UpdateHardwareConfigurationDeviceRunStateOperationOptions {
+	return UpdateHardwareConfigurationDeviceRunStateOperationOptions{}
+}
+
+func (o UpdateHardwareConfigurationDeviceRunStateOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateHardwareConfigurationDeviceRunStateOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateHardwareConfigurationDeviceRunStateOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateHardwareConfigurationDeviceRunState - Update the navigation property deviceRunStates in deviceManagement
-func (c HardwareConfigurationDeviceRunStateClient) UpdateHardwareConfigurationDeviceRunState(ctx context.Context, id beta.DeviceManagementHardwareConfigurationIdDeviceRunStateId, input beta.HardwareConfigurationDeviceState) (result UpdateHardwareConfigurationDeviceRunStateOperationResponse, err error) {
+func (c HardwareConfigurationDeviceRunStateClient) UpdateHardwareConfigurationDeviceRunState(ctx context.Context, id beta.DeviceManagementHardwareConfigurationIdDeviceRunStateId, input beta.HardwareConfigurationDeviceState, options UpdateHardwareConfigurationDeviceRunStateOperationOptions) (result UpdateHardwareConfigurationDeviceRunStateOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

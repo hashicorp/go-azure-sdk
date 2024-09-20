@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &DeviceManagementVirtualEndpointFrontLineServicePlanId{}
 
 func TestNewDeviceManagementVirtualEndpointFrontLineServicePlanID(t *testing.T) {
-	id := NewDeviceManagementVirtualEndpointFrontLineServicePlanID("cloudPCFrontLineServicePlanIdValue")
+	id := NewDeviceManagementVirtualEndpointFrontLineServicePlanID("cloudPCFrontLineServicePlanId")
 
-	if id.CloudPCFrontLineServicePlanId != "cloudPCFrontLineServicePlanIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'CloudPCFrontLineServicePlanId'", id.CloudPCFrontLineServicePlanId, "cloudPCFrontLineServicePlanIdValue")
+	if id.CloudPCFrontLineServicePlanId != "cloudPCFrontLineServicePlanId" {
+		t.Fatalf("Expected %q but got %q for Segment 'CloudPCFrontLineServicePlanId'", id.CloudPCFrontLineServicePlanId, "cloudPCFrontLineServicePlanId")
 	}
 }
 
 func TestFormatDeviceManagementVirtualEndpointFrontLineServicePlanID(t *testing.T) {
-	actual := NewDeviceManagementVirtualEndpointFrontLineServicePlanID("cloudPCFrontLineServicePlanIdValue").ID()
-	expected := "/deviceManagement/virtualEndpoint/frontLineServicePlans/cloudPCFrontLineServicePlanIdValue"
+	actual := NewDeviceManagementVirtualEndpointFrontLineServicePlanID("cloudPCFrontLineServicePlanId").ID()
+	expected := "/deviceManagement/virtualEndpoint/frontLineServicePlans/cloudPCFrontLineServicePlanId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -55,14 +55,14 @@ func TestParseDeviceManagementVirtualEndpointFrontLineServicePlanID(t *testing.T
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/virtualEndpoint/frontLineServicePlans/cloudPCFrontLineServicePlanIdValue",
+			Input: "/deviceManagement/virtualEndpoint/frontLineServicePlans/cloudPCFrontLineServicePlanId",
 			Expected: &DeviceManagementVirtualEndpointFrontLineServicePlanId{
-				CloudPCFrontLineServicePlanId: "cloudPCFrontLineServicePlanIdValue",
+				CloudPCFrontLineServicePlanId: "cloudPCFrontLineServicePlanId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/virtualEndpoint/frontLineServicePlans/cloudPCFrontLineServicePlanIdValue/extra",
+			Input: "/deviceManagement/virtualEndpoint/frontLineServicePlans/cloudPCFrontLineServicePlanId/extra",
 			Error: true,
 		},
 	}
@@ -131,26 +131,26 @@ func TestParseDeviceManagementVirtualEndpointFrontLineServicePlanIDInsensitively
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/virtualEndpoint/frontLineServicePlans/cloudPCFrontLineServicePlanIdValue",
+			Input: "/deviceManagement/virtualEndpoint/frontLineServicePlans/cloudPCFrontLineServicePlanId",
 			Expected: &DeviceManagementVirtualEndpointFrontLineServicePlanId{
-				CloudPCFrontLineServicePlanId: "cloudPCFrontLineServicePlanIdValue",
+				CloudPCFrontLineServicePlanId: "cloudPCFrontLineServicePlanId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/virtualEndpoint/frontLineServicePlans/cloudPCFrontLineServicePlanIdValue/extra",
+			Input: "/deviceManagement/virtualEndpoint/frontLineServicePlans/cloudPCFrontLineServicePlanId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/vIrTuAlEnDpOiNt/fRoNtLiNeSeRvIcEpLaNs/cLoUdPcFrOnTlInEsErViCePlAnIdVaLuE",
+			Input: "/dEvIcEmAnAgEmEnT/vIrTuAlEnDpOiNt/fRoNtLiNeSeRvIcEpLaNs/cLoUdPcFrOnTlInEsErViCePlAnId",
 			Expected: &DeviceManagementVirtualEndpointFrontLineServicePlanId{
-				CloudPCFrontLineServicePlanId: "cLoUdPcFrOnTlInEsErViCePlAnIdVaLuE",
+				CloudPCFrontLineServicePlanId: "cLoUdPcFrOnTlInEsErViCePlAnId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/vIrTuAlEnDpOiNt/fRoNtLiNeSeRvIcEpLaNs/cLoUdPcFrOnTlInEsErViCePlAnIdVaLuE/extra",
+			Input: "/dEvIcEmAnAgEmEnT/vIrTuAlEnDpOiNt/fRoNtLiNeSeRvIcEpLaNs/cLoUdPcFrOnTlInEsErViCePlAnId/extra",
 			Error: true,
 		},
 	}

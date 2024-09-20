@@ -17,15 +17,44 @@ type UpdateDriveItemListItemPermissionOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateDriveItemListItemPermissionOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateDriveItemListItemPermissionOperationOptions() UpdateDriveItemListItemPermissionOperationOptions {
+	return UpdateDriveItemListItemPermissionOperationOptions{}
+}
+
+func (o UpdateDriveItemListItemPermissionOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateDriveItemListItemPermissionOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateDriveItemListItemPermissionOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateDriveItemListItemPermission - Update the navigation property permissions in users
-func (c DriveItemListItemPermissionClient) UpdateDriveItemListItemPermission(ctx context.Context, id beta.UserIdDriveIdItemIdListItemPermissionId, input beta.Permission) (result UpdateDriveItemListItemPermissionOperationResponse, err error) {
+func (c DriveItemListItemPermissionClient) UpdateDriveItemListItemPermission(ctx context.Context, id beta.UserIdDriveIdItemIdListItemPermissionId, input beta.Permission, options UpdateDriveItemListItemPermissionOperationOptions) (result UpdateDriveItemListItemPermissionOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -17,16 +17,45 @@ type UpdateWindowsDriverUpdateProfileDriverInventoryOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateWindowsDriverUpdateProfileDriverInventoryOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateWindowsDriverUpdateProfileDriverInventoryOperationOptions() UpdateWindowsDriverUpdateProfileDriverInventoryOperationOptions {
+	return UpdateWindowsDriverUpdateProfileDriverInventoryOperationOptions{}
+}
+
+func (o UpdateWindowsDriverUpdateProfileDriverInventoryOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateWindowsDriverUpdateProfileDriverInventoryOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateWindowsDriverUpdateProfileDriverInventoryOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateWindowsDriverUpdateProfileDriverInventory - Update the navigation property driverInventories in
 // deviceManagement
-func (c WindowsDriverUpdateProfileDriverInventoryClient) UpdateWindowsDriverUpdateProfileDriverInventory(ctx context.Context, id beta.DeviceManagementWindowsDriverUpdateProfileIdDriverInventoryId, input beta.WindowsDriverUpdateInventory) (result UpdateWindowsDriverUpdateProfileDriverInventoryOperationResponse, err error) {
+func (c WindowsDriverUpdateProfileDriverInventoryClient) UpdateWindowsDriverUpdateProfileDriverInventory(ctx context.Context, id beta.DeviceManagementWindowsDriverUpdateProfileIdDriverInventoryId, input beta.WindowsDriverUpdateInventory, options UpdateWindowsDriverUpdateProfileDriverInventoryOperationOptions) (result UpdateWindowsDriverUpdateProfileDriverInventoryOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

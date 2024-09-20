@@ -62,10 +62,15 @@ func (s AndroidDeviceOwnerCertificateProfileBaseCollectionResponse) MarshalJSON(
 var _ json.Unmarshaler = &AndroidDeviceOwnerCertificateProfileBaseCollectionResponse{}
 
 func (s *AndroidDeviceOwnerCertificateProfileBaseCollectionResponse) UnmarshalJSON(bytes []byte) error {
-	type alias AndroidDeviceOwnerCertificateProfileBaseCollectionResponse
-	var decoded alias
+
+	var decoded struct {
+		Value         *[]AndroidDeviceOwnerCertificateProfileBase `json:"value,omitempty"`
+		ODataId       *string                                     `json:"@odata.id,omitempty"`
+		ODataNextLink nullable.Type[string]                       `json:"@odata.nextLink,omitempty"`
+		ODataType     *string                                     `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into AndroidDeviceOwnerCertificateProfileBaseCollectionResponse: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.ODataId = decoded.ODataId
@@ -93,5 +98,6 @@ func (s *AndroidDeviceOwnerCertificateProfileBaseCollectionResponse) UnmarshalJS
 		}
 		s.Value = &output
 	}
+
 	return nil
 }

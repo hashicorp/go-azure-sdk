@@ -31,10 +31,17 @@ type TenantRelationship struct {
 var _ json.Unmarshaler = &TenantRelationship{}
 
 func (s *TenantRelationship) UnmarshalJSON(bytes []byte) error {
-	type alias TenantRelationship
-	var decoded alias
+
+	var decoded struct {
+		DelegatedAdminCustomers     *[]DelegatedAdminCustomer     `json:"delegatedAdminCustomers,omitempty"`
+		DelegatedAdminRelationships *[]DelegatedAdminRelationship `json:"delegatedAdminRelationships,omitempty"`
+		ManagedTenants              *ManagedTenantsManagedTenant  `json:"managedTenants,omitempty"`
+		MultiTenantOrganization     *MultiTenantOrganization      `json:"multiTenantOrganization,omitempty"`
+		ODataId                     *string                       `json:"@odata.id,omitempty"`
+		ODataType                   *string                       `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into TenantRelationship: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.DelegatedAdminCustomers = decoded.DelegatedAdminCustomers
@@ -64,5 +71,6 @@ func (s *TenantRelationship) UnmarshalJSON(bytes []byte) error {
 		}
 		s.DelegatedAdminRelationships = &output
 	}
+
 	return nil
 }

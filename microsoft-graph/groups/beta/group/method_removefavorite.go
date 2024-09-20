@@ -18,16 +18,45 @@ type RemoveFavoriteOperationResponse struct {
 	OData        *odata.OData
 }
 
+type RemoveFavoriteOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultRemoveFavoriteOperationOptions() RemoveFavoriteOperationOptions {
+	return RemoveFavoriteOperationOptions{}
+}
+
+func (o RemoveFavoriteOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o RemoveFavoriteOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o RemoveFavoriteOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // RemoveFavorite - Invoke action removeFavorite. Remove the group from the list of the current user's favorite groups.
 // Supported for Microsoft 365 groups only.
-func (c GroupClient) RemoveFavorite(ctx context.Context, id beta.GroupId) (result RemoveFavoriteOperationResponse, err error) {
+func (c GroupClient) RemoveFavorite(ctx context.Context, id beta.GroupId, options RemoveFavoriteOperationOptions) (result RemoveFavoriteOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/removeFavorite", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/removeFavorite", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

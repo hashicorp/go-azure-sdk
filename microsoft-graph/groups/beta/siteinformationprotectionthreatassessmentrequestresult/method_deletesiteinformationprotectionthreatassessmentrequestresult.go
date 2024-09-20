@@ -19,7 +19,8 @@ type DeleteSiteInformationProtectionThreatAssessmentRequestResultOperationRespon
 }
 
 type DeleteSiteInformationProtectionThreatAssessmentRequestResultOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteSiteInformationProtectionThreatAssessmentRequestResultOperationOptions() DeleteSiteInformationProtectionThreatAssessmentRequestResultOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteSiteInformationProtectionThreatAssessmentRequestResultOperationOpt
 
 func (o DeleteSiteInformationProtectionThreatAssessmentRequestResultOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

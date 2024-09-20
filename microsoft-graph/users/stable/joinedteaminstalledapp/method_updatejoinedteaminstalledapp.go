@@ -17,15 +17,44 @@ type UpdateJoinedTeamInstalledAppOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateJoinedTeamInstalledAppOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateJoinedTeamInstalledAppOperationOptions() UpdateJoinedTeamInstalledAppOperationOptions {
+	return UpdateJoinedTeamInstalledAppOperationOptions{}
+}
+
+func (o UpdateJoinedTeamInstalledAppOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateJoinedTeamInstalledAppOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateJoinedTeamInstalledAppOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateJoinedTeamInstalledApp - Update the navigation property installedApps in users
-func (c JoinedTeamInstalledAppClient) UpdateJoinedTeamInstalledApp(ctx context.Context, id stable.UserIdJoinedTeamIdInstalledAppId, input stable.TeamsAppInstallation) (result UpdateJoinedTeamInstalledAppOperationResponse, err error) {
+func (c JoinedTeamInstalledAppClient) UpdateJoinedTeamInstalledApp(ctx context.Context, id stable.UserIdJoinedTeamIdInstalledAppId, input stable.TeamsAppInstallation, options UpdateJoinedTeamInstalledAppOperationOptions) (result UpdateJoinedTeamInstalledAppOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

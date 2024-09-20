@@ -17,15 +17,44 @@ type UpdateServicePrincipalCreationPolicyOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateServicePrincipalCreationPolicyOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateServicePrincipalCreationPolicyOperationOptions() UpdateServicePrincipalCreationPolicyOperationOptions {
+	return UpdateServicePrincipalCreationPolicyOperationOptions{}
+}
+
+func (o UpdateServicePrincipalCreationPolicyOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateServicePrincipalCreationPolicyOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateServicePrincipalCreationPolicyOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateServicePrincipalCreationPolicy - Update the navigation property servicePrincipalCreationPolicies in policies
-func (c ServicePrincipalCreationPolicyClient) UpdateServicePrincipalCreationPolicy(ctx context.Context, id beta.PolicyServicePrincipalCreationPolicyId, input beta.ServicePrincipalCreationPolicy) (result UpdateServicePrincipalCreationPolicyOperationResponse, err error) {
+func (c ServicePrincipalCreationPolicyClient) UpdateServicePrincipalCreationPolicy(ctx context.Context, id beta.PolicyServicePrincipalCreationPolicyId, input beta.ServicePrincipalCreationPolicy, options UpdateServicePrincipalCreationPolicyOperationOptions) (result UpdateServicePrincipalCreationPolicyOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

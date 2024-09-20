@@ -17,15 +17,44 @@ type UpdateDirectoryRoleTemplateOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateDirectoryRoleTemplateOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateDirectoryRoleTemplateOperationOptions() UpdateDirectoryRoleTemplateOperationOptions {
+	return UpdateDirectoryRoleTemplateOperationOptions{}
+}
+
+func (o UpdateDirectoryRoleTemplateOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateDirectoryRoleTemplateOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateDirectoryRoleTemplateOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateDirectoryRoleTemplate - Update entity in directoryRoleTemplates
-func (c DirectoryRoleTemplateClient) UpdateDirectoryRoleTemplate(ctx context.Context, id beta.DirectoryRoleTemplateId, input beta.DirectoryRoleTemplate) (result UpdateDirectoryRoleTemplateOperationResponse, err error) {
+func (c DirectoryRoleTemplateClient) UpdateDirectoryRoleTemplate(ctx context.Context, id beta.DirectoryRoleTemplateId, input beta.DirectoryRoleTemplate, options UpdateDirectoryRoleTemplateOperationOptions) (result UpdateDirectoryRoleTemplateOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

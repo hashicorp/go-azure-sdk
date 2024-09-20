@@ -18,19 +18,48 @@ type StopAccessReviewDefinitionInstanceStageDecisionInstanceOperationResponse st
 	OData        *odata.OData
 }
 
+type StopAccessReviewDefinitionInstanceStageDecisionInstanceOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultStopAccessReviewDefinitionInstanceStageDecisionInstanceOperationOptions() StopAccessReviewDefinitionInstanceStageDecisionInstanceOperationOptions {
+	return StopAccessReviewDefinitionInstanceStageDecisionInstanceOperationOptions{}
+}
+
+func (o StopAccessReviewDefinitionInstanceStageDecisionInstanceOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o StopAccessReviewDefinitionInstanceStageDecisionInstanceOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o StopAccessReviewDefinitionInstanceStageDecisionInstanceOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // StopAccessReviewDefinitionInstanceStageDecisionInstance - Invoke action stop. Stop a currently active
 // accessReviewInstance. After the access review instance stops, the instance status will be Completed, the reviewers
 // can no longer give input, and the access review decisions can be applied. Stopping an instance will not effect future
 // instances. To prevent a recurring access review from starting future instances, update the schedule definition to
 // change its scheduled end date.
-func (c AccessReviewDefinitionInstanceStageDecisionInstanceClient) StopAccessReviewDefinitionInstanceStageDecisionInstance(ctx context.Context, id beta.IdentityGovernanceAccessReviewDefinitionIdInstanceIdStageIdDecisionId) (result StopAccessReviewDefinitionInstanceStageDecisionInstanceOperationResponse, err error) {
+func (c AccessReviewDefinitionInstanceStageDecisionInstanceClient) StopAccessReviewDefinitionInstanceStageDecisionInstance(ctx context.Context, id beta.IdentityGovernanceAccessReviewDefinitionIdInstanceIdStageIdDecisionId, options StopAccessReviewDefinitionInstanceStageDecisionInstanceOperationOptions) (result StopAccessReviewDefinitionInstanceStageDecisionInstanceOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/instance/stop", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/instance/stop", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

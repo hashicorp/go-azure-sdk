@@ -17,16 +17,45 @@ type UpdateEnterpriseAppTransitiveRoleAssignmentOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateEnterpriseAppTransitiveRoleAssignmentOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateEnterpriseAppTransitiveRoleAssignmentOperationOptions() UpdateEnterpriseAppTransitiveRoleAssignmentOperationOptions {
+	return UpdateEnterpriseAppTransitiveRoleAssignmentOperationOptions{}
+}
+
+func (o UpdateEnterpriseAppTransitiveRoleAssignmentOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateEnterpriseAppTransitiveRoleAssignmentOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateEnterpriseAppTransitiveRoleAssignmentOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateEnterpriseAppTransitiveRoleAssignment - Update the navigation property transitiveRoleAssignments in
 // roleManagement
-func (c EnterpriseAppTransitiveRoleAssignmentClient) UpdateEnterpriseAppTransitiveRoleAssignment(ctx context.Context, id beta.RoleManagementEnterpriseAppIdTransitiveRoleAssignmentId, input beta.UnifiedRoleAssignment) (result UpdateEnterpriseAppTransitiveRoleAssignmentOperationResponse, err error) {
+func (c EnterpriseAppTransitiveRoleAssignmentClient) UpdateEnterpriseAppTransitiveRoleAssignment(ctx context.Context, id beta.RoleManagementEnterpriseAppIdTransitiveRoleAssignmentId, input beta.UnifiedRoleAssignment, options UpdateEnterpriseAppTransitiveRoleAssignmentOperationOptions) (result UpdateEnterpriseAppTransitiveRoleAssignmentOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

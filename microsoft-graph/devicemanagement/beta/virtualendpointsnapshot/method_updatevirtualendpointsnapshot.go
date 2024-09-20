@@ -17,15 +17,44 @@ type UpdateVirtualEndpointSnapshotOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateVirtualEndpointSnapshotOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateVirtualEndpointSnapshotOperationOptions() UpdateVirtualEndpointSnapshotOperationOptions {
+	return UpdateVirtualEndpointSnapshotOperationOptions{}
+}
+
+func (o UpdateVirtualEndpointSnapshotOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateVirtualEndpointSnapshotOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateVirtualEndpointSnapshotOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateVirtualEndpointSnapshot - Update the navigation property snapshots in deviceManagement
-func (c VirtualEndpointSnapshotClient) UpdateVirtualEndpointSnapshot(ctx context.Context, id beta.DeviceManagementVirtualEndpointSnapshotId, input beta.CloudPCSnapshot) (result UpdateVirtualEndpointSnapshotOperationResponse, err error) {
+func (c VirtualEndpointSnapshotClient) UpdateVirtualEndpointSnapshot(ctx context.Context, id beta.DeviceManagementVirtualEndpointSnapshotId, input beta.CloudPCSnapshot, options UpdateVirtualEndpointSnapshotOperationOptions) (result UpdateVirtualEndpointSnapshotOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &DirectoryAdministrativeUnitId{}
 
 func TestNewDirectoryAdministrativeUnitID(t *testing.T) {
-	id := NewDirectoryAdministrativeUnitID("administrativeUnitIdValue")
+	id := NewDirectoryAdministrativeUnitID("administrativeUnitId")
 
-	if id.AdministrativeUnitId != "administrativeUnitIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'AdministrativeUnitId'", id.AdministrativeUnitId, "administrativeUnitIdValue")
+	if id.AdministrativeUnitId != "administrativeUnitId" {
+		t.Fatalf("Expected %q but got %q for Segment 'AdministrativeUnitId'", id.AdministrativeUnitId, "administrativeUnitId")
 	}
 }
 
 func TestFormatDirectoryAdministrativeUnitID(t *testing.T) {
-	actual := NewDirectoryAdministrativeUnitID("administrativeUnitIdValue").ID()
-	expected := "/directory/administrativeUnits/administrativeUnitIdValue"
+	actual := NewDirectoryAdministrativeUnitID("administrativeUnitId").ID()
+	expected := "/directory/administrativeUnits/administrativeUnitId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -50,14 +50,14 @@ func TestParseDirectoryAdministrativeUnitID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/directory/administrativeUnits/administrativeUnitIdValue",
+			Input: "/directory/administrativeUnits/administrativeUnitId",
 			Expected: &DirectoryAdministrativeUnitId{
-				AdministrativeUnitId: "administrativeUnitIdValue",
+				AdministrativeUnitId: "administrativeUnitId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/directory/administrativeUnits/administrativeUnitIdValue/extra",
+			Input: "/directory/administrativeUnits/administrativeUnitId/extra",
 			Error: true,
 		},
 	}
@@ -116,26 +116,26 @@ func TestParseDirectoryAdministrativeUnitIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/directory/administrativeUnits/administrativeUnitIdValue",
+			Input: "/directory/administrativeUnits/administrativeUnitId",
 			Expected: &DirectoryAdministrativeUnitId{
-				AdministrativeUnitId: "administrativeUnitIdValue",
+				AdministrativeUnitId: "administrativeUnitId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/directory/administrativeUnits/administrativeUnitIdValue/extra",
+			Input: "/directory/administrativeUnits/administrativeUnitId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/dIrEcToRy/aDmInIsTrAtIvEuNiTs/aDmInIsTrAtIvEuNiTiDvAlUe",
+			Input: "/dIrEcToRy/aDmInIsTrAtIvEuNiTs/aDmInIsTrAtIvEuNiTiD",
 			Expected: &DirectoryAdministrativeUnitId{
-				AdministrativeUnitId: "aDmInIsTrAtIvEuNiTiDvAlUe",
+				AdministrativeUnitId: "aDmInIsTrAtIvEuNiTiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/dIrEcToRy/aDmInIsTrAtIvEuNiTs/aDmInIsTrAtIvEuNiTiDvAlUe/extra",
+			Input: "/dIrEcToRy/aDmInIsTrAtIvEuNiTs/aDmInIsTrAtIvEuNiTiD/extra",
 			Error: true,
 		},
 	}

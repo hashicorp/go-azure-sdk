@@ -18,16 +18,45 @@ type SyncDepOnboardingSettingWithAppleDeviceEnrollmentProgramOperationResponse s
 	OData        *odata.OData
 }
 
+type SyncDepOnboardingSettingWithAppleDeviceEnrollmentProgramOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultSyncDepOnboardingSettingWithAppleDeviceEnrollmentProgramOperationOptions() SyncDepOnboardingSettingWithAppleDeviceEnrollmentProgramOperationOptions {
+	return SyncDepOnboardingSettingWithAppleDeviceEnrollmentProgramOperationOptions{}
+}
+
+func (o SyncDepOnboardingSettingWithAppleDeviceEnrollmentProgramOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o SyncDepOnboardingSettingWithAppleDeviceEnrollmentProgramOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o SyncDepOnboardingSettingWithAppleDeviceEnrollmentProgramOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // SyncDepOnboardingSettingWithAppleDeviceEnrollmentProgram - Invoke action syncWithAppleDeviceEnrollmentProgram.
 // Synchronizes between Apple Device Enrollment Program and Intune
-func (c DepOnboardingSettingClient) SyncDepOnboardingSettingWithAppleDeviceEnrollmentProgram(ctx context.Context, id beta.DeviceManagementDepOnboardingSettingId) (result SyncDepOnboardingSettingWithAppleDeviceEnrollmentProgramOperationResponse, err error) {
+func (c DepOnboardingSettingClient) SyncDepOnboardingSettingWithAppleDeviceEnrollmentProgram(ctx context.Context, id beta.DeviceManagementDepOnboardingSettingId, options SyncDepOnboardingSettingWithAppleDeviceEnrollmentProgramOperationOptions) (result SyncDepOnboardingSettingWithAppleDeviceEnrollmentProgramOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/syncWithAppleDeviceEnrollmentProgram", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/syncWithAppleDeviceEnrollmentProgram", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

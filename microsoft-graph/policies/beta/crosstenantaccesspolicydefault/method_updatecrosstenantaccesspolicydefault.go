@@ -17,16 +17,45 @@ type UpdateCrossTenantAccessPolicyDefaultOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateCrossTenantAccessPolicyDefaultOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateCrossTenantAccessPolicyDefaultOperationOptions() UpdateCrossTenantAccessPolicyDefaultOperationOptions {
+	return UpdateCrossTenantAccessPolicyDefaultOperationOptions{}
+}
+
+func (o UpdateCrossTenantAccessPolicyDefaultOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateCrossTenantAccessPolicyDefaultOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateCrossTenantAccessPolicyDefaultOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateCrossTenantAccessPolicyDefault - Update crossTenantAccessPolicyConfigurationDefault. Update the default
 // configuration of a cross-tenant access policy.
-func (c CrossTenantAccessPolicyDefaultClient) UpdateCrossTenantAccessPolicyDefault(ctx context.Context, input beta.CrossTenantAccessPolicyConfigurationDefault) (result UpdateCrossTenantAccessPolicyDefaultOperationResponse, err error) {
+func (c CrossTenantAccessPolicyDefaultClient) UpdateCrossTenantAccessPolicyDefault(ctx context.Context, input beta.CrossTenantAccessPolicyConfigurationDefault, options UpdateCrossTenantAccessPolicyDefaultOperationOptions) (result UpdateCrossTenantAccessPolicyDefaultOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       "/policies/crossTenantAccessPolicy/default",
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          "/policies/crossTenantAccessPolicy/default",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

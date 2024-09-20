@@ -17,15 +17,44 @@ type UpdateOutboundSharedUserProfileTenantOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateOutboundSharedUserProfileTenantOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateOutboundSharedUserProfileTenantOperationOptions() UpdateOutboundSharedUserProfileTenantOperationOptions {
+	return UpdateOutboundSharedUserProfileTenantOperationOptions{}
+}
+
+func (o UpdateOutboundSharedUserProfileTenantOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateOutboundSharedUserProfileTenantOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateOutboundSharedUserProfileTenantOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateOutboundSharedUserProfileTenant - Update the navigation property tenants in directory
-func (c OutboundSharedUserProfileTenantClient) UpdateOutboundSharedUserProfileTenant(ctx context.Context, id beta.DirectoryOutboundSharedUserProfileIdTenantId, input beta.TenantReference) (result UpdateOutboundSharedUserProfileTenantOperationResponse, err error) {
+func (c OutboundSharedUserProfileTenantClient) UpdateOutboundSharedUserProfileTenant(ctx context.Context, id beta.DirectoryOutboundSharedUserProfileIdTenantId, input beta.TenantReference, options UpdateOutboundSharedUserProfileTenantOperationOptions) (result UpdateOutboundSharedUserProfileTenantOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

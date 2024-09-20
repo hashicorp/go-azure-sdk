@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/microsoft-graph/serviceprincipals/beta/synchronizationjob` Documentation
 
-The `synchronizationjob` SDK allows for interaction with the Azure Resource Manager Service `serviceprincipals` (API Version `beta`).
+The `synchronizationjob` SDK allows for interaction with Microsoft Graph `serviceprincipals` (API Version `beta`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -15,7 +15,7 @@ import "github.com/hashicorp/go-azure-sdk/microsoft-graph/serviceprincipals/beta
 ### Client Initialization
 
 ```go
-client := synchronizationjob.NewSynchronizationJobClientWithBaseURI("https://management.azure.com")
+client := synchronizationjob.NewSynchronizationJobClientWithBaseURI("https://graph.microsoft.com")
 client.Client.Authorizer = authorizer
 ```
 
@@ -24,14 +24,14 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := synchronizationjob.NewServicePrincipalID("servicePrincipalIdValue")
+id := synchronizationjob.NewServicePrincipalID("servicePrincipalId")
 
 payload := synchronizationjob.SynchronizationJob{
 	// ...
 }
 
 
-read, err := client.CreateSynchronizationJob(ctx, id, payload)
+read, err := client.CreateSynchronizationJob(ctx, id, payload, synchronizationjob.DefaultCreateSynchronizationJobOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -45,7 +45,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := synchronizationjob.NewServicePrincipalIdSynchronizationJobID("servicePrincipalIdValue", "synchronizationJobIdValue")
+id := synchronizationjob.NewServicePrincipalIdSynchronizationJobID("servicePrincipalId", "synchronizationJobId")
 
 read, err := client.DeleteSynchronizationJob(ctx, id, synchronizationjob.DefaultDeleteSynchronizationJobOperationOptions())
 if err != nil {
@@ -61,7 +61,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := synchronizationjob.NewServicePrincipalIdSynchronizationJobID("servicePrincipalIdValue", "synchronizationJobIdValue")
+id := synchronizationjob.NewServicePrincipalIdSynchronizationJobID("servicePrincipalId", "synchronizationJobId")
 
 read, err := client.GetSynchronizationJob(ctx, id, synchronizationjob.DefaultGetSynchronizationJobOperationOptions())
 if err != nil {
@@ -77,7 +77,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := synchronizationjob.NewServicePrincipalID("servicePrincipalIdValue")
+id := synchronizationjob.NewServicePrincipalID("servicePrincipalId")
 
 read, err := client.GetSynchronizationJobsCount(ctx, id, synchronizationjob.DefaultGetSynchronizationJobsCountOperationOptions())
 if err != nil {
@@ -93,7 +93,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := synchronizationjob.NewServicePrincipalID("servicePrincipalIdValue")
+id := synchronizationjob.NewServicePrincipalID("servicePrincipalId")
 
 // alternatively `client.ListSynchronizationJobs(ctx, id, synchronizationjob.DefaultListSynchronizationJobsOperationOptions())` can be used to do batched pagination
 items, err := client.ListSynchronizationJobsComplete(ctx, id, synchronizationjob.DefaultListSynchronizationJobsOperationOptions())
@@ -110,9 +110,9 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := synchronizationjob.NewServicePrincipalIdSynchronizationJobID("servicePrincipalIdValue", "synchronizationJobIdValue")
+id := synchronizationjob.NewServicePrincipalIdSynchronizationJobID("servicePrincipalId", "synchronizationJobId")
 
-read, err := client.PauseSynchronizationJob(ctx, id)
+read, err := client.PauseSynchronizationJob(ctx, id, synchronizationjob.DefaultPauseSynchronizationJobOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -126,14 +126,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := synchronizationjob.NewServicePrincipalIdSynchronizationJobID("servicePrincipalIdValue", "synchronizationJobIdValue")
+id := synchronizationjob.NewServicePrincipalIdSynchronizationJobID("servicePrincipalId", "synchronizationJobId")
 
 payload := synchronizationjob.ProvisionSynchronizationJobOnDemandRequest{
 	// ...
 }
 
 
-read, err := client.ProvisionSynchronizationJobOnDemand(ctx, id, payload)
+read, err := client.ProvisionSynchronizationJobOnDemand(ctx, id, payload, synchronizationjob.DefaultProvisionSynchronizationJobOnDemandOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -147,14 +147,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := synchronizationjob.NewServicePrincipalIdSynchronizationJobID("servicePrincipalIdValue", "synchronizationJobIdValue")
+id := synchronizationjob.NewServicePrincipalIdSynchronizationJobID("servicePrincipalId", "synchronizationJobId")
 
 payload := synchronizationjob.RestartSynchronizationJobRequest{
 	// ...
 }
 
 
-read, err := client.RestartSynchronizationJob(ctx, id, payload)
+read, err := client.RestartSynchronizationJob(ctx, id, payload, synchronizationjob.DefaultRestartSynchronizationJobOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -168,9 +168,9 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := synchronizationjob.NewServicePrincipalIdSynchronizationJobID("servicePrincipalIdValue", "synchronizationJobIdValue")
+id := synchronizationjob.NewServicePrincipalIdSynchronizationJobID("servicePrincipalId", "synchronizationJobId")
 
-read, err := client.StartSynchronizationJob(ctx, id)
+read, err := client.StartSynchronizationJob(ctx, id, synchronizationjob.DefaultStartSynchronizationJobOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -184,14 +184,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := synchronizationjob.NewServicePrincipalIdSynchronizationJobID("servicePrincipalIdValue", "synchronizationJobIdValue")
+id := synchronizationjob.NewServicePrincipalIdSynchronizationJobID("servicePrincipalId", "synchronizationJobId")
 
 payload := synchronizationjob.SynchronizationJob{
 	// ...
 }
 
 
-read, err := client.UpdateSynchronizationJob(ctx, id, payload)
+read, err := client.UpdateSynchronizationJob(ctx, id, payload, synchronizationjob.DefaultUpdateSynchronizationJobOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -201,18 +201,18 @@ if model := read.Model; model != nil {
 ```
 
 
-### Example Usage: `SynchronizationJobClient.ValidateSynchronizationJobCredential`
+### Example Usage: `SynchronizationJobClient.ValidateSynchronizationJobCredentials`
 
 ```go
 ctx := context.TODO()
-id := synchronizationjob.NewServicePrincipalIdSynchronizationJobID("servicePrincipalIdValue", "synchronizationJobIdValue")
+id := synchronizationjob.NewServicePrincipalIdSynchronizationJobID("servicePrincipalId", "synchronizationJobId")
 
-payload := synchronizationjob.ValidateSynchronizationJobCredentialRequest{
+payload := synchronizationjob.ValidateSynchronizationJobCredentialsRequest{
 	// ...
 }
 
 
-read, err := client.ValidateSynchronizationJobCredential(ctx, id, payload)
+read, err := client.ValidateSynchronizationJobCredentials(ctx, id, payload, synchronizationjob.DefaultValidateSynchronizationJobCredentialsOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -222,18 +222,18 @@ if model := read.Model; model != nil {
 ```
 
 
-### Example Usage: `SynchronizationJobClient.ValidateSynchronizationJobsCredential`
+### Example Usage: `SynchronizationJobClient.ValidateSynchronizationJobsCredentials`
 
 ```go
 ctx := context.TODO()
-id := synchronizationjob.NewServicePrincipalID("servicePrincipalIdValue")
+id := synchronizationjob.NewServicePrincipalID("servicePrincipalId")
 
-payload := synchronizationjob.ValidateSynchronizationJobsCredentialRequest{
+payload := synchronizationjob.ValidateSynchronizationJobsCredentialsRequest{
 	// ...
 }
 
 
-read, err := client.ValidateSynchronizationJobsCredential(ctx, id, payload)
+read, err := client.ValidateSynchronizationJobsCredentials(ctx, id, payload, synchronizationjob.DefaultValidateSynchronizationJobsCredentialsOperationOptions())
 if err != nil {
 	// handle the error
 }

@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/microsoft-graph/auditlogs/beta/signin` Documentation
 
-The `signin` SDK allows for interaction with the Azure Resource Manager Service `auditlogs` (API Version `beta`).
+The `signin` SDK allows for interaction with Microsoft Graph `auditlogs` (API Version `beta`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -15,7 +15,7 @@ import "github.com/hashicorp/go-azure-sdk/microsoft-graph/auditlogs/beta/signin"
 ### Client Initialization
 
 ```go
-client := signin.NewSignInClientWithBaseURI("https://management.azure.com")
+client := signin.NewSignInClientWithBaseURI("https://graph.microsoft.com")
 client.Client.Authorizer = authorizer
 ```
 
@@ -30,7 +30,7 @@ payload := signin.SignIn{
 }
 
 
-read, err := client.CreateSignIn(ctx, payload)
+read, err := client.CreateSignIn(ctx, payload, signin.DefaultCreateSignInOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -50,7 +50,7 @@ payload := signin.CreateSignInConfirmCompromisedRequest{
 }
 
 
-read, err := client.CreateSignInConfirmCompromised(ctx, payload)
+read, err := client.CreateSignInConfirmCompromised(ctx, payload, signin.DefaultCreateSignInConfirmCompromisedOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -70,7 +70,7 @@ payload := signin.CreateSignInConfirmSafeRequest{
 }
 
 
-read, err := client.CreateSignInConfirmSafe(ctx, payload)
+read, err := client.CreateSignInConfirmSafe(ctx, payload, signin.DefaultCreateSignInConfirmSafeOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -84,7 +84,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := signin.NewAuditLogSignInID("signInIdValue")
+id := signin.NewAuditLogSignInID("signInId")
 
 read, err := client.DeleteSignIn(ctx, id, signin.DefaultDeleteSignInOperationOptions())
 if err != nil {
@@ -100,7 +100,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := signin.NewAuditLogSignInID("signInIdValue")
+id := signin.NewAuditLogSignInID("signInId")
 
 read, err := client.GetSignIn(ctx, id, signin.DefaultGetSignInOperationOptions())
 if err != nil {
@@ -149,14 +149,14 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := signin.NewAuditLogSignInID("signInIdValue")
+id := signin.NewAuditLogSignInID("signInId")
 
 payload := signin.SignIn{
 	// ...
 }
 
 
-read, err := client.UpdateSignIn(ctx, id, payload)
+read, err := client.UpdateSignIn(ctx, id, payload, signin.DefaultUpdateSignInOperationOptions())
 if err != nil {
 	// handle the error
 }

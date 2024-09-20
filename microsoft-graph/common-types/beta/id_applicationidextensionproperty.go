@@ -98,9 +98,9 @@ func (id ApplicationIdExtensionPropertyId) ID() string {
 func (id ApplicationIdExtensionPropertyId) Segments() []resourceids.Segment {
 	return []resourceids.Segment{
 		resourceids.StaticSegment("applications", "applications", "applications"),
-		resourceids.UserSpecifiedSegment("applicationId", "applicationIdValue"),
+		resourceids.UserSpecifiedSegment("applicationId", "applicationId"),
 		resourceids.StaticSegment("extensionProperties", "extensionProperties", "extensionProperties"),
-		resourceids.UserSpecifiedSegment("extensionPropertyId", "extensionPropertyIdValue"),
+		resourceids.UserSpecifiedSegment("extensionPropertyId", "extensionPropertyId"),
 	}
 }
 

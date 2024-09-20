@@ -19,15 +19,44 @@ type CreateDeviceShellScriptAssignmentOperationResponse struct {
 	Model        *beta.DeviceManagementScriptAssignment
 }
 
+type CreateDeviceShellScriptAssignmentOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateDeviceShellScriptAssignmentOperationOptions() CreateDeviceShellScriptAssignmentOperationOptions {
+	return CreateDeviceShellScriptAssignmentOperationOptions{}
+}
+
+func (o CreateDeviceShellScriptAssignmentOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateDeviceShellScriptAssignmentOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateDeviceShellScriptAssignmentOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateDeviceShellScriptAssignment - Create new navigation property to assignments for deviceManagement
-func (c DeviceShellScriptAssignmentClient) CreateDeviceShellScriptAssignment(ctx context.Context, id beta.DeviceManagementDeviceShellScriptId, input beta.DeviceManagementScriptAssignment) (result CreateDeviceShellScriptAssignmentOperationResponse, err error) {
+func (c DeviceShellScriptAssignmentClient) CreateDeviceShellScriptAssignment(ctx context.Context, id beta.DeviceManagementDeviceShellScriptId, input beta.DeviceManagementScriptAssignment, options CreateDeviceShellScriptAssignmentOperationOptions) (result CreateDeviceShellScriptAssignmentOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/assignments", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/assignments", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

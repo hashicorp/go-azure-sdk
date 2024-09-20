@@ -17,15 +17,44 @@ type UpdateTodoListTaskAttachmentSessionOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateTodoListTaskAttachmentSessionOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateTodoListTaskAttachmentSessionOperationOptions() UpdateTodoListTaskAttachmentSessionOperationOptions {
+	return UpdateTodoListTaskAttachmentSessionOperationOptions{}
+}
+
+func (o UpdateTodoListTaskAttachmentSessionOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateTodoListTaskAttachmentSessionOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateTodoListTaskAttachmentSessionOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateTodoListTaskAttachmentSession - Update the navigation property attachmentSessions in me
-func (c TodoListTaskAttachmentSessionClient) UpdateTodoListTaskAttachmentSession(ctx context.Context, id stable.MeTodoListIdTaskIdAttachmentSessionId, input stable.AttachmentSession) (result UpdateTodoListTaskAttachmentSessionOperationResponse, err error) {
+func (c TodoListTaskAttachmentSessionClient) UpdateTodoListTaskAttachmentSession(ctx context.Context, id stable.MeTodoListIdTaskIdAttachmentSessionId, input stable.AttachmentSession, options UpdateTodoListTaskAttachmentSessionOperationOptions) (result UpdateTodoListTaskAttachmentSessionOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

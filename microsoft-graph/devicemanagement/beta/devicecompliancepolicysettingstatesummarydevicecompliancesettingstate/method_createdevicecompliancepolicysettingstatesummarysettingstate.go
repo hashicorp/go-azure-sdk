@@ -19,16 +19,45 @@ type CreateDeviceCompliancePolicySettingStateSummarySettingStateOperationRespons
 	Model        *beta.DeviceComplianceSettingState
 }
 
+type CreateDeviceCompliancePolicySettingStateSummarySettingStateOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateDeviceCompliancePolicySettingStateSummarySettingStateOperationOptions() CreateDeviceCompliancePolicySettingStateSummarySettingStateOperationOptions {
+	return CreateDeviceCompliancePolicySettingStateSummarySettingStateOperationOptions{}
+}
+
+func (o CreateDeviceCompliancePolicySettingStateSummarySettingStateOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateDeviceCompliancePolicySettingStateSummarySettingStateOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateDeviceCompliancePolicySettingStateSummarySettingStateOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateDeviceCompliancePolicySettingStateSummarySettingState - Create new navigation property to
 // deviceComplianceSettingStates for deviceManagement
-func (c DeviceCompliancePolicySettingStateSummaryDeviceComplianceSettingStateClient) CreateDeviceCompliancePolicySettingStateSummarySettingState(ctx context.Context, id beta.DeviceManagementDeviceCompliancePolicySettingStateSummaryId, input beta.DeviceComplianceSettingState) (result CreateDeviceCompliancePolicySettingStateSummarySettingStateOperationResponse, err error) {
+func (c DeviceCompliancePolicySettingStateSummaryDeviceComplianceSettingStateClient) CreateDeviceCompliancePolicySettingStateSummarySettingState(ctx context.Context, id beta.DeviceManagementDeviceCompliancePolicySettingStateSummaryId, input beta.DeviceComplianceSettingState, options CreateDeviceCompliancePolicySettingStateSummarySettingStateOperationOptions) (result CreateDeviceCompliancePolicySettingStateSummarySettingStateOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/deviceComplianceSettingStates", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/deviceComplianceSettingStates", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

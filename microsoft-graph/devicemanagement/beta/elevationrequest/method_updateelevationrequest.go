@@ -17,15 +17,44 @@ type UpdateElevationRequestOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateElevationRequestOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateElevationRequestOperationOptions() UpdateElevationRequestOperationOptions {
+	return UpdateElevationRequestOperationOptions{}
+}
+
+func (o UpdateElevationRequestOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateElevationRequestOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateElevationRequestOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateElevationRequest - Update the navigation property elevationRequests in deviceManagement
-func (c ElevationRequestClient) UpdateElevationRequest(ctx context.Context, id beta.DeviceManagementElevationRequestId, input beta.PrivilegeManagementElevationRequest) (result UpdateElevationRequestOperationResponse, err error) {
+func (c ElevationRequestClient) UpdateElevationRequest(ctx context.Context, id beta.DeviceManagementElevationRequestId, input beta.PrivilegeManagementElevationRequest, options UpdateElevationRequestOperationOptions) (result UpdateElevationRequestOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

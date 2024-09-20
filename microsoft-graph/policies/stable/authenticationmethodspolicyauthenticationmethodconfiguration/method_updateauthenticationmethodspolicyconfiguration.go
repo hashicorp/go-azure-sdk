@@ -17,16 +17,45 @@ type UpdateAuthenticationMethodsPolicyConfigurationOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateAuthenticationMethodsPolicyConfigurationOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateAuthenticationMethodsPolicyConfigurationOperationOptions() UpdateAuthenticationMethodsPolicyConfigurationOperationOptions {
+	return UpdateAuthenticationMethodsPolicyConfigurationOperationOptions{}
+}
+
+func (o UpdateAuthenticationMethodsPolicyConfigurationOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateAuthenticationMethodsPolicyConfigurationOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateAuthenticationMethodsPolicyConfigurationOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateAuthenticationMethodsPolicyConfiguration - Update the navigation property authenticationMethodConfigurations in
 // policies
-func (c AuthenticationMethodsPolicyAuthenticationMethodConfigurationClient) UpdateAuthenticationMethodsPolicyConfiguration(ctx context.Context, id stable.PolicyAuthenticationMethodsPolicyAuthenticationMethodConfigurationId, input stable.AuthenticationMethodConfiguration) (result UpdateAuthenticationMethodsPolicyConfigurationOperationResponse, err error) {
+func (c AuthenticationMethodsPolicyAuthenticationMethodConfigurationClient) UpdateAuthenticationMethodsPolicyConfiguration(ctx context.Context, id stable.PolicyAuthenticationMethodsPolicyAuthenticationMethodConfigurationId, input stable.AuthenticationMethodConfiguration, options UpdateAuthenticationMethodsPolicyConfigurationOperationOptions) (result UpdateAuthenticationMethodsPolicyConfigurationOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

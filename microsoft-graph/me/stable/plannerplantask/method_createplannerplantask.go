@@ -19,15 +19,44 @@ type CreatePlannerPlanTaskOperationResponse struct {
 	Model        *stable.PlannerTask
 }
 
+type CreatePlannerPlanTaskOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreatePlannerPlanTaskOperationOptions() CreatePlannerPlanTaskOperationOptions {
+	return CreatePlannerPlanTaskOperationOptions{}
+}
+
+func (o CreatePlannerPlanTaskOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreatePlannerPlanTaskOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreatePlannerPlanTaskOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreatePlannerPlanTask - Create new navigation property to tasks for me
-func (c PlannerPlanTaskClient) CreatePlannerPlanTask(ctx context.Context, id stable.MePlannerPlanId, input stable.PlannerTask) (result CreatePlannerPlanTaskOperationResponse, err error) {
+func (c PlannerPlanTaskClient) CreatePlannerPlanTask(ctx context.Context, id stable.MePlannerPlanId, input stable.PlannerTask, options CreatePlannerPlanTaskOperationOptions) (result CreatePlannerPlanTaskOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/tasks", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/tasks", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

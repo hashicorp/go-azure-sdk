@@ -17,15 +17,44 @@ type UpdateAccessReviewHistoryDefinitionOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateAccessReviewHistoryDefinitionOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateAccessReviewHistoryDefinitionOperationOptions() UpdateAccessReviewHistoryDefinitionOperationOptions {
+	return UpdateAccessReviewHistoryDefinitionOperationOptions{}
+}
+
+func (o UpdateAccessReviewHistoryDefinitionOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateAccessReviewHistoryDefinitionOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateAccessReviewHistoryDefinitionOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateAccessReviewHistoryDefinition - Update the navigation property historyDefinitions in identityGovernance
-func (c AccessReviewHistoryDefinitionClient) UpdateAccessReviewHistoryDefinition(ctx context.Context, id beta.IdentityGovernanceAccessReviewHistoryDefinitionId, input beta.AccessReviewHistoryDefinition) (result UpdateAccessReviewHistoryDefinitionOperationResponse, err error) {
+func (c AccessReviewHistoryDefinitionClient) UpdateAccessReviewHistoryDefinition(ctx context.Context, id beta.IdentityGovernanceAccessReviewHistoryDefinitionId, input beta.AccessReviewHistoryDefinition, options UpdateAccessReviewHistoryDefinitionOperationOptions) (result UpdateAccessReviewHistoryDefinitionOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

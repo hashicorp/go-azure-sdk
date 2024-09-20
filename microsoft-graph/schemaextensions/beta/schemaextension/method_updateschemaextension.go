@@ -17,6 +17,34 @@ type UpdateSchemaExtensionOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateSchemaExtensionOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateSchemaExtensionOperationOptions() UpdateSchemaExtensionOperationOptions {
+	return UpdateSchemaExtensionOperationOptions{}
+}
+
+func (o UpdateSchemaExtensionOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateSchemaExtensionOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateSchemaExtensionOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateSchemaExtension - Update schemaExtension. Update properties in the definition of the specified schemaExtension.
 // Additive updates to the extension can only be made when the extension is in the InDevelopment or Available status.
 // This means custom properties or target resource types cannot be removed from the definition, but new custom
@@ -27,14 +55,15 @@ type UpdateSchemaExtensionOperationResponse struct {
 // the extension, or some other application owned by the signed-in user. This criteria for the owner property allows a
 // signed-in user to make updates through other applications they don't own, such as Microsoft Graph Explorer. When
 // using Graph Explorer to update a schemaExtension resource, include the owner property in the PATCH request body.
-func (c SchemaExtensionClient) UpdateSchemaExtension(ctx context.Context, id beta.SchemaExtensionId, input beta.SchemaExtension) (result UpdateSchemaExtensionOperationResponse, err error) {
+func (c SchemaExtensionClient) UpdateSchemaExtension(ctx context.Context, id beta.SchemaExtensionId, input beta.SchemaExtension, options UpdateSchemaExtensionOperationOptions) (result UpdateSchemaExtensionOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

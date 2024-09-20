@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &DeviceManagementDeviceCustomAttributeShellScriptIdGroupAssignmentId{}
 
 func TestNewDeviceManagementDeviceCustomAttributeShellScriptIdGroupAssignmentID(t *testing.T) {
-	id := NewDeviceManagementDeviceCustomAttributeShellScriptIdGroupAssignmentID("deviceCustomAttributeShellScriptIdValue", "deviceManagementScriptGroupAssignmentIdValue")
+	id := NewDeviceManagementDeviceCustomAttributeShellScriptIdGroupAssignmentID("deviceCustomAttributeShellScriptId", "deviceManagementScriptGroupAssignmentId")
 
-	if id.DeviceCustomAttributeShellScriptId != "deviceCustomAttributeShellScriptIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DeviceCustomAttributeShellScriptId'", id.DeviceCustomAttributeShellScriptId, "deviceCustomAttributeShellScriptIdValue")
+	if id.DeviceCustomAttributeShellScriptId != "deviceCustomAttributeShellScriptId" {
+		t.Fatalf("Expected %q but got %q for Segment 'DeviceCustomAttributeShellScriptId'", id.DeviceCustomAttributeShellScriptId, "deviceCustomAttributeShellScriptId")
 	}
 
-	if id.DeviceManagementScriptGroupAssignmentId != "deviceManagementScriptGroupAssignmentIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DeviceManagementScriptGroupAssignmentId'", id.DeviceManagementScriptGroupAssignmentId, "deviceManagementScriptGroupAssignmentIdValue")
+	if id.DeviceManagementScriptGroupAssignmentId != "deviceManagementScriptGroupAssignmentId" {
+		t.Fatalf("Expected %q but got %q for Segment 'DeviceManagementScriptGroupAssignmentId'", id.DeviceManagementScriptGroupAssignmentId, "deviceManagementScriptGroupAssignmentId")
 	}
 }
 
 func TestFormatDeviceManagementDeviceCustomAttributeShellScriptIdGroupAssignmentID(t *testing.T) {
-	actual := NewDeviceManagementDeviceCustomAttributeShellScriptIdGroupAssignmentID("deviceCustomAttributeShellScriptIdValue", "deviceManagementScriptGroupAssignmentIdValue").ID()
-	expected := "/deviceManagement/deviceCustomAttributeShellScripts/deviceCustomAttributeShellScriptIdValue/groupAssignments/deviceManagementScriptGroupAssignmentIdValue"
+	actual := NewDeviceManagementDeviceCustomAttributeShellScriptIdGroupAssignmentID("deviceCustomAttributeShellScriptId", "deviceManagementScriptGroupAssignmentId").ID()
+	expected := "/deviceManagement/deviceCustomAttributeShellScripts/deviceCustomAttributeShellScriptId/groupAssignments/deviceManagementScriptGroupAssignmentId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -54,25 +54,25 @@ func TestParseDeviceManagementDeviceCustomAttributeShellScriptIdGroupAssignmentI
 		},
 		{
 			// Incomplete URI
-			Input: "/deviceManagement/deviceCustomAttributeShellScripts/deviceCustomAttributeShellScriptIdValue",
+			Input: "/deviceManagement/deviceCustomAttributeShellScripts/deviceCustomAttributeShellScriptId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/deviceManagement/deviceCustomAttributeShellScripts/deviceCustomAttributeShellScriptIdValue/groupAssignments",
+			Input: "/deviceManagement/deviceCustomAttributeShellScripts/deviceCustomAttributeShellScriptId/groupAssignments",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/deviceCustomAttributeShellScripts/deviceCustomAttributeShellScriptIdValue/groupAssignments/deviceManagementScriptGroupAssignmentIdValue",
+			Input: "/deviceManagement/deviceCustomAttributeShellScripts/deviceCustomAttributeShellScriptId/groupAssignments/deviceManagementScriptGroupAssignmentId",
 			Expected: &DeviceManagementDeviceCustomAttributeShellScriptIdGroupAssignmentId{
-				DeviceCustomAttributeShellScriptId:      "deviceCustomAttributeShellScriptIdValue",
-				DeviceManagementScriptGroupAssignmentId: "deviceManagementScriptGroupAssignmentIdValue",
+				DeviceCustomAttributeShellScriptId:      "deviceCustomAttributeShellScriptId",
+				DeviceManagementScriptGroupAssignmentId: "deviceManagementScriptGroupAssignmentId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/deviceCustomAttributeShellScripts/deviceCustomAttributeShellScriptIdValue/groupAssignments/deviceManagementScriptGroupAssignmentIdValue/extra",
+			Input: "/deviceManagement/deviceCustomAttributeShellScripts/deviceCustomAttributeShellScriptId/groupAssignments/deviceManagementScriptGroupAssignmentId/extra",
 			Error: true,
 		},
 	}
@@ -135,48 +135,48 @@ func TestParseDeviceManagementDeviceCustomAttributeShellScriptIdGroupAssignmentI
 		},
 		{
 			// Incomplete URI
-			Input: "/deviceManagement/deviceCustomAttributeShellScripts/deviceCustomAttributeShellScriptIdValue",
+			Input: "/deviceManagement/deviceCustomAttributeShellScripts/deviceCustomAttributeShellScriptId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/dEvIcEcUsToMaTtRiBuTeShElLsCrIpTs/dEvIcEcUsToMaTtRiBuTeShElLsCrIpTiDvAlUe",
+			Input: "/dEvIcEmAnAgEmEnT/dEvIcEcUsToMaTtRiBuTeShElLsCrIpTs/dEvIcEcUsToMaTtRiBuTeShElLsCrIpTiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/deviceManagement/deviceCustomAttributeShellScripts/deviceCustomAttributeShellScriptIdValue/groupAssignments",
+			Input: "/deviceManagement/deviceCustomAttributeShellScripts/deviceCustomAttributeShellScriptId/groupAssignments",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/dEvIcEcUsToMaTtRiBuTeShElLsCrIpTs/dEvIcEcUsToMaTtRiBuTeShElLsCrIpTiDvAlUe/gRoUpAsSiGnMeNtS",
+			Input: "/dEvIcEmAnAgEmEnT/dEvIcEcUsToMaTtRiBuTeShElLsCrIpTs/dEvIcEcUsToMaTtRiBuTeShElLsCrIpTiD/gRoUpAsSiGnMeNtS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/deviceCustomAttributeShellScripts/deviceCustomAttributeShellScriptIdValue/groupAssignments/deviceManagementScriptGroupAssignmentIdValue",
+			Input: "/deviceManagement/deviceCustomAttributeShellScripts/deviceCustomAttributeShellScriptId/groupAssignments/deviceManagementScriptGroupAssignmentId",
 			Expected: &DeviceManagementDeviceCustomAttributeShellScriptIdGroupAssignmentId{
-				DeviceCustomAttributeShellScriptId:      "deviceCustomAttributeShellScriptIdValue",
-				DeviceManagementScriptGroupAssignmentId: "deviceManagementScriptGroupAssignmentIdValue",
+				DeviceCustomAttributeShellScriptId:      "deviceCustomAttributeShellScriptId",
+				DeviceManagementScriptGroupAssignmentId: "deviceManagementScriptGroupAssignmentId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/deviceCustomAttributeShellScripts/deviceCustomAttributeShellScriptIdValue/groupAssignments/deviceManagementScriptGroupAssignmentIdValue/extra",
+			Input: "/deviceManagement/deviceCustomAttributeShellScripts/deviceCustomAttributeShellScriptId/groupAssignments/deviceManagementScriptGroupAssignmentId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/dEvIcEcUsToMaTtRiBuTeShElLsCrIpTs/dEvIcEcUsToMaTtRiBuTeShElLsCrIpTiDvAlUe/gRoUpAsSiGnMeNtS/dEvIcEmAnAgEmEnTsCrIpTgRoUpAsSiGnMeNtIdVaLuE",
+			Input: "/dEvIcEmAnAgEmEnT/dEvIcEcUsToMaTtRiBuTeShElLsCrIpTs/dEvIcEcUsToMaTtRiBuTeShElLsCrIpTiD/gRoUpAsSiGnMeNtS/dEvIcEmAnAgEmEnTsCrIpTgRoUpAsSiGnMeNtId",
 			Expected: &DeviceManagementDeviceCustomAttributeShellScriptIdGroupAssignmentId{
-				DeviceCustomAttributeShellScriptId:      "dEvIcEcUsToMaTtRiBuTeShElLsCrIpTiDvAlUe",
-				DeviceManagementScriptGroupAssignmentId: "dEvIcEmAnAgEmEnTsCrIpTgRoUpAsSiGnMeNtIdVaLuE",
+				DeviceCustomAttributeShellScriptId:      "dEvIcEcUsToMaTtRiBuTeShElLsCrIpTiD",
+				DeviceManagementScriptGroupAssignmentId: "dEvIcEmAnAgEmEnTsCrIpTgRoUpAsSiGnMeNtId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/dEvIcEcUsToMaTtRiBuTeShElLsCrIpTs/dEvIcEcUsToMaTtRiBuTeShElLsCrIpTiDvAlUe/gRoUpAsSiGnMeNtS/dEvIcEmAnAgEmEnTsCrIpTgRoUpAsSiGnMeNtIdVaLuE/extra",
+			Input: "/dEvIcEmAnAgEmEnT/dEvIcEcUsToMaTtRiBuTeShElLsCrIpTs/dEvIcEcUsToMaTtRiBuTeShElLsCrIpTiD/gRoUpAsSiGnMeNtS/dEvIcEmAnAgEmEnTsCrIpTgRoUpAsSiGnMeNtId/extra",
 			Error: true,
 		},
 	}

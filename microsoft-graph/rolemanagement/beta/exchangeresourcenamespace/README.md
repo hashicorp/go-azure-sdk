@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/microsoft-graph/rolemanagement/beta/exchangeresourcenamespace` Documentation
 
-The `exchangeresourcenamespace` SDK allows for interaction with the Azure Resource Manager Service `rolemanagement` (API Version `beta`).
+The `exchangeresourcenamespace` SDK allows for interaction with Microsoft Graph `rolemanagement` (API Version `beta`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -15,7 +15,7 @@ import "github.com/hashicorp/go-azure-sdk/microsoft-graph/rolemanagement/beta/ex
 ### Client Initialization
 
 ```go
-client := exchangeresourcenamespace.NewExchangeResourceNamespaceClientWithBaseURI("https://management.azure.com")
+client := exchangeresourcenamespace.NewExchangeResourceNamespaceClientWithBaseURI("https://graph.microsoft.com")
 client.Client.Authorizer = authorizer
 ```
 
@@ -30,7 +30,7 @@ payload := exchangeresourcenamespace.UnifiedRbacResourceNamespace{
 }
 
 
-read, err := client.CreateExchangeResourceNamespace(ctx, payload)
+read, err := client.CreateExchangeResourceNamespace(ctx, payload, exchangeresourcenamespace.DefaultCreateExchangeResourceNamespaceOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -44,14 +44,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := exchangeresourcenamespace.NewRoleManagementExchangeResourceNamespaceID("unifiedRbacResourceNamespaceIdValue")
+id := exchangeresourcenamespace.NewRoleManagementExchangeResourceNamespaceID("unifiedRbacResourceNamespaceId")
 
 payload := exchangeresourcenamespace.CreateExchangeResourceNamespaceImportResourceActionRequest{
 	// ...
 }
 
 
-read, err := client.CreateExchangeResourceNamespaceImportResourceAction(ctx, id, payload)
+read, err := client.CreateExchangeResourceNamespaceImportResourceAction(ctx, id, payload, exchangeresourcenamespace.DefaultCreateExchangeResourceNamespaceImportResourceActionOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -65,7 +65,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := exchangeresourcenamespace.NewRoleManagementExchangeResourceNamespaceID("unifiedRbacResourceNamespaceIdValue")
+id := exchangeresourcenamespace.NewRoleManagementExchangeResourceNamespaceID("unifiedRbacResourceNamespaceId")
 
 read, err := client.DeleteExchangeResourceNamespace(ctx, id, exchangeresourcenamespace.DefaultDeleteExchangeResourceNamespaceOperationOptions())
 if err != nil {
@@ -81,7 +81,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := exchangeresourcenamespace.NewRoleManagementExchangeResourceNamespaceID("unifiedRbacResourceNamespaceIdValue")
+id := exchangeresourcenamespace.NewRoleManagementExchangeResourceNamespaceID("unifiedRbacResourceNamespaceId")
 
 read, err := client.GetExchangeResourceNamespace(ctx, id, exchangeresourcenamespace.DefaultGetExchangeResourceNamespaceOperationOptions())
 if err != nil {
@@ -130,14 +130,14 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := exchangeresourcenamespace.NewRoleManagementExchangeResourceNamespaceID("unifiedRbacResourceNamespaceIdValue")
+id := exchangeresourcenamespace.NewRoleManagementExchangeResourceNamespaceID("unifiedRbacResourceNamespaceId")
 
 payload := exchangeresourcenamespace.UnifiedRbacResourceNamespace{
 	// ...
 }
 
 
-read, err := client.UpdateExchangeResourceNamespace(ctx, id, payload)
+read, err := client.UpdateExchangeResourceNamespace(ctx, id, payload, exchangeresourcenamespace.DefaultUpdateExchangeResourceNamespaceOperationOptions())
 if err != nil {
 	// handle the error
 }

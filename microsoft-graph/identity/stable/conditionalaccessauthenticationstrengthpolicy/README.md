@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/microsoft-graph/identity/stable/conditionalaccessauthenticationstrengthpolicy` Documentation
 
-The `conditionalaccessauthenticationstrengthpolicy` SDK allows for interaction with the Azure Resource Manager Service `identity` (API Version `stable`).
+The `conditionalaccessauthenticationstrengthpolicy` SDK allows for interaction with Microsoft Graph `identity` (API Version `stable`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -15,7 +15,7 @@ import "github.com/hashicorp/go-azure-sdk/microsoft-graph/identity/stable/condit
 ### Client Initialization
 
 ```go
-client := conditionalaccessauthenticationstrengthpolicy.NewConditionalAccessAuthenticationStrengthPolicyClientWithBaseURI("https://management.azure.com")
+client := conditionalaccessauthenticationstrengthpolicy.NewConditionalAccessAuthenticationStrengthPolicyClientWithBaseURI("https://graph.microsoft.com")
 client.Client.Authorizer = authorizer
 ```
 
@@ -30,7 +30,7 @@ payload := conditionalaccessauthenticationstrengthpolicy.AuthenticationStrengthP
 }
 
 
-read, err := client.CreateConditionalAccessAuthenticationStrengthPolicy(ctx, payload)
+read, err := client.CreateConditionalAccessAuthenticationStrengthPolicy(ctx, payload, conditionalaccessauthenticationstrengthpolicy.DefaultCreateConditionalAccessAuthenticationStrengthPolicyOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -44,7 +44,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := conditionalaccessauthenticationstrengthpolicy.NewIdentityConditionalAccessAuthenticationStrengthPolicyID("authenticationStrengthPolicyIdValue")
+id := conditionalaccessauthenticationstrengthpolicy.NewIdentityConditionalAccessAuthenticationStrengthPolicyID("authenticationStrengthPolicyId")
 
 read, err := client.DeleteConditionalAccessAuthenticationStrengthPolicy(ctx, id, conditionalaccessauthenticationstrengthpolicy.DefaultDeleteConditionalAccessAuthenticationStrengthPolicyOperationOptions())
 if err != nil {
@@ -76,7 +76,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := conditionalaccessauthenticationstrengthpolicy.NewIdentityConditionalAccessAuthenticationStrengthPolicyID("authenticationStrengthPolicyIdValue")
+id := conditionalaccessauthenticationstrengthpolicy.NewIdentityConditionalAccessAuthenticationStrengthPolicyID("authenticationStrengthPolicyId")
 
 read, err := client.GetConditionalAccessAuthenticationStrengthPolicy(ctx, id, conditionalaccessauthenticationstrengthpolicy.DefaultGetConditionalAccessAuthenticationStrengthPolicyOperationOptions())
 if err != nil {
@@ -109,14 +109,14 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := conditionalaccessauthenticationstrengthpolicy.NewIdentityConditionalAccessAuthenticationStrengthPolicyID("authenticationStrengthPolicyIdValue")
+id := conditionalaccessauthenticationstrengthpolicy.NewIdentityConditionalAccessAuthenticationStrengthPolicyID("authenticationStrengthPolicyId")
 
 payload := conditionalaccessauthenticationstrengthpolicy.AuthenticationStrengthPolicy{
 	// ...
 }
 
 
-read, err := client.UpdateConditionalAccessAuthenticationStrengthPolicy(ctx, id, payload)
+read, err := client.UpdateConditionalAccessAuthenticationStrengthPolicy(ctx, id, payload, conditionalaccessauthenticationstrengthpolicy.DefaultUpdateConditionalAccessAuthenticationStrengthPolicyOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -126,18 +126,18 @@ if model := read.Model; model != nil {
 ```
 
 
-### Example Usage: `ConditionalAccessAuthenticationStrengthPolicyClient.UpdateConditionalAccessAuthenticationStrengthPolicyAllowedCombination`
+### Example Usage: `ConditionalAccessAuthenticationStrengthPolicyClient.UpdateConditionalAccessAuthenticationStrengthPolicyAllowedCombinations`
 
 ```go
 ctx := context.TODO()
-id := conditionalaccessauthenticationstrengthpolicy.NewIdentityConditionalAccessAuthenticationStrengthPolicyID("authenticationStrengthPolicyIdValue")
+id := conditionalaccessauthenticationstrengthpolicy.NewIdentityConditionalAccessAuthenticationStrengthPolicyID("authenticationStrengthPolicyId")
 
-payload := conditionalaccessauthenticationstrengthpolicy.UpdateConditionalAccessAuthenticationStrengthPolicyAllowedCombinationRequest{
+payload := conditionalaccessauthenticationstrengthpolicy.UpdateConditionalAccessAuthenticationStrengthPolicyAllowedCombinationsRequest{
 	// ...
 }
 
 
-read, err := client.UpdateConditionalAccessAuthenticationStrengthPolicyAllowedCombination(ctx, id, payload)
+read, err := client.UpdateConditionalAccessAuthenticationStrengthPolicyAllowedCombinations(ctx, id, payload, conditionalaccessauthenticationstrengthpolicy.DefaultUpdateConditionalAccessAuthenticationStrengthPolicyAllowedCombinationsOperationOptions())
 if err != nil {
 	// handle the error
 }

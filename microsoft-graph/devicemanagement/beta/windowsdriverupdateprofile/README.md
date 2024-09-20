@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/windowsdriverupdateprofile` Documentation
 
-The `windowsdriverupdateprofile` SDK allows for interaction with the Azure Resource Manager Service `devicemanagement` (API Version `beta`).
+The `windowsdriverupdateprofile` SDK allows for interaction with Microsoft Graph `devicemanagement` (API Version `beta`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -15,7 +15,7 @@ import "github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/
 ### Client Initialization
 
 ```go
-client := windowsdriverupdateprofile.NewWindowsDriverUpdateProfileClientWithBaseURI("https://management.azure.com")
+client := windowsdriverupdateprofile.NewWindowsDriverUpdateProfileClientWithBaseURI("https://graph.microsoft.com")
 client.Client.Authorizer = authorizer
 ```
 
@@ -24,14 +24,14 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := windowsdriverupdateprofile.NewDeviceManagementWindowsDriverUpdateProfileID("windowsDriverUpdateProfileIdValue")
+id := windowsdriverupdateprofile.NewDeviceManagementWindowsDriverUpdateProfileID("windowsDriverUpdateProfileId")
 
 payload := windowsdriverupdateprofile.AssignWindowsDriverUpdateProfileRequest{
 	// ...
 }
 
 
-read, err := client.AssignWindowsDriverUpdateProfile(ctx, id, payload)
+read, err := client.AssignWindowsDriverUpdateProfile(ctx, id, payload, windowsdriverupdateprofile.DefaultAssignWindowsDriverUpdateProfileOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -51,7 +51,7 @@ payload := windowsdriverupdateprofile.WindowsDriverUpdateProfile{
 }
 
 
-read, err := client.CreateWindowsDriverUpdateProfile(ctx, payload)
+read, err := client.CreateWindowsDriverUpdateProfile(ctx, payload, windowsdriverupdateprofile.DefaultCreateWindowsDriverUpdateProfileOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -65,14 +65,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := windowsdriverupdateprofile.NewDeviceManagementWindowsDriverUpdateProfileID("windowsDriverUpdateProfileIdValue")
+id := windowsdriverupdateprofile.NewDeviceManagementWindowsDriverUpdateProfileID("windowsDriverUpdateProfileId")
 
 payload := windowsdriverupdateprofile.CreateWindowsDriverUpdateProfileExecuteActionRequest{
 	// ...
 }
 
 
-read, err := client.CreateWindowsDriverUpdateProfileExecuteAction(ctx, id, payload)
+read, err := client.CreateWindowsDriverUpdateProfileExecuteAction(ctx, id, payload, windowsdriverupdateprofile.DefaultCreateWindowsDriverUpdateProfileExecuteActionOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -86,7 +86,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := windowsdriverupdateprofile.NewDeviceManagementWindowsDriverUpdateProfileID("windowsDriverUpdateProfileIdValue")
+id := windowsdriverupdateprofile.NewDeviceManagementWindowsDriverUpdateProfileID("windowsDriverUpdateProfileId")
 
 read, err := client.DeleteWindowsDriverUpdateProfile(ctx, id, windowsdriverupdateprofile.DefaultDeleteWindowsDriverUpdateProfileOperationOptions())
 if err != nil {
@@ -102,7 +102,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := windowsdriverupdateprofile.NewDeviceManagementWindowsDriverUpdateProfileID("windowsDriverUpdateProfileIdValue")
+id := windowsdriverupdateprofile.NewDeviceManagementWindowsDriverUpdateProfileID("windowsDriverUpdateProfileId")
 
 read, err := client.GetWindowsDriverUpdateProfile(ctx, id, windowsdriverupdateprofile.DefaultGetWindowsDriverUpdateProfileOperationOptions())
 if err != nil {
@@ -151,9 +151,9 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := windowsdriverupdateprofile.NewDeviceManagementWindowsDriverUpdateProfileID("windowsDriverUpdateProfileIdValue")
+id := windowsdriverupdateprofile.NewDeviceManagementWindowsDriverUpdateProfileID("windowsDriverUpdateProfileId")
 
-read, err := client.SyncWindowsDriverUpdateProfileInventory(ctx, id)
+read, err := client.SyncWindowsDriverUpdateProfileInventory(ctx, id, windowsdriverupdateprofile.DefaultSyncWindowsDriverUpdateProfileInventoryOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -167,14 +167,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := windowsdriverupdateprofile.NewDeviceManagementWindowsDriverUpdateProfileID("windowsDriverUpdateProfileIdValue")
+id := windowsdriverupdateprofile.NewDeviceManagementWindowsDriverUpdateProfileID("windowsDriverUpdateProfileId")
 
 payload := windowsdriverupdateprofile.WindowsDriverUpdateProfile{
 	// ...
 }
 
 
-read, err := client.UpdateWindowsDriverUpdateProfile(ctx, id, payload)
+read, err := client.UpdateWindowsDriverUpdateProfile(ctx, id, payload, windowsdriverupdateprofile.DefaultUpdateWindowsDriverUpdateProfileOperationOptions())
 if err != nil {
 	// handle the error
 }

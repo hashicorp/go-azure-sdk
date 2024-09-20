@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/drivelistpermission` Documentation
 
-The `drivelistpermission` SDK allows for interaction with the Azure Resource Manager Service `users` (API Version `beta`).
+The `drivelistpermission` SDK allows for interaction with Microsoft Graph `users` (API Version `beta`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -15,7 +15,7 @@ import "github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/drivelistpe
 ### Client Initialization
 
 ```go
-client := drivelistpermission.NewDriveListPermissionClientWithBaseURI("https://management.azure.com")
+client := drivelistpermission.NewDriveListPermissionClientWithBaseURI("https://graph.microsoft.com")
 client.Client.Authorizer = authorizer
 ```
 
@@ -24,14 +24,14 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := drivelistpermission.NewUserIdDriveID("userIdValue", "driveIdValue")
+id := drivelistpermission.NewUserIdDriveID("userId", "driveId")
 
 payload := drivelistpermission.Permission{
 	// ...
 }
 
 
-read, err := client.CreateDriveListPermission(ctx, id, payload)
+read, err := client.CreateDriveListPermission(ctx, id, payload, drivelistpermission.DefaultCreateDriveListPermissionOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -45,7 +45,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := drivelistpermission.NewUserIdDriveIdListPermissionID("userIdValue", "driveIdValue", "permissionIdValue")
+id := drivelistpermission.NewUserIdDriveIdListPermissionID("userId", "driveId", "permissionId")
 
 read, err := client.DeleteDriveListPermission(ctx, id, drivelistpermission.DefaultDeleteDriveListPermissionOperationOptions())
 if err != nil {
@@ -61,7 +61,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := drivelistpermission.NewUserIdDriveIdListPermissionID("userIdValue", "driveIdValue", "permissionIdValue")
+id := drivelistpermission.NewUserIdDriveIdListPermissionID("userId", "driveId", "permissionId")
 
 read, err := client.GetDriveListPermission(ctx, id, drivelistpermission.DefaultGetDriveListPermissionOperationOptions())
 if err != nil {
@@ -77,7 +77,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := drivelistpermission.NewUserIdDriveID("userIdValue", "driveIdValue")
+id := drivelistpermission.NewUserIdDriveID("userId", "driveId")
 
 read, err := client.GetDriveListPermissionsCount(ctx, id, drivelistpermission.DefaultGetDriveListPermissionsCountOperationOptions())
 if err != nil {
@@ -93,7 +93,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := drivelistpermission.NewUserIdDriveIdListPermissionID("userIdValue", "driveIdValue", "permissionIdValue")
+id := drivelistpermission.NewUserIdDriveIdListPermissionID("userId", "driveId", "permissionId")
 
 payload := drivelistpermission.ListDriveListPermissionGrantsRequest{
 	// ...
@@ -115,7 +115,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := drivelistpermission.NewUserIdDriveID("userIdValue", "driveIdValue")
+id := drivelistpermission.NewUserIdDriveID("userId", "driveId")
 
 // alternatively `client.ListDriveListPermissions(ctx, id, drivelistpermission.DefaultListDriveListPermissionsOperationOptions())` can be used to do batched pagination
 items, err := client.ListDriveListPermissionsComplete(ctx, id, drivelistpermission.DefaultListDriveListPermissionsOperationOptions())
@@ -128,18 +128,18 @@ for _, item := range items {
 ```
 
 
-### Example Usage: `DriveListPermissionClient.RevokeDriveListPermissionGrant`
+### Example Usage: `DriveListPermissionClient.RevokeDriveListPermissionGrants`
 
 ```go
 ctx := context.TODO()
-id := drivelistpermission.NewUserIdDriveIdListPermissionID("userIdValue", "driveIdValue", "permissionIdValue")
+id := drivelistpermission.NewUserIdDriveIdListPermissionID("userId", "driveId", "permissionId")
 
-payload := drivelistpermission.RevokeDriveListPermissionGrantRequest{
+payload := drivelistpermission.RevokeDriveListPermissionGrantsRequest{
 	// ...
 }
 
 
-read, err := client.RevokeDriveListPermissionGrant(ctx, id, payload)
+read, err := client.RevokeDriveListPermissionGrants(ctx, id, payload, drivelistpermission.DefaultRevokeDriveListPermissionGrantsOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -153,14 +153,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := drivelistpermission.NewUserIdDriveIdListPermissionID("userIdValue", "driveIdValue", "permissionIdValue")
+id := drivelistpermission.NewUserIdDriveIdListPermissionID("userId", "driveId", "permissionId")
 
 payload := drivelistpermission.Permission{
 	// ...
 }
 
 
-read, err := client.UpdateDriveListPermission(ctx, id, payload)
+read, err := client.UpdateDriveListPermission(ctx, id, payload, drivelistpermission.DefaultUpdateDriveListPermissionOperationOptions())
 if err != nil {
 	// handle the error
 }

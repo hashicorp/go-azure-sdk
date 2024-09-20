@@ -20,15 +20,44 @@ type CreateEventInstanceAttachmentOperationResponse struct {
 	Model        stable.Attachment
 }
 
+type CreateEventInstanceAttachmentOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateEventInstanceAttachmentOperationOptions() CreateEventInstanceAttachmentOperationOptions {
+	return CreateEventInstanceAttachmentOperationOptions{}
+}
+
+func (o CreateEventInstanceAttachmentOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateEventInstanceAttachmentOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateEventInstanceAttachmentOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateEventInstanceAttachment - Create new navigation property to attachments for users
-func (c EventInstanceAttachmentClient) CreateEventInstanceAttachment(ctx context.Context, id stable.UserIdEventIdInstanceId, input stable.Attachment) (result CreateEventInstanceAttachmentOperationResponse, err error) {
+func (c EventInstanceAttachmentClient) CreateEventInstanceAttachment(ctx context.Context, id stable.UserIdEventIdInstanceId, input stable.Attachment, options CreateEventInstanceAttachmentOperationOptions) (result CreateEventInstanceAttachmentOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/attachments", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/attachments", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

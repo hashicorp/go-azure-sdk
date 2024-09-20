@@ -20,8 +20,9 @@ type GetConversationThreadPostMentionsCountOperationResponse struct {
 }
 
 type GetConversationThreadPostMentionsCountOperationOptions struct {
-	Filter *string
-	Search *string
+	Filter   *string
+	Metadata *odata.Metadata
+	Search   *string
 }
 
 func DefaultGetConversationThreadPostMentionsCountOperationOptions() GetConversationThreadPostMentionsCountOperationOptions {
@@ -38,6 +39,9 @@ func (o GetConversationThreadPostMentionsCountOperationOptions) ToOData() *odata
 	out := odata.Query{}
 	if o.Filter != nil {
 		out.Filter = *o.Filter
+	}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
 	}
 	if o.Search != nil {
 		out.Search = *o.Search

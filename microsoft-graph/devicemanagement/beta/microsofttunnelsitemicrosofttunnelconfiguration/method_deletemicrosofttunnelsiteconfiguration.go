@@ -19,7 +19,8 @@ type DeleteMicrosoftTunnelSiteConfigurationOperationResponse struct {
 }
 
 type DeleteMicrosoftTunnelSiteConfigurationOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteMicrosoftTunnelSiteConfigurationOperationOptions() DeleteMicrosoftTunnelSiteConfigurationOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteMicrosoftTunnelSiteConfigurationOperationOptions) ToHeaders() *cli
 
 func (o DeleteMicrosoftTunnelSiteConfigurationOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

@@ -17,15 +17,44 @@ type UpdatePresenceOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdatePresenceOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdatePresenceOperationOptions() UpdatePresenceOperationOptions {
+	return UpdatePresenceOperationOptions{}
+}
+
+func (o UpdatePresenceOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdatePresenceOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdatePresenceOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdatePresence - Update the navigation property presence in me
-func (c PresenceClient) UpdatePresence(ctx context.Context, input beta.Presence) (result UpdatePresenceOperationResponse, err error) {
+func (c PresenceClient) UpdatePresence(ctx context.Context, input beta.Presence, options UpdatePresenceOperationOptions) (result UpdatePresenceOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       "/me/presence",
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          "/me/presence",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

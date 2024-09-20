@@ -98,9 +98,9 @@ func (id ServicePrincipalIdAppRoleAssignmentId) ID() string {
 func (id ServicePrincipalIdAppRoleAssignmentId) Segments() []resourceids.Segment {
 	return []resourceids.Segment{
 		resourceids.StaticSegment("servicePrincipals", "servicePrincipals", "servicePrincipals"),
-		resourceids.UserSpecifiedSegment("servicePrincipalId", "servicePrincipalIdValue"),
+		resourceids.UserSpecifiedSegment("servicePrincipalId", "servicePrincipalId"),
 		resourceids.StaticSegment("appRoleAssignments", "appRoleAssignments", "appRoleAssignments"),
-		resourceids.UserSpecifiedSegment("appRoleAssignmentId", "appRoleAssignmentIdValue"),
+		resourceids.UserSpecifiedSegment("appRoleAssignmentId", "appRoleAssignmentId"),
 	}
 }
 

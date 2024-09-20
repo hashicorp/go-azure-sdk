@@ -100,10 +100,26 @@ func (s AccessPackageCatalog) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &AccessPackageCatalog{}
 
 func (s *AccessPackageCatalog) UnmarshalJSON(bytes []byte) error {
-	type alias AccessPackageCatalog
-	var decoded alias
+
+	var decoded struct {
+		AccessPackages           *[]AccessPackage              `json:"accessPackages,omitempty"`
+		CatalogType              *AccessPackageCatalogType     `json:"catalogType,omitempty"`
+		CreatedDateTime          nullable.Type[string]         `json:"createdDateTime,omitempty"`
+		CustomWorkflowExtensions *[]CustomCalloutExtension     `json:"customWorkflowExtensions,omitempty"`
+		Description              nullable.Type[string]         `json:"description,omitempty"`
+		DisplayName              nullable.Type[string]         `json:"displayName,omitempty"`
+		IsExternallyVisible      nullable.Type[bool]           `json:"isExternallyVisible,omitempty"`
+		ModifiedDateTime         nullable.Type[string]         `json:"modifiedDateTime,omitempty"`
+		ResourceRoles            *[]AccessPackageResourceRole  `json:"resourceRoles,omitempty"`
+		ResourceScopes           *[]AccessPackageResourceScope `json:"resourceScopes,omitempty"`
+		Resources                *[]AccessPackageResource      `json:"resources,omitempty"`
+		State                    *AccessPackageCatalogState    `json:"state,omitempty"`
+		Id                       *string                       `json:"id,omitempty"`
+		ODataId                  *string                       `json:"@odata.id,omitempty"`
+		ODataType                *string                       `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into AccessPackageCatalog: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.AccessPackages = decoded.AccessPackages
@@ -111,15 +127,15 @@ func (s *AccessPackageCatalog) UnmarshalJSON(bytes []byte) error {
 	s.CreatedDateTime = decoded.CreatedDateTime
 	s.Description = decoded.Description
 	s.DisplayName = decoded.DisplayName
-	s.Id = decoded.Id
 	s.IsExternallyVisible = decoded.IsExternallyVisible
 	s.ModifiedDateTime = decoded.ModifiedDateTime
-	s.ODataId = decoded.ODataId
-	s.ODataType = decoded.ODataType
 	s.ResourceRoles = decoded.ResourceRoles
 	s.ResourceScopes = decoded.ResourceScopes
 	s.Resources = decoded.Resources
 	s.State = decoded.State
+	s.Id = decoded.Id
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -142,5 +158,6 @@ func (s *AccessPackageCatalog) UnmarshalJSON(bytes []byte) error {
 		}
 		s.CustomWorkflowExtensions = &output
 	}
+
 	return nil
 }

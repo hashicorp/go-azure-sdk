@@ -99,9 +99,9 @@ func (id MePendingAccessReviewInstanceIdContactedReviewerId) Segments() []resour
 	return []resourceids.Segment{
 		resourceids.StaticSegment("me", "me", "me"),
 		resourceids.StaticSegment("pendingAccessReviewInstances", "pendingAccessReviewInstances", "pendingAccessReviewInstances"),
-		resourceids.UserSpecifiedSegment("accessReviewInstanceId", "accessReviewInstanceIdValue"),
+		resourceids.UserSpecifiedSegment("accessReviewInstanceId", "accessReviewInstanceId"),
 		resourceids.StaticSegment("contactedReviewers", "contactedReviewers", "contactedReviewers"),
-		resourceids.UserSpecifiedSegment("accessReviewReviewerId", "accessReviewReviewerIdValue"),
+		resourceids.UserSpecifiedSegment("accessReviewReviewerId", "accessReviewReviewerId"),
 	}
 }
 

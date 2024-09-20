@@ -18,15 +18,44 @@ type CreateIntentOperationResponse struct {
 	Model        *beta.DeviceManagementIntent
 }
 
+type CreateIntentOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateIntentOperationOptions() CreateIntentOperationOptions {
+	return CreateIntentOperationOptions{}
+}
+
+func (o CreateIntentOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateIntentOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateIntentOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateIntent - Create new navigation property to intents for deviceManagement
-func (c IntentClient) CreateIntent(ctx context.Context, input beta.DeviceManagementIntent) (result CreateIntentOperationResponse, err error) {
+func (c IntentClient) CreateIntent(ctx context.Context, input beta.DeviceManagementIntent, options CreateIntentOperationOptions) (result CreateIntentOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/deviceManagement/intents",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/deviceManagement/intents",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

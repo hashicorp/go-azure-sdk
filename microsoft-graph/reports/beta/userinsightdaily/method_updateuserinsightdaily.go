@@ -17,15 +17,44 @@ type UpdateUserInsightDailyOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateUserInsightDailyOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateUserInsightDailyOperationOptions() UpdateUserInsightDailyOperationOptions {
+	return UpdateUserInsightDailyOperationOptions{}
+}
+
+func (o UpdateUserInsightDailyOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateUserInsightDailyOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateUserInsightDailyOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateUserInsightDaily - Update the navigation property daily in reports
-func (c UserInsightDailyClient) UpdateUserInsightDaily(ctx context.Context, input beta.DailyUserInsightMetricsRoot) (result UpdateUserInsightDailyOperationResponse, err error) {
+func (c UserInsightDailyClient) UpdateUserInsightDaily(ctx context.Context, input beta.DailyUserInsightMetricsRoot, options UpdateUserInsightDailyOperationOptions) (result UpdateUserInsightDailyOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       "/reports/userInsights/daily",
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          "/reports/userInsights/daily",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

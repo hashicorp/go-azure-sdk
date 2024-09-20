@@ -17,15 +17,44 @@ type UpdateEnterpriseAppRoleAssignmentApprovalStepOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateEnterpriseAppRoleAssignmentApprovalStepOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateEnterpriseAppRoleAssignmentApprovalStepOperationOptions() UpdateEnterpriseAppRoleAssignmentApprovalStepOperationOptions {
+	return UpdateEnterpriseAppRoleAssignmentApprovalStepOperationOptions{}
+}
+
+func (o UpdateEnterpriseAppRoleAssignmentApprovalStepOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateEnterpriseAppRoleAssignmentApprovalStepOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateEnterpriseAppRoleAssignmentApprovalStepOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateEnterpriseAppRoleAssignmentApprovalStep - Update the navigation property steps in roleManagement
-func (c EnterpriseAppRoleAssignmentApprovalStepClient) UpdateEnterpriseAppRoleAssignmentApprovalStep(ctx context.Context, id beta.RoleManagementEnterpriseAppIdRoleAssignmentApprovalIdStepId, input beta.ApprovalStep) (result UpdateEnterpriseAppRoleAssignmentApprovalStepOperationResponse, err error) {
+func (c EnterpriseAppRoleAssignmentApprovalStepClient) UpdateEnterpriseAppRoleAssignmentApprovalStep(ctx context.Context, id beta.RoleManagementEnterpriseAppIdRoleAssignmentApprovalIdStepId, input beta.ApprovalStep, options UpdateEnterpriseAppRoleAssignmentApprovalStepOperationOptions) (result UpdateEnterpriseAppRoleAssignmentApprovalStepOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

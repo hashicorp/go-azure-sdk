@@ -17,15 +17,44 @@ type GetReportsUnhealthyFirewallSummaryReportOperationResponse struct {
 	Model        *[]byte
 }
 
+type GetReportsUnhealthyFirewallSummaryReportOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultGetReportsUnhealthyFirewallSummaryReportOperationOptions() GetReportsUnhealthyFirewallSummaryReportOperationOptions {
+	return GetReportsUnhealthyFirewallSummaryReportOperationOptions{}
+}
+
+func (o GetReportsUnhealthyFirewallSummaryReportOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o GetReportsUnhealthyFirewallSummaryReportOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o GetReportsUnhealthyFirewallSummaryReportOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // GetReportsUnhealthyFirewallSummaryReport - Invoke action getUnhealthyFirewallSummaryReport
-func (c ReportClient) GetReportsUnhealthyFirewallSummaryReport(ctx context.Context, input GetReportsUnhealthyFirewallSummaryReportRequest) (result GetReportsUnhealthyFirewallSummaryReportOperationResponse, err error) {
+func (c ReportClient) GetReportsUnhealthyFirewallSummaryReport(ctx context.Context, input GetReportsUnhealthyFirewallSummaryReportRequest, options GetReportsUnhealthyFirewallSummaryReportOperationOptions) (result GetReportsUnhealthyFirewallSummaryReportOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/octet-stream",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/deviceManagement/reports/getUnhealthyFirewallSummaryReport",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/deviceManagement/reports/getUnhealthyFirewallSummaryReport",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -104,21 +104,34 @@ func (s NetworkaccessFilteringProfile) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &NetworkaccessFilteringProfile{}
 
 func (s *NetworkaccessFilteringProfile) UnmarshalJSON(bytes []byte) error {
-	type alias NetworkaccessFilteringProfile
-	var decoded alias
+
+	var decoded struct {
+		ConditionalAccessPolicies *[]NetworkaccessConditionalAccessPolicy `json:"conditionalAccessPolicies,omitempty"`
+		CreatedDateTime           *string                                 `json:"createdDateTime,omitempty"`
+		Priority                  *int64                                  `json:"priority,omitempty"`
+		Description               nullable.Type[string]                   `json:"description,omitempty"`
+		LastModifiedDateTime      *string                                 `json:"lastModifiedDateTime,omitempty"`
+		Name                      *string                                 `json:"name,omitempty"`
+		Policies                  *[]NetworkaccessPolicyLink              `json:"policies,omitempty"`
+		State                     *NetworkaccessStatus                    `json:"state,omitempty"`
+		Version                   *string                                 `json:"version,omitempty"`
+		Id                        *string                                 `json:"id,omitempty"`
+		ODataId                   *string                                 `json:"@odata.id,omitempty"`
+		ODataType                 *string                                 `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into NetworkaccessFilteringProfile: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.ConditionalAccessPolicies = decoded.ConditionalAccessPolicies
 	s.CreatedDateTime = decoded.CreatedDateTime
+	s.Priority = decoded.Priority
 	s.Description = decoded.Description
 	s.Id = decoded.Id
 	s.LastModifiedDateTime = decoded.LastModifiedDateTime
 	s.Name = decoded.Name
 	s.ODataId = decoded.ODataId
 	s.ODataType = decoded.ODataType
-	s.Priority = decoded.Priority
 	s.State = decoded.State
 	s.Version = decoded.Version
 
@@ -143,5 +156,6 @@ func (s *NetworkaccessFilteringProfile) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Policies = &output
 	}
+
 	return nil
 }

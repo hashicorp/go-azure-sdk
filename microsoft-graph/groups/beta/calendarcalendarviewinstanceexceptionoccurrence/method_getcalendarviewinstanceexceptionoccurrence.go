@@ -19,8 +19,9 @@ type GetCalendarViewInstanceExceptionOccurrenceOperationResponse struct {
 }
 
 type GetCalendarViewInstanceExceptionOccurrenceOperationOptions struct {
-	Expand *odata.Expand
-	Select *[]string
+	Expand   *odata.Expand
+	Metadata *odata.Metadata
+	Select   *[]string
 }
 
 func DefaultGetCalendarViewInstanceExceptionOccurrenceOperationOptions() GetCalendarViewInstanceExceptionOccurrenceOperationOptions {
@@ -37,6 +38,9 @@ func (o GetCalendarViewInstanceExceptionOccurrenceOperationOptions) ToOData() *o
 	out := odata.Query{}
 	if o.Expand != nil {
 		out.Expand = *o.Expand
+	}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
 	}
 	if o.Select != nil {
 		out.Select = *o.Select

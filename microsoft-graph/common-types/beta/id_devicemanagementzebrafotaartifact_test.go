@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &DeviceManagementZebraFotaArtifactId{}
 
 func TestNewDeviceManagementZebraFotaArtifactID(t *testing.T) {
-	id := NewDeviceManagementZebraFotaArtifactID("zebraFotaArtifactIdValue")
+	id := NewDeviceManagementZebraFotaArtifactID("zebraFotaArtifactId")
 
-	if id.ZebraFotaArtifactId != "zebraFotaArtifactIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ZebraFotaArtifactId'", id.ZebraFotaArtifactId, "zebraFotaArtifactIdValue")
+	if id.ZebraFotaArtifactId != "zebraFotaArtifactId" {
+		t.Fatalf("Expected %q but got %q for Segment 'ZebraFotaArtifactId'", id.ZebraFotaArtifactId, "zebraFotaArtifactId")
 	}
 }
 
 func TestFormatDeviceManagementZebraFotaArtifactID(t *testing.T) {
-	actual := NewDeviceManagementZebraFotaArtifactID("zebraFotaArtifactIdValue").ID()
-	expected := "/deviceManagement/zebraFotaArtifacts/zebraFotaArtifactIdValue"
+	actual := NewDeviceManagementZebraFotaArtifactID("zebraFotaArtifactId").ID()
+	expected := "/deviceManagement/zebraFotaArtifacts/zebraFotaArtifactId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -50,14 +50,14 @@ func TestParseDeviceManagementZebraFotaArtifactID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/zebraFotaArtifacts/zebraFotaArtifactIdValue",
+			Input: "/deviceManagement/zebraFotaArtifacts/zebraFotaArtifactId",
 			Expected: &DeviceManagementZebraFotaArtifactId{
-				ZebraFotaArtifactId: "zebraFotaArtifactIdValue",
+				ZebraFotaArtifactId: "zebraFotaArtifactId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/zebraFotaArtifacts/zebraFotaArtifactIdValue/extra",
+			Input: "/deviceManagement/zebraFotaArtifacts/zebraFotaArtifactId/extra",
 			Error: true,
 		},
 	}
@@ -116,26 +116,26 @@ func TestParseDeviceManagementZebraFotaArtifactIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/zebraFotaArtifacts/zebraFotaArtifactIdValue",
+			Input: "/deviceManagement/zebraFotaArtifacts/zebraFotaArtifactId",
 			Expected: &DeviceManagementZebraFotaArtifactId{
-				ZebraFotaArtifactId: "zebraFotaArtifactIdValue",
+				ZebraFotaArtifactId: "zebraFotaArtifactId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/zebraFotaArtifacts/zebraFotaArtifactIdValue/extra",
+			Input: "/deviceManagement/zebraFotaArtifacts/zebraFotaArtifactId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/zEbRaFoTaArTiFaCtS/zEbRaFoTaArTiFaCtIdVaLuE",
+			Input: "/dEvIcEmAnAgEmEnT/zEbRaFoTaArTiFaCtS/zEbRaFoTaArTiFaCtId",
 			Expected: &DeviceManagementZebraFotaArtifactId{
-				ZebraFotaArtifactId: "zEbRaFoTaArTiFaCtIdVaLuE",
+				ZebraFotaArtifactId: "zEbRaFoTaArTiFaCtId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/zEbRaFoTaArTiFaCtS/zEbRaFoTaArTiFaCtIdVaLuE/extra",
+			Input: "/dEvIcEmAnAgEmEnT/zEbRaFoTaArTiFaCtS/zEbRaFoTaArTiFaCtId/extra",
 			Error: true,
 		},
 	}

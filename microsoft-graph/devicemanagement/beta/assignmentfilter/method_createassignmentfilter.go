@@ -19,15 +19,44 @@ type CreateAssignmentFilterOperationResponse struct {
 	Model        beta.DeviceAndAppManagementAssignmentFilter
 }
 
+type CreateAssignmentFilterOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateAssignmentFilterOperationOptions() CreateAssignmentFilterOperationOptions {
+	return CreateAssignmentFilterOperationOptions{}
+}
+
+func (o CreateAssignmentFilterOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateAssignmentFilterOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateAssignmentFilterOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateAssignmentFilter - Create new navigation property to assignmentFilters for deviceManagement
-func (c AssignmentFilterClient) CreateAssignmentFilter(ctx context.Context, input beta.DeviceAndAppManagementAssignmentFilter) (result CreateAssignmentFilterOperationResponse, err error) {
+func (c AssignmentFilterClient) CreateAssignmentFilter(ctx context.Context, input beta.DeviceAndAppManagementAssignmentFilter, options CreateAssignmentFilterOperationOptions) (result CreateAssignmentFilterOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/deviceManagement/assignmentFilters",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/deviceManagement/assignmentFilters",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

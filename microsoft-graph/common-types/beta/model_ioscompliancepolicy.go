@@ -180,27 +180,52 @@ func (s IosCompliancePolicy) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &IosCompliancePolicy{}
 
 func (s *IosCompliancePolicy) UnmarshalJSON(bytes []byte) error {
-	type alias IosCompliancePolicy
-	var decoded alias
+
+	var decoded struct {
+		AdvancedThreatProtectionRequiredSecurityLevel  *DeviceThreatProtectionLevel              `json:"advancedThreatProtectionRequiredSecurityLevel,omitempty"`
+		DeviceThreatProtectionEnabled                  *bool                                     `json:"deviceThreatProtectionEnabled,omitempty"`
+		DeviceThreatProtectionRequiredSecurityLevel    *DeviceThreatProtectionLevel              `json:"deviceThreatProtectionRequiredSecurityLevel,omitempty"`
+		ManagedEmailProfileRequired                    *bool                                     `json:"managedEmailProfileRequired,omitempty"`
+		OsMaximumBuildVersion                          nullable.Type[string]                     `json:"osMaximumBuildVersion,omitempty"`
+		OsMaximumVersion                               nullable.Type[string]                     `json:"osMaximumVersion,omitempty"`
+		OsMinimumBuildVersion                          nullable.Type[string]                     `json:"osMinimumBuildVersion,omitempty"`
+		OsMinimumVersion                               nullable.Type[string]                     `json:"osMinimumVersion,omitempty"`
+		PasscodeBlockSimple                            *bool                                     `json:"passcodeBlockSimple,omitempty"`
+		PasscodeExpirationDays                         nullable.Type[int64]                      `json:"passcodeExpirationDays,omitempty"`
+		PasscodeMinimumCharacterSetCount               nullable.Type[int64]                      `json:"passcodeMinimumCharacterSetCount,omitempty"`
+		PasscodeMinimumLength                          nullable.Type[int64]                      `json:"passcodeMinimumLength,omitempty"`
+		PasscodeMinutesOfInactivityBeforeLock          nullable.Type[int64]                      `json:"passcodeMinutesOfInactivityBeforeLock,omitempty"`
+		PasscodeMinutesOfInactivityBeforeScreenTimeout nullable.Type[int64]                      `json:"passcodeMinutesOfInactivityBeforeScreenTimeout,omitempty"`
+		PasscodePreviousPasscodeBlockCount             nullable.Type[int64]                      `json:"passcodePreviousPasscodeBlockCount,omitempty"`
+		PasscodeRequired                               *bool                                     `json:"passcodeRequired,omitempty"`
+		PasscodeRequiredType                           *RequiredPasswordType                     `json:"passcodeRequiredType,omitempty"`
+		RestrictedApps                                 *[]AppListItem                            `json:"restrictedApps,omitempty"`
+		SecurityBlockJailbrokenDevices                 *bool                                     `json:"securityBlockJailbrokenDevices,omitempty"`
+		Assignments                                    *[]DeviceCompliancePolicyAssignment       `json:"assignments,omitempty"`
+		CreatedDateTime                                *string                                   `json:"createdDateTime,omitempty"`
+		Description                                    nullable.Type[string]                     `json:"description,omitempty"`
+		DeviceSettingStateSummaries                    *[]SettingStateDeviceSummary              `json:"deviceSettingStateSummaries,omitempty"`
+		DeviceStatusOverview                           *DeviceComplianceDeviceOverview           `json:"deviceStatusOverview,omitempty"`
+		DeviceStatuses                                 *[]DeviceComplianceDeviceStatus           `json:"deviceStatuses,omitempty"`
+		DisplayName                                    *string                                   `json:"displayName,omitempty"`
+		LastModifiedDateTime                           *string                                   `json:"lastModifiedDateTime,omitempty"`
+		RoleScopeTagIds                                *[]string                                 `json:"roleScopeTagIds,omitempty"`
+		ScheduledActionsForRule                        *[]DeviceComplianceScheduledActionForRule `json:"scheduledActionsForRule,omitempty"`
+		UserStatusOverview                             *DeviceComplianceUserOverview             `json:"userStatusOverview,omitempty"`
+		UserStatuses                                   *[]DeviceComplianceUserStatus             `json:"userStatuses,omitempty"`
+		Version                                        *int64                                    `json:"version,omitempty"`
+		Id                                             *string                                   `json:"id,omitempty"`
+		ODataId                                        *string                                   `json:"@odata.id,omitempty"`
+		ODataType                                      *string                                   `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into IosCompliancePolicy: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.AdvancedThreatProtectionRequiredSecurityLevel = decoded.AdvancedThreatProtectionRequiredSecurityLevel
-	s.Assignments = decoded.Assignments
-	s.CreatedDateTime = decoded.CreatedDateTime
-	s.Description = decoded.Description
-	s.DeviceSettingStateSummaries = decoded.DeviceSettingStateSummaries
-	s.DeviceStatusOverview = decoded.DeviceStatusOverview
-	s.DeviceStatuses = decoded.DeviceStatuses
 	s.DeviceThreatProtectionEnabled = decoded.DeviceThreatProtectionEnabled
 	s.DeviceThreatProtectionRequiredSecurityLevel = decoded.DeviceThreatProtectionRequiredSecurityLevel
-	s.DisplayName = decoded.DisplayName
-	s.Id = decoded.Id
-	s.LastModifiedDateTime = decoded.LastModifiedDateTime
 	s.ManagedEmailProfileRequired = decoded.ManagedEmailProfileRequired
-	s.ODataId = decoded.ODataId
-	s.ODataType = decoded.ODataType
 	s.OsMaximumBuildVersion = decoded.OsMaximumBuildVersion
 	s.OsMaximumVersion = decoded.OsMaximumVersion
 	s.OsMinimumBuildVersion = decoded.OsMinimumBuildVersion
@@ -214,9 +239,20 @@ func (s *IosCompliancePolicy) UnmarshalJSON(bytes []byte) error {
 	s.PasscodePreviousPasscodeBlockCount = decoded.PasscodePreviousPasscodeBlockCount
 	s.PasscodeRequired = decoded.PasscodeRequired
 	s.PasscodeRequiredType = decoded.PasscodeRequiredType
+	s.SecurityBlockJailbrokenDevices = decoded.SecurityBlockJailbrokenDevices
+	s.Assignments = decoded.Assignments
+	s.CreatedDateTime = decoded.CreatedDateTime
+	s.Description = decoded.Description
+	s.DeviceSettingStateSummaries = decoded.DeviceSettingStateSummaries
+	s.DeviceStatusOverview = decoded.DeviceStatusOverview
+	s.DeviceStatuses = decoded.DeviceStatuses
+	s.DisplayName = decoded.DisplayName
+	s.Id = decoded.Id
+	s.LastModifiedDateTime = decoded.LastModifiedDateTime
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
 	s.RoleScopeTagIds = decoded.RoleScopeTagIds
 	s.ScheduledActionsForRule = decoded.ScheduledActionsForRule
-	s.SecurityBlockJailbrokenDevices = decoded.SecurityBlockJailbrokenDevices
 	s.UserStatusOverview = decoded.UserStatusOverview
 	s.UserStatuses = decoded.UserStatuses
 	s.Version = decoded.Version
@@ -242,5 +278,6 @@ func (s *IosCompliancePolicy) UnmarshalJSON(bytes []byte) error {
 		}
 		s.RestrictedApps = &output
 	}
+
 	return nil
 }

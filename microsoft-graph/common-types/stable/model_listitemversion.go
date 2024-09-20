@@ -120,10 +120,18 @@ func (s BaseListItemVersionImpl) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &BaseListItemVersionImpl{}
 
 func (s *BaseListItemVersionImpl) UnmarshalJSON(bytes []byte) error {
-	type alias BaseListItemVersionImpl
-	var decoded alias
+
+	var decoded struct {
+		Fields               *FieldValueSet        `json:"fields,omitempty"`
+		LastModifiedBy       *IdentitySet          `json:"lastModifiedBy,omitempty"`
+		LastModifiedDateTime nullable.Type[string] `json:"lastModifiedDateTime,omitempty"`
+		Publication          *PublicationFacet     `json:"publication,omitempty"`
+		Id                   *string               `json:"id,omitempty"`
+		ODataId              *string               `json:"@odata.id,omitempty"`
+		ODataType            *string               `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into BaseListItemVersionImpl: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.Fields = decoded.Fields
@@ -145,6 +153,7 @@ func (s *BaseListItemVersionImpl) UnmarshalJSON(bytes []byte) error {
 		}
 		s.LastModifiedBy = &impl
 	}
+
 	return nil
 }
 
@@ -158,9 +167,9 @@ func UnmarshalListItemVersionImplementation(input []byte) (ListItemVersion, erro
 		return nil, fmt.Errorf("unmarshaling ListItemVersion into map[string]interface: %+v", err)
 	}
 
-	value, ok := temp["@odata.type"].(string)
-	if !ok {
-		return nil, nil
+	var value string
+	if v, ok := temp["@odata.type"]; ok {
+		value = fmt.Sprintf("%v", v)
 	}
 
 	if strings.EqualFold(value, "#microsoft.graph.documentSetVersion") {

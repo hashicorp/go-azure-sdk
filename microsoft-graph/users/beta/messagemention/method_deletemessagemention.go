@@ -19,7 +19,8 @@ type DeleteMessageMentionOperationResponse struct {
 }
 
 type DeleteMessageMentionOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteMessageMentionOperationOptions() DeleteMessageMentionOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteMessageMentionOperationOptions) ToHeaders() *client.Headers {
 
 func (o DeleteMessageMentionOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

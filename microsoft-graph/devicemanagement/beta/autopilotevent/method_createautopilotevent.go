@@ -18,15 +18,44 @@ type CreateAutopilotEventOperationResponse struct {
 	Model        *beta.DeviceManagementAutopilotEvent
 }
 
+type CreateAutopilotEventOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateAutopilotEventOperationOptions() CreateAutopilotEventOperationOptions {
+	return CreateAutopilotEventOperationOptions{}
+}
+
+func (o CreateAutopilotEventOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateAutopilotEventOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateAutopilotEventOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateAutopilotEvent - Create new navigation property to autopilotEvents for deviceManagement
-func (c AutopilotEventClient) CreateAutopilotEvent(ctx context.Context, input beta.DeviceManagementAutopilotEvent) (result CreateAutopilotEventOperationResponse, err error) {
+func (c AutopilotEventClient) CreateAutopilotEvent(ctx context.Context, input beta.DeviceManagementAutopilotEvent, options CreateAutopilotEventOperationOptions) (result CreateAutopilotEventOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/deviceManagement/autopilotEvents",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/deviceManagement/autopilotEvents",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

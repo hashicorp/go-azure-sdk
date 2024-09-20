@@ -19,8 +19,9 @@ type GetOutlookTaskGroupOperationResponse struct {
 }
 
 type GetOutlookTaskGroupOperationOptions struct {
-	Expand *odata.Expand
-	Select *[]string
+	Expand   *odata.Expand
+	Metadata *odata.Metadata
+	Select   *[]string
 }
 
 func DefaultGetOutlookTaskGroupOperationOptions() GetOutlookTaskGroupOperationOptions {
@@ -37,6 +38,9 @@ func (o GetOutlookTaskGroupOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
 	if o.Expand != nil {
 		out.Expand = *o.Expand
+	}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
 	}
 	if o.Select != nil {
 		out.Select = *o.Select

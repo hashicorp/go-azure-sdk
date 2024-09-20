@@ -18,16 +18,45 @@ type UpdateSiteInformationProtectionSensitivityPolicySettingOperationResponse st
 	OData        *odata.OData
 }
 
+type UpdateSiteInformationProtectionSensitivityPolicySettingOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateSiteInformationProtectionSensitivityPolicySettingOperationOptions() UpdateSiteInformationProtectionSensitivityPolicySettingOperationOptions {
+	return UpdateSiteInformationProtectionSensitivityPolicySettingOperationOptions{}
+}
+
+func (o UpdateSiteInformationProtectionSensitivityPolicySettingOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateSiteInformationProtectionSensitivityPolicySettingOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateSiteInformationProtectionSensitivityPolicySettingOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateSiteInformationProtectionSensitivityPolicySetting - Update the navigation property sensitivityPolicySettings in
 // groups
-func (c SiteInformationProtectionSensitivityPolicySettingClient) UpdateSiteInformationProtectionSensitivityPolicySetting(ctx context.Context, id beta.GroupIdSiteId, input beta.SensitivityPolicySettings) (result UpdateSiteInformationProtectionSensitivityPolicySettingOperationResponse, err error) {
+func (c SiteInformationProtectionSensitivityPolicySettingClient) UpdateSiteInformationProtectionSensitivityPolicySetting(ctx context.Context, id beta.GroupIdSiteId, input beta.SensitivityPolicySettings, options UpdateSiteInformationProtectionSensitivityPolicySettingOperationOptions) (result UpdateSiteInformationProtectionSensitivityPolicySettingOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       fmt.Sprintf("%s/informationProtection/sensitivityPolicySettings", id.ID()),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/informationProtection/sensitivityPolicySettings", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

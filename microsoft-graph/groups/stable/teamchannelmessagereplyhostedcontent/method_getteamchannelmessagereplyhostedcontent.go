@@ -19,8 +19,9 @@ type GetTeamChannelMessageReplyHostedContentOperationResponse struct {
 }
 
 type GetTeamChannelMessageReplyHostedContentOperationOptions struct {
-	Expand *odata.Expand
-	Select *[]string
+	Expand   *odata.Expand
+	Metadata *odata.Metadata
+	Select   *[]string
 }
 
 func DefaultGetTeamChannelMessageReplyHostedContentOperationOptions() GetTeamChannelMessageReplyHostedContentOperationOptions {
@@ -37,6 +38,9 @@ func (o GetTeamChannelMessageReplyHostedContentOperationOptions) ToOData() *odat
 	out := odata.Query{}
 	if o.Expand != nil {
 		out.Expand = *o.Expand
+	}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
 	}
 	if o.Select != nil {
 		out.Select = *o.Select

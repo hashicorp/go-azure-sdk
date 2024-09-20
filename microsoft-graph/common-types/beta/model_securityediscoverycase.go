@@ -118,29 +118,49 @@ func (s SecurityEdiscoveryCase) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &SecurityEdiscoveryCase{}
 
 func (s *SecurityEdiscoveryCase) UnmarshalJSON(bytes []byte) error {
-	type alias SecurityEdiscoveryCase
-	var decoded alias
+
+	var decoded struct {
+		ClosedDateTime          nullable.Type[string]                       `json:"closedDateTime,omitempty"`
+		Custodians              *[]SecurityEdiscoveryCustodian              `json:"custodians,omitempty"`
+		ExternalId              nullable.Type[string]                       `json:"externalId,omitempty"`
+		LegalHolds              *[]SecurityEdiscoveryHoldPolicy             `json:"legalHolds,omitempty"`
+		NoncustodialDataSources *[]SecurityEdiscoveryNoncustodialDataSource `json:"noncustodialDataSources,omitempty"`
+		Operations              *[]SecurityCaseOperation                    `json:"operations,omitempty"`
+		ReviewSets              *[]SecurityEdiscoveryReviewSet              `json:"reviewSets,omitempty"`
+		Searches                *[]SecurityEdiscoverySearch                 `json:"searches,omitempty"`
+		Settings                *SecurityEdiscoveryCaseSettings             `json:"settings,omitempty"`
+		Tags                    *[]SecurityEdiscoveryReviewTag              `json:"tags,omitempty"`
+		CreatedDateTime         nullable.Type[string]                       `json:"createdDateTime,omitempty"`
+		Description             nullable.Type[string]                       `json:"description,omitempty"`
+		DisplayName             nullable.Type[string]                       `json:"displayName,omitempty"`
+		LastModifiedBy          IdentitySet                                 `json:"lastModifiedBy"`
+		LastModifiedDateTime    nullable.Type[string]                       `json:"lastModifiedDateTime,omitempty"`
+		Status                  *SecurityCaseStatus                         `json:"status,omitempty"`
+		Id                      *string                                     `json:"id,omitempty"`
+		ODataId                 *string                                     `json:"@odata.id,omitempty"`
+		ODataType               *string                                     `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into SecurityEdiscoveryCase: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.ClosedDateTime = decoded.ClosedDateTime
-	s.CreatedDateTime = decoded.CreatedDateTime
 	s.Custodians = decoded.Custodians
-	s.Description = decoded.Description
-	s.DisplayName = decoded.DisplayName
 	s.ExternalId = decoded.ExternalId
-	s.Id = decoded.Id
-	s.LastModifiedDateTime = decoded.LastModifiedDateTime
 	s.LegalHolds = decoded.LegalHolds
 	s.NoncustodialDataSources = decoded.NoncustodialDataSources
-	s.ODataId = decoded.ODataId
-	s.ODataType = decoded.ODataType
 	s.ReviewSets = decoded.ReviewSets
 	s.Searches = decoded.Searches
 	s.Settings = decoded.Settings
-	s.Status = decoded.Status
 	s.Tags = decoded.Tags
+	s.CreatedDateTime = decoded.CreatedDateTime
+	s.Description = decoded.Description
+	s.DisplayName = decoded.DisplayName
+	s.Id = decoded.Id
+	s.LastModifiedDateTime = decoded.LastModifiedDateTime
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
+	s.Status = decoded.Status
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -179,5 +199,6 @@ func (s *SecurityEdiscoveryCase) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Operations = &output
 	}
+
 	return nil
 }

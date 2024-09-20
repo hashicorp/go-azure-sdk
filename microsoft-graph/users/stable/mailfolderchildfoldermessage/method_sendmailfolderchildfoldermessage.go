@@ -18,17 +18,46 @@ type SendMailFolderChildFolderMessageOperationResponse struct {
 	OData        *odata.OData
 }
 
+type SendMailFolderChildFolderMessageOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultSendMailFolderChildFolderMessageOperationOptions() SendMailFolderChildFolderMessageOperationOptions {
+	return SendMailFolderChildFolderMessageOperationOptions{}
+}
+
+func (o SendMailFolderChildFolderMessageOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o SendMailFolderChildFolderMessageOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o SendMailFolderChildFolderMessageOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // SendMailFolderChildFolderMessage - Invoke action send. Send an existing draft message. The draft message can be a new
 // message draft, reply draft, reply-all draft, or a forward draft. This method saves the message in the Sent Items
 // folder. Alternatively, send a new message in a single operation.
-func (c MailFolderChildFolderMessageClient) SendMailFolderChildFolderMessage(ctx context.Context, id stable.UserIdMailFolderIdChildFolderIdMessageId) (result SendMailFolderChildFolderMessageOperationResponse, err error) {
+func (c MailFolderChildFolderMessageClient) SendMailFolderChildFolderMessage(ctx context.Context, id stable.UserIdMailFolderIdChildFolderIdMessageId, options SendMailFolderChildFolderMessageOperationOptions) (result SendMailFolderChildFolderMessageOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/send", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/send", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -85,20 +85,29 @@ func (s AwsExternalSystemAccessFinding) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &AwsExternalSystemAccessFinding{}
 
 func (s *AwsExternalSystemAccessFinding) UnmarshalJSON(bytes []byte) error {
-	type alias AwsExternalSystemAccessFinding
-	var decoded alias
+
+	var decoded struct {
+		AccessMethods        *ExternalSystemAccessMethods `json:"accessMethods,omitempty"`
+		SystemWithAccess     *AuthorizationSystemInfo     `json:"systemWithAccess,omitempty"`
+		TrustedIdentityCount nullable.Type[int64]         `json:"trustedIdentityCount,omitempty"`
+		TrustsAllIdentities  *bool                        `json:"trustsAllIdentities,omitempty"`
+		CreatedDateTime      *string                      `json:"createdDateTime,omitempty"`
+		Id                   *string                      `json:"id,omitempty"`
+		ODataId              *string                      `json:"@odata.id,omitempty"`
+		ODataType            *string                      `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into AwsExternalSystemAccessFinding: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.AccessMethods = decoded.AccessMethods
+	s.SystemWithAccess = decoded.SystemWithAccess
+	s.TrustedIdentityCount = decoded.TrustedIdentityCount
+	s.TrustsAllIdentities = decoded.TrustsAllIdentities
 	s.CreatedDateTime = decoded.CreatedDateTime
 	s.Id = decoded.Id
 	s.ODataId = decoded.ODataId
 	s.ODataType = decoded.ODataType
-	s.SystemWithAccess = decoded.SystemWithAccess
-	s.TrustedIdentityCount = decoded.TrustedIdentityCount
-	s.TrustsAllIdentities = decoded.TrustsAllIdentities
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -112,5 +121,6 @@ func (s *AwsExternalSystemAccessFinding) UnmarshalJSON(bytes []byte) error {
 		}
 		s.AffectedSystem = &impl
 	}
+
 	return nil
 }

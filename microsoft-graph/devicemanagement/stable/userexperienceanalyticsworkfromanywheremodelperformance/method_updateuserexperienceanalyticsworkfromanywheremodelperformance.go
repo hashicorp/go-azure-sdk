@@ -17,16 +17,45 @@ type UpdateUserExperienceAnalyticsWorkFromAnywhereModelPerformanceOperationRespo
 	OData        *odata.OData
 }
 
+type UpdateUserExperienceAnalyticsWorkFromAnywhereModelPerformanceOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateUserExperienceAnalyticsWorkFromAnywhereModelPerformanceOperationOptions() UpdateUserExperienceAnalyticsWorkFromAnywhereModelPerformanceOperationOptions {
+	return UpdateUserExperienceAnalyticsWorkFromAnywhereModelPerformanceOperationOptions{}
+}
+
+func (o UpdateUserExperienceAnalyticsWorkFromAnywhereModelPerformanceOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateUserExperienceAnalyticsWorkFromAnywhereModelPerformanceOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateUserExperienceAnalyticsWorkFromAnywhereModelPerformanceOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateUserExperienceAnalyticsWorkFromAnywhereModelPerformance - Update the navigation property
 // userExperienceAnalyticsWorkFromAnywhereModelPerformance in deviceManagement
-func (c UserExperienceAnalyticsWorkFromAnywhereModelPerformanceClient) UpdateUserExperienceAnalyticsWorkFromAnywhereModelPerformance(ctx context.Context, id stable.DeviceManagementUserExperienceAnalyticsWorkFromAnywhereModelPerformanceId, input stable.UserExperienceAnalyticsWorkFromAnywhereModelPerformance) (result UpdateUserExperienceAnalyticsWorkFromAnywhereModelPerformanceOperationResponse, err error) {
+func (c UserExperienceAnalyticsWorkFromAnywhereModelPerformanceClient) UpdateUserExperienceAnalyticsWorkFromAnywhereModelPerformance(ctx context.Context, id stable.DeviceManagementUserExperienceAnalyticsWorkFromAnywhereModelPerformanceId, input stable.UserExperienceAnalyticsWorkFromAnywhereModelPerformance, options UpdateUserExperienceAnalyticsWorkFromAnywhereModelPerformanceOperationOptions) (result UpdateUserExperienceAnalyticsWorkFromAnywhereModelPerformanceOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

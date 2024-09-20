@@ -22,10 +22,14 @@ type MentionAction struct {
 var _ json.Unmarshaler = &MentionAction{}
 
 func (s *MentionAction) UnmarshalJSON(bytes []byte) error {
-	type alias MentionAction
-	var decoded alias
+
+	var decoded struct {
+		Mentionees *[]IdentitySet `json:"mentionees,omitempty"`
+		ODataId    *string        `json:"@odata.id,omitempty"`
+		ODataType  *string        `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into MentionAction: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.ODataId = decoded.ODataId
@@ -52,5 +56,6 @@ func (s *MentionAction) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Mentionees = &output
 	}
+
 	return nil
 }

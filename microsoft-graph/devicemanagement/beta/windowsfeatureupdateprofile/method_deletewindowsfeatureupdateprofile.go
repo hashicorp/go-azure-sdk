@@ -19,7 +19,8 @@ type DeleteWindowsFeatureUpdateProfileOperationResponse struct {
 }
 
 type DeleteWindowsFeatureUpdateProfileOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteWindowsFeatureUpdateProfileOperationOptions() DeleteWindowsFeatureUpdateProfileOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteWindowsFeatureUpdateProfileOperationOptions) ToHeaders() *client.H
 
 func (o DeleteWindowsFeatureUpdateProfileOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

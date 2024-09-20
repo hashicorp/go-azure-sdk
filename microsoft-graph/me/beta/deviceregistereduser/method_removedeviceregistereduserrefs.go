@@ -19,8 +19,9 @@ type RemoveDeviceRegisteredUserRefsOperationResponse struct {
 }
 
 type RemoveDeviceRegisteredUserRefsOperationOptions struct {
-	Id      *string
-	IfMatch *string
+	Id       *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultRemoveDeviceRegisteredUserRefsOperationOptions() RemoveDeviceRegisteredUserRefsOperationOptions {
@@ -37,7 +38,9 @@ func (o RemoveDeviceRegisteredUserRefsOperationOptions) ToHeaders() *client.Head
 
 func (o RemoveDeviceRegisteredUserRefsOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

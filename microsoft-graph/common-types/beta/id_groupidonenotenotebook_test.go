@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &GroupIdOnenoteNotebookId{}
 
 func TestNewGroupIdOnenoteNotebookID(t *testing.T) {
-	id := NewGroupIdOnenoteNotebookID("groupIdValue", "notebookIdValue")
+	id := NewGroupIdOnenoteNotebookID("groupId", "notebookId")
 
-	if id.GroupId != "groupIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'GroupId'", id.GroupId, "groupIdValue")
+	if id.GroupId != "groupId" {
+		t.Fatalf("Expected %q but got %q for Segment 'GroupId'", id.GroupId, "groupId")
 	}
 
-	if id.NotebookId != "notebookIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'NotebookId'", id.NotebookId, "notebookIdValue")
+	if id.NotebookId != "notebookId" {
+		t.Fatalf("Expected %q but got %q for Segment 'NotebookId'", id.NotebookId, "notebookId")
 	}
 }
 
 func TestFormatGroupIdOnenoteNotebookID(t *testing.T) {
-	actual := NewGroupIdOnenoteNotebookID("groupIdValue", "notebookIdValue").ID()
-	expected := "/groups/groupIdValue/onenote/notebooks/notebookIdValue"
+	actual := NewGroupIdOnenoteNotebookID("groupId", "notebookId").ID()
+	expected := "/groups/groupId/onenote/notebooks/notebookId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -49,30 +49,30 @@ func TestParseGroupIdOnenoteNotebookID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue",
+			Input: "/groups/groupId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/onenote",
+			Input: "/groups/groupId/onenote",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/onenote/notebooks",
+			Input: "/groups/groupId/onenote/notebooks",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/groups/groupIdValue/onenote/notebooks/notebookIdValue",
+			Input: "/groups/groupId/onenote/notebooks/notebookId",
 			Expected: &GroupIdOnenoteNotebookId{
-				GroupId:    "groupIdValue",
-				NotebookId: "notebookIdValue",
+				GroupId:    "groupId",
+				NotebookId: "notebookId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/groups/groupIdValue/onenote/notebooks/notebookIdValue/extra",
+			Input: "/groups/groupId/onenote/notebooks/notebookId/extra",
 			Error: true,
 		},
 	}
@@ -125,58 +125,58 @@ func TestParseGroupIdOnenoteNotebookIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue",
+			Input: "/groups/groupId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE",
+			Input: "/gRoUpS/gRoUpId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/onenote",
+			Input: "/groups/groupId/onenote",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/oNeNoTe",
+			Input: "/gRoUpS/gRoUpId/oNeNoTe",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/onenote/notebooks",
+			Input: "/groups/groupId/onenote/notebooks",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/oNeNoTe/nOtEbOoKs",
+			Input: "/gRoUpS/gRoUpId/oNeNoTe/nOtEbOoKs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/groups/groupIdValue/onenote/notebooks/notebookIdValue",
+			Input: "/groups/groupId/onenote/notebooks/notebookId",
 			Expected: &GroupIdOnenoteNotebookId{
-				GroupId:    "groupIdValue",
-				NotebookId: "notebookIdValue",
+				GroupId:    "groupId",
+				NotebookId: "notebookId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/groups/groupIdValue/onenote/notebooks/notebookIdValue/extra",
+			Input: "/groups/groupId/onenote/notebooks/notebookId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/oNeNoTe/nOtEbOoKs/nOtEbOoKiDvAlUe",
+			Input: "/gRoUpS/gRoUpId/oNeNoTe/nOtEbOoKs/nOtEbOoKiD",
 			Expected: &GroupIdOnenoteNotebookId{
-				GroupId:    "gRoUpIdVaLuE",
-				NotebookId: "nOtEbOoKiDvAlUe",
+				GroupId:    "gRoUpId",
+				NotebookId: "nOtEbOoKiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/oNeNoTe/nOtEbOoKs/nOtEbOoKiDvAlUe/extra",
+			Input: "/gRoUpS/gRoUpId/oNeNoTe/nOtEbOoKs/nOtEbOoKiD/extra",
 			Error: true,
 		},
 	}

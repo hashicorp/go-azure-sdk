@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &ReportApplicationSignInDetailedSummaryId{}
 
 func TestNewReportApplicationSignInDetailedSummaryID(t *testing.T) {
-	id := NewReportApplicationSignInDetailedSummaryID("applicationSignInDetailedSummaryIdValue")
+	id := NewReportApplicationSignInDetailedSummaryID("applicationSignInDetailedSummaryId")
 
-	if id.ApplicationSignInDetailedSummaryId != "applicationSignInDetailedSummaryIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ApplicationSignInDetailedSummaryId'", id.ApplicationSignInDetailedSummaryId, "applicationSignInDetailedSummaryIdValue")
+	if id.ApplicationSignInDetailedSummaryId != "applicationSignInDetailedSummaryId" {
+		t.Fatalf("Expected %q but got %q for Segment 'ApplicationSignInDetailedSummaryId'", id.ApplicationSignInDetailedSummaryId, "applicationSignInDetailedSummaryId")
 	}
 }
 
 func TestFormatReportApplicationSignInDetailedSummaryID(t *testing.T) {
-	actual := NewReportApplicationSignInDetailedSummaryID("applicationSignInDetailedSummaryIdValue").ID()
-	expected := "/reports/applicationSignInDetailedSummary/applicationSignInDetailedSummaryIdValue"
+	actual := NewReportApplicationSignInDetailedSummaryID("applicationSignInDetailedSummaryId").ID()
+	expected := "/reports/applicationSignInDetailedSummary/applicationSignInDetailedSummaryId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -50,14 +50,14 @@ func TestParseReportApplicationSignInDetailedSummaryID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/reports/applicationSignInDetailedSummary/applicationSignInDetailedSummaryIdValue",
+			Input: "/reports/applicationSignInDetailedSummary/applicationSignInDetailedSummaryId",
 			Expected: &ReportApplicationSignInDetailedSummaryId{
-				ApplicationSignInDetailedSummaryId: "applicationSignInDetailedSummaryIdValue",
+				ApplicationSignInDetailedSummaryId: "applicationSignInDetailedSummaryId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/reports/applicationSignInDetailedSummary/applicationSignInDetailedSummaryIdValue/extra",
+			Input: "/reports/applicationSignInDetailedSummary/applicationSignInDetailedSummaryId/extra",
 			Error: true,
 		},
 	}
@@ -116,26 +116,26 @@ func TestParseReportApplicationSignInDetailedSummaryIDInsensitively(t *testing.T
 		},
 		{
 			// Valid URI
-			Input: "/reports/applicationSignInDetailedSummary/applicationSignInDetailedSummaryIdValue",
+			Input: "/reports/applicationSignInDetailedSummary/applicationSignInDetailedSummaryId",
 			Expected: &ReportApplicationSignInDetailedSummaryId{
-				ApplicationSignInDetailedSummaryId: "applicationSignInDetailedSummaryIdValue",
+				ApplicationSignInDetailedSummaryId: "applicationSignInDetailedSummaryId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/reports/applicationSignInDetailedSummary/applicationSignInDetailedSummaryIdValue/extra",
+			Input: "/reports/applicationSignInDetailedSummary/applicationSignInDetailedSummaryId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/rEpOrTs/aPpLiCaTiOnSiGnInDeTaIlEdSuMmArY/aPpLiCaTiOnSiGnInDeTaIlEdSuMmArYiDvAlUe",
+			Input: "/rEpOrTs/aPpLiCaTiOnSiGnInDeTaIlEdSuMmArY/aPpLiCaTiOnSiGnInDeTaIlEdSuMmArYiD",
 			Expected: &ReportApplicationSignInDetailedSummaryId{
-				ApplicationSignInDetailedSummaryId: "aPpLiCaTiOnSiGnInDeTaIlEdSuMmArYiDvAlUe",
+				ApplicationSignInDetailedSummaryId: "aPpLiCaTiOnSiGnInDeTaIlEdSuMmArYiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/rEpOrTs/aPpLiCaTiOnSiGnInDeTaIlEdSuMmArY/aPpLiCaTiOnSiGnInDeTaIlEdSuMmArYiDvAlUe/extra",
+			Input: "/rEpOrTs/aPpLiCaTiOnSiGnInDeTaIlEdSuMmArY/aPpLiCaTiOnSiGnInDeTaIlEdSuMmArYiD/extra",
 			Error: true,
 		},
 	}

@@ -92,7 +92,7 @@ func (id SchemaExtensionId) ID() string {
 func (id SchemaExtensionId) Segments() []resourceids.Segment {
 	return []resourceids.Segment{
 		resourceids.StaticSegment("schemaExtensions", "schemaExtensions", "schemaExtensions"),
-		resourceids.UserSpecifiedSegment("schemaExtensionId", "schemaExtensionIdValue"),
+		resourceids.UserSpecifiedSegment("schemaExtensionId", "schemaExtensionId"),
 	}
 }
 

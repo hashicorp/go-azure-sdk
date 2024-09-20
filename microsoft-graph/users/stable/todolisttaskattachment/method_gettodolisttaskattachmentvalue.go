@@ -19,16 +19,45 @@ type GetTodoListTaskAttachmentValueOperationResponse struct {
 	Model        *[]byte
 }
 
+type GetTodoListTaskAttachmentValueOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultGetTodoListTaskAttachmentValueOperationOptions() GetTodoListTaskAttachmentValueOperationOptions {
+	return GetTodoListTaskAttachmentValueOperationOptions{}
+}
+
+func (o GetTodoListTaskAttachmentValueOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o GetTodoListTaskAttachmentValueOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o GetTodoListTaskAttachmentValueOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // GetTodoListTaskAttachmentValue - Get media content for the navigation property attachments from users. The unique
 // identifier for an entity. Read-only.
-func (c TodoListTaskAttachmentClient) GetTodoListTaskAttachmentValue(ctx context.Context, id stable.UserIdTodoListIdTaskIdAttachmentId) (result GetTodoListTaskAttachmentValueOperationResponse, err error) {
+func (c TodoListTaskAttachmentClient) GetTodoListTaskAttachmentValue(ctx context.Context, id stable.UserIdTodoListIdTaskIdAttachmentId, options GetTodoListTaskAttachmentValueOperationOptions) (result GetTodoListTaskAttachmentValueOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/octet-stream",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/$value", id.ID()),
+		HttpMethod:    http.MethodGet,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/$value", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

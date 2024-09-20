@@ -17,15 +17,44 @@ type UpdateJoinedTeamScheduleOfferShiftRequestOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateJoinedTeamScheduleOfferShiftRequestOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateJoinedTeamScheduleOfferShiftRequestOperationOptions() UpdateJoinedTeamScheduleOfferShiftRequestOperationOptions {
+	return UpdateJoinedTeamScheduleOfferShiftRequestOperationOptions{}
+}
+
+func (o UpdateJoinedTeamScheduleOfferShiftRequestOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateJoinedTeamScheduleOfferShiftRequestOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateJoinedTeamScheduleOfferShiftRequestOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateJoinedTeamScheduleOfferShiftRequest - Update the navigation property offerShiftRequests in users
-func (c JoinedTeamScheduleOfferShiftRequestClient) UpdateJoinedTeamScheduleOfferShiftRequest(ctx context.Context, id stable.UserIdJoinedTeamIdScheduleOfferShiftRequestId, input stable.OfferShiftRequest) (result UpdateJoinedTeamScheduleOfferShiftRequestOperationResponse, err error) {
+func (c JoinedTeamScheduleOfferShiftRequestClient) UpdateJoinedTeamScheduleOfferShiftRequest(ctx context.Context, id stable.UserIdJoinedTeamIdScheduleOfferShiftRequestId, input stable.OfferShiftRequest, options UpdateJoinedTeamScheduleOfferShiftRequestOperationOptions) (result UpdateJoinedTeamScheduleOfferShiftRequestOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

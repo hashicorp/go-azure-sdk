@@ -26,8 +26,9 @@ type GetDeletedItemsByIdsCompleteResult struct {
 }
 
 type GetDeletedItemsByIdsOperationOptions struct {
-	Skip *int64
-	Top  *int64
+	Metadata *odata.Metadata
+	Skip     *int64
+	Top      *int64
 }
 
 func DefaultGetDeletedItemsByIdsOperationOptions() GetDeletedItemsByIdsOperationOptions {
@@ -42,6 +43,9 @@ func (o GetDeletedItemsByIdsOperationOptions) ToHeaders() *client.Headers {
 
 func (o GetDeletedItemsByIdsOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	if o.Skip != nil {
 		out.Skip = int(*o.Skip)
 	}
@@ -70,7 +74,7 @@ func (p *GetDeletedItemsByIdsCustomPager) NextPageLink() *odata.Link {
 }
 
 // GetDeletedItemsByIds - Invoke action getByIds. Return the directory objects specified in a list of IDs. Only a subset
-// of user properties are returned by default in v1.0. Some common uses for this function are to:
+// of user properties are returned by default in v1.0. Some common uses for this function are to
 func (c DeletedItemClient) GetDeletedItemsByIds(ctx context.Context, input GetDeletedItemsByIdsRequest, options GetDeletedItemsByIdsOperationOptions) (result GetDeletedItemsByIdsOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",

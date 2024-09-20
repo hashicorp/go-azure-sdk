@@ -115,19 +115,27 @@ func (s BaseIdentityFindingImpl) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &BaseIdentityFindingImpl{}
 
 func (s *BaseIdentityFindingImpl) UnmarshalJSON(bytes []byte) error {
-	type alias BaseIdentityFindingImpl
-	var decoded alias
+
+	var decoded struct {
+		ActionSummary         *ActionSummary         `json:"actionSummary,omitempty"`
+		IdentityDetails       *IdentityDetails       `json:"identityDetails,omitempty"`
+		PermissionsCreepIndex *PermissionsCreepIndex `json:"permissionsCreepIndex,omitempty"`
+		CreatedDateTime       *string                `json:"createdDateTime,omitempty"`
+		Id                    *string                `json:"id,omitempty"`
+		ODataId               *string                `json:"@odata.id,omitempty"`
+		ODataType             *string                `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into BaseIdentityFindingImpl: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.ActionSummary = decoded.ActionSummary
+	s.IdentityDetails = decoded.IdentityDetails
+	s.PermissionsCreepIndex = decoded.PermissionsCreepIndex
 	s.CreatedDateTime = decoded.CreatedDateTime
 	s.Id = decoded.Id
-	s.IdentityDetails = decoded.IdentityDetails
 	s.ODataId = decoded.ODataId
 	s.ODataType = decoded.ODataType
-	s.PermissionsCreepIndex = decoded.PermissionsCreepIndex
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -141,6 +149,7 @@ func (s *BaseIdentityFindingImpl) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Identity = &impl
 	}
+
 	return nil
 }
 
@@ -154,9 +163,9 @@ func UnmarshalIdentityFindingImplementation(input []byte) (IdentityFinding, erro
 		return nil, fmt.Errorf("unmarshaling IdentityFinding into map[string]interface: %+v", err)
 	}
 
-	value, ok := temp["@odata.type"].(string)
-	if !ok {
-		return nil, nil
+	var value string
+	if v, ok := temp["@odata.type"]; ok {
+		value = fmt.Sprintf("%v", v)
 	}
 
 	if strings.EqualFold(value, "#microsoft.graph.inactiveAwsResourceFinding") {

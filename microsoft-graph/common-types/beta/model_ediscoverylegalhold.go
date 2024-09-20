@@ -101,10 +101,25 @@ func (s EdiscoveryLegalHold) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &EdiscoveryLegalHold{}
 
 func (s *EdiscoveryLegalHold) UnmarshalJSON(bytes []byte) error {
-	type alias EdiscoveryLegalHold
-	var decoded alias
+
+	var decoded struct {
+		ContentQuery         nullable.Type[string]           `json:"contentQuery,omitempty"`
+		CreatedDateTime      nullable.Type[string]           `json:"createdDateTime,omitempty"`
+		Description          nullable.Type[string]           `json:"description,omitempty"`
+		DisplayName          nullable.Type[string]           `json:"displayName,omitempty"`
+		Errors               *[]string                       `json:"errors,omitempty"`
+		IsEnabled            nullable.Type[bool]             `json:"isEnabled,omitempty"`
+		LastModifiedDateTime nullable.Type[string]           `json:"lastModifiedDateTime,omitempty"`
+		SiteSources          *[]EdiscoverySiteSource         `json:"siteSources,omitempty"`
+		Status               *EdiscoveryLegalHoldStatus      `json:"status,omitempty"`
+		UnifiedGroupSources  *[]EdiscoveryUnifiedGroupSource `json:"unifiedGroupSources,omitempty"`
+		UserSources          *[]EdiscoveryUserSource         `json:"userSources,omitempty"`
+		Id                   *string                         `json:"id,omitempty"`
+		ODataId              *string                         `json:"@odata.id,omitempty"`
+		ODataType            *string                         `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into EdiscoveryLegalHold: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.ContentQuery = decoded.ContentQuery
@@ -112,15 +127,15 @@ func (s *EdiscoveryLegalHold) UnmarshalJSON(bytes []byte) error {
 	s.Description = decoded.Description
 	s.DisplayName = decoded.DisplayName
 	s.Errors = decoded.Errors
-	s.Id = decoded.Id
 	s.IsEnabled = decoded.IsEnabled
 	s.LastModifiedDateTime = decoded.LastModifiedDateTime
-	s.ODataId = decoded.ODataId
-	s.ODataType = decoded.ODataType
 	s.SiteSources = decoded.SiteSources
 	s.Status = decoded.Status
 	s.UnifiedGroupSources = decoded.UnifiedGroupSources
 	s.UserSources = decoded.UserSources
+	s.Id = decoded.Id
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -142,5 +157,6 @@ func (s *EdiscoveryLegalHold) UnmarshalJSON(bytes []byte) error {
 		}
 		s.LastModifiedBy = impl
 	}
+
 	return nil
 }

@@ -75,10 +75,16 @@ func (s SecurityArticleIndicator) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &SecurityArticleIndicator{}
 
 func (s *SecurityArticleIndicator) UnmarshalJSON(bytes []byte) error {
-	type alias SecurityArticleIndicator
-	var decoded alias
+
+	var decoded struct {
+		Artifact  *SecurityArtifact        `json:"artifact,omitempty"`
+		Source    *SecurityIndicatorSource `json:"source,omitempty"`
+		Id        *string                  `json:"id,omitempty"`
+		ODataId   *string                  `json:"@odata.id,omitempty"`
+		ODataType *string                  `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into SecurityArticleIndicator: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.Id = decoded.Id
@@ -98,5 +104,6 @@ func (s *SecurityArticleIndicator) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Artifact = &impl
 	}
+
 	return nil
 }

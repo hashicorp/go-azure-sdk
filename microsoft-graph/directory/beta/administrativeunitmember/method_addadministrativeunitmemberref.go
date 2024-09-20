@@ -18,15 +18,44 @@ type AddAdministrativeUnitMemberRefOperationResponse struct {
 	OData        *odata.OData
 }
 
+type AddAdministrativeUnitMemberRefOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultAddAdministrativeUnitMemberRefOperationOptions() AddAdministrativeUnitMemberRefOperationOptions {
+	return AddAdministrativeUnitMemberRefOperationOptions{}
+}
+
+func (o AddAdministrativeUnitMemberRefOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o AddAdministrativeUnitMemberRefOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o AddAdministrativeUnitMemberRefOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // AddAdministrativeUnitMemberRef - Create new navigation property ref to members for directory
-func (c AdministrativeUnitMemberClient) AddAdministrativeUnitMemberRef(ctx context.Context, id beta.DirectoryAdministrativeUnitId, input beta.ReferenceCreate) (result AddAdministrativeUnitMemberRefOperationResponse, err error) {
+func (c AdministrativeUnitMemberClient) AddAdministrativeUnitMemberRef(ctx context.Context, id beta.DirectoryAdministrativeUnitId, input beta.ReferenceCreate, options AddAdministrativeUnitMemberRefOperationOptions) (result AddAdministrativeUnitMemberRefOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/members/$ref", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/members/$ref", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

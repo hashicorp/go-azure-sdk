@@ -18,16 +18,45 @@ type CreateEntitlementManagementRoleAssignmentApprovalOperationResponse struct {
 	Model        *beta.Approval
 }
 
+type CreateEntitlementManagementRoleAssignmentApprovalOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateEntitlementManagementRoleAssignmentApprovalOperationOptions() CreateEntitlementManagementRoleAssignmentApprovalOperationOptions {
+	return CreateEntitlementManagementRoleAssignmentApprovalOperationOptions{}
+}
+
+func (o CreateEntitlementManagementRoleAssignmentApprovalOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateEntitlementManagementRoleAssignmentApprovalOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateEntitlementManagementRoleAssignmentApprovalOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateEntitlementManagementRoleAssignmentApproval - Create new navigation property to roleAssignmentApprovals for
 // roleManagement
-func (c EntitlementManagementRoleAssignmentApprovalClient) CreateEntitlementManagementRoleAssignmentApproval(ctx context.Context, input beta.Approval) (result CreateEntitlementManagementRoleAssignmentApprovalOperationResponse, err error) {
+func (c EntitlementManagementRoleAssignmentApprovalClient) CreateEntitlementManagementRoleAssignmentApproval(ctx context.Context, input beta.Approval, options CreateEntitlementManagementRoleAssignmentApprovalOperationOptions) (result CreateEntitlementManagementRoleAssignmentApprovalOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/roleManagement/entitlementManagement/roleAssignmentApprovals",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/roleManagement/entitlementManagement/roleAssignmentApprovals",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -19,16 +19,45 @@ type GetDriveRootAnalyticsItemActivityStatActivityDriveItemContentStreamOperatio
 	Model        *[]byte
 }
 
+type GetDriveRootAnalyticsItemActivityStatActivityDriveItemContentStreamOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultGetDriveRootAnalyticsItemActivityStatActivityDriveItemContentStreamOperationOptions() GetDriveRootAnalyticsItemActivityStatActivityDriveItemContentStreamOperationOptions {
+	return GetDriveRootAnalyticsItemActivityStatActivityDriveItemContentStreamOperationOptions{}
+}
+
+func (o GetDriveRootAnalyticsItemActivityStatActivityDriveItemContentStreamOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o GetDriveRootAnalyticsItemActivityStatActivityDriveItemContentStreamOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o GetDriveRootAnalyticsItemActivityStatActivityDriveItemContentStreamOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // GetDriveRootAnalyticsItemActivityStatActivityDriveItemContentStream - Get contentStream for the navigation property
 // driveItem from users. The content stream, if the item represents a file.
-func (c DriveRootAnalyticsItemActivityStatActivityDriveItemContentStreamClient) GetDriveRootAnalyticsItemActivityStatActivityDriveItemContentStream(ctx context.Context, id beta.UserIdDriveIdRootAnalyticsItemActivityStatIdActivityId) (result GetDriveRootAnalyticsItemActivityStatActivityDriveItemContentStreamOperationResponse, err error) {
+func (c DriveRootAnalyticsItemActivityStatActivityDriveItemContentStreamClient) GetDriveRootAnalyticsItemActivityStatActivityDriveItemContentStream(ctx context.Context, id beta.UserIdDriveIdRootAnalyticsItemActivityStatIdActivityId, options GetDriveRootAnalyticsItemActivityStatActivityDriveItemContentStreamOperationOptions) (result GetDriveRootAnalyticsItemActivityStatActivityDriveItemContentStreamOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/octet-stream",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/driveItem/contentStream", id.ID()),
+		HttpMethod:    http.MethodGet,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/driveItem/contentStream", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

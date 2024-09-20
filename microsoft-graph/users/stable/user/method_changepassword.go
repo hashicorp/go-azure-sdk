@@ -18,16 +18,45 @@ type ChangePasswordOperationResponse struct {
 	OData        *odata.OData
 }
 
+type ChangePasswordOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultChangePasswordOperationOptions() ChangePasswordOperationOptions {
+	return ChangePasswordOperationOptions{}
+}
+
+func (o ChangePasswordOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o ChangePasswordOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o ChangePasswordOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // ChangePassword - Invoke action changePassword. Enable the user to update their password. Any user can update their
 // password without belonging to any administrator role.
-func (c UserClient) ChangePassword(ctx context.Context, id stable.UserId, input ChangePasswordRequest) (result ChangePasswordOperationResponse, err error) {
+func (c UserClient) ChangePassword(ctx context.Context, id stable.UserId, input ChangePasswordRequest, options ChangePasswordOperationOptions) (result ChangePasswordOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/changePassword", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/changePassword", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/stable/threadpostinreplyto` Documentation
 
-The `threadpostinreplyto` SDK allows for interaction with the Azure Resource Manager Service `groups` (API Version `stable`).
+The `threadpostinreplyto` SDK allows for interaction with Microsoft Graph `groups` (API Version `stable`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -15,7 +15,7 @@ import "github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/stable/threadpo
 ### Client Initialization
 
 ```go
-client := threadpostinreplyto.NewThreadPostInReplyToClientWithBaseURI("https://management.azure.com")
+client := threadpostinreplyto.NewThreadPostInReplyToClientWithBaseURI("https://graph.microsoft.com")
 client.Client.Authorizer = authorizer
 ```
 
@@ -24,14 +24,14 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := threadpostinreplyto.NewGroupIdThreadIdPostID("groupIdValue", "conversationThreadIdValue", "postIdValue")
+id := threadpostinreplyto.NewGroupIdThreadIdPostID("groupId", "conversationThreadId", "postId")
 
 payload := threadpostinreplyto.ForwardThreadPostInReplyToRequest{
 	// ...
 }
 
 
-read, err := client.ForwardThreadPostInReplyTo(ctx, id, payload)
+read, err := client.ForwardThreadPostInReplyTo(ctx, id, payload, threadpostinreplyto.DefaultForwardThreadPostInReplyToOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -45,7 +45,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := threadpostinreplyto.NewGroupIdThreadIdPostID("groupIdValue", "conversationThreadIdValue", "postIdValue")
+id := threadpostinreplyto.NewGroupIdThreadIdPostID("groupId", "conversationThreadId", "postId")
 
 read, err := client.GetThreadPostInReplyTo(ctx, id, threadpostinreplyto.DefaultGetThreadPostInReplyToOperationOptions())
 if err != nil {
@@ -61,14 +61,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := threadpostinreplyto.NewGroupIdThreadIdPostID("groupIdValue", "conversationThreadIdValue", "postIdValue")
+id := threadpostinreplyto.NewGroupIdThreadIdPostID("groupId", "conversationThreadId", "postId")
 
 payload := threadpostinreplyto.ReplyThreadPostInReplyToRequest{
 	// ...
 }
 
 
-read, err := client.ReplyThreadPostInReplyTo(ctx, id, payload)
+read, err := client.ReplyThreadPostInReplyTo(ctx, id, payload, threadpostinreplyto.DefaultReplyThreadPostInReplyToOperationOptions())
 if err != nil {
 	// handle the error
 }

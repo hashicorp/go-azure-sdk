@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/cloudpc` Documentation
 
-The `cloudpc` SDK allows for interaction with the Azure Resource Manager Service `users` (API Version `beta`).
+The `cloudpc` SDK allows for interaction with Microsoft Graph `users` (API Version `beta`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -15,7 +15,7 @@ import "github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/cloudpc"
 ### Client Initialization
 
 ```go
-client := cloudpc.NewCloudPCClientWithBaseURI("https://management.azure.com")
+client := cloudpc.NewCloudPCClientWithBaseURI("https://graph.microsoft.com")
 client.Client.Authorizer = authorizer
 ```
 
@@ -24,14 +24,14 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := cloudpc.NewUserIdCloudPCID("userIdValue", "cloudPCIdValue")
+id := cloudpc.NewUserIdCloudPCID("userId", "cloudPCId")
 
 payload := cloudpc.ChangeCloudPCUserAccountTypeRequest{
 	// ...
 }
 
 
-read, err := client.ChangeCloudPCUserAccountType(ctx, id, payload)
+read, err := client.ChangeCloudPCUserAccountType(ctx, id, payload, cloudpc.DefaultChangeCloudPCUserAccountTypeOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -45,14 +45,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := cloudpc.NewUserID("userIdValue")
+id := cloudpc.NewUserID("userId")
 
 payload := cloudpc.CloudPC{
 	// ...
 }
 
 
-read, err := client.CreateCloudPC(ctx, id, payload)
+read, err := client.CreateCloudPC(ctx, id, payload, cloudpc.DefaultCreateCloudPCOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -66,9 +66,9 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := cloudpc.NewUserIdCloudPCID("userIdValue", "cloudPCIdValue")
+id := cloudpc.NewUserIdCloudPCID("userId", "cloudPCId")
 
-read, err := client.CreateCloudPCSnapshot(ctx, id)
+read, err := client.CreateCloudPCSnapshot(ctx, id, cloudpc.DefaultCreateCloudPCSnapshotOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -82,7 +82,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := cloudpc.NewUserIdCloudPCID("userIdValue", "cloudPCIdValue")
+id := cloudpc.NewUserIdCloudPCID("userId", "cloudPCId")
 
 read, err := client.DeleteCloudPC(ctx, id, cloudpc.DefaultDeleteCloudPCOperationOptions())
 if err != nil {
@@ -98,9 +98,9 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := cloudpc.NewUserIdCloudPCID("userIdValue", "cloudPCIdValue")
+id := cloudpc.NewUserIdCloudPCID("userId", "cloudPCId")
 
-read, err := client.EndCloudPCGracePeriod(ctx, id)
+read, err := client.EndCloudPCGracePeriod(ctx, id, cloudpc.DefaultEndCloudPCGracePeriodOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -114,7 +114,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := cloudpc.NewUserIdCloudPCID("userIdValue", "cloudPCIdValue")
+id := cloudpc.NewUserIdCloudPCID("userId", "cloudPCId")
 
 read, err := client.GetCloudPC(ctx, id, cloudpc.DefaultGetCloudPCOperationOptions())
 if err != nil {
@@ -130,7 +130,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := cloudpc.NewUserID("userIdValue")
+id := cloudpc.NewUserID("userId")
 
 read, err := client.GetCloudPCsCount(ctx, id, cloudpc.DefaultGetCloudPCsCountOperationOptions())
 if err != nil {
@@ -146,7 +146,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := cloudpc.NewUserID("userIdValue")
+id := cloudpc.NewUserID("userId")
 
 payload := cloudpc.ListCloudPCBulkResizesRequest{
 	// ...
@@ -168,7 +168,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := cloudpc.NewUserID("userIdValue")
+id := cloudpc.NewUserID("userId")
 
 // alternatively `client.ListCloudPCS(ctx, id, cloudpc.DefaultListCloudPCSOperationOptions())` can be used to do batched pagination
 items, err := client.ListCloudPCSComplete(ctx, id, cloudpc.DefaultListCloudPCSOperationOptions())
@@ -185,9 +185,9 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := cloudpc.NewUserIdCloudPCID("userIdValue", "cloudPCIdValue")
+id := cloudpc.NewUserIdCloudPCID("userId", "cloudPCId")
 
-read, err := client.PowerOffCloudPC(ctx, id)
+read, err := client.PowerOffCloudPC(ctx, id, cloudpc.DefaultPowerOffCloudPCOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -201,9 +201,9 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := cloudpc.NewUserIdCloudPCID("userIdValue", "cloudPCIdValue")
+id := cloudpc.NewUserIdCloudPCID("userId", "cloudPCId")
 
-read, err := client.PowerOnCloudPC(ctx, id)
+read, err := client.PowerOnCloudPC(ctx, id, cloudpc.DefaultPowerOnCloudPCOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -217,9 +217,9 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := cloudpc.NewUserIdCloudPCID("userIdValue", "cloudPCIdValue")
+id := cloudpc.NewUserIdCloudPCID("userId", "cloudPCId")
 
-read, err := client.RebootCloudPC(ctx, id)
+read, err := client.RebootCloudPC(ctx, id, cloudpc.DefaultRebootCloudPCOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -233,14 +233,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := cloudpc.NewUserIdCloudPCID("userIdValue", "cloudPCIdValue")
+id := cloudpc.NewUserIdCloudPCID("userId", "cloudPCId")
 
 payload := cloudpc.RenameCloudPCRequest{
 	// ...
 }
 
 
-read, err := client.RenameCloudPC(ctx, id, payload)
+read, err := client.RenameCloudPC(ctx, id, payload, cloudpc.DefaultRenameCloudPCOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -254,14 +254,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := cloudpc.NewUserIdCloudPCID("userIdValue", "cloudPCIdValue")
+id := cloudpc.NewUserIdCloudPCID("userId", "cloudPCId")
 
 payload := cloudpc.ReprovisionCloudPCRequest{
 	// ...
 }
 
 
-read, err := client.ReprovisionCloudPC(ctx, id, payload)
+read, err := client.ReprovisionCloudPC(ctx, id, payload, cloudpc.DefaultReprovisionCloudPCOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -275,14 +275,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := cloudpc.NewUserIdCloudPCID("userIdValue", "cloudPCIdValue")
+id := cloudpc.NewUserIdCloudPCID("userId", "cloudPCId")
 
 payload := cloudpc.ResizeCloudPCRequest{
 	// ...
 }
 
 
-read, err := client.ResizeCloudPC(ctx, id, payload)
+read, err := client.ResizeCloudPC(ctx, id, payload, cloudpc.DefaultResizeCloudPCOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -296,14 +296,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := cloudpc.NewUserIdCloudPCID("userIdValue", "cloudPCIdValue")
+id := cloudpc.NewUserIdCloudPCID("userId", "cloudPCId")
 
 payload := cloudpc.RestoreCloudPCRequest{
 	// ...
 }
 
 
-read, err := client.RestoreCloudPC(ctx, id, payload)
+read, err := client.RestoreCloudPC(ctx, id, payload, cloudpc.DefaultRestoreCloudPCOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -317,9 +317,9 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := cloudpc.NewUserIdCloudPCID("userIdValue", "cloudPCIdValue")
+id := cloudpc.NewUserIdCloudPCID("userId", "cloudPCId")
 
-read, err := client.RetryCloudPCPartnerAgentInstallation(ctx, id)
+read, err := client.RetryCloudPCPartnerAgentInstallation(ctx, id, cloudpc.DefaultRetryCloudPCPartnerAgentInstallationOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -333,14 +333,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := cloudpc.NewUserIdCloudPCID("userIdValue", "cloudPCIdValue")
+id := cloudpc.NewUserIdCloudPCID("userId", "cloudPCId")
 
 payload := cloudpc.SetCloudPCReviewStatusRequest{
 	// ...
 }
 
 
-read, err := client.SetCloudPCReviewStatus(ctx, id, payload)
+read, err := client.SetCloudPCReviewStatus(ctx, id, payload, cloudpc.DefaultSetCloudPCReviewStatusOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -354,9 +354,9 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := cloudpc.NewUserIdCloudPCID("userIdValue", "cloudPCIdValue")
+id := cloudpc.NewUserIdCloudPCID("userId", "cloudPCId")
 
-read, err := client.StartCloudPC(ctx, id)
+read, err := client.StartCloudPC(ctx, id, cloudpc.DefaultStartCloudPCOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -370,9 +370,9 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := cloudpc.NewUserIdCloudPCID("userIdValue", "cloudPCIdValue")
+id := cloudpc.NewUserIdCloudPCID("userId", "cloudPCId")
 
-read, err := client.StopCloudPC(ctx, id)
+read, err := client.StopCloudPC(ctx, id, cloudpc.DefaultStopCloudPCOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -386,9 +386,9 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := cloudpc.NewUserIdCloudPCID("userIdValue", "cloudPCIdValue")
+id := cloudpc.NewUserIdCloudPCID("userId", "cloudPCId")
 
-read, err := client.TroubleshootCloudPC(ctx, id)
+read, err := client.TroubleshootCloudPC(ctx, id, cloudpc.DefaultTroubleshootCloudPCOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -402,14 +402,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := cloudpc.NewUserIdCloudPCID("userIdValue", "cloudPCIdValue")
+id := cloudpc.NewUserIdCloudPCID("userId", "cloudPCId")
 
 payload := cloudpc.CloudPC{
 	// ...
 }
 
 
-read, err := client.UpdateCloudPC(ctx, id, payload)
+read, err := client.UpdateCloudPC(ctx, id, payload, cloudpc.DefaultUpdateCloudPCOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -423,7 +423,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := cloudpc.NewUserID("userIdValue")
+id := cloudpc.NewUserID("userId")
 
 payload := cloudpc.ValidateCloudPCsBulkResizesRequest{
 	// ...

@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &MeActivityId{}
 
 func TestNewMeActivityID(t *testing.T) {
-	id := NewMeActivityID("userActivityIdValue")
+	id := NewMeActivityID("userActivityId")
 
-	if id.UserActivityId != "userActivityIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'UserActivityId'", id.UserActivityId, "userActivityIdValue")
+	if id.UserActivityId != "userActivityId" {
+		t.Fatalf("Expected %q but got %q for Segment 'UserActivityId'", id.UserActivityId, "userActivityId")
 	}
 }
 
 func TestFormatMeActivityID(t *testing.T) {
-	actual := NewMeActivityID("userActivityIdValue").ID()
-	expected := "/me/activities/userActivityIdValue"
+	actual := NewMeActivityID("userActivityId").ID()
+	expected := "/me/activities/userActivityId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -50,14 +50,14 @@ func TestParseMeActivityID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/me/activities/userActivityIdValue",
+			Input: "/me/activities/userActivityId",
 			Expected: &MeActivityId{
-				UserActivityId: "userActivityIdValue",
+				UserActivityId: "userActivityId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/activities/userActivityIdValue/extra",
+			Input: "/me/activities/userActivityId/extra",
 			Error: true,
 		},
 	}
@@ -116,26 +116,26 @@ func TestParseMeActivityIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/me/activities/userActivityIdValue",
+			Input: "/me/activities/userActivityId",
 			Expected: &MeActivityId{
-				UserActivityId: "userActivityIdValue",
+				UserActivityId: "userActivityId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/activities/userActivityIdValue/extra",
+			Input: "/me/activities/userActivityId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/aCtIvItIeS/uSeRaCtIvItYiDvAlUe",
+			Input: "/mE/aCtIvItIeS/uSeRaCtIvItYiD",
 			Expected: &MeActivityId{
-				UserActivityId: "uSeRaCtIvItYiDvAlUe",
+				UserActivityId: "uSeRaCtIvItYiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/mE/aCtIvItIeS/uSeRaCtIvItYiDvAlUe/extra",
+			Input: "/mE/aCtIvItIeS/uSeRaCtIvItYiD/extra",
 			Error: true,
 		},
 	}

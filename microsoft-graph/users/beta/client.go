@@ -38,111 +38,6 @@ import (
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/authenticationtemporaryaccesspassmethod"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/authenticationwindowshelloforbusinessmethod"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/authenticationwindowshelloforbusinessmethoddevice"
-	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/calendar"
-	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/calendarcalendarpermission"
-	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/calendarcalendarview"
-	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/calendarcalendarviewattachment"
-	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/calendarcalendarviewcalendar"
-	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/calendarcalendarviewexceptionoccurrence"
-	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/calendarcalendarviewexceptionoccurrenceattachment"
-	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/calendarcalendarviewexceptionoccurrencecalendar"
-	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/calendarcalendarviewexceptionoccurrenceextension"
-	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/calendarcalendarviewexceptionoccurrenceinstance"
-	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/calendarcalendarviewexceptionoccurrenceinstanceattachment"
-	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/calendarcalendarviewexceptionoccurrenceinstancecalendar"
-	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/calendarcalendarviewexceptionoccurrenceinstanceextension"
-	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/calendarcalendarviewextension"
-	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/calendarcalendarviewinstance"
-	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/calendarcalendarviewinstanceattachment"
-	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/calendarcalendarviewinstancecalendar"
-	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/calendarcalendarviewinstanceexceptionoccurrence"
-	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/calendarcalendarviewinstanceexceptionoccurrenceattachment"
-	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/calendarcalendarviewinstanceexceptionoccurrencecalendar"
-	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/calendarcalendarviewinstanceexceptionoccurrenceextension"
-	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/calendarcalendarviewinstanceextension"
-	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/calendarevent"
-	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/calendareventattachment"
-	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/calendareventcalendar"
-	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/calendareventexceptionoccurrence"
-	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/calendareventexceptionoccurrenceattachment"
-	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/calendareventexceptionoccurrencecalendar"
-	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/calendareventexceptionoccurrenceextension"
-	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/calendareventexceptionoccurrenceinstance"
-	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/calendareventexceptionoccurrenceinstanceattachment"
-	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/calendareventexceptionoccurrenceinstancecalendar"
-	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/calendareventexceptionoccurrenceinstanceextension"
-	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/calendareventextension"
-	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/calendareventinstance"
-	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/calendareventinstanceattachment"
-	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/calendareventinstancecalendar"
-	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/calendareventinstanceexceptionoccurrence"
-	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/calendareventinstanceexceptionoccurrenceattachment"
-	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/calendareventinstanceexceptionoccurrencecalendar"
-	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/calendareventinstanceexceptionoccurrenceextension"
-	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/calendareventinstanceextension"
-	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/calendargroup"
-	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/calendargroupcalendar"
-	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/calendargroupcalendarcalendarpermission"
-	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/calendargroupcalendarcalendarview"
-	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/calendargroupcalendarcalendarviewattachment"
-	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/calendargroupcalendarcalendarviewcalendar"
-	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/calendargroupcalendarcalendarviewexceptionoccurrence"
-	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/calendargroupcalendarcalendarviewexceptionoccurrenceattachment"
-	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/calendargroupcalendarcalendarviewexceptionoccurrencecalendar"
-	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/calendargroupcalendarcalendarviewexceptionoccurrenceextension"
-	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/calendargroupcalendarcalendarviewexceptionoccurrenceinstance"
-	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/calendargroupcalendarcalendarviewexceptionoccurrenceinstanceattachment"
-	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/calendargroupcalendarcalendarviewexceptionoccurrenceinstancecalendar"
-	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/calendargroupcalendarcalendarviewexceptionoccurrenceinstanceextension"
-	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/calendargroupcalendarcalendarviewextension"
-	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/calendargroupcalendarcalendarviewinstance"
-	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/calendargroupcalendarcalendarviewinstanceattachment"
-	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/calendargroupcalendarcalendarviewinstancecalendar"
-	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/calendargroupcalendarcalendarviewinstanceexceptionoccurrence"
-	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/calendargroupcalendarcalendarviewinstanceexceptionoccurrenceattachment"
-	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/calendargroupcalendarcalendarviewinstanceexceptionoccurrencecalendar"
-	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/calendargroupcalendarcalendarviewinstanceexceptionoccurrenceextension"
-	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/calendargroupcalendarcalendarviewinstanceextension"
-	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/calendargroupcalendarevent"
-	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/calendargroupcalendareventattachment"
-	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/calendargroupcalendareventcalendar"
-	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/calendargroupcalendareventexceptionoccurrence"
-	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/calendargroupcalendareventexceptionoccurrenceattachment"
-	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/calendargroupcalendareventexceptionoccurrencecalendar"
-	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/calendargroupcalendareventexceptionoccurrenceextension"
-	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/calendargroupcalendareventexceptionoccurrenceinstance"
-	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/calendargroupcalendareventexceptionoccurrenceinstanceattachment"
-	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/calendargroupcalendareventexceptionoccurrenceinstancecalendar"
-	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/calendargroupcalendareventexceptionoccurrenceinstanceextension"
-	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/calendargroupcalendareventextension"
-	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/calendargroupcalendareventinstance"
-	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/calendargroupcalendareventinstanceattachment"
-	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/calendargroupcalendareventinstancecalendar"
-	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/calendargroupcalendareventinstanceexceptionoccurrence"
-	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/calendargroupcalendareventinstanceexceptionoccurrenceattachment"
-	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/calendargroupcalendareventinstanceexceptionoccurrencecalendar"
-	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/calendargroupcalendareventinstanceexceptionoccurrenceextension"
-	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/calendargroupcalendareventinstanceextension"
-	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/calendarview"
-	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/calendarviewattachment"
-	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/calendarviewcalendar"
-	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/calendarviewexceptionoccurrence"
-	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/calendarviewexceptionoccurrenceattachment"
-	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/calendarviewexceptionoccurrencecalendar"
-	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/calendarviewexceptionoccurrenceextension"
-	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/calendarviewexceptionoccurrenceinstance"
-	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/calendarviewexceptionoccurrenceinstanceattachment"
-	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/calendarviewexceptionoccurrenceinstancecalendar"
-	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/calendarviewexceptionoccurrenceinstanceextension"
-	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/calendarviewextension"
-	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/calendarviewinstance"
-	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/calendarviewinstanceattachment"
-	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/calendarviewinstancecalendar"
-	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/calendarviewinstanceexceptionoccurrence"
-	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/calendarviewinstanceexceptionoccurrenceattachment"
-	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/calendarviewinstanceexceptionoccurrencecalendar"
-	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/calendarviewinstanceexceptionoccurrenceextension"
-	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/calendarviewinstanceextension"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/chat"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/chatinstalledapp"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/chatinstalledappteamsapp"
@@ -441,6 +336,51 @@ import (
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/mobileapptroubleshootingeventapplogcollectionrequest"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/notification"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/oauth2permissiongrant"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/onenote"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/onenotenotebook"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/onenotenotebooksection"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/onenotenotebooksectiongroup"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/onenotenotebooksectiongroupparentnotebook"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/onenotenotebooksectiongroupparentsectiongroup"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/onenotenotebooksectiongroupsection"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/onenotenotebooksectiongroupsectiongroup"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/onenotenotebooksectiongroupsectionpage"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/onenotenotebooksectiongroupsectionpagecontent"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/onenotenotebooksectiongroupsectionpageparentnotebook"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/onenotenotebooksectiongroupsectionpageparentsection"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/onenotenotebooksectiongroupsectionparentnotebook"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/onenotenotebooksectiongroupsectionparentsectiongroup"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/onenotenotebooksectionpage"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/onenotenotebooksectionpagecontent"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/onenotenotebooksectionpageparentnotebook"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/onenotenotebooksectionpageparentsection"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/onenotenotebooksectionparentnotebook"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/onenotenotebooksectionparentsectiongroup"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/onenoteoperation"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/onenotepage"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/onenotepagecontent"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/onenotepageparentnotebook"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/onenotepageparentsection"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/onenoteresource"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/onenoteresourcecontent"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/onenotesection"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/onenotesectiongroup"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/onenotesectiongroupparentnotebook"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/onenotesectiongroupparentsectiongroup"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/onenotesectiongroupsection"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/onenotesectiongroupsectiongroup"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/onenotesectiongroupsectionpage"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/onenotesectiongroupsectionpagecontent"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/onenotesectiongroupsectionpageparentnotebook"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/onenotesectiongroupsectionpageparentsection"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/onenotesectiongroupsectionparentnotebook"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/onenotesectiongroupsectionparentsectiongroup"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/onenotesectionpage"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/onenotesectionpagecontent"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/onenotesectionpageparentnotebook"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/onenotesectionpageparentsection"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/onenotesectionparentnotebook"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/onenotesectionparentsectiongroup"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/onlinemeeting"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/onlinemeetingalternativerecording"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/onlinemeetingattendancereport"
@@ -478,12 +418,14 @@ import (
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/pendingaccessreviewinstancedecisioninstancecontactedreviewer"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/pendingaccessreviewinstancedecisioninstancedefinition"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/pendingaccessreviewinstancedecisioninstancestage"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/pendingaccessreviewinstancedecisioninstancestagedecision"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/pendingaccessreviewinstancedefinition"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/pendingaccessreviewinstancestage"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/pendingaccessreviewinstancestagedecision"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/pendingaccessreviewinstancestagedecisioninsight"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/pendingaccessreviewinstancestagedecisioninstance"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/pendingaccessreviewinstancestagedecisioninstancecontactedreviewer"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/pendingaccessreviewinstancestagedecisioninstancedecision"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/pendingaccessreviewinstancestagedecisioninstancedefinition"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/permissiongrant"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/person"
@@ -615,111 +557,6 @@ type Client struct {
 	AuthenticationTemporaryAccessPassMethod                                  *authenticationtemporaryaccesspassmethod.AuthenticationTemporaryAccessPassMethodClient
 	AuthenticationWindowsHelloForBusinessMethod                              *authenticationwindowshelloforbusinessmethod.AuthenticationWindowsHelloForBusinessMethodClient
 	AuthenticationWindowsHelloForBusinessMethodDevice                        *authenticationwindowshelloforbusinessmethoddevice.AuthenticationWindowsHelloForBusinessMethodDeviceClient
-	Calendar                                                                 *calendar.CalendarClient
-	CalendarCalendarPermission                                               *calendarcalendarpermission.CalendarCalendarPermissionClient
-	CalendarCalendarView                                                     *calendarcalendarview.CalendarCalendarViewClient
-	CalendarCalendarViewAttachment                                           *calendarcalendarviewattachment.CalendarCalendarViewAttachmentClient
-	CalendarCalendarViewCalendar                                             *calendarcalendarviewcalendar.CalendarCalendarViewCalendarClient
-	CalendarCalendarViewExceptionOccurrence                                  *calendarcalendarviewexceptionoccurrence.CalendarCalendarViewExceptionOccurrenceClient
-	CalendarCalendarViewExceptionOccurrenceAttachment                        *calendarcalendarviewexceptionoccurrenceattachment.CalendarCalendarViewExceptionOccurrenceAttachmentClient
-	CalendarCalendarViewExceptionOccurrenceCalendar                          *calendarcalendarviewexceptionoccurrencecalendar.CalendarCalendarViewExceptionOccurrenceCalendarClient
-	CalendarCalendarViewExceptionOccurrenceExtension                         *calendarcalendarviewexceptionoccurrenceextension.CalendarCalendarViewExceptionOccurrenceExtensionClient
-	CalendarCalendarViewExceptionOccurrenceInstance                          *calendarcalendarviewexceptionoccurrenceinstance.CalendarCalendarViewExceptionOccurrenceInstanceClient
-	CalendarCalendarViewExceptionOccurrenceInstanceAttachment                *calendarcalendarviewexceptionoccurrenceinstanceattachment.CalendarCalendarViewExceptionOccurrenceInstanceAttachmentClient
-	CalendarCalendarViewExceptionOccurrenceInstanceCalendar                  *calendarcalendarviewexceptionoccurrenceinstancecalendar.CalendarCalendarViewExceptionOccurrenceInstanceCalendarClient
-	CalendarCalendarViewExceptionOccurrenceInstanceExtension                 *calendarcalendarviewexceptionoccurrenceinstanceextension.CalendarCalendarViewExceptionOccurrenceInstanceExtensionClient
-	CalendarCalendarViewExtension                                            *calendarcalendarviewextension.CalendarCalendarViewExtensionClient
-	CalendarCalendarViewInstance                                             *calendarcalendarviewinstance.CalendarCalendarViewInstanceClient
-	CalendarCalendarViewInstanceAttachment                                   *calendarcalendarviewinstanceattachment.CalendarCalendarViewInstanceAttachmentClient
-	CalendarCalendarViewInstanceCalendar                                     *calendarcalendarviewinstancecalendar.CalendarCalendarViewInstanceCalendarClient
-	CalendarCalendarViewInstanceExceptionOccurrence                          *calendarcalendarviewinstanceexceptionoccurrence.CalendarCalendarViewInstanceExceptionOccurrenceClient
-	CalendarCalendarViewInstanceExceptionOccurrenceAttachment                *calendarcalendarviewinstanceexceptionoccurrenceattachment.CalendarCalendarViewInstanceExceptionOccurrenceAttachmentClient
-	CalendarCalendarViewInstanceExceptionOccurrenceCalendar                  *calendarcalendarviewinstanceexceptionoccurrencecalendar.CalendarCalendarViewInstanceExceptionOccurrenceCalendarClient
-	CalendarCalendarViewInstanceExceptionOccurrenceExtension                 *calendarcalendarviewinstanceexceptionoccurrenceextension.CalendarCalendarViewInstanceExceptionOccurrenceExtensionClient
-	CalendarCalendarViewInstanceExtension                                    *calendarcalendarviewinstanceextension.CalendarCalendarViewInstanceExtensionClient
-	CalendarEvent                                                            *calendarevent.CalendarEventClient
-	CalendarEventAttachment                                                  *calendareventattachment.CalendarEventAttachmentClient
-	CalendarEventCalendar                                                    *calendareventcalendar.CalendarEventCalendarClient
-	CalendarEventExceptionOccurrence                                         *calendareventexceptionoccurrence.CalendarEventExceptionOccurrenceClient
-	CalendarEventExceptionOccurrenceAttachment                               *calendareventexceptionoccurrenceattachment.CalendarEventExceptionOccurrenceAttachmentClient
-	CalendarEventExceptionOccurrenceCalendar                                 *calendareventexceptionoccurrencecalendar.CalendarEventExceptionOccurrenceCalendarClient
-	CalendarEventExceptionOccurrenceExtension                                *calendareventexceptionoccurrenceextension.CalendarEventExceptionOccurrenceExtensionClient
-	CalendarEventExceptionOccurrenceInstance                                 *calendareventexceptionoccurrenceinstance.CalendarEventExceptionOccurrenceInstanceClient
-	CalendarEventExceptionOccurrenceInstanceAttachment                       *calendareventexceptionoccurrenceinstanceattachment.CalendarEventExceptionOccurrenceInstanceAttachmentClient
-	CalendarEventExceptionOccurrenceInstanceCalendar                         *calendareventexceptionoccurrenceinstancecalendar.CalendarEventExceptionOccurrenceInstanceCalendarClient
-	CalendarEventExceptionOccurrenceInstanceExtension                        *calendareventexceptionoccurrenceinstanceextension.CalendarEventExceptionOccurrenceInstanceExtensionClient
-	CalendarEventExtension                                                   *calendareventextension.CalendarEventExtensionClient
-	CalendarEventInstance                                                    *calendareventinstance.CalendarEventInstanceClient
-	CalendarEventInstanceAttachment                                          *calendareventinstanceattachment.CalendarEventInstanceAttachmentClient
-	CalendarEventInstanceCalendar                                            *calendareventinstancecalendar.CalendarEventInstanceCalendarClient
-	CalendarEventInstanceExceptionOccurrence                                 *calendareventinstanceexceptionoccurrence.CalendarEventInstanceExceptionOccurrenceClient
-	CalendarEventInstanceExceptionOccurrenceAttachment                       *calendareventinstanceexceptionoccurrenceattachment.CalendarEventInstanceExceptionOccurrenceAttachmentClient
-	CalendarEventInstanceExceptionOccurrenceCalendar                         *calendareventinstanceexceptionoccurrencecalendar.CalendarEventInstanceExceptionOccurrenceCalendarClient
-	CalendarEventInstanceExceptionOccurrenceExtension                        *calendareventinstanceexceptionoccurrenceextension.CalendarEventInstanceExceptionOccurrenceExtensionClient
-	CalendarEventInstanceExtension                                           *calendareventinstanceextension.CalendarEventInstanceExtensionClient
-	CalendarGroup                                                            *calendargroup.CalendarGroupClient
-	CalendarGroupCalendar                                                    *calendargroupcalendar.CalendarGroupCalendarClient
-	CalendarGroupCalendarCalendarPermission                                  *calendargroupcalendarcalendarpermission.CalendarGroupCalendarCalendarPermissionClient
-	CalendarGroupCalendarCalendarView                                        *calendargroupcalendarcalendarview.CalendarGroupCalendarCalendarViewClient
-	CalendarGroupCalendarCalendarViewAttachment                              *calendargroupcalendarcalendarviewattachment.CalendarGroupCalendarCalendarViewAttachmentClient
-	CalendarGroupCalendarCalendarViewCalendar                                *calendargroupcalendarcalendarviewcalendar.CalendarGroupCalendarCalendarViewCalendarClient
-	CalendarGroupCalendarCalendarViewExceptionOccurrence                     *calendargroupcalendarcalendarviewexceptionoccurrence.CalendarGroupCalendarCalendarViewExceptionOccurrenceClient
-	CalendarGroupCalendarCalendarViewExceptionOccurrenceAttachment           *calendargroupcalendarcalendarviewexceptionoccurrenceattachment.CalendarGroupCalendarCalendarViewExceptionOccurrenceAttachmentClient
-	CalendarGroupCalendarCalendarViewExceptionOccurrenceCalendar             *calendargroupcalendarcalendarviewexceptionoccurrencecalendar.CalendarGroupCalendarCalendarViewExceptionOccurrenceCalendarClient
-	CalendarGroupCalendarCalendarViewExceptionOccurrenceExtension            *calendargroupcalendarcalendarviewexceptionoccurrenceextension.CalendarGroupCalendarCalendarViewExceptionOccurrenceExtensionClient
-	CalendarGroupCalendarCalendarViewExceptionOccurrenceInstance             *calendargroupcalendarcalendarviewexceptionoccurrenceinstance.CalendarGroupCalendarCalendarViewExceptionOccurrenceInstanceClient
-	CalendarGroupCalendarCalendarViewExceptionOccurrenceInstanceAttachment   *calendargroupcalendarcalendarviewexceptionoccurrenceinstanceattachment.CalendarGroupCalendarCalendarViewExceptionOccurrenceInstanceAttachmentClient
-	CalendarGroupCalendarCalendarViewExceptionOccurrenceInstanceCalendar     *calendargroupcalendarcalendarviewexceptionoccurrenceinstancecalendar.CalendarGroupCalendarCalendarViewExceptionOccurrenceInstanceCalendarClient
-	CalendarGroupCalendarCalendarViewExceptionOccurrenceInstanceExtension    *calendargroupcalendarcalendarviewexceptionoccurrenceinstanceextension.CalendarGroupCalendarCalendarViewExceptionOccurrenceInstanceExtensionClient
-	CalendarGroupCalendarCalendarViewExtension                               *calendargroupcalendarcalendarviewextension.CalendarGroupCalendarCalendarViewExtensionClient
-	CalendarGroupCalendarCalendarViewInstance                                *calendargroupcalendarcalendarviewinstance.CalendarGroupCalendarCalendarViewInstanceClient
-	CalendarGroupCalendarCalendarViewInstanceAttachment                      *calendargroupcalendarcalendarviewinstanceattachment.CalendarGroupCalendarCalendarViewInstanceAttachmentClient
-	CalendarGroupCalendarCalendarViewInstanceCalendar                        *calendargroupcalendarcalendarviewinstancecalendar.CalendarGroupCalendarCalendarViewInstanceCalendarClient
-	CalendarGroupCalendarCalendarViewInstanceExceptionOccurrence             *calendargroupcalendarcalendarviewinstanceexceptionoccurrence.CalendarGroupCalendarCalendarViewInstanceExceptionOccurrenceClient
-	CalendarGroupCalendarCalendarViewInstanceExceptionOccurrenceAttachment   *calendargroupcalendarcalendarviewinstanceexceptionoccurrenceattachment.CalendarGroupCalendarCalendarViewInstanceExceptionOccurrenceAttachmentClient
-	CalendarGroupCalendarCalendarViewInstanceExceptionOccurrenceCalendar     *calendargroupcalendarcalendarviewinstanceexceptionoccurrencecalendar.CalendarGroupCalendarCalendarViewInstanceExceptionOccurrenceCalendarClient
-	CalendarGroupCalendarCalendarViewInstanceExceptionOccurrenceExtension    *calendargroupcalendarcalendarviewinstanceexceptionoccurrenceextension.CalendarGroupCalendarCalendarViewInstanceExceptionOccurrenceExtensionClient
-	CalendarGroupCalendarCalendarViewInstanceExtension                       *calendargroupcalendarcalendarviewinstanceextension.CalendarGroupCalendarCalendarViewInstanceExtensionClient
-	CalendarGroupCalendarEvent                                               *calendargroupcalendarevent.CalendarGroupCalendarEventClient
-	CalendarGroupCalendarEventAttachment                                     *calendargroupcalendareventattachment.CalendarGroupCalendarEventAttachmentClient
-	CalendarGroupCalendarEventCalendar                                       *calendargroupcalendareventcalendar.CalendarGroupCalendarEventCalendarClient
-	CalendarGroupCalendarEventExceptionOccurrence                            *calendargroupcalendareventexceptionoccurrence.CalendarGroupCalendarEventExceptionOccurrenceClient
-	CalendarGroupCalendarEventExceptionOccurrenceAttachment                  *calendargroupcalendareventexceptionoccurrenceattachment.CalendarGroupCalendarEventExceptionOccurrenceAttachmentClient
-	CalendarGroupCalendarEventExceptionOccurrenceCalendar                    *calendargroupcalendareventexceptionoccurrencecalendar.CalendarGroupCalendarEventExceptionOccurrenceCalendarClient
-	CalendarGroupCalendarEventExceptionOccurrenceExtension                   *calendargroupcalendareventexceptionoccurrenceextension.CalendarGroupCalendarEventExceptionOccurrenceExtensionClient
-	CalendarGroupCalendarEventExceptionOccurrenceInstance                    *calendargroupcalendareventexceptionoccurrenceinstance.CalendarGroupCalendarEventExceptionOccurrenceInstanceClient
-	CalendarGroupCalendarEventExceptionOccurrenceInstanceAttachment          *calendargroupcalendareventexceptionoccurrenceinstanceattachment.CalendarGroupCalendarEventExceptionOccurrenceInstanceAttachmentClient
-	CalendarGroupCalendarEventExceptionOccurrenceInstanceCalendar            *calendargroupcalendareventexceptionoccurrenceinstancecalendar.CalendarGroupCalendarEventExceptionOccurrenceInstanceCalendarClient
-	CalendarGroupCalendarEventExceptionOccurrenceInstanceExtension           *calendargroupcalendareventexceptionoccurrenceinstanceextension.CalendarGroupCalendarEventExceptionOccurrenceInstanceExtensionClient
-	CalendarGroupCalendarEventExtension                                      *calendargroupcalendareventextension.CalendarGroupCalendarEventExtensionClient
-	CalendarGroupCalendarEventInstance                                       *calendargroupcalendareventinstance.CalendarGroupCalendarEventInstanceClient
-	CalendarGroupCalendarEventInstanceAttachment                             *calendargroupcalendareventinstanceattachment.CalendarGroupCalendarEventInstanceAttachmentClient
-	CalendarGroupCalendarEventInstanceCalendar                               *calendargroupcalendareventinstancecalendar.CalendarGroupCalendarEventInstanceCalendarClient
-	CalendarGroupCalendarEventInstanceExceptionOccurrence                    *calendargroupcalendareventinstanceexceptionoccurrence.CalendarGroupCalendarEventInstanceExceptionOccurrenceClient
-	CalendarGroupCalendarEventInstanceExceptionOccurrenceAttachment          *calendargroupcalendareventinstanceexceptionoccurrenceattachment.CalendarGroupCalendarEventInstanceExceptionOccurrenceAttachmentClient
-	CalendarGroupCalendarEventInstanceExceptionOccurrenceCalendar            *calendargroupcalendareventinstanceexceptionoccurrencecalendar.CalendarGroupCalendarEventInstanceExceptionOccurrenceCalendarClient
-	CalendarGroupCalendarEventInstanceExceptionOccurrenceExtension           *calendargroupcalendareventinstanceexceptionoccurrenceextension.CalendarGroupCalendarEventInstanceExceptionOccurrenceExtensionClient
-	CalendarGroupCalendarEventInstanceExtension                              *calendargroupcalendareventinstanceextension.CalendarGroupCalendarEventInstanceExtensionClient
-	CalendarView                                                             *calendarview.CalendarViewClient
-	CalendarViewAttachment                                                   *calendarviewattachment.CalendarViewAttachmentClient
-	CalendarViewCalendar                                                     *calendarviewcalendar.CalendarViewCalendarClient
-	CalendarViewExceptionOccurrence                                          *calendarviewexceptionoccurrence.CalendarViewExceptionOccurrenceClient
-	CalendarViewExceptionOccurrenceAttachment                                *calendarviewexceptionoccurrenceattachment.CalendarViewExceptionOccurrenceAttachmentClient
-	CalendarViewExceptionOccurrenceCalendar                                  *calendarviewexceptionoccurrencecalendar.CalendarViewExceptionOccurrenceCalendarClient
-	CalendarViewExceptionOccurrenceExtension                                 *calendarviewexceptionoccurrenceextension.CalendarViewExceptionOccurrenceExtensionClient
-	CalendarViewExceptionOccurrenceInstance                                  *calendarviewexceptionoccurrenceinstance.CalendarViewExceptionOccurrenceInstanceClient
-	CalendarViewExceptionOccurrenceInstanceAttachment                        *calendarviewexceptionoccurrenceinstanceattachment.CalendarViewExceptionOccurrenceInstanceAttachmentClient
-	CalendarViewExceptionOccurrenceInstanceCalendar                          *calendarviewexceptionoccurrenceinstancecalendar.CalendarViewExceptionOccurrenceInstanceCalendarClient
-	CalendarViewExceptionOccurrenceInstanceExtension                         *calendarviewexceptionoccurrenceinstanceextension.CalendarViewExceptionOccurrenceInstanceExtensionClient
-	CalendarViewExtension                                                    *calendarviewextension.CalendarViewExtensionClient
-	CalendarViewInstance                                                     *calendarviewinstance.CalendarViewInstanceClient
-	CalendarViewInstanceAttachment                                           *calendarviewinstanceattachment.CalendarViewInstanceAttachmentClient
-	CalendarViewInstanceCalendar                                             *calendarviewinstancecalendar.CalendarViewInstanceCalendarClient
-	CalendarViewInstanceExceptionOccurrence                                  *calendarviewinstanceexceptionoccurrence.CalendarViewInstanceExceptionOccurrenceClient
-	CalendarViewInstanceExceptionOccurrenceAttachment                        *calendarviewinstanceexceptionoccurrenceattachment.CalendarViewInstanceExceptionOccurrenceAttachmentClient
-	CalendarViewInstanceExceptionOccurrenceCalendar                          *calendarviewinstanceexceptionoccurrencecalendar.CalendarViewInstanceExceptionOccurrenceCalendarClient
-	CalendarViewInstanceExceptionOccurrenceExtension                         *calendarviewinstanceexceptionoccurrenceextension.CalendarViewInstanceExceptionOccurrenceExtensionClient
-	CalendarViewInstanceExtension                                            *calendarviewinstanceextension.CalendarViewInstanceExtensionClient
 	Chat                                                                     *chat.ChatClient
 	ChatInstalledApp                                                         *chatinstalledapp.ChatInstalledAppClient
 	ChatInstalledAppTeamsApp                                                 *chatinstalledappteamsapp.ChatInstalledAppTeamsAppClient
@@ -1018,6 +855,51 @@ type Client struct {
 	MobileAppTroubleshootingEventAppLogCollectionRequest                     *mobileapptroubleshootingeventapplogcollectionrequest.MobileAppTroubleshootingEventAppLogCollectionRequestClient
 	Notification                                                             *notification.NotificationClient
 	OAuth2PermissionGrant                                                    *oauth2permissiongrant.OAuth2PermissionGrantClient
+	Onenote                                                                  *onenote.OnenoteClient
+	OnenoteNotebook                                                          *onenotenotebook.OnenoteNotebookClient
+	OnenoteNotebookSection                                                   *onenotenotebooksection.OnenoteNotebookSectionClient
+	OnenoteNotebookSectionGroup                                              *onenotenotebooksectiongroup.OnenoteNotebookSectionGroupClient
+	OnenoteNotebookSectionGroupParentNotebook                                *onenotenotebooksectiongroupparentnotebook.OnenoteNotebookSectionGroupParentNotebookClient
+	OnenoteNotebookSectionGroupParentSectionGroup                            *onenotenotebooksectiongroupparentsectiongroup.OnenoteNotebookSectionGroupParentSectionGroupClient
+	OnenoteNotebookSectionGroupSection                                       *onenotenotebooksectiongroupsection.OnenoteNotebookSectionGroupSectionClient
+	OnenoteNotebookSectionGroupSectionGroup                                  *onenotenotebooksectiongroupsectiongroup.OnenoteNotebookSectionGroupSectionGroupClient
+	OnenoteNotebookSectionGroupSectionPage                                   *onenotenotebooksectiongroupsectionpage.OnenoteNotebookSectionGroupSectionPageClient
+	OnenoteNotebookSectionGroupSectionPageContent                            *onenotenotebooksectiongroupsectionpagecontent.OnenoteNotebookSectionGroupSectionPageContentClient
+	OnenoteNotebookSectionGroupSectionPageParentNotebook                     *onenotenotebooksectiongroupsectionpageparentnotebook.OnenoteNotebookSectionGroupSectionPageParentNotebookClient
+	OnenoteNotebookSectionGroupSectionPageParentSection                      *onenotenotebooksectiongroupsectionpageparentsection.OnenoteNotebookSectionGroupSectionPageParentSectionClient
+	OnenoteNotebookSectionGroupSectionParentNotebook                         *onenotenotebooksectiongroupsectionparentnotebook.OnenoteNotebookSectionGroupSectionParentNotebookClient
+	OnenoteNotebookSectionGroupSectionParentSectionGroup                     *onenotenotebooksectiongroupsectionparentsectiongroup.OnenoteNotebookSectionGroupSectionParentSectionGroupClient
+	OnenoteNotebookSectionPage                                               *onenotenotebooksectionpage.OnenoteNotebookSectionPageClient
+	OnenoteNotebookSectionPageContent                                        *onenotenotebooksectionpagecontent.OnenoteNotebookSectionPageContentClient
+	OnenoteNotebookSectionPageParentNotebook                                 *onenotenotebooksectionpageparentnotebook.OnenoteNotebookSectionPageParentNotebookClient
+	OnenoteNotebookSectionPageParentSection                                  *onenotenotebooksectionpageparentsection.OnenoteNotebookSectionPageParentSectionClient
+	OnenoteNotebookSectionParentNotebook                                     *onenotenotebooksectionparentnotebook.OnenoteNotebookSectionParentNotebookClient
+	OnenoteNotebookSectionParentSectionGroup                                 *onenotenotebooksectionparentsectiongroup.OnenoteNotebookSectionParentSectionGroupClient
+	OnenoteOperation                                                         *onenoteoperation.OnenoteOperationClient
+	OnenotePage                                                              *onenotepage.OnenotePageClient
+	OnenotePageContent                                                       *onenotepagecontent.OnenotePageContentClient
+	OnenotePageParentNotebook                                                *onenotepageparentnotebook.OnenotePageParentNotebookClient
+	OnenotePageParentSection                                                 *onenotepageparentsection.OnenotePageParentSectionClient
+	OnenoteResource                                                          *onenoteresource.OnenoteResourceClient
+	OnenoteResourceContent                                                   *onenoteresourcecontent.OnenoteResourceContentClient
+	OnenoteSection                                                           *onenotesection.OnenoteSectionClient
+	OnenoteSectionGroup                                                      *onenotesectiongroup.OnenoteSectionGroupClient
+	OnenoteSectionGroupParentNotebook                                        *onenotesectiongroupparentnotebook.OnenoteSectionGroupParentNotebookClient
+	OnenoteSectionGroupParentSectionGroup                                    *onenotesectiongroupparentsectiongroup.OnenoteSectionGroupParentSectionGroupClient
+	OnenoteSectionGroupSection                                               *onenotesectiongroupsection.OnenoteSectionGroupSectionClient
+	OnenoteSectionGroupSectionGroup                                          *onenotesectiongroupsectiongroup.OnenoteSectionGroupSectionGroupClient
+	OnenoteSectionGroupSectionPage                                           *onenotesectiongroupsectionpage.OnenoteSectionGroupSectionPageClient
+	OnenoteSectionGroupSectionPageContent                                    *onenotesectiongroupsectionpagecontent.OnenoteSectionGroupSectionPageContentClient
+	OnenoteSectionGroupSectionPageParentNotebook                             *onenotesectiongroupsectionpageparentnotebook.OnenoteSectionGroupSectionPageParentNotebookClient
+	OnenoteSectionGroupSectionPageParentSection                              *onenotesectiongroupsectionpageparentsection.OnenoteSectionGroupSectionPageParentSectionClient
+	OnenoteSectionGroupSectionParentNotebook                                 *onenotesectiongroupsectionparentnotebook.OnenoteSectionGroupSectionParentNotebookClient
+	OnenoteSectionGroupSectionParentSectionGroup                             *onenotesectiongroupsectionparentsectiongroup.OnenoteSectionGroupSectionParentSectionGroupClient
+	OnenoteSectionPage                                                       *onenotesectionpage.OnenoteSectionPageClient
+	OnenoteSectionPageContent                                                *onenotesectionpagecontent.OnenoteSectionPageContentClient
+	OnenoteSectionPageParentNotebook                                         *onenotesectionpageparentnotebook.OnenoteSectionPageParentNotebookClient
+	OnenoteSectionPageParentSection                                          *onenotesectionpageparentsection.OnenoteSectionPageParentSectionClient
+	OnenoteSectionParentNotebook                                             *onenotesectionparentnotebook.OnenoteSectionParentNotebookClient
+	OnenoteSectionParentSectionGroup                                         *onenotesectionparentsectiongroup.OnenoteSectionParentSectionGroupClient
 	OnlineMeeting                                                            *onlinemeeting.OnlineMeetingClient
 	OnlineMeetingAlternativeRecording                                        *onlinemeetingalternativerecording.OnlineMeetingAlternativeRecordingClient
 	OnlineMeetingAttendanceReport                                            *onlinemeetingattendancereport.OnlineMeetingAttendanceReportClient
@@ -1055,12 +937,14 @@ type Client struct {
 	PendingAccessReviewInstanceDecisionInstanceContactedReviewer             *pendingaccessreviewinstancedecisioninstancecontactedreviewer.PendingAccessReviewInstanceDecisionInstanceContactedReviewerClient
 	PendingAccessReviewInstanceDecisionInstanceDefinition                    *pendingaccessreviewinstancedecisioninstancedefinition.PendingAccessReviewInstanceDecisionInstanceDefinitionClient
 	PendingAccessReviewInstanceDecisionInstanceStage                         *pendingaccessreviewinstancedecisioninstancestage.PendingAccessReviewInstanceDecisionInstanceStageClient
+	PendingAccessReviewInstanceDecisionInstanceStageDecision                 *pendingaccessreviewinstancedecisioninstancestagedecision.PendingAccessReviewInstanceDecisionInstanceStageDecisionClient
 	PendingAccessReviewInstanceDefinition                                    *pendingaccessreviewinstancedefinition.PendingAccessReviewInstanceDefinitionClient
 	PendingAccessReviewInstanceStage                                         *pendingaccessreviewinstancestage.PendingAccessReviewInstanceStageClient
 	PendingAccessReviewInstanceStageDecision                                 *pendingaccessreviewinstancestagedecision.PendingAccessReviewInstanceStageDecisionClient
 	PendingAccessReviewInstanceStageDecisionInsight                          *pendingaccessreviewinstancestagedecisioninsight.PendingAccessReviewInstanceStageDecisionInsightClient
 	PendingAccessReviewInstanceStageDecisionInstance                         *pendingaccessreviewinstancestagedecisioninstance.PendingAccessReviewInstanceStageDecisionInstanceClient
 	PendingAccessReviewInstanceStageDecisionInstanceContactedReviewer        *pendingaccessreviewinstancestagedecisioninstancecontactedreviewer.PendingAccessReviewInstanceStageDecisionInstanceContactedReviewerClient
+	PendingAccessReviewInstanceStageDecisionInstanceDecision                 *pendingaccessreviewinstancestagedecisioninstancedecision.PendingAccessReviewInstanceStageDecisionInstanceDecisionClient
 	PendingAccessReviewInstanceStageDecisionInstanceDefinition               *pendingaccessreviewinstancestagedecisioninstancedefinition.PendingAccessReviewInstanceStageDecisionInstanceDefinitionClient
 	PermissionGrant                                                          *permissiongrant.PermissionGrantClient
 	Person                                                                   *person.PersonClient
@@ -1349,636 +1233,6 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *msgraph.Clien
 		return nil, fmt.Errorf("building AuthenticationWindowsHelloForBusinessMethodDevice client: %+v", err)
 	}
 	configureFunc(authenticationWindowsHelloForBusinessMethodDeviceClient.Client)
-
-	calendarCalendarPermissionClient, err := calendarcalendarpermission.NewCalendarCalendarPermissionClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building CalendarCalendarPermission client: %+v", err)
-	}
-	configureFunc(calendarCalendarPermissionClient.Client)
-
-	calendarCalendarViewAttachmentClient, err := calendarcalendarviewattachment.NewCalendarCalendarViewAttachmentClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building CalendarCalendarViewAttachment client: %+v", err)
-	}
-	configureFunc(calendarCalendarViewAttachmentClient.Client)
-
-	calendarCalendarViewCalendarClient, err := calendarcalendarviewcalendar.NewCalendarCalendarViewCalendarClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building CalendarCalendarViewCalendar client: %+v", err)
-	}
-	configureFunc(calendarCalendarViewCalendarClient.Client)
-
-	calendarCalendarViewClient, err := calendarcalendarview.NewCalendarCalendarViewClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building CalendarCalendarView client: %+v", err)
-	}
-	configureFunc(calendarCalendarViewClient.Client)
-
-	calendarCalendarViewExceptionOccurrenceAttachmentClient, err := calendarcalendarviewexceptionoccurrenceattachment.NewCalendarCalendarViewExceptionOccurrenceAttachmentClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building CalendarCalendarViewExceptionOccurrenceAttachment client: %+v", err)
-	}
-	configureFunc(calendarCalendarViewExceptionOccurrenceAttachmentClient.Client)
-
-	calendarCalendarViewExceptionOccurrenceCalendarClient, err := calendarcalendarviewexceptionoccurrencecalendar.NewCalendarCalendarViewExceptionOccurrenceCalendarClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building CalendarCalendarViewExceptionOccurrenceCalendar client: %+v", err)
-	}
-	configureFunc(calendarCalendarViewExceptionOccurrenceCalendarClient.Client)
-
-	calendarCalendarViewExceptionOccurrenceClient, err := calendarcalendarviewexceptionoccurrence.NewCalendarCalendarViewExceptionOccurrenceClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building CalendarCalendarViewExceptionOccurrence client: %+v", err)
-	}
-	configureFunc(calendarCalendarViewExceptionOccurrenceClient.Client)
-
-	calendarCalendarViewExceptionOccurrenceExtensionClient, err := calendarcalendarviewexceptionoccurrenceextension.NewCalendarCalendarViewExceptionOccurrenceExtensionClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building CalendarCalendarViewExceptionOccurrenceExtension client: %+v", err)
-	}
-	configureFunc(calendarCalendarViewExceptionOccurrenceExtensionClient.Client)
-
-	calendarCalendarViewExceptionOccurrenceInstanceAttachmentClient, err := calendarcalendarviewexceptionoccurrenceinstanceattachment.NewCalendarCalendarViewExceptionOccurrenceInstanceAttachmentClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building CalendarCalendarViewExceptionOccurrenceInstanceAttachment client: %+v", err)
-	}
-	configureFunc(calendarCalendarViewExceptionOccurrenceInstanceAttachmentClient.Client)
-
-	calendarCalendarViewExceptionOccurrenceInstanceCalendarClient, err := calendarcalendarviewexceptionoccurrenceinstancecalendar.NewCalendarCalendarViewExceptionOccurrenceInstanceCalendarClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building CalendarCalendarViewExceptionOccurrenceInstanceCalendar client: %+v", err)
-	}
-	configureFunc(calendarCalendarViewExceptionOccurrenceInstanceCalendarClient.Client)
-
-	calendarCalendarViewExceptionOccurrenceInstanceClient, err := calendarcalendarviewexceptionoccurrenceinstance.NewCalendarCalendarViewExceptionOccurrenceInstanceClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building CalendarCalendarViewExceptionOccurrenceInstance client: %+v", err)
-	}
-	configureFunc(calendarCalendarViewExceptionOccurrenceInstanceClient.Client)
-
-	calendarCalendarViewExceptionOccurrenceInstanceExtensionClient, err := calendarcalendarviewexceptionoccurrenceinstanceextension.NewCalendarCalendarViewExceptionOccurrenceInstanceExtensionClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building CalendarCalendarViewExceptionOccurrenceInstanceExtension client: %+v", err)
-	}
-	configureFunc(calendarCalendarViewExceptionOccurrenceInstanceExtensionClient.Client)
-
-	calendarCalendarViewExtensionClient, err := calendarcalendarviewextension.NewCalendarCalendarViewExtensionClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building CalendarCalendarViewExtension client: %+v", err)
-	}
-	configureFunc(calendarCalendarViewExtensionClient.Client)
-
-	calendarCalendarViewInstanceAttachmentClient, err := calendarcalendarviewinstanceattachment.NewCalendarCalendarViewInstanceAttachmentClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building CalendarCalendarViewInstanceAttachment client: %+v", err)
-	}
-	configureFunc(calendarCalendarViewInstanceAttachmentClient.Client)
-
-	calendarCalendarViewInstanceCalendarClient, err := calendarcalendarviewinstancecalendar.NewCalendarCalendarViewInstanceCalendarClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building CalendarCalendarViewInstanceCalendar client: %+v", err)
-	}
-	configureFunc(calendarCalendarViewInstanceCalendarClient.Client)
-
-	calendarCalendarViewInstanceClient, err := calendarcalendarviewinstance.NewCalendarCalendarViewInstanceClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building CalendarCalendarViewInstance client: %+v", err)
-	}
-	configureFunc(calendarCalendarViewInstanceClient.Client)
-
-	calendarCalendarViewInstanceExceptionOccurrenceAttachmentClient, err := calendarcalendarviewinstanceexceptionoccurrenceattachment.NewCalendarCalendarViewInstanceExceptionOccurrenceAttachmentClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building CalendarCalendarViewInstanceExceptionOccurrenceAttachment client: %+v", err)
-	}
-	configureFunc(calendarCalendarViewInstanceExceptionOccurrenceAttachmentClient.Client)
-
-	calendarCalendarViewInstanceExceptionOccurrenceCalendarClient, err := calendarcalendarviewinstanceexceptionoccurrencecalendar.NewCalendarCalendarViewInstanceExceptionOccurrenceCalendarClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building CalendarCalendarViewInstanceExceptionOccurrenceCalendar client: %+v", err)
-	}
-	configureFunc(calendarCalendarViewInstanceExceptionOccurrenceCalendarClient.Client)
-
-	calendarCalendarViewInstanceExceptionOccurrenceClient, err := calendarcalendarviewinstanceexceptionoccurrence.NewCalendarCalendarViewInstanceExceptionOccurrenceClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building CalendarCalendarViewInstanceExceptionOccurrence client: %+v", err)
-	}
-	configureFunc(calendarCalendarViewInstanceExceptionOccurrenceClient.Client)
-
-	calendarCalendarViewInstanceExceptionOccurrenceExtensionClient, err := calendarcalendarviewinstanceexceptionoccurrenceextension.NewCalendarCalendarViewInstanceExceptionOccurrenceExtensionClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building CalendarCalendarViewInstanceExceptionOccurrenceExtension client: %+v", err)
-	}
-	configureFunc(calendarCalendarViewInstanceExceptionOccurrenceExtensionClient.Client)
-
-	calendarCalendarViewInstanceExtensionClient, err := calendarcalendarviewinstanceextension.NewCalendarCalendarViewInstanceExtensionClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building CalendarCalendarViewInstanceExtension client: %+v", err)
-	}
-	configureFunc(calendarCalendarViewInstanceExtensionClient.Client)
-
-	calendarClient, err := calendar.NewCalendarClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building Calendar client: %+v", err)
-	}
-	configureFunc(calendarClient.Client)
-
-	calendarEventAttachmentClient, err := calendareventattachment.NewCalendarEventAttachmentClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building CalendarEventAttachment client: %+v", err)
-	}
-	configureFunc(calendarEventAttachmentClient.Client)
-
-	calendarEventCalendarClient, err := calendareventcalendar.NewCalendarEventCalendarClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building CalendarEventCalendar client: %+v", err)
-	}
-	configureFunc(calendarEventCalendarClient.Client)
-
-	calendarEventClient, err := calendarevent.NewCalendarEventClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building CalendarEvent client: %+v", err)
-	}
-	configureFunc(calendarEventClient.Client)
-
-	calendarEventExceptionOccurrenceAttachmentClient, err := calendareventexceptionoccurrenceattachment.NewCalendarEventExceptionOccurrenceAttachmentClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building CalendarEventExceptionOccurrenceAttachment client: %+v", err)
-	}
-	configureFunc(calendarEventExceptionOccurrenceAttachmentClient.Client)
-
-	calendarEventExceptionOccurrenceCalendarClient, err := calendareventexceptionoccurrencecalendar.NewCalendarEventExceptionOccurrenceCalendarClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building CalendarEventExceptionOccurrenceCalendar client: %+v", err)
-	}
-	configureFunc(calendarEventExceptionOccurrenceCalendarClient.Client)
-
-	calendarEventExceptionOccurrenceClient, err := calendareventexceptionoccurrence.NewCalendarEventExceptionOccurrenceClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building CalendarEventExceptionOccurrence client: %+v", err)
-	}
-	configureFunc(calendarEventExceptionOccurrenceClient.Client)
-
-	calendarEventExceptionOccurrenceExtensionClient, err := calendareventexceptionoccurrenceextension.NewCalendarEventExceptionOccurrenceExtensionClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building CalendarEventExceptionOccurrenceExtension client: %+v", err)
-	}
-	configureFunc(calendarEventExceptionOccurrenceExtensionClient.Client)
-
-	calendarEventExceptionOccurrenceInstanceAttachmentClient, err := calendareventexceptionoccurrenceinstanceattachment.NewCalendarEventExceptionOccurrenceInstanceAttachmentClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building CalendarEventExceptionOccurrenceInstanceAttachment client: %+v", err)
-	}
-	configureFunc(calendarEventExceptionOccurrenceInstanceAttachmentClient.Client)
-
-	calendarEventExceptionOccurrenceInstanceCalendarClient, err := calendareventexceptionoccurrenceinstancecalendar.NewCalendarEventExceptionOccurrenceInstanceCalendarClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building CalendarEventExceptionOccurrenceInstanceCalendar client: %+v", err)
-	}
-	configureFunc(calendarEventExceptionOccurrenceInstanceCalendarClient.Client)
-
-	calendarEventExceptionOccurrenceInstanceClient, err := calendareventexceptionoccurrenceinstance.NewCalendarEventExceptionOccurrenceInstanceClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building CalendarEventExceptionOccurrenceInstance client: %+v", err)
-	}
-	configureFunc(calendarEventExceptionOccurrenceInstanceClient.Client)
-
-	calendarEventExceptionOccurrenceInstanceExtensionClient, err := calendareventexceptionoccurrenceinstanceextension.NewCalendarEventExceptionOccurrenceInstanceExtensionClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building CalendarEventExceptionOccurrenceInstanceExtension client: %+v", err)
-	}
-	configureFunc(calendarEventExceptionOccurrenceInstanceExtensionClient.Client)
-
-	calendarEventExtensionClient, err := calendareventextension.NewCalendarEventExtensionClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building CalendarEventExtension client: %+v", err)
-	}
-	configureFunc(calendarEventExtensionClient.Client)
-
-	calendarEventInstanceAttachmentClient, err := calendareventinstanceattachment.NewCalendarEventInstanceAttachmentClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building CalendarEventInstanceAttachment client: %+v", err)
-	}
-	configureFunc(calendarEventInstanceAttachmentClient.Client)
-
-	calendarEventInstanceCalendarClient, err := calendareventinstancecalendar.NewCalendarEventInstanceCalendarClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building CalendarEventInstanceCalendar client: %+v", err)
-	}
-	configureFunc(calendarEventInstanceCalendarClient.Client)
-
-	calendarEventInstanceClient, err := calendareventinstance.NewCalendarEventInstanceClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building CalendarEventInstance client: %+v", err)
-	}
-	configureFunc(calendarEventInstanceClient.Client)
-
-	calendarEventInstanceExceptionOccurrenceAttachmentClient, err := calendareventinstanceexceptionoccurrenceattachment.NewCalendarEventInstanceExceptionOccurrenceAttachmentClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building CalendarEventInstanceExceptionOccurrenceAttachment client: %+v", err)
-	}
-	configureFunc(calendarEventInstanceExceptionOccurrenceAttachmentClient.Client)
-
-	calendarEventInstanceExceptionOccurrenceCalendarClient, err := calendareventinstanceexceptionoccurrencecalendar.NewCalendarEventInstanceExceptionOccurrenceCalendarClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building CalendarEventInstanceExceptionOccurrenceCalendar client: %+v", err)
-	}
-	configureFunc(calendarEventInstanceExceptionOccurrenceCalendarClient.Client)
-
-	calendarEventInstanceExceptionOccurrenceClient, err := calendareventinstanceexceptionoccurrence.NewCalendarEventInstanceExceptionOccurrenceClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building CalendarEventInstanceExceptionOccurrence client: %+v", err)
-	}
-	configureFunc(calendarEventInstanceExceptionOccurrenceClient.Client)
-
-	calendarEventInstanceExceptionOccurrenceExtensionClient, err := calendareventinstanceexceptionoccurrenceextension.NewCalendarEventInstanceExceptionOccurrenceExtensionClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building CalendarEventInstanceExceptionOccurrenceExtension client: %+v", err)
-	}
-	configureFunc(calendarEventInstanceExceptionOccurrenceExtensionClient.Client)
-
-	calendarEventInstanceExtensionClient, err := calendareventinstanceextension.NewCalendarEventInstanceExtensionClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building CalendarEventInstanceExtension client: %+v", err)
-	}
-	configureFunc(calendarEventInstanceExtensionClient.Client)
-
-	calendarGroupCalendarCalendarPermissionClient, err := calendargroupcalendarcalendarpermission.NewCalendarGroupCalendarCalendarPermissionClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building CalendarGroupCalendarCalendarPermission client: %+v", err)
-	}
-	configureFunc(calendarGroupCalendarCalendarPermissionClient.Client)
-
-	calendarGroupCalendarCalendarViewAttachmentClient, err := calendargroupcalendarcalendarviewattachment.NewCalendarGroupCalendarCalendarViewAttachmentClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building CalendarGroupCalendarCalendarViewAttachment client: %+v", err)
-	}
-	configureFunc(calendarGroupCalendarCalendarViewAttachmentClient.Client)
-
-	calendarGroupCalendarCalendarViewCalendarClient, err := calendargroupcalendarcalendarviewcalendar.NewCalendarGroupCalendarCalendarViewCalendarClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building CalendarGroupCalendarCalendarViewCalendar client: %+v", err)
-	}
-	configureFunc(calendarGroupCalendarCalendarViewCalendarClient.Client)
-
-	calendarGroupCalendarCalendarViewClient, err := calendargroupcalendarcalendarview.NewCalendarGroupCalendarCalendarViewClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building CalendarGroupCalendarCalendarView client: %+v", err)
-	}
-	configureFunc(calendarGroupCalendarCalendarViewClient.Client)
-
-	calendarGroupCalendarCalendarViewExceptionOccurrenceAttachmentClient, err := calendargroupcalendarcalendarviewexceptionoccurrenceattachment.NewCalendarGroupCalendarCalendarViewExceptionOccurrenceAttachmentClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building CalendarGroupCalendarCalendarViewExceptionOccurrenceAttachment client: %+v", err)
-	}
-	configureFunc(calendarGroupCalendarCalendarViewExceptionOccurrenceAttachmentClient.Client)
-
-	calendarGroupCalendarCalendarViewExceptionOccurrenceCalendarClient, err := calendargroupcalendarcalendarviewexceptionoccurrencecalendar.NewCalendarGroupCalendarCalendarViewExceptionOccurrenceCalendarClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building CalendarGroupCalendarCalendarViewExceptionOccurrenceCalendar client: %+v", err)
-	}
-	configureFunc(calendarGroupCalendarCalendarViewExceptionOccurrenceCalendarClient.Client)
-
-	calendarGroupCalendarCalendarViewExceptionOccurrenceClient, err := calendargroupcalendarcalendarviewexceptionoccurrence.NewCalendarGroupCalendarCalendarViewExceptionOccurrenceClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building CalendarGroupCalendarCalendarViewExceptionOccurrence client: %+v", err)
-	}
-	configureFunc(calendarGroupCalendarCalendarViewExceptionOccurrenceClient.Client)
-
-	calendarGroupCalendarCalendarViewExceptionOccurrenceExtensionClient, err := calendargroupcalendarcalendarviewexceptionoccurrenceextension.NewCalendarGroupCalendarCalendarViewExceptionOccurrenceExtensionClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building CalendarGroupCalendarCalendarViewExceptionOccurrenceExtension client: %+v", err)
-	}
-	configureFunc(calendarGroupCalendarCalendarViewExceptionOccurrenceExtensionClient.Client)
-
-	calendarGroupCalendarCalendarViewExceptionOccurrenceInstanceAttachmentClient, err := calendargroupcalendarcalendarviewexceptionoccurrenceinstanceattachment.NewCalendarGroupCalendarCalendarViewExceptionOccurrenceInstanceAttachmentClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building CalendarGroupCalendarCalendarViewExceptionOccurrenceInstanceAttachment client: %+v", err)
-	}
-	configureFunc(calendarGroupCalendarCalendarViewExceptionOccurrenceInstanceAttachmentClient.Client)
-
-	calendarGroupCalendarCalendarViewExceptionOccurrenceInstanceCalendarClient, err := calendargroupcalendarcalendarviewexceptionoccurrenceinstancecalendar.NewCalendarGroupCalendarCalendarViewExceptionOccurrenceInstanceCalendarClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building CalendarGroupCalendarCalendarViewExceptionOccurrenceInstanceCalendar client: %+v", err)
-	}
-	configureFunc(calendarGroupCalendarCalendarViewExceptionOccurrenceInstanceCalendarClient.Client)
-
-	calendarGroupCalendarCalendarViewExceptionOccurrenceInstanceClient, err := calendargroupcalendarcalendarviewexceptionoccurrenceinstance.NewCalendarGroupCalendarCalendarViewExceptionOccurrenceInstanceClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building CalendarGroupCalendarCalendarViewExceptionOccurrenceInstance client: %+v", err)
-	}
-	configureFunc(calendarGroupCalendarCalendarViewExceptionOccurrenceInstanceClient.Client)
-
-	calendarGroupCalendarCalendarViewExceptionOccurrenceInstanceExtensionClient, err := calendargroupcalendarcalendarviewexceptionoccurrenceinstanceextension.NewCalendarGroupCalendarCalendarViewExceptionOccurrenceInstanceExtensionClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building CalendarGroupCalendarCalendarViewExceptionOccurrenceInstanceExtension client: %+v", err)
-	}
-	configureFunc(calendarGroupCalendarCalendarViewExceptionOccurrenceInstanceExtensionClient.Client)
-
-	calendarGroupCalendarCalendarViewExtensionClient, err := calendargroupcalendarcalendarviewextension.NewCalendarGroupCalendarCalendarViewExtensionClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building CalendarGroupCalendarCalendarViewExtension client: %+v", err)
-	}
-	configureFunc(calendarGroupCalendarCalendarViewExtensionClient.Client)
-
-	calendarGroupCalendarCalendarViewInstanceAttachmentClient, err := calendargroupcalendarcalendarviewinstanceattachment.NewCalendarGroupCalendarCalendarViewInstanceAttachmentClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building CalendarGroupCalendarCalendarViewInstanceAttachment client: %+v", err)
-	}
-	configureFunc(calendarGroupCalendarCalendarViewInstanceAttachmentClient.Client)
-
-	calendarGroupCalendarCalendarViewInstanceCalendarClient, err := calendargroupcalendarcalendarviewinstancecalendar.NewCalendarGroupCalendarCalendarViewInstanceCalendarClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building CalendarGroupCalendarCalendarViewInstanceCalendar client: %+v", err)
-	}
-	configureFunc(calendarGroupCalendarCalendarViewInstanceCalendarClient.Client)
-
-	calendarGroupCalendarCalendarViewInstanceClient, err := calendargroupcalendarcalendarviewinstance.NewCalendarGroupCalendarCalendarViewInstanceClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building CalendarGroupCalendarCalendarViewInstance client: %+v", err)
-	}
-	configureFunc(calendarGroupCalendarCalendarViewInstanceClient.Client)
-
-	calendarGroupCalendarCalendarViewInstanceExceptionOccurrenceAttachmentClient, err := calendargroupcalendarcalendarviewinstanceexceptionoccurrenceattachment.NewCalendarGroupCalendarCalendarViewInstanceExceptionOccurrenceAttachmentClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building CalendarGroupCalendarCalendarViewInstanceExceptionOccurrenceAttachment client: %+v", err)
-	}
-	configureFunc(calendarGroupCalendarCalendarViewInstanceExceptionOccurrenceAttachmentClient.Client)
-
-	calendarGroupCalendarCalendarViewInstanceExceptionOccurrenceCalendarClient, err := calendargroupcalendarcalendarviewinstanceexceptionoccurrencecalendar.NewCalendarGroupCalendarCalendarViewInstanceExceptionOccurrenceCalendarClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building CalendarGroupCalendarCalendarViewInstanceExceptionOccurrenceCalendar client: %+v", err)
-	}
-	configureFunc(calendarGroupCalendarCalendarViewInstanceExceptionOccurrenceCalendarClient.Client)
-
-	calendarGroupCalendarCalendarViewInstanceExceptionOccurrenceClient, err := calendargroupcalendarcalendarviewinstanceexceptionoccurrence.NewCalendarGroupCalendarCalendarViewInstanceExceptionOccurrenceClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building CalendarGroupCalendarCalendarViewInstanceExceptionOccurrence client: %+v", err)
-	}
-	configureFunc(calendarGroupCalendarCalendarViewInstanceExceptionOccurrenceClient.Client)
-
-	calendarGroupCalendarCalendarViewInstanceExceptionOccurrenceExtensionClient, err := calendargroupcalendarcalendarviewinstanceexceptionoccurrenceextension.NewCalendarGroupCalendarCalendarViewInstanceExceptionOccurrenceExtensionClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building CalendarGroupCalendarCalendarViewInstanceExceptionOccurrenceExtension client: %+v", err)
-	}
-	configureFunc(calendarGroupCalendarCalendarViewInstanceExceptionOccurrenceExtensionClient.Client)
-
-	calendarGroupCalendarCalendarViewInstanceExtensionClient, err := calendargroupcalendarcalendarviewinstanceextension.NewCalendarGroupCalendarCalendarViewInstanceExtensionClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building CalendarGroupCalendarCalendarViewInstanceExtension client: %+v", err)
-	}
-	configureFunc(calendarGroupCalendarCalendarViewInstanceExtensionClient.Client)
-
-	calendarGroupCalendarClient, err := calendargroupcalendar.NewCalendarGroupCalendarClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building CalendarGroupCalendar client: %+v", err)
-	}
-	configureFunc(calendarGroupCalendarClient.Client)
-
-	calendarGroupCalendarEventAttachmentClient, err := calendargroupcalendareventattachment.NewCalendarGroupCalendarEventAttachmentClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building CalendarGroupCalendarEventAttachment client: %+v", err)
-	}
-	configureFunc(calendarGroupCalendarEventAttachmentClient.Client)
-
-	calendarGroupCalendarEventCalendarClient, err := calendargroupcalendareventcalendar.NewCalendarGroupCalendarEventCalendarClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building CalendarGroupCalendarEventCalendar client: %+v", err)
-	}
-	configureFunc(calendarGroupCalendarEventCalendarClient.Client)
-
-	calendarGroupCalendarEventClient, err := calendargroupcalendarevent.NewCalendarGroupCalendarEventClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building CalendarGroupCalendarEvent client: %+v", err)
-	}
-	configureFunc(calendarGroupCalendarEventClient.Client)
-
-	calendarGroupCalendarEventExceptionOccurrenceAttachmentClient, err := calendargroupcalendareventexceptionoccurrenceattachment.NewCalendarGroupCalendarEventExceptionOccurrenceAttachmentClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building CalendarGroupCalendarEventExceptionOccurrenceAttachment client: %+v", err)
-	}
-	configureFunc(calendarGroupCalendarEventExceptionOccurrenceAttachmentClient.Client)
-
-	calendarGroupCalendarEventExceptionOccurrenceCalendarClient, err := calendargroupcalendareventexceptionoccurrencecalendar.NewCalendarGroupCalendarEventExceptionOccurrenceCalendarClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building CalendarGroupCalendarEventExceptionOccurrenceCalendar client: %+v", err)
-	}
-	configureFunc(calendarGroupCalendarEventExceptionOccurrenceCalendarClient.Client)
-
-	calendarGroupCalendarEventExceptionOccurrenceClient, err := calendargroupcalendareventexceptionoccurrence.NewCalendarGroupCalendarEventExceptionOccurrenceClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building CalendarGroupCalendarEventExceptionOccurrence client: %+v", err)
-	}
-	configureFunc(calendarGroupCalendarEventExceptionOccurrenceClient.Client)
-
-	calendarGroupCalendarEventExceptionOccurrenceExtensionClient, err := calendargroupcalendareventexceptionoccurrenceextension.NewCalendarGroupCalendarEventExceptionOccurrenceExtensionClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building CalendarGroupCalendarEventExceptionOccurrenceExtension client: %+v", err)
-	}
-	configureFunc(calendarGroupCalendarEventExceptionOccurrenceExtensionClient.Client)
-
-	calendarGroupCalendarEventExceptionOccurrenceInstanceAttachmentClient, err := calendargroupcalendareventexceptionoccurrenceinstanceattachment.NewCalendarGroupCalendarEventExceptionOccurrenceInstanceAttachmentClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building CalendarGroupCalendarEventExceptionOccurrenceInstanceAttachment client: %+v", err)
-	}
-	configureFunc(calendarGroupCalendarEventExceptionOccurrenceInstanceAttachmentClient.Client)
-
-	calendarGroupCalendarEventExceptionOccurrenceInstanceCalendarClient, err := calendargroupcalendareventexceptionoccurrenceinstancecalendar.NewCalendarGroupCalendarEventExceptionOccurrenceInstanceCalendarClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building CalendarGroupCalendarEventExceptionOccurrenceInstanceCalendar client: %+v", err)
-	}
-	configureFunc(calendarGroupCalendarEventExceptionOccurrenceInstanceCalendarClient.Client)
-
-	calendarGroupCalendarEventExceptionOccurrenceInstanceClient, err := calendargroupcalendareventexceptionoccurrenceinstance.NewCalendarGroupCalendarEventExceptionOccurrenceInstanceClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building CalendarGroupCalendarEventExceptionOccurrenceInstance client: %+v", err)
-	}
-	configureFunc(calendarGroupCalendarEventExceptionOccurrenceInstanceClient.Client)
-
-	calendarGroupCalendarEventExceptionOccurrenceInstanceExtensionClient, err := calendargroupcalendareventexceptionoccurrenceinstanceextension.NewCalendarGroupCalendarEventExceptionOccurrenceInstanceExtensionClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building CalendarGroupCalendarEventExceptionOccurrenceInstanceExtension client: %+v", err)
-	}
-	configureFunc(calendarGroupCalendarEventExceptionOccurrenceInstanceExtensionClient.Client)
-
-	calendarGroupCalendarEventExtensionClient, err := calendargroupcalendareventextension.NewCalendarGroupCalendarEventExtensionClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building CalendarGroupCalendarEventExtension client: %+v", err)
-	}
-	configureFunc(calendarGroupCalendarEventExtensionClient.Client)
-
-	calendarGroupCalendarEventInstanceAttachmentClient, err := calendargroupcalendareventinstanceattachment.NewCalendarGroupCalendarEventInstanceAttachmentClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building CalendarGroupCalendarEventInstanceAttachment client: %+v", err)
-	}
-	configureFunc(calendarGroupCalendarEventInstanceAttachmentClient.Client)
-
-	calendarGroupCalendarEventInstanceCalendarClient, err := calendargroupcalendareventinstancecalendar.NewCalendarGroupCalendarEventInstanceCalendarClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building CalendarGroupCalendarEventInstanceCalendar client: %+v", err)
-	}
-	configureFunc(calendarGroupCalendarEventInstanceCalendarClient.Client)
-
-	calendarGroupCalendarEventInstanceClient, err := calendargroupcalendareventinstance.NewCalendarGroupCalendarEventInstanceClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building CalendarGroupCalendarEventInstance client: %+v", err)
-	}
-	configureFunc(calendarGroupCalendarEventInstanceClient.Client)
-
-	calendarGroupCalendarEventInstanceExceptionOccurrenceAttachmentClient, err := calendargroupcalendareventinstanceexceptionoccurrenceattachment.NewCalendarGroupCalendarEventInstanceExceptionOccurrenceAttachmentClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building CalendarGroupCalendarEventInstanceExceptionOccurrenceAttachment client: %+v", err)
-	}
-	configureFunc(calendarGroupCalendarEventInstanceExceptionOccurrenceAttachmentClient.Client)
-
-	calendarGroupCalendarEventInstanceExceptionOccurrenceCalendarClient, err := calendargroupcalendareventinstanceexceptionoccurrencecalendar.NewCalendarGroupCalendarEventInstanceExceptionOccurrenceCalendarClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building CalendarGroupCalendarEventInstanceExceptionOccurrenceCalendar client: %+v", err)
-	}
-	configureFunc(calendarGroupCalendarEventInstanceExceptionOccurrenceCalendarClient.Client)
-
-	calendarGroupCalendarEventInstanceExceptionOccurrenceClient, err := calendargroupcalendareventinstanceexceptionoccurrence.NewCalendarGroupCalendarEventInstanceExceptionOccurrenceClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building CalendarGroupCalendarEventInstanceExceptionOccurrence client: %+v", err)
-	}
-	configureFunc(calendarGroupCalendarEventInstanceExceptionOccurrenceClient.Client)
-
-	calendarGroupCalendarEventInstanceExceptionOccurrenceExtensionClient, err := calendargroupcalendareventinstanceexceptionoccurrenceextension.NewCalendarGroupCalendarEventInstanceExceptionOccurrenceExtensionClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building CalendarGroupCalendarEventInstanceExceptionOccurrenceExtension client: %+v", err)
-	}
-	configureFunc(calendarGroupCalendarEventInstanceExceptionOccurrenceExtensionClient.Client)
-
-	calendarGroupCalendarEventInstanceExtensionClient, err := calendargroupcalendareventinstanceextension.NewCalendarGroupCalendarEventInstanceExtensionClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building CalendarGroupCalendarEventInstanceExtension client: %+v", err)
-	}
-	configureFunc(calendarGroupCalendarEventInstanceExtensionClient.Client)
-
-	calendarGroupClient, err := calendargroup.NewCalendarGroupClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building CalendarGroup client: %+v", err)
-	}
-	configureFunc(calendarGroupClient.Client)
-
-	calendarViewAttachmentClient, err := calendarviewattachment.NewCalendarViewAttachmentClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building CalendarViewAttachment client: %+v", err)
-	}
-	configureFunc(calendarViewAttachmentClient.Client)
-
-	calendarViewCalendarClient, err := calendarviewcalendar.NewCalendarViewCalendarClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building CalendarViewCalendar client: %+v", err)
-	}
-	configureFunc(calendarViewCalendarClient.Client)
-
-	calendarViewClient, err := calendarview.NewCalendarViewClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building CalendarView client: %+v", err)
-	}
-	configureFunc(calendarViewClient.Client)
-
-	calendarViewExceptionOccurrenceAttachmentClient, err := calendarviewexceptionoccurrenceattachment.NewCalendarViewExceptionOccurrenceAttachmentClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building CalendarViewExceptionOccurrenceAttachment client: %+v", err)
-	}
-	configureFunc(calendarViewExceptionOccurrenceAttachmentClient.Client)
-
-	calendarViewExceptionOccurrenceCalendarClient, err := calendarviewexceptionoccurrencecalendar.NewCalendarViewExceptionOccurrenceCalendarClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building CalendarViewExceptionOccurrenceCalendar client: %+v", err)
-	}
-	configureFunc(calendarViewExceptionOccurrenceCalendarClient.Client)
-
-	calendarViewExceptionOccurrenceClient, err := calendarviewexceptionoccurrence.NewCalendarViewExceptionOccurrenceClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building CalendarViewExceptionOccurrence client: %+v", err)
-	}
-	configureFunc(calendarViewExceptionOccurrenceClient.Client)
-
-	calendarViewExceptionOccurrenceExtensionClient, err := calendarviewexceptionoccurrenceextension.NewCalendarViewExceptionOccurrenceExtensionClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building CalendarViewExceptionOccurrenceExtension client: %+v", err)
-	}
-	configureFunc(calendarViewExceptionOccurrenceExtensionClient.Client)
-
-	calendarViewExceptionOccurrenceInstanceAttachmentClient, err := calendarviewexceptionoccurrenceinstanceattachment.NewCalendarViewExceptionOccurrenceInstanceAttachmentClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building CalendarViewExceptionOccurrenceInstanceAttachment client: %+v", err)
-	}
-	configureFunc(calendarViewExceptionOccurrenceInstanceAttachmentClient.Client)
-
-	calendarViewExceptionOccurrenceInstanceCalendarClient, err := calendarviewexceptionoccurrenceinstancecalendar.NewCalendarViewExceptionOccurrenceInstanceCalendarClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building CalendarViewExceptionOccurrenceInstanceCalendar client: %+v", err)
-	}
-	configureFunc(calendarViewExceptionOccurrenceInstanceCalendarClient.Client)
-
-	calendarViewExceptionOccurrenceInstanceClient, err := calendarviewexceptionoccurrenceinstance.NewCalendarViewExceptionOccurrenceInstanceClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building CalendarViewExceptionOccurrenceInstance client: %+v", err)
-	}
-	configureFunc(calendarViewExceptionOccurrenceInstanceClient.Client)
-
-	calendarViewExceptionOccurrenceInstanceExtensionClient, err := calendarviewexceptionoccurrenceinstanceextension.NewCalendarViewExceptionOccurrenceInstanceExtensionClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building CalendarViewExceptionOccurrenceInstanceExtension client: %+v", err)
-	}
-	configureFunc(calendarViewExceptionOccurrenceInstanceExtensionClient.Client)
-
-	calendarViewExtensionClient, err := calendarviewextension.NewCalendarViewExtensionClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building CalendarViewExtension client: %+v", err)
-	}
-	configureFunc(calendarViewExtensionClient.Client)
-
-	calendarViewInstanceAttachmentClient, err := calendarviewinstanceattachment.NewCalendarViewInstanceAttachmentClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building CalendarViewInstanceAttachment client: %+v", err)
-	}
-	configureFunc(calendarViewInstanceAttachmentClient.Client)
-
-	calendarViewInstanceCalendarClient, err := calendarviewinstancecalendar.NewCalendarViewInstanceCalendarClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building CalendarViewInstanceCalendar client: %+v", err)
-	}
-	configureFunc(calendarViewInstanceCalendarClient.Client)
-
-	calendarViewInstanceClient, err := calendarviewinstance.NewCalendarViewInstanceClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building CalendarViewInstance client: %+v", err)
-	}
-	configureFunc(calendarViewInstanceClient.Client)
-
-	calendarViewInstanceExceptionOccurrenceAttachmentClient, err := calendarviewinstanceexceptionoccurrenceattachment.NewCalendarViewInstanceExceptionOccurrenceAttachmentClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building CalendarViewInstanceExceptionOccurrenceAttachment client: %+v", err)
-	}
-	configureFunc(calendarViewInstanceExceptionOccurrenceAttachmentClient.Client)
-
-	calendarViewInstanceExceptionOccurrenceCalendarClient, err := calendarviewinstanceexceptionoccurrencecalendar.NewCalendarViewInstanceExceptionOccurrenceCalendarClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building CalendarViewInstanceExceptionOccurrenceCalendar client: %+v", err)
-	}
-	configureFunc(calendarViewInstanceExceptionOccurrenceCalendarClient.Client)
-
-	calendarViewInstanceExceptionOccurrenceClient, err := calendarviewinstanceexceptionoccurrence.NewCalendarViewInstanceExceptionOccurrenceClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building CalendarViewInstanceExceptionOccurrence client: %+v", err)
-	}
-	configureFunc(calendarViewInstanceExceptionOccurrenceClient.Client)
-
-	calendarViewInstanceExceptionOccurrenceExtensionClient, err := calendarviewinstanceexceptionoccurrenceextension.NewCalendarViewInstanceExceptionOccurrenceExtensionClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building CalendarViewInstanceExceptionOccurrenceExtension client: %+v", err)
-	}
-	configureFunc(calendarViewInstanceExceptionOccurrenceExtensionClient.Client)
-
-	calendarViewInstanceExtensionClient, err := calendarviewinstanceextension.NewCalendarViewInstanceExtensionClientWithBaseURI(sdkApi)
-	if err != nil {
-		return nil, fmt.Errorf("building CalendarViewInstanceExtension client: %+v", err)
-	}
-	configureFunc(calendarViewInstanceExtensionClient.Client)
 
 	chatClient, err := chat.NewChatClientWithBaseURI(sdkApi)
 	if err != nil {
@@ -3768,6 +3022,276 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *msgraph.Clien
 	}
 	configureFunc(oAuth2PermissionGrantClient.Client)
 
+	onenoteClient, err := onenote.NewOnenoteClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building Onenote client: %+v", err)
+	}
+	configureFunc(onenoteClient.Client)
+
+	onenoteNotebookClient, err := onenotenotebook.NewOnenoteNotebookClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building OnenoteNotebook client: %+v", err)
+	}
+	configureFunc(onenoteNotebookClient.Client)
+
+	onenoteNotebookSectionClient, err := onenotenotebooksection.NewOnenoteNotebookSectionClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building OnenoteNotebookSection client: %+v", err)
+	}
+	configureFunc(onenoteNotebookSectionClient.Client)
+
+	onenoteNotebookSectionGroupClient, err := onenotenotebooksectiongroup.NewOnenoteNotebookSectionGroupClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building OnenoteNotebookSectionGroup client: %+v", err)
+	}
+	configureFunc(onenoteNotebookSectionGroupClient.Client)
+
+	onenoteNotebookSectionGroupParentNotebookClient, err := onenotenotebooksectiongroupparentnotebook.NewOnenoteNotebookSectionGroupParentNotebookClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building OnenoteNotebookSectionGroupParentNotebook client: %+v", err)
+	}
+	configureFunc(onenoteNotebookSectionGroupParentNotebookClient.Client)
+
+	onenoteNotebookSectionGroupParentSectionGroupClient, err := onenotenotebooksectiongroupparentsectiongroup.NewOnenoteNotebookSectionGroupParentSectionGroupClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building OnenoteNotebookSectionGroupParentSectionGroup client: %+v", err)
+	}
+	configureFunc(onenoteNotebookSectionGroupParentSectionGroupClient.Client)
+
+	onenoteNotebookSectionGroupSectionClient, err := onenotenotebooksectiongroupsection.NewOnenoteNotebookSectionGroupSectionClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building OnenoteNotebookSectionGroupSection client: %+v", err)
+	}
+	configureFunc(onenoteNotebookSectionGroupSectionClient.Client)
+
+	onenoteNotebookSectionGroupSectionGroupClient, err := onenotenotebooksectiongroupsectiongroup.NewOnenoteNotebookSectionGroupSectionGroupClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building OnenoteNotebookSectionGroupSectionGroup client: %+v", err)
+	}
+	configureFunc(onenoteNotebookSectionGroupSectionGroupClient.Client)
+
+	onenoteNotebookSectionGroupSectionPageClient, err := onenotenotebooksectiongroupsectionpage.NewOnenoteNotebookSectionGroupSectionPageClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building OnenoteNotebookSectionGroupSectionPage client: %+v", err)
+	}
+	configureFunc(onenoteNotebookSectionGroupSectionPageClient.Client)
+
+	onenoteNotebookSectionGroupSectionPageContentClient, err := onenotenotebooksectiongroupsectionpagecontent.NewOnenoteNotebookSectionGroupSectionPageContentClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building OnenoteNotebookSectionGroupSectionPageContent client: %+v", err)
+	}
+	configureFunc(onenoteNotebookSectionGroupSectionPageContentClient.Client)
+
+	onenoteNotebookSectionGroupSectionPageParentNotebookClient, err := onenotenotebooksectiongroupsectionpageparentnotebook.NewOnenoteNotebookSectionGroupSectionPageParentNotebookClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building OnenoteNotebookSectionGroupSectionPageParentNotebook client: %+v", err)
+	}
+	configureFunc(onenoteNotebookSectionGroupSectionPageParentNotebookClient.Client)
+
+	onenoteNotebookSectionGroupSectionPageParentSectionClient, err := onenotenotebooksectiongroupsectionpageparentsection.NewOnenoteNotebookSectionGroupSectionPageParentSectionClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building OnenoteNotebookSectionGroupSectionPageParentSection client: %+v", err)
+	}
+	configureFunc(onenoteNotebookSectionGroupSectionPageParentSectionClient.Client)
+
+	onenoteNotebookSectionGroupSectionParentNotebookClient, err := onenotenotebooksectiongroupsectionparentnotebook.NewOnenoteNotebookSectionGroupSectionParentNotebookClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building OnenoteNotebookSectionGroupSectionParentNotebook client: %+v", err)
+	}
+	configureFunc(onenoteNotebookSectionGroupSectionParentNotebookClient.Client)
+
+	onenoteNotebookSectionGroupSectionParentSectionGroupClient, err := onenotenotebooksectiongroupsectionparentsectiongroup.NewOnenoteNotebookSectionGroupSectionParentSectionGroupClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building OnenoteNotebookSectionGroupSectionParentSectionGroup client: %+v", err)
+	}
+	configureFunc(onenoteNotebookSectionGroupSectionParentSectionGroupClient.Client)
+
+	onenoteNotebookSectionPageClient, err := onenotenotebooksectionpage.NewOnenoteNotebookSectionPageClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building OnenoteNotebookSectionPage client: %+v", err)
+	}
+	configureFunc(onenoteNotebookSectionPageClient.Client)
+
+	onenoteNotebookSectionPageContentClient, err := onenotenotebooksectionpagecontent.NewOnenoteNotebookSectionPageContentClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building OnenoteNotebookSectionPageContent client: %+v", err)
+	}
+	configureFunc(onenoteNotebookSectionPageContentClient.Client)
+
+	onenoteNotebookSectionPageParentNotebookClient, err := onenotenotebooksectionpageparentnotebook.NewOnenoteNotebookSectionPageParentNotebookClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building OnenoteNotebookSectionPageParentNotebook client: %+v", err)
+	}
+	configureFunc(onenoteNotebookSectionPageParentNotebookClient.Client)
+
+	onenoteNotebookSectionPageParentSectionClient, err := onenotenotebooksectionpageparentsection.NewOnenoteNotebookSectionPageParentSectionClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building OnenoteNotebookSectionPageParentSection client: %+v", err)
+	}
+	configureFunc(onenoteNotebookSectionPageParentSectionClient.Client)
+
+	onenoteNotebookSectionParentNotebookClient, err := onenotenotebooksectionparentnotebook.NewOnenoteNotebookSectionParentNotebookClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building OnenoteNotebookSectionParentNotebook client: %+v", err)
+	}
+	configureFunc(onenoteNotebookSectionParentNotebookClient.Client)
+
+	onenoteNotebookSectionParentSectionGroupClient, err := onenotenotebooksectionparentsectiongroup.NewOnenoteNotebookSectionParentSectionGroupClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building OnenoteNotebookSectionParentSectionGroup client: %+v", err)
+	}
+	configureFunc(onenoteNotebookSectionParentSectionGroupClient.Client)
+
+	onenoteOperationClient, err := onenoteoperation.NewOnenoteOperationClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building OnenoteOperation client: %+v", err)
+	}
+	configureFunc(onenoteOperationClient.Client)
+
+	onenotePageClient, err := onenotepage.NewOnenotePageClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building OnenotePage client: %+v", err)
+	}
+	configureFunc(onenotePageClient.Client)
+
+	onenotePageContentClient, err := onenotepagecontent.NewOnenotePageContentClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building OnenotePageContent client: %+v", err)
+	}
+	configureFunc(onenotePageContentClient.Client)
+
+	onenotePageParentNotebookClient, err := onenotepageparentnotebook.NewOnenotePageParentNotebookClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building OnenotePageParentNotebook client: %+v", err)
+	}
+	configureFunc(onenotePageParentNotebookClient.Client)
+
+	onenotePageParentSectionClient, err := onenotepageparentsection.NewOnenotePageParentSectionClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building OnenotePageParentSection client: %+v", err)
+	}
+	configureFunc(onenotePageParentSectionClient.Client)
+
+	onenoteResourceClient, err := onenoteresource.NewOnenoteResourceClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building OnenoteResource client: %+v", err)
+	}
+	configureFunc(onenoteResourceClient.Client)
+
+	onenoteResourceContentClient, err := onenoteresourcecontent.NewOnenoteResourceContentClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building OnenoteResourceContent client: %+v", err)
+	}
+	configureFunc(onenoteResourceContentClient.Client)
+
+	onenoteSectionClient, err := onenotesection.NewOnenoteSectionClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building OnenoteSection client: %+v", err)
+	}
+	configureFunc(onenoteSectionClient.Client)
+
+	onenoteSectionGroupClient, err := onenotesectiongroup.NewOnenoteSectionGroupClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building OnenoteSectionGroup client: %+v", err)
+	}
+	configureFunc(onenoteSectionGroupClient.Client)
+
+	onenoteSectionGroupParentNotebookClient, err := onenotesectiongroupparentnotebook.NewOnenoteSectionGroupParentNotebookClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building OnenoteSectionGroupParentNotebook client: %+v", err)
+	}
+	configureFunc(onenoteSectionGroupParentNotebookClient.Client)
+
+	onenoteSectionGroupParentSectionGroupClient, err := onenotesectiongroupparentsectiongroup.NewOnenoteSectionGroupParentSectionGroupClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building OnenoteSectionGroupParentSectionGroup client: %+v", err)
+	}
+	configureFunc(onenoteSectionGroupParentSectionGroupClient.Client)
+
+	onenoteSectionGroupSectionClient, err := onenotesectiongroupsection.NewOnenoteSectionGroupSectionClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building OnenoteSectionGroupSection client: %+v", err)
+	}
+	configureFunc(onenoteSectionGroupSectionClient.Client)
+
+	onenoteSectionGroupSectionGroupClient, err := onenotesectiongroupsectiongroup.NewOnenoteSectionGroupSectionGroupClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building OnenoteSectionGroupSectionGroup client: %+v", err)
+	}
+	configureFunc(onenoteSectionGroupSectionGroupClient.Client)
+
+	onenoteSectionGroupSectionPageClient, err := onenotesectiongroupsectionpage.NewOnenoteSectionGroupSectionPageClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building OnenoteSectionGroupSectionPage client: %+v", err)
+	}
+	configureFunc(onenoteSectionGroupSectionPageClient.Client)
+
+	onenoteSectionGroupSectionPageContentClient, err := onenotesectiongroupsectionpagecontent.NewOnenoteSectionGroupSectionPageContentClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building OnenoteSectionGroupSectionPageContent client: %+v", err)
+	}
+	configureFunc(onenoteSectionGroupSectionPageContentClient.Client)
+
+	onenoteSectionGroupSectionPageParentNotebookClient, err := onenotesectiongroupsectionpageparentnotebook.NewOnenoteSectionGroupSectionPageParentNotebookClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building OnenoteSectionGroupSectionPageParentNotebook client: %+v", err)
+	}
+	configureFunc(onenoteSectionGroupSectionPageParentNotebookClient.Client)
+
+	onenoteSectionGroupSectionPageParentSectionClient, err := onenotesectiongroupsectionpageparentsection.NewOnenoteSectionGroupSectionPageParentSectionClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building OnenoteSectionGroupSectionPageParentSection client: %+v", err)
+	}
+	configureFunc(onenoteSectionGroupSectionPageParentSectionClient.Client)
+
+	onenoteSectionGroupSectionParentNotebookClient, err := onenotesectiongroupsectionparentnotebook.NewOnenoteSectionGroupSectionParentNotebookClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building OnenoteSectionGroupSectionParentNotebook client: %+v", err)
+	}
+	configureFunc(onenoteSectionGroupSectionParentNotebookClient.Client)
+
+	onenoteSectionGroupSectionParentSectionGroupClient, err := onenotesectiongroupsectionparentsectiongroup.NewOnenoteSectionGroupSectionParentSectionGroupClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building OnenoteSectionGroupSectionParentSectionGroup client: %+v", err)
+	}
+	configureFunc(onenoteSectionGroupSectionParentSectionGroupClient.Client)
+
+	onenoteSectionPageClient, err := onenotesectionpage.NewOnenoteSectionPageClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building OnenoteSectionPage client: %+v", err)
+	}
+	configureFunc(onenoteSectionPageClient.Client)
+
+	onenoteSectionPageContentClient, err := onenotesectionpagecontent.NewOnenoteSectionPageContentClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building OnenoteSectionPageContent client: %+v", err)
+	}
+	configureFunc(onenoteSectionPageContentClient.Client)
+
+	onenoteSectionPageParentNotebookClient, err := onenotesectionpageparentnotebook.NewOnenoteSectionPageParentNotebookClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building OnenoteSectionPageParentNotebook client: %+v", err)
+	}
+	configureFunc(onenoteSectionPageParentNotebookClient.Client)
+
+	onenoteSectionPageParentSectionClient, err := onenotesectionpageparentsection.NewOnenoteSectionPageParentSectionClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building OnenoteSectionPageParentSection client: %+v", err)
+	}
+	configureFunc(onenoteSectionPageParentSectionClient.Client)
+
+	onenoteSectionParentNotebookClient, err := onenotesectionparentnotebook.NewOnenoteSectionParentNotebookClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building OnenoteSectionParentNotebook client: %+v", err)
+	}
+	configureFunc(onenoteSectionParentNotebookClient.Client)
+
+	onenoteSectionParentSectionGroupClient, err := onenotesectionparentsectiongroup.NewOnenoteSectionParentSectionGroupClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building OnenoteSectionParentSectionGroup client: %+v", err)
+	}
+	configureFunc(onenoteSectionParentSectionGroupClient.Client)
+
 	onlineMeetingAlternativeRecordingClient, err := onlinemeetingalternativerecording.NewOnlineMeetingAlternativeRecordingClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building OnlineMeetingAlternativeRecording client: %+v", err)
@@ -3990,6 +3514,12 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *msgraph.Clien
 	}
 	configureFunc(pendingAccessReviewInstanceDecisionInstanceStageClient.Client)
 
+	pendingAccessReviewInstanceDecisionInstanceStageDecisionClient, err := pendingaccessreviewinstancedecisioninstancestagedecision.NewPendingAccessReviewInstanceDecisionInstanceStageDecisionClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building PendingAccessReviewInstanceDecisionInstanceStageDecision client: %+v", err)
+	}
+	configureFunc(pendingAccessReviewInstanceDecisionInstanceStageDecisionClient.Client)
+
 	pendingAccessReviewInstanceDefinitionClient, err := pendingaccessreviewinstancedefinition.NewPendingAccessReviewInstanceDefinitionClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building PendingAccessReviewInstanceDefinition client: %+v", err)
@@ -4025,6 +3555,12 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *msgraph.Clien
 		return nil, fmt.Errorf("building PendingAccessReviewInstanceStageDecisionInstanceContactedReviewer client: %+v", err)
 	}
 	configureFunc(pendingAccessReviewInstanceStageDecisionInstanceContactedReviewerClient.Client)
+
+	pendingAccessReviewInstanceStageDecisionInstanceDecisionClient, err := pendingaccessreviewinstancestagedecisioninstancedecision.NewPendingAccessReviewInstanceStageDecisionInstanceDecisionClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building PendingAccessReviewInstanceStageDecisionInstanceDecision client: %+v", err)
+	}
+	configureFunc(pendingAccessReviewInstanceStageDecisionInstanceDecisionClient.Client)
 
 	pendingAccessReviewInstanceStageDecisionInstanceDefinitionClient, err := pendingaccessreviewinstancestagedecisioninstancedefinition.NewPendingAccessReviewInstanceStageDecisionInstanceDefinitionClientWithBaseURI(sdkApi)
 	if err != nil {
@@ -4623,177 +4159,72 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *msgraph.Clien
 		AuthenticationTemporaryAccessPassMethod:                      authenticationTemporaryAccessPassMethodClient,
 		AuthenticationWindowsHelloForBusinessMethod:                  authenticationWindowsHelloForBusinessMethodClient,
 		AuthenticationWindowsHelloForBusinessMethodDevice:            authenticationWindowsHelloForBusinessMethodDeviceClient,
-		Calendar:                                                               calendarClient,
-		CalendarCalendarPermission:                                             calendarCalendarPermissionClient,
-		CalendarCalendarView:                                                   calendarCalendarViewClient,
-		CalendarCalendarViewAttachment:                                         calendarCalendarViewAttachmentClient,
-		CalendarCalendarViewCalendar:                                           calendarCalendarViewCalendarClient,
-		CalendarCalendarViewExceptionOccurrence:                                calendarCalendarViewExceptionOccurrenceClient,
-		CalendarCalendarViewExceptionOccurrenceAttachment:                      calendarCalendarViewExceptionOccurrenceAttachmentClient,
-		CalendarCalendarViewExceptionOccurrenceCalendar:                        calendarCalendarViewExceptionOccurrenceCalendarClient,
-		CalendarCalendarViewExceptionOccurrenceExtension:                       calendarCalendarViewExceptionOccurrenceExtensionClient,
-		CalendarCalendarViewExceptionOccurrenceInstance:                        calendarCalendarViewExceptionOccurrenceInstanceClient,
-		CalendarCalendarViewExceptionOccurrenceInstanceAttachment:              calendarCalendarViewExceptionOccurrenceInstanceAttachmentClient,
-		CalendarCalendarViewExceptionOccurrenceInstanceCalendar:                calendarCalendarViewExceptionOccurrenceInstanceCalendarClient,
-		CalendarCalendarViewExceptionOccurrenceInstanceExtension:               calendarCalendarViewExceptionOccurrenceInstanceExtensionClient,
-		CalendarCalendarViewExtension:                                          calendarCalendarViewExtensionClient,
-		CalendarCalendarViewInstance:                                           calendarCalendarViewInstanceClient,
-		CalendarCalendarViewInstanceAttachment:                                 calendarCalendarViewInstanceAttachmentClient,
-		CalendarCalendarViewInstanceCalendar:                                   calendarCalendarViewInstanceCalendarClient,
-		CalendarCalendarViewInstanceExceptionOccurrence:                        calendarCalendarViewInstanceExceptionOccurrenceClient,
-		CalendarCalendarViewInstanceExceptionOccurrenceAttachment:              calendarCalendarViewInstanceExceptionOccurrenceAttachmentClient,
-		CalendarCalendarViewInstanceExceptionOccurrenceCalendar:                calendarCalendarViewInstanceExceptionOccurrenceCalendarClient,
-		CalendarCalendarViewInstanceExceptionOccurrenceExtension:               calendarCalendarViewInstanceExceptionOccurrenceExtensionClient,
-		CalendarCalendarViewInstanceExtension:                                  calendarCalendarViewInstanceExtensionClient,
-		CalendarEvent:                                                          calendarEventClient,
-		CalendarEventAttachment:                                                calendarEventAttachmentClient,
-		CalendarEventCalendar:                                                  calendarEventCalendarClient,
-		CalendarEventExceptionOccurrence:                                       calendarEventExceptionOccurrenceClient,
-		CalendarEventExceptionOccurrenceAttachment:                             calendarEventExceptionOccurrenceAttachmentClient,
-		CalendarEventExceptionOccurrenceCalendar:                               calendarEventExceptionOccurrenceCalendarClient,
-		CalendarEventExceptionOccurrenceExtension:                              calendarEventExceptionOccurrenceExtensionClient,
-		CalendarEventExceptionOccurrenceInstance:                               calendarEventExceptionOccurrenceInstanceClient,
-		CalendarEventExceptionOccurrenceInstanceAttachment:                     calendarEventExceptionOccurrenceInstanceAttachmentClient,
-		CalendarEventExceptionOccurrenceInstanceCalendar:                       calendarEventExceptionOccurrenceInstanceCalendarClient,
-		CalendarEventExceptionOccurrenceInstanceExtension:                      calendarEventExceptionOccurrenceInstanceExtensionClient,
-		CalendarEventExtension:                                                 calendarEventExtensionClient,
-		CalendarEventInstance:                                                  calendarEventInstanceClient,
-		CalendarEventInstanceAttachment:                                        calendarEventInstanceAttachmentClient,
-		CalendarEventInstanceCalendar:                                          calendarEventInstanceCalendarClient,
-		CalendarEventInstanceExceptionOccurrence:                               calendarEventInstanceExceptionOccurrenceClient,
-		CalendarEventInstanceExceptionOccurrenceAttachment:                     calendarEventInstanceExceptionOccurrenceAttachmentClient,
-		CalendarEventInstanceExceptionOccurrenceCalendar:                       calendarEventInstanceExceptionOccurrenceCalendarClient,
-		CalendarEventInstanceExceptionOccurrenceExtension:                      calendarEventInstanceExceptionOccurrenceExtensionClient,
-		CalendarEventInstanceExtension:                                         calendarEventInstanceExtensionClient,
-		CalendarGroup:                                                          calendarGroupClient,
-		CalendarGroupCalendar:                                                  calendarGroupCalendarClient,
-		CalendarGroupCalendarCalendarPermission:                                calendarGroupCalendarCalendarPermissionClient,
-		CalendarGroupCalendarCalendarView:                                      calendarGroupCalendarCalendarViewClient,
-		CalendarGroupCalendarCalendarViewAttachment:                            calendarGroupCalendarCalendarViewAttachmentClient,
-		CalendarGroupCalendarCalendarViewCalendar:                              calendarGroupCalendarCalendarViewCalendarClient,
-		CalendarGroupCalendarCalendarViewExceptionOccurrence:                   calendarGroupCalendarCalendarViewExceptionOccurrenceClient,
-		CalendarGroupCalendarCalendarViewExceptionOccurrenceAttachment:         calendarGroupCalendarCalendarViewExceptionOccurrenceAttachmentClient,
-		CalendarGroupCalendarCalendarViewExceptionOccurrenceCalendar:           calendarGroupCalendarCalendarViewExceptionOccurrenceCalendarClient,
-		CalendarGroupCalendarCalendarViewExceptionOccurrenceExtension:          calendarGroupCalendarCalendarViewExceptionOccurrenceExtensionClient,
-		CalendarGroupCalendarCalendarViewExceptionOccurrenceInstance:           calendarGroupCalendarCalendarViewExceptionOccurrenceInstanceClient,
-		CalendarGroupCalendarCalendarViewExceptionOccurrenceInstanceAttachment: calendarGroupCalendarCalendarViewExceptionOccurrenceInstanceAttachmentClient,
-		CalendarGroupCalendarCalendarViewExceptionOccurrenceInstanceCalendar:   calendarGroupCalendarCalendarViewExceptionOccurrenceInstanceCalendarClient,
-		CalendarGroupCalendarCalendarViewExceptionOccurrenceInstanceExtension:  calendarGroupCalendarCalendarViewExceptionOccurrenceInstanceExtensionClient,
-		CalendarGroupCalendarCalendarViewExtension:                             calendarGroupCalendarCalendarViewExtensionClient,
-		CalendarGroupCalendarCalendarViewInstance:                              calendarGroupCalendarCalendarViewInstanceClient,
-		CalendarGroupCalendarCalendarViewInstanceAttachment:                    calendarGroupCalendarCalendarViewInstanceAttachmentClient,
-		CalendarGroupCalendarCalendarViewInstanceCalendar:                      calendarGroupCalendarCalendarViewInstanceCalendarClient,
-		CalendarGroupCalendarCalendarViewInstanceExceptionOccurrence:           calendarGroupCalendarCalendarViewInstanceExceptionOccurrenceClient,
-		CalendarGroupCalendarCalendarViewInstanceExceptionOccurrenceAttachment: calendarGroupCalendarCalendarViewInstanceExceptionOccurrenceAttachmentClient,
-		CalendarGroupCalendarCalendarViewInstanceExceptionOccurrenceCalendar:   calendarGroupCalendarCalendarViewInstanceExceptionOccurrenceCalendarClient,
-		CalendarGroupCalendarCalendarViewInstanceExceptionOccurrenceExtension:  calendarGroupCalendarCalendarViewInstanceExceptionOccurrenceExtensionClient,
-		CalendarGroupCalendarCalendarViewInstanceExtension:                     calendarGroupCalendarCalendarViewInstanceExtensionClient,
-		CalendarGroupCalendarEvent:                                             calendarGroupCalendarEventClient,
-		CalendarGroupCalendarEventAttachment:                                   calendarGroupCalendarEventAttachmentClient,
-		CalendarGroupCalendarEventCalendar:                                     calendarGroupCalendarEventCalendarClient,
-		CalendarGroupCalendarEventExceptionOccurrence:                          calendarGroupCalendarEventExceptionOccurrenceClient,
-		CalendarGroupCalendarEventExceptionOccurrenceAttachment:                calendarGroupCalendarEventExceptionOccurrenceAttachmentClient,
-		CalendarGroupCalendarEventExceptionOccurrenceCalendar:                  calendarGroupCalendarEventExceptionOccurrenceCalendarClient,
-		CalendarGroupCalendarEventExceptionOccurrenceExtension:                 calendarGroupCalendarEventExceptionOccurrenceExtensionClient,
-		CalendarGroupCalendarEventExceptionOccurrenceInstance:                  calendarGroupCalendarEventExceptionOccurrenceInstanceClient,
-		CalendarGroupCalendarEventExceptionOccurrenceInstanceAttachment:        calendarGroupCalendarEventExceptionOccurrenceInstanceAttachmentClient,
-		CalendarGroupCalendarEventExceptionOccurrenceInstanceCalendar:          calendarGroupCalendarEventExceptionOccurrenceInstanceCalendarClient,
-		CalendarGroupCalendarEventExceptionOccurrenceInstanceExtension:         calendarGroupCalendarEventExceptionOccurrenceInstanceExtensionClient,
-		CalendarGroupCalendarEventExtension:                                    calendarGroupCalendarEventExtensionClient,
-		CalendarGroupCalendarEventInstance:                                     calendarGroupCalendarEventInstanceClient,
-		CalendarGroupCalendarEventInstanceAttachment:                           calendarGroupCalendarEventInstanceAttachmentClient,
-		CalendarGroupCalendarEventInstanceCalendar:                             calendarGroupCalendarEventInstanceCalendarClient,
-		CalendarGroupCalendarEventInstanceExceptionOccurrence:                  calendarGroupCalendarEventInstanceExceptionOccurrenceClient,
-		CalendarGroupCalendarEventInstanceExceptionOccurrenceAttachment:        calendarGroupCalendarEventInstanceExceptionOccurrenceAttachmentClient,
-		CalendarGroupCalendarEventInstanceExceptionOccurrenceCalendar:          calendarGroupCalendarEventInstanceExceptionOccurrenceCalendarClient,
-		CalendarGroupCalendarEventInstanceExceptionOccurrenceExtension:         calendarGroupCalendarEventInstanceExceptionOccurrenceExtensionClient,
-		CalendarGroupCalendarEventInstanceExtension:                            calendarGroupCalendarEventInstanceExtensionClient,
-		CalendarView:                                        calendarViewClient,
-		CalendarViewAttachment:                              calendarViewAttachmentClient,
-		CalendarViewCalendar:                                calendarViewCalendarClient,
-		CalendarViewExceptionOccurrence:                     calendarViewExceptionOccurrenceClient,
-		CalendarViewExceptionOccurrenceAttachment:           calendarViewExceptionOccurrenceAttachmentClient,
-		CalendarViewExceptionOccurrenceCalendar:             calendarViewExceptionOccurrenceCalendarClient,
-		CalendarViewExceptionOccurrenceExtension:            calendarViewExceptionOccurrenceExtensionClient,
-		CalendarViewExceptionOccurrenceInstance:             calendarViewExceptionOccurrenceInstanceClient,
-		CalendarViewExceptionOccurrenceInstanceAttachment:   calendarViewExceptionOccurrenceInstanceAttachmentClient,
-		CalendarViewExceptionOccurrenceInstanceCalendar:     calendarViewExceptionOccurrenceInstanceCalendarClient,
-		CalendarViewExceptionOccurrenceInstanceExtension:    calendarViewExceptionOccurrenceInstanceExtensionClient,
-		CalendarViewExtension:                               calendarViewExtensionClient,
-		CalendarViewInstance:                                calendarViewInstanceClient,
-		CalendarViewInstanceAttachment:                      calendarViewInstanceAttachmentClient,
-		CalendarViewInstanceCalendar:                        calendarViewInstanceCalendarClient,
-		CalendarViewInstanceExceptionOccurrence:             calendarViewInstanceExceptionOccurrenceClient,
-		CalendarViewInstanceExceptionOccurrenceAttachment:   calendarViewInstanceExceptionOccurrenceAttachmentClient,
-		CalendarViewInstanceExceptionOccurrenceCalendar:     calendarViewInstanceExceptionOccurrenceCalendarClient,
-		CalendarViewInstanceExceptionOccurrenceExtension:    calendarViewInstanceExceptionOccurrenceExtensionClient,
-		CalendarViewInstanceExtension:                       calendarViewInstanceExtensionClient,
-		Chat:                                                chatClient,
-		ChatInstalledApp:                                    chatInstalledAppClient,
-		ChatInstalledAppTeamsApp:                            chatInstalledAppTeamsAppClient,
-		ChatInstalledAppTeamsAppDefinition:                  chatInstalledAppTeamsAppDefinitionClient,
-		ChatLastMessagePreview:                              chatLastMessagePreviewClient,
-		ChatMember:                                          chatMemberClient,
-		ChatMessage:                                         chatMessageClient,
-		ChatMessageHostedContent:                            chatMessageHostedContentClient,
-		ChatMessageReply:                                    chatMessageReplyClient,
-		ChatMessageReplyHostedContent:                       chatMessageReplyHostedContentClient,
-		ChatOperation:                                       chatOperationClient,
-		ChatPermissionGrant:                                 chatPermissionGrantClient,
-		ChatPinnedMessage:                                   chatPinnedMessageClient,
-		ChatPinnedMessageMessage:                            chatPinnedMessageMessageClient,
-		ChatTab:                                             chatTabClient,
-		ChatTabTeamsApp:                                     chatTabTeamsAppClient,
-		CloudClipboard:                                      cloudClipboardClient,
-		CloudClipboardItem:                                  cloudClipboardItemClient,
-		CloudPC:                                             cloudPCClient,
-		Contact:                                             contactClient,
-		ContactExtension:                                    contactExtensionClient,
-		ContactFolder:                                       contactFolderClient,
-		ContactFolderChildFolder:                            contactFolderChildFolderClient,
-		ContactFolderChildFolderContact:                     contactFolderChildFolderContactClient,
-		ContactFolderChildFolderContactExtension:            contactFolderChildFolderContactExtensionClient,
-		ContactFolderChildFolderContactPhoto:                contactFolderChildFolderContactPhotoClient,
-		ContactFolderContact:                                contactFolderContactClient,
-		ContactFolderContactExtension:                       contactFolderContactExtensionClient,
-		ContactFolderContactPhoto:                           contactFolderContactPhotoClient,
-		ContactPhoto:                                        contactPhotoClient,
-		CreatedObject:                                       createdObjectClient,
-		Device:                                              deviceClient,
-		DeviceCommand:                                       deviceCommandClient,
-		DeviceCommandResponsepayload:                        deviceCommandResponsepayloadClient,
-		DeviceEnrollmentConfiguration:                       deviceEnrollmentConfigurationClient,
-		DeviceEnrollmentConfigurationAssignment:             deviceEnrollmentConfigurationAssignmentClient,
-		DeviceExtension:                                     deviceExtensionClient,
-		DeviceManagementTroubleshootingEvent:                deviceManagementTroubleshootingEventClient,
-		DeviceMemberOf:                                      deviceMemberOfClient,
-		DeviceRegisteredOwner:                               deviceRegisteredOwnerClient,
-		DeviceRegisteredUser:                                deviceRegisteredUserClient,
-		DeviceTransitiveMemberOf:                            deviceTransitiveMemberOfClient,
-		DeviceUsageRight:                                    deviceUsageRightClient,
-		DirectReport:                                        directReportClient,
-		Drive:                                               driveClient,
-		DriveActivity:                                       driveActivityClient,
-		DriveActivityDriveItem:                              driveActivityDriveItemClient,
-		DriveActivityDriveItemContent:                       driveActivityDriveItemContentClient,
-		DriveActivityDriveItemContentStream:                 driveActivityDriveItemContentStreamClient,
-		DriveActivityListItem:                               driveActivityListItemClient,
-		DriveBundle:                                         driveBundleClient,
-		DriveBundleContent:                                  driveBundleContentClient,
-		DriveBundleContentStream:                            driveBundleContentStreamClient,
-		DriveCreatedByUser:                                  driveCreatedByUserClient,
-		DriveCreatedByUserMailboxSetting:                    driveCreatedByUserMailboxSettingClient,
-		DriveCreatedByUserServiceProvisioningError:          driveCreatedByUserServiceProvisioningErrorClient,
-		DriveFollowing:                                      driveFollowingClient,
-		DriveFollowingContent:                               driveFollowingContentClient,
-		DriveFollowingContentStream:                         driveFollowingContentStreamClient,
-		DriveItem:                                           driveItemClient,
-		DriveItemActivity:                                   driveItemActivityClient,
-		DriveItemAnalytics:                                  driveItemAnalyticsClient,
-		DriveItemAnalyticsAllTime:                           driveItemAnalyticsAllTimeClient,
-		DriveItemAnalyticsItemActivityStat:                  driveItemAnalyticsItemActivityStatClient,
-		DriveItemAnalyticsItemActivityStatActivity:          driveItemAnalyticsItemActivityStatActivityClient,
-		DriveItemAnalyticsItemActivityStatActivityDriveItem: driveItemAnalyticsItemActivityStatActivityDriveItemClient,
+		Chat:                                       chatClient,
+		ChatInstalledApp:                           chatInstalledAppClient,
+		ChatInstalledAppTeamsApp:                   chatInstalledAppTeamsAppClient,
+		ChatInstalledAppTeamsAppDefinition:         chatInstalledAppTeamsAppDefinitionClient,
+		ChatLastMessagePreview:                     chatLastMessagePreviewClient,
+		ChatMember:                                 chatMemberClient,
+		ChatMessage:                                chatMessageClient,
+		ChatMessageHostedContent:                   chatMessageHostedContentClient,
+		ChatMessageReply:                           chatMessageReplyClient,
+		ChatMessageReplyHostedContent:              chatMessageReplyHostedContentClient,
+		ChatOperation:                              chatOperationClient,
+		ChatPermissionGrant:                        chatPermissionGrantClient,
+		ChatPinnedMessage:                          chatPinnedMessageClient,
+		ChatPinnedMessageMessage:                   chatPinnedMessageMessageClient,
+		ChatTab:                                    chatTabClient,
+		ChatTabTeamsApp:                            chatTabTeamsAppClient,
+		CloudClipboard:                             cloudClipboardClient,
+		CloudClipboardItem:                         cloudClipboardItemClient,
+		CloudPC:                                    cloudPCClient,
+		Contact:                                    contactClient,
+		ContactExtension:                           contactExtensionClient,
+		ContactFolder:                              contactFolderClient,
+		ContactFolderChildFolder:                   contactFolderChildFolderClient,
+		ContactFolderChildFolderContact:            contactFolderChildFolderContactClient,
+		ContactFolderChildFolderContactExtension:   contactFolderChildFolderContactExtensionClient,
+		ContactFolderChildFolderContactPhoto:       contactFolderChildFolderContactPhotoClient,
+		ContactFolderContact:                       contactFolderContactClient,
+		ContactFolderContactExtension:              contactFolderContactExtensionClient,
+		ContactFolderContactPhoto:                  contactFolderContactPhotoClient,
+		ContactPhoto:                               contactPhotoClient,
+		CreatedObject:                              createdObjectClient,
+		Device:                                     deviceClient,
+		DeviceCommand:                              deviceCommandClient,
+		DeviceCommandResponsepayload:               deviceCommandResponsepayloadClient,
+		DeviceEnrollmentConfiguration:              deviceEnrollmentConfigurationClient,
+		DeviceEnrollmentConfigurationAssignment:    deviceEnrollmentConfigurationAssignmentClient,
+		DeviceExtension:                            deviceExtensionClient,
+		DeviceManagementTroubleshootingEvent:       deviceManagementTroubleshootingEventClient,
+		DeviceMemberOf:                             deviceMemberOfClient,
+		DeviceRegisteredOwner:                      deviceRegisteredOwnerClient,
+		DeviceRegisteredUser:                       deviceRegisteredUserClient,
+		DeviceTransitiveMemberOf:                   deviceTransitiveMemberOfClient,
+		DeviceUsageRight:                           deviceUsageRightClient,
+		DirectReport:                               directReportClient,
+		Drive:                                      driveClient,
+		DriveActivity:                              driveActivityClient,
+		DriveActivityDriveItem:                     driveActivityDriveItemClient,
+		DriveActivityDriveItemContent:              driveActivityDriveItemContentClient,
+		DriveActivityDriveItemContentStream:        driveActivityDriveItemContentStreamClient,
+		DriveActivityListItem:                      driveActivityListItemClient,
+		DriveBundle:                                driveBundleClient,
+		DriveBundleContent:                         driveBundleContentClient,
+		DriveBundleContentStream:                   driveBundleContentStreamClient,
+		DriveCreatedByUser:                         driveCreatedByUserClient,
+		DriveCreatedByUserMailboxSetting:           driveCreatedByUserMailboxSettingClient,
+		DriveCreatedByUserServiceProvisioningError: driveCreatedByUserServiceProvisioningErrorClient,
+		DriveFollowing:                             driveFollowingClient,
+		DriveFollowingContent:                      driveFollowingContentClient,
+		DriveFollowingContentStream:                driveFollowingContentStreamClient,
+		DriveItem:                                  driveItemClient,
+		DriveItemActivity:                          driveItemActivityClient,
+		DriveItemAnalytics:                         driveItemAnalyticsClient,
+		DriveItemAnalyticsAllTime:                  driveItemAnalyticsAllTimeClient,
+		DriveItemAnalyticsItemActivityStat:         driveItemAnalyticsItemActivityStatClient,
+		DriveItemAnalyticsItemActivityStatActivity: driveItemAnalyticsItemActivityStatActivityClient,
+		DriveItemAnalyticsItemActivityStatActivityDriveItem:              driveItemAnalyticsItemActivityStatActivityDriveItemClient,
 		DriveItemAnalyticsItemActivityStatActivityDriveItemContent:       driveItemAnalyticsItemActivityStatActivityDriveItemContentClient,
 		DriveItemAnalyticsItemActivityStatActivityDriveItemContentStream: driveItemAnalyticsItemActivityStatActivityDriveItemContentStreamClient,
 		DriveItemAnalyticsLastSevenDay:                                   driveItemAnalyticsLastSevenDayClient,
@@ -5024,8 +4455,53 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *msgraph.Clien
 		MobileAppIntentAndState:       mobileAppIntentAndStateClient,
 		MobileAppTroubleshootingEvent: mobileAppTroubleshootingEventClient,
 		MobileAppTroubleshootingEventAppLogCollectionRequest: mobileAppTroubleshootingEventAppLogCollectionRequestClient,
-		Notification:                                                      notificationClient,
-		OAuth2PermissionGrant:                                             oAuth2PermissionGrantClient,
+		Notification:                notificationClient,
+		OAuth2PermissionGrant:       oAuth2PermissionGrantClient,
+		Onenote:                     onenoteClient,
+		OnenoteNotebook:             onenoteNotebookClient,
+		OnenoteNotebookSection:      onenoteNotebookSectionClient,
+		OnenoteNotebookSectionGroup: onenoteNotebookSectionGroupClient,
+		OnenoteNotebookSectionGroupParentNotebook:                         onenoteNotebookSectionGroupParentNotebookClient,
+		OnenoteNotebookSectionGroupParentSectionGroup:                     onenoteNotebookSectionGroupParentSectionGroupClient,
+		OnenoteNotebookSectionGroupSection:                                onenoteNotebookSectionGroupSectionClient,
+		OnenoteNotebookSectionGroupSectionGroup:                           onenoteNotebookSectionGroupSectionGroupClient,
+		OnenoteNotebookSectionGroupSectionPage:                            onenoteNotebookSectionGroupSectionPageClient,
+		OnenoteNotebookSectionGroupSectionPageContent:                     onenoteNotebookSectionGroupSectionPageContentClient,
+		OnenoteNotebookSectionGroupSectionPageParentNotebook:              onenoteNotebookSectionGroupSectionPageParentNotebookClient,
+		OnenoteNotebookSectionGroupSectionPageParentSection:               onenoteNotebookSectionGroupSectionPageParentSectionClient,
+		OnenoteNotebookSectionGroupSectionParentNotebook:                  onenoteNotebookSectionGroupSectionParentNotebookClient,
+		OnenoteNotebookSectionGroupSectionParentSectionGroup:              onenoteNotebookSectionGroupSectionParentSectionGroupClient,
+		OnenoteNotebookSectionPage:                                        onenoteNotebookSectionPageClient,
+		OnenoteNotebookSectionPageContent:                                 onenoteNotebookSectionPageContentClient,
+		OnenoteNotebookSectionPageParentNotebook:                          onenoteNotebookSectionPageParentNotebookClient,
+		OnenoteNotebookSectionPageParentSection:                           onenoteNotebookSectionPageParentSectionClient,
+		OnenoteNotebookSectionParentNotebook:                              onenoteNotebookSectionParentNotebookClient,
+		OnenoteNotebookSectionParentSectionGroup:                          onenoteNotebookSectionParentSectionGroupClient,
+		OnenoteOperation:                                                  onenoteOperationClient,
+		OnenotePage:                                                       onenotePageClient,
+		OnenotePageContent:                                                onenotePageContentClient,
+		OnenotePageParentNotebook:                                         onenotePageParentNotebookClient,
+		OnenotePageParentSection:                                          onenotePageParentSectionClient,
+		OnenoteResource:                                                   onenoteResourceClient,
+		OnenoteResourceContent:                                            onenoteResourceContentClient,
+		OnenoteSection:                                                    onenoteSectionClient,
+		OnenoteSectionGroup:                                               onenoteSectionGroupClient,
+		OnenoteSectionGroupParentNotebook:                                 onenoteSectionGroupParentNotebookClient,
+		OnenoteSectionGroupParentSectionGroup:                             onenoteSectionGroupParentSectionGroupClient,
+		OnenoteSectionGroupSection:                                        onenoteSectionGroupSectionClient,
+		OnenoteSectionGroupSectionGroup:                                   onenoteSectionGroupSectionGroupClient,
+		OnenoteSectionGroupSectionPage:                                    onenoteSectionGroupSectionPageClient,
+		OnenoteSectionGroupSectionPageContent:                             onenoteSectionGroupSectionPageContentClient,
+		OnenoteSectionGroupSectionPageParentNotebook:                      onenoteSectionGroupSectionPageParentNotebookClient,
+		OnenoteSectionGroupSectionPageParentSection:                       onenoteSectionGroupSectionPageParentSectionClient,
+		OnenoteSectionGroupSectionParentNotebook:                          onenoteSectionGroupSectionParentNotebookClient,
+		OnenoteSectionGroupSectionParentSectionGroup:                      onenoteSectionGroupSectionParentSectionGroupClient,
+		OnenoteSectionPage:                                                onenoteSectionPageClient,
+		OnenoteSectionPageContent:                                         onenoteSectionPageContentClient,
+		OnenoteSectionPageParentNotebook:                                  onenoteSectionPageParentNotebookClient,
+		OnenoteSectionPageParentSection:                                   onenoteSectionPageParentSectionClient,
+		OnenoteSectionParentNotebook:                                      onenoteSectionParentNotebookClient,
+		OnenoteSectionParentSectionGroup:                                  onenoteSectionParentSectionGroupClient,
 		OnlineMeeting:                                                     onlineMeetingClient,
 		OnlineMeetingAlternativeRecording:                                 onlineMeetingAlternativeRecordingClient,
 		OnlineMeetingAttendanceReport:                                     onlineMeetingAttendanceReportClient,
@@ -5063,12 +4539,14 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *msgraph.Clien
 		PendingAccessReviewInstanceDecisionInstanceContactedReviewer:      pendingAccessReviewInstanceDecisionInstanceContactedReviewerClient,
 		PendingAccessReviewInstanceDecisionInstanceDefinition:             pendingAccessReviewInstanceDecisionInstanceDefinitionClient,
 		PendingAccessReviewInstanceDecisionInstanceStage:                  pendingAccessReviewInstanceDecisionInstanceStageClient,
+		PendingAccessReviewInstanceDecisionInstanceStageDecision:          pendingAccessReviewInstanceDecisionInstanceStageDecisionClient,
 		PendingAccessReviewInstanceDefinition:                             pendingAccessReviewInstanceDefinitionClient,
 		PendingAccessReviewInstanceStage:                                  pendingAccessReviewInstanceStageClient,
 		PendingAccessReviewInstanceStageDecision:                          pendingAccessReviewInstanceStageDecisionClient,
 		PendingAccessReviewInstanceStageDecisionInsight:                   pendingAccessReviewInstanceStageDecisionInsightClient,
 		PendingAccessReviewInstanceStageDecisionInstance:                  pendingAccessReviewInstanceStageDecisionInstanceClient,
 		PendingAccessReviewInstanceStageDecisionInstanceContactedReviewer: pendingAccessReviewInstanceStageDecisionInstanceContactedReviewerClient,
+		PendingAccessReviewInstanceStageDecisionInstanceDecision:          pendingAccessReviewInstanceStageDecisionInstanceDecisionClient,
 		PendingAccessReviewInstanceStageDecisionInstanceDefinition:        pendingAccessReviewInstanceStageDecisionInstanceDefinitionClient,
 		PermissionGrant:                                                   permissionGrantClient,
 		Person:                                                            personClient,

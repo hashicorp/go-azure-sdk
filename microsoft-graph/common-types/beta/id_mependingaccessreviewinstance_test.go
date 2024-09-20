@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &MePendingAccessReviewInstanceId{}
 
 func TestNewMePendingAccessReviewInstanceID(t *testing.T) {
-	id := NewMePendingAccessReviewInstanceID("accessReviewInstanceIdValue")
+	id := NewMePendingAccessReviewInstanceID("accessReviewInstanceId")
 
-	if id.AccessReviewInstanceId != "accessReviewInstanceIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'AccessReviewInstanceId'", id.AccessReviewInstanceId, "accessReviewInstanceIdValue")
+	if id.AccessReviewInstanceId != "accessReviewInstanceId" {
+		t.Fatalf("Expected %q but got %q for Segment 'AccessReviewInstanceId'", id.AccessReviewInstanceId, "accessReviewInstanceId")
 	}
 }
 
 func TestFormatMePendingAccessReviewInstanceID(t *testing.T) {
-	actual := NewMePendingAccessReviewInstanceID("accessReviewInstanceIdValue").ID()
-	expected := "/me/pendingAccessReviewInstances/accessReviewInstanceIdValue"
+	actual := NewMePendingAccessReviewInstanceID("accessReviewInstanceId").ID()
+	expected := "/me/pendingAccessReviewInstances/accessReviewInstanceId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -50,14 +50,14 @@ func TestParseMePendingAccessReviewInstanceID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/me/pendingAccessReviewInstances/accessReviewInstanceIdValue",
+			Input: "/me/pendingAccessReviewInstances/accessReviewInstanceId",
 			Expected: &MePendingAccessReviewInstanceId{
-				AccessReviewInstanceId: "accessReviewInstanceIdValue",
+				AccessReviewInstanceId: "accessReviewInstanceId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/pendingAccessReviewInstances/accessReviewInstanceIdValue/extra",
+			Input: "/me/pendingAccessReviewInstances/accessReviewInstanceId/extra",
 			Error: true,
 		},
 	}
@@ -116,26 +116,26 @@ func TestParseMePendingAccessReviewInstanceIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/me/pendingAccessReviewInstances/accessReviewInstanceIdValue",
+			Input: "/me/pendingAccessReviewInstances/accessReviewInstanceId",
 			Expected: &MePendingAccessReviewInstanceId{
-				AccessReviewInstanceId: "accessReviewInstanceIdValue",
+				AccessReviewInstanceId: "accessReviewInstanceId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/pendingAccessReviewInstances/accessReviewInstanceIdValue/extra",
+			Input: "/me/pendingAccessReviewInstances/accessReviewInstanceId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/pEnDiNgAcCeSsReViEwInStAnCeS/aCcEsSrEvIeWiNsTaNcEiDvAlUe",
+			Input: "/mE/pEnDiNgAcCeSsReViEwInStAnCeS/aCcEsSrEvIeWiNsTaNcEiD",
 			Expected: &MePendingAccessReviewInstanceId{
-				AccessReviewInstanceId: "aCcEsSrEvIeWiNsTaNcEiDvAlUe",
+				AccessReviewInstanceId: "aCcEsSrEvIeWiNsTaNcEiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/mE/pEnDiNgAcCeSsReViEwInStAnCeS/aCcEsSrEvIeWiNsTaNcEiDvAlUe/extra",
+			Input: "/mE/pEnDiNgAcCeSsReViEwInStAnCeS/aCcEsSrEvIeWiNsTaNcEiD/extra",
 			Error: true,
 		},
 	}

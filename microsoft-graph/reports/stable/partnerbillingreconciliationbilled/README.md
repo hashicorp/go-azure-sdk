@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/microsoft-graph/reports/stable/partnerbillingreconciliationbilled` Documentation
 
-The `partnerbillingreconciliationbilled` SDK allows for interaction with the Azure Resource Manager Service `reports` (API Version `stable`).
+The `partnerbillingreconciliationbilled` SDK allows for interaction with Microsoft Graph `reports` (API Version `stable`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -15,7 +15,7 @@ import "github.com/hashicorp/go-azure-sdk/microsoft-graph/reports/stable/partner
 ### Client Initialization
 
 ```go
-client := partnerbillingreconciliationbilled.NewPartnerBillingReconciliationBilledClientWithBaseURI("https://management.azure.com")
+client := partnerbillingreconciliationbilled.NewPartnerBillingReconciliationBilledClientWithBaseURI("https://graph.microsoft.com")
 client.Client.Authorizer = authorizer
 ```
 
@@ -30,7 +30,7 @@ payload := partnerbillingreconciliationbilled.CreatePartnerBillingReconciliation
 }
 
 
-read, err := client.CreatePartnerBillingReconciliationBilledExport(ctx, payload)
+read, err := client.CreatePartnerBillingReconciliationBilledExport(ctx, payload, partnerbillingreconciliationbilled.DefaultCreatePartnerBillingReconciliationBilledExportOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -82,7 +82,7 @@ payload := partnerbillingreconciliationbilled.PartnersBillingBilledReconciliatio
 }
 
 
-read, err := client.UpdatePartnerBillingReconciliationBilled(ctx, payload)
+read, err := client.UpdatePartnerBillingReconciliationBilled(ctx, payload, partnerbillingreconciliationbilled.DefaultUpdatePartnerBillingReconciliationBilledOperationOptions())
 if err != nil {
 	// handle the error
 }

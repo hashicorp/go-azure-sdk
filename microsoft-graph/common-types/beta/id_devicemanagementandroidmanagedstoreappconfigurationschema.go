@@ -93,7 +93,7 @@ func (id DeviceManagementAndroidManagedStoreAppConfigurationSchemaId) Segments()
 	return []resourceids.Segment{
 		resourceids.StaticSegment("deviceManagement", "deviceManagement", "deviceManagement"),
 		resourceids.StaticSegment("androidManagedStoreAppConfigurationSchemas", "androidManagedStoreAppConfigurationSchemas", "androidManagedStoreAppConfigurationSchemas"),
-		resourceids.UserSpecifiedSegment("androidManagedStoreAppConfigurationSchemaId", "androidManagedStoreAppConfigurationSchemaIdValue"),
+		resourceids.UserSpecifiedSegment("androidManagedStoreAppConfigurationSchemaId", "androidManagedStoreAppConfigurationSchemaId"),
 	}
 }
 

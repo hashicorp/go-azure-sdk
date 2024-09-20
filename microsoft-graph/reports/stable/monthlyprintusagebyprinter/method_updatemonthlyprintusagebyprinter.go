@@ -17,15 +17,44 @@ type UpdateMonthlyPrintUsageByPrinterOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateMonthlyPrintUsageByPrinterOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateMonthlyPrintUsageByPrinterOperationOptions() UpdateMonthlyPrintUsageByPrinterOperationOptions {
+	return UpdateMonthlyPrintUsageByPrinterOperationOptions{}
+}
+
+func (o UpdateMonthlyPrintUsageByPrinterOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateMonthlyPrintUsageByPrinterOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateMonthlyPrintUsageByPrinterOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateMonthlyPrintUsageByPrinter - Update the navigation property monthlyPrintUsageByPrinter in reports
-func (c MonthlyPrintUsageByPrinterClient) UpdateMonthlyPrintUsageByPrinter(ctx context.Context, id stable.ReportMonthlyPrintUsageByPrinterId, input stable.PrintUsageByPrinter) (result UpdateMonthlyPrintUsageByPrinterOperationResponse, err error) {
+func (c MonthlyPrintUsageByPrinterClient) UpdateMonthlyPrintUsageByPrinter(ctx context.Context, id stable.ReportMonthlyPrintUsageByPrinterId, input stable.PrintUsageByPrinter, options UpdateMonthlyPrintUsageByPrinterOperationOptions) (result UpdateMonthlyPrintUsageByPrinterOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

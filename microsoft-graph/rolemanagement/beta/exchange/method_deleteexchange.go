@@ -18,7 +18,8 @@ type DeleteExchangeOperationResponse struct {
 }
 
 type DeleteExchangeOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteExchangeOperationOptions() DeleteExchangeOperationOptions {
@@ -35,7 +36,9 @@ func (o DeleteExchangeOperationOptions) ToHeaders() *client.Headers {
 
 func (o DeleteExchangeOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

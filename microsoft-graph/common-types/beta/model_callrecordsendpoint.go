@@ -48,10 +48,13 @@ func (s RawCallRecordsEndpointImpl) CallRecordsEndpoint() BaseCallRecordsEndpoin
 var _ json.Unmarshaler = &BaseCallRecordsEndpointImpl{}
 
 func (s *BaseCallRecordsEndpointImpl) UnmarshalJSON(bytes []byte) error {
-	type alias BaseCallRecordsEndpointImpl
-	var decoded alias
+
+	var decoded struct {
+		ODataId   *string `json:"@odata.id,omitempty"`
+		ODataType *string `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into BaseCallRecordsEndpointImpl: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.ODataId = decoded.ODataId
@@ -69,6 +72,7 @@ func (s *BaseCallRecordsEndpointImpl) UnmarshalJSON(bytes []byte) error {
 		}
 		s.UserAgent = impl
 	}
+
 	return nil
 }
 
@@ -82,9 +86,9 @@ func UnmarshalCallRecordsEndpointImplementation(input []byte) (CallRecordsEndpoi
 		return nil, fmt.Errorf("unmarshaling CallRecordsEndpoint into map[string]interface: %+v", err)
 	}
 
-	value, ok := temp["@odata.type"].(string)
-	if !ok {
-		return nil, nil
+	var value string
+	if v, ok := temp["@odata.type"]; ok {
+		value = fmt.Sprintf("%v", v)
 	}
 
 	if strings.EqualFold(value, "#microsoft.graph.callRecords.participantEndpoint") {

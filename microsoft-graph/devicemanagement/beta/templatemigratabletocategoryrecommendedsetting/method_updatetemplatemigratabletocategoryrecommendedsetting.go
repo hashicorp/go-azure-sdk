@@ -17,16 +17,45 @@ type UpdateTemplateMigratableToCategoryRecommendedSettingOperationResponse struc
 	OData        *odata.OData
 }
 
+type UpdateTemplateMigratableToCategoryRecommendedSettingOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateTemplateMigratableToCategoryRecommendedSettingOperationOptions() UpdateTemplateMigratableToCategoryRecommendedSettingOperationOptions {
+	return UpdateTemplateMigratableToCategoryRecommendedSettingOperationOptions{}
+}
+
+func (o UpdateTemplateMigratableToCategoryRecommendedSettingOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateTemplateMigratableToCategoryRecommendedSettingOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateTemplateMigratableToCategoryRecommendedSettingOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateTemplateMigratableToCategoryRecommendedSetting - Update the navigation property recommendedSettings in
 // deviceManagement
-func (c TemplateMigratableToCategoryRecommendedSettingClient) UpdateTemplateMigratableToCategoryRecommendedSetting(ctx context.Context, id beta.DeviceManagementTemplateIdMigratableToIdCategoryIdRecommendedSettingId, input beta.DeviceManagementSettingInstance) (result UpdateTemplateMigratableToCategoryRecommendedSettingOperationResponse, err error) {
+func (c TemplateMigratableToCategoryRecommendedSettingClient) UpdateTemplateMigratableToCategoryRecommendedSetting(ctx context.Context, id beta.DeviceManagementTemplateIdMigratableToIdCategoryIdRecommendedSettingId, input beta.DeviceManagementSettingInstance, options UpdateTemplateMigratableToCategoryRecommendedSettingOperationOptions) (result UpdateTemplateMigratableToCategoryRecommendedSettingOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

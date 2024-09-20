@@ -100,9 +100,9 @@ func (id IdentityGovernanceAccessReviewHistoryDefinitionIdInstanceId) Segments()
 		resourceids.StaticSegment("identityGovernance", "identityGovernance", "identityGovernance"),
 		resourceids.StaticSegment("accessReviews", "accessReviews", "accessReviews"),
 		resourceids.StaticSegment("historyDefinitions", "historyDefinitions", "historyDefinitions"),
-		resourceids.UserSpecifiedSegment("accessReviewHistoryDefinitionId", "accessReviewHistoryDefinitionIdValue"),
+		resourceids.UserSpecifiedSegment("accessReviewHistoryDefinitionId", "accessReviewHistoryDefinitionId"),
 		resourceids.StaticSegment("instances", "instances", "instances"),
-		resourceids.UserSpecifiedSegment("accessReviewHistoryInstanceId", "accessReviewHistoryInstanceIdValue"),
+		resourceids.UserSpecifiedSegment("accessReviewHistoryInstanceId", "accessReviewHistoryInstanceId"),
 	}
 }
 

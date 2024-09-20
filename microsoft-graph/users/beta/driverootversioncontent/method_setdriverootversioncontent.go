@@ -18,15 +18,44 @@ type SetDriveRootVersionContentOperationResponse struct {
 	OData        *odata.OData
 }
 
+type SetDriveRootVersionContentOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultSetDriveRootVersionContentOperationOptions() SetDriveRootVersionContentOperationOptions {
+	return SetDriveRootVersionContentOperationOptions{}
+}
+
+func (o SetDriveRootVersionContentOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o SetDriveRootVersionContentOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o SetDriveRootVersionContentOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // SetDriveRootVersionContent - Update content for the navigation property versions in users
-func (c DriveRootVersionContentClient) SetDriveRootVersionContent(ctx context.Context, id beta.UserIdDriveIdRootVersionId, input []byte) (result SetDriveRootVersionContentOperationResponse, err error) {
+func (c DriveRootVersionContentClient) SetDriveRootVersionContent(ctx context.Context, id beta.UserIdDriveIdRootVersionId, input []byte, options SetDriveRootVersionContentOperationOptions) (result SetDriveRootVersionContentOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPut,
-		Path:       fmt.Sprintf("%s/content", id.ID()),
+		HttpMethod:    http.MethodPut,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/content", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &DirectoryCertificateAuthorityCertificateBasedApplicationConfigurationId{}
 
 func TestNewDirectoryCertificateAuthorityCertificateBasedApplicationConfigurationID(t *testing.T) {
-	id := NewDirectoryCertificateAuthorityCertificateBasedApplicationConfigurationID("certificateBasedApplicationConfigurationIdValue")
+	id := NewDirectoryCertificateAuthorityCertificateBasedApplicationConfigurationID("certificateBasedApplicationConfigurationId")
 
-	if id.CertificateBasedApplicationConfigurationId != "certificateBasedApplicationConfigurationIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'CertificateBasedApplicationConfigurationId'", id.CertificateBasedApplicationConfigurationId, "certificateBasedApplicationConfigurationIdValue")
+	if id.CertificateBasedApplicationConfigurationId != "certificateBasedApplicationConfigurationId" {
+		t.Fatalf("Expected %q but got %q for Segment 'CertificateBasedApplicationConfigurationId'", id.CertificateBasedApplicationConfigurationId, "certificateBasedApplicationConfigurationId")
 	}
 }
 
 func TestFormatDirectoryCertificateAuthorityCertificateBasedApplicationConfigurationID(t *testing.T) {
-	actual := NewDirectoryCertificateAuthorityCertificateBasedApplicationConfigurationID("certificateBasedApplicationConfigurationIdValue").ID()
-	expected := "/directory/certificateAuthorities/certificateBasedApplicationConfigurations/certificateBasedApplicationConfigurationIdValue"
+	actual := NewDirectoryCertificateAuthorityCertificateBasedApplicationConfigurationID("certificateBasedApplicationConfigurationId").ID()
+	expected := "/directory/certificateAuthorities/certificateBasedApplicationConfigurations/certificateBasedApplicationConfigurationId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -55,14 +55,14 @@ func TestParseDirectoryCertificateAuthorityCertificateBasedApplicationConfigurat
 		},
 		{
 			// Valid URI
-			Input: "/directory/certificateAuthorities/certificateBasedApplicationConfigurations/certificateBasedApplicationConfigurationIdValue",
+			Input: "/directory/certificateAuthorities/certificateBasedApplicationConfigurations/certificateBasedApplicationConfigurationId",
 			Expected: &DirectoryCertificateAuthorityCertificateBasedApplicationConfigurationId{
-				CertificateBasedApplicationConfigurationId: "certificateBasedApplicationConfigurationIdValue",
+				CertificateBasedApplicationConfigurationId: "certificateBasedApplicationConfigurationId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/directory/certificateAuthorities/certificateBasedApplicationConfigurations/certificateBasedApplicationConfigurationIdValue/extra",
+			Input: "/directory/certificateAuthorities/certificateBasedApplicationConfigurations/certificateBasedApplicationConfigurationId/extra",
 			Error: true,
 		},
 	}
@@ -131,26 +131,26 @@ func TestParseDirectoryCertificateAuthorityCertificateBasedApplicationConfigurat
 		},
 		{
 			// Valid URI
-			Input: "/directory/certificateAuthorities/certificateBasedApplicationConfigurations/certificateBasedApplicationConfigurationIdValue",
+			Input: "/directory/certificateAuthorities/certificateBasedApplicationConfigurations/certificateBasedApplicationConfigurationId",
 			Expected: &DirectoryCertificateAuthorityCertificateBasedApplicationConfigurationId{
-				CertificateBasedApplicationConfigurationId: "certificateBasedApplicationConfigurationIdValue",
+				CertificateBasedApplicationConfigurationId: "certificateBasedApplicationConfigurationId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/directory/certificateAuthorities/certificateBasedApplicationConfigurations/certificateBasedApplicationConfigurationIdValue/extra",
+			Input: "/directory/certificateAuthorities/certificateBasedApplicationConfigurations/certificateBasedApplicationConfigurationId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/dIrEcToRy/cErTiFiCaTeAuThOrItIeS/cErTiFiCaTeBaSeDaPpLiCaTiOnCoNfIgUrAtIoNs/cErTiFiCaTeBaSeDaPpLiCaTiOnCoNfIgUrAtIoNiDvAlUe",
+			Input: "/dIrEcToRy/cErTiFiCaTeAuThOrItIeS/cErTiFiCaTeBaSeDaPpLiCaTiOnCoNfIgUrAtIoNs/cErTiFiCaTeBaSeDaPpLiCaTiOnCoNfIgUrAtIoNiD",
 			Expected: &DirectoryCertificateAuthorityCertificateBasedApplicationConfigurationId{
-				CertificateBasedApplicationConfigurationId: "cErTiFiCaTeBaSeDaPpLiCaTiOnCoNfIgUrAtIoNiDvAlUe",
+				CertificateBasedApplicationConfigurationId: "cErTiFiCaTeBaSeDaPpLiCaTiOnCoNfIgUrAtIoNiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/dIrEcToRy/cErTiFiCaTeAuThOrItIeS/cErTiFiCaTeBaSeDaPpLiCaTiOnCoNfIgUrAtIoNs/cErTiFiCaTeBaSeDaPpLiCaTiOnCoNfIgUrAtIoNiDvAlUe/extra",
+			Input: "/dIrEcToRy/cErTiFiCaTeAuThOrItIeS/cErTiFiCaTeBaSeDaPpLiCaTiOnCoNfIgUrAtIoNs/cErTiFiCaTeBaSeDaPpLiCaTiOnCoNfIgUrAtIoNiD/extra",
 			Error: true,
 		},
 	}

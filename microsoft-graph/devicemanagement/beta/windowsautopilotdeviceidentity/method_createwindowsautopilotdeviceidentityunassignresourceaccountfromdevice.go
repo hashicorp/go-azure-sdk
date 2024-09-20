@@ -18,16 +18,45 @@ type CreateWindowsAutopilotDeviceIdentityUnassignResourceAccountFromDeviceOperat
 	OData        *odata.OData
 }
 
+type CreateWindowsAutopilotDeviceIdentityUnassignResourceAccountFromDeviceOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateWindowsAutopilotDeviceIdentityUnassignResourceAccountFromDeviceOperationOptions() CreateWindowsAutopilotDeviceIdentityUnassignResourceAccountFromDeviceOperationOptions {
+	return CreateWindowsAutopilotDeviceIdentityUnassignResourceAccountFromDeviceOperationOptions{}
+}
+
+func (o CreateWindowsAutopilotDeviceIdentityUnassignResourceAccountFromDeviceOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateWindowsAutopilotDeviceIdentityUnassignResourceAccountFromDeviceOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateWindowsAutopilotDeviceIdentityUnassignResourceAccountFromDeviceOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateWindowsAutopilotDeviceIdentityUnassignResourceAccountFromDevice - Invoke action
 // unassignResourceAccountFromDevice. Unassigns the resource account from an Autopilot device.
-func (c WindowsAutopilotDeviceIdentityClient) CreateWindowsAutopilotDeviceIdentityUnassignResourceAccountFromDevice(ctx context.Context, id beta.DeviceManagementWindowsAutopilotDeviceIdentityId) (result CreateWindowsAutopilotDeviceIdentityUnassignResourceAccountFromDeviceOperationResponse, err error) {
+func (c WindowsAutopilotDeviceIdentityClient) CreateWindowsAutopilotDeviceIdentityUnassignResourceAccountFromDevice(ctx context.Context, id beta.DeviceManagementWindowsAutopilotDeviceIdentityId, options CreateWindowsAutopilotDeviceIdentityUnassignResourceAccountFromDeviceOperationOptions) (result CreateWindowsAutopilotDeviceIdentityUnassignResourceAccountFromDeviceOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/unassignResourceAccountFromDevice", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/unassignResourceAccountFromDevice", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

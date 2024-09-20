@@ -17,15 +17,44 @@ type UpdateConfigurationPolicySettingOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateConfigurationPolicySettingOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateConfigurationPolicySettingOperationOptions() UpdateConfigurationPolicySettingOperationOptions {
+	return UpdateConfigurationPolicySettingOperationOptions{}
+}
+
+func (o UpdateConfigurationPolicySettingOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateConfigurationPolicySettingOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateConfigurationPolicySettingOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateConfigurationPolicySetting - Update the navigation property settings in deviceManagement
-func (c ConfigurationPolicySettingClient) UpdateConfigurationPolicySetting(ctx context.Context, id beta.DeviceManagementConfigurationPolicyIdSettingId, input beta.DeviceManagementConfigurationSetting) (result UpdateConfigurationPolicySettingOperationResponse, err error) {
+func (c ConfigurationPolicySettingClient) UpdateConfigurationPolicySetting(ctx context.Context, id beta.DeviceManagementConfigurationPolicyIdSettingId, input beta.DeviceManagementConfigurationSetting, options UpdateConfigurationPolicySettingOperationOptions) (result UpdateConfigurationPolicySettingOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

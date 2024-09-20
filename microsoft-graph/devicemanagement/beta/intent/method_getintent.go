@@ -19,8 +19,9 @@ type GetIntentOperationResponse struct {
 }
 
 type GetIntentOperationOptions struct {
-	Expand *odata.Expand
-	Select *[]string
+	Expand   *odata.Expand
+	Metadata *odata.Metadata
+	Select   *[]string
 }
 
 func DefaultGetIntentOperationOptions() GetIntentOperationOptions {
@@ -37,6 +38,9 @@ func (o GetIntentOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
 	if o.Expand != nil {
 		out.Expand = *o.Expand
+	}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
 	}
 	if o.Select != nil {
 		out.Select = *o.Select

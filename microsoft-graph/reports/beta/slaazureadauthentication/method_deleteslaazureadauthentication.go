@@ -18,7 +18,8 @@ type DeleteSlaAzureADAuthenticationOperationResponse struct {
 }
 
 type DeleteSlaAzureADAuthenticationOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteSlaAzureADAuthenticationOperationOptions() DeleteSlaAzureADAuthenticationOperationOptions {
@@ -35,7 +36,9 @@ func (o DeleteSlaAzureADAuthenticationOperationOptions) ToHeaders() *client.Head
 
 func (o DeleteSlaAzureADAuthenticationOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

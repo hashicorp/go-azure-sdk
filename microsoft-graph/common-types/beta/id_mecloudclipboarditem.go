@@ -94,7 +94,7 @@ func (id MeCloudClipboardItemId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("me", "me", "me"),
 		resourceids.StaticSegment("cloudClipboard", "cloudClipboard", "cloudClipboard"),
 		resourceids.StaticSegment("items", "items", "items"),
-		resourceids.UserSpecifiedSegment("cloudClipboardItemId", "cloudClipboardItemIdValue"),
+		resourceids.UserSpecifiedSegment("cloudClipboardItemId", "cloudClipboardItemId"),
 	}
 }
 

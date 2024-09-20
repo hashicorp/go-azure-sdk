@@ -99,9 +99,9 @@ func (id PolicyRoleManagementPolicyIdRuleId) Segments() []resourceids.Segment {
 	return []resourceids.Segment{
 		resourceids.StaticSegment("policies", "policies", "policies"),
 		resourceids.StaticSegment("roleManagementPolicies", "roleManagementPolicies", "roleManagementPolicies"),
-		resourceids.UserSpecifiedSegment("unifiedRoleManagementPolicyId", "unifiedRoleManagementPolicyIdValue"),
+		resourceids.UserSpecifiedSegment("unifiedRoleManagementPolicyId", "unifiedRoleManagementPolicyId"),
 		resourceids.StaticSegment("rules", "rules", "rules"),
-		resourceids.UserSpecifiedSegment("unifiedRoleManagementPolicyRuleId", "unifiedRoleManagementPolicyRuleIdValue"),
+		resourceids.UserSpecifiedSegment("unifiedRoleManagementPolicyRuleId", "unifiedRoleManagementPolicyRuleId"),
 	}
 }
 

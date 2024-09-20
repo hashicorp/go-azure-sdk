@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/pendingaccessreviewinstancedecisioninstance` Documentation
 
-The `pendingaccessreviewinstancedecisioninstance` SDK allows for interaction with the Azure Resource Manager Service `users` (API Version `beta`).
+The `pendingaccessreviewinstancedecisioninstance` SDK allows for interaction with Microsoft Graph `users` (API Version `beta`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -15,18 +15,18 @@ import "github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/pendingacce
 ### Client Initialization
 
 ```go
-client := pendingaccessreviewinstancedecisioninstance.NewPendingAccessReviewInstanceDecisionInstanceClientWithBaseURI("https://management.azure.com")
+client := pendingaccessreviewinstancedecisioninstance.NewPendingAccessReviewInstanceDecisionInstanceClientWithBaseURI("https://graph.microsoft.com")
 client.Client.Authorizer = authorizer
 ```
 
 
-### Example Usage: `PendingAccessReviewInstanceDecisionInstanceClient.AcceptPendingAccessReviewInstanceDecisionInstanceRecommendation`
+### Example Usage: `PendingAccessReviewInstanceDecisionInstanceClient.AcceptPendingAccessReviewInstanceDecisionInstanceRecommendations`
 
 ```go
 ctx := context.TODO()
-id := pendingaccessreviewinstancedecisioninstance.NewUserIdPendingAccessReviewInstanceIdDecisionID("userIdValue", "accessReviewInstanceIdValue", "accessReviewInstanceDecisionItemIdValue")
+id := pendingaccessreviewinstancedecisioninstance.NewUserIdPendingAccessReviewInstanceIdDecisionID("userId", "accessReviewInstanceId", "accessReviewInstanceDecisionItemId")
 
-read, err := client.AcceptPendingAccessReviewInstanceDecisionInstanceRecommendation(ctx, id)
+read, err := client.AcceptPendingAccessReviewInstanceDecisionInstanceRecommendations(ctx, id, pendingaccessreviewinstancedecisioninstance.DefaultAcceptPendingAccessReviewInstanceDecisionInstanceRecommendationsOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -40,9 +40,9 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := pendingaccessreviewinstancedecisioninstance.NewUserIdPendingAccessReviewInstanceIdDecisionID("userIdValue", "accessReviewInstanceIdValue", "accessReviewInstanceDecisionItemIdValue")
+id := pendingaccessreviewinstancedecisioninstance.NewUserIdPendingAccessReviewInstanceIdDecisionID("userId", "accessReviewInstanceId", "accessReviewInstanceDecisionItemId")
 
-read, err := client.CreatePendingAccessReviewInstanceDecisionInstanceApplyDecision(ctx, id)
+read, err := client.CreatePendingAccessReviewInstanceDecisionInstanceApplyDecision(ctx, id, pendingaccessreviewinstancedecisioninstance.DefaultCreatePendingAccessReviewInstanceDecisionInstanceApplyDecisionOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -56,14 +56,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := pendingaccessreviewinstancedecisioninstance.NewUserIdPendingAccessReviewInstanceIdDecisionID("userIdValue", "accessReviewInstanceIdValue", "accessReviewInstanceDecisionItemIdValue")
+id := pendingaccessreviewinstancedecisioninstance.NewUserIdPendingAccessReviewInstanceIdDecisionID("userId", "accessReviewInstanceId", "accessReviewInstanceDecisionItemId")
 
 payload := pendingaccessreviewinstancedecisioninstance.CreatePendingAccessReviewInstanceDecisionInstanceBatchRecordDecisionRequest{
 	// ...
 }
 
 
-read, err := client.CreatePendingAccessReviewInstanceDecisionInstanceBatchRecordDecision(ctx, id, payload)
+read, err := client.CreatePendingAccessReviewInstanceDecisionInstanceBatchRecordDecision(ctx, id, payload, pendingaccessreviewinstancedecisioninstance.DefaultCreatePendingAccessReviewInstanceDecisionInstanceBatchRecordDecisionOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -77,7 +77,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := pendingaccessreviewinstancedecisioninstance.NewUserIdPendingAccessReviewInstanceIdDecisionID("userIdValue", "accessReviewInstanceIdValue", "accessReviewInstanceDecisionItemIdValue")
+id := pendingaccessreviewinstancedecisioninstance.NewUserIdPendingAccessReviewInstanceIdDecisionID("userId", "accessReviewInstanceId", "accessReviewInstanceDecisionItemId")
 
 read, err := client.DeletePendingAccessReviewInstanceDecisionInstance(ctx, id, pendingaccessreviewinstancedecisioninstance.DefaultDeletePendingAccessReviewInstanceDecisionInstanceOperationOptions())
 if err != nil {
@@ -93,7 +93,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := pendingaccessreviewinstancedecisioninstance.NewUserIdPendingAccessReviewInstanceIdDecisionID("userIdValue", "accessReviewInstanceIdValue", "accessReviewInstanceDecisionItemIdValue")
+id := pendingaccessreviewinstancedecisioninstance.NewUserIdPendingAccessReviewInstanceIdDecisionID("userId", "accessReviewInstanceId", "accessReviewInstanceDecisionItemId")
 
 read, err := client.GetPendingAccessReviewInstanceDecisionInstance(ctx, id, pendingaccessreviewinstancedecisioninstance.DefaultGetPendingAccessReviewInstanceDecisionInstanceOperationOptions())
 if err != nil {
@@ -105,13 +105,13 @@ if model := read.Model; model != nil {
 ```
 
 
-### Example Usage: `PendingAccessReviewInstanceDecisionInstanceClient.ResetPendingAccessReviewInstanceDecisionInstanceDecision`
+### Example Usage: `PendingAccessReviewInstanceDecisionInstanceClient.ResetPendingAccessReviewInstanceDecisionInstanceDecisions`
 
 ```go
 ctx := context.TODO()
-id := pendingaccessreviewinstancedecisioninstance.NewUserIdPendingAccessReviewInstanceIdDecisionID("userIdValue", "accessReviewInstanceIdValue", "accessReviewInstanceDecisionItemIdValue")
+id := pendingaccessreviewinstancedecisioninstance.NewUserIdPendingAccessReviewInstanceIdDecisionID("userId", "accessReviewInstanceId", "accessReviewInstanceDecisionItemId")
 
-read, err := client.ResetPendingAccessReviewInstanceDecisionInstanceDecision(ctx, id)
+read, err := client.ResetPendingAccessReviewInstanceDecisionInstanceDecisions(ctx, id, pendingaccessreviewinstancedecisioninstance.DefaultResetPendingAccessReviewInstanceDecisionInstanceDecisionsOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -125,9 +125,9 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := pendingaccessreviewinstancedecisioninstance.NewUserIdPendingAccessReviewInstanceIdDecisionID("userIdValue", "accessReviewInstanceIdValue", "accessReviewInstanceDecisionItemIdValue")
+id := pendingaccessreviewinstancedecisioninstance.NewUserIdPendingAccessReviewInstanceIdDecisionID("userId", "accessReviewInstanceId", "accessReviewInstanceDecisionItemId")
 
-read, err := client.SendPendingAccessReviewInstanceDecisionInstanceReminder(ctx, id)
+read, err := client.SendPendingAccessReviewInstanceDecisionInstanceReminder(ctx, id, pendingaccessreviewinstancedecisioninstance.DefaultSendPendingAccessReviewInstanceDecisionInstanceReminderOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -141,9 +141,9 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := pendingaccessreviewinstancedecisioninstance.NewUserIdPendingAccessReviewInstanceIdDecisionID("userIdValue", "accessReviewInstanceIdValue", "accessReviewInstanceDecisionItemIdValue")
+id := pendingaccessreviewinstancedecisioninstance.NewUserIdPendingAccessReviewInstanceIdDecisionID("userId", "accessReviewInstanceId", "accessReviewInstanceDecisionItemId")
 
-read, err := client.StopPendingAccessReviewInstanceDecisionInstance(ctx, id)
+read, err := client.StopPendingAccessReviewInstanceDecisionInstance(ctx, id, pendingaccessreviewinstancedecisioninstance.DefaultStopPendingAccessReviewInstanceDecisionInstanceOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -153,13 +153,13 @@ if model := read.Model; model != nil {
 ```
 
 
-### Example Usage: `PendingAccessReviewInstanceDecisionInstanceClient.StopPendingAccessReviewInstanceDecisionInstanceApplyDecision`
+### Example Usage: `PendingAccessReviewInstanceDecisionInstanceClient.StopPendingAccessReviewInstanceDecisionInstanceApplyDecisions`
 
 ```go
 ctx := context.TODO()
-id := pendingaccessreviewinstancedecisioninstance.NewUserIdPendingAccessReviewInstanceIdDecisionID("userIdValue", "accessReviewInstanceIdValue", "accessReviewInstanceDecisionItemIdValue")
+id := pendingaccessreviewinstancedecisioninstance.NewUserIdPendingAccessReviewInstanceIdDecisionID("userId", "accessReviewInstanceId", "accessReviewInstanceDecisionItemId")
 
-read, err := client.StopPendingAccessReviewInstanceDecisionInstanceApplyDecision(ctx, id)
+read, err := client.StopPendingAccessReviewInstanceDecisionInstanceApplyDecisions(ctx, id, pendingaccessreviewinstancedecisioninstance.DefaultStopPendingAccessReviewInstanceDecisionInstanceApplyDecisionsOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -173,14 +173,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := pendingaccessreviewinstancedecisioninstance.NewUserIdPendingAccessReviewInstanceIdDecisionID("userIdValue", "accessReviewInstanceIdValue", "accessReviewInstanceDecisionItemIdValue")
+id := pendingaccessreviewinstancedecisioninstance.NewUserIdPendingAccessReviewInstanceIdDecisionID("userId", "accessReviewInstanceId", "accessReviewInstanceDecisionItemId")
 
 payload := pendingaccessreviewinstancedecisioninstance.AccessReviewInstance{
 	// ...
 }
 
 
-read, err := client.UpdatePendingAccessReviewInstanceDecisionInstance(ctx, id, payload)
+read, err := client.UpdatePendingAccessReviewInstanceDecisionInstance(ctx, id, payload, pendingaccessreviewinstancedecisioninstance.DefaultUpdatePendingAccessReviewInstanceDecisionInstanceOperationOptions())
 if err != nil {
 	// handle the error
 }

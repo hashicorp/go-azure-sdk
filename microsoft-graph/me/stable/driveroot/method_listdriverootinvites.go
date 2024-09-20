@@ -25,8 +25,9 @@ type ListDriveRootInvitesCompleteResult struct {
 }
 
 type ListDriveRootInvitesOperationOptions struct {
-	Skip *int64
-	Top  *int64
+	Metadata *odata.Metadata
+	Skip     *int64
+	Top      *int64
 }
 
 func DefaultListDriveRootInvitesOperationOptions() ListDriveRootInvitesOperationOptions {
@@ -41,6 +42,9 @@ func (o ListDriveRootInvitesOperationOptions) ToHeaders() *client.Headers {
 
 func (o ListDriveRootInvitesOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	if o.Skip != nil {
 		out.Skip = int(*o.Skip)
 	}

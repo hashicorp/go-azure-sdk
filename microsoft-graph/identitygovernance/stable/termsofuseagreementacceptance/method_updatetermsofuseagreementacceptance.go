@@ -17,15 +17,44 @@ type UpdateTermsOfUseAgreementAcceptanceOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateTermsOfUseAgreementAcceptanceOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateTermsOfUseAgreementAcceptanceOperationOptions() UpdateTermsOfUseAgreementAcceptanceOperationOptions {
+	return UpdateTermsOfUseAgreementAcceptanceOperationOptions{}
+}
+
+func (o UpdateTermsOfUseAgreementAcceptanceOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateTermsOfUseAgreementAcceptanceOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateTermsOfUseAgreementAcceptanceOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateTermsOfUseAgreementAcceptance - Update the navigation property acceptances in identityGovernance
-func (c TermsOfUseAgreementAcceptanceClient) UpdateTermsOfUseAgreementAcceptance(ctx context.Context, id stable.IdentityGovernanceTermsOfUseAgreementIdAcceptanceId, input stable.AgreementAcceptance) (result UpdateTermsOfUseAgreementAcceptanceOperationResponse, err error) {
+func (c TermsOfUseAgreementAcceptanceClient) UpdateTermsOfUseAgreementAcceptance(ctx context.Context, id stable.IdentityGovernanceTermsOfUseAgreementIdAcceptanceId, input stable.AgreementAcceptance, options UpdateTermsOfUseAgreementAcceptanceOperationOptions) (result UpdateTermsOfUseAgreementAcceptanceOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

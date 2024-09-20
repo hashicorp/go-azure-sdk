@@ -17,15 +17,44 @@ type UpdateGroupPolicyDefinitionPresentationOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateGroupPolicyDefinitionPresentationOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateGroupPolicyDefinitionPresentationOperationOptions() UpdateGroupPolicyDefinitionPresentationOperationOptions {
+	return UpdateGroupPolicyDefinitionPresentationOperationOptions{}
+}
+
+func (o UpdateGroupPolicyDefinitionPresentationOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateGroupPolicyDefinitionPresentationOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateGroupPolicyDefinitionPresentationOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateGroupPolicyDefinitionPresentation - Update the navigation property presentations in deviceManagement
-func (c GroupPolicyDefinitionPresentationClient) UpdateGroupPolicyDefinitionPresentation(ctx context.Context, id beta.DeviceManagementGroupPolicyDefinitionIdPresentationId, input beta.GroupPolicyPresentation) (result UpdateGroupPolicyDefinitionPresentationOperationResponse, err error) {
+func (c GroupPolicyDefinitionPresentationClient) UpdateGroupPolicyDefinitionPresentation(ctx context.Context, id beta.DeviceManagementGroupPolicyDefinitionIdPresentationId, input beta.GroupPolicyPresentation, options UpdateGroupPolicyDefinitionPresentationOperationOptions) (result UpdateGroupPolicyDefinitionPresentationOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

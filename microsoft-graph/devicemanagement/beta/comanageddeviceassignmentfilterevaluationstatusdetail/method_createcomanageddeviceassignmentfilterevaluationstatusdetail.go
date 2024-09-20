@@ -19,16 +19,45 @@ type CreateComanagedDeviceAssignmentFilterEvaluationStatusDetailOperationRespons
 	Model        *beta.AssignmentFilterEvaluationStatusDetails
 }
 
+type CreateComanagedDeviceAssignmentFilterEvaluationStatusDetailOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateComanagedDeviceAssignmentFilterEvaluationStatusDetailOperationOptions() CreateComanagedDeviceAssignmentFilterEvaluationStatusDetailOperationOptions {
+	return CreateComanagedDeviceAssignmentFilterEvaluationStatusDetailOperationOptions{}
+}
+
+func (o CreateComanagedDeviceAssignmentFilterEvaluationStatusDetailOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateComanagedDeviceAssignmentFilterEvaluationStatusDetailOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateComanagedDeviceAssignmentFilterEvaluationStatusDetailOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateComanagedDeviceAssignmentFilterEvaluationStatusDetail - Create new navigation property to
 // assignmentFilterEvaluationStatusDetails for deviceManagement
-func (c ComanagedDeviceAssignmentFilterEvaluationStatusDetailClient) CreateComanagedDeviceAssignmentFilterEvaluationStatusDetail(ctx context.Context, id beta.DeviceManagementComanagedDeviceId, input beta.AssignmentFilterEvaluationStatusDetails) (result CreateComanagedDeviceAssignmentFilterEvaluationStatusDetailOperationResponse, err error) {
+func (c ComanagedDeviceAssignmentFilterEvaluationStatusDetailClient) CreateComanagedDeviceAssignmentFilterEvaluationStatusDetail(ctx context.Context, id beta.DeviceManagementComanagedDeviceId, input beta.AssignmentFilterEvaluationStatusDetails, options CreateComanagedDeviceAssignmentFilterEvaluationStatusDetailOperationOptions) (result CreateComanagedDeviceAssignmentFilterEvaluationStatusDetailOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/assignmentFilterEvaluationStatusDetails", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/assignmentFilterEvaluationStatusDetails", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

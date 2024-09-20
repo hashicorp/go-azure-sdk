@@ -18,7 +18,8 @@ type DeleteExternalIdentitiesPolicyOperationResponse struct {
 }
 
 type DeleteExternalIdentitiesPolicyOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteExternalIdentitiesPolicyOperationOptions() DeleteExternalIdentitiesPolicyOperationOptions {
@@ -35,7 +36,9 @@ func (o DeleteExternalIdentitiesPolicyOperationOptions) ToHeaders() *client.Head
 
 func (o DeleteExternalIdentitiesPolicyOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

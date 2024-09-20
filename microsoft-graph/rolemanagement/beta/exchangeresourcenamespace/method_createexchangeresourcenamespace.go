@@ -18,15 +18,44 @@ type CreateExchangeResourceNamespaceOperationResponse struct {
 	Model        *beta.UnifiedRbacResourceNamespace
 }
 
+type CreateExchangeResourceNamespaceOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateExchangeResourceNamespaceOperationOptions() CreateExchangeResourceNamespaceOperationOptions {
+	return CreateExchangeResourceNamespaceOperationOptions{}
+}
+
+func (o CreateExchangeResourceNamespaceOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateExchangeResourceNamespaceOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateExchangeResourceNamespaceOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateExchangeResourceNamespace - Create new navigation property to resourceNamespaces for roleManagement
-func (c ExchangeResourceNamespaceClient) CreateExchangeResourceNamespace(ctx context.Context, input beta.UnifiedRbacResourceNamespace) (result CreateExchangeResourceNamespaceOperationResponse, err error) {
+func (c ExchangeResourceNamespaceClient) CreateExchangeResourceNamespace(ctx context.Context, input beta.UnifiedRbacResourceNamespace, options CreateExchangeResourceNamespaceOperationOptions) (result CreateExchangeResourceNamespaceOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/roleManagement/exchange/resourceNamespaces",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/roleManagement/exchange/resourceNamespaces",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

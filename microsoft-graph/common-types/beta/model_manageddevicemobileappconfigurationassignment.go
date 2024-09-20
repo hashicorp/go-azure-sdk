@@ -62,10 +62,14 @@ func (s ManagedDeviceMobileAppConfigurationAssignment) MarshalJSON() ([]byte, er
 var _ json.Unmarshaler = &ManagedDeviceMobileAppConfigurationAssignment{}
 
 func (s *ManagedDeviceMobileAppConfigurationAssignment) UnmarshalJSON(bytes []byte) error {
-	type alias ManagedDeviceMobileAppConfigurationAssignment
-	var decoded alias
+
+	var decoded struct {
+		Id        *string `json:"id,omitempty"`
+		ODataId   *string `json:"@odata.id,omitempty"`
+		ODataType *string `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into ManagedDeviceMobileAppConfigurationAssignment: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.Id = decoded.Id
@@ -84,5 +88,6 @@ func (s *ManagedDeviceMobileAppConfigurationAssignment) UnmarshalJSON(bytes []by
 		}
 		s.Target = impl
 	}
+
 	return nil
 }

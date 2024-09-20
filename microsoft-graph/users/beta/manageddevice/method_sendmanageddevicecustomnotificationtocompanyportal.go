@@ -18,15 +18,44 @@ type SendManagedDeviceCustomNotificationToCompanyPortalOperationResponse struct 
 	OData        *odata.OData
 }
 
+type SendManagedDeviceCustomNotificationToCompanyPortalOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultSendManagedDeviceCustomNotificationToCompanyPortalOperationOptions() SendManagedDeviceCustomNotificationToCompanyPortalOperationOptions {
+	return SendManagedDeviceCustomNotificationToCompanyPortalOperationOptions{}
+}
+
+func (o SendManagedDeviceCustomNotificationToCompanyPortalOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o SendManagedDeviceCustomNotificationToCompanyPortalOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o SendManagedDeviceCustomNotificationToCompanyPortalOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // SendManagedDeviceCustomNotificationToCompanyPortal - Invoke action sendCustomNotificationToCompanyPortal
-func (c ManagedDeviceClient) SendManagedDeviceCustomNotificationToCompanyPortal(ctx context.Context, id beta.UserIdManagedDeviceId, input SendManagedDeviceCustomNotificationToCompanyPortalRequest) (result SendManagedDeviceCustomNotificationToCompanyPortalOperationResponse, err error) {
+func (c ManagedDeviceClient) SendManagedDeviceCustomNotificationToCompanyPortal(ctx context.Context, id beta.UserIdManagedDeviceId, input SendManagedDeviceCustomNotificationToCompanyPortalRequest, options SendManagedDeviceCustomNotificationToCompanyPortalOperationOptions) (result SendManagedDeviceCustomNotificationToCompanyPortalOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/sendCustomNotificationToCompanyPortal", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/sendCustomNotificationToCompanyPortal", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

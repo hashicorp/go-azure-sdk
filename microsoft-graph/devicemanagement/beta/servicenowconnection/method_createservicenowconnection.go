@@ -18,15 +18,44 @@ type CreateServiceNowConnectionOperationResponse struct {
 	Model        *beta.ServiceNowConnection
 }
 
+type CreateServiceNowConnectionOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateServiceNowConnectionOperationOptions() CreateServiceNowConnectionOperationOptions {
+	return CreateServiceNowConnectionOperationOptions{}
+}
+
+func (o CreateServiceNowConnectionOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateServiceNowConnectionOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateServiceNowConnectionOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateServiceNowConnection - Create new navigation property to serviceNowConnections for deviceManagement
-func (c ServiceNowConnectionClient) CreateServiceNowConnection(ctx context.Context, input beta.ServiceNowConnection) (result CreateServiceNowConnectionOperationResponse, err error) {
+func (c ServiceNowConnectionClient) CreateServiceNowConnection(ctx context.Context, input beta.ServiceNowConnection, options CreateServiceNowConnectionOperationOptions) (result CreateServiceNowConnectionOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/deviceManagement/serviceNowConnections",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/deviceManagement/serviceNowConnections",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

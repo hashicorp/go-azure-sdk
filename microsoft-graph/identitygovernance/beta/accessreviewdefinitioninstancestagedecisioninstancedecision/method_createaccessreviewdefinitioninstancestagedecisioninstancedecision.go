@@ -19,16 +19,45 @@ type CreateAccessReviewDefinitionInstanceStageDecisionInstanceDecisionOperationR
 	Model        *beta.AccessReviewInstanceDecisionItem
 }
 
+type CreateAccessReviewDefinitionInstanceStageDecisionInstanceDecisionOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateAccessReviewDefinitionInstanceStageDecisionInstanceDecisionOperationOptions() CreateAccessReviewDefinitionInstanceStageDecisionInstanceDecisionOperationOptions {
+	return CreateAccessReviewDefinitionInstanceStageDecisionInstanceDecisionOperationOptions{}
+}
+
+func (o CreateAccessReviewDefinitionInstanceStageDecisionInstanceDecisionOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateAccessReviewDefinitionInstanceStageDecisionInstanceDecisionOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateAccessReviewDefinitionInstanceStageDecisionInstanceDecisionOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateAccessReviewDefinitionInstanceStageDecisionInstanceDecision - Create new navigation property to decisions for
 // identityGovernance
-func (c AccessReviewDefinitionInstanceStageDecisionInstanceDecisionClient) CreateAccessReviewDefinitionInstanceStageDecisionInstanceDecision(ctx context.Context, id beta.IdentityGovernanceAccessReviewDefinitionIdInstanceIdStageIdDecisionId, input beta.AccessReviewInstanceDecisionItem) (result CreateAccessReviewDefinitionInstanceStageDecisionInstanceDecisionOperationResponse, err error) {
+func (c AccessReviewDefinitionInstanceStageDecisionInstanceDecisionClient) CreateAccessReviewDefinitionInstanceStageDecisionInstanceDecision(ctx context.Context, id beta.IdentityGovernanceAccessReviewDefinitionIdInstanceIdStageIdDecisionId, input beta.AccessReviewInstanceDecisionItem, options CreateAccessReviewDefinitionInstanceStageDecisionInstanceDecisionOperationOptions) (result CreateAccessReviewDefinitionInstanceStageDecisionInstanceDecisionOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/instance/decisions", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/instance/decisions", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

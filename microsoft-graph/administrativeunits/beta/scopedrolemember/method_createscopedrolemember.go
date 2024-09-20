@@ -19,17 +19,46 @@ type CreateScopedRoleMemberOperationResponse struct {
 	Model        *beta.ScopedRoleMembership
 }
 
+type CreateScopedRoleMemberOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateScopedRoleMemberOperationOptions() CreateScopedRoleMemberOperationOptions {
+	return CreateScopedRoleMemberOperationOptions{}
+}
+
+func (o CreateScopedRoleMemberOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateScopedRoleMemberOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateScopedRoleMemberOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateScopedRoleMember - Add a scopedRoleMember. Assign a Microsoft Entra role with administrative unit scope. For a
 // list of roles that can be assigned with administrative unit scope, see Assign Microsoft Entra roles with
 // administrative unit scope.
-func (c ScopedRoleMemberClient) CreateScopedRoleMember(ctx context.Context, id beta.AdministrativeUnitId, input beta.ScopedRoleMembership) (result CreateScopedRoleMemberOperationResponse, err error) {
+func (c ScopedRoleMemberClient) CreateScopedRoleMember(ctx context.Context, id beta.AdministrativeUnitId, input beta.ScopedRoleMembership, options CreateScopedRoleMemberOperationOptions) (result CreateScopedRoleMemberOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/scopedRoleMembers", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/scopedRoleMembers", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

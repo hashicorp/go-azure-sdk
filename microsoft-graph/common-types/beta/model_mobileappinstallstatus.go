@@ -108,27 +108,43 @@ func (s MobileAppInstallStatus) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &MobileAppInstallStatus{}
 
 func (s *MobileAppInstallStatus) UnmarshalJSON(bytes []byte) error {
-	type alias MobileAppInstallStatus
-	var decoded alias
+
+	var decoded struct {
+		DeviceId                    nullable.Type[string]    `json:"deviceId,omitempty"`
+		DeviceName                  nullable.Type[string]    `json:"deviceName,omitempty"`
+		DisplayVersion              nullable.Type[string]    `json:"displayVersion,omitempty"`
+		ErrorCode                   *int64                   `json:"errorCode,omitempty"`
+		InstallState                *ResultantAppState       `json:"installState,omitempty"`
+		InstallStateDetail          *ResultantAppStateDetail `json:"installStateDetail,omitempty"`
+		LastSyncDateTime            *string                  `json:"lastSyncDateTime,omitempty"`
+		MobileAppInstallStatusValue *ResultantAppState       `json:"mobileAppInstallStatusValue,omitempty"`
+		OsDescription               nullable.Type[string]    `json:"osDescription,omitempty"`
+		OsVersion                   nullable.Type[string]    `json:"osVersion,omitempty"`
+		UserName                    nullable.Type[string]    `json:"userName,omitempty"`
+		UserPrincipalName           nullable.Type[string]    `json:"userPrincipalName,omitempty"`
+		Id                          *string                  `json:"id,omitempty"`
+		ODataId                     *string                  `json:"@odata.id,omitempty"`
+		ODataType                   *string                  `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into MobileAppInstallStatus: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.DeviceId = decoded.DeviceId
 	s.DeviceName = decoded.DeviceName
 	s.DisplayVersion = decoded.DisplayVersion
 	s.ErrorCode = decoded.ErrorCode
-	s.Id = decoded.Id
 	s.InstallState = decoded.InstallState
 	s.InstallStateDetail = decoded.InstallStateDetail
 	s.LastSyncDateTime = decoded.LastSyncDateTime
 	s.MobileAppInstallStatusValue = decoded.MobileAppInstallStatusValue
-	s.ODataId = decoded.ODataId
-	s.ODataType = decoded.ODataType
 	s.OsDescription = decoded.OsDescription
 	s.OsVersion = decoded.OsVersion
 	s.UserName = decoded.UserName
 	s.UserPrincipalName = decoded.UserPrincipalName
+	s.Id = decoded.Id
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -142,5 +158,6 @@ func (s *MobileAppInstallStatus) UnmarshalJSON(bytes []byte) error {
 		}
 		s.App = &impl
 	}
+
 	return nil
 }

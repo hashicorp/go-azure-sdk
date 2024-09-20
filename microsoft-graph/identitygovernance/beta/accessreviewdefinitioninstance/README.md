@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/microsoft-graph/identitygovernance/beta/accessreviewdefinitioninstance` Documentation
 
-The `accessreviewdefinitioninstance` SDK allows for interaction with the Azure Resource Manager Service `identitygovernance` (API Version `beta`).
+The `accessreviewdefinitioninstance` SDK allows for interaction with Microsoft Graph `identitygovernance` (API Version `beta`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -15,18 +15,18 @@ import "github.com/hashicorp/go-azure-sdk/microsoft-graph/identitygovernance/bet
 ### Client Initialization
 
 ```go
-client := accessreviewdefinitioninstance.NewAccessReviewDefinitionInstanceClientWithBaseURI("https://management.azure.com")
+client := accessreviewdefinitioninstance.NewAccessReviewDefinitionInstanceClientWithBaseURI("https://graph.microsoft.com")
 client.Client.Authorizer = authorizer
 ```
 
 
-### Example Usage: `AccessReviewDefinitionInstanceClient.AcceptAccessReviewDefinitionInstanceRecommendation`
+### Example Usage: `AccessReviewDefinitionInstanceClient.AcceptAccessReviewDefinitionInstanceRecommendations`
 
 ```go
 ctx := context.TODO()
-id := accessreviewdefinitioninstance.NewIdentityGovernanceAccessReviewDefinitionIdInstanceID("accessReviewScheduleDefinitionIdValue", "accessReviewInstanceIdValue")
+id := accessreviewdefinitioninstance.NewIdentityGovernanceAccessReviewDefinitionIdInstanceID("accessReviewScheduleDefinitionId", "accessReviewInstanceId")
 
-read, err := client.AcceptAccessReviewDefinitionInstanceRecommendation(ctx, id)
+read, err := client.AcceptAccessReviewDefinitionInstanceRecommendations(ctx, id, accessreviewdefinitioninstance.DefaultAcceptAccessReviewDefinitionInstanceRecommendationsOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -40,14 +40,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := accessreviewdefinitioninstance.NewIdentityGovernanceAccessReviewDefinitionID("accessReviewScheduleDefinitionIdValue")
+id := accessreviewdefinitioninstance.NewIdentityGovernanceAccessReviewDefinitionID("accessReviewScheduleDefinitionId")
 
 payload := accessreviewdefinitioninstance.AccessReviewInstance{
 	// ...
 }
 
 
-read, err := client.CreateAccessReviewDefinitionInstance(ctx, id, payload)
+read, err := client.CreateAccessReviewDefinitionInstance(ctx, id, payload, accessreviewdefinitioninstance.DefaultCreateAccessReviewDefinitionInstanceOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -61,9 +61,9 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := accessreviewdefinitioninstance.NewIdentityGovernanceAccessReviewDefinitionIdInstanceID("accessReviewScheduleDefinitionIdValue", "accessReviewInstanceIdValue")
+id := accessreviewdefinitioninstance.NewIdentityGovernanceAccessReviewDefinitionIdInstanceID("accessReviewScheduleDefinitionId", "accessReviewInstanceId")
 
-read, err := client.CreateAccessReviewDefinitionInstanceApplyDecision(ctx, id)
+read, err := client.CreateAccessReviewDefinitionInstanceApplyDecision(ctx, id, accessreviewdefinitioninstance.DefaultCreateAccessReviewDefinitionInstanceApplyDecisionOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -77,14 +77,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := accessreviewdefinitioninstance.NewIdentityGovernanceAccessReviewDefinitionIdInstanceID("accessReviewScheduleDefinitionIdValue", "accessReviewInstanceIdValue")
+id := accessreviewdefinitioninstance.NewIdentityGovernanceAccessReviewDefinitionIdInstanceID("accessReviewScheduleDefinitionId", "accessReviewInstanceId")
 
 payload := accessreviewdefinitioninstance.CreateAccessReviewDefinitionInstanceBatchRecordDecisionRequest{
 	// ...
 }
 
 
-read, err := client.CreateAccessReviewDefinitionInstanceBatchRecordDecision(ctx, id, payload)
+read, err := client.CreateAccessReviewDefinitionInstanceBatchRecordDecision(ctx, id, payload, accessreviewdefinitioninstance.DefaultCreateAccessReviewDefinitionInstanceBatchRecordDecisionOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -98,7 +98,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := accessreviewdefinitioninstance.NewIdentityGovernanceAccessReviewDefinitionIdInstanceID("accessReviewScheduleDefinitionIdValue", "accessReviewInstanceIdValue")
+id := accessreviewdefinitioninstance.NewIdentityGovernanceAccessReviewDefinitionIdInstanceID("accessReviewScheduleDefinitionId", "accessReviewInstanceId")
 
 read, err := client.DeleteAccessReviewDefinitionInstance(ctx, id, accessreviewdefinitioninstance.DefaultDeleteAccessReviewDefinitionInstanceOperationOptions())
 if err != nil {
@@ -114,7 +114,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := accessreviewdefinitioninstance.NewIdentityGovernanceAccessReviewDefinitionIdInstanceID("accessReviewScheduleDefinitionIdValue", "accessReviewInstanceIdValue")
+id := accessreviewdefinitioninstance.NewIdentityGovernanceAccessReviewDefinitionIdInstanceID("accessReviewScheduleDefinitionId", "accessReviewInstanceId")
 
 read, err := client.GetAccessReviewDefinitionInstance(ctx, id, accessreviewdefinitioninstance.DefaultGetAccessReviewDefinitionInstanceOperationOptions())
 if err != nil {
@@ -130,7 +130,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := accessreviewdefinitioninstance.NewIdentityGovernanceAccessReviewDefinitionID("accessReviewScheduleDefinitionIdValue")
+id := accessreviewdefinitioninstance.NewIdentityGovernanceAccessReviewDefinitionID("accessReviewScheduleDefinitionId")
 
 read, err := client.GetAccessReviewDefinitionInstancesCount(ctx, id, accessreviewdefinitioninstance.DefaultGetAccessReviewDefinitionInstancesCountOperationOptions())
 if err != nil {
@@ -146,7 +146,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := accessreviewdefinitioninstance.NewIdentityGovernanceAccessReviewDefinitionID("accessReviewScheduleDefinitionIdValue")
+id := accessreviewdefinitioninstance.NewIdentityGovernanceAccessReviewDefinitionID("accessReviewScheduleDefinitionId")
 
 // alternatively `client.ListAccessReviewDefinitionInstances(ctx, id, accessreviewdefinitioninstance.DefaultListAccessReviewDefinitionInstancesOperationOptions())` can be used to do batched pagination
 items, err := client.ListAccessReviewDefinitionInstancesComplete(ctx, id, accessreviewdefinitioninstance.DefaultListAccessReviewDefinitionInstancesOperationOptions())
@@ -159,13 +159,13 @@ for _, item := range items {
 ```
 
 
-### Example Usage: `AccessReviewDefinitionInstanceClient.ResetAccessReviewDefinitionInstanceDecision`
+### Example Usage: `AccessReviewDefinitionInstanceClient.ResetAccessReviewDefinitionInstanceDecisions`
 
 ```go
 ctx := context.TODO()
-id := accessreviewdefinitioninstance.NewIdentityGovernanceAccessReviewDefinitionIdInstanceID("accessReviewScheduleDefinitionIdValue", "accessReviewInstanceIdValue")
+id := accessreviewdefinitioninstance.NewIdentityGovernanceAccessReviewDefinitionIdInstanceID("accessReviewScheduleDefinitionId", "accessReviewInstanceId")
 
-read, err := client.ResetAccessReviewDefinitionInstanceDecision(ctx, id)
+read, err := client.ResetAccessReviewDefinitionInstanceDecisions(ctx, id, accessreviewdefinitioninstance.DefaultResetAccessReviewDefinitionInstanceDecisionsOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -179,9 +179,9 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := accessreviewdefinitioninstance.NewIdentityGovernanceAccessReviewDefinitionIdInstanceID("accessReviewScheduleDefinitionIdValue", "accessReviewInstanceIdValue")
+id := accessreviewdefinitioninstance.NewIdentityGovernanceAccessReviewDefinitionIdInstanceID("accessReviewScheduleDefinitionId", "accessReviewInstanceId")
 
-read, err := client.SendAccessReviewDefinitionInstanceReminder(ctx, id)
+read, err := client.SendAccessReviewDefinitionInstanceReminder(ctx, id, accessreviewdefinitioninstance.DefaultSendAccessReviewDefinitionInstanceReminderOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -195,9 +195,9 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := accessreviewdefinitioninstance.NewIdentityGovernanceAccessReviewDefinitionIdInstanceID("accessReviewScheduleDefinitionIdValue", "accessReviewInstanceIdValue")
+id := accessreviewdefinitioninstance.NewIdentityGovernanceAccessReviewDefinitionIdInstanceID("accessReviewScheduleDefinitionId", "accessReviewInstanceId")
 
-read, err := client.StopAccessReviewDefinitionInstance(ctx, id)
+read, err := client.StopAccessReviewDefinitionInstance(ctx, id, accessreviewdefinitioninstance.DefaultStopAccessReviewDefinitionInstanceOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -207,13 +207,13 @@ if model := read.Model; model != nil {
 ```
 
 
-### Example Usage: `AccessReviewDefinitionInstanceClient.StopAccessReviewDefinitionInstanceApplyDecision`
+### Example Usage: `AccessReviewDefinitionInstanceClient.StopAccessReviewDefinitionInstanceApplyDecisions`
 
 ```go
 ctx := context.TODO()
-id := accessreviewdefinitioninstance.NewIdentityGovernanceAccessReviewDefinitionIdInstanceID("accessReviewScheduleDefinitionIdValue", "accessReviewInstanceIdValue")
+id := accessreviewdefinitioninstance.NewIdentityGovernanceAccessReviewDefinitionIdInstanceID("accessReviewScheduleDefinitionId", "accessReviewInstanceId")
 
-read, err := client.StopAccessReviewDefinitionInstanceApplyDecision(ctx, id)
+read, err := client.StopAccessReviewDefinitionInstanceApplyDecisions(ctx, id, accessreviewdefinitioninstance.DefaultStopAccessReviewDefinitionInstanceApplyDecisionsOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -227,14 +227,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := accessreviewdefinitioninstance.NewIdentityGovernanceAccessReviewDefinitionIdInstanceID("accessReviewScheduleDefinitionIdValue", "accessReviewInstanceIdValue")
+id := accessreviewdefinitioninstance.NewIdentityGovernanceAccessReviewDefinitionIdInstanceID("accessReviewScheduleDefinitionId", "accessReviewInstanceId")
 
 payload := accessreviewdefinitioninstance.AccessReviewInstance{
 	// ...
 }
 
 
-read, err := client.UpdateAccessReviewDefinitionInstance(ctx, id, payload)
+read, err := client.UpdateAccessReviewDefinitionInstance(ctx, id, payload, accessreviewdefinitioninstance.DefaultUpdateAccessReviewDefinitionInstanceOperationOptions())
 if err != nil {
 	// handle the error
 }

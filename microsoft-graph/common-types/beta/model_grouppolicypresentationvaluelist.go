@@ -88,19 +88,28 @@ func (s GroupPolicyPresentationValueList) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &GroupPolicyPresentationValueList{}
 
 func (s *GroupPolicyPresentationValueList) UnmarshalJSON(bytes []byte) error {
-	type alias GroupPolicyPresentationValueList
-	var decoded alias
+
+	var decoded struct {
+		Values               *[]KeyValuePair             `json:"values,omitempty"`
+		CreatedDateTime      *string                     `json:"createdDateTime,omitempty"`
+		DefinitionValue      *GroupPolicyDefinitionValue `json:"definitionValue,omitempty"`
+		LastModifiedDateTime *string                     `json:"lastModifiedDateTime,omitempty"`
+		Presentation         *GroupPolicyPresentation    `json:"presentation,omitempty"`
+		Id                   *string                     `json:"id,omitempty"`
+		ODataId              *string                     `json:"@odata.id,omitempty"`
+		ODataType            *string                     `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into GroupPolicyPresentationValueList: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
+	s.Values = decoded.Values
 	s.CreatedDateTime = decoded.CreatedDateTime
 	s.DefinitionValue = decoded.DefinitionValue
 	s.Id = decoded.Id
 	s.LastModifiedDateTime = decoded.LastModifiedDateTime
 	s.ODataId = decoded.ODataId
 	s.ODataType = decoded.ODataType
-	s.Values = decoded.Values
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -114,5 +123,6 @@ func (s *GroupPolicyPresentationValueList) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Presentation = &impl
 	}
+
 	return nil
 }

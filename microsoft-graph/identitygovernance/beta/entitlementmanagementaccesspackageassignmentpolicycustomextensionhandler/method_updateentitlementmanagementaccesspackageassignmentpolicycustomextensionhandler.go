@@ -17,16 +17,45 @@ type UpdateEntitlementManagementAccessPackageAssignmentPolicyCustomExtensionHand
 	OData        *odata.OData
 }
 
+type UpdateEntitlementManagementAccessPackageAssignmentPolicyCustomExtensionHandlerOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateEntitlementManagementAccessPackageAssignmentPolicyCustomExtensionHandlerOperationOptions() UpdateEntitlementManagementAccessPackageAssignmentPolicyCustomExtensionHandlerOperationOptions {
+	return UpdateEntitlementManagementAccessPackageAssignmentPolicyCustomExtensionHandlerOperationOptions{}
+}
+
+func (o UpdateEntitlementManagementAccessPackageAssignmentPolicyCustomExtensionHandlerOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateEntitlementManagementAccessPackageAssignmentPolicyCustomExtensionHandlerOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateEntitlementManagementAccessPackageAssignmentPolicyCustomExtensionHandlerOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateEntitlementManagementAccessPackageAssignmentPolicyCustomExtensionHandler - Update the navigation property
 // customExtensionHandlers in identityGovernance
-func (c EntitlementManagementAccessPackageAssignmentPolicyCustomExtensionHandlerClient) UpdateEntitlementManagementAccessPackageAssignmentPolicyCustomExtensionHandler(ctx context.Context, id beta.IdentityGovernanceEntitlementManagementAccessPackageAssignmentPolicyIdCustomExtensionHandlerId, input beta.CustomExtensionHandler) (result UpdateEntitlementManagementAccessPackageAssignmentPolicyCustomExtensionHandlerOperationResponse, err error) {
+func (c EntitlementManagementAccessPackageAssignmentPolicyCustomExtensionHandlerClient) UpdateEntitlementManagementAccessPackageAssignmentPolicyCustomExtensionHandler(ctx context.Context, id beta.IdentityGovernanceEntitlementManagementAccessPackageAssignmentPolicyIdCustomExtensionHandlerId, input beta.CustomExtensionHandler, options UpdateEntitlementManagementAccessPackageAssignmentPolicyCustomExtensionHandlerOperationOptions) (result UpdateEntitlementManagementAccessPackageAssignmentPolicyCustomExtensionHandlerOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

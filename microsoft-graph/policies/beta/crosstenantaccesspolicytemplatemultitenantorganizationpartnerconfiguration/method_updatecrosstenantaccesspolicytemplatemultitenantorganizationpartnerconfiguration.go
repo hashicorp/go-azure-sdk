@@ -17,17 +17,46 @@ type UpdateCrossTenantAccessPolicyTemplateMultiTenantOrganizationPartnerConfigur
 	OData        *odata.OData
 }
 
+type UpdateCrossTenantAccessPolicyTemplateMultiTenantOrganizationPartnerConfigurationOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateCrossTenantAccessPolicyTemplateMultiTenantOrganizationPartnerConfigurationOperationOptions() UpdateCrossTenantAccessPolicyTemplateMultiTenantOrganizationPartnerConfigurationOperationOptions {
+	return UpdateCrossTenantAccessPolicyTemplateMultiTenantOrganizationPartnerConfigurationOperationOptions{}
+}
+
+func (o UpdateCrossTenantAccessPolicyTemplateMultiTenantOrganizationPartnerConfigurationOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateCrossTenantAccessPolicyTemplateMultiTenantOrganizationPartnerConfigurationOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateCrossTenantAccessPolicyTemplateMultiTenantOrganizationPartnerConfigurationOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateCrossTenantAccessPolicyTemplateMultiTenantOrganizationPartnerConfiguration - Update
 // multiTenantOrganizationPartnerConfigurationTemplate. Update the cross-tenant access policy template with inbound and
 // outbound partner configuration settings for a multitenant organization.
-func (c CrossTenantAccessPolicyTemplateMultiTenantOrganizationPartnerConfigurationClient) UpdateCrossTenantAccessPolicyTemplateMultiTenantOrganizationPartnerConfiguration(ctx context.Context, input beta.MultiTenantOrganizationPartnerConfigurationTemplate) (result UpdateCrossTenantAccessPolicyTemplateMultiTenantOrganizationPartnerConfigurationOperationResponse, err error) {
+func (c CrossTenantAccessPolicyTemplateMultiTenantOrganizationPartnerConfigurationClient) UpdateCrossTenantAccessPolicyTemplateMultiTenantOrganizationPartnerConfiguration(ctx context.Context, input beta.MultiTenantOrganizationPartnerConfigurationTemplate, options UpdateCrossTenantAccessPolicyTemplateMultiTenantOrganizationPartnerConfigurationOperationOptions) (result UpdateCrossTenantAccessPolicyTemplateMultiTenantOrganizationPartnerConfigurationOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       "/policies/crossTenantAccessPolicy/templates/multiTenantOrganizationPartnerConfiguration",
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          "/policies/crossTenantAccessPolicy/templates/multiTenantOrganizationPartnerConfiguration",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

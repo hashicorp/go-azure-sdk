@@ -61,10 +61,15 @@ func (s OnAttributeCollectionExternalUsersSelfServiceSignUp) MarshalJSON() ([]by
 var _ json.Unmarshaler = &OnAttributeCollectionExternalUsersSelfServiceSignUp{}
 
 func (s *OnAttributeCollectionExternalUsersSelfServiceSignUp) UnmarshalJSON(bytes []byte) error {
-	type alias OnAttributeCollectionExternalUsersSelfServiceSignUp
-	var decoded alias
+
+	var decoded struct {
+		AttributeCollectionPage AuthenticationAttributeCollectionPage `json:"attributeCollectionPage"`
+		Attributes              *[]IdentityUserFlowAttribute          `json:"attributes,omitempty"`
+		ODataId                 *string                               `json:"@odata.id,omitempty"`
+		ODataType               *string                               `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into OnAttributeCollectionExternalUsersSelfServiceSignUp: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.AttributeCollectionPage = decoded.AttributeCollectionPage
@@ -92,5 +97,6 @@ func (s *OnAttributeCollectionExternalUsersSelfServiceSignUp) UnmarshalJSON(byte
 		}
 		s.Attributes = &output
 	}
+
 	return nil
 }

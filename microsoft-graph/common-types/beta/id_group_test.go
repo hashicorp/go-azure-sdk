@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &GroupId{}
 
 func TestNewGroupID(t *testing.T) {
-	id := NewGroupID("groupIdValue")
+	id := NewGroupID("groupId")
 
-	if id.GroupId != "groupIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'GroupId'", id.GroupId, "groupIdValue")
+	if id.GroupId != "groupId" {
+		t.Fatalf("Expected %q but got %q for Segment 'GroupId'", id.GroupId, "groupId")
 	}
 }
 
 func TestFormatGroupID(t *testing.T) {
-	actual := NewGroupID("groupIdValue").ID()
-	expected := "/groups/groupIdValue"
+	actual := NewGroupID("groupId").ID()
+	expected := "/groups/groupId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -45,14 +45,14 @@ func TestParseGroupID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/groups/groupIdValue",
+			Input: "/groups/groupId",
 			Expected: &GroupId{
-				GroupId: "groupIdValue",
+				GroupId: "groupId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/groups/groupIdValue/extra",
+			Input: "/groups/groupId/extra",
 			Error: true,
 		},
 	}
@@ -101,26 +101,26 @@ func TestParseGroupIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/groups/groupIdValue",
+			Input: "/groups/groupId",
 			Expected: &GroupId{
-				GroupId: "groupIdValue",
+				GroupId: "groupId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/groups/groupIdValue/extra",
+			Input: "/groups/groupId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE",
+			Input: "/gRoUpS/gRoUpId",
 			Expected: &GroupId{
-				GroupId: "gRoUpIdVaLuE",
+				GroupId: "gRoUpId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/extra",
+			Input: "/gRoUpS/gRoUpId/extra",
 			Error: true,
 		},
 	}

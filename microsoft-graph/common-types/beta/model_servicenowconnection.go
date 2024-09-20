@@ -86,21 +86,31 @@ func (s ServiceNowConnection) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &ServiceNowConnection{}
 
 func (s *ServiceNowConnection) UnmarshalJSON(bytes []byte) error {
-	type alias ServiceNowConnection
-	var decoded alias
+
+	var decoded struct {
+		CreatedDateTime            nullable.Type[string]       `json:"createdDateTime,omitempty"`
+		IncidentApiUrl             nullable.Type[string]       `json:"incidentApiUrl,omitempty"`
+		InstanceUrl                nullable.Type[string]       `json:"instanceUrl,omitempty"`
+		LastModifiedDateTime       nullable.Type[string]       `json:"lastModifiedDateTime,omitempty"`
+		LastQueriedDateTime        nullable.Type[string]       `json:"lastQueriedDateTime,omitempty"`
+		ServiceNowConnectionStatus *ServiceNowConnectionStatus `json:"serviceNowConnectionStatus,omitempty"`
+		Id                         *string                     `json:"id,omitempty"`
+		ODataId                    *string                     `json:"@odata.id,omitempty"`
+		ODataType                  *string                     `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into ServiceNowConnection: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.CreatedDateTime = decoded.CreatedDateTime
-	s.Id = decoded.Id
 	s.IncidentApiUrl = decoded.IncidentApiUrl
 	s.InstanceUrl = decoded.InstanceUrl
 	s.LastModifiedDateTime = decoded.LastModifiedDateTime
 	s.LastQueriedDateTime = decoded.LastQueriedDateTime
+	s.ServiceNowConnectionStatus = decoded.ServiceNowConnectionStatus
+	s.Id = decoded.Id
 	s.ODataId = decoded.ODataId
 	s.ODataType = decoded.ODataType
-	s.ServiceNowConnectionStatus = decoded.ServiceNowConnectionStatus
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -114,5 +124,6 @@ func (s *ServiceNowConnection) UnmarshalJSON(bytes []byte) error {
 		}
 		s.AuthenticationMethod = impl
 	}
+
 	return nil
 }

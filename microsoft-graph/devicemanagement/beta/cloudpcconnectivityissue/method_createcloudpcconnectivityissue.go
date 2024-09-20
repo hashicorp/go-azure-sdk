@@ -18,15 +18,44 @@ type CreateCloudPCConnectivityIssueOperationResponse struct {
 	Model        *beta.CloudPCConnectivityIssue
 }
 
+type CreateCloudPCConnectivityIssueOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateCloudPCConnectivityIssueOperationOptions() CreateCloudPCConnectivityIssueOperationOptions {
+	return CreateCloudPCConnectivityIssueOperationOptions{}
+}
+
+func (o CreateCloudPCConnectivityIssueOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateCloudPCConnectivityIssueOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateCloudPCConnectivityIssueOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateCloudPCConnectivityIssue - Create new navigation property to cloudPCConnectivityIssues for deviceManagement
-func (c CloudPCConnectivityIssueClient) CreateCloudPCConnectivityIssue(ctx context.Context, input beta.CloudPCConnectivityIssue) (result CreateCloudPCConnectivityIssueOperationResponse, err error) {
+func (c CloudPCConnectivityIssueClient) CreateCloudPCConnectivityIssue(ctx context.Context, input beta.CloudPCConnectivityIssue, options CreateCloudPCConnectivityIssueOperationOptions) (result CreateCloudPCConnectivityIssueOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/deviceManagement/cloudPCConnectivityIssues",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/deviceManagement/cloudPCConnectivityIssues",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

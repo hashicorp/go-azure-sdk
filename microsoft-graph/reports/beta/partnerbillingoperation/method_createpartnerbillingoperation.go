@@ -19,15 +19,44 @@ type CreatePartnerBillingOperationOperationResponse struct {
 	Model        beta.PartnersBillingOperation
 }
 
+type CreatePartnerBillingOperationOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreatePartnerBillingOperationOperationOptions() CreatePartnerBillingOperationOperationOptions {
+	return CreatePartnerBillingOperationOperationOptions{}
+}
+
+func (o CreatePartnerBillingOperationOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreatePartnerBillingOperationOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreatePartnerBillingOperationOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreatePartnerBillingOperation - Create new navigation property to operations for reports
-func (c PartnerBillingOperationClient) CreatePartnerBillingOperation(ctx context.Context, input beta.PartnersBillingOperation) (result CreatePartnerBillingOperationOperationResponse, err error) {
+func (c PartnerBillingOperationClient) CreatePartnerBillingOperation(ctx context.Context, input beta.PartnersBillingOperation, options CreatePartnerBillingOperationOperationOptions) (result CreatePartnerBillingOperationOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/reports/partners/billing/operations",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/reports/partners/billing/operations",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

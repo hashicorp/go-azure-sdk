@@ -93,17 +93,27 @@ func (s Fido2AuthenticationMethodConfiguration) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &Fido2AuthenticationMethodConfiguration{}
 
 func (s *Fido2AuthenticationMethodConfiguration) UnmarshalJSON(bytes []byte) error {
-	type alias Fido2AuthenticationMethodConfiguration
-	var decoded alias
+
+	var decoded struct {
+		IncludeTargets                   *[]AuthenticationMethodTarget `json:"includeTargets,omitempty"`
+		IsAttestationEnforced            nullable.Type[bool]           `json:"isAttestationEnforced,omitempty"`
+		IsSelfServiceRegistrationAllowed nullable.Type[bool]           `json:"isSelfServiceRegistrationAllowed,omitempty"`
+		KeyRestrictions                  *Fido2KeyRestrictions         `json:"keyRestrictions,omitempty"`
+		ExcludeTargets                   *[]ExcludeTarget              `json:"excludeTargets,omitempty"`
+		State                            *AuthenticationMethodState    `json:"state,omitempty"`
+		Id                               *string                       `json:"id,omitempty"`
+		ODataId                          *string                       `json:"@odata.id,omitempty"`
+		ODataType                        *string                       `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into Fido2AuthenticationMethodConfiguration: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
-	s.ExcludeTargets = decoded.ExcludeTargets
-	s.Id = decoded.Id
 	s.IsAttestationEnforced = decoded.IsAttestationEnforced
 	s.IsSelfServiceRegistrationAllowed = decoded.IsSelfServiceRegistrationAllowed
 	s.KeyRestrictions = decoded.KeyRestrictions
+	s.ExcludeTargets = decoded.ExcludeTargets
+	s.Id = decoded.Id
 	s.ODataId = decoded.ODataId
 	s.ODataType = decoded.ODataType
 	s.State = decoded.State
@@ -129,5 +139,6 @@ func (s *Fido2AuthenticationMethodConfiguration) UnmarshalJSON(bytes []byte) err
 		}
 		s.IncludeTargets = &output
 	}
+
 	return nil
 }

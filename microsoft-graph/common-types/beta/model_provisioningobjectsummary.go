@@ -121,10 +121,31 @@ func (s ProvisioningObjectSummary) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &ProvisioningObjectSummary{}
 
 func (s *ProvisioningObjectSummary) UnmarshalJSON(bytes []byte) error {
-	type alias ProvisioningObjectSummary
-	var decoded alias
+
+	var decoded struct {
+		Action                 nullable.Type[string]         `json:"action,omitempty"`
+		ActivityDateTime       *string                       `json:"activityDateTime,omitempty"`
+		ChangeId               nullable.Type[string]         `json:"changeId,omitempty"`
+		CycleId                nullable.Type[string]         `json:"cycleId,omitempty"`
+		DurationInMilliseconds nullable.Type[int64]          `json:"durationInMilliseconds,omitempty"`
+		InitiatedBy            *Initiator                    `json:"initiatedBy,omitempty"`
+		JobId                  nullable.Type[string]         `json:"jobId,omitempty"`
+		ModifiedProperties     *[]ModifiedProperty           `json:"modifiedProperties,omitempty"`
+		ProvisioningAction     *ProvisioningAction           `json:"provisioningAction,omitempty"`
+		ProvisioningStatusInfo *ProvisioningStatusInfo       `json:"provisioningStatusInfo,omitempty"`
+		ProvisioningSteps      *[]ProvisioningStep           `json:"provisioningSteps,omitempty"`
+		ServicePrincipal       *ProvisioningServicePrincipal `json:"servicePrincipal,omitempty"`
+		SourceIdentity         *ProvisionedIdentity          `json:"sourceIdentity,omitempty"`
+		SourceSystem           *ProvisioningSystem           `json:"sourceSystem,omitempty"`
+		TargetIdentity         *ProvisionedIdentity          `json:"targetIdentity,omitempty"`
+		TargetSystem           *ProvisioningSystem           `json:"targetSystem,omitempty"`
+		TenantId               nullable.Type[string]         `json:"tenantId,omitempty"`
+		Id                     *string                       `json:"id,omitempty"`
+		ODataId                *string                       `json:"@odata.id,omitempty"`
+		ODataType              *string                       `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into ProvisioningObjectSummary: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.Action = decoded.Action
@@ -132,12 +153,9 @@ func (s *ProvisioningObjectSummary) UnmarshalJSON(bytes []byte) error {
 	s.ChangeId = decoded.ChangeId
 	s.CycleId = decoded.CycleId
 	s.DurationInMilliseconds = decoded.DurationInMilliseconds
-	s.Id = decoded.Id
 	s.InitiatedBy = decoded.InitiatedBy
 	s.JobId = decoded.JobId
 	s.ModifiedProperties = decoded.ModifiedProperties
-	s.ODataId = decoded.ODataId
-	s.ODataType = decoded.ODataType
 	s.ProvisioningAction = decoded.ProvisioningAction
 	s.ProvisioningStatusInfo = decoded.ProvisioningStatusInfo
 	s.ProvisioningSteps = decoded.ProvisioningSteps
@@ -147,6 +165,9 @@ func (s *ProvisioningObjectSummary) UnmarshalJSON(bytes []byte) error {
 	s.TargetIdentity = decoded.TargetIdentity
 	s.TargetSystem = decoded.TargetSystem
 	s.TenantId = decoded.TenantId
+	s.Id = decoded.Id
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -160,5 +181,6 @@ func (s *ProvisioningObjectSummary) UnmarshalJSON(bytes []byte) error {
 		}
 		s.StatusInfo = impl
 	}
+
 	return nil
 }

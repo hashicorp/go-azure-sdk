@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &MeCloudPCId{}
 
 func TestNewMeCloudPCID(t *testing.T) {
-	id := NewMeCloudPCID("cloudPCIdValue")
+	id := NewMeCloudPCID("cloudPCId")
 
-	if id.CloudPCId != "cloudPCIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'CloudPCId'", id.CloudPCId, "cloudPCIdValue")
+	if id.CloudPCId != "cloudPCId" {
+		t.Fatalf("Expected %q but got %q for Segment 'CloudPCId'", id.CloudPCId, "cloudPCId")
 	}
 }
 
 func TestFormatMeCloudPCID(t *testing.T) {
-	actual := NewMeCloudPCID("cloudPCIdValue").ID()
-	expected := "/me/cloudPCs/cloudPCIdValue"
+	actual := NewMeCloudPCID("cloudPCId").ID()
+	expected := "/me/cloudPCs/cloudPCId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -50,14 +50,14 @@ func TestParseMeCloudPCID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/me/cloudPCs/cloudPCIdValue",
+			Input: "/me/cloudPCs/cloudPCId",
 			Expected: &MeCloudPCId{
-				CloudPCId: "cloudPCIdValue",
+				CloudPCId: "cloudPCId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/cloudPCs/cloudPCIdValue/extra",
+			Input: "/me/cloudPCs/cloudPCId/extra",
 			Error: true,
 		},
 	}
@@ -116,26 +116,26 @@ func TestParseMeCloudPCIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/me/cloudPCs/cloudPCIdValue",
+			Input: "/me/cloudPCs/cloudPCId",
 			Expected: &MeCloudPCId{
-				CloudPCId: "cloudPCIdValue",
+				CloudPCId: "cloudPCId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/cloudPCs/cloudPCIdValue/extra",
+			Input: "/me/cloudPCs/cloudPCId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/cLoUdPcS/cLoUdPcIdVaLuE",
+			Input: "/mE/cLoUdPcS/cLoUdPcId",
 			Expected: &MeCloudPCId{
-				CloudPCId: "cLoUdPcIdVaLuE",
+				CloudPCId: "cLoUdPcId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/mE/cLoUdPcS/cLoUdPcIdVaLuE/extra",
+			Input: "/mE/cLoUdPcS/cLoUdPcId/extra",
 			Error: true,
 		},
 	}

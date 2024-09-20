@@ -19,7 +19,8 @@ type DeleteTokenIssuancePolicyOperationResponse struct {
 }
 
 type DeleteTokenIssuancePolicyOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteTokenIssuancePolicyOperationOptions() DeleteTokenIssuancePolicyOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteTokenIssuancePolicyOperationOptions) ToHeaders() *client.Headers {
 
 func (o DeleteTokenIssuancePolicyOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

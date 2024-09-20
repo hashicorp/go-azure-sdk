@@ -20,15 +20,44 @@ type CreateEventExceptionOccurrenceAttachmentOperationResponse struct {
 	Model        beta.Attachment
 }
 
+type CreateEventExceptionOccurrenceAttachmentOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateEventExceptionOccurrenceAttachmentOperationOptions() CreateEventExceptionOccurrenceAttachmentOperationOptions {
+	return CreateEventExceptionOccurrenceAttachmentOperationOptions{}
+}
+
+func (o CreateEventExceptionOccurrenceAttachmentOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateEventExceptionOccurrenceAttachmentOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateEventExceptionOccurrenceAttachmentOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateEventExceptionOccurrenceAttachment - Create new navigation property to attachments for groups
-func (c EventExceptionOccurrenceAttachmentClient) CreateEventExceptionOccurrenceAttachment(ctx context.Context, id beta.GroupIdEventIdExceptionOccurrenceId, input beta.Attachment) (result CreateEventExceptionOccurrenceAttachmentOperationResponse, err error) {
+func (c EventExceptionOccurrenceAttachmentClient) CreateEventExceptionOccurrenceAttachment(ctx context.Context, id beta.GroupIdEventIdExceptionOccurrenceId, input beta.Attachment, options CreateEventExceptionOccurrenceAttachmentOperationOptions) (result CreateEventExceptionOccurrenceAttachmentOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/attachments", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/attachments", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

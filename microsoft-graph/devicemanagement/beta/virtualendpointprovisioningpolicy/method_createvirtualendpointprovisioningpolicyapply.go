@@ -18,17 +18,46 @@ type CreateVirtualEndpointProvisioningPolicyApplyOperationResponse struct {
 	OData        *odata.OData
 }
 
+type CreateVirtualEndpointProvisioningPolicyApplyOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateVirtualEndpointProvisioningPolicyApplyOperationOptions() CreateVirtualEndpointProvisioningPolicyApplyOperationOptions {
+	return CreateVirtualEndpointProvisioningPolicyApplyOperationOptions{}
+}
+
+func (o CreateVirtualEndpointProvisioningPolicyApplyOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateVirtualEndpointProvisioningPolicyApplyOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateVirtualEndpointProvisioningPolicyApplyOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateVirtualEndpointProvisioningPolicyApply - Invoke action apply. Apply the current provisioning policy
 // configuration to all Cloud PC devices under a specified policy. Currently, the region is the only policy setting that
 // you can apply.
-func (c VirtualEndpointProvisioningPolicyClient) CreateVirtualEndpointProvisioningPolicyApply(ctx context.Context, id beta.DeviceManagementVirtualEndpointProvisioningPolicyId, input CreateVirtualEndpointProvisioningPolicyApplyRequest) (result CreateVirtualEndpointProvisioningPolicyApplyOperationResponse, err error) {
+func (c VirtualEndpointProvisioningPolicyClient) CreateVirtualEndpointProvisioningPolicyApply(ctx context.Context, id beta.DeviceManagementVirtualEndpointProvisioningPolicyId, input CreateVirtualEndpointProvisioningPolicyApplyRequest, options CreateVirtualEndpointProvisioningPolicyApplyOperationOptions) (result CreateVirtualEndpointProvisioningPolicyApplyOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/apply", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/apply", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

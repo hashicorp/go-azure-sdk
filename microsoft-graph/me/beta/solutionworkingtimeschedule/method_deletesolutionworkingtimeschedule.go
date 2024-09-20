@@ -18,7 +18,8 @@ type DeleteSolutionWorkingTimeScheduleOperationResponse struct {
 }
 
 type DeleteSolutionWorkingTimeScheduleOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteSolutionWorkingTimeScheduleOperationOptions() DeleteSolutionWorkingTimeScheduleOperationOptions {
@@ -35,7 +36,9 @@ func (o DeleteSolutionWorkingTimeScheduleOperationOptions) ToHeaders() *client.H
 
 func (o DeleteSolutionWorkingTimeScheduleOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

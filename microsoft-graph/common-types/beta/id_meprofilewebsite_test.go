@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &MeProfileWebsiteId{}
 
 func TestNewMeProfileWebsiteID(t *testing.T) {
-	id := NewMeProfileWebsiteID("personWebsiteIdValue")
+	id := NewMeProfileWebsiteID("personWebsiteId")
 
-	if id.PersonWebsiteId != "personWebsiteIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'PersonWebsiteId'", id.PersonWebsiteId, "personWebsiteIdValue")
+	if id.PersonWebsiteId != "personWebsiteId" {
+		t.Fatalf("Expected %q but got %q for Segment 'PersonWebsiteId'", id.PersonWebsiteId, "personWebsiteId")
 	}
 }
 
 func TestFormatMeProfileWebsiteID(t *testing.T) {
-	actual := NewMeProfileWebsiteID("personWebsiteIdValue").ID()
-	expected := "/me/profile/websites/personWebsiteIdValue"
+	actual := NewMeProfileWebsiteID("personWebsiteId").ID()
+	expected := "/me/profile/websites/personWebsiteId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -55,14 +55,14 @@ func TestParseMeProfileWebsiteID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/me/profile/websites/personWebsiteIdValue",
+			Input: "/me/profile/websites/personWebsiteId",
 			Expected: &MeProfileWebsiteId{
-				PersonWebsiteId: "personWebsiteIdValue",
+				PersonWebsiteId: "personWebsiteId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/profile/websites/personWebsiteIdValue/extra",
+			Input: "/me/profile/websites/personWebsiteId/extra",
 			Error: true,
 		},
 	}
@@ -131,26 +131,26 @@ func TestParseMeProfileWebsiteIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/me/profile/websites/personWebsiteIdValue",
+			Input: "/me/profile/websites/personWebsiteId",
 			Expected: &MeProfileWebsiteId{
-				PersonWebsiteId: "personWebsiteIdValue",
+				PersonWebsiteId: "personWebsiteId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/profile/websites/personWebsiteIdValue/extra",
+			Input: "/me/profile/websites/personWebsiteId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/pRoFiLe/wEbSiTeS/pErSoNwEbSiTeIdVaLuE",
+			Input: "/mE/pRoFiLe/wEbSiTeS/pErSoNwEbSiTeId",
 			Expected: &MeProfileWebsiteId{
-				PersonWebsiteId: "pErSoNwEbSiTeIdVaLuE",
+				PersonWebsiteId: "pErSoNwEbSiTeId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/mE/pRoFiLe/wEbSiTeS/pErSoNwEbSiTeIdVaLuE/extra",
+			Input: "/mE/pRoFiLe/wEbSiTeS/pErSoNwEbSiTeId/extra",
 			Error: true,
 		},
 	}

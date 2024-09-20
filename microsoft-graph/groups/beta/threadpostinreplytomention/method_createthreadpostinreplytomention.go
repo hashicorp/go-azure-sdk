@@ -19,15 +19,44 @@ type CreateThreadPostInReplyToMentionOperationResponse struct {
 	Model        *beta.Mention
 }
 
+type CreateThreadPostInReplyToMentionOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateThreadPostInReplyToMentionOperationOptions() CreateThreadPostInReplyToMentionOperationOptions {
+	return CreateThreadPostInReplyToMentionOperationOptions{}
+}
+
+func (o CreateThreadPostInReplyToMentionOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateThreadPostInReplyToMentionOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateThreadPostInReplyToMentionOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateThreadPostInReplyToMention - Create new navigation property to mentions for groups
-func (c ThreadPostInReplyToMentionClient) CreateThreadPostInReplyToMention(ctx context.Context, id beta.GroupIdThreadIdPostId, input beta.Mention) (result CreateThreadPostInReplyToMentionOperationResponse, err error) {
+func (c ThreadPostInReplyToMentionClient) CreateThreadPostInReplyToMention(ctx context.Context, id beta.GroupIdThreadIdPostId, input beta.Mention, options CreateThreadPostInReplyToMentionOperationOptions) (result CreateThreadPostInReplyToMentionOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/inReplyTo/mentions", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/inReplyTo/mentions", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &ServicePrincipalIdAppRoleAssignedToId{}
 
 func TestNewServicePrincipalIdAppRoleAssignedToID(t *testing.T) {
-	id := NewServicePrincipalIdAppRoleAssignedToID("servicePrincipalIdValue", "appRoleAssignmentIdValue")
+	id := NewServicePrincipalIdAppRoleAssignedToID("servicePrincipalId", "appRoleAssignmentId")
 
-	if id.ServicePrincipalId != "servicePrincipalIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ServicePrincipalId'", id.ServicePrincipalId, "servicePrincipalIdValue")
+	if id.ServicePrincipalId != "servicePrincipalId" {
+		t.Fatalf("Expected %q but got %q for Segment 'ServicePrincipalId'", id.ServicePrincipalId, "servicePrincipalId")
 	}
 
-	if id.AppRoleAssignmentId != "appRoleAssignmentIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'AppRoleAssignmentId'", id.AppRoleAssignmentId, "appRoleAssignmentIdValue")
+	if id.AppRoleAssignmentId != "appRoleAssignmentId" {
+		t.Fatalf("Expected %q but got %q for Segment 'AppRoleAssignmentId'", id.AppRoleAssignmentId, "appRoleAssignmentId")
 	}
 }
 
 func TestFormatServicePrincipalIdAppRoleAssignedToID(t *testing.T) {
-	actual := NewServicePrincipalIdAppRoleAssignedToID("servicePrincipalIdValue", "appRoleAssignmentIdValue").ID()
-	expected := "/servicePrincipals/servicePrincipalIdValue/appRoleAssignedTo/appRoleAssignmentIdValue"
+	actual := NewServicePrincipalIdAppRoleAssignedToID("servicePrincipalId", "appRoleAssignmentId").ID()
+	expected := "/servicePrincipals/servicePrincipalId/appRoleAssignedTo/appRoleAssignmentId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -49,25 +49,25 @@ func TestParseServicePrincipalIdAppRoleAssignedToID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/servicePrincipals/servicePrincipalIdValue",
+			Input: "/servicePrincipals/servicePrincipalId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/servicePrincipals/servicePrincipalIdValue/appRoleAssignedTo",
+			Input: "/servicePrincipals/servicePrincipalId/appRoleAssignedTo",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/servicePrincipals/servicePrincipalIdValue/appRoleAssignedTo/appRoleAssignmentIdValue",
+			Input: "/servicePrincipals/servicePrincipalId/appRoleAssignedTo/appRoleAssignmentId",
 			Expected: &ServicePrincipalIdAppRoleAssignedToId{
-				ServicePrincipalId:  "servicePrincipalIdValue",
-				AppRoleAssignmentId: "appRoleAssignmentIdValue",
+				ServicePrincipalId:  "servicePrincipalId",
+				AppRoleAssignmentId: "appRoleAssignmentId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/servicePrincipals/servicePrincipalIdValue/appRoleAssignedTo/appRoleAssignmentIdValue/extra",
+			Input: "/servicePrincipals/servicePrincipalId/appRoleAssignedTo/appRoleAssignmentId/extra",
 			Error: true,
 		},
 	}
@@ -120,48 +120,48 @@ func TestParseServicePrincipalIdAppRoleAssignedToIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/servicePrincipals/servicePrincipalIdValue",
+			Input: "/servicePrincipals/servicePrincipalId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sErViCePrInCiPaLs/sErViCePrInCiPaLiDvAlUe",
+			Input: "/sErViCePrInCiPaLs/sErViCePrInCiPaLiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/servicePrincipals/servicePrincipalIdValue/appRoleAssignedTo",
+			Input: "/servicePrincipals/servicePrincipalId/appRoleAssignedTo",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/sErViCePrInCiPaLs/sErViCePrInCiPaLiDvAlUe/aPpRoLeAsSiGnEdTo",
+			Input: "/sErViCePrInCiPaLs/sErViCePrInCiPaLiD/aPpRoLeAsSiGnEdTo",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/servicePrincipals/servicePrincipalIdValue/appRoleAssignedTo/appRoleAssignmentIdValue",
+			Input: "/servicePrincipals/servicePrincipalId/appRoleAssignedTo/appRoleAssignmentId",
 			Expected: &ServicePrincipalIdAppRoleAssignedToId{
-				ServicePrincipalId:  "servicePrincipalIdValue",
-				AppRoleAssignmentId: "appRoleAssignmentIdValue",
+				ServicePrincipalId:  "servicePrincipalId",
+				AppRoleAssignmentId: "appRoleAssignmentId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/servicePrincipals/servicePrincipalIdValue/appRoleAssignedTo/appRoleAssignmentIdValue/extra",
+			Input: "/servicePrincipals/servicePrincipalId/appRoleAssignedTo/appRoleAssignmentId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/sErViCePrInCiPaLs/sErViCePrInCiPaLiDvAlUe/aPpRoLeAsSiGnEdTo/aPpRoLeAsSiGnMeNtIdVaLuE",
+			Input: "/sErViCePrInCiPaLs/sErViCePrInCiPaLiD/aPpRoLeAsSiGnEdTo/aPpRoLeAsSiGnMeNtId",
 			Expected: &ServicePrincipalIdAppRoleAssignedToId{
-				ServicePrincipalId:  "sErViCePrInCiPaLiDvAlUe",
-				AppRoleAssignmentId: "aPpRoLeAsSiGnMeNtIdVaLuE",
+				ServicePrincipalId:  "sErViCePrInCiPaLiD",
+				AppRoleAssignmentId: "aPpRoLeAsSiGnMeNtId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/sErViCePrInCiPaLs/sErViCePrInCiPaLiDvAlUe/aPpRoLeAsSiGnEdTo/aPpRoLeAsSiGnMeNtIdVaLuE/extra",
+			Input: "/sErViCePrInCiPaLs/sErViCePrInCiPaLiD/aPpRoLeAsSiGnEdTo/aPpRoLeAsSiGnMeNtId/extra",
 			Error: true,
 		},
 	}

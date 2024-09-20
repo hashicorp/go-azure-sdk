@@ -17,15 +17,44 @@ type UpdateTodoListTaskOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateTodoListTaskOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateTodoListTaskOperationOptions() UpdateTodoListTaskOperationOptions {
+	return UpdateTodoListTaskOperationOptions{}
+}
+
+func (o UpdateTodoListTaskOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateTodoListTaskOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateTodoListTaskOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateTodoListTask - Update todoTask. Update the properties of a todoTask object.
-func (c TodoListTaskClient) UpdateTodoListTask(ctx context.Context, id beta.MeTodoListIdTaskId, input beta.TodoTask) (result UpdateTodoListTaskOperationResponse, err error) {
+func (c TodoListTaskClient) UpdateTodoListTask(ctx context.Context, id beta.MeTodoListIdTaskId, input beta.TodoTask, options UpdateTodoListTaskOperationOptions) (result UpdateTodoListTaskOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

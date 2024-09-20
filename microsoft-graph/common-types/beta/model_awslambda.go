@@ -102,18 +102,27 @@ func (s AwsLambda) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &AwsLambda{}
 
 func (s *AwsLambda) UnmarshalJSON(bytes []byte) error {
-	type alias AwsLambda
-	var decoded alias
+
+	var decoded struct {
+		Resource            *AwsAuthorizationSystemResource   `json:"resource,omitempty"`
+		AuthorizationSystem *AuthorizationSystem              `json:"authorizationSystem,omitempty"`
+		DisplayName         nullable.Type[string]             `json:"displayName,omitempty"`
+		ExternalId          *string                           `json:"externalId,omitempty"`
+		Source              AuthorizationSystemIdentitySource `json:"source"`
+		Id                  *string                           `json:"id,omitempty"`
+		ODataId             *string                           `json:"@odata.id,omitempty"`
+		ODataType           *string                           `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into AwsLambda: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
+	s.Resource = decoded.Resource
 	s.DisplayName = decoded.DisplayName
 	s.ExternalId = decoded.ExternalId
 	s.Id = decoded.Id
 	s.ODataId = decoded.ODataId
 	s.ODataType = decoded.ODataType
-	s.Resource = decoded.Resource
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -135,5 +144,6 @@ func (s *AwsLambda) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Source = impl
 	}
+
 	return nil
 }

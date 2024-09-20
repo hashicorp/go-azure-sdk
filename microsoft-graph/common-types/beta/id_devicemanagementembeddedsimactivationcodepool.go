@@ -93,7 +93,7 @@ func (id DeviceManagementEmbeddedSIMActivationCodePoolId) Segments() []resourcei
 	return []resourceids.Segment{
 		resourceids.StaticSegment("deviceManagement", "deviceManagement", "deviceManagement"),
 		resourceids.StaticSegment("embeddedSIMActivationCodePools", "embeddedSIMActivationCodePools", "embeddedSIMActivationCodePools"),
-		resourceids.UserSpecifiedSegment("embeddedSIMActivationCodePoolId", "embeddedSIMActivationCodePoolIdValue"),
+		resourceids.UserSpecifiedSegment("embeddedSIMActivationCodePoolId", "embeddedSIMActivationCodePoolId"),
 	}
 }
 

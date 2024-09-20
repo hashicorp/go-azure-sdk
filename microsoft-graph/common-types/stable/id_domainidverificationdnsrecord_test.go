@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &DomainIdVerificationDnsRecordId{}
 
 func TestNewDomainIdVerificationDnsRecordID(t *testing.T) {
-	id := NewDomainIdVerificationDnsRecordID("domainIdValue", "domainDnsRecordIdValue")
+	id := NewDomainIdVerificationDnsRecordID("domainId", "domainDnsRecordId")
 
-	if id.DomainId != "domainIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DomainId'", id.DomainId, "domainIdValue")
+	if id.DomainId != "domainId" {
+		t.Fatalf("Expected %q but got %q for Segment 'DomainId'", id.DomainId, "domainId")
 	}
 
-	if id.DomainDnsRecordId != "domainDnsRecordIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DomainDnsRecordId'", id.DomainDnsRecordId, "domainDnsRecordIdValue")
+	if id.DomainDnsRecordId != "domainDnsRecordId" {
+		t.Fatalf("Expected %q but got %q for Segment 'DomainDnsRecordId'", id.DomainDnsRecordId, "domainDnsRecordId")
 	}
 }
 
 func TestFormatDomainIdVerificationDnsRecordID(t *testing.T) {
-	actual := NewDomainIdVerificationDnsRecordID("domainIdValue", "domainDnsRecordIdValue").ID()
-	expected := "/domains/domainIdValue/verificationDnsRecords/domainDnsRecordIdValue"
+	actual := NewDomainIdVerificationDnsRecordID("domainId", "domainDnsRecordId").ID()
+	expected := "/domains/domainId/verificationDnsRecords/domainDnsRecordId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -49,25 +49,25 @@ func TestParseDomainIdVerificationDnsRecordID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/domains/domainIdValue",
+			Input: "/domains/domainId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/domains/domainIdValue/verificationDnsRecords",
+			Input: "/domains/domainId/verificationDnsRecords",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/domains/domainIdValue/verificationDnsRecords/domainDnsRecordIdValue",
+			Input: "/domains/domainId/verificationDnsRecords/domainDnsRecordId",
 			Expected: &DomainIdVerificationDnsRecordId{
-				DomainId:          "domainIdValue",
-				DomainDnsRecordId: "domainDnsRecordIdValue",
+				DomainId:          "domainId",
+				DomainDnsRecordId: "domainDnsRecordId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/domains/domainIdValue/verificationDnsRecords/domainDnsRecordIdValue/extra",
+			Input: "/domains/domainId/verificationDnsRecords/domainDnsRecordId/extra",
 			Error: true,
 		},
 	}
@@ -120,48 +120,48 @@ func TestParseDomainIdVerificationDnsRecordIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/domains/domainIdValue",
+			Input: "/domains/domainId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/dOmAiNs/dOmAiNiDvAlUe",
+			Input: "/dOmAiNs/dOmAiNiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/domains/domainIdValue/verificationDnsRecords",
+			Input: "/domains/domainId/verificationDnsRecords",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/dOmAiNs/dOmAiNiDvAlUe/vErIfIcAtIoNdNsReCoRdS",
+			Input: "/dOmAiNs/dOmAiNiD/vErIfIcAtIoNdNsReCoRdS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/domains/domainIdValue/verificationDnsRecords/domainDnsRecordIdValue",
+			Input: "/domains/domainId/verificationDnsRecords/domainDnsRecordId",
 			Expected: &DomainIdVerificationDnsRecordId{
-				DomainId:          "domainIdValue",
-				DomainDnsRecordId: "domainDnsRecordIdValue",
+				DomainId:          "domainId",
+				DomainDnsRecordId: "domainDnsRecordId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/domains/domainIdValue/verificationDnsRecords/domainDnsRecordIdValue/extra",
+			Input: "/domains/domainId/verificationDnsRecords/domainDnsRecordId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/dOmAiNs/dOmAiNiDvAlUe/vErIfIcAtIoNdNsReCoRdS/dOmAiNdNsReCoRdIdVaLuE",
+			Input: "/dOmAiNs/dOmAiNiD/vErIfIcAtIoNdNsReCoRdS/dOmAiNdNsReCoRdId",
 			Expected: &DomainIdVerificationDnsRecordId{
-				DomainId:          "dOmAiNiDvAlUe",
-				DomainDnsRecordId: "dOmAiNdNsReCoRdIdVaLuE",
+				DomainId:          "dOmAiNiD",
+				DomainDnsRecordId: "dOmAiNdNsReCoRdId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/dOmAiNs/dOmAiNiDvAlUe/vErIfIcAtIoNdNsReCoRdS/dOmAiNdNsReCoRdIdVaLuE/extra",
+			Input: "/dOmAiNs/dOmAiNiD/vErIfIcAtIoNdNsReCoRdS/dOmAiNdNsReCoRdId/extra",
 			Error: true,
 		},
 	}

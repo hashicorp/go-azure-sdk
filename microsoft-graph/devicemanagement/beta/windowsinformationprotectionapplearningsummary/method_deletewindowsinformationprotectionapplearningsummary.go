@@ -19,7 +19,8 @@ type DeleteWindowsInformationProtectionAppLearningSummaryOperationResponse struc
 }
 
 type DeleteWindowsInformationProtectionAppLearningSummaryOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteWindowsInformationProtectionAppLearningSummaryOperationOptions() DeleteWindowsInformationProtectionAppLearningSummaryOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteWindowsInformationProtectionAppLearningSummaryOperationOptions) To
 
 func (o DeleteWindowsInformationProtectionAppLearningSummaryOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

@@ -20,8 +20,9 @@ type GetPendingAccessReviewInstancesCountOperationResponse struct {
 }
 
 type GetPendingAccessReviewInstancesCountOperationOptions struct {
-	Filter *string
-	Search *string
+	Filter   *string
+	Metadata *odata.Metadata
+	Search   *string
 }
 
 func DefaultGetPendingAccessReviewInstancesCountOperationOptions() GetPendingAccessReviewInstancesCountOperationOptions {
@@ -38,6 +39,9 @@ func (o GetPendingAccessReviewInstancesCountOperationOptions) ToOData() *odata.Q
 	out := odata.Query{}
 	if o.Filter != nil {
 		out.Filter = *o.Filter
+	}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
 	}
 	if o.Search != nil {
 		out.Search = *o.Search

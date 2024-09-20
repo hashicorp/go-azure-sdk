@@ -18,15 +18,44 @@ type CreateOutlookTaskGroupOperationResponse struct {
 	Model        *beta.OutlookTaskGroup
 }
 
+type CreateOutlookTaskGroupOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateOutlookTaskGroupOperationOptions() CreateOutlookTaskGroupOperationOptions {
+	return CreateOutlookTaskGroupOperationOptions{}
+}
+
+func (o CreateOutlookTaskGroupOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateOutlookTaskGroupOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateOutlookTaskGroupOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateOutlookTaskGroup - Create outlookTaskGroup (deprecated). Create an Outlook task group in the user's mailbox.
-func (c OutlookTaskGroupClient) CreateOutlookTaskGroup(ctx context.Context, input beta.OutlookTaskGroup) (result CreateOutlookTaskGroupOperationResponse, err error) {
+func (c OutlookTaskGroupClient) CreateOutlookTaskGroup(ctx context.Context, input beta.OutlookTaskGroup, options CreateOutlookTaskGroupOperationOptions) (result CreateOutlookTaskGroupOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/me/outlook/taskGroups",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/me/outlook/taskGroups",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

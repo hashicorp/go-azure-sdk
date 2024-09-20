@@ -110,13 +110,13 @@ func (id GroupIdThreadIdPostIdMentionId) ID() string {
 func (id GroupIdThreadIdPostIdMentionId) Segments() []resourceids.Segment {
 	return []resourceids.Segment{
 		resourceids.StaticSegment("groups", "groups", "groups"),
-		resourceids.UserSpecifiedSegment("groupId", "groupIdValue"),
+		resourceids.UserSpecifiedSegment("groupId", "groupId"),
 		resourceids.StaticSegment("threads", "threads", "threads"),
-		resourceids.UserSpecifiedSegment("conversationThreadId", "conversationThreadIdValue"),
+		resourceids.UserSpecifiedSegment("conversationThreadId", "conversationThreadId"),
 		resourceids.StaticSegment("posts", "posts", "posts"),
-		resourceids.UserSpecifiedSegment("postId", "postIdValue"),
+		resourceids.UserSpecifiedSegment("postId", "postId"),
 		resourceids.StaticSegment("mentions", "mentions", "mentions"),
-		resourceids.UserSpecifiedSegment("mentionId", "mentionIdValue"),
+		resourceids.UserSpecifiedSegment("mentionId", "mentionId"),
 	}
 }
 

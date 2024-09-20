@@ -17,15 +17,44 @@ type UpdateSiteListItemActivityOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateSiteListItemActivityOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateSiteListItemActivityOperationOptions() UpdateSiteListItemActivityOperationOptions {
+	return UpdateSiteListItemActivityOperationOptions{}
+}
+
+func (o UpdateSiteListItemActivityOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateSiteListItemActivityOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateSiteListItemActivityOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateSiteListItemActivity - Update the navigation property activities in groups
-func (c SiteListItemActivityClient) UpdateSiteListItemActivity(ctx context.Context, id beta.GroupIdSiteIdListIdItemIdActivityId, input beta.ItemActivityOLD) (result UpdateSiteListItemActivityOperationResponse, err error) {
+func (c SiteListItemActivityClient) UpdateSiteListItemActivity(ctx context.Context, id beta.GroupIdSiteIdListIdItemIdActivityId, input beta.ItemActivityOLD, options UpdateSiteListItemActivityOperationOptions) (result UpdateSiteListItemActivityOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

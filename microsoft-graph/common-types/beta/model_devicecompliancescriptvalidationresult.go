@@ -28,10 +28,16 @@ type DeviceComplianceScriptValidationResult struct {
 var _ json.Unmarshaler = &DeviceComplianceScriptValidationResult{}
 
 func (s *DeviceComplianceScriptValidationResult) UnmarshalJSON(bytes []byte) error {
-	type alias DeviceComplianceScriptValidationResult
-	var decoded alias
+
+	var decoded struct {
+		ODataId      *string                            `json:"@odata.id,omitempty"`
+		ODataType    *string                            `json:"@odata.type,omitempty"`
+		RuleErrors   *[]DeviceComplianceScriptRuleError `json:"ruleErrors,omitempty"`
+		Rules        *[]DeviceComplianceScriptRule      `json:"rules,omitempty"`
+		ScriptErrors *[]DeviceComplianceScriptError     `json:"scriptErrors,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into DeviceComplianceScriptValidationResult: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.ODataId = decoded.ODataId
@@ -60,5 +66,6 @@ func (s *DeviceComplianceScriptValidationResult) UnmarshalJSON(bytes []byte) err
 		}
 		s.ScriptErrors = &output
 	}
+
 	return nil
 }

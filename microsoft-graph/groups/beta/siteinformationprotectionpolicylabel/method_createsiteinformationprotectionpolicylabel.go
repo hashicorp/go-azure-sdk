@@ -19,15 +19,44 @@ type CreateSiteInformationProtectionPolicyLabelOperationResponse struct {
 	Model        *beta.InformationProtectionLabel
 }
 
+type CreateSiteInformationProtectionPolicyLabelOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateSiteInformationProtectionPolicyLabelOperationOptions() CreateSiteInformationProtectionPolicyLabelOperationOptions {
+	return CreateSiteInformationProtectionPolicyLabelOperationOptions{}
+}
+
+func (o CreateSiteInformationProtectionPolicyLabelOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateSiteInformationProtectionPolicyLabelOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateSiteInformationProtectionPolicyLabelOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateSiteInformationProtectionPolicyLabel - Create new navigation property to labels for groups
-func (c SiteInformationProtectionPolicyLabelClient) CreateSiteInformationProtectionPolicyLabel(ctx context.Context, id beta.GroupIdSiteId, input beta.InformationProtectionLabel) (result CreateSiteInformationProtectionPolicyLabelOperationResponse, err error) {
+func (c SiteInformationProtectionPolicyLabelClient) CreateSiteInformationProtectionPolicyLabel(ctx context.Context, id beta.GroupIdSiteId, input beta.InformationProtectionLabel, options CreateSiteInformationProtectionPolicyLabelOperationOptions) (result CreateSiteInformationProtectionPolicyLabelOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/informationProtection/policy/labels", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/informationProtection/policy/labels", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

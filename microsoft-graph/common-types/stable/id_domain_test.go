@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &DomainId{}
 
 func TestNewDomainID(t *testing.T) {
-	id := NewDomainID("domainIdValue")
+	id := NewDomainID("domainId")
 
-	if id.DomainId != "domainIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DomainId'", id.DomainId, "domainIdValue")
+	if id.DomainId != "domainId" {
+		t.Fatalf("Expected %q but got %q for Segment 'DomainId'", id.DomainId, "domainId")
 	}
 }
 
 func TestFormatDomainID(t *testing.T) {
-	actual := NewDomainID("domainIdValue").ID()
-	expected := "/domains/domainIdValue"
+	actual := NewDomainID("domainId").ID()
+	expected := "/domains/domainId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -45,14 +45,14 @@ func TestParseDomainID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/domains/domainIdValue",
+			Input: "/domains/domainId",
 			Expected: &DomainId{
-				DomainId: "domainIdValue",
+				DomainId: "domainId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/domains/domainIdValue/extra",
+			Input: "/domains/domainId/extra",
 			Error: true,
 		},
 	}
@@ -101,26 +101,26 @@ func TestParseDomainIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/domains/domainIdValue",
+			Input: "/domains/domainId",
 			Expected: &DomainId{
-				DomainId: "domainIdValue",
+				DomainId: "domainId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/domains/domainIdValue/extra",
+			Input: "/domains/domainId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/dOmAiNs/dOmAiNiDvAlUe",
+			Input: "/dOmAiNs/dOmAiNiD",
 			Expected: &DomainId{
-				DomainId: "dOmAiNiDvAlUe",
+				DomainId: "dOmAiNiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/dOmAiNs/dOmAiNiDvAlUe/extra",
+			Input: "/dOmAiNs/dOmAiNiD/extra",
 			Error: true,
 		},
 	}

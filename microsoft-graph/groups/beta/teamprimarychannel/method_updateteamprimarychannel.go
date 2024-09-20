@@ -18,15 +18,44 @@ type UpdateTeamPrimaryChannelOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateTeamPrimaryChannelOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateTeamPrimaryChannelOperationOptions() UpdateTeamPrimaryChannelOperationOptions {
+	return UpdateTeamPrimaryChannelOperationOptions{}
+}
+
+func (o UpdateTeamPrimaryChannelOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateTeamPrimaryChannelOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateTeamPrimaryChannelOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateTeamPrimaryChannel - Update the navigation property primaryChannel in groups
-func (c TeamPrimaryChannelClient) UpdateTeamPrimaryChannel(ctx context.Context, id beta.GroupId, input beta.Channel) (result UpdateTeamPrimaryChannelOperationResponse, err error) {
+func (c TeamPrimaryChannelClient) UpdateTeamPrimaryChannel(ctx context.Context, id beta.GroupId, input beta.Channel, options UpdateTeamPrimaryChannelOperationOptions) (result UpdateTeamPrimaryChannelOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       fmt.Sprintf("%s/team/primaryChannel", id.ID()),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/team/primaryChannel", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

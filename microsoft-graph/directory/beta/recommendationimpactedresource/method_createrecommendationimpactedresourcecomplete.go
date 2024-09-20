@@ -19,16 +19,45 @@ type CreateRecommendationImpactedResourceCompleteOperationResponse struct {
 	Model        *beta.ImpactedResource
 }
 
+type CreateRecommendationImpactedResourceCompleteOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateRecommendationImpactedResourceCompleteOperationOptions() CreateRecommendationImpactedResourceCompleteOperationOptions {
+	return CreateRecommendationImpactedResourceCompleteOperationOptions{}
+}
+
+func (o CreateRecommendationImpactedResourceCompleteOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateRecommendationImpactedResourceCompleteOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateRecommendationImpactedResourceCompleteOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateRecommendationImpactedResourceComplete - Invoke action complete. Complete an impactedResource object and update
 // its status to completedByUser.
-func (c RecommendationImpactedResourceClient) CreateRecommendationImpactedResourceComplete(ctx context.Context, id beta.DirectoryRecommendationIdImpactedResourceId) (result CreateRecommendationImpactedResourceCompleteOperationResponse, err error) {
+func (c RecommendationImpactedResourceClient) CreateRecommendationImpactedResourceComplete(ctx context.Context, id beta.DirectoryRecommendationIdImpactedResourceId, options CreateRecommendationImpactedResourceCompleteOperationOptions) (result CreateRecommendationImpactedResourceCompleteOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/complete", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/complete", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

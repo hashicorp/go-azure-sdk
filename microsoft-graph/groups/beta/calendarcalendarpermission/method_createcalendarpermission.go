@@ -19,15 +19,44 @@ type CreateCalendarPermissionOperationResponse struct {
 	Model        *beta.CalendarPermission
 }
 
+type CreateCalendarPermissionOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateCalendarPermissionOperationOptions() CreateCalendarPermissionOperationOptions {
+	return CreateCalendarPermissionOperationOptions{}
+}
+
+func (o CreateCalendarPermissionOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateCalendarPermissionOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateCalendarPermissionOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateCalendarPermission - Create new navigation property to calendarPermissions for groups
-func (c CalendarCalendarPermissionClient) CreateCalendarPermission(ctx context.Context, id beta.GroupId, input beta.CalendarPermission) (result CreateCalendarPermissionOperationResponse, err error) {
+func (c CalendarCalendarPermissionClient) CreateCalendarPermission(ctx context.Context, id beta.GroupId, input beta.CalendarPermission, options CreateCalendarPermissionOperationOptions) (result CreateCalendarPermissionOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/calendar/calendarPermissions", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/calendar/calendarPermissions", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

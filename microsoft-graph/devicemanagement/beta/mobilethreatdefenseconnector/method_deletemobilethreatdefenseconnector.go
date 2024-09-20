@@ -19,7 +19,8 @@ type DeleteMobileThreatDefenseConnectorOperationResponse struct {
 }
 
 type DeleteMobileThreatDefenseConnectorOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteMobileThreatDefenseConnectorOperationOptions() DeleteMobileThreatDefenseConnectorOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteMobileThreatDefenseConnectorOperationOptions) ToHeaders() *client.
 
 func (o DeleteMobileThreatDefenseConnectorOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

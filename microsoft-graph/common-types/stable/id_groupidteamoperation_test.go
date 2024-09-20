@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &GroupIdTeamOperationId{}
 
 func TestNewGroupIdTeamOperationID(t *testing.T) {
-	id := NewGroupIdTeamOperationID("groupIdValue", "teamsAsyncOperationIdValue")
+	id := NewGroupIdTeamOperationID("groupId", "teamsAsyncOperationId")
 
-	if id.GroupId != "groupIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'GroupId'", id.GroupId, "groupIdValue")
+	if id.GroupId != "groupId" {
+		t.Fatalf("Expected %q but got %q for Segment 'GroupId'", id.GroupId, "groupId")
 	}
 
-	if id.TeamsAsyncOperationId != "teamsAsyncOperationIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'TeamsAsyncOperationId'", id.TeamsAsyncOperationId, "teamsAsyncOperationIdValue")
+	if id.TeamsAsyncOperationId != "teamsAsyncOperationId" {
+		t.Fatalf("Expected %q but got %q for Segment 'TeamsAsyncOperationId'", id.TeamsAsyncOperationId, "teamsAsyncOperationId")
 	}
 }
 
 func TestFormatGroupIdTeamOperationID(t *testing.T) {
-	actual := NewGroupIdTeamOperationID("groupIdValue", "teamsAsyncOperationIdValue").ID()
-	expected := "/groups/groupIdValue/team/operations/teamsAsyncOperationIdValue"
+	actual := NewGroupIdTeamOperationID("groupId", "teamsAsyncOperationId").ID()
+	expected := "/groups/groupId/team/operations/teamsAsyncOperationId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -49,30 +49,30 @@ func TestParseGroupIdTeamOperationID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue",
+			Input: "/groups/groupId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/team",
+			Input: "/groups/groupId/team",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/team/operations",
+			Input: "/groups/groupId/team/operations",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/groups/groupIdValue/team/operations/teamsAsyncOperationIdValue",
+			Input: "/groups/groupId/team/operations/teamsAsyncOperationId",
 			Expected: &GroupIdTeamOperationId{
-				GroupId:               "groupIdValue",
-				TeamsAsyncOperationId: "teamsAsyncOperationIdValue",
+				GroupId:               "groupId",
+				TeamsAsyncOperationId: "teamsAsyncOperationId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/groups/groupIdValue/team/operations/teamsAsyncOperationIdValue/extra",
+			Input: "/groups/groupId/team/operations/teamsAsyncOperationId/extra",
 			Error: true,
 		},
 	}
@@ -125,58 +125,58 @@ func TestParseGroupIdTeamOperationIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue",
+			Input: "/groups/groupId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE",
+			Input: "/gRoUpS/gRoUpId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/team",
+			Input: "/groups/groupId/team",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/tEaM",
+			Input: "/gRoUpS/gRoUpId/tEaM",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/team/operations",
+			Input: "/groups/groupId/team/operations",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/tEaM/oPeRaTiOnS",
+			Input: "/gRoUpS/gRoUpId/tEaM/oPeRaTiOnS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/groups/groupIdValue/team/operations/teamsAsyncOperationIdValue",
+			Input: "/groups/groupId/team/operations/teamsAsyncOperationId",
 			Expected: &GroupIdTeamOperationId{
-				GroupId:               "groupIdValue",
-				TeamsAsyncOperationId: "teamsAsyncOperationIdValue",
+				GroupId:               "groupId",
+				TeamsAsyncOperationId: "teamsAsyncOperationId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/groups/groupIdValue/team/operations/teamsAsyncOperationIdValue/extra",
+			Input: "/groups/groupId/team/operations/teamsAsyncOperationId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/tEaM/oPeRaTiOnS/tEaMsAsYnCoPeRaTiOnIdVaLuE",
+			Input: "/gRoUpS/gRoUpId/tEaM/oPeRaTiOnS/tEaMsAsYnCoPeRaTiOnId",
 			Expected: &GroupIdTeamOperationId{
-				GroupId:               "gRoUpIdVaLuE",
-				TeamsAsyncOperationId: "tEaMsAsYnCoPeRaTiOnIdVaLuE",
+				GroupId:               "gRoUpId",
+				TeamsAsyncOperationId: "tEaMsAsYnCoPeRaTiOnId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/tEaM/oPeRaTiOnS/tEaMsAsYnCoPeRaTiOnIdVaLuE/extra",
+			Input: "/gRoUpS/gRoUpId/tEaM/oPeRaTiOnS/tEaMsAsYnCoPeRaTiOnId/extra",
 			Error: true,
 		},
 	}

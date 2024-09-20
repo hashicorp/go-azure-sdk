@@ -17,15 +17,44 @@ type UpdateServiceNowConnectionOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateServiceNowConnectionOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateServiceNowConnectionOperationOptions() UpdateServiceNowConnectionOperationOptions {
+	return UpdateServiceNowConnectionOperationOptions{}
+}
+
+func (o UpdateServiceNowConnectionOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateServiceNowConnectionOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateServiceNowConnectionOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateServiceNowConnection - Update the navigation property serviceNowConnections in deviceManagement
-func (c ServiceNowConnectionClient) UpdateServiceNowConnection(ctx context.Context, id beta.DeviceManagementServiceNowConnectionId, input beta.ServiceNowConnection) (result UpdateServiceNowConnectionOperationResponse, err error) {
+func (c ServiceNowConnectionClient) UpdateServiceNowConnection(ctx context.Context, id beta.DeviceManagementServiceNowConnectionId, input beta.ServiceNowConnection, options UpdateServiceNowConnectionOperationOptions) (result UpdateServiceNowConnectionOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

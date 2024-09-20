@@ -127,29 +127,49 @@ func (s LanguageProficiency) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &LanguageProficiency{}
 
 func (s *LanguageProficiency) UnmarshalJSON(bytes []byte) error {
-	type alias LanguageProficiency
-	var decoded alias
+
+	var decoded struct {
+		DisplayName          *string                    `json:"displayName,omitempty"`
+		Proficiency          *LanguageProficiencyLevel  `json:"proficiency,omitempty"`
+		Reading              *LanguageProficiencyLevel  `json:"reading,omitempty"`
+		Spoken               *LanguageProficiencyLevel  `json:"spoken,omitempty"`
+		Tag                  nullable.Type[string]      `json:"tag,omitempty"`
+		ThumbnailUrl         nullable.Type[string]      `json:"thumbnailUrl,omitempty"`
+		Written              *LanguageProficiencyLevel  `json:"written,omitempty"`
+		AllowedAudiences     *AllowedAudiences          `json:"allowedAudiences,omitempty"`
+		CreatedBy            IdentitySet                `json:"createdBy"`
+		CreatedDateTime      *string                    `json:"createdDateTime,omitempty"`
+		Inference            *InferenceData             `json:"inference,omitempty"`
+		IsSearchable         nullable.Type[bool]        `json:"isSearchable,omitempty"`
+		LastModifiedBy       IdentitySet                `json:"lastModifiedBy"`
+		LastModifiedDateTime *string                    `json:"lastModifiedDateTime,omitempty"`
+		Source               *PersonDataSources         `json:"source,omitempty"`
+		Sources              *[]ProfileSourceAnnotation `json:"sources,omitempty"`
+		Id                   *string                    `json:"id,omitempty"`
+		ODataId              *string                    `json:"@odata.id,omitempty"`
+		ODataType            *string                    `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into LanguageProficiency: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
+	s.DisplayName = decoded.DisplayName
+	s.Proficiency = decoded.Proficiency
+	s.Reading = decoded.Reading
+	s.Spoken = decoded.Spoken
+	s.Tag = decoded.Tag
+	s.ThumbnailUrl = decoded.ThumbnailUrl
+	s.Written = decoded.Written
 	s.AllowedAudiences = decoded.AllowedAudiences
 	s.CreatedDateTime = decoded.CreatedDateTime
-	s.DisplayName = decoded.DisplayName
 	s.Id = decoded.Id
 	s.Inference = decoded.Inference
 	s.IsSearchable = decoded.IsSearchable
 	s.LastModifiedDateTime = decoded.LastModifiedDateTime
 	s.ODataId = decoded.ODataId
 	s.ODataType = decoded.ODataType
-	s.Proficiency = decoded.Proficiency
-	s.Reading = decoded.Reading
 	s.Source = decoded.Source
 	s.Sources = decoded.Sources
-	s.Spoken = decoded.Spoken
-	s.Tag = decoded.Tag
-	s.ThumbnailUrl = decoded.ThumbnailUrl
-	s.Written = decoded.Written
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -171,5 +191,6 @@ func (s *LanguageProficiency) UnmarshalJSON(bytes []byte) error {
 		}
 		s.LastModifiedBy = impl
 	}
+
 	return nil
 }

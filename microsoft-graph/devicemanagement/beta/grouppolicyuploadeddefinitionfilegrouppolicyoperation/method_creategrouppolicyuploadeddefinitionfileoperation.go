@@ -19,16 +19,45 @@ type CreateGroupPolicyUploadedDefinitionFileOperationOperationResponse struct {
 	Model        *beta.GroupPolicyOperation
 }
 
+type CreateGroupPolicyUploadedDefinitionFileOperationOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateGroupPolicyUploadedDefinitionFileOperationOperationOptions() CreateGroupPolicyUploadedDefinitionFileOperationOperationOptions {
+	return CreateGroupPolicyUploadedDefinitionFileOperationOperationOptions{}
+}
+
+func (o CreateGroupPolicyUploadedDefinitionFileOperationOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateGroupPolicyUploadedDefinitionFileOperationOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateGroupPolicyUploadedDefinitionFileOperationOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateGroupPolicyUploadedDefinitionFileOperation - Create new navigation property to groupPolicyOperations for
 // deviceManagement
-func (c GroupPolicyUploadedDefinitionFileGroupPolicyOperationClient) CreateGroupPolicyUploadedDefinitionFileOperation(ctx context.Context, id beta.DeviceManagementGroupPolicyUploadedDefinitionFileId, input beta.GroupPolicyOperation) (result CreateGroupPolicyUploadedDefinitionFileOperationOperationResponse, err error) {
+func (c GroupPolicyUploadedDefinitionFileGroupPolicyOperationClient) CreateGroupPolicyUploadedDefinitionFileOperation(ctx context.Context, id beta.DeviceManagementGroupPolicyUploadedDefinitionFileId, input beta.GroupPolicyOperation, options CreateGroupPolicyUploadedDefinitionFileOperationOperationOptions) (result CreateGroupPolicyUploadedDefinitionFileOperationOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/groupPolicyOperations", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/groupPolicyOperations", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

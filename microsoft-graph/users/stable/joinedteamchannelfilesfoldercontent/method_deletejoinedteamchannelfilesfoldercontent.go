@@ -19,7 +19,8 @@ type DeleteJoinedTeamChannelFilesFolderContentOperationResponse struct {
 }
 
 type DeleteJoinedTeamChannelFilesFolderContentOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteJoinedTeamChannelFilesFolderContentOperationOptions() DeleteJoinedTeamChannelFilesFolderContentOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteJoinedTeamChannelFilesFolderContentOperationOptions) ToHeaders() *
 
 func (o DeleteJoinedTeamChannelFilesFolderContentOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

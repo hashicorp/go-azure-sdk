@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &DeviceManagementUserExperienceAnalyticsNotAutopilotReadyDeviceId{}
 
 func TestNewDeviceManagementUserExperienceAnalyticsNotAutopilotReadyDeviceID(t *testing.T) {
-	id := NewDeviceManagementUserExperienceAnalyticsNotAutopilotReadyDeviceID("userExperienceAnalyticsNotAutopilotReadyDeviceIdValue")
+	id := NewDeviceManagementUserExperienceAnalyticsNotAutopilotReadyDeviceID("userExperienceAnalyticsNotAutopilotReadyDeviceId")
 
-	if id.UserExperienceAnalyticsNotAutopilotReadyDeviceId != "userExperienceAnalyticsNotAutopilotReadyDeviceIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'UserExperienceAnalyticsNotAutopilotReadyDeviceId'", id.UserExperienceAnalyticsNotAutopilotReadyDeviceId, "userExperienceAnalyticsNotAutopilotReadyDeviceIdValue")
+	if id.UserExperienceAnalyticsNotAutopilotReadyDeviceId != "userExperienceAnalyticsNotAutopilotReadyDeviceId" {
+		t.Fatalf("Expected %q but got %q for Segment 'UserExperienceAnalyticsNotAutopilotReadyDeviceId'", id.UserExperienceAnalyticsNotAutopilotReadyDeviceId, "userExperienceAnalyticsNotAutopilotReadyDeviceId")
 	}
 }
 
 func TestFormatDeviceManagementUserExperienceAnalyticsNotAutopilotReadyDeviceID(t *testing.T) {
-	actual := NewDeviceManagementUserExperienceAnalyticsNotAutopilotReadyDeviceID("userExperienceAnalyticsNotAutopilotReadyDeviceIdValue").ID()
-	expected := "/deviceManagement/userExperienceAnalyticsNotAutopilotReadyDevice/userExperienceAnalyticsNotAutopilotReadyDeviceIdValue"
+	actual := NewDeviceManagementUserExperienceAnalyticsNotAutopilotReadyDeviceID("userExperienceAnalyticsNotAutopilotReadyDeviceId").ID()
+	expected := "/deviceManagement/userExperienceAnalyticsNotAutopilotReadyDevice/userExperienceAnalyticsNotAutopilotReadyDeviceId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -50,14 +50,14 @@ func TestParseDeviceManagementUserExperienceAnalyticsNotAutopilotReadyDeviceID(t
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/userExperienceAnalyticsNotAutopilotReadyDevice/userExperienceAnalyticsNotAutopilotReadyDeviceIdValue",
+			Input: "/deviceManagement/userExperienceAnalyticsNotAutopilotReadyDevice/userExperienceAnalyticsNotAutopilotReadyDeviceId",
 			Expected: &DeviceManagementUserExperienceAnalyticsNotAutopilotReadyDeviceId{
-				UserExperienceAnalyticsNotAutopilotReadyDeviceId: "userExperienceAnalyticsNotAutopilotReadyDeviceIdValue",
+				UserExperienceAnalyticsNotAutopilotReadyDeviceId: "userExperienceAnalyticsNotAutopilotReadyDeviceId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/userExperienceAnalyticsNotAutopilotReadyDevice/userExperienceAnalyticsNotAutopilotReadyDeviceIdValue/extra",
+			Input: "/deviceManagement/userExperienceAnalyticsNotAutopilotReadyDevice/userExperienceAnalyticsNotAutopilotReadyDeviceId/extra",
 			Error: true,
 		},
 	}
@@ -116,26 +116,26 @@ func TestParseDeviceManagementUserExperienceAnalyticsNotAutopilotReadyDeviceIDIn
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/userExperienceAnalyticsNotAutopilotReadyDevice/userExperienceAnalyticsNotAutopilotReadyDeviceIdValue",
+			Input: "/deviceManagement/userExperienceAnalyticsNotAutopilotReadyDevice/userExperienceAnalyticsNotAutopilotReadyDeviceId",
 			Expected: &DeviceManagementUserExperienceAnalyticsNotAutopilotReadyDeviceId{
-				UserExperienceAnalyticsNotAutopilotReadyDeviceId: "userExperienceAnalyticsNotAutopilotReadyDeviceIdValue",
+				UserExperienceAnalyticsNotAutopilotReadyDeviceId: "userExperienceAnalyticsNotAutopilotReadyDeviceId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/userExperienceAnalyticsNotAutopilotReadyDevice/userExperienceAnalyticsNotAutopilotReadyDeviceIdValue/extra",
+			Input: "/deviceManagement/userExperienceAnalyticsNotAutopilotReadyDevice/userExperienceAnalyticsNotAutopilotReadyDeviceId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/uSeReXpErIeNcEaNaLyTiCsNoTaUtOpIlOtReAdYdEvIcE/uSeReXpErIeNcEaNaLyTiCsNoTaUtOpIlOtReAdYdEvIcEiDvAlUe",
+			Input: "/dEvIcEmAnAgEmEnT/uSeReXpErIeNcEaNaLyTiCsNoTaUtOpIlOtReAdYdEvIcE/uSeReXpErIeNcEaNaLyTiCsNoTaUtOpIlOtReAdYdEvIcEiD",
 			Expected: &DeviceManagementUserExperienceAnalyticsNotAutopilotReadyDeviceId{
-				UserExperienceAnalyticsNotAutopilotReadyDeviceId: "uSeReXpErIeNcEaNaLyTiCsNoTaUtOpIlOtReAdYdEvIcEiDvAlUe",
+				UserExperienceAnalyticsNotAutopilotReadyDeviceId: "uSeReXpErIeNcEaNaLyTiCsNoTaUtOpIlOtReAdYdEvIcEiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/uSeReXpErIeNcEaNaLyTiCsNoTaUtOpIlOtReAdYdEvIcE/uSeReXpErIeNcEaNaLyTiCsNoTaUtOpIlOtReAdYdEvIcEiDvAlUe/extra",
+			Input: "/dEvIcEmAnAgEmEnT/uSeReXpErIeNcEaNaLyTiCsNoTaUtOpIlOtReAdYdEvIcE/uSeReXpErIeNcEaNaLyTiCsNoTaUtOpIlOtReAdYdEvIcEiD/extra",
 			Error: true,
 		},
 	}

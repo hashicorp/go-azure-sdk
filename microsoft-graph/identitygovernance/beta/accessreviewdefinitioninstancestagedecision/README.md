@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/microsoft-graph/identitygovernance/beta/accessreviewdefinitioninstancestagedecision` Documentation
 
-The `accessreviewdefinitioninstancestagedecision` SDK allows for interaction with the Azure Resource Manager Service `identitygovernance` (API Version `beta`).
+The `accessreviewdefinitioninstancestagedecision` SDK allows for interaction with Microsoft Graph `identitygovernance` (API Version `beta`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -15,7 +15,7 @@ import "github.com/hashicorp/go-azure-sdk/microsoft-graph/identitygovernance/bet
 ### Client Initialization
 
 ```go
-client := accessreviewdefinitioninstancestagedecision.NewAccessReviewDefinitionInstanceStageDecisionClientWithBaseURI("https://management.azure.com")
+client := accessreviewdefinitioninstancestagedecision.NewAccessReviewDefinitionInstanceStageDecisionClientWithBaseURI("https://graph.microsoft.com")
 client.Client.Authorizer = authorizer
 ```
 
@@ -24,14 +24,14 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := accessreviewdefinitioninstancestagedecision.NewIdentityGovernanceAccessReviewDefinitionIdInstanceIdStageID("accessReviewScheduleDefinitionIdValue", "accessReviewInstanceIdValue", "accessReviewStageIdValue")
+id := accessreviewdefinitioninstancestagedecision.NewIdentityGovernanceAccessReviewDefinitionIdInstanceIdStageID("accessReviewScheduleDefinitionId", "accessReviewInstanceId", "accessReviewStageId")
 
 payload := accessreviewdefinitioninstancestagedecision.AccessReviewInstanceDecisionItem{
 	// ...
 }
 
 
-read, err := client.CreateAccessReviewDefinitionInstanceStageDecision(ctx, id, payload)
+read, err := client.CreateAccessReviewDefinitionInstanceStageDecision(ctx, id, payload, accessreviewdefinitioninstancestagedecision.DefaultCreateAccessReviewDefinitionInstanceStageDecisionOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -45,14 +45,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := accessreviewdefinitioninstancestagedecision.NewIdentityGovernanceAccessReviewDefinitionIdInstanceIdStageID("accessReviewScheduleDefinitionIdValue", "accessReviewInstanceIdValue", "accessReviewStageIdValue")
+id := accessreviewdefinitioninstancestagedecision.NewIdentityGovernanceAccessReviewDefinitionIdInstanceIdStageID("accessReviewScheduleDefinitionId", "accessReviewInstanceId", "accessReviewStageId")
 
 payload := accessreviewdefinitioninstancestagedecision.CreateAccessReviewDefinitionInstanceStageDecisionRecordAllDecisionRequest{
 	// ...
 }
 
 
-read, err := client.CreateAccessReviewDefinitionInstanceStageDecisionRecordAllDecision(ctx, id, payload)
+read, err := client.CreateAccessReviewDefinitionInstanceStageDecisionRecordAllDecision(ctx, id, payload, accessreviewdefinitioninstancestagedecision.DefaultCreateAccessReviewDefinitionInstanceStageDecisionRecordAllDecisionOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -66,7 +66,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := accessreviewdefinitioninstancestagedecision.NewIdentityGovernanceAccessReviewDefinitionIdInstanceIdStageIdDecisionID("accessReviewScheduleDefinitionIdValue", "accessReviewInstanceIdValue", "accessReviewStageIdValue", "accessReviewInstanceDecisionItemIdValue")
+id := accessreviewdefinitioninstancestagedecision.NewIdentityGovernanceAccessReviewDefinitionIdInstanceIdStageIdDecisionID("accessReviewScheduleDefinitionId", "accessReviewInstanceId", "accessReviewStageId", "accessReviewInstanceDecisionItemId")
 
 read, err := client.DeleteAccessReviewDefinitionInstanceStageDecision(ctx, id, accessreviewdefinitioninstancestagedecision.DefaultDeleteAccessReviewDefinitionInstanceStageDecisionOperationOptions())
 if err != nil {
@@ -82,7 +82,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := accessreviewdefinitioninstancestagedecision.NewIdentityGovernanceAccessReviewDefinitionIdInstanceIdStageIdDecisionID("accessReviewScheduleDefinitionIdValue", "accessReviewInstanceIdValue", "accessReviewStageIdValue", "accessReviewInstanceDecisionItemIdValue")
+id := accessreviewdefinitioninstancestagedecision.NewIdentityGovernanceAccessReviewDefinitionIdInstanceIdStageIdDecisionID("accessReviewScheduleDefinitionId", "accessReviewInstanceId", "accessReviewStageId", "accessReviewInstanceDecisionItemId")
 
 read, err := client.GetAccessReviewDefinitionInstanceStageDecision(ctx, id, accessreviewdefinitioninstancestagedecision.DefaultGetAccessReviewDefinitionInstanceStageDecisionOperationOptions())
 if err != nil {
@@ -98,7 +98,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := accessreviewdefinitioninstancestagedecision.NewIdentityGovernanceAccessReviewDefinitionIdInstanceIdStageID("accessReviewScheduleDefinitionIdValue", "accessReviewInstanceIdValue", "accessReviewStageIdValue")
+id := accessreviewdefinitioninstancestagedecision.NewIdentityGovernanceAccessReviewDefinitionIdInstanceIdStageID("accessReviewScheduleDefinitionId", "accessReviewInstanceId", "accessReviewStageId")
 
 read, err := client.GetAccessReviewDefinitionInstanceStageDecisionsCount(ctx, id, accessreviewdefinitioninstancestagedecision.DefaultGetAccessReviewDefinitionInstanceStageDecisionsCountOperationOptions())
 if err != nil {
@@ -114,7 +114,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := accessreviewdefinitioninstancestagedecision.NewIdentityGovernanceAccessReviewDefinitionIdInstanceIdStageID("accessReviewScheduleDefinitionIdValue", "accessReviewInstanceIdValue", "accessReviewStageIdValue")
+id := accessreviewdefinitioninstancestagedecision.NewIdentityGovernanceAccessReviewDefinitionIdInstanceIdStageID("accessReviewScheduleDefinitionId", "accessReviewInstanceId", "accessReviewStageId")
 
 // alternatively `client.ListAccessReviewDefinitionInstanceStageDecisions(ctx, id, accessreviewdefinitioninstancestagedecision.DefaultListAccessReviewDefinitionInstanceStageDecisionsOperationOptions())` can be used to do batched pagination
 items, err := client.ListAccessReviewDefinitionInstanceStageDecisionsComplete(ctx, id, accessreviewdefinitioninstancestagedecision.DefaultListAccessReviewDefinitionInstanceStageDecisionsOperationOptions())
@@ -131,14 +131,14 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := accessreviewdefinitioninstancestagedecision.NewIdentityGovernanceAccessReviewDefinitionIdInstanceIdStageIdDecisionID("accessReviewScheduleDefinitionIdValue", "accessReviewInstanceIdValue", "accessReviewStageIdValue", "accessReviewInstanceDecisionItemIdValue")
+id := accessreviewdefinitioninstancestagedecision.NewIdentityGovernanceAccessReviewDefinitionIdInstanceIdStageIdDecisionID("accessReviewScheduleDefinitionId", "accessReviewInstanceId", "accessReviewStageId", "accessReviewInstanceDecisionItemId")
 
 payload := accessreviewdefinitioninstancestagedecision.AccessReviewInstanceDecisionItem{
 	// ...
 }
 
 
-read, err := client.UpdateAccessReviewDefinitionInstanceStageDecision(ctx, id, payload)
+read, err := client.UpdateAccessReviewDefinitionInstanceStageDecision(ctx, id, payload, accessreviewdefinitioninstancestagedecision.DefaultUpdateAccessReviewDefinitionInstanceStageDecisionOperationOptions())
 if err != nil {
 	// handle the error
 }

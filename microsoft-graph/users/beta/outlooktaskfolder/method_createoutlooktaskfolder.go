@@ -19,15 +19,44 @@ type CreateOutlookTaskFolderOperationResponse struct {
 	Model        *beta.OutlookTaskFolder
 }
 
+type CreateOutlookTaskFolderOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateOutlookTaskFolderOperationOptions() CreateOutlookTaskFolderOperationOptions {
+	return CreateOutlookTaskFolderOperationOptions{}
+}
+
+func (o CreateOutlookTaskFolderOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateOutlookTaskFolderOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateOutlookTaskFolderOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateOutlookTaskFolder - Create new navigation property to taskFolders for users
-func (c OutlookTaskFolderClient) CreateOutlookTaskFolder(ctx context.Context, id beta.UserId, input beta.OutlookTaskFolder) (result CreateOutlookTaskFolderOperationResponse, err error) {
+func (c OutlookTaskFolderClient) CreateOutlookTaskFolder(ctx context.Context, id beta.UserId, input beta.OutlookTaskFolder, options CreateOutlookTaskFolderOperationOptions) (result CreateOutlookTaskFolderOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/outlook/taskFolders", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/outlook/taskFolders", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

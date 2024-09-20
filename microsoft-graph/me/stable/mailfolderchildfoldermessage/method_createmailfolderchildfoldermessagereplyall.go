@@ -20,6 +20,34 @@ type CreateMailFolderChildFolderMessageReplyAllOperationResponse struct {
 	Model        stable.Message
 }
 
+type CreateMailFolderChildFolderMessageReplyAllOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateMailFolderChildFolderMessageReplyAllOperationOptions() CreateMailFolderChildFolderMessageReplyAllOperationOptions {
+	return CreateMailFolderChildFolderMessageReplyAllOperationOptions{}
+}
+
+func (o CreateMailFolderChildFolderMessageReplyAllOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateMailFolderChildFolderMessageReplyAllOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateMailFolderChildFolderMessageReplyAllOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateMailFolderChildFolderMessageReplyAll - Invoke action createReplyAll. Create a draft to reply to the sender and
 // all recipients of a message in either JSON or MIME format. When using JSON format: - Specify either a comment or the
 // body property of the message parameter. Specifying both will return an HTTP 400 Bad Request error. - If the original
@@ -29,14 +57,15 @@ type CreateMailFolderChildFolderMessageReplyAllOperationResponse struct {
 // properties. When using MIME format: - Provide the applicable Internet message headers and the MIME content, all
 // encoded in base64 format in the request body. - Add any attachments and S/MIME properties to the MIME content. Send
 // the draft message in a subsequent operation. Alternatively, reply-all to a message in a single action.
-func (c MailFolderChildFolderMessageClient) CreateMailFolderChildFolderMessageReplyAll(ctx context.Context, id stable.MeMailFolderIdChildFolderIdMessageId, input CreateMailFolderChildFolderMessageReplyAllRequest) (result CreateMailFolderChildFolderMessageReplyAllOperationResponse, err error) {
+func (c MailFolderChildFolderMessageClient) CreateMailFolderChildFolderMessageReplyAll(ctx context.Context, id stable.MeMailFolderIdChildFolderIdMessageId, input CreateMailFolderChildFolderMessageReplyAllRequest, options CreateMailFolderChildFolderMessageReplyAllOperationOptions) (result CreateMailFolderChildFolderMessageReplyAllOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/createReplyAll", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/createReplyAll", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

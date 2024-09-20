@@ -19,15 +19,44 @@ type CreateSiteContentTypeColumnLinkOperationResponse struct {
 	Model        *beta.ColumnLink
 }
 
+type CreateSiteContentTypeColumnLinkOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateSiteContentTypeColumnLinkOperationOptions() CreateSiteContentTypeColumnLinkOperationOptions {
+	return CreateSiteContentTypeColumnLinkOperationOptions{}
+}
+
+func (o CreateSiteContentTypeColumnLinkOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateSiteContentTypeColumnLinkOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateSiteContentTypeColumnLinkOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateSiteContentTypeColumnLink - Create new navigation property to columnLinks for groups
-func (c SiteContentTypeColumnLinkClient) CreateSiteContentTypeColumnLink(ctx context.Context, id beta.GroupIdSiteIdContentTypeId, input beta.ColumnLink) (result CreateSiteContentTypeColumnLinkOperationResponse, err error) {
+func (c SiteContentTypeColumnLinkClient) CreateSiteContentTypeColumnLink(ctx context.Context, id beta.GroupIdSiteIdContentTypeId, input beta.ColumnLink, options CreateSiteContentTypeColumnLinkOperationOptions) (result CreateSiteContentTypeColumnLinkOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/columnLinks", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/columnLinks", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

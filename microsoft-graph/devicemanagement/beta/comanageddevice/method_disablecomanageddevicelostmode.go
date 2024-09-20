@@ -18,15 +18,44 @@ type DisableComanagedDeviceLostModeOperationResponse struct {
 	OData        *odata.OData
 }
 
+type DisableComanagedDeviceLostModeOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultDisableComanagedDeviceLostModeOperationOptions() DisableComanagedDeviceLostModeOperationOptions {
+	return DisableComanagedDeviceLostModeOperationOptions{}
+}
+
+func (o DisableComanagedDeviceLostModeOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o DisableComanagedDeviceLostModeOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o DisableComanagedDeviceLostModeOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // DisableComanagedDeviceLostMode - Invoke action disableLostMode. Disable lost mode
-func (c ComanagedDeviceClient) DisableComanagedDeviceLostMode(ctx context.Context, id beta.DeviceManagementComanagedDeviceId) (result DisableComanagedDeviceLostModeOperationResponse, err error) {
+func (c ComanagedDeviceClient) DisableComanagedDeviceLostMode(ctx context.Context, id beta.DeviceManagementComanagedDeviceId, options DisableComanagedDeviceLostModeOperationOptions) (result DisableComanagedDeviceLostModeOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/disableLostMode", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/disableLostMode", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

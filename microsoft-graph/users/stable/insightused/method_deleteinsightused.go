@@ -19,7 +19,8 @@ type DeleteInsightUsedOperationResponse struct {
 }
 
 type DeleteInsightUsedOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteInsightUsedOperationOptions() DeleteInsightUsedOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteInsightUsedOperationOptions) ToHeaders() *client.Headers {
 
 func (o DeleteInsightUsedOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

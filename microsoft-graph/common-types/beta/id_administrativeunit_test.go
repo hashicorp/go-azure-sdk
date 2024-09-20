@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &AdministrativeUnitId{}
 
 func TestNewAdministrativeUnitID(t *testing.T) {
-	id := NewAdministrativeUnitID("administrativeUnitIdValue")
+	id := NewAdministrativeUnitID("administrativeUnitId")
 
-	if id.AdministrativeUnitId != "administrativeUnitIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'AdministrativeUnitId'", id.AdministrativeUnitId, "administrativeUnitIdValue")
+	if id.AdministrativeUnitId != "administrativeUnitId" {
+		t.Fatalf("Expected %q but got %q for Segment 'AdministrativeUnitId'", id.AdministrativeUnitId, "administrativeUnitId")
 	}
 }
 
 func TestFormatAdministrativeUnitID(t *testing.T) {
-	actual := NewAdministrativeUnitID("administrativeUnitIdValue").ID()
-	expected := "/administrativeUnits/administrativeUnitIdValue"
+	actual := NewAdministrativeUnitID("administrativeUnitId").ID()
+	expected := "/administrativeUnits/administrativeUnitId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -45,14 +45,14 @@ func TestParseAdministrativeUnitID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/administrativeUnits/administrativeUnitIdValue",
+			Input: "/administrativeUnits/administrativeUnitId",
 			Expected: &AdministrativeUnitId{
-				AdministrativeUnitId: "administrativeUnitIdValue",
+				AdministrativeUnitId: "administrativeUnitId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/administrativeUnits/administrativeUnitIdValue/extra",
+			Input: "/administrativeUnits/administrativeUnitId/extra",
 			Error: true,
 		},
 	}
@@ -101,26 +101,26 @@ func TestParseAdministrativeUnitIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/administrativeUnits/administrativeUnitIdValue",
+			Input: "/administrativeUnits/administrativeUnitId",
 			Expected: &AdministrativeUnitId{
-				AdministrativeUnitId: "administrativeUnitIdValue",
+				AdministrativeUnitId: "administrativeUnitId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/administrativeUnits/administrativeUnitIdValue/extra",
+			Input: "/administrativeUnits/administrativeUnitId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/aDmInIsTrAtIvEuNiTs/aDmInIsTrAtIvEuNiTiDvAlUe",
+			Input: "/aDmInIsTrAtIvEuNiTs/aDmInIsTrAtIvEuNiTiD",
 			Expected: &AdministrativeUnitId{
-				AdministrativeUnitId: "aDmInIsTrAtIvEuNiTiDvAlUe",
+				AdministrativeUnitId: "aDmInIsTrAtIvEuNiTiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/aDmInIsTrAtIvEuNiTs/aDmInIsTrAtIvEuNiTiDvAlUe/extra",
+			Input: "/aDmInIsTrAtIvEuNiTs/aDmInIsTrAtIvEuNiTiD/extra",
 			Error: true,
 		},
 	}

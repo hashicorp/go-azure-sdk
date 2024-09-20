@@ -94,10 +94,16 @@ func (s BaseMeetingRegistrationBaseImpl) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &BaseMeetingRegistrationBaseImpl{}
 
 func (s *BaseMeetingRegistrationBaseImpl) UnmarshalJSON(bytes []byte) error {
-	type alias BaseMeetingRegistrationBaseImpl
-	var decoded alias
+
+	var decoded struct {
+		AllowedRegistrant *MeetingAudience         `json:"allowedRegistrant,omitempty"`
+		Registrants       *[]MeetingRegistrantBase `json:"registrants,omitempty"`
+		Id                *string                  `json:"id,omitempty"`
+		ODataId           *string                  `json:"@odata.id,omitempty"`
+		ODataType         *string                  `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into BaseMeetingRegistrationBaseImpl: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.AllowedRegistrant = decoded.AllowedRegistrant
@@ -126,6 +132,7 @@ func (s *BaseMeetingRegistrationBaseImpl) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Registrants = &output
 	}
+
 	return nil
 }
 
@@ -139,9 +146,9 @@ func UnmarshalMeetingRegistrationBaseImplementation(input []byte) (MeetingRegist
 		return nil, fmt.Errorf("unmarshaling MeetingRegistrationBase into map[string]interface: %+v", err)
 	}
 
-	value, ok := temp["@odata.type"].(string)
-	if !ok {
-		return nil, nil
+	var value string
+	if v, ok := temp["@odata.type"]; ok {
+		value = fmt.Sprintf("%v", v)
 	}
 
 	if strings.EqualFold(value, "#microsoft.graph.externalMeetingRegistration") {

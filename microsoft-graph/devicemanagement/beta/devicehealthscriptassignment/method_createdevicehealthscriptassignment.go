@@ -19,15 +19,44 @@ type CreateDeviceHealthScriptAssignmentOperationResponse struct {
 	Model        *beta.DeviceHealthScriptAssignment
 }
 
+type CreateDeviceHealthScriptAssignmentOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateDeviceHealthScriptAssignmentOperationOptions() CreateDeviceHealthScriptAssignmentOperationOptions {
+	return CreateDeviceHealthScriptAssignmentOperationOptions{}
+}
+
+func (o CreateDeviceHealthScriptAssignmentOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateDeviceHealthScriptAssignmentOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateDeviceHealthScriptAssignmentOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateDeviceHealthScriptAssignment - Create new navigation property to assignments for deviceManagement
-func (c DeviceHealthScriptAssignmentClient) CreateDeviceHealthScriptAssignment(ctx context.Context, id beta.DeviceManagementDeviceHealthScriptId, input beta.DeviceHealthScriptAssignment) (result CreateDeviceHealthScriptAssignmentOperationResponse, err error) {
+func (c DeviceHealthScriptAssignmentClient) CreateDeviceHealthScriptAssignment(ctx context.Context, id beta.DeviceManagementDeviceHealthScriptId, input beta.DeviceHealthScriptAssignment, options CreateDeviceHealthScriptAssignmentOperationOptions) (result CreateDeviceHealthScriptAssignmentOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/assignments", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/assignments", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

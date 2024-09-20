@@ -645,10 +645,150 @@ func (s User) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &User{}
 
 func (s *User) UnmarshalJSON(bytes []byte) error {
-	type alias User
-	var decoded alias
+
+	var decoded struct {
+		AboutMe                               nullable.Type[string]                   `json:"aboutMe,omitempty"`
+		AccountEnabled                        nullable.Type[bool]                     `json:"accountEnabled,omitempty"`
+		Activities                            *[]UserActivity                         `json:"activities,omitempty"`
+		AgeGroup                              nullable.Type[string]                   `json:"ageGroup,omitempty"`
+		AgreementAcceptances                  *[]AgreementAcceptance                  `json:"agreementAcceptances,omitempty"`
+		AppRoleAssignments                    *[]AppRoleAssignment                    `json:"appRoleAssignments,omitempty"`
+		AssignedLicenses                      *[]AssignedLicense                      `json:"assignedLicenses,omitempty"`
+		AssignedPlans                         *[]AssignedPlan                         `json:"assignedPlans,omitempty"`
+		Authentication                        *Authentication                         `json:"authentication,omitempty"`
+		AuthorizationInfo                     *AuthorizationInfo                      `json:"authorizationInfo,omitempty"`
+		Birthday                              *string                                 `json:"birthday,omitempty"`
+		BusinessPhones                        *[]string                               `json:"businessPhones,omitempty"`
+		Calendar                              *Calendar                               `json:"calendar,omitempty"`
+		CalendarGroups                        *[]CalendarGroup                        `json:"calendarGroups,omitempty"`
+		CalendarView                          *[]Event                                `json:"calendarView,omitempty"`
+		Calendars                             *[]Calendar                             `json:"calendars,omitempty"`
+		Chats                                 *[]Chat                                 `json:"chats,omitempty"`
+		City                                  nullable.Type[string]                   `json:"city,omitempty"`
+		CloudClipboard                        *CloudClipboardRoot                     `json:"cloudClipboard,omitempty"`
+		CompanyName                           nullable.Type[string]                   `json:"companyName,omitempty"`
+		ConsentProvidedForMinor               nullable.Type[string]                   `json:"consentProvidedForMinor,omitempty"`
+		ContactFolders                        *[]ContactFolder                        `json:"contactFolders,omitempty"`
+		Contacts                              *[]Contact                              `json:"contacts,omitempty"`
+		Country                               nullable.Type[string]                   `json:"country,omitempty"`
+		CreatedDateTime                       nullable.Type[string]                   `json:"createdDateTime,omitempty"`
+		CreatedObjects                        *[]DirectoryObject                      `json:"createdObjects,omitempty"`
+		CreatedObjects_ODataBind              *[]string                               `json:"createdObjects@odata.bind,omitempty"`
+		CreationType                          nullable.Type[string]                   `json:"creationType,omitempty"`
+		CustomSecurityAttributes              *CustomSecurityAttributeValue           `json:"customSecurityAttributes,omitempty"`
+		Department                            nullable.Type[string]                   `json:"department,omitempty"`
+		DeviceEnrollmentLimit                 *int64                                  `json:"deviceEnrollmentLimit,omitempty"`
+		DeviceManagementTroubleshootingEvents *[]DeviceManagementTroubleshootingEvent `json:"deviceManagementTroubleshootingEvents,omitempty"`
+		DirectReports                         *[]DirectoryObject                      `json:"directReports,omitempty"`
+		DirectReports_ODataBind               *[]string                               `json:"directReports@odata.bind,omitempty"`
+		DisplayName                           nullable.Type[string]                   `json:"displayName,omitempty"`
+		Drive                                 *Drive                                  `json:"drive,omitempty"`
+		Drives                                *[]Drive                                `json:"drives,omitempty"`
+		EmployeeExperience                    *EmployeeExperienceUser                 `json:"employeeExperience,omitempty"`
+		EmployeeHireDate                      nullable.Type[string]                   `json:"employeeHireDate,omitempty"`
+		EmployeeId                            nullable.Type[string]                   `json:"employeeId,omitempty"`
+		EmployeeLeaveDateTime                 nullable.Type[string]                   `json:"employeeLeaveDateTime,omitempty"`
+		EmployeeOrgData                       *EmployeeOrgData                        `json:"employeeOrgData,omitempty"`
+		EmployeeType                          nullable.Type[string]                   `json:"employeeType,omitempty"`
+		Events                                *[]Event                                `json:"events,omitempty"`
+		Extensions                            *[]Extension                            `json:"extensions,omitempty"`
+		ExternalUserState                     nullable.Type[string]                   `json:"externalUserState,omitempty"`
+		ExternalUserStateChangeDateTime       nullable.Type[string]                   `json:"externalUserStateChangeDateTime,omitempty"`
+		FaxNumber                             nullable.Type[string]                   `json:"faxNumber,omitempty"`
+		FollowedSites                         *[]Site                                 `json:"followedSites,omitempty"`
+		GivenName                             nullable.Type[string]                   `json:"givenName,omitempty"`
+		HireDate                              *string                                 `json:"hireDate,omitempty"`
+		Identities                            *[]ObjectIdentity                       `json:"identities,omitempty"`
+		ImAddresses                           *[]string                               `json:"imAddresses,omitempty"`
+		InferenceClassification               *InferenceClassification                `json:"inferenceClassification,omitempty"`
+		Insights                              *ItemInsights                           `json:"insights,omitempty"`
+		Interests                             *[]string                               `json:"interests,omitempty"`
+		IsResourceAccount                     nullable.Type[bool]                     `json:"isResourceAccount,omitempty"`
+		JobTitle                              nullable.Type[string]                   `json:"jobTitle,omitempty"`
+		JoinedTeams                           *[]Team                                 `json:"joinedTeams,omitempty"`
+		LastPasswordChangeDateTime            nullable.Type[string]                   `json:"lastPasswordChangeDateTime,omitempty"`
+		LegalAgeGroupClassification           nullable.Type[string]                   `json:"legalAgeGroupClassification,omitempty"`
+		LicenseAssignmentStates               *[]LicenseAssignmentState               `json:"licenseAssignmentStates,omitempty"`
+		LicenseDetails                        *[]LicenseDetails                       `json:"licenseDetails,omitempty"`
+		Mail                                  nullable.Type[string]                   `json:"mail,omitempty"`
+		MailFolders                           *[]MailFolder                           `json:"mailFolders,omitempty"`
+		MailNickname                          nullable.Type[string]                   `json:"mailNickname,omitempty"`
+		MailboxSettings                       *MailboxSettings                        `json:"mailboxSettings,omitempty"`
+		ManagedAppRegistrations               *[]ManagedAppRegistration               `json:"managedAppRegistrations,omitempty"`
+		ManagedDevices                        *[]ManagedDevice                        `json:"managedDevices,omitempty"`
+		Manager_ODataBind                     *string                                 `json:"manager@odata.bind,omitempty"`
+		MemberOf                              *[]DirectoryObject                      `json:"memberOf,omitempty"`
+		MemberOf_ODataBind                    *[]string                               `json:"memberOf@odata.bind,omitempty"`
+		Messages                              *[]Message                              `json:"messages,omitempty"`
+		MobilePhone                           nullable.Type[string]                   `json:"mobilePhone,omitempty"`
+		MySite                                nullable.Type[string]                   `json:"mySite,omitempty"`
+		OAuth2PermissionGrants                *[]OAuth2PermissionGrant                `json:"oauth2PermissionGrants,omitempty"`
+		OfficeLocation                        nullable.Type[string]                   `json:"officeLocation,omitempty"`
+		OnPremisesDistinguishedName           nullable.Type[string]                   `json:"onPremisesDistinguishedName,omitempty"`
+		OnPremisesDomainName                  nullable.Type[string]                   `json:"onPremisesDomainName,omitempty"`
+		OnPremisesExtensionAttributes         *OnPremisesExtensionAttributes          `json:"onPremisesExtensionAttributes,omitempty"`
+		OnPremisesImmutableId                 nullable.Type[string]                   `json:"onPremisesImmutableId,omitempty"`
+		OnPremisesLastSyncDateTime            nullable.Type[string]                   `json:"onPremisesLastSyncDateTime,omitempty"`
+		OnPremisesProvisioningErrors          *[]OnPremisesProvisioningError          `json:"onPremisesProvisioningErrors,omitempty"`
+		OnPremisesSamAccountName              nullable.Type[string]                   `json:"onPremisesSamAccountName,omitempty"`
+		OnPremisesSecurityIdentifier          nullable.Type[string]                   `json:"onPremisesSecurityIdentifier,omitempty"`
+		OnPremisesSyncEnabled                 nullable.Type[bool]                     `json:"onPremisesSyncEnabled,omitempty"`
+		OnPremisesUserPrincipalName           nullable.Type[string]                   `json:"onPremisesUserPrincipalName,omitempty"`
+		Onenote                               *Onenote                                `json:"onenote,omitempty"`
+		OnlineMeetings                        *[]OnlineMeeting                        `json:"onlineMeetings,omitempty"`
+		OtherMails                            *[]string                               `json:"otherMails,omitempty"`
+		Outlook                               *OutlookUser                            `json:"outlook,omitempty"`
+		OwnedDevices                          *[]DirectoryObject                      `json:"ownedDevices,omitempty"`
+		OwnedDevices_ODataBind                *[]string                               `json:"ownedDevices@odata.bind,omitempty"`
+		OwnedObjects                          *[]DirectoryObject                      `json:"ownedObjects,omitempty"`
+		OwnedObjects_ODataBind                *[]string                               `json:"ownedObjects@odata.bind,omitempty"`
+		PasswordPolicies                      nullable.Type[string]                   `json:"passwordPolicies,omitempty"`
+		PasswordProfile                       *PasswordProfile                        `json:"passwordProfile,omitempty"`
+		PastProjects                          *[]string                               `json:"pastProjects,omitempty"`
+		People                                *[]Person                               `json:"people,omitempty"`
+		PermissionGrants                      *[]ResourceSpecificPermissionGrant      `json:"permissionGrants,omitempty"`
+		Photo                                 *ProfilePhoto                           `json:"photo,omitempty"`
+		Photos                                *[]ProfilePhoto                         `json:"photos,omitempty"`
+		Planner                               *PlannerUser                            `json:"planner,omitempty"`
+		PostalCode                            nullable.Type[string]                   `json:"postalCode,omitempty"`
+		PreferredDataLocation                 nullable.Type[string]                   `json:"preferredDataLocation,omitempty"`
+		PreferredLanguage                     nullable.Type[string]                   `json:"preferredLanguage,omitempty"`
+		PreferredName                         nullable.Type[string]                   `json:"preferredName,omitempty"`
+		Presence                              *Presence                               `json:"presence,omitempty"`
+		Print                                 *UserPrint                              `json:"print,omitempty"`
+		ProvisionedPlans                      *[]ProvisionedPlan                      `json:"provisionedPlans,omitempty"`
+		ProxyAddresses                        *[]string                               `json:"proxyAddresses,omitempty"`
+		RegisteredDevices                     *[]DirectoryObject                      `json:"registeredDevices,omitempty"`
+		RegisteredDevices_ODataBind           *[]string                               `json:"registeredDevices@odata.bind,omitempty"`
+		Responsibilities                      *[]string                               `json:"responsibilities,omitempty"`
+		Schools                               *[]string                               `json:"schools,omitempty"`
+		ScopedRoleMemberOf                    *[]ScopedRoleMembership                 `json:"scopedRoleMemberOf,omitempty"`
+		SecurityIdentifier                    nullable.Type[string]                   `json:"securityIdentifier,omitempty"`
+		ServiceProvisioningErrors             *[]ServiceProvisioningError             `json:"serviceProvisioningErrors,omitempty"`
+		Settings                              *UserSettings                           `json:"settings,omitempty"`
+		ShowInAddressList                     nullable.Type[bool]                     `json:"showInAddressList,omitempty"`
+		SignInActivity                        *SignInActivity                         `json:"signInActivity,omitempty"`
+		SignInSessionsValidFromDateTime       nullable.Type[string]                   `json:"signInSessionsValidFromDateTime,omitempty"`
+		Skills                                *[]string                               `json:"skills,omitempty"`
+		Sponsors                              *[]DirectoryObject                      `json:"sponsors,omitempty"`
+		Sponsors_ODataBind                    *[]string                               `json:"sponsors@odata.bind,omitempty"`
+		State                                 nullable.Type[string]                   `json:"state,omitempty"`
+		StreetAddress                         nullable.Type[string]                   `json:"streetAddress,omitempty"`
+		Surname                               nullable.Type[string]                   `json:"surname,omitempty"`
+		Teamwork                              *UserTeamwork                           `json:"teamwork,omitempty"`
+		Todo                                  *Todo                                   `json:"todo,omitempty"`
+		TransitiveMemberOf                    *[]DirectoryObject                      `json:"transitiveMemberOf,omitempty"`
+		TransitiveMemberOf_ODataBind          *[]string                               `json:"transitiveMemberOf@odata.bind,omitempty"`
+		UsageLocation                         nullable.Type[string]                   `json:"usageLocation,omitempty"`
+		UserPrincipalName                     nullable.Type[string]                   `json:"userPrincipalName,omitempty"`
+		UserType                              nullable.Type[string]                   `json:"userType,omitempty"`
+		DeletedDateTime                       nullable.Type[string]                   `json:"deletedDateTime,omitempty"`
+		Id                                    *string                                 `json:"id,omitempty"`
+		ODataId                               *string                                 `json:"@odata.id,omitempty"`
+		ODataType                             *string                                 `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into User: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.AboutMe = decoded.AboutMe
@@ -679,7 +819,6 @@ func (s *User) UnmarshalJSON(bytes []byte) error {
 	s.CreatedObjects_ODataBind = decoded.CreatedObjects_ODataBind
 	s.CreationType = decoded.CreationType
 	s.CustomSecurityAttributes = decoded.CustomSecurityAttributes
-	s.DeletedDateTime = decoded.DeletedDateTime
 	s.Department = decoded.Department
 	s.DeviceEnrollmentLimit = decoded.DeviceEnrollmentLimit
 	s.DirectReports_ODataBind = decoded.DirectReports_ODataBind
@@ -699,7 +838,6 @@ func (s *User) UnmarshalJSON(bytes []byte) error {
 	s.FollowedSites = decoded.FollowedSites
 	s.GivenName = decoded.GivenName
 	s.HireDate = decoded.HireDate
-	s.Id = decoded.Id
 	s.Identities = decoded.Identities
 	s.ImAddresses = decoded.ImAddresses
 	s.InferenceClassification = decoded.InferenceClassification
@@ -721,8 +859,6 @@ func (s *User) UnmarshalJSON(bytes []byte) error {
 	s.MobilePhone = decoded.MobilePhone
 	s.MySite = decoded.MySite
 	s.OAuth2PermissionGrants = decoded.OAuth2PermissionGrants
-	s.ODataId = decoded.ODataId
-	s.ODataType = decoded.ODataType
 	s.OfficeLocation = decoded.OfficeLocation
 	s.OnPremisesDistinguishedName = decoded.OnPremisesDistinguishedName
 	s.OnPremisesDomainName = decoded.OnPremisesDomainName
@@ -776,6 +912,10 @@ func (s *User) UnmarshalJSON(bytes []byte) error {
 	s.UsageLocation = decoded.UsageLocation
 	s.UserPrincipalName = decoded.UserPrincipalName
 	s.UserType = decoded.UserType
+	s.DeletedDateTime = decoded.DeletedDateTime
+	s.Id = decoded.Id
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -1027,5 +1167,6 @@ func (s *User) UnmarshalJSON(bytes []byte) error {
 		}
 		s.TransitiveMemberOf = &output
 	}
+
 	return nil
 }

@@ -19,8 +19,9 @@ type GetEntitlementManagementAccessPackageCatalogAccessPackageOperationResponse 
 }
 
 type GetEntitlementManagementAccessPackageCatalogAccessPackageOperationOptions struct {
-	Expand *odata.Expand
-	Select *[]string
+	Expand   *odata.Expand
+	Metadata *odata.Metadata
+	Select   *[]string
 }
 
 func DefaultGetEntitlementManagementAccessPackageCatalogAccessPackageOperationOptions() GetEntitlementManagementAccessPackageCatalogAccessPackageOperationOptions {
@@ -37,6 +38,9 @@ func (o GetEntitlementManagementAccessPackageCatalogAccessPackageOperationOption
 	out := odata.Query{}
 	if o.Expand != nil {
 		out.Expand = *o.Expand
+	}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
 	}
 	if o.Select != nil {
 		out.Select = *o.Select

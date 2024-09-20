@@ -19,15 +19,44 @@ type CreateMicrosoftTunnelSiteServerGenerateServerLogCollectionRequestOperationR
 	Model        *beta.MicrosoftTunnelServerLogCollectionResponse
 }
 
+type CreateMicrosoftTunnelSiteServerGenerateServerLogCollectionRequestOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateMicrosoftTunnelSiteServerGenerateServerLogCollectionRequestOperationOptions() CreateMicrosoftTunnelSiteServerGenerateServerLogCollectionRequestOperationOptions {
+	return CreateMicrosoftTunnelSiteServerGenerateServerLogCollectionRequestOperationOptions{}
+}
+
+func (o CreateMicrosoftTunnelSiteServerGenerateServerLogCollectionRequestOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateMicrosoftTunnelSiteServerGenerateServerLogCollectionRequestOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateMicrosoftTunnelSiteServerGenerateServerLogCollectionRequestOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateMicrosoftTunnelSiteServerGenerateServerLogCollectionRequest - Invoke action generateServerLogCollectionRequest
-func (c MicrosoftTunnelSiteMicrosoftTunnelServerClient) CreateMicrosoftTunnelSiteServerGenerateServerLogCollectionRequest(ctx context.Context, id beta.DeviceManagementMicrosoftTunnelSiteIdMicrosoftTunnelServerId, input CreateMicrosoftTunnelSiteServerGenerateServerLogCollectionRequestRequest) (result CreateMicrosoftTunnelSiteServerGenerateServerLogCollectionRequestOperationResponse, err error) {
+func (c MicrosoftTunnelSiteMicrosoftTunnelServerClient) CreateMicrosoftTunnelSiteServerGenerateServerLogCollectionRequest(ctx context.Context, id beta.DeviceManagementMicrosoftTunnelSiteIdMicrosoftTunnelServerId, input CreateMicrosoftTunnelSiteServerGenerateServerLogCollectionRequestRequest, options CreateMicrosoftTunnelSiteServerGenerateServerLogCollectionRequestOperationOptions) (result CreateMicrosoftTunnelSiteServerGenerateServerLogCollectionRequestOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/generateServerLogCollectionRequest", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/generateServerLogCollectionRequest", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

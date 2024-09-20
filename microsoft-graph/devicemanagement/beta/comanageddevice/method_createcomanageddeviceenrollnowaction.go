@@ -18,16 +18,45 @@ type CreateComanagedDeviceEnrollNowActionOperationResponse struct {
 	OData        *odata.OData
 }
 
+type CreateComanagedDeviceEnrollNowActionOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateComanagedDeviceEnrollNowActionOperationOptions() CreateComanagedDeviceEnrollNowActionOperationOptions {
+	return CreateComanagedDeviceEnrollNowActionOperationOptions{}
+}
+
+func (o CreateComanagedDeviceEnrollNowActionOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateComanagedDeviceEnrollNowActionOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateComanagedDeviceEnrollNowActionOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateComanagedDeviceEnrollNowAction - Invoke action enrollNowAction. Trigger comanagement enrollment action on
 // ConfigurationManager client
-func (c ComanagedDeviceClient) CreateComanagedDeviceEnrollNowAction(ctx context.Context, id beta.DeviceManagementComanagedDeviceId) (result CreateComanagedDeviceEnrollNowActionOperationResponse, err error) {
+func (c ComanagedDeviceClient) CreateComanagedDeviceEnrollNowAction(ctx context.Context, id beta.DeviceManagementComanagedDeviceId, options CreateComanagedDeviceEnrollNowActionOperationOptions) (result CreateComanagedDeviceEnrollNowActionOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/enrollNowAction", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/enrollNowAction", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

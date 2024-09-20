@@ -64,10 +64,22 @@ type AccessReviewStageSettings struct {
 var _ json.Unmarshaler = &AccessReviewStageSettings{}
 
 func (s *AccessReviewStageSettings) UnmarshalJSON(bytes []byte) error {
-	type alias AccessReviewStageSettings
-	var decoded alias
+
+	var decoded struct {
+		DecisionsThatWillMoveToNextStage *[]string                                   `json:"decisionsThatWillMoveToNextStage,omitempty"`
+		DependsOn                        *[]string                                   `json:"dependsOn,omitempty"`
+		DurationInDays                   int64                                       `json:"durationInDays"`
+		FallbackReviewers                *[]AccessReviewReviewerScope                `json:"fallbackReviewers,omitempty"`
+		ODataId                          *string                                     `json:"@odata.id,omitempty"`
+		ODataType                        *string                                     `json:"@odata.type,omitempty"`
+		RecommendationInsightSettings    *[]AccessReviewRecommendationInsightSetting `json:"recommendationInsightSettings,omitempty"`
+		RecommendationLookBackDuration   nullable.Type[string]                       `json:"recommendationLookBackDuration,omitempty"`
+		RecommendationsEnabled           bool                                        `json:"recommendationsEnabled"`
+		Reviewers                        *[]AccessReviewReviewerScope                `json:"reviewers,omitempty"`
+		StageId                          string                                      `json:"stageId"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into AccessReviewStageSettings: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.DecisionsThatWillMoveToNextStage = decoded.DecisionsThatWillMoveToNextStage
@@ -102,5 +114,6 @@ func (s *AccessReviewStageSettings) UnmarshalJSON(bytes []byte) error {
 		}
 		s.RecommendationInsightSettings = &output
 	}
+
 	return nil
 }

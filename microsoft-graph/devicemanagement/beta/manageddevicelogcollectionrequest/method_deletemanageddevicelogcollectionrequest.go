@@ -19,7 +19,8 @@ type DeleteManagedDeviceLogCollectionRequestOperationResponse struct {
 }
 
 type DeleteManagedDeviceLogCollectionRequestOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteManagedDeviceLogCollectionRequestOperationOptions() DeleteManagedDeviceLogCollectionRequestOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteManagedDeviceLogCollectionRequestOperationOptions) ToHeaders() *cl
 
 func (o DeleteManagedDeviceLogCollectionRequestOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &IdentityGovernancePermissionsAnalyticAzureFindingId{}
 
 func TestNewIdentityGovernancePermissionsAnalyticAzureFindingID(t *testing.T) {
-	id := NewIdentityGovernancePermissionsAnalyticAzureFindingID("findingIdValue")
+	id := NewIdentityGovernancePermissionsAnalyticAzureFindingID("findingId")
 
-	if id.FindingId != "findingIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'FindingId'", id.FindingId, "findingIdValue")
+	if id.FindingId != "findingId" {
+		t.Fatalf("Expected %q but got %q for Segment 'FindingId'", id.FindingId, "findingId")
 	}
 }
 
 func TestFormatIdentityGovernancePermissionsAnalyticAzureFindingID(t *testing.T) {
-	actual := NewIdentityGovernancePermissionsAnalyticAzureFindingID("findingIdValue").ID()
-	expected := "/identityGovernance/permissionsAnalytics/azure/findings/findingIdValue"
+	actual := NewIdentityGovernancePermissionsAnalyticAzureFindingID("findingId").ID()
+	expected := "/identityGovernance/permissionsAnalytics/azure/findings/findingId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -60,14 +60,14 @@ func TestParseIdentityGovernancePermissionsAnalyticAzureFindingID(t *testing.T) 
 		},
 		{
 			// Valid URI
-			Input: "/identityGovernance/permissionsAnalytics/azure/findings/findingIdValue",
+			Input: "/identityGovernance/permissionsAnalytics/azure/findings/findingId",
 			Expected: &IdentityGovernancePermissionsAnalyticAzureFindingId{
-				FindingId: "findingIdValue",
+				FindingId: "findingId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/identityGovernance/permissionsAnalytics/azure/findings/findingIdValue/extra",
+			Input: "/identityGovernance/permissionsAnalytics/azure/findings/findingId/extra",
 			Error: true,
 		},
 	}
@@ -146,26 +146,26 @@ func TestParseIdentityGovernancePermissionsAnalyticAzureFindingIDInsensitively(t
 		},
 		{
 			// Valid URI
-			Input: "/identityGovernance/permissionsAnalytics/azure/findings/findingIdValue",
+			Input: "/identityGovernance/permissionsAnalytics/azure/findings/findingId",
 			Expected: &IdentityGovernancePermissionsAnalyticAzureFindingId{
-				FindingId: "findingIdValue",
+				FindingId: "findingId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/identityGovernance/permissionsAnalytics/azure/findings/findingIdValue/extra",
+			Input: "/identityGovernance/permissionsAnalytics/azure/findings/findingId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/iDeNtItYgOvErNaNcE/pErMiSsIoNsAnAlYtIcS/aZuRe/fInDiNgS/fInDiNgIdVaLuE",
+			Input: "/iDeNtItYgOvErNaNcE/pErMiSsIoNsAnAlYtIcS/aZuRe/fInDiNgS/fInDiNgId",
 			Expected: &IdentityGovernancePermissionsAnalyticAzureFindingId{
-				FindingId: "fInDiNgIdVaLuE",
+				FindingId: "fInDiNgId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/iDeNtItYgOvErNaNcE/pErMiSsIoNsAnAlYtIcS/aZuRe/fInDiNgS/fInDiNgIdVaLuE/extra",
+			Input: "/iDeNtItYgOvErNaNcE/pErMiSsIoNsAnAlYtIcS/aZuRe/fInDiNgS/fInDiNgId/extra",
 			Error: true,
 		},
 	}

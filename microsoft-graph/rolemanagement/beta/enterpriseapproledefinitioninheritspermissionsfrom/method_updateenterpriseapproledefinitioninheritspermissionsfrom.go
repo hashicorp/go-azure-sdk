@@ -17,16 +17,45 @@ type UpdateEnterpriseAppRoleDefinitionInheritsPermissionsFromOperationResponse s
 	OData        *odata.OData
 }
 
+type UpdateEnterpriseAppRoleDefinitionInheritsPermissionsFromOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateEnterpriseAppRoleDefinitionInheritsPermissionsFromOperationOptions() UpdateEnterpriseAppRoleDefinitionInheritsPermissionsFromOperationOptions {
+	return UpdateEnterpriseAppRoleDefinitionInheritsPermissionsFromOperationOptions{}
+}
+
+func (o UpdateEnterpriseAppRoleDefinitionInheritsPermissionsFromOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateEnterpriseAppRoleDefinitionInheritsPermissionsFromOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateEnterpriseAppRoleDefinitionInheritsPermissionsFromOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateEnterpriseAppRoleDefinitionInheritsPermissionsFrom - Update the navigation property inheritsPermissionsFrom in
 // roleManagement
-func (c EnterpriseAppRoleDefinitionInheritsPermissionsFromClient) UpdateEnterpriseAppRoleDefinitionInheritsPermissionsFrom(ctx context.Context, id beta.RoleManagementEnterpriseAppIdRoleDefinitionIdInheritsPermissionsFromId, input beta.UnifiedRoleDefinition) (result UpdateEnterpriseAppRoleDefinitionInheritsPermissionsFromOperationResponse, err error) {
+func (c EnterpriseAppRoleDefinitionInheritsPermissionsFromClient) UpdateEnterpriseAppRoleDefinitionInheritsPermissionsFrom(ctx context.Context, id beta.RoleManagementEnterpriseAppIdRoleDefinitionIdInheritsPermissionsFromId, input beta.UnifiedRoleDefinition, options UpdateEnterpriseAppRoleDefinitionInheritsPermissionsFromOperationOptions) (result UpdateEnterpriseAppRoleDefinitionInheritsPermissionsFromOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

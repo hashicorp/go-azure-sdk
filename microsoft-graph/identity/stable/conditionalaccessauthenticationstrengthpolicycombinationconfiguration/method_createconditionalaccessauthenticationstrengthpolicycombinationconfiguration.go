@@ -20,17 +20,46 @@ type CreateConditionalAccessAuthenticationStrengthPolicyCombinationConfiguration
 	Model        stable.AuthenticationCombinationConfiguration
 }
 
+type CreateConditionalAccessAuthenticationStrengthPolicyCombinationConfigurationOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateConditionalAccessAuthenticationStrengthPolicyCombinationConfigurationOperationOptions() CreateConditionalAccessAuthenticationStrengthPolicyCombinationConfigurationOperationOptions {
+	return CreateConditionalAccessAuthenticationStrengthPolicyCombinationConfigurationOperationOptions{}
+}
+
+func (o CreateConditionalAccessAuthenticationStrengthPolicyCombinationConfigurationOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateConditionalAccessAuthenticationStrengthPolicyCombinationConfigurationOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateConditionalAccessAuthenticationStrengthPolicyCombinationConfigurationOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateConditionalAccessAuthenticationStrengthPolicyCombinationConfiguration - Create
 // authenticationCombinationConfiguration. Create a new authenticationCombinationConfiguration object which can be of
 // one of the following derived types: * fido2combinationConfiguration * x509certificatecombinationconfiguration
-func (c ConditionalAccessAuthenticationStrengthPolicyCombinationConfigurationClient) CreateConditionalAccessAuthenticationStrengthPolicyCombinationConfiguration(ctx context.Context, id stable.IdentityConditionalAccessAuthenticationStrengthPolicyId, input stable.AuthenticationCombinationConfiguration) (result CreateConditionalAccessAuthenticationStrengthPolicyCombinationConfigurationOperationResponse, err error) {
+func (c ConditionalAccessAuthenticationStrengthPolicyCombinationConfigurationClient) CreateConditionalAccessAuthenticationStrengthPolicyCombinationConfiguration(ctx context.Context, id stable.IdentityConditionalAccessAuthenticationStrengthPolicyId, input stable.AuthenticationCombinationConfiguration, options CreateConditionalAccessAuthenticationStrengthPolicyCombinationConfigurationOperationOptions) (result CreateConditionalAccessAuthenticationStrengthPolicyCombinationConfigurationOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/combinationConfigurations", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/combinationConfigurations", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

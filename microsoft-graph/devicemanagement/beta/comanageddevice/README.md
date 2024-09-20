@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/comanageddevice` Documentation
 
-The `comanageddevice` SDK allows for interaction with the Azure Resource Manager Service `devicemanagement` (API Version `beta`).
+The `comanageddevice` SDK allows for interaction with Microsoft Graph `devicemanagement` (API Version `beta`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -15,7 +15,7 @@ import "github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/
 ### Client Initialization
 
 ```go
-client := comanageddevice.NewComanagedDeviceClientWithBaseURI("https://management.azure.com")
+client := comanageddevice.NewComanagedDeviceClientWithBaseURI("https://graph.microsoft.com")
 client.Client.Authorizer = authorizer
 ```
 
@@ -24,9 +24,9 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := comanageddevice.NewDeviceManagementComanagedDeviceID("managedDeviceIdValue")
+id := comanageddevice.NewDeviceManagementComanagedDeviceID("managedDeviceId")
 
-read, err := client.BypassComanagedDeviceActivationLock(ctx, id)
+read, err := client.BypassComanagedDeviceActivationLock(ctx, id, comanageddevice.DefaultBypassComanagedDeviceActivationLockOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -36,18 +36,18 @@ if model := read.Model; model != nil {
 ```
 
 
-### Example Usage: `ComanagedDeviceClient.ChangeComanagedDeviceAssignment`
+### Example Usage: `ComanagedDeviceClient.ChangeComanagedDeviceAssignments`
 
 ```go
 ctx := context.TODO()
-id := comanageddevice.NewDeviceManagementComanagedDeviceID("managedDeviceIdValue")
+id := comanageddevice.NewDeviceManagementComanagedDeviceID("managedDeviceId")
 
-payload := comanageddevice.ChangeComanagedDeviceAssignmentRequest{
+payload := comanageddevice.ChangeComanagedDeviceAssignmentsRequest{
 	// ...
 }
 
 
-read, err := client.ChangeComanagedDeviceAssignment(ctx, id, payload)
+read, err := client.ChangeComanagedDeviceAssignments(ctx, id, payload, comanageddevice.DefaultChangeComanagedDeviceAssignmentsOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -61,14 +61,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := comanageddevice.NewDeviceManagementComanagedDeviceID("managedDeviceIdValue")
+id := comanageddevice.NewDeviceManagementComanagedDeviceID("managedDeviceId")
 
 payload := comanageddevice.CleanComanagedDeviceWindowsDeviceRequest{
 	// ...
 }
 
 
-read, err := client.CleanComanagedDeviceWindowsDevice(ctx, id, payload)
+read, err := client.CleanComanagedDeviceWindowsDevice(ctx, id, payload, comanageddevice.DefaultCleanComanagedDeviceWindowsDeviceOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -88,7 +88,7 @@ payload := comanageddevice.ManagedDevice{
 }
 
 
-read, err := client.CreateComanagedDevice(ctx, payload)
+read, err := client.CreateComanagedDevice(ctx, payload, comanageddevice.DefaultCreateComanagedDeviceOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -102,14 +102,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := comanageddevice.NewDeviceManagementComanagedDeviceID("managedDeviceIdValue")
+id := comanageddevice.NewDeviceManagementComanagedDeviceID("managedDeviceId")
 
 payload := comanageddevice.CreateComanagedDeviceActivateDeviceEsimRequest{
 	// ...
 }
 
 
-read, err := client.CreateComanagedDeviceActivateDeviceEsim(ctx, id, payload)
+read, err := client.CreateComanagedDeviceActivateDeviceEsim(ctx, id, payload, comanageddevice.DefaultCreateComanagedDeviceActivateDeviceEsimOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -129,7 +129,7 @@ payload := comanageddevice.CreateComanagedDeviceBulkReprovisionCloudPCRequest{
 }
 
 
-read, err := client.CreateComanagedDeviceBulkReprovisionCloudPC(ctx, payload)
+read, err := client.CreateComanagedDeviceBulkReprovisionCloudPC(ctx, payload, comanageddevice.DefaultCreateComanagedDeviceBulkReprovisionCloudPCOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -149,7 +149,7 @@ payload := comanageddevice.CreateComanagedDeviceBulkRestoreCloudPCRequest{
 }
 
 
-read, err := client.CreateComanagedDeviceBulkRestoreCloudPC(ctx, payload)
+read, err := client.CreateComanagedDeviceBulkRestoreCloudPC(ctx, payload, comanageddevice.DefaultCreateComanagedDeviceBulkRestoreCloudPCOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -169,7 +169,7 @@ payload := comanageddevice.CreateComanagedDeviceBulkSetCloudPCReviewStatusReques
 }
 
 
-read, err := client.CreateComanagedDeviceBulkSetCloudPCReviewStatus(ctx, payload)
+read, err := client.CreateComanagedDeviceBulkSetCloudPCReviewStatus(ctx, payload, comanageddevice.DefaultCreateComanagedDeviceBulkSetCloudPCReviewStatusOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -183,14 +183,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := comanageddevice.NewDeviceManagementComanagedDeviceID("managedDeviceIdValue")
+id := comanageddevice.NewDeviceManagementComanagedDeviceID("managedDeviceId")
 
 payload := comanageddevice.CreateComanagedDeviceDeprovisionRequest{
 	// ...
 }
 
 
-read, err := client.CreateComanagedDeviceDeprovision(ctx, id, payload)
+read, err := client.CreateComanagedDeviceDeprovision(ctx, id, payload, comanageddevice.DefaultCreateComanagedDeviceDeprovisionOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -210,7 +210,7 @@ payload := comanageddevice.CreateComanagedDeviceDownloadAppDiagnosticRequest{
 }
 
 
-read, err := client.CreateComanagedDeviceDownloadAppDiagnostic(ctx, payload)
+read, err := client.CreateComanagedDeviceDownloadAppDiagnostic(ctx, payload, comanageddevice.DefaultCreateComanagedDeviceDownloadAppDiagnosticOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -224,9 +224,9 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := comanageddevice.NewDeviceManagementComanagedDeviceID("managedDeviceIdValue")
+id := comanageddevice.NewDeviceManagementComanagedDeviceID("managedDeviceId")
 
-read, err := client.CreateComanagedDeviceEnrollNowAction(ctx, id)
+read, err := client.CreateComanagedDeviceEnrollNowAction(ctx, id, comanageddevice.DefaultCreateComanagedDeviceEnrollNowActionOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -246,7 +246,7 @@ payload := comanageddevice.CreateComanagedDeviceExecuteActionRequest{
 }
 
 
-read, err := client.CreateComanagedDeviceExecuteAction(ctx, payload)
+read, err := client.CreateComanagedDeviceExecuteAction(ctx, payload, comanageddevice.DefaultCreateComanagedDeviceExecuteActionOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -260,9 +260,9 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := comanageddevice.NewDeviceManagementComanagedDeviceID("managedDeviceIdValue")
+id := comanageddevice.NewDeviceManagementComanagedDeviceID("managedDeviceId")
 
-read, err := client.CreateComanagedDeviceInitiateDeviceAttestation(ctx, id)
+read, err := client.CreateComanagedDeviceInitiateDeviceAttestation(ctx, id, comanageddevice.DefaultCreateComanagedDeviceInitiateDeviceAttestationOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -276,9 +276,9 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := comanageddevice.NewDeviceManagementComanagedDeviceID("managedDeviceIdValue")
+id := comanageddevice.NewDeviceManagementComanagedDeviceID("managedDeviceId")
 
-read, err := client.CreateComanagedDeviceInitiateMobileDeviceManagementKeyRecovery(ctx, id)
+read, err := client.CreateComanagedDeviceInitiateMobileDeviceManagementKeyRecovery(ctx, id, comanageddevice.DefaultCreateComanagedDeviceInitiateMobileDeviceManagementKeyRecoveryOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -292,14 +292,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := comanageddevice.NewDeviceManagementComanagedDeviceID("managedDeviceIdValue")
+id := comanageddevice.NewDeviceManagementComanagedDeviceID("managedDeviceId")
 
 payload := comanageddevice.CreateComanagedDeviceInitiateOnDemandProactiveRemediationRequest{
 	// ...
 }
 
 
-read, err := client.CreateComanagedDeviceInitiateOnDemandProactiveRemediation(ctx, id, payload)
+read, err := client.CreateComanagedDeviceInitiateOnDemandProactiveRemediation(ctx, id, payload, comanageddevice.DefaultCreateComanagedDeviceInitiateOnDemandProactiveRemediationOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -313,14 +313,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := comanageddevice.NewDeviceManagementComanagedDeviceID("managedDeviceIdValue")
+id := comanageddevice.NewDeviceManagementComanagedDeviceID("managedDeviceId")
 
 payload := comanageddevice.CreateComanagedDeviceLogCollectionRequestRequest{
 	// ...
 }
 
 
-read, err := client.CreateComanagedDeviceLogCollectionRequest(ctx, id, payload)
+read, err := client.CreateComanagedDeviceLogCollectionRequest(ctx, id, payload, comanageddevice.DefaultCreateComanagedDeviceLogCollectionRequestOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -334,14 +334,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := comanageddevice.NewDeviceManagementComanagedDeviceID("managedDeviceIdValue")
+id := comanageddevice.NewDeviceManagementComanagedDeviceID("managedDeviceId")
 
 payload := comanageddevice.CreateComanagedDeviceOverrideComplianceStateRequest{
 	// ...
 }
 
 
-read, err := client.CreateComanagedDeviceOverrideComplianceState(ctx, id, payload)
+read, err := client.CreateComanagedDeviceOverrideComplianceState(ctx, id, payload, comanageddevice.DefaultCreateComanagedDeviceOverrideComplianceStateOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -355,14 +355,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := comanageddevice.NewDeviceManagementComanagedDeviceID("managedDeviceIdValue")
+id := comanageddevice.NewDeviceManagementComanagedDeviceID("managedDeviceId")
 
 payload := comanageddevice.CreateComanagedDevicePlayLostModeSoundRequest{
 	// ...
 }
 
 
-read, err := client.CreateComanagedDevicePlayLostModeSound(ctx, id, payload)
+read, err := client.CreateComanagedDevicePlayLostModeSound(ctx, id, payload, comanageddevice.DefaultCreateComanagedDevicePlayLostModeSoundOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -376,9 +376,9 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := comanageddevice.NewDeviceManagementComanagedDeviceID("managedDeviceIdValue")
+id := comanageddevice.NewDeviceManagementComanagedDeviceID("managedDeviceId")
 
-read, err := client.CreateComanagedDeviceReenable(ctx, id)
+read, err := client.CreateComanagedDeviceReenable(ctx, id, comanageddevice.DefaultCreateComanagedDeviceReenableOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -392,9 +392,9 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := comanageddevice.NewDeviceManagementComanagedDeviceID("managedDeviceIdValue")
+id := comanageddevice.NewDeviceManagementComanagedDeviceID("managedDeviceId")
 
-read, err := client.CreateComanagedDeviceRotateBitLockerKey(ctx, id)
+read, err := client.CreateComanagedDeviceRotateBitLockerKey(ctx, id, comanageddevice.DefaultCreateComanagedDeviceRotateBitLockerKeyOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -408,9 +408,9 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := comanageddevice.NewDeviceManagementComanagedDeviceID("managedDeviceIdValue")
+id := comanageddevice.NewDeviceManagementComanagedDeviceID("managedDeviceId")
 
-read, err := client.CreateComanagedDeviceRotateFileVaultKey(ctx, id)
+read, err := client.CreateComanagedDeviceRotateFileVaultKey(ctx, id, comanageddevice.DefaultCreateComanagedDeviceRotateFileVaultKeyOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -424,9 +424,9 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := comanageddevice.NewDeviceManagementComanagedDeviceID("managedDeviceIdValue")
+id := comanageddevice.NewDeviceManagementComanagedDeviceID("managedDeviceId")
 
-read, err := client.CreateComanagedDeviceRotateLocalAdminPassword(ctx, id)
+read, err := client.CreateComanagedDeviceRotateLocalAdminPassword(ctx, id, comanageddevice.DefaultCreateComanagedDeviceRotateLocalAdminPasswordOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -440,14 +440,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := comanageddevice.NewDeviceManagementComanagedDeviceID("managedDeviceIdValue")
+id := comanageddevice.NewDeviceManagementComanagedDeviceID("managedDeviceId")
 
 payload := comanageddevice.CreateComanagedDeviceTriggerConfigurationManagerActionRequest{
 	// ...
 }
 
 
-read, err := client.CreateComanagedDeviceTriggerConfigurationManagerAction(ctx, id, payload)
+read, err := client.CreateComanagedDeviceTriggerConfigurationManagerAction(ctx, id, payload, comanageddevice.DefaultCreateComanagedDeviceTriggerConfigurationManagerActionOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -461,14 +461,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := comanageddevice.NewDeviceManagementComanagedDeviceID("managedDeviceIdValue")
+id := comanageddevice.NewDeviceManagementComanagedDeviceID("managedDeviceId")
 
 payload := comanageddevice.CreateComanagedDeviceWindowsDefenderScanRequest{
 	// ...
 }
 
 
-read, err := client.CreateComanagedDeviceWindowsDefenderScan(ctx, id, payload)
+read, err := client.CreateComanagedDeviceWindowsDefenderScan(ctx, id, payload, comanageddevice.DefaultCreateComanagedDeviceWindowsDefenderScanOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -482,9 +482,9 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := comanageddevice.NewDeviceManagementComanagedDeviceID("managedDeviceIdValue")
+id := comanageddevice.NewDeviceManagementComanagedDeviceID("managedDeviceId")
 
-read, err := client.CreateComanagedDeviceWindowsDefenderUpdateSignature(ctx, id)
+read, err := client.CreateComanagedDeviceWindowsDefenderUpdateSignature(ctx, id, comanageddevice.DefaultCreateComanagedDeviceWindowsDefenderUpdateSignatureOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -498,7 +498,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := comanageddevice.NewDeviceManagementComanagedDeviceID("managedDeviceIdValue")
+id := comanageddevice.NewDeviceManagementComanagedDeviceID("managedDeviceId")
 
 read, err := client.DeleteComanagedDevice(ctx, id, comanageddevice.DefaultDeleteComanagedDeviceOperationOptions())
 if err != nil {
@@ -514,14 +514,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := comanageddevice.NewDeviceManagementComanagedDeviceID("managedDeviceIdValue")
+id := comanageddevice.NewDeviceManagementComanagedDeviceID("managedDeviceId")
 
 payload := comanageddevice.DeleteComanagedDeviceUserFromSharedAppleDeviceRequest{
 	// ...
 }
 
 
-read, err := client.DeleteComanagedDeviceUserFromSharedAppleDevice(ctx, id, payload)
+read, err := client.DeleteComanagedDeviceUserFromSharedAppleDevice(ctx, id, payload, comanageddevice.DefaultDeleteComanagedDeviceUserFromSharedAppleDeviceOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -535,9 +535,9 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := comanageddevice.NewDeviceManagementComanagedDeviceID("managedDeviceIdValue")
+id := comanageddevice.NewDeviceManagementComanagedDeviceID("managedDeviceId")
 
-read, err := client.DisableComanagedDevice(ctx, id)
+read, err := client.DisableComanagedDevice(ctx, id, comanageddevice.DefaultDisableComanagedDeviceOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -551,9 +551,9 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := comanageddevice.NewDeviceManagementComanagedDeviceID("managedDeviceIdValue")
+id := comanageddevice.NewDeviceManagementComanagedDeviceID("managedDeviceId")
 
-read, err := client.DisableComanagedDeviceLostMode(ctx, id)
+read, err := client.DisableComanagedDeviceLostMode(ctx, id, comanageddevice.DefaultDisableComanagedDeviceLostModeOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -567,14 +567,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := comanageddevice.NewDeviceManagementComanagedDeviceID("managedDeviceIdValue")
+id := comanageddevice.NewDeviceManagementComanagedDeviceID("managedDeviceId")
 
 payload := comanageddevice.EnableComanagedDeviceLostModeRequest{
 	// ...
 }
 
 
-read, err := client.EnableComanagedDeviceLostMode(ctx, id, payload)
+read, err := client.EnableComanagedDeviceLostMode(ctx, id, payload, comanageddevice.DefaultEnableComanagedDeviceLostModeOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -588,7 +588,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := comanageddevice.NewDeviceManagementComanagedDeviceID("managedDeviceIdValue")
+id := comanageddevice.NewDeviceManagementComanagedDeviceID("managedDeviceId")
 
 read, err := client.GetComanagedDevice(ctx, id, comanageddevice.DefaultGetComanagedDeviceOperationOptions())
 if err != nil {
@@ -633,13 +633,13 @@ for _, item := range items {
 ```
 
 
-### Example Usage: `ComanagedDeviceClient.LocateComanagedDevice`
+### Example Usage: `ComanagedDeviceClient.LocateComanagedDeviceDevice`
 
 ```go
 ctx := context.TODO()
-id := comanageddevice.NewDeviceManagementComanagedDeviceID("managedDeviceIdValue")
+id := comanageddevice.NewDeviceManagementComanagedDeviceID("managedDeviceId")
 
-read, err := client.LocateComanagedDevice(ctx, id)
+read, err := client.LocateComanagedDeviceDevice(ctx, id, comanageddevice.DefaultLocateComanagedDeviceDeviceOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -653,9 +653,9 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := comanageddevice.NewDeviceManagementComanagedDeviceID("managedDeviceIdValue")
+id := comanageddevice.NewDeviceManagementComanagedDeviceID("managedDeviceId")
 
-read, err := client.LogoutComanagedDeviceSharedAppleDeviceActiveUser(ctx, id)
+read, err := client.LogoutComanagedDeviceSharedAppleDeviceActiveUser(ctx, id, comanageddevice.DefaultLogoutComanagedDeviceSharedAppleDeviceActiveUserOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -675,7 +675,7 @@ payload := comanageddevice.MoveComanagedDevicesToOURequest{
 }
 
 
-read, err := client.MoveComanagedDevicesToOU(ctx, payload)
+read, err := client.MoveComanagedDevicesToOU(ctx, payload, comanageddevice.DefaultMoveComanagedDevicesToOUOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -689,14 +689,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := comanageddevice.NewDeviceManagementComanagedDeviceID("managedDeviceIdValue")
+id := comanageddevice.NewDeviceManagementComanagedDeviceID("managedDeviceId")
 
 payload := comanageddevice.PauseComanagedDeviceConfigurationRefreshRequest{
 	// ...
 }
 
 
-read, err := client.PauseComanagedDeviceConfigurationRefresh(ctx, id, payload)
+read, err := client.PauseComanagedDeviceConfigurationRefresh(ctx, id, payload, comanageddevice.DefaultPauseComanagedDeviceConfigurationRefreshOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -710,9 +710,9 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := comanageddevice.NewDeviceManagementComanagedDeviceID("managedDeviceIdValue")
+id := comanageddevice.NewDeviceManagementComanagedDeviceID("managedDeviceId")
 
-read, err := client.RebootComanagedDeviceNow(ctx, id)
+read, err := client.RebootComanagedDeviceNow(ctx, id, comanageddevice.DefaultRebootComanagedDeviceNowOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -726,9 +726,9 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := comanageddevice.NewDeviceManagementComanagedDeviceID("managedDeviceIdValue")
+id := comanageddevice.NewDeviceManagementComanagedDeviceID("managedDeviceId")
 
-read, err := client.RecoverComanagedDevicePasscode(ctx, id)
+read, err := client.RecoverComanagedDevicePasscode(ctx, id, comanageddevice.DefaultRecoverComanagedDevicePasscodeOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -742,9 +742,9 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := comanageddevice.NewDeviceManagementComanagedDeviceID("managedDeviceIdValue")
+id := comanageddevice.NewDeviceManagementComanagedDeviceID("managedDeviceId")
 
-read, err := client.RemoteLockComanagedDevice(ctx, id)
+read, err := client.RemoteLockComanagedDevice(ctx, id, comanageddevice.DefaultRemoteLockComanagedDeviceOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -758,9 +758,9 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := comanageddevice.NewDeviceManagementComanagedDeviceID("managedDeviceIdValue")
+id := comanageddevice.NewDeviceManagementComanagedDeviceID("managedDeviceId")
 
-read, err := client.RemoveComanagedDeviceFirmwareConfigurationInterfaceManagement(ctx, id)
+read, err := client.RemoveComanagedDeviceFirmwareConfigurationInterfaceManagement(ctx, id, comanageddevice.DefaultRemoveComanagedDeviceFirmwareConfigurationInterfaceManagementOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -774,9 +774,9 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := comanageddevice.NewDeviceManagementComanagedDeviceID("managedDeviceIdValue")
+id := comanageddevice.NewDeviceManagementComanagedDeviceID("managedDeviceId")
 
-read, err := client.ReprovisionComanagedDeviceCloudPC(ctx, id)
+read, err := client.ReprovisionComanagedDeviceCloudPC(ctx, id, comanageddevice.DefaultReprovisionComanagedDeviceCloudPCOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -790,9 +790,9 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := comanageddevice.NewDeviceManagementComanagedDeviceID("managedDeviceIdValue")
+id := comanageddevice.NewDeviceManagementComanagedDeviceID("managedDeviceId")
 
-read, err := client.RequestComanagedDeviceRemoteAssistance(ctx, id)
+read, err := client.RequestComanagedDeviceRemoteAssistance(ctx, id, comanageddevice.DefaultRequestComanagedDeviceRemoteAssistanceOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -806,9 +806,9 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := comanageddevice.NewDeviceManagementComanagedDeviceID("managedDeviceIdValue")
+id := comanageddevice.NewDeviceManagementComanagedDeviceID("managedDeviceId")
 
-read, err := client.ResetComanagedDevicePasscode(ctx, id)
+read, err := client.ResetComanagedDevicePasscode(ctx, id, comanageddevice.DefaultResetComanagedDevicePasscodeOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -822,14 +822,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := comanageddevice.NewDeviceManagementComanagedDeviceID("managedDeviceIdValue")
+id := comanageddevice.NewDeviceManagementComanagedDeviceID("managedDeviceId")
 
 payload := comanageddevice.ResizeComanagedDeviceCloudPCRequest{
 	// ...
 }
 
 
-read, err := client.ResizeComanagedDeviceCloudPC(ctx, id, payload)
+read, err := client.ResizeComanagedDeviceCloudPC(ctx, id, payload, comanageddevice.DefaultResizeComanagedDeviceCloudPCOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -843,14 +843,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := comanageddevice.NewDeviceManagementComanagedDeviceID("managedDeviceIdValue")
+id := comanageddevice.NewDeviceManagementComanagedDeviceID("managedDeviceId")
 
 payload := comanageddevice.RestoreComanagedDeviceCloudPCRequest{
 	// ...
 }
 
 
-read, err := client.RestoreComanagedDeviceCloudPC(ctx, id, payload)
+read, err := client.RestoreComanagedDeviceCloudPC(ctx, id, payload, comanageddevice.DefaultRestoreComanagedDeviceCloudPCOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -864,9 +864,9 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := comanageddevice.NewDeviceManagementComanagedDeviceID("managedDeviceIdValue")
+id := comanageddevice.NewDeviceManagementComanagedDeviceID("managedDeviceId")
 
-read, err := client.RetireComanagedDevice(ctx, id)
+read, err := client.RetireComanagedDevice(ctx, id, comanageddevice.DefaultRetireComanagedDeviceOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -876,13 +876,13 @@ if model := read.Model; model != nil {
 ```
 
 
-### Example Usage: `ComanagedDeviceClient.RevokeComanagedDeviceAppleVppLicense`
+### Example Usage: `ComanagedDeviceClient.RevokeComanagedDeviceAppleVppLicenses`
 
 ```go
 ctx := context.TODO()
-id := comanageddevice.NewDeviceManagementComanagedDeviceID("managedDeviceIdValue")
+id := comanageddevice.NewDeviceManagementComanagedDeviceID("managedDeviceId")
 
-read, err := client.RevokeComanagedDeviceAppleVppLicense(ctx, id)
+read, err := client.RevokeComanagedDeviceAppleVppLicenses(ctx, id, comanageddevice.DefaultRevokeComanagedDeviceAppleVppLicensesOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -896,14 +896,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := comanageddevice.NewDeviceManagementComanagedDeviceID("managedDeviceIdValue")
+id := comanageddevice.NewDeviceManagementComanagedDeviceID("managedDeviceId")
 
 payload := comanageddevice.SendComanagedDeviceCustomNotificationToCompanyPortalRequest{
 	// ...
 }
 
 
-read, err := client.SendComanagedDeviceCustomNotificationToCompanyPortal(ctx, id, payload)
+read, err := client.SendComanagedDeviceCustomNotificationToCompanyPortal(ctx, id, payload, comanageddevice.DefaultSendComanagedDeviceCustomNotificationToCompanyPortalOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -917,14 +917,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := comanageddevice.NewDeviceManagementComanagedDeviceID("managedDeviceIdValue")
+id := comanageddevice.NewDeviceManagementComanagedDeviceID("managedDeviceId")
 
 payload := comanageddevice.SetComanagedDeviceCloudPCReviewStatusRequest{
 	// ...
 }
 
 
-read, err := client.SetComanagedDeviceCloudPCReviewStatus(ctx, id, payload)
+read, err := client.SetComanagedDeviceCloudPCReviewStatus(ctx, id, payload, comanageddevice.DefaultSetComanagedDeviceCloudPCReviewStatusOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -938,14 +938,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := comanageddevice.NewDeviceManagementComanagedDeviceID("managedDeviceIdValue")
+id := comanageddevice.NewDeviceManagementComanagedDeviceID("managedDeviceId")
 
 payload := comanageddevice.SetComanagedDeviceNameRequest{
 	// ...
 }
 
 
-read, err := client.SetComanagedDeviceName(ctx, id, payload)
+read, err := client.SetComanagedDeviceName(ctx, id, payload, comanageddevice.DefaultSetComanagedDeviceNameOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -959,9 +959,9 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := comanageddevice.NewDeviceManagementComanagedDeviceID("managedDeviceIdValue")
+id := comanageddevice.NewDeviceManagementComanagedDeviceID("managedDeviceId")
 
-read, err := client.ShutDownComanagedDevice(ctx, id)
+read, err := client.ShutDownComanagedDevice(ctx, id, comanageddevice.DefaultShutDownComanagedDeviceOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -971,13 +971,13 @@ if model := read.Model; model != nil {
 ```
 
 
-### Example Usage: `ComanagedDeviceClient.SyncComanagedDevice`
+### Example Usage: `ComanagedDeviceClient.SyncComanagedDeviceDevice`
 
 ```go
 ctx := context.TODO()
-id := comanageddevice.NewDeviceManagementComanagedDeviceID("managedDeviceIdValue")
+id := comanageddevice.NewDeviceManagementComanagedDeviceID("managedDeviceId")
 
-read, err := client.SyncComanagedDevice(ctx, id)
+read, err := client.SyncComanagedDeviceDevice(ctx, id, comanageddevice.DefaultSyncComanagedDeviceDeviceOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -991,14 +991,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := comanageddevice.NewDeviceManagementComanagedDeviceID("managedDeviceIdValue")
+id := comanageddevice.NewDeviceManagementComanagedDeviceID("managedDeviceId")
 
 payload := comanageddevice.ManagedDevice{
 	// ...
 }
 
 
-read, err := client.UpdateComanagedDevice(ctx, id, payload)
+read, err := client.UpdateComanagedDevice(ctx, id, payload, comanageddevice.DefaultUpdateComanagedDeviceOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -1012,14 +1012,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := comanageddevice.NewDeviceManagementComanagedDeviceID("managedDeviceIdValue")
+id := comanageddevice.NewDeviceManagementComanagedDeviceID("managedDeviceId")
 
 payload := comanageddevice.UpdateComanagedDeviceWindowsDeviceAccountRequest{
 	// ...
 }
 
 
-read, err := client.UpdateComanagedDeviceWindowsDeviceAccount(ctx, id, payload)
+read, err := client.UpdateComanagedDeviceWindowsDeviceAccount(ctx, id, payload, comanageddevice.DefaultUpdateComanagedDeviceWindowsDeviceAccountOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -1033,14 +1033,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := comanageddevice.NewDeviceManagementComanagedDeviceID("managedDeviceIdValue")
+id := comanageddevice.NewDeviceManagementComanagedDeviceID("managedDeviceId")
 
 payload := comanageddevice.WipeComanagedDeviceRequest{
 	// ...
 }
 
 
-read, err := client.WipeComanagedDevice(ctx, id, payload)
+read, err := client.WipeComanagedDevice(ctx, id, payload, comanageddevice.DefaultWipeComanagedDeviceOperationOptions())
 if err != nil {
 	// handle the error
 }

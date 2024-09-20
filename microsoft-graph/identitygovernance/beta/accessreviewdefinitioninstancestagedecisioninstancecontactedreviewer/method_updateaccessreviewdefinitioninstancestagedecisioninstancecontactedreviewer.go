@@ -17,16 +17,45 @@ type UpdateAccessReviewDefinitionInstanceStageDecisionInstanceContactedReviewerO
 	OData        *odata.OData
 }
 
+type UpdateAccessReviewDefinitionInstanceStageDecisionInstanceContactedReviewerOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateAccessReviewDefinitionInstanceStageDecisionInstanceContactedReviewerOperationOptions() UpdateAccessReviewDefinitionInstanceStageDecisionInstanceContactedReviewerOperationOptions {
+	return UpdateAccessReviewDefinitionInstanceStageDecisionInstanceContactedReviewerOperationOptions{}
+}
+
+func (o UpdateAccessReviewDefinitionInstanceStageDecisionInstanceContactedReviewerOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateAccessReviewDefinitionInstanceStageDecisionInstanceContactedReviewerOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateAccessReviewDefinitionInstanceStageDecisionInstanceContactedReviewerOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateAccessReviewDefinitionInstanceStageDecisionInstanceContactedReviewer - Update the navigation property
 // contactedReviewers in identityGovernance
-func (c AccessReviewDefinitionInstanceStageDecisionInstanceContactedReviewerClient) UpdateAccessReviewDefinitionInstanceStageDecisionInstanceContactedReviewer(ctx context.Context, id beta.IdentityGovernanceAccessReviewDefinitionIdInstanceIdStageIdDecisionIdInstanceContactedReviewerId, input beta.AccessReviewReviewer) (result UpdateAccessReviewDefinitionInstanceStageDecisionInstanceContactedReviewerOperationResponse, err error) {
+func (c AccessReviewDefinitionInstanceStageDecisionInstanceContactedReviewerClient) UpdateAccessReviewDefinitionInstanceStageDecisionInstanceContactedReviewer(ctx context.Context, id beta.IdentityGovernanceAccessReviewDefinitionIdInstanceIdStageIdDecisionIdInstanceContactedReviewerId, input beta.AccessReviewReviewer, options UpdateAccessReviewDefinitionInstanceStageDecisionInstanceContactedReviewerOperationOptions) (result UpdateAccessReviewDefinitionInstanceStageDecisionInstanceContactedReviewerOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -17,15 +17,44 @@ type GetReportsEnrollmentConfigurationPoliciesByDeviceOperationResponse struct {
 	Model        *[]byte
 }
 
+type GetReportsEnrollmentConfigurationPoliciesByDeviceOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultGetReportsEnrollmentConfigurationPoliciesByDeviceOperationOptions() GetReportsEnrollmentConfigurationPoliciesByDeviceOperationOptions {
+	return GetReportsEnrollmentConfigurationPoliciesByDeviceOperationOptions{}
+}
+
+func (o GetReportsEnrollmentConfigurationPoliciesByDeviceOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o GetReportsEnrollmentConfigurationPoliciesByDeviceOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o GetReportsEnrollmentConfigurationPoliciesByDeviceOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // GetReportsEnrollmentConfigurationPoliciesByDevice - Invoke action getEnrollmentConfigurationPoliciesByDevice
-func (c ReportClient) GetReportsEnrollmentConfigurationPoliciesByDevice(ctx context.Context, input GetReportsEnrollmentConfigurationPoliciesByDeviceRequest) (result GetReportsEnrollmentConfigurationPoliciesByDeviceOperationResponse, err error) {
+func (c ReportClient) GetReportsEnrollmentConfigurationPoliciesByDevice(ctx context.Context, input GetReportsEnrollmentConfigurationPoliciesByDeviceRequest, options GetReportsEnrollmentConfigurationPoliciesByDeviceOperationOptions) (result GetReportsEnrollmentConfigurationPoliciesByDeviceOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/octet-stream",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/deviceManagement/reports/getEnrollmentConfigurationPoliciesByDevice",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/deviceManagement/reports/getEnrollmentConfigurationPoliciesByDevice",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

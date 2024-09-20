@@ -99,9 +99,9 @@ func (id DeviceManagementDeviceHealthScriptIdDeviceRunStateId) Segments() []reso
 	return []resourceids.Segment{
 		resourceids.StaticSegment("deviceManagement", "deviceManagement", "deviceManagement"),
 		resourceids.StaticSegment("deviceHealthScripts", "deviceHealthScripts", "deviceHealthScripts"),
-		resourceids.UserSpecifiedSegment("deviceHealthScriptId", "deviceHealthScriptIdValue"),
+		resourceids.UserSpecifiedSegment("deviceHealthScriptId", "deviceHealthScriptId"),
 		resourceids.StaticSegment("deviceRunStates", "deviceRunStates", "deviceRunStates"),
-		resourceids.UserSpecifiedSegment("deviceHealthScriptDeviceStateId", "deviceHealthScriptDeviceStateIdValue"),
+		resourceids.UserSpecifiedSegment("deviceHealthScriptDeviceStateId", "deviceHealthScriptDeviceStateId"),
 	}
 }
 

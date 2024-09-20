@@ -12,24 +12,24 @@ import (
 var _ resourceids.ResourceId = &DeviceManagementVirtualEndpointProvisioningPolicyIdAssignmentIdAssignedUserId{}
 
 func TestNewDeviceManagementVirtualEndpointProvisioningPolicyIdAssignmentIdAssignedUserID(t *testing.T) {
-	id := NewDeviceManagementVirtualEndpointProvisioningPolicyIdAssignmentIdAssignedUserID("cloudPCProvisioningPolicyIdValue", "cloudPCProvisioningPolicyAssignmentIdValue", "userIdValue")
+	id := NewDeviceManagementVirtualEndpointProvisioningPolicyIdAssignmentIdAssignedUserID("cloudPCProvisioningPolicyId", "cloudPCProvisioningPolicyAssignmentId", "userId")
 
-	if id.CloudPCProvisioningPolicyId != "cloudPCProvisioningPolicyIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'CloudPCProvisioningPolicyId'", id.CloudPCProvisioningPolicyId, "cloudPCProvisioningPolicyIdValue")
+	if id.CloudPCProvisioningPolicyId != "cloudPCProvisioningPolicyId" {
+		t.Fatalf("Expected %q but got %q for Segment 'CloudPCProvisioningPolicyId'", id.CloudPCProvisioningPolicyId, "cloudPCProvisioningPolicyId")
 	}
 
-	if id.CloudPCProvisioningPolicyAssignmentId != "cloudPCProvisioningPolicyAssignmentIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'CloudPCProvisioningPolicyAssignmentId'", id.CloudPCProvisioningPolicyAssignmentId, "cloudPCProvisioningPolicyAssignmentIdValue")
+	if id.CloudPCProvisioningPolicyAssignmentId != "cloudPCProvisioningPolicyAssignmentId" {
+		t.Fatalf("Expected %q but got %q for Segment 'CloudPCProvisioningPolicyAssignmentId'", id.CloudPCProvisioningPolicyAssignmentId, "cloudPCProvisioningPolicyAssignmentId")
 	}
 
-	if id.UserId != "userIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'UserId'", id.UserId, "userIdValue")
+	if id.UserId != "userId" {
+		t.Fatalf("Expected %q but got %q for Segment 'UserId'", id.UserId, "userId")
 	}
 }
 
 func TestFormatDeviceManagementVirtualEndpointProvisioningPolicyIdAssignmentIdAssignedUserID(t *testing.T) {
-	actual := NewDeviceManagementVirtualEndpointProvisioningPolicyIdAssignmentIdAssignedUserID("cloudPCProvisioningPolicyIdValue", "cloudPCProvisioningPolicyAssignmentIdValue", "userIdValue").ID()
-	expected := "/deviceManagement/virtualEndpoint/provisioningPolicies/cloudPCProvisioningPolicyIdValue/assignments/cloudPCProvisioningPolicyAssignmentIdValue/assignedUsers/userIdValue"
+	actual := NewDeviceManagementVirtualEndpointProvisioningPolicyIdAssignmentIdAssignedUserID("cloudPCProvisioningPolicyId", "cloudPCProvisioningPolicyAssignmentId", "userId").ID()
+	expected := "/deviceManagement/virtualEndpoint/provisioningPolicies/cloudPCProvisioningPolicyId/assignments/cloudPCProvisioningPolicyAssignmentId/assignedUsers/userId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -63,36 +63,36 @@ func TestParseDeviceManagementVirtualEndpointProvisioningPolicyIdAssignmentIdAss
 		},
 		{
 			// Incomplete URI
-			Input: "/deviceManagement/virtualEndpoint/provisioningPolicies/cloudPCProvisioningPolicyIdValue",
+			Input: "/deviceManagement/virtualEndpoint/provisioningPolicies/cloudPCProvisioningPolicyId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/deviceManagement/virtualEndpoint/provisioningPolicies/cloudPCProvisioningPolicyIdValue/assignments",
+			Input: "/deviceManagement/virtualEndpoint/provisioningPolicies/cloudPCProvisioningPolicyId/assignments",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/deviceManagement/virtualEndpoint/provisioningPolicies/cloudPCProvisioningPolicyIdValue/assignments/cloudPCProvisioningPolicyAssignmentIdValue",
+			Input: "/deviceManagement/virtualEndpoint/provisioningPolicies/cloudPCProvisioningPolicyId/assignments/cloudPCProvisioningPolicyAssignmentId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/deviceManagement/virtualEndpoint/provisioningPolicies/cloudPCProvisioningPolicyIdValue/assignments/cloudPCProvisioningPolicyAssignmentIdValue/assignedUsers",
+			Input: "/deviceManagement/virtualEndpoint/provisioningPolicies/cloudPCProvisioningPolicyId/assignments/cloudPCProvisioningPolicyAssignmentId/assignedUsers",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/virtualEndpoint/provisioningPolicies/cloudPCProvisioningPolicyIdValue/assignments/cloudPCProvisioningPolicyAssignmentIdValue/assignedUsers/userIdValue",
+			Input: "/deviceManagement/virtualEndpoint/provisioningPolicies/cloudPCProvisioningPolicyId/assignments/cloudPCProvisioningPolicyAssignmentId/assignedUsers/userId",
 			Expected: &DeviceManagementVirtualEndpointProvisioningPolicyIdAssignmentIdAssignedUserId{
-				CloudPCProvisioningPolicyId:           "cloudPCProvisioningPolicyIdValue",
-				CloudPCProvisioningPolicyAssignmentId: "cloudPCProvisioningPolicyAssignmentIdValue",
-				UserId:                                "userIdValue",
+				CloudPCProvisioningPolicyId:           "cloudPCProvisioningPolicyId",
+				CloudPCProvisioningPolicyAssignmentId: "cloudPCProvisioningPolicyAssignmentId",
+				UserId:                                "userId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/virtualEndpoint/provisioningPolicies/cloudPCProvisioningPolicyIdValue/assignments/cloudPCProvisioningPolicyAssignmentIdValue/assignedUsers/userIdValue/extra",
+			Input: "/deviceManagement/virtualEndpoint/provisioningPolicies/cloudPCProvisioningPolicyId/assignments/cloudPCProvisioningPolicyAssignmentId/assignedUsers/userId/extra",
 			Error: true,
 		},
 	}
@@ -169,70 +169,70 @@ func TestParseDeviceManagementVirtualEndpointProvisioningPolicyIdAssignmentIdAss
 		},
 		{
 			// Incomplete URI
-			Input: "/deviceManagement/virtualEndpoint/provisioningPolicies/cloudPCProvisioningPolicyIdValue",
+			Input: "/deviceManagement/virtualEndpoint/provisioningPolicies/cloudPCProvisioningPolicyId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/vIrTuAlEnDpOiNt/pRoViSiOnInGpOlIcIeS/cLoUdPcPrOvIsIoNiNgPoLiCyIdVaLuE",
+			Input: "/dEvIcEmAnAgEmEnT/vIrTuAlEnDpOiNt/pRoViSiOnInGpOlIcIeS/cLoUdPcPrOvIsIoNiNgPoLiCyId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/deviceManagement/virtualEndpoint/provisioningPolicies/cloudPCProvisioningPolicyIdValue/assignments",
+			Input: "/deviceManagement/virtualEndpoint/provisioningPolicies/cloudPCProvisioningPolicyId/assignments",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/vIrTuAlEnDpOiNt/pRoViSiOnInGpOlIcIeS/cLoUdPcPrOvIsIoNiNgPoLiCyIdVaLuE/aSsIgNmEnTs",
+			Input: "/dEvIcEmAnAgEmEnT/vIrTuAlEnDpOiNt/pRoViSiOnInGpOlIcIeS/cLoUdPcPrOvIsIoNiNgPoLiCyId/aSsIgNmEnTs",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/deviceManagement/virtualEndpoint/provisioningPolicies/cloudPCProvisioningPolicyIdValue/assignments/cloudPCProvisioningPolicyAssignmentIdValue",
+			Input: "/deviceManagement/virtualEndpoint/provisioningPolicies/cloudPCProvisioningPolicyId/assignments/cloudPCProvisioningPolicyAssignmentId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/vIrTuAlEnDpOiNt/pRoViSiOnInGpOlIcIeS/cLoUdPcPrOvIsIoNiNgPoLiCyIdVaLuE/aSsIgNmEnTs/cLoUdPcPrOvIsIoNiNgPoLiCyAsSiGnMeNtIdVaLuE",
+			Input: "/dEvIcEmAnAgEmEnT/vIrTuAlEnDpOiNt/pRoViSiOnInGpOlIcIeS/cLoUdPcPrOvIsIoNiNgPoLiCyId/aSsIgNmEnTs/cLoUdPcPrOvIsIoNiNgPoLiCyAsSiGnMeNtId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/deviceManagement/virtualEndpoint/provisioningPolicies/cloudPCProvisioningPolicyIdValue/assignments/cloudPCProvisioningPolicyAssignmentIdValue/assignedUsers",
+			Input: "/deviceManagement/virtualEndpoint/provisioningPolicies/cloudPCProvisioningPolicyId/assignments/cloudPCProvisioningPolicyAssignmentId/assignedUsers",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/vIrTuAlEnDpOiNt/pRoViSiOnInGpOlIcIeS/cLoUdPcPrOvIsIoNiNgPoLiCyIdVaLuE/aSsIgNmEnTs/cLoUdPcPrOvIsIoNiNgPoLiCyAsSiGnMeNtIdVaLuE/aSsIgNeDuSeRs",
+			Input: "/dEvIcEmAnAgEmEnT/vIrTuAlEnDpOiNt/pRoViSiOnInGpOlIcIeS/cLoUdPcPrOvIsIoNiNgPoLiCyId/aSsIgNmEnTs/cLoUdPcPrOvIsIoNiNgPoLiCyAsSiGnMeNtId/aSsIgNeDuSeRs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/virtualEndpoint/provisioningPolicies/cloudPCProvisioningPolicyIdValue/assignments/cloudPCProvisioningPolicyAssignmentIdValue/assignedUsers/userIdValue",
+			Input: "/deviceManagement/virtualEndpoint/provisioningPolicies/cloudPCProvisioningPolicyId/assignments/cloudPCProvisioningPolicyAssignmentId/assignedUsers/userId",
 			Expected: &DeviceManagementVirtualEndpointProvisioningPolicyIdAssignmentIdAssignedUserId{
-				CloudPCProvisioningPolicyId:           "cloudPCProvisioningPolicyIdValue",
-				CloudPCProvisioningPolicyAssignmentId: "cloudPCProvisioningPolicyAssignmentIdValue",
-				UserId:                                "userIdValue",
+				CloudPCProvisioningPolicyId:           "cloudPCProvisioningPolicyId",
+				CloudPCProvisioningPolicyAssignmentId: "cloudPCProvisioningPolicyAssignmentId",
+				UserId:                                "userId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/virtualEndpoint/provisioningPolicies/cloudPCProvisioningPolicyIdValue/assignments/cloudPCProvisioningPolicyAssignmentIdValue/assignedUsers/userIdValue/extra",
+			Input: "/deviceManagement/virtualEndpoint/provisioningPolicies/cloudPCProvisioningPolicyId/assignments/cloudPCProvisioningPolicyAssignmentId/assignedUsers/userId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/vIrTuAlEnDpOiNt/pRoViSiOnInGpOlIcIeS/cLoUdPcPrOvIsIoNiNgPoLiCyIdVaLuE/aSsIgNmEnTs/cLoUdPcPrOvIsIoNiNgPoLiCyAsSiGnMeNtIdVaLuE/aSsIgNeDuSeRs/uSeRiDvAlUe",
+			Input: "/dEvIcEmAnAgEmEnT/vIrTuAlEnDpOiNt/pRoViSiOnInGpOlIcIeS/cLoUdPcPrOvIsIoNiNgPoLiCyId/aSsIgNmEnTs/cLoUdPcPrOvIsIoNiNgPoLiCyAsSiGnMeNtId/aSsIgNeDuSeRs/uSeRiD",
 			Expected: &DeviceManagementVirtualEndpointProvisioningPolicyIdAssignmentIdAssignedUserId{
-				CloudPCProvisioningPolicyId:           "cLoUdPcPrOvIsIoNiNgPoLiCyIdVaLuE",
-				CloudPCProvisioningPolicyAssignmentId: "cLoUdPcPrOvIsIoNiNgPoLiCyAsSiGnMeNtIdVaLuE",
-				UserId:                                "uSeRiDvAlUe",
+				CloudPCProvisioningPolicyId:           "cLoUdPcPrOvIsIoNiNgPoLiCyId",
+				CloudPCProvisioningPolicyAssignmentId: "cLoUdPcPrOvIsIoNiNgPoLiCyAsSiGnMeNtId",
+				UserId:                                "uSeRiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/vIrTuAlEnDpOiNt/pRoViSiOnInGpOlIcIeS/cLoUdPcPrOvIsIoNiNgPoLiCyIdVaLuE/aSsIgNmEnTs/cLoUdPcPrOvIsIoNiNgPoLiCyAsSiGnMeNtIdVaLuE/aSsIgNeDuSeRs/uSeRiDvAlUe/extra",
+			Input: "/dEvIcEmAnAgEmEnT/vIrTuAlEnDpOiNt/pRoViSiOnInGpOlIcIeS/cLoUdPcPrOvIsIoNiNgPoLiCyId/aSsIgNmEnTs/cLoUdPcPrOvIsIoNiNgPoLiCyAsSiGnMeNtId/aSsIgNeDuSeRs/uSeRiD/extra",
 			Error: true,
 		},
 	}

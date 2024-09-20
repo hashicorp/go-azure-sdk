@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/templatemigratableto` Documentation
 
-The `templatemigratableto` SDK allows for interaction with the Azure Resource Manager Service `devicemanagement` (API Version `beta`).
+The `templatemigratableto` SDK allows for interaction with Microsoft Graph `devicemanagement` (API Version `beta`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -15,7 +15,7 @@ import "github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/
 ### Client Initialization
 
 ```go
-client := templatemigratableto.NewTemplateMigratableToClientWithBaseURI("https://management.azure.com")
+client := templatemigratableto.NewTemplateMigratableToClientWithBaseURI("https://graph.microsoft.com")
 client.Client.Authorizer = authorizer
 ```
 
@@ -24,14 +24,14 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := templatemigratableto.NewDeviceManagementTemplateID("deviceManagementTemplateIdValue")
+id := templatemigratableto.NewDeviceManagementTemplateID("deviceManagementTemplateId")
 
 payload := templatemigratableto.DeviceManagementTemplate{
 	// ...
 }
 
 
-read, err := client.CreateTemplateMigratableTo(ctx, id, payload)
+read, err := client.CreateTemplateMigratableTo(ctx, id, payload, templatemigratableto.DefaultCreateTemplateMigratableToOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -45,14 +45,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := templatemigratableto.NewDeviceManagementTemplateIdMigratableToID("deviceManagementTemplateIdValue", "deviceManagementTemplateId1Value")
+id := templatemigratableto.NewDeviceManagementTemplateIdMigratableToID("deviceManagementTemplateId", "deviceManagementTemplateId1")
 
 payload := templatemigratableto.CreateTemplateMigratableToInstanceRequest{
 	// ...
 }
 
 
-read, err := client.CreateTemplateMigratableToInstance(ctx, id, payload)
+read, err := client.CreateTemplateMigratableToInstance(ctx, id, payload, templatemigratableto.DefaultCreateTemplateMigratableToInstanceOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -66,7 +66,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := templatemigratableto.NewDeviceManagementTemplateIdMigratableToID("deviceManagementTemplateIdValue", "deviceManagementTemplateId1Value")
+id := templatemigratableto.NewDeviceManagementTemplateIdMigratableToID("deviceManagementTemplateId", "deviceManagementTemplateId1")
 
 read, err := client.DeleteTemplateMigratableTo(ctx, id, templatemigratableto.DefaultDeleteTemplateMigratableToOperationOptions())
 if err != nil {
@@ -82,7 +82,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := templatemigratableto.NewDeviceManagementTemplateIdMigratableToID("deviceManagementTemplateIdValue", "deviceManagementTemplateId1Value")
+id := templatemigratableto.NewDeviceManagementTemplateIdMigratableToID("deviceManagementTemplateId", "deviceManagementTemplateId1")
 
 read, err := client.GetTemplateMigratableTo(ctx, id, templatemigratableto.DefaultGetTemplateMigratableToOperationOptions())
 if err != nil {
@@ -98,7 +98,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := templatemigratableto.NewDeviceManagementTemplateID("deviceManagementTemplateIdValue")
+id := templatemigratableto.NewDeviceManagementTemplateID("deviceManagementTemplateId")
 
 read, err := client.GetTemplateMigratableToCount(ctx, id, templatemigratableto.DefaultGetTemplateMigratableToCountOperationOptions())
 if err != nil {
@@ -114,7 +114,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := templatemigratableto.NewDeviceManagementTemplateID("deviceManagementTemplateIdValue")
+id := templatemigratableto.NewDeviceManagementTemplateID("deviceManagementTemplateId")
 
 // alternatively `client.ListTemplateMigratableToImportOffice365DeviceConfigurationPolicies(ctx, id, templatemigratableto.DefaultListTemplateMigratableToImportOffice365DeviceConfigurationPoliciesOperationOptions())` can be used to do batched pagination
 items, err := client.ListTemplateMigratableToImportOffice365DeviceConfigurationPoliciesComplete(ctx, id, templatemigratableto.DefaultListTemplateMigratableToImportOffice365DeviceConfigurationPoliciesOperationOptions())
@@ -131,7 +131,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := templatemigratableto.NewDeviceManagementTemplateID("deviceManagementTemplateIdValue")
+id := templatemigratableto.NewDeviceManagementTemplateID("deviceManagementTemplateId")
 
 // alternatively `client.ListTemplateMigratableTos(ctx, id, templatemigratableto.DefaultListTemplateMigratableTosOperationOptions())` can be used to do batched pagination
 items, err := client.ListTemplateMigratableTosComplete(ctx, id, templatemigratableto.DefaultListTemplateMigratableTosOperationOptions())
@@ -148,14 +148,14 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := templatemigratableto.NewDeviceManagementTemplateIdMigratableToID("deviceManagementTemplateIdValue", "deviceManagementTemplateId1Value")
+id := templatemigratableto.NewDeviceManagementTemplateIdMigratableToID("deviceManagementTemplateId", "deviceManagementTemplateId1")
 
 payload := templatemigratableto.DeviceManagementTemplate{
 	// ...
 }
 
 
-read, err := client.UpdateTemplateMigratableTo(ctx, id, payload)
+read, err := client.UpdateTemplateMigratableTo(ctx, id, payload, templatemigratableto.DefaultUpdateTemplateMigratableToOperationOptions())
 if err != nil {
 	// handle the error
 }

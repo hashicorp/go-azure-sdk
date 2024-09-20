@@ -17,15 +17,44 @@ type UpdateCategorySettingDefinitionOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateCategorySettingDefinitionOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateCategorySettingDefinitionOperationOptions() UpdateCategorySettingDefinitionOperationOptions {
+	return UpdateCategorySettingDefinitionOperationOptions{}
+}
+
+func (o UpdateCategorySettingDefinitionOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateCategorySettingDefinitionOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateCategorySettingDefinitionOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateCategorySettingDefinition - Update the navigation property settingDefinitions in deviceManagement
-func (c CategorySettingDefinitionClient) UpdateCategorySettingDefinition(ctx context.Context, id beta.DeviceManagementCategoryIdSettingDefinitionId, input beta.DeviceManagementSettingDefinition) (result UpdateCategorySettingDefinitionOperationResponse, err error) {
+func (c CategorySettingDefinitionClient) UpdateCategorySettingDefinition(ctx context.Context, id beta.DeviceManagementCategoryIdSettingDefinitionId, input beta.DeviceManagementSettingDefinition, options UpdateCategorySettingDefinitionOperationOptions) (result UpdateCategorySettingDefinitionOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

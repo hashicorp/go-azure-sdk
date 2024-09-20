@@ -99,10 +99,25 @@ func (s TeamTemplateDefinition) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &TeamTemplateDefinition{}
 
 func (s *TeamTemplateDefinition) UnmarshalJSON(bytes []byte) error {
-	type alias TeamTemplateDefinition
-	var decoded alias
+
+	var decoded struct {
+		Audience             *TeamTemplateAudience `json:"audience,omitempty"`
+		Categories           *[]string             `json:"categories,omitempty"`
+		Description          nullable.Type[string] `json:"description,omitempty"`
+		DisplayName          nullable.Type[string] `json:"displayName,omitempty"`
+		IconUrl              nullable.Type[string] `json:"iconUrl,omitempty"`
+		LanguageTag          nullable.Type[string] `json:"languageTag,omitempty"`
+		LastModifiedDateTime nullable.Type[string] `json:"lastModifiedDateTime,omitempty"`
+		ParentTemplateId     nullable.Type[string] `json:"parentTemplateId,omitempty"`
+		PublisherName        nullable.Type[string] `json:"publisherName,omitempty"`
+		ShortDescription     nullable.Type[string] `json:"shortDescription,omitempty"`
+		TeamDefinition       *Team                 `json:"teamDefinition,omitempty"`
+		Id                   *string               `json:"id,omitempty"`
+		ODataId              *string               `json:"@odata.id,omitempty"`
+		ODataType            *string               `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into TeamTemplateDefinition: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.Audience = decoded.Audience
@@ -110,15 +125,15 @@ func (s *TeamTemplateDefinition) UnmarshalJSON(bytes []byte) error {
 	s.Description = decoded.Description
 	s.DisplayName = decoded.DisplayName
 	s.IconUrl = decoded.IconUrl
-	s.Id = decoded.Id
 	s.LanguageTag = decoded.LanguageTag
 	s.LastModifiedDateTime = decoded.LastModifiedDateTime
-	s.ODataId = decoded.ODataId
-	s.ODataType = decoded.ODataType
 	s.ParentTemplateId = decoded.ParentTemplateId
 	s.PublisherName = decoded.PublisherName
 	s.ShortDescription = decoded.ShortDescription
 	s.TeamDefinition = decoded.TeamDefinition
+	s.Id = decoded.Id
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -132,5 +147,6 @@ func (s *TeamTemplateDefinition) UnmarshalJSON(bytes []byte) error {
 		}
 		s.LastModifiedBy = impl
 	}
+
 	return nil
 }

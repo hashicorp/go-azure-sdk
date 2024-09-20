@@ -81,18 +81,27 @@ func (s ChatMessageInfo) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &ChatMessageInfo{}
 
 func (s *ChatMessageInfo) UnmarshalJSON(bytes []byte) error {
-	type alias ChatMessageInfo
-	var decoded alias
+
+	var decoded struct {
+		Body            *ItemBody                   `json:"body,omitempty"`
+		CreatedDateTime nullable.Type[string]       `json:"createdDateTime,omitempty"`
+		From            *ChatMessageFromIdentitySet `json:"from,omitempty"`
+		IsDeleted       nullable.Type[bool]         `json:"isDeleted,omitempty"`
+		MessageType     *ChatMessageType            `json:"messageType,omitempty"`
+		Id              *string                     `json:"id,omitempty"`
+		ODataId         *string                     `json:"@odata.id,omitempty"`
+		ODataType       *string                     `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into ChatMessageInfo: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.Body = decoded.Body
 	s.CreatedDateTime = decoded.CreatedDateTime
 	s.From = decoded.From
-	s.Id = decoded.Id
 	s.IsDeleted = decoded.IsDeleted
 	s.MessageType = decoded.MessageType
+	s.Id = decoded.Id
 	s.ODataId = decoded.ODataId
 	s.ODataType = decoded.ODataType
 
@@ -108,5 +117,6 @@ func (s *ChatMessageInfo) UnmarshalJSON(bytes []byte) error {
 		}
 		s.EventDetail = &impl
 	}
+
 	return nil
 }

@@ -17,15 +17,44 @@ type UpdateWindowsQualityUpdatePolicyAssignmentOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateWindowsQualityUpdatePolicyAssignmentOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateWindowsQualityUpdatePolicyAssignmentOperationOptions() UpdateWindowsQualityUpdatePolicyAssignmentOperationOptions {
+	return UpdateWindowsQualityUpdatePolicyAssignmentOperationOptions{}
+}
+
+func (o UpdateWindowsQualityUpdatePolicyAssignmentOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateWindowsQualityUpdatePolicyAssignmentOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateWindowsQualityUpdatePolicyAssignmentOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateWindowsQualityUpdatePolicyAssignment - Update the navigation property assignments in deviceManagement
-func (c WindowsQualityUpdatePolicyAssignmentClient) UpdateWindowsQualityUpdatePolicyAssignment(ctx context.Context, id beta.DeviceManagementWindowsQualityUpdatePolicyIdAssignmentId, input beta.WindowsQualityUpdatePolicyAssignment) (result UpdateWindowsQualityUpdatePolicyAssignmentOperationResponse, err error) {
+func (c WindowsQualityUpdatePolicyAssignmentClient) UpdateWindowsQualityUpdatePolicyAssignment(ctx context.Context, id beta.DeviceManagementWindowsQualityUpdatePolicyIdAssignmentId, input beta.WindowsQualityUpdatePolicyAssignment, options UpdateWindowsQualityUpdatePolicyAssignmentOperationOptions) (result UpdateWindowsQualityUpdatePolicyAssignmentOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

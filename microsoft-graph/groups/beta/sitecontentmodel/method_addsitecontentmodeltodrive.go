@@ -19,17 +19,46 @@ type AddSiteContentModelToDriveOperationResponse struct {
 	Model        *beta.ContentModelUsage
 }
 
+type AddSiteContentModelToDriveOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultAddSiteContentModelToDriveOperationOptions() AddSiteContentModelToDriveOperationOptions {
+	return AddSiteContentModelToDriveOperationOptions{}
+}
+
+func (o AddSiteContentModelToDriveOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o AddSiteContentModelToDriveOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o AddSiteContentModelToDriveOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // AddSiteContentModelToDrive - Invoke action addToDrive. Apply a contentModel to SharePoint document libraries. For an
 // existing model that's already trained, this action automatically processes new documents that are added to the
 // SharePoint libraries.
-func (c SiteContentModelClient) AddSiteContentModelToDrive(ctx context.Context, id beta.GroupIdSiteIdContentModelId, input AddSiteContentModelToDriveRequest) (result AddSiteContentModelToDriveOperationResponse, err error) {
+func (c SiteContentModelClient) AddSiteContentModelToDrive(ctx context.Context, id beta.GroupIdSiteIdContentModelId, input AddSiteContentModelToDriveRequest, options AddSiteContentModelToDriveOperationOptions) (result AddSiteContentModelToDriveOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/addToDrive", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/addToDrive", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

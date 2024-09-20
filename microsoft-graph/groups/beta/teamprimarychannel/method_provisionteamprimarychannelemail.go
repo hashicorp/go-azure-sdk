@@ -19,19 +19,48 @@ type ProvisionTeamPrimaryChannelEmailOperationResponse struct {
 	Model        *beta.ProvisionChannelEmailResult
 }
 
+type ProvisionTeamPrimaryChannelEmailOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultProvisionTeamPrimaryChannelEmailOperationOptions() ProvisionTeamPrimaryChannelEmailOperationOptions {
+	return ProvisionTeamPrimaryChannelEmailOperationOptions{}
+}
+
+func (o ProvisionTeamPrimaryChannelEmailOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o ProvisionTeamPrimaryChannelEmailOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o ProvisionTeamPrimaryChannelEmailOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // ProvisionTeamPrimaryChannelEmail - Invoke action provisionEmail. Provision an email address for a channel. Microsoft
 // Teams doesn't automatically provision an email address for a channel by default. To have Teams provision an email
 // address, you can call provisionEmail, or through the Teams user interface, select Get email address, which triggers
 // Teams to generate an email address if it didn't provisioned one. To remove the email address of a channel, use the
 // removeEmail method.
-func (c TeamPrimaryChannelClient) ProvisionTeamPrimaryChannelEmail(ctx context.Context, id beta.GroupId) (result ProvisionTeamPrimaryChannelEmailOperationResponse, err error) {
+func (c TeamPrimaryChannelClient) ProvisionTeamPrimaryChannelEmail(ctx context.Context, id beta.GroupId, options ProvisionTeamPrimaryChannelEmailOperationOptions) (result ProvisionTeamPrimaryChannelEmailOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/team/primaryChannel/provisionEmail", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/team/primaryChannel/provisionEmail", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

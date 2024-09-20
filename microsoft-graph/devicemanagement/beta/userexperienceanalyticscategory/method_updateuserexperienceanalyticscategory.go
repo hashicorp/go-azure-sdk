@@ -17,16 +17,45 @@ type UpdateUserExperienceAnalyticsCategoryOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateUserExperienceAnalyticsCategoryOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateUserExperienceAnalyticsCategoryOperationOptions() UpdateUserExperienceAnalyticsCategoryOperationOptions {
+	return UpdateUserExperienceAnalyticsCategoryOperationOptions{}
+}
+
+func (o UpdateUserExperienceAnalyticsCategoryOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateUserExperienceAnalyticsCategoryOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateUserExperienceAnalyticsCategoryOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateUserExperienceAnalyticsCategory - Update the navigation property userExperienceAnalyticsCategories in
 // deviceManagement
-func (c UserExperienceAnalyticsCategoryClient) UpdateUserExperienceAnalyticsCategory(ctx context.Context, id beta.DeviceManagementUserExperienceAnalyticsCategoryId, input beta.UserExperienceAnalyticsCategory) (result UpdateUserExperienceAnalyticsCategoryOperationResponse, err error) {
+func (c UserExperienceAnalyticsCategoryClient) UpdateUserExperienceAnalyticsCategory(ctx context.Context, id beta.DeviceManagementUserExperienceAnalyticsCategoryId, input beta.UserExperienceAnalyticsCategory, options UpdateUserExperienceAnalyticsCategoryOperationOptions) (result UpdateUserExperienceAnalyticsCategoryOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

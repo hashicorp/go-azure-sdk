@@ -18,15 +18,44 @@ type StopAccessReviewDefinitionOperationResponse struct {
 	OData        *odata.OData
 }
 
+type StopAccessReviewDefinitionOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultStopAccessReviewDefinitionOperationOptions() StopAccessReviewDefinitionOperationOptions {
+	return StopAccessReviewDefinitionOperationOptions{}
+}
+
+func (o StopAccessReviewDefinitionOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o StopAccessReviewDefinitionOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o StopAccessReviewDefinitionOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // StopAccessReviewDefinition - Invoke action stop
-func (c AccessReviewDefinitionClient) StopAccessReviewDefinition(ctx context.Context, id stable.IdentityGovernanceAccessReviewDefinitionId) (result StopAccessReviewDefinitionOperationResponse, err error) {
+func (c AccessReviewDefinitionClient) StopAccessReviewDefinition(ctx context.Context, id stable.IdentityGovernanceAccessReviewDefinitionId, options StopAccessReviewDefinitionOperationOptions) (result StopAccessReviewDefinitionOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/stop", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/stop", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

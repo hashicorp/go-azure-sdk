@@ -99,9 +99,9 @@ func (id DeviceManagementWindowsAutopilotDeploymentProfileIdAssignmentId) Segmen
 	return []resourceids.Segment{
 		resourceids.StaticSegment("deviceManagement", "deviceManagement", "deviceManagement"),
 		resourceids.StaticSegment("windowsAutopilotDeploymentProfiles", "windowsAutopilotDeploymentProfiles", "windowsAutopilotDeploymentProfiles"),
-		resourceids.UserSpecifiedSegment("windowsAutopilotDeploymentProfileId", "windowsAutopilotDeploymentProfileIdValue"),
+		resourceids.UserSpecifiedSegment("windowsAutopilotDeploymentProfileId", "windowsAutopilotDeploymentProfileId"),
 		resourceids.StaticSegment("assignments", "assignments", "assignments"),
-		resourceids.UserSpecifiedSegment("windowsAutopilotDeploymentProfileAssignmentId", "windowsAutopilotDeploymentProfileAssignmentIdValue"),
+		resourceids.UserSpecifiedSegment("windowsAutopilotDeploymentProfileAssignmentId", "windowsAutopilotDeploymentProfileAssignmentId"),
 	}
 }
 

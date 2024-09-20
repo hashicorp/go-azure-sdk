@@ -18,15 +18,44 @@ type UpdateDriveRootListItemDocumentSetVersionFieldOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateDriveRootListItemDocumentSetVersionFieldOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateDriveRootListItemDocumentSetVersionFieldOperationOptions() UpdateDriveRootListItemDocumentSetVersionFieldOperationOptions {
+	return UpdateDriveRootListItemDocumentSetVersionFieldOperationOptions{}
+}
+
+func (o UpdateDriveRootListItemDocumentSetVersionFieldOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateDriveRootListItemDocumentSetVersionFieldOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateDriveRootListItemDocumentSetVersionFieldOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateDriveRootListItemDocumentSetVersionField - Update the navigation property fields in me
-func (c DriveRootListItemDocumentSetVersionFieldClient) UpdateDriveRootListItemDocumentSetVersionField(ctx context.Context, id beta.MeDriveIdRootListItemDocumentSetVersionId, input beta.FieldValueSet) (result UpdateDriveRootListItemDocumentSetVersionFieldOperationResponse, err error) {
+func (c DriveRootListItemDocumentSetVersionFieldClient) UpdateDriveRootListItemDocumentSetVersionField(ctx context.Context, id beta.MeDriveIdRootListItemDocumentSetVersionId, input beta.FieldValueSet, options UpdateDriveRootListItemDocumentSetVersionFieldOperationOptions) (result UpdateDriveRootListItemDocumentSetVersionFieldOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       fmt.Sprintf("%s/fields", id.ID()),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/fields", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

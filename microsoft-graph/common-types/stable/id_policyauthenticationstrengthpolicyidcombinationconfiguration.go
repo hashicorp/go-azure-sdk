@@ -99,9 +99,9 @@ func (id PolicyAuthenticationStrengthPolicyIdCombinationConfigurationId) Segment
 	return []resourceids.Segment{
 		resourceids.StaticSegment("policies", "policies", "policies"),
 		resourceids.StaticSegment("authenticationStrengthPolicies", "authenticationStrengthPolicies", "authenticationStrengthPolicies"),
-		resourceids.UserSpecifiedSegment("authenticationStrengthPolicyId", "authenticationStrengthPolicyIdValue"),
+		resourceids.UserSpecifiedSegment("authenticationStrengthPolicyId", "authenticationStrengthPolicyId"),
 		resourceids.StaticSegment("combinationConfigurations", "combinationConfigurations", "combinationConfigurations"),
-		resourceids.UserSpecifiedSegment("authenticationCombinationConfigurationId", "authenticationCombinationConfigurationIdValue"),
+		resourceids.UserSpecifiedSegment("authenticationCombinationConfigurationId", "authenticationCombinationConfigurationId"),
 	}
 }
 

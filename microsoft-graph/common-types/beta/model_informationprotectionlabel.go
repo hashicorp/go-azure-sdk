@@ -82,21 +82,31 @@ func (s InformationProtectionLabel) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &InformationProtectionLabel{}
 
 func (s *InformationProtectionLabel) UnmarshalJSON(bytes []byte) error {
-	type alias InformationProtectionLabel
-	var decoded alias
+
+	var decoded struct {
+		Color       nullable.Type[string] `json:"color,omitempty"`
+		Description nullable.Type[string] `json:"description,omitempty"`
+		IsActive    *bool                 `json:"isActive,omitempty"`
+		Name        nullable.Type[string] `json:"name,omitempty"`
+		Sensitivity *int64                `json:"sensitivity,omitempty"`
+		Tooltip     nullable.Type[string] `json:"tooltip,omitempty"`
+		Id          *string               `json:"id,omitempty"`
+		ODataId     *string               `json:"@odata.id,omitempty"`
+		ODataType   *string               `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into InformationProtectionLabel: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.Color = decoded.Color
 	s.Description = decoded.Description
-	s.Id = decoded.Id
 	s.IsActive = decoded.IsActive
 	s.Name = decoded.Name
-	s.ODataId = decoded.ODataId
-	s.ODataType = decoded.ODataType
 	s.Sensitivity = decoded.Sensitivity
 	s.Tooltip = decoded.Tooltip
+	s.Id = decoded.Id
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -110,5 +120,6 @@ func (s *InformationProtectionLabel) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Parent = impl
 	}
+
 	return nil
 }

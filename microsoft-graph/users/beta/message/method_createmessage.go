@@ -20,15 +20,44 @@ type CreateMessageOperationResponse struct {
 	Model        beta.Message
 }
 
+type CreateMessageOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateMessageOperationOptions() CreateMessageOperationOptions {
+	return CreateMessageOperationOptions{}
+}
+
+func (o CreateMessageOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateMessageOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateMessageOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateMessage - Create new navigation property to messages for users
-func (c MessageClient) CreateMessage(ctx context.Context, id beta.UserId, input beta.Message) (result CreateMessageOperationResponse, err error) {
+func (c MessageClient) CreateMessage(ctx context.Context, id beta.UserId, input beta.Message, options CreateMessageOperationOptions) (result CreateMessageOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/messages", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/messages", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

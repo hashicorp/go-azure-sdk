@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &ReportUserInsightMonthlyInactiveUserId{}
 
 func TestNewReportUserInsightMonthlyInactiveUserID(t *testing.T) {
-	id := NewReportUserInsightMonthlyInactiveUserID("monthlyInactiveUsersMetricIdValue")
+	id := NewReportUserInsightMonthlyInactiveUserID("monthlyInactiveUsersMetricId")
 
-	if id.MonthlyInactiveUsersMetricId != "monthlyInactiveUsersMetricIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'MonthlyInactiveUsersMetricId'", id.MonthlyInactiveUsersMetricId, "monthlyInactiveUsersMetricIdValue")
+	if id.MonthlyInactiveUsersMetricId != "monthlyInactiveUsersMetricId" {
+		t.Fatalf("Expected %q but got %q for Segment 'MonthlyInactiveUsersMetricId'", id.MonthlyInactiveUsersMetricId, "monthlyInactiveUsersMetricId")
 	}
 }
 
 func TestFormatReportUserInsightMonthlyInactiveUserID(t *testing.T) {
-	actual := NewReportUserInsightMonthlyInactiveUserID("monthlyInactiveUsersMetricIdValue").ID()
-	expected := "/reports/userInsights/monthly/inactiveUsers/monthlyInactiveUsersMetricIdValue"
+	actual := NewReportUserInsightMonthlyInactiveUserID("monthlyInactiveUsersMetricId").ID()
+	expected := "/reports/userInsights/monthly/inactiveUsers/monthlyInactiveUsersMetricId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -60,14 +60,14 @@ func TestParseReportUserInsightMonthlyInactiveUserID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/reports/userInsights/monthly/inactiveUsers/monthlyInactiveUsersMetricIdValue",
+			Input: "/reports/userInsights/monthly/inactiveUsers/monthlyInactiveUsersMetricId",
 			Expected: &ReportUserInsightMonthlyInactiveUserId{
-				MonthlyInactiveUsersMetricId: "monthlyInactiveUsersMetricIdValue",
+				MonthlyInactiveUsersMetricId: "monthlyInactiveUsersMetricId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/reports/userInsights/monthly/inactiveUsers/monthlyInactiveUsersMetricIdValue/extra",
+			Input: "/reports/userInsights/monthly/inactiveUsers/monthlyInactiveUsersMetricId/extra",
 			Error: true,
 		},
 	}
@@ -146,26 +146,26 @@ func TestParseReportUserInsightMonthlyInactiveUserIDInsensitively(t *testing.T) 
 		},
 		{
 			// Valid URI
-			Input: "/reports/userInsights/monthly/inactiveUsers/monthlyInactiveUsersMetricIdValue",
+			Input: "/reports/userInsights/monthly/inactiveUsers/monthlyInactiveUsersMetricId",
 			Expected: &ReportUserInsightMonthlyInactiveUserId{
-				MonthlyInactiveUsersMetricId: "monthlyInactiveUsersMetricIdValue",
+				MonthlyInactiveUsersMetricId: "monthlyInactiveUsersMetricId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/reports/userInsights/monthly/inactiveUsers/monthlyInactiveUsersMetricIdValue/extra",
+			Input: "/reports/userInsights/monthly/inactiveUsers/monthlyInactiveUsersMetricId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/rEpOrTs/uSeRiNsIgHtS/mOnThLy/iNaCtIvEuSeRs/mOnThLyInAcTiVeUsErSmEtRiCiDvAlUe",
+			Input: "/rEpOrTs/uSeRiNsIgHtS/mOnThLy/iNaCtIvEuSeRs/mOnThLyInAcTiVeUsErSmEtRiCiD",
 			Expected: &ReportUserInsightMonthlyInactiveUserId{
-				MonthlyInactiveUsersMetricId: "mOnThLyInAcTiVeUsErSmEtRiCiDvAlUe",
+				MonthlyInactiveUsersMetricId: "mOnThLyInAcTiVeUsErSmEtRiCiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/rEpOrTs/uSeRiNsIgHtS/mOnThLy/iNaCtIvEuSeRs/mOnThLyInAcTiVeUsErSmEtRiCiDvAlUe/extra",
+			Input: "/rEpOrTs/uSeRiNsIgHtS/mOnThLy/iNaCtIvEuSeRs/mOnThLyInAcTiVeUsErSmEtRiCiD/extra",
 			Error: true,
 		},
 	}

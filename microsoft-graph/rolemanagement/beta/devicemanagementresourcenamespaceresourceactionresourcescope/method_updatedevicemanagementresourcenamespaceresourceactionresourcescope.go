@@ -18,16 +18,45 @@ type UpdateDeviceManagementResourceNamespaceResourceActionResourceScopeOperation
 	OData        *odata.OData
 }
 
+type UpdateDeviceManagementResourceNamespaceResourceActionResourceScopeOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateDeviceManagementResourceNamespaceResourceActionResourceScopeOperationOptions() UpdateDeviceManagementResourceNamespaceResourceActionResourceScopeOperationOptions {
+	return UpdateDeviceManagementResourceNamespaceResourceActionResourceScopeOperationOptions{}
+}
+
+func (o UpdateDeviceManagementResourceNamespaceResourceActionResourceScopeOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateDeviceManagementResourceNamespaceResourceActionResourceScopeOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateDeviceManagementResourceNamespaceResourceActionResourceScopeOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateDeviceManagementResourceNamespaceResourceActionResourceScope - Update the navigation property resourceScope in
 // roleManagement
-func (c DeviceManagementResourceNamespaceResourceActionResourceScopeClient) UpdateDeviceManagementResourceNamespaceResourceActionResourceScope(ctx context.Context, id beta.RoleManagementDeviceManagementResourceNamespaceIdResourceActionId, input beta.UnifiedRbacResourceScope) (result UpdateDeviceManagementResourceNamespaceResourceActionResourceScopeOperationResponse, err error) {
+func (c DeviceManagementResourceNamespaceResourceActionResourceScopeClient) UpdateDeviceManagementResourceNamespaceResourceActionResourceScope(ctx context.Context, id beta.RoleManagementDeviceManagementResourceNamespaceIdResourceActionId, input beta.UnifiedRbacResourceScope, options UpdateDeviceManagementResourceNamespaceResourceActionResourceScopeOperationOptions) (result UpdateDeviceManagementResourceNamespaceResourceActionResourceScopeOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       fmt.Sprintf("%s/resourceScope", id.ID()),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/resourceScope", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

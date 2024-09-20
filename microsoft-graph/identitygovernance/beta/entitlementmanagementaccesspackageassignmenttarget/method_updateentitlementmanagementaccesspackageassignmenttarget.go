@@ -18,16 +18,45 @@ type UpdateEntitlementManagementAccessPackageAssignmentTargetOperationResponse s
 	OData        *odata.OData
 }
 
+type UpdateEntitlementManagementAccessPackageAssignmentTargetOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateEntitlementManagementAccessPackageAssignmentTargetOperationOptions() UpdateEntitlementManagementAccessPackageAssignmentTargetOperationOptions {
+	return UpdateEntitlementManagementAccessPackageAssignmentTargetOperationOptions{}
+}
+
+func (o UpdateEntitlementManagementAccessPackageAssignmentTargetOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateEntitlementManagementAccessPackageAssignmentTargetOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateEntitlementManagementAccessPackageAssignmentTargetOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateEntitlementManagementAccessPackageAssignmentTarget - Update the navigation property target in
 // identityGovernance
-func (c EntitlementManagementAccessPackageAssignmentTargetClient) UpdateEntitlementManagementAccessPackageAssignmentTarget(ctx context.Context, id beta.IdentityGovernanceEntitlementManagementAccessPackageAssignmentId, input beta.AccessPackageSubject) (result UpdateEntitlementManagementAccessPackageAssignmentTargetOperationResponse, err error) {
+func (c EntitlementManagementAccessPackageAssignmentTargetClient) UpdateEntitlementManagementAccessPackageAssignmentTarget(ctx context.Context, id beta.IdentityGovernanceEntitlementManagementAccessPackageAssignmentId, input beta.AccessPackageSubject, options UpdateEntitlementManagementAccessPackageAssignmentTargetOperationOptions) (result UpdateEntitlementManagementAccessPackageAssignmentTargetOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       fmt.Sprintf("%s/target", id.ID()),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/target", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

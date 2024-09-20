@@ -19,6 +19,34 @@ type AddTokenSigningCertificateOperationResponse struct {
 	Model        *stable.SelfSignedCertificate
 }
 
+type AddTokenSigningCertificateOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultAddTokenSigningCertificateOperationOptions() AddTokenSigningCertificateOperationOptions {
+	return AddTokenSigningCertificateOperationOptions{}
+}
+
+func (o AddTokenSigningCertificateOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o AddTokenSigningCertificateOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o AddTokenSigningCertificateOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // AddTokenSigningCertificate - Invoke action addTokenSigningCertificate. Create a self-signed signing certificate and
 // return a selfSignedCertificate object, which is the public part of the generated certificate. The self-signed signing
 // certificate is composed of the following objects, which are added to the servicePrincipal: + The keyCredentials
@@ -28,14 +56,15 @@ type AddTokenSigningCertificateOperationResponse struct {
 // value of keyId. When set during creation through the displayName property, the subject of the certificate cannot be
 // updated. The startDateTime is set to the same time the certificate is created using the action. The endDateTime can
 // be up to three years after the certificate is created.
-func (c ServicePrincipalClient) AddTokenSigningCertificate(ctx context.Context, id stable.ServicePrincipalId, input AddTokenSigningCertificateRequest) (result AddTokenSigningCertificateOperationResponse, err error) {
+func (c ServicePrincipalClient) AddTokenSigningCertificate(ctx context.Context, id stable.ServicePrincipalId, input AddTokenSigningCertificateRequest, options AddTokenSigningCertificateOperationOptions) (result AddTokenSigningCertificateOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/addTokenSigningCertificate", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/addTokenSigningCertificate", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -19,7 +19,8 @@ type DeleteEntitlementManagementCatalogCustomWorkflowExtensionOperationResponse 
 }
 
 type DeleteEntitlementManagementCatalogCustomWorkflowExtensionOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteEntitlementManagementCatalogCustomWorkflowExtensionOperationOptions() DeleteEntitlementManagementCatalogCustomWorkflowExtensionOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteEntitlementManagementCatalogCustomWorkflowExtensionOperationOption
 
 func (o DeleteEntitlementManagementCatalogCustomWorkflowExtensionOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 
@@ -49,7 +52,7 @@ func (o DeleteEntitlementManagementCatalogCustomWorkflowExtensionOperationOption
 // DeleteEntitlementManagementCatalogCustomWorkflowExtension - Delete accessPackageAssignmentRequestWorkflowExtension.
 // Delete an accessPackageAssignmentRequestWorkflowExtension object. The custom workflow extension must first be removed
 // from any associated policies before it can be deleted. Follow these steps to remove the custom workflow extension
-// from any associated policies:
+// from any associated policies
 func (c EntitlementManagementCatalogCustomWorkflowExtensionClient) DeleteEntitlementManagementCatalogCustomWorkflowExtension(ctx context.Context, id stable.IdentityGovernanceEntitlementManagementCatalogIdCustomWorkflowExtensionId, options DeleteEntitlementManagementCatalogCustomWorkflowExtensionOperationOptions) (result DeleteEntitlementManagementCatalogCustomWorkflowExtensionOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",

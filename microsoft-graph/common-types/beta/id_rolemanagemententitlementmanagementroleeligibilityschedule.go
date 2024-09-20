@@ -94,7 +94,7 @@ func (id RoleManagementEntitlementManagementRoleEligibilityScheduleId) Segments(
 		resourceids.StaticSegment("roleManagement", "roleManagement", "roleManagement"),
 		resourceids.StaticSegment("entitlementManagement", "entitlementManagement", "entitlementManagement"),
 		resourceids.StaticSegment("roleEligibilitySchedules", "roleEligibilitySchedules", "roleEligibilitySchedules"),
-		resourceids.UserSpecifiedSegment("unifiedRoleEligibilityScheduleId", "unifiedRoleEligibilityScheduleIdValue"),
+		resourceids.UserSpecifiedSegment("unifiedRoleEligibilityScheduleId", "unifiedRoleEligibilityScheduleId"),
 	}
 }
 

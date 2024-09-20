@@ -19,7 +19,8 @@ type DeleteMobileAppIntentAndStateOperationResponse struct {
 }
 
 type DeleteMobileAppIntentAndStateOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteMobileAppIntentAndStateOperationOptions() DeleteMobileAppIntentAndStateOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteMobileAppIntentAndStateOperationOptions) ToHeaders() *client.Heade
 
 func (o DeleteMobileAppIntentAndStateOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

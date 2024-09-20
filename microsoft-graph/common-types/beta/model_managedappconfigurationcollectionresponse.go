@@ -62,10 +62,15 @@ func (s ManagedAppConfigurationCollectionResponse) MarshalJSON() ([]byte, error)
 var _ json.Unmarshaler = &ManagedAppConfigurationCollectionResponse{}
 
 func (s *ManagedAppConfigurationCollectionResponse) UnmarshalJSON(bytes []byte) error {
-	type alias ManagedAppConfigurationCollectionResponse
-	var decoded alias
+
+	var decoded struct {
+		Value         *[]ManagedAppConfiguration `json:"value,omitempty"`
+		ODataId       *string                    `json:"@odata.id,omitempty"`
+		ODataNextLink nullable.Type[string]      `json:"@odata.nextLink,omitempty"`
+		ODataType     *string                    `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into ManagedAppConfigurationCollectionResponse: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.ODataId = decoded.ODataId
@@ -93,5 +98,6 @@ func (s *ManagedAppConfigurationCollectionResponse) UnmarshalJSON(bytes []byte) 
 		}
 		s.Value = &output
 	}
+
 	return nil
 }

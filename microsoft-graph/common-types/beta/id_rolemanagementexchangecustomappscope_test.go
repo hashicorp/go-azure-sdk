@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &RoleManagementExchangeCustomAppScopeId{}
 
 func TestNewRoleManagementExchangeCustomAppScopeID(t *testing.T) {
-	id := NewRoleManagementExchangeCustomAppScopeID("customAppScopeIdValue")
+	id := NewRoleManagementExchangeCustomAppScopeID("customAppScopeId")
 
-	if id.CustomAppScopeId != "customAppScopeIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'CustomAppScopeId'", id.CustomAppScopeId, "customAppScopeIdValue")
+	if id.CustomAppScopeId != "customAppScopeId" {
+		t.Fatalf("Expected %q but got %q for Segment 'CustomAppScopeId'", id.CustomAppScopeId, "customAppScopeId")
 	}
 }
 
 func TestFormatRoleManagementExchangeCustomAppScopeID(t *testing.T) {
-	actual := NewRoleManagementExchangeCustomAppScopeID("customAppScopeIdValue").ID()
-	expected := "/roleManagement/exchange/customAppScopes/customAppScopeIdValue"
+	actual := NewRoleManagementExchangeCustomAppScopeID("customAppScopeId").ID()
+	expected := "/roleManagement/exchange/customAppScopes/customAppScopeId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -55,14 +55,14 @@ func TestParseRoleManagementExchangeCustomAppScopeID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/roleManagement/exchange/customAppScopes/customAppScopeIdValue",
+			Input: "/roleManagement/exchange/customAppScopes/customAppScopeId",
 			Expected: &RoleManagementExchangeCustomAppScopeId{
-				CustomAppScopeId: "customAppScopeIdValue",
+				CustomAppScopeId: "customAppScopeId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/roleManagement/exchange/customAppScopes/customAppScopeIdValue/extra",
+			Input: "/roleManagement/exchange/customAppScopes/customAppScopeId/extra",
 			Error: true,
 		},
 	}
@@ -131,26 +131,26 @@ func TestParseRoleManagementExchangeCustomAppScopeIDInsensitively(t *testing.T) 
 		},
 		{
 			// Valid URI
-			Input: "/roleManagement/exchange/customAppScopes/customAppScopeIdValue",
+			Input: "/roleManagement/exchange/customAppScopes/customAppScopeId",
 			Expected: &RoleManagementExchangeCustomAppScopeId{
-				CustomAppScopeId: "customAppScopeIdValue",
+				CustomAppScopeId: "customAppScopeId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/roleManagement/exchange/customAppScopes/customAppScopeIdValue/extra",
+			Input: "/roleManagement/exchange/customAppScopes/customAppScopeId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/rOlEmAnAgEmEnT/eXcHaNgE/cUsToMaPpScOpEs/cUsToMaPpScOpEiDvAlUe",
+			Input: "/rOlEmAnAgEmEnT/eXcHaNgE/cUsToMaPpScOpEs/cUsToMaPpScOpEiD",
 			Expected: &RoleManagementExchangeCustomAppScopeId{
-				CustomAppScopeId: "cUsToMaPpScOpEiDvAlUe",
+				CustomAppScopeId: "cUsToMaPpScOpEiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/rOlEmAnAgEmEnT/eXcHaNgE/cUsToMaPpScOpEs/cUsToMaPpScOpEiDvAlUe/extra",
+			Input: "/rOlEmAnAgEmEnT/eXcHaNgE/cUsToMaPpScOpEs/cUsToMaPpScOpEiD/extra",
 			Error: true,
 		},
 	}

@@ -17,15 +17,44 @@ type UpdateHardwareConfigurationAssignmentOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateHardwareConfigurationAssignmentOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateHardwareConfigurationAssignmentOperationOptions() UpdateHardwareConfigurationAssignmentOperationOptions {
+	return UpdateHardwareConfigurationAssignmentOperationOptions{}
+}
+
+func (o UpdateHardwareConfigurationAssignmentOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateHardwareConfigurationAssignmentOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateHardwareConfigurationAssignmentOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateHardwareConfigurationAssignment - Update the navigation property assignments in deviceManagement
-func (c HardwareConfigurationAssignmentClient) UpdateHardwareConfigurationAssignment(ctx context.Context, id beta.DeviceManagementHardwareConfigurationIdAssignmentId, input beta.HardwareConfigurationAssignment) (result UpdateHardwareConfigurationAssignmentOperationResponse, err error) {
+func (c HardwareConfigurationAssignmentClient) UpdateHardwareConfigurationAssignment(ctx context.Context, id beta.DeviceManagementHardwareConfigurationIdAssignmentId, input beta.HardwareConfigurationAssignment, options UpdateHardwareConfigurationAssignmentOperationOptions) (result UpdateHardwareConfigurationAssignmentOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

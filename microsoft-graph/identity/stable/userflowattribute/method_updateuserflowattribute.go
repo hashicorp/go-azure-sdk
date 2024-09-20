@@ -17,16 +17,45 @@ type UpdateUserFlowAttributeOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateUserFlowAttributeOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateUserFlowAttributeOperationOptions() UpdateUserFlowAttributeOperationOptions {
+	return UpdateUserFlowAttributeOperationOptions{}
+}
+
+func (o UpdateUserFlowAttributeOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateUserFlowAttributeOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateUserFlowAttributeOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateUserFlowAttribute - Update identityUserFlowAttribute. Update the properties of a custom
 // identityUserFlowAttribute object.
-func (c UserFlowAttributeClient) UpdateUserFlowAttribute(ctx context.Context, id stable.IdentityUserFlowAttributeId, input stable.IdentityUserFlowAttribute) (result UpdateUserFlowAttributeOperationResponse, err error) {
+func (c UserFlowAttributeClient) UpdateUserFlowAttribute(ctx context.Context, id stable.IdentityUserFlowAttributeId, input stable.IdentityUserFlowAttribute, options UpdateUserFlowAttributeOperationOptions) (result UpdateUserFlowAttributeOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

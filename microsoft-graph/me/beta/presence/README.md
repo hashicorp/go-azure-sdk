@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/microsoft-graph/me/beta/presence` Documentation
 
-The `presence` SDK allows for interaction with the Azure Resource Manager Service `me` (API Version `beta`).
+The `presence` SDK allows for interaction with Microsoft Graph `me` (API Version `beta`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -15,22 +15,22 @@ import "github.com/hashicorp/go-azure-sdk/microsoft-graph/me/beta/presence"
 ### Client Initialization
 
 ```go
-client := presence.NewPresenceClientWithBaseURI("https://management.azure.com")
+client := presence.NewPresenceClientWithBaseURI("https://graph.microsoft.com")
 client.Client.Authorizer = authorizer
 ```
 
 
-### Example Usage: `PresenceClient.ClearPresence`
+### Example Usage: `PresenceClient.ClearPresencePresence`
 
 ```go
 ctx := context.TODO()
 
-payload := presence.ClearPresenceRequest{
+payload := presence.ClearPresencePresenceRequest{
 	// ...
 }
 
 
-read, err := client.ClearPresence(ctx, payload)
+read, err := client.ClearPresencePresence(ctx, payload, presence.DefaultClearPresencePresenceOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -46,7 +46,7 @@ if model := read.Model; model != nil {
 ctx := context.TODO()
 
 
-read, err := client.ClearPresenceUserPreferredPresence(ctx)
+read, err := client.ClearPresenceUserPreferredPresence(ctx, presence.DefaultClearPresenceUserPreferredPresenceOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -88,17 +88,17 @@ if model := read.Model; model != nil {
 ```
 
 
-### Example Usage: `PresenceClient.SetPresence`
+### Example Usage: `PresenceClient.SetPresencePresence`
 
 ```go
 ctx := context.TODO()
 
-payload := presence.SetPresenceRequest{
+payload := presence.SetPresencePresenceRequest{
 	// ...
 }
 
 
-read, err := client.SetPresence(ctx, payload)
+read, err := client.SetPresencePresence(ctx, payload, presence.DefaultSetPresencePresenceOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -118,7 +118,7 @@ payload := presence.SetPresenceStatusMessageRequest{
 }
 
 
-read, err := client.SetPresenceStatusMessage(ctx, payload)
+read, err := client.SetPresenceStatusMessage(ctx, payload, presence.DefaultSetPresenceStatusMessageOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -138,7 +138,7 @@ payload := presence.SetPresenceUserPreferredPresenceRequest{
 }
 
 
-read, err := client.SetPresenceUserPreferredPresence(ctx, payload)
+read, err := client.SetPresenceUserPreferredPresence(ctx, payload, presence.DefaultSetPresenceUserPreferredPresenceOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -158,7 +158,7 @@ payload := presence.Presence{
 }
 
 
-read, err := client.UpdatePresence(ctx, payload)
+read, err := client.UpdatePresence(ctx, payload, presence.DefaultUpdatePresenceOperationOptions())
 if err != nil {
 	// handle the error
 }

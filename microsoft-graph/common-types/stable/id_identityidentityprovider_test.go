@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &IdentityIdentityProviderId{}
 
 func TestNewIdentityIdentityProviderID(t *testing.T) {
-	id := NewIdentityIdentityProviderID("identityProviderBaseIdValue")
+	id := NewIdentityIdentityProviderID("identityProviderBaseId")
 
-	if id.IdentityProviderBaseId != "identityProviderBaseIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'IdentityProviderBaseId'", id.IdentityProviderBaseId, "identityProviderBaseIdValue")
+	if id.IdentityProviderBaseId != "identityProviderBaseId" {
+		t.Fatalf("Expected %q but got %q for Segment 'IdentityProviderBaseId'", id.IdentityProviderBaseId, "identityProviderBaseId")
 	}
 }
 
 func TestFormatIdentityIdentityProviderID(t *testing.T) {
-	actual := NewIdentityIdentityProviderID("identityProviderBaseIdValue").ID()
-	expected := "/identity/identityProviders/identityProviderBaseIdValue"
+	actual := NewIdentityIdentityProviderID("identityProviderBaseId").ID()
+	expected := "/identity/identityProviders/identityProviderBaseId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -50,14 +50,14 @@ func TestParseIdentityIdentityProviderID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/identity/identityProviders/identityProviderBaseIdValue",
+			Input: "/identity/identityProviders/identityProviderBaseId",
 			Expected: &IdentityIdentityProviderId{
-				IdentityProviderBaseId: "identityProviderBaseIdValue",
+				IdentityProviderBaseId: "identityProviderBaseId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/identity/identityProviders/identityProviderBaseIdValue/extra",
+			Input: "/identity/identityProviders/identityProviderBaseId/extra",
 			Error: true,
 		},
 	}
@@ -116,26 +116,26 @@ func TestParseIdentityIdentityProviderIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/identity/identityProviders/identityProviderBaseIdValue",
+			Input: "/identity/identityProviders/identityProviderBaseId",
 			Expected: &IdentityIdentityProviderId{
-				IdentityProviderBaseId: "identityProviderBaseIdValue",
+				IdentityProviderBaseId: "identityProviderBaseId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/identity/identityProviders/identityProviderBaseIdValue/extra",
+			Input: "/identity/identityProviders/identityProviderBaseId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/iDeNtItY/iDeNtItYpRoViDeRs/iDeNtItYpRoViDeRbAsEiDvAlUe",
+			Input: "/iDeNtItY/iDeNtItYpRoViDeRs/iDeNtItYpRoViDeRbAsEiD",
 			Expected: &IdentityIdentityProviderId{
-				IdentityProviderBaseId: "iDeNtItYpRoViDeRbAsEiDvAlUe",
+				IdentityProviderBaseId: "iDeNtItYpRoViDeRbAsEiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/iDeNtItY/iDeNtItYpRoViDeRs/iDeNtItYpRoViDeRbAsEiDvAlUe/extra",
+			Input: "/iDeNtItY/iDeNtItYpRoViDeRs/iDeNtItYpRoViDeRbAsEiD/extra",
 			Error: true,
 		},
 	}

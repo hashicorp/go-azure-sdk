@@ -17,16 +17,45 @@ type UpdateEntitlementManagementAssignmentPolicyCustomExtensionStageSettingOpera
 	OData        *odata.OData
 }
 
+type UpdateEntitlementManagementAssignmentPolicyCustomExtensionStageSettingOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateEntitlementManagementAssignmentPolicyCustomExtensionStageSettingOperationOptions() UpdateEntitlementManagementAssignmentPolicyCustomExtensionStageSettingOperationOptions {
+	return UpdateEntitlementManagementAssignmentPolicyCustomExtensionStageSettingOperationOptions{}
+}
+
+func (o UpdateEntitlementManagementAssignmentPolicyCustomExtensionStageSettingOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateEntitlementManagementAssignmentPolicyCustomExtensionStageSettingOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateEntitlementManagementAssignmentPolicyCustomExtensionStageSettingOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateEntitlementManagementAssignmentPolicyCustomExtensionStageSetting - Update the navigation property
 // customExtensionStageSettings in identityGovernance
-func (c EntitlementManagementAssignmentPolicyCustomExtensionStageSettingClient) UpdateEntitlementManagementAssignmentPolicyCustomExtensionStageSetting(ctx context.Context, id stable.IdentityGovernanceEntitlementManagementAssignmentPolicyIdCustomExtensionStageSettingId, input stable.CustomExtensionStageSetting) (result UpdateEntitlementManagementAssignmentPolicyCustomExtensionStageSettingOperationResponse, err error) {
+func (c EntitlementManagementAssignmentPolicyCustomExtensionStageSettingClient) UpdateEntitlementManagementAssignmentPolicyCustomExtensionStageSetting(ctx context.Context, id stable.IdentityGovernanceEntitlementManagementAssignmentPolicyIdCustomExtensionStageSettingId, input stable.CustomExtensionStageSetting, options UpdateEntitlementManagementAssignmentPolicyCustomExtensionStageSettingOperationOptions) (result UpdateEntitlementManagementAssignmentPolicyCustomExtensionStageSettingOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

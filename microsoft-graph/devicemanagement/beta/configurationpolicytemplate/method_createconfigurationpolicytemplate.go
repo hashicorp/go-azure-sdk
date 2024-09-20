@@ -18,16 +18,45 @@ type CreateConfigurationPolicyTemplateOperationResponse struct {
 	Model        *beta.DeviceManagementConfigurationPolicyTemplate
 }
 
+type CreateConfigurationPolicyTemplateOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateConfigurationPolicyTemplateOperationOptions() CreateConfigurationPolicyTemplateOperationOptions {
+	return CreateConfigurationPolicyTemplateOperationOptions{}
+}
+
+func (o CreateConfigurationPolicyTemplateOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateConfigurationPolicyTemplateOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateConfigurationPolicyTemplateOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateConfigurationPolicyTemplate - Create new navigation property to configurationPolicyTemplates for
 // deviceManagement
-func (c ConfigurationPolicyTemplateClient) CreateConfigurationPolicyTemplate(ctx context.Context, input beta.DeviceManagementConfigurationPolicyTemplate) (result CreateConfigurationPolicyTemplateOperationResponse, err error) {
+func (c ConfigurationPolicyTemplateClient) CreateConfigurationPolicyTemplate(ctx context.Context, input beta.DeviceManagementConfigurationPolicyTemplate, options CreateConfigurationPolicyTemplateOperationOptions) (result CreateConfigurationPolicyTemplateOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/deviceManagement/configurationPolicyTemplates",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/deviceManagement/configurationPolicyTemplates",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

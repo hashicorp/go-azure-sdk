@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/teamchannel` Documentation
 
-The `teamchannel` SDK allows for interaction with the Azure Resource Manager Service `groups` (API Version `beta`).
+The `teamchannel` SDK allows for interaction with Microsoft Graph `groups` (API Version `beta`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -15,7 +15,7 @@ import "github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/beta/teamchanne
 ### Client Initialization
 
 ```go
-client := teamchannel.NewTeamChannelClientWithBaseURI("https://management.azure.com")
+client := teamchannel.NewTeamChannelClientWithBaseURI("https://graph.microsoft.com")
 client.Client.Authorizer = authorizer
 ```
 
@@ -24,14 +24,14 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := teamchannel.NewGroupID("groupIdValue")
+id := teamchannel.NewGroupID("groupId")
 
 payload := teamchannel.Channel{
 	// ...
 }
 
 
-read, err := client.CreateTeamChannel(ctx, id, payload)
+read, err := client.CreateTeamChannel(ctx, id, payload, teamchannel.DefaultCreateTeamChannelOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -45,14 +45,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := teamchannel.NewGroupIdTeamChannelID("groupIdValue", "channelIdValue")
+id := teamchannel.NewGroupIdTeamChannelID("groupId", "channelId")
 
 payload := teamchannel.CreateTeamChannelArchiveRequest{
 	// ...
 }
 
 
-read, err := client.CreateTeamChannelArchive(ctx, id, payload)
+read, err := client.CreateTeamChannelArchive(ctx, id, payload, teamchannel.DefaultCreateTeamChannelArchiveOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -66,9 +66,9 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := teamchannel.NewGroupIdTeamChannelID("groupIdValue", "channelIdValue")
+id := teamchannel.NewGroupIdTeamChannelID("groupId", "channelId")
 
-read, err := client.CreateTeamChannelCompleteMigration(ctx, id)
+read, err := client.CreateTeamChannelCompleteMigration(ctx, id, teamchannel.DefaultCreateTeamChannelCompleteMigrationOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -82,9 +82,9 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := teamchannel.NewGroupIdTeamChannelID("groupIdValue", "channelIdValue")
+id := teamchannel.NewGroupIdTeamChannelID("groupId", "channelId")
 
-read, err := client.CreateTeamChannelUnarchive(ctx, id)
+read, err := client.CreateTeamChannelUnarchive(ctx, id, teamchannel.DefaultCreateTeamChannelUnarchiveOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -98,7 +98,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := teamchannel.NewGroupIdTeamChannelID("groupIdValue", "channelIdValue")
+id := teamchannel.NewGroupIdTeamChannelID("groupId", "channelId")
 
 read, err := client.DeleteTeamChannel(ctx, id, teamchannel.DefaultDeleteTeamChannelOperationOptions())
 if err != nil {
@@ -114,7 +114,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := teamchannel.NewGroupIdTeamChannelID("groupIdValue", "channelIdValue")
+id := teamchannel.NewGroupIdTeamChannelID("groupId", "channelId")
 
 read, err := client.GetTeamChannel(ctx, id, teamchannel.DefaultGetTeamChannelOperationOptions())
 if err != nil {
@@ -130,7 +130,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := teamchannel.NewGroupID("groupIdValue")
+id := teamchannel.NewGroupID("groupId")
 
 read, err := client.GetTeamChannelsCount(ctx, id, teamchannel.DefaultGetTeamChannelsCountOperationOptions())
 if err != nil {
@@ -146,7 +146,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := teamchannel.NewGroupID("groupIdValue")
+id := teamchannel.NewGroupID("groupId")
 
 // alternatively `client.ListTeamChannels(ctx, id, teamchannel.DefaultListTeamChannelsOperationOptions())` can be used to do batched pagination
 items, err := client.ListTeamChannelsComplete(ctx, id, teamchannel.DefaultListTeamChannelsOperationOptions())
@@ -163,9 +163,9 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := teamchannel.NewGroupIdTeamChannelID("groupIdValue", "channelIdValue")
+id := teamchannel.NewGroupIdTeamChannelID("groupId", "channelId")
 
-read, err := client.ProvisionTeamChannelEmail(ctx, id)
+read, err := client.ProvisionTeamChannelEmail(ctx, id, teamchannel.DefaultProvisionTeamChannelEmailOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -179,9 +179,9 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := teamchannel.NewGroupIdTeamChannelID("groupIdValue", "channelIdValue")
+id := teamchannel.NewGroupIdTeamChannelID("groupId", "channelId")
 
-read, err := client.RemoveTeamChannelEmail(ctx, id)
+read, err := client.RemoveTeamChannelEmail(ctx, id, teamchannel.DefaultRemoveTeamChannelEmailOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -195,14 +195,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := teamchannel.NewGroupIdTeamChannelID("groupIdValue", "channelIdValue")
+id := teamchannel.NewGroupIdTeamChannelID("groupId", "channelId")
 
 payload := teamchannel.Channel{
 	// ...
 }
 
 
-read, err := client.UpdateTeamChannel(ctx, id, payload)
+read, err := client.UpdateTeamChannel(ctx, id, payload, teamchannel.DefaultUpdateTeamChannelOperationOptions())
 if err != nil {
 	// handle the error
 }

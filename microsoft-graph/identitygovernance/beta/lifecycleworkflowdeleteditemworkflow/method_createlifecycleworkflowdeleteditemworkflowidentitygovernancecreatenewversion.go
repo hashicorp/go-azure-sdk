@@ -19,16 +19,45 @@ type CreateLifecycleWorkflowDeletedItemWorkflowIdentityGovernanceCreateNewVersio
 	Model        *beta.IdentityGovernanceWorkflow
 }
 
+type CreateLifecycleWorkflowDeletedItemWorkflowIdentityGovernanceCreateNewVersionOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateLifecycleWorkflowDeletedItemWorkflowIdentityGovernanceCreateNewVersionOperationOptions() CreateLifecycleWorkflowDeletedItemWorkflowIdentityGovernanceCreateNewVersionOperationOptions {
+	return CreateLifecycleWorkflowDeletedItemWorkflowIdentityGovernanceCreateNewVersionOperationOptions{}
+}
+
+func (o CreateLifecycleWorkflowDeletedItemWorkflowIdentityGovernanceCreateNewVersionOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateLifecycleWorkflowDeletedItemWorkflowIdentityGovernanceCreateNewVersionOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateLifecycleWorkflowDeletedItemWorkflowIdentityGovernanceCreateNewVersionOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateLifecycleWorkflowDeletedItemWorkflowIdentityGovernanceCreateNewVersion - Invoke action createNewVersion. Create
 // a new version of the workflow object.
-func (c LifecycleWorkflowDeletedItemWorkflowClient) CreateLifecycleWorkflowDeletedItemWorkflowIdentityGovernanceCreateNewVersion(ctx context.Context, id beta.IdentityGovernanceLifecycleWorkflowDeletedItemWorkflowId, input CreateLifecycleWorkflowDeletedItemWorkflowIdentityGovernanceCreateNewVersionRequest) (result CreateLifecycleWorkflowDeletedItemWorkflowIdentityGovernanceCreateNewVersionOperationResponse, err error) {
+func (c LifecycleWorkflowDeletedItemWorkflowClient) CreateLifecycleWorkflowDeletedItemWorkflowIdentityGovernanceCreateNewVersion(ctx context.Context, id beta.IdentityGovernanceLifecycleWorkflowDeletedItemWorkflowId, input CreateLifecycleWorkflowDeletedItemWorkflowIdentityGovernanceCreateNewVersionRequest, options CreateLifecycleWorkflowDeletedItemWorkflowIdentityGovernanceCreateNewVersionOperationOptions) (result CreateLifecycleWorkflowDeletedItemWorkflowIdentityGovernanceCreateNewVersionOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/identityGovernance.createNewVersion", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/identityGovernance.createNewVersion", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

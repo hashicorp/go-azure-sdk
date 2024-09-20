@@ -19,7 +19,8 @@ type DeleteEntitlementManagementAccessPackageCatalogResourceResourceScopeResourc
 }
 
 type DeleteEntitlementManagementAccessPackageCatalogResourceResourceScopeResourceResourceRoleOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteEntitlementManagementAccessPackageCatalogResourceResourceScopeResourceResourceRoleOperationOptions() DeleteEntitlementManagementAccessPackageCatalogResourceResourceScopeResourceResourceRoleOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteEntitlementManagementAccessPackageCatalogResourceResourceScopeReso
 
 func (o DeleteEntitlementManagementAccessPackageCatalogResourceResourceScopeResourceResourceRoleOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

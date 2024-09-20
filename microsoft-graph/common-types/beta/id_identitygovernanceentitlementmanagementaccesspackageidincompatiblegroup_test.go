@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &IdentityGovernanceEntitlementManagementAccessPackageIdIncompatibleGroupId{}
 
 func TestNewIdentityGovernanceEntitlementManagementAccessPackageIdIncompatibleGroupID(t *testing.T) {
-	id := NewIdentityGovernanceEntitlementManagementAccessPackageIdIncompatibleGroupID("accessPackageIdValue", "groupIdValue")
+	id := NewIdentityGovernanceEntitlementManagementAccessPackageIdIncompatibleGroupID("accessPackageId", "groupId")
 
-	if id.AccessPackageId != "accessPackageIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'AccessPackageId'", id.AccessPackageId, "accessPackageIdValue")
+	if id.AccessPackageId != "accessPackageId" {
+		t.Fatalf("Expected %q but got %q for Segment 'AccessPackageId'", id.AccessPackageId, "accessPackageId")
 	}
 
-	if id.GroupId != "groupIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'GroupId'", id.GroupId, "groupIdValue")
+	if id.GroupId != "groupId" {
+		t.Fatalf("Expected %q but got %q for Segment 'GroupId'", id.GroupId, "groupId")
 	}
 }
 
 func TestFormatIdentityGovernanceEntitlementManagementAccessPackageIdIncompatibleGroupID(t *testing.T) {
-	actual := NewIdentityGovernanceEntitlementManagementAccessPackageIdIncompatibleGroupID("accessPackageIdValue", "groupIdValue").ID()
-	expected := "/identityGovernance/entitlementManagement/accessPackages/accessPackageIdValue/incompatibleGroups/groupIdValue"
+	actual := NewIdentityGovernanceEntitlementManagementAccessPackageIdIncompatibleGroupID("accessPackageId", "groupId").ID()
+	expected := "/identityGovernance/entitlementManagement/accessPackages/accessPackageId/incompatibleGroups/groupId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -59,25 +59,25 @@ func TestParseIdentityGovernanceEntitlementManagementAccessPackageIdIncompatible
 		},
 		{
 			// Incomplete URI
-			Input: "/identityGovernance/entitlementManagement/accessPackages/accessPackageIdValue",
+			Input: "/identityGovernance/entitlementManagement/accessPackages/accessPackageId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/identityGovernance/entitlementManagement/accessPackages/accessPackageIdValue/incompatibleGroups",
+			Input: "/identityGovernance/entitlementManagement/accessPackages/accessPackageId/incompatibleGroups",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/identityGovernance/entitlementManagement/accessPackages/accessPackageIdValue/incompatibleGroups/groupIdValue",
+			Input: "/identityGovernance/entitlementManagement/accessPackages/accessPackageId/incompatibleGroups/groupId",
 			Expected: &IdentityGovernanceEntitlementManagementAccessPackageIdIncompatibleGroupId{
-				AccessPackageId: "accessPackageIdValue",
-				GroupId:         "groupIdValue",
+				AccessPackageId: "accessPackageId",
+				GroupId:         "groupId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/identityGovernance/entitlementManagement/accessPackages/accessPackageIdValue/incompatibleGroups/groupIdValue/extra",
+			Input: "/identityGovernance/entitlementManagement/accessPackages/accessPackageId/incompatibleGroups/groupId/extra",
 			Error: true,
 		},
 	}
@@ -150,48 +150,48 @@ func TestParseIdentityGovernanceEntitlementManagementAccessPackageIdIncompatible
 		},
 		{
 			// Incomplete URI
-			Input: "/identityGovernance/entitlementManagement/accessPackages/accessPackageIdValue",
+			Input: "/identityGovernance/entitlementManagement/accessPackages/accessPackageId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/iDeNtItYgOvErNaNcE/eNtItLeMeNtMaNaGeMeNt/aCcEsSpAcKaGeS/aCcEsSpAcKaGeIdVaLuE",
+			Input: "/iDeNtItYgOvErNaNcE/eNtItLeMeNtMaNaGeMeNt/aCcEsSpAcKaGeS/aCcEsSpAcKaGeId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/identityGovernance/entitlementManagement/accessPackages/accessPackageIdValue/incompatibleGroups",
+			Input: "/identityGovernance/entitlementManagement/accessPackages/accessPackageId/incompatibleGroups",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/iDeNtItYgOvErNaNcE/eNtItLeMeNtMaNaGeMeNt/aCcEsSpAcKaGeS/aCcEsSpAcKaGeIdVaLuE/iNcOmPaTiBlEgRoUpS",
+			Input: "/iDeNtItYgOvErNaNcE/eNtItLeMeNtMaNaGeMeNt/aCcEsSpAcKaGeS/aCcEsSpAcKaGeId/iNcOmPaTiBlEgRoUpS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/identityGovernance/entitlementManagement/accessPackages/accessPackageIdValue/incompatibleGroups/groupIdValue",
+			Input: "/identityGovernance/entitlementManagement/accessPackages/accessPackageId/incompatibleGroups/groupId",
 			Expected: &IdentityGovernanceEntitlementManagementAccessPackageIdIncompatibleGroupId{
-				AccessPackageId: "accessPackageIdValue",
-				GroupId:         "groupIdValue",
+				AccessPackageId: "accessPackageId",
+				GroupId:         "groupId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/identityGovernance/entitlementManagement/accessPackages/accessPackageIdValue/incompatibleGroups/groupIdValue/extra",
+			Input: "/identityGovernance/entitlementManagement/accessPackages/accessPackageId/incompatibleGroups/groupId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/iDeNtItYgOvErNaNcE/eNtItLeMeNtMaNaGeMeNt/aCcEsSpAcKaGeS/aCcEsSpAcKaGeIdVaLuE/iNcOmPaTiBlEgRoUpS/gRoUpIdVaLuE",
+			Input: "/iDeNtItYgOvErNaNcE/eNtItLeMeNtMaNaGeMeNt/aCcEsSpAcKaGeS/aCcEsSpAcKaGeId/iNcOmPaTiBlEgRoUpS/gRoUpId",
 			Expected: &IdentityGovernanceEntitlementManagementAccessPackageIdIncompatibleGroupId{
-				AccessPackageId: "aCcEsSpAcKaGeIdVaLuE",
-				GroupId:         "gRoUpIdVaLuE",
+				AccessPackageId: "aCcEsSpAcKaGeId",
+				GroupId:         "gRoUpId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/iDeNtItYgOvErNaNcE/eNtItLeMeNtMaNaGeMeNt/aCcEsSpAcKaGeS/aCcEsSpAcKaGeIdVaLuE/iNcOmPaTiBlEgRoUpS/gRoUpIdVaLuE/extra",
+			Input: "/iDeNtItYgOvErNaNcE/eNtItLeMeNtMaNaGeMeNt/aCcEsSpAcKaGeS/aCcEsSpAcKaGeId/iNcOmPaTiBlEgRoUpS/gRoUpId/extra",
 			Error: true,
 		},
 	}

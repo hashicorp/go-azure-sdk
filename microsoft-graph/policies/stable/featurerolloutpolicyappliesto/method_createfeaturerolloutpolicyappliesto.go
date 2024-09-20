@@ -20,16 +20,45 @@ type CreateFeatureRolloutPolicyAppliesToOperationResponse struct {
 	Model        stable.DirectoryObject
 }
 
+type CreateFeatureRolloutPolicyAppliesToOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateFeatureRolloutPolicyAppliesToOperationOptions() CreateFeatureRolloutPolicyAppliesToOperationOptions {
+	return CreateFeatureRolloutPolicyAppliesToOperationOptions{}
+}
+
+func (o CreateFeatureRolloutPolicyAppliesToOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateFeatureRolloutPolicyAppliesToOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateFeatureRolloutPolicyAppliesToOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateFeatureRolloutPolicyAppliesTo - Assign appliesTo on a featureRolloutPolicy. Add an appliesTo on a
 // featureRolloutPolicy object to specify the directoryObject to which the featureRolloutPolicy should be applied.
-func (c FeatureRolloutPolicyAppliesToClient) CreateFeatureRolloutPolicyAppliesTo(ctx context.Context, id stable.PolicyFeatureRolloutPolicyId, input stable.DirectoryObject) (result CreateFeatureRolloutPolicyAppliesToOperationResponse, err error) {
+func (c FeatureRolloutPolicyAppliesToClient) CreateFeatureRolloutPolicyAppliesTo(ctx context.Context, id stable.PolicyFeatureRolloutPolicyId, input stable.DirectoryObject, options CreateFeatureRolloutPolicyAppliesToOperationOptions) (result CreateFeatureRolloutPolicyAppliesToOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/appliesTo", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/appliesTo", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

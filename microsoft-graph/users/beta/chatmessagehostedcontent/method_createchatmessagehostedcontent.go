@@ -19,15 +19,44 @@ type CreateChatMessageHostedContentOperationResponse struct {
 	Model        *beta.ChatMessageHostedContent
 }
 
+type CreateChatMessageHostedContentOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateChatMessageHostedContentOperationOptions() CreateChatMessageHostedContentOperationOptions {
+	return CreateChatMessageHostedContentOperationOptions{}
+}
+
+func (o CreateChatMessageHostedContentOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateChatMessageHostedContentOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateChatMessageHostedContentOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateChatMessageHostedContent - Create new navigation property to hostedContents for users
-func (c ChatMessageHostedContentClient) CreateChatMessageHostedContent(ctx context.Context, id beta.UserIdChatIdMessageId, input beta.ChatMessageHostedContent) (result CreateChatMessageHostedContentOperationResponse, err error) {
+func (c ChatMessageHostedContentClient) CreateChatMessageHostedContent(ctx context.Context, id beta.UserIdChatIdMessageId, input beta.ChatMessageHostedContent, options CreateChatMessageHostedContentOperationOptions) (result CreateChatMessageHostedContentOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/hostedContents", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/hostedContents", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

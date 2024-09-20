@@ -19,16 +19,45 @@ type CreateDeviceCustomAttributeShellScriptGroupAssignmentOperationResponse stru
 	Model        *beta.DeviceManagementScriptGroupAssignment
 }
 
+type CreateDeviceCustomAttributeShellScriptGroupAssignmentOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateDeviceCustomAttributeShellScriptGroupAssignmentOperationOptions() CreateDeviceCustomAttributeShellScriptGroupAssignmentOperationOptions {
+	return CreateDeviceCustomAttributeShellScriptGroupAssignmentOperationOptions{}
+}
+
+func (o CreateDeviceCustomAttributeShellScriptGroupAssignmentOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateDeviceCustomAttributeShellScriptGroupAssignmentOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateDeviceCustomAttributeShellScriptGroupAssignmentOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateDeviceCustomAttributeShellScriptGroupAssignment - Create new navigation property to groupAssignments for
 // deviceManagement
-func (c DeviceCustomAttributeShellScriptGroupAssignmentClient) CreateDeviceCustomAttributeShellScriptGroupAssignment(ctx context.Context, id beta.DeviceManagementDeviceCustomAttributeShellScriptId, input beta.DeviceManagementScriptGroupAssignment) (result CreateDeviceCustomAttributeShellScriptGroupAssignmentOperationResponse, err error) {
+func (c DeviceCustomAttributeShellScriptGroupAssignmentClient) CreateDeviceCustomAttributeShellScriptGroupAssignment(ctx context.Context, id beta.DeviceManagementDeviceCustomAttributeShellScriptId, input beta.DeviceManagementScriptGroupAssignment, options CreateDeviceCustomAttributeShellScriptGroupAssignmentOperationOptions) (result CreateDeviceCustomAttributeShellScriptGroupAssignmentOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/groupAssignments", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/groupAssignments", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

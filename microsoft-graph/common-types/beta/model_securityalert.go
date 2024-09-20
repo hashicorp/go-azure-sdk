@@ -172,10 +172,46 @@ func (s SecurityAlert) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &SecurityAlert{}
 
 func (s *SecurityAlert) UnmarshalJSON(bytes []byte) error {
-	type alias SecurityAlert
-	var decoded alias
+
+	var decoded struct {
+		ActorDisplayName      nullable.Type[string]        `json:"actorDisplayName,omitempty"`
+		AdditionalData        *SecurityDictionary          `json:"additionalData,omitempty"`
+		AlertPolicyId         nullable.Type[string]        `json:"alertPolicyId,omitempty"`
+		AlertWebUrl           nullable.Type[string]        `json:"alertWebUrl,omitempty"`
+		AssignedTo            nullable.Type[string]        `json:"assignedTo,omitempty"`
+		Category              nullable.Type[string]        `json:"category,omitempty"`
+		Classification        *SecurityAlertClassification `json:"classification,omitempty"`
+		Comments              *[]SecurityAlertComment      `json:"comments,omitempty"`
+		CreatedDateTime       nullable.Type[string]        `json:"createdDateTime,omitempty"`
+		Description           nullable.Type[string]        `json:"description,omitempty"`
+		DetectionSource       *SecurityDetectionSource     `json:"detectionSource,omitempty"`
+		DetectorId            nullable.Type[string]        `json:"detectorId,omitempty"`
+		Determination         *SecurityAlertDetermination  `json:"determination,omitempty"`
+		Evidence              *[]SecurityAlertEvidence     `json:"evidence,omitempty"`
+		FirstActivityDateTime nullable.Type[string]        `json:"firstActivityDateTime,omitempty"`
+		IncidentId            nullable.Type[string]        `json:"incidentId,omitempty"`
+		IncidentWebUrl        nullable.Type[string]        `json:"incidentWebUrl,omitempty"`
+		LastActivityDateTime  nullable.Type[string]        `json:"lastActivityDateTime,omitempty"`
+		LastUpdateDateTime    nullable.Type[string]        `json:"lastUpdateDateTime,omitempty"`
+		MitreTechniques       *[]string                    `json:"mitreTechniques,omitempty"`
+		ProductName           nullable.Type[string]        `json:"productName,omitempty"`
+		ProviderAlertId       nullable.Type[string]        `json:"providerAlertId,omitempty"`
+		RecommendedActions    nullable.Type[string]        `json:"recommendedActions,omitempty"`
+		ResolvedDateTime      nullable.Type[string]        `json:"resolvedDateTime,omitempty"`
+		ServiceSource         *SecurityServiceSource       `json:"serviceSource,omitempty"`
+		Severity              *SecurityAlertSeverity       `json:"severity,omitempty"`
+		Status                *SecurityAlertStatus         `json:"status,omitempty"`
+		SystemTags            *[]string                    `json:"systemTags,omitempty"`
+		TenantId              nullable.Type[string]        `json:"tenantId,omitempty"`
+		ThreatDisplayName     nullable.Type[string]        `json:"threatDisplayName,omitempty"`
+		ThreatFamilyName      nullable.Type[string]        `json:"threatFamilyName,omitempty"`
+		Title                 nullable.Type[string]        `json:"title,omitempty"`
+		Id                    *string                      `json:"id,omitempty"`
+		ODataId               *string                      `json:"@odata.id,omitempty"`
+		ODataType             *string                      `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into SecurityAlert: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.ActorDisplayName = decoded.ActorDisplayName
@@ -192,14 +228,11 @@ func (s *SecurityAlert) UnmarshalJSON(bytes []byte) error {
 	s.DetectorId = decoded.DetectorId
 	s.Determination = decoded.Determination
 	s.FirstActivityDateTime = decoded.FirstActivityDateTime
-	s.Id = decoded.Id
 	s.IncidentId = decoded.IncidentId
 	s.IncidentWebUrl = decoded.IncidentWebUrl
 	s.LastActivityDateTime = decoded.LastActivityDateTime
 	s.LastUpdateDateTime = decoded.LastUpdateDateTime
 	s.MitreTechniques = decoded.MitreTechniques
-	s.ODataId = decoded.ODataId
-	s.ODataType = decoded.ODataType
 	s.ProductName = decoded.ProductName
 	s.ProviderAlertId = decoded.ProviderAlertId
 	s.RecommendedActions = decoded.RecommendedActions
@@ -212,6 +245,9 @@ func (s *SecurityAlert) UnmarshalJSON(bytes []byte) error {
 	s.ThreatDisplayName = decoded.ThreatDisplayName
 	s.ThreatFamilyName = decoded.ThreatFamilyName
 	s.Title = decoded.Title
+	s.Id = decoded.Id
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -234,5 +270,6 @@ func (s *SecurityAlert) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Evidence = &output
 	}
+
 	return nil
 }

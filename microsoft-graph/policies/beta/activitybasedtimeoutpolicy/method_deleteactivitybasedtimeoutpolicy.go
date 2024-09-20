@@ -19,7 +19,8 @@ type DeleteActivityBasedTimeoutPolicyOperationResponse struct {
 }
 
 type DeleteActivityBasedTimeoutPolicyOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteActivityBasedTimeoutPolicyOperationOptions() DeleteActivityBasedTimeoutPolicyOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteActivityBasedTimeoutPolicyOperationOptions) ToHeaders() *client.He
 
 func (o DeleteActivityBasedTimeoutPolicyOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

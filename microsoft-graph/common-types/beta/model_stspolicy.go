@@ -146,19 +146,30 @@ func (s BaseStsPolicyImpl) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &BaseStsPolicyImpl{}
 
 func (s *BaseStsPolicyImpl) UnmarshalJSON(bytes []byte) error {
-	type alias BaseStsPolicyImpl
-	var decoded alias
+
+	var decoded struct {
+		AppliesTo             *[]DirectoryObject    `json:"appliesTo,omitempty"`
+		AppliesTo_ODataBind   *[]string             `json:"appliesTo@odata.bind,omitempty"`
+		Definition            []string              `json:"definition"`
+		IsOrganizationDefault nullable.Type[bool]   `json:"isOrganizationDefault,omitempty"`
+		Description           string                `json:"description"`
+		DisplayName           string                `json:"displayName"`
+		DeletedDateTime       nullable.Type[string] `json:"deletedDateTime,omitempty"`
+		Id                    *string               `json:"id,omitempty"`
+		ODataId               *string               `json:"@odata.id,omitempty"`
+		ODataType             *string               `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into BaseStsPolicyImpl: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.AppliesTo_ODataBind = decoded.AppliesTo_ODataBind
 	s.Definition = decoded.Definition
+	s.IsOrganizationDefault = decoded.IsOrganizationDefault
 	s.DeletedDateTime = decoded.DeletedDateTime
 	s.Description = decoded.Description
 	s.DisplayName = decoded.DisplayName
 	s.Id = decoded.Id
-	s.IsOrganizationDefault = decoded.IsOrganizationDefault
 	s.ODataId = decoded.ODataId
 	s.ODataType = decoded.ODataType
 
@@ -183,6 +194,7 @@ func (s *BaseStsPolicyImpl) UnmarshalJSON(bytes []byte) error {
 		}
 		s.AppliesTo = &output
 	}
+
 	return nil
 }
 
@@ -196,9 +208,9 @@ func UnmarshalStsPolicyImplementation(input []byte) (StsPolicy, error) {
 		return nil, fmt.Errorf("unmarshaling StsPolicy into map[string]interface: %+v", err)
 	}
 
-	value, ok := temp["@odata.type"].(string)
-	if !ok {
-		return nil, nil
+	var value string
+	if v, ok := temp["@odata.type"]; ok {
+		value = fmt.Sprintf("%v", v)
 	}
 
 	if strings.EqualFold(value, "#microsoft.graph.activityBasedTimeoutPolicy") {

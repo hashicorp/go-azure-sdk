@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/rolescopetag` Documentation
 
-The `rolescopetag` SDK allows for interaction with the Azure Resource Manager Service `devicemanagement` (API Version `beta`).
+The `rolescopetag` SDK allows for interaction with Microsoft Graph `devicemanagement` (API Version `beta`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -15,7 +15,7 @@ import "github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/
 ### Client Initialization
 
 ```go
-client := rolescopetag.NewRoleScopeTagClientWithBaseURI("https://management.azure.com")
+client := rolescopetag.NewRoleScopeTagClientWithBaseURI("https://graph.microsoft.com")
 client.Client.Authorizer = authorizer
 ```
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := rolescopetag.NewDeviceManagementRoleScopeTagID("roleScopeTagIdValue")
+id := rolescopetag.NewDeviceManagementRoleScopeTagID("roleScopeTagId")
 
 payload := rolescopetag.AssignRoleScopeTagsRequest{
 	// ...
@@ -52,7 +52,7 @@ payload := rolescopetag.RoleScopeTag{
 }
 
 
-read, err := client.CreateRoleScopeTag(ctx, payload)
+read, err := client.CreateRoleScopeTag(ctx, payload, rolescopetag.DefaultCreateRoleScopeTagOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -66,7 +66,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := rolescopetag.NewDeviceManagementRoleScopeTagID("roleScopeTagIdValue")
+id := rolescopetag.NewDeviceManagementRoleScopeTagID("roleScopeTagId")
 
 read, err := client.DeleteRoleScopeTag(ctx, id, rolescopetag.DefaultDeleteRoleScopeTagOperationOptions())
 if err != nil {
@@ -82,7 +82,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := rolescopetag.NewDeviceManagementRoleScopeTagID("roleScopeTagIdValue")
+id := rolescopetag.NewDeviceManagementRoleScopeTagID("roleScopeTagId")
 
 read, err := client.GetRoleScopeTag(ctx, id, rolescopetag.DefaultGetRoleScopeTagOperationOptions())
 if err != nil {
@@ -152,14 +152,14 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := rolescopetag.NewDeviceManagementRoleScopeTagID("roleScopeTagIdValue")
+id := rolescopetag.NewDeviceManagementRoleScopeTagID("roleScopeTagId")
 
 payload := rolescopetag.RoleScopeTag{
 	// ...
 }
 
 
-read, err := client.UpdateRoleScopeTag(ctx, id, payload)
+read, err := client.UpdateRoleScopeTag(ctx, id, payload, rolescopetag.DefaultUpdateRoleScopeTagOperationOptions())
 if err != nil {
 	// handle the error
 }

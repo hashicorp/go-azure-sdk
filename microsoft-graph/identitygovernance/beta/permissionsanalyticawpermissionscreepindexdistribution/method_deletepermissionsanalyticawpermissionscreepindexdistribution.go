@@ -19,7 +19,8 @@ type DeletePermissionsAnalyticAwPermissionsCreepIndexDistributionOperationRespon
 }
 
 type DeletePermissionsAnalyticAwPermissionsCreepIndexDistributionOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeletePermissionsAnalyticAwPermissionsCreepIndexDistributionOperationOptions() DeletePermissionsAnalyticAwPermissionsCreepIndexDistributionOperationOptions {
@@ -36,7 +37,9 @@ func (o DeletePermissionsAnalyticAwPermissionsCreepIndexDistributionOperationOpt
 
 func (o DeletePermissionsAnalyticAwPermissionsCreepIndexDistributionOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

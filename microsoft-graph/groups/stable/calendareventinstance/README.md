@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/stable/calendareventinstance` Documentation
 
-The `calendareventinstance` SDK allows for interaction with the Azure Resource Manager Service `groups` (API Version `stable`).
+The `calendareventinstance` SDK allows for interaction with Microsoft Graph `groups` (API Version `stable`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -15,7 +15,7 @@ import "github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/stable/calendar
 ### Client Initialization
 
 ```go
-client := calendareventinstance.NewCalendarEventInstanceClientWithBaseURI("https://management.azure.com")
+client := calendareventinstance.NewCalendarEventInstanceClientWithBaseURI("https://graph.microsoft.com")
 client.Client.Authorizer = authorizer
 ```
 
@@ -24,14 +24,14 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := calendareventinstance.NewGroupIdCalendarEventIdInstanceID("groupIdValue", "eventIdValue", "eventId1Value")
+id := calendareventinstance.NewGroupIdCalendarEventIdInstanceID("groupId", "eventId", "eventId1")
 
 payload := calendareventinstance.AcceptCalendarEventInstanceRequest{
 	// ...
 }
 
 
-read, err := client.AcceptCalendarEventInstance(ctx, id, payload)
+read, err := client.AcceptCalendarEventInstance(ctx, id, payload, calendareventinstance.DefaultAcceptCalendarEventInstanceOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -45,14 +45,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := calendareventinstance.NewGroupIdCalendarEventIdInstanceID("groupIdValue", "eventIdValue", "eventId1Value")
+id := calendareventinstance.NewGroupIdCalendarEventIdInstanceID("groupId", "eventId", "eventId1")
 
 payload := calendareventinstance.CancelCalendarEventInstanceRequest{
 	// ...
 }
 
 
-read, err := client.CancelCalendarEventInstance(ctx, id, payload)
+read, err := client.CancelCalendarEventInstance(ctx, id, payload, calendareventinstance.DefaultCancelCalendarEventInstanceOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -66,14 +66,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := calendareventinstance.NewGroupIdCalendarEventIdInstanceID("groupIdValue", "eventIdValue", "eventId1Value")
+id := calendareventinstance.NewGroupIdCalendarEventIdInstanceID("groupId", "eventId", "eventId1")
 
 payload := calendareventinstance.DeclineCalendarEventInstanceRequest{
 	// ...
 }
 
 
-read, err := client.DeclineCalendarEventInstance(ctx, id, payload)
+read, err := client.DeclineCalendarEventInstance(ctx, id, payload, calendareventinstance.DefaultDeclineCalendarEventInstanceOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -87,9 +87,9 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := calendareventinstance.NewGroupIdCalendarEventIdInstanceID("groupIdValue", "eventIdValue", "eventId1Value")
+id := calendareventinstance.NewGroupIdCalendarEventIdInstanceID("groupId", "eventId", "eventId1")
 
-read, err := client.DismissCalendarEventInstanceReminder(ctx, id)
+read, err := client.DismissCalendarEventInstanceReminder(ctx, id, calendareventinstance.DefaultDismissCalendarEventInstanceReminderOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -103,14 +103,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := calendareventinstance.NewGroupIdCalendarEventIdInstanceID("groupIdValue", "eventIdValue", "eventId1Value")
+id := calendareventinstance.NewGroupIdCalendarEventIdInstanceID("groupId", "eventId", "eventId1")
 
 payload := calendareventinstance.ForwardCalendarEventInstanceRequest{
 	// ...
 }
 
 
-read, err := client.ForwardCalendarEventInstance(ctx, id, payload)
+read, err := client.ForwardCalendarEventInstance(ctx, id, payload, calendareventinstance.DefaultForwardCalendarEventInstanceOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -124,7 +124,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := calendareventinstance.NewGroupIdCalendarEventIdInstanceID("groupIdValue", "eventIdValue", "eventId1Value")
+id := calendareventinstance.NewGroupIdCalendarEventIdInstanceID("groupId", "eventId", "eventId1")
 
 read, err := client.GetCalendarEventInstance(ctx, id, calendareventinstance.DefaultGetCalendarEventInstanceOperationOptions())
 if err != nil {
@@ -140,7 +140,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := calendareventinstance.NewGroupIdCalendarEventID("groupIdValue", "eventIdValue")
+id := calendareventinstance.NewGroupIdCalendarEventID("groupId", "eventId")
 
 read, err := client.GetCalendarEventInstancesCount(ctx, id, calendareventinstance.DefaultGetCalendarEventInstancesCountOperationOptions())
 if err != nil {
@@ -156,7 +156,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := calendareventinstance.NewGroupIdCalendarEventID("groupIdValue", "eventIdValue")
+id := calendareventinstance.NewGroupIdCalendarEventID("groupId", "eventId")
 
 // alternatively `client.ListCalendarEventInstances(ctx, id, calendareventinstance.DefaultListCalendarEventInstancesOperationOptions())` can be used to do batched pagination
 items, err := client.ListCalendarEventInstancesComplete(ctx, id, calendareventinstance.DefaultListCalendarEventInstancesOperationOptions())
@@ -173,14 +173,14 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := calendareventinstance.NewGroupIdCalendarEventIdInstanceID("groupIdValue", "eventIdValue", "eventId1Value")
+id := calendareventinstance.NewGroupIdCalendarEventIdInstanceID("groupId", "eventId", "eventId1")
 
 payload := calendareventinstance.SnoozeCalendarEventInstanceReminderRequest{
 	// ...
 }
 
 
-read, err := client.SnoozeCalendarEventInstanceReminder(ctx, id, payload)
+read, err := client.SnoozeCalendarEventInstanceReminder(ctx, id, payload, calendareventinstance.DefaultSnoozeCalendarEventInstanceReminderOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -194,14 +194,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := calendareventinstance.NewGroupIdCalendarEventIdInstanceID("groupIdValue", "eventIdValue", "eventId1Value")
+id := calendareventinstance.NewGroupIdCalendarEventIdInstanceID("groupId", "eventId", "eventId1")
 
 payload := calendareventinstance.TentativelyAcceptCalendarEventInstanceRequest{
 	// ...
 }
 
 
-read, err := client.TentativelyAcceptCalendarEventInstance(ctx, id, payload)
+read, err := client.TentativelyAcceptCalendarEventInstance(ctx, id, payload, calendareventinstance.DefaultTentativelyAcceptCalendarEventInstanceOperationOptions())
 if err != nil {
 	// handle the error
 }

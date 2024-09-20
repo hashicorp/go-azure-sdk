@@ -18,15 +18,44 @@ type CreateManagedAppLogCollectionRequestOperationResponse struct {
 	Model        *beta.ManagedAppLogCollectionRequest
 }
 
+type CreateManagedAppLogCollectionRequestOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateManagedAppLogCollectionRequestOperationOptions() CreateManagedAppLogCollectionRequestOperationOptions {
+	return CreateManagedAppLogCollectionRequestOperationOptions{}
+}
+
+func (o CreateManagedAppLogCollectionRequestOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateManagedAppLogCollectionRequestOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateManagedAppLogCollectionRequestOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateManagedAppLogCollectionRequest - Create new navigation property to managedAppLogCollectionRequests for me
-func (c ManagedAppLogCollectionRequestClient) CreateManagedAppLogCollectionRequest(ctx context.Context, input beta.ManagedAppLogCollectionRequest) (result CreateManagedAppLogCollectionRequestOperationResponse, err error) {
+func (c ManagedAppLogCollectionRequestClient) CreateManagedAppLogCollectionRequest(ctx context.Context, input beta.ManagedAppLogCollectionRequest, options CreateManagedAppLogCollectionRequestOperationOptions) (result CreateManagedAppLogCollectionRequestOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/me/managedAppLogCollectionRequests",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/me/managedAppLogCollectionRequests",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

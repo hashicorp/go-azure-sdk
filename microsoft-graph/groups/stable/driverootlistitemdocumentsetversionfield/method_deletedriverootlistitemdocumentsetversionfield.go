@@ -19,7 +19,8 @@ type DeleteDriveRootListItemDocumentSetVersionFieldOperationResponse struct {
 }
 
 type DeleteDriveRootListItemDocumentSetVersionFieldOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteDriveRootListItemDocumentSetVersionFieldOperationOptions() DeleteDriveRootListItemDocumentSetVersionFieldOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteDriveRootListItemDocumentSetVersionFieldOperationOptions) ToHeader
 
 func (o DeleteDriveRootListItemDocumentSetVersionFieldOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

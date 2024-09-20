@@ -17,15 +17,44 @@ type UpdateTermsOfUseOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateTermsOfUseOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateTermsOfUseOperationOptions() UpdateTermsOfUseOperationOptions {
+	return UpdateTermsOfUseOperationOptions{}
+}
+
+func (o UpdateTermsOfUseOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateTermsOfUseOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateTermsOfUseOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateTermsOfUse - Update the navigation property termsOfUse in identityGovernance
-func (c TermsOfUseClient) UpdateTermsOfUse(ctx context.Context, input stable.TermsOfUseContainer) (result UpdateTermsOfUseOperationResponse, err error) {
+func (c TermsOfUseClient) UpdateTermsOfUse(ctx context.Context, input stable.TermsOfUseContainer, options UpdateTermsOfUseOperationOptions) (result UpdateTermsOfUseOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       "/identityGovernance/termsOfUse",
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          "/identityGovernance/termsOfUse",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

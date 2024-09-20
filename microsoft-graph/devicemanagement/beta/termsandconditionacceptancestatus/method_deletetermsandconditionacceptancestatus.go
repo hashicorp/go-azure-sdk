@@ -19,7 +19,8 @@ type DeleteTermsAndConditionAcceptanceStatusOperationResponse struct {
 }
 
 type DeleteTermsAndConditionAcceptanceStatusOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteTermsAndConditionAcceptanceStatusOperationOptions() DeleteTermsAndConditionAcceptanceStatusOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteTermsAndConditionAcceptanceStatusOperationOptions) ToHeaders() *cl
 
 func (o DeleteTermsAndConditionAcceptanceStatusOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

@@ -89,10 +89,20 @@ func (s CrossTenantAccessPolicyConfigurationPartner) MarshalJSON() ([]byte, erro
 var _ json.Unmarshaler = &CrossTenantAccessPolicyConfigurationPartner{}
 
 func (s *CrossTenantAccessPolicyConfigurationPartner) UnmarshalJSON(bytes []byte) error {
-	type alias CrossTenantAccessPolicyConfigurationPartner
-	var decoded alias
+
+	var decoded struct {
+		AutomaticUserConsentSettings *InboundOutboundPolicyConfiguration        `json:"automaticUserConsentSettings,omitempty"`
+		IdentitySynchronization      *CrossTenantIdentitySyncPolicyPartner      `json:"identitySynchronization,omitempty"`
+		InboundTrust                 *CrossTenantAccessPolicyInboundTrust       `json:"inboundTrust,omitempty"`
+		IsInMultiTenantOrganization  nullable.Type[bool]                        `json:"isInMultiTenantOrganization,omitempty"`
+		IsServiceProvider            nullable.Type[bool]                        `json:"isServiceProvider,omitempty"`
+		ODataId                      *string                                    `json:"@odata.id,omitempty"`
+		ODataType                    *string                                    `json:"@odata.type,omitempty"`
+		TenantId                     *string                                    `json:"tenantId,omitempty"`
+		TenantRestrictions           *CrossTenantAccessPolicyTenantRestrictions `json:"tenantRestrictions,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into CrossTenantAccessPolicyConfigurationPartner: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.AutomaticUserConsentSettings = decoded.AutomaticUserConsentSettings
@@ -141,5 +151,6 @@ func (s *CrossTenantAccessPolicyConfigurationPartner) UnmarshalJSON(bytes []byte
 		}
 		s.B2bDirectConnectOutbound = impl
 	}
+
 	return nil
 }

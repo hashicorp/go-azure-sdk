@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &GroupIdPhotoId{}
 
 func TestNewGroupIdPhotoID(t *testing.T) {
-	id := NewGroupIdPhotoID("groupIdValue", "profilePhotoIdValue")
+	id := NewGroupIdPhotoID("groupId", "profilePhotoId")
 
-	if id.GroupId != "groupIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'GroupId'", id.GroupId, "groupIdValue")
+	if id.GroupId != "groupId" {
+		t.Fatalf("Expected %q but got %q for Segment 'GroupId'", id.GroupId, "groupId")
 	}
 
-	if id.ProfilePhotoId != "profilePhotoIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ProfilePhotoId'", id.ProfilePhotoId, "profilePhotoIdValue")
+	if id.ProfilePhotoId != "profilePhotoId" {
+		t.Fatalf("Expected %q but got %q for Segment 'ProfilePhotoId'", id.ProfilePhotoId, "profilePhotoId")
 	}
 }
 
 func TestFormatGroupIdPhotoID(t *testing.T) {
-	actual := NewGroupIdPhotoID("groupIdValue", "profilePhotoIdValue").ID()
-	expected := "/groups/groupIdValue/photos/profilePhotoIdValue"
+	actual := NewGroupIdPhotoID("groupId", "profilePhotoId").ID()
+	expected := "/groups/groupId/photos/profilePhotoId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -49,25 +49,25 @@ func TestParseGroupIdPhotoID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue",
+			Input: "/groups/groupId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/photos",
+			Input: "/groups/groupId/photos",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/groups/groupIdValue/photos/profilePhotoIdValue",
+			Input: "/groups/groupId/photos/profilePhotoId",
 			Expected: &GroupIdPhotoId{
-				GroupId:        "groupIdValue",
-				ProfilePhotoId: "profilePhotoIdValue",
+				GroupId:        "groupId",
+				ProfilePhotoId: "profilePhotoId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/groups/groupIdValue/photos/profilePhotoIdValue/extra",
+			Input: "/groups/groupId/photos/profilePhotoId/extra",
 			Error: true,
 		},
 	}
@@ -120,48 +120,48 @@ func TestParseGroupIdPhotoIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue",
+			Input: "/groups/groupId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE",
+			Input: "/gRoUpS/gRoUpId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/photos",
+			Input: "/groups/groupId/photos",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/pHoToS",
+			Input: "/gRoUpS/gRoUpId/pHoToS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/groups/groupIdValue/photos/profilePhotoIdValue",
+			Input: "/groups/groupId/photos/profilePhotoId",
 			Expected: &GroupIdPhotoId{
-				GroupId:        "groupIdValue",
-				ProfilePhotoId: "profilePhotoIdValue",
+				GroupId:        "groupId",
+				ProfilePhotoId: "profilePhotoId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/groups/groupIdValue/photos/profilePhotoIdValue/extra",
+			Input: "/groups/groupId/photos/profilePhotoId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/pHoToS/pRoFiLePhOtOiDvAlUe",
+			Input: "/gRoUpS/gRoUpId/pHoToS/pRoFiLePhOtOiD",
 			Expected: &GroupIdPhotoId{
-				GroupId:        "gRoUpIdVaLuE",
-				ProfilePhotoId: "pRoFiLePhOtOiDvAlUe",
+				GroupId:        "gRoUpId",
+				ProfilePhotoId: "pRoFiLePhOtOiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/pHoToS/pRoFiLePhOtOiDvAlUe/extra",
+			Input: "/gRoUpS/gRoUpId/pHoToS/pRoFiLePhOtOiD/extra",
 			Error: true,
 		},
 	}

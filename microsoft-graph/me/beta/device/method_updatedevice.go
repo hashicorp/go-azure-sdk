@@ -17,15 +17,44 @@ type UpdateDeviceOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateDeviceOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateDeviceOperationOptions() UpdateDeviceOperationOptions {
+	return UpdateDeviceOperationOptions{}
+}
+
+func (o UpdateDeviceOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateDeviceOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateDeviceOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateDevice - Update the navigation property devices in me
-func (c DeviceClient) UpdateDevice(ctx context.Context, id beta.MeDeviceId, input beta.Device) (result UpdateDeviceOperationResponse, err error) {
+func (c DeviceClient) UpdateDevice(ctx context.Context, id beta.MeDeviceId, input beta.Device, options UpdateDeviceOperationOptions) (result UpdateDeviceOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

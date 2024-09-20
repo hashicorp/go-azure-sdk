@@ -18,18 +18,47 @@ type CancelEnterpriseAppRoleAssignmentScheduleRequestOperationResponse struct {
 	OData        *odata.OData
 }
 
+type CancelEnterpriseAppRoleAssignmentScheduleRequestOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCancelEnterpriseAppRoleAssignmentScheduleRequestOperationOptions() CancelEnterpriseAppRoleAssignmentScheduleRequestOperationOptions {
+	return CancelEnterpriseAppRoleAssignmentScheduleRequestOperationOptions{}
+}
+
+func (o CancelEnterpriseAppRoleAssignmentScheduleRequestOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CancelEnterpriseAppRoleAssignmentScheduleRequestOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CancelEnterpriseAppRoleAssignmentScheduleRequestOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CancelEnterpriseAppRoleAssignmentScheduleRequest - Invoke action cancel. Immediately cancel a
 // unifiedRoleAssignmentScheduleRequest object that is in a Granted status, and have the system automatically delete the
 // canceled request after 30 days. After calling this action, the status of the canceled
 // unifiedRoleAssignmentScheduleRequest changes to Canceled.
-func (c EnterpriseAppRoleAssignmentScheduleRequestClient) CancelEnterpriseAppRoleAssignmentScheduleRequest(ctx context.Context, id beta.RoleManagementEnterpriseAppIdRoleAssignmentScheduleRequestId) (result CancelEnterpriseAppRoleAssignmentScheduleRequestOperationResponse, err error) {
+func (c EnterpriseAppRoleAssignmentScheduleRequestClient) CancelEnterpriseAppRoleAssignmentScheduleRequest(ctx context.Context, id beta.RoleManagementEnterpriseAppIdRoleAssignmentScheduleRequestId, options CancelEnterpriseAppRoleAssignmentScheduleRequestOperationOptions) (result CancelEnterpriseAppRoleAssignmentScheduleRequestOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/cancel", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/cancel", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

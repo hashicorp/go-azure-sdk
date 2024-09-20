@@ -19,15 +19,44 @@ type CreateDriveItemListItemActivityOperationResponse struct {
 	Model        *beta.ItemActivityOLD
 }
 
+type CreateDriveItemListItemActivityOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateDriveItemListItemActivityOperationOptions() CreateDriveItemListItemActivityOperationOptions {
+	return CreateDriveItemListItemActivityOperationOptions{}
+}
+
+func (o CreateDriveItemListItemActivityOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateDriveItemListItemActivityOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateDriveItemListItemActivityOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateDriveItemListItemActivity - Create new navigation property to activities for me
-func (c DriveItemListItemActivityClient) CreateDriveItemListItemActivity(ctx context.Context, id beta.MeDriveIdItemId, input beta.ItemActivityOLD) (result CreateDriveItemListItemActivityOperationResponse, err error) {
+func (c DriveItemListItemActivityClient) CreateDriveItemListItemActivity(ctx context.Context, id beta.MeDriveIdItemId, input beta.ItemActivityOLD, options CreateDriveItemListItemActivityOperationOptions) (result CreateDriveItemListItemActivityOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/listItem/activities", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/listItem/activities", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

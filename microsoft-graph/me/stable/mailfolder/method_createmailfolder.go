@@ -19,16 +19,45 @@ type CreateMailFolderOperationResponse struct {
 	Model        stable.MailFolder
 }
 
+type CreateMailFolderOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateMailFolderOperationOptions() CreateMailFolderOperationOptions {
+	return CreateMailFolderOperationOptions{}
+}
+
+func (o CreateMailFolderOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateMailFolderOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateMailFolderOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateMailFolder - Create MailFolder. Use this API to create a new mail folder in the root folder of the user's
 // mailbox. If you intend a new folder to be hidden, you must set the isHidden property to true on creation.
-func (c MailFolderClient) CreateMailFolder(ctx context.Context, input stable.MailFolder) (result CreateMailFolderOperationResponse, err error) {
+func (c MailFolderClient) CreateMailFolder(ctx context.Context, input stable.MailFolder, options CreateMailFolderOperationOptions) (result CreateMailFolderOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/me/mailFolders",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/me/mailFolders",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

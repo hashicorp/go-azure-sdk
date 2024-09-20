@@ -17,15 +17,44 @@ type RequestAndroidManagedStoreAccountEnterpriseSettingsSignupUrlOperationRespon
 	Model        *RequestAndroidManagedStoreAccountEnterpriseSettingsSignupUrlResult
 }
 
+type RequestAndroidManagedStoreAccountEnterpriseSettingsSignupUrlOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultRequestAndroidManagedStoreAccountEnterpriseSettingsSignupUrlOperationOptions() RequestAndroidManagedStoreAccountEnterpriseSettingsSignupUrlOperationOptions {
+	return RequestAndroidManagedStoreAccountEnterpriseSettingsSignupUrlOperationOptions{}
+}
+
+func (o RequestAndroidManagedStoreAccountEnterpriseSettingsSignupUrlOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o RequestAndroidManagedStoreAccountEnterpriseSettingsSignupUrlOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o RequestAndroidManagedStoreAccountEnterpriseSettingsSignupUrlOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // RequestAndroidManagedStoreAccountEnterpriseSettingsSignupUrl - Invoke action requestSignupUrl
-func (c AndroidManagedStoreAccountEnterpriseSettingClient) RequestAndroidManagedStoreAccountEnterpriseSettingsSignupUrl(ctx context.Context, input RequestAndroidManagedStoreAccountEnterpriseSettingsSignupUrlRequest) (result RequestAndroidManagedStoreAccountEnterpriseSettingsSignupUrlOperationResponse, err error) {
+func (c AndroidManagedStoreAccountEnterpriseSettingClient) RequestAndroidManagedStoreAccountEnterpriseSettingsSignupUrl(ctx context.Context, input RequestAndroidManagedStoreAccountEnterpriseSettingsSignupUrlRequest, options RequestAndroidManagedStoreAccountEnterpriseSettingsSignupUrlOperationOptions) (result RequestAndroidManagedStoreAccountEnterpriseSettingsSignupUrlOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/deviceManagement/androidManagedStoreAccountEnterpriseSettings/requestSignupUrl",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/deviceManagement/androidManagedStoreAccountEnterpriseSettings/requestSignupUrl",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -56,10 +56,15 @@ func (s PublicationFacet) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &PublicationFacet{}
 
 func (s *PublicationFacet) UnmarshalJSON(bytes []byte) error {
-	type alias PublicationFacet
-	var decoded alias
+
+	var decoded struct {
+		Level     nullable.Type[string] `json:"level,omitempty"`
+		ODataId   *string               `json:"@odata.id,omitempty"`
+		ODataType *string               `json:"@odata.type,omitempty"`
+		VersionId nullable.Type[string] `json:"versionId,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into PublicationFacet: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.Level = decoded.Level
@@ -79,5 +84,6 @@ func (s *PublicationFacet) UnmarshalJSON(bytes []byte) error {
 		}
 		s.CheckedOutBy = impl
 	}
+
 	return nil
 }

@@ -18,18 +18,47 @@ type CreateJoinedTeamPrimaryChannelUnarchiveOperationResponse struct {
 	OData        *odata.OData
 }
 
+type CreateJoinedTeamPrimaryChannelUnarchiveOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateJoinedTeamPrimaryChannelUnarchiveOperationOptions() CreateJoinedTeamPrimaryChannelUnarchiveOperationOptions {
+	return CreateJoinedTeamPrimaryChannelUnarchiveOperationOptions{}
+}
+
+func (o CreateJoinedTeamPrimaryChannelUnarchiveOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateJoinedTeamPrimaryChannelUnarchiveOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateJoinedTeamPrimaryChannelUnarchiveOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateJoinedTeamPrimaryChannelUnarchive - Invoke action unarchive. Restore an archived channel. Unarchiving restores
 // the ability for users to send messages and edit the channel. Channels are archived via the channel: archive method.
 // Unarchiving is an asynchronous operation; a channel is unarchived when the asynchronous unarchiving operation
 // completes successfully, which might occur after this method responds.
-func (c JoinedTeamPrimaryChannelClient) CreateJoinedTeamPrimaryChannelUnarchive(ctx context.Context, id stable.MeJoinedTeamId) (result CreateJoinedTeamPrimaryChannelUnarchiveOperationResponse, err error) {
+func (c JoinedTeamPrimaryChannelClient) CreateJoinedTeamPrimaryChannelUnarchive(ctx context.Context, id stable.MeJoinedTeamId, options CreateJoinedTeamPrimaryChannelUnarchiveOperationOptions) (result CreateJoinedTeamPrimaryChannelUnarchiveOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/primaryChannel/unarchive", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/primaryChannel/unarchive", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

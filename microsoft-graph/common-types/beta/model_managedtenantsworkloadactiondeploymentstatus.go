@@ -65,10 +65,20 @@ func (s ManagedTenantsWorkloadActionDeploymentStatus) MarshalJSON() ([]byte, err
 var _ json.Unmarshaler = &ManagedTenantsWorkloadActionDeploymentStatus{}
 
 func (s *ManagedTenantsWorkloadActionDeploymentStatus) UnmarshalJSON(bytes []byte) error {
-	type alias ManagedTenantsWorkloadActionDeploymentStatus
-	var decoded alias
+
+	var decoded struct {
+		ActionId               *string                             `json:"actionId,omitempty"`
+		DeployedPolicyId       nullable.Type[string]               `json:"deployedPolicyId,omitempty"`
+		ExcludeGroups          *[]string                           `json:"excludeGroups,omitempty"`
+		IncludeAllUsers        *bool                               `json:"includeAllUsers,omitempty"`
+		IncludeGroups          *[]string                           `json:"includeGroups,omitempty"`
+		LastDeploymentDateTime nullable.Type[string]               `json:"lastDeploymentDateTime,omitempty"`
+		ODataId                *string                             `json:"@odata.id,omitempty"`
+		ODataType              *string                             `json:"@odata.type,omitempty"`
+		Status                 *ManagedTenantsWorkloadActionStatus `json:"status,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into ManagedTenantsWorkloadActionDeploymentStatus: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.ActionId = decoded.ActionId
@@ -93,5 +103,6 @@ func (s *ManagedTenantsWorkloadActionDeploymentStatus) UnmarshalJSON(bytes []byt
 		}
 		s.Error = impl
 	}
+
 	return nil
 }

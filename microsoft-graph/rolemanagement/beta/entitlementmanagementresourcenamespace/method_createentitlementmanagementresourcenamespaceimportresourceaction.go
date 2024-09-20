@@ -19,15 +19,44 @@ type CreateEntitlementManagementResourceNamespaceImportResourceActionOperationRe
 	Model        *beta.UnifiedRbacResourceNamespace
 }
 
+type CreateEntitlementManagementResourceNamespaceImportResourceActionOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateEntitlementManagementResourceNamespaceImportResourceActionOperationOptions() CreateEntitlementManagementResourceNamespaceImportResourceActionOperationOptions {
+	return CreateEntitlementManagementResourceNamespaceImportResourceActionOperationOptions{}
+}
+
+func (o CreateEntitlementManagementResourceNamespaceImportResourceActionOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateEntitlementManagementResourceNamespaceImportResourceActionOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateEntitlementManagementResourceNamespaceImportResourceActionOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateEntitlementManagementResourceNamespaceImportResourceAction - Invoke action importResourceActions
-func (c EntitlementManagementResourceNamespaceClient) CreateEntitlementManagementResourceNamespaceImportResourceAction(ctx context.Context, id beta.RoleManagementEntitlementManagementResourceNamespaceId, input CreateEntitlementManagementResourceNamespaceImportResourceActionRequest) (result CreateEntitlementManagementResourceNamespaceImportResourceActionOperationResponse, err error) {
+func (c EntitlementManagementResourceNamespaceClient) CreateEntitlementManagementResourceNamespaceImportResourceAction(ctx context.Context, id beta.RoleManagementEntitlementManagementResourceNamespaceId, input CreateEntitlementManagementResourceNamespaceImportResourceActionRequest, options CreateEntitlementManagementResourceNamespaceImportResourceActionOperationOptions) (result CreateEntitlementManagementResourceNamespaceImportResourceActionOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/importResourceActions", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/importResourceActions", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

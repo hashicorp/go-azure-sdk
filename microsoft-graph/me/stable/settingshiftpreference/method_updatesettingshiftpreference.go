@@ -17,15 +17,44 @@ type UpdateSettingShiftPreferenceOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateSettingShiftPreferenceOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateSettingShiftPreferenceOperationOptions() UpdateSettingShiftPreferenceOperationOptions {
+	return UpdateSettingShiftPreferenceOperationOptions{}
+}
+
+func (o UpdateSettingShiftPreferenceOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateSettingShiftPreferenceOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateSettingShiftPreferenceOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateSettingShiftPreference - Update the navigation property shiftPreferences in me
-func (c SettingShiftPreferenceClient) UpdateSettingShiftPreference(ctx context.Context, input stable.ShiftPreferences) (result UpdateSettingShiftPreferenceOperationResponse, err error) {
+func (c SettingShiftPreferenceClient) UpdateSettingShiftPreference(ctx context.Context, input stable.ShiftPreferences, options UpdateSettingShiftPreferenceOperationOptions) (result UpdateSettingShiftPreferenceOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       "/me/settings/shiftPreferences",
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          "/me/settings/shiftPreferences",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

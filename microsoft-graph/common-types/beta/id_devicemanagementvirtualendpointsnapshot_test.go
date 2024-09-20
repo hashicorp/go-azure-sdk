@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &DeviceManagementVirtualEndpointSnapshotId{}
 
 func TestNewDeviceManagementVirtualEndpointSnapshotID(t *testing.T) {
-	id := NewDeviceManagementVirtualEndpointSnapshotID("cloudPCSnapshotIdValue")
+	id := NewDeviceManagementVirtualEndpointSnapshotID("cloudPCSnapshotId")
 
-	if id.CloudPCSnapshotId != "cloudPCSnapshotIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'CloudPCSnapshotId'", id.CloudPCSnapshotId, "cloudPCSnapshotIdValue")
+	if id.CloudPCSnapshotId != "cloudPCSnapshotId" {
+		t.Fatalf("Expected %q but got %q for Segment 'CloudPCSnapshotId'", id.CloudPCSnapshotId, "cloudPCSnapshotId")
 	}
 }
 
 func TestFormatDeviceManagementVirtualEndpointSnapshotID(t *testing.T) {
-	actual := NewDeviceManagementVirtualEndpointSnapshotID("cloudPCSnapshotIdValue").ID()
-	expected := "/deviceManagement/virtualEndpoint/snapshots/cloudPCSnapshotIdValue"
+	actual := NewDeviceManagementVirtualEndpointSnapshotID("cloudPCSnapshotId").ID()
+	expected := "/deviceManagement/virtualEndpoint/snapshots/cloudPCSnapshotId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -55,14 +55,14 @@ func TestParseDeviceManagementVirtualEndpointSnapshotID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/virtualEndpoint/snapshots/cloudPCSnapshotIdValue",
+			Input: "/deviceManagement/virtualEndpoint/snapshots/cloudPCSnapshotId",
 			Expected: &DeviceManagementVirtualEndpointSnapshotId{
-				CloudPCSnapshotId: "cloudPCSnapshotIdValue",
+				CloudPCSnapshotId: "cloudPCSnapshotId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/virtualEndpoint/snapshots/cloudPCSnapshotIdValue/extra",
+			Input: "/deviceManagement/virtualEndpoint/snapshots/cloudPCSnapshotId/extra",
 			Error: true,
 		},
 	}
@@ -131,26 +131,26 @@ func TestParseDeviceManagementVirtualEndpointSnapshotIDInsensitively(t *testing.
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/virtualEndpoint/snapshots/cloudPCSnapshotIdValue",
+			Input: "/deviceManagement/virtualEndpoint/snapshots/cloudPCSnapshotId",
 			Expected: &DeviceManagementVirtualEndpointSnapshotId{
-				CloudPCSnapshotId: "cloudPCSnapshotIdValue",
+				CloudPCSnapshotId: "cloudPCSnapshotId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/virtualEndpoint/snapshots/cloudPCSnapshotIdValue/extra",
+			Input: "/deviceManagement/virtualEndpoint/snapshots/cloudPCSnapshotId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/vIrTuAlEnDpOiNt/sNaPsHoTs/cLoUdPcSnApShOtIdVaLuE",
+			Input: "/dEvIcEmAnAgEmEnT/vIrTuAlEnDpOiNt/sNaPsHoTs/cLoUdPcSnApShOtId",
 			Expected: &DeviceManagementVirtualEndpointSnapshotId{
-				CloudPCSnapshotId: "cLoUdPcSnApShOtIdVaLuE",
+				CloudPCSnapshotId: "cLoUdPcSnApShOtId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/vIrTuAlEnDpOiNt/sNaPsHoTs/cLoUdPcSnApShOtIdVaLuE/extra",
+			Input: "/dEvIcEmAnAgEmEnT/vIrTuAlEnDpOiNt/sNaPsHoTs/cLoUdPcSnApShOtId/extra",
 			Error: true,
 		},
 	}

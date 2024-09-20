@@ -19,7 +19,8 @@ type RemovePhotoValueOperationResponse struct {
 }
 
 type RemovePhotoValueOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultRemovePhotoValueOperationOptions() RemovePhotoValueOperationOptions {
@@ -36,7 +37,9 @@ func (o RemovePhotoValueOperationOptions) ToHeaders() *client.Headers {
 
 func (o RemovePhotoValueOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

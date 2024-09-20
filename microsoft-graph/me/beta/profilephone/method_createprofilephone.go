@@ -18,15 +18,44 @@ type CreateProfilePhoneOperationResponse struct {
 	Model        *beta.ItemPhone
 }
 
+type CreateProfilePhoneOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateProfilePhoneOperationOptions() CreateProfilePhoneOperationOptions {
+	return CreateProfilePhoneOperationOptions{}
+}
+
+func (o CreateProfilePhoneOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateProfilePhoneOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateProfilePhoneOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateProfilePhone - Create itemPhoneNumber. Use this API to create a new itemPhone object in a user's profile.
-func (c ProfilePhoneClient) CreateProfilePhone(ctx context.Context, input beta.ItemPhone) (result CreateProfilePhoneOperationResponse, err error) {
+func (c ProfilePhoneClient) CreateProfilePhone(ctx context.Context, input beta.ItemPhone, options CreateProfilePhoneOperationOptions) (result CreateProfilePhoneOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/me/profile/phones",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/me/profile/phones",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

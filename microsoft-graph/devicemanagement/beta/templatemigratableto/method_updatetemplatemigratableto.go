@@ -17,15 +17,44 @@ type UpdateTemplateMigratableToOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateTemplateMigratableToOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateTemplateMigratableToOperationOptions() UpdateTemplateMigratableToOperationOptions {
+	return UpdateTemplateMigratableToOperationOptions{}
+}
+
+func (o UpdateTemplateMigratableToOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateTemplateMigratableToOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateTemplateMigratableToOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateTemplateMigratableTo - Update the navigation property migratableTo in deviceManagement
-func (c TemplateMigratableToClient) UpdateTemplateMigratableTo(ctx context.Context, id beta.DeviceManagementTemplateIdMigratableToId, input beta.DeviceManagementTemplate) (result UpdateTemplateMigratableToOperationResponse, err error) {
+func (c TemplateMigratableToClient) UpdateTemplateMigratableTo(ctx context.Context, id beta.DeviceManagementTemplateIdMigratableToId, input beta.DeviceManagementTemplate, options UpdateTemplateMigratableToOperationOptions) (result UpdateTemplateMigratableToOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

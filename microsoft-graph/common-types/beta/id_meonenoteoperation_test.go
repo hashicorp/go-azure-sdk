@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &MeOnenoteOperationId{}
 
 func TestNewMeOnenoteOperationID(t *testing.T) {
-	id := NewMeOnenoteOperationID("onenoteOperationIdValue")
+	id := NewMeOnenoteOperationID("onenoteOperationId")
 
-	if id.OnenoteOperationId != "onenoteOperationIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'OnenoteOperationId'", id.OnenoteOperationId, "onenoteOperationIdValue")
+	if id.OnenoteOperationId != "onenoteOperationId" {
+		t.Fatalf("Expected %q but got %q for Segment 'OnenoteOperationId'", id.OnenoteOperationId, "onenoteOperationId")
 	}
 }
 
 func TestFormatMeOnenoteOperationID(t *testing.T) {
-	actual := NewMeOnenoteOperationID("onenoteOperationIdValue").ID()
-	expected := "/me/onenote/operations/onenoteOperationIdValue"
+	actual := NewMeOnenoteOperationID("onenoteOperationId").ID()
+	expected := "/me/onenote/operations/onenoteOperationId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -55,14 +55,14 @@ func TestParseMeOnenoteOperationID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/me/onenote/operations/onenoteOperationIdValue",
+			Input: "/me/onenote/operations/onenoteOperationId",
 			Expected: &MeOnenoteOperationId{
-				OnenoteOperationId: "onenoteOperationIdValue",
+				OnenoteOperationId: "onenoteOperationId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/onenote/operations/onenoteOperationIdValue/extra",
+			Input: "/me/onenote/operations/onenoteOperationId/extra",
 			Error: true,
 		},
 	}
@@ -131,26 +131,26 @@ func TestParseMeOnenoteOperationIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/me/onenote/operations/onenoteOperationIdValue",
+			Input: "/me/onenote/operations/onenoteOperationId",
 			Expected: &MeOnenoteOperationId{
-				OnenoteOperationId: "onenoteOperationIdValue",
+				OnenoteOperationId: "onenoteOperationId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/onenote/operations/onenoteOperationIdValue/extra",
+			Input: "/me/onenote/operations/onenoteOperationId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/oNeNoTe/oPeRaTiOnS/oNeNoTeOpErAtIoNiDvAlUe",
+			Input: "/mE/oNeNoTe/oPeRaTiOnS/oNeNoTeOpErAtIoNiD",
 			Expected: &MeOnenoteOperationId{
-				OnenoteOperationId: "oNeNoTeOpErAtIoNiDvAlUe",
+				OnenoteOperationId: "oNeNoTeOpErAtIoNiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/mE/oNeNoTe/oPeRaTiOnS/oNeNoTeOpErAtIoNiDvAlUe/extra",
+			Input: "/mE/oNeNoTe/oPeRaTiOnS/oNeNoTeOpErAtIoNiD/extra",
 			Error: true,
 		},
 	}

@@ -17,15 +17,44 @@ type UpdateDeviceManagementRoleDefinitionOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateDeviceManagementRoleDefinitionOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateDeviceManagementRoleDefinitionOperationOptions() UpdateDeviceManagementRoleDefinitionOperationOptions {
+	return UpdateDeviceManagementRoleDefinitionOperationOptions{}
+}
+
+func (o UpdateDeviceManagementRoleDefinitionOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateDeviceManagementRoleDefinitionOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateDeviceManagementRoleDefinitionOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateDeviceManagementRoleDefinition - Update the navigation property roleDefinitions in roleManagement
-func (c DeviceManagementRoleDefinitionClient) UpdateDeviceManagementRoleDefinition(ctx context.Context, id beta.RoleManagementDeviceManagementRoleDefinitionId, input beta.UnifiedRoleDefinition) (result UpdateDeviceManagementRoleDefinitionOperationResponse, err error) {
+func (c DeviceManagementRoleDefinitionClient) UpdateDeviceManagementRoleDefinition(ctx context.Context, id beta.RoleManagementDeviceManagementRoleDefinitionId, input beta.UnifiedRoleDefinition, options UpdateDeviceManagementRoleDefinitionOperationOptions) (result UpdateDeviceManagementRoleDefinitionOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

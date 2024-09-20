@@ -344,17 +344,97 @@ func (s MacOSGeneralDeviceConfiguration) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &MacOSGeneralDeviceConfiguration{}
 
 func (s *MacOSGeneralDeviceConfiguration) UnmarshalJSON(bytes []byte) error {
-	type alias MacOSGeneralDeviceConfiguration
-	var decoded alias
+
+	var decoded struct {
+		ActivationLockWhenSupervisedAllowed             *bool                                        `json:"activationLockWhenSupervisedAllowed,omitempty"`
+		AddingGameCenterFriendsBlocked                  *bool                                        `json:"addingGameCenterFriendsBlocked,omitempty"`
+		AirDropBlocked                                  *bool                                        `json:"airDropBlocked,omitempty"`
+		AppleWatchBlockAutoUnlock                       *bool                                        `json:"appleWatchBlockAutoUnlock,omitempty"`
+		CameraBlocked                                   *bool                                        `json:"cameraBlocked,omitempty"`
+		ClassroomAppBlockRemoteScreenObservation        *bool                                        `json:"classroomAppBlockRemoteScreenObservation,omitempty"`
+		ClassroomAppForceUnpromptedScreenObservation    *bool                                        `json:"classroomAppForceUnpromptedScreenObservation,omitempty"`
+		ClassroomForceAutomaticallyJoinClasses          *bool                                        `json:"classroomForceAutomaticallyJoinClasses,omitempty"`
+		ClassroomForceRequestPermissionToLeaveClasses   *bool                                        `json:"classroomForceRequestPermissionToLeaveClasses,omitempty"`
+		ClassroomForceUnpromptedAppAndDeviceLock        *bool                                        `json:"classroomForceUnpromptedAppAndDeviceLock,omitempty"`
+		CompliantAppListType                            *AppListType                                 `json:"compliantAppListType,omitempty"`
+		CompliantAppsList                               *[]AppListItem                               `json:"compliantAppsList,omitempty"`
+		ContentCachingBlocked                           *bool                                        `json:"contentCachingBlocked,omitempty"`
+		DefinitionLookupBlocked                         *bool                                        `json:"definitionLookupBlocked,omitempty"`
+		EmailInDomainSuffixes                           *[]string                                    `json:"emailInDomainSuffixes,omitempty"`
+		EraseContentAndSettingsBlocked                  *bool                                        `json:"eraseContentAndSettingsBlocked,omitempty"`
+		GameCenterBlocked                               *bool                                        `json:"gameCenterBlocked,omitempty"`
+		ICloudBlockActivityContinuation                 *bool                                        `json:"iCloudBlockActivityContinuation,omitempty"`
+		ICloudBlockAddressBook                          *bool                                        `json:"iCloudBlockAddressBook,omitempty"`
+		ICloudBlockBookmarks                            *bool                                        `json:"iCloudBlockBookmarks,omitempty"`
+		ICloudBlockCalendar                             *bool                                        `json:"iCloudBlockCalendar,omitempty"`
+		ICloudBlockDocumentSync                         *bool                                        `json:"iCloudBlockDocumentSync,omitempty"`
+		ICloudBlockMail                                 *bool                                        `json:"iCloudBlockMail,omitempty"`
+		ICloudBlockNotes                                *bool                                        `json:"iCloudBlockNotes,omitempty"`
+		ICloudBlockPhotoLibrary                         *bool                                        `json:"iCloudBlockPhotoLibrary,omitempty"`
+		ICloudBlockReminders                            *bool                                        `json:"iCloudBlockReminders,omitempty"`
+		ICloudDesktopAndDocumentsBlocked                *bool                                        `json:"iCloudDesktopAndDocumentsBlocked,omitempty"`
+		ICloudPrivateRelayBlocked                       *bool                                        `json:"iCloudPrivateRelayBlocked,omitempty"`
+		ITunesBlockFileSharing                          *bool                                        `json:"iTunesBlockFileSharing,omitempty"`
+		ITunesBlockMusicService                         *bool                                        `json:"iTunesBlockMusicService,omitempty"`
+		KeyboardBlockDictation                          *bool                                        `json:"keyboardBlockDictation,omitempty"`
+		KeychainBlockCloudSync                          *bool                                        `json:"keychainBlockCloudSync,omitempty"`
+		MultiplayerGamingBlocked                        *bool                                        `json:"multiplayerGamingBlocked,omitempty"`
+		PasswordBlockAirDropSharing                     *bool                                        `json:"passwordBlockAirDropSharing,omitempty"`
+		PasswordBlockAutoFill                           *bool                                        `json:"passwordBlockAutoFill,omitempty"`
+		PasswordBlockFingerprintUnlock                  *bool                                        `json:"passwordBlockFingerprintUnlock,omitempty"`
+		PasswordBlockModification                       *bool                                        `json:"passwordBlockModification,omitempty"`
+		PasswordBlockProximityRequests                  *bool                                        `json:"passwordBlockProximityRequests,omitempty"`
+		PasswordBlockSimple                             *bool                                        `json:"passwordBlockSimple,omitempty"`
+		PasswordExpirationDays                          nullable.Type[int64]                         `json:"passwordExpirationDays,omitempty"`
+		PasswordMaximumAttemptCount                     nullable.Type[int64]                         `json:"passwordMaximumAttemptCount,omitempty"`
+		PasswordMinimumCharacterSetCount                nullable.Type[int64]                         `json:"passwordMinimumCharacterSetCount,omitempty"`
+		PasswordMinimumLength                           nullable.Type[int64]                         `json:"passwordMinimumLength,omitempty"`
+		PasswordMinutesOfInactivityBeforeLock           nullable.Type[int64]                         `json:"passwordMinutesOfInactivityBeforeLock,omitempty"`
+		PasswordMinutesOfInactivityBeforeScreenTimeout  nullable.Type[int64]                         `json:"passwordMinutesOfInactivityBeforeScreenTimeout,omitempty"`
+		PasswordMinutesUntilFailedLoginReset            nullable.Type[int64]                         `json:"passwordMinutesUntilFailedLoginReset,omitempty"`
+		PasswordPreviousPasswordBlockCount              nullable.Type[int64]                         `json:"passwordPreviousPasswordBlockCount,omitempty"`
+		PasswordRequired                                *bool                                        `json:"passwordRequired,omitempty"`
+		PasswordRequiredType                            *RequiredPasswordType                        `json:"passwordRequiredType,omitempty"`
+		PrivacyAccessControls                           *[]MacOSPrivacyAccessControlItem             `json:"privacyAccessControls,omitempty"`
+		SafariBlockAutofill                             *bool                                        `json:"safariBlockAutofill,omitempty"`
+		ScreenCaptureBlocked                            *bool                                        `json:"screenCaptureBlocked,omitempty"`
+		SoftwareUpdateMajorOSDeferredInstallDelayInDays nullable.Type[int64]                         `json:"softwareUpdateMajorOSDeferredInstallDelayInDays,omitempty"`
+		SoftwareUpdateMinorOSDeferredInstallDelayInDays nullable.Type[int64]                         `json:"softwareUpdateMinorOSDeferredInstallDelayInDays,omitempty"`
+		SoftwareUpdateNonOSDeferredInstallDelayInDays   nullable.Type[int64]                         `json:"softwareUpdateNonOSDeferredInstallDelayInDays,omitempty"`
+		SoftwareUpdatesEnforcedDelayInDays              nullable.Type[int64]                         `json:"softwareUpdatesEnforcedDelayInDays,omitempty"`
+		SpotlightBlockInternetResults                   *bool                                        `json:"spotlightBlockInternetResults,omitempty"`
+		TouchIdTimeoutInHours                           nullable.Type[int64]                         `json:"touchIdTimeoutInHours,omitempty"`
+		UpdateDelayPolicy                               *MacOSSoftwareUpdateDelayPolicy              `json:"updateDelayPolicy,omitempty"`
+		WallpaperModificationBlocked                    *bool                                        `json:"wallpaperModificationBlocked,omitempty"`
+		Assignments                                     *[]DeviceConfigurationAssignment             `json:"assignments,omitempty"`
+		CreatedDateTime                                 *string                                      `json:"createdDateTime,omitempty"`
+		Description                                     nullable.Type[string]                        `json:"description,omitempty"`
+		DeviceManagementApplicabilityRuleDeviceMode     *DeviceManagementApplicabilityRuleDeviceMode `json:"deviceManagementApplicabilityRuleDeviceMode,omitempty"`
+		DeviceManagementApplicabilityRuleOsEdition      *DeviceManagementApplicabilityRuleOsEdition  `json:"deviceManagementApplicabilityRuleOsEdition,omitempty"`
+		DeviceManagementApplicabilityRuleOsVersion      *DeviceManagementApplicabilityRuleOsVersion  `json:"deviceManagementApplicabilityRuleOsVersion,omitempty"`
+		DeviceSettingStateSummaries                     *[]SettingStateDeviceSummary                 `json:"deviceSettingStateSummaries,omitempty"`
+		DeviceStatusOverview                            *DeviceConfigurationDeviceOverview           `json:"deviceStatusOverview,omitempty"`
+		DeviceStatuses                                  *[]DeviceConfigurationDeviceStatus           `json:"deviceStatuses,omitempty"`
+		DisplayName                                     *string                                      `json:"displayName,omitempty"`
+		GroupAssignments                                *[]DeviceConfigurationGroupAssignment        `json:"groupAssignments,omitempty"`
+		LastModifiedDateTime                            *string                                      `json:"lastModifiedDateTime,omitempty"`
+		RoleScopeTagIds                                 *[]string                                    `json:"roleScopeTagIds,omitempty"`
+		SupportsScopeTags                               *bool                                        `json:"supportsScopeTags,omitempty"`
+		UserStatusOverview                              *DeviceConfigurationUserOverview             `json:"userStatusOverview,omitempty"`
+		UserStatuses                                    *[]DeviceConfigurationUserStatus             `json:"userStatuses,omitempty"`
+		Version                                         *int64                                       `json:"version,omitempty"`
+		Id                                              *string                                      `json:"id,omitempty"`
+		ODataId                                         *string                                      `json:"@odata.id,omitempty"`
+		ODataType                                       *string                                      `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into MacOSGeneralDeviceConfiguration: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.ActivationLockWhenSupervisedAllowed = decoded.ActivationLockWhenSupervisedAllowed
 	s.AddingGameCenterFriendsBlocked = decoded.AddingGameCenterFriendsBlocked
 	s.AirDropBlocked = decoded.AirDropBlocked
 	s.AppleWatchBlockAutoUnlock = decoded.AppleWatchBlockAutoUnlock
-	s.Assignments = decoded.Assignments
 	s.CameraBlocked = decoded.CameraBlocked
 	s.ClassroomAppBlockRemoteScreenObservation = decoded.ClassroomAppBlockRemoteScreenObservation
 	s.ClassroomAppForceUnpromptedScreenObservation = decoded.ClassroomAppForceUnpromptedScreenObservation
@@ -363,20 +443,10 @@ func (s *MacOSGeneralDeviceConfiguration) UnmarshalJSON(bytes []byte) error {
 	s.ClassroomForceUnpromptedAppAndDeviceLock = decoded.ClassroomForceUnpromptedAppAndDeviceLock
 	s.CompliantAppListType = decoded.CompliantAppListType
 	s.ContentCachingBlocked = decoded.ContentCachingBlocked
-	s.CreatedDateTime = decoded.CreatedDateTime
 	s.DefinitionLookupBlocked = decoded.DefinitionLookupBlocked
-	s.Description = decoded.Description
-	s.DeviceManagementApplicabilityRuleDeviceMode = decoded.DeviceManagementApplicabilityRuleDeviceMode
-	s.DeviceManagementApplicabilityRuleOsEdition = decoded.DeviceManagementApplicabilityRuleOsEdition
-	s.DeviceManagementApplicabilityRuleOsVersion = decoded.DeviceManagementApplicabilityRuleOsVersion
-	s.DeviceSettingStateSummaries = decoded.DeviceSettingStateSummaries
-	s.DeviceStatusOverview = decoded.DeviceStatusOverview
-	s.DeviceStatuses = decoded.DeviceStatuses
-	s.DisplayName = decoded.DisplayName
 	s.EmailInDomainSuffixes = decoded.EmailInDomainSuffixes
 	s.EraseContentAndSettingsBlocked = decoded.EraseContentAndSettingsBlocked
 	s.GameCenterBlocked = decoded.GameCenterBlocked
-	s.GroupAssignments = decoded.GroupAssignments
 	s.ICloudBlockActivityContinuation = decoded.ICloudBlockActivityContinuation
 	s.ICloudBlockAddressBook = decoded.ICloudBlockAddressBook
 	s.ICloudBlockBookmarks = decoded.ICloudBlockBookmarks
@@ -390,13 +460,9 @@ func (s *MacOSGeneralDeviceConfiguration) UnmarshalJSON(bytes []byte) error {
 	s.ICloudPrivateRelayBlocked = decoded.ICloudPrivateRelayBlocked
 	s.ITunesBlockFileSharing = decoded.ITunesBlockFileSharing
 	s.ITunesBlockMusicService = decoded.ITunesBlockMusicService
-	s.Id = decoded.Id
 	s.KeyboardBlockDictation = decoded.KeyboardBlockDictation
 	s.KeychainBlockCloudSync = decoded.KeychainBlockCloudSync
-	s.LastModifiedDateTime = decoded.LastModifiedDateTime
 	s.MultiplayerGamingBlocked = decoded.MultiplayerGamingBlocked
-	s.ODataId = decoded.ODataId
-	s.ODataType = decoded.ODataType
 	s.PasswordBlockAirDropSharing = decoded.PasswordBlockAirDropSharing
 	s.PasswordBlockAutoFill = decoded.PasswordBlockAutoFill
 	s.PasswordBlockFingerprintUnlock = decoded.PasswordBlockFingerprintUnlock
@@ -414,7 +480,6 @@ func (s *MacOSGeneralDeviceConfiguration) UnmarshalJSON(bytes []byte) error {
 	s.PasswordRequired = decoded.PasswordRequired
 	s.PasswordRequiredType = decoded.PasswordRequiredType
 	s.PrivacyAccessControls = decoded.PrivacyAccessControls
-	s.RoleScopeTagIds = decoded.RoleScopeTagIds
 	s.SafariBlockAutofill = decoded.SafariBlockAutofill
 	s.ScreenCaptureBlocked = decoded.ScreenCaptureBlocked
 	s.SoftwareUpdateMajorOSDeferredInstallDelayInDays = decoded.SoftwareUpdateMajorOSDeferredInstallDelayInDays
@@ -422,13 +487,29 @@ func (s *MacOSGeneralDeviceConfiguration) UnmarshalJSON(bytes []byte) error {
 	s.SoftwareUpdateNonOSDeferredInstallDelayInDays = decoded.SoftwareUpdateNonOSDeferredInstallDelayInDays
 	s.SoftwareUpdatesEnforcedDelayInDays = decoded.SoftwareUpdatesEnforcedDelayInDays
 	s.SpotlightBlockInternetResults = decoded.SpotlightBlockInternetResults
-	s.SupportsScopeTags = decoded.SupportsScopeTags
 	s.TouchIdTimeoutInHours = decoded.TouchIdTimeoutInHours
 	s.UpdateDelayPolicy = decoded.UpdateDelayPolicy
+	s.WallpaperModificationBlocked = decoded.WallpaperModificationBlocked
+	s.Assignments = decoded.Assignments
+	s.CreatedDateTime = decoded.CreatedDateTime
+	s.Description = decoded.Description
+	s.DeviceManagementApplicabilityRuleDeviceMode = decoded.DeviceManagementApplicabilityRuleDeviceMode
+	s.DeviceManagementApplicabilityRuleOsEdition = decoded.DeviceManagementApplicabilityRuleOsEdition
+	s.DeviceManagementApplicabilityRuleOsVersion = decoded.DeviceManagementApplicabilityRuleOsVersion
+	s.DeviceSettingStateSummaries = decoded.DeviceSettingStateSummaries
+	s.DeviceStatusOverview = decoded.DeviceStatusOverview
+	s.DeviceStatuses = decoded.DeviceStatuses
+	s.DisplayName = decoded.DisplayName
+	s.GroupAssignments = decoded.GroupAssignments
+	s.Id = decoded.Id
+	s.LastModifiedDateTime = decoded.LastModifiedDateTime
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
+	s.RoleScopeTagIds = decoded.RoleScopeTagIds
+	s.SupportsScopeTags = decoded.SupportsScopeTags
 	s.UserStatusOverview = decoded.UserStatusOverview
 	s.UserStatuses = decoded.UserStatuses
 	s.Version = decoded.Version
-	s.WallpaperModificationBlocked = decoded.WallpaperModificationBlocked
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -451,5 +532,6 @@ func (s *MacOSGeneralDeviceConfiguration) UnmarshalJSON(bytes []byte) error {
 		}
 		s.CompliantAppsList = &output
 	}
+
 	return nil
 }

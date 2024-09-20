@@ -99,9 +99,9 @@ func (id DeviceManagementEmbeddedSIMActivationCodePoolIdAssignmentId) Segments()
 	return []resourceids.Segment{
 		resourceids.StaticSegment("deviceManagement", "deviceManagement", "deviceManagement"),
 		resourceids.StaticSegment("embeddedSIMActivationCodePools", "embeddedSIMActivationCodePools", "embeddedSIMActivationCodePools"),
-		resourceids.UserSpecifiedSegment("embeddedSIMActivationCodePoolId", "embeddedSIMActivationCodePoolIdValue"),
+		resourceids.UserSpecifiedSegment("embeddedSIMActivationCodePoolId", "embeddedSIMActivationCodePoolId"),
 		resourceids.StaticSegment("assignments", "assignments", "assignments"),
-		resourceids.UserSpecifiedSegment("embeddedSIMActivationCodePoolAssignmentId", "embeddedSIMActivationCodePoolAssignmentIdValue"),
+		resourceids.UserSpecifiedSegment("embeddedSIMActivationCodePoolAssignmentId", "embeddedSIMActivationCodePoolAssignmentId"),
 	}
 }
 

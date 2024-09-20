@@ -18,16 +18,45 @@ type CreateManagedDeviceWindowsOSImageOperationResponse struct {
 	Model        *beta.ManagedDeviceWindowsOperatingSystemImage
 }
 
+type CreateManagedDeviceWindowsOSImageOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateManagedDeviceWindowsOSImageOperationOptions() CreateManagedDeviceWindowsOSImageOperationOptions {
+	return CreateManagedDeviceWindowsOSImageOperationOptions{}
+}
+
+func (o CreateManagedDeviceWindowsOSImageOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateManagedDeviceWindowsOSImageOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateManagedDeviceWindowsOSImageOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateManagedDeviceWindowsOSImage - Create new navigation property to managedDeviceWindowsOSImages for
 // deviceManagement
-func (c ManagedDeviceWindowsOSImageClient) CreateManagedDeviceWindowsOSImage(ctx context.Context, input beta.ManagedDeviceWindowsOperatingSystemImage) (result CreateManagedDeviceWindowsOSImageOperationResponse, err error) {
+func (c ManagedDeviceWindowsOSImageClient) CreateManagedDeviceWindowsOSImage(ctx context.Context, input beta.ManagedDeviceWindowsOperatingSystemImage, options CreateManagedDeviceWindowsOSImageOperationOptions) (result CreateManagedDeviceWindowsOSImageOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/deviceManagement/managedDeviceWindowsOSImages",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/deviceManagement/managedDeviceWindowsOSImages",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

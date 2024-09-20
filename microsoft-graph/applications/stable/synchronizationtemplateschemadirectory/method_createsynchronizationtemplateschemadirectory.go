@@ -19,15 +19,44 @@ type CreateSynchronizationTemplateSchemaDirectoryOperationResponse struct {
 	Model        *stable.DirectoryDefinition
 }
 
+type CreateSynchronizationTemplateSchemaDirectoryOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateSynchronizationTemplateSchemaDirectoryOperationOptions() CreateSynchronizationTemplateSchemaDirectoryOperationOptions {
+	return CreateSynchronizationTemplateSchemaDirectoryOperationOptions{}
+}
+
+func (o CreateSynchronizationTemplateSchemaDirectoryOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateSynchronizationTemplateSchemaDirectoryOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateSynchronizationTemplateSchemaDirectoryOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateSynchronizationTemplateSchemaDirectory - Create new navigation property to directories for applications
-func (c SynchronizationTemplateSchemaDirectoryClient) CreateSynchronizationTemplateSchemaDirectory(ctx context.Context, id stable.ApplicationIdSynchronizationTemplateId, input stable.DirectoryDefinition) (result CreateSynchronizationTemplateSchemaDirectoryOperationResponse, err error) {
+func (c SynchronizationTemplateSchemaDirectoryClient) CreateSynchronizationTemplateSchemaDirectory(ctx context.Context, id stable.ApplicationIdSynchronizationTemplateId, input stable.DirectoryDefinition, options CreateSynchronizationTemplateSchemaDirectoryOperationOptions) (result CreateSynchronizationTemplateSchemaDirectoryOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/schema/directories", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/schema/directories", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

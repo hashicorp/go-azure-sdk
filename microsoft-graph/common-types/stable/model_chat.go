@@ -113,20 +113,36 @@ func (s Chat) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &Chat{}
 
 func (s *Chat) UnmarshalJSON(bytes []byte) error {
-	type alias Chat
-	var decoded alias
+
+	var decoded struct {
+		ChatType            *ChatType                          `json:"chatType,omitempty"`
+		CreatedDateTime     nullable.Type[string]              `json:"createdDateTime,omitempty"`
+		InstalledApps       *[]TeamsAppInstallation            `json:"installedApps,omitempty"`
+		LastMessagePreview  *ChatMessageInfo                   `json:"lastMessagePreview,omitempty"`
+		LastUpdatedDateTime nullable.Type[string]              `json:"lastUpdatedDateTime,omitempty"`
+		Members             *[]ConversationMember              `json:"members,omitempty"`
+		Messages            *[]ChatMessage                     `json:"messages,omitempty"`
+		OnlineMeetingInfo   *TeamworkOnlineMeetingInfo         `json:"onlineMeetingInfo,omitempty"`
+		PermissionGrants    *[]ResourceSpecificPermissionGrant `json:"permissionGrants,omitempty"`
+		PinnedMessages      *[]PinnedChatMessageInfo           `json:"pinnedMessages,omitempty"`
+		Tabs                *[]TeamsTab                        `json:"tabs,omitempty"`
+		TenantId            nullable.Type[string]              `json:"tenantId,omitempty"`
+		Topic               nullable.Type[string]              `json:"topic,omitempty"`
+		Viewpoint           *ChatViewpoint                     `json:"viewpoint,omitempty"`
+		WebUrl              nullable.Type[string]              `json:"webUrl,omitempty"`
+		Id                  *string                            `json:"id,omitempty"`
+		ODataId             *string                            `json:"@odata.id,omitempty"`
+		ODataType           *string                            `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into Chat: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.ChatType = decoded.ChatType
 	s.CreatedDateTime = decoded.CreatedDateTime
-	s.Id = decoded.Id
 	s.LastMessagePreview = decoded.LastMessagePreview
 	s.LastUpdatedDateTime = decoded.LastUpdatedDateTime
 	s.Messages = decoded.Messages
-	s.ODataId = decoded.ODataId
-	s.ODataType = decoded.ODataType
 	s.OnlineMeetingInfo = decoded.OnlineMeetingInfo
 	s.PermissionGrants = decoded.PermissionGrants
 	s.PinnedMessages = decoded.PinnedMessages
@@ -135,6 +151,9 @@ func (s *Chat) UnmarshalJSON(bytes []byte) error {
 	s.Topic = decoded.Topic
 	s.Viewpoint = decoded.Viewpoint
 	s.WebUrl = decoded.WebUrl
+	s.Id = decoded.Id
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -174,5 +193,6 @@ func (s *Chat) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Members = &output
 	}
+
 	return nil
 }

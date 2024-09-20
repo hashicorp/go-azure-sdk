@@ -17,17 +17,46 @@ type UpdateOAuth2PermissionGrantOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateOAuth2PermissionGrantOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateOAuth2PermissionGrantOperationOptions() UpdateOAuth2PermissionGrantOperationOptions {
+	return UpdateOAuth2PermissionGrantOperationOptions{}
+}
+
+func (o UpdateOAuth2PermissionGrantOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateOAuth2PermissionGrantOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateOAuth2PermissionGrantOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateOAuth2PermissionGrant - Update oAuth2PermissionGrant (a delegated permission grant). Update the properties of
 // oAuth2PermissionGrant object, representing a delegated permission grant. An oAuth2PermissionGrant can be updated to
 // change which delegated permissions are granted, by adding or removing items from the list in scopes.
-func (c OAuth2PermissionGrantClient) UpdateOAuth2PermissionGrant(ctx context.Context, id beta.OAuth2PermissionGrantId, input beta.OAuth2PermissionGrant) (result UpdateOAuth2PermissionGrantOperationResponse, err error) {
+func (c OAuth2PermissionGrantClient) UpdateOAuth2PermissionGrant(ctx context.Context, id beta.OAuth2PermissionGrantId, input beta.OAuth2PermissionGrant, options UpdateOAuth2PermissionGrantOperationOptions) (result UpdateOAuth2PermissionGrantOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

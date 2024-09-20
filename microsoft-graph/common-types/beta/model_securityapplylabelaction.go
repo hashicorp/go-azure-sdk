@@ -68,17 +68,24 @@ func (s SecurityApplyLabelAction) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &SecurityApplyLabelAction{}
 
 func (s *SecurityApplyLabelAction) UnmarshalJSON(bytes []byte) error {
-	type alias SecurityApplyLabelAction
-	var decoded alias
+
+	var decoded struct {
+		ActionSource                *SecurityActionSource                  `json:"actionSource,omitempty"`
+		Actions                     *[]SecurityInformationProtectionAction `json:"actions,omitempty"`
+		ResponsibleSensitiveTypeIds *[]string                              `json:"responsibleSensitiveTypeIds,omitempty"`
+		SensitivityLabelId          nullable.Type[string]                  `json:"sensitivityLabelId,omitempty"`
+		ODataId                     *string                                `json:"@odata.id,omitempty"`
+		ODataType                   *string                                `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into SecurityApplyLabelAction: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.ActionSource = decoded.ActionSource
-	s.ODataId = decoded.ODataId
-	s.ODataType = decoded.ODataType
 	s.ResponsibleSensitiveTypeIds = decoded.ResponsibleSensitiveTypeIds
 	s.SensitivityLabelId = decoded.SensitivityLabelId
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -101,5 +108,6 @@ func (s *SecurityApplyLabelAction) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Actions = &output
 	}
+
 	return nil
 }

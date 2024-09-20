@@ -19,16 +19,45 @@ type CreateEnterpriseAppRoleAssignmentScheduleInstanceOperationResponse struct {
 	Model        *beta.UnifiedRoleAssignmentScheduleInstance
 }
 
+type CreateEnterpriseAppRoleAssignmentScheduleInstanceOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateEnterpriseAppRoleAssignmentScheduleInstanceOperationOptions() CreateEnterpriseAppRoleAssignmentScheduleInstanceOperationOptions {
+	return CreateEnterpriseAppRoleAssignmentScheduleInstanceOperationOptions{}
+}
+
+func (o CreateEnterpriseAppRoleAssignmentScheduleInstanceOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateEnterpriseAppRoleAssignmentScheduleInstanceOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateEnterpriseAppRoleAssignmentScheduleInstanceOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateEnterpriseAppRoleAssignmentScheduleInstance - Create new navigation property to roleAssignmentScheduleInstances
 // for roleManagement
-func (c EnterpriseAppRoleAssignmentScheduleInstanceClient) CreateEnterpriseAppRoleAssignmentScheduleInstance(ctx context.Context, id beta.RoleManagementEnterpriseAppId, input beta.UnifiedRoleAssignmentScheduleInstance) (result CreateEnterpriseAppRoleAssignmentScheduleInstanceOperationResponse, err error) {
+func (c EnterpriseAppRoleAssignmentScheduleInstanceClient) CreateEnterpriseAppRoleAssignmentScheduleInstance(ctx context.Context, id beta.RoleManagementEnterpriseAppId, input beta.UnifiedRoleAssignmentScheduleInstance, options CreateEnterpriseAppRoleAssignmentScheduleInstanceOperationOptions) (result CreateEnterpriseAppRoleAssignmentScheduleInstanceOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/roleAssignmentScheduleInstances", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/roleAssignmentScheduleInstances", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

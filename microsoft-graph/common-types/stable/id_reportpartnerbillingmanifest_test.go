@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &ReportPartnerBillingManifestId{}
 
 func TestNewReportPartnerBillingManifestID(t *testing.T) {
-	id := NewReportPartnerBillingManifestID("manifestIdValue")
+	id := NewReportPartnerBillingManifestID("manifestId")
 
-	if id.ManifestId != "manifestIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ManifestId'", id.ManifestId, "manifestIdValue")
+	if id.ManifestId != "manifestId" {
+		t.Fatalf("Expected %q but got %q for Segment 'ManifestId'", id.ManifestId, "manifestId")
 	}
 }
 
 func TestFormatReportPartnerBillingManifestID(t *testing.T) {
-	actual := NewReportPartnerBillingManifestID("manifestIdValue").ID()
-	expected := "/reports/partners/billing/manifests/manifestIdValue"
+	actual := NewReportPartnerBillingManifestID("manifestId").ID()
+	expected := "/reports/partners/billing/manifests/manifestId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -60,14 +60,14 @@ func TestParseReportPartnerBillingManifestID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/reports/partners/billing/manifests/manifestIdValue",
+			Input: "/reports/partners/billing/manifests/manifestId",
 			Expected: &ReportPartnerBillingManifestId{
-				ManifestId: "manifestIdValue",
+				ManifestId: "manifestId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/reports/partners/billing/manifests/manifestIdValue/extra",
+			Input: "/reports/partners/billing/manifests/manifestId/extra",
 			Error: true,
 		},
 	}
@@ -146,26 +146,26 @@ func TestParseReportPartnerBillingManifestIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/reports/partners/billing/manifests/manifestIdValue",
+			Input: "/reports/partners/billing/manifests/manifestId",
 			Expected: &ReportPartnerBillingManifestId{
-				ManifestId: "manifestIdValue",
+				ManifestId: "manifestId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/reports/partners/billing/manifests/manifestIdValue/extra",
+			Input: "/reports/partners/billing/manifests/manifestId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/rEpOrTs/pArTnErS/bIlLiNg/mAnIfEsTs/mAnIfEsTiDvAlUe",
+			Input: "/rEpOrTs/pArTnErS/bIlLiNg/mAnIfEsTs/mAnIfEsTiD",
 			Expected: &ReportPartnerBillingManifestId{
-				ManifestId: "mAnIfEsTiDvAlUe",
+				ManifestId: "mAnIfEsTiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/rEpOrTs/pArTnErS/bIlLiNg/mAnIfEsTs/mAnIfEsTiDvAlUe/extra",
+			Input: "/rEpOrTs/pArTnErS/bIlLiNg/mAnIfEsTs/mAnIfEsTiD/extra",
 			Error: true,
 		},
 	}

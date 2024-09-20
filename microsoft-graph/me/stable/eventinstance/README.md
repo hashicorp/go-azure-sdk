@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/eventinstance` Documentation
 
-The `eventinstance` SDK allows for interaction with the Azure Resource Manager Service `me` (API Version `stable`).
+The `eventinstance` SDK allows for interaction with Microsoft Graph `me` (API Version `stable`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -15,7 +15,7 @@ import "github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/eventinstanc
 ### Client Initialization
 
 ```go
-client := eventinstance.NewEventInstanceClientWithBaseURI("https://management.azure.com")
+client := eventinstance.NewEventInstanceClientWithBaseURI("https://graph.microsoft.com")
 client.Client.Authorizer = authorizer
 ```
 
@@ -24,14 +24,14 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := eventinstance.NewMeEventIdInstanceID("eventIdValue", "eventId1Value")
+id := eventinstance.NewMeEventIdInstanceID("eventId", "eventId1")
 
 payload := eventinstance.AcceptEventInstanceRequest{
 	// ...
 }
 
 
-read, err := client.AcceptEventInstance(ctx, id, payload)
+read, err := client.AcceptEventInstance(ctx, id, payload, eventinstance.DefaultAcceptEventInstanceOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -45,14 +45,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := eventinstance.NewMeEventIdInstanceID("eventIdValue", "eventId1Value")
+id := eventinstance.NewMeEventIdInstanceID("eventId", "eventId1")
 
 payload := eventinstance.CancelEventInstanceRequest{
 	// ...
 }
 
 
-read, err := client.CancelEventInstance(ctx, id, payload)
+read, err := client.CancelEventInstance(ctx, id, payload, eventinstance.DefaultCancelEventInstanceOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -66,14 +66,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := eventinstance.NewMeEventIdInstanceID("eventIdValue", "eventId1Value")
+id := eventinstance.NewMeEventIdInstanceID("eventId", "eventId1")
 
 payload := eventinstance.DeclineEventInstanceRequest{
 	// ...
 }
 
 
-read, err := client.DeclineEventInstance(ctx, id, payload)
+read, err := client.DeclineEventInstance(ctx, id, payload, eventinstance.DefaultDeclineEventInstanceOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -87,9 +87,9 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := eventinstance.NewMeEventIdInstanceID("eventIdValue", "eventId1Value")
+id := eventinstance.NewMeEventIdInstanceID("eventId", "eventId1")
 
-read, err := client.DismissEventInstanceReminder(ctx, id)
+read, err := client.DismissEventInstanceReminder(ctx, id, eventinstance.DefaultDismissEventInstanceReminderOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -103,14 +103,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := eventinstance.NewMeEventIdInstanceID("eventIdValue", "eventId1Value")
+id := eventinstance.NewMeEventIdInstanceID("eventId", "eventId1")
 
 payload := eventinstance.ForwardEventInstanceRequest{
 	// ...
 }
 
 
-read, err := client.ForwardEventInstance(ctx, id, payload)
+read, err := client.ForwardEventInstance(ctx, id, payload, eventinstance.DefaultForwardEventInstanceOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -124,7 +124,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := eventinstance.NewMeEventIdInstanceID("eventIdValue", "eventId1Value")
+id := eventinstance.NewMeEventIdInstanceID("eventId", "eventId1")
 
 read, err := client.GetEventInstance(ctx, id, eventinstance.DefaultGetEventInstanceOperationOptions())
 if err != nil {
@@ -140,7 +140,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := eventinstance.NewMeEventID("eventIdValue")
+id := eventinstance.NewMeEventID("eventId")
 
 read, err := client.GetEventInstancesCount(ctx, id, eventinstance.DefaultGetEventInstancesCountOperationOptions())
 if err != nil {
@@ -156,7 +156,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := eventinstance.NewMeEventID("eventIdValue")
+id := eventinstance.NewMeEventID("eventId")
 
 // alternatively `client.ListEventInstances(ctx, id, eventinstance.DefaultListEventInstancesOperationOptions())` can be used to do batched pagination
 items, err := client.ListEventInstancesComplete(ctx, id, eventinstance.DefaultListEventInstancesOperationOptions())
@@ -173,14 +173,14 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := eventinstance.NewMeEventIdInstanceID("eventIdValue", "eventId1Value")
+id := eventinstance.NewMeEventIdInstanceID("eventId", "eventId1")
 
 payload := eventinstance.SnoozeEventInstanceReminderRequest{
 	// ...
 }
 
 
-read, err := client.SnoozeEventInstanceReminder(ctx, id, payload)
+read, err := client.SnoozeEventInstanceReminder(ctx, id, payload, eventinstance.DefaultSnoozeEventInstanceReminderOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -194,14 +194,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := eventinstance.NewMeEventIdInstanceID("eventIdValue", "eventId1Value")
+id := eventinstance.NewMeEventIdInstanceID("eventId", "eventId1")
 
 payload := eventinstance.TentativelyAcceptEventInstanceRequest{
 	// ...
 }
 
 
-read, err := client.TentativelyAcceptEventInstance(ctx, id, payload)
+read, err := client.TentativelyAcceptEventInstance(ctx, id, payload, eventinstance.DefaultTentativelyAcceptEventInstanceOperationOptions())
 if err != nil {
 	// handle the error
 }

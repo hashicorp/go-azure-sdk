@@ -18,15 +18,44 @@ type AssignDeviceComplianceScriptOperationResponse struct {
 	OData        *odata.OData
 }
 
+type AssignDeviceComplianceScriptOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultAssignDeviceComplianceScriptOperationOptions() AssignDeviceComplianceScriptOperationOptions {
+	return AssignDeviceComplianceScriptOperationOptions{}
+}
+
+func (o AssignDeviceComplianceScriptOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o AssignDeviceComplianceScriptOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o AssignDeviceComplianceScriptOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // AssignDeviceComplianceScript - Invoke action assign
-func (c DeviceComplianceScriptClient) AssignDeviceComplianceScript(ctx context.Context, id beta.DeviceManagementDeviceComplianceScriptId, input AssignDeviceComplianceScriptRequest) (result AssignDeviceComplianceScriptOperationResponse, err error) {
+func (c DeviceComplianceScriptClient) AssignDeviceComplianceScript(ctx context.Context, id beta.DeviceManagementDeviceComplianceScriptId, input AssignDeviceComplianceScriptRequest, options AssignDeviceComplianceScriptOperationOptions) (result AssignDeviceComplianceScriptOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/assign", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/assign", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

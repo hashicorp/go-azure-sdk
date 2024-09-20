@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/message` Documentation
 
-The `message` SDK allows for interaction with the Azure Resource Manager Service `users` (API Version `beta`).
+The `message` SDK allows for interaction with Microsoft Graph `users` (API Version `beta`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -15,7 +15,7 @@ import "github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/message"
 ### Client Initialization
 
 ```go
-client := message.NewMessageClientWithBaseURI("https://management.azure.com")
+client := message.NewMessageClientWithBaseURI("https://graph.microsoft.com")
 client.Client.Authorizer = authorizer
 ```
 
@@ -24,14 +24,14 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := message.NewUserIdMessageID("userIdValue", "messageIdValue")
+id := message.NewUserIdMessageID("userId", "messageId")
 
 payload := message.CopyMessageRequest{
 	// ...
 }
 
 
-read, err := client.CopyMessage(ctx, id, payload)
+read, err := client.CopyMessage(ctx, id, payload, message.DefaultCopyMessageOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -45,14 +45,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := message.NewUserID("userIdValue")
+id := message.NewUserID("userId")
 
 payload := message.Message{
 	// ...
 }
 
 
-read, err := client.CreateMessage(ctx, id, payload)
+read, err := client.CreateMessage(ctx, id, payload, message.DefaultCreateMessageOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -66,14 +66,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := message.NewUserIdMessageID("userIdValue", "messageIdValue")
+id := message.NewUserIdMessageID("userId", "messageId")
 
 payload := message.CreateMessageForwardRequest{
 	// ...
 }
 
 
-read, err := client.CreateMessageForward(ctx, id, payload)
+read, err := client.CreateMessageForward(ctx, id, payload, message.DefaultCreateMessageForwardOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -87,14 +87,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := message.NewUserIdMessageID("userIdValue", "messageIdValue")
+id := message.NewUserIdMessageID("userId", "messageId")
 
 payload := message.CreateMessageReplyRequest{
 	// ...
 }
 
 
-read, err := client.CreateMessageReply(ctx, id, payload)
+read, err := client.CreateMessageReply(ctx, id, payload, message.DefaultCreateMessageReplyOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -108,14 +108,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := message.NewUserIdMessageID("userIdValue", "messageIdValue")
+id := message.NewUserIdMessageID("userId", "messageId")
 
 payload := message.CreateMessageReplyAllRequest{
 	// ...
 }
 
 
-read, err := client.CreateMessageReplyAll(ctx, id, payload)
+read, err := client.CreateMessageReplyAll(ctx, id, payload, message.DefaultCreateMessageReplyAllOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -129,9 +129,9 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := message.NewUserIdMessageID("userIdValue", "messageIdValue")
+id := message.NewUserIdMessageID("userId", "messageId")
 
-read, err := client.CreateMessageUnsubscribe(ctx, id)
+read, err := client.CreateMessageUnsubscribe(ctx, id, message.DefaultCreateMessageUnsubscribeOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -145,7 +145,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := message.NewUserIdMessageID("userIdValue", "messageIdValue")
+id := message.NewUserIdMessageID("userId", "messageId")
 
 read, err := client.DeleteMessage(ctx, id, message.DefaultDeleteMessageOperationOptions())
 if err != nil {
@@ -161,14 +161,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := message.NewUserIdMessageID("userIdValue", "messageIdValue")
+id := message.NewUserIdMessageID("userId", "messageId")
 
 payload := message.ForwardMessageRequest{
 	// ...
 }
 
 
-read, err := client.ForwardMessage(ctx, id, payload)
+read, err := client.ForwardMessage(ctx, id, payload, message.DefaultForwardMessageOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -182,7 +182,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := message.NewUserIdMessageID("userIdValue", "messageIdValue")
+id := message.NewUserIdMessageID("userId", "messageId")
 
 read, err := client.GetMessage(ctx, id, message.DefaultGetMessageOperationOptions())
 if err != nil {
@@ -198,9 +198,9 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := message.NewUserIdMessageID("userIdValue", "messageIdValue")
+id := message.NewUserIdMessageID("userId", "messageId")
 
-read, err := client.GetMessageValue(ctx, id)
+read, err := client.GetMessageValue(ctx, id, message.DefaultGetMessageValueOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -214,7 +214,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := message.NewUserID("userIdValue")
+id := message.NewUserID("userId")
 
 read, err := client.GetMessagesCount(ctx, id, message.DefaultGetMessagesCountOperationOptions())
 if err != nil {
@@ -230,7 +230,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := message.NewUserID("userIdValue")
+id := message.NewUserID("userId")
 
 // alternatively `client.ListMessages(ctx, id, message.DefaultListMessagesOperationOptions())` can be used to do batched pagination
 items, err := client.ListMessagesComplete(ctx, id, message.DefaultListMessagesOperationOptions())
@@ -247,14 +247,14 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := message.NewUserIdMessageID("userIdValue", "messageIdValue")
+id := message.NewUserIdMessageID("userId", "messageId")
 
 payload := message.MarkMessageAsJunkRequest{
 	// ...
 }
 
 
-read, err := client.MarkMessageAsJunk(ctx, id, payload)
+read, err := client.MarkMessageAsJunk(ctx, id, payload, message.DefaultMarkMessageAsJunkOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -268,14 +268,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := message.NewUserIdMessageID("userIdValue", "messageIdValue")
+id := message.NewUserIdMessageID("userId", "messageId")
 
 payload := message.MarkMessageAsNotJunkRequest{
 	// ...
 }
 
 
-read, err := client.MarkMessageAsNotJunk(ctx, id, payload)
+read, err := client.MarkMessageAsNotJunk(ctx, id, payload, message.DefaultMarkMessageAsNotJunkOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -289,14 +289,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := message.NewUserIdMessageID("userIdValue", "messageIdValue")
+id := message.NewUserIdMessageID("userId", "messageId")
 
 payload := message.MoveMessageRequest{
 	// ...
 }
 
 
-read, err := client.MoveMessage(ctx, id, payload)
+read, err := client.MoveMessage(ctx, id, payload, message.DefaultMoveMessageOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -310,7 +310,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := message.NewUserIdMessageID("userIdValue", "messageIdValue")
+id := message.NewUserIdMessageID("userId", "messageId")
 
 read, err := client.RemoveMessageValue(ctx, id, message.DefaultRemoveMessageValueOperationOptions())
 if err != nil {
@@ -326,14 +326,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := message.NewUserIdMessageID("userIdValue", "messageIdValue")
+id := message.NewUserIdMessageID("userId", "messageId")
 
 payload := message.ReplyAllMessageRequest{
 	// ...
 }
 
 
-read, err := client.ReplyAllMessage(ctx, id, payload)
+read, err := client.ReplyAllMessage(ctx, id, payload, message.DefaultReplyAllMessageOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -347,14 +347,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := message.NewUserIdMessageID("userIdValue", "messageIdValue")
+id := message.NewUserIdMessageID("userId", "messageId")
 
 payload := message.ReplyMessageRequest{
 	// ...
 }
 
 
-read, err := client.ReplyMessage(ctx, id, payload)
+read, err := client.ReplyMessage(ctx, id, payload, message.DefaultReplyMessageOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -368,9 +368,9 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := message.NewUserIdMessageID("userIdValue", "messageIdValue")
+id := message.NewUserIdMessageID("userId", "messageId")
 
-read, err := client.SendMessage(ctx, id)
+read, err := client.SendMessage(ctx, id, message.DefaultSendMessageOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -384,10 +384,10 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := message.NewUserIdMessageID("userIdValue", "messageIdValue")
+id := message.NewUserIdMessageID("userId", "messageId")
 var payload []byte
 
-read, err := client.SetMessageValue(ctx, id, payload)
+read, err := client.SetMessageValue(ctx, id, payload, message.DefaultSetMessageValueOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -401,14 +401,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := message.NewUserIdMessageID("userIdValue", "messageIdValue")
+id := message.NewUserIdMessageID("userId", "messageId")
 
 payload := message.Message{
 	// ...
 }
 
 
-read, err := client.UpdateMessage(ctx, id, payload)
+read, err := client.UpdateMessage(ctx, id, payload, message.DefaultUpdateMessageOperationOptions())
 if err != nil {
 	// handle the error
 }

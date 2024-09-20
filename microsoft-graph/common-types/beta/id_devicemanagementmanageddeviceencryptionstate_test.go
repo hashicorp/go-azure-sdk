@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &DeviceManagementManagedDeviceEncryptionStateId{}
 
 func TestNewDeviceManagementManagedDeviceEncryptionStateID(t *testing.T) {
-	id := NewDeviceManagementManagedDeviceEncryptionStateID("managedDeviceEncryptionStateIdValue")
+	id := NewDeviceManagementManagedDeviceEncryptionStateID("managedDeviceEncryptionStateId")
 
-	if id.ManagedDeviceEncryptionStateId != "managedDeviceEncryptionStateIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ManagedDeviceEncryptionStateId'", id.ManagedDeviceEncryptionStateId, "managedDeviceEncryptionStateIdValue")
+	if id.ManagedDeviceEncryptionStateId != "managedDeviceEncryptionStateId" {
+		t.Fatalf("Expected %q but got %q for Segment 'ManagedDeviceEncryptionStateId'", id.ManagedDeviceEncryptionStateId, "managedDeviceEncryptionStateId")
 	}
 }
 
 func TestFormatDeviceManagementManagedDeviceEncryptionStateID(t *testing.T) {
-	actual := NewDeviceManagementManagedDeviceEncryptionStateID("managedDeviceEncryptionStateIdValue").ID()
-	expected := "/deviceManagement/managedDeviceEncryptionStates/managedDeviceEncryptionStateIdValue"
+	actual := NewDeviceManagementManagedDeviceEncryptionStateID("managedDeviceEncryptionStateId").ID()
+	expected := "/deviceManagement/managedDeviceEncryptionStates/managedDeviceEncryptionStateId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -50,14 +50,14 @@ func TestParseDeviceManagementManagedDeviceEncryptionStateID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/managedDeviceEncryptionStates/managedDeviceEncryptionStateIdValue",
+			Input: "/deviceManagement/managedDeviceEncryptionStates/managedDeviceEncryptionStateId",
 			Expected: &DeviceManagementManagedDeviceEncryptionStateId{
-				ManagedDeviceEncryptionStateId: "managedDeviceEncryptionStateIdValue",
+				ManagedDeviceEncryptionStateId: "managedDeviceEncryptionStateId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/managedDeviceEncryptionStates/managedDeviceEncryptionStateIdValue/extra",
+			Input: "/deviceManagement/managedDeviceEncryptionStates/managedDeviceEncryptionStateId/extra",
 			Error: true,
 		},
 	}
@@ -116,26 +116,26 @@ func TestParseDeviceManagementManagedDeviceEncryptionStateIDInsensitively(t *tes
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/managedDeviceEncryptionStates/managedDeviceEncryptionStateIdValue",
+			Input: "/deviceManagement/managedDeviceEncryptionStates/managedDeviceEncryptionStateId",
 			Expected: &DeviceManagementManagedDeviceEncryptionStateId{
-				ManagedDeviceEncryptionStateId: "managedDeviceEncryptionStateIdValue",
+				ManagedDeviceEncryptionStateId: "managedDeviceEncryptionStateId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/managedDeviceEncryptionStates/managedDeviceEncryptionStateIdValue/extra",
+			Input: "/deviceManagement/managedDeviceEncryptionStates/managedDeviceEncryptionStateId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/mAnAgEdDeViCeEnCrYpTiOnStAtEs/mAnAgEdDeViCeEnCrYpTiOnStAtEiDvAlUe",
+			Input: "/dEvIcEmAnAgEmEnT/mAnAgEdDeViCeEnCrYpTiOnStAtEs/mAnAgEdDeViCeEnCrYpTiOnStAtEiD",
 			Expected: &DeviceManagementManagedDeviceEncryptionStateId{
-				ManagedDeviceEncryptionStateId: "mAnAgEdDeViCeEnCrYpTiOnStAtEiDvAlUe",
+				ManagedDeviceEncryptionStateId: "mAnAgEdDeViCeEnCrYpTiOnStAtEiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/mAnAgEdDeViCeEnCrYpTiOnStAtEs/mAnAgEdDeViCeEnCrYpTiOnStAtEiDvAlUe/extra",
+			Input: "/dEvIcEmAnAgEmEnT/mAnAgEdDeViCeEnCrYpTiOnStAtEs/mAnAgEdDeViCeEnCrYpTiOnStAtEiD/extra",
 			Error: true,
 		},
 	}

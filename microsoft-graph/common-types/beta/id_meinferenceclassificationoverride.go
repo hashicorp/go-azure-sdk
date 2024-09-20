@@ -94,7 +94,7 @@ func (id MeInferenceClassificationOverrideId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("me", "me", "me"),
 		resourceids.StaticSegment("inferenceClassification", "inferenceClassification", "inferenceClassification"),
 		resourceids.StaticSegment("overrides", "overrides", "overrides"),
-		resourceids.UserSpecifiedSegment("inferenceClassificationOverrideId", "inferenceClassificationOverrideIdValue"),
+		resourceids.UserSpecifiedSegment("inferenceClassificationOverrideId", "inferenceClassificationOverrideId"),
 	}
 }
 

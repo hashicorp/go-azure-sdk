@@ -17,16 +17,45 @@ type UpdateOnPremisesSynchronizationOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateOnPremisesSynchronizationOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateOnPremisesSynchronizationOperationOptions() UpdateOnPremisesSynchronizationOperationOptions {
+	return UpdateOnPremisesSynchronizationOperationOptions{}
+}
+
+func (o UpdateOnPremisesSynchronizationOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateOnPremisesSynchronizationOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateOnPremisesSynchronizationOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateOnPremisesSynchronization - Update onPremisesDirectorySynchronization. Update the properties of an
 // onPremisesDirectorySynchronization object.
-func (c OnPremisesSynchronizationClient) UpdateOnPremisesSynchronization(ctx context.Context, id stable.DirectoryOnPremisesSynchronizationId, input stable.OnPremisesDirectorySynchronization) (result UpdateOnPremisesSynchronizationOperationResponse, err error) {
+func (c OnPremisesSynchronizationClient) UpdateOnPremisesSynchronization(ctx context.Context, id stable.DirectoryOnPremisesSynchronizationId, input stable.OnPremisesDirectorySynchronization, options UpdateOnPremisesSynchronizationOperationOptions) (result UpdateOnPremisesSynchronizationOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

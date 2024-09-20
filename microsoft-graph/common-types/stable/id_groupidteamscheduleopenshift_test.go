@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &GroupIdTeamScheduleOpenShiftId{}
 
 func TestNewGroupIdTeamScheduleOpenShiftID(t *testing.T) {
-	id := NewGroupIdTeamScheduleOpenShiftID("groupIdValue", "openShiftIdValue")
+	id := NewGroupIdTeamScheduleOpenShiftID("groupId", "openShiftId")
 
-	if id.GroupId != "groupIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'GroupId'", id.GroupId, "groupIdValue")
+	if id.GroupId != "groupId" {
+		t.Fatalf("Expected %q but got %q for Segment 'GroupId'", id.GroupId, "groupId")
 	}
 
-	if id.OpenShiftId != "openShiftIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'OpenShiftId'", id.OpenShiftId, "openShiftIdValue")
+	if id.OpenShiftId != "openShiftId" {
+		t.Fatalf("Expected %q but got %q for Segment 'OpenShiftId'", id.OpenShiftId, "openShiftId")
 	}
 }
 
 func TestFormatGroupIdTeamScheduleOpenShiftID(t *testing.T) {
-	actual := NewGroupIdTeamScheduleOpenShiftID("groupIdValue", "openShiftIdValue").ID()
-	expected := "/groups/groupIdValue/team/schedule/openShifts/openShiftIdValue"
+	actual := NewGroupIdTeamScheduleOpenShiftID("groupId", "openShiftId").ID()
+	expected := "/groups/groupId/team/schedule/openShifts/openShiftId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -49,35 +49,35 @@ func TestParseGroupIdTeamScheduleOpenShiftID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue",
+			Input: "/groups/groupId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/team",
+			Input: "/groups/groupId/team",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/team/schedule",
+			Input: "/groups/groupId/team/schedule",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/team/schedule/openShifts",
+			Input: "/groups/groupId/team/schedule/openShifts",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/groups/groupIdValue/team/schedule/openShifts/openShiftIdValue",
+			Input: "/groups/groupId/team/schedule/openShifts/openShiftId",
 			Expected: &GroupIdTeamScheduleOpenShiftId{
-				GroupId:     "groupIdValue",
-				OpenShiftId: "openShiftIdValue",
+				GroupId:     "groupId",
+				OpenShiftId: "openShiftId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/groups/groupIdValue/team/schedule/openShifts/openShiftIdValue/extra",
+			Input: "/groups/groupId/team/schedule/openShifts/openShiftId/extra",
 			Error: true,
 		},
 	}
@@ -130,68 +130,68 @@ func TestParseGroupIdTeamScheduleOpenShiftIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue",
+			Input: "/groups/groupId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE",
+			Input: "/gRoUpS/gRoUpId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/team",
+			Input: "/groups/groupId/team",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/tEaM",
+			Input: "/gRoUpS/gRoUpId/tEaM",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/team/schedule",
+			Input: "/groups/groupId/team/schedule",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/tEaM/sChEdUlE",
+			Input: "/gRoUpS/gRoUpId/tEaM/sChEdUlE",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/team/schedule/openShifts",
+			Input: "/groups/groupId/team/schedule/openShifts",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/tEaM/sChEdUlE/oPeNsHiFtS",
+			Input: "/gRoUpS/gRoUpId/tEaM/sChEdUlE/oPeNsHiFtS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/groups/groupIdValue/team/schedule/openShifts/openShiftIdValue",
+			Input: "/groups/groupId/team/schedule/openShifts/openShiftId",
 			Expected: &GroupIdTeamScheduleOpenShiftId{
-				GroupId:     "groupIdValue",
-				OpenShiftId: "openShiftIdValue",
+				GroupId:     "groupId",
+				OpenShiftId: "openShiftId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/groups/groupIdValue/team/schedule/openShifts/openShiftIdValue/extra",
+			Input: "/groups/groupId/team/schedule/openShifts/openShiftId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/tEaM/sChEdUlE/oPeNsHiFtS/oPeNsHiFtIdVaLuE",
+			Input: "/gRoUpS/gRoUpId/tEaM/sChEdUlE/oPeNsHiFtS/oPeNsHiFtId",
 			Expected: &GroupIdTeamScheduleOpenShiftId{
-				GroupId:     "gRoUpIdVaLuE",
-				OpenShiftId: "oPeNsHiFtIdVaLuE",
+				GroupId:     "gRoUpId",
+				OpenShiftId: "oPeNsHiFtId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/tEaM/sChEdUlE/oPeNsHiFtS/oPeNsHiFtIdVaLuE/extra",
+			Input: "/gRoUpS/gRoUpId/tEaM/sChEdUlE/oPeNsHiFtS/oPeNsHiFtId/extra",
 			Error: true,
 		},
 	}

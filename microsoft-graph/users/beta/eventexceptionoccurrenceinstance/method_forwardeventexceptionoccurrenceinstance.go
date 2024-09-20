@@ -18,19 +18,48 @@ type ForwardEventExceptionOccurrenceInstanceOperationResponse struct {
 	OData        *odata.OData
 }
 
+type ForwardEventExceptionOccurrenceInstanceOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultForwardEventExceptionOccurrenceInstanceOperationOptions() ForwardEventExceptionOccurrenceInstanceOperationOptions {
+	return ForwardEventExceptionOccurrenceInstanceOperationOptions{}
+}
+
+func (o ForwardEventExceptionOccurrenceInstanceOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o ForwardEventExceptionOccurrenceInstanceOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o ForwardEventExceptionOccurrenceInstanceOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // ForwardEventExceptionOccurrenceInstance - Invoke action forward. This action allows the organizer or attendee of a
 // meeting event to forward the meeting request to a new recipient. If the meeting event is forwarded from an attendee's
 // Microsoft 365 mailbox to another recipient, this action also sends a message to notify the organizer of the
 // forwarding, and adds the recipient to the organizer's copy of the meeting event. This convenience is not available
 // when forwarding from an Outlook.com account.
-func (c EventExceptionOccurrenceInstanceClient) ForwardEventExceptionOccurrenceInstance(ctx context.Context, id beta.UserIdEventIdExceptionOccurrenceIdInstanceId, input ForwardEventExceptionOccurrenceInstanceRequest) (result ForwardEventExceptionOccurrenceInstanceOperationResponse, err error) {
+func (c EventExceptionOccurrenceInstanceClient) ForwardEventExceptionOccurrenceInstance(ctx context.Context, id beta.UserIdEventIdExceptionOccurrenceIdInstanceId, input ForwardEventExceptionOccurrenceInstanceRequest, options ForwardEventExceptionOccurrenceInstanceOperationOptions) (result ForwardEventExceptionOccurrenceInstanceOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/forward", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/forward", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -19,7 +19,8 @@ type DeleteVirtualEndpointDeviceImageOperationResponse struct {
 }
 
 type DeleteVirtualEndpointDeviceImageOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteVirtualEndpointDeviceImageOperationOptions() DeleteVirtualEndpointDeviceImageOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteVirtualEndpointDeviceImageOperationOptions) ToHeaders() *client.He
 
 func (o DeleteVirtualEndpointDeviceImageOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

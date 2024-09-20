@@ -85,10 +85,18 @@ func (s IndustryDataInboundFlowActivity) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &IndustryDataInboundFlowActivity{}
 
 func (s *IndustryDataInboundFlowActivity) UnmarshalJSON(bytes []byte) error {
-	type alias IndustryDataInboundFlowActivity
-	var decoded alias
+
+	var decoded struct {
+		Activity      *IndustryDataIndustryDataActivity       `json:"activity,omitempty"`
+		BlockingError *PublicError                            `json:"blockingError,omitempty"`
+		DisplayName   *string                                 `json:"displayName,omitempty"`
+		Status        *IndustryDataIndustryDataActivityStatus `json:"status,omitempty"`
+		Id            *string                                 `json:"id,omitempty"`
+		ODataId       *string                                 `json:"@odata.id,omitempty"`
+		ODataType     *string                                 `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into IndustryDataInboundFlowActivity: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.BlockingError = decoded.BlockingError
@@ -110,5 +118,6 @@ func (s *IndustryDataInboundFlowActivity) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Activity = &impl
 	}
+
 	return nil
 }

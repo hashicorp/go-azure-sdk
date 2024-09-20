@@ -19,7 +19,8 @@ type DeleteSiteRecycleBinOperationResponse struct {
 }
 
 type DeleteSiteRecycleBinOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteSiteRecycleBinOperationOptions() DeleteSiteRecycleBinOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteSiteRecycleBinOperationOptions) ToHeaders() *client.Headers {
 
 func (o DeleteSiteRecycleBinOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

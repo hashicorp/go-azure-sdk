@@ -19,7 +19,8 @@ type DeleteOnlineMeetingRecordingOperationResponse struct {
 }
 
 type DeleteOnlineMeetingRecordingOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteOnlineMeetingRecordingOperationOptions() DeleteOnlineMeetingRecordingOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteOnlineMeetingRecordingOperationOptions) ToHeaders() *client.Header
 
 func (o DeleteOnlineMeetingRecordingOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 
@@ -46,9 +49,8 @@ func (o DeleteOnlineMeetingRecordingOperationOptions) ToQuery() *client.QueryPar
 	return &out
 }
 
-// DeleteOnlineMeetingRecording - Delete recording for the navigation property onlineMeetings in users. The content
-// stream of the recording of a Teams live event. Read-only.
-func (c OnlineMeetingRecordingClient) DeleteOnlineMeetingRecording(ctx context.Context, id beta.UserIdOnlineMeetingId, options DeleteOnlineMeetingRecordingOperationOptions) (result DeleteOnlineMeetingRecordingOperationResponse, err error) {
+// DeleteOnlineMeetingRecording - Delete navigation property recordings for users
+func (c OnlineMeetingRecordingClient) DeleteOnlineMeetingRecording(ctx context.Context, id beta.UserIdOnlineMeetingIdRecordingId, options DeleteOnlineMeetingRecordingOperationOptions) (result DeleteOnlineMeetingRecordingOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
@@ -56,7 +58,7 @@ func (c OnlineMeetingRecordingClient) DeleteOnlineMeetingRecording(ctx context.C
 		},
 		HttpMethod:    http.MethodDelete,
 		OptionsObject: options,
-		Path:          fmt.Sprintf("%s/recording", id.ID()),
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -18,15 +18,44 @@ type UpdateDriveRootOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateDriveRootOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateDriveRootOperationOptions() UpdateDriveRootOperationOptions {
+	return UpdateDriveRootOperationOptions{}
+}
+
+func (o UpdateDriveRootOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateDriveRootOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateDriveRootOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateDriveRoot - Update the navigation property root in groups
-func (c DriveRootClient) UpdateDriveRoot(ctx context.Context, id beta.GroupIdDriveId, input beta.DriveItem) (result UpdateDriveRootOperationResponse, err error) {
+func (c DriveRootClient) UpdateDriveRoot(ctx context.Context, id beta.GroupIdDriveId, input beta.DriveItem, options UpdateDriveRootOperationOptions) (result UpdateDriveRootOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       fmt.Sprintf("%s/root", id.ID()),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/root", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

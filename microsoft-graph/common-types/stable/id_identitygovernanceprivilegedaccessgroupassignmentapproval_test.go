@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &IdentityGovernancePrivilegedAccessGroupAssignmentApprovalId{}
 
 func TestNewIdentityGovernancePrivilegedAccessGroupAssignmentApprovalID(t *testing.T) {
-	id := NewIdentityGovernancePrivilegedAccessGroupAssignmentApprovalID("approvalIdValue")
+	id := NewIdentityGovernancePrivilegedAccessGroupAssignmentApprovalID("approvalId")
 
-	if id.ApprovalId != "approvalIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ApprovalId'", id.ApprovalId, "approvalIdValue")
+	if id.ApprovalId != "approvalId" {
+		t.Fatalf("Expected %q but got %q for Segment 'ApprovalId'", id.ApprovalId, "approvalId")
 	}
 }
 
 func TestFormatIdentityGovernancePrivilegedAccessGroupAssignmentApprovalID(t *testing.T) {
-	actual := NewIdentityGovernancePrivilegedAccessGroupAssignmentApprovalID("approvalIdValue").ID()
-	expected := "/identityGovernance/privilegedAccess/group/assignmentApprovals/approvalIdValue"
+	actual := NewIdentityGovernancePrivilegedAccessGroupAssignmentApprovalID("approvalId").ID()
+	expected := "/identityGovernance/privilegedAccess/group/assignmentApprovals/approvalId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -60,14 +60,14 @@ func TestParseIdentityGovernancePrivilegedAccessGroupAssignmentApprovalID(t *tes
 		},
 		{
 			// Valid URI
-			Input: "/identityGovernance/privilegedAccess/group/assignmentApprovals/approvalIdValue",
+			Input: "/identityGovernance/privilegedAccess/group/assignmentApprovals/approvalId",
 			Expected: &IdentityGovernancePrivilegedAccessGroupAssignmentApprovalId{
-				ApprovalId: "approvalIdValue",
+				ApprovalId: "approvalId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/identityGovernance/privilegedAccess/group/assignmentApprovals/approvalIdValue/extra",
+			Input: "/identityGovernance/privilegedAccess/group/assignmentApprovals/approvalId/extra",
 			Error: true,
 		},
 	}
@@ -146,26 +146,26 @@ func TestParseIdentityGovernancePrivilegedAccessGroupAssignmentApprovalIDInsensi
 		},
 		{
 			// Valid URI
-			Input: "/identityGovernance/privilegedAccess/group/assignmentApprovals/approvalIdValue",
+			Input: "/identityGovernance/privilegedAccess/group/assignmentApprovals/approvalId",
 			Expected: &IdentityGovernancePrivilegedAccessGroupAssignmentApprovalId{
-				ApprovalId: "approvalIdValue",
+				ApprovalId: "approvalId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/identityGovernance/privilegedAccess/group/assignmentApprovals/approvalIdValue/extra",
+			Input: "/identityGovernance/privilegedAccess/group/assignmentApprovals/approvalId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/iDeNtItYgOvErNaNcE/pRiViLeGeDaCcEsS/gRoUp/aSsIgNmEnTaPpRoVaLs/aPpRoVaLiDvAlUe",
+			Input: "/iDeNtItYgOvErNaNcE/pRiViLeGeDaCcEsS/gRoUp/aSsIgNmEnTaPpRoVaLs/aPpRoVaLiD",
 			Expected: &IdentityGovernancePrivilegedAccessGroupAssignmentApprovalId{
-				ApprovalId: "aPpRoVaLiDvAlUe",
+				ApprovalId: "aPpRoVaLiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/iDeNtItYgOvErNaNcE/pRiViLeGeDaCcEsS/gRoUp/aSsIgNmEnTaPpRoVaLs/aPpRoVaLiDvAlUe/extra",
+			Input: "/iDeNtItYgOvErNaNcE/pRiViLeGeDaCcEsS/gRoUp/aSsIgNmEnTaPpRoVaLs/aPpRoVaLiD/extra",
 			Error: true,
 		},
 	}

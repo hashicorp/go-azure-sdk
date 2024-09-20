@@ -71,10 +71,16 @@ func (s AuthoredNote) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &AuthoredNote{}
 
 func (s *AuthoredNote) UnmarshalJSON(bytes []byte) error {
-	type alias AuthoredNote
-	var decoded alias
+
+	var decoded struct {
+		Content         *ItemBody             `json:"content,omitempty"`
+		CreatedDateTime nullable.Type[string] `json:"createdDateTime,omitempty"`
+		Id              *string               `json:"id,omitempty"`
+		ODataId         *string               `json:"@odata.id,omitempty"`
+		ODataType       *string               `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into AuthoredNote: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.Content = decoded.Content
@@ -95,5 +101,6 @@ func (s *AuthoredNote) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Author = impl
 	}
+
 	return nil
 }

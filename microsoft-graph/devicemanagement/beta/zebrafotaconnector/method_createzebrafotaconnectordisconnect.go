@@ -17,15 +17,44 @@ type CreateZebraFotaConnectorDisconnectOperationResponse struct {
 	Model        *CreateZebraFotaConnectorDisconnectResult
 }
 
+type CreateZebraFotaConnectorDisconnectOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateZebraFotaConnectorDisconnectOperationOptions() CreateZebraFotaConnectorDisconnectOperationOptions {
+	return CreateZebraFotaConnectorDisconnectOperationOptions{}
+}
+
+func (o CreateZebraFotaConnectorDisconnectOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateZebraFotaConnectorDisconnectOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateZebraFotaConnectorDisconnectOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateZebraFotaConnectorDisconnect - Invoke action disconnect
-func (c ZebraFotaConnectorClient) CreateZebraFotaConnectorDisconnect(ctx context.Context) (result CreateZebraFotaConnectorDisconnectOperationResponse, err error) {
+func (c ZebraFotaConnectorClient) CreateZebraFotaConnectorDisconnect(ctx context.Context, options CreateZebraFotaConnectorDisconnectOperationOptions) (result CreateZebraFotaConnectorDisconnectOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/deviceManagement/zebraFotaConnector/disconnect",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/deviceManagement/zebraFotaConnector/disconnect",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -17,16 +17,45 @@ type UpdateEntitlementManagementSubjectOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateEntitlementManagementSubjectOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateEntitlementManagementSubjectOperationOptions() UpdateEntitlementManagementSubjectOperationOptions {
+	return UpdateEntitlementManagementSubjectOperationOptions{}
+}
+
+func (o UpdateEntitlementManagementSubjectOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateEntitlementManagementSubjectOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateEntitlementManagementSubjectOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateEntitlementManagementSubject - Update accessPackageSubject. Update an existing accessPackageSubject object to
 // change the subject lifecycle.
-func (c EntitlementManagementSubjectClient) UpdateEntitlementManagementSubject(ctx context.Context, id beta.IdentityGovernanceEntitlementManagementSubjectId, input beta.AccessPackageSubject) (result UpdateEntitlementManagementSubjectOperationResponse, err error) {
+func (c EntitlementManagementSubjectClient) UpdateEntitlementManagementSubject(ctx context.Context, id beta.IdentityGovernanceEntitlementManagementSubjectId, input beta.AccessPackageSubject, options UpdateEntitlementManagementSubjectOperationOptions) (result UpdateEntitlementManagementSubjectOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

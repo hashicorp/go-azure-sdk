@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &MeSponsorId{}
 
 func TestNewMeSponsorID(t *testing.T) {
-	id := NewMeSponsorID("directoryObjectIdValue")
+	id := NewMeSponsorID("directoryObjectId")
 
-	if id.DirectoryObjectId != "directoryObjectIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DirectoryObjectId'", id.DirectoryObjectId, "directoryObjectIdValue")
+	if id.DirectoryObjectId != "directoryObjectId" {
+		t.Fatalf("Expected %q but got %q for Segment 'DirectoryObjectId'", id.DirectoryObjectId, "directoryObjectId")
 	}
 }
 
 func TestFormatMeSponsorID(t *testing.T) {
-	actual := NewMeSponsorID("directoryObjectIdValue").ID()
-	expected := "/me/sponsors/directoryObjectIdValue"
+	actual := NewMeSponsorID("directoryObjectId").ID()
+	expected := "/me/sponsors/directoryObjectId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -50,14 +50,14 @@ func TestParseMeSponsorID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/me/sponsors/directoryObjectIdValue",
+			Input: "/me/sponsors/directoryObjectId",
 			Expected: &MeSponsorId{
-				DirectoryObjectId: "directoryObjectIdValue",
+				DirectoryObjectId: "directoryObjectId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/sponsors/directoryObjectIdValue/extra",
+			Input: "/me/sponsors/directoryObjectId/extra",
 			Error: true,
 		},
 	}
@@ -116,26 +116,26 @@ func TestParseMeSponsorIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/me/sponsors/directoryObjectIdValue",
+			Input: "/me/sponsors/directoryObjectId",
 			Expected: &MeSponsorId{
-				DirectoryObjectId: "directoryObjectIdValue",
+				DirectoryObjectId: "directoryObjectId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/sponsors/directoryObjectIdValue/extra",
+			Input: "/me/sponsors/directoryObjectId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/sPoNsOrS/dIrEcToRyObJeCtIdVaLuE",
+			Input: "/mE/sPoNsOrS/dIrEcToRyObJeCtId",
 			Expected: &MeSponsorId{
-				DirectoryObjectId: "dIrEcToRyObJeCtIdVaLuE",
+				DirectoryObjectId: "dIrEcToRyObJeCtId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/mE/sPoNsOrS/dIrEcToRyObJeCtIdVaLuE/extra",
+			Input: "/mE/sPoNsOrS/dIrEcToRyObJeCtId/extra",
 			Error: true,
 		},
 	}

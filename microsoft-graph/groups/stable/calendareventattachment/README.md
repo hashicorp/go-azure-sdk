@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/stable/calendareventattachment` Documentation
 
-The `calendareventattachment` SDK allows for interaction with the Azure Resource Manager Service `groups` (API Version `stable`).
+The `calendareventattachment` SDK allows for interaction with Microsoft Graph `groups` (API Version `stable`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -15,7 +15,7 @@ import "github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/stable/calendar
 ### Client Initialization
 
 ```go
-client := calendareventattachment.NewCalendarEventAttachmentClientWithBaseURI("https://management.azure.com")
+client := calendareventattachment.NewCalendarEventAttachmentClientWithBaseURI("https://graph.microsoft.com")
 client.Client.Authorizer = authorizer
 ```
 
@@ -24,14 +24,14 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := calendareventattachment.NewGroupIdCalendarEventID("groupIdValue", "eventIdValue")
+id := calendareventattachment.NewGroupIdCalendarEventID("groupId", "eventId")
 
 payload := calendareventattachment.Attachment{
 	// ...
 }
 
 
-read, err := client.CreateCalendarEventAttachment(ctx, id, payload)
+read, err := client.CreateCalendarEventAttachment(ctx, id, payload, calendareventattachment.DefaultCreateCalendarEventAttachmentOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -45,14 +45,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := calendareventattachment.NewGroupIdCalendarEventID("groupIdValue", "eventIdValue")
+id := calendareventattachment.NewGroupIdCalendarEventID("groupId", "eventId")
 
 payload := calendareventattachment.CreateCalendarEventAttachmentsUploadSessionRequest{
 	// ...
 }
 
 
-read, err := client.CreateCalendarEventAttachmentsUploadSession(ctx, id, payload)
+read, err := client.CreateCalendarEventAttachmentsUploadSession(ctx, id, payload, calendareventattachment.DefaultCreateCalendarEventAttachmentsUploadSessionOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -66,7 +66,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := calendareventattachment.NewGroupIdCalendarEventIdAttachmentID("groupIdValue", "eventIdValue", "attachmentIdValue")
+id := calendareventattachment.NewGroupIdCalendarEventIdAttachmentID("groupId", "eventId", "attachmentId")
 
 read, err := client.DeleteCalendarEventAttachment(ctx, id, calendareventattachment.DefaultDeleteCalendarEventAttachmentOperationOptions())
 if err != nil {
@@ -82,7 +82,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := calendareventattachment.NewGroupIdCalendarEventIdAttachmentID("groupIdValue", "eventIdValue", "attachmentIdValue")
+id := calendareventattachment.NewGroupIdCalendarEventIdAttachmentID("groupId", "eventId", "attachmentId")
 
 read, err := client.GetCalendarEventAttachment(ctx, id, calendareventattachment.DefaultGetCalendarEventAttachmentOperationOptions())
 if err != nil {
@@ -98,7 +98,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := calendareventattachment.NewGroupIdCalendarEventID("groupIdValue", "eventIdValue")
+id := calendareventattachment.NewGroupIdCalendarEventID("groupId", "eventId")
 
 read, err := client.GetCalendarEventAttachmentsCount(ctx, id, calendareventattachment.DefaultGetCalendarEventAttachmentsCountOperationOptions())
 if err != nil {
@@ -114,7 +114,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := calendareventattachment.NewGroupIdCalendarEventID("groupIdValue", "eventIdValue")
+id := calendareventattachment.NewGroupIdCalendarEventID("groupId", "eventId")
 
 // alternatively `client.ListCalendarEventAttachments(ctx, id, calendareventattachment.DefaultListCalendarEventAttachmentsOperationOptions())` can be used to do batched pagination
 items, err := client.ListCalendarEventAttachmentsComplete(ctx, id, calendareventattachment.DefaultListCalendarEventAttachmentsOperationOptions())

@@ -26,14 +26,15 @@ type ListRoleManagementPolicyRulesCompleteResult struct {
 }
 
 type ListRoleManagementPolicyRulesOperationOptions struct {
-	Count   *bool
-	Expand  *odata.Expand
-	Filter  *string
-	OrderBy *odata.OrderBy
-	Search  *string
-	Select  *[]string
-	Skip    *int64
-	Top     *int64
+	Count    *bool
+	Expand   *odata.Expand
+	Filter   *string
+	Metadata *odata.Metadata
+	OrderBy  *odata.OrderBy
+	Search   *string
+	Select   *[]string
+	Skip     *int64
+	Top      *int64
 }
 
 func DefaultListRoleManagementPolicyRulesOperationOptions() ListRoleManagementPolicyRulesOperationOptions {
@@ -56,6 +57,9 @@ func (o ListRoleManagementPolicyRulesOperationOptions) ToOData() *odata.Query {
 	}
 	if o.Filter != nil {
 		out.Filter = *o.Filter
+	}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
 	}
 	if o.OrderBy != nil {
 		out.OrderBy = *o.OrderBy
@@ -95,7 +99,7 @@ func (p *ListRoleManagementPolicyRulesCustomPager) NextPageLink() *odata.Link {
 
 // ListRoleManagementPolicyRules - List rules (for a role management policy). Get the rules or settings defined for a
 // role management policy. The rules are a collection of following types that are derived from the
-// unifiedRoleManagementPolicyRule object:
+// unifiedRoleManagementPolicyRule object
 func (c RoleManagementPolicyRuleClient) ListRoleManagementPolicyRules(ctx context.Context, id stable.PolicyRoleManagementPolicyId, options ListRoleManagementPolicyRulesOperationOptions) (result ListRoleManagementPolicyRulesOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",

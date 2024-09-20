@@ -18,15 +18,44 @@ type UpdateDirectoryTransitiveRoleAssignmentAppScopeOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateDirectoryTransitiveRoleAssignmentAppScopeOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateDirectoryTransitiveRoleAssignmentAppScopeOperationOptions() UpdateDirectoryTransitiveRoleAssignmentAppScopeOperationOptions {
+	return UpdateDirectoryTransitiveRoleAssignmentAppScopeOperationOptions{}
+}
+
+func (o UpdateDirectoryTransitiveRoleAssignmentAppScopeOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateDirectoryTransitiveRoleAssignmentAppScopeOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateDirectoryTransitiveRoleAssignmentAppScopeOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateDirectoryTransitiveRoleAssignmentAppScope - Update the navigation property appScope in roleManagement
-func (c DirectoryTransitiveRoleAssignmentAppScopeClient) UpdateDirectoryTransitiveRoleAssignmentAppScope(ctx context.Context, id beta.RoleManagementDirectoryTransitiveRoleAssignmentId, input beta.AppScope) (result UpdateDirectoryTransitiveRoleAssignmentAppScopeOperationResponse, err error) {
+func (c DirectoryTransitiveRoleAssignmentAppScopeClient) UpdateDirectoryTransitiveRoleAssignmentAppScope(ctx context.Context, id beta.RoleManagementDirectoryTransitiveRoleAssignmentId, input beta.AppScope, options UpdateDirectoryTransitiveRoleAssignmentAppScopeOperationOptions) (result UpdateDirectoryTransitiveRoleAssignmentAppScopeOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       fmt.Sprintf("%s/appScope", id.ID()),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/appScope", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

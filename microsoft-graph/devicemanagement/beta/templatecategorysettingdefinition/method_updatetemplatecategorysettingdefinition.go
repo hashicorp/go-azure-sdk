@@ -17,15 +17,44 @@ type UpdateTemplateCategorySettingDefinitionOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateTemplateCategorySettingDefinitionOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateTemplateCategorySettingDefinitionOperationOptions() UpdateTemplateCategorySettingDefinitionOperationOptions {
+	return UpdateTemplateCategorySettingDefinitionOperationOptions{}
+}
+
+func (o UpdateTemplateCategorySettingDefinitionOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateTemplateCategorySettingDefinitionOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateTemplateCategorySettingDefinitionOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateTemplateCategorySettingDefinition - Update the navigation property settingDefinitions in deviceManagement
-func (c TemplateCategorySettingDefinitionClient) UpdateTemplateCategorySettingDefinition(ctx context.Context, id beta.DeviceManagementTemplateIdCategoryIdSettingDefinitionId, input beta.DeviceManagementSettingDefinition) (result UpdateTemplateCategorySettingDefinitionOperationResponse, err error) {
+func (c TemplateCategorySettingDefinitionClient) UpdateTemplateCategorySettingDefinition(ctx context.Context, id beta.DeviceManagementTemplateIdCategoryIdSettingDefinitionId, input beta.DeviceManagementSettingDefinition, options UpdateTemplateCategorySettingDefinitionOperationOptions) (result UpdateTemplateCategorySettingDefinitionOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

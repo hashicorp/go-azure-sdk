@@ -20,8 +20,9 @@ type GetOnlineMeetingAttendanceReportsCountOperationResponse struct {
 }
 
 type GetOnlineMeetingAttendanceReportsCountOperationOptions struct {
-	Filter *string
-	Search *string
+	Filter   *string
+	Metadata *odata.Metadata
+	Search   *string
 }
 
 func DefaultGetOnlineMeetingAttendanceReportsCountOperationOptions() GetOnlineMeetingAttendanceReportsCountOperationOptions {
@@ -38,6 +39,9 @@ func (o GetOnlineMeetingAttendanceReportsCountOperationOptions) ToOData() *odata
 	out := odata.Query{}
 	if o.Filter != nil {
 		out.Filter = *o.Filter
+	}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
 	}
 	if o.Search != nil {
 		out.Search = *o.Search

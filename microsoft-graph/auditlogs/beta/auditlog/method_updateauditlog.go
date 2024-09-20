@@ -17,15 +17,44 @@ type UpdateAuditLogOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateAuditLogOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateAuditLogOperationOptions() UpdateAuditLogOperationOptions {
+	return UpdateAuditLogOperationOptions{}
+}
+
+func (o UpdateAuditLogOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateAuditLogOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateAuditLogOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateAuditLog - Update auditLogs
-func (c AuditLogClient) UpdateAuditLog(ctx context.Context, input beta.AuditLogRoot) (result UpdateAuditLogOperationResponse, err error) {
+func (c AuditLogClient) UpdateAuditLog(ctx context.Context, input beta.AuditLogRoot, options UpdateAuditLogOperationOptions) (result UpdateAuditLogOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       "/auditLogs",
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          "/auditLogs",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

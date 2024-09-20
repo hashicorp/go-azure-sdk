@@ -20,15 +20,44 @@ type CreateTodoListTaskAttachmentOperationResponse struct {
 	Model        beta.AttachmentBase
 }
 
+type CreateTodoListTaskAttachmentOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateTodoListTaskAttachmentOperationOptions() CreateTodoListTaskAttachmentOperationOptions {
+	return CreateTodoListTaskAttachmentOperationOptions{}
+}
+
+func (o CreateTodoListTaskAttachmentOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateTodoListTaskAttachmentOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateTodoListTaskAttachmentOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateTodoListTaskAttachment - Create new navigation property to attachments for users
-func (c TodoListTaskAttachmentClient) CreateTodoListTaskAttachment(ctx context.Context, id beta.UserIdTodoListIdTaskId, input beta.AttachmentBase) (result CreateTodoListTaskAttachmentOperationResponse, err error) {
+func (c TodoListTaskAttachmentClient) CreateTodoListTaskAttachment(ctx context.Context, id beta.UserIdTodoListIdTaskId, input beta.AttachmentBase, options CreateTodoListTaskAttachmentOperationOptions) (result CreateTodoListTaskAttachmentOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/attachments", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/attachments", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

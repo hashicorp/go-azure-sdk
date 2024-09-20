@@ -17,16 +17,45 @@ type UpdateEmbeddedSIMActivationCodePoolOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateEmbeddedSIMActivationCodePoolOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateEmbeddedSIMActivationCodePoolOperationOptions() UpdateEmbeddedSIMActivationCodePoolOperationOptions {
+	return UpdateEmbeddedSIMActivationCodePoolOperationOptions{}
+}
+
+func (o UpdateEmbeddedSIMActivationCodePoolOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateEmbeddedSIMActivationCodePoolOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateEmbeddedSIMActivationCodePoolOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateEmbeddedSIMActivationCodePool - Update the navigation property embeddedSIMActivationCodePools in
 // deviceManagement
-func (c EmbeddedSIMActivationCodePoolClient) UpdateEmbeddedSIMActivationCodePool(ctx context.Context, id beta.DeviceManagementEmbeddedSIMActivationCodePoolId, input beta.EmbeddedSIMActivationCodePool) (result UpdateEmbeddedSIMActivationCodePoolOperationResponse, err error) {
+func (c EmbeddedSIMActivationCodePoolClient) UpdateEmbeddedSIMActivationCodePool(ctx context.Context, id beta.DeviceManagementEmbeddedSIMActivationCodePoolId, input beta.EmbeddedSIMActivationCodePool, options UpdateEmbeddedSIMActivationCodePoolOperationOptions) (result UpdateEmbeddedSIMActivationCodePoolOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

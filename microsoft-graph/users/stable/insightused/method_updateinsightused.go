@@ -17,15 +17,44 @@ type UpdateInsightUsedOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateInsightUsedOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateInsightUsedOperationOptions() UpdateInsightUsedOperationOptions {
+	return UpdateInsightUsedOperationOptions{}
+}
+
+func (o UpdateInsightUsedOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateInsightUsedOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateInsightUsedOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateInsightUsed - Update the navigation property used in users
-func (c InsightUsedClient) UpdateInsightUsed(ctx context.Context, id stable.UserIdInsightUsedId, input stable.UsedInsight) (result UpdateInsightUsedOperationResponse, err error) {
+func (c InsightUsedClient) UpdateInsightUsed(ctx context.Context, id stable.UserIdInsightUsedId, input stable.UsedInsight, options UpdateInsightUsedOperationOptions) (result UpdateInsightUsedOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

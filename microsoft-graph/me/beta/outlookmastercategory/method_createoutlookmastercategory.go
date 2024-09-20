@@ -18,16 +18,45 @@ type CreateOutlookMasterCategoryOperationResponse struct {
 	Model        *beta.OutlookCategory
 }
 
+type CreateOutlookMasterCategoryOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateOutlookMasterCategoryOperationOptions() CreateOutlookMasterCategoryOperationOptions {
+	return CreateOutlookMasterCategoryOperationOptions{}
+}
+
+func (o CreateOutlookMasterCategoryOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateOutlookMasterCategoryOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateOutlookMasterCategoryOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateOutlookMasterCategory - Create Outlook category. Create an outlookCategory object in the user's master list of
 // categories.
-func (c OutlookMasterCategoryClient) CreateOutlookMasterCategory(ctx context.Context, input beta.OutlookCategory) (result CreateOutlookMasterCategoryOperationResponse, err error) {
+func (c OutlookMasterCategoryClient) CreateOutlookMasterCategory(ctx context.Context, input beta.OutlookCategory, options CreateOutlookMasterCategoryOperationOptions) (result CreateOutlookMasterCategoryOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/me/outlook/masterCategories",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/me/outlook/masterCategories",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -18,15 +18,44 @@ type CreateImpactedResourceOperationResponse struct {
 	Model        *beta.ImpactedResource
 }
 
+type CreateImpactedResourceOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateImpactedResourceOperationOptions() CreateImpactedResourceOperationOptions {
+	return CreateImpactedResourceOperationOptions{}
+}
+
+func (o CreateImpactedResourceOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateImpactedResourceOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateImpactedResourceOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateImpactedResource - Create new navigation property to impactedResources for directory
-func (c ImpactedResourceClient) CreateImpactedResource(ctx context.Context, input beta.ImpactedResource) (result CreateImpactedResourceOperationResponse, err error) {
+func (c ImpactedResourceClient) CreateImpactedResource(ctx context.Context, input beta.ImpactedResource, options CreateImpactedResourceOperationOptions) (result CreateImpactedResourceOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/directory/impactedResources",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/directory/impactedResources",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -19,7 +19,8 @@ type DeleteThreadOperationResponse struct {
 }
 
 type DeleteThreadOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteThreadOperationOptions() DeleteThreadOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteThreadOperationOptions) ToHeaders() *client.Headers {
 
 func (o DeleteThreadOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

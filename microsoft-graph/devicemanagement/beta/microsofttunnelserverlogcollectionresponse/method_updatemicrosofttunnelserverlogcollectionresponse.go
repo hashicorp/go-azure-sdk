@@ -17,16 +17,45 @@ type UpdateMicrosoftTunnelServerLogCollectionResponseOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateMicrosoftTunnelServerLogCollectionResponseOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateMicrosoftTunnelServerLogCollectionResponseOperationOptions() UpdateMicrosoftTunnelServerLogCollectionResponseOperationOptions {
+	return UpdateMicrosoftTunnelServerLogCollectionResponseOperationOptions{}
+}
+
+func (o UpdateMicrosoftTunnelServerLogCollectionResponseOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateMicrosoftTunnelServerLogCollectionResponseOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateMicrosoftTunnelServerLogCollectionResponseOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateMicrosoftTunnelServerLogCollectionResponse - Update the navigation property
 // microsoftTunnelServerLogCollectionResponses in deviceManagement
-func (c MicrosoftTunnelServerLogCollectionResponseClient) UpdateMicrosoftTunnelServerLogCollectionResponse(ctx context.Context, id beta.DeviceManagementMicrosoftTunnelServerLogCollectionResponseId, input beta.MicrosoftTunnelServerLogCollectionResponse) (result UpdateMicrosoftTunnelServerLogCollectionResponseOperationResponse, err error) {
+func (c MicrosoftTunnelServerLogCollectionResponseClient) UpdateMicrosoftTunnelServerLogCollectionResponse(ctx context.Context, id beta.DeviceManagementMicrosoftTunnelServerLogCollectionResponseId, input beta.MicrosoftTunnelServerLogCollectionResponse, options UpdateMicrosoftTunnelServerLogCollectionResponseOperationOptions) (result UpdateMicrosoftTunnelServerLogCollectionResponseOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

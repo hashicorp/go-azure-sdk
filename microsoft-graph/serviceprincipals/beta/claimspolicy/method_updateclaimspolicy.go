@@ -18,16 +18,45 @@ type UpdateClaimsPolicyOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateClaimsPolicyOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateClaimsPolicyOperationOptions() UpdateClaimsPolicyOperationOptions {
+	return UpdateClaimsPolicyOperationOptions{}
+}
+
+func (o UpdateClaimsPolicyOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateClaimsPolicyOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateClaimsPolicyOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateClaimsPolicy - Create or replace claimsPolicy. Create a new customClaimsPolicy object if it doesn't exist, or
 // replace an existing one.
-func (c ClaimsPolicyClient) UpdateClaimsPolicy(ctx context.Context, id beta.ServicePrincipalId, input beta.CustomClaimsPolicy) (result UpdateClaimsPolicyOperationResponse, err error) {
+func (c ClaimsPolicyClient) UpdateClaimsPolicy(ctx context.Context, id beta.ServicePrincipalId, input beta.CustomClaimsPolicy, options UpdateClaimsPolicyOperationOptions) (result UpdateClaimsPolicyOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       fmt.Sprintf("%s/claimsPolicy", id.ID()),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/claimsPolicy", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

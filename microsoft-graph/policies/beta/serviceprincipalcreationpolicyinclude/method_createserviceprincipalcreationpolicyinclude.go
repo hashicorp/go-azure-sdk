@@ -19,15 +19,44 @@ type CreateServicePrincipalCreationPolicyIncludeOperationResponse struct {
 	Model        *beta.ServicePrincipalCreationConditionSet
 }
 
+type CreateServicePrincipalCreationPolicyIncludeOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateServicePrincipalCreationPolicyIncludeOperationOptions() CreateServicePrincipalCreationPolicyIncludeOperationOptions {
+	return CreateServicePrincipalCreationPolicyIncludeOperationOptions{}
+}
+
+func (o CreateServicePrincipalCreationPolicyIncludeOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateServicePrincipalCreationPolicyIncludeOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateServicePrincipalCreationPolicyIncludeOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateServicePrincipalCreationPolicyInclude - Create new navigation property to includes for policies
-func (c ServicePrincipalCreationPolicyIncludeClient) CreateServicePrincipalCreationPolicyInclude(ctx context.Context, id beta.PolicyServicePrincipalCreationPolicyId, input beta.ServicePrincipalCreationConditionSet) (result CreateServicePrincipalCreationPolicyIncludeOperationResponse, err error) {
+func (c ServicePrincipalCreationPolicyIncludeClient) CreateServicePrincipalCreationPolicyInclude(ctx context.Context, id beta.PolicyServicePrincipalCreationPolicyId, input beta.ServicePrincipalCreationConditionSet, options CreateServicePrincipalCreationPolicyIncludeOperationOptions) (result CreateServicePrincipalCreationPolicyIncludeOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/includes", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/includes", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

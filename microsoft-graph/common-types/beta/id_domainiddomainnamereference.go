@@ -98,9 +98,9 @@ func (id DomainIdDomainNameReferenceId) ID() string {
 func (id DomainIdDomainNameReferenceId) Segments() []resourceids.Segment {
 	return []resourceids.Segment{
 		resourceids.StaticSegment("domains", "domains", "domains"),
-		resourceids.UserSpecifiedSegment("domainId", "domainIdValue"),
+		resourceids.UserSpecifiedSegment("domainId", "domainId"),
 		resourceids.StaticSegment("domainNameReferences", "domainNameReferences", "domainNameReferences"),
-		resourceids.UserSpecifiedSegment("directoryObjectId", "directoryObjectIdValue"),
+		resourceids.UserSpecifiedSegment("directoryObjectId", "directoryObjectId"),
 	}
 }
 

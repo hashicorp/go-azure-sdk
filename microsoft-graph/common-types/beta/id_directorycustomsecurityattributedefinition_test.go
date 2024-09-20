@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &DirectoryCustomSecurityAttributeDefinitionId{}
 
 func TestNewDirectoryCustomSecurityAttributeDefinitionID(t *testing.T) {
-	id := NewDirectoryCustomSecurityAttributeDefinitionID("customSecurityAttributeDefinitionIdValue")
+	id := NewDirectoryCustomSecurityAttributeDefinitionID("customSecurityAttributeDefinitionId")
 
-	if id.CustomSecurityAttributeDefinitionId != "customSecurityAttributeDefinitionIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'CustomSecurityAttributeDefinitionId'", id.CustomSecurityAttributeDefinitionId, "customSecurityAttributeDefinitionIdValue")
+	if id.CustomSecurityAttributeDefinitionId != "customSecurityAttributeDefinitionId" {
+		t.Fatalf("Expected %q but got %q for Segment 'CustomSecurityAttributeDefinitionId'", id.CustomSecurityAttributeDefinitionId, "customSecurityAttributeDefinitionId")
 	}
 }
 
 func TestFormatDirectoryCustomSecurityAttributeDefinitionID(t *testing.T) {
-	actual := NewDirectoryCustomSecurityAttributeDefinitionID("customSecurityAttributeDefinitionIdValue").ID()
-	expected := "/directory/customSecurityAttributeDefinitions/customSecurityAttributeDefinitionIdValue"
+	actual := NewDirectoryCustomSecurityAttributeDefinitionID("customSecurityAttributeDefinitionId").ID()
+	expected := "/directory/customSecurityAttributeDefinitions/customSecurityAttributeDefinitionId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -50,14 +50,14 @@ func TestParseDirectoryCustomSecurityAttributeDefinitionID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/directory/customSecurityAttributeDefinitions/customSecurityAttributeDefinitionIdValue",
+			Input: "/directory/customSecurityAttributeDefinitions/customSecurityAttributeDefinitionId",
 			Expected: &DirectoryCustomSecurityAttributeDefinitionId{
-				CustomSecurityAttributeDefinitionId: "customSecurityAttributeDefinitionIdValue",
+				CustomSecurityAttributeDefinitionId: "customSecurityAttributeDefinitionId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/directory/customSecurityAttributeDefinitions/customSecurityAttributeDefinitionIdValue/extra",
+			Input: "/directory/customSecurityAttributeDefinitions/customSecurityAttributeDefinitionId/extra",
 			Error: true,
 		},
 	}
@@ -116,26 +116,26 @@ func TestParseDirectoryCustomSecurityAttributeDefinitionIDInsensitively(t *testi
 		},
 		{
 			// Valid URI
-			Input: "/directory/customSecurityAttributeDefinitions/customSecurityAttributeDefinitionIdValue",
+			Input: "/directory/customSecurityAttributeDefinitions/customSecurityAttributeDefinitionId",
 			Expected: &DirectoryCustomSecurityAttributeDefinitionId{
-				CustomSecurityAttributeDefinitionId: "customSecurityAttributeDefinitionIdValue",
+				CustomSecurityAttributeDefinitionId: "customSecurityAttributeDefinitionId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/directory/customSecurityAttributeDefinitions/customSecurityAttributeDefinitionIdValue/extra",
+			Input: "/directory/customSecurityAttributeDefinitions/customSecurityAttributeDefinitionId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/dIrEcToRy/cUsToMsEcUrItYaTtRiBuTeDeFiNiTiOnS/cUsToMsEcUrItYaTtRiBuTeDeFiNiTiOnIdVaLuE",
+			Input: "/dIrEcToRy/cUsToMsEcUrItYaTtRiBuTeDeFiNiTiOnS/cUsToMsEcUrItYaTtRiBuTeDeFiNiTiOnId",
 			Expected: &DirectoryCustomSecurityAttributeDefinitionId{
-				CustomSecurityAttributeDefinitionId: "cUsToMsEcUrItYaTtRiBuTeDeFiNiTiOnIdVaLuE",
+				CustomSecurityAttributeDefinitionId: "cUsToMsEcUrItYaTtRiBuTeDeFiNiTiOnId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/dIrEcToRy/cUsToMsEcUrItYaTtRiBuTeDeFiNiTiOnS/cUsToMsEcUrItYaTtRiBuTeDeFiNiTiOnIdVaLuE/extra",
+			Input: "/dIrEcToRy/cUsToMsEcUrItYaTtRiBuTeDeFiNiTiOnS/cUsToMsEcUrItYaTtRiBuTeDeFiNiTiOnId/extra",
 			Error: true,
 		},
 	}

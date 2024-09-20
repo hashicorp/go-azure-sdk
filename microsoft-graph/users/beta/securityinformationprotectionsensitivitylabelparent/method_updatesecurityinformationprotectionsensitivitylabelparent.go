@@ -18,15 +18,44 @@ type UpdateSecurityInformationProtectionSensitivityLabelParentOperationResponse 
 	OData        *odata.OData
 }
 
+type UpdateSecurityInformationProtectionSensitivityLabelParentOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateSecurityInformationProtectionSensitivityLabelParentOperationOptions() UpdateSecurityInformationProtectionSensitivityLabelParentOperationOptions {
+	return UpdateSecurityInformationProtectionSensitivityLabelParentOperationOptions{}
+}
+
+func (o UpdateSecurityInformationProtectionSensitivityLabelParentOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateSecurityInformationProtectionSensitivityLabelParentOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateSecurityInformationProtectionSensitivityLabelParentOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateSecurityInformationProtectionSensitivityLabelParent - Update the navigation property parent in users
-func (c SecurityInformationProtectionSensitivityLabelParentClient) UpdateSecurityInformationProtectionSensitivityLabelParent(ctx context.Context, id beta.UserIdSecurityInformationProtectionSensitivityLabelId, input beta.SecuritySensitivityLabel) (result UpdateSecurityInformationProtectionSensitivityLabelParentOperationResponse, err error) {
+func (c SecurityInformationProtectionSensitivityLabelParentClient) UpdateSecurityInformationProtectionSensitivityLabelParent(ctx context.Context, id beta.UserIdSecurityInformationProtectionSensitivityLabelId, input beta.SecuritySensitivityLabel, options UpdateSecurityInformationProtectionSensitivityLabelParentOperationOptions) (result UpdateSecurityInformationProtectionSensitivityLabelParentOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       fmt.Sprintf("%s/parent", id.ID()),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/parent", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -19,7 +19,8 @@ type DeleteSiteInformationProtectionPolicyLabelOperationResponse struct {
 }
 
 type DeleteSiteInformationProtectionPolicyLabelOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteSiteInformationProtectionPolicyLabelOperationOptions() DeleteSiteInformationProtectionPolicyLabelOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteSiteInformationProtectionPolicyLabelOperationOptions) ToHeaders() 
 
 func (o DeleteSiteInformationProtectionPolicyLabelOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &UserIdAuthenticationSoftwareOathMethodId{}
 
 func TestNewUserIdAuthenticationSoftwareOathMethodID(t *testing.T) {
-	id := NewUserIdAuthenticationSoftwareOathMethodID("userIdValue", "softwareOathAuthenticationMethodIdValue")
+	id := NewUserIdAuthenticationSoftwareOathMethodID("userId", "softwareOathAuthenticationMethodId")
 
-	if id.UserId != "userIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'UserId'", id.UserId, "userIdValue")
+	if id.UserId != "userId" {
+		t.Fatalf("Expected %q but got %q for Segment 'UserId'", id.UserId, "userId")
 	}
 
-	if id.SoftwareOathAuthenticationMethodId != "softwareOathAuthenticationMethodIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'SoftwareOathAuthenticationMethodId'", id.SoftwareOathAuthenticationMethodId, "softwareOathAuthenticationMethodIdValue")
+	if id.SoftwareOathAuthenticationMethodId != "softwareOathAuthenticationMethodId" {
+		t.Fatalf("Expected %q but got %q for Segment 'SoftwareOathAuthenticationMethodId'", id.SoftwareOathAuthenticationMethodId, "softwareOathAuthenticationMethodId")
 	}
 }
 
 func TestFormatUserIdAuthenticationSoftwareOathMethodID(t *testing.T) {
-	actual := NewUserIdAuthenticationSoftwareOathMethodID("userIdValue", "softwareOathAuthenticationMethodIdValue").ID()
-	expected := "/users/userIdValue/authentication/softwareOathMethods/softwareOathAuthenticationMethodIdValue"
+	actual := NewUserIdAuthenticationSoftwareOathMethodID("userId", "softwareOathAuthenticationMethodId").ID()
+	expected := "/users/userId/authentication/softwareOathMethods/softwareOathAuthenticationMethodId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -49,30 +49,30 @@ func TestParseUserIdAuthenticationSoftwareOathMethodID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue",
+			Input: "/users/userId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/authentication",
+			Input: "/users/userId/authentication",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/authentication/softwareOathMethods",
+			Input: "/users/userId/authentication/softwareOathMethods",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/users/userIdValue/authentication/softwareOathMethods/softwareOathAuthenticationMethodIdValue",
+			Input: "/users/userId/authentication/softwareOathMethods/softwareOathAuthenticationMethodId",
 			Expected: &UserIdAuthenticationSoftwareOathMethodId{
-				UserId:                             "userIdValue",
-				SoftwareOathAuthenticationMethodId: "softwareOathAuthenticationMethodIdValue",
+				UserId:                             "userId",
+				SoftwareOathAuthenticationMethodId: "softwareOathAuthenticationMethodId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/users/userIdValue/authentication/softwareOathMethods/softwareOathAuthenticationMethodIdValue/extra",
+			Input: "/users/userId/authentication/softwareOathMethods/softwareOathAuthenticationMethodId/extra",
 			Error: true,
 		},
 	}
@@ -125,58 +125,58 @@ func TestParseUserIdAuthenticationSoftwareOathMethodIDInsensitively(t *testing.T
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue",
+			Input: "/users/userId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe",
+			Input: "/uSeRs/uSeRiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/authentication",
+			Input: "/users/userId/authentication",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/aUtHeNtIcAtIoN",
+			Input: "/uSeRs/uSeRiD/aUtHeNtIcAtIoN",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/authentication/softwareOathMethods",
+			Input: "/users/userId/authentication/softwareOathMethods",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/aUtHeNtIcAtIoN/sOfTwArEoAtHmEtHoDs",
+			Input: "/uSeRs/uSeRiD/aUtHeNtIcAtIoN/sOfTwArEoAtHmEtHoDs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/users/userIdValue/authentication/softwareOathMethods/softwareOathAuthenticationMethodIdValue",
+			Input: "/users/userId/authentication/softwareOathMethods/softwareOathAuthenticationMethodId",
 			Expected: &UserIdAuthenticationSoftwareOathMethodId{
-				UserId:                             "userIdValue",
-				SoftwareOathAuthenticationMethodId: "softwareOathAuthenticationMethodIdValue",
+				UserId:                             "userId",
+				SoftwareOathAuthenticationMethodId: "softwareOathAuthenticationMethodId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/users/userIdValue/authentication/softwareOathMethods/softwareOathAuthenticationMethodIdValue/extra",
+			Input: "/users/userId/authentication/softwareOathMethods/softwareOathAuthenticationMethodId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/aUtHeNtIcAtIoN/sOfTwArEoAtHmEtHoDs/sOfTwArEoAtHaUtHeNtIcAtIoNmEtHoDiDvAlUe",
+			Input: "/uSeRs/uSeRiD/aUtHeNtIcAtIoN/sOfTwArEoAtHmEtHoDs/sOfTwArEoAtHaUtHeNtIcAtIoNmEtHoDiD",
 			Expected: &UserIdAuthenticationSoftwareOathMethodId{
-				UserId:                             "uSeRiDvAlUe",
-				SoftwareOathAuthenticationMethodId: "sOfTwArEoAtHaUtHeNtIcAtIoNmEtHoDiDvAlUe",
+				UserId:                             "uSeRiD",
+				SoftwareOathAuthenticationMethodId: "sOfTwArEoAtHaUtHeNtIcAtIoNmEtHoDiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/aUtHeNtIcAtIoN/sOfTwArEoAtHmEtHoDs/sOfTwArEoAtHaUtHeNtIcAtIoNmEtHoDiDvAlUe/extra",
+			Input: "/uSeRs/uSeRiD/aUtHeNtIcAtIoN/sOfTwArEoAtHmEtHoDs/sOfTwArEoAtHaUtHeNtIcAtIoNmEtHoDiD/extra",
 			Error: true,
 		},
 	}

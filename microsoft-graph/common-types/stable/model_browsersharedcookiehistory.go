@@ -45,10 +45,20 @@ type BrowserSharedCookieHistory struct {
 var _ json.Unmarshaler = &BrowserSharedCookieHistory{}
 
 func (s *BrowserSharedCookieHistory) UnmarshalJSON(bytes []byte) error {
-	type alias BrowserSharedCookieHistory
-	var decoded alias
+
+	var decoded struct {
+		Comment           nullable.Type[string]                 `json:"comment,omitempty"`
+		DisplayName       *string                               `json:"displayName,omitempty"`
+		HostOnly          *bool                                 `json:"hostOnly,omitempty"`
+		HostOrDomain      nullable.Type[string]                 `json:"hostOrDomain,omitempty"`
+		ODataId           *string                               `json:"@odata.id,omitempty"`
+		ODataType         *string                               `json:"@odata.type,omitempty"`
+		Path              nullable.Type[string]                 `json:"path,omitempty"`
+		PublishedDateTime *string                               `json:"publishedDateTime,omitempty"`
+		SourceEnvironment *BrowserSharedCookieSourceEnvironment `json:"sourceEnvironment,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into BrowserSharedCookieHistory: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.Comment = decoded.Comment
@@ -73,5 +83,6 @@ func (s *BrowserSharedCookieHistory) UnmarshalJSON(bytes []byte) error {
 		}
 		s.LastModifiedBy = impl
 	}
+
 	return nil
 }

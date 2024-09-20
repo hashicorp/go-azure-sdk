@@ -20,15 +20,44 @@ type CreateOutlookTaskFolderTaskAttachmentOperationResponse struct {
 	Model        beta.Attachment
 }
 
+type CreateOutlookTaskFolderTaskAttachmentOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateOutlookTaskFolderTaskAttachmentOperationOptions() CreateOutlookTaskFolderTaskAttachmentOperationOptions {
+	return CreateOutlookTaskFolderTaskAttachmentOperationOptions{}
+}
+
+func (o CreateOutlookTaskFolderTaskAttachmentOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateOutlookTaskFolderTaskAttachmentOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateOutlookTaskFolderTaskAttachmentOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateOutlookTaskFolderTaskAttachment - Create new navigation property to attachments for users
-func (c OutlookTaskFolderTaskAttachmentClient) CreateOutlookTaskFolderTaskAttachment(ctx context.Context, id beta.UserIdOutlookTaskFolderIdTaskId, input beta.Attachment) (result CreateOutlookTaskFolderTaskAttachmentOperationResponse, err error) {
+func (c OutlookTaskFolderTaskAttachmentClient) CreateOutlookTaskFolderTaskAttachment(ctx context.Context, id beta.UserIdOutlookTaskFolderIdTaskId, input beta.Attachment, options CreateOutlookTaskFolderTaskAttachmentOperationOptions) (result CreateOutlookTaskFolderTaskAttachmentOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/attachments", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/attachments", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

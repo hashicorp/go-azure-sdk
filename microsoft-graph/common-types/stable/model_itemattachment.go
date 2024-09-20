@@ -95,10 +95,19 @@ func (s ItemAttachment) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &ItemAttachment{}
 
 func (s *ItemAttachment) UnmarshalJSON(bytes []byte) error {
-	type alias ItemAttachment
-	var decoded alias
+
+	var decoded struct {
+		ContentType          nullable.Type[string] `json:"contentType,omitempty"`
+		IsInline             *bool                 `json:"isInline,omitempty"`
+		LastModifiedDateTime nullable.Type[string] `json:"lastModifiedDateTime,omitempty"`
+		Name                 nullable.Type[string] `json:"name,omitempty"`
+		Size                 *int64                `json:"size,omitempty"`
+		Id                   *string               `json:"id,omitempty"`
+		ODataId              *string               `json:"@odata.id,omitempty"`
+		ODataType            *string               `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into ItemAttachment: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.ContentType = decoded.ContentType
@@ -122,5 +131,6 @@ func (s *ItemAttachment) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Item = &impl
 	}
+
 	return nil
 }

@@ -19,6 +19,34 @@ type ResetAuthenticationMethodPasswordOperationResponse struct {
 	Model        *stable.PasswordResetResponse
 }
 
+type ResetAuthenticationMethodPasswordOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultResetAuthenticationMethodPasswordOperationOptions() ResetAuthenticationMethodPasswordOperationOptions {
+	return ResetAuthenticationMethodPasswordOperationOptions{}
+}
+
+func (o ResetAuthenticationMethodPasswordOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o ResetAuthenticationMethodPasswordOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o ResetAuthenticationMethodPasswordOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // ResetAuthenticationMethodPassword - Invoke action resetPassword. Reset a user's password, represented by a password
 // authentication method object. This can only be done by an administrator with appropriate permissions and can't be
 // performed on a user's own account. To reset a user's password in Azure AD B2C, use the Update user API operation and
@@ -27,14 +55,15 @@ type ResetAuthenticationMethodPasswordOperationResponse struct {
 // provide a new password or have the system generate one. The user is prompted to change their password on their next
 // sign in. This reset is a long-running operation and returns a Location header with a link where the caller can
 // periodically check for the status of the reset operation.
-func (c AuthenticationMethodClient) ResetAuthenticationMethodPassword(ctx context.Context, id stable.UserIdAuthenticationMethodId, input ResetAuthenticationMethodPasswordRequest) (result ResetAuthenticationMethodPasswordOperationResponse, err error) {
+func (c AuthenticationMethodClient) ResetAuthenticationMethodPassword(ctx context.Context, id stable.UserIdAuthenticationMethodId, input ResetAuthenticationMethodPasswordRequest, options ResetAuthenticationMethodPasswordOperationOptions) (result ResetAuthenticationMethodPasswordOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/resetPassword", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/resetPassword", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

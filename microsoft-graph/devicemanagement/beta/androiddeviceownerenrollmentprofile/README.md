@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/androiddeviceownerenrollmentprofile` Documentation
 
-The `androiddeviceownerenrollmentprofile` SDK allows for interaction with the Azure Resource Manager Service `devicemanagement` (API Version `beta`).
+The `androiddeviceownerenrollmentprofile` SDK allows for interaction with Microsoft Graph `devicemanagement` (API Version `beta`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -15,7 +15,7 @@ import "github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/
 ### Client Initialization
 
 ```go
-client := androiddeviceownerenrollmentprofile.NewAndroidDeviceOwnerEnrollmentProfileClientWithBaseURI("https://management.azure.com")
+client := androiddeviceownerenrollmentprofile.NewAndroidDeviceOwnerEnrollmentProfileClientWithBaseURI("https://graph.microsoft.com")
 client.Client.Authorizer = authorizer
 ```
 
@@ -30,7 +30,7 @@ payload := androiddeviceownerenrollmentprofile.AndroidDeviceOwnerEnrollmentProfi
 }
 
 
-read, err := client.CreateAndroidDeviceOwnerEnrollmentProfile(ctx, payload)
+read, err := client.CreateAndroidDeviceOwnerEnrollmentProfile(ctx, payload, androiddeviceownerenrollmentprofile.DefaultCreateAndroidDeviceOwnerEnrollmentProfileOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -44,14 +44,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := androiddeviceownerenrollmentprofile.NewDeviceManagementAndroidDeviceOwnerEnrollmentProfileID("androidDeviceOwnerEnrollmentProfileIdValue")
+id := androiddeviceownerenrollmentprofile.NewDeviceManagementAndroidDeviceOwnerEnrollmentProfileID("androidDeviceOwnerEnrollmentProfileId")
 
 payload := androiddeviceownerenrollmentprofile.CreateAndroidDeviceOwnerEnrollmentProfileTokenRequest{
 	// ...
 }
 
 
-read, err := client.CreateAndroidDeviceOwnerEnrollmentProfileToken(ctx, id, payload)
+read, err := client.CreateAndroidDeviceOwnerEnrollmentProfileToken(ctx, id, payload, androiddeviceownerenrollmentprofile.DefaultCreateAndroidDeviceOwnerEnrollmentProfileTokenOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -65,7 +65,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := androiddeviceownerenrollmentprofile.NewDeviceManagementAndroidDeviceOwnerEnrollmentProfileID("androidDeviceOwnerEnrollmentProfileIdValue")
+id := androiddeviceownerenrollmentprofile.NewDeviceManagementAndroidDeviceOwnerEnrollmentProfileID("androidDeviceOwnerEnrollmentProfileId")
 
 read, err := client.DeleteAndroidDeviceOwnerEnrollmentProfile(ctx, id, androiddeviceownerenrollmentprofile.DefaultDeleteAndroidDeviceOwnerEnrollmentProfileOperationOptions())
 if err != nil {
@@ -81,7 +81,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := androiddeviceownerenrollmentprofile.NewDeviceManagementAndroidDeviceOwnerEnrollmentProfileID("androidDeviceOwnerEnrollmentProfileIdValue")
+id := androiddeviceownerenrollmentprofile.NewDeviceManagementAndroidDeviceOwnerEnrollmentProfileID("androidDeviceOwnerEnrollmentProfileId")
 
 read, err := client.GetAndroidDeviceOwnerEnrollmentProfile(ctx, id, androiddeviceownerenrollmentprofile.DefaultGetAndroidDeviceOwnerEnrollmentProfileOperationOptions())
 if err != nil {
@@ -130,9 +130,9 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := androiddeviceownerenrollmentprofile.NewDeviceManagementAndroidDeviceOwnerEnrollmentProfileID("androidDeviceOwnerEnrollmentProfileIdValue")
+id := androiddeviceownerenrollmentprofile.NewDeviceManagementAndroidDeviceOwnerEnrollmentProfileID("androidDeviceOwnerEnrollmentProfileId")
 
-read, err := client.RevokeAndroidDeviceOwnerEnrollmentProfileToken(ctx, id)
+read, err := client.RevokeAndroidDeviceOwnerEnrollmentProfileToken(ctx, id, androiddeviceownerenrollmentprofile.DefaultRevokeAndroidDeviceOwnerEnrollmentProfileTokenOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -146,14 +146,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := androiddeviceownerenrollmentprofile.NewDeviceManagementAndroidDeviceOwnerEnrollmentProfileID("androidDeviceOwnerEnrollmentProfileIdValue")
+id := androiddeviceownerenrollmentprofile.NewDeviceManagementAndroidDeviceOwnerEnrollmentProfileID("androidDeviceOwnerEnrollmentProfileId")
 
 payload := androiddeviceownerenrollmentprofile.AndroidDeviceOwnerEnrollmentProfile{
 	// ...
 }
 
 
-read, err := client.UpdateAndroidDeviceOwnerEnrollmentProfile(ctx, id, payload)
+read, err := client.UpdateAndroidDeviceOwnerEnrollmentProfile(ctx, id, payload, androiddeviceownerenrollmentprofile.DefaultUpdateAndroidDeviceOwnerEnrollmentProfileOperationOptions())
 if err != nil {
 	// handle the error
 }

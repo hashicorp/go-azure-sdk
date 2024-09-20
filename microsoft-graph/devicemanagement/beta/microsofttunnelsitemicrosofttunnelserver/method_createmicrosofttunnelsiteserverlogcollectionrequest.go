@@ -19,15 +19,44 @@ type CreateMicrosoftTunnelSiteServerLogCollectionRequestOperationResponse struct
 	Model        *beta.MicrosoftTunnelServerLogCollectionResponse
 }
 
+type CreateMicrosoftTunnelSiteServerLogCollectionRequestOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateMicrosoftTunnelSiteServerLogCollectionRequestOperationOptions() CreateMicrosoftTunnelSiteServerLogCollectionRequestOperationOptions {
+	return CreateMicrosoftTunnelSiteServerLogCollectionRequestOperationOptions{}
+}
+
+func (o CreateMicrosoftTunnelSiteServerLogCollectionRequestOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateMicrosoftTunnelSiteServerLogCollectionRequestOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateMicrosoftTunnelSiteServerLogCollectionRequestOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateMicrosoftTunnelSiteServerLogCollectionRequest - Invoke action createServerLogCollectionRequest
-func (c MicrosoftTunnelSiteMicrosoftTunnelServerClient) CreateMicrosoftTunnelSiteServerLogCollectionRequest(ctx context.Context, id beta.DeviceManagementMicrosoftTunnelSiteIdMicrosoftTunnelServerId, input CreateMicrosoftTunnelSiteServerLogCollectionRequestRequest) (result CreateMicrosoftTunnelSiteServerLogCollectionRequestOperationResponse, err error) {
+func (c MicrosoftTunnelSiteMicrosoftTunnelServerClient) CreateMicrosoftTunnelSiteServerLogCollectionRequest(ctx context.Context, id beta.DeviceManagementMicrosoftTunnelSiteIdMicrosoftTunnelServerId, input CreateMicrosoftTunnelSiteServerLogCollectionRequestRequest, options CreateMicrosoftTunnelSiteServerLogCollectionRequestOperationOptions) (result CreateMicrosoftTunnelSiteServerLogCollectionRequestOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/createServerLogCollectionRequest", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/createServerLogCollectionRequest", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

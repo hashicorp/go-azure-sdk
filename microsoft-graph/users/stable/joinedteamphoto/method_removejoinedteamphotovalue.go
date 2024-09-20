@@ -19,7 +19,8 @@ type RemoveJoinedTeamPhotoValueOperationResponse struct {
 }
 
 type RemoveJoinedTeamPhotoValueOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultRemoveJoinedTeamPhotoValueOperationOptions() RemoveJoinedTeamPhotoValueOperationOptions {
@@ -36,7 +37,9 @@ func (o RemoveJoinedTeamPhotoValueOperationOptions) ToHeaders() *client.Headers 
 
 func (o RemoveJoinedTeamPhotoValueOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

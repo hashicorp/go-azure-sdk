@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/microsoft-graph/users/stable/followedsite` Documentation
 
-The `followedsite` SDK allows for interaction with the Azure Resource Manager Service `users` (API Version `stable`).
+The `followedsite` SDK allows for interaction with Microsoft Graph `users` (API Version `stable`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -15,7 +15,7 @@ import "github.com/hashicorp/go-azure-sdk/microsoft-graph/users/stable/followeds
 ### Client Initialization
 
 ```go
-client := followedsite.NewFollowedSiteClientWithBaseURI("https://management.azure.com")
+client := followedsite.NewFollowedSiteClientWithBaseURI("https://graph.microsoft.com")
 client.Client.Authorizer = authorizer
 ```
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := followedsite.NewUserID("userIdValue")
+id := followedsite.NewUserID("userId")
 
 payload := followedsite.AddFollowedSitesRequest{
 	// ...
@@ -46,7 +46,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := followedsite.NewUserIdFollowedSiteID("userIdValue", "siteIdValue")
+id := followedsite.NewUserIdFollowedSiteID("userId", "siteId")
 
 read, err := client.GetFollowedSite(ctx, id, followedsite.DefaultGetFollowedSiteOperationOptions())
 if err != nil {
@@ -62,7 +62,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := followedsite.NewUserID("userIdValue")
+id := followedsite.NewUserID("userId")
 
 read, err := client.GetFollowedSitesCount(ctx, id, followedsite.DefaultGetFollowedSitesCountOperationOptions())
 if err != nil {
@@ -78,7 +78,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := followedsite.NewUserID("userIdValue")
+id := followedsite.NewUserID("userId")
 
 // alternatively `client.ListFollowedSites(ctx, id, followedsite.DefaultListFollowedSitesOperationOptions())` can be used to do batched pagination
 items, err := client.ListFollowedSitesComplete(ctx, id, followedsite.DefaultListFollowedSitesOperationOptions())
@@ -95,7 +95,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := followedsite.NewUserID("userIdValue")
+id := followedsite.NewUserID("userId")
 
 payload := followedsite.RemoveFollowedSitesRequest{
 	// ...

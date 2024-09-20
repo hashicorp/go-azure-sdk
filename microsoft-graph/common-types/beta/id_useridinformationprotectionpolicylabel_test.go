@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &UserIdInformationProtectionPolicyLabelId{}
 
 func TestNewUserIdInformationProtectionPolicyLabelID(t *testing.T) {
-	id := NewUserIdInformationProtectionPolicyLabelID("userIdValue", "informationProtectionLabelIdValue")
+	id := NewUserIdInformationProtectionPolicyLabelID("userId", "informationProtectionLabelId")
 
-	if id.UserId != "userIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'UserId'", id.UserId, "userIdValue")
+	if id.UserId != "userId" {
+		t.Fatalf("Expected %q but got %q for Segment 'UserId'", id.UserId, "userId")
 	}
 
-	if id.InformationProtectionLabelId != "informationProtectionLabelIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'InformationProtectionLabelId'", id.InformationProtectionLabelId, "informationProtectionLabelIdValue")
+	if id.InformationProtectionLabelId != "informationProtectionLabelId" {
+		t.Fatalf("Expected %q but got %q for Segment 'InformationProtectionLabelId'", id.InformationProtectionLabelId, "informationProtectionLabelId")
 	}
 }
 
 func TestFormatUserIdInformationProtectionPolicyLabelID(t *testing.T) {
-	actual := NewUserIdInformationProtectionPolicyLabelID("userIdValue", "informationProtectionLabelIdValue").ID()
-	expected := "/users/userIdValue/informationProtection/policy/labels/informationProtectionLabelIdValue"
+	actual := NewUserIdInformationProtectionPolicyLabelID("userId", "informationProtectionLabelId").ID()
+	expected := "/users/userId/informationProtection/policy/labels/informationProtectionLabelId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -49,35 +49,35 @@ func TestParseUserIdInformationProtectionPolicyLabelID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue",
+			Input: "/users/userId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/informationProtection",
+			Input: "/users/userId/informationProtection",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/informationProtection/policy",
+			Input: "/users/userId/informationProtection/policy",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/informationProtection/policy/labels",
+			Input: "/users/userId/informationProtection/policy/labels",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/users/userIdValue/informationProtection/policy/labels/informationProtectionLabelIdValue",
+			Input: "/users/userId/informationProtection/policy/labels/informationProtectionLabelId",
 			Expected: &UserIdInformationProtectionPolicyLabelId{
-				UserId:                       "userIdValue",
-				InformationProtectionLabelId: "informationProtectionLabelIdValue",
+				UserId:                       "userId",
+				InformationProtectionLabelId: "informationProtectionLabelId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/users/userIdValue/informationProtection/policy/labels/informationProtectionLabelIdValue/extra",
+			Input: "/users/userId/informationProtection/policy/labels/informationProtectionLabelId/extra",
 			Error: true,
 		},
 	}
@@ -130,68 +130,68 @@ func TestParseUserIdInformationProtectionPolicyLabelIDInsensitively(t *testing.T
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue",
+			Input: "/users/userId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe",
+			Input: "/uSeRs/uSeRiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/informationProtection",
+			Input: "/users/userId/informationProtection",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/iNfOrMaTiOnPrOtEcTiOn",
+			Input: "/uSeRs/uSeRiD/iNfOrMaTiOnPrOtEcTiOn",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/informationProtection/policy",
+			Input: "/users/userId/informationProtection/policy",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/iNfOrMaTiOnPrOtEcTiOn/pOlIcY",
+			Input: "/uSeRs/uSeRiD/iNfOrMaTiOnPrOtEcTiOn/pOlIcY",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/informationProtection/policy/labels",
+			Input: "/users/userId/informationProtection/policy/labels",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/iNfOrMaTiOnPrOtEcTiOn/pOlIcY/lAbElS",
+			Input: "/uSeRs/uSeRiD/iNfOrMaTiOnPrOtEcTiOn/pOlIcY/lAbElS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/users/userIdValue/informationProtection/policy/labels/informationProtectionLabelIdValue",
+			Input: "/users/userId/informationProtection/policy/labels/informationProtectionLabelId",
 			Expected: &UserIdInformationProtectionPolicyLabelId{
-				UserId:                       "userIdValue",
-				InformationProtectionLabelId: "informationProtectionLabelIdValue",
+				UserId:                       "userId",
+				InformationProtectionLabelId: "informationProtectionLabelId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/users/userIdValue/informationProtection/policy/labels/informationProtectionLabelIdValue/extra",
+			Input: "/users/userId/informationProtection/policy/labels/informationProtectionLabelId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/iNfOrMaTiOnPrOtEcTiOn/pOlIcY/lAbElS/iNfOrMaTiOnPrOtEcTiOnLaBeLiDvAlUe",
+			Input: "/uSeRs/uSeRiD/iNfOrMaTiOnPrOtEcTiOn/pOlIcY/lAbElS/iNfOrMaTiOnPrOtEcTiOnLaBeLiD",
 			Expected: &UserIdInformationProtectionPolicyLabelId{
-				UserId:                       "uSeRiDvAlUe",
-				InformationProtectionLabelId: "iNfOrMaTiOnPrOtEcTiOnLaBeLiDvAlUe",
+				UserId:                       "uSeRiD",
+				InformationProtectionLabelId: "iNfOrMaTiOnPrOtEcTiOnLaBeLiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/iNfOrMaTiOnPrOtEcTiOn/pOlIcY/lAbElS/iNfOrMaTiOnPrOtEcTiOnLaBeLiDvAlUe/extra",
+			Input: "/uSeRs/uSeRiD/iNfOrMaTiOnPrOtEcTiOn/pOlIcY/lAbElS/iNfOrMaTiOnPrOtEcTiOnLaBeLiD/extra",
 			Error: true,
 		},
 	}

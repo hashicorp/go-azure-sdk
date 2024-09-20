@@ -18,20 +18,49 @@ type SetTeamOperationResponse struct {
 	OData        *odata.OData
 }
 
+type SetTeamOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultSetTeamOperationOptions() SetTeamOperationOptions {
+	return SetTeamOperationOptions{}
+}
+
+func (o SetTeamOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o SetTeamOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o SetTeamOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // SetTeam - Create team from group. Create a new team under a group. In order to create a team, the group must have a
 // least one owner. If the creation of the team call is delayed, you can retry the call up to three times before you
 // have to wait for 15 minutes due to a propagation delay. If the group was created less than 15 minutes ago, the call
 // might fail with a 404 error code due to replication delays. If the group was created less than 15 minutes ago, it's
 // possible for a call to create a team to fail with a 404 error code, due to ongoing replication delays. The
 // recommended pattern is to retry the Create team call three times, with a 10 second delay between calls.
-func (c TeamClient) SetTeam(ctx context.Context, id stable.GroupId, input stable.Team) (result SetTeamOperationResponse, err error) {
+func (c TeamClient) SetTeam(ctx context.Context, id stable.GroupId, input stable.Team, options SetTeamOperationOptions) (result SetTeamOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPut,
-		Path:       fmt.Sprintf("%s/team", id.ID()),
+		HttpMethod:    http.MethodPut,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/team", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

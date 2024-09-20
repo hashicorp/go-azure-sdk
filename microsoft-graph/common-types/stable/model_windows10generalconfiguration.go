@@ -752,17 +752,231 @@ func (s Windows10GeneralConfiguration) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &Windows10GeneralConfiguration{}
 
 func (s *Windows10GeneralConfiguration) UnmarshalJSON(bytes []byte) error {
-	type alias Windows10GeneralConfiguration
-	var decoded alias
+
+	var decoded struct {
+		AccountsBlockAddingNonMicrosoftAccountEmail           *bool                                  `json:"accountsBlockAddingNonMicrosoftAccountEmail,omitempty"`
+		AntiTheftModeBlocked                                  *bool                                  `json:"antiTheftModeBlocked,omitempty"`
+		AppsAllowTrustedAppsSideloading                       *StateManagementSetting                `json:"appsAllowTrustedAppsSideloading,omitempty"`
+		AppsBlockWindowsStoreOriginatedApps                   *bool                                  `json:"appsBlockWindowsStoreOriginatedApps,omitempty"`
+		BluetoothAllowedServices                              *[]string                              `json:"bluetoothAllowedServices,omitempty"`
+		BluetoothBlockAdvertising                             *bool                                  `json:"bluetoothBlockAdvertising,omitempty"`
+		BluetoothBlockDiscoverableMode                        *bool                                  `json:"bluetoothBlockDiscoverableMode,omitempty"`
+		BluetoothBlockPrePairing                              *bool                                  `json:"bluetoothBlockPrePairing,omitempty"`
+		BluetoothBlocked                                      *bool                                  `json:"bluetoothBlocked,omitempty"`
+		CameraBlocked                                         *bool                                  `json:"cameraBlocked,omitempty"`
+		CellularBlockDataWhenRoaming                          *bool                                  `json:"cellularBlockDataWhenRoaming,omitempty"`
+		CellularBlockVpn                                      *bool                                  `json:"cellularBlockVpn,omitempty"`
+		CellularBlockVpnWhenRoaming                           *bool                                  `json:"cellularBlockVpnWhenRoaming,omitempty"`
+		CertificatesBlockManualRootCertificateInstallation    *bool                                  `json:"certificatesBlockManualRootCertificateInstallation,omitempty"`
+		ConnectedDevicesServiceBlocked                        *bool                                  `json:"connectedDevicesServiceBlocked,omitempty"`
+		CopyPasteBlocked                                      *bool                                  `json:"copyPasteBlocked,omitempty"`
+		CortanaBlocked                                        *bool                                  `json:"cortanaBlocked,omitempty"`
+		DefenderBlockEndUserAccess                            *bool                                  `json:"defenderBlockEndUserAccess,omitempty"`
+		DefenderCloudBlockLevel                               *DefenderCloudBlockLevelType           `json:"defenderCloudBlockLevel,omitempty"`
+		DefenderDaysBeforeDeletingQuarantinedMalware          nullable.Type[int64]                   `json:"defenderDaysBeforeDeletingQuarantinedMalware,omitempty"`
+		DefenderDetectedMalwareActions                        *DefenderDetectedMalwareActions        `json:"defenderDetectedMalwareActions,omitempty"`
+		DefenderFileExtensionsToExclude                       *[]string                              `json:"defenderFileExtensionsToExclude,omitempty"`
+		DefenderFilesAndFoldersToExclude                      *[]string                              `json:"defenderFilesAndFoldersToExclude,omitempty"`
+		DefenderMonitorFileActivity                           *DefenderMonitorFileActivity           `json:"defenderMonitorFileActivity,omitempty"`
+		DefenderProcessesToExclude                            *[]string                              `json:"defenderProcessesToExclude,omitempty"`
+		DefenderPromptForSampleSubmission                     *DefenderPromptForSampleSubmission     `json:"defenderPromptForSampleSubmission,omitempty"`
+		DefenderRequireBehaviorMonitoring                     *bool                                  `json:"defenderRequireBehaviorMonitoring,omitempty"`
+		DefenderRequireCloudProtection                        *bool                                  `json:"defenderRequireCloudProtection,omitempty"`
+		DefenderRequireNetworkInspectionSystem                *bool                                  `json:"defenderRequireNetworkInspectionSystem,omitempty"`
+		DefenderRequireRealTimeMonitoring                     *bool                                  `json:"defenderRequireRealTimeMonitoring,omitempty"`
+		DefenderScanArchiveFiles                              *bool                                  `json:"defenderScanArchiveFiles,omitempty"`
+		DefenderScanDownloads                                 *bool                                  `json:"defenderScanDownloads,omitempty"`
+		DefenderScanIncomingMail                              *bool                                  `json:"defenderScanIncomingMail,omitempty"`
+		DefenderScanMappedNetworkDrivesDuringFullScan         *bool                                  `json:"defenderScanMappedNetworkDrivesDuringFullScan,omitempty"`
+		DefenderScanMaxCpu                                    nullable.Type[int64]                   `json:"defenderScanMaxCpu,omitempty"`
+		DefenderScanNetworkFiles                              *bool                                  `json:"defenderScanNetworkFiles,omitempty"`
+		DefenderScanRemovableDrivesDuringFullScan             *bool                                  `json:"defenderScanRemovableDrivesDuringFullScan,omitempty"`
+		DefenderScanScriptsLoadedInInternetExplorer           *bool                                  `json:"defenderScanScriptsLoadedInInternetExplorer,omitempty"`
+		DefenderScanType                                      *DefenderScanType                      `json:"defenderScanType,omitempty"`
+		DefenderScheduledQuickScanTime                        nullable.Type[string]                  `json:"defenderScheduledQuickScanTime,omitempty"`
+		DefenderScheduledScanTime                             nullable.Type[string]                  `json:"defenderScheduledScanTime,omitempty"`
+		DefenderSignatureUpdateIntervalInHours                nullable.Type[int64]                   `json:"defenderSignatureUpdateIntervalInHours,omitempty"`
+		DefenderSystemScanSchedule                            *WeeklySchedule                        `json:"defenderSystemScanSchedule,omitempty"`
+		DeveloperUnlockSetting                                *StateManagementSetting                `json:"developerUnlockSetting,omitempty"`
+		DeviceManagementBlockFactoryResetOnMobile             *bool                                  `json:"deviceManagementBlockFactoryResetOnMobile,omitempty"`
+		DeviceManagementBlockManualUnenroll                   *bool                                  `json:"deviceManagementBlockManualUnenroll,omitempty"`
+		DiagnosticsDataSubmissionMode                         *DiagnosticDataSubmissionMode          `json:"diagnosticsDataSubmissionMode,omitempty"`
+		EdgeAllowStartPagesModification                       *bool                                  `json:"edgeAllowStartPagesModification,omitempty"`
+		EdgeBlockAccessToAboutFlags                           *bool                                  `json:"edgeBlockAccessToAboutFlags,omitempty"`
+		EdgeBlockAddressBarDropdown                           *bool                                  `json:"edgeBlockAddressBarDropdown,omitempty"`
+		EdgeBlockAutofill                                     *bool                                  `json:"edgeBlockAutofill,omitempty"`
+		EdgeBlockCompatibilityList                            *bool                                  `json:"edgeBlockCompatibilityList,omitempty"`
+		EdgeBlockDeveloperTools                               *bool                                  `json:"edgeBlockDeveloperTools,omitempty"`
+		EdgeBlockExtensions                                   *bool                                  `json:"edgeBlockExtensions,omitempty"`
+		EdgeBlockInPrivateBrowsing                            *bool                                  `json:"edgeBlockInPrivateBrowsing,omitempty"`
+		EdgeBlockJavaScript                                   *bool                                  `json:"edgeBlockJavaScript,omitempty"`
+		EdgeBlockLiveTileDataCollection                       *bool                                  `json:"edgeBlockLiveTileDataCollection,omitempty"`
+		EdgeBlockPasswordManager                              *bool                                  `json:"edgeBlockPasswordManager,omitempty"`
+		EdgeBlockPopups                                       *bool                                  `json:"edgeBlockPopups,omitempty"`
+		EdgeBlockSearchSuggestions                            *bool                                  `json:"edgeBlockSearchSuggestions,omitempty"`
+		EdgeBlockSendingDoNotTrackHeader                      *bool                                  `json:"edgeBlockSendingDoNotTrackHeader,omitempty"`
+		EdgeBlockSendingIntranetTrafficToInternetExplorer     *bool                                  `json:"edgeBlockSendingIntranetTrafficToInternetExplorer,omitempty"`
+		EdgeBlocked                                           *bool                                  `json:"edgeBlocked,omitempty"`
+		EdgeClearBrowsingDataOnExit                           *bool                                  `json:"edgeClearBrowsingDataOnExit,omitempty"`
+		EdgeCookiePolicy                                      *EdgeCookiePolicy                      `json:"edgeCookiePolicy,omitempty"`
+		EdgeDisableFirstRunPage                               *bool                                  `json:"edgeDisableFirstRunPage,omitempty"`
+		EdgeEnterpriseModeSiteListLocation                    nullable.Type[string]                  `json:"edgeEnterpriseModeSiteListLocation,omitempty"`
+		EdgeFirstRunUrl                                       nullable.Type[string]                  `json:"edgeFirstRunUrl,omitempty"`
+		EdgeHomepageUrls                                      *[]string                              `json:"edgeHomepageUrls,omitempty"`
+		EdgeRequireSmartScreen                                *bool                                  `json:"edgeRequireSmartScreen,omitempty"`
+		EdgeSendIntranetTrafficToInternetExplorer             *bool                                  `json:"edgeSendIntranetTrafficToInternetExplorer,omitempty"`
+		EdgeSyncFavoritesWithInternetExplorer                 *bool                                  `json:"edgeSyncFavoritesWithInternetExplorer,omitempty"`
+		EnterpriseCloudPrintDiscoveryEndPoint                 nullable.Type[string]                  `json:"enterpriseCloudPrintDiscoveryEndPoint,omitempty"`
+		EnterpriseCloudPrintDiscoveryMaxLimit                 nullable.Type[int64]                   `json:"enterpriseCloudPrintDiscoveryMaxLimit,omitempty"`
+		EnterpriseCloudPrintMopriaDiscoveryResourceIdentifier nullable.Type[string]                  `json:"enterpriseCloudPrintMopriaDiscoveryResourceIdentifier,omitempty"`
+		EnterpriseCloudPrintOAuthAuthority                    nullable.Type[string]                  `json:"enterpriseCloudPrintOAuthAuthority,omitempty"`
+		EnterpriseCloudPrintOAuthClientIdentifier             nullable.Type[string]                  `json:"enterpriseCloudPrintOAuthClientIdentifier,omitempty"`
+		EnterpriseCloudPrintResourceIdentifier                nullable.Type[string]                  `json:"enterpriseCloudPrintResourceIdentifier,omitempty"`
+		ExperienceBlockDeviceDiscovery                        *bool                                  `json:"experienceBlockDeviceDiscovery,omitempty"`
+		ExperienceBlockErrorDialogWhenNoSIM                   *bool                                  `json:"experienceBlockErrorDialogWhenNoSIM,omitempty"`
+		ExperienceBlockTaskSwitcher                           *bool                                  `json:"experienceBlockTaskSwitcher,omitempty"`
+		GameDvrBlocked                                        *bool                                  `json:"gameDvrBlocked,omitempty"`
+		InternetSharingBlocked                                *bool                                  `json:"internetSharingBlocked,omitempty"`
+		LocationServicesBlocked                               *bool                                  `json:"locationServicesBlocked,omitempty"`
+		LockScreenAllowTimeoutConfiguration                   *bool                                  `json:"lockScreenAllowTimeoutConfiguration,omitempty"`
+		LockScreenBlockActionCenterNotifications              *bool                                  `json:"lockScreenBlockActionCenterNotifications,omitempty"`
+		LockScreenBlockCortana                                *bool                                  `json:"lockScreenBlockCortana,omitempty"`
+		LockScreenBlockToastNotifications                     *bool                                  `json:"lockScreenBlockToastNotifications,omitempty"`
+		LockScreenTimeoutInSeconds                            nullable.Type[int64]                   `json:"lockScreenTimeoutInSeconds,omitempty"`
+		LogonBlockFastUserSwitching                           *bool                                  `json:"logonBlockFastUserSwitching,omitempty"`
+		MicrosoftAccountBlockSettingsSync                     *bool                                  `json:"microsoftAccountBlockSettingsSync,omitempty"`
+		MicrosoftAccountBlocked                               *bool                                  `json:"microsoftAccountBlocked,omitempty"`
+		NetworkProxyApplySettingsDeviceWide                   *bool                                  `json:"networkProxyApplySettingsDeviceWide,omitempty"`
+		NetworkProxyAutomaticConfigurationUrl                 nullable.Type[string]                  `json:"networkProxyAutomaticConfigurationUrl,omitempty"`
+		NetworkProxyDisableAutoDetect                         *bool                                  `json:"networkProxyDisableAutoDetect,omitempty"`
+		NetworkProxyServer                                    *Windows10NetworkProxyServer           `json:"networkProxyServer,omitempty"`
+		NfcBlocked                                            *bool                                  `json:"nfcBlocked,omitempty"`
+		OneDriveDisableFileSync                               *bool                                  `json:"oneDriveDisableFileSync,omitempty"`
+		PasswordBlockSimple                                   *bool                                  `json:"passwordBlockSimple,omitempty"`
+		PasswordExpirationDays                                nullable.Type[int64]                   `json:"passwordExpirationDays,omitempty"`
+		PasswordMinimumCharacterSetCount                      nullable.Type[int64]                   `json:"passwordMinimumCharacterSetCount,omitempty"`
+		PasswordMinimumLength                                 nullable.Type[int64]                   `json:"passwordMinimumLength,omitempty"`
+		PasswordMinutesOfInactivityBeforeScreenTimeout        nullable.Type[int64]                   `json:"passwordMinutesOfInactivityBeforeScreenTimeout,omitempty"`
+		PasswordPreviousPasswordBlockCount                    nullable.Type[int64]                   `json:"passwordPreviousPasswordBlockCount,omitempty"`
+		PasswordRequireWhenResumeFromIdleState                *bool                                  `json:"passwordRequireWhenResumeFromIdleState,omitempty"`
+		PasswordRequired                                      *bool                                  `json:"passwordRequired,omitempty"`
+		PasswordRequiredType                                  *RequiredPasswordType                  `json:"passwordRequiredType,omitempty"`
+		PasswordSignInFailureCountBeforeFactoryReset          nullable.Type[int64]                   `json:"passwordSignInFailureCountBeforeFactoryReset,omitempty"`
+		PersonalizationDesktopImageUrl                        nullable.Type[string]                  `json:"personalizationDesktopImageUrl,omitempty"`
+		PersonalizationLockScreenImageUrl                     nullable.Type[string]                  `json:"personalizationLockScreenImageUrl,omitempty"`
+		PrivacyAdvertisingId                                  *StateManagementSetting                `json:"privacyAdvertisingId,omitempty"`
+		PrivacyAutoAcceptPairingAndConsentPrompts             *bool                                  `json:"privacyAutoAcceptPairingAndConsentPrompts,omitempty"`
+		PrivacyBlockInputPersonalization                      *bool                                  `json:"privacyBlockInputPersonalization,omitempty"`
+		ResetProtectionModeBlocked                            *bool                                  `json:"resetProtectionModeBlocked,omitempty"`
+		SafeSearchFilter                                      *SafeSearchFilterType                  `json:"safeSearchFilter,omitempty"`
+		ScreenCaptureBlocked                                  *bool                                  `json:"screenCaptureBlocked,omitempty"`
+		SearchBlockDiacritics                                 *bool                                  `json:"searchBlockDiacritics,omitempty"`
+		SearchDisableAutoLanguageDetection                    *bool                                  `json:"searchDisableAutoLanguageDetection,omitempty"`
+		SearchDisableIndexerBackoff                           *bool                                  `json:"searchDisableIndexerBackoff,omitempty"`
+		SearchDisableIndexingEncryptedItems                   *bool                                  `json:"searchDisableIndexingEncryptedItems,omitempty"`
+		SearchDisableIndexingRemovableDrive                   *bool                                  `json:"searchDisableIndexingRemovableDrive,omitempty"`
+		SearchEnableAutomaticIndexSizeManangement             *bool                                  `json:"searchEnableAutomaticIndexSizeManangement,omitempty"`
+		SearchEnableRemoteQueries                             *bool                                  `json:"searchEnableRemoteQueries,omitempty"`
+		SettingsBlockAccountsPage                             *bool                                  `json:"settingsBlockAccountsPage,omitempty"`
+		SettingsBlockAddProvisioningPackage                   *bool                                  `json:"settingsBlockAddProvisioningPackage,omitempty"`
+		SettingsBlockAppsPage                                 *bool                                  `json:"settingsBlockAppsPage,omitempty"`
+		SettingsBlockChangeLanguage                           *bool                                  `json:"settingsBlockChangeLanguage,omitempty"`
+		SettingsBlockChangePowerSleep                         *bool                                  `json:"settingsBlockChangePowerSleep,omitempty"`
+		SettingsBlockChangeRegion                             *bool                                  `json:"settingsBlockChangeRegion,omitempty"`
+		SettingsBlockChangeSystemTime                         *bool                                  `json:"settingsBlockChangeSystemTime,omitempty"`
+		SettingsBlockDevicesPage                              *bool                                  `json:"settingsBlockDevicesPage,omitempty"`
+		SettingsBlockEaseOfAccessPage                         *bool                                  `json:"settingsBlockEaseOfAccessPage,omitempty"`
+		SettingsBlockEditDeviceName                           *bool                                  `json:"settingsBlockEditDeviceName,omitempty"`
+		SettingsBlockGamingPage                               *bool                                  `json:"settingsBlockGamingPage,omitempty"`
+		SettingsBlockNetworkInternetPage                      *bool                                  `json:"settingsBlockNetworkInternetPage,omitempty"`
+		SettingsBlockPersonalizationPage                      *bool                                  `json:"settingsBlockPersonalizationPage,omitempty"`
+		SettingsBlockPrivacyPage                              *bool                                  `json:"settingsBlockPrivacyPage,omitempty"`
+		SettingsBlockRemoveProvisioningPackage                *bool                                  `json:"settingsBlockRemoveProvisioningPackage,omitempty"`
+		SettingsBlockSettingsApp                              *bool                                  `json:"settingsBlockSettingsApp,omitempty"`
+		SettingsBlockSystemPage                               *bool                                  `json:"settingsBlockSystemPage,omitempty"`
+		SettingsBlockTimeLanguagePage                         *bool                                  `json:"settingsBlockTimeLanguagePage,omitempty"`
+		SettingsBlockUpdateSecurityPage                       *bool                                  `json:"settingsBlockUpdateSecurityPage,omitempty"`
+		SharedUserAppDataAllowed                              *bool                                  `json:"sharedUserAppDataAllowed,omitempty"`
+		SmartScreenBlockPromptOverride                        *bool                                  `json:"smartScreenBlockPromptOverride,omitempty"`
+		SmartScreenBlockPromptOverrideForFiles                *bool                                  `json:"smartScreenBlockPromptOverrideForFiles,omitempty"`
+		SmartScreenEnableAppInstallControl                    *bool                                  `json:"smartScreenEnableAppInstallControl,omitempty"`
+		StartBlockUnpinningAppsFromTaskbar                    *bool                                  `json:"startBlockUnpinningAppsFromTaskbar,omitempty"`
+		StartMenuAppListVisibility                            *WindowsStartMenuAppListVisibilityType `json:"startMenuAppListVisibility,omitempty"`
+		StartMenuHideChangeAccountSettings                    *bool                                  `json:"startMenuHideChangeAccountSettings,omitempty"`
+		StartMenuHideFrequentlyUsedApps                       *bool                                  `json:"startMenuHideFrequentlyUsedApps,omitempty"`
+		StartMenuHideHibernate                                *bool                                  `json:"startMenuHideHibernate,omitempty"`
+		StartMenuHideLock                                     *bool                                  `json:"startMenuHideLock,omitempty"`
+		StartMenuHidePowerButton                              *bool                                  `json:"startMenuHidePowerButton,omitempty"`
+		StartMenuHideRecentJumpLists                          *bool                                  `json:"startMenuHideRecentJumpLists,omitempty"`
+		StartMenuHideRecentlyAddedApps                        *bool                                  `json:"startMenuHideRecentlyAddedApps,omitempty"`
+		StartMenuHideRestartOptions                           *bool                                  `json:"startMenuHideRestartOptions,omitempty"`
+		StartMenuHideShutDown                                 *bool                                  `json:"startMenuHideShutDown,omitempty"`
+		StartMenuHideSignOut                                  *bool                                  `json:"startMenuHideSignOut,omitempty"`
+		StartMenuHideSleep                                    *bool                                  `json:"startMenuHideSleep,omitempty"`
+		StartMenuHideSwitchAccount                            *bool                                  `json:"startMenuHideSwitchAccount,omitempty"`
+		StartMenuHideUserTile                                 *bool                                  `json:"startMenuHideUserTile,omitempty"`
+		StartMenuLayoutEdgeAssetsXml                          nullable.Type[string]                  `json:"startMenuLayoutEdgeAssetsXml,omitempty"`
+		StartMenuLayoutXml                                    nullable.Type[string]                  `json:"startMenuLayoutXml,omitempty"`
+		StartMenuMode                                         *WindowsStartMenuModeType              `json:"startMenuMode,omitempty"`
+		StartMenuPinnedFolderDocuments                        *VisibilitySetting                     `json:"startMenuPinnedFolderDocuments,omitempty"`
+		StartMenuPinnedFolderDownloads                        *VisibilitySetting                     `json:"startMenuPinnedFolderDownloads,omitempty"`
+		StartMenuPinnedFolderFileExplorer                     *VisibilitySetting                     `json:"startMenuPinnedFolderFileExplorer,omitempty"`
+		StartMenuPinnedFolderHomeGroup                        *VisibilitySetting                     `json:"startMenuPinnedFolderHomeGroup,omitempty"`
+		StartMenuPinnedFolderMusic                            *VisibilitySetting                     `json:"startMenuPinnedFolderMusic,omitempty"`
+		StartMenuPinnedFolderNetwork                          *VisibilitySetting                     `json:"startMenuPinnedFolderNetwork,omitempty"`
+		StartMenuPinnedFolderPersonalFolder                   *VisibilitySetting                     `json:"startMenuPinnedFolderPersonalFolder,omitempty"`
+		StartMenuPinnedFolderPictures                         *VisibilitySetting                     `json:"startMenuPinnedFolderPictures,omitempty"`
+		StartMenuPinnedFolderSettings                         *VisibilitySetting                     `json:"startMenuPinnedFolderSettings,omitempty"`
+		StartMenuPinnedFolderVideos                           *VisibilitySetting                     `json:"startMenuPinnedFolderVideos,omitempty"`
+		StorageBlockRemovableStorage                          *bool                                  `json:"storageBlockRemovableStorage,omitempty"`
+		StorageRequireMobileDeviceEncryption                  *bool                                  `json:"storageRequireMobileDeviceEncryption,omitempty"`
+		StorageRestrictAppDataToSystemVolume                  *bool                                  `json:"storageRestrictAppDataToSystemVolume,omitempty"`
+		StorageRestrictAppInstallToSystemVolume               *bool                                  `json:"storageRestrictAppInstallToSystemVolume,omitempty"`
+		TenantLockdownRequireNetworkDuringOutOfBoxExperience  *bool                                  `json:"tenantLockdownRequireNetworkDuringOutOfBoxExperience,omitempty"`
+		UsbBlocked                                            *bool                                  `json:"usbBlocked,omitempty"`
+		VoiceRecordingBlocked                                 *bool                                  `json:"voiceRecordingBlocked,omitempty"`
+		WebRtcBlockLocalhostIPAddress                         *bool                                  `json:"webRtcBlockLocalhostIpAddress,omitempty"`
+		WiFiBlockAutomaticConnectHotspots                     *bool                                  `json:"wiFiBlockAutomaticConnectHotspots,omitempty"`
+		WiFiBlockManualConfiguration                          *bool                                  `json:"wiFiBlockManualConfiguration,omitempty"`
+		WiFiBlocked                                           *bool                                  `json:"wiFiBlocked,omitempty"`
+		WiFiScanInterval                                      nullable.Type[int64]                   `json:"wiFiScanInterval,omitempty"`
+		WindowsSpotlightBlockConsumerSpecificFeatures         *bool                                  `json:"windowsSpotlightBlockConsumerSpecificFeatures,omitempty"`
+		WindowsSpotlightBlockOnActionCenter                   *bool                                  `json:"windowsSpotlightBlockOnActionCenter,omitempty"`
+		WindowsSpotlightBlockTailoredExperiences              *bool                                  `json:"windowsSpotlightBlockTailoredExperiences,omitempty"`
+		WindowsSpotlightBlockThirdPartyNotifications          *bool                                  `json:"windowsSpotlightBlockThirdPartyNotifications,omitempty"`
+		WindowsSpotlightBlockWelcomeExperience                *bool                                  `json:"windowsSpotlightBlockWelcomeExperience,omitempty"`
+		WindowsSpotlightBlockWindowsTips                      *bool                                  `json:"windowsSpotlightBlockWindowsTips,omitempty"`
+		WindowsSpotlightBlocked                               *bool                                  `json:"windowsSpotlightBlocked,omitempty"`
+		WindowsSpotlightConfigureOnLockScreen                 *WindowsSpotlightEnablementSettings    `json:"windowsSpotlightConfigureOnLockScreen,omitempty"`
+		WindowsStoreBlockAutoUpdate                           *bool                                  `json:"windowsStoreBlockAutoUpdate,omitempty"`
+		WindowsStoreBlocked                                   *bool                                  `json:"windowsStoreBlocked,omitempty"`
+		WindowsStoreEnablePrivateStoreOnly                    *bool                                  `json:"windowsStoreEnablePrivateStoreOnly,omitempty"`
+		WirelessDisplayBlockProjectionToThisDevice            *bool                                  `json:"wirelessDisplayBlockProjectionToThisDevice,omitempty"`
+		WirelessDisplayBlockUserInputFromReceiver             *bool                                  `json:"wirelessDisplayBlockUserInputFromReceiver,omitempty"`
+		WirelessDisplayRequirePinForPairing                   *bool                                  `json:"wirelessDisplayRequirePinForPairing,omitempty"`
+		Assignments                                           *[]DeviceConfigurationAssignment       `json:"assignments,omitempty"`
+		CreatedDateTime                                       *string                                `json:"createdDateTime,omitempty"`
+		Description                                           nullable.Type[string]                  `json:"description,omitempty"`
+		DeviceSettingStateSummaries                           *[]SettingStateDeviceSummary           `json:"deviceSettingStateSummaries,omitempty"`
+		DeviceStatusOverview                                  *DeviceConfigurationDeviceOverview     `json:"deviceStatusOverview,omitempty"`
+		DeviceStatuses                                        *[]DeviceConfigurationDeviceStatus     `json:"deviceStatuses,omitempty"`
+		DisplayName                                           *string                                `json:"displayName,omitempty"`
+		LastModifiedDateTime                                  *string                                `json:"lastModifiedDateTime,omitempty"`
+		UserStatusOverview                                    *DeviceConfigurationUserOverview       `json:"userStatusOverview,omitempty"`
+		UserStatuses                                          *[]DeviceConfigurationUserStatus       `json:"userStatuses,omitempty"`
+		Version                                               *int64                                 `json:"version,omitempty"`
+		Id                                                    *string                                `json:"id,omitempty"`
+		ODataId                                               *string                                `json:"@odata.id,omitempty"`
+		ODataType                                             *string                                `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into Windows10GeneralConfiguration: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.AccountsBlockAddingNonMicrosoftAccountEmail = decoded.AccountsBlockAddingNonMicrosoftAccountEmail
 	s.AntiTheftModeBlocked = decoded.AntiTheftModeBlocked
 	s.AppsAllowTrustedAppsSideloading = decoded.AppsAllowTrustedAppsSideloading
 	s.AppsBlockWindowsStoreOriginatedApps = decoded.AppsBlockWindowsStoreOriginatedApps
-	s.Assignments = decoded.Assignments
 	s.BluetoothAllowedServices = decoded.BluetoothAllowedServices
 	s.BluetoothBlockAdvertising = decoded.BluetoothBlockAdvertising
 	s.BluetoothBlockDiscoverableMode = decoded.BluetoothBlockDiscoverableMode
@@ -776,7 +990,6 @@ func (s *Windows10GeneralConfiguration) UnmarshalJSON(bytes []byte) error {
 	s.ConnectedDevicesServiceBlocked = decoded.ConnectedDevicesServiceBlocked
 	s.CopyPasteBlocked = decoded.CopyPasteBlocked
 	s.CortanaBlocked = decoded.CortanaBlocked
-	s.CreatedDateTime = decoded.CreatedDateTime
 	s.DefenderBlockEndUserAccess = decoded.DefenderBlockEndUserAccess
 	s.DefenderCloudBlockLevel = decoded.DefenderCloudBlockLevel
 	s.DefenderDaysBeforeDeletingQuarantinedMalware = decoded.DefenderDaysBeforeDeletingQuarantinedMalware
@@ -803,15 +1016,10 @@ func (s *Windows10GeneralConfiguration) UnmarshalJSON(bytes []byte) error {
 	s.DefenderScheduledScanTime = decoded.DefenderScheduledScanTime
 	s.DefenderSignatureUpdateIntervalInHours = decoded.DefenderSignatureUpdateIntervalInHours
 	s.DefenderSystemScanSchedule = decoded.DefenderSystemScanSchedule
-	s.Description = decoded.Description
 	s.DeveloperUnlockSetting = decoded.DeveloperUnlockSetting
 	s.DeviceManagementBlockFactoryResetOnMobile = decoded.DeviceManagementBlockFactoryResetOnMobile
 	s.DeviceManagementBlockManualUnenroll = decoded.DeviceManagementBlockManualUnenroll
-	s.DeviceSettingStateSummaries = decoded.DeviceSettingStateSummaries
-	s.DeviceStatusOverview = decoded.DeviceStatusOverview
-	s.DeviceStatuses = decoded.DeviceStatuses
 	s.DiagnosticsDataSubmissionMode = decoded.DiagnosticsDataSubmissionMode
-	s.DisplayName = decoded.DisplayName
 	s.EdgeAllowStartPagesModification = decoded.EdgeAllowStartPagesModification
 	s.EdgeBlockAccessToAboutFlags = decoded.EdgeBlockAccessToAboutFlags
 	s.EdgeBlockAddressBarDropdown = decoded.EdgeBlockAddressBarDropdown
@@ -847,9 +1055,7 @@ func (s *Windows10GeneralConfiguration) UnmarshalJSON(bytes []byte) error {
 	s.ExperienceBlockErrorDialogWhenNoSIM = decoded.ExperienceBlockErrorDialogWhenNoSIM
 	s.ExperienceBlockTaskSwitcher = decoded.ExperienceBlockTaskSwitcher
 	s.GameDvrBlocked = decoded.GameDvrBlocked
-	s.Id = decoded.Id
 	s.InternetSharingBlocked = decoded.InternetSharingBlocked
-	s.LastModifiedDateTime = decoded.LastModifiedDateTime
 	s.LocationServicesBlocked = decoded.LocationServicesBlocked
 	s.LockScreenAllowTimeoutConfiguration = decoded.LockScreenAllowTimeoutConfiguration
 	s.LockScreenBlockActionCenterNotifications = decoded.LockScreenBlockActionCenterNotifications
@@ -864,8 +1070,6 @@ func (s *Windows10GeneralConfiguration) UnmarshalJSON(bytes []byte) error {
 	s.NetworkProxyDisableAutoDetect = decoded.NetworkProxyDisableAutoDetect
 	s.NetworkProxyServer = decoded.NetworkProxyServer
 	s.NfcBlocked = decoded.NfcBlocked
-	s.ODataId = decoded.ODataId
-	s.ODataType = decoded.ODataType
 	s.OneDriveDisableFileSync = decoded.OneDriveDisableFileSync
 	s.PasswordBlockSimple = decoded.PasswordBlockSimple
 	s.PasswordExpirationDays = decoded.PasswordExpirationDays
@@ -949,9 +1153,6 @@ func (s *Windows10GeneralConfiguration) UnmarshalJSON(bytes []byte) error {
 	s.StorageRestrictAppInstallToSystemVolume = decoded.StorageRestrictAppInstallToSystemVolume
 	s.TenantLockdownRequireNetworkDuringOutOfBoxExperience = decoded.TenantLockdownRequireNetworkDuringOutOfBoxExperience
 	s.UsbBlocked = decoded.UsbBlocked
-	s.UserStatusOverview = decoded.UserStatusOverview
-	s.UserStatuses = decoded.UserStatuses
-	s.Version = decoded.Version
 	s.VoiceRecordingBlocked = decoded.VoiceRecordingBlocked
 	s.WebRtcBlockLocalhostIPAddress = decoded.WebRtcBlockLocalhostIPAddress
 	s.WiFiBlockAutomaticConnectHotspots = decoded.WiFiBlockAutomaticConnectHotspots
@@ -972,6 +1173,20 @@ func (s *Windows10GeneralConfiguration) UnmarshalJSON(bytes []byte) error {
 	s.WirelessDisplayBlockProjectionToThisDevice = decoded.WirelessDisplayBlockProjectionToThisDevice
 	s.WirelessDisplayBlockUserInputFromReceiver = decoded.WirelessDisplayBlockUserInputFromReceiver
 	s.WirelessDisplayRequirePinForPairing = decoded.WirelessDisplayRequirePinForPairing
+	s.Assignments = decoded.Assignments
+	s.CreatedDateTime = decoded.CreatedDateTime
+	s.Description = decoded.Description
+	s.DeviceSettingStateSummaries = decoded.DeviceSettingStateSummaries
+	s.DeviceStatusOverview = decoded.DeviceStatusOverview
+	s.DeviceStatuses = decoded.DeviceStatuses
+	s.DisplayName = decoded.DisplayName
+	s.Id = decoded.Id
+	s.LastModifiedDateTime = decoded.LastModifiedDateTime
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
+	s.UserStatusOverview = decoded.UserStatusOverview
+	s.UserStatuses = decoded.UserStatuses
+	s.Version = decoded.Version
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -985,5 +1200,6 @@ func (s *Windows10GeneralConfiguration) UnmarshalJSON(bytes []byte) error {
 		}
 		s.EdgeSearchEngine = impl
 	}
+
 	return nil
 }

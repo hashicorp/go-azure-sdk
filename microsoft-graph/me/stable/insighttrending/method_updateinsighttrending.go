@@ -17,15 +17,44 @@ type UpdateInsightTrendingOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateInsightTrendingOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateInsightTrendingOperationOptions() UpdateInsightTrendingOperationOptions {
+	return UpdateInsightTrendingOperationOptions{}
+}
+
+func (o UpdateInsightTrendingOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateInsightTrendingOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateInsightTrendingOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateInsightTrending - Update the navigation property trending in me
-func (c InsightTrendingClient) UpdateInsightTrending(ctx context.Context, id stable.MeInsightTrendingId, input stable.Trending) (result UpdateInsightTrendingOperationResponse, err error) {
+func (c InsightTrendingClient) UpdateInsightTrending(ctx context.Context, id stable.MeInsightTrendingId, input stable.Trending, options UpdateInsightTrendingOperationOptions) (result UpdateInsightTrendingOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

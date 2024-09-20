@@ -19,7 +19,8 @@ type DeleteUserExperienceAnalyticsScoreHistoryOperationResponse struct {
 }
 
 type DeleteUserExperienceAnalyticsScoreHistoryOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteUserExperienceAnalyticsScoreHistoryOperationOptions() DeleteUserExperienceAnalyticsScoreHistoryOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteUserExperienceAnalyticsScoreHistoryOperationOptions) ToHeaders() *
 
 func (o DeleteUserExperienceAnalyticsScoreHistoryOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

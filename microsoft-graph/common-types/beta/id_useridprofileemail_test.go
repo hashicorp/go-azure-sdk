@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &UserIdProfileEmailId{}
 
 func TestNewUserIdProfileEmailID(t *testing.T) {
-	id := NewUserIdProfileEmailID("userIdValue", "itemEmailIdValue")
+	id := NewUserIdProfileEmailID("userId", "itemEmailId")
 
-	if id.UserId != "userIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'UserId'", id.UserId, "userIdValue")
+	if id.UserId != "userId" {
+		t.Fatalf("Expected %q but got %q for Segment 'UserId'", id.UserId, "userId")
 	}
 
-	if id.ItemEmailId != "itemEmailIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ItemEmailId'", id.ItemEmailId, "itemEmailIdValue")
+	if id.ItemEmailId != "itemEmailId" {
+		t.Fatalf("Expected %q but got %q for Segment 'ItemEmailId'", id.ItemEmailId, "itemEmailId")
 	}
 }
 
 func TestFormatUserIdProfileEmailID(t *testing.T) {
-	actual := NewUserIdProfileEmailID("userIdValue", "itemEmailIdValue").ID()
-	expected := "/users/userIdValue/profile/emails/itemEmailIdValue"
+	actual := NewUserIdProfileEmailID("userId", "itemEmailId").ID()
+	expected := "/users/userId/profile/emails/itemEmailId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -49,30 +49,30 @@ func TestParseUserIdProfileEmailID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue",
+			Input: "/users/userId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/profile",
+			Input: "/users/userId/profile",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/profile/emails",
+			Input: "/users/userId/profile/emails",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/users/userIdValue/profile/emails/itemEmailIdValue",
+			Input: "/users/userId/profile/emails/itemEmailId",
 			Expected: &UserIdProfileEmailId{
-				UserId:      "userIdValue",
-				ItemEmailId: "itemEmailIdValue",
+				UserId:      "userId",
+				ItemEmailId: "itemEmailId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/users/userIdValue/profile/emails/itemEmailIdValue/extra",
+			Input: "/users/userId/profile/emails/itemEmailId/extra",
 			Error: true,
 		},
 	}
@@ -125,58 +125,58 @@ func TestParseUserIdProfileEmailIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue",
+			Input: "/users/userId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe",
+			Input: "/uSeRs/uSeRiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/profile",
+			Input: "/users/userId/profile",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/pRoFiLe",
+			Input: "/uSeRs/uSeRiD/pRoFiLe",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/profile/emails",
+			Input: "/users/userId/profile/emails",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/pRoFiLe/eMaIlS",
+			Input: "/uSeRs/uSeRiD/pRoFiLe/eMaIlS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/users/userIdValue/profile/emails/itemEmailIdValue",
+			Input: "/users/userId/profile/emails/itemEmailId",
 			Expected: &UserIdProfileEmailId{
-				UserId:      "userIdValue",
-				ItemEmailId: "itemEmailIdValue",
+				UserId:      "userId",
+				ItemEmailId: "itemEmailId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/users/userIdValue/profile/emails/itemEmailIdValue/extra",
+			Input: "/users/userId/profile/emails/itemEmailId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/pRoFiLe/eMaIlS/iTeMeMaIlIdVaLuE",
+			Input: "/uSeRs/uSeRiD/pRoFiLe/eMaIlS/iTeMeMaIlId",
 			Expected: &UserIdProfileEmailId{
-				UserId:      "uSeRiDvAlUe",
-				ItemEmailId: "iTeMeMaIlIdVaLuE",
+				UserId:      "uSeRiD",
+				ItemEmailId: "iTeMeMaIlId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/pRoFiLe/eMaIlS/iTeMeMaIlIdVaLuE/extra",
+			Input: "/uSeRs/uSeRiD/pRoFiLe/eMaIlS/iTeMeMaIlId/extra",
 			Error: true,
 		},
 	}

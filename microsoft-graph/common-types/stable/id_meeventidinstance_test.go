@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &MeEventIdInstanceId{}
 
 func TestNewMeEventIdInstanceID(t *testing.T) {
-	id := NewMeEventIdInstanceID("eventIdValue", "eventId1Value")
+	id := NewMeEventIdInstanceID("eventId", "eventId1")
 
-	if id.EventId != "eventIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'EventId'", id.EventId, "eventIdValue")
+	if id.EventId != "eventId" {
+		t.Fatalf("Expected %q but got %q for Segment 'EventId'", id.EventId, "eventId")
 	}
 
-	if id.EventId1 != "eventId1Value" {
-		t.Fatalf("Expected %q but got %q for Segment 'EventId1'", id.EventId1, "eventId1Value")
+	if id.EventId1 != "eventId1" {
+		t.Fatalf("Expected %q but got %q for Segment 'EventId1'", id.EventId1, "eventId1")
 	}
 }
 
 func TestFormatMeEventIdInstanceID(t *testing.T) {
-	actual := NewMeEventIdInstanceID("eventIdValue", "eventId1Value").ID()
-	expected := "/me/events/eventIdValue/instances/eventId1Value"
+	actual := NewMeEventIdInstanceID("eventId", "eventId1").ID()
+	expected := "/me/events/eventId/instances/eventId1"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -54,25 +54,25 @@ func TestParseMeEventIdInstanceID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/me/events/eventIdValue",
+			Input: "/me/events/eventId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/me/events/eventIdValue/instances",
+			Input: "/me/events/eventId/instances",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/me/events/eventIdValue/instances/eventId1Value",
+			Input: "/me/events/eventId/instances/eventId1",
 			Expected: &MeEventIdInstanceId{
-				EventId:  "eventIdValue",
-				EventId1: "eventId1Value",
+				EventId:  "eventId",
+				EventId1: "eventId1",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/events/eventIdValue/instances/eventId1Value/extra",
+			Input: "/me/events/eventId/instances/eventId1/extra",
 			Error: true,
 		},
 	}
@@ -135,48 +135,48 @@ func TestParseMeEventIdInstanceIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/me/events/eventIdValue",
+			Input: "/me/events/eventId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/eVeNtS/eVeNtIdVaLuE",
+			Input: "/mE/eVeNtS/eVeNtId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/me/events/eventIdValue/instances",
+			Input: "/me/events/eventId/instances",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/eVeNtS/eVeNtIdVaLuE/iNsTaNcEs",
+			Input: "/mE/eVeNtS/eVeNtId/iNsTaNcEs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/me/events/eventIdValue/instances/eventId1Value",
+			Input: "/me/events/eventId/instances/eventId1",
 			Expected: &MeEventIdInstanceId{
-				EventId:  "eventIdValue",
-				EventId1: "eventId1Value",
+				EventId:  "eventId",
+				EventId1: "eventId1",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/events/eventIdValue/instances/eventId1Value/extra",
+			Input: "/me/events/eventId/instances/eventId1/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/eVeNtS/eVeNtIdVaLuE/iNsTaNcEs/eVeNtId1vAlUe",
+			Input: "/mE/eVeNtS/eVeNtId/iNsTaNcEs/eVeNtId1",
 			Expected: &MeEventIdInstanceId{
-				EventId:  "eVeNtIdVaLuE",
-				EventId1: "eVeNtId1vAlUe",
+				EventId:  "eVeNtId",
+				EventId1: "eVeNtId1",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/mE/eVeNtS/eVeNtIdVaLuE/iNsTaNcEs/eVeNtId1vAlUe/extra",
+			Input: "/mE/eVeNtS/eVeNtId/iNsTaNcEs/eVeNtId1/extra",
 			Error: true,
 		},
 	}

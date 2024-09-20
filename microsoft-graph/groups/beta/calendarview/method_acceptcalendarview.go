@@ -18,15 +18,44 @@ type AcceptCalendarViewOperationResponse struct {
 	OData        *odata.OData
 }
 
+type AcceptCalendarViewOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultAcceptCalendarViewOperationOptions() AcceptCalendarViewOperationOptions {
+	return AcceptCalendarViewOperationOptions{}
+}
+
+func (o AcceptCalendarViewOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o AcceptCalendarViewOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o AcceptCalendarViewOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // AcceptCalendarView - Invoke action accept. Accept the specified event in a user calendar.
-func (c CalendarViewClient) AcceptCalendarView(ctx context.Context, id beta.GroupIdCalendarViewId, input AcceptCalendarViewRequest) (result AcceptCalendarViewOperationResponse, err error) {
+func (c CalendarViewClient) AcceptCalendarView(ctx context.Context, id beta.GroupIdCalendarViewId, input AcceptCalendarViewRequest, options AcceptCalendarViewOperationOptions) (result AcceptCalendarViewOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/accept", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/accept", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

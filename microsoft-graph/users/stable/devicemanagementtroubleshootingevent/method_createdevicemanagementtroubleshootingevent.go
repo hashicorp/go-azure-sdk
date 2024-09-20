@@ -20,16 +20,45 @@ type CreateDeviceManagementTroubleshootingEventOperationResponse struct {
 	Model        stable.DeviceManagementTroubleshootingEvent
 }
 
+type CreateDeviceManagementTroubleshootingEventOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateDeviceManagementTroubleshootingEventOperationOptions() CreateDeviceManagementTroubleshootingEventOperationOptions {
+	return CreateDeviceManagementTroubleshootingEventOperationOptions{}
+}
+
+func (o CreateDeviceManagementTroubleshootingEventOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateDeviceManagementTroubleshootingEventOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateDeviceManagementTroubleshootingEventOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateDeviceManagementTroubleshootingEvent - Create new navigation property to deviceManagementTroubleshootingEvents
 // for users
-func (c DeviceManagementTroubleshootingEventClient) CreateDeviceManagementTroubleshootingEvent(ctx context.Context, id stable.UserId, input stable.DeviceManagementTroubleshootingEvent) (result CreateDeviceManagementTroubleshootingEventOperationResponse, err error) {
+func (c DeviceManagementTroubleshootingEventClient) CreateDeviceManagementTroubleshootingEvent(ctx context.Context, id stable.UserId, input stable.DeviceManagementTroubleshootingEvent, options CreateDeviceManagementTroubleshootingEventOperationOptions) (result CreateDeviceManagementTroubleshootingEventOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/deviceManagementTroubleshootingEvents", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/deviceManagementTroubleshootingEvents", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

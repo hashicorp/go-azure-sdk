@@ -19,7 +19,8 @@ type DeleteServiceConfigurationRecordOperationResponse struct {
 }
 
 type DeleteServiceConfigurationRecordOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteServiceConfigurationRecordOperationOptions() DeleteServiceConfigurationRecordOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteServiceConfigurationRecordOperationOptions) ToHeaders() *client.He
 
 func (o DeleteServiceConfigurationRecordOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

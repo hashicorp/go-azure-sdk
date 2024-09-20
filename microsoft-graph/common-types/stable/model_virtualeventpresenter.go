@@ -65,17 +65,23 @@ func (s VirtualEventPresenter) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &VirtualEventPresenter{}
 
 func (s *VirtualEventPresenter) UnmarshalJSON(bytes []byte) error {
-	type alias VirtualEventPresenter
-	var decoded alias
+
+	var decoded struct {
+		Email            nullable.Type[string]         `json:"email,omitempty"`
+		PresenterDetails *VirtualEventPresenterDetails `json:"presenterDetails,omitempty"`
+		Id               *string                       `json:"id,omitempty"`
+		ODataId          *string                       `json:"@odata.id,omitempty"`
+		ODataType        *string                       `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into VirtualEventPresenter: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.Email = decoded.Email
+	s.PresenterDetails = decoded.PresenterDetails
 	s.Id = decoded.Id
 	s.ODataId = decoded.ODataId
 	s.ODataType = decoded.ODataType
-	s.PresenterDetails = decoded.PresenterDetails
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -89,5 +95,6 @@ func (s *VirtualEventPresenter) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Identity = impl
 	}
+
 	return nil
 }

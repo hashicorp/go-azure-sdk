@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &ReportUserInsightMonthlyRequestId{}
 
 func TestNewReportUserInsightMonthlyRequestID(t *testing.T) {
-	id := NewReportUserInsightMonthlyRequestID("userRequestsMetricIdValue")
+	id := NewReportUserInsightMonthlyRequestID("userRequestsMetricId")
 
-	if id.UserRequestsMetricId != "userRequestsMetricIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'UserRequestsMetricId'", id.UserRequestsMetricId, "userRequestsMetricIdValue")
+	if id.UserRequestsMetricId != "userRequestsMetricId" {
+		t.Fatalf("Expected %q but got %q for Segment 'UserRequestsMetricId'", id.UserRequestsMetricId, "userRequestsMetricId")
 	}
 }
 
 func TestFormatReportUserInsightMonthlyRequestID(t *testing.T) {
-	actual := NewReportUserInsightMonthlyRequestID("userRequestsMetricIdValue").ID()
-	expected := "/reports/userInsights/monthly/requests/userRequestsMetricIdValue"
+	actual := NewReportUserInsightMonthlyRequestID("userRequestsMetricId").ID()
+	expected := "/reports/userInsights/monthly/requests/userRequestsMetricId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -60,14 +60,14 @@ func TestParseReportUserInsightMonthlyRequestID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/reports/userInsights/monthly/requests/userRequestsMetricIdValue",
+			Input: "/reports/userInsights/monthly/requests/userRequestsMetricId",
 			Expected: &ReportUserInsightMonthlyRequestId{
-				UserRequestsMetricId: "userRequestsMetricIdValue",
+				UserRequestsMetricId: "userRequestsMetricId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/reports/userInsights/monthly/requests/userRequestsMetricIdValue/extra",
+			Input: "/reports/userInsights/monthly/requests/userRequestsMetricId/extra",
 			Error: true,
 		},
 	}
@@ -146,26 +146,26 @@ func TestParseReportUserInsightMonthlyRequestIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/reports/userInsights/monthly/requests/userRequestsMetricIdValue",
+			Input: "/reports/userInsights/monthly/requests/userRequestsMetricId",
 			Expected: &ReportUserInsightMonthlyRequestId{
-				UserRequestsMetricId: "userRequestsMetricIdValue",
+				UserRequestsMetricId: "userRequestsMetricId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/reports/userInsights/monthly/requests/userRequestsMetricIdValue/extra",
+			Input: "/reports/userInsights/monthly/requests/userRequestsMetricId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/rEpOrTs/uSeRiNsIgHtS/mOnThLy/rEqUeStS/uSeRrEqUeStSmEtRiCiDvAlUe",
+			Input: "/rEpOrTs/uSeRiNsIgHtS/mOnThLy/rEqUeStS/uSeRrEqUeStSmEtRiCiD",
 			Expected: &ReportUserInsightMonthlyRequestId{
-				UserRequestsMetricId: "uSeRrEqUeStSmEtRiCiDvAlUe",
+				UserRequestsMetricId: "uSeRrEqUeStSmEtRiCiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/rEpOrTs/uSeRiNsIgHtS/mOnThLy/rEqUeStS/uSeRrEqUeStSmEtRiCiDvAlUe/extra",
+			Input: "/rEpOrTs/uSeRiNsIgHtS/mOnThLy/rEqUeStS/uSeRrEqUeStSmEtRiCiD/extra",
 			Error: true,
 		},
 	}

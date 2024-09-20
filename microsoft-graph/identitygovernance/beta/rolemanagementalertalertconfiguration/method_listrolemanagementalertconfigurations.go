@@ -26,14 +26,15 @@ type ListRoleManagementAlertConfigurationsCompleteResult struct {
 }
 
 type ListRoleManagementAlertConfigurationsOperationOptions struct {
-	Count   *bool
-	Expand  *odata.Expand
-	Filter  *string
-	OrderBy *odata.OrderBy
-	Search  *string
-	Select  *[]string
-	Skip    *int64
-	Top     *int64
+	Count    *bool
+	Expand   *odata.Expand
+	Filter   *string
+	Metadata *odata.Metadata
+	OrderBy  *odata.OrderBy
+	Search   *string
+	Select   *[]string
+	Skip     *int64
+	Top      *int64
 }
 
 func DefaultListRoleManagementAlertConfigurationsOperationOptions() ListRoleManagementAlertConfigurationsOperationOptions {
@@ -56,6 +57,9 @@ func (o ListRoleManagementAlertConfigurationsOperationOptions) ToOData() *odata.
 	}
 	if o.Filter != nil {
 		out.Filter = *o.Filter
+	}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
 	}
 	if o.OrderBy != nil {
 		out.OrderBy = *o.OrderBy
@@ -95,7 +99,7 @@ func (p *ListRoleManagementAlertConfigurationsCustomPager) NextPageLink() *odata
 
 // ListRoleManagementAlertConfigurations - List alertConfigurations. Get a list of the alert configurations. The alert
 // configurations are a collection of following types that are derived from the unifiedRoleManagementAlertConfiguration
-// object:
+// object
 func (c RoleManagementAlertAlertConfigurationClient) ListRoleManagementAlertConfigurations(ctx context.Context, options ListRoleManagementAlertConfigurationsOperationOptions) (result ListRoleManagementAlertConfigurationsOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",

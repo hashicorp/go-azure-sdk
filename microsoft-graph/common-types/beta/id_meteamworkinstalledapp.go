@@ -94,7 +94,7 @@ func (id MeTeamworkInstalledAppId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("me", "me", "me"),
 		resourceids.StaticSegment("teamwork", "teamwork", "teamwork"),
 		resourceids.StaticSegment("installedApps", "installedApps", "installedApps"),
-		resourceids.UserSpecifiedSegment("userScopeTeamsAppInstallationId", "userScopeTeamsAppInstallationIdValue"),
+		resourceids.UserSpecifiedSegment("userScopeTeamsAppInstallationId", "userScopeTeamsAppInstallationId"),
 	}
 }
 

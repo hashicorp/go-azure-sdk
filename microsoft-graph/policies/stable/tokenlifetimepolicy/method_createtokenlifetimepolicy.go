@@ -18,15 +18,44 @@ type CreateTokenLifetimePolicyOperationResponse struct {
 	Model        *stable.TokenLifetimePolicy
 }
 
+type CreateTokenLifetimePolicyOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateTokenLifetimePolicyOperationOptions() CreateTokenLifetimePolicyOperationOptions {
+	return CreateTokenLifetimePolicyOperationOptions{}
+}
+
+func (o CreateTokenLifetimePolicyOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateTokenLifetimePolicyOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateTokenLifetimePolicyOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateTokenLifetimePolicy - Create tokenLifetimePolicy. Create a new tokenLifetimePolicy object.
-func (c TokenLifetimePolicyClient) CreateTokenLifetimePolicy(ctx context.Context, input stable.TokenLifetimePolicy) (result CreateTokenLifetimePolicyOperationResponse, err error) {
+func (c TokenLifetimePolicyClient) CreateTokenLifetimePolicy(ctx context.Context, input stable.TokenLifetimePolicy, options CreateTokenLifetimePolicyOperationOptions) (result CreateTokenLifetimePolicyOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/policies/tokenLifetimePolicies",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/policies/tokenLifetimePolicies",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

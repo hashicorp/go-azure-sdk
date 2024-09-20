@@ -93,7 +93,7 @@ func (id DirectoryAttributeSetId) Segments() []resourceids.Segment {
 	return []resourceids.Segment{
 		resourceids.StaticSegment("directory", "directory", "directory"),
 		resourceids.StaticSegment("attributeSets", "attributeSets", "attributeSets"),
-		resourceids.UserSpecifiedSegment("attributeSetId", "attributeSetIdValue"),
+		resourceids.UserSpecifiedSegment("attributeSetId", "attributeSetId"),
 	}
 }
 

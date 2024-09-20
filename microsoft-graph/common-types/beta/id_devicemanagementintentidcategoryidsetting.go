@@ -105,11 +105,11 @@ func (id DeviceManagementIntentIdCategoryIdSettingId) Segments() []resourceids.S
 	return []resourceids.Segment{
 		resourceids.StaticSegment("deviceManagement", "deviceManagement", "deviceManagement"),
 		resourceids.StaticSegment("intents", "intents", "intents"),
-		resourceids.UserSpecifiedSegment("deviceManagementIntentId", "deviceManagementIntentIdValue"),
+		resourceids.UserSpecifiedSegment("deviceManagementIntentId", "deviceManagementIntentId"),
 		resourceids.StaticSegment("categories", "categories", "categories"),
-		resourceids.UserSpecifiedSegment("deviceManagementIntentSettingCategoryId", "deviceManagementIntentSettingCategoryIdValue"),
+		resourceids.UserSpecifiedSegment("deviceManagementIntentSettingCategoryId", "deviceManagementIntentSettingCategoryId"),
 		resourceids.StaticSegment("settings", "settings", "settings"),
-		resourceids.UserSpecifiedSegment("deviceManagementSettingInstanceId", "deviceManagementSettingInstanceIdValue"),
+		resourceids.UserSpecifiedSegment("deviceManagementSettingInstanceId", "deviceManagementSettingInstanceId"),
 	}
 }
 

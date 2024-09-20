@@ -17,15 +17,44 @@ type UpdateVirtualEndpointServicePlanOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateVirtualEndpointServicePlanOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateVirtualEndpointServicePlanOperationOptions() UpdateVirtualEndpointServicePlanOperationOptions {
+	return UpdateVirtualEndpointServicePlanOperationOptions{}
+}
+
+func (o UpdateVirtualEndpointServicePlanOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateVirtualEndpointServicePlanOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateVirtualEndpointServicePlanOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateVirtualEndpointServicePlan - Update the navigation property servicePlans in deviceManagement
-func (c VirtualEndpointServicePlanClient) UpdateVirtualEndpointServicePlan(ctx context.Context, id beta.DeviceManagementVirtualEndpointServicePlanId, input beta.CloudPCServicePlan) (result UpdateVirtualEndpointServicePlanOperationResponse, err error) {
+func (c VirtualEndpointServicePlanClient) UpdateVirtualEndpointServicePlan(ctx context.Context, id beta.DeviceManagementVirtualEndpointServicePlanId, input beta.CloudPCServicePlan, options UpdateVirtualEndpointServicePlanOperationOptions) (result UpdateVirtualEndpointServicePlanOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

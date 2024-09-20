@@ -18,15 +18,44 @@ type ReplyThreadPostInReplyToOperationResponse struct {
 	OData        *odata.OData
 }
 
+type ReplyThreadPostInReplyToOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultReplyThreadPostInReplyToOperationOptions() ReplyThreadPostInReplyToOperationOptions {
+	return ReplyThreadPostInReplyToOperationOptions{}
+}
+
+func (o ReplyThreadPostInReplyToOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o ReplyThreadPostInReplyToOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o ReplyThreadPostInReplyToOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // ReplyThreadPostInReplyTo - Invoke action reply
-func (c ThreadPostInReplyToClient) ReplyThreadPostInReplyTo(ctx context.Context, id stable.GroupIdThreadIdPostId, input ReplyThreadPostInReplyToRequest) (result ReplyThreadPostInReplyToOperationResponse, err error) {
+func (c ThreadPostInReplyToClient) ReplyThreadPostInReplyTo(ctx context.Context, id stable.GroupIdThreadIdPostId, input ReplyThreadPostInReplyToRequest, options ReplyThreadPostInReplyToOperationOptions) (result ReplyThreadPostInReplyToOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/inReplyTo/reply", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/inReplyTo/reply", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -98,9 +98,9 @@ func (id GroupIdEndpointId) ID() string {
 func (id GroupIdEndpointId) Segments() []resourceids.Segment {
 	return []resourceids.Segment{
 		resourceids.StaticSegment("groups", "groups", "groups"),
-		resourceids.UserSpecifiedSegment("groupId", "groupIdValue"),
+		resourceids.UserSpecifiedSegment("groupId", "groupId"),
 		resourceids.StaticSegment("endpoints", "endpoints", "endpoints"),
-		resourceids.UserSpecifiedSegment("endpointId", "endpointIdValue"),
+		resourceids.UserSpecifiedSegment("endpointId", "endpointId"),
 	}
 }
 

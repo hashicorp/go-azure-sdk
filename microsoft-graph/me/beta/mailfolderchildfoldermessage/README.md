@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/microsoft-graph/me/beta/mailfolderchildfoldermessage` Documentation
 
-The `mailfolderchildfoldermessage` SDK allows for interaction with the Azure Resource Manager Service `me` (API Version `beta`).
+The `mailfolderchildfoldermessage` SDK allows for interaction with Microsoft Graph `me` (API Version `beta`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -15,7 +15,7 @@ import "github.com/hashicorp/go-azure-sdk/microsoft-graph/me/beta/mailfolderchil
 ### Client Initialization
 
 ```go
-client := mailfolderchildfoldermessage.NewMailFolderChildFolderMessageClientWithBaseURI("https://management.azure.com")
+client := mailfolderchildfoldermessage.NewMailFolderChildFolderMessageClientWithBaseURI("https://graph.microsoft.com")
 client.Client.Authorizer = authorizer
 ```
 
@@ -24,14 +24,14 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := mailfolderchildfoldermessage.NewMeMailFolderIdChildFolderIdMessageID("mailFolderIdValue", "mailFolderId1Value", "messageIdValue")
+id := mailfolderchildfoldermessage.NewMeMailFolderIdChildFolderIdMessageID("mailFolderId", "mailFolderId1", "messageId")
 
 payload := mailfolderchildfoldermessage.CopyMailFolderChildFolderMessageRequest{
 	// ...
 }
 
 
-read, err := client.CopyMailFolderChildFolderMessage(ctx, id, payload)
+read, err := client.CopyMailFolderChildFolderMessage(ctx, id, payload, mailfolderchildfoldermessage.DefaultCopyMailFolderChildFolderMessageOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -45,14 +45,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := mailfolderchildfoldermessage.NewMeMailFolderIdChildFolderID("mailFolderIdValue", "mailFolderId1Value")
+id := mailfolderchildfoldermessage.NewMeMailFolderIdChildFolderID("mailFolderId", "mailFolderId1")
 
 payload := mailfolderchildfoldermessage.Message{
 	// ...
 }
 
 
-read, err := client.CreateMailFolderChildFolderMessage(ctx, id, payload)
+read, err := client.CreateMailFolderChildFolderMessage(ctx, id, payload, mailfolderchildfoldermessage.DefaultCreateMailFolderChildFolderMessageOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -66,14 +66,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := mailfolderchildfoldermessage.NewMeMailFolderIdChildFolderIdMessageID("mailFolderIdValue", "mailFolderId1Value", "messageIdValue")
+id := mailfolderchildfoldermessage.NewMeMailFolderIdChildFolderIdMessageID("mailFolderId", "mailFolderId1", "messageId")
 
 payload := mailfolderchildfoldermessage.CreateMailFolderChildFolderMessageForwardRequest{
 	// ...
 }
 
 
-read, err := client.CreateMailFolderChildFolderMessageForward(ctx, id, payload)
+read, err := client.CreateMailFolderChildFolderMessageForward(ctx, id, payload, mailfolderchildfoldermessage.DefaultCreateMailFolderChildFolderMessageForwardOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -87,14 +87,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := mailfolderchildfoldermessage.NewMeMailFolderIdChildFolderIdMessageID("mailFolderIdValue", "mailFolderId1Value", "messageIdValue")
+id := mailfolderchildfoldermessage.NewMeMailFolderIdChildFolderIdMessageID("mailFolderId", "mailFolderId1", "messageId")
 
 payload := mailfolderchildfoldermessage.CreateMailFolderChildFolderMessageReplyRequest{
 	// ...
 }
 
 
-read, err := client.CreateMailFolderChildFolderMessageReply(ctx, id, payload)
+read, err := client.CreateMailFolderChildFolderMessageReply(ctx, id, payload, mailfolderchildfoldermessage.DefaultCreateMailFolderChildFolderMessageReplyOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -108,14 +108,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := mailfolderchildfoldermessage.NewMeMailFolderIdChildFolderIdMessageID("mailFolderIdValue", "mailFolderId1Value", "messageIdValue")
+id := mailfolderchildfoldermessage.NewMeMailFolderIdChildFolderIdMessageID("mailFolderId", "mailFolderId1", "messageId")
 
 payload := mailfolderchildfoldermessage.CreateMailFolderChildFolderMessageReplyAllRequest{
 	// ...
 }
 
 
-read, err := client.CreateMailFolderChildFolderMessageReplyAll(ctx, id, payload)
+read, err := client.CreateMailFolderChildFolderMessageReplyAll(ctx, id, payload, mailfolderchildfoldermessage.DefaultCreateMailFolderChildFolderMessageReplyAllOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -129,9 +129,9 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := mailfolderchildfoldermessage.NewMeMailFolderIdChildFolderIdMessageID("mailFolderIdValue", "mailFolderId1Value", "messageIdValue")
+id := mailfolderchildfoldermessage.NewMeMailFolderIdChildFolderIdMessageID("mailFolderId", "mailFolderId1", "messageId")
 
-read, err := client.CreateMailFolderChildFolderMessageUnsubscribe(ctx, id)
+read, err := client.CreateMailFolderChildFolderMessageUnsubscribe(ctx, id, mailfolderchildfoldermessage.DefaultCreateMailFolderChildFolderMessageUnsubscribeOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -145,7 +145,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := mailfolderchildfoldermessage.NewMeMailFolderIdChildFolderIdMessageID("mailFolderIdValue", "mailFolderId1Value", "messageIdValue")
+id := mailfolderchildfoldermessage.NewMeMailFolderIdChildFolderIdMessageID("mailFolderId", "mailFolderId1", "messageId")
 
 read, err := client.DeleteMailFolderChildFolderMessage(ctx, id, mailfolderchildfoldermessage.DefaultDeleteMailFolderChildFolderMessageOperationOptions())
 if err != nil {
@@ -161,14 +161,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := mailfolderchildfoldermessage.NewMeMailFolderIdChildFolderIdMessageID("mailFolderIdValue", "mailFolderId1Value", "messageIdValue")
+id := mailfolderchildfoldermessage.NewMeMailFolderIdChildFolderIdMessageID("mailFolderId", "mailFolderId1", "messageId")
 
 payload := mailfolderchildfoldermessage.ForwardMailFolderChildFolderMessageRequest{
 	// ...
 }
 
 
-read, err := client.ForwardMailFolderChildFolderMessage(ctx, id, payload)
+read, err := client.ForwardMailFolderChildFolderMessage(ctx, id, payload, mailfolderchildfoldermessage.DefaultForwardMailFolderChildFolderMessageOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -182,7 +182,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := mailfolderchildfoldermessage.NewMeMailFolderIdChildFolderIdMessageID("mailFolderIdValue", "mailFolderId1Value", "messageIdValue")
+id := mailfolderchildfoldermessage.NewMeMailFolderIdChildFolderIdMessageID("mailFolderId", "mailFolderId1", "messageId")
 
 read, err := client.GetMailFolderChildFolderMessage(ctx, id, mailfolderchildfoldermessage.DefaultGetMailFolderChildFolderMessageOperationOptions())
 if err != nil {
@@ -198,9 +198,9 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := mailfolderchildfoldermessage.NewMeMailFolderIdChildFolderIdMessageID("mailFolderIdValue", "mailFolderId1Value", "messageIdValue")
+id := mailfolderchildfoldermessage.NewMeMailFolderIdChildFolderIdMessageID("mailFolderId", "mailFolderId1", "messageId")
 
-read, err := client.GetMailFolderChildFolderMessageValue(ctx, id)
+read, err := client.GetMailFolderChildFolderMessageValue(ctx, id, mailfolderchildfoldermessage.DefaultGetMailFolderChildFolderMessageValueOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -214,7 +214,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := mailfolderchildfoldermessage.NewMeMailFolderIdChildFolderID("mailFolderIdValue", "mailFolderId1Value")
+id := mailfolderchildfoldermessage.NewMeMailFolderIdChildFolderID("mailFolderId", "mailFolderId1")
 
 read, err := client.GetMailFolderChildFolderMessagesCount(ctx, id, mailfolderchildfoldermessage.DefaultGetMailFolderChildFolderMessagesCountOperationOptions())
 if err != nil {
@@ -230,7 +230,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := mailfolderchildfoldermessage.NewMeMailFolderIdChildFolderID("mailFolderIdValue", "mailFolderId1Value")
+id := mailfolderchildfoldermessage.NewMeMailFolderIdChildFolderID("mailFolderId", "mailFolderId1")
 
 // alternatively `client.ListMailFolderChildFolderMessages(ctx, id, mailfolderchildfoldermessage.DefaultListMailFolderChildFolderMessagesOperationOptions())` can be used to do batched pagination
 items, err := client.ListMailFolderChildFolderMessagesComplete(ctx, id, mailfolderchildfoldermessage.DefaultListMailFolderChildFolderMessagesOperationOptions())
@@ -247,14 +247,14 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := mailfolderchildfoldermessage.NewMeMailFolderIdChildFolderIdMessageID("mailFolderIdValue", "mailFolderId1Value", "messageIdValue")
+id := mailfolderchildfoldermessage.NewMeMailFolderIdChildFolderIdMessageID("mailFolderId", "mailFolderId1", "messageId")
 
 payload := mailfolderchildfoldermessage.MarkMailFolderChildFolderMessageAsJunkRequest{
 	// ...
 }
 
 
-read, err := client.MarkMailFolderChildFolderMessageAsJunk(ctx, id, payload)
+read, err := client.MarkMailFolderChildFolderMessageAsJunk(ctx, id, payload, mailfolderchildfoldermessage.DefaultMarkMailFolderChildFolderMessageAsJunkOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -268,14 +268,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := mailfolderchildfoldermessage.NewMeMailFolderIdChildFolderIdMessageID("mailFolderIdValue", "mailFolderId1Value", "messageIdValue")
+id := mailfolderchildfoldermessage.NewMeMailFolderIdChildFolderIdMessageID("mailFolderId", "mailFolderId1", "messageId")
 
 payload := mailfolderchildfoldermessage.MarkMailFolderChildFolderMessageAsNotJunkRequest{
 	// ...
 }
 
 
-read, err := client.MarkMailFolderChildFolderMessageAsNotJunk(ctx, id, payload)
+read, err := client.MarkMailFolderChildFolderMessageAsNotJunk(ctx, id, payload, mailfolderchildfoldermessage.DefaultMarkMailFolderChildFolderMessageAsNotJunkOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -289,14 +289,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := mailfolderchildfoldermessage.NewMeMailFolderIdChildFolderIdMessageID("mailFolderIdValue", "mailFolderId1Value", "messageIdValue")
+id := mailfolderchildfoldermessage.NewMeMailFolderIdChildFolderIdMessageID("mailFolderId", "mailFolderId1", "messageId")
 
 payload := mailfolderchildfoldermessage.MoveMailFolderChildFolderMessageRequest{
 	// ...
 }
 
 
-read, err := client.MoveMailFolderChildFolderMessage(ctx, id, payload)
+read, err := client.MoveMailFolderChildFolderMessage(ctx, id, payload, mailfolderchildfoldermessage.DefaultMoveMailFolderChildFolderMessageOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -310,7 +310,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := mailfolderchildfoldermessage.NewMeMailFolderIdChildFolderIdMessageID("mailFolderIdValue", "mailFolderId1Value", "messageIdValue")
+id := mailfolderchildfoldermessage.NewMeMailFolderIdChildFolderIdMessageID("mailFolderId", "mailFolderId1", "messageId")
 
 read, err := client.RemoveMailFolderChildFolderMessageValue(ctx, id, mailfolderchildfoldermessage.DefaultRemoveMailFolderChildFolderMessageValueOperationOptions())
 if err != nil {
@@ -326,14 +326,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := mailfolderchildfoldermessage.NewMeMailFolderIdChildFolderIdMessageID("mailFolderIdValue", "mailFolderId1Value", "messageIdValue")
+id := mailfolderchildfoldermessage.NewMeMailFolderIdChildFolderIdMessageID("mailFolderId", "mailFolderId1", "messageId")
 
 payload := mailfolderchildfoldermessage.ReplyAllMailFolderChildFolderMessageRequest{
 	// ...
 }
 
 
-read, err := client.ReplyAllMailFolderChildFolderMessage(ctx, id, payload)
+read, err := client.ReplyAllMailFolderChildFolderMessage(ctx, id, payload, mailfolderchildfoldermessage.DefaultReplyAllMailFolderChildFolderMessageOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -347,14 +347,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := mailfolderchildfoldermessage.NewMeMailFolderIdChildFolderIdMessageID("mailFolderIdValue", "mailFolderId1Value", "messageIdValue")
+id := mailfolderchildfoldermessage.NewMeMailFolderIdChildFolderIdMessageID("mailFolderId", "mailFolderId1", "messageId")
 
 payload := mailfolderchildfoldermessage.ReplyMailFolderChildFolderMessageRequest{
 	// ...
 }
 
 
-read, err := client.ReplyMailFolderChildFolderMessage(ctx, id, payload)
+read, err := client.ReplyMailFolderChildFolderMessage(ctx, id, payload, mailfolderchildfoldermessage.DefaultReplyMailFolderChildFolderMessageOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -368,9 +368,9 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := mailfolderchildfoldermessage.NewMeMailFolderIdChildFolderIdMessageID("mailFolderIdValue", "mailFolderId1Value", "messageIdValue")
+id := mailfolderchildfoldermessage.NewMeMailFolderIdChildFolderIdMessageID("mailFolderId", "mailFolderId1", "messageId")
 
-read, err := client.SendMailFolderChildFolderMessage(ctx, id)
+read, err := client.SendMailFolderChildFolderMessage(ctx, id, mailfolderchildfoldermessage.DefaultSendMailFolderChildFolderMessageOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -384,10 +384,10 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := mailfolderchildfoldermessage.NewMeMailFolderIdChildFolderIdMessageID("mailFolderIdValue", "mailFolderId1Value", "messageIdValue")
+id := mailfolderchildfoldermessage.NewMeMailFolderIdChildFolderIdMessageID("mailFolderId", "mailFolderId1", "messageId")
 var payload []byte
 
-read, err := client.SetMailFolderChildFolderMessageValue(ctx, id, payload)
+read, err := client.SetMailFolderChildFolderMessageValue(ctx, id, payload, mailfolderchildfoldermessage.DefaultSetMailFolderChildFolderMessageValueOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -401,14 +401,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := mailfolderchildfoldermessage.NewMeMailFolderIdChildFolderIdMessageID("mailFolderIdValue", "mailFolderId1Value", "messageIdValue")
+id := mailfolderchildfoldermessage.NewMeMailFolderIdChildFolderIdMessageID("mailFolderId", "mailFolderId1", "messageId")
 
 payload := mailfolderchildfoldermessage.Message{
 	// ...
 }
 
 
-read, err := client.UpdateMailFolderChildFolderMessage(ctx, id, payload)
+read, err := client.UpdateMailFolderChildFolderMessage(ctx, id, payload, mailfolderchildfoldermessage.DefaultUpdateMailFolderChildFolderMessageOperationOptions())
 if err != nil {
 	// handle the error
 }

@@ -18,16 +18,45 @@ type CreateAndroidForWorkEnrollmentProfileOperationResponse struct {
 	Model        *beta.AndroidForWorkEnrollmentProfile
 }
 
+type CreateAndroidForWorkEnrollmentProfileOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateAndroidForWorkEnrollmentProfileOperationOptions() CreateAndroidForWorkEnrollmentProfileOperationOptions {
+	return CreateAndroidForWorkEnrollmentProfileOperationOptions{}
+}
+
+func (o CreateAndroidForWorkEnrollmentProfileOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateAndroidForWorkEnrollmentProfileOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateAndroidForWorkEnrollmentProfileOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateAndroidForWorkEnrollmentProfile - Create new navigation property to androidForWorkEnrollmentProfiles for
 // deviceManagement
-func (c AndroidForWorkEnrollmentProfileClient) CreateAndroidForWorkEnrollmentProfile(ctx context.Context, input beta.AndroidForWorkEnrollmentProfile) (result CreateAndroidForWorkEnrollmentProfileOperationResponse, err error) {
+func (c AndroidForWorkEnrollmentProfileClient) CreateAndroidForWorkEnrollmentProfile(ctx context.Context, input beta.AndroidForWorkEnrollmentProfile, options CreateAndroidForWorkEnrollmentProfileOperationOptions) (result CreateAndroidForWorkEnrollmentProfileOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/deviceManagement/androidForWorkEnrollmentProfiles",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/deviceManagement/androidForWorkEnrollmentProfiles",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

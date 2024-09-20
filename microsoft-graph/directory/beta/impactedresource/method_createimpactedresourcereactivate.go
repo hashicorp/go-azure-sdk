@@ -19,17 +19,46 @@ type CreateImpactedResourceReactivateOperationResponse struct {
 	Model        *beta.ImpactedResource
 }
 
+type CreateImpactedResourceReactivateOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateImpactedResourceReactivateOperationOptions() CreateImpactedResourceReactivateOperationOptions {
+	return CreateImpactedResourceReactivateOperationOptions{}
+}
+
+func (o CreateImpactedResourceReactivateOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateImpactedResourceReactivateOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateImpactedResourceReactivateOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateImpactedResourceReactivate - Invoke action reactivate. Reactivate an accidentally dismissed, completed, or
 // postponed impactedResource object. This action updates the status of the resource to active. This method is relevant
 // only if the status of the impactedResource object is dismissed, postponed, or completedByUser.
-func (c ImpactedResourceClient) CreateImpactedResourceReactivate(ctx context.Context, id beta.DirectoryImpactedResourceId) (result CreateImpactedResourceReactivateOperationResponse, err error) {
+func (c ImpactedResourceClient) CreateImpactedResourceReactivate(ctx context.Context, id beta.DirectoryImpactedResourceId, options CreateImpactedResourceReactivateOperationOptions) (result CreateImpactedResourceReactivateOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/reactivate", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/reactivate", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

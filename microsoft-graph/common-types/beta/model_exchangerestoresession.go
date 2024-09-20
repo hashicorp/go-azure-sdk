@@ -104,18 +104,30 @@ func (s ExchangeRestoreSession) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &ExchangeRestoreSession{}
 
 func (s *ExchangeRestoreSession) UnmarshalJSON(bytes []byte) error {
-	type alias ExchangeRestoreSession
-	var decoded alias
+
+	var decoded struct {
+		MailboxRestoreArtifacts *[]MailboxRestoreArtifact `json:"mailboxRestoreArtifacts,omitempty"`
+		CompletedDateTime       nullable.Type[string]     `json:"completedDateTime,omitempty"`
+		CreatedBy               IdentitySet               `json:"createdBy"`
+		CreatedDateTime         nullable.Type[string]     `json:"createdDateTime,omitempty"`
+		Error                   *PublicError              `json:"error,omitempty"`
+		LastModifiedBy          IdentitySet               `json:"lastModifiedBy"`
+		LastModifiedDateTime    nullable.Type[string]     `json:"lastModifiedDateTime,omitempty"`
+		Status                  *RestoreSessionStatus     `json:"status,omitempty"`
+		Id                      *string                   `json:"id,omitempty"`
+		ODataId                 *string                   `json:"@odata.id,omitempty"`
+		ODataType               *string                   `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into ExchangeRestoreSession: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
+	s.MailboxRestoreArtifacts = decoded.MailboxRestoreArtifacts
 	s.CompletedDateTime = decoded.CompletedDateTime
 	s.CreatedDateTime = decoded.CreatedDateTime
 	s.Error = decoded.Error
 	s.Id = decoded.Id
 	s.LastModifiedDateTime = decoded.LastModifiedDateTime
-	s.MailboxRestoreArtifacts = decoded.MailboxRestoreArtifacts
 	s.ODataId = decoded.ODataId
 	s.ODataType = decoded.ODataType
 	s.Status = decoded.Status
@@ -140,5 +152,6 @@ func (s *ExchangeRestoreSession) UnmarshalJSON(bytes []byte) error {
 		}
 		s.LastModifiedBy = impl
 	}
+
 	return nil
 }

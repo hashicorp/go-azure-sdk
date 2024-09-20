@@ -19,15 +19,44 @@ type CreateRoleManagementAlertConfigurationOperationResponse struct {
 	Model        beta.UnifiedRoleManagementAlertConfiguration
 }
 
+type CreateRoleManagementAlertConfigurationOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateRoleManagementAlertConfigurationOperationOptions() CreateRoleManagementAlertConfigurationOperationOptions {
+	return CreateRoleManagementAlertConfigurationOperationOptions{}
+}
+
+func (o CreateRoleManagementAlertConfigurationOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateRoleManagementAlertConfigurationOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateRoleManagementAlertConfigurationOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateRoleManagementAlertConfiguration - Create new navigation property to alertConfigurations for identityGovernance
-func (c RoleManagementAlertAlertConfigurationClient) CreateRoleManagementAlertConfiguration(ctx context.Context, input beta.UnifiedRoleManagementAlertConfiguration) (result CreateRoleManagementAlertConfigurationOperationResponse, err error) {
+func (c RoleManagementAlertAlertConfigurationClient) CreateRoleManagementAlertConfiguration(ctx context.Context, input beta.UnifiedRoleManagementAlertConfiguration, options CreateRoleManagementAlertConfigurationOperationOptions) (result CreateRoleManagementAlertConfigurationOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/identityGovernance/roleManagementAlerts/alertConfigurations",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/identityGovernance/roleManagementAlerts/alertConfigurations",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

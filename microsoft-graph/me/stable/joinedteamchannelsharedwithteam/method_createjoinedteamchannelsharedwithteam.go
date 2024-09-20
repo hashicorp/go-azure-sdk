@@ -19,15 +19,44 @@ type CreateJoinedTeamChannelSharedWithTeamOperationResponse struct {
 	Model        *stable.SharedWithChannelTeamInfo
 }
 
+type CreateJoinedTeamChannelSharedWithTeamOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateJoinedTeamChannelSharedWithTeamOperationOptions() CreateJoinedTeamChannelSharedWithTeamOperationOptions {
+	return CreateJoinedTeamChannelSharedWithTeamOperationOptions{}
+}
+
+func (o CreateJoinedTeamChannelSharedWithTeamOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateJoinedTeamChannelSharedWithTeamOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateJoinedTeamChannelSharedWithTeamOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateJoinedTeamChannelSharedWithTeam - Create new navigation property to sharedWithTeams for me
-func (c JoinedTeamChannelSharedWithTeamClient) CreateJoinedTeamChannelSharedWithTeam(ctx context.Context, id stable.MeJoinedTeamIdChannelId, input stable.SharedWithChannelTeamInfo) (result CreateJoinedTeamChannelSharedWithTeamOperationResponse, err error) {
+func (c JoinedTeamChannelSharedWithTeamClient) CreateJoinedTeamChannelSharedWithTeam(ctx context.Context, id stable.MeJoinedTeamIdChannelId, input stable.SharedWithChannelTeamInfo, options CreateJoinedTeamChannelSharedWithTeamOperationOptions) (result CreateJoinedTeamChannelSharedWithTeamOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/sharedWithTeams", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/sharedWithTeams", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

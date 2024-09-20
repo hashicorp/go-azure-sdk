@@ -105,13 +105,13 @@ func (id MeDriveIdRootAnalyticsItemActivityStatIdActivityId) Segments() []resour
 	return []resourceids.Segment{
 		resourceids.StaticSegment("me", "me", "me"),
 		resourceids.StaticSegment("drives", "drives", "drives"),
-		resourceids.UserSpecifiedSegment("driveId", "driveIdValue"),
+		resourceids.UserSpecifiedSegment("driveId", "driveId"),
 		resourceids.StaticSegment("root", "root", "root"),
 		resourceids.StaticSegment("analytics", "analytics", "analytics"),
 		resourceids.StaticSegment("itemActivityStats", "itemActivityStats", "itemActivityStats"),
-		resourceids.UserSpecifiedSegment("itemActivityStatId", "itemActivityStatIdValue"),
+		resourceids.UserSpecifiedSegment("itemActivityStatId", "itemActivityStatId"),
 		resourceids.StaticSegment("activities", "activities", "activities"),
-		resourceids.UserSpecifiedSegment("itemActivityId", "itemActivityIdValue"),
+		resourceids.UserSpecifiedSegment("itemActivityId", "itemActivityId"),
 	}
 }
 

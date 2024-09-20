@@ -26,10 +26,14 @@ type AttendeeAvailability struct {
 var _ json.Unmarshaler = &AttendeeAvailability{}
 
 func (s *AttendeeAvailability) UnmarshalJSON(bytes []byte) error {
-	type alias AttendeeAvailability
-	var decoded alias
+
+	var decoded struct {
+		Availability *FreeBusyStatus `json:"availability,omitempty"`
+		ODataId      *string         `json:"@odata.id,omitempty"`
+		ODataType    *string         `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into AttendeeAvailability: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.Availability = decoded.Availability
@@ -48,5 +52,6 @@ func (s *AttendeeAvailability) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Attendee = &impl
 	}
+
 	return nil
 }

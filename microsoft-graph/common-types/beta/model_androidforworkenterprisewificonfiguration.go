@@ -227,14 +227,53 @@ func (s AndroidForWorkEnterpriseWiFiConfiguration) MarshalJSON() ([]byte, error)
 var _ json.Unmarshaler = &AndroidForWorkEnterpriseWiFiConfiguration{}
 
 func (s *AndroidForWorkEnterpriseWiFiConfiguration) UnmarshalJSON(bytes []byte) error {
-	type alias AndroidForWorkEnterpriseWiFiConfiguration
-	var decoded alias
+
+	var decoded struct {
+		AuthenticationMethod                        *WiFiAuthenticationMethod                    `json:"authenticationMethod,omitempty"`
+		EapType                                     *AndroidEapType                              `json:"eapType,omitempty"`
+		InnerAuthenticationProtocolForEapTtls       *NonEapAuthenticationMethodForEapTtlsType    `json:"innerAuthenticationProtocolForEapTtls,omitempty"`
+		InnerAuthenticationProtocolForPeap          *NonEapAuthenticationMethodForPeap           `json:"innerAuthenticationProtocolForPeap,omitempty"`
+		OuterIdentityPrivacyTemporaryValue          nullable.Type[string]                        `json:"outerIdentityPrivacyTemporaryValue,omitempty"`
+		RootCertificateForServerValidation          *AndroidForWorkTrustedRootCertificate        `json:"rootCertificateForServerValidation,omitempty"`
+		TrustedServerCertificateNames               *[]string                                    `json:"trustedServerCertificateNames,omitempty"`
+		ConnectAutomatically                        *bool                                        `json:"connectAutomatically,omitempty"`
+		ConnectWhenNetworkNameIsHidden              *bool                                        `json:"connectWhenNetworkNameIsHidden,omitempty"`
+		NetworkName                                 *string                                      `json:"networkName,omitempty"`
+		Ssid                                        *string                                      `json:"ssid,omitempty"`
+		WiFiSecurityType                            *AndroidWiFiSecurityType                     `json:"wiFiSecurityType,omitempty"`
+		Assignments                                 *[]DeviceConfigurationAssignment             `json:"assignments,omitempty"`
+		CreatedDateTime                             *string                                      `json:"createdDateTime,omitempty"`
+		Description                                 nullable.Type[string]                        `json:"description,omitempty"`
+		DeviceManagementApplicabilityRuleDeviceMode *DeviceManagementApplicabilityRuleDeviceMode `json:"deviceManagementApplicabilityRuleDeviceMode,omitempty"`
+		DeviceManagementApplicabilityRuleOsEdition  *DeviceManagementApplicabilityRuleOsEdition  `json:"deviceManagementApplicabilityRuleOsEdition,omitempty"`
+		DeviceManagementApplicabilityRuleOsVersion  *DeviceManagementApplicabilityRuleOsVersion  `json:"deviceManagementApplicabilityRuleOsVersion,omitempty"`
+		DeviceSettingStateSummaries                 *[]SettingStateDeviceSummary                 `json:"deviceSettingStateSummaries,omitempty"`
+		DeviceStatusOverview                        *DeviceConfigurationDeviceOverview           `json:"deviceStatusOverview,omitempty"`
+		DeviceStatuses                              *[]DeviceConfigurationDeviceStatus           `json:"deviceStatuses,omitempty"`
+		DisplayName                                 *string                                      `json:"displayName,omitempty"`
+		GroupAssignments                            *[]DeviceConfigurationGroupAssignment        `json:"groupAssignments,omitempty"`
+		LastModifiedDateTime                        *string                                      `json:"lastModifiedDateTime,omitempty"`
+		RoleScopeTagIds                             *[]string                                    `json:"roleScopeTagIds,omitempty"`
+		SupportsScopeTags                           *bool                                        `json:"supportsScopeTags,omitempty"`
+		UserStatusOverview                          *DeviceConfigurationUserOverview             `json:"userStatusOverview,omitempty"`
+		UserStatuses                                *[]DeviceConfigurationUserStatus             `json:"userStatuses,omitempty"`
+		Version                                     *int64                                       `json:"version,omitempty"`
+		Id                                          *string                                      `json:"id,omitempty"`
+		ODataId                                     *string                                      `json:"@odata.id,omitempty"`
+		ODataType                                   *string                                      `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into AndroidForWorkEnterpriseWiFiConfiguration: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
-	s.Assignments = decoded.Assignments
 	s.AuthenticationMethod = decoded.AuthenticationMethod
+	s.EapType = decoded.EapType
+	s.InnerAuthenticationProtocolForEapTtls = decoded.InnerAuthenticationProtocolForEapTtls
+	s.InnerAuthenticationProtocolForPeap = decoded.InnerAuthenticationProtocolForPeap
+	s.OuterIdentityPrivacyTemporaryValue = decoded.OuterIdentityPrivacyTemporaryValue
+	s.RootCertificateForServerValidation = decoded.RootCertificateForServerValidation
+	s.TrustedServerCertificateNames = decoded.TrustedServerCertificateNames
+	s.Assignments = decoded.Assignments
 	s.ConnectAutomatically = decoded.ConnectAutomatically
 	s.ConnectWhenNetworkNameIsHidden = decoded.ConnectWhenNetworkNameIsHidden
 	s.CreatedDateTime = decoded.CreatedDateTime
@@ -246,21 +285,15 @@ func (s *AndroidForWorkEnterpriseWiFiConfiguration) UnmarshalJSON(bytes []byte) 
 	s.DeviceStatusOverview = decoded.DeviceStatusOverview
 	s.DeviceStatuses = decoded.DeviceStatuses
 	s.DisplayName = decoded.DisplayName
-	s.EapType = decoded.EapType
 	s.GroupAssignments = decoded.GroupAssignments
 	s.Id = decoded.Id
-	s.InnerAuthenticationProtocolForEapTtls = decoded.InnerAuthenticationProtocolForEapTtls
-	s.InnerAuthenticationProtocolForPeap = decoded.InnerAuthenticationProtocolForPeap
 	s.LastModifiedDateTime = decoded.LastModifiedDateTime
 	s.NetworkName = decoded.NetworkName
 	s.ODataId = decoded.ODataId
 	s.ODataType = decoded.ODataType
-	s.OuterIdentityPrivacyTemporaryValue = decoded.OuterIdentityPrivacyTemporaryValue
 	s.RoleScopeTagIds = decoded.RoleScopeTagIds
-	s.RootCertificateForServerValidation = decoded.RootCertificateForServerValidation
 	s.Ssid = decoded.Ssid
 	s.SupportsScopeTags = decoded.SupportsScopeTags
-	s.TrustedServerCertificateNames = decoded.TrustedServerCertificateNames
 	s.UserStatusOverview = decoded.UserStatusOverview
 	s.UserStatuses = decoded.UserStatuses
 	s.Version = decoded.Version
@@ -278,5 +311,6 @@ func (s *AndroidForWorkEnterpriseWiFiConfiguration) UnmarshalJSON(bytes []byte) 
 		}
 		s.IdentityCertificateForClientAuthentication = &impl
 	}
+
 	return nil
 }

@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/microsoft-graph/me/beta/informationprotection` Documentation
 
-The `informationprotection` SDK allows for interaction with the Azure Resource Manager Service `me` (API Version `beta`).
+The `informationprotection` SDK allows for interaction with Microsoft Graph `me` (API Version `beta`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -15,7 +15,7 @@ import "github.com/hashicorp/go-azure-sdk/microsoft-graph/me/beta/informationpro
 ### Client Initialization
 
 ```go
-client := informationprotection.NewInformationProtectionClientWithBaseURI("https://management.azure.com")
+client := informationprotection.NewInformationProtectionClientWithBaseURI("https://graph.microsoft.com")
 client.Client.Authorizer = authorizer
 ```
 
@@ -30,7 +30,7 @@ payload := informationprotection.CreateInformationProtectionDecryptBufferRequest
 }
 
 
-read, err := client.CreateInformationProtectionDecryptBuffer(ctx, payload)
+read, err := client.CreateInformationProtectionDecryptBuffer(ctx, payload, informationprotection.DefaultCreateInformationProtectionDecryptBufferOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -50,7 +50,7 @@ payload := informationprotection.CreateInformationProtectionEncryptBufferRequest
 }
 
 
-read, err := client.CreateInformationProtectionEncryptBuffer(ctx, payload)
+read, err := client.CreateInformationProtectionEncryptBuffer(ctx, payload, informationprotection.DefaultCreateInformationProtectionEncryptBufferOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -70,7 +70,7 @@ payload := informationprotection.CreateInformationProtectionSignDigestRequest{
 }
 
 
-read, err := client.CreateInformationProtectionSignDigest(ctx, payload)
+read, err := client.CreateInformationProtectionSignDigest(ctx, payload, informationprotection.DefaultCreateInformationProtectionSignDigestOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -90,7 +90,7 @@ payload := informationprotection.CreateInformationProtectionVerifySignatureReque
 }
 
 
-read, err := client.CreateInformationProtectionVerifySignature(ctx, payload)
+read, err := client.CreateInformationProtectionVerifySignature(ctx, payload, informationprotection.DefaultCreateInformationProtectionVerifySignatureOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -142,7 +142,7 @@ payload := informationprotection.InformationProtection{
 }
 
 
-read, err := client.UpdateInformationProtection(ctx, payload)
+read, err := client.UpdateInformationProtection(ctx, payload, informationprotection.DefaultUpdateInformationProtectionOperationOptions())
 if err != nil {
 	// handle the error
 }

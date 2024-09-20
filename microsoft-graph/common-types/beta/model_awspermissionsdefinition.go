@@ -62,10 +62,15 @@ func (s AwsPermissionsDefinition) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &AwsPermissionsDefinition{}
 
 func (s *AwsPermissionsDefinition) UnmarshalJSON(bytes []byte) error {
-	type alias AwsPermissionsDefinition
-	var decoded alias
+
+	var decoded struct {
+		AuthorizationSystemInfo *PermissionsDefinitionAuthorizationSystem         `json:"authorizationSystemInfo,omitempty"`
+		IdentityInfo            *PermissionsDefinitionAuthorizationSystemIdentity `json:"identityInfo,omitempty"`
+		ODataId                 *string                                           `json:"@odata.id,omitempty"`
+		ODataType               *string                                           `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into AwsPermissionsDefinition: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.AuthorizationSystemInfo = decoded.AuthorizationSystemInfo
@@ -85,5 +90,6 @@ func (s *AwsPermissionsDefinition) UnmarshalJSON(bytes []byte) error {
 		}
 		s.ActionInfo = &impl
 	}
+
 	return nil
 }

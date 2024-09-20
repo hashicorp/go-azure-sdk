@@ -19,16 +19,45 @@ type GetJoinedTeamPrimaryChannelMessageReplyHostedContentValueOperationResponse 
 	Model        *[]byte
 }
 
+type GetJoinedTeamPrimaryChannelMessageReplyHostedContentValueOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultGetJoinedTeamPrimaryChannelMessageReplyHostedContentValueOperationOptions() GetJoinedTeamPrimaryChannelMessageReplyHostedContentValueOperationOptions {
+	return GetJoinedTeamPrimaryChannelMessageReplyHostedContentValueOperationOptions{}
+}
+
+func (o GetJoinedTeamPrimaryChannelMessageReplyHostedContentValueOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o GetJoinedTeamPrimaryChannelMessageReplyHostedContentValueOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o GetJoinedTeamPrimaryChannelMessageReplyHostedContentValueOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // GetJoinedTeamPrimaryChannelMessageReplyHostedContentValue - Get media content for the navigation property
 // hostedContents from me. The unique identifier for an entity. Read-only.
-func (c JoinedTeamPrimaryChannelMessageReplyHostedContentClient) GetJoinedTeamPrimaryChannelMessageReplyHostedContentValue(ctx context.Context, id stable.MeJoinedTeamIdPrimaryChannelMessageIdReplyIdHostedContentId) (result GetJoinedTeamPrimaryChannelMessageReplyHostedContentValueOperationResponse, err error) {
+func (c JoinedTeamPrimaryChannelMessageReplyHostedContentClient) GetJoinedTeamPrimaryChannelMessageReplyHostedContentValue(ctx context.Context, id stable.MeJoinedTeamIdPrimaryChannelMessageIdReplyIdHostedContentId, options GetJoinedTeamPrimaryChannelMessageReplyHostedContentValueOperationOptions) (result GetJoinedTeamPrimaryChannelMessageReplyHostedContentValueOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/octet-stream",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/$value", id.ID()),
+		HttpMethod:    http.MethodGet,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/$value", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

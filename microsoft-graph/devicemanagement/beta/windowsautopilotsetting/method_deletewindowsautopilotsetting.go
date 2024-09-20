@@ -18,7 +18,8 @@ type DeleteWindowsAutopilotSettingOperationResponse struct {
 }
 
 type DeleteWindowsAutopilotSettingOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteWindowsAutopilotSettingOperationOptions() DeleteWindowsAutopilotSettingOperationOptions {
@@ -35,7 +36,9 @@ func (o DeleteWindowsAutopilotSettingOperationOptions) ToHeaders() *client.Heade
 
 func (o DeleteWindowsAutopilotSettingOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

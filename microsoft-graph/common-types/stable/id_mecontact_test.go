@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &MeContactId{}
 
 func TestNewMeContactID(t *testing.T) {
-	id := NewMeContactID("contactIdValue")
+	id := NewMeContactID("contactId")
 
-	if id.ContactId != "contactIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ContactId'", id.ContactId, "contactIdValue")
+	if id.ContactId != "contactId" {
+		t.Fatalf("Expected %q but got %q for Segment 'ContactId'", id.ContactId, "contactId")
 	}
 }
 
 func TestFormatMeContactID(t *testing.T) {
-	actual := NewMeContactID("contactIdValue").ID()
-	expected := "/me/contacts/contactIdValue"
+	actual := NewMeContactID("contactId").ID()
+	expected := "/me/contacts/contactId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -50,14 +50,14 @@ func TestParseMeContactID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/me/contacts/contactIdValue",
+			Input: "/me/contacts/contactId",
 			Expected: &MeContactId{
-				ContactId: "contactIdValue",
+				ContactId: "contactId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/contacts/contactIdValue/extra",
+			Input: "/me/contacts/contactId/extra",
 			Error: true,
 		},
 	}
@@ -116,26 +116,26 @@ func TestParseMeContactIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/me/contacts/contactIdValue",
+			Input: "/me/contacts/contactId",
 			Expected: &MeContactId{
-				ContactId: "contactIdValue",
+				ContactId: "contactId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/contacts/contactIdValue/extra",
+			Input: "/me/contacts/contactId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/cOnTaCtS/cOnTaCtIdVaLuE",
+			Input: "/mE/cOnTaCtS/cOnTaCtId",
 			Expected: &MeContactId{
-				ContactId: "cOnTaCtIdVaLuE",
+				ContactId: "cOnTaCtId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/mE/cOnTaCtS/cOnTaCtIdVaLuE/extra",
+			Input: "/mE/cOnTaCtS/cOnTaCtId/extra",
 			Error: true,
 		},
 	}

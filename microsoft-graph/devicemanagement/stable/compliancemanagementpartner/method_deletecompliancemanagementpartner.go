@@ -19,7 +19,8 @@ type DeleteComplianceManagementPartnerOperationResponse struct {
 }
 
 type DeleteComplianceManagementPartnerOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteComplianceManagementPartnerOperationOptions() DeleteComplianceManagementPartnerOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteComplianceManagementPartnerOperationOptions) ToHeaders() *client.H
 
 func (o DeleteComplianceManagementPartnerOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

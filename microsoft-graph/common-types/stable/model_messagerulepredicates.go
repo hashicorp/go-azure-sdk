@@ -132,10 +132,43 @@ type MessageRulePredicates struct {
 var _ json.Unmarshaler = &MessageRulePredicates{}
 
 func (s *MessageRulePredicates) UnmarshalJSON(bytes []byte) error {
-	type alias MessageRulePredicates
-	var decoded alias
+
+	var decoded struct {
+		BodyContains           *[]string           `json:"bodyContains,omitempty"`
+		BodyOrSubjectContains  *[]string           `json:"bodyOrSubjectContains,omitempty"`
+		Categories             *[]string           `json:"categories,omitempty"`
+		FromAddresses          *[]Recipient        `json:"fromAddresses,omitempty"`
+		HasAttachments         nullable.Type[bool] `json:"hasAttachments,omitempty"`
+		HeaderContains         *[]string           `json:"headerContains,omitempty"`
+		Importance             *Importance         `json:"importance,omitempty"`
+		IsApprovalRequest      nullable.Type[bool] `json:"isApprovalRequest,omitempty"`
+		IsAutomaticForward     nullable.Type[bool] `json:"isAutomaticForward,omitempty"`
+		IsAutomaticReply       nullable.Type[bool] `json:"isAutomaticReply,omitempty"`
+		IsEncrypted            nullable.Type[bool] `json:"isEncrypted,omitempty"`
+		IsMeetingRequest       nullable.Type[bool] `json:"isMeetingRequest,omitempty"`
+		IsMeetingResponse      nullable.Type[bool] `json:"isMeetingResponse,omitempty"`
+		IsNonDeliveryReport    nullable.Type[bool] `json:"isNonDeliveryReport,omitempty"`
+		IsPermissionControlled nullable.Type[bool] `json:"isPermissionControlled,omitempty"`
+		IsReadReceipt          nullable.Type[bool] `json:"isReadReceipt,omitempty"`
+		IsSigned               nullable.Type[bool] `json:"isSigned,omitempty"`
+		IsVoicemail            nullable.Type[bool] `json:"isVoicemail,omitempty"`
+		MessageActionFlag      *MessageActionFlag  `json:"messageActionFlag,omitempty"`
+		NotSentToMe            nullable.Type[bool] `json:"notSentToMe,omitempty"`
+		ODataId                *string             `json:"@odata.id,omitempty"`
+		ODataType              *string             `json:"@odata.type,omitempty"`
+		RecipientContains      *[]string           `json:"recipientContains,omitempty"`
+		SenderContains         *[]string           `json:"senderContains,omitempty"`
+		Sensitivity            *Sensitivity        `json:"sensitivity,omitempty"`
+		SentCcMe               nullable.Type[bool] `json:"sentCcMe,omitempty"`
+		SentOnlyToMe           nullable.Type[bool] `json:"sentOnlyToMe,omitempty"`
+		SentToAddresses        *[]Recipient        `json:"sentToAddresses,omitempty"`
+		SentToMe               nullable.Type[bool] `json:"sentToMe,omitempty"`
+		SentToOrCcMe           nullable.Type[bool] `json:"sentToOrCcMe,omitempty"`
+		SubjectContains        *[]string           `json:"subjectContains,omitempty"`
+		WithinSizeRange        *SizeRange          `json:"withinSizeRange,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into MessageRulePredicates: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.BodyContains = decoded.BodyContains
@@ -207,5 +240,6 @@ func (s *MessageRulePredicates) UnmarshalJSON(bytes []byte) error {
 		}
 		s.SentToAddresses = &output
 	}
+
 	return nil
 }

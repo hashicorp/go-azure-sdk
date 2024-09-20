@@ -19,15 +19,44 @@ type CreateSynchronizationTemplateOperationResponse struct {
 	Model        *beta.SynchronizationTemplate
 }
 
+type CreateSynchronizationTemplateOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateSynchronizationTemplateOperationOptions() CreateSynchronizationTemplateOperationOptions {
+	return CreateSynchronizationTemplateOperationOptions{}
+}
+
+func (o CreateSynchronizationTemplateOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateSynchronizationTemplateOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateSynchronizationTemplateOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateSynchronizationTemplate - Create new navigation property to templates for applications
-func (c SynchronizationTemplateClient) CreateSynchronizationTemplate(ctx context.Context, id beta.ApplicationId, input beta.SynchronizationTemplate) (result CreateSynchronizationTemplateOperationResponse, err error) {
+func (c SynchronizationTemplateClient) CreateSynchronizationTemplate(ctx context.Context, id beta.ApplicationId, input beta.SynchronizationTemplate, options CreateSynchronizationTemplateOperationOptions) (result CreateSynchronizationTemplateOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/synchronization/templates", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/synchronization/templates", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

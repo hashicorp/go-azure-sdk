@@ -20,7 +20,8 @@ type GetSiteListItemActivityDriveItemContentOperationResponse struct {
 }
 
 type GetSiteListItemActivityDriveItemContentOperationOptions struct {
-	Format *odata.Format
+	Format   *odata.Format
+	Metadata *odata.Metadata
 }
 
 func DefaultGetSiteListItemActivityDriveItemContentOperationOptions() GetSiteListItemActivityDriveItemContentOperationOptions {
@@ -37,6 +38,9 @@ func (o GetSiteListItemActivityDriveItemContentOperationOptions) ToOData() *odat
 	out := odata.Query{}
 	if o.Format != nil {
 		out.Format = *o.Format
+	}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
 	}
 	return &out
 }

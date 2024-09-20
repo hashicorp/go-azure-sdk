@@ -19,15 +19,44 @@ type CreateDriveItemVersionOperationResponse struct {
 	Model        *stable.DriveItemVersion
 }
 
+type CreateDriveItemVersionOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateDriveItemVersionOperationOptions() CreateDriveItemVersionOperationOptions {
+	return CreateDriveItemVersionOperationOptions{}
+}
+
+func (o CreateDriveItemVersionOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateDriveItemVersionOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateDriveItemVersionOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateDriveItemVersion - Create new navigation property to versions for groups
-func (c DriveItemVersionClient) CreateDriveItemVersion(ctx context.Context, id stable.GroupIdDriveIdItemId, input stable.DriveItemVersion) (result CreateDriveItemVersionOperationResponse, err error) {
+func (c DriveItemVersionClient) CreateDriveItemVersion(ctx context.Context, id stable.GroupIdDriveIdItemId, input stable.DriveItemVersion, options CreateDriveItemVersionOperationOptions) (result CreateDriveItemVersionOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/versions", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/versions", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

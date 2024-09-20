@@ -26,10 +26,16 @@ type ExternalConnectorsExternal struct {
 var _ json.Unmarshaler = &ExternalConnectorsExternal{}
 
 func (s *ExternalConnectorsExternal) UnmarshalJSON(bytes []byte) error {
-	type alias ExternalConnectorsExternal
-	var decoded alias
+
+	var decoded struct {
+		AuthorizationSystems *[]AuthorizationSystem                  `json:"authorizationSystems,omitempty"`
+		Connections          *[]ExternalConnectorsExternalConnection `json:"connections,omitempty"`
+		IndustryData         *IndustryDataIndustryDataRoot           `json:"industryData,omitempty"`
+		ODataId              *string                                 `json:"@odata.id,omitempty"`
+		ODataType            *string                                 `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into ExternalConnectorsExternal: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.Connections = decoded.Connections
@@ -58,5 +64,6 @@ func (s *ExternalConnectorsExternal) UnmarshalJSON(bytes []byte) error {
 		}
 		s.AuthorizationSystems = &output
 	}
+
 	return nil
 }

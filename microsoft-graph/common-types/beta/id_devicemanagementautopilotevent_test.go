@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &DeviceManagementAutopilotEventId{}
 
 func TestNewDeviceManagementAutopilotEventID(t *testing.T) {
-	id := NewDeviceManagementAutopilotEventID("deviceManagementAutopilotEventIdValue")
+	id := NewDeviceManagementAutopilotEventID("deviceManagementAutopilotEventId")
 
-	if id.DeviceManagementAutopilotEventId != "deviceManagementAutopilotEventIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DeviceManagementAutopilotEventId'", id.DeviceManagementAutopilotEventId, "deviceManagementAutopilotEventIdValue")
+	if id.DeviceManagementAutopilotEventId != "deviceManagementAutopilotEventId" {
+		t.Fatalf("Expected %q but got %q for Segment 'DeviceManagementAutopilotEventId'", id.DeviceManagementAutopilotEventId, "deviceManagementAutopilotEventId")
 	}
 }
 
 func TestFormatDeviceManagementAutopilotEventID(t *testing.T) {
-	actual := NewDeviceManagementAutopilotEventID("deviceManagementAutopilotEventIdValue").ID()
-	expected := "/deviceManagement/autopilotEvents/deviceManagementAutopilotEventIdValue"
+	actual := NewDeviceManagementAutopilotEventID("deviceManagementAutopilotEventId").ID()
+	expected := "/deviceManagement/autopilotEvents/deviceManagementAutopilotEventId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -50,14 +50,14 @@ func TestParseDeviceManagementAutopilotEventID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/autopilotEvents/deviceManagementAutopilotEventIdValue",
+			Input: "/deviceManagement/autopilotEvents/deviceManagementAutopilotEventId",
 			Expected: &DeviceManagementAutopilotEventId{
-				DeviceManagementAutopilotEventId: "deviceManagementAutopilotEventIdValue",
+				DeviceManagementAutopilotEventId: "deviceManagementAutopilotEventId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/autopilotEvents/deviceManagementAutopilotEventIdValue/extra",
+			Input: "/deviceManagement/autopilotEvents/deviceManagementAutopilotEventId/extra",
 			Error: true,
 		},
 	}
@@ -116,26 +116,26 @@ func TestParseDeviceManagementAutopilotEventIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/autopilotEvents/deviceManagementAutopilotEventIdValue",
+			Input: "/deviceManagement/autopilotEvents/deviceManagementAutopilotEventId",
 			Expected: &DeviceManagementAutopilotEventId{
-				DeviceManagementAutopilotEventId: "deviceManagementAutopilotEventIdValue",
+				DeviceManagementAutopilotEventId: "deviceManagementAutopilotEventId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/autopilotEvents/deviceManagementAutopilotEventIdValue/extra",
+			Input: "/deviceManagement/autopilotEvents/deviceManagementAutopilotEventId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/aUtOpIlOtEvEnTs/dEvIcEmAnAgEmEnTaUtOpIlOtEvEnTiDvAlUe",
+			Input: "/dEvIcEmAnAgEmEnT/aUtOpIlOtEvEnTs/dEvIcEmAnAgEmEnTaUtOpIlOtEvEnTiD",
 			Expected: &DeviceManagementAutopilotEventId{
-				DeviceManagementAutopilotEventId: "dEvIcEmAnAgEmEnTaUtOpIlOtEvEnTiDvAlUe",
+				DeviceManagementAutopilotEventId: "dEvIcEmAnAgEmEnTaUtOpIlOtEvEnTiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/aUtOpIlOtEvEnTs/dEvIcEmAnAgEmEnTaUtOpIlOtEvEnTiDvAlUe/extra",
+			Input: "/dEvIcEmAnAgEmEnT/aUtOpIlOtEvEnTs/dEvIcEmAnAgEmEnTaUtOpIlOtEvEnTiD/extra",
 			Error: true,
 		},
 	}

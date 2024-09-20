@@ -55,10 +55,14 @@ func (s RawEducationAssignmentGradeImpl) EducationAssignmentGrade() BaseEducatio
 var _ json.Unmarshaler = &BaseEducationAssignmentGradeImpl{}
 
 func (s *BaseEducationAssignmentGradeImpl) UnmarshalJSON(bytes []byte) error {
-	type alias BaseEducationAssignmentGradeImpl
-	var decoded alias
+
+	var decoded struct {
+		GradedDateTime nullable.Type[string] `json:"gradedDateTime,omitempty"`
+		ODataId        *string               `json:"@odata.id,omitempty"`
+		ODataType      *string               `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into BaseEducationAssignmentGradeImpl: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.GradedDateTime = decoded.GradedDateTime
@@ -77,6 +81,7 @@ func (s *BaseEducationAssignmentGradeImpl) UnmarshalJSON(bytes []byte) error {
 		}
 		s.GradedBy = impl
 	}
+
 	return nil
 }
 
@@ -90,9 +95,9 @@ func UnmarshalEducationAssignmentGradeImplementation(input []byte) (EducationAss
 		return nil, fmt.Errorf("unmarshaling EducationAssignmentGrade into map[string]interface: %+v", err)
 	}
 
-	value, ok := temp["@odata.type"].(string)
-	if !ok {
-		return nil, nil
+	var value string
+	if v, ok := temp["@odata.type"]; ok {
+		value = fmt.Sprintf("%v", v)
 	}
 
 	if strings.EqualFold(value, "#microsoft.graph.educationAssignmentPointsGrade") {

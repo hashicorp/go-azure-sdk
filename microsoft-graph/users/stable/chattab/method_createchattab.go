@@ -19,15 +19,44 @@ type CreateChatTabOperationResponse struct {
 	Model        *stable.TeamsTab
 }
 
+type CreateChatTabOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateChatTabOperationOptions() CreateChatTabOperationOptions {
+	return CreateChatTabOperationOptions{}
+}
+
+func (o CreateChatTabOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateChatTabOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateChatTabOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateChatTab - Create new navigation property to tabs for users
-func (c ChatTabClient) CreateChatTab(ctx context.Context, id stable.UserIdChatId, input stable.TeamsTab) (result CreateChatTabOperationResponse, err error) {
+func (c ChatTabClient) CreateChatTab(ctx context.Context, id stable.UserIdChatId, input stable.TeamsTab, options CreateChatTabOperationOptions) (result CreateChatTabOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/tabs", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/tabs", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

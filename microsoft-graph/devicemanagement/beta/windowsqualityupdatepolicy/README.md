@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/windowsqualityupdatepolicy` Documentation
 
-The `windowsqualityupdatepolicy` SDK allows for interaction with the Azure Resource Manager Service `devicemanagement` (API Version `beta`).
+The `windowsqualityupdatepolicy` SDK allows for interaction with Microsoft Graph `devicemanagement` (API Version `beta`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -15,7 +15,7 @@ import "github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/
 ### Client Initialization
 
 ```go
-client := windowsqualityupdatepolicy.NewWindowsQualityUpdatePolicyClientWithBaseURI("https://management.azure.com")
+client := windowsqualityupdatepolicy.NewWindowsQualityUpdatePolicyClientWithBaseURI("https://graph.microsoft.com")
 client.Client.Authorizer = authorizer
 ```
 
@@ -24,14 +24,14 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := windowsqualityupdatepolicy.NewDeviceManagementWindowsQualityUpdatePolicyID("windowsQualityUpdatePolicyIdValue")
+id := windowsqualityupdatepolicy.NewDeviceManagementWindowsQualityUpdatePolicyID("windowsQualityUpdatePolicyId")
 
 payload := windowsqualityupdatepolicy.AssignWindowsQualityUpdatePolicyRequest{
 	// ...
 }
 
 
-read, err := client.AssignWindowsQualityUpdatePolicy(ctx, id, payload)
+read, err := client.AssignWindowsQualityUpdatePolicy(ctx, id, payload, windowsqualityupdatepolicy.DefaultAssignWindowsQualityUpdatePolicyOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -51,7 +51,7 @@ payload := windowsqualityupdatepolicy.WindowsQualityUpdatePolicy{
 }
 
 
-read, err := client.CreateWindowsQualityUpdatePolicy(ctx, payload)
+read, err := client.CreateWindowsQualityUpdatePolicy(ctx, payload, windowsqualityupdatepolicy.DefaultCreateWindowsQualityUpdatePolicyOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -65,7 +65,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := windowsqualityupdatepolicy.NewDeviceManagementWindowsQualityUpdatePolicyID("windowsQualityUpdatePolicyIdValue")
+id := windowsqualityupdatepolicy.NewDeviceManagementWindowsQualityUpdatePolicyID("windowsQualityUpdatePolicyId")
 
 read, err := client.DeleteWindowsQualityUpdatePolicy(ctx, id, windowsqualityupdatepolicy.DefaultDeleteWindowsQualityUpdatePolicyOperationOptions())
 if err != nil {
@@ -97,7 +97,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := windowsqualityupdatepolicy.NewDeviceManagementWindowsQualityUpdatePolicyID("windowsQualityUpdatePolicyIdValue")
+id := windowsqualityupdatepolicy.NewDeviceManagementWindowsQualityUpdatePolicyID("windowsQualityUpdatePolicyId")
 
 read, err := client.GetWindowsQualityUpdatePolicy(ctx, id, windowsqualityupdatepolicy.DefaultGetWindowsQualityUpdatePolicyOperationOptions())
 if err != nil {
@@ -130,14 +130,14 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := windowsqualityupdatepolicy.NewDeviceManagementWindowsQualityUpdatePolicyID("windowsQualityUpdatePolicyIdValue")
+id := windowsqualityupdatepolicy.NewDeviceManagementWindowsQualityUpdatePolicyID("windowsQualityUpdatePolicyId")
 
 payload := windowsqualityupdatepolicy.WindowsQualityUpdatePolicy{
 	// ...
 }
 
 
-read, err := client.UpdateWindowsQualityUpdatePolicy(ctx, id, payload)
+read, err := client.UpdateWindowsQualityUpdatePolicy(ctx, id, payload, windowsqualityupdatepolicy.DefaultUpdateWindowsQualityUpdatePolicyOperationOptions())
 if err != nil {
 	// handle the error
 }

@@ -19,15 +19,44 @@ type CreateCustomSecurityAttributeDefinitionAllowedValueOperationResponse struct
 	Model        *beta.AllowedValue
 }
 
+type CreateCustomSecurityAttributeDefinitionAllowedValueOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateCustomSecurityAttributeDefinitionAllowedValueOperationOptions() CreateCustomSecurityAttributeDefinitionAllowedValueOperationOptions {
+	return CreateCustomSecurityAttributeDefinitionAllowedValueOperationOptions{}
+}
+
+func (o CreateCustomSecurityAttributeDefinitionAllowedValueOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateCustomSecurityAttributeDefinitionAllowedValueOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateCustomSecurityAttributeDefinitionAllowedValueOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateCustomSecurityAttributeDefinitionAllowedValue - Create allowedValue. Create a new allowedValue object.
-func (c CustomSecurityAttributeDefinitionAllowedValueClient) CreateCustomSecurityAttributeDefinitionAllowedValue(ctx context.Context, id beta.DirectoryCustomSecurityAttributeDefinitionId, input beta.AllowedValue) (result CreateCustomSecurityAttributeDefinitionAllowedValueOperationResponse, err error) {
+func (c CustomSecurityAttributeDefinitionAllowedValueClient) CreateCustomSecurityAttributeDefinitionAllowedValue(ctx context.Context, id beta.DirectoryCustomSecurityAttributeDefinitionId, input beta.AllowedValue, options CreateCustomSecurityAttributeDefinitionAllowedValueOperationOptions) (result CreateCustomSecurityAttributeDefinitionAllowedValueOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/allowedValues", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/allowedValues", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

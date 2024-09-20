@@ -22,10 +22,13 @@ type DeviceManagementPartnerAssignment struct {
 var _ json.Unmarshaler = &DeviceManagementPartnerAssignment{}
 
 func (s *DeviceManagementPartnerAssignment) UnmarshalJSON(bytes []byte) error {
-	type alias DeviceManagementPartnerAssignment
-	var decoded alias
+
+	var decoded struct {
+		ODataId   *string `json:"@odata.id,omitempty"`
+		ODataType *string `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into DeviceManagementPartnerAssignment: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.ODataId = decoded.ODataId
@@ -43,5 +46,6 @@ func (s *DeviceManagementPartnerAssignment) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Target = impl
 	}
+
 	return nil
 }

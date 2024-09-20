@@ -42,10 +42,20 @@ type UnifiedRoleManagementPolicyRuleTarget struct {
 var _ json.Unmarshaler = &UnifiedRoleManagementPolicyRuleTarget{}
 
 func (s *UnifiedRoleManagementPolicyRuleTarget) UnmarshalJSON(bytes []byte) error {
-	type alias UnifiedRoleManagementPolicyRuleTarget
-	var decoded alias
+
+	var decoded struct {
+		Caller                  nullable.Type[string]                              `json:"caller,omitempty"`
+		EnforcedSettings        *[]string                                          `json:"enforcedSettings,omitempty"`
+		InheritableSettings     *[]string                                          `json:"inheritableSettings,omitempty"`
+		Level                   nullable.Type[string]                              `json:"level,omitempty"`
+		ODataId                 *string                                            `json:"@odata.id,omitempty"`
+		ODataType               *string                                            `json:"@odata.type,omitempty"`
+		Operations              *[]UnifiedRoleManagementPolicyRuleTargetOperations `json:"operations,omitempty"`
+		TargetObjects           *[]DirectoryObject                                 `json:"targetObjects,omitempty"`
+		TargetObjects_ODataBind *[]string                                          `json:"targetObjects@odata.bind,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into UnifiedRoleManagementPolicyRuleTarget: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.Caller = decoded.Caller
@@ -78,5 +88,6 @@ func (s *UnifiedRoleManagementPolicyRuleTarget) UnmarshalJSON(bytes []byte) erro
 		}
 		s.TargetObjects = &output
 	}
+
 	return nil
 }

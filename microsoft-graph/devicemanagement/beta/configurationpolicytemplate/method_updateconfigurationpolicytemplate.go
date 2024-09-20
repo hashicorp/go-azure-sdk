@@ -17,15 +17,44 @@ type UpdateConfigurationPolicyTemplateOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateConfigurationPolicyTemplateOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateConfigurationPolicyTemplateOperationOptions() UpdateConfigurationPolicyTemplateOperationOptions {
+	return UpdateConfigurationPolicyTemplateOperationOptions{}
+}
+
+func (o UpdateConfigurationPolicyTemplateOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateConfigurationPolicyTemplateOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateConfigurationPolicyTemplateOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateConfigurationPolicyTemplate - Update the navigation property configurationPolicyTemplates in deviceManagement
-func (c ConfigurationPolicyTemplateClient) UpdateConfigurationPolicyTemplate(ctx context.Context, id beta.DeviceManagementConfigurationPolicyTemplateId, input beta.DeviceManagementConfigurationPolicyTemplate) (result UpdateConfigurationPolicyTemplateOperationResponse, err error) {
+func (c ConfigurationPolicyTemplateClient) UpdateConfigurationPolicyTemplate(ctx context.Context, id beta.DeviceManagementConfigurationPolicyTemplateId, input beta.DeviceManagementConfigurationPolicyTemplate, options UpdateConfigurationPolicyTemplateOperationOptions) (result UpdateConfigurationPolicyTemplateOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

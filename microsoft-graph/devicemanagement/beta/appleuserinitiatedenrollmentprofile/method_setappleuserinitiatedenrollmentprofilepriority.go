@@ -18,15 +18,44 @@ type SetAppleUserInitiatedEnrollmentProfilePriorityOperationResponse struct {
 	OData        *odata.OData
 }
 
+type SetAppleUserInitiatedEnrollmentProfilePriorityOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultSetAppleUserInitiatedEnrollmentProfilePriorityOperationOptions() SetAppleUserInitiatedEnrollmentProfilePriorityOperationOptions {
+	return SetAppleUserInitiatedEnrollmentProfilePriorityOperationOptions{}
+}
+
+func (o SetAppleUserInitiatedEnrollmentProfilePriorityOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o SetAppleUserInitiatedEnrollmentProfilePriorityOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o SetAppleUserInitiatedEnrollmentProfilePriorityOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // SetAppleUserInitiatedEnrollmentProfilePriority - Invoke action setPriority
-func (c AppleUserInitiatedEnrollmentProfileClient) SetAppleUserInitiatedEnrollmentProfilePriority(ctx context.Context, id beta.DeviceManagementAppleUserInitiatedEnrollmentProfileId, input SetAppleUserInitiatedEnrollmentProfilePriorityRequest) (result SetAppleUserInitiatedEnrollmentProfilePriorityOperationResponse, err error) {
+func (c AppleUserInitiatedEnrollmentProfileClient) SetAppleUserInitiatedEnrollmentProfilePriority(ctx context.Context, id beta.DeviceManagementAppleUserInitiatedEnrollmentProfileId, input SetAppleUserInitiatedEnrollmentProfilePriorityRequest, options SetAppleUserInitiatedEnrollmentProfilePriorityOperationOptions) (result SetAppleUserInitiatedEnrollmentProfilePriorityOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/setPriority", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/setPriority", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

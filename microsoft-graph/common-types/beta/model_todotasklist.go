@@ -79,20 +79,30 @@ func (s TodoTaskList) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &TodoTaskList{}
 
 func (s *TodoTaskList) UnmarshalJSON(bytes []byte) error {
-	type alias TodoTaskList
-	var decoded alias
+
+	var decoded struct {
+		DisplayName       nullable.Type[string] `json:"displayName,omitempty"`
+		Extensions        *[]Extension          `json:"extensions,omitempty"`
+		IsOwner           *bool                 `json:"isOwner,omitempty"`
+		IsShared          *bool                 `json:"isShared,omitempty"`
+		Tasks             *[]TodoTask           `json:"tasks,omitempty"`
+		WellknownListName *WellknownListName    `json:"wellknownListName,omitempty"`
+		Id                *string               `json:"id,omitempty"`
+		ODataId           *string               `json:"@odata.id,omitempty"`
+		ODataType         *string               `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into TodoTaskList: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.DisplayName = decoded.DisplayName
-	s.Id = decoded.Id
 	s.IsOwner = decoded.IsOwner
 	s.IsShared = decoded.IsShared
-	s.ODataId = decoded.ODataId
-	s.ODataType = decoded.ODataType
 	s.Tasks = decoded.Tasks
 	s.WellknownListName = decoded.WellknownListName
+	s.Id = decoded.Id
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -115,5 +125,6 @@ func (s *TodoTaskList) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Extensions = &output
 	}
+
 	return nil
 }

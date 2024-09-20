@@ -17,15 +17,44 @@ type UpdateEnterpriseAppRoleAssignmentScheduleOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateEnterpriseAppRoleAssignmentScheduleOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateEnterpriseAppRoleAssignmentScheduleOperationOptions() UpdateEnterpriseAppRoleAssignmentScheduleOperationOptions {
+	return UpdateEnterpriseAppRoleAssignmentScheduleOperationOptions{}
+}
+
+func (o UpdateEnterpriseAppRoleAssignmentScheduleOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateEnterpriseAppRoleAssignmentScheduleOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateEnterpriseAppRoleAssignmentScheduleOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateEnterpriseAppRoleAssignmentSchedule - Update the navigation property roleAssignmentSchedules in roleManagement
-func (c EnterpriseAppRoleAssignmentScheduleClient) UpdateEnterpriseAppRoleAssignmentSchedule(ctx context.Context, id beta.RoleManagementEnterpriseAppIdRoleAssignmentScheduleId, input beta.UnifiedRoleAssignmentSchedule) (result UpdateEnterpriseAppRoleAssignmentScheduleOperationResponse, err error) {
+func (c EnterpriseAppRoleAssignmentScheduleClient) UpdateEnterpriseAppRoleAssignmentSchedule(ctx context.Context, id beta.RoleManagementEnterpriseAppIdRoleAssignmentScheduleId, input beta.UnifiedRoleAssignmentSchedule, options UpdateEnterpriseAppRoleAssignmentScheduleOperationOptions) (result UpdateEnterpriseAppRoleAssignmentScheduleOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

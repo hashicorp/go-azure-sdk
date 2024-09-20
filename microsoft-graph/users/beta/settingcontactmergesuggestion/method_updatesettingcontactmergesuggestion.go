@@ -18,15 +18,44 @@ type UpdateSettingContactMergeSuggestionOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateSettingContactMergeSuggestionOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateSettingContactMergeSuggestionOperationOptions() UpdateSettingContactMergeSuggestionOperationOptions {
+	return UpdateSettingContactMergeSuggestionOperationOptions{}
+}
+
+func (o UpdateSettingContactMergeSuggestionOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateSettingContactMergeSuggestionOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateSettingContactMergeSuggestionOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateSettingContactMergeSuggestion - Update the navigation property contactMergeSuggestions in users
-func (c SettingContactMergeSuggestionClient) UpdateSettingContactMergeSuggestion(ctx context.Context, id beta.UserId, input beta.ContactMergeSuggestions) (result UpdateSettingContactMergeSuggestionOperationResponse, err error) {
+func (c SettingContactMergeSuggestionClient) UpdateSettingContactMergeSuggestion(ctx context.Context, id beta.UserId, input beta.ContactMergeSuggestions, options UpdateSettingContactMergeSuggestionOperationOptions) (result UpdateSettingContactMergeSuggestionOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       fmt.Sprintf("%s/settings/contactMergeSuggestions", id.ID()),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/settings/contactMergeSuggestions", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &DeviceManagementEmbeddedSIMActivationCodePoolIdAssignmentId{}
 
 func TestNewDeviceManagementEmbeddedSIMActivationCodePoolIdAssignmentID(t *testing.T) {
-	id := NewDeviceManagementEmbeddedSIMActivationCodePoolIdAssignmentID("embeddedSIMActivationCodePoolIdValue", "embeddedSIMActivationCodePoolAssignmentIdValue")
+	id := NewDeviceManagementEmbeddedSIMActivationCodePoolIdAssignmentID("embeddedSIMActivationCodePoolId", "embeddedSIMActivationCodePoolAssignmentId")
 
-	if id.EmbeddedSIMActivationCodePoolId != "embeddedSIMActivationCodePoolIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'EmbeddedSIMActivationCodePoolId'", id.EmbeddedSIMActivationCodePoolId, "embeddedSIMActivationCodePoolIdValue")
+	if id.EmbeddedSIMActivationCodePoolId != "embeddedSIMActivationCodePoolId" {
+		t.Fatalf("Expected %q but got %q for Segment 'EmbeddedSIMActivationCodePoolId'", id.EmbeddedSIMActivationCodePoolId, "embeddedSIMActivationCodePoolId")
 	}
 
-	if id.EmbeddedSIMActivationCodePoolAssignmentId != "embeddedSIMActivationCodePoolAssignmentIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'EmbeddedSIMActivationCodePoolAssignmentId'", id.EmbeddedSIMActivationCodePoolAssignmentId, "embeddedSIMActivationCodePoolAssignmentIdValue")
+	if id.EmbeddedSIMActivationCodePoolAssignmentId != "embeddedSIMActivationCodePoolAssignmentId" {
+		t.Fatalf("Expected %q but got %q for Segment 'EmbeddedSIMActivationCodePoolAssignmentId'", id.EmbeddedSIMActivationCodePoolAssignmentId, "embeddedSIMActivationCodePoolAssignmentId")
 	}
 }
 
 func TestFormatDeviceManagementEmbeddedSIMActivationCodePoolIdAssignmentID(t *testing.T) {
-	actual := NewDeviceManagementEmbeddedSIMActivationCodePoolIdAssignmentID("embeddedSIMActivationCodePoolIdValue", "embeddedSIMActivationCodePoolAssignmentIdValue").ID()
-	expected := "/deviceManagement/embeddedSIMActivationCodePools/embeddedSIMActivationCodePoolIdValue/assignments/embeddedSIMActivationCodePoolAssignmentIdValue"
+	actual := NewDeviceManagementEmbeddedSIMActivationCodePoolIdAssignmentID("embeddedSIMActivationCodePoolId", "embeddedSIMActivationCodePoolAssignmentId").ID()
+	expected := "/deviceManagement/embeddedSIMActivationCodePools/embeddedSIMActivationCodePoolId/assignments/embeddedSIMActivationCodePoolAssignmentId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -54,25 +54,25 @@ func TestParseDeviceManagementEmbeddedSIMActivationCodePoolIdAssignmentID(t *tes
 		},
 		{
 			// Incomplete URI
-			Input: "/deviceManagement/embeddedSIMActivationCodePools/embeddedSIMActivationCodePoolIdValue",
+			Input: "/deviceManagement/embeddedSIMActivationCodePools/embeddedSIMActivationCodePoolId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/deviceManagement/embeddedSIMActivationCodePools/embeddedSIMActivationCodePoolIdValue/assignments",
+			Input: "/deviceManagement/embeddedSIMActivationCodePools/embeddedSIMActivationCodePoolId/assignments",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/embeddedSIMActivationCodePools/embeddedSIMActivationCodePoolIdValue/assignments/embeddedSIMActivationCodePoolAssignmentIdValue",
+			Input: "/deviceManagement/embeddedSIMActivationCodePools/embeddedSIMActivationCodePoolId/assignments/embeddedSIMActivationCodePoolAssignmentId",
 			Expected: &DeviceManagementEmbeddedSIMActivationCodePoolIdAssignmentId{
-				EmbeddedSIMActivationCodePoolId:           "embeddedSIMActivationCodePoolIdValue",
-				EmbeddedSIMActivationCodePoolAssignmentId: "embeddedSIMActivationCodePoolAssignmentIdValue",
+				EmbeddedSIMActivationCodePoolId:           "embeddedSIMActivationCodePoolId",
+				EmbeddedSIMActivationCodePoolAssignmentId: "embeddedSIMActivationCodePoolAssignmentId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/embeddedSIMActivationCodePools/embeddedSIMActivationCodePoolIdValue/assignments/embeddedSIMActivationCodePoolAssignmentIdValue/extra",
+			Input: "/deviceManagement/embeddedSIMActivationCodePools/embeddedSIMActivationCodePoolId/assignments/embeddedSIMActivationCodePoolAssignmentId/extra",
 			Error: true,
 		},
 	}
@@ -135,48 +135,48 @@ func TestParseDeviceManagementEmbeddedSIMActivationCodePoolIdAssignmentIDInsensi
 		},
 		{
 			// Incomplete URI
-			Input: "/deviceManagement/embeddedSIMActivationCodePools/embeddedSIMActivationCodePoolIdValue",
+			Input: "/deviceManagement/embeddedSIMActivationCodePools/embeddedSIMActivationCodePoolId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/eMbEdDeDsImAcTiVaTiOnCoDePoOlS/eMbEdDeDsImAcTiVaTiOnCoDePoOlIdVaLuE",
+			Input: "/dEvIcEmAnAgEmEnT/eMbEdDeDsImAcTiVaTiOnCoDePoOlS/eMbEdDeDsImAcTiVaTiOnCoDePoOlId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/deviceManagement/embeddedSIMActivationCodePools/embeddedSIMActivationCodePoolIdValue/assignments",
+			Input: "/deviceManagement/embeddedSIMActivationCodePools/embeddedSIMActivationCodePoolId/assignments",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/eMbEdDeDsImAcTiVaTiOnCoDePoOlS/eMbEdDeDsImAcTiVaTiOnCoDePoOlIdVaLuE/aSsIgNmEnTs",
+			Input: "/dEvIcEmAnAgEmEnT/eMbEdDeDsImAcTiVaTiOnCoDePoOlS/eMbEdDeDsImAcTiVaTiOnCoDePoOlId/aSsIgNmEnTs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/embeddedSIMActivationCodePools/embeddedSIMActivationCodePoolIdValue/assignments/embeddedSIMActivationCodePoolAssignmentIdValue",
+			Input: "/deviceManagement/embeddedSIMActivationCodePools/embeddedSIMActivationCodePoolId/assignments/embeddedSIMActivationCodePoolAssignmentId",
 			Expected: &DeviceManagementEmbeddedSIMActivationCodePoolIdAssignmentId{
-				EmbeddedSIMActivationCodePoolId:           "embeddedSIMActivationCodePoolIdValue",
-				EmbeddedSIMActivationCodePoolAssignmentId: "embeddedSIMActivationCodePoolAssignmentIdValue",
+				EmbeddedSIMActivationCodePoolId:           "embeddedSIMActivationCodePoolId",
+				EmbeddedSIMActivationCodePoolAssignmentId: "embeddedSIMActivationCodePoolAssignmentId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/embeddedSIMActivationCodePools/embeddedSIMActivationCodePoolIdValue/assignments/embeddedSIMActivationCodePoolAssignmentIdValue/extra",
+			Input: "/deviceManagement/embeddedSIMActivationCodePools/embeddedSIMActivationCodePoolId/assignments/embeddedSIMActivationCodePoolAssignmentId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/eMbEdDeDsImAcTiVaTiOnCoDePoOlS/eMbEdDeDsImAcTiVaTiOnCoDePoOlIdVaLuE/aSsIgNmEnTs/eMbEdDeDsImAcTiVaTiOnCoDePoOlAsSiGnMeNtIdVaLuE",
+			Input: "/dEvIcEmAnAgEmEnT/eMbEdDeDsImAcTiVaTiOnCoDePoOlS/eMbEdDeDsImAcTiVaTiOnCoDePoOlId/aSsIgNmEnTs/eMbEdDeDsImAcTiVaTiOnCoDePoOlAsSiGnMeNtId",
 			Expected: &DeviceManagementEmbeddedSIMActivationCodePoolIdAssignmentId{
-				EmbeddedSIMActivationCodePoolId:           "eMbEdDeDsImAcTiVaTiOnCoDePoOlIdVaLuE",
-				EmbeddedSIMActivationCodePoolAssignmentId: "eMbEdDeDsImAcTiVaTiOnCoDePoOlAsSiGnMeNtIdVaLuE",
+				EmbeddedSIMActivationCodePoolId:           "eMbEdDeDsImAcTiVaTiOnCoDePoOlId",
+				EmbeddedSIMActivationCodePoolAssignmentId: "eMbEdDeDsImAcTiVaTiOnCoDePoOlAsSiGnMeNtId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/eMbEdDeDsImAcTiVaTiOnCoDePoOlS/eMbEdDeDsImAcTiVaTiOnCoDePoOlIdVaLuE/aSsIgNmEnTs/eMbEdDeDsImAcTiVaTiOnCoDePoOlAsSiGnMeNtIdVaLuE/extra",
+			Input: "/dEvIcEmAnAgEmEnT/eMbEdDeDsImAcTiVaTiOnCoDePoOlS/eMbEdDeDsImAcTiVaTiOnCoDePoOlId/aSsIgNmEnTs/eMbEdDeDsImAcTiVaTiOnCoDePoOlAsSiGnMeNtId/extra",
 			Error: true,
 		},
 	}

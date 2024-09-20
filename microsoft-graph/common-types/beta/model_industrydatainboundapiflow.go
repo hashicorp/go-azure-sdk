@@ -109,10 +109,21 @@ func (s IndustryDataInboundApiFlow) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &IndustryDataInboundApiFlow{}
 
 func (s *IndustryDataInboundApiFlow) UnmarshalJSON(bytes []byte) error {
-	type alias IndustryDataInboundApiFlow
-	var decoded alias
+
+	var decoded struct {
+		DataConnector      *IndustryDataIndustryDataConnector    `json:"dataConnector,omitempty"`
+		DataDomain         *IndustryDataInboundDomain            `json:"dataDomain,omitempty"`
+		EffectiveDateTime  *string                               `json:"effectiveDateTime,omitempty"`
+		ExpirationDateTime nullable.Type[string]                 `json:"expirationDateTime,omitempty"`
+		Year               *IndustryDataYearTimePeriodDefinition `json:"year,omitempty"`
+		DisplayName        *string                               `json:"displayName,omitempty"`
+		ReadinessStatus    *IndustryDataReadinessStatus          `json:"readinessStatus,omitempty"`
+		Id                 *string                               `json:"id,omitempty"`
+		ODataId            *string                               `json:"@odata.id,omitempty"`
+		ODataType          *string                               `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into IndustryDataInboundApiFlow: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.DataDomain = decoded.DataDomain
@@ -137,5 +148,6 @@ func (s *IndustryDataInboundApiFlow) UnmarshalJSON(bytes []byte) error {
 		}
 		s.DataConnector = &impl
 	}
+
 	return nil
 }

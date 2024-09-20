@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &GroupIdTeamScheduleShiftsRoleDefinitionId{}
 
 func TestNewGroupIdTeamScheduleShiftsRoleDefinitionID(t *testing.T) {
-	id := NewGroupIdTeamScheduleShiftsRoleDefinitionID("groupIdValue", "shiftsRoleDefinitionIdValue")
+	id := NewGroupIdTeamScheduleShiftsRoleDefinitionID("groupId", "shiftsRoleDefinitionId")
 
-	if id.GroupId != "groupIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'GroupId'", id.GroupId, "groupIdValue")
+	if id.GroupId != "groupId" {
+		t.Fatalf("Expected %q but got %q for Segment 'GroupId'", id.GroupId, "groupId")
 	}
 
-	if id.ShiftsRoleDefinitionId != "shiftsRoleDefinitionIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ShiftsRoleDefinitionId'", id.ShiftsRoleDefinitionId, "shiftsRoleDefinitionIdValue")
+	if id.ShiftsRoleDefinitionId != "shiftsRoleDefinitionId" {
+		t.Fatalf("Expected %q but got %q for Segment 'ShiftsRoleDefinitionId'", id.ShiftsRoleDefinitionId, "shiftsRoleDefinitionId")
 	}
 }
 
 func TestFormatGroupIdTeamScheduleShiftsRoleDefinitionID(t *testing.T) {
-	actual := NewGroupIdTeamScheduleShiftsRoleDefinitionID("groupIdValue", "shiftsRoleDefinitionIdValue").ID()
-	expected := "/groups/groupIdValue/team/schedule/shiftsRoleDefinitions/shiftsRoleDefinitionIdValue"
+	actual := NewGroupIdTeamScheduleShiftsRoleDefinitionID("groupId", "shiftsRoleDefinitionId").ID()
+	expected := "/groups/groupId/team/schedule/shiftsRoleDefinitions/shiftsRoleDefinitionId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -49,35 +49,35 @@ func TestParseGroupIdTeamScheduleShiftsRoleDefinitionID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue",
+			Input: "/groups/groupId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/team",
+			Input: "/groups/groupId/team",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/team/schedule",
+			Input: "/groups/groupId/team/schedule",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/team/schedule/shiftsRoleDefinitions",
+			Input: "/groups/groupId/team/schedule/shiftsRoleDefinitions",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/groups/groupIdValue/team/schedule/shiftsRoleDefinitions/shiftsRoleDefinitionIdValue",
+			Input: "/groups/groupId/team/schedule/shiftsRoleDefinitions/shiftsRoleDefinitionId",
 			Expected: &GroupIdTeamScheduleShiftsRoleDefinitionId{
-				GroupId:                "groupIdValue",
-				ShiftsRoleDefinitionId: "shiftsRoleDefinitionIdValue",
+				GroupId:                "groupId",
+				ShiftsRoleDefinitionId: "shiftsRoleDefinitionId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/groups/groupIdValue/team/schedule/shiftsRoleDefinitions/shiftsRoleDefinitionIdValue/extra",
+			Input: "/groups/groupId/team/schedule/shiftsRoleDefinitions/shiftsRoleDefinitionId/extra",
 			Error: true,
 		},
 	}
@@ -130,68 +130,68 @@ func TestParseGroupIdTeamScheduleShiftsRoleDefinitionIDInsensitively(t *testing.
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue",
+			Input: "/groups/groupId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE",
+			Input: "/gRoUpS/gRoUpId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/team",
+			Input: "/groups/groupId/team",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/tEaM",
+			Input: "/gRoUpS/gRoUpId/tEaM",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/team/schedule",
+			Input: "/groups/groupId/team/schedule",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/tEaM/sChEdUlE",
+			Input: "/gRoUpS/gRoUpId/tEaM/sChEdUlE",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/team/schedule/shiftsRoleDefinitions",
+			Input: "/groups/groupId/team/schedule/shiftsRoleDefinitions",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/tEaM/sChEdUlE/sHiFtSrOlEdEfInItIoNs",
+			Input: "/gRoUpS/gRoUpId/tEaM/sChEdUlE/sHiFtSrOlEdEfInItIoNs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/groups/groupIdValue/team/schedule/shiftsRoleDefinitions/shiftsRoleDefinitionIdValue",
+			Input: "/groups/groupId/team/schedule/shiftsRoleDefinitions/shiftsRoleDefinitionId",
 			Expected: &GroupIdTeamScheduleShiftsRoleDefinitionId{
-				GroupId:                "groupIdValue",
-				ShiftsRoleDefinitionId: "shiftsRoleDefinitionIdValue",
+				GroupId:                "groupId",
+				ShiftsRoleDefinitionId: "shiftsRoleDefinitionId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/groups/groupIdValue/team/schedule/shiftsRoleDefinitions/shiftsRoleDefinitionIdValue/extra",
+			Input: "/groups/groupId/team/schedule/shiftsRoleDefinitions/shiftsRoleDefinitionId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/tEaM/sChEdUlE/sHiFtSrOlEdEfInItIoNs/sHiFtSrOlEdEfInItIoNiDvAlUe",
+			Input: "/gRoUpS/gRoUpId/tEaM/sChEdUlE/sHiFtSrOlEdEfInItIoNs/sHiFtSrOlEdEfInItIoNiD",
 			Expected: &GroupIdTeamScheduleShiftsRoleDefinitionId{
-				GroupId:                "gRoUpIdVaLuE",
-				ShiftsRoleDefinitionId: "sHiFtSrOlEdEfInItIoNiDvAlUe",
+				GroupId:                "gRoUpId",
+				ShiftsRoleDefinitionId: "sHiFtSrOlEdEfInItIoNiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/tEaM/sChEdUlE/sHiFtSrOlEdEfInItIoNs/sHiFtSrOlEdEfInItIoNiDvAlUe/extra",
+			Input: "/gRoUpS/gRoUpId/tEaM/sChEdUlE/sHiFtSrOlEdEfInItIoNs/sHiFtSrOlEdEfInItIoNiD/extra",
 			Error: true,
 		},
 	}

@@ -19,16 +19,45 @@ type GetDriveItemListItemDriveItemContentStreamOperationResponse struct {
 	Model        *[]byte
 }
 
+type GetDriveItemListItemDriveItemContentStreamOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultGetDriveItemListItemDriveItemContentStreamOperationOptions() GetDriveItemListItemDriveItemContentStreamOperationOptions {
+	return GetDriveItemListItemDriveItemContentStreamOperationOptions{}
+}
+
+func (o GetDriveItemListItemDriveItemContentStreamOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o GetDriveItemListItemDriveItemContentStreamOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o GetDriveItemListItemDriveItemContentStreamOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // GetDriveItemListItemDriveItemContentStream - Get contentStream for the navigation property driveItem from me. The
 // content stream, if the item represents a file.
-func (c DriveItemListItemDriveItemContentStreamClient) GetDriveItemListItemDriveItemContentStream(ctx context.Context, id beta.MeDriveIdItemId) (result GetDriveItemListItemDriveItemContentStreamOperationResponse, err error) {
+func (c DriveItemListItemDriveItemContentStreamClient) GetDriveItemListItemDriveItemContentStream(ctx context.Context, id beta.MeDriveIdItemId, options GetDriveItemListItemDriveItemContentStreamOperationOptions) (result GetDriveItemListItemDriveItemContentStreamOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/octet-stream",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/listItem/driveItem/contentStream", id.ID()),
+		HttpMethod:    http.MethodGet,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/listItem/driveItem/contentStream", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

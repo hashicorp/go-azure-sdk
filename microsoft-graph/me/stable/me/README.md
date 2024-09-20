@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/me` Documentation
 
-The `me` SDK allows for interaction with the Azure Resource Manager Service `me` (API Version `stable`).
+The `me` SDK allows for interaction with Microsoft Graph `me` (API Version `stable`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -15,7 +15,7 @@ import "github.com/hashicorp/go-azure-sdk/microsoft-graph/me/stable/me"
 ### Client Initialization
 
 ```go
-client := me.NewMeClientWithBaseURI("https://management.azure.com")
+client := me.NewMeClientWithBaseURI("https://graph.microsoft.com")
 client.Client.Authorizer = authorizer
 ```
 
@@ -30,7 +30,7 @@ payload := me.AssignLicenseRequest{
 }
 
 
-read, err := client.AssignLicense(ctx, payload)
+read, err := client.AssignLicense(ctx, payload, me.DefaultAssignLicenseOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -50,7 +50,7 @@ payload := me.ChangePasswordRequest{
 }
 
 
-read, err := client.ChangePassword(ctx, payload)
+read, err := client.ChangePassword(ctx, payload, me.DefaultChangePasswordOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -60,17 +60,59 @@ if model := read.Model; model != nil {
 ```
 
 
-### Example Usage: `MeClient.CreateFindetingTime`
+### Example Usage: `MeClient.CheckMemberGroups`
 
 ```go
 ctx := context.TODO()
 
-payload := me.CreateFindetingTimeRequest{
+payload := me.CheckMemberGroupsRequest{
 	// ...
 }
 
 
-read, err := client.CreateFindetingTime(ctx, payload)
+// alternatively `client.CheckMemberGroups(ctx, payload, me.DefaultCheckMemberGroupsOperationOptions())` can be used to do batched pagination
+items, err := client.CheckMemberGroupsComplete(ctx, payload, me.DefaultCheckMemberGroupsOperationOptions())
+if err != nil {
+	// handle the error
+}
+for _, item := range items {
+	// do something
+}
+```
+
+
+### Example Usage: `MeClient.CheckMemberObjects`
+
+```go
+ctx := context.TODO()
+
+payload := me.CheckMemberObjectsRequest{
+	// ...
+}
+
+
+// alternatively `client.CheckMemberObjects(ctx, payload, me.DefaultCheckMemberObjectsOperationOptions())` can be used to do batched pagination
+items, err := client.CheckMemberObjectsComplete(ctx, payload, me.DefaultCheckMemberObjectsOperationOptions())
+if err != nil {
+	// handle the error
+}
+for _, item := range items {
+	// do something
+}
+```
+
+
+### Example Usage: `MeClient.CreateExportPersonalData`
+
+```go
+ctx := context.TODO()
+
+payload := me.CreateExportPersonalDataRequest{
+	// ...
+}
+
+
+read, err := client.CreateExportPersonalData(ctx, payload, me.DefaultCreateExportPersonalDataOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -80,17 +122,17 @@ if model := read.Model; model != nil {
 ```
 
 
-### Example Usage: `MeClient.ExportPersonalData`
+### Example Usage: `MeClient.FindMeetingTimes`
 
 ```go
 ctx := context.TODO()
 
-payload := me.ExportPersonalDataRequest{
+payload := me.FindMeetingTimesRequest{
 	// ...
 }
 
 
-read, err := client.ExportPersonalData(ctx, payload)
+read, err := client.FindMeetingTimes(ctx, payload, me.DefaultFindMeetingTimesOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -137,18 +179,18 @@ if model := read.Model; model != nil {
 ```
 
 
-### Example Usage: `MeClient.ListCheckmberGroups`
+### Example Usage: `MeClient.GetMemberGroups`
 
 ```go
 ctx := context.TODO()
 
-payload := me.ListCheckmberGroupsRequest{
+payload := me.GetMemberGroupsRequest{
 	// ...
 }
 
 
-// alternatively `client.ListCheckmberGroups(ctx, payload, me.DefaultListCheckmberGroupsOperationOptions())` can be used to do batched pagination
-items, err := client.ListCheckmberGroupsComplete(ctx, payload, me.DefaultListCheckmberGroupsOperationOptions())
+// alternatively `client.GetMemberGroups(ctx, payload, me.DefaultGetMemberGroupsOperationOptions())` can be used to do batched pagination
+items, err := client.GetMemberGroupsComplete(ctx, payload, me.DefaultGetMemberGroupsOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -158,60 +200,18 @@ for _, item := range items {
 ```
 
 
-### Example Usage: `MeClient.ListCheckmberObjects`
+### Example Usage: `MeClient.GetMemberObjects`
 
 ```go
 ctx := context.TODO()
 
-payload := me.ListCheckmberObjectsRequest{
+payload := me.GetMemberObjectsRequest{
 	// ...
 }
 
 
-// alternatively `client.ListCheckmberObjects(ctx, payload, me.DefaultListCheckmberObjectsOperationOptions())` can be used to do batched pagination
-items, err := client.ListCheckmberObjectsComplete(ctx, payload, me.DefaultListCheckmberObjectsOperationOptions())
-if err != nil {
-	// handle the error
-}
-for _, item := range items {
-	// do something
-}
-```
-
-
-### Example Usage: `MeClient.ListGetmberGroups`
-
-```go
-ctx := context.TODO()
-
-payload := me.ListGetmberGroupsRequest{
-	// ...
-}
-
-
-// alternatively `client.ListGetmberGroups(ctx, payload, me.DefaultListGetmberGroupsOperationOptions())` can be used to do batched pagination
-items, err := client.ListGetmberGroupsComplete(ctx, payload, me.DefaultListGetmberGroupsOperationOptions())
-if err != nil {
-	// handle the error
-}
-for _, item := range items {
-	// do something
-}
-```
-
-
-### Example Usage: `MeClient.ListGetmberObjects`
-
-```go
-ctx := context.TODO()
-
-payload := me.ListGetmberObjectsRequest{
-	// ...
-}
-
-
-// alternatively `client.ListGetmberObjects(ctx, payload, me.DefaultListGetmberObjectsOperationOptions())` can be used to do batched pagination
-items, err := client.ListGetmberObjectsComplete(ctx, payload, me.DefaultListGetmberObjectsOperationOptions())
+// alternatively `client.GetMemberObjects(ctx, payload, me.DefaultGetMemberObjectsOperationOptions())` can be used to do batched pagination
+items, err := client.GetMemberObjectsComplete(ctx, payload, me.DefaultGetMemberObjectsOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -227,7 +227,7 @@ for _, item := range items {
 ctx := context.TODO()
 
 
-read, err := client.RemoveAllDevicesFromManagement(ctx)
+read, err := client.RemoveAllDevicesFromManagement(ctx, me.DefaultRemoveAllDevicesFromManagementOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -243,7 +243,7 @@ if model := read.Model; model != nil {
 ctx := context.TODO()
 
 
-read, err := client.ReprocessLicenseAssignment(ctx)
+read, err := client.ReprocessLicenseAssignment(ctx, me.DefaultReprocessLicenseAssignmentOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -259,7 +259,7 @@ if model := read.Model; model != nil {
 ctx := context.TODO()
 
 
-read, err := client.Restore(ctx)
+read, err := client.Restore(ctx, me.DefaultRestoreOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -275,7 +275,7 @@ if model := read.Model; model != nil {
 ctx := context.TODO()
 
 
-read, err := client.RetryServiceProvisioning(ctx)
+read, err := client.RetryServiceProvisioning(ctx, me.DefaultRetryServiceProvisioningOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -285,13 +285,13 @@ if model := read.Model; model != nil {
 ```
 
 
-### Example Usage: `MeClient.RevokeSignInSession`
+### Example Usage: `MeClient.RevokeSignInSessions`
 
 ```go
 ctx := context.TODO()
 
 
-read, err := client.RevokeSignInSession(ctx)
+read, err := client.RevokeSignInSessions(ctx, me.DefaultRevokeSignInSessionsOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -311,7 +311,7 @@ payload := me.SendMailRequest{
 }
 
 
-read, err := client.SendMail(ctx, payload)
+read, err := client.SendMail(ctx, payload, me.DefaultSendMailOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -352,7 +352,7 @@ payload := me.User{
 }
 
 
-read, err := client.UpdateMe(ctx, payload)
+read, err := client.UpdateMe(ctx, payload, me.DefaultUpdateMeOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -372,7 +372,7 @@ payload := me.WipeManagedAppRegistrationsByDeviceTagRequest{
 }
 
 
-read, err := client.WipeManagedAppRegistrationsByDeviceTag(ctx, payload)
+read, err := client.WipeManagedAppRegistrationsByDeviceTag(ctx, payload, me.DefaultWipeManagedAppRegistrationsByDeviceTagOperationOptions())
 if err != nil {
 	// handle the error
 }

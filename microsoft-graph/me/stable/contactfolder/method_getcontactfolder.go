@@ -19,8 +19,9 @@ type GetContactFolderOperationResponse struct {
 }
 
 type GetContactFolderOperationOptions struct {
-	Expand *odata.Expand
-	Select *[]string
+	Expand   *odata.Expand
+	Metadata *odata.Metadata
+	Select   *[]string
 }
 
 func DefaultGetContactFolderOperationOptions() GetContactFolderOperationOptions {
@@ -38,6 +39,9 @@ func (o GetContactFolderOperationOptions) ToOData() *odata.Query {
 	if o.Expand != nil {
 		out.Expand = *o.Expand
 	}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	if o.Select != nil {
 		out.Select = *o.Select
 	}
@@ -51,7 +55,7 @@ func (o GetContactFolderOperationOptions) ToQuery() *client.QueryParams {
 }
 
 // GetContactFolder - Get contactFolder. Get a contact folder by using the contact folder ID. There are two scenarios
-// where an app can get another user's contact folder:
+// where an app can get another user's contact folder
 func (c ContactFolderClient) GetContactFolder(ctx context.Context, id stable.MeContactFolderId, options GetContactFolderOperationOptions) (result GetContactFolderOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",

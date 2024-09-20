@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &GroupIdTeamScheduleOpenShiftChangeRequestId{}
 
 func TestNewGroupIdTeamScheduleOpenShiftChangeRequestID(t *testing.T) {
-	id := NewGroupIdTeamScheduleOpenShiftChangeRequestID("groupIdValue", "openShiftChangeRequestIdValue")
+	id := NewGroupIdTeamScheduleOpenShiftChangeRequestID("groupId", "openShiftChangeRequestId")
 
-	if id.GroupId != "groupIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'GroupId'", id.GroupId, "groupIdValue")
+	if id.GroupId != "groupId" {
+		t.Fatalf("Expected %q but got %q for Segment 'GroupId'", id.GroupId, "groupId")
 	}
 
-	if id.OpenShiftChangeRequestId != "openShiftChangeRequestIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'OpenShiftChangeRequestId'", id.OpenShiftChangeRequestId, "openShiftChangeRequestIdValue")
+	if id.OpenShiftChangeRequestId != "openShiftChangeRequestId" {
+		t.Fatalf("Expected %q but got %q for Segment 'OpenShiftChangeRequestId'", id.OpenShiftChangeRequestId, "openShiftChangeRequestId")
 	}
 }
 
 func TestFormatGroupIdTeamScheduleOpenShiftChangeRequestID(t *testing.T) {
-	actual := NewGroupIdTeamScheduleOpenShiftChangeRequestID("groupIdValue", "openShiftChangeRequestIdValue").ID()
-	expected := "/groups/groupIdValue/team/schedule/openShiftChangeRequests/openShiftChangeRequestIdValue"
+	actual := NewGroupIdTeamScheduleOpenShiftChangeRequestID("groupId", "openShiftChangeRequestId").ID()
+	expected := "/groups/groupId/team/schedule/openShiftChangeRequests/openShiftChangeRequestId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -49,35 +49,35 @@ func TestParseGroupIdTeamScheduleOpenShiftChangeRequestID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue",
+			Input: "/groups/groupId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/team",
+			Input: "/groups/groupId/team",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/team/schedule",
+			Input: "/groups/groupId/team/schedule",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/team/schedule/openShiftChangeRequests",
+			Input: "/groups/groupId/team/schedule/openShiftChangeRequests",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/groups/groupIdValue/team/schedule/openShiftChangeRequests/openShiftChangeRequestIdValue",
+			Input: "/groups/groupId/team/schedule/openShiftChangeRequests/openShiftChangeRequestId",
 			Expected: &GroupIdTeamScheduleOpenShiftChangeRequestId{
-				GroupId:                  "groupIdValue",
-				OpenShiftChangeRequestId: "openShiftChangeRequestIdValue",
+				GroupId:                  "groupId",
+				OpenShiftChangeRequestId: "openShiftChangeRequestId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/groups/groupIdValue/team/schedule/openShiftChangeRequests/openShiftChangeRequestIdValue/extra",
+			Input: "/groups/groupId/team/schedule/openShiftChangeRequests/openShiftChangeRequestId/extra",
 			Error: true,
 		},
 	}
@@ -130,68 +130,68 @@ func TestParseGroupIdTeamScheduleOpenShiftChangeRequestIDInsensitively(t *testin
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue",
+			Input: "/groups/groupId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE",
+			Input: "/gRoUpS/gRoUpId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/team",
+			Input: "/groups/groupId/team",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/tEaM",
+			Input: "/gRoUpS/gRoUpId/tEaM",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/team/schedule",
+			Input: "/groups/groupId/team/schedule",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/tEaM/sChEdUlE",
+			Input: "/gRoUpS/gRoUpId/tEaM/sChEdUlE",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/team/schedule/openShiftChangeRequests",
+			Input: "/groups/groupId/team/schedule/openShiftChangeRequests",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/tEaM/sChEdUlE/oPeNsHiFtChAnGeReQuEsTs",
+			Input: "/gRoUpS/gRoUpId/tEaM/sChEdUlE/oPeNsHiFtChAnGeReQuEsTs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/groups/groupIdValue/team/schedule/openShiftChangeRequests/openShiftChangeRequestIdValue",
+			Input: "/groups/groupId/team/schedule/openShiftChangeRequests/openShiftChangeRequestId",
 			Expected: &GroupIdTeamScheduleOpenShiftChangeRequestId{
-				GroupId:                  "groupIdValue",
-				OpenShiftChangeRequestId: "openShiftChangeRequestIdValue",
+				GroupId:                  "groupId",
+				OpenShiftChangeRequestId: "openShiftChangeRequestId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/groups/groupIdValue/team/schedule/openShiftChangeRequests/openShiftChangeRequestIdValue/extra",
+			Input: "/groups/groupId/team/schedule/openShiftChangeRequests/openShiftChangeRequestId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/tEaM/sChEdUlE/oPeNsHiFtChAnGeReQuEsTs/oPeNsHiFtChAnGeReQuEsTiDvAlUe",
+			Input: "/gRoUpS/gRoUpId/tEaM/sChEdUlE/oPeNsHiFtChAnGeReQuEsTs/oPeNsHiFtChAnGeReQuEsTiD",
 			Expected: &GroupIdTeamScheduleOpenShiftChangeRequestId{
-				GroupId:                  "gRoUpIdVaLuE",
-				OpenShiftChangeRequestId: "oPeNsHiFtChAnGeReQuEsTiDvAlUe",
+				GroupId:                  "gRoUpId",
+				OpenShiftChangeRequestId: "oPeNsHiFtChAnGeReQuEsTiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/tEaM/sChEdUlE/oPeNsHiFtChAnGeReQuEsTs/oPeNsHiFtChAnGeReQuEsTiDvAlUe/extra",
+			Input: "/gRoUpS/gRoUpId/tEaM/sChEdUlE/oPeNsHiFtChAnGeReQuEsTs/oPeNsHiFtChAnGeReQuEsTiD/extra",
 			Error: true,
 		},
 	}

@@ -17,16 +17,45 @@ type UpdateMobileAppManagementPolicyOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateMobileAppManagementPolicyOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateMobileAppManagementPolicyOperationOptions() UpdateMobileAppManagementPolicyOperationOptions {
+	return UpdateMobileAppManagementPolicyOperationOptions{}
+}
+
+func (o UpdateMobileAppManagementPolicyOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateMobileAppManagementPolicyOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateMobileAppManagementPolicyOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateMobileAppManagementPolicy - Update mobileAppManagementPolicy. Update the properties of a
 // mobilityManagementPolicy object.
-func (c MobileAppManagementPolicyClient) UpdateMobileAppManagementPolicy(ctx context.Context, id beta.PolicyMobileAppManagementPolicyId, input beta.MobilityManagementPolicy) (result UpdateMobileAppManagementPolicyOperationResponse, err error) {
+func (c MobileAppManagementPolicyClient) UpdateMobileAppManagementPolicy(ctx context.Context, id beta.PolicyMobileAppManagementPolicyId, input beta.MobilityManagementPolicy, options UpdateMobileAppManagementPolicyOperationOptions) (result UpdateMobileAppManagementPolicyOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

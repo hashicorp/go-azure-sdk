@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &DeviceManagementAppleUserInitiatedEnrollmentProfileId{}
 
 func TestNewDeviceManagementAppleUserInitiatedEnrollmentProfileID(t *testing.T) {
-	id := NewDeviceManagementAppleUserInitiatedEnrollmentProfileID("appleUserInitiatedEnrollmentProfileIdValue")
+	id := NewDeviceManagementAppleUserInitiatedEnrollmentProfileID("appleUserInitiatedEnrollmentProfileId")
 
-	if id.AppleUserInitiatedEnrollmentProfileId != "appleUserInitiatedEnrollmentProfileIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'AppleUserInitiatedEnrollmentProfileId'", id.AppleUserInitiatedEnrollmentProfileId, "appleUserInitiatedEnrollmentProfileIdValue")
+	if id.AppleUserInitiatedEnrollmentProfileId != "appleUserInitiatedEnrollmentProfileId" {
+		t.Fatalf("Expected %q but got %q for Segment 'AppleUserInitiatedEnrollmentProfileId'", id.AppleUserInitiatedEnrollmentProfileId, "appleUserInitiatedEnrollmentProfileId")
 	}
 }
 
 func TestFormatDeviceManagementAppleUserInitiatedEnrollmentProfileID(t *testing.T) {
-	actual := NewDeviceManagementAppleUserInitiatedEnrollmentProfileID("appleUserInitiatedEnrollmentProfileIdValue").ID()
-	expected := "/deviceManagement/appleUserInitiatedEnrollmentProfiles/appleUserInitiatedEnrollmentProfileIdValue"
+	actual := NewDeviceManagementAppleUserInitiatedEnrollmentProfileID("appleUserInitiatedEnrollmentProfileId").ID()
+	expected := "/deviceManagement/appleUserInitiatedEnrollmentProfiles/appleUserInitiatedEnrollmentProfileId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -50,14 +50,14 @@ func TestParseDeviceManagementAppleUserInitiatedEnrollmentProfileID(t *testing.T
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/appleUserInitiatedEnrollmentProfiles/appleUserInitiatedEnrollmentProfileIdValue",
+			Input: "/deviceManagement/appleUserInitiatedEnrollmentProfiles/appleUserInitiatedEnrollmentProfileId",
 			Expected: &DeviceManagementAppleUserInitiatedEnrollmentProfileId{
-				AppleUserInitiatedEnrollmentProfileId: "appleUserInitiatedEnrollmentProfileIdValue",
+				AppleUserInitiatedEnrollmentProfileId: "appleUserInitiatedEnrollmentProfileId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/appleUserInitiatedEnrollmentProfiles/appleUserInitiatedEnrollmentProfileIdValue/extra",
+			Input: "/deviceManagement/appleUserInitiatedEnrollmentProfiles/appleUserInitiatedEnrollmentProfileId/extra",
 			Error: true,
 		},
 	}
@@ -116,26 +116,26 @@ func TestParseDeviceManagementAppleUserInitiatedEnrollmentProfileIDInsensitively
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/appleUserInitiatedEnrollmentProfiles/appleUserInitiatedEnrollmentProfileIdValue",
+			Input: "/deviceManagement/appleUserInitiatedEnrollmentProfiles/appleUserInitiatedEnrollmentProfileId",
 			Expected: &DeviceManagementAppleUserInitiatedEnrollmentProfileId{
-				AppleUserInitiatedEnrollmentProfileId: "appleUserInitiatedEnrollmentProfileIdValue",
+				AppleUserInitiatedEnrollmentProfileId: "appleUserInitiatedEnrollmentProfileId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/appleUserInitiatedEnrollmentProfiles/appleUserInitiatedEnrollmentProfileIdValue/extra",
+			Input: "/deviceManagement/appleUserInitiatedEnrollmentProfiles/appleUserInitiatedEnrollmentProfileId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/aPpLeUsErInItIaTeDeNrOlLmEnTpRoFiLeS/aPpLeUsErInItIaTeDeNrOlLmEnTpRoFiLeIdVaLuE",
+			Input: "/dEvIcEmAnAgEmEnT/aPpLeUsErInItIaTeDeNrOlLmEnTpRoFiLeS/aPpLeUsErInItIaTeDeNrOlLmEnTpRoFiLeId",
 			Expected: &DeviceManagementAppleUserInitiatedEnrollmentProfileId{
-				AppleUserInitiatedEnrollmentProfileId: "aPpLeUsErInItIaTeDeNrOlLmEnTpRoFiLeIdVaLuE",
+				AppleUserInitiatedEnrollmentProfileId: "aPpLeUsErInItIaTeDeNrOlLmEnTpRoFiLeId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/aPpLeUsErInItIaTeDeNrOlLmEnTpRoFiLeS/aPpLeUsErInItIaTeDeNrOlLmEnTpRoFiLeIdVaLuE/extra",
+			Input: "/dEvIcEmAnAgEmEnT/aPpLeUsErInItIaTeDeNrOlLmEnTpRoFiLeS/aPpLeUsErInItIaTeDeNrOlLmEnTpRoFiLeId/extra",
 			Error: true,
 		},
 	}

@@ -20,15 +20,44 @@ type CreateConversationThreadPostExtensionOperationResponse struct {
 	Model        beta.Extension
 }
 
+type CreateConversationThreadPostExtensionOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateConversationThreadPostExtensionOperationOptions() CreateConversationThreadPostExtensionOperationOptions {
+	return CreateConversationThreadPostExtensionOperationOptions{}
+}
+
+func (o CreateConversationThreadPostExtensionOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateConversationThreadPostExtensionOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateConversationThreadPostExtensionOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateConversationThreadPostExtension - Create new navigation property to extensions for groups
-func (c ConversationThreadPostExtensionClient) CreateConversationThreadPostExtension(ctx context.Context, id beta.GroupIdConversationIdThreadIdPostId, input beta.Extension) (result CreateConversationThreadPostExtensionOperationResponse, err error) {
+func (c ConversationThreadPostExtensionClient) CreateConversationThreadPostExtension(ctx context.Context, id beta.GroupIdConversationIdThreadIdPostId, input beta.Extension, options CreateConversationThreadPostExtensionOperationOptions) (result CreateConversationThreadPostExtensionOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/extensions", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/extensions", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

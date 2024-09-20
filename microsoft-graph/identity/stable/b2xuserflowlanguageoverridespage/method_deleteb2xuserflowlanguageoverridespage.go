@@ -19,7 +19,8 @@ type DeleteB2xUserFlowLanguageOverridesPageOperationResponse struct {
 }
 
 type DeleteB2xUserFlowLanguageOverridesPageOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteB2xUserFlowLanguageOverridesPageOperationOptions() DeleteB2xUserFlowLanguageOverridesPageOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteB2xUserFlowLanguageOverridesPageOperationOptions) ToHeaders() *cli
 
 func (o DeleteB2xUserFlowLanguageOverridesPageOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

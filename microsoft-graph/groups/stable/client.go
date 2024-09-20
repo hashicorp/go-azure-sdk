@@ -180,6 +180,51 @@ import (
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/stable/member"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/stable/memberof"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/stable/memberswithlicenseerror"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/stable/onenote"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/stable/onenotenotebook"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/stable/onenotenotebooksection"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/stable/onenotenotebooksectiongroup"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/stable/onenotenotebooksectiongroupparentnotebook"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/stable/onenotenotebooksectiongroupparentsectiongroup"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/stable/onenotenotebooksectiongroupsection"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/stable/onenotenotebooksectiongroupsectiongroup"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/stable/onenotenotebooksectiongroupsectionpage"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/stable/onenotenotebooksectiongroupsectionpagecontent"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/stable/onenotenotebooksectiongroupsectionpageparentnotebook"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/stable/onenotenotebooksectiongroupsectionpageparentsection"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/stable/onenotenotebooksectiongroupsectionparentnotebook"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/stable/onenotenotebooksectiongroupsectionparentsectiongroup"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/stable/onenotenotebooksectionpage"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/stable/onenotenotebooksectionpagecontent"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/stable/onenotenotebooksectionpageparentnotebook"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/stable/onenotenotebooksectionpageparentsection"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/stable/onenotenotebooksectionparentnotebook"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/stable/onenotenotebooksectionparentsectiongroup"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/stable/onenoteoperation"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/stable/onenotepage"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/stable/onenotepagecontent"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/stable/onenotepageparentnotebook"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/stable/onenotepageparentsection"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/stable/onenoteresource"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/stable/onenoteresourcecontent"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/stable/onenotesection"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/stable/onenotesectiongroup"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/stable/onenotesectiongroupparentnotebook"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/stable/onenotesectiongroupparentsectiongroup"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/stable/onenotesectiongroupsection"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/stable/onenotesectiongroupsectiongroup"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/stable/onenotesectiongroupsectionpage"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/stable/onenotesectiongroupsectionpagecontent"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/stable/onenotesectiongroupsectionpageparentnotebook"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/stable/onenotesectiongroupsectionpageparentsection"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/stable/onenotesectiongroupsectionparentnotebook"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/stable/onenotesectiongroupsectionparentsectiongroup"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/stable/onenotesectionpage"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/stable/onenotesectionpagecontent"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/stable/onenotesectionpageparentnotebook"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/stable/onenotesectionpageparentsection"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/stable/onenotesectionparentnotebook"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/stable/onenotesectionparentsectiongroup"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/stable/owner"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/stable/permissiongrant"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/stable/photo"
@@ -260,6 +305,51 @@ import (
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/stable/sitelistlastmodifiedbyuserserviceprovisioningerror"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/stable/sitelistoperation"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/stable/sitelistsubscription"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/stable/siteonenote"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/stable/siteonenotenotebook"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/stable/siteonenotenotebooksection"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/stable/siteonenotenotebooksectiongroup"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/stable/siteonenotenotebooksectiongroupparentnotebook"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/stable/siteonenotenotebooksectiongroupparentsectiongroup"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/stable/siteonenotenotebooksectiongroupsection"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/stable/siteonenotenotebooksectiongroupsectiongroup"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/stable/siteonenotenotebooksectiongroupsectionpage"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/stable/siteonenotenotebooksectiongroupsectionpagecontent"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/stable/siteonenotenotebooksectiongroupsectionpageparentnotebook"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/stable/siteonenotenotebooksectiongroupsectionpageparentsection"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/stable/siteonenotenotebooksectiongroupsectionparentnotebook"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/stable/siteonenotenotebooksectiongroupsectionparentsectiongroup"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/stable/siteonenotenotebooksectionpage"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/stable/siteonenotenotebooksectionpagecontent"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/stable/siteonenotenotebooksectionpageparentnotebook"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/stable/siteonenotenotebooksectionpageparentsection"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/stable/siteonenotenotebooksectionparentnotebook"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/stable/siteonenotenotebooksectionparentsectiongroup"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/stable/siteonenoteoperation"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/stable/siteonenotepage"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/stable/siteonenotepagecontent"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/stable/siteonenotepageparentnotebook"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/stable/siteonenotepageparentsection"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/stable/siteonenoteresource"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/stable/siteonenoteresourcecontent"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/stable/siteonenotesection"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/stable/siteonenotesectiongroup"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/stable/siteonenotesectiongroupparentnotebook"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/stable/siteonenotesectiongroupparentsectiongroup"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/stable/siteonenotesectiongroupsection"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/stable/siteonenotesectiongroupsectiongroup"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/stable/siteonenotesectiongroupsectionpage"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/stable/siteonenotesectiongroupsectionpagecontent"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/stable/siteonenotesectiongroupsectionpageparentnotebook"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/stable/siteonenotesectiongroupsectionpageparentsection"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/stable/siteonenotesectiongroupsectionparentnotebook"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/stable/siteonenotesectiongroupsectionparentsectiongroup"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/stable/siteonenotesectionpage"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/stable/siteonenotesectionpagecontent"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/stable/siteonenotesectionpageparentnotebook"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/stable/siteonenotesectionpageparentsection"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/stable/siteonenotesectionparentnotebook"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/stable/siteonenotesectionparentsectiongroup"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/stable/siteoperation"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/stable/sitepage"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/stable/sitepagecreatedbyuser"
@@ -269,6 +359,7 @@ import (
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/stable/sitepagelastmodifiedbyusermailboxsetting"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/stable/sitepagelastmodifiedbyuserserviceprovisioningerror"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/stable/sitepermission"
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/stable/sitesite"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/stable/team"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/stable/teamallchannel"
 	"github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/stable/teamchannel"
@@ -508,6 +599,51 @@ type Client struct {
 	Member                                                      *member.MemberClient
 	MemberOf                                                    *memberof.MemberOfClient
 	MembersWithLicenseError                                     *memberswithlicenseerror.MembersWithLicenseErrorClient
+	Onenote                                                     *onenote.OnenoteClient
+	OnenoteNotebook                                             *onenotenotebook.OnenoteNotebookClient
+	OnenoteNotebookSection                                      *onenotenotebooksection.OnenoteNotebookSectionClient
+	OnenoteNotebookSectionGroup                                 *onenotenotebooksectiongroup.OnenoteNotebookSectionGroupClient
+	OnenoteNotebookSectionGroupParentNotebook                   *onenotenotebooksectiongroupparentnotebook.OnenoteNotebookSectionGroupParentNotebookClient
+	OnenoteNotebookSectionGroupParentSectionGroup               *onenotenotebooksectiongroupparentsectiongroup.OnenoteNotebookSectionGroupParentSectionGroupClient
+	OnenoteNotebookSectionGroupSection                          *onenotenotebooksectiongroupsection.OnenoteNotebookSectionGroupSectionClient
+	OnenoteNotebookSectionGroupSectionGroup                     *onenotenotebooksectiongroupsectiongroup.OnenoteNotebookSectionGroupSectionGroupClient
+	OnenoteNotebookSectionGroupSectionPage                      *onenotenotebooksectiongroupsectionpage.OnenoteNotebookSectionGroupSectionPageClient
+	OnenoteNotebookSectionGroupSectionPageContent               *onenotenotebooksectiongroupsectionpagecontent.OnenoteNotebookSectionGroupSectionPageContentClient
+	OnenoteNotebookSectionGroupSectionPageParentNotebook        *onenotenotebooksectiongroupsectionpageparentnotebook.OnenoteNotebookSectionGroupSectionPageParentNotebookClient
+	OnenoteNotebookSectionGroupSectionPageParentSection         *onenotenotebooksectiongroupsectionpageparentsection.OnenoteNotebookSectionGroupSectionPageParentSectionClient
+	OnenoteNotebookSectionGroupSectionParentNotebook            *onenotenotebooksectiongroupsectionparentnotebook.OnenoteNotebookSectionGroupSectionParentNotebookClient
+	OnenoteNotebookSectionGroupSectionParentSectionGroup        *onenotenotebooksectiongroupsectionparentsectiongroup.OnenoteNotebookSectionGroupSectionParentSectionGroupClient
+	OnenoteNotebookSectionPage                                  *onenotenotebooksectionpage.OnenoteNotebookSectionPageClient
+	OnenoteNotebookSectionPageContent                           *onenotenotebooksectionpagecontent.OnenoteNotebookSectionPageContentClient
+	OnenoteNotebookSectionPageParentNotebook                    *onenotenotebooksectionpageparentnotebook.OnenoteNotebookSectionPageParentNotebookClient
+	OnenoteNotebookSectionPageParentSection                     *onenotenotebooksectionpageparentsection.OnenoteNotebookSectionPageParentSectionClient
+	OnenoteNotebookSectionParentNotebook                        *onenotenotebooksectionparentnotebook.OnenoteNotebookSectionParentNotebookClient
+	OnenoteNotebookSectionParentSectionGroup                    *onenotenotebooksectionparentsectiongroup.OnenoteNotebookSectionParentSectionGroupClient
+	OnenoteOperation                                            *onenoteoperation.OnenoteOperationClient
+	OnenotePage                                                 *onenotepage.OnenotePageClient
+	OnenotePageContent                                          *onenotepagecontent.OnenotePageContentClient
+	OnenotePageParentNotebook                                   *onenotepageparentnotebook.OnenotePageParentNotebookClient
+	OnenotePageParentSection                                    *onenotepageparentsection.OnenotePageParentSectionClient
+	OnenoteResource                                             *onenoteresource.OnenoteResourceClient
+	OnenoteResourceContent                                      *onenoteresourcecontent.OnenoteResourceContentClient
+	OnenoteSection                                              *onenotesection.OnenoteSectionClient
+	OnenoteSectionGroup                                         *onenotesectiongroup.OnenoteSectionGroupClient
+	OnenoteSectionGroupParentNotebook                           *onenotesectiongroupparentnotebook.OnenoteSectionGroupParentNotebookClient
+	OnenoteSectionGroupParentSectionGroup                       *onenotesectiongroupparentsectiongroup.OnenoteSectionGroupParentSectionGroupClient
+	OnenoteSectionGroupSection                                  *onenotesectiongroupsection.OnenoteSectionGroupSectionClient
+	OnenoteSectionGroupSectionGroup                             *onenotesectiongroupsectiongroup.OnenoteSectionGroupSectionGroupClient
+	OnenoteSectionGroupSectionPage                              *onenotesectiongroupsectionpage.OnenoteSectionGroupSectionPageClient
+	OnenoteSectionGroupSectionPageContent                       *onenotesectiongroupsectionpagecontent.OnenoteSectionGroupSectionPageContentClient
+	OnenoteSectionGroupSectionPageParentNotebook                *onenotesectiongroupsectionpageparentnotebook.OnenoteSectionGroupSectionPageParentNotebookClient
+	OnenoteSectionGroupSectionPageParentSection                 *onenotesectiongroupsectionpageparentsection.OnenoteSectionGroupSectionPageParentSectionClient
+	OnenoteSectionGroupSectionParentNotebook                    *onenotesectiongroupsectionparentnotebook.OnenoteSectionGroupSectionParentNotebookClient
+	OnenoteSectionGroupSectionParentSectionGroup                *onenotesectiongroupsectionparentsectiongroup.OnenoteSectionGroupSectionParentSectionGroupClient
+	OnenoteSectionPage                                          *onenotesectionpage.OnenoteSectionPageClient
+	OnenoteSectionPageContent                                   *onenotesectionpagecontent.OnenoteSectionPageContentClient
+	OnenoteSectionPageParentNotebook                            *onenotesectionpageparentnotebook.OnenoteSectionPageParentNotebookClient
+	OnenoteSectionPageParentSection                             *onenotesectionpageparentsection.OnenoteSectionPageParentSectionClient
+	OnenoteSectionParentNotebook                                *onenotesectionparentnotebook.OnenoteSectionParentNotebookClient
+	OnenoteSectionParentSectionGroup                            *onenotesectionparentsectiongroup.OnenoteSectionParentSectionGroupClient
 	Owner                                                       *owner.OwnerClient
 	PermissionGrant                                             *permissiongrant.PermissionGrantClient
 	Photo                                                       *photo.PhotoClient
@@ -588,6 +724,51 @@ type Client struct {
 	SiteListLastModifiedByUserServiceProvisioningError          *sitelistlastmodifiedbyuserserviceprovisioningerror.SiteListLastModifiedByUserServiceProvisioningErrorClient
 	SiteListOperation                                           *sitelistoperation.SiteListOperationClient
 	SiteListSubscription                                        *sitelistsubscription.SiteListSubscriptionClient
+	SiteOnenote                                                 *siteonenote.SiteOnenoteClient
+	SiteOnenoteNotebook                                         *siteonenotenotebook.SiteOnenoteNotebookClient
+	SiteOnenoteNotebookSection                                  *siteonenotenotebooksection.SiteOnenoteNotebookSectionClient
+	SiteOnenoteNotebookSectionGroup                             *siteonenotenotebooksectiongroup.SiteOnenoteNotebookSectionGroupClient
+	SiteOnenoteNotebookSectionGroupParentNotebook               *siteonenotenotebooksectiongroupparentnotebook.SiteOnenoteNotebookSectionGroupParentNotebookClient
+	SiteOnenoteNotebookSectionGroupParentSectionGroup           *siteonenotenotebooksectiongroupparentsectiongroup.SiteOnenoteNotebookSectionGroupParentSectionGroupClient
+	SiteOnenoteNotebookSectionGroupSection                      *siteonenotenotebooksectiongroupsection.SiteOnenoteNotebookSectionGroupSectionClient
+	SiteOnenoteNotebookSectionGroupSectionGroup                 *siteonenotenotebooksectiongroupsectiongroup.SiteOnenoteNotebookSectionGroupSectionGroupClient
+	SiteOnenoteNotebookSectionGroupSectionPage                  *siteonenotenotebooksectiongroupsectionpage.SiteOnenoteNotebookSectionGroupSectionPageClient
+	SiteOnenoteNotebookSectionGroupSectionPageContent           *siteonenotenotebooksectiongroupsectionpagecontent.SiteOnenoteNotebookSectionGroupSectionPageContentClient
+	SiteOnenoteNotebookSectionGroupSectionPageParentNotebook    *siteonenotenotebooksectiongroupsectionpageparentnotebook.SiteOnenoteNotebookSectionGroupSectionPageParentNotebookClient
+	SiteOnenoteNotebookSectionGroupSectionPageParentSection     *siteonenotenotebooksectiongroupsectionpageparentsection.SiteOnenoteNotebookSectionGroupSectionPageParentSectionClient
+	SiteOnenoteNotebookSectionGroupSectionParentNotebook        *siteonenotenotebooksectiongroupsectionparentnotebook.SiteOnenoteNotebookSectionGroupSectionParentNotebookClient
+	SiteOnenoteNotebookSectionGroupSectionParentSectionGroup    *siteonenotenotebooksectiongroupsectionparentsectiongroup.SiteOnenoteNotebookSectionGroupSectionParentSectionGroupClient
+	SiteOnenoteNotebookSectionPage                              *siteonenotenotebooksectionpage.SiteOnenoteNotebookSectionPageClient
+	SiteOnenoteNotebookSectionPageContent                       *siteonenotenotebooksectionpagecontent.SiteOnenoteNotebookSectionPageContentClient
+	SiteOnenoteNotebookSectionPageParentNotebook                *siteonenotenotebooksectionpageparentnotebook.SiteOnenoteNotebookSectionPageParentNotebookClient
+	SiteOnenoteNotebookSectionPageParentSection                 *siteonenotenotebooksectionpageparentsection.SiteOnenoteNotebookSectionPageParentSectionClient
+	SiteOnenoteNotebookSectionParentNotebook                    *siteonenotenotebooksectionparentnotebook.SiteOnenoteNotebookSectionParentNotebookClient
+	SiteOnenoteNotebookSectionParentSectionGroup                *siteonenotenotebooksectionparentsectiongroup.SiteOnenoteNotebookSectionParentSectionGroupClient
+	SiteOnenoteOperation                                        *siteonenoteoperation.SiteOnenoteOperationClient
+	SiteOnenotePage                                             *siteonenotepage.SiteOnenotePageClient
+	SiteOnenotePageContent                                      *siteonenotepagecontent.SiteOnenotePageContentClient
+	SiteOnenotePageParentNotebook                               *siteonenotepageparentnotebook.SiteOnenotePageParentNotebookClient
+	SiteOnenotePageParentSection                                *siteonenotepageparentsection.SiteOnenotePageParentSectionClient
+	SiteOnenoteResource                                         *siteonenoteresource.SiteOnenoteResourceClient
+	SiteOnenoteResourceContent                                  *siteonenoteresourcecontent.SiteOnenoteResourceContentClient
+	SiteOnenoteSection                                          *siteonenotesection.SiteOnenoteSectionClient
+	SiteOnenoteSectionGroup                                     *siteonenotesectiongroup.SiteOnenoteSectionGroupClient
+	SiteOnenoteSectionGroupParentNotebook                       *siteonenotesectiongroupparentnotebook.SiteOnenoteSectionGroupParentNotebookClient
+	SiteOnenoteSectionGroupParentSectionGroup                   *siteonenotesectiongroupparentsectiongroup.SiteOnenoteSectionGroupParentSectionGroupClient
+	SiteOnenoteSectionGroupSection                              *siteonenotesectiongroupsection.SiteOnenoteSectionGroupSectionClient
+	SiteOnenoteSectionGroupSectionGroup                         *siteonenotesectiongroupsectiongroup.SiteOnenoteSectionGroupSectionGroupClient
+	SiteOnenoteSectionGroupSectionPage                          *siteonenotesectiongroupsectionpage.SiteOnenoteSectionGroupSectionPageClient
+	SiteOnenoteSectionGroupSectionPageContent                   *siteonenotesectiongroupsectionpagecontent.SiteOnenoteSectionGroupSectionPageContentClient
+	SiteOnenoteSectionGroupSectionPageParentNotebook            *siteonenotesectiongroupsectionpageparentnotebook.SiteOnenoteSectionGroupSectionPageParentNotebookClient
+	SiteOnenoteSectionGroupSectionPageParentSection             *siteonenotesectiongroupsectionpageparentsection.SiteOnenoteSectionGroupSectionPageParentSectionClient
+	SiteOnenoteSectionGroupSectionParentNotebook                *siteonenotesectiongroupsectionparentnotebook.SiteOnenoteSectionGroupSectionParentNotebookClient
+	SiteOnenoteSectionGroupSectionParentSectionGroup            *siteonenotesectiongroupsectionparentsectiongroup.SiteOnenoteSectionGroupSectionParentSectionGroupClient
+	SiteOnenoteSectionPage                                      *siteonenotesectionpage.SiteOnenoteSectionPageClient
+	SiteOnenoteSectionPageContent                               *siteonenotesectionpagecontent.SiteOnenoteSectionPageContentClient
+	SiteOnenoteSectionPageParentNotebook                        *siteonenotesectionpageparentnotebook.SiteOnenoteSectionPageParentNotebookClient
+	SiteOnenoteSectionPageParentSection                         *siteonenotesectionpageparentsection.SiteOnenoteSectionPageParentSectionClient
+	SiteOnenoteSectionParentNotebook                            *siteonenotesectionparentnotebook.SiteOnenoteSectionParentNotebookClient
+	SiteOnenoteSectionParentSectionGroup                        *siteonenotesectionparentsectiongroup.SiteOnenoteSectionParentSectionGroupClient
 	SiteOperation                                               *siteoperation.SiteOperationClient
 	SitePage                                                    *sitepage.SitePageClient
 	SitePageCreatedByUser                                       *sitepagecreatedbyuser.SitePageCreatedByUserClient
@@ -597,6 +778,7 @@ type Client struct {
 	SitePageLastModifiedByUserMailboxSetting                    *sitepagelastmodifiedbyusermailboxsetting.SitePageLastModifiedByUserMailboxSettingClient
 	SitePageLastModifiedByUserServiceProvisioningError          *sitepagelastmodifiedbyuserserviceprovisioningerror.SitePageLastModifiedByUserServiceProvisioningErrorClient
 	SitePermission                                              *sitepermission.SitePermissionClient
+	SiteSite                                                    *sitesite.SiteSiteClient
 	Team                                                        *team.TeamClient
 	TeamAllChannel                                              *teamallchannel.TeamAllChannelClient
 	TeamChannel                                                 *teamchannel.TeamChannelClient
@@ -1704,6 +1886,276 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *msgraph.Clien
 	}
 	configureFunc(membersWithLicenseErrorClient.Client)
 
+	onenoteClient, err := onenote.NewOnenoteClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building Onenote client: %+v", err)
+	}
+	configureFunc(onenoteClient.Client)
+
+	onenoteNotebookClient, err := onenotenotebook.NewOnenoteNotebookClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building OnenoteNotebook client: %+v", err)
+	}
+	configureFunc(onenoteNotebookClient.Client)
+
+	onenoteNotebookSectionClient, err := onenotenotebooksection.NewOnenoteNotebookSectionClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building OnenoteNotebookSection client: %+v", err)
+	}
+	configureFunc(onenoteNotebookSectionClient.Client)
+
+	onenoteNotebookSectionGroupClient, err := onenotenotebooksectiongroup.NewOnenoteNotebookSectionGroupClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building OnenoteNotebookSectionGroup client: %+v", err)
+	}
+	configureFunc(onenoteNotebookSectionGroupClient.Client)
+
+	onenoteNotebookSectionGroupParentNotebookClient, err := onenotenotebooksectiongroupparentnotebook.NewOnenoteNotebookSectionGroupParentNotebookClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building OnenoteNotebookSectionGroupParentNotebook client: %+v", err)
+	}
+	configureFunc(onenoteNotebookSectionGroupParentNotebookClient.Client)
+
+	onenoteNotebookSectionGroupParentSectionGroupClient, err := onenotenotebooksectiongroupparentsectiongroup.NewOnenoteNotebookSectionGroupParentSectionGroupClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building OnenoteNotebookSectionGroupParentSectionGroup client: %+v", err)
+	}
+	configureFunc(onenoteNotebookSectionGroupParentSectionGroupClient.Client)
+
+	onenoteNotebookSectionGroupSectionClient, err := onenotenotebooksectiongroupsection.NewOnenoteNotebookSectionGroupSectionClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building OnenoteNotebookSectionGroupSection client: %+v", err)
+	}
+	configureFunc(onenoteNotebookSectionGroupSectionClient.Client)
+
+	onenoteNotebookSectionGroupSectionGroupClient, err := onenotenotebooksectiongroupsectiongroup.NewOnenoteNotebookSectionGroupSectionGroupClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building OnenoteNotebookSectionGroupSectionGroup client: %+v", err)
+	}
+	configureFunc(onenoteNotebookSectionGroupSectionGroupClient.Client)
+
+	onenoteNotebookSectionGroupSectionPageClient, err := onenotenotebooksectiongroupsectionpage.NewOnenoteNotebookSectionGroupSectionPageClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building OnenoteNotebookSectionGroupSectionPage client: %+v", err)
+	}
+	configureFunc(onenoteNotebookSectionGroupSectionPageClient.Client)
+
+	onenoteNotebookSectionGroupSectionPageContentClient, err := onenotenotebooksectiongroupsectionpagecontent.NewOnenoteNotebookSectionGroupSectionPageContentClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building OnenoteNotebookSectionGroupSectionPageContent client: %+v", err)
+	}
+	configureFunc(onenoteNotebookSectionGroupSectionPageContentClient.Client)
+
+	onenoteNotebookSectionGroupSectionPageParentNotebookClient, err := onenotenotebooksectiongroupsectionpageparentnotebook.NewOnenoteNotebookSectionGroupSectionPageParentNotebookClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building OnenoteNotebookSectionGroupSectionPageParentNotebook client: %+v", err)
+	}
+	configureFunc(onenoteNotebookSectionGroupSectionPageParentNotebookClient.Client)
+
+	onenoteNotebookSectionGroupSectionPageParentSectionClient, err := onenotenotebooksectiongroupsectionpageparentsection.NewOnenoteNotebookSectionGroupSectionPageParentSectionClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building OnenoteNotebookSectionGroupSectionPageParentSection client: %+v", err)
+	}
+	configureFunc(onenoteNotebookSectionGroupSectionPageParentSectionClient.Client)
+
+	onenoteNotebookSectionGroupSectionParentNotebookClient, err := onenotenotebooksectiongroupsectionparentnotebook.NewOnenoteNotebookSectionGroupSectionParentNotebookClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building OnenoteNotebookSectionGroupSectionParentNotebook client: %+v", err)
+	}
+	configureFunc(onenoteNotebookSectionGroupSectionParentNotebookClient.Client)
+
+	onenoteNotebookSectionGroupSectionParentSectionGroupClient, err := onenotenotebooksectiongroupsectionparentsectiongroup.NewOnenoteNotebookSectionGroupSectionParentSectionGroupClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building OnenoteNotebookSectionGroupSectionParentSectionGroup client: %+v", err)
+	}
+	configureFunc(onenoteNotebookSectionGroupSectionParentSectionGroupClient.Client)
+
+	onenoteNotebookSectionPageClient, err := onenotenotebooksectionpage.NewOnenoteNotebookSectionPageClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building OnenoteNotebookSectionPage client: %+v", err)
+	}
+	configureFunc(onenoteNotebookSectionPageClient.Client)
+
+	onenoteNotebookSectionPageContentClient, err := onenotenotebooksectionpagecontent.NewOnenoteNotebookSectionPageContentClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building OnenoteNotebookSectionPageContent client: %+v", err)
+	}
+	configureFunc(onenoteNotebookSectionPageContentClient.Client)
+
+	onenoteNotebookSectionPageParentNotebookClient, err := onenotenotebooksectionpageparentnotebook.NewOnenoteNotebookSectionPageParentNotebookClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building OnenoteNotebookSectionPageParentNotebook client: %+v", err)
+	}
+	configureFunc(onenoteNotebookSectionPageParentNotebookClient.Client)
+
+	onenoteNotebookSectionPageParentSectionClient, err := onenotenotebooksectionpageparentsection.NewOnenoteNotebookSectionPageParentSectionClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building OnenoteNotebookSectionPageParentSection client: %+v", err)
+	}
+	configureFunc(onenoteNotebookSectionPageParentSectionClient.Client)
+
+	onenoteNotebookSectionParentNotebookClient, err := onenotenotebooksectionparentnotebook.NewOnenoteNotebookSectionParentNotebookClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building OnenoteNotebookSectionParentNotebook client: %+v", err)
+	}
+	configureFunc(onenoteNotebookSectionParentNotebookClient.Client)
+
+	onenoteNotebookSectionParentSectionGroupClient, err := onenotenotebooksectionparentsectiongroup.NewOnenoteNotebookSectionParentSectionGroupClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building OnenoteNotebookSectionParentSectionGroup client: %+v", err)
+	}
+	configureFunc(onenoteNotebookSectionParentSectionGroupClient.Client)
+
+	onenoteOperationClient, err := onenoteoperation.NewOnenoteOperationClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building OnenoteOperation client: %+v", err)
+	}
+	configureFunc(onenoteOperationClient.Client)
+
+	onenotePageClient, err := onenotepage.NewOnenotePageClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building OnenotePage client: %+v", err)
+	}
+	configureFunc(onenotePageClient.Client)
+
+	onenotePageContentClient, err := onenotepagecontent.NewOnenotePageContentClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building OnenotePageContent client: %+v", err)
+	}
+	configureFunc(onenotePageContentClient.Client)
+
+	onenotePageParentNotebookClient, err := onenotepageparentnotebook.NewOnenotePageParentNotebookClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building OnenotePageParentNotebook client: %+v", err)
+	}
+	configureFunc(onenotePageParentNotebookClient.Client)
+
+	onenotePageParentSectionClient, err := onenotepageparentsection.NewOnenotePageParentSectionClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building OnenotePageParentSection client: %+v", err)
+	}
+	configureFunc(onenotePageParentSectionClient.Client)
+
+	onenoteResourceClient, err := onenoteresource.NewOnenoteResourceClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building OnenoteResource client: %+v", err)
+	}
+	configureFunc(onenoteResourceClient.Client)
+
+	onenoteResourceContentClient, err := onenoteresourcecontent.NewOnenoteResourceContentClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building OnenoteResourceContent client: %+v", err)
+	}
+	configureFunc(onenoteResourceContentClient.Client)
+
+	onenoteSectionClient, err := onenotesection.NewOnenoteSectionClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building OnenoteSection client: %+v", err)
+	}
+	configureFunc(onenoteSectionClient.Client)
+
+	onenoteSectionGroupClient, err := onenotesectiongroup.NewOnenoteSectionGroupClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building OnenoteSectionGroup client: %+v", err)
+	}
+	configureFunc(onenoteSectionGroupClient.Client)
+
+	onenoteSectionGroupParentNotebookClient, err := onenotesectiongroupparentnotebook.NewOnenoteSectionGroupParentNotebookClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building OnenoteSectionGroupParentNotebook client: %+v", err)
+	}
+	configureFunc(onenoteSectionGroupParentNotebookClient.Client)
+
+	onenoteSectionGroupParentSectionGroupClient, err := onenotesectiongroupparentsectiongroup.NewOnenoteSectionGroupParentSectionGroupClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building OnenoteSectionGroupParentSectionGroup client: %+v", err)
+	}
+	configureFunc(onenoteSectionGroupParentSectionGroupClient.Client)
+
+	onenoteSectionGroupSectionClient, err := onenotesectiongroupsection.NewOnenoteSectionGroupSectionClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building OnenoteSectionGroupSection client: %+v", err)
+	}
+	configureFunc(onenoteSectionGroupSectionClient.Client)
+
+	onenoteSectionGroupSectionGroupClient, err := onenotesectiongroupsectiongroup.NewOnenoteSectionGroupSectionGroupClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building OnenoteSectionGroupSectionGroup client: %+v", err)
+	}
+	configureFunc(onenoteSectionGroupSectionGroupClient.Client)
+
+	onenoteSectionGroupSectionPageClient, err := onenotesectiongroupsectionpage.NewOnenoteSectionGroupSectionPageClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building OnenoteSectionGroupSectionPage client: %+v", err)
+	}
+	configureFunc(onenoteSectionGroupSectionPageClient.Client)
+
+	onenoteSectionGroupSectionPageContentClient, err := onenotesectiongroupsectionpagecontent.NewOnenoteSectionGroupSectionPageContentClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building OnenoteSectionGroupSectionPageContent client: %+v", err)
+	}
+	configureFunc(onenoteSectionGroupSectionPageContentClient.Client)
+
+	onenoteSectionGroupSectionPageParentNotebookClient, err := onenotesectiongroupsectionpageparentnotebook.NewOnenoteSectionGroupSectionPageParentNotebookClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building OnenoteSectionGroupSectionPageParentNotebook client: %+v", err)
+	}
+	configureFunc(onenoteSectionGroupSectionPageParentNotebookClient.Client)
+
+	onenoteSectionGroupSectionPageParentSectionClient, err := onenotesectiongroupsectionpageparentsection.NewOnenoteSectionGroupSectionPageParentSectionClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building OnenoteSectionGroupSectionPageParentSection client: %+v", err)
+	}
+	configureFunc(onenoteSectionGroupSectionPageParentSectionClient.Client)
+
+	onenoteSectionGroupSectionParentNotebookClient, err := onenotesectiongroupsectionparentnotebook.NewOnenoteSectionGroupSectionParentNotebookClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building OnenoteSectionGroupSectionParentNotebook client: %+v", err)
+	}
+	configureFunc(onenoteSectionGroupSectionParentNotebookClient.Client)
+
+	onenoteSectionGroupSectionParentSectionGroupClient, err := onenotesectiongroupsectionparentsectiongroup.NewOnenoteSectionGroupSectionParentSectionGroupClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building OnenoteSectionGroupSectionParentSectionGroup client: %+v", err)
+	}
+	configureFunc(onenoteSectionGroupSectionParentSectionGroupClient.Client)
+
+	onenoteSectionPageClient, err := onenotesectionpage.NewOnenoteSectionPageClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building OnenoteSectionPage client: %+v", err)
+	}
+	configureFunc(onenoteSectionPageClient.Client)
+
+	onenoteSectionPageContentClient, err := onenotesectionpagecontent.NewOnenoteSectionPageContentClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building OnenoteSectionPageContent client: %+v", err)
+	}
+	configureFunc(onenoteSectionPageContentClient.Client)
+
+	onenoteSectionPageParentNotebookClient, err := onenotesectionpageparentnotebook.NewOnenoteSectionPageParentNotebookClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building OnenoteSectionPageParentNotebook client: %+v", err)
+	}
+	configureFunc(onenoteSectionPageParentNotebookClient.Client)
+
+	onenoteSectionPageParentSectionClient, err := onenotesectionpageparentsection.NewOnenoteSectionPageParentSectionClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building OnenoteSectionPageParentSection client: %+v", err)
+	}
+	configureFunc(onenoteSectionPageParentSectionClient.Client)
+
+	onenoteSectionParentNotebookClient, err := onenotesectionparentnotebook.NewOnenoteSectionParentNotebookClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building OnenoteSectionParentNotebook client: %+v", err)
+	}
+	configureFunc(onenoteSectionParentNotebookClient.Client)
+
+	onenoteSectionParentSectionGroupClient, err := onenotesectionparentsectiongroup.NewOnenoteSectionParentSectionGroupClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building OnenoteSectionParentSectionGroup client: %+v", err)
+	}
+	configureFunc(onenoteSectionParentSectionGroupClient.Client)
+
 	ownerClient, err := owner.NewOwnerClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building Owner client: %+v", err)
@@ -2184,6 +2636,276 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *msgraph.Clien
 	}
 	configureFunc(siteListSubscriptionClient.Client)
 
+	siteOnenoteClient, err := siteonenote.NewSiteOnenoteClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building SiteOnenote client: %+v", err)
+	}
+	configureFunc(siteOnenoteClient.Client)
+
+	siteOnenoteNotebookClient, err := siteonenotenotebook.NewSiteOnenoteNotebookClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building SiteOnenoteNotebook client: %+v", err)
+	}
+	configureFunc(siteOnenoteNotebookClient.Client)
+
+	siteOnenoteNotebookSectionClient, err := siteonenotenotebooksection.NewSiteOnenoteNotebookSectionClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building SiteOnenoteNotebookSection client: %+v", err)
+	}
+	configureFunc(siteOnenoteNotebookSectionClient.Client)
+
+	siteOnenoteNotebookSectionGroupClient, err := siteonenotenotebooksectiongroup.NewSiteOnenoteNotebookSectionGroupClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building SiteOnenoteNotebookSectionGroup client: %+v", err)
+	}
+	configureFunc(siteOnenoteNotebookSectionGroupClient.Client)
+
+	siteOnenoteNotebookSectionGroupParentNotebookClient, err := siteonenotenotebooksectiongroupparentnotebook.NewSiteOnenoteNotebookSectionGroupParentNotebookClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building SiteOnenoteNotebookSectionGroupParentNotebook client: %+v", err)
+	}
+	configureFunc(siteOnenoteNotebookSectionGroupParentNotebookClient.Client)
+
+	siteOnenoteNotebookSectionGroupParentSectionGroupClient, err := siteonenotenotebooksectiongroupparentsectiongroup.NewSiteOnenoteNotebookSectionGroupParentSectionGroupClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building SiteOnenoteNotebookSectionGroupParentSectionGroup client: %+v", err)
+	}
+	configureFunc(siteOnenoteNotebookSectionGroupParentSectionGroupClient.Client)
+
+	siteOnenoteNotebookSectionGroupSectionClient, err := siteonenotenotebooksectiongroupsection.NewSiteOnenoteNotebookSectionGroupSectionClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building SiteOnenoteNotebookSectionGroupSection client: %+v", err)
+	}
+	configureFunc(siteOnenoteNotebookSectionGroupSectionClient.Client)
+
+	siteOnenoteNotebookSectionGroupSectionGroupClient, err := siteonenotenotebooksectiongroupsectiongroup.NewSiteOnenoteNotebookSectionGroupSectionGroupClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building SiteOnenoteNotebookSectionGroupSectionGroup client: %+v", err)
+	}
+	configureFunc(siteOnenoteNotebookSectionGroupSectionGroupClient.Client)
+
+	siteOnenoteNotebookSectionGroupSectionPageClient, err := siteonenotenotebooksectiongroupsectionpage.NewSiteOnenoteNotebookSectionGroupSectionPageClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building SiteOnenoteNotebookSectionGroupSectionPage client: %+v", err)
+	}
+	configureFunc(siteOnenoteNotebookSectionGroupSectionPageClient.Client)
+
+	siteOnenoteNotebookSectionGroupSectionPageContentClient, err := siteonenotenotebooksectiongroupsectionpagecontent.NewSiteOnenoteNotebookSectionGroupSectionPageContentClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building SiteOnenoteNotebookSectionGroupSectionPageContent client: %+v", err)
+	}
+	configureFunc(siteOnenoteNotebookSectionGroupSectionPageContentClient.Client)
+
+	siteOnenoteNotebookSectionGroupSectionPageParentNotebookClient, err := siteonenotenotebooksectiongroupsectionpageparentnotebook.NewSiteOnenoteNotebookSectionGroupSectionPageParentNotebookClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building SiteOnenoteNotebookSectionGroupSectionPageParentNotebook client: %+v", err)
+	}
+	configureFunc(siteOnenoteNotebookSectionGroupSectionPageParentNotebookClient.Client)
+
+	siteOnenoteNotebookSectionGroupSectionPageParentSectionClient, err := siteonenotenotebooksectiongroupsectionpageparentsection.NewSiteOnenoteNotebookSectionGroupSectionPageParentSectionClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building SiteOnenoteNotebookSectionGroupSectionPageParentSection client: %+v", err)
+	}
+	configureFunc(siteOnenoteNotebookSectionGroupSectionPageParentSectionClient.Client)
+
+	siteOnenoteNotebookSectionGroupSectionParentNotebookClient, err := siteonenotenotebooksectiongroupsectionparentnotebook.NewSiteOnenoteNotebookSectionGroupSectionParentNotebookClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building SiteOnenoteNotebookSectionGroupSectionParentNotebook client: %+v", err)
+	}
+	configureFunc(siteOnenoteNotebookSectionGroupSectionParentNotebookClient.Client)
+
+	siteOnenoteNotebookSectionGroupSectionParentSectionGroupClient, err := siteonenotenotebooksectiongroupsectionparentsectiongroup.NewSiteOnenoteNotebookSectionGroupSectionParentSectionGroupClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building SiteOnenoteNotebookSectionGroupSectionParentSectionGroup client: %+v", err)
+	}
+	configureFunc(siteOnenoteNotebookSectionGroupSectionParentSectionGroupClient.Client)
+
+	siteOnenoteNotebookSectionPageClient, err := siteonenotenotebooksectionpage.NewSiteOnenoteNotebookSectionPageClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building SiteOnenoteNotebookSectionPage client: %+v", err)
+	}
+	configureFunc(siteOnenoteNotebookSectionPageClient.Client)
+
+	siteOnenoteNotebookSectionPageContentClient, err := siteonenotenotebooksectionpagecontent.NewSiteOnenoteNotebookSectionPageContentClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building SiteOnenoteNotebookSectionPageContent client: %+v", err)
+	}
+	configureFunc(siteOnenoteNotebookSectionPageContentClient.Client)
+
+	siteOnenoteNotebookSectionPageParentNotebookClient, err := siteonenotenotebooksectionpageparentnotebook.NewSiteOnenoteNotebookSectionPageParentNotebookClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building SiteOnenoteNotebookSectionPageParentNotebook client: %+v", err)
+	}
+	configureFunc(siteOnenoteNotebookSectionPageParentNotebookClient.Client)
+
+	siteOnenoteNotebookSectionPageParentSectionClient, err := siteonenotenotebooksectionpageparentsection.NewSiteOnenoteNotebookSectionPageParentSectionClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building SiteOnenoteNotebookSectionPageParentSection client: %+v", err)
+	}
+	configureFunc(siteOnenoteNotebookSectionPageParentSectionClient.Client)
+
+	siteOnenoteNotebookSectionParentNotebookClient, err := siteonenotenotebooksectionparentnotebook.NewSiteOnenoteNotebookSectionParentNotebookClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building SiteOnenoteNotebookSectionParentNotebook client: %+v", err)
+	}
+	configureFunc(siteOnenoteNotebookSectionParentNotebookClient.Client)
+
+	siteOnenoteNotebookSectionParentSectionGroupClient, err := siteonenotenotebooksectionparentsectiongroup.NewSiteOnenoteNotebookSectionParentSectionGroupClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building SiteOnenoteNotebookSectionParentSectionGroup client: %+v", err)
+	}
+	configureFunc(siteOnenoteNotebookSectionParentSectionGroupClient.Client)
+
+	siteOnenoteOperationClient, err := siteonenoteoperation.NewSiteOnenoteOperationClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building SiteOnenoteOperation client: %+v", err)
+	}
+	configureFunc(siteOnenoteOperationClient.Client)
+
+	siteOnenotePageClient, err := siteonenotepage.NewSiteOnenotePageClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building SiteOnenotePage client: %+v", err)
+	}
+	configureFunc(siteOnenotePageClient.Client)
+
+	siteOnenotePageContentClient, err := siteonenotepagecontent.NewSiteOnenotePageContentClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building SiteOnenotePageContent client: %+v", err)
+	}
+	configureFunc(siteOnenotePageContentClient.Client)
+
+	siteOnenotePageParentNotebookClient, err := siteonenotepageparentnotebook.NewSiteOnenotePageParentNotebookClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building SiteOnenotePageParentNotebook client: %+v", err)
+	}
+	configureFunc(siteOnenotePageParentNotebookClient.Client)
+
+	siteOnenotePageParentSectionClient, err := siteonenotepageparentsection.NewSiteOnenotePageParentSectionClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building SiteOnenotePageParentSection client: %+v", err)
+	}
+	configureFunc(siteOnenotePageParentSectionClient.Client)
+
+	siteOnenoteResourceClient, err := siteonenoteresource.NewSiteOnenoteResourceClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building SiteOnenoteResource client: %+v", err)
+	}
+	configureFunc(siteOnenoteResourceClient.Client)
+
+	siteOnenoteResourceContentClient, err := siteonenoteresourcecontent.NewSiteOnenoteResourceContentClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building SiteOnenoteResourceContent client: %+v", err)
+	}
+	configureFunc(siteOnenoteResourceContentClient.Client)
+
+	siteOnenoteSectionClient, err := siteonenotesection.NewSiteOnenoteSectionClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building SiteOnenoteSection client: %+v", err)
+	}
+	configureFunc(siteOnenoteSectionClient.Client)
+
+	siteOnenoteSectionGroupClient, err := siteonenotesectiongroup.NewSiteOnenoteSectionGroupClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building SiteOnenoteSectionGroup client: %+v", err)
+	}
+	configureFunc(siteOnenoteSectionGroupClient.Client)
+
+	siteOnenoteSectionGroupParentNotebookClient, err := siteonenotesectiongroupparentnotebook.NewSiteOnenoteSectionGroupParentNotebookClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building SiteOnenoteSectionGroupParentNotebook client: %+v", err)
+	}
+	configureFunc(siteOnenoteSectionGroupParentNotebookClient.Client)
+
+	siteOnenoteSectionGroupParentSectionGroupClient, err := siteonenotesectiongroupparentsectiongroup.NewSiteOnenoteSectionGroupParentSectionGroupClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building SiteOnenoteSectionGroupParentSectionGroup client: %+v", err)
+	}
+	configureFunc(siteOnenoteSectionGroupParentSectionGroupClient.Client)
+
+	siteOnenoteSectionGroupSectionClient, err := siteonenotesectiongroupsection.NewSiteOnenoteSectionGroupSectionClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building SiteOnenoteSectionGroupSection client: %+v", err)
+	}
+	configureFunc(siteOnenoteSectionGroupSectionClient.Client)
+
+	siteOnenoteSectionGroupSectionGroupClient, err := siteonenotesectiongroupsectiongroup.NewSiteOnenoteSectionGroupSectionGroupClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building SiteOnenoteSectionGroupSectionGroup client: %+v", err)
+	}
+	configureFunc(siteOnenoteSectionGroupSectionGroupClient.Client)
+
+	siteOnenoteSectionGroupSectionPageClient, err := siteonenotesectiongroupsectionpage.NewSiteOnenoteSectionGroupSectionPageClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building SiteOnenoteSectionGroupSectionPage client: %+v", err)
+	}
+	configureFunc(siteOnenoteSectionGroupSectionPageClient.Client)
+
+	siteOnenoteSectionGroupSectionPageContentClient, err := siteonenotesectiongroupsectionpagecontent.NewSiteOnenoteSectionGroupSectionPageContentClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building SiteOnenoteSectionGroupSectionPageContent client: %+v", err)
+	}
+	configureFunc(siteOnenoteSectionGroupSectionPageContentClient.Client)
+
+	siteOnenoteSectionGroupSectionPageParentNotebookClient, err := siteonenotesectiongroupsectionpageparentnotebook.NewSiteOnenoteSectionGroupSectionPageParentNotebookClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building SiteOnenoteSectionGroupSectionPageParentNotebook client: %+v", err)
+	}
+	configureFunc(siteOnenoteSectionGroupSectionPageParentNotebookClient.Client)
+
+	siteOnenoteSectionGroupSectionPageParentSectionClient, err := siteonenotesectiongroupsectionpageparentsection.NewSiteOnenoteSectionGroupSectionPageParentSectionClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building SiteOnenoteSectionGroupSectionPageParentSection client: %+v", err)
+	}
+	configureFunc(siteOnenoteSectionGroupSectionPageParentSectionClient.Client)
+
+	siteOnenoteSectionGroupSectionParentNotebookClient, err := siteonenotesectiongroupsectionparentnotebook.NewSiteOnenoteSectionGroupSectionParentNotebookClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building SiteOnenoteSectionGroupSectionParentNotebook client: %+v", err)
+	}
+	configureFunc(siteOnenoteSectionGroupSectionParentNotebookClient.Client)
+
+	siteOnenoteSectionGroupSectionParentSectionGroupClient, err := siteonenotesectiongroupsectionparentsectiongroup.NewSiteOnenoteSectionGroupSectionParentSectionGroupClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building SiteOnenoteSectionGroupSectionParentSectionGroup client: %+v", err)
+	}
+	configureFunc(siteOnenoteSectionGroupSectionParentSectionGroupClient.Client)
+
+	siteOnenoteSectionPageClient, err := siteonenotesectionpage.NewSiteOnenoteSectionPageClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building SiteOnenoteSectionPage client: %+v", err)
+	}
+	configureFunc(siteOnenoteSectionPageClient.Client)
+
+	siteOnenoteSectionPageContentClient, err := siteonenotesectionpagecontent.NewSiteOnenoteSectionPageContentClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building SiteOnenoteSectionPageContent client: %+v", err)
+	}
+	configureFunc(siteOnenoteSectionPageContentClient.Client)
+
+	siteOnenoteSectionPageParentNotebookClient, err := siteonenotesectionpageparentnotebook.NewSiteOnenoteSectionPageParentNotebookClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building SiteOnenoteSectionPageParentNotebook client: %+v", err)
+	}
+	configureFunc(siteOnenoteSectionPageParentNotebookClient.Client)
+
+	siteOnenoteSectionPageParentSectionClient, err := siteonenotesectionpageparentsection.NewSiteOnenoteSectionPageParentSectionClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building SiteOnenoteSectionPageParentSection client: %+v", err)
+	}
+	configureFunc(siteOnenoteSectionPageParentSectionClient.Client)
+
+	siteOnenoteSectionParentNotebookClient, err := siteonenotesectionparentnotebook.NewSiteOnenoteSectionParentNotebookClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building SiteOnenoteSectionParentNotebook client: %+v", err)
+	}
+	configureFunc(siteOnenoteSectionParentNotebookClient.Client)
+
+	siteOnenoteSectionParentSectionGroupClient, err := siteonenotesectionparentsectiongroup.NewSiteOnenoteSectionParentSectionGroupClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building SiteOnenoteSectionParentSectionGroup client: %+v", err)
+	}
+	configureFunc(siteOnenoteSectionParentSectionGroupClient.Client)
+
 	siteOperationClient, err := siteoperation.NewSiteOperationClientWithBaseURI(sdkApi)
 	if err != nil {
 		return nil, fmt.Errorf("building SiteOperation client: %+v", err)
@@ -2237,6 +2959,12 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *msgraph.Clien
 		return nil, fmt.Errorf("building SitePermission client: %+v", err)
 	}
 	configureFunc(sitePermissionClient.Client)
+
+	siteSiteClient, err := sitesite.NewSiteSiteClientWithBaseURI(sdkApi)
+	if err != nil {
+		return nil, fmt.Errorf("building SiteSite client: %+v", err)
+	}
+	configureFunc(siteSiteClient.Client)
 
 	teamAllChannelClient, err := teamallchannel.NewTeamAllChannelClientWithBaseURI(sdkApi)
 	if err != nil {
@@ -2773,6 +3501,51 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *msgraph.Clien
 		Member:                                                      memberClient,
 		MemberOf:                                                    memberOfClient,
 		MembersWithLicenseError:                                     membersWithLicenseErrorClient,
+		Onenote:                                                     onenoteClient,
+		OnenoteNotebook:                                             onenoteNotebookClient,
+		OnenoteNotebookSection:                                      onenoteNotebookSectionClient,
+		OnenoteNotebookSectionGroup:                                 onenoteNotebookSectionGroupClient,
+		OnenoteNotebookSectionGroupParentNotebook:                   onenoteNotebookSectionGroupParentNotebookClient,
+		OnenoteNotebookSectionGroupParentSectionGroup:               onenoteNotebookSectionGroupParentSectionGroupClient,
+		OnenoteNotebookSectionGroupSection:                          onenoteNotebookSectionGroupSectionClient,
+		OnenoteNotebookSectionGroupSectionGroup:                     onenoteNotebookSectionGroupSectionGroupClient,
+		OnenoteNotebookSectionGroupSectionPage:                      onenoteNotebookSectionGroupSectionPageClient,
+		OnenoteNotebookSectionGroupSectionPageContent:               onenoteNotebookSectionGroupSectionPageContentClient,
+		OnenoteNotebookSectionGroupSectionPageParentNotebook:        onenoteNotebookSectionGroupSectionPageParentNotebookClient,
+		OnenoteNotebookSectionGroupSectionPageParentSection:         onenoteNotebookSectionGroupSectionPageParentSectionClient,
+		OnenoteNotebookSectionGroupSectionParentNotebook:            onenoteNotebookSectionGroupSectionParentNotebookClient,
+		OnenoteNotebookSectionGroupSectionParentSectionGroup:        onenoteNotebookSectionGroupSectionParentSectionGroupClient,
+		OnenoteNotebookSectionPage:                                  onenoteNotebookSectionPageClient,
+		OnenoteNotebookSectionPageContent:                           onenoteNotebookSectionPageContentClient,
+		OnenoteNotebookSectionPageParentNotebook:                    onenoteNotebookSectionPageParentNotebookClient,
+		OnenoteNotebookSectionPageParentSection:                     onenoteNotebookSectionPageParentSectionClient,
+		OnenoteNotebookSectionParentNotebook:                        onenoteNotebookSectionParentNotebookClient,
+		OnenoteNotebookSectionParentSectionGroup:                    onenoteNotebookSectionParentSectionGroupClient,
+		OnenoteOperation:                                            onenoteOperationClient,
+		OnenotePage:                                                 onenotePageClient,
+		OnenotePageContent:                                          onenotePageContentClient,
+		OnenotePageParentNotebook:                                   onenotePageParentNotebookClient,
+		OnenotePageParentSection:                                    onenotePageParentSectionClient,
+		OnenoteResource:                                             onenoteResourceClient,
+		OnenoteResourceContent:                                      onenoteResourceContentClient,
+		OnenoteSection:                                              onenoteSectionClient,
+		OnenoteSectionGroup:                                         onenoteSectionGroupClient,
+		OnenoteSectionGroupParentNotebook:                           onenoteSectionGroupParentNotebookClient,
+		OnenoteSectionGroupParentSectionGroup:                       onenoteSectionGroupParentSectionGroupClient,
+		OnenoteSectionGroupSection:                                  onenoteSectionGroupSectionClient,
+		OnenoteSectionGroupSectionGroup:                             onenoteSectionGroupSectionGroupClient,
+		OnenoteSectionGroupSectionPage:                              onenoteSectionGroupSectionPageClient,
+		OnenoteSectionGroupSectionPageContent:                       onenoteSectionGroupSectionPageContentClient,
+		OnenoteSectionGroupSectionPageParentNotebook:                onenoteSectionGroupSectionPageParentNotebookClient,
+		OnenoteSectionGroupSectionPageParentSection:                 onenoteSectionGroupSectionPageParentSectionClient,
+		OnenoteSectionGroupSectionParentNotebook:                    onenoteSectionGroupSectionParentNotebookClient,
+		OnenoteSectionGroupSectionParentSectionGroup:                onenoteSectionGroupSectionParentSectionGroupClient,
+		OnenoteSectionPage:                                          onenoteSectionPageClient,
+		OnenoteSectionPageContent:                                   onenoteSectionPageContentClient,
+		OnenoteSectionPageParentNotebook:                            onenoteSectionPageParentNotebookClient,
+		OnenoteSectionPageParentSection:                             onenoteSectionPageParentSectionClient,
+		OnenoteSectionParentNotebook:                                onenoteSectionParentNotebookClient,
+		OnenoteSectionParentSectionGroup:                            onenoteSectionParentSectionGroupClient,
 		Owner:                                                       ownerClient,
 		PermissionGrant:                                             permissionGrantClient,
 		Photo:                                                       photoClient,
@@ -2819,108 +3592,154 @@ func NewClientWithBaseURI(sdkApi sdkEnv.Api, configureFunc func(c *msgraph.Clien
 		SiteLastModifiedByUser:               siteLastModifiedByUserClient,
 		SiteLastModifiedByUserMailboxSetting: siteLastModifiedByUserMailboxSettingClient,
 		SiteLastModifiedByUserServiceProvisioningError: siteLastModifiedByUserServiceProvisioningErrorClient,
-		SiteList:                                               siteListClient,
-		SiteListColumn:                                         siteListColumnClient,
-		SiteListColumnSourceColumn:                             siteListColumnSourceColumnClient,
-		SiteListContentType:                                    siteListContentTypeClient,
-		SiteListContentTypeBase:                                siteListContentTypeBaseClient,
-		SiteListContentTypeBaseType:                            siteListContentTypeBaseTypeClient,
-		SiteListContentTypeColumn:                              siteListContentTypeColumnClient,
-		SiteListContentTypeColumnLink:                          siteListContentTypeColumnLinkClient,
-		SiteListContentTypeColumnPosition:                      siteListContentTypeColumnPositionClient,
-		SiteListContentTypeColumnSourceColumn:                  siteListContentTypeColumnSourceColumnClient,
-		SiteListCreatedByUser:                                  siteListCreatedByUserClient,
-		SiteListCreatedByUserMailboxSetting:                    siteListCreatedByUserMailboxSettingClient,
-		SiteListCreatedByUserServiceProvisioningError:          siteListCreatedByUserServiceProvisioningErrorClient,
-		SiteListDrive:                                          siteListDriveClient,
-		SiteListItem:                                           siteListItemClient,
-		SiteListItemAnalytics:                                  siteListItemAnalyticsClient,
-		SiteListItemCreatedByUser:                              siteListItemCreatedByUserClient,
-		SiteListItemCreatedByUserMailboxSetting:                siteListItemCreatedByUserMailboxSettingClient,
-		SiteListItemCreatedByUserServiceProvisioningError:      siteListItemCreatedByUserServiceProvisioningErrorClient,
-		SiteListItemDocumentSetVersion:                         siteListItemDocumentSetVersionClient,
-		SiteListItemDocumentSetVersionField:                    siteListItemDocumentSetVersionFieldClient,
-		SiteListItemDriveItem:                                  siteListItemDriveItemClient,
-		SiteListItemDriveItemContent:                           siteListItemDriveItemContentClient,
-		SiteListItemField:                                      siteListItemFieldClient,
-		SiteListItemLastModifiedByUser:                         siteListItemLastModifiedByUserClient,
-		SiteListItemLastModifiedByUserMailboxSetting:           siteListItemLastModifiedByUserMailboxSettingClient,
-		SiteListItemLastModifiedByUserServiceProvisioningError: siteListItemLastModifiedByUserServiceProvisioningErrorClient,
-		SiteListItemVersion:                                    siteListItemVersionClient,
-		SiteListItemVersionField:                               siteListItemVersionFieldClient,
-		SiteListLastModifiedByUser:                             siteListLastModifiedByUserClient,
-		SiteListLastModifiedByUserMailboxSetting:               siteListLastModifiedByUserMailboxSettingClient,
-		SiteListLastModifiedByUserServiceProvisioningError:     siteListLastModifiedByUserServiceProvisioningErrorClient,
-		SiteListOperation:                                      siteListOperationClient,
-		SiteListSubscription:                                   siteListSubscriptionClient,
-		SiteOperation:                                          siteOperationClient,
-		SitePage:                                               sitePageClient,
-		SitePageCreatedByUser:                                  sitePageCreatedByUserClient,
-		SitePageCreatedByUserMailboxSetting:                    sitePageCreatedByUserMailboxSettingClient,
-		SitePageCreatedByUserServiceProvisioningError:          sitePageCreatedByUserServiceProvisioningErrorClient,
-		SitePageLastModifiedByUser:                             sitePageLastModifiedByUserClient,
-		SitePageLastModifiedByUserMailboxSetting:               sitePageLastModifiedByUserMailboxSettingClient,
-		SitePageLastModifiedByUserServiceProvisioningError:     sitePageLastModifiedByUserServiceProvisioningErrorClient,
-		SitePermission:                                         sitePermissionClient,
-		Team:                                                   teamClient,
-		TeamAllChannel:                                         teamAllChannelClient,
-		TeamChannel:                                            teamChannelClient,
-		TeamChannelFilesFolder:                                 teamChannelFilesFolderClient,
-		TeamChannelFilesFolderContent:                          teamChannelFilesFolderContentClient,
-		TeamChannelMember:                                      teamChannelMemberClient,
-		TeamChannelMessage:                                     teamChannelMessageClient,
-		TeamChannelMessageHostedContent:                        teamChannelMessageHostedContentClient,
-		TeamChannelMessageReply:                                teamChannelMessageReplyClient,
-		TeamChannelMessageReplyHostedContent:                   teamChannelMessageReplyHostedContentClient,
-		TeamChannelSharedWithTeam:                              teamChannelSharedWithTeamClient,
-		TeamChannelSharedWithTeamAllowedMember:                 teamChannelSharedWithTeamAllowedMemberClient,
-		TeamChannelSharedWithTeamTeam:                          teamChannelSharedWithTeamTeamClient,
-		TeamChannelTab:                                         teamChannelTabClient,
-		TeamChannelTabTeamsApp:                                 teamChannelTabTeamsAppClient,
-		TeamGroup:                                              teamGroupClient,
-		TeamGroupServiceProvisioningError:                      teamGroupServiceProvisioningErrorClient,
-		TeamIncomingChannel:                                    teamIncomingChannelClient,
-		TeamInstalledApp:                                       teamInstalledAppClient,
-		TeamInstalledAppTeamsApp:                               teamInstalledAppTeamsAppClient,
-		TeamInstalledAppTeamsAppDefinition:                     teamInstalledAppTeamsAppDefinitionClient,
-		TeamMember:                                             teamMemberClient,
-		TeamOperation:                                          teamOperationClient,
-		TeamPermissionGrant:                                    teamPermissionGrantClient,
-		TeamPhoto:                                              teamPhotoClient,
-		TeamPrimaryChannel:                                     teamPrimaryChannelClient,
-		TeamPrimaryChannelFilesFolder:                          teamPrimaryChannelFilesFolderClient,
-		TeamPrimaryChannelFilesFolderContent:                   teamPrimaryChannelFilesFolderContentClient,
-		TeamPrimaryChannelMember:                               teamPrimaryChannelMemberClient,
-		TeamPrimaryChannelMessage:                              teamPrimaryChannelMessageClient,
-		TeamPrimaryChannelMessageHostedContent:                 teamPrimaryChannelMessageHostedContentClient,
-		TeamPrimaryChannelMessageReply:                         teamPrimaryChannelMessageReplyClient,
-		TeamPrimaryChannelMessageReplyHostedContent:            teamPrimaryChannelMessageReplyHostedContentClient,
-		TeamPrimaryChannelSharedWithTeam:                       teamPrimaryChannelSharedWithTeamClient,
-		TeamPrimaryChannelSharedWithTeamAllowedMember:          teamPrimaryChannelSharedWithTeamAllowedMemberClient,
-		TeamPrimaryChannelSharedWithTeamTeam:                   teamPrimaryChannelSharedWithTeamTeamClient,
-		TeamPrimaryChannelTab:                                  teamPrimaryChannelTabClient,
-		TeamPrimaryChannelTabTeamsApp:                          teamPrimaryChannelTabTeamsAppClient,
-		TeamSchedule:                                           teamScheduleClient,
-		TeamScheduleOfferShiftRequest:                          teamScheduleOfferShiftRequestClient,
-		TeamScheduleOpenShift:                                  teamScheduleOpenShiftClient,
-		TeamScheduleOpenShiftChangeRequest:                     teamScheduleOpenShiftChangeRequestClient,
-		TeamScheduleSchedulingGroup:                            teamScheduleSchedulingGroupClient,
-		TeamScheduleShift:                                      teamScheduleShiftClient,
-		TeamScheduleSwapShiftsChangeRequest:                    teamScheduleSwapShiftsChangeRequestClient,
-		TeamScheduleTimeOffReason:                              teamScheduleTimeOffReasonClient,
-		TeamScheduleTimeOffRequest:                             teamScheduleTimeOffRequestClient,
-		TeamScheduleTimesOff:                                   teamScheduleTimesOffClient,
-		TeamTag:                                                teamTagClient,
-		TeamTagMember:                                          teamTagMemberClient,
-		TeamTemplate:                                           teamTemplateClient,
-		Thread:                                                 threadClient,
-		ThreadPost:                                             threadPostClient,
-		ThreadPostAttachment:                                   threadPostAttachmentClient,
-		ThreadPostExtension:                                    threadPostExtensionClient,
-		ThreadPostInReplyTo:                                    threadPostInReplyToClient,
-		ThreadPostInReplyToAttachment:                          threadPostInReplyToAttachmentClient,
-		ThreadPostInReplyToExtension:                           threadPostInReplyToExtensionClient,
-		TransitiveMember:                                       transitiveMemberClient,
-		TransitiveMemberOf:                                     transitiveMemberOfClient,
+		SiteList:                                                 siteListClient,
+		SiteListColumn:                                           siteListColumnClient,
+		SiteListColumnSourceColumn:                               siteListColumnSourceColumnClient,
+		SiteListContentType:                                      siteListContentTypeClient,
+		SiteListContentTypeBase:                                  siteListContentTypeBaseClient,
+		SiteListContentTypeBaseType:                              siteListContentTypeBaseTypeClient,
+		SiteListContentTypeColumn:                                siteListContentTypeColumnClient,
+		SiteListContentTypeColumnLink:                            siteListContentTypeColumnLinkClient,
+		SiteListContentTypeColumnPosition:                        siteListContentTypeColumnPositionClient,
+		SiteListContentTypeColumnSourceColumn:                    siteListContentTypeColumnSourceColumnClient,
+		SiteListCreatedByUser:                                    siteListCreatedByUserClient,
+		SiteListCreatedByUserMailboxSetting:                      siteListCreatedByUserMailboxSettingClient,
+		SiteListCreatedByUserServiceProvisioningError:            siteListCreatedByUserServiceProvisioningErrorClient,
+		SiteListDrive:                                            siteListDriveClient,
+		SiteListItem:                                             siteListItemClient,
+		SiteListItemAnalytics:                                    siteListItemAnalyticsClient,
+		SiteListItemCreatedByUser:                                siteListItemCreatedByUserClient,
+		SiteListItemCreatedByUserMailboxSetting:                  siteListItemCreatedByUserMailboxSettingClient,
+		SiteListItemCreatedByUserServiceProvisioningError:        siteListItemCreatedByUserServiceProvisioningErrorClient,
+		SiteListItemDocumentSetVersion:                           siteListItemDocumentSetVersionClient,
+		SiteListItemDocumentSetVersionField:                      siteListItemDocumentSetVersionFieldClient,
+		SiteListItemDriveItem:                                    siteListItemDriveItemClient,
+		SiteListItemDriveItemContent:                             siteListItemDriveItemContentClient,
+		SiteListItemField:                                        siteListItemFieldClient,
+		SiteListItemLastModifiedByUser:                           siteListItemLastModifiedByUserClient,
+		SiteListItemLastModifiedByUserMailboxSetting:             siteListItemLastModifiedByUserMailboxSettingClient,
+		SiteListItemLastModifiedByUserServiceProvisioningError:   siteListItemLastModifiedByUserServiceProvisioningErrorClient,
+		SiteListItemVersion:                                      siteListItemVersionClient,
+		SiteListItemVersionField:                                 siteListItemVersionFieldClient,
+		SiteListLastModifiedByUser:                               siteListLastModifiedByUserClient,
+		SiteListLastModifiedByUserMailboxSetting:                 siteListLastModifiedByUserMailboxSettingClient,
+		SiteListLastModifiedByUserServiceProvisioningError:       siteListLastModifiedByUserServiceProvisioningErrorClient,
+		SiteListOperation:                                        siteListOperationClient,
+		SiteListSubscription:                                     siteListSubscriptionClient,
+		SiteOnenote:                                              siteOnenoteClient,
+		SiteOnenoteNotebook:                                      siteOnenoteNotebookClient,
+		SiteOnenoteNotebookSection:                               siteOnenoteNotebookSectionClient,
+		SiteOnenoteNotebookSectionGroup:                          siteOnenoteNotebookSectionGroupClient,
+		SiteOnenoteNotebookSectionGroupParentNotebook:            siteOnenoteNotebookSectionGroupParentNotebookClient,
+		SiteOnenoteNotebookSectionGroupParentSectionGroup:        siteOnenoteNotebookSectionGroupParentSectionGroupClient,
+		SiteOnenoteNotebookSectionGroupSection:                   siteOnenoteNotebookSectionGroupSectionClient,
+		SiteOnenoteNotebookSectionGroupSectionGroup:              siteOnenoteNotebookSectionGroupSectionGroupClient,
+		SiteOnenoteNotebookSectionGroupSectionPage:               siteOnenoteNotebookSectionGroupSectionPageClient,
+		SiteOnenoteNotebookSectionGroupSectionPageContent:        siteOnenoteNotebookSectionGroupSectionPageContentClient,
+		SiteOnenoteNotebookSectionGroupSectionPageParentNotebook: siteOnenoteNotebookSectionGroupSectionPageParentNotebookClient,
+		SiteOnenoteNotebookSectionGroupSectionPageParentSection:  siteOnenoteNotebookSectionGroupSectionPageParentSectionClient,
+		SiteOnenoteNotebookSectionGroupSectionParentNotebook:     siteOnenoteNotebookSectionGroupSectionParentNotebookClient,
+		SiteOnenoteNotebookSectionGroupSectionParentSectionGroup: siteOnenoteNotebookSectionGroupSectionParentSectionGroupClient,
+		SiteOnenoteNotebookSectionPage:                           siteOnenoteNotebookSectionPageClient,
+		SiteOnenoteNotebookSectionPageContent:                    siteOnenoteNotebookSectionPageContentClient,
+		SiteOnenoteNotebookSectionPageParentNotebook:             siteOnenoteNotebookSectionPageParentNotebookClient,
+		SiteOnenoteNotebookSectionPageParentSection:              siteOnenoteNotebookSectionPageParentSectionClient,
+		SiteOnenoteNotebookSectionParentNotebook:                 siteOnenoteNotebookSectionParentNotebookClient,
+		SiteOnenoteNotebookSectionParentSectionGroup:             siteOnenoteNotebookSectionParentSectionGroupClient,
+		SiteOnenoteOperation:                                     siteOnenoteOperationClient,
+		SiteOnenotePage:                                          siteOnenotePageClient,
+		SiteOnenotePageContent:                                   siteOnenotePageContentClient,
+		SiteOnenotePageParentNotebook:                            siteOnenotePageParentNotebookClient,
+		SiteOnenotePageParentSection:                             siteOnenotePageParentSectionClient,
+		SiteOnenoteResource:                                      siteOnenoteResourceClient,
+		SiteOnenoteResourceContent:                               siteOnenoteResourceContentClient,
+		SiteOnenoteSection:                                       siteOnenoteSectionClient,
+		SiteOnenoteSectionGroup:                                  siteOnenoteSectionGroupClient,
+		SiteOnenoteSectionGroupParentNotebook:                    siteOnenoteSectionGroupParentNotebookClient,
+		SiteOnenoteSectionGroupParentSectionGroup:                siteOnenoteSectionGroupParentSectionGroupClient,
+		SiteOnenoteSectionGroupSection:                           siteOnenoteSectionGroupSectionClient,
+		SiteOnenoteSectionGroupSectionGroup:                      siteOnenoteSectionGroupSectionGroupClient,
+		SiteOnenoteSectionGroupSectionPage:                       siteOnenoteSectionGroupSectionPageClient,
+		SiteOnenoteSectionGroupSectionPageContent:                siteOnenoteSectionGroupSectionPageContentClient,
+		SiteOnenoteSectionGroupSectionPageParentNotebook:         siteOnenoteSectionGroupSectionPageParentNotebookClient,
+		SiteOnenoteSectionGroupSectionPageParentSection:          siteOnenoteSectionGroupSectionPageParentSectionClient,
+		SiteOnenoteSectionGroupSectionParentNotebook:             siteOnenoteSectionGroupSectionParentNotebookClient,
+		SiteOnenoteSectionGroupSectionParentSectionGroup:         siteOnenoteSectionGroupSectionParentSectionGroupClient,
+		SiteOnenoteSectionPage:                                   siteOnenoteSectionPageClient,
+		SiteOnenoteSectionPageContent:                            siteOnenoteSectionPageContentClient,
+		SiteOnenoteSectionPageParentNotebook:                     siteOnenoteSectionPageParentNotebookClient,
+		SiteOnenoteSectionPageParentSection:                      siteOnenoteSectionPageParentSectionClient,
+		SiteOnenoteSectionParentNotebook:                         siteOnenoteSectionParentNotebookClient,
+		SiteOnenoteSectionParentSectionGroup:                     siteOnenoteSectionParentSectionGroupClient,
+		SiteOperation:                                            siteOperationClient,
+		SitePage:                                                 sitePageClient,
+		SitePageCreatedByUser:                                    sitePageCreatedByUserClient,
+		SitePageCreatedByUserMailboxSetting:                      sitePageCreatedByUserMailboxSettingClient,
+		SitePageCreatedByUserServiceProvisioningError:            sitePageCreatedByUserServiceProvisioningErrorClient,
+		SitePageLastModifiedByUser:                               sitePageLastModifiedByUserClient,
+		SitePageLastModifiedByUserMailboxSetting:                 sitePageLastModifiedByUserMailboxSettingClient,
+		SitePageLastModifiedByUserServiceProvisioningError:       sitePageLastModifiedByUserServiceProvisioningErrorClient,
+		SitePermission:                                           sitePermissionClient,
+		SiteSite:                                                 siteSiteClient,
+		Team:                                                     teamClient,
+		TeamAllChannel:                                           teamAllChannelClient,
+		TeamChannel:                                              teamChannelClient,
+		TeamChannelFilesFolder:                                   teamChannelFilesFolderClient,
+		TeamChannelFilesFolderContent:                            teamChannelFilesFolderContentClient,
+		TeamChannelMember:                                        teamChannelMemberClient,
+		TeamChannelMessage:                                       teamChannelMessageClient,
+		TeamChannelMessageHostedContent:                          teamChannelMessageHostedContentClient,
+		TeamChannelMessageReply:                                  teamChannelMessageReplyClient,
+		TeamChannelMessageReplyHostedContent:                     teamChannelMessageReplyHostedContentClient,
+		TeamChannelSharedWithTeam:                                teamChannelSharedWithTeamClient,
+		TeamChannelSharedWithTeamAllowedMember:                   teamChannelSharedWithTeamAllowedMemberClient,
+		TeamChannelSharedWithTeamTeam:                            teamChannelSharedWithTeamTeamClient,
+		TeamChannelTab:                                           teamChannelTabClient,
+		TeamChannelTabTeamsApp:                                   teamChannelTabTeamsAppClient,
+		TeamGroup:                                                teamGroupClient,
+		TeamGroupServiceProvisioningError:                        teamGroupServiceProvisioningErrorClient,
+		TeamIncomingChannel:                                      teamIncomingChannelClient,
+		TeamInstalledApp:                                         teamInstalledAppClient,
+		TeamInstalledAppTeamsApp:                                 teamInstalledAppTeamsAppClient,
+		TeamInstalledAppTeamsAppDefinition:                       teamInstalledAppTeamsAppDefinitionClient,
+		TeamMember:                                               teamMemberClient,
+		TeamOperation:                                            teamOperationClient,
+		TeamPermissionGrant:                                      teamPermissionGrantClient,
+		TeamPhoto:                                                teamPhotoClient,
+		TeamPrimaryChannel:                                       teamPrimaryChannelClient,
+		TeamPrimaryChannelFilesFolder:                            teamPrimaryChannelFilesFolderClient,
+		TeamPrimaryChannelFilesFolderContent:                     teamPrimaryChannelFilesFolderContentClient,
+		TeamPrimaryChannelMember:                                 teamPrimaryChannelMemberClient,
+		TeamPrimaryChannelMessage:                                teamPrimaryChannelMessageClient,
+		TeamPrimaryChannelMessageHostedContent:                   teamPrimaryChannelMessageHostedContentClient,
+		TeamPrimaryChannelMessageReply:                           teamPrimaryChannelMessageReplyClient,
+		TeamPrimaryChannelMessageReplyHostedContent:              teamPrimaryChannelMessageReplyHostedContentClient,
+		TeamPrimaryChannelSharedWithTeam:                         teamPrimaryChannelSharedWithTeamClient,
+		TeamPrimaryChannelSharedWithTeamAllowedMember:            teamPrimaryChannelSharedWithTeamAllowedMemberClient,
+		TeamPrimaryChannelSharedWithTeamTeam:                     teamPrimaryChannelSharedWithTeamTeamClient,
+		TeamPrimaryChannelTab:                                    teamPrimaryChannelTabClient,
+		TeamPrimaryChannelTabTeamsApp:                            teamPrimaryChannelTabTeamsAppClient,
+		TeamSchedule:                                             teamScheduleClient,
+		TeamScheduleOfferShiftRequest:                            teamScheduleOfferShiftRequestClient,
+		TeamScheduleOpenShift:                                    teamScheduleOpenShiftClient,
+		TeamScheduleOpenShiftChangeRequest:                       teamScheduleOpenShiftChangeRequestClient,
+		TeamScheduleSchedulingGroup:                              teamScheduleSchedulingGroupClient,
+		TeamScheduleShift:                                        teamScheduleShiftClient,
+		TeamScheduleSwapShiftsChangeRequest:                      teamScheduleSwapShiftsChangeRequestClient,
+		TeamScheduleTimeOffReason:                                teamScheduleTimeOffReasonClient,
+		TeamScheduleTimeOffRequest:                               teamScheduleTimeOffRequestClient,
+		TeamScheduleTimesOff:                                     teamScheduleTimesOffClient,
+		TeamTag:                                                  teamTagClient,
+		TeamTagMember:                                            teamTagMemberClient,
+		TeamTemplate:                                             teamTemplateClient,
+		Thread:                                                   threadClient,
+		ThreadPost:                                               threadPostClient,
+		ThreadPostAttachment:                                     threadPostAttachmentClient,
+		ThreadPostExtension:                                      threadPostExtensionClient,
+		ThreadPostInReplyTo:                                      threadPostInReplyToClient,
+		ThreadPostInReplyToAttachment:                            threadPostInReplyToAttachmentClient,
+		ThreadPostInReplyToExtension:                             threadPostInReplyToExtensionClient,
+		TransitiveMember:                                         transitiveMemberClient,
+		TransitiveMemberOf:                                       transitiveMemberOfClient,
 	}, nil
 }

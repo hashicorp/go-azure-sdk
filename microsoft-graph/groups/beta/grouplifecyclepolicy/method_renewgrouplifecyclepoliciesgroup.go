@@ -19,16 +19,45 @@ type RenewGroupLifecyclePoliciesGroupOperationResponse struct {
 	Model        *RenewGroupLifecyclePoliciesGroupResult
 }
 
+type RenewGroupLifecyclePoliciesGroupOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultRenewGroupLifecyclePoliciesGroupOperationOptions() RenewGroupLifecyclePoliciesGroupOperationOptions {
+	return RenewGroupLifecyclePoliciesGroupOperationOptions{}
+}
+
+func (o RenewGroupLifecyclePoliciesGroupOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o RenewGroupLifecyclePoliciesGroupOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o RenewGroupLifecyclePoliciesGroupOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // RenewGroupLifecyclePoliciesGroup - Invoke action renewGroup. Renew a group's expiration. When a group is renewed, the
 // group expiration is extended by the number of days defined in the policy.
-func (c GroupLifecyclePolicyClient) RenewGroupLifecyclePoliciesGroup(ctx context.Context, id beta.GroupId, input RenewGroupLifecyclePoliciesGroupRequest) (result RenewGroupLifecyclePoliciesGroupOperationResponse, err error) {
+func (c GroupLifecyclePolicyClient) RenewGroupLifecyclePoliciesGroup(ctx context.Context, id beta.GroupId, input RenewGroupLifecyclePoliciesGroupRequest, options RenewGroupLifecyclePoliciesGroupOperationOptions) (result RenewGroupLifecyclePoliciesGroupOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/groupLifecyclePolicies/renewGroup", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/groupLifecyclePolicies/renewGroup", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

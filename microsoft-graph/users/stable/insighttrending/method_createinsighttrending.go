@@ -19,15 +19,44 @@ type CreateInsightTrendingOperationResponse struct {
 	Model        *stable.Trending
 }
 
+type CreateInsightTrendingOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateInsightTrendingOperationOptions() CreateInsightTrendingOperationOptions {
+	return CreateInsightTrendingOperationOptions{}
+}
+
+func (o CreateInsightTrendingOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateInsightTrendingOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateInsightTrendingOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateInsightTrending - Create new navigation property to trending for users
-func (c InsightTrendingClient) CreateInsightTrending(ctx context.Context, id stable.UserId, input stable.Trending) (result CreateInsightTrendingOperationResponse, err error) {
+func (c InsightTrendingClient) CreateInsightTrending(ctx context.Context, id stable.UserId, input stable.Trending, options CreateInsightTrendingOperationOptions) (result CreateInsightTrendingOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/insights/trending", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/insights/trending", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

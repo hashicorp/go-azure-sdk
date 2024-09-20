@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &PolicyServicePrincipalCreationPolicyIdExcludeId{}
 
 func TestNewPolicyServicePrincipalCreationPolicyIdExcludeID(t *testing.T) {
-	id := NewPolicyServicePrincipalCreationPolicyIdExcludeID("servicePrincipalCreationPolicyIdValue", "servicePrincipalCreationConditionSetIdValue")
+	id := NewPolicyServicePrincipalCreationPolicyIdExcludeID("servicePrincipalCreationPolicyId", "servicePrincipalCreationConditionSetId")
 
-	if id.ServicePrincipalCreationPolicyId != "servicePrincipalCreationPolicyIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ServicePrincipalCreationPolicyId'", id.ServicePrincipalCreationPolicyId, "servicePrincipalCreationPolicyIdValue")
+	if id.ServicePrincipalCreationPolicyId != "servicePrincipalCreationPolicyId" {
+		t.Fatalf("Expected %q but got %q for Segment 'ServicePrincipalCreationPolicyId'", id.ServicePrincipalCreationPolicyId, "servicePrincipalCreationPolicyId")
 	}
 
-	if id.ServicePrincipalCreationConditionSetId != "servicePrincipalCreationConditionSetIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ServicePrincipalCreationConditionSetId'", id.ServicePrincipalCreationConditionSetId, "servicePrincipalCreationConditionSetIdValue")
+	if id.ServicePrincipalCreationConditionSetId != "servicePrincipalCreationConditionSetId" {
+		t.Fatalf("Expected %q but got %q for Segment 'ServicePrincipalCreationConditionSetId'", id.ServicePrincipalCreationConditionSetId, "servicePrincipalCreationConditionSetId")
 	}
 }
 
 func TestFormatPolicyServicePrincipalCreationPolicyIdExcludeID(t *testing.T) {
-	actual := NewPolicyServicePrincipalCreationPolicyIdExcludeID("servicePrincipalCreationPolicyIdValue", "servicePrincipalCreationConditionSetIdValue").ID()
-	expected := "/policies/servicePrincipalCreationPolicies/servicePrincipalCreationPolicyIdValue/excludes/servicePrincipalCreationConditionSetIdValue"
+	actual := NewPolicyServicePrincipalCreationPolicyIdExcludeID("servicePrincipalCreationPolicyId", "servicePrincipalCreationConditionSetId").ID()
+	expected := "/policies/servicePrincipalCreationPolicies/servicePrincipalCreationPolicyId/excludes/servicePrincipalCreationConditionSetId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -54,25 +54,25 @@ func TestParsePolicyServicePrincipalCreationPolicyIdExcludeID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/policies/servicePrincipalCreationPolicies/servicePrincipalCreationPolicyIdValue",
+			Input: "/policies/servicePrincipalCreationPolicies/servicePrincipalCreationPolicyId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/policies/servicePrincipalCreationPolicies/servicePrincipalCreationPolicyIdValue/excludes",
+			Input: "/policies/servicePrincipalCreationPolicies/servicePrincipalCreationPolicyId/excludes",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/policies/servicePrincipalCreationPolicies/servicePrincipalCreationPolicyIdValue/excludes/servicePrincipalCreationConditionSetIdValue",
+			Input: "/policies/servicePrincipalCreationPolicies/servicePrincipalCreationPolicyId/excludes/servicePrincipalCreationConditionSetId",
 			Expected: &PolicyServicePrincipalCreationPolicyIdExcludeId{
-				ServicePrincipalCreationPolicyId:       "servicePrincipalCreationPolicyIdValue",
-				ServicePrincipalCreationConditionSetId: "servicePrincipalCreationConditionSetIdValue",
+				ServicePrincipalCreationPolicyId:       "servicePrincipalCreationPolicyId",
+				ServicePrincipalCreationConditionSetId: "servicePrincipalCreationConditionSetId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/policies/servicePrincipalCreationPolicies/servicePrincipalCreationPolicyIdValue/excludes/servicePrincipalCreationConditionSetIdValue/extra",
+			Input: "/policies/servicePrincipalCreationPolicies/servicePrincipalCreationPolicyId/excludes/servicePrincipalCreationConditionSetId/extra",
 			Error: true,
 		},
 	}
@@ -135,48 +135,48 @@ func TestParsePolicyServicePrincipalCreationPolicyIdExcludeIDInsensitively(t *te
 		},
 		{
 			// Incomplete URI
-			Input: "/policies/servicePrincipalCreationPolicies/servicePrincipalCreationPolicyIdValue",
+			Input: "/policies/servicePrincipalCreationPolicies/servicePrincipalCreationPolicyId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/pOlIcIeS/sErViCePrInCiPaLcReAtIoNpOlIcIeS/sErViCePrInCiPaLcReAtIoNpOlIcYiDvAlUe",
+			Input: "/pOlIcIeS/sErViCePrInCiPaLcReAtIoNpOlIcIeS/sErViCePrInCiPaLcReAtIoNpOlIcYiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/policies/servicePrincipalCreationPolicies/servicePrincipalCreationPolicyIdValue/excludes",
+			Input: "/policies/servicePrincipalCreationPolicies/servicePrincipalCreationPolicyId/excludes",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/pOlIcIeS/sErViCePrInCiPaLcReAtIoNpOlIcIeS/sErViCePrInCiPaLcReAtIoNpOlIcYiDvAlUe/eXcLuDeS",
+			Input: "/pOlIcIeS/sErViCePrInCiPaLcReAtIoNpOlIcIeS/sErViCePrInCiPaLcReAtIoNpOlIcYiD/eXcLuDeS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/policies/servicePrincipalCreationPolicies/servicePrincipalCreationPolicyIdValue/excludes/servicePrincipalCreationConditionSetIdValue",
+			Input: "/policies/servicePrincipalCreationPolicies/servicePrincipalCreationPolicyId/excludes/servicePrincipalCreationConditionSetId",
 			Expected: &PolicyServicePrincipalCreationPolicyIdExcludeId{
-				ServicePrincipalCreationPolicyId:       "servicePrincipalCreationPolicyIdValue",
-				ServicePrincipalCreationConditionSetId: "servicePrincipalCreationConditionSetIdValue",
+				ServicePrincipalCreationPolicyId:       "servicePrincipalCreationPolicyId",
+				ServicePrincipalCreationConditionSetId: "servicePrincipalCreationConditionSetId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/policies/servicePrincipalCreationPolicies/servicePrincipalCreationPolicyIdValue/excludes/servicePrincipalCreationConditionSetIdValue/extra",
+			Input: "/policies/servicePrincipalCreationPolicies/servicePrincipalCreationPolicyId/excludes/servicePrincipalCreationConditionSetId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/pOlIcIeS/sErViCePrInCiPaLcReAtIoNpOlIcIeS/sErViCePrInCiPaLcReAtIoNpOlIcYiDvAlUe/eXcLuDeS/sErViCePrInCiPaLcReAtIoNcOnDiTiOnSeTiDvAlUe",
+			Input: "/pOlIcIeS/sErViCePrInCiPaLcReAtIoNpOlIcIeS/sErViCePrInCiPaLcReAtIoNpOlIcYiD/eXcLuDeS/sErViCePrInCiPaLcReAtIoNcOnDiTiOnSeTiD",
 			Expected: &PolicyServicePrincipalCreationPolicyIdExcludeId{
-				ServicePrincipalCreationPolicyId:       "sErViCePrInCiPaLcReAtIoNpOlIcYiDvAlUe",
-				ServicePrincipalCreationConditionSetId: "sErViCePrInCiPaLcReAtIoNcOnDiTiOnSeTiDvAlUe",
+				ServicePrincipalCreationPolicyId:       "sErViCePrInCiPaLcReAtIoNpOlIcYiD",
+				ServicePrincipalCreationConditionSetId: "sErViCePrInCiPaLcReAtIoNcOnDiTiOnSeTiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/pOlIcIeS/sErViCePrInCiPaLcReAtIoNpOlIcIeS/sErViCePrInCiPaLcReAtIoNpOlIcYiDvAlUe/eXcLuDeS/sErViCePrInCiPaLcReAtIoNcOnDiTiOnSeTiDvAlUe/extra",
+			Input: "/pOlIcIeS/sErViCePrInCiPaLcReAtIoNpOlIcIeS/sErViCePrInCiPaLcReAtIoNpOlIcYiD/eXcLuDeS/sErViCePrInCiPaLcReAtIoNcOnDiTiOnSeTiD/extra",
 			Error: true,
 		},
 	}

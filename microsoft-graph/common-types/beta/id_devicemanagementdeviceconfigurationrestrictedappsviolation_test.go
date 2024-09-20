@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &DeviceManagementDeviceConfigurationRestrictedAppsViolationId{}
 
 func TestNewDeviceManagementDeviceConfigurationRestrictedAppsViolationID(t *testing.T) {
-	id := NewDeviceManagementDeviceConfigurationRestrictedAppsViolationID("restrictedAppsViolationIdValue")
+	id := NewDeviceManagementDeviceConfigurationRestrictedAppsViolationID("restrictedAppsViolationId")
 
-	if id.RestrictedAppsViolationId != "restrictedAppsViolationIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'RestrictedAppsViolationId'", id.RestrictedAppsViolationId, "restrictedAppsViolationIdValue")
+	if id.RestrictedAppsViolationId != "restrictedAppsViolationId" {
+		t.Fatalf("Expected %q but got %q for Segment 'RestrictedAppsViolationId'", id.RestrictedAppsViolationId, "restrictedAppsViolationId")
 	}
 }
 
 func TestFormatDeviceManagementDeviceConfigurationRestrictedAppsViolationID(t *testing.T) {
-	actual := NewDeviceManagementDeviceConfigurationRestrictedAppsViolationID("restrictedAppsViolationIdValue").ID()
-	expected := "/deviceManagement/deviceConfigurationRestrictedAppsViolations/restrictedAppsViolationIdValue"
+	actual := NewDeviceManagementDeviceConfigurationRestrictedAppsViolationID("restrictedAppsViolationId").ID()
+	expected := "/deviceManagement/deviceConfigurationRestrictedAppsViolations/restrictedAppsViolationId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -50,14 +50,14 @@ func TestParseDeviceManagementDeviceConfigurationRestrictedAppsViolationID(t *te
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/deviceConfigurationRestrictedAppsViolations/restrictedAppsViolationIdValue",
+			Input: "/deviceManagement/deviceConfigurationRestrictedAppsViolations/restrictedAppsViolationId",
 			Expected: &DeviceManagementDeviceConfigurationRestrictedAppsViolationId{
-				RestrictedAppsViolationId: "restrictedAppsViolationIdValue",
+				RestrictedAppsViolationId: "restrictedAppsViolationId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/deviceConfigurationRestrictedAppsViolations/restrictedAppsViolationIdValue/extra",
+			Input: "/deviceManagement/deviceConfigurationRestrictedAppsViolations/restrictedAppsViolationId/extra",
 			Error: true,
 		},
 	}
@@ -116,26 +116,26 @@ func TestParseDeviceManagementDeviceConfigurationRestrictedAppsViolationIDInsens
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/deviceConfigurationRestrictedAppsViolations/restrictedAppsViolationIdValue",
+			Input: "/deviceManagement/deviceConfigurationRestrictedAppsViolations/restrictedAppsViolationId",
 			Expected: &DeviceManagementDeviceConfigurationRestrictedAppsViolationId{
-				RestrictedAppsViolationId: "restrictedAppsViolationIdValue",
+				RestrictedAppsViolationId: "restrictedAppsViolationId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/deviceConfigurationRestrictedAppsViolations/restrictedAppsViolationIdValue/extra",
+			Input: "/deviceManagement/deviceConfigurationRestrictedAppsViolations/restrictedAppsViolationId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/dEvIcEcOnFiGuRaTiOnReStRiCtEdApPsViOlAtIoNs/rEsTrIcTeDaPpSvIoLaTiOnIdVaLuE",
+			Input: "/dEvIcEmAnAgEmEnT/dEvIcEcOnFiGuRaTiOnReStRiCtEdApPsViOlAtIoNs/rEsTrIcTeDaPpSvIoLaTiOnId",
 			Expected: &DeviceManagementDeviceConfigurationRestrictedAppsViolationId{
-				RestrictedAppsViolationId: "rEsTrIcTeDaPpSvIoLaTiOnIdVaLuE",
+				RestrictedAppsViolationId: "rEsTrIcTeDaPpSvIoLaTiOnId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/dEvIcEcOnFiGuRaTiOnReStRiCtEdApPsViOlAtIoNs/rEsTrIcTeDaPpSvIoLaTiOnIdVaLuE/extra",
+			Input: "/dEvIcEmAnAgEmEnT/dEvIcEcOnFiGuRaTiOnReStRiCtEdApPsViOlAtIoNs/rEsTrIcTeDaPpSvIoLaTiOnId/extra",
 			Error: true,
 		},
 	}

@@ -19,16 +19,45 @@ type CreateFederatedIdentityCredentialOperationResponse struct {
 	Model        *stable.FederatedIdentityCredential
 }
 
+type CreateFederatedIdentityCredentialOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateFederatedIdentityCredentialOperationOptions() CreateFederatedIdentityCredentialOperationOptions {
+	return CreateFederatedIdentityCredentialOperationOptions{}
+}
+
+func (o CreateFederatedIdentityCredentialOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateFederatedIdentityCredentialOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateFederatedIdentityCredentialOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateFederatedIdentityCredential - Create new navigation property to federatedIdentityCredentials for
 // servicePrincipals
-func (c FederatedIdentityCredentialClient) CreateFederatedIdentityCredential(ctx context.Context, id stable.ServicePrincipalId, input stable.FederatedIdentityCredential) (result CreateFederatedIdentityCredentialOperationResponse, err error) {
+func (c FederatedIdentityCredentialClient) CreateFederatedIdentityCredential(ctx context.Context, id stable.ServicePrincipalId, input stable.FederatedIdentityCredential, options CreateFederatedIdentityCredentialOperationOptions) (result CreateFederatedIdentityCredentialOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/federatedIdentityCredentials", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/federatedIdentityCredentials", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

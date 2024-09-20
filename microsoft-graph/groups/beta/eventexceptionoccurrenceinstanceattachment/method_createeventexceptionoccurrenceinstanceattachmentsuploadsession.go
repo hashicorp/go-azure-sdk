@@ -19,6 +19,34 @@ type CreateEventExceptionOccurrenceInstanceAttachmentsUploadSessionOperationResp
 	Model        *beta.UploadSession
 }
 
+type CreateEventExceptionOccurrenceInstanceAttachmentsUploadSessionOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateEventExceptionOccurrenceInstanceAttachmentsUploadSessionOperationOptions() CreateEventExceptionOccurrenceInstanceAttachmentsUploadSessionOperationOptions {
+	return CreateEventExceptionOccurrenceInstanceAttachmentsUploadSessionOperationOptions{}
+}
+
+func (o CreateEventExceptionOccurrenceInstanceAttachmentsUploadSessionOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateEventExceptionOccurrenceInstanceAttachmentsUploadSessionOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateEventExceptionOccurrenceInstanceAttachmentsUploadSessionOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateEventExceptionOccurrenceInstanceAttachmentsUploadSession - Invoke action createUploadSession. Create an upload
 // session that allows an app to iteratively upload ranges of a file, so as to attach the file to an Outlook item. The
 // item can be a message or event. Use this approach to attach a file if the file size is between 3 MB and 150 MB. To
@@ -28,14 +56,15 @@ type CreateEventExceptionOccurrenceInstanceAttachmentsUploadSessionOperationResp
 // exact range of bytes to be uploaded. This allows transfer to be resumed, in case the network connection is dropped
 // during upload. The following are the steps to attach a file to an Outlook item using an upload session: See attach
 // large files to Outlook messages or events for an example.
-func (c EventExceptionOccurrenceInstanceAttachmentClient) CreateEventExceptionOccurrenceInstanceAttachmentsUploadSession(ctx context.Context, id beta.GroupIdEventIdExceptionOccurrenceIdInstanceId, input CreateEventExceptionOccurrenceInstanceAttachmentsUploadSessionRequest) (result CreateEventExceptionOccurrenceInstanceAttachmentsUploadSessionOperationResponse, err error) {
+func (c EventExceptionOccurrenceInstanceAttachmentClient) CreateEventExceptionOccurrenceInstanceAttachmentsUploadSession(ctx context.Context, id beta.GroupIdEventIdExceptionOccurrenceIdInstanceId, input CreateEventExceptionOccurrenceInstanceAttachmentsUploadSessionRequest, options CreateEventExceptionOccurrenceInstanceAttachmentsUploadSessionOperationOptions) (result CreateEventExceptionOccurrenceInstanceAttachmentsUploadSessionOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/attachments/createUploadSession", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/attachments/createUploadSession", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

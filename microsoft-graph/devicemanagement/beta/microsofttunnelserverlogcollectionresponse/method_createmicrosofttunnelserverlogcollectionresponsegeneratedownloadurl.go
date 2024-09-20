@@ -19,15 +19,44 @@ type CreateMicrosoftTunnelServerLogCollectionResponseGenerateDownloadUrlOperatio
 	Model        *CreateMicrosoftTunnelServerLogCollectionResponseGenerateDownloadUrlResult
 }
 
+type CreateMicrosoftTunnelServerLogCollectionResponseGenerateDownloadUrlOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateMicrosoftTunnelServerLogCollectionResponseGenerateDownloadUrlOperationOptions() CreateMicrosoftTunnelServerLogCollectionResponseGenerateDownloadUrlOperationOptions {
+	return CreateMicrosoftTunnelServerLogCollectionResponseGenerateDownloadUrlOperationOptions{}
+}
+
+func (o CreateMicrosoftTunnelServerLogCollectionResponseGenerateDownloadUrlOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateMicrosoftTunnelServerLogCollectionResponseGenerateDownloadUrlOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateMicrosoftTunnelServerLogCollectionResponseGenerateDownloadUrlOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateMicrosoftTunnelServerLogCollectionResponseGenerateDownloadUrl - Invoke action generateDownloadUrl
-func (c MicrosoftTunnelServerLogCollectionResponseClient) CreateMicrosoftTunnelServerLogCollectionResponseGenerateDownloadUrl(ctx context.Context, id beta.DeviceManagementMicrosoftTunnelServerLogCollectionResponseId) (result CreateMicrosoftTunnelServerLogCollectionResponseGenerateDownloadUrlOperationResponse, err error) {
+func (c MicrosoftTunnelServerLogCollectionResponseClient) CreateMicrosoftTunnelServerLogCollectionResponseGenerateDownloadUrl(ctx context.Context, id beta.DeviceManagementMicrosoftTunnelServerLogCollectionResponseId, options CreateMicrosoftTunnelServerLogCollectionResponseGenerateDownloadUrlOperationOptions) (result CreateMicrosoftTunnelServerLogCollectionResponseGenerateDownloadUrlOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/generateDownloadUrl", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/generateDownloadUrl", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -25,8 +25,9 @@ type ListDriveRootPermissionGrantsCompleteResult struct {
 }
 
 type ListDriveRootPermissionGrantsOperationOptions struct {
-	Skip *int64
-	Top  *int64
+	Metadata *odata.Metadata
+	Skip     *int64
+	Top      *int64
 }
 
 func DefaultListDriveRootPermissionGrantsOperationOptions() ListDriveRootPermissionGrantsOperationOptions {
@@ -41,6 +42,9 @@ func (o ListDriveRootPermissionGrantsOperationOptions) ToHeaders() *client.Heade
 
 func (o ListDriveRootPermissionGrantsOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	if o.Skip != nil {
 		out.Skip = int(*o.Skip)
 	}

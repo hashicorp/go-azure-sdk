@@ -19,15 +19,44 @@ type CreateProfileWebAccountOperationResponse struct {
 	Model        *beta.WebAccount
 }
 
+type CreateProfileWebAccountOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateProfileWebAccountOperationOptions() CreateProfileWebAccountOperationOptions {
+	return CreateProfileWebAccountOperationOptions{}
+}
+
+func (o CreateProfileWebAccountOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateProfileWebAccountOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateProfileWebAccountOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateProfileWebAccount - Create new navigation property to webAccounts for users
-func (c ProfileWebAccountClient) CreateProfileWebAccount(ctx context.Context, id beta.UserId, input beta.WebAccount) (result CreateProfileWebAccountOperationResponse, err error) {
+func (c ProfileWebAccountClient) CreateProfileWebAccount(ctx context.Context, id beta.UserId, input beta.WebAccount, options CreateProfileWebAccountOperationOptions) (result CreateProfileWebAccountOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/profile/webAccounts", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/profile/webAccounts", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -19,16 +19,45 @@ type CreateEntitlementManagementResourceRequestCatalogResourceRoleOperationRespo
 	Model        *stable.AccessPackageResourceRole
 }
 
-// CreateEntitlementManagementResourceRequestCatalogResourceRole - Create new navigation property to resourceRoles for
+type CreateEntitlementManagementResourceRequestCatalogResourceRoleOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateEntitlementManagementResourceRequestCatalogResourceRoleOperationOptions() CreateEntitlementManagementResourceRequestCatalogResourceRoleOperationOptions {
+	return CreateEntitlementManagementResourceRequestCatalogResourceRoleOperationOptions{}
+}
+
+func (o CreateEntitlementManagementResourceRequestCatalogResourceRoleOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateEntitlementManagementResourceRequestCatalogResourceRoleOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateEntitlementManagementResourceRequestCatalogResourceRoleOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
+// CreateEntitlementManagementResourceRequestCatalogResourceRole - Create new navigation property to roles for
 // identityGovernance
-func (c EntitlementManagementResourceRequestCatalogResourceRoleClient) CreateEntitlementManagementResourceRequestCatalogResourceRole(ctx context.Context, id stable.IdentityGovernanceEntitlementManagementResourceRequestId, input stable.AccessPackageResourceRole) (result CreateEntitlementManagementResourceRequestCatalogResourceRoleOperationResponse, err error) {
+func (c EntitlementManagementResourceRequestCatalogResourceRoleClient) CreateEntitlementManagementResourceRequestCatalogResourceRole(ctx context.Context, id stable.IdentityGovernanceEntitlementManagementResourceRequestIdCatalogResourceId, input stable.AccessPackageResourceRole, options CreateEntitlementManagementResourceRequestCatalogResourceRoleOperationOptions) (result CreateEntitlementManagementResourceRequestCatalogResourceRoleOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/catalog/resourceRoles", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/roles", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

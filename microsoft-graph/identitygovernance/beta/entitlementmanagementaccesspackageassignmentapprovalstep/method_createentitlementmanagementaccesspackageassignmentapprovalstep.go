@@ -19,16 +19,45 @@ type CreateEntitlementManagementAccessPackageAssignmentApprovalStepOperationResp
 	Model        *beta.ApprovalStep
 }
 
+type CreateEntitlementManagementAccessPackageAssignmentApprovalStepOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateEntitlementManagementAccessPackageAssignmentApprovalStepOperationOptions() CreateEntitlementManagementAccessPackageAssignmentApprovalStepOperationOptions {
+	return CreateEntitlementManagementAccessPackageAssignmentApprovalStepOperationOptions{}
+}
+
+func (o CreateEntitlementManagementAccessPackageAssignmentApprovalStepOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateEntitlementManagementAccessPackageAssignmentApprovalStepOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateEntitlementManagementAccessPackageAssignmentApprovalStepOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateEntitlementManagementAccessPackageAssignmentApprovalStep - Create new navigation property to steps for
 // identityGovernance
-func (c EntitlementManagementAccessPackageAssignmentApprovalStepClient) CreateEntitlementManagementAccessPackageAssignmentApprovalStep(ctx context.Context, id beta.IdentityGovernanceEntitlementManagementAccessPackageAssignmentApprovalId, input beta.ApprovalStep) (result CreateEntitlementManagementAccessPackageAssignmentApprovalStepOperationResponse, err error) {
+func (c EntitlementManagementAccessPackageAssignmentApprovalStepClient) CreateEntitlementManagementAccessPackageAssignmentApprovalStep(ctx context.Context, id beta.IdentityGovernanceEntitlementManagementAccessPackageAssignmentApprovalId, input beta.ApprovalStep, options CreateEntitlementManagementAccessPackageAssignmentApprovalStepOperationOptions) (result CreateEntitlementManagementAccessPackageAssignmentApprovalStepOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/steps", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/steps", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

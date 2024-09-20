@@ -104,12 +104,12 @@ func (id UserIdSettingWindowIdInstanceId) ID() string {
 func (id UserIdSettingWindowIdInstanceId) Segments() []resourceids.Segment {
 	return []resourceids.Segment{
 		resourceids.StaticSegment("users", "users", "users"),
-		resourceids.UserSpecifiedSegment("userId", "userIdValue"),
+		resourceids.UserSpecifiedSegment("userId", "userId"),
 		resourceids.StaticSegment("settings", "settings", "settings"),
 		resourceids.StaticSegment("windows", "windows", "windows"),
-		resourceids.UserSpecifiedSegment("windowsSettingId", "windowsSettingIdValue"),
+		resourceids.UserSpecifiedSegment("windowsSettingId", "windowsSettingId"),
 		resourceids.StaticSegment("instances", "instances", "instances"),
-		resourceids.UserSpecifiedSegment("windowsSettingInstanceId", "windowsSettingInstanceIdValue"),
+		resourceids.UserSpecifiedSegment("windowsSettingInstanceId", "windowsSettingInstanceId"),
 	}
 }
 

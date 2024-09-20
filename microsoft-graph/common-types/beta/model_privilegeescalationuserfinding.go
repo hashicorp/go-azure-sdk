@@ -99,10 +99,19 @@ func (s PrivilegeEscalationUserFinding) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &PrivilegeEscalationUserFinding{}
 
 func (s *PrivilegeEscalationUserFinding) UnmarshalJSON(bytes []byte) error {
-	type alias PrivilegeEscalationUserFinding
-	var decoded alias
+
+	var decoded struct {
+		Identity                   *AuthorizationSystemIdentity `json:"identity,omitempty"`
+		IdentityDetails            *IdentityDetails             `json:"identityDetails,omitempty"`
+		PermissionsCreepIndex      *PermissionsCreepIndex       `json:"permissionsCreepIndex,omitempty"`
+		PrivilegeEscalationDetails *[]PrivilegeEscalation       `json:"privilegeEscalationDetails,omitempty"`
+		CreatedDateTime            *string                      `json:"createdDateTime,omitempty"`
+		Id                         *string                      `json:"id,omitempty"`
+		ODataId                    *string                      `json:"@odata.id,omitempty"`
+		ODataType                  *string                      `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into PrivilegeEscalationUserFinding: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.CreatedDateTime = decoded.CreatedDateTime
@@ -125,5 +134,6 @@ func (s *PrivilegeEscalationUserFinding) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Identity = &impl
 	}
+
 	return nil
 }

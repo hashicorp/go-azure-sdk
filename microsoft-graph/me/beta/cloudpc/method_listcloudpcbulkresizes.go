@@ -25,8 +25,9 @@ type ListCloudPCBulkResizesCompleteResult struct {
 }
 
 type ListCloudPCBulkResizesOperationOptions struct {
-	Skip *int64
-	Top  *int64
+	Metadata *odata.Metadata
+	Skip     *int64
+	Top      *int64
 }
 
 func DefaultListCloudPCBulkResizesOperationOptions() ListCloudPCBulkResizesOperationOptions {
@@ -41,6 +42,9 @@ func (o ListCloudPCBulkResizesOperationOptions) ToHeaders() *client.Headers {
 
 func (o ListCloudPCBulkResizesOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	if o.Skip != nil {
 		out.Skip = int(*o.Skip)
 	}

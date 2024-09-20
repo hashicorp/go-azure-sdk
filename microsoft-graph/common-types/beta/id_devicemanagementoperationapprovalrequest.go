@@ -93,7 +93,7 @@ func (id DeviceManagementOperationApprovalRequestId) Segments() []resourceids.Se
 	return []resourceids.Segment{
 		resourceids.StaticSegment("deviceManagement", "deviceManagement", "deviceManagement"),
 		resourceids.StaticSegment("operationApprovalRequests", "operationApprovalRequests", "operationApprovalRequests"),
-		resourceids.UserSpecifiedSegment("operationApprovalRequestId", "operationApprovalRequestIdValue"),
+		resourceids.UserSpecifiedSegment("operationApprovalRequestId", "operationApprovalRequestId"),
 	}
 }
 

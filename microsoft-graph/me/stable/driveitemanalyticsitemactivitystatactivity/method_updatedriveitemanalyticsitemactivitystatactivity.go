@@ -17,15 +17,44 @@ type UpdateDriveItemAnalyticsItemActivityStatActivityOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateDriveItemAnalyticsItemActivityStatActivityOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateDriveItemAnalyticsItemActivityStatActivityOperationOptions() UpdateDriveItemAnalyticsItemActivityStatActivityOperationOptions {
+	return UpdateDriveItemAnalyticsItemActivityStatActivityOperationOptions{}
+}
+
+func (o UpdateDriveItemAnalyticsItemActivityStatActivityOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateDriveItemAnalyticsItemActivityStatActivityOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateDriveItemAnalyticsItemActivityStatActivityOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateDriveItemAnalyticsItemActivityStatActivity - Update the navigation property activities in me
-func (c DriveItemAnalyticsItemActivityStatActivityClient) UpdateDriveItemAnalyticsItemActivityStatActivity(ctx context.Context, id stable.MeDriveIdItemIdAnalyticsItemActivityStatIdActivityId, input stable.ItemActivity) (result UpdateDriveItemAnalyticsItemActivityStatActivityOperationResponse, err error) {
+func (c DriveItemAnalyticsItemActivityStatActivityClient) UpdateDriveItemAnalyticsItemActivityStatActivity(ctx context.Context, id stable.MeDriveIdItemIdAnalyticsItemActivityStatIdActivityId, input stable.ItemActivity, options UpdateDriveItemAnalyticsItemActivityStatActivityOperationOptions) (result UpdateDriveItemAnalyticsItemActivityStatActivityOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

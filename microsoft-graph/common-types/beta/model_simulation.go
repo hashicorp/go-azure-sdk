@@ -141,10 +141,34 @@ func (s Simulation) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &Simulation{}
 
 func (s *Simulation) UnmarshalJSON(bytes []byte) error {
-	type alias Simulation
-	var decoded alias
+
+	var decoded struct {
+		AttackTechnique         *SimulationAttackTechnique `json:"attackTechnique,omitempty"`
+		AttackType              *SimulationAttackType      `json:"attackType,omitempty"`
+		AutomationId            nullable.Type[string]      `json:"automationId,omitempty"`
+		CompletionDateTime      nullable.Type[string]      `json:"completionDateTime,omitempty"`
+		CreatedBy               *EmailIdentity             `json:"createdBy,omitempty"`
+		CreatedDateTime         nullable.Type[string]      `json:"createdDateTime,omitempty"`
+		Description             nullable.Type[string]      `json:"description,omitempty"`
+		DisplayName             nullable.Type[string]      `json:"displayName,omitempty"`
+		DurationInDays          nullable.Type[int64]       `json:"durationInDays,omitempty"`
+		IsAutomated             nullable.Type[bool]        `json:"isAutomated,omitempty"`
+		LandingPage             *LandingPage               `json:"landingPage,omitempty"`
+		LastModifiedBy          *EmailIdentity             `json:"lastModifiedBy,omitempty"`
+		LastModifiedDateTime    nullable.Type[string]      `json:"lastModifiedDateTime,omitempty"`
+		LaunchDateTime          nullable.Type[string]      `json:"launchDateTime,omitempty"`
+		LoginPage               *LoginPage                 `json:"loginPage,omitempty"`
+		OAuthConsentAppDetail   *OAuthConsentAppDetail     `json:"oAuthConsentAppDetail,omitempty"`
+		Payload                 *Payload                   `json:"payload,omitempty"`
+		PayloadDeliveryPlatform *PayloadDeliveryPlatform   `json:"payloadDeliveryPlatform,omitempty"`
+		Report                  *SimulationReport          `json:"report,omitempty"`
+		Status                  *SimulationStatus          `json:"status,omitempty"`
+		Id                      *string                    `json:"id,omitempty"`
+		ODataId                 *string                    `json:"@odata.id,omitempty"`
+		ODataType               *string                    `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into Simulation: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.AttackTechnique = decoded.AttackTechnique
@@ -156,7 +180,6 @@ func (s *Simulation) UnmarshalJSON(bytes []byte) error {
 	s.Description = decoded.Description
 	s.DisplayName = decoded.DisplayName
 	s.DurationInDays = decoded.DurationInDays
-	s.Id = decoded.Id
 	s.IsAutomated = decoded.IsAutomated
 	s.LandingPage = decoded.LandingPage
 	s.LastModifiedBy = decoded.LastModifiedBy
@@ -164,12 +187,13 @@ func (s *Simulation) UnmarshalJSON(bytes []byte) error {
 	s.LaunchDateTime = decoded.LaunchDateTime
 	s.LoginPage = decoded.LoginPage
 	s.OAuthConsentAppDetail = decoded.OAuthConsentAppDetail
-	s.ODataId = decoded.ODataId
-	s.ODataType = decoded.ODataType
 	s.Payload = decoded.Payload
 	s.PayloadDeliveryPlatform = decoded.PayloadDeliveryPlatform
 	s.Report = decoded.Report
 	s.Status = decoded.Status
+	s.Id = decoded.Id
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -207,5 +231,6 @@ func (s *Simulation) UnmarshalJSON(bytes []byte) error {
 		}
 		s.TrainingSetting = impl
 	}
+
 	return nil
 }

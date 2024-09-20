@@ -22,10 +22,14 @@ type ShareAction struct {
 var _ json.Unmarshaler = &ShareAction{}
 
 func (s *ShareAction) UnmarshalJSON(bytes []byte) error {
-	type alias ShareAction
-	var decoded alias
+
+	var decoded struct {
+		ODataId    *string        `json:"@odata.id,omitempty"`
+		ODataType  *string        `json:"@odata.type,omitempty"`
+		Recipients *[]IdentitySet `json:"recipients,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into ShareAction: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.ODataId = decoded.ODataId
@@ -52,5 +56,6 @@ func (s *ShareAction) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Recipients = &output
 	}
+
 	return nil
 }

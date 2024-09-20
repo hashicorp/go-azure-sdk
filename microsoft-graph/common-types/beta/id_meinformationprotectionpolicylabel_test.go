@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &MeInformationProtectionPolicyLabelId{}
 
 func TestNewMeInformationProtectionPolicyLabelID(t *testing.T) {
-	id := NewMeInformationProtectionPolicyLabelID("informationProtectionLabelIdValue")
+	id := NewMeInformationProtectionPolicyLabelID("informationProtectionLabelId")
 
-	if id.InformationProtectionLabelId != "informationProtectionLabelIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'InformationProtectionLabelId'", id.InformationProtectionLabelId, "informationProtectionLabelIdValue")
+	if id.InformationProtectionLabelId != "informationProtectionLabelId" {
+		t.Fatalf("Expected %q but got %q for Segment 'InformationProtectionLabelId'", id.InformationProtectionLabelId, "informationProtectionLabelId")
 	}
 }
 
 func TestFormatMeInformationProtectionPolicyLabelID(t *testing.T) {
-	actual := NewMeInformationProtectionPolicyLabelID("informationProtectionLabelIdValue").ID()
-	expected := "/me/informationProtection/policy/labels/informationProtectionLabelIdValue"
+	actual := NewMeInformationProtectionPolicyLabelID("informationProtectionLabelId").ID()
+	expected := "/me/informationProtection/policy/labels/informationProtectionLabelId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -60,14 +60,14 @@ func TestParseMeInformationProtectionPolicyLabelID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/me/informationProtection/policy/labels/informationProtectionLabelIdValue",
+			Input: "/me/informationProtection/policy/labels/informationProtectionLabelId",
 			Expected: &MeInformationProtectionPolicyLabelId{
-				InformationProtectionLabelId: "informationProtectionLabelIdValue",
+				InformationProtectionLabelId: "informationProtectionLabelId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/informationProtection/policy/labels/informationProtectionLabelIdValue/extra",
+			Input: "/me/informationProtection/policy/labels/informationProtectionLabelId/extra",
 			Error: true,
 		},
 	}
@@ -146,26 +146,26 @@ func TestParseMeInformationProtectionPolicyLabelIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/me/informationProtection/policy/labels/informationProtectionLabelIdValue",
+			Input: "/me/informationProtection/policy/labels/informationProtectionLabelId",
 			Expected: &MeInformationProtectionPolicyLabelId{
-				InformationProtectionLabelId: "informationProtectionLabelIdValue",
+				InformationProtectionLabelId: "informationProtectionLabelId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/informationProtection/policy/labels/informationProtectionLabelIdValue/extra",
+			Input: "/me/informationProtection/policy/labels/informationProtectionLabelId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/iNfOrMaTiOnPrOtEcTiOn/pOlIcY/lAbElS/iNfOrMaTiOnPrOtEcTiOnLaBeLiDvAlUe",
+			Input: "/mE/iNfOrMaTiOnPrOtEcTiOn/pOlIcY/lAbElS/iNfOrMaTiOnPrOtEcTiOnLaBeLiD",
 			Expected: &MeInformationProtectionPolicyLabelId{
-				InformationProtectionLabelId: "iNfOrMaTiOnPrOtEcTiOnLaBeLiDvAlUe",
+				InformationProtectionLabelId: "iNfOrMaTiOnPrOtEcTiOnLaBeLiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/mE/iNfOrMaTiOnPrOtEcTiOn/pOlIcY/lAbElS/iNfOrMaTiOnPrOtEcTiOnLaBeLiDvAlUe/extra",
+			Input: "/mE/iNfOrMaTiOnPrOtEcTiOn/pOlIcY/lAbElS/iNfOrMaTiOnPrOtEcTiOnLaBeLiD/extra",
 			Error: true,
 		},
 	}

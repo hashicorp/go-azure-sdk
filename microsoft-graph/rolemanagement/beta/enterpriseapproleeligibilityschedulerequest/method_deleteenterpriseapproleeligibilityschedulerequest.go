@@ -19,7 +19,8 @@ type DeleteEnterpriseAppRoleEligibilityScheduleRequestOperationResponse struct {
 }
 
 type DeleteEnterpriseAppRoleEligibilityScheduleRequestOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteEnterpriseAppRoleEligibilityScheduleRequestOperationOptions() DeleteEnterpriseAppRoleEligibilityScheduleRequestOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteEnterpriseAppRoleEligibilityScheduleRequestOperationOptions) ToHea
 
 func (o DeleteEnterpriseAppRoleEligibilityScheduleRequestOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

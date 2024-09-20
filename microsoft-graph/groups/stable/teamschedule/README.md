@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/stable/teamschedule` Documentation
 
-The `teamschedule` SDK allows for interaction with the Azure Resource Manager Service `groups` (API Version `stable`).
+The `teamschedule` SDK allows for interaction with Microsoft Graph `groups` (API Version `stable`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -15,7 +15,7 @@ import "github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/stable/teamsche
 ### Client Initialization
 
 ```go
-client := teamschedule.NewTeamScheduleClientWithBaseURI("https://management.azure.com")
+client := teamschedule.NewTeamScheduleClientWithBaseURI("https://graph.microsoft.com")
 client.Client.Authorizer = authorizer
 ```
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := teamschedule.NewGroupID("groupIdValue")
+id := teamschedule.NewGroupID("groupId")
 
 read, err := client.DeleteTeamSchedule(ctx, id, teamschedule.DefaultDeleteTeamScheduleOperationOptions())
 if err != nil {
@@ -40,7 +40,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := teamschedule.NewGroupID("groupIdValue")
+id := teamschedule.NewGroupID("groupId")
 
 read, err := client.GetTeamSchedule(ctx, id, teamschedule.DefaultGetTeamScheduleOperationOptions())
 if err != nil {
@@ -56,14 +56,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := teamschedule.NewGroupID("groupIdValue")
+id := teamschedule.NewGroupID("groupId")
 
 payload := teamschedule.Schedule{
 	// ...
 }
 
 
-read, err := client.SetTeamSchedule(ctx, id, payload)
+read, err := client.SetTeamSchedule(ctx, id, payload, teamschedule.DefaultSetTeamScheduleOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -77,14 +77,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := teamschedule.NewGroupID("groupIdValue")
+id := teamschedule.NewGroupID("groupId")
 
 payload := teamschedule.ShareTeamScheduleRequest{
 	// ...
 }
 
 
-read, err := client.ShareTeamSchedule(ctx, id, payload)
+read, err := client.ShareTeamSchedule(ctx, id, payload, teamschedule.DefaultShareTeamScheduleOperationOptions())
 if err != nil {
 	// handle the error
 }

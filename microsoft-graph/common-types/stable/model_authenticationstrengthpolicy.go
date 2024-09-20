@@ -83,22 +83,34 @@ func (s AuthenticationStrengthPolicy) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &AuthenticationStrengthPolicy{}
 
 func (s *AuthenticationStrengthPolicy) UnmarshalJSON(bytes []byte) error {
-	type alias AuthenticationStrengthPolicy
-	var decoded alias
+
+	var decoded struct {
+		AllowedCombinations       *[]AuthenticationMethodModes              `json:"allowedCombinations,omitempty"`
+		CombinationConfigurations *[]AuthenticationCombinationConfiguration `json:"combinationConfigurations,omitempty"`
+		CreatedDateTime           *string                                   `json:"createdDateTime,omitempty"`
+		Description               nullable.Type[string]                     `json:"description,omitempty"`
+		DisplayName               *string                                   `json:"displayName,omitempty"`
+		ModifiedDateTime          *string                                   `json:"modifiedDateTime,omitempty"`
+		PolicyType                *AuthenticationStrengthPolicyType         `json:"policyType,omitempty"`
+		RequirementsSatisfied     *AuthenticationStrengthRequirements       `json:"requirementsSatisfied,omitempty"`
+		Id                        *string                                   `json:"id,omitempty"`
+		ODataId                   *string                                   `json:"@odata.id,omitempty"`
+		ODataType                 *string                                   `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into AuthenticationStrengthPolicy: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.AllowedCombinations = decoded.AllowedCombinations
 	s.CreatedDateTime = decoded.CreatedDateTime
 	s.Description = decoded.Description
 	s.DisplayName = decoded.DisplayName
-	s.Id = decoded.Id
 	s.ModifiedDateTime = decoded.ModifiedDateTime
-	s.ODataId = decoded.ODataId
-	s.ODataType = decoded.ODataType
 	s.PolicyType = decoded.PolicyType
 	s.RequirementsSatisfied = decoded.RequirementsSatisfied
+	s.Id = decoded.Id
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -121,5 +133,6 @@ func (s *AuthenticationStrengthPolicy) UnmarshalJSON(bytes []byte) error {
 		}
 		s.CombinationConfigurations = &output
 	}
+
 	return nil
 }

@@ -19,7 +19,8 @@ type DeleteInformationProtectionSensitivityLabelSublabelOperationResponse struct
 }
 
 type DeleteInformationProtectionSensitivityLabelSublabelOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteInformationProtectionSensitivityLabelSublabelOperationOptions() DeleteInformationProtectionSensitivityLabelSublabelOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteInformationProtectionSensitivityLabelSublabelOperationOptions) ToH
 
 func (o DeleteInformationProtectionSensitivityLabelSublabelOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

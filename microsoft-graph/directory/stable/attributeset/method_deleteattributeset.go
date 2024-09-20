@@ -19,7 +19,8 @@ type DeleteAttributeSetOperationResponse struct {
 }
 
 type DeleteAttributeSetOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteAttributeSetOperationOptions() DeleteAttributeSetOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteAttributeSetOperationOptions) ToHeaders() *client.Headers {
 
 func (o DeleteAttributeSetOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

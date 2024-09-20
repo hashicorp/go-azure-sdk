@@ -19,15 +19,44 @@ type CreateDriveListOperationOperationResponse struct {
 	Model        *beta.RichLongRunningOperation
 }
 
+type CreateDriveListOperationOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateDriveListOperationOperationOptions() CreateDriveListOperationOperationOptions {
+	return CreateDriveListOperationOperationOptions{}
+}
+
+func (o CreateDriveListOperationOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateDriveListOperationOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateDriveListOperationOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateDriveListOperation - Create new navigation property to operations for groups
-func (c DriveListOperationClient) CreateDriveListOperation(ctx context.Context, id beta.GroupIdDriveId, input beta.RichLongRunningOperation) (result CreateDriveListOperationOperationResponse, err error) {
+func (c DriveListOperationClient) CreateDriveListOperation(ctx context.Context, id beta.GroupIdDriveId, input beta.RichLongRunningOperation, options CreateDriveListOperationOperationOptions) (result CreateDriveListOperationOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/list/operations", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/list/operations", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

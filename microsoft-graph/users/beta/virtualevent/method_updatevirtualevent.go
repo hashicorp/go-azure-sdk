@@ -18,15 +18,44 @@ type UpdateVirtualEventOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateVirtualEventOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateVirtualEventOperationOptions() UpdateVirtualEventOperationOptions {
+	return UpdateVirtualEventOperationOptions{}
+}
+
+func (o UpdateVirtualEventOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateVirtualEventOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateVirtualEventOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateVirtualEvent - Update the navigation property virtualEvents in users
-func (c VirtualEventClient) UpdateVirtualEvent(ctx context.Context, id beta.UserId, input beta.UserVirtualEventsRoot) (result UpdateVirtualEventOperationResponse, err error) {
+func (c VirtualEventClient) UpdateVirtualEvent(ctx context.Context, id beta.UserId, input beta.UserVirtualEventsRoot, options UpdateVirtualEventOperationOptions) (result UpdateVirtualEventOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       fmt.Sprintf("%s/virtualEvents", id.ID()),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/virtualEvents", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

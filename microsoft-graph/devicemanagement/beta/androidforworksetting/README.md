@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/androidforworksetting` Documentation
 
-The `androidforworksetting` SDK allows for interaction with the Azure Resource Manager Service `devicemanagement` (API Version `beta`).
+The `androidforworksetting` SDK allows for interaction with Microsoft Graph `devicemanagement` (API Version `beta`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -15,7 +15,7 @@ import "github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/
 ### Client Initialization
 
 ```go
-client := androidforworksetting.NewAndroidForWorkSettingClientWithBaseURI("https://management.azure.com")
+client := androidforworksetting.NewAndroidForWorkSettingClientWithBaseURI("https://graph.microsoft.com")
 client.Client.Authorizer = authorizer
 ```
 
@@ -30,7 +30,7 @@ payload := androidforworksetting.CreateAndroidForWorkSettingCompleteSignupReques
 }
 
 
-read, err := client.CreateAndroidForWorkSettingCompleteSignup(ctx, payload)
+read, err := client.CreateAndroidForWorkSettingCompleteSignup(ctx, payload, androidforworksetting.DefaultCreateAndroidForWorkSettingCompleteSignupOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -46,7 +46,7 @@ if model := read.Model; model != nil {
 ctx := context.TODO()
 
 
-read, err := client.CreateAndroidForWorkSettingUnbind(ctx)
+read, err := client.CreateAndroidForWorkSettingUnbind(ctx, androidforworksetting.DefaultCreateAndroidForWorkSettingUnbindOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -98,7 +98,7 @@ payload := androidforworksetting.RequestAndroidForWorkSettingsSignupUrlRequest{
 }
 
 
-read, err := client.RequestAndroidForWorkSettingsSignupUrl(ctx, payload)
+read, err := client.RequestAndroidForWorkSettingsSignupUrl(ctx, payload, androidforworksetting.DefaultRequestAndroidForWorkSettingsSignupUrlOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -108,13 +108,13 @@ if model := read.Model; model != nil {
 ```
 
 
-### Example Usage: `AndroidForWorkSettingClient.SyncAndroidForWorkSettingsApp`
+### Example Usage: `AndroidForWorkSettingClient.SyncAndroidForWorkSettingsApps`
 
 ```go
 ctx := context.TODO()
 
 
-read, err := client.SyncAndroidForWorkSettingsApp(ctx)
+read, err := client.SyncAndroidForWorkSettingsApps(ctx, androidforworksetting.DefaultSyncAndroidForWorkSettingsAppsOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -134,7 +134,7 @@ payload := androidforworksetting.AndroidForWorkSettings{
 }
 
 
-read, err := client.UpdateAndroidForWorkSetting(ctx, payload)
+read, err := client.UpdateAndroidForWorkSetting(ctx, payload, androidforworksetting.DefaultUpdateAndroidForWorkSettingOperationOptions())
 if err != nil {
 	// handle the error
 }

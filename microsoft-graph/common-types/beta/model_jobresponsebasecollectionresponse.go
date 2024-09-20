@@ -62,10 +62,15 @@ func (s JobResponseBaseCollectionResponse) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &JobResponseBaseCollectionResponse{}
 
 func (s *JobResponseBaseCollectionResponse) UnmarshalJSON(bytes []byte) error {
-	type alias JobResponseBaseCollectionResponse
-	var decoded alias
+
+	var decoded struct {
+		Value         *[]JobResponseBase    `json:"value,omitempty"`
+		ODataId       *string               `json:"@odata.id,omitempty"`
+		ODataNextLink nullable.Type[string] `json:"@odata.nextLink,omitempty"`
+		ODataType     *string               `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into JobResponseBaseCollectionResponse: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.ODataId = decoded.ODataId
@@ -93,5 +98,6 @@ func (s *JobResponseBaseCollectionResponse) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Value = &output
 	}
+
 	return nil
 }

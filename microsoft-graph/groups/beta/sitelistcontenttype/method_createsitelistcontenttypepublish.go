@@ -18,15 +18,44 @@ type CreateSiteListContentTypePublishOperationResponse struct {
 	OData        *odata.OData
 }
 
+type CreateSiteListContentTypePublishOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateSiteListContentTypePublishOperationOptions() CreateSiteListContentTypePublishOperationOptions {
+	return CreateSiteListContentTypePublishOperationOptions{}
+}
+
+func (o CreateSiteListContentTypePublishOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateSiteListContentTypePublishOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateSiteListContentTypePublishOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateSiteListContentTypePublish - Invoke action publish
-func (c SiteListContentTypeClient) CreateSiteListContentTypePublish(ctx context.Context, id beta.GroupIdSiteIdListIdContentTypeId) (result CreateSiteListContentTypePublishOperationResponse, err error) {
+func (c SiteListContentTypeClient) CreateSiteListContentTypePublish(ctx context.Context, id beta.GroupIdSiteIdListIdContentTypeId, options CreateSiteListContentTypePublishOperationOptions) (result CreateSiteListContentTypePublishOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/publish", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/publish", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

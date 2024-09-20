@@ -17,16 +17,45 @@ type UpdateVirtualEndpointOnPremisesConnectionOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateVirtualEndpointOnPremisesConnectionOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateVirtualEndpointOnPremisesConnectionOperationOptions() UpdateVirtualEndpointOnPremisesConnectionOperationOptions {
+	return UpdateVirtualEndpointOnPremisesConnectionOperationOptions{}
+}
+
+func (o UpdateVirtualEndpointOnPremisesConnectionOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateVirtualEndpointOnPremisesConnectionOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateVirtualEndpointOnPremisesConnectionOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateVirtualEndpointOnPremisesConnection - Update cloudPcOnPremisesConnection. Update the properties of a
 // cloudPcOnPremisesConnection object.
-func (c VirtualEndpointOnPremisesConnectionClient) UpdateVirtualEndpointOnPremisesConnection(ctx context.Context, id stable.DeviceManagementVirtualEndpointOnPremisesConnectionId, input stable.CloudPCOnPremisesConnection) (result UpdateVirtualEndpointOnPremisesConnectionOperationResponse, err error) {
+func (c VirtualEndpointOnPremisesConnectionClient) UpdateVirtualEndpointOnPremisesConnection(ctx context.Context, id stable.DeviceManagementVirtualEndpointOnPremisesConnectionId, input stable.CloudPCOnPremisesConnection, options UpdateVirtualEndpointOnPremisesConnectionOperationOptions) (result UpdateVirtualEndpointOnPremisesConnectionOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

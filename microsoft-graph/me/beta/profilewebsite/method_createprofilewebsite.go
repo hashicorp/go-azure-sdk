@@ -18,15 +18,44 @@ type CreateProfileWebsiteOperationResponse struct {
 	Model        *beta.PersonWebsite
 }
 
+type CreateProfileWebsiteOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateProfileWebsiteOperationOptions() CreateProfileWebsiteOperationOptions {
+	return CreateProfileWebsiteOperationOptions{}
+}
+
+func (o CreateProfileWebsiteOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateProfileWebsiteOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateProfileWebsiteOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateProfileWebsite - Create personWebsite. Create a new personWebsite object in a user's profile.
-func (c ProfileWebsiteClient) CreateProfileWebsite(ctx context.Context, input beta.PersonWebsite) (result CreateProfileWebsiteOperationResponse, err error) {
+func (c ProfileWebsiteClient) CreateProfileWebsite(ctx context.Context, input beta.PersonWebsite, options CreateProfileWebsiteOperationOptions) (result CreateProfileWebsiteOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/me/profile/websites",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/me/profile/websites",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

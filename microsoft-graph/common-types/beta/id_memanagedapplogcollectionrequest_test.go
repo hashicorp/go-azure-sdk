@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &MeManagedAppLogCollectionRequestId{}
 
 func TestNewMeManagedAppLogCollectionRequestID(t *testing.T) {
-	id := NewMeManagedAppLogCollectionRequestID("managedAppLogCollectionRequestIdValue")
+	id := NewMeManagedAppLogCollectionRequestID("managedAppLogCollectionRequestId")
 
-	if id.ManagedAppLogCollectionRequestId != "managedAppLogCollectionRequestIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ManagedAppLogCollectionRequestId'", id.ManagedAppLogCollectionRequestId, "managedAppLogCollectionRequestIdValue")
+	if id.ManagedAppLogCollectionRequestId != "managedAppLogCollectionRequestId" {
+		t.Fatalf("Expected %q but got %q for Segment 'ManagedAppLogCollectionRequestId'", id.ManagedAppLogCollectionRequestId, "managedAppLogCollectionRequestId")
 	}
 }
 
 func TestFormatMeManagedAppLogCollectionRequestID(t *testing.T) {
-	actual := NewMeManagedAppLogCollectionRequestID("managedAppLogCollectionRequestIdValue").ID()
-	expected := "/me/managedAppLogCollectionRequests/managedAppLogCollectionRequestIdValue"
+	actual := NewMeManagedAppLogCollectionRequestID("managedAppLogCollectionRequestId").ID()
+	expected := "/me/managedAppLogCollectionRequests/managedAppLogCollectionRequestId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -50,14 +50,14 @@ func TestParseMeManagedAppLogCollectionRequestID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/me/managedAppLogCollectionRequests/managedAppLogCollectionRequestIdValue",
+			Input: "/me/managedAppLogCollectionRequests/managedAppLogCollectionRequestId",
 			Expected: &MeManagedAppLogCollectionRequestId{
-				ManagedAppLogCollectionRequestId: "managedAppLogCollectionRequestIdValue",
+				ManagedAppLogCollectionRequestId: "managedAppLogCollectionRequestId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/managedAppLogCollectionRequests/managedAppLogCollectionRequestIdValue/extra",
+			Input: "/me/managedAppLogCollectionRequests/managedAppLogCollectionRequestId/extra",
 			Error: true,
 		},
 	}
@@ -116,26 +116,26 @@ func TestParseMeManagedAppLogCollectionRequestIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/me/managedAppLogCollectionRequests/managedAppLogCollectionRequestIdValue",
+			Input: "/me/managedAppLogCollectionRequests/managedAppLogCollectionRequestId",
 			Expected: &MeManagedAppLogCollectionRequestId{
-				ManagedAppLogCollectionRequestId: "managedAppLogCollectionRequestIdValue",
+				ManagedAppLogCollectionRequestId: "managedAppLogCollectionRequestId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/managedAppLogCollectionRequests/managedAppLogCollectionRequestIdValue/extra",
+			Input: "/me/managedAppLogCollectionRequests/managedAppLogCollectionRequestId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/mAnAgEdApPlOgCoLlEcTiOnReQuEsTs/mAnAgEdApPlOgCoLlEcTiOnReQuEsTiDvAlUe",
+			Input: "/mE/mAnAgEdApPlOgCoLlEcTiOnReQuEsTs/mAnAgEdApPlOgCoLlEcTiOnReQuEsTiD",
 			Expected: &MeManagedAppLogCollectionRequestId{
-				ManagedAppLogCollectionRequestId: "mAnAgEdApPlOgCoLlEcTiOnReQuEsTiDvAlUe",
+				ManagedAppLogCollectionRequestId: "mAnAgEdApPlOgCoLlEcTiOnReQuEsTiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/mE/mAnAgEdApPlOgCoLlEcTiOnReQuEsTs/mAnAgEdApPlOgCoLlEcTiOnReQuEsTiDvAlUe/extra",
+			Input: "/mE/mAnAgEdApPlOgCoLlEcTiOnReQuEsTs/mAnAgEdApPlOgCoLlEcTiOnReQuEsTiD/extra",
 			Error: true,
 		},
 	}

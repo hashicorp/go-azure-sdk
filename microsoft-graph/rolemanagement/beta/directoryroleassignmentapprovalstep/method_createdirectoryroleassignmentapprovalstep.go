@@ -19,15 +19,44 @@ type CreateDirectoryRoleAssignmentApprovalStepOperationResponse struct {
 	Model        *beta.ApprovalStep
 }
 
+type CreateDirectoryRoleAssignmentApprovalStepOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateDirectoryRoleAssignmentApprovalStepOperationOptions() CreateDirectoryRoleAssignmentApprovalStepOperationOptions {
+	return CreateDirectoryRoleAssignmentApprovalStepOperationOptions{}
+}
+
+func (o CreateDirectoryRoleAssignmentApprovalStepOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateDirectoryRoleAssignmentApprovalStepOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateDirectoryRoleAssignmentApprovalStepOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateDirectoryRoleAssignmentApprovalStep - Create new navigation property to steps for roleManagement
-func (c DirectoryRoleAssignmentApprovalStepClient) CreateDirectoryRoleAssignmentApprovalStep(ctx context.Context, id beta.RoleManagementDirectoryRoleAssignmentApprovalId, input beta.ApprovalStep) (result CreateDirectoryRoleAssignmentApprovalStepOperationResponse, err error) {
+func (c DirectoryRoleAssignmentApprovalStepClient) CreateDirectoryRoleAssignmentApprovalStep(ctx context.Context, id beta.RoleManagementDirectoryRoleAssignmentApprovalId, input beta.ApprovalStep, options CreateDirectoryRoleAssignmentApprovalStepOperationOptions) (result CreateDirectoryRoleAssignmentApprovalStepOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/steps", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/steps", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

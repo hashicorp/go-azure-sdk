@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/informationprotectionsensitivitylabelsublabel` Documentation
 
-The `informationprotectionsensitivitylabelsublabel` SDK allows for interaction with the Azure Resource Manager Service `users` (API Version `beta`).
+The `informationprotectionsensitivitylabelsublabel` SDK allows for interaction with Microsoft Graph `users` (API Version `beta`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -15,7 +15,7 @@ import "github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/information
 ### Client Initialization
 
 ```go
-client := informationprotectionsensitivitylabelsublabel.NewInformationProtectionSensitivityLabelSublabelClientWithBaseURI("https://management.azure.com")
+client := informationprotectionsensitivitylabelsublabel.NewInformationProtectionSensitivityLabelSublabelClientWithBaseURI("https://graph.microsoft.com")
 client.Client.Authorizer = authorizer
 ```
 
@@ -24,35 +24,14 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := informationprotectionsensitivitylabelsublabel.NewUserIdInformationProtectionSensitivityLabelID("userIdValue", "sensitivityLabelIdValue")
+id := informationprotectionsensitivitylabelsublabel.NewUserIdInformationProtectionSensitivityLabelID("userId", "sensitivityLabelId")
 
 payload := informationprotectionsensitivitylabelsublabel.SensitivityLabel{
 	// ...
 }
 
 
-read, err := client.CreateInformationProtectionSensitivityLabelSublabel(ctx, id, payload)
-if err != nil {
-	// handle the error
-}
-if model := read.Model; model != nil {
-	// do something with the model/response object
-}
-```
-
-
-### Example Usage: `InformationProtectionSensitivityLabelSublabelClient.CreateInformationProtectionSensitivityLabelSublabelEvaluate`
-
-```go
-ctx := context.TODO()
-id := informationprotectionsensitivitylabelsublabel.NewUserIdInformationProtectionSensitivityLabelID("userIdValue", "sensitivityLabelIdValue")
-
-payload := informationprotectionsensitivitylabelsublabel.CreateInformationProtectionSensitivityLabelSublabelEvaluateRequest{
-	// ...
-}
-
-
-read, err := client.CreateInformationProtectionSensitivityLabelSublabelEvaluate(ctx, id, payload)
+read, err := client.CreateInformationProtectionSensitivityLabelSublabel(ctx, id, payload, informationprotectionsensitivitylabelsublabel.DefaultCreateInformationProtectionSensitivityLabelSublabelOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -66,9 +45,30 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := informationprotectionsensitivitylabelsublabel.NewUserIdInformationProtectionSensitivityLabelIdSublabelID("userIdValue", "sensitivityLabelIdValue", "sensitivityLabelId1Value")
+id := informationprotectionsensitivitylabelsublabel.NewUserIdInformationProtectionSensitivityLabelIdSublabelID("userId", "sensitivityLabelId", "sensitivityLabelId1")
 
 read, err := client.DeleteInformationProtectionSensitivityLabelSublabel(ctx, id, informationprotectionsensitivitylabelsublabel.DefaultDeleteInformationProtectionSensitivityLabelSublabelOperationOptions())
+if err != nil {
+	// handle the error
+}
+if model := read.Model; model != nil {
+	// do something with the model/response object
+}
+```
+
+
+### Example Usage: `InformationProtectionSensitivityLabelSublabelClient.EvaluateInformationProtectionSensitivityLabelSublabels`
+
+```go
+ctx := context.TODO()
+id := informationprotectionsensitivitylabelsublabel.NewUserIdInformationProtectionSensitivityLabelID("userId", "sensitivityLabelId")
+
+payload := informationprotectionsensitivitylabelsublabel.EvaluateInformationProtectionSensitivityLabelSublabelsRequest{
+	// ...
+}
+
+
+read, err := client.EvaluateInformationProtectionSensitivityLabelSublabels(ctx, id, payload, informationprotectionsensitivitylabelsublabel.DefaultEvaluateInformationProtectionSensitivityLabelSublabelsOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -82,7 +82,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := informationprotectionsensitivitylabelsublabel.NewUserIdInformationProtectionSensitivityLabelIdSublabelID("userIdValue", "sensitivityLabelIdValue", "sensitivityLabelId1Value")
+id := informationprotectionsensitivitylabelsublabel.NewUserIdInformationProtectionSensitivityLabelIdSublabelID("userId", "sensitivityLabelId", "sensitivityLabelId1")
 
 read, err := client.GetInformationProtectionSensitivityLabelSublabel(ctx, id, informationprotectionsensitivitylabelsublabel.DefaultGetInformationProtectionSensitivityLabelSublabelOperationOptions())
 if err != nil {
@@ -98,7 +98,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := informationprotectionsensitivitylabelsublabel.NewUserIdInformationProtectionSensitivityLabelID("userIdValue", "sensitivityLabelIdValue")
+id := informationprotectionsensitivitylabelsublabel.NewUserIdInformationProtectionSensitivityLabelID("userId", "sensitivityLabelId")
 
 read, err := client.GetInformationProtectionSensitivityLabelSublabelsCount(ctx, id, informationprotectionsensitivitylabelsublabel.DefaultGetInformationProtectionSensitivityLabelSublabelsCountOperationOptions())
 if err != nil {
@@ -114,7 +114,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := informationprotectionsensitivitylabelsublabel.NewUserIdInformationProtectionSensitivityLabelID("userIdValue", "sensitivityLabelIdValue")
+id := informationprotectionsensitivitylabelsublabel.NewUserIdInformationProtectionSensitivityLabelID("userId", "sensitivityLabelId")
 
 // alternatively `client.ListInformationProtectionSensitivityLabelSublabels(ctx, id, informationprotectionsensitivitylabelsublabel.DefaultListInformationProtectionSensitivityLabelSublabelsOperationOptions())` can be used to do batched pagination
 items, err := client.ListInformationProtectionSensitivityLabelSublabelsComplete(ctx, id, informationprotectionsensitivitylabelsublabel.DefaultListInformationProtectionSensitivityLabelSublabelsOperationOptions())
@@ -131,14 +131,14 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := informationprotectionsensitivitylabelsublabel.NewUserIdInformationProtectionSensitivityLabelIdSublabelID("userIdValue", "sensitivityLabelIdValue", "sensitivityLabelId1Value")
+id := informationprotectionsensitivitylabelsublabel.NewUserIdInformationProtectionSensitivityLabelIdSublabelID("userId", "sensitivityLabelId", "sensitivityLabelId1")
 
 payload := informationprotectionsensitivitylabelsublabel.SensitivityLabel{
 	// ...
 }
 
 
-read, err := client.UpdateInformationProtectionSensitivityLabelSublabel(ctx, id, payload)
+read, err := client.UpdateInformationProtectionSensitivityLabelSublabel(ctx, id, payload, informationprotectionsensitivitylabelsublabel.DefaultUpdateInformationProtectionSensitivityLabelSublabelOperationOptions())
 if err != nil {
 	// handle the error
 }

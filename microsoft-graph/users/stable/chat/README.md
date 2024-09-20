@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/microsoft-graph/users/stable/chat` Documentation
 
-The `chat` SDK allows for interaction with the Azure Resource Manager Service `users` (API Version `stable`).
+The `chat` SDK allows for interaction with Microsoft Graph `users` (API Version `stable`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -15,7 +15,7 @@ import "github.com/hashicorp/go-azure-sdk/microsoft-graph/users/stable/chat"
 ### Client Initialization
 
 ```go
-client := chat.NewChatClientWithBaseURI("https://management.azure.com")
+client := chat.NewChatClientWithBaseURI("https://graph.microsoft.com")
 client.Client.Authorizer = authorizer
 ```
 
@@ -24,14 +24,14 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := chat.NewUserID("userIdValue")
+id := chat.NewUserID("userId")
 
 payload := chat.Chat{
 	// ...
 }
 
 
-read, err := client.CreateChat(ctx, id, payload)
+read, err := client.CreateChat(ctx, id, payload, chat.DefaultCreateChatOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -45,7 +45,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := chat.NewUserIdChatID("userIdValue", "chatIdValue")
+id := chat.NewUserIdChatID("userId", "chatId")
 
 read, err := client.DeleteChat(ctx, id, chat.DefaultDeleteChatOperationOptions())
 if err != nil {
@@ -61,7 +61,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := chat.NewUserIdChatID("userIdValue", "chatIdValue")
+id := chat.NewUserIdChatID("userId", "chatId")
 
 read, err := client.GetChat(ctx, id, chat.DefaultGetChatOperationOptions())
 if err != nil {
@@ -77,7 +77,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := chat.NewUserID("userIdValue")
+id := chat.NewUserID("userId")
 
 read, err := client.GetChatsCount(ctx, id, chat.DefaultGetChatsCountOperationOptions())
 if err != nil {
@@ -93,14 +93,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := chat.NewUserIdChatID("userIdValue", "chatIdValue")
+id := chat.NewUserIdChatID("userId", "chatId")
 
 payload := chat.HideChatForUserRequest{
 	// ...
 }
 
 
-read, err := client.HideChatForUser(ctx, id, payload)
+read, err := client.HideChatForUser(ctx, id, payload, chat.DefaultHideChatForUserOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -114,7 +114,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := chat.NewUserID("userIdValue")
+id := chat.NewUserID("userId")
 
 // alternatively `client.ListChats(ctx, id, chat.DefaultListChatsOperationOptions())` can be used to do batched pagination
 items, err := client.ListChatsComplete(ctx, id, chat.DefaultListChatsOperationOptions())
@@ -131,14 +131,14 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := chat.NewUserIdChatID("userIdValue", "chatIdValue")
+id := chat.NewUserIdChatID("userId", "chatId")
 
 payload := chat.MarkChatReadForUserRequest{
 	// ...
 }
 
 
-read, err := client.MarkChatReadForUser(ctx, id, payload)
+read, err := client.MarkChatReadForUser(ctx, id, payload, chat.DefaultMarkChatReadForUserOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -152,14 +152,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := chat.NewUserIdChatID("userIdValue", "chatIdValue")
+id := chat.NewUserIdChatID("userId", "chatId")
 
 payload := chat.MarkChatUnreadForUserRequest{
 	// ...
 }
 
 
-read, err := client.MarkChatUnreadForUser(ctx, id, payload)
+read, err := client.MarkChatUnreadForUser(ctx, id, payload, chat.DefaultMarkChatUnreadForUserOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -173,14 +173,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := chat.NewUserIdChatID("userIdValue", "chatIdValue")
+id := chat.NewUserIdChatID("userId", "chatId")
 
 payload := chat.SendChatActivityNotificationRequest{
 	// ...
 }
 
 
-read, err := client.SendChatActivityNotification(ctx, id, payload)
+read, err := client.SendChatActivityNotification(ctx, id, payload, chat.DefaultSendChatActivityNotificationOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -194,14 +194,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := chat.NewUserIdChatID("userIdValue", "chatIdValue")
+id := chat.NewUserIdChatID("userId", "chatId")
 
 payload := chat.UnhideChatForUserRequest{
 	// ...
 }
 
 
-read, err := client.UnhideChatForUser(ctx, id, payload)
+read, err := client.UnhideChatForUser(ctx, id, payload, chat.DefaultUnhideChatForUserOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -215,14 +215,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := chat.NewUserIdChatID("userIdValue", "chatIdValue")
+id := chat.NewUserIdChatID("userId", "chatId")
 
 payload := chat.Chat{
 	// ...
 }
 
 
-read, err := client.UpdateChat(ctx, id, payload)
+read, err := client.UpdateChat(ctx, id, payload, chat.DefaultUpdateChatOperationOptions())
 if err != nil {
 	// handle the error
 }

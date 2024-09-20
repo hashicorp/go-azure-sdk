@@ -19,7 +19,8 @@ type DeleteOnlineMeetingRegistrationCustomQuestionOperationResponse struct {
 }
 
 type DeleteOnlineMeetingRegistrationCustomQuestionOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteOnlineMeetingRegistrationCustomQuestionOperationOptions() DeleteOnlineMeetingRegistrationCustomQuestionOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteOnlineMeetingRegistrationCustomQuestionOperationOptions) ToHeaders
 
 func (o DeleteOnlineMeetingRegistrationCustomQuestionOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

@@ -25,14 +25,15 @@ type ListDeviceCustomAttributeShellScriptAssignmentsCompleteResult struct {
 }
 
 type ListDeviceCustomAttributeShellScriptAssignmentsOperationOptions struct {
-	Count   *bool
-	Expand  *odata.Expand
-	Filter  *string
-	OrderBy *odata.OrderBy
-	Search  *string
-	Select  *[]string
-	Skip    *int64
-	Top     *int64
+	Count    *bool
+	Expand   *odata.Expand
+	Filter   *string
+	Metadata *odata.Metadata
+	OrderBy  *odata.OrderBy
+	Search   *string
+	Select   *[]string
+	Skip     *int64
+	Top      *int64
 }
 
 func DefaultListDeviceCustomAttributeShellScriptAssignmentsOperationOptions() ListDeviceCustomAttributeShellScriptAssignmentsOperationOptions {
@@ -55,6 +56,9 @@ func (o ListDeviceCustomAttributeShellScriptAssignmentsOperationOptions) ToOData
 	}
 	if o.Filter != nil {
 		out.Filter = *o.Filter
+	}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
 	}
 	if o.OrderBy != nil {
 		out.OrderBy = *o.OrderBy

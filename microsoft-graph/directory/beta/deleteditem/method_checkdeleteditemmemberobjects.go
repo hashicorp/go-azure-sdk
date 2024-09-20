@@ -25,8 +25,9 @@ type CheckDeletedItemMemberObjectsCompleteResult struct {
 }
 
 type CheckDeletedItemMemberObjectsOperationOptions struct {
-	Skip *int64
-	Top  *int64
+	Metadata *odata.Metadata
+	Skip     *int64
+	Top      *int64
 }
 
 func DefaultCheckDeletedItemMemberObjectsOperationOptions() CheckDeletedItemMemberObjectsOperationOptions {
@@ -41,6 +42,9 @@ func (o CheckDeletedItemMemberObjectsOperationOptions) ToHeaders() *client.Heade
 
 func (o CheckDeletedItemMemberObjectsOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	if o.Skip != nil {
 		out.Skip = int(*o.Skip)
 	}

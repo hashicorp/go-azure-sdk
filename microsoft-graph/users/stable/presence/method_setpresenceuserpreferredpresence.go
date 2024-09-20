@@ -18,20 +18,49 @@ type SetPresenceUserPreferredPresenceOperationResponse struct {
 	OData        *odata.OData
 }
 
+type SetPresenceUserPreferredPresenceOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultSetPresenceUserPreferredPresenceOperationOptions() SetPresenceUserPreferredPresenceOperationOptions {
+	return SetPresenceUserPreferredPresenceOperationOptions{}
+}
+
+func (o SetPresenceUserPreferredPresenceOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o SetPresenceUserPreferredPresenceOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o SetPresenceUserPreferredPresenceOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // SetPresenceUserPreferredPresence - Invoke action setUserPreferredPresence. Set the preferred availability and
 // activity status for a user. If the preferred presence of a user is set, the user's presence shows as the preferred
 // status. Preferred presence takes effect only when at least one presence session exists for the user. Otherwise, the
 // user's presence shows as Offline. A presence session is created as a result of a successful setPresence operation, or
 // if the user is signed in on a Microsoft Teams client. For more details, see presence sessions and time-out and
 // expiration.
-func (c PresenceClient) SetPresenceUserPreferredPresence(ctx context.Context, id stable.UserId, input SetPresenceUserPreferredPresenceRequest) (result SetPresenceUserPreferredPresenceOperationResponse, err error) {
+func (c PresenceClient) SetPresenceUserPreferredPresence(ctx context.Context, id stable.UserId, input SetPresenceUserPreferredPresenceRequest, options SetPresenceUserPreferredPresenceOperationOptions) (result SetPresenceUserPreferredPresenceOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/presence/setUserPreferredPresence", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/presence/setUserPreferredPresence", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

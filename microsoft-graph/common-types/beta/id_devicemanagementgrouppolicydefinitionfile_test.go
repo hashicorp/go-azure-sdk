@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &DeviceManagementGroupPolicyDefinitionFileId{}
 
 func TestNewDeviceManagementGroupPolicyDefinitionFileID(t *testing.T) {
-	id := NewDeviceManagementGroupPolicyDefinitionFileID("groupPolicyDefinitionFileIdValue")
+	id := NewDeviceManagementGroupPolicyDefinitionFileID("groupPolicyDefinitionFileId")
 
-	if id.GroupPolicyDefinitionFileId != "groupPolicyDefinitionFileIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'GroupPolicyDefinitionFileId'", id.GroupPolicyDefinitionFileId, "groupPolicyDefinitionFileIdValue")
+	if id.GroupPolicyDefinitionFileId != "groupPolicyDefinitionFileId" {
+		t.Fatalf("Expected %q but got %q for Segment 'GroupPolicyDefinitionFileId'", id.GroupPolicyDefinitionFileId, "groupPolicyDefinitionFileId")
 	}
 }
 
 func TestFormatDeviceManagementGroupPolicyDefinitionFileID(t *testing.T) {
-	actual := NewDeviceManagementGroupPolicyDefinitionFileID("groupPolicyDefinitionFileIdValue").ID()
-	expected := "/deviceManagement/groupPolicyDefinitionFiles/groupPolicyDefinitionFileIdValue"
+	actual := NewDeviceManagementGroupPolicyDefinitionFileID("groupPolicyDefinitionFileId").ID()
+	expected := "/deviceManagement/groupPolicyDefinitionFiles/groupPolicyDefinitionFileId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -50,14 +50,14 @@ func TestParseDeviceManagementGroupPolicyDefinitionFileID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/groupPolicyDefinitionFiles/groupPolicyDefinitionFileIdValue",
+			Input: "/deviceManagement/groupPolicyDefinitionFiles/groupPolicyDefinitionFileId",
 			Expected: &DeviceManagementGroupPolicyDefinitionFileId{
-				GroupPolicyDefinitionFileId: "groupPolicyDefinitionFileIdValue",
+				GroupPolicyDefinitionFileId: "groupPolicyDefinitionFileId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/groupPolicyDefinitionFiles/groupPolicyDefinitionFileIdValue/extra",
+			Input: "/deviceManagement/groupPolicyDefinitionFiles/groupPolicyDefinitionFileId/extra",
 			Error: true,
 		},
 	}
@@ -116,26 +116,26 @@ func TestParseDeviceManagementGroupPolicyDefinitionFileIDInsensitively(t *testin
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/groupPolicyDefinitionFiles/groupPolicyDefinitionFileIdValue",
+			Input: "/deviceManagement/groupPolicyDefinitionFiles/groupPolicyDefinitionFileId",
 			Expected: &DeviceManagementGroupPolicyDefinitionFileId{
-				GroupPolicyDefinitionFileId: "groupPolicyDefinitionFileIdValue",
+				GroupPolicyDefinitionFileId: "groupPolicyDefinitionFileId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/groupPolicyDefinitionFiles/groupPolicyDefinitionFileIdValue/extra",
+			Input: "/deviceManagement/groupPolicyDefinitionFiles/groupPolicyDefinitionFileId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/gRoUpPoLiCyDeFiNiTiOnFiLeS/gRoUpPoLiCyDeFiNiTiOnFiLeIdVaLuE",
+			Input: "/dEvIcEmAnAgEmEnT/gRoUpPoLiCyDeFiNiTiOnFiLeS/gRoUpPoLiCyDeFiNiTiOnFiLeId",
 			Expected: &DeviceManagementGroupPolicyDefinitionFileId{
-				GroupPolicyDefinitionFileId: "gRoUpPoLiCyDeFiNiTiOnFiLeIdVaLuE",
+				GroupPolicyDefinitionFileId: "gRoUpPoLiCyDeFiNiTiOnFiLeId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/gRoUpPoLiCyDeFiNiTiOnFiLeS/gRoUpPoLiCyDeFiNiTiOnFiLeIdVaLuE/extra",
+			Input: "/dEvIcEmAnAgEmEnT/gRoUpPoLiCyDeFiNiTiOnFiLeS/gRoUpPoLiCyDeFiNiTiOnFiLeId/extra",
 			Error: true,
 		},
 	}

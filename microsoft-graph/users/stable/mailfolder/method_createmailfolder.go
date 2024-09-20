@@ -20,15 +20,44 @@ type CreateMailFolderOperationResponse struct {
 	Model        stable.MailFolder
 }
 
+type CreateMailFolderOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateMailFolderOperationOptions() CreateMailFolderOperationOptions {
+	return CreateMailFolderOperationOptions{}
+}
+
+func (o CreateMailFolderOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateMailFolderOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateMailFolderOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateMailFolder - Create new navigation property to mailFolders for users
-func (c MailFolderClient) CreateMailFolder(ctx context.Context, id stable.UserId, input stable.MailFolder) (result CreateMailFolderOperationResponse, err error) {
+func (c MailFolderClient) CreateMailFolder(ctx context.Context, id stable.UserId, input stable.MailFolder, options CreateMailFolderOperationOptions) (result CreateMailFolderOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/mailFolders", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/mailFolders", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

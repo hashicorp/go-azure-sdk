@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &MeContactIdExtensionId{}
 
 func TestNewMeContactIdExtensionID(t *testing.T) {
-	id := NewMeContactIdExtensionID("contactIdValue", "extensionIdValue")
+	id := NewMeContactIdExtensionID("contactId", "extensionId")
 
-	if id.ContactId != "contactIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ContactId'", id.ContactId, "contactIdValue")
+	if id.ContactId != "contactId" {
+		t.Fatalf("Expected %q but got %q for Segment 'ContactId'", id.ContactId, "contactId")
 	}
 
-	if id.ExtensionId != "extensionIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ExtensionId'", id.ExtensionId, "extensionIdValue")
+	if id.ExtensionId != "extensionId" {
+		t.Fatalf("Expected %q but got %q for Segment 'ExtensionId'", id.ExtensionId, "extensionId")
 	}
 }
 
 func TestFormatMeContactIdExtensionID(t *testing.T) {
-	actual := NewMeContactIdExtensionID("contactIdValue", "extensionIdValue").ID()
-	expected := "/me/contacts/contactIdValue/extensions/extensionIdValue"
+	actual := NewMeContactIdExtensionID("contactId", "extensionId").ID()
+	expected := "/me/contacts/contactId/extensions/extensionId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -54,25 +54,25 @@ func TestParseMeContactIdExtensionID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/me/contacts/contactIdValue",
+			Input: "/me/contacts/contactId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/me/contacts/contactIdValue/extensions",
+			Input: "/me/contacts/contactId/extensions",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/me/contacts/contactIdValue/extensions/extensionIdValue",
+			Input: "/me/contacts/contactId/extensions/extensionId",
 			Expected: &MeContactIdExtensionId{
-				ContactId:   "contactIdValue",
-				ExtensionId: "extensionIdValue",
+				ContactId:   "contactId",
+				ExtensionId: "extensionId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/contacts/contactIdValue/extensions/extensionIdValue/extra",
+			Input: "/me/contacts/contactId/extensions/extensionId/extra",
 			Error: true,
 		},
 	}
@@ -135,48 +135,48 @@ func TestParseMeContactIdExtensionIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/me/contacts/contactIdValue",
+			Input: "/me/contacts/contactId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/cOnTaCtS/cOnTaCtIdVaLuE",
+			Input: "/mE/cOnTaCtS/cOnTaCtId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/me/contacts/contactIdValue/extensions",
+			Input: "/me/contacts/contactId/extensions",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/cOnTaCtS/cOnTaCtIdVaLuE/eXtEnSiOnS",
+			Input: "/mE/cOnTaCtS/cOnTaCtId/eXtEnSiOnS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/me/contacts/contactIdValue/extensions/extensionIdValue",
+			Input: "/me/contacts/contactId/extensions/extensionId",
 			Expected: &MeContactIdExtensionId{
-				ContactId:   "contactIdValue",
-				ExtensionId: "extensionIdValue",
+				ContactId:   "contactId",
+				ExtensionId: "extensionId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/contacts/contactIdValue/extensions/extensionIdValue/extra",
+			Input: "/me/contacts/contactId/extensions/extensionId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/cOnTaCtS/cOnTaCtIdVaLuE/eXtEnSiOnS/eXtEnSiOnIdVaLuE",
+			Input: "/mE/cOnTaCtS/cOnTaCtId/eXtEnSiOnS/eXtEnSiOnId",
 			Expected: &MeContactIdExtensionId{
-				ContactId:   "cOnTaCtIdVaLuE",
-				ExtensionId: "eXtEnSiOnIdVaLuE",
+				ContactId:   "cOnTaCtId",
+				ExtensionId: "eXtEnSiOnId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/mE/cOnTaCtS/cOnTaCtIdVaLuE/eXtEnSiOnS/eXtEnSiOnIdVaLuE/extra",
+			Input: "/mE/cOnTaCtS/cOnTaCtId/eXtEnSiOnS/eXtEnSiOnId/extra",
 			Error: true,
 		},
 	}

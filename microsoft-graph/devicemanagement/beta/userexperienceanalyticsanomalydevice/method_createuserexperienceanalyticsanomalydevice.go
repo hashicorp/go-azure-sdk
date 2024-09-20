@@ -18,16 +18,45 @@ type CreateUserExperienceAnalyticsAnomalyDeviceOperationResponse struct {
 	Model        *beta.UserExperienceAnalyticsAnomalyDevice
 }
 
+type CreateUserExperienceAnalyticsAnomalyDeviceOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateUserExperienceAnalyticsAnomalyDeviceOperationOptions() CreateUserExperienceAnalyticsAnomalyDeviceOperationOptions {
+	return CreateUserExperienceAnalyticsAnomalyDeviceOperationOptions{}
+}
+
+func (o CreateUserExperienceAnalyticsAnomalyDeviceOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateUserExperienceAnalyticsAnomalyDeviceOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateUserExperienceAnalyticsAnomalyDeviceOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateUserExperienceAnalyticsAnomalyDevice - Create new navigation property to userExperienceAnalyticsAnomalyDevice
 // for deviceManagement
-func (c UserExperienceAnalyticsAnomalyDeviceClient) CreateUserExperienceAnalyticsAnomalyDevice(ctx context.Context, input beta.UserExperienceAnalyticsAnomalyDevice) (result CreateUserExperienceAnalyticsAnomalyDeviceOperationResponse, err error) {
+func (c UserExperienceAnalyticsAnomalyDeviceClient) CreateUserExperienceAnalyticsAnomalyDevice(ctx context.Context, input beta.UserExperienceAnalyticsAnomalyDevice, options CreateUserExperienceAnalyticsAnomalyDeviceOperationOptions) (result CreateUserExperienceAnalyticsAnomalyDeviceOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/deviceManagement/userExperienceAnalyticsAnomalyDevice",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/deviceManagement/userExperienceAnalyticsAnomalyDevice",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

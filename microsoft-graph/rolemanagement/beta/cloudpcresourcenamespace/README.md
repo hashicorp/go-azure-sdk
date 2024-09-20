@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/microsoft-graph/rolemanagement/beta/cloudpcresourcenamespace` Documentation
 
-The `cloudpcresourcenamespace` SDK allows for interaction with the Azure Resource Manager Service `rolemanagement` (API Version `beta`).
+The `cloudpcresourcenamespace` SDK allows for interaction with Microsoft Graph `rolemanagement` (API Version `beta`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -15,7 +15,7 @@ import "github.com/hashicorp/go-azure-sdk/microsoft-graph/rolemanagement/beta/cl
 ### Client Initialization
 
 ```go
-client := cloudpcresourcenamespace.NewCloudPCResourceNamespaceClientWithBaseURI("https://management.azure.com")
+client := cloudpcresourcenamespace.NewCloudPCResourceNamespaceClientWithBaseURI("https://graph.microsoft.com")
 client.Client.Authorizer = authorizer
 ```
 
@@ -30,7 +30,7 @@ payload := cloudpcresourcenamespace.UnifiedRbacResourceNamespace{
 }
 
 
-read, err := client.CreateCloudPCResourceNamespace(ctx, payload)
+read, err := client.CreateCloudPCResourceNamespace(ctx, payload, cloudpcresourcenamespace.DefaultCreateCloudPCResourceNamespaceOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -44,14 +44,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := cloudpcresourcenamespace.NewRoleManagementCloudPCResourceNamespaceID("unifiedRbacResourceNamespaceIdValue")
+id := cloudpcresourcenamespace.NewRoleManagementCloudPCResourceNamespaceID("unifiedRbacResourceNamespaceId")
 
 payload := cloudpcresourcenamespace.CreateCloudPCResourceNamespaceImportResourceActionRequest{
 	// ...
 }
 
 
-read, err := client.CreateCloudPCResourceNamespaceImportResourceAction(ctx, id, payload)
+read, err := client.CreateCloudPCResourceNamespaceImportResourceAction(ctx, id, payload, cloudpcresourcenamespace.DefaultCreateCloudPCResourceNamespaceImportResourceActionOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -65,7 +65,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := cloudpcresourcenamespace.NewRoleManagementCloudPCResourceNamespaceID("unifiedRbacResourceNamespaceIdValue")
+id := cloudpcresourcenamespace.NewRoleManagementCloudPCResourceNamespaceID("unifiedRbacResourceNamespaceId")
 
 read, err := client.DeleteCloudPCResourceNamespace(ctx, id, cloudpcresourcenamespace.DefaultDeleteCloudPCResourceNamespaceOperationOptions())
 if err != nil {
@@ -81,7 +81,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := cloudpcresourcenamespace.NewRoleManagementCloudPCResourceNamespaceID("unifiedRbacResourceNamespaceIdValue")
+id := cloudpcresourcenamespace.NewRoleManagementCloudPCResourceNamespaceID("unifiedRbacResourceNamespaceId")
 
 read, err := client.GetCloudPCResourceNamespace(ctx, id, cloudpcresourcenamespace.DefaultGetCloudPCResourceNamespaceOperationOptions())
 if err != nil {
@@ -130,14 +130,14 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := cloudpcresourcenamespace.NewRoleManagementCloudPCResourceNamespaceID("unifiedRbacResourceNamespaceIdValue")
+id := cloudpcresourcenamespace.NewRoleManagementCloudPCResourceNamespaceID("unifiedRbacResourceNamespaceId")
 
 payload := cloudpcresourcenamespace.UnifiedRbacResourceNamespace{
 	// ...
 }
 
 
-read, err := client.UpdateCloudPCResourceNamespace(ctx, id, payload)
+read, err := client.UpdateCloudPCResourceNamespace(ctx, id, payload, cloudpcresourcenamespace.DefaultUpdateCloudPCResourceNamespaceOperationOptions())
 if err != nil {
 	// handle the error
 }

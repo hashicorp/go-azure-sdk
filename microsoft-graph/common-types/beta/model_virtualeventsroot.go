@@ -67,17 +67,24 @@ func (s VirtualEventsRoot) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &VirtualEventsRoot{}
 
 func (s *VirtualEventsRoot) UnmarshalJSON(bytes []byte) error {
-	type alias VirtualEventsRoot
-	var decoded alias
+
+	var decoded struct {
+		Events    *[]VirtualEvent         `json:"events,omitempty"`
+		Townhalls *[]VirtualEventTownhall `json:"townhalls,omitempty"`
+		Webinars  *[]VirtualEventWebinar  `json:"webinars,omitempty"`
+		Id        *string                 `json:"id,omitempty"`
+		ODataId   *string                 `json:"@odata.id,omitempty"`
+		ODataType *string                 `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into VirtualEventsRoot: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
+	s.Townhalls = decoded.Townhalls
+	s.Webinars = decoded.Webinars
 	s.Id = decoded.Id
 	s.ODataId = decoded.ODataId
 	s.ODataType = decoded.ODataType
-	s.Townhalls = decoded.Townhalls
-	s.Webinars = decoded.Webinars
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -100,5 +107,6 @@ func (s *VirtualEventsRoot) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Events = &output
 	}
+
 	return nil
 }

@@ -18,15 +18,44 @@ type UpdateInformationProtectionPolicyOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateInformationProtectionPolicyOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateInformationProtectionPolicyOperationOptions() UpdateInformationProtectionPolicyOperationOptions {
+	return UpdateInformationProtectionPolicyOperationOptions{}
+}
+
+func (o UpdateInformationProtectionPolicyOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateInformationProtectionPolicyOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateInformationProtectionPolicyOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateInformationProtectionPolicy - Update the navigation property policy in users
-func (c InformationProtectionPolicyClient) UpdateInformationProtectionPolicy(ctx context.Context, id beta.UserId, input beta.InformationProtectionPolicy) (result UpdateInformationProtectionPolicyOperationResponse, err error) {
+func (c InformationProtectionPolicyClient) UpdateInformationProtectionPolicy(ctx context.Context, id beta.UserId, input beta.InformationProtectionPolicy, options UpdateInformationProtectionPolicyOperationOptions) (result UpdateInformationProtectionPolicyOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       fmt.Sprintf("%s/informationProtection/policy", id.ID()),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/informationProtection/policy", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

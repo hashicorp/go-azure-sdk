@@ -19,20 +19,49 @@ type CreateTodoListTaskAttachmentsUploadSessionOperationResponse struct {
 	Model        *stable.UploadSession
 }
 
+type CreateTodoListTaskAttachmentsUploadSessionOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateTodoListTaskAttachmentsUploadSessionOperationOptions() CreateTodoListTaskAttachmentsUploadSessionOperationOptions {
+	return CreateTodoListTaskAttachmentsUploadSessionOperationOptions{}
+}
+
+func (o CreateTodoListTaskAttachmentsUploadSessionOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateTodoListTaskAttachmentsUploadSessionOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateTodoListTaskAttachmentsUploadSessionOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateTodoListTaskAttachmentsUploadSession - Invoke action createUploadSession. Create an upload session to
 // iteratively upload ranges of a file as an attachment to a todoTask. As part of the response, this action returns an
 // upload URL that you can use in subsequent sequential PUT queries. The request headers for each PUT operation let you
 // specify the exact range of bytes to be uploaded. This allows the transfer to be resumed, in case the network
 // connection is dropped during the upload. The following are the steps to attach a file to a Microsoft To Do task using
 // an upload session: For an example that describes the end-to-end attachment process, see attach files to a To Do task.
-func (c TodoListTaskAttachmentClient) CreateTodoListTaskAttachmentsUploadSession(ctx context.Context, id stable.MeTodoListIdTaskId, input CreateTodoListTaskAttachmentsUploadSessionRequest) (result CreateTodoListTaskAttachmentsUploadSessionOperationResponse, err error) {
+func (c TodoListTaskAttachmentClient) CreateTodoListTaskAttachmentsUploadSession(ctx context.Context, id stable.MeTodoListIdTaskId, input CreateTodoListTaskAttachmentsUploadSessionRequest, options CreateTodoListTaskAttachmentsUploadSessionOperationOptions) (result CreateTodoListTaskAttachmentsUploadSessionOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/attachments/createUploadSession", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/attachments/createUploadSession", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

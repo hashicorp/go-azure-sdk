@@ -18,7 +18,8 @@ type DeleteLifecycleWorkflowDeletedItemOperationResponse struct {
 }
 
 type DeleteLifecycleWorkflowDeletedItemOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteLifecycleWorkflowDeletedItemOperationOptions() DeleteLifecycleWorkflowDeletedItemOperationOptions {
@@ -35,7 +36,9 @@ func (o DeleteLifecycleWorkflowDeletedItemOperationOptions) ToHeaders() *client.
 
 func (o DeleteLifecycleWorkflowDeletedItemOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

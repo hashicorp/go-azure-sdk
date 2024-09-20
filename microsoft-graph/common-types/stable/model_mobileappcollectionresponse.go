@@ -62,10 +62,15 @@ func (s MobileAppCollectionResponse) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &MobileAppCollectionResponse{}
 
 func (s *MobileAppCollectionResponse) UnmarshalJSON(bytes []byte) error {
-	type alias MobileAppCollectionResponse
-	var decoded alias
+
+	var decoded struct {
+		Value         *[]MobileApp          `json:"value,omitempty"`
+		ODataId       *string               `json:"@odata.id,omitempty"`
+		ODataNextLink nullable.Type[string] `json:"@odata.nextLink,omitempty"`
+		ODataType     *string               `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into MobileAppCollectionResponse: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.ODataId = decoded.ODataId
@@ -93,5 +98,6 @@ func (s *MobileAppCollectionResponse) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Value = &output
 	}
+
 	return nil
 }

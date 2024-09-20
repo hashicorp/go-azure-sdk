@@ -19,7 +19,8 @@ type DeleteUserCredentialUsageDetailOperationResponse struct {
 }
 
 type DeleteUserCredentialUsageDetailOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteUserCredentialUsageDetailOperationOptions() DeleteUserCredentialUsageDetailOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteUserCredentialUsageDetailOperationOptions) ToHeaders() *client.Hea
 
 func (o DeleteUserCredentialUsageDetailOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

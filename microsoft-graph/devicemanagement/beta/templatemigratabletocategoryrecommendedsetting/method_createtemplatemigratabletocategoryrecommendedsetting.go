@@ -20,16 +20,45 @@ type CreateTemplateMigratableToCategoryRecommendedSettingOperationResponse struc
 	Model        beta.DeviceManagementSettingInstance
 }
 
+type CreateTemplateMigratableToCategoryRecommendedSettingOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateTemplateMigratableToCategoryRecommendedSettingOperationOptions() CreateTemplateMigratableToCategoryRecommendedSettingOperationOptions {
+	return CreateTemplateMigratableToCategoryRecommendedSettingOperationOptions{}
+}
+
+func (o CreateTemplateMigratableToCategoryRecommendedSettingOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateTemplateMigratableToCategoryRecommendedSettingOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateTemplateMigratableToCategoryRecommendedSettingOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateTemplateMigratableToCategoryRecommendedSetting - Create new navigation property to recommendedSettings for
 // deviceManagement
-func (c TemplateMigratableToCategoryRecommendedSettingClient) CreateTemplateMigratableToCategoryRecommendedSetting(ctx context.Context, id beta.DeviceManagementTemplateIdMigratableToIdCategoryId, input beta.DeviceManagementSettingInstance) (result CreateTemplateMigratableToCategoryRecommendedSettingOperationResponse, err error) {
+func (c TemplateMigratableToCategoryRecommendedSettingClient) CreateTemplateMigratableToCategoryRecommendedSetting(ctx context.Context, id beta.DeviceManagementTemplateIdMigratableToIdCategoryId, input beta.DeviceManagementSettingInstance, options CreateTemplateMigratableToCategoryRecommendedSettingOperationOptions) (result CreateTemplateMigratableToCategoryRecommendedSettingOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/recommendedSettings", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/recommendedSettings", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

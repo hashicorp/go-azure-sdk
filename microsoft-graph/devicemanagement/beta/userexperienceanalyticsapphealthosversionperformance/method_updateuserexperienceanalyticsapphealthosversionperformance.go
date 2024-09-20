@@ -17,16 +17,45 @@ type UpdateUserExperienceAnalyticsAppHealthOSVersionPerformanceOperationResponse
 	OData        *odata.OData
 }
 
+type UpdateUserExperienceAnalyticsAppHealthOSVersionPerformanceOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateUserExperienceAnalyticsAppHealthOSVersionPerformanceOperationOptions() UpdateUserExperienceAnalyticsAppHealthOSVersionPerformanceOperationOptions {
+	return UpdateUserExperienceAnalyticsAppHealthOSVersionPerformanceOperationOptions{}
+}
+
+func (o UpdateUserExperienceAnalyticsAppHealthOSVersionPerformanceOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateUserExperienceAnalyticsAppHealthOSVersionPerformanceOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateUserExperienceAnalyticsAppHealthOSVersionPerformanceOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateUserExperienceAnalyticsAppHealthOSVersionPerformance - Update the navigation property
 // userExperienceAnalyticsAppHealthOSVersionPerformance in deviceManagement
-func (c UserExperienceAnalyticsAppHealthOSVersionPerformanceClient) UpdateUserExperienceAnalyticsAppHealthOSVersionPerformance(ctx context.Context, id beta.DeviceManagementUserExperienceAnalyticsAppHealthOSVersionPerformanceId, input beta.UserExperienceAnalyticsAppHealthOSVersionPerformance) (result UpdateUserExperienceAnalyticsAppHealthOSVersionPerformanceOperationResponse, err error) {
+func (c UserExperienceAnalyticsAppHealthOSVersionPerformanceClient) UpdateUserExperienceAnalyticsAppHealthOSVersionPerformance(ctx context.Context, id beta.DeviceManagementUserExperienceAnalyticsAppHealthOSVersionPerformanceId, input beta.UserExperienceAnalyticsAppHealthOSVersionPerformance, options UpdateUserExperienceAnalyticsAppHealthOSVersionPerformanceOperationOptions) (result UpdateUserExperienceAnalyticsAppHealthOSVersionPerformanceOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

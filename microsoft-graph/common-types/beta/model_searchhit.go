@@ -48,10 +48,22 @@ type SearchHit struct {
 var _ json.Unmarshaler = &SearchHit{}
 
 func (s *SearchHit) UnmarshalJSON(bytes []byte) error {
-	type alias SearchHit
-	var decoded alias
+
+	var decoded struct {
+		ContentSource    nullable.Type[string] `json:"contentSource,omitempty"`
+		HitId            nullable.Type[string] `json:"hitId,omitempty"`
+		IsCollapsed      nullable.Type[bool]   `json:"isCollapsed,omitempty"`
+		ODataId          *string               `json:"@odata.id,omitempty"`
+		ODataType        *string               `json:"@odata.type,omitempty"`
+		Rank             nullable.Type[int64]  `json:"rank,omitempty"`
+		ResultTemplateId nullable.Type[string] `json:"resultTemplateId,omitempty"`
+		Summary          nullable.Type[string] `json:"summary,omitempty"`
+		_Id              nullable.Type[string] `json:"_id,omitempty"`
+		_Score           nullable.Type[int64]  `json:"_score,omitempty"`
+		_Summary         nullable.Type[string] `json:"_summary,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into SearchHit: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.ContentSource = decoded.ContentSource
@@ -86,5 +98,6 @@ func (s *SearchHit) UnmarshalJSON(bytes []byte) error {
 		}
 		s._Source = impl
 	}
+
 	return nil
 }

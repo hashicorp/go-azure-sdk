@@ -143,10 +143,38 @@ func (s ChatMessage) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &ChatMessage{}
 
 func (s *ChatMessage) UnmarshalJSON(bytes []byte) error {
-	type alias ChatMessage
-	var decoded alias
+
+	var decoded struct {
+		Attachments          *[]ChatMessageAttachment    `json:"attachments,omitempty"`
+		Body                 *ItemBody                   `json:"body,omitempty"`
+		ChannelIdentity      *ChannelIdentity            `json:"channelIdentity,omitempty"`
+		ChatId               nullable.Type[string]       `json:"chatId,omitempty"`
+		CreatedDateTime      nullable.Type[string]       `json:"createdDateTime,omitempty"`
+		DeletedDateTime      nullable.Type[string]       `json:"deletedDateTime,omitempty"`
+		Etag                 nullable.Type[string]       `json:"etag,omitempty"`
+		From                 *ChatMessageFromIdentitySet `json:"from,omitempty"`
+		HostedContents       *[]ChatMessageHostedContent `json:"hostedContents,omitempty"`
+		Importance           *ChatMessageImportance      `json:"importance,omitempty"`
+		LastEditedDateTime   nullable.Type[string]       `json:"lastEditedDateTime,omitempty"`
+		LastModifiedDateTime nullable.Type[string]       `json:"lastModifiedDateTime,omitempty"`
+		Locale               *string                     `json:"locale,omitempty"`
+		Mentions             *[]ChatMessageMention       `json:"mentions,omitempty"`
+		MessageHistory       *[]ChatMessageHistoryItem   `json:"messageHistory,omitempty"`
+		MessageType          *ChatMessageType            `json:"messageType,omitempty"`
+		OnBehalfOf           *ChatMessageFromIdentitySet `json:"onBehalfOf,omitempty"`
+		PolicyViolation      *ChatMessagePolicyViolation `json:"policyViolation,omitempty"`
+		Reactions            *[]ChatMessageReaction      `json:"reactions,omitempty"`
+		Replies              *[]ChatMessage              `json:"replies,omitempty"`
+		ReplyToId            nullable.Type[string]       `json:"replyToId,omitempty"`
+		Subject              nullable.Type[string]       `json:"subject,omitempty"`
+		Summary              nullable.Type[string]       `json:"summary,omitempty"`
+		WebUrl               nullable.Type[string]       `json:"webUrl,omitempty"`
+		Id                   *string                     `json:"id,omitempty"`
+		ODataId              *string                     `json:"@odata.id,omitempty"`
+		ODataType            *string                     `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into ChatMessage: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.Attachments = decoded.Attachments
@@ -158,7 +186,6 @@ func (s *ChatMessage) UnmarshalJSON(bytes []byte) error {
 	s.Etag = decoded.Etag
 	s.From = decoded.From
 	s.HostedContents = decoded.HostedContents
-	s.Id = decoded.Id
 	s.Importance = decoded.Importance
 	s.LastEditedDateTime = decoded.LastEditedDateTime
 	s.LastModifiedDateTime = decoded.LastModifiedDateTime
@@ -166,8 +193,6 @@ func (s *ChatMessage) UnmarshalJSON(bytes []byte) error {
 	s.Mentions = decoded.Mentions
 	s.MessageHistory = decoded.MessageHistory
 	s.MessageType = decoded.MessageType
-	s.ODataId = decoded.ODataId
-	s.ODataType = decoded.ODataType
 	s.OnBehalfOf = decoded.OnBehalfOf
 	s.PolicyViolation = decoded.PolicyViolation
 	s.Reactions = decoded.Reactions
@@ -176,6 +201,9 @@ func (s *ChatMessage) UnmarshalJSON(bytes []byte) error {
 	s.Subject = decoded.Subject
 	s.Summary = decoded.Summary
 	s.WebUrl = decoded.WebUrl
+	s.Id = decoded.Id
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -189,5 +217,6 @@ func (s *ChatMessage) UnmarshalJSON(bytes []byte) error {
 		}
 		s.EventDetail = &impl
 	}
+
 	return nil
 }

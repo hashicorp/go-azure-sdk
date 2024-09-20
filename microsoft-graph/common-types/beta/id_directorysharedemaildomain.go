@@ -93,7 +93,7 @@ func (id DirectorySharedEmailDomainId) Segments() []resourceids.Segment {
 	return []resourceids.Segment{
 		resourceids.StaticSegment("directory", "directory", "directory"),
 		resourceids.StaticSegment("sharedEmailDomains", "sharedEmailDomains", "sharedEmailDomains"),
-		resourceids.UserSpecifiedSegment("sharedEmailDomainId", "sharedEmailDomainIdValue"),
+		resourceids.UserSpecifiedSegment("sharedEmailDomainId", "sharedEmailDomainId"),
 	}
 }
 

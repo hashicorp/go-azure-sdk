@@ -79,20 +79,29 @@ func (s DeviceManagementScriptDeviceState) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &DeviceManagementScriptDeviceState{}
 
 func (s *DeviceManagementScriptDeviceState) UnmarshalJSON(bytes []byte) error {
-	type alias DeviceManagementScriptDeviceState
-	var decoded alias
+
+	var decoded struct {
+		ErrorCode               *int64                `json:"errorCode,omitempty"`
+		ErrorDescription        nullable.Type[string] `json:"errorDescription,omitempty"`
+		LastStateUpdateDateTime *string               `json:"lastStateUpdateDateTime,omitempty"`
+		ResultMessage           nullable.Type[string] `json:"resultMessage,omitempty"`
+		RunState                *RunState             `json:"runState,omitempty"`
+		Id                      *string               `json:"id,omitempty"`
+		ODataId                 *string               `json:"@odata.id,omitempty"`
+		ODataType               *string               `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into DeviceManagementScriptDeviceState: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.ErrorCode = decoded.ErrorCode
 	s.ErrorDescription = decoded.ErrorDescription
-	s.Id = decoded.Id
 	s.LastStateUpdateDateTime = decoded.LastStateUpdateDateTime
-	s.ODataId = decoded.ODataId
-	s.ODataType = decoded.ODataType
 	s.ResultMessage = decoded.ResultMessage
 	s.RunState = decoded.RunState
+	s.Id = decoded.Id
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -106,5 +115,6 @@ func (s *DeviceManagementScriptDeviceState) UnmarshalJSON(bytes []byte) error {
 		}
 		s.ManagedDevice = &impl
 	}
+
 	return nil
 }

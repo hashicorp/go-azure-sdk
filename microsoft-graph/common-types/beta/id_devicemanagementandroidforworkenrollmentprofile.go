@@ -93,7 +93,7 @@ func (id DeviceManagementAndroidForWorkEnrollmentProfileId) Segments() []resourc
 	return []resourceids.Segment{
 		resourceids.StaticSegment("deviceManagement", "deviceManagement", "deviceManagement"),
 		resourceids.StaticSegment("androidForWorkEnrollmentProfiles", "androidForWorkEnrollmentProfiles", "androidForWorkEnrollmentProfiles"),
-		resourceids.UserSpecifiedSegment("androidForWorkEnrollmentProfileId", "androidForWorkEnrollmentProfileIdValue"),
+		resourceids.UserSpecifiedSegment("androidForWorkEnrollmentProfileId", "androidForWorkEnrollmentProfileId"),
 	}
 }
 

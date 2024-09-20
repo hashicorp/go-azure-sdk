@@ -19,15 +19,44 @@ type CreateAccessReviewDecisionInstanceDecisionOperationResponse struct {
 	Model        *beta.AccessReviewInstanceDecisionItem
 }
 
+type CreateAccessReviewDecisionInstanceDecisionOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateAccessReviewDecisionInstanceDecisionOperationOptions() CreateAccessReviewDecisionInstanceDecisionOperationOptions {
+	return CreateAccessReviewDecisionInstanceDecisionOperationOptions{}
+}
+
+func (o CreateAccessReviewDecisionInstanceDecisionOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateAccessReviewDecisionInstanceDecisionOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateAccessReviewDecisionInstanceDecisionOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateAccessReviewDecisionInstanceDecision - Create new navigation property to decisions for identityGovernance
-func (c AccessReviewDecisionInstanceDecisionClient) CreateAccessReviewDecisionInstanceDecision(ctx context.Context, id beta.IdentityGovernanceAccessReviewDecisionId, input beta.AccessReviewInstanceDecisionItem) (result CreateAccessReviewDecisionInstanceDecisionOperationResponse, err error) {
+func (c AccessReviewDecisionInstanceDecisionClient) CreateAccessReviewDecisionInstanceDecision(ctx context.Context, id beta.IdentityGovernanceAccessReviewDecisionId, input beta.AccessReviewInstanceDecisionItem, options CreateAccessReviewDecisionInstanceDecisionOperationOptions) (result CreateAccessReviewDecisionInstanceDecisionOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/instance/decisions", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/instance/decisions", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

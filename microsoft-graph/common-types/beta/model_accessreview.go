@@ -107,10 +107,25 @@ func (s AccessReview) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &AccessReview{}
 
 func (s *AccessReview) UnmarshalJSON(bytes []byte) error {
-	type alias AccessReview
-	var decoded alias
+
+	var decoded struct {
+		BusinessFlowTemplateId *string                 `json:"businessFlowTemplateId,omitempty"`
+		Decisions              *[]AccessReviewDecision `json:"decisions,omitempty"`
+		Description            nullable.Type[string]   `json:"description,omitempty"`
+		DisplayName            *string                 `json:"displayName,omitempty"`
+		EndDateTime            *string                 `json:"endDateTime,omitempty"`
+		Instances              *[]AccessReview         `json:"instances,omitempty"`
+		MyDecisions            *[]AccessReviewDecision `json:"myDecisions,omitempty"`
+		ReviewerType           nullable.Type[string]   `json:"reviewerType,omitempty"`
+		Reviewers              *[]AccessReviewReviewer `json:"reviewers,omitempty"`
+		StartDateTime          *string                 `json:"startDateTime,omitempty"`
+		Status                 nullable.Type[string]   `json:"status,omitempty"`
+		Id                     *string                 `json:"id,omitempty"`
+		ODataId                *string                 `json:"@odata.id,omitempty"`
+		ODataType              *string                 `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into AccessReview: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.BusinessFlowTemplateId = decoded.BusinessFlowTemplateId
@@ -118,15 +133,15 @@ func (s *AccessReview) UnmarshalJSON(bytes []byte) error {
 	s.Description = decoded.Description
 	s.DisplayName = decoded.DisplayName
 	s.EndDateTime = decoded.EndDateTime
-	s.Id = decoded.Id
 	s.Instances = decoded.Instances
 	s.MyDecisions = decoded.MyDecisions
-	s.ODataId = decoded.ODataId
-	s.ODataType = decoded.ODataType
 	s.ReviewerType = decoded.ReviewerType
 	s.Reviewers = decoded.Reviewers
 	s.StartDateTime = decoded.StartDateTime
 	s.Status = decoded.Status
+	s.Id = decoded.Id
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -156,5 +171,6 @@ func (s *AccessReview) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Settings = impl
 	}
+
 	return nil
 }

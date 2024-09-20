@@ -22,6 +22,7 @@ type GetTransitiveMembersCountOperationResponse struct {
 type GetTransitiveMembersCountOperationOptions struct {
 	ConsistencyLevel *odata.ConsistencyLevel
 	Filter           *string
+	Metadata         *odata.Metadata
 	Search           *string
 }
 
@@ -42,6 +43,9 @@ func (o GetTransitiveMembersCountOperationOptions) ToOData() *odata.Query {
 	}
 	if o.Filter != nil {
 		out.Filter = *o.Filter
+	}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
 	}
 	if o.Search != nil {
 		out.Search = *o.Search

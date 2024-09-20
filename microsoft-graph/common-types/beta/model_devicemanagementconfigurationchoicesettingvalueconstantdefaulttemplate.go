@@ -63,15 +63,20 @@ func (s DeviceManagementConfigurationChoiceSettingValueConstantDefaultTemplate) 
 var _ json.Unmarshaler = &DeviceManagementConfigurationChoiceSettingValueConstantDefaultTemplate{}
 
 func (s *DeviceManagementConfigurationChoiceSettingValueConstantDefaultTemplate) UnmarshalJSON(bytes []byte) error {
-	type alias DeviceManagementConfigurationChoiceSettingValueConstantDefaultTemplate
-	var decoded alias
+
+	var decoded struct {
+		Children                  *[]DeviceManagementConfigurationSettingInstanceTemplate `json:"children,omitempty"`
+		SettingDefinitionOptionId nullable.Type[string]                                   `json:"settingDefinitionOptionId,omitempty"`
+		ODataId                   *string                                                 `json:"@odata.id,omitempty"`
+		ODataType                 *string                                                 `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into DeviceManagementConfigurationChoiceSettingValueConstantDefaultTemplate: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
+	s.SettingDefinitionOptionId = decoded.SettingDefinitionOptionId
 	s.ODataId = decoded.ODataId
 	s.ODataType = decoded.ODataType
-	s.SettingDefinitionOptionId = decoded.SettingDefinitionOptionId
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -94,5 +99,6 @@ func (s *DeviceManagementConfigurationChoiceSettingValueConstantDefaultTemplate)
 		}
 		s.Children = &output
 	}
+
 	return nil
 }

@@ -93,7 +93,7 @@ func (id DeviceManagementAppleUserInitiatedEnrollmentProfileId) Segments() []res
 	return []resourceids.Segment{
 		resourceids.StaticSegment("deviceManagement", "deviceManagement", "deviceManagement"),
 		resourceids.StaticSegment("appleUserInitiatedEnrollmentProfiles", "appleUserInitiatedEnrollmentProfiles", "appleUserInitiatedEnrollmentProfiles"),
-		resourceids.UserSpecifiedSegment("appleUserInitiatedEnrollmentProfileId", "appleUserInitiatedEnrollmentProfileIdValue"),
+		resourceids.UserSpecifiedSegment("appleUserInitiatedEnrollmentProfileId", "appleUserInitiatedEnrollmentProfileId"),
 	}
 }
 

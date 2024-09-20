@@ -18,15 +18,44 @@ type CreateManagedDeviceInitiateDeviceAttestationOperationResponse struct {
 	OData        *odata.OData
 }
 
+type CreateManagedDeviceInitiateDeviceAttestationOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateManagedDeviceInitiateDeviceAttestationOperationOptions() CreateManagedDeviceInitiateDeviceAttestationOperationOptions {
+	return CreateManagedDeviceInitiateDeviceAttestationOperationOptions{}
+}
+
+func (o CreateManagedDeviceInitiateDeviceAttestationOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateManagedDeviceInitiateDeviceAttestationOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateManagedDeviceInitiateDeviceAttestationOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateManagedDeviceInitiateDeviceAttestation - Invoke action initiateDeviceAttestation. Perform Device Attestation
-func (c ManagedDeviceClient) CreateManagedDeviceInitiateDeviceAttestation(ctx context.Context, id beta.DeviceManagementManagedDeviceId) (result CreateManagedDeviceInitiateDeviceAttestationOperationResponse, err error) {
+func (c ManagedDeviceClient) CreateManagedDeviceInitiateDeviceAttestation(ctx context.Context, id beta.DeviceManagementManagedDeviceId, options CreateManagedDeviceInitiateDeviceAttestationOperationOptions) (result CreateManagedDeviceInitiateDeviceAttestationOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/initiateDeviceAttestation", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/initiateDeviceAttestation", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

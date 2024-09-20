@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &IdentityGovernanceTermsOfUseAgreementIdAcceptanceId{}
 
 func TestNewIdentityGovernanceTermsOfUseAgreementIdAcceptanceID(t *testing.T) {
-	id := NewIdentityGovernanceTermsOfUseAgreementIdAcceptanceID("agreementIdValue", "agreementAcceptanceIdValue")
+	id := NewIdentityGovernanceTermsOfUseAgreementIdAcceptanceID("agreementId", "agreementAcceptanceId")
 
-	if id.AgreementId != "agreementIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'AgreementId'", id.AgreementId, "agreementIdValue")
+	if id.AgreementId != "agreementId" {
+		t.Fatalf("Expected %q but got %q for Segment 'AgreementId'", id.AgreementId, "agreementId")
 	}
 
-	if id.AgreementAcceptanceId != "agreementAcceptanceIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'AgreementAcceptanceId'", id.AgreementAcceptanceId, "agreementAcceptanceIdValue")
+	if id.AgreementAcceptanceId != "agreementAcceptanceId" {
+		t.Fatalf("Expected %q but got %q for Segment 'AgreementAcceptanceId'", id.AgreementAcceptanceId, "agreementAcceptanceId")
 	}
 }
 
 func TestFormatIdentityGovernanceTermsOfUseAgreementIdAcceptanceID(t *testing.T) {
-	actual := NewIdentityGovernanceTermsOfUseAgreementIdAcceptanceID("agreementIdValue", "agreementAcceptanceIdValue").ID()
-	expected := "/identityGovernance/termsOfUse/agreements/agreementIdValue/acceptances/agreementAcceptanceIdValue"
+	actual := NewIdentityGovernanceTermsOfUseAgreementIdAcceptanceID("agreementId", "agreementAcceptanceId").ID()
+	expected := "/identityGovernance/termsOfUse/agreements/agreementId/acceptances/agreementAcceptanceId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -59,25 +59,25 @@ func TestParseIdentityGovernanceTermsOfUseAgreementIdAcceptanceID(t *testing.T) 
 		},
 		{
 			// Incomplete URI
-			Input: "/identityGovernance/termsOfUse/agreements/agreementIdValue",
+			Input: "/identityGovernance/termsOfUse/agreements/agreementId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/identityGovernance/termsOfUse/agreements/agreementIdValue/acceptances",
+			Input: "/identityGovernance/termsOfUse/agreements/agreementId/acceptances",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/identityGovernance/termsOfUse/agreements/agreementIdValue/acceptances/agreementAcceptanceIdValue",
+			Input: "/identityGovernance/termsOfUse/agreements/agreementId/acceptances/agreementAcceptanceId",
 			Expected: &IdentityGovernanceTermsOfUseAgreementIdAcceptanceId{
-				AgreementId:           "agreementIdValue",
-				AgreementAcceptanceId: "agreementAcceptanceIdValue",
+				AgreementId:           "agreementId",
+				AgreementAcceptanceId: "agreementAcceptanceId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/identityGovernance/termsOfUse/agreements/agreementIdValue/acceptances/agreementAcceptanceIdValue/extra",
+			Input: "/identityGovernance/termsOfUse/agreements/agreementId/acceptances/agreementAcceptanceId/extra",
 			Error: true,
 		},
 	}
@@ -150,48 +150,48 @@ func TestParseIdentityGovernanceTermsOfUseAgreementIdAcceptanceIDInsensitively(t
 		},
 		{
 			// Incomplete URI
-			Input: "/identityGovernance/termsOfUse/agreements/agreementIdValue",
+			Input: "/identityGovernance/termsOfUse/agreements/agreementId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/iDeNtItYgOvErNaNcE/tErMsOfUsE/aGrEeMeNtS/aGrEeMeNtIdVaLuE",
+			Input: "/iDeNtItYgOvErNaNcE/tErMsOfUsE/aGrEeMeNtS/aGrEeMeNtId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/identityGovernance/termsOfUse/agreements/agreementIdValue/acceptances",
+			Input: "/identityGovernance/termsOfUse/agreements/agreementId/acceptances",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/iDeNtItYgOvErNaNcE/tErMsOfUsE/aGrEeMeNtS/aGrEeMeNtIdVaLuE/aCcEpTaNcEs",
+			Input: "/iDeNtItYgOvErNaNcE/tErMsOfUsE/aGrEeMeNtS/aGrEeMeNtId/aCcEpTaNcEs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/identityGovernance/termsOfUse/agreements/agreementIdValue/acceptances/agreementAcceptanceIdValue",
+			Input: "/identityGovernance/termsOfUse/agreements/agreementId/acceptances/agreementAcceptanceId",
 			Expected: &IdentityGovernanceTermsOfUseAgreementIdAcceptanceId{
-				AgreementId:           "agreementIdValue",
-				AgreementAcceptanceId: "agreementAcceptanceIdValue",
+				AgreementId:           "agreementId",
+				AgreementAcceptanceId: "agreementAcceptanceId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/identityGovernance/termsOfUse/agreements/agreementIdValue/acceptances/agreementAcceptanceIdValue/extra",
+			Input: "/identityGovernance/termsOfUse/agreements/agreementId/acceptances/agreementAcceptanceId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/iDeNtItYgOvErNaNcE/tErMsOfUsE/aGrEeMeNtS/aGrEeMeNtIdVaLuE/aCcEpTaNcEs/aGrEeMeNtAcCePtAnCeIdVaLuE",
+			Input: "/iDeNtItYgOvErNaNcE/tErMsOfUsE/aGrEeMeNtS/aGrEeMeNtId/aCcEpTaNcEs/aGrEeMeNtAcCePtAnCeId",
 			Expected: &IdentityGovernanceTermsOfUseAgreementIdAcceptanceId{
-				AgreementId:           "aGrEeMeNtIdVaLuE",
-				AgreementAcceptanceId: "aGrEeMeNtAcCePtAnCeIdVaLuE",
+				AgreementId:           "aGrEeMeNtId",
+				AgreementAcceptanceId: "aGrEeMeNtAcCePtAnCeId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/iDeNtItYgOvErNaNcE/tErMsOfUsE/aGrEeMeNtS/aGrEeMeNtIdVaLuE/aCcEpTaNcEs/aGrEeMeNtAcCePtAnCeIdVaLuE/extra",
+			Input: "/iDeNtItYgOvErNaNcE/tErMsOfUsE/aGrEeMeNtS/aGrEeMeNtId/aCcEpTaNcEs/aGrEeMeNtAcCePtAnCeId/extra",
 			Error: true,
 		},
 	}

@@ -86,20 +86,29 @@ func (s CallTranscript) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &CallTranscript{}
 
 func (s *CallTranscript) UnmarshalJSON(bytes []byte) error {
-	type alias CallTranscript
-	var decoded alias
+
+	var decoded struct {
+		Content              nullable.Type[string] `json:"content,omitempty"`
+		CreatedDateTime      nullable.Type[string] `json:"createdDateTime,omitempty"`
+		MeetingId            nullable.Type[string] `json:"meetingId,omitempty"`
+		MetadataContent      nullable.Type[string] `json:"metadataContent,omitempty"`
+		TranscriptContentUrl nullable.Type[string] `json:"transcriptContentUrl,omitempty"`
+		Id                   *string               `json:"id,omitempty"`
+		ODataId              *string               `json:"@odata.id,omitempty"`
+		ODataType            *string               `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into CallTranscript: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.Content = decoded.Content
 	s.CreatedDateTime = decoded.CreatedDateTime
-	s.Id = decoded.Id
 	s.MeetingId = decoded.MeetingId
 	s.MetadataContent = decoded.MetadataContent
+	s.TranscriptContentUrl = decoded.TranscriptContentUrl
+	s.Id = decoded.Id
 	s.ODataId = decoded.ODataId
 	s.ODataType = decoded.ODataType
-	s.TranscriptContentUrl = decoded.TranscriptContentUrl
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -113,5 +122,6 @@ func (s *CallTranscript) UnmarshalJSON(bytes []byte) error {
 		}
 		s.MeetingOrganizer = &impl
 	}
+
 	return nil
 }

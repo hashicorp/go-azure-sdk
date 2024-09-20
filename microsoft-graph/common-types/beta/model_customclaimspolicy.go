@@ -79,16 +79,24 @@ func (s CustomClaimsPolicy) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &CustomClaimsPolicy{}
 
 func (s *CustomClaimsPolicy) UnmarshalJSON(bytes []byte) error {
-	type alias CustomClaimsPolicy
-	var decoded alias
+
+	var decoded struct {
+		AudienceOverride             nullable.Type[string] `json:"audienceOverride,omitempty"`
+		Claims                       *[]CustomClaimBase    `json:"claims,omitempty"`
+		IncludeApplicationIdInIssuer nullable.Type[bool]   `json:"includeApplicationIdInIssuer,omitempty"`
+		IncludeBasicClaimSet         nullable.Type[bool]   `json:"includeBasicClaimSet,omitempty"`
+		Id                           *string               `json:"id,omitempty"`
+		ODataId                      *string               `json:"@odata.id,omitempty"`
+		ODataType                    *string               `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into CustomClaimsPolicy: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.AudienceOverride = decoded.AudienceOverride
-	s.Id = decoded.Id
 	s.IncludeApplicationIdInIssuer = decoded.IncludeApplicationIdInIssuer
 	s.IncludeBasicClaimSet = decoded.IncludeBasicClaimSet
+	s.Id = decoded.Id
 	s.ODataId = decoded.ODataId
 	s.ODataType = decoded.ODataType
 
@@ -113,5 +121,6 @@ func (s *CustomClaimsPolicy) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Claims = &output
 	}
+
 	return nil
 }

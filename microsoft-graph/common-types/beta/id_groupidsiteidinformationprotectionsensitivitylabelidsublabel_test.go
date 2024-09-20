@@ -12,28 +12,28 @@ import (
 var _ resourceids.ResourceId = &GroupIdSiteIdInformationProtectionSensitivityLabelIdSublabelId{}
 
 func TestNewGroupIdSiteIdInformationProtectionSensitivityLabelIdSublabelID(t *testing.T) {
-	id := NewGroupIdSiteIdInformationProtectionSensitivityLabelIdSublabelID("groupIdValue", "siteIdValue", "sensitivityLabelIdValue", "sensitivityLabelId1Value")
+	id := NewGroupIdSiteIdInformationProtectionSensitivityLabelIdSublabelID("groupId", "siteId", "sensitivityLabelId", "sensitivityLabelId1")
 
-	if id.GroupId != "groupIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'GroupId'", id.GroupId, "groupIdValue")
+	if id.GroupId != "groupId" {
+		t.Fatalf("Expected %q but got %q for Segment 'GroupId'", id.GroupId, "groupId")
 	}
 
-	if id.SiteId != "siteIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'SiteId'", id.SiteId, "siteIdValue")
+	if id.SiteId != "siteId" {
+		t.Fatalf("Expected %q but got %q for Segment 'SiteId'", id.SiteId, "siteId")
 	}
 
-	if id.SensitivityLabelId != "sensitivityLabelIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'SensitivityLabelId'", id.SensitivityLabelId, "sensitivityLabelIdValue")
+	if id.SensitivityLabelId != "sensitivityLabelId" {
+		t.Fatalf("Expected %q but got %q for Segment 'SensitivityLabelId'", id.SensitivityLabelId, "sensitivityLabelId")
 	}
 
-	if id.SensitivityLabelId1 != "sensitivityLabelId1Value" {
-		t.Fatalf("Expected %q but got %q for Segment 'SensitivityLabelId1'", id.SensitivityLabelId1, "sensitivityLabelId1Value")
+	if id.SensitivityLabelId1 != "sensitivityLabelId1" {
+		t.Fatalf("Expected %q but got %q for Segment 'SensitivityLabelId1'", id.SensitivityLabelId1, "sensitivityLabelId1")
 	}
 }
 
 func TestFormatGroupIdSiteIdInformationProtectionSensitivityLabelIdSublabelID(t *testing.T) {
-	actual := NewGroupIdSiteIdInformationProtectionSensitivityLabelIdSublabelID("groupIdValue", "siteIdValue", "sensitivityLabelIdValue", "sensitivityLabelId1Value").ID()
-	expected := "/groups/groupIdValue/sites/siteIdValue/informationProtection/sensitivityLabels/sensitivityLabelIdValue/sublabels/sensitivityLabelId1Value"
+	actual := NewGroupIdSiteIdInformationProtectionSensitivityLabelIdSublabelID("groupId", "siteId", "sensitivityLabelId", "sensitivityLabelId1").ID()
+	expected := "/groups/groupId/sites/siteId/informationProtection/sensitivityLabels/sensitivityLabelId/sublabels/sensitivityLabelId1"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -57,52 +57,52 @@ func TestParseGroupIdSiteIdInformationProtectionSensitivityLabelIdSublabelID(t *
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue",
+			Input: "/groups/groupId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/sites",
+			Input: "/groups/groupId/sites",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/sites/siteIdValue",
+			Input: "/groups/groupId/sites/siteId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/sites/siteIdValue/informationProtection",
+			Input: "/groups/groupId/sites/siteId/informationProtection",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/sites/siteIdValue/informationProtection/sensitivityLabels",
+			Input: "/groups/groupId/sites/siteId/informationProtection/sensitivityLabels",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/sites/siteIdValue/informationProtection/sensitivityLabels/sensitivityLabelIdValue",
+			Input: "/groups/groupId/sites/siteId/informationProtection/sensitivityLabels/sensitivityLabelId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/sites/siteIdValue/informationProtection/sensitivityLabels/sensitivityLabelIdValue/sublabels",
+			Input: "/groups/groupId/sites/siteId/informationProtection/sensitivityLabels/sensitivityLabelId/sublabels",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/groups/groupIdValue/sites/siteIdValue/informationProtection/sensitivityLabels/sensitivityLabelIdValue/sublabels/sensitivityLabelId1Value",
+			Input: "/groups/groupId/sites/siteId/informationProtection/sensitivityLabels/sensitivityLabelId/sublabels/sensitivityLabelId1",
 			Expected: &GroupIdSiteIdInformationProtectionSensitivityLabelIdSublabelId{
-				GroupId:             "groupIdValue",
-				SiteId:              "siteIdValue",
-				SensitivityLabelId:  "sensitivityLabelIdValue",
-				SensitivityLabelId1: "sensitivityLabelId1Value",
+				GroupId:             "groupId",
+				SiteId:              "siteId",
+				SensitivityLabelId:  "sensitivityLabelId",
+				SensitivityLabelId1: "sensitivityLabelId1",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/groups/groupIdValue/sites/siteIdValue/informationProtection/sensitivityLabels/sensitivityLabelIdValue/sublabels/sensitivityLabelId1Value/extra",
+			Input: "/groups/groupId/sites/siteId/informationProtection/sensitivityLabels/sensitivityLabelId/sublabels/sensitivityLabelId1/extra",
 			Error: true,
 		},
 	}
@@ -163,102 +163,102 @@ func TestParseGroupIdSiteIdInformationProtectionSensitivityLabelIdSublabelIDInse
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue",
+			Input: "/groups/groupId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE",
+			Input: "/gRoUpS/gRoUpId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/sites",
+			Input: "/groups/groupId/sites",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/sItEs",
+			Input: "/gRoUpS/gRoUpId/sItEs",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/sites/siteIdValue",
+			Input: "/groups/groupId/sites/siteId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/sItEs/sItEiDvAlUe",
+			Input: "/gRoUpS/gRoUpId/sItEs/sItEiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/sites/siteIdValue/informationProtection",
+			Input: "/groups/groupId/sites/siteId/informationProtection",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/sItEs/sItEiDvAlUe/iNfOrMaTiOnPrOtEcTiOn",
+			Input: "/gRoUpS/gRoUpId/sItEs/sItEiD/iNfOrMaTiOnPrOtEcTiOn",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/sites/siteIdValue/informationProtection/sensitivityLabels",
+			Input: "/groups/groupId/sites/siteId/informationProtection/sensitivityLabels",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/sItEs/sItEiDvAlUe/iNfOrMaTiOnPrOtEcTiOn/sEnSiTiViTyLaBeLs",
+			Input: "/gRoUpS/gRoUpId/sItEs/sItEiD/iNfOrMaTiOnPrOtEcTiOn/sEnSiTiViTyLaBeLs",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/sites/siteIdValue/informationProtection/sensitivityLabels/sensitivityLabelIdValue",
+			Input: "/groups/groupId/sites/siteId/informationProtection/sensitivityLabels/sensitivityLabelId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/sItEs/sItEiDvAlUe/iNfOrMaTiOnPrOtEcTiOn/sEnSiTiViTyLaBeLs/sEnSiTiViTyLaBeLiDvAlUe",
+			Input: "/gRoUpS/gRoUpId/sItEs/sItEiD/iNfOrMaTiOnPrOtEcTiOn/sEnSiTiViTyLaBeLs/sEnSiTiViTyLaBeLiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/sites/siteIdValue/informationProtection/sensitivityLabels/sensitivityLabelIdValue/sublabels",
+			Input: "/groups/groupId/sites/siteId/informationProtection/sensitivityLabels/sensitivityLabelId/sublabels",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/sItEs/sItEiDvAlUe/iNfOrMaTiOnPrOtEcTiOn/sEnSiTiViTyLaBeLs/sEnSiTiViTyLaBeLiDvAlUe/sUbLaBeLs",
+			Input: "/gRoUpS/gRoUpId/sItEs/sItEiD/iNfOrMaTiOnPrOtEcTiOn/sEnSiTiViTyLaBeLs/sEnSiTiViTyLaBeLiD/sUbLaBeLs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/groups/groupIdValue/sites/siteIdValue/informationProtection/sensitivityLabels/sensitivityLabelIdValue/sublabels/sensitivityLabelId1Value",
+			Input: "/groups/groupId/sites/siteId/informationProtection/sensitivityLabels/sensitivityLabelId/sublabels/sensitivityLabelId1",
 			Expected: &GroupIdSiteIdInformationProtectionSensitivityLabelIdSublabelId{
-				GroupId:             "groupIdValue",
-				SiteId:              "siteIdValue",
-				SensitivityLabelId:  "sensitivityLabelIdValue",
-				SensitivityLabelId1: "sensitivityLabelId1Value",
+				GroupId:             "groupId",
+				SiteId:              "siteId",
+				SensitivityLabelId:  "sensitivityLabelId",
+				SensitivityLabelId1: "sensitivityLabelId1",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/groups/groupIdValue/sites/siteIdValue/informationProtection/sensitivityLabels/sensitivityLabelIdValue/sublabels/sensitivityLabelId1Value/extra",
+			Input: "/groups/groupId/sites/siteId/informationProtection/sensitivityLabels/sensitivityLabelId/sublabels/sensitivityLabelId1/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/sItEs/sItEiDvAlUe/iNfOrMaTiOnPrOtEcTiOn/sEnSiTiViTyLaBeLs/sEnSiTiViTyLaBeLiDvAlUe/sUbLaBeLs/sEnSiTiViTyLaBeLiD1VaLuE",
+			Input: "/gRoUpS/gRoUpId/sItEs/sItEiD/iNfOrMaTiOnPrOtEcTiOn/sEnSiTiViTyLaBeLs/sEnSiTiViTyLaBeLiD/sUbLaBeLs/sEnSiTiViTyLaBeLiD1",
 			Expected: &GroupIdSiteIdInformationProtectionSensitivityLabelIdSublabelId{
-				GroupId:             "gRoUpIdVaLuE",
-				SiteId:              "sItEiDvAlUe",
-				SensitivityLabelId:  "sEnSiTiViTyLaBeLiDvAlUe",
-				SensitivityLabelId1: "sEnSiTiViTyLaBeLiD1VaLuE",
+				GroupId:             "gRoUpId",
+				SiteId:              "sItEiD",
+				SensitivityLabelId:  "sEnSiTiViTyLaBeLiD",
+				SensitivityLabelId1: "sEnSiTiViTyLaBeLiD1",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/sItEs/sItEiDvAlUe/iNfOrMaTiOnPrOtEcTiOn/sEnSiTiViTyLaBeLs/sEnSiTiViTyLaBeLiDvAlUe/sUbLaBeLs/sEnSiTiViTyLaBeLiD1VaLuE/extra",
+			Input: "/gRoUpS/gRoUpId/sItEs/sItEiD/iNfOrMaTiOnPrOtEcTiOn/sEnSiTiViTyLaBeLs/sEnSiTiViTyLaBeLiD/sUbLaBeLs/sEnSiTiViTyLaBeLiD1/extra",
 			Error: true,
 		},
 	}

@@ -19,7 +19,8 @@ type DeleteCalendarViewExceptionOccurrenceAttachmentOperationResponse struct {
 }
 
 type DeleteCalendarViewExceptionOccurrenceAttachmentOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteCalendarViewExceptionOccurrenceAttachmentOperationOptions() DeleteCalendarViewExceptionOccurrenceAttachmentOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteCalendarViewExceptionOccurrenceAttachmentOperationOptions) ToHeade
 
 func (o DeleteCalendarViewExceptionOccurrenceAttachmentOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

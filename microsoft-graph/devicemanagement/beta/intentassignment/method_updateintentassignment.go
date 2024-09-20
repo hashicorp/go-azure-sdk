@@ -17,15 +17,44 @@ type UpdateIntentAssignmentOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateIntentAssignmentOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateIntentAssignmentOperationOptions() UpdateIntentAssignmentOperationOptions {
+	return UpdateIntentAssignmentOperationOptions{}
+}
+
+func (o UpdateIntentAssignmentOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateIntentAssignmentOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateIntentAssignmentOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateIntentAssignment - Update the navigation property assignments in deviceManagement
-func (c IntentAssignmentClient) UpdateIntentAssignment(ctx context.Context, id beta.DeviceManagementIntentIdAssignmentId, input beta.DeviceManagementIntentAssignment) (result UpdateIntentAssignmentOperationResponse, err error) {
+func (c IntentAssignmentClient) UpdateIntentAssignment(ctx context.Context, id beta.DeviceManagementIntentIdAssignmentId, input beta.DeviceManagementIntentAssignment, options UpdateIntentAssignmentOperationOptions) (result UpdateIntentAssignmentOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

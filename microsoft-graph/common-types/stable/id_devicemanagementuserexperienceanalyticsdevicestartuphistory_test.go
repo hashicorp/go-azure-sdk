@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &DeviceManagementUserExperienceAnalyticsDeviceStartupHistoryId{}
 
 func TestNewDeviceManagementUserExperienceAnalyticsDeviceStartupHistoryID(t *testing.T) {
-	id := NewDeviceManagementUserExperienceAnalyticsDeviceStartupHistoryID("userExperienceAnalyticsDeviceStartupHistoryIdValue")
+	id := NewDeviceManagementUserExperienceAnalyticsDeviceStartupHistoryID("userExperienceAnalyticsDeviceStartupHistoryId")
 
-	if id.UserExperienceAnalyticsDeviceStartupHistoryId != "userExperienceAnalyticsDeviceStartupHistoryIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'UserExperienceAnalyticsDeviceStartupHistoryId'", id.UserExperienceAnalyticsDeviceStartupHistoryId, "userExperienceAnalyticsDeviceStartupHistoryIdValue")
+	if id.UserExperienceAnalyticsDeviceStartupHistoryId != "userExperienceAnalyticsDeviceStartupHistoryId" {
+		t.Fatalf("Expected %q but got %q for Segment 'UserExperienceAnalyticsDeviceStartupHistoryId'", id.UserExperienceAnalyticsDeviceStartupHistoryId, "userExperienceAnalyticsDeviceStartupHistoryId")
 	}
 }
 
 func TestFormatDeviceManagementUserExperienceAnalyticsDeviceStartupHistoryID(t *testing.T) {
-	actual := NewDeviceManagementUserExperienceAnalyticsDeviceStartupHistoryID("userExperienceAnalyticsDeviceStartupHistoryIdValue").ID()
-	expected := "/deviceManagement/userExperienceAnalyticsDeviceStartupHistory/userExperienceAnalyticsDeviceStartupHistoryIdValue"
+	actual := NewDeviceManagementUserExperienceAnalyticsDeviceStartupHistoryID("userExperienceAnalyticsDeviceStartupHistoryId").ID()
+	expected := "/deviceManagement/userExperienceAnalyticsDeviceStartupHistory/userExperienceAnalyticsDeviceStartupHistoryId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -50,14 +50,14 @@ func TestParseDeviceManagementUserExperienceAnalyticsDeviceStartupHistoryID(t *t
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/userExperienceAnalyticsDeviceStartupHistory/userExperienceAnalyticsDeviceStartupHistoryIdValue",
+			Input: "/deviceManagement/userExperienceAnalyticsDeviceStartupHistory/userExperienceAnalyticsDeviceStartupHistoryId",
 			Expected: &DeviceManagementUserExperienceAnalyticsDeviceStartupHistoryId{
-				UserExperienceAnalyticsDeviceStartupHistoryId: "userExperienceAnalyticsDeviceStartupHistoryIdValue",
+				UserExperienceAnalyticsDeviceStartupHistoryId: "userExperienceAnalyticsDeviceStartupHistoryId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/userExperienceAnalyticsDeviceStartupHistory/userExperienceAnalyticsDeviceStartupHistoryIdValue/extra",
+			Input: "/deviceManagement/userExperienceAnalyticsDeviceStartupHistory/userExperienceAnalyticsDeviceStartupHistoryId/extra",
 			Error: true,
 		},
 	}
@@ -116,26 +116,26 @@ func TestParseDeviceManagementUserExperienceAnalyticsDeviceStartupHistoryIDInsen
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/userExperienceAnalyticsDeviceStartupHistory/userExperienceAnalyticsDeviceStartupHistoryIdValue",
+			Input: "/deviceManagement/userExperienceAnalyticsDeviceStartupHistory/userExperienceAnalyticsDeviceStartupHistoryId",
 			Expected: &DeviceManagementUserExperienceAnalyticsDeviceStartupHistoryId{
-				UserExperienceAnalyticsDeviceStartupHistoryId: "userExperienceAnalyticsDeviceStartupHistoryIdValue",
+				UserExperienceAnalyticsDeviceStartupHistoryId: "userExperienceAnalyticsDeviceStartupHistoryId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/userExperienceAnalyticsDeviceStartupHistory/userExperienceAnalyticsDeviceStartupHistoryIdValue/extra",
+			Input: "/deviceManagement/userExperienceAnalyticsDeviceStartupHistory/userExperienceAnalyticsDeviceStartupHistoryId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/uSeReXpErIeNcEaNaLyTiCsDeViCeStArTuPhIsToRy/uSeReXpErIeNcEaNaLyTiCsDeViCeStArTuPhIsToRyIdVaLuE",
+			Input: "/dEvIcEmAnAgEmEnT/uSeReXpErIeNcEaNaLyTiCsDeViCeStArTuPhIsToRy/uSeReXpErIeNcEaNaLyTiCsDeViCeStArTuPhIsToRyId",
 			Expected: &DeviceManagementUserExperienceAnalyticsDeviceStartupHistoryId{
-				UserExperienceAnalyticsDeviceStartupHistoryId: "uSeReXpErIeNcEaNaLyTiCsDeViCeStArTuPhIsToRyIdVaLuE",
+				UserExperienceAnalyticsDeviceStartupHistoryId: "uSeReXpErIeNcEaNaLyTiCsDeViCeStArTuPhIsToRyId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/uSeReXpErIeNcEaNaLyTiCsDeViCeStArTuPhIsToRy/uSeReXpErIeNcEaNaLyTiCsDeViCeStArTuPhIsToRyIdVaLuE/extra",
+			Input: "/dEvIcEmAnAgEmEnT/uSeReXpErIeNcEaNaLyTiCsDeViCeStArTuPhIsToRy/uSeReXpErIeNcEaNaLyTiCsDeViCeStArTuPhIsToRyId/extra",
 			Error: true,
 		},
 	}

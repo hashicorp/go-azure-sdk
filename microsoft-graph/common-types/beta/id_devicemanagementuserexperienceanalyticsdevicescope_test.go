@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &DeviceManagementUserExperienceAnalyticsDeviceScopeId{}
 
 func TestNewDeviceManagementUserExperienceAnalyticsDeviceScopeID(t *testing.T) {
-	id := NewDeviceManagementUserExperienceAnalyticsDeviceScopeID("userExperienceAnalyticsDeviceScopeIdValue")
+	id := NewDeviceManagementUserExperienceAnalyticsDeviceScopeID("userExperienceAnalyticsDeviceScopeId")
 
-	if id.UserExperienceAnalyticsDeviceScopeId != "userExperienceAnalyticsDeviceScopeIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'UserExperienceAnalyticsDeviceScopeId'", id.UserExperienceAnalyticsDeviceScopeId, "userExperienceAnalyticsDeviceScopeIdValue")
+	if id.UserExperienceAnalyticsDeviceScopeId != "userExperienceAnalyticsDeviceScopeId" {
+		t.Fatalf("Expected %q but got %q for Segment 'UserExperienceAnalyticsDeviceScopeId'", id.UserExperienceAnalyticsDeviceScopeId, "userExperienceAnalyticsDeviceScopeId")
 	}
 }
 
 func TestFormatDeviceManagementUserExperienceAnalyticsDeviceScopeID(t *testing.T) {
-	actual := NewDeviceManagementUserExperienceAnalyticsDeviceScopeID("userExperienceAnalyticsDeviceScopeIdValue").ID()
-	expected := "/deviceManagement/userExperienceAnalyticsDeviceScopes/userExperienceAnalyticsDeviceScopeIdValue"
+	actual := NewDeviceManagementUserExperienceAnalyticsDeviceScopeID("userExperienceAnalyticsDeviceScopeId").ID()
+	expected := "/deviceManagement/userExperienceAnalyticsDeviceScopes/userExperienceAnalyticsDeviceScopeId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -50,14 +50,14 @@ func TestParseDeviceManagementUserExperienceAnalyticsDeviceScopeID(t *testing.T)
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/userExperienceAnalyticsDeviceScopes/userExperienceAnalyticsDeviceScopeIdValue",
+			Input: "/deviceManagement/userExperienceAnalyticsDeviceScopes/userExperienceAnalyticsDeviceScopeId",
 			Expected: &DeviceManagementUserExperienceAnalyticsDeviceScopeId{
-				UserExperienceAnalyticsDeviceScopeId: "userExperienceAnalyticsDeviceScopeIdValue",
+				UserExperienceAnalyticsDeviceScopeId: "userExperienceAnalyticsDeviceScopeId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/userExperienceAnalyticsDeviceScopes/userExperienceAnalyticsDeviceScopeIdValue/extra",
+			Input: "/deviceManagement/userExperienceAnalyticsDeviceScopes/userExperienceAnalyticsDeviceScopeId/extra",
 			Error: true,
 		},
 	}
@@ -116,26 +116,26 @@ func TestParseDeviceManagementUserExperienceAnalyticsDeviceScopeIDInsensitively(
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/userExperienceAnalyticsDeviceScopes/userExperienceAnalyticsDeviceScopeIdValue",
+			Input: "/deviceManagement/userExperienceAnalyticsDeviceScopes/userExperienceAnalyticsDeviceScopeId",
 			Expected: &DeviceManagementUserExperienceAnalyticsDeviceScopeId{
-				UserExperienceAnalyticsDeviceScopeId: "userExperienceAnalyticsDeviceScopeIdValue",
+				UserExperienceAnalyticsDeviceScopeId: "userExperienceAnalyticsDeviceScopeId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/userExperienceAnalyticsDeviceScopes/userExperienceAnalyticsDeviceScopeIdValue/extra",
+			Input: "/deviceManagement/userExperienceAnalyticsDeviceScopes/userExperienceAnalyticsDeviceScopeId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/uSeReXpErIeNcEaNaLyTiCsDeViCeScOpEs/uSeReXpErIeNcEaNaLyTiCsDeViCeScOpEiDvAlUe",
+			Input: "/dEvIcEmAnAgEmEnT/uSeReXpErIeNcEaNaLyTiCsDeViCeScOpEs/uSeReXpErIeNcEaNaLyTiCsDeViCeScOpEiD",
 			Expected: &DeviceManagementUserExperienceAnalyticsDeviceScopeId{
-				UserExperienceAnalyticsDeviceScopeId: "uSeReXpErIeNcEaNaLyTiCsDeViCeScOpEiDvAlUe",
+				UserExperienceAnalyticsDeviceScopeId: "uSeReXpErIeNcEaNaLyTiCsDeViCeScOpEiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/uSeReXpErIeNcEaNaLyTiCsDeViCeScOpEs/uSeReXpErIeNcEaNaLyTiCsDeViCeScOpEiDvAlUe/extra",
+			Input: "/dEvIcEmAnAgEmEnT/uSeReXpErIeNcEaNaLyTiCsDeViCeScOpEs/uSeReXpErIeNcEaNaLyTiCsDeViCeScOpEiD/extra",
 			Error: true,
 		},
 	}

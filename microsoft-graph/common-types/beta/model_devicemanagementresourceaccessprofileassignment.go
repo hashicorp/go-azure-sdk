@@ -70,17 +70,23 @@ func (s DeviceManagementResourceAccessProfileAssignment) MarshalJSON() ([]byte, 
 var _ json.Unmarshaler = &DeviceManagementResourceAccessProfileAssignment{}
 
 func (s *DeviceManagementResourceAccessProfileAssignment) UnmarshalJSON(bytes []byte) error {
-	type alias DeviceManagementResourceAccessProfileAssignment
-	var decoded alias
+
+	var decoded struct {
+		Intent    *DeviceManagementResourceAccessProfileIntent `json:"intent,omitempty"`
+		SourceId  nullable.Type[string]                        `json:"sourceId,omitempty"`
+		Id        *string                                      `json:"id,omitempty"`
+		ODataId   *string                                      `json:"@odata.id,omitempty"`
+		ODataType *string                                      `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into DeviceManagementResourceAccessProfileAssignment: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
-	s.Id = decoded.Id
 	s.Intent = decoded.Intent
+	s.SourceId = decoded.SourceId
+	s.Id = decoded.Id
 	s.ODataId = decoded.ODataId
 	s.ODataType = decoded.ODataType
-	s.SourceId = decoded.SourceId
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -94,5 +100,6 @@ func (s *DeviceManagementResourceAccessProfileAssignment) UnmarshalJSON(bytes []
 		}
 		s.Target = impl
 	}
+
 	return nil
 }

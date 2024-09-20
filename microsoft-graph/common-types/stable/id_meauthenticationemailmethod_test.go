@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &MeAuthenticationEmailMethodId{}
 
 func TestNewMeAuthenticationEmailMethodID(t *testing.T) {
-	id := NewMeAuthenticationEmailMethodID("emailAuthenticationMethodIdValue")
+	id := NewMeAuthenticationEmailMethodID("emailAuthenticationMethodId")
 
-	if id.EmailAuthenticationMethodId != "emailAuthenticationMethodIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'EmailAuthenticationMethodId'", id.EmailAuthenticationMethodId, "emailAuthenticationMethodIdValue")
+	if id.EmailAuthenticationMethodId != "emailAuthenticationMethodId" {
+		t.Fatalf("Expected %q but got %q for Segment 'EmailAuthenticationMethodId'", id.EmailAuthenticationMethodId, "emailAuthenticationMethodId")
 	}
 }
 
 func TestFormatMeAuthenticationEmailMethodID(t *testing.T) {
-	actual := NewMeAuthenticationEmailMethodID("emailAuthenticationMethodIdValue").ID()
-	expected := "/me/authentication/emailMethods/emailAuthenticationMethodIdValue"
+	actual := NewMeAuthenticationEmailMethodID("emailAuthenticationMethodId").ID()
+	expected := "/me/authentication/emailMethods/emailAuthenticationMethodId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -55,14 +55,14 @@ func TestParseMeAuthenticationEmailMethodID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/me/authentication/emailMethods/emailAuthenticationMethodIdValue",
+			Input: "/me/authentication/emailMethods/emailAuthenticationMethodId",
 			Expected: &MeAuthenticationEmailMethodId{
-				EmailAuthenticationMethodId: "emailAuthenticationMethodIdValue",
+				EmailAuthenticationMethodId: "emailAuthenticationMethodId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/authentication/emailMethods/emailAuthenticationMethodIdValue/extra",
+			Input: "/me/authentication/emailMethods/emailAuthenticationMethodId/extra",
 			Error: true,
 		},
 	}
@@ -131,26 +131,26 @@ func TestParseMeAuthenticationEmailMethodIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/me/authentication/emailMethods/emailAuthenticationMethodIdValue",
+			Input: "/me/authentication/emailMethods/emailAuthenticationMethodId",
 			Expected: &MeAuthenticationEmailMethodId{
-				EmailAuthenticationMethodId: "emailAuthenticationMethodIdValue",
+				EmailAuthenticationMethodId: "emailAuthenticationMethodId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/authentication/emailMethods/emailAuthenticationMethodIdValue/extra",
+			Input: "/me/authentication/emailMethods/emailAuthenticationMethodId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/aUtHeNtIcAtIoN/eMaIlMeThOdS/eMaIlAuThEnTiCaTiOnMeThOdIdVaLuE",
+			Input: "/mE/aUtHeNtIcAtIoN/eMaIlMeThOdS/eMaIlAuThEnTiCaTiOnMeThOdId",
 			Expected: &MeAuthenticationEmailMethodId{
-				EmailAuthenticationMethodId: "eMaIlAuThEnTiCaTiOnMeThOdIdVaLuE",
+				EmailAuthenticationMethodId: "eMaIlAuThEnTiCaTiOnMeThOdId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/mE/aUtHeNtIcAtIoN/eMaIlMeThOdS/eMaIlAuThEnTiCaTiOnMeThOdIdVaLuE/extra",
+			Input: "/mE/aUtHeNtIcAtIoN/eMaIlMeThOdS/eMaIlAuThEnTiCaTiOnMeThOdId/extra",
 			Error: true,
 		},
 	}

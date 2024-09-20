@@ -86,15 +86,23 @@ func (s SecurityIntelligenceProfileIndicator) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &SecurityIntelligenceProfileIndicator{}
 
 func (s *SecurityIntelligenceProfileIndicator) UnmarshalJSON(bytes []byte) error {
-	type alias SecurityIntelligenceProfileIndicator
-	var decoded alias
+
+	var decoded struct {
+		FirstSeenDateTime *string                  `json:"firstSeenDateTime,omitempty"`
+		LastSeenDateTime  nullable.Type[string]    `json:"lastSeenDateTime,omitempty"`
+		Artifact          *SecurityArtifact        `json:"artifact,omitempty"`
+		Source            *SecurityIndicatorSource `json:"source,omitempty"`
+		Id                *string                  `json:"id,omitempty"`
+		ODataId           *string                  `json:"@odata.id,omitempty"`
+		ODataType         *string                  `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into SecurityIntelligenceProfileIndicator: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.FirstSeenDateTime = decoded.FirstSeenDateTime
-	s.Id = decoded.Id
 	s.LastSeenDateTime = decoded.LastSeenDateTime
+	s.Id = decoded.Id
 	s.ODataId = decoded.ODataId
 	s.ODataType = decoded.ODataType
 	s.Source = decoded.Source
@@ -111,5 +119,6 @@ func (s *SecurityIntelligenceProfileIndicator) UnmarshalJSON(bytes []byte) error
 		}
 		s.Artifact = &impl
 	}
+
 	return nil
 }

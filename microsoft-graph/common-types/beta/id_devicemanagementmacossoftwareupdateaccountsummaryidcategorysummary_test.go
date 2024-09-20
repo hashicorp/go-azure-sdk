@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &DeviceManagementMacOSSoftwareUpdateAccountSummaryIdCategorySummaryId{}
 
 func TestNewDeviceManagementMacOSSoftwareUpdateAccountSummaryIdCategorySummaryID(t *testing.T) {
-	id := NewDeviceManagementMacOSSoftwareUpdateAccountSummaryIdCategorySummaryID("macOSSoftwareUpdateAccountSummaryIdValue", "macOSSoftwareUpdateCategorySummaryIdValue")
+	id := NewDeviceManagementMacOSSoftwareUpdateAccountSummaryIdCategorySummaryID("macOSSoftwareUpdateAccountSummaryId", "macOSSoftwareUpdateCategorySummaryId")
 
-	if id.MacOSSoftwareUpdateAccountSummaryId != "macOSSoftwareUpdateAccountSummaryIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'MacOSSoftwareUpdateAccountSummaryId'", id.MacOSSoftwareUpdateAccountSummaryId, "macOSSoftwareUpdateAccountSummaryIdValue")
+	if id.MacOSSoftwareUpdateAccountSummaryId != "macOSSoftwareUpdateAccountSummaryId" {
+		t.Fatalf("Expected %q but got %q for Segment 'MacOSSoftwareUpdateAccountSummaryId'", id.MacOSSoftwareUpdateAccountSummaryId, "macOSSoftwareUpdateAccountSummaryId")
 	}
 
-	if id.MacOSSoftwareUpdateCategorySummaryId != "macOSSoftwareUpdateCategorySummaryIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'MacOSSoftwareUpdateCategorySummaryId'", id.MacOSSoftwareUpdateCategorySummaryId, "macOSSoftwareUpdateCategorySummaryIdValue")
+	if id.MacOSSoftwareUpdateCategorySummaryId != "macOSSoftwareUpdateCategorySummaryId" {
+		t.Fatalf("Expected %q but got %q for Segment 'MacOSSoftwareUpdateCategorySummaryId'", id.MacOSSoftwareUpdateCategorySummaryId, "macOSSoftwareUpdateCategorySummaryId")
 	}
 }
 
 func TestFormatDeviceManagementMacOSSoftwareUpdateAccountSummaryIdCategorySummaryID(t *testing.T) {
-	actual := NewDeviceManagementMacOSSoftwareUpdateAccountSummaryIdCategorySummaryID("macOSSoftwareUpdateAccountSummaryIdValue", "macOSSoftwareUpdateCategorySummaryIdValue").ID()
-	expected := "/deviceManagement/macOSSoftwareUpdateAccountSummaries/macOSSoftwareUpdateAccountSummaryIdValue/categorySummaries/macOSSoftwareUpdateCategorySummaryIdValue"
+	actual := NewDeviceManagementMacOSSoftwareUpdateAccountSummaryIdCategorySummaryID("macOSSoftwareUpdateAccountSummaryId", "macOSSoftwareUpdateCategorySummaryId").ID()
+	expected := "/deviceManagement/macOSSoftwareUpdateAccountSummaries/macOSSoftwareUpdateAccountSummaryId/categorySummaries/macOSSoftwareUpdateCategorySummaryId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -54,25 +54,25 @@ func TestParseDeviceManagementMacOSSoftwareUpdateAccountSummaryIdCategorySummary
 		},
 		{
 			// Incomplete URI
-			Input: "/deviceManagement/macOSSoftwareUpdateAccountSummaries/macOSSoftwareUpdateAccountSummaryIdValue",
+			Input: "/deviceManagement/macOSSoftwareUpdateAccountSummaries/macOSSoftwareUpdateAccountSummaryId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/deviceManagement/macOSSoftwareUpdateAccountSummaries/macOSSoftwareUpdateAccountSummaryIdValue/categorySummaries",
+			Input: "/deviceManagement/macOSSoftwareUpdateAccountSummaries/macOSSoftwareUpdateAccountSummaryId/categorySummaries",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/macOSSoftwareUpdateAccountSummaries/macOSSoftwareUpdateAccountSummaryIdValue/categorySummaries/macOSSoftwareUpdateCategorySummaryIdValue",
+			Input: "/deviceManagement/macOSSoftwareUpdateAccountSummaries/macOSSoftwareUpdateAccountSummaryId/categorySummaries/macOSSoftwareUpdateCategorySummaryId",
 			Expected: &DeviceManagementMacOSSoftwareUpdateAccountSummaryIdCategorySummaryId{
-				MacOSSoftwareUpdateAccountSummaryId:  "macOSSoftwareUpdateAccountSummaryIdValue",
-				MacOSSoftwareUpdateCategorySummaryId: "macOSSoftwareUpdateCategorySummaryIdValue",
+				MacOSSoftwareUpdateAccountSummaryId:  "macOSSoftwareUpdateAccountSummaryId",
+				MacOSSoftwareUpdateCategorySummaryId: "macOSSoftwareUpdateCategorySummaryId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/macOSSoftwareUpdateAccountSummaries/macOSSoftwareUpdateAccountSummaryIdValue/categorySummaries/macOSSoftwareUpdateCategorySummaryIdValue/extra",
+			Input: "/deviceManagement/macOSSoftwareUpdateAccountSummaries/macOSSoftwareUpdateAccountSummaryId/categorySummaries/macOSSoftwareUpdateCategorySummaryId/extra",
 			Error: true,
 		},
 	}
@@ -135,48 +135,48 @@ func TestParseDeviceManagementMacOSSoftwareUpdateAccountSummaryIdCategorySummary
 		},
 		{
 			// Incomplete URI
-			Input: "/deviceManagement/macOSSoftwareUpdateAccountSummaries/macOSSoftwareUpdateAccountSummaryIdValue",
+			Input: "/deviceManagement/macOSSoftwareUpdateAccountSummaries/macOSSoftwareUpdateAccountSummaryId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/mAcOsSoFtWaReUpDaTeAcCoUnTsUmMaRiEs/mAcOsSoFtWaReUpDaTeAcCoUnTsUmMaRyIdVaLuE",
+			Input: "/dEvIcEmAnAgEmEnT/mAcOsSoFtWaReUpDaTeAcCoUnTsUmMaRiEs/mAcOsSoFtWaReUpDaTeAcCoUnTsUmMaRyId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/deviceManagement/macOSSoftwareUpdateAccountSummaries/macOSSoftwareUpdateAccountSummaryIdValue/categorySummaries",
+			Input: "/deviceManagement/macOSSoftwareUpdateAccountSummaries/macOSSoftwareUpdateAccountSummaryId/categorySummaries",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/mAcOsSoFtWaReUpDaTeAcCoUnTsUmMaRiEs/mAcOsSoFtWaReUpDaTeAcCoUnTsUmMaRyIdVaLuE/cAtEgOrYsUmMaRiEs",
+			Input: "/dEvIcEmAnAgEmEnT/mAcOsSoFtWaReUpDaTeAcCoUnTsUmMaRiEs/mAcOsSoFtWaReUpDaTeAcCoUnTsUmMaRyId/cAtEgOrYsUmMaRiEs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/macOSSoftwareUpdateAccountSummaries/macOSSoftwareUpdateAccountSummaryIdValue/categorySummaries/macOSSoftwareUpdateCategorySummaryIdValue",
+			Input: "/deviceManagement/macOSSoftwareUpdateAccountSummaries/macOSSoftwareUpdateAccountSummaryId/categorySummaries/macOSSoftwareUpdateCategorySummaryId",
 			Expected: &DeviceManagementMacOSSoftwareUpdateAccountSummaryIdCategorySummaryId{
-				MacOSSoftwareUpdateAccountSummaryId:  "macOSSoftwareUpdateAccountSummaryIdValue",
-				MacOSSoftwareUpdateCategorySummaryId: "macOSSoftwareUpdateCategorySummaryIdValue",
+				MacOSSoftwareUpdateAccountSummaryId:  "macOSSoftwareUpdateAccountSummaryId",
+				MacOSSoftwareUpdateCategorySummaryId: "macOSSoftwareUpdateCategorySummaryId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/macOSSoftwareUpdateAccountSummaries/macOSSoftwareUpdateAccountSummaryIdValue/categorySummaries/macOSSoftwareUpdateCategorySummaryIdValue/extra",
+			Input: "/deviceManagement/macOSSoftwareUpdateAccountSummaries/macOSSoftwareUpdateAccountSummaryId/categorySummaries/macOSSoftwareUpdateCategorySummaryId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/mAcOsSoFtWaReUpDaTeAcCoUnTsUmMaRiEs/mAcOsSoFtWaReUpDaTeAcCoUnTsUmMaRyIdVaLuE/cAtEgOrYsUmMaRiEs/mAcOsSoFtWaReUpDaTeCaTeGoRySuMmArYiDvAlUe",
+			Input: "/dEvIcEmAnAgEmEnT/mAcOsSoFtWaReUpDaTeAcCoUnTsUmMaRiEs/mAcOsSoFtWaReUpDaTeAcCoUnTsUmMaRyId/cAtEgOrYsUmMaRiEs/mAcOsSoFtWaReUpDaTeCaTeGoRySuMmArYiD",
 			Expected: &DeviceManagementMacOSSoftwareUpdateAccountSummaryIdCategorySummaryId{
-				MacOSSoftwareUpdateAccountSummaryId:  "mAcOsSoFtWaReUpDaTeAcCoUnTsUmMaRyIdVaLuE",
-				MacOSSoftwareUpdateCategorySummaryId: "mAcOsSoFtWaReUpDaTeCaTeGoRySuMmArYiDvAlUe",
+				MacOSSoftwareUpdateAccountSummaryId:  "mAcOsSoFtWaReUpDaTeAcCoUnTsUmMaRyId",
+				MacOSSoftwareUpdateCategorySummaryId: "mAcOsSoFtWaReUpDaTeCaTeGoRySuMmArYiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/mAcOsSoFtWaReUpDaTeAcCoUnTsUmMaRiEs/mAcOsSoFtWaReUpDaTeAcCoUnTsUmMaRyIdVaLuE/cAtEgOrYsUmMaRiEs/mAcOsSoFtWaReUpDaTeCaTeGoRySuMmArYiDvAlUe/extra",
+			Input: "/dEvIcEmAnAgEmEnT/mAcOsSoFtWaReUpDaTeAcCoUnTsUmMaRiEs/mAcOsSoFtWaReUpDaTeAcCoUnTsUmMaRyId/cAtEgOrYsUmMaRiEs/mAcOsSoFtWaReUpDaTeCaTeGoRySuMmArYiD/extra",
 			Error: true,
 		},
 	}

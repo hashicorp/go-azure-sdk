@@ -113,17 +113,24 @@ func (s BaseNetworkaccessFilteringRuleImpl) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &BaseNetworkaccessFilteringRuleImpl{}
 
 func (s *BaseNetworkaccessFilteringRuleImpl) UnmarshalJSON(bytes []byte) error {
-	type alias BaseNetworkaccessFilteringRuleImpl
-	var decoded alias
+
+	var decoded struct {
+		Destinations *[]NetworkaccessRuleDestination      `json:"destinations,omitempty"`
+		RuleType     *NetworkaccessNetworkDestinationType `json:"ruleType,omitempty"`
+		Name         *string                              `json:"name,omitempty"`
+		Id           *string                              `json:"id,omitempty"`
+		ODataId      *string                              `json:"@odata.id,omitempty"`
+		ODataType    *string                              `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into BaseNetworkaccessFilteringRuleImpl: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
+	s.RuleType = decoded.RuleType
 	s.Id = decoded.Id
 	s.Name = decoded.Name
 	s.ODataId = decoded.ODataId
 	s.ODataType = decoded.ODataType
-	s.RuleType = decoded.RuleType
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -146,6 +153,7 @@ func (s *BaseNetworkaccessFilteringRuleImpl) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Destinations = &output
 	}
+
 	return nil
 }
 
@@ -159,9 +167,9 @@ func UnmarshalNetworkaccessFilteringRuleImplementation(input []byte) (Networkacc
 		return nil, fmt.Errorf("unmarshaling NetworkaccessFilteringRule into map[string]interface: %+v", err)
 	}
 
-	value, ok := temp["@odata.type"].(string)
-	if !ok {
-		return nil, nil
+	var value string
+	if v, ok := temp["@odata.type"]; ok {
+		value = fmt.Sprintf("%v", v)
 	}
 
 	if strings.EqualFold(value, "#microsoft.graph.networkaccess.fqdnFilteringRule") {

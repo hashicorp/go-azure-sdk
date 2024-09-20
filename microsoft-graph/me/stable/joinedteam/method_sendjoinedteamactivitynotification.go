@@ -18,17 +18,46 @@ type SendJoinedTeamActivityNotificationOperationResponse struct {
 	OData        *odata.OData
 }
 
+type SendJoinedTeamActivityNotificationOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultSendJoinedTeamActivityNotificationOperationOptions() SendJoinedTeamActivityNotificationOperationOptions {
+	return SendJoinedTeamActivityNotificationOperationOptions{}
+}
+
+func (o SendJoinedTeamActivityNotificationOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o SendJoinedTeamActivityNotificationOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o SendJoinedTeamActivityNotificationOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // SendJoinedTeamActivityNotification - Invoke action sendActivityNotification. Send an activity feed notification in
 // the scope of a team. For more information about sending notifications and the requirements for doing so, see sending
 // Teams activity notifications.
-func (c JoinedTeamClient) SendJoinedTeamActivityNotification(ctx context.Context, id stable.MeJoinedTeamId, input SendJoinedTeamActivityNotificationRequest) (result SendJoinedTeamActivityNotificationOperationResponse, err error) {
+func (c JoinedTeamClient) SendJoinedTeamActivityNotification(ctx context.Context, id stable.MeJoinedTeamId, input SendJoinedTeamActivityNotificationRequest, options SendJoinedTeamActivityNotificationOperationOptions) (result SendJoinedTeamActivityNotificationOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/sendActivityNotification", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/sendActivityNotification", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

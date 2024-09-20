@@ -111,16 +111,30 @@ func (s DriveProtectionUnit) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &DriveProtectionUnit{}
 
 func (s *DriveProtectionUnit) UnmarshalJSON(bytes []byte) error {
-	type alias DriveProtectionUnit
-	var decoded alias
+
+	var decoded struct {
+		DirectoryObjectId    nullable.Type[string] `json:"directoryObjectId,omitempty"`
+		DisplayName          nullable.Type[string] `json:"displayName,omitempty"`
+		Email                nullable.Type[string] `json:"email,omitempty"`
+		CreatedBy            IdentitySet           `json:"createdBy"`
+		CreatedDateTime      nullable.Type[string] `json:"createdDateTime,omitempty"`
+		Error                *PublicError          `json:"error,omitempty"`
+		LastModifiedBy       IdentitySet           `json:"lastModifiedBy"`
+		LastModifiedDateTime nullable.Type[string] `json:"lastModifiedDateTime,omitempty"`
+		PolicyId             nullable.Type[string] `json:"policyId,omitempty"`
+		Status               *ProtectionUnitStatus `json:"status,omitempty"`
+		Id                   *string               `json:"id,omitempty"`
+		ODataId              *string               `json:"@odata.id,omitempty"`
+		ODataType            *string               `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into DriveProtectionUnit: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
-	s.CreatedDateTime = decoded.CreatedDateTime
 	s.DirectoryObjectId = decoded.DirectoryObjectId
 	s.DisplayName = decoded.DisplayName
 	s.Email = decoded.Email
+	s.CreatedDateTime = decoded.CreatedDateTime
 	s.Error = decoded.Error
 	s.Id = decoded.Id
 	s.LastModifiedDateTime = decoded.LastModifiedDateTime
@@ -149,5 +163,6 @@ func (s *DriveProtectionUnit) UnmarshalJSON(bytes []byte) error {
 		}
 		s.LastModifiedBy = impl
 	}
+
 	return nil
 }

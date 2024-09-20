@@ -98,10 +98,10 @@ func (id UserIdAuthenticationWindowsHelloForBusinessMethodId) ID() string {
 func (id UserIdAuthenticationWindowsHelloForBusinessMethodId) Segments() []resourceids.Segment {
 	return []resourceids.Segment{
 		resourceids.StaticSegment("users", "users", "users"),
-		resourceids.UserSpecifiedSegment("userId", "userIdValue"),
+		resourceids.UserSpecifiedSegment("userId", "userId"),
 		resourceids.StaticSegment("authentication", "authentication", "authentication"),
 		resourceids.StaticSegment("windowsHelloForBusinessMethods", "windowsHelloForBusinessMethods", "windowsHelloForBusinessMethods"),
-		resourceids.UserSpecifiedSegment("windowsHelloForBusinessAuthenticationMethodId", "windowsHelloForBusinessAuthenticationMethodIdValue"),
+		resourceids.UserSpecifiedSegment("windowsHelloForBusinessAuthenticationMethodId", "windowsHelloForBusinessAuthenticationMethodId"),
 	}
 }
 

@@ -17,15 +17,44 @@ type UpdateTenantAttachRBACOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateTenantAttachRBACOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateTenantAttachRBACOperationOptions() UpdateTenantAttachRBACOperationOptions {
+	return UpdateTenantAttachRBACOperationOptions{}
+}
+
+func (o UpdateTenantAttachRBACOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateTenantAttachRBACOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateTenantAttachRBACOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateTenantAttachRBAC - Update the navigation property tenantAttachRBAC in deviceManagement
-func (c TenantAttachRBACClient) UpdateTenantAttachRBAC(ctx context.Context, input beta.TenantAttachRBAC) (result UpdateTenantAttachRBACOperationResponse, err error) {
+func (c TenantAttachRBACClient) UpdateTenantAttachRBAC(ctx context.Context, input beta.TenantAttachRBAC, options UpdateTenantAttachRBACOperationOptions) (result UpdateTenantAttachRBACOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       "/deviceManagement/tenantAttachRBAC",
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          "/deviceManagement/tenantAttachRBAC",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

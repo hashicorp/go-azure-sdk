@@ -19,15 +19,44 @@ type CreateDriveItemSubscriptionOperationResponse struct {
 	Model        *stable.Subscription
 }
 
+type CreateDriveItemSubscriptionOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateDriveItemSubscriptionOperationOptions() CreateDriveItemSubscriptionOperationOptions {
+	return CreateDriveItemSubscriptionOperationOptions{}
+}
+
+func (o CreateDriveItemSubscriptionOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateDriveItemSubscriptionOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateDriveItemSubscriptionOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateDriveItemSubscription - Create new navigation property to subscriptions for users
-func (c DriveItemSubscriptionClient) CreateDriveItemSubscription(ctx context.Context, id stable.UserIdDriveIdItemId, input stable.Subscription) (result CreateDriveItemSubscriptionOperationResponse, err error) {
+func (c DriveItemSubscriptionClient) CreateDriveItemSubscription(ctx context.Context, id stable.UserIdDriveIdItemId, input stable.Subscription, options CreateDriveItemSubscriptionOperationOptions) (result CreateDriveItemSubscriptionOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/subscriptions", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/subscriptions", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

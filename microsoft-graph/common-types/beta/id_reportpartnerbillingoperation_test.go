@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &ReportPartnerBillingOperationId{}
 
 func TestNewReportPartnerBillingOperationID(t *testing.T) {
-	id := NewReportPartnerBillingOperationID("operationIdValue")
+	id := NewReportPartnerBillingOperationID("operationId")
 
-	if id.OperationId != "operationIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'OperationId'", id.OperationId, "operationIdValue")
+	if id.OperationId != "operationId" {
+		t.Fatalf("Expected %q but got %q for Segment 'OperationId'", id.OperationId, "operationId")
 	}
 }
 
 func TestFormatReportPartnerBillingOperationID(t *testing.T) {
-	actual := NewReportPartnerBillingOperationID("operationIdValue").ID()
-	expected := "/reports/partners/billing/operations/operationIdValue"
+	actual := NewReportPartnerBillingOperationID("operationId").ID()
+	expected := "/reports/partners/billing/operations/operationId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -60,14 +60,14 @@ func TestParseReportPartnerBillingOperationID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/reports/partners/billing/operations/operationIdValue",
+			Input: "/reports/partners/billing/operations/operationId",
 			Expected: &ReportPartnerBillingOperationId{
-				OperationId: "operationIdValue",
+				OperationId: "operationId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/reports/partners/billing/operations/operationIdValue/extra",
+			Input: "/reports/partners/billing/operations/operationId/extra",
 			Error: true,
 		},
 	}
@@ -146,26 +146,26 @@ func TestParseReportPartnerBillingOperationIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/reports/partners/billing/operations/operationIdValue",
+			Input: "/reports/partners/billing/operations/operationId",
 			Expected: &ReportPartnerBillingOperationId{
-				OperationId: "operationIdValue",
+				OperationId: "operationId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/reports/partners/billing/operations/operationIdValue/extra",
+			Input: "/reports/partners/billing/operations/operationId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/rEpOrTs/pArTnErS/bIlLiNg/oPeRaTiOnS/oPeRaTiOnIdVaLuE",
+			Input: "/rEpOrTs/pArTnErS/bIlLiNg/oPeRaTiOnS/oPeRaTiOnId",
 			Expected: &ReportPartnerBillingOperationId{
-				OperationId: "oPeRaTiOnIdVaLuE",
+				OperationId: "oPeRaTiOnId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/rEpOrTs/pArTnErS/bIlLiNg/oPeRaTiOnS/oPeRaTiOnIdVaLuE/extra",
+			Input: "/rEpOrTs/pArTnErS/bIlLiNg/oPeRaTiOnS/oPeRaTiOnId/extra",
 			Error: true,
 		},
 	}

@@ -18,15 +18,44 @@ type AssignDeviceEnrollmentConfigurationOperationResponse struct {
 	OData        *odata.OData
 }
 
+type AssignDeviceEnrollmentConfigurationOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultAssignDeviceEnrollmentConfigurationOperationOptions() AssignDeviceEnrollmentConfigurationOperationOptions {
+	return AssignDeviceEnrollmentConfigurationOperationOptions{}
+}
+
+func (o AssignDeviceEnrollmentConfigurationOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o AssignDeviceEnrollmentConfigurationOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o AssignDeviceEnrollmentConfigurationOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // AssignDeviceEnrollmentConfiguration - Invoke action assign
-func (c DeviceEnrollmentConfigurationClient) AssignDeviceEnrollmentConfiguration(ctx context.Context, id beta.DeviceManagementDeviceEnrollmentConfigurationId, input AssignDeviceEnrollmentConfigurationRequest) (result AssignDeviceEnrollmentConfigurationOperationResponse, err error) {
+func (c DeviceEnrollmentConfigurationClient) AssignDeviceEnrollmentConfiguration(ctx context.Context, id beta.DeviceManagementDeviceEnrollmentConfigurationId, input AssignDeviceEnrollmentConfigurationRequest, options AssignDeviceEnrollmentConfigurationOperationOptions) (result AssignDeviceEnrollmentConfigurationOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/assign", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/assign", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &DeviceManagementHardwareConfigurationIdAssignmentId{}
 
 func TestNewDeviceManagementHardwareConfigurationIdAssignmentID(t *testing.T) {
-	id := NewDeviceManagementHardwareConfigurationIdAssignmentID("hardwareConfigurationIdValue", "hardwareConfigurationAssignmentIdValue")
+	id := NewDeviceManagementHardwareConfigurationIdAssignmentID("hardwareConfigurationId", "hardwareConfigurationAssignmentId")
 
-	if id.HardwareConfigurationId != "hardwareConfigurationIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'HardwareConfigurationId'", id.HardwareConfigurationId, "hardwareConfigurationIdValue")
+	if id.HardwareConfigurationId != "hardwareConfigurationId" {
+		t.Fatalf("Expected %q but got %q for Segment 'HardwareConfigurationId'", id.HardwareConfigurationId, "hardwareConfigurationId")
 	}
 
-	if id.HardwareConfigurationAssignmentId != "hardwareConfigurationAssignmentIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'HardwareConfigurationAssignmentId'", id.HardwareConfigurationAssignmentId, "hardwareConfigurationAssignmentIdValue")
+	if id.HardwareConfigurationAssignmentId != "hardwareConfigurationAssignmentId" {
+		t.Fatalf("Expected %q but got %q for Segment 'HardwareConfigurationAssignmentId'", id.HardwareConfigurationAssignmentId, "hardwareConfigurationAssignmentId")
 	}
 }
 
 func TestFormatDeviceManagementHardwareConfigurationIdAssignmentID(t *testing.T) {
-	actual := NewDeviceManagementHardwareConfigurationIdAssignmentID("hardwareConfigurationIdValue", "hardwareConfigurationAssignmentIdValue").ID()
-	expected := "/deviceManagement/hardwareConfigurations/hardwareConfigurationIdValue/assignments/hardwareConfigurationAssignmentIdValue"
+	actual := NewDeviceManagementHardwareConfigurationIdAssignmentID("hardwareConfigurationId", "hardwareConfigurationAssignmentId").ID()
+	expected := "/deviceManagement/hardwareConfigurations/hardwareConfigurationId/assignments/hardwareConfigurationAssignmentId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -54,25 +54,25 @@ func TestParseDeviceManagementHardwareConfigurationIdAssignmentID(t *testing.T) 
 		},
 		{
 			// Incomplete URI
-			Input: "/deviceManagement/hardwareConfigurations/hardwareConfigurationIdValue",
+			Input: "/deviceManagement/hardwareConfigurations/hardwareConfigurationId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/deviceManagement/hardwareConfigurations/hardwareConfigurationIdValue/assignments",
+			Input: "/deviceManagement/hardwareConfigurations/hardwareConfigurationId/assignments",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/hardwareConfigurations/hardwareConfigurationIdValue/assignments/hardwareConfigurationAssignmentIdValue",
+			Input: "/deviceManagement/hardwareConfigurations/hardwareConfigurationId/assignments/hardwareConfigurationAssignmentId",
 			Expected: &DeviceManagementHardwareConfigurationIdAssignmentId{
-				HardwareConfigurationId:           "hardwareConfigurationIdValue",
-				HardwareConfigurationAssignmentId: "hardwareConfigurationAssignmentIdValue",
+				HardwareConfigurationId:           "hardwareConfigurationId",
+				HardwareConfigurationAssignmentId: "hardwareConfigurationAssignmentId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/hardwareConfigurations/hardwareConfigurationIdValue/assignments/hardwareConfigurationAssignmentIdValue/extra",
+			Input: "/deviceManagement/hardwareConfigurations/hardwareConfigurationId/assignments/hardwareConfigurationAssignmentId/extra",
 			Error: true,
 		},
 	}
@@ -135,48 +135,48 @@ func TestParseDeviceManagementHardwareConfigurationIdAssignmentIDInsensitively(t
 		},
 		{
 			// Incomplete URI
-			Input: "/deviceManagement/hardwareConfigurations/hardwareConfigurationIdValue",
+			Input: "/deviceManagement/hardwareConfigurations/hardwareConfigurationId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/hArDwArEcOnFiGuRaTiOnS/hArDwArEcOnFiGuRaTiOnIdVaLuE",
+			Input: "/dEvIcEmAnAgEmEnT/hArDwArEcOnFiGuRaTiOnS/hArDwArEcOnFiGuRaTiOnId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/deviceManagement/hardwareConfigurations/hardwareConfigurationIdValue/assignments",
+			Input: "/deviceManagement/hardwareConfigurations/hardwareConfigurationId/assignments",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/hArDwArEcOnFiGuRaTiOnS/hArDwArEcOnFiGuRaTiOnIdVaLuE/aSsIgNmEnTs",
+			Input: "/dEvIcEmAnAgEmEnT/hArDwArEcOnFiGuRaTiOnS/hArDwArEcOnFiGuRaTiOnId/aSsIgNmEnTs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/hardwareConfigurations/hardwareConfigurationIdValue/assignments/hardwareConfigurationAssignmentIdValue",
+			Input: "/deviceManagement/hardwareConfigurations/hardwareConfigurationId/assignments/hardwareConfigurationAssignmentId",
 			Expected: &DeviceManagementHardwareConfigurationIdAssignmentId{
-				HardwareConfigurationId:           "hardwareConfigurationIdValue",
-				HardwareConfigurationAssignmentId: "hardwareConfigurationAssignmentIdValue",
+				HardwareConfigurationId:           "hardwareConfigurationId",
+				HardwareConfigurationAssignmentId: "hardwareConfigurationAssignmentId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/hardwareConfigurations/hardwareConfigurationIdValue/assignments/hardwareConfigurationAssignmentIdValue/extra",
+			Input: "/deviceManagement/hardwareConfigurations/hardwareConfigurationId/assignments/hardwareConfigurationAssignmentId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/hArDwArEcOnFiGuRaTiOnS/hArDwArEcOnFiGuRaTiOnIdVaLuE/aSsIgNmEnTs/hArDwArEcOnFiGuRaTiOnAsSiGnMeNtIdVaLuE",
+			Input: "/dEvIcEmAnAgEmEnT/hArDwArEcOnFiGuRaTiOnS/hArDwArEcOnFiGuRaTiOnId/aSsIgNmEnTs/hArDwArEcOnFiGuRaTiOnAsSiGnMeNtId",
 			Expected: &DeviceManagementHardwareConfigurationIdAssignmentId{
-				HardwareConfigurationId:           "hArDwArEcOnFiGuRaTiOnIdVaLuE",
-				HardwareConfigurationAssignmentId: "hArDwArEcOnFiGuRaTiOnAsSiGnMeNtIdVaLuE",
+				HardwareConfigurationId:           "hArDwArEcOnFiGuRaTiOnId",
+				HardwareConfigurationAssignmentId: "hArDwArEcOnFiGuRaTiOnAsSiGnMeNtId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/hArDwArEcOnFiGuRaTiOnS/hArDwArEcOnFiGuRaTiOnIdVaLuE/aSsIgNmEnTs/hArDwArEcOnFiGuRaTiOnAsSiGnMeNtIdVaLuE/extra",
+			Input: "/dEvIcEmAnAgEmEnT/hArDwArEcOnFiGuRaTiOnS/hArDwArEcOnFiGuRaTiOnId/aSsIgNmEnTs/hArDwArEcOnFiGuRaTiOnAsSiGnMeNtId/extra",
 			Error: true,
 		},
 	}

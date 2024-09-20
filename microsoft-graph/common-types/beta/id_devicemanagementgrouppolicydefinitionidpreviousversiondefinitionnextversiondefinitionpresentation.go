@@ -99,11 +99,11 @@ func (id DeviceManagementGroupPolicyDefinitionIdPreviousVersionDefinitionNextVer
 	return []resourceids.Segment{
 		resourceids.StaticSegment("deviceManagement", "deviceManagement", "deviceManagement"),
 		resourceids.StaticSegment("groupPolicyDefinitions", "groupPolicyDefinitions", "groupPolicyDefinitions"),
-		resourceids.UserSpecifiedSegment("groupPolicyDefinitionId", "groupPolicyDefinitionIdValue"),
+		resourceids.UserSpecifiedSegment("groupPolicyDefinitionId", "groupPolicyDefinitionId"),
 		resourceids.StaticSegment("previousVersionDefinition", "previousVersionDefinition", "previousVersionDefinition"),
 		resourceids.StaticSegment("nextVersionDefinition", "nextVersionDefinition", "nextVersionDefinition"),
 		resourceids.StaticSegment("presentations", "presentations", "presentations"),
-		resourceids.UserSpecifiedSegment("groupPolicyPresentationId", "groupPolicyPresentationIdValue"),
+		resourceids.UserSpecifiedSegment("groupPolicyPresentationId", "groupPolicyPresentationId"),
 	}
 }
 

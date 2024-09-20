@@ -57,10 +57,13 @@ func (s AccessPackageResourceAttributeQuestion) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &AccessPackageResourceAttributeQuestion{}
 
 func (s *AccessPackageResourceAttributeQuestion) UnmarshalJSON(bytes []byte) error {
-	type alias AccessPackageResourceAttributeQuestion
-	var decoded alias
+
+	var decoded struct {
+		ODataId   *string `json:"@odata.id,omitempty"`
+		ODataType *string `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into AccessPackageResourceAttributeQuestion: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.ODataId = decoded.ODataId
@@ -78,5 +81,6 @@ func (s *AccessPackageResourceAttributeQuestion) UnmarshalJSON(bytes []byte) err
 		}
 		s.Question = &impl
 	}
+
 	return nil
 }

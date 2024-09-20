@@ -93,7 +93,7 @@ func (id AuditLogCustomSecurityAttributeAuditId) Segments() []resourceids.Segmen
 	return []resourceids.Segment{
 		resourceids.StaticSegment("auditLogs", "auditLogs", "auditLogs"),
 		resourceids.StaticSegment("customSecurityAttributeAudits", "customSecurityAttributeAudits", "customSecurityAttributeAudits"),
-		resourceids.UserSpecifiedSegment("customSecurityAttributeAuditId", "customSecurityAttributeAuditIdValue"),
+		resourceids.UserSpecifiedSegment("customSecurityAttributeAuditId", "customSecurityAttributeAuditId"),
 	}
 }
 

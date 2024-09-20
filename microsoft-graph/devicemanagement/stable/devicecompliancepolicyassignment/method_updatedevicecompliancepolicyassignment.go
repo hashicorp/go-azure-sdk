@@ -17,16 +17,45 @@ type UpdateDeviceCompliancePolicyAssignmentOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateDeviceCompliancePolicyAssignmentOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateDeviceCompliancePolicyAssignmentOperationOptions() UpdateDeviceCompliancePolicyAssignmentOperationOptions {
+	return UpdateDeviceCompliancePolicyAssignmentOperationOptions{}
+}
+
+func (o UpdateDeviceCompliancePolicyAssignmentOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateDeviceCompliancePolicyAssignmentOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateDeviceCompliancePolicyAssignmentOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateDeviceCompliancePolicyAssignment - Update deviceCompliancePolicyAssignment. Update the properties of a
 // deviceCompliancePolicyAssignment object.
-func (c DeviceCompliancePolicyAssignmentClient) UpdateDeviceCompliancePolicyAssignment(ctx context.Context, id stable.DeviceManagementDeviceCompliancePolicyIdAssignmentId, input stable.DeviceCompliancePolicyAssignment) (result UpdateDeviceCompliancePolicyAssignmentOperationResponse, err error) {
+func (c DeviceCompliancePolicyAssignmentClient) UpdateDeviceCompliancePolicyAssignment(ctx context.Context, id stable.DeviceManagementDeviceCompliancePolicyIdAssignmentId, input stable.DeviceCompliancePolicyAssignment, options UpdateDeviceCompliancePolicyAssignmentOperationOptions) (result UpdateDeviceCompliancePolicyAssignmentOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

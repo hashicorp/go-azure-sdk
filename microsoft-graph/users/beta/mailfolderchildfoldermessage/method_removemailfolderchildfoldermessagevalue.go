@@ -19,7 +19,8 @@ type RemoveMailFolderChildFolderMessageValueOperationResponse struct {
 }
 
 type RemoveMailFolderChildFolderMessageValueOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultRemoveMailFolderChildFolderMessageValueOperationOptions() RemoveMailFolderChildFolderMessageValueOperationOptions {
@@ -36,7 +37,9 @@ func (o RemoveMailFolderChildFolderMessageValueOperationOptions) ToHeaders() *cl
 
 func (o RemoveMailFolderChildFolderMessageValueOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

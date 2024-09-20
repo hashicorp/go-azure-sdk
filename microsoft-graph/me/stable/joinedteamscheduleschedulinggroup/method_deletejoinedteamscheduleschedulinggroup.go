@@ -19,7 +19,8 @@ type DeleteJoinedTeamScheduleSchedulingGroupOperationResponse struct {
 }
 
 type DeleteJoinedTeamScheduleSchedulingGroupOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteJoinedTeamScheduleSchedulingGroupOperationOptions() DeleteJoinedTeamScheduleSchedulingGroupOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteJoinedTeamScheduleSchedulingGroupOperationOptions) ToHeaders() *cl
 
 func (o DeleteJoinedTeamScheduleSchedulingGroupOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

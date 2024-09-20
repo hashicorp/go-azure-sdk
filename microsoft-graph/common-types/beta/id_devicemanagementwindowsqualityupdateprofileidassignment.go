@@ -99,9 +99,9 @@ func (id DeviceManagementWindowsQualityUpdateProfileIdAssignmentId) Segments() [
 	return []resourceids.Segment{
 		resourceids.StaticSegment("deviceManagement", "deviceManagement", "deviceManagement"),
 		resourceids.StaticSegment("windowsQualityUpdateProfiles", "windowsQualityUpdateProfiles", "windowsQualityUpdateProfiles"),
-		resourceids.UserSpecifiedSegment("windowsQualityUpdateProfileId", "windowsQualityUpdateProfileIdValue"),
+		resourceids.UserSpecifiedSegment("windowsQualityUpdateProfileId", "windowsQualityUpdateProfileId"),
 		resourceids.StaticSegment("assignments", "assignments", "assignments"),
-		resourceids.UserSpecifiedSegment("windowsQualityUpdateProfileAssignmentId", "windowsQualityUpdateProfileAssignmentIdValue"),
+		resourceids.UserSpecifiedSegment("windowsQualityUpdateProfileAssignmentId", "windowsQualityUpdateProfileAssignmentId"),
 	}
 }
 

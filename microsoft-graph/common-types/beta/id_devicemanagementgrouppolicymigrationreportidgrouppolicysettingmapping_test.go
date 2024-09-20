@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &DeviceManagementGroupPolicyMigrationReportIdGroupPolicySettingMappingId{}
 
 func TestNewDeviceManagementGroupPolicyMigrationReportIdGroupPolicySettingMappingID(t *testing.T) {
-	id := NewDeviceManagementGroupPolicyMigrationReportIdGroupPolicySettingMappingID("groupPolicyMigrationReportIdValue", "groupPolicySettingMappingIdValue")
+	id := NewDeviceManagementGroupPolicyMigrationReportIdGroupPolicySettingMappingID("groupPolicyMigrationReportId", "groupPolicySettingMappingId")
 
-	if id.GroupPolicyMigrationReportId != "groupPolicyMigrationReportIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'GroupPolicyMigrationReportId'", id.GroupPolicyMigrationReportId, "groupPolicyMigrationReportIdValue")
+	if id.GroupPolicyMigrationReportId != "groupPolicyMigrationReportId" {
+		t.Fatalf("Expected %q but got %q for Segment 'GroupPolicyMigrationReportId'", id.GroupPolicyMigrationReportId, "groupPolicyMigrationReportId")
 	}
 
-	if id.GroupPolicySettingMappingId != "groupPolicySettingMappingIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'GroupPolicySettingMappingId'", id.GroupPolicySettingMappingId, "groupPolicySettingMappingIdValue")
+	if id.GroupPolicySettingMappingId != "groupPolicySettingMappingId" {
+		t.Fatalf("Expected %q but got %q for Segment 'GroupPolicySettingMappingId'", id.GroupPolicySettingMappingId, "groupPolicySettingMappingId")
 	}
 }
 
 func TestFormatDeviceManagementGroupPolicyMigrationReportIdGroupPolicySettingMappingID(t *testing.T) {
-	actual := NewDeviceManagementGroupPolicyMigrationReportIdGroupPolicySettingMappingID("groupPolicyMigrationReportIdValue", "groupPolicySettingMappingIdValue").ID()
-	expected := "/deviceManagement/groupPolicyMigrationReports/groupPolicyMigrationReportIdValue/groupPolicySettingMappings/groupPolicySettingMappingIdValue"
+	actual := NewDeviceManagementGroupPolicyMigrationReportIdGroupPolicySettingMappingID("groupPolicyMigrationReportId", "groupPolicySettingMappingId").ID()
+	expected := "/deviceManagement/groupPolicyMigrationReports/groupPolicyMigrationReportId/groupPolicySettingMappings/groupPolicySettingMappingId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -54,25 +54,25 @@ func TestParseDeviceManagementGroupPolicyMigrationReportIdGroupPolicySettingMapp
 		},
 		{
 			// Incomplete URI
-			Input: "/deviceManagement/groupPolicyMigrationReports/groupPolicyMigrationReportIdValue",
+			Input: "/deviceManagement/groupPolicyMigrationReports/groupPolicyMigrationReportId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/deviceManagement/groupPolicyMigrationReports/groupPolicyMigrationReportIdValue/groupPolicySettingMappings",
+			Input: "/deviceManagement/groupPolicyMigrationReports/groupPolicyMigrationReportId/groupPolicySettingMappings",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/groupPolicyMigrationReports/groupPolicyMigrationReportIdValue/groupPolicySettingMappings/groupPolicySettingMappingIdValue",
+			Input: "/deviceManagement/groupPolicyMigrationReports/groupPolicyMigrationReportId/groupPolicySettingMappings/groupPolicySettingMappingId",
 			Expected: &DeviceManagementGroupPolicyMigrationReportIdGroupPolicySettingMappingId{
-				GroupPolicyMigrationReportId: "groupPolicyMigrationReportIdValue",
-				GroupPolicySettingMappingId:  "groupPolicySettingMappingIdValue",
+				GroupPolicyMigrationReportId: "groupPolicyMigrationReportId",
+				GroupPolicySettingMappingId:  "groupPolicySettingMappingId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/groupPolicyMigrationReports/groupPolicyMigrationReportIdValue/groupPolicySettingMappings/groupPolicySettingMappingIdValue/extra",
+			Input: "/deviceManagement/groupPolicyMigrationReports/groupPolicyMigrationReportId/groupPolicySettingMappings/groupPolicySettingMappingId/extra",
 			Error: true,
 		},
 	}
@@ -135,48 +135,48 @@ func TestParseDeviceManagementGroupPolicyMigrationReportIdGroupPolicySettingMapp
 		},
 		{
 			// Incomplete URI
-			Input: "/deviceManagement/groupPolicyMigrationReports/groupPolicyMigrationReportIdValue",
+			Input: "/deviceManagement/groupPolicyMigrationReports/groupPolicyMigrationReportId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/gRoUpPoLiCyMiGrAtIoNrEpOrTs/gRoUpPoLiCyMiGrAtIoNrEpOrTiDvAlUe",
+			Input: "/dEvIcEmAnAgEmEnT/gRoUpPoLiCyMiGrAtIoNrEpOrTs/gRoUpPoLiCyMiGrAtIoNrEpOrTiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/deviceManagement/groupPolicyMigrationReports/groupPolicyMigrationReportIdValue/groupPolicySettingMappings",
+			Input: "/deviceManagement/groupPolicyMigrationReports/groupPolicyMigrationReportId/groupPolicySettingMappings",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/gRoUpPoLiCyMiGrAtIoNrEpOrTs/gRoUpPoLiCyMiGrAtIoNrEpOrTiDvAlUe/gRoUpPoLiCySeTtInGmApPiNgS",
+			Input: "/dEvIcEmAnAgEmEnT/gRoUpPoLiCyMiGrAtIoNrEpOrTs/gRoUpPoLiCyMiGrAtIoNrEpOrTiD/gRoUpPoLiCySeTtInGmApPiNgS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/groupPolicyMigrationReports/groupPolicyMigrationReportIdValue/groupPolicySettingMappings/groupPolicySettingMappingIdValue",
+			Input: "/deviceManagement/groupPolicyMigrationReports/groupPolicyMigrationReportId/groupPolicySettingMappings/groupPolicySettingMappingId",
 			Expected: &DeviceManagementGroupPolicyMigrationReportIdGroupPolicySettingMappingId{
-				GroupPolicyMigrationReportId: "groupPolicyMigrationReportIdValue",
-				GroupPolicySettingMappingId:  "groupPolicySettingMappingIdValue",
+				GroupPolicyMigrationReportId: "groupPolicyMigrationReportId",
+				GroupPolicySettingMappingId:  "groupPolicySettingMappingId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/groupPolicyMigrationReports/groupPolicyMigrationReportIdValue/groupPolicySettingMappings/groupPolicySettingMappingIdValue/extra",
+			Input: "/deviceManagement/groupPolicyMigrationReports/groupPolicyMigrationReportId/groupPolicySettingMappings/groupPolicySettingMappingId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/gRoUpPoLiCyMiGrAtIoNrEpOrTs/gRoUpPoLiCyMiGrAtIoNrEpOrTiDvAlUe/gRoUpPoLiCySeTtInGmApPiNgS/gRoUpPoLiCySeTtInGmApPiNgIdVaLuE",
+			Input: "/dEvIcEmAnAgEmEnT/gRoUpPoLiCyMiGrAtIoNrEpOrTs/gRoUpPoLiCyMiGrAtIoNrEpOrTiD/gRoUpPoLiCySeTtInGmApPiNgS/gRoUpPoLiCySeTtInGmApPiNgId",
 			Expected: &DeviceManagementGroupPolicyMigrationReportIdGroupPolicySettingMappingId{
-				GroupPolicyMigrationReportId: "gRoUpPoLiCyMiGrAtIoNrEpOrTiDvAlUe",
-				GroupPolicySettingMappingId:  "gRoUpPoLiCySeTtInGmApPiNgIdVaLuE",
+				GroupPolicyMigrationReportId: "gRoUpPoLiCyMiGrAtIoNrEpOrTiD",
+				GroupPolicySettingMappingId:  "gRoUpPoLiCySeTtInGmApPiNgId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/gRoUpPoLiCyMiGrAtIoNrEpOrTs/gRoUpPoLiCyMiGrAtIoNrEpOrTiDvAlUe/gRoUpPoLiCySeTtInGmApPiNgS/gRoUpPoLiCySeTtInGmApPiNgIdVaLuE/extra",
+			Input: "/dEvIcEmAnAgEmEnT/gRoUpPoLiCyMiGrAtIoNrEpOrTs/gRoUpPoLiCyMiGrAtIoNrEpOrTiD/gRoUpPoLiCySeTtInGmApPiNgS/gRoUpPoLiCySeTtInGmApPiNgId/extra",
 			Error: true,
 		},
 	}

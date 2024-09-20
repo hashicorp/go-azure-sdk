@@ -17,15 +17,44 @@ type UpdateInformationProtectionPolicyLabelOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateInformationProtectionPolicyLabelOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateInformationProtectionPolicyLabelOperationOptions() UpdateInformationProtectionPolicyLabelOperationOptions {
+	return UpdateInformationProtectionPolicyLabelOperationOptions{}
+}
+
+func (o UpdateInformationProtectionPolicyLabelOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateInformationProtectionPolicyLabelOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateInformationProtectionPolicyLabelOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateInformationProtectionPolicyLabel - Update the navigation property labels in users
-func (c InformationProtectionPolicyLabelClient) UpdateInformationProtectionPolicyLabel(ctx context.Context, id beta.UserIdInformationProtectionPolicyLabelId, input beta.InformationProtectionLabel) (result UpdateInformationProtectionPolicyLabelOperationResponse, err error) {
+func (c InformationProtectionPolicyLabelClient) UpdateInformationProtectionPolicyLabel(ctx context.Context, id beta.UserIdInformationProtectionPolicyLabelId, input beta.InformationProtectionLabel, options UpdateInformationProtectionPolicyLabelOperationOptions) (result UpdateInformationProtectionPolicyLabelOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

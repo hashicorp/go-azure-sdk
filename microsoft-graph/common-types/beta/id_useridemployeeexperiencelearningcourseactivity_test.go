@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &UserIdEmployeeExperienceLearningCourseActivityId{}
 
 func TestNewUserIdEmployeeExperienceLearningCourseActivityID(t *testing.T) {
-	id := NewUserIdEmployeeExperienceLearningCourseActivityID("userIdValue", "learningCourseActivityIdValue")
+	id := NewUserIdEmployeeExperienceLearningCourseActivityID("userId", "learningCourseActivityId")
 
-	if id.UserId != "userIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'UserId'", id.UserId, "userIdValue")
+	if id.UserId != "userId" {
+		t.Fatalf("Expected %q but got %q for Segment 'UserId'", id.UserId, "userId")
 	}
 
-	if id.LearningCourseActivityId != "learningCourseActivityIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'LearningCourseActivityId'", id.LearningCourseActivityId, "learningCourseActivityIdValue")
+	if id.LearningCourseActivityId != "learningCourseActivityId" {
+		t.Fatalf("Expected %q but got %q for Segment 'LearningCourseActivityId'", id.LearningCourseActivityId, "learningCourseActivityId")
 	}
 }
 
 func TestFormatUserIdEmployeeExperienceLearningCourseActivityID(t *testing.T) {
-	actual := NewUserIdEmployeeExperienceLearningCourseActivityID("userIdValue", "learningCourseActivityIdValue").ID()
-	expected := "/users/userIdValue/employeeExperience/learningCourseActivities/learningCourseActivityIdValue"
+	actual := NewUserIdEmployeeExperienceLearningCourseActivityID("userId", "learningCourseActivityId").ID()
+	expected := "/users/userId/employeeExperience/learningCourseActivities/learningCourseActivityId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -49,30 +49,30 @@ func TestParseUserIdEmployeeExperienceLearningCourseActivityID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue",
+			Input: "/users/userId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/employeeExperience",
+			Input: "/users/userId/employeeExperience",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/employeeExperience/learningCourseActivities",
+			Input: "/users/userId/employeeExperience/learningCourseActivities",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/users/userIdValue/employeeExperience/learningCourseActivities/learningCourseActivityIdValue",
+			Input: "/users/userId/employeeExperience/learningCourseActivities/learningCourseActivityId",
 			Expected: &UserIdEmployeeExperienceLearningCourseActivityId{
-				UserId:                   "userIdValue",
-				LearningCourseActivityId: "learningCourseActivityIdValue",
+				UserId:                   "userId",
+				LearningCourseActivityId: "learningCourseActivityId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/users/userIdValue/employeeExperience/learningCourseActivities/learningCourseActivityIdValue/extra",
+			Input: "/users/userId/employeeExperience/learningCourseActivities/learningCourseActivityId/extra",
 			Error: true,
 		},
 	}
@@ -125,58 +125,58 @@ func TestParseUserIdEmployeeExperienceLearningCourseActivityIDInsensitively(t *t
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue",
+			Input: "/users/userId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe",
+			Input: "/uSeRs/uSeRiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/employeeExperience",
+			Input: "/users/userId/employeeExperience",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/eMpLoYeEeXpErIeNcE",
+			Input: "/uSeRs/uSeRiD/eMpLoYeEeXpErIeNcE",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/employeeExperience/learningCourseActivities",
+			Input: "/users/userId/employeeExperience/learningCourseActivities",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/eMpLoYeEeXpErIeNcE/lEaRnInGcOuRsEaCtIvItIeS",
+			Input: "/uSeRs/uSeRiD/eMpLoYeEeXpErIeNcE/lEaRnInGcOuRsEaCtIvItIeS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/users/userIdValue/employeeExperience/learningCourseActivities/learningCourseActivityIdValue",
+			Input: "/users/userId/employeeExperience/learningCourseActivities/learningCourseActivityId",
 			Expected: &UserIdEmployeeExperienceLearningCourseActivityId{
-				UserId:                   "userIdValue",
-				LearningCourseActivityId: "learningCourseActivityIdValue",
+				UserId:                   "userId",
+				LearningCourseActivityId: "learningCourseActivityId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/users/userIdValue/employeeExperience/learningCourseActivities/learningCourseActivityIdValue/extra",
+			Input: "/users/userId/employeeExperience/learningCourseActivities/learningCourseActivityId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/eMpLoYeEeXpErIeNcE/lEaRnInGcOuRsEaCtIvItIeS/lEaRnInGcOuRsEaCtIvItYiDvAlUe",
+			Input: "/uSeRs/uSeRiD/eMpLoYeEeXpErIeNcE/lEaRnInGcOuRsEaCtIvItIeS/lEaRnInGcOuRsEaCtIvItYiD",
 			Expected: &UserIdEmployeeExperienceLearningCourseActivityId{
-				UserId:                   "uSeRiDvAlUe",
-				LearningCourseActivityId: "lEaRnInGcOuRsEaCtIvItYiDvAlUe",
+				UserId:                   "uSeRiD",
+				LearningCourseActivityId: "lEaRnInGcOuRsEaCtIvItYiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/eMpLoYeEeXpErIeNcE/lEaRnInGcOuRsEaCtIvItIeS/lEaRnInGcOuRsEaCtIvItYiDvAlUe/extra",
+			Input: "/uSeRs/uSeRiD/eMpLoYeEeXpErIeNcE/lEaRnInGcOuRsEaCtIvItIeS/lEaRnInGcOuRsEaCtIvItYiD/extra",
 			Error: true,
 		},
 	}

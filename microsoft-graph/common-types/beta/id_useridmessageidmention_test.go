@@ -12,24 +12,24 @@ import (
 var _ resourceids.ResourceId = &UserIdMessageIdMentionId{}
 
 func TestNewUserIdMessageIdMentionID(t *testing.T) {
-	id := NewUserIdMessageIdMentionID("userIdValue", "messageIdValue", "mentionIdValue")
+	id := NewUserIdMessageIdMentionID("userId", "messageId", "mentionId")
 
-	if id.UserId != "userIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'UserId'", id.UserId, "userIdValue")
+	if id.UserId != "userId" {
+		t.Fatalf("Expected %q but got %q for Segment 'UserId'", id.UserId, "userId")
 	}
 
-	if id.MessageId != "messageIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'MessageId'", id.MessageId, "messageIdValue")
+	if id.MessageId != "messageId" {
+		t.Fatalf("Expected %q but got %q for Segment 'MessageId'", id.MessageId, "messageId")
 	}
 
-	if id.MentionId != "mentionIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'MentionId'", id.MentionId, "mentionIdValue")
+	if id.MentionId != "mentionId" {
+		t.Fatalf("Expected %q but got %q for Segment 'MentionId'", id.MentionId, "mentionId")
 	}
 }
 
 func TestFormatUserIdMessageIdMentionID(t *testing.T) {
-	actual := NewUserIdMessageIdMentionID("userIdValue", "messageIdValue", "mentionIdValue").ID()
-	expected := "/users/userIdValue/messages/messageIdValue/mentions/mentionIdValue"
+	actual := NewUserIdMessageIdMentionID("userId", "messageId", "mentionId").ID()
+	expected := "/users/userId/messages/messageId/mentions/mentionId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -53,36 +53,36 @@ func TestParseUserIdMessageIdMentionID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue",
+			Input: "/users/userId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/messages",
+			Input: "/users/userId/messages",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/messages/messageIdValue",
+			Input: "/users/userId/messages/messageId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/messages/messageIdValue/mentions",
+			Input: "/users/userId/messages/messageId/mentions",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/users/userIdValue/messages/messageIdValue/mentions/mentionIdValue",
+			Input: "/users/userId/messages/messageId/mentions/mentionId",
 			Expected: &UserIdMessageIdMentionId{
-				UserId:    "userIdValue",
-				MessageId: "messageIdValue",
-				MentionId: "mentionIdValue",
+				UserId:    "userId",
+				MessageId: "messageId",
+				MentionId: "mentionId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/users/userIdValue/messages/messageIdValue/mentions/mentionIdValue/extra",
+			Input: "/users/userId/messages/messageId/mentions/mentionId/extra",
 			Error: true,
 		},
 	}
@@ -139,70 +139,70 @@ func TestParseUserIdMessageIdMentionIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue",
+			Input: "/users/userId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe",
+			Input: "/uSeRs/uSeRiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/messages",
+			Input: "/users/userId/messages",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/mEsSaGeS",
+			Input: "/uSeRs/uSeRiD/mEsSaGeS",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/messages/messageIdValue",
+			Input: "/users/userId/messages/messageId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/mEsSaGeS/mEsSaGeIdVaLuE",
+			Input: "/uSeRs/uSeRiD/mEsSaGeS/mEsSaGeId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/messages/messageIdValue/mentions",
+			Input: "/users/userId/messages/messageId/mentions",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/mEsSaGeS/mEsSaGeIdVaLuE/mEnTiOnS",
+			Input: "/uSeRs/uSeRiD/mEsSaGeS/mEsSaGeId/mEnTiOnS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/users/userIdValue/messages/messageIdValue/mentions/mentionIdValue",
+			Input: "/users/userId/messages/messageId/mentions/mentionId",
 			Expected: &UserIdMessageIdMentionId{
-				UserId:    "userIdValue",
-				MessageId: "messageIdValue",
-				MentionId: "mentionIdValue",
+				UserId:    "userId",
+				MessageId: "messageId",
+				MentionId: "mentionId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/users/userIdValue/messages/messageIdValue/mentions/mentionIdValue/extra",
+			Input: "/users/userId/messages/messageId/mentions/mentionId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/mEsSaGeS/mEsSaGeIdVaLuE/mEnTiOnS/mEnTiOnIdVaLuE",
+			Input: "/uSeRs/uSeRiD/mEsSaGeS/mEsSaGeId/mEnTiOnS/mEnTiOnId",
 			Expected: &UserIdMessageIdMentionId{
-				UserId:    "uSeRiDvAlUe",
-				MessageId: "mEsSaGeIdVaLuE",
-				MentionId: "mEnTiOnIdVaLuE",
+				UserId:    "uSeRiD",
+				MessageId: "mEsSaGeId",
+				MentionId: "mEnTiOnId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/mEsSaGeS/mEsSaGeIdVaLuE/mEnTiOnS/mEnTiOnIdVaLuE/extra",
+			Input: "/uSeRs/uSeRiD/mEsSaGeS/mEsSaGeId/mEnTiOnS/mEnTiOnId/extra",
 			Error: true,
 		},
 	}

@@ -19,15 +19,44 @@ type CreateElevationRequestApproveOperationResponse struct {
 	Model        *beta.PrivilegeManagementElevationRequest
 }
 
+type CreateElevationRequestApproveOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateElevationRequestApproveOperationOptions() CreateElevationRequestApproveOperationOptions {
+	return CreateElevationRequestApproveOperationOptions{}
+}
+
+func (o CreateElevationRequestApproveOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateElevationRequestApproveOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateElevationRequestApproveOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateElevationRequestApprove - Invoke action approve
-func (c ElevationRequestClient) CreateElevationRequestApprove(ctx context.Context, id beta.DeviceManagementElevationRequestId, input CreateElevationRequestApproveRequest) (result CreateElevationRequestApproveOperationResponse, err error) {
+func (c ElevationRequestClient) CreateElevationRequestApprove(ctx context.Context, id beta.DeviceManagementElevationRequestId, input CreateElevationRequestApproveRequest, options CreateElevationRequestApproveOperationOptions) (result CreateElevationRequestApproveOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/approve", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/approve", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

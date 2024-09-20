@@ -18,16 +18,45 @@ type SetSiteListItemDriveItemContentStreamOperationResponse struct {
 	OData        *odata.OData
 }
 
+type SetSiteListItemDriveItemContentStreamOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultSetSiteListItemDriveItemContentStreamOperationOptions() SetSiteListItemDriveItemContentStreamOperationOptions {
+	return SetSiteListItemDriveItemContentStreamOperationOptions{}
+}
+
+func (o SetSiteListItemDriveItemContentStreamOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o SetSiteListItemDriveItemContentStreamOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o SetSiteListItemDriveItemContentStreamOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // SetSiteListItemDriveItemContentStream - Update contentStream for the navigation property driveItem in groups. The
 // content stream, if the item represents a file.
-func (c SiteListItemDriveItemContentStreamClient) SetSiteListItemDriveItemContentStream(ctx context.Context, id beta.GroupIdSiteIdListIdItemId, input []byte) (result SetSiteListItemDriveItemContentStreamOperationResponse, err error) {
+func (c SiteListItemDriveItemContentStreamClient) SetSiteListItemDriveItemContentStream(ctx context.Context, id beta.GroupIdSiteIdListIdItemId, input []byte, options SetSiteListItemDriveItemContentStreamOperationOptions) (result SetSiteListItemDriveItemContentStreamOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPut,
-		Path:       fmt.Sprintf("%s/driveItem/contentStream", id.ID()),
+		HttpMethod:    http.MethodPut,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/driveItem/contentStream", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

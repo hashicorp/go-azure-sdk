@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &DeviceManagementDeviceShellScriptIdAssignmentId{}
 
 func TestNewDeviceManagementDeviceShellScriptIdAssignmentID(t *testing.T) {
-	id := NewDeviceManagementDeviceShellScriptIdAssignmentID("deviceShellScriptIdValue", "deviceManagementScriptAssignmentIdValue")
+	id := NewDeviceManagementDeviceShellScriptIdAssignmentID("deviceShellScriptId", "deviceManagementScriptAssignmentId")
 
-	if id.DeviceShellScriptId != "deviceShellScriptIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DeviceShellScriptId'", id.DeviceShellScriptId, "deviceShellScriptIdValue")
+	if id.DeviceShellScriptId != "deviceShellScriptId" {
+		t.Fatalf("Expected %q but got %q for Segment 'DeviceShellScriptId'", id.DeviceShellScriptId, "deviceShellScriptId")
 	}
 
-	if id.DeviceManagementScriptAssignmentId != "deviceManagementScriptAssignmentIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DeviceManagementScriptAssignmentId'", id.DeviceManagementScriptAssignmentId, "deviceManagementScriptAssignmentIdValue")
+	if id.DeviceManagementScriptAssignmentId != "deviceManagementScriptAssignmentId" {
+		t.Fatalf("Expected %q but got %q for Segment 'DeviceManagementScriptAssignmentId'", id.DeviceManagementScriptAssignmentId, "deviceManagementScriptAssignmentId")
 	}
 }
 
 func TestFormatDeviceManagementDeviceShellScriptIdAssignmentID(t *testing.T) {
-	actual := NewDeviceManagementDeviceShellScriptIdAssignmentID("deviceShellScriptIdValue", "deviceManagementScriptAssignmentIdValue").ID()
-	expected := "/deviceManagement/deviceShellScripts/deviceShellScriptIdValue/assignments/deviceManagementScriptAssignmentIdValue"
+	actual := NewDeviceManagementDeviceShellScriptIdAssignmentID("deviceShellScriptId", "deviceManagementScriptAssignmentId").ID()
+	expected := "/deviceManagement/deviceShellScripts/deviceShellScriptId/assignments/deviceManagementScriptAssignmentId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -54,25 +54,25 @@ func TestParseDeviceManagementDeviceShellScriptIdAssignmentID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/deviceManagement/deviceShellScripts/deviceShellScriptIdValue",
+			Input: "/deviceManagement/deviceShellScripts/deviceShellScriptId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/deviceManagement/deviceShellScripts/deviceShellScriptIdValue/assignments",
+			Input: "/deviceManagement/deviceShellScripts/deviceShellScriptId/assignments",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/deviceShellScripts/deviceShellScriptIdValue/assignments/deviceManagementScriptAssignmentIdValue",
+			Input: "/deviceManagement/deviceShellScripts/deviceShellScriptId/assignments/deviceManagementScriptAssignmentId",
 			Expected: &DeviceManagementDeviceShellScriptIdAssignmentId{
-				DeviceShellScriptId:                "deviceShellScriptIdValue",
-				DeviceManagementScriptAssignmentId: "deviceManagementScriptAssignmentIdValue",
+				DeviceShellScriptId:                "deviceShellScriptId",
+				DeviceManagementScriptAssignmentId: "deviceManagementScriptAssignmentId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/deviceShellScripts/deviceShellScriptIdValue/assignments/deviceManagementScriptAssignmentIdValue/extra",
+			Input: "/deviceManagement/deviceShellScripts/deviceShellScriptId/assignments/deviceManagementScriptAssignmentId/extra",
 			Error: true,
 		},
 	}
@@ -135,48 +135,48 @@ func TestParseDeviceManagementDeviceShellScriptIdAssignmentIDInsensitively(t *te
 		},
 		{
 			// Incomplete URI
-			Input: "/deviceManagement/deviceShellScripts/deviceShellScriptIdValue",
+			Input: "/deviceManagement/deviceShellScripts/deviceShellScriptId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/dEvIcEsHeLlScRiPtS/dEvIcEsHeLlScRiPtIdVaLuE",
+			Input: "/dEvIcEmAnAgEmEnT/dEvIcEsHeLlScRiPtS/dEvIcEsHeLlScRiPtId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/deviceManagement/deviceShellScripts/deviceShellScriptIdValue/assignments",
+			Input: "/deviceManagement/deviceShellScripts/deviceShellScriptId/assignments",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/dEvIcEsHeLlScRiPtS/dEvIcEsHeLlScRiPtIdVaLuE/aSsIgNmEnTs",
+			Input: "/dEvIcEmAnAgEmEnT/dEvIcEsHeLlScRiPtS/dEvIcEsHeLlScRiPtId/aSsIgNmEnTs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/deviceShellScripts/deviceShellScriptIdValue/assignments/deviceManagementScriptAssignmentIdValue",
+			Input: "/deviceManagement/deviceShellScripts/deviceShellScriptId/assignments/deviceManagementScriptAssignmentId",
 			Expected: &DeviceManagementDeviceShellScriptIdAssignmentId{
-				DeviceShellScriptId:                "deviceShellScriptIdValue",
-				DeviceManagementScriptAssignmentId: "deviceManagementScriptAssignmentIdValue",
+				DeviceShellScriptId:                "deviceShellScriptId",
+				DeviceManagementScriptAssignmentId: "deviceManagementScriptAssignmentId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/deviceShellScripts/deviceShellScriptIdValue/assignments/deviceManagementScriptAssignmentIdValue/extra",
+			Input: "/deviceManagement/deviceShellScripts/deviceShellScriptId/assignments/deviceManagementScriptAssignmentId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/dEvIcEsHeLlScRiPtS/dEvIcEsHeLlScRiPtIdVaLuE/aSsIgNmEnTs/dEvIcEmAnAgEmEnTsCrIpTaSsIgNmEnTiDvAlUe",
+			Input: "/dEvIcEmAnAgEmEnT/dEvIcEsHeLlScRiPtS/dEvIcEsHeLlScRiPtId/aSsIgNmEnTs/dEvIcEmAnAgEmEnTsCrIpTaSsIgNmEnTiD",
 			Expected: &DeviceManagementDeviceShellScriptIdAssignmentId{
-				DeviceShellScriptId:                "dEvIcEsHeLlScRiPtIdVaLuE",
-				DeviceManagementScriptAssignmentId: "dEvIcEmAnAgEmEnTsCrIpTaSsIgNmEnTiDvAlUe",
+				DeviceShellScriptId:                "dEvIcEsHeLlScRiPtId",
+				DeviceManagementScriptAssignmentId: "dEvIcEmAnAgEmEnTsCrIpTaSsIgNmEnTiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/dEvIcEsHeLlScRiPtS/dEvIcEsHeLlScRiPtIdVaLuE/aSsIgNmEnTs/dEvIcEmAnAgEmEnTsCrIpTaSsIgNmEnTiDvAlUe/extra",
+			Input: "/dEvIcEmAnAgEmEnT/dEvIcEsHeLlScRiPtS/dEvIcEsHeLlScRiPtId/aSsIgNmEnTs/dEvIcEmAnAgEmEnTsCrIpTaSsIgNmEnTiD/extra",
 			Error: true,
 		},
 	}

@@ -19,16 +19,45 @@ type CreateB2xUserFlowUserAttributeAssignmentOperationResponse struct {
 	Model        *stable.IdentityUserFlowAttributeAssignment
 }
 
+type CreateB2xUserFlowUserAttributeAssignmentOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateB2xUserFlowUserAttributeAssignmentOperationOptions() CreateB2xUserFlowUserAttributeAssignmentOperationOptions {
+	return CreateB2xUserFlowUserAttributeAssignmentOperationOptions{}
+}
+
+func (o CreateB2xUserFlowUserAttributeAssignmentOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateB2xUserFlowUserAttributeAssignmentOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateB2xUserFlowUserAttributeAssignmentOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateB2xUserFlowUserAttributeAssignment - Create userAttributeAssignments. Create a new
 // identityUserFlowAttributeAssignment object in a b2xIdentityUserFlow.
-func (c B2xUserFlowUserAttributeAssignmentClient) CreateB2xUserFlowUserAttributeAssignment(ctx context.Context, id stable.IdentityB2xUserFlowId, input stable.IdentityUserFlowAttributeAssignment) (result CreateB2xUserFlowUserAttributeAssignmentOperationResponse, err error) {
+func (c B2xUserFlowUserAttributeAssignmentClient) CreateB2xUserFlowUserAttributeAssignment(ctx context.Context, id stable.IdentityB2xUserFlowId, input stable.IdentityUserFlowAttributeAssignment, options CreateB2xUserFlowUserAttributeAssignmentOperationOptions) (result CreateB2xUserFlowUserAttributeAssignmentOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/userAttributeAssignments", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/userAttributeAssignments", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

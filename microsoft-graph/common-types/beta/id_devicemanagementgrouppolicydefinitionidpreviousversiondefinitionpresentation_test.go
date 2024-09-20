@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &DeviceManagementGroupPolicyDefinitionIdPreviousVersionDefinitionPresentationId{}
 
 func TestNewDeviceManagementGroupPolicyDefinitionIdPreviousVersionDefinitionPresentationID(t *testing.T) {
-	id := NewDeviceManagementGroupPolicyDefinitionIdPreviousVersionDefinitionPresentationID("groupPolicyDefinitionIdValue", "groupPolicyPresentationIdValue")
+	id := NewDeviceManagementGroupPolicyDefinitionIdPreviousVersionDefinitionPresentationID("groupPolicyDefinitionId", "groupPolicyPresentationId")
 
-	if id.GroupPolicyDefinitionId != "groupPolicyDefinitionIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'GroupPolicyDefinitionId'", id.GroupPolicyDefinitionId, "groupPolicyDefinitionIdValue")
+	if id.GroupPolicyDefinitionId != "groupPolicyDefinitionId" {
+		t.Fatalf("Expected %q but got %q for Segment 'GroupPolicyDefinitionId'", id.GroupPolicyDefinitionId, "groupPolicyDefinitionId")
 	}
 
-	if id.GroupPolicyPresentationId != "groupPolicyPresentationIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'GroupPolicyPresentationId'", id.GroupPolicyPresentationId, "groupPolicyPresentationIdValue")
+	if id.GroupPolicyPresentationId != "groupPolicyPresentationId" {
+		t.Fatalf("Expected %q but got %q for Segment 'GroupPolicyPresentationId'", id.GroupPolicyPresentationId, "groupPolicyPresentationId")
 	}
 }
 
 func TestFormatDeviceManagementGroupPolicyDefinitionIdPreviousVersionDefinitionPresentationID(t *testing.T) {
-	actual := NewDeviceManagementGroupPolicyDefinitionIdPreviousVersionDefinitionPresentationID("groupPolicyDefinitionIdValue", "groupPolicyPresentationIdValue").ID()
-	expected := "/deviceManagement/groupPolicyDefinitions/groupPolicyDefinitionIdValue/previousVersionDefinition/presentations/groupPolicyPresentationIdValue"
+	actual := NewDeviceManagementGroupPolicyDefinitionIdPreviousVersionDefinitionPresentationID("groupPolicyDefinitionId", "groupPolicyPresentationId").ID()
+	expected := "/deviceManagement/groupPolicyDefinitions/groupPolicyDefinitionId/previousVersionDefinition/presentations/groupPolicyPresentationId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -54,30 +54,30 @@ func TestParseDeviceManagementGroupPolicyDefinitionIdPreviousVersionDefinitionPr
 		},
 		{
 			// Incomplete URI
-			Input: "/deviceManagement/groupPolicyDefinitions/groupPolicyDefinitionIdValue",
+			Input: "/deviceManagement/groupPolicyDefinitions/groupPolicyDefinitionId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/deviceManagement/groupPolicyDefinitions/groupPolicyDefinitionIdValue/previousVersionDefinition",
+			Input: "/deviceManagement/groupPolicyDefinitions/groupPolicyDefinitionId/previousVersionDefinition",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/deviceManagement/groupPolicyDefinitions/groupPolicyDefinitionIdValue/previousVersionDefinition/presentations",
+			Input: "/deviceManagement/groupPolicyDefinitions/groupPolicyDefinitionId/previousVersionDefinition/presentations",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/groupPolicyDefinitions/groupPolicyDefinitionIdValue/previousVersionDefinition/presentations/groupPolicyPresentationIdValue",
+			Input: "/deviceManagement/groupPolicyDefinitions/groupPolicyDefinitionId/previousVersionDefinition/presentations/groupPolicyPresentationId",
 			Expected: &DeviceManagementGroupPolicyDefinitionIdPreviousVersionDefinitionPresentationId{
-				GroupPolicyDefinitionId:   "groupPolicyDefinitionIdValue",
-				GroupPolicyPresentationId: "groupPolicyPresentationIdValue",
+				GroupPolicyDefinitionId:   "groupPolicyDefinitionId",
+				GroupPolicyPresentationId: "groupPolicyPresentationId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/groupPolicyDefinitions/groupPolicyDefinitionIdValue/previousVersionDefinition/presentations/groupPolicyPresentationIdValue/extra",
+			Input: "/deviceManagement/groupPolicyDefinitions/groupPolicyDefinitionId/previousVersionDefinition/presentations/groupPolicyPresentationId/extra",
 			Error: true,
 		},
 	}
@@ -140,58 +140,58 @@ func TestParseDeviceManagementGroupPolicyDefinitionIdPreviousVersionDefinitionPr
 		},
 		{
 			// Incomplete URI
-			Input: "/deviceManagement/groupPolicyDefinitions/groupPolicyDefinitionIdValue",
+			Input: "/deviceManagement/groupPolicyDefinitions/groupPolicyDefinitionId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/gRoUpPoLiCyDeFiNiTiOnS/gRoUpPoLiCyDeFiNiTiOnIdVaLuE",
+			Input: "/dEvIcEmAnAgEmEnT/gRoUpPoLiCyDeFiNiTiOnS/gRoUpPoLiCyDeFiNiTiOnId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/deviceManagement/groupPolicyDefinitions/groupPolicyDefinitionIdValue/previousVersionDefinition",
+			Input: "/deviceManagement/groupPolicyDefinitions/groupPolicyDefinitionId/previousVersionDefinition",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/gRoUpPoLiCyDeFiNiTiOnS/gRoUpPoLiCyDeFiNiTiOnIdVaLuE/pReViOuSvErSiOnDeFiNiTiOn",
+			Input: "/dEvIcEmAnAgEmEnT/gRoUpPoLiCyDeFiNiTiOnS/gRoUpPoLiCyDeFiNiTiOnId/pReViOuSvErSiOnDeFiNiTiOn",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/deviceManagement/groupPolicyDefinitions/groupPolicyDefinitionIdValue/previousVersionDefinition/presentations",
+			Input: "/deviceManagement/groupPolicyDefinitions/groupPolicyDefinitionId/previousVersionDefinition/presentations",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/gRoUpPoLiCyDeFiNiTiOnS/gRoUpPoLiCyDeFiNiTiOnIdVaLuE/pReViOuSvErSiOnDeFiNiTiOn/pReSeNtAtIoNs",
+			Input: "/dEvIcEmAnAgEmEnT/gRoUpPoLiCyDeFiNiTiOnS/gRoUpPoLiCyDeFiNiTiOnId/pReViOuSvErSiOnDeFiNiTiOn/pReSeNtAtIoNs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/groupPolicyDefinitions/groupPolicyDefinitionIdValue/previousVersionDefinition/presentations/groupPolicyPresentationIdValue",
+			Input: "/deviceManagement/groupPolicyDefinitions/groupPolicyDefinitionId/previousVersionDefinition/presentations/groupPolicyPresentationId",
 			Expected: &DeviceManagementGroupPolicyDefinitionIdPreviousVersionDefinitionPresentationId{
-				GroupPolicyDefinitionId:   "groupPolicyDefinitionIdValue",
-				GroupPolicyPresentationId: "groupPolicyPresentationIdValue",
+				GroupPolicyDefinitionId:   "groupPolicyDefinitionId",
+				GroupPolicyPresentationId: "groupPolicyPresentationId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/groupPolicyDefinitions/groupPolicyDefinitionIdValue/previousVersionDefinition/presentations/groupPolicyPresentationIdValue/extra",
+			Input: "/deviceManagement/groupPolicyDefinitions/groupPolicyDefinitionId/previousVersionDefinition/presentations/groupPolicyPresentationId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/gRoUpPoLiCyDeFiNiTiOnS/gRoUpPoLiCyDeFiNiTiOnIdVaLuE/pReViOuSvErSiOnDeFiNiTiOn/pReSeNtAtIoNs/gRoUpPoLiCyPrEsEnTaTiOnIdVaLuE",
+			Input: "/dEvIcEmAnAgEmEnT/gRoUpPoLiCyDeFiNiTiOnS/gRoUpPoLiCyDeFiNiTiOnId/pReViOuSvErSiOnDeFiNiTiOn/pReSeNtAtIoNs/gRoUpPoLiCyPrEsEnTaTiOnId",
 			Expected: &DeviceManagementGroupPolicyDefinitionIdPreviousVersionDefinitionPresentationId{
-				GroupPolicyDefinitionId:   "gRoUpPoLiCyDeFiNiTiOnIdVaLuE",
-				GroupPolicyPresentationId: "gRoUpPoLiCyPrEsEnTaTiOnIdVaLuE",
+				GroupPolicyDefinitionId:   "gRoUpPoLiCyDeFiNiTiOnId",
+				GroupPolicyPresentationId: "gRoUpPoLiCyPrEsEnTaTiOnId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/gRoUpPoLiCyDeFiNiTiOnS/gRoUpPoLiCyDeFiNiTiOnIdVaLuE/pReViOuSvErSiOnDeFiNiTiOn/pReSeNtAtIoNs/gRoUpPoLiCyPrEsEnTaTiOnIdVaLuE/extra",
+			Input: "/dEvIcEmAnAgEmEnT/gRoUpPoLiCyDeFiNiTiOnS/gRoUpPoLiCyDeFiNiTiOnId/pReViOuSvErSiOnDeFiNiTiOn/pReSeNtAtIoNs/gRoUpPoLiCyPrEsEnTaTiOnId/extra",
 			Error: true,
 		},
 	}

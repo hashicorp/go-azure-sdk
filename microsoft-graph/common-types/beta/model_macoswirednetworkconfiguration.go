@@ -186,16 +186,55 @@ func (s MacOSWiredNetworkConfiguration) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &MacOSWiredNetworkConfiguration{}
 
 func (s *MacOSWiredNetworkConfiguration) UnmarshalJSON(bytes []byte) error {
-	type alias MacOSWiredNetworkConfiguration
-	var decoded alias
+
+	var decoded struct {
+		AuthenticationMethod                        *WiFiAuthenticationMethod                    `json:"authenticationMethod,omitempty"`
+		DeploymentChannel                           *AppleDeploymentChannel                      `json:"deploymentChannel,omitempty"`
+		EapFastConfiguration                        *EapFastConfiguration                        `json:"eapFastConfiguration,omitempty"`
+		EapType                                     *EapType                                     `json:"eapType,omitempty"`
+		EnableOuterIdentityPrivacy                  nullable.Type[string]                        `json:"enableOuterIdentityPrivacy,omitempty"`
+		NetworkInterface                            *WiredNetworkInterface                       `json:"networkInterface,omitempty"`
+		NetworkName                                 *string                                      `json:"networkName,omitempty"`
+		NonEapAuthenticationMethodForEapTtls        *NonEapAuthenticationMethodForEapTtlsType    `json:"nonEapAuthenticationMethodForEapTtls,omitempty"`
+		RootCertificateForServerValidation          *MacOSTrustedRootCertificate                 `json:"rootCertificateForServerValidation,omitempty"`
+		TrustedServerCertificateNames               *[]string                                    `json:"trustedServerCertificateNames,omitempty"`
+		Assignments                                 *[]DeviceConfigurationAssignment             `json:"assignments,omitempty"`
+		CreatedDateTime                             *string                                      `json:"createdDateTime,omitempty"`
+		Description                                 nullable.Type[string]                        `json:"description,omitempty"`
+		DeviceManagementApplicabilityRuleDeviceMode *DeviceManagementApplicabilityRuleDeviceMode `json:"deviceManagementApplicabilityRuleDeviceMode,omitempty"`
+		DeviceManagementApplicabilityRuleOsEdition  *DeviceManagementApplicabilityRuleOsEdition  `json:"deviceManagementApplicabilityRuleOsEdition,omitempty"`
+		DeviceManagementApplicabilityRuleOsVersion  *DeviceManagementApplicabilityRuleOsVersion  `json:"deviceManagementApplicabilityRuleOsVersion,omitempty"`
+		DeviceSettingStateSummaries                 *[]SettingStateDeviceSummary                 `json:"deviceSettingStateSummaries,omitempty"`
+		DeviceStatusOverview                        *DeviceConfigurationDeviceOverview           `json:"deviceStatusOverview,omitempty"`
+		DeviceStatuses                              *[]DeviceConfigurationDeviceStatus           `json:"deviceStatuses,omitempty"`
+		DisplayName                                 *string                                      `json:"displayName,omitempty"`
+		GroupAssignments                            *[]DeviceConfigurationGroupAssignment        `json:"groupAssignments,omitempty"`
+		LastModifiedDateTime                        *string                                      `json:"lastModifiedDateTime,omitempty"`
+		RoleScopeTagIds                             *[]string                                    `json:"roleScopeTagIds,omitempty"`
+		SupportsScopeTags                           *bool                                        `json:"supportsScopeTags,omitempty"`
+		UserStatusOverview                          *DeviceConfigurationUserOverview             `json:"userStatusOverview,omitempty"`
+		UserStatuses                                *[]DeviceConfigurationUserStatus             `json:"userStatuses,omitempty"`
+		Version                                     *int64                                       `json:"version,omitempty"`
+		Id                                          *string                                      `json:"id,omitempty"`
+		ODataId                                     *string                                      `json:"@odata.id,omitempty"`
+		ODataType                                   *string                                      `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into MacOSWiredNetworkConfiguration: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
-	s.Assignments = decoded.Assignments
 	s.AuthenticationMethod = decoded.AuthenticationMethod
-	s.CreatedDateTime = decoded.CreatedDateTime
 	s.DeploymentChannel = decoded.DeploymentChannel
+	s.EapFastConfiguration = decoded.EapFastConfiguration
+	s.EapType = decoded.EapType
+	s.EnableOuterIdentityPrivacy = decoded.EnableOuterIdentityPrivacy
+	s.NetworkInterface = decoded.NetworkInterface
+	s.NetworkName = decoded.NetworkName
+	s.NonEapAuthenticationMethodForEapTtls = decoded.NonEapAuthenticationMethodForEapTtls
+	s.RootCertificateForServerValidation = decoded.RootCertificateForServerValidation
+	s.TrustedServerCertificateNames = decoded.TrustedServerCertificateNames
+	s.Assignments = decoded.Assignments
+	s.CreatedDateTime = decoded.CreatedDateTime
 	s.Description = decoded.Description
 	s.DeviceManagementApplicabilityRuleDeviceMode = decoded.DeviceManagementApplicabilityRuleDeviceMode
 	s.DeviceManagementApplicabilityRuleOsEdition = decoded.DeviceManagementApplicabilityRuleOsEdition
@@ -204,21 +243,13 @@ func (s *MacOSWiredNetworkConfiguration) UnmarshalJSON(bytes []byte) error {
 	s.DeviceStatusOverview = decoded.DeviceStatusOverview
 	s.DeviceStatuses = decoded.DeviceStatuses
 	s.DisplayName = decoded.DisplayName
-	s.EapFastConfiguration = decoded.EapFastConfiguration
-	s.EapType = decoded.EapType
-	s.EnableOuterIdentityPrivacy = decoded.EnableOuterIdentityPrivacy
 	s.GroupAssignments = decoded.GroupAssignments
 	s.Id = decoded.Id
 	s.LastModifiedDateTime = decoded.LastModifiedDateTime
-	s.NetworkInterface = decoded.NetworkInterface
-	s.NetworkName = decoded.NetworkName
-	s.NonEapAuthenticationMethodForEapTtls = decoded.NonEapAuthenticationMethodForEapTtls
 	s.ODataId = decoded.ODataId
 	s.ODataType = decoded.ODataType
 	s.RoleScopeTagIds = decoded.RoleScopeTagIds
-	s.RootCertificateForServerValidation = decoded.RootCertificateForServerValidation
 	s.SupportsScopeTags = decoded.SupportsScopeTags
-	s.TrustedServerCertificateNames = decoded.TrustedServerCertificateNames
 	s.UserStatusOverview = decoded.UserStatusOverview
 	s.UserStatuses = decoded.UserStatuses
 	s.Version = decoded.Version
@@ -235,5 +266,6 @@ func (s *MacOSWiredNetworkConfiguration) UnmarshalJSON(bytes []byte) error {
 		}
 		s.IdentityCertificateForClientAuthentication = &impl
 	}
+
 	return nil
 }

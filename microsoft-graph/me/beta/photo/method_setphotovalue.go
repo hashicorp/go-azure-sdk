@@ -2,8 +2,10 @@ package photo
 
 import (
 	"context"
+	"fmt"
 	"net/http"
 
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta"
 	"github.com/hashicorp/go-azure-sdk/sdk/client"
 	"github.com/hashicorp/go-azure-sdk/sdk/odata"
 )
@@ -16,16 +18,45 @@ type SetPhotoValueOperationResponse struct {
 	OData        *odata.OData
 }
 
-// SetPhotoValue - Update profilePhoto. Update the photo for the specified contact, group, team, or user in a tenant.
-// The size of the photo you can update to is limited to 4 MB. You can use either PATCH or PUT for this operation.
-func (c PhotoClient) SetPhotoValue(ctx context.Context, input []byte) (result SetPhotoValueOperationResponse, err error) {
+type SetPhotoValueOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultSetPhotoValueOperationOptions() SetPhotoValueOperationOptions {
+	return SetPhotoValueOperationOptions{}
+}
+
+func (o SetPhotoValueOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o SetPhotoValueOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o SetPhotoValueOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
+// SetPhotoValue - Update media content for the navigation property photos in me. The unique identifier for an entity.
+// Read-only.
+func (c PhotoClient) SetPhotoValue(ctx context.Context, id beta.MePhotoId, input []byte, options SetPhotoValueOperationOptions) (result SetPhotoValueOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPut,
-		Path:       "/me/photo/$value",
+		HttpMethod:    http.MethodPut,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/$value", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

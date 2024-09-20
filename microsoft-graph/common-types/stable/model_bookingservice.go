@@ -135,10 +135,36 @@ func (s BookingService) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &BookingService{}
 
 func (s *BookingService) UnmarshalJSON(bytes []byte) error {
-	type alias BookingService
-	var decoded alias
+
+	var decoded struct {
+		AdditionalInformation            nullable.Type[string]        `json:"additionalInformation,omitempty"`
+		CreatedDateTime                  nullable.Type[string]        `json:"createdDateTime,omitempty"`
+		CustomQuestions                  *[]BookingQuestionAssignment `json:"customQuestions,omitempty"`
+		DefaultDuration                  *string                      `json:"defaultDuration,omitempty"`
+		DefaultPriceType                 *BookingPriceType            `json:"defaultPriceType,omitempty"`
+		DefaultReminders                 *[]BookingReminder           `json:"defaultReminders,omitempty"`
+		Description                      nullable.Type[string]        `json:"description,omitempty"`
+		DisplayName                      *string                      `json:"displayName,omitempty"`
+		IsAnonymousJoinEnabled           *bool                        `json:"isAnonymousJoinEnabled,omitempty"`
+		IsCustomerAllowedToManageBooking nullable.Type[bool]          `json:"isCustomerAllowedToManageBooking,omitempty"`
+		IsHiddenFromCustomers            *bool                        `json:"isHiddenFromCustomers,omitempty"`
+		IsLocationOnline                 *bool                        `json:"isLocationOnline,omitempty"`
+		LanguageTag                      *string                      `json:"languageTag,omitempty"`
+		LastUpdatedDateTime              nullable.Type[string]        `json:"lastUpdatedDateTime,omitempty"`
+		MaximumAttendeesCount            *int64                       `json:"maximumAttendeesCount,omitempty"`
+		Notes                            nullable.Type[string]        `json:"notes,omitempty"`
+		PostBuffer                       *string                      `json:"postBuffer,omitempty"`
+		PreBuffer                        *string                      `json:"preBuffer,omitempty"`
+		SchedulingPolicy                 *BookingSchedulingPolicy     `json:"schedulingPolicy,omitempty"`
+		SmsNotificationsEnabled          *bool                        `json:"smsNotificationsEnabled,omitempty"`
+		StaffMemberIds                   *[]string                    `json:"staffMemberIds,omitempty"`
+		WebUrl                           nullable.Type[string]        `json:"webUrl,omitempty"`
+		Id                               *string                      `json:"id,omitempty"`
+		ODataId                          *string                      `json:"@odata.id,omitempty"`
+		ODataType                        *string                      `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into BookingService: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.AdditionalInformation = decoded.AdditionalInformation
@@ -149,7 +175,6 @@ func (s *BookingService) UnmarshalJSON(bytes []byte) error {
 	s.DefaultReminders = decoded.DefaultReminders
 	s.Description = decoded.Description
 	s.DisplayName = decoded.DisplayName
-	s.Id = decoded.Id
 	s.IsAnonymousJoinEnabled = decoded.IsAnonymousJoinEnabled
 	s.IsCustomerAllowedToManageBooking = decoded.IsCustomerAllowedToManageBooking
 	s.IsHiddenFromCustomers = decoded.IsHiddenFromCustomers
@@ -158,14 +183,15 @@ func (s *BookingService) UnmarshalJSON(bytes []byte) error {
 	s.LastUpdatedDateTime = decoded.LastUpdatedDateTime
 	s.MaximumAttendeesCount = decoded.MaximumAttendeesCount
 	s.Notes = decoded.Notes
-	s.ODataId = decoded.ODataId
-	s.ODataType = decoded.ODataType
 	s.PostBuffer = decoded.PostBuffer
 	s.PreBuffer = decoded.PreBuffer
 	s.SchedulingPolicy = decoded.SchedulingPolicy
 	s.SmsNotificationsEnabled = decoded.SmsNotificationsEnabled
 	s.StaffMemberIds = decoded.StaffMemberIds
 	s.WebUrl = decoded.WebUrl
+	s.Id = decoded.Id
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -179,5 +205,6 @@ func (s *BookingService) UnmarshalJSON(bytes []byte) error {
 		}
 		s.DefaultLocation = impl
 	}
+
 	return nil
 }

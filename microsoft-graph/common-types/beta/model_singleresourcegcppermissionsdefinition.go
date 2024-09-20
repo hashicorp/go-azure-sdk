@@ -65,17 +65,23 @@ func (s SingleResourceGcpPermissionsDefinition) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &SingleResourceGcpPermissionsDefinition{}
 
 func (s *SingleResourceGcpPermissionsDefinition) UnmarshalJSON(bytes []byte) error {
-	type alias SingleResourceGcpPermissionsDefinition
-	var decoded alias
+
+	var decoded struct {
+		ResourceId              *string                                           `json:"resourceId,omitempty"`
+		AuthorizationSystemInfo *PermissionsDefinitionAuthorizationSystem         `json:"authorizationSystemInfo,omitempty"`
+		IdentityInfo            *PermissionsDefinitionAuthorizationSystemIdentity `json:"identityInfo,omitempty"`
+		ODataId                 *string                                           `json:"@odata.id,omitempty"`
+		ODataType               *string                                           `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into SingleResourceGcpPermissionsDefinition: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
+	s.ResourceId = decoded.ResourceId
 	s.AuthorizationSystemInfo = decoded.AuthorizationSystemInfo
 	s.IdentityInfo = decoded.IdentityInfo
 	s.ODataId = decoded.ODataId
 	s.ODataType = decoded.ODataType
-	s.ResourceId = decoded.ResourceId
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -89,5 +95,6 @@ func (s *SingleResourceGcpPermissionsDefinition) UnmarshalJSON(bytes []byte) err
 		}
 		s.ActionInfo = &impl
 	}
+
 	return nil
 }

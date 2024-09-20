@@ -93,7 +93,7 @@ func (id DeviceManagementCertificateConnectorDetailId) Segments() []resourceids.
 	return []resourceids.Segment{
 		resourceids.StaticSegment("deviceManagement", "deviceManagement", "deviceManagement"),
 		resourceids.StaticSegment("certificateConnectorDetails", "certificateConnectorDetails", "certificateConnectorDetails"),
-		resourceids.UserSpecifiedSegment("certificateConnectorDetailsId", "certificateConnectorDetailsIdValue"),
+		resourceids.UserSpecifiedSegment("certificateConnectorDetailsId", "certificateConnectorDetailsId"),
 	}
 }
 

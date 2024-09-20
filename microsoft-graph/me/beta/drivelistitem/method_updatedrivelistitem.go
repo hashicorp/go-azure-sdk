@@ -17,15 +17,44 @@ type UpdateDriveListItemOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateDriveListItemOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateDriveListItemOperationOptions() UpdateDriveListItemOperationOptions {
+	return UpdateDriveListItemOperationOptions{}
+}
+
+func (o UpdateDriveListItemOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateDriveListItemOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateDriveListItemOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateDriveListItem - Update the navigation property items in me
-func (c DriveListItemClient) UpdateDriveListItem(ctx context.Context, id beta.MeDriveIdListItemId, input beta.ListItem) (result UpdateDriveListItemOperationResponse, err error) {
+func (c DriveListItemClient) UpdateDriveListItem(ctx context.Context, id beta.MeDriveIdListItemId, input beta.ListItem, options UpdateDriveListItemOperationOptions) (result UpdateDriveListItemOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

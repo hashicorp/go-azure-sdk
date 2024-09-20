@@ -18,16 +18,45 @@ type SetDriveRootListItemDriveItemContentStreamOperationResponse struct {
 	OData        *odata.OData
 }
 
+type SetDriveRootListItemDriveItemContentStreamOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultSetDriveRootListItemDriveItemContentStreamOperationOptions() SetDriveRootListItemDriveItemContentStreamOperationOptions {
+	return SetDriveRootListItemDriveItemContentStreamOperationOptions{}
+}
+
+func (o SetDriveRootListItemDriveItemContentStreamOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o SetDriveRootListItemDriveItemContentStreamOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o SetDriveRootListItemDriveItemContentStreamOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // SetDriveRootListItemDriveItemContentStream - Update contentStream for the navigation property driveItem in me. The
 // content stream, if the item represents a file.
-func (c DriveRootListItemDriveItemContentStreamClient) SetDriveRootListItemDriveItemContentStream(ctx context.Context, id beta.MeDriveId, input []byte) (result SetDriveRootListItemDriveItemContentStreamOperationResponse, err error) {
+func (c DriveRootListItemDriveItemContentStreamClient) SetDriveRootListItemDriveItemContentStream(ctx context.Context, id beta.MeDriveId, input []byte, options SetDriveRootListItemDriveItemContentStreamOperationOptions) (result SetDriveRootListItemDriveItemContentStreamOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPut,
-		Path:       fmt.Sprintf("%s/root/listItem/driveItem/contentStream", id.ID()),
+		HttpMethod:    http.MethodPut,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/root/listItem/driveItem/contentStream", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

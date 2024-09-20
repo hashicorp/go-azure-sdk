@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &DeviceManagementWindowsFeatureUpdateProfileId{}
 
 func TestNewDeviceManagementWindowsFeatureUpdateProfileID(t *testing.T) {
-	id := NewDeviceManagementWindowsFeatureUpdateProfileID("windowsFeatureUpdateProfileIdValue")
+	id := NewDeviceManagementWindowsFeatureUpdateProfileID("windowsFeatureUpdateProfileId")
 
-	if id.WindowsFeatureUpdateProfileId != "windowsFeatureUpdateProfileIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'WindowsFeatureUpdateProfileId'", id.WindowsFeatureUpdateProfileId, "windowsFeatureUpdateProfileIdValue")
+	if id.WindowsFeatureUpdateProfileId != "windowsFeatureUpdateProfileId" {
+		t.Fatalf("Expected %q but got %q for Segment 'WindowsFeatureUpdateProfileId'", id.WindowsFeatureUpdateProfileId, "windowsFeatureUpdateProfileId")
 	}
 }
 
 func TestFormatDeviceManagementWindowsFeatureUpdateProfileID(t *testing.T) {
-	actual := NewDeviceManagementWindowsFeatureUpdateProfileID("windowsFeatureUpdateProfileIdValue").ID()
-	expected := "/deviceManagement/windowsFeatureUpdateProfiles/windowsFeatureUpdateProfileIdValue"
+	actual := NewDeviceManagementWindowsFeatureUpdateProfileID("windowsFeatureUpdateProfileId").ID()
+	expected := "/deviceManagement/windowsFeatureUpdateProfiles/windowsFeatureUpdateProfileId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -50,14 +50,14 @@ func TestParseDeviceManagementWindowsFeatureUpdateProfileID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/windowsFeatureUpdateProfiles/windowsFeatureUpdateProfileIdValue",
+			Input: "/deviceManagement/windowsFeatureUpdateProfiles/windowsFeatureUpdateProfileId",
 			Expected: &DeviceManagementWindowsFeatureUpdateProfileId{
-				WindowsFeatureUpdateProfileId: "windowsFeatureUpdateProfileIdValue",
+				WindowsFeatureUpdateProfileId: "windowsFeatureUpdateProfileId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/windowsFeatureUpdateProfiles/windowsFeatureUpdateProfileIdValue/extra",
+			Input: "/deviceManagement/windowsFeatureUpdateProfiles/windowsFeatureUpdateProfileId/extra",
 			Error: true,
 		},
 	}
@@ -116,26 +116,26 @@ func TestParseDeviceManagementWindowsFeatureUpdateProfileIDInsensitively(t *test
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/windowsFeatureUpdateProfiles/windowsFeatureUpdateProfileIdValue",
+			Input: "/deviceManagement/windowsFeatureUpdateProfiles/windowsFeatureUpdateProfileId",
 			Expected: &DeviceManagementWindowsFeatureUpdateProfileId{
-				WindowsFeatureUpdateProfileId: "windowsFeatureUpdateProfileIdValue",
+				WindowsFeatureUpdateProfileId: "windowsFeatureUpdateProfileId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/windowsFeatureUpdateProfiles/windowsFeatureUpdateProfileIdValue/extra",
+			Input: "/deviceManagement/windowsFeatureUpdateProfiles/windowsFeatureUpdateProfileId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/wInDoWsFeAtUrEuPdAtEpRoFiLeS/wInDoWsFeAtUrEuPdAtEpRoFiLeIdVaLuE",
+			Input: "/dEvIcEmAnAgEmEnT/wInDoWsFeAtUrEuPdAtEpRoFiLeS/wInDoWsFeAtUrEuPdAtEpRoFiLeId",
 			Expected: &DeviceManagementWindowsFeatureUpdateProfileId{
-				WindowsFeatureUpdateProfileId: "wInDoWsFeAtUrEuPdAtEpRoFiLeIdVaLuE",
+				WindowsFeatureUpdateProfileId: "wInDoWsFeAtUrEuPdAtEpRoFiLeId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/wInDoWsFeAtUrEuPdAtEpRoFiLeS/wInDoWsFeAtUrEuPdAtEpRoFiLeIdVaLuE/extra",
+			Input: "/dEvIcEmAnAgEmEnT/wInDoWsFeAtUrEuPdAtEpRoFiLeS/wInDoWsFeAtUrEuPdAtEpRoFiLeId/extra",
 			Error: true,
 		},
 	}

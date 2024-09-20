@@ -12,24 +12,24 @@ import (
 var _ resourceids.ResourceId = &GroupIdTeamTagIdMemberId{}
 
 func TestNewGroupIdTeamTagIdMemberID(t *testing.T) {
-	id := NewGroupIdTeamTagIdMemberID("groupIdValue", "teamworkTagIdValue", "teamworkTagMemberIdValue")
+	id := NewGroupIdTeamTagIdMemberID("groupId", "teamworkTagId", "teamworkTagMemberId")
 
-	if id.GroupId != "groupIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'GroupId'", id.GroupId, "groupIdValue")
+	if id.GroupId != "groupId" {
+		t.Fatalf("Expected %q but got %q for Segment 'GroupId'", id.GroupId, "groupId")
 	}
 
-	if id.TeamworkTagId != "teamworkTagIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'TeamworkTagId'", id.TeamworkTagId, "teamworkTagIdValue")
+	if id.TeamworkTagId != "teamworkTagId" {
+		t.Fatalf("Expected %q but got %q for Segment 'TeamworkTagId'", id.TeamworkTagId, "teamworkTagId")
 	}
 
-	if id.TeamworkTagMemberId != "teamworkTagMemberIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'TeamworkTagMemberId'", id.TeamworkTagMemberId, "teamworkTagMemberIdValue")
+	if id.TeamworkTagMemberId != "teamworkTagMemberId" {
+		t.Fatalf("Expected %q but got %q for Segment 'TeamworkTagMemberId'", id.TeamworkTagMemberId, "teamworkTagMemberId")
 	}
 }
 
 func TestFormatGroupIdTeamTagIdMemberID(t *testing.T) {
-	actual := NewGroupIdTeamTagIdMemberID("groupIdValue", "teamworkTagIdValue", "teamworkTagMemberIdValue").ID()
-	expected := "/groups/groupIdValue/team/tags/teamworkTagIdValue/members/teamworkTagMemberIdValue"
+	actual := NewGroupIdTeamTagIdMemberID("groupId", "teamworkTagId", "teamworkTagMemberId").ID()
+	expected := "/groups/groupId/team/tags/teamworkTagId/members/teamworkTagMemberId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -53,41 +53,41 @@ func TestParseGroupIdTeamTagIdMemberID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue",
+			Input: "/groups/groupId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/team",
+			Input: "/groups/groupId/team",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/team/tags",
+			Input: "/groups/groupId/team/tags",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/team/tags/teamworkTagIdValue",
+			Input: "/groups/groupId/team/tags/teamworkTagId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/team/tags/teamworkTagIdValue/members",
+			Input: "/groups/groupId/team/tags/teamworkTagId/members",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/groups/groupIdValue/team/tags/teamworkTagIdValue/members/teamworkTagMemberIdValue",
+			Input: "/groups/groupId/team/tags/teamworkTagId/members/teamworkTagMemberId",
 			Expected: &GroupIdTeamTagIdMemberId{
-				GroupId:             "groupIdValue",
-				TeamworkTagId:       "teamworkTagIdValue",
-				TeamworkTagMemberId: "teamworkTagMemberIdValue",
+				GroupId:             "groupId",
+				TeamworkTagId:       "teamworkTagId",
+				TeamworkTagMemberId: "teamworkTagMemberId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/groups/groupIdValue/team/tags/teamworkTagIdValue/members/teamworkTagMemberIdValue/extra",
+			Input: "/groups/groupId/team/tags/teamworkTagId/members/teamworkTagMemberId/extra",
 			Error: true,
 		},
 	}
@@ -144,80 +144,80 @@ func TestParseGroupIdTeamTagIdMemberIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue",
+			Input: "/groups/groupId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE",
+			Input: "/gRoUpS/gRoUpId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/team",
+			Input: "/groups/groupId/team",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/tEaM",
+			Input: "/gRoUpS/gRoUpId/tEaM",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/team/tags",
+			Input: "/groups/groupId/team/tags",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/tEaM/tAgS",
+			Input: "/gRoUpS/gRoUpId/tEaM/tAgS",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/team/tags/teamworkTagIdValue",
+			Input: "/groups/groupId/team/tags/teamworkTagId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/tEaM/tAgS/tEaMwOrKtAgIdVaLuE",
+			Input: "/gRoUpS/gRoUpId/tEaM/tAgS/tEaMwOrKtAgId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/team/tags/teamworkTagIdValue/members",
+			Input: "/groups/groupId/team/tags/teamworkTagId/members",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/tEaM/tAgS/tEaMwOrKtAgIdVaLuE/mEmBeRs",
+			Input: "/gRoUpS/gRoUpId/tEaM/tAgS/tEaMwOrKtAgId/mEmBeRs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/groups/groupIdValue/team/tags/teamworkTagIdValue/members/teamworkTagMemberIdValue",
+			Input: "/groups/groupId/team/tags/teamworkTagId/members/teamworkTagMemberId",
 			Expected: &GroupIdTeamTagIdMemberId{
-				GroupId:             "groupIdValue",
-				TeamworkTagId:       "teamworkTagIdValue",
-				TeamworkTagMemberId: "teamworkTagMemberIdValue",
+				GroupId:             "groupId",
+				TeamworkTagId:       "teamworkTagId",
+				TeamworkTagMemberId: "teamworkTagMemberId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/groups/groupIdValue/team/tags/teamworkTagIdValue/members/teamworkTagMemberIdValue/extra",
+			Input: "/groups/groupId/team/tags/teamworkTagId/members/teamworkTagMemberId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/tEaM/tAgS/tEaMwOrKtAgIdVaLuE/mEmBeRs/tEaMwOrKtAgMeMbErIdVaLuE",
+			Input: "/gRoUpS/gRoUpId/tEaM/tAgS/tEaMwOrKtAgId/mEmBeRs/tEaMwOrKtAgMeMbErId",
 			Expected: &GroupIdTeamTagIdMemberId{
-				GroupId:             "gRoUpIdVaLuE",
-				TeamworkTagId:       "tEaMwOrKtAgIdVaLuE",
-				TeamworkTagMemberId: "tEaMwOrKtAgMeMbErIdVaLuE",
+				GroupId:             "gRoUpId",
+				TeamworkTagId:       "tEaMwOrKtAgId",
+				TeamworkTagMemberId: "tEaMwOrKtAgMeMbErId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/tEaM/tAgS/tEaMwOrKtAgIdVaLuE/mEmBeRs/tEaMwOrKtAgMeMbErIdVaLuE/extra",
+			Input: "/gRoUpS/gRoUpId/tEaM/tAgS/tEaMwOrKtAgId/mEmBeRs/tEaMwOrKtAgMeMbErId/extra",
 			Error: true,
 		},
 	}

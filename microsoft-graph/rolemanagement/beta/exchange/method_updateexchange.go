@@ -17,15 +17,44 @@ type UpdateExchangeOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateExchangeOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateExchangeOperationOptions() UpdateExchangeOperationOptions {
+	return UpdateExchangeOperationOptions{}
+}
+
+func (o UpdateExchangeOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateExchangeOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateExchangeOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateExchange - Update the navigation property exchange in roleManagement
-func (c ExchangeClient) UpdateExchange(ctx context.Context, input beta.UnifiedRbacApplication) (result UpdateExchangeOperationResponse, err error) {
+func (c ExchangeClient) UpdateExchange(ctx context.Context, input beta.UnifiedRbacApplication, options UpdateExchangeOperationOptions) (result UpdateExchangeOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       "/roleManagement/exchange",
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          "/roleManagement/exchange",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

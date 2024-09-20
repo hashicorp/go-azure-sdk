@@ -12,28 +12,28 @@ import (
 var _ resourceids.ResourceId = &GroupIdThreadIdPostIdExtensionId{}
 
 func TestNewGroupIdThreadIdPostIdExtensionID(t *testing.T) {
-	id := NewGroupIdThreadIdPostIdExtensionID("groupIdValue", "conversationThreadIdValue", "postIdValue", "extensionIdValue")
+	id := NewGroupIdThreadIdPostIdExtensionID("groupId", "conversationThreadId", "postId", "extensionId")
 
-	if id.GroupId != "groupIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'GroupId'", id.GroupId, "groupIdValue")
+	if id.GroupId != "groupId" {
+		t.Fatalf("Expected %q but got %q for Segment 'GroupId'", id.GroupId, "groupId")
 	}
 
-	if id.ConversationThreadId != "conversationThreadIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ConversationThreadId'", id.ConversationThreadId, "conversationThreadIdValue")
+	if id.ConversationThreadId != "conversationThreadId" {
+		t.Fatalf("Expected %q but got %q for Segment 'ConversationThreadId'", id.ConversationThreadId, "conversationThreadId")
 	}
 
-	if id.PostId != "postIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'PostId'", id.PostId, "postIdValue")
+	if id.PostId != "postId" {
+		t.Fatalf("Expected %q but got %q for Segment 'PostId'", id.PostId, "postId")
 	}
 
-	if id.ExtensionId != "extensionIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ExtensionId'", id.ExtensionId, "extensionIdValue")
+	if id.ExtensionId != "extensionId" {
+		t.Fatalf("Expected %q but got %q for Segment 'ExtensionId'", id.ExtensionId, "extensionId")
 	}
 }
 
 func TestFormatGroupIdThreadIdPostIdExtensionID(t *testing.T) {
-	actual := NewGroupIdThreadIdPostIdExtensionID("groupIdValue", "conversationThreadIdValue", "postIdValue", "extensionIdValue").ID()
-	expected := "/groups/groupIdValue/threads/conversationThreadIdValue/posts/postIdValue/extensions/extensionIdValue"
+	actual := NewGroupIdThreadIdPostIdExtensionID("groupId", "conversationThreadId", "postId", "extensionId").ID()
+	expected := "/groups/groupId/threads/conversationThreadId/posts/postId/extensions/extensionId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -57,47 +57,47 @@ func TestParseGroupIdThreadIdPostIdExtensionID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue",
+			Input: "/groups/groupId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/threads",
+			Input: "/groups/groupId/threads",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/threads/conversationThreadIdValue",
+			Input: "/groups/groupId/threads/conversationThreadId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/threads/conversationThreadIdValue/posts",
+			Input: "/groups/groupId/threads/conversationThreadId/posts",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/threads/conversationThreadIdValue/posts/postIdValue",
+			Input: "/groups/groupId/threads/conversationThreadId/posts/postId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/threads/conversationThreadIdValue/posts/postIdValue/extensions",
+			Input: "/groups/groupId/threads/conversationThreadId/posts/postId/extensions",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/groups/groupIdValue/threads/conversationThreadIdValue/posts/postIdValue/extensions/extensionIdValue",
+			Input: "/groups/groupId/threads/conversationThreadId/posts/postId/extensions/extensionId",
 			Expected: &GroupIdThreadIdPostIdExtensionId{
-				GroupId:              "groupIdValue",
-				ConversationThreadId: "conversationThreadIdValue",
-				PostId:               "postIdValue",
-				ExtensionId:          "extensionIdValue",
+				GroupId:              "groupId",
+				ConversationThreadId: "conversationThreadId",
+				PostId:               "postId",
+				ExtensionId:          "extensionId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/groups/groupIdValue/threads/conversationThreadIdValue/posts/postIdValue/extensions/extensionIdValue/extra",
+			Input: "/groups/groupId/threads/conversationThreadId/posts/postId/extensions/extensionId/extra",
 			Error: true,
 		},
 	}
@@ -158,92 +158,92 @@ func TestParseGroupIdThreadIdPostIdExtensionIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue",
+			Input: "/groups/groupId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE",
+			Input: "/gRoUpS/gRoUpId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/threads",
+			Input: "/groups/groupId/threads",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/tHrEaDs",
+			Input: "/gRoUpS/gRoUpId/tHrEaDs",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/threads/conversationThreadIdValue",
+			Input: "/groups/groupId/threads/conversationThreadId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/tHrEaDs/cOnVeRsAtIoNtHrEaDiDvAlUe",
+			Input: "/gRoUpS/gRoUpId/tHrEaDs/cOnVeRsAtIoNtHrEaDiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/threads/conversationThreadIdValue/posts",
+			Input: "/groups/groupId/threads/conversationThreadId/posts",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/tHrEaDs/cOnVeRsAtIoNtHrEaDiDvAlUe/pOsTs",
+			Input: "/gRoUpS/gRoUpId/tHrEaDs/cOnVeRsAtIoNtHrEaDiD/pOsTs",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/threads/conversationThreadIdValue/posts/postIdValue",
+			Input: "/groups/groupId/threads/conversationThreadId/posts/postId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/tHrEaDs/cOnVeRsAtIoNtHrEaDiDvAlUe/pOsTs/pOsTiDvAlUe",
+			Input: "/gRoUpS/gRoUpId/tHrEaDs/cOnVeRsAtIoNtHrEaDiD/pOsTs/pOsTiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/threads/conversationThreadIdValue/posts/postIdValue/extensions",
+			Input: "/groups/groupId/threads/conversationThreadId/posts/postId/extensions",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/tHrEaDs/cOnVeRsAtIoNtHrEaDiDvAlUe/pOsTs/pOsTiDvAlUe/eXtEnSiOnS",
+			Input: "/gRoUpS/gRoUpId/tHrEaDs/cOnVeRsAtIoNtHrEaDiD/pOsTs/pOsTiD/eXtEnSiOnS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/groups/groupIdValue/threads/conversationThreadIdValue/posts/postIdValue/extensions/extensionIdValue",
+			Input: "/groups/groupId/threads/conversationThreadId/posts/postId/extensions/extensionId",
 			Expected: &GroupIdThreadIdPostIdExtensionId{
-				GroupId:              "groupIdValue",
-				ConversationThreadId: "conversationThreadIdValue",
-				PostId:               "postIdValue",
-				ExtensionId:          "extensionIdValue",
+				GroupId:              "groupId",
+				ConversationThreadId: "conversationThreadId",
+				PostId:               "postId",
+				ExtensionId:          "extensionId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/groups/groupIdValue/threads/conversationThreadIdValue/posts/postIdValue/extensions/extensionIdValue/extra",
+			Input: "/groups/groupId/threads/conversationThreadId/posts/postId/extensions/extensionId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/tHrEaDs/cOnVeRsAtIoNtHrEaDiDvAlUe/pOsTs/pOsTiDvAlUe/eXtEnSiOnS/eXtEnSiOnIdVaLuE",
+			Input: "/gRoUpS/gRoUpId/tHrEaDs/cOnVeRsAtIoNtHrEaDiD/pOsTs/pOsTiD/eXtEnSiOnS/eXtEnSiOnId",
 			Expected: &GroupIdThreadIdPostIdExtensionId{
-				GroupId:              "gRoUpIdVaLuE",
-				ConversationThreadId: "cOnVeRsAtIoNtHrEaDiDvAlUe",
-				PostId:               "pOsTiDvAlUe",
-				ExtensionId:          "eXtEnSiOnIdVaLuE",
+				GroupId:              "gRoUpId",
+				ConversationThreadId: "cOnVeRsAtIoNtHrEaDiD",
+				PostId:               "pOsTiD",
+				ExtensionId:          "eXtEnSiOnId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/tHrEaDs/cOnVeRsAtIoNtHrEaDiDvAlUe/pOsTs/pOsTiDvAlUe/eXtEnSiOnS/eXtEnSiOnIdVaLuE/extra",
+			Input: "/gRoUpS/gRoUpId/tHrEaDs/cOnVeRsAtIoNtHrEaDiD/pOsTs/pOsTiD/eXtEnSiOnS/eXtEnSiOnId/extra",
 			Error: true,
 		},
 	}

@@ -66,10 +66,16 @@ func (s VerticalSection) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &VerticalSection{}
 
 func (s *VerticalSection) UnmarshalJSON(bytes []byte) error {
-	type alias VerticalSection
-	var decoded alias
+
+	var decoded struct {
+		Emphasis  *SectionEmphasisType `json:"emphasis,omitempty"`
+		Webparts  *[]WebPart           `json:"webparts,omitempty"`
+		Id        *string              `json:"id,omitempty"`
+		ODataId   *string              `json:"@odata.id,omitempty"`
+		ODataType *string              `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into VerticalSection: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.Emphasis = decoded.Emphasis
@@ -98,5 +104,6 @@ func (s *VerticalSection) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Webparts = &output
 	}
+
 	return nil
 }

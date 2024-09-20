@@ -99,9 +99,9 @@ func (id PolicyMobileAppManagementPolicyIdIncludedGroupId) Segments() []resource
 	return []resourceids.Segment{
 		resourceids.StaticSegment("policies", "policies", "policies"),
 		resourceids.StaticSegment("mobileAppManagementPolicies", "mobileAppManagementPolicies", "mobileAppManagementPolicies"),
-		resourceids.UserSpecifiedSegment("mobilityManagementPolicyId", "mobilityManagementPolicyIdValue"),
+		resourceids.UserSpecifiedSegment("mobilityManagementPolicyId", "mobilityManagementPolicyId"),
 		resourceids.StaticSegment("includedGroups", "includedGroups", "includedGroups"),
-		resourceids.UserSpecifiedSegment("groupId", "groupIdValue"),
+		resourceids.UserSpecifiedSegment("groupId", "groupId"),
 	}
 }
 

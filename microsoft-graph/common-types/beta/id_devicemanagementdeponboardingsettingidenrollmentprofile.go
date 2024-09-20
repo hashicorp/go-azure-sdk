@@ -99,9 +99,9 @@ func (id DeviceManagementDepOnboardingSettingIdEnrollmentProfileId) Segments() [
 	return []resourceids.Segment{
 		resourceids.StaticSegment("deviceManagement", "deviceManagement", "deviceManagement"),
 		resourceids.StaticSegment("depOnboardingSettings", "depOnboardingSettings", "depOnboardingSettings"),
-		resourceids.UserSpecifiedSegment("depOnboardingSettingId", "depOnboardingSettingIdValue"),
+		resourceids.UserSpecifiedSegment("depOnboardingSettingId", "depOnboardingSettingId"),
 		resourceids.StaticSegment("enrollmentProfiles", "enrollmentProfiles", "enrollmentProfiles"),
-		resourceids.UserSpecifiedSegment("enrollmentProfileId", "enrollmentProfileIdValue"),
+		resourceids.UserSpecifiedSegment("enrollmentProfileId", "enrollmentProfileId"),
 	}
 }
 

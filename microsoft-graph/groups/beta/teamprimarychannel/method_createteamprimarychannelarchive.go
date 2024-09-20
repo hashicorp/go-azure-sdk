@@ -18,6 +18,34 @@ type CreateTeamPrimaryChannelArchiveOperationResponse struct {
 	OData        *odata.OData
 }
 
+type CreateTeamPrimaryChannelArchiveOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateTeamPrimaryChannelArchiveOperationOptions() CreateTeamPrimaryChannelArchiveOperationOptions {
+	return CreateTeamPrimaryChannelArchiveOperationOptions{}
+}
+
+func (o CreateTeamPrimaryChannelArchiveOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateTeamPrimaryChannelArchiveOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateTeamPrimaryChannelArchiveOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateTeamPrimaryChannelArchive - Invoke action archive. Archive a channel in a team. When a channel is archived,
 // users can't send new messages or react to existing messages in the channel, edit the channel settings, or make other
 // changes to the channel. You can delete an archived channel or add and remove members from it. If you archive a team,
@@ -25,14 +53,15 @@ type CreateTeamPrimaryChannelArchiveOperationResponse struct {
 // archiving operation completes successfully, which might occur after the response returns. A channel without an owner
 // or that belongs to a group that has no owner, can't be archived. To restore a channel from its archived state, use
 // the channel: unarchive method. A channel can’t be archived or unarchived if its team is archived.
-func (c TeamPrimaryChannelClient) CreateTeamPrimaryChannelArchive(ctx context.Context, id beta.GroupId, input CreateTeamPrimaryChannelArchiveRequest) (result CreateTeamPrimaryChannelArchiveOperationResponse, err error) {
+func (c TeamPrimaryChannelClient) CreateTeamPrimaryChannelArchive(ctx context.Context, id beta.GroupId, input CreateTeamPrimaryChannelArchiveRequest, options CreateTeamPrimaryChannelArchiveOperationOptions) (result CreateTeamPrimaryChannelArchiveOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/team/primaryChannel/archive", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/team/primaryChannel/archive", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

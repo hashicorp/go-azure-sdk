@@ -19,17 +19,46 @@ type CreateLifecycleWorkflowDeletedItemWorkflowIdentityGovernanceRestoreOperatio
 	Model        *beta.IdentityGovernanceWorkflow
 }
 
+type CreateLifecycleWorkflowDeletedItemWorkflowIdentityGovernanceRestoreOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateLifecycleWorkflowDeletedItemWorkflowIdentityGovernanceRestoreOperationOptions() CreateLifecycleWorkflowDeletedItemWorkflowIdentityGovernanceRestoreOperationOptions {
+	return CreateLifecycleWorkflowDeletedItemWorkflowIdentityGovernanceRestoreOperationOptions{}
+}
+
+func (o CreateLifecycleWorkflowDeletedItemWorkflowIdentityGovernanceRestoreOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateLifecycleWorkflowDeletedItemWorkflowIdentityGovernanceRestoreOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateLifecycleWorkflowDeletedItemWorkflowIdentityGovernanceRestoreOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateLifecycleWorkflowDeletedItemWorkflowIdentityGovernanceRestore - Invoke action restore. Restore a workflow that
 // has been deleted. You can only restore a workflow that was deleted within the last 30 days before Microsoft Entra ID
 // automatically permanently deletes it.
-func (c LifecycleWorkflowDeletedItemWorkflowClient) CreateLifecycleWorkflowDeletedItemWorkflowIdentityGovernanceRestore(ctx context.Context, id beta.IdentityGovernanceLifecycleWorkflowDeletedItemWorkflowId) (result CreateLifecycleWorkflowDeletedItemWorkflowIdentityGovernanceRestoreOperationResponse, err error) {
+func (c LifecycleWorkflowDeletedItemWorkflowClient) CreateLifecycleWorkflowDeletedItemWorkflowIdentityGovernanceRestore(ctx context.Context, id beta.IdentityGovernanceLifecycleWorkflowDeletedItemWorkflowId, options CreateLifecycleWorkflowDeletedItemWorkflowIdentityGovernanceRestoreOperationOptions) (result CreateLifecycleWorkflowDeletedItemWorkflowIdentityGovernanceRestoreOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/identityGovernance.restore", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/identityGovernance.restore", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -19,7 +19,8 @@ type DeleteTodoListTaskLinkedResourceOperationResponse struct {
 }
 
 type DeleteTodoListTaskLinkedResourceOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteTodoListTaskLinkedResourceOperationOptions() DeleteTodoListTaskLinkedResourceOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteTodoListTaskLinkedResourceOperationOptions) ToHeaders() *client.He
 
 func (o DeleteTodoListTaskLinkedResourceOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

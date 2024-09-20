@@ -18,18 +18,47 @@ type SetDriveItemChildContentOperationResponse struct {
 	OData        *odata.OData
 }
 
+type SetDriveItemChildContentOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultSetDriveItemChildContentOperationOptions() SetDriveItemChildContentOperationOptions {
+	return SetDriveItemChildContentOperationOptions{}
+}
+
+func (o SetDriveItemChildContentOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o SetDriveItemChildContentOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o SetDriveItemChildContentOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // SetDriveItemChildContent - Update content for the navigation property children in groups. The content stream, if the
 // item represents a file. The content property will have a potentially breaking change in behavior in the future. It
 // will stream content directly instead of redirecting. To proactively opt in to the new behavior ahead of time, use the
 // contentStream property instead.
-func (c DriveItemChildContentClient) SetDriveItemChildContent(ctx context.Context, id beta.GroupIdDriveIdItemIdChildId, input []byte) (result SetDriveItemChildContentOperationResponse, err error) {
+func (c DriveItemChildContentClient) SetDriveItemChildContent(ctx context.Context, id beta.GroupIdDriveIdItemIdChildId, input []byte, options SetDriveItemChildContentOperationOptions) (result SetDriveItemChildContentOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPut,
-		Path:       fmt.Sprintf("%s/content", id.ID()),
+		HttpMethod:    http.MethodPut,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/content", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

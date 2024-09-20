@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/microsoft-graph/rolemanagement/beta/devicemanagementresourcenamespace` Documentation
 
-The `devicemanagementresourcenamespace` SDK allows for interaction with the Azure Resource Manager Service `rolemanagement` (API Version `beta`).
+The `devicemanagementresourcenamespace` SDK allows for interaction with Microsoft Graph `rolemanagement` (API Version `beta`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -15,7 +15,7 @@ import "github.com/hashicorp/go-azure-sdk/microsoft-graph/rolemanagement/beta/de
 ### Client Initialization
 
 ```go
-client := devicemanagementresourcenamespace.NewDeviceManagementResourceNamespaceClientWithBaseURI("https://management.azure.com")
+client := devicemanagementresourcenamespace.NewDeviceManagementResourceNamespaceClientWithBaseURI("https://graph.microsoft.com")
 client.Client.Authorizer = authorizer
 ```
 
@@ -30,7 +30,7 @@ payload := devicemanagementresourcenamespace.UnifiedRbacResourceNamespace{
 }
 
 
-read, err := client.CreateDeviceManagementResourceNamespace(ctx, payload)
+read, err := client.CreateDeviceManagementResourceNamespace(ctx, payload, devicemanagementresourcenamespace.DefaultCreateDeviceManagementResourceNamespaceOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -44,14 +44,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := devicemanagementresourcenamespace.NewRoleManagementDeviceManagementResourceNamespaceID("unifiedRbacResourceNamespaceIdValue")
+id := devicemanagementresourcenamespace.NewRoleManagementDeviceManagementResourceNamespaceID("unifiedRbacResourceNamespaceId")
 
 payload := devicemanagementresourcenamespace.CreateDeviceManagementResourceNamespaceImportResourceActionRequest{
 	// ...
 }
 
 
-read, err := client.CreateDeviceManagementResourceNamespaceImportResourceAction(ctx, id, payload)
+read, err := client.CreateDeviceManagementResourceNamespaceImportResourceAction(ctx, id, payload, devicemanagementresourcenamespace.DefaultCreateDeviceManagementResourceNamespaceImportResourceActionOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -65,7 +65,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := devicemanagementresourcenamespace.NewRoleManagementDeviceManagementResourceNamespaceID("unifiedRbacResourceNamespaceIdValue")
+id := devicemanagementresourcenamespace.NewRoleManagementDeviceManagementResourceNamespaceID("unifiedRbacResourceNamespaceId")
 
 read, err := client.DeleteDeviceManagementResourceNamespace(ctx, id, devicemanagementresourcenamespace.DefaultDeleteDeviceManagementResourceNamespaceOperationOptions())
 if err != nil {
@@ -81,7 +81,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := devicemanagementresourcenamespace.NewRoleManagementDeviceManagementResourceNamespaceID("unifiedRbacResourceNamespaceIdValue")
+id := devicemanagementresourcenamespace.NewRoleManagementDeviceManagementResourceNamespaceID("unifiedRbacResourceNamespaceId")
 
 read, err := client.GetDeviceManagementResourceNamespace(ctx, id, devicemanagementresourcenamespace.DefaultGetDeviceManagementResourceNamespaceOperationOptions())
 if err != nil {
@@ -130,14 +130,14 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := devicemanagementresourcenamespace.NewRoleManagementDeviceManagementResourceNamespaceID("unifiedRbacResourceNamespaceIdValue")
+id := devicemanagementresourcenamespace.NewRoleManagementDeviceManagementResourceNamespaceID("unifiedRbacResourceNamespaceId")
 
 payload := devicemanagementresourcenamespace.UnifiedRbacResourceNamespace{
 	// ...
 }
 
 
-read, err := client.UpdateDeviceManagementResourceNamespace(ctx, id, payload)
+read, err := client.UpdateDeviceManagementResourceNamespace(ctx, id, payload, devicemanagementresourcenamespace.DefaultUpdateDeviceManagementResourceNamespaceOperationOptions())
 if err != nil {
 	// handle the error
 }

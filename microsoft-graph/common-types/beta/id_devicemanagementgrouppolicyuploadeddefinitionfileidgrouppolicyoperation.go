@@ -99,9 +99,9 @@ func (id DeviceManagementGroupPolicyUploadedDefinitionFileIdGroupPolicyOperation
 	return []resourceids.Segment{
 		resourceids.StaticSegment("deviceManagement", "deviceManagement", "deviceManagement"),
 		resourceids.StaticSegment("groupPolicyUploadedDefinitionFiles", "groupPolicyUploadedDefinitionFiles", "groupPolicyUploadedDefinitionFiles"),
-		resourceids.UserSpecifiedSegment("groupPolicyUploadedDefinitionFileId", "groupPolicyUploadedDefinitionFileIdValue"),
+		resourceids.UserSpecifiedSegment("groupPolicyUploadedDefinitionFileId", "groupPolicyUploadedDefinitionFileId"),
 		resourceids.StaticSegment("groupPolicyOperations", "groupPolicyOperations", "groupPolicyOperations"),
-		resourceids.UserSpecifiedSegment("groupPolicyOperationId", "groupPolicyOperationIdValue"),
+		resourceids.UserSpecifiedSegment("groupPolicyOperationId", "groupPolicyOperationId"),
 	}
 }
 

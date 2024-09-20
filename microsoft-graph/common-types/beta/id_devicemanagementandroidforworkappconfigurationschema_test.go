@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &DeviceManagementAndroidForWorkAppConfigurationSchemaId{}
 
 func TestNewDeviceManagementAndroidForWorkAppConfigurationSchemaID(t *testing.T) {
-	id := NewDeviceManagementAndroidForWorkAppConfigurationSchemaID("androidForWorkAppConfigurationSchemaIdValue")
+	id := NewDeviceManagementAndroidForWorkAppConfigurationSchemaID("androidForWorkAppConfigurationSchemaId")
 
-	if id.AndroidForWorkAppConfigurationSchemaId != "androidForWorkAppConfigurationSchemaIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'AndroidForWorkAppConfigurationSchemaId'", id.AndroidForWorkAppConfigurationSchemaId, "androidForWorkAppConfigurationSchemaIdValue")
+	if id.AndroidForWorkAppConfigurationSchemaId != "androidForWorkAppConfigurationSchemaId" {
+		t.Fatalf("Expected %q but got %q for Segment 'AndroidForWorkAppConfigurationSchemaId'", id.AndroidForWorkAppConfigurationSchemaId, "androidForWorkAppConfigurationSchemaId")
 	}
 }
 
 func TestFormatDeviceManagementAndroidForWorkAppConfigurationSchemaID(t *testing.T) {
-	actual := NewDeviceManagementAndroidForWorkAppConfigurationSchemaID("androidForWorkAppConfigurationSchemaIdValue").ID()
-	expected := "/deviceManagement/androidForWorkAppConfigurationSchemas/androidForWorkAppConfigurationSchemaIdValue"
+	actual := NewDeviceManagementAndroidForWorkAppConfigurationSchemaID("androidForWorkAppConfigurationSchemaId").ID()
+	expected := "/deviceManagement/androidForWorkAppConfigurationSchemas/androidForWorkAppConfigurationSchemaId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -50,14 +50,14 @@ func TestParseDeviceManagementAndroidForWorkAppConfigurationSchemaID(t *testing.
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/androidForWorkAppConfigurationSchemas/androidForWorkAppConfigurationSchemaIdValue",
+			Input: "/deviceManagement/androidForWorkAppConfigurationSchemas/androidForWorkAppConfigurationSchemaId",
 			Expected: &DeviceManagementAndroidForWorkAppConfigurationSchemaId{
-				AndroidForWorkAppConfigurationSchemaId: "androidForWorkAppConfigurationSchemaIdValue",
+				AndroidForWorkAppConfigurationSchemaId: "androidForWorkAppConfigurationSchemaId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/androidForWorkAppConfigurationSchemas/androidForWorkAppConfigurationSchemaIdValue/extra",
+			Input: "/deviceManagement/androidForWorkAppConfigurationSchemas/androidForWorkAppConfigurationSchemaId/extra",
 			Error: true,
 		},
 	}
@@ -116,26 +116,26 @@ func TestParseDeviceManagementAndroidForWorkAppConfigurationSchemaIDInsensitivel
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/androidForWorkAppConfigurationSchemas/androidForWorkAppConfigurationSchemaIdValue",
+			Input: "/deviceManagement/androidForWorkAppConfigurationSchemas/androidForWorkAppConfigurationSchemaId",
 			Expected: &DeviceManagementAndroidForWorkAppConfigurationSchemaId{
-				AndroidForWorkAppConfigurationSchemaId: "androidForWorkAppConfigurationSchemaIdValue",
+				AndroidForWorkAppConfigurationSchemaId: "androidForWorkAppConfigurationSchemaId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/androidForWorkAppConfigurationSchemas/androidForWorkAppConfigurationSchemaIdValue/extra",
+			Input: "/deviceManagement/androidForWorkAppConfigurationSchemas/androidForWorkAppConfigurationSchemaId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/aNdRoIdFoRwOrKaPpCoNfIgUrAtIoNsChEmAs/aNdRoIdFoRwOrKaPpCoNfIgUrAtIoNsChEmAiDvAlUe",
+			Input: "/dEvIcEmAnAgEmEnT/aNdRoIdFoRwOrKaPpCoNfIgUrAtIoNsChEmAs/aNdRoIdFoRwOrKaPpCoNfIgUrAtIoNsChEmAiD",
 			Expected: &DeviceManagementAndroidForWorkAppConfigurationSchemaId{
-				AndroidForWorkAppConfigurationSchemaId: "aNdRoIdFoRwOrKaPpCoNfIgUrAtIoNsChEmAiDvAlUe",
+				AndroidForWorkAppConfigurationSchemaId: "aNdRoIdFoRwOrKaPpCoNfIgUrAtIoNsChEmAiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/aNdRoIdFoRwOrKaPpCoNfIgUrAtIoNsChEmAs/aNdRoIdFoRwOrKaPpCoNfIgUrAtIoNsChEmAiDvAlUe/extra",
+			Input: "/dEvIcEmAnAgEmEnT/aNdRoIdFoRwOrKaPpCoNfIgUrAtIoNsChEmAs/aNdRoIdFoRwOrKaPpCoNfIgUrAtIoNsChEmAiD/extra",
 			Error: true,
 		},
 	}

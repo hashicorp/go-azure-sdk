@@ -16,15 +16,44 @@ type EnableLegacyPcManagementOperationResponse struct {
 	OData        *odata.OData
 }
 
+type EnableLegacyPcManagementOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultEnableLegacyPcManagementOperationOptions() EnableLegacyPcManagementOperationOptions {
+	return EnableLegacyPcManagementOperationOptions{}
+}
+
+func (o EnableLegacyPcManagementOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o EnableLegacyPcManagementOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o EnableLegacyPcManagementOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // EnableLegacyPcManagement - Invoke action enableLegacyPcManagement
-func (c DeviceManagementClient) EnableLegacyPcManagement(ctx context.Context) (result EnableLegacyPcManagementOperationResponse, err error) {
+func (c DeviceManagementClient) EnableLegacyPcManagement(ctx context.Context, options EnableLegacyPcManagementOperationOptions) (result EnableLegacyPcManagementOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/deviceManagement/enableLegacyPcManagement",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/deviceManagement/enableLegacyPcManagement",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

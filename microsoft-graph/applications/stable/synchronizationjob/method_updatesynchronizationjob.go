@@ -17,15 +17,44 @@ type UpdateSynchronizationJobOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateSynchronizationJobOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateSynchronizationJobOperationOptions() UpdateSynchronizationJobOperationOptions {
+	return UpdateSynchronizationJobOperationOptions{}
+}
+
+func (o UpdateSynchronizationJobOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateSynchronizationJobOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateSynchronizationJobOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateSynchronizationJob - Update the navigation property jobs in applications
-func (c SynchronizationJobClient) UpdateSynchronizationJob(ctx context.Context, id stable.ApplicationIdSynchronizationJobId, input stable.SynchronizationJob) (result UpdateSynchronizationJobOperationResponse, err error) {
+func (c SynchronizationJobClient) UpdateSynchronizationJob(ctx context.Context, id stable.ApplicationIdSynchronizationJobId, input stable.SynchronizationJob, options UpdateSynchronizationJobOperationOptions) (result UpdateSynchronizationJobOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

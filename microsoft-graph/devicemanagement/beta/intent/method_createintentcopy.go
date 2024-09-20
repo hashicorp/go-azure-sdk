@@ -19,15 +19,44 @@ type CreateIntentCopyOperationResponse struct {
 	Model        *beta.DeviceManagementIntent
 }
 
+type CreateIntentCopyOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateIntentCopyOperationOptions() CreateIntentCopyOperationOptions {
+	return CreateIntentCopyOperationOptions{}
+}
+
+func (o CreateIntentCopyOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateIntentCopyOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateIntentCopyOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateIntentCopy - Invoke action createCopy
-func (c IntentClient) CreateIntentCopy(ctx context.Context, id beta.DeviceManagementIntentId, input CreateIntentCopyRequest) (result CreateIntentCopyOperationResponse, err error) {
+func (c IntentClient) CreateIntentCopy(ctx context.Context, id beta.DeviceManagementIntentId, input CreateIntentCopyRequest, options CreateIntentCopyOperationOptions) (result CreateIntentCopyOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/createCopy", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/createCopy", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

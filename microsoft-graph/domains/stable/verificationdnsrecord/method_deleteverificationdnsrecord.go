@@ -19,7 +19,8 @@ type DeleteVerificationDnsRecordOperationResponse struct {
 }
 
 type DeleteVerificationDnsRecordOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteVerificationDnsRecordOperationOptions() DeleteVerificationDnsRecordOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteVerificationDnsRecordOperationOptions) ToHeaders() *client.Headers
 
 func (o DeleteVerificationDnsRecordOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

@@ -154,23 +154,56 @@ func (s IosVppEBook) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &IosVppEBook{}
 
 func (s *IosVppEBook) UnmarshalJSON(bytes []byte) error {
-	type alias IosVppEBook
-	var decoded alias
+
+	var decoded struct {
+		AppleId               nullable.Type[string]      `json:"appleId,omitempty"`
+		Genres                *[]string                  `json:"genres,omitempty"`
+		Language              nullable.Type[string]      `json:"language,omitempty"`
+		RoleScopeTagIds       *[]string                  `json:"roleScopeTagIds,omitempty"`
+		Seller                nullable.Type[string]      `json:"seller,omitempty"`
+		TotalLicenseCount     *int64                     `json:"totalLicenseCount,omitempty"`
+		UsedLicenseCount      *int64                     `json:"usedLicenseCount,omitempty"`
+		VppOrganizationName   nullable.Type[string]      `json:"vppOrganizationName,omitempty"`
+		VppTokenId            *string                    `json:"vppTokenId,omitempty"`
+		Assignments           *[]ManagedEBookAssignment  `json:"assignments,omitempty"`
+		Categories            *[]ManagedEBookCategory    `json:"categories,omitempty"`
+		CreatedDateTime       *string                    `json:"createdDateTime,omitempty"`
+		Description           nullable.Type[string]      `json:"description,omitempty"`
+		DeviceStates          *[]DeviceInstallState      `json:"deviceStates,omitempty"`
+		DisplayName           *string                    `json:"displayName,omitempty"`
+		InformationUrl        nullable.Type[string]      `json:"informationUrl,omitempty"`
+		InstallSummary        *EBookInstallSummary       `json:"installSummary,omitempty"`
+		LargeCover            *MimeContent               `json:"largeCover,omitempty"`
+		LastModifiedDateTime  *string                    `json:"lastModifiedDateTime,omitempty"`
+		PrivacyInformationUrl nullable.Type[string]      `json:"privacyInformationUrl,omitempty"`
+		PublishedDateTime     *string                    `json:"publishedDateTime,omitempty"`
+		Publisher             nullable.Type[string]      `json:"publisher,omitempty"`
+		UserStateSummary      *[]UserInstallStateSummary `json:"userStateSummary,omitempty"`
+		Id                    *string                    `json:"id,omitempty"`
+		ODataId               *string                    `json:"@odata.id,omitempty"`
+		ODataType             *string                    `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into IosVppEBook: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.AppleId = decoded.AppleId
+	s.Genres = decoded.Genres
+	s.Language = decoded.Language
+	s.RoleScopeTagIds = decoded.RoleScopeTagIds
+	s.Seller = decoded.Seller
+	s.TotalLicenseCount = decoded.TotalLicenseCount
+	s.UsedLicenseCount = decoded.UsedLicenseCount
+	s.VppOrganizationName = decoded.VppOrganizationName
+	s.VppTokenId = decoded.VppTokenId
 	s.Categories = decoded.Categories
 	s.CreatedDateTime = decoded.CreatedDateTime
 	s.Description = decoded.Description
 	s.DeviceStates = decoded.DeviceStates
 	s.DisplayName = decoded.DisplayName
-	s.Genres = decoded.Genres
 	s.Id = decoded.Id
 	s.InformationUrl = decoded.InformationUrl
 	s.InstallSummary = decoded.InstallSummary
-	s.Language = decoded.Language
 	s.LargeCover = decoded.LargeCover
 	s.LastModifiedDateTime = decoded.LastModifiedDateTime
 	s.ODataId = decoded.ODataId
@@ -178,13 +211,7 @@ func (s *IosVppEBook) UnmarshalJSON(bytes []byte) error {
 	s.PrivacyInformationUrl = decoded.PrivacyInformationUrl
 	s.PublishedDateTime = decoded.PublishedDateTime
 	s.Publisher = decoded.Publisher
-	s.RoleScopeTagIds = decoded.RoleScopeTagIds
-	s.Seller = decoded.Seller
-	s.TotalLicenseCount = decoded.TotalLicenseCount
-	s.UsedLicenseCount = decoded.UsedLicenseCount
 	s.UserStateSummary = decoded.UserStateSummary
-	s.VppOrganizationName = decoded.VppOrganizationName
-	s.VppTokenId = decoded.VppTokenId
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -207,5 +234,6 @@ func (s *IosVppEBook) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Assignments = &output
 	}
+
 	return nil
 }

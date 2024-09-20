@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &MeDeviceIdMemberOfId{}
 
 func TestNewMeDeviceIdMemberOfID(t *testing.T) {
-	id := NewMeDeviceIdMemberOfID("deviceIdValue", "directoryObjectIdValue")
+	id := NewMeDeviceIdMemberOfID("deviceId", "directoryObjectId")
 
-	if id.DeviceId != "deviceIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DeviceId'", id.DeviceId, "deviceIdValue")
+	if id.DeviceId != "deviceId" {
+		t.Fatalf("Expected %q but got %q for Segment 'DeviceId'", id.DeviceId, "deviceId")
 	}
 
-	if id.DirectoryObjectId != "directoryObjectIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DirectoryObjectId'", id.DirectoryObjectId, "directoryObjectIdValue")
+	if id.DirectoryObjectId != "directoryObjectId" {
+		t.Fatalf("Expected %q but got %q for Segment 'DirectoryObjectId'", id.DirectoryObjectId, "directoryObjectId")
 	}
 }
 
 func TestFormatMeDeviceIdMemberOfID(t *testing.T) {
-	actual := NewMeDeviceIdMemberOfID("deviceIdValue", "directoryObjectIdValue").ID()
-	expected := "/me/devices/deviceIdValue/memberOf/directoryObjectIdValue"
+	actual := NewMeDeviceIdMemberOfID("deviceId", "directoryObjectId").ID()
+	expected := "/me/devices/deviceId/memberOf/directoryObjectId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -54,25 +54,25 @@ func TestParseMeDeviceIdMemberOfID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/me/devices/deviceIdValue",
+			Input: "/me/devices/deviceId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/me/devices/deviceIdValue/memberOf",
+			Input: "/me/devices/deviceId/memberOf",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/me/devices/deviceIdValue/memberOf/directoryObjectIdValue",
+			Input: "/me/devices/deviceId/memberOf/directoryObjectId",
 			Expected: &MeDeviceIdMemberOfId{
-				DeviceId:          "deviceIdValue",
-				DirectoryObjectId: "directoryObjectIdValue",
+				DeviceId:          "deviceId",
+				DirectoryObjectId: "directoryObjectId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/devices/deviceIdValue/memberOf/directoryObjectIdValue/extra",
+			Input: "/me/devices/deviceId/memberOf/directoryObjectId/extra",
 			Error: true,
 		},
 	}
@@ -135,48 +135,48 @@ func TestParseMeDeviceIdMemberOfIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/me/devices/deviceIdValue",
+			Input: "/me/devices/deviceId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/dEvIcEs/dEvIcEiDvAlUe",
+			Input: "/mE/dEvIcEs/dEvIcEiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/me/devices/deviceIdValue/memberOf",
+			Input: "/me/devices/deviceId/memberOf",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/dEvIcEs/dEvIcEiDvAlUe/mEmBeRoF",
+			Input: "/mE/dEvIcEs/dEvIcEiD/mEmBeRoF",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/me/devices/deviceIdValue/memberOf/directoryObjectIdValue",
+			Input: "/me/devices/deviceId/memberOf/directoryObjectId",
 			Expected: &MeDeviceIdMemberOfId{
-				DeviceId:          "deviceIdValue",
-				DirectoryObjectId: "directoryObjectIdValue",
+				DeviceId:          "deviceId",
+				DirectoryObjectId: "directoryObjectId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/devices/deviceIdValue/memberOf/directoryObjectIdValue/extra",
+			Input: "/me/devices/deviceId/memberOf/directoryObjectId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/dEvIcEs/dEvIcEiDvAlUe/mEmBeRoF/dIrEcToRyObJeCtIdVaLuE",
+			Input: "/mE/dEvIcEs/dEvIcEiD/mEmBeRoF/dIrEcToRyObJeCtId",
 			Expected: &MeDeviceIdMemberOfId{
-				DeviceId:          "dEvIcEiDvAlUe",
-				DirectoryObjectId: "dIrEcToRyObJeCtIdVaLuE",
+				DeviceId:          "dEvIcEiD",
+				DirectoryObjectId: "dIrEcToRyObJeCtId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/mE/dEvIcEs/dEvIcEiDvAlUe/mEmBeRoF/dIrEcToRyObJeCtIdVaLuE/extra",
+			Input: "/mE/dEvIcEs/dEvIcEiD/mEmBeRoF/dIrEcToRyObJeCtId/extra",
 			Error: true,
 		},
 	}

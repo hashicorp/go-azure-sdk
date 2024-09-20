@@ -19,15 +19,44 @@ type CreateJoinedTeamScheduleTimeOffReasonOperationResponse struct {
 	Model        *stable.TimeOffReason
 }
 
+type CreateJoinedTeamScheduleTimeOffReasonOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateJoinedTeamScheduleTimeOffReasonOperationOptions() CreateJoinedTeamScheduleTimeOffReasonOperationOptions {
+	return CreateJoinedTeamScheduleTimeOffReasonOperationOptions{}
+}
+
+func (o CreateJoinedTeamScheduleTimeOffReasonOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateJoinedTeamScheduleTimeOffReasonOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateJoinedTeamScheduleTimeOffReasonOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateJoinedTeamScheduleTimeOffReason - Create new navigation property to timeOffReasons for users
-func (c JoinedTeamScheduleTimeOffReasonClient) CreateJoinedTeamScheduleTimeOffReason(ctx context.Context, id stable.UserIdJoinedTeamId, input stable.TimeOffReason) (result CreateJoinedTeamScheduleTimeOffReasonOperationResponse, err error) {
+func (c JoinedTeamScheduleTimeOffReasonClient) CreateJoinedTeamScheduleTimeOffReason(ctx context.Context, id stable.UserIdJoinedTeamId, input stable.TimeOffReason, options CreateJoinedTeamScheduleTimeOffReasonOperationOptions) (result CreateJoinedTeamScheduleTimeOffReasonOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/schedule/timeOffReasons", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/schedule/timeOffReasons", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

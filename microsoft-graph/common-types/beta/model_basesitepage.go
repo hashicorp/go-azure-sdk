@@ -158,12 +158,33 @@ func (s BaseBaseSitePageImpl) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &BaseBaseSitePageImpl{}
 
 func (s *BaseBaseSitePageImpl) UnmarshalJSON(bytes []byte) error {
-	type alias BaseBaseSitePageImpl
-	var decoded alias
+
+	var decoded struct {
+		PageLayout           *PageLayoutType       `json:"pageLayout,omitempty"`
+		PublishingState      *PublicationFacet     `json:"publishingState,omitempty"`
+		Title                nullable.Type[string] `json:"title,omitempty"`
+		CreatedBy            *IdentitySet          `json:"createdBy,omitempty"`
+		CreatedByUser        *User                 `json:"createdByUser,omitempty"`
+		CreatedDateTime      *string               `json:"createdDateTime,omitempty"`
+		Description          nullable.Type[string] `json:"description,omitempty"`
+		ETag                 nullable.Type[string] `json:"eTag,omitempty"`
+		LastModifiedBy       *IdentitySet          `json:"lastModifiedBy,omitempty"`
+		LastModifiedByUser   *User                 `json:"lastModifiedByUser,omitempty"`
+		LastModifiedDateTime *string               `json:"lastModifiedDateTime,omitempty"`
+		Name                 nullable.Type[string] `json:"name,omitempty"`
+		ParentReference      *ItemReference        `json:"parentReference,omitempty"`
+		WebUrl               nullable.Type[string] `json:"webUrl,omitempty"`
+		Id                   *string               `json:"id,omitempty"`
+		ODataId              *string               `json:"@odata.id,omitempty"`
+		ODataType            *string               `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into BaseBaseSitePageImpl: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
+	s.PageLayout = decoded.PageLayout
+	s.PublishingState = decoded.PublishingState
+	s.Title = decoded.Title
 	s.CreatedByUser = decoded.CreatedByUser
 	s.CreatedDateTime = decoded.CreatedDateTime
 	s.Description = decoded.Description
@@ -174,10 +195,7 @@ func (s *BaseBaseSitePageImpl) UnmarshalJSON(bytes []byte) error {
 	s.Name = decoded.Name
 	s.ODataId = decoded.ODataId
 	s.ODataType = decoded.ODataType
-	s.PageLayout = decoded.PageLayout
 	s.ParentReference = decoded.ParentReference
-	s.PublishingState = decoded.PublishingState
-	s.Title = decoded.Title
 	s.WebUrl = decoded.WebUrl
 
 	var temp map[string]json.RawMessage
@@ -200,6 +218,7 @@ func (s *BaseBaseSitePageImpl) UnmarshalJSON(bytes []byte) error {
 		}
 		s.LastModifiedBy = &impl
 	}
+
 	return nil
 }
 
@@ -213,9 +232,9 @@ func UnmarshalBaseSitePageImplementation(input []byte) (BaseSitePage, error) {
 		return nil, fmt.Errorf("unmarshaling BaseSitePage into map[string]interface: %+v", err)
 	}
 
-	value, ok := temp["@odata.type"].(string)
-	if !ok {
-		return nil, nil
+	var value string
+	if v, ok := temp["@odata.type"]; ok {
+		value = fmt.Sprintf("%v", v)
 	}
 
 	if strings.EqualFold(value, "#microsoft.graph.newsLinkPage") {

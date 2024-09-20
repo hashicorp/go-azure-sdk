@@ -17,15 +17,44 @@ type UpdateServicePrincipalCreationPolicyExcludeOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateServicePrincipalCreationPolicyExcludeOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateServicePrincipalCreationPolicyExcludeOperationOptions() UpdateServicePrincipalCreationPolicyExcludeOperationOptions {
+	return UpdateServicePrincipalCreationPolicyExcludeOperationOptions{}
+}
+
+func (o UpdateServicePrincipalCreationPolicyExcludeOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateServicePrincipalCreationPolicyExcludeOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateServicePrincipalCreationPolicyExcludeOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateServicePrincipalCreationPolicyExclude - Update the navigation property excludes in policies
-func (c ServicePrincipalCreationPolicyExcludeClient) UpdateServicePrincipalCreationPolicyExclude(ctx context.Context, id beta.PolicyServicePrincipalCreationPolicyIdExcludeId, input beta.ServicePrincipalCreationConditionSet) (result UpdateServicePrincipalCreationPolicyExcludeOperationResponse, err error) {
+func (c ServicePrincipalCreationPolicyExcludeClient) UpdateServicePrincipalCreationPolicyExclude(ctx context.Context, id beta.PolicyServicePrincipalCreationPolicyIdExcludeId, input beta.ServicePrincipalCreationConditionSet, options UpdateServicePrincipalCreationPolicyExcludeOperationOptions) (result UpdateServicePrincipalCreationPolicyExcludeOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

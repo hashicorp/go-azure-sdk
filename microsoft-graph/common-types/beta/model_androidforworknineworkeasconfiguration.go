@@ -206,12 +206,46 @@ func (s AndroidForWorkNineWorkEasConfiguration) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &AndroidForWorkNineWorkEasConfiguration{}
 
 func (s *AndroidForWorkNineWorkEasConfiguration) UnmarshalJSON(bytes []byte) error {
-	type alias AndroidForWorkNineWorkEasConfiguration
-	var decoded alias
+
+	var decoded struct {
+		SyncCalendar                                *bool                                        `json:"syncCalendar,omitempty"`
+		SyncContacts                                *bool                                        `json:"syncContacts,omitempty"`
+		SyncTasks                                   *bool                                        `json:"syncTasks,omitempty"`
+		AuthenticationMethod                        *EasAuthenticationMethod                     `json:"authenticationMethod,omitempty"`
+		DurationOfEmailToSync                       *EmailSyncDuration                           `json:"durationOfEmailToSync,omitempty"`
+		EmailAddressSource                          *UserEmailSource                             `json:"emailAddressSource,omitempty"`
+		HostName                                    *string                                      `json:"hostName,omitempty"`
+		IdentityCertificate                         *AndroidForWorkCertificateProfileBase        `json:"identityCertificate,omitempty"`
+		RequireSsl                                  *bool                                        `json:"requireSsl,omitempty"`
+		UsernameSource                              *AndroidUsernameSource                       `json:"usernameSource,omitempty"`
+		Assignments                                 *[]DeviceConfigurationAssignment             `json:"assignments,omitempty"`
+		CreatedDateTime                             *string                                      `json:"createdDateTime,omitempty"`
+		Description                                 nullable.Type[string]                        `json:"description,omitempty"`
+		DeviceManagementApplicabilityRuleDeviceMode *DeviceManagementApplicabilityRuleDeviceMode `json:"deviceManagementApplicabilityRuleDeviceMode,omitempty"`
+		DeviceManagementApplicabilityRuleOsEdition  *DeviceManagementApplicabilityRuleOsEdition  `json:"deviceManagementApplicabilityRuleOsEdition,omitempty"`
+		DeviceManagementApplicabilityRuleOsVersion  *DeviceManagementApplicabilityRuleOsVersion  `json:"deviceManagementApplicabilityRuleOsVersion,omitempty"`
+		DeviceSettingStateSummaries                 *[]SettingStateDeviceSummary                 `json:"deviceSettingStateSummaries,omitempty"`
+		DeviceStatusOverview                        *DeviceConfigurationDeviceOverview           `json:"deviceStatusOverview,omitempty"`
+		DeviceStatuses                              *[]DeviceConfigurationDeviceStatus           `json:"deviceStatuses,omitempty"`
+		DisplayName                                 *string                                      `json:"displayName,omitempty"`
+		GroupAssignments                            *[]DeviceConfigurationGroupAssignment        `json:"groupAssignments,omitempty"`
+		LastModifiedDateTime                        *string                                      `json:"lastModifiedDateTime,omitempty"`
+		RoleScopeTagIds                             *[]string                                    `json:"roleScopeTagIds,omitempty"`
+		SupportsScopeTags                           *bool                                        `json:"supportsScopeTags,omitempty"`
+		UserStatusOverview                          *DeviceConfigurationUserOverview             `json:"userStatusOverview,omitempty"`
+		UserStatuses                                *[]DeviceConfigurationUserStatus             `json:"userStatuses,omitempty"`
+		Version                                     *int64                                       `json:"version,omitempty"`
+		Id                                          *string                                      `json:"id,omitempty"`
+		ODataId                                     *string                                      `json:"@odata.id,omitempty"`
+		ODataType                                   *string                                      `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into AndroidForWorkNineWorkEasConfiguration: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
+	s.SyncCalendar = decoded.SyncCalendar
+	s.SyncContacts = decoded.SyncContacts
+	s.SyncTasks = decoded.SyncTasks
 	s.Assignments = decoded.Assignments
 	s.AuthenticationMethod = decoded.AuthenticationMethod
 	s.CreatedDateTime = decoded.CreatedDateTime
@@ -234,9 +268,6 @@ func (s *AndroidForWorkNineWorkEasConfiguration) UnmarshalJSON(bytes []byte) err
 	s.RequireSsl = decoded.RequireSsl
 	s.RoleScopeTagIds = decoded.RoleScopeTagIds
 	s.SupportsScopeTags = decoded.SupportsScopeTags
-	s.SyncCalendar = decoded.SyncCalendar
-	s.SyncContacts = decoded.SyncContacts
-	s.SyncTasks = decoded.SyncTasks
 	s.UserStatusOverview = decoded.UserStatusOverview
 	s.UserStatuses = decoded.UserStatuses
 	s.UsernameSource = decoded.UsernameSource
@@ -254,5 +285,6 @@ func (s *AndroidForWorkNineWorkEasConfiguration) UnmarshalJSON(bytes []byte) err
 		}
 		s.IdentityCertificate = &impl
 	}
+
 	return nil
 }

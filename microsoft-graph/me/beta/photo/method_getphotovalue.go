@@ -2,8 +2,10 @@ package photo
 
 import (
 	"context"
+	"fmt"
 	"net/http"
 
+	"github.com/hashicorp/go-azure-sdk/microsoft-graph/common-types/beta"
 	"github.com/hashicorp/go-azure-sdk/sdk/client"
 	"github.com/hashicorp/go-azure-sdk/sdk/odata"
 )
@@ -17,15 +19,45 @@ type GetPhotoValueOperationResponse struct {
 	Model        *[]byte
 }
 
-// GetPhotoValue - Get media content for the navigation property photo from me. The user's profile photo. Read-only.
-func (c PhotoClient) GetPhotoValue(ctx context.Context) (result GetPhotoValueOperationResponse, err error) {
+type GetPhotoValueOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultGetPhotoValueOperationOptions() GetPhotoValueOperationOptions {
+	return GetPhotoValueOperationOptions{}
+}
+
+func (o GetPhotoValueOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o GetPhotoValueOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o GetPhotoValueOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
+// GetPhotoValue - Get media content for the navigation property photos from me. The unique identifier for an entity.
+// Read-only.
+func (c PhotoClient) GetPhotoValue(ctx context.Context, id beta.MePhotoId, options GetPhotoValueOperationOptions) (result GetPhotoValueOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/octet-stream",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod: http.MethodGet,
-		Path:       "/me/photo/$value",
+		HttpMethod:    http.MethodGet,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/$value", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

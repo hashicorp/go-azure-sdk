@@ -19,15 +19,44 @@ type CreateWindowsQualityUpdateProfileAssignmentOperationResponse struct {
 	Model        *beta.WindowsQualityUpdateProfileAssignment
 }
 
+type CreateWindowsQualityUpdateProfileAssignmentOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateWindowsQualityUpdateProfileAssignmentOperationOptions() CreateWindowsQualityUpdateProfileAssignmentOperationOptions {
+	return CreateWindowsQualityUpdateProfileAssignmentOperationOptions{}
+}
+
+func (o CreateWindowsQualityUpdateProfileAssignmentOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateWindowsQualityUpdateProfileAssignmentOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateWindowsQualityUpdateProfileAssignmentOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateWindowsQualityUpdateProfileAssignment - Create new navigation property to assignments for deviceManagement
-func (c WindowsQualityUpdateProfileAssignmentClient) CreateWindowsQualityUpdateProfileAssignment(ctx context.Context, id beta.DeviceManagementWindowsQualityUpdateProfileId, input beta.WindowsQualityUpdateProfileAssignment) (result CreateWindowsQualityUpdateProfileAssignmentOperationResponse, err error) {
+func (c WindowsQualityUpdateProfileAssignmentClient) CreateWindowsQualityUpdateProfileAssignment(ctx context.Context, id beta.DeviceManagementWindowsQualityUpdateProfileId, input beta.WindowsQualityUpdateProfileAssignment, options CreateWindowsQualityUpdateProfileAssignmentOperationOptions) (result CreateWindowsQualityUpdateProfileAssignmentOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/assignments", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/assignments", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

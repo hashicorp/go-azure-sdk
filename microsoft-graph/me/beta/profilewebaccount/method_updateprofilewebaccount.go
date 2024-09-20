@@ -17,15 +17,44 @@ type UpdateProfileWebAccountOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateProfileWebAccountOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateProfileWebAccountOperationOptions() UpdateProfileWebAccountOperationOptions {
+	return UpdateProfileWebAccountOperationOptions{}
+}
+
+func (o UpdateProfileWebAccountOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateProfileWebAccountOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateProfileWebAccountOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateProfileWebAccount - Update webAccount. Update the properties of a webAccount object in a user's profile.
-func (c ProfileWebAccountClient) UpdateProfileWebAccount(ctx context.Context, id beta.MeProfileWebAccountId, input beta.WebAccount) (result UpdateProfileWebAccountOperationResponse, err error) {
+func (c ProfileWebAccountClient) UpdateProfileWebAccount(ctx context.Context, id beta.MeProfileWebAccountId, input beta.WebAccount, options UpdateProfileWebAccountOperationOptions) (result UpdateProfileWebAccountOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

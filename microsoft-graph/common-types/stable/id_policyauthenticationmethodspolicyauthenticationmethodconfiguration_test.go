@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &PolicyAuthenticationMethodsPolicyAuthenticationMethodConfigurationId{}
 
 func TestNewPolicyAuthenticationMethodsPolicyAuthenticationMethodConfigurationID(t *testing.T) {
-	id := NewPolicyAuthenticationMethodsPolicyAuthenticationMethodConfigurationID("authenticationMethodConfigurationIdValue")
+	id := NewPolicyAuthenticationMethodsPolicyAuthenticationMethodConfigurationID("authenticationMethodConfigurationId")
 
-	if id.AuthenticationMethodConfigurationId != "authenticationMethodConfigurationIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'AuthenticationMethodConfigurationId'", id.AuthenticationMethodConfigurationId, "authenticationMethodConfigurationIdValue")
+	if id.AuthenticationMethodConfigurationId != "authenticationMethodConfigurationId" {
+		t.Fatalf("Expected %q but got %q for Segment 'AuthenticationMethodConfigurationId'", id.AuthenticationMethodConfigurationId, "authenticationMethodConfigurationId")
 	}
 }
 
 func TestFormatPolicyAuthenticationMethodsPolicyAuthenticationMethodConfigurationID(t *testing.T) {
-	actual := NewPolicyAuthenticationMethodsPolicyAuthenticationMethodConfigurationID("authenticationMethodConfigurationIdValue").ID()
-	expected := "/policies/authenticationMethodsPolicy/authenticationMethodConfigurations/authenticationMethodConfigurationIdValue"
+	actual := NewPolicyAuthenticationMethodsPolicyAuthenticationMethodConfigurationID("authenticationMethodConfigurationId").ID()
+	expected := "/policies/authenticationMethodsPolicy/authenticationMethodConfigurations/authenticationMethodConfigurationId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -55,14 +55,14 @@ func TestParsePolicyAuthenticationMethodsPolicyAuthenticationMethodConfiguration
 		},
 		{
 			// Valid URI
-			Input: "/policies/authenticationMethodsPolicy/authenticationMethodConfigurations/authenticationMethodConfigurationIdValue",
+			Input: "/policies/authenticationMethodsPolicy/authenticationMethodConfigurations/authenticationMethodConfigurationId",
 			Expected: &PolicyAuthenticationMethodsPolicyAuthenticationMethodConfigurationId{
-				AuthenticationMethodConfigurationId: "authenticationMethodConfigurationIdValue",
+				AuthenticationMethodConfigurationId: "authenticationMethodConfigurationId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/policies/authenticationMethodsPolicy/authenticationMethodConfigurations/authenticationMethodConfigurationIdValue/extra",
+			Input: "/policies/authenticationMethodsPolicy/authenticationMethodConfigurations/authenticationMethodConfigurationId/extra",
 			Error: true,
 		},
 	}
@@ -131,26 +131,26 @@ func TestParsePolicyAuthenticationMethodsPolicyAuthenticationMethodConfiguration
 		},
 		{
 			// Valid URI
-			Input: "/policies/authenticationMethodsPolicy/authenticationMethodConfigurations/authenticationMethodConfigurationIdValue",
+			Input: "/policies/authenticationMethodsPolicy/authenticationMethodConfigurations/authenticationMethodConfigurationId",
 			Expected: &PolicyAuthenticationMethodsPolicyAuthenticationMethodConfigurationId{
-				AuthenticationMethodConfigurationId: "authenticationMethodConfigurationIdValue",
+				AuthenticationMethodConfigurationId: "authenticationMethodConfigurationId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/policies/authenticationMethodsPolicy/authenticationMethodConfigurations/authenticationMethodConfigurationIdValue/extra",
+			Input: "/policies/authenticationMethodsPolicy/authenticationMethodConfigurations/authenticationMethodConfigurationId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/pOlIcIeS/aUtHeNtIcAtIoNmEtHoDsPoLiCy/aUtHeNtIcAtIoNmEtHoDcOnFiGuRaTiOnS/aUtHeNtIcAtIoNmEtHoDcOnFiGuRaTiOnIdVaLuE",
+			Input: "/pOlIcIeS/aUtHeNtIcAtIoNmEtHoDsPoLiCy/aUtHeNtIcAtIoNmEtHoDcOnFiGuRaTiOnS/aUtHeNtIcAtIoNmEtHoDcOnFiGuRaTiOnId",
 			Expected: &PolicyAuthenticationMethodsPolicyAuthenticationMethodConfigurationId{
-				AuthenticationMethodConfigurationId: "aUtHeNtIcAtIoNmEtHoDcOnFiGuRaTiOnIdVaLuE",
+				AuthenticationMethodConfigurationId: "aUtHeNtIcAtIoNmEtHoDcOnFiGuRaTiOnId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/pOlIcIeS/aUtHeNtIcAtIoNmEtHoDsPoLiCy/aUtHeNtIcAtIoNmEtHoDcOnFiGuRaTiOnS/aUtHeNtIcAtIoNmEtHoDcOnFiGuRaTiOnIdVaLuE/extra",
+			Input: "/pOlIcIeS/aUtHeNtIcAtIoNmEtHoDsPoLiCy/aUtHeNtIcAtIoNmEtHoDcOnFiGuRaTiOnS/aUtHeNtIcAtIoNmEtHoDcOnFiGuRaTiOnId/extra",
 			Error: true,
 		},
 	}

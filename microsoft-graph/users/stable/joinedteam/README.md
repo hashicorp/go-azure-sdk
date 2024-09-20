@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/microsoft-graph/users/stable/joinedteam` Documentation
 
-The `joinedteam` SDK allows for interaction with the Azure Resource Manager Service `users` (API Version `stable`).
+The `joinedteam` SDK allows for interaction with Microsoft Graph `users` (API Version `stable`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -15,7 +15,7 @@ import "github.com/hashicorp/go-azure-sdk/microsoft-graph/users/stable/joinedtea
 ### Client Initialization
 
 ```go
-client := joinedteam.NewJoinedTeamClientWithBaseURI("https://management.azure.com")
+client := joinedteam.NewJoinedTeamClientWithBaseURI("https://graph.microsoft.com")
 client.Client.Authorizer = authorizer
 ```
 
@@ -24,14 +24,14 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := joinedteam.NewUserID("userIdValue")
+id := joinedteam.NewUserID("userId")
 
 payload := joinedteam.Team{
 	// ...
 }
 
 
-read, err := client.CreateJoinedTeam(ctx, id, payload)
+read, err := client.CreateJoinedTeam(ctx, id, payload, joinedteam.DefaultCreateJoinedTeamOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -45,14 +45,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := joinedteam.NewUserIdJoinedTeamID("userIdValue", "teamIdValue")
+id := joinedteam.NewUserIdJoinedTeamID("userId", "teamId")
 
 payload := joinedteam.CreateJoinedTeamArchiveRequest{
 	// ...
 }
 
 
-read, err := client.CreateJoinedTeamArchive(ctx, id, payload)
+read, err := client.CreateJoinedTeamArchive(ctx, id, payload, joinedteam.DefaultCreateJoinedTeamArchiveOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -66,14 +66,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := joinedteam.NewUserIdJoinedTeamID("userIdValue", "teamIdValue")
+id := joinedteam.NewUserIdJoinedTeamID("userId", "teamId")
 
 payload := joinedteam.CreateJoinedTeamCloneRequest{
 	// ...
 }
 
 
-read, err := client.CreateJoinedTeamClone(ctx, id, payload)
+read, err := client.CreateJoinedTeamClone(ctx, id, payload, joinedteam.DefaultCreateJoinedTeamCloneOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -87,9 +87,9 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := joinedteam.NewUserIdJoinedTeamID("userIdValue", "teamIdValue")
+id := joinedteam.NewUserIdJoinedTeamID("userId", "teamId")
 
-read, err := client.CreateJoinedTeamCompleteMigration(ctx, id)
+read, err := client.CreateJoinedTeamCompleteMigration(ctx, id, joinedteam.DefaultCreateJoinedTeamCompleteMigrationOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -103,9 +103,9 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := joinedteam.NewUserIdJoinedTeamID("userIdValue", "teamIdValue")
+id := joinedteam.NewUserIdJoinedTeamID("userId", "teamId")
 
-read, err := client.CreateJoinedTeamUnarchive(ctx, id)
+read, err := client.CreateJoinedTeamUnarchive(ctx, id, joinedteam.DefaultCreateJoinedTeamUnarchiveOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -119,7 +119,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := joinedteam.NewUserIdJoinedTeamID("userIdValue", "teamIdValue")
+id := joinedteam.NewUserIdJoinedTeamID("userId", "teamId")
 
 read, err := client.DeleteJoinedTeam(ctx, id, joinedteam.DefaultDeleteJoinedTeamOperationOptions())
 if err != nil {
@@ -135,7 +135,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := joinedteam.NewUserIdJoinedTeamID("userIdValue", "teamIdValue")
+id := joinedteam.NewUserIdJoinedTeamID("userId", "teamId")
 
 read, err := client.GetJoinedTeam(ctx, id, joinedteam.DefaultGetJoinedTeamOperationOptions())
 if err != nil {
@@ -151,7 +151,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := joinedteam.NewUserID("userIdValue")
+id := joinedteam.NewUserID("userId")
 
 read, err := client.GetJoinedTeamsCount(ctx, id, joinedteam.DefaultGetJoinedTeamsCountOperationOptions())
 if err != nil {
@@ -167,7 +167,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := joinedteam.NewUserID("userIdValue")
+id := joinedteam.NewUserID("userId")
 
 // alternatively `client.ListJoinedTeams(ctx, id, joinedteam.DefaultListJoinedTeamsOperationOptions())` can be used to do batched pagination
 items, err := client.ListJoinedTeamsComplete(ctx, id, joinedteam.DefaultListJoinedTeamsOperationOptions())
@@ -184,14 +184,14 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := joinedteam.NewUserIdJoinedTeamID("userIdValue", "teamIdValue")
+id := joinedteam.NewUserIdJoinedTeamID("userId", "teamId")
 
 payload := joinedteam.SendJoinedTeamActivityNotificationRequest{
 	// ...
 }
 
 
-read, err := client.SendJoinedTeamActivityNotification(ctx, id, payload)
+read, err := client.SendJoinedTeamActivityNotification(ctx, id, payload, joinedteam.DefaultSendJoinedTeamActivityNotificationOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -205,14 +205,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := joinedteam.NewUserIdJoinedTeamID("userIdValue", "teamIdValue")
+id := joinedteam.NewUserIdJoinedTeamID("userId", "teamId")
 
 payload := joinedteam.Team{
 	// ...
 }
 
 
-read, err := client.UpdateJoinedTeam(ctx, id, payload)
+read, err := client.UpdateJoinedTeam(ctx, id, payload, joinedteam.DefaultUpdateJoinedTeamOperationOptions())
 if err != nil {
 	// handle the error
 }

@@ -124,16 +124,35 @@ func (s RecycleBinItem) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &RecycleBinItem{}
 
 func (s *RecycleBinItem) UnmarshalJSON(bytes []byte) error {
-	type alias RecycleBinItem
-	var decoded alias
+
+	var decoded struct {
+		DeletedDateTime      nullable.Type[string] `json:"deletedDateTime,omitempty"`
+		DeletedFromLocation  nullable.Type[string] `json:"deletedFromLocation,omitempty"`
+		Size                 nullable.Type[int64]  `json:"size,omitempty"`
+		CreatedBy            *IdentitySet          `json:"createdBy,omitempty"`
+		CreatedByUser        *User                 `json:"createdByUser,omitempty"`
+		CreatedDateTime      *string               `json:"createdDateTime,omitempty"`
+		Description          nullable.Type[string] `json:"description,omitempty"`
+		ETag                 nullable.Type[string] `json:"eTag,omitempty"`
+		LastModifiedBy       *IdentitySet          `json:"lastModifiedBy,omitempty"`
+		LastModifiedByUser   *User                 `json:"lastModifiedByUser,omitempty"`
+		LastModifiedDateTime *string               `json:"lastModifiedDateTime,omitempty"`
+		Name                 nullable.Type[string] `json:"name,omitempty"`
+		ParentReference      *ItemReference        `json:"parentReference,omitempty"`
+		WebUrl               nullable.Type[string] `json:"webUrl,omitempty"`
+		Id                   *string               `json:"id,omitempty"`
+		ODataId              *string               `json:"@odata.id,omitempty"`
+		ODataType            *string               `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into RecycleBinItem: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
-	s.CreatedByUser = decoded.CreatedByUser
-	s.CreatedDateTime = decoded.CreatedDateTime
 	s.DeletedDateTime = decoded.DeletedDateTime
 	s.DeletedFromLocation = decoded.DeletedFromLocation
+	s.Size = decoded.Size
+	s.CreatedByUser = decoded.CreatedByUser
+	s.CreatedDateTime = decoded.CreatedDateTime
 	s.Description = decoded.Description
 	s.ETag = decoded.ETag
 	s.Id = decoded.Id
@@ -143,7 +162,6 @@ func (s *RecycleBinItem) UnmarshalJSON(bytes []byte) error {
 	s.ODataId = decoded.ODataId
 	s.ODataType = decoded.ODataType
 	s.ParentReference = decoded.ParentReference
-	s.Size = decoded.Size
 	s.WebUrl = decoded.WebUrl
 
 	var temp map[string]json.RawMessage
@@ -166,5 +184,6 @@ func (s *RecycleBinItem) UnmarshalJSON(bytes []byte) error {
 		}
 		s.LastModifiedBy = &impl
 	}
+
 	return nil
 }

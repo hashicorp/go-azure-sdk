@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &MeDriveIdBundleId{}
 
 func TestNewMeDriveIdBundleID(t *testing.T) {
-	id := NewMeDriveIdBundleID("driveIdValue", "driveItemIdValue")
+	id := NewMeDriveIdBundleID("driveId", "driveItemId")
 
-	if id.DriveId != "driveIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DriveId'", id.DriveId, "driveIdValue")
+	if id.DriveId != "driveId" {
+		t.Fatalf("Expected %q but got %q for Segment 'DriveId'", id.DriveId, "driveId")
 	}
 
-	if id.DriveItemId != "driveItemIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DriveItemId'", id.DriveItemId, "driveItemIdValue")
+	if id.DriveItemId != "driveItemId" {
+		t.Fatalf("Expected %q but got %q for Segment 'DriveItemId'", id.DriveItemId, "driveItemId")
 	}
 }
 
 func TestFormatMeDriveIdBundleID(t *testing.T) {
-	actual := NewMeDriveIdBundleID("driveIdValue", "driveItemIdValue").ID()
-	expected := "/me/drives/driveIdValue/bundles/driveItemIdValue"
+	actual := NewMeDriveIdBundleID("driveId", "driveItemId").ID()
+	expected := "/me/drives/driveId/bundles/driveItemId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -54,25 +54,25 @@ func TestParseMeDriveIdBundleID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/me/drives/driveIdValue",
+			Input: "/me/drives/driveId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/me/drives/driveIdValue/bundles",
+			Input: "/me/drives/driveId/bundles",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/me/drives/driveIdValue/bundles/driveItemIdValue",
+			Input: "/me/drives/driveId/bundles/driveItemId",
 			Expected: &MeDriveIdBundleId{
-				DriveId:     "driveIdValue",
-				DriveItemId: "driveItemIdValue",
+				DriveId:     "driveId",
+				DriveItemId: "driveItemId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/drives/driveIdValue/bundles/driveItemIdValue/extra",
+			Input: "/me/drives/driveId/bundles/driveItemId/extra",
 			Error: true,
 		},
 	}
@@ -135,48 +135,48 @@ func TestParseMeDriveIdBundleIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/me/drives/driveIdValue",
+			Input: "/me/drives/driveId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/dRiVeS/dRiVeIdVaLuE",
+			Input: "/mE/dRiVeS/dRiVeId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/me/drives/driveIdValue/bundles",
+			Input: "/me/drives/driveId/bundles",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/dRiVeS/dRiVeIdVaLuE/bUnDlEs",
+			Input: "/mE/dRiVeS/dRiVeId/bUnDlEs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/me/drives/driveIdValue/bundles/driveItemIdValue",
+			Input: "/me/drives/driveId/bundles/driveItemId",
 			Expected: &MeDriveIdBundleId{
-				DriveId:     "driveIdValue",
-				DriveItemId: "driveItemIdValue",
+				DriveId:     "driveId",
+				DriveItemId: "driveItemId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/drives/driveIdValue/bundles/driveItemIdValue/extra",
+			Input: "/me/drives/driveId/bundles/driveItemId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/dRiVeS/dRiVeIdVaLuE/bUnDlEs/dRiVeItEmIdVaLuE",
+			Input: "/mE/dRiVeS/dRiVeId/bUnDlEs/dRiVeItEmId",
 			Expected: &MeDriveIdBundleId{
-				DriveId:     "dRiVeIdVaLuE",
-				DriveItemId: "dRiVeItEmIdVaLuE",
+				DriveId:     "dRiVeId",
+				DriveItemId: "dRiVeItEmId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/mE/dRiVeS/dRiVeIdVaLuE/bUnDlEs/dRiVeItEmIdVaLuE/extra",
+			Input: "/mE/dRiVeS/dRiVeId/bUnDlEs/dRiVeItEmId/extra",
 			Error: true,
 		},
 	}

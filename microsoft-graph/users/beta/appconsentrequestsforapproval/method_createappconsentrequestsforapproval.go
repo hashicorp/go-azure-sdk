@@ -19,15 +19,44 @@ type CreateAppConsentRequestsForApprovalOperationResponse struct {
 	Model        *beta.AppConsentRequest
 }
 
+type CreateAppConsentRequestsForApprovalOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateAppConsentRequestsForApprovalOperationOptions() CreateAppConsentRequestsForApprovalOperationOptions {
+	return CreateAppConsentRequestsForApprovalOperationOptions{}
+}
+
+func (o CreateAppConsentRequestsForApprovalOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateAppConsentRequestsForApprovalOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateAppConsentRequestsForApprovalOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateAppConsentRequestsForApproval - Create new navigation property to appConsentRequestsForApproval for users
-func (c AppConsentRequestsForApprovalClient) CreateAppConsentRequestsForApproval(ctx context.Context, id beta.UserId, input beta.AppConsentRequest) (result CreateAppConsentRequestsForApprovalOperationResponse, err error) {
+func (c AppConsentRequestsForApprovalClient) CreateAppConsentRequestsForApproval(ctx context.Context, id beta.UserId, input beta.AppConsentRequest, options CreateAppConsentRequestsForApprovalOperationOptions) (result CreateAppConsentRequestsForApprovalOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/appConsentRequestsForApproval", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/appConsentRequestsForApproval", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

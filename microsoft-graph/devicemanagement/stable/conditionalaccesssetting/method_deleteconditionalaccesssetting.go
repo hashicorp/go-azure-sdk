@@ -18,7 +18,8 @@ type DeleteConditionalAccessSettingOperationResponse struct {
 }
 
 type DeleteConditionalAccessSettingOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteConditionalAccessSettingOperationOptions() DeleteConditionalAccessSettingOperationOptions {
@@ -35,7 +36,9 @@ func (o DeleteConditionalAccessSettingOperationOptions) ToHeaders() *client.Head
 
 func (o DeleteConditionalAccessSettingOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

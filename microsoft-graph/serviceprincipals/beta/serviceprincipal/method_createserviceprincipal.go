@@ -18,15 +18,44 @@ type CreateServicePrincipalOperationResponse struct {
 	Model        *beta.ServicePrincipal
 }
 
+type CreateServicePrincipalOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateServicePrincipalOperationOptions() CreateServicePrincipalOperationOptions {
+	return CreateServicePrincipalOperationOptions{}
+}
+
+func (o CreateServicePrincipalOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateServicePrincipalOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateServicePrincipalOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateServicePrincipal - Create servicePrincipal. Create a new servicePrincipal object.
-func (c ServicePrincipalClient) CreateServicePrincipal(ctx context.Context, input beta.ServicePrincipal) (result CreateServicePrincipalOperationResponse, err error) {
+func (c ServicePrincipalClient) CreateServicePrincipal(ctx context.Context, input beta.ServicePrincipal, options CreateServicePrincipalOperationOptions) (result CreateServicePrincipalOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/servicePrincipals",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/servicePrincipals",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

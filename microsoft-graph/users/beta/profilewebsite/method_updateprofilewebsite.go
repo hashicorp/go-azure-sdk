@@ -17,15 +17,44 @@ type UpdateProfileWebsiteOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateProfileWebsiteOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateProfileWebsiteOperationOptions() UpdateProfileWebsiteOperationOptions {
+	return UpdateProfileWebsiteOperationOptions{}
+}
+
+func (o UpdateProfileWebsiteOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateProfileWebsiteOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateProfileWebsiteOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateProfileWebsite - Update the navigation property websites in users
-func (c ProfileWebsiteClient) UpdateProfileWebsite(ctx context.Context, id beta.UserIdProfileWebsiteId, input beta.PersonWebsite) (result UpdateProfileWebsiteOperationResponse, err error) {
+func (c ProfileWebsiteClient) UpdateProfileWebsite(ctx context.Context, id beta.UserIdProfileWebsiteId, input beta.PersonWebsite, options UpdateProfileWebsiteOperationOptions) (result UpdateProfileWebsiteOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

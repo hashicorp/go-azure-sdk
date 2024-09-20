@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &RoleManagementDirectoryRoleAssignmentScheduleRequestId{}
 
 func TestNewRoleManagementDirectoryRoleAssignmentScheduleRequestID(t *testing.T) {
-	id := NewRoleManagementDirectoryRoleAssignmentScheduleRequestID("unifiedRoleAssignmentScheduleRequestIdValue")
+	id := NewRoleManagementDirectoryRoleAssignmentScheduleRequestID("unifiedRoleAssignmentScheduleRequestId")
 
-	if id.UnifiedRoleAssignmentScheduleRequestId != "unifiedRoleAssignmentScheduleRequestIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'UnifiedRoleAssignmentScheduleRequestId'", id.UnifiedRoleAssignmentScheduleRequestId, "unifiedRoleAssignmentScheduleRequestIdValue")
+	if id.UnifiedRoleAssignmentScheduleRequestId != "unifiedRoleAssignmentScheduleRequestId" {
+		t.Fatalf("Expected %q but got %q for Segment 'UnifiedRoleAssignmentScheduleRequestId'", id.UnifiedRoleAssignmentScheduleRequestId, "unifiedRoleAssignmentScheduleRequestId")
 	}
 }
 
 func TestFormatRoleManagementDirectoryRoleAssignmentScheduleRequestID(t *testing.T) {
-	actual := NewRoleManagementDirectoryRoleAssignmentScheduleRequestID("unifiedRoleAssignmentScheduleRequestIdValue").ID()
-	expected := "/roleManagement/directory/roleAssignmentScheduleRequests/unifiedRoleAssignmentScheduleRequestIdValue"
+	actual := NewRoleManagementDirectoryRoleAssignmentScheduleRequestID("unifiedRoleAssignmentScheduleRequestId").ID()
+	expected := "/roleManagement/directory/roleAssignmentScheduleRequests/unifiedRoleAssignmentScheduleRequestId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -55,14 +55,14 @@ func TestParseRoleManagementDirectoryRoleAssignmentScheduleRequestID(t *testing.
 		},
 		{
 			// Valid URI
-			Input: "/roleManagement/directory/roleAssignmentScheduleRequests/unifiedRoleAssignmentScheduleRequestIdValue",
+			Input: "/roleManagement/directory/roleAssignmentScheduleRequests/unifiedRoleAssignmentScheduleRequestId",
 			Expected: &RoleManagementDirectoryRoleAssignmentScheduleRequestId{
-				UnifiedRoleAssignmentScheduleRequestId: "unifiedRoleAssignmentScheduleRequestIdValue",
+				UnifiedRoleAssignmentScheduleRequestId: "unifiedRoleAssignmentScheduleRequestId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/roleManagement/directory/roleAssignmentScheduleRequests/unifiedRoleAssignmentScheduleRequestIdValue/extra",
+			Input: "/roleManagement/directory/roleAssignmentScheduleRequests/unifiedRoleAssignmentScheduleRequestId/extra",
 			Error: true,
 		},
 	}
@@ -131,26 +131,26 @@ func TestParseRoleManagementDirectoryRoleAssignmentScheduleRequestIDInsensitivel
 		},
 		{
 			// Valid URI
-			Input: "/roleManagement/directory/roleAssignmentScheduleRequests/unifiedRoleAssignmentScheduleRequestIdValue",
+			Input: "/roleManagement/directory/roleAssignmentScheduleRequests/unifiedRoleAssignmentScheduleRequestId",
 			Expected: &RoleManagementDirectoryRoleAssignmentScheduleRequestId{
-				UnifiedRoleAssignmentScheduleRequestId: "unifiedRoleAssignmentScheduleRequestIdValue",
+				UnifiedRoleAssignmentScheduleRequestId: "unifiedRoleAssignmentScheduleRequestId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/roleManagement/directory/roleAssignmentScheduleRequests/unifiedRoleAssignmentScheduleRequestIdValue/extra",
+			Input: "/roleManagement/directory/roleAssignmentScheduleRequests/unifiedRoleAssignmentScheduleRequestId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/rOlEmAnAgEmEnT/dIrEcToRy/rOlEaSsIgNmEnTsChEdUlErEqUeStS/uNiFiEdRoLeAsSiGnMeNtScHeDuLeReQuEsTiDvAlUe",
+			Input: "/rOlEmAnAgEmEnT/dIrEcToRy/rOlEaSsIgNmEnTsChEdUlErEqUeStS/uNiFiEdRoLeAsSiGnMeNtScHeDuLeReQuEsTiD",
 			Expected: &RoleManagementDirectoryRoleAssignmentScheduleRequestId{
-				UnifiedRoleAssignmentScheduleRequestId: "uNiFiEdRoLeAsSiGnMeNtScHeDuLeReQuEsTiDvAlUe",
+				UnifiedRoleAssignmentScheduleRequestId: "uNiFiEdRoLeAsSiGnMeNtScHeDuLeReQuEsTiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/rOlEmAnAgEmEnT/dIrEcToRy/rOlEaSsIgNmEnTsChEdUlErEqUeStS/uNiFiEdRoLeAsSiGnMeNtScHeDuLeReQuEsTiDvAlUe/extra",
+			Input: "/rOlEmAnAgEmEnT/dIrEcToRy/rOlEaSsIgNmEnTsChEdUlErEqUeStS/uNiFiEdRoLeAsSiGnMeNtScHeDuLeReQuEsTiD/extra",
 			Error: true,
 		},
 	}

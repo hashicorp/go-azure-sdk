@@ -19,16 +19,45 @@ type CreateOperationApprovalRequestApproveOperationResponse struct {
 	Model        *CreateOperationApprovalRequestApproveResult
 }
 
+type CreateOperationApprovalRequestApproveOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateOperationApprovalRequestApproveOperationOptions() CreateOperationApprovalRequestApproveOperationOptions {
+	return CreateOperationApprovalRequestApproveOperationOptions{}
+}
+
+func (o CreateOperationApprovalRequestApproveOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateOperationApprovalRequestApproveOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateOperationApprovalRequestApproveOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateOperationApprovalRequestApprove - Invoke action approve. Approves the requested instance of an
 // operationApprovalRequest.
-func (c OperationApprovalRequestClient) CreateOperationApprovalRequestApprove(ctx context.Context, id beta.DeviceManagementOperationApprovalRequestId, input CreateOperationApprovalRequestApproveRequest) (result CreateOperationApprovalRequestApproveOperationResponse, err error) {
+func (c OperationApprovalRequestClient) CreateOperationApprovalRequestApprove(ctx context.Context, id beta.DeviceManagementOperationApprovalRequestId, input CreateOperationApprovalRequestApproveRequest, options CreateOperationApprovalRequestApproveOperationOptions) (result CreateOperationApprovalRequestApproveOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/approve", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/approve", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

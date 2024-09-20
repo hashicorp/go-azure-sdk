@@ -18,17 +18,46 @@ type UpdateVirtualEndpointOnPremisesConnectionAdDomainPasswordOperationResponse 
 	OData        *odata.OData
 }
 
+type UpdateVirtualEndpointOnPremisesConnectionAdDomainPasswordOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateVirtualEndpointOnPremisesConnectionAdDomainPasswordOperationOptions() UpdateVirtualEndpointOnPremisesConnectionAdDomainPasswordOperationOptions {
+	return UpdateVirtualEndpointOnPremisesConnectionAdDomainPasswordOperationOptions{}
+}
+
+func (o UpdateVirtualEndpointOnPremisesConnectionAdDomainPasswordOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateVirtualEndpointOnPremisesConnectionAdDomainPasswordOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateVirtualEndpointOnPremisesConnectionAdDomainPasswordOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateVirtualEndpointOnPremisesConnectionAdDomainPassword - Invoke action updateAdDomainPassword. Update the Active
 // Directory domain password for a cloudPcOnPremisesConnection object. This API is supported when the type of the
 // cloudPcOnPremisesConnection object is hybridAzureADJoin.
-func (c VirtualEndpointOnPremisesConnectionClient) UpdateVirtualEndpointOnPremisesConnectionAdDomainPassword(ctx context.Context, id beta.DeviceManagementVirtualEndpointOnPremisesConnectionId, input UpdateVirtualEndpointOnPremisesConnectionAdDomainPasswordRequest) (result UpdateVirtualEndpointOnPremisesConnectionAdDomainPasswordOperationResponse, err error) {
+func (c VirtualEndpointOnPremisesConnectionClient) UpdateVirtualEndpointOnPremisesConnectionAdDomainPassword(ctx context.Context, id beta.DeviceManagementVirtualEndpointOnPremisesConnectionId, input UpdateVirtualEndpointOnPremisesConnectionAdDomainPasswordRequest, options UpdateVirtualEndpointOnPremisesConnectionAdDomainPasswordOperationOptions) (result UpdateVirtualEndpointOnPremisesConnectionAdDomainPasswordOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/updateAdDomainPassword", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/updateAdDomainPassword", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

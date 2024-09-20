@@ -98,9 +98,9 @@ func (id DomainIdServiceConfigurationRecordId) ID() string {
 func (id DomainIdServiceConfigurationRecordId) Segments() []resourceids.Segment {
 	return []resourceids.Segment{
 		resourceids.StaticSegment("domains", "domains", "domains"),
-		resourceids.UserSpecifiedSegment("domainId", "domainIdValue"),
+		resourceids.UserSpecifiedSegment("domainId", "domainId"),
 		resourceids.StaticSegment("serviceConfigurationRecords", "serviceConfigurationRecords", "serviceConfigurationRecords"),
-		resourceids.UserSpecifiedSegment("domainDnsRecordId", "domainDnsRecordIdValue"),
+		resourceids.UserSpecifiedSegment("domainDnsRecordId", "domainDnsRecordId"),
 	}
 }
 

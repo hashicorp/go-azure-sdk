@@ -94,7 +94,7 @@ func (id MeOutlookMasterCategoryId) Segments() []resourceids.Segment {
 		resourceids.StaticSegment("me", "me", "me"),
 		resourceids.StaticSegment("outlook", "outlook", "outlook"),
 		resourceids.StaticSegment("masterCategories", "masterCategories", "masterCategories"),
-		resourceids.UserSpecifiedSegment("outlookCategoryId", "outlookCategoryIdValue"),
+		resourceids.UserSpecifiedSegment("outlookCategoryId", "outlookCategoryId"),
 	}
 }
 

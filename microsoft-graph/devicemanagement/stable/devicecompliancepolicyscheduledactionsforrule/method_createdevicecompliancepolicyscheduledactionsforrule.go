@@ -19,16 +19,45 @@ type CreateDeviceCompliancePolicyScheduledActionsForRuleOperationResponse struct
 	Model        *stable.DeviceComplianceScheduledActionForRule
 }
 
+type CreateDeviceCompliancePolicyScheduledActionsForRuleOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateDeviceCompliancePolicyScheduledActionsForRuleOperationOptions() CreateDeviceCompliancePolicyScheduledActionsForRuleOperationOptions {
+	return CreateDeviceCompliancePolicyScheduledActionsForRuleOperationOptions{}
+}
+
+func (o CreateDeviceCompliancePolicyScheduledActionsForRuleOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateDeviceCompliancePolicyScheduledActionsForRuleOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateDeviceCompliancePolicyScheduledActionsForRuleOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateDeviceCompliancePolicyScheduledActionsForRule - Create deviceComplianceScheduledActionForRule. Create a new
 // deviceComplianceScheduledActionForRule object.
-func (c DeviceCompliancePolicyScheduledActionsForRuleClient) CreateDeviceCompliancePolicyScheduledActionsForRule(ctx context.Context, id stable.DeviceManagementDeviceCompliancePolicyId, input stable.DeviceComplianceScheduledActionForRule) (result CreateDeviceCompliancePolicyScheduledActionsForRuleOperationResponse, err error) {
+func (c DeviceCompliancePolicyScheduledActionsForRuleClient) CreateDeviceCompliancePolicyScheduledActionsForRule(ctx context.Context, id stable.DeviceManagementDeviceCompliancePolicyId, input stable.DeviceComplianceScheduledActionForRule, options CreateDeviceCompliancePolicyScheduledActionsForRuleOperationOptions) (result CreateDeviceCompliancePolicyScheduledActionsForRuleOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/scheduledActionsForRule", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/scheduledActionsForRule", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

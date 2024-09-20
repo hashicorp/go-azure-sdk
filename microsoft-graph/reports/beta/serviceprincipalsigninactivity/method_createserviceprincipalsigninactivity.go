@@ -18,15 +18,44 @@ type CreateServicePrincipalSignInActivityOperationResponse struct {
 	Model        *beta.ServicePrincipalSignInActivity
 }
 
+type CreateServicePrincipalSignInActivityOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateServicePrincipalSignInActivityOperationOptions() CreateServicePrincipalSignInActivityOperationOptions {
+	return CreateServicePrincipalSignInActivityOperationOptions{}
+}
+
+func (o CreateServicePrincipalSignInActivityOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateServicePrincipalSignInActivityOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateServicePrincipalSignInActivityOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateServicePrincipalSignInActivity - Create new navigation property to servicePrincipalSignInActivities for reports
-func (c ServicePrincipalSignInActivityClient) CreateServicePrincipalSignInActivity(ctx context.Context, input beta.ServicePrincipalSignInActivity) (result CreateServicePrincipalSignInActivityOperationResponse, err error) {
+func (c ServicePrincipalSignInActivityClient) CreateServicePrincipalSignInActivity(ctx context.Context, input beta.ServicePrincipalSignInActivity, options CreateServicePrincipalSignInActivityOperationOptions) (result CreateServicePrincipalSignInActivityOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/reports/servicePrincipalSignInActivities",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/reports/servicePrincipalSignInActivities",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &MeAnalyticsActivityStatisticId{}
 
 func TestNewMeAnalyticsActivityStatisticID(t *testing.T) {
-	id := NewMeAnalyticsActivityStatisticID("activityStatisticsIdValue")
+	id := NewMeAnalyticsActivityStatisticID("activityStatisticsId")
 
-	if id.ActivityStatisticsId != "activityStatisticsIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ActivityStatisticsId'", id.ActivityStatisticsId, "activityStatisticsIdValue")
+	if id.ActivityStatisticsId != "activityStatisticsId" {
+		t.Fatalf("Expected %q but got %q for Segment 'ActivityStatisticsId'", id.ActivityStatisticsId, "activityStatisticsId")
 	}
 }
 
 func TestFormatMeAnalyticsActivityStatisticID(t *testing.T) {
-	actual := NewMeAnalyticsActivityStatisticID("activityStatisticsIdValue").ID()
-	expected := "/me/analytics/activityStatistics/activityStatisticsIdValue"
+	actual := NewMeAnalyticsActivityStatisticID("activityStatisticsId").ID()
+	expected := "/me/analytics/activityStatistics/activityStatisticsId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -55,14 +55,14 @@ func TestParseMeAnalyticsActivityStatisticID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/me/analytics/activityStatistics/activityStatisticsIdValue",
+			Input: "/me/analytics/activityStatistics/activityStatisticsId",
 			Expected: &MeAnalyticsActivityStatisticId{
-				ActivityStatisticsId: "activityStatisticsIdValue",
+				ActivityStatisticsId: "activityStatisticsId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/analytics/activityStatistics/activityStatisticsIdValue/extra",
+			Input: "/me/analytics/activityStatistics/activityStatisticsId/extra",
 			Error: true,
 		},
 	}
@@ -131,26 +131,26 @@ func TestParseMeAnalyticsActivityStatisticIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/me/analytics/activityStatistics/activityStatisticsIdValue",
+			Input: "/me/analytics/activityStatistics/activityStatisticsId",
 			Expected: &MeAnalyticsActivityStatisticId{
-				ActivityStatisticsId: "activityStatisticsIdValue",
+				ActivityStatisticsId: "activityStatisticsId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/analytics/activityStatistics/activityStatisticsIdValue/extra",
+			Input: "/me/analytics/activityStatistics/activityStatisticsId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/aNaLyTiCs/aCtIvItYsTaTiStIcS/aCtIvItYsTaTiStIcSiDvAlUe",
+			Input: "/mE/aNaLyTiCs/aCtIvItYsTaTiStIcS/aCtIvItYsTaTiStIcSiD",
 			Expected: &MeAnalyticsActivityStatisticId{
-				ActivityStatisticsId: "aCtIvItYsTaTiStIcSiDvAlUe",
+				ActivityStatisticsId: "aCtIvItYsTaTiStIcSiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/mE/aNaLyTiCs/aCtIvItYsTaTiStIcS/aCtIvItYsTaTiStIcSiDvAlUe/extra",
+			Input: "/mE/aNaLyTiCs/aCtIvItYsTaTiStIcS/aCtIvItYsTaTiStIcSiD/extra",
 			Error: true,
 		},
 	}

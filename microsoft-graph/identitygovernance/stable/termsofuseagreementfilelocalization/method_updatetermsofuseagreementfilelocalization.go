@@ -17,15 +17,44 @@ type UpdateTermsOfUseAgreementFileLocalizationOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateTermsOfUseAgreementFileLocalizationOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateTermsOfUseAgreementFileLocalizationOperationOptions() UpdateTermsOfUseAgreementFileLocalizationOperationOptions {
+	return UpdateTermsOfUseAgreementFileLocalizationOperationOptions{}
+}
+
+func (o UpdateTermsOfUseAgreementFileLocalizationOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateTermsOfUseAgreementFileLocalizationOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateTermsOfUseAgreementFileLocalizationOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateTermsOfUseAgreementFileLocalization - Update the navigation property localizations in identityGovernance
-func (c TermsOfUseAgreementFileLocalizationClient) UpdateTermsOfUseAgreementFileLocalization(ctx context.Context, id stable.IdentityGovernanceTermsOfUseAgreementIdFileLocalizationId, input stable.AgreementFileLocalization) (result UpdateTermsOfUseAgreementFileLocalizationOperationResponse, err error) {
+func (c TermsOfUseAgreementFileLocalizationClient) UpdateTermsOfUseAgreementFileLocalization(ctx context.Context, id stable.IdentityGovernanceTermsOfUseAgreementIdFileLocalizationId, input stable.AgreementFileLocalization, options UpdateTermsOfUseAgreementFileLocalizationOperationOptions) (result UpdateTermsOfUseAgreementFileLocalizationOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

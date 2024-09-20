@@ -17,16 +17,45 @@ type UpdateUserExperienceAnalyticsAppHealthOverviewMetricValueOperationResponse 
 	OData        *odata.OData
 }
 
+type UpdateUserExperienceAnalyticsAppHealthOverviewMetricValueOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateUserExperienceAnalyticsAppHealthOverviewMetricValueOperationOptions() UpdateUserExperienceAnalyticsAppHealthOverviewMetricValueOperationOptions {
+	return UpdateUserExperienceAnalyticsAppHealthOverviewMetricValueOperationOptions{}
+}
+
+func (o UpdateUserExperienceAnalyticsAppHealthOverviewMetricValueOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateUserExperienceAnalyticsAppHealthOverviewMetricValueOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateUserExperienceAnalyticsAppHealthOverviewMetricValueOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateUserExperienceAnalyticsAppHealthOverviewMetricValue - Update the navigation property metricValues in
 // deviceManagement
-func (c UserExperienceAnalyticsAppHealthOverviewMetricValueClient) UpdateUserExperienceAnalyticsAppHealthOverviewMetricValue(ctx context.Context, id stable.DeviceManagementUserExperienceAnalyticsAppHealthOverviewMetricValueId, input stable.UserExperienceAnalyticsMetric) (result UpdateUserExperienceAnalyticsAppHealthOverviewMetricValueOperationResponse, err error) {
+func (c UserExperienceAnalyticsAppHealthOverviewMetricValueClient) UpdateUserExperienceAnalyticsAppHealthOverviewMetricValue(ctx context.Context, id stable.DeviceManagementUserExperienceAnalyticsAppHealthOverviewMetricValueId, input stable.UserExperienceAnalyticsMetric, options UpdateUserExperienceAnalyticsAppHealthOverviewMetricValueOperationOptions) (result UpdateUserExperienceAnalyticsAppHealthOverviewMetricValueOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

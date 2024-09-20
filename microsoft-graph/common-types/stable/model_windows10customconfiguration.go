@@ -118,10 +118,26 @@ func (s Windows10CustomConfiguration) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &Windows10CustomConfiguration{}
 
 func (s *Windows10CustomConfiguration) UnmarshalJSON(bytes []byte) error {
-	type alias Windows10CustomConfiguration
-	var decoded alias
+
+	var decoded struct {
+		OmaSettings                 *[]OmaSetting                      `json:"omaSettings,omitempty"`
+		Assignments                 *[]DeviceConfigurationAssignment   `json:"assignments,omitempty"`
+		CreatedDateTime             *string                            `json:"createdDateTime,omitempty"`
+		Description                 nullable.Type[string]              `json:"description,omitempty"`
+		DeviceSettingStateSummaries *[]SettingStateDeviceSummary       `json:"deviceSettingStateSummaries,omitempty"`
+		DeviceStatusOverview        *DeviceConfigurationDeviceOverview `json:"deviceStatusOverview,omitempty"`
+		DeviceStatuses              *[]DeviceConfigurationDeviceStatus `json:"deviceStatuses,omitempty"`
+		DisplayName                 *string                            `json:"displayName,omitempty"`
+		LastModifiedDateTime        *string                            `json:"lastModifiedDateTime,omitempty"`
+		UserStatusOverview          *DeviceConfigurationUserOverview   `json:"userStatusOverview,omitempty"`
+		UserStatuses                *[]DeviceConfigurationUserStatus   `json:"userStatuses,omitempty"`
+		Version                     *int64                             `json:"version,omitempty"`
+		Id                          *string                            `json:"id,omitempty"`
+		ODataId                     *string                            `json:"@odata.id,omitempty"`
+		ODataType                   *string                            `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into Windows10CustomConfiguration: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.Assignments = decoded.Assignments
@@ -160,5 +176,6 @@ func (s *Windows10CustomConfiguration) UnmarshalJSON(bytes []byte) error {
 		}
 		s.OmaSettings = &output
 	}
+
 	return nil
 }

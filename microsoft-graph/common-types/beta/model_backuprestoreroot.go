@@ -113,21 +113,40 @@ func (s BackupRestoreRoot) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &BackupRestoreRoot{}
 
 func (s *BackupRestoreRoot) UnmarshalJSON(bytes []byte) error {
-	type alias BackupRestoreRoot
-	var decoded alias
+
+	var decoded struct {
+		DriveInclusionRules                   *[]DriveProtectionRule                 `json:"driveInclusionRules,omitempty"`
+		DriveProtectionUnits                  *[]DriveProtectionUnit                 `json:"driveProtectionUnits,omitempty"`
+		ExchangeProtectionPolicies            *[]ExchangeProtectionPolicy            `json:"exchangeProtectionPolicies,omitempty"`
+		ExchangeRestoreSessions               *[]ExchangeRestoreSession              `json:"exchangeRestoreSessions,omitempty"`
+		MailboxInclusionRules                 *[]MailboxProtectionRule               `json:"mailboxInclusionRules,omitempty"`
+		MailboxProtectionUnits                *[]MailboxProtectionUnit               `json:"mailboxProtectionUnits,omitempty"`
+		OneDriveForBusinessProtectionPolicies *[]OneDriveForBusinessProtectionPolicy `json:"oneDriveForBusinessProtectionPolicies,omitempty"`
+		OneDriveForBusinessRestoreSessions    *[]OneDriveForBusinessRestoreSession   `json:"oneDriveForBusinessRestoreSessions,omitempty"`
+		ProtectionPolicies                    *[]ProtectionPolicyBase                `json:"protectionPolicies,omitempty"`
+		ProtectionUnits                       *[]ProtectionUnitBase                  `json:"protectionUnits,omitempty"`
+		RestorePoints                         *[]RestorePoint                        `json:"restorePoints,omitempty"`
+		RestoreSessions                       *[]RestoreSessionBase                  `json:"restoreSessions,omitempty"`
+		ServiceApps                           *[]ServiceApp                          `json:"serviceApps,omitempty"`
+		ServiceStatus                         *ServiceStatus                         `json:"serviceStatus,omitempty"`
+		SharePointProtectionPolicies          *[]SharePointProtectionPolicy          `json:"sharePointProtectionPolicies,omitempty"`
+		SharePointRestoreSessions             *[]SharePointRestoreSession            `json:"sharePointRestoreSessions,omitempty"`
+		SiteInclusionRules                    *[]SiteProtectionRule                  `json:"siteInclusionRules,omitempty"`
+		SiteProtectionUnits                   *[]SiteProtectionUnit                  `json:"siteProtectionUnits,omitempty"`
+		Id                                    *string                                `json:"id,omitempty"`
+		ODataId                               *string                                `json:"@odata.id,omitempty"`
+		ODataType                             *string                                `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into BackupRestoreRoot: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.DriveInclusionRules = decoded.DriveInclusionRules
 	s.DriveProtectionUnits = decoded.DriveProtectionUnits
 	s.ExchangeProtectionPolicies = decoded.ExchangeProtectionPolicies
 	s.ExchangeRestoreSessions = decoded.ExchangeRestoreSessions
-	s.Id = decoded.Id
 	s.MailboxInclusionRules = decoded.MailboxInclusionRules
 	s.MailboxProtectionUnits = decoded.MailboxProtectionUnits
-	s.ODataId = decoded.ODataId
-	s.ODataType = decoded.ODataType
 	s.OneDriveForBusinessProtectionPolicies = decoded.OneDriveForBusinessProtectionPolicies
 	s.OneDriveForBusinessRestoreSessions = decoded.OneDriveForBusinessRestoreSessions
 	s.RestorePoints = decoded.RestorePoints
@@ -137,6 +156,9 @@ func (s *BackupRestoreRoot) UnmarshalJSON(bytes []byte) error {
 	s.SharePointRestoreSessions = decoded.SharePointRestoreSessions
 	s.SiteInclusionRules = decoded.SiteInclusionRules
 	s.SiteProtectionUnits = decoded.SiteProtectionUnits
+	s.Id = decoded.Id
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -193,5 +215,6 @@ func (s *BackupRestoreRoot) UnmarshalJSON(bytes []byte) error {
 		}
 		s.RestoreSessions = &output
 	}
+
 	return nil
 }

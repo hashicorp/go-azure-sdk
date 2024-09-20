@@ -19,7 +19,8 @@ type DeleteUserExperienceAnalyticsAnomalyCorrelationGroupOverviewOperationRespon
 }
 
 type DeleteUserExperienceAnalyticsAnomalyCorrelationGroupOverviewOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteUserExperienceAnalyticsAnomalyCorrelationGroupOverviewOperationOptions() DeleteUserExperienceAnalyticsAnomalyCorrelationGroupOverviewOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteUserExperienceAnalyticsAnomalyCorrelationGroupOverviewOperationOpt
 
 func (o DeleteUserExperienceAnalyticsAnomalyCorrelationGroupOverviewOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

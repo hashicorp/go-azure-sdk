@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &MeFollowedSiteId{}
 
 func TestNewMeFollowedSiteID(t *testing.T) {
-	id := NewMeFollowedSiteID("siteIdValue")
+	id := NewMeFollowedSiteID("siteId")
 
-	if id.SiteId != "siteIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'SiteId'", id.SiteId, "siteIdValue")
+	if id.SiteId != "siteId" {
+		t.Fatalf("Expected %q but got %q for Segment 'SiteId'", id.SiteId, "siteId")
 	}
 }
 
 func TestFormatMeFollowedSiteID(t *testing.T) {
-	actual := NewMeFollowedSiteID("siteIdValue").ID()
-	expected := "/me/followedSites/siteIdValue"
+	actual := NewMeFollowedSiteID("siteId").ID()
+	expected := "/me/followedSites/siteId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -50,14 +50,14 @@ func TestParseMeFollowedSiteID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/me/followedSites/siteIdValue",
+			Input: "/me/followedSites/siteId",
 			Expected: &MeFollowedSiteId{
-				SiteId: "siteIdValue",
+				SiteId: "siteId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/followedSites/siteIdValue/extra",
+			Input: "/me/followedSites/siteId/extra",
 			Error: true,
 		},
 	}
@@ -116,26 +116,26 @@ func TestParseMeFollowedSiteIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/me/followedSites/siteIdValue",
+			Input: "/me/followedSites/siteId",
 			Expected: &MeFollowedSiteId{
-				SiteId: "siteIdValue",
+				SiteId: "siteId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/followedSites/siteIdValue/extra",
+			Input: "/me/followedSites/siteId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/fOlLoWeDsItEs/sItEiDvAlUe",
+			Input: "/mE/fOlLoWeDsItEs/sItEiD",
 			Expected: &MeFollowedSiteId{
-				SiteId: "sItEiDvAlUe",
+				SiteId: "sItEiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/mE/fOlLoWeDsItEs/sItEiDvAlUe/extra",
+			Input: "/mE/fOlLoWeDsItEs/sItEiD/extra",
 			Error: true,
 		},
 	}

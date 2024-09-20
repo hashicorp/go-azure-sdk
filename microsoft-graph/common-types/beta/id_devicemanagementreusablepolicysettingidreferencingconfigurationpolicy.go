@@ -99,9 +99,9 @@ func (id DeviceManagementReusablePolicySettingIdReferencingConfigurationPolicyId
 	return []resourceids.Segment{
 		resourceids.StaticSegment("deviceManagement", "deviceManagement", "deviceManagement"),
 		resourceids.StaticSegment("reusablePolicySettings", "reusablePolicySettings", "reusablePolicySettings"),
-		resourceids.UserSpecifiedSegment("deviceManagementReusablePolicySettingId", "deviceManagementReusablePolicySettingIdValue"),
+		resourceids.UserSpecifiedSegment("deviceManagementReusablePolicySettingId", "deviceManagementReusablePolicySettingId"),
 		resourceids.StaticSegment("referencingConfigurationPolicies", "referencingConfigurationPolicies", "referencingConfigurationPolicies"),
-		resourceids.UserSpecifiedSegment("deviceManagementConfigurationPolicyId", "deviceManagementConfigurationPolicyIdValue"),
+		resourceids.UserSpecifiedSegment("deviceManagementConfigurationPolicyId", "deviceManagementConfigurationPolicyId"),
 	}
 }
 

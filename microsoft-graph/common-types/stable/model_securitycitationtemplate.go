@@ -89,10 +89,19 @@ func (s SecurityCitationTemplate) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &SecurityCitationTemplate{}
 
 func (s *SecurityCitationTemplate) UnmarshalJSON(bytes []byte) error {
-	type alias SecurityCitationTemplate
-	var decoded alias
+
+	var decoded struct {
+		CitationJurisdiction nullable.Type[string] `json:"citationJurisdiction,omitempty"`
+		CitationUrl          nullable.Type[string] `json:"citationUrl,omitempty"`
+		CreatedBy            IdentitySet           `json:"createdBy"`
+		CreatedDateTime      nullable.Type[string] `json:"createdDateTime,omitempty"`
+		DisplayName          nullable.Type[string] `json:"displayName,omitempty"`
+		Id                   *string               `json:"id,omitempty"`
+		ODataId              *string               `json:"@odata.id,omitempty"`
+		ODataType            *string               `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into SecurityCitationTemplate: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.CitationJurisdiction = decoded.CitationJurisdiction
@@ -115,5 +124,6 @@ func (s *SecurityCitationTemplate) UnmarshalJSON(bytes []byte) error {
 		}
 		s.CreatedBy = impl
 	}
+
 	return nil
 }

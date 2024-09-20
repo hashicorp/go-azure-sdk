@@ -19,7 +19,8 @@ type DeleteInboundSharedUserProfileOperationResponse struct {
 }
 
 type DeleteInboundSharedUserProfileOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteInboundSharedUserProfileOperationOptions() DeleteInboundSharedUserProfileOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteInboundSharedUserProfileOperationOptions) ToHeaders() *client.Head
 
 func (o DeleteInboundSharedUserProfileOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

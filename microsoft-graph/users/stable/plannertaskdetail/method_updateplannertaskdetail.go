@@ -19,7 +19,8 @@ type UpdatePlannerTaskDetailOperationResponse struct {
 }
 
 type UpdatePlannerTaskDetailOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultUpdatePlannerTaskDetailOperationOptions() UpdatePlannerTaskDetailOperationOptions {
@@ -36,7 +37,9 @@ func (o UpdatePlannerTaskDetailOperationOptions) ToHeaders() *client.Headers {
 
 func (o UpdatePlannerTaskDetailOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

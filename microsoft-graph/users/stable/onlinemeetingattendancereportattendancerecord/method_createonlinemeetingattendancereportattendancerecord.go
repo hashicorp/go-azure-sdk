@@ -19,15 +19,44 @@ type CreateOnlineMeetingAttendanceReportAttendanceRecordOperationResponse struct
 	Model        *stable.AttendanceRecord
 }
 
+type CreateOnlineMeetingAttendanceReportAttendanceRecordOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateOnlineMeetingAttendanceReportAttendanceRecordOperationOptions() CreateOnlineMeetingAttendanceReportAttendanceRecordOperationOptions {
+	return CreateOnlineMeetingAttendanceReportAttendanceRecordOperationOptions{}
+}
+
+func (o CreateOnlineMeetingAttendanceReportAttendanceRecordOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateOnlineMeetingAttendanceReportAttendanceRecordOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateOnlineMeetingAttendanceReportAttendanceRecordOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateOnlineMeetingAttendanceReportAttendanceRecord - Create new navigation property to attendanceRecords for users
-func (c OnlineMeetingAttendanceReportAttendanceRecordClient) CreateOnlineMeetingAttendanceReportAttendanceRecord(ctx context.Context, id stable.UserIdOnlineMeetingIdAttendanceReportId, input stable.AttendanceRecord) (result CreateOnlineMeetingAttendanceReportAttendanceRecordOperationResponse, err error) {
+func (c OnlineMeetingAttendanceReportAttendanceRecordClient) CreateOnlineMeetingAttendanceReportAttendanceRecord(ctx context.Context, id stable.UserIdOnlineMeetingIdAttendanceReportId, input stable.AttendanceRecord, options CreateOnlineMeetingAttendanceReportAttendanceRecordOperationOptions) (result CreateOnlineMeetingAttendanceReportAttendanceRecordOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/attendanceRecords", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/attendanceRecords", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

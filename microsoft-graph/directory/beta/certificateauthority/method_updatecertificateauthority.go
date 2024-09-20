@@ -17,15 +17,44 @@ type UpdateCertificateAuthorityOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateCertificateAuthorityOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateCertificateAuthorityOperationOptions() UpdateCertificateAuthorityOperationOptions {
+	return UpdateCertificateAuthorityOperationOptions{}
+}
+
+func (o UpdateCertificateAuthorityOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateCertificateAuthorityOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateCertificateAuthorityOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateCertificateAuthority - Update the navigation property certificateAuthorities in directory
-func (c CertificateAuthorityClient) UpdateCertificateAuthority(ctx context.Context, input beta.CertificateAuthorityPath) (result UpdateCertificateAuthorityOperationResponse, err error) {
+func (c CertificateAuthorityClient) UpdateCertificateAuthority(ctx context.Context, input beta.CertificateAuthorityPath, options UpdateCertificateAuthorityOperationOptions) (result UpdateCertificateAuthorityOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       "/directory/certificateAuthorities",
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          "/directory/certificateAuthorities",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

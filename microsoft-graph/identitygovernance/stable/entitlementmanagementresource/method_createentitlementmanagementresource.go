@@ -18,15 +18,44 @@ type CreateEntitlementManagementResourceOperationResponse struct {
 	Model        *stable.AccessPackageResource
 }
 
+type CreateEntitlementManagementResourceOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateEntitlementManagementResourceOperationOptions() CreateEntitlementManagementResourceOperationOptions {
+	return CreateEntitlementManagementResourceOperationOptions{}
+}
+
+func (o CreateEntitlementManagementResourceOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateEntitlementManagementResourceOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateEntitlementManagementResourceOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateEntitlementManagementResource - Create new navigation property to resources for identityGovernance
-func (c EntitlementManagementResourceClient) CreateEntitlementManagementResource(ctx context.Context, input stable.AccessPackageResource) (result CreateEntitlementManagementResourceOperationResponse, err error) {
+func (c EntitlementManagementResourceClient) CreateEntitlementManagementResource(ctx context.Context, input stable.AccessPackageResource, options CreateEntitlementManagementResourceOperationOptions) (result CreateEntitlementManagementResourceOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/identityGovernance/entitlementManagement/resources",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/identityGovernance/entitlementManagement/resources",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

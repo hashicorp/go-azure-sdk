@@ -17,15 +17,44 @@ type UpdateChatPermissionGrantOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateChatPermissionGrantOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateChatPermissionGrantOperationOptions() UpdateChatPermissionGrantOperationOptions {
+	return UpdateChatPermissionGrantOperationOptions{}
+}
+
+func (o UpdateChatPermissionGrantOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateChatPermissionGrantOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateChatPermissionGrantOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateChatPermissionGrant - Update the navigation property permissionGrants in me
-func (c ChatPermissionGrantClient) UpdateChatPermissionGrant(ctx context.Context, id beta.MeChatIdPermissionGrantId, input beta.ResourceSpecificPermissionGrant) (result UpdateChatPermissionGrantOperationResponse, err error) {
+func (c ChatPermissionGrantClient) UpdateChatPermissionGrant(ctx context.Context, id beta.MeChatIdPermissionGrantId, input beta.ResourceSpecificPermissionGrant, options UpdateChatPermissionGrantOperationOptions) (result UpdateChatPermissionGrantOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

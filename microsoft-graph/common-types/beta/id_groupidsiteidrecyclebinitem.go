@@ -104,12 +104,12 @@ func (id GroupIdSiteIdRecycleBinItemId) ID() string {
 func (id GroupIdSiteIdRecycleBinItemId) Segments() []resourceids.Segment {
 	return []resourceids.Segment{
 		resourceids.StaticSegment("groups", "groups", "groups"),
-		resourceids.UserSpecifiedSegment("groupId", "groupIdValue"),
+		resourceids.UserSpecifiedSegment("groupId", "groupId"),
 		resourceids.StaticSegment("sites", "sites", "sites"),
-		resourceids.UserSpecifiedSegment("siteId", "siteIdValue"),
+		resourceids.UserSpecifiedSegment("siteId", "siteId"),
 		resourceids.StaticSegment("recycleBin", "recycleBin", "recycleBin"),
 		resourceids.StaticSegment("items", "items", "items"),
-		resourceids.UserSpecifiedSegment("recycleBinItemId", "recycleBinItemIdValue"),
+		resourceids.UserSpecifiedSegment("recycleBinItemId", "recycleBinItemId"),
 	}
 }
 

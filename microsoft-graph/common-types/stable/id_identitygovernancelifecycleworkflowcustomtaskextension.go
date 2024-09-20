@@ -94,7 +94,7 @@ func (id IdentityGovernanceLifecycleWorkflowCustomTaskExtensionId) Segments() []
 		resourceids.StaticSegment("identityGovernance", "identityGovernance", "identityGovernance"),
 		resourceids.StaticSegment("lifecycleWorkflows", "lifecycleWorkflows", "lifecycleWorkflows"),
 		resourceids.StaticSegment("customTaskExtensions", "customTaskExtensions", "customTaskExtensions"),
-		resourceids.UserSpecifiedSegment("customTaskExtensionId", "customTaskExtensionIdValue"),
+		resourceids.UserSpecifiedSegment("customTaskExtensionId", "customTaskExtensionId"),
 	}
 }
 

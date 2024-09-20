@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &MeAuthenticationTemporaryAccessPassMethodId{}
 
 func TestNewMeAuthenticationTemporaryAccessPassMethodID(t *testing.T) {
-	id := NewMeAuthenticationTemporaryAccessPassMethodID("temporaryAccessPassAuthenticationMethodIdValue")
+	id := NewMeAuthenticationTemporaryAccessPassMethodID("temporaryAccessPassAuthenticationMethodId")
 
-	if id.TemporaryAccessPassAuthenticationMethodId != "temporaryAccessPassAuthenticationMethodIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'TemporaryAccessPassAuthenticationMethodId'", id.TemporaryAccessPassAuthenticationMethodId, "temporaryAccessPassAuthenticationMethodIdValue")
+	if id.TemporaryAccessPassAuthenticationMethodId != "temporaryAccessPassAuthenticationMethodId" {
+		t.Fatalf("Expected %q but got %q for Segment 'TemporaryAccessPassAuthenticationMethodId'", id.TemporaryAccessPassAuthenticationMethodId, "temporaryAccessPassAuthenticationMethodId")
 	}
 }
 
 func TestFormatMeAuthenticationTemporaryAccessPassMethodID(t *testing.T) {
-	actual := NewMeAuthenticationTemporaryAccessPassMethodID("temporaryAccessPassAuthenticationMethodIdValue").ID()
-	expected := "/me/authentication/temporaryAccessPassMethods/temporaryAccessPassAuthenticationMethodIdValue"
+	actual := NewMeAuthenticationTemporaryAccessPassMethodID("temporaryAccessPassAuthenticationMethodId").ID()
+	expected := "/me/authentication/temporaryAccessPassMethods/temporaryAccessPassAuthenticationMethodId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -55,14 +55,14 @@ func TestParseMeAuthenticationTemporaryAccessPassMethodID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/me/authentication/temporaryAccessPassMethods/temporaryAccessPassAuthenticationMethodIdValue",
+			Input: "/me/authentication/temporaryAccessPassMethods/temporaryAccessPassAuthenticationMethodId",
 			Expected: &MeAuthenticationTemporaryAccessPassMethodId{
-				TemporaryAccessPassAuthenticationMethodId: "temporaryAccessPassAuthenticationMethodIdValue",
+				TemporaryAccessPassAuthenticationMethodId: "temporaryAccessPassAuthenticationMethodId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/authentication/temporaryAccessPassMethods/temporaryAccessPassAuthenticationMethodIdValue/extra",
+			Input: "/me/authentication/temporaryAccessPassMethods/temporaryAccessPassAuthenticationMethodId/extra",
 			Error: true,
 		},
 	}
@@ -131,26 +131,26 @@ func TestParseMeAuthenticationTemporaryAccessPassMethodIDInsensitively(t *testin
 		},
 		{
 			// Valid URI
-			Input: "/me/authentication/temporaryAccessPassMethods/temporaryAccessPassAuthenticationMethodIdValue",
+			Input: "/me/authentication/temporaryAccessPassMethods/temporaryAccessPassAuthenticationMethodId",
 			Expected: &MeAuthenticationTemporaryAccessPassMethodId{
-				TemporaryAccessPassAuthenticationMethodId: "temporaryAccessPassAuthenticationMethodIdValue",
+				TemporaryAccessPassAuthenticationMethodId: "temporaryAccessPassAuthenticationMethodId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/authentication/temporaryAccessPassMethods/temporaryAccessPassAuthenticationMethodIdValue/extra",
+			Input: "/me/authentication/temporaryAccessPassMethods/temporaryAccessPassAuthenticationMethodId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/aUtHeNtIcAtIoN/tEmPoRaRyAcCeSsPaSsMeThOdS/tEmPoRaRyAcCeSsPaSsAuThEnTiCaTiOnMeThOdIdVaLuE",
+			Input: "/mE/aUtHeNtIcAtIoN/tEmPoRaRyAcCeSsPaSsMeThOdS/tEmPoRaRyAcCeSsPaSsAuThEnTiCaTiOnMeThOdId",
 			Expected: &MeAuthenticationTemporaryAccessPassMethodId{
-				TemporaryAccessPassAuthenticationMethodId: "tEmPoRaRyAcCeSsPaSsAuThEnTiCaTiOnMeThOdIdVaLuE",
+				TemporaryAccessPassAuthenticationMethodId: "tEmPoRaRyAcCeSsPaSsAuThEnTiCaTiOnMeThOdId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/mE/aUtHeNtIcAtIoN/tEmPoRaRyAcCeSsPaSsMeThOdS/tEmPoRaRyAcCeSsPaSsAuThEnTiCaTiOnMeThOdIdVaLuE/extra",
+			Input: "/mE/aUtHeNtIcAtIoN/tEmPoRaRyAcCeSsPaSsMeThOdS/tEmPoRaRyAcCeSsPaSsAuThEnTiCaTiOnMeThOdId/extra",
 			Error: true,
 		},
 	}

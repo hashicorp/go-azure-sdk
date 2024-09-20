@@ -81,19 +81,30 @@ func (s FeatureRolloutPolicy) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &FeatureRolloutPolicy{}
 
 func (s *FeatureRolloutPolicy) UnmarshalJSON(bytes []byte) error {
-	type alias FeatureRolloutPolicy
-	var decoded alias
+
+	var decoded struct {
+		AppliesTo               *[]DirectoryObject    `json:"appliesTo,omitempty"`
+		AppliesTo_ODataBind     *[]string             `json:"appliesTo@odata.bind,omitempty"`
+		Description             nullable.Type[string] `json:"description,omitempty"`
+		DisplayName             *string               `json:"displayName,omitempty"`
+		Feature                 *StagedFeatureName    `json:"feature,omitempty"`
+		IsAppliedToOrganization *bool                 `json:"isAppliedToOrganization,omitempty"`
+		IsEnabled               *bool                 `json:"isEnabled,omitempty"`
+		Id                      *string               `json:"id,omitempty"`
+		ODataId                 *string               `json:"@odata.id,omitempty"`
+		ODataType               *string               `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into FeatureRolloutPolicy: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.AppliesTo_ODataBind = decoded.AppliesTo_ODataBind
 	s.Description = decoded.Description
 	s.DisplayName = decoded.DisplayName
 	s.Feature = decoded.Feature
-	s.Id = decoded.Id
 	s.IsAppliedToOrganization = decoded.IsAppliedToOrganization
 	s.IsEnabled = decoded.IsEnabled
+	s.Id = decoded.Id
 	s.ODataId = decoded.ODataId
 	s.ODataType = decoded.ODataType
 
@@ -118,5 +129,6 @@ func (s *FeatureRolloutPolicy) UnmarshalJSON(bytes []byte) error {
 		}
 		s.AppliesTo = &output
 	}
+
 	return nil
 }

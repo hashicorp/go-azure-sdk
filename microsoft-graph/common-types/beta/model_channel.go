@@ -119,10 +119,30 @@ func (s Channel) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &Channel{}
 
 func (s *Channel) UnmarshalJSON(bytes []byte) error {
-	type alias Channel
-	var decoded alias
+
+	var decoded struct {
+		CreatedDateTime     nullable.Type[string]        `json:"createdDateTime,omitempty"`
+		Description         nullable.Type[string]        `json:"description,omitempty"`
+		DisplayName         *string                      `json:"displayName,omitempty"`
+		Email               nullable.Type[string]        `json:"email,omitempty"`
+		FilesFolder         *DriveItem                   `json:"filesFolder,omitempty"`
+		IsArchived          nullable.Type[bool]          `json:"isArchived,omitempty"`
+		IsFavoriteByDefault nullable.Type[bool]          `json:"isFavoriteByDefault,omitempty"`
+		Members             *[]ConversationMember        `json:"members,omitempty"`
+		MembershipType      *ChannelMembershipType       `json:"membershipType,omitempty"`
+		Messages            *[]ChatMessage               `json:"messages,omitempty"`
+		ModerationSettings  *ChannelModerationSettings   `json:"moderationSettings,omitempty"`
+		SharedWithTeams     *[]SharedWithChannelTeamInfo `json:"sharedWithTeams,omitempty"`
+		Summary             *ChannelSummary              `json:"summary,omitempty"`
+		Tabs                *[]TeamsTab                  `json:"tabs,omitempty"`
+		TenantId            nullable.Type[string]        `json:"tenantId,omitempty"`
+		WebUrl              nullable.Type[string]        `json:"webUrl,omitempty"`
+		Id                  *string                      `json:"id,omitempty"`
+		ODataId             *string                      `json:"@odata.id,omitempty"`
+		ODataType           *string                      `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into Channel: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.CreatedDateTime = decoded.CreatedDateTime
@@ -130,19 +150,19 @@ func (s *Channel) UnmarshalJSON(bytes []byte) error {
 	s.DisplayName = decoded.DisplayName
 	s.Email = decoded.Email
 	s.FilesFolder = decoded.FilesFolder
-	s.Id = decoded.Id
 	s.IsArchived = decoded.IsArchived
 	s.IsFavoriteByDefault = decoded.IsFavoriteByDefault
 	s.MembershipType = decoded.MembershipType
 	s.Messages = decoded.Messages
 	s.ModerationSettings = decoded.ModerationSettings
-	s.ODataId = decoded.ODataId
-	s.ODataType = decoded.ODataType
 	s.SharedWithTeams = decoded.SharedWithTeams
 	s.Summary = decoded.Summary
 	s.Tabs = decoded.Tabs
 	s.TenantId = decoded.TenantId
 	s.WebUrl = decoded.WebUrl
+	s.Id = decoded.Id
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -165,5 +185,6 @@ func (s *Channel) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Members = &output
 	}
+
 	return nil
 }

@@ -18,16 +18,45 @@ type GetConnectorGroupRefOperationResponse struct {
 	OData        *odata.OData
 }
 
+type GetConnectorGroupRefOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultGetConnectorGroupRefOperationOptions() GetConnectorGroupRefOperationOptions {
+	return GetConnectorGroupRefOperationOptions{}
+}
+
+func (o GetConnectorGroupRefOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o GetConnectorGroupRefOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o GetConnectorGroupRefOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // GetConnectorGroupRef - Get ref of connectorGroup from applications. The connectorGroup the application is using with
 // Microsoft Entra application proxy. Nullable.
-func (c ConnectorGroupClient) GetConnectorGroupRef(ctx context.Context, id beta.ApplicationId) (result GetConnectorGroupRefOperationResponse, err error) {
+func (c ConnectorGroupClient) GetConnectorGroupRef(ctx context.Context, id beta.ApplicationId, options GetConnectorGroupRefOperationOptions) (result GetConnectorGroupRefOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/connectorGroup/$ref", id.ID()),
+		HttpMethod:    http.MethodGet,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/connectorGroup/$ref", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

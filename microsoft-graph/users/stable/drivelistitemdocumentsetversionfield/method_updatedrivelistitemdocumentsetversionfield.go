@@ -18,15 +18,44 @@ type UpdateDriveListItemDocumentSetVersionFieldOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateDriveListItemDocumentSetVersionFieldOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateDriveListItemDocumentSetVersionFieldOperationOptions() UpdateDriveListItemDocumentSetVersionFieldOperationOptions {
+	return UpdateDriveListItemDocumentSetVersionFieldOperationOptions{}
+}
+
+func (o UpdateDriveListItemDocumentSetVersionFieldOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateDriveListItemDocumentSetVersionFieldOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateDriveListItemDocumentSetVersionFieldOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateDriveListItemDocumentSetVersionField - Update the navigation property fields in users
-func (c DriveListItemDocumentSetVersionFieldClient) UpdateDriveListItemDocumentSetVersionField(ctx context.Context, id stable.UserIdDriveIdListItemIdDocumentSetVersionId, input stable.FieldValueSet) (result UpdateDriveListItemDocumentSetVersionFieldOperationResponse, err error) {
+func (c DriveListItemDocumentSetVersionFieldClient) UpdateDriveListItemDocumentSetVersionField(ctx context.Context, id stable.UserIdDriveIdListItemIdDocumentSetVersionId, input stable.FieldValueSet, options UpdateDriveListItemDocumentSetVersionFieldOperationOptions) (result UpdateDriveListItemDocumentSetVersionFieldOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       fmt.Sprintf("%s/fields", id.ID()),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/fields", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

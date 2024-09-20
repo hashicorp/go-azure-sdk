@@ -18,7 +18,8 @@ type DeleteLifecycleWorkflowInsightOperationResponse struct {
 }
 
 type DeleteLifecycleWorkflowInsightOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteLifecycleWorkflowInsightOperationOptions() DeleteLifecycleWorkflowInsightOperationOptions {
@@ -35,7 +36,9 @@ func (o DeleteLifecycleWorkflowInsightOperationOptions) ToHeaders() *client.Head
 
 func (o DeleteLifecycleWorkflowInsightOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

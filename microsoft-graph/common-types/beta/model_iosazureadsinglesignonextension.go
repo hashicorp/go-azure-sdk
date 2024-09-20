@@ -72,10 +72,16 @@ func (s IosAzureAdSingleSignOnExtension) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &IosAzureAdSingleSignOnExtension{}
 
 func (s *IosAzureAdSingleSignOnExtension) UnmarshalJSON(bytes []byte) error {
-	type alias IosAzureAdSingleSignOnExtension
-	var decoded alias
+
+	var decoded struct {
+		BundleIdAccessControlList *[]string            `json:"bundleIdAccessControlList,omitempty"`
+		Configurations            *[]KeyTypedValuePair `json:"configurations,omitempty"`
+		EnableSharedDeviceMode    *bool                `json:"enableSharedDeviceMode,omitempty"`
+		ODataId                   *string              `json:"@odata.id,omitempty"`
+		ODataType                 *string              `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into IosAzureAdSingleSignOnExtension: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.BundleIdAccessControlList = decoded.BundleIdAccessControlList
@@ -104,5 +110,6 @@ func (s *IosAzureAdSingleSignOnExtension) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Configurations = &output
 	}
+
 	return nil
 }

@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &PolicyPermissionGrantPreApprovalPolicyId{}
 
 func TestNewPolicyPermissionGrantPreApprovalPolicyID(t *testing.T) {
-	id := NewPolicyPermissionGrantPreApprovalPolicyID("permissionGrantPreApprovalPolicyIdValue")
+	id := NewPolicyPermissionGrantPreApprovalPolicyID("permissionGrantPreApprovalPolicyId")
 
-	if id.PermissionGrantPreApprovalPolicyId != "permissionGrantPreApprovalPolicyIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'PermissionGrantPreApprovalPolicyId'", id.PermissionGrantPreApprovalPolicyId, "permissionGrantPreApprovalPolicyIdValue")
+	if id.PermissionGrantPreApprovalPolicyId != "permissionGrantPreApprovalPolicyId" {
+		t.Fatalf("Expected %q but got %q for Segment 'PermissionGrantPreApprovalPolicyId'", id.PermissionGrantPreApprovalPolicyId, "permissionGrantPreApprovalPolicyId")
 	}
 }
 
 func TestFormatPolicyPermissionGrantPreApprovalPolicyID(t *testing.T) {
-	actual := NewPolicyPermissionGrantPreApprovalPolicyID("permissionGrantPreApprovalPolicyIdValue").ID()
-	expected := "/policies/permissionGrantPreApprovalPolicies/permissionGrantPreApprovalPolicyIdValue"
+	actual := NewPolicyPermissionGrantPreApprovalPolicyID("permissionGrantPreApprovalPolicyId").ID()
+	expected := "/policies/permissionGrantPreApprovalPolicies/permissionGrantPreApprovalPolicyId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -50,14 +50,14 @@ func TestParsePolicyPermissionGrantPreApprovalPolicyID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/policies/permissionGrantPreApprovalPolicies/permissionGrantPreApprovalPolicyIdValue",
+			Input: "/policies/permissionGrantPreApprovalPolicies/permissionGrantPreApprovalPolicyId",
 			Expected: &PolicyPermissionGrantPreApprovalPolicyId{
-				PermissionGrantPreApprovalPolicyId: "permissionGrantPreApprovalPolicyIdValue",
+				PermissionGrantPreApprovalPolicyId: "permissionGrantPreApprovalPolicyId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/policies/permissionGrantPreApprovalPolicies/permissionGrantPreApprovalPolicyIdValue/extra",
+			Input: "/policies/permissionGrantPreApprovalPolicies/permissionGrantPreApprovalPolicyId/extra",
 			Error: true,
 		},
 	}
@@ -116,26 +116,26 @@ func TestParsePolicyPermissionGrantPreApprovalPolicyIDInsensitively(t *testing.T
 		},
 		{
 			// Valid URI
-			Input: "/policies/permissionGrantPreApprovalPolicies/permissionGrantPreApprovalPolicyIdValue",
+			Input: "/policies/permissionGrantPreApprovalPolicies/permissionGrantPreApprovalPolicyId",
 			Expected: &PolicyPermissionGrantPreApprovalPolicyId{
-				PermissionGrantPreApprovalPolicyId: "permissionGrantPreApprovalPolicyIdValue",
+				PermissionGrantPreApprovalPolicyId: "permissionGrantPreApprovalPolicyId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/policies/permissionGrantPreApprovalPolicies/permissionGrantPreApprovalPolicyIdValue/extra",
+			Input: "/policies/permissionGrantPreApprovalPolicies/permissionGrantPreApprovalPolicyId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/pOlIcIeS/pErMiSsIoNgRaNtPrEaPpRoVaLpOlIcIeS/pErMiSsIoNgRaNtPrEaPpRoVaLpOlIcYiDvAlUe",
+			Input: "/pOlIcIeS/pErMiSsIoNgRaNtPrEaPpRoVaLpOlIcIeS/pErMiSsIoNgRaNtPrEaPpRoVaLpOlIcYiD",
 			Expected: &PolicyPermissionGrantPreApprovalPolicyId{
-				PermissionGrantPreApprovalPolicyId: "pErMiSsIoNgRaNtPrEaPpRoVaLpOlIcYiDvAlUe",
+				PermissionGrantPreApprovalPolicyId: "pErMiSsIoNgRaNtPrEaPpRoVaLpOlIcYiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/pOlIcIeS/pErMiSsIoNgRaNtPrEaPpRoVaLpOlIcIeS/pErMiSsIoNgRaNtPrEaPpRoVaLpOlIcYiDvAlUe/extra",
+			Input: "/pOlIcIeS/pErMiSsIoNgRaNtPrEaPpRoVaLpOlIcIeS/pErMiSsIoNgRaNtPrEaPpRoVaLpOlIcYiD/extra",
 			Error: true,
 		},
 	}

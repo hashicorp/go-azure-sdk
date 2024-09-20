@@ -93,7 +93,7 @@ func (id MeContactFolderId) Segments() []resourceids.Segment {
 	return []resourceids.Segment{
 		resourceids.StaticSegment("me", "me", "me"),
 		resourceids.StaticSegment("contactFolders", "contactFolders", "contactFolders"),
-		resourceids.UserSpecifiedSegment("contactFolderId", "contactFolderIdValue"),
+		resourceids.UserSpecifiedSegment("contactFolderId", "contactFolderId"),
 	}
 }
 

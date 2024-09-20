@@ -132,26 +132,43 @@ func (s BaseMailFolderImpl) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &BaseMailFolderImpl{}
 
 func (s *BaseMailFolderImpl) UnmarshalJSON(bytes []byte) error {
-	type alias BaseMailFolderImpl
-	var decoded alias
+
+	var decoded struct {
+		ChildFolderCount              nullable.Type[int64]                 `json:"childFolderCount,omitempty"`
+		ChildFolders                  *[]MailFolder                        `json:"childFolders,omitempty"`
+		DisplayName                   nullable.Type[string]                `json:"displayName,omitempty"`
+		IsHidden                      nullable.Type[bool]                  `json:"isHidden,omitempty"`
+		MessageRules                  *[]MessageRule                       `json:"messageRules,omitempty"`
+		Messages                      *[]Message                           `json:"messages,omitempty"`
+		MultiValueExtendedProperties  *[]MultiValueLegacyExtendedProperty  `json:"multiValueExtendedProperties,omitempty"`
+		ParentFolderId                nullable.Type[string]                `json:"parentFolderId,omitempty"`
+		SingleValueExtendedProperties *[]SingleValueLegacyExtendedProperty `json:"singleValueExtendedProperties,omitempty"`
+		TotalItemCount                nullable.Type[int64]                 `json:"totalItemCount,omitempty"`
+		UnreadItemCount               nullable.Type[int64]                 `json:"unreadItemCount,omitempty"`
+		UserConfigurations            *[]UserConfiguration                 `json:"userConfigurations,omitempty"`
+		WellKnownName                 nullable.Type[string]                `json:"wellKnownName,omitempty"`
+		Id                            *string                              `json:"id,omitempty"`
+		ODataId                       *string                              `json:"@odata.id,omitempty"`
+		ODataType                     *string                              `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into BaseMailFolderImpl: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.ChildFolderCount = decoded.ChildFolderCount
 	s.DisplayName = decoded.DisplayName
-	s.Id = decoded.Id
 	s.IsHidden = decoded.IsHidden
 	s.MessageRules = decoded.MessageRules
 	s.MultiValueExtendedProperties = decoded.MultiValueExtendedProperties
-	s.ODataId = decoded.ODataId
-	s.ODataType = decoded.ODataType
 	s.ParentFolderId = decoded.ParentFolderId
 	s.SingleValueExtendedProperties = decoded.SingleValueExtendedProperties
 	s.TotalItemCount = decoded.TotalItemCount
 	s.UnreadItemCount = decoded.UnreadItemCount
 	s.UserConfigurations = decoded.UserConfigurations
 	s.WellKnownName = decoded.WellKnownName
+	s.Id = decoded.Id
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -191,6 +208,7 @@ func (s *BaseMailFolderImpl) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Messages = &output
 	}
+
 	return nil
 }
 
@@ -204,9 +222,9 @@ func UnmarshalMailFolderImplementation(input []byte) (MailFolder, error) {
 		return nil, fmt.Errorf("unmarshaling MailFolder into map[string]interface: %+v", err)
 	}
 
-	value, ok := temp["@odata.type"].(string)
-	if !ok {
-		return nil, nil
+	var value string
+	if v, ok := temp["@odata.type"]; ok {
+		value = fmt.Sprintf("%v", v)
 	}
 
 	if strings.EqualFold(value, "#microsoft.graph.mailSearchFolder") {

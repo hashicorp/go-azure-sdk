@@ -20,15 +20,44 @@ type CreateCalendarEventExceptionOccurrenceInstanceExtensionOperationResponse st
 	Model        beta.Extension
 }
 
+type CreateCalendarEventExceptionOccurrenceInstanceExtensionOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateCalendarEventExceptionOccurrenceInstanceExtensionOperationOptions() CreateCalendarEventExceptionOccurrenceInstanceExtensionOperationOptions {
+	return CreateCalendarEventExceptionOccurrenceInstanceExtensionOperationOptions{}
+}
+
+func (o CreateCalendarEventExceptionOccurrenceInstanceExtensionOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateCalendarEventExceptionOccurrenceInstanceExtensionOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateCalendarEventExceptionOccurrenceInstanceExtensionOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateCalendarEventExceptionOccurrenceInstanceExtension - Create new navigation property to extensions for groups
-func (c CalendarEventExceptionOccurrenceInstanceExtensionClient) CreateCalendarEventExceptionOccurrenceInstanceExtension(ctx context.Context, id beta.GroupIdCalendarEventIdExceptionOccurrenceIdInstanceId, input beta.Extension) (result CreateCalendarEventExceptionOccurrenceInstanceExtensionOperationResponse, err error) {
+func (c CalendarEventExceptionOccurrenceInstanceExtensionClient) CreateCalendarEventExceptionOccurrenceInstanceExtension(ctx context.Context, id beta.GroupIdCalendarEventIdExceptionOccurrenceIdInstanceId, input beta.Extension, options CreateCalendarEventExceptionOccurrenceInstanceExtensionOperationOptions) (result CreateCalendarEventExceptionOccurrenceInstanceExtensionOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/extensions", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/extensions", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

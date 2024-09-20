@@ -19,16 +19,45 @@ type CreateDirectoryRoleDefinitionInheritsPermissionsFromOperationResponse struc
 	Model        *stable.UnifiedRoleDefinition
 }
 
+type CreateDirectoryRoleDefinitionInheritsPermissionsFromOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateDirectoryRoleDefinitionInheritsPermissionsFromOperationOptions() CreateDirectoryRoleDefinitionInheritsPermissionsFromOperationOptions {
+	return CreateDirectoryRoleDefinitionInheritsPermissionsFromOperationOptions{}
+}
+
+func (o CreateDirectoryRoleDefinitionInheritsPermissionsFromOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateDirectoryRoleDefinitionInheritsPermissionsFromOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateDirectoryRoleDefinitionInheritsPermissionsFromOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateDirectoryRoleDefinitionInheritsPermissionsFrom - Create new navigation property to inheritsPermissionsFrom for
 // roleManagement
-func (c DirectoryRoleDefinitionInheritsPermissionsFromClient) CreateDirectoryRoleDefinitionInheritsPermissionsFrom(ctx context.Context, id stable.RoleManagementDirectoryRoleDefinitionId, input stable.UnifiedRoleDefinition) (result CreateDirectoryRoleDefinitionInheritsPermissionsFromOperationResponse, err error) {
+func (c DirectoryRoleDefinitionInheritsPermissionsFromClient) CreateDirectoryRoleDefinitionInheritsPermissionsFrom(ctx context.Context, id stable.RoleManagementDirectoryRoleDefinitionId, input stable.UnifiedRoleDefinition, options CreateDirectoryRoleDefinitionInheritsPermissionsFromOperationOptions) (result CreateDirectoryRoleDefinitionInheritsPermissionsFromOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/inheritsPermissionsFrom", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/inheritsPermissionsFrom", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

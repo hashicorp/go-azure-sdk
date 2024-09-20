@@ -19,16 +19,45 @@ type CreateConditionalAccessNamedLocationOperationResponse struct {
 	Model        stable.NamedLocation
 }
 
+type CreateConditionalAccessNamedLocationOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateConditionalAccessNamedLocationOperationOptions() CreateConditionalAccessNamedLocationOperationOptions {
+	return CreateConditionalAccessNamedLocationOperationOptions{}
+}
+
+func (o CreateConditionalAccessNamedLocationOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateConditionalAccessNamedLocationOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateConditionalAccessNamedLocationOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateConditionalAccessNamedLocation - Create namedLocation. Create a new namedLocation object. Named locations can
 // be either ipNamedLocation or countryNamedLocation objects.
-func (c ConditionalAccessNamedLocationClient) CreateConditionalAccessNamedLocation(ctx context.Context, input stable.NamedLocation) (result CreateConditionalAccessNamedLocationOperationResponse, err error) {
+func (c ConditionalAccessNamedLocationClient) CreateConditionalAccessNamedLocation(ctx context.Context, input stable.NamedLocation, options CreateConditionalAccessNamedLocationOperationOptions) (result CreateConditionalAccessNamedLocationOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/identity/conditionalAccess/namedLocations",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/identity/conditionalAccess/namedLocations",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

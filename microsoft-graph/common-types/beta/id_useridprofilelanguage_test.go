@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &UserIdProfileLanguageId{}
 
 func TestNewUserIdProfileLanguageID(t *testing.T) {
-	id := NewUserIdProfileLanguageID("userIdValue", "languageProficiencyIdValue")
+	id := NewUserIdProfileLanguageID("userId", "languageProficiencyId")
 
-	if id.UserId != "userIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'UserId'", id.UserId, "userIdValue")
+	if id.UserId != "userId" {
+		t.Fatalf("Expected %q but got %q for Segment 'UserId'", id.UserId, "userId")
 	}
 
-	if id.LanguageProficiencyId != "languageProficiencyIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'LanguageProficiencyId'", id.LanguageProficiencyId, "languageProficiencyIdValue")
+	if id.LanguageProficiencyId != "languageProficiencyId" {
+		t.Fatalf("Expected %q but got %q for Segment 'LanguageProficiencyId'", id.LanguageProficiencyId, "languageProficiencyId")
 	}
 }
 
 func TestFormatUserIdProfileLanguageID(t *testing.T) {
-	actual := NewUserIdProfileLanguageID("userIdValue", "languageProficiencyIdValue").ID()
-	expected := "/users/userIdValue/profile/languages/languageProficiencyIdValue"
+	actual := NewUserIdProfileLanguageID("userId", "languageProficiencyId").ID()
+	expected := "/users/userId/profile/languages/languageProficiencyId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -49,30 +49,30 @@ func TestParseUserIdProfileLanguageID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue",
+			Input: "/users/userId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/profile",
+			Input: "/users/userId/profile",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/profile/languages",
+			Input: "/users/userId/profile/languages",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/users/userIdValue/profile/languages/languageProficiencyIdValue",
+			Input: "/users/userId/profile/languages/languageProficiencyId",
 			Expected: &UserIdProfileLanguageId{
-				UserId:                "userIdValue",
-				LanguageProficiencyId: "languageProficiencyIdValue",
+				UserId:                "userId",
+				LanguageProficiencyId: "languageProficiencyId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/users/userIdValue/profile/languages/languageProficiencyIdValue/extra",
+			Input: "/users/userId/profile/languages/languageProficiencyId/extra",
 			Error: true,
 		},
 	}
@@ -125,58 +125,58 @@ func TestParseUserIdProfileLanguageIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue",
+			Input: "/users/userId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe",
+			Input: "/uSeRs/uSeRiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/profile",
+			Input: "/users/userId/profile",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/pRoFiLe",
+			Input: "/uSeRs/uSeRiD/pRoFiLe",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/profile/languages",
+			Input: "/users/userId/profile/languages",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/pRoFiLe/lAnGuAgEs",
+			Input: "/uSeRs/uSeRiD/pRoFiLe/lAnGuAgEs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/users/userIdValue/profile/languages/languageProficiencyIdValue",
+			Input: "/users/userId/profile/languages/languageProficiencyId",
 			Expected: &UserIdProfileLanguageId{
-				UserId:                "userIdValue",
-				LanguageProficiencyId: "languageProficiencyIdValue",
+				UserId:                "userId",
+				LanguageProficiencyId: "languageProficiencyId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/users/userIdValue/profile/languages/languageProficiencyIdValue/extra",
+			Input: "/users/userId/profile/languages/languageProficiencyId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/pRoFiLe/lAnGuAgEs/lAnGuAgEpRoFiCiEnCyIdVaLuE",
+			Input: "/uSeRs/uSeRiD/pRoFiLe/lAnGuAgEs/lAnGuAgEpRoFiCiEnCyId",
 			Expected: &UserIdProfileLanguageId{
-				UserId:                "uSeRiDvAlUe",
-				LanguageProficiencyId: "lAnGuAgEpRoFiCiEnCyIdVaLuE",
+				UserId:                "uSeRiD",
+				LanguageProficiencyId: "lAnGuAgEpRoFiCiEnCyId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/pRoFiLe/lAnGuAgEs/lAnGuAgEpRoFiCiEnCyIdVaLuE/extra",
+			Input: "/uSeRs/uSeRiD/pRoFiLe/lAnGuAgEs/lAnGuAgEpRoFiCiEnCyId/extra",
 			Error: true,
 		},
 	}

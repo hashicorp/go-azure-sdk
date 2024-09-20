@@ -98,12 +98,12 @@ func (id UserIdSettingStorageQuotaServiceId) ID() string {
 func (id UserIdSettingStorageQuotaServiceId) Segments() []resourceids.Segment {
 	return []resourceids.Segment{
 		resourceids.StaticSegment("users", "users", "users"),
-		resourceids.UserSpecifiedSegment("userId", "userIdValue"),
+		resourceids.UserSpecifiedSegment("userId", "userId"),
 		resourceids.StaticSegment("settings", "settings", "settings"),
 		resourceids.StaticSegment("storage", "storage", "storage"),
 		resourceids.StaticSegment("quota", "quota", "quota"),
 		resourceids.StaticSegment("services", "services", "services"),
-		resourceids.UserSpecifiedSegment("serviceStorageQuotaBreakdownId", "serviceStorageQuotaBreakdownIdValue"),
+		resourceids.UserSpecifiedSegment("serviceStorageQuotaBreakdownId", "serviceStorageQuotaBreakdownId"),
 	}
 }
 

@@ -18,16 +18,45 @@ type CreateWindowsQualityUpdatePolicyOperationResponse struct {
 	Model        *beta.WindowsQualityUpdatePolicy
 }
 
+type CreateWindowsQualityUpdatePolicyOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateWindowsQualityUpdatePolicyOperationOptions() CreateWindowsQualityUpdatePolicyOperationOptions {
+	return CreateWindowsQualityUpdatePolicyOperationOptions{}
+}
+
+func (o CreateWindowsQualityUpdatePolicyOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateWindowsQualityUpdatePolicyOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateWindowsQualityUpdatePolicyOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateWindowsQualityUpdatePolicy - Create new navigation property to windowsQualityUpdatePolicies for
 // deviceManagement
-func (c WindowsQualityUpdatePolicyClient) CreateWindowsQualityUpdatePolicy(ctx context.Context, input beta.WindowsQualityUpdatePolicy) (result CreateWindowsQualityUpdatePolicyOperationResponse, err error) {
+func (c WindowsQualityUpdatePolicyClient) CreateWindowsQualityUpdatePolicy(ctx context.Context, input beta.WindowsQualityUpdatePolicy, options CreateWindowsQualityUpdatePolicyOperationOptions) (result CreateWindowsQualityUpdatePolicyOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/deviceManagement/windowsQualityUpdatePolicies",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/deviceManagement/windowsQualityUpdatePolicies",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

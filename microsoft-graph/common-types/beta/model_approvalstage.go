@@ -44,10 +44,19 @@ type ApprovalStage struct {
 var _ json.Unmarshaler = &ApprovalStage{}
 
 func (s *ApprovalStage) UnmarshalJSON(bytes []byte) error {
-	type alias ApprovalStage
-	var decoded alias
+
+	var decoded struct {
+		ApprovalStageTimeOutInDays      nullable.Type[int64] `json:"approvalStageTimeOutInDays,omitempty"`
+		EscalationApprovers             *[]UserSet           `json:"escalationApprovers,omitempty"`
+		EscalationTimeInMinutes         nullable.Type[int64] `json:"escalationTimeInMinutes,omitempty"`
+		IsApproverJustificationRequired nullable.Type[bool]  `json:"isApproverJustificationRequired,omitempty"`
+		IsEscalationEnabled             nullable.Type[bool]  `json:"isEscalationEnabled,omitempty"`
+		ODataId                         *string              `json:"@odata.id,omitempty"`
+		ODataType                       *string              `json:"@odata.type,omitempty"`
+		PrimaryApprovers                *[]UserSet           `json:"primaryApprovers,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into ApprovalStage: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.ApprovalStageTimeOutInDays = decoded.ApprovalStageTimeOutInDays
@@ -95,5 +104,6 @@ func (s *ApprovalStage) UnmarshalJSON(bytes []byte) error {
 		}
 		s.PrimaryApprovers = &output
 	}
+
 	return nil
 }

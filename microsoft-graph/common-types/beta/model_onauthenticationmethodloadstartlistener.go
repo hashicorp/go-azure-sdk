@@ -87,10 +87,17 @@ func (s OnAuthenticationMethodLoadStartListener) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &OnAuthenticationMethodLoadStartListener{}
 
 func (s *OnAuthenticationMethodLoadStartListener) UnmarshalJSON(bytes []byte) error {
-	type alias OnAuthenticationMethodLoadStartListener
-	var decoded alias
+
+	var decoded struct {
+		AuthenticationEventsFlowId nullable.Type[string]     `json:"authenticationEventsFlowId,omitempty"`
+		Conditions                 *AuthenticationConditions `json:"conditions,omitempty"`
+		Priority                   *int64                    `json:"priority,omitempty"`
+		Id                         *string                   `json:"id,omitempty"`
+		ODataId                    *string                   `json:"@odata.id,omitempty"`
+		ODataType                  *string                   `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into OnAuthenticationMethodLoadStartListener: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.AuthenticationEventsFlowId = decoded.AuthenticationEventsFlowId
@@ -112,5 +119,6 @@ func (s *OnAuthenticationMethodLoadStartListener) UnmarshalJSON(bytes []byte) er
 		}
 		s.Handler = impl
 	}
+
 	return nil
 }

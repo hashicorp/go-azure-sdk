@@ -17,17 +17,46 @@ type UpdateConditionalAccessAuthenticationContextClassReferenceOperationResponse
 	OData        *odata.OData
 }
 
+type UpdateConditionalAccessAuthenticationContextClassReferenceOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateConditionalAccessAuthenticationContextClassReferenceOperationOptions() UpdateConditionalAccessAuthenticationContextClassReferenceOperationOptions {
+	return UpdateConditionalAccessAuthenticationContextClassReferenceOperationOptions{}
+}
+
+func (o UpdateConditionalAccessAuthenticationContextClassReferenceOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateConditionalAccessAuthenticationContextClassReferenceOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateConditionalAccessAuthenticationContextClassReferenceOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateConditionalAccessAuthenticationContextClassReference - Update authenticationContextClassReference. Create an
 // authenticationContextClassReference object, if the ID has not been used. If ID has been used, this call updates the
 // authenticationContextClassReference object.
-func (c ConditionalAccessAuthenticationContextClassReferenceClient) UpdateConditionalAccessAuthenticationContextClassReference(ctx context.Context, id stable.IdentityConditionalAccessAuthenticationContextClassReferenceId, input stable.AuthenticationContextClassReference) (result UpdateConditionalAccessAuthenticationContextClassReferenceOperationResponse, err error) {
+func (c ConditionalAccessAuthenticationContextClassReferenceClient) UpdateConditionalAccessAuthenticationContextClassReference(ctx context.Context, id stable.IdentityConditionalAccessAuthenticationContextClassReferenceId, input stable.AuthenticationContextClassReference, options UpdateConditionalAccessAuthenticationContextClassReferenceOperationOptions) (result UpdateConditionalAccessAuthenticationContextClassReferenceOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

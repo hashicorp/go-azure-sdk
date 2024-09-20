@@ -18,15 +18,44 @@ type CreateIntuneBrandingProfileOperationResponse struct {
 	Model        *beta.IntuneBrandingProfile
 }
 
+type CreateIntuneBrandingProfileOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateIntuneBrandingProfileOperationOptions() CreateIntuneBrandingProfileOperationOptions {
+	return CreateIntuneBrandingProfileOperationOptions{}
+}
+
+func (o CreateIntuneBrandingProfileOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateIntuneBrandingProfileOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateIntuneBrandingProfileOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateIntuneBrandingProfile - Create new navigation property to intuneBrandingProfiles for deviceManagement
-func (c IntuneBrandingProfileClient) CreateIntuneBrandingProfile(ctx context.Context, input beta.IntuneBrandingProfile) (result CreateIntuneBrandingProfileOperationResponse, err error) {
+func (c IntuneBrandingProfileClient) CreateIntuneBrandingProfile(ctx context.Context, input beta.IntuneBrandingProfile, options CreateIntuneBrandingProfileOperationOptions) (result CreateIntuneBrandingProfileOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/deviceManagement/intuneBrandingProfiles",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/deviceManagement/intuneBrandingProfiles",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

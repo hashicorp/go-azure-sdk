@@ -17,15 +17,44 @@ type UpdateAssignmentFilterOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateAssignmentFilterOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateAssignmentFilterOperationOptions() UpdateAssignmentFilterOperationOptions {
+	return UpdateAssignmentFilterOperationOptions{}
+}
+
+func (o UpdateAssignmentFilterOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateAssignmentFilterOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateAssignmentFilterOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateAssignmentFilter - Update the navigation property assignmentFilters in deviceManagement
-func (c AssignmentFilterClient) UpdateAssignmentFilter(ctx context.Context, id beta.DeviceManagementAssignmentFilterId, input beta.DeviceAndAppManagementAssignmentFilter) (result UpdateAssignmentFilterOperationResponse, err error) {
+func (c AssignmentFilterClient) UpdateAssignmentFilter(ctx context.Context, id beta.DeviceManagementAssignmentFilterId, input beta.DeviceAndAppManagementAssignmentFilter, options UpdateAssignmentFilterOperationOptions) (result UpdateAssignmentFilterOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

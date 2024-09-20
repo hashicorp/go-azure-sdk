@@ -46,10 +46,21 @@ type AccessPackageAssignmentReviewSettings struct {
 var _ json.Unmarshaler = &AccessPackageAssignmentReviewSettings{}
 
 func (s *AccessPackageAssignmentReviewSettings) UnmarshalJSON(bytes []byte) error {
-	type alias AccessPackageAssignmentReviewSettings
-	var decoded alias
+
+	var decoded struct {
+		ExpirationBehavior              *AccessReviewExpirationBehavior `json:"expirationBehavior,omitempty"`
+		FallbackReviewers               *[]SubjectSet                   `json:"fallbackReviewers,omitempty"`
+		IsEnabled                       nullable.Type[bool]             `json:"isEnabled,omitempty"`
+		IsRecommendationEnabled         nullable.Type[bool]             `json:"isRecommendationEnabled,omitempty"`
+		IsReviewerJustificationRequired nullable.Type[bool]             `json:"isReviewerJustificationRequired,omitempty"`
+		IsSelfReview                    nullable.Type[bool]             `json:"isSelfReview,omitempty"`
+		ODataId                         *string                         `json:"@odata.id,omitempty"`
+		ODataType                       *string                         `json:"@odata.type,omitempty"`
+		PrimaryReviewers                *[]SubjectSet                   `json:"primaryReviewers,omitempty"`
+		Schedule                        *EntitlementManagementSchedule  `json:"schedule,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into AccessPackageAssignmentReviewSettings: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.ExpirationBehavior = decoded.ExpirationBehavior
@@ -99,5 +110,6 @@ func (s *AccessPackageAssignmentReviewSettings) UnmarshalJSON(bytes []byte) erro
 		}
 		s.PrimaryReviewers = &output
 	}
+
 	return nil
 }

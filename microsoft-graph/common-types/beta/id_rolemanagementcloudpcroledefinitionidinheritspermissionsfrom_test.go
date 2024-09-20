@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &RoleManagementCloudPCRoleDefinitionIdInheritsPermissionsFromId{}
 
 func TestNewRoleManagementCloudPCRoleDefinitionIdInheritsPermissionsFromID(t *testing.T) {
-	id := NewRoleManagementCloudPCRoleDefinitionIdInheritsPermissionsFromID("unifiedRoleDefinitionIdValue", "unifiedRoleDefinitionId1Value")
+	id := NewRoleManagementCloudPCRoleDefinitionIdInheritsPermissionsFromID("unifiedRoleDefinitionId", "unifiedRoleDefinitionId1")
 
-	if id.UnifiedRoleDefinitionId != "unifiedRoleDefinitionIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'UnifiedRoleDefinitionId'", id.UnifiedRoleDefinitionId, "unifiedRoleDefinitionIdValue")
+	if id.UnifiedRoleDefinitionId != "unifiedRoleDefinitionId" {
+		t.Fatalf("Expected %q but got %q for Segment 'UnifiedRoleDefinitionId'", id.UnifiedRoleDefinitionId, "unifiedRoleDefinitionId")
 	}
 
-	if id.UnifiedRoleDefinitionId1 != "unifiedRoleDefinitionId1Value" {
-		t.Fatalf("Expected %q but got %q for Segment 'UnifiedRoleDefinitionId1'", id.UnifiedRoleDefinitionId1, "unifiedRoleDefinitionId1Value")
+	if id.UnifiedRoleDefinitionId1 != "unifiedRoleDefinitionId1" {
+		t.Fatalf("Expected %q but got %q for Segment 'UnifiedRoleDefinitionId1'", id.UnifiedRoleDefinitionId1, "unifiedRoleDefinitionId1")
 	}
 }
 
 func TestFormatRoleManagementCloudPCRoleDefinitionIdInheritsPermissionsFromID(t *testing.T) {
-	actual := NewRoleManagementCloudPCRoleDefinitionIdInheritsPermissionsFromID("unifiedRoleDefinitionIdValue", "unifiedRoleDefinitionId1Value").ID()
-	expected := "/roleManagement/cloudPC/roleDefinitions/unifiedRoleDefinitionIdValue/inheritsPermissionsFrom/unifiedRoleDefinitionId1Value"
+	actual := NewRoleManagementCloudPCRoleDefinitionIdInheritsPermissionsFromID("unifiedRoleDefinitionId", "unifiedRoleDefinitionId1").ID()
+	expected := "/roleManagement/cloudPC/roleDefinitions/unifiedRoleDefinitionId/inheritsPermissionsFrom/unifiedRoleDefinitionId1"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -59,25 +59,25 @@ func TestParseRoleManagementCloudPCRoleDefinitionIdInheritsPermissionsFromID(t *
 		},
 		{
 			// Incomplete URI
-			Input: "/roleManagement/cloudPC/roleDefinitions/unifiedRoleDefinitionIdValue",
+			Input: "/roleManagement/cloudPC/roleDefinitions/unifiedRoleDefinitionId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/roleManagement/cloudPC/roleDefinitions/unifiedRoleDefinitionIdValue/inheritsPermissionsFrom",
+			Input: "/roleManagement/cloudPC/roleDefinitions/unifiedRoleDefinitionId/inheritsPermissionsFrom",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/roleManagement/cloudPC/roleDefinitions/unifiedRoleDefinitionIdValue/inheritsPermissionsFrom/unifiedRoleDefinitionId1Value",
+			Input: "/roleManagement/cloudPC/roleDefinitions/unifiedRoleDefinitionId/inheritsPermissionsFrom/unifiedRoleDefinitionId1",
 			Expected: &RoleManagementCloudPCRoleDefinitionIdInheritsPermissionsFromId{
-				UnifiedRoleDefinitionId:  "unifiedRoleDefinitionIdValue",
-				UnifiedRoleDefinitionId1: "unifiedRoleDefinitionId1Value",
+				UnifiedRoleDefinitionId:  "unifiedRoleDefinitionId",
+				UnifiedRoleDefinitionId1: "unifiedRoleDefinitionId1",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/roleManagement/cloudPC/roleDefinitions/unifiedRoleDefinitionIdValue/inheritsPermissionsFrom/unifiedRoleDefinitionId1Value/extra",
+			Input: "/roleManagement/cloudPC/roleDefinitions/unifiedRoleDefinitionId/inheritsPermissionsFrom/unifiedRoleDefinitionId1/extra",
 			Error: true,
 		},
 	}
@@ -150,48 +150,48 @@ func TestParseRoleManagementCloudPCRoleDefinitionIdInheritsPermissionsFromIDInse
 		},
 		{
 			// Incomplete URI
-			Input: "/roleManagement/cloudPC/roleDefinitions/unifiedRoleDefinitionIdValue",
+			Input: "/roleManagement/cloudPC/roleDefinitions/unifiedRoleDefinitionId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/rOlEmAnAgEmEnT/cLoUdPc/rOlEdEfInItIoNs/uNiFiEdRoLeDeFiNiTiOnIdVaLuE",
+			Input: "/rOlEmAnAgEmEnT/cLoUdPc/rOlEdEfInItIoNs/uNiFiEdRoLeDeFiNiTiOnId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/roleManagement/cloudPC/roleDefinitions/unifiedRoleDefinitionIdValue/inheritsPermissionsFrom",
+			Input: "/roleManagement/cloudPC/roleDefinitions/unifiedRoleDefinitionId/inheritsPermissionsFrom",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/rOlEmAnAgEmEnT/cLoUdPc/rOlEdEfInItIoNs/uNiFiEdRoLeDeFiNiTiOnIdVaLuE/iNhErItSpErMiSsIoNsFrOm",
+			Input: "/rOlEmAnAgEmEnT/cLoUdPc/rOlEdEfInItIoNs/uNiFiEdRoLeDeFiNiTiOnId/iNhErItSpErMiSsIoNsFrOm",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/roleManagement/cloudPC/roleDefinitions/unifiedRoleDefinitionIdValue/inheritsPermissionsFrom/unifiedRoleDefinitionId1Value",
+			Input: "/roleManagement/cloudPC/roleDefinitions/unifiedRoleDefinitionId/inheritsPermissionsFrom/unifiedRoleDefinitionId1",
 			Expected: &RoleManagementCloudPCRoleDefinitionIdInheritsPermissionsFromId{
-				UnifiedRoleDefinitionId:  "unifiedRoleDefinitionIdValue",
-				UnifiedRoleDefinitionId1: "unifiedRoleDefinitionId1Value",
+				UnifiedRoleDefinitionId:  "unifiedRoleDefinitionId",
+				UnifiedRoleDefinitionId1: "unifiedRoleDefinitionId1",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/roleManagement/cloudPC/roleDefinitions/unifiedRoleDefinitionIdValue/inheritsPermissionsFrom/unifiedRoleDefinitionId1Value/extra",
+			Input: "/roleManagement/cloudPC/roleDefinitions/unifiedRoleDefinitionId/inheritsPermissionsFrom/unifiedRoleDefinitionId1/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/rOlEmAnAgEmEnT/cLoUdPc/rOlEdEfInItIoNs/uNiFiEdRoLeDeFiNiTiOnIdVaLuE/iNhErItSpErMiSsIoNsFrOm/uNiFiEdRoLeDeFiNiTiOnId1vAlUe",
+			Input: "/rOlEmAnAgEmEnT/cLoUdPc/rOlEdEfInItIoNs/uNiFiEdRoLeDeFiNiTiOnId/iNhErItSpErMiSsIoNsFrOm/uNiFiEdRoLeDeFiNiTiOnId1",
 			Expected: &RoleManagementCloudPCRoleDefinitionIdInheritsPermissionsFromId{
-				UnifiedRoleDefinitionId:  "uNiFiEdRoLeDeFiNiTiOnIdVaLuE",
-				UnifiedRoleDefinitionId1: "uNiFiEdRoLeDeFiNiTiOnId1vAlUe",
+				UnifiedRoleDefinitionId:  "uNiFiEdRoLeDeFiNiTiOnId",
+				UnifiedRoleDefinitionId1: "uNiFiEdRoLeDeFiNiTiOnId1",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/rOlEmAnAgEmEnT/cLoUdPc/rOlEdEfInItIoNs/uNiFiEdRoLeDeFiNiTiOnIdVaLuE/iNhErItSpErMiSsIoNsFrOm/uNiFiEdRoLeDeFiNiTiOnId1vAlUe/extra",
+			Input: "/rOlEmAnAgEmEnT/cLoUdPc/rOlEdEfInItIoNs/uNiFiEdRoLeDeFiNiTiOnId/iNhErItSpErMiSsIoNsFrOm/uNiFiEdRoLeDeFiNiTiOnId1/extra",
 			Error: true,
 		},
 	}

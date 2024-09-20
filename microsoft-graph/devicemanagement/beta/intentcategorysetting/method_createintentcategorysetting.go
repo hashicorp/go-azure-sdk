@@ -20,15 +20,44 @@ type CreateIntentCategorySettingOperationResponse struct {
 	Model        beta.DeviceManagementSettingInstance
 }
 
+type CreateIntentCategorySettingOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateIntentCategorySettingOperationOptions() CreateIntentCategorySettingOperationOptions {
+	return CreateIntentCategorySettingOperationOptions{}
+}
+
+func (o CreateIntentCategorySettingOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateIntentCategorySettingOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateIntentCategorySettingOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateIntentCategorySetting - Create new navigation property to settings for deviceManagement
-func (c IntentCategorySettingClient) CreateIntentCategorySetting(ctx context.Context, id beta.DeviceManagementIntentIdCategoryId, input beta.DeviceManagementSettingInstance) (result CreateIntentCategorySettingOperationResponse, err error) {
+func (c IntentCategorySettingClient) CreateIntentCategorySetting(ctx context.Context, id beta.DeviceManagementIntentIdCategoryId, input beta.DeviceManagementSettingInstance, options CreateIntentCategorySettingOperationOptions) (result CreateIntentCategorySettingOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/settings", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/settings", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

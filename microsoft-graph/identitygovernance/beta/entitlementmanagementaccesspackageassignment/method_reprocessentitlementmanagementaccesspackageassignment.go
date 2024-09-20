@@ -18,15 +18,44 @@ type ReprocessEntitlementManagementAccessPackageAssignmentOperationResponse stru
 	OData        *odata.OData
 }
 
+type ReprocessEntitlementManagementAccessPackageAssignmentOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultReprocessEntitlementManagementAccessPackageAssignmentOperationOptions() ReprocessEntitlementManagementAccessPackageAssignmentOperationOptions {
+	return ReprocessEntitlementManagementAccessPackageAssignmentOperationOptions{}
+}
+
+func (o ReprocessEntitlementManagementAccessPackageAssignmentOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o ReprocessEntitlementManagementAccessPackageAssignmentOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o ReprocessEntitlementManagementAccessPackageAssignmentOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // ReprocessEntitlementManagementAccessPackageAssignment - Invoke action reprocess
-func (c EntitlementManagementAccessPackageAssignmentClient) ReprocessEntitlementManagementAccessPackageAssignment(ctx context.Context, id beta.IdentityGovernanceEntitlementManagementAccessPackageAssignmentId) (result ReprocessEntitlementManagementAccessPackageAssignmentOperationResponse, err error) {
+func (c EntitlementManagementAccessPackageAssignmentClient) ReprocessEntitlementManagementAccessPackageAssignment(ctx context.Context, id beta.IdentityGovernanceEntitlementManagementAccessPackageAssignmentId, options ReprocessEntitlementManagementAccessPackageAssignmentOperationOptions) (result ReprocessEntitlementManagementAccessPackageAssignmentOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/reprocess", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/reprocess", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

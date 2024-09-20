@@ -64,10 +64,15 @@ func (s ConversationMemberRoleUpdatedEventMessageDetail) MarshalJSON() ([]byte, 
 var _ json.Unmarshaler = &ConversationMemberRoleUpdatedEventMessageDetail{}
 
 func (s *ConversationMemberRoleUpdatedEventMessageDetail) UnmarshalJSON(bytes []byte) error {
-	type alias ConversationMemberRoleUpdatedEventMessageDetail
-	var decoded alias
+
+	var decoded struct {
+		ConversationMemberRoles *[]string             `json:"conversationMemberRoles,omitempty"`
+		ConversationMemberUser  *TeamworkUserIdentity `json:"conversationMemberUser,omitempty"`
+		ODataId                 *string               `json:"@odata.id,omitempty"`
+		ODataType               *string               `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into ConversationMemberRoleUpdatedEventMessageDetail: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.ConversationMemberRoles = decoded.ConversationMemberRoles
@@ -87,5 +92,6 @@ func (s *ConversationMemberRoleUpdatedEventMessageDetail) UnmarshalJSON(bytes []
 		}
 		s.Initiator = impl
 	}
+
 	return nil
 }

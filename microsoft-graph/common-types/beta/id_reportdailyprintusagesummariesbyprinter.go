@@ -93,7 +93,7 @@ func (id ReportDailyPrintUsageSummariesByPrinterId) Segments() []resourceids.Seg
 	return []resourceids.Segment{
 		resourceids.StaticSegment("reports", "reports", "reports"),
 		resourceids.StaticSegment("dailyPrintUsageSummariesByPrinter", "dailyPrintUsageSummariesByPrinter", "dailyPrintUsageSummariesByPrinter"),
-		resourceids.UserSpecifiedSegment("printUsageByPrinterId", "printUsageByPrinterIdValue"),
+		resourceids.UserSpecifiedSegment("printUsageByPrinterId", "printUsageByPrinterId"),
 	}
 }
 

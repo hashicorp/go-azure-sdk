@@ -93,7 +93,7 @@ func (id MeActivityId) Segments() []resourceids.Segment {
 	return []resourceids.Segment{
 		resourceids.StaticSegment("me", "me", "me"),
 		resourceids.StaticSegment("activities", "activities", "activities"),
-		resourceids.UserSpecifiedSegment("userActivityId", "userActivityIdValue"),
+		resourceids.UserSpecifiedSegment("userActivityId", "userActivityId"),
 	}
 }
 

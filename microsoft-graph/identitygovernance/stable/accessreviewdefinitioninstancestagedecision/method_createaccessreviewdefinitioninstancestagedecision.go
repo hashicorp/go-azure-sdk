@@ -19,16 +19,45 @@ type CreateAccessReviewDefinitionInstanceStageDecisionOperationResponse struct {
 	Model        *stable.AccessReviewInstanceDecisionItem
 }
 
+type CreateAccessReviewDefinitionInstanceStageDecisionOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateAccessReviewDefinitionInstanceStageDecisionOperationOptions() CreateAccessReviewDefinitionInstanceStageDecisionOperationOptions {
+	return CreateAccessReviewDefinitionInstanceStageDecisionOperationOptions{}
+}
+
+func (o CreateAccessReviewDefinitionInstanceStageDecisionOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateAccessReviewDefinitionInstanceStageDecisionOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateAccessReviewDefinitionInstanceStageDecisionOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateAccessReviewDefinitionInstanceStageDecision - Create new navigation property to decisions for
 // identityGovernance
-func (c AccessReviewDefinitionInstanceStageDecisionClient) CreateAccessReviewDefinitionInstanceStageDecision(ctx context.Context, id stable.IdentityGovernanceAccessReviewDefinitionIdInstanceIdStageId, input stable.AccessReviewInstanceDecisionItem) (result CreateAccessReviewDefinitionInstanceStageDecisionOperationResponse, err error) {
+func (c AccessReviewDefinitionInstanceStageDecisionClient) CreateAccessReviewDefinitionInstanceStageDecision(ctx context.Context, id stable.IdentityGovernanceAccessReviewDefinitionIdInstanceIdStageId, input stable.AccessReviewInstanceDecisionItem, options CreateAccessReviewDefinitionInstanceStageDecisionOperationOptions) (result CreateAccessReviewDefinitionInstanceStageDecisionOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/decisions", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/decisions", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

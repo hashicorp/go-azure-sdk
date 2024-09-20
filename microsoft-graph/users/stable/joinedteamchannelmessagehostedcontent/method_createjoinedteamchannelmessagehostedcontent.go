@@ -19,15 +19,44 @@ type CreateJoinedTeamChannelMessageHostedContentOperationResponse struct {
 	Model        *stable.ChatMessageHostedContent
 }
 
+type CreateJoinedTeamChannelMessageHostedContentOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateJoinedTeamChannelMessageHostedContentOperationOptions() CreateJoinedTeamChannelMessageHostedContentOperationOptions {
+	return CreateJoinedTeamChannelMessageHostedContentOperationOptions{}
+}
+
+func (o CreateJoinedTeamChannelMessageHostedContentOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateJoinedTeamChannelMessageHostedContentOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateJoinedTeamChannelMessageHostedContentOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateJoinedTeamChannelMessageHostedContent - Create new navigation property to hostedContents for users
-func (c JoinedTeamChannelMessageHostedContentClient) CreateJoinedTeamChannelMessageHostedContent(ctx context.Context, id stable.UserIdJoinedTeamIdChannelIdMessageId, input stable.ChatMessageHostedContent) (result CreateJoinedTeamChannelMessageHostedContentOperationResponse, err error) {
+func (c JoinedTeamChannelMessageHostedContentClient) CreateJoinedTeamChannelMessageHostedContent(ctx context.Context, id stable.UserIdJoinedTeamIdChannelIdMessageId, input stable.ChatMessageHostedContent, options CreateJoinedTeamChannelMessageHostedContentOperationOptions) (result CreateJoinedTeamChannelMessageHostedContentOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/hostedContents", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/hostedContents", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

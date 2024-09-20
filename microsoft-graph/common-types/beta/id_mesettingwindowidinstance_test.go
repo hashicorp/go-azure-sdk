@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &MeSettingWindowIdInstanceId{}
 
 func TestNewMeSettingWindowIdInstanceID(t *testing.T) {
-	id := NewMeSettingWindowIdInstanceID("windowsSettingIdValue", "windowsSettingInstanceIdValue")
+	id := NewMeSettingWindowIdInstanceID("windowsSettingId", "windowsSettingInstanceId")
 
-	if id.WindowsSettingId != "windowsSettingIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'WindowsSettingId'", id.WindowsSettingId, "windowsSettingIdValue")
+	if id.WindowsSettingId != "windowsSettingId" {
+		t.Fatalf("Expected %q but got %q for Segment 'WindowsSettingId'", id.WindowsSettingId, "windowsSettingId")
 	}
 
-	if id.WindowsSettingInstanceId != "windowsSettingInstanceIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'WindowsSettingInstanceId'", id.WindowsSettingInstanceId, "windowsSettingInstanceIdValue")
+	if id.WindowsSettingInstanceId != "windowsSettingInstanceId" {
+		t.Fatalf("Expected %q but got %q for Segment 'WindowsSettingInstanceId'", id.WindowsSettingInstanceId, "windowsSettingInstanceId")
 	}
 }
 
 func TestFormatMeSettingWindowIdInstanceID(t *testing.T) {
-	actual := NewMeSettingWindowIdInstanceID("windowsSettingIdValue", "windowsSettingInstanceIdValue").ID()
-	expected := "/me/settings/windows/windowsSettingIdValue/instances/windowsSettingInstanceIdValue"
+	actual := NewMeSettingWindowIdInstanceID("windowsSettingId", "windowsSettingInstanceId").ID()
+	expected := "/me/settings/windows/windowsSettingId/instances/windowsSettingInstanceId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -59,25 +59,25 @@ func TestParseMeSettingWindowIdInstanceID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/me/settings/windows/windowsSettingIdValue",
+			Input: "/me/settings/windows/windowsSettingId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/me/settings/windows/windowsSettingIdValue/instances",
+			Input: "/me/settings/windows/windowsSettingId/instances",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/me/settings/windows/windowsSettingIdValue/instances/windowsSettingInstanceIdValue",
+			Input: "/me/settings/windows/windowsSettingId/instances/windowsSettingInstanceId",
 			Expected: &MeSettingWindowIdInstanceId{
-				WindowsSettingId:         "windowsSettingIdValue",
-				WindowsSettingInstanceId: "windowsSettingInstanceIdValue",
+				WindowsSettingId:         "windowsSettingId",
+				WindowsSettingInstanceId: "windowsSettingInstanceId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/settings/windows/windowsSettingIdValue/instances/windowsSettingInstanceIdValue/extra",
+			Input: "/me/settings/windows/windowsSettingId/instances/windowsSettingInstanceId/extra",
 			Error: true,
 		},
 	}
@@ -150,48 +150,48 @@ func TestParseMeSettingWindowIdInstanceIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/me/settings/windows/windowsSettingIdValue",
+			Input: "/me/settings/windows/windowsSettingId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/sEtTiNgS/wInDoWs/wInDoWsSeTtInGiDvAlUe",
+			Input: "/mE/sEtTiNgS/wInDoWs/wInDoWsSeTtInGiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/me/settings/windows/windowsSettingIdValue/instances",
+			Input: "/me/settings/windows/windowsSettingId/instances",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/sEtTiNgS/wInDoWs/wInDoWsSeTtInGiDvAlUe/iNsTaNcEs",
+			Input: "/mE/sEtTiNgS/wInDoWs/wInDoWsSeTtInGiD/iNsTaNcEs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/me/settings/windows/windowsSettingIdValue/instances/windowsSettingInstanceIdValue",
+			Input: "/me/settings/windows/windowsSettingId/instances/windowsSettingInstanceId",
 			Expected: &MeSettingWindowIdInstanceId{
-				WindowsSettingId:         "windowsSettingIdValue",
-				WindowsSettingInstanceId: "windowsSettingInstanceIdValue",
+				WindowsSettingId:         "windowsSettingId",
+				WindowsSettingInstanceId: "windowsSettingInstanceId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/settings/windows/windowsSettingIdValue/instances/windowsSettingInstanceIdValue/extra",
+			Input: "/me/settings/windows/windowsSettingId/instances/windowsSettingInstanceId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/sEtTiNgS/wInDoWs/wInDoWsSeTtInGiDvAlUe/iNsTaNcEs/wInDoWsSeTtInGiNsTaNcEiDvAlUe",
+			Input: "/mE/sEtTiNgS/wInDoWs/wInDoWsSeTtInGiD/iNsTaNcEs/wInDoWsSeTtInGiNsTaNcEiD",
 			Expected: &MeSettingWindowIdInstanceId{
-				WindowsSettingId:         "wInDoWsSeTtInGiDvAlUe",
-				WindowsSettingInstanceId: "wInDoWsSeTtInGiNsTaNcEiDvAlUe",
+				WindowsSettingId:         "wInDoWsSeTtInGiD",
+				WindowsSettingInstanceId: "wInDoWsSeTtInGiNsTaNcEiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/mE/sEtTiNgS/wInDoWs/wInDoWsSeTtInGiDvAlUe/iNsTaNcEs/wInDoWsSeTtInGiNsTaNcEiDvAlUe/extra",
+			Input: "/mE/sEtTiNgS/wInDoWs/wInDoWsSeTtInGiD/iNsTaNcEs/wInDoWsSeTtInGiNsTaNcEiD/extra",
 			Error: true,
 		},
 	}

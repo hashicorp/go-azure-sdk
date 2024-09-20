@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &UserIdDirectReportId{}
 
 func TestNewUserIdDirectReportID(t *testing.T) {
-	id := NewUserIdDirectReportID("userIdValue", "directoryObjectIdValue")
+	id := NewUserIdDirectReportID("userId", "directoryObjectId")
 
-	if id.UserId != "userIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'UserId'", id.UserId, "userIdValue")
+	if id.UserId != "userId" {
+		t.Fatalf("Expected %q but got %q for Segment 'UserId'", id.UserId, "userId")
 	}
 
-	if id.DirectoryObjectId != "directoryObjectIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DirectoryObjectId'", id.DirectoryObjectId, "directoryObjectIdValue")
+	if id.DirectoryObjectId != "directoryObjectId" {
+		t.Fatalf("Expected %q but got %q for Segment 'DirectoryObjectId'", id.DirectoryObjectId, "directoryObjectId")
 	}
 }
 
 func TestFormatUserIdDirectReportID(t *testing.T) {
-	actual := NewUserIdDirectReportID("userIdValue", "directoryObjectIdValue").ID()
-	expected := "/users/userIdValue/directReports/directoryObjectIdValue"
+	actual := NewUserIdDirectReportID("userId", "directoryObjectId").ID()
+	expected := "/users/userId/directReports/directoryObjectId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -49,25 +49,25 @@ func TestParseUserIdDirectReportID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue",
+			Input: "/users/userId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/directReports",
+			Input: "/users/userId/directReports",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/users/userIdValue/directReports/directoryObjectIdValue",
+			Input: "/users/userId/directReports/directoryObjectId",
 			Expected: &UserIdDirectReportId{
-				UserId:            "userIdValue",
-				DirectoryObjectId: "directoryObjectIdValue",
+				UserId:            "userId",
+				DirectoryObjectId: "directoryObjectId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/users/userIdValue/directReports/directoryObjectIdValue/extra",
+			Input: "/users/userId/directReports/directoryObjectId/extra",
 			Error: true,
 		},
 	}
@@ -120,48 +120,48 @@ func TestParseUserIdDirectReportIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue",
+			Input: "/users/userId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe",
+			Input: "/uSeRs/uSeRiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/directReports",
+			Input: "/users/userId/directReports",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/dIrEcTrEpOrTs",
+			Input: "/uSeRs/uSeRiD/dIrEcTrEpOrTs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/users/userIdValue/directReports/directoryObjectIdValue",
+			Input: "/users/userId/directReports/directoryObjectId",
 			Expected: &UserIdDirectReportId{
-				UserId:            "userIdValue",
-				DirectoryObjectId: "directoryObjectIdValue",
+				UserId:            "userId",
+				DirectoryObjectId: "directoryObjectId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/users/userIdValue/directReports/directoryObjectIdValue/extra",
+			Input: "/users/userId/directReports/directoryObjectId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/dIrEcTrEpOrTs/dIrEcToRyObJeCtIdVaLuE",
+			Input: "/uSeRs/uSeRiD/dIrEcTrEpOrTs/dIrEcToRyObJeCtId",
 			Expected: &UserIdDirectReportId{
-				UserId:            "uSeRiDvAlUe",
-				DirectoryObjectId: "dIrEcToRyObJeCtIdVaLuE",
+				UserId:            "uSeRiD",
+				DirectoryObjectId: "dIrEcToRyObJeCtId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/dIrEcTrEpOrTs/dIrEcToRyObJeCtIdVaLuE/extra",
+			Input: "/uSeRs/uSeRiD/dIrEcTrEpOrTs/dIrEcToRyObJeCtId/extra",
 			Error: true,
 		},
 	}

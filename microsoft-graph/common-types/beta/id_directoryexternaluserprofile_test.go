@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &DirectoryExternalUserProfileId{}
 
 func TestNewDirectoryExternalUserProfileID(t *testing.T) {
-	id := NewDirectoryExternalUserProfileID("externalUserProfileIdValue")
+	id := NewDirectoryExternalUserProfileID("externalUserProfileId")
 
-	if id.ExternalUserProfileId != "externalUserProfileIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ExternalUserProfileId'", id.ExternalUserProfileId, "externalUserProfileIdValue")
+	if id.ExternalUserProfileId != "externalUserProfileId" {
+		t.Fatalf("Expected %q but got %q for Segment 'ExternalUserProfileId'", id.ExternalUserProfileId, "externalUserProfileId")
 	}
 }
 
 func TestFormatDirectoryExternalUserProfileID(t *testing.T) {
-	actual := NewDirectoryExternalUserProfileID("externalUserProfileIdValue").ID()
-	expected := "/directory/externalUserProfiles/externalUserProfileIdValue"
+	actual := NewDirectoryExternalUserProfileID("externalUserProfileId").ID()
+	expected := "/directory/externalUserProfiles/externalUserProfileId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -50,14 +50,14 @@ func TestParseDirectoryExternalUserProfileID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/directory/externalUserProfiles/externalUserProfileIdValue",
+			Input: "/directory/externalUserProfiles/externalUserProfileId",
 			Expected: &DirectoryExternalUserProfileId{
-				ExternalUserProfileId: "externalUserProfileIdValue",
+				ExternalUserProfileId: "externalUserProfileId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/directory/externalUserProfiles/externalUserProfileIdValue/extra",
+			Input: "/directory/externalUserProfiles/externalUserProfileId/extra",
 			Error: true,
 		},
 	}
@@ -116,26 +116,26 @@ func TestParseDirectoryExternalUserProfileIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/directory/externalUserProfiles/externalUserProfileIdValue",
+			Input: "/directory/externalUserProfiles/externalUserProfileId",
 			Expected: &DirectoryExternalUserProfileId{
-				ExternalUserProfileId: "externalUserProfileIdValue",
+				ExternalUserProfileId: "externalUserProfileId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/directory/externalUserProfiles/externalUserProfileIdValue/extra",
+			Input: "/directory/externalUserProfiles/externalUserProfileId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/dIrEcToRy/eXtErNaLuSeRpRoFiLeS/eXtErNaLuSeRpRoFiLeIdVaLuE",
+			Input: "/dIrEcToRy/eXtErNaLuSeRpRoFiLeS/eXtErNaLuSeRpRoFiLeId",
 			Expected: &DirectoryExternalUserProfileId{
-				ExternalUserProfileId: "eXtErNaLuSeRpRoFiLeIdVaLuE",
+				ExternalUserProfileId: "eXtErNaLuSeRpRoFiLeId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/dIrEcToRy/eXtErNaLuSeRpRoFiLeS/eXtErNaLuSeRpRoFiLeIdVaLuE/extra",
+			Input: "/dIrEcToRy/eXtErNaLuSeRpRoFiLeS/eXtErNaLuSeRpRoFiLeId/extra",
 			Error: true,
 		},
 	}

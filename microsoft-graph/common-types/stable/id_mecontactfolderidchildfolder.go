@@ -99,9 +99,9 @@ func (id MeContactFolderIdChildFolderId) Segments() []resourceids.Segment {
 	return []resourceids.Segment{
 		resourceids.StaticSegment("me", "me", "me"),
 		resourceids.StaticSegment("contactFolders", "contactFolders", "contactFolders"),
-		resourceids.UserSpecifiedSegment("contactFolderId", "contactFolderIdValue"),
+		resourceids.UserSpecifiedSegment("contactFolderId", "contactFolderId"),
 		resourceids.StaticSegment("childFolders", "childFolders", "childFolders"),
-		resourceids.UserSpecifiedSegment("contactFolderId1", "contactFolderId1Value"),
+		resourceids.UserSpecifiedSegment("contactFolderId1", "contactFolderId1"),
 	}
 }
 

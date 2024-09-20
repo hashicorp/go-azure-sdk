@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/microsoft-graph/applicationtemplates/beta/applicationtemplate` Documentation
 
-The `applicationtemplate` SDK allows for interaction with the Azure Resource Manager Service `applicationtemplates` (API Version `beta`).
+The `applicationtemplate` SDK allows for interaction with Microsoft Graph `applicationtemplates` (API Version `beta`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -15,7 +15,7 @@ import "github.com/hashicorp/go-azure-sdk/microsoft-graph/applicationtemplates/b
 ### Client Initialization
 
 ```go
-client := applicationtemplate.NewApplicationTemplateClientWithBaseURI("https://management.azure.com")
+client := applicationtemplate.NewApplicationTemplateClientWithBaseURI("https://graph.microsoft.com")
 client.Client.Authorizer = authorizer
 ```
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := applicationtemplate.NewApplicationTemplateID("applicationTemplateIdValue")
+id := applicationtemplate.NewApplicationTemplateID("applicationTemplateId")
 
 read, err := client.GetApplicationTemplate(ctx, id, applicationtemplate.DefaultGetApplicationTemplateOperationOptions())
 if err != nil {
@@ -36,13 +36,13 @@ if model := read.Model; model != nil {
 ```
 
 
-### Example Usage: `ApplicationTemplateClient.GetCount`
+### Example Usage: `ApplicationTemplateClient.GetsCount`
 
 ```go
 ctx := context.TODO()
 
 
-read, err := client.GetCount(ctx, applicationtemplate.DefaultGetCountOperationOptions())
+read, err := client.GetsCount(ctx, applicationtemplate.DefaultGetsCountOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -56,14 +56,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := applicationtemplate.NewApplicationTemplateID("applicationTemplateIdValue")
+id := applicationtemplate.NewApplicationTemplateID("applicationTemplateId")
 
 payload := applicationtemplate.InstantiateRequest{
 	// ...
 }
 
 
-read, err := client.Instantiate(ctx, id, payload)
+read, err := client.Instantiate(ctx, id, payload, applicationtemplate.DefaultInstantiateOperationOptions())
 if err != nil {
 	// handle the error
 }

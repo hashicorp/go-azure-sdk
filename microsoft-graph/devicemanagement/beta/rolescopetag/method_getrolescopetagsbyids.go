@@ -25,8 +25,9 @@ type GetRoleScopeTagsByIdsCompleteResult struct {
 }
 
 type GetRoleScopeTagsByIdsOperationOptions struct {
-	Skip *int64
-	Top  *int64
+	Metadata *odata.Metadata
+	Skip     *int64
+	Top      *int64
 }
 
 func DefaultGetRoleScopeTagsByIdsOperationOptions() GetRoleScopeTagsByIdsOperationOptions {
@@ -41,6 +42,9 @@ func (o GetRoleScopeTagsByIdsOperationOptions) ToHeaders() *client.Headers {
 
 func (o GetRoleScopeTagsByIdsOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	if o.Skip != nil {
 		out.Skip = int(*o.Skip)
 	}

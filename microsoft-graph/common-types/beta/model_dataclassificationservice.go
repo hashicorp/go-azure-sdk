@@ -69,19 +69,32 @@ func (s DataClassificationService) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &DataClassificationService{}
 
 func (s *DataClassificationService) UnmarshalJSON(bytes []byte) error {
-	type alias DataClassificationService
-	var decoded alias
+
+	var decoded struct {
+		ClassifyFileJobs        *[]JobResponseBase       `json:"classifyFileJobs,omitempty"`
+		ClassifyTextJobs        *[]JobResponseBase       `json:"classifyTextJobs,omitempty"`
+		EvaluateDlpPoliciesJobs *[]JobResponseBase       `json:"evaluateDlpPoliciesJobs,omitempty"`
+		EvaluateLabelJobs       *[]JobResponseBase       `json:"evaluateLabelJobs,omitempty"`
+		ExactMatchDataStores    *[]ExactMatchDataStore   `json:"exactMatchDataStores,omitempty"`
+		ExactMatchUploadAgents  *[]ExactMatchUploadAgent `json:"exactMatchUploadAgents,omitempty"`
+		Jobs                    *[]JobResponseBase       `json:"jobs,omitempty"`
+		SensitiveTypes          *[]SensitiveType         `json:"sensitiveTypes,omitempty"`
+		SensitivityLabels       *[]SensitivityLabel      `json:"sensitivityLabels,omitempty"`
+		Id                      *string                  `json:"id,omitempty"`
+		ODataId                 *string                  `json:"@odata.id,omitempty"`
+		ODataType               *string                  `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into DataClassificationService: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.ExactMatchDataStores = decoded.ExactMatchDataStores
 	s.ExactMatchUploadAgents = decoded.ExactMatchUploadAgents
+	s.SensitiveTypes = decoded.SensitiveTypes
+	s.SensitivityLabels = decoded.SensitivityLabels
 	s.Id = decoded.Id
 	s.ODataId = decoded.ODataId
 	s.ODataType = decoded.ODataType
-	s.SensitiveTypes = decoded.SensitiveTypes
-	s.SensitivityLabels = decoded.SensitivityLabels
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -172,5 +185,6 @@ func (s *DataClassificationService) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Jobs = &output
 	}
+
 	return nil
 }

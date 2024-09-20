@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/virtualendpointreport` Documentation
 
-The `virtualendpointreport` SDK allows for interaction with the Azure Resource Manager Service `devicemanagement` (API Version `beta`).
+The `virtualendpointreport` SDK allows for interaction with Microsoft Graph `devicemanagement` (API Version `beta`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -15,7 +15,7 @@ import "github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/
 ### Client Initialization
 
 ```go
-client := virtualendpointreport.NewVirtualEndpointReportClientWithBaseURI("https://management.azure.com")
+client := virtualendpointreport.NewVirtualEndpointReportClientWithBaseURI("https://graph.microsoft.com")
 client.Client.Authorizer = authorizer
 ```
 
@@ -30,7 +30,7 @@ payload := virtualendpointreport.CreateVirtualEndpointReportRetrieveCrossRegionD
 }
 
 
-read, err := client.CreateVirtualEndpointReportRetrieveCrossRegionDisasterRecoveryReport(ctx, payload)
+read, err := client.CreateVirtualEndpointReportRetrieveCrossRegionDisasterRecoveryReport(ctx, payload, virtualendpointreport.DefaultCreateVirtualEndpointReportRetrieveCrossRegionDisasterRecoveryReportOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -72,17 +72,17 @@ if model := read.Model; model != nil {
 ```
 
 
-### Example Usage: `VirtualEndpointReportClient.GetVirtualEndpointReportsActionStatusReport`
+### Example Usage: `VirtualEndpointReportClient.GetVirtualEndpointReportsActionStatusReports`
 
 ```go
 ctx := context.TODO()
 
-payload := virtualendpointreport.GetVirtualEndpointReportsActionStatusReportRequest{
+payload := virtualendpointreport.GetVirtualEndpointReportsActionStatusReportsRequest{
 	// ...
 }
 
 
-read, err := client.GetVirtualEndpointReportsActionStatusReport(ctx, payload)
+read, err := client.GetVirtualEndpointReportsActionStatusReports(ctx, payload, virtualendpointreport.DefaultGetVirtualEndpointReportsActionStatusReportsOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -102,7 +102,7 @@ payload := virtualendpointreport.GetVirtualEndpointReportsCloudPCPerformanceRepo
 }
 
 
-read, err := client.GetVirtualEndpointReportsCloudPCPerformanceReport(ctx, payload)
+read, err := client.GetVirtualEndpointReportsCloudPCPerformanceReport(ctx, payload, virtualendpointreport.DefaultGetVirtualEndpointReportsCloudPCPerformanceReportOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -112,17 +112,17 @@ if model := read.Model; model != nil {
 ```
 
 
-### Example Usage: `VirtualEndpointReportClient.GetVirtualEndpointReportsCloudPCRecommendationReport`
+### Example Usage: `VirtualEndpointReportClient.GetVirtualEndpointReportsCloudPCRecommendationReports`
 
 ```go
 ctx := context.TODO()
 
-payload := virtualendpointreport.GetVirtualEndpointReportsCloudPCRecommendationReportRequest{
+payload := virtualendpointreport.GetVirtualEndpointReportsCloudPCRecommendationReportsRequest{
 	// ...
 }
 
 
-read, err := client.GetVirtualEndpointReportsCloudPCRecommendationReport(ctx, payload)
+read, err := client.GetVirtualEndpointReportsCloudPCRecommendationReports(ctx, payload, virtualendpointreport.DefaultGetVirtualEndpointReportsCloudPCRecommendationReportsOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -132,17 +132,17 @@ if model := read.Model; model != nil {
 ```
 
 
-### Example Usage: `VirtualEndpointReportClient.GetVirtualEndpointReportsConnectionQualityReport`
+### Example Usage: `VirtualEndpointReportClient.GetVirtualEndpointReportsConnectionQualityReports`
 
 ```go
 ctx := context.TODO()
 
-payload := virtualendpointreport.GetVirtualEndpointReportsConnectionQualityReportRequest{
+payload := virtualendpointreport.GetVirtualEndpointReportsConnectionQualityReportsRequest{
 	// ...
 }
 
 
-read, err := client.GetVirtualEndpointReportsConnectionQualityReport(ctx, payload)
+read, err := client.GetVirtualEndpointReportsConnectionQualityReports(ctx, payload, virtualendpointreport.DefaultGetVirtualEndpointReportsConnectionQualityReportsOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -152,17 +152,17 @@ if model := read.Model; model != nil {
 ```
 
 
-### Example Usage: `VirtualEndpointReportClient.GetVirtualEndpointReportsDailyAggregatedRemoteConnectionReport`
+### Example Usage: `VirtualEndpointReportClient.GetVirtualEndpointReportsDailyAggregatedRemoteConnectionReports`
 
 ```go
 ctx := context.TODO()
 
-payload := virtualendpointreport.GetVirtualEndpointReportsDailyAggregatedRemoteConnectionReportRequest{
+payload := virtualendpointreport.GetVirtualEndpointReportsDailyAggregatedRemoteConnectionReportsRequest{
 	// ...
 }
 
 
-read, err := client.GetVirtualEndpointReportsDailyAggregatedRemoteConnectionReport(ctx, payload)
+read, err := client.GetVirtualEndpointReportsDailyAggregatedRemoteConnectionReports(ctx, payload, virtualendpointreport.DefaultGetVirtualEndpointReportsDailyAggregatedRemoteConnectionReportsOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -182,7 +182,7 @@ payload := virtualendpointreport.GetVirtualEndpointReportsFrontlineReportRequest
 }
 
 
-read, err := client.GetVirtualEndpointReportsFrontlineReport(ctx, payload)
+read, err := client.GetVirtualEndpointReportsFrontlineReport(ctx, payload, virtualendpointreport.DefaultGetVirtualEndpointReportsFrontlineReportOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -192,17 +192,17 @@ if model := read.Model; model != nil {
 ```
 
 
-### Example Usage: `VirtualEndpointReportClient.GetVirtualEndpointReportsInaccessibleCloudPCReport`
+### Example Usage: `VirtualEndpointReportClient.GetVirtualEndpointReportsInaccessibleCloudPCReports`
 
 ```go
 ctx := context.TODO()
 
-payload := virtualendpointreport.GetVirtualEndpointReportsInaccessibleCloudPCReportRequest{
+payload := virtualendpointreport.GetVirtualEndpointReportsInaccessibleCloudPCReportsRequest{
 	// ...
 }
 
 
-read, err := client.GetVirtualEndpointReportsInaccessibleCloudPCReport(ctx, payload)
+read, err := client.GetVirtualEndpointReportsInaccessibleCloudPCReports(ctx, payload, virtualendpointreport.DefaultGetVirtualEndpointReportsInaccessibleCloudPCReportsOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -212,17 +212,17 @@ if model := read.Model; model != nil {
 ```
 
 
-### Example Usage: `VirtualEndpointReportClient.GetVirtualEndpointReportsRawRemoteConnectionReport`
+### Example Usage: `VirtualEndpointReportClient.GetVirtualEndpointReportsRawRemoteConnectionReports`
 
 ```go
 ctx := context.TODO()
 
-payload := virtualendpointreport.GetVirtualEndpointReportsRawRemoteConnectionReportRequest{
+payload := virtualendpointreport.GetVirtualEndpointReportsRawRemoteConnectionReportsRequest{
 	// ...
 }
 
 
-read, err := client.GetVirtualEndpointReportsRawRemoteConnectionReport(ctx, payload)
+read, err := client.GetVirtualEndpointReportsRawRemoteConnectionReports(ctx, payload, virtualendpointreport.DefaultGetVirtualEndpointReportsRawRemoteConnectionReportsOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -232,17 +232,17 @@ if model := read.Model; model != nil {
 ```
 
 
-### Example Usage: `VirtualEndpointReportClient.GetVirtualEndpointReportsRemoteConnectionHistoricalReport`
+### Example Usage: `VirtualEndpointReportClient.GetVirtualEndpointReportsRemoteConnectionHistoricalReports`
 
 ```go
 ctx := context.TODO()
 
-payload := virtualendpointreport.GetVirtualEndpointReportsRemoteConnectionHistoricalReportRequest{
+payload := virtualendpointreport.GetVirtualEndpointReportsRemoteConnectionHistoricalReportsRequest{
 	// ...
 }
 
 
-read, err := client.GetVirtualEndpointReportsRemoteConnectionHistoricalReport(ctx, payload)
+read, err := client.GetVirtualEndpointReportsRemoteConnectionHistoricalReports(ctx, payload, virtualendpointreport.DefaultGetVirtualEndpointReportsRemoteConnectionHistoricalReportsOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -262,7 +262,7 @@ payload := virtualendpointreport.GetVirtualEndpointReportsSharedUseLicenseUsageR
 }
 
 
-read, err := client.GetVirtualEndpointReportsSharedUseLicenseUsageReport(ctx, payload)
+read, err := client.GetVirtualEndpointReportsSharedUseLicenseUsageReport(ctx, payload, virtualendpointreport.DefaultGetVirtualEndpointReportsSharedUseLicenseUsageReportOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -272,17 +272,17 @@ if model := read.Model; model != nil {
 ```
 
 
-### Example Usage: `VirtualEndpointReportClient.GetVirtualEndpointReportsTotalAggregatedRemoteConnectionReport`
+### Example Usage: `VirtualEndpointReportClient.GetVirtualEndpointReportsTotalAggregatedRemoteConnectionReports`
 
 ```go
 ctx := context.TODO()
 
-payload := virtualendpointreport.GetVirtualEndpointReportsTotalAggregatedRemoteConnectionReportRequest{
+payload := virtualendpointreport.GetVirtualEndpointReportsTotalAggregatedRemoteConnectionReportsRequest{
 	// ...
 }
 
 
-read, err := client.GetVirtualEndpointReportsTotalAggregatedRemoteConnectionReport(ctx, payload)
+read, err := client.GetVirtualEndpointReportsTotalAggregatedRemoteConnectionReports(ctx, payload, virtualendpointreport.DefaultGetVirtualEndpointReportsTotalAggregatedRemoteConnectionReportsOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -302,7 +302,7 @@ payload := virtualendpointreport.CloudPCReports{
 }
 
 
-read, err := client.UpdateVirtualEndpointReport(ctx, payload)
+read, err := client.UpdateVirtualEndpointReport(ctx, payload, virtualendpointreport.DefaultUpdateVirtualEndpointReportOperationOptions())
 if err != nil {
 	// handle the error
 }

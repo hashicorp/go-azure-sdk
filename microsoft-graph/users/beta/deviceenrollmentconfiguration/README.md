@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/deviceenrollmentconfiguration` Documentation
 
-The `deviceenrollmentconfiguration` SDK allows for interaction with the Azure Resource Manager Service `users` (API Version `beta`).
+The `deviceenrollmentconfiguration` SDK allows for interaction with Microsoft Graph `users` (API Version `beta`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -15,7 +15,7 @@ import "github.com/hashicorp/go-azure-sdk/microsoft-graph/users/beta/deviceenrol
 ### Client Initialization
 
 ```go
-client := deviceenrollmentconfiguration.NewDeviceEnrollmentConfigurationClientWithBaseURI("https://management.azure.com")
+client := deviceenrollmentconfiguration.NewDeviceEnrollmentConfigurationClientWithBaseURI("https://graph.microsoft.com")
 client.Client.Authorizer = authorizer
 ```
 
@@ -24,14 +24,14 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := deviceenrollmentconfiguration.NewUserIdDeviceEnrollmentConfigurationID("userIdValue", "deviceEnrollmentConfigurationIdValue")
+id := deviceenrollmentconfiguration.NewUserIdDeviceEnrollmentConfigurationID("userId", "deviceEnrollmentConfigurationId")
 
 payload := deviceenrollmentconfiguration.AssignDeviceEnrollmentConfigurationRequest{
 	// ...
 }
 
 
-read, err := client.AssignDeviceEnrollmentConfiguration(ctx, id, payload)
+read, err := client.AssignDeviceEnrollmentConfiguration(ctx, id, payload, deviceenrollmentconfiguration.DefaultAssignDeviceEnrollmentConfigurationOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -45,14 +45,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := deviceenrollmentconfiguration.NewUserID("userIdValue")
+id := deviceenrollmentconfiguration.NewUserID("userId")
 
 payload := deviceenrollmentconfiguration.DeviceEnrollmentConfiguration{
 	// ...
 }
 
 
-read, err := client.CreateDeviceEnrollmentConfiguration(ctx, id, payload)
+read, err := client.CreateDeviceEnrollmentConfiguration(ctx, id, payload, deviceenrollmentconfiguration.DefaultCreateDeviceEnrollmentConfigurationOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -66,14 +66,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := deviceenrollmentconfiguration.NewUserID("userIdValue")
+id := deviceenrollmentconfiguration.NewUserID("userId")
 
 payload := deviceenrollmentconfiguration.CreateDeviceEnrollmentConfigurationsEnrollmentNotificationConfigurationRequest{
 	// ...
 }
 
 
-read, err := client.CreateDeviceEnrollmentConfigurationsEnrollmentNotificationConfiguration(ctx, id, payload)
+read, err := client.CreateDeviceEnrollmentConfigurationsEnrollmentNotificationConfiguration(ctx, id, payload, deviceenrollmentconfiguration.DefaultCreateDeviceEnrollmentConfigurationsEnrollmentNotificationConfigurationOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -87,7 +87,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := deviceenrollmentconfiguration.NewUserIdDeviceEnrollmentConfigurationID("userIdValue", "deviceEnrollmentConfigurationIdValue")
+id := deviceenrollmentconfiguration.NewUserIdDeviceEnrollmentConfigurationID("userId", "deviceEnrollmentConfigurationId")
 
 read, err := client.DeleteDeviceEnrollmentConfiguration(ctx, id, deviceenrollmentconfiguration.DefaultDeleteDeviceEnrollmentConfigurationOperationOptions())
 if err != nil {
@@ -103,7 +103,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := deviceenrollmentconfiguration.NewUserIdDeviceEnrollmentConfigurationID("userIdValue", "deviceEnrollmentConfigurationIdValue")
+id := deviceenrollmentconfiguration.NewUserIdDeviceEnrollmentConfigurationID("userId", "deviceEnrollmentConfigurationId")
 
 read, err := client.GetDeviceEnrollmentConfiguration(ctx, id, deviceenrollmentconfiguration.DefaultGetDeviceEnrollmentConfigurationOperationOptions())
 if err != nil {
@@ -119,7 +119,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := deviceenrollmentconfiguration.NewUserID("userIdValue")
+id := deviceenrollmentconfiguration.NewUserID("userId")
 
 read, err := client.GetDeviceEnrollmentConfigurationsCount(ctx, id, deviceenrollmentconfiguration.DefaultGetDeviceEnrollmentConfigurationsCountOperationOptions())
 if err != nil {
@@ -135,7 +135,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := deviceenrollmentconfiguration.NewUserID("userIdValue")
+id := deviceenrollmentconfiguration.NewUserID("userId")
 
 payload := deviceenrollmentconfiguration.ListDeviceEnrollmentConfigurationHasPayloadLinksRequest{
 	// ...
@@ -157,7 +157,7 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := deviceenrollmentconfiguration.NewUserID("userIdValue")
+id := deviceenrollmentconfiguration.NewUserID("userId")
 
 // alternatively `client.ListDeviceEnrollmentConfigurations(ctx, id, deviceenrollmentconfiguration.DefaultListDeviceEnrollmentConfigurationsOperationOptions())` can be used to do batched pagination
 items, err := client.ListDeviceEnrollmentConfigurationsComplete(ctx, id, deviceenrollmentconfiguration.DefaultListDeviceEnrollmentConfigurationsOperationOptions())
@@ -174,14 +174,14 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := deviceenrollmentconfiguration.NewUserIdDeviceEnrollmentConfigurationID("userIdValue", "deviceEnrollmentConfigurationIdValue")
+id := deviceenrollmentconfiguration.NewUserIdDeviceEnrollmentConfigurationID("userId", "deviceEnrollmentConfigurationId")
 
 payload := deviceenrollmentconfiguration.SetDeviceEnrollmentConfigurationPriorityRequest{
 	// ...
 }
 
 
-read, err := client.SetDeviceEnrollmentConfigurationPriority(ctx, id, payload)
+read, err := client.SetDeviceEnrollmentConfigurationPriority(ctx, id, payload, deviceenrollmentconfiguration.DefaultSetDeviceEnrollmentConfigurationPriorityOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -195,14 +195,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := deviceenrollmentconfiguration.NewUserIdDeviceEnrollmentConfigurationID("userIdValue", "deviceEnrollmentConfigurationIdValue")
+id := deviceenrollmentconfiguration.NewUserIdDeviceEnrollmentConfigurationID("userId", "deviceEnrollmentConfigurationId")
 
 payload := deviceenrollmentconfiguration.DeviceEnrollmentConfiguration{
 	// ...
 }
 
 
-read, err := client.UpdateDeviceEnrollmentConfiguration(ctx, id, payload)
+read, err := client.UpdateDeviceEnrollmentConfiguration(ctx, id, payload, deviceenrollmentconfiguration.DefaultUpdateDeviceEnrollmentConfigurationOperationOptions())
 if err != nil {
 	// handle the error
 }

@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &MeDriveIdRootAnalyticsItemActivityStatId{}
 
 func TestNewMeDriveIdRootAnalyticsItemActivityStatID(t *testing.T) {
-	id := NewMeDriveIdRootAnalyticsItemActivityStatID("driveIdValue", "itemActivityStatIdValue")
+	id := NewMeDriveIdRootAnalyticsItemActivityStatID("driveId", "itemActivityStatId")
 
-	if id.DriveId != "driveIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DriveId'", id.DriveId, "driveIdValue")
+	if id.DriveId != "driveId" {
+		t.Fatalf("Expected %q but got %q for Segment 'DriveId'", id.DriveId, "driveId")
 	}
 
-	if id.ItemActivityStatId != "itemActivityStatIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ItemActivityStatId'", id.ItemActivityStatId, "itemActivityStatIdValue")
+	if id.ItemActivityStatId != "itemActivityStatId" {
+		t.Fatalf("Expected %q but got %q for Segment 'ItemActivityStatId'", id.ItemActivityStatId, "itemActivityStatId")
 	}
 }
 
 func TestFormatMeDriveIdRootAnalyticsItemActivityStatID(t *testing.T) {
-	actual := NewMeDriveIdRootAnalyticsItemActivityStatID("driveIdValue", "itemActivityStatIdValue").ID()
-	expected := "/me/drives/driveIdValue/root/analytics/itemActivityStats/itemActivityStatIdValue"
+	actual := NewMeDriveIdRootAnalyticsItemActivityStatID("driveId", "itemActivityStatId").ID()
+	expected := "/me/drives/driveId/root/analytics/itemActivityStats/itemActivityStatId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -54,35 +54,35 @@ func TestParseMeDriveIdRootAnalyticsItemActivityStatID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/me/drives/driveIdValue",
+			Input: "/me/drives/driveId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/me/drives/driveIdValue/root",
+			Input: "/me/drives/driveId/root",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/me/drives/driveIdValue/root/analytics",
+			Input: "/me/drives/driveId/root/analytics",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/me/drives/driveIdValue/root/analytics/itemActivityStats",
+			Input: "/me/drives/driveId/root/analytics/itemActivityStats",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/me/drives/driveIdValue/root/analytics/itemActivityStats/itemActivityStatIdValue",
+			Input: "/me/drives/driveId/root/analytics/itemActivityStats/itemActivityStatId",
 			Expected: &MeDriveIdRootAnalyticsItemActivityStatId{
-				DriveId:            "driveIdValue",
-				ItemActivityStatId: "itemActivityStatIdValue",
+				DriveId:            "driveId",
+				ItemActivityStatId: "itemActivityStatId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/drives/driveIdValue/root/analytics/itemActivityStats/itemActivityStatIdValue/extra",
+			Input: "/me/drives/driveId/root/analytics/itemActivityStats/itemActivityStatId/extra",
 			Error: true,
 		},
 	}
@@ -145,68 +145,68 @@ func TestParseMeDriveIdRootAnalyticsItemActivityStatIDInsensitively(t *testing.T
 		},
 		{
 			// Incomplete URI
-			Input: "/me/drives/driveIdValue",
+			Input: "/me/drives/driveId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/dRiVeS/dRiVeIdVaLuE",
+			Input: "/mE/dRiVeS/dRiVeId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/me/drives/driveIdValue/root",
+			Input: "/me/drives/driveId/root",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/dRiVeS/dRiVeIdVaLuE/rOoT",
+			Input: "/mE/dRiVeS/dRiVeId/rOoT",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/me/drives/driveIdValue/root/analytics",
+			Input: "/me/drives/driveId/root/analytics",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/dRiVeS/dRiVeIdVaLuE/rOoT/aNaLyTiCs",
+			Input: "/mE/dRiVeS/dRiVeId/rOoT/aNaLyTiCs",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/me/drives/driveIdValue/root/analytics/itemActivityStats",
+			Input: "/me/drives/driveId/root/analytics/itemActivityStats",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/dRiVeS/dRiVeIdVaLuE/rOoT/aNaLyTiCs/iTeMaCtIvItYsTaTs",
+			Input: "/mE/dRiVeS/dRiVeId/rOoT/aNaLyTiCs/iTeMaCtIvItYsTaTs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/me/drives/driveIdValue/root/analytics/itemActivityStats/itemActivityStatIdValue",
+			Input: "/me/drives/driveId/root/analytics/itemActivityStats/itemActivityStatId",
 			Expected: &MeDriveIdRootAnalyticsItemActivityStatId{
-				DriveId:            "driveIdValue",
-				ItemActivityStatId: "itemActivityStatIdValue",
+				DriveId:            "driveId",
+				ItemActivityStatId: "itemActivityStatId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/drives/driveIdValue/root/analytics/itemActivityStats/itemActivityStatIdValue/extra",
+			Input: "/me/drives/driveId/root/analytics/itemActivityStats/itemActivityStatId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/dRiVeS/dRiVeIdVaLuE/rOoT/aNaLyTiCs/iTeMaCtIvItYsTaTs/iTeMaCtIvItYsTaTiDvAlUe",
+			Input: "/mE/dRiVeS/dRiVeId/rOoT/aNaLyTiCs/iTeMaCtIvItYsTaTs/iTeMaCtIvItYsTaTiD",
 			Expected: &MeDriveIdRootAnalyticsItemActivityStatId{
-				DriveId:            "dRiVeIdVaLuE",
-				ItemActivityStatId: "iTeMaCtIvItYsTaTiDvAlUe",
+				DriveId:            "dRiVeId",
+				ItemActivityStatId: "iTeMaCtIvItYsTaTiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/mE/dRiVeS/dRiVeIdVaLuE/rOoT/aNaLyTiCs/iTeMaCtIvItYsTaTs/iTeMaCtIvItYsTaTiDvAlUe/extra",
+			Input: "/mE/dRiVeS/dRiVeId/rOoT/aNaLyTiCs/iTeMaCtIvItYsTaTs/iTeMaCtIvItYsTaTiD/extra",
 			Error: true,
 		},
 	}

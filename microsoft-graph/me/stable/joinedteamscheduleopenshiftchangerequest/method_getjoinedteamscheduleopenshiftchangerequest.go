@@ -19,8 +19,9 @@ type GetJoinedTeamScheduleOpenShiftChangeRequestOperationResponse struct {
 }
 
 type GetJoinedTeamScheduleOpenShiftChangeRequestOperationOptions struct {
-	Expand *odata.Expand
-	Select *[]string
+	Expand   *odata.Expand
+	Metadata *odata.Metadata
+	Select   *[]string
 }
 
 func DefaultGetJoinedTeamScheduleOpenShiftChangeRequestOperationOptions() GetJoinedTeamScheduleOpenShiftChangeRequestOperationOptions {
@@ -37,6 +38,9 @@ func (o GetJoinedTeamScheduleOpenShiftChangeRequestOperationOptions) ToOData() *
 	out := odata.Query{}
 	if o.Expand != nil {
 		out.Expand = *o.Expand
+	}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
 	}
 	if o.Select != nil {
 		out.Select = *o.Select

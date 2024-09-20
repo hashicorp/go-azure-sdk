@@ -310,16 +310,75 @@ func (s MacOSDeviceFeaturesConfiguration) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &MacOSDeviceFeaturesConfiguration{}
 
 func (s *MacOSDeviceFeaturesConfiguration) UnmarshalJSON(bytes []byte) error {
-	type alias MacOSDeviceFeaturesConfiguration
-	var decoded alias
+
+	var decoded struct {
+		AdminShowHostInfo                           *bool                                        `json:"adminShowHostInfo,omitempty"`
+		AppAssociatedDomains                        *[]MacOSAssociatedDomainsItem                `json:"appAssociatedDomains,omitempty"`
+		AssociatedDomains                           *[]KeyValuePair                              `json:"associatedDomains,omitempty"`
+		AuthorizedUsersListHidden                   *bool                                        `json:"authorizedUsersListHidden,omitempty"`
+		AuthorizedUsersListHideAdminUsers           *bool                                        `json:"authorizedUsersListHideAdminUsers,omitempty"`
+		AuthorizedUsersListHideLocalUsers           *bool                                        `json:"authorizedUsersListHideLocalUsers,omitempty"`
+		AuthorizedUsersListHideMobileAccounts       *bool                                        `json:"authorizedUsersListHideMobileAccounts,omitempty"`
+		AuthorizedUsersListIncludeNetworkUsers      *bool                                        `json:"authorizedUsersListIncludeNetworkUsers,omitempty"`
+		AuthorizedUsersListShowOtherManagedUsers    *bool                                        `json:"authorizedUsersListShowOtherManagedUsers,omitempty"`
+		AutoLaunchItems                             *[]MacOSLaunchItem                           `json:"autoLaunchItems,omitempty"`
+		ConsoleAccessDisabled                       *bool                                        `json:"consoleAccessDisabled,omitempty"`
+		ContentCachingBlockDeletion                 *bool                                        `json:"contentCachingBlockDeletion,omitempty"`
+		ContentCachingClientListenRanges            *[]IPRange                                   `json:"contentCachingClientListenRanges,omitempty"`
+		ContentCachingClientPolicy                  *MacOSContentCachingClientPolicy             `json:"contentCachingClientPolicy,omitempty"`
+		ContentCachingDataPath                      nullable.Type[string]                        `json:"contentCachingDataPath,omitempty"`
+		ContentCachingDisableConnectionSharing      *bool                                        `json:"contentCachingDisableConnectionSharing,omitempty"`
+		ContentCachingEnabled                       *bool                                        `json:"contentCachingEnabled,omitempty"`
+		ContentCachingForceConnectionSharing        *bool                                        `json:"contentCachingForceConnectionSharing,omitempty"`
+		ContentCachingKeepAwake                     *bool                                        `json:"contentCachingKeepAwake,omitempty"`
+		ContentCachingLogClientIdentities           *bool                                        `json:"contentCachingLogClientIdentities,omitempty"`
+		ContentCachingMaxSizeBytes                  nullable.Type[int64]                         `json:"contentCachingMaxSizeBytes,omitempty"`
+		ContentCachingParentSelectionPolicy         *MacOSContentCachingParentSelectionPolicy    `json:"contentCachingParentSelectionPolicy,omitempty"`
+		ContentCachingParents                       *[]string                                    `json:"contentCachingParents,omitempty"`
+		ContentCachingPeerFilterRanges              *[]IPRange                                   `json:"contentCachingPeerFilterRanges,omitempty"`
+		ContentCachingPeerListenRanges              *[]IPRange                                   `json:"contentCachingPeerListenRanges,omitempty"`
+		ContentCachingPeerPolicy                    *MacOSContentCachingPeerPolicy               `json:"contentCachingPeerPolicy,omitempty"`
+		ContentCachingPort                          nullable.Type[int64]                         `json:"contentCachingPort,omitempty"`
+		ContentCachingPublicRanges                  *[]IPRange                                   `json:"contentCachingPublicRanges,omitempty"`
+		ContentCachingShowAlerts                    *bool                                        `json:"contentCachingShowAlerts,omitempty"`
+		ContentCachingType                          *MacOSContentCachingType                     `json:"contentCachingType,omitempty"`
+		LogOutDisabledWhileLoggedIn                 *bool                                        `json:"logOutDisabledWhileLoggedIn,omitempty"`
+		LoginWindowText                             nullable.Type[string]                        `json:"loginWindowText,omitempty"`
+		PowerOffDisabledWhileLoggedIn               *bool                                        `json:"powerOffDisabledWhileLoggedIn,omitempty"`
+		RestartDisabled                             *bool                                        `json:"restartDisabled,omitempty"`
+		RestartDisabledWhileLoggedIn                *bool                                        `json:"restartDisabledWhileLoggedIn,omitempty"`
+		ScreenLockDisableImmediate                  *bool                                        `json:"screenLockDisableImmediate,omitempty"`
+		ShutDownDisabled                            *bool                                        `json:"shutDownDisabled,omitempty"`
+		ShutDownDisabledWhileLoggedIn               *bool                                        `json:"shutDownDisabledWhileLoggedIn,omitempty"`
+		SleepDisabled                               *bool                                        `json:"sleepDisabled,omitempty"`
+		AirPrintDestinations                        *[]AirPrintDestination                       `json:"airPrintDestinations,omitempty"`
+		Assignments                                 *[]DeviceConfigurationAssignment             `json:"assignments,omitempty"`
+		CreatedDateTime                             *string                                      `json:"createdDateTime,omitempty"`
+		Description                                 nullable.Type[string]                        `json:"description,omitempty"`
+		DeviceManagementApplicabilityRuleDeviceMode *DeviceManagementApplicabilityRuleDeviceMode `json:"deviceManagementApplicabilityRuleDeviceMode,omitempty"`
+		DeviceManagementApplicabilityRuleOsEdition  *DeviceManagementApplicabilityRuleOsEdition  `json:"deviceManagementApplicabilityRuleOsEdition,omitempty"`
+		DeviceManagementApplicabilityRuleOsVersion  *DeviceManagementApplicabilityRuleOsVersion  `json:"deviceManagementApplicabilityRuleOsVersion,omitempty"`
+		DeviceSettingStateSummaries                 *[]SettingStateDeviceSummary                 `json:"deviceSettingStateSummaries,omitempty"`
+		DeviceStatusOverview                        *DeviceConfigurationDeviceOverview           `json:"deviceStatusOverview,omitempty"`
+		DeviceStatuses                              *[]DeviceConfigurationDeviceStatus           `json:"deviceStatuses,omitempty"`
+		DisplayName                                 *string                                      `json:"displayName,omitempty"`
+		GroupAssignments                            *[]DeviceConfigurationGroupAssignment        `json:"groupAssignments,omitempty"`
+		LastModifiedDateTime                        *string                                      `json:"lastModifiedDateTime,omitempty"`
+		RoleScopeTagIds                             *[]string                                    `json:"roleScopeTagIds,omitempty"`
+		SupportsScopeTags                           *bool                                        `json:"supportsScopeTags,omitempty"`
+		UserStatusOverview                          *DeviceConfigurationUserOverview             `json:"userStatusOverview,omitempty"`
+		UserStatuses                                *[]DeviceConfigurationUserStatus             `json:"userStatuses,omitempty"`
+		Version                                     *int64                                       `json:"version,omitempty"`
+		Id                                          *string                                      `json:"id,omitempty"`
+		ODataId                                     *string                                      `json:"@odata.id,omitempty"`
+		ODataType                                   *string                                      `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into MacOSDeviceFeaturesConfiguration: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.AdminShowHostInfo = decoded.AdminShowHostInfo
-	s.AirPrintDestinations = decoded.AirPrintDestinations
 	s.AppAssociatedDomains = decoded.AppAssociatedDomains
-	s.Assignments = decoded.Assignments
 	s.AssociatedDomains = decoded.AssociatedDomains
 	s.AuthorizedUsersListHidden = decoded.AuthorizedUsersListHidden
 	s.AuthorizedUsersListHideAdminUsers = decoded.AuthorizedUsersListHideAdminUsers
@@ -344,6 +403,17 @@ func (s *MacOSDeviceFeaturesConfiguration) UnmarshalJSON(bytes []byte) error {
 	s.ContentCachingPort = decoded.ContentCachingPort
 	s.ContentCachingShowAlerts = decoded.ContentCachingShowAlerts
 	s.ContentCachingType = decoded.ContentCachingType
+	s.LogOutDisabledWhileLoggedIn = decoded.LogOutDisabledWhileLoggedIn
+	s.LoginWindowText = decoded.LoginWindowText
+	s.PowerOffDisabledWhileLoggedIn = decoded.PowerOffDisabledWhileLoggedIn
+	s.RestartDisabled = decoded.RestartDisabled
+	s.RestartDisabledWhileLoggedIn = decoded.RestartDisabledWhileLoggedIn
+	s.ScreenLockDisableImmediate = decoded.ScreenLockDisableImmediate
+	s.ShutDownDisabled = decoded.ShutDownDisabled
+	s.ShutDownDisabledWhileLoggedIn = decoded.ShutDownDisabledWhileLoggedIn
+	s.SleepDisabled = decoded.SleepDisabled
+	s.AirPrintDestinations = decoded.AirPrintDestinations
+	s.Assignments = decoded.Assignments
 	s.CreatedDateTime = decoded.CreatedDateTime
 	s.Description = decoded.Description
 	s.DeviceManagementApplicabilityRuleDeviceMode = decoded.DeviceManagementApplicabilityRuleDeviceMode
@@ -356,18 +426,9 @@ func (s *MacOSDeviceFeaturesConfiguration) UnmarshalJSON(bytes []byte) error {
 	s.GroupAssignments = decoded.GroupAssignments
 	s.Id = decoded.Id
 	s.LastModifiedDateTime = decoded.LastModifiedDateTime
-	s.LogOutDisabledWhileLoggedIn = decoded.LogOutDisabledWhileLoggedIn
-	s.LoginWindowText = decoded.LoginWindowText
 	s.ODataId = decoded.ODataId
 	s.ODataType = decoded.ODataType
-	s.PowerOffDisabledWhileLoggedIn = decoded.PowerOffDisabledWhileLoggedIn
-	s.RestartDisabled = decoded.RestartDisabled
-	s.RestartDisabledWhileLoggedIn = decoded.RestartDisabledWhileLoggedIn
 	s.RoleScopeTagIds = decoded.RoleScopeTagIds
-	s.ScreenLockDisableImmediate = decoded.ScreenLockDisableImmediate
-	s.ShutDownDisabled = decoded.ShutDownDisabled
-	s.ShutDownDisabledWhileLoggedIn = decoded.ShutDownDisabledWhileLoggedIn
-	s.SleepDisabled = decoded.SleepDisabled
 	s.SupportsScopeTags = decoded.SupportsScopeTags
 	s.UserStatusOverview = decoded.UserStatusOverview
 	s.UserStatuses = decoded.UserStatuses
@@ -469,5 +530,6 @@ func (s *MacOSDeviceFeaturesConfiguration) UnmarshalJSON(bytes []byte) error {
 		}
 		s.SingleSignOnExtensionPkinitCertificate = &impl
 	}
+
 	return nil
 }

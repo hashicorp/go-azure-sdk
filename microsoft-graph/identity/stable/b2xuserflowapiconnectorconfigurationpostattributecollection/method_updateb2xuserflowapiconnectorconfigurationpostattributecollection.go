@@ -18,16 +18,45 @@ type UpdateB2xUserFlowApiConnectorConfigurationPostAttributeCollectionOperationR
 	OData        *odata.OData
 }
 
+type UpdateB2xUserFlowApiConnectorConfigurationPostAttributeCollectionOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateB2xUserFlowApiConnectorConfigurationPostAttributeCollectionOperationOptions() UpdateB2xUserFlowApiConnectorConfigurationPostAttributeCollectionOperationOptions {
+	return UpdateB2xUserFlowApiConnectorConfigurationPostAttributeCollectionOperationOptions{}
+}
+
+func (o UpdateB2xUserFlowApiConnectorConfigurationPostAttributeCollectionOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateB2xUserFlowApiConnectorConfigurationPostAttributeCollectionOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateB2xUserFlowApiConnectorConfigurationPostAttributeCollectionOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateB2xUserFlowApiConnectorConfigurationPostAttributeCollection - Update the navigation property
 // postAttributeCollection in identity
-func (c B2xUserFlowApiConnectorConfigurationPostAttributeCollectionClient) UpdateB2xUserFlowApiConnectorConfigurationPostAttributeCollection(ctx context.Context, id stable.IdentityB2xUserFlowId, input stable.IdentityApiConnector) (result UpdateB2xUserFlowApiConnectorConfigurationPostAttributeCollectionOperationResponse, err error) {
+func (c B2xUserFlowApiConnectorConfigurationPostAttributeCollectionClient) UpdateB2xUserFlowApiConnectorConfigurationPostAttributeCollection(ctx context.Context, id stable.IdentityB2xUserFlowId, input stable.IdentityApiConnector, options UpdateB2xUserFlowApiConnectorConfigurationPostAttributeCollectionOperationOptions) (result UpdateB2xUserFlowApiConnectorConfigurationPostAttributeCollectionOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       fmt.Sprintf("%s/apiConnectorConfiguration/postAttributeCollection", id.ID()),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/apiConnectorConfiguration/postAttributeCollection", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

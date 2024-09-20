@@ -93,7 +93,7 @@ func (id DeviceManagementTelecomExpenseManagementPartnerId) Segments() []resourc
 	return []resourceids.Segment{
 		resourceids.StaticSegment("deviceManagement", "deviceManagement", "deviceManagement"),
 		resourceids.StaticSegment("telecomExpenseManagementPartners", "telecomExpenseManagementPartners", "telecomExpenseManagementPartners"),
-		resourceids.UserSpecifiedSegment("telecomExpenseManagementPartnerId", "telecomExpenseManagementPartnerIdValue"),
+		resourceids.UserSpecifiedSegment("telecomExpenseManagementPartnerId", "telecomExpenseManagementPartnerId"),
 	}
 }
 

@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/reusablepolicysettingreferencingconfigurationpolicy` Documentation
 
-The `reusablepolicysettingreferencingconfigurationpolicy` SDK allows for interaction with the Azure Resource Manager Service `devicemanagement` (API Version `beta`).
+The `reusablepolicysettingreferencingconfigurationpolicy` SDK allows for interaction with Microsoft Graph `devicemanagement` (API Version `beta`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -15,7 +15,7 @@ import "github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/
 ### Client Initialization
 
 ```go
-client := reusablepolicysettingreferencingconfigurationpolicy.NewReusablePolicySettingReferencingConfigurationPolicyClientWithBaseURI("https://management.azure.com")
+client := reusablepolicysettingreferencingconfigurationpolicy.NewReusablePolicySettingReferencingConfigurationPolicyClientWithBaseURI("https://graph.microsoft.com")
 client.Client.Authorizer = authorizer
 ```
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := reusablepolicysettingreferencingconfigurationpolicy.NewDeviceManagementReusablePolicySettingIdReferencingConfigurationPolicyID("deviceManagementReusablePolicySettingIdValue", "deviceManagementConfigurationPolicyIdValue")
+id := reusablepolicysettingreferencingconfigurationpolicy.NewDeviceManagementReusablePolicySettingIdReferencingConfigurationPolicyID("deviceManagementReusablePolicySettingId", "deviceManagementConfigurationPolicyId")
 
 payload := reusablepolicysettingreferencingconfigurationpolicy.AssignReusablePolicySettingReferencingConfigurationPoliciesRequest{
 	// ...
@@ -46,9 +46,9 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := reusablepolicysettingreferencingconfigurationpolicy.NewDeviceManagementReusablePolicySettingIdReferencingConfigurationPolicyID("deviceManagementReusablePolicySettingIdValue", "deviceManagementConfigurationPolicyIdValue")
+id := reusablepolicysettingreferencingconfigurationpolicy.NewDeviceManagementReusablePolicySettingIdReferencingConfigurationPolicyID("deviceManagementReusablePolicySettingId", "deviceManagementConfigurationPolicyId")
 
-read, err := client.ClearReusablePolicySettingReferencingConfigurationPolicyEnrollmentTimeDeviceMembershipTarget(ctx, id)
+read, err := client.ClearReusablePolicySettingReferencingConfigurationPolicyEnrollmentTimeDeviceMembershipTarget(ctx, id, reusablepolicysettingreferencingconfigurationpolicy.DefaultClearReusablePolicySettingReferencingConfigurationPolicyEnrollmentTimeDeviceMembershipTargetOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -62,14 +62,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := reusablepolicysettingreferencingconfigurationpolicy.NewDeviceManagementReusablePolicySettingID("deviceManagementReusablePolicySettingIdValue")
+id := reusablepolicysettingreferencingconfigurationpolicy.NewDeviceManagementReusablePolicySettingID("deviceManagementReusablePolicySettingId")
 
 payload := reusablepolicysettingreferencingconfigurationpolicy.DeviceManagementConfigurationPolicy{
 	// ...
 }
 
 
-read, err := client.CreateReusablePolicySettingReferencingConfigurationPolicy(ctx, id, payload)
+read, err := client.CreateReusablePolicySettingReferencingConfigurationPolicy(ctx, id, payload, reusablepolicysettingreferencingconfigurationpolicy.DefaultCreateReusablePolicySettingReferencingConfigurationPolicyOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -83,14 +83,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := reusablepolicysettingreferencingconfigurationpolicy.NewDeviceManagementReusablePolicySettingIdReferencingConfigurationPolicyID("deviceManagementReusablePolicySettingIdValue", "deviceManagementConfigurationPolicyIdValue")
+id := reusablepolicysettingreferencingconfigurationpolicy.NewDeviceManagementReusablePolicySettingIdReferencingConfigurationPolicyID("deviceManagementReusablePolicySettingId", "deviceManagementConfigurationPolicyId")
 
 payload := reusablepolicysettingreferencingconfigurationpolicy.CreateReusablePolicySettingReferencingConfigurationPolicyCopyRequest{
 	// ...
 }
 
 
-read, err := client.CreateReusablePolicySettingReferencingConfigurationPolicyCopy(ctx, id, payload)
+read, err := client.CreateReusablePolicySettingReferencingConfigurationPolicyCopy(ctx, id, payload, reusablepolicysettingreferencingconfigurationpolicy.DefaultCreateReusablePolicySettingReferencingConfigurationPolicyCopyOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -104,14 +104,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := reusablepolicysettingreferencingconfigurationpolicy.NewDeviceManagementReusablePolicySettingIdReferencingConfigurationPolicyID("deviceManagementReusablePolicySettingIdValue", "deviceManagementConfigurationPolicyIdValue")
+id := reusablepolicysettingreferencingconfigurationpolicy.NewDeviceManagementReusablePolicySettingIdReferencingConfigurationPolicyID("deviceManagementReusablePolicySettingId", "deviceManagementConfigurationPolicyId")
 
 payload := reusablepolicysettingreferencingconfigurationpolicy.CreateReusablePolicySettingReferencingConfigurationPolicyReorderRequest{
 	// ...
 }
 
 
-read, err := client.CreateReusablePolicySettingReferencingConfigurationPolicyReorder(ctx, id, payload)
+read, err := client.CreateReusablePolicySettingReferencingConfigurationPolicyReorder(ctx, id, payload, reusablepolicysettingreferencingconfigurationpolicy.DefaultCreateReusablePolicySettingReferencingConfigurationPolicyReorderOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -125,9 +125,9 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := reusablepolicysettingreferencingconfigurationpolicy.NewDeviceManagementReusablePolicySettingIdReferencingConfigurationPolicyID("deviceManagementReusablePolicySettingIdValue", "deviceManagementConfigurationPolicyIdValue")
+id := reusablepolicysettingreferencingconfigurationpolicy.NewDeviceManagementReusablePolicySettingIdReferencingConfigurationPolicyID("deviceManagementReusablePolicySettingId", "deviceManagementConfigurationPolicyId")
 
-read, err := client.CreateReusablePolicySettingReferencingConfigurationPolicyRetrieveEnrollmentTimeDeviceMembershipTarget(ctx, id)
+read, err := client.CreateReusablePolicySettingReferencingConfigurationPolicyRetrieveEnrollmentTimeDeviceMembershipTarget(ctx, id, reusablepolicysettingreferencingconfigurationpolicy.DefaultCreateReusablePolicySettingReferencingConfigurationPolicyRetrieveEnrollmentTimeDeviceMembershipTargetOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -141,7 +141,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := reusablepolicysettingreferencingconfigurationpolicy.NewDeviceManagementReusablePolicySettingIdReferencingConfigurationPolicyID("deviceManagementReusablePolicySettingIdValue", "deviceManagementConfigurationPolicyIdValue")
+id := reusablepolicysettingreferencingconfigurationpolicy.NewDeviceManagementReusablePolicySettingIdReferencingConfigurationPolicyID("deviceManagementReusablePolicySettingId", "deviceManagementConfigurationPolicyId")
 
 read, err := client.DeleteReusablePolicySettingReferencingConfigurationPolicy(ctx, id, reusablepolicysettingreferencingconfigurationpolicy.DefaultDeleteReusablePolicySettingReferencingConfigurationPolicyOperationOptions())
 if err != nil {
@@ -157,7 +157,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := reusablepolicysettingreferencingconfigurationpolicy.NewDeviceManagementReusablePolicySettingID("deviceManagementReusablePolicySettingIdValue")
+id := reusablepolicysettingreferencingconfigurationpolicy.NewDeviceManagementReusablePolicySettingID("deviceManagementReusablePolicySettingId")
 
 read, err := client.GetReusablePolicySettingReferencingConfigurationPoliciesCount(ctx, id, reusablepolicysettingreferencingconfigurationpolicy.DefaultGetReusablePolicySettingReferencingConfigurationPoliciesCountOperationOptions())
 if err != nil {
@@ -173,7 +173,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := reusablepolicysettingreferencingconfigurationpolicy.NewDeviceManagementReusablePolicySettingIdReferencingConfigurationPolicyID("deviceManagementReusablePolicySettingIdValue", "deviceManagementConfigurationPolicyIdValue")
+id := reusablepolicysettingreferencingconfigurationpolicy.NewDeviceManagementReusablePolicySettingIdReferencingConfigurationPolicyID("deviceManagementReusablePolicySettingId", "deviceManagementConfigurationPolicyId")
 
 read, err := client.GetReusablePolicySettingReferencingConfigurationPolicy(ctx, id, reusablepolicysettingreferencingconfigurationpolicy.DefaultGetReusablePolicySettingReferencingConfigurationPolicyOperationOptions())
 if err != nil {
@@ -189,7 +189,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := reusablepolicysettingreferencingconfigurationpolicy.NewDeviceManagementReusablePolicySettingID("deviceManagementReusablePolicySettingIdValue")
+id := reusablepolicysettingreferencingconfigurationpolicy.NewDeviceManagementReusablePolicySettingID("deviceManagementReusablePolicySettingId")
 
 // alternatively `client.ListReusablePolicySettingReferencingConfigurationPolicies(ctx, id, reusablepolicysettingreferencingconfigurationpolicy.DefaultListReusablePolicySettingReferencingConfigurationPoliciesOperationOptions())` can be used to do batched pagination
 items, err := client.ListReusablePolicySettingReferencingConfigurationPoliciesComplete(ctx, id, reusablepolicysettingreferencingconfigurationpolicy.DefaultListReusablePolicySettingReferencingConfigurationPoliciesOperationOptions())
@@ -206,14 +206,14 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := reusablepolicysettingreferencingconfigurationpolicy.NewDeviceManagementReusablePolicySettingIdReferencingConfigurationPolicyID("deviceManagementReusablePolicySettingIdValue", "deviceManagementConfigurationPolicyIdValue")
+id := reusablepolicysettingreferencingconfigurationpolicy.NewDeviceManagementReusablePolicySettingIdReferencingConfigurationPolicyID("deviceManagementReusablePolicySettingId", "deviceManagementConfigurationPolicyId")
 
 payload := reusablepolicysettingreferencingconfigurationpolicy.SetReusablePolicySettingReferencingConfigurationPolicyEnrollmentTimeDeviceMembershipTargetRequest{
 	// ...
 }
 
 
-read, err := client.SetReusablePolicySettingReferencingConfigurationPolicyEnrollmentTimeDeviceMembershipTarget(ctx, id, payload)
+read, err := client.SetReusablePolicySettingReferencingConfigurationPolicyEnrollmentTimeDeviceMembershipTarget(ctx, id, payload, reusablepolicysettingreferencingconfigurationpolicy.DefaultSetReusablePolicySettingReferencingConfigurationPolicyEnrollmentTimeDeviceMembershipTargetOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -227,14 +227,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := reusablepolicysettingreferencingconfigurationpolicy.NewDeviceManagementReusablePolicySettingIdReferencingConfigurationPolicyID("deviceManagementReusablePolicySettingIdValue", "deviceManagementConfigurationPolicyIdValue")
+id := reusablepolicysettingreferencingconfigurationpolicy.NewDeviceManagementReusablePolicySettingIdReferencingConfigurationPolicyID("deviceManagementReusablePolicySettingId", "deviceManagementConfigurationPolicyId")
 
 payload := reusablepolicysettingreferencingconfigurationpolicy.DeviceManagementConfigurationPolicy{
 	// ...
 }
 
 
-read, err := client.UpdateReusablePolicySettingReferencingConfigurationPolicy(ctx, id, payload)
+read, err := client.UpdateReusablePolicySettingReferencingConfigurationPolicy(ctx, id, payload, reusablepolicysettingreferencingconfigurationpolicy.DefaultUpdateReusablePolicySettingReferencingConfigurationPolicyOperationOptions())
 if err != nil {
 	// handle the error
 }

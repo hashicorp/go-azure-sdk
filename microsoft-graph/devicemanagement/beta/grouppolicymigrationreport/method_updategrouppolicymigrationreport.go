@@ -17,15 +17,44 @@ type UpdateGroupPolicyMigrationReportOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateGroupPolicyMigrationReportOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateGroupPolicyMigrationReportOperationOptions() UpdateGroupPolicyMigrationReportOperationOptions {
+	return UpdateGroupPolicyMigrationReportOperationOptions{}
+}
+
+func (o UpdateGroupPolicyMigrationReportOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateGroupPolicyMigrationReportOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateGroupPolicyMigrationReportOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateGroupPolicyMigrationReport - Update the navigation property groupPolicyMigrationReports in deviceManagement
-func (c GroupPolicyMigrationReportClient) UpdateGroupPolicyMigrationReport(ctx context.Context, id beta.DeviceManagementGroupPolicyMigrationReportId, input beta.GroupPolicyMigrationReport) (result UpdateGroupPolicyMigrationReportOperationResponse, err error) {
+func (c GroupPolicyMigrationReportClient) UpdateGroupPolicyMigrationReport(ctx context.Context, id beta.DeviceManagementGroupPolicyMigrationReportId, input beta.GroupPolicyMigrationReport, options UpdateGroupPolicyMigrationReportOperationOptions) (result UpdateGroupPolicyMigrationReportOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

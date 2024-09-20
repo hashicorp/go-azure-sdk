@@ -16,15 +16,44 @@ type MoveComanagedDevicesToOUOperationResponse struct {
 	OData        *odata.OData
 }
 
+type MoveComanagedDevicesToOUOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultMoveComanagedDevicesToOUOperationOptions() MoveComanagedDevicesToOUOperationOptions {
+	return MoveComanagedDevicesToOUOperationOptions{}
+}
+
+func (o MoveComanagedDevicesToOUOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o MoveComanagedDevicesToOUOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o MoveComanagedDevicesToOUOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // MoveComanagedDevicesToOU - Invoke action moveDevicesToOU
-func (c ComanagedDeviceClient) MoveComanagedDevicesToOU(ctx context.Context, input MoveComanagedDevicesToOURequest) (result MoveComanagedDevicesToOUOperationResponse, err error) {
+func (c ComanagedDeviceClient) MoveComanagedDevicesToOU(ctx context.Context, input MoveComanagedDevicesToOURequest, options MoveComanagedDevicesToOUOperationOptions) (result MoveComanagedDevicesToOUOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/deviceManagement/comanagedDevices/moveDevicesToOU",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/deviceManagement/comanagedDevices/moveDevicesToOU",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

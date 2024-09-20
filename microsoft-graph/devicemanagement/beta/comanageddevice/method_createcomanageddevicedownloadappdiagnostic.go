@@ -17,15 +17,44 @@ type CreateComanagedDeviceDownloadAppDiagnosticOperationResponse struct {
 	Model        *[]byte
 }
 
+type CreateComanagedDeviceDownloadAppDiagnosticOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateComanagedDeviceDownloadAppDiagnosticOperationOptions() CreateComanagedDeviceDownloadAppDiagnosticOperationOptions {
+	return CreateComanagedDeviceDownloadAppDiagnosticOperationOptions{}
+}
+
+func (o CreateComanagedDeviceDownloadAppDiagnosticOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateComanagedDeviceDownloadAppDiagnosticOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateComanagedDeviceDownloadAppDiagnosticOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateComanagedDeviceDownloadAppDiagnostic - Invoke action downloadAppDiagnostics
-func (c ComanagedDeviceClient) CreateComanagedDeviceDownloadAppDiagnostic(ctx context.Context, input CreateComanagedDeviceDownloadAppDiagnosticRequest) (result CreateComanagedDeviceDownloadAppDiagnosticOperationResponse, err error) {
+func (c ComanagedDeviceClient) CreateComanagedDeviceDownloadAppDiagnostic(ctx context.Context, input CreateComanagedDeviceDownloadAppDiagnosticRequest, options CreateComanagedDeviceDownloadAppDiagnosticOperationOptions) (result CreateComanagedDeviceDownloadAppDiagnosticOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/octet-stream",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/deviceManagement/comanagedDevices/downloadAppDiagnostics",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/deviceManagement/comanagedDevices/downloadAppDiagnostics",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -83,21 +83,31 @@ func (s EdiscoveryTag) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &EdiscoveryTag{}
 
 func (s *EdiscoveryTag) UnmarshalJSON(bytes []byte) error {
-	type alias EdiscoveryTag
-	var decoded alias
+
+	var decoded struct {
+		ChildSelectability   *EdiscoveryChildSelectability `json:"childSelectability,omitempty"`
+		ChildTags            *[]EdiscoveryTag              `json:"childTags,omitempty"`
+		Description          nullable.Type[string]         `json:"description,omitempty"`
+		DisplayName          nullable.Type[string]         `json:"displayName,omitempty"`
+		LastModifiedDateTime nullable.Type[string]         `json:"lastModifiedDateTime,omitempty"`
+		Parent               *EdiscoveryTag                `json:"parent,omitempty"`
+		Id                   *string                       `json:"id,omitempty"`
+		ODataId              *string                       `json:"@odata.id,omitempty"`
+		ODataType            *string                       `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into EdiscoveryTag: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.ChildSelectability = decoded.ChildSelectability
 	s.ChildTags = decoded.ChildTags
 	s.Description = decoded.Description
 	s.DisplayName = decoded.DisplayName
-	s.Id = decoded.Id
 	s.LastModifiedDateTime = decoded.LastModifiedDateTime
+	s.Parent = decoded.Parent
+	s.Id = decoded.Id
 	s.ODataId = decoded.ODataId
 	s.ODataType = decoded.ODataType
-	s.Parent = decoded.Parent
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -111,5 +121,6 @@ func (s *EdiscoveryTag) UnmarshalJSON(bytes []byte) error {
 		}
 		s.CreatedBy = impl
 	}
+
 	return nil
 }

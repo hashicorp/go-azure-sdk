@@ -19,7 +19,8 @@ type DeleteComanagementEligibleDeviceOperationResponse struct {
 }
 
 type DeleteComanagementEligibleDeviceOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteComanagementEligibleDeviceOperationOptions() DeleteComanagementEligibleDeviceOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteComanagementEligibleDeviceOperationOptions) ToHeaders() *client.He
 
 func (o DeleteComanagementEligibleDeviceOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

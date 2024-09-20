@@ -92,10 +92,25 @@ func (s BrowserSite) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &BrowserSite{}
 
 func (s *BrowserSite) UnmarshalJSON(bytes []byte) error {
-	type alias BrowserSite
-	var decoded alias
+
+	var decoded struct {
+		AllowRedirect        *bool                         `json:"allowRedirect,omitempty"`
+		Comment              *string                       `json:"comment,omitempty"`
+		CompatibilityMode    *BrowserSiteCompatibilityMode `json:"compatibilityMode,omitempty"`
+		CreatedDateTime      *string                       `json:"createdDateTime,omitempty"`
+		DeletedDateTime      nullable.Type[string]         `json:"deletedDateTime,omitempty"`
+		History              *[]BrowserSiteHistory         `json:"history,omitempty"`
+		LastModifiedDateTime *string                       `json:"lastModifiedDateTime,omitempty"`
+		MergeType            *BrowserSiteMergeType         `json:"mergeType,omitempty"`
+		Status               *BrowserSiteStatus            `json:"status,omitempty"`
+		TargetEnvironment    *BrowserSiteTargetEnvironment `json:"targetEnvironment,omitempty"`
+		WebUrl               *string                       `json:"webUrl,omitempty"`
+		Id                   *string                       `json:"id,omitempty"`
+		ODataId              *string                       `json:"@odata.id,omitempty"`
+		ODataType            *string                       `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into BrowserSite: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.AllowRedirect = decoded.AllowRedirect
@@ -104,14 +119,14 @@ func (s *BrowserSite) UnmarshalJSON(bytes []byte) error {
 	s.CreatedDateTime = decoded.CreatedDateTime
 	s.DeletedDateTime = decoded.DeletedDateTime
 	s.History = decoded.History
-	s.Id = decoded.Id
 	s.LastModifiedDateTime = decoded.LastModifiedDateTime
 	s.MergeType = decoded.MergeType
-	s.ODataId = decoded.ODataId
-	s.ODataType = decoded.ODataType
 	s.Status = decoded.Status
 	s.TargetEnvironment = decoded.TargetEnvironment
 	s.WebUrl = decoded.WebUrl
+	s.Id = decoded.Id
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -125,5 +140,6 @@ func (s *BrowserSite) UnmarshalJSON(bytes []byte) error {
 		}
 		s.LastModifiedBy = impl
 	}
+
 	return nil
 }

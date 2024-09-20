@@ -18,7 +18,8 @@ type DeleteConditionalAccessAuthenticationStrengthOperationResponse struct {
 }
 
 type DeleteConditionalAccessAuthenticationStrengthOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteConditionalAccessAuthenticationStrengthOperationOptions() DeleteConditionalAccessAuthenticationStrengthOperationOptions {
@@ -35,7 +36,9 @@ func (o DeleteConditionalAccessAuthenticationStrengthOperationOptions) ToHeaders
 
 func (o DeleteConditionalAccessAuthenticationStrengthOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

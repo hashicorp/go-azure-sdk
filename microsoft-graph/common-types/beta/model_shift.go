@@ -118,23 +118,37 @@ func (s Shift) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &Shift{}
 
 func (s *Shift) UnmarshalJSON(bytes []byte) error {
-	type alias Shift
-	var decoded alias
+
+	var decoded struct {
+		IsStagedForDeletion  nullable.Type[bool]   `json:"isStagedForDeletion,omitempty"`
+		SchedulingGroupId    nullable.Type[string] `json:"schedulingGroupId,omitempty"`
+		SchedulingGroupInfo  *SchedulingGroupInfo  `json:"schedulingGroupInfo,omitempty"`
+		TeamInfo             *ShiftsTeamInfo       `json:"teamInfo,omitempty"`
+		UserId               nullable.Type[string] `json:"userId,omitempty"`
+		UserInfo             *ShiftsUserInfo       `json:"userInfo,omitempty"`
+		CreatedBy            IdentitySet           `json:"createdBy"`
+		CreatedDateTime      nullable.Type[string] `json:"createdDateTime,omitempty"`
+		LastModifiedBy       *IdentitySet          `json:"lastModifiedBy,omitempty"`
+		LastModifiedDateTime nullable.Type[string] `json:"lastModifiedDateTime,omitempty"`
+		Id                   *string               `json:"id,omitempty"`
+		ODataId              *string               `json:"@odata.id,omitempty"`
+		ODataType            *string               `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into Shift: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
-	s.CreatedDateTime = decoded.CreatedDateTime
-	s.Id = decoded.Id
 	s.IsStagedForDeletion = decoded.IsStagedForDeletion
-	s.LastModifiedDateTime = decoded.LastModifiedDateTime
-	s.ODataId = decoded.ODataId
-	s.ODataType = decoded.ODataType
 	s.SchedulingGroupId = decoded.SchedulingGroupId
 	s.SchedulingGroupInfo = decoded.SchedulingGroupInfo
 	s.TeamInfo = decoded.TeamInfo
 	s.UserId = decoded.UserId
 	s.UserInfo = decoded.UserInfo
+	s.CreatedDateTime = decoded.CreatedDateTime
+	s.Id = decoded.Id
+	s.LastModifiedDateTime = decoded.LastModifiedDateTime
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -172,5 +186,6 @@ func (s *Shift) UnmarshalJSON(bytes []byte) error {
 		}
 		s.SharedShift = &impl
 	}
+
 	return nil
 }

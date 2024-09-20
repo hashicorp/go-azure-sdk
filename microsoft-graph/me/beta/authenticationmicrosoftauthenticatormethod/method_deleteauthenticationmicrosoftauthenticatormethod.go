@@ -19,7 +19,8 @@ type DeleteAuthenticationMicrosoftAuthenticatorMethodOperationResponse struct {
 }
 
 type DeleteAuthenticationMicrosoftAuthenticatorMethodOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteAuthenticationMicrosoftAuthenticatorMethodOperationOptions() DeleteAuthenticationMicrosoftAuthenticatorMethodOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteAuthenticationMicrosoftAuthenticatorMethodOperationOptions) ToHead
 
 func (o DeleteAuthenticationMicrosoftAuthenticatorMethodOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

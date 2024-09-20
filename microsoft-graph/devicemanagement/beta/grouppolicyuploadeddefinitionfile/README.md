@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/grouppolicyuploadeddefinitionfile` Documentation
 
-The `grouppolicyuploadeddefinitionfile` SDK allows for interaction with the Azure Resource Manager Service `devicemanagement` (API Version `beta`).
+The `grouppolicyuploadeddefinitionfile` SDK allows for interaction with Microsoft Graph `devicemanagement` (API Version `beta`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -15,23 +15,23 @@ import "github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/
 ### Client Initialization
 
 ```go
-client := grouppolicyuploadeddefinitionfile.NewGroupPolicyUploadedDefinitionFileClientWithBaseURI("https://management.azure.com")
+client := grouppolicyuploadeddefinitionfile.NewGroupPolicyUploadedDefinitionFileClientWithBaseURI("https://graph.microsoft.com")
 client.Client.Authorizer = authorizer
 ```
 
 
-### Example Usage: `GroupPolicyUploadedDefinitionFileClient.AddGroupPolicyUploadedDefinitionFileLanguageFile`
+### Example Usage: `GroupPolicyUploadedDefinitionFileClient.AddGroupPolicyUploadedDefinitionFileLanguageFiles`
 
 ```go
 ctx := context.TODO()
-id := grouppolicyuploadeddefinitionfile.NewDeviceManagementGroupPolicyUploadedDefinitionFileID("groupPolicyUploadedDefinitionFileIdValue")
+id := grouppolicyuploadeddefinitionfile.NewDeviceManagementGroupPolicyUploadedDefinitionFileID("groupPolicyUploadedDefinitionFileId")
 
-payload := grouppolicyuploadeddefinitionfile.AddGroupPolicyUploadedDefinitionFileLanguageFileRequest{
+payload := grouppolicyuploadeddefinitionfile.AddGroupPolicyUploadedDefinitionFileLanguageFilesRequest{
 	// ...
 }
 
 
-read, err := client.AddGroupPolicyUploadedDefinitionFileLanguageFile(ctx, id, payload)
+read, err := client.AddGroupPolicyUploadedDefinitionFileLanguageFiles(ctx, id, payload, grouppolicyuploadeddefinitionfile.DefaultAddGroupPolicyUploadedDefinitionFileLanguageFilesOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -51,7 +51,7 @@ payload := grouppolicyuploadeddefinitionfile.GroupPolicyUploadedDefinitionFile{
 }
 
 
-read, err := client.CreateGroupPolicyUploadedDefinitionFile(ctx, payload)
+read, err := client.CreateGroupPolicyUploadedDefinitionFile(ctx, payload, grouppolicyuploadeddefinitionfile.DefaultCreateGroupPolicyUploadedDefinitionFileOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -65,14 +65,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := grouppolicyuploadeddefinitionfile.NewDeviceManagementGroupPolicyUploadedDefinitionFileID("groupPolicyUploadedDefinitionFileIdValue")
+id := grouppolicyuploadeddefinitionfile.NewDeviceManagementGroupPolicyUploadedDefinitionFileID("groupPolicyUploadedDefinitionFileId")
 
 payload := grouppolicyuploadeddefinitionfile.CreateGroupPolicyUploadedDefinitionFileUploadNewVersionRequest{
 	// ...
 }
 
 
-read, err := client.CreateGroupPolicyUploadedDefinitionFileUploadNewVersion(ctx, id, payload)
+read, err := client.CreateGroupPolicyUploadedDefinitionFileUploadNewVersion(ctx, id, payload, grouppolicyuploadeddefinitionfile.DefaultCreateGroupPolicyUploadedDefinitionFileUploadNewVersionOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -86,7 +86,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := grouppolicyuploadeddefinitionfile.NewDeviceManagementGroupPolicyUploadedDefinitionFileID("groupPolicyUploadedDefinitionFileIdValue")
+id := grouppolicyuploadeddefinitionfile.NewDeviceManagementGroupPolicyUploadedDefinitionFileID("groupPolicyUploadedDefinitionFileId")
 
 read, err := client.DeleteGroupPolicyUploadedDefinitionFile(ctx, id, grouppolicyuploadeddefinitionfile.DefaultDeleteGroupPolicyUploadedDefinitionFileOperationOptions())
 if err != nil {
@@ -102,7 +102,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := grouppolicyuploadeddefinitionfile.NewDeviceManagementGroupPolicyUploadedDefinitionFileID("groupPolicyUploadedDefinitionFileIdValue")
+id := grouppolicyuploadeddefinitionfile.NewDeviceManagementGroupPolicyUploadedDefinitionFileID("groupPolicyUploadedDefinitionFileId")
 
 read, err := client.GetGroupPolicyUploadedDefinitionFile(ctx, id, grouppolicyuploadeddefinitionfile.DefaultGetGroupPolicyUploadedDefinitionFileOperationOptions())
 if err != nil {
@@ -151,9 +151,9 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := grouppolicyuploadeddefinitionfile.NewDeviceManagementGroupPolicyUploadedDefinitionFileID("groupPolicyUploadedDefinitionFileIdValue")
+id := grouppolicyuploadeddefinitionfile.NewDeviceManagementGroupPolicyUploadedDefinitionFileID("groupPolicyUploadedDefinitionFileId")
 
-read, err := client.RemoveGroupPolicyUploadedDefinitionFile(ctx, id)
+read, err := client.RemoveGroupPolicyUploadedDefinitionFile(ctx, id, grouppolicyuploadeddefinitionfile.DefaultRemoveGroupPolicyUploadedDefinitionFileOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -163,18 +163,18 @@ if model := read.Model; model != nil {
 ```
 
 
-### Example Usage: `GroupPolicyUploadedDefinitionFileClient.RemoveGroupPolicyUploadedDefinitionFileLanguageFile`
+### Example Usage: `GroupPolicyUploadedDefinitionFileClient.RemoveGroupPolicyUploadedDefinitionFileLanguageFiles`
 
 ```go
 ctx := context.TODO()
-id := grouppolicyuploadeddefinitionfile.NewDeviceManagementGroupPolicyUploadedDefinitionFileID("groupPolicyUploadedDefinitionFileIdValue")
+id := grouppolicyuploadeddefinitionfile.NewDeviceManagementGroupPolicyUploadedDefinitionFileID("groupPolicyUploadedDefinitionFileId")
 
-payload := grouppolicyuploadeddefinitionfile.RemoveGroupPolicyUploadedDefinitionFileLanguageFileRequest{
+payload := grouppolicyuploadeddefinitionfile.RemoveGroupPolicyUploadedDefinitionFileLanguageFilesRequest{
 	// ...
 }
 
 
-read, err := client.RemoveGroupPolicyUploadedDefinitionFileLanguageFile(ctx, id, payload)
+read, err := client.RemoveGroupPolicyUploadedDefinitionFileLanguageFiles(ctx, id, payload, grouppolicyuploadeddefinitionfile.DefaultRemoveGroupPolicyUploadedDefinitionFileLanguageFilesOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -188,14 +188,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := grouppolicyuploadeddefinitionfile.NewDeviceManagementGroupPolicyUploadedDefinitionFileID("groupPolicyUploadedDefinitionFileIdValue")
+id := grouppolicyuploadeddefinitionfile.NewDeviceManagementGroupPolicyUploadedDefinitionFileID("groupPolicyUploadedDefinitionFileId")
 
 payload := grouppolicyuploadeddefinitionfile.GroupPolicyUploadedDefinitionFile{
 	// ...
 }
 
 
-read, err := client.UpdateGroupPolicyUploadedDefinitionFile(ctx, id, payload)
+read, err := client.UpdateGroupPolicyUploadedDefinitionFile(ctx, id, payload, grouppolicyuploadeddefinitionfile.DefaultUpdateGroupPolicyUploadedDefinitionFileOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -205,18 +205,18 @@ if model := read.Model; model != nil {
 ```
 
 
-### Example Usage: `GroupPolicyUploadedDefinitionFileClient.UpdateGroupPolicyUploadedDefinitionFileLanguageFile`
+### Example Usage: `GroupPolicyUploadedDefinitionFileClient.UpdateGroupPolicyUploadedDefinitionFileLanguageFiles`
 
 ```go
 ctx := context.TODO()
-id := grouppolicyuploadeddefinitionfile.NewDeviceManagementGroupPolicyUploadedDefinitionFileID("groupPolicyUploadedDefinitionFileIdValue")
+id := grouppolicyuploadeddefinitionfile.NewDeviceManagementGroupPolicyUploadedDefinitionFileID("groupPolicyUploadedDefinitionFileId")
 
-payload := grouppolicyuploadeddefinitionfile.UpdateGroupPolicyUploadedDefinitionFileLanguageFileRequest{
+payload := grouppolicyuploadeddefinitionfile.UpdateGroupPolicyUploadedDefinitionFileLanguageFilesRequest{
 	// ...
 }
 
 
-read, err := client.UpdateGroupPolicyUploadedDefinitionFileLanguageFile(ctx, id, payload)
+read, err := client.UpdateGroupPolicyUploadedDefinitionFileLanguageFiles(ctx, id, payload, grouppolicyuploadeddefinitionfile.DefaultUpdateGroupPolicyUploadedDefinitionFileLanguageFilesOperationOptions())
 if err != nil {
 	// handle the error
 }

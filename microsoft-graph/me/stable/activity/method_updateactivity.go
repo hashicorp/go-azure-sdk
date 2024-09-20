@@ -17,15 +17,44 @@ type UpdateActivityOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateActivityOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateActivityOperationOptions() UpdateActivityOperationOptions {
+	return UpdateActivityOperationOptions{}
+}
+
+func (o UpdateActivityOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateActivityOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateActivityOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateActivity - Update the navigation property activities in me
-func (c ActivityClient) UpdateActivity(ctx context.Context, id stable.MeActivityId, input stable.UserActivity) (result UpdateActivityOperationResponse, err error) {
+func (c ActivityClient) UpdateActivity(ctx context.Context, id stable.MeActivityId, input stable.UserActivity, options UpdateActivityOperationOptions) (result UpdateActivityOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

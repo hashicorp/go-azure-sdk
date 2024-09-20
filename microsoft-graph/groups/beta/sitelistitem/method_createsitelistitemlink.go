@@ -19,18 +19,47 @@ type CreateSiteListItemLinkOperationResponse struct {
 	Model        *beta.Permission
 }
 
+type CreateSiteListItemLinkOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateSiteListItemLinkOperationOptions() CreateSiteListItemLinkOperationOptions {
+	return CreateSiteListItemLinkOperationOptions{}
+}
+
+func (o CreateSiteListItemLinkOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateSiteListItemLinkOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateSiteListItemLinkOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateSiteListItemLink - Invoke action createLink. Create a sharing link for a listItem. The createLink action
 // creates a new sharing link if the specified link type doesn't already exist for the calling application. If a sharing
 // link of the specified type already exists for the app, this action returns the existing sharing link. listItem
 // resources inherit sharing permissions from the list the item resides in.
-func (c SiteListItemClient) CreateSiteListItemLink(ctx context.Context, id beta.GroupIdSiteIdListIdItemId, input CreateSiteListItemLinkRequest) (result CreateSiteListItemLinkOperationResponse, err error) {
+func (c SiteListItemClient) CreateSiteListItemLink(ctx context.Context, id beta.GroupIdSiteIdListIdItemId, input CreateSiteListItemLinkRequest, options CreateSiteListItemLinkOperationOptions) (result CreateSiteListItemLinkOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/createLink", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/createLink", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

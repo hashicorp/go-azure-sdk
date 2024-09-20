@@ -19,15 +19,44 @@ type CreateDriveOperationResponse struct {
 	Model        *beta.Drive
 }
 
+type CreateDriveOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateDriveOperationOptions() CreateDriveOperationOptions {
+	return CreateDriveOperationOptions{}
+}
+
+func (o CreateDriveOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateDriveOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateDriveOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateDrive - Create new navigation property to drives for groups
-func (c DriveClient) CreateDrive(ctx context.Context, id beta.GroupId, input beta.Drive) (result CreateDriveOperationResponse, err error) {
+func (c DriveClient) CreateDrive(ctx context.Context, id beta.GroupId, input beta.Drive, options CreateDriveOperationOptions) (result CreateDriveOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/drives", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/drives", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

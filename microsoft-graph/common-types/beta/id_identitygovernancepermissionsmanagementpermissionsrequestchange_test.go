@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &IdentityGovernancePermissionsManagementPermissionsRequestChangeId{}
 
 func TestNewIdentityGovernancePermissionsManagementPermissionsRequestChangeID(t *testing.T) {
-	id := NewIdentityGovernancePermissionsManagementPermissionsRequestChangeID("permissionsRequestChangeIdValue")
+	id := NewIdentityGovernancePermissionsManagementPermissionsRequestChangeID("permissionsRequestChangeId")
 
-	if id.PermissionsRequestChangeId != "permissionsRequestChangeIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'PermissionsRequestChangeId'", id.PermissionsRequestChangeId, "permissionsRequestChangeIdValue")
+	if id.PermissionsRequestChangeId != "permissionsRequestChangeId" {
+		t.Fatalf("Expected %q but got %q for Segment 'PermissionsRequestChangeId'", id.PermissionsRequestChangeId, "permissionsRequestChangeId")
 	}
 }
 
 func TestFormatIdentityGovernancePermissionsManagementPermissionsRequestChangeID(t *testing.T) {
-	actual := NewIdentityGovernancePermissionsManagementPermissionsRequestChangeID("permissionsRequestChangeIdValue").ID()
-	expected := "/identityGovernance/permissionsManagement/permissionsRequestChanges/permissionsRequestChangeIdValue"
+	actual := NewIdentityGovernancePermissionsManagementPermissionsRequestChangeID("permissionsRequestChangeId").ID()
+	expected := "/identityGovernance/permissionsManagement/permissionsRequestChanges/permissionsRequestChangeId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -55,14 +55,14 @@ func TestParseIdentityGovernancePermissionsManagementPermissionsRequestChangeID(
 		},
 		{
 			// Valid URI
-			Input: "/identityGovernance/permissionsManagement/permissionsRequestChanges/permissionsRequestChangeIdValue",
+			Input: "/identityGovernance/permissionsManagement/permissionsRequestChanges/permissionsRequestChangeId",
 			Expected: &IdentityGovernancePermissionsManagementPermissionsRequestChangeId{
-				PermissionsRequestChangeId: "permissionsRequestChangeIdValue",
+				PermissionsRequestChangeId: "permissionsRequestChangeId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/identityGovernance/permissionsManagement/permissionsRequestChanges/permissionsRequestChangeIdValue/extra",
+			Input: "/identityGovernance/permissionsManagement/permissionsRequestChanges/permissionsRequestChangeId/extra",
 			Error: true,
 		},
 	}
@@ -131,26 +131,26 @@ func TestParseIdentityGovernancePermissionsManagementPermissionsRequestChangeIDI
 		},
 		{
 			// Valid URI
-			Input: "/identityGovernance/permissionsManagement/permissionsRequestChanges/permissionsRequestChangeIdValue",
+			Input: "/identityGovernance/permissionsManagement/permissionsRequestChanges/permissionsRequestChangeId",
 			Expected: &IdentityGovernancePermissionsManagementPermissionsRequestChangeId{
-				PermissionsRequestChangeId: "permissionsRequestChangeIdValue",
+				PermissionsRequestChangeId: "permissionsRequestChangeId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/identityGovernance/permissionsManagement/permissionsRequestChanges/permissionsRequestChangeIdValue/extra",
+			Input: "/identityGovernance/permissionsManagement/permissionsRequestChanges/permissionsRequestChangeId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/iDeNtItYgOvErNaNcE/pErMiSsIoNsMaNaGeMeNt/pErMiSsIoNsReQuEsTcHaNgEs/pErMiSsIoNsReQuEsTcHaNgEiDvAlUe",
+			Input: "/iDeNtItYgOvErNaNcE/pErMiSsIoNsMaNaGeMeNt/pErMiSsIoNsReQuEsTcHaNgEs/pErMiSsIoNsReQuEsTcHaNgEiD",
 			Expected: &IdentityGovernancePermissionsManagementPermissionsRequestChangeId{
-				PermissionsRequestChangeId: "pErMiSsIoNsReQuEsTcHaNgEiDvAlUe",
+				PermissionsRequestChangeId: "pErMiSsIoNsReQuEsTcHaNgEiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/iDeNtItYgOvErNaNcE/pErMiSsIoNsMaNaGeMeNt/pErMiSsIoNsReQuEsTcHaNgEs/pErMiSsIoNsReQuEsTcHaNgEiDvAlUe/extra",
+			Input: "/iDeNtItYgOvErNaNcE/pErMiSsIoNsMaNaGeMeNt/pErMiSsIoNsReQuEsTcHaNgEs/pErMiSsIoNsReQuEsTcHaNgEiD/extra",
 			Error: true,
 		},
 	}

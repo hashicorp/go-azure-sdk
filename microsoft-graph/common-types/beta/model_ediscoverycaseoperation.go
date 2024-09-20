@@ -113,21 +113,31 @@ func (s BaseEdiscoveryCaseOperationImpl) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &BaseEdiscoveryCaseOperationImpl{}
 
 func (s *BaseEdiscoveryCaseOperationImpl) UnmarshalJSON(bytes []byte) error {
-	type alias BaseEdiscoveryCaseOperationImpl
-	var decoded alias
+
+	var decoded struct {
+		Action            *EdiscoveryCaseAction          `json:"action,omitempty"`
+		CompletedDateTime nullable.Type[string]          `json:"completedDateTime,omitempty"`
+		CreatedDateTime   nullable.Type[string]          `json:"createdDateTime,omitempty"`
+		PercentProgress   nullable.Type[int64]           `json:"percentProgress,omitempty"`
+		ResultInfo        *ResultInfo                    `json:"resultInfo,omitempty"`
+		Status            *EdiscoveryCaseOperationStatus `json:"status,omitempty"`
+		Id                *string                        `json:"id,omitempty"`
+		ODataId           *string                        `json:"@odata.id,omitempty"`
+		ODataType         *string                        `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into BaseEdiscoveryCaseOperationImpl: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.Action = decoded.Action
 	s.CompletedDateTime = decoded.CompletedDateTime
 	s.CreatedDateTime = decoded.CreatedDateTime
-	s.Id = decoded.Id
-	s.ODataId = decoded.ODataId
-	s.ODataType = decoded.ODataType
 	s.PercentProgress = decoded.PercentProgress
 	s.ResultInfo = decoded.ResultInfo
 	s.Status = decoded.Status
+	s.Id = decoded.Id
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -141,6 +151,7 @@ func (s *BaseEdiscoveryCaseOperationImpl) UnmarshalJSON(bytes []byte) error {
 		}
 		s.CreatedBy = impl
 	}
+
 	return nil
 }
 
@@ -154,9 +165,9 @@ func UnmarshalEdiscoveryCaseOperationImplementation(input []byte) (EdiscoveryCas
 		return nil, fmt.Errorf("unmarshaling EdiscoveryCaseOperation into map[string]interface: %+v", err)
 	}
 
-	value, ok := temp["@odata.type"].(string)
-	if !ok {
-		return nil, nil
+	var value string
+	if v, ok := temp["@odata.type"]; ok {
+		value = fmt.Sprintf("%v", v)
 	}
 
 	if strings.EqualFold(value, "#microsoft.graph.ediscovery.addToReviewSetOperation") {

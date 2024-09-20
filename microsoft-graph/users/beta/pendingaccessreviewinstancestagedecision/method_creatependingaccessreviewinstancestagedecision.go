@@ -19,15 +19,44 @@ type CreatePendingAccessReviewInstanceStageDecisionOperationResponse struct {
 	Model        *beta.AccessReviewInstanceDecisionItem
 }
 
+type CreatePendingAccessReviewInstanceStageDecisionOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreatePendingAccessReviewInstanceStageDecisionOperationOptions() CreatePendingAccessReviewInstanceStageDecisionOperationOptions {
+	return CreatePendingAccessReviewInstanceStageDecisionOperationOptions{}
+}
+
+func (o CreatePendingAccessReviewInstanceStageDecisionOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreatePendingAccessReviewInstanceStageDecisionOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreatePendingAccessReviewInstanceStageDecisionOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreatePendingAccessReviewInstanceStageDecision - Create new navigation property to decisions for users
-func (c PendingAccessReviewInstanceStageDecisionClient) CreatePendingAccessReviewInstanceStageDecision(ctx context.Context, id beta.UserIdPendingAccessReviewInstanceIdStageId, input beta.AccessReviewInstanceDecisionItem) (result CreatePendingAccessReviewInstanceStageDecisionOperationResponse, err error) {
+func (c PendingAccessReviewInstanceStageDecisionClient) CreatePendingAccessReviewInstanceStageDecision(ctx context.Context, id beta.UserIdPendingAccessReviewInstanceIdStageId, input beta.AccessReviewInstanceDecisionItem, options CreatePendingAccessReviewInstanceStageDecisionOperationOptions) (result CreatePendingAccessReviewInstanceStageDecisionOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/decisions", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/decisions", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

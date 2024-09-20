@@ -20,18 +20,47 @@ type CreateEntitlementManagementCatalogCustomWorkflowExtensionOperationResponse 
 	Model        stable.CustomCalloutExtension
 }
 
+type CreateEntitlementManagementCatalogCustomWorkflowExtensionOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateEntitlementManagementCatalogCustomWorkflowExtensionOperationOptions() CreateEntitlementManagementCatalogCustomWorkflowExtensionOperationOptions {
+	return CreateEntitlementManagementCatalogCustomWorkflowExtensionOperationOptions{}
+}
+
+func (o CreateEntitlementManagementCatalogCustomWorkflowExtensionOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateEntitlementManagementCatalogCustomWorkflowExtensionOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateEntitlementManagementCatalogCustomWorkflowExtensionOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateEntitlementManagementCatalogCustomWorkflowExtension - Create accessPackageCustomWorkflowExtension. Create a new
 // accessPackageAssignmentRequestWorkflowExtension or accessPackageAssignmentWorkflowExtension object and add it to an
 // existing accessPackageCatalog object. You must explicitly provide an @odata.type property that indicates whether the
 // object is an accessPackageAssignmentRequestWorkflowExtension or an accessPackageAssignmentWorkflowExtension.
-func (c EntitlementManagementCatalogCustomWorkflowExtensionClient) CreateEntitlementManagementCatalogCustomWorkflowExtension(ctx context.Context, id stable.IdentityGovernanceEntitlementManagementCatalogId, input stable.CustomCalloutExtension) (result CreateEntitlementManagementCatalogCustomWorkflowExtensionOperationResponse, err error) {
+func (c EntitlementManagementCatalogCustomWorkflowExtensionClient) CreateEntitlementManagementCatalogCustomWorkflowExtension(ctx context.Context, id stable.IdentityGovernanceEntitlementManagementCatalogId, input stable.CustomCalloutExtension, options CreateEntitlementManagementCatalogCustomWorkflowExtensionOperationOptions) (result CreateEntitlementManagementCatalogCustomWorkflowExtensionOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/customWorkflowExtensions", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/customWorkflowExtensions", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

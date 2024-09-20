@@ -19,7 +19,8 @@ type DeleteChromeOSOnboardingSettingOperationResponse struct {
 }
 
 type DeleteChromeOSOnboardingSettingOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteChromeOSOnboardingSettingOperationOptions() DeleteChromeOSOnboardingSettingOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteChromeOSOnboardingSettingOperationOptions) ToHeaders() *client.Hea
 
 func (o DeleteChromeOSOnboardingSettingOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

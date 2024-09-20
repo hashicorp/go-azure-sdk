@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &MeProfileAddressId{}
 
 func TestNewMeProfileAddressID(t *testing.T) {
-	id := NewMeProfileAddressID("itemAddressIdValue")
+	id := NewMeProfileAddressID("itemAddressId")
 
-	if id.ItemAddressId != "itemAddressIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ItemAddressId'", id.ItemAddressId, "itemAddressIdValue")
+	if id.ItemAddressId != "itemAddressId" {
+		t.Fatalf("Expected %q but got %q for Segment 'ItemAddressId'", id.ItemAddressId, "itemAddressId")
 	}
 }
 
 func TestFormatMeProfileAddressID(t *testing.T) {
-	actual := NewMeProfileAddressID("itemAddressIdValue").ID()
-	expected := "/me/profile/addresses/itemAddressIdValue"
+	actual := NewMeProfileAddressID("itemAddressId").ID()
+	expected := "/me/profile/addresses/itemAddressId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -55,14 +55,14 @@ func TestParseMeProfileAddressID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/me/profile/addresses/itemAddressIdValue",
+			Input: "/me/profile/addresses/itemAddressId",
 			Expected: &MeProfileAddressId{
-				ItemAddressId: "itemAddressIdValue",
+				ItemAddressId: "itemAddressId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/profile/addresses/itemAddressIdValue/extra",
+			Input: "/me/profile/addresses/itemAddressId/extra",
 			Error: true,
 		},
 	}
@@ -131,26 +131,26 @@ func TestParseMeProfileAddressIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/me/profile/addresses/itemAddressIdValue",
+			Input: "/me/profile/addresses/itemAddressId",
 			Expected: &MeProfileAddressId{
-				ItemAddressId: "itemAddressIdValue",
+				ItemAddressId: "itemAddressId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/profile/addresses/itemAddressIdValue/extra",
+			Input: "/me/profile/addresses/itemAddressId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/pRoFiLe/aDdReSsEs/iTeMaDdReSsIdVaLuE",
+			Input: "/mE/pRoFiLe/aDdReSsEs/iTeMaDdReSsId",
 			Expected: &MeProfileAddressId{
-				ItemAddressId: "iTeMaDdReSsIdVaLuE",
+				ItemAddressId: "iTeMaDdReSsId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/mE/pRoFiLe/aDdReSsEs/iTeMaDdReSsIdVaLuE/extra",
+			Input: "/mE/pRoFiLe/aDdReSsEs/iTeMaDdReSsId/extra",
 			Error: true,
 		},
 	}

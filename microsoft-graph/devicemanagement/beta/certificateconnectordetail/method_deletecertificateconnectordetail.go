@@ -19,7 +19,8 @@ type DeleteCertificateConnectorDetailOperationResponse struct {
 }
 
 type DeleteCertificateConnectorDetailOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteCertificateConnectorDetailOperationOptions() DeleteCertificateConnectorDetailOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteCertificateConnectorDetailOperationOptions) ToHeaders() *client.He
 
 func (o DeleteCertificateConnectorDetailOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

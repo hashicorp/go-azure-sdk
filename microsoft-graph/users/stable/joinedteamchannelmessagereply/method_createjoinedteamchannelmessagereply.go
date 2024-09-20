@@ -19,15 +19,44 @@ type CreateJoinedTeamChannelMessageReplyOperationResponse struct {
 	Model        *stable.ChatMessage
 }
 
+type CreateJoinedTeamChannelMessageReplyOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateJoinedTeamChannelMessageReplyOperationOptions() CreateJoinedTeamChannelMessageReplyOperationOptions {
+	return CreateJoinedTeamChannelMessageReplyOperationOptions{}
+}
+
+func (o CreateJoinedTeamChannelMessageReplyOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateJoinedTeamChannelMessageReplyOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateJoinedTeamChannelMessageReplyOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateJoinedTeamChannelMessageReply - Create new navigation property to replies for users
-func (c JoinedTeamChannelMessageReplyClient) CreateJoinedTeamChannelMessageReply(ctx context.Context, id stable.UserIdJoinedTeamIdChannelIdMessageId, input stable.ChatMessage) (result CreateJoinedTeamChannelMessageReplyOperationResponse, err error) {
+func (c JoinedTeamChannelMessageReplyClient) CreateJoinedTeamChannelMessageReply(ctx context.Context, id stable.UserIdJoinedTeamIdChannelIdMessageId, input stable.ChatMessage, options CreateJoinedTeamChannelMessageReplyOperationOptions) (result CreateJoinedTeamChannelMessageReplyOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/replies", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/replies", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

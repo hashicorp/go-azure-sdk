@@ -16,16 +16,45 @@ type CreateDeviceEnrollmentConfigurationsEnrollmentNotificationConfigurationOper
 	OData        *odata.OData
 }
 
+type CreateDeviceEnrollmentConfigurationsEnrollmentNotificationConfigurationOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateDeviceEnrollmentConfigurationsEnrollmentNotificationConfigurationOperationOptions() CreateDeviceEnrollmentConfigurationsEnrollmentNotificationConfigurationOperationOptions {
+	return CreateDeviceEnrollmentConfigurationsEnrollmentNotificationConfigurationOperationOptions{}
+}
+
+func (o CreateDeviceEnrollmentConfigurationsEnrollmentNotificationConfigurationOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateDeviceEnrollmentConfigurationsEnrollmentNotificationConfigurationOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateDeviceEnrollmentConfigurationsEnrollmentNotificationConfigurationOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateDeviceEnrollmentConfigurationsEnrollmentNotificationConfiguration - Invoke action
 // createEnrollmentNotificationConfiguration
-func (c DeviceEnrollmentConfigurationClient) CreateDeviceEnrollmentConfigurationsEnrollmentNotificationConfiguration(ctx context.Context, input CreateDeviceEnrollmentConfigurationsEnrollmentNotificationConfigurationRequest) (result CreateDeviceEnrollmentConfigurationsEnrollmentNotificationConfigurationOperationResponse, err error) {
+func (c DeviceEnrollmentConfigurationClient) CreateDeviceEnrollmentConfigurationsEnrollmentNotificationConfiguration(ctx context.Context, input CreateDeviceEnrollmentConfigurationsEnrollmentNotificationConfigurationRequest, options CreateDeviceEnrollmentConfigurationsEnrollmentNotificationConfigurationOperationOptions) (result CreateDeviceEnrollmentConfigurationsEnrollmentNotificationConfigurationOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/me/deviceEnrollmentConfigurations/createEnrollmentNotificationConfiguration",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/me/deviceEnrollmentConfigurations/createEnrollmentNotificationConfiguration",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

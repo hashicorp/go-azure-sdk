@@ -18,7 +18,8 @@ type DeleteAuthenticationFlowsPolicyOperationResponse struct {
 }
 
 type DeleteAuthenticationFlowsPolicyOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteAuthenticationFlowsPolicyOperationOptions() DeleteAuthenticationFlowsPolicyOperationOptions {
@@ -35,7 +36,9 @@ func (o DeleteAuthenticationFlowsPolicyOperationOptions) ToHeaders() *client.Hea
 
 func (o DeleteAuthenticationFlowsPolicyOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

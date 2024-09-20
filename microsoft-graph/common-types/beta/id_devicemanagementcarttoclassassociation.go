@@ -93,7 +93,7 @@ func (id DeviceManagementCartToClassAssociationId) Segments() []resourceids.Segm
 	return []resourceids.Segment{
 		resourceids.StaticSegment("deviceManagement", "deviceManagement", "deviceManagement"),
 		resourceids.StaticSegment("cartToClassAssociations", "cartToClassAssociations", "cartToClassAssociations"),
-		resourceids.UserSpecifiedSegment("cartToClassAssociationId", "cartToClassAssociationIdValue"),
+		resourceids.UserSpecifiedSegment("cartToClassAssociationId", "cartToClassAssociationId"),
 	}
 }
 

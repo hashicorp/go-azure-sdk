@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/stable/conversationthreadpostattachment` Documentation
 
-The `conversationthreadpostattachment` SDK allows for interaction with the Azure Resource Manager Service `groups` (API Version `stable`).
+The `conversationthreadpostattachment` SDK allows for interaction with Microsoft Graph `groups` (API Version `stable`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -15,7 +15,7 @@ import "github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/stable/conversa
 ### Client Initialization
 
 ```go
-client := conversationthreadpostattachment.NewConversationThreadPostAttachmentClientWithBaseURI("https://management.azure.com")
+client := conversationthreadpostattachment.NewConversationThreadPostAttachmentClientWithBaseURI("https://graph.microsoft.com")
 client.Client.Authorizer = authorizer
 ```
 
@@ -24,14 +24,14 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := conversationthreadpostattachment.NewGroupIdConversationIdThreadIdPostID("groupIdValue", "conversationIdValue", "conversationThreadIdValue", "postIdValue")
+id := conversationthreadpostattachment.NewGroupIdConversationIdThreadIdPostID("groupId", "conversationId", "conversationThreadId", "postId")
 
 payload := conversationthreadpostattachment.Attachment{
 	// ...
 }
 
 
-read, err := client.CreateConversationThreadPostAttachment(ctx, id, payload)
+read, err := client.CreateConversationThreadPostAttachment(ctx, id, payload, conversationthreadpostattachment.DefaultCreateConversationThreadPostAttachmentOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -45,14 +45,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := conversationthreadpostattachment.NewGroupIdConversationIdThreadIdPostID("groupIdValue", "conversationIdValue", "conversationThreadIdValue", "postIdValue")
+id := conversationthreadpostattachment.NewGroupIdConversationIdThreadIdPostID("groupId", "conversationId", "conversationThreadId", "postId")
 
 payload := conversationthreadpostattachment.CreateConversationThreadPostAttachmentsUploadSessionRequest{
 	// ...
 }
 
 
-read, err := client.CreateConversationThreadPostAttachmentsUploadSession(ctx, id, payload)
+read, err := client.CreateConversationThreadPostAttachmentsUploadSession(ctx, id, payload, conversationthreadpostattachment.DefaultCreateConversationThreadPostAttachmentsUploadSessionOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -66,7 +66,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := conversationthreadpostattachment.NewGroupIdConversationIdThreadIdPostIdAttachmentID("groupIdValue", "conversationIdValue", "conversationThreadIdValue", "postIdValue", "attachmentIdValue")
+id := conversationthreadpostattachment.NewGroupIdConversationIdThreadIdPostIdAttachmentID("groupId", "conversationId", "conversationThreadId", "postId", "attachmentId")
 
 read, err := client.DeleteConversationThreadPostAttachment(ctx, id, conversationthreadpostattachment.DefaultDeleteConversationThreadPostAttachmentOperationOptions())
 if err != nil {
@@ -82,7 +82,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := conversationthreadpostattachment.NewGroupIdConversationIdThreadIdPostIdAttachmentID("groupIdValue", "conversationIdValue", "conversationThreadIdValue", "postIdValue", "attachmentIdValue")
+id := conversationthreadpostattachment.NewGroupIdConversationIdThreadIdPostIdAttachmentID("groupId", "conversationId", "conversationThreadId", "postId", "attachmentId")
 
 read, err := client.GetConversationThreadPostAttachment(ctx, id, conversationthreadpostattachment.DefaultGetConversationThreadPostAttachmentOperationOptions())
 if err != nil {
@@ -98,7 +98,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := conversationthreadpostattachment.NewGroupIdConversationIdThreadIdPostID("groupIdValue", "conversationIdValue", "conversationThreadIdValue", "postIdValue")
+id := conversationthreadpostattachment.NewGroupIdConversationIdThreadIdPostID("groupId", "conversationId", "conversationThreadId", "postId")
 
 read, err := client.GetConversationThreadPostAttachmentsCount(ctx, id, conversationthreadpostattachment.DefaultGetConversationThreadPostAttachmentsCountOperationOptions())
 if err != nil {
@@ -114,7 +114,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := conversationthreadpostattachment.NewGroupIdConversationIdThreadIdPostID("groupIdValue", "conversationIdValue", "conversationThreadIdValue", "postIdValue")
+id := conversationthreadpostattachment.NewGroupIdConversationIdThreadIdPostID("groupId", "conversationId", "conversationThreadId", "postId")
 
 // alternatively `client.ListConversationThreadPostAttachments(ctx, id, conversationthreadpostattachment.DefaultListConversationThreadPostAttachmentsOperationOptions())` can be used to do batched pagination
 items, err := client.ListConversationThreadPostAttachmentsComplete(ctx, id, conversationthreadpostattachment.DefaultListConversationThreadPostAttachmentsOperationOptions())

@@ -17,16 +17,45 @@ type UpdateMicrosoftTunnelHealthThresholdOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateMicrosoftTunnelHealthThresholdOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateMicrosoftTunnelHealthThresholdOperationOptions() UpdateMicrosoftTunnelHealthThresholdOperationOptions {
+	return UpdateMicrosoftTunnelHealthThresholdOperationOptions{}
+}
+
+func (o UpdateMicrosoftTunnelHealthThresholdOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateMicrosoftTunnelHealthThresholdOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateMicrosoftTunnelHealthThresholdOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateMicrosoftTunnelHealthThreshold - Update the navigation property microsoftTunnelHealthThresholds in
 // deviceManagement
-func (c MicrosoftTunnelHealthThresholdClient) UpdateMicrosoftTunnelHealthThreshold(ctx context.Context, id beta.DeviceManagementMicrosoftTunnelHealthThresholdId, input beta.MicrosoftTunnelHealthThreshold) (result UpdateMicrosoftTunnelHealthThresholdOperationResponse, err error) {
+func (c MicrosoftTunnelHealthThresholdClient) UpdateMicrosoftTunnelHealthThreshold(ctx context.Context, id beta.DeviceManagementMicrosoftTunnelHealthThresholdId, input beta.MicrosoftTunnelHealthThreshold, options UpdateMicrosoftTunnelHealthThresholdOperationOptions) (result UpdateMicrosoftTunnelHealthThresholdOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

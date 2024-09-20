@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &DeviceManagementEmbeddedSIMActivationCodePoolIdDeviceStateId{}
 
 func TestNewDeviceManagementEmbeddedSIMActivationCodePoolIdDeviceStateID(t *testing.T) {
-	id := NewDeviceManagementEmbeddedSIMActivationCodePoolIdDeviceStateID("embeddedSIMActivationCodePoolIdValue", "embeddedSIMDeviceStateIdValue")
+	id := NewDeviceManagementEmbeddedSIMActivationCodePoolIdDeviceStateID("embeddedSIMActivationCodePoolId", "embeddedSIMDeviceStateId")
 
-	if id.EmbeddedSIMActivationCodePoolId != "embeddedSIMActivationCodePoolIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'EmbeddedSIMActivationCodePoolId'", id.EmbeddedSIMActivationCodePoolId, "embeddedSIMActivationCodePoolIdValue")
+	if id.EmbeddedSIMActivationCodePoolId != "embeddedSIMActivationCodePoolId" {
+		t.Fatalf("Expected %q but got %q for Segment 'EmbeddedSIMActivationCodePoolId'", id.EmbeddedSIMActivationCodePoolId, "embeddedSIMActivationCodePoolId")
 	}
 
-	if id.EmbeddedSIMDeviceStateId != "embeddedSIMDeviceStateIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'EmbeddedSIMDeviceStateId'", id.EmbeddedSIMDeviceStateId, "embeddedSIMDeviceStateIdValue")
+	if id.EmbeddedSIMDeviceStateId != "embeddedSIMDeviceStateId" {
+		t.Fatalf("Expected %q but got %q for Segment 'EmbeddedSIMDeviceStateId'", id.EmbeddedSIMDeviceStateId, "embeddedSIMDeviceStateId")
 	}
 }
 
 func TestFormatDeviceManagementEmbeddedSIMActivationCodePoolIdDeviceStateID(t *testing.T) {
-	actual := NewDeviceManagementEmbeddedSIMActivationCodePoolIdDeviceStateID("embeddedSIMActivationCodePoolIdValue", "embeddedSIMDeviceStateIdValue").ID()
-	expected := "/deviceManagement/embeddedSIMActivationCodePools/embeddedSIMActivationCodePoolIdValue/deviceStates/embeddedSIMDeviceStateIdValue"
+	actual := NewDeviceManagementEmbeddedSIMActivationCodePoolIdDeviceStateID("embeddedSIMActivationCodePoolId", "embeddedSIMDeviceStateId").ID()
+	expected := "/deviceManagement/embeddedSIMActivationCodePools/embeddedSIMActivationCodePoolId/deviceStates/embeddedSIMDeviceStateId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -54,25 +54,25 @@ func TestParseDeviceManagementEmbeddedSIMActivationCodePoolIdDeviceStateID(t *te
 		},
 		{
 			// Incomplete URI
-			Input: "/deviceManagement/embeddedSIMActivationCodePools/embeddedSIMActivationCodePoolIdValue",
+			Input: "/deviceManagement/embeddedSIMActivationCodePools/embeddedSIMActivationCodePoolId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/deviceManagement/embeddedSIMActivationCodePools/embeddedSIMActivationCodePoolIdValue/deviceStates",
+			Input: "/deviceManagement/embeddedSIMActivationCodePools/embeddedSIMActivationCodePoolId/deviceStates",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/embeddedSIMActivationCodePools/embeddedSIMActivationCodePoolIdValue/deviceStates/embeddedSIMDeviceStateIdValue",
+			Input: "/deviceManagement/embeddedSIMActivationCodePools/embeddedSIMActivationCodePoolId/deviceStates/embeddedSIMDeviceStateId",
 			Expected: &DeviceManagementEmbeddedSIMActivationCodePoolIdDeviceStateId{
-				EmbeddedSIMActivationCodePoolId: "embeddedSIMActivationCodePoolIdValue",
-				EmbeddedSIMDeviceStateId:        "embeddedSIMDeviceStateIdValue",
+				EmbeddedSIMActivationCodePoolId: "embeddedSIMActivationCodePoolId",
+				EmbeddedSIMDeviceStateId:        "embeddedSIMDeviceStateId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/embeddedSIMActivationCodePools/embeddedSIMActivationCodePoolIdValue/deviceStates/embeddedSIMDeviceStateIdValue/extra",
+			Input: "/deviceManagement/embeddedSIMActivationCodePools/embeddedSIMActivationCodePoolId/deviceStates/embeddedSIMDeviceStateId/extra",
 			Error: true,
 		},
 	}
@@ -135,48 +135,48 @@ func TestParseDeviceManagementEmbeddedSIMActivationCodePoolIdDeviceStateIDInsens
 		},
 		{
 			// Incomplete URI
-			Input: "/deviceManagement/embeddedSIMActivationCodePools/embeddedSIMActivationCodePoolIdValue",
+			Input: "/deviceManagement/embeddedSIMActivationCodePools/embeddedSIMActivationCodePoolId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/eMbEdDeDsImAcTiVaTiOnCoDePoOlS/eMbEdDeDsImAcTiVaTiOnCoDePoOlIdVaLuE",
+			Input: "/dEvIcEmAnAgEmEnT/eMbEdDeDsImAcTiVaTiOnCoDePoOlS/eMbEdDeDsImAcTiVaTiOnCoDePoOlId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/deviceManagement/embeddedSIMActivationCodePools/embeddedSIMActivationCodePoolIdValue/deviceStates",
+			Input: "/deviceManagement/embeddedSIMActivationCodePools/embeddedSIMActivationCodePoolId/deviceStates",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/eMbEdDeDsImAcTiVaTiOnCoDePoOlS/eMbEdDeDsImAcTiVaTiOnCoDePoOlIdVaLuE/dEvIcEsTaTeS",
+			Input: "/dEvIcEmAnAgEmEnT/eMbEdDeDsImAcTiVaTiOnCoDePoOlS/eMbEdDeDsImAcTiVaTiOnCoDePoOlId/dEvIcEsTaTeS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/embeddedSIMActivationCodePools/embeddedSIMActivationCodePoolIdValue/deviceStates/embeddedSIMDeviceStateIdValue",
+			Input: "/deviceManagement/embeddedSIMActivationCodePools/embeddedSIMActivationCodePoolId/deviceStates/embeddedSIMDeviceStateId",
 			Expected: &DeviceManagementEmbeddedSIMActivationCodePoolIdDeviceStateId{
-				EmbeddedSIMActivationCodePoolId: "embeddedSIMActivationCodePoolIdValue",
-				EmbeddedSIMDeviceStateId:        "embeddedSIMDeviceStateIdValue",
+				EmbeddedSIMActivationCodePoolId: "embeddedSIMActivationCodePoolId",
+				EmbeddedSIMDeviceStateId:        "embeddedSIMDeviceStateId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/embeddedSIMActivationCodePools/embeddedSIMActivationCodePoolIdValue/deviceStates/embeddedSIMDeviceStateIdValue/extra",
+			Input: "/deviceManagement/embeddedSIMActivationCodePools/embeddedSIMActivationCodePoolId/deviceStates/embeddedSIMDeviceStateId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/eMbEdDeDsImAcTiVaTiOnCoDePoOlS/eMbEdDeDsImAcTiVaTiOnCoDePoOlIdVaLuE/dEvIcEsTaTeS/eMbEdDeDsImDeViCeStAtEiDvAlUe",
+			Input: "/dEvIcEmAnAgEmEnT/eMbEdDeDsImAcTiVaTiOnCoDePoOlS/eMbEdDeDsImAcTiVaTiOnCoDePoOlId/dEvIcEsTaTeS/eMbEdDeDsImDeViCeStAtEiD",
 			Expected: &DeviceManagementEmbeddedSIMActivationCodePoolIdDeviceStateId{
-				EmbeddedSIMActivationCodePoolId: "eMbEdDeDsImAcTiVaTiOnCoDePoOlIdVaLuE",
-				EmbeddedSIMDeviceStateId:        "eMbEdDeDsImDeViCeStAtEiDvAlUe",
+				EmbeddedSIMActivationCodePoolId: "eMbEdDeDsImAcTiVaTiOnCoDePoOlId",
+				EmbeddedSIMDeviceStateId:        "eMbEdDeDsImDeViCeStAtEiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/eMbEdDeDsImAcTiVaTiOnCoDePoOlS/eMbEdDeDsImAcTiVaTiOnCoDePoOlIdVaLuE/dEvIcEsTaTeS/eMbEdDeDsImDeViCeStAtEiDvAlUe/extra",
+			Input: "/dEvIcEmAnAgEmEnT/eMbEdDeDsImAcTiVaTiOnCoDePoOlS/eMbEdDeDsImAcTiVaTiOnCoDePoOlId/dEvIcEsTaTeS/eMbEdDeDsImDeViCeStAtEiD/extra",
 			Error: true,
 		},
 	}

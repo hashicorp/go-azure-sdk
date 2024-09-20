@@ -22,10 +22,14 @@ type ExternalConnectorsActivitySettings struct {
 var _ json.Unmarshaler = &ExternalConnectorsActivitySettings{}
 
 func (s *ExternalConnectorsActivitySettings) UnmarshalJSON(bytes []byte) error {
-	type alias ExternalConnectorsActivitySettings
-	var decoded alias
+
+	var decoded struct {
+		ODataId            *string                                    `json:"@odata.id,omitempty"`
+		ODataType          *string                                    `json:"@odata.type,omitempty"`
+		UrlToItemResolvers *[]ExternalConnectorsUrlToItemResolverBase `json:"urlToItemResolvers,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into ExternalConnectorsActivitySettings: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.ODataId = decoded.ODataId
@@ -52,5 +56,6 @@ func (s *ExternalConnectorsActivitySettings) UnmarshalJSON(bytes []byte) error {
 		}
 		s.UrlToItemResolvers = &output
 	}
+
 	return nil
 }

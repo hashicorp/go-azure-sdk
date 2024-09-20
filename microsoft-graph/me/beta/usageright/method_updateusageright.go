@@ -17,15 +17,44 @@ type UpdateUsageRightOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateUsageRightOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateUsageRightOperationOptions() UpdateUsageRightOperationOptions {
+	return UpdateUsageRightOperationOptions{}
+}
+
+func (o UpdateUsageRightOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateUsageRightOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateUsageRightOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateUsageRight - Update the navigation property usageRights in me
-func (c UsageRightClient) UpdateUsageRight(ctx context.Context, id beta.MeUsageRightId, input beta.UsageRight) (result UpdateUsageRightOperationResponse, err error) {
+func (c UsageRightClient) UpdateUsageRight(ctx context.Context, id beta.MeUsageRightId, input beta.UsageRight, options UpdateUsageRightOperationOptions) (result UpdateUsageRightOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

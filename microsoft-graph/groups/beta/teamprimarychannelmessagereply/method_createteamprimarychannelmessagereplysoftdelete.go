@@ -18,16 +18,45 @@ type CreateTeamPrimaryChannelMessageReplySoftDeleteOperationResponse struct {
 	OData        *odata.OData
 }
 
+type CreateTeamPrimaryChannelMessageReplySoftDeleteOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateTeamPrimaryChannelMessageReplySoftDeleteOperationOptions() CreateTeamPrimaryChannelMessageReplySoftDeleteOperationOptions {
+	return CreateTeamPrimaryChannelMessageReplySoftDeleteOperationOptions{}
+}
+
+func (o CreateTeamPrimaryChannelMessageReplySoftDeleteOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateTeamPrimaryChannelMessageReplySoftDeleteOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateTeamPrimaryChannelMessageReplySoftDeleteOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateTeamPrimaryChannelMessageReplySoftDelete - Invoke action softDelete. Delete a single chatMessage or a chat
 // message reply in a channel or a chat.
-func (c TeamPrimaryChannelMessageReplyClient) CreateTeamPrimaryChannelMessageReplySoftDelete(ctx context.Context, id beta.GroupIdTeamPrimaryChannelMessageIdReplyId) (result CreateTeamPrimaryChannelMessageReplySoftDeleteOperationResponse, err error) {
+func (c TeamPrimaryChannelMessageReplyClient) CreateTeamPrimaryChannelMessageReplySoftDelete(ctx context.Context, id beta.GroupIdTeamPrimaryChannelMessageIdReplyId, options CreateTeamPrimaryChannelMessageReplySoftDeleteOperationOptions) (result CreateTeamPrimaryChannelMessageReplySoftDeleteOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/softDelete", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/softDelete", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

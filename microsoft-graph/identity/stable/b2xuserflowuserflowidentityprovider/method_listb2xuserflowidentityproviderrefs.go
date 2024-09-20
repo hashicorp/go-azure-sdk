@@ -26,12 +26,13 @@ type ListB2xUserFlowIdentityProviderRefsCompleteResult struct {
 }
 
 type ListB2xUserFlowIdentityProviderRefsOperationOptions struct {
-	Count   *bool
-	Filter  *string
-	OrderBy *odata.OrderBy
-	Search  *string
-	Skip    *int64
-	Top     *int64
+	Count    *bool
+	Filter   *string
+	Metadata *odata.Metadata
+	OrderBy  *odata.OrderBy
+	Search   *string
+	Skip     *int64
+	Top      *int64
 }
 
 func DefaultListB2xUserFlowIdentityProviderRefsOperationOptions() ListB2xUserFlowIdentityProviderRefsOperationOptions {
@@ -51,6 +52,9 @@ func (o ListB2xUserFlowIdentityProviderRefsOperationOptions) ToOData() *odata.Qu
 	}
 	if o.Filter != nil {
 		out.Filter = *o.Filter
+	}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
 	}
 	if o.OrderBy != nil {
 		out.OrderBy = *o.OrderBy

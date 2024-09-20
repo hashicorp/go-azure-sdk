@@ -19,16 +19,45 @@ type ClearConfigurationPolicyEnrollmentTimeDeviceMembershipTargetOperationRespon
 	Model        *ClearConfigurationPolicyEnrollmentTimeDeviceMembershipTargetResult
 }
 
+type ClearConfigurationPolicyEnrollmentTimeDeviceMembershipTargetOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultClearConfigurationPolicyEnrollmentTimeDeviceMembershipTargetOperationOptions() ClearConfigurationPolicyEnrollmentTimeDeviceMembershipTargetOperationOptions {
+	return ClearConfigurationPolicyEnrollmentTimeDeviceMembershipTargetOperationOptions{}
+}
+
+func (o ClearConfigurationPolicyEnrollmentTimeDeviceMembershipTargetOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o ClearConfigurationPolicyEnrollmentTimeDeviceMembershipTargetOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o ClearConfigurationPolicyEnrollmentTimeDeviceMembershipTargetOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // ClearConfigurationPolicyEnrollmentTimeDeviceMembershipTarget - Invoke action
 // clearEnrollmentTimeDeviceMembershipTarget
-func (c ConfigurationPolicyClient) ClearConfigurationPolicyEnrollmentTimeDeviceMembershipTarget(ctx context.Context, id beta.DeviceManagementConfigurationPolicyId) (result ClearConfigurationPolicyEnrollmentTimeDeviceMembershipTargetOperationResponse, err error) {
+func (c ConfigurationPolicyClient) ClearConfigurationPolicyEnrollmentTimeDeviceMembershipTarget(ctx context.Context, id beta.DeviceManagementConfigurationPolicyId, options ClearConfigurationPolicyEnrollmentTimeDeviceMembershipTargetOperationOptions) (result ClearConfigurationPolicyEnrollmentTimeDeviceMembershipTargetOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/clearEnrollmentTimeDeviceMembershipTarget", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/clearEnrollmentTimeDeviceMembershipTarget", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

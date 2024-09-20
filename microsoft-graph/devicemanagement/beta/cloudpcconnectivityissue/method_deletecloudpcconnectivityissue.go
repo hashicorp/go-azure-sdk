@@ -19,7 +19,8 @@ type DeleteCloudPCConnectivityIssueOperationResponse struct {
 }
 
 type DeleteCloudPCConnectivityIssueOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteCloudPCConnectivityIssueOperationOptions() DeleteCloudPCConnectivityIssueOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteCloudPCConnectivityIssueOperationOptions) ToHeaders() *client.Head
 
 func (o DeleteCloudPCConnectivityIssueOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

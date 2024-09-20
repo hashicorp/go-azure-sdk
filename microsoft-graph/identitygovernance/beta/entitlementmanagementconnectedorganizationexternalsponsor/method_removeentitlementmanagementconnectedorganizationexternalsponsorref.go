@@ -19,7 +19,8 @@ type RemoveEntitlementManagementConnectedOrganizationExternalSponsorRefOperation
 }
 
 type RemoveEntitlementManagementConnectedOrganizationExternalSponsorRefOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultRemoveEntitlementManagementConnectedOrganizationExternalSponsorRefOperationOptions() RemoveEntitlementManagementConnectedOrganizationExternalSponsorRefOperationOptions {
@@ -36,7 +37,9 @@ func (o RemoveEntitlementManagementConnectedOrganizationExternalSponsorRefOperat
 
 func (o RemoveEntitlementManagementConnectedOrganizationExternalSponsorRefOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

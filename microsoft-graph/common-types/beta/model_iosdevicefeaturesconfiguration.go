@@ -221,14 +221,54 @@ func (s IosDeviceFeaturesConfiguration) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &IosDeviceFeaturesConfiguration{}
 
 func (s *IosDeviceFeaturesConfiguration) UnmarshalJSON(bytes []byte) error {
-	type alias IosDeviceFeaturesConfiguration
-	var decoded alias
+
+	var decoded struct {
+		AssetTagTemplate                            nullable.Type[string]                        `json:"assetTagTemplate,omitempty"`
+		HomeScreenDockIcons                         *[]IosHomeScreenItem                         `json:"homeScreenDockIcons,omitempty"`
+		HomeScreenGridHeight                        nullable.Type[int64]                         `json:"homeScreenGridHeight,omitempty"`
+		HomeScreenGridWidth                         nullable.Type[int64]                         `json:"homeScreenGridWidth,omitempty"`
+		HomeScreenPages                             *[]IosHomeScreenPage                         `json:"homeScreenPages,omitempty"`
+		LockScreenFootnote                          nullable.Type[string]                        `json:"lockScreenFootnote,omitempty"`
+		NotificationSettings                        *[]IosNotificationSettings                   `json:"notificationSettings,omitempty"`
+		SingleSignOnSettings                        *IosSingleSignOnSettings                     `json:"singleSignOnSettings,omitempty"`
+		WallpaperDisplayLocation                    *IosWallpaperDisplayLocation                 `json:"wallpaperDisplayLocation,omitempty"`
+		WallpaperImage                              *MimeContent                                 `json:"wallpaperImage,omitempty"`
+		AirPrintDestinations                        *[]AirPrintDestination                       `json:"airPrintDestinations,omitempty"`
+		Assignments                                 *[]DeviceConfigurationAssignment             `json:"assignments,omitempty"`
+		CreatedDateTime                             *string                                      `json:"createdDateTime,omitempty"`
+		Description                                 nullable.Type[string]                        `json:"description,omitempty"`
+		DeviceManagementApplicabilityRuleDeviceMode *DeviceManagementApplicabilityRuleDeviceMode `json:"deviceManagementApplicabilityRuleDeviceMode,omitempty"`
+		DeviceManagementApplicabilityRuleOsEdition  *DeviceManagementApplicabilityRuleOsEdition  `json:"deviceManagementApplicabilityRuleOsEdition,omitempty"`
+		DeviceManagementApplicabilityRuleOsVersion  *DeviceManagementApplicabilityRuleOsVersion  `json:"deviceManagementApplicabilityRuleOsVersion,omitempty"`
+		DeviceSettingStateSummaries                 *[]SettingStateDeviceSummary                 `json:"deviceSettingStateSummaries,omitempty"`
+		DeviceStatusOverview                        *DeviceConfigurationDeviceOverview           `json:"deviceStatusOverview,omitempty"`
+		DeviceStatuses                              *[]DeviceConfigurationDeviceStatus           `json:"deviceStatuses,omitempty"`
+		DisplayName                                 *string                                      `json:"displayName,omitempty"`
+		GroupAssignments                            *[]DeviceConfigurationGroupAssignment        `json:"groupAssignments,omitempty"`
+		LastModifiedDateTime                        *string                                      `json:"lastModifiedDateTime,omitempty"`
+		RoleScopeTagIds                             *[]string                                    `json:"roleScopeTagIds,omitempty"`
+		SupportsScopeTags                           *bool                                        `json:"supportsScopeTags,omitempty"`
+		UserStatusOverview                          *DeviceConfigurationUserOverview             `json:"userStatusOverview,omitempty"`
+		UserStatuses                                *[]DeviceConfigurationUserStatus             `json:"userStatuses,omitempty"`
+		Version                                     *int64                                       `json:"version,omitempty"`
+		Id                                          *string                                      `json:"id,omitempty"`
+		ODataId                                     *string                                      `json:"@odata.id,omitempty"`
+		ODataType                                   *string                                      `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into IosDeviceFeaturesConfiguration: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
-	s.AirPrintDestinations = decoded.AirPrintDestinations
 	s.AssetTagTemplate = decoded.AssetTagTemplate
+	s.HomeScreenGridHeight = decoded.HomeScreenGridHeight
+	s.HomeScreenGridWidth = decoded.HomeScreenGridWidth
+	s.HomeScreenPages = decoded.HomeScreenPages
+	s.LockScreenFootnote = decoded.LockScreenFootnote
+	s.NotificationSettings = decoded.NotificationSettings
+	s.SingleSignOnSettings = decoded.SingleSignOnSettings
+	s.WallpaperDisplayLocation = decoded.WallpaperDisplayLocation
+	s.WallpaperImage = decoded.WallpaperImage
+	s.AirPrintDestinations = decoded.AirPrintDestinations
 	s.Assignments = decoded.Assignments
 	s.CreatedDateTime = decoded.CreatedDateTime
 	s.Description = decoded.Description
@@ -240,23 +280,15 @@ func (s *IosDeviceFeaturesConfiguration) UnmarshalJSON(bytes []byte) error {
 	s.DeviceStatuses = decoded.DeviceStatuses
 	s.DisplayName = decoded.DisplayName
 	s.GroupAssignments = decoded.GroupAssignments
-	s.HomeScreenGridHeight = decoded.HomeScreenGridHeight
-	s.HomeScreenGridWidth = decoded.HomeScreenGridWidth
-	s.HomeScreenPages = decoded.HomeScreenPages
 	s.Id = decoded.Id
 	s.LastModifiedDateTime = decoded.LastModifiedDateTime
-	s.LockScreenFootnote = decoded.LockScreenFootnote
-	s.NotificationSettings = decoded.NotificationSettings
 	s.ODataId = decoded.ODataId
 	s.ODataType = decoded.ODataType
 	s.RoleScopeTagIds = decoded.RoleScopeTagIds
-	s.SingleSignOnSettings = decoded.SingleSignOnSettings
 	s.SupportsScopeTags = decoded.SupportsScopeTags
 	s.UserStatusOverview = decoded.UserStatusOverview
 	s.UserStatuses = decoded.UserStatuses
 	s.Version = decoded.Version
-	s.WallpaperDisplayLocation = decoded.WallpaperDisplayLocation
-	s.WallpaperImage = decoded.WallpaperImage
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -319,5 +351,6 @@ func (s *IosDeviceFeaturesConfiguration) UnmarshalJSON(bytes []byte) error {
 		}
 		s.SingleSignOnExtensionPkinitCertificate = &impl
 	}
+
 	return nil
 }

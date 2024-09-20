@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/template` Documentation
 
-The `template` SDK allows for interaction with the Azure Resource Manager Service `devicemanagement` (API Version `beta`).
+The `template` SDK allows for interaction with Microsoft Graph `devicemanagement` (API Version `beta`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -15,7 +15,7 @@ import "github.com/hashicorp/go-azure-sdk/microsoft-graph/devicemanagement/beta/
 ### Client Initialization
 
 ```go
-client := template.NewTemplateClientWithBaseURI("https://management.azure.com")
+client := template.NewTemplateClientWithBaseURI("https://graph.microsoft.com")
 client.Client.Authorizer = authorizer
 ```
 
@@ -30,7 +30,7 @@ payload := template.DeviceManagementTemplate{
 }
 
 
-read, err := client.CreateTemplate(ctx, payload)
+read, err := client.CreateTemplate(ctx, payload, template.DefaultCreateTemplateOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -44,14 +44,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := template.NewDeviceManagementTemplateID("deviceManagementTemplateIdValue")
+id := template.NewDeviceManagementTemplateID("deviceManagementTemplateId")
 
 payload := template.CreateTemplateInstanceRequest{
 	// ...
 }
 
 
-read, err := client.CreateTemplateInstance(ctx, id, payload)
+read, err := client.CreateTemplateInstance(ctx, id, payload, template.DefaultCreateTemplateInstanceOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -65,7 +65,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := template.NewDeviceManagementTemplateID("deviceManagementTemplateIdValue")
+id := template.NewDeviceManagementTemplateID("deviceManagementTemplateId")
 
 read, err := client.DeleteTemplate(ctx, id, template.DefaultDeleteTemplateOperationOptions())
 if err != nil {
@@ -81,7 +81,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := template.NewDeviceManagementTemplateID("deviceManagementTemplateIdValue")
+id := template.NewDeviceManagementTemplateID("deviceManagementTemplateId")
 
 read, err := client.GetTemplate(ctx, id, template.DefaultGetTemplateOperationOptions())
 if err != nil {
@@ -147,14 +147,14 @@ for _, item := range items {
 
 ```go
 ctx := context.TODO()
-id := template.NewDeviceManagementTemplateID("deviceManagementTemplateIdValue")
+id := template.NewDeviceManagementTemplateID("deviceManagementTemplateId")
 
 payload := template.DeviceManagementTemplate{
 	// ...
 }
 
 
-read, err := client.UpdateTemplate(ctx, id, payload)
+read, err := client.UpdateTemplate(ctx, id, payload, template.DefaultUpdateTemplateOperationOptions())
 if err != nil {
 	// handle the error
 }

@@ -17,15 +17,44 @@ type UpdateDeviceShellScriptGroupAssignmentOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateDeviceShellScriptGroupAssignmentOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateDeviceShellScriptGroupAssignmentOperationOptions() UpdateDeviceShellScriptGroupAssignmentOperationOptions {
+	return UpdateDeviceShellScriptGroupAssignmentOperationOptions{}
+}
+
+func (o UpdateDeviceShellScriptGroupAssignmentOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateDeviceShellScriptGroupAssignmentOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateDeviceShellScriptGroupAssignmentOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateDeviceShellScriptGroupAssignment - Update the navigation property groupAssignments in deviceManagement
-func (c DeviceShellScriptGroupAssignmentClient) UpdateDeviceShellScriptGroupAssignment(ctx context.Context, id beta.DeviceManagementDeviceShellScriptIdGroupAssignmentId, input beta.DeviceManagementScriptGroupAssignment) (result UpdateDeviceShellScriptGroupAssignmentOperationResponse, err error) {
+func (c DeviceShellScriptGroupAssignmentClient) UpdateDeviceShellScriptGroupAssignment(ctx context.Context, id beta.DeviceManagementDeviceShellScriptIdGroupAssignmentId, input beta.DeviceManagementScriptGroupAssignment, options UpdateDeviceShellScriptGroupAssignmentOperationOptions) (result UpdateDeviceShellScriptGroupAssignmentOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

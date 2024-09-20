@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &IdentityGovernancePermissionsAnalyticGcpPermissionsCreepIndexDistributionId{}
 
 func TestNewIdentityGovernancePermissionsAnalyticGcpPermissionsCreepIndexDistributionID(t *testing.T) {
-	id := NewIdentityGovernancePermissionsAnalyticGcpPermissionsCreepIndexDistributionID("permissionsCreepIndexDistributionIdValue")
+	id := NewIdentityGovernancePermissionsAnalyticGcpPermissionsCreepIndexDistributionID("permissionsCreepIndexDistributionId")
 
-	if id.PermissionsCreepIndexDistributionId != "permissionsCreepIndexDistributionIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'PermissionsCreepIndexDistributionId'", id.PermissionsCreepIndexDistributionId, "permissionsCreepIndexDistributionIdValue")
+	if id.PermissionsCreepIndexDistributionId != "permissionsCreepIndexDistributionId" {
+		t.Fatalf("Expected %q but got %q for Segment 'PermissionsCreepIndexDistributionId'", id.PermissionsCreepIndexDistributionId, "permissionsCreepIndexDistributionId")
 	}
 }
 
 func TestFormatIdentityGovernancePermissionsAnalyticGcpPermissionsCreepIndexDistributionID(t *testing.T) {
-	actual := NewIdentityGovernancePermissionsAnalyticGcpPermissionsCreepIndexDistributionID("permissionsCreepIndexDistributionIdValue").ID()
-	expected := "/identityGovernance/permissionsAnalytics/gcp/permissionsCreepIndexDistributions/permissionsCreepIndexDistributionIdValue"
+	actual := NewIdentityGovernancePermissionsAnalyticGcpPermissionsCreepIndexDistributionID("permissionsCreepIndexDistributionId").ID()
+	expected := "/identityGovernance/permissionsAnalytics/gcp/permissionsCreepIndexDistributions/permissionsCreepIndexDistributionId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -60,14 +60,14 @@ func TestParseIdentityGovernancePermissionsAnalyticGcpPermissionsCreepIndexDistr
 		},
 		{
 			// Valid URI
-			Input: "/identityGovernance/permissionsAnalytics/gcp/permissionsCreepIndexDistributions/permissionsCreepIndexDistributionIdValue",
+			Input: "/identityGovernance/permissionsAnalytics/gcp/permissionsCreepIndexDistributions/permissionsCreepIndexDistributionId",
 			Expected: &IdentityGovernancePermissionsAnalyticGcpPermissionsCreepIndexDistributionId{
-				PermissionsCreepIndexDistributionId: "permissionsCreepIndexDistributionIdValue",
+				PermissionsCreepIndexDistributionId: "permissionsCreepIndexDistributionId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/identityGovernance/permissionsAnalytics/gcp/permissionsCreepIndexDistributions/permissionsCreepIndexDistributionIdValue/extra",
+			Input: "/identityGovernance/permissionsAnalytics/gcp/permissionsCreepIndexDistributions/permissionsCreepIndexDistributionId/extra",
 			Error: true,
 		},
 	}
@@ -146,26 +146,26 @@ func TestParseIdentityGovernancePermissionsAnalyticGcpPermissionsCreepIndexDistr
 		},
 		{
 			// Valid URI
-			Input: "/identityGovernance/permissionsAnalytics/gcp/permissionsCreepIndexDistributions/permissionsCreepIndexDistributionIdValue",
+			Input: "/identityGovernance/permissionsAnalytics/gcp/permissionsCreepIndexDistributions/permissionsCreepIndexDistributionId",
 			Expected: &IdentityGovernancePermissionsAnalyticGcpPermissionsCreepIndexDistributionId{
-				PermissionsCreepIndexDistributionId: "permissionsCreepIndexDistributionIdValue",
+				PermissionsCreepIndexDistributionId: "permissionsCreepIndexDistributionId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/identityGovernance/permissionsAnalytics/gcp/permissionsCreepIndexDistributions/permissionsCreepIndexDistributionIdValue/extra",
+			Input: "/identityGovernance/permissionsAnalytics/gcp/permissionsCreepIndexDistributions/permissionsCreepIndexDistributionId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/iDeNtItYgOvErNaNcE/pErMiSsIoNsAnAlYtIcS/gCp/pErMiSsIoNsCrEePiNdExDiStRiBuTiOnS/pErMiSsIoNsCrEePiNdExDiStRiBuTiOnIdVaLuE",
+			Input: "/iDeNtItYgOvErNaNcE/pErMiSsIoNsAnAlYtIcS/gCp/pErMiSsIoNsCrEePiNdExDiStRiBuTiOnS/pErMiSsIoNsCrEePiNdExDiStRiBuTiOnId",
 			Expected: &IdentityGovernancePermissionsAnalyticGcpPermissionsCreepIndexDistributionId{
-				PermissionsCreepIndexDistributionId: "pErMiSsIoNsCrEePiNdExDiStRiBuTiOnIdVaLuE",
+				PermissionsCreepIndexDistributionId: "pErMiSsIoNsCrEePiNdExDiStRiBuTiOnId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/iDeNtItYgOvErNaNcE/pErMiSsIoNsAnAlYtIcS/gCp/pErMiSsIoNsCrEePiNdExDiStRiBuTiOnS/pErMiSsIoNsCrEePiNdExDiStRiBuTiOnIdVaLuE/extra",
+			Input: "/iDeNtItYgOvErNaNcE/pErMiSsIoNsAnAlYtIcS/gCp/pErMiSsIoNsCrEePiNdExDiStRiBuTiOnS/pErMiSsIoNsCrEePiNdExDiStRiBuTiOnId/extra",
 			Error: true,
 		},
 	}

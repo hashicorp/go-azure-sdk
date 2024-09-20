@@ -93,7 +93,7 @@ func (id DirectoryFederationConfigurationId) Segments() []resourceids.Segment {
 	return []resourceids.Segment{
 		resourceids.StaticSegment("directory", "directory", "directory"),
 		resourceids.StaticSegment("federationConfigurations", "federationConfigurations", "federationConfigurations"),
-		resourceids.UserSpecifiedSegment("identityProviderBaseId", "identityProviderBaseIdValue"),
+		resourceids.UserSpecifiedSegment("identityProviderBaseId", "identityProviderBaseId"),
 	}
 }
 

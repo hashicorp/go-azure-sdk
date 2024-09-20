@@ -19,15 +19,44 @@ type CreateSiteContentTypeOperationResponse struct {
 	Model        *beta.ContentType
 }
 
+type CreateSiteContentTypeOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateSiteContentTypeOperationOptions() CreateSiteContentTypeOperationOptions {
+	return CreateSiteContentTypeOperationOptions{}
+}
+
+func (o CreateSiteContentTypeOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateSiteContentTypeOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateSiteContentTypeOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateSiteContentType - Create new navigation property to contentTypes for groups
-func (c SiteContentTypeClient) CreateSiteContentType(ctx context.Context, id beta.GroupIdSiteId, input beta.ContentType) (result CreateSiteContentTypeOperationResponse, err error) {
+func (c SiteContentTypeClient) CreateSiteContentType(ctx context.Context, id beta.GroupIdSiteId, input beta.ContentType, options CreateSiteContentTypeOperationOptions) (result CreateSiteContentTypeOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/contentTypes", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/contentTypes", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

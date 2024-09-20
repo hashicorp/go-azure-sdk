@@ -19,7 +19,8 @@ type DeleteOutlookMasterCategoryOperationResponse struct {
 }
 
 type DeleteOutlookMasterCategoryOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteOutlookMasterCategoryOperationOptions() DeleteOutlookMasterCategoryOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteOutlookMasterCategoryOperationOptions) ToHeaders() *client.Headers
 
 func (o DeleteOutlookMasterCategoryOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

@@ -18,15 +18,44 @@ type CreateClaimsMappingPolicyOperationResponse struct {
 	Model        *stable.ClaimsMappingPolicy
 }
 
+type CreateClaimsMappingPolicyOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateClaimsMappingPolicyOperationOptions() CreateClaimsMappingPolicyOperationOptions {
+	return CreateClaimsMappingPolicyOperationOptions{}
+}
+
+func (o CreateClaimsMappingPolicyOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateClaimsMappingPolicyOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateClaimsMappingPolicyOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateClaimsMappingPolicy - Create claimsMappingPolicy. Create a new claimsMappingPolicy object.
-func (c ClaimsMappingPolicyClient) CreateClaimsMappingPolicy(ctx context.Context, input stable.ClaimsMappingPolicy) (result CreateClaimsMappingPolicyOperationResponse, err error) {
+func (c ClaimsMappingPolicyClient) CreateClaimsMappingPolicy(ctx context.Context, input stable.ClaimsMappingPolicy, options CreateClaimsMappingPolicyOperationOptions) (result CreateClaimsMappingPolicyOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/policies/claimsMappingPolicies",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/policies/claimsMappingPolicies",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

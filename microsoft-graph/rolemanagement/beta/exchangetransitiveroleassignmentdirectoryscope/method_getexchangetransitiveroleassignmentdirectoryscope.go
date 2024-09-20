@@ -21,8 +21,9 @@ type GetExchangeTransitiveRoleAssignmentDirectoryScopeOperationResponse struct {
 }
 
 type GetExchangeTransitiveRoleAssignmentDirectoryScopeOperationOptions struct {
-	Expand *odata.Expand
-	Select *[]string
+	Expand   *odata.Expand
+	Metadata *odata.Metadata
+	Select   *[]string
 }
 
 func DefaultGetExchangeTransitiveRoleAssignmentDirectoryScopeOperationOptions() GetExchangeTransitiveRoleAssignmentDirectoryScopeOperationOptions {
@@ -39,6 +40,9 @@ func (o GetExchangeTransitiveRoleAssignmentDirectoryScopeOperationOptions) ToODa
 	out := odata.Query{}
 	if o.Expand != nil {
 		out.Expand = *o.Expand
+	}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
 	}
 	if o.Select != nil {
 		out.Select = *o.Select

@@ -19,7 +19,8 @@ type DeleteEnterpriseAppRoleDefinitionInheritsPermissionsFromOperationResponse s
 }
 
 type DeleteEnterpriseAppRoleDefinitionInheritsPermissionsFromOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteEnterpriseAppRoleDefinitionInheritsPermissionsFromOperationOptions() DeleteEnterpriseAppRoleDefinitionInheritsPermissionsFromOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteEnterpriseAppRoleDefinitionInheritsPermissionsFromOperationOptions
 
 func (o DeleteEnterpriseAppRoleDefinitionInheritsPermissionsFromOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

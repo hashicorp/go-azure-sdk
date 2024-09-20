@@ -18,16 +18,45 @@ type SendAccessReviewDefinitionInstanceReminderOperationResponse struct {
 	OData        *odata.OData
 }
 
+type SendAccessReviewDefinitionInstanceReminderOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultSendAccessReviewDefinitionInstanceReminderOperationOptions() SendAccessReviewDefinitionInstanceReminderOperationOptions {
+	return SendAccessReviewDefinitionInstanceReminderOperationOptions{}
+}
+
+func (o SendAccessReviewDefinitionInstanceReminderOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o SendAccessReviewDefinitionInstanceReminderOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o SendAccessReviewDefinitionInstanceReminderOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // SendAccessReviewDefinitionInstanceReminder - Invoke action sendReminder. Send a reminder to the reviewers of a
 // currently active accessReviewInstance.
-func (c AccessReviewDefinitionInstanceClient) SendAccessReviewDefinitionInstanceReminder(ctx context.Context, id beta.IdentityGovernanceAccessReviewDefinitionIdInstanceId) (result SendAccessReviewDefinitionInstanceReminderOperationResponse, err error) {
+func (c AccessReviewDefinitionInstanceClient) SendAccessReviewDefinitionInstanceReminder(ctx context.Context, id beta.IdentityGovernanceAccessReviewDefinitionIdInstanceId, options SendAccessReviewDefinitionInstanceReminderOperationOptions) (result SendAccessReviewDefinitionInstanceReminderOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/sendReminder", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/sendReminder", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &MeContactFolderId{}
 
 func TestNewMeContactFolderID(t *testing.T) {
-	id := NewMeContactFolderID("contactFolderIdValue")
+	id := NewMeContactFolderID("contactFolderId")
 
-	if id.ContactFolderId != "contactFolderIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ContactFolderId'", id.ContactFolderId, "contactFolderIdValue")
+	if id.ContactFolderId != "contactFolderId" {
+		t.Fatalf("Expected %q but got %q for Segment 'ContactFolderId'", id.ContactFolderId, "contactFolderId")
 	}
 }
 
 func TestFormatMeContactFolderID(t *testing.T) {
-	actual := NewMeContactFolderID("contactFolderIdValue").ID()
-	expected := "/me/contactFolders/contactFolderIdValue"
+	actual := NewMeContactFolderID("contactFolderId").ID()
+	expected := "/me/contactFolders/contactFolderId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -50,14 +50,14 @@ func TestParseMeContactFolderID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/me/contactFolders/contactFolderIdValue",
+			Input: "/me/contactFolders/contactFolderId",
 			Expected: &MeContactFolderId{
-				ContactFolderId: "contactFolderIdValue",
+				ContactFolderId: "contactFolderId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/contactFolders/contactFolderIdValue/extra",
+			Input: "/me/contactFolders/contactFolderId/extra",
 			Error: true,
 		},
 	}
@@ -116,26 +116,26 @@ func TestParseMeContactFolderIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/me/contactFolders/contactFolderIdValue",
+			Input: "/me/contactFolders/contactFolderId",
 			Expected: &MeContactFolderId{
-				ContactFolderId: "contactFolderIdValue",
+				ContactFolderId: "contactFolderId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/contactFolders/contactFolderIdValue/extra",
+			Input: "/me/contactFolders/contactFolderId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/cOnTaCtFoLdErS/cOnTaCtFoLdErIdVaLuE",
+			Input: "/mE/cOnTaCtFoLdErS/cOnTaCtFoLdErId",
 			Expected: &MeContactFolderId{
-				ContactFolderId: "cOnTaCtFoLdErIdVaLuE",
+				ContactFolderId: "cOnTaCtFoLdErId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/mE/cOnTaCtFoLdErS/cOnTaCtFoLdErIdVaLuE/extra",
+			Input: "/mE/cOnTaCtFoLdErS/cOnTaCtFoLdErId/extra",
 			Error: true,
 		},
 	}

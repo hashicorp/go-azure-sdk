@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &DeviceManagementDeviceComplianceScriptIdDeviceRunStateId{}
 
 func TestNewDeviceManagementDeviceComplianceScriptIdDeviceRunStateID(t *testing.T) {
-	id := NewDeviceManagementDeviceComplianceScriptIdDeviceRunStateID("deviceComplianceScriptIdValue", "deviceComplianceScriptDeviceStateIdValue")
+	id := NewDeviceManagementDeviceComplianceScriptIdDeviceRunStateID("deviceComplianceScriptId", "deviceComplianceScriptDeviceStateId")
 
-	if id.DeviceComplianceScriptId != "deviceComplianceScriptIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DeviceComplianceScriptId'", id.DeviceComplianceScriptId, "deviceComplianceScriptIdValue")
+	if id.DeviceComplianceScriptId != "deviceComplianceScriptId" {
+		t.Fatalf("Expected %q but got %q for Segment 'DeviceComplianceScriptId'", id.DeviceComplianceScriptId, "deviceComplianceScriptId")
 	}
 
-	if id.DeviceComplianceScriptDeviceStateId != "deviceComplianceScriptDeviceStateIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DeviceComplianceScriptDeviceStateId'", id.DeviceComplianceScriptDeviceStateId, "deviceComplianceScriptDeviceStateIdValue")
+	if id.DeviceComplianceScriptDeviceStateId != "deviceComplianceScriptDeviceStateId" {
+		t.Fatalf("Expected %q but got %q for Segment 'DeviceComplianceScriptDeviceStateId'", id.DeviceComplianceScriptDeviceStateId, "deviceComplianceScriptDeviceStateId")
 	}
 }
 
 func TestFormatDeviceManagementDeviceComplianceScriptIdDeviceRunStateID(t *testing.T) {
-	actual := NewDeviceManagementDeviceComplianceScriptIdDeviceRunStateID("deviceComplianceScriptIdValue", "deviceComplianceScriptDeviceStateIdValue").ID()
-	expected := "/deviceManagement/deviceComplianceScripts/deviceComplianceScriptIdValue/deviceRunStates/deviceComplianceScriptDeviceStateIdValue"
+	actual := NewDeviceManagementDeviceComplianceScriptIdDeviceRunStateID("deviceComplianceScriptId", "deviceComplianceScriptDeviceStateId").ID()
+	expected := "/deviceManagement/deviceComplianceScripts/deviceComplianceScriptId/deviceRunStates/deviceComplianceScriptDeviceStateId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -54,25 +54,25 @@ func TestParseDeviceManagementDeviceComplianceScriptIdDeviceRunStateID(t *testin
 		},
 		{
 			// Incomplete URI
-			Input: "/deviceManagement/deviceComplianceScripts/deviceComplianceScriptIdValue",
+			Input: "/deviceManagement/deviceComplianceScripts/deviceComplianceScriptId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/deviceManagement/deviceComplianceScripts/deviceComplianceScriptIdValue/deviceRunStates",
+			Input: "/deviceManagement/deviceComplianceScripts/deviceComplianceScriptId/deviceRunStates",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/deviceComplianceScripts/deviceComplianceScriptIdValue/deviceRunStates/deviceComplianceScriptDeviceStateIdValue",
+			Input: "/deviceManagement/deviceComplianceScripts/deviceComplianceScriptId/deviceRunStates/deviceComplianceScriptDeviceStateId",
 			Expected: &DeviceManagementDeviceComplianceScriptIdDeviceRunStateId{
-				DeviceComplianceScriptId:            "deviceComplianceScriptIdValue",
-				DeviceComplianceScriptDeviceStateId: "deviceComplianceScriptDeviceStateIdValue",
+				DeviceComplianceScriptId:            "deviceComplianceScriptId",
+				DeviceComplianceScriptDeviceStateId: "deviceComplianceScriptDeviceStateId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/deviceComplianceScripts/deviceComplianceScriptIdValue/deviceRunStates/deviceComplianceScriptDeviceStateIdValue/extra",
+			Input: "/deviceManagement/deviceComplianceScripts/deviceComplianceScriptId/deviceRunStates/deviceComplianceScriptDeviceStateId/extra",
 			Error: true,
 		},
 	}
@@ -135,48 +135,48 @@ func TestParseDeviceManagementDeviceComplianceScriptIdDeviceRunStateIDInsensitiv
 		},
 		{
 			// Incomplete URI
-			Input: "/deviceManagement/deviceComplianceScripts/deviceComplianceScriptIdValue",
+			Input: "/deviceManagement/deviceComplianceScripts/deviceComplianceScriptId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/dEvIcEcOmPlIaNcEsCrIpTs/dEvIcEcOmPlIaNcEsCrIpTiDvAlUe",
+			Input: "/dEvIcEmAnAgEmEnT/dEvIcEcOmPlIaNcEsCrIpTs/dEvIcEcOmPlIaNcEsCrIpTiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/deviceManagement/deviceComplianceScripts/deviceComplianceScriptIdValue/deviceRunStates",
+			Input: "/deviceManagement/deviceComplianceScripts/deviceComplianceScriptId/deviceRunStates",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/dEvIcEcOmPlIaNcEsCrIpTs/dEvIcEcOmPlIaNcEsCrIpTiDvAlUe/dEvIcErUnStAtEs",
+			Input: "/dEvIcEmAnAgEmEnT/dEvIcEcOmPlIaNcEsCrIpTs/dEvIcEcOmPlIaNcEsCrIpTiD/dEvIcErUnStAtEs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/deviceComplianceScripts/deviceComplianceScriptIdValue/deviceRunStates/deviceComplianceScriptDeviceStateIdValue",
+			Input: "/deviceManagement/deviceComplianceScripts/deviceComplianceScriptId/deviceRunStates/deviceComplianceScriptDeviceStateId",
 			Expected: &DeviceManagementDeviceComplianceScriptIdDeviceRunStateId{
-				DeviceComplianceScriptId:            "deviceComplianceScriptIdValue",
-				DeviceComplianceScriptDeviceStateId: "deviceComplianceScriptDeviceStateIdValue",
+				DeviceComplianceScriptId:            "deviceComplianceScriptId",
+				DeviceComplianceScriptDeviceStateId: "deviceComplianceScriptDeviceStateId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/deviceComplianceScripts/deviceComplianceScriptIdValue/deviceRunStates/deviceComplianceScriptDeviceStateIdValue/extra",
+			Input: "/deviceManagement/deviceComplianceScripts/deviceComplianceScriptId/deviceRunStates/deviceComplianceScriptDeviceStateId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/dEvIcEcOmPlIaNcEsCrIpTs/dEvIcEcOmPlIaNcEsCrIpTiDvAlUe/dEvIcErUnStAtEs/dEvIcEcOmPlIaNcEsCrIpTdEvIcEsTaTeIdVaLuE",
+			Input: "/dEvIcEmAnAgEmEnT/dEvIcEcOmPlIaNcEsCrIpTs/dEvIcEcOmPlIaNcEsCrIpTiD/dEvIcErUnStAtEs/dEvIcEcOmPlIaNcEsCrIpTdEvIcEsTaTeId",
 			Expected: &DeviceManagementDeviceComplianceScriptIdDeviceRunStateId{
-				DeviceComplianceScriptId:            "dEvIcEcOmPlIaNcEsCrIpTiDvAlUe",
-				DeviceComplianceScriptDeviceStateId: "dEvIcEcOmPlIaNcEsCrIpTdEvIcEsTaTeIdVaLuE",
+				DeviceComplianceScriptId:            "dEvIcEcOmPlIaNcEsCrIpTiD",
+				DeviceComplianceScriptDeviceStateId: "dEvIcEcOmPlIaNcEsCrIpTdEvIcEsTaTeId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/dEvIcEcOmPlIaNcEsCrIpTs/dEvIcEcOmPlIaNcEsCrIpTiDvAlUe/dEvIcErUnStAtEs/dEvIcEcOmPlIaNcEsCrIpTdEvIcEsTaTeIdVaLuE/extra",
+			Input: "/dEvIcEmAnAgEmEnT/dEvIcEcOmPlIaNcEsCrIpTs/dEvIcEcOmPlIaNcEsCrIpTiD/dEvIcErUnStAtEs/dEvIcEcOmPlIaNcEsCrIpTdEvIcEsTaTeId/extra",
 			Error: true,
 		},
 	}

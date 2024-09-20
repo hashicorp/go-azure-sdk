@@ -19,7 +19,8 @@ type DeleteEventExceptionOccurrenceInstanceAttachmentOperationResponse struct {
 }
 
 type DeleteEventExceptionOccurrenceInstanceAttachmentOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteEventExceptionOccurrenceInstanceAttachmentOperationOptions() DeleteEventExceptionOccurrenceInstanceAttachmentOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteEventExceptionOccurrenceInstanceAttachmentOperationOptions) ToHead
 
 func (o DeleteEventExceptionOccurrenceInstanceAttachmentOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

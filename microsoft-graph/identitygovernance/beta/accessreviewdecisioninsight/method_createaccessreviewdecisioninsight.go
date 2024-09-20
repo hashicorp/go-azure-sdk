@@ -20,15 +20,44 @@ type CreateAccessReviewDecisionInsightOperationResponse struct {
 	Model        beta.GovernanceInsight
 }
 
+type CreateAccessReviewDecisionInsightOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateAccessReviewDecisionInsightOperationOptions() CreateAccessReviewDecisionInsightOperationOptions {
+	return CreateAccessReviewDecisionInsightOperationOptions{}
+}
+
+func (o CreateAccessReviewDecisionInsightOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateAccessReviewDecisionInsightOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateAccessReviewDecisionInsightOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateAccessReviewDecisionInsight - Create new navigation property to insights for identityGovernance
-func (c AccessReviewDecisionInsightClient) CreateAccessReviewDecisionInsight(ctx context.Context, id beta.IdentityGovernanceAccessReviewDecisionId, input beta.GovernanceInsight) (result CreateAccessReviewDecisionInsightOperationResponse, err error) {
+func (c AccessReviewDecisionInsightClient) CreateAccessReviewDecisionInsight(ctx context.Context, id beta.IdentityGovernanceAccessReviewDecisionId, input beta.GovernanceInsight, options CreateAccessReviewDecisionInsightOperationOptions) (result CreateAccessReviewDecisionInsightOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/insights", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/insights", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

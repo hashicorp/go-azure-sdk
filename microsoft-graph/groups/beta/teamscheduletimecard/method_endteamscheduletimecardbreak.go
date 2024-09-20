@@ -19,15 +19,44 @@ type EndTeamScheduleTimeCardBreakOperationResponse struct {
 	Model        *beta.TimeCard
 }
 
+type EndTeamScheduleTimeCardBreakOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultEndTeamScheduleTimeCardBreakOperationOptions() EndTeamScheduleTimeCardBreakOperationOptions {
+	return EndTeamScheduleTimeCardBreakOperationOptions{}
+}
+
+func (o EndTeamScheduleTimeCardBreakOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o EndTeamScheduleTimeCardBreakOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o EndTeamScheduleTimeCardBreakOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // EndTeamScheduleTimeCardBreak - Invoke action endBreak. End the open break in a specific timeCard.
-func (c TeamScheduleTimeCardClient) EndTeamScheduleTimeCardBreak(ctx context.Context, id beta.GroupIdTeamScheduleTimeCardId, input EndTeamScheduleTimeCardBreakRequest) (result EndTeamScheduleTimeCardBreakOperationResponse, err error) {
+func (c TeamScheduleTimeCardClient) EndTeamScheduleTimeCardBreak(ctx context.Context, id beta.GroupIdTeamScheduleTimeCardId, input EndTeamScheduleTimeCardBreakRequest, options EndTeamScheduleTimeCardBreakOperationOptions) (result EndTeamScheduleTimeCardBreakOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/endBreak", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/endBreak", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &UserIdCreatedObjectId{}
 
 func TestNewUserIdCreatedObjectID(t *testing.T) {
-	id := NewUserIdCreatedObjectID("userIdValue", "directoryObjectIdValue")
+	id := NewUserIdCreatedObjectID("userId", "directoryObjectId")
 
-	if id.UserId != "userIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'UserId'", id.UserId, "userIdValue")
+	if id.UserId != "userId" {
+		t.Fatalf("Expected %q but got %q for Segment 'UserId'", id.UserId, "userId")
 	}
 
-	if id.DirectoryObjectId != "directoryObjectIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'DirectoryObjectId'", id.DirectoryObjectId, "directoryObjectIdValue")
+	if id.DirectoryObjectId != "directoryObjectId" {
+		t.Fatalf("Expected %q but got %q for Segment 'DirectoryObjectId'", id.DirectoryObjectId, "directoryObjectId")
 	}
 }
 
 func TestFormatUserIdCreatedObjectID(t *testing.T) {
-	actual := NewUserIdCreatedObjectID("userIdValue", "directoryObjectIdValue").ID()
-	expected := "/users/userIdValue/createdObjects/directoryObjectIdValue"
+	actual := NewUserIdCreatedObjectID("userId", "directoryObjectId").ID()
+	expected := "/users/userId/createdObjects/directoryObjectId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -49,25 +49,25 @@ func TestParseUserIdCreatedObjectID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue",
+			Input: "/users/userId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/createdObjects",
+			Input: "/users/userId/createdObjects",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/users/userIdValue/createdObjects/directoryObjectIdValue",
+			Input: "/users/userId/createdObjects/directoryObjectId",
 			Expected: &UserIdCreatedObjectId{
-				UserId:            "userIdValue",
-				DirectoryObjectId: "directoryObjectIdValue",
+				UserId:            "userId",
+				DirectoryObjectId: "directoryObjectId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/users/userIdValue/createdObjects/directoryObjectIdValue/extra",
+			Input: "/users/userId/createdObjects/directoryObjectId/extra",
 			Error: true,
 		},
 	}
@@ -120,48 +120,48 @@ func TestParseUserIdCreatedObjectIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue",
+			Input: "/users/userId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe",
+			Input: "/uSeRs/uSeRiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/createdObjects",
+			Input: "/users/userId/createdObjects",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/cReAtEdObJeCtS",
+			Input: "/uSeRs/uSeRiD/cReAtEdObJeCtS",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/users/userIdValue/createdObjects/directoryObjectIdValue",
+			Input: "/users/userId/createdObjects/directoryObjectId",
 			Expected: &UserIdCreatedObjectId{
-				UserId:            "userIdValue",
-				DirectoryObjectId: "directoryObjectIdValue",
+				UserId:            "userId",
+				DirectoryObjectId: "directoryObjectId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/users/userIdValue/createdObjects/directoryObjectIdValue/extra",
+			Input: "/users/userId/createdObjects/directoryObjectId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/cReAtEdObJeCtS/dIrEcToRyObJeCtIdVaLuE",
+			Input: "/uSeRs/uSeRiD/cReAtEdObJeCtS/dIrEcToRyObJeCtId",
 			Expected: &UserIdCreatedObjectId{
-				UserId:            "uSeRiDvAlUe",
-				DirectoryObjectId: "dIrEcToRyObJeCtIdVaLuE",
+				UserId:            "uSeRiD",
+				DirectoryObjectId: "dIrEcToRyObJeCtId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/cReAtEdObJeCtS/dIrEcToRyObJeCtIdVaLuE/extra",
+			Input: "/uSeRs/uSeRiD/cReAtEdObJeCtS/dIrEcToRyObJeCtId/extra",
 			Error: true,
 		},
 	}

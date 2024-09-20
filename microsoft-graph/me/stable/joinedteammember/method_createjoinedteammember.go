@@ -20,15 +20,44 @@ type CreateJoinedTeamMemberOperationResponse struct {
 	Model        stable.ConversationMember
 }
 
+type CreateJoinedTeamMemberOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateJoinedTeamMemberOperationOptions() CreateJoinedTeamMemberOperationOptions {
+	return CreateJoinedTeamMemberOperationOptions{}
+}
+
+func (o CreateJoinedTeamMemberOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateJoinedTeamMemberOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateJoinedTeamMemberOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateJoinedTeamMember - Create new navigation property to members for me
-func (c JoinedTeamMemberClient) CreateJoinedTeamMember(ctx context.Context, id stable.MeJoinedTeamId, input stable.ConversationMember) (result CreateJoinedTeamMemberOperationResponse, err error) {
+func (c JoinedTeamMemberClient) CreateJoinedTeamMember(ctx context.Context, id stable.MeJoinedTeamId, input stable.ConversationMember, options CreateJoinedTeamMemberOperationOptions) (result CreateJoinedTeamMemberOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/members", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/members", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

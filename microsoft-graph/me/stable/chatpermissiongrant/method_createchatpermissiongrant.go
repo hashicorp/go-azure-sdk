@@ -19,15 +19,44 @@ type CreateChatPermissionGrantOperationResponse struct {
 	Model        *stable.ResourceSpecificPermissionGrant
 }
 
+type CreateChatPermissionGrantOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateChatPermissionGrantOperationOptions() CreateChatPermissionGrantOperationOptions {
+	return CreateChatPermissionGrantOperationOptions{}
+}
+
+func (o CreateChatPermissionGrantOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateChatPermissionGrantOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateChatPermissionGrantOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateChatPermissionGrant - Create new navigation property to permissionGrants for me
-func (c ChatPermissionGrantClient) CreateChatPermissionGrant(ctx context.Context, id stable.MeChatId, input stable.ResourceSpecificPermissionGrant) (result CreateChatPermissionGrantOperationResponse, err error) {
+func (c ChatPermissionGrantClient) CreateChatPermissionGrant(ctx context.Context, id stable.MeChatId, input stable.ResourceSpecificPermissionGrant, options CreateChatPermissionGrantOperationOptions) (result CreateChatPermissionGrantOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/permissionGrants", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/permissionGrants", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

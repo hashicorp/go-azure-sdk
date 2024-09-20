@@ -92,24 +92,37 @@ func (s TeamsAppDefinition) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &TeamsAppDefinition{}
 
 func (s *TeamsAppDefinition) UnmarshalJSON(bytes []byte) error {
-	type alias TeamsAppDefinition
-	var decoded alias
+
+	var decoded struct {
+		Authorization        *TeamsAppAuthorization   `json:"authorization,omitempty"`
+		Bot                  *TeamworkBot             `json:"bot,omitempty"`
+		Description          nullable.Type[string]    `json:"description,omitempty"`
+		DisplayName          nullable.Type[string]    `json:"displayName,omitempty"`
+		LastModifiedDateTime nullable.Type[string]    `json:"lastModifiedDateTime,omitempty"`
+		PublishingState      *TeamsAppPublishingState `json:"publishingState,omitempty"`
+		ShortDescription     nullable.Type[string]    `json:"shortDescription,omitempty"`
+		TeamsAppId           nullable.Type[string]    `json:"teamsAppId,omitempty"`
+		Version              nullable.Type[string]    `json:"version,omitempty"`
+		Id                   *string                  `json:"id,omitempty"`
+		ODataId              *string                  `json:"@odata.id,omitempty"`
+		ODataType            *string                  `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into TeamsAppDefinition: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.Authorization = decoded.Authorization
 	s.Bot = decoded.Bot
 	s.Description = decoded.Description
 	s.DisplayName = decoded.DisplayName
-	s.Id = decoded.Id
 	s.LastModifiedDateTime = decoded.LastModifiedDateTime
-	s.ODataId = decoded.ODataId
-	s.ODataType = decoded.ODataType
 	s.PublishingState = decoded.PublishingState
 	s.ShortDescription = decoded.ShortDescription
 	s.TeamsAppId = decoded.TeamsAppId
 	s.Version = decoded.Version
+	s.Id = decoded.Id
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -123,5 +136,6 @@ func (s *TeamsAppDefinition) UnmarshalJSON(bytes []byte) error {
 		}
 		s.CreatedBy = impl
 	}
+
 	return nil
 }

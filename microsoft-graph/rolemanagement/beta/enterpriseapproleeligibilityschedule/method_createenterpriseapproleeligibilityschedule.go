@@ -19,16 +19,45 @@ type CreateEnterpriseAppRoleEligibilityScheduleOperationResponse struct {
 	Model        *beta.UnifiedRoleEligibilitySchedule
 }
 
+type CreateEnterpriseAppRoleEligibilityScheduleOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateEnterpriseAppRoleEligibilityScheduleOperationOptions() CreateEnterpriseAppRoleEligibilityScheduleOperationOptions {
+	return CreateEnterpriseAppRoleEligibilityScheduleOperationOptions{}
+}
+
+func (o CreateEnterpriseAppRoleEligibilityScheduleOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateEnterpriseAppRoleEligibilityScheduleOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateEnterpriseAppRoleEligibilityScheduleOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateEnterpriseAppRoleEligibilitySchedule - Create new navigation property to roleEligibilitySchedules for
 // roleManagement
-func (c EnterpriseAppRoleEligibilityScheduleClient) CreateEnterpriseAppRoleEligibilitySchedule(ctx context.Context, id beta.RoleManagementEnterpriseAppId, input beta.UnifiedRoleEligibilitySchedule) (result CreateEnterpriseAppRoleEligibilityScheduleOperationResponse, err error) {
+func (c EnterpriseAppRoleEligibilityScheduleClient) CreateEnterpriseAppRoleEligibilitySchedule(ctx context.Context, id beta.RoleManagementEnterpriseAppId, input beta.UnifiedRoleEligibilitySchedule, options CreateEnterpriseAppRoleEligibilityScheduleOperationOptions) (result CreateEnterpriseAppRoleEligibilityScheduleOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/roleEligibilitySchedules", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/roleEligibilitySchedules", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

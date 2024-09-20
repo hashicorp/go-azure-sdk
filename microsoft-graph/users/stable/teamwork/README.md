@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/microsoft-graph/users/stable/teamwork` Documentation
 
-The `teamwork` SDK allows for interaction with the Azure Resource Manager Service `users` (API Version `stable`).
+The `teamwork` SDK allows for interaction with Microsoft Graph `users` (API Version `stable`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -15,7 +15,7 @@ import "github.com/hashicorp/go-azure-sdk/microsoft-graph/users/stable/teamwork"
 ### Client Initialization
 
 ```go
-client := teamwork.NewTeamworkClientWithBaseURI("https://management.azure.com")
+client := teamwork.NewTeamworkClientWithBaseURI("https://graph.microsoft.com")
 client.Client.Authorizer = authorizer
 ```
 
@@ -24,7 +24,7 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := teamwork.NewUserID("userIdValue")
+id := teamwork.NewUserID("userId")
 
 read, err := client.DeleteTeamwork(ctx, id, teamwork.DefaultDeleteTeamworkOperationOptions())
 if err != nil {
@@ -40,7 +40,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := teamwork.NewUserID("userIdValue")
+id := teamwork.NewUserID("userId")
 
 read, err := client.GetTeamwork(ctx, id, teamwork.DefaultGetTeamworkOperationOptions())
 if err != nil {
@@ -56,14 +56,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := teamwork.NewUserID("userIdValue")
+id := teamwork.NewUserID("userId")
 
 payload := teamwork.SendTeamworkActivityNotificationRequest{
 	// ...
 }
 
 
-read, err := client.SendTeamworkActivityNotification(ctx, id, payload)
+read, err := client.SendTeamworkActivityNotification(ctx, id, payload, teamwork.DefaultSendTeamworkActivityNotificationOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -77,14 +77,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := teamwork.NewUserID("userIdValue")
+id := teamwork.NewUserID("userId")
 
 payload := teamwork.UserTeamwork{
 	// ...
 }
 
 
-read, err := client.UpdateTeamwork(ctx, id, payload)
+read, err := client.UpdateTeamwork(ctx, id, payload, teamwork.DefaultUpdateTeamworkOperationOptions())
 if err != nil {
 	// handle the error
 }

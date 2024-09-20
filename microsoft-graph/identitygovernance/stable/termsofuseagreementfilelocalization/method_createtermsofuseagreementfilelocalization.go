@@ -19,15 +19,44 @@ type CreateTermsOfUseAgreementFileLocalizationOperationResponse struct {
 	Model        *stable.AgreementFileLocalization
 }
 
+type CreateTermsOfUseAgreementFileLocalizationOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateTermsOfUseAgreementFileLocalizationOperationOptions() CreateTermsOfUseAgreementFileLocalizationOperationOptions {
+	return CreateTermsOfUseAgreementFileLocalizationOperationOptions{}
+}
+
+func (o CreateTermsOfUseAgreementFileLocalizationOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateTermsOfUseAgreementFileLocalizationOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateTermsOfUseAgreementFileLocalizationOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateTermsOfUseAgreementFileLocalization - Create new navigation property to localizations for identityGovernance
-func (c TermsOfUseAgreementFileLocalizationClient) CreateTermsOfUseAgreementFileLocalization(ctx context.Context, id stable.IdentityGovernanceTermsOfUseAgreementId, input stable.AgreementFileLocalization) (result CreateTermsOfUseAgreementFileLocalizationOperationResponse, err error) {
+func (c TermsOfUseAgreementFileLocalizationClient) CreateTermsOfUseAgreementFileLocalization(ctx context.Context, id stable.IdentityGovernanceTermsOfUseAgreementId, input stable.AgreementFileLocalization, options CreateTermsOfUseAgreementFileLocalizationOperationOptions) (result CreateTermsOfUseAgreementFileLocalizationOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/file/localizations", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/file/localizations", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

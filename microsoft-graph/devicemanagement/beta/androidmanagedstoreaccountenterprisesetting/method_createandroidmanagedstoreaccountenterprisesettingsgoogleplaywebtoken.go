@@ -17,16 +17,45 @@ type CreateAndroidManagedStoreAccountEnterpriseSettingsGooglePlayWebTokenOperati
 	Model        *CreateAndroidManagedStoreAccountEnterpriseSettingsGooglePlayWebTokenResult
 }
 
+type CreateAndroidManagedStoreAccountEnterpriseSettingsGooglePlayWebTokenOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateAndroidManagedStoreAccountEnterpriseSettingsGooglePlayWebTokenOperationOptions() CreateAndroidManagedStoreAccountEnterpriseSettingsGooglePlayWebTokenOperationOptions {
+	return CreateAndroidManagedStoreAccountEnterpriseSettingsGooglePlayWebTokenOperationOptions{}
+}
+
+func (o CreateAndroidManagedStoreAccountEnterpriseSettingsGooglePlayWebTokenOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateAndroidManagedStoreAccountEnterpriseSettingsGooglePlayWebTokenOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateAndroidManagedStoreAccountEnterpriseSettingsGooglePlayWebTokenOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateAndroidManagedStoreAccountEnterpriseSettingsGooglePlayWebToken - Invoke action createGooglePlayWebToken.
 // Generates a web token that is used in an embeddable component.
-func (c AndroidManagedStoreAccountEnterpriseSettingClient) CreateAndroidManagedStoreAccountEnterpriseSettingsGooglePlayWebToken(ctx context.Context, input CreateAndroidManagedStoreAccountEnterpriseSettingsGooglePlayWebTokenRequest) (result CreateAndroidManagedStoreAccountEnterpriseSettingsGooglePlayWebTokenOperationResponse, err error) {
+func (c AndroidManagedStoreAccountEnterpriseSettingClient) CreateAndroidManagedStoreAccountEnterpriseSettingsGooglePlayWebToken(ctx context.Context, input CreateAndroidManagedStoreAccountEnterpriseSettingsGooglePlayWebTokenRequest, options CreateAndroidManagedStoreAccountEnterpriseSettingsGooglePlayWebTokenOperationOptions) (result CreateAndroidManagedStoreAccountEnterpriseSettingsGooglePlayWebTokenOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/deviceManagement/androidManagedStoreAccountEnterpriseSettings/createGooglePlayWebToken",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/deviceManagement/androidManagedStoreAccountEnterpriseSettings/createGooglePlayWebToken",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

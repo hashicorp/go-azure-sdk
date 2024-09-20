@@ -19,15 +19,44 @@ type CreateAccessReviewDefinitionInstanceStageOperationResponse struct {
 	Model        *beta.AccessReviewStage
 }
 
+type CreateAccessReviewDefinitionInstanceStageOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateAccessReviewDefinitionInstanceStageOperationOptions() CreateAccessReviewDefinitionInstanceStageOperationOptions {
+	return CreateAccessReviewDefinitionInstanceStageOperationOptions{}
+}
+
+func (o CreateAccessReviewDefinitionInstanceStageOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateAccessReviewDefinitionInstanceStageOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateAccessReviewDefinitionInstanceStageOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateAccessReviewDefinitionInstanceStage - Create new navigation property to stages for identityGovernance
-func (c AccessReviewDefinitionInstanceStageClient) CreateAccessReviewDefinitionInstanceStage(ctx context.Context, id beta.IdentityGovernanceAccessReviewDefinitionIdInstanceId, input beta.AccessReviewStage) (result CreateAccessReviewDefinitionInstanceStageOperationResponse, err error) {
+func (c AccessReviewDefinitionInstanceStageClient) CreateAccessReviewDefinitionInstanceStage(ctx context.Context, id beta.IdentityGovernanceAccessReviewDefinitionIdInstanceId, input beta.AccessReviewStage, options CreateAccessReviewDefinitionInstanceStageOperationOptions) (result CreateAccessReviewDefinitionInstanceStageOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/stages", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/stages", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

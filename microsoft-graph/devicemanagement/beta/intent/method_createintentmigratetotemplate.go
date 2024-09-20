@@ -18,15 +18,44 @@ type CreateIntentMigrateToTemplateOperationResponse struct {
 	OData        *odata.OData
 }
 
+type CreateIntentMigrateToTemplateOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateIntentMigrateToTemplateOperationOptions() CreateIntentMigrateToTemplateOperationOptions {
+	return CreateIntentMigrateToTemplateOperationOptions{}
+}
+
+func (o CreateIntentMigrateToTemplateOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateIntentMigrateToTemplateOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateIntentMigrateToTemplateOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateIntentMigrateToTemplate - Invoke action migrateToTemplate
-func (c IntentClient) CreateIntentMigrateToTemplate(ctx context.Context, id beta.DeviceManagementIntentId, input CreateIntentMigrateToTemplateRequest) (result CreateIntentMigrateToTemplateOperationResponse, err error) {
+func (c IntentClient) CreateIntentMigrateToTemplate(ctx context.Context, id beta.DeviceManagementIntentId, input CreateIntentMigrateToTemplateRequest, options CreateIntentMigrateToTemplateOperationOptions) (result CreateIntentMigrateToTemplateOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/migrateToTemplate", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/migrateToTemplate", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

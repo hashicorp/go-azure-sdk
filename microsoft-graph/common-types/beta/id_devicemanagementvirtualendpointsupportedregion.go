@@ -94,7 +94,7 @@ func (id DeviceManagementVirtualEndpointSupportedRegionId) Segments() []resource
 		resourceids.StaticSegment("deviceManagement", "deviceManagement", "deviceManagement"),
 		resourceids.StaticSegment("virtualEndpoint", "virtualEndpoint", "virtualEndpoint"),
 		resourceids.StaticSegment("supportedRegions", "supportedRegions", "supportedRegions"),
-		resourceids.UserSpecifiedSegment("cloudPCSupportedRegionId", "cloudPCSupportedRegionIdValue"),
+		resourceids.UserSpecifiedSegment("cloudPCSupportedRegionId", "cloudPCSupportedRegionId"),
 	}
 }
 

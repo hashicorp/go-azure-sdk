@@ -67,10 +67,17 @@ func (s AccessPackageResourceAttribute) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &AccessPackageResourceAttribute{}
 
 func (s *AccessPackageResourceAttribute) UnmarshalJSON(bytes []byte) error {
-	type alias AccessPackageResourceAttribute
-	var decoded alias
+
+	var decoded struct {
+		AttributeName                  nullable.Type[string] `json:"attributeName,omitempty"`
+		Id                             nullable.Type[string] `json:"id,omitempty"`
+		IsEditable                     nullable.Type[bool]   `json:"isEditable,omitempty"`
+		IsPersistedOnAssignmentRemoval nullable.Type[bool]   `json:"isPersistedOnAssignmentRemoval,omitempty"`
+		ODataId                        *string               `json:"@odata.id,omitempty"`
+		ODataType                      *string               `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into AccessPackageResourceAttribute: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.AttributeName = decoded.AttributeName
@@ -100,5 +107,6 @@ func (s *AccessPackageResourceAttribute) UnmarshalJSON(bytes []byte) error {
 		}
 		s.AttributeSource = impl
 	}
+
 	return nil
 }

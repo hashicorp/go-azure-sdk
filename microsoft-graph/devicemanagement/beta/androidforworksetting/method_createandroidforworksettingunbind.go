@@ -16,15 +16,44 @@ type CreateAndroidForWorkSettingUnbindOperationResponse struct {
 	OData        *odata.OData
 }
 
+type CreateAndroidForWorkSettingUnbindOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateAndroidForWorkSettingUnbindOperationOptions() CreateAndroidForWorkSettingUnbindOperationOptions {
+	return CreateAndroidForWorkSettingUnbindOperationOptions{}
+}
+
+func (o CreateAndroidForWorkSettingUnbindOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateAndroidForWorkSettingUnbindOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateAndroidForWorkSettingUnbindOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateAndroidForWorkSettingUnbind - Invoke action unbind
-func (c AndroidForWorkSettingClient) CreateAndroidForWorkSettingUnbind(ctx context.Context) (result CreateAndroidForWorkSettingUnbindOperationResponse, err error) {
+func (c AndroidForWorkSettingClient) CreateAndroidForWorkSettingUnbind(ctx context.Context, options CreateAndroidForWorkSettingUnbindOperationOptions) (result CreateAndroidForWorkSettingUnbindOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/deviceManagement/androidForWorkSettings/unbind",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/deviceManagement/androidForWorkSettings/unbind",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

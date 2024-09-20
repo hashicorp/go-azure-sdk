@@ -76,19 +76,27 @@ func (s IdentityGovernanceWorkflowTemplate) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &IdentityGovernanceWorkflowTemplate{}
 
 func (s *IdentityGovernanceWorkflowTemplate) UnmarshalJSON(bytes []byte) error {
-	type alias IdentityGovernanceWorkflowTemplate
-	var decoded alias
+
+	var decoded struct {
+		Category    *IdentityGovernanceLifecycleWorkflowCategory `json:"category,omitempty"`
+		Description nullable.Type[string]                        `json:"description,omitempty"`
+		DisplayName *string                                      `json:"displayName,omitempty"`
+		Tasks       *[]IdentityGovernanceTask                    `json:"tasks,omitempty"`
+		Id          *string                                      `json:"id,omitempty"`
+		ODataId     *string                                      `json:"@odata.id,omitempty"`
+		ODataType   *string                                      `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into IdentityGovernanceWorkflowTemplate: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.Category = decoded.Category
 	s.Description = decoded.Description
 	s.DisplayName = decoded.DisplayName
+	s.Tasks = decoded.Tasks
 	s.Id = decoded.Id
 	s.ODataId = decoded.ODataId
 	s.ODataType = decoded.ODataType
-	s.Tasks = decoded.Tasks
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -102,5 +110,6 @@ func (s *IdentityGovernanceWorkflowTemplate) UnmarshalJSON(bytes []byte) error {
 		}
 		s.ExecutionConditions = impl
 	}
+
 	return nil
 }

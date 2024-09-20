@@ -100,9 +100,9 @@ func (id IdentityGovernancePermissionsManagementScheduledPermissionsApprovalIdSt
 		resourceids.StaticSegment("identityGovernance", "identityGovernance", "identityGovernance"),
 		resourceids.StaticSegment("permissionsManagement", "permissionsManagement", "permissionsManagement"),
 		resourceids.StaticSegment("scheduledPermissionsApprovals", "scheduledPermissionsApprovals", "scheduledPermissionsApprovals"),
-		resourceids.UserSpecifiedSegment("approvalId", "approvalIdValue"),
+		resourceids.UserSpecifiedSegment("approvalId", "approvalId"),
 		resourceids.StaticSegment("steps", "steps", "steps"),
-		resourceids.UserSpecifiedSegment("approvalStepId", "approvalStepIdValue"),
+		resourceids.UserSpecifiedSegment("approvalStepId", "approvalStepId"),
 	}
 }
 

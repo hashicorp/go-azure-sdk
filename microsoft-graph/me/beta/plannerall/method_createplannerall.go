@@ -19,15 +19,44 @@ type CreatePlannerAllOperationResponse struct {
 	Model        beta.PlannerDelta
 }
 
+type CreatePlannerAllOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreatePlannerAllOperationOptions() CreatePlannerAllOperationOptions {
+	return CreatePlannerAllOperationOptions{}
+}
+
+func (o CreatePlannerAllOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreatePlannerAllOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreatePlannerAllOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreatePlannerAll - Create new navigation property to all for me
-func (c PlannerAllClient) CreatePlannerAll(ctx context.Context, input beta.PlannerDelta) (result CreatePlannerAllOperationResponse, err error) {
+func (c PlannerAllClient) CreatePlannerAll(ctx context.Context, input beta.PlannerDelta, options CreatePlannerAllOperationOptions) (result CreatePlannerAllOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/me/planner/all",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/me/planner/all",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

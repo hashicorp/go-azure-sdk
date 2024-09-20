@@ -18,15 +18,44 @@ type CreateManagedDevicePlayLostModeSoundOperationResponse struct {
 	OData        *odata.OData
 }
 
+type CreateManagedDevicePlayLostModeSoundOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateManagedDevicePlayLostModeSoundOperationOptions() CreateManagedDevicePlayLostModeSoundOperationOptions {
+	return CreateManagedDevicePlayLostModeSoundOperationOptions{}
+}
+
+func (o CreateManagedDevicePlayLostModeSoundOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateManagedDevicePlayLostModeSoundOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateManagedDevicePlayLostModeSoundOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateManagedDevicePlayLostModeSound - Invoke action playLostModeSound. Play lost mode sound
-func (c ManagedDeviceClient) CreateManagedDevicePlayLostModeSound(ctx context.Context, id beta.MeManagedDeviceId, input CreateManagedDevicePlayLostModeSoundRequest) (result CreateManagedDevicePlayLostModeSoundOperationResponse, err error) {
+func (c ManagedDeviceClient) CreateManagedDevicePlayLostModeSound(ctx context.Context, id beta.MeManagedDeviceId, input CreateManagedDevicePlayLostModeSoundRequest, options CreateManagedDevicePlayLostModeSoundOperationOptions) (result CreateManagedDevicePlayLostModeSoundOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/playLostModeSound", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/playLostModeSound", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

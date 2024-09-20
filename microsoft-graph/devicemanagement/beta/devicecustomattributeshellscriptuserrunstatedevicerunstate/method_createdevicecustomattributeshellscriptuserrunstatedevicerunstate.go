@@ -19,16 +19,45 @@ type CreateDeviceCustomAttributeShellScriptUserRunStateDeviceRunStateOperationRe
 	Model        *beta.DeviceManagementScriptDeviceState
 }
 
+type CreateDeviceCustomAttributeShellScriptUserRunStateDeviceRunStateOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateDeviceCustomAttributeShellScriptUserRunStateDeviceRunStateOperationOptions() CreateDeviceCustomAttributeShellScriptUserRunStateDeviceRunStateOperationOptions {
+	return CreateDeviceCustomAttributeShellScriptUserRunStateDeviceRunStateOperationOptions{}
+}
+
+func (o CreateDeviceCustomAttributeShellScriptUserRunStateDeviceRunStateOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateDeviceCustomAttributeShellScriptUserRunStateDeviceRunStateOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateDeviceCustomAttributeShellScriptUserRunStateDeviceRunStateOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateDeviceCustomAttributeShellScriptUserRunStateDeviceRunState - Create new navigation property to deviceRunStates
 // for deviceManagement
-func (c DeviceCustomAttributeShellScriptUserRunStateDeviceRunStateClient) CreateDeviceCustomAttributeShellScriptUserRunStateDeviceRunState(ctx context.Context, id beta.DeviceManagementDeviceCustomAttributeShellScriptIdUserRunStateId, input beta.DeviceManagementScriptDeviceState) (result CreateDeviceCustomAttributeShellScriptUserRunStateDeviceRunStateOperationResponse, err error) {
+func (c DeviceCustomAttributeShellScriptUserRunStateDeviceRunStateClient) CreateDeviceCustomAttributeShellScriptUserRunStateDeviceRunState(ctx context.Context, id beta.DeviceManagementDeviceCustomAttributeShellScriptIdUserRunStateId, input beta.DeviceManagementScriptDeviceState, options CreateDeviceCustomAttributeShellScriptUserRunStateDeviceRunStateOperationOptions) (result CreateDeviceCustomAttributeShellScriptUserRunStateDeviceRunStateOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/deviceRunStates", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/deviceRunStates", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -19,15 +19,44 @@ type CreateDriveRootUploadSessionOperationResponse struct {
 	Model        *stable.UploadSession
 }
 
+type CreateDriveRootUploadSessionOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateDriveRootUploadSessionOperationOptions() CreateDriveRootUploadSessionOperationOptions {
+	return CreateDriveRootUploadSessionOperationOptions{}
+}
+
+func (o CreateDriveRootUploadSessionOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateDriveRootUploadSessionOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateDriveRootUploadSessionOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateDriveRootUploadSession - Invoke action createUploadSession
-func (c DriveRootClient) CreateDriveRootUploadSession(ctx context.Context, id stable.MeDriveId, input CreateDriveRootUploadSessionRequest) (result CreateDriveRootUploadSessionOperationResponse, err error) {
+func (c DriveRootClient) CreateDriveRootUploadSession(ctx context.Context, id stable.MeDriveId, input CreateDriveRootUploadSessionRequest, options CreateDriveRootUploadSessionOperationOptions) (result CreateDriveRootUploadSessionOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/root/createUploadSession", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/root/createUploadSession", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

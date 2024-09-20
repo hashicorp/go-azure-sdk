@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &PolicyAuthorizationPolicyId{}
 
 func TestNewPolicyAuthorizationPolicyID(t *testing.T) {
-	id := NewPolicyAuthorizationPolicyID("authorizationPolicyIdValue")
+	id := NewPolicyAuthorizationPolicyID("authorizationPolicyId")
 
-	if id.AuthorizationPolicyId != "authorizationPolicyIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'AuthorizationPolicyId'", id.AuthorizationPolicyId, "authorizationPolicyIdValue")
+	if id.AuthorizationPolicyId != "authorizationPolicyId" {
+		t.Fatalf("Expected %q but got %q for Segment 'AuthorizationPolicyId'", id.AuthorizationPolicyId, "authorizationPolicyId")
 	}
 }
 
 func TestFormatPolicyAuthorizationPolicyID(t *testing.T) {
-	actual := NewPolicyAuthorizationPolicyID("authorizationPolicyIdValue").ID()
-	expected := "/policies/authorizationPolicy/authorizationPolicyIdValue"
+	actual := NewPolicyAuthorizationPolicyID("authorizationPolicyId").ID()
+	expected := "/policies/authorizationPolicy/authorizationPolicyId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -50,14 +50,14 @@ func TestParsePolicyAuthorizationPolicyID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/policies/authorizationPolicy/authorizationPolicyIdValue",
+			Input: "/policies/authorizationPolicy/authorizationPolicyId",
 			Expected: &PolicyAuthorizationPolicyId{
-				AuthorizationPolicyId: "authorizationPolicyIdValue",
+				AuthorizationPolicyId: "authorizationPolicyId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/policies/authorizationPolicy/authorizationPolicyIdValue/extra",
+			Input: "/policies/authorizationPolicy/authorizationPolicyId/extra",
 			Error: true,
 		},
 	}
@@ -116,26 +116,26 @@ func TestParsePolicyAuthorizationPolicyIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/policies/authorizationPolicy/authorizationPolicyIdValue",
+			Input: "/policies/authorizationPolicy/authorizationPolicyId",
 			Expected: &PolicyAuthorizationPolicyId{
-				AuthorizationPolicyId: "authorizationPolicyIdValue",
+				AuthorizationPolicyId: "authorizationPolicyId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/policies/authorizationPolicy/authorizationPolicyIdValue/extra",
+			Input: "/policies/authorizationPolicy/authorizationPolicyId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/pOlIcIeS/aUtHoRiZaTiOnPoLiCy/aUtHoRiZaTiOnPoLiCyIdVaLuE",
+			Input: "/pOlIcIeS/aUtHoRiZaTiOnPoLiCy/aUtHoRiZaTiOnPoLiCyId",
 			Expected: &PolicyAuthorizationPolicyId{
-				AuthorizationPolicyId: "aUtHoRiZaTiOnPoLiCyIdVaLuE",
+				AuthorizationPolicyId: "aUtHoRiZaTiOnPoLiCyId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/pOlIcIeS/aUtHoRiZaTiOnPoLiCy/aUtHoRiZaTiOnPoLiCyIdVaLuE/extra",
+			Input: "/pOlIcIeS/aUtHoRiZaTiOnPoLiCy/aUtHoRiZaTiOnPoLiCyId/extra",
 			Error: true,
 		},
 	}

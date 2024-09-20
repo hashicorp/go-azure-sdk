@@ -17,15 +17,44 @@ type UpdateTodoListTaskExtensionOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateTodoListTaskExtensionOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateTodoListTaskExtensionOperationOptions() UpdateTodoListTaskExtensionOperationOptions {
+	return UpdateTodoListTaskExtensionOperationOptions{}
+}
+
+func (o UpdateTodoListTaskExtensionOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateTodoListTaskExtensionOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateTodoListTaskExtensionOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateTodoListTaskExtension - Update the navigation property extensions in me
-func (c TodoListTaskExtensionClient) UpdateTodoListTaskExtension(ctx context.Context, id stable.MeTodoListIdTaskIdExtensionId, input stable.Extension) (result UpdateTodoListTaskExtensionOperationResponse, err error) {
+func (c TodoListTaskExtensionClient) UpdateTodoListTaskExtension(ctx context.Context, id stable.MeTodoListIdTaskIdExtensionId, input stable.Extension, options UpdateTodoListTaskExtensionOperationOptions) (result UpdateTodoListTaskExtensionOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -19,15 +19,44 @@ type CreateSettingDefinitionOperationResponse struct {
 	Model        beta.DeviceManagementSettingDefinition
 }
 
+type CreateSettingDefinitionOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateSettingDefinitionOperationOptions() CreateSettingDefinitionOperationOptions {
+	return CreateSettingDefinitionOperationOptions{}
+}
+
+func (o CreateSettingDefinitionOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateSettingDefinitionOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateSettingDefinitionOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateSettingDefinition - Create new navigation property to settingDefinitions for deviceManagement
-func (c SettingDefinitionClient) CreateSettingDefinition(ctx context.Context, input beta.DeviceManagementSettingDefinition) (result CreateSettingDefinitionOperationResponse, err error) {
+func (c SettingDefinitionClient) CreateSettingDefinition(ctx context.Context, input beta.DeviceManagementSettingDefinition, options CreateSettingDefinitionOperationOptions) (result CreateSettingDefinitionOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/deviceManagement/settingDefinitions",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/deviceManagement/settingDefinitions",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

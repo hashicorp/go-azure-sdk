@@ -62,10 +62,15 @@ func (s DeviceManagementConfigurationSettingGroupDefinitionCollectionResponse) M
 var _ json.Unmarshaler = &DeviceManagementConfigurationSettingGroupDefinitionCollectionResponse{}
 
 func (s *DeviceManagementConfigurationSettingGroupDefinitionCollectionResponse) UnmarshalJSON(bytes []byte) error {
-	type alias DeviceManagementConfigurationSettingGroupDefinitionCollectionResponse
-	var decoded alias
+
+	var decoded struct {
+		Value         *[]DeviceManagementConfigurationSettingGroupDefinition `json:"value,omitempty"`
+		ODataId       *string                                                `json:"@odata.id,omitempty"`
+		ODataNextLink nullable.Type[string]                                  `json:"@odata.nextLink,omitempty"`
+		ODataType     *string                                                `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into DeviceManagementConfigurationSettingGroupDefinitionCollectionResponse: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.ODataId = decoded.ODataId
@@ -93,5 +98,6 @@ func (s *DeviceManagementConfigurationSettingGroupDefinitionCollectionResponse) 
 		}
 		s.Value = &output
 	}
+
 	return nil
 }

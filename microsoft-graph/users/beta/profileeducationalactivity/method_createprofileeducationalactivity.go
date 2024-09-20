@@ -19,15 +19,44 @@ type CreateProfileEducationalActivityOperationResponse struct {
 	Model        *beta.EducationalActivity
 }
 
+type CreateProfileEducationalActivityOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateProfileEducationalActivityOperationOptions() CreateProfileEducationalActivityOperationOptions {
+	return CreateProfileEducationalActivityOperationOptions{}
+}
+
+func (o CreateProfileEducationalActivityOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateProfileEducationalActivityOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateProfileEducationalActivityOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateProfileEducationalActivity - Create new navigation property to educationalActivities for users
-func (c ProfileEducationalActivityClient) CreateProfileEducationalActivity(ctx context.Context, id beta.UserId, input beta.EducationalActivity) (result CreateProfileEducationalActivityOperationResponse, err error) {
+func (c ProfileEducationalActivityClient) CreateProfileEducationalActivity(ctx context.Context, id beta.UserId, input beta.EducationalActivity, options CreateProfileEducationalActivityOperationOptions) (result CreateProfileEducationalActivityOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/profile/educationalActivities", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/profile/educationalActivities", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

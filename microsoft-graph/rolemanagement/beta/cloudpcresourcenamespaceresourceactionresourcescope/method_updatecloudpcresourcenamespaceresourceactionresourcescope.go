@@ -18,16 +18,45 @@ type UpdateCloudPCResourceNamespaceResourceActionResourceScopeOperationResponse 
 	OData        *odata.OData
 }
 
+type UpdateCloudPCResourceNamespaceResourceActionResourceScopeOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateCloudPCResourceNamespaceResourceActionResourceScopeOperationOptions() UpdateCloudPCResourceNamespaceResourceActionResourceScopeOperationOptions {
+	return UpdateCloudPCResourceNamespaceResourceActionResourceScopeOperationOptions{}
+}
+
+func (o UpdateCloudPCResourceNamespaceResourceActionResourceScopeOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateCloudPCResourceNamespaceResourceActionResourceScopeOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateCloudPCResourceNamespaceResourceActionResourceScopeOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateCloudPCResourceNamespaceResourceActionResourceScope - Update the navigation property resourceScope in
 // roleManagement
-func (c CloudPCResourceNamespaceResourceActionResourceScopeClient) UpdateCloudPCResourceNamespaceResourceActionResourceScope(ctx context.Context, id beta.RoleManagementCloudPCResourceNamespaceIdResourceActionId, input beta.UnifiedRbacResourceScope) (result UpdateCloudPCResourceNamespaceResourceActionResourceScopeOperationResponse, err error) {
+func (c CloudPCResourceNamespaceResourceActionResourceScopeClient) UpdateCloudPCResourceNamespaceResourceActionResourceScope(ctx context.Context, id beta.RoleManagementCloudPCResourceNamespaceIdResourceActionId, input beta.UnifiedRbacResourceScope, options UpdateCloudPCResourceNamespaceResourceActionResourceScopeOperationOptions) (result UpdateCloudPCResourceNamespaceResourceActionResourceScopeOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       fmt.Sprintf("%s/resourceScope", id.ID()),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/resourceScope", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

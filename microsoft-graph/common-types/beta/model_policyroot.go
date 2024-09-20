@@ -147,10 +147,43 @@ func (s PolicyRoot) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &PolicyRoot{}
 
 func (s *PolicyRoot) UnmarshalJSON(bytes []byte) error {
-	type alias PolicyRoot
-	var decoded alias
+
+	var decoded struct {
+		AccessReviewPolicy                        *AccessReviewPolicy                        `json:"accessReviewPolicy,omitempty"`
+		ActivityBasedTimeoutPolicies              *[]ActivityBasedTimeoutPolicy              `json:"activityBasedTimeoutPolicies,omitempty"`
+		AdminConsentRequestPolicy                 *AdminConsentRequestPolicy                 `json:"adminConsentRequestPolicy,omitempty"`
+		AppManagementPolicies                     *[]AppManagementPolicy                     `json:"appManagementPolicies,omitempty"`
+		AuthenticationFlowsPolicy                 *AuthenticationFlowsPolicy                 `json:"authenticationFlowsPolicy,omitempty"`
+		AuthenticationMethodsPolicy               *AuthenticationMethodsPolicy               `json:"authenticationMethodsPolicy,omitempty"`
+		AuthenticationStrengthPolicies            *[]AuthenticationStrengthPolicy            `json:"authenticationStrengthPolicies,omitempty"`
+		AuthorizationPolicy                       *[]AuthorizationPolicy                     `json:"authorizationPolicy,omitempty"`
+		B2cAuthenticationMethodsPolicy            *B2cAuthenticationMethodsPolicy            `json:"b2cAuthenticationMethodsPolicy,omitempty"`
+		ClaimsMappingPolicies                     *[]ClaimsMappingPolicy                     `json:"claimsMappingPolicies,omitempty"`
+		ConditionalAccessPolicies                 *[]ConditionalAccessPolicy                 `json:"conditionalAccessPolicies,omitempty"`
+		CrossTenantAccessPolicy                   *CrossTenantAccessPolicy                   `json:"crossTenantAccessPolicy,omitempty"`
+		DefaultAppManagementPolicy                *TenantAppManagementPolicy                 `json:"defaultAppManagementPolicy,omitempty"`
+		DeviceRegistrationPolicy                  *DeviceRegistrationPolicy                  `json:"deviceRegistrationPolicy,omitempty"`
+		DirectoryRoleAccessReviewPolicy           *DirectoryRoleAccessReviewPolicy           `json:"directoryRoleAccessReviewPolicy,omitempty"`
+		ExternalIdentitiesPolicy                  *ExternalIdentitiesPolicy                  `json:"externalIdentitiesPolicy,omitempty"`
+		FeatureRolloutPolicies                    *[]FeatureRolloutPolicy                    `json:"featureRolloutPolicies,omitempty"`
+		FederatedTokenValidationPolicy            *FederatedTokenValidationPolicy            `json:"federatedTokenValidationPolicy,omitempty"`
+		HomeRealmDiscoveryPolicies                *[]HomeRealmDiscoveryPolicy                `json:"homeRealmDiscoveryPolicies,omitempty"`
+		IdentitySecurityDefaultsEnforcementPolicy *IdentitySecurityDefaultsEnforcementPolicy `json:"identitySecurityDefaultsEnforcementPolicy,omitempty"`
+		MobileAppManagementPolicies               *[]MobilityManagementPolicy                `json:"mobileAppManagementPolicies,omitempty"`
+		MobileDeviceManagementPolicies            *[]MobilityManagementPolicy                `json:"mobileDeviceManagementPolicies,omitempty"`
+		PermissionGrantPolicies                   *[]PermissionGrantPolicy                   `json:"permissionGrantPolicies,omitempty"`
+		PermissionGrantPreApprovalPolicies        *[]PermissionGrantPreApprovalPolicy        `json:"permissionGrantPreApprovalPolicies,omitempty"`
+		RoleManagementPolicies                    *[]UnifiedRoleManagementPolicy             `json:"roleManagementPolicies,omitempty"`
+		RoleManagementPolicyAssignments           *[]UnifiedRoleManagementPolicyAssignment   `json:"roleManagementPolicyAssignments,omitempty"`
+		ServicePrincipalCreationPolicies          *[]ServicePrincipalCreationPolicy          `json:"servicePrincipalCreationPolicies,omitempty"`
+		TokenIssuancePolicies                     *[]TokenIssuancePolicy                     `json:"tokenIssuancePolicies,omitempty"`
+		TokenLifetimePolicies                     *[]TokenLifetimePolicy                     `json:"tokenLifetimePolicies,omitempty"`
+		Id                                        *string                                    `json:"id,omitempty"`
+		ODataId                                   *string                                    `json:"@odata.id,omitempty"`
+		ODataType                                 *string                                    `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into PolicyRoot: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.AccessReviewPolicy = decoded.AccessReviewPolicy
@@ -171,12 +204,9 @@ func (s *PolicyRoot) UnmarshalJSON(bytes []byte) error {
 	s.FeatureRolloutPolicies = decoded.FeatureRolloutPolicies
 	s.FederatedTokenValidationPolicy = decoded.FederatedTokenValidationPolicy
 	s.HomeRealmDiscoveryPolicies = decoded.HomeRealmDiscoveryPolicies
-	s.Id = decoded.Id
 	s.IdentitySecurityDefaultsEnforcementPolicy = decoded.IdentitySecurityDefaultsEnforcementPolicy
 	s.MobileAppManagementPolicies = decoded.MobileAppManagementPolicies
 	s.MobileDeviceManagementPolicies = decoded.MobileDeviceManagementPolicies
-	s.ODataId = decoded.ODataId
-	s.ODataType = decoded.ODataType
 	s.PermissionGrantPolicies = decoded.PermissionGrantPolicies
 	s.PermissionGrantPreApprovalPolicies = decoded.PermissionGrantPreApprovalPolicies
 	s.RoleManagementPolicies = decoded.RoleManagementPolicies
@@ -184,6 +214,9 @@ func (s *PolicyRoot) UnmarshalJSON(bytes []byte) error {
 	s.ServicePrincipalCreationPolicies = decoded.ServicePrincipalCreationPolicies
 	s.TokenIssuancePolicies = decoded.TokenIssuancePolicies
 	s.TokenLifetimePolicies = decoded.TokenLifetimePolicies
+	s.Id = decoded.Id
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -206,5 +239,6 @@ func (s *PolicyRoot) UnmarshalJSON(bytes []byte) error {
 		}
 		s.ConditionalAccessPolicies = &output
 	}
+
 	return nil
 }

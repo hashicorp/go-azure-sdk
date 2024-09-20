@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/microsoft-graph/me/beta/messageattachment` Documentation
 
-The `messageattachment` SDK allows for interaction with the Azure Resource Manager Service `me` (API Version `beta`).
+The `messageattachment` SDK allows for interaction with Microsoft Graph `me` (API Version `beta`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -15,44 +15,23 @@ import "github.com/hashicorp/go-azure-sdk/microsoft-graph/me/beta/messageattachm
 ### Client Initialization
 
 ```go
-client := messageattachment.NewMessageAttachmentClientWithBaseURI("https://management.azure.com")
+client := messageattachment.NewMessageAttachmentClientWithBaseURI("https://graph.microsoft.com")
 client.Client.Authorizer = authorizer
 ```
 
 
-### Example Usage: `MessageAttachmentClient.CreateCreatessageAttachmentsUploadSession`
+### Example Usage: `MessageAttachmentClient.CreateMessageAttachment`
 
 ```go
 ctx := context.TODO()
-id := messageattachment.NewMeMessageID("messageIdValue")
-
-payload := messageattachment.CreateCreatessageAttachmentsUploadSessionRequest{
-	// ...
-}
-
-
-read, err := client.CreateCreatessageAttachmentsUploadSession(ctx, id, payload)
-if err != nil {
-	// handle the error
-}
-if model := read.Model; model != nil {
-	// do something with the model/response object
-}
-```
-
-
-### Example Usage: `MessageAttachmentClient.CreatessageAttachment`
-
-```go
-ctx := context.TODO()
-id := messageattachment.NewMeMessageID("messageIdValue")
+id := messageattachment.NewMeMessageID("messageId")
 
 payload := messageattachment.Attachment{
 	// ...
 }
 
 
-read, err := client.CreatessageAttachment(ctx, id, payload)
+read, err := client.CreateMessageAttachment(ctx, id, payload, messageattachment.DefaultCreateMessageAttachmentOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -62,13 +41,18 @@ if model := read.Model; model != nil {
 ```
 
 
-### Example Usage: `MessageAttachmentClient.DeletessageAttachment`
+### Example Usage: `MessageAttachmentClient.CreateMessageAttachmentsUploadSession`
 
 ```go
 ctx := context.TODO()
-id := messageattachment.NewMeMessageIdAttachmentID("messageIdValue", "attachmentIdValue")
+id := messageattachment.NewMeMessageID("messageId")
 
-read, err := client.DeletessageAttachment(ctx, id, messageattachment.DefaultDeletessageAttachmentOperationOptions())
+payload := messageattachment.CreateMessageAttachmentsUploadSessionRequest{
+	// ...
+}
+
+
+read, err := client.CreateMessageAttachmentsUploadSession(ctx, id, payload, messageattachment.DefaultCreateMessageAttachmentsUploadSessionOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -78,13 +62,13 @@ if model := read.Model; model != nil {
 ```
 
 
-### Example Usage: `MessageAttachmentClient.GetssageAttachment`
+### Example Usage: `MessageAttachmentClient.DeleteMessageAttachment`
 
 ```go
 ctx := context.TODO()
-id := messageattachment.NewMeMessageIdAttachmentID("messageIdValue", "attachmentIdValue")
+id := messageattachment.NewMeMessageIdAttachmentID("messageId", "attachmentId")
 
-read, err := client.GetssageAttachment(ctx, id, messageattachment.DefaultGetssageAttachmentOperationOptions())
+read, err := client.DeleteMessageAttachment(ctx, id, messageattachment.DefaultDeleteMessageAttachmentOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -94,13 +78,13 @@ if model := read.Model; model != nil {
 ```
 
 
-### Example Usage: `MessageAttachmentClient.GetssageAttachmentsCount`
+### Example Usage: `MessageAttachmentClient.GetMessageAttachment`
 
 ```go
 ctx := context.TODO()
-id := messageattachment.NewMeMessageID("messageIdValue")
+id := messageattachment.NewMeMessageIdAttachmentID("messageId", "attachmentId")
 
-read, err := client.GetssageAttachmentsCount(ctx, id, messageattachment.DefaultGetssageAttachmentsCountOperationOptions())
+read, err := client.GetMessageAttachment(ctx, id, messageattachment.DefaultGetMessageAttachmentOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -110,14 +94,30 @@ if model := read.Model; model != nil {
 ```
 
 
-### Example Usage: `MessageAttachmentClient.ListssageAttachments`
+### Example Usage: `MessageAttachmentClient.GetMessageAttachmentsCount`
 
 ```go
 ctx := context.TODO()
-id := messageattachment.NewMeMessageID("messageIdValue")
+id := messageattachment.NewMeMessageID("messageId")
 
-// alternatively `client.ListssageAttachments(ctx, id, messageattachment.DefaultListssageAttachmentsOperationOptions())` can be used to do batched pagination
-items, err := client.ListssageAttachmentsComplete(ctx, id, messageattachment.DefaultListssageAttachmentsOperationOptions())
+read, err := client.GetMessageAttachmentsCount(ctx, id, messageattachment.DefaultGetMessageAttachmentsCountOperationOptions())
+if err != nil {
+	// handle the error
+}
+if model := read.Model; model != nil {
+	// do something with the model/response object
+}
+```
+
+
+### Example Usage: `MessageAttachmentClient.ListMessageAttachments`
+
+```go
+ctx := context.TODO()
+id := messageattachment.NewMeMessageID("messageId")
+
+// alternatively `client.ListMessageAttachments(ctx, id, messageattachment.DefaultListMessageAttachmentsOperationOptions())` can be used to do batched pagination
+items, err := client.ListMessageAttachmentsComplete(ctx, id, messageattachment.DefaultListMessageAttachmentsOperationOptions())
 if err != nil {
 	// handle the error
 }

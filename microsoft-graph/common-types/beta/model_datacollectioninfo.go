@@ -61,10 +61,14 @@ func (s DataCollectionInfo) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &DataCollectionInfo{}
 
 func (s *DataCollectionInfo) UnmarshalJSON(bytes []byte) error {
-	type alias DataCollectionInfo
-	var decoded alias
+
+	var decoded struct {
+		Id        *string `json:"id,omitempty"`
+		ODataId   *string `json:"@odata.id,omitempty"`
+		ODataType *string `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into DataCollectionInfo: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.Id = decoded.Id
@@ -83,5 +87,6 @@ func (s *DataCollectionInfo) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Entitlements = impl
 	}
+
 	return nil
 }

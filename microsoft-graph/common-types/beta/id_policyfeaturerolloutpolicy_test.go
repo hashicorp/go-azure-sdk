@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &PolicyFeatureRolloutPolicyId{}
 
 func TestNewPolicyFeatureRolloutPolicyID(t *testing.T) {
-	id := NewPolicyFeatureRolloutPolicyID("featureRolloutPolicyIdValue")
+	id := NewPolicyFeatureRolloutPolicyID("featureRolloutPolicyId")
 
-	if id.FeatureRolloutPolicyId != "featureRolloutPolicyIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'FeatureRolloutPolicyId'", id.FeatureRolloutPolicyId, "featureRolloutPolicyIdValue")
+	if id.FeatureRolloutPolicyId != "featureRolloutPolicyId" {
+		t.Fatalf("Expected %q but got %q for Segment 'FeatureRolloutPolicyId'", id.FeatureRolloutPolicyId, "featureRolloutPolicyId")
 	}
 }
 
 func TestFormatPolicyFeatureRolloutPolicyID(t *testing.T) {
-	actual := NewPolicyFeatureRolloutPolicyID("featureRolloutPolicyIdValue").ID()
-	expected := "/policies/featureRolloutPolicies/featureRolloutPolicyIdValue"
+	actual := NewPolicyFeatureRolloutPolicyID("featureRolloutPolicyId").ID()
+	expected := "/policies/featureRolloutPolicies/featureRolloutPolicyId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -50,14 +50,14 @@ func TestParsePolicyFeatureRolloutPolicyID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/policies/featureRolloutPolicies/featureRolloutPolicyIdValue",
+			Input: "/policies/featureRolloutPolicies/featureRolloutPolicyId",
 			Expected: &PolicyFeatureRolloutPolicyId{
-				FeatureRolloutPolicyId: "featureRolloutPolicyIdValue",
+				FeatureRolloutPolicyId: "featureRolloutPolicyId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/policies/featureRolloutPolicies/featureRolloutPolicyIdValue/extra",
+			Input: "/policies/featureRolloutPolicies/featureRolloutPolicyId/extra",
 			Error: true,
 		},
 	}
@@ -116,26 +116,26 @@ func TestParsePolicyFeatureRolloutPolicyIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/policies/featureRolloutPolicies/featureRolloutPolicyIdValue",
+			Input: "/policies/featureRolloutPolicies/featureRolloutPolicyId",
 			Expected: &PolicyFeatureRolloutPolicyId{
-				FeatureRolloutPolicyId: "featureRolloutPolicyIdValue",
+				FeatureRolloutPolicyId: "featureRolloutPolicyId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/policies/featureRolloutPolicies/featureRolloutPolicyIdValue/extra",
+			Input: "/policies/featureRolloutPolicies/featureRolloutPolicyId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/pOlIcIeS/fEaTuReRoLlOuTpOlIcIeS/fEaTuReRoLlOuTpOlIcYiDvAlUe",
+			Input: "/pOlIcIeS/fEaTuReRoLlOuTpOlIcIeS/fEaTuReRoLlOuTpOlIcYiD",
 			Expected: &PolicyFeatureRolloutPolicyId{
-				FeatureRolloutPolicyId: "fEaTuReRoLlOuTpOlIcYiDvAlUe",
+				FeatureRolloutPolicyId: "fEaTuReRoLlOuTpOlIcYiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/pOlIcIeS/fEaTuReRoLlOuTpOlIcIeS/fEaTuReRoLlOuTpOlIcYiDvAlUe/extra",
+			Input: "/pOlIcIeS/fEaTuReRoLlOuTpOlIcIeS/fEaTuReRoLlOuTpOlIcYiD/extra",
 			Error: true,
 		},
 	}

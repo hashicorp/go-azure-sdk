@@ -19,15 +19,44 @@ type FollowDriveRootOperationResponse struct {
 	Model        *beta.DriveItem
 }
 
+type FollowDriveRootOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultFollowDriveRootOperationOptions() FollowDriveRootOperationOptions {
+	return FollowDriveRootOperationOptions{}
+}
+
+func (o FollowDriveRootOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o FollowDriveRootOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o FollowDriveRootOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // FollowDriveRoot - Invoke action follow. Follow a driveItem.
-func (c DriveRootClient) FollowDriveRoot(ctx context.Context, id beta.MeDriveId) (result FollowDriveRootOperationResponse, err error) {
+func (c DriveRootClient) FollowDriveRoot(ctx context.Context, id beta.MeDriveId, options FollowDriveRootOperationOptions) (result FollowDriveRootOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/root/follow", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/root/follow", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

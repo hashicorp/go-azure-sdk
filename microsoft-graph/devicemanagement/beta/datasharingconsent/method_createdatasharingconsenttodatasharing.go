@@ -19,15 +19,44 @@ type CreateDataSharingConsentToDataSharingOperationResponse struct {
 	Model        *beta.DataSharingConsent
 }
 
+type CreateDataSharingConsentToDataSharingOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateDataSharingConsentToDataSharingOperationOptions() CreateDataSharingConsentToDataSharingOperationOptions {
+	return CreateDataSharingConsentToDataSharingOperationOptions{}
+}
+
+func (o CreateDataSharingConsentToDataSharingOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateDataSharingConsentToDataSharingOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateDataSharingConsentToDataSharingOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateDataSharingConsentToDataSharing - Invoke action consentToDataSharing
-func (c DataSharingConsentClient) CreateDataSharingConsentToDataSharing(ctx context.Context, id beta.DeviceManagementDataSharingConsentId) (result CreateDataSharingConsentToDataSharingOperationResponse, err error) {
+func (c DataSharingConsentClient) CreateDataSharingConsentToDataSharing(ctx context.Context, id beta.DeviceManagementDataSharingConsentId, options CreateDataSharingConsentToDataSharingOperationOptions) (result CreateDataSharingConsentToDataSharingOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/consentToDataSharing", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/consentToDataSharing", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

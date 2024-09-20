@@ -17,15 +17,44 @@ type UpdateAnalyticsActivityStatisticOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateAnalyticsActivityStatisticOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateAnalyticsActivityStatisticOperationOptions() UpdateAnalyticsActivityStatisticOperationOptions {
+	return UpdateAnalyticsActivityStatisticOperationOptions{}
+}
+
+func (o UpdateAnalyticsActivityStatisticOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateAnalyticsActivityStatisticOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateAnalyticsActivityStatisticOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateAnalyticsActivityStatistic - Update the navigation property activityStatistics in me
-func (c AnalyticsActivityStatisticClient) UpdateAnalyticsActivityStatistic(ctx context.Context, id beta.MeAnalyticsActivityStatisticId, input beta.ActivityStatistics) (result UpdateAnalyticsActivityStatisticOperationResponse, err error) {
+func (c AnalyticsActivityStatisticClient) UpdateAnalyticsActivityStatistic(ctx context.Context, id beta.MeAnalyticsActivityStatisticId, input beta.ActivityStatistics, options UpdateAnalyticsActivityStatisticOperationOptions) (result UpdateAnalyticsActivityStatisticOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

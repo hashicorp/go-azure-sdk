@@ -18,15 +18,44 @@ type AcceptEventInstanceExceptionOccurrenceOperationResponse struct {
 	OData        *odata.OData
 }
 
+type AcceptEventInstanceExceptionOccurrenceOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultAcceptEventInstanceExceptionOccurrenceOperationOptions() AcceptEventInstanceExceptionOccurrenceOperationOptions {
+	return AcceptEventInstanceExceptionOccurrenceOperationOptions{}
+}
+
+func (o AcceptEventInstanceExceptionOccurrenceOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o AcceptEventInstanceExceptionOccurrenceOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o AcceptEventInstanceExceptionOccurrenceOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // AcceptEventInstanceExceptionOccurrence - Invoke action accept. Accept the specified event in a user calendar.
-func (c EventInstanceExceptionOccurrenceClient) AcceptEventInstanceExceptionOccurrence(ctx context.Context, id beta.UserIdEventIdInstanceIdExceptionOccurrenceId, input AcceptEventInstanceExceptionOccurrenceRequest) (result AcceptEventInstanceExceptionOccurrenceOperationResponse, err error) {
+func (c EventInstanceExceptionOccurrenceClient) AcceptEventInstanceExceptionOccurrence(ctx context.Context, id beta.UserIdEventIdInstanceIdExceptionOccurrenceId, input AcceptEventInstanceExceptionOccurrenceRequest, options AcceptEventInstanceExceptionOccurrenceOperationOptions) (result AcceptEventInstanceExceptionOccurrenceOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/accept", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/accept", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

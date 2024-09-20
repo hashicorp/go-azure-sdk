@@ -20,8 +20,9 @@ type GetSiteListContentTypeColumnsCountOperationResponse struct {
 }
 
 type GetSiteListContentTypeColumnsCountOperationOptions struct {
-	Filter *string
-	Search *string
+	Filter   *string
+	Metadata *odata.Metadata
+	Search   *string
 }
 
 func DefaultGetSiteListContentTypeColumnsCountOperationOptions() GetSiteListContentTypeColumnsCountOperationOptions {
@@ -38,6 +39,9 @@ func (o GetSiteListContentTypeColumnsCountOperationOptions) ToOData() *odata.Que
 	out := odata.Query{}
 	if o.Filter != nil {
 		out.Filter = *o.Filter
+	}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
 	}
 	if o.Search != nil {
 		out.Search = *o.Search

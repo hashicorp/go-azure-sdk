@@ -19,7 +19,8 @@ type RemoveFeatureRolloutPolicyAppliesToRefOperationResponse struct {
 }
 
 type RemoveFeatureRolloutPolicyAppliesToRefOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultRemoveFeatureRolloutPolicyAppliesToRefOperationOptions() RemoveFeatureRolloutPolicyAppliesToRefOperationOptions {
@@ -36,7 +37,9 @@ func (o RemoveFeatureRolloutPolicyAppliesToRefOperationOptions) ToHeaders() *cli
 
 func (o RemoveFeatureRolloutPolicyAppliesToRefOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

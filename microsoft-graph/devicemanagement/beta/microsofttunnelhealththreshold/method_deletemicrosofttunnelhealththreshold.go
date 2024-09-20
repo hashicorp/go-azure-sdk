@@ -19,7 +19,8 @@ type DeleteMicrosoftTunnelHealthThresholdOperationResponse struct {
 }
 
 type DeleteMicrosoftTunnelHealthThresholdOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteMicrosoftTunnelHealthThresholdOperationOptions() DeleteMicrosoftTunnelHealthThresholdOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteMicrosoftTunnelHealthThresholdOperationOptions) ToHeaders() *clien
 
 func (o DeleteMicrosoftTunnelHealthThresholdOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

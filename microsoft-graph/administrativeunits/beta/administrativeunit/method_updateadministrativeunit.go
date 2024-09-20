@@ -17,15 +17,44 @@ type UpdateAdministrativeUnitOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateAdministrativeUnitOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateAdministrativeUnitOperationOptions() UpdateAdministrativeUnitOperationOptions {
+	return UpdateAdministrativeUnitOperationOptions{}
+}
+
+func (o UpdateAdministrativeUnitOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateAdministrativeUnitOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateAdministrativeUnitOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateAdministrativeUnit - Update administrativeunit. Update the properties of an administrativeUnit object.
-func (c AdministrativeUnitClient) UpdateAdministrativeUnit(ctx context.Context, id beta.AdministrativeUnitId, input beta.AdministrativeUnit) (result UpdateAdministrativeUnitOperationResponse, err error) {
+func (c AdministrativeUnitClient) UpdateAdministrativeUnit(ctx context.Context, id beta.AdministrativeUnitId, input beta.AdministrativeUnit, options UpdateAdministrativeUnitOperationOptions) (result UpdateAdministrativeUnitOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

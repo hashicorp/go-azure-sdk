@@ -20,8 +20,9 @@ type GetMobileAppTroubleshootingEventsCountOperationResponse struct {
 }
 
 type GetMobileAppTroubleshootingEventsCountOperationOptions struct {
-	Filter *string
-	Search *string
+	Filter   *string
+	Metadata *odata.Metadata
+	Search   *string
 }
 
 func DefaultGetMobileAppTroubleshootingEventsCountOperationOptions() GetMobileAppTroubleshootingEventsCountOperationOptions {
@@ -38,6 +39,9 @@ func (o GetMobileAppTroubleshootingEventsCountOperationOptions) ToOData() *odata
 	out := odata.Query{}
 	if o.Filter != nil {
 		out.Filter = *o.Filter
+	}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
 	}
 	if o.Search != nil {
 		out.Search = *o.Search

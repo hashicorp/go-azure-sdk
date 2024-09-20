@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &UserIdProfileNoteId{}
 
 func TestNewUserIdProfileNoteID(t *testing.T) {
-	id := NewUserIdProfileNoteID("userIdValue", "personAnnotationIdValue")
+	id := NewUserIdProfileNoteID("userId", "personAnnotationId")
 
-	if id.UserId != "userIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'UserId'", id.UserId, "userIdValue")
+	if id.UserId != "userId" {
+		t.Fatalf("Expected %q but got %q for Segment 'UserId'", id.UserId, "userId")
 	}
 
-	if id.PersonAnnotationId != "personAnnotationIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'PersonAnnotationId'", id.PersonAnnotationId, "personAnnotationIdValue")
+	if id.PersonAnnotationId != "personAnnotationId" {
+		t.Fatalf("Expected %q but got %q for Segment 'PersonAnnotationId'", id.PersonAnnotationId, "personAnnotationId")
 	}
 }
 
 func TestFormatUserIdProfileNoteID(t *testing.T) {
-	actual := NewUserIdProfileNoteID("userIdValue", "personAnnotationIdValue").ID()
-	expected := "/users/userIdValue/profile/notes/personAnnotationIdValue"
+	actual := NewUserIdProfileNoteID("userId", "personAnnotationId").ID()
+	expected := "/users/userId/profile/notes/personAnnotationId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -49,30 +49,30 @@ func TestParseUserIdProfileNoteID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue",
+			Input: "/users/userId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/profile",
+			Input: "/users/userId/profile",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/profile/notes",
+			Input: "/users/userId/profile/notes",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/users/userIdValue/profile/notes/personAnnotationIdValue",
+			Input: "/users/userId/profile/notes/personAnnotationId",
 			Expected: &UserIdProfileNoteId{
-				UserId:             "userIdValue",
-				PersonAnnotationId: "personAnnotationIdValue",
+				UserId:             "userId",
+				PersonAnnotationId: "personAnnotationId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/users/userIdValue/profile/notes/personAnnotationIdValue/extra",
+			Input: "/users/userId/profile/notes/personAnnotationId/extra",
 			Error: true,
 		},
 	}
@@ -125,58 +125,58 @@ func TestParseUserIdProfileNoteIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue",
+			Input: "/users/userId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe",
+			Input: "/uSeRs/uSeRiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/profile",
+			Input: "/users/userId/profile",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/pRoFiLe",
+			Input: "/uSeRs/uSeRiD/pRoFiLe",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/users/userIdValue/profile/notes",
+			Input: "/users/userId/profile/notes",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/pRoFiLe/nOtEs",
+			Input: "/uSeRs/uSeRiD/pRoFiLe/nOtEs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/users/userIdValue/profile/notes/personAnnotationIdValue",
+			Input: "/users/userId/profile/notes/personAnnotationId",
 			Expected: &UserIdProfileNoteId{
-				UserId:             "userIdValue",
-				PersonAnnotationId: "personAnnotationIdValue",
+				UserId:             "userId",
+				PersonAnnotationId: "personAnnotationId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/users/userIdValue/profile/notes/personAnnotationIdValue/extra",
+			Input: "/users/userId/profile/notes/personAnnotationId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/pRoFiLe/nOtEs/pErSoNaNnOtAtIoNiDvAlUe",
+			Input: "/uSeRs/uSeRiD/pRoFiLe/nOtEs/pErSoNaNnOtAtIoNiD",
 			Expected: &UserIdProfileNoteId{
-				UserId:             "uSeRiDvAlUe",
-				PersonAnnotationId: "pErSoNaNnOtAtIoNiDvAlUe",
+				UserId:             "uSeRiD",
+				PersonAnnotationId: "pErSoNaNnOtAtIoNiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/uSeRs/uSeRiDvAlUe/pRoFiLe/nOtEs/pErSoNaNnOtAtIoNiDvAlUe/extra",
+			Input: "/uSeRs/uSeRiD/pRoFiLe/nOtEs/pErSoNaNnOtAtIoNiD/extra",
 			Error: true,
 		},
 	}

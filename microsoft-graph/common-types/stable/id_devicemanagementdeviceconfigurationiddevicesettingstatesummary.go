@@ -99,9 +99,9 @@ func (id DeviceManagementDeviceConfigurationIdDeviceSettingStateSummaryId) Segme
 	return []resourceids.Segment{
 		resourceids.StaticSegment("deviceManagement", "deviceManagement", "deviceManagement"),
 		resourceids.StaticSegment("deviceConfigurations", "deviceConfigurations", "deviceConfigurations"),
-		resourceids.UserSpecifiedSegment("deviceConfigurationId", "deviceConfigurationIdValue"),
+		resourceids.UserSpecifiedSegment("deviceConfigurationId", "deviceConfigurationId"),
 		resourceids.StaticSegment("deviceSettingStateSummaries", "deviceSettingStateSummaries", "deviceSettingStateSummaries"),
-		resourceids.UserSpecifiedSegment("settingStateDeviceSummaryId", "settingStateDeviceSummaryIdValue"),
+		resourceids.UserSpecifiedSegment("settingStateDeviceSummaryId", "settingStateDeviceSummaryId"),
 	}
 }
 

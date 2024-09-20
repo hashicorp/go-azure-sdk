@@ -25,14 +25,15 @@ type ListEntitlementManagementCatalogResourceScopesCompleteResult struct {
 }
 
 type ListEntitlementManagementCatalogResourceScopesOperationOptions struct {
-	Count   *bool
-	Expand  *odata.Expand
-	Filter  *string
-	OrderBy *odata.OrderBy
-	Search  *string
-	Select  *[]string
-	Skip    *int64
-	Top     *int64
+	Count    *bool
+	Expand   *odata.Expand
+	Filter   *string
+	Metadata *odata.Metadata
+	OrderBy  *odata.OrderBy
+	Search   *string
+	Select   *[]string
+	Skip     *int64
+	Top      *int64
 }
 
 func DefaultListEntitlementManagementCatalogResourceScopesOperationOptions() ListEntitlementManagementCatalogResourceScopesOperationOptions {
@@ -55,6 +56,9 @@ func (o ListEntitlementManagementCatalogResourceScopesOperationOptions) ToOData(
 	}
 	if o.Filter != nil {
 		out.Filter = *o.Filter
+	}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
 	}
 	if o.OrderBy != nil {
 		out.OrderBy = *o.OrderBy
@@ -92,8 +96,9 @@ func (p *ListEntitlementManagementCatalogResourceScopesCustomPager) NextPageLink
 	return p.NextLink
 }
 
-// ListEntitlementManagementCatalogResourceScopes - Get resourceScopes from identityGovernance
-func (c EntitlementManagementCatalogResourceScopeClient) ListEntitlementManagementCatalogResourceScopes(ctx context.Context, id stable.IdentityGovernanceEntitlementManagementCatalogId, options ListEntitlementManagementCatalogResourceScopesOperationOptions) (result ListEntitlementManagementCatalogResourceScopesOperationResponse, err error) {
+// ListEntitlementManagementCatalogResourceScopes - Get scopes from identityGovernance. Read-only. Nullable. Supports
+// $expand.
+func (c EntitlementManagementCatalogResourceScopeClient) ListEntitlementManagementCatalogResourceScopes(ctx context.Context, id stable.IdentityGovernanceEntitlementManagementCatalogIdResourceId, options ListEntitlementManagementCatalogResourceScopesOperationOptions) (result ListEntitlementManagementCatalogResourceScopesOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
@@ -102,7 +107,7 @@ func (c EntitlementManagementCatalogResourceScopeClient) ListEntitlementManageme
 		HttpMethod:    http.MethodGet,
 		OptionsObject: options,
 		Pager:         &ListEntitlementManagementCatalogResourceScopesCustomPager{},
-		Path:          fmt.Sprintf("%s/resourceScopes", id.ID()),
+		Path:          fmt.Sprintf("%s/scopes", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)
@@ -133,12 +138,12 @@ func (c EntitlementManagementCatalogResourceScopeClient) ListEntitlementManageme
 }
 
 // ListEntitlementManagementCatalogResourceScopesComplete retrieves all the results into a single object
-func (c EntitlementManagementCatalogResourceScopeClient) ListEntitlementManagementCatalogResourceScopesComplete(ctx context.Context, id stable.IdentityGovernanceEntitlementManagementCatalogId, options ListEntitlementManagementCatalogResourceScopesOperationOptions) (ListEntitlementManagementCatalogResourceScopesCompleteResult, error) {
+func (c EntitlementManagementCatalogResourceScopeClient) ListEntitlementManagementCatalogResourceScopesComplete(ctx context.Context, id stable.IdentityGovernanceEntitlementManagementCatalogIdResourceId, options ListEntitlementManagementCatalogResourceScopesOperationOptions) (ListEntitlementManagementCatalogResourceScopesCompleteResult, error) {
 	return c.ListEntitlementManagementCatalogResourceScopesCompleteMatchingPredicate(ctx, id, options, AccessPackageResourceScopeOperationPredicate{})
 }
 
 // ListEntitlementManagementCatalogResourceScopesCompleteMatchingPredicate retrieves all the results and then applies the predicate
-func (c EntitlementManagementCatalogResourceScopeClient) ListEntitlementManagementCatalogResourceScopesCompleteMatchingPredicate(ctx context.Context, id stable.IdentityGovernanceEntitlementManagementCatalogId, options ListEntitlementManagementCatalogResourceScopesOperationOptions, predicate AccessPackageResourceScopeOperationPredicate) (result ListEntitlementManagementCatalogResourceScopesCompleteResult, err error) {
+func (c EntitlementManagementCatalogResourceScopeClient) ListEntitlementManagementCatalogResourceScopesCompleteMatchingPredicate(ctx context.Context, id stable.IdentityGovernanceEntitlementManagementCatalogIdResourceId, options ListEntitlementManagementCatalogResourceScopesOperationOptions, predicate AccessPackageResourceScopeOperationPredicate) (result ListEntitlementManagementCatalogResourceScopesCompleteResult, err error) {
 	items := make([]stable.AccessPackageResourceScope, 0)
 
 	resp, err := c.ListEntitlementManagementCatalogResourceScopes(ctx, id, options)

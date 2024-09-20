@@ -19,16 +19,45 @@ type GetOnlineMeetingTranscriptMetadataContentOperationResponse struct {
 	Model        *[]byte
 }
 
+type GetOnlineMeetingTranscriptMetadataContentOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultGetOnlineMeetingTranscriptMetadataContentOperationOptions() GetOnlineMeetingTranscriptMetadataContentOperationOptions {
+	return GetOnlineMeetingTranscriptMetadataContentOperationOptions{}
+}
+
+func (o GetOnlineMeetingTranscriptMetadataContentOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o GetOnlineMeetingTranscriptMetadataContentOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o GetOnlineMeetingTranscriptMetadataContentOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // GetOnlineMeetingTranscriptMetadataContent - Get metadataContent for the navigation property transcripts from me. The
 // time-aligned metadata of the utterances in the transcript. Read-only.
-func (c OnlineMeetingTranscriptMetadataContentClient) GetOnlineMeetingTranscriptMetadataContent(ctx context.Context, id beta.MeOnlineMeetingIdTranscriptId) (result GetOnlineMeetingTranscriptMetadataContentOperationResponse, err error) {
+func (c OnlineMeetingTranscriptMetadataContentClient) GetOnlineMeetingTranscriptMetadataContent(ctx context.Context, id beta.MeOnlineMeetingIdTranscriptId, options GetOnlineMeetingTranscriptMetadataContentOperationOptions) (result GetOnlineMeetingTranscriptMetadataContentOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/octet-stream",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod: http.MethodGet,
-		Path:       fmt.Sprintf("%s/metadataContent", id.ID()),
+		HttpMethod:    http.MethodGet,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/metadataContent", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

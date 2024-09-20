@@ -17,15 +17,44 @@ type UpdateTermsAndConditionAssignmentOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateTermsAndConditionAssignmentOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateTermsAndConditionAssignmentOperationOptions() UpdateTermsAndConditionAssignmentOperationOptions {
+	return UpdateTermsAndConditionAssignmentOperationOptions{}
+}
+
+func (o UpdateTermsAndConditionAssignmentOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateTermsAndConditionAssignmentOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateTermsAndConditionAssignmentOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateTermsAndConditionAssignment - Update the navigation property assignments in deviceManagement
-func (c TermsAndConditionAssignmentClient) UpdateTermsAndConditionAssignment(ctx context.Context, id beta.DeviceManagementTermsAndConditionIdAssignmentId, input beta.TermsAndConditionsAssignment) (result UpdateTermsAndConditionAssignmentOperationResponse, err error) {
+func (c TermsAndConditionAssignmentClient) UpdateTermsAndConditionAssignment(ctx context.Context, id beta.DeviceManagementTermsAndConditionIdAssignmentId, input beta.TermsAndConditionsAssignment, options UpdateTermsAndConditionAssignmentOperationOptions) (result UpdateTermsAndConditionAssignmentOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

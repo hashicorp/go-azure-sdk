@@ -17,15 +17,44 @@ type UpdateDirectoryResourceNamespaceResourceActionOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateDirectoryResourceNamespaceResourceActionOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateDirectoryResourceNamespaceResourceActionOperationOptions() UpdateDirectoryResourceNamespaceResourceActionOperationOptions {
+	return UpdateDirectoryResourceNamespaceResourceActionOperationOptions{}
+}
+
+func (o UpdateDirectoryResourceNamespaceResourceActionOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateDirectoryResourceNamespaceResourceActionOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateDirectoryResourceNamespaceResourceActionOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateDirectoryResourceNamespaceResourceAction - Update the navigation property resourceActions in roleManagement
-func (c DirectoryResourceNamespaceResourceActionClient) UpdateDirectoryResourceNamespaceResourceAction(ctx context.Context, id beta.RoleManagementDirectoryResourceNamespaceIdResourceActionId, input beta.UnifiedRbacResourceAction) (result UpdateDirectoryResourceNamespaceResourceActionOperationResponse, err error) {
+func (c DirectoryResourceNamespaceResourceActionClient) UpdateDirectoryResourceNamespaceResourceAction(ctx context.Context, id beta.RoleManagementDirectoryResourceNamespaceIdResourceActionId, input beta.UnifiedRbacResourceAction, options UpdateDirectoryResourceNamespaceResourceActionOperationOptions) (result UpdateDirectoryResourceNamespaceResourceActionOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

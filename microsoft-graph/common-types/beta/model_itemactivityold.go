@@ -65,19 +65,27 @@ func (s ItemActivityOLD) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &ItemActivityOLD{}
 
 func (s *ItemActivityOLD) UnmarshalJSON(bytes []byte) error {
-	type alias ItemActivityOLD
-	var decoded alias
+
+	var decoded struct {
+		Action    *ItemActionSet       `json:"action,omitempty"`
+		DriveItem *DriveItem           `json:"driveItem,omitempty"`
+		ListItem  *ListItem            `json:"listItem,omitempty"`
+		Times     *ItemActivityTimeSet `json:"times,omitempty"`
+		Id        *string              `json:"id,omitempty"`
+		ODataId   *string              `json:"@odata.id,omitempty"`
+		ODataType *string              `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into ItemActivityOLD: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.Action = decoded.Action
 	s.DriveItem = decoded.DriveItem
-	s.Id = decoded.Id
 	s.ListItem = decoded.ListItem
+	s.Times = decoded.Times
+	s.Id = decoded.Id
 	s.ODataId = decoded.ODataId
 	s.ODataType = decoded.ODataType
-	s.Times = decoded.Times
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -91,5 +99,6 @@ func (s *ItemActivityOLD) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Actor = impl
 	}
+
 	return nil
 }

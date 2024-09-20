@@ -18,15 +18,44 @@ type UpdateSiteInformationProtectionOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateSiteInformationProtectionOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateSiteInformationProtectionOperationOptions() UpdateSiteInformationProtectionOperationOptions {
+	return UpdateSiteInformationProtectionOperationOptions{}
+}
+
+func (o UpdateSiteInformationProtectionOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateSiteInformationProtectionOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateSiteInformationProtectionOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateSiteInformationProtection - Update the navigation property informationProtection in groups
-func (c SiteInformationProtectionClient) UpdateSiteInformationProtection(ctx context.Context, id beta.GroupIdSiteId, input beta.InformationProtection) (result UpdateSiteInformationProtectionOperationResponse, err error) {
+func (c SiteInformationProtectionClient) UpdateSiteInformationProtection(ctx context.Context, id beta.GroupIdSiteId, input beta.InformationProtection, options UpdateSiteInformationProtectionOperationOptions) (result UpdateSiteInformationProtectionOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       fmt.Sprintf("%s/informationProtection", id.ID()),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/informationProtection", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

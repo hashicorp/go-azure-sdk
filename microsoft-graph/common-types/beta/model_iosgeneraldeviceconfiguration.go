@@ -763,10 +763,218 @@ func (s IosGeneralDeviceConfiguration) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &IosGeneralDeviceConfiguration{}
 
 func (s *IosGeneralDeviceConfiguration) UnmarshalJSON(bytes []byte) error {
-	type alias IosGeneralDeviceConfiguration
-	var decoded alias
+
+	var decoded struct {
+		AccountBlockModification                       *bool                                        `json:"accountBlockModification,omitempty"`
+		ActivationLockAllowWhenSupervised              *bool                                        `json:"activationLockAllowWhenSupervised,omitempty"`
+		AirDropBlocked                                 *bool                                        `json:"airDropBlocked,omitempty"`
+		AirDropForceUnmanagedDropTarget                *bool                                        `json:"airDropForceUnmanagedDropTarget,omitempty"`
+		AirPlayForcePairingPasswordForOutgoingRequests *bool                                        `json:"airPlayForcePairingPasswordForOutgoingRequests,omitempty"`
+		AirPrintBlockCredentialsStorage                *bool                                        `json:"airPrintBlockCredentialsStorage,omitempty"`
+		AirPrintBlocked                                *bool                                        `json:"airPrintBlocked,omitempty"`
+		AirPrintBlockiBeaconDiscovery                  *bool                                        `json:"airPrintBlockiBeaconDiscovery,omitempty"`
+		AirPrintForceTrustedTLS                        *bool                                        `json:"airPrintForceTrustedTLS,omitempty"`
+		AppClipsBlocked                                *bool                                        `json:"appClipsBlocked,omitempty"`
+		AppRemovalBlocked                              *bool                                        `json:"appRemovalBlocked,omitempty"`
+		AppStoreBlockAutomaticDownloads                *bool                                        `json:"appStoreBlockAutomaticDownloads,omitempty"`
+		AppStoreBlockInAppPurchases                    *bool                                        `json:"appStoreBlockInAppPurchases,omitempty"`
+		AppStoreBlockUIAppInstallation                 *bool                                        `json:"appStoreBlockUIAppInstallation,omitempty"`
+		AppStoreBlocked                                *bool                                        `json:"appStoreBlocked,omitempty"`
+		AppStoreRequirePassword                        *bool                                        `json:"appStoreRequirePassword,omitempty"`
+		AppleNewsBlocked                               *bool                                        `json:"appleNewsBlocked,omitempty"`
+		ApplePersonalizedAdsBlocked                    *bool                                        `json:"applePersonalizedAdsBlocked,omitempty"`
+		AppleWatchBlockPairing                         *bool                                        `json:"appleWatchBlockPairing,omitempty"`
+		AppleWatchForceWristDetection                  *bool                                        `json:"appleWatchForceWristDetection,omitempty"`
+		AppsSingleAppModeList                          *[]AppListItem                               `json:"appsSingleAppModeList,omitempty"`
+		AppsVisibilityList                             *[]AppListItem                               `json:"appsVisibilityList,omitempty"`
+		AppsVisibilityListType                         *AppListType                                 `json:"appsVisibilityListType,omitempty"`
+		AutoFillForceAuthentication                    *bool                                        `json:"autoFillForceAuthentication,omitempty"`
+		AutoUnlockBlocked                              *bool                                        `json:"autoUnlockBlocked,omitempty"`
+		BlockSystemAppRemoval                          *bool                                        `json:"blockSystemAppRemoval,omitempty"`
+		BluetoothBlockModification                     *bool                                        `json:"bluetoothBlockModification,omitempty"`
+		CameraBlocked                                  *bool                                        `json:"cameraBlocked,omitempty"`
+		CellularBlockDataRoaming                       *bool                                        `json:"cellularBlockDataRoaming,omitempty"`
+		CellularBlockGlobalBackgroundFetchWhileRoaming *bool                                        `json:"cellularBlockGlobalBackgroundFetchWhileRoaming,omitempty"`
+		CellularBlockPerAppDataModification            *bool                                        `json:"cellularBlockPerAppDataModification,omitempty"`
+		CellularBlockPersonalHotspot                   *bool                                        `json:"cellularBlockPersonalHotspot,omitempty"`
+		CellularBlockPersonalHotspotModification       *bool                                        `json:"cellularBlockPersonalHotspotModification,omitempty"`
+		CellularBlockPlanModification                  *bool                                        `json:"cellularBlockPlanModification,omitempty"`
+		CellularBlockVoiceRoaming                      *bool                                        `json:"cellularBlockVoiceRoaming,omitempty"`
+		CertificatesBlockUntrustedTlsCertificates      *bool                                        `json:"certificatesBlockUntrustedTlsCertificates,omitempty"`
+		ClassroomAppBlockRemoteScreenObservation       *bool                                        `json:"classroomAppBlockRemoteScreenObservation,omitempty"`
+		ClassroomAppForceUnpromptedScreenObservation   *bool                                        `json:"classroomAppForceUnpromptedScreenObservation,omitempty"`
+		ClassroomForceAutomaticallyJoinClasses         *bool                                        `json:"classroomForceAutomaticallyJoinClasses,omitempty"`
+		ClassroomForceRequestPermissionToLeaveClasses  *bool                                        `json:"classroomForceRequestPermissionToLeaveClasses,omitempty"`
+		ClassroomForceUnpromptedAppAndDeviceLock       *bool                                        `json:"classroomForceUnpromptedAppAndDeviceLock,omitempty"`
+		CompliantAppListType                           *AppListType                                 `json:"compliantAppListType,omitempty"`
+		CompliantAppsList                              *[]AppListItem                               `json:"compliantAppsList,omitempty"`
+		ConfigurationProfileBlockChanges               *bool                                        `json:"configurationProfileBlockChanges,omitempty"`
+		ContactsAllowManagedToUnmanagedWrite           *bool                                        `json:"contactsAllowManagedToUnmanagedWrite,omitempty"`
+		ContactsAllowUnmanagedToManagedRead            *bool                                        `json:"contactsAllowUnmanagedToManagedRead,omitempty"`
+		ContinuousPathKeyboardBlocked                  *bool                                        `json:"continuousPathKeyboardBlocked,omitempty"`
+		DateAndTimeForceSetAutomatically               *bool                                        `json:"dateAndTimeForceSetAutomatically,omitempty"`
+		DefinitionLookupBlocked                        *bool                                        `json:"definitionLookupBlocked,omitempty"`
+		DeviceBlockEnableRestrictions                  *bool                                        `json:"deviceBlockEnableRestrictions,omitempty"`
+		DeviceBlockEraseContentAndSettings             *bool                                        `json:"deviceBlockEraseContentAndSettings,omitempty"`
+		DeviceBlockNameModification                    *bool                                        `json:"deviceBlockNameModification,omitempty"`
+		DiagnosticDataBlockSubmission                  *bool                                        `json:"diagnosticDataBlockSubmission,omitempty"`
+		DiagnosticDataBlockSubmissionModification      *bool                                        `json:"diagnosticDataBlockSubmissionModification,omitempty"`
+		DocumentsBlockManagedDocumentsInUnmanagedApps  *bool                                        `json:"documentsBlockManagedDocumentsInUnmanagedApps,omitempty"`
+		DocumentsBlockUnmanagedDocumentsInManagedApps  *bool                                        `json:"documentsBlockUnmanagedDocumentsInManagedApps,omitempty"`
+		EmailInDomainSuffixes                          *[]string                                    `json:"emailInDomainSuffixes,omitempty"`
+		EnterpriseAppBlockTrust                        *bool                                        `json:"enterpriseAppBlockTrust,omitempty"`
+		EnterpriseAppBlockTrustModification            *bool                                        `json:"enterpriseAppBlockTrustModification,omitempty"`
+		EnterpriseBookBlockBackup                      *bool                                        `json:"enterpriseBookBlockBackup,omitempty"`
+		EnterpriseBookBlockMetadataSync                *bool                                        `json:"enterpriseBookBlockMetadataSync,omitempty"`
+		EsimBlockModification                          *bool                                        `json:"esimBlockModification,omitempty"`
+		FaceTimeBlocked                                *bool                                        `json:"faceTimeBlocked,omitempty"`
+		FilesNetworkDriveAccessBlocked                 *bool                                        `json:"filesNetworkDriveAccessBlocked,omitempty"`
+		FilesUsbDriveAccessBlocked                     *bool                                        `json:"filesUsbDriveAccessBlocked,omitempty"`
+		FindMyDeviceInFindMyAppBlocked                 *bool                                        `json:"findMyDeviceInFindMyAppBlocked,omitempty"`
+		FindMyFriendsBlocked                           *bool                                        `json:"findMyFriendsBlocked,omitempty"`
+		FindMyFriendsInFindMyAppBlocked                *bool                                        `json:"findMyFriendsInFindMyAppBlocked,omitempty"`
+		GameCenterBlocked                              *bool                                        `json:"gameCenterBlocked,omitempty"`
+		GamingBlockGameCenterFriends                   *bool                                        `json:"gamingBlockGameCenterFriends,omitempty"`
+		GamingBlockMultiplayer                         *bool                                        `json:"gamingBlockMultiplayer,omitempty"`
+		HostPairingBlocked                             *bool                                        `json:"hostPairingBlocked,omitempty"`
+		IBooksStoreBlockErotica                        *bool                                        `json:"iBooksStoreBlockErotica,omitempty"`
+		IBooksStoreBlocked                             *bool                                        `json:"iBooksStoreBlocked,omitempty"`
+		ICloudBlockActivityContinuation                *bool                                        `json:"iCloudBlockActivityContinuation,omitempty"`
+		ICloudBlockBackup                              *bool                                        `json:"iCloudBlockBackup,omitempty"`
+		ICloudBlockDocumentSync                        *bool                                        `json:"iCloudBlockDocumentSync,omitempty"`
+		ICloudBlockManagedAppsSync                     *bool                                        `json:"iCloudBlockManagedAppsSync,omitempty"`
+		ICloudBlockPhotoLibrary                        *bool                                        `json:"iCloudBlockPhotoLibrary,omitempty"`
+		ICloudBlockPhotoStreamSync                     *bool                                        `json:"iCloudBlockPhotoStreamSync,omitempty"`
+		ICloudBlockSharedPhotoStream                   *bool                                        `json:"iCloudBlockSharedPhotoStream,omitempty"`
+		ICloudPrivateRelayBlocked                      *bool                                        `json:"iCloudPrivateRelayBlocked,omitempty"`
+		ICloudRequireEncryptedBackup                   *bool                                        `json:"iCloudRequireEncryptedBackup,omitempty"`
+		ITunesBlockExplicitContent                     *bool                                        `json:"iTunesBlockExplicitContent,omitempty"`
+		ITunesBlockMusicService                        *bool                                        `json:"iTunesBlockMusicService,omitempty"`
+		ITunesBlockRadio                               *bool                                        `json:"iTunesBlockRadio,omitempty"`
+		ITunesBlocked                                  *bool                                        `json:"iTunesBlocked,omitempty"`
+		KeyboardBlockAutoCorrect                       *bool                                        `json:"keyboardBlockAutoCorrect,omitempty"`
+		KeyboardBlockDictation                         *bool                                        `json:"keyboardBlockDictation,omitempty"`
+		KeyboardBlockPredictive                        *bool                                        `json:"keyboardBlockPredictive,omitempty"`
+		KeyboardBlockShortcuts                         *bool                                        `json:"keyboardBlockShortcuts,omitempty"`
+		KeyboardBlockSpellCheck                        *bool                                        `json:"keyboardBlockSpellCheck,omitempty"`
+		KeychainBlockCloudSync                         *bool                                        `json:"keychainBlockCloudSync,omitempty"`
+		KioskModeAllowAssistiveSpeak                   *bool                                        `json:"kioskModeAllowAssistiveSpeak,omitempty"`
+		KioskModeAllowAssistiveTouchSettings           *bool                                        `json:"kioskModeAllowAssistiveTouchSettings,omitempty"`
+		KioskModeAllowAutoLock                         *bool                                        `json:"kioskModeAllowAutoLock,omitempty"`
+		KioskModeAllowColorInversionSettings           *bool                                        `json:"kioskModeAllowColorInversionSettings,omitempty"`
+		KioskModeAllowRingerSwitch                     *bool                                        `json:"kioskModeAllowRingerSwitch,omitempty"`
+		KioskModeAllowScreenRotation                   *bool                                        `json:"kioskModeAllowScreenRotation,omitempty"`
+		KioskModeAllowSleepButton                      *bool                                        `json:"kioskModeAllowSleepButton,omitempty"`
+		KioskModeAllowTouchscreen                      *bool                                        `json:"kioskModeAllowTouchscreen,omitempty"`
+		KioskModeAllowVoiceControlModification         *bool                                        `json:"kioskModeAllowVoiceControlModification,omitempty"`
+		KioskModeAllowVoiceOverSettings                *bool                                        `json:"kioskModeAllowVoiceOverSettings,omitempty"`
+		KioskModeAllowVolumeButtons                    *bool                                        `json:"kioskModeAllowVolumeButtons,omitempty"`
+		KioskModeAllowZoomSettings                     *bool                                        `json:"kioskModeAllowZoomSettings,omitempty"`
+		KioskModeAppStoreUrl                           nullable.Type[string]                        `json:"kioskModeAppStoreUrl,omitempty"`
+		KioskModeAppType                               *IosKioskModeAppType                         `json:"kioskModeAppType,omitempty"`
+		KioskModeBlockAutoLock                         *bool                                        `json:"kioskModeBlockAutoLock,omitempty"`
+		KioskModeBlockRingerSwitch                     *bool                                        `json:"kioskModeBlockRingerSwitch,omitempty"`
+		KioskModeBlockScreenRotation                   *bool                                        `json:"kioskModeBlockScreenRotation,omitempty"`
+		KioskModeBlockSleepButton                      *bool                                        `json:"kioskModeBlockSleepButton,omitempty"`
+		KioskModeBlockTouchscreen                      *bool                                        `json:"kioskModeBlockTouchscreen,omitempty"`
+		KioskModeBlockVolumeButtons                    *bool                                        `json:"kioskModeBlockVolumeButtons,omitempty"`
+		KioskModeBuiltInAppId                          nullable.Type[string]                        `json:"kioskModeBuiltInAppId,omitempty"`
+		KioskModeEnableVoiceControl                    *bool                                        `json:"kioskModeEnableVoiceControl,omitempty"`
+		KioskModeManagedAppId                          nullable.Type[string]                        `json:"kioskModeManagedAppId,omitempty"`
+		KioskModeRequireAssistiveTouch                 *bool                                        `json:"kioskModeRequireAssistiveTouch,omitempty"`
+		KioskModeRequireColorInversion                 *bool                                        `json:"kioskModeRequireColorInversion,omitempty"`
+		KioskModeRequireMonoAudio                      *bool                                        `json:"kioskModeRequireMonoAudio,omitempty"`
+		KioskModeRequireVoiceOver                      *bool                                        `json:"kioskModeRequireVoiceOver,omitempty"`
+		KioskModeRequireZoom                           *bool                                        `json:"kioskModeRequireZoom,omitempty"`
+		LockScreenBlockControlCenter                   *bool                                        `json:"lockScreenBlockControlCenter,omitempty"`
+		LockScreenBlockNotificationView                *bool                                        `json:"lockScreenBlockNotificationView,omitempty"`
+		LockScreenBlockPassbook                        *bool                                        `json:"lockScreenBlockPassbook,omitempty"`
+		LockScreenBlockTodayView                       *bool                                        `json:"lockScreenBlockTodayView,omitempty"`
+		ManagedPasteboardRequired                      *bool                                        `json:"managedPasteboardRequired,omitempty"`
+		MediaContentRatingApps                         *RatingAppsType                              `json:"mediaContentRatingApps,omitempty"`
+		MediaContentRatingAustralia                    *MediaContentRatingAustralia                 `json:"mediaContentRatingAustralia,omitempty"`
+		MediaContentRatingCanada                       *MediaContentRatingCanada                    `json:"mediaContentRatingCanada,omitempty"`
+		MediaContentRatingFrance                       *MediaContentRatingFrance                    `json:"mediaContentRatingFrance,omitempty"`
+		MediaContentRatingGermany                      *MediaContentRatingGermany                   `json:"mediaContentRatingGermany,omitempty"`
+		MediaContentRatingIreland                      *MediaContentRatingIreland                   `json:"mediaContentRatingIreland,omitempty"`
+		MediaContentRatingJapan                        *MediaContentRatingJapan                     `json:"mediaContentRatingJapan,omitempty"`
+		MediaContentRatingNewZealand                   *MediaContentRatingNewZealand                `json:"mediaContentRatingNewZealand,omitempty"`
+		MediaContentRatingUnitedKingdom                *MediaContentRatingUnitedKingdom             `json:"mediaContentRatingUnitedKingdom,omitempty"`
+		MediaContentRatingUnitedStates                 *MediaContentRatingUnitedStates              `json:"mediaContentRatingUnitedStates,omitempty"`
+		MessagesBlocked                                *bool                                        `json:"messagesBlocked,omitempty"`
+		NetworkUsageRules                              *[]IosNetworkUsageRule                       `json:"networkUsageRules,omitempty"`
+		NfcBlocked                                     *bool                                        `json:"nfcBlocked,omitempty"`
+		NotificationsBlockSettingsModification         *bool                                        `json:"notificationsBlockSettingsModification,omitempty"`
+		OnDeviceOnlyDictationForced                    *bool                                        `json:"onDeviceOnlyDictationForced,omitempty"`
+		OnDeviceOnlyTranslationForced                  *bool                                        `json:"onDeviceOnlyTranslationForced,omitempty"`
+		PasscodeBlockFingerprintModification           *bool                                        `json:"passcodeBlockFingerprintModification,omitempty"`
+		PasscodeBlockFingerprintUnlock                 *bool                                        `json:"passcodeBlockFingerprintUnlock,omitempty"`
+		PasscodeBlockModification                      *bool                                        `json:"passcodeBlockModification,omitempty"`
+		PasscodeBlockSimple                            *bool                                        `json:"passcodeBlockSimple,omitempty"`
+		PasscodeExpirationDays                         nullable.Type[int64]                         `json:"passcodeExpirationDays,omitempty"`
+		PasscodeMinimumCharacterSetCount               nullable.Type[int64]                         `json:"passcodeMinimumCharacterSetCount,omitempty"`
+		PasscodeMinimumLength                          nullable.Type[int64]                         `json:"passcodeMinimumLength,omitempty"`
+		PasscodeMinutesOfInactivityBeforeLock          nullable.Type[int64]                         `json:"passcodeMinutesOfInactivityBeforeLock,omitempty"`
+		PasscodeMinutesOfInactivityBeforeScreenTimeout nullable.Type[int64]                         `json:"passcodeMinutesOfInactivityBeforeScreenTimeout,omitempty"`
+		PasscodePreviousPasscodeBlockCount             nullable.Type[int64]                         `json:"passcodePreviousPasscodeBlockCount,omitempty"`
+		PasscodeRequired                               *bool                                        `json:"passcodeRequired,omitempty"`
+		PasscodeRequiredType                           *RequiredPasswordType                        `json:"passcodeRequiredType,omitempty"`
+		PasscodeSignInFailureCountBeforeWipe           nullable.Type[int64]                         `json:"passcodeSignInFailureCountBeforeWipe,omitempty"`
+		PasswordBlockAirDropSharing                    *bool                                        `json:"passwordBlockAirDropSharing,omitempty"`
+		PasswordBlockAutoFill                          *bool                                        `json:"passwordBlockAutoFill,omitempty"`
+		PasswordBlockProximityRequests                 *bool                                        `json:"passwordBlockProximityRequests,omitempty"`
+		PkiBlockOTAUpdates                             *bool                                        `json:"pkiBlockOTAUpdates,omitempty"`
+		PodcastsBlocked                                *bool                                        `json:"podcastsBlocked,omitempty"`
+		PrivacyForceLimitAdTracking                    *bool                                        `json:"privacyForceLimitAdTracking,omitempty"`
+		ProximityBlockSetupToNewDevice                 *bool                                        `json:"proximityBlockSetupToNewDevice,omitempty"`
+		SafariBlockAutofill                            *bool                                        `json:"safariBlockAutofill,omitempty"`
+		SafariBlockJavaScript                          *bool                                        `json:"safariBlockJavaScript,omitempty"`
+		SafariBlockPopups                              *bool                                        `json:"safariBlockPopups,omitempty"`
+		SafariBlocked                                  *bool                                        `json:"safariBlocked,omitempty"`
+		SafariCookieSettings                           *WebBrowserCookieSettings                    `json:"safariCookieSettings,omitempty"`
+		SafariManagedDomains                           *[]string                                    `json:"safariManagedDomains,omitempty"`
+		SafariPasswordAutoFillDomains                  *[]string                                    `json:"safariPasswordAutoFillDomains,omitempty"`
+		SafariRequireFraudWarning                      *bool                                        `json:"safariRequireFraudWarning,omitempty"`
+		ScreenCaptureBlocked                           *bool                                        `json:"screenCaptureBlocked,omitempty"`
+		SharedDeviceBlockTemporarySessions             *bool                                        `json:"sharedDeviceBlockTemporarySessions,omitempty"`
+		SiriBlockUserGeneratedContent                  *bool                                        `json:"siriBlockUserGeneratedContent,omitempty"`
+		SiriBlocked                                    *bool                                        `json:"siriBlocked,omitempty"`
+		SiriBlockedWhenLocked                          *bool                                        `json:"siriBlockedWhenLocked,omitempty"`
+		SiriRequireProfanityFilter                     *bool                                        `json:"siriRequireProfanityFilter,omitempty"`
+		SoftwareUpdatesEnforcedDelayInDays             nullable.Type[int64]                         `json:"softwareUpdatesEnforcedDelayInDays,omitempty"`
+		SoftwareUpdatesForceDelayed                    *bool                                        `json:"softwareUpdatesForceDelayed,omitempty"`
+		SpotlightBlockInternetResults                  *bool                                        `json:"spotlightBlockInternetResults,omitempty"`
+		UnpairedExternalBootToRecoveryAllowed          *bool                                        `json:"unpairedExternalBootToRecoveryAllowed,omitempty"`
+		UsbRestrictedModeBlocked                       *bool                                        `json:"usbRestrictedModeBlocked,omitempty"`
+		VoiceDialingBlocked                            *bool                                        `json:"voiceDialingBlocked,omitempty"`
+		VpnBlockCreation                               *bool                                        `json:"vpnBlockCreation,omitempty"`
+		WallpaperBlockModification                     *bool                                        `json:"wallpaperBlockModification,omitempty"`
+		WiFiConnectOnlyToConfiguredNetworks            *bool                                        `json:"wiFiConnectOnlyToConfiguredNetworks,omitempty"`
+		WiFiConnectToAllowedNetworksOnlyForced         *bool                                        `json:"wiFiConnectToAllowedNetworksOnlyForced,omitempty"`
+		WifiPowerOnForced                              *bool                                        `json:"wifiPowerOnForced,omitempty"`
+		Assignments                                    *[]DeviceConfigurationAssignment             `json:"assignments,omitempty"`
+		CreatedDateTime                                *string                                      `json:"createdDateTime,omitempty"`
+		Description                                    nullable.Type[string]                        `json:"description,omitempty"`
+		DeviceManagementApplicabilityRuleDeviceMode    *DeviceManagementApplicabilityRuleDeviceMode `json:"deviceManagementApplicabilityRuleDeviceMode,omitempty"`
+		DeviceManagementApplicabilityRuleOsEdition     *DeviceManagementApplicabilityRuleOsEdition  `json:"deviceManagementApplicabilityRuleOsEdition,omitempty"`
+		DeviceManagementApplicabilityRuleOsVersion     *DeviceManagementApplicabilityRuleOsVersion  `json:"deviceManagementApplicabilityRuleOsVersion,omitempty"`
+		DeviceSettingStateSummaries                    *[]SettingStateDeviceSummary                 `json:"deviceSettingStateSummaries,omitempty"`
+		DeviceStatusOverview                           *DeviceConfigurationDeviceOverview           `json:"deviceStatusOverview,omitempty"`
+		DeviceStatuses                                 *[]DeviceConfigurationDeviceStatus           `json:"deviceStatuses,omitempty"`
+		DisplayName                                    *string                                      `json:"displayName,omitempty"`
+		GroupAssignments                               *[]DeviceConfigurationGroupAssignment        `json:"groupAssignments,omitempty"`
+		LastModifiedDateTime                           *string                                      `json:"lastModifiedDateTime,omitempty"`
+		RoleScopeTagIds                                *[]string                                    `json:"roleScopeTagIds,omitempty"`
+		SupportsScopeTags                              *bool                                        `json:"supportsScopeTags,omitempty"`
+		UserStatusOverview                             *DeviceConfigurationUserOverview             `json:"userStatusOverview,omitempty"`
+		UserStatuses                                   *[]DeviceConfigurationUserStatus             `json:"userStatuses,omitempty"`
+		Version                                        *int64                                       `json:"version,omitempty"`
+		Id                                             *string                                      `json:"id,omitempty"`
+		ODataId                                        *string                                      `json:"@odata.id,omitempty"`
+		ODataType                                      *string                                      `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into IosGeneralDeviceConfiguration: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.AccountBlockModification = decoded.AccountBlockModification
@@ -790,7 +998,6 @@ func (s *IosGeneralDeviceConfiguration) UnmarshalJSON(bytes []byte) error {
 	s.AppleWatchBlockPairing = decoded.AppleWatchBlockPairing
 	s.AppleWatchForceWristDetection = decoded.AppleWatchForceWristDetection
 	s.AppsVisibilityListType = decoded.AppsVisibilityListType
-	s.Assignments = decoded.Assignments
 	s.AutoFillForceAuthentication = decoded.AutoFillForceAuthentication
 	s.AutoUnlockBlocked = decoded.AutoUnlockBlocked
 	s.BlockSystemAppRemoval = decoded.BlockSystemAppRemoval
@@ -814,22 +1021,13 @@ func (s *IosGeneralDeviceConfiguration) UnmarshalJSON(bytes []byte) error {
 	s.ContactsAllowManagedToUnmanagedWrite = decoded.ContactsAllowManagedToUnmanagedWrite
 	s.ContactsAllowUnmanagedToManagedRead = decoded.ContactsAllowUnmanagedToManagedRead
 	s.ContinuousPathKeyboardBlocked = decoded.ContinuousPathKeyboardBlocked
-	s.CreatedDateTime = decoded.CreatedDateTime
 	s.DateAndTimeForceSetAutomatically = decoded.DateAndTimeForceSetAutomatically
 	s.DefinitionLookupBlocked = decoded.DefinitionLookupBlocked
-	s.Description = decoded.Description
 	s.DeviceBlockEnableRestrictions = decoded.DeviceBlockEnableRestrictions
 	s.DeviceBlockEraseContentAndSettings = decoded.DeviceBlockEraseContentAndSettings
 	s.DeviceBlockNameModification = decoded.DeviceBlockNameModification
-	s.DeviceManagementApplicabilityRuleDeviceMode = decoded.DeviceManagementApplicabilityRuleDeviceMode
-	s.DeviceManagementApplicabilityRuleOsEdition = decoded.DeviceManagementApplicabilityRuleOsEdition
-	s.DeviceManagementApplicabilityRuleOsVersion = decoded.DeviceManagementApplicabilityRuleOsVersion
-	s.DeviceSettingStateSummaries = decoded.DeviceSettingStateSummaries
-	s.DeviceStatusOverview = decoded.DeviceStatusOverview
-	s.DeviceStatuses = decoded.DeviceStatuses
 	s.DiagnosticDataBlockSubmission = decoded.DiagnosticDataBlockSubmission
 	s.DiagnosticDataBlockSubmissionModification = decoded.DiagnosticDataBlockSubmissionModification
-	s.DisplayName = decoded.DisplayName
 	s.DocumentsBlockManagedDocumentsInUnmanagedApps = decoded.DocumentsBlockManagedDocumentsInUnmanagedApps
 	s.DocumentsBlockUnmanagedDocumentsInManagedApps = decoded.DocumentsBlockUnmanagedDocumentsInManagedApps
 	s.EmailInDomainSuffixes = decoded.EmailInDomainSuffixes
@@ -847,7 +1045,6 @@ func (s *IosGeneralDeviceConfiguration) UnmarshalJSON(bytes []byte) error {
 	s.GameCenterBlocked = decoded.GameCenterBlocked
 	s.GamingBlockGameCenterFriends = decoded.GamingBlockGameCenterFriends
 	s.GamingBlockMultiplayer = decoded.GamingBlockMultiplayer
-	s.GroupAssignments = decoded.GroupAssignments
 	s.HostPairingBlocked = decoded.HostPairingBlocked
 	s.IBooksStoreBlockErotica = decoded.IBooksStoreBlockErotica
 	s.IBooksStoreBlocked = decoded.IBooksStoreBlocked
@@ -864,7 +1061,6 @@ func (s *IosGeneralDeviceConfiguration) UnmarshalJSON(bytes []byte) error {
 	s.ITunesBlockMusicService = decoded.ITunesBlockMusicService
 	s.ITunesBlockRadio = decoded.ITunesBlockRadio
 	s.ITunesBlocked = decoded.ITunesBlocked
-	s.Id = decoded.Id
 	s.KeyboardBlockAutoCorrect = decoded.KeyboardBlockAutoCorrect
 	s.KeyboardBlockDictation = decoded.KeyboardBlockDictation
 	s.KeyboardBlockPredictive = decoded.KeyboardBlockPredictive
@@ -899,7 +1095,6 @@ func (s *IosGeneralDeviceConfiguration) UnmarshalJSON(bytes []byte) error {
 	s.KioskModeRequireMonoAudio = decoded.KioskModeRequireMonoAudio
 	s.KioskModeRequireVoiceOver = decoded.KioskModeRequireVoiceOver
 	s.KioskModeRequireZoom = decoded.KioskModeRequireZoom
-	s.LastModifiedDateTime = decoded.LastModifiedDateTime
 	s.LockScreenBlockControlCenter = decoded.LockScreenBlockControlCenter
 	s.LockScreenBlockNotificationView = decoded.LockScreenBlockNotificationView
 	s.LockScreenBlockPassbook = decoded.LockScreenBlockPassbook
@@ -919,8 +1114,6 @@ func (s *IosGeneralDeviceConfiguration) UnmarshalJSON(bytes []byte) error {
 	s.NetworkUsageRules = decoded.NetworkUsageRules
 	s.NfcBlocked = decoded.NfcBlocked
 	s.NotificationsBlockSettingsModification = decoded.NotificationsBlockSettingsModification
-	s.ODataId = decoded.ODataId
-	s.ODataType = decoded.ODataType
 	s.OnDeviceOnlyDictationForced = decoded.OnDeviceOnlyDictationForced
 	s.OnDeviceOnlyTranslationForced = decoded.OnDeviceOnlyTranslationForced
 	s.PasscodeBlockFingerprintModification = decoded.PasscodeBlockFingerprintModification
@@ -943,7 +1136,6 @@ func (s *IosGeneralDeviceConfiguration) UnmarshalJSON(bytes []byte) error {
 	s.PodcastsBlocked = decoded.PodcastsBlocked
 	s.PrivacyForceLimitAdTracking = decoded.PrivacyForceLimitAdTracking
 	s.ProximityBlockSetupToNewDevice = decoded.ProximityBlockSetupToNewDevice
-	s.RoleScopeTagIds = decoded.RoleScopeTagIds
 	s.SafariBlockAutofill = decoded.SafariBlockAutofill
 	s.SafariBlockJavaScript = decoded.SafariBlockJavaScript
 	s.SafariBlockPopups = decoded.SafariBlockPopups
@@ -961,18 +1153,34 @@ func (s *IosGeneralDeviceConfiguration) UnmarshalJSON(bytes []byte) error {
 	s.SoftwareUpdatesEnforcedDelayInDays = decoded.SoftwareUpdatesEnforcedDelayInDays
 	s.SoftwareUpdatesForceDelayed = decoded.SoftwareUpdatesForceDelayed
 	s.SpotlightBlockInternetResults = decoded.SpotlightBlockInternetResults
-	s.SupportsScopeTags = decoded.SupportsScopeTags
 	s.UnpairedExternalBootToRecoveryAllowed = decoded.UnpairedExternalBootToRecoveryAllowed
 	s.UsbRestrictedModeBlocked = decoded.UsbRestrictedModeBlocked
-	s.UserStatusOverview = decoded.UserStatusOverview
-	s.UserStatuses = decoded.UserStatuses
-	s.Version = decoded.Version
 	s.VoiceDialingBlocked = decoded.VoiceDialingBlocked
 	s.VpnBlockCreation = decoded.VpnBlockCreation
 	s.WallpaperBlockModification = decoded.WallpaperBlockModification
 	s.WiFiConnectOnlyToConfiguredNetworks = decoded.WiFiConnectOnlyToConfiguredNetworks
 	s.WiFiConnectToAllowedNetworksOnlyForced = decoded.WiFiConnectToAllowedNetworksOnlyForced
 	s.WifiPowerOnForced = decoded.WifiPowerOnForced
+	s.Assignments = decoded.Assignments
+	s.CreatedDateTime = decoded.CreatedDateTime
+	s.Description = decoded.Description
+	s.DeviceManagementApplicabilityRuleDeviceMode = decoded.DeviceManagementApplicabilityRuleDeviceMode
+	s.DeviceManagementApplicabilityRuleOsEdition = decoded.DeviceManagementApplicabilityRuleOsEdition
+	s.DeviceManagementApplicabilityRuleOsVersion = decoded.DeviceManagementApplicabilityRuleOsVersion
+	s.DeviceSettingStateSummaries = decoded.DeviceSettingStateSummaries
+	s.DeviceStatusOverview = decoded.DeviceStatusOverview
+	s.DeviceStatuses = decoded.DeviceStatuses
+	s.DisplayName = decoded.DisplayName
+	s.GroupAssignments = decoded.GroupAssignments
+	s.Id = decoded.Id
+	s.LastModifiedDateTime = decoded.LastModifiedDateTime
+	s.ODataId = decoded.ODataId
+	s.ODataType = decoded.ODataType
+	s.RoleScopeTagIds = decoded.RoleScopeTagIds
+	s.SupportsScopeTags = decoded.SupportsScopeTags
+	s.UserStatusOverview = decoded.UserStatusOverview
+	s.UserStatuses = decoded.UserStatuses
+	s.Version = decoded.Version
 
 	var temp map[string]json.RawMessage
 	if err := json.Unmarshal(bytes, &temp); err != nil {
@@ -1029,5 +1237,6 @@ func (s *IosGeneralDeviceConfiguration) UnmarshalJSON(bytes []byte) error {
 		}
 		s.CompliantAppsList = &output
 	}
+
 	return nil
 }

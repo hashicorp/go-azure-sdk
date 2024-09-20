@@ -17,15 +17,44 @@ type UpdateAppConsentRequestUserConsentRequestApprovalStageOperationResponse str
 	OData        *odata.OData
 }
 
+type UpdateAppConsentRequestUserConsentRequestApprovalStageOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateAppConsentRequestUserConsentRequestApprovalStageOperationOptions() UpdateAppConsentRequestUserConsentRequestApprovalStageOperationOptions {
+	return UpdateAppConsentRequestUserConsentRequestApprovalStageOperationOptions{}
+}
+
+func (o UpdateAppConsentRequestUserConsentRequestApprovalStageOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateAppConsentRequestUserConsentRequestApprovalStageOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateAppConsentRequestUserConsentRequestApprovalStageOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateAppConsentRequestUserConsentRequestApprovalStage - Update the navigation property stages in identityGovernance
-func (c AppConsentAppConsentRequestUserConsentRequestApprovalStageClient) UpdateAppConsentRequestUserConsentRequestApprovalStage(ctx context.Context, id stable.IdentityGovernanceAppConsentAppConsentRequestIdUserConsentRequestIdApprovalStageId, input stable.ApprovalStage) (result UpdateAppConsentRequestUserConsentRequestApprovalStageOperationResponse, err error) {
+func (c AppConsentAppConsentRequestUserConsentRequestApprovalStageClient) UpdateAppConsentRequestUserConsentRequestApprovalStage(ctx context.Context, id stable.IdentityGovernanceAppConsentAppConsentRequestIdUserConsentRequestIdApprovalStageId, input stable.ApprovalStage, options UpdateAppConsentRequestUserConsentRequestApprovalStageOperationOptions) (result UpdateAppConsentRequestUserConsentRequestApprovalStageOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

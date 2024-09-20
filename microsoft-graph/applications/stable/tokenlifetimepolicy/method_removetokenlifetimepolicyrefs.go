@@ -19,8 +19,9 @@ type RemoveTokenLifetimePolicyRefsOperationResponse struct {
 }
 
 type RemoveTokenLifetimePolicyRefsOperationOptions struct {
-	Id      *string
-	IfMatch *string
+	Id       *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultRemoveTokenLifetimePolicyRefsOperationOptions() RemoveTokenLifetimePolicyRefsOperationOptions {
@@ -37,7 +38,9 @@ func (o RemoveTokenLifetimePolicyRefsOperationOptions) ToHeaders() *client.Heade
 
 func (o RemoveTokenLifetimePolicyRefsOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

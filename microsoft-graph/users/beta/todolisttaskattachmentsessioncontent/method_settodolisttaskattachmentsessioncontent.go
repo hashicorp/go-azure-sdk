@@ -18,16 +18,45 @@ type SetTodoListTaskAttachmentSessionContentOperationResponse struct {
 	OData        *odata.OData
 }
 
+type SetTodoListTaskAttachmentSessionContentOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultSetTodoListTaskAttachmentSessionContentOperationOptions() SetTodoListTaskAttachmentSessionContentOperationOptions {
+	return SetTodoListTaskAttachmentSessionContentOperationOptions{}
+}
+
+func (o SetTodoListTaskAttachmentSessionContentOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o SetTodoListTaskAttachmentSessionContentOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o SetTodoListTaskAttachmentSessionContentOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // SetTodoListTaskAttachmentSessionContent - Update content for the navigation property attachmentSessions in users. The
 // content streams that are uploaded.
-func (c TodoListTaskAttachmentSessionContentClient) SetTodoListTaskAttachmentSessionContent(ctx context.Context, id beta.UserIdTodoListIdTaskIdAttachmentSessionId, input []byte) (result SetTodoListTaskAttachmentSessionContentOperationResponse, err error) {
+func (c TodoListTaskAttachmentSessionContentClient) SetTodoListTaskAttachmentSessionContent(ctx context.Context, id beta.UserIdTodoListIdTaskIdAttachmentSessionId, input []byte, options SetTodoListTaskAttachmentSessionContentOperationOptions) (result SetTodoListTaskAttachmentSessionContentOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPut,
-		Path:       fmt.Sprintf("%s/content", id.ID()),
+		HttpMethod:    http.MethodPut,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/content", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

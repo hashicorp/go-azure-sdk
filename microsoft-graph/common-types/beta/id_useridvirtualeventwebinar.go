@@ -98,10 +98,10 @@ func (id UserIdVirtualEventWebinarId) ID() string {
 func (id UserIdVirtualEventWebinarId) Segments() []resourceids.Segment {
 	return []resourceids.Segment{
 		resourceids.StaticSegment("users", "users", "users"),
-		resourceids.UserSpecifiedSegment("userId", "userIdValue"),
+		resourceids.UserSpecifiedSegment("userId", "userId"),
 		resourceids.StaticSegment("virtualEvents", "virtualEvents", "virtualEvents"),
 		resourceids.StaticSegment("webinars", "webinars", "webinars"),
-		resourceids.UserSpecifiedSegment("virtualEventWebinarId", "virtualEventWebinarIdValue"),
+		resourceids.UserSpecifiedSegment("virtualEventWebinarId", "virtualEventWebinarId"),
 	}
 }
 

@@ -17,15 +17,44 @@ type UpdatePolicyOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdatePolicyOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdatePolicyOperationOptions() UpdatePolicyOperationOptions {
+	return UpdatePolicyOperationOptions{}
+}
+
+func (o UpdatePolicyOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdatePolicyOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdatePolicyOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdatePolicy - Update policies
-func (c PolicyClient) UpdatePolicy(ctx context.Context, input stable.PolicyRoot) (result UpdatePolicyOperationResponse, err error) {
+func (c PolicyClient) UpdatePolicy(ctx context.Context, input stable.PolicyRoot, options UpdatePolicyOperationOptions) (result UpdatePolicyOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       "/policies",
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          "/policies",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

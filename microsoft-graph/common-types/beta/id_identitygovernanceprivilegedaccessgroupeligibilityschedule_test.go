@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &IdentityGovernancePrivilegedAccessGroupEligibilityScheduleId{}
 
 func TestNewIdentityGovernancePrivilegedAccessGroupEligibilityScheduleID(t *testing.T) {
-	id := NewIdentityGovernancePrivilegedAccessGroupEligibilityScheduleID("privilegedAccessGroupEligibilityScheduleIdValue")
+	id := NewIdentityGovernancePrivilegedAccessGroupEligibilityScheduleID("privilegedAccessGroupEligibilityScheduleId")
 
-	if id.PrivilegedAccessGroupEligibilityScheduleId != "privilegedAccessGroupEligibilityScheduleIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'PrivilegedAccessGroupEligibilityScheduleId'", id.PrivilegedAccessGroupEligibilityScheduleId, "privilegedAccessGroupEligibilityScheduleIdValue")
+	if id.PrivilegedAccessGroupEligibilityScheduleId != "privilegedAccessGroupEligibilityScheduleId" {
+		t.Fatalf("Expected %q but got %q for Segment 'PrivilegedAccessGroupEligibilityScheduleId'", id.PrivilegedAccessGroupEligibilityScheduleId, "privilegedAccessGroupEligibilityScheduleId")
 	}
 }
 
 func TestFormatIdentityGovernancePrivilegedAccessGroupEligibilityScheduleID(t *testing.T) {
-	actual := NewIdentityGovernancePrivilegedAccessGroupEligibilityScheduleID("privilegedAccessGroupEligibilityScheduleIdValue").ID()
-	expected := "/identityGovernance/privilegedAccess/group/eligibilitySchedules/privilegedAccessGroupEligibilityScheduleIdValue"
+	actual := NewIdentityGovernancePrivilegedAccessGroupEligibilityScheduleID("privilegedAccessGroupEligibilityScheduleId").ID()
+	expected := "/identityGovernance/privilegedAccess/group/eligibilitySchedules/privilegedAccessGroupEligibilityScheduleId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -60,14 +60,14 @@ func TestParseIdentityGovernancePrivilegedAccessGroupEligibilityScheduleID(t *te
 		},
 		{
 			// Valid URI
-			Input: "/identityGovernance/privilegedAccess/group/eligibilitySchedules/privilegedAccessGroupEligibilityScheduleIdValue",
+			Input: "/identityGovernance/privilegedAccess/group/eligibilitySchedules/privilegedAccessGroupEligibilityScheduleId",
 			Expected: &IdentityGovernancePrivilegedAccessGroupEligibilityScheduleId{
-				PrivilegedAccessGroupEligibilityScheduleId: "privilegedAccessGroupEligibilityScheduleIdValue",
+				PrivilegedAccessGroupEligibilityScheduleId: "privilegedAccessGroupEligibilityScheduleId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/identityGovernance/privilegedAccess/group/eligibilitySchedules/privilegedAccessGroupEligibilityScheduleIdValue/extra",
+			Input: "/identityGovernance/privilegedAccess/group/eligibilitySchedules/privilegedAccessGroupEligibilityScheduleId/extra",
 			Error: true,
 		},
 	}
@@ -146,26 +146,26 @@ func TestParseIdentityGovernancePrivilegedAccessGroupEligibilityScheduleIDInsens
 		},
 		{
 			// Valid URI
-			Input: "/identityGovernance/privilegedAccess/group/eligibilitySchedules/privilegedAccessGroupEligibilityScheduleIdValue",
+			Input: "/identityGovernance/privilegedAccess/group/eligibilitySchedules/privilegedAccessGroupEligibilityScheduleId",
 			Expected: &IdentityGovernancePrivilegedAccessGroupEligibilityScheduleId{
-				PrivilegedAccessGroupEligibilityScheduleId: "privilegedAccessGroupEligibilityScheduleIdValue",
+				PrivilegedAccessGroupEligibilityScheduleId: "privilegedAccessGroupEligibilityScheduleId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/identityGovernance/privilegedAccess/group/eligibilitySchedules/privilegedAccessGroupEligibilityScheduleIdValue/extra",
+			Input: "/identityGovernance/privilegedAccess/group/eligibilitySchedules/privilegedAccessGroupEligibilityScheduleId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/iDeNtItYgOvErNaNcE/pRiViLeGeDaCcEsS/gRoUp/eLiGiBiLiTyScHeDuLeS/pRiViLeGeDaCcEsSgRoUpElIgIbIlItYsChEdUlEiDvAlUe",
+			Input: "/iDeNtItYgOvErNaNcE/pRiViLeGeDaCcEsS/gRoUp/eLiGiBiLiTyScHeDuLeS/pRiViLeGeDaCcEsSgRoUpElIgIbIlItYsChEdUlEiD",
 			Expected: &IdentityGovernancePrivilegedAccessGroupEligibilityScheduleId{
-				PrivilegedAccessGroupEligibilityScheduleId: "pRiViLeGeDaCcEsSgRoUpElIgIbIlItYsChEdUlEiDvAlUe",
+				PrivilegedAccessGroupEligibilityScheduleId: "pRiViLeGeDaCcEsSgRoUpElIgIbIlItYsChEdUlEiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/iDeNtItYgOvErNaNcE/pRiViLeGeDaCcEsS/gRoUp/eLiGiBiLiTyScHeDuLeS/pRiViLeGeDaCcEsSgRoUpElIgIbIlItYsChEdUlEiDvAlUe/extra",
+			Input: "/iDeNtItYgOvErNaNcE/pRiViLeGeDaCcEsS/gRoUp/eLiGiBiLiTyScHeDuLeS/pRiViLeGeDaCcEsSgRoUpElIgIbIlItYsChEdUlEiD/extra",
 			Error: true,
 		},
 	}

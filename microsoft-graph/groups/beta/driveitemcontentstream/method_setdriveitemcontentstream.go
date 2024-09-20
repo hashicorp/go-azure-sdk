@@ -18,16 +18,45 @@ type SetDriveItemContentStreamOperationResponse struct {
 	OData        *odata.OData
 }
 
+type SetDriveItemContentStreamOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultSetDriveItemContentStreamOperationOptions() SetDriveItemContentStreamOperationOptions {
+	return SetDriveItemContentStreamOperationOptions{}
+}
+
+func (o SetDriveItemContentStreamOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o SetDriveItemContentStreamOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o SetDriveItemContentStreamOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // SetDriveItemContentStream - Update contentStream for the navigation property items in groups. The content stream, if
 // the item represents a file.
-func (c DriveItemContentStreamClient) SetDriveItemContentStream(ctx context.Context, id beta.GroupIdDriveIdItemId, input []byte) (result SetDriveItemContentStreamOperationResponse, err error) {
+func (c DriveItemContentStreamClient) SetDriveItemContentStream(ctx context.Context, id beta.GroupIdDriveIdItemId, input []byte, options SetDriveItemContentStreamOperationOptions) (result SetDriveItemContentStreamOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPut,
-		Path:       fmt.Sprintf("%s/contentStream", id.ID()),
+		HttpMethod:    http.MethodPut,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/contentStream", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

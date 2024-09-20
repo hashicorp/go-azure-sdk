@@ -19,15 +19,44 @@ type CreateTeamScheduleTimeCardOperationResponse struct {
 	Model        *beta.TimeCard
 }
 
+type CreateTeamScheduleTimeCardOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateTeamScheduleTimeCardOperationOptions() CreateTeamScheduleTimeCardOperationOptions {
+	return CreateTeamScheduleTimeCardOperationOptions{}
+}
+
+func (o CreateTeamScheduleTimeCardOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateTeamScheduleTimeCardOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateTeamScheduleTimeCardOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateTeamScheduleTimeCard - Create new navigation property to timeCards for groups
-func (c TeamScheduleTimeCardClient) CreateTeamScheduleTimeCard(ctx context.Context, id beta.GroupId, input beta.TimeCard) (result CreateTeamScheduleTimeCardOperationResponse, err error) {
+func (c TeamScheduleTimeCardClient) CreateTeamScheduleTimeCard(ctx context.Context, id beta.GroupId, input beta.TimeCard, options CreateTeamScheduleTimeCardOperationOptions) (result CreateTeamScheduleTimeCardOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/team/schedule/timeCards", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/team/schedule/timeCards", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

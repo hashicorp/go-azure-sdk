@@ -19,15 +19,44 @@ type CreateConfigurationPolicyCopyOperationResponse struct {
 	Model        *beta.DeviceManagementConfigurationPolicy
 }
 
+type CreateConfigurationPolicyCopyOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateConfigurationPolicyCopyOperationOptions() CreateConfigurationPolicyCopyOperationOptions {
+	return CreateConfigurationPolicyCopyOperationOptions{}
+}
+
+func (o CreateConfigurationPolicyCopyOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateConfigurationPolicyCopyOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateConfigurationPolicyCopyOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateConfigurationPolicyCopy - Invoke action createCopy
-func (c ConfigurationPolicyClient) CreateConfigurationPolicyCopy(ctx context.Context, id beta.DeviceManagementConfigurationPolicyId, input CreateConfigurationPolicyCopyRequest) (result CreateConfigurationPolicyCopyOperationResponse, err error) {
+func (c ConfigurationPolicyClient) CreateConfigurationPolicyCopy(ctx context.Context, id beta.DeviceManagementConfigurationPolicyId, input CreateConfigurationPolicyCopyRequest, options CreateConfigurationPolicyCopyOperationOptions) (result CreateConfigurationPolicyCopyOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/createCopy", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/createCopy", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

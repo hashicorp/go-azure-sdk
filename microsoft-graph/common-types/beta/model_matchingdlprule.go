@@ -31,10 +31,21 @@ type MatchingDlpRule struct {
 var _ json.Unmarshaler = &MatchingDlpRule{}
 
 func (s *MatchingDlpRule) UnmarshalJSON(bytes []byte) error {
-	type alias MatchingDlpRule
-	var decoded alias
+
+	var decoded struct {
+		Actions           *[]DlpActionInfo      `json:"actions,omitempty"`
+		IsMostRestrictive nullable.Type[bool]   `json:"isMostRestrictive,omitempty"`
+		ODataId           *string               `json:"@odata.id,omitempty"`
+		ODataType         *string               `json:"@odata.type,omitempty"`
+		PolicyId          nullable.Type[string] `json:"policyId,omitempty"`
+		PolicyName        nullable.Type[string] `json:"policyName,omitempty"`
+		Priority          nullable.Type[int64]  `json:"priority,omitempty"`
+		RuleId            nullable.Type[string] `json:"ruleId,omitempty"`
+		RuleMode          *RuleMode             `json:"ruleMode,omitempty"`
+		RuleName          nullable.Type[string] `json:"ruleName,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into MatchingDlpRule: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.IsMostRestrictive = decoded.IsMostRestrictive
@@ -68,5 +79,6 @@ func (s *MatchingDlpRule) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Actions = &output
 	}
+
 	return nil
 }

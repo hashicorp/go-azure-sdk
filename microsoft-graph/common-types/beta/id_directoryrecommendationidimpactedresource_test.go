@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &DirectoryRecommendationIdImpactedResourceId{}
 
 func TestNewDirectoryRecommendationIdImpactedResourceID(t *testing.T) {
-	id := NewDirectoryRecommendationIdImpactedResourceID("recommendationIdValue", "impactedResourceIdValue")
+	id := NewDirectoryRecommendationIdImpactedResourceID("recommendationId", "impactedResourceId")
 
-	if id.RecommendationId != "recommendationIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'RecommendationId'", id.RecommendationId, "recommendationIdValue")
+	if id.RecommendationId != "recommendationId" {
+		t.Fatalf("Expected %q but got %q for Segment 'RecommendationId'", id.RecommendationId, "recommendationId")
 	}
 
-	if id.ImpactedResourceId != "impactedResourceIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ImpactedResourceId'", id.ImpactedResourceId, "impactedResourceIdValue")
+	if id.ImpactedResourceId != "impactedResourceId" {
+		t.Fatalf("Expected %q but got %q for Segment 'ImpactedResourceId'", id.ImpactedResourceId, "impactedResourceId")
 	}
 }
 
 func TestFormatDirectoryRecommendationIdImpactedResourceID(t *testing.T) {
-	actual := NewDirectoryRecommendationIdImpactedResourceID("recommendationIdValue", "impactedResourceIdValue").ID()
-	expected := "/directory/recommendations/recommendationIdValue/impactedResources/impactedResourceIdValue"
+	actual := NewDirectoryRecommendationIdImpactedResourceID("recommendationId", "impactedResourceId").ID()
+	expected := "/directory/recommendations/recommendationId/impactedResources/impactedResourceId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -54,25 +54,25 @@ func TestParseDirectoryRecommendationIdImpactedResourceID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/directory/recommendations/recommendationIdValue",
+			Input: "/directory/recommendations/recommendationId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/directory/recommendations/recommendationIdValue/impactedResources",
+			Input: "/directory/recommendations/recommendationId/impactedResources",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/directory/recommendations/recommendationIdValue/impactedResources/impactedResourceIdValue",
+			Input: "/directory/recommendations/recommendationId/impactedResources/impactedResourceId",
 			Expected: &DirectoryRecommendationIdImpactedResourceId{
-				RecommendationId:   "recommendationIdValue",
-				ImpactedResourceId: "impactedResourceIdValue",
+				RecommendationId:   "recommendationId",
+				ImpactedResourceId: "impactedResourceId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/directory/recommendations/recommendationIdValue/impactedResources/impactedResourceIdValue/extra",
+			Input: "/directory/recommendations/recommendationId/impactedResources/impactedResourceId/extra",
 			Error: true,
 		},
 	}
@@ -135,48 +135,48 @@ func TestParseDirectoryRecommendationIdImpactedResourceIDInsensitively(t *testin
 		},
 		{
 			// Incomplete URI
-			Input: "/directory/recommendations/recommendationIdValue",
+			Input: "/directory/recommendations/recommendationId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/dIrEcToRy/rEcOmMeNdAtIoNs/rEcOmMeNdAtIoNiDvAlUe",
+			Input: "/dIrEcToRy/rEcOmMeNdAtIoNs/rEcOmMeNdAtIoNiD",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/directory/recommendations/recommendationIdValue/impactedResources",
+			Input: "/directory/recommendations/recommendationId/impactedResources",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/dIrEcToRy/rEcOmMeNdAtIoNs/rEcOmMeNdAtIoNiDvAlUe/iMpAcTeDrEsOuRcEs",
+			Input: "/dIrEcToRy/rEcOmMeNdAtIoNs/rEcOmMeNdAtIoNiD/iMpAcTeDrEsOuRcEs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/directory/recommendations/recommendationIdValue/impactedResources/impactedResourceIdValue",
+			Input: "/directory/recommendations/recommendationId/impactedResources/impactedResourceId",
 			Expected: &DirectoryRecommendationIdImpactedResourceId{
-				RecommendationId:   "recommendationIdValue",
-				ImpactedResourceId: "impactedResourceIdValue",
+				RecommendationId:   "recommendationId",
+				ImpactedResourceId: "impactedResourceId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/directory/recommendations/recommendationIdValue/impactedResources/impactedResourceIdValue/extra",
+			Input: "/directory/recommendations/recommendationId/impactedResources/impactedResourceId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/dIrEcToRy/rEcOmMeNdAtIoNs/rEcOmMeNdAtIoNiDvAlUe/iMpAcTeDrEsOuRcEs/iMpAcTeDrEsOuRcEiDvAlUe",
+			Input: "/dIrEcToRy/rEcOmMeNdAtIoNs/rEcOmMeNdAtIoNiD/iMpAcTeDrEsOuRcEs/iMpAcTeDrEsOuRcEiD",
 			Expected: &DirectoryRecommendationIdImpactedResourceId{
-				RecommendationId:   "rEcOmMeNdAtIoNiDvAlUe",
-				ImpactedResourceId: "iMpAcTeDrEsOuRcEiDvAlUe",
+				RecommendationId:   "rEcOmMeNdAtIoNiD",
+				ImpactedResourceId: "iMpAcTeDrEsOuRcEiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/dIrEcToRy/rEcOmMeNdAtIoNs/rEcOmMeNdAtIoNiDvAlUe/iMpAcTeDrEsOuRcEs/iMpAcTeDrEsOuRcEiDvAlUe/extra",
+			Input: "/dIrEcToRy/rEcOmMeNdAtIoNs/rEcOmMeNdAtIoNiD/iMpAcTeDrEsOuRcEs/iMpAcTeDrEsOuRcEiD/extra",
 			Error: true,
 		},
 	}

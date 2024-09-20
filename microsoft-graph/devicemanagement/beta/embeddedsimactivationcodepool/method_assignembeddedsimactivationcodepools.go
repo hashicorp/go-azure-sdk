@@ -25,8 +25,9 @@ type AssignEmbeddedSIMActivationCodePoolsCompleteResult struct {
 }
 
 type AssignEmbeddedSIMActivationCodePoolsOperationOptions struct {
-	Skip *int64
-	Top  *int64
+	Metadata *odata.Metadata
+	Skip     *int64
+	Top      *int64
 }
 
 func DefaultAssignEmbeddedSIMActivationCodePoolsOperationOptions() AssignEmbeddedSIMActivationCodePoolsOperationOptions {
@@ -41,6 +42,9 @@ func (o AssignEmbeddedSIMActivationCodePoolsOperationOptions) ToHeaders() *clien
 
 func (o AssignEmbeddedSIMActivationCodePoolsOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	if o.Skip != nil {
 		out.Skip = int(*o.Skip)
 	}

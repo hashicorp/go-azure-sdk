@@ -18,16 +18,45 @@ type SetJoinedTeamChannelFilesFolderContentOperationResponse struct {
 	OData        *odata.OData
 }
 
+type SetJoinedTeamChannelFilesFolderContentOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultSetJoinedTeamChannelFilesFolderContentOperationOptions() SetJoinedTeamChannelFilesFolderContentOperationOptions {
+	return SetJoinedTeamChannelFilesFolderContentOperationOptions{}
+}
+
+func (o SetJoinedTeamChannelFilesFolderContentOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o SetJoinedTeamChannelFilesFolderContentOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o SetJoinedTeamChannelFilesFolderContentOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // SetJoinedTeamChannelFilesFolderContent - Update content for the navigation property filesFolder in me. The content
 // stream, if the item represents a file.
-func (c JoinedTeamChannelFilesFolderContentClient) SetJoinedTeamChannelFilesFolderContent(ctx context.Context, id stable.MeJoinedTeamIdChannelId, input []byte) (result SetJoinedTeamChannelFilesFolderContentOperationResponse, err error) {
+func (c JoinedTeamChannelFilesFolderContentClient) SetJoinedTeamChannelFilesFolderContent(ctx context.Context, id stable.MeJoinedTeamIdChannelId, input []byte, options SetJoinedTeamChannelFilesFolderContentOperationOptions) (result SetJoinedTeamChannelFilesFolderContentOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPut,
-		Path:       fmt.Sprintf("%s/filesFolder/content", id.ID()),
+		HttpMethod:    http.MethodPut,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/filesFolder/content", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

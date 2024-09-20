@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &DeviceManagementAuditEventId{}
 
 func TestNewDeviceManagementAuditEventID(t *testing.T) {
-	id := NewDeviceManagementAuditEventID("auditEventIdValue")
+	id := NewDeviceManagementAuditEventID("auditEventId")
 
-	if id.AuditEventId != "auditEventIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'AuditEventId'", id.AuditEventId, "auditEventIdValue")
+	if id.AuditEventId != "auditEventId" {
+		t.Fatalf("Expected %q but got %q for Segment 'AuditEventId'", id.AuditEventId, "auditEventId")
 	}
 }
 
 func TestFormatDeviceManagementAuditEventID(t *testing.T) {
-	actual := NewDeviceManagementAuditEventID("auditEventIdValue").ID()
-	expected := "/deviceManagement/auditEvents/auditEventIdValue"
+	actual := NewDeviceManagementAuditEventID("auditEventId").ID()
+	expected := "/deviceManagement/auditEvents/auditEventId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -50,14 +50,14 @@ func TestParseDeviceManagementAuditEventID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/auditEvents/auditEventIdValue",
+			Input: "/deviceManagement/auditEvents/auditEventId",
 			Expected: &DeviceManagementAuditEventId{
-				AuditEventId: "auditEventIdValue",
+				AuditEventId: "auditEventId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/auditEvents/auditEventIdValue/extra",
+			Input: "/deviceManagement/auditEvents/auditEventId/extra",
 			Error: true,
 		},
 	}
@@ -116,26 +116,26 @@ func TestParseDeviceManagementAuditEventIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/auditEvents/auditEventIdValue",
+			Input: "/deviceManagement/auditEvents/auditEventId",
 			Expected: &DeviceManagementAuditEventId{
-				AuditEventId: "auditEventIdValue",
+				AuditEventId: "auditEventId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/auditEvents/auditEventIdValue/extra",
+			Input: "/deviceManagement/auditEvents/auditEventId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/aUdItEvEnTs/aUdItEvEnTiDvAlUe",
+			Input: "/dEvIcEmAnAgEmEnT/aUdItEvEnTs/aUdItEvEnTiD",
 			Expected: &DeviceManagementAuditEventId{
-				AuditEventId: "aUdItEvEnTiDvAlUe",
+				AuditEventId: "aUdItEvEnTiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/aUdItEvEnTs/aUdItEvEnTiDvAlUe/extra",
+			Input: "/dEvIcEmAnAgEmEnT/aUdItEvEnTs/aUdItEvEnTiD/extra",
 			Error: true,
 		},
 	}

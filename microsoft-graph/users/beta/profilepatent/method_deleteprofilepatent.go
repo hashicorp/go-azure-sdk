@@ -19,7 +19,8 @@ type DeleteProfilePatentOperationResponse struct {
 }
 
 type DeleteProfilePatentOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteProfilePatentOperationOptions() DeleteProfilePatentOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteProfilePatentOperationOptions) ToHeaders() *client.Headers {
 
 func (o DeleteProfilePatentOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

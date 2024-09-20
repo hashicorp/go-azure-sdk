@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &RoleManagementDirectoryRoleEligibilityScheduleId{}
 
 func TestNewRoleManagementDirectoryRoleEligibilityScheduleID(t *testing.T) {
-	id := NewRoleManagementDirectoryRoleEligibilityScheduleID("unifiedRoleEligibilityScheduleIdValue")
+	id := NewRoleManagementDirectoryRoleEligibilityScheduleID("unifiedRoleEligibilityScheduleId")
 
-	if id.UnifiedRoleEligibilityScheduleId != "unifiedRoleEligibilityScheduleIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'UnifiedRoleEligibilityScheduleId'", id.UnifiedRoleEligibilityScheduleId, "unifiedRoleEligibilityScheduleIdValue")
+	if id.UnifiedRoleEligibilityScheduleId != "unifiedRoleEligibilityScheduleId" {
+		t.Fatalf("Expected %q but got %q for Segment 'UnifiedRoleEligibilityScheduleId'", id.UnifiedRoleEligibilityScheduleId, "unifiedRoleEligibilityScheduleId")
 	}
 }
 
 func TestFormatRoleManagementDirectoryRoleEligibilityScheduleID(t *testing.T) {
-	actual := NewRoleManagementDirectoryRoleEligibilityScheduleID("unifiedRoleEligibilityScheduleIdValue").ID()
-	expected := "/roleManagement/directory/roleEligibilitySchedules/unifiedRoleEligibilityScheduleIdValue"
+	actual := NewRoleManagementDirectoryRoleEligibilityScheduleID("unifiedRoleEligibilityScheduleId").ID()
+	expected := "/roleManagement/directory/roleEligibilitySchedules/unifiedRoleEligibilityScheduleId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -55,14 +55,14 @@ func TestParseRoleManagementDirectoryRoleEligibilityScheduleID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/roleManagement/directory/roleEligibilitySchedules/unifiedRoleEligibilityScheduleIdValue",
+			Input: "/roleManagement/directory/roleEligibilitySchedules/unifiedRoleEligibilityScheduleId",
 			Expected: &RoleManagementDirectoryRoleEligibilityScheduleId{
-				UnifiedRoleEligibilityScheduleId: "unifiedRoleEligibilityScheduleIdValue",
+				UnifiedRoleEligibilityScheduleId: "unifiedRoleEligibilityScheduleId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/roleManagement/directory/roleEligibilitySchedules/unifiedRoleEligibilityScheduleIdValue/extra",
+			Input: "/roleManagement/directory/roleEligibilitySchedules/unifiedRoleEligibilityScheduleId/extra",
 			Error: true,
 		},
 	}
@@ -131,26 +131,26 @@ func TestParseRoleManagementDirectoryRoleEligibilityScheduleIDInsensitively(t *t
 		},
 		{
 			// Valid URI
-			Input: "/roleManagement/directory/roleEligibilitySchedules/unifiedRoleEligibilityScheduleIdValue",
+			Input: "/roleManagement/directory/roleEligibilitySchedules/unifiedRoleEligibilityScheduleId",
 			Expected: &RoleManagementDirectoryRoleEligibilityScheduleId{
-				UnifiedRoleEligibilityScheduleId: "unifiedRoleEligibilityScheduleIdValue",
+				UnifiedRoleEligibilityScheduleId: "unifiedRoleEligibilityScheduleId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/roleManagement/directory/roleEligibilitySchedules/unifiedRoleEligibilityScheduleIdValue/extra",
+			Input: "/roleManagement/directory/roleEligibilitySchedules/unifiedRoleEligibilityScheduleId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/rOlEmAnAgEmEnT/dIrEcToRy/rOlEeLiGiBiLiTyScHeDuLeS/uNiFiEdRoLeElIgIbIlItYsChEdUlEiDvAlUe",
+			Input: "/rOlEmAnAgEmEnT/dIrEcToRy/rOlEeLiGiBiLiTyScHeDuLeS/uNiFiEdRoLeElIgIbIlItYsChEdUlEiD",
 			Expected: &RoleManagementDirectoryRoleEligibilityScheduleId{
-				UnifiedRoleEligibilityScheduleId: "uNiFiEdRoLeElIgIbIlItYsChEdUlEiDvAlUe",
+				UnifiedRoleEligibilityScheduleId: "uNiFiEdRoLeElIgIbIlItYsChEdUlEiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/rOlEmAnAgEmEnT/dIrEcToRy/rOlEeLiGiBiLiTyScHeDuLeS/uNiFiEdRoLeElIgIbIlItYsChEdUlEiDvAlUe/extra",
+			Input: "/rOlEmAnAgEmEnT/dIrEcToRy/rOlEeLiGiBiLiTyScHeDuLeS/uNiFiEdRoLeElIgIbIlItYsChEdUlEiD/extra",
 			Error: true,
 		},
 	}

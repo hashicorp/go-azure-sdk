@@ -19,7 +19,8 @@ type DeleteEventExceptionOccurrenceInstanceExtensionOperationResponse struct {
 }
 
 type DeleteEventExceptionOccurrenceInstanceExtensionOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteEventExceptionOccurrenceInstanceExtensionOperationOptions() DeleteEventExceptionOccurrenceInstanceExtensionOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteEventExceptionOccurrenceInstanceExtensionOperationOptions) ToHeade
 
 func (o DeleteEventExceptionOccurrenceInstanceExtensionOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

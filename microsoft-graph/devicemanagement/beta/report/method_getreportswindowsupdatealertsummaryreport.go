@@ -17,15 +17,44 @@ type GetReportsWindowsUpdateAlertSummaryReportOperationResponse struct {
 	Model        *[]byte
 }
 
+type GetReportsWindowsUpdateAlertSummaryReportOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultGetReportsWindowsUpdateAlertSummaryReportOperationOptions() GetReportsWindowsUpdateAlertSummaryReportOperationOptions {
+	return GetReportsWindowsUpdateAlertSummaryReportOperationOptions{}
+}
+
+func (o GetReportsWindowsUpdateAlertSummaryReportOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o GetReportsWindowsUpdateAlertSummaryReportOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o GetReportsWindowsUpdateAlertSummaryReportOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // GetReportsWindowsUpdateAlertSummaryReport - Invoke action getWindowsUpdateAlertSummaryReport
-func (c ReportClient) GetReportsWindowsUpdateAlertSummaryReport(ctx context.Context, input GetReportsWindowsUpdateAlertSummaryReportRequest) (result GetReportsWindowsUpdateAlertSummaryReportOperationResponse, err error) {
+func (c ReportClient) GetReportsWindowsUpdateAlertSummaryReport(ctx context.Context, input GetReportsWindowsUpdateAlertSummaryReportRequest, options GetReportsWindowsUpdateAlertSummaryReportOperationOptions) (result GetReportsWindowsUpdateAlertSummaryReportOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/octet-stream",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/deviceManagement/reports/getWindowsUpdateAlertSummaryReport",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/deviceManagement/reports/getWindowsUpdateAlertSummaryReport",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

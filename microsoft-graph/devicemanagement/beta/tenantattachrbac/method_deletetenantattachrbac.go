@@ -18,7 +18,8 @@ type DeleteTenantAttachRBACOperationResponse struct {
 }
 
 type DeleteTenantAttachRBACOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteTenantAttachRBACOperationOptions() DeleteTenantAttachRBACOperationOptions {
@@ -35,7 +36,9 @@ func (o DeleteTenantAttachRBACOperationOptions) ToHeaders() *client.Headers {
 
 func (o DeleteTenantAttachRBACOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

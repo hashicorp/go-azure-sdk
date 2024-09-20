@@ -19,7 +19,8 @@ type DeleteDepOnboardingSettingImportedAppleDeviceIdentityOperationResponse stru
 }
 
 type DeleteDepOnboardingSettingImportedAppleDeviceIdentityOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteDepOnboardingSettingImportedAppleDeviceIdentityOperationOptions() DeleteDepOnboardingSettingImportedAppleDeviceIdentityOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteDepOnboardingSettingImportedAppleDeviceIdentityOperationOptions) T
 
 func (o DeleteDepOnboardingSettingImportedAppleDeviceIdentityOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

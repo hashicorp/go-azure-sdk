@@ -17,15 +17,44 @@ type UpdateTeamTagOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateTeamTagOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateTeamTagOperationOptions() UpdateTeamTagOperationOptions {
+	return UpdateTeamTagOperationOptions{}
+}
+
+func (o UpdateTeamTagOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateTeamTagOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateTeamTagOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateTeamTag - Update the navigation property tags in groups
-func (c TeamTagClient) UpdateTeamTag(ctx context.Context, id stable.GroupIdTeamTagId, input stable.TeamworkTag) (result UpdateTeamTagOperationResponse, err error) {
+func (c TeamTagClient) UpdateTeamTag(ctx context.Context, id stable.GroupIdTeamTagId, input stable.TeamworkTag, options UpdateTeamTagOperationOptions) (result UpdateTeamTagOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

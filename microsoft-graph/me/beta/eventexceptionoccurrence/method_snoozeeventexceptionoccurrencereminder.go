@@ -18,16 +18,45 @@ type SnoozeEventExceptionOccurrenceReminderOperationResponse struct {
 	OData        *odata.OData
 }
 
+type SnoozeEventExceptionOccurrenceReminderOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultSnoozeEventExceptionOccurrenceReminderOperationOptions() SnoozeEventExceptionOccurrenceReminderOperationOptions {
+	return SnoozeEventExceptionOccurrenceReminderOperationOptions{}
+}
+
+func (o SnoozeEventExceptionOccurrenceReminderOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o SnoozeEventExceptionOccurrenceReminderOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o SnoozeEventExceptionOccurrenceReminderOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // SnoozeEventExceptionOccurrenceReminder - Invoke action snoozeReminder. Postpone a reminder for an event in a user
 // calendar until a new time.
-func (c EventExceptionOccurrenceClient) SnoozeEventExceptionOccurrenceReminder(ctx context.Context, id beta.MeEventIdExceptionOccurrenceId, input SnoozeEventExceptionOccurrenceReminderRequest) (result SnoozeEventExceptionOccurrenceReminderOperationResponse, err error) {
+func (c EventExceptionOccurrenceClient) SnoozeEventExceptionOccurrenceReminder(ctx context.Context, id beta.MeEventIdExceptionOccurrenceId, input SnoozeEventExceptionOccurrenceReminderRequest, options SnoozeEventExceptionOccurrenceReminderOperationOptions) (result SnoozeEventExceptionOccurrenceReminderOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/snoozeReminder", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/snoozeReminder", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

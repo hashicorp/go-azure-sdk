@@ -18,16 +18,45 @@ type ForwardConversationThreadPostOperationResponse struct {
 	OData        *odata.OData
 }
 
+type ForwardConversationThreadPostOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultForwardConversationThreadPostOperationOptions() ForwardConversationThreadPostOperationOptions {
+	return ForwardConversationThreadPostOperationOptions{}
+}
+
+func (o ForwardConversationThreadPostOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o ForwardConversationThreadPostOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o ForwardConversationThreadPostOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // ForwardConversationThreadPost - Invoke action forward. Forward a post to a recipient. You can specify both the parent
 // conversation and thread in the request, or, you can specify just the parent thread without the parent conversation.
-func (c ConversationThreadPostClient) ForwardConversationThreadPost(ctx context.Context, id beta.GroupIdConversationIdThreadIdPostId, input ForwardConversationThreadPostRequest) (result ForwardConversationThreadPostOperationResponse, err error) {
+func (c ConversationThreadPostClient) ForwardConversationThreadPost(ctx context.Context, id beta.GroupIdConversationIdThreadIdPostId, input ForwardConversationThreadPostRequest, options ForwardConversationThreadPostOperationOptions) (result ForwardConversationThreadPostOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/forward", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/forward", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

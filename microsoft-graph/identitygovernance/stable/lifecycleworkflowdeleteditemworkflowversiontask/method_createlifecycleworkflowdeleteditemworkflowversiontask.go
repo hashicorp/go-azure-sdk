@@ -19,16 +19,45 @@ type CreateLifecycleWorkflowDeletedItemWorkflowVersionTaskOperationResponse stru
 	Model        *stable.IdentityGovernanceTask
 }
 
+type CreateLifecycleWorkflowDeletedItemWorkflowVersionTaskOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateLifecycleWorkflowDeletedItemWorkflowVersionTaskOperationOptions() CreateLifecycleWorkflowDeletedItemWorkflowVersionTaskOperationOptions {
+	return CreateLifecycleWorkflowDeletedItemWorkflowVersionTaskOperationOptions{}
+}
+
+func (o CreateLifecycleWorkflowDeletedItemWorkflowVersionTaskOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateLifecycleWorkflowDeletedItemWorkflowVersionTaskOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateLifecycleWorkflowDeletedItemWorkflowVersionTaskOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateLifecycleWorkflowDeletedItemWorkflowVersionTask - Create new navigation property to tasks for
 // identityGovernance
-func (c LifecycleWorkflowDeletedItemWorkflowVersionTaskClient) CreateLifecycleWorkflowDeletedItemWorkflowVersionTask(ctx context.Context, id stable.IdentityGovernanceLifecycleWorkflowDeletedItemWorkflowIdVersionId, input stable.IdentityGovernanceTask) (result CreateLifecycleWorkflowDeletedItemWorkflowVersionTaskOperationResponse, err error) {
+func (c LifecycleWorkflowDeletedItemWorkflowVersionTaskClient) CreateLifecycleWorkflowDeletedItemWorkflowVersionTask(ctx context.Context, id stable.IdentityGovernanceLifecycleWorkflowDeletedItemWorkflowIdVersionId, input stable.IdentityGovernanceTask, options CreateLifecycleWorkflowDeletedItemWorkflowVersionTaskOperationOptions) (result CreateLifecycleWorkflowDeletedItemWorkflowVersionTaskOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/tasks", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/tasks", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

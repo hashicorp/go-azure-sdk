@@ -17,17 +17,46 @@ type SetEntitlementManagementAccessPackageAssignmentPolicyOperationResponse stru
 	OData        *odata.OData
 }
 
+type SetEntitlementManagementAccessPackageAssignmentPolicyOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultSetEntitlementManagementAccessPackageAssignmentPolicyOperationOptions() SetEntitlementManagementAccessPackageAssignmentPolicyOperationOptions {
+	return SetEntitlementManagementAccessPackageAssignmentPolicyOperationOptions{}
+}
+
+func (o SetEntitlementManagementAccessPackageAssignmentPolicyOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o SetEntitlementManagementAccessPackageAssignmentPolicyOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o SetEntitlementManagementAccessPackageAssignmentPolicyOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // SetEntitlementManagementAccessPackageAssignmentPolicy - Update accessPackageAssignmentPolicy. Update an existing
 // accessPackageAssignmentPolicy object to change one or more of its properties, such as the display name or
 // description.
-func (c EntitlementManagementAccessPackageAssignmentPolicyClient) SetEntitlementManagementAccessPackageAssignmentPolicy(ctx context.Context, id beta.IdentityGovernanceEntitlementManagementAccessPackageAssignmentPolicyId, input beta.AccessPackageAssignmentPolicy) (result SetEntitlementManagementAccessPackageAssignmentPolicyOperationResponse, err error) {
+func (c EntitlementManagementAccessPackageAssignmentPolicyClient) SetEntitlementManagementAccessPackageAssignmentPolicy(ctx context.Context, id beta.IdentityGovernanceEntitlementManagementAccessPackageAssignmentPolicyId, input beta.AccessPackageAssignmentPolicy, options SetEntitlementManagementAccessPackageAssignmentPolicyOperationOptions) (result SetEntitlementManagementAccessPackageAssignmentPolicyOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPut,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPut,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

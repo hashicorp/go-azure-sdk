@@ -19,15 +19,44 @@ type CreateOnlineMeetingOperationResponse struct {
 	Model        *stable.OnlineMeeting
 }
 
+type CreateOnlineMeetingOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateOnlineMeetingOperationOptions() CreateOnlineMeetingOperationOptions {
+	return CreateOnlineMeetingOperationOptions{}
+}
+
+func (o CreateOnlineMeetingOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateOnlineMeetingOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateOnlineMeetingOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateOnlineMeeting - Create new navigation property to onlineMeetings for users
-func (c OnlineMeetingClient) CreateOnlineMeeting(ctx context.Context, id stable.UserId, input stable.OnlineMeeting) (result CreateOnlineMeetingOperationResponse, err error) {
+func (c OnlineMeetingClient) CreateOnlineMeeting(ctx context.Context, id stable.UserId, input stable.OnlineMeeting, options CreateOnlineMeetingOperationOptions) (result CreateOnlineMeetingOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/onlineMeetings", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/onlineMeetings", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

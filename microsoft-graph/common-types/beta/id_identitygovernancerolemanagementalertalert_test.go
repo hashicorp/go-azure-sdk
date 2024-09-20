@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &IdentityGovernanceRoleManagementAlertAlertId{}
 
 func TestNewIdentityGovernanceRoleManagementAlertAlertID(t *testing.T) {
-	id := NewIdentityGovernanceRoleManagementAlertAlertID("unifiedRoleManagementAlertIdValue")
+	id := NewIdentityGovernanceRoleManagementAlertAlertID("unifiedRoleManagementAlertId")
 
-	if id.UnifiedRoleManagementAlertId != "unifiedRoleManagementAlertIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'UnifiedRoleManagementAlertId'", id.UnifiedRoleManagementAlertId, "unifiedRoleManagementAlertIdValue")
+	if id.UnifiedRoleManagementAlertId != "unifiedRoleManagementAlertId" {
+		t.Fatalf("Expected %q but got %q for Segment 'UnifiedRoleManagementAlertId'", id.UnifiedRoleManagementAlertId, "unifiedRoleManagementAlertId")
 	}
 }
 
 func TestFormatIdentityGovernanceRoleManagementAlertAlertID(t *testing.T) {
-	actual := NewIdentityGovernanceRoleManagementAlertAlertID("unifiedRoleManagementAlertIdValue").ID()
-	expected := "/identityGovernance/roleManagementAlerts/alerts/unifiedRoleManagementAlertIdValue"
+	actual := NewIdentityGovernanceRoleManagementAlertAlertID("unifiedRoleManagementAlertId").ID()
+	expected := "/identityGovernance/roleManagementAlerts/alerts/unifiedRoleManagementAlertId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -55,14 +55,14 @@ func TestParseIdentityGovernanceRoleManagementAlertAlertID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/identityGovernance/roleManagementAlerts/alerts/unifiedRoleManagementAlertIdValue",
+			Input: "/identityGovernance/roleManagementAlerts/alerts/unifiedRoleManagementAlertId",
 			Expected: &IdentityGovernanceRoleManagementAlertAlertId{
-				UnifiedRoleManagementAlertId: "unifiedRoleManagementAlertIdValue",
+				UnifiedRoleManagementAlertId: "unifiedRoleManagementAlertId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/identityGovernance/roleManagementAlerts/alerts/unifiedRoleManagementAlertIdValue/extra",
+			Input: "/identityGovernance/roleManagementAlerts/alerts/unifiedRoleManagementAlertId/extra",
 			Error: true,
 		},
 	}
@@ -131,26 +131,26 @@ func TestParseIdentityGovernanceRoleManagementAlertAlertIDInsensitively(t *testi
 		},
 		{
 			// Valid URI
-			Input: "/identityGovernance/roleManagementAlerts/alerts/unifiedRoleManagementAlertIdValue",
+			Input: "/identityGovernance/roleManagementAlerts/alerts/unifiedRoleManagementAlertId",
 			Expected: &IdentityGovernanceRoleManagementAlertAlertId{
-				UnifiedRoleManagementAlertId: "unifiedRoleManagementAlertIdValue",
+				UnifiedRoleManagementAlertId: "unifiedRoleManagementAlertId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/identityGovernance/roleManagementAlerts/alerts/unifiedRoleManagementAlertIdValue/extra",
+			Input: "/identityGovernance/roleManagementAlerts/alerts/unifiedRoleManagementAlertId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/iDeNtItYgOvErNaNcE/rOlEmAnAgEmEnTaLeRtS/aLeRtS/uNiFiEdRoLeMaNaGeMeNtAlErTiDvAlUe",
+			Input: "/iDeNtItYgOvErNaNcE/rOlEmAnAgEmEnTaLeRtS/aLeRtS/uNiFiEdRoLeMaNaGeMeNtAlErTiD",
 			Expected: &IdentityGovernanceRoleManagementAlertAlertId{
-				UnifiedRoleManagementAlertId: "uNiFiEdRoLeMaNaGeMeNtAlErTiDvAlUe",
+				UnifiedRoleManagementAlertId: "uNiFiEdRoLeMaNaGeMeNtAlErTiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/iDeNtItYgOvErNaNcE/rOlEmAnAgEmEnTaLeRtS/aLeRtS/uNiFiEdRoLeMaNaGeMeNtAlErTiDvAlUe/extra",
+			Input: "/iDeNtItYgOvErNaNcE/rOlEmAnAgEmEnTaLeRtS/aLeRtS/uNiFiEdRoLeMaNaGeMeNtAlErTiD/extra",
 			Error: true,
 		},
 	}

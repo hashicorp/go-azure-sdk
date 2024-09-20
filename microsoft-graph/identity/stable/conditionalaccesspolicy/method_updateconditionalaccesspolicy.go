@@ -17,16 +17,45 @@ type UpdateConditionalAccessPolicyOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateConditionalAccessPolicyOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateConditionalAccessPolicyOperationOptions() UpdateConditionalAccessPolicyOperationOptions {
+	return UpdateConditionalAccessPolicyOperationOptions{}
+}
+
+func (o UpdateConditionalAccessPolicyOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateConditionalAccessPolicyOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateConditionalAccessPolicyOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateConditionalAccessPolicy - Update conditionalaccesspolicy. Update the properties of a conditionalAccessPolicy
 // object.
-func (c ConditionalAccessPolicyClient) UpdateConditionalAccessPolicy(ctx context.Context, id stable.IdentityConditionalAccessPolicyId, input stable.ConditionalAccessPolicy) (result UpdateConditionalAccessPolicyOperationResponse, err error) {
+func (c ConditionalAccessPolicyClient) UpdateConditionalAccessPolicy(ctx context.Context, id stable.IdentityConditionalAccessPolicyId, input stable.ConditionalAccessPolicy, options UpdateConditionalAccessPolicyOperationOptions) (result UpdateConditionalAccessPolicyOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

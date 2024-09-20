@@ -27,10 +27,14 @@ type DeviceManagementSettingInsightsDefinition struct {
 var _ json.Unmarshaler = &DeviceManagementSettingInsightsDefinition{}
 
 func (s *DeviceManagementSettingInsightsDefinition) UnmarshalJSON(bytes []byte) error {
-	type alias DeviceManagementSettingInsightsDefinition
-	var decoded alias
+
+	var decoded struct {
+		ODataId             *string               `json:"@odata.id,omitempty"`
+		ODataType           *string               `json:"@odata.type,omitempty"`
+		SettingDefinitionId nullable.Type[string] `json:"settingDefinitionId,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into DeviceManagementSettingInsightsDefinition: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.ODataId = decoded.ODataId
@@ -49,5 +53,6 @@ func (s *DeviceManagementSettingInsightsDefinition) UnmarshalJSON(bytes []byte) 
 		}
 		s.SettingInsight = impl
 	}
+
 	return nil
 }

@@ -1,7 +1,7 @@
 
 ## `github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/stable/eventattachment` Documentation
 
-The `eventattachment` SDK allows for interaction with the Azure Resource Manager Service `groups` (API Version `stable`).
+The `eventattachment` SDK allows for interaction with Microsoft Graph `groups` (API Version `stable`).
 
 This readme covers example usages, but further information on [using this SDK can be found in the project root](https://github.com/hashicorp/go-azure-sdk/tree/main/docs).
 
@@ -15,7 +15,7 @@ import "github.com/hashicorp/go-azure-sdk/microsoft-graph/groups/stable/eventatt
 ### Client Initialization
 
 ```go
-client := eventattachment.NewEventAttachmentClientWithBaseURI("https://management.azure.com")
+client := eventattachment.NewEventAttachmentClientWithBaseURI("https://graph.microsoft.com")
 client.Client.Authorizer = authorizer
 ```
 
@@ -24,14 +24,14 @@ client.Client.Authorizer = authorizer
 
 ```go
 ctx := context.TODO()
-id := eventattachment.NewGroupIdEventID("groupIdValue", "eventIdValue")
+id := eventattachment.NewGroupIdEventID("groupId", "eventId")
 
 payload := eventattachment.Attachment{
 	// ...
 }
 
 
-read, err := client.CreateEventAttachment(ctx, id, payload)
+read, err := client.CreateEventAttachment(ctx, id, payload, eventattachment.DefaultCreateEventAttachmentOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -45,14 +45,14 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := eventattachment.NewGroupIdEventID("groupIdValue", "eventIdValue")
+id := eventattachment.NewGroupIdEventID("groupId", "eventId")
 
 payload := eventattachment.CreateEventAttachmentsUploadSessionRequest{
 	// ...
 }
 
 
-read, err := client.CreateEventAttachmentsUploadSession(ctx, id, payload)
+read, err := client.CreateEventAttachmentsUploadSession(ctx, id, payload, eventattachment.DefaultCreateEventAttachmentsUploadSessionOperationOptions())
 if err != nil {
 	// handle the error
 }
@@ -66,7 +66,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := eventattachment.NewGroupIdEventIdAttachmentID("groupIdValue", "eventIdValue", "attachmentIdValue")
+id := eventattachment.NewGroupIdEventIdAttachmentID("groupId", "eventId", "attachmentId")
 
 read, err := client.DeleteEventAttachment(ctx, id, eventattachment.DefaultDeleteEventAttachmentOperationOptions())
 if err != nil {
@@ -82,7 +82,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := eventattachment.NewGroupIdEventIdAttachmentID("groupIdValue", "eventIdValue", "attachmentIdValue")
+id := eventattachment.NewGroupIdEventIdAttachmentID("groupId", "eventId", "attachmentId")
 
 read, err := client.GetEventAttachment(ctx, id, eventattachment.DefaultGetEventAttachmentOperationOptions())
 if err != nil {
@@ -98,7 +98,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := eventattachment.NewGroupIdEventID("groupIdValue", "eventIdValue")
+id := eventattachment.NewGroupIdEventID("groupId", "eventId")
 
 read, err := client.GetEventAttachmentsCount(ctx, id, eventattachment.DefaultGetEventAttachmentsCountOperationOptions())
 if err != nil {
@@ -114,7 +114,7 @@ if model := read.Model; model != nil {
 
 ```go
 ctx := context.TODO()
-id := eventattachment.NewGroupIdEventID("groupIdValue", "eventIdValue")
+id := eventattachment.NewGroupIdEventID("groupId", "eventId")
 
 // alternatively `client.ListEventAttachments(ctx, id, eventattachment.DefaultListEventAttachmentsOperationOptions())` can be used to do batched pagination
 items, err := client.ListEventAttachmentsComplete(ctx, id, eventattachment.DefaultListEventAttachmentsOperationOptions())

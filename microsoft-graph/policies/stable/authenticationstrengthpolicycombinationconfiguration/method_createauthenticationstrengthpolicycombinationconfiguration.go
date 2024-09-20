@@ -20,16 +20,45 @@ type CreateAuthenticationStrengthPolicyCombinationConfigurationOperationResponse
 	Model        stable.AuthenticationCombinationConfiguration
 }
 
+type CreateAuthenticationStrengthPolicyCombinationConfigurationOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateAuthenticationStrengthPolicyCombinationConfigurationOperationOptions() CreateAuthenticationStrengthPolicyCombinationConfigurationOperationOptions {
+	return CreateAuthenticationStrengthPolicyCombinationConfigurationOperationOptions{}
+}
+
+func (o CreateAuthenticationStrengthPolicyCombinationConfigurationOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateAuthenticationStrengthPolicyCombinationConfigurationOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateAuthenticationStrengthPolicyCombinationConfigurationOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateAuthenticationStrengthPolicyCombinationConfiguration - Create new navigation property to
 // combinationConfigurations for policies
-func (c AuthenticationStrengthPolicyCombinationConfigurationClient) CreateAuthenticationStrengthPolicyCombinationConfiguration(ctx context.Context, id stable.PolicyAuthenticationStrengthPolicyId, input stable.AuthenticationCombinationConfiguration) (result CreateAuthenticationStrengthPolicyCombinationConfigurationOperationResponse, err error) {
+func (c AuthenticationStrengthPolicyCombinationConfigurationClient) CreateAuthenticationStrengthPolicyCombinationConfiguration(ctx context.Context, id stable.PolicyAuthenticationStrengthPolicyId, input stable.AuthenticationCombinationConfiguration, options CreateAuthenticationStrengthPolicyCombinationConfigurationOperationOptions) (result CreateAuthenticationStrengthPolicyCombinationConfigurationOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/combinationConfigurations", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/combinationConfigurations", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

@@ -18,7 +18,8 @@ type DeleteVirtualEndpointOperationResponse struct {
 }
 
 type DeleteVirtualEndpointOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteVirtualEndpointOperationOptions() DeleteVirtualEndpointOperationOptions {
@@ -35,7 +36,9 @@ func (o DeleteVirtualEndpointOperationOptions) ToHeaders() *client.Headers {
 
 func (o DeleteVirtualEndpointOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

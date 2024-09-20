@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &DirectorySubscriptionId{}
 
 func TestNewDirectorySubscriptionID(t *testing.T) {
-	id := NewDirectorySubscriptionID("companySubscriptionIdValue")
+	id := NewDirectorySubscriptionID("companySubscriptionId")
 
-	if id.CompanySubscriptionId != "companySubscriptionIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'CompanySubscriptionId'", id.CompanySubscriptionId, "companySubscriptionIdValue")
+	if id.CompanySubscriptionId != "companySubscriptionId" {
+		t.Fatalf("Expected %q but got %q for Segment 'CompanySubscriptionId'", id.CompanySubscriptionId, "companySubscriptionId")
 	}
 }
 
 func TestFormatDirectorySubscriptionID(t *testing.T) {
-	actual := NewDirectorySubscriptionID("companySubscriptionIdValue").ID()
-	expected := "/directory/subscriptions/companySubscriptionIdValue"
+	actual := NewDirectorySubscriptionID("companySubscriptionId").ID()
+	expected := "/directory/subscriptions/companySubscriptionId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -50,14 +50,14 @@ func TestParseDirectorySubscriptionID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/directory/subscriptions/companySubscriptionIdValue",
+			Input: "/directory/subscriptions/companySubscriptionId",
 			Expected: &DirectorySubscriptionId{
-				CompanySubscriptionId: "companySubscriptionIdValue",
+				CompanySubscriptionId: "companySubscriptionId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/directory/subscriptions/companySubscriptionIdValue/extra",
+			Input: "/directory/subscriptions/companySubscriptionId/extra",
 			Error: true,
 		},
 	}
@@ -116,26 +116,26 @@ func TestParseDirectorySubscriptionIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/directory/subscriptions/companySubscriptionIdValue",
+			Input: "/directory/subscriptions/companySubscriptionId",
 			Expected: &DirectorySubscriptionId{
-				CompanySubscriptionId: "companySubscriptionIdValue",
+				CompanySubscriptionId: "companySubscriptionId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/directory/subscriptions/companySubscriptionIdValue/extra",
+			Input: "/directory/subscriptions/companySubscriptionId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/dIrEcToRy/sUbScRiPtIoNs/cOmPaNySuBsCrIpTiOnIdVaLuE",
+			Input: "/dIrEcToRy/sUbScRiPtIoNs/cOmPaNySuBsCrIpTiOnId",
 			Expected: &DirectorySubscriptionId{
-				CompanySubscriptionId: "cOmPaNySuBsCrIpTiOnIdVaLuE",
+				CompanySubscriptionId: "cOmPaNySuBsCrIpTiOnId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/dIrEcToRy/sUbScRiPtIoNs/cOmPaNySuBsCrIpTiOnIdVaLuE/extra",
+			Input: "/dIrEcToRy/sUbScRiPtIoNs/cOmPaNySuBsCrIpTiOnId/extra",
 			Error: true,
 		},
 	}

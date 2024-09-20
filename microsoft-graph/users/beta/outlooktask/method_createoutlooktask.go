@@ -19,15 +19,44 @@ type CreateOutlookTaskOperationResponse struct {
 	Model        *beta.OutlookTask
 }
 
+type CreateOutlookTaskOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateOutlookTaskOperationOptions() CreateOutlookTaskOperationOptions {
+	return CreateOutlookTaskOperationOptions{}
+}
+
+func (o CreateOutlookTaskOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateOutlookTaskOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateOutlookTaskOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateOutlookTask - Create new navigation property to tasks for users
-func (c OutlookTaskClient) CreateOutlookTask(ctx context.Context, id beta.UserId, input beta.OutlookTask) (result CreateOutlookTaskOperationResponse, err error) {
+func (c OutlookTaskClient) CreateOutlookTask(ctx context.Context, id beta.UserId, input beta.OutlookTask, options CreateOutlookTaskOperationOptions) (result CreateOutlookTaskOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/outlook/tasks", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/outlook/tasks", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

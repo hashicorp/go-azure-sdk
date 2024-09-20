@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &RoleManagementExchangeRoleAssignmentId{}
 
 func TestNewRoleManagementExchangeRoleAssignmentID(t *testing.T) {
-	id := NewRoleManagementExchangeRoleAssignmentID("unifiedRoleAssignmentIdValue")
+	id := NewRoleManagementExchangeRoleAssignmentID("unifiedRoleAssignmentId")
 
-	if id.UnifiedRoleAssignmentId != "unifiedRoleAssignmentIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'UnifiedRoleAssignmentId'", id.UnifiedRoleAssignmentId, "unifiedRoleAssignmentIdValue")
+	if id.UnifiedRoleAssignmentId != "unifiedRoleAssignmentId" {
+		t.Fatalf("Expected %q but got %q for Segment 'UnifiedRoleAssignmentId'", id.UnifiedRoleAssignmentId, "unifiedRoleAssignmentId")
 	}
 }
 
 func TestFormatRoleManagementExchangeRoleAssignmentID(t *testing.T) {
-	actual := NewRoleManagementExchangeRoleAssignmentID("unifiedRoleAssignmentIdValue").ID()
-	expected := "/roleManagement/exchange/roleAssignments/unifiedRoleAssignmentIdValue"
+	actual := NewRoleManagementExchangeRoleAssignmentID("unifiedRoleAssignmentId").ID()
+	expected := "/roleManagement/exchange/roleAssignments/unifiedRoleAssignmentId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -55,14 +55,14 @@ func TestParseRoleManagementExchangeRoleAssignmentID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/roleManagement/exchange/roleAssignments/unifiedRoleAssignmentIdValue",
+			Input: "/roleManagement/exchange/roleAssignments/unifiedRoleAssignmentId",
 			Expected: &RoleManagementExchangeRoleAssignmentId{
-				UnifiedRoleAssignmentId: "unifiedRoleAssignmentIdValue",
+				UnifiedRoleAssignmentId: "unifiedRoleAssignmentId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/roleManagement/exchange/roleAssignments/unifiedRoleAssignmentIdValue/extra",
+			Input: "/roleManagement/exchange/roleAssignments/unifiedRoleAssignmentId/extra",
 			Error: true,
 		},
 	}
@@ -131,26 +131,26 @@ func TestParseRoleManagementExchangeRoleAssignmentIDInsensitively(t *testing.T) 
 		},
 		{
 			// Valid URI
-			Input: "/roleManagement/exchange/roleAssignments/unifiedRoleAssignmentIdValue",
+			Input: "/roleManagement/exchange/roleAssignments/unifiedRoleAssignmentId",
 			Expected: &RoleManagementExchangeRoleAssignmentId{
-				UnifiedRoleAssignmentId: "unifiedRoleAssignmentIdValue",
+				UnifiedRoleAssignmentId: "unifiedRoleAssignmentId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/roleManagement/exchange/roleAssignments/unifiedRoleAssignmentIdValue/extra",
+			Input: "/roleManagement/exchange/roleAssignments/unifiedRoleAssignmentId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/rOlEmAnAgEmEnT/eXcHaNgE/rOlEaSsIgNmEnTs/uNiFiEdRoLeAsSiGnMeNtIdVaLuE",
+			Input: "/rOlEmAnAgEmEnT/eXcHaNgE/rOlEaSsIgNmEnTs/uNiFiEdRoLeAsSiGnMeNtId",
 			Expected: &RoleManagementExchangeRoleAssignmentId{
-				UnifiedRoleAssignmentId: "uNiFiEdRoLeAsSiGnMeNtIdVaLuE",
+				UnifiedRoleAssignmentId: "uNiFiEdRoLeAsSiGnMeNtId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/rOlEmAnAgEmEnT/eXcHaNgE/rOlEaSsIgNmEnTs/uNiFiEdRoLeAsSiGnMeNtIdVaLuE/extra",
+			Input: "/rOlEmAnAgEmEnT/eXcHaNgE/rOlEaSsIgNmEnTs/uNiFiEdRoLeAsSiGnMeNtId/extra",
 			Error: true,
 		},
 	}

@@ -19,15 +19,44 @@ type CreatePermissionsAnalyticGcpFindingOperationResponse struct {
 	Model        beta.Finding
 }
 
+type CreatePermissionsAnalyticGcpFindingOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreatePermissionsAnalyticGcpFindingOperationOptions() CreatePermissionsAnalyticGcpFindingOperationOptions {
+	return CreatePermissionsAnalyticGcpFindingOperationOptions{}
+}
+
+func (o CreatePermissionsAnalyticGcpFindingOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreatePermissionsAnalyticGcpFindingOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreatePermissionsAnalyticGcpFindingOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreatePermissionsAnalyticGcpFinding - Create new navigation property to findings for identityGovernance
-func (c PermissionsAnalyticGcpFindingClient) CreatePermissionsAnalyticGcpFinding(ctx context.Context, input beta.Finding) (result CreatePermissionsAnalyticGcpFindingOperationResponse, err error) {
+func (c PermissionsAnalyticGcpFindingClient) CreatePermissionsAnalyticGcpFinding(ctx context.Context, input beta.Finding, options CreatePermissionsAnalyticGcpFindingOperationOptions) (result CreatePermissionsAnalyticGcpFindingOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/identityGovernance/permissionsAnalytics/gcp/findings",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/identityGovernance/permissionsAnalytics/gcp/findings",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

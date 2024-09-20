@@ -19,15 +19,44 @@ type CreateReusablePolicySettingCloneOperationResponse struct {
 	Model        *beta.DeviceManagementReusablePolicySetting
 }
 
+type CreateReusablePolicySettingCloneOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateReusablePolicySettingCloneOperationOptions() CreateReusablePolicySettingCloneOperationOptions {
+	return CreateReusablePolicySettingCloneOperationOptions{}
+}
+
+func (o CreateReusablePolicySettingCloneOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateReusablePolicySettingCloneOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateReusablePolicySettingCloneOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateReusablePolicySettingClone - Invoke action clone
-func (c ReusablePolicySettingClient) CreateReusablePolicySettingClone(ctx context.Context, id beta.DeviceManagementReusablePolicySettingId) (result CreateReusablePolicySettingCloneOperationResponse, err error) {
+func (c ReusablePolicySettingClient) CreateReusablePolicySettingClone(ctx context.Context, id beta.DeviceManagementReusablePolicySettingId, options CreateReusablePolicySettingCloneOperationOptions) (result CreateReusablePolicySettingCloneOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/clone", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/clone", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

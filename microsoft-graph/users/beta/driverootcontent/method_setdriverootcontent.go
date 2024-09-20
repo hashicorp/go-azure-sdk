@@ -18,18 +18,47 @@ type SetDriveRootContentOperationResponse struct {
 	OData        *odata.OData
 }
 
+type SetDriveRootContentOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultSetDriveRootContentOperationOptions() SetDriveRootContentOperationOptions {
+	return SetDriveRootContentOperationOptions{}
+}
+
+func (o SetDriveRootContentOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o SetDriveRootContentOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o SetDriveRootContentOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // SetDriveRootContent - Update content for the navigation property root in users. The content stream, if the item
 // represents a file. The content property will have a potentially breaking change in behavior in the future. It will
 // stream content directly instead of redirecting. To proactively opt in to the new behavior ahead of time, use the
 // contentStream property instead.
-func (c DriveRootContentClient) SetDriveRootContent(ctx context.Context, id beta.UserIdDriveId, input []byte) (result SetDriveRootContentOperationResponse, err error) {
+func (c DriveRootContentClient) SetDriveRootContent(ctx context.Context, id beta.UserIdDriveId, input []byte, options SetDriveRootContentOperationOptions) (result SetDriveRootContentOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPut,
-		Path:       fmt.Sprintf("%s/root/content", id.ID()),
+		HttpMethod:    http.MethodPut,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/root/content", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

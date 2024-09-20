@@ -18,15 +18,44 @@ type SetSynchronizationOperationResponse struct {
 	OData        *odata.OData
 }
 
+type SetSynchronizationOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultSetSynchronizationOperationOptions() SetSynchronizationOperationOptions {
+	return SetSynchronizationOperationOptions{}
+}
+
+func (o SetSynchronizationOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o SetSynchronizationOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o SetSynchronizationOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // SetSynchronization - Update the navigation property synchronization in servicePrincipals
-func (c SynchronizationClient) SetSynchronization(ctx context.Context, id stable.ServicePrincipalId, input stable.Synchronization) (result SetSynchronizationOperationResponse, err error) {
+func (c SynchronizationClient) SetSynchronization(ctx context.Context, id stable.ServicePrincipalId, input stable.Synchronization, options SetSynchronizationOperationOptions) (result SetSynchronizationOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPut,
-		Path:       fmt.Sprintf("%s/synchronization", id.ID()),
+		HttpMethod:    http.MethodPut,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/synchronization", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

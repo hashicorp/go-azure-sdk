@@ -18,16 +18,45 @@ type CancelPrivilegedAccessGroupEligibilityScheduleRequestOperationResponse stru
 	OData        *odata.OData
 }
 
+type CancelPrivilegedAccessGroupEligibilityScheduleRequestOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCancelPrivilegedAccessGroupEligibilityScheduleRequestOperationOptions() CancelPrivilegedAccessGroupEligibilityScheduleRequestOperationOptions {
+	return CancelPrivilegedAccessGroupEligibilityScheduleRequestOperationOptions{}
+}
+
+func (o CancelPrivilegedAccessGroupEligibilityScheduleRequestOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CancelPrivilegedAccessGroupEligibilityScheduleRequestOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CancelPrivilegedAccessGroupEligibilityScheduleRequestOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CancelPrivilegedAccessGroupEligibilityScheduleRequest - Invoke action cancel. Cancel an eligibility assignment
 // request to a group whose membership and ownership are governed by PIM.
-func (c PrivilegedAccessGroupEligibilityScheduleRequestClient) CancelPrivilegedAccessGroupEligibilityScheduleRequest(ctx context.Context, id stable.IdentityGovernancePrivilegedAccessGroupEligibilityScheduleRequestId) (result CancelPrivilegedAccessGroupEligibilityScheduleRequestOperationResponse, err error) {
+func (c PrivilegedAccessGroupEligibilityScheduleRequestClient) CancelPrivilegedAccessGroupEligibilityScheduleRequest(ctx context.Context, id stable.IdentityGovernancePrivilegedAccessGroupEligibilityScheduleRequestId, options CancelPrivilegedAccessGroupEligibilityScheduleRequestOperationOptions) (result CancelPrivilegedAccessGroupEligibilityScheduleRequestOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/cancel", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/cancel", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

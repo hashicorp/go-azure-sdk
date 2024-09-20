@@ -17,15 +17,44 @@ type UpdatePartnerBillingReconciliationBilledOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdatePartnerBillingReconciliationBilledOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdatePartnerBillingReconciliationBilledOperationOptions() UpdatePartnerBillingReconciliationBilledOperationOptions {
+	return UpdatePartnerBillingReconciliationBilledOperationOptions{}
+}
+
+func (o UpdatePartnerBillingReconciliationBilledOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdatePartnerBillingReconciliationBilledOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdatePartnerBillingReconciliationBilledOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdatePartnerBillingReconciliationBilled - Update the navigation property billed in reports
-func (c PartnerBillingReconciliationBilledClient) UpdatePartnerBillingReconciliationBilled(ctx context.Context, input stable.PartnersBillingBilledReconciliation) (result UpdatePartnerBillingReconciliationBilledOperationResponse, err error) {
+func (c PartnerBillingReconciliationBilledClient) UpdatePartnerBillingReconciliationBilled(ctx context.Context, input stable.PartnersBillingBilledReconciliation, options UpdatePartnerBillingReconciliationBilledOperationOptions) (result UpdatePartnerBillingReconciliationBilledOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       "/reports/partners/billing/reconciliation/billed",
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          "/reports/partners/billing/reconciliation/billed",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

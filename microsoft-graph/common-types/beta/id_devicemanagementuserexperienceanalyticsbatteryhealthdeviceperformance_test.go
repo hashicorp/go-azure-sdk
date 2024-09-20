@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &DeviceManagementUserExperienceAnalyticsBatteryHealthDevicePerformanceId{}
 
 func TestNewDeviceManagementUserExperienceAnalyticsBatteryHealthDevicePerformanceID(t *testing.T) {
-	id := NewDeviceManagementUserExperienceAnalyticsBatteryHealthDevicePerformanceID("userExperienceAnalyticsBatteryHealthDevicePerformanceIdValue")
+	id := NewDeviceManagementUserExperienceAnalyticsBatteryHealthDevicePerformanceID("userExperienceAnalyticsBatteryHealthDevicePerformanceId")
 
-	if id.UserExperienceAnalyticsBatteryHealthDevicePerformanceId != "userExperienceAnalyticsBatteryHealthDevicePerformanceIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'UserExperienceAnalyticsBatteryHealthDevicePerformanceId'", id.UserExperienceAnalyticsBatteryHealthDevicePerformanceId, "userExperienceAnalyticsBatteryHealthDevicePerformanceIdValue")
+	if id.UserExperienceAnalyticsBatteryHealthDevicePerformanceId != "userExperienceAnalyticsBatteryHealthDevicePerformanceId" {
+		t.Fatalf("Expected %q but got %q for Segment 'UserExperienceAnalyticsBatteryHealthDevicePerformanceId'", id.UserExperienceAnalyticsBatteryHealthDevicePerformanceId, "userExperienceAnalyticsBatteryHealthDevicePerformanceId")
 	}
 }
 
 func TestFormatDeviceManagementUserExperienceAnalyticsBatteryHealthDevicePerformanceID(t *testing.T) {
-	actual := NewDeviceManagementUserExperienceAnalyticsBatteryHealthDevicePerformanceID("userExperienceAnalyticsBatteryHealthDevicePerformanceIdValue").ID()
-	expected := "/deviceManagement/userExperienceAnalyticsBatteryHealthDevicePerformance/userExperienceAnalyticsBatteryHealthDevicePerformanceIdValue"
+	actual := NewDeviceManagementUserExperienceAnalyticsBatteryHealthDevicePerformanceID("userExperienceAnalyticsBatteryHealthDevicePerformanceId").ID()
+	expected := "/deviceManagement/userExperienceAnalyticsBatteryHealthDevicePerformance/userExperienceAnalyticsBatteryHealthDevicePerformanceId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -50,14 +50,14 @@ func TestParseDeviceManagementUserExperienceAnalyticsBatteryHealthDevicePerforma
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/userExperienceAnalyticsBatteryHealthDevicePerformance/userExperienceAnalyticsBatteryHealthDevicePerformanceIdValue",
+			Input: "/deviceManagement/userExperienceAnalyticsBatteryHealthDevicePerformance/userExperienceAnalyticsBatteryHealthDevicePerformanceId",
 			Expected: &DeviceManagementUserExperienceAnalyticsBatteryHealthDevicePerformanceId{
-				UserExperienceAnalyticsBatteryHealthDevicePerformanceId: "userExperienceAnalyticsBatteryHealthDevicePerformanceIdValue",
+				UserExperienceAnalyticsBatteryHealthDevicePerformanceId: "userExperienceAnalyticsBatteryHealthDevicePerformanceId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/userExperienceAnalyticsBatteryHealthDevicePerformance/userExperienceAnalyticsBatteryHealthDevicePerformanceIdValue/extra",
+			Input: "/deviceManagement/userExperienceAnalyticsBatteryHealthDevicePerformance/userExperienceAnalyticsBatteryHealthDevicePerformanceId/extra",
 			Error: true,
 		},
 	}
@@ -116,26 +116,26 @@ func TestParseDeviceManagementUserExperienceAnalyticsBatteryHealthDevicePerforma
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/userExperienceAnalyticsBatteryHealthDevicePerformance/userExperienceAnalyticsBatteryHealthDevicePerformanceIdValue",
+			Input: "/deviceManagement/userExperienceAnalyticsBatteryHealthDevicePerformance/userExperienceAnalyticsBatteryHealthDevicePerformanceId",
 			Expected: &DeviceManagementUserExperienceAnalyticsBatteryHealthDevicePerformanceId{
-				UserExperienceAnalyticsBatteryHealthDevicePerformanceId: "userExperienceAnalyticsBatteryHealthDevicePerformanceIdValue",
+				UserExperienceAnalyticsBatteryHealthDevicePerformanceId: "userExperienceAnalyticsBatteryHealthDevicePerformanceId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/userExperienceAnalyticsBatteryHealthDevicePerformance/userExperienceAnalyticsBatteryHealthDevicePerformanceIdValue/extra",
+			Input: "/deviceManagement/userExperienceAnalyticsBatteryHealthDevicePerformance/userExperienceAnalyticsBatteryHealthDevicePerformanceId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/uSeReXpErIeNcEaNaLyTiCsBaTtErYhEaLtHdEvIcEpErFoRmAnCe/uSeReXpErIeNcEaNaLyTiCsBaTtErYhEaLtHdEvIcEpErFoRmAnCeIdVaLuE",
+			Input: "/dEvIcEmAnAgEmEnT/uSeReXpErIeNcEaNaLyTiCsBaTtErYhEaLtHdEvIcEpErFoRmAnCe/uSeReXpErIeNcEaNaLyTiCsBaTtErYhEaLtHdEvIcEpErFoRmAnCeId",
 			Expected: &DeviceManagementUserExperienceAnalyticsBatteryHealthDevicePerformanceId{
-				UserExperienceAnalyticsBatteryHealthDevicePerformanceId: "uSeReXpErIeNcEaNaLyTiCsBaTtErYhEaLtHdEvIcEpErFoRmAnCeIdVaLuE",
+				UserExperienceAnalyticsBatteryHealthDevicePerformanceId: "uSeReXpErIeNcEaNaLyTiCsBaTtErYhEaLtHdEvIcEpErFoRmAnCeId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/uSeReXpErIeNcEaNaLyTiCsBaTtErYhEaLtHdEvIcEpErFoRmAnCe/uSeReXpErIeNcEaNaLyTiCsBaTtErYhEaLtHdEvIcEpErFoRmAnCeIdVaLuE/extra",
+			Input: "/dEvIcEmAnAgEmEnT/uSeReXpErIeNcEaNaLyTiCsBaTtErYhEaLtHdEvIcEpErFoRmAnCe/uSeReXpErIeNcEaNaLyTiCsBaTtErYhEaLtHdEvIcEpErFoRmAnCeId/extra",
 			Error: true,
 		},
 	}

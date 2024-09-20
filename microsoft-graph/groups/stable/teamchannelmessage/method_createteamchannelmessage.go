@@ -19,15 +19,44 @@ type CreateTeamChannelMessageOperationResponse struct {
 	Model        *stable.ChatMessage
 }
 
+type CreateTeamChannelMessageOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateTeamChannelMessageOperationOptions() CreateTeamChannelMessageOperationOptions {
+	return CreateTeamChannelMessageOperationOptions{}
+}
+
+func (o CreateTeamChannelMessageOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateTeamChannelMessageOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateTeamChannelMessageOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateTeamChannelMessage - Create new navigation property to messages for groups
-func (c TeamChannelMessageClient) CreateTeamChannelMessage(ctx context.Context, id stable.GroupIdTeamChannelId, input stable.ChatMessage) (result CreateTeamChannelMessageOperationResponse, err error) {
+func (c TeamChannelMessageClient) CreateTeamChannelMessage(ctx context.Context, id stable.GroupIdTeamChannelId, input stable.ChatMessage, options CreateTeamChannelMessageOperationOptions) (result CreateTeamChannelMessageOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/messages", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/messages", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

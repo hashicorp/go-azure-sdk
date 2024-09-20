@@ -19,15 +19,44 @@ type CreateContactFolderChildFolderContactOperationResponse struct {
 	Model        *beta.Contact
 }
 
+type CreateContactFolderChildFolderContactOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateContactFolderChildFolderContactOperationOptions() CreateContactFolderChildFolderContactOperationOptions {
+	return CreateContactFolderChildFolderContactOperationOptions{}
+}
+
+func (o CreateContactFolderChildFolderContactOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateContactFolderChildFolderContactOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateContactFolderChildFolderContactOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateContactFolderChildFolderContact - Create new navigation property to contacts for users
-func (c ContactFolderChildFolderContactClient) CreateContactFolderChildFolderContact(ctx context.Context, id beta.UserIdContactFolderIdChildFolderId, input beta.Contact) (result CreateContactFolderChildFolderContactOperationResponse, err error) {
+func (c ContactFolderChildFolderContactClient) CreateContactFolderChildFolderContact(ctx context.Context, id beta.UserIdContactFolderIdChildFolderId, input beta.Contact, options CreateContactFolderChildFolderContactOperationOptions) (result CreateContactFolderChildFolderContactOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/contacts", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/contacts", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

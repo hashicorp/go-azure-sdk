@@ -17,15 +17,44 @@ type UpdatePermissionsAnalyticGcpFindingOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdatePermissionsAnalyticGcpFindingOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdatePermissionsAnalyticGcpFindingOperationOptions() UpdatePermissionsAnalyticGcpFindingOperationOptions {
+	return UpdatePermissionsAnalyticGcpFindingOperationOptions{}
+}
+
+func (o UpdatePermissionsAnalyticGcpFindingOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdatePermissionsAnalyticGcpFindingOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdatePermissionsAnalyticGcpFindingOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdatePermissionsAnalyticGcpFinding - Update the navigation property findings in identityGovernance
-func (c PermissionsAnalyticGcpFindingClient) UpdatePermissionsAnalyticGcpFinding(ctx context.Context, id beta.IdentityGovernancePermissionsAnalyticGcpFindingId, input beta.Finding) (result UpdatePermissionsAnalyticGcpFindingOperationResponse, err error) {
+func (c PermissionsAnalyticGcpFindingClient) UpdatePermissionsAnalyticGcpFinding(ctx context.Context, id beta.IdentityGovernancePermissionsAnalyticGcpFindingId, input beta.Finding, options UpdatePermissionsAnalyticGcpFindingOperationOptions) (result UpdatePermissionsAnalyticGcpFindingOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

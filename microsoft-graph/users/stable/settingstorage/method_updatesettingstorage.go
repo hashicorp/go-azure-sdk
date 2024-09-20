@@ -18,15 +18,44 @@ type UpdateSettingStorageOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateSettingStorageOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateSettingStorageOperationOptions() UpdateSettingStorageOperationOptions {
+	return UpdateSettingStorageOperationOptions{}
+}
+
+func (o UpdateSettingStorageOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateSettingStorageOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateSettingStorageOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateSettingStorage - Update the navigation property storage in users
-func (c SettingStorageClient) UpdateSettingStorage(ctx context.Context, id stable.UserId, input stable.UserStorage) (result UpdateSettingStorageOperationResponse, err error) {
+func (c SettingStorageClient) UpdateSettingStorage(ctx context.Context, id stable.UserId, input stable.UserStorage, options UpdateSettingStorageOperationOptions) (result UpdateSettingStorageOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       fmt.Sprintf("%s/settings/storage", id.ID()),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/settings/storage", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

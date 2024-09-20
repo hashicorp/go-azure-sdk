@@ -19,7 +19,8 @@ type DeleteServicePrincipalOperationResponse struct {
 }
 
 type DeleteServicePrincipalOperationOptions struct {
-	IfMatch *string
+	IfMatch  *string
+	Metadata *odata.Metadata
 }
 
 func DefaultDeleteServicePrincipalOperationOptions() DeleteServicePrincipalOperationOptions {
@@ -36,7 +37,9 @@ func (o DeleteServicePrincipalOperationOptions) ToHeaders() *client.Headers {
 
 func (o DeleteServicePrincipalOperationOptions) ToOData() *odata.Query {
 	out := odata.Query{}
-
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
 	return &out
 }
 

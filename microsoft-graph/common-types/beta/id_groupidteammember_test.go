@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &GroupIdTeamMemberId{}
 
 func TestNewGroupIdTeamMemberID(t *testing.T) {
-	id := NewGroupIdTeamMemberID("groupIdValue", "conversationMemberIdValue")
+	id := NewGroupIdTeamMemberID("groupId", "conversationMemberId")
 
-	if id.GroupId != "groupIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'GroupId'", id.GroupId, "groupIdValue")
+	if id.GroupId != "groupId" {
+		t.Fatalf("Expected %q but got %q for Segment 'GroupId'", id.GroupId, "groupId")
 	}
 
-	if id.ConversationMemberId != "conversationMemberIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ConversationMemberId'", id.ConversationMemberId, "conversationMemberIdValue")
+	if id.ConversationMemberId != "conversationMemberId" {
+		t.Fatalf("Expected %q but got %q for Segment 'ConversationMemberId'", id.ConversationMemberId, "conversationMemberId")
 	}
 }
 
 func TestFormatGroupIdTeamMemberID(t *testing.T) {
-	actual := NewGroupIdTeamMemberID("groupIdValue", "conversationMemberIdValue").ID()
-	expected := "/groups/groupIdValue/team/members/conversationMemberIdValue"
+	actual := NewGroupIdTeamMemberID("groupId", "conversationMemberId").ID()
+	expected := "/groups/groupId/team/members/conversationMemberId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -49,30 +49,30 @@ func TestParseGroupIdTeamMemberID(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue",
+			Input: "/groups/groupId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/team",
+			Input: "/groups/groupId/team",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/team/members",
+			Input: "/groups/groupId/team/members",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/groups/groupIdValue/team/members/conversationMemberIdValue",
+			Input: "/groups/groupId/team/members/conversationMemberId",
 			Expected: &GroupIdTeamMemberId{
-				GroupId:              "groupIdValue",
-				ConversationMemberId: "conversationMemberIdValue",
+				GroupId:              "groupId",
+				ConversationMemberId: "conversationMemberId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/groups/groupIdValue/team/members/conversationMemberIdValue/extra",
+			Input: "/groups/groupId/team/members/conversationMemberId/extra",
 			Error: true,
 		},
 	}
@@ -125,58 +125,58 @@ func TestParseGroupIdTeamMemberIDInsensitively(t *testing.T) {
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue",
+			Input: "/groups/groupId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE",
+			Input: "/gRoUpS/gRoUpId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/team",
+			Input: "/groups/groupId/team",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/tEaM",
+			Input: "/gRoUpS/gRoUpId/tEaM",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/groups/groupIdValue/team/members",
+			Input: "/groups/groupId/team/members",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/tEaM/mEmBeRs",
+			Input: "/gRoUpS/gRoUpId/tEaM/mEmBeRs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/groups/groupIdValue/team/members/conversationMemberIdValue",
+			Input: "/groups/groupId/team/members/conversationMemberId",
 			Expected: &GroupIdTeamMemberId{
-				GroupId:              "groupIdValue",
-				ConversationMemberId: "conversationMemberIdValue",
+				GroupId:              "groupId",
+				ConversationMemberId: "conversationMemberId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/groups/groupIdValue/team/members/conversationMemberIdValue/extra",
+			Input: "/groups/groupId/team/members/conversationMemberId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/tEaM/mEmBeRs/cOnVeRsAtIoNmEmBeRiDvAlUe",
+			Input: "/gRoUpS/gRoUpId/tEaM/mEmBeRs/cOnVeRsAtIoNmEmBeRiD",
 			Expected: &GroupIdTeamMemberId{
-				GroupId:              "gRoUpIdVaLuE",
-				ConversationMemberId: "cOnVeRsAtIoNmEmBeRiDvAlUe",
+				GroupId:              "gRoUpId",
+				ConversationMemberId: "cOnVeRsAtIoNmEmBeRiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/gRoUpS/gRoUpIdVaLuE/tEaM/mEmBeRs/cOnVeRsAtIoNmEmBeRiDvAlUe/extra",
+			Input: "/gRoUpS/gRoUpId/tEaM/mEmBeRs/cOnVeRsAtIoNmEmBeRiD/extra",
 			Error: true,
 		},
 	}

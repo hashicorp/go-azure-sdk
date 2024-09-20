@@ -12,16 +12,16 @@ import (
 var _ resourceids.ResourceId = &MeScopedRoleMemberOfId{}
 
 func TestNewMeScopedRoleMemberOfID(t *testing.T) {
-	id := NewMeScopedRoleMemberOfID("scopedRoleMembershipIdValue")
+	id := NewMeScopedRoleMemberOfID("scopedRoleMembershipId")
 
-	if id.ScopedRoleMembershipId != "scopedRoleMembershipIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'ScopedRoleMembershipId'", id.ScopedRoleMembershipId, "scopedRoleMembershipIdValue")
+	if id.ScopedRoleMembershipId != "scopedRoleMembershipId" {
+		t.Fatalf("Expected %q but got %q for Segment 'ScopedRoleMembershipId'", id.ScopedRoleMembershipId, "scopedRoleMembershipId")
 	}
 }
 
 func TestFormatMeScopedRoleMemberOfID(t *testing.T) {
-	actual := NewMeScopedRoleMemberOfID("scopedRoleMembershipIdValue").ID()
-	expected := "/me/scopedRoleMemberOf/scopedRoleMembershipIdValue"
+	actual := NewMeScopedRoleMemberOfID("scopedRoleMembershipId").ID()
+	expected := "/me/scopedRoleMemberOf/scopedRoleMembershipId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -50,14 +50,14 @@ func TestParseMeScopedRoleMemberOfID(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/me/scopedRoleMemberOf/scopedRoleMembershipIdValue",
+			Input: "/me/scopedRoleMemberOf/scopedRoleMembershipId",
 			Expected: &MeScopedRoleMemberOfId{
-				ScopedRoleMembershipId: "scopedRoleMembershipIdValue",
+				ScopedRoleMembershipId: "scopedRoleMembershipId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/scopedRoleMemberOf/scopedRoleMembershipIdValue/extra",
+			Input: "/me/scopedRoleMemberOf/scopedRoleMembershipId/extra",
 			Error: true,
 		},
 	}
@@ -116,26 +116,26 @@ func TestParseMeScopedRoleMemberOfIDInsensitively(t *testing.T) {
 		},
 		{
 			// Valid URI
-			Input: "/me/scopedRoleMemberOf/scopedRoleMembershipIdValue",
+			Input: "/me/scopedRoleMemberOf/scopedRoleMembershipId",
 			Expected: &MeScopedRoleMemberOfId{
-				ScopedRoleMembershipId: "scopedRoleMembershipIdValue",
+				ScopedRoleMembershipId: "scopedRoleMembershipId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/me/scopedRoleMemberOf/scopedRoleMembershipIdValue/extra",
+			Input: "/me/scopedRoleMemberOf/scopedRoleMembershipId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/mE/sCoPeDrOlEmEmBeRoF/sCoPeDrOlEmEmBeRsHiPiDvAlUe",
+			Input: "/mE/sCoPeDrOlEmEmBeRoF/sCoPeDrOlEmEmBeRsHiPiD",
 			Expected: &MeScopedRoleMemberOfId{
-				ScopedRoleMembershipId: "sCoPeDrOlEmEmBeRsHiPiDvAlUe",
+				ScopedRoleMembershipId: "sCoPeDrOlEmEmBeRsHiPiD",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/mE/sCoPeDrOlEmEmBeRoF/sCoPeDrOlEmEmBeRsHiPiDvAlUe/extra",
+			Input: "/mE/sCoPeDrOlEmEmBeRoF/sCoPeDrOlEmEmBeRsHiPiD/extra",
 			Error: true,
 		},
 	}

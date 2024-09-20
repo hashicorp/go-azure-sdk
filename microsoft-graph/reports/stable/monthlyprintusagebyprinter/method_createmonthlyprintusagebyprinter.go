@@ -18,15 +18,44 @@ type CreateMonthlyPrintUsageByPrinterOperationResponse struct {
 	Model        *stable.PrintUsageByPrinter
 }
 
+type CreateMonthlyPrintUsageByPrinterOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateMonthlyPrintUsageByPrinterOperationOptions() CreateMonthlyPrintUsageByPrinterOperationOptions {
+	return CreateMonthlyPrintUsageByPrinterOperationOptions{}
+}
+
+func (o CreateMonthlyPrintUsageByPrinterOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateMonthlyPrintUsageByPrinterOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateMonthlyPrintUsageByPrinterOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateMonthlyPrintUsageByPrinter - Create new navigation property to monthlyPrintUsageByPrinter for reports
-func (c MonthlyPrintUsageByPrinterClient) CreateMonthlyPrintUsageByPrinter(ctx context.Context, input stable.PrintUsageByPrinter) (result CreateMonthlyPrintUsageByPrinterOperationResponse, err error) {
+func (c MonthlyPrintUsageByPrinterClient) CreateMonthlyPrintUsageByPrinter(ctx context.Context, input stable.PrintUsageByPrinter, options CreateMonthlyPrintUsageByPrinterOperationOptions) (result CreateMonthlyPrintUsageByPrinterOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/reports/monthlyPrintUsageByPrinter",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/reports/monthlyPrintUsageByPrinter",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

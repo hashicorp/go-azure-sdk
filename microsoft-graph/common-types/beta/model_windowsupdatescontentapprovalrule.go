@@ -75,14 +75,21 @@ func (s WindowsUpdatesContentApprovalRule) MarshalJSON() ([]byte, error) {
 var _ json.Unmarshaler = &WindowsUpdatesContentApprovalRule{}
 
 func (s *WindowsUpdatesContentApprovalRule) UnmarshalJSON(bytes []byte) error {
-	type alias WindowsUpdatesContentApprovalRule
-	var decoded alias
+
+	var decoded struct {
+		DurationBeforeDeploymentStart nullable.Type[string] `json:"durationBeforeDeploymentStart,omitempty"`
+		CreatedDateTime               nullable.Type[string] `json:"createdDateTime,omitempty"`
+		LastEvaluatedDateTime         nullable.Type[string] `json:"lastEvaluatedDateTime,omitempty"`
+		LastModifiedDateTime          nullable.Type[string] `json:"lastModifiedDateTime,omitempty"`
+		ODataId                       *string               `json:"@odata.id,omitempty"`
+		ODataType                     *string               `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into WindowsUpdatesContentApprovalRule: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
-	s.CreatedDateTime = decoded.CreatedDateTime
 	s.DurationBeforeDeploymentStart = decoded.DurationBeforeDeploymentStart
+	s.CreatedDateTime = decoded.CreatedDateTime
 	s.LastEvaluatedDateTime = decoded.LastEvaluatedDateTime
 	s.LastModifiedDateTime = decoded.LastModifiedDateTime
 	s.ODataId = decoded.ODataId
@@ -100,5 +107,6 @@ func (s *WindowsUpdatesContentApprovalRule) UnmarshalJSON(bytes []byte) error {
 		}
 		s.ContentFilter = impl
 	}
+
 	return nil
 }

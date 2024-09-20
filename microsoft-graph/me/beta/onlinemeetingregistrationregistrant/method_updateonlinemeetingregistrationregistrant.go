@@ -17,15 +17,44 @@ type UpdateOnlineMeetingRegistrationRegistrantOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateOnlineMeetingRegistrationRegistrantOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateOnlineMeetingRegistrationRegistrantOperationOptions() UpdateOnlineMeetingRegistrationRegistrantOperationOptions {
+	return UpdateOnlineMeetingRegistrationRegistrantOperationOptions{}
+}
+
+func (o UpdateOnlineMeetingRegistrationRegistrantOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateOnlineMeetingRegistrationRegistrantOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateOnlineMeetingRegistrationRegistrantOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateOnlineMeetingRegistrationRegistrant - Update the navigation property registrants in me
-func (c OnlineMeetingRegistrationRegistrantClient) UpdateOnlineMeetingRegistrationRegistrant(ctx context.Context, id beta.MeOnlineMeetingIdRegistrationRegistrantId, input beta.MeetingRegistrantBase) (result UpdateOnlineMeetingRegistrationRegistrantOperationResponse, err error) {
+func (c OnlineMeetingRegistrationRegistrantClient) UpdateOnlineMeetingRegistrationRegistrant(ctx context.Context, id beta.MeOnlineMeetingIdRegistrationRegistrantId, input beta.MeetingRegistrantBase, options UpdateOnlineMeetingRegistrationRegistrantOperationOptions) (result UpdateOnlineMeetingRegistrationRegistrantOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

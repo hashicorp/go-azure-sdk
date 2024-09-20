@@ -38,10 +38,26 @@ type CopyNotebookModel struct {
 var _ json.Unmarshaler = &CopyNotebookModel{}
 
 func (s *CopyNotebookModel) UnmarshalJSON(bytes []byte) error {
-	type alias CopyNotebookModel
-	var decoded alias
+
+	var decoded struct {
+		CreatedBy        nullable.Type[string] `json:"createdBy,omitempty"`
+		CreatedTime      nullable.Type[string] `json:"createdTime,omitempty"`
+		Id               nullable.Type[string] `json:"id,omitempty"`
+		IsDefault        nullable.Type[bool]   `json:"isDefault,omitempty"`
+		IsShared         nullable.Type[bool]   `json:"isShared,omitempty"`
+		LastModifiedBy   nullable.Type[string] `json:"lastModifiedBy,omitempty"`
+		LastModifiedTime nullable.Type[string] `json:"lastModifiedTime,omitempty"`
+		Links            *NotebookLinks        `json:"links,omitempty"`
+		Name             nullable.Type[string] `json:"name,omitempty"`
+		ODataId          *string               `json:"@odata.id,omitempty"`
+		ODataType        *string               `json:"@odata.type,omitempty"`
+		SectionGroupsUrl nullable.Type[string] `json:"sectionGroupsUrl,omitempty"`
+		SectionsUrl      nullable.Type[string] `json:"sectionsUrl,omitempty"`
+		Self             nullable.Type[string] `json:"self,omitempty"`
+		UserRole         *OnenoteUserRole      `json:"userRole,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into CopyNotebookModel: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.CreatedBy = decoded.CreatedBy
@@ -80,5 +96,6 @@ func (s *CopyNotebookModel) UnmarshalJSON(bytes []byte) error {
 		}
 		s.LastModifiedByIdentity = impl
 	}
+
 	return nil
 }

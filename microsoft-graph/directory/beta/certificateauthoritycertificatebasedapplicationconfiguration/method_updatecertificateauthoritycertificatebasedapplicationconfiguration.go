@@ -17,18 +17,47 @@ type UpdateCertificateAuthorityCertificateBasedApplicationConfigurationOperation
 	OData        *odata.OData
 }
 
+type UpdateCertificateAuthorityCertificateBasedApplicationConfigurationOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateCertificateAuthorityCertificateBasedApplicationConfigurationOperationOptions() UpdateCertificateAuthorityCertificateBasedApplicationConfigurationOperationOptions {
+	return UpdateCertificateAuthorityCertificateBasedApplicationConfigurationOperationOptions{}
+}
+
+func (o UpdateCertificateAuthorityCertificateBasedApplicationConfigurationOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateCertificateAuthorityCertificateBasedApplicationConfigurationOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateCertificateAuthorityCertificateBasedApplicationConfigurationOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateCertificateAuthorityCertificateBasedApplicationConfiguration - Update certificateBasedApplicationConfiguration.
 // Update the properties of a certificateBasedApplicationConfiguration object. To update the
 // trustedCertificateAuthorities within a certificateBasedApplicationConfiguration object, use the Update
 // certificateAuthorityAsEntity operation.
-func (c CertificateAuthorityCertificateBasedApplicationConfigurationClient) UpdateCertificateAuthorityCertificateBasedApplicationConfiguration(ctx context.Context, id beta.DirectoryCertificateAuthorityCertificateBasedApplicationConfigurationId, input beta.CertificateBasedApplicationConfiguration) (result UpdateCertificateAuthorityCertificateBasedApplicationConfigurationOperationResponse, err error) {
+func (c CertificateAuthorityCertificateBasedApplicationConfigurationClient) UpdateCertificateAuthorityCertificateBasedApplicationConfiguration(ctx context.Context, id beta.DirectoryCertificateAuthorityCertificateBasedApplicationConfigurationId, input beta.CertificateBasedApplicationConfiguration, options UpdateCertificateAuthorityCertificateBasedApplicationConfigurationOperationOptions) (result UpdateCertificateAuthorityCertificateBasedApplicationConfigurationOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

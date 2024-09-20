@@ -18,15 +18,44 @@ type CreateRoleManagementAlertIncidentRemediateOperationResponse struct {
 	OData        *odata.OData
 }
 
+type CreateRoleManagementAlertIncidentRemediateOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateRoleManagementAlertIncidentRemediateOperationOptions() CreateRoleManagementAlertIncidentRemediateOperationOptions {
+	return CreateRoleManagementAlertIncidentRemediateOperationOptions{}
+}
+
+func (o CreateRoleManagementAlertIncidentRemediateOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateRoleManagementAlertIncidentRemediateOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateRoleManagementAlertIncidentRemediateOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateRoleManagementAlertIncidentRemediate - Invoke action remediate
-func (c RoleManagementAlertAlertAlertIncidentClient) CreateRoleManagementAlertIncidentRemediate(ctx context.Context, id beta.IdentityGovernanceRoleManagementAlertAlertIdAlertIncidentId) (result CreateRoleManagementAlertIncidentRemediateOperationResponse, err error) {
+func (c RoleManagementAlertAlertAlertIncidentClient) CreateRoleManagementAlertIncidentRemediate(ctx context.Context, id beta.IdentityGovernanceRoleManagementAlertAlertIdAlertIncidentId, options CreateRoleManagementAlertIncidentRemediateOperationOptions) (result CreateRoleManagementAlertIncidentRemediateOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/remediate", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/remediate", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

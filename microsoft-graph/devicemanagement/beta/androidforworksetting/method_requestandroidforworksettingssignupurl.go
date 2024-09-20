@@ -17,15 +17,44 @@ type RequestAndroidForWorkSettingsSignupUrlOperationResponse struct {
 	Model        *RequestAndroidForWorkSettingsSignupUrlResult
 }
 
+type RequestAndroidForWorkSettingsSignupUrlOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultRequestAndroidForWorkSettingsSignupUrlOperationOptions() RequestAndroidForWorkSettingsSignupUrlOperationOptions {
+	return RequestAndroidForWorkSettingsSignupUrlOperationOptions{}
+}
+
+func (o RequestAndroidForWorkSettingsSignupUrlOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o RequestAndroidForWorkSettingsSignupUrlOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o RequestAndroidForWorkSettingsSignupUrlOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // RequestAndroidForWorkSettingsSignupUrl - Invoke action requestSignupUrl
-func (c AndroidForWorkSettingClient) RequestAndroidForWorkSettingsSignupUrl(ctx context.Context, input RequestAndroidForWorkSettingsSignupUrlRequest) (result RequestAndroidForWorkSettingsSignupUrlOperationResponse, err error) {
+func (c AndroidForWorkSettingClient) RequestAndroidForWorkSettingsSignupUrl(ctx context.Context, input RequestAndroidForWorkSettingsSignupUrlRequest, options RequestAndroidForWorkSettingsSignupUrlOperationOptions) (result RequestAndroidForWorkSettingsSignupUrlOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusOK,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/deviceManagement/androidForWorkSettings/requestSignupUrl",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/deviceManagement/androidForWorkSettings/requestSignupUrl",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

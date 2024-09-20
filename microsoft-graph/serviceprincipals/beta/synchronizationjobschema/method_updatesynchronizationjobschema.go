@@ -18,17 +18,46 @@ type UpdateSynchronizationJobSchemaOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateSynchronizationJobSchemaOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateSynchronizationJobSchemaOperationOptions() UpdateSynchronizationJobSchemaOperationOptions {
+	return UpdateSynchronizationJobSchemaOperationOptions{}
+}
+
+func (o UpdateSynchronizationJobSchemaOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateSynchronizationJobSchemaOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateSynchronizationJobSchemaOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateSynchronizationJobSchema - Update synchronizationSchema. Update the synchronization schema for a given job or
 // template. This method fully replaces the current schema with the one provided in the request. To update the schema of
 // a template, make the call on the application object. You must be the owner of the application.
-func (c SynchronizationJobSchemaClient) UpdateSynchronizationJobSchema(ctx context.Context, id beta.ServicePrincipalIdSynchronizationJobId, input beta.SynchronizationSchema) (result UpdateSynchronizationJobSchemaOperationResponse, err error) {
+func (c SynchronizationJobSchemaClient) UpdateSynchronizationJobSchema(ctx context.Context, id beta.ServicePrincipalIdSynchronizationJobId, input beta.SynchronizationSchema, options UpdateSynchronizationJobSchemaOperationOptions) (result UpdateSynchronizationJobSchemaOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       fmt.Sprintf("%s/schema", id.ID()),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/schema", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

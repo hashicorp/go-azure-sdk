@@ -17,15 +17,44 @@ type UpdateAuthenticationMethodUserRegistrationDetailOperationResponse struct {
 	OData        *odata.OData
 }
 
+type UpdateAuthenticationMethodUserRegistrationDetailOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultUpdateAuthenticationMethodUserRegistrationDetailOperationOptions() UpdateAuthenticationMethodUserRegistrationDetailOperationOptions {
+	return UpdateAuthenticationMethodUserRegistrationDetailOperationOptions{}
+}
+
+func (o UpdateAuthenticationMethodUserRegistrationDetailOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o UpdateAuthenticationMethodUserRegistrationDetailOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o UpdateAuthenticationMethodUserRegistrationDetailOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // UpdateAuthenticationMethodUserRegistrationDetail - Update the navigation property userRegistrationDetails in reports
-func (c AuthenticationMethodUserRegistrationDetailClient) UpdateAuthenticationMethodUserRegistrationDetail(ctx context.Context, id beta.ReportAuthenticationMethodUserRegistrationDetailId, input beta.UserRegistrationDetails) (result UpdateAuthenticationMethodUserRegistrationDetailOperationResponse, err error) {
+func (c AuthenticationMethodUserRegistrationDetailClient) UpdateAuthenticationMethodUserRegistrationDetail(ctx context.Context, id beta.ReportAuthenticationMethodUserRegistrationDetailId, input beta.UserRegistrationDetails, options UpdateAuthenticationMethodUserRegistrationDetailOperationOptions) (result UpdateAuthenticationMethodUserRegistrationDetailOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPatch,
-		Path:       id.ID(),
+		HttpMethod:    http.MethodPatch,
+		OptionsObject: options,
+		Path:          id.ID(),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

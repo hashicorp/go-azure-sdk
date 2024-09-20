@@ -40,10 +40,20 @@ type Print struct {
 var _ json.Unmarshaler = &Print{}
 
 func (s *Print) UnmarshalJSON(bytes []byte) error {
-	type alias Print
-	var decoded alias
+
+	var decoded struct {
+		Connectors      *[]PrintConnector      `json:"connectors,omitempty"`
+		ODataId         *string                `json:"@odata.id,omitempty"`
+		ODataType       *string                `json:"@odata.type,omitempty"`
+		Operations      *[]PrintOperation      `json:"operations,omitempty"`
+		Printers        *[]Printer             `json:"printers,omitempty"`
+		Services        *[]PrintService        `json:"services,omitempty"`
+		Settings        *PrintSettings         `json:"settings,omitempty"`
+		Shares          *[]PrinterShare        `json:"shares,omitempty"`
+		TaskDefinitions *[]PrintTaskDefinition `json:"taskDefinitions,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into Print: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.Connectors = decoded.Connectors
@@ -76,5 +86,6 @@ func (s *Print) UnmarshalJSON(bytes []byte) error {
 		}
 		s.Operations = &output
 	}
+
 	return nil
 }

@@ -12,20 +12,20 @@ import (
 var _ resourceids.ResourceId = &DeviceManagementIntuneBrandingProfileIdAssignmentId{}
 
 func TestNewDeviceManagementIntuneBrandingProfileIdAssignmentID(t *testing.T) {
-	id := NewDeviceManagementIntuneBrandingProfileIdAssignmentID("intuneBrandingProfileIdValue", "intuneBrandingProfileAssignmentIdValue")
+	id := NewDeviceManagementIntuneBrandingProfileIdAssignmentID("intuneBrandingProfileId", "intuneBrandingProfileAssignmentId")
 
-	if id.IntuneBrandingProfileId != "intuneBrandingProfileIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'IntuneBrandingProfileId'", id.IntuneBrandingProfileId, "intuneBrandingProfileIdValue")
+	if id.IntuneBrandingProfileId != "intuneBrandingProfileId" {
+		t.Fatalf("Expected %q but got %q for Segment 'IntuneBrandingProfileId'", id.IntuneBrandingProfileId, "intuneBrandingProfileId")
 	}
 
-	if id.IntuneBrandingProfileAssignmentId != "intuneBrandingProfileAssignmentIdValue" {
-		t.Fatalf("Expected %q but got %q for Segment 'IntuneBrandingProfileAssignmentId'", id.IntuneBrandingProfileAssignmentId, "intuneBrandingProfileAssignmentIdValue")
+	if id.IntuneBrandingProfileAssignmentId != "intuneBrandingProfileAssignmentId" {
+		t.Fatalf("Expected %q but got %q for Segment 'IntuneBrandingProfileAssignmentId'", id.IntuneBrandingProfileAssignmentId, "intuneBrandingProfileAssignmentId")
 	}
 }
 
 func TestFormatDeviceManagementIntuneBrandingProfileIdAssignmentID(t *testing.T) {
-	actual := NewDeviceManagementIntuneBrandingProfileIdAssignmentID("intuneBrandingProfileIdValue", "intuneBrandingProfileAssignmentIdValue").ID()
-	expected := "/deviceManagement/intuneBrandingProfiles/intuneBrandingProfileIdValue/assignments/intuneBrandingProfileAssignmentIdValue"
+	actual := NewDeviceManagementIntuneBrandingProfileIdAssignmentID("intuneBrandingProfileId", "intuneBrandingProfileAssignmentId").ID()
+	expected := "/deviceManagement/intuneBrandingProfiles/intuneBrandingProfileId/assignments/intuneBrandingProfileAssignmentId"
 	if actual != expected {
 		t.Fatalf("Expected the Formatted ID to be %q but got %q", expected, actual)
 	}
@@ -54,25 +54,25 @@ func TestParseDeviceManagementIntuneBrandingProfileIdAssignmentID(t *testing.T) 
 		},
 		{
 			// Incomplete URI
-			Input: "/deviceManagement/intuneBrandingProfiles/intuneBrandingProfileIdValue",
+			Input: "/deviceManagement/intuneBrandingProfiles/intuneBrandingProfileId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/deviceManagement/intuneBrandingProfiles/intuneBrandingProfileIdValue/assignments",
+			Input: "/deviceManagement/intuneBrandingProfiles/intuneBrandingProfileId/assignments",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/intuneBrandingProfiles/intuneBrandingProfileIdValue/assignments/intuneBrandingProfileAssignmentIdValue",
+			Input: "/deviceManagement/intuneBrandingProfiles/intuneBrandingProfileId/assignments/intuneBrandingProfileAssignmentId",
 			Expected: &DeviceManagementIntuneBrandingProfileIdAssignmentId{
-				IntuneBrandingProfileId:           "intuneBrandingProfileIdValue",
-				IntuneBrandingProfileAssignmentId: "intuneBrandingProfileAssignmentIdValue",
+				IntuneBrandingProfileId:           "intuneBrandingProfileId",
+				IntuneBrandingProfileAssignmentId: "intuneBrandingProfileAssignmentId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/intuneBrandingProfiles/intuneBrandingProfileIdValue/assignments/intuneBrandingProfileAssignmentIdValue/extra",
+			Input: "/deviceManagement/intuneBrandingProfiles/intuneBrandingProfileId/assignments/intuneBrandingProfileAssignmentId/extra",
 			Error: true,
 		},
 	}
@@ -135,48 +135,48 @@ func TestParseDeviceManagementIntuneBrandingProfileIdAssignmentIDInsensitively(t
 		},
 		{
 			// Incomplete URI
-			Input: "/deviceManagement/intuneBrandingProfiles/intuneBrandingProfileIdValue",
+			Input: "/deviceManagement/intuneBrandingProfiles/intuneBrandingProfileId",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/iNtUnEbRaNdInGpRoFiLeS/iNtUnEbRaNdInGpRoFiLeIdVaLuE",
+			Input: "/dEvIcEmAnAgEmEnT/iNtUnEbRaNdInGpRoFiLeS/iNtUnEbRaNdInGpRoFiLeId",
 			Error: true,
 		},
 		{
 			// Incomplete URI
-			Input: "/deviceManagement/intuneBrandingProfiles/intuneBrandingProfileIdValue/assignments",
+			Input: "/deviceManagement/intuneBrandingProfiles/intuneBrandingProfileId/assignments",
 			Error: true,
 		},
 		{
 			// Incomplete URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/iNtUnEbRaNdInGpRoFiLeS/iNtUnEbRaNdInGpRoFiLeIdVaLuE/aSsIgNmEnTs",
+			Input: "/dEvIcEmAnAgEmEnT/iNtUnEbRaNdInGpRoFiLeS/iNtUnEbRaNdInGpRoFiLeId/aSsIgNmEnTs",
 			Error: true,
 		},
 		{
 			// Valid URI
-			Input: "/deviceManagement/intuneBrandingProfiles/intuneBrandingProfileIdValue/assignments/intuneBrandingProfileAssignmentIdValue",
+			Input: "/deviceManagement/intuneBrandingProfiles/intuneBrandingProfileId/assignments/intuneBrandingProfileAssignmentId",
 			Expected: &DeviceManagementIntuneBrandingProfileIdAssignmentId{
-				IntuneBrandingProfileId:           "intuneBrandingProfileIdValue",
-				IntuneBrandingProfileAssignmentId: "intuneBrandingProfileAssignmentIdValue",
+				IntuneBrandingProfileId:           "intuneBrandingProfileId",
+				IntuneBrandingProfileAssignmentId: "intuneBrandingProfileAssignmentId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment)
-			Input: "/deviceManagement/intuneBrandingProfiles/intuneBrandingProfileIdValue/assignments/intuneBrandingProfileAssignmentIdValue/extra",
+			Input: "/deviceManagement/intuneBrandingProfiles/intuneBrandingProfileId/assignments/intuneBrandingProfileAssignmentId/extra",
 			Error: true,
 		},
 		{
 			// Valid URI (mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/iNtUnEbRaNdInGpRoFiLeS/iNtUnEbRaNdInGpRoFiLeIdVaLuE/aSsIgNmEnTs/iNtUnEbRaNdInGpRoFiLeAsSiGnMeNtIdVaLuE",
+			Input: "/dEvIcEmAnAgEmEnT/iNtUnEbRaNdInGpRoFiLeS/iNtUnEbRaNdInGpRoFiLeId/aSsIgNmEnTs/iNtUnEbRaNdInGpRoFiLeAsSiGnMeNtId",
 			Expected: &DeviceManagementIntuneBrandingProfileIdAssignmentId{
-				IntuneBrandingProfileId:           "iNtUnEbRaNdInGpRoFiLeIdVaLuE",
-				IntuneBrandingProfileAssignmentId: "iNtUnEbRaNdInGpRoFiLeAsSiGnMeNtIdVaLuE",
+				IntuneBrandingProfileId:           "iNtUnEbRaNdInGpRoFiLeId",
+				IntuneBrandingProfileAssignmentId: "iNtUnEbRaNdInGpRoFiLeAsSiGnMeNtId",
 			},
 		},
 		{
 			// Invalid (Valid Uri with Extra segment - mIxEd CaSe since this is insensitive)
-			Input: "/dEvIcEmAnAgEmEnT/iNtUnEbRaNdInGpRoFiLeS/iNtUnEbRaNdInGpRoFiLeIdVaLuE/aSsIgNmEnTs/iNtUnEbRaNdInGpRoFiLeAsSiGnMeNtIdVaLuE/extra",
+			Input: "/dEvIcEmAnAgEmEnT/iNtUnEbRaNdInGpRoFiLeS/iNtUnEbRaNdInGpRoFiLeId/aSsIgNmEnTs/iNtUnEbRaNdInGpRoFiLeAsSiGnMeNtId/extra",
 			Error: true,
 		},
 	}

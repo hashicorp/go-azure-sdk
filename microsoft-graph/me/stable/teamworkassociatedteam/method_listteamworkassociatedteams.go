@@ -25,14 +25,15 @@ type ListTeamworkAssociatedTeamsCompleteResult struct {
 }
 
 type ListTeamworkAssociatedTeamsOperationOptions struct {
-	Count   *bool
-	Expand  *odata.Expand
-	Filter  *string
-	OrderBy *odata.OrderBy
-	Search  *string
-	Select  *[]string
-	Skip    *int64
-	Top     *int64
+	Count    *bool
+	Expand   *odata.Expand
+	Filter   *string
+	Metadata *odata.Metadata
+	OrderBy  *odata.OrderBy
+	Search   *string
+	Select   *[]string
+	Skip     *int64
+	Top      *int64
 }
 
 func DefaultListTeamworkAssociatedTeamsOperationOptions() ListTeamworkAssociatedTeamsOperationOptions {
@@ -55,6 +56,9 @@ func (o ListTeamworkAssociatedTeamsOperationOptions) ToOData() *odata.Query {
 	}
 	if o.Filter != nil {
 		out.Filter = *o.Filter
+	}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
 	}
 	if o.OrderBy != nil {
 		out.OrderBy = *o.OrderBy
@@ -93,7 +97,7 @@ func (p *ListTeamworkAssociatedTeamsCustomPager) NextPageLink() *odata.Link {
 }
 
 // ListTeamworkAssociatedTeams - List associatedTeamInfo. Get the list of teams in Microsoft Teams that a user is
-// associated with. Currently, a user can be associated with a team in two different ways:
+// associated with. Currently, a user can be associated with a team in two different ways
 func (c TeamworkAssociatedTeamClient) ListTeamworkAssociatedTeams(ctx context.Context, options ListTeamworkAssociatedTeamsOperationOptions) (result ListTeamworkAssociatedTeamsOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",

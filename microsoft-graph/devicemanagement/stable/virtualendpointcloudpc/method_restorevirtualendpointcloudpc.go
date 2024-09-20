@@ -18,16 +18,45 @@ type RestoreVirtualEndpointCloudPCOperationResponse struct {
 	OData        *odata.OData
 }
 
+type RestoreVirtualEndpointCloudPCOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultRestoreVirtualEndpointCloudPCOperationOptions() RestoreVirtualEndpointCloudPCOperationOptions {
+	return RestoreVirtualEndpointCloudPCOperationOptions{}
+}
+
+func (o RestoreVirtualEndpointCloudPCOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o RestoreVirtualEndpointCloudPCOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o RestoreVirtualEndpointCloudPCOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // RestoreVirtualEndpointCloudPC - Invoke action restore. Restore a specific cloudPC object to a previous state from a
 // snapshot. Use this API to trigger a remote action that restores a Cloud PC device to a previous state.
-func (c VirtualEndpointCloudPCClient) RestoreVirtualEndpointCloudPC(ctx context.Context, id stable.DeviceManagementVirtualEndpointCloudPCId, input RestoreVirtualEndpointCloudPCRequest) (result RestoreVirtualEndpointCloudPCOperationResponse, err error) {
+func (c VirtualEndpointCloudPCClient) RestoreVirtualEndpointCloudPC(ctx context.Context, id stable.DeviceManagementVirtualEndpointCloudPCId, input RestoreVirtualEndpointCloudPCRequest, options RestoreVirtualEndpointCloudPCOperationOptions) (result RestoreVirtualEndpointCloudPCOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusNoContent,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       fmt.Sprintf("%s/restore", id.ID()),
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          fmt.Sprintf("%s/restore", id.ID()),
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

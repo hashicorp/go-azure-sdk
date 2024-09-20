@@ -18,16 +18,45 @@ type CreateDeviceConfigurationRestrictedAppsViolationOperationResponse struct {
 	Model        *beta.RestrictedAppsViolation
 }
 
+type CreateDeviceConfigurationRestrictedAppsViolationOperationOptions struct {
+	Metadata *odata.Metadata
+}
+
+func DefaultCreateDeviceConfigurationRestrictedAppsViolationOperationOptions() CreateDeviceConfigurationRestrictedAppsViolationOperationOptions {
+	return CreateDeviceConfigurationRestrictedAppsViolationOperationOptions{}
+}
+
+func (o CreateDeviceConfigurationRestrictedAppsViolationOperationOptions) ToHeaders() *client.Headers {
+	out := client.Headers{}
+
+	return &out
+}
+
+func (o CreateDeviceConfigurationRestrictedAppsViolationOperationOptions) ToOData() *odata.Query {
+	out := odata.Query{}
+	if o.Metadata != nil {
+		out.Metadata = *o.Metadata
+	}
+	return &out
+}
+
+func (o CreateDeviceConfigurationRestrictedAppsViolationOperationOptions) ToQuery() *client.QueryParams {
+	out := client.QueryParams{}
+
+	return &out
+}
+
 // CreateDeviceConfigurationRestrictedAppsViolation - Create new navigation property to
 // deviceConfigurationRestrictedAppsViolations for deviceManagement
-func (c DeviceConfigurationRestrictedAppsViolationClient) CreateDeviceConfigurationRestrictedAppsViolation(ctx context.Context, input beta.RestrictedAppsViolation) (result CreateDeviceConfigurationRestrictedAppsViolationOperationResponse, err error) {
+func (c DeviceConfigurationRestrictedAppsViolationClient) CreateDeviceConfigurationRestrictedAppsViolation(ctx context.Context, input beta.RestrictedAppsViolation, options CreateDeviceConfigurationRestrictedAppsViolationOperationOptions) (result CreateDeviceConfigurationRestrictedAppsViolationOperationResponse, err error) {
 	opts := client.RequestOptions{
 		ContentType: "application/json; charset=utf-8",
 		ExpectedStatusCodes: []int{
 			http.StatusCreated,
 		},
-		HttpMethod: http.MethodPost,
-		Path:       "/deviceManagement/deviceConfigurationRestrictedAppsViolations",
+		HttpMethod:    http.MethodPost,
+		OptionsObject: options,
+		Path:          "/deviceManagement/deviceConfigurationRestrictedAppsViolations",
 	}
 
 	req, err := c.Client.NewRequest(ctx, opts)

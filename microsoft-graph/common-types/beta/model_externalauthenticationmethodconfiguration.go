@@ -89,19 +89,29 @@ func (s ExternalAuthenticationMethodConfiguration) MarshalJSON() ([]byte, error)
 var _ json.Unmarshaler = &ExternalAuthenticationMethodConfiguration{}
 
 func (s *ExternalAuthenticationMethodConfiguration) UnmarshalJSON(bytes []byte) error {
-	type alias ExternalAuthenticationMethodConfiguration
-	var decoded alias
+
+	var decoded struct {
+		AppId                *string                       `json:"appId,omitempty"`
+		DisplayName          *string                       `json:"displayName,omitempty"`
+		IncludeTargets       *[]AuthenticationMethodTarget `json:"includeTargets,omitempty"`
+		OpenIdConnectSetting *OpenIdConnectSetting         `json:"openIdConnectSetting,omitempty"`
+		ExcludeTargets       *[]ExcludeTarget              `json:"excludeTargets,omitempty"`
+		State                *AuthenticationMethodState    `json:"state,omitempty"`
+		Id                   *string                       `json:"id,omitempty"`
+		ODataId              *string                       `json:"@odata.id,omitempty"`
+		ODataType            *string                       `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into ExternalAuthenticationMethodConfiguration: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.AppId = decoded.AppId
 	s.DisplayName = decoded.DisplayName
+	s.OpenIdConnectSetting = decoded.OpenIdConnectSetting
 	s.ExcludeTargets = decoded.ExcludeTargets
 	s.Id = decoded.Id
 	s.ODataId = decoded.ODataId
 	s.ODataType = decoded.ODataType
-	s.OpenIdConnectSetting = decoded.OpenIdConnectSetting
 	s.State = decoded.State
 
 	var temp map[string]json.RawMessage
@@ -125,5 +135,6 @@ func (s *ExternalAuthenticationMethodConfiguration) UnmarshalJSON(bytes []byte) 
 		}
 		s.IncludeTargets = &output
 	}
+
 	return nil
 }

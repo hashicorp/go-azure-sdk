@@ -77,15 +77,22 @@ func (s ExternallyAccessibleGcpStorageBucketFinding) MarshalJSON() ([]byte, erro
 var _ json.Unmarshaler = &ExternallyAccessibleGcpStorageBucketFinding{}
 
 func (s *ExternallyAccessibleGcpStorageBucketFinding) UnmarshalJSON(bytes []byte) error {
-	type alias ExternallyAccessibleGcpStorageBucketFinding
-	var decoded alias
+
+	var decoded struct {
+		Accessibility       *GcpAccessType `json:"accessibility,omitempty"`
+		EncryptionManagedBy *GcpEncryption `json:"encryptionManagedBy,omitempty"`
+		CreatedDateTime     *string        `json:"createdDateTime,omitempty"`
+		Id                  *string        `json:"id,omitempty"`
+		ODataId             *string        `json:"@odata.id,omitempty"`
+		ODataType           *string        `json:"@odata.type,omitempty"`
+	}
 	if err := json.Unmarshal(bytes, &decoded); err != nil {
-		return fmt.Errorf("unmarshaling into ExternallyAccessibleGcpStorageBucketFinding: %+v", err)
+		return fmt.Errorf("unmarshaling: %+v", err)
 	}
 
 	s.Accessibility = decoded.Accessibility
-	s.CreatedDateTime = decoded.CreatedDateTime
 	s.EncryptionManagedBy = decoded.EncryptionManagedBy
+	s.CreatedDateTime = decoded.CreatedDateTime
 	s.Id = decoded.Id
 	s.ODataId = decoded.ODataId
 	s.ODataType = decoded.ODataType
@@ -102,5 +109,6 @@ func (s *ExternallyAccessibleGcpStorageBucketFinding) UnmarshalJSON(bytes []byte
 		}
 		s.StorageBucket = &impl
 	}
+
 	return nil
 }
